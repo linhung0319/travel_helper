@@ -344,7 +344,7 @@ travel_helper/
 - Instagram：很多帳號早就停止更新（例如最後一篇是 2021 年），簡介裡的營業時間不一定是最新的；要先看最近一篇貼文的日期再判斷。
 
 #### 楽天トラベル API
-- 需要 👤 到楽天ウェブサービス註冊，取得 `applicationId` 和 `accessKey`，放在環境變數 `RAKUTEN_APP_ID`、`RAKUTEN_ACCESS_KEY`（寫在 `.env`，**不要 commit**）。
+- 需要 👤 到楽天ウェブサービス註冊，取得 `applicationId` 和 `accessKey`，放在環境變數 `RAKUTEN_APPLICATION_ID`、`RAKUTEN_ACCESS_KEY`（寫在 `.env`，**不要 commit**）。
 - **空室検索**（`VacantHotelSearch`）：子地區中心座標、半徑最多 3 km、入住和退房日期（用旅程實際可能住的日期），`roomNum`（最多 10）× `adultNum`（每間最多 10）。例如 15 人查「5 間 × 3 人」和「4 間 × 4 人」，結果裡有空房的就是能全員同住的候選。
 - **施設情報**（`HotelDetailSearch`）：`reviewAverage`、`reviewCount`，以及服務、地點、房間、設備、浴場、早餐、晚餐、清潔度的細項評分；評分時晚餐、浴場的細項很有用。
 - 取得的價格寫進 `prices`（`source: "rakuten-api"`，附查詢日期和入住日期）；照片寫進 `photos`（`kind: "rakuten"`）。
