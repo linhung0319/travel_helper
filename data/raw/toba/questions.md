@@ -48,6 +48,23 @@ T7b（2026-10-18）從 T2～T4c 的筆記集中過來；原本的上下文見 `l
 - [ ] toba-ryokan-naomi：價格（只有專欄寫平日約 35,000 円／棟，要用 Airbnb 確認）
 - [ ] tobashare（候選）：2027 年 2 月有沒有營業（外牆塗裝暫停營業到 2 月左右）
 
+- [ ] toba-kokusai-hotel：接駁車載客數（15 人能否一次搭）、潮路亭↔本館的移動（0599-26-4121）（T7d 讀文）
+- [ ] toba-shiojitei：潮路亭的電梯、入口階梯、客室樓層；能否預寄行李（0599-26-4121）（T7d 讀文）
+- [ ] toba-view-hotel-hanashinju：有沒有電梯、接駁車載客數、能否寄放行李（0599-25-2111）（T7d 讀文）
+- [ ] toba-senpokaku：接送車能載幾人、15 人能不能一次搭完（0599-25-3151）（T7d 讀文）
+- [ ] toba-grand-hotel：有沒有電梯、接駁車載客數（官網未寫）（T7d 讀文）
+- [ ] toba-amanoshima：接送車載客數、大浴場樓層（0599-26-2662）（T7d 讀文）
+- [ ] toba-kamenoi-hotel：接送車載客數、可住人數上限（0599-25-4101）（T7d 讀文）
+- [ ] toba-kamenoi-hotel：2027-02 早餐有沒有螃蟹吃到飽（T7d 讀文）
+- [ ] toba-osatsu-michishio：接送預約期限、接送車載客數（0599-33-6518）（T7d 讀文）
+- [ ] toba-osatsu-ichii：有沒有電梯、接送車載客數（0599-33-7555）（T7d 讀文）
+- [ ] toba-osatsu-ohtaya：有沒有電梯（客室 3～6F）（T7d 讀文）
+- [ ] toba-ijika-kagura：接送巴士一班能不能載 15 人；前台到大浴場、客室要不要走樓梯（0599-32-5301）（T7d 讀文）
+- [ ] toba-uramura-marusan：有沒有接送、有沒有電梯和有床的房間（0599-32-5025）（T7d 讀文）
+- [ ] toba-toshijima-yamashichi：團體方案、接送車定員、行李寄放（0599-37-2034）（T7d 讀文）
+- [ ] toba-toshijima-misaki：有沒有電梯（心得說館內全靠樓梯）（T7d 讀文）
+- [ ] toba-toshijima-teiyou：還有沒有營業（官網連不上、KNT 0 個方案），電話 0599-37-2011（T7d 讀文）
+
 ## 餐廳
 
 ### 全員 15 人能不能一次訂（浦村、相差沒有 fit15: yes 的店）
