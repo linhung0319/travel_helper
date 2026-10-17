@@ -1,0 +1,1320 @@
+[
+  {
+    "key": "toba-todaya",
+    "name": {
+      "ja": "鳥羽温泉郷 戸田家"
+    },
+    "region": "toba-station",
+    "category": "ryokan",
+    "status": "included",
+    "reason": null,
+    "pointId": "toba-todaya",
+    "ratings": {
+      "rakuten": 4.42,
+      "rakutenReviews": 2326
+    }
+  },
+  {
+    "key": "toba-kokusai-hotel",
+    "name": {
+      "ja": "鳥羽国際ホテル"
+    },
+    "region": "toba-station",
+    "category": "hotel",
+    "status": "included",
+    "reason": null,
+    "pointId": "toba-kokusai-hotel",
+    "ratings": {
+      "rakuten": 4.45,
+      "rakutenReviews": 1134
+    }
+  },
+  {
+    "key": "toba-shiojitei",
+    "name": {
+      "ja": "鳥羽国際ホテル 潮路亭"
+    },
+    "region": "toba-station",
+    "category": "ryokan",
+    "status": "included",
+    "reason": null,
+    "pointId": "toba-shiojitei",
+    "ratings": {
+      "rakuten": 4.55,
+      "rakutenReviews": 997
+    }
+  },
+  {
+    "key": "toba-seaside-hotel",
+    "name": {
+      "ja": "湯めぐり海百景 鳥羽シーサイドホテル"
+    },
+    "region": "toba-outskirts",
+    "category": "hotel",
+    "status": "included",
+    "reason": null,
+    "pointId": "toba-seaside-hotel",
+    "ratings": {
+      "rakuten": 4.41,
+      "rakutenReviews": 1634
+    }
+  },
+  {
+    "key": "toba-view-hotel-hanashinju",
+    "name": {
+      "ja": "鳥羽ビューホテル 花真珠"
+    },
+    "region": "toba-outskirts",
+    "category": "ryokan",
+    "status": "included",
+    "reason": null,
+    "pointId": "toba-view-hotel-hanashinju",
+    "ratings": {
+      "rakuten": 4.39,
+      "rakutenReviews": 1717
+    }
+  },
+  {
+    "key": "toba-senpokaku",
+    "name": {
+      "ja": "扇野の里 扇芳閣"
+    },
+    "region": "toba-station",
+    "category": "ryokan",
+    "status": "included",
+    "reason": null,
+    "pointId": "toba-senpokaku",
+    "ratings": {
+      "rakuten": 4.28,
+      "rakutenReviews": 1275
+    }
+  },
+  {
+    "key": "toba-grand-hotel",
+    "name": {
+      "ja": "伊勢志摩の絶景 鳥羽グランドホテル"
+    },
+    "region": "toba-station",
+    "category": "hotel",
+    "status": "included",
+    "reason": null,
+    "pointId": "toba-grand-hotel",
+    "ratings": {
+      "rakuten": 4.49,
+      "rakutenReviews": 4318
+    }
+  },
+  {
+    "key": "toba-kochoran",
+    "name": {
+      "ja": "伊勢神宮のお膝元 鳥羽 胡蝶蘭"
+    },
+    "region": "toba-station",
+    "category": "ryokan",
+    "status": "included",
+    "reason": null,
+    "pointId": "toba-kochoran",
+    "ratings": {
+      "rakuten": 4.44,
+      "rakutenReviews": 1491
+    }
+  },
+  {
+    "key": "toba-saichoraku",
+    "name": {
+      "ja": "大江戸温泉物語Premium 鳥羽彩朝楽"
+    },
+    "region": "toba-station",
+    "category": "hotel",
+    "status": "included",
+    "reason": null,
+    "pointId": "toba-saichoraku",
+    "ratings": {
+      "rakuten": 3.85,
+      "rakutenReviews": 1229
+    }
+  },
+  {
+    "key": "toba-ocean-resort",
+    "name": {
+      "ja": "鳥羽オーシャンリゾート オールインクルーシブホテル"
+    },
+    "region": "toba-outskirts",
+    "category": "hotel",
+    "status": "included",
+    "reason": null,
+    "pointId": "toba-ocean-resort",
+    "ratings": {
+      "rakuten": 4.12,
+      "rakutenReviews": 2733
+    }
+  },
+  {
+    "key": "toba-amanoshima",
+    "name": {
+      "ja": "安楽島温泉 湯元 海女乃島"
+    },
+    "region": "toba-outskirts",
+    "category": "ryokan",
+    "status": "included",
+    "reason": null,
+    "pointId": "toba-amanoshima",
+    "ratings": {
+      "rakuten": 4.2,
+      "rakutenReviews": 1098
+    }
+  },
+  {
+    "key": "toba-kamenoi-hotel",
+    "name": {
+      "ja": "亀の井ホテル 鳥羽"
+    },
+    "region": "toba-outskirts",
+    "category": "hotel",
+    "status": "included",
+    "reason": null,
+    "pointId": "toba-kamenoi-hotel",
+    "ratings": {
+      "rakuten": 4.15,
+      "rakutenReviews": 1139
+    }
+  },
+  {
+    "key": "toba-osatsu-michishio",
+    "name": {
+      "ja": "味の宿 みち潮"
+    },
+    "region": "osatsu",
+    "category": "ryokan",
+    "status": "included",
+    "reason": null,
+    "pointId": "toba-osatsu-michishio",
+    "ratings": {
+      "rakuten": 4.38
+    }
+  },
+  {
+    "key": "toba-osatsu-sora-no-kaze",
+    "name": {
+      "ja": "リゾートヒルズ豊浜 蒼空の風"
+    },
+    "region": "osatsu",
+    "category": "ryokan",
+    "status": "included",
+    "reason": null,
+    "pointId": "toba-osatsu-sora-no-kaze",
+    "ratings": {
+      "rakuten": 4.5
+    }
+  },
+  {
+    "key": "toba-osatsu-ichii",
+    "name": {
+      "ja": "浜の雅亭 一井"
+    },
+    "region": "osatsu",
+    "category": "ryokan",
+    "status": "included",
+    "reason": null,
+    "pointId": "toba-osatsu-ichii",
+    "ratings": {
+      "rakuten": 4.23
+    }
+  },
+  {
+    "key": "toba-osatsu-ohtaya",
+    "name": {
+      "ja": "旅館 大田家 HEALING STAY"
+    },
+    "region": "osatsu",
+    "category": "ryokan",
+    "status": "included",
+    "reason": null,
+    "pointId": "toba-osatsu-ohtaya",
+    "ratings": {
+      "rakuten": 4.64
+    }
+  },
+  {
+    "key": "toba-osatsu-nakayoshi",
+    "name": {
+      "ja": "南鳥羽相差 海幸の宿 なかよし"
+    },
+    "region": "osatsu",
+    "category": "ryokan",
+    "status": "included",
+    "reason": null,
+    "pointId": "toba-osatsu-nakayoshi",
+    "ratings": {
+      "rakuten": 4.74
+    }
+  },
+  {
+    "key": "toba-osatsu-kashio",
+    "name": {
+      "ja": "旨さ納得◎の宿 香潮（割烹の宿 香潮）"
+    },
+    "region": "osatsu",
+    "category": "ryokan",
+    "status": "included",
+    "reason": null,
+    "pointId": "toba-osatsu-kashio",
+    "ratings": {
+      "rakuten": 5
+    }
+  },
+  {
+    "key": "toba-kuzaki-tamaya",
+    "name": {
+      "ja": "あわびと伊勢エビのお宿 たまや"
+    },
+    "region": "kuzaki",
+    "category": "ryokan",
+    "status": "included",
+    "reason": null,
+    "pointId": "toba-kuzaki-tamaya",
+    "ratings": {
+      "rakuten": 4.81
+    }
+  },
+  {
+    "key": "toba-ijika-kagura",
+    "name": {
+      "ja": "石鏡第一ホテル 神具良"
+    },
+    "region": "kuzaki",
+    "category": "hotel",
+    "status": "included",
+    "reason": null,
+    "pointId": "toba-ijika-kagura",
+    "ratings": {
+      "rakuten": 4.35
+    }
+  },
+  {
+    "key": "toba-motoura-sun-urashima",
+    "name": {
+      "ja": "鳥羽本浦温泉 サン浦島 悠季の里"
+    },
+    "region": "uramura",
+    "category": "ryokan",
+    "status": "included",
+    "reason": null,
+    "pointId": "toba-motoura-sun-urashima",
+    "ratings": {
+      "rakuten": 4.63
+    }
+  },
+  {
+    "key": "toba-uramura-marusan",
+    "name": {
+      "ja": "海辺の温泉宿 まるさん"
+    },
+    "region": "uramura",
+    "category": "ryokan",
+    "status": "included",
+    "reason": null,
+    "pointId": "toba-uramura-marusan",
+    "ratings": {
+      "rakuten": 4.84
+    }
+  },
+  {
+    "key": "toba-uramura-miurasou",
+    "name": {
+      "ja": "民宿 美浦荘（観光旅館 美浦荘）"
+    },
+    "region": "uramura",
+    "category": "minshuku",
+    "status": "included",
+    "reason": null,
+    "pointId": "toba-uramura-miurasou",
+    "ratings": {
+      "rakuten": 4.63
+    }
+  },
+  {
+    "key": "toba-motoura-ginrin",
+    "name": {
+      "ja": "料理の宿 銀鱗（炭火焼きの宿 銀鱗）"
+    },
+    "region": "uramura",
+    "category": "ryokan",
+    "status": "included",
+    "reason": null,
+    "pointId": "toba-motoura-ginrin",
+    "ratings": {
+      "rakuten": 4.51
+    }
+  },
+  {
+    "key": "toba-toshijima-nakamuraya",
+    "name": {
+      "ja": "答志島温泉 波音の宿 中村屋"
+    },
+    "region": "toshijima",
+    "category": "ryokan",
+    "status": "included",
+    "reason": null,
+    "pointId": "toba-toshijima-nakamuraya",
+    "ratings": {
+      "rakuten": 4.36
+    }
+  },
+  {
+    "key": "toba-toshijima-suzunami",
+    "name": {
+      "ja": "答志島温泉 海心の宿 寿々波"
+    },
+    "region": "toshijima",
+    "category": "ryokan",
+    "status": "included",
+    "reason": null,
+    "pointId": "toba-toshijima-suzunami",
+    "ratings": {
+      "rakuten": 4.62
+    }
+  },
+  {
+    "key": "toba-toshijima-yamashichi",
+    "name": {
+      "ja": "潮風の宿 やま七"
+    },
+    "region": "toshijima",
+    "category": "ryokan",
+    "status": "included",
+    "reason": null,
+    "pointId": "toba-toshijima-yamashichi",
+    "ratings": {
+      "rakuten": 4.29
+    }
+  },
+  {
+    "key": "toba-toshijima-misaki",
+    "name": {
+      "ja": "答志島温泉 くつろぎの宿 美さき"
+    },
+    "region": "toshijima",
+    "category": "ryokan",
+    "status": "included",
+    "reason": null,
+    "pointId": "toba-toshijima-misaki",
+    "ratings": {
+      "rakuten": 4.5
+    }
+  },
+  {
+    "key": "toba-toshijima-takaraya",
+    "name": {
+      "ja": "旅館 宝屋"
+    },
+    "region": "toshijima",
+    "category": "ryokan",
+    "status": "included",
+    "reason": null,
+    "pointId": "toba-toshijima-takaraya"
+  },
+  {
+    "key": "toba-toshijima-teiyou",
+    "name": {
+      "ja": "味覚の宿 定洋"
+    },
+    "region": "toshijima",
+    "category": "ryokan",
+    "status": "included",
+    "reason": null,
+    "pointId": "toba-toshijima-teiyou"
+  },
+  {
+    "key": "toba-sugashima-nakora",
+    "name": {
+      "ja": "民宿旅館 磯の味 なこら"
+    },
+    "region": "sugashima",
+    "category": "minshuku",
+    "status": "included",
+    "reason": null,
+    "pointId": "toba-sugashima-nakora",
+    "ratings": {
+      "rakuten": 4.77
+    }
+  },
+  {
+    "key": "toba-kamishima-sankaiso",
+    "name": {
+      "ja": "潮騒の宿 山海荘"
+    },
+    "region": "kamishima",
+    "category": "ryokan",
+    "status": "included",
+    "reason": null,
+    "pointId": "toba-kamishima-sankaiso"
+  },
+  {
+    "key": "toba-anchor-ajito",
+    "name": {
+      "ja": "Anchor. 漁師の貸切アジト"
+    },
+    "region": "uramura",
+    "category": "rental-house",
+    "status": "included",
+    "reason": null,
+    "pointId": "toba-anchor-ajito"
+  },
+  {
+    "key": "toba-log-rocky",
+    "name": {
+      "ja": "貸切ログハウス ロッキー"
+    },
+    "region": "toba-outskirts",
+    "category": "rental-house",
+    "status": "included",
+    "reason": null,
+    "pointId": "toba-log-rocky",
+    "ratings": {
+      "rakuten": 4.67
+    }
+  },
+  {
+    "key": "toba-higashinomado",
+    "name": {
+      "ja": "伊勢志摩 ザ・ゲストハウス 東の窓"
+    },
+    "region": "osatsu",
+    "category": "rental-house",
+    "status": "included",
+    "reason": null,
+    "pointId": "toba-higashinomado"
+  },
+  {
+    "key": "toba-mfr-iseshima",
+    "name": {
+      "ja": "MFR伊勢志摩"
+    },
+    "region": "uramura",
+    "category": "rental-house",
+    "status": "included",
+    "reason": null,
+    "pointId": "toba-mfr-iseshima"
+  },
+  {
+    "key": "toba-lido-porte",
+    "name": {
+      "ja": "ゲストハウス リド・ポルテ"
+    },
+    "region": "nakanogo",
+    "category": "rental-house",
+    "status": "included",
+    "reason": null,
+    "pointId": "toba-lido-porte"
+  },
+  {
+    "key": "toba-ryokan-naomi",
+    "name": {
+      "ja": "旅館なおみ"
+    },
+    "region": "toba-station",
+    "category": "rental-house",
+    "status": "included",
+    "reason": null,
+    "pointId": "toba-ryokan-naomi",
+    "ratings": {
+      "rakuten": 4.33
+    }
+  },
+  {
+    "key": "wanwan-paradise-toba",
+    "name": {
+      "ja": "わんわんパラダイス 鳥羽"
+    },
+    "category": "寵物同住旅館",
+    "status": "excluded",
+    "reason": "以帶狗同住為主的旅館，不適合沒帶狗的 15 人團（有長輩、小孩，也有過敏疑慮）",
+    "ratings": {
+      "rakuten": 4,
+      "rakutenReviews": null
+    },
+    "note": "楽天 4821"
+  },
+  {
+    "key": "kintetsu-aquavilla",
+    "name": {
+      "ja": "ホテル近鉄アクアヴィラ伊勢志摩"
+    },
+    "category": "飯店",
+    "status": "excluded",
+    "reason": "不在鳥羽：現為「都リゾート 奥志摩 アクアフォレスト」，志摩市大王町船越（觀光三重 kankomie.or.jp/spot/19634）。交給志摩"
+  },
+  {
+    "key": "toba-hotel-international",
+    "name": {
+      "ja": "鳥羽ホテルインターナショナル"
+    },
+    "category": "飯店",
+    "status": "excluded",
+    "reason": "查無此飯店，推測是「鳥羽国際ホテル」（英文名 Toba Hotel International）的誤記；見 lodging toba-kokusai-hotel"
+  },
+  {
+    "key": "dormy-inn-toba",
+    "name": {
+      "ja": "ドーミーイン鳥羽"
+    },
+    "category": "商務飯店",
+    "status": "excluded",
+    "reason": "楽天、じゃらん鳥羽列表都沒有，查無"
+  },
+  {
+    "key": "toba-station-hotel",
+    "name": {
+      "ja": "鳥羽ステーションホテル"
+    },
+    "category": "商務飯店",
+    "status": "excluded",
+    "reason": "楽天、じゃらん鳥羽列表都沒有，查無"
+  },
+  {
+    "key": "road-inn-toba",
+    "name": {
+      "ja": "ロードイン鳥羽"
+    },
+    "region": "toba-station",
+    "category": "商務飯店",
+    "status": "not-included",
+    "reason": "站前商務飯店只找到這間（小浜方向，OSM way/567997520），沒有深入查"
+  },
+  {
+    "key": "isabatei",
+    "name": {
+      "ja": "海のホテル いさば亭"
+    },
+    "category": "飯店",
+    "status": "not-included",
+    "reason": "楽天、じゃらん鳥羽列表都沒出現，沒有確認是否在鳥羽市區"
+  },
+  {
+    "key": "taoya-shima",
+    "name": {
+      "ja": "TAOYA志摩"
+    },
+    "category": "飯店",
+    "status": "not-included",
+    "reason": "OSM 座標 136.9077, 34.4506（鳥羽市南部、石鏡～浦村之間？），名稱有「志摩」但可能在鳥羽市，沒有查證",
+    "ratings": {
+      "rakuten": 4.26,
+      "rakutenReviews": 1565
+    }
+  },
+  {
+    "key": "kisara",
+    "name": {
+      "ja": "季さら"
+    },
+    "region": "toba-outskirts",
+    "category": "旅館",
+    "status": "not-included",
+    "reason": "範圍內但沒有收錄（10 室，太小或未深入）",
+    "ratings": {
+      "rakuten": 4.4,
+      "rakutenReviews": null
+    }
+  },
+  {
+    "key": "kisara-bettei-toki",
+    "name": {
+      "ja": "季さら別邸 刻"
+    },
+    "region": "toba-outskirts",
+    "category": "旅館",
+    "status": "not-included",
+    "reason": "範圍內但沒有收錄（10 室）",
+    "ratings": {
+      "rakuten": 4.59,
+      "rakutenReviews": null
+    }
+  },
+  {
+    "key": "bali-resort-sayanokaze",
+    "name": {
+      "ja": "Bali＆Resort SAYAの風"
+    },
+    "region": "toba-outskirts",
+    "category": "飯店",
+    "status": "not-included",
+    "reason": "範圍內但沒有收錄（29 室）；じゃらん yad326675",
+    "ratings": {
+      "rakuten": 4.54,
+      "rakutenReviews": null
+    }
+  },
+  {
+    "key": "kameya-anrakujima",
+    "name": {
+      "ja": "浜辺の宿かめや"
+    },
+    "region": "toba-outskirts",
+    "category": "旅館",
+    "status": "not-included",
+    "reason": "範圍內但沒有收錄（13 室）",
+    "ratings": {
+      "rakuten": 4.44,
+      "rakutenReviews": null
+    }
+  },
+  {
+    "key": "kairakuen-lodging",
+    "name": {
+      "ja": "海上料亭 海楽園"
+    },
+    "region": "toba-station",
+    "category": "旅館",
+    "status": "not-included",
+    "reason": "範圍內但沒有收錄（小浜，13 室）；午餐見 restaurant toba-kairakuen",
+    "ratings": {
+      "rakuten": 4.17,
+      "rakutenReviews": null
+    }
+  },
+  {
+    "key": "andon-toba",
+    "name": {
+      "ja": "お宿行灯鳥羽"
+    },
+    "region": "toba-station",
+    "category": "旅館",
+    "status": "not-included",
+    "reason": "範圍內但沒有收錄（小浜，27 室）",
+    "ratings": {
+      "rakuten": 3.98,
+      "rakutenReviews": null
+    }
+  },
+  {
+    "key": "hamarikyu",
+    "name": {
+      "ja": "ホテル浜離宮"
+    },
+    "region": "toba-station",
+    "category": "飯店",
+    "status": "not-included",
+    "reason": "範圍內但沒有收錄（小浜）；じゃらん yad353538"
+  },
+  {
+    "key": "obamaso",
+    "name": {
+      "ja": "あじ彩の宿 小浜荘"
+    },
+    "region": "toba-station",
+    "category": "旅館",
+    "status": "not-included",
+    "reason": "範圍內但沒有收錄；じゃらん yad316766"
+  },
+  {
+    "key": "saikatei",
+    "name": {
+      "ja": "ホテルリゾート彩花亭"
+    },
+    "region": "toba-outskirts",
+    "category": "飯店",
+    "status": "not-included",
+    "reason": "範圍內但沒有收錄（安楽島）；じゃらん yad324798"
+  },
+  {
+    "key": "wistarian-life-club-toba",
+    "name": {
+      "ja": "ウィスタリアンライフクラブ鳥羽"
+    },
+    "region": "toba-outskirts",
+    "category": "會員制飯店",
+    "status": "not-included",
+    "reason": "可能是會員制（未確認）；じゃらん yad399576"
+  },
+  {
+    "key": "kinposo",
+    "name": {
+      "ja": "寿々波別館 錦浦館"
+    },
+    "region": "toba-station",
+    "category": "旅館",
+    "status": "not-included",
+    "reason": "鳥羽站 4 號出口步行 2 分的小旅館，分組住或預算型可以補查；じゃらん yad319711"
+  },
+  {
+    "key": "yoshidaya-wako",
+    "name": {
+      "ja": "吉田屋 和光"
+    },
+    "region": "toba-station",
+    "category": "旅館",
+    "status": "not-included",
+    "reason": "鳥羽站步行 5 分的小旅館，分組住或預算型可以補查；じゃらん yad337583"
+  },
+  {
+    "key": "umitsuki",
+    "name": {
+      "ja": "海の幸とやすらぎの宿 海月"
+    },
+    "region": "toba-station",
+    "category": "旅館",
+    "status": "not-included",
+    "reason": "鳥羽 1 丁目的小旅館，分組住或預算型可以補查；じゃらん yad390521"
+  },
+  {
+    "key": "noichi",
+    "name": {
+      "ja": "あそび心の宿 のいち"
+    },
+    "region": "osatsu",
+    "category": "民宿",
+    "status": "not-included",
+    "reason": "2023-12 改裝後客室從 6 間減為 4 間（じゃらん），規定大人 1 室 2 人起，15 人住不下；可作為石神さん組的補充",
+    "ratings": {
+      "rakuten": 4.67,
+      "rakutenReviews": null
+    }
+  },
+  {
+    "key": "jubei",
+    "name": {
+      "ja": "花の小宿 重兵衛"
+    },
+    "region": "osatsu",
+    "category": "旅館",
+    "status": "not-included",
+    "reason": "13 室（或 10 室）高級小宿；鳥羽站接送只有 16:00 一班；沒有無障礙；2 月價格沒查（時間有限），可之後補",
+    "ratings": {
+      "rakuten": 4.62,
+      "rakutenReviews": null
+    }
+  },
+  {
+    "key": "osatsu-pacific-hotel",
+    "name": {
+      "ja": "浜辺のお宿 相差パシフィックホテル"
+    },
+    "region": "osatsu",
+    "category": "飯店",
+    "status": "not-included",
+    "reason": "評價偏低（楽天 3.88）",
+    "ratings": {
+      "rakuten": 3.88,
+      "rakutenReviews": null
+    }
+  },
+  {
+    "key": "kazumi",
+    "name": {
+      "ja": "和造りの料理と湯の宿 かず美"
+    },
+    "region": "osatsu",
+    "category": "旅館",
+    "status": "not-included",
+    "reason": "評價相對偏低（楽天 4.05～4.08）"
+  },
+  {
+    "key": "shima-beach-hotel",
+    "name": {
+      "ja": "志摩ビーチホテル"
+    },
+    "region": "osatsu",
+    "category": "飯店",
+    "status": "not-included",
+    "reason": "沒有深入查",
+    "ratings": {
+      "rakuten": 4.24,
+      "rakutenReviews": null
+    }
+  },
+  {
+    "key": "osatsu-small-01",
+    "name": {
+      "ja": "味の宿 花椿"
+    },
+    "region": "osatsu",
+    "category": "民宿・旅館",
+    "status": "not-included",
+    "reason": "相差的中小型民宿、旅館（評價多在 4.3～4.75）；房數小，又不是石神さん或千鳥ヶ浜的核心位置，這次優先收錄資料較完整的。之後找分住組合可以從這裡補",
+    "note": "料理旅館；T7 的 F③ 可以當餐廳（非住客用餐）重查"
+  },
+  {
+    "key": "osatsu-small-02",
+    "name": {
+      "ja": "情景の宿あづま"
+    },
+    "region": "osatsu",
+    "category": "民宿・旅館",
+    "status": "not-included",
+    "reason": "相差的中小型民宿、旅館（評價多在 4.3～4.75）；房數小，又不是石神さん或千鳥ヶ浜的核心位置，這次優先收錄資料較完整的。之後找分住組合可以從這裡補"
+  },
+  {
+    "key": "osatsu-small-03",
+    "name": {
+      "ja": "料理旅館まつや"
+    },
+    "region": "osatsu",
+    "category": "民宿・旅館",
+    "status": "not-included",
+    "reason": "相差的中小型民宿、旅館（評價多在 4.3～4.75）；房數小，又不是石神さん或千鳥ヶ浜的核心位置，這次優先收錄資料較完整的。之後找分住組合可以從這裡補"
+  },
+  {
+    "key": "osatsu-small-04",
+    "name": {
+      "ja": "かんえい"
+    },
+    "region": "osatsu",
+    "category": "民宿・旅館",
+    "status": "not-included",
+    "reason": "相差的中小型民宿、旅館（評價多在 4.3～4.75）；房數小，又不是石神さん或千鳥ヶ浜的核心位置，這次優先收錄資料較完整的。之後找分住組合可以從這裡補"
+  },
+  {
+    "key": "osatsu-small-05",
+    "name": {
+      "ja": "幸洋荘"
+    },
+    "region": "osatsu",
+    "category": "民宿・旅館",
+    "status": "not-included",
+    "reason": "相差的中小型民宿、旅館（評價多在 4.3～4.75）；房數小，又不是石神さん或千鳥ヶ浜的核心位置，這次優先收錄資料較完整的。之後找分住組合可以從這裡補"
+  },
+  {
+    "key": "osatsu-small-06",
+    "name": {
+      "ja": "丸善"
+    },
+    "region": "osatsu",
+    "category": "民宿・旅館",
+    "status": "not-included",
+    "reason": "相差的中小型民宿、旅館（評價多在 4.3～4.75）；房數小，又不是石神さん或千鳥ヶ浜的核心位置，這次優先收錄資料較完整的。之後找分住組合可以從這裡補"
+  },
+  {
+    "key": "osatsu-small-07",
+    "name": {
+      "ja": "別館すずき"
+    },
+    "region": "osatsu",
+    "category": "民宿・旅館",
+    "status": "not-included",
+    "reason": "相差的中小型民宿、旅館（評價多在 4.3～4.75）；房數小，又不是石神さん或千鳥ヶ浜的核心位置，這次優先收錄資料較完整的。之後找分住組合可以從這裡補"
+  },
+  {
+    "key": "osatsu-small-08",
+    "name": {
+      "ja": "山川"
+    },
+    "region": "osatsu",
+    "category": "民宿・旅館",
+    "status": "not-included",
+    "reason": "相差的中小型民宿、旅館（評價多在 4.3～4.75）；房數小，又不是石神さん或千鳥ヶ浜的核心位置，這次優先收錄資料較完整的。之後找分住組合可以從這裡補"
+  },
+  {
+    "key": "osatsu-small-09",
+    "name": {
+      "ja": "おくのせこ"
+    },
+    "region": "osatsu",
+    "category": "民宿・旅館",
+    "status": "not-included",
+    "reason": "相差的中小型民宿、旅館（評價多在 4.3～4.75）；房數小，又不是石神さん或千鳥ヶ浜的核心位置，這次優先收錄資料較完整的。之後找分住組合可以從這裡補"
+  },
+  {
+    "key": "osatsu-small-10",
+    "name": {
+      "ja": "魚勘"
+    },
+    "region": "osatsu",
+    "category": "民宿・旅館",
+    "status": "not-included",
+    "reason": "相差的中小型民宿、旅館（評價多在 4.3～4.75）；房數小，又不是石神さん或千鳥ヶ浜的核心位置，這次優先收錄資料較完整的。之後找分住組合可以從這裡補"
+  },
+  {
+    "key": "osatsu-small-11",
+    "name": {
+      "ja": "長岡"
+    },
+    "region": "osatsu",
+    "category": "民宿・旅館",
+    "status": "not-included",
+    "reason": "相差的中小型民宿、旅館（評價多在 4.3～4.75）；房數小，又不是石神さん或千鳥ヶ浜的核心位置，這次優先收錄資料較完整的。之後找分住組合可以從這裡補"
+  },
+  {
+    "key": "osatsu-small-12",
+    "name": {
+      "ja": "かしま"
+    },
+    "region": "osatsu",
+    "category": "民宿・旅館",
+    "status": "not-included",
+    "reason": "相差的中小型民宿、旅館（評價多在 4.3～4.75）；房數小，又不是石神さん或千鳥ヶ浜的核心位置，這次優先收錄資料較完整的。之後找分住組合可以從這裡補"
+  },
+  {
+    "key": "osatsu-small-13",
+    "name": {
+      "ja": "さわ栄"
+    },
+    "region": "osatsu",
+    "category": "民宿・旅館",
+    "status": "not-included",
+    "reason": "相差的中小型民宿、旅館（評價多在 4.3～4.75）；房數小，又不是石神さん或千鳥ヶ浜的核心位置，這次優先收錄資料較完整的。之後找分住組合可以從這裡補"
+  },
+  {
+    "key": "osatsu-small-14",
+    "name": {
+      "ja": "浜栄"
+    },
+    "region": "osatsu",
+    "category": "民宿・旅館",
+    "status": "not-included",
+    "reason": "相差的中小型民宿、旅館（評價多在 4.3～4.75）；房數小，又不是石神さん或千鳥ヶ浜的核心位置，這次優先收錄資料較完整的。之後找分住組合可以從這裡補"
+  },
+  {
+    "key": "osatsu-small-15",
+    "name": {
+      "ja": "望洋"
+    },
+    "region": "osatsu",
+    "category": "民宿・旅館",
+    "status": "not-included",
+    "reason": "相差的中小型民宿、旅館（評價多在 4.3～4.75）；房數小，又不是石神さん或千鳥ヶ浜的核心位置，這次優先收錄資料較完整的。之後找分住組合可以從這裡補"
+  },
+  {
+    "key": "osatsu-small-16",
+    "name": {
+      "ja": "磯島"
+    },
+    "region": "osatsu",
+    "category": "民宿・旅館",
+    "status": "not-included",
+    "reason": "相差的中小型民宿、旅館（評價多在 4.3～4.75）；房數小，又不是石神さん或千鳥ヶ浜的核心位置，這次優先收錄資料較完整的。之後找分住組合可以從這裡補"
+  },
+  {
+    "key": "osatsu-small-17",
+    "name": {
+      "ja": "まさみや"
+    },
+    "region": "osatsu",
+    "category": "民宿・旅館",
+    "status": "not-included",
+    "reason": "相差的中小型民宿、旅館（評價多在 4.3～4.75）；房數小，又不是石神さん或千鳥ヶ浜的核心位置，這次優先收錄資料較完整的。之後找分住組合可以從這裡補",
+    "note": "10 室、送迎 5 人以上"
+  },
+  {
+    "key": "osatsu-small-18",
+    "name": {
+      "ja": "うえじ"
+    },
+    "region": "osatsu",
+    "category": "民宿・旅館",
+    "status": "not-included",
+    "reason": "相差的中小型民宿、旅館（評價多在 4.3～4.75）；房數小，又不是石神さん或千鳥ヶ浜的核心位置，這次優先收錄資料較完整的。之後找分住組合可以從這裡補"
+  },
+  {
+    "key": "osatsu-small-19",
+    "name": {
+      "ja": "冨久家"
+    },
+    "region": "osatsu",
+    "category": "民宿・旅館",
+    "status": "not-included",
+    "reason": "相差的中小型民宿、旅館（評價多在 4.3～4.75）；房數小，又不是石神さん或千鳥ヶ浜的核心位置，這次優先收錄資料較完整的。之後找分住組合可以從這裡補"
+  },
+  {
+    "key": "marusen-kuzaki",
+    "name": {
+      "ja": "魚の栖 丸仙"
+    },
+    "region": "kuzaki",
+    "category": "旅館",
+    "status": "not-included",
+    "reason": "評價相對偏低",
+    "ratings": {
+      "rakuten": 4.13,
+      "rakutenReviews": null
+    }
+  },
+  {
+    "key": "marubun",
+    "name": {
+      "ja": "浜辺の宿 丸文"
+    },
+    "region": "kuzaki",
+    "category": "民宿",
+    "status": "not-included",
+    "reason": "12 室、女將是海女；沒有查評分與價格，可之後補"
+  },
+  {
+    "key": "amanosato",
+    "name": {
+      "ja": "観光旅館 海女の郷"
+    },
+    "region": "kuzaki",
+    "category": "旅館",
+    "status": "not-included",
+    "reason": "接送要 4 人以上；沒有查評分與價格，可之後補"
+  },
+  {
+    "key": "iheiyaso",
+    "name": {
+      "ja": "料理自慢の民宿 伊平屋荘"
+    },
+    "region": "osatsu",
+    "category": "民宿",
+    "status": "not-included",
+    "reason": "畔蛸只找到這間，沒有深入查",
+    "ratings": {
+      "rakuten": 4.33,
+      "rakutenReviews": 100
+    }
+  },
+  {
+    "key": "ijikaso",
+    "name": {
+      "ja": "ホテルいじか荘"
+    },
+    "region": "kuzaki",
+    "category": "飯店",
+    "status": "not-included",
+    "reason": "評分各網站差很多（icotto 3.38、mapple 4.32）"
+  },
+  {
+    "key": "shinpachiya",
+    "name": {
+      "ja": "絶景海風癒し庵 新八屋"
+    },
+    "region": "kuzaki",
+    "category": "旅館",
+    "status": "not-included",
+    "reason": "沒有深入查",
+    "ratings": {
+      "rakuten": 4.38,
+      "rakutenReviews": null
+    }
+  },
+  {
+    "key": "hidemaru-hanagokoro",
+    "name": {
+      "ja": "秀丸花ごころ"
+    },
+    "region": "kuzaki",
+    "category": "寵物同住旅館",
+    "status": "excluded",
+    "reason": "寵物同住旅館"
+  },
+  {
+    "key": "hanashinsui",
+    "name": {
+      "ja": "はなしんすい（芭新萃）"
+    },
+    "category": "旅館",
+    "status": "not-included",
+    "reason": "大型旅館；地址楽天寫浦村町1850-33、KNT 寫石鏡町187，不一致，這次沒有收錄，可之後補",
+    "ratings": {
+      "rakuten": 4.38,
+      "rakutenReviews": 1740
+    }
+  },
+  {
+    "key": "sankoen",
+    "name": {
+      "ja": "山幸園"
+    },
+    "region": "toshijima",
+    "category": "民宿",
+    "status": "not-included",
+    "reason": "7 室、最晚 check-in 17:00；楽天頁沒顯示評分，rwiths 查不到方案，資料太少",
+    "note": "楽天 67216；電話 0599-37-2216、答志町1025-3、座標 136.8902417,34.52216581；有需要可以補成第 9 筆"
+  },
+  {
+    "key": "tomie",
+    "name": {
+      "ja": "民宿旅館 富栄"
+    },
+    "region": "toshijima",
+    "category": "民宿",
+    "status": "not-included",
+    "reason": "沒有訂房網站、評分、價格（觀光三重 spot/24321、OSM 136.9020977,34.5293563）"
+  },
+  {
+    "key": "amanoshimaso",
+    "name": {
+      "ja": "旅館 海女乃島荘"
+    },
+    "region": "toshijima",
+    "category": "旅館",
+    "status": "not-included",
+    "reason": "只有 OSM 點位，沒有任何其他資料"
+  },
+  {
+    "key": "shima-toshi",
+    "name": {
+      "ja": "しま"
+    },
+    "region": "toshijima",
+    "category": "旅館",
+    "status": "not-included",
+    "reason": "只有 OSM 點位，沒有任何其他資料"
+  },
+  {
+    "key": "yamayo",
+    "name": {
+      "ja": "漁師の宿 やまよ"
+    },
+    "region": "toshijima",
+    "category": "民宿",
+    "status": "not-included",
+    "reason": "只在 4travel 看到地址（和貝浦806），楽天、じゃらん都找不到，營業狀態不明"
+  },
+  {
+    "key": "shimanoryosha",
+    "name": {
+      "ja": "島の旅社"
+    },
+    "region": "toshijima",
+    "category": "其他",
+    "status": "not-included",
+    "reason": "觀光三重有列出（spot/24548），是不是住宿沒確認"
+  },
+  {
+    "key": "kuroshio-sugashima",
+    "name": {
+      "ja": "くろしお"
+    },
+    "region": "sugashima",
+    "category": "民宿",
+    "status": "not-included",
+    "reason": "觀光三重只有地址、電話（0599-34-2027），沒有房數、價格、評分"
+  },
+  {
+    "key": "nagisa-kamishima",
+    "name": {
+      "ja": "民宿なぎさ"
+    },
+    "region": "kamishima",
+    "category": "民宿",
+    "status": "not-included",
+    "reason": "只有 OSM 點位"
+  },
+  {
+    "key": "misaki-kamishima",
+    "name": {
+      "ja": "岬"
+    },
+    "region": "kamishima",
+    "category": "民宿",
+    "status": "not-included",
+    "reason": "只有 OSM 點位"
+  },
+  {
+    "key": "kotobukiya-bekkan",
+    "name": {
+      "ja": "寿や別館"
+    },
+    "category": null,
+    "status": "excluded",
+    "reason": "委派時提到的名字，答志島、菅島、神島都沒有找到，可能不在離島"
+  },
+  {
+    "key": "hamasharaku",
+    "name": {
+      "ja": "旅館 浜写楽"
+    },
+    "category": null,
+    "status": "excluded",
+    "reason": "委派時提到的名字，答志島、菅島、神島都沒有找到，可能不在離島"
+  },
+  {
+    "key": "tobashare",
+    "name": {
+      "ja": "toBAshare（トバシェア）HOSTEL"
+    },
+    "region": "toba-station",
+    "category": "包棟",
+    "status": "excluded",
+    "reason": "最多 12 人；2027-01-04 前後到 2 月左右因外牆塗裝暫停營業（ACO 頁面），旅程期間可能不能住",
+    "note": "鳥羽 1-2-12（鳥羽站步行 5～7 分）；届出番號 志2194-0020，平日 12 人 90,000 円；和 Anchor. 同一集團。如果 2 月有開，可以和 Lido Porte 等搭配"
+  },
+  {
+    "key": "grand-garden-nagi",
+    "name": {
+      "ja": "ザ・グランガーデン南木（nagi）"
+    },
+    "region": "osatsu",
+    "category": "包棟",
+    "status": "not-included",
+    "reason": "定員 10、是 glamping（2 月冷），Booking 6.2（12）評價偏低"
+  },
+  {
+    "key": "kisara-oneness",
+    "name": {
+      "ja": "季さら Oneness"
+    },
+    "region": "toba-outskirts",
+    "category": "包棟",
+    "status": "not-included",
+    "reason": "3 棟 villa，每棟 2～4 人，最多約 12 人，而且很貴（2 人 66,300 円起）"
+  },
+  {
+    "key": "dog-good-loghouse",
+    "name": {
+      "ja": "ドッグにグッドなログハウス鳥羽"
+    },
+    "region": "kuzaki",
+    "category": "包棟",
+    "status": "not-included",
+    "reason": "最多 8 人、只能用 LINE／IG DM 預約、狗主題"
+  },
+  {
+    "key": "togenkyo-2",
+    "name": {
+      "ja": "旧館民泊桃源郷2"
+    },
+    "region": "toba-station",
+    "category": "民泊",
+    "status": "excluded",
+    "reason": "只出租 1 樓和室 1 間、沒有浴室，不是整棟"
+  },
+  {
+    "key": "sea-side-terrace",
+    "name": {
+      "ja": "Sea SIDE TERRACE"
+    },
+    "region": "toba-outskirts",
+    "category": "包棟",
+    "status": "not-included",
+    "reason": "Booking 7.2（5 則），定員等資料都查不到"
+  },
+  {
+    "key": "tokiwa-kamakura",
+    "name": {
+      "ja": "古民家ゲストハウス TOKIWA"
+    },
+    "category": "包棟",
+    "status": "excluded",
+    "reason": "搜尋結果誤中，在神奈川縣鎌倉市（Airbnb 32412352，16 人）"
+  },
+  {
+    "key": "mori-to-umi",
+    "name": {
+      "ja": "森と海"
+    },
+    "category": "包棟",
+    "status": "excluded",
+    "reason": "在志摩市阿児町（16 人），不在鳥羽市（給志摩參考）"
+  },
+  {
+    "key": "shima-boat-house",
+    "name": {
+      "ja": "SHIMA BOAT HOUSE"
+    },
+    "category": "包棟",
+    "status": "excluded",
+    "reason": "在志摩市阿児町（25 人），不在鳥羽市（給志摩參考）"
+  },
+  {
+    "key": "villa-forest",
+    "name": {
+      "ja": "Villa Forest"
+    },
+    "category": "包棟",
+    "status": "excluded",
+    "reason": "在志摩市阿児町（20 人），不在鳥羽市（給志摩參考）"
+  }
+]

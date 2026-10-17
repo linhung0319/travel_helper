@@ -1,0 +1,713 @@
+[
+  {
+    "key": "toba-aquarium",
+    "name": {
+      "ja": "鳥羽水族館"
+    },
+    "region": "toba-station",
+    "category": null,
+    "status": "included",
+    "reason": null,
+    "pointId": "toba-aquarium"
+  },
+  {
+    "key": "toba-mikimoto-pearl-island",
+    "name": {
+      "ja": "ミキモト真珠島"
+    },
+    "region": "toba-station",
+    "category": null,
+    "status": "included",
+    "reason": null,
+    "pointId": "toba-mikimoto-pearl-island"
+  },
+  {
+    "key": "toba-bay-cruise-irukajima",
+    "name": {
+      "ja": "鳥羽湾めぐりとイルカ島"
+    },
+    "region": "toba-station",
+    "category": null,
+    "status": "included",
+    "reason": null,
+    "pointId": "toba-bay-cruise-irukajima"
+  },
+  {
+    "key": "toba-castle-ruins",
+    "name": {
+      "ja": "鳥羽城跡（城山公園）"
+    },
+    "region": "toba-station",
+    "category": null,
+    "status": "included",
+    "reason": null,
+    "pointId": "toba-castle-ruins"
+  },
+  {
+    "key": "toba-hiyoriyama-observatory",
+    "name": {
+      "ja": "日和山展望台"
+    },
+    "region": "toba-station",
+    "category": null,
+    "status": "included",
+    "reason": null,
+    "pointId": "toba-hiyoriyama-observatory"
+  },
+  {
+    "key": "toba-marche",
+    "name": {
+      "ja": "鳥羽マルシェ"
+    },
+    "region": "toba-station",
+    "category": null,
+    "status": "included",
+    "reason": null,
+    "pointId": "toba-marche"
+  },
+  {
+    "key": "toba-ichibangai",
+    "name": {
+      "ja": "鳥羽1番街"
+    },
+    "region": "toba-station",
+    "category": null,
+    "status": "included",
+    "reason": null,
+    "pointId": "toba-ichibangai"
+  },
+  {
+    "key": "toba-edogawa-rampo-museum",
+    "name": {
+      "ja": "江戸川乱歩館～鳥羽みなとまち文学館～"
+    },
+    "region": "toba-station",
+    "category": null,
+    "status": "included",
+    "reason": null,
+    "pointId": "toba-edogawa-rampo-museum"
+  },
+  {
+    "key": "toba-kadoya",
+    "name": {
+      "ja": "鳥羽大庄屋かどや（旧広野家住宅）"
+    },
+    "region": "nakanogo",
+    "category": null,
+    "status": "included",
+    "reason": null,
+    "pointId": "toba-kadoya"
+  },
+  {
+    "key": "toba-sea-folk-museum",
+    "name": {
+      "ja": "鳥羽市立 海の博物館"
+    },
+    "region": "uramura",
+    "category": null,
+    "status": "included",
+    "reason": null,
+    "pointId": "toba-sea-folk-museum"
+  },
+  {
+    "key": "toba-observatory-pearl-road",
+    "name": {
+      "ja": "鳥羽展望台 海女のテラス"
+    },
+    "region": "kuzaki",
+    "category": null,
+    "status": "included",
+    "reason": null,
+    "pointId": "toba-observatory-pearl-road"
+  },
+  {
+    "key": "toba-osatsu-ishigami",
+    "name": {
+      "ja": "神明神社（石神さん）"
+    },
+    "region": "osatsu",
+    "category": null,
+    "status": "included",
+    "reason": null,
+    "pointId": "toba-osatsu-ishigami"
+  },
+  {
+    "key": "toba-osatsu-ama-culture-museum",
+    "name": {
+      "ja": "相差海女文化資料館"
+    },
+    "region": "osatsu",
+    "category": null,
+    "status": "included",
+    "reason": null,
+    "pointId": "toba-osatsu-ama-culture-museum"
+  },
+  {
+    "key": "toba-osatsu-kamado",
+    "name": {
+      "ja": "海女小屋 相差かまど"
+    },
+    "region": "osatsu",
+    "category": null,
+    "status": "included",
+    "reason": null,
+    "pointId": "toba-osatsu-kamado"
+  },
+  {
+    "key": "toba-hachiman-kamado",
+    "name": {
+      "ja": "海女小屋 はちまんかまど"
+    },
+    "region": "osatsu",
+    "category": null,
+    "status": "included",
+    "reason": null,
+    "pointId": "toba-hachiman-kamado"
+  },
+  {
+    "key": "toba-yoroizaki-lighthouse",
+    "name": {
+      "ja": "鎧埼灯台"
+    },
+    "region": "kuzaki",
+    "category": null,
+    "status": "included",
+    "reason": null,
+    "pointId": "toba-yoroizaki-lighthouse"
+  },
+  {
+    "key": "toba-harusame-observatory",
+    "name": {
+      "ja": "春雨展望台（菅崎園地）"
+    },
+    "region": "kuzaki",
+    "category": null,
+    "status": "included",
+    "reason": null,
+    "pointId": "toba-harusame-observatory"
+  },
+  {
+    "key": "toba-omoshiro-observatory",
+    "name": {
+      "ja": "面白展望台"
+    },
+    "region": "kuzaki",
+    "category": null,
+    "status": "included",
+    "reason": null,
+    "pointId": "toba-omoshiro-observatory"
+  },
+  {
+    "key": "toba-izawa-jinja",
+    "name": {
+      "ja": "伊射波神社"
+    },
+    "region": "toba-outskirts",
+    "category": null,
+    "status": "included",
+    "reason": null,
+    "pointId": "toba-izawa-jinja"
+  },
+  {
+    "key": "toba-sadahama-marine-terminal",
+    "name": {
+      "ja": "鳥羽マリンターミナル（佐田浜港）"
+    },
+    "region": "toba-station",
+    "category": null,
+    "status": "included",
+    "reason": null,
+    "pointId": "toba-sadahama-marine-terminal"
+  },
+  {
+    "key": "toba-toshijima-wagu",
+    "name": {
+      "ja": "答志島 和具港・九鬼嘉隆の首塚・胴塚"
+    },
+    "region": "toshijima",
+    "category": null,
+    "status": "included",
+    "reason": null,
+    "pointId": "toba-toshijima-wagu"
+  },
+  {
+    "key": "toba-toshijima-toshi",
+    "name": {
+      "ja": "答志島 答志港・答志集落（寝屋子の町並み・美多羅志神社・潮音寺）"
+    },
+    "region": "toshijima",
+    "category": null,
+    "status": "included",
+    "reason": null,
+    "pointId": "toba-toshijima-toshi"
+  },
+  {
+    "key": "toba-sugashima-lighthouse",
+    "name": {
+      "ja": "菅島灯台"
+    },
+    "region": "sugashima",
+    "category": null,
+    "status": "included",
+    "reason": null,
+    "pointId": "toba-sugashima-lighthouse"
+  },
+  {
+    "key": "toba-sugashima-shirongo-beach",
+    "name": {
+      "ja": "しろんご浜"
+    },
+    "region": "sugashima",
+    "category": null,
+    "status": "included",
+    "reason": null,
+    "pointId": "toba-sugashima-shirongo-beach"
+  },
+  {
+    "key": "toba-kamishima-yatsushiro-jinja",
+    "name": {
+      "ja": "八代神社（神島）"
+    },
+    "region": "kamishima",
+    "category": null,
+    "status": "included",
+    "reason": null,
+    "pointId": "toba-kamishima-yatsushiro-jinja"
+  },
+  {
+    "key": "toba-kamishima-lighthouse",
+    "name": {
+      "ja": "神島灯台"
+    },
+    "region": "kamishima",
+    "category": null,
+    "status": "included",
+    "reason": null,
+    "pointId": "toba-kamishima-lighthouse"
+  },
+  {
+    "key": "toba-kamishima-kantekisho",
+    "name": {
+      "ja": "神島監的哨跡"
+    },
+    "region": "kamishima",
+    "category": null,
+    "status": "included",
+    "reason": null,
+    "pointId": "toba-kamishima-kantekisho"
+  },
+  {
+    "key": "toba-kamishima-karst",
+    "name": {
+      "ja": "神島のカルスト地形"
+    },
+    "region": "kamishima",
+    "category": null,
+    "status": "included",
+    "reason": null,
+    "pointId": "toba-kamishima-karst"
+  },
+  {
+    "key": "ousho-souvenir-center",
+    "name": {
+      "ja": "伊勢志摩みやげセンター王将 鳥羽本店"
+    },
+    "region": "toba-outskirts",
+    "category": "伴手禮店",
+    "status": "excluded",
+    "reason": "在鳥羽市松尾町（加茂站附近），主要是團體巴士的大型伴手禮店，不算景點。用餐見 restaurant toba-ousho-honten",
+    "note": "じゃらん 鳥羽市観光ランキング第 7 名"
+  },
+  {
+    "key": "isewan-ferry-toba",
+    "name": {
+      "ja": "伊勢湾フェリー 鳥羽のりば"
+    },
+    "region": "toba-station",
+    "category": "交通設施",
+    "status": "excluded",
+    "reason": "交通設施，不算景點（OSM node 6215361885，在水族館南側）"
+  },
+  {
+    "key": "toba-tourist-info",
+    "name": {
+      "ja": "鳥羽市観光案内所（鳥羽站內）"
+    },
+    "region": "toba-station",
+    "category": "服務設施",
+    "status": "excluded",
+    "reason": "服務設施，不算景點；可以借輪椅（三重縣資料），電話 0599-25-2844（9:00～17:30）"
+  },
+  {
+    "key": "kata-jinja",
+    "name": {
+      "ja": "賀多神社"
+    },
+    "region": "toba-station",
+    "category": "神社",
+    "status": "not-included",
+    "reason": "小型景點，重要性低；在去日和山的路上（OSM node 4595793079）"
+  },
+  {
+    "key": "joanji",
+    "name": {
+      "ja": "常安寺"
+    },
+    "region": "toba-station",
+    "category": "寺院",
+    "status": "not-included",
+    "reason": "小型景點，重要性低；九鬼家菩提寺"
+  },
+  {
+    "key": "irako-seihaku-house",
+    "name": {
+      "ja": "伊良子清白の家"
+    },
+    "region": "toba-station",
+    "category": "歷史建築",
+    "status": "not-included",
+    "reason": "小型景點，重要性低",
+    "links": {
+      "official": "https://www.toba.gr.jp/course/1501/"
+    },
+    "note": "鳥羽市觀光協會「ぶらっとまちなか散策コース」"
+  },
+  {
+    "key": "kamome-sanpomichi",
+    "name": {
+      "ja": "カモメの散歩道"
+    },
+    "region": "toba-station",
+    "category": "散步道",
+    "status": "not-included",
+    "reason": "小型景點，重要性低",
+    "links": {
+      "official": "https://www.toba.gr.jp/course/1501/"
+    }
+  },
+  {
+    "key": "kaito-yumin-club",
+    "name": {
+      "ja": "海島遊民くらぶ"
+    },
+    "category": "導覽業者",
+    "status": "excluded",
+    "reason": "導覽業者，不屬於景點"
+  },
+  {
+    "key": "kowagama",
+    "name": {
+      "ja": "光和窯"
+    },
+    "category": "體驗工房",
+    "status": "excluded",
+    "reason": "體驗工房，不屬於景點"
+  },
+  {
+    "key": "yakatabune-okita",
+    "name": {
+      "ja": "屋形船おきた"
+    },
+    "region": "toba-station",
+    "category": "餐廳",
+    "status": "excluded",
+    "reason": "餐廳，不屬於景點；見 restaurant toba-yakatabune-okita"
+  },
+  {
+    "key": "amakazukime-jinja",
+    "name": {
+      "ja": "海士潜女神社"
+    },
+    "region": "kuzaki",
+    "category": "神社",
+    "status": "excluded",
+    "reason": "OSM 沒有名稱節點，kankomie 座標（34.41465,136.924431）附近的 OSM 無名神社節點差約 250 m，座標不可靠",
+    "links": {
+      "official": "https://amakadukime-jinja.com/"
+    },
+    "note": "供奉傳說海女「お弁」；国崎巴士站步行約 5 分、無停車場、鳥羽市観光商工課 0599-25-1157"
+  },
+  {
+    "key": "ijika-observatory-1",
+    "name": {
+      "ja": "石鏡第一展望台"
+    },
+    "region": "kuzaki",
+    "category": "展望台",
+    "status": "excluded",
+    "reason": "搜不到可靠的官方、觀光資料（停車、廁所、位置），OSM 也沒有"
+  },
+  {
+    "key": "ounoura-bridge",
+    "name": {
+      "ja": "麻生の浦大橋"
+    },
+    "region": "uramura",
+    "category": "橋",
+    "status": "not-included",
+    "reason": "パールロード入口的白色拱橋，風景點但不是可停留的景點；16t 以上大型車限制通行"
+  },
+  {
+    "key": "chidorigahama-beach",
+    "name": {
+      "ja": "千鳥ヶ浜海水浴場"
+    },
+    "region": "osatsu",
+    "category": "海水浴場",
+    "status": "excluded",
+    "reason": "夏季海水浴場，2 月沒有意義"
+  },
+  {
+    "key": "fishing-park-triton",
+    "name": {
+      "ja": "フィッシングパークトリトン"
+    },
+    "category": "釣魚池",
+    "status": "not-included",
+    "reason": "千賀町；釣魚池＋海上 BBQ，8:00～14:00、不定休；冬季營業與團體未查，和主題（海女、展望）關聯低，可留作備案"
+  },
+  {
+    "key": "shima-spain-village",
+    "name": {
+      "ja": "志摩スペイン村"
+    },
+    "category": "主題樂園",
+    "status": "excluded",
+    "reason": "在志摩市，不屬鳥羽"
+  },
+  {
+    "key": "yokoyama-observatory",
+    "name": {
+      "ja": "横山展望台"
+    },
+    "category": "展望台",
+    "status": "excluded",
+    "reason": "在志摩市，不屬鳥羽"
+  },
+  {
+    "key": "asamayama-observatory",
+    "name": {
+      "ja": "朝熊山頂展望台"
+    },
+    "category": "展望台",
+    "status": "excluded",
+    "reason": "在伊勢市，不屬鳥羽"
+  },
+  {
+    "key": "uramura-kaki",
+    "name": {
+      "ja": "浦村牡蠣小屋・牡蠣體驗"
+    },
+    "region": "uramura",
+    "category": "餐廳／體驗",
+    "status": "excluded",
+    "reason": "牡蠣小屋屬餐廳（見 candidates/restaurants.json）；沒找到獨立的牡蠣「體驗」設施（剝殼體驗等）",
+    "note": "浦村牡蠣季約 11 月初～4 月下旬（2 月在季中），食べ放題需預約、很快額滿；例：山安水產パールロード店 2025 季大人 3,000／小學生 1,700；かき丸 大 3,500／小 1,750；かきいち 大人 3,300／小學生 1,650／幼兒 550（2023 報導）"
+  },
+  {
+    "key": "anori-lighthouse",
+    "name": {
+      "ja": "安乗埼灯台"
+    },
+    "category": "燈塔",
+    "status": "excluded",
+    "reason": "在志摩市阿児町，不屬鳥羽"
+  },
+  {
+    "key": "sakatejima",
+    "name": {
+      "ja": "坂手島"
+    },
+    "category": "離島",
+    "status": "not-included",
+    "reason": "主要景點是アヤメ池的カキツバタ（5 月中旬～初夏），2 月不是花期；其他是海水浴場、展望台，冬季吸引力低",
+    "links": {
+      "official": "https://www.kankomie.or.jp/report/1423"
+    },
+    "note": "定期船 220 円、約 10 分、一周步道約 1 小時，公廁只在碼頭"
+  },
+  {
+    "key": "toshijima-momotori",
+    "name": {
+      "ja": "答志島 桃取"
+    },
+    "region": "toshijima",
+    "category": "聚落",
+    "status": "not-included",
+    "reason": "沒有特定景點資料（主要是聚落與牡蠣養殖）"
+  },
+  {
+    "key": "kuki-yoshitaka-kubizuka",
+    "name": {
+      "ja": "九鬼嘉隆首塚・胴塚"
+    },
+    "region": "toshijima",
+    "category": "史跡",
+    "status": "not-included",
+    "reason": "查不到可靠座標，併入 spot toba-toshijima-wagu 的說明"
+  },
+  {
+    "key": "mitarashi-jinja",
+    "name": {
+      "ja": "美多羅志神社"
+    },
+    "region": "toshijima",
+    "category": "神社",
+    "status": "not-included",
+    "reason": "查不到可靠座標，併入 spot toba-toshijima-toshi 的說明"
+  },
+  {
+    "key": "chouonji",
+    "name": {
+      "ja": "潮音寺"
+    },
+    "region": "toshijima",
+    "category": "寺院",
+    "status": "not-included",
+    "reason": "查不到可靠座標，併入 spot toba-toshijima-toshi 的說明"
+  },
+  {
+    "key": "sugashima-kantekisho",
+    "name": {
+      "ja": "菅島監的哨"
+    },
+    "region": "sugashima",
+    "category": "戰爭遺跡",
+    "status": "not-included",
+    "reason": "查座標未果／2 月價值低，記在 spot toba-sugashima-lighthouse 的 extra.fullCourse"
+  },
+  {
+    "key": "sugashima-onmahama",
+    "name": {
+      "ja": "おんま浜"
+    },
+    "region": "sugashima",
+    "category": "海灘",
+    "status": "not-included",
+    "reason": "查座標未果／2 月價值低，記在 spot toba-sugashima-lighthouse 的 extra.fullCourse"
+  },
+  {
+    "key": "sugashima-okinoshima-beach",
+    "name": {
+      "ja": "沖ノ島海水浴場"
+    },
+    "region": "sugashima",
+    "category": "海水浴場",
+    "status": "not-included",
+    "reason": "查座標未果／2 月價值低，記在 spot toba-sugashima-lighthouse 的 extra.fullCourse"
+  },
+  {
+    "key": "sugashima-oyama-observatory",
+    "name": {
+      "ja": "大山展望台"
+    },
+    "region": "sugashima",
+    "category": "展望台",
+    "status": "not-included",
+    "reason": "查座標未果／2 月價值低，記在 spot toba-sugashima-lighthouse 的 extra.fullCourse"
+  },
+  {
+    "key": "kamishima-niwanohama",
+    "name": {
+      "ja": "ニワの浜"
+    },
+    "region": "kamishima",
+    "category": "海岸",
+    "status": "not-included",
+    "reason": "次要景點，併入說明（OSM way/679250385）"
+  },
+  {
+    "key": "kamishima-furusatonohama",
+    "name": {
+      "ja": "古里の浜"
+    },
+    "region": "kamishima",
+    "category": "海岸",
+    "status": "not-included",
+    "reason": "次要景點，併入說明"
+  },
+  {
+    "key": "kamishima-shiosai-park",
+    "name": {
+      "ja": "潮騒公園"
+    },
+    "region": "kamishima",
+    "category": "公園",
+    "status": "not-included",
+    "reason": "次要景點，併入說明（OSM way/677653235）"
+  },
+  {
+    "key": "shimanoryosha-amagoya",
+    "name": {
+      "ja": "島の旅社 海女小屋體驗（BBQ）"
+    },
+    "region": "toshijima",
+    "category": "體驗",
+    "status": "excluded",
+    "reason": "2026-01-27 公告結束",
+    "links": {
+      "official": "https://www.shima-tabi.net/"
+    }
+  },
+  {
+    "key": "toba-daidokoro-walking",
+    "name": {
+      "ja": "鳥羽の台所 つまみ食いウォーキング"
+    },
+    "region": "toba-station",
+    "category": "體驗",
+    "status": "not-included",
+    "reason": "總覽搜尋看到，沒有深入研究",
+    "links": {
+      "official": "https://www.toba.gr.jp/play/2570/"
+    }
+  },
+  {
+    "key": "ama-lecture",
+    "name": {
+      "ja": "海女講座"
+    },
+    "category": "體驗",
+    "status": "not-included",
+    "reason": "總覽搜尋看到，沒有深入研究",
+    "links": {
+      "official": "https://www.toba.gr.jp/play/2835/"
+    }
+  },
+  {
+    "key": "wakame-harvest-tour",
+    "name": {
+      "ja": "ワカメ刈りツアー"
+    },
+    "category": "體驗",
+    "status": "not-included",
+    "reason": "總覽搜尋看到，沒有深入研究；裙帶菜季節可能和 2 月重疊",
+    "links": {
+      "official": "https://www.toba.gr.jp/play/2574/"
+    }
+  },
+  {
+    "key": "fossil-replica",
+    "name": {
+      "ja": "化石レプリカづくり"
+    },
+    "category": "體驗",
+    "status": "not-included",
+    "reason": "總覽搜尋看到，沒有深入研究",
+    "links": {
+      "official": "https://www.toba.gr.jp/play/2628/"
+    }
+  },
+  {
+    "key": "shell-art",
+    "name": {
+      "ja": "貝殻アート"
+    },
+    "category": "體驗",
+    "status": "not-included",
+    "reason": "總覽搜尋看到，沒有深入研究",
+    "links": {
+      "official": "https://www.toba.gr.jp/play/2630/"
+    }
+  }
+]

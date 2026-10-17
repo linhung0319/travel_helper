@@ -5,7 +5,7 @@
 //   node scripts/restaurant-anchors.mjs <area> [--write] [--offline] [--report <檔案>]
 //   不加 --write 只印結果，不改檔案。路線快取在 data/cache/routes/（同一段只查一次）。
 //
-// anchors 的選法（地區看 extra.region）：
+// anchors 的選法（地區看 region；T7b 之前的資料是 extra.region 的地區名）：
 //   步行圈（鳥羽站周邊、中之郷、相差、離島）：最近的車站（OSRM 30 分內），加上 15 分內最近的景點 3 個、住宿 2 個。
 //     15 分內一個景點都沒有時，改放最近的景點和住宿（照實算）。
 //   需搭車（浦村、國崎・パールロード、外圍）：最近的車站（OSRM 30 分內才放），加上最近的景點、最近的住宿，照實算；
@@ -34,7 +34,10 @@ if (!process.features.typescript) {
 const geo = await import('../web/src/lib/geo/index.ts');
 const { fileRouteCache } = await import('./lib/route-cache.mjs');
 
-const WALK_REGIONS = new Set(['鳥羽站周邊', '中之郷', '相差', '離島（答志島）', '離島（菅島）', '離島（神島）']);
+const WALK_REGIONS = new Set([
+  'toba-station', 'nakanogo', 'osatsu', 'toshijima', 'sugashima', 'kamishima',
+  '鳥羽站周邊', '中之郷', '相差', '離島（答志島）', '離島（菅島）', '離島（神島）', // T7b 之前的 extra.region
+]);
 const STATION_MAX = 30; // 車站 anchor 的上限（分）
 const NEARBY_MAX = 15; // 步行圈內景點、住宿的上限（分）
 const DINNER_LODGING_MAX = 20; // 不含晚餐的住宿 → 晚上營業的店（分）
@@ -123,7 +126,7 @@ async function walkAll(from, list) {
 const report = [];
 
 for (const r of restaurants) {
-  const region = r.extra?.region ?? '';
+  const region = r.region ?? r.extra?.region ?? '';
   const walkRegion = WALK_REGIONS.has(region);
   const hasDinner = (r.contexts ?? []).includes('dinner');
   const anchors = [];

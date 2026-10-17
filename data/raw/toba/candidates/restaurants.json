@@ -1,0 +1,5120 @@
+[
+  {
+    "key": "toba-sazanami",
+    "name": {
+      "ja": "漣 鳥羽店"
+    },
+    "region": "toba-station",
+    "category": "海鮮、コロッケ",
+    "status": "included",
+    "criteria": [
+      "A"
+    ],
+    "reason": null,
+    "pointId": "toba-sazanami",
+    "ratings": {
+      "tabelog": 3.74,
+      "tabelogReviews": 1048
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240302/24000445/"
+    },
+    "contexts": [
+      "lunch"
+    ],
+    "mentions": [
+      {
+        "type": "media",
+        "url": "https://www.nap-camp.com/mag/50903",
+        "title": "なっぷ「鳥羽のおすすめ人気ランチ11選」（2026-10-01 更新）",
+        "highlight": null,
+        "retrieved": "2026-10-17"
+      },
+      {
+        "type": "media",
+        "url": "https://www.nap-camp.com/mag/23934",
+        "title": "なっぷ「鳥羽のご当地グルメ15選」（2026-10-01 更新）",
+        "highlight": null,
+        "retrieved": "2026-10-17"
+      },
+      {
+        "type": "media",
+        "url": "https://www.mapple.net/article/32428/",
+        "title": "まっぷる「相差」",
+        "highlight": null,
+        "retrieved": "2026-10-17"
+      }
+    ],
+    "note": "觀光協會會員名錄有登錄（不算來源）"
+  },
+  {
+    "key": "toba-seahorse",
+    "name": {
+      "ja": "メインダイニング シーホース"
+    },
+    "region": "toba-station",
+    "category": "レストラン、フレンチ",
+    "status": "included",
+    "criteria": [
+      "A",
+      "C"
+    ],
+    "reason": null,
+    "pointId": "toba-seahorse",
+    "ratings": {
+      "tabelog": 3.62,
+      "tabelogReviews": 222
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240302/24000268/"
+    },
+    "contexts": [
+      "lunch",
+      "dinner"
+    ],
+    "mentions": [
+      {
+        "type": "media",
+        "url": "https://www.nap-camp.com/mag/23934",
+        "title": "なっぷ「鳥羽のご当地グルメ15選」（2026-10-01 更新）",
+        "highlight": null,
+        "retrieved": "2026-10-17"
+      }
+    ],
+    "note": "食べログ篩選：貸切可"
+  },
+  {
+    "key": "toba-tasuke",
+    "name": {
+      "ja": "太助"
+    },
+    "region": "toba-station",
+    "category": "寿司",
+    "status": "included",
+    "criteria": [
+      "A",
+      "C"
+    ],
+    "reason": null,
+    "pointId": "toba-tasuke",
+    "ratings": {
+      "tabelog": 3.6,
+      "tabelogReviews": 51
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240302/24003344/"
+    },
+    "contexts": [
+      "lunch",
+      "dinner"
+    ],
+    "mentions": [
+      {
+        "type": "media",
+        "url": "https://www.mapple.net/article/32188/",
+        "title": "まっぷる「鳥羽のかき小屋＆かき料理の人気店」（2025-03-21 更新）",
+        "highlight": null,
+        "retrieved": "2026-10-17"
+      }
+    ],
+    "note": "觀光協會會員名錄有登錄（不算來源）；食べログ篩選：貸切可"
+  },
+  {
+    "key": "toba-mizunuma-sazae",
+    "name": {
+      "ja": "水沼さざえ店"
+    },
+    "region": "toba-station",
+    "category": "海鮮",
+    "status": "included",
+    "criteria": [
+      "A",
+      "C",
+      "E"
+    ],
+    "reason": null,
+    "pointId": "toba-mizunuma-sazae",
+    "ratings": {
+      "tabelog": 3.58,
+      "tabelogReviews": 189
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240302/24010333/"
+    },
+    "contexts": [
+      "lunch",
+      "snack",
+      "transit"
+    ],
+    "mentions": [
+      {
+        "type": "media",
+        "url": "https://www.nap-camp.com/mag/50903",
+        "title": "なっぷ「鳥羽のおすすめ人気ランチ11選」（2026-10-01 更新）",
+        "highlight": null,
+        "retrieved": "2026-10-17"
+      },
+      {
+        "type": "media",
+        "url": "https://www.mapple.net/article/32428/",
+        "title": "まっぷる「相差」",
+        "highlight": null,
+        "retrieved": "2026-10-17"
+      }
+    ],
+    "note": "觀光協會會員名錄有登錄（不算來源）；食べログ篩選：貸切可"
+  },
+  {
+    "key": "toba-kazuei",
+    "name": {
+      "ja": "一栄"
+    },
+    "region": "toba-station",
+    "category": "海鮮",
+    "status": "included",
+    "criteria": [
+      "A"
+    ],
+    "reason": null,
+    "pointId": "toba-kazuei",
+    "ratings": {
+      "tabelog": 3.56,
+      "tabelogReviews": 155
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240302/24000078/"
+    },
+    "contexts": [
+      "lunch"
+    ],
+    "note": "觀光協會會員名錄有登錄（不算來源）"
+  },
+  {
+    "key": "toba-mondomisaki",
+    "name": {
+      "ja": "鳥羽国際ホテル もんど岬"
+    },
+    "region": "toba-station",
+    "category": "日本料理、海鮮",
+    "status": "included",
+    "criteria": [
+      "A",
+      "C"
+    ],
+    "reason": null,
+    "pointId": "toba-mondomisaki",
+    "ratings": {
+      "tabelog": 3.55,
+      "tabelogReviews": 48
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240302/24001904/"
+    },
+    "contexts": [
+      "lunch",
+      "dinner"
+    ],
+    "note": "食べログ篩選：個室"
+  },
+  {
+    "key": "toba-amagoya-chisato",
+    "name": {
+      "ja": "海女小屋　ちさと"
+    },
+    "region": "toba-station",
+    "category": "海鮮、シーフード",
+    "status": "included",
+    "criteria": [
+      "A",
+      "F2",
+      "E"
+    ],
+    "reason": null,
+    "pointId": "toba-amagoya-chisato",
+    "ratings": {
+      "tabelog": 3.53,
+      "tabelogReviews": 180
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240302/24006770/"
+    },
+    "contexts": [
+      "lunch",
+      "transit"
+    ],
+    "note": "體驗型：海女小屋；觀光協會會員名錄有登錄（不算來源）"
+  },
+  {
+    "key": "toba-osakaya",
+    "name": {
+      "ja": "大阪屋 鳥羽店"
+    },
+    "region": "toba-station",
+    "category": "食堂、寿司",
+    "status": "included",
+    "criteria": [
+      "A",
+      "C"
+    ],
+    "reason": null,
+    "pointId": "toba-osakaya",
+    "ratings": {
+      "tabelog": 3.52,
+      "tabelogReviews": 132
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240302/24000562/"
+    },
+    "contexts": [
+      "lunch",
+      "dinner",
+      "transit"
+    ],
+    "mentions": [
+      {
+        "type": "blog-zh",
+        "url": "https://chubu.letsgojp.com/archives/810883/",
+        "title": "樂吃購！日本「日本鳥羽景點攻略」（2025-12-04）",
+        "highlight": null,
+        "retrieved": "2026-10-17"
+      }
+    ],
+    "note": "觀光協會會員名錄有登錄（不算來源）；食べログ篩選：個室"
+  },
+  {
+    "key": "toba-the-lobby-lounge",
+    "name": {
+      "ja": "ザ・ロビーラウンジ"
+    },
+    "region": "toba-station",
+    "category": "ケーキ、カフェ",
+    "status": "included",
+    "criteria": [
+      "A"
+    ],
+    "reason": null,
+    "pointId": "toba-the-lobby-lounge",
+    "ratings": {
+      "tabelog": 3.51,
+      "tabelogReviews": 147
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240302/24010743/"
+    },
+    "contexts": [
+      "cafe",
+      "snack"
+    ],
+    "note": null
+  },
+  {
+    "key": "toba-yakigai-iroha",
+    "name": {
+      "ja": "焼貝いろは"
+    },
+    "region": "toba-station",
+    "category": "居酒屋、海鮮",
+    "status": "included",
+    "criteria": [
+      "A",
+      "C",
+      "E"
+    ],
+    "reason": null,
+    "pointId": "toba-yakigai-iroha",
+    "ratings": {
+      "tabelog": 3.5,
+      "tabelogReviews": 276
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240302/24010352/"
+    },
+    "contexts": [
+      "lunch",
+      "dinner",
+      "snack",
+      "transit"
+    ],
+    "note": "觀光協會會員名錄有登錄（不算來源）；食べログ篩選：貸切可・個室"
+  },
+  {
+    "key": "toba-matsumoto-sazae",
+    "name": {
+      "ja": "松本さざえ店"
+    },
+    "region": "toba-station",
+    "category": "海鮮、郷土料理",
+    "status": "included",
+    "criteria": [
+      "A",
+      "E"
+    ],
+    "reason": null,
+    "pointId": "toba-matsumoto-sazae",
+    "ratings": {
+      "tabelog": 3.5,
+      "tabelogReviews": 93
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240302/24002147/"
+    },
+    "contexts": [
+      "lunch",
+      "snack",
+      "transit"
+    ],
+    "note": "觀光協會會員名錄有登錄（不算來源）"
+  },
+  {
+    "key": "toba-minerva",
+    "name": {
+      "ja": "ミネルヴァ"
+    },
+    "region": "toba-station",
+    "category": "喫茶店、ジェラート",
+    "status": "included",
+    "criteria": [
+      "A"
+    ],
+    "reason": null,
+    "pointId": "toba-minerva",
+    "ratings": {
+      "tabelog": 3.49,
+      "tabelogReviews": 193
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240302/24001613/"
+    },
+    "contexts": [
+      "cafe",
+      "snack"
+    ],
+    "mentions": [
+      {
+        "type": "media",
+        "url": "https://www.mapple.net/article/31782/",
+        "title": "まっぷる「鳥羽1番街」",
+        "highlight": null,
+        "retrieved": "2026-10-17"
+      }
+    ],
+    "note": "觀光協會會員名錄有登錄（不算來源）"
+  },
+  {
+    "key": "toba-kitchen-takama",
+    "name": {
+      "ja": "キッチン たかま"
+    },
+    "region": "toba-station",
+    "category": "喫茶店、洋食",
+    "status": "included",
+    "criteria": [
+      "A"
+    ],
+    "reason": null,
+    "pointId": "toba-kitchen-takama",
+    "ratings": {
+      "tabelog": 3.48,
+      "tabelogReviews": 233
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240302/24006357/"
+    },
+    "contexts": [
+      "cafe",
+      "snack",
+      "transit"
+    ],
+    "mentions": [
+      {
+        "type": "media",
+        "url": "https://www.nap-camp.com/mag/50903",
+        "title": "なっぷ「鳥羽のおすすめ人気ランチ11選」（2026-10-01 更新）",
+        "highlight": null,
+        "retrieved": "2026-10-17"
+      }
+    ],
+    "note": null
+  },
+  {
+    "key": "toba-nanakoshi-chaya",
+    "name": {
+      "ja": "七越茶屋"
+    },
+    "region": "toba-station",
+    "category": "うどん、郷土料理",
+    "status": "included",
+    "criteria": [
+      "A"
+    ],
+    "reason": null,
+    "pointId": "toba-nanakoshi-chaya",
+    "ratings": {
+      "tabelog": 3.45,
+      "tabelogReviews": 191
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240302/24000283/"
+    },
+    "contexts": [
+      "lunch"
+    ],
+    "mentions": [
+      {
+        "type": "media",
+        "url": "https://www.nap-camp.com/mag/50903",
+        "title": "なっぷ「鳥羽のおすすめ人気ランチ11選」（2026-10-01 更新）",
+        "highlight": null,
+        "retrieved": "2026-10-17"
+      }
+    ],
+    "note": "觀光協會會員名錄有登錄（不算來源）"
+  },
+  {
+    "key": "toba-amagoya-hamanami",
+    "name": {
+      "ja": "海女小屋 鳥羽 はまなみ"
+    },
+    "region": "toba-station",
+    "category": "海鮮",
+    "status": "included",
+    "criteria": [
+      "A",
+      "F2"
+    ],
+    "reason": null,
+    "pointId": "toba-amagoya-hamanami",
+    "ratings": {
+      "tabelog": 3.44,
+      "tabelogReviews": 244
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240302/24008081/"
+    },
+    "contexts": [
+      "lunch",
+      "transit"
+    ],
+    "mentions": [
+      {
+        "type": "media",
+        "url": "https://www.mapple.net/article/32188/",
+        "title": "まっぷる「鳥羽のかき小屋＆かき料理の人気店」（2025-03-21 更新）",
+        "highlight": null,
+        "retrieved": "2026-10-17"
+      }
+    ],
+    "note": "體驗型：海女小屋"
+  },
+  {
+    "key": "toba-maruhachi-shokudo",
+    "name": {
+      "ja": "○八食堂"
+    },
+    "region": "toba-station",
+    "category": "海鮮、海鮮丼",
+    "status": "included",
+    "criteria": [
+      "A",
+      "E"
+    ],
+    "reason": null,
+    "pointId": "toba-maruhachi-shokudo",
+    "ratings": {
+      "tabelog": 3.44,
+      "tabelogReviews": 214
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240302/24001668/"
+    },
+    "contexts": [
+      "lunch",
+      "transit"
+    ],
+    "mentions": [
+      {
+        "type": "media",
+        "url": "https://www.mapple.net/article/32188/",
+        "title": "まっぷる「鳥羽のかき小屋＆かき料理の人気店」（2025-03-21 更新）",
+        "highlight": null,
+        "retrieved": "2026-10-17"
+      }
+    ],
+    "note": "觀光協會會員名錄有登錄（不算來源）"
+  },
+  {
+    "key": "toba-tenbinya-honten",
+    "name": {
+      "ja": "天びん屋 本店"
+    },
+    "region": "toba-station",
+    "category": "海鮮、居酒屋",
+    "status": "included",
+    "criteria": [
+      "A",
+      "C"
+    ],
+    "reason": null,
+    "pointId": "toba-tenbinya-honten",
+    "ratings": {
+      "tabelog": 3.43,
+      "tabelogReviews": 252
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240302/24000079/"
+    },
+    "contexts": [
+      "lunch",
+      "dinner",
+      "transit"
+    ],
+    "mentions": [
+      {
+        "type": "media",
+        "url": "https://www.mapple.net/article/32188/",
+        "title": "まっぷる「鳥羽のかき小屋＆かき料理の人気店」（2025-03-21 更新）",
+        "highlight": null,
+        "retrieved": "2026-10-17"
+      },
+      {
+        "type": "media",
+        "url": "https://www.mapple.net/article/31782/",
+        "title": "まっぷる「鳥羽1番街」",
+        "highlight": null,
+        "retrieved": "2026-10-17"
+      },
+      {
+        "type": "media",
+        "url": "https://www.mapple.net/article/32428/",
+        "title": "まっぷる「相差」",
+        "highlight": null,
+        "retrieved": "2026-10-17"
+      }
+    ],
+    "note": "觀光協會會員名錄有登錄（不算來源）；食べログ篩選：貸切可・個室"
+  },
+  {
+    "key": "toba-kokusai-hotel-shop",
+    "name": {
+      "ja": "鳥羽国際ホテル ホテルショップ"
+    },
+    "region": "toba-station",
+    "category": "ケーキ、パン",
+    "status": "included",
+    "criteria": [
+      "A"
+    ],
+    "reason": null,
+    "pointId": "toba-kokusai-hotel-shop",
+    "ratings": {
+      "tabelog": 3.43,
+      "tabelogReviews": 100
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240302/24009159/"
+    },
+    "contexts": [
+      "cafe",
+      "snack"
+    ],
+    "note": null
+  },
+  {
+    "key": "toba-amiyaki-tenbinya",
+    "name": {
+      "ja": "あみ焼き　天びん屋"
+    },
+    "region": "toba-station",
+    "category": "海鮮、焼肉",
+    "status": "included",
+    "criteria": [
+      "C"
+    ],
+    "reason": null,
+    "pointId": "toba-amiyaki-tenbinya",
+    "ratings": {
+      "tabelog": 3.39,
+      "tabelogReviews": 89
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240302/24013343/"
+    },
+    "contexts": [
+      "lunch",
+      "dinner",
+      "transit"
+    ],
+    "note": "A 因數量控制（3.40）取消；觀光協會會員名錄有登錄（不算來源）；食べログ篩選：貸切可・個室"
+  },
+  {
+    "key": "toba-the-kaiya",
+    "name": {
+      "ja": "ザ・貝屋"
+    },
+    "region": "toba-station",
+    "category": "海鮮",
+    "status": "included",
+    "criteria": [
+      "C"
+    ],
+    "reason": null,
+    "pointId": "toba-the-kaiya",
+    "ratings": {
+      "tabelog": 3.35,
+      "tabelogReviews": 95
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240302/24009121/"
+    },
+    "contexts": [
+      "lunch",
+      "snack",
+      "transit"
+    ],
+    "mentions": [
+      {
+        "type": "media",
+        "url": "https://www.nap-camp.com/mag/50903",
+        "title": "なっぷ「鳥羽のおすすめ人気ランチ11選」（2026-10-01 更新）",
+        "highlight": null,
+        "retrieved": "2026-10-17"
+      },
+      {
+        "type": "media",
+        "url": "https://www.nap-camp.com/mag/23934",
+        "title": "なっぷ「鳥羽のご当地グルメ15選」（2026-10-01 更新）",
+        "highlight": null,
+        "retrieved": "2026-10-17"
+      }
+    ],
+    "note": "A 因數量控制（3.40）取消；觀光協會會員名錄有登錄（不算來源）；食べログ篩選：貸切可"
+  },
+  {
+    "key": "toba-cuccagna",
+    "name": {
+      "ja": "クッカーニャ 鳥羽店"
+    },
+    "region": "toba-station",
+    "category": "イタリアン、パスタ",
+    "status": "included",
+    "criteria": [
+      "C"
+    ],
+    "reason": null,
+    "pointId": "toba-cuccagna",
+    "ratings": {
+      "tabelog": 3.34,
+      "tabelogReviews": 117
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240302/24000881/"
+    },
+    "contexts": [
+      "lunch",
+      "dinner",
+      "transit"
+    ],
+    "mentions": [
+      {
+        "type": "media",
+        "url": "https://www.mapple.net/article/32428/",
+        "title": "まっぷる「相差」",
+        "highlight": null,
+        "retrieved": "2026-10-17"
+      }
+    ],
+    "note": "A 因數量控制（3.40）取消；觀光協會會員名錄有登錄（不算來源）；食べログ篩選：貸切可"
+  },
+  {
+    "key": "toba-dining-shiraishi",
+    "name": {
+      "ja": "Dining 白石"
+    },
+    "region": "toba-station",
+    "category": "日本料理",
+    "status": "included",
+    "criteria": [
+      "C"
+    ],
+    "reason": null,
+    "pointId": "toba-dining-shiraishi",
+    "ratings": {
+      "tabelog": 3.33,
+      "tabelogReviews": 50
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240302/24011960/"
+    },
+    "contexts": [
+      "lunch",
+      "dinner"
+    ],
+    "note": "A 因數量控制（3.40）取消；食べログ篩選：個室"
+  },
+  {
+    "key": "toba-misaki-sazae",
+    "name": {
+      "ja": "みさきさざゑ店"
+    },
+    "region": "toba-station",
+    "category": "海鮮",
+    "status": "included",
+    "criteria": [
+      "C"
+    ],
+    "reason": null,
+    "pointId": "toba-misaki-sazae",
+    "ratings": {
+      "tabelog": 3.29,
+      "tabelogReviews": 52
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240302/24001499/"
+    },
+    "contexts": [
+      "lunch",
+      "snack",
+      "transit"
+    ],
+    "note": "觀光協會會員名錄有登錄（不算來源）；食べログ篩選：貸切可"
+  },
+  {
+    "key": "toba-musea",
+    "name": {
+      "ja": "MUSEA"
+    },
+    "region": "toba-station",
+    "category": "カフェ、洋食",
+    "status": "included",
+    "criteria": [
+      "C"
+    ],
+    "reason": null,
+    "pointId": "toba-musea",
+    "ratings": {
+      "tabelog": 3.27,
+      "tabelogReviews": 88
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240302/24012244/"
+    },
+    "contexts": [
+      "cafe",
+      "snack"
+    ],
+    "note": "觀光協會會員名錄有登錄（不算來源）；食べログ篩選：貸切可"
+  },
+  {
+    "key": "toba-sushiume",
+    "name": {
+      "ja": "すし梅"
+    },
+    "region": "toba-station",
+    "category": "寿司、日本料理",
+    "status": "included",
+    "criteria": [
+      "B",
+      "C"
+    ],
+    "reason": null,
+    "pointId": "toba-sushiume",
+    "ratings": {
+      "tabelog": 3.26,
+      "tabelogReviews": 38
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240302/24004982/"
+    },
+    "contexts": [
+      "lunch",
+      "dinner"
+    ],
+    "mentions": [
+      {
+        "type": "media",
+        "url": "https://www.mapple.net/article/32188/",
+        "title": "まっぷる「鳥羽のかき小屋＆かき料理の人気店」（2025-03-21 更新）",
+        "highlight": null,
+        "retrieved": "2026-10-17"
+      },
+      {
+        "type": "blog-zh",
+        "url": "https://chubu.letsgojp.com/archives/810883/",
+        "title": "樂吃購！日本「日本鳥羽景點攻略」（2025-12-04）",
+        "highlight": null,
+        "retrieved": "2026-10-17"
+      }
+    ],
+    "note": "觀光協會會員名錄有登錄（不算來源）；食べログ篩選：貸切可・個室"
+  },
+  {
+    "key": "toba-nagatokan",
+    "name": {
+      "ja": "長門館"
+    },
+    "region": "toba-station",
+    "category": "海鮮、郷土料理",
+    "status": "included",
+    "criteria": [
+      "C"
+    ],
+    "reason": null,
+    "pointId": "toba-nagatokan",
+    "ratings": {
+      "tabelog": 3.19,
+      "tabelogReviews": 42
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240302/24001060/"
+    },
+    "contexts": [
+      "lunch"
+    ],
+    "note": "觀光協會會員名錄有登錄（不算來源）；食べログ篩選：個室"
+  },
+  {
+    "key": "toba-kaisen-bun",
+    "name": {
+      "ja": "海鮮 ぶん"
+    },
+    "region": "toba-station",
+    "category": "海鮮、天ぷら",
+    "status": "included",
+    "criteria": [
+      "C"
+    ],
+    "reason": null,
+    "pointId": "toba-kaisen-bun",
+    "ratings": {
+      "tabelog": 3.19,
+      "tabelogReviews": 35
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240302/24015561/"
+    },
+    "contexts": [
+      "lunch",
+      "transit"
+    ],
+    "mentions": [
+      {
+        "type": "media",
+        "url": "https://www.mapple.net/article/32188/",
+        "title": "まっぷる「鳥羽のかき小屋＆かき料理の人気店」（2025-03-21 更新）",
+        "highlight": null,
+        "retrieved": "2026-10-17"
+      }
+    ],
+    "note": "觀光協會會員名錄有登錄（不算來源）；食べログ篩選：貸切可・個室"
+  },
+  {
+    "key": "toba-kaisen-yamato",
+    "name": {
+      "ja": "海鮮 大和"
+    },
+    "region": "toba-station",
+    "category": "海鮮",
+    "status": "included",
+    "criteria": [
+      "C"
+    ],
+    "reason": null,
+    "pointId": "toba-kaisen-yamato",
+    "ratings": {
+      "tabelog": 3.17,
+      "tabelogReviews": 20
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240302/24013904/"
+    },
+    "contexts": [
+      "lunch",
+      "transit"
+    ],
+    "note": "觀光協會會員名錄有登錄（不算來源）；食べログ篩選：貸切可"
+  },
+  {
+    "key": "toba-furusatokan",
+    "name": {
+      "ja": "ふる里館"
+    },
+    "region": "toba-station",
+    "category": "海鮮、食堂",
+    "status": "included",
+    "criteria": [
+      "C"
+    ],
+    "reason": null,
+    "pointId": "toba-furusatokan",
+    "ratings": {
+      "tabelog": 3.16,
+      "tabelogReviews": 37
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240302/24000889/"
+    },
+    "contexts": [
+      "lunch",
+      "transit"
+    ],
+    "mentions": [
+      {
+        "type": "media",
+        "url": "https://www.mapple.net/article/32428/",
+        "title": "まっぷる「相差」",
+        "highlight": null,
+        "retrieved": "2026-10-17"
+      }
+    ],
+    "note": "觀光協會會員名錄有登錄（不算來源）；食べログ篩選：貸切可"
+  },
+  {
+    "key": "toba-yakatabune-okita",
+    "name": {
+      "ja": "鳥羽 海鮮料理 屋形船 おきた"
+    },
+    "region": "toba-station",
+    "category": "屋形船、海鮮",
+    "status": "included",
+    "criteria": [
+      "F2"
+    ],
+    "reason": null,
+    "pointId": "toba-yakatabune-okita",
+    "ratings": {
+      "tabelog": 3.08,
+      "tabelogReviews": 21
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240302/24014971/"
+    },
+    "contexts": [
+      "lunch",
+      "dinner",
+      "transit"
+    ],
+    "note": "體驗型：屋形船；觀光協會會員名錄有登錄（不算來源）；食べログ篩選：貸切可"
+  },
+  {
+    "key": "toba-kairakuen",
+    "name": {
+      "ja": "海上料亭 海楽園"
+    },
+    "region": "toba-station",
+    "category": null,
+    "status": "included",
+    "criteria": [
+      "F2"
+    ],
+    "reason": null,
+    "pointId": "toba-kairakuen",
+    "ratings": {
+      "tabelog": 3.07,
+      "tabelogReviews": 13
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240302/24000609/"
+    },
+    "contexts": [
+      "lunch"
+    ],
+    "note": "體驗型：海上料亭（店名，型態待 T4b 確認）；食べログ篩選：貸切可・個室"
+  },
+  {
+    "key": "tabelog-24004338",
+    "name": {
+      "ja": "ブランカ 鳥羽本店"
+    },
+    "region": "toba-station",
+    "category": "ケーキ、洋菓子",
+    "status": "not-included",
+    "reason": "A 因數量控制（3.40）取消",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.39,
+      "tabelogReviews": 190
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240302/24004338/"
+    },
+    "note": null
+  },
+  {
+    "key": "tabelog-24007446",
+    "name": {
+      "ja": "御食事処　花さんご"
+    },
+    "region": "toba-station",
+    "category": "郷土料理、カレー",
+    "status": "not-included",
+    "reason": "A 因數量控制（3.40）取消",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.38,
+      "tabelogReviews": 151
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240302/24007446/"
+    },
+    "note": null
+  },
+  {
+    "key": "tabelog-24000993",
+    "name": {
+      "ja": "御食事処 丸栄"
+    },
+    "region": "toba-station",
+    "category": "海鮮",
+    "status": "not-included",
+    "reason": "A 因數量控制（3.40）取消；觀光協會會員名錄有登錄（不算來源）",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.35,
+      "tabelogReviews": 81
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240302/24000993/"
+    },
+    "note": null
+  },
+  {
+    "key": "tabelog-24011542",
+    "name": {
+      "ja": "ベイサイド"
+    },
+    "region": "toba-station",
+    "category": "カフェ、喫茶店",
+    "status": "not-included",
+    "reason": "A 因數量控制（3.40）取消",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.31,
+      "tabelogReviews": 120
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240302/24011542/"
+    },
+    "note": null
+  },
+  {
+    "key": "tabelog-24018284",
+    "name": {
+      "ja": "かもめベイテラス鳥羽"
+    },
+    "region": "toba-station",
+    "category": "カフェ",
+    "status": "not-included",
+    "reason": "A 因數量控制（3.40）取消",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.31,
+      "tabelogReviews": 59
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240302/24018284/"
+    },
+    "note": null
+  },
+  {
+    "key": "tabelog-24008096",
+    "name": {
+      "ja": "漁師直営店浜幸"
+    },
+    "region": "toba-station",
+    "category": "寿司、海鮮",
+    "status": "not-included",
+    "reason": null,
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.29,
+      "tabelogReviews": 45
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240302/24008096/"
+    },
+    "note": "T4a 記的來源種類「日文媒體」沒有記是哪一篇"
+  },
+  {
+    "key": "tabelog-24005439",
+    "name": {
+      "ja": "味佐々"
+    },
+    "region": "toba-station",
+    "category": "海鮮、海鮮丼",
+    "status": "not-included",
+    "reason": null,
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.28,
+      "tabelogReviews": 86
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240302/24005439/"
+    },
+    "note": "T4a 記的來源種類「日文媒體」沒有記是哪一篇"
+  },
+  {
+    "key": "tabelog-24010859",
+    "name": {
+      "ja": "喫茶 チェリー"
+    },
+    "region": "toba-station",
+    "category": "喫茶店",
+    "status": "not-included",
+    "reason": null,
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.28,
+      "tabelogReviews": 55
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240302/24010859/"
+    },
+    "note": "T4a 記的來源種類「日文媒體」沒有記是哪一篇"
+  },
+  {
+    "key": "tabelog-24017924",
+    "name": {
+      "ja": "MUSEA COFFEE 鳥羽駅店"
+    },
+    "region": "toba-station",
+    "category": "カフェ、パン",
+    "status": "not-included",
+    "reason": null,
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.27,
+      "tabelogReviews": 36
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240302/24017924/"
+    },
+    "note": null
+  },
+  {
+    "key": "tabelog-24018534",
+    "name": {
+      "ja": "食事処 太平洋 JR鳥羽駅前支店"
+    },
+    "region": "toba-station",
+    "category": "海鮮",
+    "status": "not-included",
+    "reason": null,
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.26,
+      "tabelogReviews": 30
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240302/24018534/"
+    },
+    "note": null
+  },
+  {
+    "key": "tabelog-24007038",
+    "name": {
+      "ja": "海鮮茶屋えびしま"
+    },
+    "region": "toba-station",
+    "category": "海鮮",
+    "status": "not-included",
+    "reason": null,
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.24,
+      "tabelogReviews": 55
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240302/24007038/"
+    },
+    "note": "T4a 記的來源種類「日文媒體」沒有記是哪一篇"
+  },
+  {
+    "key": "tabelog-24001485",
+    "name": {
+      "ja": "いわし亭"
+    },
+    "region": "toba-station",
+    "category": "海鮮、日本料理",
+    "status": "not-included",
+    "reason": null,
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.24,
+      "tabelogReviews": 41
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240302/24001485/"
+    },
+    "note": "T4a 記的來源種類「日文媒體」沒有記是哪一篇"
+  },
+  {
+    "key": "tabelog-24013111",
+    "name": {
+      "ja": "鈴木水産"
+    },
+    "region": "toba-station",
+    "category": "海鮮",
+    "status": "not-included",
+    "reason": "觀光協會會員名錄有登錄（不算來源）",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.24,
+      "tabelogReviews": 38
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240302/24013111/"
+    },
+    "note": null
+  },
+  {
+    "key": "tabelog-24004647",
+    "name": {
+      "ja": "うどん・そば 吉平"
+    },
+    "region": "toba-station",
+    "category": "うどん、麺類",
+    "status": "not-included",
+    "reason": null,
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.21,
+      "tabelogReviews": 53
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240302/24004647/"
+    },
+    "note": "T4a 記的來源種類「日文媒體」沒有記是哪一篇"
+  },
+  {
+    "key": "tabelog-24014425",
+    "name": {
+      "ja": "ミュゼア コーヒー 鳥羽水族館店"
+    },
+    "region": "toba-station",
+    "category": "カフェ",
+    "status": "not-included",
+    "reason": null,
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.16,
+      "tabelogReviews": 27
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240302/24014425/"
+    },
+    "note": null
+  },
+  {
+    "key": "tabelog-24008870",
+    "name": {
+      "ja": "四季のご馳走家 味彩"
+    },
+    "region": "toba-station",
+    "category": null,
+    "status": "not-included",
+    "reason": "食べログ篩選：貸切可",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.11,
+      "tabelogReviews": 11
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240302/24008870/"
+    },
+    "note": null
+  },
+  {
+    "key": "tabelog-24021906",
+    "name": {
+      "ja": "鳥羽の食堂 海誠"
+    },
+    "region": "toba-station",
+    "category": "食堂、海鮮",
+    "status": "not-included",
+    "reason": null,
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.1,
+      "tabelogReviews": 17
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240302/24021906/"
+    },
+    "note": "T4a 記的來源種類「日文媒體」沒有記是哪一篇"
+  },
+  {
+    "key": "tabelog-24010246",
+    "name": {
+      "ja": "阿波幸"
+    },
+    "region": "toba-station",
+    "category": "食堂、海鮮",
+    "status": "not-included",
+    "reason": null,
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.09,
+      "tabelogReviews": 43
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240302/24010246/"
+    },
+    "mentions": [
+      {
+        "type": "blog-zh",
+        "url": "https://chubu.letsgojp.com/archives/810883/",
+        "title": "樂吃購！日本「日本鳥羽景點攻略」（2025-12-04）",
+        "highlight": null,
+        "retrieved": "2026-10-17"
+      }
+    ],
+    "note": null
+  },
+  {
+    "key": "tabelog-24002414",
+    "name": {
+      "ja": "弁慶"
+    },
+    "region": "toba-station",
+    "category": "中華料理",
+    "status": "not-included",
+    "reason": "觀光協會會員名錄有登錄（不算來源）",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.09,
+      "tabelogReviews": 18
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240302/24002414/"
+    },
+    "note": "T4a 記的來源種類「日文媒體」沒有記是哪一篇"
+  },
+  {
+    "key": "tabelog-24005241",
+    "name": {
+      "ja": "久兵衛"
+    },
+    "region": "toba-station",
+    "category": "焼き鳥、レストラン",
+    "status": "not-included",
+    "reason": "觀光協會會員名錄有登錄（不算來源）；食べログ篩選：個室",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.09,
+      "tabelogReviews": 16
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240302/24005241/"
+    },
+    "note": null
+  },
+  {
+    "key": "tabelog-24001917",
+    "name": {
+      "ja": "レストランフェリー"
+    },
+    "region": "toba-station",
+    "category": "日本料理、海鮮",
+    "status": "not-included",
+    "reason": "觀光協會會員名錄有登錄（不算來源）；食べログ篩選：貸切可",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.08,
+      "tabelogReviews": 29
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240302/24001917/"
+    },
+    "note": null
+  },
+  {
+    "key": "tabelog-24020730",
+    "name": {
+      "ja": "ごはんや ふくつぎ"
+    },
+    "region": "toba-station",
+    "category": "食堂",
+    "status": "not-included",
+    "reason": null,
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.07,
+      "tabelogReviews": 12
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240302/24020730/"
+    },
+    "note": "T4a 記的來源種類「日文媒體」沒有記是哪一篇"
+  },
+  {
+    "key": "tabelog-24002905",
+    "name": {
+      "ja": "泉門天"
+    },
+    "region": "toba-station",
+    "category": null,
+    "status": "not-included",
+    "reason": "食べログ篩選：貸切可・個室",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.06,
+      "tabelogReviews": 10
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240302/24002905/"
+    },
+    "note": null
+  },
+  {
+    "key": "tabelog-24018110",
+    "name": {
+      "ja": "大衆居酒屋 みしお"
+    },
+    "region": "toba-station",
+    "category": null,
+    "status": "not-included",
+    "reason": "食べログ篩選：個室",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.06,
+      "tabelogReviews": 7
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240302/24018110/"
+    },
+    "note": null
+  },
+  {
+    "key": "tabelog-24001611",
+    "name": {
+      "ja": "いせえび"
+    },
+    "region": "toba-station",
+    "category": "海鮮、郷土料理",
+    "status": "not-included",
+    "reason": null,
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.05,
+      "tabelogReviews": 25
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240302/24001611/"
+    },
+    "note": null
+  },
+  {
+    "key": "tabelog-24019753",
+    "name": {
+      "ja": "ホルモン たくちゃん"
+    },
+    "region": "toba-station",
+    "category": null,
+    "status": "not-included",
+    "reason": "食べログ篩選：貸切可",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.04,
+      "tabelogReviews": 6
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240302/24019753/"
+    },
+    "note": null
+  },
+  {
+    "key": "jubilee-tea-and-bakes",
+    "name": {
+      "ja": "JUBILEE TEA ＆ BAKES"
+    },
+    "region": "toba-station",
+    "category": "喫茶",
+    "status": "not-included",
+    "reason": "觀光協會會員名錄有登錄（不算來源）",
+    "pointId": null,
+    "ratings": {},
+    "note": null
+  },
+  {
+    "key": "oomoriya",
+    "name": {
+      "ja": "大盛屋"
+    },
+    "region": "toba-station",
+    "category": "和食処",
+    "status": "not-included",
+    "reason": "觀光協會會員名錄有登錄（不算來源）",
+    "pointId": null,
+    "ratings": {},
+    "note": null
+  },
+  {
+    "key": "irie",
+    "name": {
+      "ja": "焼き鳥・居酒屋 入り江"
+    },
+    "region": "toba-station",
+    "category": "居酒屋",
+    "status": "not-included",
+    "reason": "觀光協會會員名錄有登錄（不算來源）",
+    "pointId": null,
+    "ratings": {},
+    "note": null
+  },
+  {
+    "key": "tabelog-24000531",
+    "name": {
+      "ja": "戸田家"
+    },
+    "region": "toba-station",
+    "category": "料理旅館、ビュッフェ",
+    "status": "excluded",
+    "reason": "住宿本體（見 lodging toba-todaya）；食べログ篩選：個室",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.42,
+      "tabelogReviews": 121
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240302/24000531/"
+    },
+    "note": null
+  },
+  {
+    "key": "tabelog-24013014",
+    "name": {
+      "ja": "鳥羽マルシェ"
+    },
+    "region": "toba-station",
+    "category": "食堂",
+    "status": "excluded",
+    "reason": "用餐見 spot toba-marche；觀光協會會員名錄有登錄（不算來源）",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.41,
+      "tabelogReviews": 182
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240302/24013014/"
+    },
+    "note": null
+  },
+  {
+    "key": "tabelog-24001338",
+    "name": {
+      "ja": "胡蝶蘭"
+    },
+    "region": "toba-station",
+    "category": "料理旅館",
+    "status": "excluded",
+    "reason": "住宿本體（見 lodging toba-kochoran）",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.27,
+      "tabelogReviews": 50
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240302/24001338/"
+    },
+    "note": null
+  },
+  {
+    "key": "tabelog-24013026",
+    "name": {
+      "ja": "鳥羽国際ホテル"
+    },
+    "region": "toba-station",
+    "category": "ホテル",
+    "status": "excluded",
+    "reason": "住宿本體（見 lodging toba-kokusai-hotel）；食べログ篩選：貸切可",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.25,
+      "tabelogReviews": 99
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240302/24013026/"
+    },
+    "note": null
+  },
+  {
+    "key": "tabelog-24001649",
+    "name": {
+      "ja": "鳥羽グランドホテル"
+    },
+    "region": "toba-station",
+    "category": "ホテル",
+    "status": "excluded",
+    "reason": "住宿本體（見 lodging toba-grand-hotel）",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.25,
+      "tabelogReviews": 87
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240302/24001649/"
+    },
+    "note": null
+  },
+  {
+    "key": "tabelog-24010053",
+    "name": {
+      "ja": "大江戸温泉物語Premium 鳥羽彩朝楽"
+    },
+    "region": "toba-station",
+    "category": "料理旅館、ビュッフェ",
+    "status": "excluded",
+    "reason": "住宿本體（見 lodging toba-saichoraku）；食べログ篩選：個室",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.2,
+      "tabelogReviews": 33
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240302/24010053/"
+    },
+    "note": null
+  },
+  {
+    "key": "tabelog-24000332",
+    "name": {
+      "ja": "扇野の里 扇芳閣"
+    },
+    "region": "toba-station",
+    "category": "ホテル",
+    "status": "excluded",
+    "reason": "住宿本體（見 lodging toba-senpokaku）；食べログ篩選：個室",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.19,
+      "tabelogReviews": 40
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240302/24000332/"
+    },
+    "note": null
+  },
+  {
+    "key": "tabelog-24018775",
+    "name": {
+      "ja": "潮路亭"
+    },
+    "region": "toba-station",
+    "category": "旅館・民宿",
+    "status": "excluded",
+    "reason": "住宿本體（見 lodging toba-shiojitei）；食べログ篩選：個室",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.17,
+      "tabelogReviews": 24
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240302/24018775/"
+    },
+    "note": null
+  },
+  {
+    "key": "tabelog-24011230",
+    "name": {
+      "ja": "一番亭 鳥羽店"
+    },
+    "region": "toba-station",
+    "category": "担々麺、ラーメン",
+    "status": "excluded",
+    "reason": "連鎖店；觀光協會會員名錄有登錄（不算來源）",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.09,
+      "tabelogReviews": 33
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240302/24011230/"
+    },
+    "note": null
+  },
+  {
+    "key": "tabelog-24009585",
+    "name": {
+      "ja": "海月"
+    },
+    "region": "toba-station",
+    "category": null,
+    "status": "excluded",
+    "reason": "住宿本體（不在 lodging.json）；食べログ篩選：貸切可",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.09,
+      "tabelogReviews": 5
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240302/24009585/"
+    },
+    "note": "T4a 記的來源種類「日文媒體」沒有記是哪一篇"
+  },
+  {
+    "key": "tabelog-24013178",
+    "name": {
+      "ja": "鳥羽水族館メインショップ"
+    },
+    "region": "toba-station",
+    "category": "その他",
+    "status": "excluded",
+    "reason": "商店（非餐廳）",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.07,
+      "tabelogReviews": 30
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240302/24013178/"
+    },
+    "note": null
+  },
+  {
+    "key": "tabelog-24010475",
+    "name": {
+      "ja": "鳥羽わんわんパラダイスホテル"
+    },
+    "region": "toba-station",
+    "category": "その他",
+    "status": "excluded",
+    "reason": "住宿本體（不在 lodging.json）；食べログ篩選：個室",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.07,
+      "tabelogReviews": 28
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240302/24010475/"
+    },
+    "note": null
+  },
+  {
+    "key": "tabelog-24013495",
+    "name": {
+      "ja": "磯揚げ まる天 鳥羽駅店"
+    },
+    "region": "toba-station",
+    "category": "惣菜・デリ",
+    "status": "excluded",
+    "reason": "只做外帶（非甜點）",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.06,
+      "tabelogReviews": 55
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240302/24013495/"
+    },
+    "note": null
+  },
+  {
+    "key": "tabelog-24011222",
+    "name": {
+      "ja": "かっぱ寿司 鳥羽店"
+    },
+    "region": "toba-station",
+    "category": "回転寿司、海鮮",
+    "status": "excluded",
+    "reason": "連鎖店",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.04,
+      "tabelogReviews": 41
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240302/24011222/"
+    },
+    "note": null
+  },
+  {
+    "key": "toba-niku-matsumura",
+    "name": {
+      "ja": "肉料理まつむら"
+    },
+    "region": "toba-outskirts",
+    "category": "牛料理、しゃぶしゃぶ",
+    "status": "included",
+    "criteria": [
+      "A",
+      "C"
+    ],
+    "reason": null,
+    "pointId": "toba-niku-matsumura",
+    "ratings": {
+      "tabelog": 3.57,
+      "tabelogReviews": 123
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240302/24000186/"
+    },
+    "contexts": [
+      "lunch",
+      "dinner"
+    ],
+    "mentions": [
+      {
+        "type": "media",
+        "url": "https://www.mapple.net/article/32428/",
+        "title": "まっぷる「相差」",
+        "highlight": null,
+        "retrieved": "2026-10-17"
+      }
+    ],
+    "note": "觀光協會會員名錄有登錄（不算來源）；食べログ篩選：貸切可・個室"
+  },
+  {
+    "key": "toba-mutsumi",
+    "name": {
+      "ja": "むつみ"
+    },
+    "region": "toba-outskirts",
+    "category": "海鮮",
+    "status": "included",
+    "criteria": [
+      "A",
+      "B"
+    ],
+    "reason": null,
+    "pointId": "toba-mutsumi",
+    "ratings": {
+      "tabelog": 3.54,
+      "tabelogReviews": 227
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240302/24003642/"
+    },
+    "contexts": [
+      "lunch"
+    ],
+    "mentions": [
+      {
+        "type": "media",
+        "url": "https://www.mapple.net/article/32188/",
+        "title": "まっぷる「鳥羽のかき小屋＆かき料理の人気店」（2025-03-21 更新）",
+        "highlight": null,
+        "retrieved": "2026-10-17"
+      },
+      {
+        "type": "blog-zh",
+        "url": "https://chubu.letsgojp.com/archives/600899/",
+        "title": "樂吃購！日本「三重縣美食餐廳推薦」（2025-04-08）",
+        "highlight": null,
+        "retrieved": "2026-10-17"
+      }
+    ],
+    "note": "觀光協會會員名錄有登錄（不算來源） ；T4b：食べログ寫已從大明東町移到安楽島町 386-4（還在營業）"
+  },
+  {
+    "key": "toba-kagetsu",
+    "name": {
+      "ja": "伊勢海老　海鮮蒸し料理　華月"
+    },
+    "region": "toba-outskirts",
+    "category": "海鮮、海鮮丼",
+    "status": "included",
+    "criteria": [
+      "A"
+    ],
+    "reason": null,
+    "pointId": "toba-kagetsu",
+    "ratings": {
+      "tabelog": 3.53,
+      "tabelogReviews": 294
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240302/24000397/"
+    },
+    "contexts": [
+      "lunch"
+    ],
+    "mentions": [
+      {
+        "type": "media",
+        "url": "https://www.mapple.net/article/32188/",
+        "title": "まっぷる「鳥羽のかき小屋＆かき料理の人気店」（2025-03-21 更新）",
+        "highlight": null,
+        "retrieved": "2026-10-17"
+      }
+    ],
+    "note": "觀光協會會員名錄有登錄（不算來源）"
+  },
+  {
+    "key": "toba-minato-shokudo",
+    "name": {
+      "ja": "漁師めし みなと食堂"
+    },
+    "region": "toba-outskirts",
+    "category": "海鮮、食堂",
+    "status": "included",
+    "criteria": [
+      "A",
+      "C"
+    ],
+    "reason": null,
+    "pointId": "toba-minato-shokudo",
+    "ratings": {
+      "tabelog": 3.43,
+      "tabelogReviews": 159,
+      "google": 3.9,
+      "googleReviews": 991
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240302/24014306/"
+    },
+    "contexts": [
+      "lunch"
+    ],
+    "mentions": [
+      {
+        "type": "media",
+        "url": "https://www.nap-camp.com/mag/50903",
+        "title": "なっぷ「鳥羽のおすすめ人気ランチ11選」（2026-10-01 更新）",
+        "highlight": null,
+        "retrieved": "2026-10-17"
+      },
+      {
+        "type": "media",
+        "url": "https://www.mapple.net/article/32428/",
+        "title": "まっぷる「相差」",
+        "highlight": null,
+        "retrieved": "2026-10-17"
+      }
+    ],
+    "note": "觀光協會會員名錄有登錄（不算來源）；食べログ篩選：貸切可 ；T4b：食べログ寫已從鳥羽 1-4-53 移到安楽島町 1434-5（還在營業）"
+  },
+  {
+    "key": "toba-chiso",
+    "name": {
+      "ja": "季節料理 馳走"
+    },
+    "region": "toba-outskirts",
+    "category": null,
+    "status": "included",
+    "criteria": [
+      "C"
+    ],
+    "reason": null,
+    "pointId": "toba-chiso",
+    "ratings": {
+      "tabelog": 3.16,
+      "tabelogReviews": 16
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240302/24016645/"
+    },
+    "contexts": [
+      "lunch"
+    ],
+    "note": "食べログ篩選：貸切可"
+  },
+  {
+    "key": "toba-ousho-honten",
+    "name": {
+      "ja": "伊勢志摩みやげセンター王将 鳥羽本店"
+    },
+    "region": "toba-outskirts",
+    "category": null,
+    "status": "included",
+    "criteria": [
+      "B"
+    ],
+    "reason": null,
+    "pointId": "toba-ousho-honten",
+    "ratings": {
+      "tabelog": 3.07,
+      "tabelogReviews": 15
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240302/24020453/"
+    },
+    "contexts": [
+      "lunch"
+    ],
+    "mentions": [
+      {
+        "type": "tourism",
+        "url": "https://www.kankomie.or.jp/report/508",
+        "title": "觀光三重 相差一日遊",
+        "highlight": null,
+        "retrieved": "2026-10-17"
+      },
+      {
+        "type": "media",
+        "url": "https://tabiiro.jp/gourmet/article/iseshimatoba-kaisen/",
+        "title": "tabiiro「伊勢・志摩・鳥羽のおすすめ海鮮グルメ13選」（2026-08-04 更新）",
+        "highlight": null,
+        "retrieved": "2026-10-17"
+      }
+    ],
+    "note": "食べログ篩選：貸切可"
+  },
+  {
+    "key": "tabelog-24006875",
+    "name": {
+      "ja": "四季の海鮮 魚々味"
+    },
+    "region": "toba-outskirts",
+    "category": "海鮮、海鮮丼",
+    "status": "not-included",
+    "reason": "A 因數量控制（3.40）取消；觀光協會會員名錄有登錄（不算來源）",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.39,
+      "tabelogReviews": 138
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240302/24006875/"
+    },
+    "note": null
+  },
+  {
+    "key": "tabelog-24001494",
+    "name": {
+      "ja": "たこ焼 片岡屋 本店"
+    },
+    "region": "toba-outskirts",
+    "category": "たこ焼き、たい焼き",
+    "status": "not-included",
+    "reason": "A 因數量控制（3.40）取消",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.31,
+      "tabelogReviews": 61
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240302/24001494/"
+    },
+    "note": null
+  },
+  {
+    "key": "tabelog-24000376",
+    "name": {
+      "ja": "カーナピーナ"
+    },
+    "region": "toba-outskirts",
+    "category": "洋食、ハンバーグ",
+    "status": "not-included",
+    "reason": "A 因數量控制（3.40）取消",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.3,
+      "tabelogReviews": 66
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240302/24000376/"
+    },
+    "note": "T4a 記的來源種類「日文媒體」沒有記是哪一篇"
+  },
+  {
+    "key": "tabelog-24014522",
+    "name": {
+      "ja": "＆BAKE"
+    },
+    "region": "toba-outskirts",
+    "category": "カフェ、ケーキ",
+    "status": "not-included",
+    "reason": null,
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.24,
+      "tabelogReviews": 48
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240302/24014522/"
+    },
+    "note": null
+  },
+  {
+    "key": "tabelog-24004524",
+    "name": {
+      "ja": "すみれ"
+    },
+    "region": "toba-outskirts",
+    "category": "洋食、食堂",
+    "status": "not-included",
+    "reason": null,
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.13,
+      "tabelogReviews": 21
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240302/24004524/"
+    },
+    "note": null
+  },
+  {
+    "key": "tabelog-24014512",
+    "name": {
+      "ja": "てらこやCafe"
+    },
+    "region": "toba-outskirts",
+    "category": "カフェ",
+    "status": "not-included",
+    "reason": null,
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.12,
+      "tabelogReviews": 25
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240302/24014512/"
+    },
+    "note": null
+  },
+  {
+    "key": "tabelog-24005079",
+    "name": {
+      "ja": "パンダが18"
+    },
+    "region": "toba-outskirts",
+    "category": "カレー、パスタ",
+    "status": "not-included",
+    "reason": null,
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.11,
+      "tabelogReviews": 26
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240302/24005079/"
+    },
+    "note": null
+  },
+  {
+    "key": "tabelog-24001512",
+    "name": {
+      "ja": "江戸金 本店"
+    },
+    "region": "toba-outskirts",
+    "category": null,
+    "status": "not-included",
+    "reason": "觀光協會會員名錄有登錄（不算來源）；食べログ篩選：貸切可・個室",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.09,
+      "tabelogReviews": 18
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240302/24001512/"
+    },
+    "note": null
+  },
+  {
+    "key": "tabelog-24000608",
+    "name": {
+      "ja": "海鮮料理 王将"
+    },
+    "region": "toba-outskirts",
+    "category": "海鮮",
+    "status": "not-included",
+    "reason": "食べログ篩選：貸切可",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.08,
+      "tabelogReviews": 30
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240302/24000608/"
+    },
+    "note": null
+  },
+  {
+    "key": "tabelog-24010385",
+    "name": {
+      "ja": "末広亭"
+    },
+    "region": "toba-outskirts",
+    "category": "海鮮",
+    "status": "not-included",
+    "reason": "食べログ篩選：個室",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.08,
+      "tabelogReviews": 23
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240302/24010385/"
+    },
+    "note": null
+  },
+  {
+    "key": "tabelog-24021096",
+    "name": {
+      "ja": "台湾料理 鳥羽亭"
+    },
+    "region": "toba-outskirts",
+    "category": null,
+    "status": "not-included",
+    "reason": "食べログ篩選：貸切可",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.08,
+      "tabelogReviews": 12
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240302/24021096/"
+    },
+    "note": null
+  },
+  {
+    "key": "tabelog-24011301",
+    "name": {
+      "ja": "三重寿庵"
+    },
+    "region": "toba-outskirts",
+    "category": "その他",
+    "status": "not-included",
+    "reason": null,
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.05,
+      "tabelogReviews": 62
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240302/24011301/"
+    },
+    "note": null
+  },
+  {
+    "key": "tabelog-24000455",
+    "name": {
+      "ja": "鳥羽割烹 たまも"
+    },
+    "region": "toba-outskirts",
+    "category": null,
+    "status": "not-included",
+    "reason": "食べログ篩選：個室",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.05,
+      "tabelogReviews": 13
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240302/24000455/"
+    },
+    "note": null
+  },
+  {
+    "key": "tabelog-24022496",
+    "name": {
+      "ja": "食呑処 炎"
+    },
+    "region": "toba-outskirts",
+    "category": null,
+    "status": "not-included",
+    "reason": "食べログ篩選：貸切可",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.02,
+      "tabelogReviews": 2
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240302/24022496/"
+    },
+    "note": null
+  },
+  {
+    "key": "tabelog-24002904",
+    "name": {
+      "ja": "新京"
+    },
+    "region": "toba-outskirts",
+    "category": null,
+    "status": "not-included",
+    "reason": "觀光協會會員名錄有登錄（不算來源）；食べログ篩選：個室",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.01,
+      "tabelogReviews": 3
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240302/24002904/"
+    },
+    "note": null
+  },
+  {
+    "key": "tabelog-24022521",
+    "name": {
+      "ja": "ホルモン5"
+    },
+    "region": "toba-outskirts",
+    "category": null,
+    "status": "not-included",
+    "reason": "食べログ篩選：貸切可",
+    "pointId": null,
+    "ratings": {
+      "tabelog": null,
+      "tabelogReviews": 1
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240302/24022521/"
+    },
+    "note": null
+  },
+  {
+    "key": "tabelog-24015985",
+    "name": {
+      "ja": "鉄板焼き 鳥羽別邸 華暦"
+    },
+    "region": "toba-outskirts",
+    "category": "鉄板焼き",
+    "status": "excluded",
+    "reason": "會員制：T4b 確認不開放非會員（Resorttrust FAQ「会員以外のレストラン予約について」只列東京・橫濱・芦屋等 5 家，沒有鳥羽；2026-10-17）",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.72,
+      "tabelogReviews": 57
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240302/24015985/"
+    },
+    "contexts": [
+      "lunch",
+      "dinner"
+    ],
+    "note": null
+  },
+  {
+    "key": "tabelog-24013848",
+    "name": {
+      "ja": "日本料理 鳥羽別邸 華暦"
+    },
+    "region": "toba-outskirts",
+    "category": "日本料理",
+    "status": "excluded",
+    "reason": "會員制：T4b 確認不開放非會員（Resorttrust FAQ「会員以外のレストラン予約について」只列東京・橫濱・芦屋等 5 家，沒有鳥羽；2026-10-17）；食べログ篩選：個室",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.65,
+      "tabelogReviews": 216
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240302/24013848/"
+    },
+    "contexts": [
+      "lunch",
+      "dinner"
+    ],
+    "note": null
+  },
+  {
+    "key": "tabelog-24007224",
+    "name": {
+      "ja": "アラゴスタ"
+    },
+    "region": "toba-outskirts",
+    "category": "イタリアン、ステーキ",
+    "status": "excluded",
+    "reason": "會員制：T4b 確認不開放非會員（Resorttrust FAQ「会員以外のレストラン予約について」只列東京・橫濱・芦屋等 5 家，沒有鳥羽；2026-10-17）；食べログ篩選：個室",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.59,
+      "tabelogReviews": 107
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240302/24007224/"
+    },
+    "contexts": [
+      "lunch",
+      "dinner"
+    ],
+    "note": null
+  },
+  {
+    "key": "tabelog-24008816",
+    "name": {
+      "ja": "翠陽"
+    },
+    "region": "toba-outskirts",
+    "category": "中華料理、担々麺",
+    "status": "excluded",
+    "reason": "會員制：T4b 確認不開放非會員（Resorttrust FAQ「会員以外のレストラン予約について」只列東京・橫濱・芦屋等 5 家，沒有鳥羽；2026-10-17）；食べログ篩選：個室",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.59,
+      "tabelogReviews": 90
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240302/24008816/"
+    },
+    "contexts": [
+      "lunch",
+      "dinner"
+    ],
+    "note": null
+  },
+  {
+    "key": "tabelog-24010245",
+    "name": {
+      "ja": "生簀割烹　海幸"
+    },
+    "region": "toba-outskirts",
+    "category": "日本料理、寿司",
+    "status": "excluded",
+    "reason": "會員制：T4b 確認不開放非會員（Resorttrust FAQ「会員以外のレストラン予約について」只列東京・橫濱・芦屋等 5 家，沒有鳥羽；2026-10-17）；食べログ篩選：貸切可・個室",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.55,
+      "tabelogReviews": 83
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240302/24010245/"
+    },
+    "contexts": [
+      "lunch",
+      "dinner"
+    ],
+    "note": null
+  },
+  {
+    "key": "tabelog-24019554",
+    "name": {
+      "ja": "BISTRO VAGUE"
+    },
+    "region": "toba-outskirts",
+    "category": "ビストロ",
+    "status": "excluded",
+    "reason": "會員制：T4b 確認不開放非會員（Resorttrust FAQ「会員以外のレストラン予約について」只列東京・橫濱・芦屋等 5 家，沒有鳥羽；2026-10-17）；食べログ篩選：貸切可・個室",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.53,
+      "tabelogReviews": 26
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240302/24019554/"
+    },
+    "contexts": [
+      "lunch",
+      "dinner"
+    ],
+    "note": null
+  },
+  {
+    "key": "tabelog-24018442",
+    "name": {
+      "ja": "エクシブ鳥羽別邸 鉄板焼 炭火焼"
+    },
+    "region": "toba-outskirts",
+    "category": "鉄板焼き、肉料理",
+    "status": "excluded",
+    "reason": "會員制：T4b 確認不開放非會員（Resorttrust FAQ「会員以外のレストラン予約について」只列東京・橫濱・芦屋等 5 家，沒有鳥羽；2026-10-17）；食べログ篩選：貸切可・個室",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.5,
+      "tabelogReviews": 39
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240302/24018442/"
+    },
+    "contexts": [
+      "lunch",
+      "dinner"
+    ],
+    "note": null
+  },
+  {
+    "key": "tabelog-24008340",
+    "name": {
+      "ja": "ラウンジ　ドルチェ XIV鳥羽アネックス"
+    },
+    "region": "toba-outskirts",
+    "category": "カフェ",
+    "status": "excluded",
+    "reason": "會員制：T4b 確認不開放非會員（Resorttrust FAQ「会員以外のレストラン予約について」只列東京・橫濱・芦屋等 5 家，沒有鳥羽；2026-10-17）",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.2,
+      "tabelogReviews": 29
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240302/24008340/"
+    },
+    "contexts": [
+      "cafe",
+      "snack"
+    ],
+    "note": null
+  },
+  {
+    "key": "tabelog-24009040",
+    "name": {
+      "ja": "ウイスタリアンライフクラブ 鳥羽"
+    },
+    "region": "toba-outskirts",
+    "category": null,
+    "status": "excluded",
+    "reason": "會員制，本來就不符合納入條件。T4b：近畿日本ツーリスト的住宿頁設備欄寫「レストラン 無」（https://yado.knt.co.jp/st/S240195/ ，2026-10-17），沒查到非會員用餐的資訊，不再查",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3,
+      "tabelogReviews": 3
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240302/24009040/"
+    },
+    "contexts": [
+      "lunch"
+    ],
+    "note": null
+  },
+  {
+    "key": "tabelog-24007559",
+    "name": {
+      "ja": "季さら"
+    },
+    "region": "toba-outskirts",
+    "category": "料理旅館、日本料理",
+    "status": "excluded",
+    "reason": "住宿本體（不在 lodging.json）；食べログ篩選：個室",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.33,
+      "tabelogReviews": 21
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240302/24007559/"
+    },
+    "note": null
+  },
+  {
+    "key": "tabelog-24001650",
+    "name": {
+      "ja": "鳥羽シーサイドホテル"
+    },
+    "region": "toba-outskirts",
+    "category": "ホテル",
+    "status": "excluded",
+    "reason": "住宿本體（見 lodging toba-seaside-hotel）",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.24,
+      "tabelogReviews": 97
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240302/24001650/"
+    },
+    "note": null
+  },
+  {
+    "key": "tabelog-24013909",
+    "name": {
+      "ja": "エクシブ 鳥羽別邸"
+    },
+    "region": "toba-outskirts",
+    "category": "ホテル",
+    "status": "excluded",
+    "reason": "住宿本體（不在 lodging.json）；食べログ篩選：貸切可",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.24,
+      "tabelogReviews": 93
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240302/24013909/"
+    },
+    "note": null
+  },
+  {
+    "key": "tabelog-24007611",
+    "name": {
+      "ja": "ホテル　アルティア鳥羽"
+    },
+    "region": "toba-outskirts",
+    "category": "ホテル",
+    "status": "excluded",
+    "reason": "住宿本體（不在 lodging.json）；食べログ篩選：個室",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.24,
+      "tabelogReviews": 74
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240302/24007611/"
+    },
+    "note": null
+  },
+  {
+    "key": "tabelog-24011709",
+    "name": {
+      "ja": "エクシブ鳥羽＆アネックス"
+    },
+    "region": "toba-outskirts",
+    "category": "ホテル",
+    "status": "excluded",
+    "reason": "住宿本體（不在 lodging.json）；食べログ篩選：貸切可",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.22,
+      "tabelogReviews": 61
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240302/24011709/"
+    },
+    "note": null
+  },
+  {
+    "key": "tabelog-24008087",
+    "name": {
+      "ja": "鳥羽ビューホテル花真珠"
+    },
+    "region": "toba-outskirts",
+    "category": "ホテル",
+    "status": "excluded",
+    "reason": "住宿本體（見 lodging toba-view-hotel-hanashinju）；食べログ篩選：個室",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.22,
+      "tabelogReviews": 51
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240302/24008087/"
+    },
+    "note": null
+  },
+  {
+    "key": "tabelog-24017283",
+    "name": {
+      "ja": "季さら別邸 刻"
+    },
+    "region": "toba-outskirts",
+    "category": "旅館・民宿",
+    "status": "excluded",
+    "reason": "住宿本體（不在 lodging.json）；食べログ篩選：個室",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.2,
+      "tabelogReviews": 26
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240302/24017283/"
+    },
+    "note": null
+  },
+  {
+    "key": "tabelog-24016709",
+    "name": {
+      "ja": "バリ＆リゾート サヤの風"
+    },
+    "region": "toba-outskirts",
+    "category": "ホテル",
+    "status": "excluded",
+    "reason": "住宿本體（不在 lodging.json）",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.19,
+      "tabelogReviews": 21
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240302/24016709/"
+    },
+    "note": null
+  },
+  {
+    "key": "tabelog-24011120",
+    "name": {
+      "ja": "XIV 鳥羽"
+    },
+    "region": "toba-outskirts",
+    "category": null,
+    "status": "excluded",
+    "reason": "住宿本體（不在 lodging.json）；食べログ篩選：貸切可",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.18,
+      "tabelogReviews": 17
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240302/24011120/"
+    },
+    "note": null
+  },
+  {
+    "key": "tabelog-24019175",
+    "name": {
+      "ja": "亀の井ホテル 鳥羽"
+    },
+    "region": "toba-outskirts",
+    "category": null,
+    "status": "excluded",
+    "reason": "住宿本體（見 lodging toba-kamenoi-hotel）；食べログ篩選：貸切可",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.07,
+      "tabelogReviews": 18
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240302/24019175/"
+    },
+    "note": null
+  },
+  {
+    "key": "uohei",
+    "name": {
+      "ja": "魚平"
+    },
+    "region": "toba-outskirts",
+    "category": "仕出し",
+    "status": "excluded",
+    "reason": "只做外帶（非甜點）；觀光協會會員名錄有登錄（不算來源）",
+    "pointId": null,
+    "ratings": {},
+    "note": null
+  },
+  {
+    "key": "toba-nanakoshi-honten",
+    "name": {
+      "ja": "七越本店"
+    },
+    "region": "nakanogo",
+    "category": "うどん、そば",
+    "status": "included",
+    "criteria": [
+      "A"
+    ],
+    "reason": null,
+    "pointId": "toba-nanakoshi-honten",
+    "ratings": {
+      "tabelog": 3.35,
+      "tabelogReviews": 95
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240302/24007652/"
+    },
+    "contexts": [
+      "lunch",
+      "transit"
+    ],
+    "note": "觀光協會會員名錄有登錄（不算來源）"
+  },
+  {
+    "key": "toba-nishikiya",
+    "name": {
+      "ja": "お食事処 錦屋"
+    },
+    "region": "nakanogo",
+    "category": "食堂、海鮮",
+    "status": "included",
+    "criteria": [
+      "A",
+      "E"
+    ],
+    "reason": null,
+    "pointId": "toba-nishikiya",
+    "ratings": {
+      "tabelog": 3.3,
+      "tabelogReviews": 75,
+      "google": 4.3,
+      "googleReviews": 486
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240302/24008125/"
+    },
+    "contexts": [
+      "lunch",
+      "transit"
+    ],
+    "mentions": [
+      {
+        "type": "media",
+        "url": "https://www.nap-camp.com/mag/50903",
+        "title": "なっぷ「鳥羽のおすすめ人気ランチ11選」（2026-10-01 更新）",
+        "highlight": null,
+        "retrieved": "2026-10-17"
+      }
+    ],
+    "note": null
+  },
+  {
+    "key": "toba-manten-shokudo",
+    "name": {
+      "ja": "まんてん食堂"
+    },
+    "region": "nakanogo",
+    "category": "食堂",
+    "status": "included",
+    "criteria": [
+      "C"
+    ],
+    "reason": null,
+    "pointId": "toba-manten-shokudo",
+    "ratings": {
+      "tabelog": 3.16,
+      "tabelogReviews": 21
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240302/24012325/"
+    },
+    "contexts": [
+      "lunch",
+      "transit"
+    ],
+    "note": "食べログ篩選：貸切可"
+  },
+  {
+    "key": "toba-cafeterrace-orange",
+    "name": {
+      "ja": "カフェテラス オレンジ"
+    },
+    "region": "nakanogo",
+    "category": "イタリアン、パスタ",
+    "status": "included",
+    "criteria": [
+      "E"
+    ],
+    "reason": null,
+    "pointId": "toba-cafeterrace-orange",
+    "ratings": {
+      "tabelog": 3.09,
+      "tabelogReviews": 22
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240302/24001489/"
+    },
+    "contexts": [
+      "lunch",
+      "dinner",
+      "transit"
+    ],
+    "note": "食べログ篩選：貸切可"
+  },
+  {
+    "key": "tabelog-24008787",
+    "name": {
+      "ja": "天理スタミナラーメン 鳥羽店"
+    },
+    "region": "nakanogo",
+    "category": "ラーメン",
+    "status": "excluded",
+    "reason": "連鎖店",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.02,
+      "tabelogReviews": 29
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240302/24008787/"
+    },
+    "note": null
+  },
+  {
+    "key": "toba-nakayama-kaki",
+    "name": {
+      "ja": "中山牡蠣養殖所"
+    },
+    "region": "uramura",
+    "category": "海鮮、その他",
+    "status": "included",
+    "criteria": [
+      "A",
+      "F1"
+    ],
+    "reason": null,
+    "pointId": "toba-nakayama-kaki",
+    "ratings": {
+      "tabelog": 3.59,
+      "tabelogReviews": 160
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240302/24000447/"
+    },
+    "contexts": [
+      "lunch"
+    ],
+    "note": null
+  },
+  {
+    "key": "toba-kuroshio-pearlroad",
+    "name": {
+      "ja": "黒潮ダイニング パールロード店"
+    },
+    "region": "uramura",
+    "category": "海鮮丼、海鮮",
+    "status": "included",
+    "criteria": [
+      "A",
+      "B",
+      "C"
+    ],
+    "reason": null,
+    "pointId": "toba-kuroshio-pearlroad",
+    "ratings": {
+      "tabelog": 3.47,
+      "tabelogReviews": 483
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240302/24000620/"
+    },
+    "contexts": [
+      "lunch"
+    ],
+    "mentions": [
+      {
+        "type": "tourism",
+        "url": "https://www.kankomie.or.jp/event/39679",
+        "title": "觀光三重「食べ放題以外的浦村牡蠣店」（2025 年版）",
+        "highlight": null,
+        "retrieved": "2026-10-17"
+      },
+      {
+        "type": "tourism",
+        "url": "https://www.toba.gr.jp/feature/abc/",
+        "title": "鳥羽市觀光協會 浦村牡蠣特集",
+        "highlight": null,
+        "retrieved": "2026-10-17"
+      },
+      {
+        "type": "media",
+        "url": "https://www.mapple.net/article/32428/",
+        "title": "まっぷる「相差」",
+        "highlight": null,
+        "retrieved": "2026-10-17"
+      }
+    ],
+    "note": "食べログ篩選：貸切可"
+  },
+  {
+    "key": "toba-yokichiya",
+    "name": {
+      "ja": "与吉屋"
+    },
+    "region": "uramura",
+    "category": "かき、海鮮",
+    "status": "included",
+    "criteria": [
+      "A",
+      "B",
+      "F1"
+    ],
+    "reason": null,
+    "pointId": "toba-yokichiya",
+    "ratings": {
+      "tabelog": 3.45,
+      "tabelogReviews": 212
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240302/24000504/"
+    },
+    "contexts": [
+      "lunch"
+    ],
+    "mentions": [
+      {
+        "type": "tourism",
+        "url": "https://www.kankomie.or.jp/season/article/110",
+        "title": "觀光三重「鳥羽浦村牡蠣食べ放題 17 選」（2026-10-05）",
+        "highlight": null,
+        "retrieved": "2026-10-17"
+      },
+      {
+        "type": "tourism",
+        "url": "https://www.toba.gr.jp/feature/abc/",
+        "title": "鳥羽市觀光協會 浦村牡蠣特集",
+        "highlight": null,
+        "retrieved": "2026-10-17"
+      },
+      {
+        "type": "media",
+        "url": "https://tabiiro.jp/gourmet/article/iseshimatoba-kaisen/",
+        "title": "tabiiro「伊勢・志摩・鳥羽のおすすめ海鮮グルメ13選」（2026-08-04 更新）",
+        "highlight": null,
+        "retrieved": "2026-10-17"
+      }
+    ],
+    "note": null
+  },
+  {
+    "key": "toba-ciao",
+    "name": {
+      "ja": "Ciao"
+    },
+    "region": "uramura",
+    "category": "カフェ、かき氷",
+    "status": "included",
+    "criteria": [
+      "A"
+    ],
+    "reason": null,
+    "pointId": "toba-ciao",
+    "ratings": {
+      "tabelog": 3.4,
+      "tabelogReviews": 86
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240302/24000880/"
+    },
+    "contexts": [
+      "cafe",
+      "snack"
+    ],
+    "note": "觀光協會會員名錄有登錄（不算來源）"
+  },
+  {
+    "key": "toba-motokaki",
+    "name": {
+      "ja": "モトかき養殖場"
+    },
+    "region": "uramura",
+    "category": "海鮮、ろばた焼き",
+    "status": "included",
+    "criteria": [
+      "A",
+      "B",
+      "F1"
+    ],
+    "reason": null,
+    "pointId": "toba-motokaki",
+    "ratings": {
+      "tabelog": 3.32,
+      "tabelogReviews": 64
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240302/24007522/"
+    },
+    "contexts": [
+      "lunch"
+    ],
+    "mentions": [
+      {
+        "type": "tourism",
+        "url": "https://www.kankomie.or.jp/season/article/110",
+        "title": "觀光三重「鳥羽浦村牡蠣食べ放題 17 選」（2026-10-05）",
+        "highlight": null,
+        "retrieved": "2026-10-17"
+      },
+      {
+        "type": "tourism",
+        "url": "https://www.toba.gr.jp/feature/abc/",
+        "title": "鳥羽市觀光協會 浦村牡蠣特集",
+        "highlight": null,
+        "retrieved": "2026-10-17"
+      }
+    ],
+    "note": null
+  },
+  {
+    "key": "toba-kaitaro",
+    "name": {
+      "ja": "海鮮丼＆浜焼市場 海太郎"
+    },
+    "region": "uramura",
+    "category": "海鮮、海鮮丼",
+    "status": "included",
+    "criteria": [
+      "A",
+      "B"
+    ],
+    "reason": null,
+    "pointId": "toba-kaitaro",
+    "ratings": {
+      "tabelog": 3.3,
+      "tabelogReviews": 88
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240302/24012986/"
+    },
+    "contexts": [
+      "lunch"
+    ],
+    "mentions": [
+      {
+        "type": "tourism",
+        "url": "https://www.kankomie.or.jp/event/39679",
+        "title": "觀光三重「食べ放題以外的浦村牡蠣店」（2025 年版）",
+        "highlight": null,
+        "retrieved": "2026-10-17"
+      },
+      {
+        "type": "tourism",
+        "url": "https://www.toba.gr.jp/feature/abc/",
+        "title": "鳥羽市觀光協會 浦村牡蠣特集",
+        "highlight": null,
+        "retrieved": "2026-10-17"
+      },
+      {
+        "type": "media",
+        "url": "https://www.mapple.net/article/32188/",
+        "title": "まっぷる「鳥羽のかき小屋＆かき料理の人気店」（2025-03-21 更新）",
+        "highlight": null,
+        "retrieved": "2026-10-17"
+      }
+    ],
+    "note": null
+  },
+  {
+    "key": "toba-yamayasu-pearlroad",
+    "name": {
+      "ja": "山安水産 パールロード店"
+    },
+    "region": "uramura",
+    "category": "かき、海鮮",
+    "status": "included",
+    "criteria": [
+      "A",
+      "F1"
+    ],
+    "reason": null,
+    "pointId": "toba-yamayasu-pearlroad",
+    "ratings": {
+      "tabelog": 3.3,
+      "tabelogReviews": 86
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240302/24012371/"
+    },
+    "contexts": [
+      "lunch"
+    ],
+    "mentions": [
+      {
+        "type": "tourism",
+        "url": "https://www.kankomie.or.jp/season/article/110",
+        "title": "觀光三重「鳥羽浦村牡蠣食べ放題 17 選」（2026-10-05）",
+        "highlight": null,
+        "retrieved": "2026-10-17"
+      }
+    ],
+    "note": null
+  },
+  {
+    "key": "toba-tobafood",
+    "name": {
+      "ja": "鳥羽風土"
+    },
+    "region": "uramura",
+    "category": "海鮮、海鮮丼",
+    "status": "included",
+    "criteria": [
+      "A"
+    ],
+    "reason": null,
+    "pointId": "toba-tobafood",
+    "ratings": {
+      "tabelog": 3.29,
+      "tabelogReviews": 44,
+      "google": 4.3,
+      "googleReviews": 194
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240302/24014665/"
+    },
+    "contexts": [
+      "lunch"
+    ],
+    "mentions": [
+      {
+        "type": "media",
+        "url": "https://www.nap-camp.com/mag/23934",
+        "title": "なっぷ「鳥羽のご当地グルメ15選」（2026-10-01 更新）",
+        "highlight": null,
+        "retrieved": "2026-10-17"
+      },
+      {
+        "type": "media",
+        "url": "https://www.mapple.net/article/32428/",
+        "title": "まっぷる「相差」",
+        "highlight": null,
+        "retrieved": "2026-10-17"
+      }
+    ],
+    "note": "觀光協會會員名錄有登錄（不算來源）"
+  },
+  {
+    "key": "toba-kakiichi-honten",
+    "name": {
+      "ja": "かきいち 本店"
+    },
+    "region": "uramura",
+    "category": "かき",
+    "status": "included",
+    "criteria": [
+      "B",
+      "F1"
+    ],
+    "reason": null,
+    "pointId": "toba-kakiichi-honten",
+    "ratings": {
+      "tabelog": 3.29,
+      "tabelogReviews": 32
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240302/24020444/"
+    },
+    "contexts": [
+      "lunch"
+    ],
+    "mentions": [
+      {
+        "type": "tourism",
+        "url": "https://www.kankomie.or.jp/season/article/110",
+        "title": "觀光三重「鳥羽浦村牡蠣食べ放題 17 選」（2026-10-05）",
+        "highlight": null,
+        "retrieved": "2026-10-17"
+      },
+      {
+        "type": "tourism",
+        "url": "https://www.toba.gr.jp/feature/abc/",
+        "title": "鳥羽市觀光協會 浦村牡蠣特集",
+        "highlight": null,
+        "retrieved": "2026-10-17"
+      }
+    ],
+    "note": "；T4b：食べログ寫已從浦村町 1560 移到浦村町 1-12（還在營業）"
+  },
+  {
+    "key": "toba-yoshiyu-suisan",
+    "name": {
+      "ja": "よしゆう水産"
+    },
+    "region": "uramura",
+    "category": "海鮮",
+    "status": "included",
+    "criteria": [
+      "B"
+    ],
+    "reason": null,
+    "pointId": "toba-yoshiyu-suisan",
+    "ratings": {
+      "tabelog": 3.29,
+      "tabelogReviews": 32
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240302/24016259/"
+    },
+    "contexts": [
+      "lunch"
+    ],
+    "mentions": [
+      {
+        "type": "tourism",
+        "url": "https://www.kankomie.or.jp/event/39679",
+        "title": "觀光三重「食べ放題以外的浦村牡蠣店」（2025 年版）",
+        "highlight": null,
+        "retrieved": "2026-10-17"
+      },
+      {
+        "type": "tourism",
+        "url": "https://www.toba.gr.jp/feature/abc/",
+        "title": "鳥羽市觀光協會 浦村牡蠣特集",
+        "highlight": null,
+        "retrieved": "2026-10-17"
+      }
+    ],
+    "note": null
+  },
+  {
+    "key": "toba-sugimura-suisan",
+    "name": {
+      "ja": "スギムラ水産"
+    },
+    "region": "uramura",
+    "category": "かき、海鮮",
+    "status": "included",
+    "criteria": [
+      "B"
+    ],
+    "reason": null,
+    "pointId": "toba-sugimura-suisan",
+    "ratings": {
+      "tabelog": 3.28,
+      "tabelogReviews": 32
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240302/24011887/"
+    },
+    "contexts": [
+      "lunch"
+    ],
+    "mentions": [
+      {
+        "type": "tourism",
+        "url": "https://www.kankomie.or.jp/season/article/110",
+        "title": "觀光三重「鳥羽浦村牡蠣食べ放題 17 選」（2026-10-05）",
+        "highlight": null,
+        "retrieved": "2026-10-17"
+      },
+      {
+        "type": "tourism",
+        "url": "https://www.toba.gr.jp/feature/abc/",
+        "title": "鳥羽市觀光協會 浦村牡蠣特集",
+        "highlight": null,
+        "retrieved": "2026-10-17"
+      },
+      {
+        "type": "media",
+        "url": "https://tabiiro.jp/gourmet/article/iseshimatoba-kaisen/",
+        "title": "tabiiro「伊勢・志摩・鳥羽のおすすめ海鮮グルメ13選」（2026-08-04 更新）",
+        "highlight": null,
+        "retrieved": "2026-10-17"
+      }
+    ],
+    "note": null
+  },
+  {
+    "key": "toba-hakkai",
+    "name": {
+      "ja": "はっかい"
+    },
+    "region": "uramura",
+    "category": "日本料理、海鮮",
+    "status": "included",
+    "criteria": [
+      "B",
+      "F1"
+    ],
+    "reason": null,
+    "pointId": "toba-hakkai",
+    "ratings": {
+      "tabelog": 3.27,
+      "tabelogReviews": 62
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240302/24010565/"
+    },
+    "contexts": [
+      "lunch",
+      "dinner"
+    ],
+    "mentions": [
+      {
+        "type": "tourism",
+        "url": "https://www.kankomie.or.jp/season/article/110",
+        "title": "觀光三重「鳥羽浦村牡蠣食べ放題 17 選」（2026-10-05）",
+        "highlight": null,
+        "retrieved": "2026-10-17"
+      },
+      {
+        "type": "tourism",
+        "url": "https://www.kankomie.or.jp/event/39679",
+        "title": "觀光三重「食べ放題以外的浦村牡蠣店」（2025 年版）",
+        "highlight": null,
+        "retrieved": "2026-10-17"
+      },
+      {
+        "type": "tourism",
+        "url": "https://www.toba.gr.jp/feature/abc/",
+        "title": "鳥羽市觀光協會 浦村牡蠣特集",
+        "highlight": null,
+        "retrieved": "2026-10-17"
+      },
+      {
+        "type": "media",
+        "url": "https://www.nap-camp.com/mag/50903",
+        "title": "なっぷ「鳥羽のおすすめ人気ランチ11選」（2026-10-01 更新）",
+        "highlight": null,
+        "retrieved": "2026-10-17"
+      }
+    ],
+    "note": null
+  },
+  {
+    "key": "toba-hamahide-suisan",
+    "name": {
+      "ja": "浜英水産"
+    },
+    "region": "uramura",
+    "category": "海鮮",
+    "status": "included",
+    "criteria": [
+      "B"
+    ],
+    "reason": null,
+    "pointId": "toba-hamahide-suisan",
+    "ratings": {
+      "tabelog": 3.19,
+      "tabelogReviews": 32
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240302/24013197/"
+    },
+    "contexts": [
+      "lunch"
+    ],
+    "mentions": [
+      {
+        "type": "tourism",
+        "url": "https://www.kankomie.or.jp/season/article/110",
+        "title": "觀光三重「鳥羽浦村牡蠣食べ放題 17 選」（2026-10-05）",
+        "highlight": null,
+        "retrieved": "2026-10-17"
+      },
+      {
+        "type": "media",
+        "url": "https://www.mapple.net/article/32188/",
+        "title": "まっぷる「鳥羽のかき小屋＆かき料理の人気店」（2025-03-21 更新）",
+        "highlight": null,
+        "retrieved": "2026-10-17"
+      }
+    ],
+    "note": null
+  },
+  {
+    "key": "toba-eijimaru",
+    "name": {
+      "ja": "浦村カキ 英治丸"
+    },
+    "region": "uramura",
+    "category": "その他",
+    "status": "included",
+    "criteria": [
+      "B",
+      "F1"
+    ],
+    "reason": null,
+    "pointId": "toba-eijimaru",
+    "ratings": {
+      "tabelog": 3.13,
+      "tabelogReviews": 60
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240302/24008876/"
+    },
+    "contexts": [
+      "lunch"
+    ],
+    "mentions": [
+      {
+        "type": "tourism",
+        "url": "https://www.kankomie.or.jp/event/39679",
+        "title": "觀光三重「食べ放題以外的浦村牡蠣店」（2025 年版）",
+        "highlight": null,
+        "retrieved": "2026-10-17"
+      },
+      {
+        "type": "tourism",
+        "url": "https://www.toba.gr.jp/feature/abc/",
+        "title": "鳥羽市觀光協會 浦村牡蠣特集",
+        "highlight": null,
+        "retrieved": "2026-10-17"
+      }
+    ],
+    "note": null
+  },
+  {
+    "key": "toba-marugen-suisan",
+    "name": {
+      "ja": "マル源水産"
+    },
+    "region": "uramura",
+    "category": "日本料理",
+    "status": "included",
+    "criteria": [
+      "F1"
+    ],
+    "reason": null,
+    "pointId": "toba-marugen-suisan",
+    "ratings": {
+      "tabelog": 3.13,
+      "tabelogReviews": 33
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240302/24006991/"
+    },
+    "contexts": [
+      "lunch",
+      "dinner"
+    ],
+    "mentions": [
+      {
+        "type": "tourism",
+        "url": "https://www.kankomie.or.jp/season/article/110",
+        "title": "觀光三重「鳥羽浦村牡蠣食べ放題 17 選」（2026-10-05）",
+        "highlight": null,
+        "retrieved": "2026-10-17"
+      }
+    ],
+    "note": null
+  },
+  {
+    "key": "toba-maruzen-suisan",
+    "name": {
+      "ja": "丸善水産"
+    },
+    "region": "uramura",
+    "category": "海鮮、揚げ物",
+    "status": "included",
+    "criteria": [
+      "B"
+    ],
+    "reason": null,
+    "pointId": "toba-maruzen-suisan",
+    "ratings": {
+      "tabelog": 3.09,
+      "tabelogReviews": 27
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240302/24009013/"
+    },
+    "contexts": [
+      "lunch"
+    ],
+    "mentions": [
+      {
+        "type": "tourism",
+        "url": "https://www.kankomie.or.jp/season/article/110",
+        "title": "觀光三重「鳥羽浦村牡蠣食べ放題 17 選」（2026-10-05）",
+        "highlight": null,
+        "retrieved": "2026-10-17"
+      },
+      {
+        "type": "tourism",
+        "url": "https://www.toba.gr.jp/feature/abc/",
+        "title": "鳥羽市觀光協會 浦村牡蠣特集",
+        "highlight": null,
+        "retrieved": "2026-10-17"
+      },
+      {
+        "type": "media",
+        "url": "https://www.mapple.net/article/32188/",
+        "title": "まっぷる「鳥羽のかき小屋＆かき料理の人気店」（2025-03-21 更新）",
+        "highlight": null,
+        "retrieved": "2026-10-17"
+      }
+    ],
+    "note": null
+  },
+  {
+    "key": "tabelog-24009243",
+    "name": {
+      "ja": "やま栄水産"
+    },
+    "region": "uramura",
+    "category": "郷土料理",
+    "status": "not-included",
+    "reason": "觀光協會會員名錄有登錄（不算來源）",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.11,
+      "tabelogReviews": 23
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240302/24009243/"
+    },
+    "note": null
+  },
+  {
+    "key": "tabelog-24011727",
+    "name": {
+      "ja": "オイスターファーム 山善水産"
+    },
+    "region": "uramura",
+    "category": "かき",
+    "status": "not-included",
+    "reason": null,
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.09,
+      "tabelogReviews": 29
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240302/24011727/"
+    },
+    "note": "T4a 記的來源種類「觀光三重」沒有記是哪一篇"
+  },
+  {
+    "key": "tabelog-24007111",
+    "name": {
+      "ja": "久保田水産"
+    },
+    "region": "uramura",
+    "category": "海鮮",
+    "status": "not-included",
+    "reason": "食べログ篩選：貸切可",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.09,
+      "tabelogReviews": 29
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240302/24007111/"
+    },
+    "note": "T4a 記的來源種類「觀光三重」沒有記是哪一篇"
+  },
+  {
+    "key": "tabelog-24019911",
+    "name": {
+      "ja": "まっちゃん食堂"
+    },
+    "region": "uramura",
+    "category": null,
+    "status": "not-included",
+    "reason": "觀光協會會員名錄有登錄（不算來源）；食べログ篩選：貸切可",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.08,
+      "tabelogReviews": 19
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240302/24019911/"
+    },
+    "note": "T4a 記的來源種類「觀光三重」沒有記是哪一篇"
+  },
+  {
+    "key": "tabelog-24021488",
+    "name": {
+      "ja": "マル源水産 鳥羽店"
+    },
+    "region": "uramura",
+    "category": null,
+    "status": "not-included",
+    "reason": "食べログ篩選：貸切可",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.07,
+      "tabelogReviews": 14
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240302/24021488/"
+    },
+    "note": null
+  },
+  {
+    "key": "tabelog-24007636",
+    "name": {
+      "ja": "小島水産かき養殖場"
+    },
+    "region": "uramura",
+    "category": null,
+    "status": "not-included",
+    "reason": "食べログ篩選：貸切可",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.07,
+      "tabelogReviews": 13
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240302/24007636/"
+    },
+    "note": "T4a 記的來源種類「觀光三重」沒有記是哪一篇"
+  },
+  {
+    "key": "tabelog-24020573",
+    "name": {
+      "ja": "まる尾水産"
+    },
+    "region": "uramura",
+    "category": null,
+    "status": "not-included",
+    "reason": "食べログ篩選：貸切可",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.05,
+      "tabelogReviews": 7
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240302/24020573/"
+    },
+    "note": null
+  },
+  {
+    "key": "tabelog-24013920",
+    "name": {
+      "ja": "シーサイドテラス エスマーレ"
+    },
+    "region": "uramura",
+    "category": null,
+    "status": "not-included",
+    "reason": "食べログ篩選：貸切可",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.03,
+      "tabelogReviews": 4
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240302/24013920/"
+    },
+    "note": null
+  },
+  {
+    "key": "tabelog-24010181",
+    "name": {
+      "ja": "ろーどるーぱ"
+    },
+    "region": "uramura",
+    "category": null,
+    "status": "not-included",
+    "reason": "食べログ篩選：貸切可",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.01,
+      "tabelogReviews": 3
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240302/24010181/"
+    },
+    "note": null
+  },
+  {
+    "key": "route-750",
+    "name": {
+      "ja": "ROUTE 750"
+    },
+    "region": "uramura",
+    "category": "海鮮丼・カフェ",
+    "status": "not-included",
+    "reason": null,
+    "pointId": null,
+    "ratings": {},
+    "note": "T4a 記的來源種類「日文媒體」沒有記是哪一篇"
+  },
+  {
+    "key": "uramura-sea-farm",
+    "name": {
+      "ja": "浦村Sea Farm"
+    },
+    "region": "uramura",
+    "category": "かき",
+    "status": "not-included",
+    "reason": "觀光協會會員名錄有登錄（不算來源）",
+    "pointId": null,
+    "ratings": {},
+    "note": null
+  },
+  {
+    "key": "tabelog-24013064",
+    "name": {
+      "ja": "牡蠣料理 さとや"
+    },
+    "region": "uramura",
+    "category": "かき",
+    "status": "over-limit",
+    "criteria": [
+      "B"
+    ],
+    "reason": "浦村牡蠣同類型上限（12 家）外；食べログ篩選：貸切可",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.23,
+      "tabelogReviews": 24
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240302/24013064/"
+    },
+    "mentions": [
+      {
+        "type": "tourism",
+        "url": "https://www.toba.gr.jp/feature/abc/",
+        "title": "鳥羽市觀光協會 浦村牡蠣特集",
+        "highlight": null,
+        "retrieved": "2026-10-17"
+      }
+    ],
+    "note": "T4a 記的來源種類「觀光三重、日文媒體」沒有記是哪一篇"
+  },
+  {
+    "key": "tabelog-24021109",
+    "name": {
+      "ja": "かきいち 大吉店"
+    },
+    "region": "uramura",
+    "category": null,
+    "status": "over-limit",
+    "criteria": [
+      "B"
+    ],
+    "reason": "浦村牡蠣同類型上限（12 家）外；食べログ篩選：貸切可 ；T4b：地址沒有衝突，食べログ浦村町 1569、觀光三重浦村牡蠣店一覽（080-2523-2874）、なっぷ都寫浦村町；相差町的是鰻魚店「なかしん」，T4a 把兩家混在一起",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.23,
+      "tabelogReviews": 19
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240302/24021109/"
+    },
+    "note": "T4a 記的來源種類「觀光三重、日文媒體」沒有記是哪一篇"
+  },
+  {
+    "key": "tabelog-24012937",
+    "name": {
+      "ja": "モンキー"
+    },
+    "region": "uramura",
+    "category": "海鮮",
+    "status": "over-limit",
+    "criteria": [
+      "B"
+    ],
+    "reason": "浦村牡蠣同類型上限（12 家）外",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.12,
+      "tabelogReviews": 24
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240302/24012937/"
+    },
+    "mentions": [
+      {
+        "type": "tourism",
+        "url": "https://www.toba.gr.jp/feature/abc/",
+        "title": "鳥羽市觀光協會 浦村牡蠣特集",
+        "highlight": null,
+        "retrieved": "2026-10-17"
+      }
+    ],
+    "note": "T4a 記的來源種類「觀光三重」沒有記是哪一篇"
+  },
+  {
+    "key": "tabelog-24015259",
+    "name": {
+      "ja": "マルナカ水産 マルマ本店"
+    },
+    "region": "uramura",
+    "category": null,
+    "status": "over-limit",
+    "criteria": [
+      "B"
+    ],
+    "reason": "浦村牡蠣同類型上限（12 家）外；食べログ篩選：貸切可",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.08,
+      "tabelogReviews": 17
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240302/24015259/"
+    },
+    "mentions": [
+      {
+        "type": "tourism",
+        "url": "https://www.toba.gr.jp/feature/abc/",
+        "title": "鳥羽市觀光協會 浦村牡蠣特集",
+        "highlight": null,
+        "retrieved": "2026-10-17"
+      }
+    ],
+    "note": "T4a 記的來源種類「觀光三重、日文媒體」沒有記是哪一篇"
+  },
+  {
+    "key": "tabelog-24019417",
+    "name": {
+      "ja": "焼きカキ かき丸"
+    },
+    "region": "uramura",
+    "category": "かき",
+    "status": "over-limit",
+    "criteria": [
+      "B"
+    ],
+    "reason": "浦村牡蠣同類型上限（12 家）外",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.06,
+      "tabelogReviews": 7
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240302/24019417/"
+    },
+    "mentions": [
+      {
+        "type": "tourism",
+        "url": "https://www.toba.gr.jp/feature/abc/",
+        "title": "鳥羽市觀光協會 浦村牡蠣特集",
+        "highlight": null,
+        "retrieved": "2026-10-17"
+      }
+    ],
+    "note": "T4a 記的來源種類「觀光三重」沒有記是哪一篇"
+  },
+  {
+    "key": "tabelog-24002026",
+    "name": {
+      "ja": "サン浦島 悠季の里"
+    },
+    "region": "uramura",
+    "category": "料理旅館",
+    "status": "excluded",
+    "reason": "住宿本體（見 lodging toba-motoura-sun-urashima）；食べログ篩選：個室",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.3,
+      "tabelogReviews": 55
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240302/24002026/"
+    },
+    "note": null
+  },
+  {
+    "key": "tabelog-24000352",
+    "name": {
+      "ja": "TEPPANオーベルジュ CaroCaro鳥羽浦別邸"
+    },
+    "region": "uramura",
+    "category": "オーベルジュ",
+    "status": "excluded",
+    "reason": "住宿本體（不在 lodging.json）；食べログ篩選：貸切可",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.25,
+      "tabelogReviews": 43
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240302/24000352/"
+    },
+    "note": null
+  },
+  {
+    "key": "tabelog-24016523",
+    "name": {
+      "ja": "TAOYA 志摩"
+    },
+    "region": "uramura",
+    "category": "ホテル",
+    "status": "excluded",
+    "reason": "住宿本體（不在 lodging.json）",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.19,
+      "tabelogReviews": 97
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240302/24016523/"
+    },
+    "note": null
+  },
+  {
+    "key": "tabelog-24000650",
+    "name": {
+      "ja": "山安水産"
+    },
+    "region": "uramura",
+    "category": "海鮮",
+    "status": "excluded",
+    "reason": "旅程期間大多不營業（觀光三重 17 選：休日「全平日」）",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.19,
+      "tabelogReviews": 32
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240302/24000650/"
+    },
+    "mentions": [
+      {
+        "type": "tourism",
+        "url": "https://www.toba.gr.jp/feature/abc/",
+        "title": "鳥羽市觀光協會 浦村牡蠣特集",
+        "highlight": null,
+        "retrieved": "2026-10-17"
+      },
+      {
+        "type": "tourism",
+        "url": "https://www.kankomie.or.jp/season/article/110",
+        "title": "觀光三重「鳥羽浦村牡蠣食べ放題 17 選」（2026-10-05）",
+        "highlight": null,
+        "retrieved": "2026-10-17"
+      }
+    ],
+    "note": null
+  },
+  {
+    "key": "toba-kuroshio-osatsu",
+    "name": {
+      "ja": "海の駅 黒潮 相差店"
+    },
+    "region": "osatsu",
+    "category": "海鮮、揚げ物",
+    "status": "included",
+    "criteria": [
+      "A"
+    ],
+    "reason": null,
+    "pointId": "toba-kuroshio-osatsu",
+    "ratings": {
+      "tabelog": 3.43,
+      "tabelogReviews": 138,
+      "google": 4.1,
+      "googleReviews": 572
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240302/24008773/"
+    },
+    "contexts": [
+      "lunch"
+    ],
+    "note": "觀光協會會員名錄有登錄（不算來源）"
+  },
+  {
+    "key": "toba-osatsu-kitchen-0032",
+    "name": {
+      "ja": "オウサツキッチン0032"
+    },
+    "region": "osatsu",
+    "category": "カフェ、ソフトクリーム",
+    "status": "included",
+    "criteria": [
+      "A",
+      "C"
+    ],
+    "reason": null,
+    "pointId": "toba-osatsu-kitchen-0032",
+    "ratings": {
+      "tabelog": 3.33,
+      "tabelogReviews": 69
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240302/24016504/"
+    },
+    "contexts": [
+      "cafe",
+      "snack"
+    ],
+    "note": "食べログ篩選：貸切可"
+  },
+  {
+    "key": "toba-nakashin",
+    "name": {
+      "ja": "なかしん"
+    },
+    "region": "osatsu",
+    "category": "うなぎ",
+    "status": "included",
+    "criteria": [
+      "C"
+    ],
+    "reason": null,
+    "pointId": "toba-nakashin",
+    "ratings": {
+      "tabelog": 3.27,
+      "tabelogReviews": 50
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240302/24015301/"
+    },
+    "contexts": [
+      "lunch"
+    ],
+    "mentions": [
+      {
+        "type": "media",
+        "url": "https://www.nap-camp.com/mag/23934",
+        "title": "なっぷ「鳥羽のご当地グルメ15選」（2026-10-01 更新）",
+        "highlight": null,
+        "retrieved": "2026-10-17"
+      }
+    ],
+    "note": "食べログ篩選：貸切可"
+  },
+  {
+    "key": "toba-umino-shokudo-kyubei",
+    "name": {
+      "ja": "海の食堂 久兵衛"
+    },
+    "region": "osatsu",
+    "category": "食堂、海鮮",
+    "status": "included",
+    "criteria": [
+      "A"
+    ],
+    "reason": null,
+    "pointId": "toba-umino-shokudo-kyubei",
+    "ratings": {
+      "tabelog": 3.16,
+      "tabelogReviews": 20,
+      "google": 4.6,
+      "googleReviews": 138
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240302/24015880/"
+    },
+    "contexts": [
+      "lunch"
+    ],
+    "mentions": [
+      {
+        "type": "media",
+        "url": "https://www.nap-camp.com/mag/50903",
+        "title": "なっぷ「鳥羽のおすすめ人気ランチ11選」（2026-10-01 更新）",
+        "highlight": null,
+        "retrieved": "2026-10-17"
+      }
+    ],
+    "note": null
+  },
+  {
+    "key": "toba-amanoie-gozaya",
+    "name": {
+      "ja": "海女の家　五左屋"
+    },
+    "region": "osatsu",
+    "category": "カフェ、喫茶店",
+    "status": "included",
+    "criteria": [
+      "B"
+    ],
+    "reason": null,
+    "pointId": "toba-amanoie-gozaya",
+    "ratings": {
+      "tabelog": 3.15,
+      "tabelogReviews": 26
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240302/24010431/"
+    },
+    "contexts": [
+      "cafe",
+      "snack"
+    ],
+    "mentions": [
+      {
+        "type": "tourism",
+        "url": "https://www.kankomie.or.jp/report/508",
+        "title": "觀光三重 相差一日遊",
+        "highlight": null,
+        "retrieved": "2026-10-17"
+      },
+      {
+        "type": "media",
+        "url": "https://www.mapple.net/article/32428/",
+        "title": "まっぷる「相差」",
+        "highlight": null,
+        "retrieved": "2026-10-17"
+      }
+    ],
+    "note": null
+  },
+  {
+    "key": "toba-petit-kamado-uemura",
+    "name": {
+      "ja": "プチかまど うえむら"
+    },
+    "region": "osatsu",
+    "category": "海鮮（海女小屋）",
+    "status": "included",
+    "criteria": [
+      "F2"
+    ],
+    "reason": null,
+    "pointId": "toba-petit-kamado-uemura",
+    "ratings": {
+      "tabelog": null,
+      "tabelogReviews": null,
+      "google": 4.8,
+      "googleReviews": 27
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240302/24019322/"
+    },
+    "contexts": [
+      "lunch"
+    ],
+    "note": "體驗型：海女小屋"
+  },
+  {
+    "key": "tabelog-24008421",
+    "name": {
+      "ja": "梵天"
+    },
+    "region": "osatsu",
+    "category": null,
+    "status": "not-included",
+    "reason": "食べログ篩選：個室",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.09,
+      "tabelogReviews": 19
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240302/24008421/"
+    },
+    "note": null
+  },
+  {
+    "key": "tabelog-24015823",
+    "name": {
+      "ja": "千"
+    },
+    "region": "osatsu",
+    "category": null,
+    "status": "not-included",
+    "reason": "觀光協會會員名錄有登錄（不算來源）；食べログ篩選：貸切可",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.08,
+      "tabelogReviews": 12
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240302/24015823/"
+    },
+    "note": null
+  },
+  {
+    "key": "tabelog-24007179",
+    "name": {
+      "ja": "名物磯舟料理 おくのせこ"
+    },
+    "region": "osatsu",
+    "category": null,
+    "status": "not-included",
+    "reason": "食べログ篩選：貸切可・個室",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.06,
+      "tabelogReviews": 11
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240302/24007179/"
+    },
+    "note": null
+  },
+  {
+    "key": "tabelog-24018112",
+    "name": {
+      "ja": "OYSTER HOUSE Grow"
+    },
+    "region": "osatsu",
+    "category": null,
+    "status": "not-included",
+    "reason": "食べログ篩選：貸切可",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.05,
+      "tabelogReviews": 5
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240302/24018112/"
+    },
+    "note": "T4a 記的來源種類「日文媒體」沒有記是哪一篇"
+  },
+  {
+    "key": "tabelog-24007994",
+    "name": {
+      "ja": "天海"
+    },
+    "region": "osatsu",
+    "category": null,
+    "status": "not-included",
+    "reason": "食べログ篩選：個室",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.04,
+      "tabelogReviews": 7
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240302/24007994/"
+    },
+    "note": null
+  },
+  {
+    "key": "kyu-and-shiro",
+    "name": {
+      "ja": "きゅう＆しろ おやつとコーヒー"
+    },
+    "region": "osatsu",
+    "category": "カフェ",
+    "status": "not-included",
+    "reason": null,
+    "pointId": null,
+    "ratings": {},
+    "note": "T4a 記的來源種類「日文媒體」沒有記是哪一篇"
+  },
+  {
+    "key": "minonaru-mori-tokoyo-no-sato",
+    "name": {
+      "ja": "みのなる森とこよの郷"
+    },
+    "region": "osatsu",
+    "category": "海鮮BBQ（予約制）",
+    "status": "not-included",
+    "reason": null,
+    "pointId": null,
+    "ratings": {},
+    "note": "T4a 記的來源種類「日文媒體」沒有記是哪一篇"
+  },
+  {
+    "key": "tabelog-24008197",
+    "name": {
+      "ja": "料理旅館　伝洋"
+    },
+    "region": "osatsu",
+    "category": "料理旅館、海鮮",
+    "status": "excluded",
+    "reason": "住宿本體（不在 lodging.json）；食べログ篩選：貸切可・個室",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.3,
+      "tabelogReviews": 23
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240302/24008197/"
+    },
+    "note": null
+  },
+  {
+    "key": "tabelog-24003550",
+    "name": {
+      "ja": "味の宿 花椿"
+    },
+    "region": "osatsu",
+    "category": "料理旅館",
+    "status": "excluded",
+    "reason": "住宿本體（不在 lodging.json）；食べログ篩選：個室",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.25,
+      "tabelogReviews": 18
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240302/24003550/"
+    },
+    "note": null
+  },
+  {
+    "key": "tabelog-24009973",
+    "name": {
+      "ja": "味の宿 みち潮"
+    },
+    "region": "osatsu",
+    "category": "料理旅館、海鮮",
+    "status": "excluded",
+    "reason": "住宿本體（見 lodging toba-osatsu-michishio）；食べログ篩選：貸切可",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.23,
+      "tabelogReviews": 33
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240302/24009973/"
+    },
+    "note": null
+  },
+  {
+    "key": "tabelog-24001920",
+    "name": {
+      "ja": "リゾートヒルズ豊浜 蒼空の風"
+    },
+    "region": "osatsu",
+    "category": "ホテル",
+    "status": "excluded",
+    "reason": "住宿本體（見 lodging toba-osatsu-sora-no-kaze）；食べログ篩選：個室",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.22,
+      "tabelogReviews": 42
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240302/24001920/"
+    },
+    "note": null
+  },
+  {
+    "key": "tabelog-24009863",
+    "name": {
+      "ja": "浜の雅亭・一井"
+    },
+    "region": "osatsu",
+    "category": "ホテル",
+    "status": "excluded",
+    "reason": "住宿本體（見 lodging toba-osatsu-ichii）；食べログ篩選：貸切可",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.19,
+      "tabelogReviews": 29
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240302/24009863/"
+    },
+    "note": null
+  },
+  {
+    "key": "tabelog-24007480",
+    "name": {
+      "ja": "相差かまど"
+    },
+    "region": "osatsu",
+    "category": "海鮮、肉料理",
+    "status": "excluded",
+    "reason": "用餐見 spot toba-osatsu-kamado；食べログ篩選：貸切可・個室",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.18,
+      "tabelogReviews": 41
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240302/24007480/"
+    },
+    "note": "T4a 記的來源種類「觀光三重、日文媒體」沒有記是哪一篇"
+  },
+  {
+    "key": "tabelog-24009724",
+    "name": {
+      "ja": "志摩ビーチホテル"
+    },
+    "region": "osatsu",
+    "category": null,
+    "status": "excluded",
+    "reason": "住宿本體（不在 lodging.json）；食べログ篩選：貸切可",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.16,
+      "tabelogReviews": 20
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240302/24009724/"
+    },
+    "note": null
+  },
+  {
+    "key": "tabelog-24007068",
+    "name": {
+      "ja": "ひょうすけ"
+    },
+    "region": "osatsu",
+    "category": null,
+    "status": "excluded",
+    "reason": "住宿本體（不在 lodging.json）；食べログ篩選：貸切可",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.14,
+      "tabelogReviews": 12
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240302/24007068/"
+    },
+    "note": null
+  },
+  {
+    "key": "tabelog-24007466",
+    "name": {
+      "ja": "くつろぎの宿　丸善"
+    },
+    "region": "osatsu",
+    "category": null,
+    "status": "excluded",
+    "reason": "住宿本體（不在 lodging.json）；食べログ篩選：貸切可",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.13,
+      "tabelogReviews": 14
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240302/24007466/"
+    },
+    "note": null
+  },
+  {
+    "key": "tabelog-24008738",
+    "name": {
+      "ja": "海女小屋はちまんかまど"
+    },
+    "region": "osatsu",
+    "category": "その他",
+    "status": "excluded",
+    "reason": "用餐見 spot toba-hachiman-kamado；觀光協會會員名錄有登錄（不算來源）；食べログ篩選：貸切可",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.12,
+      "tabelogReviews": 52
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240302/24008738/"
+    },
+    "mentions": [
+      {
+        "type": "tourism",
+        "url": "https://www.kankomie.or.jp/report/508",
+        "title": "觀光三重 相差一日遊",
+        "highlight": null,
+        "retrieved": "2026-10-17"
+      }
+    ],
+    "note": "T4a 記的來源種類「日文媒體」沒有記是哪一篇"
+  },
+  {
+    "key": "tabelog-24009568",
+    "name": {
+      "ja": "相差パシフィックホテル"
+    },
+    "region": "osatsu",
+    "category": null,
+    "status": "excluded",
+    "reason": "住宿本體（不在 lodging.json）；食べログ篩選：貸切可",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.12,
+      "tabelogReviews": 8
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240302/24009568/"
+    },
+    "note": null
+  },
+  {
+    "key": "tabelog-24009017",
+    "name": {
+      "ja": "海辺の宿松村荘"
+    },
+    "region": "osatsu",
+    "category": null,
+    "status": "excluded",
+    "reason": "住宿本體（不在 lodging.json）；食べログ篩選：貸切可",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.06,
+      "tabelogReviews": 3
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240302/24009017/"
+    },
+    "note": null
+  },
+  {
+    "key": "tabelog-24009710",
+    "name": {
+      "ja": "汐浜"
+    },
+    "region": "osatsu",
+    "category": null,
+    "status": "excluded",
+    "reason": "住宿本體（不在 lodging.json）；食べログ篩選：貸切可",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.06,
+      "tabelogReviews": 3
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240302/24009710/"
+    },
+    "note": null
+  },
+  {
+    "key": "tabelog-24009422",
+    "name": {
+      "ja": "さわ栄"
+    },
+    "region": "osatsu",
+    "category": null,
+    "status": "excluded",
+    "reason": "住宿本體（不在 lodging.json）；食べログ篩選：貸切可",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.05,
+      "tabelogReviews": 7
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240302/24009422/"
+    },
+    "note": null
+  },
+  {
+    "key": "tabelog-24009955",
+    "name": {
+      "ja": "丸万"
+    },
+    "region": "osatsu",
+    "category": null,
+    "status": "excluded",
+    "reason": "住宿本體（不在 lodging.json）；食べログ篩選：貸切可",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.05,
+      "tabelogReviews": 6
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240302/24009955/"
+    },
+    "note": null
+  },
+  {
+    "key": "toba-nishimura-shokudo",
+    "name": {
+      "ja": "西村食堂"
+    },
+    "region": "kuzaki",
+    "category": "食堂、海鮮",
+    "status": "included",
+    "criteria": [
+      "A"
+    ],
+    "reason": null,
+    "pointId": "toba-nishimura-shokudo",
+    "ratings": {
+      "tabelog": 3.68,
+      "tabelogReviews": 324,
+      "google": 4.2,
+      "googleReviews": 660
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240302/24000942/"
+    },
+    "contexts": [
+      "lunch"
+    ],
+    "mentions": [
+      {
+        "type": "media",
+        "url": "https://www.nap-camp.com/mag/50903",
+        "title": "なっぷ「鳥羽のおすすめ人気ランチ11選」（2026-10-01 更新）",
+        "highlight": null,
+        "retrieved": "2026-10-17"
+      },
+      {
+        "type": "media",
+        "url": "https://www.nap-camp.com/mag/23934",
+        "title": "なっぷ「鳥羽のご当地グルメ15選」（2026-10-01 更新）",
+        "highlight": null,
+        "retrieved": "2026-10-17"
+      }
+    ],
+    "note": "晚上可能以「漁師酒場 鏡」（24021016，3.07／10，貸切可）營業"
+  },
+  {
+    "key": "toba-ama-terrace",
+    "name": {
+      "ja": "海女のテラス"
+    },
+    "region": "kuzaki",
+    "category": "カフェ",
+    "status": "included",
+    "criteria": [
+      "A",
+      "C"
+    ],
+    "reason": null,
+    "pointId": "toba-ama-terrace",
+    "ratings": {
+      "tabelog": 3.32,
+      "tabelogReviews": 58
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240302/24019691/"
+    },
+    "contexts": [
+      "cafe",
+      "snack"
+    ],
+    "mentions": [
+      {
+        "type": "media",
+        "url": "https://www.nap-camp.com/mag/23934",
+        "title": "なっぷ「鳥羽のご当地グルメ15選」（2026-10-01 更新）",
+        "highlight": null,
+        "retrieved": "2026-10-17"
+      }
+    ],
+    "note": "食べログ篩選：貸切可"
+  },
+  {
+    "key": "toba-kuzaki-kadoya",
+    "name": {
+      "ja": "かどや"
+    },
+    "region": "kuzaki",
+    "category": "旅館・民宿",
+    "status": "included",
+    "criteria": [
+      "D2"
+    ],
+    "reason": null,
+    "pointId": "toba-kuzaki-kadoya",
+    "ratings": {
+      "tabelog": 3.08,
+      "tabelogReviews": 3,
+      "google": 4.8,
+      "googleReviews": 27
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240302/24009609/"
+    },
+    "contexts": [
+      "dinner"
+    ],
+    "note": "晚餐缺口：相差的「東の窓」不含晚餐，相差・國崎沒有其他已知晚上營業的店（要開車）；食べログ篩選：貸切可；食べログ類別為旅館・民宿；Google 標為魚介料理、17:00 起營業"
+  },
+  {
+    "key": "tabelog-24010466",
+    "name": {
+      "ja": "お食事処 ポセイドン"
+    },
+    "region": "kuzaki",
+    "category": null,
+    "status": "not-included",
+    "reason": "食べログ篩選：貸切可",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.05,
+      "tabelogReviews": 12
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240302/24010466/"
+    },
+    "note": null
+  },
+  {
+    "key": "tabelog-24002260",
+    "name": {
+      "ja": "御宿 The Earth"
+    },
+    "region": "kuzaki",
+    "category": "料理旅館",
+    "status": "excluded",
+    "reason": "住宿本體（不在 lodging.json）；食べログ篩選：貸切可・個室",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.58,
+      "tabelogReviews": 104
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240302/24002260/"
+    },
+    "note": null
+  },
+  {
+    "key": "tabelog-24007053",
+    "name": {
+      "ja": "芭新萃"
+    },
+    "region": "kuzaki",
+    "category": "料理旅館、海鮮",
+    "status": "excluded",
+    "reason": "住宿本體（不在 lodging.json）；食べログ篩選：貸切可・個室",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.26,
+      "tabelogReviews": 44
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240302/24007053/"
+    },
+    "note": null
+  },
+  {
+    "key": "tabelog-24006751",
+    "name": {
+      "ja": "石鏡第一ホテル 神倶良"
+    },
+    "region": "kuzaki",
+    "category": "ホテル",
+    "status": "excluded",
+    "reason": "住宿本體（見 lodging toba-ijika-kagura）；食べログ篩選：個室",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.2,
+      "tabelogReviews": 36
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240302/24006751/"
+    },
+    "note": null
+  },
+  {
+    "key": "tabelog-24006785",
+    "name": {
+      "ja": "ホテルいじか荘"
+    },
+    "region": "kuzaki",
+    "category": "ホテル",
+    "status": "excluded",
+    "reason": "住宿本體（不在 lodging.json）",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.18,
+      "tabelogReviews": 24
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240302/24006785/"
+    },
+    "note": null
+  },
+  {
+    "key": "tabelog-24021016",
+    "name": {
+      "ja": "漁師酒場 鏡"
+    },
+    "region": "kuzaki",
+    "category": null,
+    "status": "not-included",
+    "reason": "T4b：**不是**西村食堂晚上的店名，是同地址的另一家居酒屋（食べログ店舗会員：電話 0599-20-0616、週三休、11:30～15:00・17:00～21:00、16 席、可吸菸所以禁止兒童入店；西村食堂是 0599-32-5578、週四休）。本身 3.07／10 不符合 A～F，未納入",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.07,
+      "tabelogReviews": 10
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240302/24021016/"
+    },
+    "note": null
+  },
+  {
+    "key": "tabelog-24009949",
+    "name": {
+      "ja": "丸仙浜宿"
+    },
+    "region": "kuzaki",
+    "category": null,
+    "status": "excluded",
+    "reason": "住宿本體（不在 lodging.json）；食べログ篩選：貸切可",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.06,
+      "tabelogReviews": 7
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240302/24009949/"
+    },
+    "note": null
+  },
+  {
+    "key": "toba-marumitsu-sushi",
+    "name": {
+      "ja": "まるみつ寿司"
+    },
+    "region": "toshijima",
+    "category": "寿司、海鮮",
+    "status": "included",
+    "criteria": [
+      "A"
+    ],
+    "reason": null,
+    "pointId": "toba-marumitsu-sushi",
+    "ratings": {
+      "tabelog": 3.52,
+      "tabelogReviews": 72,
+      "google": 4.5,
+      "googleReviews": 235
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240302/24003433/"
+    },
+    "contexts": [
+      "lunch",
+      "dinner"
+    ],
+    "mentions": [
+      {
+        "type": "blog-zh",
+        "url": "https://www.mirrormedia.mg/story/20260323tour001",
+        "title": "鏡週刊 答志島（2026-03-23）",
+        "highlight": null,
+        "retrieved": "2026-10-17"
+      }
+    ],
+    "note": "觀光協會會員名錄有登錄（不算來源）"
+  },
+  {
+    "key": "toba-daiharu",
+    "name": {
+      "ja": "大春"
+    },
+    "region": "toshijima",
+    "category": "寿司、郷土料理",
+    "status": "included",
+    "criteria": [
+      "A",
+      "C"
+    ],
+    "reason": null,
+    "pointId": "toba-daiharu",
+    "ratings": {
+      "tabelog": 3.23,
+      "tabelogReviews": 20,
+      "google": 4.6,
+      "googleReviews": 64
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240302/24008067/"
+    },
+    "contexts": [
+      "lunch",
+      "dinner"
+    ],
+    "note": "食べログ篩選：貸切可"
+  },
+  {
+    "key": "toba-kikuya",
+    "name": {
+      "ja": "喜久屋"
+    },
+    "region": "toshijima",
+    "category": "海鮮",
+    "status": "included",
+    "criteria": [
+      "A"
+    ],
+    "reason": null,
+    "pointId": "toba-kikuya",
+    "ratings": {
+      "tabelog": 3.04,
+      "tabelogReviews": 5,
+      "google": 4.5,
+      "googleReviews": 53
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240302/24014639/"
+    },
+    "contexts": [
+      "lunch"
+    ],
+    "note": "食べログ篩選：貸切可・個室"
+  },
+  {
+    "key": "tabelog-24006850",
+    "name": {
+      "ja": "ロンク食堂"
+    },
+    "region": "toshijima",
+    "category": "食堂",
+    "status": "not-included",
+    "reason": "觀光協會會員名錄有登錄（不算來源）",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.15,
+      "tabelogReviews": 23
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240302/24006850/"
+    },
+    "mentions": [
+      {
+        "type": "tourism",
+        "url": "https://www.kankomie.or.jp/report/1636",
+        "title": "觀光三重 答志島觀光指南",
+        "highlight": null,
+        "retrieved": "2026-10-17"
+      }
+    ],
+    "note": null
+  },
+  {
+    "key": "tabelog-24013281",
+    "name": {
+      "ja": "マルト食堂"
+    },
+    "region": "toshijima",
+    "category": "食堂",
+    "status": "not-included",
+    "reason": null,
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.03,
+      "tabelogReviews": 6,
+      "google": 4.3,
+      "googleReviews": 21
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240302/24013281/"
+    },
+    "mentions": [
+      {
+        "type": "tourism",
+        "url": "https://www.kankomie.or.jp/report/1636",
+        "title": "觀光三重 答志島觀光指南",
+        "highlight": null,
+        "retrieved": "2026-10-17"
+      }
+    ],
+    "note": null
+  },
+  {
+    "key": "tabelog-24009812",
+    "name": {
+      "ja": "中村屋旅館"
+    },
+    "region": "toshijima",
+    "category": "料理旅館、海鮮",
+    "status": "excluded",
+    "reason": "住宿本體（見 lodging toba-toshijima-nakamuraya）；食べログ篩選：個室",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.11,
+      "tabelogReviews": 26
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240302/24009812/"
+    },
+    "note": null
+  },
+  {
+    "key": "tabelog-24009748",
+    "name": {
+      "ja": "寿々波"
+    },
+    "region": "toshijima",
+    "category": null,
+    "status": "excluded",
+    "reason": "住宿本體（見 lodging toba-toshijima-suzunami）；食べログ篩選：貸切可",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.11,
+      "tabelogReviews": 9
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240302/24009748/"
+    },
+    "note": null
+  },
+  {
+    "key": "toba-sugashima-jutaroya",
+    "name": {
+      "ja": "重太郎屋"
+    },
+    "region": "sugashima",
+    "category": "食堂",
+    "status": "included",
+    "criteria": [
+      "D1"
+    ],
+    "reason": null,
+    "pointId": "toba-sugashima-jutaroya",
+    "ratings": {
+      "tabelog": 3.03,
+      "tabelogReviews": 3,
+      "google": 4,
+      "googleReviews": 25
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240302/24006622/"
+    },
+    "contexts": [
+      "lunch"
+    ],
+    "note": "地區保底（離島（菅島） A～C 都沒有）"
+  },
+  {
+    "key": "okageya",
+    "name": {
+      "ja": "お弁当 おかげ屋"
+    },
+    "region": "sugashima",
+    "category": "弁当（予約制）",
+    "status": "excluded",
+    "reason": "只做外帶（非甜點）；觀光協會會員名錄有登錄（不算來源）",
+    "pointId": null,
+    "ratings": {
+      "google": 4.9,
+      "googleReviews": 7
+    },
+    "note": "T4a 記的來源種類「觀光三重」沒有記是哪一篇"
+  },
+  {
+    "key": "toba-kamishima-yamami",
+    "name": {
+      "ja": "やま海"
+    },
+    "region": "kamishima",
+    "category": "喫茶店",
+    "status": "included",
+    "criteria": [
+      "D1"
+    ],
+    "reason": null,
+    "pointId": "toba-kamishima-yamami",
+    "ratings": {
+      "tabelog": 3.02,
+      "tabelogReviews": 2,
+      "google": 4.4,
+      "googleReviews": 8
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240302/24018683/"
+    },
+    "contexts": [
+      "cafe",
+      "snack"
+    ],
+    "note": "地區保底（離島（神島） A～C 都沒有）"
+  }
+]

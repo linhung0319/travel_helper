@@ -125,3 +125,12 @@
   - 座標用 Google Maps 的 `!3d!4d`；可以順便記鳥羽市營定期船的班次連結（佐田浜 `toba-sadahama-marine-terminal` 已有）。
 - 原因：離島的店（まるみつ寿司、大春、喜久屋、重太郎屋、やま海）要配合船班，T14 需要「港口 → 店」的步行時間。補上港口後重跑 `node scripts/restaurant-anchors.mjs toba --write` 就會自動選進 anchors（港口在 spots.json 裡就會被當成景點候選）。
 - 狀態：轉給 T7b（鳥羽補資料）
+
+## [T7b] hours.lastEntry 只能放一個時間；cuisine 固定清單沒有籠統的「海鮮」
+- 要改的檔案：`schema/common.schema.json`（`hours.lastEntry`）、`docs/CONVENTIONS.md` §1.5、§5.3
+- 內容：
+  - `hours.lastEntry` 現在是一個時間。鳥羽有 10 家餐廳午、晚各有一個 L.O.（例如漣 14:30、18:30，天びん屋 本店 午 14:00、晚 21:00、週六 21:30），T7b 沒辦法轉，留在 `hours.note`。建議允許每個時段各一個，例如 `lastEntry` 也可以是陣列，順序對應各天的時段（`["14:30", "18:30"]`），或改成時段的第三個元素（`["11:00", "15:00", "14:30"]`）。
+  - §5.3 的料理種類沒有籠統的「海鮮」。鳥羽有 4 家（海鮮 大和、喜久屋、むつみ、王将 鳥羽本店）的舊 `cuisine` 只有「海鮮」，T7b 留原樣（不在固定清單裡）。T7e 查食べログ時可以照實際菜色改成海鮮丼、定食・食堂等；或固定清單加「海鮮（一般）」。另外「炸物」「麵類」對不到清單（T7b 省略了，原文在 git 歷史和 `data/raw/toba/log/T7b.md`）。
+  - 順便：`data/areas.json` 的 `toba.extra.regionsNote` 寫「沿用 T4a 的地區劃分（data/raw/toba/restaurants.md）」，這個檔案 T7b 刪了，建議改成 `data/raw/toba/log/T4a.md`。
+- 原因：T14 的衝突檢查要用 L.O. 判斷「到店時間來不來得及」；料理種類用來篩選和設預設停留時間（§5.5）。
+- 狀態：待處理
