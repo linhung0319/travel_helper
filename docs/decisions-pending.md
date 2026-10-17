@@ -31,3 +31,8 @@
 | 2026-10-18 | T7e | ふる里館 `fit15` unknown → `split`（`group.seats` 32） | fit15 規則：有明確席數 20 以上而且可以訂位 → split；ホットペッパー（2020）32 席、電話可訂、不能包場 | `group.fit15` 改回 unknown、`seats` 改回 null |
 | 2026-10-18 | T7e | 海楽園 **沒有刪除或改 pending**，只在 `notes`、`questions.md` 寫「晚餐只給住客、非住客午餐沒有來源」 | 第 2 批的範圍是補照片、菜單、讀文，不重判納入；午餐能不能吃還不確定（不是確定不行） | 確認不行的話，候選改成 excluded、刪掉 `toba-kairakuen` |
 | 2026-10-18 | T7e | 讀文回填的事實只寫進原本是 null 的欄位；和現有值不同的（席數、營業時間、座位）寫進 `extra.conflicts`，不覆蓋；屋形船 おきた 的 `mustTry` 從 5 道減成筆記 `[招牌]` 的 3 道 | 現有值多半來自食べログ（在優先順序裡），讀文來源多是口コミ站或舊介紹文；CONVENTIONS mustTry 2～3 道 | 依 `extra.conflicts` 改值；おきた 的 5 道在 git 歷史（c2c670c 之前） |
+| 2026-10-18 | T7e | 第 3 批 `fit15` 改 4 家：はっかい split → `yes`（ホットペッパー 2020：宴會最多 40 人，`group.maxReservation` 40）；みなと食堂 unknown → `yes`（官網宴會頁：包場最多約 50 人）；モトかき unknown → `split`（Retty：100 席全桌席，完全預約制）；山安 パールロード unknown → `split`（Retty：可容納 350 人，ebica 預約） | fit15 規則：來源寫最大予約或包場 15 人以上 → yes；有 20 席以上而且可以訂位 → split | `group.fit15` 改回原值（はっかい split、其他 unknown），はっかい 的 `maxReservation` 改回 null |
+| 2026-10-18 | T7e | 讀文回填的事實沒有對應的結構化欄位時（價格、停車、付款、時間限制、官網菜單頁），寫進新的 `extra.dossierFacts`（字串陣列，附來源網址），`price` 不從文字自動轉 | 「不知道就 null」；吃到飽的大人／小孩價、時價很難轉成 `[最低, 最高]`；放 extra 不會遺失，T7f 或 T7g 可以再轉 | 刪掉 `extra.dossierFacts`（資訊仍在筆記裡） |
+| 2026-10-18 | T7e | 照片只採用官網網域的照片，讀文回報的媒體照片（みえメン 的七越本店、觀光三重 的やま海）不用，改用 Google 主圖 | CONVENTIONS §4「照片」的順序是官網 → Google，媒體不在清單 | 換成筆記裡的媒體照片網址 |
+| 2026-10-18 | T7e | 筆記沒有 `[招牌]` 的店 `mustTry` 留空（大春、オレンジ、中山牡蠣、重太郎屋、ポセイドン、天海、たくちゃん），不用食べログ菜單或コース名稱補 | CONVENTIONS：`mustTry` 從讀文筆記的 `[招牌]` 整理 | 從食べログ `dtlmenu/`、`party/` 挑 2～3 道補上 |
+| 2026-10-18 | T7e | 黒潮 相差店 的 `links.instagram` 不填（官網連的是伊勢店 @hana_seafood_don）；喜久屋 保留食べログ的 @104kikuya（官網寫 kikuya104）、馳走 保留 @tisou.toba（官網另有 @chiso_toba），差異寫在 `ig-notes.md` | 不確定是同一家店的帳號時不填；兩個都可能對時保留現有值 | 改 `links.instagram` |

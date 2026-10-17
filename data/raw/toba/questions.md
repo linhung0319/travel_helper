@@ -133,3 +133,18 @@ T7b（2026-10-18）從 T2～T4c 的筆記集中過來；原本的上下文見 `l
 - [ ] toba-nagatokan：席數 70 還是 100；晚上是不是 5 人以上預約才開；海鮮丼限 20 份的來源
 - [ ] toba-furusatokan：營業到 15:00 還是 18:00；15 人能不能分桌一起訂（32 席、不能包場）
 - [ ] toba-yakatabune-okita：晚餐船有沒有、幾點；伊勢海老コース 8,950（官網）還是 9,450 円（食べログ）
+
+### T7e 第 3 批（鳥羽站以外既有 40 家，讀文後的新問題）
+- [ ] toba-kikuya：10 歲未滿原則上不能入店（官網），我們的小孩 6～10 歲能不能進；15 人能不能用 1 樓掘りごたつ（最多 12）＋2 樓包廂分開坐
+- [ ] toba-niku-matsumura：「全室お座敷」（とばめしマップ），有沒有椅子；週三逢國定假日營業還是改休
+- [ ] toba-kagetsu：席數 80（官網）還是 110（食べログ）；15 人訂套餐 8,800 円起，有沒有椅子席可以一起坐
+- [ ] toba-mutsumi：官網寫不接受預約，アクセス頁又寫「宴會承接」，15 人能不能訂
+- [ ] toba-hakkai：宴會最多 40 人（ホットペッパー 2020）是否仍適用；營業到 15:00 還是 17:00
+- [ ] toba-minato-shokudo：2026-09 起週三、週四公休（官網）；包場 50 人的條件
+- [ ] toba-motokaki、toba-yamayasu-pearlroad、toba-kakiichi-honten、toba-kaitaro：15 人能不能同一梯次訂吃到飽（每梯次有人數上限）
+- [ ] toba-kuzaki-kadoya：地址 国崎町 378（官網）還是 257；非住客晚餐方案 2 月有沒有
+- [ ] toba-eijimaru：地址 1229-6（觀光協會）還是 1429-6；能不能預約
+- [ ] toba-tobafood：「最多 4 席」是指桌數還是人數；不接受預約，分組去能不能坐
+- [ ] toba-daiharu：Ameba 帳號已失效，還有沒有營業（食べログ コース 2026-10-12 有更新）
+- [ ] toba-cafeterrace-orange、toba-nakayama-kaki、toba-sugashima-jutaroya：除了食べログ、Google 沒有任何來源，還有沒有營業
+- [ ] toba-maruzen-suisan：帶學齡前兒童不能預約，6 歲小孩算不算
