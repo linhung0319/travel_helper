@@ -9512,6 +9512,29 @@
     "note": "類型：咖啡・甜點；地址：伊勢市中村町435-7；定休（食べログ列表）：火曜日、水曜日、木曜日、金曜日"
   },
   {
+    "key": "tabelog-24020591",
+    "name": {
+      "ja": "伊勢 古仁屋"
+    },
+    "region": "ise-kurata",
+    "category": "和菓子",
+    "status": "excluded",
+    "criteria": [],
+    "reason": "旅程期間大多不營業（食べログ列表定休：月～木）",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.13,
+      "tabelogReviews": 16
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240301/24020591/"
+    },
+    "contexts": [
+      "snack"
+    ],
+    "note": "類型：咖啡・甜點；地址：伊勢市古市町198；定休（食べログ列表）：月曜日、火曜日、水曜日、木曜日"
+  },
+  {
     "key": "tabelog-24001258",
     "name": {
       "ja": "かぐら"
@@ -9769,6 +9792,29 @@
       "lunch"
     ],
     "note": "類型：洋食・義式；地址：伊勢市中村町723-7；定休（食べログ列表）：火曜日"
+  },
+  {
+    "key": "tabelog-24018430",
+    "name": {
+      "ja": "中山キッチン"
+    },
+    "region": "ise-kurata",
+    "category": "惣菜・デリ、パン",
+    "status": "not-included",
+    "criteria": [],
+    "reason": "未符合 A～F",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.12,
+      "tabelogReviews": 7
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240301/24018430/"
+    },
+    "contexts": [
+      "snack"
+    ],
+    "note": "類型：其他；地址：伊勢市古市町141；定休（食べログ列表）：水曜日、日曜日"
   },
   {
     "key": "tabelog-24019658",
