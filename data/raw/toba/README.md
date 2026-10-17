@@ -49,6 +49,7 @@
 - `hours.always: true` 現在 15 筆（T7b 時 7 筆）：神島 4、菅島 2、日和山、伊射波神社是 T7c 加的；`hours` 是 null 的已經沒有。**日和山、伊射波神社、菅島 2 筆是推定**（戶外、無人、來源沒寫時間），已列在 `questions.md`。
 - `tags` 照結構化欄位用同一條規則補：`indoor: true` → 室內＋雨天備案；`accessibility.stairs: 多` → 長階梯；`kids.friendly: high` → 親子（只加不刪）。
 - 候選：`candidates/spots.json` 71 筆（已收錄 33＝景點 28＋港口 5、沒收錄 23、排除 15）。
+- **評分（T7g，spot-v1）**：28 筆景點都有 `summary`、`assessment`、`tier`（S 3：水族館、石神さん、はちまんかまど；A 6；B 19），`confidence` 多半是 low／medium；港口 5 筆只有 `summary`、不評分。校準範例在 `assessment-notes.md`。
 
 ### 重要決定、風險
 - **鳥羽灣遊覽船・イルカ島 2 月很可能停航**：官網 FAQ 寫每年 1 月中旬～2 月上旬休業（船舶定期檢查），2027 年日期未公告（2017 年實例 1/23～2/10）；只有 15 人以上能預約。排行程前一定要打電話（`questions.md` 第一條）。
