@@ -312,7 +312,11 @@
       "googleMaps": "https://maps.google.com/?cid=15269262787346006937",
       "instagram": null
     },
-    "tags": [],
+    "tags": [
+      "室內",
+      "雨天備案",
+      "親子"
+    ],
     "tier": null,
     "nearestStation": {
       "id": "jr-futaminoura",
