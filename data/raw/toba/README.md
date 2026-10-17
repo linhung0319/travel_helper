@@ -107,6 +107,7 @@
 - **T7f 收尾**（`log/T7f.md`）：anchors 全部 83 家重算（354 筆：osrm 304、estimate 50）；`extra.dossierFacts` 的價格轉成 `price`（12 家）；みなと食堂 `hours` 改用官網、かきいち 週四改 null；かどや 地址改用官網 378。
 - `price` 68 筆有數字、15 筆 null；`kids` 49 筆是物件、34 筆 null；`seating` 27 筆空的。
 - 住宿兼用餐（F③）的 4 筆用 `<住宿 id>-dining`，`extra.lodgingId` 指回住宿。
+- **評分（T7g，restaurant-v1）**：83 筆都有 `summary`、`assessment`、`tier`（S 2：漣、西村食堂；A 15；B 66，其中 2 星 16、1 星 2：ポセイドン、梵天），`confidence` medium 26、low 57（沒有 high：心得 0 篇的店太多）。食べログ評論少的店多，評論數上限讓 3 星佔一半以上；缺口保底（D）的店最多 2。適合度裡 `groupFit` 5 的 12 家是全員用餐的候選；`elderFit` 26 筆、`kidsFit` 15 筆因為來源沒寫是 null。校準範例在 `assessment-notes.md`，評分和數字的矛盾檢查見 `data/derived/assessment-check-toba.json`。
 - 候選：`candidates/restaurants.json` 206 家（included 83、not-included 62、excluded 53、pending 3（伝洋、花椿、戸田家）、over-limit 5），`criteria`：D1 地區保底、D2 晚餐缺口、D3 離島便當、F1 浦村牡蠣、F2 體驗型、F3 料理旅館的非住客用餐。
 
 ### 重要決定（T4 以來；T7e 自動決定的完整清單在 `docs/decisions-pending.md`）

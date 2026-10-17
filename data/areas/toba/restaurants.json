@@ -107,7 +107,7 @@
       "instagram": null
     },
     "tags": [],
-    "tier": null,
+    "tier": "S",
     "sources": [
       {
         "retrieved": "2026-10-17",
@@ -292,6 +292,49 @@
     "accessibility": {
       "barrierFree": null,
       "note": "1 樓桌席可推嬰兒車、輪椅直接入座；2 樓有沒有電梯沒寫；免費停車場 30 台（官網）"
+    },
+    "summary": {
+      "text": "鳥羽站步行約 7 分的老字號，剖開式炸蝦（開き海老フライ）的元祖，炸蝦定食 3,410 円、每天限 20 份的大炸蝦 5,060 円。食べログ 3.74（1,048 則）、Google 4.3（2,054 則），鳥羽評論最多的餐廳，媒體 5 篇都有介紹。",
+      "pros": [
+        "食べログ、Google 都是鳥羽市區最高一級，媒體介紹最多",
+        "1 樓桌席可以推輪椅、嬰兒車直接入座",
+        "有兒童餐（1,100 円），炸蝦可以請店家切小塊"
+      ],
+      "cons": [
+        "不接受預約，熱門時段要排隊，15 人全員不適合",
+        "週二公休；售完提早打烊",
+        "2 樓有沒有電梯沒寫"
+      ],
+      "basedOn": [
+        "https://sazanami.co.jp/",
+        "https://sazanami.co.jp/sazanamimenu/",
+        "https://sazanami.co.jp/tenpoannai/",
+        "https://www.nap-camp.com/mag/50903",
+        "https://www.nap-camp.com/mag/23934",
+        "https://www.mapple.net/article/32428/",
+        "https://retty.me/theme/100427622/",
+        "https://www.kankomie.or.jp/report/560"
+      ],
+      "generated": "2026-10-18"
+    },
+    "assessment": {
+      "rubric": "restaurant-v1",
+      "scores": {
+        "recommend": 5,
+        "localFlavor": 3,
+        "groupFit": 1,
+        "elderFit": 4,
+        "kidsFit": 5
+      },
+      "rationale": {
+        "recommend": "食べログ 3.74（1,048 則）、Google 4.3（2,054 則），なっぷ 2 篇、まっぷる、Retty、観光三重都介紹",
+        "localFlavor": "炸蝦、生魚片定食，用在地海鮮但不算伊勢志摩獨有",
+        "groupFit": "食べログ：予約不可、貸切不可",
+        "elderFit": "1 樓桌席可輪椅入座，但常排隊",
+        "kidsFit": "有兒童餐 1,100 円，炸蝦可切小塊"
+      },
+      "confidence": "medium",
+      "assessed": "2026-10-18"
     }
   },
   {
@@ -441,7 +484,7 @@
       "instagram": "@toba_hotel_international"
     },
     "tags": [],
-    "tier": null,
+    "tier": "A",
     "sources": [
       {
         "retrieved": "2026-10-17",
@@ -634,6 +677,49 @@
       "conflicts": [
         "Google 的時間是 L.O.（午餐到 13:30、晚餐到 20:30），也沒有反映週五午餐公休"
       ]
+    },
+    "summary": {
+      "text": "鳥羽國際飯店的法式主餐廳，落地窗看鳥羽灣，午餐 Monthly Lunch 4,620 円起、伊勢海老套餐 12,100 円起。適合特別的一餐，可以用 TableCheck 訂位，飯店有宴會場可以安排 15 人。",
+      "pros": [
+        "88 席、可網路訂位，飯店宴會場（小宴會場 56 人）可以全員一起吃",
+        "飯店內桌席，鳥羽站有免費接駁約 3 分",
+        "有兒童餐（3,850～8,800 円）"
+      ],
+      "cons": [
+        "價位高：套餐多在 1 萬円以上",
+        "2026 年 3 月起午餐週五公休；伊勢海老アメリケーヌランチ只到 1/31",
+        "個人心得找不到，評價只有官方和媒體介紹"
+      ],
+      "basedOn": [
+        "https://www.tobahotel.co.jp/restaurant_list/seahorse/",
+        "https://www.tobahotel.co.jp/restaurant/menulist/?t=lunch&r=seahorse",
+        "https://www.tobahotel.co.jp/restaurant/menulist/?t=dinner&r=seahorse",
+        "https://www.nap-camp.com/mag/23934",
+        "https://www.kankomie.or.jp/report/601",
+        "https://resemom.jp/release/prtimes/20250721/151578.html",
+        "https://www.tobahotel.co.jp/partyseminar/banquet_cuisine/",
+        "https://www.tobahotel.co.jp/partyseminar/partyhall/"
+      ],
+      "generated": "2026-10-18"
+    },
+    "assessment": {
+      "rubric": "restaurant-v1",
+      "scores": {
+        "recommend": 4,
+        "localFlavor": 2,
+        "groupFit": 5,
+        "elderFit": 5,
+        "kidsFit": 5
+      },
+      "rationale": {
+        "recommend": "食べログ 3.62（222 則）、Google 4.6（104 則），但心得 0 篇",
+        "localFlavor": "法式料理，用伊勢海老、鮑魚等在地食材",
+        "groupFit": "可訂位，飯店宴會（飲み放題 15 人以上）、小宴會場 56 人",
+        "elderFit": "飯店內桌席，接駁車到門口",
+        "kidsFit": "有兒童餐，2025 年還有小學生的法式初體驗方案"
+      },
+      "confidence": "low",
+      "assessed": "2026-10-18"
     }
   },
   {
@@ -708,7 +794,7 @@
       "instagram": null
     },
     "tags": [],
-    "tier": null,
+    "tier": "B",
     "sources": [
       {
         "retrieved": "2026-10-17",
@@ -835,6 +921,43 @@
         "食べログ（非店舗会員）寫 17:00～22:00，Google 寫 17:00～21:00，採用 Google",
         "營業時間：まっぷる・とばめしマップ 17:00～22:00 週四休；Google 17:00～21:00 週三週四休"
       ]
+    },
+    "summary": {
+      "text": "鳥羽站步行約 10 分、夫妻經營的壽司小店，開業 30 年以上，在地漁夫是常客。主廚精選壽司套餐（おまかせ鮨セット）2,700 円，只有晚上營業。",
+      "pros": [
+        "在地魚的握壽司和下酒菜，まっぷる、鳥羽市美食地圖都有介紹",
+        "まっぷる 放在「シニア」推薦列表"
+      ],
+      "cons": [
+        "吧台小店，15 人全員坐不下，4～6 人也要先電話問",
+        "只有晚上；公休日各來源不一致（週四／週三週四），另有不定休",
+        "兒童、座位的資料都沒有"
+      ],
+      "basedOn": [
+        "https://www.mapple.net/article/32188/",
+        "https://www.city.toba.mie.jp/material/files/group/37/tobameshi_map_2022_06.pdf",
+        "https://www.mapple.net/region/a0405010302_g03050000_s-situation=senior/spot/"
+      ],
+      "generated": "2026-10-18"
+    },
+    "assessment": {
+      "rubric": "restaurant-v1",
+      "scores": {
+        "recommend": 3,
+        "localFlavor": 3,
+        "groupFit": 1,
+        "elderFit": 3,
+        "kidsFit": null
+      },
+      "rationale": {
+        "recommend": "食べログ 3.6 但只有 51 則、Google 4.6（95 則），評論數上限 3",
+        "localFlavor": "在地魚的壽司，鳥羽以外也吃得到類似的",
+        "groupFit": "夫妻兩人的吧台小店，15 人坐不下",
+        "elderFit": "只有吧台席",
+        "kidsFit": "能不能帶小孩、兒童餐、熟食選項都沒有來源，資料不足"
+      },
+      "confidence": "low",
+      "assessed": "2026-10-18"
     }
   },
   {
@@ -919,7 +1042,7 @@
       "instagram": null
     },
     "tags": [],
-    "tier": null,
+    "tier": "A",
     "sources": [
       {
         "retrieved": "2026-10-17",
@@ -1063,6 +1186,44 @@
         "食べログ（非店舗会員）寫 08:30～17:00，Google 寫 9:00～17:00，採用 Google",
         "營業時間：まっぷる・なっぷ 9:00～17:00 無休；とばめしマップ（2022）8:30～17:00 不定休"
       ]
+    },
+    "summary": {
+      "text": "鳥羽站步行 3 分「さざえストリート」的浜焼き店，生簀裡的活貝點了現烤，火候交給浦村出身的店主。大あさり 1,100 円、さざえ 770 円，也有伊勢海老、鮑魚。",
+      "pros": [
+        "車站旁就能吃到現烤的活貝，轉車空檔也可以",
+        "食べログ 3.58（189 則）、Google 4.4（136 則）"
+      ],
+      "cons": [
+        "只有 13 席，15 人坐不下，要分店",
+        "定休日來源不一致（無休／不定休）",
+        "個人心得沒找到，座位、兒童的資料都沒有"
+      ],
+      "basedOn": [
+        "https://www.mapple.net/article/32428/",
+        "https://www.mapple.net/spot/24010702/",
+        "https://www.nap-camp.com/mag/50903",
+        "https://www.city.toba.mie.jp/material/files/group/37/tobameshi_map_2022_06.pdf"
+      ],
+      "generated": "2026-10-18"
+    },
+    "assessment": {
+      "rubric": "restaurant-v1",
+      "scores": {
+        "recommend": 4,
+        "localFlavor": 4,
+        "groupFit": 1,
+        "elderFit": 4,
+        "kidsFit": null
+      },
+      "rationale": {
+        "recommend": "食べログ 3.58（189 則）、Google 4.4，まっぷる、なっぷ、市府地圖都介紹",
+        "localFlavor": "活貝浜焼き，伊勢志摩的代表吃法",
+        "groupFit": "13 席，fit15 no",
+        "elderFit": "有桌席；階梯沒有資料",
+        "kidsFit": "能不能帶小孩、兒童餐、熟食選項都沒有來源，資料不足"
+      },
+      "confidence": "low",
+      "assessed": "2026-10-18"
     }
   },
   {
@@ -1142,7 +1303,7 @@
       "instagram": "@kazuei.toba"
     },
     "tags": [],
-    "tier": null,
+    "tier": "A",
     "sources": [
       {
         "retrieved": "2026-10-17",
@@ -1276,6 +1437,43 @@
       "conflicts": [
         "座位：aumo 寫吧台約 10 席、座敷 3 桌、包廂，沒寫桌席（現有 table 是食べログ）"
       ]
+    },
+    "summary": {
+      "text": "鳥羽站步行約 7 分、只有晚上營業的海鮮居酒屋，生魚片拼盤、剖開炸蝦受好評，也有伊勢海老、鮑魚。平日開店後很快客滿，要預約。",
+      "pros": [
+        "食べログ 3.56、Google 4.4（458 則），口コミ說生魚片新鮮、切得厚",
+        "有包廂和座敷，可以預約",
+        "市府地圖說適合全家來"
+      ],
+      "cons": [
+        "座位以吧台和座敷（榻榻米）為主，桌席不確定",
+        "週三公休；只有晚上",
+        "15 人要分桌，包廂容納人數要電話問"
+      ],
+      "basedOn": [
+        "https://www.city.toba.mie.jp/material/files/group/37/tobameshi_map_2022_06.pdf",
+        "https://aumo.jp/photos/68232738"
+      ],
+      "generated": "2026-10-18"
+    },
+    "assessment": {
+      "rubric": "restaurant-v1",
+      "scores": {
+        "recommend": 4,
+        "localFlavor": 3,
+        "groupFit": 3,
+        "elderFit": 3,
+        "kidsFit": 3
+      },
+      "rationale": {
+        "recommend": "食べログ 3.56（155 則）、Google 4.4（458 則），aumo 口コミ正評",
+        "localFlavor": "在地魚貝的生魚片、炸蝦，類似的店很多",
+        "groupFit": "fit15 split：30 席、有包廂，可預約",
+        "elderFit": "吧台和座敷為主，桌席有無資料矛盾",
+        "kidsFit": "可帶小孩，沒有兒童餐的資料"
+      },
+      "confidence": "medium",
+      "assessed": "2026-10-18"
     }
   },
   {
@@ -1366,7 +1564,7 @@
       "instagram": "@toba_hotel_international"
     },
     "tags": [],
-    "tier": null,
+    "tier": "B",
     "sources": [
       {
         "retrieved": "2026-10-17",
@@ -1527,6 +1725,47 @@
         "席數：食べログ 72 席、官網 60 名",
         "官網店舖頁只寫晚餐時段，午餐只出現在ご会食プラン頁；散客能不能吃午餐要問飯店"
       ]
+    },
+    "summary": {
+      "text": "鳥羽國際飯店的和食餐廳，料理人到答志島市場挑海鮮，做伊勢海老、鮑魚、松阪牛的會席（12,100 円起）。包廂最多 14 人，15 人要分桌或改用飯店宴會場。",
+      "pros": [
+        "可用 TableCheck、電話預約，有 6 人以上的ご会食プラン",
+        "飯店內桌席",
+        "晚餐有兒童餐"
+      ],
+      "cons": [
+        "全是 1 萬円以上的會席，沒有平價單品",
+        "包廂最多 14 人，15 人塞不下",
+        "散客能不能吃午餐要問；評論少、心得 0 篇"
+      ],
+      "basedOn": [
+        "https://www.tobahotel.co.jp/restaurant_list/mondomisaki/",
+        "https://www.tobahotel.co.jp/restaurant/menulist/?t=lunch&r=mondomisaki",
+        "https://www.tobahotel.co.jp/restaurant/menulist/?t=dinner&r=mondomisaki",
+        "https://www.tobahotel.co.jp/menu/p4435f681/",
+        "https://www.kankomie.or.jp/report/601",
+        "https://www.tobahotel.co.jp/partyseminar/banquet_cuisine/"
+      ],
+      "generated": "2026-10-18"
+    },
+    "assessment": {
+      "rubric": "restaurant-v1",
+      "scores": {
+        "recommend": 3,
+        "localFlavor": 4,
+        "groupFit": 3,
+        "elderFit": 4,
+        "kidsFit": 5
+      },
+      "rationale": {
+        "recommend": "食べログ 3.55 只有 48 則、Google 4.8 只有 12 則，評論數上限 3",
+        "localFlavor": "伊勢海老、鮑魚、答志島的海鮮會席",
+        "groupFit": "fit15 split：包廂最多 14 人，要分桌或用宴會場",
+        "elderFit": "飯店 3F 桌席，電梯沒有明寫",
+        "kidsFit": "晚餐有兒童餐 3,850～8,800 円"
+      },
+      "confidence": "low",
+      "assessed": "2026-10-18"
     }
   },
   {
@@ -1612,7 +1851,7 @@
       "instagram": "@amagoyachisato"
     },
     "tags": [],
-    "tier": null,
+    "tier": "B",
     "sources": [
       {
         "retrieved": "2026-10-17",
@@ -1731,6 +1970,41 @@
       "conflicts": [
         "Google 寫 10:00～17:00、週二公休，與食べログ（店舗会員）一致"
       ]
+    },
+    "summary": {
+      "text": "鳥羽站附近的海女小屋風浜焼き店，食べログ 3.53（180 則）、Google 4.4（352 則）。網路上找不到任何介紹或心得，營業狀況、店名表記都要先確認。",
+      "pros": [
+        "食べログ、Google 的分數都不錯",
+        "車站附近，浜焼き、牡蠣、伊勢海老"
+      ],
+      "cons": [
+        "讀文找不到任何文章，還在不在營業要確認",
+        "14 席、不接受預約，15 人坐不下"
+      ],
+      "basedOn": [
+        "https://tabelog.com/mie/A2403/A240302/24006770/",
+        "https://maps.google.com/?cid=3574148002568627504"
+      ],
+      "generated": "2026-10-18"
+    },
+    "assessment": {
+      "rubric": "restaurant-v1",
+      "scores": {
+        "recommend": 3,
+        "localFlavor": 4,
+        "groupFit": 1,
+        "elderFit": 4,
+        "kidsFit": 3
+      },
+      "rationale": {
+        "recommend": "分數相當於 4，但讀文完全沒有來源，無法確認現況 → 最多 3",
+        "localFlavor": "浜焼き、牡蠣、伊勢海老",
+        "groupFit": "14 席、不接受預約",
+        "elderFit": "有桌席；其他沒有資料",
+        "kidsFit": "食べログ寫可帶小孩，沒有其他資料"
+      },
+      "confidence": "low",
+      "assessed": "2026-10-18"
     }
   },
   {
@@ -1840,7 +2114,7 @@
       "instagram": null
     },
     "tags": [],
-    "tier": null,
+    "tier": "A",
     "sources": [
       {
         "retrieved": "2026-10-17",
@@ -2004,6 +2278,45 @@
     "accessibility": {
       "barrierFree": null,
       "note": "鳥羽站 JR 口步行 5 分；停車場 15 台（官網）"
+    },
+    "summary": {
+      "text": "鳥羽站 JR 口步行 5 分的割烹，大炸蝦定食（3 尾 3,630 円）份量十足，也有天然伊勢海老（時價）、三河一色鰻魚、冬季的答志島トロさわら。會席料理 2 人以上預約，6,600 円起。",
+      "pros": [
+        "80 席、有包廂，會席可以預約",
+        "2 月吃得到答志島トロさわら（10～2 月）、伊勢海老（10～4 月）",
+        "到真珠島步行 3 分、水族館 8 分"
+      ],
+      "cons": [
+        "座位是吧台和座敷，沒有桌席的資料",
+        "週四公休",
+        "個人心得 0 篇"
+      ],
+      "basedOn": [
+        "http://www.oosakaya.net/",
+        "http://www.oosakaya.net/html/access.html",
+        "https://www.city.toba.mie.jp/material/files/group/37/tobameshi_map_2022_06.pdf",
+        "https://www.mapple.net/region/a0405010302_g03050000_s-situation=senior/spot/"
+      ],
+      "generated": "2026-10-18"
+    },
+    "assessment": {
+      "rubric": "restaurant-v1",
+      "scores": {
+        "recommend": 4,
+        "localFlavor": 3,
+        "groupFit": 3,
+        "elderFit": 2,
+        "kidsFit": 4
+      },
+      "rationale": {
+        "recommend": "食べログ 3.52（132 則）、Google 4.1（401 則）",
+        "localFlavor": "炸蝦、鰻魚為主，伊勢海老時價",
+        "groupFit": "fit15 split：80 席、包廂 4 人起，可預約",
+        "elderFit": "吧台和座敷，沒有桌席",
+        "kidsFit": "官網說炸蝦「從小孩到長輩都好評」"
+      },
+      "confidence": "low",
+      "assessed": "2026-10-18"
     }
   },
   {
@@ -2093,7 +2406,7 @@
       "instagram": "@toba_hotel_international"
     },
     "tags": [],
-    "tier": null,
+    "tier": "B",
     "sources": [
       {
         "retrieved": "2026-10-17",
@@ -2267,6 +2580,47 @@
         "下午茶預約期限：官網前一天 17:00、新聞稿前一天 18:00"
       ],
       "tabelogOldName": "鳥羽国際ホテル カフェ＆ラウンジ"
+    },
+    "summary": {
+      "text": "鳥羽國際飯店大廳的咖啡廳，看鳥羽灣吃 50 年歷史的自製起司蛋糕（蛋糕套餐 1,430 円），也有伊勢海老濃湯、漢堡等輕食。下午茶 4,400 円要前一天預約。",
+      "pros": [
+        "飯店大廳，接駁車到門口不用爬坡",
+        "起司蛋糕是鳥羽的老牌甜點，可外帶",
+        "51 席，適合分組休息"
+      ],
+      "cons": [
+        "咖啡區不接受訂位，15 人一起坐要碰運氣",
+        "Google 只有 8 則評論",
+        "冬季限定的あおさ義大利麵只到 1 月"
+      ],
+      "basedOn": [
+        "https://www.tobahotel.co.jp/restaurant_list/cafe-lounge/",
+        "https://www.tobahotel.co.jp/restaurant/cafemenu/?t=lunch",
+        "https://www.tobahotel.co.jp/pd9f2979e/",
+        "https://san-tatsu.jp/pressrelease/487026/",
+        "https://www.kankomie.or.jp/spot/1330",
+        "https://www.kankomie.or.jp/report/601"
+      ],
+      "generated": "2026-10-18"
+    },
+    "assessment": {
+      "rubric": "restaurant-v1",
+      "scores": {
+        "recommend": 3,
+        "localFlavor": 2,
+        "groupFit": 2,
+        "elderFit": 5,
+        "kidsFit": 4
+      },
+      "rationale": {
+        "recommend": "食べログ 3.51（147 則），Google 只有 8 則不能參考，評價來源只有一個",
+        "localFlavor": "起司蛋糕、輕食；伊勢海老濃湯有在地食材",
+        "groupFit": "咖啡區不接受訂位，只能碰運氣",
+        "elderFit": "飯店大廳，桌席、沙發，接駁車到門口",
+        "kidsFit": "可帶小孩，有蛋糕、漢堡"
+      },
+      "confidence": "low",
+      "assessed": "2026-10-18"
     }
   },
   {
@@ -2351,7 +2705,7 @@
       "instagram": "@iroha_toba"
     },
     "tags": [],
-    "tier": null,
+    "tier": "A",
     "sources": [
       {
         "retrieved": "2026-10-17",
@@ -2503,6 +2857,42 @@
         "地址：Google 寫鳥羽 1-8-5，食べログ寫 1-8-7（さざえ店街同一棟）",
         "席數：食べログ 30、Retty 20（沒有包廂）；價格是 2021 年口コミ"
       ]
+    },
+    "summary": {
+      "text": "鳥羽站步行 2 分攤位群裡的燒貝店，大アサリ、ひおうぎ貝、焼かき現烤，也有伊勢烏龍。Retty 推薦度 86%，口コミ多說海鮮新鮮；可以用 HotPepper 線上訂位。",
+      "pros": [
+        "可網路訂位，晚餐預算約 2,000 円以下",
+        "有兒童餐，Retty 標「お子様連れ OK」",
+        "椅子座位"
+      ],
+      "cons": [
+        "菜單以海鮮為主，其他料理少",
+        "營業時間、定休日讀文沒有來源",
+        "15 人包場沒有記載"
+      ],
+      "basedOn": [
+        "https://retty.me/restaurant/100001144813/"
+      ],
+      "generated": "2026-10-18"
+    },
+    "assessment": {
+      "rubric": "restaurant-v1",
+      "scores": {
+        "recommend": 4,
+        "localFlavor": 4,
+        "groupFit": 4,
+        "elderFit": 4,
+        "kidsFit": 5
+      },
+      "rationale": {
+        "recommend": "食べログ 3.5（276 則）、Google 4.3（285 則），Retty 9 則多好評",
+        "localFlavor": "活貝浜焼き、伊勢烏龍",
+        "groupFit": "fit15 yes（30 席、有包廂、可預約），但沒有最大予約人數",
+        "elderFit": "口コミ說是椅子座位；階梯不明",
+        "kidsFit": "有兒童餐、可帶小孩"
+      },
+      "confidence": "medium",
+      "assessed": "2026-10-18"
     }
   },
   {
@@ -2581,7 +2971,7 @@
       "instagram": null
     },
     "tags": [],
-    "tier": null,
+    "tier": "B",
     "sources": [
       {
         "retrieved": "2026-10-17",
@@ -2720,6 +3110,41 @@
         "地址：Google 寫鳥羽 1-8-5",
         "營業時間：とばめしマップ（2022）9:00～16:00 不定休"
       ]
+    },
+    "summary": {
+      "text": "鳥羽站前「さざえストリート」1956 年創業的老店，老闆娘烤貝 59 年，招牌是特製海膽炊飯（炊き込みウニ飯），可外帶。",
+      "pros": [
+        "車站前，轉車空檔可以吃",
+        "海膽炊飯可以外帶當伴手禮"
+      ],
+      "cons": [
+        "不接受預約、18 席，15 人坐不下",
+        "資料只有 2022 年市府地圖 1 篇，營業時間要重新確認",
+        "不定休"
+      ],
+      "basedOn": [
+        "https://www.city.toba.mie.jp/material/files/group/37/tobameshi_map_2022_06.pdf"
+      ],
+      "generated": "2026-10-18"
+    },
+    "assessment": {
+      "rubric": "restaurant-v1",
+      "scores": {
+        "recommend": 3,
+        "localFlavor": 4,
+        "groupFit": 1,
+        "elderFit": 4,
+        "kidsFit": 5
+      },
+      "rationale": {
+        "recommend": "食べログ 3.5 只有 93 則、Google 4.5 只有 62 則，評論數上限 3",
+        "localFlavor": "燒貝、海膽炊飯",
+        "groupFit": "不接受預約、18 席",
+        "elderFit": "吧台和桌席；階梯沒有資料",
+        "kidsFit": "食べログ：可帶小孩、有兒童餐"
+      },
+      "confidence": "low",
+      "assessed": "2026-10-18"
     }
   },
   {
@@ -2799,7 +3224,7 @@
       "instagram": "@minervagelato"
     },
     "tags": [],
-    "tier": null,
+    "tier": "A",
     "sources": [
       {
         "retrieved": "2026-10-17",
@@ -2939,6 +3364,45 @@
         "食べログ（非店舗会員）寫 9:00～17:00（週末假日～18:00），Google 寫 9:30～17:30（週末～18:00），採用 Google",
         "網站：食べログ寫 minerva-gelato.com，Google 寫 web-minerva.com"
       ]
+    },
+    "summary": {
+      "text": "鳥羽一番街 1 樓、和車站相連的手工義式冰淇淋店，人氣第一是加阿古屋珍珠粉的珍珠拿鐵，也有伊勢茶、二見浦海鹽口味。單球約 340～400 円。",
+      "pros": [
+        "和鳥羽站相連，轉車空檔可以吃",
+        "伊勢志摩口味（珍珠、伊勢茶、岩戸の塩）",
+        "4travel 16 則多數正評"
+      ],
+      "cons": [
+        "週四公休",
+        "舊口コミ說店員少、出餐慢",
+        "席數、兒童的資料沒有"
+      ],
+      "basedOn": [
+        "https://minerva-gelato.com/",
+        "https://minerva-gelato.com/access/",
+        "https://www.mapple.net/article/31782/",
+        "https://4travel.jp/dm_shisetsu/11075551"
+      ],
+      "generated": "2026-10-18"
+    },
+    "assessment": {
+      "rubric": "restaurant-v1",
+      "scores": {
+        "recommend": 4,
+        "localFlavor": 3,
+        "groupFit": 3,
+        "elderFit": 5,
+        "kidsFit": 3
+      },
+      "rationale": {
+        "recommend": "食べログ 3.49（193 則）、Google 4.2（199 則），まっぷる介紹",
+        "localFlavor": "珍珠、伊勢茶、二見浦海鹽口味的冰淇淋",
+        "groupFit": "冰淇淋外帶為主、不接受預約，15 人分批點即可",
+        "elderFit": "一番街 1 樓和車站相連，平地",
+        "kidsFit": "冰淇淋小孩喜歡，但兒童規定沒有來源"
+      },
+      "confidence": "medium",
+      "assessed": "2026-10-18"
     }
   },
   {
@@ -3023,7 +3487,7 @@
       "instagram": null
     },
     "tags": [],
-    "tier": null,
+    "tier": "A",
     "sources": [
       {
         "retrieved": "2026-10-17",
@@ -3158,6 +3622,43 @@
         "公休：なっぷ 寫週三、週四；營業時間各來源都沒寫；口コミ有等 1 小時以上（2019）"
       ],
       "addressGoogle": "三重県鳥羽市鳥羽1丁目6-2379-24"
+    },
+    "summary": {
+      "text": "鳥羽水族館步行約 4 分、老派喫茶店風格的洋食定食店，以超大份量上過電視：大炸蝦定食、唐揚 10 個以上的炸雞定食。じゃらん 28 則口コミ 4.3。",
+      "pros": [
+        "份量大、價格 1,000～1,999 円，CP 值好",
+        "帶小孩的家庭口コミ給 5 分",
+        "水族館步行 4 分"
+      ],
+      "cons": [
+        "不接受預約，午餐擁擠，舊口コミ說等過 1 小時",
+        "份量太多，長輩、小孩可能吃不完",
+        "週三、週四公休；座位資料沒有"
+      ],
+      "basedOn": [
+        "https://www.nap-camp.com/mag/50903",
+        "https://www.jalan.net/gourmet/grm_alikejpB000415175/kuchikomi/"
+      ],
+      "generated": "2026-10-18"
+    },
+    "assessment": {
+      "rubric": "restaurant-v1",
+      "scores": {
+        "recommend": 4,
+        "localFlavor": 1,
+        "groupFit": 1,
+        "elderFit": null,
+        "kidsFit": 4
+      },
+      "rationale": {
+        "recommend": "食べログ 3.48（233 則）、Google 4.1（701 則），じゃらん 4.3",
+        "localFlavor": "一般洋食定食，和在地無關",
+        "groupFit": "不接受預約",
+        "elderFit": "座位形式、階梯所有來源都沒寫，資料不足",
+        "kidsFit": "帶小孩的家庭口コミ給 5 分；沒有兒童餐的資料"
+      },
+      "confidence": "medium",
+      "assessed": "2026-10-18"
     }
   },
   {
@@ -3244,7 +3745,7 @@
       "instagram": null
     },
     "tags": [],
-    "tier": null,
+    "tier": "A",
     "sources": [
       {
         "retrieved": "2026-10-17",
@@ -3410,6 +3911,47 @@
         "營業時間：官網 11:00～15:00（晚上不定時）；なっぷ・とばめしマップ 11:00～18:00（週四到 15:00）",
         "公休：とばめしマップ 週三、なっぷ なし"
       ]
+    },
+    "summary": {
+      "text": "鳥羽站步行約 6 分、創業 50 多年的自家製麵烏龍麵店，招牌是手捏壽司膳（手こねずし膳・梅 1,540 円），附伊勢烏龍和石蓴味噌湯。秋冬有地牡蠣料理，官網寫接受團體午餐預約。",
+      "pros": [
+        "一次吃到手こね寿司和伊勢烏龍兩種在地料理",
+        "官網寫可預約團體午餐、有會席便當 2,500 円起，也接旅行社",
+        "真珠島旁邊，店後有停車位"
+      ],
+      "cons": [
+        "座位是座敷（榻榻米）",
+        "營業時間、公休日各來源不一致",
+        "席數沒有資料"
+      ],
+      "basedOn": [
+        "https://www.nanakoshi.com/",
+        "https://www.nanakoshi.com/teiban.html",
+        "https://www.nanakoshi.com/kaishoku.html",
+        "https://www.nap-camp.com/mag/50903",
+        "https://gendai.media/articles/-/165589",
+        "https://www.city.toba.mie.jp/material/files/group/37/tobameshi_map_2022_06.pdf"
+      ],
+      "generated": "2026-10-18"
+    },
+    "assessment": {
+      "rubric": "restaurant-v1",
+      "scores": {
+        "recommend": 4,
+        "localFlavor": 4,
+        "groupFit": 3,
+        "elderFit": 2,
+        "kidsFit": 3
+      },
+      "rationale": {
+        "recommend": "食べログ 3.45（191 則）、Google 4.2（461 則），FRaU 在地導遊推薦",
+        "localFlavor": "手こね寿司、伊勢烏龍都是伊勢志摩的代表料理",
+        "groupFit": "fit15 unknown，但官網明寫接團體午餐、旅行社委託；席數不明要電話確認",
+        "elderFit": "只有座敷",
+        "kidsFit": "伊勢烏龍、玉子燒小孩可以吃；兒童規定沒有來源"
+      },
+      "confidence": "medium",
+      "assessed": "2026-10-18"
     }
   },
   {
@@ -3496,7 +4038,7 @@
       "instagram": null
     },
     "tags": [],
-    "tier": null,
+    "tier": "B",
     "sources": [
       {
         "retrieved": "2026-10-17",
@@ -3652,6 +4194,46 @@
       "conflicts": [
         "營業時間：まっぷる 11:00～16:00（週末假日到 19:30）只週四休；官網・るるぶ 平日 11:00～14:00、週末假日 11:00～20:00、週四週五休"
       ]
+    },
+    "summary": {
+      "text": "鳥羽站步行 3～5 分的海女小屋風餐廳，店前水槽挑伊勢海老、さざえ、鮑魚做刺身或燒烤，貝燒膳約 2,000 円。2 月週四、週五休，不接受預約、只收現金。",
+      "pros": [
+        "水槽現挑的伊勢海老御膳、貝燒膳",
+        "冬季有牡蠣（約 10～4 月）",
+        "有桌席和座敷"
+      ],
+      "cons": [
+        "Google 3.7（771 則），口コミ說觀光客導向、性價比普通",
+        "不接受預約、只收現金；午餐要排隊",
+        "人手不足可能影響營業"
+      ],
+      "basedOn": [
+        "https://hamanami.com/",
+        "https://hamanami.com/menus",
+        "https://www.mapple.net/article/32188/",
+        "https://rurubu.jp/andmore/spot/80024999",
+        "https://4travel.jp/dm_shisetsu/11081966"
+      ],
+      "generated": "2026-10-18"
+    },
+    "assessment": {
+      "rubric": "restaurant-v1",
+      "scores": {
+        "recommend": 2,
+        "localFlavor": 4,
+        "groupFit": 1,
+        "elderFit": 3,
+        "kidsFit": 3
+      },
+      "rationale": {
+        "recommend": "食べログ 3.44 但 Google 3.7（771 則），4travel 3.31，有性價比的負評",
+        "localFlavor": "伊勢海老、活貝，但不是真正的海女小屋體驗",
+        "groupFit": "不接受預約",
+        "elderFit": "桌席和座敷，但要排隊",
+        "kidsFit": "可帶小孩；舊口コミ說比較適合大人"
+      },
+      "confidence": "low",
+      "assessed": "2026-10-18"
     }
   },
   {
@@ -3732,7 +4314,7 @@
       "instagram": null
     },
     "tags": [],
-    "tier": null,
+    "tier": "B",
     "sources": [
       {
         "retrieved": "2026-10-17",
@@ -3896,6 +4478,46 @@
     "accessibility": {
       "barrierFree": null,
       "note": "在 JR 鳥羽站名店街 2 樓，電梯沒寫（aumo）"
+    },
+    "summary": {
+      "text": "JR 鳥羽站名店街 2 樓的海鮮食堂，伊勢志摩產的魚整尾進貨、切大塊做丼飯和定食，限量的へた丼 1,100 円。冬季有蒸牡蠣。",
+      "pros": [
+        "車站直結，可以預約",
+        "魚新鮮、份量多；冬季限定蒸牡蠣",
+        "舊口コミ說有兒童用的小份丼"
+      ],
+      "cons": [
+        "在 2 樓，有沒有電梯要確認",
+        "中午 12 點後排隊；魚賣完就關",
+        "週二公休（另有第 2、4 週三的說法）"
+      ],
+      "basedOn": [
+        "https://www.mapple.net/article/32188/",
+        "https://aumo.jp/articles/26409",
+        "https://4travel.jp/dm_shisetsu/11075606",
+        "https://www.mapple.net/station/287238/spot/",
+        "http://0hachi.jp"
+      ],
+      "generated": "2026-10-18"
+    },
+    "assessment": {
+      "rubric": "restaurant-v1",
+      "scores": {
+        "recommend": 3,
+        "localFlavor": 3,
+        "groupFit": 3,
+        "elderFit": 3,
+        "kidsFit": 4
+      },
+      "rationale": {
+        "recommend": "食べログ 3.44（214 則）、Google 4.1（316 則），口コミ說新鮮但不算便宜",
+        "localFlavor": "伊勢志摩產的魚做海鮮丼、定食，冬季有蒸牡蠣",
+        "groupFit": "fit15 split：30 席、可預約",
+        "elderFit": "桌席和座敷，但在 2 樓、電梯不明",
+        "kidsFit": "可帶小孩，有兒童用小份丼（舊資料）"
+      },
+      "confidence": "medium",
+      "assessed": "2026-10-18"
     }
   },
   {
@@ -4015,7 +4637,7 @@
       "instagram": "@tenbinya"
     },
     "tags": [],
-    "tier": null,
+    "tier": "B",
     "sources": [
       {
         "retrieved": "2026-10-17",
@@ -4212,6 +4834,48 @@
         "Google 寫午餐到 14:00、晚餐到 21:00（是 L.O.），Google 電話 050-5493-6980（訂位代理）",
         "席數：官網 105、食べログ・hamoni 88"
       ]
+    },
+    "summary": {
+      "text": "鳥羽站步行約 5 分、創業約 60 年的定食居酒屋，魚約 9 成是天然物：海鮮丼 2,640 円、點了才炊的海女の釜めし 1,980 円、手こね寿司。有 5 間包廂和 40 人宴會場，可以網路訂位。",
+      "pros": [
+        "最大予約 36 人、40 人宴會場，15 人全員最好安排的市區店之一",
+        "海女の釜めし、手こね寿司、伊勢烏龍；冬季有牡蠣",
+        "菜色約 180 種，有炸物、唐揚給小孩"
+      ],
+      "cons": [
+        "包廂在 2 樓，有沒有電梯沒寫",
+        "週一公休",
+        "個人心得 0 篇"
+      ],
+      "basedOn": [
+        "https://www.tenbinya.co.jp/",
+        "https://www.tenbinya.co.jp/shop1",
+        "https://www.tenbinya.co.jp/menu1",
+        "https://www.mapple.net/article/32188/",
+        "https://www.mapple.net/article/32428/",
+        "https://hamoni.jp/shop/hhOy8thuxhiANBzqJPga",
+        "https://www.mapple.net/article/31782/"
+      ],
+      "generated": "2026-10-18"
+    },
+    "assessment": {
+      "rubric": "restaurant-v1",
+      "scores": {
+        "recommend": 3,
+        "localFlavor": 4,
+        "groupFit": 5,
+        "elderFit": 3,
+        "kidsFit": 4
+      },
+      "rationale": {
+        "recommend": "食べログ 3.43（252 則）、Google 3.9（728 則），評價穩定但不突出",
+        "localFlavor": "海女の釜めし、手こね寿司、伊勢烏龍",
+        "groupFit": "最大予約 36 人、包廂 5 間、40 人宴會場",
+        "elderFit": "有桌席，但包廂在 2 樓、電梯不明",
+        "kidsFit": "可帶小孩，有炸物、唐揚"
+      },
+      "confidence": "low",
+      "assessed": "2026-10-18"
     }
   },
   {
@@ -4301,7 +4965,7 @@
       "instagram": "@toba_hotel_international"
     },
     "tags": [],
-    "tier": null,
+    "tier": "B",
     "sources": [
       {
         "retrieved": "2026-10-17",
@@ -4439,6 +5103,43 @@
       "conflicts": [
         "營業時間：官網 平日 8:30～19:00、週末假日 8:00～19:00；観光三重 8:00～19:30、週末假日到 20:00"
       ]
+    },
+    "summary": {
+      "text": "鳥羽國際飯店內的商店，賣招牌起司蛋糕（整模 5 号 3,456 円起、每月口味）、費南雪等。只是外帶商店，適合買整模回住宿分給全員。",
+      "pros": [
+        "1964 年開業的老牌起司蛋糕，整模適合 15 人分食",
+        "整模可以 3 天前預約"
+      ],
+      "cons": [
+        "看起來只能外帶，不是用餐的地方",
+        "一年兩次維修休業，日期沒寫",
+        "2 月的每月口味沒有公布"
+      ],
+      "basedOn": [
+        "https://www.tobahotel.co.jp/shop/",
+        "https://www.kankomie.or.jp/event/40780",
+        "https://icotto.jp/presses/21419"
+      ],
+      "generated": "2026-10-18"
+    },
+    "assessment": {
+      "rubric": "restaurant-v1",
+      "scores": {
+        "recommend": 3,
+        "localFlavor": 2,
+        "groupFit": 3,
+        "elderFit": null,
+        "kidsFit": 4
+      },
+      "rationale": {
+        "recommend": "食べログ 3.43（100 則）、Google 4.1（295 則）",
+        "localFlavor": "起司蛋糕和烤點心，和在地關係不大",
+        "groupFit": "外帶商店，整模 3 天前預約",
+        "elderFit": "座位形式、階梯所有來源都沒寫，資料不足",
+        "kidsFit": "甜點小孩喜歡，食べログ寫可帶小孩"
+      },
+      "confidence": "low",
+      "assessed": "2026-10-18"
     }
   },
   {
@@ -4549,7 +5250,7 @@
       "instagram": "@tenbinya"
     },
     "tags": [],
-    "tier": null,
+    "tier": "B",
     "sources": [
       {
         "retrieved": "2026-10-17",
@@ -4714,6 +5415,44 @@
         "Google 寫午餐到 14:00、晚餐到 21:00（是 L.O.）",
         "席數：官網 54、食べログ 52"
       ]
+    },
+    "summary": {
+      "text": "天びん屋的網燒店，鳥羽站步行約 5 分，招牌是浦村牡蠣的罐蒸（がんがん焼）3,500 円，也有松阪牛 A5 燒肉、海鮮定食。54 席、有包廂。",
+      "pros": [
+        "可以預約，fit15 yes（52～54 席、有包廂）",
+        "海鮮和燒肉都有，小孩可以吃雞肉、香腸",
+        "牡蠣用急速冷凍品，全年都有"
+      ],
+      "cons": [
+        "週二、週四公休",
+        "只有官網資料，心得 0 篇",
+        "牡蠣是冷凍品，不是現撈"
+      ],
+      "basedOn": [
+        "https://www.tenbinya.co.jp/",
+        "https://www.tenbinya.co.jp/shop3",
+        "https://www.tenbinya.co.jp/menu3"
+      ],
+      "generated": "2026-10-18"
+    },
+    "assessment": {
+      "rubric": "restaurant-v1",
+      "scores": {
+        "recommend": 3,
+        "localFlavor": 3,
+        "groupFit": 4,
+        "elderFit": 4,
+        "kidsFit": 4
+      },
+      "rationale": {
+        "recommend": "食べログ 3.39（89 則）、Google 3.9（353 則）",
+        "localFlavor": "浦村牡蠣罐蒸，但用冷凍品；另有松阪牛",
+        "groupFit": "fit15 yes：52 席、有包廂、可預約，沒有最大予約人數",
+        "elderFit": "有桌席、沙發；自己烤",
+        "kidsFit": "可帶小孩，有雞肉、香腸"
+      },
+      "confidence": "low",
+      "assessed": "2026-10-18"
     }
   },
   {
@@ -4801,7 +5540,7 @@
       "instagram": "@thekaiya_toba"
     },
     "tags": [],
-    "tier": null,
+    "tier": "B",
     "sources": [
       {
         "retrieved": "2026-10-17",
@@ -4944,6 +5683,45 @@
       "conflicts": [
         "價格：なっぷ 寫焼き牡蠣 550 円起、岩がき 770 円起；官網焼かき 660 円、岩ガキ 1,100 円起"
       ]
+    },
+    "summary": {
+      "text": "鳥羽站步行 2～3 分攤位群的貝料理店，名物鮑魚排 3,500 円起、伊勢海老殘酷燒 2,750 円起，冬季有烤牡蠣（3 個 660 円）。上過多次電視，Google 4.7（486 則）。",
+      "pros": [
+        "Google 4.7（486 則），なっぷ 2 篇都介紹",
+        "有伊勢烏龍、飯糰可以給小孩",
+        "冬季有烤牡蠣"
+      ],
+      "cons": [
+        "不接受預約，15 人只能現場分批",
+        "週四公休，另有臨時休業，要先打電話",
+        "座位、階梯沒有資料"
+      ],
+      "basedOn": [
+        "https://www.the-kaiya-toba.com/",
+        "https://www.the-kaiya-toba.com/html/oshina.html",
+        "https://www.nap-camp.com/mag/50903",
+        "https://www.nap-camp.com/mag/23934"
+      ],
+      "generated": "2026-10-18"
+    },
+    "assessment": {
+      "rubric": "restaurant-v1",
+      "scores": {
+        "recommend": 3,
+        "localFlavor": 4,
+        "groupFit": 1,
+        "elderFit": null,
+        "kidsFit": 3
+      },
+      "rationale": {
+        "recommend": "食べログ 3.35（95 則）、Google 4.7（486 則），但介紹只有 なっぷ（同一種來源 2 篇）和官網列的電視節目 → 3",
+        "localFlavor": "鮑魚、伊勢海老、活貝",
+        "groupFit": "官網：予約不可",
+        "elderFit": "座位形式、階梯所有來源都沒寫，資料不足",
+        "kidsFit": "有伊勢烏龍、飯糰；兒童規定沒有來源"
+      },
+      "confidence": "low",
+      "assessed": "2026-10-18"
     }
   },
   {
@@ -5038,7 +5816,7 @@
       "instagram": "@cuccagna.toba"
     },
     "tags": [],
-    "tier": null,
+    "tier": "B",
     "sources": [
       {
         "retrieved": "2026-10-17",
@@ -5199,6 +5977,45 @@
     "accessibility": {
       "barrierFree": null,
       "note": "主要座位在 2 樓要走樓梯；2 樓滿了才用 1 樓吧台（Retty）"
+    },
+    "summary": {
+      "text": "鳥羽站步行 3～4 分的義大利餐廳，漁夫海鮮義大利麵 1,980 円、鳥羽產石蓴的海鮮奶油披薩 1,760 円，Retty 鳥羽午餐排行第 8。食べログ寫可包場（20～50 人）。",
+      "pros": [
+        "可以包場（20～50 人），套餐一週前預約",
+        "重視在地、季節食材；披薩、義大利麵小孩也能吃",
+        "Retty 口コミ 21 則稱讚肉醬麵、奶酪"
+      ],
+      "cons": [
+        "主要座位在 2 樓要走樓梯，1 樓只有吧台",
+        "週二公休；晚上另收座位費",
+        "兒童規定沒有來源"
+      ],
+      "basedOn": [
+        "http://cuccagna2.jp/toba/about/",
+        "https://www.mapple.net/article/32428/",
+        "https://www.city.toba.mie.jp/material/files/group/37/tobameshi_map_2022_06.pdf",
+        "https://retty.me/theme/100427600/"
+      ],
+      "generated": "2026-10-18"
+    },
+    "assessment": {
+      "rubric": "restaurant-v1",
+      "scores": {
+        "recommend": 3,
+        "localFlavor": 2,
+        "groupFit": 5,
+        "elderFit": 2,
+        "kidsFit": 3
+      },
+      "rationale": {
+        "recommend": "食べログ 3.34（117 則）、Google 4.0（274 則），評價穩定",
+        "localFlavor": "義式料理，部分用鳥羽產石蓴等在地食材",
+        "groupFit": "食べログ：席數 26、貸切可（20～50 人）、可預約",
+        "elderFit": "2 樓桌席要爬樓梯，1 樓只有吧台",
+        "kidsFit": "義大利麵、披薩小孩能吃；兒童規定沒有來源"
+      },
+      "confidence": "medium",
+      "assessed": "2026-10-18"
     }
   },
   {
@@ -5320,7 +6137,7 @@
       "instagram": "@shiojitei"
     },
     "tags": [],
-    "tier": null,
+    "tier": "B",
     "sources": [
       {
         "retrieved": "2026-10-17",
@@ -5467,6 +6284,45 @@
       "conflicts": [
         "非住客能不能只用餐：官網沒寫，但有一休レストラン（https://restaurant.ikyu.com/122618/）的訂位連結；要電話 0599-26-5477 確認"
       ]
+    },
+    "summary": {
+      "text": "鳥羽國際飯店 潮路亭的晚餐餐廳，82 席全是半包廂，伊勢海老會席 12,100 円起，口コミ點名伊勢海老白味噌鍋、鮑魚章魚涮涮鍋。官網連到一休餐廳訂位，非住客能不能只吃飯要確認。",
+      "pros": [
+        "Retty 推薦度 93%、4travel 食事 4.33",
+        "伊勢海老、鮑魚、鳥羽產真蛸等在地食材的會席",
+        "有兒童料理（3,850 円起），桌席"
+      ],
+      "cons": [
+        "全是半包廂（24 間），15 人會分在不同間",
+        "只有晚餐，1 萬円以上",
+        "非住客用餐官網沒寫明；Google 沒有獨立店家頁"
+      ],
+      "basedOn": [
+        "https://www.shiojitei.jp/cuisine/shiraishi.html",
+        "https://retty.me/restaurant/100001106405/",
+        "https://wowith.com/dining_shiraishi_toba",
+        "https://4travel.jp/dm_hotel-10048710"
+      ],
+      "generated": "2026-10-18"
+    },
+    "assessment": {
+      "rubric": "restaurant-v1",
+      "scores": {
+        "recommend": 3,
+        "localFlavor": 4,
+        "groupFit": 3,
+        "elderFit": 4,
+        "kidsFit": 4
+      },
+      "rationale": {
+        "recommend": "食べログ 3.33 只有 50 則、Google 沒有獨立的星數，評論數上限 3；口コミ多好評",
+        "localFlavor": "伊勢海老、鮑魚、鳥羽產真蛸的會席",
+        "groupFit": "fit15 split：82 席全是半包廂，15 人要分間",
+        "elderFit": "桌席、飯店內；電梯沒有明寫",
+        "kidsFit": "有兒童料理 3,850 円起"
+      },
+      "confidence": "low",
+      "assessed": "2026-10-18"
     }
   },
   {
@@ -5551,7 +6407,7 @@
       "instagram": "@misakisazae"
     },
     "tags": [],
-    "tier": null,
+    "tier": "B",
     "sources": [
       {
         "retrieved": "2026-10-17",
@@ -5687,6 +6543,43 @@
         "食べログ（非店舗会員）寫 08:30～17:00，Google 寫 10:30～18:00，採用 Google",
         "營業時間：るるぶ 10:00～18:00、とばめしマップ（2022）9:00～17:00；不定休"
       ]
+    },
+    "summary": {
+      "text": "鳥羽站步行 1～2 分「さざえストリート」的紅燈籠浜焼き店，用秘傳醬汁烤在地海產，鳥羽在地的アッパ貝 2 個 660 円、伊勢海老醬燒。只有 8 席。",
+      "pros": [
+        "車站旁，轉車空檔可以吃",
+        "鳥羽在地的アッパ貝、伊勢海老秘傳醬燒",
+        "るるぶ 標「キッズおすすめ」"
+      ],
+      "cons": [
+        "只有 8 席吧台，15 人坐不下",
+        "不定休；營業時間來源不一致",
+        "個人心得沒找到"
+      ],
+      "basedOn": [
+        "https://rurubu.jp/andmore/spot/80025010",
+        "https://www.city.toba.mie.jp/material/files/group/37/tobameshi_map_2022_06.pdf"
+      ],
+      "generated": "2026-10-18"
+    },
+    "assessment": {
+      "rubric": "restaurant-v1",
+      "scores": {
+        "recommend": 3,
+        "localFlavor": 4,
+        "groupFit": 1,
+        "elderFit": 3,
+        "kidsFit": 3
+      },
+      "rationale": {
+        "recommend": "食べログ 3.29（52 則）、Google 4.5（86 則），評論數上限 3",
+        "localFlavor": "在地貝類、伊勢海老的浜焼き",
+        "groupFit": "8 席，fit15 no",
+        "elderFit": "只有吧台",
+        "kidsFit": "るるぶ 有「キッズおすすめ」標籤，沒有兒童餐的資料"
+      },
+      "confidence": "low",
+      "assessed": "2026-10-18"
     }
   },
   {
@@ -5766,7 +6659,7 @@
       "instagram": "@musea_coffee"
     },
     "tags": [],
-    "tier": null,
+    "tier": "B",
     "sources": [
       {
         "retrieved": "2026-10-17",
@@ -5933,6 +6826,46 @@
     "accessibility": {
       "barrierFree": null,
       "note": "海景席在 2 樓（とばめしマップ），電梯沒寫；七越茶屋後方 10～17 號車位是專用停車位，官網請客人共乘"
+    },
+    "summary": {
+      "text": "鳥羽站附近的自家烘焙咖啡＋雜貨店，2 樓座位看得到海，香料咖哩、烤牛肉飯各 1,320 円，午餐附可續的濃湯。全部餐點可以外帶，水族館前、鳥羽站另有咖啡站。",
+      "pros": [
+        "Retty 鳥羽人氣午餐 10 選之一",
+        "可預約，26 席；全部餐點可外帶",
+        "有果汁、可可、冰沙給小孩"
+      ],
+      "cons": [
+        "海景席在 2 樓，電梯沒寫",
+        "週一、週二公休；營業到 16:00～17:00",
+        "停車位少（七越茶屋後方 8 格）"
+      ],
+      "basedOn": [
+        "https://www.mu-sea.com/",
+        "https://www.mu-sea.com/menu/",
+        "https://www.nap-camp.com/mag/57462",
+        "https://retty.me/theme/100427600/",
+        "https://www.city.toba.mie.jp/material/files/group/37/tobameshi_map_2022_06.pdf"
+      ],
+      "generated": "2026-10-18"
+    },
+    "assessment": {
+      "rubric": "restaurant-v1",
+      "scores": {
+        "recommend": 3,
+        "localFlavor": 1,
+        "groupFit": 4,
+        "elderFit": 3,
+        "kidsFit": 4
+      },
+      "rationale": {
+        "recommend": "食べログ 3.27（88 則）、Google 4.2（163 則），評論數上限 3",
+        "localFlavor": "咖啡、咖哩，和在地無關",
+        "groupFit": "fit15 yes：26 席、可預約；沒有包場、最大予約的資料",
+        "elderFit": "桌席、沙發，但海景席在 2 樓、電梯不明",
+        "kidsFit": "可帶小孩，有果汁、可可、咖哩"
+      },
+      "confidence": "medium",
+      "assessed": "2026-10-18"
     }
   },
   {
@@ -6019,7 +6952,7 @@
       "instagram": null
     },
     "tags": [],
-    "tier": null,
+    "tier": "B",
     "sources": [
       {
         "retrieved": "2026-10-17",
@@ -6174,6 +7107,45 @@
     "accessibility": {
       "barrierFree": null,
       "note": "有桌椅席；停車場 6 台（坡道上，低底盤車不行）＋3 台（官網）"
+    },
+    "summary": {
+      "text": "明治初年創業、まっぷる 稱「三重縣最古老的壽司店」，第 4 代店主握地魚為主的江戶前壽司（握壽司 2,500 円、特上 3,800 円），也有一整條的鰻魚丼 4,100 円。鳥羽站步行約 10 分。",
+      "pros": [
+        "吧台、桌席、座敷三種座位，有包廂",
+        "可以預約；現金、信用卡、IC 卡都能付",
+        "じゃらん 4.4（7 則）"
+      ],
+      "cons": [
+        "週二公休，另有臨時休；目前縮短營業到 19:00 左右",
+        "包廂、包場人數食べログ和官網不一致，要電話問",
+        "心得 0 篇；停車場在坡道上、車位少"
+      ],
+      "basedOn": [
+        "http://susiume.com/",
+        "https://www.mapple.net/article/32188/",
+        "https://www.city.toba.mie.jp/material/files/group/37/tobameshi_map_2022_06.pdf",
+        "https://www.jalan.net/gourmet/grm_foomoojH000284821/spot/"
+      ],
+      "generated": "2026-10-18"
+    },
+    "assessment": {
+      "rubric": "restaurant-v1",
+      "scores": {
+        "recommend": 3,
+        "localFlavor": 3,
+        "groupFit": 4,
+        "elderFit": 4,
+        "kidsFit": null
+      },
+      "rationale": {
+        "recommend": "食べログ 3.26（38 則）、Google 4.1（99 則），評論數上限 3",
+        "localFlavor": "地魚的江戶前壽司、鰻魚，類似的店很多",
+        "groupFit": "fit15 yes：30 席、有包廂、可預約，但包廂人數來源矛盾",
+        "elderFit": "有桌席；階梯、排隊沒有資料",
+        "kidsFit": "能不能帶小孩、兒童餐、熟食選項都沒有來源，資料不足"
+      },
+      "confidence": "low",
+      "assessed": "2026-10-18"
     }
   },
   {
@@ -6287,7 +7259,7 @@
       "instagram": null
     },
     "tags": [],
-    "tier": null,
+    "tier": "B",
     "sources": [
       {
         "retrieved": "2026-10-17",
@@ -6462,6 +7434,48 @@
     "accessibility": {
       "barrierFree": "無障礙なし（ホットペッパー）",
       "note": null
+    },
+    "summary": {
+      "text": "鳥羽站附近、明治 41 年創業的「てっぱり料理」（網烤海鮮）老店，貝類網烤套餐 4,400 円、每天限 30 份的てこね御膳，也有桃取產品牌牡蠣「桃こまち極」的蒸牡蠣。70～100 席，宴會最多 45 人。",
+      "pros": [
+        "宴會最多 45 人，有伊勢海老宴會套餐",
+        "有兒童菜單、可帶小孩",
+        "鳥羽站附近，年末年始照常營業"
+      ],
+      "cons": [
+        "Google 3.5（202 則），鳥羽站周邊評論 100 則以上的店裡最低",
+        "晚上 5 人以上預約才營業（市府地圖）；不能網路訂位",
+        "無障礙「なし」"
+      ],
+      "basedOn": [
+        "https://nagatokan.com/",
+        "https://nagatokan.com/menu.html",
+        "https://nagatokan.com/teppari.html",
+        "https://nagatokan.com/kyoudo.html",
+        "https://www.city.toba.mie.jp/material/files/group/37/tobameshi_map_2022_06.pdf",
+        "https://www.hotpepper.jp/strJ000108095/",
+        "https://www.jalan.net/gourmet/grm_foomoojH000282251/"
+      ],
+      "generated": "2026-10-18"
+    },
+    "assessment": {
+      "rubric": "restaurant-v1",
+      "scores": {
+        "recommend": 2,
+        "localFlavor": 4,
+        "groupFit": 3,
+        "elderFit": 3,
+        "kidsFit": 5
+      },
+      "rationale": {
+        "recommend": "Google 3.5（202 則）、食べログ 3.19（42 則），兩邊都普通；じゃらん心得是 2019 年以前",
+        "localFlavor": "てっぱり網烤、てこね寿司、桃取牡蠣",
+        "groupFit": "fit15 split：宴會最多 45 人但不能包場，要先問",
+        "elderFit": "有桌席和座敷，無障礙なし",
+        "kidsFit": "可帶小孩、有兒童菜單"
+      },
+      "confidence": "low",
+      "assessed": "2026-10-18"
     }
   },
   {
@@ -6565,7 +7579,7 @@
       "instagram": "@kaisen_bun"
     },
     "tags": [],
-    "tier": null,
+    "tier": "B",
     "sources": [
       {
         "retrieved": "2026-10-17",
@@ -6700,6 +7714,41 @@
       "conflicts": [
         "食べログ（非店舗会員）寫晚餐 18:00～22:00，Google 寫 18:00～21:00，採用 Google"
       ]
+    },
+    "summary": {
+      "text": "鳥羽站步行約 6 分、只有晚上營業的海鮮料理店，老闆曾任伊勢老字號割烹料理長，海鮮丼 1,980 円只用嚴選在地魚，烏魚子、魚乾也自製。",
+      "pros": [
+        "Google 4.4（181 則）",
+        "有包廂、吧台、座敷，免費停車場"
+      ],
+      "cons": [
+        "只有 まっぷる 1 篇介紹，心得 0 篇",
+        "週三、第 3 個週二公休；只有晚上",
+        "座位以座敷為主，桌席不確定"
+      ],
+      "basedOn": [
+        "https://www.mapple.net/article/32188/"
+      ],
+      "generated": "2026-10-18"
+    },
+    "assessment": {
+      "rubric": "restaurant-v1",
+      "scores": {
+        "recommend": 2,
+        "localFlavor": 3,
+        "groupFit": 3,
+        "elderFit": 3,
+        "kidsFit": null
+      },
+      "rationale": {
+        "recommend": "食べログ 3.19（35 則），讀文只有 1 篇介紹、沒有心得 → 冷門",
+        "localFlavor": "在地魚的海鮮丼、自製烏魚子",
+        "groupFit": "fit15 split：30 席、有包廂，可預約",
+        "elderFit": "吧台和座敷，桌席有無資料矛盾",
+        "kidsFit": "能不能帶小孩、兒童餐、熟食選項都沒有來源，資料不足"
+      },
+      "confidence": "low",
+      "assessed": "2026-10-18"
     }
   },
   {
@@ -6783,7 +7832,7 @@
       "instagram": null
     },
     "tags": [],
-    "tier": null,
+    "tier": "B",
     "sources": [
       {
         "retrieved": "2026-10-17",
@@ -6919,6 +7968,44 @@
         "Google 寫週三、週五公休，平日 11:00～16:00、週末 10:00～17:00；食べログ（店舗会員）寫每天 10:00～17:00、無休，採用食べログ",
         "官網 yamato-toba.jp 網域解析不到（2026-10-18）；營業時間 10:00～17:00 L.O.、不定休，有預約的話 17:00 以後也營業（とばめしマップ 2022）"
       ]
+    },
+    "summary": {
+      "text": "鳥羽站前「サザエストリート」的海鮮店，伊勢海老、鮑魚、貝類燒烤和烤牡蠣，號稱站前三重地酒最齊全。18 席吧台，包場（20 人以下）才坐得下 15 人。",
+      "pros": [
+        "可以包場（20 人以下）、可預約",
+        "冬季有烤牡蠣",
+        "鳥羽站步行 1～3 分"
+      ],
+      "cons": [
+        "只有吧台",
+        "官網網域已失效，要確認還在營業",
+        "不定休；心得 0 篇"
+      ],
+      "basedOn": [
+        "https://www.city.toba.mie.jp/material/files/group/37/tobameshi_map_2022_06.pdf",
+        "https://aumo.jp/articles/26409",
+        "http://yamato-toba.jp/"
+      ],
+      "generated": "2026-10-18"
+    },
+    "assessment": {
+      "rubric": "restaurant-v1",
+      "scores": {
+        "recommend": 3,
+        "localFlavor": 4,
+        "groupFit": 4,
+        "elderFit": 3,
+        "kidsFit": null
+      },
+      "rationale": {
+        "recommend": "食べログ 3.17（20 則）、Google 4.1（56 則），評論數上限 3；市府地圖、aumo 有介紹",
+        "localFlavor": "伊勢海老、鮑魚、烤牡蠣",
+        "groupFit": "fit15 yes：18 席、包場 20 人以下，要包場才坐得下",
+        "elderFit": "只有吧台",
+        "kidsFit": "能不能帶小孩、兒童餐、熟食選項都沒有來源，資料不足"
+      },
+      "confidence": "low",
+      "assessed": "2026-10-18"
     }
   },
   {
@@ -6998,7 +8085,7 @@
       "instagram": null
     },
     "tags": [],
-    "tier": null,
+    "tier": "B",
     "sources": [
       {
         "retrieved": "2026-10-17",
@@ -7144,6 +8231,44 @@
     "accessibility": {
       "barrierFree": "無障礙設施なし（ホットペッパー，2020 資料）",
       "note": "停車場 3 台"
+    },
+    "summary": {
+      "text": "鳥羽站南口步行 4～5 分的海鮮食堂，大隻剖開炸蝦 3 尾的定食、刺身定食、貝づくし定食都是 1,650 円，每份附伊勢海老味噌湯。中午會排隊。",
+      "pros": [
+        "定食附伊勢海老味噌湯，價格實在",
+        "32 席（6 人桌 ×4＋座敷），可電話預約",
+        "可帶小孩，有炸蝦"
+      ],
+      "cons": [
+        "中午排隊；15 人要分桌、不能包場",
+        "週四公休；可能提早關店",
+        "無障礙設施沒有；舊資料寫全席可吸菸"
+      ],
+      "basedOn": [
+        "https://www.mapple.net/article/32428/",
+        "https://www.city.toba.mie.jp/material/files/group/37/tobameshi_map_2022_06.pdf",
+        "https://www.hotpepper.jp/strJ000426825/"
+      ],
+      "generated": "2026-10-18"
+    },
+    "assessment": {
+      "rubric": "restaurant-v1",
+      "scores": {
+        "recommend": 3,
+        "localFlavor": 3,
+        "groupFit": 3,
+        "elderFit": 3,
+        "kidsFit": 4
+      },
+      "rationale": {
+        "recommend": "食べログ 3.16（37 則）、Google 4.2（178 則），評論數上限 3；まっぷる說是排隊人氣店",
+        "localFlavor": "炸蝦、刺身、貝類定食，附伊勢海老味噌湯",
+        "groupFit": "fit15 split：32 席、6 人桌 4 張，不能包場",
+        "elderFit": "有桌席，但要排隊、無障礙沒有",
+        "kidsFit": "可帶小孩，有炸蝦"
+      },
+      "confidence": "low",
+      "assessed": "2026-10-18"
     }
   },
   {
@@ -7272,7 +8397,7 @@
       "instagram": "@tobaokita"
     },
     "tags": [],
-    "tier": null,
+    "tier": "A",
     "sources": [
       {
         "retrieved": "2026-10-17",
@@ -7452,6 +8577,48 @@
         "12:30",
         "18:30"
       ]
+    },
+    "summary": {
+      "text": "三重縣唯一的屋形船餐廳，在鳥羽灣邊遊船邊吃海鮮：烤貝午餐套餐 4,980 円、每人 1 隻伊勢海老的套餐 8,950 円，冬季（11～3 月）有桃取「桃こまち」蒸牡蠣套餐 5,950 円。午餐船 12:30 出航約 1 小時 20 分。",
+      "pros": [
+        "用餐本身就是體驗，冬季有蒸牡蠣",
+        "48 席，可以包船（報價洽詢）",
+        "掘りごたつ可以垂腳坐；有兒童飯糰套餐"
+      ],
+      "cons": [
+        "上船要脫鞋，上下船階梯沒有來源",
+        "小學生以上和大人同價；6 歲以下要先洽詢",
+        "天候不佳可能停航；1 月搭乘很冷"
+      ],
+      "basedOn": [
+        "https://tobayakatabune.jp/",
+        "https://tobayakatabune.jp/coursemenu/",
+        "https://tobayakatabune.jp/access/",
+        "https://tobayakatabune.jp/contact/",
+        "https://www.kankomie.or.jp/report/1599",
+        "https://www.kankomie.or.jp/report/1689",
+        "https://www.travel.co.jp/guide/article/47658/"
+      ],
+      "generated": "2026-10-18"
+    },
+    "assessment": {
+      "rubric": "restaurant-v1",
+      "scores": {
+        "recommend": 4,
+        "localFlavor": 5,
+        "groupFit": 5,
+        "elderFit": 3,
+        "kidsFit": 3
+      },
+      "rationale": {
+        "recommend": "Google 4.8（449 則），觀光三重 2 篇、Travel.jp 介紹，都沒有負評；食べログ 3.08 只有 21 則（體驗型分數偏低）",
+        "localFlavor": "屋形船上吃伊勢海老、桃取牡蠣，本身就是在地體驗",
+        "groupFit": "fit15 yes：48 席、可包船",
+        "elderFit": "座敷但是掘りごたつ；上下船階梯不明",
+        "kidsFit": "網路訂位限小學生以上，6 歲以下要洽詢；有兒童飯糰套餐"
+      },
+      "confidence": "low",
+      "assessed": "2026-10-18"
     }
   },
   {
@@ -7544,7 +8711,7 @@
       "instagram": null
     },
     "tags": [],
-    "tier": null,
+    "tier": "B",
     "sources": [
       {
         "retrieved": "2026-10-17",
@@ -7700,6 +8867,45 @@
     "accessibility": {
       "barrierFree": "沒有電梯、階梯多，輪椅不能進室內（官網 Q&A）",
       "note": "送迎巴士 2027-01-12 起停駛（官網 Q&A）"
+    },
+    "summary": {
+      "text": "建在小浜灣海上的料亭兼小旅館，伊勢海老、鮑魚會席，可以從房間窗口釣魚（座敷釣り）。晚餐只給住客，非住客的午餐所有來源都沒寫，要電話確認。",
+      "pros": [
+        "海上料亭，窗外就是海，可以座敷釣り",
+        "伊勢海老、鮑魚的會席"
+      ],
+      "cons": [
+        "非住客能不能吃午餐不確定",
+        "沒有電梯、階梯多，輪椅不能進室內",
+        "送迎巴士 2027-01-12 起停駛"
+      ],
+      "basedOn": [
+        "https://www.kairakuen.net/",
+        "https://www.kairakuen.net/meal/",
+        "https://iseshima.kairakuen.net/archives/26",
+        "https://www.kankomie.or.jp/spot/1447",
+        "https://www.jalan.net/yad341780"
+      ],
+      "generated": "2026-10-18"
+    },
+    "assessment": {
+      "rubric": "restaurant-v1",
+      "scores": {
+        "recommend": 2,
+        "localFlavor": 5,
+        "groupFit": null,
+        "elderFit": 1,
+        "kidsFit": null
+      },
+      "rationale": {
+        "recommend": "食べログ 3.07（13 則）、Google 3.8（217 則），兩邊都普通；非住客能不能用餐未確認",
+        "localFlavor": "海上料亭、座敷釣り，本身就是在地體驗",
+        "groupFit": "席數、能不能預約都沒有來源，資料不足",
+        "elderFit": "官網：沒有電梯、階梯多，座敷",
+        "kidsFit": "能不能帶小孩、兒童餐、熟食選項都沒有來源，資料不足"
+      },
+      "confidence": "low",
+      "assessed": "2026-10-18"
     }
   },
   {
@@ -7786,7 +8992,7 @@
       "instagram": "@nanakoshi2011"
     },
     "tags": [],
-    "tier": null,
+    "tier": "B",
     "sources": [
       {
         "retrieved": "2026-10-17",
@@ -7911,6 +9117,44 @@
         "讀文（https://hamoni.jp/shop/wI8xELHP3wqKJJsWJTyMUhKBuIsGU6iD）：kids.allowed＝可帶小孩（子連れ）",
         "讀文（https://4travel.jp/dm_shisetsu/11081540）：price＝預算 1,000～1,999 円；日替わり 800～850 円、あんかけ焼きそば 750～770 円（2018～2023）"
       ]
+    },
+    "summary": {
+      "text": "中之郷的烏龍麵、蕎麥麵老店，常客說約 8 成客人點勾芡炒麵（あんかけ焼きそば 750 円左右），也有伊勢烏龍定食、大塊天婦羅。46 席，平日中午要寫名字候位。",
+      "pros": [
+        "價格實在（1,000～1,999 円）",
+        "hamoni 標無障礙、有停車場、可帶小孩",
+        "麵類、丼飯為主，小孩容易吃"
+      ],
+      "cons": [
+        "不接受預約，平日 12 點前後客滿",
+        "離鳥羽站遠，從水族館開車約 5 分",
+        "價格多是 2018～2023 年的資料"
+      ],
+      "basedOn": [
+        "https://miemen.net/shops/115/",
+        "https://4travel.jp/dm_shisetsu/11081540",
+        "https://hamoni.jp/shop/wI8xELHP3wqKJJsWJTyMUhKBuIsGU6iD"
+      ],
+      "generated": "2026-10-18"
+    },
+    "assessment": {
+      "rubric": "restaurant-v1",
+      "scores": {
+        "recommend": 3,
+        "localFlavor": 3,
+        "groupFit": 1,
+        "elderFit": 4,
+        "kidsFit": 4
+      },
+      "rationale": {
+        "recommend": "食べログ 3.35（95 則）、Google 4.1（330 則），口コミ多好評",
+        "localFlavor": "伊勢烏龍、炒麵，部分是在地料理",
+        "groupFit": "不接受預約",
+        "elderFit": "桌席、無障礙（hamoni），但要候位",
+        "kidsFit": "可帶小孩，麵類、天婦羅"
+      },
+      "confidence": "medium",
+      "assessed": "2026-10-18"
     }
   },
   {
@@ -7990,7 +9234,7 @@
       "instagram": null
     },
     "tags": [],
-    "tier": null,
+    "tier": "B",
     "sources": [
       {
         "retrieved": "2026-10-17",
@@ -8105,6 +9349,42 @@
         "地址：Google 寫鳥羽 3-32-8，食べログ寫 3-32-6",
         "讀文（https://www.nap-camp.com/mag/50903）：hours＝11:00～20:00"
       ]
+    },
+    "summary": {
+      "text": "中之郷站附近的和食食堂，用鳥羽在地海鮮，生魚片厚切，也有炸蝦定食、伊勢烏龍定食，份量大。營業到晚上（約 20:00）。",
+      "pros": [
+        "Google 4.3（486 則）",
+        "有炸蝦、伊勢烏龍等熟食，小孩可以吃",
+        "晚上也營業"
+      ],
+      "cons": [
+        "不接受預約",
+        "週四公休",
+        "讀文只有 1 篇列表文章，價格、座位都沒有資料"
+      ],
+      "basedOn": [
+        "https://www.nap-camp.com/mag/50903"
+      ],
+      "generated": "2026-10-18"
+    },
+    "assessment": {
+      "rubric": "restaurant-v1",
+      "scores": {
+        "recommend": 3,
+        "localFlavor": 3,
+        "groupFit": 1,
+        "elderFit": null,
+        "kidsFit": 4
+      },
+      "rationale": {
+        "recommend": "食べログ 3.3（75 則）、Google 4.3（486 則），但介紹只有 1 篇",
+        "localFlavor": "在地海鮮的生魚片、炸蝦、伊勢烏龍定食",
+        "groupFit": "不接受預約",
+        "elderFit": "座位形式、階梯所有來源都沒寫，資料不足",
+        "kidsFit": "可帶小孩，有炸蝦、伊勢烏龍"
+      },
+      "confidence": "low",
+      "assessed": "2026-10-18"
     }
   },
   {
@@ -8213,7 +9493,7 @@
       "instagram": null
     },
     "tags": [],
-    "tier": null,
+    "tier": "B",
     "sources": [
       {
         "retrieved": "2026-10-17",
@@ -8324,6 +9604,42 @@
         "price：午餐約 1,000 円以下；日替わり 700～850 円（https://retty.me/restaurant/100001007615/）",
         "phone：0599-25-8977（https://retty.me/restaurant/100001007615/）"
       ]
+    },
+    "summary": {
+      "text": "志摩赤崎站旁的街角定食屋，日替わり定食 700～850 円，常見丼飯＋烏龍麵的組合，Retty 5 則口コミ都正面。食べログ寫予約不可但可以包場（20～50 人），要電話確認。",
+      "pros": [
+        "價格便宜（1,000 円以下）",
+        "有炸蝦、炸雞、漢堡排等熟食",
+        "食べログ寫可包場 20～50 人"
+      ],
+      "cons": [
+        "予約不可和貸切可同時寫，要電話確認",
+        "只有座敷",
+        "營業時間、公休讀文沒有來源"
+      ],
+      "basedOn": [
+        "https://retty.me/restaurant/100001007615/"
+      ],
+      "generated": "2026-10-18"
+    },
+    "assessment": {
+      "rubric": "restaurant-v1",
+      "scores": {
+        "recommend": 3,
+        "localFlavor": 2,
+        "groupFit": 2,
+        "elderFit": null,
+        "kidsFit": 3
+      },
+      "rationale": {
+        "recommend": "食べログ 3.16（21 則）、Google 4.2（110 則），評論數上限 3；Retty 5 則都好評",
+        "localFlavor": "一般定食，有づけ丼等海鮮",
+        "groupFit": "食べログ：予約不可但貸切可（20～50 人），資料矛盾",
+        "elderFit": "座位形式、階梯所有來源都沒寫，資料不足",
+        "kidsFit": "有炸物、漢堡排；兒童規定沒有來源"
+      },
+      "confidence": "low",
+      "assessed": "2026-10-18"
     }
   },
   {
@@ -8404,7 +9720,7 @@
       "instagram": null
     },
     "tags": [],
-    "tier": null,
+    "tier": "B",
     "sources": [
       {
         "retrieved": "2026-10-17",
@@ -8513,6 +9829,43 @@
       "conflicts": [
         "食べログ（非店舗会員）寫 11:00 開店，Google 寫 11:30，採用 Google"
       ]
+    },
+    "summary": {
+      "text": "中之郷站步行約 3 分的咖啡洋食店，營業到 22:00，是不含晚餐的住宿附近的晚餐選擇。網路上除了食べログ、Google 幾乎沒有資料。",
+      "pros": [
+        "晚上營業到 22:00",
+        "食べログ：39 席、可包場（20～50 人）、可預約",
+        "可帶小孩"
+      ],
+      "cons": [
+        "讀文找不到任何介紹或心得，要確認還在營業",
+        "座位只有吧台的資料",
+        "價格、菜單沒有來源"
+      ],
+      "basedOn": [
+        "https://tabelog.com/mie/A2403/A240302/24001489/",
+        "https://maps.google.com/?cid=2494655045275521484"
+      ],
+      "generated": "2026-10-18"
+    },
+    "assessment": {
+      "rubric": "restaurant-v1",
+      "scores": {
+        "recommend": 2,
+        "localFlavor": 1,
+        "groupFit": 5,
+        "elderFit": 3,
+        "kidsFit": 3
+      },
+      "rationale": {
+        "recommend": "食べログ 3.09（22 則）、Google 4.1（132 則），讀文沒有任何介紹",
+        "localFlavor": "一般洋食、咖啡",
+        "groupFit": "食べログ：39 席、貸切可（20～50 人）、可預約",
+        "elderFit": "只有吧台的資料",
+        "kidsFit": "食べログ寫可帶小孩"
+      },
+      "confidence": "low",
+      "assessed": "2026-10-18"
     }
   },
   {
@@ -8552,7 +9905,7 @@
       "instagram": null
     },
     "tags": [],
-    "tier": null,
+    "tier": "B",
     "sources": [
       {
         "retrieved": "2026-10-17",
@@ -8651,6 +10004,44 @@
       "inclusion": "AF",
       "googleStatus": "臨時休業（2026-10-17）",
       "tabelogHours": "10:00～牡蠣がなくなり次第終了"
+    },
+    "summary": {
+      "text": "浦村的牡蠣養殖場直營店，10:00 開始、牡蠣賣完就結束，食べログ 3.59（160 則）、Google 4.4（290 則）。觀光三重、觀光協會的浦村牡蠣列表都沒有這家，讀文找不到任何介紹。",
+      "pros": [
+        "食べログ、Google 分數在浦村算高",
+        "養殖場直營，價格便宜（1,000 円以下）"
+      ],
+      "cons": [
+        "不接受預約",
+        "讀文沒有任何來源，座位、營業時間、小孩都沒有資料",
+        "要開車"
+      ],
+      "basedOn": [
+        "https://tabelog.com/mie/A2403/A240302/24000447/",
+        "https://maps.google.com/?cid=8748065660303979706",
+        "https://www.kankomie.or.jp/season/article/110",
+        "https://www.toba.gr.jp/feature/abc/"
+      ],
+      "generated": "2026-10-18"
+    },
+    "assessment": {
+      "rubric": "restaurant-v1",
+      "scores": {
+        "recommend": 3,
+        "localFlavor": 4,
+        "groupFit": 1,
+        "elderFit": null,
+        "kidsFit": null
+      },
+      "rationale": {
+        "recommend": "分數相當於 4，但讀文完全沒有來源，無法確認現況 → 最多 3",
+        "localFlavor": "浦村牡蠣養殖場直營（用餐形式不明）",
+        "groupFit": "食べログ：予約不可、貸切不可",
+        "elderFit": "座位形式、階梯所有來源都沒寫，資料不足",
+        "kidsFit": "能不能帶小孩、兒童餐、熟食選項都沒有來源，資料不足"
+      },
+      "confidence": "low",
+      "assessed": "2026-10-18"
     }
   },
   {
@@ -8740,7 +10131,7 @@
       "instagram": null
     },
     "tags": [],
-    "tier": null,
+    "tier": "B",
     "sources": [
       {
         "retrieved": "2026-10-17",
@@ -8886,6 +10277,48 @@
         "讀文（https://www.uminoeki-kuroshio.com/）：closedNote＝全年無休（含年末年初、盂蘭盆）",
         "讀文（https://www.kankomie.or.jp/event/39679）：febNote＝冬季真牡蠣 11 月～GW 供應，2 月是產季"
       ]
+    },
+    "summary": {
+      "text": "珍珠路上「海の駅 黒潮」的海鮮餐廳，10 種以上海鮮的究極海鮮丼 4,550 円；隔壁海鮮館可以從生簀挑牡蠣、伊勢海老請店員現烤。全年無休，2 月正是牡蠣季。",
+      "pros": [
+        "全年無休，150 席",
+        "海鮮館可挑活海鮮現烤，2 月是真牡蠣當季",
+        "有烤物可以給不吃生食的小孩"
+      ],
+      "cons": [
+        "Google 3.6（2,141 則），評價普通；海鮮丼偏貴",
+        "不能預約（主資料）",
+        "鳥羽站開車約 20 分"
+      ],
+      "basedOn": [
+        "https://www.uminoeki-kuroshio.com/",
+        "https://www.uminoeki-kuroshio.com/dining/",
+        "https://www.uminoeki-kuroshio.com/kaisenkan/",
+        "https://www.kankomie.or.jp/event/39679",
+        "https://www.toba.gr.jp/feature/abc/",
+        "https://www.mapple.net/article/32428/",
+        "https://hamoni.jp/area/mie/toba/list/curry-and-donburi"
+      ],
+      "generated": "2026-10-18"
+    },
+    "assessment": {
+      "rubric": "restaurant-v1",
+      "scores": {
+        "recommend": 3,
+        "localFlavor": 4,
+        "groupFit": 1,
+        "elderFit": 4,
+        "kidsFit": 4
+      },
+      "rationale": {
+        "recommend": "食べログ 3.47（483 則）但 Google 3.6（2,141 則），評價普通 → 最多 3",
+        "localFlavor": "海鮮丼、活海鮮現烤、浦村牡蠣",
+        "groupFit": "不接受預約",
+        "elderFit": "桌席、露台，150 席；無障礙沒有來源",
+        "kidsFit": "可帶小孩，有烤物"
+      },
+      "confidence": "medium",
+      "assessed": "2026-10-18"
     }
   },
   {
@@ -8977,7 +10410,7 @@
       "instagram": "@yokichiya_kaki"
     },
     "tags": [],
-    "tier": null,
+    "tier": "B",
     "sources": [
       {
         "retrieved": "2026-10-17",
@@ -9146,6 +10579,49 @@
         "menuPage：官網菜單頁（https://www.kaki-umasikuni.com/menu-oyster.php）",
         "parking：普通車 25 台、巴士 2 台（https://tabiiro.jp/gourmet/article/iseshimatoba-kaisen/）"
       ]
+    },
+    "summary": {
+      "text": "浦村牡蠣養殖加工場直營的燒牡蠣吃到飽，大人 3,800 円、4～12 歲 1,900 円，60 分鐘，店員用薪火代烤，附牡蠣飯。觀光三重、觀光協會、tabiiro、市府地圖都有介紹；吃到飽 11～3 月。",
+      "pros": [
+        "浦村牡蠣吃到飽的代表店之一，有兒童價、3 歲以下免費",
+        "不吃牡蠣的可以預約替代餐（炸蝦、咖哩）",
+        "停車場有大巴士位，網路或電話預約"
+      ],
+      "cons": [
+        "Google 3.9（885 則），評價普通",
+        "人數上限看當天牡蠣量，15 人要提早問",
+        "座位形式沒有來源；要開車走山路"
+      ],
+      "basedOn": [
+        "https://www.kaki-umasikuni.com/",
+        "https://www.kaki-umasikuni.com/menu-oyster.php",
+        "https://www.kaki-umasikuni.com/access.php",
+        "https://www.kankomie.or.jp/season/article/110",
+        "https://www.toba.gr.jp/feature/abc/",
+        "https://tabiiro.jp/gourmet/article/iseshimatoba-kaisen/",
+        "https://www.kankomie.or.jp/report/262",
+        "https://www.city.toba.mie.jp/material/files/group/37/tobameshi_map_2022_06.pdf"
+      ],
+      "generated": "2026-10-18"
+    },
+    "assessment": {
+      "rubric": "restaurant-v1",
+      "scores": {
+        "recommend": 3,
+        "localFlavor": 5,
+        "groupFit": 3,
+        "elderFit": null,
+        "kidsFit": 5
+      },
+      "rationale": {
+        "recommend": "食べログ 3.45（212 則）但 Google 3.9（885 則）；4 種獨立來源介紹",
+        "localFlavor": "浦村牡蠣吃到飽，本身就是在地體驗",
+        "groupFit": "fit15 split：1 人起可訂，人數上限看牡蠣量",
+        "elderFit": "座位形式、階梯所有來源都沒寫，資料不足",
+        "kidsFit": "兒童價半價、3 歲以下免費，有替代餐"
+      },
+      "confidence": "medium",
+      "assessed": "2026-10-18"
     }
   },
   {
@@ -9232,7 +10708,7 @@
       "instagram": "@toba_ciao"
     },
     "tags": [],
-    "tier": null,
+    "tier": "B",
     "sources": [
       {
         "retrieved": "2026-10-17",
@@ -9354,6 +10830,42 @@
     "accessibility": {
       "barrierFree": null,
       "note": "有停車場 10 台"
+    },
+    "summary": {
+      "text": "安樂島、珍珠路入口的咖啡廳，人氣第一是楓糖夾心餅，全年供應自製糖漿的奶泡刨冰，午餐有自家製麵包三明治、披薩。",
+      "pros": [
+        "るるぶ 標「キッズおすすめ」",
+        "有停車場 10 台"
+      ],
+      "cons": [
+        "官網 Instagram 寫不接受預約（食べログ寫可預約）",
+        "週二公休＋不定休，活動日時間會變",
+        "席數、座位形式沒有來源"
+      ],
+      "basedOn": [
+        "http://www.jp-ciao.com/",
+        "https://rurubu.jp/andmore/spot/80025032"
+      ],
+      "generated": "2026-10-18"
+    },
+    "assessment": {
+      "rubric": "restaurant-v1",
+      "scores": {
+        "recommend": 3,
+        "localFlavor": 1,
+        "groupFit": 2,
+        "elderFit": null,
+        "kidsFit": 3
+      },
+      "rationale": {
+        "recommend": "食べログ 3.4（86 則）、Google 3.9（185 則）",
+        "localFlavor": "甜點、咖啡，和在地無關",
+        "groupFit": "官網寫不接受預約、食べログ寫可預約，資料矛盾；席數不明",
+        "elderFit": "座位形式、階梯所有來源都沒寫，資料不足",
+        "kidsFit": "るるぶ 標キッズおすすめ；兒童規定沒有來源"
+      },
+      "confidence": "low",
+      "assessed": "2026-10-18"
     }
   },
   {
@@ -9445,7 +10957,7 @@
       "instagram": "@motokaki5522"
     },
     "tags": [],
-    "tier": null,
+    "tier": "A",
     "sources": [
       {
         "retrieved": "2026-10-17",
@@ -9593,6 +11105,47 @@
       "dossierFacts": [
         "payment：不能刷卡（https://retty.me/restaurant/100001109593/）"
       ]
+    },
+    "summary": {
+      "text": "浦村的牡蠣養殖場，烤牡蠣＋蒸牡蠣吃到飽 90 分鐘，含牡蠣湯、炸牡蠣，還有煮味噌等其他店少見的鄉土菜。大人 4,000 円、小學生 1,000 円；100 席全桌席、室內有暖氣，完全預約制。",
+      "pros": [
+        "100 席全部桌席，室內有暖氣不冷",
+        "小學生 1,000 円、幼兒免費；2026 年起有給不吃牡蠣的人的小菜、甜點",
+        "全部加熱，沒有生蠔"
+      ],
+      "cons": [
+        "多篇口コミ說牡蠣偏小",
+        "進去的路很窄；不能刷卡",
+        "公休日來源不一致（週二／第 1、3 週二）"
+      ],
+      "basedOn": [
+        "http://www.motokaki.com",
+        "https://www.kankomie.or.jp/season/article/110",
+        "https://www.toba.gr.jp/feature/abc/",
+        "https://retty.me/restaurant/100001109593/",
+        "https://4travel.jp/dm_shisetsu/11081411",
+        "https://www.walkerplus.com/article/1011117/"
+      ],
+      "generated": "2026-10-18"
+    },
+    "assessment": {
+      "rubric": "restaurant-v1",
+      "scores": {
+        "recommend": 4,
+        "localFlavor": 5,
+        "groupFit": 3,
+        "elderFit": 4,
+        "kidsFit": 5
+      },
+      "rationale": {
+        "recommend": "食べログ 3.32（64 則）、Google 4.3（618 則），觀光三重、觀光協會、Retty、4travel 都有",
+        "localFlavor": "浦村牡蠣吃到飽，本身就是在地體驗",
+        "groupFit": "fit15 split：100 席、完全預約制，要確認能不能坐一起",
+        "elderFit": "全部桌席、室內有暖氣；停車處距離不明",
+        "kidsFit": "小學生 1,000 円、有不吃牡蠣的選項"
+      },
+      "confidence": "medium",
+      "assessed": "2026-10-18"
     }
   },
   {
@@ -9689,7 +11242,7 @@
       "instagram": null
     },
     "tags": [],
-    "tier": null,
+    "tier": "B",
     "sources": [
       {
         "retrieved": "2026-10-17",
@@ -9848,6 +11401,48 @@
         "menuPage：官網菜單頁（http://www.kaitaro.jp/menu.html）",
         "phone：0599-25-8500（觀光三重等寫 0599-37-7575，衝突）（http://www.kaitaro.jp/institution.html）"
       ]
+    },
+    "summary": {
+      "text": "珍珠路沿線、海產批發直營的海鮮丼與浜焼き市場，店主是自己在的矢灣養牡蠣的現役漁夫。朝市海鮮漁師丼 1,950 円、牡蠣三昧定食 2,800 円，2 月是真牡蠣當季。",
+      "pros": [
+        "觀光三重、觀光協會、まっぷる 都列為浦村牡蠣店",
+        "漁夫直營，牡蠣、伊勢海老、海鮮丼都有",
+        "有伊勢烏龍給不吃生食的小孩"
+      ],
+      "cons": [
+        "Google 3.7（393 則），評價普通",
+        "座位是座敷式；食材賣完、天候不好會提早打烊",
+        "公休、電話各來源不一致；要開車或搭巴士"
+      ],
+      "basedOn": [
+        "http://www.kaitaro.jp/",
+        "http://www.kaitaro.jp/menu.html",
+        "http://www.kaitaro.jp/institution.html",
+        "https://www.kankomie.or.jp/event/39679",
+        "https://www.toba.gr.jp/feature/abc/",
+        "https://www.mapple.net/article/32188/",
+        "https://www.city.toba.mie.jp/material/files/group/37/tobameshi_map_2022_06.pdf"
+      ],
+      "generated": "2026-10-18"
+    },
+    "assessment": {
+      "rubric": "restaurant-v1",
+      "scores": {
+        "recommend": 3,
+        "localFlavor": 4,
+        "groupFit": 3,
+        "elderFit": 2,
+        "kidsFit": 3
+      },
+      "rationale": {
+        "recommend": "食べログ 3.3（88 則）、Google 3.7（393 則），評價普通 → 最多 3",
+        "localFlavor": "漁夫直營的牡蠣、海鮮丼、伊勢海老",
+        "groupFit": "fit15 split：60 席、可預約",
+        "elderFit": "官網寫お座敷テーブル席，沒有椅子的資料",
+        "kidsFit": "有伊勢烏龍、果汁；兒童規定沒有來源"
+      },
+      "confidence": "low",
+      "assessed": "2026-10-18"
     }
   },
   {
@@ -9932,7 +11527,7 @@
       "instagram": "@yamayasu2020"
     },
     "tags": [],
-    "tier": null,
+    "tier": "B",
     "sources": [
       {
         "retrieved": "2026-10-17",
@@ -10073,6 +11668,46 @@
     "accessibility": {
       "barrierFree": null,
       "note": "有停車場、有廁所；巴士エクシブ前站走約 10 分鐘"
+    },
+    "summary": {
+      "text": "浦村的自己烤牡蠣吃到飽，營業時間內不限時，大人 3,000 円、小孩 1,700 円、幼兒免費。可容納 350 人，網路（ebica）或電話預約；可以自帶食物、飲料。",
+      "pros": [
+        "可容納 350 人，網路可訂，15 人最容易一起吃的牡蠣小屋之一",
+        "不限時、價格在浦村偏低",
+        "可選瓦斯爐（煙少）或炭火，店員會教烤法"
+      ],
+      "cons": [
+        "自己烤，開殼時熱汁會噴，小孩要注意",
+        "炭火煙燻眼睛，冷雨天會冷（舊心得）",
+        "旺季週末開店前大排長龍；公休日來源不一致"
+      ],
+      "basedOn": [
+        "https://uramurakaki-yamayasu.jp/",
+        "https://www.kankomie.or.jp/season/article/110",
+        "https://www.kankomie.or.jp/spot/23487",
+        "https://www.kankomie.or.jp/report/592",
+        "https://retty.me/restaurant/100001103503/"
+      ],
+      "generated": "2026-10-18"
+    },
+    "assessment": {
+      "rubric": "restaurant-v1",
+      "scores": {
+        "recommend": 3,
+        "localFlavor": 5,
+        "groupFit": 3,
+        "elderFit": null,
+        "kidsFit": 4
+      },
+      "rationale": {
+        "recommend": "食べログ 3.3（86 則）、Google 4.2（895 則），觀光三重介紹",
+        "localFlavor": "浦村牡蠣吃到飽，本身就是在地體驗",
+        "groupFit": "fit15 split：可容納 350 人、可預約",
+        "elderFit": "座位形式、階梯所有來源都沒寫，資料不足",
+        "kidsFit": "有兒童、幼兒價，全部加熱；開殼熱汁要注意"
+      },
+      "confidence": "medium",
+      "assessed": "2026-10-18"
     }
   },
   {
@@ -10159,7 +11794,7 @@
       "instagram": "@tobafood_arashima"
     },
     "tags": [],
-    "tier": null,
+    "tier": "B",
     "sources": [
       {
         "retrieved": "2026-10-17",
@@ -10287,6 +11922,45 @@
         "group.maxReservation：不接受用餐訂位；店內多くても 4 席まで，超過可能拒絕；疫情對策時店內 1 組最多 6 人（http://www.tobafood.net/food.html）",
         "payment：只收現金（https://www.nap-camp.com/mag/23934）"
       ]
+    },
+    "summary": {
+      "text": "珍珠路入口的海邊店，冬天牡蠣季會賣完的人氣店：近海魚醃漬的鳥羽風丼（土日祝限定）、冬季限定炸牡蠣丼約 1,500 円、安樂島產蒸牡蠣。兼賣伴手禮。",
+      "pros": [
+        "冬季限定的牡蠣料理，2 月當季",
+        "價格約 1,000～2,000 円",
+        "有炸牡蠣丼、魩仔魚丼等熟食"
+      ],
+      "cons": [
+        "不接受訂位，店內 1 組最多約 4～6 人，15 人不適合",
+        "只收現金；人多上菜慢",
+        "週二公休"
+      ],
+      "basedOn": [
+        "http://www.tobafood.net/",
+        "http://www.tobafood.net/food.html",
+        "https://www.nap-camp.com/mag/23934",
+        "https://www.mapple.net/article/32428/"
+      ],
+      "generated": "2026-10-18"
+    },
+    "assessment": {
+      "rubric": "restaurant-v1",
+      "scores": {
+        "recommend": 3,
+        "localFlavor": 4,
+        "groupFit": 1,
+        "elderFit": null,
+        "kidsFit": 3
+      },
+      "rationale": {
+        "recommend": "食べログ 3.29（44 則）、Google 4.3（194 則），評論數上限 3",
+        "localFlavor": "安樂島牡蠣、近海魚的丼飯",
+        "groupFit": "不接受訂位，1 組最多約 4～6 人",
+        "elderFit": "座位形式、階梯所有來源都沒寫，資料不足",
+        "kidsFit": "有熟食的丼飯；兒童規定沒有來源"
+      },
+      "confidence": "low",
+      "assessed": "2026-10-18"
     }
   },
   {
@@ -10367,7 +12041,7 @@
       "instagram": "@kakiichi_staff"
     },
     "tags": [],
-    "tier": null,
+    "tier": "B",
     "sources": [
       {
         "retrieved": "2026-10-17",
@@ -10502,6 +12176,44 @@
         "access.note：從 M's VILLAGE 巴士站步行約 10 分鐘（https://www.kankomie.or.jp/season/article/110）",
         "other.byo：可自帶酒類與調味料；吃到飽不可外帶（https://xn--u8je4633b6cf.com/kakiichi/）"
       ]
+    },
+    "summary": {
+      "text": "浦村シーファーム直營的漁師牡蠣店，燒牡蠣・蒸牡蠣吃到飽 80 分鐘，大人 3,500 円、小學生 1,750 円，店家代烤，看得到麻生の浦灣。三部制，只有吃到飽接受預約。",
+      "pros": [
+        "觀光三重、觀光協會都收錄；店家代烤",
+        "小學生 1,750 円、3～6 歲 600 円；有炸牡蠣、伊勢烏龍",
+        "牡蠣經 18 小時以上滅菌淨化"
+      ],
+      "cons": [
+        "團體人數上限、座位形式都沒有來源",
+        "公休日來源不一致（週二／週四／未定）",
+        "忙碌時預約電話可能接不到"
+      ],
+      "basedOn": [
+        "https://xn--u8je4633b6cf.com/kakiichi/",
+        "https://www.kankomie.or.jp/season/article/110",
+        "https://www.toba.gr.jp/feature/abc/"
+      ],
+      "generated": "2026-10-18"
+    },
+    "assessment": {
+      "rubric": "restaurant-v1",
+      "scores": {
+        "recommend": 3,
+        "localFlavor": 5,
+        "groupFit": 3,
+        "elderFit": null,
+        "kidsFit": 5
+      },
+      "rationale": {
+        "recommend": "食べログ 3.29（32 則）、Google 4.3（71 則），評論數上限 3",
+        "localFlavor": "浦村牡蠣吃到飽，本身就是在地體驗",
+        "groupFit": "fit15 split：70 席、吃到飽可預約",
+        "elderFit": "座位形式、階梯所有來源都沒寫，資料不足",
+        "kidsFit": "小學生半價、有炸牡蠣、伊勢烏龍"
+      },
+      "confidence": "low",
+      "assessed": "2026-10-18"
     }
   },
   {
@@ -10591,7 +12303,7 @@
       "instagram": null
     },
     "tags": [],
-    "tier": null,
+    "tier": "B",
     "sources": [
       {
         "retrieved": "2026-10-17",
@@ -10699,6 +12411,44 @@
         "讀文（https://www.kankomie.or.jp/event/39679）：febNote＝冬季真牡蠣 11 月～3 月左右（觀光協會寫到 4 月左右），2 月當季",
         "讀文（https://www.kankomie.or.jp/event/39679）：access＝本浦港走路 3 分"
       ]
+    },
+    "summary": {
+      "text": "浦村「非吃到飽」的牡蠣店，生蠔、烤牡蠣、炸牡蠣、定食和生魚片，觀光三重、觀光協會都有列。電話預約較保險，有空位也能直接進。",
+      "pros": [
+        "單點，可以分組順路吃",
+        "有定食、炸物，不一定要吃生的",
+        "本浦港巴士站步行 3 分"
+      ],
+      "cons": [
+        "官網讀不到，價格、席數都沒有資料",
+        "心得 0 篇",
+        "能不能接團體要電話問"
+      ],
+      "basedOn": [
+        "https://www.kankomie.or.jp/event/39679",
+        "https://www.toba.gr.jp/feature/abc/",
+        "http://www.yoshikawa-suisan.com/dining.html（SSL"
+      ],
+      "generated": "2026-10-18"
+    },
+    "assessment": {
+      "rubric": "restaurant-v1",
+      "scores": {
+        "recommend": 3,
+        "localFlavor": 4,
+        "groupFit": 2,
+        "elderFit": null,
+        "kidsFit": 3
+      },
+      "rationale": {
+        "recommend": "食べログ 3.29（32 則）、Google 4.3（178 則），評論數上限 3",
+        "localFlavor": "浦村牡蠣（單點、定食）",
+        "groupFit": "fit15 unknown，可電話預約",
+        "elderFit": "座位形式、階梯所有來源都沒寫，資料不足",
+        "kidsFit": "有定食、炸物；兒童規定沒有來源"
+      },
+      "confidence": "low",
+      "assessed": "2026-10-18"
     }
   },
   {
@@ -10800,7 +12550,7 @@
       "instagram": "@sugimuratomomi"
     },
     "tags": [],
-    "tier": null,
+    "tier": "B",
     "sources": [
       {
         "retrieved": "2026-10-17",
@@ -10944,6 +12694,47 @@
         "group.maxReservation：每場有人數限制，電話預約；官網有預約狀況月曆（https://www.jalan.net/news/article/400323/）",
         "parking：15 台（https://www.jalan.net/news/article/400323/）"
       ]
+    },
+    "summary": {
+      "text": "用自家養殖法的浦村牡蠣直營店，烤／蒸牡蠣吃到飽 80 分鐘，附牡蠣ひつまぶし、炸牡蠣、雪見ガキ；國中以上 3,700 円、小學生 1,850 円。店家可代烤，員工會教開殼。",
+      "pros": [
+        "tabiiro、じゃらん、觀光三重、觀光協會都有介紹",
+        "可代烤；廁所乾淨、提供手套",
+        "小學生半價、幼兒免費，熟食為主"
+      ],
+      "cons": [
+        "每場有人數限制，15 人能不能同場要電話問",
+        "有口コミ說部分牡蠣偏小",
+        "座位形式、室內外沒有來源"
+      ],
+      "basedOn": [
+        "http://www.sugikaki.com/",
+        "https://www.kankomie.or.jp/season/article/110",
+        "https://www.toba.gr.jp/feature/abc/",
+        "https://tabiiro.jp/gourmet/article/iseshimatoba-kaisen/",
+        "https://www.jalan.net/news/article/400323/",
+        "https://wanderlog.com/place/details/2671554/スギムラ水産"
+      ],
+      "generated": "2026-10-18"
+    },
+    "assessment": {
+      "rubric": "restaurant-v1",
+      "scores": {
+        "recommend": 3,
+        "localFlavor": 5,
+        "groupFit": 2,
+        "elderFit": null,
+        "kidsFit": 5
+      },
+      "rationale": {
+        "recommend": "食べログ 3.28（32 則）、Google 4.3（174 則），評論數上限 3",
+        "localFlavor": "浦村牡蠣吃到飽，本身就是在地體驗",
+        "groupFit": "fit15 unknown，電話預約、每場有人數限制",
+        "elderFit": "座位形式、階梯所有來源都沒寫，資料不足",
+        "kidsFit": "小學生半價、幼兒免費，熟食為主"
+      },
+      "confidence": "medium",
+      "assessed": "2026-10-18"
     }
   },
   {
@@ -11030,7 +12821,7 @@
       "instagram": null
     },
     "tags": [],
-    "tier": null,
+    "tier": "B",
     "sources": [
       {
         "retrieved": "2026-10-17",
@@ -11194,6 +12985,49 @@
     "accessibility": {
       "barrierFree": null,
       "note": "ホットペッパー寫無障礙設施：なし；有停車場（約 10 台）"
+    },
+    "summary": {
+      "text": "生浦灣旁的海の食堂，冬季烤牡蠣吃到飽（附牡蠣飯、炸牡蠣，完全預約制），也有牡蠣丼 1,100 円。全部桌席，最多可接 40 人宴會，觀光三重、觀光協會、なっぷ、じゃらん 都有介紹。",
+      "pros": [
+        "最多可接 40 人宴會，15 人可以一起訂",
+        "全部桌席（沒有座敷），桌間有隔板",
+        "歡迎小孩，吃到飽有兒童、幼兒價"
+      ],
+      "cons": [
+        "只能電話預約，不能刷卡",
+        "無障礙「なし」；舊資料寫全席可吸菸（2020）",
+        "營業時間、價格各來源不一致"
+      ],
+      "basedOn": [
+        "https://toba-hakkai.com/",
+        "https://www.kankomie.or.jp/season/article/110",
+        "https://www.kankomie.or.jp/event/39679",
+        "https://www.toba.gr.jp/feature/abc/",
+        "https://www.nap-camp.com/mag/50903",
+        "https://www.hotpepper.jp/strJ001053356/",
+        "https://www.jalan.net/news/article/400323/",
+        "https://www.city.toba.mie.jp/material/files/group/37/tobameshi_map_2022_06.pdf"
+      ],
+      "generated": "2026-10-18"
+    },
+    "assessment": {
+      "rubric": "restaurant-v1",
+      "scores": {
+        "recommend": 3,
+        "localFlavor": 5,
+        "groupFit": 5,
+        "elderFit": 4,
+        "kidsFit": 5
+      },
+      "rationale": {
+        "recommend": "食べログ 3.27（62 則）、Google 4.1（342 則），多個來源介紹",
+        "localFlavor": "浦村牡蠣吃到飽、牡蠣丼",
+        "groupFit": "fit15 yes：宴會最多 40 人（ホットペッパー）",
+        "elderFit": "全部桌席，但無障礙なし",
+        "kidsFit": "歡迎小孩，有兒童、幼兒價"
+      },
+      "confidence": "low",
+      "assessed": "2026-10-18"
     }
   },
   {
@@ -11273,7 +13107,7 @@
       "instagram": "@hamah_ide"
     },
     "tags": [],
-    "tier": null,
+    "tier": "B",
     "sources": [
       {
         "retrieved": "2026-10-17",
@@ -11412,6 +13246,46 @@
         "timeLimit：90 分（https://www.kankomie.or.jp/season/article/110）",
         "parking：免費停車場 15 台（http://hamahide.com/）"
       ]
+    },
+    "summary": {
+      "text": "約 2004 年浦村第一家做烤牡蠣吃到飽的店，柴火烤、店員代烤，附牡蠣焗烤、炸牡蠣、牡蠣飯，1～3 月加牡蠣天婦羅。國中以上 3,800 円、小學生 1,800 円，完全預約制。",
+      "pros": [
+        "配菜多、CP 值高，全國有回頭客",
+        "店員代烤，小孩不用自己動手；有小學生、幼兒價",
+        "室內那區看得到海"
+      ],
+      "cons": [
+        "預約電話很難打通",
+        "週三公休（食べログ寫週四）",
+        "人數上限、座位形式沒有來源"
+      ],
+      "basedOn": [
+        "http://hamahide.com/",
+        "https://www.kankomie.or.jp/season/article/110",
+        "https://www.mapple.net/article/32188/",
+        "https://www.walkerplus.com/article/175309/",
+        "https://wanderlog.com/place/details/3459235"
+      ],
+      "generated": "2026-10-18"
+    },
+    "assessment": {
+      "rubric": "restaurant-v1",
+      "scores": {
+        "recommend": 3,
+        "localFlavor": 5,
+        "groupFit": 3,
+        "elderFit": null,
+        "kidsFit": 5
+      },
+      "rationale": {
+        "recommend": "食べログ 3.19（32 則）、Google 4.4（218 則），評論數上限 3",
+        "localFlavor": "浦村第一家牡蠣吃到飽",
+        "groupFit": "fit15 split：60 席、完全預約制",
+        "elderFit": "座位形式、階梯所有來源都沒寫，資料不足",
+        "kidsFit": "小學生、幼兒價，店員代烤"
+      },
+      "confidence": "medium",
+      "assessed": "2026-10-18"
     }
   },
   {
@@ -11486,7 +13360,7 @@
       "instagram": null
     },
     "tags": [],
-    "tier": null,
+    "tier": "B",
     "sources": [
       {
         "retrieved": "2026-10-17",
@@ -11605,6 +13479,43 @@
       "dossierFacts": [
         "closedNote2：週二＆不定休（https://www.toba.gr.jp/feature/abc/）"
       ]
+    },
+    "summary": {
+      "text": "浦村的牡蠣養殖業者直營烤牡蠣店兼直售所，1 個起點、點了才烤，不是吃到飽；也有生牡蠣、裝到滿的外帶。營業 9:00～15:00。",
+      "pros": [
+        "單點制，適合分組順路吃幾個",
+        "觀光三重、觀光協會都收錄"
+      ],
+      "cons": [
+        "不接受預約",
+        "價格、席數、座位都沒有資料；官網讀不到",
+        "公休日來源不一致"
+      ],
+      "basedOn": [
+        "https://www.kankomie.or.jp/event/39679",
+        "https://www.toba.gr.jp/feature/abc/",
+        "http://eijimaru.com/（讀取失敗：SSL"
+      ],
+      "generated": "2026-10-18"
+    },
+    "assessment": {
+      "rubric": "restaurant-v1",
+      "scores": {
+        "recommend": 3,
+        "localFlavor": 4,
+        "groupFit": 1,
+        "elderFit": null,
+        "kidsFit": 3
+      },
+      "rationale": {
+        "recommend": "食べログ 3.13（60 則）、Google 4.4（362 則），只有觀光單位的列表",
+        "localFlavor": "浦村牡蠣（單點現烤）",
+        "groupFit": "不接受預約",
+        "elderFit": "座位形式、階梯所有來源都沒寫，資料不足",
+        "kidsFit": "單點可以只吃烤的；兒童規定沒有來源"
+      },
+      "confidence": "low",
+      "assessed": "2026-10-18"
     }
   },
   {
@@ -11708,7 +13619,7 @@
       "instagram": "@marugensuisan"
     },
     "tags": [],
-    "tier": null,
+    "tier": "B",
     "sources": [
       {
         "retrieved": "2026-10-17",
@@ -11843,6 +13754,46 @@
         "timeLimit：平日 90 分；週六日假日 80 分兩部制（11:00～12:20、13:00～14:20）（https://kaki-marugen.com/tabehoudai/）",
         "parking：有停車場（https://kaki-marugen.com/store/）"
       ]
+    },
+    "summary": {
+      "text": "浦村的烤牡蠣・蒸牡蠣吃到飽，附牡蠣飯、牡蠣味噌湯、炸牡蠣，可加點味噌烤、起司塔塔烤。國中以上 3,500 円、小學生 1,800 円、未上小學免費；用餐區在有屋頂的作業場內，雨天冷天也可以。",
+      "pros": [
+        "有包廂，團體要預約",
+        "未上小學免費，可店員烤也可自己烤",
+        "有屋頂，雨天、冷天也可以"
+      ],
+      "cons": [
+        "週末假日限時 80 分",
+        "尖峰時段電話可能沒人接",
+        "包廂容量、座位形式沒有來源；心得 0 篇"
+      ],
+      "basedOn": [
+        "https://kaki-marugen.com/tabehoudai/",
+        "https://kaki-marugen.com/store/",
+        "https://kaki-marugen.com/",
+        "https://www.kankomie.or.jp/season/article/110",
+        "https://kaki-marugen.com/about/"
+      ],
+      "generated": "2026-10-18"
+    },
+    "assessment": {
+      "rubric": "restaurant-v1",
+      "scores": {
+        "recommend": 3,
+        "localFlavor": 5,
+        "groupFit": 3,
+        "elderFit": null,
+        "kidsFit": 5
+      },
+      "rationale": {
+        "recommend": "食べログ 3.13（33 則）、Google 4.3（303 則），只有觀光三重介紹",
+        "localFlavor": "浦村牡蠣吃到飽",
+        "groupFit": "fit15 unknown，但官網寫團體要預約、有包廂",
+        "elderFit": "座位形式、階梯所有來源都沒寫，資料不足",
+        "kidsFit": "未上小學免費，有炸牡蠣、牡蠣飯"
+      },
+      "confidence": "low",
+      "assessed": "2026-10-18"
     }
   },
   {
@@ -11976,7 +13927,7 @@
       "instagram": null
     },
     "tags": [],
-    "tier": null,
+    "tier": "B",
     "sources": [
       {
         "retrieved": "2026-10-17",
@@ -12113,6 +14064,46 @@
       "dossierFacts": [
         "parking：停車場約 20 台（https://rurubu.jp/andmore/spot/80024991）"
       ]
+    },
+    "summary": {
+      "text": "浮在鳥羽灣上的屋形，邊看海邊自己烤自家養殖的浦村牡蠣（吃到飽 80 分），附炸牡蠣丼、味噌湯；2026 季大人 3,850 円、小孩 1,925 円。觀光協會、觀光三重、まっぷる、るるぶ 都有列。",
+      "pros": [
+        "海上的屋形，用餐本身就是體驗",
+        "季節到 5 月，官網可預約"
+      ],
+      "cons": [
+        "Google 3.7、食べログ 3.09，評價普通",
+        "帶未就學兒童不能預約",
+        "怎麼走到浮台（階梯、碼頭）、座位形式都沒有來源"
+      ],
+      "basedOn": [
+        "http://www.maruzensuisan.com（WebFetch",
+        "https://www.kankomie.or.jp/season/article/110",
+        "https://www.kankomie.or.jp/spot/23073",
+        "https://www.toba.gr.jp/feature/abc/",
+        "https://www.mapple.net/article/32188/",
+        "https://rurubu.jp/andmore/spot/80024991"
+      ],
+      "generated": "2026-10-18"
+    },
+    "assessment": {
+      "rubric": "restaurant-v1",
+      "scores": {
+        "recommend": 2,
+        "localFlavor": 5,
+        "groupFit": 2,
+        "elderFit": null,
+        "kidsFit": 3
+      },
+      "rationale": {
+        "recommend": "食べログ 3.09（27 則）、Google 3.7（156 則），兩邊都普通",
+        "localFlavor": "海上屋形的浦村牡蠣吃到飽",
+        "groupFit": "fit15 unknown，可預約",
+        "elderFit": "座位形式、階梯所有來源都沒寫，資料不足",
+        "kidsFit": "未就學兒童不能預約（6～10 歲可以）"
+      },
+      "confidence": "low",
+      "assessed": "2026-10-18"
     }
   },
   {
@@ -12197,7 +14188,7 @@
       "instagram": null
     },
     "tags": [],
-    "tier": null,
+    "tier": "B",
     "sources": [
       {
         "retrieved": "2026-10-17",
@@ -12314,6 +14305,44 @@
     "accessibility": {
       "barrierFree": null,
       "note": "假日 10 點幾乎沒人、30 分鐘內客滿，假日午餐擁擠（2017 評論）"
+    },
+    "summary": {
+      "text": "相差的「海の駅 黒潮」本店，市場附設的海鮮餐廳，堆滿海鮮丼、究極海鮮丼「赤」3,980 円、每日煮魚定食，車蝦現殺。年中無休，假日中午會擠，早去比較好。",
+      "pros": [
+        "年中無休，過年也營業",
+        "海鮮新鮮、份量多，店員親切",
+        "有炸牡蠣定食、伊勢海老美乃滋燒等熟食"
+      ],
+      "cons": [
+        "不接受預約",
+        "席數、兒童、無障礙沒有來源",
+        "鳥羽站開車約 15 分"
+      ],
+      "basedOn": [
+        "http://www.uminoeki-kuroshio.com/ousatsu/",
+        "https://retty.me/restaurant/100000721346/",
+        "https://ameblo.jp/winered1007/entry-12822900331.html"
+      ],
+      "generated": "2026-10-18"
+    },
+    "assessment": {
+      "rubric": "restaurant-v1",
+      "scores": {
+        "recommend": 3,
+        "localFlavor": 3,
+        "groupFit": 1,
+        "elderFit": null,
+        "kidsFit": 3
+      },
+      "rationale": {
+        "recommend": "食べログ 3.43（138 則）、Google 4.1（572 則），部落格、Retty 好評",
+        "localFlavor": "海鮮丼、煮魚定食，類似的店很多",
+        "groupFit": "不接受預約",
+        "elderFit": "座位形式、階梯所有來源都沒寫，資料不足",
+        "kidsFit": "有熟食定食；兒童規定沒有來源"
+      },
+      "confidence": "medium",
+      "assessed": "2026-10-18"
     }
   },
   {
@@ -12398,7 +14427,7 @@
       "instagram": "@osatsu_kitchen0032"
     },
     "tags": [],
-    "tier": null,
+    "tier": "B",
     "sources": [
       {
         "retrieved": "2026-10-17",
@@ -12525,6 +14554,42 @@
         "parking：用海女文化資料館前免費停車場（https://osatsu.org/kitchen/）",
         "phone：0599-37-7732（https://osatsu.org/kitchen/）"
       ]
+    },
+    "summary": {
+      "text": "相差的輕食站，用相差漁港雜魚做的 ZAKO 炸物 450 円、炸物三明治 580 円，大內山霜淇淋（伊勢茶口味）、相差產天草的心太。年中無休 9:00～17:00。",
+      "pros": [
+        "年中無休",
+        "霜淇淋、炸物小孩喜歡",
+        "相差漁港雜魚、天草的在地小吃"
+      ],
+      "cons": [
+        "不接受預約，席數沒寫",
+        "鳥羽站開車約 25 分",
+        "個人心得沒找到"
+      ],
+      "basedOn": [
+        "https://osatsu.org/kitchen/"
+      ],
+      "generated": "2026-10-18"
+    },
+    "assessment": {
+      "rubric": "restaurant-v1",
+      "scores": {
+        "recommend": 3,
+        "localFlavor": 3,
+        "groupFit": 3,
+        "elderFit": null,
+        "kidsFit": 4
+      },
+      "rationale": {
+        "recommend": "食べログ 3.33（69 則）、Google 4.5（249 則），評論數上限 3",
+        "localFlavor": "相差漁港雜魚、天草，在地但是輕食",
+        "groupFit": "外帶為主的輕食，15 人可以分批買",
+        "elderFit": "座位形式、階梯所有來源都沒寫，資料不足",
+        "kidsFit": "可帶小孩，霜淇淋、炸物"
+      },
+      "confidence": "low",
+      "assessed": "2026-10-18"
     }
   },
   {
@@ -12611,7 +14676,7 @@
       "instagram": null
     },
     "tags": [],
-    "tier": null,
+    "tier": "B",
     "sources": [
       {
         "retrieved": "2026-10-17",
@@ -12754,6 +14819,45 @@
       "dossierFacts": [
         "phone：0599-33-7117（https://www.toba-nakashin.com/）"
       ]
+    },
+    "summary": {
+      "text": "相差的鰻魚老店，鰻魚批發商出身，炭火燒、秘傳醬汁、自家米；鰻魚飯 1,780～3,980 円，最受歡迎的是鰻魚三吃 3,580 円。ねとらぼ 依 Google 評分排名第 2。",
+      "pros": [
+        "Google 4.6（275 則），在地人長年光顧",
+        "有和室包廂，官網寫一個人到團體都可以；可預約",
+        "可外帶鰻魚便當"
+      ],
+      "cons": [
+        "只有吧台和座敷（榻榻米）",
+        "週三公休，另有臨時休業",
+        "鰻魚價位偏高；包廂人數沒寫"
+      ],
+      "basedOn": [
+        "https://www.toba-nakashin.com/",
+        "https://www.toba-nakashin.com/menu.html",
+        "https://www.nap-camp.com/mag/23934",
+        "https://nlab.itmedia.co.jp/research/articles/3154600/"
+      ],
+      "generated": "2026-10-18"
+    },
+    "assessment": {
+      "rubric": "restaurant-v1",
+      "scores": {
+        "recommend": 3,
+        "localFlavor": 1,
+        "groupFit": 3,
+        "elderFit": 2,
+        "kidsFit": 3
+      },
+      "rationale": {
+        "recommend": "食べログ 3.27（50 則）、Google 4.6（275 則），評論數上限 3",
+        "localFlavor": "鰻魚，不是伊勢志摩的特產",
+        "groupFit": "fit15 unknown，但官網寫可接團體、有包廂",
+        "elderFit": "吧台和座敷",
+        "kidsFit": "鰻魚是熟食，但價位高；兒童規定沒有來源"
+      },
+      "confidence": "low",
+      "assessed": "2026-10-18"
     }
   },
   {
@@ -12833,7 +14937,7 @@
       "instagram": null
     },
     "tags": [],
-    "tier": null,
+    "tier": "B",
     "sources": [
       {
         "retrieved": "2026-10-17",
@@ -12945,6 +15049,42 @@
     "extra": {
       "inclusion": "A",
       "igHashtag": "#海の食堂久兵衛（食べログ的公式アカウント欄是 hashtag 頁，不是帳號）"
+    },
+    "summary": {
+      "text": "相差的海鮮食堂，招牌是蝦、干貝、魚、季節蔬菜的大蝦天丼，伊勢烏龍也受歡迎，另有主廚推薦午餐。店內沉穩。",
+      "pros": [
+        "Google 4.6（138 則）",
+        "天丼、炸物、伊勢烏龍都是熟食",
+        "可以預約"
+      ],
+      "cons": [
+        "週三公休",
+        "價格、席數、座位都沒有來源",
+        "讀文只有 1 篇列表文章"
+      ],
+      "basedOn": [
+        "https://www.nap-camp.com/mag/50903"
+      ],
+      "generated": "2026-10-18"
+    },
+    "assessment": {
+      "rubric": "restaurant-v1",
+      "scores": {
+        "recommend": 3,
+        "localFlavor": 3,
+        "groupFit": 2,
+        "elderFit": null,
+        "kidsFit": 3
+      },
+      "rationale": {
+        "recommend": "食べログ 3.16（20 則）、Google 4.6（138 則），評論數上限 3",
+        "localFlavor": "天丼、伊勢烏龍，有在地食材",
+        "groupFit": "fit15 unknown，可預約",
+        "elderFit": "座位形式、階梯所有來源都沒寫，資料不足",
+        "kidsFit": "熟食為主；兒童規定沒有來源"
+      },
+      "confidence": "low",
+      "assessed": "2026-10-18"
     }
   },
   {
@@ -13037,7 +15177,7 @@
       "instagram": "@amanoie_gozaya"
     },
     "tags": [],
-    "tier": null,
+    "tier": "B",
     "sources": [
       {
         "retrieved": "2026-10-17",
@@ -13177,6 +15317,45 @@
     "accessibility": {
       "barrierFree": null,
       "note": "咖啡在 2 樓；停車用海女文化資料館前免費停車場"
+    },
+    "summary": {
+      "text": "石神さん參道上、屋齡約 80 年的前海女住家，1 樓賣海女周邊和鳥羽特產，2 樓是咖啡休息區。相差吃法的黃豆粉石花凍 300 円、珍珠拿鐵冰。",
+      "pros": [
+        "參拜石神さん順路，入館、休息免費",
+        "前海女住家，看得到天草煮寒天",
+        "價格便宜（300 円左右）"
+      ],
+      "cons": [
+        "咖啡區在 2 樓要爬樓梯",
+        "不是正餐店；席數沒寫",
+        "心得只有 2016 年的 2 則"
+      ],
+      "basedOn": [
+        "https://osatsu.org/gozaya/",
+        "https://www.kankomie.or.jp/report/508",
+        "https://www.mapple.net/article/32428/",
+        "https://retty.me/restaurant/100001004142/"
+      ],
+      "generated": "2026-10-18"
+    },
+    "assessment": {
+      "rubric": "restaurant-v1",
+      "scores": {
+        "recommend": 3,
+        "localFlavor": 4,
+        "groupFit": 3,
+        "elderFit": 2,
+        "kidsFit": 3
+      },
+      "rationale": {
+        "recommend": "食べログ 3.15（26 則）、Google 4.2（56 則），評論數上限 3",
+        "localFlavor": "前海女住家、相差的石花凍",
+        "groupFit": "休息處，15 人可以分批",
+        "elderFit": "咖啡區在 2 樓，電梯沒寫",
+        "kidsFit": "石花凍、冰品；兒童規定沒有來源"
+      },
+      "confidence": "low",
+      "assessed": "2026-10-18"
     }
   },
   {
@@ -13268,7 +15447,7 @@
       "instagram": "@amakoyauemura"
     },
     "tags": [],
-    "tier": null,
+    "tier": "B",
     "sources": [
       {
         "retrieved": "2026-10-17",
@@ -13405,6 +15584,44 @@
     "accessibility": {
       "barrierFree": null,
       "note": "官網寫沒有停車場"
+    },
+    "summary": {
+      "text": "相差的小型海女小屋，炭火浜焼き套餐 4,000 円（竹莢魚乾、大アサリ、さざえ等，1～4 月加牡蠣），可加鮑魚、伊勢海老。海女有空的日子才開，席數 15（含戶外 4）。",
+      "pros": [
+        "海女小屋的浜焼き體驗，2 月套餐有牡蠣",
+        "電話、Email、預約網站都能訂",
+        "全是燒烤熟食"
+      ],
+      "cons": [
+        "不定休（海女有空才開），沒有停車場",
+        "席數 15 含戶外，15 人全員不行，要分組",
+        "只收現金；兒童價沒寫"
+      ],
+      "basedOn": [
+        "https://amakoyauemura.com/",
+        "https://amakoyauemura.edisone.jp/",
+        "https://www.city.toba.mie.jp/material/files/group/37/tobameshi_map_2022_06.pdf"
+      ],
+      "generated": "2026-10-18"
+    },
+    "assessment": {
+      "rubric": "restaurant-v1",
+      "scores": {
+        "recommend": 3,
+        "localFlavor": 5,
+        "groupFit": 2,
+        "elderFit": 3,
+        "kidsFit": 3
+      },
+      "rationale": {
+        "recommend": "Google 4.8 只有 27 則、沒有食べログ，評論數上限 3",
+        "localFlavor": "海女小屋的浜焼き，本身就是在地體驗",
+        "groupFit": "fit15 unknown：15 席含戶外，可預約",
+        "elderFit": "吧台和桌席，沒有停車場要走",
+        "kidsFit": "全是熟食；兒童規定沒有來源"
+      },
+      "confidence": "low",
+      "assessed": "2026-10-18"
     }
   },
   {
@@ -13484,7 +15701,7 @@
       "instagram": null
     },
     "tags": [],
-    "tier": null,
+    "tier": "S",
     "sources": [
       {
         "retrieved": "2026-10-17",
@@ -13618,6 +15835,46 @@
         "price：磯丼 1,900 円、マグロ丼 1,700 円、海老フライ定食 2,000 円、焼き魚定食 2,700 円、大漁舟盛り 3,500 円、日替わりおまかせ 5,900 円（含稅）（https://www.nap-camp.com/mag/23934）",
         "group.seats：座位偏少、店內不大（沒有寫數字）（https://4travel.jp/dm_hotel-10219325）"
       ]
+    },
+    "summary": {
+      "text": "石鏡漁港正前方的漁師町食堂，名物磯丼 1,900 円、大尾的炸蝦定食 2,000 円附平政魚生魚片，份量大、會送上烤魚下巴等小菜。食べログ 3.68（324 則），部落格都說新鮮、很滿意。",
+      "pros": [
+        "食べログ 3.68 是鳥羽第二高，Google 4.2（660 則），列表和部落格都推",
+        "漁港前現撈的海鮮，份量大",
+        "有炸蝦、烤魚，小孩可以吃"
+      ],
+      "cons": [
+        "不能預約、店內不大，15 人要分組錯開",
+        "自助取餐、店內窄；週末要排隊",
+        "只收現金；週四公休；鳥羽站開車約 25 分"
+      ],
+      "basedOn": [
+        "https://www.nap-camp.com/mag/50903",
+        "https://www.nap-camp.com/mag/23934",
+        "https://ameblo.jp/yucchi87/entry-12772484903.html",
+        "https://ameblo.jp/himawari090719/entry-12972291992.html",
+        "https://4travel.jp/dm_hotel-10219325"
+      ],
+      "generated": "2026-10-18"
+    },
+    "assessment": {
+      "rubric": "restaurant-v1",
+      "scores": {
+        "recommend": 5,
+        "localFlavor": 4,
+        "groupFit": 1,
+        "elderFit": 2,
+        "kidsFit": 4
+      },
+      "rationale": {
+        "recommend": "食べログ 3.68（324 則）、Google 4.2（660 則），なっぷ 2 篇、部落格 2 篇都推；國崎・石鏡的代表",
+        "localFlavor": "漁港前的漁師町食堂，磯丼、平政魚",
+        "groupFit": "不能預約",
+        "elderFit": "座位形式沒有來源，但自助取餐、店內窄、週末排隊",
+        "kidsFit": "部落格有家族客，有炸蝦、烤魚等熟食；兒童餐沒有來源"
+      },
+      "confidence": "medium",
+      "assessed": "2026-10-18"
     }
   },
   {
@@ -13709,7 +15966,7 @@
       "instagram": "@tobatenboudai"
     },
     "tags": [],
-    "tier": null,
+    "tier": "B",
     "sources": [
       {
         "retrieved": "2026-10-17",
@@ -13849,6 +16106,46 @@
       "dossierFacts": [
         "menuPage：官網菜單頁（https://www.toba-tenboudai.co.jp/cafe-shop/）"
       ]
+    },
+    "summary": {
+      "text": "珍珠路上鳥羽展望台的咖啡，看得到太平洋，海女露台聖代 1,080 円起（冬季是金子芋聖代）、鳥羽產石蓴冰沙 730 円，也有夾伊勢海老、牡蠣的麵包。Google 5,403 則，是鳥羽評論數第二多的地點。",
+      "pros": [
+        "展望台景觀，兜風休息、家庭客適合",
+        "有團體預約窗口（20 人以上要申請）",
+        "甜點、霜淇淋小孩喜歡"
+      ],
+      "cons": [
+        "不是正餐，菜單偏甜點",
+        "團體要事先聯絡；席數沒公開",
+        "平日沒有公車，要開車；天候不佳可能臨時休"
+      ],
+      "basedOn": [
+        "https://www.toba-tenboudai.co.jp/",
+        "https://www.toba-tenboudai.co.jp/cafe-shop/",
+        "https://www.toba-tenboudai.co.jp/reserve/",
+        "https://www.toba-tenboudai.co.jp/access/",
+        "https://www.nap-camp.com/mag/23934"
+      ],
+      "generated": "2026-10-18"
+    },
+    "assessment": {
+      "rubric": "restaurant-v1",
+      "scores": {
+        "recommend": 3,
+        "localFlavor": 3,
+        "groupFit": 4,
+        "elderFit": null,
+        "kidsFit": 4
+      },
+      "rationale": {
+        "recommend": "食べログ 3.32（58 則）、Google 4.0（5,403 則），評價普通但人氣高",
+        "localFlavor": "石蓴冰沙、金子芋聖代、伊勢海老麵包，在地食材的甜點輕食",
+        "groupFit": "fit15 yes：官網有團體預約，要事先聯絡",
+        "elderFit": "座位形式、階梯所有來源都沒寫，資料不足",
+        "kidsFit": "可帶小孩，甜點、霜淇淋"
+      },
+      "confidence": "medium",
+      "assessed": "2026-10-18"
     }
   },
   {
@@ -13935,7 +16232,7 @@
       "instagram": null
     },
     "tags": [],
-    "tier": null,
+    "tier": "B",
     "sources": [
       {
         "retrieved": "2026-10-17",
@@ -14057,6 +16354,43 @@
         "price：餐點方案 3,300 円／7,700 円（含鮑魚、伊勢龍蝦、海螺）／13,200 円（再加伊勢龍蝦、鮑魚殘酷燒）（http://www.isesima.net/kadoya/plan.html）",
         "phone：0599-33-6051（http://www.isesima.net/kadoya/）"
       ]
+    },
+    "summary": {
+      "text": "國崎的「元祖うに飯の宿」，廚師老闆和現役海女老闆娘掌廚，1 樓改成お食事処（17:00～22:00）。餐點方案 3,300 円起，13,200 円方案有伊勢海老、鮑魚殘酷燒。補國崎晚上缺店的缺口。",
+      "pros": [
+        "海女老闆娘掌廚，伊勢海老、鮑魚",
+        "有吧台、桌席、座敷包廂，可預約",
+        "國崎晚上少數有營業的店"
+      ],
+      "cons": [
+        "補缺口納入，食べログ只有 3 則、Google 27 則",
+        "非住客能不能用餐、うに飯是否只附早餐，要確認",
+        "官網很舊，沒有心得"
+      ],
+      "basedOn": [
+        "http://www.isesima.net/kadoya/",
+        "http://www.isesima.net/kadoya/plan.html"
+      ],
+      "generated": "2026-10-18"
+    },
+    "assessment": {
+      "rubric": "restaurant-v1",
+      "scores": {
+        "recommend": 2,
+        "localFlavor": 4,
+        "groupFit": 3,
+        "elderFit": 4,
+        "kidsFit": 3
+      },
+      "rationale": {
+        "recommend": "缺口保底（D）納入，評論合計 30 則、沒有心得 → 最多 2",
+        "localFlavor": "海女老闆娘掌廚的伊勢海老、鮑魚、うに飯",
+        "groupFit": "fit15 split：26 席、有座敷包廂",
+        "elderFit": "有桌席",
+        "kidsFit": "有煮魚、炸物；兒童規定沒有來源"
+      },
+      "confidence": "low",
+      "assessed": "2026-10-18"
     }
   },
   {
@@ -14141,7 +16475,7 @@
       "instagram": null
     },
     "tags": [],
-    "tier": null,
+    "tier": "B",
     "sources": [
       {
         "retrieved": "2026-10-17",
@@ -14284,6 +16618,44 @@
         "price：おまかせ 3,700 円（含稅，1 人起）；海鮮丼 1,750 円；刺身定食 1,200 円；上にぎり 2,500 円；伊勢海老造り 3,900 円〜（http://www.amigo.ne.jp/~marumitu/）",
         "hours_tobameshi：11:00～19:00（夜は予約制），不定休（衝突）（https://www.city.toba.mie.jp/material/files/group/37/tobameshi_map_2022_06.pdf）"
       ]
+    },
+    "summary": {
+      "text": "答志島和具港步行 5 分的家庭式壽司店，用島上漁師、海女當天捕的地魚，點餐後才殺魚；店家推薦おまかせ 3,700 円、海鮮丼 1,750 円，冬天有熟成的答志島土魠（サワラ）和剝皮魚。",
+      "pros": [
+        "島上當天的地魚，冬季有土魠、剝皮魚",
+        "刺身定食 1,200 円起，價格實在",
+        "有 4 人桌 3 張；有炸物、烏龍麵"
+      ],
+      "cons": [
+        "只有 19 席、不能包場，15 人坐不下",
+        "18:00 以後要預約；臨時休業",
+        "離島：要搭定期船約 15 分"
+      ],
+      "basedOn": [
+        "http://www.amigo.ne.jp/~marumitu/",
+        "https://www.mirrormedia.mg/story/20260323tour001",
+        "https://www.city.toba.mie.jp/material/files/group/37/tobameshi_map_2022_06.pdf"
+      ],
+      "generated": "2026-10-18"
+    },
+    "assessment": {
+      "rubric": "restaurant-v1",
+      "scores": {
+        "recommend": 3,
+        "localFlavor": 4,
+        "groupFit": 2,
+        "elderFit": 4,
+        "kidsFit": 3
+      },
+      "rationale": {
+        "recommend": "食べログ 3.52（72 則）、Google 4.5（235 則），評論數上限 3",
+        "localFlavor": "答志島的地魚、土魠、伊勢海老",
+        "groupFit": "fit15 unknown：19 席、不能包場",
+        "elderFit": "有桌席（4 人桌 ×3）",
+        "kidsFit": "有炸物、烏龍麵；兒童規定沒有來源"
+      },
+      "confidence": "low",
+      "assessed": "2026-10-18"
     }
   },
   {
@@ -14368,7 +16740,7 @@
       "instagram": "@daiharu_sushi"
     },
     "tags": [],
-    "tier": null,
+    "tier": "B",
     "sources": [
       {
         "retrieved": "2026-10-17",
@@ -14478,6 +16850,42 @@
       "conflicts": [
         "Google 沒有營業時間"
       ]
+    },
+    "summary": {
+      "text": "答志島和具港步行約 5 分的壽司、和食店，食べログ寫 30 席（含 12 人包廂）、20 人以下可包場、14 人以上有團體折扣。唯一已知的 Ameba 帳號已失效，讀文找不到任何介紹。",
+      "pros": [
+        "食べログ：可包場（20 人以下）、14 人以上團體折扣",
+        "吧台、桌席、包廂"
+      ],
+      "cons": [
+        "讀文找不到任何來源，還在不在營業要確認",
+        "中午要先聯絡",
+        "菜單、價格、兒童都沒有資料"
+      ],
+      "basedOn": [
+        "https://tabelog.com/mie/A2403/A240302/24008067/",
+        "https://maps.google.com/?cid=4287281993086933971"
+      ],
+      "generated": "2026-10-18"
+    },
+    "assessment": {
+      "rubric": "restaurant-v1",
+      "scores": {
+        "recommend": 2,
+        "localFlavor": 3,
+        "groupFit": 5,
+        "elderFit": 4,
+        "kidsFit": null
+      },
+      "rationale": {
+        "recommend": "食べログ 3.23（20 則）、Google 4.6（64 則），讀文沒有任何介紹",
+        "localFlavor": "離島的壽司、和食；菜單沒有來源",
+        "groupFit": "fit15 yes：30 席、貸切 20 人以下、團體折扣",
+        "elderFit": "有桌席",
+        "kidsFit": "能不能帶小孩、兒童餐、熟食選項都沒有來源，資料不足"
+      },
+      "confidence": "low",
+      "assessed": "2026-10-18"
     }
   },
   {
@@ -14606,7 +17014,7 @@
       "instagram": "@104kikuya"
     },
     "tags": [],
-    "tier": null,
+    "tier": "B",
     "sources": [
       {
         "retrieved": "2026-10-17",
@@ -14780,6 +17188,46 @@
     "accessibility": {
       "barrierFree": null,
       "note": "官網未寫無障礙；1 樓是掘りごたつ席，包廂在 2 樓"
+    },
+    "summary": {
+      "text": "答志港步行 3 分，老闆是漁協仲買人、有河豚執照，主打品牌認定的答志島トロさわら。午餐御膳 3,300 円、海の恵コース 3,850 円起，完全預約制，套餐可從和具港接送。",
+      "pros": [
+        "答志島トロさわら、自家製干物，官網資料完整",
+        "預約套餐可從和具港開車接；晚餐可送到島內住宿",
+        "有兒童餐（1,320 円，前一天預約）"
+      ],
+      "cons": [
+        "10 歲未滿原則上不能入店",
+        "1 樓掘りごたつ最多 12 人＋吧台 6，15 人不能同桌；2 樓包廂要爬樓梯",
+        "サワラづくしコース只到 1/31；只收現金"
+      ],
+      "basedOn": [
+        "https://104kikuya.com/",
+        "https://104kikuya.com/shop/",
+        "https://104kikuya.com/archives/kidsdrink/",
+        "https://104kikuya.com/archives/%e7%ad%94%e5%bf%97%e5%b3%b6%e6%b5%b7%e3%81%ae%e6%81%b5%e3%82%b3%e3%83%bc%e3%82%b9%ef%bc%bb10%e6%9c%881%e6%97%a5%e3%81%8b%e3%82%89%ef%bc%bd/",
+        "https://104kikuya.com/reservation/"
+      ],
+      "generated": "2026-10-18"
+    },
+    "assessment": {
+      "rubric": "restaurant-v1",
+      "scores": {
+        "recommend": 3,
+        "localFlavor": 4,
+        "groupFit": 2,
+        "elderFit": 3,
+        "kidsFit": 2
+      },
+      "rationale": {
+        "recommend": "食べログ 3.04（5 則）、Google 4.5（53 則），評論數上限 3",
+        "localFlavor": "答志島トロさわら、島上漁獲",
+        "groupFit": "最大 12 人一桌＋吧台，15 人要分開",
+        "elderFit": "掘りごたつ可垂腳坐，包廂在 2 樓",
+        "kidsFit": "10 歲未滿原則不可（大人能管好可以），有兒童餐"
+      },
+      "confidence": "low",
+      "assessed": "2026-10-18"
     }
   },
   {
@@ -14859,7 +17307,7 @@
       "instagram": null
     },
     "tags": [],
-    "tier": null,
+    "tier": "B",
     "sources": [
       {
         "retrieved": "2026-10-17",
@@ -14949,6 +17397,42 @@
     "smoking": null,
     "extra": {
       "inclusion": "D"
+    },
+    "summary": {
+      "text": "菅島港附近、島上少數的食堂，Google 4.0（25 則），10:00～17:00、週三休。讀文找不到任何介紹、菜單、價格。",
+      "pros": [
+        "菅島少數可以坐下吃的店"
+      ],
+      "cons": [
+        "讀文沒有任何來源，菜單、席數、座位都不知道",
+        "週三休（菅島週三沒有店，要靠おかげ屋的便當）",
+        "2 月平日有沒有營業要打電話"
+      ],
+      "basedOn": [
+        "https://tabelog.com/mie/A2403/A240302/24006622/",
+        "https://maps.google.com/?cid=1613137957311032687",
+        "https://www.city.toba.mie.jp/material/files/group/37/tobameshi_map_2022_06.pdf"
+      ],
+      "generated": "2026-10-18"
+    },
+    "assessment": {
+      "rubric": "restaurant-v1",
+      "scores": {
+        "recommend": 2,
+        "localFlavor": null,
+        "groupFit": null,
+        "elderFit": null,
+        "kidsFit": null
+      },
+      "rationale": {
+        "recommend": "缺口保底（D）納入，食べログ 3 則、Google 25 則，沒有任何介紹",
+        "localFlavor": "菜單、招牌菜都沒有來源，資料不足",
+        "groupFit": "席數、能不能預約都沒有來源，資料不足",
+        "elderFit": "座位形式、階梯所有來源都沒寫，資料不足",
+        "kidsFit": "能不能帶小孩、兒童餐、熟食選項都沒有來源，資料不足"
+      },
+      "confidence": "low",
+      "assessed": "2026-10-18"
     }
   },
   {
@@ -14988,7 +17472,7 @@
       "instagram": null
     },
     "tags": [],
-    "tier": null,
+    "tier": "B",
     "sources": [
       {
         "retrieved": "2026-10-17",
@@ -15102,6 +17586,43 @@
     "accessibility": {
       "barrierFree": null,
       "note": "神島港船乗り場步行數分鐘，時計台跡旁"
+    },
+    "summary": {
+      "text": "神島港步行數分的咖啡食堂，民宿山海荘的姊妹店，島民也常去；加鳥羽產石蓴的蛋花勾芡烏龍麵 600 円，菜單每天不同，有時有神島產魚的定食。",
+      "pros": [
+        "神島少數的午餐處，觀光三重列為日歸遊客午餐",
+        "有桌椅座位，也有小上がり",
+        "價格便宜（600 円起）"
+      ],
+      "cons": [
+        "只有中午，營業時間、公休沒寫，要先打電話",
+        "席數沒寫，15 人要分批",
+        "資料是 2023 年取材"
+      ],
+      "basedOn": [
+        "https://www.kankomie.or.jp/report/1412",
+        "https://www.city.toba.mie.jp/material/files/group/37/tobameshi_map_2022_06.pdf"
+      ],
+      "generated": "2026-10-18"
+    },
+    "assessment": {
+      "rubric": "restaurant-v1",
+      "scores": {
+        "recommend": 2,
+        "localFlavor": 3,
+        "groupFit": 2,
+        "elderFit": 4,
+        "kidsFit": 3
+      },
+      "rationale": {
+        "recommend": "缺口保底（D）納入，食べログ 2 則、Google 8 則，只有觀光三重 1 篇",
+        "localFlavor": "石蓴烏龍麵、神島產魚的定食",
+        "groupFit": "fit15 unknown，可預約；小店",
+        "elderFit": "有桌椅座位",
+        "kidsFit": "烏龍麵、義大利麵；兒童規定沒有來源"
+      },
+      "confidence": "low",
+      "assessed": "2026-10-18"
     }
   },
   {
@@ -15212,7 +17733,7 @@
       "instagram": null
     },
     "tags": [],
-    "tier": null,
+    "tier": "A",
     "sources": [
       {
         "retrieved": "2026-10-17",
@@ -15375,6 +17896,46 @@
         "access.note：鳥羽站計程車 5 分；巴士「市民体育館前」下車即到；店前停車 15 台（http://niku-matsumura.co.jp/access/index.html）",
         "menu.note：壽喜燒、涮涮鍋 2 人起點；三種不可混點；服務菜單不能刷卡；有英文菜單（http://niku-matsumura.co.jp/menu/index.html）"
       ]
+    },
+    "summary": {
+      "text": "鳥羽市區外圍的松阪牛、黑毛和牛專門店，招牌是炭火網燒和壽喜燒（松阪牛壽喜燒 11,000 円），平價的服務菜單 4,300 円起。6 個房間可容納 50～70 人，女服務員幫忙煮壽喜燒。",
+      "pros": [
+        "6 個包廂、大部屋可容納 50～70 人，15 人可以一起吃",
+        "有英文菜單、翻譯機",
+        "鳥羽站計程車 5 分，店前停車 15 台"
+      ],
+      "cons": [
+        "全室座敷（榻榻米），有沒有椅子要問",
+        "價位高，壽喜燒、涮涮鍋 2 人起點",
+        "週三公休；兒童餐沒寫"
+      ],
+      "basedOn": [
+        "http://niku-matsumura.co.jp/",
+        "http://niku-matsumura.co.jp/menu/index.html",
+        "http://niku-matsumura.co.jp/access/index.html",
+        "https://www.mapple.net/article/32428/",
+        "https://www.city.toba.mie.jp/material/files/group/37/tobameshi_map_2022_06.pdf"
+      ],
+      "generated": "2026-10-18"
+    },
+    "assessment": {
+      "rubric": "restaurant-v1",
+      "scores": {
+        "recommend": 4,
+        "localFlavor": 3,
+        "groupFit": 5,
+        "elderFit": 2,
+        "kidsFit": 3
+      },
+      "rationale": {
+        "recommend": "食べログ 3.57（123 則）、Google 4.3（188 則），媒體、市府地圖收錄",
+        "localFlavor": "松阪牛是三重的特產，但不是伊勢志摩的海鮮",
+        "groupFit": "fit15 yes：6 個包廂、可容納 50～70 人、可預約",
+        "elderFit": "全室座敷",
+        "kidsFit": "熟食；兒童規定沒有來源"
+      },
+      "confidence": "low",
+      "assessed": "2026-10-18"
     }
   },
   {
@@ -15485,7 +18046,7 @@
       "instagram": null
     },
     "tags": [],
-    "tier": null,
+    "tier": "A",
     "sources": [
       {
         "retrieved": "2026-10-17",
@@ -15647,6 +18208,47 @@
     "accessibility": {
       "barrierFree": null,
       "note": "店外常排隊；有停車場；全席可吸菸（待確認現況）"
+    },
+    "summary": {
+      "text": "安樂島的海鮮食堂，まっぷる 稱伊勢志摩海鮮丼熱潮的帶頭店，約 10 種鳥羽海鮮的むつみ丼 2,700 円，也有手こね寿司、炸蝦定食。心得說生魚片紮實、店員親切、乾淨。",
+      "pros": [
+        "食べログ 3.54（227 則）、Google 4.3（627 則）",
+        "有手こね寿司；市府地圖說帶小孩也安心",
+        "桌席、座敷、吧台都有"
+      ],
+      "cons": [
+        "午晚餐都不接受預約，店外常排隊",
+        "舊資料寫全席可吸菸",
+        "週三公休；要搭車"
+      ],
+      "basedOn": [
+        "http://toba-mutsumi.com",
+        "https://toba-mutsumi.com/cuisine.html",
+        "https://toba-mutsumi.com/access.html",
+        "https://www.mapple.net/article/32188/",
+        "https://hamoni.jp/area/mie/toba/list/washoku-japanese-cuisine",
+        "https://www.city.toba.mie.jp/material/files/group/37/tobameshi_map_2022_06.pdf"
+      ],
+      "generated": "2026-10-18"
+    },
+    "assessment": {
+      "rubric": "restaurant-v1",
+      "scores": {
+        "recommend": 4,
+        "localFlavor": 3,
+        "groupFit": 1,
+        "elderFit": 3,
+        "kidsFit": 4
+      },
+      "rationale": {
+        "recommend": "食べログ 3.54（227 則）、Google 4.3（627 則），まっぷる、HAMONI 心得好評",
+        "localFlavor": "鳥羽海鮮的海鮮丼、手こね寿司",
+        "groupFit": "不接受預約（官網另寫「宴會承接」，要電話問）",
+        "elderFit": "有桌席，但要排隊",
+        "kidsFit": "可帶小孩，有炸蝦"
+      },
+      "confidence": "medium",
+      "assessed": "2026-10-18"
     }
   },
   {
@@ -15766,7 +18368,7 @@
       "instagram": "@iseebi_kagez"
     },
     "tags": [],
-    "tier": null,
+    "tier": "A",
     "sources": [
       {
         "retrieved": "2026-10-17",
@@ -15954,6 +18556,49 @@
         "group.note：午餐限定菜單全部限量、不接受團體預約（https://kagetu.co.jp/menu2/menulunch/）",
         "access.note：預約可從鳥羽站免費接送；停車 20 台（https://www.mapple.net/article/32188/）"
       ]
+    },
+    "summary": {
+      "text": "大明東町的伊勢海老專門店，點餐後從店中央大水槽撈活伊勢海老用檜木蒸籠蒸；午餐限定的伊勢海老地魚海鮮丼 5,500 円、姿蒸套餐 8,800 円起，2 月有鳥羽牡蠣。預約可以從鳥羽站免費接送。",
+      "pros": [
+        "活伊勢海老現蒸，心得說蝦頭味噌湯最好",
+        "後方有 40 席椅子席；有兒童套餐 1,100 円",
+        "預約可免費從鳥羽站接送，大巴可停"
+      ],
+      "cons": [
+        "午餐限定菜單不接受團體預約，團體要訂套餐",
+        "價位高（套餐 8,800 円起）",
+        "熱門，開店前就有人等"
+      ],
+      "basedOn": [
+        "https://kagetu.co.jp/",
+        "https://kagetu.co.jp/information/",
+        "https://kagetu.co.jp/menu2/menuiseebi/",
+        "https://kagetu.co.jp/menu2/menulunch/",
+        "https://kagetu.co.jp/menu2/menutanpinchild/",
+        "https://www.mapple.net/article/32188/",
+        "https://hamoni.jp/area/mie/toba/list/curry-and-donburi",
+        "https://www.city.toba.mie.jp/material/files/group/37/tobameshi_map_2022_06.pdf"
+      ],
+      "generated": "2026-10-18"
+    },
+    "assessment": {
+      "rubric": "restaurant-v1",
+      "scores": {
+        "recommend": 4,
+        "localFlavor": 4,
+        "groupFit": 3,
+        "elderFit": 4,
+        "kidsFit": 5
+      },
+      "rationale": {
+        "recommend": "食べログ 3.53（294 則）、Google 4.3（637 則），まっぷる、市府地圖、HAMONI 心得",
+        "localFlavor": "活伊勢海老專門，冬季有鳥羽牡蠣",
+        "groupFit": "fit15 split：80～110 席、套餐可預約，午餐限定不接團體",
+        "elderFit": "有 40 席椅子席",
+        "kidsFit": "有兒童套餐 1,100 円"
+      },
+      "confidence": "medium",
+      "assessed": "2026-10-18"
     }
   },
   {
@@ -16055,7 +18700,7 @@
       "instagram": null
     },
     "tags": [],
-    "tier": null,
+    "tier": "B",
     "sources": [
       {
         "retrieved": "2026-10-17",
@@ -16218,6 +18863,47 @@
     "accessibility": {
       "barrierFree": null,
       "note": "入口通道有屋頂和扶手，雨天可開車到門口上下車；有無障礙停車位、停車場全鋪裝"
+    },
+    "summary": {
+      "text": "安樂島町的漁師めし食堂，鳥羽漁港當日進貨，伊勢海老炸物定食 4,400 円、大將推薦海鮮丼定食 2,090 円，冬季有大炸牡蠣定食、漁師鍋套餐。包場最多約 50 人，2 人起可辦宴會。",
+      "pros": [
+        "包場最多約 50 人、可依預算調整，15 人全員可以",
+        "入口有屋頂和扶手，車可以開到門口；有無障礙停車位",
+        "鳥羽市內可詢問免費接送"
+      ],
+      "cons": [
+        "Google 3.9（991 則），評價普通",
+        "週三、週四公休（2026-09 起）",
+        "席數、座位形式、兒童餐沒有來源"
+      ],
+      "basedOn": [
+        "http://www.minatosyokudo.com/",
+        "http://www.minatosyokudo.com/menu.html",
+        "http://www.minatosyokudo.com/enkai.html",
+        "https://www.nap-camp.com/mag/50903",
+        "https://www.mapple.net/article/32428/",
+        "https://www.city.toba.mie.jp/material/files/group/37/tobameshi_map_2022_06.pdf"
+      ],
+      "generated": "2026-10-18"
+    },
+    "assessment": {
+      "rubric": "restaurant-v1",
+      "scores": {
+        "recommend": 3,
+        "localFlavor": 4,
+        "groupFit": 5,
+        "elderFit": 4,
+        "kidsFit": 3
+      },
+      "rationale": {
+        "recommend": "食べログ 3.43（159 則）、Google 3.9（991 則），列表文章收錄",
+        "localFlavor": "漁港當日的漁師めし、伊勢海老、冬季牡蠣",
+        "groupFit": "fit15 yes：官網包場最多約 50 人",
+        "elderFit": "入口有屋頂扶手、無障礙停車位，但座位形式不明",
+        "kidsFit": "炸物、燒魚定食多；兒童規定沒有來源"
+      },
+      "confidence": "medium",
+      "assessed": "2026-10-18"
     }
   },
   {
@@ -16305,7 +18991,7 @@
       "instagram": "@tisou.toba"
     },
     "tags": [],
-    "tier": null,
+    "tier": "B",
     "sources": [
       {
         "retrieved": "2026-10-17",
@@ -16421,6 +19107,42 @@
         "parking：5 台，先到先停（https://chiso-toba.com/）",
         "menuPage：官網菜單頁（https://chiso-toba.com/#cuisines）"
       ]
+    },
+    "summary": {
+      "text": "店主曾在老字號飯店當料理長 24 年的季節料理店，只有晚上：生魚片拼盤 2,200 円起、奶油烤鮑魚、松阪牛壽喜燒煮，冬季有河豚套餐 10,000 円起。全店 24 席。",
+      "pros": [
+        "Google 4.6（102 則）",
+        "冬季有河豚、甲魚鍋",
+        "會席 6,000 円起，可預約"
+      ],
+      "cons": [
+        "只有 20～24 席，15 人要併桌、包場沒寫",
+        "座敷；週四與不定休",
+        "兒童能不能同行沒寫；心得 0 篇"
+      ],
+      "basedOn": [
+        "https://chiso-toba.com/"
+      ],
+      "generated": "2026-10-18"
+    },
+    "assessment": {
+      "rubric": "restaurant-v1",
+      "scores": {
+        "recommend": 3,
+        "localFlavor": 3,
+        "groupFit": 3,
+        "elderFit": 2,
+        "kidsFit": null
+      },
+      "rationale": {
+        "recommend": "食べログ 3.16（16 則）、Google 4.6（102 則），評論數上限 3",
+        "localFlavor": "季節和食、河豚，類似的店很多",
+        "groupFit": "fit15 split：24 席，人多時併桌",
+        "elderFit": "座敷",
+        "kidsFit": "能不能帶小孩、兒童餐、熟食選項都沒有來源，資料不足"
+      },
+      "confidence": "low",
+      "assessed": "2026-10-18"
     }
   },
   {
@@ -16510,7 +19232,7 @@
       "instagram": null
     },
     "tags": [],
-    "tier": null,
+    "tier": "B",
     "sources": [
       {
         "retrieved": "2026-10-17",
@@ -16652,6 +19374,47 @@
         "parking：大型巴士 30 台、小型車 50 台（https://tabiiro.jp/gourmet/article/iseshimatoba-kaisen/）",
         "menuPage：官網菜單頁（http://www.ousho.co.jp/assets/docs/20260930menu-perspnal.pdf）"
       ]
+    },
+    "summary": {
+      "text": "伴手禮中心附設的海鮮餐廳，170 席，團體可以在船形建築（水中翼船「王将」）的船艙或包廂用餐，大型巴士 30 台。伊勢海老・さざえ御膳、海鮮丼，平均預算 1,000～1,999 円。",
+      "pros": [
+        "170 席、可包場，團體專用大廣間已改成椅子桌席",
+        "全年無休，大停車場",
+        "加茂站步行約 10 分"
+      ],
+      "cons": [
+        "Google 3.6（617 則），評價普通",
+        "團體要 FAX 或 e-mail 預約，回覆最多約 3 天",
+        "個人菜單、團體套餐價格讀不到；兒童餐沒寫"
+      ],
+      "basedOn": [
+        "http://www.ousho.co.jp/",
+        "http://www.ousho.co.jp/restaurant.html",
+        "https://tabiiro.jp/gourmet/article/iseshimatoba-kaisen/",
+        "https://tabiiro.jp/gourmet/s/313164-toba-ousho/",
+        "https://www.kankomie.or.jp/report/508",
+        "https://www.city.toba.mie.jp/material/files/group/37/tobameshi_map_2022_06.pdf"
+      ],
+      "generated": "2026-10-18"
+    },
+    "assessment": {
+      "rubric": "restaurant-v1",
+      "scores": {
+        "recommend": 2,
+        "localFlavor": 3,
+        "groupFit": 5,
+        "elderFit": 5,
+        "kidsFit": null
+      },
+      "rationale": {
+        "recommend": "食べログ 3.07（15 則）、Google 3.6（617 則），兩邊都普通",
+        "localFlavor": "伊勢海老、さざえ御膳，觀光客取向",
+        "groupFit": "fit15 yes：170 席、團體包廂、可包場",
+        "elderFit": "大廣間改成椅子桌席，大停車場",
+        "kidsFit": "能不能帶小孩、兒童餐、熟食選項都沒有來源，資料不足"
+      },
+      "confidence": "low",
+      "assessed": "2026-10-18"
     }
   },
   {
@@ -16736,7 +19499,7 @@
       "instagram": null
     },
     "tags": [],
-    "tier": null,
+    "tier": "B",
     "sources": [
       {
         "type": "tabelog",
@@ -16840,6 +19603,43 @@
         "營業時間：食べログ 11:00～20:00、Google 9:00～21:00（採 Google）",
         "官網 http://www.ijika-poseidon.com/poseidon/index.htm 現在是無關的網站（2026-10-18）"
       ]
+    },
+    "summary": {
+      "text": "石鏡、珍珠路沿線的海景一軒家食堂，只有桌席、可包場、有停車場。官網已失效，讀文找不到任何用餐心得、菜單；補國崎・珍珠路週三週四中午的缺口。",
+      "pros": [
+        "只有桌席（椅子），有停車場",
+        "可預約、可包場"
+      ],
+      "cons": [
+        "Google 3.6（143 則），評價偏低",
+        "菜單、價格、席數、公休都沒有來源",
+        "官網失效；可能以釣客為主"
+      ],
+      "basedOn": [
+        "http://www.ijika-poseidon.com/poseidon/index.htm",
+        "https://ameblo.jp/19720121kawa/entry-12851943534.html",
+        "https://www.city.toba.mie.jp/material/files/group/37/tobameshi_map_2022_06.pdf"
+      ],
+      "generated": "2026-10-18"
+    },
+    "assessment": {
+      "rubric": "restaurant-v1",
+      "scores": {
+        "recommend": 1,
+        "localFlavor": null,
+        "groupFit": 2,
+        "elderFit": 4,
+        "kidsFit": null
+      },
+      "rationale": {
+        "recommend": "缺口保底（D）納入，Google 3.6、食べログ 3.05，沒有任何用餐心得",
+        "localFlavor": "菜單、招牌菜都沒有來源，資料不足",
+        "groupFit": "fit15 unknown：貸切可但席數不明",
+        "elderFit": "只有桌席、有停車場",
+        "kidsFit": "能不能帶小孩、兒童餐、熟食選項都沒有來源，資料不足"
+      },
+      "confidence": "low",
+      "assessed": "2026-10-18"
     }
   },
   {
@@ -16975,7 +19775,7 @@
       "instagram": null
     },
     "tags": [],
-    "tier": null,
+    "tier": "B",
     "sources": [
       {
         "type": "tabelog",
@@ -17124,6 +19924,47 @@
       "conflicts": [
         "午餐開始：官網 11:30、食べログ 11:00（採官網）"
       ]
+    },
+    "summary": {
+      "text": "國崎的海女小屋料理旅館，館內重現的かまど空間由女將在面前烤伊勢海老、鮑魚、牡蠣，2 月伊勢海老、牡蠣都在季。官網寫不住宿也可以只訂午餐或晚餐，宴會場最多 60 人。",
+      "pros": [
+        "館內海女小屋かまど燒，本身就是體驗",
+        "宴會場最多 60 人、接受團體，可以預約",
+        "お食事処已改成椅子＋桌；有兒童餐"
+      ],
+      "cons": [
+        "非住客的かまど用餐、團體午餐價格官網沒寫",
+        "公休、2 月營業要電話問",
+        "鳥羽站開車約 30 分，沒有接送"
+      ],
+      "basedOn": [
+        "https://www.marusen.net/cuisine.html",
+        "https://www.marusen.net/facility.html",
+        "https://www.marusen.net/reservation.html",
+        "https://www.marusen.net/access.html",
+        "https://www.marusen.net/iseebi.html",
+        "https://www.jalan.net/yad314703/"
+      ],
+      "generated": "2026-10-18"
+    },
+    "assessment": {
+      "rubric": "restaurant-v1",
+      "scores": {
+        "recommend": 3,
+        "localFlavor": 5,
+        "groupFit": 5,
+        "elderFit": 4,
+        "kidsFit": 5
+      },
+      "rationale": {
+        "recommend": "食べログ 3.06（7 則）、Google 4.2（82 則），じゃらん 4.5（274 則）頁面亂碼待確認",
+        "localFlavor": "海女小屋かまど燒伊勢海老、鮑魚",
+        "groupFit": "fit15 yes：宴會場 60 人、貸切 20～50 人",
+        "elderFit": "お食事処是椅子桌；かまど席是不是矮凳沒寫",
+        "kidsFit": "有兒童餐、幼兒お子様ランチ"
+      },
+      "confidence": "low",
+      "assessed": "2026-10-18"
     }
   },
   {
@@ -17213,7 +20054,7 @@
       "instagram": "@ajikura.carocaro.oyster"
     },
     "tags": [],
-    "tier": null,
+    "tier": "B",
     "sources": [
       {
         "type": "tabelog",
@@ -17365,6 +20206,48 @@
         "公休：官網不定休、食べログ月・火、aumo 火",
         "席數：官網 18、食べログ 20"
       ]
+    },
+    "summary": {
+      "text": "浦村的鐵板燒小旅館，主廚在吧台前現煎牡蠣、伊勢海老、黑毛和牛沙朗；可加點鮑魚排、浦村生牡蠣（10～3 月）。官網有日帰りプラン，非住客晚餐價格要問。",
+      "pros": [
+        "鐵板吧台現煎，口コミ多稱讚鮑魚、沙朗",
+        "最大予約 20 人，可以預約",
+        "浦村晚上少數的晚餐選擇"
+      ],
+      "cons": [
+        "晚餐不接受中學生以下，小孩同行不能用",
+        "古民家改裝，4travel 無障礙 2.5 分",
+        "非住客沒有接送；午餐有無不明"
+      ],
+      "basedOn": [
+        "http://www.carocaro.com/",
+        "http://www.carocaro.com/dish.html",
+        "http://www.carocaro.com/faq.html",
+        "http://www.carocaro.com/access.html",
+        "https://4travel.jp/dm_hotel-10048747",
+        "https://aumo.jp/articles/26769",
+        "https://booking.sun-urashima-hd.co.jp/booking/result?code=d9db59fd-7c3f-4d4e-9021-1d5eff5eeda1&is_day_use=true"
+      ],
+      "generated": "2026-10-18"
+    },
+    "assessment": {
+      "rubric": "restaurant-v1",
+      "scores": {
+        "recommend": 3,
+        "localFlavor": 3,
+        "groupFit": 5,
+        "elderFit": 3,
+        "kidsFit": 1
+      },
+      "rationale": {
+        "recommend": "食べログ 3.25（43 則）、Google 4.3（129 則），評論數上限 3；4travel 口コミ好評",
+        "localFlavor": "鐵板燒用伊勢海老、浦村牡蠣，但料理是一般鐵板燒",
+        "groupFit": "fit15 yes：最大予約 20 人",
+        "elderFit": "吧台和桌席，但古民家、無障礙評分低",
+        "kidsFit": "晚餐限中學生以上"
+      },
+      "confidence": "medium",
+      "assessed": "2026-10-18"
     }
   },
   {
@@ -17477,7 +20360,7 @@
       "instagram": null
     },
     "tags": [],
-    "tier": null,
+    "tier": "B",
     "sources": [
       {
         "type": "tabelog",
@@ -17590,6 +20473,42 @@
       "conflicts": [
         "晚上打烊：食べログ 22:00、るるぶ 21:00"
       ]
+    },
+    "summary": {
+      "text": "相差的和食處，店主在大阪料亭修業約 40 年後回鄉，肉厚刺身配自家製醬油的刺身定食 1,100 円人氣第一，晚上也營業。補畔蛸「東の窓」的晚餐缺口。",
+      "pros": [
+        "刺身定食 1,100 円起",
+        "晚上營業，有包廂",
+        "相差站步行 3 分、停車 5 台"
+      ],
+      "cons": [
+        "Google 3.8（55 則），評價偏低",
+        "15 席，能不能預約沒有來源",
+        "座位、兒童、2 月營業都沒有資料"
+      ],
+      "basedOn": [
+        "https://rurubu.jp/andmore/spot/80024924"
+      ],
+      "generated": "2026-10-18"
+    },
+    "assessment": {
+      "rubric": "restaurant-v1",
+      "scores": {
+        "recommend": 1,
+        "localFlavor": 3,
+        "groupFit": null,
+        "elderFit": null,
+        "kidsFit": null
+      },
+      "rationale": {
+        "recommend": "缺口保底（D）納入，Google 3.8、食べログ 3.09，沒有心得",
+        "localFlavor": "仲買進貨的鮮魚刺身，類似的店很多",
+        "groupFit": "席數、能不能預約都沒有來源，資料不足",
+        "elderFit": "座位形式、階梯所有來源都沒寫，資料不足",
+        "kidsFit": "能不能帶小孩、兒童餐、熟食選項都沒有來源，資料不足"
+      },
+      "confidence": "low",
+      "assessed": "2026-10-18"
     }
   },
   {
@@ -17693,7 +20612,7 @@
       "instagram": null
     },
     "tags": [],
-    "tier": null,
+    "tier": "B",
     "sources": [
       {
         "type": "tabelog",
@@ -17781,6 +20700,42 @@
         "營業時間：Google 11:00～13:30・17:00～21:00、食べログ 11:30～14:00・17:00～22:00（採 Google）",
         "官網 http://pc-nct.biz/tenkai/ 回 404（2026-10-18）"
       ]
+    },
+    "summary": {
+      "text": "相差（松尾寄り）的海鮮食堂，午晚都營業、有包廂、可預約，Google 4.1（84 則）。官網 404，讀文找不到菜單或心得；補畔蛸「東の窓」的晚餐缺口。",
+      "pros": [
+        "晚上營業，可預約、有包廂",
+        "Google 84 則評論還算多"
+      ],
+      "cons": [
+        "官網 404，還在不在營業要電話確認",
+        "菜單、席數、座位、兒童都沒有資料",
+        "週三公休"
+      ],
+      "basedOn": [
+        "http://pc-nct.biz/tenkai/",
+        "https://www.city.toba.mie.jp/material/files/group/37/tobameshi_map_2022_06.pdf"
+      ],
+      "generated": "2026-10-18"
+    },
+    "assessment": {
+      "rubric": "restaurant-v1",
+      "scores": {
+        "recommend": 2,
+        "localFlavor": null,
+        "groupFit": 2,
+        "elderFit": null,
+        "kidsFit": null
+      },
+      "rationale": {
+        "recommend": "缺口保底（D）納入，食べログ 7 則、Google 4.1（84 則），沒有任何介紹",
+        "localFlavor": "菜單、招牌菜都沒有來源，資料不足",
+        "groupFit": "fit15 unknown，可預約、有包廂",
+        "elderFit": "座位形式、階梯所有來源都沒寫，資料不足",
+        "kidsFit": "能不能帶小孩、兒童餐、熟食選項都沒有來源，資料不足"
+      },
+      "confidence": "low",
+      "assessed": "2026-10-18"
     }
   },
   {
@@ -17868,7 +20823,7 @@
       "instagram": "@adako_oyster"
     },
     "tags": [],
-    "tier": null,
+    "tier": "B",
     "sources": [
       {
         "type": "tabelog",
@@ -17992,6 +20947,43 @@
       "conflicts": [
         "午餐打烊：官網 15:00（L.O. 14:00）、Google 14:00"
       ]
+    },
+    "summary": {
+      "text": "畔蛸的牡蠣養殖業者自己開的店，一年四季都有牡蠣，2 月是あだこ真牡蠣當季。午餐牡蠣套餐 3,850 円起（6 品），晚餐 6,600 円起、完全預約制。補東の窓的晚餐缺口。",
+      "pros": [
+        "養殖業者直營的牡蠣創作料理",
+        "Google 4.7（59 則）；桌席",
+        "最大予約 14 人、20 人以下可包場"
+      ],
+      "cons": [
+        "14 席，15 人剛好超過，要確認包場能不能擺 15 位",
+        "套餐含生牡蠣，小孩要問能不能換熟食",
+        "週二公休另有臨時休"
+      ],
+      "basedOn": [
+        "http://www.zd.ztv.ne.jp/adako_oyster/",
+        "http://www.zd.ztv.ne.jp/adako_oyster/dinner/index.html"
+      ],
+      "generated": "2026-10-18"
+    },
+    "assessment": {
+      "rubric": "restaurant-v1",
+      "scores": {
+        "recommend": 2,
+        "localFlavor": 4,
+        "groupFit": 3,
+        "elderFit": 4,
+        "kidsFit": 3
+      },
+      "rationale": {
+        "recommend": "缺口保底（D）納入，食べログ 5 則、Google 59 則，沒有心得 → 最多 2",
+        "localFlavor": "養殖業者直營的あだこ牡蠣套餐",
+        "groupFit": "fit15 unknown：14 席、最大予約 14 人，但貸切 20 人以下可",
+        "elderFit": "桌席",
+        "kidsFit": "食べログ：未就學兒、小學生可；套餐有生牡蠣"
+      },
+      "confidence": "low",
+      "assessed": "2026-10-18"
     }
   },
   {
@@ -18095,7 +21087,7 @@
       "instagram": null
     },
     "tags": [],
-    "tier": null,
+    "tier": "A",
     "sources": [
       {
         "type": "booking-site",
@@ -18235,6 +21227,45 @@
       "conflicts": [
         "預約方式：官網只接電話、楽天可網路訂"
       ]
+    },
+    "summary": {
+      "text": "相差的料理旅館「みち潮」的非住客晚餐，伊勢海老舟盛的花會席 8,800 円起、每人 1 尾伊勢海老的會席 12,100 円起，含大浴場入浴。相差晚上幾乎沒有店，可以補不含晚餐住宿的晚餐。",
+      "pros": [
+        "住宿本體楽天餐 4.55（4,943 則），伊勢海老舟盛多篇稱讚",
+        "桌椅的しおじ亭、大広間，掘りごたつ的漁火庵，都不用跪坐",
+        "有お子様ランチ、兒童價，可單點唐揚、薯條"
+      ],
+      "cons": [
+        "只有晚餐；日帰り沒有接送",
+        "楽天每筆 2～6 人，15 人能不能同一間要電話問",
+        "不對應過敏"
+      ],
+      "basedOn": [
+        "https://hotel.travel.rakuten.co.jp/hotelinfo/dayuse/5545",
+        "https://michishio.co.jp/dish/day-trip-dinner/",
+        "https://michishio.co.jp/facility/",
+        "https://michishio.co.jp/faq/"
+      ],
+      "generated": "2026-10-18"
+    },
+    "assessment": {
+      "rubric": "restaurant-v1",
+      "scores": {
+        "recommend": 4,
+        "localFlavor": 4,
+        "groupFit": 3,
+        "elderFit": 4,
+        "kidsFit": 5
+      },
+      "rationale": {
+        "recommend": "料理旅館的非住客用餐（F③）：住宿本體楽天餐 4.55（4,943 則）、Google 4.3",
+        "localFlavor": "伊勢海老舟盛、鮑魚、さざえ",
+        "groupFit": "fit15 unknown，但館內有大広間（120 疊、桌椅），要電話確認",
+        "elderFit": "桌椅或掘りごたつ",
+        "kidsFit": "有お子様ランチ、兒童價"
+      },
+      "confidence": "medium",
+      "assessed": "2026-10-18"
     }
   },
   {
@@ -18338,7 +21369,7 @@
       "instagram": null
     },
     "tags": [],
-    "tier": null,
+    "tier": "B",
     "sources": [
       {
         "type": "booking-site",
@@ -18465,6 +21496,45 @@
       "inclusion": "F3",
       "lodgingId": "toba-ijika-kagura",
       "nonGuestMeals": "楽天有不含客房的昼食方案"
+    },
+    "summary": {
+      "text": "石鏡的飯店「神具良」的非住客午餐，在整面玻璃的海側餐廳吃松阪牛會席 11,000 円或伊勢海老 1 尾付會席 16,500 円，飯後可泡大浴場。方案到 2027-03-15。",
+      "pros": [
+        "保證海側座位，飯後可泡湯",
+        "有兒童價；8 人以上可能可以用宴會場",
+        "國崎・珍珠路週三週四中午的備案"
+      ],
+      "cons": [
+        "價位高（11,000 円起）",
+        "住宿本體じゃらん晚餐 3.7，有牛肉偏硬的意見",
+        "往食事會場的通道有階梯；接駁配不上午餐，要計程車"
+      ],
+      "basedOn": [
+        "https://hotel.travel.rakuten.co.jp/hotelinfo/dayuse/62677",
+        "https://www.kagura-izika.com/faq/",
+        "https://www.kagura-izika.com/dining/",
+        "https://www.kagura-izika.com/"
+      ],
+      "generated": "2026-10-18"
+    },
+    "assessment": {
+      "rubric": "restaurant-v1",
+      "scores": {
+        "recommend": 3,
+        "localFlavor": 4,
+        "groupFit": 3,
+        "elderFit": 3,
+        "kidsFit": 4
+      },
+      "rationale": {
+        "recommend": "料理旅館的非住客用餐（F③）：住宿本體楽天餐 4.43、じゃらん晚餐 3.7，不到 4.5",
+        "localFlavor": "伊勢海老姿焼き、松阪牛",
+        "groupFit": "fit15 unknown，官網：8 人以上可能可用宴會場",
+        "elderFit": "玄關無段差、有電梯，但往東館的通道有階梯",
+        "kidsFit": "楽天有兒童價"
+      },
+      "confidence": "medium",
+      "assessed": "2026-10-18"
     }
   },
   {
@@ -18568,7 +21638,7 @@
       "instagram": null
     },
     "tags": [],
-    "tier": null,
+    "tier": "A",
     "sources": [
       {
         "type": "booking-site",
@@ -18684,6 +21754,46 @@
       "conflicts": [
         "T7e 讀文 subagent 拿到的 489ban 頁面（季節の昼懐石 8,470 円、1～30 人）其實是岐阜「滝元館 遊季の里」，沒有採用"
       ]
+    },
+    "summary": {
+      "text": "浦村「サン浦島 悠季の里」的日帰り專用全個室餐廳「風姿花伝」，看海吃喜會席 8,624 円或鮑魚排、伊勢海老會席 12,320 円，入浴到 16:00。鳥羽站 11:00 有接駁（要預約）。",
+      "pros": [
+        "住宿本體楽天餐 4.68，鳥羽大型旅館裡最高之一",
+        "全席個室看海；鳥羽站有接駁",
+        "有兒童價；宴會場「海神」可到 30 人"
+      ],
+      "cons": [
+        "楽天每筆 2～6 人，15 人要問能不能改宴會場",
+        "座位是椅子還是榻榻米沒寫",
+        "接駁車載客數沒寫"
+      ],
+      "basedOn": [
+        "https://hotel.travel.rakuten.co.jp/hotelinfo/dayuse/8647",
+        "https://www.sun-urashima.co.jp/faq/index.html",
+        "https://www.sun-urashima.co.jp/info/index.html",
+        "https://www.sun-urashima.co.jp/",
+        "https://reserve.489ban.net/client/yukinosato/0/detail/22923"
+      ],
+      "generated": "2026-10-18"
+    },
+    "assessment": {
+      "rubric": "restaurant-v1",
+      "scores": {
+        "recommend": 4,
+        "localFlavor": 4,
+        "groupFit": 3,
+        "elderFit": null,
+        "kidsFit": 4
+      },
+      "rationale": {
+        "recommend": "料理旅館的非住客用餐（F③）：住宿本體楽天餐 4.68（1,045 則）、Google 4.5",
+        "localFlavor": "鮑魚排、伊勢海老會席",
+        "groupFit": "fit15 unknown，宴會場海神可到 30 人，要電話確認",
+        "elderFit": "座位形式、階梯所有來源都沒寫，資料不足",
+        "kidsFit": "有兒童價"
+      },
+      "confidence": "medium",
+      "assessed": "2026-10-18"
     }
   },
   {
@@ -18763,7 +21873,7 @@
       "instagram": "@horumon_takuc"
     },
     "tags": [],
-    "tier": null,
+    "tier": "B",
     "sources": [
       {
         "type": "tabelog",
@@ -18872,6 +21982,43 @@
     "extra": {
       "inclusion": "D2",
       "tabelogGenre": "ホルモン、鉄板焼き"
+    },
+    "summary": {
+      "text": "鳥羽 1 丁目的內臟燒、鐵板燒小店，18 席（大桌 6、中桌 12）、可包場、可預約，子供可。補旅館なおみ附近的晚餐缺口；讀文找不到任何心得。",
+      "pros": [
+        "可包場、可預約",
+        "桌席",
+        "晚上營業到 22:00"
+      ],
+      "cons": [
+        "讀文沒有任何來源，菜單、價格不明",
+        "內臟燒煙多，換氣要確認",
+        "週日休"
+      ],
+      "basedOn": [
+        "https://tabelog.com/mie/A2403/A240302/24019753/",
+        "https://maps.google.com/?cid=12555132860165863311"
+      ],
+      "generated": "2026-10-18"
+    },
+    "assessment": {
+      "rubric": "restaurant-v1",
+      "scores": {
+        "recommend": 2,
+        "localFlavor": 1,
+        "groupFit": 3,
+        "elderFit": 4,
+        "kidsFit": 3
+      },
+      "rationale": {
+        "recommend": "缺口保底（D）納入，食べログ 6 則、Google 23 則，沒有心得",
+        "localFlavor": "內臟燒，和在地無關",
+        "groupFit": "fit15 unknown：18 席、貸切可",
+        "elderFit": "桌席；煙量不明",
+        "kidsFit": "食べログ：子供可"
+      },
+      "confidence": "low",
+      "assessed": "2026-10-18"
     }
   },
   {
@@ -18963,7 +22110,7 @@
       "instagram": null
     },
     "tags": [],
-    "tier": null,
+    "tier": "B",
     "sources": [
       {
         "type": "tourism",
@@ -19063,6 +22210,42 @@
     "extra": {
       "inclusion": "D3",
       "takeoutOnly": true
+    },
+    "summary": {
+      "text": "菅島港步行約 5 分的預約制便當店，SHIMA 便當（約 1,000 円）有菅島章魚天婦羅、若布煮物、鮑魚和在地魚，內容看當天食材。菅島週三沒有食堂時的保底，取貨 2 天前電話預約。",
+      "pros": [
+        "菅島的在地食材便當",
+        "可以調整飯量、切碎好入口、去除過敏原（2013 資料，要事先商量）"
+      ],
+      "cons": [
+        "只做外帶，在哪裡吃要先想好",
+        "能不能一次訂 15 個沒有來源",
+        "不定休；資料多是 2013、2024 年"
+      ],
+      "basedOn": [
+        "https://www.pref.mie.lg.jp/NHOKEN/HP/76925045782.htm",
+        "https://www.kankomie.or.jp/report/1815"
+      ],
+      "generated": "2026-10-18"
+    },
+    "assessment": {
+      "rubric": "restaurant-v1",
+      "scores": {
+        "recommend": 2,
+        "localFlavor": 4,
+        "groupFit": 2,
+        "elderFit": null,
+        "kidsFit": 4
+      },
+      "rationale": {
+        "recommend": "缺口保底（D③，離島便當）納入，Google 7 則、沒有食べログ",
+        "localFlavor": "菅島章魚、若布、鮑魚",
+        "groupFit": "完全預約制，一次能不能訂 15 個要電話問",
+        "elderFit": "座位形式、階梯所有來源都沒寫，資料不足",
+        "kidsFit": "可以去除過敏原、調整份量"
+      },
+      "confidence": "low",
+      "assessed": "2026-10-18"
     }
   },
   {
@@ -19102,7 +22285,7 @@
       "instagram": null
     },
     "tags": [],
-    "tier": null,
+    "tier": "B",
     "sources": [
       {
         "type": "tourism",
@@ -19201,6 +22384,43 @@
       "inclusion": "D1",
       "lodgingId": "toba-kamishima-sankaiso",
       "nonGuestMeals": "観光三重：昼食非住客可（完全預約制）"
+    },
+    "summary": {
+      "text": "神島民宿「山海荘」的非住客午餐，在食堂吃當天內容的潮騒幕の内，或外帶章魚飯、烤魚的便當；完全預約制。神島唯一的店やま海營業不確定時的保底。",
+      "pros": [
+        "非住客也能預約，可以內用或外帶便當",
+        "2023 年 2 月採訪時有供應"
+      ],
+      "cons": [
+        "價格、人數上限、座位都沒有來源",
+        "玄關要爬巷子裡一小段階梯",
+        "營業日、付款方式要電話問"
+      ],
+      "basedOn": [
+        "https://www.kankomie.or.jp/report/1412",
+        "https://www.kankomie.or.jp/report/1815",
+        "http://www.sankaiso.net/"
+      ],
+      "generated": "2026-10-18"
+    },
+    "assessment": {
+      "rubric": "restaurant-v1",
+      "scores": {
+        "recommend": 2,
+        "localFlavor": 3,
+        "groupFit": 2,
+        "elderFit": 2,
+        "kidsFit": null
+      },
+      "rationale": {
+        "recommend": "缺口保底（D）納入，Google 4.3 是住宿本體的評論，沒有用餐心得",
+        "localFlavor": "章魚飯、烤魚，用島上食材",
+        "groupFit": "fit15 unknown，完全預約制",
+        "elderFit": "玄關有一小段階梯，座位形式不明",
+        "kidsFit": "能不能帶小孩、兒童餐、熟食選項都沒有來源，資料不足"
+      },
+      "confidence": "low",
+      "assessed": "2026-10-18"
     }
   }
 ]
