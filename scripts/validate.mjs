@@ -227,6 +227,11 @@ function main() {
         if (rec.region && areas.has(rec.area) && !(areas.get(rec.area).regions ?? []).some((g) => g.id === rec.region)) {
           err(shown, `[${rec.id}] region「${rec.region}」不在 areas.json 區域「${rec.area}」的 regions 裡`);
         }
+        const rec5 = rec.assessment?.scores?.recommend;
+        if (rec.assessment && rec5 != null) {
+          const tier = rec5 === 5 ? 'S' : rec5 === 4 ? 'A' : 'B';
+          if (rec.tier !== tier) err(shown, `[${rec.id}] tier 應該是「${tier}」（assessment.scores.recommend ${rec5}）`);
+        }
         checkRef(shown, rec.id, 'nearestStation', rec.nearestStation?.id);
         for (const a of rec.access ?? []) checkRef(shown, rec.id, 'access.from', a?.from);
         for (const a of rec.anchors ?? []) checkRef(shown, rec.id, 'anchors', a?.id);

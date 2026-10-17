@@ -423,6 +423,83 @@
       "googleName": {
         "description": "Google 上的店名和食べログ不同時",
         "$ref": "common.schema.json#/$defs/nullableString"
+      },
+      "assessment": {
+        "description": "Claude 依 CONVENTIONS.md §5.1 的「restaurant」標準打分",
+        "anyOf": [
+          {
+            "type": "null"
+          },
+          {
+            "type": "object",
+            "properties": {
+              "rubric": {
+                "type": "string",
+                "pattern": "^restaurant-v[0-9]+$"
+              },
+              "scores": {
+                "type": "object",
+                "properties": {
+                  "recommend": {
+                    "$ref": "common.schema.json#/$defs/star"
+                  },
+                  "localFlavor": {
+                    "$ref": "common.schema.json#/$defs/star"
+                  },
+                  "groupFit": {
+                    "$ref": "common.schema.json#/$defs/star"
+                  },
+                  "elderFit": {
+                    "$ref": "common.schema.json#/$defs/star"
+                  },
+                  "kidsFit": {
+                    "$ref": "common.schema.json#/$defs/star"
+                  }
+                },
+                "required": [
+                  "recommend",
+                  "localFlavor",
+                  "groupFit",
+                  "elderFit",
+                  "kidsFit"
+                ],
+                "additionalProperties": false
+              },
+              "rationale": {
+                "type": "object",
+                "propertyNames": {
+                  "enum": [
+                    "recommend",
+                    "localFlavor",
+                    "groupFit",
+                    "elderFit",
+                    "kidsFit"
+                  ]
+                },
+                "additionalProperties": {
+                  "type": "string"
+                }
+              },
+              "confidence": {
+                "enum": [
+                  "high",
+                  "medium",
+                  "low"
+                ]
+              },
+              "assessed": {
+                "$ref": "common.schema.json#/$defs/date"
+              }
+            },
+            "required": [
+              "rubric",
+              "scores",
+              "confidence",
+              "assessed"
+            ],
+            "additionalProperties": false
+          }
+        ]
       }
     },
     "unevaluatedProperties": false

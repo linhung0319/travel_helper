@@ -297,6 +297,83 @@
           "car",
           null
         ]
+      },
+      "assessment": {
+        "description": "Claude 依 CONVENTIONS.md §5.1 的「lodging」標準打分",
+        "anyOf": [
+          {
+            "type": "null"
+          },
+          {
+            "type": "object",
+            "properties": {
+              "rubric": {
+                "type": "string",
+                "pattern": "^lodging-v[0-9]+$"
+              },
+              "scores": {
+                "type": "object",
+                "properties": {
+                  "recommend": {
+                    "$ref": "common.schema.json#/$defs/star"
+                  },
+                  "meals": {
+                    "$ref": "common.schema.json#/$defs/star"
+                  },
+                  "groupFit": {
+                    "$ref": "common.schema.json#/$defs/star"
+                  },
+                  "elderFit": {
+                    "$ref": "common.schema.json#/$defs/star"
+                  },
+                  "accessEase": {
+                    "$ref": "common.schema.json#/$defs/star"
+                  }
+                },
+                "required": [
+                  "recommend",
+                  "meals",
+                  "groupFit",
+                  "elderFit",
+                  "accessEase"
+                ],
+                "additionalProperties": false
+              },
+              "rationale": {
+                "type": "object",
+                "propertyNames": {
+                  "enum": [
+                    "recommend",
+                    "meals",
+                    "groupFit",
+                    "elderFit",
+                    "accessEase"
+                  ]
+                },
+                "additionalProperties": {
+                  "type": "string"
+                }
+              },
+              "confidence": {
+                "enum": [
+                  "high",
+                  "medium",
+                  "low"
+                ]
+              },
+              "assessed": {
+                "$ref": "common.schema.json#/$defs/date"
+              }
+            },
+            "required": [
+              "rubric",
+              "scores",
+              "confidence",
+              "assessed"
+            ],
+            "additionalProperties": false
+          }
+        ]
       }
     },
     "required": [

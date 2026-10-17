@@ -309,21 +309,22 @@
 ### T7b 鳥羽補資料 〔M〕
 照 T7 的新規則（CONVENTIONS.md §4、§5，討論見 T7-review.md）補鳥羽已有的 137 筆資料：
 - **欄位搬移**：`extra.region` → `region`（子地區 ID 見 `areas.json`），景點 `tags` 裡的子地區拿掉；`extra.tabelogOwner`、`extra.googleName`、`extra.barrierFree`（→ `accessibility.barrierFree`）、`extra.phone`（景點 → `phone`）、`extra.checkIn`/`checkOut`（住宿）升格；`kids` 改成物件；`group.maxReservation` 從 `group.source` 的文字取出；`cuisine`、`tags` 改成固定清單；`price` 數字欄位（從 `priceRange` 轉）；`hours.always`、`hours.lastEntry`、`closures`（從 `febNote`、`hours.note` 轉，只轉來源寫明日期的）；住宿 `dinnerAccess`、餐廳 `access`（T4c 的缺漏檢查結果）。
-- **補資料**：`googlePlaceId`（137 筆）；景點、住宿的 Google 星數與評論數；照片 1～3 張（§4「照片」）；離島港口（`docs/requests.md` 的 T4c 請求），補完重跑 `node scripts/restaurant-anchors.mjs toba --write`。
+- **補資料**（Chrome，不用 Google API）：景點、住宿的 `links.googleMaps`（目前景點 2/28、住宿 0/38）和 Google 星數、評論數；照片 1～3 張（§4「照片」）；心得、介紹文的重點補進 `sources[].note`（T2～T4 讀過的文章，以及每筆再找 1～2 篇心得，景點優先）；離島港口（`docs/requests.md` 的 T4c 請求），補完重跑 `node scripts/restaurant-anchors.mjs toba --write`。
+- **住宿改用楽天 API**（需要 👤 先申請 key）：寫查詢腳本，用 2 月的日期重查價格、空房（15 人的房型組合）、細項評分、照片。
 - **納入標準重跑**：D 的「任何一天 0 家」（菅島週三、國崎週三週四）、F③ 料理旅館（相差的伝洋、花椿）、離島便當（菅島 おかげ屋）。
-- **腳本**：`scripts/score.mjs`（§5.1 的分數與分級，輸出到 `data/derived/`）、自動產生 `summary.cons` 的腳本；最後由 Claude 寫 `summary`。
+- **摘要與評分**：Claude 依 CONVENTIONS.md §5.1 的標準，每個類型在同一個 session 一次寫完 `summary`、`assessment`、`tier`；挑校準範例寫進 `data/raw/toba/assessment-notes.md`；寫評分一致性檢查腳本（輸出到 `data/derived/`）。
 - 寫 `data/areas/toba/`、`data/raw/toba/`、`data/derived/`、新增的腳本。
 
 ### T8b 關西機場周邊：2/12 住宿與晚餐 〔S〕
 - 區域 `kix`（子地區：空港島、りんくうタウン），**不蒐集景點**。
-- 住宿 5～10 間：到機場的接駁（時間、班次、能不能一次載 15 人和行李）、早上能不能在 10:45 前到機場、從伊勢過來的交通（參考 `data/access/kix.json`）。照 §5.7 的評分門檻。
+- 住宿 5～10 間（楽天 API）：到機場的接駁（時間、班次、能不能一次載 15 人和行李）、早上能不能在 10:45 前到機場、從伊勢過來的交通（參考 `data/access/kix.json`）。照 §5.7 的評分門檻。
 - 餐廳：住宿附近能接 15 人的 3～5 家（晚餐）。
 - `stations.json` 目前沒有りんくうタウン、関西空港站；需要的話寫到 `docs/requests.md`。
 - 寫 `data/areas/kix/`、`data/raw/kix/`。
 
 ### T8 伊勢（含二見）〔L〕／ T9 志摩 〔L〕
 - 照 T2 → T3 → T4 的流程，**依 T7 定好的規則**來做（CONVENTIONS.md §4、§5）。第一步先定該區的子地區，寫進 `areas.json` 該區域的 `regions`（例外允許，見 CONVENTIONS.md §2）。
-- 每筆從一開始就填新欄位：`region`、`googlePlaceId`、`photos`、`sources[].note` 的推薦原因、數字的 `price`、`closures`；區域完成後寫 `summary`、跑 `scripts/score.mjs`。
+- 每筆從一開始就填新欄位：`region`、`links.googleMaps`、`photos`、`sources[].note`（心得、介紹文的重點）、數字的 `price`、`closures`；住宿用楽天 API。區域完成後先讀 `data/raw/toba/assessment-notes.md` 的校準範例，再寫 `summary`、`assessment`、`tier`。
 - 伊勢的旅程期間有 **2/3 節分**（神社活動）、**2/11 國定假日**，記在 `events`。
 - 兩區可以各開一個 session 並行；每區內部依序執行。
 - 每區建議拆成 3 個 session：景點、住宿、餐廳。

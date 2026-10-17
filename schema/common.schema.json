@@ -477,13 +477,6 @@
             "other"
           ]
         },
-        "googlePlaceId": {
-          "description": "Google 的 place_id（可以永久存放）",
-          "type": [
-            "string",
-            "null"
-          ]
-        },
         "address": {
           "$ref": "#/$defs/nullableString"
         },
@@ -524,7 +517,7 @@
           "$ref": "#/$defs/summary"
         },
         "tier": {
-          "description": "分級 S | A | B，由 scripts/score.mjs 產生，資料檔維持 null",
+          "description": "分級 S | A | B：assessment.scores.recommend 5＝S、4＝A、其他＝B，和 assessment 一起寫",
           "enum": [
             "S",
             "A",
@@ -654,6 +647,15 @@
         ],
         "additionalProperties": false
       }
+    },
+    "star": {
+      "description": "1～5 顆星；資料不足填 null",
+      "type": [
+        "integer",
+        "null"
+      ],
+      "minimum": 1,
+      "maximum": 5
     }
   }
 }
