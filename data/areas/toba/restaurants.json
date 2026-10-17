@@ -9609,5 +9609,1255 @@
       "tabelogOwner": false,
       "googleName": "海女小屋プチかまどうえむら"
     }
+  },
+  {
+    "id": "toba-nishimura-shokudo",
+    "type": "restaurant",
+    "name": {
+      "ja": "西村食堂",
+      "kana": "にしむらしょくどう",
+      "zh": "西村食堂",
+      "en": null
+    },
+    "area": "toba",
+    "coords": [
+      136.9184889,
+      34.4466139
+    ],
+    "coordsSource": "google-maps-url",
+    "address": "三重県鳥羽市石鏡町336-1",
+    "hours": {
+      "mon": [
+        [
+          "11:00",
+          "19:00"
+        ]
+      ],
+      "tue": [
+        [
+          "11:00",
+          "19:00"
+        ]
+      ],
+      "wed": [
+        [
+          "11:00",
+          "19:00"
+        ]
+      ],
+      "thu": [],
+      "fri": [
+        [
+          "11:00",
+          "19:00"
+        ]
+      ],
+      "sat": [
+        [
+          "11:00",
+          "19:00"
+        ]
+      ],
+      "sun": [
+        [
+          "11:00",
+          "19:00"
+        ]
+      ],
+      "holiday": null,
+      "note": null
+    },
+    "closedNote": "週四公休",
+    "febNote": null,
+    "photos": [],
+    "links": {
+      "official": null,
+      "googleMaps": "https://maps.google.com/?cid=3789850983464506688",
+      "tabelog": "https://tabelog.com/mie/A2403/A240302/24000942/",
+      "instagram": null
+    },
+    "tags": [],
+    "tier": null,
+    "sources": [
+      {
+        "retrieved": "2026-10-17",
+        "note": "店舗情報：分數、席數、預約、營業時間、お子様連れ",
+        "type": "tabelog",
+        "url": "https://tabelog.com/mie/A2403/A240302/24000942/"
+      },
+      {
+        "retrieved": "2026-10-17",
+        "note": "星數、評論數、營業時間、座標",
+        "type": "google-maps",
+        "url": "https://maps.google.com/?cid=3789850983464506688"
+      },
+      {
+        "type": "media",
+        "url": "https://www.nap-camp.com/mag/50903",
+        "retrieved": "2026-10-17",
+        "note": "なっぷ「鳥羽のおすすめ人気ランチ11選」（2026-10-01 更新）"
+      },
+      {
+        "type": "media",
+        "url": "https://www.nap-camp.com/mag/23934",
+        "retrieved": "2026-10-17",
+        "note": "なっぷ「鳥羽のご当地グルメ15選」（2026-10-01 更新）"
+      }
+    ],
+    "verified": false,
+    "anchors": [
+      {
+        "id": "kamo",
+        "walkMinutes": 107,
+        "walkSource": "estimate"
+      }
+    ],
+    "contexts": [
+      "lunch",
+      "dinner"
+    ],
+    "cuisine": [
+      "食堂",
+      "海鮮"
+    ],
+    "priceRange": "¥2,000～3,999",
+    "mustTry": [],
+    "menu": [],
+    "ratings": {
+      "tabelog": 3.68,
+      "tabelogReviews": 324,
+      "google": 4.2,
+      "googleReviews": 660,
+      "note": null
+    },
+    "notes": "石鏡漁港旁的食堂，這一區唯一高人氣的店。不能預約。同一個地址（石鏡町 336-1）另有「漁師酒場 鏡」，但電話、公休日、營業時間都不同，是另一家店（見 restaurants.md）。",
+    "group": {
+      "seats": null,
+      "privateRoom": false,
+      "buyout": "不可",
+      "groupMenu": null,
+      "source": "食べログ：沒有席数、予約不可、貸切不可",
+      "note": null,
+      "fit15": "unknown",
+      "fitSubgroup": "unknown"
+    },
+    "reservation": {
+      "methods": [],
+      "phone": "0599-32-5578",
+      "url": null,
+      "language": "日文",
+      "note": null,
+      "accepted": "no"
+    },
+    "seating": [],
+    "kids": null,
+    "smoking": "全席禁煙",
+    "extra": {
+      "region": "國崎・パールロード",
+      "inclusion": "A",
+      "tabelogOwner": false,
+      "conflicts": [
+        "Google 和食べログ（非店舗会員）一致"
+      ],
+      "sameAddress": "漁師酒場 鏡（https://tabelog.com/mie/A2403/A240302/24021016/ ，0599-20-0616，週三休，11:30～15:00、17:00～21:00，禁止兒童入店）"
+    }
+  },
+  {
+    "id": "toba-ama-terrace",
+    "type": "restaurant",
+    "name": {
+      "ja": "海女のテラス",
+      "kana": "あまのてらす",
+      "zh": "海女露台（鳥羽展望台咖啡）",
+      "en": null
+    },
+    "area": "toba",
+    "coords": [
+      136.9150089,
+      34.4276643
+    ],
+    "coordsSource": "google-maps-url",
+    "address": "三重県鳥羽市国崎町3-3 鳥羽展望台 海女のテラス",
+    "hours": {
+      "mon": [
+        [
+          "09:30",
+          "16:30"
+        ]
+      ],
+      "tue": [
+        [
+          "09:30",
+          "16:30"
+        ]
+      ],
+      "wed": [],
+      "thu": [
+        [
+          "09:30",
+          "16:30"
+        ]
+      ],
+      "fri": [
+        [
+          "09:30",
+          "16:30"
+        ]
+      ],
+      "sat": [
+        [
+          "09:30",
+          "16:30"
+        ]
+      ],
+      "sun": [
+        [
+          "09:30",
+          "16:30"
+        ]
+      ],
+      "holiday": [
+        [
+          "09:30",
+          "16:30"
+        ]
+      ],
+      "note": null
+    },
+    "closedNote": "週三公休（逢國定假日營業）",
+    "febNote": null,
+    "photos": [],
+    "links": {
+      "official": "http://www.toba-tenboudai.co.jp/",
+      "googleMaps": "https://maps.google.com/?cid=392875496239858784",
+      "tabelog": "https://tabelog.com/mie/A2403/A240302/24019691/",
+      "instagram": "@tobatenboudai"
+    },
+    "tags": [],
+    "tier": null,
+    "sources": [
+      {
+        "retrieved": "2026-10-17",
+        "note": "店舗情報：分數、席數、預約、營業時間、お子様連れ",
+        "type": "tabelog",
+        "url": "https://tabelog.com/mie/A2403/A240302/24019691/"
+      },
+      {
+        "retrieved": "2026-10-17",
+        "note": "星數、評論數、營業時間、座標",
+        "type": "google-maps",
+        "url": "https://maps.google.com/?cid=392875496239858784"
+      },
+      {
+        "type": "media",
+        "url": "https://www.nap-camp.com/mag/23934",
+        "retrieved": "2026-10-17",
+        "note": "なっぷ「鳥羽のご当地グルメ15選」（2026-10-01 更新）"
+      }
+    ],
+    "verified": false,
+    "anchors": [
+      {
+        "id": "toba-observatory-pearl-road",
+        "walkMinutes": 0,
+        "walkSource": "estimate"
+      }
+    ],
+    "contexts": [
+      "cafe",
+      "snack",
+      "lunch"
+    ],
+    "cuisine": [
+      "咖啡"
+    ],
+    "priceRange": "～¥999",
+    "mustTry": [],
+    "menu": [],
+    "ratings": {
+      "tabelog": 3.32,
+      "tabelogReviews": 58,
+      "google": 4,
+      "googleReviews": 5403,
+      "note": "Google 評論是整個鳥羽展望台的"
+    },
+    "notes": "珍珠路上的鳥羽展望台（景點 toba-observatory-pearl-road）裡的咖啡。",
+    "group": {
+      "seats": null,
+      "privateRoom": false,
+      "buyout": "可包場（20 人以下）",
+      "groupMenu": null,
+      "source": "食べログ：貸切可（20人以下可）、予約可、沒有席数",
+      "note": null,
+      "fit15": "yes",
+      "fitSubgroup": "unknown"
+    },
+    "reservation": {
+      "methods": [
+        "phone"
+      ],
+      "phone": "0599-33-6201",
+      "url": null,
+      "language": "日文",
+      "note": null,
+      "accepted": "yes"
+    },
+    "seating": [],
+    "kids": "可帶小孩（食べログ）",
+    "smoking": "全席禁煙",
+    "extra": {
+      "region": "國崎・パールロード",
+      "inclusion": "AC",
+      "tabelogOwner": false,
+      "googleName": "鳥羽展望台 海女のテラス"
+    }
+  },
+  {
+    "id": "toba-kuzaki-kadoya",
+    "type": "restaurant",
+    "name": {
+      "ja": "かどや",
+      "kana": "かどや",
+      "zh": "角屋（國崎，料理民宿）",
+      "en": null
+    },
+    "area": "toba",
+    "coords": [
+      136.9257541,
+      34.4134974
+    ],
+    "coordsSource": "google-maps-url",
+    "address": "三重県鳥羽市国崎町257",
+    "hours": {
+      "mon": [],
+      "tue": [
+        [
+          "17:00",
+          "22:00"
+        ]
+      ],
+      "wed": [
+        [
+          "17:00",
+          "22:00"
+        ]
+      ],
+      "thu": [
+        [
+          "17:00",
+          "22:00"
+        ]
+      ],
+      "fri": [
+        [
+          "17:00",
+          "22:00"
+        ]
+      ],
+      "sat": [
+        [
+          "17:00",
+          "22:00"
+        ]
+      ],
+      "sun": [
+        [
+          "17:00",
+          "22:00"
+        ]
+      ],
+      "holiday": null,
+      "note": "官網：お食事処 17:00～22:00；食べログ：午餐、晚餐都要預約，週一公休"
+    },
+    "closedNote": "週一公休（食べログ）",
+    "febNote": null,
+    "photos": [],
+    "links": {
+      "official": "http://www.isesima.net/kadoya/",
+      "googleMaps": "https://maps.google.com/?cid=13199691030226909137",
+      "tabelog": "https://tabelog.com/mie/A2403/A240302/24009609/",
+      "instagram": null
+    },
+    "tags": [],
+    "tier": null,
+    "sources": [
+      {
+        "retrieved": "2026-10-17",
+        "note": "店舗情報：分數、席數、預約、營業時間、お子様連れ",
+        "type": "tabelog",
+        "url": "https://tabelog.com/mie/A2403/A240302/24009609/"
+      },
+      {
+        "retrieved": "2026-10-17",
+        "note": "星數、評論數、營業時間、座標",
+        "type": "google-maps",
+        "url": "https://maps.google.com/?cid=13199691030226909137"
+      },
+      {
+        "retrieved": "2026-10-17",
+        "note": "お食事処 17:00～22:00、お食事予約表單、座位種類",
+        "type": "official",
+        "url": "http://www.isesima.net/kadoya/"
+      }
+    ],
+    "verified": false,
+    "anchors": [
+      {
+        "id": "kamo",
+        "walkMinutes": 130,
+        "walkSource": "estimate"
+      },
+      {
+        "id": "toba-yoroizaki-lighthouse",
+        "walkMinutes": 3,
+        "walkSource": "estimate"
+      },
+      {
+        "id": "toba-omoshiro-observatory",
+        "walkMinutes": 21,
+        "walkSource": "estimate"
+      },
+      {
+        "id": "toba-higashinomado",
+        "walkMinutes": 63,
+        "walkSource": "estimate"
+      }
+    ],
+    "contexts": [
+      "dinner",
+      "lunch"
+    ],
+    "cuisine": [
+      "海鮮",
+      "鮑魚",
+      "伊勢龍蝦"
+    ],
+    "priceRange": null,
+    "mustTry": [],
+    "menu": [],
+    "ratings": {
+      "tabelog": 3.08,
+      "tabelogReviews": 3,
+      "google": 4.8,
+      "googleReviews": 27,
+      "note": "食べログ只有 3 則、Google 27 則"
+    },
+    "notes": "國崎（鎧埼燈塔附近）的旅館兼「お食事処」。官網有「お食事予約」表單和お食事処營業時間（17:00～22:00），食べログ也寫午餐、晚餐要預約，判斷**非住客也可以預約用餐**（但官網沒有明寫「非住客」，訂的時候要確認）。相差的「東の窓」不含晚餐，這裡是要開車的晚餐選擇。",
+    "group": {
+      "seats": 26,
+      "privateRoom": true,
+      "buyout": "可（沒寫人數）",
+      "groupMenu": null,
+      "source": "食べログ：席数 26、個室 4 人可、貸切可、完全予約制；官網：カウンター、テーブル、座敷個室",
+      "note": null,
+      "fit15": "split",
+      "fitSubgroup": "yes"
+    },
+    "reservation": {
+      "methods": [
+        "phone",
+        "web"
+      ],
+      "phone": "0599-33-6051",
+      "url": "http://www.isesima.net/kadoya/mail/captmail.cgi",
+      "language": "日文",
+      "note": "完全預約制；官網的お食事予約表單或電話",
+      "accepted": "yes"
+    },
+    "seating": [
+      "counter",
+      "table",
+      "zashiki"
+    ],
+    "kids": null,
+    "smoking": "全席喫煙可（食べログ，可能是舊資料）",
+    "extra": {
+      "region": "國崎・パールロード",
+      "inclusion": "D",
+      "tabelogOwner": false,
+      "tabelogGenre": "旅館・民宿",
+      "nonGuestMeals": "官網有お食事予約表單，判斷可以（沒有明寫）",
+      "conflicts": [
+        "食べログ寫午餐也可以預約，官網、Google 只寫 17:00～22:00"
+      ]
+    }
+  },
+  {
+    "id": "toba-marumitsu-sushi",
+    "type": "restaurant",
+    "name": {
+      "ja": "まるみつ寿司",
+      "kana": "まるみつずし",
+      "zh": "丸三壽司（答志島）",
+      "en": null
+    },
+    "area": "toba",
+    "coords": [
+      136.8977282,
+      34.5237294
+    ],
+    "coordsSource": "google-maps-url",
+    "address": "三重県鳥羽市答志町1106",
+    "hours": {
+      "mon": [
+        [
+          "11:00",
+          "21:00"
+        ]
+      ],
+      "tue": [
+        [
+          "11:00",
+          "21:00"
+        ]
+      ],
+      "wed": [
+        [
+          "11:00",
+          "21:00"
+        ]
+      ],
+      "thu": [
+        [
+          "11:00",
+          "21:00"
+        ]
+      ],
+      "fri": [
+        [
+          "11:00",
+          "21:00"
+        ]
+      ],
+      "sat": [
+        [
+          "11:00",
+          "21:00"
+        ]
+      ],
+      "sun": [
+        [
+          "11:00",
+          "21:00"
+        ]
+      ],
+      "holiday": null,
+      "note": "不定休（食べログ）"
+    },
+    "closedNote": "不定休",
+    "febNote": "離島的店多半不定休，2 月營業與否、定期船停航都要先打電話確認。",
+    "photos": [],
+    "links": {
+      "official": "http://www.amigo.ne.jp/~marumitu/",
+      "googleMaps": "https://maps.google.com/?cid=9811705106461889029",
+      "tabelog": "https://tabelog.com/mie/A2403/A240302/24003433/",
+      "instagram": null
+    },
+    "tags": [],
+    "tier": null,
+    "sources": [
+      {
+        "retrieved": "2026-10-17",
+        "note": "店舗情報：分數、席數、預約、營業時間、お子様連れ",
+        "type": "tabelog",
+        "url": "https://tabelog.com/mie/A2403/A240302/24003433/"
+      },
+      {
+        "retrieved": "2026-10-17",
+        "note": "星數、評論數、營業時間、座標",
+        "type": "google-maps",
+        "url": "https://maps.google.com/?cid=9811705106461889029"
+      },
+      {
+        "type": "blog-zh",
+        "url": "https://www.mirrormedia.mg/story/20260323tour001",
+        "retrieved": "2026-10-17",
+        "note": "鏡週刊 答志島（2026-03-23）"
+      }
+    ],
+    "verified": false,
+    "anchors": [
+      {
+        "id": "toba",
+        "walkMinutes": 105,
+        "walkSource": "estimate"
+      },
+      {
+        "id": "toba-toshijima-wagu",
+        "walkMinutes": 2,
+        "walkSource": "estimate"
+      },
+      {
+        "id": "toba-toshijima-toshi",
+        "walkMinutes": 15,
+        "walkSource": "estimate"
+      }
+    ],
+    "contexts": [
+      "lunch",
+      "dinner"
+    ],
+    "cuisine": [
+      "壽司",
+      "海鮮",
+      "鄉土料理"
+    ],
+    "priceRange": "¥2,000～2,999",
+    "mustTry": [],
+    "menu": [],
+    "ratings": {
+      "tabelog": 3.52,
+      "tabelogReviews": 72,
+      "google": 4.5,
+      "googleReviews": 235,
+      "note": null
+    },
+    "notes": "答志島和具港附近。從鳥羽佐田浜港搭市營定期船。店內有大水槽，養著魚、伊勢龍蝦、貝類。全 19 席的小店。",
+    "group": {
+      "seats": 19,
+      "privateRoom": false,
+      "buyout": "不可",
+      "groupMenu": null,
+      "source": "食べログ：席数 19（4 人桌 ×3、カウンター）、予約可、貸切不可",
+      "note": "19 席，未滿 split 的 20 席門檻",
+      "fit15": "unknown",
+      "fitSubgroup": "yes"
+    },
+    "reservation": {
+      "methods": [
+        "phone"
+      ],
+      "phone": "0599-37-2314",
+      "url": null,
+      "language": "日文",
+      "note": null,
+      "accepted": "yes"
+    },
+    "seating": [
+      "table",
+      "counter"
+    ],
+    "kids": null,
+    "smoking": "全席喫煙可（食べログ，可能是舊資料）",
+    "extra": {
+      "region": "離島（答志島）",
+      "inclusion": "A",
+      "tabelogOwner": false,
+      "conflicts": [
+        "食べログ（非店舗会員）寫 11:00～22:00，Google 寫 11:00～21:00，採用 Google"
+      ]
+    }
+  },
+  {
+    "id": "toba-daiharu",
+    "type": "restaurant",
+    "name": {
+      "ja": "大春",
+      "kana": "だいはる",
+      "zh": "大春（答志島，壽司）",
+      "en": null
+    },
+    "area": "toba",
+    "coords": [
+      136.9007427,
+      34.5227669
+    ],
+    "coordsSource": "google-maps-url",
+    "address": "三重県鳥羽市答志町778",
+    "hours": {
+      "mon": [
+        [
+          "11:30",
+          "21:00"
+        ]
+      ],
+      "tue": [
+        [
+          "11:30",
+          "21:00"
+        ]
+      ],
+      "wed": [],
+      "thu": [
+        [
+          "11:30",
+          "21:00"
+        ]
+      ],
+      "fri": [
+        [
+          "11:30",
+          "21:00"
+        ]
+      ],
+      "sat": [
+        [
+          "11:30",
+          "21:00"
+        ]
+      ],
+      "sun": [
+        [
+          "11:30",
+          "21:00"
+        ]
+      ],
+      "holiday": [
+        [
+          "11:30",
+          "21:00"
+        ]
+      ],
+      "note": "中午要事先聯絡（食べログ）；逢國定假日的週三營業"
+    },
+    "closedNote": "週三公休（逢國定假日營業）",
+    "febNote": "離島的店多半不定休，2 月營業與否、定期船停航都要先打電話確認。",
+    "photos": [],
+    "links": {
+      "official": "http://profile.ameba.jp/toushi-daiharu/",
+      "googleMaps": "https://maps.google.com/?cid=4287281993086933971",
+      "tabelog": "https://tabelog.com/mie/A2403/A240302/24008067/",
+      "instagram": "@daiharu_sushi"
+    },
+    "tags": [],
+    "tier": null,
+    "sources": [
+      {
+        "retrieved": "2026-10-17",
+        "note": "店舗情報：分數、席數、預約、營業時間、お子様連れ",
+        "type": "tabelog",
+        "url": "https://tabelog.com/mie/A2403/A240302/24008067/"
+      },
+      {
+        "retrieved": "2026-10-17",
+        "note": "星數、評論數、營業時間、座標",
+        "type": "google-maps",
+        "url": "https://maps.google.com/?cid=4287281993086933971"
+      }
+    ],
+    "verified": false,
+    "anchors": [
+      {
+        "id": "toba",
+        "walkMinutes": 108,
+        "walkSource": "estimate"
+      },
+      {
+        "id": "toba-toshijima-wagu",
+        "walkMinutes": 4,
+        "walkSource": "estimate"
+      },
+      {
+        "id": "toba-toshijima-toshi",
+        "walkMinutes": 14,
+        "walkSource": "estimate"
+      }
+    ],
+    "contexts": [
+      "lunch",
+      "dinner"
+    ],
+    "cuisine": [
+      "壽司",
+      "鄉土料理",
+      "海鮮"
+    ],
+    "priceRange": null,
+    "mustTry": [],
+    "menu": [],
+    "ratings": {
+      "tabelog": 3.23,
+      "tabelogReviews": 20,
+      "google": 4.6,
+      "googleReviews": 64,
+      "note": "Google 網站欄是 IG"
+    },
+    "notes": "答志島和具港步行約 5 分。中午要先聯絡。食べログ寫「14 名以上有團體折扣」。",
+    "group": {
+      "seats": 30,
+      "privateRoom": true,
+      "buyout": "可包場（20 人以下）",
+      "groupMenu": "14 名以上有團體折扣（食べログ）",
+      "source": "食べログ：席数 30（カウンター 7、テーブル 12、個室 12）、個室 8 人、貸切可（20人以下可）、「14名以上は団体割引あり」",
+      "note": null,
+      "fit15": "yes",
+      "fitSubgroup": "yes"
+    },
+    "reservation": {
+      "methods": [
+        "phone"
+      ],
+      "phone": "0599-37-2109",
+      "url": null,
+      "language": "日文",
+      "note": "中午要事先聯絡",
+      "accepted": "yes"
+    },
+    "seating": [
+      "counter",
+      "table"
+    ],
+    "kids": null,
+    "smoking": "分煙",
+    "extra": {
+      "region": "離島（答志島）",
+      "inclusion": "AC",
+      "tabelogOwner": false,
+      "x": "@daiharu05993721",
+      "conflicts": [
+        "Google 沒有營業時間"
+      ]
+    }
+  },
+  {
+    "id": "toba-kikuya",
+    "type": "restaurant",
+    "name": {
+      "ja": "喜久屋",
+      "kana": "きくや",
+      "zh": "喜久屋（答志島，完全預約制）",
+      "en": null
+    },
+    "area": "toba",
+    "coords": [
+      136.9015091,
+      34.5314629
+    ],
+    "coordsSource": "google-maps-url",
+    "address": "三重県鳥羽市答志町1354-13",
+    "hours": {
+      "mon": [
+        [
+          "10:30",
+          "14:30"
+        ],
+        [
+          "17:00",
+          "21:00"
+        ]
+      ],
+      "tue": [
+        [
+          "10:30",
+          "14:30"
+        ],
+        [
+          "17:00",
+          "21:00"
+        ]
+      ],
+      "wed": [
+        [
+          "10:30",
+          "14:30"
+        ],
+        [
+          "17:00",
+          "21:00"
+        ]
+      ],
+      "thu": [
+        [
+          "10:30",
+          "14:30"
+        ],
+        [
+          "17:00",
+          "21:00"
+        ]
+      ],
+      "fri": [
+        [
+          "10:30",
+          "14:30"
+        ],
+        [
+          "17:00",
+          "21:00"
+        ]
+      ],
+      "sat": [
+        [
+          "10:30",
+          "14:30"
+        ],
+        [
+          "17:00",
+          "21:00"
+        ]
+      ],
+      "sun": [
+        [
+          "10:30",
+          "14:30"
+        ],
+        [
+          "17:00",
+          "21:00"
+        ]
+      ],
+      "holiday": [
+        [
+          "10:30",
+          "14:30"
+        ],
+        [
+          "17:00",
+          "21:00"
+        ]
+      ],
+      "note": "午餐最後入店 13:00、晚餐 19:00；不定休（食べログ店舗会員）"
+    },
+    "closedNote": "不定休（Google 寫週二、週三公休）",
+    "febNote": "離島的店多半不定休，2 月營業與否、定期船停航都要先打電話確認。",
+    "photos": [],
+    "links": {
+      "official": "https://104kikuya.com/",
+      "googleMaps": "https://maps.google.com/?cid=13810023419687605016",
+      "tabelog": "https://tabelog.com/mie/A2403/A240302/24014639/",
+      "instagram": "@104kikuya"
+    },
+    "tags": [],
+    "tier": null,
+    "sources": [
+      {
+        "retrieved": "2026-10-17",
+        "note": "店舗情報：分數、席數、預約、營業時間、お子様連れ",
+        "type": "tabelog",
+        "url": "https://tabelog.com/mie/A2403/A240302/24014639/"
+      },
+      {
+        "retrieved": "2026-10-17",
+        "note": "星數、評論數、營業時間、座標",
+        "type": "google-maps",
+        "url": "https://maps.google.com/?cid=13810023419687605016"
+      }
+    ],
+    "verified": false,
+    "anchors": [
+      {
+        "id": "toba",
+        "walkMinutes": 119,
+        "walkSource": "estimate"
+      },
+      {
+        "id": "toba-toshijima-toshi",
+        "walkMinutes": 4,
+        "walkSource": "estimate"
+      },
+      {
+        "id": "toba-toshijima-wagu",
+        "walkMinutes": 17,
+        "walkSource": "estimate"
+      }
+    ],
+    "contexts": [
+      "lunch",
+      "dinner"
+    ],
+    "cuisine": [
+      "海鮮"
+    ],
+    "priceRange": null,
+    "mustTry": [],
+    "menu": [],
+    "ratings": {
+      "tabelog": 3.04,
+      "tabelogReviews": 5,
+      "google": 4.5,
+      "googleReviews": 53,
+      "note": null
+    },
+    "notes": "答志島答志港附近。完全預約制，前一天以前電話預約（同時決定套餐或午餐套餐），每人一份。只收現金。預約時間前後可以寄放行李。**10 歲未滿的小孩原則上不能入店**（大人能確實管好小孩的話可以）；包廂只限國中以上。",
+    "group": {
+      "seats": 36,
+      "privateRoom": true,
+      "buyout": "可包場（20 人以下）",
+      "groupMenu": null,
+      "source": "食べログ（店舗会員）：席数 36、最大予約可能人数 着席 12 人、個室 2・4・6 人、貸切可（20人以下可）",
+      "note": "最大預約 12 人和包場 20 人以下互相矛盾，要問",
+      "fit15": "unknown",
+      "fitSubgroup": "yes"
+    },
+    "reservation": {
+      "methods": [
+        "phone"
+      ],
+      "phone": "0599-37-2047",
+      "url": null,
+      "language": "日文",
+      "note": "完全預約制，前一天以前電話預約並選好套餐",
+      "accepted": "yes"
+    },
+    "seating": [
+      "counter",
+      "table",
+      "horigotatsu"
+    ],
+    "kids": "10 歲未滿原則上不能入店（大人能管好小孩的話可以）；有兒童餐；包廂只限國中以上",
+    "smoking": "全席禁煙",
+    "extra": {
+      "region": "離島（答志島）",
+      "inclusion": "A",
+      "tabelogOwner": true,
+      "conflicts": [
+        "Google 寫週二、週三公休，食べログ（店舗会員）寫不定休，採用食べログ"
+      ],
+      "googleName": "地物GYOKAI 喜久屋［完全予約制］",
+      "payment": "只收現金"
+    }
+  },
+  {
+    "id": "toba-sugashima-jutaroya",
+    "type": "restaurant",
+    "name": {
+      "ja": "重太郎屋",
+      "kana": "じゅうたろうや",
+      "zh": "重太郎屋（菅島）",
+      "en": null
+    },
+    "area": "toba",
+    "coords": [
+      136.90089,
+      34.499076
+    ],
+    "coordsSource": "google-maps-url",
+    "address": "三重県鳥羽市菅島町4-3",
+    "hours": {
+      "mon": [
+        [
+          "10:00",
+          "17:00"
+        ]
+      ],
+      "tue": [
+        [
+          "10:00",
+          "17:00"
+        ]
+      ],
+      "wed": [],
+      "thu": [
+        [
+          "10:00",
+          "17:00"
+        ]
+      ],
+      "fri": [
+        [
+          "10:00",
+          "17:00"
+        ]
+      ],
+      "sat": [
+        [
+          "10:00",
+          "17:00"
+        ]
+      ],
+      "sun": [
+        [
+          "10:00",
+          "17:00"
+        ]
+      ],
+      "holiday": null,
+      "note": null
+    },
+    "closedNote": "週三公休（Google）",
+    "febNote": "離島的店多半不定休，2 月營業與否、定期船停航都要先打電話確認。",
+    "photos": [],
+    "links": {
+      "official": null,
+      "googleMaps": "https://maps.google.com/?cid=1613137957311032687",
+      "tabelog": "https://tabelog.com/mie/A2403/A240302/24006622/",
+      "instagram": null
+    },
+    "tags": [],
+    "tier": null,
+    "sources": [
+      {
+        "retrieved": "2026-10-17",
+        "note": "店舗情報：分數、席數、預約、營業時間、お子様連れ",
+        "type": "tabelog",
+        "url": "https://tabelog.com/mie/A2403/A240302/24006622/"
+      },
+      {
+        "retrieved": "2026-10-17",
+        "note": "星數、評論數、營業時間、座標",
+        "type": "google-maps",
+        "url": "https://maps.google.com/?cid=1613137957311032687"
+      }
+    ],
+    "verified": false,
+    "anchors": [
+      {
+        "id": "toba",
+        "walkMinutes": 89,
+        "walkSource": "estimate"
+      },
+      {
+        "id": "toba-sugashima-shirongo-beach",
+        "walkMinutes": 11,
+        "walkSource": "estimate"
+      },
+      {
+        "id": "toba-sugashima-lighthouse",
+        "walkMinutes": 12,
+        "walkSource": "estimate"
+      }
+    ],
+    "contexts": [
+      "lunch"
+    ],
+    "cuisine": [
+      "食堂"
+    ],
+    "priceRange": null,
+    "mustTry": [],
+    "menu": [],
+    "ratings": {
+      "tabelog": 3.03,
+      "tabelogReviews": 3,
+      "google": 4,
+      "googleReviews": 25,
+      "note": null
+    },
+    "notes": "菅島港附近，島上少數的食堂（地區保底）。食べログ幾乎沒有資料。",
+    "group": {
+      "seats": null,
+      "privateRoom": false,
+      "buyout": null,
+      "groupMenu": null,
+      "source": "食べログ、Google 都沒有席數",
+      "note": null,
+      "fit15": "unknown",
+      "fitSubgroup": "unknown"
+    },
+    "reservation": {
+      "methods": [],
+      "phone": "0599-34-2208",
+      "url": null,
+      "language": "日文",
+      "note": null,
+      "accepted": "unknown"
+    },
+    "seating": [],
+    "kids": null,
+    "smoking": null,
+    "extra": {
+      "region": "離島（菅島）",
+      "inclusion": "D",
+      "tabelogOwner": false
+    }
+  },
+  {
+    "id": "toba-kamishima-yamami",
+    "type": "restaurant",
+    "name": {
+      "ja": "やま海",
+      "kana": "やまみ",
+      "zh": "Yamami（神島，咖啡食堂）",
+      "en": null
+    },
+    "area": "toba",
+    "coords": [
+      136.9813374,
+      34.5498052
+    ],
+    "coordsSource": "google-maps-url",
+    "address": "三重県鳥羽市神島町60",
+    "hours": null,
+    "closedNote": null,
+    "febNote": "離島的店多半不定休，2 月營業與否、定期船停航都要先打電話確認。",
+    "photos": [],
+    "links": {
+      "official": null,
+      "googleMaps": "https://maps.google.com/?cid=7807414569525863904",
+      "tabelog": "https://tabelog.com/mie/A2403/A240302/24018683/",
+      "instagram": null
+    },
+    "tags": [],
+    "tier": null,
+    "sources": [
+      {
+        "retrieved": "2026-10-17",
+        "note": "店舗情報：分數、席數、預約、營業時間、お子様連れ",
+        "type": "tabelog",
+        "url": "https://tabelog.com/mie/A2403/A240302/24018683/"
+      },
+      {
+        "retrieved": "2026-10-17",
+        "note": "星數、評論數、營業時間、座標",
+        "type": "google-maps",
+        "url": "https://maps.google.com/?cid=7807414569525863904"
+      }
+    ],
+    "verified": false,
+    "anchors": [
+      {
+        "id": "toba",
+        "walkMinutes": 235,
+        "walkSource": "estimate"
+      },
+      {
+        "id": "toba-kamishima-yatsushiro-jinja",
+        "walkMinutes": 3,
+        "walkSource": "estimate"
+      },
+      {
+        "id": "toba-kamishima-lighthouse",
+        "walkMinutes": 8,
+        "walkSource": "estimate"
+      }
+    ],
+    "contexts": [
+      "cafe",
+      "snack",
+      "lunch"
+    ],
+    "cuisine": [
+      "喫茶",
+      "食堂"
+    ],
+    "priceRange": null,
+    "mustTry": [],
+    "menu": [],
+    "ratings": {
+      "tabelog": 3.02,
+      "tabelogReviews": 2,
+      "google": 4.4,
+      "googleReviews": 8,
+      "note": null
+    },
+    "notes": "神島唯一找到的飲食店（地區保底）。食べログ、Google 都沒有營業時間和電話。",
+    "group": {
+      "seats": null,
+      "privateRoom": false,
+      "buyout": null,
+      "groupMenu": null,
+      "source": "食べログ：只寫予約可、有座敷",
+      "note": null,
+      "fit15": "unknown",
+      "fitSubgroup": "unknown"
+    },
+    "reservation": {
+      "methods": [],
+      "phone": null,
+      "url": null,
+      "language": "日文",
+      "note": "食べログ寫予約可，但沒有電話",
+      "accepted": "yes"
+    },
+    "seating": [
+      "zashiki"
+    ],
+    "kids": null,
+    "smoking": null,
+    "extra": {
+      "region": "離島（神島）",
+      "inclusion": "D",
+      "tabelogOwner": false
+    }
   }
 ]
