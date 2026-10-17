@@ -9132,5 +9132,2070 @@
       "dinner"
     ],
     "note": "類型：海鮮丼；地址：伊勢市倭町125-2；個室（食べログ列表）：完全個室有(4〜8人可)；定休（食べログ列表）：水曜日"
+  },
+  {
+    "key": "ise-fujiya-sogetsudo-honkan",
+    "name": {
+      "ja": "藤屋窓月堂 本館"
+    },
+    "region": "ise-asama",
+    "category": "和菓子、甘味処、かき氷",
+    "status": "included",
+    "criteria": [
+      "A"
+    ],
+    "reason": null,
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.34,
+      "tabelogReviews": 44
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240301/24001173/"
+    },
+    "contexts": [
+      "snack"
+    ],
+    "note": "類型：咖啡・甜點；地址：伊勢市鹿海町1650-2；子地區：鹿海町（五十鈴川東岸、朝熊山麓）歸 ise-asama"
+  },
+  {
+    "key": "ise-asama-chaya",
+    "name": {
+      "ja": "朝熊茶屋"
+    },
+    "region": "ise-asama",
+    "category": "うどん、郷土料理",
+    "status": "included",
+    "criteria": [
+      "D1"
+    ],
+    "reason": null,
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.27,
+      "tabelogReviews": 67
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240301/24010680/"
+    },
+    "contexts": [
+      "lunch"
+    ],
+    "note": "類型：烏龍麵・蕎麥；地址：伊勢市朝熊町185-3 伊勢志摩スカイライン朝熊山頂売店内；補的缺口：朝熊山（ise-asama）A～C 沒有可以吃午餐的店（唯一 A 的藤屋窓月堂 本館是和菓子）：D① 取口コミ數多的正餐店；朝熊山頂売店內，朝熊山頂展望台的午餐；朝熊山頂展望台（ise-asama-summit）的売店內"
+  },
+  {
+    "key": "ise-hakutakatei",
+    "name": {
+      "ja": "はくたか亭"
+    },
+    "region": "ise-asama",
+    "category": "海鮮丼、海鮮",
+    "status": "included",
+    "criteria": [
+      "D1"
+    ],
+    "reason": null,
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.16,
+      "tabelogReviews": 63
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240301/24013072/"
+    },
+    "contexts": [
+      "lunch"
+    ],
+    "note": "類型：海鮮丼；地址：伊勢市朝熊町1-11；補的缺口：朝熊山 午餐缺口 D①（朝熊町1-11，伊勢二見鳥羽ライン 朝熊IC 附近的伊勢志摩中央市場，不在山上，要開車）；子地區：朝熊町1-11 是朝熊 IC 附近（伊勢志摩中央市場），歸 ise-asama 但不在山上"
+  },
+  {
+    "key": "ise-the-asaichi",
+    "name": {
+      "ja": "伊勢志摩 中央市場 ザ・朝市"
+    },
+    "region": "ise-asama",
+    "category": "その他",
+    "status": "included",
+    "criteria": [
+      "D1"
+    ],
+    "reason": null,
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.08,
+      "tabelogReviews": 34
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240301/24015713/"
+    },
+    "contexts": [
+      "lunch"
+    ],
+    "note": "類型：其他；地址：伊勢市朝熊町1-11；補的缺口：朝熊山 午餐缺口 D①（和はくたか亭同址的市場，要開車）；子地區：朝熊町1-11（朝熊 IC 附近），歸 ise-asama 但不在山上"
+  },
+  {
+    "key": "tabelog-24009464",
+    "name": {
+      "ja": "ブランカ シェルレーヌ工房"
+    },
+    "region": "ise-asama",
+    "category": "洋菓子",
+    "status": "not-included",
+    "criteria": [],
+    "reason": "未符合 A～F；朝熊町口コミ數最多（93 則），但是洋菓子店，補不了午餐缺口，D① 沒取",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.18,
+      "tabelogReviews": 93
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240301/24009464/"
+    },
+    "contexts": [
+      "snack"
+    ],
+    "note": "類型：咖啡・甜點；地址：伊勢市朝熊町4228-1；定休（食べログ列表）：木曜日"
+  },
+  {
+    "key": "tabelog-24014884",
+    "name": {
+      "ja": "朝熊山頂売店"
+    },
+    "region": "ise-asama",
+    "category": "その他",
+    "status": "not-included",
+    "criteria": [],
+    "reason": "未符合 A～F",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.05,
+      "tabelogReviews": 20
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240301/24014884/"
+    },
+    "contexts": [
+      "snack"
+    ],
+    "note": "類型：其他；地址：伊勢市朝熊町185-3"
+  },
+  {
+    "key": "ise-tonkatsu-yonjusanban",
+    "name": {
+      "ja": "とんかつ 四十三番 伊勢店"
+    },
+    "region": "ise-kurata",
+    "category": "とんかつ",
+    "status": "included",
+    "criteria": [
+      "A"
+    ],
+    "reason": null,
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.55,
+      "tabelogReviews": 114
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240301/24019894/"
+    },
+    "contexts": [
+      "lunch",
+      "dinner"
+    ],
+    "note": "類型：其他；地址：伊勢市黒瀬町562-23；子地區：黑瀬町（五十鈴川站北、伊勢 IC 附近）歸 ise-kurata（同 T8b 的エリアワン伊勢インター）"
+  },
+  {
+    "key": "ise-knotts-berry",
+    "name": {
+      "ja": "Knott's Berry"
+    },
+    "region": "ise-kurata",
+    "category": "ハンバーグ",
+    "status": "included",
+    "criteria": [
+      "A"
+    ],
+    "reason": null,
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.42,
+      "tabelogReviews": 149
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240301/24000167/"
+    },
+    "contexts": [
+      "lunch"
+    ],
+    "note": "類型：洋食・義式；地址：伊勢市黒瀬町859-3；定休（食べログ列表）：木曜日"
+  },
+  {
+    "key": "ise-oranger-cafe-wood",
+    "name": {
+      "ja": "オランジェ カフェウッド"
+    },
+    "region": "ise-kurata",
+    "category": "カフェ",
+    "status": "included",
+    "criteria": [
+      "A",
+      "C"
+    ],
+    "reason": null,
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.41,
+      "tabelogReviews": 96
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240301/24015834/"
+    },
+    "contexts": [
+      "snack",
+      "cafe"
+    ],
+    "note": "類型：咖啡・甜點；地址：伊勢市中村町325-2；定休（食べログ列表）：火曜日；貸切可（食べログ篩選）"
+  },
+  {
+    "key": "ise-cuccagna-tre",
+    "name": {
+      "ja": "クッカーニャ・トレ"
+    },
+    "region": "ise-kurata",
+    "category": "イタリアン、パスタ、ピザ",
+    "status": "included",
+    "criteria": [
+      "A",
+      "C"
+    ],
+    "reason": null,
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.38,
+      "tabelogReviews": 85
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240301/24013344/"
+    },
+    "contexts": [
+      "lunch",
+      "dinner"
+    ],
+    "note": "類型：洋食・義式；地址：伊勢市楠部町字奥乙238-2；定休（食べログ列表）：火曜日；貸切可（食べログ篩選）"
+  },
+  {
+    "key": "ise-tsukiyomi-shokudo",
+    "name": {
+      "ja": "つきよみ食堂"
+    },
+    "region": "ise-kurata",
+    "category": "うどん、かつ丼、食堂",
+    "status": "included",
+    "criteria": [
+      "A"
+    ],
+    "reason": null,
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.34,
+      "tabelogReviews": 100
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240301/24001934/"
+    },
+    "contexts": [
+      "lunch"
+    ],
+    "note": "類型：烏龍麵・蕎麥；地址：伊勢市中村町831；定休（食べログ列表）：月曜日、火曜日、日曜日；月讀宮（ise-tsukiyomi-no-miya，中村町）附近"
+  },
+  {
+    "key": "ise-sai-to-pan",
+    "name": {
+      "ja": "サイとパン"
+    },
+    "region": "ise-kurata",
+    "category": "パン",
+    "status": "included",
+    "criteria": [
+      "A"
+    ],
+    "reason": null,
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.32,
+      "tabelogReviews": 46
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240301/24019467/"
+    },
+    "contexts": [
+      "snack"
+    ],
+    "note": "類型：咖啡・甜點；地址：伊勢市楠部町203-18；定休（食べログ列表）：火曜日、水曜日"
+  },
+  {
+    "key": "ise-riviera",
+    "name": {
+      "ja": "リビエラ"
+    },
+    "region": "ise-kurata",
+    "category": "ステーキ、ハンバーグ、パスタ",
+    "status": "included",
+    "criteria": [
+      "A",
+      "C"
+    ],
+    "reason": null,
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.3,
+      "tabelogReviews": 72
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240301/24001311/"
+    },
+    "contexts": [
+      "lunch",
+      "dinner"
+    ],
+    "note": "類型：燒肉・肉料理；地址：伊勢市楠部町3039；個室（食べログ列表）：個室有(6人可)"
+  },
+  {
+    "key": "ise-furuichi-tsubogin",
+    "name": {
+      "ja": "旬彩居酒屋 古市 つぼ銀"
+    },
+    "region": "ise-kurata",
+    "category": "居酒屋、海鮮、ステーキ",
+    "status": "included",
+    "criteria": [
+      "A",
+      "C"
+    ],
+    "reason": null,
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.3,
+      "tabelogReviews": 41
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240301/24008229/"
+    },
+    "contexts": [
+      "dinner"
+    ],
+    "note": "類型：居酒屋；地址：伊勢市古市町59；個室（食べログ列表）：個室有(8〜20人可)"
+  },
+  {
+    "key": "tabelog-24001269",
+    "name": {
+      "ja": "まめく"
+    },
+    "region": "ise-kurata",
+    "category": "カフェ、豆腐料理",
+    "status": "excluded",
+    "criteria": [],
+    "reason": "旅程期間大多不營業（食べログ列表定休：火～金）",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.13,
+      "tabelogReviews": 28
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240301/24001269/"
+    },
+    "contexts": [
+      "snack",
+      "cafe"
+    ],
+    "note": "類型：咖啡・甜點；地址：伊勢市中村町435-7；定休（食べログ列表）：火曜日、水曜日、木曜日、金曜日"
+  },
+  {
+    "key": "tabelog-24001258",
+    "name": {
+      "ja": "かぐら"
+    },
+    "region": "ise-kurata",
+    "category": "すき焼き、焼肉、しゃぶしゃぶ",
+    "status": "not-included",
+    "criteria": [],
+    "reason": "C 因數量控制（3.30）取消（個室／貸切）",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.29,
+      "tabelogReviews": 68
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240301/24001258/"
+    },
+    "contexts": [
+      "lunch",
+      "dinner"
+    ],
+    "note": "類型：燒肉・肉料理；地址：伊勢市中村町815-1；個室（食べログ列表）：完全個室有(2〜20人可)；貸切可（食べログ篩選）；月讀宮附近，完全個室 2〜20 人"
+  },
+  {
+    "key": "tabelog-24012790",
+    "name": {
+      "ja": "あつむら"
+    },
+    "region": "ise-kurata",
+    "category": "寿司、海鮮",
+    "status": "not-included",
+    "criteria": [],
+    "reason": "C 因數量控制（3.30）取消（貸切）",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.27,
+      "tabelogReviews": 55
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240301/24012790/"
+    },
+    "contexts": [
+      "lunch",
+      "dinner"
+    ],
+    "note": "類型：壽司；地址：伊勢市桜木町239；定休（食べログ列表）：月曜日；貸切可（食べログ篩選）"
+  },
+  {
+    "key": "tabelog-24007114",
+    "name": {
+      "ja": "おくやま"
+    },
+    "region": "ise-kurata",
+    "category": "日本料理",
+    "status": "not-included",
+    "criteria": [],
+    "reason": "C 因數量控制（3.30）取消（個室／貸切）",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.26,
+      "tabelogReviews": 34
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240301/24007114/"
+    },
+    "contexts": [
+      "lunch",
+      "dinner"
+    ],
+    "note": "類型：和食・割烹；地址：伊勢市桜木町139；個室（食べログ列表）：個室有(4〜6人可)；貸切可（食べログ篩選）"
+  },
+  {
+    "key": "tabelog-24003853",
+    "name": {
+      "ja": "シルクロード"
+    },
+    "region": "ise-kurata",
+    "category": "カフェ、喫茶店",
+    "status": "not-included",
+    "criteria": [],
+    "reason": "未符合 A～F",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.23,
+      "tabelogReviews": 35
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240301/24003853/"
+    },
+    "contexts": [
+      "snack",
+      "cafe"
+    ],
+    "note": "類型：咖啡・甜點；地址：伊勢市楠部町255-1；定休（食べログ列表）：土曜日"
+  },
+  {
+    "key": "tabelog-24018669",
+    "name": {
+      "ja": "アリーラック"
+    },
+    "region": "ise-kurata",
+    "category": "カフェ、ピザ、洋菓子",
+    "status": "not-included",
+    "criteria": [],
+    "reason": "C 因數量控制（3.30）取消（貸切）",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.23,
+      "tabelogReviews": 34
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240301/24018669/"
+    },
+    "contexts": [
+      "snack",
+      "cafe"
+    ],
+    "note": "類型：咖啡・甜點；地址：伊勢市黒瀬町260-4；定休（食べログ列表）：水曜日、木曜日；貸切可（食べログ篩選）"
+  },
+  {
+    "key": "tabelog-24014040",
+    "name": {
+      "ja": "アルチザン・ブーランジュリー・ゼンゾー"
+    },
+    "region": "ise-kurata",
+    "category": "パン、サンドイッチ",
+    "status": "not-included",
+    "criteria": [],
+    "reason": "未符合 A～F",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.21,
+      "tabelogReviews": 44
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240301/24014040/"
+    },
+    "contexts": [
+      "snack"
+    ],
+    "note": "類型：咖啡・甜點；地址：伊勢市楠部町202-23"
+  },
+  {
+    "key": "tabelog-24021788",
+    "name": {
+      "ja": "うどん食堂つばめや"
+    },
+    "region": "ise-kurata",
+    "category": "うどん",
+    "status": "not-included",
+    "criteria": [],
+    "reason": "C 因數量控制（3.30）取消（個室）",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.21,
+      "tabelogReviews": 34
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240301/24021788/"
+    },
+    "contexts": [
+      "lunch"
+    ],
+    "note": "類型：烏龍麵・蕎麥；地址：伊勢市黒瀬町871-1；定休（食べログ列表）：火曜日；個室（食べログ列表）：個室有"
+  },
+  {
+    "key": "tabelog-24001153",
+    "name": {
+      "ja": "力也"
+    },
+    "region": "ise-kurata",
+    "category": "すき焼き、しゃぶしゃぶ",
+    "status": "not-included",
+    "criteria": [],
+    "reason": "C 因數量控制（3.30）取消（個室）",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.19,
+      "tabelogReviews": 30
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240301/24001153/"
+    },
+    "contexts": [
+      "lunch",
+      "dinner"
+    ],
+    "note": "類型：燒肉・肉料理；地址：伊勢市黒瀬町869-2；定休（食べログ列表）：水曜日；個室（食べログ列表）：個室有"
+  },
+  {
+    "key": "tabelog-24018939",
+    "name": {
+      "ja": "FROM"
+    },
+    "region": "ise-kurata",
+    "category": "ケーキ",
+    "status": "not-included",
+    "criteria": [],
+    "reason": "未符合 A～F",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.13,
+      "tabelogReviews": 22
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240301/24018939/"
+    },
+    "contexts": [
+      "snack"
+    ],
+    "note": "類型：咖啡・甜點；地址：伊勢市楠部町175-14；定休（食べログ列表）：金曜日、日曜日"
+  },
+  {
+    "key": "tabelog-24002627",
+    "name": {
+      "ja": "焼き鳥ハウス 泉竹林"
+    },
+    "region": "ise-kurata",
+    "category": "焼き鳥",
+    "status": "not-included",
+    "criteria": [],
+    "reason": "C 因數量控制（3.30）取消（個室）",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.13,
+      "tabelogReviews": 24
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240301/24002627/"
+    },
+    "contexts": [
+      "dinner"
+    ],
+    "note": "類型：燒肉・肉料理；地址：伊勢市黒瀬町829-1；個室（食べログ列表）：個室有"
+  },
+  {
+    "key": "tabelog-24009463",
+    "name": {
+      "ja": "ホーム・プラス"
+    },
+    "region": "ise-kurata",
+    "category": "フレンチ",
+    "status": "not-included",
+    "criteria": [],
+    "reason": "未符合 A～F",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.12,
+      "tabelogReviews": 24
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240301/24009463/"
+    },
+    "contexts": [
+      "lunch"
+    ],
+    "note": "類型：洋食・義式；地址：伊勢市中村町723-7；定休（食べログ列表）：火曜日"
+  },
+  {
+    "key": "tabelog-24019658",
+    "name": {
+      "ja": "Enn.cafe"
+    },
+    "region": "ise-kurata",
+    "category": "カフェ、パン",
+    "status": "not-included",
+    "criteria": [],
+    "reason": "未符合 A～F",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.11,
+      "tabelogReviews": 13
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240301/24019658/"
+    },
+    "contexts": [
+      "snack",
+      "cafe"
+    ],
+    "note": "類型：咖啡・甜點；地址：伊勢市中村町777-3；定休（食べログ列表）：火曜日"
+  },
+  {
+    "key": "tabelog-24010559",
+    "name": {
+      "ja": "フルバリ"
+    },
+    "region": "ise-kurata",
+    "category": "インドカレー、インド料理、ネパール料理",
+    "status": "not-included",
+    "criteria": [],
+    "reason": "未符合 A～F",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.1,
+      "tabelogReviews": 45
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240301/24010559/"
+    },
+    "contexts": [
+      "lunch",
+      "dinner"
+    ],
+    "note": "類型：其他；地址：伊勢市楠部町乙231-1 ラ・メゾン 1F"
+  },
+  {
+    "key": "tabelog-24004467",
+    "name": {
+      "ja": "Ciro"
+    },
+    "region": "ise-kurata",
+    "category": "喫茶店",
+    "status": "not-included",
+    "criteria": [],
+    "reason": "未符合 A～F",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.1,
+      "tabelogReviews": 19
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240301/24004467/"
+    },
+    "contexts": [
+      "snack",
+      "cafe"
+    ],
+    "note": "類型：咖啡・甜點；地址：伊勢市楠部町148-6；定休（食べログ列表）：月曜日"
+  },
+  {
+    "key": "ise-sangen",
+    "name": {
+      "ja": "伊勢 三玄"
+    },
+    "region": "ise-outskirts",
+    "category": "日本料理、海鮮",
+    "status": "included",
+    "criteria": [
+      "A",
+      "C"
+    ],
+    "reason": null,
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.76,
+      "tabelogReviews": 54
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240301/24017168/"
+    },
+    "contexts": [
+      "lunch",
+      "dinner"
+    ],
+    "note": "類型：和食・割烹；地址：伊勢市御薗町長屋1362；個室（食べログ列表）：完全個室有(2〜6人可)；貸切可（食べログ篩選）"
+  },
+  {
+    "key": "ise-sazanami",
+    "name": {
+      "ja": "漣 伊勢店"
+    },
+    "region": "ise-outskirts",
+    "category": "食堂、揚げ物、海鮮",
+    "status": "included",
+    "criteria": [
+      "A"
+    ],
+    "reason": null,
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.67,
+      "tabelogReviews": 318
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240301/24001215/"
+    },
+    "contexts": [
+      "lunch",
+      "dinner"
+    ],
+    "note": "類型：定食・食堂；地址：伊勢市神久3-5-55 ホテルキャッスルイン伊勢１Ｆ；定休（食べログ列表）：月曜日；子地區：ホテルキャッスルイン伊勢（T8b 排除的住宿）1F 的餐廳，餐廳本身另列"
+  },
+  {
+    "key": "ise-campagne",
+    "name": {
+      "ja": "カンパーニュ"
+    },
+    "region": "ise-outskirts",
+    "category": "フレンチ",
+    "status": "included",
+    "criteria": [
+      "A",
+      "C"
+    ],
+    "reason": null,
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.6,
+      "tabelogReviews": 89
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240301/24000859/"
+    },
+    "contexts": [
+      "lunch",
+      "dinner"
+    ],
+    "note": "類型：洋食・義式；地址：伊勢市勢田町115-3；貸切可（食べログ篩選）；子地區：勢田町（外宮南西，伊勢西 IC 方向）歸 ise-outskirts"
+  },
+  {
+    "key": "tabelog-24020663",
+    "name": {
+      "ja": "comugi"
+    },
+    "region": "ise-outskirts",
+    "category": "カフェ",
+    "status": "excluded",
+    "criteria": [],
+    "reason": "旅程期間大多不營業（食べログ列表定休：火～金、祝日）",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.37,
+      "tabelogReviews": 34
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240301/24020663/"
+    },
+    "contexts": [
+      "snack",
+      "cafe"
+    ],
+    "note": "類型：咖啡・甜點；地址：伊勢市有滝町3042；定休（食べログ列表）：火曜日、水曜日、木曜日、金曜日、祝日"
+  },
+  {
+    "key": "tabelog-24013160",
+    "name": {
+      "ja": "エース バーガー カフェ"
+    },
+    "region": "ise-outskirts",
+    "category": "ハンバーガー、アメリカ料理、パンケーキ",
+    "status": "not-included",
+    "criteria": [],
+    "reason": "A 因數量控制（3.60）取消；C 因數量控制（3.60）取消（貸切）",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.59,
+      "tabelogReviews": 283
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240301/24013160/"
+    },
+    "contexts": [
+      "lunch"
+    ],
+    "note": "類型：洋食・義式；地址：伊勢市御薗町新開725-7；定休（食べログ列表）：金曜日、土曜日；貸切可（食べログ篩選）"
+  },
+  {
+    "key": "tabelog-24017539",
+    "name": {
+      "ja": "炭火焼うなぎ 南家"
+    },
+    "region": "ise-outskirts",
+    "category": "うなぎ",
+    "status": "not-included",
+    "criteria": [],
+    "reason": "A 因數量控制（3.60）取消；C 因數量控制（3.60）取消（個室／貸切）",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.57,
+      "tabelogReviews": 123
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240301/24017539/"
+    },
+    "contexts": [
+      "lunch",
+      "dinner"
+    ],
+    "note": "類型：和食・割烹；地址：伊勢市御薗町新開21-1；定休（食べログ列表）：火曜日；個室（食べログ列表）：個室有；貸切可（食べログ篩選）"
+  },
+  {
+    "key": "tabelog-24016786",
+    "name": {
+      "ja": "コクリコ ルージュ"
+    },
+    "region": "ise-outskirts",
+    "category": "パン、サンドイッチ",
+    "status": "not-included",
+    "criteria": [],
+    "reason": "A 因數量控制（3.60）取消",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.56,
+      "tabelogReviews": 318
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240301/24016786/"
+    },
+    "contexts": [
+      "snack"
+    ],
+    "note": "類型：咖啡・甜點；地址：伊勢市御薗町王中島766"
+  },
+  {
+    "key": "tabelog-24001293",
+    "name": {
+      "ja": "二軒茶屋餅角屋本店"
+    },
+    "region": "ise-outskirts",
+    "category": "和菓子、甘味処",
+    "status": "not-included",
+    "criteria": [],
+    "reason": "A 因數量控制（3.60）取消",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.54,
+      "tabelogReviews": 226
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240301/24001293/"
+    },
+    "contexts": [
+      "snack"
+    ],
+    "note": "類型：咖啡・甜點；地址：伊勢市神久6丁目8番25号"
+  },
+  {
+    "key": "tabelog-24002184",
+    "name": {
+      "ja": "伊な勢"
+    },
+    "region": "ise-outskirts",
+    "category": "寿司、日本料理、天ぷら",
+    "status": "not-included",
+    "criteria": [],
+    "reason": "A 因數量控制（3.60）取消；C 因數量控制（3.60）取消（個室）",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.51,
+      "tabelogReviews": 89
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240301/24002184/"
+    },
+    "contexts": [
+      "lunch",
+      "dinner"
+    ],
+    "note": "類型：壽司；地址：伊勢市神久5-1-35；定休（食べログ列表）：月曜日；個室（食べログ列表）：個室有"
+  },
+  {
+    "key": "tabelog-24016838",
+    "name": {
+      "ja": "ツリークロップ"
+    },
+    "region": "ise-outskirts",
+    "category": "クレープ・ガレット、カフェ",
+    "status": "not-included",
+    "criteria": [],
+    "reason": "A 因數量控制（3.60）取消",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.45,
+      "tabelogReviews": 74
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240301/24016838/"
+    },
+    "contexts": [
+      "snack",
+      "cafe"
+    ],
+    "note": "類型：咖啡・甜點；地址：伊勢市川端町275；定休（食べログ列表）：水曜日、木曜日；子地區：川端町（河崎的勢田川對岸）歸 ise-outskirts"
+  },
+  {
+    "key": "tabelog-24001936",
+    "name": {
+      "ja": "さし汐"
+    },
+    "region": "ise-outskirts",
+    "category": "うなぎ",
+    "status": "not-included",
+    "criteria": [],
+    "reason": "A 因數量控制（3.60）取消；C 因數量控制（3.60）取消（個室）",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.44,
+      "tabelogReviews": 219
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240301/24001936/"
+    },
+    "contexts": [
+      "lunch"
+    ],
+    "note": "類型：和食・割烹；地址：伊勢市通町193-3；定休（食べログ列表）：火曜日；個室（食べログ列表）：個室有(10〜20人可)；菊池パール（ise-kikuchi-pearl，通町）附近的鰻魚店，個室 10〜20 人"
+  },
+  {
+    "key": "tabelog-24013600",
+    "name": {
+      "ja": "あんぱん 伊勢店"
+    },
+    "region": "ise-outskirts",
+    "category": "パン、サンドイッチ",
+    "status": "not-included",
+    "criteria": [],
+    "reason": "A 因數量控制（3.60）取消",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.44,
+      "tabelogReviews": 89
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240301/24013600/"
+    },
+    "contexts": [
+      "snack"
+    ],
+    "note": "類型：咖啡・甜點；地址：伊勢市御薗町新開725-7；定休（食べログ列表）：月曜日、火曜日"
+  },
+  {
+    "key": "tabelog-24010784",
+    "name": {
+      "ja": "パティスリー ラ リシュテール"
+    },
+    "region": "ise-outskirts",
+    "category": "ケーキ、カフェ、パン",
+    "status": "not-included",
+    "criteria": [],
+    "reason": "A 因數量控制（3.60）取消",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.39,
+      "tabelogReviews": 75
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240301/24010784/"
+    },
+    "contexts": [
+      "snack",
+      "cafe"
+    ],
+    "note": "類型：咖啡・甜點；地址：伊勢市旭町193-1 M'sビル 1F；定休（食べログ列表）：月曜日、火曜日"
+  },
+  {
+    "key": "tabelog-24016341",
+    "name": {
+      "ja": "ハナツムリ"
+    },
+    "region": "ise-outskirts",
+    "category": "カフェ、ケーキ",
+    "status": "not-included",
+    "criteria": [],
+    "reason": "A 因數量控制（3.60）取消",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.39,
+      "tabelogReviews": 63
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240301/24016341/"
+    },
+    "contexts": [
+      "snack",
+      "cafe"
+    ],
+    "note": "類型：咖啡・甜點；地址：伊勢市中島1-14-6；定休（食べログ列表）：月曜日、日曜日；子地區：中島（伊勢市站北約 1.5 km）歸 ise-outskirts"
+  },
+  {
+    "key": "tabelog-24019983",
+    "name": {
+      "ja": "obataN"
+    },
+    "region": "ise-outskirts",
+    "category": "カフェ、イタリアン",
+    "status": "not-included",
+    "criteria": [],
+    "reason": "A 因數量控制（3.60）取消",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.39,
+      "tabelogReviews": 45
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240301/24019983/"
+    },
+    "contexts": [
+      "snack",
+      "cafe"
+    ],
+    "note": "類型：咖啡・甜點；地址：伊勢市小俣町相合537-4；定休（食べログ列表）：月曜日、日曜日、祝日"
+  },
+  {
+    "key": "tabelog-24002626",
+    "name": {
+      "ja": "黒潮ダイニング 花"
+    },
+    "region": "ise-outskirts",
+    "category": "海鮮、海鮮丼、寿司",
+    "status": "not-included",
+    "criteria": [],
+    "reason": "A 因數量控制（3.60）取消；C 因數量控制（3.60）取消（個室）",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.38,
+      "tabelogReviews": 118
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240301/24002626/"
+    },
+    "contexts": [
+      "lunch"
+    ],
+    "note": "類型：海鮮丼；地址：伊勢市御薗町長屋3097；定休（食べログ列表）：木曜日；個室（食べログ列表）：個室有(2〜6人可)"
+  },
+  {
+    "key": "tabelog-24003560",
+    "name": {
+      "ja": "河崎屋"
+    },
+    "region": "ise-outskirts",
+    "category": "うどん、そば",
+    "status": "not-included",
+    "criteria": [],
+    "reason": "A 因數量控制（3.60）取消",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.38,
+      "tabelogReviews": 85
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240301/24003560/"
+    },
+    "contexts": [
+      "lunch",
+      "dinner"
+    ],
+    "note": "類型：烏龍麵・蕎麥；地址：伊勢市中島1-9-6；定休（食べログ列表）：日曜日；子地區：中島 歸 ise-outskirts"
+  },
+  {
+    "key": "tabelog-24017603",
+    "name": {
+      "ja": "しまかぜ食堂 伊勢店"
+    },
+    "region": "ise-outskirts",
+    "category": "食堂、海鮮",
+    "status": "not-included",
+    "criteria": [],
+    "reason": "A 因數量控制（3.60）取消；C 因數量控制（3.60）取消（個室）",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.37,
+      "tabelogReviews": 76
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240301/24017603/"
+    },
+    "contexts": [
+      "lunch",
+      "dinner"
+    ],
+    "note": "類型：定食・食堂；地址：伊勢市上地町2677-1；個室（食べログ列表）：個室有"
+  },
+  {
+    "key": "tabelog-24000814",
+    "name": {
+      "ja": "鰻のにしやま"
+    },
+    "region": "ise-outskirts",
+    "category": "うなぎ",
+    "status": "not-included",
+    "criteria": [],
+    "reason": "A 因數量控制（3.60）取消",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.37,
+      "tabelogReviews": 70
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240301/24000814/"
+    },
+    "contexts": [
+      "lunch",
+      "dinner"
+    ],
+    "note": "類型：和食・割烹；地址：伊勢市小俣町元町15；定休（食べログ列表）：木曜日；伊勢苺園（ise-ichigoen，小俣町元町）附近"
+  },
+  {
+    "key": "tabelog-24001088",
+    "name": {
+      "ja": "へんばや商店 本店"
+    },
+    "region": "ise-outskirts",
+    "category": "和菓子",
+    "status": "not-included",
+    "criteria": [],
+    "reason": "A 因數量控制（3.60）取消",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.36,
+      "tabelogReviews": 178
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240301/24001088/"
+    },
+    "contexts": [
+      "snack"
+    ],
+    "note": "類型：咖啡・甜點；地址：伊勢市小俣町明野1430-1；定休（食べログ列表）：月曜日"
+  },
+  {
+    "key": "tabelog-24000866",
+    "name": {
+      "ja": "天六苑"
+    },
+    "region": "ise-outskirts",
+    "category": "焼肉",
+    "status": "not-included",
+    "criteria": [],
+    "reason": "A 因數量控制（3.60）取消；C 因數量控制（3.60）取消（貸切）",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.36,
+      "tabelogReviews": 50
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240301/24000866/"
+    },
+    "contexts": [
+      "lunch",
+      "dinner"
+    ],
+    "note": "類型：燒肉・肉料理；地址：伊勢市船江3丁目4-27；定休（食べログ列表）：水曜日、木曜日；貸切可（食べログ篩選）"
+  },
+  {
+    "key": "tabelog-24001860",
+    "name": {
+      "ja": "喜八屋"
+    },
+    "region": "ise-outskirts",
+    "category": "うどん、そば",
+    "status": "not-included",
+    "criteria": [],
+    "reason": "A 因數量控制（3.60）取消；C 因數量控制（3.60）取消（貸切）",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.34,
+      "tabelogReviews": 65
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240301/24001860/"
+    },
+    "contexts": [
+      "lunch",
+      "dinner"
+    ],
+    "note": "類型：烏龍麵・蕎麥；地址：伊勢市船江1-6-60；定休（食べログ列表）：日曜日；貸切可（食べログ篩選）"
+  },
+  {
+    "key": "tabelog-24001378",
+    "name": {
+      "ja": "アポロン"
+    },
+    "region": "ise-outskirts",
+    "category": "ケーキ、カフェ",
+    "status": "not-included",
+    "criteria": [],
+    "reason": "A 因數量控制（3.60）取消",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.34,
+      "tabelogReviews": 54
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240301/24001378/"
+    },
+    "contexts": [
+      "snack",
+      "cafe"
+    ],
+    "note": "類型：咖啡・甜點；地址：伊勢市小俣町明野1413-11；定休（食べログ列表）：月曜日"
+  },
+  {
+    "key": "tabelog-24001481",
+    "name": {
+      "ja": "味の來々軒"
+    },
+    "region": "ise-outskirts",
+    "category": "四川料理、中華料理、居酒屋",
+    "status": "not-included",
+    "criteria": [],
+    "reason": "A 因數量控制（3.60）取消；C 因數量控制（3.60）取消（個室／貸切）",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.34,
+      "tabelogReviews": 49
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240301/24001481/"
+    },
+    "contexts": [
+      "lunch",
+      "dinner"
+    ],
+    "note": "類型：其他；地址：伊勢市川端町231-1；定休（食べログ列表）：水曜日；個室（食べログ列表）：個室有(30人以上可)；貸切可（食べログ篩選）；子地區：川端町 歸 ise-outskirts"
+  },
+  {
+    "key": "tabelog-24012430",
+    "name": {
+      "ja": "ヒトサラ"
+    },
+    "region": "ise-outskirts",
+    "category": "カフェ",
+    "status": "not-included",
+    "criteria": [],
+    "reason": "A 因數量控制（3.60）取消",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.33,
+      "tabelogReviews": 87
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240301/24012430/"
+    },
+    "contexts": [
+      "snack",
+      "cafe"
+    ],
+    "note": "類型：咖啡・甜點；地址：伊勢市船江1-6-58；定休（食べログ列表）：土曜日、日曜日"
+  },
+  {
+    "key": "tabelog-24009025",
+    "name": {
+      "ja": "食工房 やまと茶屋"
+    },
+    "region": "ise-outskirts",
+    "category": "食堂、海鮮丼、うどん",
+    "status": "not-included",
+    "criteria": [],
+    "reason": "A 因數量控制（3.60）取消；C 因數量控制（3.60）取消（貸切）",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.33,
+      "tabelogReviews": 81
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240301/24009025/"
+    },
+    "contexts": [
+      "lunch",
+      "dinner"
+    ],
+    "note": "類型：定食・食堂；地址：伊勢市上地町1040；定休（食べログ列表）：水曜日；貸切可（食べログ篩選）"
+  },
+  {
+    "key": "tabelog-24002062",
+    "name": {
+      "ja": "とんかつ トンテキ えにし"
+    },
+    "region": "ise-outskirts",
+    "category": "とんかつ",
+    "status": "not-included",
+    "criteria": [],
+    "reason": "A 因數量控制（3.60）取消",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.33,
+      "tabelogReviews": 76
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240301/24002062/"
+    },
+    "contexts": [
+      "lunch",
+      "dinner"
+    ],
+    "note": "類型：其他；地址：伊勢市御薗町王中島206-5；定休（食べログ列表）：火曜日"
+  },
+  {
+    "key": "tabelog-24008636",
+    "name": {
+      "ja": "菓子工房 ササンボン"
+    },
+    "region": "ise-outskirts",
+    "category": "ケーキ",
+    "status": "not-included",
+    "criteria": [],
+    "reason": "A 因數量控制（3.60）取消",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.33,
+      "tabelogReviews": 52
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240301/24008636/"
+    },
+    "contexts": [
+      "snack"
+    ],
+    "note": "類型：咖啡・甜點；地址：伊勢市小俣町宮前294-1；定休（食べログ列表）：水曜日"
+  },
+  {
+    "key": "tabelog-24020319",
+    "name": {
+      "ja": "えびやハマサン"
+    },
+    "region": "ise-outskirts",
+    "category": "揚げ物、食堂、サンドイッチ",
+    "status": "not-included",
+    "criteria": [],
+    "reason": "A 因數量控制（3.60）取消",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.32,
+      "tabelogReviews": 85
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240301/24020319/"
+    },
+    "contexts": [
+      "snack"
+    ],
+    "note": "類型：其他；地址：伊勢市上地町4198；定休（食べログ列表）：月曜日、日曜日"
+  },
+  {
+    "key": "tabelog-24003011",
+    "name": {
+      "ja": "手打ち蕎麦 柿右衛門"
+    },
+    "region": "ise-outskirts",
+    "category": "そば",
+    "status": "not-included",
+    "criteria": [],
+    "reason": "A 因數量控制（3.60）取消",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.32,
+      "tabelogReviews": 81
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240301/24003011/"
+    },
+    "contexts": [
+      "lunch"
+    ],
+    "note": "類型：烏龍麵・蕎麥；地址：伊勢市旭町366-1；定休（食べログ列表）：金曜日、土曜日"
+  },
+  {
+    "key": "tabelog-24013969",
+    "name": {
+      "ja": "ピッツェリア&カフェ オルソ"
+    },
+    "region": "ise-outskirts",
+    "category": "ピザ、カフェ、イタリアン",
+    "status": "not-included",
+    "criteria": [],
+    "reason": "A 因數量控制（3.60）取消；C 因數量控制（3.60）取消（貸切）",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.32,
+      "tabelogReviews": 57
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240301/24013969/"
+    },
+    "contexts": [
+      "lunch",
+      "dinner"
+    ],
+    "note": "類型：洋食・義式；地址：伊勢市御薗町長屋3039；定休（食べログ列表）：火曜日；貸切可（食べログ篩選）"
+  },
+  {
+    "key": "tabelog-24010740",
+    "name": {
+      "ja": "濃厚つけ麺 風雲丸 伊勢店"
+    },
+    "region": "ise-outskirts",
+    "category": "ラーメン、つけ麺",
+    "status": "not-included",
+    "criteria": [],
+    "reason": "A 因數量控制（3.60）取消",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.31,
+      "tabelogReviews": 99
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240301/24010740/"
+    },
+    "contexts": [
+      "lunch",
+      "dinner"
+    ],
+    "note": "類型：其他；地址：伊勢市小木町653-1；定休（食べログ列表）：火曜日"
+  },
+  {
+    "key": "tabelog-24002363",
+    "name": {
+      "ja": "太極殿"
+    },
+    "region": "ise-outskirts",
+    "category": "中華料理、餃子",
+    "status": "not-included",
+    "criteria": [],
+    "reason": "A 因數量控制（3.60）取消；C 因數量控制（3.60）取消（個室）",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.3,
+      "tabelogReviews": 50
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240301/24002363/"
+    },
+    "contexts": [
+      "lunch",
+      "dinner"
+    ],
+    "note": "類型：其他；地址：伊勢市村松町1355-13；定休（食べログ列表）：木曜日；個室（食べログ列表）：個室有"
+  },
+  {
+    "key": "tabelog-24017714",
+    "name": {
+      "ja": "中華食堂スマロ"
+    },
+    "region": "ise-outskirts",
+    "category": "中華料理",
+    "status": "not-included",
+    "criteria": [],
+    "reason": "A 因數量控制（3.60）取消；C 因數量控制（3.60）取消（貸切）",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.3,
+      "tabelogReviews": 40
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240301/24017714/"
+    },
+    "contexts": [
+      "lunch",
+      "dinner"
+    ],
+    "note": "類型：其他；地址：伊勢市御薗町長屋2072-2；貸切可（食べログ篩選）"
+  },
+  {
+    "key": "tabelog-24007116",
+    "name": {
+      "ja": "うな春"
+    },
+    "region": "ise-outskirts",
+    "category": "うなぎ",
+    "status": "not-included",
+    "criteria": [],
+    "reason": "A 因數量控制（3.60）取消",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.3,
+      "tabelogReviews": 37
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240301/24007116/"
+    },
+    "contexts": [
+      "lunch"
+    ],
+    "note": "類型：和食・割烹；地址：伊勢市小俣町元町26-1；定休（食べログ列表）：火曜日；伊勢苺園（小俣町元町）附近"
+  },
+  {
+    "key": "tabelog-24002100",
+    "name": {
+      "ja": "めし処 こさく"
+    },
+    "region": "ise-outskirts",
+    "category": "食堂、とんかつ",
+    "status": "not-included",
+    "criteria": [],
+    "reason": "C 因數量控制（3.60）取消（個室／貸切）",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.29,
+      "tabelogReviews": 70
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240301/24002100/"
+    },
+    "contexts": [
+      "lunch",
+      "dinner"
+    ],
+    "note": "類型：定食・食堂；地址：伊勢市御薗町新開558-1；定休（食べログ列表）：月曜日；個室（食べログ列表）：個室有；貸切可（食べログ篩選）"
+  },
+  {
+    "key": "tabelog-24021583",
+    "name": {
+      "ja": "Déshan Restaurant & Café"
+    },
+    "region": "ise-outskirts",
+    "category": "スリランカ料理",
+    "status": "not-included",
+    "criteria": [],
+    "reason": "未符合 A～F（在貸切篩選裡，但口コミ 13 則不到 15）",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.29,
+      "tabelogReviews": 13
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240301/24021583/"
+    },
+    "contexts": [
+      "lunch"
+    ],
+    "note": "類型：其他；地址：伊勢市御薗町長屋2149-3；貸切可（食べログ篩選）"
+  },
+  {
+    "key": "tabelog-24007622",
+    "name": {
+      "ja": "伊勢大阪屋"
+    },
+    "region": "ise-outskirts",
+    "category": "海鮮、日本料理、寿司",
+    "status": "not-included",
+    "criteria": [],
+    "reason": "C 因數量控制（3.60）取消（個室／貸切）",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.28,
+      "tabelogReviews": 103
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240301/24007622/"
+    },
+    "contexts": [
+      "lunch",
+      "dinner"
+    ],
+    "note": "類型：海鮮丼；地址：伊勢市上地町2582- 1；個室（食べログ列表）：完全個室有(10〜30人、30人以上可)；貸切可（食べログ篩選）"
+  },
+  {
+    "key": "tabelog-24012940",
+    "name": {
+      "ja": "食遊人"
+    },
+    "region": "ise-outskirts",
+    "category": "日本料理、郷土料理、食堂",
+    "status": "not-included",
+    "criteria": [],
+    "reason": "C 因數量控制（3.60）取消（個室／貸切）",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.28,
+      "tabelogReviews": 42
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240301/24012940/"
+    },
+    "contexts": [
+      "lunch"
+    ],
+    "note": "類型：和食・割烹；地址：伊勢市村松町1379-1；定休（食べログ列表）：火曜日；個室（食べログ列表）：個室有；貸切可（食べログ篩選）"
+  },
+  {
+    "key": "tabelog-24007088",
+    "name": {
+      "ja": "倉野屋"
+    },
+    "region": "ise-outskirts",
+    "category": "食堂",
+    "status": "not-included",
+    "criteria": [],
+    "reason": "C 因數量控制（3.60）取消（個室）",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.28,
+      "tabelogReviews": 27
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240301/24007088/"
+    },
+    "contexts": [
+      "lunch"
+    ],
+    "note": "類型：定食・食堂；地址：伊勢市小俣町本町156；定休（食べログ列表）：水曜日；個室（食べログ列表）：個室有(4〜8人可)"
+  },
+  {
+    "key": "tabelog-24003146",
+    "name": {
+      "ja": "柚子"
+    },
+    "region": "ise-outskirts",
+    "category": "日本料理",
+    "status": "not-included",
+    "criteria": [],
+    "reason": "C 因數量控制（3.60）取消（個室／貸切）",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.26,
+      "tabelogReviews": 32
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240301/24003146/"
+    },
+    "contexts": [
+      "lunch",
+      "dinner"
+    ],
+    "note": "類型：和食・割烹；地址：伊勢市御薗町長屋1983-1；定休（食べログ列表）：火曜日；個室（食べログ列表）：完全個室有(2〜20人可)；貸切可（食べログ篩選）"
+  },
+  {
+    "key": "tabelog-24004947",
+    "name": {
+      "ja": "グローイングアップ"
+    },
+    "region": "ise-outskirts",
+    "category": "ステーキ、ハンバーグ",
+    "status": "not-included",
+    "criteria": [],
+    "reason": "C 因數量控制（3.60）取消（貸切）",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.25,
+      "tabelogReviews": 31
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240301/24004947/"
+    },
+    "contexts": [
+      "lunch"
+    ],
+    "note": "類型：燒肉・肉料理；地址：伊勢市竹ケ鼻町339-1；貸切可（食べログ篩選）"
+  },
+  {
+    "key": "tabelog-24020335",
+    "name": {
+      "ja": "銀次郎"
+    },
+    "region": "ise-outskirts",
+    "category": "フレンチ",
+    "status": "not-included",
+    "criteria": [],
+    "reason": "C 因數量控制（3.60）取消（貸切）",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.25,
+      "tabelogReviews": 25
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240301/24020335/"
+    },
+    "contexts": [
+      "lunch",
+      "dinner"
+    ],
+    "note": "類型：洋食・義式；地址：伊勢市小俣町明野1077；定休（食べログ列表）：月曜日；貸切可（食べログ篩選）"
+  },
+  {
+    "key": "tabelog-24010840",
+    "name": {
+      "ja": "グリル百福 伊勢店"
+    },
+    "region": "ise-outskirts",
+    "category": "ハンバーグ、ステーキ、洋食",
+    "status": "not-included",
+    "criteria": [],
+    "reason": "C 因數量控制（3.60）取消（貸切）",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.24,
+      "tabelogReviews": 45
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240301/24010840/"
+    },
+    "contexts": [
+      "lunch",
+      "dinner"
+    ],
+    "note": "類型：洋食・義式；地址：伊勢市上地町2691-19 問屋センター；貸切可（食べログ篩選）"
+  },
+  {
+    "key": "tabelog-24000505",
+    "name": {
+      "ja": "牛元"
+    },
+    "region": "ise-outskirts",
+    "category": "焼肉",
+    "status": "not-included",
+    "criteria": [],
+    "reason": "C 因數量控制（3.60）取消（貸切）",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.24,
+      "tabelogReviews": 45
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240301/24000505/"
+    },
+    "contexts": [
+      "lunch",
+      "dinner"
+    ],
+    "note": "類型：燒肉・肉料理；地址：伊勢市御薗町長屋2055-1；貸切可（食べログ篩選）"
+  },
+  {
+    "key": "tabelog-24001187",
+    "name": {
+      "ja": "ル・バンボッシュ"
+    },
+    "region": "ise-outskirts",
+    "category": "フレンチ",
+    "status": "not-included",
+    "criteria": [],
+    "reason": "C 因數量控制（3.60）取消（貸切）",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.23,
+      "tabelogReviews": 44
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240301/24001187/"
+    },
+    "contexts": [
+      "lunch",
+      "dinner"
+    ],
+    "note": "類型：洋食・義式；地址：伊勢市辻久留2-10-3 1Ｆ；定休（食べログ列表）：火曜日、水曜日；貸切可（食べログ篩選）"
+  },
+  {
+    "key": "tabelog-24004618",
+    "name": {
+      "ja": "鰻の千代幸"
+    },
+    "region": "ise-outskirts",
+    "category": "うなぎ",
+    "status": "not-included",
+    "criteria": [],
+    "reason": "C 因數量控制（3.60）取消（貸切）",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.22,
+      "tabelogReviews": 45
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240301/24004618/"
+    },
+    "contexts": [
+      "lunch",
+      "dinner"
+    ],
+    "note": "類型：和食・割烹；地址：伊勢市小俣町本町926；定休（食べログ列表）：月曜日；貸切可（食べログ篩選）"
+  },
+  {
+    "key": "tabelog-24007353",
+    "name": {
+      "ja": "伊勢かぐらばリゾート 千の杜"
+    },
+    "region": "ise-outskirts",
+    "category": "料理旅館、日本料理",
+    "status": "not-included",
+    "criteria": [],
+    "reason": "住宿本體（T8b 沒有收錄的住宿）；未符合 A～F",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.21,
+      "tabelogReviews": 51
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240301/24007353/"
+    },
+    "contexts": [
+      "dinner"
+    ],
+    "note": "類型：和食・割烹；地址：伊勢市佐八町池の上1165-1；個室（食べログ列表）：個室有"
+  },
+  {
+    "key": "tabelog-24003145",
+    "name": {
+      "ja": "網元"
+    },
+    "region": "ise-outskirts",
+    "category": "日本料理、寿司",
+    "status": "not-included",
+    "criteria": [],
+    "reason": "C 因數量控制（3.60）取消（個室）",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.21,
+      "tabelogReviews": 16
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240301/24003145/"
+    },
+    "contexts": [
+      "lunch"
+    ],
+    "note": "類型：和食・割烹；地址：伊勢市小俣町本町939；定休（食べログ列表）：月曜日；個室（食べログ列表）：個室有"
+  },
+  {
+    "key": "tabelog-24021472",
+    "name": {
+      "ja": "フランフラン ル パティシエ ウエムラ"
+    },
+    "region": "ise-outskirts",
+    "category": "ケーキ、洋菓子、カフェ",
+    "status": "not-included",
+    "criteria": [],
+    "reason": "C 因數量控制（3.60）取消（個室）",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.2,
+      "tabelogReviews": 15
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240301/24021472/"
+    },
+    "contexts": [
+      "snack",
+      "cafe"
+    ],
+    "note": "類型：咖啡・甜點；地址：伊勢市小木町601；定休（食べログ列表）：水曜日；個室（食べログ列表）：個室有"
+  },
+  {
+    "key": "tabelog-24015615",
+    "name": {
+      "ja": "和牛石アミ焼肉 たまちゃん"
+    },
+    "region": "ise-outskirts",
+    "category": "焼肉",
+    "status": "not-included",
+    "criteria": [],
+    "reason": "C 因數量控制（3.60）取消（個室）",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.19,
+      "tabelogReviews": 26
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240301/24015615/"
+    },
+    "contexts": [
+      "lunch",
+      "dinner"
+    ],
+    "note": "類型：燒肉・肉料理；地址：伊勢市小俣町湯田185-17；定休（食べログ列表）：月曜日；個室（食べログ列表）：個室有(30人以上可)"
+  },
+  {
+    "key": "tabelog-24018085",
+    "name": {
+      "ja": "Unico"
+    },
+    "region": "ise-outskirts",
+    "category": "イタリアン",
+    "status": "not-included",
+    "criteria": [],
+    "reason": "C 因數量控制（3.60）取消（個室）",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.18,
+      "tabelogReviews": 18
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240301/24018085/"
+    },
+    "contexts": [
+      "lunch"
+    ],
+    "note": "類型：洋食・義式；地址：伊勢市神久5-3-24；定休（食べログ列表）：水曜日；個室（食べログ列表）：個室有"
+  },
+  {
+    "key": "tabelog-24019745",
+    "name": {
+      "ja": "ごはんとお酒 日向"
+    },
+    "region": "ise-outskirts",
+    "category": "食堂、居酒屋",
+    "status": "not-included",
+    "criteria": [],
+    "reason": "C 因數量控制（3.60）取消（個室）",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.18,
+      "tabelogReviews": 15
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240301/24019745/"
+    },
+    "contexts": [
+      "lunch"
+    ],
+    "note": "類型：定食・食堂；地址：伊勢市馬瀬町678；定休（食べログ列表）：火曜日；個室（食べログ列表）：個室有"
+  },
+  {
+    "key": "tabelog-24008419",
+    "name": {
+      "ja": "イベリコ豚専門店 旨家どんぐり"
+    },
+    "region": "ise-outskirts",
+    "category": "居酒屋、焼き鳥、しゃぶしゃぶ",
+    "status": "not-included",
+    "criteria": [],
+    "reason": "C 因數量控制（3.60）取消（個室）",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.17,
+      "tabelogReviews": 60
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240301/24008419/"
+    },
+    "contexts": [
+      "lunch",
+      "dinner"
+    ],
+    "note": "類型：居酒屋；地址：伊勢市小俣町明野567-2；個室（食べログ列表）：完全個室有(2人可)"
+  },
+  {
+    "key": "tabelog-24006985",
+    "name": {
+      "ja": "パセプション"
+    },
+    "region": "ise-outskirts",
+    "category": "日本料理、居酒屋、海鮮",
+    "status": "not-included",
+    "criteria": [],
+    "reason": "C 因數量控制（3.60）取消（個室）",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.16,
+      "tabelogReviews": 41
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240301/24006985/"
+    },
+    "contexts": [
+      "lunch",
+      "dinner"
+    ],
+    "note": "類型：和食・割烹；地址：伊勢市小俣町元町18 コンフィアンス 1F；個室（食べログ列表）：完全個室有(2〜30人、30人以上可)；伊勢苺園（小俣町元町）附近，完全個室 2〜30 人、30 人以上"
+  },
+  {
+    "key": "tabelog-24013712",
+    "name": {
+      "ja": "さち丸"
+    },
+    "region": "ise-outskirts",
+    "category": "天ぷら",
+    "status": "not-included",
+    "criteria": [],
+    "reason": "C 因數量控制（3.60）取消（個室）",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.16,
+      "tabelogReviews": 33
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240301/24013712/"
+    },
+    "contexts": [
+      "lunch"
+    ],
+    "note": "類型：和食・割烹；地址：伊勢市御薗町長屋2971-2；定休（食べログ列表）：木曜日；個室（食べログ列表）：個室有"
+  },
+  {
+    "key": "tabelog-24015256",
+    "name": {
+      "ja": "炭焼 肉丸"
+    },
+    "region": "ise-outskirts",
+    "category": "焼肉、ホルモン、ちゃんこ鍋",
+    "status": "not-included",
+    "criteria": [],
+    "reason": "C 因數量控制（3.60）取消（個室）",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.15,
+      "tabelogReviews": 33
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240301/24015256/"
+    },
+    "contexts": [
+      "lunch",
+      "dinner"
+    ],
+    "note": "類型：燒肉・肉料理；地址：伊勢市神久4-329-4；個室（食べログ列表）：個室有"
   }
 ]
