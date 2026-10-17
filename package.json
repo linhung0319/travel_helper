@@ -4,7 +4,8 @@
   "type": "module",
   "description": "伊勢志摩旅遊規劃：資料與驗證腳本",
   "scripts": {
-    "validate": "node scripts/validate.mjs"
+    "validate": "node scripts/validate.mjs",
+    "test:geo": "node --experimental-strip-types --disable-warning=ExperimentalWarning --test \"scripts/test/*.test.ts\""
   },
   "devDependencies": {
     "ajv": "^8.20.0",
