@@ -26,7 +26,7 @@
 | 2026-10-18 | T7e | Grow 的 fit15 判 `unknown`（最大予約 14 人、貸切 20 人以下互相矛盾）；CaroCaro 判 `yes`（最大予約 20）但 note 寫晚餐限中學生以上 | 照 T4b 喜久屋的前例；fit15 規則只看人數 | 改 `group.fit15` |
 | 2026-10-18 | T7e | 新店的營業時間：CaroCaro 官網只寫不定休、食べログ寫月火休 → 月、火設 `null`（不知道）；たくちゃん 午餐沒有打烊時間 → 只記晚上；梵天 用食べログ（るるぶ寫 21:00 打烊記在 conflicts） | 「不知道就 null」；食べログ在優先順序裡，るるぶ不在 | 改 `hours` |
 | 2026-10-18 | T7e | 舊 71 家的 anchors 在跑 `restaurant-anchors.mjs --write` 後還原成原值，只保留新店的 anchors | 任務說第 1 批不動舊店；舊店重算是 T7f | T7f 重跑時會一起更新 |
-| 2026-10-18 | T7e | 第 2 批 `menu`：食べログ只有使用者投稿的菜單照片、沒有文字菜單的店，記 `dtlmenu/photo/` 的連結（14 家）；有文字菜單記 `dtlmenu/`，有コース記 `party/` | CONVENTIONS「不存菜單照片，要看就點 menu 的連結」；這些店多半沒有官網菜單，沒有連結就看不到菜單 | 刪掉 `menu` 裡網址結尾是 `dtlmenu/photo/` 的項目 |
+| 2026-10-18 | T7e | 第 2 批 `menu`：食べログ只有使用者投稿的菜單照片、沒有文字菜單的店，記 `dtlmenu/photo/` 的連結（17 家）；有文字菜單記 `dtlmenu/`，有コース記 `party/` | CONVENTIONS「不存菜單照片，要看就點 menu 的連結」；這些店多半沒有官網菜單，沒有連結就看不到菜單 | 刪掉 `menu` 裡網址結尾是 `dtlmenu/photo/` 的項目 |
 | 2026-10-18 | T7e | Dining 白石 的 `links.googleMaps` 借用潮路亭（住宿 `toba-shiojitei`）的 cid，`googleName` 記潮路亭，Google 星數不填（`ratings.note` 註明） | 「每筆都要有 `links.googleMaps`」；Google 搜尋沒有白石的獨立店家頁；住宿星數不代表餐廳評價 | 把 `links.googleMaps`、`googleName` 改回 null |
 | 2026-10-18 | T7e | ふる里館 `fit15` unknown → `split`（`group.seats` 32） | fit15 規則：有明確席數 20 以上而且可以訂位 → split；ホットペッパー（2020）32 席、電話可訂、不能包場 | `group.fit15` 改回 unknown、`seats` 改回 null |
 | 2026-10-18 | T7e | 海楽園 **沒有刪除或改 pending**，只在 `notes`、`questions.md` 寫「晚餐只給住客、非住客午餐沒有來源」 | 第 2 批的範圍是補照片、菜單、讀文，不重判納入；午餐能不能吃還不確定（不是確定不行） | 確認不行的話，候選改成 excluded、刪掉 `toba-kairakuen` |
