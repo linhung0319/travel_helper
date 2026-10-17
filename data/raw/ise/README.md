@@ -1,6 +1,6 @@
 # 伊勢：研究筆記 README
 
-> 開工先讀這份。最後更新：2026-10-18（T8c 完成：餐廳候選 437 筆，收錄預定 95）。這份是**現況**，各任務更新自己的那一節（覆寫，不是追加）；過程紀錄在 `log/`，需要時才讀。二見（`futami`）的筆記在 `data/raw/futami/`，兩區一起規劃（T8）。
+> 開工先讀這份。最後更新：2026-10-18（T8c 完成：餐廳候選 437 筆，收錄預定 95；T8d 第 1 批完成 26 筆）。這份是**現況**，各任務更新自己的那一節（覆寫，不是追加）；過程紀錄在 `log/`，需要時才讀。二見（`futami`）的筆記在 `data/raw/futami/`，兩區一起規劃（T8）。
 
 ## 檔案地圖
 
@@ -12,9 +12,12 @@
 | `candidates/spots.json` | 景點候選 50 筆（已收錄 18、沒收錄 24、排除 8）。用程式過濾，不要整份讀 |
 | `candidates/lodging.json` | 住宿候選 63 筆（已收錄 21、待確認 1、排除 9、沒收錄 32） |
 | `candidates/restaurants.json` | 餐廳候選 437 筆（T8c，每筆有 `region`）：ise-naiku 147、ise-geku 202、ise-kurata 25、ise-asama 6、ise-outskirts 57。二見的在 `data/raw/futami/candidates/restaurants.json`。用程式過濾，不要整份讀 |
+| `data/areas/ise/restaurants.json` | 餐廳（T8d 分 6 批建立中，第 1 批 26 筆） |
+| `ig-notes.md` | 餐廳 IG 帳號（T8d，不打開 IG） |
 | `questions.md` | 要打電話、人工確認的事（一條一行） |
 | `log/T8a.md` | T8a 的過程紀錄（看過的列表頁、WebSearch 次數、座標怎麼取、Google 的多筆取捨） |
 | `log/T8b.md` | T8b 的過程紀錄（伊勢、二見共用：楽天查詢、Google、讀文分組） |
+| `log/T8d.md` | T8d 的過程紀錄（分 6 批）：讀文分組、食べログ／Google 的讀法、合併腳本、fit15 判斷 |
 | `log/T8c.md` | T8c 的過程紀錄（伊勢、二見共用，分 3 批）：食べログ町名列表的網址、篩選、納入判斷細則、數量預估 |
 
 子地區（`areas.json` 的 `ise.regions`）：`ise-geku` 外宮・伊勢市站周邊（含河崎）、`ise-kurata` 倉田山・五十鈴川站周邊、`ise-naiku` 內宮・おはらい町、`ise-asama` 朝熊山（needsCar）、`ise-outskirts` 伊勢市區外圍（小俣、御薗、通町等，needsCar）。劃分依據：伊勢市觀光協會的エリア（內宮、外宮、倉田山、朝熊、河崎、小俣、御薗）合併，理由在 `docs/decisions-pending.md`。
@@ -93,9 +96,14 @@
 - T8f：Google 普遍比楽天低 0.2～0.5；楽天 API 平均 0 的（おく文、料庵）是不公開，不是 0 分。
 - `extra.rakutenVacancy` 只代表 2026-10-18 的庫存；行程定了以後用 `node scripts/rakuten.mjs party --hotel <編號> --dates <實際日期>` 重查。
 
-## 餐廳（T8c 完成：候選名單）
+## 餐廳（T8c 完成：候選名單；T8d 進行中）
 
-### 現況
+### T8d 進度（2026-10-18）
+- **第 1 批完成**：`data/areas/ise/restaurants.json` 建立，ise-naiku 正餐 25 家＋神宮会館 團體昼食（`ise-jingu-kaikan-dining`）共 26 筆；いにしえの宿 伊久 確認不收（excluded）。fit15：yes 9、split 6、no 1、unknown 10。做法、決定在 `log/T8d.md` 第 1 批（後面 5 批沿用）；IG 帳號在 `ig-notes.md`。
+- 第 1 批發現：おはらい町的正餐店 17:00 以後只剩 焼肉すだく（到 21:00，週三休）、えび勢（18:00 後只有預約套餐）、カキアキ水産（到 18:00）；候選階段標 dinner 的 いかだ荘、奥野家 等其實 17:00 前打烊。
+- 第 2～6 批：未開始（候選清單裡還有 `detailPending` 的就是）。
+
+### 現況（T8c）
 - 候選 437 筆（`candidates/restaurants.json`）。**收錄預定 95**、待確認 3、同類型上限外 8、排除 16、未納入 315。二見另有 47 筆（收錄預定 17、待確認 3），見 `data/raw/futami/README.md`。**伊勢＋二見收錄預定 112**（目標 80～100，超過約 12，理由見下）。收錄預定的 `pointId` 等 T8d 建立 `restaurants.json` 後再填。
 
 | 子地區 | 收錄預定 | 待確認 | 上限外 | 排除 | 未納入 | 門檻（食べログ） |
