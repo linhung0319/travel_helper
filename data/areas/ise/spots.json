@@ -2162,10 +2162,32 @@
         "note": "2/11 建國紀念日（國定假日，週四）：內宮 11:00 建国記念祭（神宮官網）；假日參拜人多，內宮周邊道路可能管制"
       }
     ],
-    "photos": [],
+    "photos": [
+      {
+        "url": "https://ise-kanko.jp/cms/wp-content/uploads/2021/03/course_isemairi_007.jpg",
+        "page": "https://ise-kanko.jp/purpose/naiku/",
+        "kind": "official",
+        "credit": "伊勢市観光協会",
+        "license": null
+      },
+      {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/c/c9/View_on_Ujibashi_Bridge.jpg",
+        "page": "https://commons.wikimedia.org/wiki/File:View_on_Ujibashi_Bridge.jpg",
+        "kind": "wikimedia",
+        "credit": "Wikimedia: そらみみ",
+        "license": "CC BY-SA 4.0"
+      },
+      {
+        "url": "https://lh3.googleusercontent.com/grass-cs/AABkmLdFzuQUt2Z_7Yx5Fjo0NuslV3427CwZ2XysZkBsgx3bD7yUp8tf9LDE342O5j3kHyGtZRkn85TzIcl895YCFZkAzreE42tQVTOjL9qsl8q9Fad47T5o__sMR0UxyH7-ruYVld0SNNBO9m4=w800-h600-k-no",
+        "page": "https://maps.google.com/?cid=17296468231710968999",
+        "kind": "google",
+        "credit": "Google マップ（店家或使用者上傳）",
+        "license": null
+      }
+    ],
     "links": {
       "official": "https://www.isejingu.or.jp/about/naiku/",
-      "googleMaps": null,
+      "googleMaps": "https://maps.google.com/?cid=17296468231710968999",
       "instagram": null
     },
     "tags": [
@@ -2212,7 +2234,7 @@
     ],
     "admission": "免費參拜",
     "phone": "0596-24-1111",
-    "stayMinutes": null,
+    "stayMinutes": 60,
     "indoor": false,
     "fares": {
       "adult": "免費",
@@ -2221,18 +2243,26 @@
       "group": null,
       "note": "參拜免費；御祈禱另付初穗料"
     },
-    "group": null,
+    "group": {
+      "reservation": null,
+      "contact": null,
+      "note": "御垣內參拜（特別參拜）：2017 年的資料寫當天到神樂殿旁的社務所繳御造營資金、要穿正裝（男性西裝領帶），現行規定和 15 人能不能一起進去要問神宮司廳；祈禱不接受事前預約，神樂殿 8:00～15:30 依序受理（神宮 FAQ）。"
+    },
     "accessibility": {
-      "walkInsideMinutes": null,
+      "walkInsideMinutes": 20,
       "stairs": null,
       "slope": null,
       "restAreas": null,
       "toilets": true,
       "barrierFree": "入口衛士見張所免費出借介助式輪椅（電動、手動），不接受預約；無障礙廁所在表參道、裏參道、內宮神樂殿各 1 處；參集殿有哺乳室。",
-      "note": "入口（宇治橋）到正宮步行約 20 分（神宮 FAQ），來回加別宮約要 1 小時以上（神宮的參拜路線分 60 分、90 分兩種）。嬰兒車不出借。正宮前的石階之後讀文確認。"
+      "note": "入口（宇治橋）到正宮步行約 20 分（神宮 FAQ），參道全程是玉砂利（碎石路），輪椅、嬰兒車不好推（arukikata 2017）。正宮在石段上方（石段以上禁止拍照），段數沒有來源。參道上不能飲食，喝水要到休憩所；參集殿可以買熱飲（arukikata 2017）。無障礙廁所都有尿布台。參拜路線 60 分、90 分兩種（神宮），來回加別宮約 1 小時以上。嬰兒車不出借。"
     },
     "kids": null,
-    "ratings": null,
+    "ratings": {
+      "google": 4.7,
+      "googleReviews": 33534,
+      "note": "Google 的「伊勢神宮」這筆是內宮（座標在正宮附近）；另有 皇大神宮 御正宮 4.7（157 則）、風日祈宮 4.6（612 則）、瀧祭神 4.6（112 則）"
+    },
     "sources": [
       {
         "type": "tourism",
@@ -2275,12 +2305,40 @@
         "url": "https://www.openstreetmap.org/way/47531425",
         "retrieved": "2026-10-18",
         "note": "座標（宇治橋）"
+      },
+      {
+        "type": "google-maps",
+        "url": "https://maps.google.com/?cid=17296468231710968999",
+        "retrieved": "2026-10-18",
+        "note": "星數、評論數、座標、照片（Google 名稱：伊勢神宮；類別：神社）"
+      },
+      {
+        "type": "media",
+        "url": "https://www.arukikata.co.jp/webmagazine/235047/",
+        "retrieved": "2026-10-18",
+        "note": "2017 年舊文：參道玉砂利、正宮在石段上、初詣人潮 2～3 小時、參集殿熱飲"
+      },
+      {
+        "type": "media",
+        "url": "https://allabout.co.jp/gm/gc/453675",
+        "retrieved": "2026-10-18",
+        "note": "2017 年舊文：御垣內參拜當天到社務所繳御造營資金、要穿西裝；只拜正宮約 40 分、加別宮約 1 小時"
+      },
+      {
+        "type": "media",
+        "url": "https://moov.ooo/article/5fd86a98d4592606a0f16aad",
+        "retrieved": "2026-10-18",
+        "note": "2020 年：內宮參拜約 80 分；石段以上禁止拍照"
       }
     ],
     "verified": false,
     "extra": {
-      "coordsNote": "座標用入口宇治橋（OSM way/47531425），不是正宮",
-      "betsugu": "宮域內有別宮 荒祭宮、風日祈宮"
+      "coordsNote": "座標用入口宇治橋（OSM way/47531425），不是正宮。座標保留入口宇治橋（anchors、步行時間從入口算）；Google 的座標在正宮附近",
+      "betsugu": "宮域內有別宮 荒祭宮、風日祈宮",
+      "stayMinutesNote": "神宮官網參拜路線 60 分（9 處）／90 分（18 處）取 60；All About（2017）只拜正宮約 40 分、加別宮約 1 小時；moov（2020）約 80 分。",
+      "conflicts": [
+        "座標：Google（34.4550157, 136.7251851，正宮附近）和宇治橋差 442 m，保留宇治橋。"
+      ]
     }
   },
   {
@@ -2352,18 +2410,44 @@
       "note": "おかげ橫丁 2 月 9:30～17:00，2 月的土日祝到 17:30（官網）；おはらい町各店時間不同。每月 1 日有朔日朝市（提早營業）。"
     },
     "closedNote": "無休（各店不同）。",
-    "febNote": "2 月 9:30～17:00（土日祝 17:30）。土日祝 10:00～16:00 おはらい町通禁止車輛通行。",
+    "febNote": "2 月 9:30～17:00（土日祝 17:30）。土日祝 10:00～16:00 おはらい町通禁止車輛通行。冬季限定赤福ぜんざい 530 円（赤福本店對面的別店舗，9:00～17:00；2027 年的起訖日不明，觀光三重）。2 月節分有鬼やらい（小孩撒豆）和節分市（2027 年節分 2/3，官網催事）。",
     "closures": [],
     "events": [
+      {
+        "date": "2027-02-03",
+        "note": "節分：おかげ橫丁的鬼やらい（小孩撒豆）和節分市（官網季節催事，2027 年的時間未公布）"
+      },
       {
         "date": "2027-02-11",
         "note": "2/11 建國紀念日（國定假日，週四）：おかげ橫丁營業到 17:30；おはらい町 10:00～16:00 禁止車輛通行，人潮多"
       }
     ],
-    "photos": [],
+    "photos": [
+      {
+        "url": "https://ise-kanko.jp/cms/wp-content/uploads/2021/03/oharaimachi.jpg",
+        "page": "https://ise-kanko.jp/purpose/oharaimachi-okageyokocho/",
+        "kind": "official",
+        "credit": "伊勢市観光協会",
+        "license": null
+      },
+      {
+        "url": "https://okageyokocho.com/main/wp-content/themes/okage/img/head/about_main.jpg",
+        "page": "https://okageyokocho.com/about/",
+        "kind": "official",
+        "credit": "おかげ横丁",
+        "license": null
+      },
+      {
+        "url": "https://lh3.googleusercontent.com/grass-cs/AABkmLeaXGkDaaL6aJ-kkNsaK0z4zIKDd-sGnqSQix_N-9Fj0cICYj6_TpADw9Sr7qfFATx5gzG7Qu7iCcgp7zaoKNNt0DxNtMowgzvGMHkHg-086l5qFEVwpNHQJ26bMgxX8hsvoRI=w800-h600-k-no",
+        "page": "https://maps.google.com/?cid=15460748115152329112",
+        "kind": "google",
+        "credit": "Google マップ（店家或使用者上傳）",
+        "license": null
+      }
+    ],
     "links": {
       "official": "https://okageyokocho.com/",
-      "googleMaps": null,
+      "googleMaps": "https://maps.google.com/?cid=15460748115152329112",
       "instagram": null
     },
     "tags": [],
@@ -2405,18 +2489,26 @@
     "stayMinutes": null,
     "indoor": false,
     "fares": null,
-    "group": null,
+    "group": {
+      "reservation": null,
+      "contact": null,
+      "note": "15 人建議分成 4～6 人一組，集合點可以定在おみやげや（おはらい町側入口附近）或橫丁中心的太鼓櫓。赤福本店排隊：平日 10～30 分、週末假日 30 分～1 小時，早上、傍晚比較空（部落格估計）。"
+    },
     "accessibility": {
       "walkInsideMinutes": null,
       "stairs": null,
-      "slope": null,
-      "restAreas": null,
+      "slope": "おはらい町是石板路；從伊勢市站方向步行過來有上坡（觀光協會）",
+      "restAreas": true,
       "toilets": true,
-      "barrierFree": null,
-      "note": "おはらい町是宇治橋前沿五十鈴川約 800 m 的石板路。廁所在宇治橋前的おはらい町入口、宇治浦田停車場附近、おかげ橫丁內等處（觀光協會地圖，2026 年 2 月版）。"
+      "barrierFree": "おみやげや（總合案內）免費出借輪椅 2 台、嬰兒車 2 台（7 個月～15 kg），每組限 3 小時、不能預約、要出示證件，輪椅不能帶進內宮；オカゲ屋敷內有多目的廁所（輪椅、オストメイト、尿布台）；おみやげや有哺乳室、AED（官網 guide）。",
+      "note": "おはらい町是宇治橋前沿五十鈴川約 800 m 的石板路。廁所在宇治橋前的おはらい町入口、宇治浦田停車場附近、おかげ橫丁內等處（觀光協會地圖，2026 年 2 月版）。店外廁所 5 處（おみやげや旁的女廁可進輪椅）；おみやげや身體不舒服可以躺著休息；橫丁內有很多縁台（長椅）（官網 guide、觀光三重 2022）。置物櫃 500 円、行李箱 800 円（官網）。"
     },
     "kids": null,
-    "ratings": null,
+    "ratings": {
+      "google": 4.2,
+      "googleReviews": 38666,
+      "note": "取おかげ横丁（38,666 則）；另有「おはらい町」4.4（1,280 則，cid 11624565743466390586）"
+    },
     "sources": [
       {
         "type": "tourism",
@@ -2441,11 +2533,54 @@
         "url": "https://www.openstreetmap.org/way/115254673",
         "retrieved": "2026-10-18",
         "note": "座標（おかげ横丁的路）"
+      },
+      {
+        "type": "google-maps",
+        "url": "https://maps.google.com/?cid=15460748115152329112",
+        "retrieved": "2026-10-18",
+        "note": "星數、評論數、座標、照片（Google 名稱：おかげ横丁；類別：観光名所）"
+      },
+      {
+        "type": "official",
+        "url": "https://okageyokocho.com/guide/",
+        "retrieved": "2026-10-18",
+        "note": "廁所位置、多目的廁所、輪椅與嬰兒車借用、哺乳室、AED、置物櫃、可躺著休息的地方"
+      },
+      {
+        "type": "official",
+        "url": "https://okageyokocho.com/saiji/",
+        "retrieved": "2026-10-18",
+        "note": "季節催事：2 月節分的鬼やらい、節分市"
+      },
+      {
+        "type": "official",
+        "url": "https://okageyokocho.com/main/works/shinondaiko/",
+        "retrieved": "2026-10-18",
+        "note": "神恩太鼓在太鼓櫓演出，日程看官網行事曆"
+      },
+      {
+        "type": "tourism",
+        "url": "https://www.kankomie.or.jp/report/1305",
+        "retrieved": "2026-10-18",
+        "note": "2022 年食べ歩記：赤福 250 円、豚捨コロッケ等價格，縁台長椅，沒有停車場"
+      },
+      {
+        "type": "tourism",
+        "url": "https://www.kankomie.or.jp/spot/23386",
+        "retrieved": "2026-10-18",
+        "note": "冬季限定赤福ぜんざい 530 円，本店前的別店舗，9:00～17:00"
+      },
+      {
+        "type": "blog-ja",
+        "url": "https://banzokubiology.com/?p=10292",
+        "retrieved": "2026-10-18",
+        "note": "赤福本店排隊估計：平日 10～30 分、週末假日 30～60 分（非官方）"
       }
     ],
     "verified": false,
     "extra": {
-      "maps": "おはらい町・おかげ橫丁地圖 PDF（2026 年 2 月版）在觀光協會頁面"
+      "maps": "おはらい町・おかげ橫丁地圖 PDF（2026 年 2 月版）在觀光協會頁面",
+      "shinondaiko": "神恩太鼓在太鼓櫓演出，2 月的日程要看官網行事曆（https://okageyokocho.com/main/works/shinondaiko/）"
     }
   },
   {
@@ -2467,10 +2602,10 @@
     "address": "三重県伊勢市宇治浦田2-1-10",
     "hours": {
       "always": true,
-      "note": "參拜 24 小時；授與所 8:30～17:00（觀光協會）。"
+      "note": "參拜 24 小時；授與所・祈禱受付 8:30～17:00，神樂受付到 16:00（觀光協會、觀光三重）。"
     },
     "closedNote": null,
-    "febNote": "官網行事表沒有節分祭。",
+    "febNote": "官網行事表沒有節分祭。2/11 紀元祭、2/17 祈年祭、2/23 天長祭，官網只有名稱和日期（時間、能不能觀看沒寫）。境內社佐瑠女神社 2024-11 起改修，預定 2026-11 左右完工，施工期間在本社御殿內設假殿（官網）。",
     "closures": [],
     "events": [
       {
@@ -2478,10 +2613,32 @@
         "note": "2/11 建國紀念日（國定假日，週四）：紀元祭（官網行事表，時間未寫）"
       }
     ],
-    "photos": [],
+    "photos": [
+      {
+        "url": "https://ise-kanko.jp/cms/wp-content/uploads/2021/01/moderu-018-scaled.jpg",
+        "page": "https://ise-kanko.jp/purpose/sarutahikojinja/",
+        "kind": "official",
+        "credit": "伊勢市観光協会",
+        "license": null
+      },
+      {
+        "url": "https://www.sarutahikojinja.or.jp/images/keidai/img_08.jpg",
+        "page": "https://www.sarutahikojinja.or.jp/keidai",
+        "kind": "official",
+        "credit": "猿田彦神社",
+        "license": null
+      },
+      {
+        "url": "https://lh3.googleusercontent.com/grass-cs/AABkmLdbm9OuPw-n95O-EP7mJRZ8SSGmwcUvr-s6-s0YBnF_puwZ3wsz0FogNdU3SXSk-sXfDm-p4tki6Irr7FFF8UZtUBU3DQN22htp1BlLYWePAvkSpGr4PGpmeXXiZfcDXHvWLJCS=w800-h600-k-no",
+        "page": "https://maps.google.com/?cid=291822430001789289",
+        "kind": "google",
+        "credit": "Google マップ（店家或使用者上傳）",
+        "license": null
+      }
+    ],
     "links": {
       "official": "https://www.sarutahikojinja.or.jp/",
-      "googleMaps": null,
+      "googleMaps": "https://maps.google.com/?cid=291822430001789289",
       "instagram": null
     },
     "tags": [
@@ -2498,25 +2655,46 @@
       {
         "from": "iseshi",
         "mode": "bus",
-        "minutes": null,
-        "note": "往內宮巴士「猿田彦神社前」"
+        "minutes": 15,
+        "note": "往內宮的巴士約 15 分，「猿田彦神社前」下車（觀光三重）"
       },
       {
         "from": "ise-oharaimachi",
         "mode": "walk",
         "minutes": null,
         "note": "在おはらい町北端附近，之後用 OSRM 算"
+      },
+      {
+        "from": "ise-naiku",
+        "mode": "walk",
+        "minutes": 16,
+        "note": "mapple 寫到內宮步行 16 分、jeepe 寫 15～20 分（起點是宇治橋還是內宮前沒寫）"
       }
     ],
     "admission": "免費參拜",
     "phone": "0596-22-2554",
-    "stayMinutes": null,
+    "stayMinutes": 30,
     "indoor": false,
     "fares": null,
     "group": null,
-    "accessibility": null,
-    "kids": null,
-    "ratings": null,
+    "accessibility": {
+      "walkInsideMinutes": null,
+      "stairs": null,
+      "slope": null,
+      "restAreas": true,
+      "toilets": null,
+      "barrierFree": null,
+      "note": "本居宣長歌碑旁有「参拝休憩所」（官網境內介紹）。境內範圍小；雨天地面易滑（jeepe）。階梯、廁所、無障礙沒有來源。"
+    },
+    "kids": {
+      "friendly": null,
+      "note": "手水舍後的子宝池有鯉魚可以餵；可以摸方位石、在境內找八角形（觀光三重）。沒有來源寫小孩的反應。"
+    },
+    "ratings": {
+      "google": 4.4,
+      "googleReviews": 9387,
+      "note": "境內社另有獨立地點：佐瑠女神社 4.4（292 則）、方位石 4.0（23 則）、たから石 4.3（20 則）"
+    },
     "sources": [
       {
         "type": "tourism",
@@ -2541,6 +2719,48 @@
         "url": "https://www.openstreetmap.org/way/688373744",
         "retrieved": "2026-10-18",
         "note": "座標"
+      },
+      {
+        "type": "google-maps",
+        "url": "https://maps.google.com/?cid=291822430001789289",
+        "retrieved": "2026-10-18",
+        "note": "星數、評論數、座標、照片（Google 名稱：猿田彦神社；類別：神社）"
+      },
+      {
+        "type": "official",
+        "url": "https://www.sarutahikojinja.or.jp/keidai",
+        "retrieved": "2026-10-18",
+        "note": "境內介紹：方位石、佐瑠女神社、御神田、伊藤小坡美術館、参拝休憩所"
+      },
+      {
+        "type": "official",
+        "url": "https://www.sarutahikojinja.or.jp/info/%e4%bd%90%e7%91%a0%e5%a5%b3%e7%a5%9e%e7%a4%be-%e5%be%a1%e9%80%a0%e5%96%b6%ef%bc%88%e6%94%b9%e4%bf%ae%e5%b7%a5%e4%ba%8b%ef%bc%89%e3%81%ab%e3%81%a4%e3%81%84%e3%81%a6/",
+        "retrieved": "2026-10-18",
+        "note": "佐瑠女神社改修：2024-11 開始，預定 2026-11 左右完工，施工期間設假殿"
+      },
+      {
+        "type": "tourism",
+        "url": "https://www.kankomie.or.jp/report/1556",
+        "retrieved": "2026-10-18",
+        "note": "觀光三重取材：たから石、さざれ石、子宝池（鯉魚）、八角形；授與所與神樂受付時間"
+      },
+      {
+        "type": "tourism",
+        "url": "https://www.kankomie.or.jp/spot/2938",
+        "retrieved": "2026-10-18",
+        "note": "伊勢市站搭巴士約 15 分"
+      },
+      {
+        "type": "media",
+        "url": "https://www.mapple.net/article/31874/",
+        "retrieved": "2026-10-18",
+        "note": "參拜約 30 分，到內宮步行約 16 分（2025-03 更新）"
+      },
+      {
+        "type": "blog-zh",
+        "url": "https://www.jeepe.jp/zh_TW/articles/sarutahiko-jinja-guide-2179",
+        "retrieved": "2026-10-18",
+        "note": "到內宮步行 15～20 分，雨天地面易滑（有聯盟廣告）"
       }
     ],
     "verified": false,
@@ -2560,10 +2780,10 @@
     "area": "ise",
     "region": "ise-naiku",
     "coords": [
-      136.722275,
-      34.462139
+      136.722504,
+      34.462763
     ],
-    "coordsSource": "geocoder",
+    "coordsSource": "google-maps-url",
     "address": "三重県伊勢市宇治中之切町52（おかげ横丁内）",
     "hours": {
       "mon": [
@@ -2626,10 +2846,32 @@
         "note": "2/11 建國紀念日（國定假日，週四）：適用土日祝票價"
       }
     ],
-    "photos": [],
+    "photos": [
+      {
+        "url": "https://okageyokocho.com/main/wp-content/uploads/2026/05/web%E7%94%A8%E3%82%AD%E3%83%BC%E3%83%93%E3%82%B8%E3%83%A5%E3%82%A2%E3%83%AB-01-scaled.jpg",
+        "page": "https://okageyokocho.com/main/tenpo/okage_yashiki/",
+        "kind": "official",
+        "credit": "おかげ横丁（伊勢福）",
+        "license": null
+      },
+      {
+        "url": "https://prcdn.freetls.fastly.net/release_image/9512/21/9512-21-ab4d3d155351b64e265ceaf39ff3bf07-3900x2194.jpg",
+        "page": "https://prtimes.jp/main/html/rd/p/000000021.000009512.html",
+        "kind": "official",
+        "credit": "株式会社伊勢福（PR TIMES）",
+        "license": null
+      },
+      {
+        "url": "https://lh3.googleusercontent.com/grass-cs/AABkmLd8cCAdj922nWKPSY4ByCeY2-PkzdcxVH0Ni5WPO0lr5IV06fyUUFCW-HcN1SD9R4wzbRbZC-32ouqLOj6ljbze5OIEam74Fo7kOLjj4H_0d6YOLYnszBRTyI14orMQ8wwGJW0OUUQKoIVm=w800-h600-k-no",
+        "page": "https://maps.google.com/?cid=1328486565404818773",
+        "kind": "google",
+        "credit": "Google マップ（店家或使用者上傳）",
+        "license": null
+      }
+    ],
     "links": {
       "official": "https://okageyokocho.com/main/tenpo/okage_yashiki/",
-      "googleMaps": null,
+      "googleMaps": "https://maps.google.com/?cid=1328486565404818773",
       "instagram": null
     },
     "tags": [
@@ -2653,14 +2895,14 @@
     ],
     "admission": "大人 平日 1,500 円／土日祝 1,800 円；兒童 800／1,000 円",
     "phone": "0596-23-8844",
-    "stayMinutes": null,
+    "stayMinutes": 45,
     "indoor": true,
     "fares": {
       "adult": "平日 1,500 円、土日祝 1,800 円",
       "child": "4 歲～小學生 平日 800 円、土日祝 1,000 円；3 歲以下免費",
       "senior": null,
       "group": "20 人以上 大人 1,300 円、兒童 700 円；15 人不適用",
-      "note": "要事先在官方網站預約付款"
+      "note": "要事先在官方網站預約付款。指定日期、時段；當天有空位也可以上網預約。身障手冊 大人 800 円、兒童 400 円（觀光三重）。"
     },
     "group": {
       "reservation": "門票要事先在官方網站預約付款",
@@ -2669,14 +2911,26 @@
         "url": "https://okageyokocho.com/main/tenpo/okage_yashiki/",
         "note": null
       },
+      "note": "每 15 分一梯次、指定時段入場；每梯次人數上限沒有來源，15 人能不能同一梯次要電話確認。"
+    },
+    "accessibility": {
+      "walkInsideMinutes": null,
+      "stairs": null,
+      "slope": null,
+      "restAreas": null,
+      "toilets": null,
+      "barrierFree": null,
+      "note": "室內，所需約 45 分；有薄暗通道和影像空間（觀光三重）。階梯、電梯、輪椅、嬰兒車都沒有來源。"
+    },
+    "kids": {
+      "friendly": "high",
+      "note": "全館約 12 種互動體驗：手影變成動物動起來（オカゲかげあそび）、おかげ犬 6 個小遊戲、接住從天上飄下的籤（觀光三重說小孩會很投入）、射擊放煙火、寬約 20 m 的影像空間；新聞稿說大人小孩都能玩。有薄暗通道（オカゲ大橋），小孩會不會怕沒有來源。4 歲～小學生是兒童票。"
+    },
+    "ratings": {
+      "google": 4.2,
+      "googleReviews": 232,
       "note": null
     },
-    "accessibility": null,
-    "kids": {
-      "friendly": null,
-      "note": "展示「オカゲサマ」的世界（身邊的物品、動物動起來），學習日本四季與伊勢生活；影像設計 WOW。適合年齡官網沒寫。"
-    },
-    "ratings": null,
     "sources": [
       {
         "type": "tourism",
@@ -2695,11 +2949,47 @@
         "url": "https://msearch.gsi.go.jp/address-search/AddressSearch?q=%E4%B8%89%E9%87%8D%E7%9C%8C%E4%BC%8A%E5%8B%A2%E5%B8%82%E5%AE%87%E6%B2%BB%E4%B8%AD%E4%B9%8B%E5%88%87%E7%94%BA52",
         "retrieved": "2026-10-18",
         "note": "國土地理院地址搜尋（座標，番地層級）"
+      },
+      {
+        "type": "google-maps",
+        "url": "https://maps.google.com/?cid=1328486565404818773",
+        "retrieved": "2026-10-18",
+        "note": "星數、評論數、座標、照片（Google 名稱：オカゲ屋敷；類別：観光名所）"
+      },
+      {
+        "type": "media",
+        "url": "https://prtimes.jp/main/html/rd/p/000000021.000009512.html",
+        "retrieved": "2026-10-18",
+        "note": "伊勢福 2026-06-30 開幕新聞稿：舊おかげ座 神話の館改裝，約 12 區，WOW 影像，大人小孩都能玩"
+      },
+      {
+        "type": "tourism",
+        "url": "https://www.kankomie.or.jp/topic/1266",
+        "retrieved": "2026-10-18",
+        "note": "觀光三重 2026-06-26：所需約 45 分，12 種體驗，有薄暗通道，當天有空位也可以上網預約"
+      },
+      {
+        "type": "media",
+        "url": "https://report.iko-yo.net/articles/31589",
+        "retrieved": "2026-10-18",
+        "note": "いこーよ 2026-06-05 開幕前介紹（編輯部稿）：指定日期網路預約，3 歲以下免費；口コミ募集中"
+      },
+      {
+        "type": "media",
+        "url": "https://www.walkerplus.com/article/1334255/",
+        "retrieved": "2026-10-18",
+        "note": "Walkerplus 2026-04-27 開幕前預告：神宮会館前步行約 1 分，沒有專用停車場"
       }
     ],
     "verified": false,
     "extra": {
-      "coordsNote": "座標是おかげ横丁的地址（宇治中之切町52）的番地位置，不是建築物本身；之後用 Google 修正"
+      "conflicts": [
+        "座標：原本 geocoder（34.462139, 136.722275），和 Google 差 72 m；第 1 批是おかげ横丁地址的番地座標（不是建築物）；改用 Google 的建築物位置。",
+        "巴士站「神宮会館前」到館：Walkerplus 寫步行約 1 分、觀光協會寫 2 分。"
+      ],
+      "building": "舊「おかげ座 神話の館」改裝（PR TIMES）；沒有專用停車場（Walkerplus）",
+      "booking": "https://okageyashiki.com/（預約網站）",
+      "stayMinutesNote": "觀光三重寫所需約 45 分。"
     }
   },
   {
