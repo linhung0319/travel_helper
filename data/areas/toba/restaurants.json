@@ -11599,7 +11599,8 @@
         "讀文（https://www.kankomie.or.jp/event/39679）：closedNote＝週二、週三公休（2025 年 10 月時點）",
         "讀文（https://www.toba.gr.jp/feature/abc/）：address＝三重県鳥羽市浦村町1229-6（和主 session 的 1429-6 不同）",
         "讀文（https://www.kankomie.or.jp/event/39679）：access＝巴士本浦站走約 5 分",
-        "讀文（https://www.kankomie.or.jp/event/39679）：febNote＝真牡蠣季 11 月左右～3 月左右，2 月在季內"
+        "讀文（https://www.kankomie.or.jp/event/39679）：febNote＝真牡蠣季 11 月左右～3 月左右，2 月在季內",
+        "T7f：address 維持 Google 的浦村町 1429-6（2026-10-18 Chrome 確認）；鳥羽市觀光協會寫 1229-6；官網 eijimaru.com 憑證錯誤打不開"
       ],
       "dossierFacts": [
         "closedNote2：週二＆不定休（https://www.toba.gr.jp/feature/abc/）"
@@ -13866,7 +13867,7 @@
       34.4134974
     ],
     "coordsSource": "google-maps-url",
-    "address": "三重県鳥羽市国崎町257",
+    "address": "三重県鳥羽市国崎町378",
     "hours": {
       "mon": [],
       "tue": [
@@ -14049,7 +14050,8 @@
       "conflicts": [
         "食べログ寫午餐也可以預約，官網、Google 只寫 17:00～22:00",
         "讀文（http://www.isesima.net/kadoya/）：seating＝吧檯座、桌席、座敷包廂",
-        "讀文（http://www.isesima.net/kadoya/）：address＝三重県鳥羽市国崎町378（衝突：主 session 是 257）"
+        "讀文（http://www.isesima.net/kadoya/）：address＝三重県鳥羽市国崎町378（衝突：主 session 是 257）",
+        "T7f：address 改用官網的国崎町 378（Google、原本的值是 257）；座標照規則維持 Google"
       ],
       "dossierFacts": [
         "price：餐點方案 3,300 円／7,700 円（含鮑魚、伊勢龍蝦、海螺）／13,200 円（再加伊勢龍蝦、鮑魚殘酷燒）（http://www.isesima.net/kadoya/plan.html）",
