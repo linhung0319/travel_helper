@@ -83,3 +83,41 @@
 - `spots.json` 14 筆：`links.googleMaps`（cid）、`ratings`、`photos`（2～3 張）都有；`stayMinutes` 7 筆、`kids.friendly` 5 筆（high 4、medium 1）、`indoor` 13 筆（松尾觀音寺 沒有來源）。
 - 筆記 14 份（`dossiers/`）。
 - `scripts/validate`：錯誤 0（警告只有已知的「retrieved 在未來」）。
+
+## 第 3 批：ise-naiku 4 筆＋二見 4 筆（2026-10-18，自動模式）
+
+範圍：內宮、おはらい町・おかげ横丁、猿田彥神社、オカゲ屋敷，和二見全部 4 筆（二見興玉神社、伊勢シーパラダイス、夫婦岩表參道、松下社）的 Google Maps（Chrome）、照片、讀文筆記，依讀文回填。T8a 到這批結束。
+
+### 讀文
+- 7 個 subagent（同時最多 5 個，背景執行）：內宮、おはらい町、猿田彥神社、オカゲ屋敷、二見興玉神社、シーパラ 各一；夫婦岩表參道＋松下社（來源少）合一。共同規則同第 2 批（scratchpad 的 `dossier-rules-3.md`，只改了檔案路徑：二見的筆記放 `data/raw/futami/dossiers/`）。
+- WebSearch：每個都用滿 3 次，合計 21 次（T8a 三批合計 3＋33＋21＝57 次）。全部 8 個 id 都有筆記，沒有沒讀文的。
+- 讀不到的：tabi-mag（403，松下社）。個人心得仍然很少：オカゲ屋敷（2026-07 開幕）、猿田彥神社、夫婦岩表參道、松下社 0 篇；シーパラ 有 asoview 口碑和部落格，內宮只有 2017～2020 年的媒體文。
+- 回填由主 session 寫（scratchpad 的 `apply-t8a3.mjs`，從 8dd93fb 的 `spots.json` 讀，可以重跑；`--tags` 才補 tags）。subagent 推斷的值沒有採用：シーパラ `stairs: 少`（FAQ 只說部分區域只能走樓梯）→ null，寫在 note。
+
+### Google Maps（Chrome）
+- 方式同第 2 批。單一分頁，約 25 次頁面操作，沒有遇到驗證碼、登入或封鎖；結束時關掉分頁。讀網址時不要把整個網址回傳（含 query 會被工具擋），只回傳解析出的 cid、座標。
+- 搜尋結果有多筆：
+  - 內宮：「皇大神宮 内宮」的列表第一筆「伊勢神宮」4.7（33,534 則）就是內宮（座標在正宮附近），取這筆；另有 皇大神宮 御正宮 4.7（157）、風日祈宮 4.6（612）、瀧祭神 4.6（112）。
+  - おはらい町・おかげ横丁：取「おかげ横丁」4.2（38,666）；「おはらい町」4.4（1,280，cid 11624565743466390586）寫在 ratings.note。
+  - 猿田彥神社：另有 佐瑠女神社 4.4（292）、方位石 4.0（23）、たから石 4.3（20）。
+  - 二見興玉神社：列表第一筆 4.4（12,515）；另有 夫婦岩 4.4（2,028）、龍宮社 4.2（218）、天の岩屋 4.2（128）、社務所 4.3（43）。
+  - 夫婦岩表參道：Google 是地址型的地點，沒有星數、評論（`ratings.google` null）。
+  - 松下社：另有 松下社の大楠 3.9（8）。
+- 座標差（Google vs 原座標）：松下社 648 m、內宮 442 m、夫婦岩表參道 218 m、二見興玉神社 110 m、オカゲ屋敷 72 m、猿田彥神社 49 m、シーパラ 29 m、おかげ横丁 6 m。
+  - 松下社（地址座標，> 300 m）、オカゲ屋敷（地址座標是おかげ横丁的番地，不是建築物）改用 Google（`google-maps-url`）；原座標寫在 `extra.conflicts`。
+  - 內宮差 442 m 但保留宇治橋（Google 的點在正宮附近，anchors 要從入口算），寫在 `extra.conflicts`、`coordsNote`。
+
+### 照片
+- 觀光協會＋官網（神宮官網 og:image 是全站共用圖，不用）各 1～2 張，Wikimedia 只有內宮採用 1 張（「View on Ujibashi Bridge」，CC BY-SA 4.0）；Commons geosearch 松下社 0 張、夫婦岩表參道只有海灘和狗的照片（沒用）。Google 主圖加 `=w800-h600-k-no`。
+- 22 個網址全部用 curl 確認 200（シーパラ 官網圖是 webp）。
+
+### 其他
+- 二見興玉神社的 `hours` 改成 `always: true`（官網 FAQ「終日參拜」）；第 1 批的 9:00～16:00 是社務所電話時間（見 `docs/decisions-pending.md`）。
+- シーパラ 2026 年 2 月每天的營業時間在官網營業時間頁背後的日曆資料（subagent 找到 `admin-ajax.php?action=eventorganiser-fullcal`），寫進 `hours.note`；2027 年還沒公布。
+- 猿田彥神社的境內社 佐瑠女神社 2024-11 起改修，預定 2026-11 完工（`febNote`）。
+- `questions.md`：伊勢 3 條、二見 4 條新增；二見興玉神社的參拜時間那條打勾。
+
+### 結果
+- `spots.json`：ise-naiku 4 筆、二見 4 筆都有 `links.googleMaps`（cid）、`ratings`（夫婦岩表參道 星數 null）、`photos`（2～3 張）；`stayMinutes` 5 筆（內宮 60、猿田彥 30、オカゲ屋敷 45、二見興玉 45、シーパラ 150；おはらい町、表參道、松下社沒有來源）、`kids.friendly` 3 筆（オカゲ屋敷・シーパラ high、二見興玉 medium）。
+- 筆記 8 份（伊勢 4、二見 4）。T8a 合計：伊勢 18 份、二見 4 份，全部景點都有筆記。
+- `scripts/validate`：錯誤 0（警告只有已知的「retrieved 在未來」）。
