@@ -1,0 +1,735 @@
+[
+  {
+    "id": "futami-okitama-jinja",
+    "type": "spot",
+    "name": {
+      "ja": "二見興玉神社（夫婦岩）",
+      "kana": "ふたみおきたまじんじゃ（めおといわ）",
+      "zh": "二見興玉神社（夫婦岩）",
+      "en": "Futami Okitama Shrine (Meoto Iwa)"
+    },
+    "area": "futami",
+    "region": "futami-okitama",
+    "coords": [
+      136.7888011,
+      34.5083432
+    ],
+    "coordsSource": "osm",
+    "address": "三重県伊勢市二見町江575",
+    "hours": {
+      "always": true,
+      "note": "境內終日可參拜（官網 FAQ），海邊步道和夫婦岩全天可以看。授與所：拝殿前 7:00～16:45（11～2 月 7:00～16:15；授與品頁寫 16:00）、岩屋・龍宮社 9:00～16:30（11～2 月 7:00～16:00）；祈禱 9:00～16:00（11～2 月到 15:30），不收預約；社務所電話 9:00～16:00。觀光協會寫的「參拜時間 9:00～16:00」和官網不符。"
+    },
+    "closedNote": null,
+    "febNote": "月出在冬至前後（11～1 月）、日出在 5～7 月（夏至前後），2 月都不是最佳期；海邊冬天的風沒有來源。境內終日可以參拜，冬季（11～2 月）授與所 7:00～16:15。",
+    "closures": [],
+    "events": [
+      {
+        "date": "2027-02-03",
+        "note": "節分祭：立春前一天 14:00（官網年中行事）；在境內特設撒豆台先趕走赤鬼、青鬼，再由宮司和年男年女撒福豆、紅白餅（觀光三重，2025 年的介紹）"
+      },
+      {
+        "date": "2027-02-11",
+        "note": "2/11 建國紀念日（國定假日，週四）：紀元祭（官網年中行事，時間未寫）"
+      }
+    ],
+    "photos": [
+      {
+        "url": "https://ise-kanko.jp/cms/wp-content/uploads/2021/01/okitamajinja-scaled.jpg",
+        "page": "https://ise-kanko.jp/purpose/futamiokitamajinjya/",
+        "kind": "official",
+        "credit": "伊勢市観光協会",
+        "license": null
+      },
+      {
+        "url": "https://futamiokitamajinja.or.jp/wp-content/themes/futamiokitama/img/top_main3.jpg",
+        "page": "https://futamiokitamajinja.or.jp/",
+        "kind": "official",
+        "credit": "二見興玉神社",
+        "license": null
+      },
+      {
+        "url": "https://lh3.googleusercontent.com/grass-cs/AABkmLf8EBa3CCb4I4ytZy0D9DUt9l_ZqC8UolrS6QWwVn-Vdv5JSDbEVSb3syGbsdRNf3cEkZfaoE62KTbtuNXb5x-xxvShX7joCOU4NoH5UrEr5X5J9WZFXj6UyYxC6Z2lmj9Tor07=w800-h600-k-no",
+        "page": "https://maps.google.com/?cid=7608854870706112805",
+        "kind": "google",
+        "credit": "Google マップ（店家或使用者上傳）",
+        "license": null
+      }
+    ],
+    "links": {
+      "official": "https://futamiokitamajinja.or.jp/",
+      "googleMaps": "https://maps.google.com/?cid=7608854870706112805",
+      "instagram": null
+    },
+    "tags": [
+      "神社寺院",
+      "海邊"
+    ],
+    "tier": null,
+    "nearestStation": {
+      "id": "jr-futaminoura",
+      "mode": "walk",
+      "minutes": 15,
+      "note": "JR 參宮線二見浦站步行約 15 分（JR，不能用近鐵 5 日券）"
+    },
+    "access": [
+      {
+        "from": "jr-futaminoura",
+        "mode": "walk",
+        "minutes": 15,
+        "note": "經夫婦岩表參道（旅館街）"
+      },
+      {
+        "from": "isuzugawa",
+        "mode": "bus",
+        "minutes": null,
+        "note": "CANばす（伊勢二見鳥羽周遊巴士）「夫婦岩東口」下車步行 5 分"
+      },
+      {
+        "from": "iseshi",
+        "mode": "bus",
+        "minutes": null,
+        "note": "路線巴士「夫婦岩東口」下車（觀光三重）"
+      }
+    ],
+    "admission": "免費參拜",
+    "phone": "0596-43-2020",
+    "stayMinutes": 45,
+    "indoor": false,
+    "fares": null,
+    "group": {
+      "reservation": null,
+      "contact": null,
+      "note": "團體參拜（祈禱）要事先預約（官網 FAQ）；遊覽巴士停在伊勢夫婦岩パラダイス（シーパラ）；計程車常不在現場待命。"
+    },
+    "accessibility": {
+      "walkInsideMinutes": null,
+      "stairs": null,
+      "slope": null,
+      "restAreas": true,
+      "toilets": null,
+      "barrierFree": null,
+      "note": "官網境內圖有「休憩処」。階梯、坡道、輪椅、多功能廁所，官網和觀光頁都沒寫（要問社務所 0596-43-2020）。"
+    },
+    "kids": {
+      "friendly": "medium",
+      "note": "境內有很多カエル像（かえる岩、獻納的青蛙），小孩喜歡找；海邊開放（nap-camp、觀光協會）。"
+    },
+    "ratings": {
+      "google": 4.4,
+      "googleReviews": 12515,
+      "note": "另有獨立地點：夫婦岩 4.4（2,028 則）、龍宮社 4.2（218 則）、天の岩屋 4.2（128 則）、社務所 4.3（43 則）"
+    },
+    "sources": [
+      {
+        "type": "tourism",
+        "url": "https://ise-kanko.jp/purpose/futamiokitamajinjya/",
+        "retrieved": "2026-10-18",
+        "note": "介紹（夫婦岩、興玉神石、カエル）、參拜時間、地址、電話、交通"
+      },
+      {
+        "type": "official",
+        "url": "https://futamiokitamajinja.or.jp/event/",
+        "retrieved": "2026-10-18",
+        "note": "2 月行事：3 日節分祭（立春前日 14:00）、11 日紀元祭、14 日栄野神社祈年祭、17 日祈年祭、23 日天長祭"
+      },
+      {
+        "type": "tourism",
+        "url": "https://www.kankomie.or.jp/event/8199",
+        "retrieved": "2026-10-18",
+        "note": "節分祭內容（2025-02-02 那次）、免費停車 30 台"
+      },
+      {
+        "type": "osm",
+        "url": "https://www.openstreetmap.org/relation/9591959",
+        "retrieved": "2026-10-18",
+        "note": "座標"
+      },
+      {
+        "type": "google-maps",
+        "url": "https://maps.google.com/?cid=7608854870706112805",
+        "retrieved": "2026-10-18",
+        "note": "星數、評論數、座標、照片（Google 名稱：二見興玉神社；類別：神社）"
+      },
+      {
+        "type": "official",
+        "url": "https://futamiokitamajinja.or.jp/faq/",
+        "retrieved": "2026-10-18",
+        "note": "境內終日可參拜；授與所與祈禱時間（含 11～2 月）；團體祈禱要預約；遊覽巴士停車"
+      },
+      {
+        "type": "official",
+        "url": "https://futamiokitamajinja.or.jp/visit/gift/",
+        "retrieved": "2026-10-18",
+        "note": "授與所時間（冬季拝殿前寫 16:00，和 FAQ 的 16:15 衝突）"
+      },
+      {
+        "type": "official",
+        "url": "https://futamiokitamajinja.or.jp/access/",
+        "retrieved": "2026-10-18",
+        "note": "二見浦站步行 15 分經旅館街；附近 5 處停車場"
+      },
+      {
+        "type": "official",
+        "url": "https://futamiokitamajinja.or.jp/meguru/",
+        "retrieved": "2026-10-18",
+        "note": "境內見所（かえる岩、龍宮社、天の岩屋、休憩処等）"
+      },
+      {
+        "type": "tourism",
+        "url": "https://www.kankomie.or.jp/spot/2953.html",
+        "retrieved": "2026-10-18",
+        "note": "免費；伊勢市站、宇治山田站搭往鳥羽的巴士約 20 分到夫婦岩東口"
+      },
+      {
+        "type": "blog-ja",
+        "url": "https://banzokubiology.com/meotoiwa-time/",
+        "retrieved": "2026-10-18",
+        "note": "所需 30～60 分，含周邊 1～1.5 小時（2025-07，2026-06 更新）"
+      },
+      {
+        "type": "media",
+        "url": "https://www.nap-camp.com/mag/spot/111665",
+        "retrieved": "2026-10-18",
+        "note": "30～60 分；カエル像受小孩歡迎、親子好參拜（2026-10 更新）"
+      }
+    ],
+    "verified": false,
+    "extra": {
+      "parking": "免費停車場 30 台（觀光三重）；神社前二見浦公園、參集殿停車場很擠，官網建議附近 5 處：音無山公園 30 台（步行 5 分）、二見老人福祉中心 120 台（10 分）、伊勢市二見總合支所 20 台（10 分）、二見浦海水浴場 150 台（15 分）、二見總合 220 台（15 分）",
+      "setsubunNote": "2025 年的節分是 2/2，所以那年辦在 2/2；2027 年立春是 2/4，節分祭是 2/3。",
+      "stayMinutesNote": "參拜＋夫婦岩 30～60 分取 45；含周邊散步、買東西 60～90 分（banzokubiology、nap-camp）。",
+      "conflicts": [
+        "參拜時間：觀光協會「9:00～16:00」vs 官網 FAQ「終日」→ 以官網為準（`hours.always`）。",
+        "冬季拝殿前授與所結束時間：FAQ 16:15、授與品頁 16:00。",
+        "JR 二見浦站步行：多數來源 15 分，有一篇記事 10 分。"
+      ]
+    }
+  },
+  {
+    "id": "futami-sea-paradise",
+    "type": "spot",
+    "name": {
+      "ja": "伊勢シーパラダイス",
+      "kana": "いせしーぱらだいす",
+      "zh": "伊勢海洋樂園",
+      "en": "Ise Sea Paradise"
+    },
+    "area": "futami",
+    "region": "futami-okitama",
+    "coords": [
+      136.7912791,
+      34.5073673
+    ],
+    "coordsSource": "osm",
+    "address": "三重県伊勢市二見町江580",
+    "hours": {
+      "mon": [
+        [
+          "09:30",
+          "17:00"
+        ]
+      ],
+      "tue": [
+        [
+          "09:30",
+          "17:00"
+        ]
+      ],
+      "wed": [
+        [
+          "09:30",
+          "17:00"
+        ]
+      ],
+      "thu": [
+        [
+          "09:30",
+          "17:00"
+        ]
+      ],
+      "fri": [
+        [
+          "09:30",
+          "17:00"
+        ]
+      ],
+      "sat": [
+        [
+          "09:30",
+          "17:00"
+        ]
+      ],
+      "sun": [
+        [
+          "09:30",
+          "17:00"
+        ]
+      ],
+      "holiday": [
+        [
+          "09:30",
+          "17:00"
+        ]
+      ],
+      "lastEntry": "16:30",
+      "note": "觀光協會寫 9:30～17:00（最終入館 16:30），依季節、旺季變動；官網的營業時間頁列了 8:30～17:00、9:00～17:00、9:30～16:30、9:30～17:00 四種，沒寫哪天適用哪種（2026-10-18 當天 9:30～17:00）。最後入館是閉館前 30 分。2026 年 2 月的實績（官網日曆資料）：平日 9:30～16:30，週末和 2/11 9:30～17:00，2/22～23 9:00～17:00；2027 年還沒公布。"
+    },
+    "closedNote": "每年 4 月、12 月有法定檢查休館（2026 年：4/7～8、12/8～11）。",
+    "febNote": "2027 年 1 月以後的營業日曆還沒公布；2026 年 2 月是平日 9:30～16:30、週末和 2/11 9:30～17:00。票價等級（Value／Regular／Peak）的日期對應沒有公布。隔壁めおと橫丁的電梯 2026-10-13～12-24 施工，旅程時應已完工。",
+    "closures": [],
+    "events": [
+      {
+        "date": "2027-02-11",
+        "note": "2/11 建國紀念日（國定假日，週四）：票價等級可能不同（官網沒寫日期對應）"
+      }
+    ],
+    "photos": [
+      {
+        "url": "https://ise-seaparadise.com/wp-content/themes/ise-seaparadise_theme/img/index/ashika.webp",
+        "page": "https://ise-seaparadise.com/",
+        "kind": "official",
+        "credit": "伊勢シーパラダイス",
+        "license": null
+      },
+      {
+        "url": "https://ise-kanko.jp/cms/wp-content/uploads/2021/01/si-paradaisu-001.jpg",
+        "page": "https://ise-kanko.jp/purpose/ise-seaparadis/",
+        "kind": "official",
+        "credit": "伊勢市観光協会",
+        "license": null
+      },
+      {
+        "url": "https://lh3.googleusercontent.com/grass-cs/AABkmLes2UvGSU1S_yIjr2KPrJCOU-PpdHe9t1fP81Y-8jlsnhOD0fHsCZNvZUz8oBdbEupHybtHPqtVH-Fo5hk_tK8jYPdZzLM2hihEVzwH0RNp5SkwSJbbTMrReCXQS87OOx7ezfE=w800-h600-k-no",
+        "page": "https://maps.google.com/?cid=15269262787346006937",
+        "kind": "google",
+        "credit": "Google マップ（店家或使用者上傳）",
+        "license": null
+      }
+    ],
+    "links": {
+      "official": "https://ise-seaparadise.com/",
+      "googleMaps": "https://maps.google.com/?cid=15269262787346006937",
+      "instagram": null
+    },
+    "tags": [
+      "室內",
+      "雨天備案",
+      "親子"
+    ],
+    "tier": null,
+    "nearestStation": {
+      "id": "jr-futaminoura",
+      "mode": "walk",
+      "minutes": null,
+      "note": "在二見興玉神社旁（神社距 JR 二見浦站步行約 15 分）；分鐘數之後用 OSRM 算"
+    },
+    "access": [
+      {
+        "from": "toba",
+        "mode": "bus",
+        "minutes": 12,
+        "note": "鳥羽站搭三重交通巴士約 12 分（觀光協會）；巴士站「夫婦岩東口（伊勢シーパラダイス前）」"
+      }
+    ],
+    "admission": "大人 2,400～2,800 円、小中學生 1,200 円",
+    "phone": "0596-42-1760",
+    "stayMinutes": 150,
+    "indoor": true,
+    "fares": {
+      "adult": "Value 2,400／Regular 2,500／Peak 2,800 円",
+      "child": "小中學生 1,200 円；幼兒（4 歲以上）600 円",
+      "senior": "65 歲以上 2,300／2,400／2,700 円（要出示生日證明）",
+      "group": "20 人以上一次付款才有團體價（例：Regular 大人 2,300、小中 1,100、幼兒 550 円），要前一天 17:00 前預約；15 人不適用",
+      "note": "1HOUR 網路票（閉館前 1 小時入場）大人 1,400、小人 700、幼兒 300 円；票價等級對應的日期官網沒寫"
+    },
+    "group": {
+      "reservation": "20 人以上團體價要在前一天 17:00 前用表單預約",
+      "contact": {
+        "phone": "0596-42-1760",
+        "url": "https://ise-seaparadise.com/group",
+        "note": "日文"
+      },
+      "note": "隔壁めおと橫丁的團體用餐 3 天前可預約。團體不能在館內吃便當，用餐要去めおと橫丁（官網 FAQ）。"
+    },
+    "accessibility": {
+      "walkInsideMinutes": null,
+      "stairs": null,
+      "slope": null,
+      "restAreas": true,
+      "toilets": true,
+      "barrierFree": "入場券售票處出借輪椅、嬰兒車（押金 1,000 円，數量有限、不接受預約；嬰兒車只能在水族館內用）；1 樓「UOASIS」區有輪椅可用的多功能廁所；入口附近有可上鎖的哺乳室（2 張換尿布台）。",
+      "note": "館內 2 層樓。FAQ 寫有只能走樓梯的區域（例如 2F 回遊水槽）；電梯在相連的めおと橫丁，水族館本身有沒有電梯沒寫。1F「UOASIS」可坐著看水槽，2F「海底ごろりんホール」有沙發可以躺著看。館內沒有置物櫃（めおと橫丁有收費置物櫃，不收大件）。"
+    },
+    "kids": {
+      "friendly": "high",
+      "note": "「零距離」互動：可以摸斑海豹（ゴマちゃんタッチ）、海象，和水獺握手、摸天竺鼠；另有付費的跳跳魚、海馬、花園鰻體驗（15～30 分）；口碑說小孩很開心（官網活動表、asoview）。"
+    },
+    "ratings": {
+      "google": 4.2,
+      "googleReviews": 5647,
+      "note": null
+    },
+    "sources": [
+      {
+        "type": "tourism",
+        "url": "https://ise-kanko.jp/purpose/ise-seaparadis/",
+        "retrieved": "2026-10-18",
+        "note": "介紹（無柵欄互動展示）、時間、休館、地址、電話、停車、交通、票價"
+      },
+      {
+        "type": "official",
+        "url": "https://ise-seaparadise.com/opening-hours",
+        "retrieved": "2026-10-18",
+        "note": "營業時間種類、2026 年休館日、最後入館"
+      },
+      {
+        "type": "official",
+        "url": "https://ise-seaparadise.com/price",
+        "retrieved": "2026-10-18",
+        "note": "個人票價（Value／Regular／Peak、65 歲以上、1HOUR 票）"
+      },
+      {
+        "type": "official",
+        "url": "https://ise-seaparadise.com/group",
+        "retrieved": "2026-10-18",
+        "note": "20 人以上團體價、前一天預約"
+      },
+      {
+        "type": "official",
+        "url": "https://ise-seaparadise.com/service",
+        "retrieved": "2026-10-18",
+        "note": "輪椅、嬰兒車出借，多功能廁所，哺乳室"
+      },
+      {
+        "type": "official",
+        "url": "https://ise-seaparadise.com/3925/",
+        "retrieved": "2026-10-18",
+        "note": "めおと橫丁電梯 2026-10-13～12-24 施工"
+      },
+      {
+        "type": "osm",
+        "url": "https://www.openstreetmap.org/way/1455704574",
+        "retrieved": "2026-10-18",
+        "note": "座標"
+      },
+      {
+        "type": "google-maps",
+        "url": "https://maps.google.com/?cid=15269262787346006937",
+        "retrieved": "2026-10-18",
+        "note": "星數、評論數、座標、照片（Google 名稱：伊勢シーパラダイス；類別：水族館）"
+      },
+      {
+        "type": "official",
+        "url": "https://ise-seaparadise.com/event-schedule",
+        "retrieved": "2026-10-18",
+        "note": "每日活動時間表（餵食、觸摸、付費體驗）"
+      },
+      {
+        "type": "official",
+        "url": "https://ise-seaparadise.com/floormap",
+        "retrieved": "2026-10-18",
+        "note": "1F／2F 各區域，トドプール是屋外，休息區"
+      },
+      {
+        "type": "official",
+        "url": "https://ise-seaparadise.com/question",
+        "retrieved": "2026-10-18",
+        "note": "有只能走樓梯的區域（2F 回遊水槽），電梯在めおと横丁，沒有置物櫃，雨天照常，團體不能館內用餐"
+      },
+      {
+        "type": "official",
+        "url": "https://ise-seaparadise.com/wp-admin/admin-ajax.php?action=eventorganiser-fullcal&start=2026-02-01&end=2026-03-01",
+        "retrieved": "2026-10-18",
+        "note": "營業時間頁背後的日曆資料：2026 年 2 月每天的營業時間；2027 年還沒公布"
+      },
+      {
+        "type": "blog-ja",
+        "url": "https://banzokubiology.com/iseseaparadise-shoyojikan/",
+        "retrieved": "2026-10-18",
+        "note": "所需 1.5～3.5 小時，帶小孩 3 小時以上；和鳥羽水族館比較（2025-05）"
+      },
+      {
+        "type": "other",
+        "url": "https://www.asoview.com/asorepo/130456/",
+        "retrieved": "2026-10-18",
+        "note": "口碑：互動多、小孩開心；缺點是規模小、平日活動空檔長"
+      },
+      {
+        "type": "tourism",
+        "url": "https://www.kankomie.or.jp/report/1322",
+        "retrieved": "2026-10-18",
+        "note": "觀光三重報導：海象散步、可以摸，UOASIS 和ごろりんホール可以休息（2023-05）"
+      },
+      {
+        "type": "other",
+        "url": "https://www.asoview.com/note/590/",
+        "retrieved": "2026-10-18",
+        "note": "和鳥羽水族館分開介紹；這裡強調互動、適合親子（2018，舊文）"
+      }
+    ],
+    "verified": false,
+    "extra": {
+      "parking": "一般車 250 台、大型巴士 40 台（觀光協會）",
+      "neighbor": "隔壁是「伊勢夫婦岩めおと横丁」（餐廳、伴手禮）",
+      "stayMinutesNote": "重點看 1.5～2 小時、看齊活動 2.5～3.5 小時、帶小孩 3 小時以上（banzokubiology 2025-05），取 150。",
+      "schedule": "沒有正式的海獅秀，現在是各種動物的お食事タイム。2026-10-18 的例子：水獺握手 9:50／12:20／15:10；トド餵食 10:10／14:00；ゴマちゃんタッチ 10:40／13:35；アシカ餵食 11:15／14:30；セイウチ餵食 12:20／15:10；コツメカワウソ 16:00（依動物狀況變動，官網 event-schedule）。",
+      "indoorNote": "館內地圖只有 A 區トドプール是屋外；雨天活動照常（官網 floormap、FAQ）。",
+      "vsToba": "和鳥羽水族館車程約 10 分：重視互動選這裡，重視種類多選鳥羽（banzokubiology、asoview 2018）。",
+      "conflicts": [
+        "JR 二見浦站步行：asoview（2018）15 分、部落格 20 分。",
+        "海豚：2023 年報導和口碑提到海豚接球，2026-10 的官網活動表沒有海豚。"
+      ]
+    }
+  },
+  {
+    "id": "futami-omotesando",
+    "type": "spot",
+    "name": {
+      "ja": "夫婦岩表参道（旅館街）",
+      "kana": "めおといわおもてさんどう",
+      "zh": "夫婦岩表參道（旅館街）",
+      "en": "Meoto Iwa Omotesando (ryokan street)"
+    },
+    "area": "futami",
+    "region": "futami-okitama",
+    "coords": [
+      136.7843768,
+      34.5083528
+    ],
+    "coordsSource": "osm",
+    "address": "三重県伊勢市二見町茶屋",
+    "hours": {
+      "always": true,
+      "note": "街道可以自由散步。"
+    },
+    "closedNote": null,
+    "febNote": "沿路的國家重要文化財「賓日館」2026 年 3 月起休館（到 2032 年）。",
+    "closures": [],
+    "events": [],
+    "photos": [
+      {
+        "url": "https://ise-kanko.jp/cms/wp-content/uploads/2021/03/futamiryokangai001.jpg",
+        "page": "https://ise-kanko.jp/purpose/meotoiwasando/",
+        "kind": "official",
+        "credit": "伊勢市観光協会",
+        "license": null
+      },
+      {
+        "url": "https://ise-kanko.jp/cms/wp-content/uploads/2021/03/futamiryokangai002.jpg",
+        "page": "https://ise-kanko.jp/purpose/meotoiwasando/",
+        "kind": "official",
+        "credit": "伊勢市観光協会",
+        "license": null
+      },
+      {
+        "url": "https://lh3.googleusercontent.com/grass-cs/AABkmLfsX0UT5M8-fsLrx9MQss1ZwSDz9cYdhUbBYN8E8CTc7iGjbqQKBacynfmUyC7UQzMMyPlAHeQ0LAmuxzvcx1A-bK-qcUijvjXNTNpT5nxep13cdMGaG9LUBC-199RMVVYK_WTX=w800-h600-k-no",
+        "page": "https://maps.google.com/?cid=7512476381177808026",
+        "kind": "google",
+        "credit": "Google マップ（店家或使用者上傳）",
+        "license": null
+      }
+    ],
+    "links": {
+      "official": "https://ise-kanko.jp/purpose/meotoiwasando/",
+      "googleMaps": "https://maps.google.com/?cid=7512476381177808026",
+      "instagram": null
+    },
+    "tags": [
+      "海邊"
+    ],
+    "tier": null,
+    "nearestStation": {
+      "id": "jr-futaminoura",
+      "mode": "walk",
+      "minutes": 5,
+      "note": "觀光協會"
+    },
+    "access": [
+      {
+        "from": "jr-futaminoura",
+        "mode": "walk",
+        "minutes": 5,
+        "note": null
+      }
+    ],
+    "admission": "免費",
+    "phone": null,
+    "stayMinutes": null,
+    "indoor": false,
+    "fares": null,
+    "group": null,
+    "accessibility": null,
+    "kids": null,
+    "ratings": {
+      "google": null,
+      "googleReviews": null,
+      "note": "Google 有「夫婦岩表参道」的地點（地址型，沒有星數、評論）"
+    },
+    "sources": [
+      {
+        "type": "tourism",
+        "url": "https://ise-kanko.jp/purpose/meotoiwasando/",
+        "retrieved": "2026-10-18",
+        "note": "介紹（舊旅籠、餅屋的街景、松林海岸）、地址、交通"
+      },
+      {
+        "type": "tourism",
+        "url": "https://ise-kanko.jp/purpose/hinjitsukan/",
+        "retrieved": "2026-10-18",
+        "note": "賓日館 2026-03～2032 休館"
+      },
+      {
+        "type": "osm",
+        "url": "https://www.openstreetmap.org/node/4930293824",
+        "retrieved": "2026-10-18",
+        "note": "座標"
+      },
+      {
+        "type": "google-maps",
+        "url": "https://maps.google.com/?cid=7512476381177808026",
+        "retrieved": "2026-10-18",
+        "note": "星數、評論數、座標、照片（Google 名稱：夫婦岩表参道）"
+      },
+      {
+        "type": "other",
+        "url": "https://www.navitime.co.jp/walkingcourse/240019/",
+        "retrieved": "2026-10-18",
+        "note": "二見浦站出發的散步路線 5.8 km 約 70 分，列出御福餅本家、扇屋、二見浦公園堤防"
+      },
+      {
+        "type": "tourism",
+        "url": "https://www.kankomie.or.jp/spot/1724",
+        "retrieved": "2026-10-18",
+        "note": "二見浦：JR 二見浦站步行約 10 分，二見七郷貢進御塩的歷史"
+      }
+    ],
+    "verified": false,
+    "extra": {
+      "shopsOnRoute": "御福餅本家（1738 創業，お福餅）、扇屋（伊勢海老定食）；2 月的營業時間未確認（NAVITIME 散步路線）",
+      "seawall": "二見浦公園的白沙灘＋松林，可以從堤防望伊勢灣（NAVITIME）",
+      "conflicts": [
+        "JR 二見浦站到夫婦岩：觀光三重約 10 分、mapple 等約 15 分（到表參道 5 分，觀光協會）。"
+      ]
+    }
+  },
+  {
+    "id": "futami-matsushita-yashiro",
+    "type": "spot",
+    "name": {
+      "ja": "松下社",
+      "kana": "まつしたやしろ",
+      "zh": "松下社",
+      "en": "Matsushita-yashiro Shrine"
+    },
+    "area": "futami",
+    "region": "futami-outskirts",
+    "coords": [
+      136.7968086,
+      34.5010518
+    ],
+    "coordsSource": "google-maps-url",
+    "address": "三重県伊勢市二見町松下1346",
+    "hours": null,
+    "closedNote": null,
+    "febNote": null,
+    "closures": [],
+    "events": [],
+    "photos": [
+      {
+        "url": "https://ise-kanko.jp/cms/wp-content/uploads/2021/03/tokusyu_jisya_020.jpg",
+        "page": "https://ise-kanko.jp/purpose/matsushitayashiro/",
+        "kind": "official",
+        "credit": "伊勢市観光協会",
+        "license": null
+      },
+      {
+        "url": "https://lh3.googleusercontent.com/grass-cs/AABkmLf4ZO6bEqR2Omt3UsccaglbFV73akP80tC110zFMtouxsduhI6TIDYTcz6L33SYKPQ9W7XnWi01ynPtWTqQTmoPzrZxBHKJ6NQ6y6521elzx0MgTUb1jTyNy8ugcmfKQ646mvOK=w800-h600-k-no",
+        "page": "https://maps.google.com/?cid=2394354946890573064",
+        "kind": "google",
+        "credit": "Google マップ（店家或使用者上傳）",
+        "license": null
+      }
+    ],
+    "links": {
+      "official": null,
+      "googleMaps": "https://maps.google.com/?cid=2394354946890573064",
+      "instagram": null
+    },
+    "tags": [
+      "神社寺院"
+    ],
+    "tier": null,
+    "nearestStation": {
+      "id": "jr-matsushita",
+      "mode": "walk",
+      "minutes": 10,
+      "note": "JR 參宮線松下站步行約 10 分（觀光協會）"
+    },
+    "access": [
+      {
+        "from": "jr-matsushita",
+        "mode": "walk",
+        "minutes": 10,
+        "note": "JR，不能用近鐵 5 日券"
+      }
+    ],
+    "admission": null,
+    "phone": null,
+    "stayMinutes": null,
+    "indoor": false,
+    "fares": null,
+    "group": null,
+    "accessibility": null,
+    "kids": null,
+    "ratings": {
+      "google": 4.3,
+      "googleReviews": 57,
+      "note": "另有「松下社の大楠」3.9（8 則）"
+    },
+    "sources": [
+      {
+        "type": "tourism",
+        "url": "https://ise-kanko.jp/purpose/matsushitayashiro/",
+        "retrieved": "2026-10-18",
+        "note": "介紹（蘇民將來傳說、門口掛的「蘇民将来子孫家門」注連繩、樹齡 2000 年以上的大楠）、地址、交通"
+      },
+      {
+        "type": "other",
+        "url": "https://msearch.gsi.go.jp/address-search/AddressSearch?q=%E4%B8%89%E9%87%8D%E7%9C%8C%E4%BC%8A%E5%8B%A2%E5%B8%82%E4%BA%8C%E8%A6%8B%E7%94%BA%E6%9D%BE%E4%B8%8B1346",
+        "retrieved": "2026-10-18",
+        "note": "國土地理院地址搜尋（座標，番地層級）"
+      },
+      {
+        "type": "google-maps",
+        "url": "https://maps.google.com/?cid=2394354946890573064",
+        "retrieved": "2026-10-18",
+        "note": "星數、評論數、座標、照片（Google 名稱：松下社；類別：神社）"
+      },
+      {
+        "type": "tourism",
+        "url": "https://www.kankomie.or.jp/spot/21693",
+        "retrieved": "2026-10-18",
+        "note": "大楠：樹齡約 2000 年、1937 年縣天然紀念物、JR 松下站步行約 10 分"
+      },
+      {
+        "type": "tourism",
+        "url": "https://www.kankomie.or.jp/topic/624",
+        "retrieved": "2026-10-18",
+        "note": "特集（2024-05-29）：伊勢志摩全年在玄關掛蘇民將來注連繩的習俗；隔壁直賣所"
+      }
+    ],
+    "verified": false,
+    "extra": {
+      "description": "祭神須佐之男命、菅原道真等三座；相傳平安中期安倍晴明勸請；蘇民將來門符的發祥（觀光協會）",
+      "conflicts": [
+        "座標：原本 geocoder（34.502831, 136.803543），和 Google 差 648 m；第 1 批是地址（1346）的番地座標；和 Google 差 300 m 以上，改用 Google。",
+        "地址：觀光協會「1346」、觀光三重的大楠頁「1335 周邊」。",
+        "JR 松下站步行：觀光協會、觀光三重 10 分；tabi-mag 搜尋摘要 5 分（頁面 403）。"
+      ],
+      "kusu": "大楠樹齡約 2000 年，1937-11-10 指定縣天然紀念物，在蘇民の森西南角朝道路，主幹地上只剩約 5 m（觀光三重）",
+      "nearby": "隔壁有二見しょうぶロマンの森、直賣所「民話の駅 蘇民」（觀光三重）",
+      "shimenawa": "伊勢志摩全年在玄關掛蘇民將來注連繩；松下社在哪裡授與、正月以外買不買得到、價格都沒有來源（觀光三重 2024-05）"
+    }
+  }
+]

@@ -1,0 +1,995 @@
+[
+  {
+    "key": "ise-geku",
+    "name": {
+      "ja": "伊勢神宮・外宮（豊受大神宮）"
+    },
+    "region": "ise-geku",
+    "category": "神社",
+    "status": "included",
+    "reason": null,
+    "pointId": "ise-geku",
+    "mentions": [
+      {
+        "type": "tourism",
+        "url": "https://ise-kanko.jp/purpose/geku/",
+        "title": "伊勢市観光協会",
+        "highlight": null,
+        "retrieved": "2026-10-18"
+      }
+    ]
+  },
+  {
+    "key": "ise-sengukan",
+    "name": {
+      "ja": "式年遷宮記念 せんぐう館"
+    },
+    "region": "ise-geku",
+    "category": "博物館",
+    "status": "included",
+    "reason": null,
+    "pointId": "ise-sengukan",
+    "mentions": [
+      {
+        "type": "tourism",
+        "url": "https://ise-kanko.jp/purpose/sengukan/",
+        "title": "伊勢市観光協会",
+        "highlight": null,
+        "retrieved": "2026-10-18"
+      }
+    ]
+  },
+  {
+    "key": "ise-geku-sando",
+    "name": {
+      "ja": "外宮参道"
+    },
+    "region": "ise-geku",
+    "category": "街道",
+    "status": "included",
+    "reason": null,
+    "pointId": "ise-geku-sando",
+    "mentions": [
+      {
+        "type": "tourism",
+        "url": "https://ise-kanko.jp/purpose/gekuusandou/",
+        "title": "伊勢市観光協会",
+        "highlight": null,
+        "retrieved": "2026-10-18"
+      }
+    ]
+  },
+  {
+    "key": "ise-tsukiyomi-no-miya-geku",
+    "name": {
+      "ja": "月夜見宮（豊受大神宮別宮）"
+    },
+    "region": "ise-geku",
+    "category": "神社",
+    "status": "included",
+    "reason": null,
+    "pointId": "ise-tsukiyomi-no-miya-geku",
+    "mentions": [
+      {
+        "type": "tourism",
+        "url": "https://ise-kanko.jp/purpose/tsukiyominomiya2/",
+        "title": "伊勢市観光協会",
+        "highlight": null,
+        "retrieved": "2026-10-18"
+      }
+    ]
+  },
+  {
+    "key": "ise-kawasaki",
+    "name": {
+      "ja": "伊勢河崎商人館"
+    },
+    "region": "ise-geku",
+    "category": "資料館・老街",
+    "status": "included",
+    "reason": null,
+    "pointId": "ise-kawasaki",
+    "mentions": [
+      {
+        "type": "tourism",
+        "url": "https://ise-kanko.jp/purpose/isekawasakishoninkan/",
+        "title": "伊勢市観光協会",
+        "highlight": null,
+        "retrieved": "2026-10-18"
+      }
+    ]
+  },
+  {
+    "key": "ise-wakamatsuya-kamaboko",
+    "name": {
+      "ja": "若松屋｜かまぼこ作り体験"
+    },
+    "region": "ise-geku",
+    "category": "體驗",
+    "status": "included",
+    "reason": null,
+    "pointId": "ise-wakamatsuya-kamaboko",
+    "mentions": [
+      {
+        "type": "tourism",
+        "url": "https://ise-kanko.jp/purpose/wakamatsuya-kamaboko/",
+        "title": "伊勢市観光協会",
+        "highlight": null,
+        "retrieved": "2026-10-18"
+      }
+    ]
+  },
+  {
+    "key": "ise-geku-betsugu",
+    "name": {
+      "ja": "多賀宮・土宮・風宮（豊受大神宮別宮）、勾玉池、清盛楠、下御井神社など"
+    },
+    "region": "ise-geku",
+    "category": "神社",
+    "status": "not-included",
+    "reason": "外宮宮域內，併在 ise-geku 一筆",
+    "pointId": null,
+    "mentions": [
+      {
+        "type": "tourism",
+        "url": "https://ise-kanko.jp/purpose/takanomiya/",
+        "title": "伊勢市観光協会",
+        "highlight": null,
+        "retrieved": "2026-10-18"
+      }
+    ]
+  },
+  {
+    "key": "ise-akoneyashiro",
+    "name": {
+      "ja": "茜社（豊川茜稲荷神社）"
+    },
+    "region": "ise-geku",
+    "category": "神社",
+    "status": "not-included",
+    "reason": "外宮旁的小神社，觀光協會只有一般介紹；外宮順路可以去，不另外收",
+    "pointId": null,
+    "mentions": [
+      {
+        "type": "tourism",
+        "url": "https://ise-kanko.jp/purpose/akoneyashiro/",
+        "title": "伊勢市観光協会",
+        "highlight": null,
+        "retrieved": "2026-10-18"
+      }
+    ]
+  },
+  {
+    "key": "ise-washikan",
+    "name": {
+      "ja": "伊勢和紙館"
+    },
+    "region": "ise-geku",
+    "category": "資料館",
+    "status": "not-included",
+    "reason": "觀光協會只有簡短介紹，沒有營業資訊",
+    "pointId": null,
+    "mentions": [
+      {
+        "type": "tourism",
+        "url": "https://ise-kanko.jp/purpose/washikan/",
+        "title": "伊勢市観光協会",
+        "highlight": null,
+        "retrieved": "2026-10-18"
+      }
+    ]
+  },
+  {
+    "key": "ise-kyutoyomiyazakibunko",
+    "name": {
+      "ja": "旧豊宮崎文庫"
+    },
+    "region": "ise-geku",
+    "category": "史蹟",
+    "status": "not-included",
+    "reason": "史蹟，觀光協會只有簡短介紹",
+    "pointId": null,
+    "mentions": [
+      {
+        "type": "tourism",
+        "url": "https://ise-kanko.jp/purpose/kyutoyomiyazakibunko/",
+        "title": "伊勢市観光協会",
+        "highlight": null,
+        "retrieved": "2026-10-18"
+      }
+    ]
+  },
+  {
+    "key": "ise-asahiyu",
+    "name": {
+      "ja": "汐湯・おかげ風呂舘 旭湯"
+    },
+    "region": "ise-geku",
+    "category": "錢湯",
+    "status": "not-included",
+    "reason": "錢湯，不算景點；需要時當行程中的泡湯選項",
+    "pointId": null,
+    "mentions": [
+      {
+        "type": "tourism",
+        "url": "https://ise-kanko.jp/purpose/asahiyu/",
+        "title": "伊勢市観光協会",
+        "highlight": null,
+        "retrieved": "2026-10-18"
+      }
+    ]
+  },
+  {
+    "key": "ise-mitasunoyu",
+    "name": {
+      "ja": "伊勢・船江温泉 みたすの湯"
+    },
+    "region": "ise-geku",
+    "category": "溫泉",
+    "status": "not-included",
+    "reason": "日歸溫泉（船江，河崎エリア），不算景點；需要時當泡湯選項",
+    "pointId": null
+  },
+  {
+    "key": "ise-kagura-salon",
+    "name": {
+      "ja": "神楽サロン 伊勢外宮前"
+    },
+    "region": "ise-geku",
+    "category": "體驗",
+    "status": "not-included",
+    "reason": "觀光協會只有簡短介紹，內容和營業資訊不明",
+    "pointId": null,
+    "mentions": [
+      {
+        "type": "tourism",
+        "url": "https://ise-kanko.jp/purpose/kagurasaron-gukumae/",
+        "title": "伊勢市観光協会",
+        "highlight": null,
+        "retrieved": "2026-10-18"
+      }
+    ]
+  },
+  {
+    "key": "ise-ujiyamada-station",
+    "name": {
+      "ja": "近鉄宇治山田駅（登録有形文化財の駅舎）"
+    },
+    "region": "ise-geku",
+    "category": "車站",
+    "status": "excluded",
+    "reason": "車站，已在 stations.json",
+    "pointId": null,
+    "mentions": [
+      {
+        "type": "tourism",
+        "url": "https://ise-kanko.jp/purpose/ujiyamadastaition/",
+        "title": "伊勢市観光協会",
+        "highlight": null,
+        "retrieved": "2026-10-18"
+      }
+    ]
+  },
+  {
+    "key": "ise-iseshi-luggage",
+    "name": {
+      "ja": "伊勢市駅手荷物預り所"
+    },
+    "region": "ise-geku",
+    "category": "服務設施",
+    "status": "excluded",
+    "reason": "服務設施，不算景點；行李當天配送到住宿的服務寫在 ise-geku-sando 的 extra.luggage",
+    "pointId": null,
+    "mentions": [
+      {
+        "type": "tourism",
+        "url": "https://ise-kanko.jp/purpose/iseshieki-tenimotsu/",
+        "title": "伊勢市観光協会",
+        "highlight": null,
+        "retrieved": "2026-10-18"
+      }
+    ]
+  },
+  {
+    "key": "ise-info-centers",
+    "name": {
+      "ja": "伊勢市駅観光案内所・外宮前観光サービスセンター"
+    },
+    "region": "ise-geku",
+    "category": "服務設施",
+    "status": "excluded",
+    "reason": "服務設施，不算景點",
+    "pointId": null,
+    "mentions": [
+      {
+        "type": "tourism",
+        "url": "https://ise-kanko.jp/purpose/iseshieki-info/",
+        "title": "伊勢市観光協会",
+        "highlight": null,
+        "retrieved": "2026-10-18"
+      }
+    ]
+  },
+  {
+    "key": "ise-miyagawa-sakura",
+    "name": {
+      "ja": "宮川堤の桜"
+    },
+    "region": "ise-geku",
+    "category": "賞花",
+    "status": "excluded",
+    "reason": "櫻花在 4 月，旅程期間沒有",
+    "pointId": null,
+    "mentions": [
+      {
+        "type": "tourism",
+        "url": "https://ise-kanko.jp/purpose/miyagawa-sakura/",
+        "title": "伊勢市観光協会",
+        "highlight": null,
+        "retrieved": "2026-10-18"
+      }
+    ]
+  },
+  {
+    "key": "ise-tsukiyomi-no-miya",
+    "name": {
+      "ja": "月読宮（皇大神宮別宮）"
+    },
+    "region": "ise-kurata",
+    "category": "神社",
+    "status": "included",
+    "reason": null,
+    "pointId": "ise-tsukiyomi-no-miya",
+    "mentions": [
+      {
+        "type": "tourism",
+        "url": "https://ise-kanko.jp/purpose/tsukiyominomiya1/",
+        "title": "伊勢市観光協会",
+        "highlight": null,
+        "retrieved": "2026-10-18"
+      }
+    ],
+    "note": "觀光協會標內宮エリア；在五十鈴川站步行 10 分，照位置放 ise-kurata"
+  },
+  {
+    "key": "ise-yamatohime-no-miya",
+    "name": {
+      "ja": "倭姫宮（皇大神宮別宮）"
+    },
+    "region": "ise-kurata",
+    "category": "神社",
+    "status": "included",
+    "reason": null,
+    "pointId": "ise-yamatohime-no-miya",
+    "mentions": [
+      {
+        "type": "tourism",
+        "url": "https://ise-kanko.jp/purpose/yamatohimenomiya/",
+        "title": "伊勢市観光協会",
+        "highlight": null,
+        "retrieved": "2026-10-18"
+      }
+    ]
+  },
+  {
+    "key": "ise-jingu-museum",
+    "name": {
+      "ja": "神宮徴古館・農業館・神宮美術館"
+    },
+    "region": "ise-kurata",
+    "category": "博物館",
+    "status": "included",
+    "reason": null,
+    "pointId": "ise-jingu-museum",
+    "mentions": [
+      {
+        "type": "tourism",
+        "url": "https://ise-kanko.jp/purpose/jinguchokokan/",
+        "title": "伊勢市観光協会",
+        "highlight": null,
+        "retrieved": "2026-10-18"
+      }
+    ]
+  },
+  {
+    "key": "ise-matsuo-kannonji",
+    "name": {
+      "ja": "松尾観音寺"
+    },
+    "region": "ise-kurata",
+    "category": "寺院",
+    "status": "included",
+    "reason": null,
+    "pointId": "ise-matsuo-kannonji",
+    "mentions": [
+      {
+        "type": "tourism",
+        "url": "https://ise-kanko.jp/purpose/matsuokannonji/",
+        "title": "伊勢市観光協会",
+        "highlight": null,
+        "retrieved": "2026-10-18"
+      }
+    ],
+    "note": "觀光協會標內宮エリア；地址楠部町，在徴古館東側，照位置放 ise-kurata"
+  },
+  {
+    "key": "ise-furuichi-kaido",
+    "name": {
+      "ja": "伊勢古市参宮街道・伊勢古市参宮街道資料館"
+    },
+    "region": "ise-kurata",
+    "category": "街道・資料館",
+    "status": "not-included",
+    "reason": "舊參宮街道的散步路線，資料館規模小（週一休）；外宮→內宮步行時順路，不另外收",
+    "pointId": null,
+    "mentions": [
+      {
+        "type": "tourism",
+        "url": "https://ise-kanko.jp/purpose/furuichikaidou/",
+        "title": "伊勢市観光協会",
+        "highlight": null,
+        "retrieved": "2026-10-18"
+      }
+    ]
+  },
+  {
+    "key": "ise-segidera",
+    "name": {
+      "ja": "世義寺"
+    },
+    "region": "ise-kurata",
+    "category": "寺院",
+    "status": "not-included",
+    "reason": "觀光協會只有一般介紹，不是主打景點",
+    "pointId": null,
+    "mentions": [
+      {
+        "type": "tourism",
+        "url": "https://ise-kanko.jp/purpose/segidera/",
+        "title": "伊勢市観光協会",
+        "highlight": null,
+        "retrieved": "2026-10-18"
+      }
+    ]
+  },
+  {
+    "key": "ise-chuzanji",
+    "name": {
+      "ja": "中山寺"
+    },
+    "region": "ise-kurata",
+    "category": "寺院",
+    "status": "not-included",
+    "reason": "觀光協會只有一般介紹，不是主打景點",
+    "pointId": null,
+    "mentions": [
+      {
+        "type": "tourism",
+        "url": "https://ise-kanko.jp/purpose/chuuzanji/",
+        "title": "伊勢市観光協会",
+        "highlight": null,
+        "retrieved": "2026-10-18"
+      }
+    ]
+  },
+  {
+    "key": "ise-jingu-baraen",
+    "name": {
+      "ja": "神宮ばら園"
+    },
+    "region": "ise-naiku",
+    "category": "花園",
+    "status": "excluded",
+    "reason": "開園期間只有春（5 月中旬～6 月中旬）和秋（10 月下旬～11 月上旬），2 月不開",
+    "pointId": null,
+    "mentions": [
+      {
+        "type": "tourism",
+        "url": "https://ise-kanko.jp/purpose/jingu-baraen/",
+        "title": "伊勢市観光協会",
+        "highlight": null,
+        "retrieved": "2026-10-18"
+      }
+    ]
+  },
+  {
+    "key": "ise-naiku",
+    "name": {
+      "ja": "伊勢神宮・内宮（皇大神宮）"
+    },
+    "region": "ise-naiku",
+    "category": "神社",
+    "status": "included",
+    "reason": null,
+    "pointId": "ise-naiku",
+    "mentions": [
+      {
+        "type": "tourism",
+        "url": "https://ise-kanko.jp/purpose/naiku/",
+        "title": "伊勢市観光協会",
+        "highlight": null,
+        "retrieved": "2026-10-18"
+      }
+    ]
+  },
+  {
+    "key": "ise-oharaimachi",
+    "name": {
+      "ja": "おはらい町・おかげ横丁"
+    },
+    "region": "ise-naiku",
+    "category": "街道・商店街",
+    "status": "included",
+    "reason": null,
+    "pointId": "ise-oharaimachi",
+    "mentions": [
+      {
+        "type": "tourism",
+        "url": "https://ise-kanko.jp/purpose/oharaimachi-okageyokocho/",
+        "title": "伊勢市観光協会",
+        "highlight": null,
+        "retrieved": "2026-10-18"
+      }
+    ]
+  },
+  {
+    "key": "ise-sarutahiko-jinja",
+    "name": {
+      "ja": "猿田彦神社（佐瑠女神社）"
+    },
+    "region": "ise-naiku",
+    "category": "神社",
+    "status": "included",
+    "reason": null,
+    "pointId": "ise-sarutahiko-jinja",
+    "mentions": [
+      {
+        "type": "tourism",
+        "url": "https://ise-kanko.jp/purpose/sarutahikojinja/",
+        "title": "伊勢市観光協会",
+        "highlight": null,
+        "retrieved": "2026-10-18"
+      }
+    ]
+  },
+  {
+    "key": "ise-okage-yashiki",
+    "name": {
+      "ja": "オカゲ屋敷"
+    },
+    "region": "ise-naiku",
+    "category": "室內展示",
+    "status": "included",
+    "reason": null,
+    "pointId": "ise-okage-yashiki",
+    "mentions": [
+      {
+        "type": "tourism",
+        "url": "https://ise-kanko.jp/purpose/okage-okageyashiki/",
+        "title": "伊勢市観光協会",
+        "highlight": null,
+        "retrieved": "2026-10-18"
+      }
+    ],
+    "note": "2026-07-03 開幕"
+  },
+  {
+    "key": "ise-naiku-inside",
+    "name": {
+      "ja": "宇治橋・荒祭宮・風日祈宮・五十鈴川御手洗場など"
+    },
+    "region": "ise-naiku",
+    "category": "神社",
+    "status": "not-included",
+    "reason": "內宮宮域內，併在 ise-naiku 一筆",
+    "pointId": null,
+    "mentions": [
+      {
+        "type": "tourism",
+        "url": "https://ise-kanko.jp/purpose/ujibashi/",
+        "title": "伊勢市観光協会",
+        "highlight": null,
+        "retrieved": "2026-10-18"
+      }
+    ]
+  },
+  {
+    "key": "ise-heart-stone",
+    "name": {
+      "ja": "内宮おかげ参道・ハートの石・五十鈴川"
+    },
+    "region": "ise-naiku",
+    "category": "散步",
+    "status": "not-included",
+    "reason": "おはらい町旁的散步點，併在 ise-oharaimachi",
+    "pointId": null,
+    "mentions": [
+      {
+        "type": "tourism",
+        "url": "https://ise-kanko.jp/purpose/heart-shaped-stone/",
+        "title": "伊勢市観光協会",
+        "highlight": null,
+        "retrieved": "2026-10-18"
+      }
+    ]
+  },
+  {
+    "key": "ise-uji-jinja",
+    "name": {
+      "ja": "宇治神社（足神さん）"
+    },
+    "region": "ise-naiku",
+    "category": "神社",
+    "status": "not-included",
+    "reason": "おはらい町裡的小神社，併在 ise-oharaimachi",
+    "pointId": null,
+    "mentions": [
+      {
+        "type": "tourism",
+        "url": "https://ise-kanko.jp/purpose/ujijinja/",
+        "title": "伊勢市観光協会",
+        "highlight": null,
+        "retrieved": "2026-10-18"
+      }
+    ]
+  },
+  {
+    "key": "ise-ito-shoha-museum",
+    "name": {
+      "ja": "伊藤小坡美術館"
+    },
+    "region": "ise-naiku",
+    "category": "美術館",
+    "status": "not-included",
+    "reason": "在猿田彥神社境內，併在 ise-sarutahiko-jinja；營業資訊之後讀文補",
+    "pointId": null,
+    "mentions": [
+      {
+        "type": "tourism",
+        "url": "https://ise-kanko.jp/purpose/bijutukan/",
+        "title": "伊勢市観光協会",
+        "highlight": null,
+        "retrieved": "2026-10-18"
+      }
+    ]
+  },
+  {
+    "key": "ise-iseyaki",
+    "name": {
+      "ja": "伊勢焼陶芸体験工房"
+    },
+    "region": "ise-naiku",
+    "category": "體驗",
+    "status": "excluded",
+    "reason": "體驗限中學生以上，小孩不能參加",
+    "pointId": null,
+    "mentions": [
+      {
+        "type": "tourism",
+        "url": "https://ise-kanko.jp/purpose/iseyakitougeitaikenkoubou/",
+        "title": "伊勢市観光協会",
+        "highlight": null,
+        "retrieved": "2026-10-18"
+      }
+    ]
+  },
+  {
+    "key": "ise-kimono-ayano",
+    "name": {
+      "ja": "きもの日和あやの（着物レンタル）"
+    },
+    "region": "ise-naiku",
+    "category": "體驗",
+    "status": "not-included",
+    "reason": "和服出租，不算景點",
+    "pointId": null,
+    "mentions": [
+      {
+        "type": "tourism",
+        "url": "https://ise-kanko.jp/purpose/kimonoyayano/",
+        "title": "伊勢市観光協会",
+        "highlight": null,
+        "retrieved": "2026-10-18"
+      }
+    ]
+  },
+  {
+    "key": "ise-kongoshoji",
+    "name": {
+      "ja": "朝熊岳金剛證寺"
+    },
+    "region": "ise-asama",
+    "category": "寺院",
+    "status": "included",
+    "reason": null,
+    "pointId": "ise-kongoshoji",
+    "mentions": [
+      {
+        "type": "tourism",
+        "url": "https://ise-kanko.jp/purpose/kongoshoji/",
+        "title": "伊勢市観光協会",
+        "highlight": null,
+        "retrieved": "2026-10-18"
+      }
+    ]
+  },
+  {
+    "key": "ise-asama-summit",
+    "name": {
+      "ja": "朝熊山頂展望台（伊勢志摩スカイライン・天空のポスト）"
+    },
+    "region": "ise-asama",
+    "category": "展望台",
+    "status": "included",
+    "reason": null,
+    "pointId": "ise-asama-summit",
+    "mentions": [
+      {
+        "type": "tourism",
+        "url": "https://ise-kanko.jp/purpose/skyline/",
+        "title": "伊勢市観光協会",
+        "highlight": null,
+        "retrieved": "2026-10-18"
+      },
+      {
+        "type": "tourism",
+        "url": "https://ise-kanko.jp/purpose/tenku-no-post/",
+        "title": "伊勢市観光協会",
+        "highlight": null,
+        "retrieved": "2026-10-18"
+      }
+    ]
+  },
+  {
+    "key": "ise-hachidairyuosha",
+    "name": {
+      "ja": "八大龍王社"
+    },
+    "region": "ise-asama",
+    "category": "神社",
+    "status": "not-included",
+    "reason": "金剛證寺再步行約 20 分，併在 ise-kongoshoji 的 note",
+    "pointId": null,
+    "mentions": [
+      {
+        "type": "tourism",
+        "url": "https://ise-kanko.jp/purpose/hachidairyuosha/",
+        "title": "伊勢市観光協会",
+        "highlight": null,
+        "retrieved": "2026-10-18"
+      }
+    ]
+  },
+  {
+    "key": "ise-asamatakemichi",
+    "name": {
+      "ja": "朝熊岳道（登山道）"
+    },
+    "region": "ise-asama",
+    "category": "登山",
+    "status": "not-included",
+    "reason": "登山步道（標高 555 m），長輩、小孩全員不適合；分組時能走的人可以考慮",
+    "pointId": null,
+    "mentions": [
+      {
+        "type": "tourism",
+        "url": "https://ise-kanko.jp/purpose/asamatakemichi/",
+        "title": "伊勢市観光協会",
+        "highlight": null,
+        "retrieved": "2026-10-18"
+      }
+    ]
+  },
+  {
+    "key": "ise-sun-arena",
+    "name": {
+      "ja": "三重県営サンアリーナ"
+    },
+    "region": "ise-asama",
+    "category": "體育館",
+    "status": "excluded",
+    "reason": "活動場館，不算景點",
+    "pointId": null,
+    "mentions": [
+      {
+        "type": "tourism",
+        "url": "https://ise-kanko.jp/purpose/sun-arena/",
+        "title": "伊勢市観光協会",
+        "highlight": null,
+        "retrieved": "2026-10-18"
+      }
+    ]
+  },
+  {
+    "key": "ise-ichigoen",
+    "name": {
+      "ja": "伊勢苺園（いちご狩り）"
+    },
+    "region": "ise-outskirts",
+    "category": "體驗",
+    "status": "included",
+    "reason": null,
+    "pointId": "ise-ichigoen",
+    "mentions": [
+      {
+        "type": "tourism",
+        "url": "https://ise-kanko.jp/purpose/伊勢苺園/",
+        "title": "伊勢市観光協会",
+        "highlight": null,
+        "retrieved": "2026-10-18"
+      }
+    ]
+  },
+  {
+    "key": "ise-kikuchi-pearl",
+    "name": {
+      "ja": "菊池パール｜真珠の珠出し体験"
+    },
+    "region": "ise-outskirts",
+    "category": "體驗",
+    "status": "included",
+    "reason": null,
+    "pointId": "ise-kikuchi-pearl",
+    "mentions": [
+      {
+        "type": "tourism",
+        "url": "https://ise-kanko.jp/purpose/kikuchipearl-taiken/",
+        "title": "伊勢市観光協会",
+        "highlight": null,
+        "retrieved": "2026-10-18"
+      }
+    ],
+    "note": "觀光協會標二見エリア，但地址是伊勢市通町（JR 五十鈴ケ丘站旁），放 ise-outskirts"
+  },
+  {
+    "key": "ise-garyubai",
+    "name": {
+      "ja": "臥龍梅公園"
+    },
+    "region": "ise-outskirts",
+    "category": "賞花",
+    "status": "not-included",
+    "reason": "小公園；2026 年 3/6 才「散り始め」，見頃多在 2 月下旬～3 月上旬，旅程（～2/13）可能還沒開；座標只查得到町名層級。行程排到伊勢市區又遇早開時再加",
+    "pointId": null,
+    "mentions": [
+      {
+        "type": "tourism",
+        "url": "https://ise-kanko.jp/purpose/garyubai/",
+        "title": "伊勢市観光協会",
+        "highlight": null,
+        "retrieved": "2026-10-18"
+      }
+    ]
+  },
+  {
+    "key": "ise-yamada-bugyosho",
+    "name": {
+      "ja": "山田奉行所記念館"
+    },
+    "region": "ise-outskirts",
+    "category": "資料館",
+    "status": "not-included",
+    "reason": "觀光協會只有簡短介紹，不是主打景點",
+    "pointId": null,
+    "mentions": [
+      {
+        "type": "tourism",
+        "url": "https://ise-kanko.jp/purpose/yamada/",
+        "title": "伊勢市観光協会",
+        "highlight": null,
+        "retrieved": "2026-10-18"
+      }
+    ]
+  },
+  {
+    "key": "ise-rikyuin",
+    "name": {
+      "ja": "離宮院公園"
+    },
+    "region": "ise-outskirts",
+    "category": "公園",
+    "status": "not-included",
+    "reason": "史蹟公園，觀光協會只有簡短介紹",
+    "pointId": null,
+    "mentions": [
+      {
+        "type": "tourism",
+        "url": "https://ise-kanko.jp/purpose/rikyuin/",
+        "title": "伊勢市観光協会",
+        "highlight": null,
+        "retrieved": "2026-10-18"
+      }
+    ]
+  },
+  {
+    "key": "ise-loveriver",
+    "name": {
+      "ja": "宮川ラブリバー公園"
+    },
+    "region": "ise-outskirts",
+    "category": "公園",
+    "status": "not-included",
+    "reason": "河岸公園，冬天沒有特別的看點",
+    "pointId": null,
+    "mentions": [
+      {
+        "type": "tourism",
+        "url": "https://ise-kanko.jp/purpose/loveriver/",
+        "title": "伊勢市観光協会",
+        "highlight": null,
+        "retrieved": "2026-10-18"
+      }
+    ]
+  },
+  {
+    "key": "ise-tanboart",
+    "name": {
+      "ja": "田んぼアートinおばた"
+    },
+    "region": "ise-outskirts",
+    "category": "田園藝術",
+    "status": "excluded",
+    "reason": "夏季的稻田藝術，2 月沒有",
+    "pointId": null,
+    "mentions": [
+      {
+        "type": "tourism",
+        "url": "https://ise-kanko.jp/purpose/tanboart-iseobata/",
+        "title": "伊勢市観光協会",
+        "highlight": null,
+        "retrieved": "2026-10-18"
+      }
+    ]
+  },
+  {
+    "key": "ise-ozakigakudo",
+    "name": {
+      "ja": "尾崎咢堂記念館"
+    },
+    "region": "ise-outskirts",
+    "category": "紀念館",
+    "status": "not-included",
+    "reason": "觀光協會只有簡短介紹，不是主打景點",
+    "pointId": null,
+    "mentions": [
+      {
+        "type": "tourism",
+        "url": "https://ise-kanko.jp/purpose/ozakigakudo/",
+        "title": "伊勢市観光協会",
+        "highlight": null,
+        "retrieved": "2026-10-18"
+      }
+    ]
+  },
+  {
+    "key": "ise-netsuke",
+    "name": {
+      "ja": "伊勢根付彫刻館"
+    },
+    "region": "ise-outskirts",
+    "category": "美術館",
+    "status": "not-included",
+    "reason": "觀光協會只有簡短介紹，營業資訊不明",
+    "pointId": null,
+    "mentions": [
+      {
+        "type": "tourism",
+        "url": "https://ise-kanko.jp/purpose/chokokukan/",
+        "title": "伊勢市観光協会",
+        "highlight": null,
+        "retrieved": "2026-10-18"
+      }
+    ]
+  },
+  {
+    "key": "ise-wakamatsuya-shimono",
+    "name": {
+      "ja": "若松屋 下野工場（かまぼこ作り体験・團體）"
+    },
+    "region": "ise-outskirts",
+    "category": "體驗",
+    "status": "not-included",
+    "reason": "若松屋魚板體驗 11～70 人的場地，寫在 ise-wakamatsuya-kamaboko 的 extra",
+    "pointId": null
+  }
+]

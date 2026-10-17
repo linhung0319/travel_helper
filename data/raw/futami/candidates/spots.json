@@ -1,0 +1,389 @@
+[
+  {
+    "key": "futami-okitama-jinja",
+    "name": {
+      "ja": "二見興玉神社（夫婦岩）"
+    },
+    "region": "futami-okitama",
+    "category": "神社",
+    "status": "included",
+    "reason": null,
+    "pointId": "futami-okitama-jinja",
+    "mentions": [
+      {
+        "type": "tourism",
+        "url": "https://ise-kanko.jp/purpose/futamiokitamajinjya/",
+        "title": "伊勢市観光協会",
+        "highlight": null,
+        "retrieved": "2026-10-18"
+      }
+    ]
+  },
+  {
+    "key": "futami-sea-paradise",
+    "name": {
+      "ja": "伊勢シーパラダイス"
+    },
+    "region": "futami-okitama",
+    "category": "水族館",
+    "status": "included",
+    "reason": null,
+    "pointId": "futami-sea-paradise",
+    "mentions": [
+      {
+        "type": "tourism",
+        "url": "https://ise-kanko.jp/purpose/ise-seaparadis/",
+        "title": "伊勢市観光協会",
+        "highlight": null,
+        "retrieved": "2026-10-18"
+      }
+    ]
+  },
+  {
+    "key": "futami-omotesando",
+    "name": {
+      "ja": "夫婦岩表参道（旅館街）"
+    },
+    "region": "futami-okitama",
+    "category": "街道",
+    "status": "included",
+    "reason": null,
+    "pointId": "futami-omotesando",
+    "mentions": [
+      {
+        "type": "tourism",
+        "url": "https://ise-kanko.jp/purpose/meotoiwasando/",
+        "title": "伊勢市観光協会",
+        "highlight": null,
+        "retrieved": "2026-10-18"
+      }
+    ]
+  },
+  {
+    "key": "futami-matsushita-yashiro",
+    "name": {
+      "ja": "松下社"
+    },
+    "region": "futami-outskirts",
+    "category": "神社",
+    "status": "included",
+    "reason": null,
+    "pointId": "futami-matsushita-yashiro",
+    "mentions": [
+      {
+        "type": "tourism",
+        "url": "https://ise-kanko.jp/purpose/matsushitayashiro/",
+        "title": "伊勢市観光協会",
+        "highlight": null,
+        "retrieved": "2026-10-18"
+      }
+    ]
+  },
+  {
+    "key": "futami-hinjitsukan",
+    "name": {
+      "ja": "賓日館"
+    },
+    "region": "futami-okitama",
+    "category": "資料館（重要文化財）",
+    "status": "excluded",
+    "reason": "2026 年 3 月起到 2032 年耐震與文化財修復工事休館（觀光協會）",
+    "pointId": null,
+    "mentions": [
+      {
+        "type": "tourism",
+        "url": "https://ise-kanko.jp/purpose/hinjitsukan/",
+        "title": "伊勢市観光協会",
+        "highlight": null,
+        "retrieved": "2026-10-18"
+      }
+    ]
+  },
+  {
+    "key": "futami-ise-ninja-kingdom",
+    "name": {
+      "ja": "ともいきの国 伊勢忍者キングダム"
+    },
+    "region": "futami-outskirts",
+    "category": "主題樂園",
+    "status": "excluded",
+    "reason": "官網公告 2026-07-23 起改裝休業，重新開幕日未定（2026-10-18 查）；開幕的話再加回",
+    "pointId": null,
+    "mentions": [
+      {
+        "type": "official",
+        "url": "https://www.ise-jokamachi.jp/",
+        "title": "伊勢忍者キングダム 公式（休業のお知らせ）",
+        "highlight": "2026-07-23 起リニューアルのため休業",
+        "retrieved": "2026-10-18"
+      },
+      {
+        "type": "media",
+        "url": "https://www.walkerplus.com/spot/ar0624s03720/data.html",
+        "title": "ウォーカープラス",
+        "highlight": "休業前：9:00～17:00（11～2 月 16:00）、週三休、通行手形 大人 4,900 円",
+        "retrieved": "2026-10-18"
+      }
+    ]
+  },
+  {
+    "key": "futami-ryugusha",
+    "name": {
+      "ja": "龍宮社・天の岩屋"
+    },
+    "region": "futami-okitama",
+    "category": "神社",
+    "status": "not-included",
+    "reason": "二見興玉神社境內，併在 futami-okitama-jinja",
+    "pointId": null,
+    "mentions": [
+      {
+        "type": "tourism",
+        "url": "https://ise-kanko.jp/purpose/ryugusha/",
+        "title": "伊勢市観光協会",
+        "highlight": null,
+        "retrieved": "2026-10-18"
+      }
+    ]
+  },
+  {
+    "key": "futami-mishiodono",
+    "name": {
+      "ja": "御塩殿神社（皇大神宮所管社）"
+    },
+    "region": "futami-okitama",
+    "category": "神社",
+    "status": "not-included",
+    "reason": "神宮製作御鹽的所管社，規模小、沒有停車場；JR 二見浦站步行 15 分，順路可以去",
+    "pointId": null,
+    "mentions": [
+      {
+        "type": "tourism",
+        "url": "https://ise-kanko.jp/purpose/mishiodonojinja/",
+        "title": "伊勢市観光協会",
+        "highlight": null,
+        "retrieved": "2026-10-18"
+      }
+    ]
+  },
+  {
+    "key": "futami-taikoji",
+    "name": {
+      "ja": "太江寺"
+    },
+    "region": "futami-okitama",
+    "category": "寺院",
+    "status": "not-included",
+    "reason": "寵物供養寺、紫藤和繡球花名所，2 月不是花期",
+    "pointId": null,
+    "mentions": [
+      {
+        "type": "tourism",
+        "url": "https://ise-kanko.jp/purpose/taikoji/",
+        "title": "伊勢市観光協会",
+        "highlight": null,
+        "retrieved": "2026-10-18"
+      }
+    ]
+  },
+  {
+    "key": "futami-mieken-shinju",
+    "name": {
+      "ja": "三重県真珠（アコヤ真珠取り出し体験）"
+    },
+    "region": "futami-okitama",
+    "category": "體驗",
+    "status": "not-included",
+    "reason": "和已收的菊池パール是同類型的取珍珠體驗；在夫婦岩附近，行程排在二見時可以替代",
+    "pointId": null,
+    "mentions": [
+      {
+        "type": "tourism",
+        "url": "https://ise-kanko.jp/purpose/miekenshinju/",
+        "title": "伊勢市観光協会",
+        "highlight": null,
+        "retrieved": "2026-10-18"
+      }
+    ]
+  },
+  {
+    "key": "futami-kizuna",
+    "name": {
+      "ja": "二見のご当地体験 絆結び"
+    },
+    "region": "futami-okitama",
+    "category": "體驗",
+    "status": "not-included",
+    "reason": "觀光協會只有特設網站入口，內容和營業資訊沒查",
+    "pointId": null,
+    "mentions": [
+      {
+        "type": "tourism",
+        "url": "https://ise-kanko.jp/purpose/kizunataiken/",
+        "title": "伊勢市観光協会",
+        "highlight": null,
+        "retrieved": "2026-10-18"
+      }
+    ]
+  },
+  {
+    "key": "futami-beach",
+    "name": {
+      "ja": "二見浦海水浴場"
+    },
+    "region": "futami-okitama",
+    "category": "海水浴場",
+    "status": "excluded",
+    "reason": "夏季的海水浴場",
+    "pointId": null,
+    "mentions": [
+      {
+        "type": "tourism",
+        "url": "https://ise-kanko.jp/purpose/futamiruakaisuiyokujou/",
+        "title": "伊勢市観光協会",
+        "highlight": null,
+        "retrieved": "2026-10-18"
+      }
+    ]
+  },
+  {
+    "key": "futami-otonashiyama",
+    "name": {
+      "ja": "音無山"
+    },
+    "region": "futami-okitama",
+    "category": "登山",
+    "status": "not-included",
+    "reason": "登山步道，長輩、小孩全員不適合",
+    "pointId": null,
+    "mentions": [
+      {
+        "type": "tourism",
+        "url": "https://ise-kanko.jp/purpose/otonashiyama/",
+        "title": "伊勢市観光協会",
+        "highlight": null,
+        "retrieved": "2026-10-18"
+      }
+    ]
+  },
+  {
+    "key": "futami-u3labo",
+    "name": {
+      "ja": "U3＊Labo（ウミラボ）"
+    },
+    "region": "futami-okitama",
+    "category": "體驗",
+    "status": "not-included",
+    "reason": "海上活動，冬天不適合",
+    "pointId": null,
+    "mentions": [
+      {
+        "type": "tourism",
+        "url": "https://ise-kanko.jp/purpose/u3labo/",
+        "title": "伊勢市観光協会",
+        "highlight": null,
+        "retrieved": "2026-10-18"
+      }
+    ]
+  },
+  {
+    "key": "futami-outise",
+    "name": {
+      "ja": "OUTISE"
+    },
+    "region": "futami-okitama",
+    "category": "體驗",
+    "status": "not-included",
+    "reason": "戶外活動，冬天不適合",
+    "pointId": null,
+    "mentions": [
+      {
+        "type": "tourism",
+        "url": "https://ise-kanko.jp/purpose/outise/",
+        "title": "伊勢市観光協会",
+        "highlight": null,
+        "retrieved": "2026-10-18"
+      }
+    ]
+  },
+  {
+    "key": "futami-somin-shobu",
+    "name": {
+      "ja": "二見しょうぶロマンの森・民話の駅 蘇民"
+    },
+    "region": "futami-outskirts",
+    "category": "公園・道の駅",
+    "status": "not-included",
+    "reason": "菖蒲在 6 月；民話の駅 蘇民 是道の駅，留給餐廳候選（T8c）",
+    "pointId": null,
+    "mentions": [
+      {
+        "type": "tourism",
+        "url": "https://ise-kanko.jp/purpose/somin-shobu/",
+        "title": "伊勢市観光協会",
+        "highlight": null,
+        "retrieved": "2026-10-18"
+      }
+    ]
+  },
+  {
+    "key": "futami-makonde",
+    "name": {
+      "ja": "マコンデ美術館"
+    },
+    "region": "futami-outskirts",
+    "category": "美術館",
+    "status": "not-included",
+    "reason": "觀光協會只有地址、電話，營業時間和是否營業不明",
+    "pointId": null,
+    "mentions": [
+      {
+        "type": "tourism",
+        "url": "https://ise-kanko.jp/purpose/makonde/",
+        "title": "伊勢市観光協会",
+        "highlight": null,
+        "retrieved": "2026-10-18"
+      }
+    ]
+  },
+  {
+    "key": "futami-asamasanroku",
+    "name": {
+      "ja": "朝熊山麓公園"
+    },
+    "region": "futami-outskirts",
+    "category": "公園",
+    "status": "not-included",
+    "reason": "公園，冬天沒有特別的看點",
+    "pointId": null,
+    "mentions": [
+      {
+        "type": "tourism",
+        "url": "https://ise-kanko.jp/purpose/asamasanroku/",
+        "title": "伊勢市観光協会",
+        "highlight": null,
+        "retrieved": "2026-10-18"
+      }
+    ]
+  },
+  {
+    "key": "futami-enojinja",
+    "name": {
+      "ja": "栄野神社"
+    },
+    "region": "futami-okitama",
+    "category": "神社",
+    "status": "not-included",
+    "reason": "二見興玉神社的關聯小社，不另外收",
+    "pointId": null,
+    "mentions": [
+      {
+        "type": "tourism",
+        "url": "https://ise-kanko.jp/purpose/enojinjya/",
+        "title": "伊勢市観光協会",
+        "highlight": null,
+        "retrieved": "2026-10-18"
+      }
+    ]
+  }
+]

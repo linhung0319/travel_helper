@@ -134,3 +134,9 @@
   - 順便：`data/areas.json` 的 `toba.extra.regionsNote` 寫「沿用 T4a 的地區劃分（data/raw/toba/restaurants.md）」，這個檔案 T7b 刪了，建議改成 `data/raw/toba/log/T4a.md`。
 - 原因：T14 的衝突檢查要用 L.O. 判斷「到店時間來不來得及」；料理種類用來篩選和設預設停留時間（§5.5）。
 - 狀態：待處理
+
+## [T8a] stations.json：新增近鐵小俣站
+- 要改的檔案：`data/stations.json`（T0／T7 的檔案）
+- 內容：新增近鐵山田線 **小俣**（おばた，Obata）站。座標用 OSM：`[136.6851209, 34.5127509]`（https://www.openstreetmap.org/way/184365192 ，2026-10-18，伊勢市小俣町元町）；`operator: "kintetsu"`、`lines: ["山田線"]`、`passCovered: true`（近鐵 5 日券的範圍內，在明星～宮町之間，請 T0／T7 確認站號、有沒有站員、置物櫃、無障礙）。之後時刻表（T7a 的 `kintetsu-timetable.mjs`）要不要抓這一站，看行程會不會用到。
+- 原因：伊勢苺園（`ise-ichigoen`）在小俣站步行約 8 分（觀光協會），但 `stations.json` 沒有這一站，`nearestStation` 只能留 null，行程引擎算不了交通。加站後 T8 把 `ise-ichigoen` 的 `nearestStation` 改成 `{ "id": "<新 id>", "mode": "walk", "minutes": 8 }`（`extra.accessNote` 已有這句）。
+- 狀態：待處理
