@@ -105,7 +105,8 @@
       "instagram": null
     },
     "tags": [
-      "神社寺院"
+      "神社寺院",
+      "長階梯"
     ],
     "tier": null,
     "nearestStation": {
@@ -881,7 +882,11 @@
       "googleMaps": "https://maps.google.com/?cid=14662979831462572524",
       "instagram": null
     },
-    "tags": [],
+    "tags": [
+      "室內",
+      "雨天備案",
+      "親子"
+    ],
     "tier": null,
     "nearestStation": {
       "id": "iseshi",
@@ -1106,7 +1111,10 @@
       "instagram": null
     },
     "tags": [
-      "體驗"
+      "體驗",
+      "室內",
+      "雨天備案",
+      "親子"
     ],
     "tier": null,
     "nearestStation": {
@@ -1543,7 +1551,8 @@
       "instagram": null
     },
     "tags": [
-      "神社寺院"
+      "神社寺院",
+      "長階梯"
     ],
     "tier": null,
     "nearestStation": {
@@ -3152,7 +3161,10 @@
       "instagram": null
     },
     "tags": [
-      "體驗"
+      "體驗",
+      "室內",
+      "雨天備案",
+      "親子"
     ],
     "tier": null,
     "nearestStation": null,
@@ -3356,7 +3368,10 @@
       "instagram": null
     },
     "tags": [
-      "體驗"
+      "體驗",
+      "室內",
+      "雨天備案",
+      "親子"
     ],
     "tier": null,
     "nearestStation": {
