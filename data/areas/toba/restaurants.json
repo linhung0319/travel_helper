@@ -82,9 +82,24 @@
       "note": "L.O. 14:30、18:30；售完提早打烊；繁忙期 10:30～19:30 不休息（官網）"
     },
     "closedNote": "週二公休（逢國定假日營業，另擇日補休）",
-    "febNote": null,
+    "febNote": "官網沒寫冬季休業；週二定休（逢國定假日營業）、偶有設備檢修臨時休",
     "closures": [],
-    "photos": [],
+    "photos": [
+      {
+        "url": "https://sazanami.co.jp/wp-content/uploads/2019/05/243A5164-Edit-2.jpg",
+        "page": "https://sazanami.co.jp/",
+        "kind": "official",
+        "credit": "漣",
+        "license": null
+      },
+      {
+        "url": "https://sazanami.co.jp/wp-content/uploads/2019/06/sazanamitennai-4.jpg",
+        "page": "https://sazanami.co.jp/tenpoannai/",
+        "kind": "official",
+        "credit": "漣",
+        "license": null
+      }
+    ],
     "links": {
       "official": "http://www.sazanami.co.jp/",
       "googleMaps": "https://maps.google.com/?cid=2159664181539964662",
@@ -129,6 +144,36 @@
         "note": "營業時間、定休日",
         "type": "official",
         "url": "http://www.sazanami.co.jp/"
+      },
+      {
+        "type": "official",
+        "url": "https://sazanami.co.jp/",
+        "retrieved": "2026-10-18",
+        "note": "營業時間、週二定休、停車 30 台、售完提早打烊"
+      },
+      {
+        "type": "official",
+        "url": "https://sazanami.co.jp/sazanamimenu/",
+        "retrieved": "2026-10-18",
+        "note": "菜單價格（2026-04 更新）、兒童餐 1,100 円、さざなみコース 6,820 円"
+      },
+      {
+        "type": "official",
+        "url": "https://sazanami.co.jp/tenpoannai/",
+        "retrieved": "2026-10-18",
+        "note": "1 樓桌席可輪椅入座"
+      },
+      {
+        "type": "other",
+        "url": "https://retty.me/theme/100427622/",
+        "retrieved": "2026-10-18",
+        "note": "Retty：常排隊、白飯塔塔醬可續、炸蝦可切小塊"
+      },
+      {
+        "type": "tourism",
+        "url": "https://www.kankomie.or.jp/report/560",
+        "retrieved": "2026-10-18",
+        "note": "観光三重 2019 舊文：剖開式炸蝦的元祖"
       }
     ],
     "verified": false,
@@ -180,8 +225,23 @@
     ],
     "priceRange": "¥3,000～3,999",
     "price": null,
-    "mustTry": [],
-    "menu": [],
+    "mustTry": [
+      "開き海老フライ定食（剖開炸蝦定食）3,410 円",
+      "大海老フライ定食（大炸蝦，每天限 20 份）5,060 円",
+      "お造り定食（生魚片定食）3,410 円"
+    ],
+    "menu": [
+      {
+        "url": "https://sazanami.co.jp/sazanamimenu/",
+        "source": "official",
+        "retrieved": "2026-10-18"
+      },
+      {
+        "url": "https://tabelog.com/mie/A2403/A240302/24000445/dtlmenu/photo/",
+        "source": "tabelog",
+        "retrieved": "2026-10-18"
+      }
+    ],
     "ratings": {
       "tabelog": 3.74,
       "tabelogReviews": 1048,
@@ -219,14 +279,19 @@
       "allowed": "yes",
       "minAge": null,
       "kidsMenu": true,
-      "note": "可帶小孩（含幼兒），有兒童餐（食べログ）"
+      "note": "可帶小孩（含幼兒），有兒童餐（食べログ）；官網：お子様プレート 1,100 円（小學生以下）；炸蝦可請店家切小塊（Retty）"
     },
     "smoking": "全席禁煙",
     "extra": {
       "inclusion": "A",
       "conflicts": [
-        "Google 的營業時間寫到 14:30、18:30（是 L.O.）；官網、食べログ寫 15:00、19:30 打烊"
+        "Google 的營業時間寫到 14:30、18:30（是 L.O.）；官網、食べログ寫 15:00、19:30 打烊",
+        "營業時間：官網 平日 11:00～14:30 L.O.、16:30～18:30 L.O.，週末 10:30～；なっぷ・まっぷる寫 11:00～15:00、16:30～19:00"
       ]
+    },
+    "accessibility": {
+      "barrierFree": null,
+      "note": "1 樓桌席可推嬰兒車、輪椅直接入座；2 樓有沒有電梯沒寫；免費停車場 30 台（官網）"
     }
   },
   {
@@ -358,9 +423,17 @@
       "note": "L.O. 早餐 9:30、午餐 13:30、晚餐 20:30；2026 年 3 月起週五午餐公休（國定假日、黃金週、盂蘭盆、年末年始照常）"
     },
     "closedNote": "午餐週五公休（2026-03 起）；食べログ另寫「不定期年 2 回」",
-    "febNote": null,
+    "febNote": "2026-03 起午餐每週五公休（國定假日、年末年始照常）；伊勢海老アメリケーヌランチ只到 1/31（官網）",
     "closures": [],
-    "photos": [],
+    "photos": [
+      {
+        "url": "https://www.tobahotel.co.jp/wp-content/uploads/2016/07/main-1.jpg",
+        "page": "https://www.tobahotel.co.jp/restaurant_list/seahorse/",
+        "kind": "official",
+        "credit": "鳥羽国際ホテル",
+        "license": null
+      }
+    ],
     "links": {
       "official": "https://www.tobahotel.co.jp/restaurant_list/seahorse/",
       "googleMaps": "https://www.google.com/maps/search/?api=1&query=%E3%83%A1%E3%82%A4%E3%83%B3%E3%83%80%E3%82%A4%E3%83%8B%E3%83%B3%E3%82%B0%20%E3%82%B7%E3%83%BC%E3%83%9B%E3%83%BC%E3%82%B9%20%E4%B8%89%E9%87%8D%E7%9C%8C%E9%B3%A5%E7%BE%BD%E5%B8%82%E9%B3%A5%E7%BE%BD1-23-1%20%E9%B3%A5%E7%BE%BD%E5%9B%BD%E9%9A%9B%E3%83%9B%E3%83%86%E3%83%AB%20%E3%82%AA%E3%83%BC%E3%82%B7%E3%83%A3%E3%83%B3%E3%82%A6%E3%82%A4%E3%83%B3%E3%82%B0%201F",
@@ -393,6 +466,42 @@
         "note": "營業時間、週五午餐公休、席數、訂位",
         "type": "official",
         "url": "https://www.tobahotel.co.jp/restaurant_list/seahorse/"
+      },
+      {
+        "type": "official",
+        "url": "https://www.tobahotel.co.jp/restaurant/menulist/?t=lunch&r=seahorse",
+        "retrieved": "2026-10-18",
+        "note": "午餐套餐 4,620 円起、兒童餐 3,850～8,800 円"
+      },
+      {
+        "type": "official",
+        "url": "https://www.tobahotel.co.jp/restaurant/menulist/?t=dinner&r=seahorse",
+        "retrieved": "2026-10-18",
+        "note": "晚餐套餐 12,100～38,500 円"
+      },
+      {
+        "type": "official",
+        "url": "https://www.tobahotel.co.jp/partyseminar/banquet_cuisine/",
+        "retrieved": "2026-10-18",
+        "note": "宴會料理種類、飲み放題 15 人以上、宴會窗口 0599-26-4134"
+      },
+      {
+        "type": "official",
+        "url": "https://www.tobahotel.co.jp/partyseminar/partyhall/",
+        "retrieved": "2026-10-18",
+        "note": "宴會場「日和」正餐 56 人"
+      },
+      {
+        "type": "tourism",
+        "url": "https://www.kankomie.or.jp/report/601",
+        "retrieved": "2026-10-18",
+        "note": "観光三重 2020 舊文：看海的落地窗座位"
+      },
+      {
+        "type": "tabelog",
+        "url": "https://tabelog.com/mie/A2403/A240302/24000268/party/",
+        "retrieved": "2026-10-18",
+        "note": "コース一覧：都限 1～4 人（2026-08-16 更新）"
       }
     ],
     "verified": false,
@@ -447,8 +556,33 @@
         19999
       ]
     },
-    "mustTry": [],
-    "menu": [],
+    "mustTry": [
+      "マンスリーランチ（每月換菜的午餐套餐）4,620 円",
+      "ヴォヤージュ（伊勢海老付套餐）12,100 円",
+      "シグネチャー（伊勢海老・鮑付）17,600 円"
+    ],
+    "menu": [
+      {
+        "url": "https://www.tobahotel.co.jp/restaurant/menulist/?t=lunch&r=seahorse",
+        "source": "official",
+        "retrieved": "2026-10-18"
+      },
+      {
+        "url": "https://www.tobahotel.co.jp/restaurant/menulist/?t=dinner&r=seahorse",
+        "source": "official",
+        "retrieved": "2026-10-18"
+      },
+      {
+        "url": "https://tabelog.com/mie/A2403/A240302/24000268/party/",
+        "source": "tabelog",
+        "retrieved": "2026-10-18"
+      },
+      {
+        "url": "https://tabelog.com/mie/A2403/A240302/24000268/dtlmenu/lunch/",
+        "source": "tabelog",
+        "retrieved": "2026-10-18"
+      }
+    ],
     "ratings": {
       "tabelog": 3.62,
       "tabelogReviews": 222,
@@ -464,7 +598,7 @@
       "maxReservation": null,
       "privateRoom": false,
       "buyout": "可包場（20～50 人）",
-      "groupMenu": null,
+      "groupMenu": "食べログ的コース都限 1～4 人（午餐 4,620 円起、晚餐 12,100 円起）；團體走飯店宴會：法式套餐、和食會席、自助餐（價格沒寫），飲み放題 3,300 円起要 15 人以上，1 樓宴會場「日和」正餐 56 人（官網宴會頁）",
       "source": "食べログ：貸切可（20人～50人可）、席数 88；官網：88 席",
       "note": null,
       "fit15": "yes",
@@ -488,7 +622,7 @@
       "allowed": "yes",
       "minAge": null,
       "kidsMenu": true,
-      "note": "可帶小孩（乳兒、學齡前、小學生），有兒童餐，可推嬰兒車（食べログ）"
+      "note": "可帶小孩（乳兒、學齡前、小學生），有兒童餐，可推嬰兒車（食べログ）；兒童餐 3,850～8,800 円（6 歲以下プレート、12 歲以下コース，官網、食べログ）"
     },
     "accessibility": {
       "barrierFree": "可坐輪椅入店（食べログ）",
@@ -556,9 +690,17 @@
       "note": null
     },
     "closedNote": "週三、週四公休",
-    "febNote": null,
+    "febNote": "全年營業但不定休，來前先打電話（まっぷる）；鮑バター是夏季限定",
     "closures": [],
-    "photos": [],
+    "photos": [
+      {
+        "url": "https://lh3.googleusercontent.com/grass-cs/AABkmLfjvez151NWWAj4v7_7NttS0kQ93TpZnic4TkHuQkGKlO6vdEg2uPjpGfFG_x8GPQKFOGaFlKgjsZGhsZ3mHHarstme9MohRFvV2P3ob1Gv-cWsyYAB7N27ocnN1jv29sR7Gp-qtQ=w800",
+        "page": "https://maps.google.com/?cid=8699063308523596507",
+        "kind": "google",
+        "credit": "Google マップ",
+        "license": null
+      }
+    ],
     "links": {
       "official": null,
       "googleMaps": "https://maps.google.com/?cid=8699063308523596507",
@@ -585,6 +727,18 @@
         "url": "https://www.mapple.net/article/32188/",
         "retrieved": "2026-10-17",
         "note": "まっぷる「鳥羽のかき小屋＆かき料理の人気店」（2025-03-21 更新）"
+      },
+      {
+        "type": "tourism",
+        "url": "https://www.city.toba.mie.jp/material/files/group/37/tobameshi_map_2022_06.pdf",
+        "retrieved": "2026-10-18",
+        "note": "鳥羽市「とばめしマップ」2022-06：17:00～22:00、週四休、夫妻兩人的小店"
+      },
+      {
+        "type": "media",
+        "url": "https://www.mapple.net/region/a0405010302_g03050000_s-situation=senior/spot/",
+        "retrieved": "2026-10-18",
+        "note": "列在まっぷる 鳥羽市街 和食「シニア」推薦"
       }
     ],
     "verified": false,
@@ -635,7 +789,9 @@
         14999
       ]
     },
-    "mustTry": [],
+    "mustTry": [
+      "おまかせ鮨セット（主廚精選壽司）2,700 円"
+    ],
     "menu": [],
     "ratings": {
       "tabelog": 3.6,
@@ -676,7 +832,8 @@
     "extra": {
       "inclusion": "AC",
       "conflicts": [
-        "食べログ（非店舗会員）寫 17:00～22:00，Google 寫 17:00～21:00，採用 Google"
+        "食べログ（非店舗会員）寫 17:00～22:00，Google 寫 17:00～21:00，採用 Google",
+        "營業時間：まっぷる・とばめしマップ 17:00～22:00 週四休；Google 17:00～21:00 週三週四休"
       ]
     }
   },
@@ -746,7 +903,15 @@
     "closedNote": null,
     "febNote": null,
     "closures": [],
-    "photos": [],
+    "photos": [
+      {
+        "url": "https://lh3.googleusercontent.com/grass-cs/AABkmLfrMRDgtUy8ws8s19f-LX-VcZFRHyvIcksWwGe6iwEtOLH32bQSb0m5r0V8wXjaUmLPHzjaSU2qT05VyDOoUKYNdS-MwA4edGaowpkjissjakFzToY7oSMcolBPizqZvbHTOiy-OhBINcD6=w800",
+        "page": "https://maps.google.com/?cid=1831025165871223376",
+        "kind": "google",
+        "credit": "Google マップ",
+        "license": null
+      }
+    ],
     "links": {
       "official": null,
       "googleMaps": "https://maps.google.com/?cid=1831025165871223376",
@@ -779,6 +944,18 @@
         "url": "https://www.mapple.net/article/32428/",
         "retrieved": "2026-10-17",
         "note": "まっぷる 鳥羽・相差的美食介紹"
+      },
+      {
+        "type": "media",
+        "url": "https://www.mapple.net/spot/24010702/",
+        "retrieved": "2026-10-18",
+        "note": "まっぷる：火候交給店主，大あさり 1,100 円、さざえ 770 円"
+      },
+      {
+        "type": "tourism",
+        "url": "https://www.city.toba.mie.jp/material/files/group/37/tobameshi_map_2022_06.pdf",
+        "retrieved": "2026-10-18",
+        "note": "鳥羽市「とばめしマップ」2022-06：8:30～17:00、不定休、電話 0599-25-2511"
       }
     ],
     "verified": false,
@@ -831,8 +1008,18 @@
       ],
       "dinner": null
     },
-    "mustTry": [],
-    "menu": [],
+    "mustTry": [
+      "大あさり（大文蛤）1,100 円",
+      "さざえ（蠑螺）770 円",
+      "ひおうぎ貝（檜扇貝）770 円"
+    ],
+    "menu": [
+      {
+        "url": "https://tabelog.com/mie/A2403/A240302/24010333/dtlmenu/photo/",
+        "source": "tabelog",
+        "retrieved": "2026-10-18"
+      }
+    ],
     "ratings": {
       "tabelog": 3.58,
       "tabelogReviews": 189,
@@ -873,7 +1060,8 @@
     "extra": {
       "inclusion": "ACE",
       "conflicts": [
-        "食べログ（非店舗会員）寫 08:30～17:00，Google 寫 9:00～17:00，採用 Google"
+        "食べログ（非店舗会員）寫 08:30～17:00，Google 寫 9:00～17:00，採用 Google",
+        "營業時間：まっぷる・なっぷ 9:00～17:00 無休；とばめしマップ（2022）8:30～17:00 不定休"
       ]
     }
   },
@@ -938,7 +1126,15 @@
     "closedNote": "週三公休",
     "febNote": null,
     "closures": [],
-    "photos": [],
+    "photos": [
+      {
+        "url": "https://lh3.googleusercontent.com/grass-cs/AABkmLdJ-EgGrcbwYJ4jXLB4Nys7ABYrGkXAPY207QubNd0CR6G1VHGc1CttyzYJWwR29mCNYn7MvqYXmQ_55-ZTno2CwHbiwfAC6YnYusrwymvXxUktkoivkbHKmFgSKPUAoIPbS0lZFSZ5qbKQ=w800",
+        "page": "https://maps.google.com/?cid=14385888882422214500",
+        "kind": "google",
+        "credit": "Google マップ",
+        "license": null
+      }
+    ],
     "links": {
       "official": null,
       "googleMaps": "https://maps.google.com/?cid=14385888882422214500",
@@ -959,6 +1155,18 @@
         "note": "星數、評論數、營業時間、座標",
         "type": "google-maps",
         "url": "https://maps.google.com/?cid=14385888882422214500"
+      },
+      {
+        "type": "tourism",
+        "url": "https://www.city.toba.mie.jp/material/files/group/37/tobameshi_map_2022_06.pdf",
+        "retrieved": "2026-10-18",
+        "note": "鳥羽市「とばめしマップ」2022-06：在地魚貝、コース・定食・丼・單點、適合全家，17:00～22:30 L.O.、週三休"
+      },
+      {
+        "type": "media",
+        "url": "https://aumo.jp/photos/68232738",
+        "retrieved": "2026-10-18",
+        "note": "aumo：生魚片拼盤、炸蝦好評，開店就陸續客滿；吧台、座敷、包廂"
       }
     ],
     "verified": false,
@@ -1008,8 +1216,18 @@
     ],
     "priceRange": null,
     "price": null,
-    "mustTry": [],
-    "menu": [],
+    "mustTry": [
+      "刺身盛り合わせ（生魚片拼盤，有半份 8 種）",
+      "開きエビフライ（剖開炸蝦，配塔塔醬）",
+      "伊勢海老焼き（烤伊勢龍蝦）"
+    ],
+    "menu": [
+      {
+        "url": "https://tabelog.com/mie/A2403/A240302/24000078/dtlmenu/photo/",
+        "source": "tabelog",
+        "retrieved": "2026-10-18"
+      }
+    ],
     "ratings": {
       "tabelog": 3.56,
       "tabelogReviews": 155,
@@ -1043,12 +1261,21 @@
     },
     "seating": [
       "counter",
-      "table"
+      "table",
+      "zashiki"
     ],
-    "kids": null,
+    "kids": {
+      "allowed": "yes",
+      "minAge": null,
+      "kidsMenu": null,
+      "note": "とばめしマップ：全家都能來的店"
+    },
     "smoking": "全席禁煙",
     "extra": {
-      "inclusion": "A"
+      "inclusion": "A",
+      "conflicts": [
+        "座位：aumo 寫吧台約 10 席、座敷 3 桌、包廂，沒寫桌席（現有 table 是食べログ）"
+      ]
     }
   },
   {
@@ -1123,7 +1350,15 @@
     "closedNote": "食べログ：不定期年 2 回",
     "febNote": null,
     "closures": [],
-    "photos": [],
+    "photos": [
+      {
+        "url": "https://www.tobahotel.co.jp/wp-content/uploads/2016/07/main.jpg",
+        "page": "https://www.tobahotel.co.jp/restaurant_list/mondomisaki/",
+        "kind": "official",
+        "credit": "鳥羽国際ホテル",
+        "license": null
+      }
+    ],
     "links": {
       "official": "https://www.tobahotel.co.jp/restaurant_list/mondomisaki/",
       "googleMaps": "https://maps.google.com/?cid=4767350419803413887",
@@ -1150,6 +1385,24 @@
         "note": "營業時間、席數、包廂、訂位",
         "type": "official",
         "url": "https://www.tobahotel.co.jp/restaurant_list/mondomisaki/"
+      },
+      {
+        "type": "official",
+        "url": "https://www.tobahotel.co.jp/restaurant/menulist/?t=lunch&r=mondomisaki",
+        "retrieved": "2026-10-18",
+        "note": "會席 12,100／17,600／23,100 円；ご会食プラン 6 人以上"
+      },
+      {
+        "type": "official",
+        "url": "https://www.tobahotel.co.jp/restaurant/menulist/?t=dinner&r=mondomisaki",
+        "retrieved": "2026-10-18",
+        "note": "晚餐另有神島 38,500 円、兒童餐 3,850～8,800 円"
+      },
+      {
+        "type": "official",
+        "url": "https://www.tobahotel.co.jp/menu/p4435f681/",
+        "retrieved": "2026-10-18",
+        "note": "ご会食プラン：6 人以上、3 天前預約、包廂費 11,000 円"
       }
     ],
     "verified": false,
@@ -1200,8 +1453,28 @@
         14999
       ]
     },
-    "mustTry": [],
-    "menu": [],
+    "mustTry": [
+      "リゾートWashoku 坂手（伊勢海老付會席）12,100 円",
+      "菅島（伊勢海老・鮑付）17,600 円",
+      "答志（伊勢海老・鮑・松阪牛付）23,100 円"
+    ],
+    "menu": [
+      {
+        "url": "https://www.tobahotel.co.jp/restaurant/menulist/?t=dinner&r=mondomisaki",
+        "source": "official",
+        "retrieved": "2026-10-18"
+      },
+      {
+        "url": "https://www.tobahotel.co.jp/restaurant/menulist/?t=lunch&r=mondomisaki",
+        "source": "official",
+        "retrieved": "2026-10-18"
+      },
+      {
+        "url": "https://tabelog.com/mie/A2403/A240302/24001904/dtlmenu/photo/",
+        "source": "tabelog",
+        "retrieved": "2026-10-18"
+      }
+    ],
     "ratings": {
       "tabelog": 3.55,
       "tabelogReviews": 48,
@@ -1217,7 +1490,7 @@
       "maxReservation": null,
       "privateRoom": true,
       "buyout": "不可",
-      "groupMenu": null,
+      "groupMenu": "ご会食プラン 17,600 円起／人（飲料另計），大人 6 人以上、3 天前完全預約，包廂費 11,000 円／2 小時，午餐 11:30～（L.O. 13:00）；包廂最多 14 人，15 人要分桌或用宴會場（官網）",
       "source": "食べログ：席数 72、個室 6 人・8 人（最多 14 人，室料 ¥11,000）、完全予約制；官網：60 名、個室最多 14 名",
       "note": "包廂最多 14 人，15 人要包廂加相鄰的桌",
       "fit15": "split",
@@ -1251,7 +1524,8 @@
     "extra": {
       "inclusion": "AC",
       "conflicts": [
-        "席數：食べログ 72 席、官網 60 名"
+        "席數：食べログ 72 席、官網 60 名",
+        "官網店舖頁只寫晚餐時段，午餐只出現在ご会食プラン頁；散客能不能吃午餐要問飯店"
       ]
     }
   },
@@ -1322,7 +1596,15 @@
     "closedNote": "週二公休（逢國定假日營業，改週四休；盂蘭盆、新年、黃金週除外）",
     "febNote": null,
     "closures": [],
-    "photos": [],
+    "photos": [
+      {
+        "url": "https://lh3.googleusercontent.com/grass-cs/AABkmLeLnownETCAJpW1lQuyi-KPax9-rQUwnZU9XOi_rHqvO4ABHZCbecpAl2tfdQt7gCQSslK2w3ggcwVobeVKcAODElk7YqmtYlMDEcrnAKdkA3vd6Hs3Q6Q7MsbMeqh3t3Yi1sZrEw=w800",
+        "page": "https://maps.google.com/?cid=3574148002568627504",
+        "kind": "google",
+        "credit": "Google マップ",
+        "license": null
+      }
+    ],
     "links": {
       "official": null,
       "googleMaps": "https://maps.google.com/?cid=3574148002568627504",
@@ -1397,7 +1679,13 @@
       "dinner": null
     },
     "mustTry": [],
-    "menu": [],
+    "menu": [
+      {
+        "url": "https://tabelog.com/mie/A2403/A240302/24006770/dtlmenu/",
+        "source": "tabelog",
+        "retrieved": "2026-10-18"
+      }
+    ],
     "ratings": {
       "tabelog": 3.53,
       "tabelogReviews": 180,
@@ -1527,9 +1815,24 @@
       "note": "賣完就打烊"
     },
     "closedNote": "週四公休（逢國定假日營業）",
-    "febNote": null,
+    "febNote": "答志島トロさわら 10～2 月、伊勢海老 10～4 月，2 月都吃得到（官網、まっぷる）；週四公休（逢國定假日營業）",
     "closures": [],
-    "photos": [],
+    "photos": [
+      {
+        "url": "http://www.oosakaya.net/nimg/fry.jpg",
+        "page": "http://www.oosakaya.net/",
+        "kind": "official",
+        "credit": "大阪屋",
+        "license": null
+      },
+      {
+        "url": "http://www.oosakaya.net/nimg/misepic.jpg",
+        "page": "http://www.oosakaya.net/",
+        "kind": "official",
+        "credit": "大阪屋",
+        "license": null
+      }
+    ],
     "links": {
       "official": "http://www.oosakaya.net/",
       "googleMaps": "https://maps.google.com/?cid=9695894259425538601",
@@ -1556,6 +1859,30 @@
         "url": "https://chubu.letsgojp.com/archives/810883/",
         "retrieved": "2026-10-17",
         "note": "樂吃購！日本「日本鳥羽景點攻略」（2025-12-04）"
+      },
+      {
+        "type": "official",
+        "url": "http://www.oosakaya.net/",
+        "retrieved": "2026-10-18",
+        "note": "海老フライ價格、會席 2 人以上 6,600 円起、包廂 4 人起、宴會 2 小時、停車 15 台"
+      },
+      {
+        "type": "official",
+        "url": "http://www.oosakaya.net/html/access.html",
+        "retrieved": "2026-10-18",
+        "note": "鳥羽站 JR 口步行 5 分"
+      },
+      {
+        "type": "tourism",
+        "url": "https://www.city.toba.mie.jp/material/files/group/37/tobameshi_map_2022_06.pdf",
+        "retrieved": "2026-10-18",
+        "note": "鳥羽市「とばめしマップ」2022-06：11:00～14:00 L.O.、17:00～20:00 L.O.、週四休"
+      },
+      {
+        "type": "media",
+        "url": "https://www.mapple.net/region/a0405010302_g03050000_s-situation=senior/spot/",
+        "retrieved": "2026-10-18",
+        "note": "まっぷる シニア推薦；伊勢エビ料理 10～4 月"
       }
     ],
     "verified": false,
@@ -1608,8 +1935,23 @@
     ],
     "priceRange": "¥2,000～2,999",
     "price": null,
-    "mustTry": [],
-    "menu": [],
+    "mustTry": [
+      "大海老フライ定食（大炸蝦定食）3 尾 3,630 円／2 尾 2,750 円",
+      "伊勢海老料理（天然伊勢龍蝦，時價，建議預約）",
+      "答志島トロさわら（答志島鰆魚，10～2 月）"
+    ],
+    "menu": [
+      {
+        "url": "http://www.oosakaya.net/html/osina.html",
+        "source": "official",
+        "retrieved": "2026-10-18"
+      },
+      {
+        "url": "https://tabelog.com/mie/A2403/A240302/24000562/dtlmenu/photo/",
+        "source": "tabelog",
+        "retrieved": "2026-10-18"
+      }
+    ],
     "ratings": {
       "tabelog": 3.52,
       "tabelogReviews": 132,
@@ -1625,7 +1967,7 @@
       "maxReservation": null,
       "privateRoom": true,
       "buyout": "不可",
-      "groupMenu": null,
+      "groupMenu": "會席料理 6,600／7,700／11,000 円起（2 人以上、要預約）；宴會可到 21:00，基本 2 小時；包廂 4 人起（官網）",
       "source": "食べログ：席数 80、予約可、個室有（2 人可）、貸切不可",
       "note": "包廂只有 2 人用",
       "fit15": "split",
@@ -1649,14 +1991,19 @@
       "allowed": "yes",
       "minAge": null,
       "kidsMenu": null,
-      "note": "可帶小孩（食べログ）"
+      "note": "可帶小孩（食べログ）；官網寫海老フライ從小孩到長輩都喜歡"
     },
     "smoking": "全席禁煙",
     "extra": {
       "inclusion": "AC",
       "conflicts": [
-        "Google、食べログ（非店舗会員）都寫 11:00～14:00、17:00～20:00、週四公休，一致；官網 oosakaya.net 沒讀到（憑證錯誤）"
+        "Google、食べログ（非店舗会員）都寫 11:00～14:00、17:00～20:00、週四公休，一致；官網 oosakaya.net 沒讀到（憑證錯誤）",
+        "包廂：官網 4 人起、食べログ 2 人可"
       ]
+    },
+    "accessibility": {
+      "barrierFree": null,
+      "note": "鳥羽站 JR 口步行 5 分；停車場 15 台（官網）"
     }
   },
   {
@@ -1728,9 +2075,17 @@
       "note": "下午茶時段 10:00～17:00；午餐 11:00～14:00（L.O. 13:30）；Afternoon tea 11:30～13:00、13:30～15:00（各 90 分，前一天 18 時前預約）；輕食、外帶 11:00～17:00；酒吧 17:00～22:30（L.O. 22:00）"
     },
     "closedNote": "不定休",
-    "febNote": null,
+    "febNote": "2026 年 1～2 月有冬季下午茶（1 日 20 份）、1/19～23 維修休業（2027 年還沒公布）；あおさパスタ只到 1 月",
     "closures": [],
-    "photos": [],
+    "photos": [
+      {
+        "url": "https://www.tobahotel.co.jp/wp-content/uploads/2016/07/main-4.jpg",
+        "page": "https://www.tobahotel.co.jp/restaurant_list/cafe-lounge/",
+        "kind": "official",
+        "credit": "鳥羽国際ホテル",
+        "license": null
+      }
+    ],
     "links": {
       "official": "https://www.tobahotel.co.jp/restaurant_list/cafe-lounge/",
       "googleMaps": "https://maps.google.com/?cid=2543427536592370660",
@@ -1751,6 +2106,36 @@
         "note": "星數、評論數、營業時間、座標",
         "type": "google-maps",
         "url": "https://maps.google.com/?cid=2543427536592370660"
+      },
+      {
+        "type": "official",
+        "url": "https://www.tobahotel.co.jp/restaurant/cafemenu/?t=lunch",
+        "retrieved": "2026-10-18",
+        "note": "輕食、蛋糕價格"
+      },
+      {
+        "type": "official",
+        "url": "https://www.tobahotel.co.jp/pd9f2979e/",
+        "retrieved": "2026-10-18",
+        "note": "下午茶 4,400 円，前一天 17:00 前預約"
+      },
+      {
+        "type": "media",
+        "url": "https://san-tatsu.jp/pressrelease/487026/",
+        "retrieved": "2026-10-18",
+        "note": "2026 年 1～2 月冬季下午茶、1/19～23 休業"
+      },
+      {
+        "type": "tourism",
+        "url": "https://www.kankomie.or.jp/spot/1330",
+        "retrieved": "2026-10-18",
+        "note": "起司蛋糕可外帶、不住宿也能用"
+      },
+      {
+        "type": "tabelog",
+        "url": "https://tabelog.com/mie/A2403/A240302/24010743/party/",
+        "retrieved": "2026-10-18",
+        "note": "コース：下午茶 4,400 円（1～2 人）"
       }
     ],
     "verified": false,
@@ -1804,8 +2189,28 @@
       ],
       "dinner": null
     },
-    "mustTry": [],
-    "menu": [],
+    "mustTry": [
+      "チーズケーキセット（自製起司蛋糕套餐）1,430 円",
+      "伊勢海老ビスク（伊勢龍蝦濃湯，附沙拉、麵包）1,650 円",
+      "アフタヌーンティー（下午茶，前一天預約）4,400 円"
+    ],
+    "menu": [
+      {
+        "url": "https://www.tobahotel.co.jp/restaurant/cafemenu/?t=lunch",
+        "source": "official",
+        "retrieved": "2026-10-18"
+      },
+      {
+        "url": "https://tabelog.com/mie/A2403/A240302/24010743/dtlmenu/",
+        "source": "tabelog",
+        "retrieved": "2026-10-18"
+      },
+      {
+        "url": "https://tabelog.com/mie/A2403/A240302/24010743/party/",
+        "source": "tabelog",
+        "retrieved": "2026-10-18"
+      }
+    ],
     "ratings": {
       "tabelog": 3.51,
       "tabelogReviews": 147,
@@ -1821,7 +2226,7 @@
       "maxReservation": null,
       "privateRoom": false,
       "buyout": "不可",
-      "groupMenu": null,
+      "groupMenu": "沒有團體套餐；咖啡區不接受訂位，食べログ コース只有下午茶 4,400 円（1～2 人、前一天 17:00 前預約）",
       "source": "食べログ：席数 51（テーブル 46、バーカウンター 5）、予約可、貸切不可",
       "note": null,
       "fit15": "split",
@@ -1858,7 +2263,8 @@
       "inclusion": "A",
       "seatingNote": "有沙發座、露天座",
       "conflicts": [
-        "Google 寫 10:00～17:00、18:00～22:00，食べログ（非店舗会員）寫 10:00～22:30；Google 沒有細分時段，採用食べログ的細項（官網沒查）"
+        "Google 寫 10:00～17:00、18:00～22:00，食べログ（非店舗会員）寫 10:00～22:30；Google 沒有細分時段，採用食べログ的細項（官網沒查）",
+        "下午茶預約期限：官網前一天 17:00、新聞稿前一天 18:00"
       ],
       "tabelogOldName": "鳥羽国際ホテル カフェ＆ラウンジ"
     }
@@ -1929,7 +2335,15 @@
     "closedNote": "不定休",
     "febNote": null,
     "closures": [],
-    "photos": [],
+    "photos": [
+      {
+        "url": "https://lh3.googleusercontent.com/grass-cs/AABkmLeqyy5HZQRRB3jZ7RDIphRII4SXVkWFGnhoQePXag-9Qq3ELQ224B5-wsKL-FkY7qUN_dp9eBIPjDSBeS6rvDE8I3LY9la6wfH5zNWyA2SBdFKn5AiRofuXs1bW_XwmksJLX9anKmPSr1A=w800",
+        "page": "https://maps.google.com/?cid=8841374608501535362",
+        "kind": "google",
+        "credit": "Google マップ",
+        "license": null
+      }
+    ],
     "links": {
       "official": null,
       "googleMaps": "https://maps.google.com/?cid=8841374608501535362",
@@ -1950,6 +2364,12 @@
         "note": "星數、評論數、營業時間、座標",
         "type": "google-maps",
         "url": "https://maps.google.com/?cid=8841374608501535362"
+      },
+      {
+        "type": "other",
+        "url": "https://retty.me/restaurant/100001144813/",
+        "retrieved": "2026-10-18",
+        "note": "Retty：推薦度 86%、口コミ 9 篇、20 席、可帶小孩、可用 HotPepper 訂位"
       }
     ],
     "verified": false,
@@ -2012,8 +2432,23 @@
         4999
       ]
     },
-    "mustTry": [],
-    "menu": [],
+    "mustTry": [
+      "ひおうぎ貝（檜扇貝）500 円",
+      "大アサリ（大文蛤）600 円",
+      "伊勢うどん（伊勢烏龍麵）500 円"
+    ],
+    "menu": [
+      {
+        "url": "https://tabelog.com/mie/A2403/A240302/24010352/dtlmenu/",
+        "source": "tabelog",
+        "retrieved": "2026-10-18"
+      },
+      {
+        "url": "https://tabelog.com/mie/A2403/A240302/24010352/dtlmenu/drink/",
+        "source": "tabelog",
+        "retrieved": "2026-10-18"
+      }
+    ],
     "ratings": {
       "tabelog": 3.5,
       "tabelogReviews": 276,
@@ -2065,7 +2500,8 @@
       "inclusion": "ACE",
       "conflicts": [
         "Google 寫 10:00～18:30，食べログ（店舗会員）寫 10:15～18:30，採用食べログ",
-        "地址：Google 寫鳥羽 1-8-5，食べログ寫 1-8-7（さざえ店街同一棟）"
+        "地址：Google 寫鳥羽 1-8-5，食べログ寫 1-8-7（さざえ店街同一棟）",
+        "席數：食べログ 30、Retty 20（沒有包廂）；價格是 2021 年口コミ"
       ]
     }
   },
@@ -2129,7 +2565,15 @@
     "closedNote": "週三公休（逢國定假日營業）",
     "febNote": null,
     "closures": [],
-    "photos": [],
+    "photos": [
+      {
+        "url": "https://lh3.googleusercontent.com/grass-cs/AABkmLfAWzqoahDE6K9JEt3mbXCGFe7jAUOHvsYgLJ5OBF-qrvHMkiKV4cwzyUaYR5V9GkGdKGP0Vq2ru16JFFjpJBKo_0Epz4mVr9XUN-KaieCi7lbKONiygBfEWhmfjTFkHzYU_JFyK02r8w-C=w800",
+        "page": "https://maps.google.com/?cid=16335716891323282762",
+        "kind": "google",
+        "credit": "Google マップ",
+        "license": null
+      }
+    ],
     "links": {
       "official": null,
       "googleMaps": "https://maps.google.com/?cid=16335716891323282762",
@@ -2150,6 +2594,12 @@
         "note": "星數、評論數、營業時間、座標",
         "type": "google-maps",
         "url": "https://maps.google.com/?cid=16335716891323282762"
+      },
+      {
+        "type": "tourism",
+        "url": "https://www.city.toba.mie.jp/material/files/group/37/tobameshi_map_2022_06.pdf",
+        "retrieved": "2026-10-18",
+        "note": "鳥羽市「とばめしマップ」2022-06：昭和 31 年創業，招牌是特製炊き込みウニ飯，9:00～16:00 不定休，電話 0599-25-2444"
       }
     ],
     "verified": false,
@@ -2203,8 +2653,22 @@
       ],
       "dinner": null
     },
-    "mustTry": [],
-    "menu": [],
+    "mustTry": [
+      "特製炊き込みウニ飯（老闆娘特製海膽炊飯，可外帶）",
+      "焼き貝（烤貝）"
+    ],
+    "menu": [
+      {
+        "url": "https://tabelog.com/mie/A2403/A240302/24002147/dtlmenu/",
+        "source": "tabelog",
+        "retrieved": "2026-10-18"
+      },
+      {
+        "url": "https://tabelog.com/mie/A2403/A240302/24002147/dtlmenu/lunch/",
+        "source": "tabelog",
+        "retrieved": "2026-10-18"
+      }
+    ],
     "ratings": {
       "tabelog": 3.5,
       "tabelogReviews": 93,
@@ -2253,7 +2717,8 @@
       "inclusion": "AE",
       "conflicts": [
         "Google 寫 10:00～16:00，食べログ（店舗会員）寫 09:00～16:00，採用食べログ",
-        "地址：Google 寫鳥羽 1-8-5"
+        "地址：Google 寫鳥羽 1-8-5",
+        "營業時間：とばめしマップ（2022）9:00～16:00 不定休"
       ]
     }
   },
@@ -2316,9 +2781,17 @@
       "note": null
     },
     "closedNote": "週四公休",
-    "febNote": null,
+    "febNote": "週四公休；春假、暑假、寒假、黃金週無休（まっぷる）",
     "closures": [],
-    "photos": [],
+    "photos": [
+      {
+        "url": "https://minerva-gelato.com/wp-content/uploads/2021/08/main_パール2023-300x300.png",
+        "page": "https://minerva-gelato.com/item/",
+        "kind": "official",
+        "credit": "ミネルヴァ",
+        "license": null
+      }
+    ],
     "links": {
       "official": "http://minerva-gelato.com/",
       "googleMaps": "https://maps.google.com/?cid=17648914698766520317",
@@ -2345,6 +2818,18 @@
         "url": "https://www.mapple.net/article/31782/",
         "retrieved": "2026-10-17",
         "note": "まっぷる「鳥羽1番街」"
+      },
+      {
+        "type": "official",
+        "url": "https://minerva-gelato.com/access/",
+        "retrieved": "2026-10-18",
+        "note": "營業時間、週四公休"
+      },
+      {
+        "type": "other",
+        "url": "https://4travel.jp/dm_shisetsu/11075551",
+        "retrieved": "2026-10-18",
+        "note": "4travel 16 件（多為舊文）：推パールラッテ，有內用區"
       }
     ],
     "verified": false,
@@ -2397,8 +2882,23 @@
       ],
       "dinner": null
     },
-    "mustTry": [],
-    "menu": [],
+    "mustTry": [
+      "パールラッテ（加珍珠粉的牛奶冰淇淋，人氣 No.1）",
+      "伊勢茶（伊勢茶口味）",
+      "岩戸の塩（鹽味）杯裝單球 340 円／雙球 440 円"
+    ],
+    "menu": [
+      {
+        "url": "https://minerva-gelato.com/item/",
+        "source": "official",
+        "retrieved": "2026-10-18"
+      },
+      {
+        "url": "https://tabelog.com/mie/A2403/A240302/24001613/dtlmenu/",
+        "source": "tabelog",
+        "retrieved": "2026-10-18"
+      }
+    ],
     "ratings": {
       "tabelog": 3.49,
       "tabelogReviews": 193,
@@ -2428,7 +2928,9 @@
       "note": null,
       "accepted": "no"
     },
-    "seating": [],
+    "seating": [
+      "table"
+    ],
     "kids": null,
     "smoking": "全席禁煙",
     "extra": {
@@ -2505,7 +3007,15 @@
     "closedNote": null,
     "febNote": null,
     "closures": [],
-    "photos": [],
+    "photos": [
+      {
+        "url": "https://lh3.googleusercontent.com/grass-cs/AABkmLeHgowb0XGNzqRoiH5CJinEh04bBl6hL1acaUvAgxisk3oS2rsZ60hpjvCXI5pA0JooLP8SoZ8n3phfqywyQ7podYi75gAX0IcEgSeEps6IpGybVnKS52OiMX84EpTbcy0gF21i0Bp7Miw=w800",
+        "page": "https://maps.google.com/?cid=11319526317370387249",
+        "kind": "google",
+        "credit": "Google マップ",
+        "license": null
+      }
+    ],
     "links": {
       "official": null,
       "googleMaps": "https://maps.google.com/?cid=11319526317370387249",
@@ -2532,6 +3042,12 @@
         "url": "https://www.nap-camp.com/mag/50903",
         "retrieved": "2026-10-17",
         "note": "なっぷ「鳥羽のおすすめ人気ランチ11選」（2026-10-01 更新）"
+      },
+      {
+        "type": "other",
+        "url": "https://www.jalan.net/gourmet/grm_alikejpB000415175/kuchikomi/",
+        "retrieved": "2026-10-18",
+        "note": "じゃらん 28 則 4.3：炸蝦、炸雞份量大，最新 2024-12"
       }
     ],
     "verified": false,
@@ -2586,8 +3102,17 @@
       ],
       "dinner": null
     },
-    "mustTry": [],
-    "menu": [],
+    "mustTry": [
+      "エビフライ定食（炸蝦定食，份量大）",
+      "唐揚げ定食（炸雞定食，附拿坡里麵）"
+    ],
+    "menu": [
+      {
+        "url": "https://tabelog.com/mie/A2403/A240302/24006357/dtlmenu/photo/",
+        "source": "tabelog",
+        "retrieved": "2026-10-18"
+      }
+    ],
     "ratings": {
       "tabelog": 3.48,
       "tabelogReviews": 233,
@@ -2618,12 +3143,19 @@
       "accepted": "no"
     },
     "seating": [],
-    "kids": null,
+    "kids": {
+      "allowed": "yes",
+      "minAge": null,
+      "kidsMenu": null,
+      "note": "じゃらん有帶 0～1 歲、4～6 歲小孩的家庭口コミ"
+    },
     "smoking": "全席禁煙",
     "extra": {
       "inclusion": "A",
       "conflicts": [
-        "食べログ（非店舗会員）寫 7:30～20:30、週三公休（11:00～14:00 不能點甜點）；Google 寫每天 8:00～15:00。照優先順序採用 Google，差異很大"
+        "食べログ（非店舗会員）寫 7:30～20:30、週三公休（11:00～14:00 不能點甜點）；Google 寫每天 8:00～15:00。照優先順序採用 Google，差異很大",
+        "地址：現有 鳥羽1-2383-5；なっぷ・じゃらん・Google 寫 鳥羽1-2379-24",
+        "公休：なっぷ 寫週三、週四；營業時間各來源都沒寫；口コミ有等 1 小時以上（2019）"
       ],
       "addressGoogle": "三重県鳥羽市鳥羽1丁目6-2379-24"
     }
@@ -2687,9 +3219,24 @@
       "note": "官網、食べログ寫 11:00～15:00；週三公休只有 Google 寫"
     },
     "closedNote": "週三公休（Google）",
-    "febNote": null,
+    "febNote": "秋冬限定「地かき料理」（官網）",
     "closures": [],
-    "photos": [],
+    "photos": [
+      {
+        "url": "https://www.nanakoshi.com/img/gaikan.jpg",
+        "page": "https://www.nanakoshi.com/",
+        "kind": "official",
+        "credit": "七越茶屋",
+        "license": null
+      },
+      {
+        "url": "https://www.nanakoshi.com/img/teiban/nanakoshi_teiban_p01.jpg",
+        "page": "https://www.nanakoshi.com/teiban.html",
+        "kind": "official",
+        "credit": "七越茶屋",
+        "license": null
+      }
+    ],
     "links": {
       "official": "https://www.nanakoshi.com/",
       "googleMaps": "https://maps.google.com/?cid=6333123102362443544",
@@ -2722,6 +3269,30 @@
         "note": "營業時間 11:00～15:00（頁面文字亂碼，只讀到這部分）",
         "type": "official",
         "url": "https://www.nanakoshi.com/"
+      },
+      {
+        "type": "official",
+        "url": "https://www.nanakoshi.com/teiban.html",
+        "retrieved": "2026-10-18",
+        "note": "定番菜單價格，手こねずし膳是當店一押し"
+      },
+      {
+        "type": "official",
+        "url": "https://www.nanakoshi.com/kaishoku.html",
+        "retrieved": "2026-10-18",
+        "note": "團體午餐預約、會席便當與套餐價格"
+      },
+      {
+        "type": "media",
+        "url": "https://gendai.media/articles/-/165589",
+        "retrieved": "2026-10-18",
+        "note": "FRaU 2026-03：在地導遊的愛店，手こねずしセット"
+      },
+      {
+        "type": "tourism",
+        "url": "https://www.city.toba.mie.jp/material/files/group/37/tobameshi_map_2022_06.pdf",
+        "retrieved": "2026-10-18",
+        "note": "鳥羽市「とばめしマップ」2022-06：No.28，週三公休，晚餐不定時"
       }
     ],
     "verified": false,
@@ -2774,8 +3345,28 @@
       ],
       "dinner": null
     },
-    "mustTry": [],
-    "menu": [],
+    "mustTry": [
+      "手こねずし膳・梅（手捏壽司御膳，當店一押し）1,540 円",
+      "伊勢うどん（伊勢烏龍麵）550 円",
+      "地かき料理（在地牡蠣料理，秋冬限定）"
+    ],
+    "menu": [
+      {
+        "url": "https://www.nanakoshi.com/teiban.html",
+        "source": "official",
+        "retrieved": "2026-10-18"
+      },
+      {
+        "url": "https://www.nanakoshi.com/kaishoku.html",
+        "source": "official",
+        "retrieved": "2026-10-18"
+      },
+      {
+        "url": "https://tabelog.com/mie/A2403/A240302/24000283/dtlmenu/photo/",
+        "source": "tabelog",
+        "retrieved": "2026-10-18"
+      }
+    ],
     "ratings": {
       "tabelog": 3.45,
       "tabelogReviews": 191,
@@ -2785,7 +3376,7 @@
     },
     "tabelogOwner": false,
     "googleName": null,
-    "notes": "鳥羽站步行約 7 分（鳥羽 3 丁目，漣附近）。",
+    "notes": "鳥羽站步行約 7 分（鳥羽 3 丁目，漣附近）。 團體午餐可預約：会席弁当 2,500～3,500 円、旬感・会席コース 3,800 円起，也接旅行社委託（官網 kaishoku.html）。",
     "group": {
       "seats": null,
       "maxReservation": null,
@@ -2815,7 +3406,9 @@
     "extra": {
       "inclusion": "A",
       "conflicts": [
-        "Google 寫 11:00～18:00（週四 11:00～15:00）、週三公休；官網、食べログ寫 11:00～15:00，採用官網"
+        "Google 寫 11:00～18:00（週四 11:00～15:00）、週三公休；官網、食べログ寫 11:00～15:00，採用官網",
+        "營業時間：官網 11:00～15:00（晚上不定時）；なっぷ・とばめしマップ 11:00～18:00（週四到 15:00）",
+        "公休：とばめしマップ 週三、なっぷ なし"
       ]
     }
   },
@@ -2878,9 +3471,24 @@
       "note": null
     },
     "closedNote": "週四、週五公休",
-    "febNote": null,
+    "febNote": "牡蠣（かき焼・かきフライ）約 10 月～4 月下旬；冬季てこね寿司膳的烤さざえ換成牡蠣；新年休到 1/9；週四、週五定休；不接受預約、只收現金（官網）",
     "closures": [],
-    "photos": [],
+    "photos": [
+      {
+        "url": "https://hamanami.com/wp/wp-content/themes/hamanami/img/home-about.jpg",
+        "page": "https://hamanami.com/",
+        "kind": "official",
+        "credit": "海女小屋 はまなみ",
+        "license": null
+      },
+      {
+        "url": "https://hamanami.com/wp/wp-content/themes/hamanami/img/home-menu.jpg",
+        "page": "https://hamanami.com/",
+        "kind": "official",
+        "credit": "海女小屋 はまなみ",
+        "license": null
+      }
+    ],
     "links": {
       "official": "https://hamanami.com/",
       "googleMaps": "https://maps.google.com/?cid=5151161900027577805",
@@ -2913,6 +3521,24 @@
         "note": "營業時間、定休日、不接受預約",
         "type": "official",
         "url": "https://hamanami.com/"
+      },
+      {
+        "type": "official",
+        "url": "https://hamanami.com/menus",
+        "retrieved": "2026-10-18",
+        "note": "菜單（無價格）、牡蠣 10～4 月、只收現金"
+      },
+      {
+        "type": "media",
+        "url": "https://rurubu.jp/andmore/spot/80024999",
+        "retrieved": "2026-10-18",
+        "note": "るるぶ：貝焼膳 2,100 円、站步行 3 分、停車 5 台"
+      },
+      {
+        "type": "other",
+        "url": "https://4travel.jp/dm_shisetsu/11081966",
+        "retrieved": "2026-10-18",
+        "note": "4travel 3.31（13 則，2010～2021）：排隊、觀光客取向"
       }
     ],
     "verified": false,
@@ -2964,8 +3590,23 @@
     ],
     "priceRange": "¥2,000～3,999",
     "price": null,
-    "mustTry": [],
-    "menu": [],
+    "mustTry": [
+      "伊勢えび造り膳（整隻伊勢龍蝦生魚片，殼煮味噌湯）",
+      "貝焼膳（烤貝御膳）1,900 円",
+      "うにめし膳（海膽飯御膳）1,800 円"
+    ],
+    "menu": [
+      {
+        "url": "https://hamanami.com/menus",
+        "source": "official",
+        "retrieved": "2026-10-18"
+      },
+      {
+        "url": "https://tabelog.com/mie/A2403/A240302/24008081/dtlmenu/photo/",
+        "source": "tabelog",
+        "retrieved": "2026-10-18"
+      }
+    ],
     "ratings": {
       "tabelog": 3.44,
       "tabelogReviews": 244,
@@ -3003,11 +3644,14 @@
       "allowed": "yes",
       "minAge": null,
       "kidsMenu": null,
-      "note": "可帶小孩（食べログ）"
+      "note": "可帶小孩（食べログ）；4travel 2010 口コミ：比較適合大人"
     },
     "smoking": "全席禁煙",
     "extra": {
-      "inclusion": "AF"
+      "inclusion": "AF",
+      "conflicts": [
+        "營業時間：まっぷる 11:00～16:00（週末假日到 19:30）只週四休；官網・るるぶ 平日 11:00～14:00、週末假日 11:00～20:00、週四週五休"
+      ]
     }
   },
   {
@@ -3070,9 +3714,17 @@
       "lastEntry": "20:00"
     },
     "closedNote": "週二、每月第 2・4 個週三公休",
-    "febNote": null,
+    "febNote": "冬季限定蒸し牡蠣（aumo 2025-08；15 個 650 円的價格待確認）",
     "closures": [],
-    "photos": [],
+    "photos": [
+      {
+        "url": "https://lh3.googleusercontent.com/grass-cs/AABkmLffggFynNw4XO6Rg6EXjrT5EStm9jzd8HSFyL1ySHRTO-dIjSMqFMuAM87Adp0Om8m4ZQAJkKIrBLGUqq1bGUW83wAulsupkx0GVLym0Xoxnei4WPJJpG0vRjG3vxdqnHPPIjJn=w800",
+        "page": "https://maps.google.com/?cid=9435262702704557256",
+        "kind": "google",
+        "credit": "Google マップ",
+        "license": null
+      }
+    ],
     "links": {
       "official": "http://0hachi.jp",
       "googleMaps": "https://maps.google.com/?cid=9435262702704557256",
@@ -3099,6 +3751,18 @@
         "url": "https://www.mapple.net/article/32188/",
         "retrieved": "2026-10-17",
         "note": "まっぷる「鳥羽のかき小屋＆かき料理の人気店」（2025-03-21 更新）"
+      },
+      {
+        "type": "media",
+        "url": "https://aumo.jp/articles/26409",
+        "retrieved": "2026-10-18",
+        "note": "aumo：冬季限定蒸し牡蠣、站舍 2 樓"
+      },
+      {
+        "type": "other",
+        "url": "https://4travel.jp/dm_shisetsu/11075606",
+        "retrieved": "2026-10-18",
+        "note": "4travel 7 則（2013～2022）：魚新鮮、份量多、中午排隊"
       }
     ],
     "verified": false,
@@ -3160,8 +3824,23 @@
         2999
       ]
     },
-    "mustTry": [],
-    "menu": [],
+    "mustTry": [
+      "へた丼（限量海鮮丼）1,100 円",
+      "さしみ定食（生魚片定食）1,650 円",
+      "蒸し牡蠣（冬季限定蒸牡蠣）"
+    ],
+    "menu": [
+      {
+        "url": "https://tabelog.com/mie/A2403/A240302/24001668/dtlmenu/",
+        "source": "tabelog",
+        "retrieved": "2026-10-18"
+      },
+      {
+        "url": "https://tabelog.com/mie/A2403/A240302/24001668/dtlmenu/drink/",
+        "source": "tabelog",
+        "retrieved": "2026-10-18"
+      }
+    ],
     "ratings": {
       "tabelog": 3.44,
       "tabelogReviews": 214,
@@ -3201,7 +3880,7 @@
       "allowed": "yes",
       "minAge": null,
       "kidsMenu": null,
-      "note": "可帶小孩（乳兒、學齡前、小學生），可推嬰兒車（食べログ）"
+      "note": "可帶小孩（乳兒、學齡前、小學生），可推嬰兒車（食べログ）；2015 口コミ：有兒童用「へこ丼」（舊文）"
     },
     "smoking": "全席禁煙",
     "extra": {
@@ -3209,8 +3888,14 @@
       "x": "@maruhachiojisan",
       "tabelogOldName": "大家族",
       "conflicts": [
-        "Google 沒有營業時間"
+        "Google 沒有營業時間",
+        "營業時間：まっぷる 11:30～21:00、週二＋第 2・4 週三休；4travel L.O. 20:00、只寫週二休",
+        "官網 0hachi.jp 網域解析不到（2026-10-18）"
       ]
+    },
+    "accessibility": {
+      "barrierFree": null,
+      "note": "在 JR 鳥羽站名店街 2 樓，電梯沒寫（aumo）"
     }
   },
   {
@@ -3305,9 +3990,24 @@
       "note": "L.O. 午餐 14:00、晚餐 21:00（週六 21:30）；三連休的週日也營業到 22:00"
     },
     "closedNote": "週一公休（逢國定假日營業，隔天休）",
-    "febNote": null,
+    "febNote": "カキフライ、かきの塩焼等是冬季限定（官網菜單）；週一公休（逢國定假日營業，隔天休）",
     "closures": [],
-    "photos": [],
+    "photos": [
+      {
+        "url": "https://www.tenbinya.co.jp/wp-content/uploads/top_img001.jpg",
+        "page": "https://www.tenbinya.co.jp/",
+        "kind": "official",
+        "credit": "天びん屋",
+        "license": null
+      },
+      {
+        "url": "https://www.tenbinya.co.jp/wp-content/uploads/shop1_img001.jpg",
+        "page": "https://www.tenbinya.co.jp/shop1",
+        "kind": "official",
+        "credit": "天びん屋",
+        "license": null
+      }
+    ],
     "links": {
       "official": "http://www.tenbinya.co.jp/",
       "googleMaps": "https://maps.google.com/?cid=2852584508238772325",
@@ -3352,6 +4052,30 @@
         "note": "營業時間、定休日、包廂與宴會廳、電話",
         "type": "official",
         "url": "http://www.tenbinya.co.jp/"
+      },
+      {
+        "type": "official",
+        "url": "https://www.tenbinya.co.jp/shop1",
+        "retrieved": "2026-10-18",
+        "note": "105 席、停車場 25 台、週一休"
+      },
+      {
+        "type": "official",
+        "url": "https://www.tenbinya.co.jp/menu1",
+        "retrieved": "2026-10-18",
+        "note": "菜單圖片（2026-07）：海鮮丼、釜めし、釜めしコース 3 種、冬季牡蠣"
+      },
+      {
+        "type": "other",
+        "url": "https://hamoni.jp/shop/hhOy8thuxhiANBzqJPga",
+        "retrieved": "2026-10-18",
+        "note": "88 席、座敷・掘りごたつ、可包場、可帶小孩"
+      },
+      {
+        "type": "tabelog",
+        "url": "https://tabelog.com/mie/A2403/A240302/24000079/party/",
+        "retrieved": "2026-10-18",
+        "note": "コース 4,500／5,500 円（4～36 人）"
       }
     ],
     "verified": false,
@@ -3412,8 +4136,28 @@
         3999
       ]
     },
-    "mustTry": [],
-    "menu": [],
+    "mustTry": [
+      "天びん屋の海鮮丼（海鮮丼）2,640 円",
+      "海女の釜めし（海女釜飯，現點現炊約 25 分）1,980 円",
+      "海女のほうろく焼（焼貝盛り合わせ，烤貝拼盤）3,300 円"
+    ],
+    "menu": [
+      {
+        "url": "https://www.tenbinya.co.jp/menu1",
+        "source": "official",
+        "retrieved": "2026-10-18"
+      },
+      {
+        "url": "https://tabelog.com/mie/A2403/A240302/24000079/dtlmenu/",
+        "source": "tabelog",
+        "retrieved": "2026-10-18"
+      },
+      {
+        "url": "https://tabelog.com/mie/A2403/A240302/24000079/party/",
+        "source": "tabelog",
+        "retrieved": "2026-10-18"
+      }
+    ],
     "ratings": {
       "tabelog": 3.43,
       "tabelogReviews": 252,
@@ -3429,7 +4173,7 @@
       "maxReservation": 36,
       "privateRoom": true,
       "buyout": "可包場（20～50 人）",
-      "groupMenu": "午餐也接受聚會、慶祝、法事的預約（官網）",
+      "groupMenu": "食べログ コース：オードブルコース 4,500 円、おまかせ会席料理 5,500 円（4～36 人，2026-03 更新）；官網菜單：海女の釜めしコース 千鳥 4,950／磯笛 6,050／豊漁 7,150 円（人數條件、幾天前訂沒寫）；午餐也接受聚會、慶祝、法事的預約（官網）",
       "source": "食べログ（店舗会員）：最大予約可能人数 着席 36 人、個室最多 36 人、貸切可（20人～50人）、席数 88；官網：個室 5 室、40 名大宴會廳",
       "note": null,
       "fit15": "yes",
@@ -3448,7 +4192,8 @@
     },
     "seating": [
       "table",
-      "zashiki"
+      "zashiki",
+      "horigotatsu"
     ],
     "kids": {
       "allowed": "yes",
@@ -3458,13 +4203,14 @@
     },
     "accessibility": {
       "barrierFree": "無障礙、可坐輪椅入店（食べログ）",
-      "note": null
+      "note": "包廂在 2 樓（まっぷる），電梯沒寫；停車場 25 台（官網）"
     },
     "smoking": "全席禁煙（店外、3 樓有吸菸處）",
     "extra": {
       "inclusion": "AC",
       "conflicts": [
-        "Google 寫午餐到 14:00、晚餐到 21:00（是 L.O.），Google 電話 050-5493-6980（訂位代理）"
+        "Google 寫午餐到 14:00、晚餐到 21:00（是 L.O.），Google 電話 050-5493-6980（訂位代理）",
+        "席數：官網 105、食べログ・hamoni 88"
       ]
     }
   },
@@ -3537,9 +4283,17 @@
       "note": null
     },
     "closedNote": null,
-    "febNote": null,
+    "febNote": "每月換口味的起司蛋糕（2 月口味沒公布）；一年兩次維修休業（日期沒寫，観光三重）；整模蛋糕最晚 3 天前預約（官網）",
     "closures": [],
-    "photos": [],
+    "photos": [
+      {
+        "url": "https://www.tobahotel.co.jp/img/shop/main.jpg",
+        "page": "https://www.tobahotel.co.jp/shop/",
+        "kind": "official",
+        "credit": "鳥羽国際ホテル",
+        "license": null
+      }
+    ],
     "links": {
       "official": "https://www.tobahotel.co.jp/shop/",
       "googleMaps": "https://maps.google.com/?cid=2185321482682863025",
@@ -3560,6 +4314,18 @@
         "note": "星數、評論數、營業時間、座標",
         "type": "google-maps",
         "url": "https://maps.google.com/?cid=2185321482682863025"
+      },
+      {
+        "type": "official",
+        "url": "https://www.tobahotel.co.jp/shop/",
+        "retrieved": "2026-10-18",
+        "note": "品項價格、營業時間、整模蛋糕 3 天前預約"
+      },
+      {
+        "type": "tourism",
+        "url": "https://www.kankomie.or.jp/event/40780",
+        "retrieved": "2026-10-18",
+        "note": "每月口味起司蛋糕、一年兩次維修休業"
       }
     ],
     "verified": false,
@@ -3611,8 +4377,23 @@
       ],
       "dinner": null
     },
-    "mustTry": [],
-    "menu": [],
+    "mustTry": [
+      "チーズケーキプレーン（原味起司蛋糕）5 号 3,456 円",
+      "マンスリーチーズケーキ（每月口味）7 号 4,752 円",
+      "チーズケーキパレット（12 片綜合）4,860 円"
+    ],
+    "menu": [
+      {
+        "url": "https://www.tobahotel.co.jp/shop/",
+        "source": "official",
+        "retrieved": "2026-10-18"
+      },
+      {
+        "url": "https://tabelog.com/mie/A2403/A240302/24009159/dtlmenu/photo/",
+        "source": "tabelog",
+        "retrieved": "2026-10-18"
+      }
+    ],
     "ratings": {
       "tabelog": 3.43,
       "tabelogReviews": 100,
@@ -3654,7 +4435,10 @@
     "smoking": "全席禁煙",
     "extra": {
       "inclusion": "A",
-      "takeoutOnly": "以外帶為主（甜點，符合排除條件的例外）"
+      "takeoutOnly": "以外帶為主（甜點，符合排除條件的例外）",
+      "conflicts": [
+        "營業時間：官網 平日 8:30～19:00、週末假日 8:00～19:00；観光三重 8:00～19:30、週末假日到 20:00"
+      ]
     }
   },
   {
@@ -3740,9 +4524,24 @@
       "note": "L.O. 午餐 14:00、晚餐 21:00"
     },
     "closedNote": "週二、週四公休（另有不定休）",
-    "febNote": null,
+    "febNote": "牡蠣是旺季急速冷凍，全年供應（官網菜單）；週二、週四公休",
     "closures": [],
-    "photos": [],
+    "photos": [
+      {
+        "url": "https://www.tenbinya.co.jp/wp-content/uploads/top_img003.jpg",
+        "page": "https://www.tenbinya.co.jp/",
+        "kind": "official",
+        "credit": "天びん屋",
+        "license": null
+      },
+      {
+        "url": "https://www.tenbinya.co.jp/wp-content/uploads/shop3_img001-1.jpg",
+        "page": "https://www.tenbinya.co.jp/shop3",
+        "kind": "official",
+        "credit": "天びん屋",
+        "license": null
+      }
+    ],
     "links": {
       "official": "https://www.tenbinya.co.jp/",
       "googleMaps": "https://maps.google.com/?cid=10080713621303650950",
@@ -3769,6 +4568,18 @@
         "note": "營業時間與本店相同、週二週四公休、電話",
         "type": "official",
         "url": "http://www.tenbinya.co.jp/"
+      },
+      {
+        "type": "official",
+        "url": "https://www.tenbinya.co.jp/shop3",
+        "retrieved": "2026-10-18",
+        "note": "54 席、停車場 25 台、週二週四休"
+      },
+      {
+        "type": "official",
+        "url": "https://www.tenbinya.co.jp/menu3",
+        "retrieved": "2026-10-18",
+        "note": "菜單圖片：がんがん焼 3 種、松阪牛、海鮮定食"
       }
     ],
     "verified": false,
@@ -3830,8 +4641,23 @@
         7999
       ]
     },
-    "mustTry": [],
-    "menu": [],
+    "mustTry": [
+      "浦村かきのがんがん焼（浦村牡蠣罐燒，約 10～12 個）3,500 円",
+      "海女のがんがん焼（綜合貝類罐燒）3,500 円",
+      "松阪牛 A5 カルビ（松阪牛五花）3,960 円"
+    ],
+    "menu": [
+      {
+        "url": "https://www.tenbinya.co.jp/menu3",
+        "source": "official",
+        "retrieved": "2026-10-18"
+      },
+      {
+        "url": "https://tabelog.com/mie/A2403/A240302/24013343/dtlmenu/",
+        "source": "tabelog",
+        "retrieved": "2026-10-18"
+      }
+    ],
     "ratings": {
       "tabelog": 3.39,
       "tabelogReviews": 89,
@@ -3878,14 +4704,15 @@
     },
     "accessibility": {
       "barrierFree": "可坐輪椅入店（食べログ）",
-      "note": null
+      "note": "停車場 25 台（官網）；階梯沒寫"
     },
     "smoking": "全席禁煙（店外有吸菸處）",
     "extra": {
       "inclusion": "C",
       "seatingNote": "座敷 8 人 ×1、6 人 ×3；也有沙發座",
       "conflicts": [
-        "Google 寫午餐到 14:00、晚餐到 21:00（是 L.O.）"
+        "Google 寫午餐到 14:00、晚餐到 21:00（是 L.O.）",
+        "席數：官網 54、食べログ 52"
       ]
     }
   },
@@ -3949,9 +4776,24 @@
       "lastEntry": "16:30"
     },
     "closedNote": "週四公休（官網頁面亂碼，看起來是週四；Google、食べログ也是週四）；天候不佳時可能休",
-    "febNote": null,
+    "febNote": "焼かき 約 10 月～5 月供應（官網）；週四定休；不接受預約、賣完提早打烊、有不定期臨時休，來前先打電話 0599-25-5188",
     "closures": [],
-    "photos": [],
+    "photos": [
+      {
+        "url": "https://www.the-kaiya-toba.com/img/gaikan1.jpg",
+        "page": "https://www.the-kaiya-toba.com/",
+        "kind": "official",
+        "credit": "ザ・貝屋",
+        "license": null
+      },
+      {
+        "url": "https://www.the-kaiya-toba.com/img/naiso1.jpg",
+        "page": "https://www.the-kaiya-toba.com/",
+        "kind": "official",
+        "credit": "ザ・貝屋",
+        "license": null
+      }
+    ],
     "links": {
       "official": "https://www.the-kaiya-toba.com/",
       "googleMaps": "https://maps.google.com/?cid=11777151817956265896",
@@ -3990,6 +4832,12 @@
         "note": "營業時間 10:00～17:00（L.O. 16:30）",
         "type": "official",
         "url": "https://www.the-kaiya-toba.com/"
+      },
+      {
+        "type": "official",
+        "url": "https://www.the-kaiya-toba.com/html/oshina.html",
+        "retrieved": "2026-10-18",
+        "note": "お品書き：あわびステーキ、伊勢海老残酷焼、焼かき（10～5 月）"
       }
     ],
     "verified": false,
@@ -4042,8 +4890,23 @@
       ],
       "dinner": null
     },
-    "mustTry": [],
-    "menu": [],
+    "mustTry": [
+      "あわびステーキ（鮑魚排，當店名物）3,500 円起",
+      "伊勢海老残酷焼（活烤伊勢龍蝦，每人）2,750 円起",
+      "焼かき（烤牡蠣）3 個 660 円（約 10～5 月）"
+    ],
+    "menu": [
+      {
+        "url": "https://www.the-kaiya-toba.com/html/oshina.html",
+        "source": "official",
+        "retrieved": "2026-10-18"
+      },
+      {
+        "url": "https://tabelog.com/mie/A2403/A240302/24009121/dtlmenu/photo/",
+        "source": "tabelog",
+        "retrieved": "2026-10-18"
+      }
+    ],
     "ratings": {
       "tabelog": 3.35,
       "tabelogReviews": 95,
@@ -4077,7 +4940,10 @@
     "kids": null,
     "smoking": "全席禁煙",
     "extra": {
-      "inclusion": "C"
+      "inclusion": "C",
+      "conflicts": [
+        "價格：なっぷ 寫焼き牡蠣 550 円起、岩がき 770 円起；官網焼かき 660 円、岩ガキ 1,100 円起"
+      ]
     }
   },
   {
@@ -4149,7 +5015,22 @@
     "closedNote": "週二公休",
     "febNote": null,
     "closures": [],
-    "photos": [],
+    "photos": [
+      {
+        "url": "https://cuccagna2.jp/toba/images/index/1.jpg",
+        "page": "http://cuccagna2.jp/toba/",
+        "kind": "official",
+        "credit": "クッカーニャ",
+        "license": null
+      },
+      {
+        "url": "https://cuccagna2.jp/toba/about/images/about_01.jpg",
+        "page": "http://cuccagna2.jp/toba/about/",
+        "kind": "official",
+        "credit": "クッカーニャ",
+        "license": null
+      }
+    ],
     "links": {
       "official": "http://cuccagna2.jp/toba/",
       "googleMaps": "https://maps.google.com/?cid=1755443713648511130",
@@ -4176,6 +5057,24 @@
         "url": "https://www.mapple.net/article/32428/",
         "retrieved": "2026-10-17",
         "note": "まっぷる 鳥羽・相差的美食介紹"
+      },
+      {
+        "type": "official",
+        "url": "http://cuccagna2.jp/toba/about/",
+        "retrieved": "2026-10-18",
+        "note": "午餐 11:00～14:30 L.O.、晚餐 17:00～24:00、週二休、在地食材"
+      },
+      {
+        "type": "tourism",
+        "url": "https://www.city.toba.mie.jp/material/files/group/37/tobameshi_map_2022_06.pdf",
+        "retrieved": "2026-10-18",
+        "note": "鳥羽市「とばめしマップ」2022-06：推手工披薩，一個人或團體都容易進去"
+      },
+      {
+        "type": "other",
+        "url": "https://retty.me/theme/100427600/",
+        "retrieved": "2026-10-18",
+        "note": "Retty 鳥羽午餐人氣第 8、口コミ 21 件；2 樓要走樓梯"
       }
     ],
     "verified": false,
@@ -4236,8 +5135,18 @@
         3999
       ]
     },
-    "mustTry": [],
-    "menu": [],
+    "mustTry": [
+      "ペスカトーレ（海鮮番茄義大利麵）1,980 円",
+      "鳥羽あおさ海鮮クリームピザ（鳥羽石蓴海鮮奶油披薩）1,760 円",
+      "ボロネーゼ（肉醬麵）"
+    ],
+    "menu": [
+      {
+        "url": "https://tabelog.com/mie/A2403/A240302/24000881/dtlmenu/photo/",
+        "source": "tabelog",
+        "retrieved": "2026-10-18"
+      }
+    ],
     "ratings": {
       "tabelog": 3.34,
       "tabelogReviews": 117,
@@ -4283,8 +5192,13 @@
     "extra": {
       "inclusion": "C",
       "conflicts": [
-        "食べログ（非店舗会員）寫每天 11:00～14:30、17:00～21:30（週二休）；Google 寫晚餐只有週六日。採用 Google"
+        "食べログ（非店舗会員）寫每天 11:00～14:30、17:00～21:30（週二休）；Google 寫晚餐只有週六日。採用 Google",
+        "晚上打烊：官網・Retty 24:00、まっぷる・とばめしマップ 22:00；まっぷる寫另收チャージ 500 円"
       ]
+    },
+    "accessibility": {
+      "barrierFree": null,
+      "note": "主要座位在 2 樓要走樓梯；2 樓滿了才用 1 樓吧台（Retty）"
     }
   },
   {
@@ -4388,12 +5302,20 @@
       "note": "早餐 L.O. 9:30；晚餐 L.O. 20:30，17:30～ 或 20:00 前後～ 兩梯次（官網）"
     },
     "closedNote": null,
-    "febNote": null,
+    "febNote": "官網冬季價格 2026-10-01～2027-03-31，2 月營業",
     "closures": [],
-    "photos": [],
+    "photos": [
+      {
+        "url": "https://www.shiojitei.jp/data/images/cuisine/shiraishi/cuisine-img-large.jpg",
+        "page": "https://www.shiojitei.jp/cuisine/shiraishi.html",
+        "kind": "official",
+        "credit": "鳥羽国際ホテル 潮路亭",
+        "license": null
+      }
+    ],
     "links": {
       "official": "https://www.shiojitei.jp/cuisine/shiraishi.html",
-      "googleMaps": null,
+      "googleMaps": "https://maps.google.com/?cid=15272840618039616145",
       "tabelog": "https://tabelog.com/mie/A2403/A240302/24011960/",
       "instagram": "@shiojitei"
     },
@@ -4411,6 +5333,24 @@
         "note": "營業時間、兩梯次、一休訂位；沒寫非住客能不能用",
         "type": "official",
         "url": "https://www.shiojitei.jp/cuisine/shiraishi.html"
+      },
+      {
+        "type": "other",
+        "url": "https://retty.me/restaurant/100001106405/",
+        "retrieved": "2026-10-18",
+        "note": "Retty：10 件、推薦度 93%、隔間幾乎是個室"
+      },
+      {
+        "type": "booking-site",
+        "url": "https://wowith.com/dining_shiraishi_toba",
+        "retrieved": "2026-10-18",
+        "note": "82 席，全部是個室"
+      },
+      {
+        "type": "google-maps",
+        "url": "https://maps.google.com/?cid=15272840618039616145",
+        "retrieved": "2026-10-18",
+        "note": "Google 只有潮路亭的頁面（搜尋 Dining白石 沒有獨立店家）"
       }
     ],
     "verified": false,
@@ -4461,17 +5401,32 @@
         14999
       ]
     },
-    "mustTry": [],
-    "menu": [],
+    "mustTry": [
+      "伊勢海老付 會席 12,100 円",
+      "伊勢海老料理・鮑付 會席 17,600 円",
+      "伊勢海老の白味噌鍋（伊勢龍蝦白味噌鍋，口コミ點名）"
+    ],
+    "menu": [
+      {
+        "url": "https://www.shiojitei.jp/cuisine/shiraishi.html",
+        "source": "official",
+        "retrieved": "2026-10-18"
+      },
+      {
+        "url": "https://tabelog.com/mie/A2403/A240302/24011960/dtlmenu/photo/",
+        "source": "tabelog",
+        "retrieved": "2026-10-18"
+      }
+    ],
     "ratings": {
       "tabelog": 3.33,
       "tabelogReviews": 50,
       "google": null,
       "googleReviews": null,
-      "note": "Google 上沒有獨立的店家頁（座標用潮路亭的）；IG 是潮路亭的帳號"
+      "note": "Google 沒有 Dining 白石 的獨立店家頁，連結借用潮路亭（住宿 toba-shiojitei）；星數是住宿本體的，不填"
     },
     "tabelogOwner": false,
-    "googleName": null,
+    "googleName": "鳥羽国際ホテル 潮路亭",
     "notes": "鳥羽國際飯店 潮路亭內的餐廳，全部是半包廂（24 間）。可以從一休餐廳訂位，看起來非住客也能用，但官網沒寫明，要確認。",
     "group": {
       "seats": 82,
@@ -4498,12 +5453,20 @@
     "seating": [
       "table"
     ],
-    "kids": null,
+    "kids": {
+      "allowed": "unknown",
+      "minAge": null,
+      "kidsMenu": true,
+      "note": "お子様料理 3,850 円起（另有 5,500、8,800 円，官網）"
+    },
     "smoking": "全席禁煙",
     "extra": {
       "inclusion": "C",
       "coordsNote": "座標是 Google Maps 上「鳥羽国際ホテル 潮路亭」的位置",
-      "nonGuest": "官網、食べログ都沒寫限住客；可以用一休餐廳訂位"
+      "nonGuest": "官網、食べログ都沒寫限住客；可以用一休餐廳訂位",
+      "conflicts": [
+        "非住客能不能只用餐：官網沒寫，但有一休レストラン（https://restaurant.ikyu.com/122618/）的訂位連結；要電話 0599-26-5477 確認"
+      ]
     }
   },
   {
@@ -4572,7 +5535,15 @@
     "closedNote": null,
     "febNote": null,
     "closures": [],
-    "photos": [],
+    "photos": [
+      {
+        "url": "https://lh3.googleusercontent.com/grass-cs/AABkmLf4I9Fb6WAPREzdiAnGqbBcToTPpTbKD2LwleBZoNCpoII6nNUH_MNtlzb0I430ffsR49_pg4E4Xg0iYLrDurGza_YV_F4CzZcQ2bXELNKaMPv5FLQD_Ur9VlwmOwrNy0W8e4a6LA=w800",
+        "page": "https://maps.google.com/?cid=2842824682786955004",
+        "kind": "google",
+        "credit": "Google マップ",
+        "license": null
+      }
+    ],
     "links": {
       "official": null,
       "googleMaps": "https://maps.google.com/?cid=2842824682786955004",
@@ -4593,6 +5564,18 @@
         "note": "星數、評論數、營業時間、座標",
         "type": "google-maps",
         "url": "https://maps.google.com/?cid=2842824682786955004"
+      },
+      {
+        "type": "media",
+        "url": "https://rurubu.jp/andmore/spot/80025010",
+        "retrieved": "2026-10-18",
+        "note": "るるぶ：紅燈籠招牌、アッパ貝・ハマグリ價格、10:00～18:00 不定休、站步行 1 分"
+      },
+      {
+        "type": "tourism",
+        "url": "https://www.city.toba.mie.jp/material/files/group/37/tobameshi_map_2022_06.pdf",
+        "retrieved": "2026-10-18",
+        "note": "鳥羽市「とばめしマップ」2022-06：秘傳醬汁烤在地海產、伊勢海老，9:00～17:00，電話 0599-25-2607"
       }
     ],
     "verified": false,
@@ -4645,8 +5628,18 @@
       ],
       "dinner": null
     },
-    "mustTry": [],
-    "menu": [],
+    "mustTry": [
+      "伊勢海老の秘伝タレ焼き（秘傳醬汁烤伊勢龍蝦）",
+      "アッパ貝（貽貝）2 個 660 円",
+      "ハマグリ（蛤蜊）2 個 880 円"
+    ],
+    "menu": [
+      {
+        "url": "https://tabelog.com/mie/A2403/A240302/24001499/dtlmenu/photo/",
+        "source": "tabelog",
+        "retrieved": "2026-10-18"
+      }
+    ],
     "ratings": {
       "tabelog": 3.29,
       "tabelogReviews": 52,
@@ -4681,12 +5674,18 @@
     "seating": [
       "counter"
     ],
-    "kids": null,
+    "kids": {
+      "allowed": "unknown",
+      "minAge": null,
+      "kidsMenu": null,
+      "note": "るるぶ有「ベビーおすすめ」「キッズおすすめ」標籤，沒有說明"
+    },
     "smoking": "全席喫煙可（食べログ，可能是舊資料）",
     "extra": {
       "inclusion": "C",
       "conflicts": [
-        "食べログ（非店舗会員）寫 08:30～17:00，Google 寫 10:30～18:00，採用 Google"
+        "食べログ（非店舗会員）寫 08:30～17:00，Google 寫 10:30～18:00，採用 Google",
+        "營業時間：るるぶ 10:00～18:00、とばめしマップ（2022）9:00～17:00；不定休"
       ]
     }
   },
@@ -4751,7 +5750,15 @@
     "closedNote": "週一、週二公休",
     "febNote": null,
     "closures": [],
-    "photos": [],
+    "photos": [
+      {
+        "url": "https://image.jimcdn.com/app/cms/image/transf/none/path/sd92a7bb0d9ab3e97/image/ief0a1b21ae3a6253/version/1781486286/image.jpg",
+        "page": "https://www.mu-sea.com/",
+        "kind": "official",
+        "credit": "MUSEA",
+        "license": null
+      }
+    ],
     "links": {
       "official": "http://www.mu-sea.com",
       "googleMaps": "https://maps.google.com/?cid=18120312135638150714",
@@ -4772,6 +5779,36 @@
         "note": "星數、評論數、營業時間、座標",
         "type": "google-maps",
         "url": "https://maps.google.com/?cid=18120312135638150714"
+      },
+      {
+        "type": "official",
+        "url": "https://www.mu-sea.com/",
+        "retrieved": "2026-10-18",
+        "note": "11:00～16:00、週一週二休、停車場說明"
+      },
+      {
+        "type": "official",
+        "url": "https://www.mu-sea.com/menu/",
+        "retrieved": "2026-10-18",
+        "note": "菜單圖檔：午餐 1,320 円附湯沙拉麵包"
+      },
+      {
+        "type": "media",
+        "url": "https://www.nap-camp.com/mag/57462",
+        "retrieved": "2026-10-18",
+        "note": "なっぷ 鳥羽咖啡 9 選：推咖哩盤和烤牛肉飯"
+      },
+      {
+        "type": "other",
+        "url": "https://retty.me/theme/100427600/",
+        "retrieved": "2026-10-18",
+        "note": "Retty 鳥羽人氣午餐：濃湯可續"
+      },
+      {
+        "type": "tourism",
+        "url": "https://www.city.toba.mie.jp/material/files/group/37/tobameshi_map_2022_06.pdf",
+        "retrieved": "2026-10-18",
+        "note": "鳥羽市「とばめしマップ」2022-06：No.27，2 樓海景席，全品可外帶"
       }
     ],
     "verified": false,
@@ -4825,8 +5862,23 @@
       ],
       "dinner": null
     },
-    "mustTry": [],
-    "menu": [],
+    "mustTry": [
+      "スパイスカレープレート（香料咖哩盤，附濃湯、沙拉、麵包）1,320 円",
+      "ローストビーフライス（烤牛肉飯）1,320 円",
+      "自家焙煎コーヒー（自家烘焙咖啡）"
+    ],
+    "menu": [
+      {
+        "url": "https://www.mu-sea.com/menu/",
+        "source": "official",
+        "retrieved": "2026-10-18"
+      },
+      {
+        "url": "https://tabelog.com/mie/A2403/A240302/24012244/dtlmenu/lunch/",
+        "source": "tabelog",
+        "retrieved": "2026-10-18"
+      }
+    ],
     "ratings": {
       "tabelog": 3.27,
       "tabelogReviews": 88,
@@ -4873,7 +5925,14 @@
     "extra": {
       "inclusion": "C",
       "seatingNote": "有沙發座、露天座（寵物只能坐露天座）",
-      "x": "@infoMUSEA"
+      "x": "@infoMUSEA",
+      "conflicts": [
+        "營業時間：官網・なっぷ 11:00～16:00、週一週二休；とばめしマップ・Retty 11:00～17:00、とばめしマップ 只寫週二休"
+      ]
+    },
+    "accessibility": {
+      "barrierFree": null,
+      "note": "海景席在 2 樓（とばめしマップ），電梯沒寫；七越茶屋後方 10～17 號車位是專用停車位，官網請客人共乘"
     }
   },
   {
@@ -4935,9 +5994,24 @@
       "note": null
     },
     "closedNote": "週二公休",
-    "febNote": null,
+    "febNote": "週二公休（逢國定假日營業）、有臨時休業；賣完就打烊（官網）",
     "closures": [],
-    "photos": [],
+    "photos": [
+      {
+        "url": "http://susiume.com/image/susiumetop.jpg",
+        "page": "http://susiume.com/",
+        "kind": "official",
+        "credit": "すし梅",
+        "license": null
+      },
+      {
+        "url": "http://susiume.com/image/food/nigirisusi.jpg",
+        "page": "http://susiume.com/",
+        "kind": "official",
+        "credit": "すし梅",
+        "license": null
+      }
+    ],
     "links": {
       "official": "http://susiume.com/",
       "googleMaps": "https://maps.google.com/?cid=14162634413345618565",
@@ -4970,6 +6044,24 @@
         "url": "https://chubu.letsgojp.com/archives/810883/",
         "retrieved": "2026-10-17",
         "note": "樂吃購！日本「日本鳥羽景點攻略」（2025-12-04）"
+      },
+      {
+        "type": "official",
+        "url": "http://susiume.com/",
+        "retrieved": "2026-10-18",
+        "note": "菜單價格、三種座位、縮短營業公告、停車場"
+      },
+      {
+        "type": "tourism",
+        "url": "https://www.city.toba.mie.jp/material/files/group/37/tobameshi_map_2022_06.pdf",
+        "retrieved": "2026-10-18",
+        "note": "鳥羽市「とばめしマップ」2022-06：10:00～20:00、週二休"
+      },
+      {
+        "type": "other",
+        "url": "https://www.jalan.net/gourmet/grm_foomoojH000284821/spot/",
+        "retrieved": "2026-10-18",
+        "note": "じゃらん 4.4（7 件）"
       }
     ],
     "verified": false,
@@ -5016,8 +6108,23 @@
     ],
     "priceRange": "¥2,000～2,999",
     "price": null,
-    "mustTry": [],
-    "menu": [],
+    "mustTry": [
+      "にぎりすし（握壽司）2,500 円",
+      "特上すし（特上握壽司）3,800 円",
+      "特上うなぎ丼（整條鰻魚丼）4,100 円"
+    ],
+    "menu": [
+      {
+        "url": "http://susiume.com/",
+        "source": "official",
+        "retrieved": "2026-10-18"
+      },
+      {
+        "url": "https://tabelog.com/mie/A2403/A240302/24004982/dtlmenu/",
+        "source": "tabelog",
+        "retrieved": "2026-10-18"
+      }
+    ],
     "ratings": {
       "tabelog": 3.26,
       "tabelogReviews": 38,
@@ -5051,7 +6158,8 @@
     },
     "seating": [
       "counter",
-      "zashiki"
+      "zashiki",
+      "table"
     ],
     "kids": null,
     "smoking": "全席禁煙",
@@ -5059,8 +6167,13 @@
       "inclusion": "BC",
       "conflicts": [
         "食べログ（非店舗会員）寫 10:00～21:00，Google 寫 11:30～19:00，採用 Google；官網 susiume.com 沒讀到（憑證錯誤）",
-        "席數 30 但包廂寫 30 人以上、包場 50 人以上，食べログ資料本身不一致"
+        "席數 30 但包廂寫 30 人以上、包場 50 人以上，食べログ資料本身不一致",
+        "營業時間：官網公告縮短營業 11:30 左右～19:00 左右（同頁又寫 10:30～19:00、L.O. 18:00）；まっぷる・とばめしマップ 10:00～20:00"
       ]
+    },
+    "accessibility": {
+      "barrierFree": null,
+      "note": "有桌椅席；停車場 6 台（坡道上，低底盤車不行）＋3 台（官網）"
     }
   },
   {
@@ -5156,9 +6269,17 @@
       "lastEntry": "20:00"
     },
     "closedNote": "不定休（食べログ）",
-    "febNote": null,
+    "febNote": "季節の旬彩有鳥羽・桃取產牡蠣；年末年始照常營業",
     "closures": [],
-    "photos": [],
+    "photos": [
+      {
+        "url": "https://nagatokan.com/images/banner1.jpg",
+        "page": "https://nagatokan.com/",
+        "kind": "official",
+        "credit": "長門館",
+        "license": null
+      }
+    ],
     "links": {
       "official": "https://nagatokan.com/",
       "googleMaps": "https://maps.google.com/?cid=6496976427465239435",
@@ -5185,6 +6306,30 @@
         "note": "營業時間、電話、預約頁",
         "type": "official",
         "url": "https://nagatokan.com/"
+      },
+      {
+        "type": "official",
+        "url": "https://nagatokan.com/teppari.html",
+        "retrieved": "2026-10-18",
+        "note": "網烤單點價格、貝類套餐 4,400 円、桃こまち極"
+      },
+      {
+        "type": "official",
+        "url": "https://nagatokan.com/kyoudo.html",
+        "retrieved": "2026-10-18",
+        "note": "一品刺身 630 円起、伊勢海老時價"
+      },
+      {
+        "type": "booking-site",
+        "url": "https://www.hotpepper.jp/strJ000108095/",
+        "retrieved": "2026-10-18",
+        "note": "70 席、宴會最多 45 人、不能包場、兒童菜單、伊勢海老コース 5,400 円、てこね御膳限 30 份"
+      },
+      {
+        "type": "other",
+        "url": "https://www.jalan.net/gourmet/grm_foomoojH000282251/",
+        "retrieved": "2026-10-18",
+        "note": "じゃらん 3.6（9 則，2015～2019 舊文）"
       }
     ],
     "verified": false,
@@ -5239,9 +6384,27 @@
     "price": null,
     "mustTry": [
       "海鮮丼（每天限 20 份）",
-      "とばーがー（每天限 10 份，要預約）"
+      "とばーがー（每天限 10 份，要預約）",
+      "てっぱり 貝類網烤套餐 4,400 円",
+      "てこね御膳（手捏壽司御膳，每天限 30 份）"
     ],
-    "menu": [],
+    "menu": [
+      {
+        "url": "https://nagatokan.com/menu.html",
+        "source": "official",
+        "retrieved": "2026-10-18"
+      },
+      {
+        "url": "https://nagatokan.com/teppari.html",
+        "source": "official",
+        "retrieved": "2026-10-18"
+      },
+      {
+        "url": "https://tabelog.com/mie/A2403/A240302/24001060/dtlmenu/photo/",
+        "source": "tabelog",
+        "retrieved": "2026-10-18"
+      }
+    ],
     "ratings": {
       "tabelog": 3.19,
       "tabelogReviews": 42,
@@ -5257,7 +6420,7 @@
       "maxReservation": null,
       "privateRoom": true,
       "buyout": null,
-      "groupMenu": null,
+      "groupMenu": "てっぱり料理伊勢海老コース 5,400 円（ホットペッパー）；宴會最多 45 人、不能包場；人數條件、幾天前訂沒寫；晚上 5 人以上預約才營業（とばめしマップ）",
       "source": "食べログ：席数 100、個室有（人數沒寫）、予約可",
       "note": null,
       "fit15": "split",
@@ -5271,19 +6434,34 @@
       "phone": "0599-25-2006",
       "url": "https://nagatokan.com/",
       "language": "日文",
-      "note": null,
+      "note": "網路訂位不開放；電話 0599-25-2006 或官網表單；晚上 5 人以上預約才營業（とばめしマップ）",
       "accepted": "yes"
     },
     "seating": [
-      "zashiki"
+      "zashiki",
+      "table"
     ],
-    "kids": null,
+    "kids": {
+      "allowed": "yes",
+      "minAge": null,
+      "kidsMenu": true,
+      "note": "可帶小孩，有お子様メニュー（ホットペッパー）"
+    },
     "smoking": "全席喫煙可（食べログ，可能是舊資料）",
     "extra": {
       "inclusion": "C",
       "conflicts": [
-        "Google 寫每天 11:00～14:30（沒有晚上），官網寫 11～15 時、17～21 時，採用官網"
+        "Google 寫每天 11:00～14:30（沒有晚上），官網寫 11～15 時、17～21 時，採用官網",
+        "席數：ホットペッパー 70 席（宴會最多 45 人）、現有 100",
+        "營業時間：官網 11:00～15:00／17:00～21:00；とばめしマップ・ホットペッパー 午餐 11:00～14:30（L.O. 14:00），晚上要預約",
+        "定休：とばめしマップ 不定休、ホットペッパー 基本週三",
+        "伊勢海老コース：ホットペッパー 5,400 円、まっぷる 7,700 円（搜尋摘要）",
+        "「海鮮丼每天限 20 份、とばーがー限 10 份」這次讀的官網頁沒寫，來源待補"
       ]
+    },
+    "accessibility": {
+      "barrierFree": "無障礙なし（ホットペッパー）",
+      "note": null
     }
   },
   {
@@ -5371,7 +6549,15 @@
     "closedNote": "週三公休（食べログ另寫第 3 個週二）",
     "febNote": null,
     "closures": [],
-    "photos": [],
+    "photos": [
+      {
+        "url": "https://lh3.googleusercontent.com/grass-cs/AABkmLc_04JcXwjATQKOCu2OQwTXYqZARRq2aKF-VRme88g69i8EP47XKK13Nblr33nszEYSLTcfj-Nq06WQIhwv4I4ZjaQpJKy7N6LBIhJP5rUJcQaB12E_MJq0rK85YvN3JkalEAEpuA=w800",
+        "page": "https://maps.google.com/?cid=11463901770978290580",
+        "kind": "google",
+        "credit": "Google マップ",
+        "license": null
+      }
+    ],
     "links": {
       "official": null,
       "googleMaps": "https://maps.google.com/?cid=11463901770978290580",
@@ -5459,8 +6645,18 @@
         7999
       ]
     },
-    "mustTry": [],
-    "menu": [],
+    "mustTry": [
+      "海鮮丼（只用在地魚）1,980 円",
+      "自家製からすみ（自製烏魚子）",
+      "煮付け（燉魚）"
+    ],
+    "menu": [
+      {
+        "url": "https://tabelog.com/mie/A2403/A240302/24015561/dtlmenu/photo/",
+        "source": "tabelog",
+        "retrieved": "2026-10-18"
+      }
+    ],
     "ratings": {
       "tabelog": 3.19,
       "tabelogReviews": 35,
@@ -5571,7 +6767,15 @@
     "closedNote": null,
     "febNote": null,
     "closures": [],
-    "photos": [],
+    "photos": [
+      {
+        "url": "https://lh3.googleusercontent.com/grass-cs/AABkmLcBnZGNWV6SSJR6zGU5fdBJLbNmiRE24CZyQmqhF0FrFOZ5f1dc2YnntVYKUHZHW4jx9gKhsuMs04HGFTOSoX3_RBPwPShMlRJACT5gd86CJZ9fYkzEncFWJzkC__b7FLCLxr7SeA=w800",
+        "page": "https://maps.google.com/?cid=18170086296512345987",
+        "kind": "google",
+        "credit": "Google マップ",
+        "license": null
+      }
+    ],
     "links": {
       "official": "http://yamato-toba.jp/",
       "googleMaps": "https://maps.google.com/?cid=18170086296512345987",
@@ -5592,6 +6796,18 @@
         "note": "星數、評論數、營業時間、座標",
         "type": "google-maps",
         "url": "https://maps.google.com/?cid=18170086296512345987"
+      },
+      {
+        "type": "tourism",
+        "url": "https://www.city.toba.mie.jp/material/files/group/37/tobameshi_map_2022_06.pdf",
+        "retrieved": "2026-10-18",
+        "note": "鳥羽市「とばめしマップ」2022-06：伊勢灣貝類、焼きカキ、地酒，有吧台，10:00～17:00 L.O.、不定休、有預約 17:00 以後也營業"
+      },
+      {
+        "type": "media",
+        "url": "https://aumo.jp/articles/26409",
+        "retrieved": "2026-10-18",
+        "note": "aumo：推焼き牡蠣，站前步行 1 分，有吧台"
       }
     ],
     "verified": false,
@@ -5644,8 +6860,23 @@
       ],
       "dinner": null
     },
-    "mustTry": [],
-    "menu": [],
+    "mustTry": [
+      "焼き牡蠣（烤牡蠣）",
+      "伊勢えび・あわび・さざえの浜焼き（伊勢龍蝦、鮑魚、蠑螺海邊燒）",
+      "地酒「而今」（三重地酒）"
+    ],
+    "menu": [
+      {
+        "url": "https://tabelog.com/mie/A2403/A240302/24013904/dtlmenu/",
+        "source": "tabelog",
+        "retrieved": "2026-10-18"
+      },
+      {
+        "url": "https://tabelog.com/mie/A2403/A240302/24013904/dtlmenu/drink/",
+        "source": "tabelog",
+        "retrieved": "2026-10-18"
+      }
+    ],
     "ratings": {
       "tabelog": 3.17,
       "tabelogReviews": 20,
@@ -5677,13 +6908,16 @@
       "note": null,
       "accepted": "yes"
     },
-    "seating": [],
+    "seating": [
+      "counter"
+    ],
     "kids": null,
     "smoking": "全席喫煙可（食べログ，可能是舊資料）",
     "extra": {
       "inclusion": "C",
       "conflicts": [
-        "Google 寫週三、週五公休，平日 11:00～16:00、週末 10:00～17:00；食べログ（店舗会員）寫每天 10:00～17:00、無休，採用食べログ"
+        "Google 寫週三、週五公休，平日 11:00～16:00、週末 10:00～17:00；食べログ（店舗会員）寫每天 10:00～17:00、無休，採用食べログ",
+        "官網 yamato-toba.jp 網域解析不到（2026-10-18）；營業時間 10:00～17:00 L.O.、不定休，有預約的話 17:00 以後也營業（とばめしマップ 2022）"
       ]
     }
   },
@@ -5748,7 +6982,15 @@
     "closedNote": "週四公休",
     "febNote": null,
     "closures": [],
-    "photos": [],
+    "photos": [
+      {
+        "url": "https://lh3.googleusercontent.com/grass-cs/AABkmLe5ohRijP9Occs_ZfejXWuNgEJJqUJm99_9asg85h4jldGt8QOQJosD5BV28KrBxzzK2y6y1B4Hr0zYUqbvnq2oUpZKVf71iKFvqwHKa_Cg0kHtEW33IBIAwex96O5mcYHCkoQ=w800",
+        "page": "https://maps.google.com/?cid=9896622969956895927",
+        "kind": "google",
+        "credit": "Google マップ",
+        "license": null
+      }
+    ],
     "links": {
       "official": null,
       "googleMaps": "https://maps.google.com/?cid=9896622969956895927",
@@ -5775,6 +7017,18 @@
         "url": "https://www.mapple.net/article/32428/",
         "retrieved": "2026-10-17",
         "note": "まっぷる 鳥羽・相差的美食介紹"
+      },
+      {
+        "type": "tourism",
+        "url": "https://www.city.toba.mie.jp/material/files/group/37/tobameshi_map_2022_06.pdf",
+        "retrieved": "2026-10-18",
+        "note": "鳥羽市「とばめしマップ」2022-06：11:00～18:00（可能提早）、週四休"
+      },
+      {
+        "type": "booking-site",
+        "url": "https://www.hotpepper.jp/strJ000426825/",
+        "retrieved": "2026-10-18",
+        "note": "32 席、不能包場、可帶小孩、無障礙設施なし（2020 資料）"
       }
     ],
     "verified": false,
@@ -5826,8 +7080,18 @@
       ],
       "dinner": null
     },
-    "mustTry": [],
-    "menu": [],
+    "mustTry": [
+      "海老フライ定食（開背炸蝦 3 尾）1,650 円",
+      "お造り定食（生魚片定食）1,650 円",
+      "貝づくし定食（貝類定食）1,650 円"
+    ],
+    "menu": [
+      {
+        "url": "https://tabelog.com/mie/A2403/A240302/24000889/dtlmenu/photo/",
+        "source": "tabelog",
+        "retrieved": "2026-10-18"
+      }
+    ],
     "ratings": {
       "tabelog": 3.16,
       "tabelogReviews": 37,
@@ -5839,14 +7103,14 @@
     "googleName": null,
     "notes": "鳥羽站步行約 4 分。",
     "group": {
-      "seats": null,
+      "seats": 32,
       "maxReservation": null,
       "privateRoom": false,
-      "buyout": "可（沒寫人數）",
+      "buyout": "不能包場（ホットペッパー）",
       "groupMenu": null,
-      "source": "食べログ：沒有席数、貸切可、予約可",
+      "source": "ホットペッパー（2020）：32 席（6 人桌 ×4＋座敷）、不能包場、沒有包廂；電話預約可",
       "note": null,
-      "fit15": "unknown",
+      "fit15": "split",
       "fitSubgroup": "unknown"
     },
     "reservation": {
@@ -5856,14 +7120,30 @@
       "phone": "0599-26-6818",
       "url": null,
       "language": "日文",
-      "note": null,
+      "note": "不收網路訂位，電話 0599-26-6818（ホットペッパー）",
       "accepted": "yes"
     },
-    "seating": [],
-    "kids": null,
+    "seating": [
+      "table",
+      "zashiki"
+    ],
+    "kids": {
+      "allowed": "yes",
+      "minAge": null,
+      "kidsMenu": null,
+      "note": "可帶小孩（ホットペッパー，2020 資料）"
+    },
     "smoking": null,
     "extra": {
-      "inclusion": "C"
+      "inclusion": "C",
+      "conflicts": [
+        "營業時間：まっぷる（2025）11:00～15:00；とばめしマップ（2022）・ホットペッパー（2020）11:00～18:00（可能提早打烊）；週四休三者一致",
+        "ホットペッパー 座敷欄寫なし，本文卻有「奥のお座敷」"
+      ]
+    },
+    "accessibility": {
+      "barrierFree": "無障礙設施なし（ホットペッパー，2020 資料）",
+      "note": "停車場 3 台"
     }
   },
   {
@@ -5969,7 +7249,22 @@
     "closedNote": "無休（食べログ）；天候、海況可能停航",
     "febNote": "冬天有營運：蒸牡蠣套餐是冬季限定（11～3 月）；食べログ寫無休。天候不好會停航，要看官方 IG 公告。",
     "closures": [],
-    "photos": [],
+    "photos": [
+      {
+        "url": "https://tobayakatabune.jp/wp-content/uploads/2021/01/fune_mitusima.jpg",
+        "page": "https://tobayakatabune.jp/",
+        "kind": "official",
+        "credit": "屋形船おきた",
+        "license": null
+      },
+      {
+        "url": "https://tobayakatabune.jp/wp-content/uploads/2021/01/hune_syokuzai.jpg",
+        "page": "https://tobayakatabune.jp/",
+        "kind": "official",
+        "credit": "屋形船おきた",
+        "license": null
+      }
+    ],
     "links": {
       "official": "https://tobayakatabune.jp/",
       "googleMaps": "https://maps.google.com/?cid=10827356673329115862",
@@ -5996,6 +7291,48 @@
         "note": "套餐價格、蒸牡蠣冬季限定（11～3 月）",
         "type": "official",
         "url": "https://tobayakatabune.jp/coursemenu/"
+      },
+      {
+        "type": "official",
+        "url": "https://tobayakatabune.jp/",
+        "retrieved": "2026-10-18",
+        "note": "三重唯一的屋形船餐廳，2014 開業"
+      },
+      {
+        "type": "official",
+        "url": "https://tobayakatabune.jp/access/",
+        "retrieved": "2026-10-18",
+        "note": "11:30～20:30、鳥羽站步行 7 分、佐田浜第 3 停車場"
+      },
+      {
+        "type": "official",
+        "url": "https://tobayakatabune.jp/contact/",
+        "retrieved": "2026-10-18",
+        "note": "預約方式、12:30 出航約 80 分、小學生以上大人價、取消費、天候停航"
+      },
+      {
+        "type": "tourism",
+        "url": "https://www.kankomie.or.jp/report/1599",
+        "retrieved": "2026-10-18",
+        "note": "2023-09 取材：掘りごたつ約 48 席、兒童飯糰 500 円"
+      },
+      {
+        "type": "tourism",
+        "url": "https://www.kankomie.or.jp/report/1689",
+        "retrieved": "2026-10-18",
+        "note": "1 月取材蒸し牡蠣コース，甲板很冷"
+      },
+      {
+        "type": "media",
+        "url": "https://www.travel.co.jp/guide/article/47658/",
+        "retrieved": "2026-10-18",
+        "note": "2023-06 甲板遊覽介紹（舊價）"
+      },
+      {
+        "type": "tabelog",
+        "url": "https://tabelog.com/mie/A2403/A240302/24014971/party/",
+        "retrieved": "2026-10-18",
+        "note": "コース 4 種、2～48 人（2026-09-07 更新）"
       }
     ],
     "verified": false,
@@ -6045,13 +7382,22 @@
     "priceRange": "每人 ¥4,980～8,950（含料理和乘船費）",
     "price": null,
     "mustTry": [
-      "屋形船ランチ焼き貝コース ¥4,980",
-      "屋形船伊勢海老コース ¥8,950",
-      "屋形船 あわびコース ¥8,950",
-      "屋形船 肉コース ¥8,450",
-      "屋形船蒸し牡蠣コース ¥5,950（冬季限定 11～3 月）"
+      "屋形船伊勢海老コース（伊勢龍蝦一隻兩吃＋烤貝）8,950 円",
+      "屋形船蒸し牡蠣コース（蒸牡蠣，冬季限定 11～3 月）5,950 円",
+      "屋形船ランチ焼き貝コース（烤貝，官網說最受歡迎）4,980 円"
     ],
-    "menu": [],
+    "menu": [
+      {
+        "url": "https://tobayakatabune.jp/coursemenu/",
+        "source": "official",
+        "retrieved": "2026-10-18"
+      },
+      {
+        "url": "https://tabelog.com/mie/A2403/A240302/24014971/party/",
+        "source": "tabelog",
+        "retrieved": "2026-10-18"
+      }
+    ],
     "ratings": {
       "tabelog": 3.08,
       "tabelogReviews": 21,
@@ -6067,7 +7413,7 @@
       "maxReservation": null,
       "privateRoom": false,
       "buyout": "可包船（食べログ勾 20 人以下）",
-      "groupMenu": null,
+      "groupMenu": "全部是套餐（含乘船）：食べログ コース 伊勢海老 9,450、焼き貝 4,980、肉 8,450 円（2～48 人）、鮑 8,950 円（2～40 人）；可包船（報價洽詢）；未滿 6 人可能取消出航；取消費 3 天前 30%、前一天 90%、當天 100%（官網）",
       "source": "食べログ（店舗会員）：席数 48「屋形船を貸切って団体様でご利用いただくことが可能」、貸切可（20人以下可）",
       "note": null,
       "fit15": "yes",
@@ -6091,14 +7437,16 @@
     "kids": {
       "allowed": "age-limit",
       "minAge": null,
-      "kidsMenu": null,
-      "note": "網路訂位限小學生以上；6 歲以下（含 6 歲）要先洽詢（因為和其他客人併船）"
+      "kidsMenu": true,
+      "note": "網路訂位限小學生以上；6 歲以下（含 6 歲）要先洽詢（因為和其他客人併船）；小學生以上和大人同價；兒童飯糰套餐（キッズおにぎりセット）500 円（官網、観光三重）"
     },
     "smoking": "分煙",
     "extra": {
       "inclusion": "F",
       "conflicts": [
-        "Google 沒有營業時間"
+        "Google 沒有營業時間",
+        "伊勢海老コース：官網 8,950 円、食べログ 9,450 円；2023 年介紹文是舊價",
+        "晚餐船：官網營業 11:30～20:30，但只寫明午餐船 12:30 一班（約 80 分）"
       ],
       "departures": [
         "12:30",
@@ -6173,7 +7521,22 @@
     "closedNote": "無休（食べログ）",
     "febNote": null,
     "closures": [],
-    "photos": [],
+    "photos": [
+      {
+        "url": "https://www.kairakuen.net/img/mainimg01.jpg",
+        "page": "https://www.kairakuen.net/",
+        "kind": "official",
+        "credit": "海楽園",
+        "license": null
+      },
+      {
+        "url": "https://www.kairakuen.net/img/mainimg02.jpg",
+        "page": "https://www.kairakuen.net/",
+        "kind": "official",
+        "credit": "海楽園",
+        "license": null
+      }
+    ],
     "links": {
       "official": "https://www.kairakuen.net/",
       "googleMaps": "https://maps.google.com/?cid=12287900415283549968",
@@ -6206,6 +7569,18 @@
         "note": "觀光三重：「味な宿」、座敷釣り、吃到飽方案要洽詢",
         "type": "tourism",
         "url": "https://www.kankomie.or.jp/spot/1447"
+      },
+      {
+        "type": "official",
+        "url": "https://iseshima.kairakuen.net/archives/26",
+        "retrieved": "2026-10-18",
+        "note": "Q&A：晚餐只給住客、沒有電梯、送迎 2027-01-12 停駛、兒童餐規定"
+      },
+      {
+        "type": "booking-site",
+        "url": "https://www.jalan.net/yad341780",
+        "retrieved": "2026-10-18",
+        "note": "じゃらん 住宿 3.8（441 則）"
       }
     ],
     "verified": false,
@@ -6261,8 +7636,22 @@
       ],
       "dinner": null
     },
-    "mustTry": [],
-    "menu": [],
+    "mustTry": [
+      "伊勢海老・鮑の会席（伊勢龍蝦、鮑魚會席，含あわび踊り焼き）",
+      "座敷釣り（從客房窗口釣魚，釣具組 1,500 円）"
+    ],
+    "menu": [
+      {
+        "url": "https://www.kairakuen.net/meal/",
+        "source": "official",
+        "retrieved": "2026-10-18"
+      },
+      {
+        "url": "https://tabelog.com/mie/A2403/A240302/24000609/dtlmenu/photo/",
+        "source": "tabelog",
+        "retrieved": "2026-10-18"
+      }
+    ],
     "ratings": {
       "tabelog": 3.07,
       "tabelogReviews": 13,
@@ -6272,7 +7661,7 @@
     },
     "tabelogOwner": false,
     "googleName": null,
-    "notes": "實際型態是建在小浜灣海上的小旅館（官網「海辺の小旅館」，觀光三重「味な宿」），可以在房間裡釣魚（座敷釣り）。食べログ寫中午 11:30～14:00 營業，但官網、觀光三重都沒寫非住客的午餐，要打電話確認。鳥羽站搭計程車 5 分。",
+    "notes": "實際型態是建在小浜灣海上的小旅館（官網「海辺の小旅館」，觀光三重「味な宿」），可以在房間裡釣魚（座敷釣り）。食べログ寫中午 11:30～14:00 營業，但官網、觀光三重都沒寫非住客的午餐，要打電話確認。鳥羽站搭計程車 5 分。 官網 Q&A 寫晚餐只給住客；非住客的午餐或只用餐方案，所有來源都沒寫，要電話 0599-25-3202 問。",
     "group": {
       "seats": null,
       "maxReservation": null,
@@ -6304,8 +7693,13 @@
       "kind": "海上旅館（兼料亭）",
       "nonGuestLunch": "未確認",
       "conflicts": [
-        "Google 沒有營業時間"
+        "Google 沒有營業時間",
+        "官網同時寫鳥羽站步行 3 分和 10 分"
       ]
+    },
+    "accessibility": {
+      "barrierFree": "沒有電梯、階梯多，輪椅不能進室內（官網 Q&A）",
+      "note": "送迎巴士 2027-01-12 起停駛（官網 Q&A）"
     }
   },
   {
