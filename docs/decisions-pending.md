@@ -18,3 +18,21 @@
 | 2026-10-18 | T7d | ロッキー的 `dinnerAccess` 設 `car` | 不供餐、口コミ只提到去 AEON 採買，沒有步行可到的晚餐店；子地區 toba-outskirts 是 `needsCar` | 改回 null，留給 T7f 的缺漏檢查判斷 |
 | 2026-10-18 | T7d | 銀鱗的 `group.wholeRental` 設 `true` | 官網料金頁寫「全館貸切りなども可能」（價格要洽詢） | 改回 null |
 | 2026-10-18 | T7d | 定洋的 source `https://4travel.jp/dm_hotel-10058241` 刪掉，改成 dm_hotel-10048688 | 讀文 subagent 發現舊網址其實是「漁師の宿 やまよ」 | 從 git 歷史加回 |
+| 2026-10-18 | T7e | 相差的伝洋、花椿（任務卡舉的 F③ 例子）**沒有新增**，候選改成 `pending` | 楽天日帰り沒有方案、官網沒寫非住客用餐（伝洋官網憑證錯誤打不開）；CONVENTIONS「能不能讓非會員用餐不確定時，標待確認先不算進納入數」 | 電話確認可以後，照 T7e 新增其他店的方式建資料（候選 `tabelog-24008197`、`tabelog-24003550`） |
+| 2026-10-18 | T7e | 住宿兼用餐的 F③ 用獨立的餐廳 id `<住宿 id>-dining`（みち潮、神具良、サン浦島、山海荘），`extra.lodgingId` 指回住宿，Google 連結、座標、星數借住宿本體 | F③「住宿本體另外收在 lodging.json，餐廳這筆的 notes 註明」；id 全專案唯一，不能和住宿同 id | 刪掉這 4 筆和候選清單的對應（候選 `tabelog-24009973`、`-24006751`、`-24002026` 改回 excluded，`toba-kamishima-sankaiso-dining` 刪掉） |
+| 2026-10-18 | T7e | 丸仙、CaroCaro 判成「接受非住客用餐」：丸仙依官網預約頁「不住宿也可以只訂餐」；CaroCaro 依食べログ「日帰りの方の送迎は行っておりません」和官網的日帰りプラン入口（沒有明寫「非住客」） | 寫明日帰り客的存在就等於接受非住客；浦村、國崎晚上缺店 | CaroCaro 改成 `pending`、刪掉 `toba-carocaro` |
+| 2026-10-18 | T7e | 戸田家的非住客昼食標 `pending`（不新增） | 楽天昼食方案只到 2027-01-31，2 月方案還沒上架；鳥羽站周邊不缺店 | 2 月方案上架後新增 `toba-todaya-dining` |
+| 2026-10-18 | T7e | D②「附近口コミ數最多的 1～3 家」：東の窓 取梵天、天海、Grow（晚上營業的相差・畔蛸 3 家）；なおみ 取たくちゃん；Anchor.／MFR 用 F③ 的 CaroCaro（要開車），沒有另外補 | 千、おくのせこ 只營業到下午，不算晚餐；浦村 not-included 的店都沒有晚上營業的來源 | 刪掉對應的店 |
+| 2026-10-18 | T7e | Grow 的 fit15 判 `unknown`（最大予約 14 人、貸切 20 人以下互相矛盾）；CaroCaro 判 `yes`（最大予約 20）但 note 寫晚餐限中學生以上 | 照 T4b 喜久屋的前例；fit15 規則只看人數 | 改 `group.fit15` |
+| 2026-10-18 | T7e | 新店的營業時間：CaroCaro 官網只寫不定休、食べログ寫月火休 → 月、火設 `null`（不知道）；たくちゃん 午餐沒有打烊時間 → 只記晚上；梵天 用食べログ（るるぶ寫 21:00 打烊記在 conflicts） | 「不知道就 null」；食べログ在優先順序裡，るるぶ不在 | 改 `hours` |
+| 2026-10-18 | T7e | 舊 71 家的 anchors 在跑 `restaurant-anchors.mjs --write` 後還原成原值，只保留新店的 anchors | 任務說第 1 批不動舊店；舊店重算是 T7f | T7f 重跑時會一起更新 |
+| 2026-10-18 | T7e | 第 2 批 `menu`：食べログ只有使用者投稿的菜單照片、沒有文字菜單的店，記 `dtlmenu/photo/` 的連結（17 家）；有文字菜單記 `dtlmenu/`，有コース記 `party/` | CONVENTIONS「不存菜單照片，要看就點 menu 的連結」；這些店多半沒有官網菜單，沒有連結就看不到菜單 | 刪掉 `menu` 裡網址結尾是 `dtlmenu/photo/` 的項目 |
+| 2026-10-18 | T7e | Dining 白石 的 `links.googleMaps` 借用潮路亭（住宿 `toba-shiojitei`）的 cid，`googleName` 記潮路亭，Google 星數不填（`ratings.note` 註明） | 「每筆都要有 `links.googleMaps`」；Google 搜尋沒有白石的獨立店家頁；住宿星數不代表餐廳評價 | 把 `links.googleMaps`、`googleName` 改回 null |
+| 2026-10-18 | T7e | ふる里館 `fit15` unknown → `split`（`group.seats` 32） | fit15 規則：有明確席數 20 以上而且可以訂位 → split；ホットペッパー（2020）32 席、電話可訂、不能包場 | `group.fit15` 改回 unknown、`seats` 改回 null |
+| 2026-10-18 | T7e | 海楽園 **沒有刪除或改 pending**，只在 `notes`、`questions.md` 寫「晚餐只給住客、非住客午餐沒有來源」 | 第 2 批的範圍是補照片、菜單、讀文，不重判納入；午餐能不能吃還不確定（不是確定不行） | 確認不行的話，候選改成 excluded、刪掉 `toba-kairakuen` |
+| 2026-10-18 | T7e | 讀文回填的事實只寫進原本是 null 的欄位；和現有值不同的（席數、營業時間、座位）寫進 `extra.conflicts`，不覆蓋；屋形船 おきた 的 `mustTry` 從 5 道減成筆記 `[招牌]` 的 3 道 | 現有值多半來自食べログ（在優先順序裡），讀文來源多是口コミ站或舊介紹文；CONVENTIONS mustTry 2～3 道 | 依 `extra.conflicts` 改值；おきた 的 5 道在 git 歷史（c2c670c 之前） |
+| 2026-10-18 | T7e | 第 3 批 `fit15` 改 4 家：はっかい split → `yes`（ホットペッパー 2020：宴會最多 40 人，`group.maxReservation` 40）；みなと食堂 unknown → `yes`（官網宴會頁：包場最多約 50 人）；モトかき unknown → `split`（Retty：100 席全桌席，完全預約制）；山安 パールロード unknown → `split`（Retty：可容納 350 人，ebica 預約） | fit15 規則：來源寫最大予約或包場 15 人以上 → yes；有 20 席以上而且可以訂位 → split | `group.fit15` 改回原值（はっかい split、其他 unknown），はっかい 的 `maxReservation` 改回 null |
+| 2026-10-18 | T7e | 讀文回填的事實沒有對應的結構化欄位時（價格、停車、付款、時間限制、官網菜單頁），寫進新的 `extra.dossierFacts`（字串陣列，附來源網址），`price` 不從文字自動轉 | 「不知道就 null」；吃到飽的大人／小孩價、時價很難轉成 `[最低, 最高]`；放 extra 不會遺失，T7f 或 T7g 可以再轉 | 刪掉 `extra.dossierFacts`（資訊仍在筆記裡） |
+| 2026-10-18 | T7e | 照片只採用官網網域的照片，讀文回報的媒體照片（みえメン 的七越本店、觀光三重 的やま海）不用，改用 Google 主圖 | CONVENTIONS §4「照片」的順序是官網 → Google，媒體不在清單 | 換成筆記裡的媒體照片網址 |
+| 2026-10-18 | T7e | 筆記沒有 `[招牌]` 的店 `mustTry` 留空（大春、オレンジ、中山牡蠣、重太郎屋、ポセイドン、天海、たくちゃん），不用食べログ菜單或コース名稱補 | CONVENTIONS：`mustTry` 從讀文筆記的 `[招牌]` 整理 | 從食べログ `dtlmenu/`、`party/` 挑 2～3 道補上 |
+| 2026-10-18 | T7e | 黒潮 相差店 的 `links.instagram` 不填（官網連的是伊勢店 @hana_seafood_don）；喜久屋 保留食べログ的 @104kikuya（官網寫 kikuya104）、馳走 保留 @tisou.toba（官網另有 @chiso_toba），差異寫在 `ig-notes.md` | 不確定是同一家店的帳號時不填；兩個都可能對時保留現有值 | 改 `links.instagram` |

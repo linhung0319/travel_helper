@@ -1511,9 +1511,9 @@
     },
     "region": "toba-station",
     "category": null,
-    "status": "not-included",
-    "reason": "食べログ篩選：貸切可",
-    "pointId": null,
+    "status": "included",
+    "reason": null,
+    "pointId": "toba-horumon-takuchan",
     "ratings": {
       "tabelog": 3.04,
       "tabelogReviews": 6
@@ -1521,7 +1521,10 @@
     "links": {
       "tabelog": "https://tabelog.com/mie/A2403/A240302/24019753/"
     },
-    "note": null
+    "note": "T7e：晚上 17:00～22:00，補旅館なおみ的晚餐缺口",
+    "criteria": [
+      "D2"
+    ]
   },
   {
     "key": "jubilee-tea-and-bakes",
@@ -1569,8 +1572,8 @@
     },
     "region": "toba-station",
     "category": "料理旅館、ビュッフェ",
-    "status": "excluded",
-    "reason": "住宿本體（見 lodging toba-todaya）；食べログ篩選：個室",
+    "status": "pending",
+    "reason": "T7e：F③ 待確認：楽天有非住客昼食方案（12～14 時、2～99 人、10,450～17,600 円），但期間到 2027-01-31，2 月方案還沒上架；住宿本體見 lodging toba-todaya",
     "pointId": null,
     "ratings": {
       "tabelog": 3.42,
@@ -3925,9 +3928,9 @@
     },
     "region": "uramura",
     "category": "料理旅館",
-    "status": "excluded",
-    "reason": "住宿本體（見 lodging toba-motoura-sun-urashima）；食べログ篩選：個室",
-    "pointId": null,
+    "status": "included",
+    "reason": null,
+    "pointId": "toba-motoura-sun-urashima-dining",
     "ratings": {
       "tabelog": 3.3,
       "tabelogReviews": 55
@@ -3935,7 +3938,10 @@
     "links": {
       "tabelog": "https://tabelog.com/mie/A2403/A240302/24002026/"
     },
-    "note": null
+    "note": "T7e：楽天有日帰り昼食（風姿花伝）；住宿本體是 lodging toba-motoura-sun-urashima",
+    "criteria": [
+      "F3"
+    ]
   },
   {
     "key": "tabelog-24000352",
@@ -3944,9 +3950,9 @@
     },
     "region": "uramura",
     "category": "オーベルジュ",
-    "status": "excluded",
-    "reason": "住宿本體（不在 lodging.json）；食べログ篩選：貸切可",
-    "pointId": null,
+    "status": "included",
+    "reason": null,
+    "pointId": "toba-carocaro",
     "ratings": {
       "tabelog": 3.25,
       "tabelogReviews": 43
@@ -3954,7 +3960,11 @@
     "links": {
       "tabelog": "https://tabelog.com/mie/A2403/A240302/24000352/"
     },
-    "note": null
+    "note": "T7e：食べログ「日帰りの方の送迎は行っておりません」、官網有日帰りプラン → 接受非住客；補 Anchor.、MFR 晚餐（要開車）；晚餐限中學生以上",
+    "criteria": [
+      "F3",
+      "D2"
+    ]
   },
   {
     "key": "tabelog-24016523",
@@ -3973,7 +3983,7 @@
     "links": {
       "tabelog": "https://tabelog.com/mie/A2403/A240302/24016523/"
     },
-    "note": null
+    "note": "T7e：F③ 查過，非住客用餐沒有來源（楽天日帰り沒有方案），維持排除"
   },
   {
     "key": "tabelog-24000650",
@@ -4210,9 +4220,9 @@
     },
     "region": "osatsu",
     "category": null,
-    "status": "not-included",
-    "reason": "食べログ篩選：個室",
-    "pointId": null,
+    "status": "included",
+    "reason": null,
+    "pointId": "toba-osatsu-bonten",
     "ratings": {
       "tabelog": 3.09,
       "tabelogReviews": 19
@@ -4220,7 +4230,10 @@
     "links": {
       "tabelog": "https://tabelog.com/mie/A2403/A240302/24008421/"
     },
-    "note": null
+    "note": "T7e：晚上營業（17:00～），補東の窓的晚餐缺口",
+    "criteria": [
+      "D2"
+    ]
   },
   {
     "key": "tabelog-24015823",
@@ -4239,7 +4252,7 @@
     "links": {
       "tabelog": "https://tabelog.com/mie/A2403/A240302/24015823/"
     },
-    "note": null
+    "note": "T7e：只營業到下午（D② 晚餐缺口不適用）"
   },
   {
     "key": "tabelog-24007179",
@@ -4258,7 +4271,7 @@
     "links": {
       "tabelog": "https://tabelog.com/mie/A2403/A240302/24007179/"
     },
-    "note": null
+    "note": "T7e：只營業到下午（D② 晚餐缺口不適用）"
   },
   {
     "key": "tabelog-24018112",
@@ -4267,9 +4280,9 @@
     },
     "region": "osatsu",
     "category": null,
-    "status": "not-included",
-    "reason": "食べログ篩選：貸切可",
-    "pointId": null,
+    "status": "included",
+    "reason": null,
+    "pointId": "toba-adako-oyster-grow",
     "ratings": {
       "tabelog": 3.05,
       "tabelogReviews": 5
@@ -4277,7 +4290,10 @@
     "links": {
       "tabelog": "https://tabelog.com/mie/A2403/A240302/24018112/"
     },
-    "note": "T4a 記的來源種類「日文媒體」沒有記是哪一篇"
+    "note": "T7e：和東の窓同在畔蛸，晚餐完全預約制",
+    "criteria": [
+      "D2"
+    ]
   },
   {
     "key": "tabelog-24007994",
@@ -4286,9 +4302,9 @@
     },
     "region": "osatsu",
     "category": null,
-    "status": "not-included",
-    "reason": "食べログ篩選：個室",
-    "pointId": null,
+    "status": "included",
+    "reason": null,
+    "pointId": "toba-osatsu-tenkai",
     "ratings": {
       "tabelog": 3.04,
       "tabelogReviews": 7
@@ -4296,7 +4312,10 @@
     "links": {
       "tabelog": "https://tabelog.com/mie/A2403/A240302/24007994/"
     },
-    "note": null
+    "note": "T7e：晚上營業（17:00～），補東の窓的晚餐缺口",
+    "criteria": [
+      "D2"
+    ]
   },
   {
     "key": "kyu-and-shiro",
@@ -4331,8 +4350,8 @@
     },
     "region": "osatsu",
     "category": "料理旅館、海鮮",
-    "status": "excluded",
-    "reason": "住宿本體（不在 lodging.json）；食べログ篩選：貸切可・個室",
+    "status": "pending",
+    "reason": "T7e：F③ 待確認：非住客能不能用餐沒有來源（楽天日帰り沒有方案、官網沒寫）；官網 denyou.gr.jp 憑證錯誤打不開",
     "pointId": null,
     "ratings": {
       "tabelog": 3.3,
@@ -4350,8 +4369,8 @@
     },
     "region": "osatsu",
     "category": "料理旅館",
-    "status": "excluded",
-    "reason": "住宿本體（不在 lodging.json）；食べログ篩選：個室",
+    "status": "pending",
+    "reason": "T7e：F③ 待確認：非住客能不能用餐沒有來源（楽天日帰り沒有方案、官網沒寫）",
     "pointId": null,
     "ratings": {
       "tabelog": 3.25,
@@ -4369,9 +4388,9 @@
     },
     "region": "osatsu",
     "category": "料理旅館、海鮮",
-    "status": "excluded",
-    "reason": "住宿本體（見 lodging toba-osatsu-michishio）；食べログ篩選：貸切可",
-    "pointId": null,
+    "status": "included",
+    "reason": null,
+    "pointId": "toba-osatsu-michishio-dining",
     "ratings": {
       "tabelog": 3.23,
       "tabelogReviews": 33
@@ -4379,7 +4398,10 @@
     "links": {
       "tabelog": "https://tabelog.com/mie/A2403/A240302/24009973/"
     },
-    "note": null
+    "note": "T7e：楽天、官網有日帰り夕食（非住客）；住宿本體是 lodging toba-osatsu-michishio",
+    "criteria": [
+      "F3"
+    ]
   },
   {
     "key": "tabelog-24001920",
@@ -4398,7 +4420,7 @@
     "links": {
       "tabelog": "https://tabelog.com/mie/A2403/A240302/24001920/"
     },
-    "note": null
+    "note": "T7e：F③ 查過，非住客用餐沒有來源（楽天日帰り沒有方案），維持排除"
   },
   {
     "key": "tabelog-24009863",
@@ -4417,7 +4439,7 @@
     "links": {
       "tabelog": "https://tabelog.com/mie/A2403/A240302/24009863/"
     },
-    "note": null
+    "note": "T7e：F③ 查過，非住客用餐沒有來源（楽天日帰り沒有方案），維持排除"
   },
   {
     "key": "tabelog-24007480",
@@ -4455,7 +4477,7 @@
     "links": {
       "tabelog": "https://tabelog.com/mie/A2403/A240302/24009724/"
     },
-    "note": null
+    "note": "T7e：F③ 查過，非住客用餐沒有來源（楽天日帰り沒有方案），維持排除"
   },
   {
     "key": "tabelog-24007068",
@@ -4474,7 +4496,7 @@
     "links": {
       "tabelog": "https://tabelog.com/mie/A2403/A240302/24007068/"
     },
-    "note": null
+    "note": "T7e：F③ 查過，非住客用餐沒有來源（楽天日帰り沒有方案），維持排除"
   },
   {
     "key": "tabelog-24007466",
@@ -4493,7 +4515,7 @@
     "links": {
       "tabelog": "https://tabelog.com/mie/A2403/A240302/24007466/"
     },
-    "note": null
+    "note": "T7e：F③ 查過，非住客用餐沒有來源（楽天日帰り沒有方案），維持排除"
   },
   {
     "key": "tabelog-24008738",
@@ -4731,9 +4753,9 @@
     },
     "region": "kuzaki",
     "category": null,
-    "status": "not-included",
-    "reason": "食べログ篩選：貸切可",
-    "pointId": null,
+    "status": "included",
+    "reason": null,
+    "pointId": "toba-ijika-poseidon",
     "ratings": {
       "tabelog": 3.05,
       "tabelogReviews": 12
@@ -4741,7 +4763,10 @@
     "links": {
       "tabelog": "https://tabelog.com/mie/A2403/A240302/24010466/"
     },
-    "note": null
+    "note": "T7e：國崎・パールロード週三、週四中午只剩 1 家（D 任何一天 0 家的修訂）；官網網域已失效",
+    "criteria": [
+      "D1"
+    ]
   },
   {
     "key": "tabelog-24002260",
@@ -4760,7 +4785,7 @@
     "links": {
       "tabelog": "https://tabelog.com/mie/A2403/A240302/24002260/"
     },
-    "note": null
+    "note": "T7e：F③ 查過，非住客用餐沒有來源（楽天日帰り沒有方案），維持排除"
   },
   {
     "key": "tabelog-24007053",
@@ -4779,7 +4804,7 @@
     "links": {
       "tabelog": "https://tabelog.com/mie/A2403/A240302/24007053/"
     },
-    "note": null
+    "note": "T7e：F③ 查過，非住客用餐沒有來源（楽天日帰り沒有方案），維持排除"
   },
   {
     "key": "tabelog-24006751",
@@ -4788,9 +4813,9 @@
     },
     "region": "kuzaki",
     "category": "ホテル",
-    "status": "excluded",
-    "reason": "住宿本體（見 lodging toba-ijika-kagura）；食べログ篩選：個室",
-    "pointId": null,
+    "status": "included",
+    "reason": null,
+    "pointId": "toba-ijika-kagura-dining",
     "ratings": {
       "tabelog": 3.2,
       "tabelogReviews": 36
@@ -4798,7 +4823,11 @@
     "links": {
       "tabelog": "https://tabelog.com/mie/A2403/A240302/24006751/"
     },
-    "note": null
+    "note": "T7e：楽天有不含客房的日帰り昼食；住宿本體是 lodging toba-ijika-kagura；國崎週三、週四缺店",
+    "criteria": [
+      "F3",
+      "D1"
+    ]
   },
   {
     "key": "tabelog-24006785",
@@ -4817,7 +4846,7 @@
     "links": {
       "tabelog": "https://tabelog.com/mie/A2403/A240302/24006785/"
     },
-    "note": null
+    "note": "T7e：F③ 查過，非住客用餐沒有來源（楽天日帰り沒有方案），維持排除"
   },
   {
     "key": "tabelog-24021016",
@@ -4845,9 +4874,9 @@
     },
     "region": "kuzaki",
     "category": null,
-    "status": "excluded",
-    "reason": "住宿本體（不在 lodging.json）；食べログ篩選：貸切可",
-    "pointId": null,
+    "status": "included",
+    "reason": null,
+    "pointId": "toba-kuzaki-marusen",
     "ratings": {
       "tabelog": 3.06,
       "tabelogReviews": 7
@@ -4855,7 +4884,12 @@
     "links": {
       "tabelog": "https://tabelog.com/mie/A2403/A240302/24009949/"
     },
-    "note": null
+    "note": "T7e：官網寫不住宿也能只訂餐（F③）；館內海女小屋かまど（F②）；國崎週三、週四缺店",
+    "criteria": [
+      "F2",
+      "F3",
+      "D1"
+    ]
   },
   {
     "key": "toba-marumitsu-sushi",
@@ -5080,14 +5114,17 @@
     },
     "region": "sugashima",
     "category": "弁当（予約制）",
-    "status": "excluded",
-    "reason": "只做外帶（非甜點）；觀光協會會員名錄有登錄（不算來源）",
-    "pointId": null,
+    "status": "included",
+    "reason": null,
+    "pointId": "toba-sugashima-okageya",
     "ratings": {
       "google": 4.9,
       "googleReviews": 7
     },
-    "note": "T4a 記的來源種類「觀光三重」沒有記是哪一篇"
+    "note": "T7e：菅島週三沒有午餐（重太郎屋週三休），照 D③ 收外帶便當",
+    "criteria": [
+      "D3"
+    ]
   },
   {
     "key": "toba-kamishima-yamami",
@@ -5116,5 +5153,39 @@
       "snack"
     ],
     "note": "地區保底（離島（神島） A～C 都沒有）"
+  },
+  {
+    "key": "toba-kamishima-sankaiso-dining",
+    "name": {
+      "ja": "潮騒の宿 山海荘（昼食）"
+    },
+    "region": "kamishima",
+    "category": "民宿の昼食（予約制）",
+    "status": "included",
+    "criteria": [
+      "D1"
+    ],
+    "reason": null,
+    "pointId": "toba-kamishima-sankaiso-dining",
+    "ratings": {
+      "google": 4.3,
+      "googleReviews": 119
+    },
+    "links": {
+      "official": "http://www.sankaiso.net/"
+    },
+    "contexts": [
+      "lunch"
+    ],
+    "mentions": [
+      {
+        "type": "tourism",
+        "url": "https://www.kankomie.or.jp/report/1412",
+        "title": "観光三重 神島レポート（2023-02-11 取材）",
+        "highlight": "昼食「潮騒 幕の内」完全予約制，非住客也可以，可訂外帶便當",
+        "retrieved": "2026-10-18"
+      }
+    ],
+    "note": "T7e 新增：神島唯一的店やま海營業時間不明（D 任何一天 0 家）；住宿本體是 lodging toba-kamishima-sankaiso"
   }
 ]
