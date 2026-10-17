@@ -231,8 +231,8 @@ travel_helper/
   "priceRange": "¥1500～3000",        // 給人看
   "price": { "lunch": [1500, 3000], "dinner": null },   // 每人（円），估預算、價位標籤用
   "stayMinutes": null,               // null 時依料理種類用預設值（§5.5）
-  "mustTry": ["伊勢海老丼"],
-  "menu": [{ "url": "...", "source": "instagram", "retrieved": "..." }],
+  "mustTry": ["伊勢龍蝦丼（伊勢海老丼）2,800 円"],   // 招牌菜 2～3 道，附日文；有寫價格就記（見 §4「菜單」）
+  "menu": [{ "url": "https://tabelog.com/.../dtlmenu/", "source": "tabelog", "retrieved": "..." }],   // 只記菜單頁的連結，不抄完整菜單
   "ratings": { "tabelog": 3.62, "tabelogReviews": 120, "google": 4.3, "googleReviews": 850 },
   "tabelogOwner": false,             // 食べログ店舗会員（資料由店家維護）
   "googleName": null,                // Google 上的店名和食べログ不同時
@@ -245,7 +245,7 @@ travel_helper/
     "fitSubgroup": "yes",            // 分組 4～6 人：yes | no | unknown
     "privateRoom": true,             // 有沒有包廂
     "buyout": "20 人以上可以包場",
-    "groupMenu": "團體需事先訂套餐",
+    "groupMenu": "宴會套餐 5,500 円起（10 人以上、3 天前預約）",   // fit15 是 yes 或 split 的店才查
     "source": "tabelog"
   },
   "reservation": {                   // 能不能訂位、怎麼訂
@@ -405,6 +405,19 @@ travel_helper/
 - **候選階段讀過的文章不要白讀**：T4a 這類候選名單步驟讀列表型文章（「鳥羽ランチ 11 選」）時，在候選清單該店的 `mentions[].highlight` 寫一句這篇為什麼推薦這家，之後交給該店的 subagent 當已知來源。
 - `summary.cons` 要涵蓋結構化欄位裡的問題（不能訂位、公休日、2 月休業、長階梯、只有榻榻米、不接受小孩、要搭車、坐不下 15 人）。
 
+### 菜單
+菜單很零散（官網的圖片或 PDF、食べログ、IG、Google Maps 的使用者照片），價格常改又有季節限定，所以**不蒐集完整菜單**，只記對決策有用、又幾乎不用多花工夫的部分：
+
+| 欄位 | 內容 | 從哪來 |
+|---|---|---|
+| `mustTry` | 招牌菜 2～3 道，附日文名稱，來源有寫價格就記 | 讀文 subagent 的筆記（`[招牌]` 標籤），多篇提到的優先 |
+| `menu` | 菜單頁的**連結**（食べログ的菜單、コース分頁，官網的菜單頁） | 查食べログ店家頁時順便記；不抄內容 |
+| `group.groupMenu` | 有沒有團體或宴會套餐、每人價格、人數條件、要幾天前訂 | **只查 fit15 是 yes 或 split 的店**：食べログ的コース頁或官網。很多店團體只能點套餐，訂 15 人時最需要這個 |
+| `kids.kidsMenu` | 有沒有兒童餐 | 食べログ、心得 |
+
+- 不存菜單照片（版權屬店家或投稿者），要看就點 `menu` 的連結。
+- **完整菜單**留到行程選定後，只查選定的 10～20 家（T18）。
+
 ### 照片
 - **照片**（`photos`）：每筆 1～3 張，**只記 URL，不下載**。來源優先順序：官網（`og:image` 或主視覺）→ 楽天トラベル API 的飯店照片（住宿）→ Wikimedia Commons（景點，記作者和授權）→ Google Maps 上的照片 URL（Chrome，`kind: "google"`，`page` 記 Google Maps 連結）。**不使用食べログ的照片**（版權屬投稿者）。Wikimedia 等可以自由使用的照片才可以存縮圖。官網照片可以由讀文 subagent 順便回報。
 
@@ -421,7 +434,7 @@ travel_helper/
 | 5 住宿讀文 | 每間開 sub，收回欄位寫進 `lodging.json` | 官網（團體、接送、電梯、床、兒童價）、心得 2～3 篇 | `lodging.json`、筆記 |
 | 6 住宿 Chrome | Google Maps 的連結、星數、評論數；楽天沒有的評分（じゃらん） | — | `lodging.json` |
 | 7 餐廳候選 | 食べログ列表（Chrome）＋觀光協會、媒體；套 A～F；列表文章的推薦重點寫進 `mentions[].highlight` | — | `candidates/restaurants.json` |
-| 8 餐廳詳細 | 逐家查食べログ店家頁、Google Maps（Chrome），寫進 `restaurants.json`；同時在背景開 sub 讀文 | 官網、候選清單 `mentions` 裡的文章、心得 1～3 篇 | `restaurants.json`、筆記 |
+| 8 餐廳詳細 | 逐家查食べログ店家頁、Google Maps（Chrome），寫進 `restaurants.json`；店家頁有菜單、コース分頁就記連結（`menu`），fit15 是 yes 或 split 的店再看コース頁記團體套餐（`group.groupMenu`）；同時在背景開 sub 讀文 | 官網、候選清單 `mentions` 裡的文章、心得 1～3 篇 | `restaurants.json`、筆記 |
 | 9 收尾 | `restaurant-anchors.mjs`、`restaurant-gaps.mjs`、地圖檢查 | — | `restaurants.json`、筆記 |
 | 10 摘要與評分 | 先讀 `data/raw/toba/assessment-notes.md`（校準範例），每個類型一次讀完筆記，寫 `summary`、`assessment`、`tier` | 筆記不夠時補讀 | 三個資料檔 |
 

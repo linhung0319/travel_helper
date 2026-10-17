@@ -409,6 +409,7 @@ T7c → T7d → T7e → T7f → T7g → T8a → T8b → T8c → T8d → T8e → 
 #### T7e 餐廳 〔M〕（Chrome）
 - 照修訂後的納入標準補店：D 的「任何一天 0 家」（菅島週三、國崎週三週四）、F③ 接受非住客用餐的料理旅館（相差的伝洋、花椿等）、D③ 離島便當（菅島 おかげ屋）；新店照 T4b 的方式查詳細資料。
 - 全部餐廳補照片（官網或 Google Maps 的照片 URL，不用食べログ的照片）。
+- 菜單（CONVENTIONS §4「菜單」）：`mustTry` 從讀文筆記的 `[招牌]` 整理；`menu` 記食べログ菜單、コース分頁或官網菜單頁的連結；fit15 是 yes 或 split 的店（約 30 家）看コース頁，補 `group.groupMenu`。
 - **讀文**：每家店一個 subagent（來源少的 3 家合一個），候選清單 `mentions` 裡的文章當已知來源，再找 1～3 篇心得，寫筆記。
 - 只寫 `restaurants.json`、`data/raw/toba/` 的餐廳部分（`candidates/restaurants.json`、筆記、`ig-notes.md`、`log/T7e.md`；`README.md` 只改餐廳那一節）。
 
@@ -429,7 +430,7 @@ T7c → T7d → T7e → T7f → T7g → T8a → T8b → T8c → T8d → T8e → 
 | a 子地區與景點 〔M〕 | 流程步驟 0～3：先定子地區，寫進 `areas.json` 該區域的 `regions`（例外允許，見 CONVENTIONS §2），👤 確認後列景點候選；每個景點一個讀文 subagent；Google Maps 用 Chrome 批次查 | WebSearch、subagent、Chrome | `areas.json` 的 regions、`spots.json`、`candidates/spots.json`、筆記 |
 | b 住宿 〔M〕 | 流程步驟 4～6：用 T7d 的 `scripts/rakuten.mjs` 依子地區和 2 月日期撈候選，套 §5.7 門檻；包棟、小民宿另外找；每間一個讀文 subagent；Google Maps 用 Chrome | 楽天 API、subagent、Chrome | `lodging.json`、`candidates/lodging.json`、筆記 |
 | c 餐廳候選 〔M〕 | 流程步驟 7：依子地區用食べログ列表、觀光協會、媒體蒐集，套 A～F（同 T4a）；列表文章的推薦重點寫進 `mentions` | Chrome | `candidates/restaurants.json` |
-| d 餐廳詳細 〔M～L〕 | 流程步驟 8：逐家查食べログ、Google Maps（同 T4b），同時在背景開讀文 subagent；**可以依子地區拆成 2 個並行 session**，merge 時陣列衝突兩邊都保留 | Chrome、subagent | `restaurants.json`、`ig-notes.md`、筆記 |
+| d 餐廳詳細 〔M～L〕 | 流程步驟 8：逐家查食べログ、Google Maps（同 T4b），記菜單連結、fit15 是 yes 或 split 的店的團體套餐，同時在背景開讀文 subagent；**可以依子地區拆成 2 個並行 session**，merge 時陣列衝突兩邊都保留 | Chrome、subagent | `restaurants.json`、`ig-notes.md`、筆記 |
 | e 收尾 〔S〕 | anchors（OSRM）、缺漏檢查、地圖檢查（同 T4c、T7f） | 腳本 | `restaurants.json`、筆記 |
 | f 摘要與評分 〔M〕 | 流程步驟 10：先讀 `data/raw/toba/assessment-notes.md`，再只讀資料檔和筆記，照 §5.1 寫 `summary`、`assessment`、`tier`（同 T7g；可以依類型拆 3 個並行） | — | 三個檔案 |
 
@@ -504,6 +505,7 @@ T7c → T7d → T7e → T7f → T7g → T8a → T8b → T8c → T8d → T8e → 
 ### T18 👤 出發前驗證 〔M〕
 - 2027 年 1 月下旬：重新確認行程中各點的營業時間、冬季停業、店家 IG 上的臨時公告、近鐵時刻表。
 - 15 人的訂位**不能等到這時候**：住宿、團體用餐、特急座位要在行程大致確定後（建議 12 月）就先訂，這裡只做最後確認。
+- **選定店家的完整菜單**：行程裡的餐廳（約 10～20 家）從 `menu` 的連結、官網、IG 整理菜單重點和價格，給點餐和訂團體套餐用（之前的任務只記招牌菜和連結，見 CONVENTIONS §4「菜單」）。
 - Claude Code 負責列出要確認的清單，並重新抓取網頁資料。IG：只看行程裡選定的店（約 10～20 家），用 Claude in Chrome 在你在場時查看簡介和最近的貼文，或由你手動確認；不做大量瀏覽。
 
 ---
