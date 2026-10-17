@@ -1,0 +1,12 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://travel-helper.local/schema/sourced-document.schema.json",
+  "title": "格式尚未定案的資料檔",
+  "description": "用在 passes.json、access/*.json、timetables/bus/*.json、timetables/kintetsu/_travel-times.json。負責的任務決定內部格式後，在 docs/requests.md 提出，由 T7 寫成正式 schema。現在只要求最外層是物件、而且有 sources。",
+  "type": "object",
+  "properties": {
+    "retrieved": { "$ref": "common.schema.json#/$defs/date" },
+    "sources": { "$ref": "common.schema.json#/$defs/sources" }
+  },
+  "required": ["sources"]
+}

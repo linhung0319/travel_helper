@@ -1,0 +1,1748 @@
+[
+  {
+    "id": "iseshi",
+    "type": "station",
+    "name": {
+      "ja": "伊勢市",
+      "kana": "いせし",
+      "zh": "伊勢市",
+      "en": "Iseshi"
+    },
+    "area": "ise",
+    "coords": [
+      136.710356,
+      34.491992
+    ],
+    "coordsSource": "osm",
+    "address": "三重県伊勢市吹上一丁目1-57",
+    "links": {
+      "official": "https://www.kintetsu.co.jp/station/station_info/station18017.html"
+    },
+    "operator": "kintetsu",
+    "stationNumber": "M73",
+    "lines": [
+      "山田線"
+    ],
+    "passCovered": true,
+    "staffed": true,
+    "transfers": [
+      "jr-iseshi"
+    ],
+    "coinLockers": null,
+    "accessibility": null,
+    "sources": [
+      {
+        "type": "official",
+        "url": "https://www.kintetsu.co.jp/station/",
+        "retrieved": "2026-10-17",
+        "note": "近鐵官網車站一覽（M.山田線・鳥羽線・志摩線）：站名、所屬路線"
+      },
+      {
+        "type": "official",
+        "url": "https://www.kintetsu.co.jp/station/station_info/station18017.html",
+        "retrieved": "2026-10-17",
+        "note": "近鐵官網車站頁面（設施、時刻表連結）"
+      },
+      {
+        "type": "osm",
+        "url": "https://www.openstreetmap.org/node/332395801",
+        "retrieved": "2026-10-17",
+        "note": "座標"
+      },
+      {
+        "type": "wikipedia",
+        "url": "https://ja.wikipedia.org/wiki/%E4%BC%8A%E5%8B%A2%E5%B8%82%E9%A7%85",
+        "retrieved": "2026-10-17",
+        "note": "所在地、讀音"
+      },
+      {
+        "type": "wikipedia",
+        "url": "https://ja.wikipedia.org/wiki/%E8%BF%91%E9%89%84%E5%B1%B1%E7%94%B0%E7%B7%9A",
+        "retrieved": "2026-10-17",
+        "note": "山田線駅一覧：站號、有無站員"
+      },
+      {
+        "type": "official",
+        "url": "https://www.kintetsu.co.jp/foreign/english/ticket/krp_5day.html",
+        "retrieved": "2026-10-17",
+        "note": "KINTETSU RAIL PASS 5day：近鐵全線可搭乘（特急另外買特急券）"
+      }
+    ],
+    "verified": false
+  },
+  {
+    "id": "ujiyamada",
+    "type": "station",
+    "name": {
+      "ja": "宇治山田",
+      "kana": "うじやまだ",
+      "zh": "宇治山田",
+      "en": "Ujiyamada"
+    },
+    "area": "ise",
+    "coords": [
+      136.713923,
+      34.48825
+    ],
+    "coordsSource": "osm",
+    "address": "三重県伊勢市岩渕二丁目1-43",
+    "links": {
+      "official": "https://www.kintetsu.co.jp/station/station_info/station18018.html"
+    },
+    "operator": "kintetsu",
+    "stationNumber": "M74",
+    "lines": [
+      "山田線",
+      "鳥羽線"
+    ],
+    "passCovered": true,
+    "staffed": true,
+    "transfers": [],
+    "coinLockers": null,
+    "accessibility": null,
+    "sources": [
+      {
+        "type": "official",
+        "url": "https://www.kintetsu.co.jp/station/",
+        "retrieved": "2026-10-17",
+        "note": "近鐵官網車站一覽（M.山田線・鳥羽線・志摩線）：站名、所屬路線"
+      },
+      {
+        "type": "official",
+        "url": "https://www.kintetsu.co.jp/station/station_info/station18018.html",
+        "retrieved": "2026-10-17",
+        "note": "近鐵官網車站頁面（設施、時刻表連結）"
+      },
+      {
+        "type": "osm",
+        "url": "https://www.openstreetmap.org/node/6060489254",
+        "retrieved": "2026-10-17",
+        "note": "座標"
+      },
+      {
+        "type": "wikipedia",
+        "url": "https://ja.wikipedia.org/wiki/%E5%AE%87%E6%B2%BB%E5%B1%B1%E7%94%B0%E9%A7%85",
+        "retrieved": "2026-10-17",
+        "note": "所在地、讀音"
+      },
+      {
+        "type": "wikipedia",
+        "url": "https://ja.wikipedia.org/wiki/%E8%BF%91%E9%89%84%E5%B1%B1%E7%94%B0%E7%B7%9A",
+        "retrieved": "2026-10-17",
+        "note": "山田線駅一覧：站號、有無站員"
+      },
+      {
+        "type": "wikipedia",
+        "url": "https://ja.wikipedia.org/wiki/%E8%BF%91%E9%89%84%E9%B3%A5%E7%BE%BD%E7%B7%9A",
+        "retrieved": "2026-10-17",
+        "note": "鳥羽線駅一覧：站號、有無站員"
+      },
+      {
+        "type": "official",
+        "url": "https://www.kintetsu.co.jp/foreign/english/ticket/krp_5day.html",
+        "retrieved": "2026-10-17",
+        "note": "KINTETSU RAIL PASS 5day：近鐵全線可搭乘（特急另外買特急券）"
+      }
+    ],
+    "verified": false
+  },
+  {
+    "id": "isuzugawa",
+    "type": "station",
+    "name": {
+      "ja": "五十鈴川",
+      "kana": "いすずがわ",
+      "zh": "五十鈴川",
+      "en": "Isuzugawa"
+    },
+    "area": "ise",
+    "coords": [
+      136.727166,
+      34.476489
+    ],
+    "coordsSource": "osm",
+    "address": "三重県伊勢市中村町325",
+    "links": {
+      "official": "https://www.kintetsu.co.jp/station/station_info/station19006.html"
+    },
+    "operator": "kintetsu",
+    "stationNumber": "M75",
+    "lines": [
+      "鳥羽線"
+    ],
+    "passCovered": true,
+    "staffed": true,
+    "transfers": [],
+    "coinLockers": null,
+    "accessibility": null,
+    "sources": [
+      {
+        "type": "official",
+        "url": "https://www.kintetsu.co.jp/station/",
+        "retrieved": "2026-10-17",
+        "note": "近鐵官網車站一覽（M.山田線・鳥羽線・志摩線）：站名、所屬路線"
+      },
+      {
+        "type": "official",
+        "url": "https://www.kintetsu.co.jp/station/station_info/station19006.html",
+        "retrieved": "2026-10-17",
+        "note": "近鐵官網車站頁面（設施、時刻表連結）"
+      },
+      {
+        "type": "osm",
+        "url": "https://www.openstreetmap.org/node/332577724",
+        "retrieved": "2026-10-17",
+        "note": "座標"
+      },
+      {
+        "type": "wikipedia",
+        "url": "https://ja.wikipedia.org/wiki/%E4%BA%94%E5%8D%81%E9%88%B4%E5%B7%9D%E9%A7%85",
+        "retrieved": "2026-10-17",
+        "note": "所在地、讀音"
+      },
+      {
+        "type": "wikipedia",
+        "url": "https://ja.wikipedia.org/wiki/%E8%BF%91%E9%89%84%E9%B3%A5%E7%BE%BD%E7%B7%9A",
+        "retrieved": "2026-10-17",
+        "note": "鳥羽線駅一覧：站號、有無站員"
+      },
+      {
+        "type": "official",
+        "url": "https://www.kintetsu.co.jp/foreign/english/ticket/krp_5day.html",
+        "retrieved": "2026-10-17",
+        "note": "KINTETSU RAIL PASS 5day：近鐵全線可搭乘（特急另外買特急券）"
+      }
+    ],
+    "verified": false
+  },
+  {
+    "id": "asama",
+    "type": "station",
+    "name": {
+      "ja": "朝熊",
+      "kana": "あさま",
+      "zh": "朝熊",
+      "en": "Asama"
+    },
+    "area": "ise",
+    "coords": [
+      136.758024,
+      34.477249
+    ],
+    "coordsSource": "osm",
+    "address": "三重県伊勢市朝熊町小坊山1486",
+    "links": {
+      "official": "https://www.kintetsu.co.jp/station/station_info/station19007.html"
+    },
+    "operator": "kintetsu",
+    "stationNumber": "M76",
+    "lines": [
+      "鳥羽線"
+    ],
+    "passCovered": true,
+    "staffed": false,
+    "transfers": [],
+    "coinLockers": null,
+    "accessibility": null,
+    "sources": [
+      {
+        "type": "official",
+        "url": "https://www.kintetsu.co.jp/station/",
+        "retrieved": "2026-10-17",
+        "note": "近鐵官網車站一覽（M.山田線・鳥羽線・志摩線）：站名、所屬路線"
+      },
+      {
+        "type": "official",
+        "url": "https://www.kintetsu.co.jp/station/station_info/station19007.html",
+        "retrieved": "2026-10-17",
+        "note": "近鐵官網車站頁面（設施、時刻表連結）"
+      },
+      {
+        "type": "osm",
+        "url": "https://www.openstreetmap.org/node/8171977095",
+        "retrieved": "2026-10-17",
+        "note": "座標"
+      },
+      {
+        "type": "wikipedia",
+        "url": "https://ja.wikipedia.org/wiki/%E6%9C%9D%E7%86%8A%E9%A7%85",
+        "retrieved": "2026-10-17",
+        "note": "所在地、讀音"
+      },
+      {
+        "type": "wikipedia",
+        "url": "https://ja.wikipedia.org/wiki/%E8%BF%91%E9%89%84%E9%B3%A5%E7%BE%BD%E7%B7%9A",
+        "retrieved": "2026-10-17",
+        "note": "鳥羽線駅一覧：站號、有無站員"
+      },
+      {
+        "type": "official",
+        "url": "https://www.kintetsu.co.jp/foreign/english/ticket/krp_5day.html",
+        "retrieved": "2026-10-17",
+        "note": "KINTETSU RAIL PASS 5day：近鐵全線可搭乘（特急另外買特急券）"
+      }
+    ],
+    "verified": false
+  },
+  {
+    "id": "ikenoura",
+    "type": "station",
+    "name": {
+      "ja": "池の浦",
+      "kana": "いけのうら",
+      "zh": "池之浦",
+      "en": "Ikenoura"
+    },
+    "area": "toba",
+    "coords": [
+      136.81866,
+      34.479216
+    ],
+    "coordsSource": "osm",
+    "address": "三重県鳥羽市堅神町字宮の前783",
+    "links": {
+      "official": "https://www.kintetsu.co.jp/station/station_info/station19008.html"
+    },
+    "operator": "kintetsu",
+    "stationNumber": "M77",
+    "lines": [
+      "鳥羽線"
+    ],
+    "passCovered": true,
+    "staffed": false,
+    "transfers": [],
+    "coinLockers": null,
+    "accessibility": null,
+    "sources": [
+      {
+        "type": "official",
+        "url": "https://www.kintetsu.co.jp/station/",
+        "retrieved": "2026-10-17",
+        "note": "近鐵官網車站一覽（M.山田線・鳥羽線・志摩線）：站名、所屬路線"
+      },
+      {
+        "type": "official",
+        "url": "https://www.kintetsu.co.jp/station/station_info/station19008.html",
+        "retrieved": "2026-10-17",
+        "note": "近鐵官網車站頁面（設施、時刻表連結）"
+      },
+      {
+        "type": "osm",
+        "url": "https://www.openstreetmap.org/node/8171977096",
+        "retrieved": "2026-10-17",
+        "note": "座標"
+      },
+      {
+        "type": "wikipedia",
+        "url": "https://ja.wikipedia.org/wiki/%E6%B1%A0%E3%81%AE%E6%B5%A6%E9%A7%85",
+        "retrieved": "2026-10-17",
+        "note": "所在地、讀音"
+      },
+      {
+        "type": "wikipedia",
+        "url": "https://ja.wikipedia.org/wiki/%E8%BF%91%E9%89%84%E9%B3%A5%E7%BE%BD%E7%B7%9A",
+        "retrieved": "2026-10-17",
+        "note": "鳥羽線駅一覧：站號、有無站員"
+      },
+      {
+        "type": "official",
+        "url": "https://www.kintetsu.co.jp/foreign/english/ticket/krp_5day.html",
+        "retrieved": "2026-10-17",
+        "note": "KINTETSU RAIL PASS 5day：近鐵全線可搭乘（特急另外買特急券）"
+      }
+    ],
+    "verified": false
+  },
+  {
+    "id": "toba",
+    "type": "station",
+    "name": {
+      "ja": "鳥羽",
+      "kana": "とば",
+      "zh": "鳥羽",
+      "en": "Toba"
+    },
+    "area": "toba",
+    "coords": [
+      136.843063,
+      34.486781
+    ],
+    "coordsSource": "osm",
+    "address": "三重県鳥羽市鳥羽一丁目8番13号",
+    "links": {
+      "official": "https://www.kintetsu.co.jp/station/station_info/station19009.html"
+    },
+    "operator": "kintetsu",
+    "stationNumber": "M78",
+    "lines": [
+      "鳥羽線",
+      "志摩線"
+    ],
+    "passCovered": true,
+    "staffed": true,
+    "transfers": [
+      "jr-toba"
+    ],
+    "coinLockers": null,
+    "accessibility": null,
+    "sources": [
+      {
+        "type": "official",
+        "url": "https://www.kintetsu.co.jp/station/",
+        "retrieved": "2026-10-17",
+        "note": "近鐵官網車站一覽（M.山田線・鳥羽線・志摩線）：站名、所屬路線"
+      },
+      {
+        "type": "official",
+        "url": "https://www.kintetsu.co.jp/station/station_info/station19009.html",
+        "retrieved": "2026-10-17",
+        "note": "近鐵官網車站頁面（設施、時刻表連結）"
+      },
+      {
+        "type": "osm",
+        "url": "https://www.openstreetmap.org/node/332578744",
+        "retrieved": "2026-10-17",
+        "note": "座標"
+      },
+      {
+        "type": "wikipedia",
+        "url": "https://ja.wikipedia.org/wiki/%E9%B3%A5%E7%BE%BD%E9%A7%85",
+        "retrieved": "2026-10-17",
+        "note": "所在地、讀音"
+      },
+      {
+        "type": "wikipedia",
+        "url": "https://ja.wikipedia.org/wiki/%E8%BF%91%E9%89%84%E9%B3%A5%E7%BE%BD%E7%B7%9A",
+        "retrieved": "2026-10-17",
+        "note": "鳥羽線駅一覧：站號、有無站員"
+      },
+      {
+        "type": "wikipedia",
+        "url": "https://ja.wikipedia.org/wiki/%E8%BF%91%E9%89%84%E5%BF%97%E6%91%A9%E7%B7%9A",
+        "retrieved": "2026-10-17",
+        "note": "志摩線駅一覧：站號、有無站員"
+      },
+      {
+        "type": "official",
+        "url": "https://www.kintetsu.co.jp/foreign/english/ticket/krp_5day.html",
+        "retrieved": "2026-10-17",
+        "note": "KINTETSU RAIL PASS 5day：近鐵全線可搭乘（特急另外買特急券）"
+      }
+    ],
+    "verified": false
+  },
+  {
+    "id": "nakanogo",
+    "type": "station",
+    "name": {
+      "ja": "中之郷",
+      "kana": "なかのごう",
+      "zh": "中之鄉",
+      "en": "Nakanogo"
+    },
+    "area": "toba",
+    "coords": [
+      136.845551,
+      34.479706
+    ],
+    "coordsSource": "osm",
+    "address": "三重県鳥羽市鳥羽三丁目1484-107",
+    "links": {
+      "official": "https://www.kintetsu.co.jp/station/station_info/station20006.html"
+    },
+    "operator": "kintetsu",
+    "stationNumber": "M79",
+    "lines": [
+      "志摩線"
+    ],
+    "passCovered": true,
+    "staffed": false,
+    "transfers": [],
+    "coinLockers": null,
+    "accessibility": null,
+    "sources": [
+      {
+        "type": "official",
+        "url": "https://www.kintetsu.co.jp/station/",
+        "retrieved": "2026-10-17",
+        "note": "近鐵官網車站一覽（M.山田線・鳥羽線・志摩線）：站名、所屬路線"
+      },
+      {
+        "type": "official",
+        "url": "https://www.kintetsu.co.jp/station/station_info/station20006.html",
+        "retrieved": "2026-10-17",
+        "note": "近鐵官網車站頁面（設施、時刻表連結）"
+      },
+      {
+        "type": "osm",
+        "url": "https://www.openstreetmap.org/node/8172239898",
+        "retrieved": "2026-10-17",
+        "note": "座標"
+      },
+      {
+        "type": "wikipedia",
+        "url": "https://ja.wikipedia.org/wiki/%E4%B8%AD%E4%B9%8B%E9%83%B7%E9%A7%85",
+        "retrieved": "2026-10-17",
+        "note": "所在地、讀音"
+      },
+      {
+        "type": "wikipedia",
+        "url": "https://ja.wikipedia.org/wiki/%E8%BF%91%E9%89%84%E5%BF%97%E6%91%A9%E7%B7%9A",
+        "retrieved": "2026-10-17",
+        "note": "志摩線駅一覧：站號、有無站員"
+      },
+      {
+        "type": "official",
+        "url": "https://www.kintetsu.co.jp/foreign/english/ticket/krp_5day.html",
+        "retrieved": "2026-10-17",
+        "note": "KINTETSU RAIL PASS 5day：近鐵全線可搭乘（特急另外買特急券）"
+      }
+    ],
+    "verified": false
+  },
+  {
+    "id": "shima-akasaki",
+    "type": "station",
+    "name": {
+      "ja": "志摩赤崎",
+      "kana": "しまあかさき",
+      "zh": "志摩赤崎",
+      "en": "Shima-Akasaki"
+    },
+    "area": "toba",
+    "coords": [
+      136.842094,
+      34.470121
+    ],
+    "coordsSource": "osm",
+    "address": "三重県鳥羽市鳥羽五丁目4-27",
+    "links": {
+      "official": "https://www.kintetsu.co.jp/station/station_info/station20007.html"
+    },
+    "operator": "kintetsu",
+    "stationNumber": "M80",
+    "lines": [
+      "志摩線"
+    ],
+    "passCovered": true,
+    "staffed": false,
+    "transfers": [],
+    "coinLockers": null,
+    "accessibility": null,
+    "sources": [
+      {
+        "type": "official",
+        "url": "https://www.kintetsu.co.jp/station/",
+        "retrieved": "2026-10-17",
+        "note": "近鐵官網車站一覽（M.山田線・鳥羽線・志摩線）：站名、所屬路線"
+      },
+      {
+        "type": "official",
+        "url": "https://www.kintetsu.co.jp/station/station_info/station20007.html",
+        "retrieved": "2026-10-17",
+        "note": "近鐵官網車站頁面（設施、時刻表連結）"
+      },
+      {
+        "type": "osm",
+        "url": "https://www.openstreetmap.org/node/8172244632",
+        "retrieved": "2026-10-17",
+        "note": "座標"
+      },
+      {
+        "type": "wikipedia",
+        "url": "https://ja.wikipedia.org/wiki/%E5%BF%97%E6%91%A9%E8%B5%A4%E5%B4%8E%E9%A7%85",
+        "retrieved": "2026-10-17",
+        "note": "所在地、讀音"
+      },
+      {
+        "type": "wikipedia",
+        "url": "https://ja.wikipedia.org/wiki/%E8%BF%91%E9%89%84%E5%BF%97%E6%91%A9%E7%B7%9A",
+        "retrieved": "2026-10-17",
+        "note": "志摩線駅一覧：站號、有無站員"
+      },
+      {
+        "type": "official",
+        "url": "https://www.kintetsu.co.jp/foreign/english/ticket/krp_5day.html",
+        "retrieved": "2026-10-17",
+        "note": "KINTETSU RAIL PASS 5day：近鐵全線可搭乘（特急另外買特急券）"
+      }
+    ],
+    "verified": false
+  },
+  {
+    "id": "funatsu",
+    "type": "station",
+    "name": {
+      "ja": "船津",
+      "kana": "ふなつ",
+      "zh": "船津",
+      "en": "Funatsu"
+    },
+    "area": "toba",
+    "coords": [
+      136.841853,
+      34.456865
+    ],
+    "coordsSource": "osm",
+    "address": "三重県鳥羽市船津町浜1025-6",
+    "links": {
+      "official": "https://www.kintetsu.co.jp/station/station_info/station20008.html"
+    },
+    "operator": "kintetsu",
+    "stationNumber": "M81",
+    "lines": [
+      "志摩線"
+    ],
+    "passCovered": true,
+    "staffed": false,
+    "transfers": [],
+    "coinLockers": null,
+    "accessibility": null,
+    "sources": [
+      {
+        "type": "official",
+        "url": "https://www.kintetsu.co.jp/station/",
+        "retrieved": "2026-10-17",
+        "note": "近鐵官網車站一覽（M.山田線・鳥羽線・志摩線）：站名、所屬路線"
+      },
+      {
+        "type": "official",
+        "url": "https://www.kintetsu.co.jp/station/station_info/station20008.html",
+        "retrieved": "2026-10-17",
+        "note": "近鐵官網車站頁面（設施、時刻表連結）"
+      },
+      {
+        "type": "osm",
+        "url": "https://www.openstreetmap.org/node/8172244631",
+        "retrieved": "2026-10-17",
+        "note": "座標"
+      },
+      {
+        "type": "wikipedia",
+        "url": "https://ja.wikipedia.org/wiki/%E8%88%B9%E6%B4%A5%E9%A7%85_%28%E4%B8%89%E9%87%8D%E7%9C%8C%E9%B3%A5%E7%BE%BD%E5%B8%82%29",
+        "retrieved": "2026-10-17",
+        "note": "所在地、讀音"
+      },
+      {
+        "type": "wikipedia",
+        "url": "https://ja.wikipedia.org/wiki/%E8%BF%91%E9%89%84%E5%BF%97%E6%91%A9%E7%B7%9A",
+        "retrieved": "2026-10-17",
+        "note": "志摩線駅一覧：站號、有無站員"
+      },
+      {
+        "type": "official",
+        "url": "https://www.kintetsu.co.jp/foreign/english/ticket/krp_5day.html",
+        "retrieved": "2026-10-17",
+        "note": "KINTETSU RAIL PASS 5day：近鐵全線可搭乘（特急另外買特急券）"
+      }
+    ],
+    "verified": false
+  },
+  {
+    "id": "kamo",
+    "type": "station",
+    "name": {
+      "ja": "加茂",
+      "kana": "かも",
+      "zh": "加茂",
+      "en": "Kamo"
+    },
+    "area": "toba",
+    "coords": [
+      136.846491,
+      34.444062
+    ],
+    "coordsSource": "osm",
+    "address": "三重県鳥羽市岩倉町大野470-3",
+    "links": {
+      "official": "https://www.kintetsu.co.jp/station/station_info/station20009.html"
+    },
+    "operator": "kintetsu",
+    "stationNumber": "M82",
+    "lines": [
+      "志摩線"
+    ],
+    "passCovered": true,
+    "staffed": false,
+    "transfers": [],
+    "coinLockers": null,
+    "accessibility": null,
+    "sources": [
+      {
+        "type": "official",
+        "url": "https://www.kintetsu.co.jp/station/",
+        "retrieved": "2026-10-17",
+        "note": "近鐵官網車站一覽（M.山田線・鳥羽線・志摩線）：站名、所屬路線"
+      },
+      {
+        "type": "official",
+        "url": "https://www.kintetsu.co.jp/station/station_info/station20009.html",
+        "retrieved": "2026-10-17",
+        "note": "近鐵官網車站頁面（設施、時刻表連結）"
+      },
+      {
+        "type": "osm",
+        "url": "https://www.openstreetmap.org/node/8172239903",
+        "retrieved": "2026-10-17",
+        "note": "座標"
+      },
+      {
+        "type": "wikipedia",
+        "url": "https://ja.wikipedia.org/wiki/%E5%8A%A0%E8%8C%82%E9%A7%85_%28%E4%B8%89%E9%87%8D%E7%9C%8C%29",
+        "retrieved": "2026-10-17",
+        "note": "所在地、讀音"
+      },
+      {
+        "type": "wikipedia",
+        "url": "https://ja.wikipedia.org/wiki/%E8%BF%91%E9%89%84%E5%BF%97%E6%91%A9%E7%B7%9A",
+        "retrieved": "2026-10-17",
+        "note": "志摩線駅一覧：站號、有無站員"
+      },
+      {
+        "type": "official",
+        "url": "https://www.kintetsu.co.jp/foreign/english/ticket/krp_5day.html",
+        "retrieved": "2026-10-17",
+        "note": "KINTETSU RAIL PASS 5day：近鐵全線可搭乘（特急另外買特急券）"
+      }
+    ],
+    "verified": false
+  },
+  {
+    "id": "matsuo",
+    "type": "station",
+    "name": {
+      "ja": "松尾",
+      "kana": "まつお",
+      "zh": "松尾",
+      "en": "Matsuo"
+    },
+    "area": "toba",
+    "coords": [
+      136.840136,
+      34.432746
+    ],
+    "coordsSource": "osm",
+    "address": "三重県鳥羽市松尾町南599-4",
+    "links": {
+      "official": "https://www.kintetsu.co.jp/station/station_info/station20010.html"
+    },
+    "operator": "kintetsu",
+    "stationNumber": "M83",
+    "lines": [
+      "志摩線"
+    ],
+    "passCovered": true,
+    "staffed": false,
+    "transfers": [],
+    "coinLockers": null,
+    "accessibility": null,
+    "sources": [
+      {
+        "type": "official",
+        "url": "https://www.kintetsu.co.jp/station/",
+        "retrieved": "2026-10-17",
+        "note": "近鐵官網車站一覽（M.山田線・鳥羽線・志摩線）：站名、所屬路線"
+      },
+      {
+        "type": "official",
+        "url": "https://www.kintetsu.co.jp/station/station_info/station20010.html",
+        "retrieved": "2026-10-17",
+        "note": "近鐵官網車站頁面（設施、時刻表連結）"
+      },
+      {
+        "type": "osm",
+        "url": "https://www.openstreetmap.org/node/8172244630",
+        "retrieved": "2026-10-17",
+        "note": "座標"
+      },
+      {
+        "type": "wikipedia",
+        "url": "https://ja.wikipedia.org/wiki/%E6%9D%BE%E5%B0%BE%E9%A7%85_%28%E4%B8%89%E9%87%8D%E7%9C%8C%29",
+        "retrieved": "2026-10-17",
+        "note": "所在地、讀音"
+      },
+      {
+        "type": "wikipedia",
+        "url": "https://ja.wikipedia.org/wiki/%E8%BF%91%E9%89%84%E5%BF%97%E6%91%A9%E7%B7%9A",
+        "retrieved": "2026-10-17",
+        "note": "志摩線駅一覧：站號、有無站員"
+      },
+      {
+        "type": "official",
+        "url": "https://www.kintetsu.co.jp/foreign/english/ticket/krp_5day.html",
+        "retrieved": "2026-10-17",
+        "note": "KINTETSU RAIL PASS 5day：近鐵全線可搭乘（特急另外買特急券）"
+      }
+    ],
+    "verified": false
+  },
+  {
+    "id": "shiraki",
+    "type": "station",
+    "name": {
+      "ja": "白木",
+      "kana": "しらき",
+      "zh": "白木",
+      "en": "Shiraki"
+    },
+    "area": "toba",
+    "coords": [
+      136.830726,
+      34.429017
+    ],
+    "coordsSource": "osm",
+    "address": "三重県鳥羽市白木町細田62-2",
+    "links": {
+      "official": "https://www.kintetsu.co.jp/station/station_info/station20011.html"
+    },
+    "operator": "kintetsu",
+    "stationNumber": "M84",
+    "lines": [
+      "志摩線"
+    ],
+    "passCovered": true,
+    "staffed": false,
+    "transfers": [],
+    "coinLockers": null,
+    "accessibility": null,
+    "sources": [
+      {
+        "type": "official",
+        "url": "https://www.kintetsu.co.jp/station/",
+        "retrieved": "2026-10-17",
+        "note": "近鐵官網車站一覽（M.山田線・鳥羽線・志摩線）：站名、所屬路線"
+      },
+      {
+        "type": "official",
+        "url": "https://www.kintetsu.co.jp/station/station_info/station20011.html",
+        "retrieved": "2026-10-17",
+        "note": "近鐵官網車站頁面（設施、時刻表連結）"
+      },
+      {
+        "type": "osm",
+        "url": "https://www.openstreetmap.org/node/8172244626",
+        "retrieved": "2026-10-17",
+        "note": "座標"
+      },
+      {
+        "type": "wikipedia",
+        "url": "https://ja.wikipedia.org/wiki/%E7%99%BD%E6%9C%A8%E9%A7%85",
+        "retrieved": "2026-10-17",
+        "note": "所在地、讀音"
+      },
+      {
+        "type": "wikipedia",
+        "url": "https://ja.wikipedia.org/wiki/%E8%BF%91%E9%89%84%E5%BF%97%E6%91%A9%E7%B7%9A",
+        "retrieved": "2026-10-17",
+        "note": "志摩線駅一覧：站號、有無站員"
+      },
+      {
+        "type": "official",
+        "url": "https://www.kintetsu.co.jp/foreign/english/ticket/krp_5day.html",
+        "retrieved": "2026-10-17",
+        "note": "KINTETSU RAIL PASS 5day：近鐵全線可搭乘（特急另外買特急券）"
+      }
+    ],
+    "verified": false
+  },
+  {
+    "id": "gochi",
+    "type": "station",
+    "name": {
+      "ja": "五知",
+      "kana": "ごち",
+      "zh": "五知",
+      "en": "Gochi"
+    },
+    "area": "shima",
+    "coords": [
+      136.810051,
+      34.406858
+    ],
+    "coordsSource": "osm",
+    "address": "三重県志摩市磯部町五知46-9",
+    "links": {
+      "official": "https://www.kintetsu.co.jp/station/station_info/station20012.html"
+    },
+    "operator": "kintetsu",
+    "stationNumber": "M85",
+    "lines": [
+      "志摩線"
+    ],
+    "passCovered": true,
+    "staffed": false,
+    "transfers": [],
+    "coinLockers": null,
+    "accessibility": null,
+    "sources": [
+      {
+        "type": "official",
+        "url": "https://www.kintetsu.co.jp/station/",
+        "retrieved": "2026-10-17",
+        "note": "近鐵官網車站一覽（M.山田線・鳥羽線・志摩線）：站名、所屬路線"
+      },
+      {
+        "type": "official",
+        "url": "https://www.kintetsu.co.jp/station/station_info/station20012.html",
+        "retrieved": "2026-10-17",
+        "note": "近鐵官網車站頁面（設施、時刻表連結）"
+      },
+      {
+        "type": "osm",
+        "url": "https://www.openstreetmap.org/node/8172244622",
+        "retrieved": "2026-10-17",
+        "note": "座標"
+      },
+      {
+        "type": "wikipedia",
+        "url": "https://ja.wikipedia.org/wiki/%E4%BA%94%E7%9F%A5%E9%A7%85",
+        "retrieved": "2026-10-17",
+        "note": "所在地、讀音"
+      },
+      {
+        "type": "wikipedia",
+        "url": "https://ja.wikipedia.org/wiki/%E8%BF%91%E9%89%84%E5%BF%97%E6%91%A9%E7%B7%9A",
+        "retrieved": "2026-10-17",
+        "note": "志摩線駅一覧：站號、有無站員"
+      },
+      {
+        "type": "official",
+        "url": "https://www.kintetsu.co.jp/foreign/english/ticket/krp_5day.html",
+        "retrieved": "2026-10-17",
+        "note": "KINTETSU RAIL PASS 5day：近鐵全線可搭乘（特急另外買特急券）"
+      }
+    ],
+    "verified": false
+  },
+  {
+    "id": "kutsukake",
+    "type": "station",
+    "name": {
+      "ja": "沓掛",
+      "kana": "くつかけ",
+      "zh": "沓掛",
+      "en": "Kutsukake"
+    },
+    "area": "shima",
+    "coords": [
+      136.814246,
+      34.394269
+    ],
+    "coordsSource": "osm",
+    "address": "三重県志摩市磯部町沓掛72",
+    "links": {
+      "official": "https://www.kintetsu.co.jp/station/station_info/station20013.html"
+    },
+    "operator": "kintetsu",
+    "stationNumber": "M86",
+    "lines": [
+      "志摩線"
+    ],
+    "passCovered": true,
+    "staffed": false,
+    "transfers": [],
+    "coinLockers": null,
+    "accessibility": null,
+    "sources": [
+      {
+        "type": "official",
+        "url": "https://www.kintetsu.co.jp/station/",
+        "retrieved": "2026-10-17",
+        "note": "近鐵官網車站一覽（M.山田線・鳥羽線・志摩線）：站名、所屬路線"
+      },
+      {
+        "type": "official",
+        "url": "https://www.kintetsu.co.jp/station/station_info/station20013.html",
+        "retrieved": "2026-10-17",
+        "note": "近鐵官網車站頁面（設施、時刻表連結）"
+      },
+      {
+        "type": "osm",
+        "url": "https://www.openstreetmap.org/node/8172244621",
+        "retrieved": "2026-10-17",
+        "note": "座標"
+      },
+      {
+        "type": "wikipedia",
+        "url": "https://ja.wikipedia.org/wiki/%E6%B2%93%E6%8E%9B%E9%A7%85",
+        "retrieved": "2026-10-17",
+        "note": "所在地、讀音"
+      },
+      {
+        "type": "wikipedia",
+        "url": "https://ja.wikipedia.org/wiki/%E8%BF%91%E9%89%84%E5%BF%97%E6%91%A9%E7%B7%9A",
+        "retrieved": "2026-10-17",
+        "note": "志摩線駅一覧：站號、有無站員"
+      },
+      {
+        "type": "official",
+        "url": "https://www.kintetsu.co.jp/foreign/english/ticket/krp_5day.html",
+        "retrieved": "2026-10-17",
+        "note": "KINTETSU RAIL PASS 5day：近鐵全線可搭乘（特急另外買特急券）"
+      }
+    ],
+    "verified": false
+  },
+  {
+    "id": "kaminogo",
+    "type": "station",
+    "name": {
+      "ja": "上之郷",
+      "kana": "かみのごう",
+      "zh": "上之鄉",
+      "en": "Kaminogo"
+    },
+    "area": "shima",
+    "coords": [
+      136.811459,
+      34.379615
+    ],
+    "coordsSource": "osm",
+    "address": "三重県志摩市磯部町上之郷24",
+    "links": {
+      "official": "https://www.kintetsu.co.jp/station/station_info/station20014.html"
+    },
+    "operator": "kintetsu",
+    "stationNumber": "M87",
+    "lines": [
+      "志摩線"
+    ],
+    "passCovered": true,
+    "staffed": false,
+    "transfers": [],
+    "coinLockers": null,
+    "accessibility": null,
+    "sources": [
+      {
+        "type": "official",
+        "url": "https://www.kintetsu.co.jp/station/",
+        "retrieved": "2026-10-17",
+        "note": "近鐵官網車站一覽（M.山田線・鳥羽線・志摩線）：站名、所屬路線"
+      },
+      {
+        "type": "official",
+        "url": "https://www.kintetsu.co.jp/station/station_info/station20014.html",
+        "retrieved": "2026-10-17",
+        "note": "近鐵官網車站頁面（設施、時刻表連結）"
+      },
+      {
+        "type": "osm",
+        "url": "https://www.openstreetmap.org/node/4239196151",
+        "retrieved": "2026-10-17",
+        "note": "座標"
+      },
+      {
+        "type": "wikipedia",
+        "url": "https://ja.wikipedia.org/wiki/%E4%B8%8A%E4%B9%8B%E9%83%B7%E9%A7%85",
+        "retrieved": "2026-10-17",
+        "note": "所在地、讀音"
+      },
+      {
+        "type": "wikipedia",
+        "url": "https://ja.wikipedia.org/wiki/%E8%BF%91%E9%89%84%E5%BF%97%E6%91%A9%E7%B7%9A",
+        "retrieved": "2026-10-17",
+        "note": "志摩線駅一覧：站號、有無站員"
+      },
+      {
+        "type": "official",
+        "url": "https://www.kintetsu.co.jp/foreign/english/ticket/krp_5day.html",
+        "retrieved": "2026-10-17",
+        "note": "KINTETSU RAIL PASS 5day：近鐵全線可搭乘（特急另外買特急券）"
+      }
+    ],
+    "verified": false
+  },
+  {
+    "id": "shima-isobe",
+    "type": "station",
+    "name": {
+      "ja": "志摩磯部",
+      "kana": "しまいそべ",
+      "zh": "志摩磯部",
+      "en": "Shima-Isobe"
+    },
+    "area": "shima",
+    "coords": [
+      136.805548,
+      34.369965
+    ],
+    "coordsSource": "osm",
+    "address": "三重県志摩市磯部町迫間1819",
+    "links": {
+      "official": "https://www.kintetsu.co.jp/station/station_info/station20015.html"
+    },
+    "operator": "kintetsu",
+    "stationNumber": "M88",
+    "lines": [
+      "志摩線"
+    ],
+    "passCovered": true,
+    "staffed": true,
+    "transfers": [],
+    "coinLockers": null,
+    "accessibility": null,
+    "sources": [
+      {
+        "type": "official",
+        "url": "https://www.kintetsu.co.jp/station/",
+        "retrieved": "2026-10-17",
+        "note": "近鐵官網車站一覽（M.山田線・鳥羽線・志摩線）：站名、所屬路線"
+      },
+      {
+        "type": "official",
+        "url": "https://www.kintetsu.co.jp/station/station_info/station20015.html",
+        "retrieved": "2026-10-17",
+        "note": "近鐵官網車站頁面（設施、時刻表連結）"
+      },
+      {
+        "type": "osm",
+        "url": "https://www.openstreetmap.org/node/8172239916",
+        "retrieved": "2026-10-17",
+        "note": "座標"
+      },
+      {
+        "type": "wikipedia",
+        "url": "https://ja.wikipedia.org/wiki/%E5%BF%97%E6%91%A9%E7%A3%AF%E9%83%A8%E9%A7%85",
+        "retrieved": "2026-10-17",
+        "note": "所在地、讀音"
+      },
+      {
+        "type": "wikipedia",
+        "url": "https://ja.wikipedia.org/wiki/%E8%BF%91%E9%89%84%E5%BF%97%E6%91%A9%E7%B7%9A",
+        "retrieved": "2026-10-17",
+        "note": "志摩線駅一覧：站號、有無站員"
+      },
+      {
+        "type": "official",
+        "url": "https://www.kintetsu.co.jp/foreign/english/ticket/krp_5day.html",
+        "retrieved": "2026-10-17",
+        "note": "KINTETSU RAIL PASS 5day：近鐵全線可搭乘（特急另外買特急券）"
+      }
+    ],
+    "verified": false
+  },
+  {
+    "id": "anagawa",
+    "type": "station",
+    "name": {
+      "ja": "穴川",
+      "kana": "あながわ",
+      "zh": "穴川",
+      "en": "Anagawa"
+    },
+    "area": "shima",
+    "coords": [
+      136.815982,
+      34.358986
+    ],
+    "coordsSource": "osm",
+    "address": "三重県志摩市磯部町穴川1386-3",
+    "links": {
+      "official": "https://www.kintetsu.co.jp/station/station_info/station20016.html"
+    },
+    "operator": "kintetsu",
+    "stationNumber": "M89",
+    "lines": [
+      "志摩線"
+    ],
+    "passCovered": true,
+    "staffed": false,
+    "transfers": [],
+    "coinLockers": null,
+    "accessibility": null,
+    "sources": [
+      {
+        "type": "official",
+        "url": "https://www.kintetsu.co.jp/station/",
+        "retrieved": "2026-10-17",
+        "note": "近鐵官網車站一覽（M.山田線・鳥羽線・志摩線）：站名、所屬路線"
+      },
+      {
+        "type": "official",
+        "url": "https://www.kintetsu.co.jp/station/station_info/station20016.html",
+        "retrieved": "2026-10-17",
+        "note": "近鐵官網車站頁面（設施、時刻表連結）"
+      },
+      {
+        "type": "osm",
+        "url": "https://www.openstreetmap.org/node/8172239915",
+        "retrieved": "2026-10-17",
+        "note": "座標"
+      },
+      {
+        "type": "wikipedia",
+        "url": "https://ja.wikipedia.org/wiki/%E7%A9%B4%E5%B7%9D%E9%A7%85_%28%E4%B8%89%E9%87%8D%E7%9C%8C%29",
+        "retrieved": "2026-10-17",
+        "note": "所在地、讀音"
+      },
+      {
+        "type": "wikipedia",
+        "url": "https://ja.wikipedia.org/wiki/%E8%BF%91%E9%89%84%E5%BF%97%E6%91%A9%E7%B7%9A",
+        "retrieved": "2026-10-17",
+        "note": "志摩線駅一覧：站號、有無站員"
+      },
+      {
+        "type": "official",
+        "url": "https://www.kintetsu.co.jp/foreign/english/ticket/krp_5day.html",
+        "retrieved": "2026-10-17",
+        "note": "KINTETSU RAIL PASS 5day：近鐵全線可搭乘（特急另外買特急券）"
+      }
+    ],
+    "verified": false
+  },
+  {
+    "id": "shima-yokoyama",
+    "type": "station",
+    "name": {
+      "ja": "志摩横山",
+      "kana": "しまよこやま",
+      "zh": "志摩橫山",
+      "en": "Shima-Yokoyama"
+    },
+    "area": "shima",
+    "coords": [
+      136.818188,
+      34.334138
+    ],
+    "coordsSource": "osm",
+    "address": "三重県志摩市阿児町鵜方1243-4",
+    "links": {
+      "official": "https://www.kintetsu.co.jp/station/station_info/station20017.html"
+    },
+    "operator": "kintetsu",
+    "stationNumber": "M90",
+    "lines": [
+      "志摩線"
+    ],
+    "passCovered": true,
+    "staffed": false,
+    "transfers": [],
+    "coinLockers": null,
+    "accessibility": null,
+    "sources": [
+      {
+        "type": "official",
+        "url": "https://www.kintetsu.co.jp/station/",
+        "retrieved": "2026-10-17",
+        "note": "近鐵官網車站一覽（M.山田線・鳥羽線・志摩線）：站名、所屬路線"
+      },
+      {
+        "type": "official",
+        "url": "https://www.kintetsu.co.jp/station/station_info/station20017.html",
+        "retrieved": "2026-10-17",
+        "note": "近鐵官網車站頁面（設施、時刻表連結）"
+      },
+      {
+        "type": "osm",
+        "url": "https://www.openstreetmap.org/node/8172239913",
+        "retrieved": "2026-10-17",
+        "note": "座標"
+      },
+      {
+        "type": "wikipedia",
+        "url": "https://ja.wikipedia.org/wiki/%E5%BF%97%E6%91%A9%E6%A8%AA%E5%B1%B1%E9%A7%85",
+        "retrieved": "2026-10-17",
+        "note": "所在地、讀音"
+      },
+      {
+        "type": "wikipedia",
+        "url": "https://ja.wikipedia.org/wiki/%E8%BF%91%E9%89%84%E5%BF%97%E6%91%A9%E7%B7%9A",
+        "retrieved": "2026-10-17",
+        "note": "志摩線駅一覧：站號、有無站員"
+      },
+      {
+        "type": "official",
+        "url": "https://www.kintetsu.co.jp/foreign/english/ticket/krp_5day.html",
+        "retrieved": "2026-10-17",
+        "note": "KINTETSU RAIL PASS 5day：近鐵全線可搭乘（特急另外買特急券）"
+      }
+    ],
+    "verified": false
+  },
+  {
+    "id": "ugata",
+    "type": "station",
+    "name": {
+      "ja": "鵜方",
+      "kana": "うがた",
+      "zh": "鵜方",
+      "en": "Ugata"
+    },
+    "area": "shima",
+    "coords": [
+      136.825969,
+      34.32937
+    ],
+    "coordsSource": "osm",
+    "address": "三重県志摩市阿児町鵜方1670-2",
+    "links": {
+      "official": "https://www.kintetsu.co.jp/station/station_info/station20018.html"
+    },
+    "operator": "kintetsu",
+    "stationNumber": "M91",
+    "lines": [
+      "志摩線"
+    ],
+    "passCovered": true,
+    "staffed": true,
+    "transfers": [],
+    "coinLockers": null,
+    "accessibility": null,
+    "sources": [
+      {
+        "type": "official",
+        "url": "https://www.kintetsu.co.jp/station/",
+        "retrieved": "2026-10-17",
+        "note": "近鐵官網車站一覽（M.山田線・鳥羽線・志摩線）：站名、所屬路線"
+      },
+      {
+        "type": "official",
+        "url": "https://www.kintetsu.co.jp/station/station_info/station20018.html",
+        "retrieved": "2026-10-17",
+        "note": "近鐵官網車站頁面（設施、時刻表連結）"
+      },
+      {
+        "type": "osm",
+        "url": "https://www.openstreetmap.org/node/8172239911",
+        "retrieved": "2026-10-17",
+        "note": "座標"
+      },
+      {
+        "type": "wikipedia",
+        "url": "https://ja.wikipedia.org/wiki/%E9%B5%9C%E6%96%B9%E9%A7%85",
+        "retrieved": "2026-10-17",
+        "note": "所在地、讀音"
+      },
+      {
+        "type": "wikipedia",
+        "url": "https://ja.wikipedia.org/wiki/%E8%BF%91%E9%89%84%E5%BF%97%E6%91%A9%E7%B7%9A",
+        "retrieved": "2026-10-17",
+        "note": "志摩線駅一覧：站號、有無站員"
+      },
+      {
+        "type": "official",
+        "url": "https://www.kintetsu.co.jp/foreign/english/ticket/krp_5day.html",
+        "retrieved": "2026-10-17",
+        "note": "KINTETSU RAIL PASS 5day：近鐵全線可搭乘（特急另外買特急券）"
+      }
+    ],
+    "verified": false
+  },
+  {
+    "id": "shima-shimmei",
+    "type": "station",
+    "name": {
+      "ja": "志摩神明",
+      "kana": "しましんめい",
+      "zh": "志摩神明",
+      "en": "Shima-Shimmei"
+    },
+    "area": "shima",
+    "coords": [
+      136.829844,
+      34.316004
+    ],
+    "coordsSource": "osm",
+    "address": "三重県志摩市阿児町神明1158-3",
+    "links": {
+      "official": "https://www.kintetsu.co.jp/station/station_info/station20019.html"
+    },
+    "operator": "kintetsu",
+    "stationNumber": "M92",
+    "lines": [
+      "志摩線"
+    ],
+    "passCovered": true,
+    "staffed": false,
+    "transfers": [],
+    "coinLockers": null,
+    "accessibility": null,
+    "sources": [
+      {
+        "type": "official",
+        "url": "https://www.kintetsu.co.jp/station/",
+        "retrieved": "2026-10-17",
+        "note": "近鐵官網車站一覽（M.山田線・鳥羽線・志摩線）：站名、所屬路線"
+      },
+      {
+        "type": "official",
+        "url": "https://www.kintetsu.co.jp/station/station_info/station20019.html",
+        "retrieved": "2026-10-17",
+        "note": "近鐵官網車站頁面（設施、時刻表連結）"
+      },
+      {
+        "type": "osm",
+        "url": "https://www.openstreetmap.org/node/2155508872",
+        "retrieved": "2026-10-17",
+        "note": "座標"
+      },
+      {
+        "type": "wikipedia",
+        "url": "https://ja.wikipedia.org/wiki/%E5%BF%97%E6%91%A9%E7%A5%9E%E6%98%8E%E9%A7%85",
+        "retrieved": "2026-10-17",
+        "note": "所在地、讀音"
+      },
+      {
+        "type": "wikipedia",
+        "url": "https://ja.wikipedia.org/wiki/%E8%BF%91%E9%89%84%E5%BF%97%E6%91%A9%E7%B7%9A",
+        "retrieved": "2026-10-17",
+        "note": "志摩線駅一覧：站號、有無站員"
+      },
+      {
+        "type": "official",
+        "url": "https://www.kintetsu.co.jp/foreign/english/ticket/krp_5day.html",
+        "retrieved": "2026-10-17",
+        "note": "KINTETSU RAIL PASS 5day：近鐵全線可搭乘（特急另外買特急券）"
+      }
+    ],
+    "verified": false
+  },
+  {
+    "id": "kashikojima",
+    "type": "station",
+    "name": {
+      "ja": "賢島",
+      "kana": "かしこじま",
+      "zh": "賢島",
+      "en": "Kashikojima"
+    },
+    "area": "shima",
+    "coords": [
+      136.819173,
+      34.308581
+    ],
+    "coordsSource": "osm",
+    "address": "三重県志摩市阿児町神明747-17",
+    "links": {
+      "official": "https://www.kintetsu.co.jp/station/station_info/station20020.html"
+    },
+    "operator": "kintetsu",
+    "stationNumber": "M93",
+    "lines": [
+      "志摩線"
+    ],
+    "passCovered": true,
+    "staffed": true,
+    "transfers": [],
+    "coinLockers": null,
+    "accessibility": null,
+    "sources": [
+      {
+        "type": "official",
+        "url": "https://www.kintetsu.co.jp/station/",
+        "retrieved": "2026-10-17",
+        "note": "近鐵官網車站一覽（M.山田線・鳥羽線・志摩線）：站名、所屬路線"
+      },
+      {
+        "type": "official",
+        "url": "https://www.kintetsu.co.jp/station/station_info/station20020.html",
+        "retrieved": "2026-10-17",
+        "note": "近鐵官網車站頁面（設施、時刻表連結）"
+      },
+      {
+        "type": "osm",
+        "url": "https://www.openstreetmap.org/node/2155508875",
+        "retrieved": "2026-10-17",
+        "note": "座標"
+      },
+      {
+        "type": "wikipedia",
+        "url": "https://ja.wikipedia.org/wiki/%E8%B3%A2%E5%B3%B6%E9%A7%85",
+        "retrieved": "2026-10-17",
+        "note": "所在地、讀音"
+      },
+      {
+        "type": "wikipedia",
+        "url": "https://ja.wikipedia.org/wiki/%E8%BF%91%E9%89%84%E5%BF%97%E6%91%A9%E7%B7%9A",
+        "retrieved": "2026-10-17",
+        "note": "志摩線駅一覧：站號、有無站員"
+      },
+      {
+        "type": "official",
+        "url": "https://www.kintetsu.co.jp/foreign/english/ticket/krp_5day.html",
+        "retrieved": "2026-10-17",
+        "note": "KINTETSU RAIL PASS 5day：近鐵全線可搭乘（特急另外買特急券）"
+      }
+    ],
+    "verified": false
+  },
+  {
+    "id": "jr-iseshi",
+    "type": "station",
+    "name": {
+      "ja": "伊勢市",
+      "kana": "いせし",
+      "zh": "伊勢市",
+      "en": "Iseshi"
+    },
+    "area": "ise",
+    "coords": [
+      136.709829,
+      34.491135
+    ],
+    "coordsSource": "osm",
+    "address": "三重県伊勢市吹上一丁目1-4",
+    "links": {},
+    "operator": "jr",
+    "stationNumber": null,
+    "lines": [
+      "参宮線"
+    ],
+    "passCovered": false,
+    "staffed": true,
+    "transfers": [
+      "iseshi"
+    ],
+    "coinLockers": null,
+    "accessibility": null,
+    "sources": [
+      {
+        "type": "osm",
+        "url": "https://www.openstreetmap.org/node/265822735",
+        "retrieved": "2026-10-17",
+        "note": "座標"
+      },
+      {
+        "type": "wikipedia",
+        "url": "https://ja.wikipedia.org/wiki/%E4%BC%8A%E5%8B%A2%E5%B8%82%E9%A7%85",
+        "retrieved": "2026-10-17",
+        "note": "所在地、讀音"
+      },
+      {
+        "type": "wikipedia",
+        "url": "https://ja.wikipedia.org/wiki/%E5%8F%82%E5%AE%AE%E7%B7%9A",
+        "retrieved": "2026-10-17",
+        "note": "駅一覧、有人駅只有多気・伊勢市（鳥羽的業務委託 2020-03-17 結束）"
+      },
+      {
+        "type": "official",
+        "url": "https://www.kintetsu.co.jp/foreign/english/ticket/krp_5day.html",
+        "retrieved": "2026-10-17",
+        "note": "KINTETSU RAIL PASS 只能搭近鐵全線和伊賀鐵道，不含 JR"
+      }
+    ],
+    "verified": false
+  },
+  {
+    "id": "jr-isuzugaoka",
+    "type": "station",
+    "name": {
+      "ja": "五十鈴ケ丘",
+      "kana": "いすずがおか",
+      "zh": "五十鈴丘",
+      "en": "Isuzugaoka"
+    },
+    "area": "ise",
+    "coords": [
+      136.740219,
+      34.496004
+    ],
+    "coordsSource": "osm",
+    "address": "三重県伊勢市黒瀬町1342",
+    "links": {},
+    "operator": "jr",
+    "stationNumber": null,
+    "lines": [
+      "参宮線"
+    ],
+    "passCovered": false,
+    "staffed": false,
+    "transfers": [],
+    "coinLockers": null,
+    "accessibility": null,
+    "sources": [
+      {
+        "type": "osm",
+        "url": "https://www.openstreetmap.org/node/265822738",
+        "retrieved": "2026-10-17",
+        "note": "座標"
+      },
+      {
+        "type": "wikipedia",
+        "url": "https://ja.wikipedia.org/wiki/%E4%BA%94%E5%8D%81%E9%88%B4%E3%82%B1%E4%B8%98%E9%A7%85",
+        "retrieved": "2026-10-17",
+        "note": "所在地、讀音"
+      },
+      {
+        "type": "wikipedia",
+        "url": "https://ja.wikipedia.org/wiki/%E5%8F%82%E5%AE%AE%E7%B7%9A",
+        "retrieved": "2026-10-17",
+        "note": "駅一覧、有人駅只有多気・伊勢市（鳥羽的業務委託 2020-03-17 結束）"
+      },
+      {
+        "type": "official",
+        "url": "https://www.kintetsu.co.jp/foreign/english/ticket/krp_5day.html",
+        "retrieved": "2026-10-17",
+        "note": "KINTETSU RAIL PASS 只能搭近鐵全線和伊賀鐵道，不含 JR"
+      }
+    ],
+    "verified": false
+  },
+  {
+    "id": "jr-futaminoura",
+    "type": "station",
+    "name": {
+      "ja": "二見浦",
+      "kana": "ふたみのうら",
+      "zh": "二見浦",
+      "en": "Futaminoura"
+    },
+    "area": "futami",
+    "coords": [
+      136.777606,
+      34.503772
+    ],
+    "coordsSource": "osm",
+    "address": "三重県伊勢市二見町三津70",
+    "links": {},
+    "operator": "jr",
+    "stationNumber": null,
+    "lines": [
+      "参宮線"
+    ],
+    "passCovered": false,
+    "staffed": false,
+    "transfers": [],
+    "coinLockers": null,
+    "accessibility": null,
+    "sources": [
+      {
+        "type": "osm",
+        "url": "https://www.openstreetmap.org/node/13584454721",
+        "retrieved": "2026-10-17",
+        "note": "座標"
+      },
+      {
+        "type": "wikipedia",
+        "url": "https://ja.wikipedia.org/wiki/%E4%BA%8C%E8%A6%8B%E6%B5%A6%E9%A7%85",
+        "retrieved": "2026-10-17",
+        "note": "所在地、讀音"
+      },
+      {
+        "type": "wikipedia",
+        "url": "https://ja.wikipedia.org/wiki/%E5%8F%82%E5%AE%AE%E7%B7%9A",
+        "retrieved": "2026-10-17",
+        "note": "駅一覧、有人駅只有多気・伊勢市（鳥羽的業務委託 2020-03-17 結束）"
+      },
+      {
+        "type": "official",
+        "url": "https://www.kintetsu.co.jp/foreign/english/ticket/krp_5day.html",
+        "retrieved": "2026-10-17",
+        "note": "KINTETSU RAIL PASS 只能搭近鐵全線和伊賀鐵道，不含 JR"
+      }
+    ],
+    "verified": false
+  },
+  {
+    "id": "jr-matsushita",
+    "type": "station",
+    "name": {
+      "ja": "松下",
+      "kana": "まつした",
+      "zh": "松下",
+      "en": "Matsushita"
+    },
+    "area": "futami",
+    "coords": [
+      136.799546,
+      34.49597
+    ],
+    "coordsSource": "osm",
+    "address": "三重県伊勢市二見町松下776",
+    "links": {},
+    "operator": "jr",
+    "stationNumber": null,
+    "lines": [
+      "参宮線"
+    ],
+    "passCovered": false,
+    "staffed": false,
+    "transfers": [],
+    "coinLockers": null,
+    "accessibility": null,
+    "sources": [
+      {
+        "type": "osm",
+        "url": "https://www.openstreetmap.org/node/265822680",
+        "retrieved": "2026-10-17",
+        "note": "座標"
+      },
+      {
+        "type": "wikipedia",
+        "url": "https://ja.wikipedia.org/wiki/%E6%9D%BE%E4%B8%8B%E9%A7%85",
+        "retrieved": "2026-10-17",
+        "note": "所在地、讀音"
+      },
+      {
+        "type": "wikipedia",
+        "url": "https://ja.wikipedia.org/wiki/%E5%8F%82%E5%AE%AE%E7%B7%9A",
+        "retrieved": "2026-10-17",
+        "note": "駅一覧、有人駅只有多気・伊勢市（鳥羽的業務委託 2020-03-17 結束）"
+      },
+      {
+        "type": "official",
+        "url": "https://www.kintetsu.co.jp/foreign/english/ticket/krp_5day.html",
+        "retrieved": "2026-10-17",
+        "note": "KINTETSU RAIL PASS 只能搭近鐵全線和伊賀鐵道，不含 JR"
+      }
+    ],
+    "verified": false
+  },
+  {
+    "id": "jr-toba",
+    "type": "station",
+    "name": {
+      "ja": "鳥羽",
+      "kana": "とば",
+      "zh": "鳥羽",
+      "en": "Toba"
+    },
+    "area": "toba",
+    "coords": [
+      136.84274,
+      34.486455
+    ],
+    "coordsSource": "osm",
+    "address": "三重県鳥羽市鳥羽一丁目8番13号",
+    "links": {},
+    "operator": "jr",
+    "stationNumber": null,
+    "lines": [
+      "参宮線"
+    ],
+    "passCovered": false,
+    "staffed": false,
+    "transfers": [
+      "toba"
+    ],
+    "coinLockers": null,
+    "accessibility": null,
+    "sources": [
+      {
+        "type": "osm",
+        "url": "https://www.openstreetmap.org/node/265822795",
+        "retrieved": "2026-10-17",
+        "note": "座標"
+      },
+      {
+        "type": "wikipedia",
+        "url": "https://ja.wikipedia.org/wiki/%E9%B3%A5%E7%BE%BD%E9%A7%85",
+        "retrieved": "2026-10-17",
+        "note": "所在地、讀音"
+      },
+      {
+        "type": "wikipedia",
+        "url": "https://ja.wikipedia.org/wiki/%E5%8F%82%E5%AE%AE%E7%B7%9A",
+        "retrieved": "2026-10-17",
+        "note": "駅一覧、有人駅只有多気・伊勢市（鳥羽的業務委託 2020-03-17 結束）"
+      },
+      {
+        "type": "official",
+        "url": "https://www.kintetsu.co.jp/foreign/english/ticket/krp_5day.html",
+        "retrieved": "2026-10-17",
+        "note": "KINTETSU RAIL PASS 只能搭近鐵全線和伊賀鐵道，不含 JR"
+      }
+    ],
+    "verified": false
+  }
+]

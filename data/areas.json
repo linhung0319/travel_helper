@@ -1,0 +1,194 @@
+[
+  {
+    "id": "shima",
+    "type": "area",
+    "name": {
+      "ja": "志摩",
+      "kana": "しま",
+      "zh": "志摩",
+      "en": "Shima"
+    },
+    "municipality": "志摩市",
+    "definition": "志摩市全域（賢島、鵜方、志摩磯部、英虞灣、大王崎、浜島等）",
+    "tripOrder": 1,
+    "center": [
+      136.83,
+      34.33
+    ],
+    "bbox": [
+      136.621,
+      33.86,
+      137.326,
+      34.424
+    ],
+    "stations": [
+      "gochi",
+      "kutsukake",
+      "kaminogo",
+      "shima-isobe",
+      "anagawa",
+      "shima-yokoyama",
+      "ugata",
+      "shima-shimmei",
+      "kashikojima"
+    ],
+    "notes": "行程的第一站。bbox 取自 OSM 的志摩市行政界（含海域），只用來檢查座標。店家分散，很多地點要搭巴士或開車。",
+    "sources": [
+      {
+        "type": "osm",
+        "url": "https://www.openstreetmap.org/relation/4538663",
+        "retrieved": "2026-10-17",
+        "note": "志摩市行政界的範圍（Nominatim boundingbox）"
+      },
+      {
+        "type": "wikipedia",
+        "url": "https://ja.wikipedia.org/wiki/%E5%BF%97%E6%91%A9%E5%B8%82",
+        "retrieved": "2026-10-17",
+        "note": "行政區"
+      }
+    ]
+  },
+  {
+    "id": "toba",
+    "type": "area",
+    "name": {
+      "ja": "鳥羽",
+      "kana": "とば",
+      "zh": "鳥羽",
+      "en": "Toba"
+    },
+    "municipality": "鳥羽市",
+    "definition": "鳥羽市全域（含答志島、菅島、神島等離島；近鐵池の浦站也在鳥羽市）",
+    "tripOrder": 2,
+    "center": [
+      136.84,
+      34.48
+    ],
+    "bbox": [
+      136.782,
+      34.307,
+      137.271,
+      34.63
+    ],
+    "stations": [
+      "ikenoura",
+      "toba",
+      "nakanogo",
+      "shima-akasaki",
+      "funatsu",
+      "kamo",
+      "matsuo",
+      "shiraki",
+      "jr-toba"
+    ],
+    "notes": "試做區域（T2～T4）。bbox 取自 OSM 的鳥羽市行政界（含海域）。",
+    "sources": [
+      {
+        "type": "osm",
+        "url": "https://www.openstreetmap.org/relation/4538731",
+        "retrieved": "2026-10-17",
+        "note": "鳥羽市行政界的範圍（Nominatim boundingbox）"
+      },
+      {
+        "type": "wikipedia",
+        "url": "https://ja.wikipedia.org/wiki/%E6%B1%A0%E3%81%AE%E6%B5%A6%E9%A7%85",
+        "retrieved": "2026-10-17",
+        "note": "池の浦站位於鳥羽市堅神町"
+      }
+    ]
+  },
+  {
+    "id": "futami",
+    "type": "area",
+    "name": {
+      "ja": "二見",
+      "kana": "ふたみ",
+      "zh": "二見",
+      "en": "Futami"
+    },
+    "municipality": "伊勢市",
+    "definition": "伊勢市二見町（2005 年併入伊勢市的舊二見町；夫婦岩、二見興玉神社一帶）",
+    "tripOrder": 3,
+    "center": [
+      136.79,
+      34.51
+    ],
+    "bbox": [
+      136.74,
+      34.47,
+      136.83,
+      34.535
+    ],
+    "stations": [
+      "jr-futaminoura",
+      "jr-matsushita"
+    ],
+    "notes": "和伊勢一起規劃（T8）。OSM 沒有二見町的行政界，bbox 是依二見町各町名的位置和 JR 二見浦、松下站大致畫出的，只用來檢查座標。近鐵沒有經過二見，最近的是 JR 參宮線（不能用近鐵 5 日券）。",
+    "sources": [
+      {
+        "type": "wikipedia",
+        "url": "https://ja.wikipedia.org/wiki/%E4%BA%8C%E8%A6%8B%E7%94%BA_%28%E4%B8%89%E9%87%8D%E7%9C%8C%29",
+        "retrieved": "2026-10-17",
+        "note": "舊度會郡二見町，2005-11-01 併入伊勢市，地名改為伊勢市二見町○○"
+      },
+      {
+        "type": "osm",
+        "url": "https://www.openstreetmap.org/node/8377436980",
+        "retrieved": "2026-10-17",
+        "note": "二見町今一色的位置（bbox 西側）"
+      },
+      {
+        "type": "osm",
+        "url": "https://www.openstreetmap.org/node/8377436972",
+        "retrieved": "2026-10-17",
+        "note": "二見町江的位置"
+      }
+    ]
+  },
+  {
+    "id": "ise",
+    "type": "area",
+    "name": {
+      "ja": "伊勢",
+      "kana": "いせ",
+      "zh": "伊勢",
+      "en": "Ise"
+    },
+    "municipality": "伊勢市",
+    "definition": "伊勢市（不含二見町）：外宮、內宮、おはらい町、朝熊山等",
+    "tripOrder": 3,
+    "center": [
+      136.72,
+      34.48
+    ],
+    "bbox": [
+      136.633,
+      34.385,
+      136.821,
+      34.653
+    ],
+    "stations": [
+      "iseshi",
+      "ujiyamada",
+      "isuzugawa",
+      "asama",
+      "jr-iseshi",
+      "jr-isuzugaoka"
+    ],
+    "notes": "最後一站，離大阪、關西機場比較近。bbox 取自 OSM 的伊勢市行政界（含二見町和海域）。",
+    "sources": [
+      {
+        "type": "osm",
+        "url": "https://www.openstreetmap.org/relation/4538518",
+        "retrieved": "2026-10-17",
+        "note": "伊勢市行政界的範圍（Nominatim boundingbox）"
+      },
+      {
+        "type": "wikipedia",
+        "url": "https://ja.wikipedia.org/wiki/%E4%BC%8A%E5%8B%A2%E5%B8%82",
+        "retrieved": "2026-10-17",
+        "note": "行政區"
+      }
+    ]
+  }
+]

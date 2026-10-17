@@ -1,0 +1,50 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://travel-helper.local/schema/timetable-kintetsu.schema.json",
+  "title": "近鐵時刻表（data/timetables/kintetsu/<station-id>.json）",
+  "description": "檔名必須和 station 一致。各站之間的車程放在 _travel-times.json（格式由 T1 決定）。",
+  "type": "object",
+  "properties": {
+    "station": { "$ref": "common.schema.json#/$defs/id" },
+    "validFrom": { "anyOf": [{ "$ref": "common.schema.json#/$defs/date" }, { "type": "null" }] },
+    "validTo": { "anyOf": [{ "$ref": "common.schema.json#/$defs/date" }, { "type": "null" }] },
+    "retrieved": { "$ref": "common.schema.json#/$defs/date" },
+    "source": { "$ref": "common.schema.json#/$defs/url" },
+    "sources": { "$ref": "common.schema.json#/$defs/sources" },
+    "directions": {
+      "description": "鍵是方向，例如 for-kashikojima、for-ujiyamada",
+      "type": "object",
+      "propertyNames": { "pattern": "^for-[a-z0-9-]+$" },
+      "additionalProperties": {
+        "type": "object",
+        "properties": {
+          "weekday": { "$ref": "#/$defs/departures" },
+          "holiday": { "$ref": "#/$defs/departures" }
+        },
+        "required": ["weekday", "holiday"],
+        "additionalProperties": false
+      }
+    },
+    "notes": { "$ref": "common.schema.json#/$defs/nullableString" },
+    "extra": { "type": "object" }
+  },
+  "required": ["station", "validFrom", "retrieved", "source", "directions"],
+  "additionalProperties": false,
+  "$defs": {
+    "departures": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "dep": { "$ref": "common.schema.json#/$defs/time" },
+          "type": { "description": "普通、急行、快速急行、特急、しまかぜ…", "type": "string" },
+          "to": { "description": "終點站 ID（可以在目標區間外，例如 osaka-namba）", "$ref": "common.schema.json#/$defs/id" },
+          "trainNo": { "$ref": "common.schema.json#/$defs/nullableString" },
+          "note": { "$ref": "common.schema.json#/$defs/nullableString" }
+        },
+        "required": ["dep", "type", "to"],
+        "additionalProperties": false
+      }
+    }
+  }
+}

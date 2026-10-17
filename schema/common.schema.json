@@ -1,0 +1,220 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://travel-helper.local/schema/common.schema.json",
+  "title": "共同定義",
+  "description": "所有資料點共用的欄位與型別。只有 T0、T7 可以修改。",
+  "$defs": {
+    "id": {
+      "description": "kebab-case，全專案唯一（區域 ID 另成一個命名空間）",
+      "type": "string",
+      "pattern": "^[a-z0-9]+(-[a-z0-9]+)*$"
+    },
+    "areaId": {
+      "enum": ["ise", "futami", "toba", "shima"]
+    },
+    "date": {
+      "description": "YYYY-MM-DD",
+      "type": "string",
+      "format": "date"
+    },
+    "url": {
+      "type": "string",
+      "pattern": "^https?://"
+    },
+    "time": {
+      "description": "HH:MM；過了午夜可以寫 24:30、25:00",
+      "type": "string",
+      "pattern": "^([01][0-9]|2[0-9]):[0-5][0-9]$"
+    },
+    "coords": {
+      "description": "[經度, 緯度]，注意順序",
+      "type": "array",
+      "prefixItems": [
+        { "type": "number", "minimum": -180, "maximum": 180 },
+        { "type": "number", "minimum": -90, "maximum": 90 }
+      ],
+      "minItems": 2,
+      "maxItems": 2
+    },
+    "bbox": {
+      "description": "[西經度, 南緯度, 東經度, 北緯度]",
+      "type": "array",
+      "items": { "type": "number" },
+      "minItems": 4,
+      "maxItems": 4
+    },
+    "nullableString": { "type": ["string", "null"] },
+    "nullableBoolean": { "type": ["boolean", "null"] },
+    "nullableInteger": { "type": ["integer", "null"], "minimum": 0 },
+    "nullableNumber": { "type": ["number", "null"] },
+    "name": {
+      "type": "object",
+      "properties": {
+        "ja": { "type": "string", "minLength": 1 },
+        "kana": { "type": ["string", "null"], "description": "讀音（平假名）" },
+        "zh": { "type": ["string", "null"] },
+        "en": { "type": ["string", "null"] }
+      },
+      "required": ["ja"],
+      "additionalProperties": false
+    },
+    "source": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "description": "來源種類",
+          "enum": [
+            "official",
+            "tourism",
+            "tabelog",
+            "google-maps",
+            "osm",
+            "wikipedia",
+            "booking-site",
+            "blog-ja",
+            "blog-zh",
+            "media",
+            "instagram",
+            "manual",
+            "other"
+          ]
+        },
+        "url": { "$ref": "#/$defs/url" },
+        "retrieved": { "$ref": "#/$defs/date" },
+        "note": { "type": ["string", "null"], "description": "這個來源提供了哪些資訊" }
+      },
+      "required": ["type", "url", "retrieved"],
+      "additionalProperties": false
+    },
+    "sources": {
+      "description": "必填，至少一筆",
+      "type": "array",
+      "items": { "$ref": "#/$defs/source" },
+      "minItems": 1
+    },
+    "dayHours": {
+      "description": "null：不知道；[]：確定公休；[[\"09:00\", \"17:00\"]]：營業時段（可以有多段）",
+      "anyOf": [
+        { "type": "null" },
+        {
+          "type": "array",
+          "items": {
+            "type": "array",
+            "prefixItems": [{ "$ref": "#/$defs/time" }, { "$ref": "#/$defs/time" }],
+            "minItems": 2,
+            "maxItems": 2
+          }
+        }
+      ]
+    },
+    "hours": {
+      "description": "一週的營業時間；不知道就留 null，不要猜",
+      "anyOf": [
+        { "type": "null" },
+        {
+          "type": "object",
+          "properties": {
+            "mon": { "$ref": "#/$defs/dayHours" },
+            "tue": { "$ref": "#/$defs/dayHours" },
+            "wed": { "$ref": "#/$defs/dayHours" },
+            "thu": { "$ref": "#/$defs/dayHours" },
+            "fri": { "$ref": "#/$defs/dayHours" },
+            "sat": { "$ref": "#/$defs/dayHours" },
+            "sun": { "$ref": "#/$defs/dayHours" },
+            "holiday": { "$ref": "#/$defs/dayHours" },
+            "note": { "type": ["string", "null"], "description": "例如「最後入場 16:00」「L.O. 14:30」" }
+          },
+          "additionalProperties": false
+        }
+      ]
+    },
+    "photo": {
+      "type": "object",
+      "properties": {
+        "url": { "$ref": "#/$defs/url" },
+        "source": { "type": ["string", "null"] },
+        "caption": { "type": ["string", "null"] }
+      },
+      "required": ["url"],
+      "additionalProperties": false
+    },
+    "links": {
+      "type": "object",
+      "properties": {
+        "official": { "anyOf": [{ "$ref": "#/$defs/url" }, { "type": "null" }] },
+        "googleMaps": { "anyOf": [{ "$ref": "#/$defs/url" }, { "type": "null" }] },
+        "tabelog": { "anyOf": [{ "$ref": "#/$defs/url" }, { "type": "null" }] },
+        "instagram": {
+          "description": "帳號，例如 @xxx",
+          "type": ["string", "null"],
+          "pattern": "^@[A-Za-z0-9._]+$"
+        }
+      },
+      "additionalProperties": { "anyOf": [{ "$ref": "#/$defs/url" }, { "type": "null" }] }
+    },
+    "mode": {
+      "enum": ["walk", "bus", "taxi", "train", "car", "ferry", "shuttle", "other"]
+    },
+    "stationRef": {
+      "description": "最近的車站",
+      "anyOf": [
+        { "type": "null" },
+        {
+          "type": "object",
+          "properties": {
+            "id": { "$ref": "#/$defs/id" },
+            "mode": { "$ref": "#/$defs/mode" },
+            "minutes": { "$ref": "#/$defs/nullableNumber" },
+            "note": { "$ref": "#/$defs/nullableString" }
+          },
+          "required": ["id", "mode", "minutes"],
+          "additionalProperties": false
+        }
+      ]
+    },
+    "contact": {
+      "anyOf": [
+        { "type": "null" },
+        {
+          "type": "object",
+          "properties": {
+            "phone": { "$ref": "#/$defs/nullableString" },
+            "url": { "anyOf": [{ "$ref": "#/$defs/url" }, { "type": "null" }] },
+            "note": { "$ref": "#/$defs/nullableString" }
+          },
+          "additionalProperties": false
+        }
+      ]
+    },
+    "point": {
+      "description": "所有資料點（station | spot | lodging | restaurant）的共同欄位",
+      "type": "object",
+      "properties": {
+        "id": { "$ref": "#/$defs/id" },
+        "type": { "enum": ["station", "spot", "lodging", "restaurant"] },
+        "name": { "$ref": "#/$defs/name" },
+        "area": { "$ref": "#/$defs/areaId" },
+        "coords": { "$ref": "#/$defs/coords" },
+        "coordsSource": {
+          "description": "座標從哪裡來，方便之後檢查",
+          "enum": ["google-maps-url", "official", "osm", "wikipedia", "geocoder", "manual", "other"]
+        },
+        "address": { "$ref": "#/$defs/nullableString" },
+        "hours": { "$ref": "#/$defs/hours" },
+        "closedNote": { "$ref": "#/$defs/nullableString" },
+        "febNote": { "description": "冬季、淡季的特別狀況", "$ref": "#/$defs/nullableString" },
+        "photos": { "type": "array", "items": { "$ref": "#/$defs/photo" } },
+        "links": { "$ref": "#/$defs/links" },
+        "tags": { "type": "array", "items": { "type": "string" }, "uniqueItems": true },
+        "tier": { "description": "分級，T7 訂規則後才填", "type": ["string", "integer", "null"] },
+        "sources": { "$ref": "#/$defs/sources" },
+        "verified": { "description": "是否經過人工確認", "type": "boolean" },
+        "extra": {
+          "description": "schema 還沒定義、但值得留下的資訊；來源衝突寫在 extra.conflicts",
+          "type": "object"
+        }
+      },
+      "required": ["id", "type", "name", "area", "coords", "coordsSource", "sources", "verified"]
+    }
+  }
+}

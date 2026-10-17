@@ -1,0 +1,33 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://travel-helper.local/schema/area.schema.json",
+  "title": "區域（data/areas.json）",
+  "description": "區域 ID 是另一個命名空間，可以和車站 ID 相同（例如區域 toba 和車站 toba）。",
+  "type": "array",
+  "items": {
+    "type": "object",
+    "properties": {
+      "id": { "$ref": "common.schema.json#/$defs/areaId" },
+      "type": { "const": "area" },
+      "name": { "$ref": "common.schema.json#/$defs/name" },
+      "municipality": { "description": "所屬的市町", "type": "string" },
+      "definition": { "description": "這個區域包含哪些範圍（以行政區為準）", "type": "string" },
+      "tripOrder": { "description": "行程順序：志摩 → 鳥羽 → 伊勢（含二見）", "type": "integer", "minimum": 1 },
+      "center": { "description": "地圖的預設中心", "$ref": "common.schema.json#/$defs/coords" },
+      "bbox": {
+        "description": "大致範圍（用來檢查座標，不是精確的行政界線）",
+        "$ref": "common.schema.json#/$defs/bbox"
+      },
+      "stations": {
+        "description": "區域內的車站 ID",
+        "type": "array",
+        "items": { "$ref": "common.schema.json#/$defs/id" }
+      },
+      "notes": { "$ref": "common.schema.json#/$defs/nullableString" },
+      "sources": { "$ref": "common.schema.json#/$defs/sources" },
+      "extra": { "type": "object" }
+    },
+    "required": ["id", "type", "name", "municipality", "definition", "center", "bbox", "stations", "sources"],
+    "additionalProperties": false
+  }
+}

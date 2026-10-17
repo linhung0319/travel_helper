@@ -18,6 +18,7 @@ travel_helper/
 │  ├─ areas.json             區域劃分
 │  ├─ stations.json          車站
 │  ├─ passes.json            票券規則、特急費用
+│  ├─ access/                機場往返交通（T1b）
 │  ├─ areas/<area-id>/
 │  │  ├─ spots.json          景點
 │  │  ├─ lodging.json        住宿
@@ -32,6 +33,26 @@ travel_helper/
 ```
 
 區域 ID：`ise`、`futami`、`toba`、`shima`
+
+---
+
+## 1.5 Schema 與驗證（T0 建立）
+
+- JSON Schema 放在 `schema/`：`common`（共同欄位）、`station`、`spot`、`lodging`、`restaurant`、`area`、`timetable-kintetsu`，以及格式還沒定的檔案共用的 `sourced-document`（`passes.json`、`access/*.json`、`timetables/bus/*.json`、`timetables/kintetsu/_travel-times.json`：目前只要求最外層是物件、有 `sources`，負責的任務定好格式後到 `docs/requests.md` 提出）。
+- 驗證：`npm run validate`（或 `node scripts/validate.mjs`；bash 下可以直接跑 `scripts/validate`）。第一次使用前要先 `npm install`。
+  - 檢查：符合 schema、資料點 ID 全專案唯一、座標在伊勢志摩範圍內（`access/` 放寬到關西、中部）、引用的 ID 存在（`nearestStation`、`access.from`、`anchors`、`transfers`、`group.nearbyCombos`、`areas.json` 的 `stations`）、檔案在規定的位置。
+  - 座標不在所屬區域的 `bbox` 內只會警告（bbox 是大致範圍）。
+- `areas/*.json`、`stations.json` 等清單檔的最外層是**陣列**，每個元素一筆資料。
+- schema 不允許沒定義的欄位：暫時放進 `extra`，需要正式欄位的話寫到 `docs/requests.md`。
+
+### ID 規則
+- 近鐵車站：站名的羅馬字（`toba`、`ugata`、`kashikojima`、`shima-isobe`）；JR 車站加 `jr-` 前綴（`jr-toba`、`jr-futaminoura`）。同一站的近鐵、JR 用 `transfers` 互相連結。
+- 區域 ID 是另一個命名空間，可以和車站 ID 相同（區域 `toba`、車站 `toba`）。
+- 其他資料點建議以區域開頭，例如 `toba-aquarium`。
+
+### 營業時間（`hours`）
+- 整個欄位 `null`：不知道。某一天 `null`：那天不知道；`[]`：那天公休；可以有多個時段，例如 `[["11:00", "14:00"], ["17:00", "21:00"]]`。
+- 可以加 `holiday`（國定假日）和 `note`（例如「最後入場 16:00」）。過了午夜寫 `25:00`。
 
 ---
 

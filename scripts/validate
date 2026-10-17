@@ -1,0 +1,3 @@
+#!/usr/bin/env sh
+# 驗證 data/ 下所有 JSON。Windows PowerShell 請用 npm run validate 或 node scripts/validate.mjs
+exec node "$(dirname "$0")/validate.mjs" "$@"

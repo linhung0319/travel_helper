@@ -1,0 +1,116 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://travel-helper.local/schema/restaurant.schema.json",
+  "title": "餐廳（data/areas/<area>/restaurants.json）",
+  "description": "sources 裡每個推薦來源各記一筆；被越多獨立來源推薦，可信度越高。",
+  "type": "array",
+  "items": {
+    "$ref": "common.schema.json#/$defs/point",
+    "properties": {
+      "type": { "const": "restaurant" },
+      "anchors": {
+        "description": "這家店「屬於」哪些資料點",
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "id": { "$ref": "common.schema.json#/$defs/id" },
+            "walkMinutes": { "$ref": "common.schema.json#/$defs/nullableNumber" },
+            "walkSource": { "enum": ["estimate", "osrm", "google", null] }
+          },
+          "required": ["id"],
+          "additionalProperties": false
+        }
+      },
+      "contexts": {
+        "type": "array",
+        "items": { "enum": ["lunch", "dinner", "transit", "snack", "cafe"] },
+        "uniqueItems": true
+      },
+      "cuisine": { "type": "array", "items": { "type": "string" } },
+      "priceRange": { "$ref": "common.schema.json#/$defs/nullableString" },
+      "mustTry": { "type": "array", "items": { "type": "string" } },
+      "menu": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "url": { "$ref": "common.schema.json#/$defs/url" },
+            "source": { "type": ["string", "null"] },
+            "retrieved": { "$ref": "common.schema.json#/$defs/date" }
+          },
+          "required": ["url"],
+          "additionalProperties": false
+        }
+      },
+      "ratings": {
+        "anyOf": [
+          { "type": "null" },
+          {
+            "type": "object",
+            "properties": {
+              "tabelog": { "$ref": "common.schema.json#/$defs/nullableNumber" },
+              "tabelogReviews": { "$ref": "common.schema.json#/$defs/nullableInteger" },
+              "google": { "$ref": "common.schema.json#/$defs/nullableNumber" },
+              "googleReviews": { "$ref": "common.schema.json#/$defs/nullableInteger" },
+              "note": { "$ref": "common.schema.json#/$defs/nullableString" }
+            },
+            "additionalProperties": { "type": ["number", "null"] }
+          }
+        ]
+      },
+      "notes": { "$ref": "common.schema.json#/$defs/nullableString" },
+      "group": {
+        "description": "團體可行性",
+        "anyOf": [
+          { "type": "null" },
+          {
+            "type": "object",
+            "properties": {
+              "seats": { "$ref": "common.schema.json#/$defs/nullableInteger" },
+              "fit15": { "description": "全員 15 人", "enum": ["yes", "split", "no", "unknown"] },
+              "fitSubgroup": { "description": "分組 4～6 人", "enum": ["yes", "no", "unknown"] },
+              "privateRoom": { "$ref": "common.schema.json#/$defs/nullableBoolean" },
+              "buyout": { "$ref": "common.schema.json#/$defs/nullableString" },
+              "groupMenu": { "$ref": "common.schema.json#/$defs/nullableString" },
+              "source": { "$ref": "common.schema.json#/$defs/nullableString" },
+              "note": { "$ref": "common.schema.json#/$defs/nullableString" }
+            },
+            "required": ["fit15", "fitSubgroup"],
+            "additionalProperties": false
+          }
+        ]
+      },
+      "reservation": {
+        "anyOf": [
+          { "type": "null" },
+          {
+            "type": "object",
+            "properties": {
+              "accepted": { "enum": ["yes", "no", "groups-only", "unknown"] },
+              "methods": {
+                "type": "array",
+                "items": { "enum": ["phone", "web", "instagram-dm", "other"] },
+                "uniqueItems": true
+              },
+              "phone": { "$ref": "common.schema.json#/$defs/nullableString" },
+              "url": { "anyOf": [{ "$ref": "common.schema.json#/$defs/url" }, { "type": "null" }] },
+              "language": { "$ref": "common.schema.json#/$defs/nullableString" },
+              "note": { "$ref": "common.schema.json#/$defs/nullableString" }
+            },
+            "required": ["accepted"],
+            "additionalProperties": false
+          }
+        ]
+      },
+      "seating": {
+        "type": "array",
+        "items": { "enum": ["table", "zashiki", "horigotatsu", "counter", "terrace", "other"] },
+        "uniqueItems": true
+      },
+      "kids": { "$ref": "common.schema.json#/$defs/nullableString" },
+      "smoking": { "$ref": "common.schema.json#/$defs/nullableString" }
+    },
+    "unevaluatedProperties": false
+  }
+}

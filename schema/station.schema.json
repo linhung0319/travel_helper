@@ -1,0 +1,30 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://travel-helper.local/schema/station.schema.json",
+  "title": "車站（data/stations.json）",
+  "description": "近鐵車站的 ID 用站名的羅馬字（例如 toba、ugata）；JR 車站加上 jr- 前綴（例如 jr-toba）。",
+  "type": "array",
+  "items": {
+    "$ref": "common.schema.json#/$defs/point",
+    "properties": {
+      "type": { "const": "station" },
+      "operator": { "enum": ["kintetsu", "jr", "bus", "other"] },
+      "stationNumber": { "description": "站號，例如近鐵 M78", "$ref": "common.schema.json#/$defs/nullableString" },
+      "lines": { "type": "array", "items": { "type": "string" }, "minItems": 1 },
+      "passCovered": { "description": "近鐵 5 日券能不能用", "$ref": "common.schema.json#/$defs/nullableBoolean" },
+      "staffed": { "description": "有沒有站員", "$ref": "common.schema.json#/$defs/nullableBoolean" },
+      "transfers": {
+        "description": "同一站可以轉乘的其他業者車站 ID（例如 toba ↔ jr-toba）",
+        "type": "array",
+        "items": { "$ref": "common.schema.json#/$defs/id" }
+      },
+      "coinLockers": { "$ref": "common.schema.json#/$defs/nullableString" },
+      "accessibility": {
+        "description": "電梯、手扶梯、天橋等；長輩上下月台、帶行李時很重要",
+        "$ref": "common.schema.json#/$defs/nullableString"
+      }
+    },
+    "required": ["operator", "lines", "passCovered"],
+    "unevaluatedProperties": false
+  }
+}
