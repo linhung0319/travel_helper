@@ -10,6 +10,8 @@
 //                                   [--radius km] [--plans] [--max-pages N]
 //       空室検索（VacantHotelSearch）。--rooms × --adults 是房型組合（例如 5 間 × 3 人）；--up／--low 是每間的小學生高／低學年人數。
 //       --plans：列出每個方案（searchPattern=1），否則每間飯店只回最低價。--region 用 data/areas.json 的子地區中心，半徑預設 3 km（API 上限）。
+//   node scripts/rakuten.mjs simple (--region <子地區 ID> | --lat <緯度> --lng <經度>) [--radius km] [--max-pages N]
+//       施設検索（SimpleHotelSearch，T8b 加）：列出範圍內所有上楽天的住宿（不看空房），用來撈候選母體。
 //   node scripts/rakuten.mjs party (--hotel ... | --region ... | --lat --lng) --dates <YYYY-MM-DD,...> [--party 15] [--combos 5x3,4x4,3x5,2x8]
 //       每個日期、每個房型組合查一次空房，整理成「哪些飯店能讓全員同住、最低每人價格」。
 //
@@ -209,6 +211,33 @@ async function vacant({ checkin, checkout, rooms, adults, up = 0, low = 0, plans
 
 const hotelCount = (loc) => (loc.hotelNo ? loc.hotelNo.split(',').length : 0);
 
+// ---------- simple ----------
+/** 範圍內所有住宿（不看日期、空房），含分頁。 */
+async function simple({ loc, maxPages = 5 }) {
+  const out = [];
+  for (let page = 1; page <= maxPages; page++) {
+    const body = await call('SimpleHotelSearch', { ...loc, hits: 30, page, responseType: 'middle' });
+    if (!body?.hotels?.length) break;
+    for (const h of body.hotels) {
+      const b = part(h, 'hotelBasicInfo') ?? {};
+      out.push({
+        hotelNo: b.hotelNo, name: b.hotelName, url: canonicalUrl(b.hotelNo),
+        reviewAverage: b.reviewAverage ?? null, reviewCount: b.reviewCount ?? null,
+        coords: b.longitude != null ? [round(b.longitude, 7), round(b.latitude, 7)] : null,
+        address: `${b.address1 ?? ''}${b.address2 ?? ''}` || null, minCharge: b.hotelMinCharge ?? null,
+        images: { hotel: b.hotelImageUrl ?? null, room: b.roomImageUrl ?? null },
+      });
+    }
+    if (page >= (body.pagingInfo?.pageCount ?? 1)) break;
+  }
+  return out;
+}
+
+function printSimple(list) {
+  if (!list.length) console.log('範圍內沒有住宿');
+  for (const h of list) console.log(`${h.hotelNo} ${h.name}（${h.reviewAverage ?? '—'}／${h.reviewCount ?? 0} 則）最低 ${yen(h.minCharge)}  ${h.address}`);
+}
+
 // ---------- party ----------
 async function party() {
   const dates = String(opts.dates ?? '').split(',').filter(Boolean);
@@ -295,6 +324,8 @@ try {
       up: Number(opts.up ?? 0), low: Number(opts.low ?? 0), plans: !!opts.plans, maxPages: Number(opts['max-pages'] ?? 5), loc: locationParams(),
     });
     emit(list, printVacant);
+  } else if (cmd === 'simple') {
+    emit(await simple({ loc: locationParams(), maxPages: Number(opts['max-pages'] ?? 5) }), printSimple);
   } else if (cmd === 'party') {
     emit(await party(), printParty);
   } else usage(cmd ? `不認得的指令 ${cmd}` : null);
