@@ -10,7 +10,7 @@
 //   住宿附近的晚餐：anchors 裡有該住宿的晚餐店（restaurant-anchors.mjs 只在 20 分內才加），
 //     加上直線最近的 3 家晚餐店（標成「需搭車」與否看步行時間）。
 //   每天中午的家數：旅程每一天中午（11:30～13:30）有營業的店數，1 家以下用粗體標出。
-//   地區看 extra.region。
+//   地區看 region（T7b 之前的資料是 extra.region）。
 
 import fs from 'node:fs';
 import path from 'node:path';
@@ -70,19 +70,19 @@ const hav = (p, q) => {
   return 2 * R * Math.asin(Math.sqrt(h));
 };
 
-const regions = [...new Set(restaurants.map((r) => r.extra?.region ?? '（無）'))];
+const regions = [...new Set(restaurants.map((r) => r.region ?? r.extra?.region ?? '（無）'))];
 const out = [];
 out.push(`旅程 ${from}～${to}（${tripDays.length} 天；國定假日 ${[...holidays].join('、')}）`);
 
 out.push('', '#### 各地區的午餐', '', '| 地區 | 午餐家數 | 店（旅程中午有營業的天數） |', '|---|---|---|');
 for (const reg of regions) {
-  const list = restaurants.filter((r) => (r.extra?.region ?? '（無）') === reg && isLunch(r));
+  const list = restaurants.filter((r) => (r.region ?? r.extra?.region ?? '（無）') === reg && isLunch(r));
   out.push(`| ${reg} | ${list.length} | ${list.map((r) => `${r.name.ja}（${fmtCount(tripCount(r, '11:30', '13:30'))}）`).join('、') || '**無**'} |`);
 }
 
 out.push('', '#### 各地區每天中午有營業的家數（hours 為 null 的不算）', '', `| 地區 | ${tripDays.map((d) => `${d.iso.slice(5)} ${d.holiday ? 'hol' : d.dow}`).join(' | ')} |`, `|---|${tripDays.map(() => '---').join('|')}|`);
 for (const reg of regions) {
-  const list = restaurants.filter((r) => (r.extra?.region ?? '（無）') === reg && (r.contexts ?? []).includes('lunch') && r.hours);
+  const list = restaurants.filter((r) => (r.region ?? r.extra?.region ?? '（無）') === reg && (r.contexts ?? []).includes('lunch') && r.hours);
   const cells = tripDays.map((d) => {
     const n = list.filter((r) => {
       const slots = d.holiday && r.hours.holiday != null ? r.hours.holiday : r.hours[d.dow];
@@ -111,7 +111,7 @@ for (const l of lodging.filter((x) => x.meals === 'none' || x.meals === 'breakfa
 
 out.push('', '#### 各地區能接 15 人（fit15: yes）的店', '', '| 地區 | yes | split | 店（yes） |', '|---|---|---|---|');
 for (const reg of regions) {
-  const list = restaurants.filter((r) => (r.extra?.region ?? '（無）') === reg);
+  const list = restaurants.filter((r) => (r.region ?? r.extra?.region ?? '（無）') === reg);
   const yes = list.filter((r) => r.group?.fit15 === 'yes');
   const split = list.filter((r) => r.group?.fit15 === 'split');
   out.push(`| ${reg} | ${yes.length} | ${split.length} | ${yes.map((r) => `${r.name.ja}（${(r.contexts ?? []).join('・')}）`).join('、') || '**無**'} |`);

@@ -9,6 +9,7 @@
       "en": null
     },
     "area": "toba",
+    "region": "toba-station",
     "coords": [
       136.8428997,
       34.4835783
@@ -82,6 +83,7 @@
     },
     "closedNote": "週二公休（逢國定假日營業，另擇日補休）",
     "febNote": null,
+    "closures": [],
     "photos": [],
     "links": {
       "official": "http://www.sazanami.co.jp/",
@@ -172,12 +174,12 @@
       "dinner",
       "transit"
     ],
+    "access": "walk",
     "cuisine": [
-      "海鮮",
-      "炸物（コロッケ）",
-      "日本料理"
+      "和食・割烹"
     ],
     "priceRange": "¥3,000～3,999",
+    "price": null,
     "mustTry": [],
     "menu": [],
     "ratings": {
@@ -187,9 +189,12 @@
       "googleReviews": 2054,
       "note": null
     },
+    "tabelogOwner": false,
+    "googleName": null,
     "notes": "鳥羽站步行約 7 分。不接受預約，熱門店要排隊。1 樓桌席、2 樓也有座位（官網）。",
     "group": {
       "seats": 60,
+      "maxReservation": null,
       "privateRoom": false,
       "buyout": "不可",
       "groupMenu": null,
@@ -210,12 +215,15 @@
       "table",
       "zashiki"
     ],
-    "kids": "可帶小孩（含幼兒），有兒童餐（食べログ）",
+    "kids": {
+      "allowed": "yes",
+      "minAge": null,
+      "kidsMenu": true,
+      "note": "可帶小孩（含幼兒），有兒童餐（食べログ）"
+    },
     "smoking": "全席禁煙",
     "extra": {
-      "region": "鳥羽站周邊",
       "inclusion": "A",
-      "tabelogOwner": false,
       "conflicts": [
         "Google 的營業時間寫到 14:30、18:30（是 L.O.）；官網、食べログ寫 15:00、19:30 打烊"
       ]
@@ -231,6 +239,7 @@
       "en": "Main Dining SEA HORSE"
     },
     "area": "toba",
+    "region": "toba-station",
     "coords": [
       136.8418079,
       34.4919013
@@ -350,6 +359,7 @@
     },
     "closedNote": "午餐週五公休（2026-03 起）；食べログ另寫「不定期年 2 回」",
     "febNote": null,
+    "closures": [],
     "photos": [],
     "links": {
       "official": "https://www.tobahotel.co.jp/restaurant_list/seahorse/",
@@ -422,12 +432,21 @@
       "lunch",
       "dinner"
     ],
+    "access": "walk",
     "cuisine": [
-      "法式料理",
-      "西餐",
-      "咖哩"
+      "洋食・義式"
     ],
     "priceRange": "晚餐 ¥15,000～19,999；午餐 ¥4,000～4,999",
+    "price": {
+      "lunch": [
+        4000,
+        4999
+      ],
+      "dinner": [
+        15000,
+        19999
+      ]
+    },
     "mustTry": [],
     "menu": [],
     "ratings": {
@@ -437,9 +456,12 @@
       "googleReviews": 104,
       "note": "IG 是鳥羽國際飯店的帳號"
     },
+    "tabelogOwner": false,
+    "googleName": null,
     "notes": "鳥羽國際飯店內，鳥羽站搭車 3 分，站前有接駁車。",
     "group": {
       "seats": 88,
+      "maxReservation": null,
       "privateRoom": false,
       "buyout": "可包場（20～50 人）",
       "groupMenu": null,
@@ -462,13 +484,19 @@
     "seating": [
       "table"
     ],
-    "kids": "可帶小孩（乳兒、學齡前、小學生），有兒童餐，可推嬰兒車（食べログ）",
+    "kids": {
+      "allowed": "yes",
+      "minAge": null,
+      "kidsMenu": true,
+      "note": "可帶小孩（乳兒、學齡前、小學生），有兒童餐，可推嬰兒車（食べログ）"
+    },
+    "accessibility": {
+      "barrierFree": "可坐輪椅入店（食べログ）",
+      "note": null
+    },
     "smoking": "全席禁煙",
     "extra": {
-      "region": "鳥羽站周邊",
       "inclusion": "AC",
-      "tabelogOwner": false,
-      "barrierFree": "可坐輪椅入店（食べログ）",
       "conflicts": [
         "Google 的時間是 L.O.（午餐到 13:30、晚餐到 20:30），也沒有反映週五午餐公休"
       ]
@@ -484,6 +512,7 @@
       "en": null
     },
     "area": "toba",
+    "region": "toba-station",
     "coords": [
       136.8391442,
       34.4824264
@@ -528,6 +557,7 @@
     },
     "closedNote": "週三、週四公休",
     "febNote": null,
+    "closures": [],
     "photos": [],
     "links": {
       "official": null,
@@ -593,10 +623,18 @@
     "contexts": [
       "dinner"
     ],
+    "access": "walk",
     "cuisine": [
       "壽司"
     ],
     "priceRange": "¥10,000～14,999",
+    "price": {
+      "lunch": null,
+      "dinner": [
+        10000,
+        14999
+      ]
+    },
     "mustTry": [],
     "menu": [],
     "ratings": {
@@ -606,9 +644,12 @@
       "googleReviews": 95,
       "note": null
     },
+    "tabelogOwner": false,
+    "googleName": null,
     "notes": "鳥羽站步行約 10 分。只有晚上營業。",
     "group": {
       "seats": null,
+      "maxReservation": null,
       "privateRoom": false,
       "buyout": "可（沒寫人數）",
       "groupMenu": null,
@@ -633,9 +674,7 @@
     "kids": null,
     "smoking": "全席喫煙可（食べログ，可能是舊資料）",
     "extra": {
-      "region": "鳥羽站周邊",
       "inclusion": "AC",
-      "tabelogOwner": false,
       "conflicts": [
         "食べログ（非店舗会員）寫 17:00～22:00，Google 寫 17:00～21:00，採用 Google"
       ]
@@ -651,6 +690,7 @@
       "en": null
     },
     "area": "toba",
+    "region": "toba-station",
     "coords": [
       136.8438024,
       34.4860983
@@ -705,6 +745,7 @@
     },
     "closedNote": null,
     "febNote": null,
+    "closures": [],
     "photos": [],
     "links": {
       "official": null,
@@ -778,11 +819,18 @@
       "snack",
       "transit"
     ],
+    "access": "walk",
     "cuisine": [
-      "海鮮",
-      "烤蠑螺（さざえ）"
+      "浜焼き・貝"
     ],
     "priceRange": "¥4,000～4,999",
+    "price": {
+      "lunch": [
+        4000,
+        4999
+      ],
+      "dinner": null
+    },
     "mustTry": [],
     "menu": [],
     "ratings": {
@@ -792,9 +840,12 @@
       "googleReviews": 136,
       "note": null
     },
+    "tabelogOwner": false,
+    "googleName": "水沼サザエ店",
     "notes": "鳥羽站前さざえ店街（鳥羽 1-8-7）的攤位，鳥羽站步行約 3 分。廁所在店後面。",
     "group": {
       "seats": 13,
+      "maxReservation": null,
       "privateRoom": false,
       "buyout": "可（13 席）",
       "groupMenu": null,
@@ -820,13 +871,10 @@
     "kids": null,
     "smoking": "全席喫煙可（食べログ，可能是舊資料）",
     "extra": {
-      "region": "鳥羽站周邊",
       "inclusion": "ACE",
-      "tabelogOwner": false,
       "conflicts": [
         "食べログ（非店舗会員）寫 08:30～17:00，Google 寫 9:00～17:00，採用 Google"
-      ],
-      "googleName": "水沼サザエ店"
+      ]
     }
   },
   {
@@ -839,6 +887,7 @@
       "en": null
     },
     "area": "toba",
+    "region": "toba-station",
     "coords": [
       136.8384135,
       34.4888434
@@ -888,6 +937,7 @@
     },
     "closedNote": "週三公休",
     "febNote": null,
+    "closures": [],
     "photos": [],
     "links": {
       "official": null,
@@ -952,11 +1002,12 @@
     "contexts": [
       "dinner"
     ],
+    "access": "walk",
     "cuisine": [
-      "海鮮",
       "居酒屋"
     ],
     "priceRange": null,
+    "price": null,
     "mustTry": [],
     "menu": [],
     "ratings": {
@@ -966,9 +1017,12 @@
       "googleReviews": 458,
       "note": "Google 網站欄是 IG"
     },
+    "tabelogOwner": false,
+    "googleName": null,
     "notes": "鳥羽站步行約 6 分（小浜方向）。不含晚餐的旅館なおみ（小浜）附近的晚餐選擇之一。",
     "group": {
       "seats": 30,
+      "maxReservation": null,
       "privateRoom": false,
       "buyout": "不可",
       "groupMenu": null,
@@ -994,9 +1048,7 @@
     "kids": null,
     "smoking": "全席禁煙",
     "extra": {
-      "region": "鳥羽站周邊",
-      "inclusion": "A",
-      "tabelogOwner": false
+      "inclusion": "A"
     }
   },
   {
@@ -1009,6 +1061,7 @@
       "en": null
     },
     "area": "toba",
+    "region": "toba-station",
     "coords": [
       136.8417728,
       34.49187
@@ -1064,10 +1117,12 @@
           "22:00"
         ]
       ],
-      "note": "L.O. 20:30；時間預約制"
+      "note": "L.O. 20:30；時間預約制",
+      "lastEntry": "20:30"
     },
     "closedNote": "食べログ：不定期年 2 回",
     "febNote": null,
+    "closures": [],
     "photos": [],
     "links": {
       "official": "https://www.tobahotel.co.jp/restaurant_list/mondomisaki/",
@@ -1133,11 +1188,18 @@
     "contexts": [
       "dinner"
     ],
+    "access": "walk",
     "cuisine": [
-      "日本料理",
-      "海鮮"
+      "和食・割烹"
     ],
     "priceRange": "¥10,000～14,999",
+    "price": {
+      "lunch": null,
+      "dinner": [
+        10000,
+        14999
+      ]
+    },
     "mustTry": [],
     "menu": [],
     "ratings": {
@@ -1147,9 +1209,12 @@
       "googleReviews": 12,
       "note": "Google 評論只有 12 則"
     },
+    "tabelogOwner": false,
+    "googleName": "和食レストラン もんど岬／鳥羽国際ホテル",
     "notes": "鳥羽國際飯店內，只有晚餐，完全預約制。桌位以 2 人、4 人為單位；5 人以上安排相鄰的不同桌，或用包廂。",
     "group": {
       "seats": 72,
+      "maxReservation": null,
       "privateRoom": true,
       "buyout": "不可",
       "groupMenu": null,
@@ -1172,17 +1237,22 @@
     "seating": [
       "table"
     ],
-    "kids": "可帶小孩，有兒童套餐（かもめ ¥3,850、みつしま ¥5,500、やまとたちばな ¥8,800）（食べログ）",
+    "kids": {
+      "allowed": "yes",
+      "minAge": null,
+      "kidsMenu": true,
+      "note": "可帶小孩，有兒童套餐（かもめ ¥3,850、みつしま ¥5,500、やまとたちばな ¥8,800）（食べログ）"
+    },
+    "accessibility": {
+      "barrierFree": "可坐輪椅入店（食べログ）",
+      "note": null
+    },
     "smoking": "全席禁煙",
     "extra": {
-      "region": "鳥羽站周邊",
       "inclusion": "AC",
-      "tabelogOwner": false,
-      "barrierFree": "可坐輪椅入店（食べログ）",
       "conflicts": [
         "席數：食べログ 72 席、官網 60 名"
-      ],
-      "googleName": "和食レストラン もんど岬／鳥羽国際ホテル"
+      ]
     }
   },
   {
@@ -1195,6 +1265,7 @@
       "en": null
     },
     "area": "toba",
+    "region": "toba-station",
     "coords": [
       136.8438008,
       34.4860737
@@ -1245,10 +1316,12 @@
           "17:00"
         ]
       ],
-      "note": "L.O. 16:30；食材賣完會提早打烊；也會因人手不足臨時休業"
+      "note": "L.O. 16:30；食材賣完會提早打烊；也會因人手不足臨時休業",
+      "lastEntry": "16:30"
     },
     "closedNote": "週二公休（逢國定假日營業，改週四休；盂蘭盆、新年、黃金週除外）",
     "febNote": null,
+    "closures": [],
     "photos": [],
     "links": {
       "official": null,
@@ -1309,13 +1382,20 @@
       "lunch",
       "transit"
     ],
+    "access": "walk",
     "cuisine": [
-      "海鮮",
-      "浜焼",
-      "伊勢龍蝦（伊勢海老）",
-      "牡蠣"
+      "浜焼き・貝",
+      "牡蠣",
+      "伊勢海老・高級海鮮"
     ],
     "priceRange": "¥3,000～3,999（口コミ集計 ¥8,000～9,999）",
+    "price": {
+      "lunch": [
+        3000,
+        3999
+      ],
+      "dinner": null
+    },
     "mustTry": [],
     "menu": [],
     "ratings": {
@@ -1325,9 +1405,12 @@
       "googleReviews": 352,
       "note": null
     },
+    "tabelogOwner": true,
+    "googleName": null,
     "notes": "鳥羽站前さざえ店街的海女小屋風格浜焼店，鳥羽站步行 2～3 分。體驗型（海女小屋）。沒有停車場。",
     "group": {
       "seats": 14,
+      "maxReservation": null,
       "privateRoom": false,
       "buyout": "不可",
       "groupMenu": null,
@@ -1348,12 +1431,15 @@
       "counter",
       "table"
     ],
-    "kids": "可帶小孩（食べログ）",
+    "kids": {
+      "allowed": "yes",
+      "minAge": null,
+      "kidsMenu": null,
+      "note": "可帶小孩（食べログ）"
+    },
     "smoking": "全席禁煙（店外有吸菸處）",
     "extra": {
-      "region": "鳥羽站周邊",
       "inclusion": "AFE",
-      "tabelogOwner": true,
       "conflicts": [
         "Google 寫 10:00～17:00、週二公休，與食べログ（店舗会員）一致"
       ]
@@ -1369,6 +1455,7 @@
       "en": null
     },
     "area": "toba",
+    "region": "toba-station",
     "coords": [
       136.8428446,
       34.4841146
@@ -1441,6 +1528,7 @@
     },
     "closedNote": "週四公休（逢國定假日營業）",
     "febNote": null,
+    "closures": [],
     "photos": [],
     "links": {
       "official": "http://www.oosakaya.net/",
@@ -1513,12 +1601,13 @@
       "dinner",
       "transit"
     ],
+    "access": "walk",
     "cuisine": [
-      "食堂",
       "壽司",
-      "海鮮"
+      "定食・食堂"
     ],
     "priceRange": "¥2,000～2,999",
+    "price": null,
     "mustTry": [],
     "menu": [],
     "ratings": {
@@ -1528,9 +1617,12 @@
       "googleReviews": 401,
       "note": null
     },
+    "tabelogOwner": false,
+    "googleName": null,
     "notes": "鳥羽站 4 號出口步行約 5 分。T4a 搜尋結果裡「大廣間與包廂約 100 席」是另一家「伊勢大阪屋」，鳥羽店是食べログ的 80 席。",
     "group": {
       "seats": 80,
+      "maxReservation": null,
       "privateRoom": true,
       "buyout": "不可",
       "groupMenu": null,
@@ -1553,12 +1645,15 @@
       "counter",
       "zashiki"
     ],
-    "kids": "可帶小孩（食べログ）",
+    "kids": {
+      "allowed": "yes",
+      "minAge": null,
+      "kidsMenu": null,
+      "note": "可帶小孩（食べログ）"
+    },
     "smoking": "全席禁煙",
     "extra": {
-      "region": "鳥羽站周邊",
       "inclusion": "AC",
-      "tabelogOwner": false,
       "conflicts": [
         "Google、食べログ（非店舗会員）都寫 11:00～14:00、17:00～20:00、週四公休，一致；官網 oosakaya.net 沒讀到（憑證錯誤）"
       ]
@@ -1574,6 +1669,7 @@
       "en": "The Lobby Lounge"
     },
     "area": "toba",
+    "region": "toba-station",
     "coords": [
       136.8419896,
       34.4916996
@@ -1633,6 +1729,7 @@
     },
     "closedNote": "不定休",
     "febNote": null,
+    "closures": [],
     "photos": [],
     "links": {
       "official": "https://www.tobahotel.co.jp/restaurant_list/cafe-lounge/",
@@ -1694,13 +1791,19 @@
       "snack",
       "lunch"
     ],
+    "access": "walk",
     "cuisine": [
-      "蛋糕",
-      "咖啡",
-      "漢堡",
-      "Afternoon tea"
+      "洋食・義式",
+      "咖啡・甜點"
     ],
     "priceRange": "¥2,000～2,999",
+    "price": {
+      "lunch": [
+        2000,
+        2999
+      ],
+      "dinner": null
+    },
     "mustTry": [],
     "menu": [],
     "ratings": {
@@ -1710,9 +1813,12 @@
       "googleReviews": 8,
       "note": "Google 只有 8 則評論；IG 是飯店帳號"
     },
+    "tabelogOwner": false,
+    "googleName": "ザ・ロビーラウンジ／鳥羽国際ホテル",
     "notes": "鳥羽國際飯店大廳，非住客也可以用（食べログ備考）。看得到鳥羽灣。吧台座位未成年不能坐。",
     "group": {
       "seats": 51,
+      "maxReservation": null,
       "privateRoom": false,
       "buyout": "不可",
       "groupMenu": null,
@@ -1735,20 +1841,25 @@
       "table",
       "counter",
       "terrace",
-      "other"
+      "sofa"
     ],
-    "kids": "可帶小孩（乳兒、學齡前、小學生），可推嬰兒車（食べログ）",
+    "kids": {
+      "allowed": "yes",
+      "minAge": null,
+      "kidsMenu": null,
+      "note": "可帶小孩（乳兒、學齡前、小學生），可推嬰兒車（食べログ）"
+    },
+    "accessibility": {
+      "barrierFree": "可坐輪椅入店（食べログ）",
+      "note": null
+    },
     "smoking": "全席禁煙",
     "extra": {
-      "region": "鳥羽站周邊",
       "inclusion": "A",
-      "tabelogOwner": false,
-      "barrierFree": "可坐輪椅入店（食べログ）",
       "seatingNote": "有沙發座、露天座",
       "conflicts": [
         "Google 寫 10:00～17:00、18:00～22:00，食べログ（非店舗会員）寫 10:00～22:30；Google 沒有細分時段，採用食べログ的細項（官網沒查）"
       ],
-      "googleName": "ザ・ロビーラウンジ／鳥羽国際ホテル",
       "tabelogOldName": "鳥羽国際ホテル カフェ＆ラウンジ"
     }
   },
@@ -1762,6 +1873,7 @@
       "en": null
     },
     "area": "toba",
+    "region": "toba-station",
     "coords": [
       136.8436442,
       34.4861547
@@ -1811,10 +1923,12 @@
           "18:30"
         ]
       ],
-      "note": "L.O. 18:00、最後預約 17:45；營業時間可能臨時變更；不定休"
+      "note": "L.O. 18:00、最後預約 17:45；營業時間可能臨時變更；不定休",
+      "lastEntry": "18:00"
     },
     "closedNote": "不定休",
     "febNote": null,
+    "closures": [],
     "photos": [],
     "links": {
       "official": null,
@@ -1882,13 +1996,22 @@
       "snack",
       "transit"
     ],
+    "access": "walk",
     "cuisine": [
-      "海鮮",
-      "烤貝",
-      "居酒屋",
-      "日本酒"
+      "浜焼き・貝",
+      "居酒屋"
     ],
     "priceRange": "晚 ¥4,000～4,999；午 ¥2,000～2,999",
+    "price": {
+      "lunch": [
+        2000,
+        2999
+      ],
+      "dinner": [
+        4000,
+        4999
+      ]
+    },
     "mustTry": [],
     "menu": [],
     "ratings": {
@@ -1898,9 +2021,12 @@
       "googleReviews": 285,
       "note": null
     },
+    "tabelogOwner": true,
+    "googleName": null,
     "notes": "鳥羽站步行 1 分（さざえ店街）。限時 90 分。當天取消不可，無故遲到 10 分視為取消，取消費每人 ¥1,000。",
     "group": {
       "seats": 30,
+      "maxReservation": null,
       "privateRoom": true,
       "buyout": "可包場（20 人以下、20～50 人）",
       "groupMenu": null,
@@ -1924,13 +2050,19 @@
       "counter",
       "table"
     ],
-    "kids": "可帶小孩（乳兒、學齡前、小學生），有兒童餐，可推嬰兒車（食べログ）",
+    "kids": {
+      "allowed": "yes",
+      "minAge": null,
+      "kidsMenu": true,
+      "note": "可帶小孩（乳兒、學齡前、小學生），有兒童餐，可推嬰兒車（食べログ）"
+    },
+    "accessibility": {
+      "barrierFree": "無障礙、可坐輪椅入店（食べログ）",
+      "note": null
+    },
     "smoking": "全席禁煙",
     "extra": {
-      "region": "鳥羽站周邊",
       "inclusion": "ACE",
-      "tabelogOwner": true,
-      "barrierFree": "無障礙、可坐輪椅入店（食べログ）",
       "conflicts": [
         "Google 寫 10:00～18:30，食べログ（店舗会員）寫 10:15～18:30，採用食べログ",
         "地址：Google 寫鳥羽 1-8-5，食べログ寫 1-8-7（さざえ店街同一棟）"
@@ -1947,6 +2079,7 @@
       "en": null
     },
     "area": "toba",
+    "region": "toba-station",
     "coords": [
       136.8436781,
       34.4861422
@@ -1995,6 +2128,7 @@
     },
     "closedNote": "週三公休（逢國定假日營業）",
     "febNote": null,
+    "closures": [],
     "photos": [],
     "links": {
       "official": null,
@@ -2056,12 +2190,19 @@
       "snack",
       "transit"
     ],
+    "access": "walk",
     "cuisine": [
-      "海鮮",
-      "鄉土料理",
-      "食堂"
+      "定食・食堂",
+      "和食・割烹"
     ],
     "priceRange": "¥2,000～2,999（口コミ集計）",
+    "price": {
+      "lunch": [
+        2000,
+        2999
+      ],
+      "dinner": null
+    },
     "mustTry": [],
     "menu": [],
     "ratings": {
@@ -2071,9 +2212,12 @@
       "googleReviews": 62,
       "note": null
     },
+    "tabelogOwner": true,
+    "googleName": null,
     "notes": "JR 鳥羽站步行 1 分、近鐵鳥羽站 3 分（さざえ店街）。",
     "group": {
       "seats": 18,
+      "maxReservation": null,
       "privateRoom": false,
       "buyout": "不可",
       "groupMenu": null,
@@ -2094,13 +2238,19 @@
       "counter",
       "table"
     ],
-    "kids": "可帶小孩（乳兒、學齡前、小學生），有兒童餐，可推嬰兒車（食べログ）",
+    "kids": {
+      "allowed": "yes",
+      "minAge": null,
+      "kidsMenu": true,
+      "note": "可帶小孩（乳兒、學齡前、小學生），有兒童餐，可推嬰兒車（食べログ）"
+    },
+    "accessibility": {
+      "barrierFree": "無障礙、可坐輪椅入店（食べログ）",
+      "note": null
+    },
     "smoking": "分煙（週末假日全面禁煙）",
     "extra": {
-      "region": "鳥羽站周邊",
       "inclusion": "AE",
-      "tabelogOwner": true,
-      "barrierFree": "無障礙、可坐輪椅入店（食べログ）",
       "conflicts": [
         "Google 寫 10:00～16:00，食べログ（店舗会員）寫 09:00～16:00，採用食べログ",
         "地址：Google 寫鳥羽 1-8-5"
@@ -2117,6 +2267,7 @@
       "en": "Minerva"
     },
     "area": "toba",
+    "region": "toba-station",
     "coords": [
       136.8440762,
       34.4871598
@@ -2166,6 +2317,7 @@
     },
     "closedNote": "週四公休",
     "febNote": null,
+    "closures": [],
     "photos": [],
     "links": {
       "official": "http://minerva-gelato.com/",
@@ -2233,11 +2385,18 @@
       "snack",
       "transit"
     ],
+    "access": "walk",
     "cuisine": [
-      "義式冰淇淋（ジェラート）",
-      "喫茶"
+      "咖啡・甜點"
     ],
     "priceRange": "～¥999",
+    "price": {
+      "lunch": [
+        0,
+        999
+      ],
+      "dinner": null
+    },
     "mustTry": [],
     "menu": [],
     "ratings": {
@@ -2247,9 +2406,12 @@
       "googleReviews": 199,
       "note": null
     },
+    "tabelogOwner": false,
+    "googleName": "手作りジェラート ミネルヴァ",
     "notes": "鳥羽一番街 1 樓，鳥羽站步行約 2 分。",
     "group": {
       "seats": null,
+      "maxReservation": null,
       "privateRoom": false,
       "buyout": "不可",
       "groupMenu": null,
@@ -2270,14 +2432,11 @@
     "kids": null,
     "smoking": "全席禁煙",
     "extra": {
-      "region": "鳥羽站周邊",
       "inclusion": "A",
-      "tabelogOwner": false,
       "conflicts": [
         "食べログ（非店舗会員）寫 9:00～17:00（週末假日～18:00），Google 寫 9:30～17:30（週末～18:00），採用 Google",
         "網站：食べログ寫 minerva-gelato.com，Google 寫 web-minerva.com"
-      ],
-      "googleName": "手作りジェラート ミネルヴァ"
+      ]
     }
   },
   {
@@ -2290,6 +2449,7 @@
       "en": "KITCHEN.TAKAMA"
     },
     "area": "toba",
+    "region": "toba-station",
     "coords": [
       136.84466,
       34.4842752
@@ -2344,6 +2504,7 @@
     },
     "closedNote": null,
     "febNote": null,
+    "closures": [],
     "photos": [],
     "links": {
       "official": null,
@@ -2412,12 +2573,19 @@
       "snack",
       "transit"
     ],
+    "access": "walk",
     "cuisine": [
-      "喫茶",
-      "洋食",
-      "咖啡"
+      "洋食・義式",
+      "咖啡・甜點"
     ],
     "priceRange": "¥1,000～1,999",
+    "price": {
+      "lunch": [
+        1000,
+        1999
+      ],
+      "dinner": null
+    },
     "mustTry": [],
     "menu": [],
     "ratings": {
@@ -2427,9 +2595,12 @@
       "googleReviews": 701,
       "note": null
     },
+    "tabelogOwner": false,
+    "googleName": null,
     "notes": "鳥羽站步行約 4 分。營業時間 Google 和食べログ差很多，要再確認。",
     "group": {
       "seats": null,
+      "maxReservation": null,
       "privateRoom": false,
       "buyout": "不可",
       "groupMenu": null,
@@ -2450,9 +2621,7 @@
     "kids": null,
     "smoking": "全席禁煙",
     "extra": {
-      "region": "鳥羽站周邊",
       "inclusion": "A",
-      "tabelogOwner": false,
       "conflicts": [
         "食べログ（非店舗会員）寫 7:30～20:30、週三公休（11:00～14:00 不能點甜點）；Google 寫每天 8:00～15:00。照優先順序採用 Google，差異很大"
       ],
@@ -2469,6 +2638,7 @@
       "en": null
     },
     "area": "toba",
+    "region": "toba-station",
     "coords": [
       136.8436086,
       34.4835792
@@ -2518,6 +2688,7 @@
     },
     "closedNote": "週三公休（Google）",
     "febNote": null,
+    "closures": [],
     "photos": [],
     "links": {
       "official": "https://www.nanakoshi.com/",
@@ -2590,11 +2761,19 @@
       "lunch",
       "transit"
     ],
+    "access": "walk",
     "cuisine": [
-      "烏龍麵（伊勢うどん）",
-      "鄉土料理"
+      "和食・割烹",
+      "烏龍麵・蕎麥"
     ],
     "priceRange": "¥1,000～1,999",
+    "price": {
+      "lunch": [
+        1000,
+        1999
+      ],
+      "dinner": null
+    },
     "mustTry": [],
     "menu": [],
     "ratings": {
@@ -2604,9 +2783,12 @@
       "googleReviews": 461,
       "note": null
     },
+    "tabelogOwner": false,
+    "googleName": null,
     "notes": "鳥羽站步行約 7 分（鳥羽 3 丁目，漣附近）。",
     "group": {
       "seats": null,
+      "maxReservation": null,
       "privateRoom": false,
       "buyout": "不可",
       "groupMenu": null,
@@ -2631,9 +2813,7 @@
     "kids": null,
     "smoking": "全席禁煙",
     "extra": {
-      "region": "鳥羽站周邊",
       "inclusion": "A",
-      "tabelogOwner": false,
       "conflicts": [
         "Google 寫 11:00～18:00（週四 11:00～15:00）、週三公休；官網、食べログ寫 11:00～15:00，採用官網"
       ]
@@ -2649,6 +2829,7 @@
       "en": null
     },
     "area": "toba",
+    "region": "toba-station",
     "coords": [
       136.8442741,
       34.4844977
@@ -2698,6 +2879,7 @@
     },
     "closedNote": "週四、週五公休",
     "febNote": null,
+    "closures": [],
     "photos": [],
     "links": {
       "official": "https://hamanami.com/",
@@ -2776,11 +2958,12 @@
       "dinner",
       "transit"
     ],
+    "access": "walk",
     "cuisine": [
-      "海鮮",
-      "浜焼"
+      "浜焼き・貝"
     ],
     "priceRange": "¥2,000～3,999",
+    "price": null,
     "mustTry": [],
     "menu": [],
     "ratings": {
@@ -2790,9 +2973,12 @@
       "googleReviews": 771,
       "note": null
     },
+    "tabelogOwner": false,
+    "googleName": "海女小屋 鳥羽はまなみ",
     "notes": "鳥羽站步行約 4 分。體驗型（海女小屋風格）。不接受預約（官網，有中文說明「不接受預訂」）。平日只有午餐，週末假日營業到 20:00。",
     "group": {
       "seats": 50,
+      "maxReservation": null,
       "privateRoom": false,
       "buyout": "不可",
       "groupMenu": null,
@@ -2813,13 +2999,15 @@
       "table",
       "zashiki"
     ],
-    "kids": "可帶小孩（食べログ）",
+    "kids": {
+      "allowed": "yes",
+      "minAge": null,
+      "kidsMenu": null,
+      "note": "可帶小孩（食べログ）"
+    },
     "smoking": "全席禁煙",
     "extra": {
-      "region": "鳥羽站周邊",
-      "inclusion": "AF",
-      "tabelogOwner": false,
-      "googleName": "海女小屋 鳥羽はまなみ"
+      "inclusion": "AF"
     }
   },
   {
@@ -2832,6 +3020,7 @@
       "en": null
     },
     "area": "toba",
+    "region": "toba-station",
     "coords": [
       136.8427842,
       34.4864045
@@ -2877,10 +3066,12 @@
         ]
       ],
       "holiday": null,
-      "note": "L.O. 20:00；食材賣完就打烊；第 2、第 4 個週三也公休"
+      "note": "L.O. 20:00；食材賣完就打烊；第 2、第 4 個週三也公休",
+      "lastEntry": "20:00"
     },
     "closedNote": "週二、每月第 2・4 個週三公休",
     "febNote": null,
+    "closures": [],
     "photos": [],
     "links": {
       "official": "http://0hachi.jp",
@@ -2953,12 +3144,22 @@
       "dinner",
       "transit"
     ],
+    "access": "walk",
     "cuisine": [
-      "海鮮",
       "海鮮丼",
-      "食堂"
+      "定食・食堂"
     ],
     "priceRange": "晚 ¥2,000～2,999；午 ¥1,000～1,999",
+    "price": {
+      "lunch": [
+        1000,
+        1999
+      ],
+      "dinner": [
+        2000,
+        2999
+      ]
+    },
     "mustTry": [],
     "menu": [],
     "ratings": {
@@ -2968,9 +3169,12 @@
       "googleReviews": 316,
       "note": "Google 網站欄是 X（@maruhachiojisan）"
     },
+    "tabelogOwner": true,
+    "googleName": "〇八食堂",
     "notes": "JR 鳥羽站名店街內，鳥羽站步行 1 分。舊店名「大家族」。官網 0hachi.jp 連不上。",
     "group": {
       "seats": 30,
+      "maxReservation": null,
       "privateRoom": false,
       "buyout": "不可",
       "groupMenu": null,
@@ -2993,18 +3197,20 @@
       "table",
       "zashiki"
     ],
-    "kids": "可帶小孩（乳兒、學齡前、小學生），可推嬰兒車（食べログ）",
+    "kids": {
+      "allowed": "yes",
+      "minAge": null,
+      "kidsMenu": null,
+      "note": "可帶小孩（乳兒、學齡前、小學生），可推嬰兒車（食べログ）"
+    },
     "smoking": "全席禁煙",
     "extra": {
-      "region": "鳥羽站周邊",
       "inclusion": "AE",
-      "tabelogOwner": true,
       "x": "@maruhachiojisan",
       "tabelogOldName": "大家族",
       "conflicts": [
         "Google 沒有營業時間"
-      ],
-      "googleName": "〇八食堂"
+      ]
     }
   },
   {
@@ -3017,6 +3223,7 @@
       "en": null
     },
     "area": "toba",
+    "region": "toba-station",
     "coords": [
       136.842986,
       34.48422
@@ -3099,6 +3306,7 @@
     },
     "closedNote": "週一公休（逢國定假日營業，隔天休）",
     "febNote": null,
+    "closures": [],
     "photos": [],
     "links": {
       "official": "http://www.tenbinya.co.jp/",
@@ -3189,11 +3397,21 @@
       "dinner",
       "transit"
     ],
+    "access": "walk",
     "cuisine": [
-      "海鮮",
       "居酒屋"
     ],
     "priceRange": "晚 ¥3,000～3,999；午 ¥2,000～2,999",
+    "price": {
+      "lunch": [
+        2000,
+        2999
+      ],
+      "dinner": [
+        3000,
+        3999
+      ]
+    },
     "mustTry": [],
     "menu": [],
     "ratings": {
@@ -3203,9 +3421,12 @@
       "googleReviews": 728,
       "note": null
     },
+    "tabelogOwner": true,
+    "googleName": null,
     "notes": "鳥羽站步行約 4 分。1～3 樓共 88 席，有 5 間包廂和可坐 40 人的大宴會廳（官網）。網路訂位只開放 2 張 4 人桌，座敷要電話訂；桌席沒有兒童椅，座敷有。繁忙期只接受電話預約。",
     "group": {
       "seats": 88,
+      "maxReservation": 36,
       "privateRoom": true,
       "buyout": "可包場（20～50 人）",
       "groupMenu": "午餐也接受聚會、慶祝、法事的預約（官網）",
@@ -3229,13 +3450,19 @@
       "table",
       "zashiki"
     ],
-    "kids": "可帶小孩（乳兒、學齡前、小學生），可推嬰兒車；兒童椅只有座敷有（食べログ）",
+    "kids": {
+      "allowed": "yes",
+      "minAge": null,
+      "kidsMenu": null,
+      "note": "可帶小孩（乳兒、學齡前、小學生），可推嬰兒車；兒童椅只有座敷有（食べログ）"
+    },
+    "accessibility": {
+      "barrierFree": "無障礙、可坐輪椅入店（食べログ）",
+      "note": null
+    },
     "smoking": "全席禁煙（店外、3 樓有吸菸處）",
     "extra": {
-      "region": "鳥羽站周邊",
       "inclusion": "AC",
-      "tabelogOwner": true,
-      "barrierFree": "無障礙、可坐輪椅入店（食べログ）",
       "conflicts": [
         "Google 寫午餐到 14:00、晚餐到 21:00（是 L.O.），Google 電話 050-5493-6980（訂位代理）"
       ]
@@ -3251,6 +3478,7 @@
       "en": null
     },
     "area": "toba",
+    "region": "toba-station",
     "coords": [
       136.841805,
       34.491817
@@ -3310,6 +3538,7 @@
     },
     "closedNote": null,
     "febNote": null,
+    "closures": [],
     "photos": [],
     "links": {
       "official": "https://www.tobahotel.co.jp/shop/",
@@ -3370,12 +3599,18 @@
       "snack",
       "cafe"
     ],
+    "access": "walk",
     "cuisine": [
-      "蛋糕",
-      "起司蛋糕",
-      "麵包"
+      "咖啡・甜點"
     ],
     "priceRange": "～¥999",
+    "price": {
+      "lunch": [
+        0,
+        999
+      ],
+      "dinner": null
+    },
     "mustTry": [],
     "menu": [],
     "ratings": {
@@ -3385,9 +3620,12 @@
       "googleReviews": 295,
       "note": "IG 是飯店帳號"
     },
+    "tabelogOwner": false,
+    "googleName": "鳥羽国際ホテル内 ホテルショップ",
     "notes": "鳥羽國際飯店 2 樓的商店，人氣是起司蛋糕，以外帶為主（伴手禮、甜點）。",
     "group": {
       "seats": null,
+      "maxReservation": null,
       "privateRoom": false,
       "buyout": "不可",
       "groupMenu": null,
@@ -3407,14 +3645,16 @@
       "accepted": "yes"
     },
     "seating": [],
-    "kids": "可帶小孩（食べログ）",
+    "kids": {
+      "allowed": "yes",
+      "minAge": null,
+      "kidsMenu": null,
+      "note": "可帶小孩（食べログ）"
+    },
     "smoking": "全席禁煙",
     "extra": {
-      "region": "鳥羽站周邊",
       "inclusion": "A",
-      "tabelogOwner": false,
-      "takeoutOnly": "以外帶為主（甜點，符合排除條件的例外）",
-      "googleName": "鳥羽国際ホテル内 ホテルショップ"
+      "takeoutOnly": "以外帶為主（甜點，符合排除條件的例外）"
     }
   },
   {
@@ -3427,6 +3667,7 @@
       "en": null
     },
     "area": "toba",
+    "region": "toba-station",
     "coords": [
       136.8430181,
       34.4840681
@@ -3500,6 +3741,7 @@
     },
     "closedNote": "週二、週四公休（另有不定休）",
     "febNote": null,
+    "closures": [],
     "photos": [],
     "links": {
       "official": "https://www.tenbinya.co.jp/",
@@ -3572,12 +3814,22 @@
       "dinner",
       "transit"
     ],
+    "access": "walk",
     "cuisine": [
-      "海鮮",
-      "燒肉",
-      "網燒"
+      "浜焼き・貝",
+      "燒肉・肉料理"
     ],
     "priceRange": "晚 ¥6,000～7,999；午 ¥3,000～3,999",
+    "price": {
+      "lunch": [
+        3000,
+        3999
+      ],
+      "dinner": [
+        6000,
+        7999
+      ]
+    },
     "mustTry": [],
     "menu": [],
     "ratings": {
@@ -3587,9 +3839,12 @@
       "googleReviews": 353,
       "note": null
     },
+    "tabelogOwner": true,
+    "googleName": null,
     "notes": "天びん屋本店的姊妹店，鳥羽站步行約 4 分。自己在桌上烤海鮮和肉。",
     "group": {
       "seats": 52,
+      "maxReservation": null,
       "privateRoom": true,
       "buyout": "可包場（20～50 人，要商量）",
       "groupMenu": null,
@@ -3612,15 +3867,22 @@
     "seating": [
       "counter",
       "table",
-      "zashiki"
+      "zashiki",
+      "sofa"
     ],
-    "kids": "可帶小孩（乳兒、學齡前、小學生），可推嬰兒車；兒童餐預約時商量（食べログ）",
+    "kids": {
+      "allowed": "yes",
+      "minAge": null,
+      "kidsMenu": null,
+      "note": "可帶小孩（乳兒、學齡前、小學生），可推嬰兒車；兒童餐預約時商量（食べログ）"
+    },
+    "accessibility": {
+      "barrierFree": "可坐輪椅入店（食べログ）",
+      "note": null
+    },
     "smoking": "全席禁煙（店外有吸菸處）",
     "extra": {
-      "region": "鳥羽站周邊",
       "inclusion": "C",
-      "tabelogOwner": true,
-      "barrierFree": "可坐輪椅入店（食べログ）",
       "seatingNote": "座敷 8 人 ×1、6 人 ×3；也有沙發座",
       "conflicts": [
         "Google 寫午餐到 14:00、晚餐到 21:00（是 L.O.）"
@@ -3637,6 +3899,7 @@
       "en": null
     },
     "area": "toba",
+    "region": "toba-station",
     "coords": [
       136.8440247,
       34.4859855
@@ -3682,10 +3945,12 @@
         ]
       ],
       "holiday": null,
-      "note": "L.O. 16:30（官網）"
+      "note": "L.O. 16:30（官網）",
+      "lastEntry": "16:30"
     },
     "closedNote": "週四公休（官網頁面亂碼，看起來是週四；Google、食べログ也是週四）；天候不佳時可能休",
     "febNote": null,
+    "closures": [],
     "photos": [],
     "links": {
       "official": "https://www.the-kaiya-toba.com/",
@@ -3765,11 +4030,18 @@
       "snack",
       "transit"
     ],
+    "access": "walk",
     "cuisine": [
-      "海鮮",
-      "烤貝"
+      "浜焼き・貝"
     ],
     "priceRange": "¥4,000～4,999",
+    "price": {
+      "lunch": [
+        4000,
+        4999
+      ],
+      "dinner": null
+    },
     "mustTry": [],
     "menu": [],
     "ratings": {
@@ -3779,9 +4051,12 @@
       "googleReviews": 486,
       "note": null
     },
+    "tabelogOwner": false,
+    "googleName": null,
     "notes": "鳥羽站前さざえ店街，步行約 3 分。",
     "group": {
       "seats": 15,
+      "maxReservation": null,
       "privateRoom": false,
       "buyout": "可（20 人以下）",
       "groupMenu": null,
@@ -3802,9 +4077,7 @@
     "kids": null,
     "smoking": "全席禁煙",
     "extra": {
-      "region": "鳥羽站周邊",
-      "inclusion": "C",
-      "tabelogOwner": false
+      "inclusion": "C"
     }
   },
   {
@@ -3817,6 +4090,7 @@
       "en": "Cuccagna"
     },
     "area": "toba",
+    "region": "toba-station",
     "coords": [
       136.8442922,
       34.4846233
@@ -3874,6 +4148,7 @@
     },
     "closedNote": "週二公休",
     "febNote": null,
+    "closures": [],
     "photos": [],
     "links": {
       "official": "http://cuccagna2.jp/toba/",
@@ -3946,12 +4221,21 @@
       "dinner",
       "transit"
     ],
+    "access": "walk",
     "cuisine": [
-      "義大利菜",
-      "義大利麵",
-      "披薩"
+      "洋食・義式"
     ],
     "priceRange": "晚 ¥3,000～3,999；午 ¥2,000～2,999",
+    "price": {
+      "lunch": [
+        2000,
+        2999
+      ],
+      "dinner": [
+        3000,
+        3999
+      ]
+    },
     "mustTry": [],
     "menu": [],
     "ratings": {
@@ -3961,9 +4245,12 @@
       "googleReviews": 274,
       "note": null
     },
+    "tabelogOwner": false,
+    "googleName": null,
     "notes": "鳥羽站步行約 4 分。1 樓吧台 10 席、2 樓桌席 16 席。套餐要一週前預約。披薩可外帶。",
     "group": {
       "seats": 26,
+      "maxReservation": null,
       "privateRoom": false,
       "buyout": "可包場（20～50 人）",
       "groupMenu": null,
@@ -3986,12 +4273,15 @@
       "counter",
       "table"
     ],
-    "kids": "食べログ「お子様連れ」欄只寫「ランチ現金のみ」",
+    "kids": {
+      "allowed": "unknown",
+      "minAge": null,
+      "kidsMenu": null,
+      "note": "食べログ「お子様連れ」欄只寫「ランチ現金のみ」"
+    },
     "smoking": "分煙（2 樓桌席禁煙）",
     "extra": {
-      "region": "鳥羽站周邊",
       "inclusion": "C",
-      "tabelogOwner": false,
       "conflicts": [
         "食べログ（非店舗会員）寫每天 11:00～14:30、17:00～21:30（週二休）；Google 寫晚餐只有週六日。採用 Google"
       ]
@@ -4007,6 +4297,7 @@
       "en": null
     },
     "area": "toba",
+    "region": "toba-station",
     "coords": [
       136.8403459,
       34.4905878
@@ -4098,6 +4389,7 @@
     },
     "closedNote": null,
     "febNote": null,
+    "closures": [],
     "photos": [],
     "links": {
       "official": "https://www.shiojitei.jp/cuisine/shiraishi.html",
@@ -4157,10 +4449,18 @@
     "contexts": [
       "dinner"
     ],
+    "access": "walk",
     "cuisine": [
-      "日本料理"
+      "和食・割烹"
     ],
     "priceRange": "¥10,000～14,999",
+    "price": {
+      "lunch": null,
+      "dinner": [
+        10000,
+        14999
+      ]
+    },
     "mustTry": [],
     "menu": [],
     "ratings": {
@@ -4170,9 +4470,12 @@
       "googleReviews": null,
       "note": "Google 上沒有獨立的店家頁（座標用潮路亭的）；IG 是潮路亭的帳號"
     },
+    "tabelogOwner": false,
+    "googleName": null,
     "notes": "鳥羽國際飯店 潮路亭內的餐廳，全部是半包廂（24 間）。可以從一休餐廳訂位，看起來非住客也能用，但官網沒寫明，要確認。",
     "group": {
       "seats": 82,
+      "maxReservation": null,
       "privateRoom": true,
       "buyout": "不可",
       "groupMenu": null,
@@ -4198,9 +4501,7 @@
     "kids": null,
     "smoking": "全席禁煙",
     "extra": {
-      "region": "鳥羽站周邊",
       "inclusion": "C",
-      "tabelogOwner": false,
       "coordsNote": "座標是 Google Maps 上「鳥羽国際ホテル 潮路亭」的位置",
       "nonGuest": "官網、食べログ都沒寫限住客；可以用一休餐廳訂位"
     }
@@ -4215,6 +4516,7 @@
       "en": null
     },
     "area": "toba",
+    "region": "toba-station",
     "coords": [
       136.8439087,
       34.4860387
@@ -4269,6 +4571,7 @@
     },
     "closedNote": null,
     "febNote": null,
+    "closures": [],
     "photos": [],
     "links": {
       "official": null,
@@ -4330,11 +4633,18 @@
       "snack",
       "transit"
     ],
+    "access": "walk",
     "cuisine": [
-      "海鮮",
-      "烤蠑螺"
+      "浜焼き・貝"
     ],
     "priceRange": "¥3,000～3,999",
+    "price": {
+      "lunch": [
+        3000,
+        3999
+      ],
+      "dinner": null
+    },
     "mustTry": [],
     "menu": [],
     "ratings": {
@@ -4344,9 +4654,12 @@
       "googleReviews": 86,
       "note": null
     },
+    "tabelogOwner": false,
+    "googleName": null,
     "notes": "鳥羽站前さざえ店街，步行約 3 分。",
     "group": {
       "seats": 8,
+      "maxReservation": null,
       "privateRoom": false,
       "buyout": "可（8 席）",
       "groupMenu": null,
@@ -4371,9 +4684,7 @@
     "kids": null,
     "smoking": "全席喫煙可（食べログ，可能是舊資料）",
     "extra": {
-      "region": "鳥羽站周邊",
       "inclusion": "C",
-      "tabelogOwner": false,
       "conflicts": [
         "食べログ（非店舗会員）寫 08:30～17:00，Google 寫 10:30～18:00，採用 Google"
       ]
@@ -4389,6 +4700,7 @@
       "en": "MUSEA"
     },
     "area": "toba",
+    "region": "toba-station",
     "coords": [
       136.8435025,
       34.4837522
@@ -4438,6 +4750,7 @@
     },
     "closedNote": "週一、週二公休",
     "febNote": null,
+    "closures": [],
     "photos": [],
     "links": {
       "official": "http://www.mu-sea.com",
@@ -4499,11 +4812,19 @@
       "snack",
       "lunch"
     ],
+    "access": "walk",
     "cuisine": [
-      "咖啡",
-      "洋食"
+      "洋食・義式",
+      "咖啡・甜點"
     ],
     "priceRange": "¥1,000～1,999",
+    "price": {
+      "lunch": [
+        1000,
+        1999
+      ],
+      "dinner": null
+    },
     "mustTry": [],
     "menu": [],
     "ratings": {
@@ -4513,9 +4834,12 @@
       "googleReviews": 163,
       "note": "Google 只從搜尋結果列表讀到星數（店家頁打不開）"
     },
+    "tabelogOwner": true,
+    "googleName": "MUSEAミュゼア ジェネラルストア＆カフェ",
     "notes": "鳥羽 3 丁目（漣附近），鳥羽站步行約 7 分。同系列另有鳥羽站店、鳥羽水族館店（沒有納入）。",
     "group": {
       "seats": 26,
+      "maxReservation": null,
       "privateRoom": false,
       "buyout": "可包場（20 人以下、20～50 人）",
       "groupMenu": null,
@@ -4537,17 +4861,19 @@
     "seating": [
       "table",
       "terrace",
-      "other"
+      "sofa"
     ],
-    "kids": "可帶小孩，可推嬰兒車（食べログ）",
+    "kids": {
+      "allowed": "yes",
+      "minAge": null,
+      "kidsMenu": null,
+      "note": "可帶小孩，可推嬰兒車（食べログ）"
+    },
     "smoking": "全席禁煙（戶外座位可吸菸）",
     "extra": {
-      "region": "鳥羽站周邊",
       "inclusion": "C",
-      "tabelogOwner": true,
       "seatingNote": "有沙發座、露天座（寵物只能坐露天座）",
-      "x": "@infoMUSEA",
-      "googleName": "MUSEAミュゼア ジェネラルストア＆カフェ"
+      "x": "@infoMUSEA"
     }
   },
   {
@@ -4560,6 +4886,7 @@
       "en": null
     },
     "area": "toba",
+    "region": "toba-station",
     "coords": [
       136.8413347,
       34.4830871
@@ -4609,6 +4936,7 @@
     },
     "closedNote": "週二公休",
     "febNote": null,
+    "closures": [],
     "photos": [],
     "links": {
       "official": "http://susiume.com/",
@@ -4681,11 +5009,13 @@
       "lunch",
       "dinner"
     ],
+    "access": "walk",
     "cuisine": [
       "壽司",
-      "日本料理"
+      "和食・割烹"
     ],
     "priceRange": "¥2,000～2,999",
+    "price": null,
     "mustTry": [],
     "menu": [],
     "ratings": {
@@ -4695,9 +5025,12 @@
       "googleReviews": 99,
       "note": null
     },
+    "tabelogOwner": false,
+    "googleName": null,
     "notes": "鳥羽站步行約 4 分（鳥羽 1 丁目，城山公園方向）。有座敷和大包廂。",
     "group": {
       "seats": 30,
+      "maxReservation": null,
       "privateRoom": true,
       "buyout": "可包場（50 人以上）",
       "groupMenu": null,
@@ -4723,9 +5056,7 @@
     "kids": null,
     "smoking": "全席禁煙",
     "extra": {
-      "region": "鳥羽站周邊",
       "inclusion": "BC",
-      "tabelogOwner": false,
       "conflicts": [
         "食べログ（非店舗会員）寫 10:00～21:00，Google 寫 11:30～19:00，採用 Google；官網 susiume.com 沒讀到（憑證錯誤）",
         "席數 30 但包廂寫 30 人以上、包場 50 人以上，食べログ資料本身不一致"
@@ -4742,6 +5073,7 @@
       "en": null
     },
     "area": "toba",
+    "region": "toba-station",
     "coords": [
       136.8440576,
       34.4852119
@@ -4820,10 +5152,12 @@
         ]
       ],
       "holiday": null,
-      "note": "官網：11～15 時、17～21 時；食べログ：L.O. 20:00、不定休"
+      "note": "官網：11～15 時、17～21 時；食べログ：L.O. 20:00、不定休",
+      "lastEntry": "20:00"
     },
     "closedNote": "不定休（食べログ）",
     "febNote": null,
+    "closures": [],
     "photos": [],
     "links": {
       "official": "https://nagatokan.com/",
@@ -4896,12 +5230,13 @@
       "dinner",
       "transit"
     ],
+    "access": "walk",
     "cuisine": [
-      "海鮮",
-      "鄉土料理",
-      "漢堡（とばーがー）"
+      "和食・割烹",
+      "洋食・義式"
     ],
     "priceRange": "¥2,000～2,999",
+    "price": null,
     "mustTry": [
       "海鮮丼（每天限 20 份）",
       "とばーがー（每天限 10 份，要預約）"
@@ -4914,9 +5249,12 @@
       "googleReviews": 202,
       "note": null
     },
+    "tabelogOwner": false,
+    "googleName": null,
     "notes": "鳥羽站步行約 2 分。100 席、有包廂和座敷。",
     "group": {
       "seats": 100,
+      "maxReservation": null,
       "privateRoom": true,
       "buyout": null,
       "groupMenu": null,
@@ -4942,9 +5280,7 @@
     "kids": null,
     "smoking": "全席喫煙可（食べログ，可能是舊資料）",
     "extra": {
-      "region": "鳥羽站周邊",
       "inclusion": "C",
-      "tabelogOwner": false,
       "conflicts": [
         "Google 寫每天 11:00～14:30（沒有晚上），官網寫 11～15 時、17～21 時，採用官網"
       ]
@@ -4960,6 +5296,7 @@
       "en": "BUN"
     },
     "area": "toba",
+    "region": "toba-station",
     "coords": [
       136.8426262,
       34.4838581
@@ -5033,6 +5370,7 @@
     },
     "closedNote": "週三公休（食べログ另寫第 3 個週二）",
     "febNote": null,
+    "closures": [],
     "photos": [],
     "links": {
       "official": null,
@@ -5105,12 +5443,22 @@
       "dinner",
       "transit"
     ],
+    "access": "walk",
     "cuisine": [
-      "海鮮",
-      "天婦羅",
+      "和食・割烹",
       "居酒屋"
     ],
     "priceRange": "晚 ¥6,000～7,999；午 ¥1,000～1,999",
+    "price": {
+      "lunch": [
+        1000,
+        1999
+      ],
+      "dinner": [
+        6000,
+        7999
+      ]
+    },
     "mustTry": [],
     "menu": [],
     "ratings": {
@@ -5120,9 +5468,12 @@
       "googleReviews": 181,
       "note": null
     },
+    "tabelogOwner": false,
+    "googleName": "海鮮 BUN",
     "notes": "鳥羽站步行約 4 分。2 樓有桌席、座敷的包廂。",
     "group": {
       "seats": 30,
+      "maxReservation": null,
       "privateRoom": true,
       "buyout": "可（沒寫人數）",
       "groupMenu": null,
@@ -5149,13 +5500,10 @@
     "kids": null,
     "smoking": "全席喫煙可（食べログ，可能是舊資料）",
     "extra": {
-      "region": "鳥羽站周邊",
       "inclusion": "C",
-      "tabelogOwner": false,
       "conflicts": [
         "食べログ（非店舗会員）寫晚餐 18:00～22:00，Google 寫 18:00～21:00，採用 Google"
-      ],
-      "googleName": "海鮮 BUN"
+      ]
     }
   },
   {
@@ -5168,6 +5516,7 @@
       "en": null
     },
     "area": "toba",
+    "region": "toba-station",
     "coords": [
       136.8437336,
       34.486124
@@ -5221,6 +5570,7 @@
     },
     "closedNote": null,
     "febNote": null,
+    "closures": [],
     "photos": [],
     "links": {
       "official": "http://yamato-toba.jp/",
@@ -5282,10 +5632,18 @@
       "snack",
       "transit"
     ],
+    "access": "walk",
     "cuisine": [
       "海鮮"
     ],
     "priceRange": "¥3,000～3,999",
+    "price": {
+      "lunch": [
+        3000,
+        3999
+      ],
+      "dinner": null
+    },
     "mustTry": [],
     "menu": [],
     "ratings": {
@@ -5295,9 +5653,12 @@
       "googleReviews": 56,
       "note": null
     },
+    "tabelogOwner": true,
+    "googleName": "海鮮大和",
     "notes": "鳥羽站前さざえ店街，步行約 3 分。",
     "group": {
       "seats": 18,
+      "maxReservation": null,
       "privateRoom": false,
       "buyout": "可包場（20 人以下）",
       "groupMenu": null,
@@ -5320,13 +5681,10 @@
     "kids": null,
     "smoking": "全席喫煙可（食べログ，可能是舊資料）",
     "extra": {
-      "region": "鳥羽站周邊",
       "inclusion": "C",
-      "tabelogOwner": true,
       "conflicts": [
         "Google 寫週三、週五公休，平日 11:00～16:00、週末 10:00～17:00；食べログ（店舗会員）寫每天 10:00～17:00、無休，採用食べログ"
-      ],
-      "googleName": "海鮮大和"
+      ]
     }
   },
   {
@@ -5339,6 +5697,7 @@
       "en": null
     },
     "area": "toba",
+    "region": "toba-station",
     "coords": [
       136.8443445,
       34.484354
@@ -5388,6 +5747,7 @@
     },
     "closedNote": "週四公休",
     "febNote": null,
+    "closures": [],
     "photos": [],
     "links": {
       "official": null,
@@ -5454,11 +5814,18 @@
       "lunch",
       "transit"
     ],
+    "access": "walk",
     "cuisine": [
-      "海鮮",
-      "食堂"
+      "定食・食堂"
     ],
     "priceRange": "¥2,000～2,999",
+    "price": {
+      "lunch": [
+        2000,
+        2999
+      ],
+      "dinner": null
+    },
     "mustTry": [],
     "menu": [],
     "ratings": {
@@ -5468,9 +5835,12 @@
       "googleReviews": 178,
       "note": null
     },
+    "tabelogOwner": false,
+    "googleName": null,
     "notes": "鳥羽站步行約 4 分。",
     "group": {
       "seats": null,
+      "maxReservation": null,
       "privateRoom": false,
       "buyout": "可（沒寫人數）",
       "groupMenu": null,
@@ -5493,9 +5863,7 @@
     "kids": null,
     "smoking": null,
     "extra": {
-      "region": "鳥羽站周邊",
-      "inclusion": "C",
-      "tabelogOwner": false
+      "inclusion": "C"
     }
   },
   {
@@ -5508,6 +5876,7 @@
       "en": null
     },
     "area": "toba",
+    "region": "toba-station",
     "coords": [
       136.8434099,
       34.4896472
@@ -5599,6 +5968,7 @@
     },
     "closedNote": "無休（食べログ）；天候、海況可能停航",
     "febNote": "冬天有營運：蒸牡蠣套餐是冬季限定（11～3 月）；食べログ寫無休。天候不好會停航，要看官方 IG 公告。",
+    "closures": [],
     "photos": [],
     "links": {
       "official": "https://tobayakatabune.jp/",
@@ -5666,13 +6036,14 @@
       "dinner",
       "transit"
     ],
+    "access": "walk",
     "cuisine": [
-      "海鮮",
-      "伊勢龍蝦（伊勢海老）",
       "牡蠣",
-      "屋形船"
+      "伊勢海老・高級海鮮",
+      "其他"
     ],
     "priceRange": "每人 ¥4,980～8,950（含料理和乘船費）",
+    "price": null,
     "mustTry": [
       "屋形船ランチ焼き貝コース ¥4,980",
       "屋形船伊勢海老コース ¥8,950",
@@ -5688,9 +6059,12 @@
       "googleReviews": 449,
       "note": null
     },
+    "tabelogOwner": true,
+    "googleName": "鳥羽海鮮料理屋形船おきた 伊勢海老/牡蠣",
     "notes": "三重縣唯一的屋形船餐廳（官網），在鳥羽灣邊吃海鮮邊遊船。體驗型。乘船處在鳥羽站步行約 5 分（佐田浜）。平時是和其他客人併船。",
     "group": {
       "seats": 48,
+      "maxReservation": null,
       "privateRoom": false,
       "buyout": "可包船（食べログ勾 20 人以下）",
       "groupMenu": null,
@@ -5714,16 +6088,18 @@
       "zashiki",
       "horigotatsu"
     ],
-    "kids": "網路訂位限小學生以上；6 歲以下（含 6 歲）要先洽詢（因為和其他客人併船）",
+    "kids": {
+      "allowed": "age-limit",
+      "minAge": null,
+      "kidsMenu": null,
+      "note": "網路訂位限小學生以上；6 歲以下（含 6 歲）要先洽詢（因為和其他客人併船）"
+    },
     "smoking": "分煙",
     "extra": {
-      "region": "鳥羽站周邊",
       "inclusion": "F",
-      "tabelogOwner": true,
       "conflicts": [
         "Google 沒有營業時間"
       ],
-      "googleName": "鳥羽海鮮料理屋形船おきた 伊勢海老/牡蠣",
       "departures": [
         "12:30",
         "18:30"
@@ -5740,6 +6116,7 @@
       "en": null
     },
     "area": "toba",
+    "region": "toba-station",
     "coords": [
       136.8362482,
       34.4902548
@@ -5790,10 +6167,12 @@
         ]
       ],
       "holiday": null,
-      "note": "L.O. 13:00（食べログ）；無休"
+      "note": "L.O. 13:00（食べログ）；無休",
+      "lastEntry": "13:00"
     },
     "closedNote": "無休（食べログ）",
     "febNote": null,
+    "closures": [],
     "photos": [],
     "links": {
       "official": "https://www.kairakuen.net/",
@@ -5870,11 +6249,18 @@
     "contexts": [
       "lunch"
     ],
+    "access": "walk",
     "cuisine": [
-      "海鮮",
-      "料亭"
+      "和食・割烹"
     ],
     "priceRange": "¥10,000～14,999（口コミ集計）",
+    "price": {
+      "lunch": [
+        10000,
+        14999
+      ],
+      "dinner": null
+    },
     "mustTry": [],
     "menu": [],
     "ratings": {
@@ -5884,9 +6270,12 @@
       "googleReviews": 217,
       "note": "Google 的評論大多是住宿"
     },
+    "tabelogOwner": false,
+    "googleName": null,
     "notes": "實際型態是建在小浜灣海上的小旅館（官網「海辺の小旅館」，觀光三重「味な宿」），可以在房間裡釣魚（座敷釣り）。食べログ寫中午 11:30～14:00 營業，但官網、觀光三重都沒寫非住客的午餐，要打電話確認。鳥羽站搭計程車 5 分。",
     "group": {
       "seats": null,
+      "maxReservation": null,
       "privateRoom": true,
       "buyout": "可（沒寫人數）",
       "groupMenu": null,
@@ -5911,9 +6300,7 @@
     "kids": null,
     "smoking": "全席喫煙可（食べログ，可能是舊資料）",
     "extra": {
-      "region": "鳥羽站周邊",
       "inclusion": "F",
-      "tabelogOwner": false,
       "kind": "海上旅館（兼料亭）",
       "nonGuestLunch": "未確認",
       "conflicts": [
@@ -5931,6 +6318,7 @@
       "en": null
     },
     "area": "toba",
+    "region": "nakanogo",
     "coords": [
       136.8420681,
       34.4686186
@@ -5980,6 +6368,7 @@
     },
     "closedNote": "週三公休",
     "febNote": null,
+    "closures": [],
     "photos": [],
     "links": {
       "official": "https://miemen.net/shops/115/",
@@ -6019,12 +6408,19 @@
     "contexts": [
       "lunch"
     ],
+    "access": "walk",
     "cuisine": [
-      "烏龍麵（伊勢うどん）",
-      "蕎麥麵",
-      "丼飯"
+      "定食・食堂",
+      "烏龍麵・蕎麥"
     ],
     "priceRange": "¥1,000～1,999",
+    "price": {
+      "lunch": [
+        1000,
+        1999
+      ],
+      "dinner": null
+    },
     "mustTry": [],
     "menu": [],
     "ratings": {
@@ -6034,9 +6430,12 @@
       "googleReviews": 330,
       "note": "Google 網站欄是 IG"
     },
+    "tabelogOwner": false,
+    "googleName": null,
     "notes": "地址是鳥羽 5 丁目，實際上在志摩赤崎站步行約 3 分，離中之郷站約 1.3 km（地區沿用 T4a 的分類）。中午不休息，17 點前打烊，不能當晚餐（食べログ備考）。沒有小上がり座敷。",
     "group": {
       "seats": 46,
+      "maxReservation": null,
       "privateRoom": false,
       "buyout": "不可",
       "groupMenu": null,
@@ -6056,13 +6455,19 @@
     "seating": [
       "table"
     ],
-    "kids": "可帶小孩（學齡前、小學生），可推嬰兒車（食べログ）",
+    "kids": {
+      "allowed": "yes",
+      "minAge": null,
+      "kidsMenu": null,
+      "note": "可帶小孩（學齡前、小學生），可推嬰兒車（食べログ）"
+    },
+    "accessibility": {
+      "barrierFree": "無障礙、可坐輪椅入店（食べログ）",
+      "note": null
+    },
     "smoking": "全席禁煙",
     "extra": {
-      "region": "中之郷",
       "inclusion": "A",
-      "tabelogOwner": false,
-      "barrierFree": "無障礙、可坐輪椅入店（食べログ）",
       "conflicts": [
         "食べログ（非店舗会員）寫 11:00～17:00，Google 寫 11:00～16:00，採用 Google"
       ]
@@ -6078,6 +6483,7 @@
       "en": null
     },
     "area": "toba",
+    "region": "nakanogo",
     "coords": [
       136.8455475,
       34.4784271
@@ -6127,6 +6533,7 @@
     },
     "closedNote": "週四公休",
     "febNote": null,
+    "closures": [],
     "photos": [],
     "links": {
       "official": null,
@@ -6189,12 +6596,12 @@
       "dinner",
       "transit"
     ],
+    "access": "walk",
     "cuisine": [
-      "食堂",
-      "海鮮",
-      "麵類"
+      "定食・食堂"
     ],
     "priceRange": "¥1,000～1,999",
+    "price": null,
     "mustTry": [],
     "menu": [],
     "ratings": {
@@ -6204,9 +6611,12 @@
       "googleReviews": 486,
       "note": null
     },
+    "tabelogOwner": false,
+    "googleName": null,
     "notes": "中之郷站步行約 2 分。不含晚餐的 Lido Porte 附近的晚餐選擇（營業到 20:30）。",
     "group": {
       "seats": 30,
+      "maxReservation": null,
       "privateRoom": false,
       "buyout": "不可",
       "groupMenu": null,
@@ -6224,12 +6634,15 @@
       "accepted": "no"
     },
     "seating": [],
-    "kids": "可帶小孩（食べログ）",
+    "kids": {
+      "allowed": "yes",
+      "minAge": null,
+      "kidsMenu": null,
+      "note": "可帶小孩（食べログ）"
+    },
     "smoking": "全席禁煙",
     "extra": {
-      "region": "中之郷",
       "inclusion": "AE",
-      "tabelogOwner": false,
       "conflicts": [
         "地址：Google 寫鳥羽 3-32-8，食べログ寫 3-32-6"
       ]
@@ -6245,6 +6658,7 @@
       "en": null
     },
     "area": "toba",
+    "region": "nakanogo",
     "coords": [
       136.8410462,
       34.467677
@@ -6323,6 +6737,7 @@
     },
     "closedNote": "不定休",
     "febNote": null,
+    "closures": [],
     "photos": [],
     "links": {
       "official": null,
@@ -6368,10 +6783,12 @@
       "lunch",
       "dinner"
     ],
+    "access": "walk",
     "cuisine": [
-      "食堂"
+      "定食・食堂"
     ],
     "priceRange": "～¥999",
+    "price": null,
     "mustTry": [],
     "menu": [],
     "ratings": {
@@ -6381,9 +6798,12 @@
       "googleReviews": 110,
       "note": null
     },
+    "tabelogOwner": false,
+    "googleName": null,
     "notes": "鳥羽 5 丁目，志摩赤崎站步行約 5 分（地區沿用 T4a 的分類，不在中之郷站步行圈）。",
     "group": {
       "seats": 30,
+      "maxReservation": null,
       "privateRoom": false,
       "buyout": "可包場（20～50 人）",
       "groupMenu": null,
@@ -6406,9 +6826,7 @@
     "kids": null,
     "smoking": "全席喫煙可（食べログ，可能是舊資料）",
     "extra": {
-      "region": "中之郷",
       "inclusion": "C",
-      "tabelogOwner": false,
       "conflicts": [
         "Google 和食べログ（非店舗会員）一致"
       ]
@@ -6424,6 +6842,7 @@
       "en": null
     },
     "area": "toba",
+    "region": "nakanogo",
     "coords": [
       136.845425,
       34.477638
@@ -6469,10 +6888,12 @@
         ]
       ],
       "holiday": null,
-      "note": "L.O. 21:00（食べログ）"
+      "note": "L.O. 21:00（食べログ）",
+      "lastEntry": "21:00"
     },
     "closedNote": "週三公休",
     "febNote": null,
+    "closures": [],
     "photos": [],
     "links": {
       "official": null,
@@ -6530,12 +6951,12 @@
       "transit",
       "cafe"
     ],
+    "access": "walk",
     "cuisine": [
-      "義大利菜",
-      "義大利麵",
-      "洋食"
+      "洋食・義式"
     ],
     "priceRange": "¥1,000～1,999",
+    "price": null,
     "mustTry": [],
     "menu": [],
     "ratings": {
@@ -6545,9 +6966,12 @@
       "googleReviews": 132,
       "note": null
     },
+    "tabelogOwner": false,
+    "googleName": "カフェテラスオレンジ",
     "notes": "中之郷站步行約 3 分，和錦屋同一條街。不含晚餐的 Lido Porte 附近的晚餐選擇（營業到 22:00）。",
     "group": {
       "seats": 39,
+      "maxReservation": null,
       "privateRoom": false,
       "buyout": "可包場（20～50 人）",
       "groupMenu": null,
@@ -6569,16 +6993,18 @@
     "seating": [
       "counter"
     ],
-    "kids": "可帶小孩（食べログ）",
+    "kids": {
+      "allowed": "yes",
+      "minAge": null,
+      "kidsMenu": null,
+      "note": "可帶小孩（食べログ）"
+    },
     "smoking": "全席禁煙（入口有菸灰缸）",
     "extra": {
-      "region": "中之郷",
       "inclusion": "E",
-      "tabelogOwner": false,
       "conflicts": [
         "食べログ（非店舗会員）寫 11:00 開店，Google 寫 11:30，採用 Google"
-      ],
-      "googleName": "カフェテラスオレンジ"
+      ]
     }
   },
   {
@@ -6591,6 +7017,7 @@
       "en": null
     },
     "area": "toba",
+    "region": "uramura",
     "coords": [
       136.8846697,
       34.4412364
@@ -6600,6 +7027,7 @@
     "hours": null,
     "closedNote": "營業期間中無休（食べログ）",
     "febNote": "牡蠣季節營業（食べログ「無休（営業期間中）」）。Google 在 2026-10-17 顯示「臨時休業」，可能是季節前還沒開，T18 要確認 2 月有沒有營業。",
+    "closures": [],
     "photos": [],
     "links": {
       "official": null,
@@ -6639,11 +7067,18 @@
     "contexts": [
       "lunch"
     ],
+    "access": "car",
     "cuisine": [
-      "牡蠣",
-      "烤牡蠣"
+      "牡蠣"
     ],
     "priceRange": "～¥999（口コミ集計）",
+    "price": {
+      "lunch": [
+        0,
+        999
+      ],
+      "dinner": null
+    },
     "mustTry": [],
     "menu": [],
     "ratings": {
@@ -6653,9 +7088,12 @@
       "googleReviews": 290,
       "note": null
     },
+    "tabelogOwner": false,
+    "googleName": "中山かき養殖場",
     "notes": "浦村的牡蠣養殖場直營，10:00 開始、牡蠣賣完就結束（食べログ）。不能預約。Google 店名「中山かき養殖場」。",
     "group": {
       "seats": null,
+      "maxReservation": null,
       "privateRoom": false,
       "buyout": "不可",
       "groupMenu": null,
@@ -6676,12 +7114,9 @@
     "kids": null,
     "smoking": "全席喫煙可（食べログ，可能是舊資料）",
     "extra": {
-      "region": "浦村",
       "inclusion": "AF",
-      "tabelogOwner": false,
       "googleStatus": "臨時休業（2026-10-17）",
-      "tabelogHours": "10:00～牡蠣がなくなり次第終了",
-      "googleName": "中山かき養殖場"
+      "tabelogHours": "10:00～牡蠣がなくなり次第終了"
     }
   },
   {
@@ -6694,6 +7129,7 @@
       "en": null
     },
     "area": "toba",
+    "region": "uramura",
     "coords": [
       136.8748951,
       34.4501575
@@ -6753,6 +7189,7 @@
     },
     "closedNote": "全年無休",
     "febNote": "冬季牡蠣（真牡蠣）11 月～黃金週（觀光三重、2025 年 10 月時點）",
+    "closures": [],
     "photos": [],
     "links": {
       "official": "http://www.uminoeki-kuroshio.com/",
@@ -6810,12 +7247,19 @@
     "contexts": [
       "lunch"
     ],
+    "access": "car",
     "cuisine": [
       "海鮮丼",
-      "海鮮",
       "牡蠣"
     ],
     "priceRange": "¥2,000～2,999",
+    "price": {
+      "lunch": [
+        2000,
+        2999
+      ],
+      "dinner": null
+    },
     "mustTry": [],
     "menu": [],
     "ratings": {
@@ -6825,9 +7269,12 @@
       "googleReviews": 2141,
       "note": null
     },
+    "tabelogOwner": false,
+    "googleName": "海の駅黒潮 パールロード店",
     "notes": "珍珠路入口的「海の駅 黒潮」（市場＋餐廳），150 席。不能預約。",
     "group": {
       "seats": 150,
+      "maxReservation": null,
       "privateRoom": false,
       "buyout": "可（沒寫人數）",
       "groupMenu": null,
@@ -6848,16 +7295,18 @@
       "table",
       "terrace"
     ],
-    "kids": "可帶小孩（小學生），可推嬰兒車（食べログ）",
+    "kids": {
+      "allowed": "yes",
+      "minAge": null,
+      "kidsMenu": null,
+      "note": "可帶小孩（小學生），可推嬰兒車（食べログ）"
+    },
     "smoking": "分煙（1 樓、露台可吸菸，2 樓禁煙）",
     "extra": {
-      "region": "浦村",
       "inclusion": "ABC",
-      "tabelogOwner": false,
       "conflicts": [
         "觀光三重、食べログ（非店舗会員）寫 8:00～17:00，Google 寫 8:30～17:00，採用 Google"
-      ],
-      "googleName": "海の駅黒潮 パールロード店"
+      ]
     }
   },
   {
@@ -6870,6 +7319,7 @@
       "en": null
     },
     "area": "toba",
+    "region": "uramura",
     "coords": [
       136.8925808,
       34.4420791
@@ -6924,6 +7374,7 @@
     },
     "closedNote": "週二公休、年末年始、不定休",
     "febNote": "2026～27 季的牡蠣吃到飽 11/1 開始（觀光三重 17 選）；大人 ¥3,800、小孩 ¥1,900（4 歲～小學生）",
+    "closures": [],
     "photos": [],
     "links": {
       "official": "https://www.kaki-umasikuni.com/",
@@ -6981,13 +7432,19 @@
     "contexts": [
       "lunch"
     ],
+    "access": "car",
     "cuisine": [
-      "牡蠣",
-      "牡蠣吃到飽",
-      "海鮮",
-      "BBQ"
+      "浜焼き・貝",
+      "牡蠣"
     ],
     "priceRange": "吃到飽 大人 ¥3,800、小孩 ¥1,900",
+    "price": {
+      "lunch": [
+        3800,
+        3800
+      ],
+      "dinner": null
+    },
     "mustTry": [],
     "menu": [],
     "ratings": {
@@ -6997,9 +7454,12 @@
       "googleReviews": 885,
       "note": null
     },
+    "tabelogOwner": true,
+    "googleName": null,
     "notes": "浦村牡蠣吃到飽的人氣店，舊店名「共栄物産」。可以網路或電話預約。",
     "group": {
       "seats": 70,
+      "maxReservation": null,
       "privateRoom": false,
       "buyout": "不可",
       "groupMenu": null,
@@ -7020,13 +7480,19 @@
       "accepted": "yes"
     },
     "seating": [],
-    "kids": "可帶小孩（乳兒、學齡前、小學生），可推嬰兒車；小孩價 4 歲～小學生",
+    "kids": {
+      "allowed": "yes",
+      "minAge": null,
+      "kidsMenu": null,
+      "note": "可帶小孩（乳兒、學齡前、小學生），可推嬰兒車；小孩價 4 歲～小學生"
+    },
+    "accessibility": {
+      "barrierFree": "可坐輪椅入店（食べログ）",
+      "note": null
+    },
     "smoking": "全席禁煙",
     "extra": {
-      "region": "浦村",
       "inclusion": "ABF",
-      "tabelogOwner": true,
-      "barrierFree": "可坐輪椅入店（食べログ）",
       "x": "@yokichiya_kaki",
       "tabelogOldName": "共栄物産",
       "conflicts": [
@@ -7044,6 +7510,7 @@
       "en": "Ciao"
     },
     "area": "toba",
+    "region": "uramura",
     "coords": [
       136.86415,
       34.457638
@@ -7093,6 +7560,7 @@
     },
     "closedNote": "週二公休、不定休",
     "febNote": null,
+    "closures": [],
     "photos": [],
     "links": {
       "official": "http://www.jp-ciao.com/",
@@ -7134,12 +7602,19 @@
       "snack",
       "lunch"
     ],
+    "access": "car",
     "cuisine": [
-      "咖啡",
-      "刨冰",
-      "洋食"
+      "洋食・義式",
+      "咖啡・甜點"
     ],
     "priceRange": "¥1,000～1,999",
+    "price": {
+      "lunch": [
+        1000,
+        1999
+      ],
+      "dinner": null
+    },
     "mustTry": [],
     "menu": [],
     "ratings": {
@@ -7149,9 +7624,12 @@
       "googleReviews": 185,
       "note": null
     },
+    "tabelogOwner": false,
+    "googleName": "Ciao チャオ",
     "notes": "安樂島、珍珠路入口，和鳥羽風土同一個地址。",
     "group": {
       "seats": null,
+      "maxReservation": null,
       "privateRoom": false,
       "buyout": "不可",
       "groupMenu": null,
@@ -7174,13 +7652,10 @@
     "kids": null,
     "smoking": "全席禁煙",
     "extra": {
-      "region": "浦村",
       "inclusion": "A",
-      "tabelogOwner": false,
       "conflicts": [
         "Google 和食べログ（非店舗会員）一致"
-      ],
-      "googleName": "Ciao チャオ"
+      ]
     }
   },
   {
@@ -7193,6 +7668,7 @@
       "en": null
     },
     "area": "toba",
+    "region": "uramura",
     "coords": [
       136.8931296,
       34.4467846
@@ -7247,6 +7723,7 @@
     },
     "closedNote": "第 1、第 3 個週二公休（Google 寫每週二）、年末年始",
     "febNote": "2026～27 季 10/23 開始（觀光三重 17 選）；大人 ¥4,000、國中 ¥2,000、小學生 ¥1,000、幼兒免費",
+    "closures": [],
     "photos": [],
     "links": {
       "official": "http://www.motokaki.com",
@@ -7298,12 +7775,19 @@
     "contexts": [
       "lunch"
     ],
+    "access": "car",
     "cuisine": [
-      "牡蠣",
-      "牡蠣吃到飽",
-      "爐端燒"
+      "浜焼き・貝",
+      "牡蠣"
     ],
     "priceRange": "吃到飽 大人 ¥4,000、小學生 ¥1,000",
+    "price": {
+      "lunch": [
+        4000,
+        4000
+      ],
+      "dinner": null
+    },
     "mustTry": [],
     "menu": [],
     "ratings": {
@@ -7313,9 +7797,12 @@
       "googleReviews": 618,
       "note": null
     },
+    "tabelogOwner": false,
+    "googleName": null,
     "notes": "完全預約制，預約專用電話 090-5000-6784（也可以用 SMS，觀光三重）。",
     "group": {
       "seats": null,
+      "maxReservation": null,
       "privateRoom": false,
       "buyout": "不可",
       "groupMenu": null,
@@ -7336,12 +7823,15 @@
       "accepted": "yes"
     },
     "seating": [],
-    "kids": "小孩價：國中 ¥2,000、小學生 ¥1,000、幼兒免費（觀光三重）",
+    "kids": {
+      "allowed": "yes",
+      "minAge": null,
+      "kidsMenu": null,
+      "note": "小孩價：國中 ¥2,000、小學生 ¥1,000、幼兒免費（觀光三重）"
+    },
     "smoking": "全席禁煙",
     "extra": {
-      "region": "浦村",
       "inclusion": "ABF",
-      "tabelogOwner": false,
       "conflicts": [
         "公休：食べログ、觀光協會寫第 1・3 個週二，Google、觀光三重寫週二"
       ]
@@ -7357,6 +7847,7 @@
       "en": null
     },
     "area": "toba",
+    "region": "uramura",
     "coords": [
       136.8683723,
       34.4534514
@@ -7416,6 +7907,7 @@
     },
     "closedNote": "無休（週四可能休，繁忙期營業）",
     "febNote": "冬季牡蠣（真牡蠣）11 月～6 月（觀光三重）",
+    "closures": [],
     "photos": [],
     "links": {
       "official": "http://www.kaitaro.jp/",
@@ -7474,12 +7966,14 @@
       "lunch",
       "dinner"
     ],
+    "access": "car",
     "cuisine": [
       "海鮮丼",
-      "浜燒",
+      "浜焼き・貝",
       "牡蠣"
     ],
     "priceRange": "¥2,000～2,999",
+    "price": null,
     "mustTry": [],
     "menu": [],
     "ratings": {
@@ -7489,9 +7983,12 @@
       "googleReviews": 393,
       "note": null
     },
+    "tabelogOwner": true,
+    "googleName": "海太郎",
     "notes": "安樂島、珍珠路入口。60 席，有小上がり座敷。",
     "group": {
       "seats": 60,
+      "maxReservation": null,
       "privateRoom": false,
       "buyout": "不可",
       "groupMenu": null,
@@ -7517,13 +8014,10 @@
     "kids": null,
     "smoking": "全席禁煙（店外可吸菸）",
     "extra": {
-      "region": "浦村",
       "inclusion": "AB",
-      "tabelogOwner": true,
       "conflicts": [
         "Google 寫 9:30～19:30、週四公休；觀光三重寫「9:30～日没まで、木曜休」；採用食べログ（店舗会員）"
-      ],
-      "googleName": "海太郎"
+      ]
     }
   },
   {
@@ -7536,6 +8030,7 @@
       "en": null
     },
     "area": "toba",
+    "region": "uramura",
     "coords": [
       136.871768,
       34.454233
@@ -7590,6 +8085,7 @@
     },
     "closedNote": "觀光三重寫週三公休；食べログ寫不定休",
     "febNote": "2026～27 季 10/27 開始（觀光三重 17 選）；11:00～16:00、週三休；大人 ¥3,000、小孩 ¥1,700、幼兒免費",
+    "closures": [],
     "photos": [],
     "links": {
       "official": "https://uramurakaki-yamayasu.jp/",
@@ -7635,12 +8131,18 @@
     "contexts": [
       "lunch"
     ],
+    "access": "car",
     "cuisine": [
-      "牡蠣",
-      "牡蠣吃到飽",
-      "海鮮"
+      "牡蠣"
     ],
     "priceRange": "吃到飽 大人 ¥3,000、小孩 ¥1,700",
+    "price": {
+      "lunch": [
+        3000,
+        3000
+      ],
+      "dinner": null
+    },
     "mustTry": [],
     "menu": [],
     "ratings": {
@@ -7650,9 +8152,12 @@
       "googleReviews": 895,
       "note": null
     },
+    "tabelogOwner": false,
+    "googleName": null,
     "notes": "安樂島、珍珠路入口。可以自己帶酒、飲料、食物、調味料（食べログ）。網路、電話預約。",
     "group": {
       "seats": null,
+      "maxReservation": null,
       "privateRoom": false,
       "buyout": "不可",
       "groupMenu": null,
@@ -7673,12 +8178,15 @@
       "accepted": "yes"
     },
     "seating": [],
-    "kids": "小孩 ¥1,700、幼兒免費（觀光三重）",
+    "kids": {
+      "allowed": "yes",
+      "minAge": null,
+      "kidsMenu": null,
+      "note": "小孩 ¥1,700、幼兒免費（觀光三重）"
+    },
     "smoking": "全席禁煙",
     "extra": {
-      "region": "浦村",
       "inclusion": "AF",
-      "tabelogOwner": false,
       "conflicts": [
         "觀光三重 17 選寫 11:00～16:00、週三公休；食べログ（非店舗会員）寫 9:00～17:00、不定休；Google 寫週三 9:00 開。照優先順序採用 Google，但 2 月照觀光三重比較可靠"
       ]
@@ -7694,6 +8202,7 @@
       "en": null
     },
     "area": "toba",
+    "region": "uramura",
     "coords": [
       136.8643411,
       34.4577059
@@ -7743,6 +8252,7 @@
     },
     "closedNote": "週二公休、不定休",
     "febNote": null,
+    "closures": [],
     "photos": [],
     "links": {
       "official": "http://www.tobafood.net/",
@@ -7794,12 +8304,19 @@
     "contexts": [
       "lunch"
     ],
+    "access": "car",
     "cuisine": [
-      "海鮮",
       "海鮮丼",
-      "刨冰"
+      "咖啡・甜點"
     ],
     "priceRange": "¥1,000～1,999",
+    "price": {
+      "lunch": [
+        1000,
+        1999
+      ],
+      "dinner": null
+    },
     "mustTry": [],
     "menu": [],
     "ratings": {
@@ -7809,9 +8326,12 @@
       "googleReviews": 194,
       "note": null
     },
+    "tabelogOwner": false,
+    "googleName": null,
     "notes": "安樂島、珍珠路入口，和 Ciao 同一個地址。",
     "group": {
       "seats": null,
+      "maxReservation": null,
       "privateRoom": false,
       "buyout": "不可",
       "groupMenu": null,
@@ -7832,9 +8352,7 @@
     "kids": null,
     "smoking": "全席禁煙",
     "extra": {
-      "region": "浦村",
       "inclusion": "A",
-      "tabelogOwner": false,
       "conflicts": [
         "食べログ（非店舗会員）寫 9:30～18:00（週六～19:00），Google 寫 11:00～17:30，採用 Google"
       ]
@@ -7850,6 +8368,7 @@
       "en": null
     },
     "area": "toba",
+    "region": "uramura",
     "coords": [
       136.8745552,
       34.4521257
@@ -7898,6 +8417,7 @@
     },
     "closedNote": "觀光三重寫週二公休，觀光協會牡蠣特集寫週四公休",
     "febNote": "2026～27 季開始日未定、已開放預約（觀光三重 17 選）；大人 ¥3,300、小孩 ¥1,600、幼兒（3 歲～）¥550。Google 在 2026-10-17 顯示「臨時休業」（季節前）。",
+    "closures": [],
     "photos": [],
     "links": {
       "official": "https://xn--u8je4633b6cf.com/kakiichi/",
@@ -7949,11 +8469,18 @@
     "contexts": [
       "lunch"
     ],
+    "access": "car",
     "cuisine": [
-      "牡蠣",
-      "牡蠣吃到飽"
+      "牡蠣"
     ],
     "priceRange": "吃到飽 大人 ¥3,300、小孩 ¥1,600",
+    "price": {
+      "lunch": [
+        3300,
+        3300
+      ],
+      "dinner": null
+    },
     "mustTry": [],
     "menu": [],
     "ratings": {
@@ -7963,9 +8490,12 @@
       "googleReviews": 71,
       "note": null
     },
+    "tabelogOwner": false,
+    "googleName": "かきいち本店 by 浦村シーファーム",
     "notes": "食べログ：從浦村町 1560 移到浦村町 1-12（珍珠路入口一帶）。Google 店名「かきいち本店 by 浦村シーファーム」。電話預約。",
     "group": {
       "seats": 70,
+      "maxReservation": null,
       "privateRoom": false,
       "buyout": "不可",
       "groupMenu": null,
@@ -7985,18 +8515,20 @@
       "accepted": "yes"
     },
     "seating": [],
-    "kids": "可帶小孩（乳兒、學齡前、小學生），可推嬰兒車（食べログ）；小孩 ¥1,600、3 歲以上幼兒 ¥550",
+    "kids": {
+      "allowed": "yes",
+      "minAge": null,
+      "kidsMenu": null,
+      "note": "可帶小孩（乳兒、學齡前、小學生），可推嬰兒車（食べログ）；小孩 ¥1,600、3 歲以上幼兒 ¥550"
+    },
     "smoking": "全席禁煙（戶外有吸菸處）",
     "extra": {
-      "region": "浦村",
       "inclusion": "BF",
-      "tabelogOwner": false,
       "movedFrom": "三重県鳥羽市浦村町1560（食べログ）",
       "googleStatus": "臨時休業（2026-10-17）",
       "conflicts": [
         "公休：觀光三重寫週二，觀光協會寫週四；食べログ沒寫"
-      ],
-      "googleName": "かきいち本店 by 浦村シーファーム"
+      ]
     }
   },
   {
@@ -8009,6 +8541,7 @@
       "en": null
     },
     "area": "toba",
+    "region": "uramura",
     "coords": [
       136.8885866,
       34.4447756
@@ -8068,6 +8601,7 @@
     },
     "closedNote": "不定休",
     "febNote": "冬季牡蠣（真牡蠣）11 月～3、4 月（觀光三重、觀光協會）",
+    "closures": [],
     "photos": [],
     "links": {
       "official": "http://www.yoshikawa-suisan.com/dining.html",
@@ -8119,11 +8653,18 @@
     "contexts": [
       "lunch"
     ],
+    "access": "car",
     "cuisine": [
-      "海鮮",
       "牡蠣"
     ],
     "priceRange": "¥2,000～2,999",
+    "price": {
+      "lunch": [
+        2000,
+        2999
+      ],
+      "dinner": null
+    },
     "mustTry": [],
     "menu": [],
     "ratings": {
@@ -8133,9 +8674,12 @@
       "googleReviews": 178,
       "note": null
     },
+    "tabelogOwner": false,
+    "googleName": null,
     "notes": "浦村的水產直營食堂（不是吃到飽）。",
     "group": {
       "seats": null,
+      "maxReservation": null,
       "privateRoom": false,
       "buyout": "不可",
       "groupMenu": null,
@@ -8158,9 +8702,7 @@
     "kids": null,
     "smoking": null,
     "extra": {
-      "region": "浦村",
       "inclusion": "B",
-      "tabelogOwner": false,
       "conflicts": [
         "Google、食べログ、觀光協會一致（週末假日到 15:00）"
       ]
@@ -8176,6 +8718,7 @@
       "en": null
     },
     "area": "toba",
+    "region": "uramura",
     "coords": [
       136.887319,
       34.4442256
@@ -8240,6 +8783,7 @@
     },
     "closedNote": "週二公休（年內週二、三）、年末年始（觀光三重）",
     "febNote": "2026～27 季 11/19 開始（觀光三重 17 選）；1 部 11:00～12:20、2 部 13:00～14:20；大人 ¥3,700、小孩 ¥1,850（吃到飽套餐）",
+    "closures": [],
     "photos": [],
     "links": {
       "official": "http://www.sugikaki.com/",
@@ -8297,12 +8841,18 @@
     "contexts": [
       "lunch"
     ],
+    "access": "car",
     "cuisine": [
-      "牡蠣",
-      "牡蠣吃到飽",
-      "海鮮"
+      "牡蠣"
     ],
     "priceRange": "吃到飽 大人 ¥3,700、小孩 ¥1,850",
+    "price": {
+      "lunch": [
+        3700,
+        3700
+      ],
+      "dinner": null
+    },
     "mustTry": [],
     "menu": [],
     "ratings": {
@@ -8312,9 +8862,12 @@
       "googleReviews": 174,
       "note": null
     },
+    "tabelogOwner": false,
+    "googleName": null,
     "notes": "浦村牡蠣吃到飽。",
     "group": {
       "seats": null,
+      "maxReservation": null,
       "privateRoom": false,
       "buyout": null,
       "groupMenu": null,
@@ -8334,12 +8887,15 @@
       "accepted": "yes"
     },
     "seating": [],
-    "kids": "小孩 ¥1,850（觀光三重）",
+    "kids": {
+      "allowed": "yes",
+      "minAge": null,
+      "kidsMenu": null,
+      "note": "小孩 ¥1,850（觀光三重）"
+    },
     "smoking": null,
     "extra": {
-      "region": "浦村",
       "inclusion": "B",
-      "tabelogOwner": false,
       "conflicts": [
         "Google 寫週二、週三公休（觀光三重：週二，年內週二、三）；2 月照觀光三重應該只休週二"
       ]
@@ -8355,6 +8911,7 @@
       "en": null
     },
     "area": "toba",
+    "region": "uramura",
     "coords": [
       136.883249,
       34.440101
@@ -8404,6 +8961,7 @@
     },
     "closedNote": "週四公休（觀光三重、Google）",
     "febNote": "牡蠣一年四季都有（生牡蠣到 3 月）；吃到飽 2026 年營業期間、價格未定（觀光三重 17 選：大人 ¥3,500、小學生 ¥2,500、3 歲以上 ¥2,000，是舊資料）",
+    "closures": [],
     "photos": [],
     "links": {
       "official": "https://toba-hakkai.com/",
@@ -8467,13 +9025,19 @@
     "contexts": [
       "lunch"
     ],
+    "access": "car",
     "cuisine": [
-      "日本料理",
-      "海鮮",
       "牡蠣",
-      "牡蠣吃到飽"
+      "和食・割烹"
     ],
     "priceRange": "¥2,000～2,999",
+    "price": {
+      "lunch": [
+        2000,
+        2999
+      ],
+      "dinner": null
+    },
     "mustTry": [],
     "menu": [],
     "ratings": {
@@ -8483,9 +9047,12 @@
       "googleReviews": 342,
       "note": null
     },
+    "tabelogOwner": false,
+    "googleName": "海の食堂 はっかい",
     "notes": "Google 店名「海の食堂 はっかい」。電話預約。",
     "group": {
       "seats": 30,
+      "maxReservation": null,
       "privateRoom": false,
       "buyout": "不可",
       "groupMenu": null,
@@ -8508,13 +9075,10 @@
     "kids": null,
     "smoking": "全席禁煙",
     "extra": {
-      "region": "浦村",
       "inclusion": "BF",
-      "tabelogOwner": false,
       "conflicts": [
         "食べログ（非店舗会員）寫週三、週四公休、10:00～15:30；Google 寫週四公休、10:00～15:00；觀光三重寫 10:00～16:00（L.O.）、週四休。採用 Google"
-      ],
-      "googleName": "海の食堂 はっかい"
+      ]
     }
   },
   {
@@ -8527,6 +9091,7 @@
       "en": null
     },
     "area": "toba",
+    "region": "uramura",
     "coords": [
       136.884382,
       34.4419519
@@ -8576,6 +9141,7 @@
     },
     "closedNote": "週三公休、年末年始（觀光三重；食べログ另寫週四）",
     "febNote": "只在冬季營業（每年 11 月～牡蠣賣完為止）；2026～27 季 10/31 開始（觀光三重 17 選）；大人 ¥3,800（國中以上）、小學生 ¥1,800、未上小學 ¥500、3 歲以下免費",
+    "closures": [],
     "photos": [],
     "links": {
       "official": "http://hamahide.com/",
@@ -8627,12 +9193,18 @@
     "contexts": [
       "lunch"
     ],
+    "access": "car",
     "cuisine": [
-      "牡蠣",
-      "牡蠣吃到飽",
-      "海鮮"
+      "牡蠣"
     ],
     "priceRange": "吃到飽 大人 ¥3,800、小學生 ¥1,800",
+    "price": {
+      "lunch": [
+        3800,
+        3800
+      ],
+      "dinner": null
+    },
     "mustTry": [],
     "menu": [],
     "ratings": {
@@ -8642,9 +9214,12 @@
       "googleReviews": 218,
       "note": null
     },
+    "tabelogOwner": false,
+    "googleName": null,
     "notes": "完全預約制，電話預約 10:00～17:00（預約專用 090-5617-1817，觀光三重）。",
     "group": {
       "seats": 60,
+      "maxReservation": null,
       "privateRoom": false,
       "buyout": null,
       "groupMenu": null,
@@ -8664,12 +9239,15 @@
       "accepted": "yes"
     },
     "seating": [],
-    "kids": "小學生 ¥1,800、未上小學 ¥500、3 歲以下免費（觀光三重）",
+    "kids": {
+      "allowed": "yes",
+      "minAge": null,
+      "kidsMenu": null,
+      "note": "小學生 ¥1,800、未上小學 ¥500、3 歲以下免費（觀光三重）"
+    },
     "smoking": "全席禁煙",
     "extra": {
-      "region": "浦村",
       "inclusion": "B",
-      "tabelogOwner": false,
       "conflicts": [
         "公休：Google、觀光三重寫週三；食べログ（非店舗会員）寫週三、週四"
       ]
@@ -8685,6 +9263,7 @@
       "en": null
     },
     "area": "toba",
+    "region": "uramura",
     "coords": [
       136.8957096,
       34.4421612
@@ -8729,6 +9308,7 @@
     },
     "closedNote": "週二、週三公休（觀光三重）；觀光協會寫週二＆不定休",
     "febNote": "冬季牡蠣（真牡蠣）11 月～3 月（觀光三重、觀光協會）",
+    "closures": [],
     "photos": [],
     "links": {
       "official": "http://eijimaru.com/",
@@ -8781,11 +9361,18 @@
       "lunch",
       "snack"
     ],
+    "access": "car",
     "cuisine": [
-      "牡蠣",
-      "烤牡蠣"
+      "牡蠣"
     ],
     "priceRange": "～¥999",
+    "price": {
+      "lunch": [
+        0,
+        999
+      ],
+      "dinner": null
+    },
     "mustTry": [],
     "menu": [],
     "ratings": {
@@ -8795,9 +9382,12 @@
       "googleReviews": 362,
       "note": "Google 有 3 筆：「英治丸かき直売所」4.4／362（採用）、「株式会社英治丸」4.5／77、「英治丸」5.0／2"
     },
+    "tabelogOwner": false,
+    "googleName": "英治丸かき直売所",
     "notes": "牡蠣養殖業者的直售所附設烤牡蠣小屋，有露天座位，可以外帶（附保冷）。不能預約（食べログ）。",
     "group": {
       "seats": null,
+      "maxReservation": null,
       "privateRoom": false,
       "buyout": "不可",
       "groupMenu": null,
@@ -8820,17 +9410,14 @@
     "kids": null,
     "smoking": null,
     "extra": {
-      "region": "浦村",
       "inclusion": "BF",
-      "tabelogOwner": false,
       "googleOther": [
         "株式会社英治丸 4.5／77（0599-32-5960）",
         "英治丸 5.0／2（浦村町，餐廳）"
       ],
       "conflicts": [
         "食べログ沒有營業時間；Google 列表顯示 9:00 開"
-      ],
-      "googleName": "英治丸かき直売所"
+      ]
     }
   },
   {
@@ -8843,6 +9430,7 @@
       "en": null
     },
     "area": "toba",
+    "region": "uramura",
     "coords": [
       136.8913688,
       34.444633
@@ -8909,6 +9497,7 @@
     },
     "closedNote": "週二公休、新年（觀光三重：暫時週二、週三休）；只在牡蠣季營業",
     "febNote": "只在牡蠣季營業（食べログ：春～夏休息）；2026～27 季開始日未定、已開放預約（觀光三重 17 選）；大人 ¥3,500（國中以上）、小學生 ¥1,750、未上小學免費。Google 在 2026-10-17 顯示「臨時休業」（季節前）。",
+    "closures": [],
     "photos": [],
     "links": {
       "official": "https://kaki-marugen.com/about/",
@@ -8954,12 +9543,19 @@
     "contexts": [
       "lunch"
     ],
+    "access": "car",
     "cuisine": [
       "牡蠣",
-      "牡蠣吃到飽",
-      "日本料理"
+      "和食・割烹"
     ],
     "priceRange": "吃到飽 大人 ¥3,500、小學生 ¥1,750",
+    "price": {
+      "lunch": [
+        3500,
+        3500
+      ],
+      "dinner": null
+    },
     "mustTry": [],
     "menu": [],
     "ratings": {
@@ -8969,9 +9565,12 @@
       "googleReviews": 303,
       "note": null
     },
+    "tabelogOwner": false,
+    "googleName": null,
     "notes": "電話預約 10:00～19:00（觀光三重）。",
     "group": {
       "seats": null,
+      "maxReservation": null,
       "privateRoom": false,
       "buyout": null,
       "groupMenu": null,
@@ -8991,12 +9590,15 @@
       "accepted": "yes"
     },
     "seating": [],
-    "kids": "小學生 ¥1,750、未上小學免費（觀光三重）",
+    "kids": {
+      "allowed": "yes",
+      "minAge": null,
+      "kidsMenu": null,
+      "note": "小學生 ¥1,750、未上小學免費（觀光三重）"
+    },
     "smoking": null,
     "extra": {
-      "region": "浦村",
       "inclusion": "F",
-      "tabelogOwner": false,
       "googleStatus": "臨時休業（2026-10-17）",
       "conflicts": [
         "食べログ（非店舗会員）寫 10:00～15:00、期間中無休；採用觀光三重 17 選（Google 沒有營業時間，店家官網沒查）"
@@ -9013,6 +9615,7 @@
       "en": null
     },
     "area": "toba",
+    "region": "uramura",
     "coords": [
       136.8867645,
       34.4443359
@@ -9116,6 +9719,7 @@
     },
     "closedNote": "不定休（觀光三重、觀光協會）",
     "febNote": "2026～27 季開始日未定、已開放預約（觀光三重 17 選）；大人 ¥3,850、小孩 ¥1,925；帶學齡前兒童不能預約（我們的小孩 6～10 歲，不受影響）",
+    "closures": [],
     "photos": [],
     "links": {
       "official": "http://www.maruzensuisan.com",
@@ -9173,12 +9777,18 @@
     "contexts": [
       "lunch"
     ],
+    "access": "car",
     "cuisine": [
-      "牡蠣",
-      "牡蠣吃到飽",
-      "炸牡蠣"
+      "牡蠣"
     ],
     "priceRange": "吃到飽 大人 ¥3,850、小孩 ¥1,925",
+    "price": {
+      "lunch": [
+        3850,
+        3850
+      ],
+      "dinner": null
+    },
     "mustTry": [],
     "menu": [],
     "ratings": {
@@ -9188,9 +9798,12 @@
       "googleReviews": 156,
       "note": null
     },
+    "tabelogOwner": false,
+    "googleName": "（有）丸善水産",
     "notes": "在鳥羽灣海上的浮台吃烤牡蠣吃到飽（觀光三重的店名「海上焼き牡蠣食べ放題 丸善水産」）。只能從官網預約。調味料只有醬油和醬汁，其他要自備，可以帶啤酒等。",
     "group": {
       "seats": null,
+      "maxReservation": null,
       "privateRoom": false,
       "buyout": null,
       "groupMenu": null,
@@ -9210,13 +9823,15 @@
       "accepted": "yes"
     },
     "seating": [],
-    "kids": "小孩 ¥1,925；帶學齡前兒童不能預約（觀光三重）",
+    "kids": {
+      "allowed": "age-limit",
+      "minAge": null,
+      "kidsMenu": null,
+      "note": "小孩 ¥1,925；帶學齡前兒童不能預約（觀光三重）"
+    },
     "smoking": null,
     "extra": {
-      "region": "浦村",
       "inclusion": "B",
-      "tabelogOwner": false,
-      "googleName": "（有）丸善水産",
       "conflicts": [
         "Google 平日寫 11:00～14:10（一筆時段）"
       ]
@@ -9232,6 +9847,7 @@
       "en": null
     },
     "area": "toba",
+    "region": "osatsu",
     "coords": [
       136.892929,
       34.396256
@@ -9286,6 +9902,7 @@
     },
     "closedNote": "無休（食べログ）",
     "febNote": null,
+    "closures": [],
     "photos": [],
     "links": {
       "official": "http://www.uminoeki-kuroshio.com/ousatsu/",
@@ -9325,12 +9942,18 @@
     "contexts": [
       "lunch"
     ],
+    "access": "walk",
     "cuisine": [
-      "海鮮",
-      "海鮮丼",
-      "炸物"
+      "海鮮丼"
     ],
     "priceRange": "¥2,000～2,999",
+    "price": {
+      "lunch": [
+        2000,
+        2999
+      ],
+      "dinner": null
+    },
     "mustTry": [],
     "menu": [],
     "ratings": {
@@ -9340,9 +9963,12 @@
       "googleReviews": 572,
       "note": null
     },
+    "tabelogOwner": false,
+    "googleName": null,
     "notes": "地址是畔蛸町（相差的北邊，往相差的路上），要開車。市場附設餐廳。不能預約。",
     "group": {
       "seats": null,
+      "maxReservation": null,
       "privateRoom": false,
       "buyout": "不可",
       "groupMenu": null,
@@ -9363,9 +9989,7 @@
     "kids": null,
     "smoking": "全席禁煙",
     "extra": {
-      "region": "相差",
       "inclusion": "A",
-      "tabelogOwner": false,
       "conflicts": [
         "食べログ（非店舗会員）寫週四 9:00 開，Google 寫每天 8:00～17:00，採用 Google"
       ]
@@ -9381,6 +10005,7 @@
       "en": "OSATSU KITCHEN 0032"
     },
     "area": "toba",
+    "region": "osatsu",
     "coords": [
       136.9066445,
       34.3917368
@@ -9435,6 +10060,7 @@
     },
     "closedNote": null,
     "febNote": null,
+    "closures": [],
     "photos": [],
     "links": {
       "official": "https://osatsu.org/kitchen/",
@@ -9490,11 +10116,18 @@
       "cafe",
       "snack"
     ],
+    "access": "walk",
     "cuisine": [
-      "咖啡",
-      "霜淇淋"
+      "咖啡・甜點"
     ],
     "priceRange": "～¥999",
+    "price": {
+      "lunch": [
+        0,
+        999
+      ],
+      "dinner": null
+    },
     "mustTry": [],
     "menu": [],
     "ratings": {
@@ -9504,9 +10137,12 @@
       "googleReviews": 249,
       "note": null
     },
+    "tabelogOwner": false,
+    "googleName": null,
     "notes": "石神さん（神明神社）參道上，旁邊是海女の家 五左屋。",
     "group": {
       "seats": null,
+      "maxReservation": null,
       "privateRoom": false,
       "buyout": "可（20 人以下）",
       "groupMenu": null,
@@ -9526,12 +10162,15 @@
     "seating": [
       "terrace"
     ],
-    "kids": "可帶小孩（食べログ）",
+    "kids": {
+      "allowed": "yes",
+      "minAge": null,
+      "kidsMenu": null,
+      "note": "可帶小孩（食べログ）"
+    },
     "smoking": "分煙（戶外露台可吸菸）",
     "extra": {
-      "region": "相差",
       "inclusion": "AC",
-      "tabelogOwner": false,
       "conflicts": [
         "Google 和食べログ（非店舗会員）一致"
       ]
@@ -9547,6 +10186,7 @@
       "en": null
     },
     "area": "toba",
+    "region": "osatsu",
     "coords": [
       136.8991113,
       34.3905713
@@ -9596,6 +10236,7 @@
     },
     "closedNote": "週三公休，有臨時休業（官網）",
     "febNote": null,
+    "closures": [],
     "photos": [],
     "links": {
       "official": "https://www.toba-nakashin.com/",
@@ -9662,10 +10303,18 @@
     "contexts": [
       "lunch"
     ],
+    "access": "walk",
     "cuisine": [
-      "鰻魚"
+      "其他"
     ],
     "priceRange": "¥3,000～3,999",
+    "price": {
+      "lunch": [
+        3000,
+        3999
+      ],
+      "dinner": null
+    },
     "mustTry": [],
     "menu": [],
     "ratings": {
@@ -9675,9 +10324,12 @@
       "googleReviews": 275,
       "note": null
     },
+    "tabelogOwner": false,
+    "googleName": null,
     "notes": "相差的鰻魚店。官網：有吧台、和室包廂，可以包場，一個人到團體都可以（沒寫人數）。可外帶、可預約。",
     "group": {
       "seats": null,
+      "maxReservation": null,
       "privateRoom": true,
       "buyout": "可（官網「貸切ＯＫ」，沒寫人數）",
       "groupMenu": null,
@@ -9703,9 +10355,7 @@
     "kids": null,
     "smoking": "全席禁煙",
     "extra": {
-      "region": "相差",
       "inclusion": "C",
-      "tabelogOwner": false,
       "conflicts": [
         "食べログ（非店舗会員）寫晚上 17:00～20:00 也營業；官網、Google 只有中午，採用官網"
       ]
@@ -9721,6 +10371,7 @@
       "en": null
     },
     "area": "toba",
+    "region": "osatsu",
     "coords": [
       136.9076931,
       34.3912258
@@ -9770,6 +10421,7 @@
     },
     "closedNote": "週三公休",
     "febNote": null,
+    "closures": [],
     "photos": [],
     "links": {
       "official": null,
@@ -9830,11 +10482,18 @@
     "contexts": [
       "lunch"
     ],
+    "access": "walk",
     "cuisine": [
-      "海鮮",
-      "食堂"
+      "定食・食堂"
     ],
     "priceRange": "¥1,000～1,999",
+    "price": {
+      "lunch": [
+        1000,
+        1999
+      ],
+      "dinner": null
+    },
     "mustTry": [],
     "menu": [],
     "ratings": {
@@ -9844,9 +10503,12 @@
       "googleReviews": 138,
       "note": null
     },
+    "tabelogOwner": false,
+    "googleName": null,
     "notes": "相差海女文化資料館附近。和鳥羽站周邊的焼き鳥店「久兵衛」是不同的店。",
     "group": {
       "seats": null,
+      "maxReservation": null,
       "privateRoom": false,
       "buyout": "不可",
       "groupMenu": null,
@@ -9869,9 +10531,7 @@
     "kids": null,
     "smoking": "全席禁煙",
     "extra": {
-      "region": "相差",
       "inclusion": "A",
-      "tabelogOwner": false,
       "igHashtag": "#海の食堂久兵衛（食べログ的公式アカウント欄是 hashtag 頁，不是帳號）"
     }
   },
@@ -9885,6 +10545,7 @@
       "en": null
     },
     "area": "toba",
+    "region": "osatsu",
     "coords": [
       136.906505,
       34.3917383
@@ -9935,10 +10596,12 @@
         ]
       ],
       "holiday": null,
-      "note": "L.O. 16:30（食べログ）"
+      "note": "L.O. 16:30（食べログ）",
+      "lastEntry": "16:30"
     },
     "closedNote": null,
     "febNote": null,
+    "closures": [],
     "photos": [],
     "links": {
       "official": "https://osatsu.org/gozaya/",
@@ -10006,11 +10669,18 @@
       "cafe",
       "snack"
     ],
+    "access": "walk",
     "cuisine": [
-      "咖啡",
-      "喫茶"
+      "咖啡・甜點"
     ],
     "priceRange": "～¥999",
+    "price": {
+      "lunch": [
+        0,
+        999
+      ],
+      "dinner": null
+    },
     "mustTry": [],
     "menu": [],
     "ratings": {
@@ -10020,9 +10690,12 @@
       "googleReviews": 56,
       "note": null
     },
+    "tabelogOwner": false,
+    "googleName": "海女の家五左屋",
     "notes": "古民家改建的商店兼咖啡（觀光三重），在石神さん參道。",
     "group": {
       "seats": null,
+      "maxReservation": null,
       "privateRoom": false,
       "buyout": null,
       "groupMenu": null,
@@ -10043,10 +10716,7 @@
     "kids": null,
     "smoking": "全席禁煙",
     "extra": {
-      "region": "相差",
-      "inclusion": "B",
-      "tabelogOwner": false,
-      "googleName": "海女の家五左屋"
+      "inclusion": "B"
     }
   },
   {
@@ -10059,6 +10729,7 @@
       "en": null
     },
     "area": "toba",
+    "region": "osatsu",
     "coords": [
       136.9067502,
       34.3906572
@@ -10113,6 +10784,7 @@
     },
     "closedNote": "不定休（海女有空的日子才營業）",
     "febNote": "官網沒寫冬季營業；不定休，要事先預約確認",
+    "closures": [],
     "photos": [],
     "links": {
       "official": "https://amakoyauemura.com/",
@@ -10173,12 +10845,12 @@
     "contexts": [
       "lunch"
     ],
+    "access": "walk",
     "cuisine": [
-      "海鮮",
-      "海女料理",
-      "浜焼"
+      "浜焼き・貝"
     ],
     "priceRange": "基本套餐 ～¥4,000（官網）",
+    "price": null,
     "mustTry": [],
     "menu": [],
     "ratings": {
@@ -10188,9 +10860,12 @@
       "googleReviews": 27,
       "note": "食べログ沒有分數；Google 只有 27 則"
     },
+    "tabelogOwner": false,
+    "googleName": "海女小屋プチかまどうえむら",
     "notes": "體驗型（海女小屋）：烤伊勢志摩海產的海女料理。席數 15（吧台 5、桌 6、戶外 4），戶外席冬天可能不適合。",
     "group": {
       "seats": 15,
+      "maxReservation": null,
       "privateRoom": false,
       "buyout": null,
       "groupMenu": null,
@@ -10219,10 +10894,7 @@
     "kids": null,
     "smoking": null,
     "extra": {
-      "region": "相差",
-      "inclusion": "F",
-      "tabelogOwner": false,
-      "googleName": "海女小屋プチかまどうえむら"
+      "inclusion": "F"
     }
   },
   {
@@ -10235,6 +10907,7 @@
       "en": null
     },
     "area": "toba",
+    "region": "kuzaki",
     "coords": [
       136.9184889,
       34.4466139
@@ -10284,6 +10957,7 @@
     },
     "closedNote": "週四公休",
     "febNote": null,
+    "closures": [],
     "photos": [],
     "links": {
       "official": null,
@@ -10336,11 +11010,12 @@
       "lunch",
       "dinner"
     ],
+    "access": "car",
     "cuisine": [
-      "食堂",
-      "海鮮"
+      "定食・食堂"
     ],
     "priceRange": "¥2,000～3,999",
+    "price": null,
     "mustTry": [],
     "menu": [],
     "ratings": {
@@ -10350,9 +11025,12 @@
       "googleReviews": 660,
       "note": null
     },
+    "tabelogOwner": false,
+    "googleName": null,
     "notes": "石鏡漁港旁的食堂，這一區唯一高人氣的店。不能預約。同一個地址（石鏡町 336-1）另有「漁師酒場 鏡」，但電話、公休日、營業時間都不同，是另一家店（見 restaurants.md）。",
     "group": {
       "seats": null,
+      "maxReservation": null,
       "privateRoom": false,
       "buyout": "不可",
       "groupMenu": null,
@@ -10373,9 +11051,7 @@
     "kids": null,
     "smoking": "全席禁煙",
     "extra": {
-      "region": "國崎・パールロード",
       "inclusion": "A",
-      "tabelogOwner": false,
       "conflicts": [
         "Google 和食べログ（非店舗会員）一致"
       ],
@@ -10392,6 +11068,7 @@
       "en": null
     },
     "area": "toba",
+    "region": "kuzaki",
     "coords": [
       136.9150089,
       34.4276643
@@ -10446,6 +11123,7 @@
     },
     "closedNote": "週三公休（逢國定假日營業）",
     "febNote": null,
+    "closures": [],
     "photos": [],
     "links": {
       "official": "http://www.toba-tenboudai.co.jp/",
@@ -10493,10 +11171,18 @@
       "snack",
       "lunch"
     ],
+    "access": "car",
     "cuisine": [
-      "咖啡"
+      "咖啡・甜點"
     ],
     "priceRange": "～¥999",
+    "price": {
+      "lunch": [
+        0,
+        999
+      ],
+      "dinner": null
+    },
     "mustTry": [],
     "menu": [],
     "ratings": {
@@ -10506,9 +11192,12 @@
       "googleReviews": 5403,
       "note": "Google 評論是整個鳥羽展望台的"
     },
+    "tabelogOwner": false,
+    "googleName": "鳥羽展望台 海女のテラス",
     "notes": "珍珠路上的鳥羽展望台（景點 toba-observatory-pearl-road）裡的咖啡。",
     "group": {
       "seats": null,
+      "maxReservation": null,
       "privateRoom": false,
       "buyout": "可包場（20 人以下）",
       "groupMenu": null,
@@ -10528,13 +11217,15 @@
       "accepted": "yes"
     },
     "seating": [],
-    "kids": "可帶小孩（食べログ）",
+    "kids": {
+      "allowed": "yes",
+      "minAge": null,
+      "kidsMenu": null,
+      "note": "可帶小孩（食べログ）"
+    },
     "smoking": "全席禁煙",
     "extra": {
-      "region": "國崎・パールロード",
-      "inclusion": "AC",
-      "tabelogOwner": false,
-      "googleName": "鳥羽展望台 海女のテラス"
+      "inclusion": "AC"
     }
   },
   {
@@ -10547,6 +11238,7 @@
       "en": null
     },
     "area": "toba",
+    "region": "kuzaki",
     "coords": [
       136.9257541,
       34.4134974
@@ -10596,6 +11288,7 @@
     },
     "closedNote": "週一公休（食べログ）",
     "febNote": null,
+    "closures": [],
     "photos": [],
     "links": {
       "official": "http://www.isesima.net/kadoya/",
@@ -10647,12 +11340,12 @@
       "dinner",
       "lunch"
     ],
+    "access": "car",
     "cuisine": [
-      "海鮮",
-      "鮑魚",
-      "伊勢龍蝦"
+      "伊勢海老・高級海鮮"
     ],
     "priceRange": null,
+    "price": null,
     "mustTry": [],
     "menu": [],
     "ratings": {
@@ -10662,9 +11355,12 @@
       "googleReviews": 27,
       "note": "食べログ只有 3 則、Google 27 則"
     },
+    "tabelogOwner": false,
+    "googleName": null,
     "notes": "國崎（鎧埼燈塔附近）的旅館兼「お食事処」。官網有「お食事予約」表單和お食事処營業時間（17:00～22:00），食べログ也寫午餐、晚餐要預約，判斷**非住客也可以預約用餐**（但官網沒有明寫「非住客」，訂的時候要確認）。相差的「東の窓」不含晚餐，這裡是要開車的晚餐選擇。",
     "group": {
       "seats": 26,
+      "maxReservation": null,
       "privateRoom": true,
       "buyout": "可（沒寫人數）",
       "groupMenu": null,
@@ -10692,9 +11388,7 @@
     "kids": null,
     "smoking": "全席喫煙可（食べログ，可能是舊資料）",
     "extra": {
-      "region": "國崎・パールロード",
       "inclusion": "D",
-      "tabelogOwner": false,
       "tabelogGenre": "旅館・民宿",
       "nonGuestMeals": "官網有お食事予約表單，判斷可以（沒有明寫）",
       "conflicts": [
@@ -10712,6 +11406,7 @@
       "en": null
     },
     "area": "toba",
+    "region": "toshijima",
     "coords": [
       136.8977282,
       34.5237294
@@ -10766,6 +11461,7 @@
     },
     "closedNote": "不定休",
     "febNote": "離島的店多半不定休，2 月營業與否、定期船停航都要先打電話確認。",
+    "closures": [],
     "photos": [],
     "links": {
       "official": "http://www.amigo.ne.jp/~marumitu/",
@@ -10822,12 +11518,13 @@
       "lunch",
       "dinner"
     ],
+    "access": "ferry",
     "cuisine": [
       "壽司",
-      "海鮮",
-      "鄉土料理"
+      "和食・割烹"
     ],
     "priceRange": "¥2,000～2,999",
+    "price": null,
     "mustTry": [],
     "menu": [],
     "ratings": {
@@ -10837,9 +11534,12 @@
       "googleReviews": 235,
       "note": null
     },
+    "tabelogOwner": false,
+    "googleName": null,
     "notes": "答志島和具港附近。從鳥羽佐田浜港搭市營定期船。店內有大水槽，養著魚、伊勢龍蝦、貝類。全 19 席的小店。",
     "group": {
       "seats": 19,
+      "maxReservation": null,
       "privateRoom": false,
       "buyout": "不可",
       "groupMenu": null,
@@ -10865,9 +11565,7 @@
     "kids": null,
     "smoking": "全席喫煙可（食べログ，可能是舊資料）",
     "extra": {
-      "region": "離島（答志島）",
       "inclusion": "A",
-      "tabelogOwner": false,
       "conflicts": [
         "食べログ（非店舗会員）寫 11:00～22:00，Google 寫 11:00～21:00，採用 Google"
       ]
@@ -10883,6 +11581,7 @@
       "en": null
     },
     "area": "toba",
+    "region": "toshijima",
     "coords": [
       136.9007427,
       34.5227669
@@ -10937,6 +11636,7 @@
     },
     "closedNote": "週三公休（逢國定假日營業）",
     "febNote": "離島的店多半不定休，2 月營業與否、定期船停航都要先打電話確認。",
+    "closures": [],
     "photos": [],
     "links": {
       "official": "http://profile.ameba.jp/toushi-daiharu/",
@@ -10982,12 +11682,13 @@
       "lunch",
       "dinner"
     ],
+    "access": "ferry",
     "cuisine": [
       "壽司",
-      "鄉土料理",
-      "海鮮"
+      "和食・割烹"
     ],
     "priceRange": null,
+    "price": null,
     "mustTry": [],
     "menu": [],
     "ratings": {
@@ -10997,9 +11698,12 @@
       "googleReviews": 64,
       "note": "Google 網站欄是 IG"
     },
+    "tabelogOwner": false,
+    "googleName": null,
     "notes": "答志島和具港步行約 5 分。中午要先聯絡。食べログ寫「14 名以上有團體折扣」。",
     "group": {
       "seats": 30,
+      "maxReservation": null,
       "privateRoom": true,
       "buyout": "可包場（20 人以下）",
       "groupMenu": "14 名以上有團體折扣（食べログ）",
@@ -11025,9 +11729,7 @@
     "kids": null,
     "smoking": "分煙",
     "extra": {
-      "region": "離島（答志島）",
       "inclusion": "AC",
-      "tabelogOwner": false,
       "x": "@daiharu05993721",
       "conflicts": [
         "Google 沒有營業時間"
@@ -11044,6 +11746,7 @@
       "en": null
     },
     "area": "toba",
+    "region": "toshijima",
     "coords": [
       136.9015091,
       34.5314629
@@ -11135,6 +11838,7 @@
     },
     "closedNote": "不定休（Google 寫週二、週三公休）",
     "febNote": "離島的店多半不定休，2 月營業與否、定期船停航都要先打電話確認。",
+    "closures": [],
     "photos": [],
     "links": {
       "official": "https://104kikuya.com/",
@@ -11180,10 +11884,12 @@
       "lunch",
       "dinner"
     ],
+    "access": "ferry",
     "cuisine": [
       "海鮮"
     ],
     "priceRange": null,
+    "price": null,
     "mustTry": [],
     "menu": [],
     "ratings": {
@@ -11193,9 +11899,12 @@
       "googleReviews": 53,
       "note": null
     },
+    "tabelogOwner": true,
+    "googleName": "地物GYOKAI 喜久屋［完全予約制］",
     "notes": "答志島答志港附近。完全預約制，前一天以前電話預約（同時決定套餐或午餐套餐），每人一份。只收現金。預約時間前後可以寄放行李。**10 歲未滿的小孩原則上不能入店**（大人能確實管好小孩的話可以）；包廂只限國中以上。",
     "group": {
       "seats": 36,
+      "maxReservation": 12,
       "privateRoom": true,
       "buyout": "可包場（20 人以下）",
       "groupMenu": null,
@@ -11219,16 +11928,18 @@
       "table",
       "horigotatsu"
     ],
-    "kids": "10 歲未滿原則上不能入店（大人能管好小孩的話可以）；有兒童餐；包廂只限國中以上",
+    "kids": {
+      "allowed": "age-limit",
+      "minAge": 10,
+      "kidsMenu": true,
+      "note": "10 歲未滿原則上不能入店（大人能管好小孩的話可以）；有兒童餐；包廂只限國中以上"
+    },
     "smoking": "全席禁煙",
     "extra": {
-      "region": "離島（答志島）",
       "inclusion": "A",
-      "tabelogOwner": true,
       "conflicts": [
         "Google 寫週二、週三公休，食べログ（店舗会員）寫不定休，採用食べログ"
       ],
-      "googleName": "地物GYOKAI 喜久屋［完全予約制］",
       "payment": "只收現金"
     }
   },
@@ -11242,6 +11953,7 @@
       "en": null
     },
     "area": "toba",
+    "region": "sugashima",
     "coords": [
       136.90089,
       34.499076
@@ -11291,6 +12003,7 @@
     },
     "closedNote": "週三公休（Google）",
     "febNote": "離島的店多半不定休，2 月營業與否、定期船停航都要先打電話確認。",
+    "closures": [],
     "photos": [],
     "links": {
       "official": null,
@@ -11330,10 +12043,12 @@
     "contexts": [
       "lunch"
     ],
+    "access": "ferry",
     "cuisine": [
-      "食堂"
+      "定食・食堂"
     ],
     "priceRange": null,
+    "price": null,
     "mustTry": [],
     "menu": [],
     "ratings": {
@@ -11343,9 +12058,12 @@
       "googleReviews": 25,
       "note": null
     },
+    "tabelogOwner": false,
+    "googleName": null,
     "notes": "菅島港附近，島上少數的食堂（地區保底）。食べログ幾乎沒有資料。",
     "group": {
       "seats": null,
+      "maxReservation": null,
       "privateRoom": false,
       "buyout": null,
       "groupMenu": null,
@@ -11366,9 +12084,7 @@
     "kids": null,
     "smoking": null,
     "extra": {
-      "region": "離島（菅島）",
-      "inclusion": "D",
-      "tabelogOwner": false
+      "inclusion": "D"
     }
   },
   {
@@ -11381,6 +12097,7 @@
       "en": null
     },
     "area": "toba",
+    "region": "kamishima",
     "coords": [
       136.9813374,
       34.5498052
@@ -11390,6 +12107,7 @@
     "hours": null,
     "closedNote": null,
     "febNote": "離島的店多半不定休，2 月營業與否、定期船停航都要先打電話確認。",
+    "closures": [],
     "photos": [],
     "links": {
       "official": null,
@@ -11441,11 +12159,13 @@
       "snack",
       "lunch"
     ],
+    "access": "ferry",
     "cuisine": [
-      "喫茶",
-      "食堂"
+      "定食・食堂",
+      "咖啡・甜點"
     ],
     "priceRange": null,
+    "price": null,
     "mustTry": [],
     "menu": [],
     "ratings": {
@@ -11455,9 +12175,12 @@
       "googleReviews": 8,
       "note": null
     },
+    "tabelogOwner": false,
+    "googleName": null,
     "notes": "神島唯一找到的飲食店（地區保底）。食べログ、Google 都沒有營業時間和電話。",
     "group": {
       "seats": null,
+      "maxReservation": null,
       "privateRoom": false,
       "buyout": null,
       "groupMenu": null,
@@ -11480,9 +12203,7 @@
     "kids": null,
     "smoking": null,
     "extra": {
-      "region": "離島（神島）",
-      "inclusion": "D",
-      "tabelogOwner": false
+      "inclusion": "D"
     }
   },
   {
@@ -11495,6 +12216,7 @@
       "en": null
     },
     "area": "toba",
+    "region": "toba-outskirts",
     "coords": [
       136.850117,
       34.467168
@@ -11568,6 +12290,7 @@
     },
     "closedNote": "週三公休",
     "febNote": null,
+    "closures": [],
     "photos": [],
     "links": {
       "official": "http://www.niku-matsumura.co.jp/",
@@ -11624,12 +12347,21 @@
       "lunch",
       "dinner"
     ],
+    "access": "car",
     "cuisine": [
-      "牛肉料理",
-      "涮涮鍋",
-      "燒肉"
+      "燒肉・肉料理"
     ],
     "priceRange": "午、晚餐都 ¥6,500 起（食べログ）；口コミ集計 晚 ¥15,000～19,999",
+    "price": {
+      "lunch": [
+        6500,
+        null
+      ],
+      "dinner": [
+        6500,
+        null
+      ]
+    },
     "mustTry": [],
     "menu": [],
     "ratings": {
@@ -11639,9 +12371,12 @@
       "googleReviews": 188,
       "note": null
     },
+    "tabelogOwner": true,
+    "googleName": null,
     "notes": "大明東町（鳥羽站南邊，要搭車）。包廂有 2 人到 30 人以上的各種大小，50 人以上可以包場。常客滿，要早點預約。",
     "group": {
       "seats": 69,
+      "maxReservation": null,
       "privateRoom": true,
       "buyout": "可包場（50 人以上）",
       "groupMenu": null,
@@ -11664,12 +12399,13 @@
       "zashiki"
     ],
     "kids": null,
+    "accessibility": {
+      "barrierFree": "可坐輪椅入店（食べログ）",
+      "note": null
+    },
     "smoking": "全席禁煙",
     "extra": {
-      "region": "鳥羽站周邊（外圍・需車）",
       "inclusion": "AC",
-      "tabelogOwner": true,
-      "barrierFree": "可坐輪椅入店（食べログ）",
       "conflicts": [
         "Google 寫午餐到 14:30、晚餐到 20:30"
       ]
@@ -11685,6 +12421,7 @@
       "en": null
     },
     "area": "toba",
+    "region": "toba-outskirts",
     "coords": [
       136.8559029,
       34.4625143
@@ -11758,6 +12495,7 @@
     },
     "closedNote": "週三公休",
     "febNote": null,
+    "closures": [],
     "photos": [],
     "links": {
       "official": "http://toba-mutsumi.com",
@@ -11815,10 +12553,12 @@
       "lunch",
       "dinner"
     ],
+    "access": "car",
     "cuisine": [
       "海鮮"
     ],
     "priceRange": "¥2,000～2,999",
+    "price": null,
     "mustTry": [],
     "menu": [],
     "ratings": {
@@ -11828,9 +12568,12 @@
       "googleReviews": 627,
       "note": null
     },
+    "tabelogOwner": false,
+    "googleName": null,
     "notes": "安樂島（從大明東町 2089-54 搬來，食べログ）。不能預約。Google 有一則臨時休業公告（8/31～9/3 店內整修，已過）。",
     "group": {
       "seats": 35,
+      "maxReservation": null,
       "privateRoom": false,
       "buyout": "不可",
       "groupMenu": null,
@@ -11851,9 +12594,7 @@
     "kids": null,
     "smoking": "全席禁煙",
     "extra": {
-      "region": "鳥羽站周邊（外圍・需車）",
       "inclusion": "AB",
-      "tabelogOwner": false,
       "movedFrom": "三重県鳥羽市大明東町2089-54（食べログ）",
       "conflicts": [
         "食べログ（非店舗会員）寫 11:00～14:00（L.O. 13:30）、17:00～21:00（L.O. 20:30）；Google 寫 11:00～13:30、17:00～19:30，採用 Google"
@@ -11870,6 +12611,7 @@
       "en": null
     },
     "area": "toba",
+    "region": "toba-outskirts",
     "coords": [
       136.8566637,
       34.4670426
@@ -11952,6 +12694,7 @@
     },
     "closedNote": "不定休",
     "febNote": null,
+    "closures": [],
     "photos": [],
     "links": {
       "official": "http://www.kagetu.co.jp",
@@ -12009,12 +12752,22 @@
       "lunch",
       "dinner"
     ],
+    "access": "car",
     "cuisine": [
-      "伊勢龍蝦（伊勢海老）",
-      "海鮮蒸料理",
-      "海鮮丼"
+      "海鮮丼",
+      "伊勢海老・高級海鮮"
     ],
     "priceRange": "晚 ¥10,000～14,999；午 ¥8,000～9,999",
+    "price": {
+      "lunch": [
+        8000,
+        9999
+      ],
+      "dinner": [
+        10000,
+        14999
+      ]
+    },
     "mustTry": [],
     "menu": [],
     "ratings": {
@@ -12024,9 +12777,12 @@
       "googleReviews": 637,
       "note": null
     },
+    "tabelogOwner": false,
+    "googleName": null,
     "notes": "大明東町，要搭車。110 席，有吧台、座敷。官網有網路預約（2026-10-01 公告 12 月的網路預約開放）。",
     "group": {
       "seats": 110,
+      "maxReservation": null,
       "privateRoom": false,
       "buyout": "不可",
       "groupMenu": null,
@@ -12050,13 +12806,19 @@
       "counter",
       "zashiki"
     ],
-    "kids": "可帶小孩，有兒童餐（食べログ、官網）",
+    "kids": {
+      "allowed": "yes",
+      "minAge": null,
+      "kidsMenu": true,
+      "note": "可帶小孩，有兒童餐（食べログ、官網）"
+    },
+    "accessibility": {
+      "barrierFree": "無障礙（食べログ）",
+      "note": null
+    },
     "smoking": "全席禁煙",
     "extra": {
-      "region": "鳥羽站周邊（外圍・需車）",
-      "inclusion": "A",
-      "tabelogOwner": false,
-      "barrierFree": "無障礙（食べログ）"
+      "inclusion": "A"
     }
   },
   {
@@ -12069,6 +12831,7 @@
       "en": null
     },
     "area": "toba",
+    "region": "toba-outskirts",
     "coords": [
       136.8520562,
       34.4673516
@@ -12133,6 +12896,7 @@
     },
     "closedNote": "週三、週四公休（Google；食べログ寫週三）",
     "febNote": null,
+    "closures": [],
     "photos": [],
     "links": {
       "official": "http://www.minatosyokudo.com/",
@@ -12195,11 +12959,12 @@
       "lunch",
       "dinner"
     ],
+    "access": "car",
     "cuisine": [
-      "海鮮",
-      "食堂"
+      "定食・食堂"
     ],
     "priceRange": "¥2,000～2,999",
+    "price": null,
     "mustTry": [],
     "menu": [],
     "ratings": {
@@ -12209,9 +12974,12 @@
       "googleReviews": 991,
       "note": null
     },
+    "tabelogOwner": false,
+    "googleName": null,
     "notes": "從鳥羽 1-4-53 搬到安樂島町（食べログ），要搭車。",
     "group": {
       "seats": null,
+      "maxReservation": null,
       "privateRoom": false,
       "buyout": "可（沒寫人數）",
       "groupMenu": null,
@@ -12234,9 +13002,7 @@
     "kids": null,
     "smoking": "全席禁煙",
     "extra": {
-      "region": "鳥羽站周邊（外圍・需車）",
       "inclusion": "AC",
-      "tabelogOwner": false,
       "movedFrom": "三重県鳥羽市鳥羽1丁目4-53（食べログ）",
       "conflicts": [
         "食べログ（非店舗会員）寫 11:00～15:00、週三公休；Google 寫午餐到 14:00、週三週四公休，採用 Google"
@@ -12253,6 +13019,7 @@
       "en": null
     },
     "area": "toba",
+    "region": "toba-outskirts",
     "coords": [
       136.8595032,
       34.4608109
@@ -12298,10 +13065,12 @@
         ]
       ],
       "holiday": null,
-      "note": "L.O. 21:30；臨時休業看 IG"
+      "note": "L.O. 21:30；臨時休業看 IG",
+      "lastEntry": "21:30"
     },
     "closedNote": "週四公休；臨時休業公告在 IG",
     "febNote": null,
+    "closures": [],
     "photos": [],
     "links": {
       "official": "https://chiso-toba.com/",
@@ -12341,11 +13110,18 @@
     "contexts": [
       "dinner"
     ],
+    "access": "car",
     "cuisine": [
-      "日本料理",
-      "季節料理"
+      "和食・割烹"
     ],
     "priceRange": "¥6,000～7,999",
+    "price": {
+      "lunch": null,
+      "dinner": [
+        6000,
+        7999
+      ]
+    },
     "mustTry": [],
     "menu": [],
     "ratings": {
@@ -12355,9 +13131,12 @@
       "googleReviews": 102,
       "note": null
     },
+    "tabelogOwner": true,
+    "googleName": "馳走",
     "notes": "安樂島，只有晚上。",
     "group": {
       "seats": 20,
+      "maxReservation": null,
       "privateRoom": false,
       "buyout": "可（沒寫人數）",
       "groupMenu": null,
@@ -12382,13 +13161,10 @@
     "kids": null,
     "smoking": "全席禁煙",
     "extra": {
-      "region": "鳥羽站周邊（外圍・需車）",
       "inclusion": "C",
-      "tabelogOwner": true,
       "conflicts": [
         "Google 寫 17:00～21:00"
-      ],
-      "googleName": "馳走"
+      ]
     }
   },
   {
@@ -12401,6 +13177,7 @@
       "en": null
     },
     "area": "toba",
+    "region": "toba-outskirts",
     "coords": [
       136.8415193,
       34.4405637
@@ -12460,6 +13237,7 @@
     },
     "closedNote": "全年無休（官網）",
     "febNote": null,
+    "closures": [],
     "photos": [],
     "links": {
       "official": "http://www.ousho.co.jp/",
@@ -12512,10 +13290,12 @@
     "contexts": [
       "lunch"
     ],
+    "access": "car",
     "cuisine": [
       "海鮮"
     ],
     "priceRange": null,
+    "price": null,
     "mustTry": [],
     "menu": [],
     "ratings": {
@@ -12525,9 +13305,12 @@
       "googleReviews": 617,
       "note": "Google 評論是整個伴手禮中心的"
     },
+    "tabelogOwner": false,
+    "googleName": "伊勢志摩みやげセンター王将",
     "notes": "松尾町（志摩線松尾站附近，國道沿線），大型伴手禮中心附設餐廳「海鮮料理 王将」。官網：1F、2F 的團體用大廣間已改成椅子桌席，一個人到大型觀光巴士團體都能接待。",
     "group": {
       "seats": null,
+      "maxReservation": null,
       "privateRoom": false,
       "buyout": "可（食べログ，沒寫人數）",
       "groupMenu": null,
@@ -12552,10 +13335,7 @@
     "kids": null,
     "smoking": null,
     "extra": {
-      "region": "鳥羽站周邊（外圍・需車）",
-      "inclusion": "B",
-      "tabelogOwner": false,
-      "googleName": "伊勢志摩みやげセンター王将"
+      "inclusion": "B"
     }
   }
 ]

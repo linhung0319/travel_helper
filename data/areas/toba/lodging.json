@@ -2,6 +2,7 @@
   {
     "type": "lodging",
     "area": "toba",
+    "region": "toba-station",
     "hours": null,
     "closedNote": null,
     "photos": [],
@@ -22,21 +23,14 @@
     "coordsSource": "other",
     "address": "〒517-0011 三重県鳥羽市鳥羽1丁目24-26",
     "febNote": "楽天 2027-02-09（平日）有空房與報價；官網未公告 2 月休館（FAQ：維護用休館日決定後在官網公告，訂房前要再確認）。官網有 2026-11 起的忘年・新年會方案。",
+    "closures": [],
     "links": {
       "official": "https://www.todaya.co.jp/",
       "googleMaps": null
     },
     "tags": [
-      "一泊二食",
       "溫泉",
-      "大浴場",
-      "包租浴池",
-      "海景",
-      "鳥羽站步行",
-      "大型旅館",
-      "團體方案",
-      "電梯",
-      "無障礙房"
+      "無障礙"
     ],
     "nearestStation": {
       "id": "toba",
@@ -134,6 +128,9 @@
       }
     ],
     "luggage": "入住前、退房後都可在櫃台寄放（官網 FAQ、楽天 FAQ）。也可事先宅配到館（收件人需與訂房人同名，不收貨到付款、冷藏冷凍品）。",
+    "checkIn": "15:00",
+    "checkOut": "10:00",
+    "dinnerAccess": null,
     "group": {
       "totalRooms": 160,
       "roomTypes": [
@@ -230,19 +227,19 @@
       }
     ],
     "extra": {
-      "checkIn": "15:00（最晚 19:30）",
-      "checkOut": "10:00",
       "onsen": "戸田家温泉村：野天風呂「湯亭」（24 小時）、5 個免費包租浴池（不用預約）＋2 個收費包租浴池（45 分 3,300 円）、岩盤浴、足湯",
       "parking": "150 台免費",
       "taxes": "入湯稅大人 150 円（0～11 歲免）、宿泊稅每人每晚 200 円",
       "conflicts": [
         "總房數：楽天 160 室；官網 FAQ 168 室。"
-      ]
+      ],
+      "checkInNote": "15:00（最晚 19:30）"
     }
   },
   {
     "type": "lodging",
     "area": "toba",
+    "region": "toba-station",
     "hours": null,
     "closedNote": null,
     "photos": [],
@@ -263,19 +260,13 @@
     "coordsSource": "osm",
     "address": "〒517-0011 三重県鳥羽市鳥羽1-23-1",
     "febNote": "楽天 2027-02-09（平日）有空房與報價；官網未見 2 月休館公告。冬季有伊勢海老（伊勢龍蝦）、鮑魚方案。",
+    "closures": [],
     "links": {
       "official": "https://www.tobahotel.co.jp/",
       "googleMaps": null,
       "instagram": null
     },
-    "tags": [
-      "飯店",
-      "海景",
-      "西餐",
-      "鳥羽站周邊",
-      "洋室",
-      "床"
-    ],
+    "tags": [],
     "nearestStation": {
       "id": "toba",
       "mode": "shuttle",
@@ -336,6 +327,9 @@
       }
     ],
     "luggage": null,
+    "checkIn": "14:00",
+    "checkOut": "11:00",
+    "dinnerAccess": null,
     "group": {
       "totalRooms": 84,
       "roomTypes": [
@@ -424,18 +418,18 @@
       }
     ],
     "extra": {
-      "checkIn": "14:00（最晚 24:00）",
-      "checkOut": "11:00",
       "parking": "100 台免費",
       "operator": "三井不動產度假村集團（伊勢志摩リゾートマネジメント）",
       "conflicts": [
         "電話：楽天 0599-25-3121；官網客房頁的訂房洽詢寫 0599-26-4121（9:00～17:00），未直接確認。"
-      ]
+      ],
+      "checkInNote": "14:00（最晚 24:00）"
     }
   },
   {
     "type": "lodging",
     "area": "toba",
+    "region": "toba-station",
     "hours": null,
     "closedNote": null,
     "photos": [],
@@ -456,17 +450,13 @@
     "coordsSource": "osm",
     "address": "〒517-0011 三重県鳥羽市鳥羽1-23-1",
     "febNote": "楽天 2027-02-09（平日）有空房與報價；未見 2 月休館公告。冬季有伊勢海老・鮑方案。",
+    "closures": [],
     "links": {
       "official": "https://www.tobahotel.co.jp/",
       "googleMaps": null
     },
     "tags": [
-      "一泊二食",
-      "溫泉",
-      "大浴場",
-      "海景",
-      "和室",
-      "鳥羽站周邊"
+      "溫泉"
     ],
     "nearestStation": {
       "id": "toba",
@@ -528,6 +518,9 @@
       }
     ],
     "luggage": null,
+    "checkIn": "14:00",
+    "checkOut": "11:00",
+    "dinnerAccess": null,
     "group": {
       "totalRooms": 46,
       "roomTypes": [
@@ -612,16 +605,16 @@
       }
     ],
     "extra": {
-      "checkIn": "14:00（最晚 20:00）",
-      "checkOut": "11:00",
       "onsen": "大浴場「常若の湯」（天然溫泉，鈉氯化物泉）、露天、三溫暖；鳥羽國際飯店的房客也來這裡泡",
       "parking": "免費（相鄰）",
-      "dinner": "晚餐兩梯：17:30、20:00 前後"
+      "dinner": "晚餐兩梯：17:30、20:00 前後",
+      "checkInNote": "14:00（最晚 20:00）"
     }
   },
   {
     "type": "lodging",
     "area": "toba",
+    "region": "toba-outskirts",
     "hours": null,
     "closedNote": null,
     "photos": [],
@@ -642,19 +635,13 @@
     "coordsSource": "osm",
     "address": "〒517-0021 三重県鳥羽市安楽島町1084",
     "febNote": "楽天 2027-02-09（平日）有空房與報價。官網團體方案期間 2026-10-01～2027-03-31（除外 12/29～1/2、1/25～28），2 月可用。官網公告露天「風見の湯」11～12 月整修。",
+    "closures": [],
     "links": {
       "official": "https://www.tobaseasidehotel.co.jp/",
       "googleMaps": null
     },
     "tags": [
-      "一泊二食",
-      "自助餐",
-      "溫泉",
-      "大浴場",
-      "海景",
-      "大型飯店",
-      "團體方案",
-      "安楽島"
+      "溫泉"
     ],
     "nearestStation": {
       "id": "toba",
@@ -740,6 +727,9 @@
       }
     ],
     "luggage": "可事先宅配行李到館（官網 FAQ）；當天寄放未寫明。",
+    "checkIn": "15:00",
+    "checkOut": "10:00",
+    "dinnerAccess": null,
     "group": {
       "totalRooms": 206,
       "roomTypes": [
@@ -840,18 +830,18 @@
       }
     ],
     "extra": {
-      "checkIn": "15:00（最晚 19:00）",
-      "checkOut": "10:00",
       "onsen": "多個大浴場、露天、家族風呂（アルカリ単純泉）",
       "parking": "200 台免費",
       "conflicts": [
         "電話：楽天 0599-25-5151（代表）；官網訂房 0599-25-8181。"
-      ]
+      ],
+      "checkInNote": "15:00（最晚 19:00）"
     }
   },
   {
     "type": "lodging",
     "area": "toba",
+    "region": "toba-outskirts",
     "hours": null,
     "closedNote": null,
     "photos": [],
@@ -872,18 +862,14 @@
     "coordsSource": "osm",
     "address": "〒517-0021 三重県鳥羽市安楽島町1075-98",
     "febNote": "楽天 2027-02-09（平日）有空房與報價；未見 2 月休館公告。",
+    "closures": [],
     "links": {
       "official": null,
       "googleMaps": null
     },
     "tags": [
-      "一泊二食",
-      "溫泉",
-      "大浴場",
-      "海景",
-      "和室",
-      "安楽島",
-      "親子"
+      "親子",
+      "溫泉"
     ],
     "nearestStation": {
       "id": "toba",
@@ -933,6 +919,9 @@
       }
     ],
     "luggage": null,
+    "checkIn": "15:00",
+    "checkOut": "10:00",
+    "dinnerAccess": null,
     "group": {
       "totalRooms": 44,
       "roomTypes": [
@@ -1026,18 +1015,18 @@
       }
     ],
     "extra": {
-      "checkIn": "15:00（最晚 18:00）",
-      "checkOut": "10:00",
       "onsen": "溫泉大浴場、露天",
       "parking": "50 台免費",
       "conflicts": [
         "總房數：楽天 44 室；japanese-onsen.com 48 室。"
-      ]
+      ],
+      "checkInNote": "15:00（最晚 18:00）"
     }
   },
   {
     "type": "lodging",
     "area": "toba",
+    "region": "toba-station",
     "hours": null,
     "closedNote": null,
     "photos": [],
@@ -1058,18 +1047,15 @@
     "coordsSource": "other",
     "address": "〒517-0011 三重県鳥羽市鳥羽2-12-24",
     "febNote": "楽天 2027-02-09（平日）有空房與報價；官網未見休館公告。有平日限定「さき楽」早鳥方案。",
+    "closures": [],
     "links": {
       "official": "https://www.senpokaku.com/",
       "googleMaps": null
     },
     "tags": [
-      "一泊二食",
+      "親子",
       "溫泉",
-      "大浴場",
-      "海景",
-      "無障礙房",
-      "電梯",
-      "親子"
+      "無障礙"
     ],
     "nearestStation": {
       "id": "toba",
@@ -1131,6 +1117,9 @@
       }
     ],
     "luggage": "可在櫃台寄放（官網 FAQ）；也可事先宅配。",
+    "checkIn": "15:00",
+    "checkOut": "10:00",
+    "dinnerAccess": null,
     "group": {
       "totalRooms": 65,
       "roomTypes": [
@@ -1233,16 +1222,16 @@
       }
     ],
     "extra": {
-      "checkIn": "15:00（最晚 19:00；朝食付・素泊 23:00）",
-      "checkOut": "10:00",
       "onsen": "榊原溫泉運來的湯；大浴場、露天、包租浴池（最多 6 人）",
       "parking": "50 台免費",
-      "dinnerLastStart": "晚餐最晚 19:30 開始"
+      "dinnerLastStart": "晚餐最晚 19:30 開始",
+      "checkInNote": "15:00（最晚 19:00；朝食付・素泊 23:00）"
     }
   },
   {
     "type": "lodging",
     "area": "toba",
+    "region": "toba-station",
     "hours": null,
     "closedNote": null,
     "photos": [],
@@ -1263,19 +1252,13 @@
     "coordsSource": "osm",
     "address": "〒517-0015 三重県鳥羽市小浜町239-9",
     "febNote": "楽天 2027-02-09（平日）有空房與報價；未見 2 月休館公告。自助餐有伊勢海老漁師鍋。",
+    "closures": [],
     "links": {
       "official": "https://jgh.jp/",
       "googleMaps": null
     },
     "tags": [
-      "一泊二食",
-      "自助餐",
-      "房間餐",
-      "溫泉",
-      "大浴場",
-      "海景",
-      "小浜",
-      "團體"
+      "溫泉"
     ],
     "nearestStation": {
       "id": "toba",
@@ -1337,6 +1320,9 @@
       }
     ],
     "luggage": null,
+    "checkIn": "15:00",
+    "checkOut": "11:00",
+    "dinnerAccess": null,
     "group": {
       "totalRooms": 75,
       "roomTypes": [
@@ -1441,16 +1427,16 @@
       }
     ],
     "extra": {
-      "checkIn": "15:00（最晚 20:00）",
-      "checkOut": "11:00",
       "onsen": "大浴場、露天、包租露天",
       "parking": "50 台免費",
-      "note": "有 6 間可帶狗的客房。"
+      "note": "有 6 間可帶狗的客房。",
+      "checkInNote": "15:00（最晚 20:00）"
     }
   },
   {
     "type": "lodging",
     "area": "toba",
+    "region": "toba-station",
     "hours": null,
     "closedNote": null,
     "photos": [],
@@ -1471,17 +1457,13 @@
     "coordsSource": "other",
     "address": "〒517-0015 三重県鳥羽市小浜町237-1",
     "febNote": "楽天 2027-02-09（平日）有空房與報價；未見 2 月休館公告。",
+    "closures": [],
     "links": {
       "official": null,
       "googleMaps": null
     },
     "tags": [
-      "一泊二食",
-      "房間餐",
-      "溫泉",
-      "大浴場",
-      "海景",
-      "小浜"
+      "溫泉"
     ],
     "nearestStation": {
       "id": "toba",
@@ -1531,6 +1513,9 @@
       }
     ],
     "luggage": null,
+    "checkIn": "15:00",
+    "checkOut": "10:00",
+    "dinnerAccess": null,
     "group": {
       "totalRooms": 35,
       "roomTypes": [
@@ -1614,18 +1599,19 @@
       }
     ],
     "extra": {
-      "checkIn": "15:00（最晚 18:00）",
-      "checkOut": "10:00（延到 12:00 每位大人 2,200 円）",
       "onsen": "大浴場、露天（單純溫泉）",
       "parking": "30 台免費",
       "conflicts": [
         "地址：觀光協會、楽天為小浜町 237-1；japanese-onsen.com 寫「大浜町」，應為誤植。"
-      ]
+      ],
+      "checkInNote": "15:00（最晚 18:00）",
+      "checkOutNote": "10:00（延到 12:00 每位大人 2,200 円）"
     }
   },
   {
     "type": "lodging",
     "area": "toba",
+    "region": "toba-station",
     "hours": null,
     "closedNote": null,
     "photos": [],
@@ -1646,18 +1632,13 @@
     "coordsSource": "osm",
     "address": "〒517-0015 三重県鳥羽市小浜町城山610",
     "febNote": "楽天 2027-02-09（平日）有空房與報價；冬季有本ズワイガニ（松葉蟹）加購方案。",
+    "closures": [],
     "links": {
       "official": "https://www.ooedoonsen.jp/",
       "googleMaps": null
     },
     "tags": [
-      "一泊二食",
-      "自助餐",
-      "溫泉",
-      "大浴場",
-      "泳池",
-      "平價",
-      "小浜"
+      "溫泉"
     ],
     "nearestStation": {
       "id": "toba",
@@ -1719,6 +1700,9 @@
       }
     ],
     "luggage": null,
+    "checkIn": "15:00",
+    "checkOut": "11:00",
+    "dinnerAccess": null,
     "group": {
       "totalRooms": 92,
       "roomTypes": [
@@ -1803,18 +1787,18 @@
       }
     ],
     "extra": {
-      "checkIn": "15:00（最晚 19:00）",
-      "checkOut": "11:00",
       "onsen": "大浴場、露天、三溫暖（アルカリ単純泉）；展望風呂付客室是一般熱水",
       "parking": "100 台免費",
       "conflicts": [
         "接駁：楽天寫「近鐵鳥羽站接送車 10 分」，じゃらん寫「收費・預約制巡迴巴士」，以官網為準（未能取得）。"
-      ]
+      ],
+      "checkInNote": "15:00（最晚 19:00）"
     }
   },
   {
     "type": "lodging",
     "area": "toba",
+    "region": "toba-outskirts",
     "hours": null,
     "closedNote": null,
     "photos": [],
@@ -1835,18 +1819,13 @@
     "coordsSource": "other",
     "address": "〒517-0021 三重県鳥羽市安楽島町1061-9",
     "febNote": "舊名ホテルアルティア鳥羽，2026-08-01 改名並改為全包式（含餐飲）。楽天 2027-02-09（平日）有空房與報價。2026-12-09～11 女湯露天整修。",
+    "closures": [],
     "links": {
       "official": "https://iconia.co.jp/hotel-izumigo-hotel-altia-toba-mie",
       "googleMaps": null
     },
     "tags": [
-      "一泊二食",
-      "全包式",
-      "溫泉",
-      "大浴場",
-      "海景",
-      "床",
-      "安楽島"
+      "溫泉"
     ],
     "nearestStation": {
       "id": "toba",
@@ -1908,6 +1887,9 @@
       }
     ],
     "luggage": null,
+    "checkIn": "15:00",
+    "checkOut": "11:00",
+    "dinnerAccess": null,
     "group": {
       "totalRooms": 72,
       "roomTypes": [
@@ -2000,17 +1982,17 @@
       }
     ],
     "extra": {
-      "checkIn": "15:00（最晚 24:00）",
-      "checkOut": "11:00",
       "onsen": "大浴場、露天、三溫暖（アルカリ単純泉）",
       "parking": "50 台免費",
       "formerName": "ホテルアルティア鳥羽",
-      "operator": "Iconia Hospitality"
+      "operator": "Iconia Hospitality",
+      "checkInNote": "15:00（最晚 24:00）"
     }
   },
   {
     "type": "lodging",
     "area": "toba",
+    "region": "toba-outskirts",
     "hours": null,
     "closedNote": null,
     "photos": [],
@@ -2031,18 +2013,13 @@
     "coordsSource": "osm",
     "address": "〒517-0021 三重県鳥羽市安楽島町1075-100",
     "febNote": "楽天 2027-02-09（平日）有空房與報價；未見 2 月休館公告。",
+    "closures": [],
     "links": {
       "official": "https://www.amanoshima.com/",
       "googleMaps": null
     },
     "tags": [
-      "一泊二食",
-      "溫泉",
-      "自家源泉",
-      "大浴場",
-      "海景",
-      "椅子席",
-      "安楽島"
+      "溫泉"
     ],
     "nearestStation": {
       "id": "toba",
@@ -2092,6 +2069,9 @@
       }
     ],
     "luggage": null,
+    "checkIn": "15:00",
+    "checkOut": "10:00",
+    "dinnerAccess": null,
     "group": {
       "totalRooms": 33,
       "roomTypes": [
@@ -2190,15 +2170,15 @@
       }
     ],
     "extra": {
-      "checkIn": "15:00（最晚 18:00）",
-      "checkOut": "10:00",
       "onsen": "自家源泉，大浴場、露天、包租浴池",
-      "parking": "50 台免費"
+      "parking": "50 台免費",
+      "checkInNote": "15:00（最晚 18:00）"
     }
   },
   {
     "type": "lodging",
     "area": "toba",
+    "region": "toba-outskirts",
     "hours": null,
     "closedNote": null,
     "photos": [],
@@ -2219,19 +2199,14 @@
     "coordsSource": "other",
     "address": "〒517-0021 三重県鳥羽市安楽島町1200-7",
     "febNote": "楽天 2027-02-09（平日）有空房與報價；未見 2 月休館公告。早餐有螃蟹吃到飽。",
+    "closures": [],
     "links": {
       "official": "https://kamenoi-hotels.com/toba/",
       "googleMaps": null
     },
     "tags": [
-      "一泊二食",
-      "自助餐",
       "溫泉",
-      "大浴場",
-      "海景",
-      "電梯",
-      "無障礙房",
-      "安楽島"
+      "無障礙"
     ],
     "nearestStation": {
       "id": "toba",
@@ -2293,6 +2268,9 @@
       }
     ],
     "luggage": "入住前、退房後可在櫃台寄放；可事先聯絡後宅配寄存（官網 FAQ）。",
+    "checkIn": "15:00",
+    "checkOut": "10:00",
+    "dinnerAccess": null,
     "group": {
       "totalRooms": 68,
       "roomTypes": [
@@ -2387,19 +2365,19 @@
       }
     ],
     "extra": {
-      "checkIn": "15:00（最晚 21:00）",
-      "checkOut": "10:00",
       "onsen": "大浴場、露天",
       "parking": "80 台免費",
       "operator": "Iconia Hospitality（亀の井ホテル）",
       "conflicts": [
         "兒童價：楽天注意事項「3 歲以上兒童收大人 50%」，但楽天價格推算小學生高學年為 70%；推測 50% 指幼兒，需確認。"
-      ]
+      ],
+      "checkInNote": "15:00（最晚 21:00）"
     }
   },
   {
     "type": "lodging",
     "area": "toba",
+    "region": "osatsu",
     "hours": null,
     "closedNote": "不定休（官網公告休館日與學生團體包館日）",
     "photos": [],
@@ -2420,21 +2398,13 @@
     "coordsSource": "google-maps-url",
     "address": "〒517-0032 三重県鳥羽市相差町1522-12",
     "febNote": "官網公告有不定期休館日（2026 年多為週三，例如 2026-02-04、02-18），2027 年 2 月的休館日尚未公布；2027-02-10（週三）楽天仍有空房。冬季有伊勢海老舟盛、焼き牡蠣方案。",
+    "closures": [],
     "links": {
       "official": "https://michishio.co.jp/",
       "rakuten": "https://travel.rakuten.co.jp/HOTEL/5545/"
     },
     "tags": [
-      "一泊二食",
-      "溫泉",
-      "海景",
-      "大浴場",
-      "貸切風呂",
-      "大廣間",
-      "電梯",
-      "伊勢海老",
-      "相差",
-      "大型"
+      "溫泉"
     ],
     "nearestStation": {
       "id": "toba",
@@ -2484,6 +2454,9 @@
       }
     ],
     "luggage": "官網 FAQ：入住前（13:00 起）、退房後（到 12:00）可免費使用泳池、淋浴、停車場，行李請放在車上；沒有寫可以寄放（搭電車來的要再確認）。",
+    "checkIn": "15:00",
+    "checkOut": "10:00",
+    "dinnerAccess": null,
     "group": {
       "totalRooms": 27,
       "roomTypes": [
@@ -2574,8 +2547,6 @@
       }
     ],
     "extra": {
-      "checkIn": "15:00（最晚 18:00）",
-      "checkOut": "10:00",
       "onsen": "大浴場（男女）、露天風呂（男女）",
       "privateBath": "貸切風呂 2 種（和風・洋風），1 次 40 分 2,200 円，限量需預約",
       "parking": "30～35 台免費（楽天本文 35 台、FAQ 30 台）",
@@ -2584,12 +2555,14 @@
       "conflicts": [
         "總房數：楽天 26 室、官網客室列表 27 間",
         "停車場：楽天 35 台、FAQ 30 台"
-      ]
+      ],
+      "checkInNote": "15:00（最晚 18:00）"
     }
   },
   {
     "type": "lodging",
     "area": "toba",
+    "region": "osatsu",
     "hours": null,
     "closedNote": null,
     "photos": [],
@@ -2610,23 +2583,14 @@
     "coordsSource": "google-maps-url",
     "address": "〒517-0032 三重県鳥羽市相差町1471",
     "febNote": "2027-02-10 楽天有空房；方案期間多到 2027-08-31，有牡蠣（プレミアムオイスター）、伊勢海老方案。",
+    "closures": [],
     "links": {
       "official": "https://www.toyohama.co.jp/",
       "rakuten": "https://travel.rakuten.co.jp/HOTEL/4723/"
     },
     "tags": [
-      "一泊二食",
-      "素泊",
       "溫泉",
-      "海景",
-      "大浴場",
-      "貸切風呂",
-      "電梯",
-      "無障礙客室",
-      "伊勢海老",
-      "牡蠣",
-      "相差",
-      "大型"
+      "無障礙"
     ],
     "nearestStation": {
       "id": "toba",
@@ -2700,6 +2664,9 @@
       }
     ],
     "luggage": "楽天：停車場在入住前、退房後都可使用，有免費溫水淋浴和置物櫃；沒有寫行李寄放。",
+    "checkIn": "15:00",
+    "checkOut": "10:00",
+    "dinnerAccess": null,
     "group": {
       "totalRooms": 34,
       "roomTypes": [
@@ -2780,18 +2747,18 @@
       }
     ],
     "extra": {
-      "checkIn": "15:00（最晚 17:30）",
-      "checkOut": "10:00",
       "onsen": "社宮司溫泉（pH9.3），展望大浴場（附露天）",
       "privateBath": "貸切露天風呂 2 處（「天空の湯」「磯笛の湯」），住客 40 分免費、當天先到先預約",
       "parking": "50 台免費",
       "beach": "千鳥ヶ浜海灘步行約 1 分",
-      "taxes": "入湯稅 150 円、宿泊稅 200 円"
+      "taxes": "入湯稅 150 円、宿泊稅 200 円",
+      "checkInNote": "15:00（最晚 17:30）"
     }
   },
   {
     "type": "lodging",
     "area": "toba",
+    "region": "osatsu",
     "hours": null,
     "closedNote": null,
     "photos": [],
@@ -2812,19 +2779,13 @@
     "coordsSource": "osm",
     "address": "〒517-0032 三重県鳥羽市相差町千鳥ヶ浜1522-27",
     "febNote": "楽天方案期間到 2027-02-28。2027-02-10（週三）所有方案都顯示「空室なし」，02-03、02-17 則有空房——可能是休館日或客滿，要再確認。",
+    "closures": [],
     "links": {
       "official": null,
       "rakuten": "https://travel.rakuten.co.jp/HOTEL/30958/"
     },
     "tags": [
-      "一泊二食",
-      "溫泉",
-      "海景",
-      "大浴場",
-      "鳥羽站免費接送",
-      "伊勢海老",
-      "相差",
-      "大型"
+      "溫泉"
     ],
     "nearestStation": {
       "id": "toba",
@@ -2874,6 +2835,9 @@
       }
     ],
     "luggage": "楽天：入住前、退房後都可以寄放行李。",
+    "checkIn": "15:00",
+    "checkOut": "10:00",
+    "dinnerAccess": null,
     "group": {
       "totalRooms": 40,
       "roomTypes": [
@@ -2945,20 +2909,20 @@
       }
     ],
     "extra": {
-      "checkIn": "15:00（最晚 20:00）",
-      "checkOut": "10:00",
       "onsen": "天然溫泉「浜の雅湯」（弱鹼性單純泉），大浴場、露天風呂",
       "privateBath": "無（近畿日本ツーリスト）",
       "parking": "免費、不用預約",
       "taxes": "入湯稅 150 円、宿泊稅 200 円",
       "conflicts": [
         "總房數：楽天 40 室、近畿日本ツーリスト 54 室"
-      ]
+      ],
+      "checkInNote": "15:00（最晚 20:00）"
     }
   },
   {
     "type": "lodging",
     "area": "toba",
+    "region": "osatsu",
     "hours": null,
     "closedNote": null,
     "photos": [],
@@ -2979,21 +2943,13 @@
     "coordsSource": "google-maps-url",
     "address": "〒517-0032 三重県鳥羽市相差町1411",
     "febNote": "2027-02-10 楽天有空房；伊勢海老方案期間到 2027-03-31。",
+    "closures": [],
     "links": {
       "official": null,
       "rakuten": "https://travel.rakuten.co.jp/HOTEL/7678/"
     },
     "tags": [
-      "一泊二食",
-      "素泊",
-      "溫泉",
-      "海景",
-      "大浴場",
-      "三溫暖",
-      "有床",
-      "石神さん步行圈",
-      "伊勢海老",
-      "相差"
+      "溫泉"
     ],
     "nearestStation": {
       "id": "toba",
@@ -3055,6 +3011,9 @@
       }
     ],
     "luggage": null,
+    "checkIn": "15:00",
+    "checkOut": "11:00",
+    "dinnerAccess": null,
     "group": {
       "totalRooms": 10,
       "roomTypes": [
@@ -3118,20 +3077,20 @@
       }
     ],
     "extra": {
-      "checkIn": "15:00（最晚 18:00）",
-      "checkOut": "11:00",
       "onsen": "大浴場（榊原溫泉運來的鹼性單純泉）",
       "sauna": "只有附私人三溫暖的客房可用",
       "parking": "10 台免費",
       "curfew": "門限 24:00（楽天寫 12:00，推測為午夜）",
       "conflicts": [
         "總房數：楽天 10 室、其他訂房網站 15 室（搜尋摘要，未直接確認）"
-      ]
+      ],
+      "checkInNote": "15:00（最晚 18:00）"
     }
   },
   {
     "type": "lodging",
     "area": "toba",
+    "region": "osatsu",
     "hours": null,
     "closedNote": null,
     "photos": [],
@@ -3152,20 +3111,12 @@
     "coordsSource": "google-maps-url",
     "address": "〒517-0032 三重県鳥羽市相差町1092",
     "febNote": "楽天方案期間只到 2026-12-25，2027 年 2 月尚未開放，價格與營業要再確認。",
+    "closures": [],
     "links": {
       "official": null,
       "rakuten": "https://travel.rakuten.co.jp/HOTEL/24568/"
     },
-    "tags": [
-      "一泊二食",
-      "大浴場",
-      "露天風呂",
-      "貸切風呂",
-      "伊勢海老",
-      "鮑魚",
-      "石神さん步行圈",
-      "相差"
-    ],
+    "tags": [],
     "nearestStation": {
       "id": "toba",
       "mode": "car",
@@ -3214,6 +3165,9 @@
       }
     ],
     "luggage": null,
+    "checkIn": "15:00",
+    "checkOut": "10:00",
+    "dinnerAccess": null,
     "group": {
       "totalRooms": 14,
       "roomTypes": [
@@ -3278,17 +3232,17 @@
       }
     ],
     "extra": {
-      "checkIn": "15:00（最晚 18:00）",
-      "checkOut": "10:00",
       "onsen": "大浴場附露天",
       "privateBath": "有貸切風呂",
       "parking": "30 台免費",
-      "dinner": "17:30 開始（最晚 18:00）"
+      "dinner": "17:30 開始（最晚 18:00）",
+      "checkInNote": "15:00（最晚 18:00）"
     }
   },
   {
     "type": "lodging",
     "area": "toba",
+    "region": "osatsu",
     "hours": null,
     "closedNote": null,
     "photos": [],
@@ -3309,20 +3263,12 @@
     "coordsSource": "google-maps-url",
     "address": "〒517-0032 三重県鳥羽市相差町1362-5",
     "febNote": "2027-02-10 楽天有空房（剩 4 間）；主力伊勢海老方案期間到 2027-01-31，2 月可訂的是鮑魚、伊勢えび造り方案。",
+    "closures": [],
     "links": {
       "official": null,
       "rakuten": "https://travel.rakuten.co.jp/HOTEL/11075/"
     },
-    "tags": [
-      "一泊二食",
-      "料理自慢",
-      "伊勢海老",
-      "鮑魚",
-      "包廂用餐",
-      "石神さん步行圈",
-      "相差",
-      "小型"
-    ],
+    "tags": [],
     "nearestStation": {
       "id": "toba",
       "mode": "car",
@@ -3371,6 +3317,9 @@
       }
     ],
     "luggage": null,
+    "checkIn": "15:00",
+    "checkOut": "10:00",
+    "dinnerAccess": null,
     "group": {
       "totalRooms": 5,
       "roomTypes": [
@@ -3447,18 +3396,18 @@
       }
     ],
     "extra": {
-      "checkIn": "15:00（最晚 18:00）",
-      "checkOut": "10:00",
       "parking": "10 台免費、先到先停",
       "dinner": "17:30～18:30 開始",
       "conflicts": [
         "總房數：楽天 5 室、じゃらん 10 室"
-      ]
+      ],
+      "checkInNote": "15:00（最晚 18:00）"
     }
   },
   {
     "type": "lodging",
     "area": "toba",
+    "region": "kuzaki",
     "hours": null,
     "closedNote": null,
     "photos": [],
@@ -3479,19 +3428,12 @@
     "coordsSource": "google-maps-url",
     "address": "〒517-0031 三重県鳥羽市国崎町733-4",
     "febNote": "楽天方案期間到 2026-12-25（2027 年 2 月尚未開放）；伊勢海老季節到 4 月底，秋冬「旬彩プラン」一人一尾伊勢海老。",
+    "closures": [],
     "links": {
       "official": "http://www.tama-ya.com/",
       "rakuten": "https://travel.rakuten.co.jp/HOTEL/24572/"
     },
-    "tags": [
-      "一泊二食",
-      "伊勢海老",
-      "鮑魚",
-      "海景",
-      "国崎",
-      "小型",
-      "幾乎包棟"
-    ],
+    "tags": [],
     "nearestStation": {
       "id": "toba",
       "mode": "car",
@@ -3540,6 +3482,9 @@
       }
     ],
     "luggage": null,
+    "checkIn": "15:00",
+    "checkOut": "10:00",
+    "dinnerAccess": null,
     "group": {
       "totalRooms": 5,
       "roomTypes": [
@@ -3607,20 +3552,20 @@
       }
     ],
     "extra": {
-      "checkIn": "15:00（最晚 19:00）",
-      "checkOut": "10:00",
       "bath": "沒有溫泉；露天、內湯，24 小時可入浴；可商量貸切",
       "parking": "30 台免費",
       "dinner": "17:30～18:30 開始",
       "payment": "現場不能刷卡（線上刷卡方案可）",
       "conflicts": [
         "接送：じゃらん寫鳥羽站沒有接送，其他網站寫有接送"
-      ]
+      ],
+      "checkInNote": "15:00（最晚 19:00）"
     }
   },
   {
     "type": "lodging",
     "area": "toba",
+    "region": "kuzaki",
     "hours": null,
     "closedNote": null,
     "photos": [],
@@ -3641,21 +3586,13 @@
     "coordsSource": "google-maps-url",
     "address": "〒517-0026 三重県鳥羽市石鏡町338-5",
     "febNote": "2027-02-10 楽天有空房；伊勢海老方案期間到 2027-06-30。冬天晴天有時看得到富士山（觀光三重）。",
+    "closures": [],
     "links": {
       "official": "https://www.kagura-izika.com/",
       "rakuten": "https://travel.rakuten.co.jp/HOTEL/62677/"
     },
     "tags": [
-      "一泊二食",
-      "一泊朝食",
-      "溫泉",
-      "海景",
-      "大浴場",
-      "貸切風呂",
-      "鳥羽站免費接送",
-      "伊勢海老",
-      "石鏡",
-      "大型"
+      "溫泉"
     ],
     "nearestStation": {
       "id": "toba",
@@ -3717,6 +3654,9 @@
       }
     ],
     "luggage": null,
+    "checkIn": "15:00",
+    "checkOut": "10:00",
+    "dinnerAccess": null,
     "group": {
       "totalRooms": 29,
       "roomTypes": [
@@ -3788,20 +3728,20 @@
       }
     ],
     "extra": {
-      "checkIn": "15:00（最晚 19:00）",
-      "checkOut": "10:00",
       "onsen": "大浴場、露天風呂（太平洋景）",
       "privateBath": "貸切家族風呂（另外預約，有 2 間新的）",
       "parking": "60 台免費",
       "curfew": "門限 23:00",
       "conflicts": [
         "總房數：楽天 29 室、近畿日本ツーリスト 55 室"
-      ]
+      ],
+      "checkInNote": "15:00（最晚 19:00）"
     }
   },
   {
     "type": "lodging",
     "area": "toba",
+    "region": "uramura",
     "hours": null,
     "closedNote": null,
     "photos": [],
@@ -3822,24 +3762,13 @@
     "coordsSource": "google-maps-url",
     "address": "〒517-0025 三重県鳥羽市浦村町1215-5（楽天寫「本浦温泉」）",
     "febNote": "2027-02-10 楽天有空房；冬季有「浦村牡蠣」牡蠣會席、カキ鍋方案（2026-10-15～2027-03-31）。",
+    "closures": [],
     "links": {
       "official": "https://www.sun-urashima.co.jp/",
       "rakuten": "https://travel.rakuten.co.jp/HOTEL/8647/"
     },
     "tags": [
-      "一泊二食",
-      "一泊朝食",
-      "溫泉",
-      "自家源泉",
-      "海景",
-      "大浴場",
-      "貸切風呂",
-      "有床",
-      "鳥羽站免費接送",
-      "牡蠣",
-      "伊勢海老",
-      "浦村",
-      "大型"
+      "溫泉"
     ],
     "nearestStation": {
       "id": "toba",
@@ -3913,6 +3842,9 @@
       }
     ],
     "luggage": null,
+    "checkIn": "15:00",
+    "checkOut": "11:00",
+    "dinnerAccess": null,
     "group": {
       "totalRooms": 32,
       "roomTypes": [
@@ -3990,8 +3922,6 @@
       }
     ],
     "extra": {
-      "checkIn": "15:00（最晚 19:00）",
-      "checkOut": "11:00",
       "onsen": "自家源泉「珠光の湯」「新・珠光の湯」（鹼性單純泉），大浴場 24 小時、多種露天",
       "privateBath": "貸切風呂 3 種（室內「彩石の湯」免費、露天 2 種收費，需預約）",
       "parking": "100 台免費（觀光三重：乘用車 50、巴士 3）",
@@ -3999,12 +3929,14 @@
       "conflicts": [
         "總房數：楽天 32 室、近畿日本ツーリスト 34 室",
         "郵遞區號：楽天頁面有 517-0025 與 517-0023 兩種"
-      ]
+      ],
+      "checkInNote": "15:00（最晚 19:00）"
     }
   },
   {
     "type": "lodging",
     "area": "toba",
+    "region": "uramura",
     "hours": null,
     "closedNote": null,
     "photos": [],
@@ -4025,19 +3957,13 @@
     "coordsSource": "google-maps-url",
     "address": "〒517-0025 三重県鳥羽市浦村町156-3",
     "febNote": "楽天方案期間到 2026-12-31（2027 年 2 月尚未開放）；自家養殖浦村牡蠣，冬季焼き牡蠣是賣點。",
+    "closures": [],
     "links": {
       "official": "http://www.toba-marusan.com/",
       "rakuten": "https://travel.rakuten.co.jp/HOTEL/20657/"
     },
     "tags": [
-      "一泊二食",
-      "溫泉",
-      "海景",
-      "牡蠣",
-      "伊勢海老",
-      "包廂用餐",
-      "電梯",
-      "浦村"
+      "溫泉"
     ],
     "nearestStation": {
       "id": "toba",
@@ -4087,6 +4013,9 @@
       }
     ],
     "luggage": null,
+    "checkIn": "15:00",
+    "checkOut": "10:00",
+    "dinnerAccess": null,
     "group": {
       "totalRooms": 8,
       "roomTypes": [
@@ -4158,8 +4087,6 @@
       }
     ],
     "extra": {
-      "checkIn": "15:00（最晚 18:00）",
-      "checkOut": "10:00",
       "onsen": "大浴場（溫泉，入湯稅 150 円）",
       "fishing": "旅館前專用棧橋可以釣魚",
       "parking": "10 台免費（觀光三重寫 15 台）",
@@ -4168,12 +4095,14 @@
       "conflicts": [
         "巴士站步行：楽天 6 分、觀光三重 1 分",
         "停車：楽天 10 台、觀光三重 15 台"
-      ]
+      ],
+      "checkInNote": "15:00（最晚 18:00）"
     }
   },
   {
     "type": "lodging",
     "area": "toba",
+    "region": "uramura",
     "hours": null,
     "closedNote": null,
     "photos": [],
@@ -4194,20 +4123,12 @@
     "coordsSource": "google-maps-url",
     "address": "〒517-0025 三重県鳥羽市浦村町1225-3",
     "febNote": "2027-02-10 楽天有空房（海景和室 10 疊剩 2 間）；冬季限定「牡蠣づくし満腹コース」（2026-10-15～2027-04-15）。",
+    "closures": [],
     "links": {
       "official": "https://miurasou.com/",
       "rakuten": "https://travel.rakuten.co.jp/HOTEL/129466/"
     },
-    "tags": [
-      "一泊二食",
-      "牡蠣",
-      "伊勢海老",
-      "海景",
-      "包廂用餐",
-      "展望風呂",
-      "浦村",
-      "小型"
-    ],
+    "tags": [],
     "nearestStation": {
       "id": "toba",
       "mode": "shuttle",
@@ -4244,6 +4165,9 @@
       }
     ],
     "luggage": null,
+    "checkIn": "15:00",
+    "checkOut": "10:00",
+    "dinnerAccess": null,
     "group": {
       "totalRooms": 9,
       "roomTypes": [
@@ -4316,19 +4240,19 @@
       }
     ],
     "extra": {
-      "checkIn": "15:00（最晚 19:00）",
-      "checkOut": "10:00",
       "bath": "大浴場、展望風呂（冬季牡蠣風呂）",
       "parking": "8 台免費",
       "oysters": "自家養殖場，一年四季有牡蠣",
       "conflicts": [
         "名稱：楽天「民宿美浦荘」、觀光三重與官網「観光旅館 美浦荘」"
-      ]
+      ],
+      "checkInNote": "15:00（最晚 19:00）"
     }
   },
   {
     "type": "lodging",
     "area": "toba",
+    "region": "uramura",
     "hours": null,
     "closedNote": null,
     "photos": [],
@@ -4349,23 +4273,12 @@
     "coordsSource": "google-maps-url",
     "address": "〒517-0025 三重県鳥羽市浦村町本浦",
     "febNote": "2027-02-10 楽天全部 7 間都有空房；炭火燒會席，伊勢海老、鮑魚、浦村牡蠣。",
+    "closures": [],
     "links": {
       "official": null,
       "rakuten": "https://travel.rakuten.co.jp/HOTEL/38890/"
     },
-    "tags": [
-      "一泊二食",
-      "一泊朝食",
-      "炭火燒",
-      "伊勢海老",
-      "鮑魚",
-      "牡蠣",
-      "海景",
-      "大浴場",
-      "浦村",
-      "小型",
-      "幾乎包棟"
-    ],
+    "tags": [],
     "nearestStation": {
       "id": "toba",
       "mode": "shuttle",
@@ -4426,6 +4339,9 @@
       }
     ],
     "luggage": null,
+    "checkIn": "15:00",
+    "checkOut": "10:00",
+    "dinnerAccess": null,
     "group": {
       "totalRooms": 7,
       "roomTypes": [
@@ -4505,15 +4421,14 @@
       }
     ],
     "extra": {
-      "checkIn": "15:00（最晚 24:00）",
-      "checkOut": "10:00",
       "bath": "大浴場、海景露天風呂（沒有貸切）",
       "parking": "10 台免費、先到先停",
       "payment": "不能刷卡",
       "conflicts": [
         "鳥羽站車程：楽天 15 分、じゃらん 25 分",
         "座標：觀光三重與じゃらん地圖中心相差約 70 m"
-      ]
+      ],
+      "checkInNote": "15:00（最晚 24:00）"
     }
   },
   {
@@ -4527,6 +4442,7 @@
       "en": "Naminenoyado Nakamuraya"
     },
     "area": "toba",
+    "region": "toshijima",
     "coords": [
       136.894036,
       34.523638
@@ -4536,20 +4452,14 @@
     "hours": null,
     "closedNote": null,
     "febNote": "大浴場附設的露天風呂冬季停用（楽天：1/11～3/18；官網楽天頁另一處寫 1/10～3/17），2 月去只能泡室內展望大浴場與付費包租浴池。官網目前（2026-10）掛的是秋季「答志島トロさわら」方案，2 月方案內容與價格未公布。2 月常有北西季風，市營定期船遇荒天會停航或減班，可能被困島上或上不了島；出發當天要看定期船官網或打 0599-25-4776（定期船課）確認。",
+    "closures": [],
     "photos": [],
     "links": {
       "official": "http://www.toba-nakamuraya.com/",
       "instagram": "@naminenoyado_nakamuraya"
     },
     "tags": [
-      "一泊二食",
-      "溫泉",
-      "海景",
-      "離島",
-      "答志島",
-      "和具港",
-      "港口接送",
-      "大廣間"
+      "溫泉"
     ],
     "tier": null,
     "nearestStation": {
@@ -4624,6 +4534,9 @@
       }
     ],
     "luggage": null,
+    "checkIn": "14:00",
+    "checkOut": "10:00",
+    "dinnerAccess": null,
     "group": {
       "totalRooms": 20,
       "roomTypes": [
@@ -4718,8 +4631,6 @@
     ],
     "verified": false,
     "extra": {
-      "checkIn": "14:00（最晚 19:00）",
-      "checkOut": "10:00",
       "onsen": "答志島温泉「水神の湯」（鈉・鈣－氯化物冷礦泉），展望大浴場 15:00～24:00／6:00～10:00；露天 冬季停用；包租內湯 14:00～22:00",
       "parking": "佐田浜第一駐車場 24 小時免費券（車不能上島）",
       "islandTour": "老闆開小巴帶島內導覽約 1 小時，每人 1,000 円（2 人以上），8:50／10:20 出發",
@@ -4728,7 +4639,8 @@
         "露天風呂冬季停用期間：楽天寫 1/11～3/18，同頁另一處寫 1/10～3/17。",
         "和室10畳2間：官網說明「最大 10 名」，但「受入人数」寫「～7 名」。",
         "港口步行：観光三重寫和具港步行 3 分；楽天只寫「和具港下船」。"
-      ]
+      ],
+      "checkInNote": "14:00（最晚 19:00）"
     }
   },
   {
@@ -4742,6 +4654,7 @@
       "en": "Suzunami"
     },
     "area": "toba",
+    "region": "toshijima",
     "coords": [
       136.9000964,
       34.52282708
@@ -4751,19 +4664,13 @@
     "hours": null,
     "closedNote": null,
     "febNote": "2 月營業與冬季方案未查到（官網目前主打伊勢海老＋鮑方案）。2026-10 官網公告：6 樓展望大浴場的小浴槽暫不放水（大浴槽照常）。2 月常有北西季風，市營定期船遇荒天會停航或減班，可能被困島上或上不了島；出發當天要看定期船官網或打 0599-25-4776（定期船課）確認。",
+    "closures": [],
     "photos": [],
     "links": {
       "official": "http://www.suzunami.net/"
     },
     "tags": [
-      "一泊二食",
-      "溫泉",
-      "海景",
-      "離島",
-      "答志島",
-      "和具港",
-      "電梯",
-      "大廣間"
+      "溫泉"
     ],
     "tier": null,
     "nearestStation": {
@@ -4777,6 +4684,9 @@
     "priceRange": null,
     "prices": [],
     "luggage": "じゃらん「遊び・体験」頁的一則旅客口コミ提到入住前、退房後都幫忙寄放行李；官網沒寫，要再確認。",
+    "checkIn": "15:00",
+    "checkOut": "10:00",
+    "dinnerAccess": null,
     "group": {
       "totalRooms": 20,
       "roomTypes": [
@@ -4881,8 +4791,6 @@
     ],
     "verified": false,
     "extra": {
-      "checkIn": "15:00",
-      "checkOut": "10:00",
       "onsen": "答志島温泉（鈉・鈣－氯化物泉），6 樓展望大浴場",
       "payment": "現金或信用卡；不收 PayPay",
       "parking": "佐田浜第一駐車場 24 小時由旅館負擔",
@@ -4903,6 +4811,7 @@
       "en": "Yamashichi"
     },
     "area": "toba",
+    "region": "toshijima",
     "coords": [
       136.9001157,
       34.52539624
@@ -4912,21 +4821,12 @@
     "hours": null,
     "closedNote": null,
     "febNote": "冬季有答志島產牡蠣（品牌「桃こまち」）方案：じゃらん列「カキ三昧」1 泊 2 食 15,400 円～、「牡蠣☆伊勢海老」22,000 円～（搜尋摘要）；楽天 2026-04 也有「牡蠣づくし」口コミ。11 月底～3 月左右客房可看海上日出。貸切露天風呂修繕中（楽天）。2 月常有北西季風，市營定期船遇荒天會停航或減班，可能被困島上或上不了島；出發當天要看定期船官網或打 0599-25-4776（定期船課）確認。",
+    "closures": [],
     "photos": [],
     "links": {
       "official": "https://yama7.net/"
     },
-    "tags": [
-      "一泊二食",
-      "海景",
-      "離島",
-      "答志島",
-      "和具港",
-      "港口接送",
-      "電梯",
-      "大廣間",
-      "牡蠣"
-    ],
+    "tags": [],
     "tier": null,
     "nearestStation": {
       "id": "toba",
@@ -5000,6 +4900,9 @@
       }
     ],
     "luggage": null,
+    "checkIn": "14:00",
+    "checkOut": "10:00",
+    "dinnerAccess": null,
     "group": {
       "totalRooms": 18,
       "roomTypes": [
@@ -5102,10 +5005,9 @@
     ],
     "verified": false,
     "extra": {
-      "checkIn": "14:00（最晚 19:00）",
-      "checkOut": "10:00",
       "bath": "展望露天風呂（非溫泉，男女各 1）；貸切風呂修繕中",
-      "parking": "佐田浜第一駐車場 24 小時免費券（連住 2 晚給 2 張）"
+      "parking": "佐田浜第一駐車場 24 小時免費券（連住 2 晚給 2 張）",
+      "checkInNote": "14:00（最晚 19:00）"
     }
   },
   {
@@ -5119,6 +5021,7 @@
       "en": "Misaki"
     },
     "area": "toba",
+    "region": "toshijima",
     "coords": [
       136.901885,
       34.52764603
@@ -5128,21 +5031,15 @@
     "hours": null,
     "closedNote": null,
     "febNote": "2027-02 已開放訂房：2027-02-03（三）1 晚查到伊勢海老會席、松阪牛會席方案（見 prices）。「伊勢海老会席」每日限 6 組。和具港接送只限鳥羽 13:00 以後的船班。2 月常有北西季風，市營定期船遇荒天會停航或減班，可能被困島上或上不了島；出發當天要看定期船官網或打 0599-25-4776（定期船課）確認。",
+    "closures": [],
     "photos": [],
     "links": {
       "official": "https://misakiryokan.co.jp/",
       "instagram": "@misaki.toushi_island.onsen"
     },
     "tags": [
-      "一泊二食",
-      "溫泉",
-      "海景",
-      "離島",
-      "答志島",
-      "答志港",
-      "港口接送",
-      "釣魚體驗",
-      "2月價格"
+      "體驗",
+      "溫泉"
     ],
     "tier": null,
     "nearestStation": {
@@ -5234,6 +5131,9 @@
       }
     ],
     "luggage": null,
+    "checkIn": "14:00",
+    "checkOut": "10:00",
+    "dinnerAccess": null,
     "group": {
       "totalRooms": 13,
       "roomTypes": [
@@ -5343,8 +5243,6 @@
     ],
     "verified": false,
     "extra": {
-      "checkIn": "14:00（楽天 13:30），最晚 19:00",
-      "checkOut": "10:00",
       "onsen": "答志島温泉「玉藻の湯」大浴場＋露天（早晚男女交換），14:00～23:00、6:00～9:00",
       "parking": "佐田浜第一駐車場 24 小時免費券",
       "activities": "門口釣魚（釣竿含餌 1,500 円）、彩色魚拓、自行車出租（1 小時 200 円、1 日 1,000 円）",
@@ -5353,7 +5251,8 @@
         "房間數：楽天 13、じゃらん 12、官網「和室15」。",
         "check-in：官網 14:00、楽天 13:30。",
         "最近港口：観光三重、じゃらん寫答志港步行 5 分；官網 access 寫到和具港再接送。"
-      ]
+      ],
+      "checkInNote": "14:00（楽天 13:30），最晚 19:00"
     }
   },
   {
@@ -5367,6 +5266,7 @@
       "en": "Takaraya"
     },
     "area": "toba",
+    "region": "toshijima",
     "coords": [
       136.890732,
       34.523007
@@ -5376,19 +5276,12 @@
     "hours": null,
     "closedNote": null,
     "febNote": "10/20～3/25 有「答志島水揚 とらふぐ（虎河豚）コース」期間限定方案（てっさ・てっちり・唐揚・雑炊等，可加伊勢海老），價格官網未列。冬季也有牡蠣（官網料理頁提到カキ）。官網最新消息停在 2023 年、時刻表還是 R6 版，營業狀態建議電話確認。2 月常有北西季風，市營定期船遇荒天會停航或減班，可能被困島上或上不了島；出發當天要看定期船官網或打 0599-25-4776（定期船課）確認。",
+    "closures": [],
     "photos": [],
     "links": {
       "official": "http://www.takaraya-ryo.gr.jp/"
     },
-    "tags": [
-      "一泊二食",
-      "露天風呂",
-      "離島",
-      "答志島",
-      "和具港",
-      "港口接送",
-      "ふぐ"
-    ],
+    "tags": [],
     "tier": null,
     "nearestStation": {
       "id": "toba",
@@ -5450,6 +5343,9 @@
       }
     ],
     "luggage": null,
+    "checkIn": "14:00",
+    "checkOut": "10:00",
+    "dinnerAccess": null,
     "group": {
       "totalRooms": 10,
       "roomTypes": [
@@ -5555,8 +5451,6 @@
     ],
     "verified": false,
     "extra": {
-      "checkIn": "14:00",
-      "checkOut": "10:00",
       "bath": "露天風呂＋男女別內湯（非溫泉）",
       "parking": "佐田浜第一駐車場 24 小時由旅館負擔",
       "conflicts": [
@@ -5576,6 +5470,7 @@
       "en": "Teiyou"
     },
     "area": "toba",
+    "region": "toshijima",
     "coords": [
       136.9011071,
       34.5319941
@@ -5585,18 +5480,12 @@
     "hours": null,
     "closedNote": "観光三重：不定休。",
     "febNote": "2 月方案、價格未查到。官網 teiyou.com 連不上（2026-10-17）。2 月常有北西季風，市營定期船遇荒天會停航或減班，可能被困島上或上不了島；出發當天要看定期船官網或打 0599-25-4776（定期船課）確認。",
+    "closures": [],
     "photos": [],
     "links": {
       "official": null
     },
-    "tags": [
-      "一泊二食",
-      "海景",
-      "離島",
-      "答志島",
-      "答志港",
-      "港口接送"
-    ],
+    "tags": [],
     "tier": null,
     "nearestStation": {
       "id": "toba",
@@ -5609,6 +5498,9 @@
     "priceRange": null,
     "prices": [],
     "luggage": null,
+    "checkIn": "14:00",
+    "checkOut": "10:00",
+    "dinnerAccess": null,
     "group": {
       "totalRooms": 18,
       "roomTypes": [],
@@ -5681,8 +5573,6 @@
     ],
     "verified": false,
     "extra": {
-      "checkIn": "14:00",
-      "checkOut": "10:00",
       "bath": "5 樓「潮望風呂」男女別（非溫泉），男湯容納 15 人、女湯 10 人；9:00～14:00 不能入浴",
       "parking": "佐田浜（KNT 寫「乘用車 300 台、免費、先到先停」）",
       "builtYear": 1961,
@@ -5702,6 +5592,7 @@
       "en": "Minshuku Iso no Aji Nakora"
     },
     "area": "toba",
+    "region": "sugashima",
     "coords": [
       136.8976558,
       34.49730212
@@ -5711,19 +5602,12 @@
     "hours": null,
     "closedNote": null,
     "febNote": "2 月方案、價格未查到。楽天頁上寫的船班（往菅島下午最後 18:15）是舊時刻；R8-04 時刻表佐田浜→菅島末班 19:30。2 月常有北西季風，市營定期船遇荒天會停航或減班，可能被困島上或上不了島；出發當天要看定期船官網或打 0599-25-4776（定期船課）確認。",
+    "closures": [],
     "photos": [],
     "links": {
       "official": null
     },
-    "tags": [
-      "一泊二食",
-      "民宿",
-      "離島",
-      "菅島",
-      "港口接送",
-      "包租浴池",
-      "寵物可"
-    ],
+    "tags": [],
     "tier": null,
     "nearestStation": {
       "id": "toba",
@@ -5749,6 +5633,9 @@
       }
     ],
     "luggage": null,
+    "checkIn": null,
+    "checkOut": "10:00",
+    "dinnerAccess": null,
     "group": {
       "totalRooms": 5,
       "roomTypes": [
@@ -5831,13 +5718,12 @@
     ],
     "verified": false,
     "extra": {
-      "checkIn": "14:30（楽天，最晚 15:00）／15:00（じゃらん）",
-      "checkOut": "10:00",
       "parking": "佐田浜第一駐車場（離開時給免費券）",
       "conflicts": [
         "房間數：楽天 5、KNT 7、じゃらん和室 7（合計欄寫 5）。",
         "check-in：楽天 14:30、じゃらん 15:00。"
-      ]
+      ],
+      "checkIn": "14:30（楽天，最晚 15:00）／15:00（じゃらん）"
     }
   },
   {
@@ -5851,6 +5737,7 @@
       "en": "Sankaiso"
     },
     "area": "toba",
+    "region": "kamishima",
     "coords": [
       136.9806899,
       34.5495643
@@ -5860,17 +5747,12 @@
     "hours": null,
     "closedNote": "観光三重 2023 年採訪：住宿只有週五、六、日、一晚上接受（其他日子不接住宿）。現況要電話確認。",
     "febNote": "神島航路冬季（10/16～2 月底）傍晚班改為 佐田浜 17:00 發、神島 17:35 發；一天約 4 班。神島在外海側，冬季季風停航風險比答志島、菅島高。2 月常有北西季風，市營定期船遇荒天會停航或減班，可能被困島上或上不了島；出發當天要看定期船官網或打 0599-25-4776（定期船課）確認。",
+    "closures": [],
     "photos": [],
     "links": {
       "official": "http://www.sankaiso.net/"
     },
-    "tags": [
-      "一泊二食",
-      "離島",
-      "神島",
-      "海景",
-      "潮騷"
-    ],
+    "tags": [],
     "tier": null,
     "nearestStation": {
       "id": "toba",
@@ -5896,6 +5778,9 @@
       }
     ],
     "luggage": null,
+    "checkIn": "15:00",
+    "checkOut": "10:00",
+    "dinnerAccess": null,
     "group": {
       "totalRooms": null,
       "roomTypes": [
@@ -5974,8 +5859,6 @@
     ],
     "verified": false,
     "extra": {
-      "checkIn": "15:00",
-      "checkOut": "10:00",
       "bath": "展望風呂（kankomie 報導）",
       "payment": "只收現金（2023）"
     }
@@ -5991,6 +5874,7 @@
       "en": "Anchor."
     },
     "area": "toba",
+    "region": "uramura",
     "coords": [
       136.896227,
       34.447418
@@ -6000,19 +5884,14 @@
     "hours": null,
     "closedNote": null,
     "febNote": "2 月不是旺季（旺季只有 GW、暑假、年末年始，旺季每晚加 10,000 円）。官網沒有寫冬季休業。附近的浦村是牡蠣產地，冬天是牡蠣季。",
+    "closures": [],
     "photos": [],
     "links": {
       "official": "https://anchorajito.com/",
       "instagram": "@anchor.ajito"
     },
     "tags": [
-      "包棟",
-      "素泊",
-      "自炊",
-      "海景",
-      "BBQ",
-      "大人數",
-      "南鳥羽"
+      "包棟"
     ],
     "tier": null,
     "nearestStation": {
@@ -6038,6 +5917,9 @@
       }
     ],
     "luggage": "官網沒有寫行李寄放；15:00 前不能進入（含停車場、戶外區），10:00 後只能用 2 樓客廳。不知道能不能寄放。",
+    "checkIn": "15:00",
+    "checkOut": "11:00",
+    "dinnerAccess": "car",
     "group": {
       "totalRooms": 7,
       "roomTypes": [
@@ -6115,8 +5997,6 @@
     "verified": false,
     "extra": {
       "license": "住宅宿泊事業（民泊）届出番号 M240037515（ACO 頁面）",
-      "checkIn": "15:00～22:00",
-      "checkOut": "11:00",
       "parking": "約 6 台（和漁民共用），7 台以上要事先聯絡、使用附近付費停車場；ACO 摘要欄寫 1 台，和內文矛盾",
       "kitchen": "大型雙水槽、430L 冰箱、瓦斯爐 2 台（4 口）、電鍋（10 合×1、5 合×2）、微波爐、烤麵包機、卡式爐 2 台；調味料、油、卡式瓦斯不提供",
       "dinnerNearby": "官網沒有列附近餐廳，建議入住前採買。最近超市 AEON 鳥羽店、便利商店都約車程 15 分；推薦鳥羽マルシェ（10:00～18:00，週三休）買海鮮",
@@ -6128,7 +6008,8 @@
       "conflicts": [
         "最大人數：官網、ACO 34 人；伊勢志摩觀光協會特集（2024-06）29 人",
         "停車：ACO 摘要 1 台、內文與官網 Q&A 約 6 台"
-      ]
+      ],
+      "checkInNote": "15:00～22:00"
     }
   },
   {
@@ -6142,6 +6023,7 @@
       "en": "Log House Rocky"
     },
     "area": "toba",
+    "region": "toba-outskirts",
     "coords": [
       136.859421,
       34.477036
@@ -6151,19 +6033,13 @@
     "hours": null,
     "closedNote": null,
     "febNote": "冬季（約 11～3 月）有伊勢龍蝦鍋（伊勢エビ鍋セット）、雞肉鍋、泡菜鍋的食材方案。2 月平日用平日價。沒有看到冬季休業。",
+    "closures": [],
     "photos": [],
     "links": {
       "official": "https://toba-log.com/"
     },
     "tags": [
-      "包棟",
-      "素泊",
-      "自炊",
-      "BBQ",
-      "伊勢龍蝦鍋",
-      "木屋",
-      "可帶寵物",
-      "海景"
+      "包棟"
     ],
     "tier": null,
     "nearestStation": {
@@ -6222,6 +6098,9 @@
       }
     ],
     "luggage": null,
+    "checkIn": "15:00",
+    "checkOut": "11:00",
+    "dinnerAccess": null,
     "group": {
       "totalRooms": 2,
       "roomTypes": [
@@ -6323,8 +6202,6 @@
     "verified": false,
     "extra": {
       "license": null,
-      "checkIn": "15:00～20:00（抵達前約 1 小時打 080-2666-8959 給管理人）",
-      "checkOut": "11:00",
       "parking": "免費約 8 台（每組最多 5 台）",
       "kitchen": "每棟 1 樓廚房：冰箱、微波爐、瓦斯爐、鐵板、鍋具餐具；調味料只有沙拉油和醬油",
       "manager": "管理人不常駐，在另一處事務所待命；只在入住時見面（登記、說明、付款），退房把鑰匙留在屋內",
@@ -6337,7 +6214,8 @@
         "定員：官網設施頁 2～9 人（床數）；楽天 1～13 人（含加鋪被）；觀光協會 13 人",
         "兒童價：楽天寫小學生 8 成；官網價格頁只寫未就學免費、小學生起收費",
         "鳥羽站計程車：官網 10 分、楽天 7 分"
-      ]
+      ],
+      "checkInNote": "15:00～20:00（抵達前約 1 小時打 080-2666-8959 給管理人）"
     }
   },
   {
@@ -6351,6 +6229,7 @@
       "en": "The Guest House Higashi no Mado"
     },
     "area": "toba",
+    "region": "osatsu",
     "coords": [
       136.891677,
       34.392914
@@ -6360,17 +6239,13 @@
     "hours": null,
     "closedNote": null,
     "febNote": "ACO 價格表的優惠期是 10/1～10/22、11/1～12/22，2 月是一般平日價。沒有寫冬季休業。附近海鮮店約 17:00 就關。",
+    "closures": [],
     "photos": [],
     "links": {
       "official": null
     },
     "tags": [
-      "包棟",
-      "素泊",
-      "自炊",
-      "海景",
-      "BBQ",
-      "南鳥羽"
+      "包棟"
     ],
     "tier": null,
     "nearestStation": {
@@ -6407,6 +6282,9 @@
       }
     ],
     "luggage": null,
+    "checkIn": "15:00",
+    "checkOut": "10:00",
+    "dinnerAccess": "car",
     "group": {
       "totalRooms": 2,
       "roomTypes": [
@@ -6480,8 +6358,6 @@
     "verified": false,
     "extra": {
       "license": "住宅宿泊事業（民泊）届出番号 M240019931",
-      "checkIn": "15:00（STAY JAPAN：15:00～23:00）",
-      "checkOut": "10:00（延後 30 分 5,000 円、60 分 10,000 円）",
       "parking": "6 台",
       "kitchen": "瓦斯爐、微波爐、電鍋、卡式爐、烤麵包機、鍋具餐具、冰箱",
       "dinnerNearby": "附近沒有列餐廳；海鮮店約 17:00 關門。超市 PLANT 車程約 20 分、全家便利商店約 10～15 分。日歸溫泉：志摩スペイン村 ひまわりの湯 車程約 15 分（到約 22:00）",
@@ -6492,7 +6368,9 @@
       "conflicts": [
         "定員：ACO 標題 18 人、內文大人約 12 人；810.jp 寫 12 人；STAY JAPAN 寫 12 人（＋小孩可到 18）",
         "價格：ACO 與 STAY JAPAN 的計價方式不同，15 人總價差約 2 萬円"
-      ]
+      ],
+      "checkInNote": "15:00（STAY JAPAN：15:00～23:00）",
+      "checkOutNote": "10:00（延後 30 分 5,000 円、60 分 10,000 円）"
     }
   },
   {
@@ -6506,6 +6384,7 @@
       "en": "MFR Iseshima"
     },
     "area": "toba",
+    "region": "uramura",
     "coords": [
       136.876771,
       34.45004
@@ -6515,24 +6394,15 @@
     "hours": null,
     "closedNote": null,
     "febNote": "冬季（11～5 月）可以加購牡蠣（50 個 5,000 円～200 個 18,000 円）、豬肉鍋等。獨木舟只有 5～10 月。沒有寫冬季休業。",
+    "closures": [],
     "photos": [],
     "links": {
       "official": "https://mfresort.com/",
       "instagram": "@mfr_iseshima"
     },
     "tags": [
-      "包棟",
-      "素泊",
-      "自炊",
-      "海景",
-      "私人海灘",
-      "BBQ",
-      "牡蠣",
-      "三溫暖",
-      "卡拉OK",
-      "可帶寵物",
-      "大人數",
-      "南鳥羽"
+      "海邊",
+      "包棟"
     ],
     "tier": null,
     "nearestStation": {
@@ -6569,6 +6439,9 @@
       }
     ],
     "luggage": null,
+    "checkIn": "15:00",
+    "checkOut": "10:00",
+    "dinnerAccess": "walk",
     "group": {
       "totalRooms": 10,
       "roomTypes": [
@@ -6649,8 +6522,6 @@
     "verified": false,
     "extra": {
       "license": null,
-      "checkIn": "15:00（12:00 起提早入住要加價）",
-      "checkOut": "10:00（延後按小時加價）",
       "parking": "有（觀光協會），台數不明",
       "facilities": "三溫暖（桶型、帳篷）、卡拉OK、飛鏢、桌球、披薩窯、海景浴池（本館，3 小時 10,000 円）",
       "dinnerNearby": "自炊為主；可加購食材套餐（伊勢龍蝦、松阪牛 BBQ 等每位 5,000～10,000 円）",
@@ -6658,7 +6529,9 @@
       "checkInMethod": null,
       "conflicts": [
         "本館面積：官網 634㎡、訂房表頭 600㎡"
-      ]
+      ],
+      "checkInNote": "15:00（12:00 起提早入住要加價）",
+      "checkOutNote": "10:00（延後按小時加價）"
     }
   },
   {
@@ -6672,6 +6545,7 @@
       "en": "Guest house Lido Porte"
     },
     "area": "toba",
+    "region": "nakanogo",
     "coords": [
       136.844437,
       34.476833
@@ -6681,16 +6555,13 @@
     "hours": null,
     "closedNote": null,
     "febNote": null,
+    "closures": [],
     "photos": [],
     "links": {
       "official": null
     },
     "tags": [
-      "包棟",
-      "素泊",
-      "自炊",
-      "近車站",
-      "鳥羽市區"
+      "包棟"
     ],
     "tier": null,
     "nearestStation": {
@@ -6716,6 +6587,9 @@
       }
     ],
     "luggage": null,
+    "checkIn": "15:00",
+    "checkOut": "10:00",
+    "dinnerAccess": "walk",
     "group": {
       "totalRooms": 1,
       "roomTypes": [
@@ -6787,14 +6661,13 @@
     "verified": false,
     "extra": {
       "license": null,
-      "checkIn": "15:00（最晚 18:00）",
-      "checkOut": "10:00",
       "parking": "屋前 2 台",
       "kitchen": "有廚房、鍋具、餐具、冰箱",
       "dinnerNearby": "在鳥羽市區（中之郷站、鳥羽水族館附近），可以走到市區餐廳或搭一站電車到鳥羽站",
       "manager": null,
       "checkInMethod": "非對面入住（楽天：可在房內辦理、非接觸）",
-      "coinLaundry": "有（付費）"
+      "coinLaundry": "有（付費）",
+      "checkInNote": "15:00（最晚 18:00）"
     }
   },
   {
@@ -6808,6 +6681,7 @@
       "en": "Ryokan Naomi"
     },
     "area": "toba",
+    "region": "toba-station",
     "coords": [
       136.833679,
       34.498901
@@ -6817,17 +6691,13 @@
     "hours": null,
     "closedNote": null,
     "febNote": null,
+    "closures": [],
     "photos": [],
     "links": {
       "official": "https://mori-kikaku.info/ryokan-naomi/"
     },
     "tags": [
-      "包棟",
-      "古民家",
-      "素泊",
-      "自炊",
-      "漁港",
-      "鳥羽市區"
+      "包棟"
     ],
     "tier": null,
     "nearestStation": {
@@ -6853,6 +6723,9 @@
       }
     ],
     "luggage": null,
+    "checkIn": "15:00",
+    "checkOut": "10:00",
+    "dinnerAccess": "car",
     "group": {
       "totalRooms": 1,
       "roomTypes": [
@@ -6932,8 +6805,6 @@
     "verified": false,
     "extra": {
       "license": "旅館業許可 志2294-0005（Airbnb 頁面）",
-      "checkIn": "15:00（最晚 23:00）",
-      "checkOut": "10:00",
       "parking": "有",
       "kitchen": "有（鍋具、餐具、微波爐）",
       "checkInMethod": "無人自助入住（楽天）",
@@ -6941,7 +6812,8 @@
       "dinnerNearby": "在小浜漁港旁，楽天介紹寫門口可以釣魚、可自炊；附近餐廳未查",
       "conflicts": [
         "鳥羽站交通：官網巴士 7 分；楽天步行 4 分（距離不符，以官網為準）"
-      ]
+      ],
+      "checkInNote": "15:00（最晚 23:00）"
     }
   }
 ]
