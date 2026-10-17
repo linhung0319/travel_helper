@@ -1,0 +1,477 @@
+[
+  {
+    "key": "futami-kaiyoro",
+    "name": {
+      "ja": "名勝二見浦 海鮮割烹の宿 海洋楼"
+    },
+    "region": "futami-okitama",
+    "category": "ryokan",
+    "status": "included",
+    "reason": null,
+    "pointId": "futami-kaiyoro",
+    "ratings": {
+      "rakuten": 4,
+      "rakutenReviews": 58,
+      "google": 3.9,
+      "googleReviews": 92
+    },
+    "links": {
+      "googleMaps": "https://maps.google.com/?cid=14717317136452546914"
+    },
+    "note": "楽天 7723，43 室，楽天最低 7,700 円"
+  },
+  {
+    "key": "futami-nisshokan",
+    "name": {
+      "ja": "活伊勢海老料理の宿 日章館"
+    },
+    "region": "futami-okitama",
+    "category": "ryokan",
+    "status": "included",
+    "reason": null,
+    "pointId": "futami-nisshokan",
+    "ratings": {
+      "rakuten": 4.2,
+      "rakutenReviews": 307,
+      "google": 4.1,
+      "googleReviews": 92
+    },
+    "links": {
+      "googleMaps": "https://maps.google.com/?cid=12169102107927815369"
+    },
+    "note": "楽天 7676，6 室，楽天最低 9,900 円"
+  },
+  {
+    "key": "futami-hamachiyokan",
+    "name": {
+      "ja": "ジャズが流れる海辺のお宿 浜千代館"
+    },
+    "region": "futami-okitama",
+    "category": "ryokan",
+    "status": "included",
+    "reason": null,
+    "pointId": "futami-hamachiyokan",
+    "ratings": {
+      "rakuten": 4.08,
+      "rakutenReviews": 1231,
+      "google": 4.1,
+      "googleReviews": 313
+    },
+    "links": {
+      "googleMaps": "https://maps.google.com/?cid=6915761481779294940"
+    },
+    "note": "楽天 7563，20 室，楽天最低 10,980 円"
+  },
+  {
+    "key": "futami-iwatokan",
+    "name": {
+      "ja": "伊勢志摩 みそぎの町二見浦の 塩結びの宿 岩戸館"
+    },
+    "region": "futami-okitama",
+    "category": "ryokan",
+    "status": "included",
+    "reason": null,
+    "pointId": "futami-iwatokan",
+    "ratings": {
+      "rakuten": 4.1,
+      "rakutenReviews": 331,
+      "google": 4.1,
+      "googleReviews": 129
+    },
+    "links": {
+      "googleMaps": "https://maps.google.com/?cid=12046749781333364874"
+    },
+    "note": "楽天 38655，22 室，楽天最低 9,900 円"
+  },
+  {
+    "key": "futami-castle-inn",
+    "name": {
+      "ja": "ホテルキャッスルイン伊勢夫婦岩（旧：ホテルリゾートイン二見）"
+    },
+    "region": "futami-okitama",
+    "category": "hotel",
+    "status": "included",
+    "reason": null,
+    "pointId": "futami-castle-inn",
+    "ratings": {
+      "rakuten": 3.93,
+      "rakutenReviews": 2302,
+      "google": 3.9,
+      "googleReviews": 1507
+    },
+    "links": {
+      "googleMaps": "https://maps.google.com/?cid=14060385235708643334"
+    },
+    "note": "楽天 40176，92 室，楽天最低 4,400 円"
+  },
+  {
+    "key": "futami-oishiya",
+    "name": {
+      "ja": "伊勢志摩 二見浦 夫婦岩前 旅館 大石屋"
+    },
+    "region": "futami-okitama",
+    "category": "ryokan",
+    "status": "included",
+    "reason": null,
+    "pointId": "futami-oishiya",
+    "ratings": {
+      "rakuten": 4.64,
+      "rakutenReviews": 951,
+      "google": 4.5,
+      "googleReviews": 264
+    },
+    "links": {
+      "googleMaps": "https://maps.google.com/?cid=15348681165651807623"
+    },
+    "note": "楽天 5838，19 室，楽天最低 24,000 円"
+  },
+  {
+    "key": "futami-iroha",
+    "name": {
+      "ja": "Ｔａｂｉｓｔ 麻野館別館いろは 伊勢"
+    },
+    "region": "futami-okitama",
+    "category": "ryokan",
+    "status": "included",
+    "reason": null,
+    "pointId": "futami-iroha",
+    "ratings": {
+      "rakuten": 3.69,
+      "rakutenReviews": 17,
+      "google": 4.1,
+      "googleReviews": 25
+    },
+    "links": {
+      "googleMaps": "https://maps.google.com/?cid=11342866978358193585"
+    },
+    "note": "楽天 180248，15 室，楽天最低 6,000 円"
+  },
+  {
+    "key": "futami-kyukaen",
+    "name": {
+      "ja": "松阪屋吸霞園"
+    },
+    "region": "futami-okitama",
+    "category": "ryokan",
+    "status": "included",
+    "reason": null,
+    "pointId": "futami-kyukaen",
+    "ratings": {
+      "rakuten": 4.5,
+      "rakutenReviews": 61,
+      "google": 3.9,
+      "googleReviews": 43
+    },
+    "links": {
+      "googleMaps": "https://maps.google.com/?cid=8941726351327199216"
+    },
+    "note": "楽天 139993，10 室，楽天最低 7,700 円"
+  },
+  {
+    "key": "futami-asahikan",
+    "name": {
+      "ja": "朝日館＜三重県＞"
+    },
+    "region": "futami-okitama",
+    "category": "ryokan",
+    "status": "included",
+    "reason": null,
+    "pointId": "futami-asahikan",
+    "ratings": {
+      "rakuten": 2,
+      "rakutenReviews": 409,
+      "google": 3.9,
+      "googleReviews": 149
+    },
+    "links": {
+      "googleMaps": "https://maps.google.com/?cid=7140215160346751373"
+    },
+    "note": "楽天 67334，34 室，楽天最低 17,875 円"
+  },
+  {
+    "key": "futami-yamato",
+    "name": {
+      "ja": "民宿ヤマト"
+    },
+    "region": "futami-okitama",
+    "category": "minshuku",
+    "status": "included",
+    "reason": null,
+    "pointId": "futami-yamato",
+    "ratings": {
+      "rakuten": 4.53,
+      "rakutenReviews": 127,
+      "google": 4.2,
+      "googleReviews": 125
+    },
+    "links": {
+      "googleMaps": "https://maps.google.com/?cid=5674074088714481344"
+    },
+    "note": "楽天 15478，13 室，楽天最低 4,200 円"
+  },
+  {
+    "key": "futami-tsukasatei",
+    "name": {
+      "ja": "民宿 つかさ亭"
+    },
+    "region": "futami-okitama",
+    "category": "minshuku",
+    "status": "included",
+    "reason": null,
+    "pointId": "futami-tsukasatei",
+    "ratings": {
+      "rakuten": null,
+      "rakutenReviews": 186,
+      "google": 4.4,
+      "googleReviews": 28
+    },
+    "links": {
+      "googleMaps": "https://maps.google.com/?cid=13253907407936778172"
+    },
+    "note": "楽天 50638，7 室"
+  },
+  {
+    "key": "futami-yusura",
+    "name": {
+      "ja": "ＡＵＢＥＲＧＥ ＹＵＳＵＲＡ（ゆすら）"
+    },
+    "region": "futami-outskirts",
+    "category": "ryokan",
+    "status": "included",
+    "reason": null,
+    "pointId": "futami-yusura",
+    "ratings": {
+      "rakuten": 4.8,
+      "rakutenReviews": 27,
+      "google": 4.7,
+      "googleReviews": 91
+    },
+    "links": {
+      "googleMaps": "https://maps.google.com/?cid=2356653672564801568"
+    },
+    "note": "楽天 166951，5 室，楽天最低 67,100 円"
+  },
+  {
+    "key": "futami-pokapokamura",
+    "name": {
+      "ja": "ぽかぽか村"
+    },
+    "region": "futami-okitama",
+    "category": "other",
+    "status": "included",
+    "reason": null,
+    "pointId": "futami-pokapokamura",
+    "ratings": {
+      "rakuten": 3.25,
+      "rakutenReviews": 93,
+      "google": 4.1,
+      "googleReviews": 92
+    },
+    "links": {
+      "googleMaps": "https://maps.google.com/?cid=16790299573162377964"
+    },
+    "note": "楽天 146856，12 室，楽天最低 3,500 円"
+  },
+  {
+    "key": "futami-plafino",
+    "name": {
+      "ja": "プラフィーノリゾートヴィラ"
+    },
+    "region": "futami-outskirts",
+    "category": "rental-house",
+    "status": "included",
+    "reason": null,
+    "pointId": "futami-plafino",
+    "ratings": {
+      "rakuten": 4,
+      "rakutenReviews": 20,
+      "google": 4.3,
+      "googleReviews": 130
+    },
+    "links": {
+      "googleMaps": "https://maps.google.com/?cid=16612280592546847093"
+    },
+    "note": "楽天 188489，17 室，楽天最低 9,288 円"
+  },
+  {
+    "key": "futami-orange-garden",
+    "name": {
+      "ja": "民泊 伊勢オレンジガーデン【バリアフリー新築一棟貸し】／民泊"
+    },
+    "region": "futami-outskirts",
+    "category": "rental-house",
+    "status": "included",
+    "reason": null,
+    "pointId": "futami-orange-garden",
+    "ratings": {
+      "rakuten": null,
+      "rakutenReviews": null,
+      "google": 5,
+      "googleReviews": 2
+    },
+    "links": {
+      "googleMaps": "https://maps.google.com/?cid=1662670256767147235"
+    },
+    "note": "楽天 193993，1 室，楽天最低 8,468 円"
+  },
+  {
+    "key": "futami-uminocho",
+    "name": {
+      "ja": "上質の美味とおもてなし。オーシャンビューの宿 旅荘 海の蝶"
+    },
+    "region": "futami-outskirts",
+    "category": "ryokan",
+    "status": "included",
+    "reason": null,
+    "pointId": "futami-uminocho",
+    "ratings": {
+      "rakuten": 4.47,
+      "rakutenReviews": 2737,
+      "google": 4.2,
+      "googleReviews": 703
+    },
+    "links": {
+      "googleMaps": "https://maps.google.com/?cid=5909140712947163409"
+    },
+    "note": "楽天 40332，57 室，楽天最低 15,400 円"
+  },
+  {
+    "key": "futami-togenkyo",
+    "name": {
+      "ja": "貸別荘 桃源郷 旅館 ＾"
+    },
+    "region": "futami-outskirts",
+    "category": "rental-house",
+    "status": "included",
+    "reason": null,
+    "pointId": "futami-togenkyo",
+    "ratings": {
+      "rakuten": null,
+      "rakutenReviews": 1,
+      "google": 4.5,
+      "googleReviews": 6
+    },
+    "links": {
+      "googleMaps": "https://maps.google.com/?cid=9581078598415596588"
+    },
+    "note": "楽天 185547，1 室，楽天最低 8,097 円"
+  },
+  {
+    "key": "futami-matsushin",
+    "name": {
+      "ja": "伊勢二見 愛犬と泊まれる旅館 まつしん"
+    },
+    "region": "futami-okitama",
+    "category": "ryokan",
+    "status": "excluded",
+    "reason": "以帶狗同住為主的旅館（鳥羽 T7d 同樣排除寵物旅館）：不適合沒帶狗的 15 人團，也有過敏疑慮",
+    "pointId": null,
+    "ratings": {
+      "rakuten": 4.1,
+      "rakutenReviews": 739,
+      "google": null,
+      "googleReviews": null
+    },
+    "links": {},
+    "note": "楽天 7564，14 室，楽天最低 9,000 円"
+  },
+  {
+    "key": "futami-asanokan",
+    "name": {
+      "ja": "二見浦 麻野館"
+    },
+    "region": "futami-okitama",
+    "category": "ryokan",
+    "status": "excluded",
+    "reason": "§5.7：評論 10 則以上的評分來源都低於 3.8（楽天 3.0／109 則、Google 3.6／98 則）",
+    "pointId": null,
+    "ratings": {
+      "rakuten": 3,
+      "rakutenReviews": 109,
+      "google": 3.6,
+      "googleReviews": 98
+    },
+    "links": {
+      "googleMaps": "https://maps.google.com/?cid=11826619366380381382"
+    },
+    "note": "楽天 19247，15 室，楽天最低 13,200 円"
+  },
+  {
+    "key": "futami-maruya",
+    "name": {
+      "ja": "伊勢二見 くつろぎの癒し温泉宿 やわらの湯まるや（女性専用）"
+    },
+    "region": "futami-okitama",
+    "category": "pension／民泊",
+    "status": "excluded",
+    "reason": "女性專用（團裡有男性）",
+    "pointId": null,
+    "ratings": {
+      "rakuten": 4.45,
+      "rakutenReviews": 176,
+      "google": null,
+      "googleReviews": null
+    },
+    "links": {},
+    "note": "楽天 19503，12 室，楽天最低 4,950 円"
+  },
+  {
+    "key": "futami-seikai",
+    "name": {
+      "ja": "伊勢志摩国立公園・二見浦 二見温泉 蘇民の湯 ホテル清海"
+    },
+    "region": "futami-outskirts",
+    "category": "ryokan",
+    "status": "excluded",
+    "reason": "§5.7：評論 10 則以上的評分來源都低於 3.8（楽天 3.44／693 則、Google 2.8／708 則）",
+    "pointId": null,
+    "ratings": {
+      "rakuten": 3.44,
+      "rakutenReviews": 693,
+      "google": 2.8,
+      "googleReviews": 708
+    },
+    "links": {
+      "googleMaps": "https://maps.google.com/?cid=14801743448918657376"
+    },
+    "note": "楽天 7848，40 室，楽天最低 8,800 円"
+  },
+  {
+    "key": "futami-rakuten-195376",
+    "name": {
+      "ja": "ＮＡＧＡＴＡ ＨＯＵＳＥ ＾"
+    },
+    "region": "futami-okitama",
+    "category": "hotel",
+    "status": "not-included",
+    "reason": "小型一棟貸し／民泊：楽天 2027-02-09 查「1 間 6／8／10 人」都沒有空房（容量不明或 2027 年方案未開），沒有讀文",
+    "pointId": null,
+    "ratings": {
+      "rakuten": null,
+      "rakutenReviews": 2,
+      "google": null,
+      "googleReviews": null
+    },
+    "links": {},
+    "note": "楽天 195376，1 室，楽天最低 8,898 円"
+  },
+  {
+    "key": "futami-guesthouse",
+    "name": {
+      "ja": "げすとはうす伊勢二見"
+    },
+    "region": "futami-okitama",
+    "category": "hotel",
+    "status": "not-included",
+    "reason": "ゲストハウス（背包客棧型，素泊、check-in 17:00），沒有讀文",
+    "pointId": null,
+    "ratings": {
+      "rakuten": 4.46,
+      "rakutenReviews": 49,
+      "google": null,
+      "googleReviews": null
+    },
+    "links": {},
+    "note": "楽天 181777，20 室，楽天最低 2,500 円"
+  }
+]

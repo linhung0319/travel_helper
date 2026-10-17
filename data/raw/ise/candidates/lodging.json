@@ -1,0 +1,1267 @@
+[
+  {
+    "key": "ise-sanco-inn",
+    "name": {
+      "ja": "三交イン伊勢市駅前「本館」〜四季乃湯〜・「別館」Grande"
+    },
+    "region": "ise-geku",
+    "category": "hotel",
+    "status": "included",
+    "reason": null,
+    "pointId": "ise-sanco-inn",
+    "ratings": {
+      "rakuten": 4.31,
+      "rakutenReviews": 2409,
+      "google": 4,
+      "googleReviews": 1384
+    },
+    "links": {
+      "googleMaps": "https://maps.google.com/?cid=13132639933777178043"
+    },
+    "note": "楽天 158426，165 室，楽天最低 10,100 円"
+  },
+  {
+    "key": "ise-shinsen",
+    "name": {
+      "ja": "伊勢外宮参道 伊勢神泉"
+    },
+    "region": "ise-geku",
+    "category": "ryokan",
+    "status": "included",
+    "reason": null,
+    "pointId": "ise-shinsen",
+    "ratings": {
+      "rakuten": 4.54,
+      "rakutenReviews": 1446,
+      "google": 4.4,
+      "googleReviews": 960
+    },
+    "links": {
+      "googleMaps": "https://maps.google.com/?cid=1320609226001635846"
+    },
+    "note": "楽天 142619，45 室，楽天最低 27,650 円"
+  },
+  {
+    "key": "ise-oyado-ichi",
+    "name": {
+      "ja": "お宿 壱 ＾"
+    },
+    "region": "ise-geku",
+    "category": "rental-house",
+    "status": "included",
+    "reason": null,
+    "pointId": "ise-oyado-ichi",
+    "ratings": {
+      "rakuten": null,
+      "rakutenReviews": 1,
+      "google": null,
+      "googleReviews": null
+    },
+    "links": {},
+    "note": "楽天 193960，1 室，楽天最低 8,236 円"
+  },
+  {
+    "key": "ise-comfort-era",
+    "name": {
+      "ja": "コンフォートホテルＥＲＡ伊勢"
+    },
+    "region": "ise-geku",
+    "category": "hotel",
+    "status": "included",
+    "reason": null,
+    "pointId": "ise-comfort-era",
+    "ratings": {
+      "rakuten": 4.39,
+      "rakutenReviews": 1980,
+      "google": 4.2,
+      "googleReviews": 1211
+    },
+    "links": {
+      "googleMaps": "https://maps.google.com/?cid=9105342435517923091"
+    },
+    "note": "楽天 166509，153 室，楽天最低 7,250 円"
+  },
+  {
+    "key": "ise-hinode-ryokan",
+    "name": {
+      "ja": "日の出旅館＜三重県＞"
+    },
+    "region": "ise-geku",
+    "category": "ryokan",
+    "status": "included",
+    "reason": null,
+    "pointId": "ise-hinode-ryokan",
+    "ratings": {
+      "rakuten": 4.54,
+      "rakutenReviews": 404,
+      "google": 4.5,
+      "googleReviews": 235
+    },
+    "links": {
+      "googleMaps": "https://maps.google.com/?cid=7375533064905331946"
+    },
+    "note": "楽天 56193，10 室，楽天最低 7,450 円"
+  },
+  {
+    "key": "ise-pearlpier",
+    "name": {
+      "ja": "伊勢パールピアホテル"
+    },
+    "region": "ise-geku",
+    "category": "hotel",
+    "status": "included",
+    "reason": null,
+    "pointId": "ise-pearlpier",
+    "ratings": {
+      "rakuten": 4.33,
+      "rakutenReviews": 2326,
+      "google": 4,
+      "googleReviews": 972
+    },
+    "links": {
+      "googleMaps": "https://maps.google.com/?cid=9516679011560871532"
+    },
+    "note": "楽天 1232，100 室，楽天最低 9,570 円"
+  },
+  {
+    "key": "ise-fav",
+    "name": {
+      "ja": "ｆａｖ 伊勢"
+    },
+    "region": "ise-geku",
+    "category": "hotel",
+    "status": "included",
+    "reason": null,
+    "pointId": "ise-fav",
+    "ratings": {
+      "rakuten": 4.25,
+      "rakutenReviews": 386,
+      "google": 4.2,
+      "googleReviews": 338
+    },
+    "links": {
+      "googleMaps": "https://maps.google.com/?cid=13353400713495993155"
+    },
+    "note": "楽天 183396，36 室，楽天最低 7,000 円"
+  },
+  {
+    "key": "ise-en-hotel",
+    "name": {
+      "ja": "ＥＮ ＨＯＴＥＬ Ｉｓｅ（エンホテル伊勢）"
+    },
+    "region": "ise-geku",
+    "category": "hotel",
+    "status": "included",
+    "reason": null,
+    "pointId": "ise-en-hotel",
+    "ratings": {
+      "rakuten": 3.89,
+      "rakutenReviews": 1115,
+      "google": 3.5,
+      "googleReviews": 359
+    },
+    "links": {
+      "googleMaps": "https://maps.google.com/?cid=4244877151196628979"
+    },
+    "note": "楽天 184858，143 室，楽天最低 4,840 円"
+  },
+  {
+    "key": "ise-todaya-ryoan",
+    "name": {
+      "ja": "伊勢戸田家 料庵"
+    },
+    "region": "ise-geku",
+    "category": "ryokan",
+    "status": "included",
+    "reason": null,
+    "pointId": "ise-todaya-ryoan",
+    "ratings": {
+      "rakuten": null,
+      "rakutenReviews": 19,
+      "google": 3.6,
+      "googleReviews": 70
+    },
+    "links": {
+      "googleMaps": "https://maps.google.com/?cid=14560981749051810275"
+    },
+    "note": "楽天 5668，10 室"
+  },
+  {
+    "key": "ise-wasoan",
+    "name": {
+      "ja": "和装庵"
+    },
+    "region": "ise-geku",
+    "category": "ryokan",
+    "status": "included",
+    "reason": null,
+    "pointId": "ise-wasoan",
+    "ratings": {
+      "rakuten": 4.72,
+      "rakutenReviews": 116,
+      "google": 4.9,
+      "googleReviews": 14
+    },
+    "links": {
+      "googleMaps": "https://maps.google.com/?cid=10237502575733505714"
+    },
+    "note": "楽天 172712，2 室，楽天最低 6,000 円"
+  },
+  {
+    "key": "ise-hoshidekan",
+    "name": {
+      "ja": "伊勢河崎の町宿 星出館"
+    },
+    "region": "ise-geku",
+    "category": "ryokan",
+    "status": "included",
+    "reason": null,
+    "pointId": "ise-hoshidekan",
+    "ratings": {
+      "rakuten": 4.46,
+      "rakutenReviews": 314,
+      "google": 4.5,
+      "googleReviews": 160
+    },
+    "links": {
+      "googleMaps": "https://maps.google.com/?cid=15926123671796940193"
+    },
+    "note": "楽天 30971，10 室，楽天最低 5,590 円"
+  },
+  {
+    "key": "ise-nipponia-kawasaki",
+    "name": {
+      "ja": "ＮＩＰＰＯＮＩＡ ＨＯＴＥＬ 伊勢河崎 商人町"
+    },
+    "region": "ise-geku",
+    "category": "hotel",
+    "status": "included",
+    "reason": null,
+    "pointId": "ise-nipponia-kawasaki",
+    "ratings": {
+      "rakuten": 4.71,
+      "rakutenReviews": 14,
+      "google": 4.9,
+      "googleReviews": 162
+    },
+    "links": {
+      "googleMaps": "https://maps.google.com/?cid=11205755571838556776"
+    },
+    "note": "楽天 196826，8 室，楽天最低 26,412 円"
+  },
+  {
+    "key": "ise-toyoko-inn",
+    "name": {
+      "ja": "東横ＩＮＮ伊勢市駅"
+    },
+    "region": "ise-geku",
+    "category": "hotel",
+    "status": "included",
+    "reason": null,
+    "pointId": "ise-toyoko-inn",
+    "ratings": {
+      "rakuten": 4.12,
+      "rakutenReviews": 525,
+      "google": 4,
+      "googleReviews": 556
+    },
+    "links": {
+      "googleMaps": "https://maps.google.com/?cid=8954045600785852833"
+    },
+    "note": "楽天 184219，147 室，楽天最低 5,250 円"
+  },
+  {
+    "key": "ise-okubun",
+    "name": {
+      "ja": "料理旅館 おく文"
+    },
+    "region": "ise-geku",
+    "category": "ryokan",
+    "status": "included",
+    "reason": null,
+    "pointId": "ise-okubun",
+    "ratings": {
+      "rakuten": null,
+      "rakutenReviews": 92,
+      "google": 3.9,
+      "googleReviews": 58
+    },
+    "links": {
+      "googleMaps": "https://maps.google.com/?cid=7072040251221998084"
+    },
+    "note": "楽天 38483，10 室，楽天最低 9,900 円"
+  },
+  {
+    "key": "ise-momijiken",
+    "name": {
+      "ja": "伊勢の宿 紅葉軒"
+    },
+    "region": "ise-geku",
+    "category": "ryokan",
+    "status": "included",
+    "reason": null,
+    "pointId": "ise-momijiken",
+    "ratings": {
+      "rakuten": 4.62,
+      "rakutenReviews": 324,
+      "google": 4.5,
+      "googleReviews": 108
+    },
+    "links": {
+      "googleMaps": "https://maps.google.com/?cid=17320665345915300173"
+    },
+    "note": "楽天 19502，8 室，楽天最低 7,700 円"
+  },
+  {
+    "key": "ise-okage-mairi-shukuba",
+    "name": {
+      "ja": "おかげ参り宿場"
+    },
+    "region": "ise-naiku",
+    "category": "minshuku",
+    "status": "included",
+    "reason": null,
+    "pointId": "ise-okage-mairi-shukuba",
+    "ratings": {
+      "rakuten": null,
+      "rakutenReviews": 4,
+      "google": null,
+      "googleReviews": null
+    },
+    "links": {
+      "googleMaps": "https://maps.google.com/?cid=13059494982787400317"
+    },
+    "note": "楽天 201681，5 室，楽天最低 4,026 円"
+  },
+  {
+    "key": "ise-yadoya-isuzu",
+    "name": {
+      "ja": "参宮の宿 宿屋五十鈴"
+    },
+    "region": "ise-naiku",
+    "category": "minshuku",
+    "status": "included",
+    "reason": null,
+    "pointId": "ise-yadoya-isuzu",
+    "ratings": {
+      "rakuten": 5,
+      "rakutenReviews": 210,
+      "google": 4.8,
+      "googleReviews": 129
+    },
+    "links": {
+      "googleMaps": "https://maps.google.com/?cid=5845092566921505709"
+    },
+    "note": "楽天 147038，4 室，楽天最低 7,686 円"
+  },
+  {
+    "key": "ise-area-one",
+    "name": {
+      "ja": "ホテルエリアワン伊勢インター（ホテルエリアワングループ）"
+    },
+    "region": "ise-kurata",
+    "category": "hotel",
+    "status": "included",
+    "reason": null,
+    "pointId": "ise-area-one",
+    "ratings": {
+      "rakuten": 4.01,
+      "rakutenReviews": 777,
+      "google": 3.6,
+      "googleReviews": 512
+    },
+    "links": {
+      "googleMaps": "https://maps.google.com/?cid=2634670890243818769"
+    },
+    "note": "楽天 181078，74 室，楽天最低 3,555 円"
+  },
+  {
+    "key": "ise-iku",
+    "name": {
+      "ja": "いにしえの宿 伊久（共立リゾート）（２０２６年４月１日リニューアルオープン）"
+    },
+    "region": "ise-naiku",
+    "category": "ryokan",
+    "status": "included",
+    "reason": null,
+    "pointId": "ise-iku",
+    "ratings": {
+      "rakuten": 4.66,
+      "rakutenReviews": 1290,
+      "google": 4.2,
+      "googleReviews": 1272
+    },
+    "links": {
+      "googleMaps": "https://maps.google.com/?cid=5571358783118802236"
+    },
+    "note": "楽天 142809，58 室，楽天最低 27,639 円"
+  },
+  {
+    "key": "ise-jingu-kaikan",
+    "name": {
+      "ja": "神宮会館"
+    },
+    "region": "ise-naiku",
+    "category": "hotel",
+    "status": "included",
+    "reason": null,
+    "pointId": "ise-jingu-kaikan",
+    "ratings": {
+      "rakuten": 4.68,
+      "rakutenReviews": 578,
+      "google": 4.2,
+      "googleReviews": 1278
+    },
+    "links": {
+      "googleMaps": "https://maps.google.com/?cid=8303533656005788219"
+    },
+    "note": "楽天 140958，65 室，楽天最低 6,600 円"
+  },
+  {
+    "key": "ise-asakichi",
+    "name": {
+      "ja": "麻吉旅館"
+    },
+    "region": "ise-kurata",
+    "category": "ryokan",
+    "status": "included",
+    "reason": null,
+    "pointId": "ise-asakichi",
+    "ratings": {
+      "rakuten": null,
+      "rakutenReviews": null,
+      "google": 4.5,
+      "googleReviews": 199
+    },
+    "links": {
+      "googleMaps": "https://maps.google.com/?cid=3024080929685128171"
+    },
+    "mentions": [
+      {
+        "type": "tourism",
+        "url": "https://www.kankomie.or.jp/spot/617",
+        "title": "観光三重 麻吉旅館",
+        "highlight": "古市僅存的遊郭時代懸造建築，國登錄有形文化財",
+        "retrieved": "2026-10-18"
+      },
+      {
+        "type": "media",
+        "url": "https://www.mapple.net/article/32476/",
+        "title": "まっぷる 伊勢・二見浦の宿",
+        "highlight": "創業 200 年的老舗旅館，一泊二食 12,960 円起（2024-02 更新）",
+        "retrieved": "2026-10-18"
+      }
+    ],
+    "note": "沒有上楽天（WebSearch「伊勢 麻吉旅館 古市」找到）"
+  },
+  {
+    "key": "ise-tsuruya",
+    "name": {
+      "ja": "伊勢神宮（外宮さん）に一番近い旅館 旅館つるや"
+    },
+    "region": "ise-geku",
+    "category": "ryokan",
+    "status": "pending",
+    "reason": "讀文：楽天頁面寫「目前不受理新預約」，營業狀態待確認；楽天 3.57（清潔 2.60）、Google 4.3（38 則）。15 人住不下（5～10 室，來源衝突）（筆記 dossiers/ise-tsuruya.md）",
+    "pointId": null,
+    "ratings": {
+      "rakuten": null,
+      "rakutenReviews": null,
+      "google": 4.3,
+      "googleReviews": 38
+    },
+    "links": {
+      "googleMaps": "https://maps.google.com/?cid=12306346650957834138"
+    },
+    "note": "楽天 13671，5 室"
+  },
+  {
+    "key": "ise-mizuhokan",
+    "name": {
+      "ja": "瑞穂館"
+    },
+    "region": "ise-geku",
+    "category": "ryokan",
+    "status": "excluded",
+    "reason": "§5.7：評論 10 則以上的評分來源都低於 3.8（楽天 3.7／95 則、Google 3.2／89 則）",
+    "pointId": null,
+    "ratings": {
+      "rakuten": 3.7,
+      "rakutenReviews": 95,
+      "google": 3.2,
+      "googleReviews": 89
+    },
+    "links": {
+      "googleMaps": "https://maps.google.com/?cid=11508217364782797755"
+    },
+    "note": "楽天 39210，14 室，楽天最低 6,900 円"
+  },
+  {
+    "key": "ise-yamadakan",
+    "name": {
+      "ja": "伊勢の宿 山田館"
+    },
+    "region": "ise-geku",
+    "category": "ryokan",
+    "status": "excluded",
+    "reason": "§5.7：評論 10 則以上的評分來源都低於 3.8（楽天沒有評分、Google 3.4／50 則）。讀文：官網 20 室全附衛浴、最多 80 人、有宴會場，15 人能同住；じゃらん等沒查，若有 3.8 以上的評分可以改回收錄（筆記 dossiers/ise-yamadakan.md）",
+    "pointId": null,
+    "ratings": {
+      "rakuten": null,
+      "rakutenReviews": null,
+      "google": 3.4,
+      "googleReviews": 50
+    },
+    "links": {
+      "googleMaps": "https://maps.google.com/?cid=13497103744635680216"
+    },
+    "note": "楽天 31525，20 室"
+  },
+  {
+    "key": "ise-city-hotel",
+    "name": {
+      "ja": "伊勢シティホテル"
+    },
+    "region": "ise-geku",
+    "category": "hotel",
+    "status": "excluded",
+    "reason": "§5.7：評論 10 則以上的評分來源都低於 3.8（楽天 3.58／3,153 則、Google 3.5／830 則）",
+    "pointId": null,
+    "ratings": {
+      "rakuten": 3.58,
+      "rakutenReviews": 3153,
+      "google": 3.5,
+      "googleReviews": 830
+    },
+    "links": {
+      "googleMaps": "https://maps.google.com/?cid=13747899747386063867"
+    },
+    "note": "楽天 740，97 室，楽天最低 4,600 円"
+  },
+  {
+    "key": "ise-geku-bettei-michi",
+    "name": {
+      "ja": "外宮前別邸 道"
+    },
+    "region": "ise-geku",
+    "category": "pension／民泊",
+    "status": "excluded",
+    "reason": "§5.7：評論 10 則以上的評分來源都低於 3.8（楽天 3.6／16 則；Google 沒查）。外宮前的一棟貸し",
+    "pointId": null,
+    "ratings": {
+      "rakuten": 3.6,
+      "rakutenReviews": 16,
+      "google": null,
+      "googleReviews": null
+    },
+    "links": {},
+    "note": "楽天 192775，2 室，楽天最低 7,000 円"
+  },
+  {
+    "key": "ise-pit",
+    "name": {
+      "ja": "宿屋 伊勢ピット"
+    },
+    "region": "ise-geku",
+    "category": "pension／民泊",
+    "status": "excluded",
+    "reason": "讀文：楽天所有方案都寫 70 歲以上、學齡前不能住，團裡有 70 歲長輩（筆記 dossiers/ise-pit.md）",
+    "pointId": null,
+    "ratings": {
+      "rakuten": 4.41,
+      "rakutenReviews": 47,
+      "google": 4.3,
+      "googleReviews": 10
+    },
+    "links": {
+      "googleMaps": "https://maps.google.com/?cid=9769003569564893235"
+    },
+    "note": "楽天 189183，3 室，楽天最低 5,500 円"
+  },
+  {
+    "key": "ise-maruni-hotel",
+    "name": {
+      "ja": "丸二ホテル 伊勢"
+    },
+    "region": "ise-outskirts",
+    "category": "hotel",
+    "status": "excluded",
+    "reason": "§5.7：評論 10 則以上的評分來源都低於 3.8（楽天 3.35／623 則、Google 3.2／266 則）",
+    "pointId": null,
+    "ratings": {
+      "rakuten": 3.35,
+      "rakutenReviews": 623,
+      "google": 3.2,
+      "googleReviews": 266
+    },
+    "links": {
+      "googleMaps": "https://maps.google.com/?cid=8265626815735723568"
+    },
+    "note": "楽天 19749，90 室，楽天最低 5,800 円"
+  },
+  {
+    "key": "ise-castle-inn",
+    "name": {
+      "ja": "ホテルキャッスルイン伊勢"
+    },
+    "region": "ise-geku",
+    "category": "hotel",
+    "status": "excluded",
+    "reason": "§5.7：評論 10 則以上的評分來源都低於 3.8（楽天 3.73／2,934 則、Google 3.5／1,462 則）",
+    "pointId": null,
+    "ratings": {
+      "rakuten": 3.73,
+      "rakutenReviews": 2934,
+      "google": 3.5,
+      "googleReviews": 1462
+    },
+    "links": {},
+    "note": "楽天 1360，217 室，楽天最低 4,704 円"
+  },
+  {
+    "key": "ise-naiku-bettei-hoshimiya",
+    "name": {
+      "ja": "内宮前別邸 星宮"
+    },
+    "region": "ise-naiku",
+    "category": "pension／民泊",
+    "status": "excluded",
+    "reason": "§5.7：評論 10 則以上的評分來源都低於 3.8（楽天 3.6／13 則；Google 沒查）。內宮前的一棟貸し",
+    "pointId": null,
+    "ratings": {
+      "rakuten": 3.6,
+      "rakutenReviews": 13,
+      "google": null,
+      "googleReviews": null
+    },
+    "links": {},
+    "note": "楽天 192052，1 室，楽天最低 7,500 円"
+  },
+  {
+    "key": "ise-kyoheiso",
+    "name": {
+      "ja": "料亭旅館 京平荘"
+    },
+    "region": "ise-kurata",
+    "category": "ryokan",
+    "status": "excluded",
+    "reason": "§5.7：評論 10 則以上的評分來源都低於 3.8（楽天 2.33／12 則；Google 沒查）",
+    "pointId": null,
+    "ratings": {
+      "rakuten": 2.33,
+      "rakutenReviews": 12,
+      "google": null,
+      "googleReviews": null
+    },
+    "links": {},
+    "note": "楽天 139802，5 室，楽天最低 37,510 円"
+  },
+  {
+    "key": "ise-rakuten-171647",
+    "name": {
+      "ja": "民泊 つぶれ草／民泊"
+    },
+    "region": "ise-kurata",
+    "category": "pension／民泊",
+    "status": "not-included",
+    "reason": "小型一棟貸し／民泊：楽天 2027-02-09 查「1 間 6／8／10 人」都沒有空房（容量不明或 2027 年方案未開），沒有讀文",
+    "pointId": null,
+    "ratings": {
+      "rakuten": null,
+      "rakutenReviews": null,
+      "google": null,
+      "googleReviews": null
+    },
+    "links": {},
+    "note": "楽天 171647，1 室"
+  },
+  {
+    "key": "ise-rakuten-202642",
+    "name": {
+      "ja": "伊勢別邸 涼音"
+    },
+    "region": "ise-geku",
+    "category": "hotel",
+    "status": "not-included",
+    "reason": "小型一棟貸し／民泊：楽天 2027-02-09 查「1 間 6／8／10 人」都沒有空房（容量不明或 2027 年方案未開），沒有讀文",
+    "pointId": null,
+    "ratings": {
+      "rakuten": null,
+      "rakutenReviews": null,
+      "google": null,
+      "googleReviews": null
+    },
+    "links": {},
+    "note": "楽天 202642，1 室"
+  },
+  {
+    "key": "ise-rakuten-198604",
+    "name": {
+      "ja": "伊勢別邸 風音"
+    },
+    "region": "ise-geku",
+    "category": "hotel",
+    "status": "not-included",
+    "reason": "小型一棟貸し／民泊：楽天 2027-02-09 查「1 間 6／8／10 人」都沒有空房（容量不明或 2027 年方案未開），沒有讀文",
+    "pointId": null,
+    "ratings": {
+      "rakuten": 4.2,
+      "rakutenReviews": 5,
+      "google": null,
+      "googleReviews": null
+    },
+    "links": {},
+    "note": "楽天 198604，1 室，楽天最低 6,500 円"
+  },
+  {
+    "key": "ise-joinus",
+    "name": {
+      "ja": "ジョイナス伊勢"
+    },
+    "region": "ise-geku",
+    "category": "hotel",
+    "status": "not-included",
+    "reason": "4 室，楽天 4 則沒有分數，15 人組合沒有空房；沒有讀文",
+    "pointId": null,
+    "ratings": {
+      "rakuten": null,
+      "rakutenReviews": 4,
+      "google": null,
+      "googleReviews": null
+    },
+    "links": {},
+    "note": "楽天 180465，4 室，楽天最低 12,000 円"
+  },
+  {
+    "key": "ise-kazamiso",
+    "name": {
+      "ja": "伊勢のゲストハウス 風見荘"
+    },
+    "region": "ise-geku",
+    "category": "pension／民泊",
+    "status": "not-included",
+    "reason": "ゲストハウス（背包客棧型，有相部屋、共用衛浴），不適合有長輩的團體；沒有讀文",
+    "pointId": null,
+    "ratings": {
+      "rakuten": 4.6,
+      "rakutenReviews": 205,
+      "google": null,
+      "googleReviews": null
+    },
+    "links": {},
+    "note": "楽天 136297，7 室，楽天最低 4,300 円"
+  },
+  {
+    "key": "ise-weekly-mansion",
+    "name": {
+      "ja": "ウィークリーマンション 伊勢"
+    },
+    "region": "ise-geku",
+    "category": "pension／民泊",
+    "status": "not-included",
+    "reason": "ウィークリーマンション（週租公寓），沒有餐食、服務少；沒有讀文",
+    "pointId": null,
+    "ratings": {
+      "rakuten": 4.16,
+      "rakutenReviews": 799,
+      "google": null,
+      "googleReviews": null
+    },
+    "links": {},
+    "note": "楽天 43799，31 室，楽天最低 3,000 円"
+  },
+  {
+    "key": "ise-rakuten-196604",
+    "name": {
+      "ja": "ＨＯＴＥＬ 翡翠"
+    },
+    "region": "ise-geku",
+    "category": "pension／民泊",
+    "status": "not-included",
+    "reason": "小型一棟貸し／民泊：楽天 2027-02-09 查「1 間 6／8／10 人」都沒有空房（容量不明或 2027 年方案未開），沒有讀文",
+    "pointId": null,
+    "ratings": {
+      "rakuten": null,
+      "rakutenReviews": 3,
+      "google": null,
+      "googleReviews": null
+    },
+    "links": {},
+    "note": "楽天 196604，1 室，楽天最低 4,750 円"
+  },
+  {
+    "key": "ise-thy-guesthouse",
+    "name": {
+      "ja": "ＴＨＹ ＧＵＥＳＴ ＨＯＵＳＥ"
+    },
+    "region": "ise-geku",
+    "category": "pension／民泊",
+    "status": "not-included",
+    "reason": "ゲストハウス（背包客棧型），沒有讀文",
+    "pointId": null,
+    "ratings": {
+      "rakuten": 4.32,
+      "rakutenReviews": 52,
+      "google": null,
+      "googleReviews": null
+    },
+    "links": {},
+    "note": "楽天 187993，16 室，楽天最低 4,500 円"
+  },
+  {
+    "key": "ise-rakuten-187459",
+    "name": {
+      "ja": "外宮前別邸 星織"
+    },
+    "region": "ise-geku",
+    "category": "hotel",
+    "status": "not-included",
+    "reason": "小型一棟貸し／民泊：楽天 2027-02-09 查「1 間 6／8／10 人」都沒有空房（容量不明或 2027 年方案未開），沒有讀文",
+    "pointId": null,
+    "ratings": {
+      "rakuten": 4.29,
+      "rakutenReviews": 12,
+      "google": null,
+      "googleReviews": null
+    },
+    "links": {},
+    "note": "楽天 187459，1 室，楽天最低 7,000 円"
+  },
+  {
+    "key": "ise-rakuten-184161",
+    "name": {
+      "ja": "外宮前別邸 星凪庵"
+    },
+    "region": "ise-geku",
+    "category": "pension／民泊",
+    "status": "not-included",
+    "reason": "小型一棟貸し／民泊：楽天 2027-02-09 查「1 間 6／8／10 人」都沒有空房（容量不明或 2027 年方案未開），沒有讀文",
+    "pointId": null,
+    "ratings": {
+      "rakuten": 4.5,
+      "rakutenReviews": 16,
+      "google": null,
+      "googleReviews": null
+    },
+    "links": {},
+    "note": "楽天 184161，1 室，楽天最低 7,000 円"
+  },
+  {
+    "key": "ise-flycat-inn",
+    "name": {
+      "ja": "ＦＬＹＣＡＴ ＩＮＮ 伊勢"
+    },
+    "region": "ise-geku",
+    "category": "pension／民泊",
+    "status": "not-included",
+    "reason": "楽天 3.73（332 則）未滿 3.8、Google 沒查；簡易宿所型（宇治山田站前），沒有讀文",
+    "pointId": null,
+    "ratings": {
+      "rakuten": 3.73,
+      "rakutenReviews": 332,
+      "google": null,
+      "googleReviews": null
+    },
+    "links": {},
+    "note": "楽天 189130，26 室，楽天最低 2,980 円"
+  },
+  {
+    "key": "ise-tsumugiya",
+    "name": {
+      "ja": "伊勢ゲストハウス紬舎"
+    },
+    "region": "ise-geku",
+    "category": "pension／民泊",
+    "status": "not-included",
+    "reason": "ゲストハウス（背包客棧型、共用衛浴），不適合有長輩的團體；沒有讀文",
+    "pointId": null,
+    "ratings": {
+      "rakuten": 4.63,
+      "rakutenReviews": 45,
+      "google": null,
+      "googleReviews": null
+    },
+    "links": {},
+    "note": "楽天 149223，5 室，楽天最低 3,900 円"
+  },
+  {
+    "key": "ise-rakuten-199146",
+    "name": {
+      "ja": "ＪＩＮＲＹＵ ＨＯＴＥＬ ＩＳＥ"
+    },
+    "region": "ise-geku",
+    "category": "hotel",
+    "status": "not-included",
+    "reason": "小型一棟貸し／民泊：楽天 2027-02-09 查「1 間 6／8／10 人」都沒有空房（容量不明或 2027 年方案未開），沒有讀文",
+    "pointId": null,
+    "ratings": {
+      "rakuten": null,
+      "rakutenReviews": 1,
+      "google": null,
+      "googleReviews": null
+    },
+    "links": {},
+    "note": "楽天 199146，4 室，楽天最低 45,000 円"
+  },
+  {
+    "key": "ise-edit-x-seven",
+    "name": {
+      "ja": "ｅｄｉｔ ｘ ｓｅｖｅｎ 伊勢"
+    },
+    "region": "ise-geku",
+    "category": "hotel",
+    "status": "not-included",
+    "reason": "新開幕的飯店（楽天沒有評論、2027-02 沒有空房資料），沒有讀文；開放 2027 年方案後可以再看",
+    "pointId": null,
+    "ratings": {
+      "rakuten": null,
+      "rakutenReviews": null,
+      "google": null,
+      "googleReviews": null
+    },
+    "links": {},
+    "note": "楽天 202519，49 室"
+  },
+  {
+    "key": "ise-experience-miyamachi",
+    "name": {
+      "ja": "エクスペリエンス伊勢宮町ホテル"
+    },
+    "region": "ise-geku",
+    "category": "hotel",
+    "status": "not-included",
+    "reason": "楽天 4.43 但只有 7 則，15 人組合兩天都沒有空房，宮町站一帶；沒有讀文",
+    "pointId": null,
+    "ratings": {
+      "rakuten": 4.43,
+      "rakutenReviews": 7,
+      "google": null,
+      "googleReviews": null
+    },
+    "links": {},
+    "note": "楽天 198713，11 室，楽天最低 12,705 円"
+  },
+  {
+    "key": "ise-guesthouse-sora",
+    "name": {
+      "ja": "伊勢ゲストハウス そら"
+    },
+    "region": "ise-geku",
+    "category": "pension／民泊",
+    "status": "not-included",
+    "reason": "ゲストハウス（背包客棧型），4 室；沒有讀文",
+    "pointId": null,
+    "ratings": {
+      "rakuten": 4.67,
+      "rakutenReviews": 26,
+      "google": null,
+      "googleReviews": null
+    },
+    "links": {},
+    "note": "楽天 171965，4 室，楽天最低 4,300 円"
+  },
+  {
+    "key": "ise-namakemono",
+    "name": {
+      "ja": "なまけ者の宿"
+    },
+    "region": "ise-naiku",
+    "category": "pension／民泊",
+    "status": "not-included",
+    "reason": "3 室的小宿，要搭巴士（つづみが丘），沒有讀文",
+    "pointId": null,
+    "ratings": {
+      "rakuten": 4.75,
+      "rakutenReviews": 9,
+      "google": null,
+      "googleReviews": null
+    },
+    "links": {},
+    "note": "楽天 196369，3 室，楽天最低 6,000 円"
+  },
+  {
+    "key": "ise-rakuten-191565",
+    "name": {
+      "ja": "加美屋リゾート伊勢神宮 おかげの庭"
+    },
+    "region": "ise-naiku",
+    "category": "pension／民泊",
+    "status": "not-included",
+    "reason": "小型一棟貸し／民泊：楽天 2027-02-09 查「1 間 6／8／10 人」都沒有空房（容量不明或 2027 年方案未開），沒有讀文",
+    "pointId": null,
+    "ratings": {
+      "rakuten": 2.5,
+      "rakutenReviews": 7,
+      "google": null,
+      "googleReviews": null
+    },
+    "links": {},
+    "note": "楽天 191565，2 室，楽天最低 9,400 円"
+  },
+  {
+    "key": "ise-rakuten-199286",
+    "name": {
+      "ja": "ＭＩＴＡＭＡ Ｈｏｕｓｅ ０１ 猿田彦神社前"
+    },
+    "region": "ise-naiku",
+    "category": "hotel",
+    "status": "not-included",
+    "reason": "小型一棟貸し／民泊：楽天 2027-02-09 查「1 間 6／8／10 人」都沒有空房（容量不明或 2027 年方案未開），沒有讀文",
+    "pointId": null,
+    "ratings": {
+      "rakuten": null,
+      "rakutenReviews": null,
+      "google": null,
+      "googleReviews": null
+    },
+    "links": {},
+    "note": "楽天 199286，1 室，楽天最低 31,500 円"
+  },
+  {
+    "key": "ise-kagura-bettei",
+    "name": {
+      "ja": "伊勢神楽別邸"
+    },
+    "region": "ise-outskirts",
+    "category": "hotel",
+    "status": "not-included",
+    "reason": "小型一棟貸し／民泊：楽天 2027-02-09 查「1 間 6／8／10 人」都沒有空房（容量不明或 2027 年方案未開），沒有讀文；搜尋結果寫定員 1～5 名",
+    "pointId": null,
+    "ratings": {
+      "rakuten": null,
+      "rakutenReviews": null,
+      "google": null,
+      "googleReviews": null
+    },
+    "links": {},
+    "note": "楽天 202274，3 室"
+  },
+  {
+    "key": "ise-rakuten-180557",
+    "name": {
+      "ja": "民泊宿伊勢志摩"
+    },
+    "region": "ise-naiku",
+    "category": "pension／民泊",
+    "status": "not-included",
+    "reason": "小型一棟貸し／民泊：楽天 2027-02-09 查「1 間 6／8／10 人」都沒有空房（容量不明或 2027 年方案未開），沒有讀文",
+    "pointId": null,
+    "ratings": {
+      "rakuten": null,
+      "rakutenReviews": null,
+      "google": null,
+      "googleReviews": null
+    },
+    "links": {},
+    "note": "楽天 180557，3 室"
+  },
+  {
+    "key": "ise-rakuten-191983",
+    "name": {
+      "ja": "加美屋リゾート伊勢神宮 おかげテラス"
+    },
+    "region": "ise-naiku",
+    "category": "pension／民泊",
+    "status": "not-included",
+    "reason": "小型一棟貸し／民泊：楽天 2027-02-09 查「1 間 6／8／10 人」都沒有空房（容量不明或 2027 年方案未開），沒有讀文",
+    "pointId": null,
+    "ratings": {
+      "rakuten": null,
+      "rakutenReviews": 3,
+      "google": null,
+      "googleReviews": null
+    },
+    "links": {},
+    "note": "楽天 191983，2 室，楽天最低 9,500 円"
+  },
+  {
+    "key": "ise-potsupotsuan",
+    "name": {
+      "ja": "一棟貸し民泊 ぽつぽつあん／民泊"
+    },
+    "region": "ise-naiku",
+    "category": "pension／民泊",
+    "status": "not-included",
+    "reason": "小型一棟貸し／民泊：楽天 2027-02-09 查「1 間 6／8／10 人」都沒有空房（容量不明或 2027 年方案未開），沒有讀文；搜尋結果寫最多 6 人、2 室",
+    "pointId": null,
+    "ratings": {
+      "rakuten": null,
+      "rakutenReviews": 1,
+      "google": null,
+      "googleReviews": null
+    },
+    "links": {},
+    "note": "楽天 195052，1 室"
+  },
+  {
+    "key": "ise-rakuten-191597",
+    "name": {
+      "ja": "伊風"
+    },
+    "region": "ise-naiku",
+    "category": "pension／民泊",
+    "status": "not-included",
+    "reason": "小型一棟貸し／民泊：楽天 2027-02-09 查「1 間 6／8／10 人」都沒有空房（容量不明或 2027 年方案未開），沒有讀文",
+    "pointId": null,
+    "ratings": {
+      "rakuten": null,
+      "rakutenReviews": null,
+      "google": null,
+      "googleReviews": null
+    },
+    "links": {},
+    "note": "楽天 191597，1 室"
+  },
+  {
+    "key": "ise-rakuten-196209",
+    "name": {
+      "ja": "内宮前別邸 星伊"
+    },
+    "region": "ise-naiku",
+    "category": "pension／民泊",
+    "status": "not-included",
+    "reason": "小型一棟貸し／民泊：楽天 2027-02-09 查「1 間 6／8／10 人」都沒有空房（容量不明或 2027 年方案未開），沒有讀文",
+    "pointId": null,
+    "ratings": {
+      "rakuten": 3,
+      "rakutenReviews": 9,
+      "google": null,
+      "googleReviews": null
+    },
+    "links": {},
+    "note": "楽天 196209，1 室，楽天最低 7,500 円"
+  },
+  {
+    "key": "ise-rakuten-193281",
+    "name": {
+      "ja": "内宮前別邸 星灯"
+    },
+    "region": "ise-naiku",
+    "category": "pension／民泊",
+    "status": "not-included",
+    "reason": "小型一棟貸し／民泊：楽天 2027-02-09 查「1 間 6／8／10 人」都沒有空房（容量不明或 2027 年方案未開），沒有讀文",
+    "pointId": null,
+    "ratings": {
+      "rakuten": 4.4,
+      "rakutenReviews": 10,
+      "google": null,
+      "googleReviews": null
+    },
+    "links": {},
+    "note": "楽天 193281，1 室，楽天最低 6,500 円"
+  },
+  {
+    "key": "ise-kashiwaya",
+    "name": {
+      "ja": "旅館柏屋"
+    },
+    "region": "ise-outskirts",
+    "category": "ryokan",
+    "status": "not-included",
+    "reason": "神社港，離景點遠、要開車，楽天沒有評分；沒有讀文",
+    "pointId": null,
+    "ratings": {
+      "rakuten": null,
+      "rakutenReviews": null,
+      "google": null,
+      "googleReviews": null
+    },
+    "links": {},
+    "note": "楽天 139895，7 室"
+  },
+  {
+    "key": "ise-rakuten-190518",
+    "name": {
+      "ja": "森羅 ＾"
+    },
+    "region": "ise-naiku",
+    "category": "pension／民泊",
+    "status": "not-included",
+    "reason": "小型一棟貸し／民泊：楽天 2027-02-09 查「1 間 6／8／10 人」都沒有空房（容量不明或 2027 年方案未開），沒有讀文",
+    "pointId": null,
+    "ratings": {
+      "rakuten": 5,
+      "rakutenReviews": 8,
+      "google": null,
+      "googleReviews": null
+    },
+    "links": {},
+    "note": "楽天 190518，1 室，楽天最低 17,400 円"
+  },
+  {
+    "key": "ise-rakuten-202542",
+    "name": {
+      "ja": "神燈（かみあかり）"
+    },
+    "region": "ise-naiku",
+    "category": "hotel",
+    "status": "not-included",
+    "reason": "小型一棟貸し／民泊：楽天 2027-02-09 查「1 間 6／8／10 人」都沒有空房（容量不明或 2027 年方案未開），沒有讀文",
+    "pointId": null,
+    "ratings": {
+      "rakuten": null,
+      "rakutenReviews": null,
+      "google": null,
+      "googleReviews": null
+    },
+    "links": {},
+    "note": "楽天 202542，1 室，楽天最低 15,000 円"
+  },
+  {
+    "key": "ise-rakuten-170147",
+    "name": {
+      "ja": "伊勢トヨハマヴィラ／民泊"
+    },
+    "region": "ise-outskirts",
+    "category": "pension／民泊",
+    "status": "not-included",
+    "reason": "小型一棟貸し／民泊：楽天 2027-02-09 查「1 間 6／8／10 人」都沒有空房（容量不明或 2027 年方案未開），沒有讀文",
+    "pointId": null,
+    "ratings": {
+      "rakuten": null,
+      "rakutenReviews": null,
+      "google": null,
+      "googleReviews": null
+    },
+    "links": {},
+    "note": "楽天 170147，1 室，楽天最低 8,584 円"
+  },
+  {
+    "key": "ise-rakuten-198775",
+    "name": {
+      "ja": "ＯＵＲＨＯＵＳＥ ＩＳＥ"
+    },
+    "region": "ise-outskirts",
+    "category": "hotel",
+    "status": "not-included",
+    "reason": "小型一棟貸し／民泊：楽天 2027-02-09 查「1 間 6／8／10 人」都沒有空房（容量不明或 2027 年方案未開），沒有讀文",
+    "pointId": null,
+    "ratings": {
+      "rakuten": null,
+      "rakutenReviews": null,
+      "google": null,
+      "googleReviews": null
+    },
+    "links": {},
+    "note": "楽天 198775，1 室"
+  },
+  {
+    "key": "ise-tsudaya",
+    "name": {
+      "ja": "伊勢 ビジネス旅館 津田屋"
+    },
+    "region": "ise-outskirts",
+    "category": "ryokan",
+    "status": "not-included",
+    "reason": "大湊的商務旅館，離景點遠、要開車；沒有讀文",
+    "pointId": null,
+    "ratings": {
+      "rakuten": null,
+      "rakutenReviews": 6,
+      "google": null,
+      "googleReviews": null
+    },
+    "links": {},
+    "note": "楽天 19778，19 室"
+  }
+]
