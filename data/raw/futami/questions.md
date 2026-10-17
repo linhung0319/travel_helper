@@ -7,3 +7,10 @@
 - [ ] futami-sea-paradise：水族館本身有沒有電梯（FAQ 寫部分區域只能走樓梯）；現在還有沒有海豚
 - [ ] futami-omotesando：御福餅本家、扇屋等沿路店家 2 月平日的營業時間
 - [ ] futami-matsushita-yashiro：蘇民將來注連繩在哪裡授與、正月以外買不買得到、價格；有沒有停車場、社務所（伊勢市觀光誘客課 0596-21-5565）
+- [ ] futami-oishiya：官網寫用餐場地最多 10 人、沒有團體方案；15 人分 2 批用餐或分住其他館可不可以；有沒有電梯
+- [ ] futami-hamachiyokan、futami-iwatokan、futami-kaiyoro、futami-castle-inn：二見浦站／伊勢市站接送車能載幾人；團體方案
+- [ ] futami-nisshokan（6 室）、futami-kyukaen（10 室）、futami-tsukasatei（7 室）、futami-yamato（13 室）：15 人能不能包館
+- [ ] futami-uminocho：鳥羽站送迎車的大小、班距（官網約 30 分、KNT 每整點，衝突）；小學生收費
+- [ ] futami-plafino：二見浦站有沒有接送；3 棟能不能排在相鄰
+- [ ] futami-yusura：5 棟全包（約 18 人）的價格、能不能接 15 人團
+- [ ] futami-togenkyo、futami-orange-garden：2027 年 2 月的方案什麼時候開放；オレンジガーデン 最多 8 人，兩棟包棟要分兩處
