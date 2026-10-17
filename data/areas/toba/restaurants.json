@@ -8651,5 +8651,963 @@
         "Google 平日寫 11:00～14:10（一筆時段）"
       ]
     }
+  },
+  {
+    "id": "toba-kuroshio-osatsu",
+    "type": "restaurant",
+    "name": {
+      "ja": "海の駅 黒潮 相差店",
+      "kana": "うみのえきくろしおおうさつてん",
+      "zh": "海之驛 黑潮 相差店",
+      "en": null
+    },
+    "area": "toba",
+    "coords": [
+      136.892929,
+      34.396256
+    ],
+    "coordsSource": "google-maps-url",
+    "address": "三重県鳥羽市畔蛸町127-27",
+    "hours": {
+      "mon": [
+        [
+          "08:00",
+          "17:00"
+        ]
+      ],
+      "tue": [
+        [
+          "08:00",
+          "17:00"
+        ]
+      ],
+      "wed": [
+        [
+          "08:00",
+          "17:00"
+        ]
+      ],
+      "thu": [
+        [
+          "08:00",
+          "17:00"
+        ]
+      ],
+      "fri": [
+        [
+          "08:00",
+          "17:00"
+        ]
+      ],
+      "sat": [
+        [
+          "08:00",
+          "17:00"
+        ]
+      ],
+      "sun": [
+        [
+          "08:00",
+          "17:00"
+        ]
+      ],
+      "holiday": null,
+      "note": "用餐 8:30 起（食べログ）；無休"
+    },
+    "closedNote": "無休（食べログ）",
+    "febNote": null,
+    "photos": [],
+    "links": {
+      "official": "http://www.uminoeki-kuroshio.com/ousatsu/",
+      "googleMaps": "https://maps.google.com/?cid=5383964454731937101",
+      "tabelog": "https://tabelog.com/mie/A2403/A240302/24008773/",
+      "instagram": null
+    },
+    "tags": [],
+    "tier": null,
+    "sources": [
+      {
+        "retrieved": "2026-10-17",
+        "note": "店舗情報：分數、席數、預約、營業時間、お子様連れ",
+        "type": "tabelog",
+        "url": "https://tabelog.com/mie/A2403/A240302/24008773/"
+      },
+      {
+        "retrieved": "2026-10-17",
+        "note": "星數、評論數、營業時間、座標",
+        "type": "google-maps",
+        "url": "https://maps.google.com/?cid=5383964454731937101"
+      }
+    ],
+    "verified": false,
+    "anchors": [
+      {
+        "id": "matsuo",
+        "walkMinutes": 103,
+        "walkSource": "estimate"
+      },
+      {
+        "id": "toba-hachiman-kamado",
+        "walkMinutes": 18,
+        "walkSource": "estimate"
+      },
+      {
+        "id": "toba-osatsu-ishigami",
+        "walkMinutes": 19,
+        "walkSource": "estimate"
+      }
+    ],
+    "contexts": [
+      "lunch"
+    ],
+    "cuisine": [
+      "海鮮",
+      "海鮮丼",
+      "炸物"
+    ],
+    "priceRange": "¥2,000～2,999",
+    "mustTry": [],
+    "menu": [],
+    "ratings": {
+      "tabelog": 3.43,
+      "tabelogReviews": 138,
+      "google": 4.1,
+      "googleReviews": 572,
+      "note": null
+    },
+    "notes": "地址是畔蛸町（相差的北邊，往相差的路上），要開車。市場附設餐廳。不能預約。",
+    "group": {
+      "seats": null,
+      "privateRoom": false,
+      "buyout": "不可",
+      "groupMenu": null,
+      "source": "食べログ：沒有席数、予約不可、貸切不可",
+      "note": null,
+      "fit15": "unknown",
+      "fitSubgroup": "unknown"
+    },
+    "reservation": {
+      "methods": [],
+      "phone": "0599-33-7108",
+      "url": null,
+      "language": "日文",
+      "note": null,
+      "accepted": "no"
+    },
+    "seating": [],
+    "kids": null,
+    "smoking": "全席禁煙",
+    "extra": {
+      "region": "相差",
+      "inclusion": "A",
+      "tabelogOwner": false,
+      "conflicts": [
+        "食べログ（非店舗会員）寫週四 9:00 開，Google 寫每天 8:00～17:00，採用 Google"
+      ]
+    }
+  },
+  {
+    "id": "toba-osatsu-kitchen-0032",
+    "type": "restaurant",
+    "name": {
+      "ja": "オウサツキッチン0032",
+      "kana": null,
+      "zh": "相差廚房 0032（咖啡、霜淇淋）",
+      "en": "OSATSU KITCHEN 0032"
+    },
+    "area": "toba",
+    "coords": [
+      136.9066445,
+      34.3917368
+    ],
+    "coordsSource": "google-maps-url",
+    "address": "三重県鳥羽市相差町1406-2",
+    "hours": {
+      "mon": [
+        [
+          "09:00",
+          "17:00"
+        ]
+      ],
+      "tue": [
+        [
+          "09:00",
+          "17:00"
+        ]
+      ],
+      "wed": [
+        [
+          "09:00",
+          "17:00"
+        ]
+      ],
+      "thu": [
+        [
+          "09:00",
+          "17:00"
+        ]
+      ],
+      "fri": [
+        [
+          "09:00",
+          "17:00"
+        ]
+      ],
+      "sat": [
+        [
+          "09:00",
+          "17:00"
+        ]
+      ],
+      "sun": [
+        [
+          "09:00",
+          "17:00"
+        ]
+      ],
+      "holiday": null,
+      "note": null
+    },
+    "closedNote": null,
+    "febNote": null,
+    "photos": [],
+    "links": {
+      "official": "https://osatsu.org/kitchen/",
+      "googleMaps": "https://maps.google.com/?cid=3340218729491169592",
+      "tabelog": "https://tabelog.com/mie/A2403/A240302/24016504/",
+      "instagram": "@osatsu_kitchen0032"
+    },
+    "tags": [],
+    "tier": null,
+    "sources": [
+      {
+        "retrieved": "2026-10-17",
+        "note": "店舗情報：分數、席數、預約、營業時間、お子様連れ",
+        "type": "tabelog",
+        "url": "https://tabelog.com/mie/A2403/A240302/24016504/"
+      },
+      {
+        "retrieved": "2026-10-17",
+        "note": "星數、評論數、營業時間、座標",
+        "type": "google-maps",
+        "url": "https://maps.google.com/?cid=3340218729491169592"
+      }
+    ],
+    "verified": false,
+    "anchors": [
+      {
+        "id": "matsuo",
+        "walkMinutes": 124,
+        "walkSource": "estimate"
+      },
+      {
+        "id": "toba-osatsu-ama-culture-museum",
+        "walkMinutes": 1,
+        "walkSource": "estimate"
+      },
+      {
+        "id": "toba-osatsu-ishigami",
+        "walkMinutes": 3,
+        "walkSource": "estimate"
+      }
+    ],
+    "contexts": [
+      "cafe",
+      "snack"
+    ],
+    "cuisine": [
+      "咖啡",
+      "霜淇淋"
+    ],
+    "priceRange": "～¥999",
+    "mustTry": [],
+    "menu": [],
+    "ratings": {
+      "tabelog": 3.33,
+      "tabelogReviews": 69,
+      "google": 4.5,
+      "googleReviews": 249,
+      "note": null
+    },
+    "notes": "石神さん（神明神社）參道上，旁邊是海女の家 五左屋。",
+    "group": {
+      "seats": null,
+      "privateRoom": false,
+      "buyout": "可（20 人以下）",
+      "groupMenu": null,
+      "source": "食べログ：沒有席数、予約不可、貸切可（20人以下可）",
+      "note": "包場上限 20 人但沒有席數、不能預約，判斷不了",
+      "fit15": "unknown",
+      "fitSubgroup": "unknown"
+    },
+    "reservation": {
+      "methods": [],
+      "phone": "0599-37-7732",
+      "url": null,
+      "language": "日文",
+      "note": null,
+      "accepted": "no"
+    },
+    "seating": [
+      "terrace"
+    ],
+    "kids": "可帶小孩（食べログ）",
+    "smoking": "分煙（戶外露台可吸菸）",
+    "extra": {
+      "region": "相差",
+      "inclusion": "AC",
+      "tabelogOwner": false,
+      "conflicts": [
+        "Google 和食べログ（非店舗会員）一致"
+      ]
+    }
+  },
+  {
+    "id": "toba-nakashin",
+    "type": "restaurant",
+    "name": {
+      "ja": "なかしん",
+      "kana": "なかしん",
+      "zh": "Nakashin（鰻魚）",
+      "en": null
+    },
+    "area": "toba",
+    "coords": [
+      136.8991113,
+      34.3905713
+    ],
+    "coordsSource": "google-maps-url",
+    "address": "三重県鳥羽市相差町1915-1",
+    "hours": {
+      "mon": [
+        [
+          "11:00",
+          "14:00"
+        ]
+      ],
+      "tue": [
+        [
+          "11:00",
+          "14:00"
+        ]
+      ],
+      "wed": [],
+      "thu": [
+        [
+          "11:00",
+          "14:00"
+        ]
+      ],
+      "fri": [
+        [
+          "11:00",
+          "14:00"
+        ]
+      ],
+      "sat": [
+        [
+          "11:00",
+          "14:00"
+        ]
+      ],
+      "sun": [
+        [
+          "11:00",
+          "14:00"
+        ]
+      ],
+      "holiday": null,
+      "note": "官網只寫中午；食べログ另寫晚上 17:00～20:00；有臨時休業"
+    },
+    "closedNote": "週三公休，有臨時休業（官網）",
+    "febNote": null,
+    "photos": [],
+    "links": {
+      "official": "https://www.toba-nakashin.com/",
+      "googleMaps": "https://maps.google.com/?cid=10287445876053936337",
+      "tabelog": "https://tabelog.com/mie/A2403/A240302/24015301/",
+      "instagram": null
+    },
+    "tags": [],
+    "tier": null,
+    "sources": [
+      {
+        "retrieved": "2026-10-17",
+        "note": "店舗情報：分數、席數、預約、營業時間、お子様連れ",
+        "type": "tabelog",
+        "url": "https://tabelog.com/mie/A2403/A240302/24015301/"
+      },
+      {
+        "retrieved": "2026-10-17",
+        "note": "星數、評論數、營業時間、座標",
+        "type": "google-maps",
+        "url": "https://maps.google.com/?cid=10287445876053936337"
+      },
+      {
+        "type": "media",
+        "url": "https://www.nap-camp.com/mag/23934",
+        "retrieved": "2026-10-17",
+        "note": "なっぷ「鳥羽のご当地グルメ15選」（2026-10-01 更新）"
+      },
+      {
+        "retrieved": "2026-10-17",
+        "note": "中午 11:00～14:00、週三休、座敷包廂、包場 OK",
+        "type": "official",
+        "url": "https://www.toba-nakashin.com/"
+      }
+    ],
+    "verified": false,
+    "anchors": [
+      {
+        "id": "matsuo",
+        "walkMinutes": 116,
+        "walkSource": "estimate"
+      },
+      {
+        "id": "toba-hachiman-kamado",
+        "walkMinutes": 5,
+        "walkSource": "estimate"
+      },
+      {
+        "id": "toba-osatsu-ishigami",
+        "walkMinutes": 8,
+        "walkSource": "estimate"
+      }
+    ],
+    "contexts": [
+      "lunch"
+    ],
+    "cuisine": [
+      "鰻魚"
+    ],
+    "priceRange": "¥3,000～3,999",
+    "mustTry": [],
+    "menu": [],
+    "ratings": {
+      "tabelog": 3.27,
+      "tabelogReviews": 50,
+      "google": 4.6,
+      "googleReviews": 275,
+      "note": null
+    },
+    "notes": "相差的鰻魚店。官網：有吧台、和室包廂，可以包場，一個人到團體都可以（沒寫人數）。可外帶、可預約。",
+    "group": {
+      "seats": null,
+      "privateRoom": true,
+      "buyout": "可（官網「貸切ＯＫ」，沒寫人數）",
+      "groupMenu": null,
+      "source": "食べログ：貸切可、予約可、沒有席数；官網：お座敷個室、グループ OK、貸切 OK（沒寫人數）",
+      "note": null,
+      "fit15": "unknown",
+      "fitSubgroup": "yes"
+    },
+    "reservation": {
+      "methods": [
+        "phone"
+      ],
+      "phone": "0599-33-7117",
+      "url": null,
+      "language": "日文",
+      "note": null,
+      "accepted": "yes"
+    },
+    "seating": [
+      "counter",
+      "zashiki"
+    ],
+    "kids": null,
+    "smoking": "全席禁煙",
+    "extra": {
+      "region": "相差",
+      "inclusion": "C",
+      "tabelogOwner": false,
+      "conflicts": [
+        "食べログ（非店舗会員）寫晚上 17:00～20:00 也營業；官網、Google 只有中午，採用官網"
+      ]
+    }
+  },
+  {
+    "id": "toba-umino-shokudo-kyubei",
+    "type": "restaurant",
+    "name": {
+      "ja": "海の食堂 久兵衛",
+      "kana": "うみのしょくどうきゅうべえ",
+      "zh": "海之食堂 久兵衛",
+      "en": null
+    },
+    "area": "toba",
+    "coords": [
+      136.9076931,
+      34.3912258
+    ],
+    "coordsSource": "google-maps-url",
+    "address": "三重県鳥羽市相差町1231",
+    "hours": {
+      "mon": [
+        [
+          "11:00",
+          "14:30"
+        ]
+      ],
+      "tue": [
+        [
+          "11:00",
+          "14:30"
+        ]
+      ],
+      "wed": [],
+      "thu": [
+        [
+          "11:00",
+          "14:30"
+        ]
+      ],
+      "fri": [
+        [
+          "11:00",
+          "14:30"
+        ]
+      ],
+      "sat": [
+        [
+          "11:00",
+          "14:30"
+        ]
+      ],
+      "sun": [
+        [
+          "11:00",
+          "14:30"
+        ]
+      ],
+      "holiday": null,
+      "note": "賣完就打烊（食べログ）"
+    },
+    "closedNote": "週三公休",
+    "febNote": null,
+    "photos": [],
+    "links": {
+      "official": null,
+      "googleMaps": "https://maps.google.com/?cid=10611696279879773874",
+      "tabelog": "https://tabelog.com/mie/A2403/A240302/24015880/",
+      "instagram": null
+    },
+    "tags": [],
+    "tier": null,
+    "sources": [
+      {
+        "retrieved": "2026-10-17",
+        "note": "店舗情報：分數、席數、預約、營業時間、お子様連れ",
+        "type": "tabelog",
+        "url": "https://tabelog.com/mie/A2403/A240302/24015880/"
+      },
+      {
+        "retrieved": "2026-10-17",
+        "note": "星數、評論數、營業時間、座標",
+        "type": "google-maps",
+        "url": "https://maps.google.com/?cid=10611696279879773874"
+      },
+      {
+        "type": "media",
+        "url": "https://www.nap-camp.com/mag/50903",
+        "retrieved": "2026-10-17",
+        "note": "なっぷ「鳥羽のおすすめ人気ランチ11選」（2026-10-01 更新）"
+      }
+    ],
+    "verified": false,
+    "anchors": [
+      {
+        "id": "matsuo",
+        "walkMinutes": 126,
+        "walkSource": "estimate"
+      },
+      {
+        "id": "toba-osatsu-ama-culture-museum",
+        "walkMinutes": 1,
+        "walkSource": "estimate"
+      },
+      {
+        "id": "toba-osatsu-ishigami",
+        "walkMinutes": 5,
+        "walkSource": "estimate"
+      }
+    ],
+    "contexts": [
+      "lunch"
+    ],
+    "cuisine": [
+      "海鮮",
+      "食堂"
+    ],
+    "priceRange": "¥1,000～1,999",
+    "mustTry": [],
+    "menu": [],
+    "ratings": {
+      "tabelog": 3.16,
+      "tabelogReviews": 20,
+      "google": 4.6,
+      "googleReviews": 138,
+      "note": null
+    },
+    "notes": "相差海女文化資料館附近。和鳥羽站周邊的焼き鳥店「久兵衛」是不同的店。",
+    "group": {
+      "seats": null,
+      "privateRoom": false,
+      "buyout": "不可",
+      "groupMenu": null,
+      "source": "食べログ：沒有席数、予約可、貸切不可",
+      "note": null,
+      "fit15": "unknown",
+      "fitSubgroup": "unknown"
+    },
+    "reservation": {
+      "methods": [
+        "phone"
+      ],
+      "phone": "0599-33-6808",
+      "url": null,
+      "language": "日文",
+      "note": null,
+      "accepted": "yes"
+    },
+    "seating": [],
+    "kids": null,
+    "smoking": "全席禁煙",
+    "extra": {
+      "region": "相差",
+      "inclusion": "A",
+      "tabelogOwner": false,
+      "igHashtag": "#海の食堂久兵衛（食べログ的公式アカウント欄是 hashtag 頁，不是帳號）"
+    }
+  },
+  {
+    "id": "toba-amanoie-gozaya",
+    "type": "restaurant",
+    "name": {
+      "ja": "海女の家　五左屋",
+      "kana": "あまのいえござや",
+      "zh": "海女之家 五左屋",
+      "en": null
+    },
+    "area": "toba",
+    "coords": [
+      136.906505,
+      34.3917383
+    ],
+    "coordsSource": "google-maps-url",
+    "address": "三重県鳥羽市相差町1406",
+    "hours": {
+      "mon": [
+        [
+          "09:00",
+          "17:00"
+        ]
+      ],
+      "tue": [
+        [
+          "09:00",
+          "17:00"
+        ]
+      ],
+      "wed": [
+        [
+          "09:00",
+          "17:00"
+        ]
+      ],
+      "thu": [
+        [
+          "09:00",
+          "17:00"
+        ]
+      ],
+      "fri": [
+        [
+          "09:00",
+          "17:00"
+        ]
+      ],
+      "sat": [
+        [
+          "09:00",
+          "17:00"
+        ]
+      ],
+      "sun": [
+        [
+          "09:00",
+          "17:00"
+        ]
+      ],
+      "holiday": null,
+      "note": "L.O. 16:30（食べログ）"
+    },
+    "closedNote": null,
+    "febNote": null,
+    "photos": [],
+    "links": {
+      "official": "https://osatsu.org/gozaya/",
+      "googleMaps": "https://maps.google.com/?cid=2634595472452421496",
+      "tabelog": "https://tabelog.com/mie/A2403/A240302/24010431/",
+      "instagram": null
+    },
+    "tags": [],
+    "tier": null,
+    "sources": [
+      {
+        "retrieved": "2026-10-17",
+        "note": "店舗情報：分數、席數、預約、營業時間、お子様連れ",
+        "type": "tabelog",
+        "url": "https://tabelog.com/mie/A2403/A240302/24010431/"
+      },
+      {
+        "retrieved": "2026-10-17",
+        "note": "星數、評論數、營業時間、座標",
+        "type": "google-maps",
+        "url": "https://maps.google.com/?cid=2634595472452421496"
+      },
+      {
+        "type": "tourism",
+        "url": "https://www.kankomie.or.jp/report/508",
+        "retrieved": "2026-10-17",
+        "note": "觀光三重 相差一日遊"
+      },
+      {
+        "type": "media",
+        "url": "https://www.mapple.net/article/32428/",
+        "retrieved": "2026-10-17",
+        "note": "まっぷる 鳥羽・相差的美食介紹"
+      }
+    ],
+    "verified": false,
+    "anchors": [
+      {
+        "id": "matsuo",
+        "walkMinutes": 124,
+        "walkSource": "estimate"
+      },
+      {
+        "id": "toba-osatsu-ama-culture-museum",
+        "walkMinutes": 1,
+        "walkSource": "estimate"
+      },
+      {
+        "id": "toba-osatsu-ishigami",
+        "walkMinutes": 3,
+        "walkSource": "estimate"
+      }
+    ],
+    "contexts": [
+      "cafe",
+      "snack"
+    ],
+    "cuisine": [
+      "咖啡",
+      "喫茶"
+    ],
+    "priceRange": "～¥999",
+    "mustTry": [],
+    "menu": [],
+    "ratings": {
+      "tabelog": 3.15,
+      "tabelogReviews": 26,
+      "google": 4.2,
+      "googleReviews": 56,
+      "note": null
+    },
+    "notes": "古民家改建的商店兼咖啡（觀光三重），在石神さん參道。",
+    "group": {
+      "seats": null,
+      "privateRoom": false,
+      "buyout": null,
+      "groupMenu": null,
+      "source": "食べログ：沒有席数",
+      "note": null,
+      "fit15": "unknown",
+      "fitSubgroup": "unknown"
+    },
+    "reservation": {
+      "methods": [],
+      "phone": "0599-33-6770",
+      "url": null,
+      "language": "日文",
+      "note": null,
+      "accepted": "unknown"
+    },
+    "seating": [],
+    "kids": null,
+    "smoking": "全席禁煙",
+    "extra": {
+      "region": "相差",
+      "inclusion": "B",
+      "tabelogOwner": false,
+      "googleName": "海女の家五左屋"
+    }
+  },
+  {
+    "id": "toba-petit-kamado-uemura",
+    "type": "restaurant",
+    "name": {
+      "ja": "プチかまど うえむら",
+      "kana": "ぷちかまどうえむら",
+      "zh": "海女小屋 Petit Kamado Uemura",
+      "en": null
+    },
+    "area": "toba",
+    "coords": [
+      136.9067502,
+      34.3906572
+    ],
+    "coordsSource": "google-maps-url",
+    "address": "三重県鳥羽市相差町1133-1",
+    "hours": {
+      "mon": [
+        [
+          "11:00",
+          "15:00"
+        ]
+      ],
+      "tue": [
+        [
+          "11:00",
+          "15:00"
+        ]
+      ],
+      "wed": [
+        [
+          "11:00",
+          "15:00"
+        ]
+      ],
+      "thu": [
+        [
+          "11:00",
+          "15:00"
+        ]
+      ],
+      "fri": [
+        [
+          "11:00",
+          "15:00"
+        ]
+      ],
+      "sat": [
+        [
+          "11:00",
+          "15:00"
+        ]
+      ],
+      "sun": [
+        [
+          "11:00",
+          "15:00"
+        ]
+      ],
+      "holiday": null,
+      "note": "不定休（官網：海女有空的日子才開）"
+    },
+    "closedNote": "不定休（海女有空的日子才營業）",
+    "febNote": "官網沒寫冬季營業；不定休，要事先預約確認",
+    "photos": [],
+    "links": {
+      "official": "https://amakoyauemura.com/",
+      "googleMaps": "https://maps.google.com/?cid=9385975506426137534",
+      "tabelog": "https://tabelog.com/mie/A2403/A240302/24019322/",
+      "instagram": "@amakoyauemura"
+    },
+    "tags": [],
+    "tier": null,
+    "sources": [
+      {
+        "retrieved": "2026-10-17",
+        "note": "店舗情報：分數、席數、預約、營業時間、お子様連れ",
+        "type": "tabelog",
+        "url": "https://tabelog.com/mie/A2403/A240302/24019322/"
+      },
+      {
+        "retrieved": "2026-10-17",
+        "note": "星數、評論數、營業時間、座標",
+        "type": "google-maps",
+        "url": "https://maps.google.com/?cid=9385975506426137534"
+      },
+      {
+        "retrieved": "2026-10-17",
+        "note": "營業時間、不定休、席數、預約網站、價格",
+        "type": "official",
+        "url": "https://amakoyauemura.com/"
+      }
+    ],
+    "verified": false,
+    "anchors": [
+      {
+        "id": "matsuo",
+        "walkMinutes": 125,
+        "walkSource": "estimate"
+      },
+      {
+        "id": "toba-osatsu-ama-culture-museum",
+        "walkMinutes": 1,
+        "walkSource": "estimate"
+      },
+      {
+        "id": "toba-osatsu-ishigami",
+        "walkMinutes": 4,
+        "walkSource": "estimate"
+      }
+    ],
+    "contexts": [
+      "lunch"
+    ],
+    "cuisine": [
+      "海鮮",
+      "海女料理",
+      "浜焼"
+    ],
+    "priceRange": "基本套餐 ～¥4,000（官網）",
+    "mustTry": [],
+    "menu": [],
+    "ratings": {
+      "tabelog": null,
+      "tabelogReviews": null,
+      "google": 4.8,
+      "googleReviews": 27,
+      "note": "食べログ沒有分數；Google 只有 27 則"
+    },
+    "notes": "體驗型（海女小屋）：烤伊勢志摩海產的海女料理。席數 15（吧台 5、桌 6、戶外 4），戶外席冬天可能不適合。",
+    "group": {
+      "seats": 15,
+      "privateRoom": false,
+      "buyout": null,
+      "groupMenu": null,
+      "source": "官網、食べログ：カウンター 5・テーブル 6・屋外 4 共 15 席",
+      "note": "剛好 15 席但含戶外 4 席，沒寫能不能一次接 15 人",
+      "fit15": "unknown",
+      "fitSubgroup": "yes"
+    },
+    "reservation": {
+      "methods": [
+        "web",
+        "phone",
+        "other"
+      ],
+      "phone": "080-9482-2160",
+      "url": "https://amakoyauemura.edisone.jp/",
+      "language": "日文",
+      "note": "官網預約專用網站，也可以電話或 email（amakoyauemura@gmail.com）",
+      "accepted": "yes"
+    },
+    "seating": [
+      "counter",
+      "table",
+      "terrace"
+    ],
+    "kids": null,
+    "smoking": null,
+    "extra": {
+      "region": "相差",
+      "inclusion": "F",
+      "tabelogOwner": false,
+      "googleName": "海女小屋プチかまどうえむら"
+    }
   }
 ]
