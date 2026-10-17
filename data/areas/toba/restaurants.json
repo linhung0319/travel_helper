@@ -7284,5 +7284,1372 @@
         "食べログ（非店舗会員）寫 9:30～18:00（週六～19:00），Google 寫 11:00～17:30，採用 Google"
       ]
     }
+  },
+  {
+    "id": "toba-kakiichi-honten",
+    "type": "restaurant",
+    "name": {
+      "ja": "かきいち 本店",
+      "kana": "かきいちほんてん",
+      "zh": "牡蠣一 本店（牡蠣吃到飽）",
+      "en": null
+    },
+    "area": "toba",
+    "coords": [
+      136.8745552,
+      34.4521257
+    ],
+    "coordsSource": "google-maps-url",
+    "address": "三重県鳥羽市浦村町1-12",
+    "hours": {
+      "mon": [
+        [
+          "10:30",
+          "15:00"
+        ]
+      ],
+      "tue": null,
+      "wed": [
+        [
+          "10:30",
+          "15:00"
+        ]
+      ],
+      "thu": [
+        [
+          "10:30",
+          "15:00"
+        ]
+      ],
+      "fri": [
+        [
+          "10:30",
+          "15:00"
+        ]
+      ],
+      "sat": [
+        [
+          "10:30",
+          "15:00"
+        ]
+      ],
+      "sun": [
+        [
+          "10:30",
+          "15:00"
+        ]
+      ],
+      "note": "吃到飽三部制 10:30～11:50、12:00～13:20、13:30～14:50（觀光三重）"
+    },
+    "closedNote": "觀光三重寫週二公休，觀光協會牡蠣特集寫週四公休",
+    "febNote": "2026～27 季開始日未定、已開放預約（觀光三重 17 選）；大人 ¥3,300、小孩 ¥1,600、幼兒（3 歲～）¥550。Google 在 2026-10-17 顯示「臨時休業」（季節前）。",
+    "photos": [],
+    "links": {
+      "official": "https://xn--u8je4633b6cf.com/kakiichi/",
+      "googleMaps": "https://maps.google.com/?cid=16122439549730370837",
+      "tabelog": "https://tabelog.com/mie/A2403/A240302/24020444/",
+      "instagram": "@kakiichi_staff"
+    },
+    "tags": [],
+    "tier": null,
+    "sources": [
+      {
+        "retrieved": "2026-10-17",
+        "note": "店舗情報：分數、席數、預約、營業時間、お子様連れ",
+        "type": "tabelog",
+        "url": "https://tabelog.com/mie/A2403/A240302/24020444/"
+      },
+      {
+        "retrieved": "2026-10-17",
+        "note": "星數、評論數、營業時間、座標",
+        "type": "google-maps",
+        "url": "https://maps.google.com/?cid=16122439549730370837"
+      },
+      {
+        "type": "tourism",
+        "url": "https://www.kankomie.or.jp/season/article/110",
+        "retrieved": "2026-10-17",
+        "note": "觀光三重「鳥羽浦村牡蠣食べ放題 17 選」（2026-10-05 刊登，2026～27 季）"
+      },
+      {
+        "type": "tourism",
+        "url": "https://www.toba.gr.jp/feature/abc/",
+        "retrieved": "2026-10-17",
+        "note": "鳥羽市觀光協會 浦村牡蠣特集"
+      }
+    ],
+    "verified": false,
+    "anchors": [
+      {
+        "id": "kamo",
+        "walkMinutes": 44,
+        "walkSource": "estimate"
+      }
+    ],
+    "contexts": [
+      "lunch"
+    ],
+    "cuisine": [
+      "牡蠣",
+      "牡蠣吃到飽"
+    ],
+    "priceRange": "吃到飽 大人 ¥3,300、小孩 ¥1,600",
+    "mustTry": [],
+    "menu": [],
+    "ratings": {
+      "tabelog": 3.29,
+      "tabelogReviews": 32,
+      "google": 4.3,
+      "googleReviews": 71,
+      "note": null
+    },
+    "notes": "食べログ：從浦村町 1560 移到浦村町 1-12（珍珠路入口一帶）。Google 店名「かきいち本店 by 浦村シーファーム」。電話預約。",
+    "group": {
+      "seats": 70,
+      "privateRoom": false,
+      "buyout": "不可",
+      "groupMenu": null,
+      "source": "食べログ：席数 70、予約可、貸切不可",
+      "note": null,
+      "fit15": "split",
+      "fitSubgroup": "yes"
+    },
+    "reservation": {
+      "methods": [
+        "phone"
+      ],
+      "phone": "070-3988-1818",
+      "url": null,
+      "language": "日文",
+      "note": "觀光三重：電話預約",
+      "accepted": "yes"
+    },
+    "seating": [],
+    "kids": "可帶小孩（乳兒、學齡前、小學生），可推嬰兒車（食べログ）；小孩 ¥1,600、3 歲以上幼兒 ¥550",
+    "smoking": "全席禁煙（戶外有吸菸處）",
+    "extra": {
+      "region": "浦村",
+      "inclusion": "BF",
+      "tabelogOwner": false,
+      "movedFrom": "三重県鳥羽市浦村町1560（食べログ）",
+      "googleStatus": "臨時休業（2026-10-17）",
+      "conflicts": [
+        "公休：觀光三重寫週二，觀光協會寫週四；食べログ沒寫"
+      ],
+      "googleName": "かきいち本店 by 浦村シーファーム"
+    }
+  },
+  {
+    "id": "toba-yoshiyu-suisan",
+    "type": "restaurant",
+    "name": {
+      "ja": "よしゆう水産",
+      "kana": "よしゆうすいさん",
+      "zh": "吉雄水產",
+      "en": null
+    },
+    "area": "toba",
+    "coords": [
+      136.8885866,
+      34.4447756
+    ],
+    "coordsSource": "google-maps-url",
+    "address": "三重県鳥羽市浦村町1229-45",
+    "hours": {
+      "mon": [
+        [
+          "11:00",
+          "14:00"
+        ]
+      ],
+      "tue": [
+        [
+          "11:00",
+          "14:00"
+        ]
+      ],
+      "wed": [
+        [
+          "11:00",
+          "14:00"
+        ]
+      ],
+      "thu": [
+        [
+          "11:00",
+          "14:00"
+        ]
+      ],
+      "fri": [
+        [
+          "11:00",
+          "14:00"
+        ]
+      ],
+      "sat": [
+        [
+          "11:00",
+          "15:00"
+        ]
+      ],
+      "sun": [
+        [
+          "11:00",
+          "15:00"
+        ]
+      ],
+      "holiday": [
+        [
+          "11:00",
+          "15:00"
+        ]
+      ],
+      "note": "不定休"
+    },
+    "closedNote": "不定休",
+    "febNote": "冬季牡蠣（真牡蠣）11 月～3、4 月（觀光三重、觀光協會）",
+    "photos": [],
+    "links": {
+      "official": "http://www.yoshikawa-suisan.com/dining.html",
+      "googleMaps": "https://maps.google.com/?cid=14189379373516136709",
+      "tabelog": "https://tabelog.com/mie/A2403/A240302/24016259/",
+      "instagram": null
+    },
+    "tags": [],
+    "tier": null,
+    "sources": [
+      {
+        "retrieved": "2026-10-17",
+        "note": "店舗情報：分數、席數、預約、營業時間、お子様連れ",
+        "type": "tabelog",
+        "url": "https://tabelog.com/mie/A2403/A240302/24016259/"
+      },
+      {
+        "retrieved": "2026-10-17",
+        "note": "星數、評論數、營業時間、座標",
+        "type": "google-maps",
+        "url": "https://maps.google.com/?cid=14189379373516136709"
+      },
+      {
+        "type": "tourism",
+        "url": "https://www.kankomie.or.jp/event/39679",
+        "retrieved": "2026-10-17",
+        "note": "觀光三重「食べ放題以外的浦村牡蠣店」（2025 年 10 月時點）"
+      },
+      {
+        "type": "tourism",
+        "url": "https://www.toba.gr.jp/feature/abc/",
+        "retrieved": "2026-10-17",
+        "note": "鳥羽市觀光協會 浦村牡蠣特集"
+      }
+    ],
+    "verified": false,
+    "anchors": [
+      {
+        "id": "kamo",
+        "walkMinutes": 63,
+        "walkSource": "estimate"
+      },
+      {
+        "id": "toba-sea-folk-museum",
+        "walkMinutes": 18,
+        "walkSource": "estimate"
+      }
+    ],
+    "contexts": [
+      "lunch"
+    ],
+    "cuisine": [
+      "海鮮",
+      "牡蠣"
+    ],
+    "priceRange": "¥2,000～2,999",
+    "mustTry": [],
+    "menu": [],
+    "ratings": {
+      "tabelog": 3.29,
+      "tabelogReviews": 32,
+      "google": 4.3,
+      "googleReviews": 178,
+      "note": null
+    },
+    "notes": "浦村的水產直營食堂（不是吃到飽）。",
+    "group": {
+      "seats": null,
+      "privateRoom": false,
+      "buyout": "不可",
+      "groupMenu": null,
+      "source": "食べログ：沒有席数、予約可、貸切不可",
+      "note": null,
+      "fit15": "unknown",
+      "fitSubgroup": "unknown"
+    },
+    "reservation": {
+      "methods": [
+        "phone"
+      ],
+      "phone": "0599-32-6123",
+      "url": null,
+      "language": "日文",
+      "note": null,
+      "accepted": "yes"
+    },
+    "seating": [],
+    "kids": null,
+    "smoking": null,
+    "extra": {
+      "region": "浦村",
+      "inclusion": "B",
+      "tabelogOwner": false,
+      "conflicts": [
+        "Google、食べログ、觀光協會一致（週末假日到 15:00）"
+      ]
+    }
+  },
+  {
+    "id": "toba-sugimura-suisan",
+    "type": "restaurant",
+    "name": {
+      "ja": "スギムラ水産",
+      "kana": "すぎむらすいさん",
+      "zh": "杉村水產（牡蠣吃到飽）",
+      "en": null
+    },
+    "area": "toba",
+    "coords": [
+      136.887319,
+      34.4442256
+    ],
+    "coordsSource": "google-maps-url",
+    "address": "三重県鳥羽市浦村町1229-61",
+    "hours": {
+      "mon": [
+        [
+          "11:00",
+          "12:20"
+        ],
+        [
+          "13:00",
+          "14:20"
+        ]
+      ],
+      "tue": [],
+      "wed": [],
+      "thu": [
+        [
+          "11:00",
+          "12:20"
+        ],
+        [
+          "13:00",
+          "14:20"
+        ]
+      ],
+      "fri": [
+        [
+          "11:00",
+          "12:20"
+        ],
+        [
+          "13:00",
+          "14:20"
+        ]
+      ],
+      "sat": [
+        [
+          "11:00",
+          "12:20"
+        ],
+        [
+          "13:00",
+          "14:20"
+        ]
+      ],
+      "sun": [
+        [
+          "11:00",
+          "12:20"
+        ],
+        [
+          "13:00",
+          "14:20"
+        ]
+      ],
+      "holiday": null,
+      "note": "吃到飽兩部制（Google、觀光三重）"
+    },
+    "closedNote": "週二公休（年內週二、三）、年末年始（觀光三重）",
+    "febNote": "2026～27 季 11/19 開始（觀光三重 17 選）；1 部 11:00～12:20、2 部 13:00～14:20；大人 ¥3,700、小孩 ¥1,850（吃到飽套餐）",
+    "photos": [],
+    "links": {
+      "official": "http://www.sugikaki.com/",
+      "googleMaps": "https://maps.google.com/?cid=17512560862624939744",
+      "tabelog": "https://tabelog.com/mie/A2403/A240302/24011887/",
+      "instagram": null
+    },
+    "tags": [],
+    "tier": null,
+    "sources": [
+      {
+        "retrieved": "2026-10-17",
+        "note": "店舗情報：分數、席數、預約、營業時間、お子様連れ",
+        "type": "tabelog",
+        "url": "https://tabelog.com/mie/A2403/A240302/24011887/"
+      },
+      {
+        "retrieved": "2026-10-17",
+        "note": "星數、評論數、營業時間、座標",
+        "type": "google-maps",
+        "url": "https://maps.google.com/?cid=17512560862624939744"
+      },
+      {
+        "type": "tourism",
+        "url": "https://www.kankomie.or.jp/season/article/110",
+        "retrieved": "2026-10-17",
+        "note": "觀光三重「鳥羽浦村牡蠣食べ放題 17 選」（2026-10-05 刊登，2026～27 季）"
+      },
+      {
+        "type": "tourism",
+        "url": "https://www.toba.gr.jp/feature/abc/",
+        "retrieved": "2026-10-17",
+        "note": "鳥羽市觀光協會 浦村牡蠣特集"
+      },
+      {
+        "type": "media",
+        "url": "https://tabiiro.jp/gourmet/article/iseshimatoba-kaisen/",
+        "retrieved": "2026-10-17",
+        "note": "tabiiro「伊勢・志摩・鳥羽のおすすめ海鮮グルメ13選」（2026-08-04 更新）"
+      }
+    ],
+    "verified": false,
+    "anchors": [
+      {
+        "id": "kamo",
+        "walkMinutes": 61,
+        "walkSource": "estimate"
+      },
+      {
+        "id": "toba-sea-folk-museum",
+        "walkMinutes": 20,
+        "walkSource": "estimate"
+      }
+    ],
+    "contexts": [
+      "lunch"
+    ],
+    "cuisine": [
+      "牡蠣",
+      "牡蠣吃到飽",
+      "海鮮"
+    ],
+    "priceRange": "吃到飽 大人 ¥3,700、小孩 ¥1,850",
+    "mustTry": [],
+    "menu": [],
+    "ratings": {
+      "tabelog": 3.28,
+      "tabelogReviews": 32,
+      "google": 4.3,
+      "googleReviews": 174,
+      "note": null
+    },
+    "notes": "浦村牡蠣吃到飽。",
+    "group": {
+      "seats": null,
+      "privateRoom": false,
+      "buyout": null,
+      "groupMenu": null,
+      "source": "食べログ：沒有席数、予約可",
+      "note": null,
+      "fit15": "unknown",
+      "fitSubgroup": "unknown"
+    },
+    "reservation": {
+      "methods": [
+        "phone"
+      ],
+      "phone": "0599-32-5866",
+      "url": null,
+      "language": "日文",
+      "note": "觀光三重沒寫預約方式",
+      "accepted": "yes"
+    },
+    "seating": [],
+    "kids": "小孩 ¥1,850（觀光三重）",
+    "smoking": null,
+    "extra": {
+      "region": "浦村",
+      "inclusion": "B",
+      "tabelogOwner": false,
+      "conflicts": [
+        "Google 寫週二、週三公休（觀光三重：週二，年內週二、三）；2 月照觀光三重應該只休週二"
+      ]
+    }
+  },
+  {
+    "id": "toba-hakkai",
+    "type": "restaurant",
+    "name": {
+      "ja": "はっかい",
+      "kana": "はっかい",
+      "zh": "海之食堂 Hakkai",
+      "en": null
+    },
+    "area": "toba",
+    "coords": [
+      136.883249,
+      34.440101
+    ],
+    "coordsSource": "google-maps-url",
+    "address": "三重県鳥羽市浦村町1204-3",
+    "hours": {
+      "mon": [
+        [
+          "10:00",
+          "15:00"
+        ]
+      ],
+      "tue": [
+        [
+          "10:00",
+          "15:00"
+        ]
+      ],
+      "wed": [
+        [
+          "10:00",
+          "15:00"
+        ]
+      ],
+      "thu": [],
+      "fri": [
+        [
+          "10:00",
+          "15:00"
+        ]
+      ],
+      "sat": [
+        [
+          "10:00",
+          "15:00"
+        ]
+      ],
+      "sun": [
+        [
+          "10:00",
+          "15:00"
+        ]
+      ],
+      "holiday": null,
+      "note": "觀光三重：10:00～16:00（L.O.）；牡蠣吃到飽 11:00～、12:30～、14:00～"
+    },
+    "closedNote": "週四公休（觀光三重、Google）",
+    "febNote": "牡蠣一年四季都有（生牡蠣到 3 月）；吃到飽 2026 年營業期間、價格未定（觀光三重 17 選：大人 ¥3,500、小學生 ¥2,500、3 歲以上 ¥2,000，是舊資料）",
+    "photos": [],
+    "links": {
+      "official": "https://toba-hakkai.com/",
+      "googleMaps": "https://maps.google.com/?cid=11577538777607579124",
+      "tabelog": "https://tabelog.com/mie/A2403/A240302/24010565/",
+      "instagram": null
+    },
+    "tags": [],
+    "tier": null,
+    "sources": [
+      {
+        "retrieved": "2026-10-17",
+        "note": "店舗情報：分數、席數、預約、營業時間、お子様連れ",
+        "type": "tabelog",
+        "url": "https://tabelog.com/mie/A2403/A240302/24010565/"
+      },
+      {
+        "retrieved": "2026-10-17",
+        "note": "星數、評論數、營業時間、座標",
+        "type": "google-maps",
+        "url": "https://maps.google.com/?cid=11577538777607579124"
+      },
+      {
+        "type": "tourism",
+        "url": "https://www.kankomie.or.jp/season/article/110",
+        "retrieved": "2026-10-17",
+        "note": "觀光三重「鳥羽浦村牡蠣食べ放題 17 選」（2026-10-05 刊登，2026～27 季）"
+      },
+      {
+        "type": "tourism",
+        "url": "https://www.kankomie.or.jp/event/39679",
+        "retrieved": "2026-10-17",
+        "note": "觀光三重「食べ放題以外的浦村牡蠣店」（2025 年 10 月時點）"
+      },
+      {
+        "type": "tourism",
+        "url": "https://www.toba.gr.jp/feature/abc/",
+        "retrieved": "2026-10-17",
+        "note": "鳥羽市觀光協會 浦村牡蠣特集"
+      },
+      {
+        "type": "media",
+        "url": "https://www.nap-camp.com/mag/50903",
+        "retrieved": "2026-10-17",
+        "note": "なっぷ「鳥羽のおすすめ人気ランチ11選」（2026-10-01 更新）"
+      }
+    ],
+    "verified": false,
+    "anchors": [
+      {
+        "id": "kamo",
+        "walkMinutes": 55,
+        "walkSource": "estimate"
+      }
+    ],
+    "contexts": [
+      "lunch"
+    ],
+    "cuisine": [
+      "日本料理",
+      "海鮮",
+      "牡蠣",
+      "牡蠣吃到飽"
+    ],
+    "priceRange": "¥2,000～2,999",
+    "mustTry": [],
+    "menu": [],
+    "ratings": {
+      "tabelog": 3.27,
+      "tabelogReviews": 62,
+      "google": 4.1,
+      "googleReviews": 342,
+      "note": null
+    },
+    "notes": "Google 店名「海の食堂 はっかい」。電話預約。",
+    "group": {
+      "seats": 30,
+      "privateRoom": false,
+      "buyout": "不可",
+      "groupMenu": null,
+      "source": "食べログ：席数 30（「30くらいだと思います」，投稿者估計）、予約可、貸切不可",
+      "note": "席數是食べログ投稿者估的",
+      "fit15": "split",
+      "fitSubgroup": "yes"
+    },
+    "reservation": {
+      "methods": [
+        "phone"
+      ],
+      "phone": "0599-32-5999",
+      "url": null,
+      "language": "日文",
+      "note": null,
+      "accepted": "yes"
+    },
+    "seating": [],
+    "kids": null,
+    "smoking": "全席禁煙",
+    "extra": {
+      "region": "浦村",
+      "inclusion": "BF",
+      "tabelogOwner": false,
+      "conflicts": [
+        "食べログ（非店舗会員）寫週三、週四公休、10:00～15:30；Google 寫週四公休、10:00～15:00；觀光三重寫 10:00～16:00（L.O.）、週四休。採用 Google"
+      ],
+      "googleName": "海の食堂 はっかい"
+    }
+  },
+  {
+    "id": "toba-hamahide-suisan",
+    "type": "restaurant",
+    "name": {
+      "ja": "浜英水産",
+      "kana": "はまひですいさん",
+      "zh": "濱英水產（牡蠣吃到飽）",
+      "en": null
+    },
+    "area": "toba",
+    "coords": [
+      136.884382,
+      34.4419519
+    ],
+    "coordsSource": "google-maps-url",
+    "address": "三重県鳥羽市浦村町1212-6",
+    "hours": {
+      "mon": [
+        [
+          "11:00",
+          "14:30"
+        ]
+      ],
+      "tue": [
+        [
+          "11:00",
+          "14:30"
+        ]
+      ],
+      "wed": [],
+      "thu": [
+        [
+          "11:00",
+          "14:30"
+        ]
+      ],
+      "fri": [
+        [
+          "11:00",
+          "14:30"
+        ]
+      ],
+      "sat": [
+        [
+          "11:00",
+          "14:30"
+        ]
+      ],
+      "sun": [
+        [
+          "11:00",
+          "14:30"
+        ]
+      ],
+      "holiday": null,
+      "note": "兩部制 11:00～12:30、13:00～14:30（觀光三重）；只在冬季營業"
+    },
+    "closedNote": "週三公休、年末年始（觀光三重；食べログ另寫週四）",
+    "febNote": "只在冬季營業（每年 11 月～牡蠣賣完為止）；2026～27 季 10/31 開始（觀光三重 17 選）；大人 ¥3,800（國中以上）、小學生 ¥1,800、未上小學 ¥500、3 歲以下免費",
+    "photos": [],
+    "links": {
+      "official": "http://hamahide.com/",
+      "googleMaps": "https://maps.google.com/?cid=14107571674208324188",
+      "tabelog": "https://tabelog.com/mie/A2403/A240302/24013197/",
+      "instagram": null
+    },
+    "tags": [],
+    "tier": null,
+    "sources": [
+      {
+        "retrieved": "2026-10-17",
+        "note": "店舗情報：分數、席數、預約、營業時間、お子様連れ",
+        "type": "tabelog",
+        "url": "https://tabelog.com/mie/A2403/A240302/24013197/"
+      },
+      {
+        "retrieved": "2026-10-17",
+        "note": "星數、評論數、營業時間、座標",
+        "type": "google-maps",
+        "url": "https://maps.google.com/?cid=14107571674208324188"
+      },
+      {
+        "type": "tourism",
+        "url": "https://www.kankomie.or.jp/season/article/110",
+        "retrieved": "2026-10-17",
+        "note": "觀光三重「鳥羽浦村牡蠣食べ放題 17 選」（2026-10-05 刊登，2026～27 季）"
+      },
+      {
+        "type": "media",
+        "url": "https://www.mapple.net/article/32188/",
+        "retrieved": "2026-10-17",
+        "note": "まっぷる「鳥羽のかき小屋＆かき料理の人気店」（2025-03-21 更新）"
+      }
+    ],
+    "verified": false,
+    "anchors": [
+      {
+        "id": "kamo",
+        "walkMinutes": 57,
+        "walkSource": "estimate"
+      }
+    ],
+    "contexts": [
+      "lunch"
+    ],
+    "cuisine": [
+      "牡蠣",
+      "牡蠣吃到飽",
+      "海鮮"
+    ],
+    "priceRange": "吃到飽 大人 ¥3,800、小學生 ¥1,800",
+    "mustTry": [],
+    "menu": [],
+    "ratings": {
+      "tabelog": 3.19,
+      "tabelogReviews": 32,
+      "google": 4.4,
+      "googleReviews": 218,
+      "note": null
+    },
+    "notes": "完全預約制，電話預約 10:00～17:00（預約專用 090-5617-1817，觀光三重）。",
+    "group": {
+      "seats": 60,
+      "privateRoom": false,
+      "buyout": null,
+      "groupMenu": null,
+      "source": "食べログ：席数 60、完全予約制",
+      "note": null,
+      "fit15": "split",
+      "fitSubgroup": "yes"
+    },
+    "reservation": {
+      "methods": [
+        "phone"
+      ],
+      "phone": "090-5617-1817",
+      "url": null,
+      "language": "日文",
+      "note": "完全預約制；電話 10:00～17:00；週三（第 1 個週三除外）和公休日不接電話（食べログ）；食べログ電話 0599-32-5932",
+      "accepted": "yes"
+    },
+    "seating": [],
+    "kids": "小學生 ¥1,800、未上小學 ¥500、3 歲以下免費（觀光三重）",
+    "smoking": "全席禁煙",
+    "extra": {
+      "region": "浦村",
+      "inclusion": "B",
+      "tabelogOwner": false,
+      "conflicts": [
+        "公休：Google、觀光三重寫週三；食べログ（非店舗会員）寫週三、週四"
+      ]
+    }
+  },
+  {
+    "id": "toba-eijimaru",
+    "type": "restaurant",
+    "name": {
+      "ja": "浦村カキ 英治丸",
+      "kana": "えいじまる",
+      "zh": "英治丸（烤牡蠣小屋）",
+      "en": null
+    },
+    "area": "toba",
+    "coords": [
+      136.8957096,
+      34.4421612
+    ],
+    "coordsSource": "google-maps-url",
+    "address": "三重県鳥羽市浦村町1429-6",
+    "hours": {
+      "mon": [
+        [
+          "09:00",
+          "15:00"
+        ]
+      ],
+      "tue": [],
+      "wed": [],
+      "thu": [
+        [
+          "09:00",
+          "15:00"
+        ]
+      ],
+      "fri": [
+        [
+          "09:00",
+          "15:00"
+        ]
+      ],
+      "sat": [
+        [
+          "09:00",
+          "15:00"
+        ]
+      ],
+      "sun": [
+        [
+          "09:00",
+          "15:00"
+        ]
+      ],
+      "holiday": null,
+      "note": "觀光三重（2025 年 10 月時點）；觀光協會寫週二＆不定休"
+    },
+    "closedNote": "週二、週三公休（觀光三重）；觀光協會寫週二＆不定休",
+    "febNote": "冬季牡蠣（真牡蠣）11 月～3 月（觀光三重、觀光協會）",
+    "photos": [],
+    "links": {
+      "official": "http://eijimaru.com/",
+      "googleMaps": "https://maps.google.com/?cid=8318489128445722656",
+      "tabelog": "https://tabelog.com/mie/A2403/A240302/24008876/",
+      "instagram": null
+    },
+    "tags": [],
+    "tier": null,
+    "sources": [
+      {
+        "retrieved": "2026-10-17",
+        "note": "店舗情報：分數、席數、預約、營業時間、お子様連れ",
+        "type": "tabelog",
+        "url": "https://tabelog.com/mie/A2403/A240302/24008876/"
+      },
+      {
+        "retrieved": "2026-10-17",
+        "note": "星數、評論數、營業時間、座標",
+        "type": "google-maps",
+        "url": "https://maps.google.com/?cid=8318489128445722656"
+      },
+      {
+        "type": "tourism",
+        "url": "https://www.kankomie.or.jp/event/39679",
+        "retrieved": "2026-10-17",
+        "note": "觀光三重「食べ放題以外的浦村牡蠣店」（2025 年 10 月時點）"
+      },
+      {
+        "type": "tourism",
+        "url": "https://www.toba.gr.jp/feature/abc/",
+        "retrieved": "2026-10-17",
+        "note": "鳥羽市觀光協會 浦村牡蠣特集"
+      }
+    ],
+    "verified": false,
+    "anchors": [
+      {
+        "id": "kamo",
+        "walkMinutes": 73,
+        "walkSource": "estimate"
+      },
+      {
+        "id": "toba-sea-folk-museum",
+        "walkMinutes": 14,
+        "walkSource": "estimate"
+      }
+    ],
+    "contexts": [
+      "lunch",
+      "snack"
+    ],
+    "cuisine": [
+      "牡蠣",
+      "烤牡蠣"
+    ],
+    "priceRange": "～¥999",
+    "mustTry": [],
+    "menu": [],
+    "ratings": {
+      "tabelog": 3.13,
+      "tabelogReviews": 60,
+      "google": 4.4,
+      "googleReviews": 362,
+      "note": "Google 有 3 筆：「英治丸かき直売所」4.4／362（採用）、「株式会社英治丸」4.5／77、「英治丸」5.0／2"
+    },
+    "notes": "牡蠣養殖業者的直售所附設烤牡蠣小屋，有露天座位，可以外帶（附保冷）。不能預約（食べログ）。",
+    "group": {
+      "seats": null,
+      "privateRoom": false,
+      "buyout": "不可",
+      "groupMenu": null,
+      "source": "食べログ：沒有席数、予約不可、貸切不可",
+      "note": null,
+      "fit15": "unknown",
+      "fitSubgroup": "unknown"
+    },
+    "reservation": {
+      "methods": [],
+      "phone": "0599-32-5519",
+      "url": null,
+      "language": "日文",
+      "note": null,
+      "accepted": "no"
+    },
+    "seating": [
+      "terrace"
+    ],
+    "kids": null,
+    "smoking": null,
+    "extra": {
+      "region": "浦村",
+      "inclusion": "BF",
+      "tabelogOwner": false,
+      "googleOther": [
+        "株式会社英治丸 4.5／77（0599-32-5960）",
+        "英治丸 5.0／2（浦村町，餐廳）"
+      ],
+      "conflicts": [
+        "食べログ沒有營業時間；Google 列表顯示 9:00 開"
+      ],
+      "googleName": "英治丸かき直売所"
+    }
+  },
+  {
+    "id": "toba-marugen-suisan",
+    "type": "restaurant",
+    "name": {
+      "ja": "マル源水産",
+      "kana": "まるげんすいさん",
+      "zh": "丸源水產（牡蠣吃到飽）",
+      "en": null
+    },
+    "area": "toba",
+    "coords": [
+      136.8913688,
+      34.444633
+    ],
+    "coordsSource": "google-maps-url",
+    "address": "三重県鳥羽市浦村町1509-5",
+    "hours": {
+      "mon": [
+        [
+          "11:00",
+          "14:30"
+        ]
+      ],
+      "tue": [],
+      "wed": [
+        [
+          "11:00",
+          "14:30"
+        ]
+      ],
+      "thu": [
+        [
+          "11:00",
+          "14:30"
+        ]
+      ],
+      "fri": [
+        [
+          "11:00",
+          "14:30"
+        ]
+      ],
+      "sat": [
+        [
+          "11:00",
+          "12:20"
+        ],
+        [
+          "13:00",
+          "14:20"
+        ]
+      ],
+      "sun": [
+        [
+          "11:00",
+          "12:20"
+        ],
+        [
+          "13:00",
+          "14:20"
+        ]
+      ],
+      "holiday": [
+        [
+          "11:00",
+          "12:20"
+        ],
+        [
+          "13:00",
+          "14:20"
+        ]
+      ],
+      "note": "觀光三重 17 選：平日 11:00～14:30，週末假日兩部制；暫時週二、週三都休"
+    },
+    "closedNote": "週二公休、新年（觀光三重：暫時週二、週三休）；只在牡蠣季營業",
+    "febNote": "只在牡蠣季營業（食べログ：春～夏休息）；2026～27 季開始日未定、已開放預約（觀光三重 17 選）；大人 ¥3,500（國中以上）、小學生 ¥1,750、未上小學免費。Google 在 2026-10-17 顯示「臨時休業」（季節前）。",
+    "photos": [],
+    "links": {
+      "official": "https://kaki-marugen.com/about/",
+      "googleMaps": "https://maps.google.com/?cid=8865908057707236039",
+      "tabelog": "https://tabelog.com/mie/A2403/A240302/24006991/",
+      "instagram": null
+    },
+    "tags": [],
+    "tier": null,
+    "sources": [
+      {
+        "retrieved": "2026-10-17",
+        "note": "店舗情報：分數、席數、預約、營業時間、お子様連れ",
+        "type": "tabelog",
+        "url": "https://tabelog.com/mie/A2403/A240302/24006991/"
+      },
+      {
+        "retrieved": "2026-10-17",
+        "note": "星數、評論數、營業時間、座標",
+        "type": "google-maps",
+        "url": "https://maps.google.com/?cid=8865908057707236039"
+      },
+      {
+        "type": "tourism",
+        "url": "https://www.kankomie.or.jp/season/article/110",
+        "retrieved": "2026-10-17",
+        "note": "觀光三重「鳥羽浦村牡蠣食べ放題 17 選」（2026-10-05 刊登，2026～27 季）"
+      }
+    ],
+    "verified": false,
+    "anchors": [
+      {
+        "id": "kamo",
+        "walkMinutes": 67,
+        "walkSource": "estimate"
+      },
+      {
+        "id": "toba-sea-folk-museum",
+        "walkMinutes": 15,
+        "walkSource": "estimate"
+      }
+    ],
+    "contexts": [
+      "lunch"
+    ],
+    "cuisine": [
+      "牡蠣",
+      "牡蠣吃到飽",
+      "日本料理"
+    ],
+    "priceRange": "吃到飽 大人 ¥3,500、小學生 ¥1,750",
+    "mustTry": [],
+    "menu": [],
+    "ratings": {
+      "tabelog": 3.13,
+      "tabelogReviews": 33,
+      "google": 4.3,
+      "googleReviews": 303,
+      "note": null
+    },
+    "notes": "電話預約 10:00～19:00（觀光三重）。",
+    "group": {
+      "seats": null,
+      "privateRoom": false,
+      "buyout": null,
+      "groupMenu": null,
+      "source": "食べログ：沒有席数、予約可",
+      "note": null,
+      "fit15": "unknown",
+      "fitSubgroup": "unknown"
+    },
+    "reservation": {
+      "methods": [
+        "phone"
+      ],
+      "phone": "0599-32-5742",
+      "url": null,
+      "language": "日文",
+      "note": "觀光三重：電話預約 10:00～19:00（080-6904-1888、0599-32-5742）",
+      "accepted": "yes"
+    },
+    "seating": [],
+    "kids": "小學生 ¥1,750、未上小學免費（觀光三重）",
+    "smoking": null,
+    "extra": {
+      "region": "浦村",
+      "inclusion": "F",
+      "tabelogOwner": false,
+      "googleStatus": "臨時休業（2026-10-17）",
+      "conflicts": [
+        "食べログ（非店舗会員）寫 10:00～15:00、期間中無休；採用觀光三重 17 選（Google 沒有營業時間，店家官網沒查）"
+      ]
+    }
+  },
+  {
+    "id": "toba-maruzen-suisan",
+    "type": "restaurant",
+    "name": {
+      "ja": "丸善水産",
+      "kana": "まるぜんすいさん",
+      "zh": "丸善水產（海上烤牡蠣吃到飽）",
+      "en": null
+    },
+    "area": "toba",
+    "coords": [
+      136.8867645,
+      34.4443359
+    ],
+    "coordsSource": "google-maps-url",
+    "address": "三重県鳥羽市浦村町1229-67 牡蠣横丁",
+    "hours": {
+      "mon": [
+        [
+          "11:00",
+          "12:20"
+        ],
+        [
+          "12:40",
+          "14:00"
+        ]
+      ],
+      "tue": [
+        [
+          "11:00",
+          "12:20"
+        ],
+        [
+          "12:40",
+          "14:00"
+        ]
+      ],
+      "wed": [
+        [
+          "11:00",
+          "12:20"
+        ],
+        [
+          "12:40",
+          "14:00"
+        ]
+      ],
+      "thu": [
+        [
+          "11:00",
+          "12:20"
+        ],
+        [
+          "12:40",
+          "14:00"
+        ]
+      ],
+      "fri": [
+        [
+          "11:00",
+          "12:20"
+        ],
+        [
+          "12:40",
+          "14:00"
+        ]
+      ],
+      "sat": [
+        [
+          "10:50",
+          "12:10"
+        ],
+        [
+          "12:30",
+          "13:50"
+        ],
+        [
+          "14:10",
+          "15:30"
+        ]
+      ],
+      "sun": [
+        [
+          "10:50",
+          "12:10"
+        ],
+        [
+          "12:30",
+          "13:50"
+        ],
+        [
+          "14:10",
+          "15:30"
+        ]
+      ],
+      "holiday": [
+        [
+          "10:50",
+          "12:10"
+        ],
+        [
+          "12:30",
+          "13:50"
+        ],
+        [
+          "14:10",
+          "15:30"
+        ]
+      ],
+      "note": "每場 80 分鐘入替制"
+    },
+    "closedNote": "不定休（觀光三重、觀光協會）",
+    "febNote": "2026～27 季開始日未定、已開放預約（觀光三重 17 選）；大人 ¥3,850、小孩 ¥1,925；帶學齡前兒童不能預約（我們的小孩 6～10 歲，不受影響）",
+    "photos": [],
+    "links": {
+      "official": "http://www.maruzensuisan.com",
+      "googleMaps": "https://maps.google.com/?cid=4549296235940211075",
+      "tabelog": "https://tabelog.com/mie/A2403/A240302/24009013/",
+      "instagram": null
+    },
+    "tags": [],
+    "tier": null,
+    "sources": [
+      {
+        "retrieved": "2026-10-17",
+        "note": "店舗情報：分數、席數、預約、營業時間、お子様連れ",
+        "type": "tabelog",
+        "url": "https://tabelog.com/mie/A2403/A240302/24009013/"
+      },
+      {
+        "retrieved": "2026-10-17",
+        "note": "星數、評論數、營業時間、座標",
+        "type": "google-maps",
+        "url": "https://maps.google.com/?cid=4549296235940211075"
+      },
+      {
+        "type": "tourism",
+        "url": "https://www.kankomie.or.jp/season/article/110",
+        "retrieved": "2026-10-17",
+        "note": "觀光三重「鳥羽浦村牡蠣食べ放題 17 選」（2026-10-05 刊登，2026～27 季）"
+      },
+      {
+        "type": "tourism",
+        "url": "https://www.toba.gr.jp/feature/abc/",
+        "retrieved": "2026-10-17",
+        "note": "鳥羽市觀光協會 浦村牡蠣特集"
+      },
+      {
+        "type": "media",
+        "url": "https://www.mapple.net/article/32188/",
+        "retrieved": "2026-10-17",
+        "note": "まっぷる「鳥羽のかき小屋＆かき料理の人気店」（2025-03-21 更新）"
+      }
+    ],
+    "verified": false,
+    "anchors": [
+      {
+        "id": "kamo",
+        "walkMinutes": 60,
+        "walkSource": "estimate"
+      },
+      {
+        "id": "toba-sea-folk-museum",
+        "walkMinutes": 21,
+        "walkSource": "estimate"
+      }
+    ],
+    "contexts": [
+      "lunch"
+    ],
+    "cuisine": [
+      "牡蠣",
+      "牡蠣吃到飽",
+      "炸牡蠣"
+    ],
+    "priceRange": "吃到飽 大人 ¥3,850、小孩 ¥1,925",
+    "mustTry": [],
+    "menu": [],
+    "ratings": {
+      "tabelog": 3.09,
+      "tabelogReviews": 27,
+      "google": 3.7,
+      "googleReviews": 156,
+      "note": null
+    },
+    "notes": "在鳥羽灣海上的浮台吃烤牡蠣吃到飽（觀光三重的店名「海上焼き牡蠣食べ放題 丸善水産」）。只能從官網預約。調味料只有醬油和醬汁，其他要自備，可以帶啤酒等。",
+    "group": {
+      "seats": null,
+      "privateRoom": false,
+      "buyout": null,
+      "groupMenu": null,
+      "source": "食べログ：沒有席数、予約可",
+      "note": null,
+      "fit15": "unknown",
+      "fitSubgroup": "unknown"
+    },
+    "reservation": {
+      "methods": [
+        "web"
+      ],
+      "phone": "0599-32-5808",
+      "url": "http://www.maruzensuisan.com",
+      "language": "日文",
+      "note": "觀光三重：只能從官網預約；帶學齡前兒童不能預約",
+      "accepted": "yes"
+    },
+    "seating": [],
+    "kids": "小孩 ¥1,925；帶學齡前兒童不能預約（觀光三重）",
+    "smoking": null,
+    "extra": {
+      "region": "浦村",
+      "inclusion": "B",
+      "tabelogOwner": false,
+      "googleName": "（有）丸善水産",
+      "conflicts": [
+        "Google 平日寫 11:00～14:10（一筆時段）"
+      ]
+    }
   }
 ]
