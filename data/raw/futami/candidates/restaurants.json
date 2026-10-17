@@ -12,6 +12,7 @@
     ],
     "reason": null,
     "pointId": null,
+    "detailPending": true,
     "ratings": {
       "tabelog": 3.49,
       "tabelogReviews": 203
@@ -37,6 +38,7 @@
     ],
     "reason": null,
     "pointId": null,
+    "detailPending": true,
     "ratings": {
       "tabelog": 3.45,
       "tabelogReviews": 100
@@ -63,6 +65,7 @@
     ],
     "reason": null,
     "pointId": null,
+    "detailPending": true,
     "ratings": {
       "tabelog": 3.44,
       "tabelogReviews": 133
@@ -88,6 +91,7 @@
     ],
     "reason": null,
     "pointId": null,
+    "detailPending": true,
     "ratings": {
       "tabelog": 3.43,
       "tabelogReviews": 188
@@ -114,6 +118,7 @@
     ],
     "reason": null,
     "pointId": null,
+    "detailPending": true,
     "ratings": {
       "tabelog": 3.42,
       "tabelogReviews": 56
@@ -139,6 +144,7 @@
     ],
     "reason": null,
     "pointId": null,
+    "detailPending": true,
     "ratings": {
       "tabelog": 3.41,
       "tabelogReviews": 61
@@ -165,6 +171,7 @@
     ],
     "reason": null,
     "pointId": null,
+    "detailPending": true,
     "ratings": {
       "tabelog": 3.31,
       "tabelogReviews": 34
@@ -191,6 +198,7 @@
     ],
     "reason": null,
     "pointId": null,
+    "detailPending": true,
     "ratings": {
       "tabelog": 3.29,
       "tabelogReviews": 128
@@ -216,6 +224,7 @@
     ],
     "reason": null,
     "pointId": null,
+    "detailPending": true,
     "ratings": {
       "tabelog": 3.21,
       "tabelogReviews": 21
@@ -242,6 +251,7 @@
     ],
     "reason": null,
     "pointId": null,
+    "detailPending": true,
     "ratings": {
       "tabelog": 3.2,
       "tabelogReviews": 23
@@ -267,6 +277,7 @@
     ],
     "reason": null,
     "pointId": null,
+    "detailPending": true,
     "ratings": {
       "tabelog": 3.16,
       "tabelogReviews": 39
@@ -292,6 +303,7 @@
     ],
     "reason": null,
     "pointId": null,
+    "detailPending": true,
     "ratings": {
       "tabelog": 3.15,
       "tabelogReviews": 20
@@ -318,6 +330,7 @@
     ],
     "reason": null,
     "pointId": null,
+    "detailPending": true,
     "ratings": {
       "tabelog": 3.09,
       "tabelogReviews": 14
@@ -878,6 +891,7 @@
     ],
     "reason": null,
     "pointId": null,
+    "detailPending": true,
     "ratings": {
       "tabelog": 3.39,
       "tabelogReviews": 105
@@ -904,6 +918,7 @@
     ],
     "reason": null,
     "pointId": null,
+    "detailPending": true,
     "ratings": {
       "tabelog": 3.17,
       "tabelogReviews": 21
@@ -929,6 +944,7 @@
     ],
     "reason": null,
     "pointId": null,
+    "detailPending": true,
     "ratings": {
       "tabelog": 3.17,
       "tabelogReviews": 16
@@ -954,6 +970,7 @@
     ],
     "reason": null,
     "pointId": null,
+    "detailPending": true,
     "ratings": {
       "tabelog": 3.08,
       "tabelogReviews": 14

@@ -270,8 +270,11 @@ function main() {
         if (keys.has(c.key)) err(shown, `候選 key「${c.key}」重複`);
         keys.add(c.key);
         if (c.status === 'included' && !c.pointId) {
-          (dataExists ? err : warn)(shown, `[${c.key}] status 是 included，但沒有 pointId${dataExists ? '' : '（資料檔還沒建立）'}`);
+          // detailPending：詳細資料任務（例如 T8d）分批進行中，還沒查到的店只警告；收尾任務要清掉
+          const soft = !dataExists || c.detailPending === true;
+          (soft ? warn : err)(shown, `[${c.key}] status 是 included，但沒有 pointId${dataExists ? (soft ? '（detailPending）' : '') : '（資料檔還沒建立）'}`);
         }
+        if (c.detailPending === true && c.pointId) warn(shown, `[${c.key}] 已有 pointId，detailPending 要拿掉`);
         checkRef(shown, c.key, 'pointId', c.pointId);
         if (c.region && area && !(area.regions ?? []).some((g) => g.id === c.region)) {
           err(shown, `[${c.key}] region「${c.region}」不在 areas.json 區域「${area.id}」的 regions 裡`);
