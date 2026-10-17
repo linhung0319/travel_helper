@@ -15,6 +15,11 @@ T7b（2026-10-18）從 T2～T4c 的筆記集中過來；原本的上下文見 `l
 - [ ] toba-ichibangai：2 月的週四有沒有公休（星期四不定休，看官網營業日曆）
 - [ ] toba-toshijima-wagu：島の旅社「九鬼嘉隆史跡巡りツアー」2 月有沒有團（官網寫 4 月 1 日開始）
 - [ ] toba-toshijima-toshi：島の旅社「路地裏散策ツアー」2 月有沒有實施（大人 4 人以上 2,000 円、4 天前預約；實施期間沒寫）
+- [ ] toba-toshijima-toshi：2027 年八幡神社神祭（弓引神事、獅子舞）的日期（2026 年是 2/14～15，可能落在旅程內；國交省資料寫 1 月，衝突；鳥羽市観光商工課 0599-25-1157）
+- [ ] toba-port-wagu／toba-port-toshi／toba-port-sugashima／toba-port-kamishima：2 月的停航頻率、15 人搭定期船要不要事先聯絡（官方沒寫；定期船課 0599-25-4776）
+- [ ] toba-sea-folk-museum：長輩走得了嗎（沒有電梯、B 棟室外坡道 8 度 40 m、A 棟 3F 16 階）、能不能借輪椅 2 台以上（T7c 讀文）
+- [ ] toba-kamishima-kantekisho：屋頂現在有沒有柵欄（小孩上屋頂的安全；來源只暗示以前沒有）
+- [ ] toba-hiyoriyama-observatory、toba-izawa-jinja：是不是全天可自由參觀（T7c 依「戶外、無人」推定 hours.always，沒有來源寫明）
 
 ## 住宿
 
