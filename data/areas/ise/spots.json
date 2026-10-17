@@ -76,10 +76,32 @@
         "note": "2/11 建國紀念日（國定假日，週四）：外宮 7:00 建国記念祭（神宮官網）；假日參拜人多"
       }
     ],
-    "photos": [],
+    "photos": [
+      {
+        "url": "https://www.isejingu.or.jp/asset/img/about/geku/top/kv_p01.webp",
+        "page": "https://www.isejingu.or.jp/about/geku/",
+        "kind": "official",
+        "credit": "神宮司庁",
+        "license": null
+      },
+      {
+        "url": "https://ise-kanko.jp/cms/wp-content/uploads/2021/03/course_isemairi_002-1.jpg",
+        "page": "https://ise-kanko.jp/purpose/geku/",
+        "kind": "official",
+        "credit": "伊勢市観光協会",
+        "license": null
+      },
+      {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/3/35/Kita-Mikado_Torii_of_Toyouke_Grand_Shrine.jpg",
+        "page": "https://commons.wikimedia.org/wiki/File:Kita-Mikado_Torii_of_Toyouke_Grand_Shrine.jpg",
+        "kind": "wikimedia",
+        "credit": "Wikimedia: そらみみ",
+        "license": "CC BY-SA 4.0"
+      }
+    ],
     "links": {
       "official": "https://www.isejingu.or.jp/about/geku/",
-      "googleMaps": null,
+      "googleMaps": "https://maps.google.com/?cid=11866489627809602503",
       "instagram": null
     },
     "tags": [
@@ -108,7 +130,7 @@
     ],
     "admission": "免費參拜",
     "phone": "0596-24-1111",
-    "stayMinutes": null,
+    "stayMinutes": 60,
     "indoor": false,
     "fares": {
       "adult": "免費",
@@ -119,16 +141,20 @@
     },
     "group": null,
     "accessibility": {
-      "walkInsideMinutes": null,
-      "stairs": null,
+      "walkInsideMinutes": 10,
+      "stairs": "多",
       "slope": null,
       "restAreas": null,
       "toilets": true,
       "barrierFree": "入口衛士見張所免費出借介助式輪椅（電動、手動），不接受預約，只能在宮域內使用；無障礙廁所在表參道前、停車場、巴士停車場各 1 處。",
-      "note": "入口（火除橋）到正宮步行約 10 分（神宮 FAQ）；別宮多賀宮在正宮後方的石階上（之後讀文確認階數）。嬰兒車不出借、不寄放。"
+      "note": "入口（火除橋）到正宮步行約 10 分（神宮 FAQ；部落格寫 5～7 分）。正宮路線有沒有石階沒有來源；別宮多賀宮要過御池的龜石、再爬 98 段石階（神宮官網），4travel 口碑說會喘、腳不好的人較難；土宮、風宮在石階下方不用爬，長輩可以只拜正宮和土宮、風宮。神域內禁止飲食。嬰兒車不出借、不寄放。"
     },
     "kids": null,
-    "ratings": null,
+    "ratings": {
+      "google": 4.7,
+      "googleReviews": 22976,
+      "note": "宮域內的別宮另有獨立的 Google 地點：多賀宮 4.5（180 則）、風宮 4.4（178 則）"
+    },
     "sources": [
       {
         "type": "tourism",
@@ -159,11 +185,42 @@
         "url": "https://www.openstreetmap.org/way/688114973",
         "retrieved": "2026-10-18",
         "note": "座標"
+      },
+      {
+        "type": "google-maps",
+        "url": "https://maps.google.com/?cid=11866489627809602503",
+        "retrieved": "2026-10-18",
+        "note": "星數、評論數、座標、照片（Google 名稱：豊受大神宮（伊勢神宮 外宮）；類別：神社）"
+      },
+      {
+        "type": "official",
+        "url": "https://www.isejingu.or.jp/about/geku/betsugu.html",
+        "retrieved": "2026-10-18",
+        "note": "多賀宮在 98 段石階上，土宮、風宮在石階下方"
+      },
+      {
+        "type": "blog-ja",
+        "url": "https://banzokubiology.com/https-your-site-com-isejingu-time/",
+        "retrieved": "2026-10-18",
+        "note": "外宮參拜 30～60 分（只拜正宮 20～30 分），入口到正宮 5～7 分（2025-04，像 SEO 文章）"
+      },
+      {
+        "type": "other",
+        "url": "https://4travel.jp/dm_shisetsu/10003993",
+        "retrieved": "2026-10-18",
+        "note": "多賀宮口碑 131 則、3.73 分：石階會喘，腳不好的人較難（2021～2024）"
+      },
+      {
+        "type": "blog-ja",
+        "url": "https://yamap.com/activities/46278375/article",
+        "retrieved": "2026-10-18",
+        "note": "2026-02-21 三連休 二見→外宮，人多、交通擁擠"
       }
     ],
     "verified": false,
     "extra": {
-      "betsugu": "宮域內有別宮 多賀宮、土宮、風宮（觀光協會）"
+      "betsugu": "宮域內有別宮 多賀宮、土宮、風宮（觀光協會）",
+      "stayMinutesNote": "只拜正宮約 20～30 分，含別宮約 30～60 分（banzokubiology，2025-04，像 SEO 文章）。"
     }
   },
   {
@@ -245,10 +302,32 @@
       }
     ],
     "events": [],
-    "photos": [],
+    "photos": [
+      {
+        "url": "https://www.sengukan.jp/wp/wp-content/themes/sengukan/img/top/mv_slider/img_01_sp.jpg",
+        "page": "https://www.sengukan.jp/",
+        "kind": "official",
+        "credit": "式年遷宮記念 せんぐう館",
+        "license": null
+      },
+      {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/c/cb/Sengukan%2C_Ise_Geku.jpg",
+        "page": "https://commons.wikimedia.org/wiki/File:Sengukan,_Ise_Geku.jpg",
+        "kind": "wikimedia",
+        "credit": "Wikimedia: Miyuki Meinaka",
+        "license": "CC BY-SA 3.0"
+      },
+      {
+        "url": "https://lh3.googleusercontent.com/grass-cs/AABkmLeAzpcrjDrry8YES31XPvA5zuGnBezpGjpsHaSZ5awMVxORYHARYtcTllk6RlyZNuQlRJkytxwbtwgA6s9LRh1NBYzVWZ_ubSxFxXT7wm2BE0vw7BINf9oMaqkOT4g1aljrYM0n=w408-h306-k-no",
+        "page": "https://maps.google.com/?cid=10049961925730401524",
+        "kind": "google",
+        "credit": "Google マップ（店家或使用者上傳）",
+        "license": null
+      }
+    ],
     "links": {
       "official": "https://www.sengukan.jp/",
-      "googleMaps": null,
+      "googleMaps": "https://maps.google.com/?cid=10049961925730401524",
       "instagram": null
     },
     "tags": [
@@ -272,7 +351,7 @@
     ],
     "admission": "大人 300 円、小中學生 100 円",
     "phone": "0596-22-6263",
-    "stayMinutes": null,
+    "stayMinutes": 30,
     "indoor": true,
     "fares": {
       "adult": "300 円（20 人以上團體 200 円）",
@@ -289,10 +368,17 @@
       "restAreas": true,
       "toilets": true,
       "barrierFree": "有電梯到地下樓層；輪椅可以參觀。",
-      "note": "館內不能飲食；旁邊的參拜者休憩所可以休息、有飲料。展示導覽 10:00～15:00 每整點約 15 分（第 5 展示室原寸模型前）。"
+      "note": "館內不能飲食；旁邊的參拜者休憩所可以休息、有飲料。展示導覽 10:00～15:00 每整點約 15 分（第 5 展示室原寸模型前）。入口附近有面向勾玉池的免費休憩所，有自動販賣機（4travel、All About 2017）。館內禁止攝影。"
     },
-    "kids": null,
-    "ratings": null,
+    "kids": {
+      "friendly": null,
+      "note": "官網親子導覽頁建議約 30 分看完，用親子問答看 1/6 遷御模型、神饌；沒有互動展品、沒有學習單，館內要安靜。多功能廁所有尿布台，沒有哺乳室。"
+    },
+    "ratings": {
+      "google": 4.5,
+      "googleReviews": 955,
+      "note": null
+    },
     "sources": [
       {
         "type": "tourism",
@@ -317,6 +403,42 @@
         "url": "https://www.openstreetmap.org/way/182850273",
         "retrieved": "2026-10-18",
         "note": "座標"
+      },
+      {
+        "type": "google-maps",
+        "url": "https://maps.google.com/?cid=10049961925730401524",
+        "retrieved": "2026-10-18",
+        "note": "星數、評論數、座標、照片（Google 名稱：式年遷宮記念せんぐう館；類別：博物館）"
+      },
+      {
+        "type": "official",
+        "url": "https://www.sengukan.jp/enjoy_family/",
+        "retrieved": "2026-10-18",
+        "note": "親子導覽：約 30 分看完、看點、尿布台、沒有哺乳室"
+      },
+      {
+        "type": "official",
+        "url": "https://www.sengukan.jp/exhibition_guide/",
+        "retrieved": "2026-10-18",
+        "note": "展示內容：外宮正殿原寸模型、1/20 配置模型、影片、工藝品"
+      },
+      {
+        "type": "tourism",
+        "url": "https://www.kankomie.or.jp/spot/21814",
+        "retrieved": "2026-10-18",
+        "note": "觀光三重專頁；2019-11 重新開幕"
+      },
+      {
+        "type": "other",
+        "url": "https://4travel.jp/dm_shisetsu/11331079",
+        "retrieved": "2026-10-18",
+        "note": "114 則平均 3.66，展示 4.22；人少、禁止攝影、可以看池休息"
+      },
+      {
+        "type": "media",
+        "url": "https://allabout.co.jp/gm/gc/453675",
+        "retrieved": "2026-10-18",
+        "note": "2017 年文章（超過 5 年）：免費休憩所有自動販賣機"
       }
     ],
     "verified": false,
@@ -344,13 +466,35 @@
       "note": "街道全天可走；沿路店家的營業時間各自不同。晚上有伊勢和紙行燈。"
     },
     "closedNote": null,
-    "febNote": null,
+    "febNote": "多數店家 17:00 左右打烊（例：せきや 8:30～17:00、伊勢菊一 9:00～17:00 週四休、木下茶園 11:00～17:00 週三休、山村みるくがっこう 10:00～17:00 無休；mapple 2025-03），傍晚以後逛的話店大多關了。",
     "closures": [],
     "events": [],
-    "photos": [],
+    "photos": [
+      {
+        "url": "https://ise-kanko.jp/cms/wp-content/uploads/2020/12/gekusandou.jpg",
+        "page": "https://ise-kanko.jp/purpose/gekuusandou/",
+        "kind": "official",
+        "credit": "伊勢市観光協会",
+        "license": null
+      },
+      {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/c/c7/Geku-Sando_Street_20190130-4.jpg",
+        "page": "https://commons.wikimedia.org/wiki/File:Geku-Sando_Street_20190130-4.jpg",
+        "kind": "wikimedia",
+        "credit": "Wikimedia: そらみみ",
+        "license": "CC BY-SA 4.0"
+      },
+      {
+        "url": "https://lh3.googleusercontent.com/grass-cs/AABkmLc3tPlQVDtfWIqJ9cJSH7QI74X2oFE8ODSjyTd8sG7TKs-wHdpx7YYl6zHA2RFaWXIFrXLhLZMdMrpSN2jY-iJsNQTMFkGr_heDt-uULXRm5dQLRSN0mplxkVUC-yyB4hIC-LLdrqPb32U=w408-h306-k-no",
+        "page": "https://maps.google.com/?cid=12198854952165116416",
+        "kind": "google",
+        "credit": "Google マップ（店家或使用者上傳）",
+        "license": null
+      }
+    ],
     "links": {
       "official": "https://ise-kanko.jp/purpose/gekuusandou/",
-      "googleMaps": null,
+      "googleMaps": "https://maps.google.com/?cid=12198854952165116416",
       "instagram": null
     },
     "tags": [],
@@ -375,9 +519,21 @@
     "indoor": false,
     "fares": null,
     "group": null,
-    "accessibility": null,
+    "accessibility": {
+      "walkInsideMinutes": 7,
+      "stairs": null,
+      "slope": null,
+      "restAreas": true,
+      "toilets": null,
+      "barrierFree": null,
+      "note": "伊勢市站到外宮約 400 m、步行約 7 分（觀光協會；觀光三重寫 5 分）。木下茶園 外宮前店有內用座位、參道TERRACE 店前有露天座位（mapple）。外宮前観光サービスセンター免費出借嬰兒車（只有 1 台）。"
+    },
     "kids": null,
-    "ratings": null,
+    "ratings": {
+      "google": 4.4,
+      "googleReviews": 19,
+      "note": "搜尋「外宮参道」有兩筆同名：4.4（19 則，取這筆）、另一筆 0 則；直接搜尋會跳到道路「伊勢市道外宮参道線」（沒有評論）。參道是商店街，評論數不代表人氣"
+    },
     "sources": [
       {
         "type": "tourism",
@@ -390,11 +546,41 @@
         "url": "https://www.openstreetmap.org/node/6131741660",
         "retrieved": "2026-10-18",
         "note": "座標（參道沒有獨立的 OSM 點，用參道中段的鈴木水産 外宮参道店）"
+      },
+      {
+        "type": "google-maps",
+        "url": "https://maps.google.com/?cid=12198854952165116416",
+        "retrieved": "2026-10-18",
+        "note": "星數、評論數、座標、照片（Google 名稱：外宮参道；類別：観光名所）"
+      },
+      {
+        "type": "tourism",
+        "url": "https://www.kankomie.or.jp/spot/23414",
+        "retrieved": "2026-10-18",
+        "note": "氣氛比內宮門前町安靜、新店多；寫步行 5 分"
+      },
+      {
+        "type": "media",
+        "url": "https://www.mapple.net/article/32572/",
+        "retrieved": "2026-10-18",
+        "note": "2025-03 更新，邊走邊吃店家的價格、營業時間、公休日"
+      },
+      {
+        "type": "tourism",
+        "url": "https://www.kankomie.or.jp/spot/22158",
+        "retrieved": "2026-10-18",
+        "note": "伊勢市站手荷物預かり所的營業時間、費用、當日配送"
+      },
+      {
+        "type": "tourism",
+        "url": "https://www.kankomie.or.jp/spot/23141",
+        "retrieved": "2026-10-18",
+        "note": "外宮前觀光服務中心：行李寄放 400 円、嬰兒車出借、單車出租"
       }
     ],
     "verified": false,
     "extra": {
-      "luggage": "伊勢市站前有手荷物預かり所和投幣置物櫃；在配送受理時間內寄放，當天可以把行李送到伊勢、鳥羽、志摩地區的住宿（離島除外）。外宮前觀光服務中心和部分參道店家也有付費寄放（觀光協會）。",
+      "luggage": "伊勢市站前有手荷物預かり所和投幣置物櫃；在配送受理時間內寄放，當天可以把行李送到伊勢、鳥羽、志摩地區的住宿（離島除外）（觀光協會）。觀光三重：手荷物預かり所 9:00～17:30 無休，寄放 1 件 600 円；13:10 前受理、當天 17:00 前送到住宿，1 件 1,150 円。外宮前観光サービスセンター 寄放 1 件 400 円（8:30～16:30）。營業到 17:00 或 17:30 來源不一致；15 人份行李能不能一次配送沒有來源。",
       "coordsNote": "參道沒有獨立的 OSM 點，座標用參道中段的店家位置"
     }
   },
@@ -470,10 +656,32 @@
     "febNote": null,
     "closures": [],
     "events": [],
-    "photos": [],
+    "photos": [
+      {
+        "url": "https://ise-kanko.jp/cms/wp-content/uploads/2021/03/tukiyominomiya-tokka.jpg",
+        "page": "https://ise-kanko.jp/purpose/tsukiyominomiya2/",
+        "kind": "official",
+        "credit": "伊勢市観光協会",
+        "license": null
+      },
+      {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/d/d0/Geku_Tsukiyomi_no_Miya_in_October_2016.jpg",
+        "page": "https://commons.wikimedia.org/wiki/File:Geku_Tsukiyomi_no_Miya_in_October_2016.jpg",
+        "kind": "wikimedia",
+        "credit": "Wikimedia: Miyuki Meinaka",
+        "license": "CC BY-SA 4.0"
+      },
+      {
+        "url": "https://lh3.googleusercontent.com/grass-cs/AABkmLfF_4FosErvuc-MvMXvun2UYXijemBDTYqgZJcvSDFQdIiVh7MNyivP5dVpFA7FNe5NQbgehpF44f764WDuuYMt-mmZmFdrAy_SQ7H6uZvI-2eDrvoBaWs_wcZD5Ez3xVe0pgUj=w408-h272-k-no",
+        "page": "https://maps.google.com/?cid=8527976512223609102",
+        "kind": "google",
+        "credit": "Google マップ（店家或使用者上傳）",
+        "license": null
+      }
+    ],
     "links": {
       "official": "https://www.isejingu.or.jp/",
-      "googleMaps": null,
+      "googleMaps": "https://maps.google.com/?cid=8527976512223609102",
       "instagram": null
     },
     "tags": [
@@ -506,9 +714,21 @@
     "indoor": false,
     "fares": null,
     "group": null,
-    "accessibility": null,
+    "accessibility": {
+      "walkInsideMinutes": null,
+      "stairs": null,
+      "slope": null,
+      "restAreas": null,
+      "toilets": null,
+      "barrierFree": null,
+      "note": "境內小，被樹齡數百年的楠木包圍（觀光三重）；階梯、廁所沒有來源。到外宮走「神路通」約 5 分。"
+    },
     "kids": null,
-    "ratings": null,
+    "ratings": {
+      "google": 4.5,
+      "googleReviews": 2022,
+      "note": null
+    },
     "sources": [
       {
         "type": "tourism",
@@ -527,10 +747,44 @@
         "url": "https://www.openstreetmap.org/way/561116140",
         "retrieved": "2026-10-18",
         "note": "座標"
+      },
+      {
+        "type": "google-maps",
+        "url": "https://maps.google.com/?cid=8527976512223609102",
+        "retrieved": "2026-10-18",
+        "note": "星數、評論數、座標、照片（Google 名稱：豊受大神宮別宮 月夜見宮；類別：神社）"
+      },
+      {
+        "type": "official",
+        "url": "https://www.isejingu.or.jp/about/outerbetsugu/",
+        "retrieved": "2026-10-18",
+        "note": "祭神同祀一殿、神路通直達外宮、伊勢市站步行 10 分"
+      },
+      {
+        "type": "tourism",
+        "url": "https://www.kankomie.or.jp/spot/2935",
+        "retrieved": "2026-10-18",
+        "note": "楠木環繞、伊勢市站步行 10 分"
+      },
+      {
+        "type": "media",
+        "url": "https://www.timeout.jp/tokyo/ja/things-to-do/ise-gosyuin-guide",
+        "retrieved": "2026-10-18",
+        "note": "2022 年；外宮步行 5 分、御朱印在宿衛屋"
+      },
+      {
+        "type": "blog-ja",
+        "url": "https://4travel.jp/travelogue/11664146",
+        "retrieved": "2026-10-18",
+        "note": "2020-12 旅行記（接近 5 年，舊）；先拜高河原神社，走到外宮約 5 分"
       }
     ],
     "verified": false,
-    "extra": {}
+    "extra": {
+      "conflicts": [
+        "伊勢市站步行時間：觀光協會、nap-camp 寫 5 分，神宮官網、觀光三重寫 10 分。"
+      ]
+    }
   },
   {
     "id": "ise-kawasaki",
@@ -599,10 +853,32 @@
     "febNote": "2 月週二（2/2、2/9）休館。每月第 4 個週日的「伊勢のだいどこ市」是 2/28，在旅程外。",
     "closures": [],
     "events": [],
-    "photos": [],
+    "photos": [
+      {
+        "url": "https://ise-kanko.jp/cms/wp-content/uploads/2021/01/kawsaksyouninnkan-scaled.jpg",
+        "page": "https://ise-kanko.jp/purpose/isekawasakishoninkan/",
+        "kind": "official",
+        "credit": "伊勢市観光協会",
+        "license": null
+      },
+      {
+        "url": "https://ise-kanko.jp/cms/wp-content/uploads/2021/01/kawasakinka-001.jpg",
+        "page": "https://ise-kanko.jp/purpose/isekawasakishoninkan/",
+        "kind": "official",
+        "credit": "伊勢市観光協会",
+        "license": null
+      },
+      {
+        "url": "https://lh3.googleusercontent.com/grass-cs/AABkmLdxe3HEV2Tb0LBcL9HLRKzGuHgtJrd72tI9HG0M90m5Iwd-cSyB9TD1SHE0n9jDOcxfNY29BH3KquvQ_c15q5dHngbbqfA53BBTD-0FvSpTUyxsI17RmPc1e3AHnlNiWWThEwBW7A=w408-h271-k-no",
+        "page": "https://maps.google.com/?cid=14662979831462572524",
+        "kind": "google",
+        "credit": "Google マップ（店家或使用者上傳）",
+        "license": null
+      }
+    ],
     "links": {
       "official": "http://www.isekawasaki.jp/",
-      "googleMaps": null,
+      "googleMaps": "https://maps.google.com/?cid=14662979831462572524",
       "instagram": null
     },
     "tags": [],
@@ -625,23 +901,44 @@
         "mode": "walk",
         "minutes": 15,
         "note": null
+      },
+      {
+        "from": "iseshi",
+        "mode": "bus",
+        "minutes": null,
+        "note": "三重交通「今一色」或「鳥羽」方向，「河崎百五前」下車步行 5 分；計程車約 5 分（官網）"
       }
     ],
     "admission": "大人 350 円、大學・高中生 200 円、中小學生 100 円",
     "phone": "0596-22-4810",
-    "stayMinutes": null,
-    "indoor": null,
+    "stayMinutes": 90,
+    "indoor": true,
     "fares": {
       "adult": "350 円",
       "child": "中小學生 100 円（大學・高中生 200 円）",
       "senior": null,
       "group": null,
-      "note": null
+      "note": "免費志工導覽（要預約）；館內賣復刻エスサイダー 1 瓶 200 円（官網）。"
     },
     "group": null,
-    "accessibility": null,
-    "kids": null,
-    "ratings": null,
+    "accessibility": {
+      "walkInsideMinutes": null,
+      "stairs": null,
+      "slope": null,
+      "restAreas": true,
+      "toilets": true,
+      "barrierFree": null,
+      "note": "看建物內部為主，各棟之間走室外中庭（官網）。茶室面庭園、商人蔵カフェ可以休息；「河崎厠」是輪椅可用的公共廁所。まちなみ館 2 樓是常設展（山田羽書），母屋有階段箪笥；樓梯陡度、要不要脫鞋沒有來源。"
+    },
+    "kids": {
+      "friendly": "high",
+      "note": "觀光三重 2021 年親子遊記：2 個小孩看展示很投入，愛玩唐箕（とうみ）風車；逛半天會累。"
+    },
+    "ratings": {
+      "google": 4,
+      "googleReviews": 304,
+      "note": null
+    },
     "sources": [
       {
         "type": "tourism",
@@ -654,11 +951,58 @@
         "url": "https://www.openstreetmap.org/node/2028461919",
         "retrieved": "2026-10-18",
         "note": "座標"
+      },
+      {
+        "type": "google-maps",
+        "url": "https://maps.google.com/?cid=14662979831462572524",
+        "retrieved": "2026-10-18",
+        "note": "星數、評論數、座標、照片（Google 名稱：伊勢河崎商人館；類別：地域歴史博物館）"
+      },
+      {
+        "type": "official",
+        "url": "http://www.isekawasaki.jp/info/",
+        "retrieved": "2026-10-18",
+        "note": "館內配置、開館 9:30～17:00、票價、免費導覽、輪椅可用的廁所"
+      },
+      {
+        "type": "official",
+        "url": "http://www.isekawasaki.jp/access/",
+        "retrieved": "2026-10-18",
+        "note": "步行、巴士、計程車路線，停車場 30 台"
+      },
+      {
+        "type": "official",
+        "url": "http://www.isekawasaki.jp/walk/",
+        "retrieved": "2026-10-18",
+        "note": "周邊店家：河崎蔵、つたや、播田屋等"
+      },
+      {
+        "type": "tourism",
+        "url": "https://www.kankomie.or.jp/report/874",
+        "retrieved": "2026-10-18",
+        "note": "2021 年親子遊記：小孩反應好，大人約 1～2 小時"
+      },
+      {
+        "type": "other",
+        "url": "https://iko-yo.net/facilities/27738",
+        "retrieved": "2026-10-18",
+        "note": "親子網站，口碑 0 則；寫商人館 9:30、商人蔵 10:00 開"
+      },
+      {
+        "type": "other",
+        "url": "https://www.gltjp.com/zh-hant/directory/item/12913/",
+        "retrieved": "2026-10-18",
+        "note": "中文介紹（2025-05 更新），沒有實用細節"
       }
     ],
     "verified": false,
     "extra": {
-      "description": "江戶～明治時代的倉庫 7 棟、町家 2 棟，河崎曾是供應參拜者物資的「伊勢的廚房」；展示日本最古老的紙幣「山田羽書」（觀光協會）。"
+      "description": "江戶～明治時代的倉庫 7 棟、町家 2 棟，河崎曾是供應參拜者物資的「伊勢的廚房」；展示日本最古老的紙幣「山田羽書」（觀光協會）。",
+      "stayMinutesNote": "觀光三重：大人約 1～2 小時，取中間 90 分。",
+      "parking": "停車場 3 處共 30 台（官網）",
+      "conflicts": [
+        "開館時間：官網 9:30～17:00；觀光協會 10:00～17:00（hours 照觀光協會填）；商人蔵 店家 10:00～17:00。"
+      ]
     }
   },
   {
@@ -733,10 +1077,32 @@
     "febNote": "2 月照常受理（要 5 天前預約）。",
     "closures": [],
     "events": [],
-    "photos": [],
+    "photos": [
+      {
+        "url": "https://www.wakamatsuya.co.jp/wp/wp-content/themes/wakamatsuya/img/tour/header.jpg",
+        "page": "https://www.wakamatsuya.co.jp/tour",
+        "kind": "official",
+        "credit": "若松屋",
+        "license": null
+      },
+      {
+        "url": "https://ise-kanko.jp/cms/wp-content/uploads/2021/03/wakamatsuya-kamaboko.jpg",
+        "page": "https://ise-kanko.jp/purpose/wakamatsuya-kamaboko/",
+        "kind": "official",
+        "credit": "伊勢市観光協会",
+        "license": null
+      },
+      {
+        "url": "https://lh3.googleusercontent.com/grass-cs/AABkmLdZIGj_rX6U-LHSw9pFhyO4MQ_sNnJeh6rDYbM6MWWrf7uczRKKZg3S5GljelC_Yz18MeFSYYRtnX3L3hwr-bbpS5qK0X8buXwucsBeduY9E5yCQ-bzd8_ooT5IXfw7UBcNVTCCVTNTCW0=w408-h306-k-no",
+        "page": "https://maps.google.com/?cid=7428969118049061318",
+        "kind": "google",
+        "credit": "Google マップ（店家或使用者上傳）",
+        "license": null
+      }
+    ],
     "links": {
       "official": "https://www.wakamatsuya.co.jp/tour",
-      "googleMaps": null,
+      "googleMaps": "https://maps.google.com/?cid=7428969118049061318",
       "instagram": null
     },
     "tags": [
@@ -746,20 +1112,27 @@
     "nearestStation": {
       "id": "iseshi",
       "mode": "walk",
-      "minutes": null,
-      "note": "河崎，距伊勢市站約 1 km（之後用 OSRM 算）"
+      "minutes": 15,
+      "note": "河崎本店，伊勢市站步行約 15 分（官網）"
     },
-    "access": [],
+    "access": [
+      {
+        "from": "iseshi",
+        "mode": "walk",
+        "minutes": 15,
+        "note": "河崎本店，官網寫約 15 分（觀光三重 2019 寫 10 分）"
+      }
+    ],
     "admission": "每人 2,200 円（5 人以上 1,980 円）",
     "phone": "0596-23-1721",
-    "stayMinutes": null,
-    "indoor": null,
+    "stayMinutes": 70,
+    "indoor": true,
     "fares": {
       "adult": "2,200 円（5 人以上每人 1,980 円）",
       "child": "同大人價（官網沒有另列兒童價）",
       "senior": null,
       "group": "5 人以上每人 1,980 円；11～70 人改在下野工場",
-      "note": "做蒸魚板和烤魚板 2 種，當場試吃"
+      "note": "做蒸魚板和烤魚板 2 種，當場試吃。當天現金付款，當天取消收 50%。另有箸作り體驗：4 人內 1,320 円／5 人以上 1,100 円（官網）。觀光三重寫 1,650 円，應是舊價。"
     },
     "group": {
       "reservation": "5 天前預約，2 人起。河崎本店 2～10 人；11～70 人在下野工場（伊勢市下野町）。",
@@ -768,14 +1141,26 @@
         "url": "https://www.wakamatsuya.co.jp/tour",
         "note": "日文"
       },
-      "note": "15 人全員要去下野工場，或分成 2 組在本店"
+      "note": "15 人全員要去下野工場（伊勢市下野町653-9，9:00～14:00，TEL 0120-31-1722），或分成 2 組在本店（本店上限官網魚板段寫 10 人、箸作り段和觀光三重寫 8 人，要先問）。下野工場：伊勢市站搭三交巴士「大湊」行 12 分，「下野工業団地前」下車步行 10 分；大型巴士 2 台。蒸魚板要冷藏，觀光三重建議回程日體驗。"
     },
-    "accessibility": null,
+    "accessibility": {
+      "walkInsideMinutes": null,
+      "stairs": null,
+      "slope": null,
+      "restAreas": null,
+      "toilets": null,
+      "barrierFree": null,
+      "note": "坐著或站著做、階梯、廁所都沒有來源，要電話確認。"
+    },
     "kids": {
-      "friendly": null,
-      "note": "小學 3 年級以上；未滿的要有監護人陪同才能參加。用沒有刀刃的「つけ包丁」（觀光協會）。"
+      "friendly": "high",
+      "note": "用沒有刀刃的「つけ包丁」。官網：小學 3 年級以上，未滿的要和監護人一起做；兒童圍裙自備。asoview 寫小小孩也能玩、適合家族，口碑有小學生自己做完、帶小孩再訪的，也有人說比想像難（asoview 標「8 歳から」，和官網不同）。"
     },
-    "ratings": null,
+    "ratings": {
+      "google": 4.4,
+      "googleReviews": 101,
+      "note": "Google 這筆是店舖（日本食材店），評論多半是買魚板，不是體驗"
+    },
     "sources": [
       {
         "type": "tourism",
@@ -794,6 +1179,36 @@
         "url": "https://www.openstreetmap.org/node/13927953301",
         "retrieved": "2026-10-18",
         "note": "座標（若松屋本店）"
+      },
+      {
+        "type": "google-maps",
+        "url": "https://maps.google.com/?cid=7428969118049061318",
+        "retrieved": "2026-10-18",
+        "note": "星數、評論數、座標、照片（Google 名稱：伊勢蒲鉾の若松屋 河崎本店；類別：日本食材店）"
+      },
+      {
+        "type": "tourism",
+        "url": "https://www.kankomie.or.jp/spot/3913",
+        "retrieved": "2026-10-18",
+        "note": "下野工場的巴士與開車交通、大型巴士 2 台、建議回程日體驗；價格 1,650 円似為舊價"
+      },
+      {
+        "type": "tourism",
+        "url": "https://www.kankomie.or.jp/report/397",
+        "retrieved": "2026-10-18",
+        "note": "2019-01 取材（5 年以上，舊）：約 60 分，蒸魚板、烤魚板的流程"
+      },
+      {
+        "type": "other",
+        "url": "https://www.asoview.com/base/2230/asorepo/list/",
+        "retrieved": "2026-10-18",
+        "note": "asoview 口碑 175 則（最新 2026-05），全文沒讀到"
+      },
+      {
+        "type": "other",
+        "url": "https://www.asoview.com/leisure/grp7/location/241050/",
+        "retrieved": "2026-10-18",
+        "note": "寫小小孩也能玩、適合家族；標 8 歳から"
       }
     ],
     "verified": false,
@@ -805,7 +1220,12 @@
         ],
         "osm": "https://www.openstreetmap.org/node/13928224501",
         "note": "下野工場（團體 11～70 人）"
-      }
+      },
+      "conflicts": [
+        "河崎本店人數上限：官網魚板段寫 2～10 人，箸作り段和觀光三重寫 2～8 人。",
+        "年齡：官網小學 3 年級以上（未滿要監護人陪同），asoview 標「8 歳から」。",
+        "伊勢市站到河崎本店：官網步行約 15 分，觀光三重 2019 寫 10 分。"
+      ]
     }
   },
   {
@@ -880,10 +1300,32 @@
     "febNote": null,
     "closures": [],
     "events": [],
-    "photos": [],
+    "photos": [
+      {
+        "url": "https://ise-kanko.jp/cms/wp-content/uploads/2021/02/course_goriyaku_005.jpg",
+        "page": "https://ise-kanko.jp/purpose/tsukiyominomiya1/",
+        "kind": "official",
+        "credit": "伊勢市観光協会",
+        "license": null
+      },
+      {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/5/58/%E6%9C%88%E8%AA%AD%E5%AE%AE_Tsukiyominomiya_-_panoramio.jpg",
+        "page": "https://commons.wikimedia.org/wiki/File:%E6%9C%88%E8%AA%AD%E5%AE%AE_Tsukiyominomiya_-_panoramio.jpg",
+        "kind": "wikimedia",
+        "credit": "Wikimedia: yamai36",
+        "license": "CC BY 3.0"
+      },
+      {
+        "url": "https://lh3.googleusercontent.com/grass-cs/AABkmLd7jLkME1AMlm5pxmOSOr02EkL6yrzWO7kUainhJWDaLiTb9l4bKgYE3bSW1cE8jnGPbM3wDG0cLeVvlkAJG80atsYOIREsVjIn1AxR9bW4caiHNyRa6E3925V-ktT9E3gs1jGi=w408-h272-k-no",
+        "page": "https://maps.google.com/?cid=12404741498896817386",
+        "kind": "google",
+        "credit": "Google マップ（店家或使用者上傳）",
+        "license": null
+      }
+    ],
     "links": {
       "official": "https://www.isejingu.or.jp/about/outerbetsugu/",
-      "googleMaps": null,
+      "googleMaps": "https://maps.google.com/?cid=12404741498896817386",
       "instagram": null
     },
     "tags": [
@@ -908,6 +1350,12 @@
         "mode": "bus",
         "minutes": null,
         "note": "外宮・內宮循環巴士 51 系統「中村町」下車步行 5 分"
+      },
+      {
+        "from": "iseshi",
+        "mode": "bus",
+        "minutes": 15,
+        "note": "51 系統巴士「中村町」下車（觀光三重，約 15 分）"
       }
     ],
     "admission": "免費參拜",
@@ -916,9 +1364,21 @@
     "indoor": false,
     "fares": null,
     "group": null,
-    "accessibility": null,
+    "accessibility": {
+      "walkInsideMinutes": null,
+      "stairs": null,
+      "slope": null,
+      "restAreas": null,
+      "toilets": null,
+      "barrierFree": null,
+      "note": "境內四座宮社並排，依官網的 ①～④ 順序參拜；階梯、坡道、廁所沒有來源。"
+    },
     "kids": null,
-    "ratings": null,
+    "ratings": {
+      "google": 4.6,
+      "googleReviews": 2582,
+      "note": null
+    },
     "sources": [
       {
         "type": "tourism",
@@ -937,10 +1397,50 @@
         "url": "https://www.openstreetmap.org/node/6470496187",
         "retrieved": "2026-10-18",
         "note": "座標"
+      },
+      {
+        "type": "google-maps",
+        "url": "https://maps.google.com/?cid=12404741498896817386",
+        "retrieved": "2026-10-18",
+        "note": "星數、評論數、座標、照片（Google 名稱：皇大神宮別宮 月讀宮；類別：神社）"
+      },
+      {
+        "type": "official",
+        "url": "https://www.isejingu.or.jp/about/outerbetsugu/",
+        "retrieved": "2026-10-18",
+        "note": "四宮並排依 ①～④ 參拜、葭原神社在裏參道入口附近"
+      },
+      {
+        "type": "tourism",
+        "url": "https://www.kankomie.or.jp/spot/2936",
+        "retrieved": "2026-10-18",
+        "note": "51 系統巴士「中村町」，約 15 分"
+      },
+      {
+        "type": "media",
+        "url": "https://www.timeout.jp/tokyo/ja/things-to-do/ise-gosyuin-guide",
+        "retrieved": "2026-10-18",
+        "note": "2022 年；建議在おはらい町入口附近叫計程車"
+      },
+      {
+        "type": "blog-ja",
+        "url": "https://4travel.jp/travelogue/11664146",
+        "retrieved": "2026-10-18",
+        "note": "2020-12 旅行記（接近 5 年，舊）；早上人少，只有伊佐奈岐宮擁擠"
+      },
+      {
+        "type": "media",
+        "url": "https://www.nap-camp.com/mag/89929",
+        "retrieved": "2026-10-18",
+        "note": "2026-10 更新，AI 輔助撰寫；比內宮人少、有停車場"
       }
     ],
     "verified": false,
-    "extra": {}
+    "extra": {
+      "conflicts": [
+        "五十鈴川站步行時間：觀光協會、神宮官網、觀光三重寫 10 分，nap-camp 內文寫 8 分。"
+      ]
+    }
   },
   {
     "id": "ise-yamatohime-no-miya",
@@ -1014,10 +1514,32 @@
     "febNote": null,
     "closures": [],
     "events": [],
-    "photos": [],
+    "photos": [
+      {
+        "url": "https://ise-kanko.jp/cms/wp-content/uploads/2021/03/course_goriyaku_0016.jpg",
+        "page": "https://ise-kanko.jp/purpose/yamatohimenomiya/",
+        "kind": "official",
+        "credit": "伊勢市観光協会",
+        "license": null
+      },
+      {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/5/5e/%E5%80%AD%E5%A7%AB%E5%AE%AE_Yamatohimenomiya_-_panoramio.jpg",
+        "page": "https://commons.wikimedia.org/wiki/File:%E5%80%AD%E5%A7%AB%E5%AE%AE_Yamatohimenomiya_-_panoramio.jpg",
+        "kind": "wikimedia",
+        "credit": "Wikimedia: yamai36",
+        "license": "CC BY 3.0"
+      },
+      {
+        "url": "https://lh3.googleusercontent.com/grass-cs/AABkmLfw1UAbpH9rRrFEEuSAOy6GZG_TBfGAaIFGQW5Jok9pDP7fjyC8zmV1EPSp43x3QWUIyaY6dXcfUOAucyyspwGvrw1W8q8-lh1JbtBXRsWqRR9gTlz0vHHkg288iQWnfBV_M3-B=w408-h306-k-no",
+        "page": "https://maps.google.com/?cid=5699891295883930630",
+        "kind": "google",
+        "credit": "Google マップ（店家或使用者上傳）",
+        "license": null
+      }
+    ],
     "links": {
       "official": "https://www.isejingu.or.jp/",
-      "googleMaps": null,
+      "googleMaps": "https://maps.google.com/?cid=5699891295883930630",
       "instagram": null
     },
     "tags": [
@@ -1050,9 +1572,21 @@
     "indoor": false,
     "fares": null,
     "group": null,
-    "accessibility": null,
+    "accessibility": {
+      "walkInsideMinutes": null,
+      "stairs": "多",
+      "slope": null,
+      "restAreas": null,
+      "toilets": null,
+      "barrierFree": null,
+      "note": "參道是連續的石段（「石段が続く参道」，Time Out 2022），段數不明；坡道、廁所沒有來源。可以和隔壁的神宮徴古館一起排。"
+    },
     "kids": null,
-    "ratings": null,
+    "ratings": {
+      "google": 4.5,
+      "googleReviews": 1185,
+      "note": null
+    },
     "sources": [
       {
         "type": "tourism",
@@ -1071,11 +1605,44 @@
         "url": "https://www.openstreetmap.org/node/6470496188",
         "retrieved": "2026-10-18",
         "note": "座標"
+      },
+      {
+        "type": "google-maps",
+        "url": "https://maps.google.com/?cid=5699891295883930630",
+        "retrieved": "2026-10-18",
+        "note": "星數、評論數、座標、照片（Google 名稱：倭姫宮；類別：神社）"
+      },
+      {
+        "type": "official",
+        "url": "https://www.isejingu.or.jp/about/outerbetsugu/",
+        "retrieved": "2026-10-18",
+        "note": "1923 年鎮座、倉田山、五十鈴川站步行 7 分"
+      },
+      {
+        "type": "tourism",
+        "url": "https://www.kankomie.or.jp/spot/2934",
+        "retrieved": "2026-10-18",
+        "note": "倭姫文化の森、例大祭 5/5 與 11/5、巴士約 10 分"
+      },
+      {
+        "type": "media",
+        "url": "https://www.timeout.jp/tokyo/ja/things-to-do/ise-gosyuin-guide",
+        "retrieved": "2026-10-18",
+        "note": "2022 年；石段參道；從月讀宮過來建議叫車，回程在「皇学館大学前」搭巴士"
+      },
+      {
+        "type": "media",
+        "url": "https://www.nap-camp.com/mag/89929",
+        "retrieved": "2026-10-18",
+        "note": "2026-10 更新，AI 輔助撰寫；徴古館停車場 43 台"
       }
     ],
     "verified": false,
     "extra": {
-      "nearby": "神宮徴古館・農業館・美術館就在旁邊（ise-jingu-museum）"
+      "nearby": "神宮徴古館・農業館・美術館就在旁邊（ise-jingu-museum）",
+      "conflicts": [
+        "五十鈴川站步行時間：觀光協會寫 10 分，神宮官網寫 7 分。"
+      ]
     }
   },
   {
@@ -1142,7 +1709,7 @@
       "lastEntry": "16:00",
       "note": "入館到 16:00、觀覽到 16:30。週四休館；週四遇國定假日照開，改隔一個平日休。"
     },
-    "closedNote": "週四（遇國定假日改隔天平日）、12/29～31；另有臨時休館。",
+    "closedNote": "週四（遇國定假日改隔天平日）、12/29～31；另有臨時休館。美術館換展期間休館（觀光三重）。",
     "febNote": "2027-02-04（四）休館；2/11（四）是國定假日照常開館，改 2/12（五）休館。美術館 2 月的展覽還沒公布。",
     "closures": [
       {
@@ -1157,10 +1724,32 @@
         "note": "2/11 建國紀念日（國定假日，週四）：週四但照常開館（隔天 2/12 休館）"
       }
     ],
-    "photos": [],
+    "photos": [
+      {
+        "url": "https://www.kankomie.or.jp/rails/active_storage/representations/proxy/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBbFFIIiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--8c45e9049e63f34a8ae51d42c1ab9b6f026e1442/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdCem9MWm05eWJXRjBTU0lJYW5CbkJqb0dSVlE2RW5KbGMybDZaVjkwYjE5bWFYUmJCMmtDQUFRdyIsImV4cCI6bnVsbCwicHVyIjoidmFyaWF0aW9uIn19--47eefd9454ea08aba450369050ad39b4da615199/3135_1_org.jpg",
+        "page": "https://www.kankomie.or.jp/spot/3135",
+        "kind": "official",
+        "credit": "観光三重",
+        "license": null
+      },
+      {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/d/d4/Jingu_Chokokan_Museum%2C_Ise_-_Apr_8%2C_2023.jpg",
+        "page": "https://commons.wikimedia.org/wiki/File:Jingu_Chokokan_Museum,_Ise_-_Apr_8,_2023.jpg",
+        "kind": "wikimedia",
+        "credit": "Wikimedia: dlovins99",
+        "license": "CC0"
+      },
+      {
+        "url": "https://lh3.googleusercontent.com/grass-cs/AABkmLfwIArS60ZZTBZUYtJ4hPSwRjTDGlAuo5lvmgLtlly6GhJhmVF5ZN4P2OGbjhxKWInlx0X6DfIHRgEQsB6XiUfTFIfUMkB6Mw_Q37cDqUlhhQKbrxVaqsasYhYBWU-jGr_yexJOEIbbMPSU=w408-h306-k-no",
+        "page": "https://maps.google.com/?cid=16190517350889899513",
+        "kind": "google",
+        "credit": "Google マップ（店家或使用者上傳）",
+        "license": null
+      }
+    ],
     "links": {
       "official": "https://museum.isejingu.or.jp/",
-      "googleMaps": null,
+      "googleMaps": "https://maps.google.com/?cid=16190517350889899513",
       "instagram": null
     },
     "tags": [
@@ -1172,7 +1761,7 @@
       "id": "isuzugawa",
       "mode": "walk",
       "minutes": null,
-      "note": "在倭姬宮旁（倭姬宮距五十鈴川站步行約 10 分）；分鐘數之後用 OSRM 算"
+      "note": "在倭姬宮旁（倭姬宮距五十鈴川站步行約 10 分）；分鐘數之後用 OSRM 算。巴士 51、60、70 系統與 CANばす 停「神宮徴古館前」，伊勢市站約 9～10 分，下車步行 3～4 分（官網、るるぶ、トレたび）。"
     },
     "access": [
       {
@@ -1193,10 +1782,26 @@
       "group": "20 人以上：大人共通 500 円、單館 300 円，小中學生免費；15 人不適用",
       "note": null
     },
-    "group": null,
-    "accessibility": null,
+    "group": {
+      "reservation": null,
+      "contact": null,
+      "note": "20 人以上才算團體（一週前傳真團體見學届），15 人不適用。"
+    },
+    "accessibility": {
+      "walkInsideMinutes": null,
+      "stairs": null,
+      "slope": null,
+      "restAreas": null,
+      "toilets": null,
+      "barrierFree": null,
+      "note": "官網、觀光協會、觀光三重都沒有無障礙資訊；徴古館是 1909 年的紅磚洋館，入口階梯不明，要電話確認（0596-22-1700）。徴古館和美術館隔一條路相對；苑地有草坪廣場（いこいの広場）與庭園。停車場有身障車位 1 格。"
+    },
     "kids": null,
-    "ratings": null,
+    "ratings": {
+      "google": 4.3,
+      "googleReviews": 397,
+      "note": "只取徴古館這筆；農業館、美術館沒有另外查"
+    },
     "sources": [
       {
         "type": "tourism",
@@ -1215,10 +1820,60 @@
         "url": "https://www.openstreetmap.org/node/1420999015",
         "retrieved": "2026-10-18",
         "note": "座標"
+      },
+      {
+        "type": "google-maps",
+        "url": "https://maps.google.com/?cid=16190517350889899513",
+        "retrieved": "2026-10-18",
+        "note": "星數、評論數、座標、照片（Google 名稱：神宮徴古館；類別：博物館）"
+      },
+      {
+        "type": "official",
+        "url": "https://museum.isejingu.or.jp/guide/garden.html",
+        "retrieved": "2026-10-18",
+        "note": "苑地配置（庭園、草坪廣場）與停車場（小客車 43、巴士 12、身障 1 格）"
+      },
+      {
+        "type": "official",
+        "url": "https://museum.isejingu.or.jp/access/index.html",
+        "retrieved": "2026-10-18",
+        "note": "51、60、70 系統與 CANばす 停「神宮徴古館前」"
+      },
+      {
+        "type": "official",
+        "url": "https://museum.isejingu.or.jp/guide/index.html",
+        "retrieved": "2026-10-18",
+        "note": "20 人以上團體要一週前傳真團體見學届"
+      },
+      {
+        "type": "tourism",
+        "url": "https://www.kankomie.or.jp/spot/3135",
+        "retrieved": "2026-10-18",
+        "note": "徴古館・農業館介紹，停車場免費，換展期間休館"
+      },
+      {
+        "type": "tourism",
+        "url": "https://www.kankomie.or.jp/spot/3085",
+        "retrieved": "2026-10-18",
+        "note": "美術館介紹、票價、電話 0596-22-5533"
+      },
+      {
+        "type": "media",
+        "url": "https://www.toretabi.jp/zipangclub/page/plan_shun2503_tokai.html",
+        "retrieved": "2026-10-18",
+        "note": "2025-03：建物特色，徴古館與美術館隔路相對，下車步行 4 分"
+      },
+      {
+        "type": "media",
+        "url": "https://rurubu.jp/andmore/spot/80024575",
+        "retrieved": "2026-10-18",
+        "note": "宇治山田站搭巴士 10 分，下車步行 3 分"
       }
     ],
     "verified": false,
-    "extra": {}
+    "extra": {
+      "parking": "小客車 43、巴士 12、身障 1 格，免費（官網、觀光三重）"
+    }
   },
   {
     "id": "ise-matsuo-kannonji",
@@ -1289,13 +1944,35 @@
       "note": "觀光協會寫參拜時間 8:00～16:00；御祈禱受理 9、10、11、13、14、15 時（官網）。"
     },
     "closedNote": null,
-    "febNote": "厄除大祭「初午」在 3 月第一個午日（官網），不在旅程內。",
+    "febNote": "2 月沒有活動：初午大祭在 3 月第一個午日（2026 是 3/8～9）、花祭在 4 月中旬（觀光三重）、大連珠 8/9；秘佛 12 年開帳一次，2026-05-03～05 已辦完（官網）。",
     "closures": [],
     "events": [],
-    "photos": [],
+    "photos": [
+      {
+        "url": "https://ise-kanko.jp/cms/wp-content/uploads/2021/01/matuopkannon-scaled.jpg",
+        "page": "https://ise-kanko.jp/purpose/matsuokannonji/",
+        "kind": "official",
+        "credit": "伊勢市観光協会",
+        "license": null
+      },
+      {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/f/fe/Matsuo_Kannon_Hondo.jpg",
+        "page": "https://commons.wikimedia.org/wiki/File:Matsuo_Kannon_Hondo.jpg",
+        "kind": "wikimedia",
+        "credit": "Wikimedia: Miyuki Meinaka",
+        "license": "CC BY-SA 3.0"
+      },
+      {
+        "url": "https://lh3.googleusercontent.com/grass-cs/AABkmLcE8vyFD5cBEArNmvIRwxWBaukiGcRPxHJqyla9iwwMF1M7ZmrruHlQlT4pkDpzOUgu0iCuu6fxI8RjqWqgZAFDdO-pkryi20CibLkixjW1zeqBCau2HmmNR244vZOY8piAtvSu=w408-h271-k-no",
+        "page": "https://maps.google.com/?cid=7440224020794670453",
+        "kind": "google",
+        "credit": "Google マップ（店家或使用者上傳）",
+        "license": null
+      }
+    ],
     "links": {
       "official": "http://matsuokannonji.com/",
-      "googleMaps": null,
+      "googleMaps": "https://maps.google.com/?cid=7440224020794670453",
       "instagram": null
     },
     "tags": [
@@ -1320,17 +1997,33 @@
         "mode": "bus",
         "minutes": null,
         "note": "往伊勢市站方向，「徴古館前」下車步行 15 分"
+      },
+      {
+        "from": "isuzugawa",
+        "mode": "taxi",
+        "minutes": 5,
+        "note": "五十鈴川站搭計程車約 5 分（寺方部落格）"
       }
     ],
     "admission": null,
     "phone": "0596-22-2722",
     "stayMinutes": null,
     "indoor": null,
-    "fares": null,
+    "fares": {
+      "adult": "參拜免費（來源沒寫拜觀料）",
+      "child": null,
+      "senior": null,
+      "group": null,
+      "note": "御祈禱 5,000 円起（官網）"
+    },
     "group": null,
     "accessibility": null,
     "kids": null,
-    "ratings": null,
+    "ratings": {
+      "google": 4.4,
+      "googleReviews": 341,
+      "note": null
+    },
     "sources": [
       {
         "type": "tourism",
@@ -1349,10 +2042,39 @@
         "url": "https://www.openstreetmap.org/way/499830404",
         "retrieved": "2026-10-18",
         "note": "座標"
+      },
+      {
+        "type": "google-maps",
+        "url": "https://maps.google.com/?cid=7440224020794670453",
+        "retrieved": "2026-10-18",
+        "note": "星數、評論數、座標、照片（Google 名稱：龍池山 松尾観音寺；類別：仏教寺院）"
+      },
+      {
+        "type": "official",
+        "url": "http://matsuokannon.jugem.jp/?eid=4",
+        "retrieved": "2026-10-18",
+        "note": "本堂後方的二つ池與雙龍護佛的傳說"
+      },
+      {
+        "type": "official",
+        "url": "http://matsuokannon.jugem.jp/?eid=18",
+        "retrieved": "2026-10-18",
+        "note": "巴士交通：「松尾観音前」步行 5 分；五十鈴川站計程車 5 分"
+      },
+      {
+        "type": "tourism",
+        "url": "https://www.kankomie.or.jp/spot/12714",
+        "retrieved": "2026-10-18",
+        "note": "日本最古的厄除觀音、龍神庭園 4 月花祭、伊勢市站巴士 10 分"
       }
     ],
     "verified": false,
-    "extra": {}
+    "extra": {
+      "highlights": "本堂地板浮現龍紋（約 10 年前出現，寺方不公開照片）；本堂後方的二つ池（東池雄龍、西池雌龍）有應永 10 年火災時雙龍護佛的傳說（寺方部落格）。",
+      "conflicts": [
+        "巴士站名：觀光三重寫「松尾観音」，觀光協會和官網寫「松尾観音前」；巴士終點名稱新舊寫法不同（ジャスコ新伊勢店／イオン伊勢店）。"
+      ]
+    }
   },
   {
     "id": "ise-naiku",
@@ -1993,7 +2715,7 @@
       "note": "境內 24 小時；本堂拜觀 9:00～15:45（觀光協會）。"
     },
     "closedNote": null,
-    "febNote": "朝熊山標高 555 m，冬天比市區冷。參宮巴士只在土日祝行駛。",
+    "febNote": "朝熊山標高 555 m，冬天比市區冷，偶爾雪化粧（JEEPE）；伊勢志摩スカイライン 冬季結冰封路的規定沒有來源（要問スカイライン伊勢営業所 059-226-6752）。參宮巴士只在土日祝行駛。",
     "closures": [],
     "events": [
       {
@@ -2001,10 +2723,32 @@
         "note": "2/11 建國紀念日（國定假日，週四）：參宮巴士行駛（只在土日祝、年末年始、盂蘭盆）"
       }
     ],
-    "photos": [],
+    "photos": [
+      {
+        "url": "https://ise-kanko.jp/cms/wp-content/uploads/2021/01/kongousyozi-scaled.jpg",
+        "page": "https://ise-kanko.jp/purpose/kongoshoji/",
+        "kind": "official",
+        "credit": "伊勢市観光協会",
+        "license": null
+      },
+      {
+        "url": "https://www.iseshimaskyline.com/lancelot/common_files/images/public/ind-kg-10.jpg",
+        "page": "https://www.iseshimaskyline.com/kongoushouji/index.html",
+        "kind": "official",
+        "credit": "伊勢志摩スカイライン",
+        "license": null
+      },
+      {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/8/8f/The_main_gate_of_Kongosho-ji_Temple_-_panoramio.jpg",
+        "page": "https://commons.wikimedia.org/wiki/File:The_main_gate_of_Kongosho-ji_Temple_-_panoramio.jpg",
+        "kind": "wikimedia",
+        "credit": "Wikimedia: yuukin",
+        "license": "CC BY 3.0"
+      }
+    ],
     "links": {
       "official": "https://www.iseshimaskyline.com/kongoushouji/index.html",
-      "googleMaps": null,
+      "googleMaps": "https://maps.google.com/?cid=6892205162661570832",
       "instagram": null
     },
     "tags": [
@@ -2040,7 +2784,7 @@
     "admission": null,
     "phone": "0596-22-1710",
     "stayMinutes": null,
-    "indoor": null,
+    "indoor": false,
     "fares": null,
     "group": {
       "reservation": null,
@@ -2050,14 +2794,18 @@
     "accessibility": {
       "walkInsideMinutes": null,
       "stairs": null,
-      "slope": null,
+      "slope": "境內有高低差、要走一段路",
       "restAreas": null,
       "toilets": null,
       "barrierFree": null,
-      "note": "往奧之院的路兩旁立著 2～8 m 的卒塔婆；八大龍王社要再走約 20 分。"
+      "note": "仁王門前有石階（階數不明）；雨天濕石階和落葉易滑（JEEPE、觀光三重 2017）。往奧之院的路兩旁立著 2～8 m 的卒塔婆；八大龍王社要再走約 20 分。拜觀費、停車場到本堂的距離、廁所沒有來源。"
     },
     "kids": null,
-    "ratings": null,
+    "ratings": {
+      "google": 4.3,
+      "googleReviews": 1108,
+      "note": "另有「金剛證寺 奥之院」4.2（151 則）"
+    },
     "sources": [
       {
         "type": "tourism",
@@ -2076,10 +2824,36 @@
         "url": "https://www.openstreetmap.org/way/567997547",
         "retrieved": "2026-10-18",
         "note": "座標"
+      },
+      {
+        "type": "google-maps",
+        "url": "https://maps.google.com/?cid=6892205162661570832",
+        "retrieved": "2026-10-18",
+        "note": "星數、評論數、座標、照片（Google 名稱：金剛證寺；類別：仏教寺院）"
+      },
+      {
+        "type": "official",
+        "url": "https://www.iseshimaskyline.com/kongoushouji/index.html",
+        "retrieved": "2026-10-18",
+        "note": "本堂 1609 年再建、外朱漆內金箔；拜觀 9:00～15:45"
+      },
+      {
+        "type": "tourism",
+        "url": "https://www.kankomie.or.jp/report/189",
+        "retrieved": "2026-10-18",
+        "note": "2017 年（舊）：仁王門→太鼓橋→本堂→極樂門→奧之院→展望台；山頂＋金剛證寺約 90 分"
+      },
+      {
+        "type": "media",
+        "url": "https://www.jeepe.jp/ja/articles/asamadake-kongoshoji-2717",
+        "retrieved": "2026-10-18",
+        "note": "境內有高低差、雨天石階易滑；冬季雪化粧"
       }
     ],
     "verified": false,
-    "extra": {}
+    "extra": {
+      "stayMinutesNote": "觀光三重（2017）：山頂展望台＋金剛證寺合計約 90 分；寺本身沒有單獨的時間。"
+    }
   },
   {
     "id": "ise-asama-summit",
@@ -2150,7 +2924,7 @@
       "note": "展望台與伊勢志摩スカイライン 7:00～19:00（8 月到 20:00）；展望足湯 10:00～17:00（天候、維修時暫停）。"
     },
     "closedNote": null,
-    "febNote": "2 月照常 7:00～19:00。標高 555 m，冬天風大較冷（之後讀文確認積雪、結冰時的封路）。",
+    "febNote": "2 月照常 7:00～19:00。標高 555 m，冬天風大較冷；伊勢志摩スカイライン 冬季結冰、積雪時的封路或雪胎規定沒有來源（官網 FAQ 頁是空的），出發前打スカイライン伊勢営業所 059-226-6752 問路況、足湯和売店。",
     "closures": [],
     "events": [
       {
@@ -2158,10 +2932,32 @@
         "note": "2/11 建國紀念日（國定假日，週四）：參宮巴士行駛（到「朝熊山上広苑」）"
       }
     ],
-    "photos": [],
+    "photos": [
+      {
+        "url": "https://ise-kanko.jp/cms/wp-content/uploads/2022/08/%E5%A4%A9%E7%A9%BA%E3%81%AE%E3%83%9D%E3%82%B9%E3%83%882-scaled.jpg",
+        "page": "https://ise-kanko.jp/purpose/tenku-no-post/",
+        "kind": "official",
+        "credit": "伊勢市観光協会",
+        "license": null
+      },
+      {
+        "url": "https://ise-kanko.jp/cms/wp-content/uploads/2021/01/sukairain-scaled.jpg",
+        "page": "https://ise-kanko.jp/purpose/skyline/",
+        "kind": "official",
+        "credit": "伊勢市観光協会",
+        "license": null
+      },
+      {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/2/2e/%E4%BC%8A%E5%8B%A2%E5%BF%97%E6%91%A9_e-POWER_ROAD%28%E4%BC%8A%E5%8B%A2%E5%BF%97%E6%91%A9%E3%82%B9%E3%82%AB%E3%82%A4%E3%83%A9%E3%82%A4%E3%83%B3%29%E5%B1%95%E6%9C%9B%E8%B6%B3%E6%B9%AF%E4%BB%98%E8%BF%91%E3%81%8B%E3%82%89%E6%92%AE%E5%BD%B1%E3%81%97%E3%81%9F%E9%B3%A5%E7%BE%BD%E5%91%A8%E8%BE%BA.jpg",
+        "page": "https://commons.wikimedia.org/wiki/File:%E4%BC%8A%E5%8B%A2%E5%BF%97%E6%91%A9_e-POWER_ROAD(%E4%BC%8A%E5%8B%A2%E5%BF%97%E6%91%A9%E3%82%B9%E3%82%AB%E3%82%A4%E3%83%A9%E3%82%A4%E3%83%B3)%E5%B1%95%E6%9C%9B%E8%B6%B3%E6%B9%AF%E4%BB%98%E8%BF%91%E3%81%8B%E3%82%89%E6%92%AE%E5%BD%B1%E3%81%97%E3%81%9F%E9%B3%A5%E7%BE%BD%E5%91%A8%E8%BE%BA.jpg",
+        "kind": "wikimedia",
+        "credit": "Wikimedia: うおくん",
+        "license": "CC BY 4.0"
+      }
+    ],
     "links": {
       "official": "https://www.iseshimaskyline.com/",
-      "googleMaps": null,
+      "googleMaps": "https://maps.google.com/?cid=14942926032235101478",
       "instagram": null
     },
     "tags": [
@@ -2196,8 +2992,8 @@
     ],
     "admission": "展望台免費；伊勢志摩スカイライン通行費 普通車 1,270 円、マイクロバス 3,210 円",
     "phone": "059-226-6752",
-    "stayMinutes": null,
-    "indoor": null,
+    "stayMinutes": 60,
+    "indoor": false,
     "fares": {
       "adult": "展望台免費；展望足湯 100 円",
       "child": "展望足湯 50 円",
@@ -2213,10 +3009,17 @@
       "restAreas": true,
       "toilets": null,
       "barrierFree": null,
-      "note": "山頂廣場有足湯；「さんぽ道」通往「伊勢湾が全部見える丘」，途中有長椅和吊床。"
+      "note": "山頂廣場有足湯；「さんぽ道」通往「伊勢湾が全部見える丘」，途中有長椅和吊床。舊的朝熊山レストハウス已拆，原址是山頂廣場，可以坐著看 360° 景；山頂的餐飲是「朝熊山頂売店」和「朝熊茶屋」（名物志摩うどん，2017 年 600 円）。停車場到足湯的距離、廁所、足湯冬天有沒有開沒有來源。"
     },
-    "kids": null,
-    "ratings": null,
+    "kids": {
+      "friendly": "medium",
+      "note": "山頂売店買原創明信片和郵票投「天空のポスト」（價格只見於搜尋摘要）；展望足湯兒童 50 円；さんぽ道一圈約 15 分，有長椅、吊床。來源沒有小孩實際反應的描述。"
+    },
+    "ratings": {
+      "google": 4.2,
+      "googleReviews": 4072,
+      "note": "另有「朝熊山頂 天空のポスト」4.3（950 則）"
+    },
     "sources": [
       {
         "type": "tourism",
@@ -2247,11 +3050,37 @@
         "url": "https://www.openstreetmap.org/node/5465768919",
         "retrieved": "2026-10-18",
         "note": "座標"
+      },
+      {
+        "type": "google-maps",
+        "url": "https://maps.google.com/?cid=14942926032235101478",
+        "retrieved": "2026-10-18",
+        "note": "星數、評論數、座標、照片（Google 名稱：朝熊山頂展望台；類別：展望台）"
+      },
+      {
+        "type": "tourism",
+        "url": "https://www.kankomie.or.jp/report/189",
+        "retrieved": "2026-10-18",
+        "note": "2017 年（舊）：只看山頂約 1 小時；志摩うどん 600 円；天空のポスト是三重第 3 個恋人の聖地"
+      },
+      {
+        "type": "tourism",
+        "url": "https://www.kankomie.or.jp/report/126",
+        "retrieved": "2026-10-18",
+        "note": "2014 年（舊）：展望足湯可看伊勢灣 360°"
+      },
+      {
+        "type": "official",
+        "url": "https://www.iseshimaskyline.com/sanchou.html?page_id=ce73720866115c357159f4fea6e50d21",
+        "retrieved": "2026-10-18",
+        "note": "山頂売店、朝熊茶屋；名物志摩うどん（沒有營業時間）"
       }
     ],
     "verified": false,
     "extra": {
-      "parking": "山頂停車場 普通車 100 台、大型巴士 5 台"
+      "parking": "山頂停車場 普通車 100 台、大型巴士 5 台",
+      "stayMinutesNote": "觀光三重（2017）：只看山頂約 1 小時；和金剛證寺合計約 90 分。",
+      "googleTenkuNoPost": "「朝熊山頂 天空のポスト」在 Google 另有一筆：4.3（950 則）"
     }
   },
   {
@@ -2301,10 +3130,25 @@
         "note": "2/11 建國紀念日（國定假日，週四）：採草莓視草莓狀況才加開"
       }
     ],
-    "photos": [],
+    "photos": [
+      {
+        "url": "https://ise-kanko.jp/cms/wp-content/uploads/2024/08/DSC_4300-scaled.jpg",
+        "page": "https://ise-kanko.jp/purpose/伊勢苺園/",
+        "kind": "official",
+        "credit": "伊勢市観光協会",
+        "license": null
+      },
+      {
+        "url": "https://lh3.googleusercontent.com/grass-cs/AABkmLcH8Ul_dHvHrH-27LSRlxCj4iiDS5jRqKG4cAQTmqhC8mgJpSw9-Ovl4P6by8nUkZsvyEGLTbykHI4BjOAyOQAXBFSAsbC-xO88gudYeMPMtx4dMopjeWmNKnw6ctVcD3ITpjC2m-oQ__9A=w408-h544-k-no",
+        "page": "https://maps.google.com/?cid=11150671807855057913",
+        "kind": "google",
+        "credit": "Google マップ（店家或使用者上傳）",
+        "license": null
+      }
+    ],
     "links": {
       "official": "https://ise15.jp/",
-      "googleMaps": null,
+      "googleMaps": "https://maps.google.com/?cid=11150671807855057913",
       "instagram": null
     },
     "tags": [
@@ -2315,9 +3159,15 @@
     "access": [],
     "admission": null,
     "phone": null,
-    "stayMinutes": null,
-    "indoor": null,
-    "fares": null,
+    "stayMinutes": 40,
+    "indoor": true,
+    "fares": {
+      "adult": "2,200 円～（時期、方案會變；ichigogari.info 2026-03）",
+      "child": null,
+      "senior": null,
+      "group": null,
+      "note": "小學生、幼兒價格沒找到；じゃらん方案淡季下架，12 月開放預約後再查。"
+    },
     "group": {
       "reservation": "じゃらん遊び体験預約，只收信用卡；額滿標 ×",
       "contact": {
@@ -2325,14 +3175,26 @@
         "url": "https://ise15.jp/",
         "note": "聯絡方式只有 email（info@ise15.jp）"
       },
-      "note": "停車位有限，官網請共乘"
+      "note": "停車位有限，官網請共乘。遲到不延長；空位內可改梯次（1 週前 email）；人數增加當天可以現金補（官網 FAQ）。一梯次上限沒寫。"
     },
-    "accessibility": null,
+    "accessibility": {
+      "walkInsideMinutes": null,
+      "stairs": null,
+      "slope": null,
+      "restAreas": null,
+      "toilets": true,
+      "barrierFree": null,
+      "note": "溫室內，ichigogari.info 說溫室寬、好移動；是不是高設栽培（站著採）、輪椅都沒有來源。有廁所（じゃらん設備欄）。"
+    },
     "kids": {
-      "friendly": null,
-      "note": "採草莓（品種かおり野），40 分吃到飽。"
+      "friendly": "high",
+      "note": "溫室採草莓 40 分吃到飽（かおり野）；じゃらん口コミ有多則 4～12 歲小孩家庭，說小孩很開心，但要看好別亂跑；嬰兒車建議先問（ichigogari.info）。"
     },
-    "ratings": null,
+    "ratings": {
+      "google": 4.1,
+      "googleReviews": 30,
+      "note": null
+    },
     "sources": [
       {
         "type": "tourism",
@@ -2345,12 +3207,52 @@
         "url": "https://ise15.jp/",
         "retrieved": "2026-10-18",
         "note": "2025-26 季的採草莓日程（1/31 起每週六日 4 梯次、40 分）、じゃらん預約、地址；座標取自官網嵌入的 Google 地圖"
+      },
+      {
+        "type": "google-maps",
+        "url": "https://maps.google.com/?cid=11150671807855057913",
+        "retrieved": "2026-10-18",
+        "note": "星數、評論數、座標、照片（Google 名稱：伊勢苺園；類別：農場）"
+      },
+      {
+        "type": "official",
+        "url": "https://ise15.jp/fqa",
+        "retrieved": "2026-10-18",
+        "note": "只有週六日；遲到不延長；改梯次、加人（當天現金）規則"
+      },
+      {
+        "type": "official",
+        "url": "https://ise15.jp/about",
+        "retrieved": "2026-10-18",
+        "note": "品種かおり野／よつぼし，營業 10:00～16:00 頃，建議上午來"
+      },
+      {
+        "type": "other",
+        "url": "https://www.jalan.net/kankou/spt_guide000000215546/",
+        "retrieved": "2026-10-18",
+        "note": "有廁所、專用停車 14 台；目前沒有可預約方案"
+      },
+      {
+        "type": "other",
+        "url": "https://www.jalan.net/kankou/spt_guide000000215546/kuchikomi/",
+        "retrieved": "2026-10-18",
+        "note": "口コミ 11 則約 3.8 分，多為帶小孩家庭；一則抱怨人多、熟草莓少（2024-03）"
+      },
+      {
+        "type": "media",
+        "url": "https://ichigogari.info/mie/4167/",
+        "retrieved": "2026-10-18",
+        "note": "2026-03：2,200 円～、4 梯次 40 分、溫室寬好移動、嬰兒車先問"
       }
     ],
     "verified": false,
     "extra": {
       "accessNote": "近鐵小俣站步行約 8 分（觀光協會）；stations.json 沒有小俣站，所以 nearestStation 留 null",
-      "price": "價格在じゃらん遊び体験頁面，這一批沒查"
+      "price": "2,200 円～（ichigogari.info，2026-03）；兒童價、2027 年價格要等じゃらん 12 月開放預約後查。",
+      "conflicts": [
+        "直賣所營業時間：第 1 批照觀光協會填 10:00～12:00；官網 about、じゃらん、ichigogari.info 寫 10:00～16:00 頃（官網說下午常不在，建議上午來）。",
+        "停車位：觀光協會 30 台、じゃらん 14 台。"
+      ]
     }
   },
   {
@@ -2422,13 +3324,35 @@
       "note": "9:00～17:00，不定休。"
     },
     "closedNote": "不定休。",
-    "febNote": null,
+    "febNote": "全年舉辦、室內；不定休，看官網行事曆。官網首頁寫定休日有時可以買商品，但不能做珠出し體驗。",
     "closures": [],
     "events": [],
-    "photos": [],
+    "photos": [
+      {
+        "url": "https://kikuchipearl.com/images/trial/img_main2.jpg",
+        "page": "https://kikuchipearl.com/trial.html",
+        "kind": "official",
+        "credit": "菊池パール",
+        "license": null
+      },
+      {
+        "url": "https://ise-kanko.jp/cms/wp-content/uploads/2021/01/kikutipa-ru-002.jpg",
+        "page": "https://ise-kanko.jp/purpose/kikuchipearl-taiken/",
+        "kind": "official",
+        "credit": "伊勢市観光協会",
+        "license": null
+      },
+      {
+        "url": "https://lh3.googleusercontent.com/grass-cs/AABkmLe-FPyR5GZ7G6m8cBwT6fggNoeCgTF81BHHptJqMIN4J00Q0WuasODECDMs1VSMmQymm31_V01TaaSRmeAO1ueht3xlCUdM4DP1xSAa6C0Ytp9tTLbTQOvOvt1LBaQt4A43uydaMb7kReQ=w408-h544-k-no",
+        "page": "https://maps.google.com/?cid=4509378631641251114",
+        "kind": "google",
+        "credit": "Google マップ（店家或使用者上傳）",
+        "license": null
+      }
+    ],
     "links": {
       "official": "https://kikuchipearl.com/",
-      "googleMaps": null,
+      "googleMaps": "https://maps.google.com/?cid=4509378631641251114",
       "instagram": null
     },
     "tags": [
@@ -2451,19 +3375,42 @@
     ],
     "admission": "手機吊飾 2,750 円、項鍊 3,300 円（含體驗與加工）",
     "phone": "0596-23-2233",
-    "stayMinutes": null,
-    "indoor": null,
+    "stayMinutes": 40,
+    "indoor": true,
     "fares": {
-      "adult": "手機吊飾コース 2,750 円、ペンダントコース 3,300 円",
-      "child": null,
+      "adult": "取珠 1 回 1,100 円＋金具 1,650 円起（含加工），最低 2,750 円；ペンダント 3,300 円；ブローチ 合計 6,050 円",
+      "child": "6 歲以上和大人同價（VELTRA）",
       "senior": null,
       "group": null,
-      "note": "含體驗費和飾品加工費；從活的阿古屋貝取出真珠，職人當場加工成飾品帶走"
+      "note": "含體驗費和飾品加工費；從活的阿古屋貝取出真珠，職人當場加工成飾品帶走。不能只取珠或只帶走真珠；取出的每顆真珠都要另付金具費（2019 年心得抱怨事前沒講清楚、最後花約 23,000 円），預約時要問清楚。"
     },
-    "group": null,
-    "accessibility": null,
-    "kids": null,
-    "ratings": null,
+    "group": {
+      "reservation": "團體來店前要先電話或 email 聯絡；個人用網頁行事曆或電話預約，預約、取消截止前一天 23:00。",
+      "contact": {
+        "phone": "0596-23-2233",
+        "url": "https://kikuchipearl.com/dantai.html",
+        "note": "日文"
+      },
+      "note": "30 人以內約 60 分、飾品當場交付；30 人以上飾品送到指定地點或寄送。15 人可以一起做。"
+    },
+    "accessibility": {
+      "walkInsideMinutes": null,
+      "stairs": null,
+      "slope": null,
+      "restAreas": null,
+      "toilets": null,
+      "barrierFree": null,
+      "note": "來源沒有無障礙、座位資訊；店內也可以只參觀購物。"
+    },
+    "kids": {
+      "friendly": "high",
+      "note": "小學 1 年級以上（預約表寫 6 歲以上）可參加，由家長陪同；6 歲以上和大人同價（VELTRA）；有家族參加的好評。"
+    },
+    "ratings": {
+      "google": 3.5,
+      "googleReviews": 46,
+      "note": null
+    },
     "sources": [
       {
         "type": "tourism",
@@ -2476,11 +3423,54 @@
         "url": "https://msearch.gsi.go.jp/address-search/AddressSearch?q=%E4%B8%89%E9%87%8D%E7%9C%8C%E4%BC%8A%E5%8B%A2%E5%B8%82%E9%80%9A%E7%94%BA112-4",
         "retrieved": "2026-10-18",
         "note": "國土地理院地址搜尋（座標，番地層級）"
+      },
+      {
+        "type": "google-maps",
+        "url": "https://maps.google.com/?cid=4509378631641251114",
+        "retrieved": "2026-10-18",
+        "note": "星數、評論數、座標、照片（Google 名稱：(有)菊池パール；類別：宝石店）"
+      },
+      {
+        "type": "official",
+        "url": "https://kikuchipearl.com/trial.html",
+        "retrieved": "2026-10-18",
+        "note": "體驗內容、約 40 分、取珠 1,100 円＋金具 1,650 円起、預約截止前一天 23:00、小學 1 年級以上"
+      },
+      {
+        "type": "official",
+        "url": "https://kikuchipearl.com/dantai.html",
+        "retrieved": "2026-10-18",
+        "note": "團體：30 人以內約 60 分、當場交付；團體要先聯絡"
+      },
+      {
+        "type": "official",
+        "url": "https://kikuchipearl.com/access.html",
+        "retrieved": "2026-10-18",
+        "note": "JR 五十鈴ケ丘站步行 5 分；伊勢 IC 4 km 約 5 分"
+      },
+      {
+        "type": "official",
+        "url": "https://kikuchipearl.com/",
+        "retrieved": "2026-10-18",
+        "note": "營業日行事曆；定休日不能做珠出し體驗"
+      },
+      {
+        "type": "tourism",
+        "url": "https://www.kankomie.or.jp/spot/22853",
+        "retrieved": "2026-10-18",
+        "note": "觀光三重刊登，不定休"
+      },
+      {
+        "type": "other",
+        "url": "https://www.veltra.com/jp/japan/mie/a/120279",
+        "retrieved": "2026-10-18",
+        "note": "預約頁與心得（2018～2020，只看到搜尋摘要）：家族好評；2019 有人抱怨每顆真珠都要買金具"
       }
     ],
     "verified": false,
     "extra": {
-      "parking": "一般車 15 台、大型巴士 4 台"
+      "parking": "一般車 15 台、大型巴士 4 台",
+      "stayMinutesNote": "取珠約 20 分＋加工約 20 分；團體約 60 分（官網）；VELTRA 寫約 1 小時。"
     }
   }
 ]
