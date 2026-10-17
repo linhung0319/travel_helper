@@ -1,0 +1,4079 @@
+[
+  {
+    "key": "ise-akafuku-honten",
+    "name": {
+      "ja": "赤福 本店"
+    },
+    "region": "ise-naiku",
+    "category": "甘味処、和菓子",
+    "status": "included",
+    "criteria": [
+      "A",
+      "B"
+    ],
+    "reason": null,
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.59,
+      "tabelogReviews": 5505
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240301/24000008/"
+    },
+    "contexts": [
+      "snack"
+    ],
+    "mentions": [
+      {
+        "type": "tourism",
+        "url": "https://www.kankomie.or.jp/report/1305",
+        "title": "觀光三重「おかげ横丁で絶品スイーツ・グルメを食べ歩き！【2022年版】」（2022-11-17）",
+        "highlight": "名物赤福餅（餡的三條紋代表五十鈴川）",
+        "retrieved": "2026-10-18"
+      },
+      {
+        "type": "blog-zh",
+        "url": "https://livejapan.com/zh-tw/in-kansai/in-pref-mie/in-ise_toba_shima/article-a2000174/",
+        "title": "LIVE JAPAN（繁中）「參拜伊勢神宮時也別錯過這裡！「御蔭橫丁」5大知名美食」（2021-02-24 更新）",
+        "highlight": "在 1877 年建的老屋裡吃赤福餅",
+        "retrieved": "2026-10-18"
+      }
+    ],
+    "note": "類型：咖啡・甜點；地址：伊勢市宇治中之切町26 おかげ横丁"
+  },
+  {
+    "key": "ise-fukusuke",
+    "name": {
+      "ja": "ふくすけ"
+    },
+    "region": "ise-naiku",
+    "category": "うどん、天ぷら、郷土料理",
+    "status": "included",
+    "criteria": [
+      "A",
+      "B"
+    ],
+    "reason": null,
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.59,
+      "tabelogReviews": 3325
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240301/24000009/"
+    },
+    "contexts": [
+      "lunch"
+    ],
+    "mentions": [
+      {
+        "type": "media",
+        "url": "https://www.mapple.net/article/31320/",
+        "title": "まっぷる「おかげ横丁の名物グルメ人気店でランチ！伊勢神宮のお参り後に立ち寄りたい♪」（2025-03-21 更新）",
+        "highlight": "伊勢うどん（たまり醤油＋天然だし的醬汁）",
+        "retrieved": "2026-10-18"
+      },
+      {
+        "type": "media",
+        "url": "https://rurubu.jp/andmore/article/18853",
+        "title": "るるぶ&more「お伊勢まいりで立ち寄りたい「おかげ横丁」のおすすめグルメ6店」（2023-12-30 更新）",
+        "highlight": "伊勢うどん，たまり醤油與鰹魚だし的自家醬汁",
+        "retrieved": "2026-10-18"
+      },
+      {
+        "type": "blog-zh",
+        "url": "https://livejapan.com/zh-tw/in-kansai/in-pref-mie/in-ise_toba_shima/article-a2000174/",
+        "title": "LIVE JAPAN（繁中）「參拜伊勢神宮時也別錯過這裡！「御蔭橫丁」5大知名美食」（2021-02-24 更新）",
+        "highlight": "伊勢烏龍麵名店，麵軟Q、醬汁用老抽調製",
+        "retrieved": "2026-10-18"
+      }
+    ],
+    "note": "類型：烏龍麵・蕎麥；地址：伊勢市宇治中之切町52 おかげ横丁"
+  },
+  {
+    "key": "ise-butasute-okage",
+    "name": {
+      "ja": "おかげ横丁 豚捨"
+    },
+    "region": "ise-naiku",
+    "category": "惣菜・デリ、牛料理、コロッケ",
+    "status": "included",
+    "criteria": [
+      "A",
+      "B"
+    ],
+    "reason": null,
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.49,
+      "tabelogReviews": 2274
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240301/24000010/"
+    },
+    "contexts": [
+      "snack"
+    ],
+    "mentions": [
+      {
+        "type": "media",
+        "url": "https://www.mapple.net/article/31320/",
+        "title": "まっぷる「おかげ横丁の名物グルメ人気店でランチ！伊勢神宮のお参り後に立ち寄りたい♪」（2025-03-21 更新）",
+        "highlight": "明治創業精肉店的黑毛和牛牛丼（たまり醤油調味）",
+        "retrieved": "2026-10-18"
+      },
+      {
+        "type": "media",
+        "url": "https://rurubu.jp/andmore/article/18853",
+        "title": "るるぶ&more「お伊勢まいりで立ち寄りたい「おかげ横丁」のおすすめグルメ6店」（2023-12-30 更新）",
+        "highlight": "牛丼（上）、黑毛和牛絞肉可樂餅",
+        "retrieved": "2026-10-18"
+      },
+      {
+        "type": "tourism",
+        "url": "https://www.kankomie.or.jp/report/1305",
+        "title": "觀光三重「おかげ横丁で絶品スイーツ・グルメを食べ歩き！【2022年版】」（2022-11-17）",
+        "highlight": "現炸可樂餅",
+        "retrieved": "2026-10-18"
+      },
+      {
+        "type": "tourism",
+        "url": "https://www.kankomie.or.jp/topic/810",
+        "title": "觀光三重「伊勢神宮おかげ横丁やおはらい町の食べ歩き絶品グルメ18選」介紹（2024-12-13）",
+        "highlight": "可樂餅（食べ歩き）",
+        "retrieved": "2026-10-18"
+      },
+      {
+        "type": "blog-zh",
+        "url": "https://livejapan.com/zh-tw/in-kansai/in-pref-mie/in-ise_toba_shima/article-a2000174/",
+        "title": "LIVE JAPAN（繁中）「參拜伊勢神宮時也別錯過這裡！「御蔭橫丁」5大知名美食」（2021-02-24 更新）",
+        "highlight": "牛丼、牛肉鍋是招牌，外帶可樂餅也受歡迎",
+        "retrieved": "2026-10-18"
+      }
+    ],
+    "note": "類型：其他；地址：伊勢市宇治中之切町52 おかげ横丁"
+  },
+  {
+    "key": "ise-sushikyu",
+    "name": {
+      "ja": "すし久"
+    },
+    "region": "ise-naiku",
+    "category": "郷土料理、うなぎ、麦とろ",
+    "status": "included",
+    "criteria": [
+      "A",
+      "B",
+      "C"
+    ],
+    "reason": null,
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.49,
+      "tabelogReviews": 1424
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240301/24000007/"
+    },
+    "contexts": [
+      "lunch"
+    ],
+    "mentions": [
+      {
+        "type": "media",
+        "url": "https://www.mapple.net/article/31320/",
+        "title": "まっぷる「おかげ横丁の名物グルメ人気店でランチ！伊勢神宮のお参り後に立ち寄りたい♪」（2025-03-21 更新）",
+        "highlight": "招牌てこね寿司（醬油漬鰹魚鋪在醋飯上）",
+        "retrieved": "2026-10-18"
+      },
+      {
+        "type": "media",
+        "url": "https://rurubu.jp/andmore/article/18853",
+        "title": "るるぶ&more「お伊勢まいりで立ち寄りたい「おかげ横丁」のおすすめグルメ6店」（2023-12-30 更新）",
+        "highlight": "てこね寿司用御絲產越光米的醋飯",
+        "retrieved": "2026-10-18"
+      },
+      {
+        "type": "tourism",
+        "url": "https://www.kankomie.or.jp/season/article/178",
+        "title": "觀光三重「てこね寿司特集！志摩地方の郷土料理を楽しめる4店舗」（2025-12-19）",
+        "highlight": "營業再開以來的看板「てこね寿し 梅」1,600 円，鰹魚無腥味、醋飯帶薑香",
+        "retrieved": "2026-10-18"
+      }
+    ],
+    "note": "類型：壽司；地址：伊勢市宇治中之切町20 おかげ横丁；食べログ篩選：個室"
+  },
+  {
+    "key": "ise-akafuku-naikumae",
+    "name": {
+      "ja": "赤福 内宮前支店"
+    },
+    "region": "ise-naiku",
+    "category": "和菓子、甘味処、かき氷",
+    "status": "included",
+    "criteria": [
+      "A"
+    ],
+    "reason": null,
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.48,
+      "tabelogReviews": 1227
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240301/24002230/"
+    },
+    "contexts": [
+      "snack"
+    ],
+    "note": "類型：咖啡・甜點；地址：伊勢市宇治今在家町7"
+  },
+  {
+    "key": "ise-isuzu-chaya-honten",
+    "name": {
+      "ja": "五十鈴茶屋 本店"
+    },
+    "region": "ise-naiku",
+    "category": "甘味処、和菓子、洋菓子",
+    "status": "included",
+    "criteria": [
+      "A"
+    ],
+    "reason": null,
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.67,
+      "tabelogReviews": 913
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240301/24000873/"
+    },
+    "contexts": [
+      "snack"
+    ],
+    "note": "類型：咖啡・甜點；地址：伊勢市宇治中之切町30"
+  },
+  {
+    "key": "ise-isuzugawa-cafe",
+    "name": {
+      "ja": "五十鈴川カフェ"
+    },
+    "region": "ise-naiku",
+    "category": "カフェ、喫茶店",
+    "status": "included",
+    "criteria": [
+      "A"
+    ],
+    "reason": null,
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.63,
+      "tabelogReviews": 883
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240301/24001919/"
+    },
+    "contexts": [
+      "snack",
+      "cafe"
+    ],
+    "note": "類型：咖啡・甜點；地址：伊勢市宇治中之切町12 おかげ横丁内"
+  },
+  {
+    "key": "ise-akafuku-bettenpo",
+    "name": {
+      "ja": "赤福 本店別店舗"
+    },
+    "region": "ise-naiku",
+    "category": "甘味処、かき氷",
+    "status": "included",
+    "criteria": [
+      "A"
+    ],
+    "reason": null,
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.43,
+      "tabelogReviews": 707
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240301/24012374/"
+    },
+    "contexts": [
+      "snack"
+    ],
+    "note": "類型：咖啡・甜點；地址：伊勢市宇治中之切町26"
+  },
+  {
+    "key": "ise-kadoya-naikumae",
+    "name": {
+      "ja": "伊勢角屋麦酒 内宮前店"
+    },
+    "region": "ise-naiku",
+    "category": "食堂、海鮮",
+    "status": "included",
+    "criteria": [
+      "A"
+    ],
+    "reason": null,
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.49,
+      "tabelogReviews": 654
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240301/24001784/"
+    },
+    "contexts": [
+      "lunch"
+    ],
+    "mentions": [
+      {
+        "type": "tourism",
+        "url": "https://www.kankomie.or.jp/topic/810",
+        "title": "觀光三重「伊勢神宮おかげ横丁やおはらい町の食べ歩き絶品グルメ18選」介紹（2024-12-13）",
+        "highlight": "カキフライ串（食べ歩き）",
+        "retrieved": "2026-10-18"
+      }
+    ],
+    "note": "類型：定食・食堂；地址：伊勢市宇治今在家町東賀集楽34"
+  },
+  {
+    "key": "ise-akafuku-isuzugawa",
+    "name": {
+      "ja": "赤福 五十鈴川店"
+    },
+    "region": "ise-naiku",
+    "category": "甘味処、和菓子、かき氷",
+    "status": "included",
+    "criteria": [
+      "A"
+    ],
+    "reason": null,
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.43,
+      "tabelogReviews": 654
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240301/24001202/"
+    },
+    "contexts": [
+      "snack"
+    ],
+    "note": "類型：咖啡・甜點；地址：伊勢市宇治浦田1-11-5"
+  },
+  {
+    "key": "ise-tofuan-yamanaka",
+    "name": {
+      "ja": "豆腐庵山中"
+    },
+    "region": "ise-naiku",
+    "category": "スイーツ、ドーナツ、ソフトクリーム",
+    "status": "included",
+    "criteria": [
+      "A"
+    ],
+    "reason": null,
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.59,
+      "tabelogReviews": 593
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240301/24001620/"
+    },
+    "contexts": [
+      "snack"
+    ],
+    "mentions": [
+      {
+        "type": "tourism",
+        "url": "https://www.kankomie.or.jp/season/article/135",
+        "title": "觀光三重「おはらい町大特集！グルメ・お土産・体験の人気23スポット」（2024-12-19）",
+        "highlight": "うの花どーなつ、おとうふソフト",
+        "retrieved": "2026-10-18"
+      },
+      {
+        "type": "tourism",
+        "url": "https://www.kankomie.or.jp/report/1606",
+        "title": "觀光三重「伊勢神宮おはらい町の絶品食べ歩きスイーツ10選」（2024-01-15）",
+        "highlight": "加了豆渣的鬆軟甜甜圈、清爽的豆腐霜淇淋",
+        "retrieved": "2026-10-18"
+      }
+    ],
+    "note": "類型：咖啡・甜點；地址：伊勢市宇治中之切町95；食べログ列表定休：木曜日"
+  },
+  {
+    "key": "ise-ebiya-shokudo",
+    "name": {
+      "ja": "ゑびや大食堂"
+    },
+    "region": "ise-naiku",
+    "category": "海鮮、すき焼き、海鮮丼",
+    "status": "included",
+    "criteria": [
+      "A",
+      "C"
+    ],
+    "reason": null,
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.48,
+      "tabelogReviews": 569
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240301/24001876/"
+    },
+    "contexts": [
+      "lunch"
+    ],
+    "note": "類型：海鮮丼；地址：伊勢市宇治今在家町13；食べログ篩選：貸切可"
+  },
+  {
+    "key": "ise-okunoya",
+    "name": {
+      "ja": "伊勢うどん 奥野家"
+    },
+    "region": "ise-naiku",
+    "category": "うどん、郷土料理、丼",
+    "status": "included",
+    "criteria": [
+      "A",
+      "C"
+    ],
+    "reason": null,
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.5,
+      "tabelogReviews": 554
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240301/24001335/"
+    },
+    "contexts": [
+      "lunch",
+      "dinner"
+    ],
+    "note": "類型：烏龍麵・蕎麥；地址：伊勢市宇治今在家町18；食べログ篩選：個室"
+  },
+  {
+    "key": "ise-dangoya",
+    "name": {
+      "ja": "だんご屋"
+    },
+    "region": "ise-naiku",
+    "category": "甘味処、スイーツ",
+    "status": "included",
+    "criteria": [
+      "A"
+    ],
+    "reason": null,
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.49,
+      "tabelogReviews": 548
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240301/24007364/"
+    },
+    "contexts": [
+      "snack"
+    ],
+    "mentions": [
+      {
+        "type": "tourism",
+        "url": "https://www.kankomie.or.jp/report/1305",
+        "title": "觀光三重「おかげ横丁で絶品スイーツ・グルメを食べ歩き！【2022年版】」（2022-11-17）",
+        "highlight": "伊勢隱藏名物黑蜜糰子",
+        "retrieved": "2026-10-18"
+      },
+      {
+        "type": "tourism",
+        "url": "https://www.kankomie.or.jp/topic/810",
+        "title": "觀光三重「伊勢神宮おかげ横丁やおはらい町の食べ歩き絶品グルメ18選」介紹（2024-12-13）",
+        "highlight": "黒糖みつ団子",
+        "retrieved": "2026-10-18"
+      }
+    ],
+    "note": "類型：咖啡・甜點；地址：伊勢市宇治中之切町12"
+  },
+  {
+    "key": "ise-okadaya",
+    "name": {
+      "ja": "岡田屋"
+    },
+    "region": "ise-naiku",
+    "category": "うどん、そば、親子丼",
+    "status": "included",
+    "criteria": [
+      "A"
+    ],
+    "reason": null,
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.47,
+      "tabelogReviews": 491
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240301/24000005/"
+    },
+    "contexts": [
+      "lunch"
+    ],
+    "mentions": [
+      {
+        "type": "tourism",
+        "url": "https://www.kankomie.or.jp/season/article/135",
+        "title": "觀光三重「おはらい町大特集！グルメ・お土産・体験の人気23スポット」（2024-12-19）",
+        "highlight": "伊勢うどん、特製咖哩",
+        "retrieved": "2026-10-18"
+      }
+    ],
+    "note": "類型：烏龍麵・蕎麥；地址：伊勢市宇治今在家町31；食べログ列表定休：木曜日"
+  },
+  {
+    "key": "ise-dangoro-chaya",
+    "name": {
+      "ja": "団五郎茶屋"
+    },
+    "region": "ise-naiku",
+    "category": "おにぎり、甘味処",
+    "status": "included",
+    "criteria": [
+      "A"
+    ],
+    "reason": null,
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.48,
+      "tabelogReviews": 449
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240301/24002012/"
+    },
+    "contexts": [
+      "snack"
+    ],
+    "mentions": [
+      {
+        "type": "media",
+        "url": "https://www.mapple.net/article/31320/",
+        "title": "まっぷる「おかげ横丁の名物グルメ人気店でランチ！伊勢神宮のお参り後に立ち寄りたい♪」（2025-03-21 更新）",
+        "highlight": "戸隠そば的かけそば；冬天有赤福ぜんざい",
+        "retrieved": "2026-10-18"
+      }
+    ],
+    "note": "類型：其他；地址：伊勢市宇治中之切町52 おかげ横丁"
+  },
+  {
+    "key": "ise-tofuya",
+    "name": {
+      "ja": "とうふとあなご料理 とうふや"
+    },
+    "region": "ise-naiku",
+    "category": "豆腐料理、あなご、揚げ物",
+    "status": "included",
+    "criteria": [
+      "A",
+      "C"
+    ],
+    "reason": null,
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.5,
+      "tabelogReviews": 443
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240301/24001062/"
+    },
+    "contexts": [
+      "lunch"
+    ],
+    "mentions": [
+      {
+        "type": "blog-zh",
+        "url": "https://livejapan.com/zh-tw/in-kansai/in-pref-mie/in-ise_toba_shima/article-a2000174/",
+        "title": "LIVE JAPAN（繁中）「參拜伊勢神宮時也別錯過這裡！「御蔭橫丁」5大知名美食」（2021-02-24 更新）",
+        "highlight": "當日現做的豆腐、可以眺望五十鈴川，傍晚後也能用餐",
+        "retrieved": "2026-10-18"
+      }
+    ],
+    "note": "類型：和食・割烹；地址：伊勢市宇治浦田1-4-1；食べログ篩選：個室"
+  },
+  {
+    "key": "ise-shoyu-honpo",
+    "name": {
+      "ja": "伊勢醤油本舗"
+    },
+    "region": "ise-naiku",
+    "category": "うどん、ソフトクリーム、甘味処",
+    "status": "included",
+    "criteria": [
+      "A"
+    ],
+    "reason": null,
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.48,
+      "tabelogReviews": 438
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240301/24010735/"
+    },
+    "contexts": [
+      "lunch"
+    ],
+    "mentions": [
+      {
+        "type": "media",
+        "url": "https://www.mapple.net/article/31320/",
+        "title": "まっぷる「おかげ横丁の名物グルメ人気店でランチ！伊勢神宮のお参り後に立ち寄りたい♪」（2025-03-21 更新）",
+        "highlight": "伊勢うどん的變化版菜色（只有標題）",
+        "retrieved": "2026-10-18"
+      }
+    ],
+    "note": "類型：烏龍麵・蕎麥；地址：伊勢市宇治中之切町52 おかげ横丁"
+  },
+  {
+    "key": "ise-horaitei",
+    "name": {
+      "ja": "二光堂 寶来亭"
+    },
+    "region": "ise-naiku",
+    "category": "ステーキ、うどん、郷土料理",
+    "status": "included",
+    "criteria": [
+      "A"
+    ],
+    "reason": null,
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.48,
+      "tabelogReviews": 407
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240301/24000585/"
+    },
+    "contexts": [
+      "lunch"
+    ],
+    "mentions": [
+      {
+        "type": "tourism",
+        "url": "https://www.kankomie.or.jp/season/article/135",
+        "title": "觀光三重「おはらい町大特集！グルメ・お土産・体験の人気23スポット」（2024-12-19）",
+        "highlight": "鋪松阪肉的ステーキ牛丼",
+        "retrieved": "2026-10-18"
+      }
+    ],
+    "note": "類型：燒肉・肉料理；地址：伊勢市宇治今在家町60 二光堂内"
+  },
+  {
+    "key": "ise-wakamatsuya-okage",
+    "name": {
+      "ja": "若松屋"
+    },
+    "region": "ise-naiku",
+    "category": "揚げ物",
+    "status": "included",
+    "criteria": [
+      "A",
+      "B"
+    ],
+    "reason": null,
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.42,
+      "tabelogReviews": 406
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240301/24006873/"
+    },
+    "contexts": [
+      "snack"
+    ],
+    "mentions": [
+      {
+        "type": "media",
+        "url": "https://rurubu.jp/andmore/article/18853",
+        "title": "るるぶ&more「お伊勢まいりで立ち寄りたい「おかげ横丁」のおすすめグルメ6店」（2023-12-30 更新）",
+        "highlight": "九種料的「伊勢ひりょうず」",
+        "retrieved": "2026-10-18"
+      },
+      {
+        "type": "tourism",
+        "url": "https://www.kankomie.or.jp/report/1305",
+        "title": "觀光三重「おかげ横丁で絶品スイーツ・グルメを食べ歩き！【2022年版】」（2022-11-17）",
+        "highlight": "九種料的伊勢ひりょうず",
+        "retrieved": "2026-10-18"
+      },
+      {
+        "type": "tourism",
+        "url": "https://www.kankomie.or.jp/topic/810",
+        "title": "觀光三重「伊勢神宮おかげ横丁やおはらい町の食べ歩き絶品グルメ18選」介紹（2024-12-13）",
+        "highlight": "現炸的伊勢ひりょうず",
+        "retrieved": "2026-10-18"
+      }
+    ],
+    "note": "類型：其他；地址：伊勢市宇治中之切町52 おかげ横丁"
+  },
+  {
+    "key": "ise-ebimaru",
+    "name": {
+      "ja": "海老丸"
+    },
+    "region": "ise-naiku",
+    "category": "海鮮、郷土料理、海鮮丼",
+    "status": "included",
+    "criteria": [
+      "A"
+    ],
+    "reason": null,
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.46,
+      "tabelogReviews": 402
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240301/24000224/"
+    },
+    "contexts": [
+      "lunch"
+    ],
+    "mentions": [
+      {
+        "type": "media",
+        "url": "https://www.mapple.net/article/31320/",
+        "title": "まっぷる「おかげ横丁の名物グルメ人気店でランチ！伊勢神宮のお参り後に立ち寄りたい♪」（2025-03-21 更新）",
+        "highlight": "用生け簀海鮮做的漁師料理：味噌漁師汁、海鮮丼",
+        "retrieved": "2026-10-18"
+      }
+    ],
+    "note": "類型：海鮮丼；地址：伊勢市宇治中之切町52 おかげ横丁"
+  },
+  {
+    "key": "ise-henbaya-oharai",
+    "name": {
+      "ja": "へんばや商店 おはらい町店"
+    },
+    "region": "ise-naiku",
+    "category": "和菓子",
+    "status": "included",
+    "criteria": [
+      "A"
+    ],
+    "reason": null,
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.45,
+      "tabelogReviews": 388
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240301/24010667/"
+    },
+    "contexts": [
+      "snack"
+    ],
+    "mentions": [
+      {
+        "type": "tourism",
+        "url": "https://www.kankomie.or.jp/season/article/135",
+        "title": "觀光三重「おはらい町大特集！グルメ・お土産・体験の人気23スポット」（2024-12-19）",
+        "highlight": "當天清晨做的へんば餅",
+        "retrieved": "2026-10-18"
+      }
+    ],
+    "note": "類型：咖啡・甜點；地址：伊勢市宇治浦田1-149-1；食べログ列表定休：月曜日"
+  },
+  {
+    "key": "ise-shoseiko",
+    "name": {
+      "ja": "横丁そば 小西湖"
+    },
+    "region": "ise-naiku",
+    "category": "中華料理、ラーメン",
+    "status": "included",
+    "criteria": [
+      "A"
+    ],
+    "reason": null,
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.46,
+      "tabelogReviews": 368
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240301/24007113/"
+    },
+    "contexts": [
+      "snack"
+    ],
+    "mentions": [
+      {
+        "type": "media",
+        "url": "https://www.mapple.net/article/31320/",
+        "title": "まっぷる「おかげ横丁の名物グルメ人気店でランチ！伊勢神宮のお参り後に立ち寄りたい♪」（2025-03-21 更新）",
+        "highlight": "松阪牛骨湯頭＋自製叉燒的「焼豚満開横丁そば」",
+        "retrieved": "2026-10-18"
+      }
+    ],
+    "note": "類型：其他；地址：伊勢市宇治中之切町52 おかげ横丁"
+  },
+  {
+    "key": "ise-oiseya-honpo",
+    "name": {
+      "ja": "お伊勢屋本舗"
+    },
+    "region": "ise-naiku",
+    "category": "肉まん、串揚げ、ジェラート・アイスクリーム",
+    "status": "included",
+    "criteria": [
+      "A"
+    ],
+    "reason": null,
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.47,
+      "tabelogReviews": 366
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240301/24007363/"
+    },
+    "contexts": [
+      "snack"
+    ],
+    "note": "類型：其他；地址：伊勢市宇治中之切町94-7"
+  },
+  {
+    "key": "ise-imonne",
+    "name": {
+      "ja": "いもんね 伊勢内宮前本店"
+    },
+    "region": "ise-naiku",
+    "category": "ジェラート・アイスクリーム",
+    "status": "included",
+    "criteria": [
+      "A"
+    ],
+    "reason": null,
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.53,
+      "tabelogReviews": 339
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240301/24020206/"
+    },
+    "contexts": [
+      "snack"
+    ],
+    "mentions": [
+      {
+        "type": "tourism",
+        "url": "https://www.kankomie.or.jp/report/1606",
+        "title": "觀光三重「伊勢神宮おはらい町の絶品食べ歩きスイーツ10選」（2024-01-15）",
+        "highlight": "現場用求肥包ほし芋ジェラート的「ジェラ餅」",
+        "retrieved": "2026-10-18"
+      }
+    ],
+    "note": "類型：咖啡・甜點；地址：伊勢市宇治今在家町54"
+  },
+  {
+    "key": "ise-snoopy-chaya",
+    "name": {
+      "ja": "SNOOPY茶屋 伊勢店"
+    },
+    "region": "ise-naiku",
+    "category": "ティースタンド",
+    "status": "included",
+    "criteria": [
+      "A",
+      "B"
+    ],
+    "reason": null,
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.48,
+      "tabelogReviews": 330
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240301/24013674/"
+    },
+    "contexts": [
+      "snack"
+    ],
+    "mentions": [
+      {
+        "type": "tourism",
+        "url": "https://www.kankomie.or.jp/season/article/135",
+        "title": "觀光三重「おはらい町大特集！グルメ・お土産・体験の人気23スポット」（2024-12-19）",
+        "highlight": "史努比主題店與甜點",
+        "retrieved": "2026-10-18"
+      },
+      {
+        "type": "tourism",
+        "url": "https://www.kankomie.or.jp/report/1606",
+        "title": "觀光三重「伊勢神宮おはらい町の絶品食べ歩きスイーツ10選」（2024-01-15）",
+        "highlight": "スヌーピーやき（鯛魚燒）、抹茶拿鐵",
+        "retrieved": "2026-10-18"
+      },
+      {
+        "type": "blog-zh",
+        "url": "https://www.hk01.com/旅遊/332609/伊勢神宮-拜訪日本人一生必訪的心靈故鄉-特色托福橫丁商店街",
+        "title": "香港01「【伊勢神宮】拜訪日本人一生必訪的心靈故鄉 特色托福橫丁商店街」（2025-02-12 更新）",
+        "highlight": "推薦給史努比迷，有伊勢限定商品",
+        "retrieved": "2026-10-18"
+      }
+    ],
+    "note": "類型：咖啡・甜點；地址：伊勢市宇治今在家町64"
+  },
+  {
+    "key": "ise-iwatoya-honten",
+    "name": {
+      "ja": "伊勢神宮内宮前 岩戸屋 本店"
+    },
+    "region": "ise-naiku",
+    "category": "和菓子、スイーツ",
+    "status": "included",
+    "criteria": [
+      "A",
+      "C"
+    ],
+    "reason": null,
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.49,
+      "tabelogReviews": 309
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240301/24001460/"
+    },
+    "contexts": [
+      "snack"
+    ],
+    "mentions": [
+      {
+        "type": "tourism",
+        "url": "https://www.kankomie.or.jp/season/article/135",
+        "title": "觀光三重「おはらい町大特集！グルメ・お土産・体験の人気23スポット」（2024-12-19）",
+        "highlight": "岩戸餅、生姜糖、伊勢うどん",
+        "retrieved": "2026-10-18"
+      }
+    ],
+    "note": "類型：咖啡・甜點；地址：伊勢市宇治今在家町58；食べログ篩選：個室"
+  },
+  {
+    "key": "ise-tekone-chaya-chuo",
+    "name": {
+      "ja": "手こね茶屋 おはらい町中央店"
+    },
+    "region": "ise-naiku",
+    "category": "うどん、寿司、丼",
+    "status": "included",
+    "criteria": [
+      "A"
+    ],
+    "reason": null,
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.44,
+      "tabelogReviews": 290
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240301/24013004/"
+    },
+    "contexts": [
+      "lunch",
+      "dinner"
+    ],
+    "mentions": [
+      {
+        "type": "tourism",
+        "url": "https://www.kankomie.or.jp/season/article/178",
+        "title": "觀光三重「てこね寿司特集！志摩地方の郷土料理を楽しめる4店舗」（2025-12-19）",
+        "highlight": "手こねずし＋伊勢うどん的「名物合わせ」1,760 円",
+        "retrieved": "2026-10-18"
+      }
+    ],
+    "note": "類型：烏龍麵・蕎麥；地址：伊勢市宇治中之切町93-1"
+  },
+  {
+    "key": "ise-nakaiya",
+    "name": {
+      "ja": "中井屋"
+    },
+    "region": "ise-naiku",
+    "category": "うどん",
+    "status": "included",
+    "criteria": [
+      "A"
+    ],
+    "reason": null,
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.44,
+      "tabelogReviews": 258
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240301/24000006/"
+    },
+    "contexts": [
+      "lunch"
+    ],
+    "note": "類型：烏龍麵・蕎麥；地址：伊勢市宇治中之切町10；食べログ列表定休：火曜日"
+  },
+  {
+    "key": "ise-maruyoshi-oharai",
+    "name": {
+      "ja": "松阪牛専門店 松阪まるよし 伊勢おはらい町店"
+    },
+    "region": "ise-naiku",
+    "category": "牛料理、鍋、牛丼",
+    "status": "included",
+    "criteria": [
+      "A"
+    ],
+    "reason": null,
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.41,
+      "tabelogReviews": 246
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240301/24017325/"
+    },
+    "contexts": [
+      "lunch",
+      "dinner"
+    ],
+    "mentions": [
+      {
+        "type": "tourism",
+        "url": "https://www.kankomie.or.jp/season/article/135",
+        "title": "觀光三重「おはらい町大特集！グルメ・お土産・体験の人気23スポット」（2024-12-19）",
+        "highlight": "松阪牛可樂餅、メンチカツ、牛鍋",
+        "retrieved": "2026-10-18"
+      },
+      {
+        "type": "tourism",
+        "url": "https://www.kankomie.or.jp/topic/810",
+        "title": "觀光三重「伊勢神宮おかげ横丁やおはらい町の食べ歩き絶品グルメ18選」介紹（2024-12-13）",
+        "highlight": "松阪牛的牛鍋まん",
+        "retrieved": "2026-10-18"
+      }
+    ],
+    "note": "類型：燒肉・肉料理；地址：伊勢市宇治今在家町26"
+  },
+  {
+    "key": "ise-tekone-chaya-naiku",
+    "name": {
+      "ja": "手こね茶屋 内宮店"
+    },
+    "region": "ise-naiku",
+    "category": "寿司、うどん、郷土料理",
+    "status": "included",
+    "criteria": [
+      "A"
+    ],
+    "reason": null,
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.42,
+      "tabelogReviews": 235
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240301/24001385/"
+    },
+    "contexts": [
+      "lunch"
+    ],
+    "note": "類型：壽司；地址：伊勢市宇治今在家町47-22 宇治園 ２Ｆ"
+  },
+  {
+    "key": "ise-kawanishiya",
+    "name": {
+      "ja": "川西屋"
+    },
+    "region": "ise-naiku",
+    "category": "うどん、サンドイッチ",
+    "status": "included",
+    "criteria": [
+      "A"
+    ],
+    "reason": null,
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.41,
+      "tabelogReviews": 235
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240301/24015250/"
+    },
+    "contexts": [
+      "lunch"
+    ],
+    "mentions": [
+      {
+        "type": "tourism",
+        "url": "https://www.kankomie.or.jp/topic/810",
+        "title": "觀光三重「伊勢神宮おかげ横丁やおはらい町の食べ歩き絶品グルメ18選」介紹（2024-12-13）",
+        "highlight": "明和產雞蛋的玉子焼き、玉子サンド",
+        "retrieved": "2026-10-18"
+      }
+    ],
+    "note": "類型：烏龍麵・蕎麥；地址：伊勢市宇治浦田1-3-4"
+  },
+  {
+    "key": "ise-ikadaso",
+    "name": {
+      "ja": "横丁 いかだ荘"
+    },
+    "region": "ise-naiku",
+    "category": "かき、寿司、海鮮",
+    "status": "included",
+    "criteria": [
+      "A",
+      "C"
+    ],
+    "reason": null,
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.54,
+      "tabelogReviews": 178
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240301/24017587/"
+    },
+    "contexts": [
+      "lunch",
+      "dinner"
+    ],
+    "note": "類型：牡蠣；地址：伊勢市宇治中之切町47；食べログ篩選：個室"
+  },
+  {
+    "key": "ise-noasobidana",
+    "name": {
+      "ja": "野あそび棚"
+    },
+    "region": "ise-naiku",
+    "category": "日本料理、カフェ",
+    "status": "included",
+    "criteria": [
+      "A",
+      "C"
+    ],
+    "reason": null,
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.41,
+      "tabelogReviews": 171
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240301/24008115/"
+    },
+    "contexts": [
+      "lunch"
+    ],
+    "note": "類型：和食・割烹；地址：伊勢市宇治浦田1-11-5；食べログ篩選：貸切可"
+  },
+  {
+    "key": "ise-okuno-steak",
+    "name": {
+      "ja": "牛ステーキ おく乃"
+    },
+    "region": "ise-naiku",
+    "category": "ステーキ",
+    "status": "included",
+    "criteria": [
+      "C"
+    ],
+    "reason": null,
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.36,
+      "tabelogReviews": 145
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240301/24000535/"
+    },
+    "contexts": [
+      "lunch"
+    ],
+    "note": "類型：燒肉・肉料理；地址：伊勢市宇治今在家町18；食べログ篩選：個室"
+  },
+  {
+    "key": "ise-isshobin-naiku",
+    "name": {
+      "ja": "一升びん 伊勢内宮店"
+    },
+    "region": "ise-naiku",
+    "category": "しゃぶしゃぶ、すき焼き、焼肉",
+    "status": "included",
+    "criteria": [
+      "C"
+    ],
+    "reason": null,
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.16,
+      "tabelogReviews": 111
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240301/24011753/"
+    },
+    "contexts": [
+      "lunch"
+    ],
+    "mentions": [
+      {
+        "type": "tourism",
+        "url": "https://www.kankomie.or.jp/season/article/135",
+        "title": "觀光三重「おはらい町大特集！グルメ・お土産・体験の人気23スポット」（2024-12-19）",
+        "highlight": "松阪牛 A5 等級的燒肉、壽喜燒",
+        "retrieved": "2026-10-18"
+      }
+    ],
+    "note": "類型：燒肉・肉料理；地址：伊勢市宇治今在家町121；食べログ篩選：貸切可；食べログ列表定休：火曜日"
+  },
+  {
+    "key": "ise-sanguutei-isuzu",
+    "name": {
+      "ja": "参宮亭五十鈴食堂"
+    },
+    "region": "ise-naiku",
+    "category": "食堂、うどん、郷土料理",
+    "status": "included",
+    "criteria": [
+      "A",
+      "C"
+    ],
+    "reason": null,
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.4,
+      "tabelogReviews": 105
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240301/24019272/"
+    },
+    "contexts": [
+      "lunch"
+    ],
+    "note": "類型：定食・食堂；地址：伊勢市宇治今在家町11-1；食べログ篩選：個室"
+  },
+  {
+    "key": "ise-haikarasan",
+    "name": {
+      "ja": "はいからさん"
+    },
+    "region": "ise-naiku",
+    "category": "洋食、パスタ、ピザ",
+    "status": "included",
+    "criteria": [
+      "C"
+    ],
+    "reason": null,
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.34,
+      "tabelogReviews": 86
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240301/24004385/"
+    },
+    "contexts": [
+      "lunch"
+    ],
+    "mentions": [
+      {
+        "type": "media",
+        "url": "https://www.mapple.net/article/31320/",
+        "title": "まっぷる「おかげ横丁の名物グルメ人気店でランチ！伊勢神宮のお参り後に立ち寄りたい♪」（2025-03-21 更新）",
+        "highlight": "洋館氣氛的デミグラス漢堡排、牛肉燴飯（ハヤシライス）",
+        "retrieved": "2026-10-18"
+      }
+    ],
+    "note": "類型：洋食・義式；地址：伊勢市宇治中之切町52 おかげ横丁；食べログ篩選：貸切可"
+  },
+  {
+    "key": "ise-ebisei",
+    "name": {
+      "ja": "伊勢海老屋 えび勢"
+    },
+    "region": "ise-naiku",
+    "category": "海鮮、居酒屋",
+    "status": "included",
+    "criteria": [
+      "C"
+    ],
+    "reason": null,
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.19,
+      "tabelogReviews": 72
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240301/24016990/"
+    },
+    "contexts": [
+      "dinner"
+    ],
+    "note": "類型：海鮮丼；地址：伊勢市宇治浦田1-8-12；食べログ篩選：貸切可"
+  },
+  {
+    "key": "ise-umisachi-yamasachi",
+    "name": {
+      "ja": "海さち山さち"
+    },
+    "region": "ise-naiku",
+    "category": "立ち食い寿司",
+    "status": "included",
+    "criteria": [
+      "C"
+    ],
+    "reason": null,
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.31,
+      "tabelogReviews": 48
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240301/24021239/"
+    },
+    "contexts": [
+      "lunch"
+    ],
+    "note": "類型：壽司；地址：伊勢市宇治中之切町52；食べログ篩選：貸切可"
+  },
+  {
+    "key": "ise-sudaku-oharai",
+    "name": {
+      "ja": "焼肉すだく 伊勢神宮おはらい町店"
+    },
+    "region": "ise-naiku",
+    "category": "焼肉、ホルモン、居酒屋",
+    "status": "included",
+    "criteria": [
+      "C"
+    ],
+    "reason": null,
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.14,
+      "tabelogReviews": 22
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240301/24021537/"
+    },
+    "contexts": [
+      "lunch",
+      "dinner"
+    ],
+    "note": "類型：燒肉・肉料理；地址：伊勢市宇治中之切町92-9；食べログ篩選：貸切可"
+  },
+  {
+    "key": "ise-kakiaki-hanare",
+    "name": {
+      "ja": "カキアキ水産 はなれ"
+    },
+    "region": "ise-naiku",
+    "category": "海鮮、うどん、おでん",
+    "status": "included",
+    "criteria": [
+      "C"
+    ],
+    "reason": null,
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.1,
+      "tabelogReviews": 18
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240301/24018019/"
+    },
+    "contexts": [
+      "lunch",
+      "dinner"
+    ],
+    "note": "類型：海鮮丼；地址：伊勢市宇治浦田1-8-1；食べログ篩選：貸切可"
+  },
+  {
+    "key": "tabelog-24012658",
+    "name": {
+      "ja": "いにしえの宿 伊久"
+    },
+    "region": "ise-naiku",
+    "category": "料理旅館、日本料理",
+    "status": "pending",
+    "criteria": [
+      "A"
+    ],
+    "reason": "住宿本體（lodging ise-iku，料理旅館）；接受非住客用餐的話以 F③ 納入（3.46／129 則也符合 A），T8d 先確認",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.46,
+      "tabelogReviews": 129
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240301/24012658/"
+    },
+    "contexts": [
+      "dinner"
+    ],
+    "note": "類型：和食・割烹；地址：伊勢市宇治館町字岩井田山679-2"
+  },
+  {
+    "key": "tabelog-24009050",
+    "name": {
+      "ja": "神宮会館"
+    },
+    "region": "ise-naiku",
+    "category": "ホテル",
+    "status": "pending",
+    "criteria": [
+      "C"
+    ],
+    "reason": "住宿本體（lodging ise-jingu-kaikan，食べログ類別ホテル）；在個室篩選裡、3.23／61 則，非住客能用餐的話符合 C，T8d 先確認",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.23,
+      "tabelogReviews": 61
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240301/24009050/"
+    },
+    "contexts": [
+      "snack"
+    ],
+    "note": "類型：其他；地址：伊勢市宇治中之切町152 ４階；食べログ篩選：個室"
+  },
+  {
+    "key": "tabelog-24015613",
+    "name": {
+      "ja": "伊勢 プリンと食パンの鉄人"
+    },
+    "region": "ise-naiku",
+    "category": "プリン、パン、洋菓子",
+    "status": "over-limit",
+    "criteria": [
+      "A"
+    ],
+    "reason": "同類型上限：ise-naiku 的「咖啡・甜點」超過 12 家",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.49,
+      "tabelogReviews": 237
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240301/24015613/"
+    },
+    "contexts": [
+      "snack"
+    ],
+    "mentions": [
+      {
+        "type": "tourism",
+        "url": "https://www.kankomie.or.jp/report/1606",
+        "title": "觀光三重「伊勢神宮おはらい町の絶品食べ歩きスイーツ10選」（2024-01-15）",
+        "highlight": "伊勢プリントースト、飲む生プリン",
+        "retrieved": "2026-10-18"
+      }
+    ],
+    "note": "類型：咖啡・甜點；地址：伊勢市宇治今在家町24"
+  },
+  {
+    "key": "tabelog-24017444",
+    "name": {
+      "ja": "山村みるくがっこう 内宮前店"
+    },
+    "region": "ise-naiku",
+    "category": "ソフトクリーム、スイーツ",
+    "status": "over-limit",
+    "criteria": [
+      "A"
+    ],
+    "reason": "同類型上限：ise-naiku 的「咖啡・甜點」超過 12 家",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.49,
+      "tabelogReviews": 216
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240301/24017444/"
+    },
+    "contexts": [
+      "snack"
+    ],
+    "mentions": [
+      {
+        "type": "tourism",
+        "url": "https://www.kankomie.or.jp/report/1606",
+        "title": "觀光三重「伊勢神宮おはらい町の絶品食べ歩きスイーツ10選」（2024-01-15）",
+        "highlight": "木棒插著的「山村ぷりんバー」，冬季限定揚げぷりんパン",
+        "retrieved": "2026-10-18"
+      }
+    ],
+    "note": "類型：咖啡・甜點；地址：伊勢市宇治今在家町字中賀集楽37-3"
+  },
+  {
+    "key": "tabelog-24011678",
+    "name": {
+      "ja": "松治郎の舗 伊勢おはらい町店"
+    },
+    "region": "ise-naiku",
+    "category": "ジェラート・アイスクリーム",
+    "status": "over-limit",
+    "criteria": [
+      "A"
+    ],
+    "reason": "同類型上限：ise-naiku 的「咖啡・甜點」超過 12 家",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.46,
+      "tabelogReviews": 154
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240301/24011678/"
+    },
+    "contexts": [
+      "snack"
+    ],
+    "mentions": [
+      {
+        "type": "tourism",
+        "url": "https://www.kankomie.or.jp/season/article/135",
+        "title": "觀光三重「おはらい町大特集！グルメ・お土産・体験の人気23スポット」（2024-12-19）",
+        "highlight": "はちみつ最中アイス、ハニポテ",
+        "retrieved": "2026-10-18"
+      },
+      {
+        "type": "tourism",
+        "url": "https://www.kankomie.or.jp/report/1606",
+        "title": "觀光三重「伊勢神宮おはらい町の絶品食べ歩きスイーツ10選」（2024-01-15）",
+        "highlight": "自家蜂蜜裹的大學芋「ハニポテ」會排隊",
+        "retrieved": "2026-10-18"
+      }
+    ],
+    "note": "類型：咖啡・甜點；地址：伊勢市宇治中之切町7"
+  },
+  {
+    "key": "tabelog-24006886",
+    "name": {
+      "ja": "フルーツラボ"
+    },
+    "region": "ise-naiku",
+    "category": "フルーツパーラー、ジューススタンド",
+    "status": "over-limit",
+    "criteria": [
+      "A",
+      "B"
+    ],
+    "reason": "同類型上限：ise-naiku 的「咖啡・甜點」超過 12 家",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.46,
+      "tabelogReviews": 135
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240301/24006886/"
+    },
+    "contexts": [
+      "snack"
+    ],
+    "mentions": [
+      {
+        "type": "media",
+        "url": "https://rurubu.jp/andmore/article/18853",
+        "title": "るるぶ&more「お伊勢まいりで立ち寄りたい「おかげ横丁」のおすすめグルメ6店」（2023-12-30 更新）",
+        "highlight": "五種水果＋蜂蜜檸檬果凍的「クラッシュゼリーフルーツ」",
+        "retrieved": "2026-10-18"
+      },
+      {
+        "type": "tourism",
+        "url": "https://www.kankomie.or.jp/report/1305",
+        "title": "觀光三重「おかげ横丁で絶品スイーツ・グルメを食べ歩き！【2022年版】」（2022-11-17）",
+        "highlight": "季節現榨果汁",
+        "retrieved": "2026-10-18"
+      }
+    ],
+    "note": "類型：咖啡・甜點；地址：伊勢市宇治中之切町52 おかげ横丁"
+  },
+  {
+    "key": "tabelog-24007039",
+    "name": {
+      "ja": "藤屋窓月堂 本店"
+    },
+    "region": "ise-naiku",
+    "category": "和菓子、どら焼き、かき氷",
+    "status": "over-limit",
+    "criteria": [
+      "A"
+    ],
+    "reason": "同類型上限：ise-naiku 的「咖啡・甜點」超過 12 家",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.41,
+      "tabelogReviews": 115
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240301/24007039/"
+    },
+    "contexts": [
+      "snack"
+    ],
+    "note": "類型：咖啡・甜點；地址：伊勢市宇治中之切町46-1"
+  },
+  {
+    "key": "tabelog-24008127",
+    "name": {
+      "ja": "五十鈴茶屋 五十鈴川店"
+    },
+    "region": "ise-naiku",
+    "category": "和菓子、ケーキ",
+    "status": "over-limit",
+    "criteria": [
+      "A"
+    ],
+    "reason": "同類型上限：ise-naiku 的「咖啡・甜點」超過 12 家",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.45,
+      "tabelogReviews": 113
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240301/24008127/"
+    },
+    "contexts": [
+      "snack"
+    ],
+    "note": "類型：咖啡・甜點；地址：伊勢市宇治浦田1-11-5"
+  },
+  {
+    "key": "tabelog-24001487",
+    "name": {
+      "ja": "カップジュビー"
+    },
+    "region": "ise-naiku",
+    "category": "喫茶店、カフェ",
+    "status": "over-limit",
+    "criteria": [
+      "A"
+    ],
+    "reason": "同類型上限：ise-naiku 的「咖啡・甜點」超過 12 家",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.43,
+      "tabelogReviews": 110
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240301/24001487/"
+    },
+    "contexts": [
+      "snack",
+      "cafe"
+    ],
+    "mentions": [
+      {
+        "type": "tourism",
+        "url": "https://www.kankomie.or.jp/season/article/135",
+        "title": "觀光三重「おはらい町大特集！グルメ・お土産・体験の人気23スポット」（2024-12-19）",
+        "highlight": "點單後才烘豆的咖啡，店內放 LP 唱片",
+        "retrieved": "2026-10-18"
+      }
+    ],
+    "note": "類型：咖啡・甜點；地址：伊勢市宇治今在家町30-2；食べログ列表定休：水曜日"
+  },
+  {
+    "key": "tabelog-24007357",
+    "name": {
+      "ja": "太閤出世餅"
+    },
+    "region": "ise-naiku",
+    "category": "和菓子、甘味処",
+    "status": "over-limit",
+    "criteria": [
+      "A"
+    ],
+    "reason": "同類型上限：ise-naiku 的「咖啡・甜點」超過 12 家",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.4,
+      "tabelogReviews": 85
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240301/24007357/"
+    },
+    "contexts": [
+      "snack"
+    ],
+    "mentions": [
+      {
+        "type": "tourism",
+        "url": "https://www.kankomie.or.jp/season/article/135",
+        "title": "觀光三重「おはらい町大特集！グルメ・お土産・体験の人気23スポット」（2024-12-19）",
+        "highlight": "不加防腐劑的手燒太閤出世餅",
+        "retrieved": "2026-10-18"
+      }
+    ],
+    "note": "類型：咖啡・甜點；地址：伊勢市宇治今在家町63；食べログ列表定休：木曜日、日曜日"
+  },
+  {
+    "key": "tabelog-24002769",
+    "name": {
+      "ja": "伊勢萬 内宮前酒造場"
+    },
+    "region": "ise-naiku",
+    "category": "日本酒バー、焼酎バー、立ち飲み",
+    "status": "excluded",
+    "criteria": [
+      "A"
+    ],
+    "reason": "酒吧（食べログ類別第一項是日本酒バー；造り酒屋的試飲・甘酒立ち飲み）",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.49,
+      "tabelogReviews": 310
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240301/24002769/"
+    },
+    "contexts": [
+      "snack"
+    ],
+    "mentions": [
+      {
+        "type": "blog-zh",
+        "url": "https://livejapan.com/zh-tw/in-kansai/in-pref-mie/in-ise_toba_shima/article-a2000174/",
+        "title": "LIVE JAPAN（繁中）「參拜伊勢神宮時也別錯過這裡！「御蔭橫丁」5大知名美食」（2021-02-24 更新）",
+        "highlight": "伊勢市唯一的酒造，五十鈴川水釀的生原酒",
+        "retrieved": "2026-10-18"
+      }
+    ],
+    "note": "類型：其他；地址：伊勢市宇治中之切町77-2"
+  },
+  {
+    "key": "tabelog-24007361",
+    "name": {
+      "ja": "白鷹三宅商店"
+    },
+    "region": "ise-naiku",
+    "category": "日本酒バー、立ち飲み、バー",
+    "status": "excluded",
+    "criteria": [
+      "A"
+    ],
+    "reason": "酒吧（食べログ類別第一項是日本酒バー；神宮御料酒的立ち飲み）",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.48,
+      "tabelogReviews": 229
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240301/24007361/"
+    },
+    "contexts": [
+      "snack"
+    ],
+    "mentions": [
+      {
+        "type": "tourism",
+        "url": "https://www.kankomie.or.jp/season/article/135",
+        "title": "觀光三重「おはらい町大特集！グルメ・お土産・体験の人気23スポット」（2024-12-19）",
+        "highlight": "神宮御料酒「白鷹」的立ち飲み櫃台",
+        "retrieved": "2026-10-18"
+      }
+    ],
+    "note": "類型：其他；地址：伊勢市宇治今在家町292"
+  },
+  {
+    "key": "tabelog-24016518",
+    "name": {
+      "ja": "森下酒店 伊勢神宮前店"
+    },
+    "region": "ise-naiku",
+    "category": "日本酒バー",
+    "status": "excluded",
+    "criteria": [
+      "A"
+    ],
+    "reason": "酒吧（食べログ類別是日本酒バー；酒店的角打ち）",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.51,
+      "tabelogReviews": 187
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240301/24016518/"
+    },
+    "contexts": [
+      "snack"
+    ],
+    "note": "類型：其他；地址：伊勢市宇治浦田1-5-7"
+  },
+  {
+    "key": "tabelog-24021331",
+    "name": {
+      "ja": "おかげ横丁"
+    },
+    "region": "ise-naiku",
+    "category": "その他",
+    "status": "excluded",
+    "criteria": [],
+    "reason": "不是單一店家（商店街本體，已以景點 ise-oharaimachi 收錄）",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.1,
+      "tabelogReviews": 42
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240301/24021331/"
+    },
+    "contexts": [
+      "snack"
+    ],
+    "note": "類型：其他；地址：伊勢市宇治中之切町52"
+  },
+  {
+    "key": "tabelog-24003436",
+    "name": {
+      "ja": "磯揚げまる天 内宮前店"
+    },
+    "region": "ise-naiku",
+    "category": "惣菜・デリ、揚げ物",
+    "status": "not-included",
+    "criteria": [],
+    "reason": "未符合 A～F",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.26,
+      "tabelogReviews": 314
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240301/24003436/"
+    },
+    "contexts": [
+      "snack"
+    ],
+    "mentions": [
+      {
+        "type": "tourism",
+        "url": "https://www.kankomie.or.jp/season/article/135",
+        "title": "觀光三重「おはらい町大特集！グルメ・お土産・体験の人気23スポット」（2024-12-19）",
+        "highlight": "現炸磯揚げ（たこ棒、チーズ棒）",
+        "retrieved": "2026-10-18"
+      },
+      {
+        "type": "tourism",
+        "url": "https://www.kankomie.or.jp/topic/810",
+        "title": "觀光三重「伊勢神宮おかげ横丁やおはらい町の食べ歩き絶品グルメ18選」介紹（2024-12-13）",
+        "highlight": "たこ棒・チーズ棒",
+        "retrieved": "2026-10-18"
+      }
+    ],
+    "note": "類型：其他；地址：伊勢市宇治中之切町10 おはらい町内"
+  },
+  {
+    "key": "tabelog-24017918",
+    "name": {
+      "ja": "スターバックスコーヒー 伊勢内宮前店"
+    },
+    "region": "ise-naiku",
+    "category": "カフェ",
+    "status": "not-included",
+    "criteria": [],
+    "reason": "未符合 A～F",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.27,
+      "tabelogReviews": 256
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240301/24017918/"
+    },
+    "contexts": [
+      "snack",
+      "cafe"
+    ],
+    "note": "類型：咖啡・甜點；地址：伊勢市宇治今在家町中賀集楽37-4"
+  },
+  {
+    "key": "tabelog-24002295",
+    "name": {
+      "ja": "わらじや"
+    },
+    "region": "ise-naiku",
+    "category": "うどん、寿司",
+    "status": "not-included",
+    "criteria": [],
+    "reason": "未符合 A～F",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.29,
+      "tabelogReviews": 246
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240301/24002295/"
+    },
+    "contexts": [
+      "lunch",
+      "dinner"
+    ],
+    "note": "類型：烏龍麵・蕎麥；地址：伊勢市宇治今在家町39"
+  },
+  {
+    "key": "tabelog-24016219",
+    "name": {
+      "ja": "伊勢牛若丸"
+    },
+    "region": "ise-naiku",
+    "category": "牛料理、ソフトクリーム",
+    "status": "not-included",
+    "criteria": [],
+    "reason": "A 因數量控制（3.40）取消",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.39,
+      "tabelogReviews": 236
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240301/24016219/"
+    },
+    "contexts": [
+      "lunch",
+      "dinner"
+    ],
+    "mentions": [
+      {
+        "type": "tourism",
+        "url": "https://www.kankomie.or.jp/topic/810",
+        "title": "觀光三重「伊勢神宮おかげ横丁やおはらい町の食べ歩き絶品グルメ18選」介紹（2024-12-13）",
+        "highlight": "炙燒松阪牛握壽司",
+        "retrieved": "2026-10-18"
+      }
+    ],
+    "note": "類型：燒肉・肉料理；地址：伊勢市宇治今在家11"
+  },
+  {
+    "key": "tabelog-24004162",
+    "name": {
+      "ja": "二光堂 一楽 支店"
+    },
+    "region": "ise-naiku",
+    "category": "うどん、そば、海鮮",
+    "status": "not-included",
+    "criteria": [],
+    "reason": "A 因數量控制（3.40）取消",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.36,
+      "tabelogReviews": 204
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240301/24004162/"
+    },
+    "contexts": [
+      "dinner"
+    ],
+    "note": "類型：烏龍麵・蕎麥；地址：伊勢市宇治今在家町19-1"
+  },
+  {
+    "key": "tabelog-24015640",
+    "name": {
+      "ja": "ゑびや商店 あわび串屋台"
+    },
+    "region": "ise-naiku",
+    "category": "その他",
+    "status": "not-included",
+    "criteria": [],
+    "reason": "未符合 A～F",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.14,
+      "tabelogReviews": 176
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240301/24015640/"
+    },
+    "contexts": [
+      "snack"
+    ],
+    "mentions": [
+      {
+        "type": "tourism",
+        "url": "https://www.kankomie.or.jp/topic/810",
+        "title": "觀光三重「伊勢神宮おかげ横丁やおはらい町の食べ歩き絶品グルメ18選」介紹（2024-12-13）",
+        "highlight": "あわび串（焼き塩或自家製バター醤油）",
+        "retrieved": "2026-10-18"
+      }
+    ],
+    "note": "類型：其他；地址：伊勢市宇治今在家町13"
+  },
+  {
+    "key": "tabelog-24000564",
+    "name": {
+      "ja": "手こね茶屋 本店"
+    },
+    "region": "ise-naiku",
+    "category": "食堂、郷土料理",
+    "status": "not-included",
+    "criteria": [],
+    "reason": "A 因數量控制（3.40）取消",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.35,
+      "tabelogReviews": 153
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240301/24000564/"
+    },
+    "contexts": [
+      "lunch"
+    ],
+    "note": "類型：定食・食堂；地址：伊勢市宇治浦田1-4-22"
+  },
+  {
+    "key": "tabelog-24000940",
+    "name": {
+      "ja": "蕎麦切り 才屋"
+    },
+    "region": "ise-naiku",
+    "category": "そば",
+    "status": "not-included",
+    "criteria": [],
+    "reason": "A 因數量控制（3.40）取消",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.38,
+      "tabelogReviews": 103
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240301/24000940/"
+    },
+    "contexts": [
+      "lunch",
+      "dinner"
+    ],
+    "note": "類型：烏龍麵・蕎麥；地址：伊勢市宇治今在家町145-3；食べログ列表定休：日曜日"
+  },
+  {
+    "key": "tabelog-24010530",
+    "name": {
+      "ja": "宝彩 伊勢"
+    },
+    "region": "ise-naiku",
+    "category": "うなぎ、コロッケ",
+    "status": "not-included",
+    "criteria": [],
+    "reason": "A 因數量控制（3.40）取消",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.36,
+      "tabelogReviews": 102
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240301/24010530/"
+    },
+    "contexts": [
+      "lunch"
+    ],
+    "note": "類型：和食・割烹；地址：伊勢市宇治浦田1-4-3；食べログ列表定休：水曜日"
+  },
+  {
+    "key": "tabelog-24015702",
+    "name": {
+      "ja": "まるごと果汁店"
+    },
+    "region": "ise-naiku",
+    "category": "ジューススタンド",
+    "status": "not-included",
+    "criteria": [],
+    "reason": "A 因數量控制（3.40）取消",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.37,
+      "tabelogReviews": 99
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240301/24015702/"
+    },
+    "contexts": [
+      "snack"
+    ],
+    "mentions": [
+      {
+        "type": "tourism",
+        "url": "https://www.kankomie.or.jp/topic/810",
+        "title": "觀光三重「伊勢神宮おかげ横丁やおはらい町の食べ歩き絶品グルメ18選」介紹（2024-12-13）",
+        "highlight": "エビマヨ串、エビチリ串",
+        "retrieved": "2026-10-18"
+      },
+      {
+        "type": "tourism",
+        "url": "https://www.kankomie.or.jp/report/1606",
+        "title": "觀光三重「伊勢神宮おはらい町の絶品食べ歩きスイーツ10選」（2024-01-15）",
+        "highlight": "整顆現榨果汁，不加任何東西",
+        "retrieved": "2026-10-18"
+      }
+    ],
+    "note": "類型：咖啡・甜點；地址：伊勢市宇治今在家町24"
+  },
+  {
+    "key": "tabelog-24006458",
+    "name": {
+      "ja": "虎屋ういろ 内宮前支店"
+    },
+    "region": "ise-naiku",
+    "category": "和菓子",
+    "status": "not-included",
+    "criteria": [],
+    "reason": "未符合 A～F",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.1,
+      "tabelogReviews": 98
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240301/24006458/"
+    },
+    "contexts": [
+      "snack"
+    ],
+    "mentions": [
+      {
+        "type": "tourism",
+        "url": "https://www.kankomie.or.jp/season/article/135",
+        "title": "觀光三重「おはらい町大特集！グルメ・お土産・体験の人気23スポット」（2024-12-19）",
+        "highlight": "伊勢茶栗ういろ、桜ういろ",
+        "retrieved": "2026-10-18"
+      }
+    ],
+    "note": "類型：咖啡・甜點；地址：伊勢市宇治中之切町91"
+  },
+  {
+    "key": "tabelog-24019291",
+    "name": {
+      "ja": "ゑびや商人館 牛寿司屋台"
+    },
+    "region": "ise-naiku",
+    "category": "寿司、牛料理",
+    "status": "not-included",
+    "criteria": [],
+    "reason": "A 因數量控制（3.40）取消",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.36,
+      "tabelogReviews": 96
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240301/24019291/"
+    },
+    "contexts": [
+      "lunch"
+    ],
+    "note": "類型：壽司；地址：伊勢市宇治浦田1-3-2"
+  },
+  {
+    "key": "tabelog-24001880",
+    "name": {
+      "ja": "翠"
+    },
+    "region": "ise-naiku",
+    "category": "ティースタンド、ソフトクリーム",
+    "status": "not-included",
+    "criteria": [],
+    "reason": "A 因數量控制（3.40）取消",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.38,
+      "tabelogReviews": 92
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240301/24001880/"
+    },
+    "contexts": [
+      "snack"
+    ],
+    "note": "類型：咖啡・甜點；地址：伊勢市宇治中之切町48；食べログ列表定休：水曜日"
+  },
+  {
+    "key": "tabelog-24007149",
+    "name": {
+      "ja": "茶房 山中"
+    },
+    "region": "ise-naiku",
+    "category": "甘味処、和菓子、かき氷",
+    "status": "not-included",
+    "criteria": [],
+    "reason": "A 因數量控制（3.40）取消",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.38,
+      "tabelogReviews": 89
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240301/24007149/"
+    },
+    "contexts": [
+      "snack"
+    ],
+    "note": "類型：咖啡・甜點；地址：伊勢市宇治今在家町65；食べログ列表定休：木曜日、金曜日"
+  },
+  {
+    "key": "tabelog-24000874",
+    "name": {
+      "ja": "勢乃國屋 本店"
+    },
+    "region": "ise-naiku",
+    "category": "郷土料理、和菓子",
+    "status": "not-included",
+    "criteria": [],
+    "reason": "未符合 A～F",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.22,
+      "tabelogReviews": 82
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240301/24000874/"
+    },
+    "contexts": [
+      "lunch",
+      "dinner"
+    ],
+    "mentions": [
+      {
+        "type": "tourism",
+        "url": "https://www.kankomie.or.jp/season/article/135",
+        "title": "觀光三重「おはらい町大特集！グルメ・お土産・体験の人気23スポット」（2024-12-19）",
+        "highlight": "賣店的神代餅，2・3 樓是食事處",
+        "retrieved": "2026-10-18"
+      }
+    ],
+    "note": "類型：定食・食堂；地址：伊勢市宇治今在家町117"
+  },
+  {
+    "key": "tabelog-24017030",
+    "name": {
+      "ja": "浜与本店 内宮前店"
+    },
+    "region": "ise-naiku",
+    "category": "海鮮",
+    "status": "not-included",
+    "criteria": [],
+    "reason": "A 因數量控制（3.40）取消",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.33,
+      "tabelogReviews": 81
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240301/24017030/"
+    },
+    "contexts": [
+      "lunch"
+    ],
+    "note": "類型：海鮮丼；地址：伊勢市宇治中之切町92-9"
+  },
+  {
+    "key": "tabelog-24010451",
+    "name": {
+      "ja": "鈴木水産 おはらい街場外市場"
+    },
+    "region": "ise-naiku",
+    "category": "郷土料理、海鮮",
+    "status": "not-included",
+    "criteria": [],
+    "reason": "未符合 A～F",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.06,
+      "tabelogReviews": 74
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240301/24010451/"
+    },
+    "contexts": [
+      "lunch"
+    ],
+    "note": "類型：定食・食堂；地址：伊勢市宇治浦田1-6-19 伊勢神宮おはらい街場外市場内；食べログ列表定休：水曜日"
+  },
+  {
+    "key": "tabelog-24019811",
+    "name": {
+      "ja": "ニ光堂支店 一楽亭"
+    },
+    "region": "ise-naiku",
+    "category": "うどん",
+    "status": "not-included",
+    "criteria": [],
+    "reason": "A 因數量控制（3.40）取消",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.35,
+      "tabelogReviews": 69
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240301/24019811/"
+    },
+    "contexts": [
+      "lunch"
+    ],
+    "note": "類型：烏龍麵・蕎麥；地址：伊勢市宇治今在家町19-1"
+  },
+  {
+    "key": "tabelog-24021439",
+    "name": {
+      "ja": "森下酒店 内宮前店"
+    },
+    "region": "ise-naiku",
+    "category": "居酒屋",
+    "status": "not-included",
+    "criteria": [],
+    "reason": "A 因數量控制（3.40）取消",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.36,
+      "tabelogReviews": 63
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240301/24021439/"
+    },
+    "contexts": [
+      "lunch"
+    ],
+    "note": "類型：居酒屋；地址：伊勢市宇治今在家町65"
+  },
+  {
+    "key": "tabelog-24007797",
+    "name": {
+      "ja": "傳兵衛"
+    },
+    "region": "ise-naiku",
+    "category": "その他",
+    "status": "not-included",
+    "criteria": [],
+    "reason": "未符合 A～F",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.09,
+      "tabelogReviews": 62
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240301/24007797/"
+    },
+    "contexts": [
+      "snack"
+    ],
+    "mentions": [
+      {
+        "type": "tourism",
+        "url": "https://www.kankomie.or.jp/report/1305",
+        "title": "觀光三重「おかげ横丁で絶品スイーツ・グルメを食べ歩き！【2022年版】」（2022-11-17）",
+        "highlight": "脆口的小黃瓜棒",
+        "retrieved": "2026-10-18"
+      }
+    ],
+    "note": "類型：其他；地址：伊勢市宇治中之切町52 おかげ横丁"
+  },
+  {
+    "key": "tabelog-24019195",
+    "name": {
+      "ja": "木下茶園 内宮前店"
+    },
+    "region": "ise-naiku",
+    "category": "カフェ、洋菓子",
+    "status": "not-included",
+    "criteria": [],
+    "reason": "A 因數量控制（3.40）取消",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.3,
+      "tabelogReviews": 62
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240301/24019195/"
+    },
+    "contexts": [
+      "snack",
+      "cafe"
+    ],
+    "note": "類型：咖啡・甜點；地址：伊勢市宇治今在家町18；食べログ列表定休：水曜日"
+  },
+  {
+    "key": "tabelog-24007362",
+    "name": {
+      "ja": "ひもの塾 伊勢店"
+    },
+    "region": "ise-naiku",
+    "category": "その他",
+    "status": "not-included",
+    "criteria": [],
+    "reason": "未符合 A～F",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.09,
+      "tabelogReviews": 58
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240301/24007362/"
+    },
+    "contexts": [
+      "snack"
+    ],
+    "note": "類型：其他；地址：伊勢市宇治今在家町35"
+  },
+  {
+    "key": "tabelog-24010939",
+    "name": {
+      "ja": "神路庵"
+    },
+    "region": "ise-naiku",
+    "category": "うどん、寿司、郷土料理",
+    "status": "not-included",
+    "criteria": [],
+    "reason": "未符合 A～F",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.14,
+      "tabelogReviews": 55
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240301/24010939/"
+    },
+    "contexts": [
+      "lunch"
+    ],
+    "note": "類型：烏龍麵・蕎麥；地址：伊勢市宇治今在家町117 勢乃國屋 2F"
+  },
+  {
+    "key": "tabelog-24010597",
+    "name": {
+      "ja": "魚福"
+    },
+    "region": "ise-naiku",
+    "category": "海鮮",
+    "status": "not-included",
+    "criteria": [],
+    "reason": "A 因數量控制（3.40）取消",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.31,
+      "tabelogReviews": 53
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240301/24010597/"
+    },
+    "contexts": [
+      "lunch"
+    ],
+    "note": "類型：海鮮丼；地址：伊勢市宇治浦田1丁目6-14；食べログ列表定休：木曜日"
+  },
+  {
+    "key": "tabelog-24010393",
+    "name": {
+      "ja": "らーめん しまじ"
+    },
+    "region": "ise-naiku",
+    "category": "ラーメン",
+    "status": "not-included",
+    "criteria": [],
+    "reason": "未符合 A～F",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.13,
+      "tabelogReviews": 53
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240301/24010393/"
+    },
+    "contexts": [
+      "snack"
+    ],
+    "note": "類型：其他；地址：伊勢市宇治浦田2丁目17-33；食べログ列表定休：水曜日"
+  },
+  {
+    "key": "tabelog-24021294",
+    "name": {
+      "ja": "味匠館 森下酒店"
+    },
+    "region": "ise-naiku",
+    "category": "その他",
+    "status": "not-included",
+    "criteria": [],
+    "reason": "未符合 A～F",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.12,
+      "tabelogReviews": 52
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240301/24021294/"
+    },
+    "contexts": [
+      "snack"
+    ],
+    "note": "類型：其他；地址：伊勢市宇治中之切町52"
+  },
+  {
+    "key": "tabelog-24017083",
+    "name": {
+      "ja": "カラアゲ 鶏萬商店"
+    },
+    "region": "ise-naiku",
+    "category": "からあげ",
+    "status": "not-included",
+    "criteria": [],
+    "reason": "未符合 A～F",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.11,
+      "tabelogReviews": 51
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240301/24017083/"
+    },
+    "contexts": [
+      "snack"
+    ],
+    "note": "類型：其他；地址：伊勢市宇治今在家町24"
+  },
+  {
+    "key": "tabelog-24019800",
+    "name": {
+      "ja": "まぐろの森下/森下酒店"
+    },
+    "region": "ise-naiku",
+    "category": "海鮮、寿司、居酒屋",
+    "status": "not-included",
+    "criteria": [],
+    "reason": "未符合 A～F",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.27,
+      "tabelogReviews": 50
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240301/24019800/"
+    },
+    "contexts": [
+      "lunch"
+    ],
+    "note": "類型：海鮮丼；地址：伊勢市宇治今在家町65 1F"
+  },
+  {
+    "key": "tabelog-24000805",
+    "name": {
+      "ja": "茶房 太助庵"
+    },
+    "region": "ise-naiku",
+    "category": "カフェ、甘味処、かき氷",
+    "status": "not-included",
+    "criteria": [],
+    "reason": "未符合 A～F",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.25,
+      "tabelogReviews": 47
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240301/24000805/"
+    },
+    "contexts": [
+      "snack",
+      "cafe"
+    ],
+    "mentions": [
+      {
+        "type": "tourism",
+        "url": "https://www.kankomie.or.jp/season/article/135",
+        "title": "觀光三重「おはらい町大特集！グルメ・お土産・体験の人気23スポット」（2024-12-19）",
+        "highlight": "神代餅、ぜんざい",
+        "retrieved": "2026-10-18"
+      }
+    ],
+    "note": "類型：咖啡・甜點；地址：伊勢市宇治今在家町144-10；食べログ列表定休：木曜日"
+  },
+  {
+    "key": "tabelog-24021035",
+    "name": {
+      "ja": "勝"
+    },
+    "region": "ise-naiku",
+    "category": "串揚げ",
+    "status": "not-included",
+    "criteria": [],
+    "reason": "未符合 A～F",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.16,
+      "tabelogReviews": 44
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240301/24021035/"
+    },
+    "contexts": [
+      "snack"
+    ],
+    "note": "類型：其他；地址：伊勢市宇治今在家町36"
+  },
+  {
+    "key": "tabelog-24016514",
+    "name": {
+      "ja": "酒徳昆布 おかげ横丁"
+    },
+    "region": "ise-naiku",
+    "category": "日本料理、おにぎり",
+    "status": "not-included",
+    "criteria": [],
+    "reason": "未符合 A～F",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.09,
+      "tabelogReviews": 43
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240301/24016514/"
+    },
+    "contexts": [
+      "lunch"
+    ],
+    "mentions": [
+      {
+        "type": "tourism",
+        "url": "https://www.kankomie.or.jp/report/1305",
+        "title": "觀光三重「おかげ横丁で絶品スイーツ・グルメを食べ歩き！【2022年版】」（2022-11-17）",
+        "highlight": "職人手削おぼろ昆布的黃金だし",
+        "retrieved": "2026-10-18"
+      }
+    ],
+    "note": "類型：和食・割烹；地址：伊勢市宇治中之切町52"
+  },
+  {
+    "key": "tabelog-24010584",
+    "name": {
+      "ja": "味匠館"
+    },
+    "region": "ise-naiku",
+    "category": "その他",
+    "status": "not-included",
+    "criteria": [],
+    "reason": "未符合 A～F",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.08,
+      "tabelogReviews": 39
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240301/24010584/"
+    },
+    "contexts": [
+      "snack"
+    ],
+    "note": "類型：其他；地址：伊勢市宇治中之切町52 おかげ横丁"
+  },
+  {
+    "key": "tabelog-24018335",
+    "name": {
+      "ja": "すみっコぐらし堂 伊勢店"
+    },
+    "region": "ise-naiku",
+    "category": "カステラ、タピオカ",
+    "status": "not-included",
+    "criteria": [],
+    "reason": "未符合 A～F",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.24,
+      "tabelogReviews": 39
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240301/24018335/"
+    },
+    "contexts": [
+      "snack"
+    ],
+    "note": "類型：咖啡・甜點；地址：伊勢市宇治今在家町58 伊勢岩戸屋本店"
+  },
+  {
+    "key": "tabelog-24019258",
+    "name": {
+      "ja": "冷凍プリンソフト 内宮前店"
+    },
+    "region": "ise-naiku",
+    "category": "ソフトクリーム、ジェラート・アイスクリーム",
+    "status": "not-included",
+    "criteria": [],
+    "reason": "未符合 A～F",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.24,
+      "tabelogReviews": 37
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240301/24019258/"
+    },
+    "contexts": [
+      "snack"
+    ],
+    "note": "類型：咖啡・甜點；地址：伊勢市宇治今在家町18"
+  },
+  {
+    "key": "tabelog-24001334",
+    "name": {
+      "ja": "珈琲浪漫"
+    },
+    "region": "ise-naiku",
+    "category": "カフェ",
+    "status": "not-included",
+    "criteria": [],
+    "reason": "未符合 A～F",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.16,
+      "tabelogReviews": 36
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240301/24001334/"
+    },
+    "contexts": [
+      "snack",
+      "cafe"
+    ],
+    "note": "類型：咖啡・甜點；地址：伊勢市宇治中之切町87 ２階"
+  },
+  {
+    "key": "tabelog-24018989",
+    "name": {
+      "ja": "浜与本店 おはらい町店"
+    },
+    "region": "ise-naiku",
+    "category": "海鮮丼",
+    "status": "not-included",
+    "criteria": [],
+    "reason": "未符合 A～F",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.25,
+      "tabelogReviews": 35
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240301/24018989/"
+    },
+    "contexts": [
+      "lunch"
+    ],
+    "note": "類型：海鮮丼；地址：伊勢市宇治浦田1-3-5；食べログ列表定休：火曜日"
+  },
+  {
+    "key": "tabelog-24020652",
+    "name": {
+      "ja": "横丁とりぶん倭"
+    },
+    "region": "ise-naiku",
+    "category": "鳥料理",
+    "status": "not-included",
+    "criteria": [],
+    "reason": "未符合 A～F",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.08,
+      "tabelogReviews": 34
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240301/24020652/"
+    },
+    "contexts": [
+      "lunch"
+    ],
+    "mentions": [
+      {
+        "type": "media",
+        "url": "https://rurubu.jp/andmore/article/18853",
+        "title": "るるぶ&more「お伊勢まいりで立ち寄りたい「おかげ横丁」のおすすめグルメ6店」（2023-12-30 更新）",
+        "highlight": "伊勢赤どり的「紅白親子丼」（白色蛋黃）",
+        "retrieved": "2026-10-18"
+      }
+    ],
+    "note": "類型：燒肉・肉料理；地址：伊勢市宇治中之切町47"
+  },
+  {
+    "key": "tabelog-24011345",
+    "name": {
+      "ja": "誠実屋"
+    },
+    "region": "ise-naiku",
+    "category": "その他",
+    "status": "not-included",
+    "criteria": [],
+    "reason": "未符合 A～F",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.07,
+      "tabelogReviews": 34
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240301/24011345/"
+    },
+    "contexts": [
+      "snack"
+    ],
+    "note": "類型：其他；地址：伊勢市宇治中之切町94"
+  },
+  {
+    "key": "tabelog-24021541",
+    "name": {
+      "ja": "招福茶屋"
+    },
+    "region": "ise-naiku",
+    "category": "麺類、カフェ",
+    "status": "not-included",
+    "criteria": [],
+    "reason": "未符合 A～F",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.19,
+      "tabelogReviews": 32
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240301/24021541/"
+    },
+    "contexts": [
+      "lunch"
+    ],
+    "note": "類型：烏龍麵・蕎麥；地址：伊勢市宇治中之切町39-8"
+  },
+  {
+    "key": "tabelog-24021314",
+    "name": {
+      "ja": "美牛 二光堂"
+    },
+    "region": "ise-naiku",
+    "category": "串焼き",
+    "status": "not-included",
+    "criteria": [],
+    "reason": "未符合 A～F",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.18,
+      "tabelogReviews": 32
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240301/24021314/"
+    },
+    "contexts": [
+      "lunch"
+    ],
+    "note": "類型：燒肉・肉料理；地址：伊勢市宇治今在家町60"
+  },
+  {
+    "key": "tabelog-24011253",
+    "name": {
+      "ja": "志州ひらき屋"
+    },
+    "region": "ise-naiku",
+    "category": "海鮮",
+    "status": "not-included",
+    "criteria": [],
+    "reason": "未符合 A～F",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.11,
+      "tabelogReviews": 31
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240301/24011253/"
+    },
+    "contexts": [
+      "lunch"
+    ],
+    "note": "類型：海鮮丼；地址：伊勢市宇治中之切町52 おかげ横丁"
+  },
+  {
+    "key": "tabelog-24013630",
+    "name": {
+      "ja": "割烹やまぐち 伊勢神宮おはらい町店"
+    },
+    "region": "ise-naiku",
+    "category": "寿司、郷土料理",
+    "status": "not-included",
+    "criteria": [],
+    "reason": "未符合 A～F",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.11,
+      "tabelogReviews": 31
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240301/24013630/"
+    },
+    "contexts": [
+      "lunch"
+    ],
+    "note": "類型：壽司；地址：伊勢市宇治今在家町37"
+  },
+  {
+    "key": "tabelog-24011252",
+    "name": {
+      "ja": "伊勢路名産味の館"
+    },
+    "region": "ise-naiku",
+    "category": "和菓子",
+    "status": "not-included",
+    "criteria": [],
+    "reason": "未符合 A～F",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.19,
+      "tabelogReviews": 28
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240301/24011252/"
+    },
+    "contexts": [
+      "snack"
+    ],
+    "note": "類型：咖啡・甜點；地址：伊勢市宇治中之切町52 おかげ横丁"
+  },
+  {
+    "key": "tabelog-24008600",
+    "name": {
+      "ja": "伊勢せきや 内宮前店"
+    },
+    "region": "ise-naiku",
+    "category": "その他、海鮮",
+    "status": "not-included",
+    "criteria": [],
+    "reason": "未符合 A～F",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.07,
+      "tabelogReviews": 28
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240301/24008600/"
+    },
+    "contexts": [
+      "snack"
+    ],
+    "note": "類型：其他；地址：伊勢市宇治中之切町87"
+  },
+  {
+    "key": "tabelog-24007360",
+    "name": {
+      "ja": "伊勢茶製 宇治園 内宮前店"
+    },
+    "region": "ise-naiku",
+    "category": "売店",
+    "status": "not-included",
+    "criteria": [],
+    "reason": "未符合 A～F",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.19,
+      "tabelogReviews": 27
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240301/24007360/"
+    },
+    "contexts": [
+      "snack"
+    ],
+    "mentions": [
+      {
+        "type": "tourism",
+        "url": "https://www.kankomie.or.jp/season/article/135",
+        "title": "觀光三重「おはらい町大特集！グルメ・お土産・体験の人気23スポット」（2024-12-19）",
+        "highlight": "伊勢抹茶、抹茶套餐",
+        "retrieved": "2026-10-18"
+      }
+    ],
+    "note": "類型：其他；地址：伊勢市宇治今在家町35；食べログ類別是売店（物販為主）"
+  },
+  {
+    "key": "tabelog-24022122",
+    "name": {
+      "ja": "松阪まるよし 伊勢内宮前店"
+    },
+    "region": "ise-naiku",
+    "category": "売店",
+    "status": "not-included",
+    "criteria": [],
+    "reason": "未符合 A～F",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.18,
+      "tabelogReviews": 27
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240301/24022122/"
+    },
+    "contexts": [
+      "snack"
+    ],
+    "note": "類型：其他；地址：伊勢市宇治今在家町58 岩戸屋；食べログ類別是売店（物販為主）"
+  },
+  {
+    "key": "tabelog-24022232",
+    "name": {
+      "ja": "なかむら珈琲"
+    },
+    "region": "ise-naiku",
+    "category": "カフェ",
+    "status": "not-included",
+    "criteria": [],
+    "reason": "未符合 A～F",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.24,
+      "tabelogReviews": 26
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240301/24022232/"
+    },
+    "contexts": [
+      "snack",
+      "cafe"
+    ],
+    "note": "類型：咖啡・甜點；地址：伊勢市宇治中之切町52 おかげ横丁"
+  },
+  {
+    "key": "tabelog-24014707",
+    "name": {
+      "ja": "コーヒーさとう"
+    },
+    "region": "ise-naiku",
+    "category": "カフェ",
+    "status": "not-included",
+    "criteria": [],
+    "reason": "未符合 A～F",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.17,
+      "tabelogReviews": 26
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240301/24014707/"
+    },
+    "contexts": [
+      "snack",
+      "cafe"
+    ],
+    "note": "類型：咖啡・甜點；地址：伊勢市宇治今在家町45"
+  },
+  {
+    "key": "tabelog-24022028",
+    "name": {
+      "ja": "CROISSANT TIMES"
+    },
+    "region": "ise-naiku",
+    "category": "パン",
+    "status": "not-included",
+    "criteria": [],
+    "reason": "未符合 A～F",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.18,
+      "tabelogReviews": 26
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240301/24022028/"
+    },
+    "contexts": [
+      "snack"
+    ],
+    "note": "類型：咖啡・甜點；地址：伊勢市宇治浦田1-8-12"
+  },
+  {
+    "key": "tabelog-24016932",
+    "name": {
+      "ja": "コロッケ道場"
+    },
+    "region": "ise-naiku",
+    "category": "コロッケ",
+    "status": "not-included",
+    "criteria": [],
+    "reason": "未符合 A～F",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.07,
+      "tabelogReviews": 26
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240301/24016932/"
+    },
+    "contexts": [
+      "snack"
+    ],
+    "note": "類型：其他；地址：伊勢市宇治今在家町10-1"
+  },
+  {
+    "key": "tabelog-24019332",
+    "name": {
+      "ja": "岩戸屋 物産店"
+    },
+    "region": "ise-naiku",
+    "category": "和菓子",
+    "status": "not-included",
+    "criteria": [],
+    "reason": "未符合 A～F",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.2,
+      "tabelogReviews": 24
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240301/24019332/"
+    },
+    "contexts": [
+      "snack"
+    ],
+    "note": "類型：咖啡・甜點；地址：伊勢市宇治今在家町11"
+  },
+  {
+    "key": "tabelog-24017448",
+    "name": {
+      "ja": "お食事処 きくや"
+    },
+    "region": "ise-naiku",
+    "category": "食堂、うどん、牛丼",
+    "status": "not-included",
+    "criteria": [],
+    "reason": "未符合 A～F",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.15,
+      "tabelogReviews": 23
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240301/24017448/"
+    },
+    "contexts": [
+      "lunch"
+    ],
+    "note": "類型：定食・食堂；地址：伊勢市宇治今在家町46"
+  },
+  {
+    "key": "tabelog-24022239",
+    "name": {
+      "ja": "ダイセン"
+    },
+    "region": "ise-naiku",
+    "category": "日本料理",
+    "status": "not-included",
+    "criteria": [],
+    "reason": "未符合 A～F",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.08,
+      "tabelogReviews": 23
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240301/24022239/"
+    },
+    "contexts": [
+      "lunch"
+    ],
+    "note": "類型：和食・割烹；地址：伊勢市宇治今在家町121-9"
+  },
+  {
+    "key": "tabelog-24015604",
+    "name": {
+      "ja": "伊勢クレープ"
+    },
+    "region": "ise-naiku",
+    "category": "クレープ・ガレット",
+    "status": "not-included",
+    "criteria": [],
+    "reason": "未符合 A～F",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.1,
+      "tabelogReviews": 22
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240301/24015604/"
+    },
+    "contexts": [
+      "snack"
+    ],
+    "note": "類型：咖啡・甜點；地址：伊勢市宇治中之切町82"
+  },
+  {
+    "key": "tabelog-24018781",
+    "name": {
+      "ja": "ISE KUSURI HONPO"
+    },
+    "region": "ise-naiku",
+    "category": "カフェ",
+    "status": "not-included",
+    "criteria": [],
+    "reason": "未符合 A～F",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.17,
+      "tabelogReviews": 22
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240301/24018781/"
+    },
+    "contexts": [
+      "snack",
+      "cafe"
+    ],
+    "mentions": [
+      {
+        "type": "tourism",
+        "url": "https://www.kankomie.or.jp/report/1606",
+        "title": "觀光三重「伊勢神宮おはらい町の絶品食べ歩きスイーツ10選」（2024-01-15）",
+        "highlight": "萬金コーラ、萬金・岩戸の塩・伊勢茶ジェラート（文中店名是「伊勢くすり本舗」，判斷是賣ジェラート的這家）",
+        "retrieved": "2026-10-18"
+      }
+    ],
+    "note": "類型：咖啡・甜點；地址：伊勢市宇治浦田1-8-2"
+  },
+  {
+    "key": "tabelog-24013404",
+    "name": {
+      "ja": "銭屋"
+    },
+    "region": "ise-naiku",
+    "category": "せんべい、和菓子、ジェラート・アイスクリーム",
+    "status": "not-included",
+    "criteria": [],
+    "reason": "未符合 A～F",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.1,
+      "tabelogReviews": 20
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240301/24013404/"
+    },
+    "contexts": [
+      "snack"
+    ],
+    "note": "類型：咖啡・甜點；地址：伊勢市宇治中之切町52"
+  },
+  {
+    "key": "tabelog-24021753",
+    "name": {
+      "ja": "伊勢美味イカぺんぺん焼き"
+    },
+    "region": "ise-naiku",
+    "category": "お好み焼き",
+    "status": "not-included",
+    "criteria": [],
+    "reason": "未符合 A～F",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.07,
+      "tabelogReviews": 20
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240301/24021753/"
+    },
+    "contexts": [
+      "snack"
+    ],
+    "note": "類型：其他；地址：伊勢市宇治今在家町24"
+  },
+  {
+    "key": "tabelog-24021561",
+    "name": {
+      "ja": "伊勢くすり本舗"
+    },
+    "region": "ise-naiku",
+    "category": "売店",
+    "status": "not-included",
+    "criteria": [],
+    "reason": "未符合 A～F",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.1,
+      "tabelogReviews": 19
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240301/24021561/"
+    },
+    "contexts": [
+      "snack"
+    ],
+    "note": "類型：其他；地址：伊勢市宇治今在家町44；食べログ類別是売店（物販為主）"
+  },
+  {
+    "key": "tabelog-24021766",
+    "name": {
+      "ja": "森下酒店 おはらい町通り店"
+    },
+    "region": "ise-naiku",
+    "category": "売店",
+    "status": "not-included",
+    "criteria": [],
+    "reason": "未符合 A～F",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.18,
+      "tabelogReviews": 18
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240301/24021766/"
+    },
+    "contexts": [
+      "snack"
+    ],
+    "note": "類型：其他；地址：伊勢市宇治浦田1-5-7；食べログ類別是売店（物販為主）"
+  },
+  {
+    "key": "tabelog-24018935",
+    "name": {
+      "ja": "芋ぴっぴ 伊勢店"
+    },
+    "region": "ise-naiku",
+    "category": "スイーツ",
+    "status": "not-included",
+    "criteria": [],
+    "reason": "未符合 A～F",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.13,
+      "tabelogReviews": 18
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240301/24018935/"
+    },
+    "contexts": [
+      "snack"
+    ],
+    "note": "類型：咖啡・甜點；地址：伊勢市宇治浦田1-8-12"
+  },
+  {
+    "key": "tabelog-24008315",
+    "name": {
+      "ja": "魚春"
+    },
+    "region": "ise-naiku",
+    "category": "郷土料理",
+    "status": "not-included",
+    "criteria": [],
+    "reason": "未符合 A～F",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.03,
+      "tabelogReviews": 16
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240301/24008315/"
+    },
+    "contexts": [
+      "lunch"
+    ],
+    "mentions": [
+      {
+        "type": "tourism",
+        "url": "https://www.kankomie.or.jp/season/article/135",
+        "title": "觀光三重「おはらい町大特集！グルメ・お土産・体験の人気23スポット」（2024-12-19）",
+        "highlight": "さめのたれ（鯊魚乾）、あおさ",
+        "retrieved": "2026-10-18"
+      }
+    ],
+    "note": "類型：定食・食堂；地址：伊勢市宇治中之切町49；食べログ列表定休：水曜日"
+  },
+  {
+    "key": "tabelog-24014555",
+    "name": {
+      "ja": "伊勢道路休憩所"
+    },
+    "region": "ise-naiku",
+    "category": "食堂、うどん、そば",
+    "status": "not-included",
+    "criteria": [],
+    "reason": "未符合 A～F",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.07,
+      "tabelogReviews": 16
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240301/24014555/"
+    },
+    "contexts": [
+      "lunch"
+    ],
+    "note": "類型：定食・食堂；地址：伊勢市宇治館町字岩井田山673-18"
+  },
+  {
+    "key": "tabelog-24011828",
+    "name": {
+      "ja": "岡七酒店"
+    },
+    "region": "ise-naiku",
+    "category": "その他",
+    "status": "not-included",
+    "criteria": [],
+    "reason": "未符合 A～F",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.04,
+      "tabelogReviews": 14
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240301/24011828/"
+    },
+    "contexts": [
+      "snack"
+    ],
+    "note": "類型：其他；地址：伊勢市宇治中之切町4"
+  },
+  {
+    "key": "tabelog-24006237",
+    "name": {
+      "ja": "リトルイタリイ"
+    },
+    "region": "ise-naiku",
+    "category": "イタリアン",
+    "status": "not-included",
+    "criteria": [],
+    "reason": "未符合 A～F",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.05,
+      "tabelogReviews": 13
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240301/24006237/"
+    },
+    "contexts": [
+      "lunch"
+    ],
+    "note": "類型：洋食・義式；地址：伊勢市宇治浦田1-6-21；食べログ列表定休：火曜日"
+  },
+  {
+    "key": "tabelog-24007380",
+    "name": {
+      "ja": "喜久屋"
+    },
+    "region": "ise-naiku",
+    "category": "和菓子",
+    "status": "not-included",
+    "criteria": [],
+    "reason": "未符合 A～F",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.09,
+      "tabelogReviews": 13
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240301/24007380/"
+    },
+    "contexts": [
+      "snack"
+    ],
+    "note": "類型：咖啡・甜點；地址：伊勢市宇治今在家町42"
+  },
+  {
+    "key": "tabelog-24021312",
+    "name": {
+      "ja": "にこだんご"
+    },
+    "region": "ise-naiku",
+    "category": "和菓子",
+    "status": "not-included",
+    "criteria": [],
+    "reason": "未符合 A～F",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.09,
+      "tabelogReviews": 13
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240301/24021312/"
+    },
+    "contexts": [
+      "snack"
+    ],
+    "note": "類型：咖啡・甜點；地址：伊勢市宇治今在家町60"
+  },
+  {
+    "key": "tabelog-24020803",
+    "name": {
+      "ja": "うどん屋 みこし"
+    },
+    "region": "ise-naiku",
+    "category": "うどん、餃子",
+    "status": "not-included",
+    "criteria": [],
+    "reason": "未符合 A～F",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.08,
+      "tabelogReviews": 11
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240301/24020803/"
+    },
+    "contexts": [
+      "lunch"
+    ],
+    "note": "類型：烏龍麵・蕎麥；地址：伊勢市宇治今在家町63"
+  },
+  {
+    "key": "tabelog-24018881",
+    "name": {
+      "ja": "餃子屋 つつむ 内宮前Bar"
+    },
+    "region": "ise-naiku",
+    "category": "餃子",
+    "status": "not-included",
+    "criteria": [],
+    "reason": "未符合 A～F",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.07,
+      "tabelogReviews": 9
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240301/24018881/"
+    },
+    "contexts": [
+      "snack"
+    ],
+    "note": "類型：其他；地址：伊勢市宇治今在家町63；食べログ列表定休：木曜日"
+  },
+  {
+    "key": "tabelog-24011261",
+    "name": {
+      "ja": "四代目まつさか"
+    },
+    "region": "ise-naiku",
+    "category": "焼肉、ホルモン、居酒屋",
+    "status": "not-included",
+    "criteria": [],
+    "reason": "未符合 A～F（在貸切可篩選裡，但食べログ未達 3.10／15 則）",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.04,
+      "tabelogReviews": 8
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240301/24011261/"
+    },
+    "contexts": [
+      "lunch",
+      "dinner"
+    ],
+    "note": "類型：燒肉・肉料理；地址：伊勢市宇治浦田1-10-41；食べログ篩選：貸切可"
+  },
+  {
+    "key": "tabelog-24022079",
+    "name": {
+      "ja": "伊勢うまいもん研究所"
+    },
+    "region": "ise-naiku",
+    "category": "その他",
+    "status": "not-included",
+    "criteria": [],
+    "reason": "未符合 A～F",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.05,
+      "tabelogReviews": 8
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240301/24022079/"
+    },
+    "contexts": [
+      "snack"
+    ],
+    "note": "類型：其他；地址：伊勢市宇治今在家町11"
+  },
+  {
+    "key": "tabelog-24020977",
+    "name": {
+      "ja": "みっふぃーおやつ堂 伊勢店"
+    },
+    "region": "ise-naiku",
+    "category": "その他",
+    "status": "not-included",
+    "criteria": [],
+    "reason": "未符合 A～F",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.04,
+      "tabelogReviews": 8
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240301/24020977/"
+    },
+    "contexts": [
+      "snack"
+    ],
+    "note": "類型：其他；地址：伊勢市宇治今在家町11"
+  },
+  {
+    "key": "tabelog-24014286",
+    "name": {
+      "ja": "志州屋"
+    },
+    "region": "ise-naiku",
+    "category": "その他",
+    "status": "not-included",
+    "criteria": [],
+    "reason": "未符合 A～F",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.02,
+      "tabelogReviews": 6
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240301/24014286/"
+    },
+    "contexts": [
+      "snack"
+    ],
+    "note": "類型：其他；地址：伊勢市宇治中之切町52"
+  },
+  {
+    "key": "tabelog-24021416",
+    "name": {
+      "ja": "伊勢 兎珈琲"
+    },
+    "region": "ise-naiku",
+    "category": "コーヒースタンド",
+    "status": "not-included",
+    "criteria": [],
+    "reason": "未符合 A～F",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.05,
+      "tabelogReviews": 5
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240301/24021416/"
+    },
+    "contexts": [
+      "snack"
+    ],
+    "note": "類型：咖啡・甜點；地址：伊勢市宇治浦田1-5-2"
+  },
+  {
+    "key": "tabelog-24019708",
+    "name": {
+      "ja": "エリントン"
+    },
+    "region": "ise-naiku",
+    "category": "うどん、牛丼",
+    "status": "not-included",
+    "criteria": [],
+    "reason": "未符合 A～F",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.05,
+      "tabelogReviews": 5
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240301/24019708/"
+    },
+    "contexts": [
+      "lunch"
+    ],
+    "note": "類型：烏龍麵・蕎麥；地址：伊勢市宇治浦田1-10-1；食べログ列表定休：月～金曜日"
+  },
+  {
+    "key": "tabelog-24022741",
+    "name": {
+      "ja": "二軒茶屋餅 内宮前店"
+    },
+    "region": "ise-naiku",
+    "category": "和菓子",
+    "status": "not-included",
+    "criteria": [],
+    "reason": "未符合 A～F",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.04,
+      "tabelogReviews": 5
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240301/24022741/"
+    },
+    "contexts": [
+      "snack"
+    ],
+    "note": "類型：咖啡・甜點；地址：伊勢市宇治浦田1-132"
+  },
+  {
+    "key": "tabelog-24008554",
+    "name": {
+      "ja": "五十鈴塾"
+    },
+    "region": "ise-naiku",
+    "category": "郷土料理、カフェ",
+    "status": "not-included",
+    "criteria": [],
+    "reason": "未符合 A～F",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.03,
+      "tabelogReviews": 5
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240301/24008554/"
+    },
+    "contexts": [
+      "lunch"
+    ],
+    "note": "類型：定食・食堂；地址：伊勢市宇治浦田1丁目5番3号；食べログ列表定休：月～金曜日"
+  },
+  {
+    "key": "tabelog-24021532",
+    "name": {
+      "ja": "Nosh Park"
+    },
+    "region": "ise-naiku",
+    "category": "せんべい",
+    "status": "not-included",
+    "criteria": [],
+    "reason": "未符合 A～F",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3,
+      "tabelogReviews": 5
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240301/24021532/"
+    },
+    "contexts": [
+      "snack"
+    ],
+    "note": "類型：咖啡・甜點；地址：伊勢市宇治浦田1-8-4；食べログ列表定休：火曜日"
+  },
+  {
+    "key": "tabelog-24022730",
+    "name": {
+      "ja": "種々"
+    },
+    "region": "ise-naiku",
+    "category": "カフェ",
+    "status": "not-included",
+    "criteria": [],
+    "reason": "未符合 A～F",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.06,
+      "tabelogReviews": 5
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240301/24022730/"
+    },
+    "contexts": [
+      "snack",
+      "cafe"
+    ],
+    "note": "類型：咖啡・甜點；地址：伊勢市宇治今在家町18-2"
+  },
+  {
+    "key": "tabelog-24021403",
+    "name": {
+      "ja": "和cafe ととのま"
+    },
+    "region": "ise-naiku",
+    "category": "カフェ",
+    "status": "not-included",
+    "criteria": [],
+    "reason": "未符合 A～F（在貸切可篩選裡，但食べログ未達 3.10／15 則）",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.06,
+      "tabelogReviews": 4
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240301/24021403/"
+    },
+    "contexts": [
+      "snack",
+      "cafe"
+    ],
+    "note": "類型：咖啡・甜點；地址：伊勢市宇治浦田3-54-8；食べログ篩選：貸切可；食べログ列表定休：火曜日、水曜日"
+  },
+  {
+    "key": "tabelog-24019609",
+    "name": {
+      "ja": "上食"
+    },
+    "region": "ise-naiku",
+    "category": "串焼き、丼、ステーキ",
+    "status": "not-included",
+    "criteria": [],
+    "reason": "未符合 A～F",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.06,
+      "tabelogReviews": 4
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240301/24019609/"
+    },
+    "contexts": [
+      "lunch"
+    ],
+    "note": "類型：燒肉・肉料理；地址：伊勢市宇治今在家町65-4"
+  },
+  {
+    "key": "tabelog-24021013",
+    "name": {
+      "ja": "真珠漬本舗 岩戸屋店"
+    },
+    "region": "ise-naiku",
+    "category": "売店",
+    "status": "not-included",
+    "criteria": [],
+    "reason": "未符合 A～F",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.06,
+      "tabelogReviews": 4
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240301/24021013/"
+    },
+    "contexts": [
+      "snack"
+    ],
+    "note": "類型：其他；地址：伊勢市宇治今在家町58；食べログ類別是売店（物販為主）"
+  },
+  {
+    "key": "tabelog-24019312",
+    "name": {
+      "ja": "千の幸"
+    },
+    "region": "ise-naiku",
+    "category": "その他",
+    "status": "not-included",
+    "criteria": [],
+    "reason": "未符合 A～F",
+    "pointId": null,
+    "ratings": {
+      "tabelog": null,
+      "tabelogReviews": 3
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240301/24019312/"
+    },
+    "contexts": [
+      "snack"
+    ],
+    "note": "類型：其他；地址：伊勢市宇治中之切町92-8"
+  },
+  {
+    "key": "tabelog-24020691",
+    "name": {
+      "ja": "Floral Ribbon&pure's cafe."
+    },
+    "region": "ise-naiku",
+    "category": "カフェ",
+    "status": "not-included",
+    "criteria": [],
+    "reason": "未符合 A～F（在貸切可篩選裡，但食べログ未達 3.10／15 則）",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.05,
+      "tabelogReviews": 3
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240301/24020691/"
+    },
+    "contexts": [
+      "snack",
+      "cafe"
+    ],
+    "note": "類型：咖啡・甜點；地址：伊勢市宇治浦田3-36-20；食べログ篩選：貸切可；食べログ列表定休：月～金曜日"
+  },
+  {
+    "key": "tabelog-24014553",
+    "name": {
+      "ja": "いっぷく珈琲"
+    },
+    "region": "ise-naiku",
+    "category": "カフェ",
+    "status": "not-included",
+    "criteria": [],
+    "reason": "未符合 A～F",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.02,
+      "tabelogReviews": 3
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240301/24014553/"
+    },
+    "contexts": [
+      "snack",
+      "cafe"
+    ],
+    "note": "類型：咖啡・甜點；地址：伊勢市宇治浦田1-6-28；食べログ列表定休：木曜日"
+  },
+  {
+    "key": "tabelog-24017813",
+    "name": {
+      "ja": "Try Again"
+    },
+    "region": "ise-naiku",
+    "category": "カレー、うどん",
+    "status": "not-included",
+    "criteria": [],
+    "reason": "未符合 A～F",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.01,
+      "tabelogReviews": 3
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240301/24017813/"
+    },
+    "contexts": [
+      "snack"
+    ],
+    "note": "類型：其他；地址：伊勢市宇治浦田2-1-2；食べログ列表定休：水曜日"
+  },
+  {
+    "key": "tabelog-24015047",
+    "name": {
+      "ja": "山徳記念館 喫茶コーナー"
+    },
+    "region": "ise-naiku",
+    "category": "カフェ",
+    "status": "not-included",
+    "criteria": [],
+    "reason": "未符合 A～F",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.01,
+      "tabelogReviews": 2
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240301/24015047/"
+    },
+    "contexts": [
+      "snack",
+      "cafe"
+    ],
+    "note": "類型：咖啡・甜點；地址：伊勢市宇治中之切町52 山徳記念館"
+  },
+  {
+    "key": "tabelog-24003873",
+    "name": {
+      "ja": "ティータイム"
+    },
+    "region": "ise-naiku",
+    "category": "喫茶店",
+    "status": "not-included",
+    "criteria": [],
+    "reason": "未符合 A～F",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.03,
+      "tabelogReviews": 2
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240301/24003873/"
+    },
+    "contexts": [
+      "snack",
+      "cafe"
+    ],
+    "note": "類型：咖啡・甜點；地址：伊勢市宇治浦田1-15-5；食べログ列表定休：金曜日"
+  },
+  {
+    "key": "tabelog-24021051",
+    "name": {
+      "ja": "あらかき食堂"
+    },
+    "region": "ise-naiku",
+    "category": "沖縄そば",
+    "status": "not-included",
+    "criteria": [],
+    "reason": "未符合 A～F",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.04,
+      "tabelogReviews": 2
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240301/24021051/"
+    },
+    "contexts": [
+      "lunch"
+    ],
+    "note": "類型：烏龍麵・蕎麥；地址：伊勢市宇治今在家町63"
+  },
+  {
+    "key": "tabelog-24022267",
+    "name": {
+      "ja": "京丹波"
+    },
+    "region": "ise-naiku",
+    "category": "和菓子",
+    "status": "not-included",
+    "criteria": [],
+    "reason": "未符合 A～F",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3,
+      "tabelogReviews": 1
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240301/24022267/"
+    },
+    "contexts": [
+      "snack"
+    ],
+    "note": "類型：咖啡・甜點；地址：伊勢市宇治中之切町24-24"
+  },
+  {
+    "key": "tabelog-24021579",
+    "name": {
+      "ja": "丸池水産"
+    },
+    "region": "ise-naiku",
+    "category": "せんべい",
+    "status": "not-included",
+    "criteria": [],
+    "reason": "未符合 A～F",
+    "pointId": null,
+    "ratings": {
+      "tabelog": null,
+      "tabelogReviews": 1
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240301/24021579/"
+    },
+    "contexts": [
+      "snack"
+    ],
+    "note": "類型：咖啡・甜點；地址：伊勢市宇治中之切町1-92-9"
+  },
+  {
+    "key": "tabelog-24022851",
+    "name": {
+      "ja": "熟成鮨 万 伊勢離れ"
+    },
+    "region": "ise-naiku",
+    "category": "寿司",
+    "status": "not-included",
+    "criteria": [],
+    "reason": "未符合 A～F（在貸切可篩選裡，但食べログ未達 3.10／15 則）",
+    "pointId": null,
+    "ratings": {
+      "tabelog": null,
+      "tabelogReviews": 1
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240301/24022851/"
+    },
+    "contexts": [
+      "dinner"
+    ],
+    "note": "類型：壽司；地址：伊勢市宇治浦田3-2-32；食べログ篩選：貸切可"
+  }
+]
