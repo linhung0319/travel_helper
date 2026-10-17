@@ -53,7 +53,9 @@
 | T5 | 地圖檢視器 v0（檢查資料用） | M | T0 | 1 | ✅ |
 | T6 | 地理工具：距離估算、步行路線、最近車站計算 | S | T0 | 1 | ✅ |
 | T7 | 👤 檢討試做結果、訂規則 | S | T1～T6 | 2 | ⬜ |
+| T7b | 鳥羽補資料：照 T7 新規則補欄位、照片、摘要、港口 | M | T7 | 3 | ⬜ |
 | T8 | 伊勢（含二見）：景點 → 住宿 → 餐廳 | L | T7 | 3 | ⬜ |
+| T8b | 關西機場周邊：2/12 住宿與晚餐 | S | T7 | 3 | ⬜ |
 | T9 | 志摩：景點 → 住宿 → 餐廳 | L | T7 | 3 | ⬜ |
 | T10 | 巴士時刻表（需要搭巴士的景點路線） | M | T8、T9 的景點部分 | 3 | ⬜ |
 | T11 | 地圖網站 v1：圖層、詳情面板、車站時刻表面板 | M | T5、T7 | 3 | ⬜ |
@@ -117,7 +119,7 @@
 | 階段 0 | T0 | **1** |
 | 階段 1 | T1→T1b、T2→T3→T4a→T4b→T4c（同一條 lane 依序）、T5、T6 | **4**（T1b 也可以另開第 5 個；T4b 可以拆成 2 個並行） |
 | 階段 2 | T7（和你一起討論） | **1** |
-| 階段 3 | T8、T9、T11→T12、T14 | **4** |
+| 階段 3 | T7b、T8、T8b、T9、T11→T12、T14 | **4～5**（T8b 很小，可以接在 T7b 後面） |
 | 階段 3 後半 | T10、T13，以及繼續 T11/T12/T14 | 2～3 |
 | 階段 4 | T15（可拆成兩個子任務，見任務說明） | 1～2 |
 | 階段 5 | T16、T17 | 2 |
@@ -304,8 +306,25 @@
   - schema 要不要調整
 - 把結果更新到 CONVENTIONS.md 的「規則」區段，並修改 schema。
 
+### T7b 鳥羽補資料 〔M〕
+照 T7 的新規則（CONVENTIONS.md §4、§5，討論見 T7-review.md）補鳥羽已有的 137 筆資料：
+- **欄位搬移**：`extra.region` → `region`（子地區 ID 見 `areas.json`），景點 `tags` 裡的子地區拿掉；`extra.tabelogOwner`、`extra.googleName`、`extra.barrierFree`（→ `accessibility.barrierFree`）、`extra.phone`（景點 → `phone`）、`extra.checkIn`/`checkOut`（住宿）升格；`kids` 改成物件；`group.maxReservation` 從 `group.source` 的文字取出；`cuisine`、`tags` 改成固定清單；`price` 數字欄位（從 `priceRange` 轉）；`hours.always`、`hours.lastEntry`、`closures`（從 `febNote`、`hours.note` 轉，只轉來源寫明日期的）；住宿 `dinnerAccess`、餐廳 `access`（T4c 的缺漏檢查結果）。
+- **補資料**：`googlePlaceId`（137 筆）；景點、住宿的 Google 星數與評論數；照片 1～3 張（§4「照片」）；離島港口（`docs/requests.md` 的 T4c 請求），補完重跑 `node scripts/restaurant-anchors.mjs toba --write`。
+- **納入標準重跑**：D 的「任何一天 0 家」（菅島週三、國崎週三週四）、F③ 料理旅館（相差的伝洋、花椿）、離島便當（菅島 おかげ屋）。
+- **腳本**：`scripts/score.mjs`（§5.1 的分數與分級，輸出到 `data/derived/`）、自動產生 `summary.cons` 的腳本；最後由 Claude 寫 `summary`。
+- 寫 `data/areas/toba/`、`data/raw/toba/`、`data/derived/`、新增的腳本。
+
+### T8b 關西機場周邊：2/12 住宿與晚餐 〔S〕
+- 區域 `kix`（子地區：空港島、りんくうタウン），**不蒐集景點**。
+- 住宿 5～10 間：到機場的接駁（時間、班次、能不能一次載 15 人和行李）、早上能不能在 10:45 前到機場、從伊勢過來的交通（參考 `data/access/kix.json`）。照 §5.7 的評分門檻。
+- 餐廳：住宿附近能接 15 人的 3～5 家（晚餐）。
+- `stations.json` 目前沒有りんくうタウン、関西空港站；需要的話寫到 `docs/requests.md`。
+- 寫 `data/areas/kix/`、`data/raw/kix/`。
+
 ### T8 伊勢（含二見）〔L〕／ T9 志摩 〔L〕
-- 照 T2 → T3 → T4 的流程，**依 T7 定好的規則**來做。
+- 照 T2 → T3 → T4 的流程，**依 T7 定好的規則**來做（CONVENTIONS.md §4、§5）。第一步先定該區的子地區，寫進 `areas.json` 該區域的 `regions`（例外允許，見 CONVENTIONS.md §2）。
+- 每筆從一開始就填新欄位：`region`、`googlePlaceId`、`photos`、`sources[].note` 的推薦原因、數字的 `price`、`closures`；區域完成後寫 `summary`、跑 `scripts/score.mjs`。
+- 伊勢的旅程期間有 **2/3 節分**（神社活動）、**2/11 國定假日**，記在 `events`。
 - 兩區可以各開一個 session 並行；每區內部依序執行。
 - 每區建議拆成 3 個 session：景點、住宿、餐廳。
 - 志摩的店比較分散，要特別記下需要搭巴士或開車的地點。
@@ -313,6 +332,7 @@
 ### T10 巴士時刻表 〔M〕
 - 從 T2、T8、T9 的景點資料，挑出「需要搭巴士」的路線。
 - 蒐集三重交通等業者的時刻表（先找 gtfs-data.jp 有沒有 GTFS-JP 資料，沒有的話就從官網整理）。
+- **JR 參宮線**（伊勢市～二見浦～鳥羽，T1 建議）：二見最近的車站是 JR 二見浦，近鐵沒有經過；存成 `data/timetables/jr/<station-id>.json`，格式沿用近鐵時刻表（需要 T7 加 schema 與驗證路徑，寫到 requests.md）。
 - 存成 `data/timetables/bus/<route-id>.json`，並在 `passes.json` 註明 5 日券不含巴士、Plus 版的涵蓋範圍。
 
 ### T11 地圖網站 v1 〔M〕

@@ -6,54 +6,146 @@
   "items": {
     "$ref": "common.schema.json#/$defs/point",
     "properties": {
-      "type": { "const": "lodging" },
-      "kind": { "enum": ["hotel", "ryokan", "minshuku", "rental-house", "other"] },
-      "nearestStation": { "$ref": "common.schema.json#/$defs/stationRef" },
-      "pickup": { "description": "接送", "$ref": "common.schema.json#/$defs/nullableString" },
-      "meals": { "enum": ["none", "breakfast", "dinner+breakfast", "varies", null] },
-      "priceRange": { "$ref": "common.schema.json#/$defs/nullableString" },
+      "type": {
+        "const": "lodging"
+      },
+      "kind": {
+        "enum": [
+          "hotel",
+          "ryokan",
+          "minshuku",
+          "rental-house",
+          "other"
+        ]
+      },
+      "nearestStation": {
+        "$ref": "common.schema.json#/$defs/stationRef"
+      },
+      "pickup": {
+        "description": "接送",
+        "$ref": "common.schema.json#/$defs/nullableString"
+      },
+      "meals": {
+        "enum": [
+          "none",
+          "breakfast",
+          "dinner+breakfast",
+          "varies",
+          null
+        ]
+      },
+      "priceRange": {
+        "$ref": "common.schema.json#/$defs/nullableString"
+      },
       "prices": {
         "description": "盡量記具體價格，方便之後估預算",
         "type": "array",
         "items": {
           "type": "object",
           "properties": {
-            "plan": { "type": "string", "description": "一泊二食、素泊、包棟…" },
-            "unit": { "enum": ["per-person", "per-room", "per-house"] },
-            "adult": { "$ref": "common.schema.json#/$defs/nullableNumber" },
-            "child": { "$ref": "common.schema.json#/$defs/nullableNumber" },
-            "price": { "description": "per-room、per-house 的總價", "$ref": "common.schema.json#/$defs/nullableNumber" },
-            "maxGuests": { "$ref": "common.schema.json#/$defs/nullableInteger" },
-            "currency": { "type": "string", "default": "JPY" },
-            "season": { "$ref": "common.schema.json#/$defs/nullableString" },
-            "note": { "$ref": "common.schema.json#/$defs/nullableString" },
-            "source": { "type": "string", "description": "例如 rakuten、jalan、official" },
-            "url": { "anyOf": [{ "$ref": "common.schema.json#/$defs/url" }, { "type": "null" }] },
-            "retrieved": { "$ref": "common.schema.json#/$defs/date" }
+            "plan": {
+              "type": "string",
+              "description": "一泊二食、素泊、包棟…"
+            },
+            "unit": {
+              "enum": [
+                "per-person",
+                "per-room",
+                "per-house"
+              ]
+            },
+            "adult": {
+              "$ref": "common.schema.json#/$defs/nullableNumber"
+            },
+            "child": {
+              "$ref": "common.schema.json#/$defs/nullableNumber"
+            },
+            "price": {
+              "description": "per-room、per-house 的總價",
+              "$ref": "common.schema.json#/$defs/nullableNumber"
+            },
+            "maxGuests": {
+              "$ref": "common.schema.json#/$defs/nullableInteger"
+            },
+            "currency": {
+              "type": "string",
+              "default": "JPY"
+            },
+            "season": {
+              "$ref": "common.schema.json#/$defs/nullableString"
+            },
+            "note": {
+              "$ref": "common.schema.json#/$defs/nullableString"
+            },
+            "source": {
+              "type": "string",
+              "description": "例如 rakuten、jalan、official"
+            },
+            "url": {
+              "anyOf": [
+                {
+                  "$ref": "common.schema.json#/$defs/url"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "retrieved": {
+              "$ref": "common.schema.json#/$defs/date"
+            }
           },
-          "required": ["plan", "unit", "source", "retrieved"],
+          "required": [
+            "plan",
+            "unit",
+            "source",
+            "retrieved"
+          ],
           "additionalProperties": false
         }
       },
-      "luggage": { "$ref": "common.schema.json#/$defs/nullableString" },
+      "luggage": {
+        "$ref": "common.schema.json#/$defs/nullableString"
+      },
       "group": {
         "description": "能不能容納 15 人",
         "anyOf": [
-          { "type": "null" },
+          {
+            "type": "null"
+          },
           {
             "type": "object",
             "properties": {
-              "totalRooms": { "$ref": "common.schema.json#/$defs/nullableInteger" },
-              "roomTypes": { "type": "array", "items": { "type": "string" } },
-              "maxGuests": { "$ref": "common.schema.json#/$defs/nullableInteger" },
-              "wholeRental": { "description": "能不能包棟", "$ref": "common.schema.json#/$defs/nullableBoolean" },
-              "pickupCapacity": { "description": "接送車一次能載幾人", "$ref": "common.schema.json#/$defs/nullableInteger" },
+              "totalRooms": {
+                "$ref": "common.schema.json#/$defs/nullableInteger"
+              },
+              "roomTypes": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "maxGuests": {
+                "$ref": "common.schema.json#/$defs/nullableInteger"
+              },
+              "wholeRental": {
+                "description": "能不能包棟",
+                "$ref": "common.schema.json#/$defs/nullableBoolean"
+              },
+              "pickupCapacity": {
+                "description": "接送車一次能載幾人",
+                "$ref": "common.schema.json#/$defs/nullableInteger"
+              },
               "nearbyCombos": {
                 "description": "住不下 15 人時，附近可以一起搭配的住宿 ID",
                 "type": "array",
-                "items": { "$ref": "common.schema.json#/$defs/id" }
+                "items": {
+                  "$ref": "common.schema.json#/$defs/id"
+                }
               },
-              "note": { "$ref": "common.schema.json#/$defs/nullableString" }
+              "note": {
+                "$ref": "common.schema.json#/$defs/nullableString"
+              }
             },
             "additionalProperties": false
           }
@@ -61,32 +153,69 @@
       },
       "ratings": {
         "anyOf": [
-          { "type": "null" },
+          {
+            "type": "null"
+          },
           {
             "type": "object",
             "properties": {
-              "rakuten": { "$ref": "common.schema.json#/$defs/nullableNumber" },
-              "jalan": { "$ref": "common.schema.json#/$defs/nullableNumber" },
-              "booking": { "$ref": "common.schema.json#/$defs/nullableNumber" },
-              "google": { "$ref": "common.schema.json#/$defs/nullableNumber" },
-              "googleReviews": { "$ref": "common.schema.json#/$defs/nullableInteger" },
-              "note": { "$ref": "common.schema.json#/$defs/nullableString" }
+              "rakuten": {
+                "$ref": "common.schema.json#/$defs/nullableNumber"
+              },
+              "jalan": {
+                "$ref": "common.schema.json#/$defs/nullableNumber"
+              },
+              "booking": {
+                "$ref": "common.schema.json#/$defs/nullableNumber"
+              },
+              "google": {
+                "$ref": "common.schema.json#/$defs/nullableNumber"
+              },
+              "googleReviews": {
+                "$ref": "common.schema.json#/$defs/nullableInteger"
+              },
+              "note": {
+                "$ref": "common.schema.json#/$defs/nullableString"
+              },
+              "rakutenReviews": {
+                "$ref": "common.schema.json#/$defs/nullableInteger"
+              },
+              "jalanReviews": {
+                "$ref": "common.schema.json#/$defs/nullableInteger"
+              }
             },
-            "additionalProperties": { "type": ["number", "null"] }
+            "additionalProperties": {
+              "type": [
+                "number",
+                "null"
+              ]
+            }
           }
         ]
       },
       "accessibility": {
         "anyOf": [
-          { "type": "null" },
+          {
+            "type": "null"
+          },
           {
             "type": "object",
             "properties": {
-              "elevator": { "$ref": "common.schema.json#/$defs/nullableBoolean" },
-              "beds": { "$ref": "common.schema.json#/$defs/nullableString" },
-              "stairs": { "$ref": "common.schema.json#/$defs/nullableString" },
-              "kids": { "$ref": "common.schema.json#/$defs/nullableString" },
-              "note": { "$ref": "common.schema.json#/$defs/nullableString" }
+              "elevator": {
+                "$ref": "common.schema.json#/$defs/nullableBoolean"
+              },
+              "beds": {
+                "$ref": "common.schema.json#/$defs/nullableString"
+              },
+              "stairs": {
+                "$ref": "common.schema.json#/$defs/nullableString"
+              },
+              "kids": {
+                "$ref": "common.schema.json#/$defs/nullableString"
+              },
+              "note": {
+                "$ref": "common.schema.json#/$defs/nullableString"
+              }
             },
             "additionalProperties": false
           }
@@ -95,14 +224,34 @@
       "reservation": {
         "description": "訂房方式與聯絡資訊",
         "anyOf": [
-          { "type": "null" },
+          {
+            "type": "null"
+          },
           {
             "type": "object",
             "properties": {
-              "methods": { "type": "array", "items": { "type": "string" } },
-              "phone": { "$ref": "common.schema.json#/$defs/nullableString" },
-              "url": { "anyOf": [{ "$ref": "common.schema.json#/$defs/url" }, { "type": "null" }] },
-              "groupNote": { "$ref": "common.schema.json#/$defs/nullableString" }
+              "methods": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "phone": {
+                "$ref": "common.schema.json#/$defs/nullableString"
+              },
+              "url": {
+                "anyOf": [
+                  {
+                    "$ref": "common.schema.json#/$defs/url"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              },
+              "groupNote": {
+                "$ref": "common.schema.json#/$defs/nullableString"
+              }
             },
             "additionalProperties": false
           }
@@ -110,10 +259,49 @@
       },
       "bookingLinks": {
         "type": "object",
-        "additionalProperties": { "anyOf": [{ "$ref": "common.schema.json#/$defs/url" }, { "type": "null" }] }
+        "additionalProperties": {
+          "anyOf": [
+            {
+              "$ref": "common.schema.json#/$defs/url"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "checkIn": {
+        "anyOf": [
+          {
+            "$ref": "common.schema.json#/$defs/time"
+          },
+          {
+            "type": "null"
+          }
+        ]
+      },
+      "checkOut": {
+        "anyOf": [
+          {
+            "$ref": "common.schema.json#/$defs/time"
+          },
+          {
+            "type": "null"
+          }
+        ]
+      },
+      "dinnerAccess": {
+        "description": "不含晚餐時，附近的晚餐怎麼去：walk（步行 20 分內有店）| car（要搭車）| null（含晚餐或不明）",
+        "enum": [
+          "walk",
+          "car",
+          null
+        ]
       }
     },
-    "required": ["kind"],
+    "required": [
+      "kind"
+    ],
     "unevaluatedProperties": false
   }
 }

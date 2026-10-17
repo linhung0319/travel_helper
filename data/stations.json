@@ -28,8 +28,8 @@
     "transfers": [
       "jr-iseshi"
     ],
-    "coinLockers": null,
-    "accessibility": null,
+    "coinLockers": "有：特大 0、大 6、中 12、小 10（CL）；JR 側有伊勢市觀光協會行李寄放（KM）",
+    "accessibility": "有電梯：2010 年起近鐵月台有 2 座（WP）；剪票口在 1F（5 號線側），經 2F 天橋到 4 號線（KM）。站前有斜坡到剪票口（RK）。相對式 2 面 2 線、天橋（WP）。有站員。剪票口內有無障礙廁所（RK）。手扶梯：不明",
     "sources": [
       {
         "type": "official",
@@ -53,7 +53,7 @@
         "type": "wikipedia",
         "url": "https://ja.wikipedia.org/wiki/%E4%BC%8A%E5%8B%A2%E5%B8%82%E9%A7%85",
         "retrieved": "2026-10-17",
-        "note": "所在地、讀音"
+        "note": "所在地、讀音；駅構造（月台、電梯、手扶梯、斜坡）"
       },
       {
         "type": "wikipedia",
@@ -66,6 +66,24 @@
         "url": "https://www.kintetsu.co.jp/foreign/english/ticket/krp_5day.html",
         "retrieved": "2026-10-17",
         "note": "KINTETSU RAIL PASS 5day：近鐵全線可搭乘（特急另外買特急券）"
+      },
+      {
+        "type": "other",
+        "url": "https://www.ecomo-rakuraku.jp/ja/station/Iseshi/",
+        "retrieved": "2026-10-17",
+        "note": "らくらくおでかけネット：無障礙路線、站員、無障礙廁所（頁面註記 2019-04-01 現在，可能過時）"
+      },
+      {
+        "type": "official",
+        "url": "https://www.kintetsu.co.jp/soukatsu/kounai/iseshi.html",
+        "retrieved": "2026-10-17",
+        "note": "近鐵站內圖（只有圖片，內容是判讀圖片得到的）：電梯、手扶梯、剪票口位置"
+      },
+      {
+        "type": "official",
+        "url": "https://www.kintetsu.co.jp/gyoumu/coinlocker/",
+        "retrieved": "2026-10-17",
+        "note": "主な駅のコインロッカー：置物櫃數量"
       }
     ],
     "verified": false
@@ -98,8 +116,8 @@
     "passCovered": true,
     "staffed": true,
     "transfers": [],
-    "coinLockers": null,
-    "accessibility": null,
+    "coinLockers": "有：特大 11、大 47、中 36、小 151（CL）；在 1F（KM）",
+    "accessibility": "有電梯（RK；KM 約 4 座：1F↔2F 剪票口、2F↔3F 月台）、手扶梯 2 座（KM）。3F 高架 3 面 4 線，剪票口在 2F，入口只有 1F 西側（WP）。有站員（站長駐站）。無障礙廁所只在剪票口外（RK）。登錄有形文化財（2001）",
     "sources": [
       {
         "type": "official",
@@ -123,7 +141,7 @@
         "type": "wikipedia",
         "url": "https://ja.wikipedia.org/wiki/%E5%AE%87%E6%B2%BB%E5%B1%B1%E7%94%B0%E9%A7%85",
         "retrieved": "2026-10-17",
-        "note": "所在地、讀音"
+        "note": "所在地、讀音；駅構造（月台、電梯、手扶梯、斜坡）"
       },
       {
         "type": "wikipedia",
@@ -142,6 +160,24 @@
         "url": "https://www.kintetsu.co.jp/foreign/english/ticket/krp_5day.html",
         "retrieved": "2026-10-17",
         "note": "KINTETSU RAIL PASS 5day：近鐵全線可搭乘（特急另外買特急券）"
+      },
+      {
+        "type": "other",
+        "url": "https://www.ecomo-rakuraku.jp/ja/station/Ujiyamada/",
+        "retrieved": "2026-10-17",
+        "note": "らくらくおでかけネット：無障礙路線、站員、無障礙廁所（頁面註記 2019-04-01 現在，可能過時）"
+      },
+      {
+        "type": "official",
+        "url": "https://www.kintetsu.co.jp/soukatsu/kounai/ujiyamada.html",
+        "retrieved": "2026-10-17",
+        "note": "近鐵站內圖（只有圖片，內容是判讀圖片得到的）：電梯、手扶梯、剪票口位置"
+      },
+      {
+        "type": "official",
+        "url": "https://www.kintetsu.co.jp/gyoumu/coinlocker/",
+        "retrieved": "2026-10-17",
+        "note": "主な駅のコインロッカー：置物櫃數量"
       }
     ],
     "verified": false
@@ -173,8 +209,8 @@
     "passCovered": true,
     "staffed": true,
     "transfers": [],
-    "coinLockers": null,
-    "accessibility": null,
+    "coinLockers": "有：特大 0、大 28、中 12、小 10（CL）",
+    "accessibility": "有電梯：每個島式月台各 1 座（KM）。島式 2 面 4 線、築堤上，剪票口在 1F，從下方通道搭電梯或走樓梯上月台（WP、KM）。有站員。剪票口內有無障礙廁所（RK）。手扶梯：不明",
     "sources": [
       {
         "type": "official",
@@ -198,7 +234,7 @@
         "type": "wikipedia",
         "url": "https://ja.wikipedia.org/wiki/%E4%BA%94%E5%8D%81%E9%88%B4%E5%B7%9D%E9%A7%85",
         "retrieved": "2026-10-17",
-        "note": "所在地、讀音"
+        "note": "所在地、讀音；駅構造（月台、電梯、手扶梯、斜坡）"
       },
       {
         "type": "wikipedia",
@@ -211,6 +247,24 @@
         "url": "https://www.kintetsu.co.jp/foreign/english/ticket/krp_5day.html",
         "retrieved": "2026-10-17",
         "note": "KINTETSU RAIL PASS 5day：近鐵全線可搭乘（特急另外買特急券）"
+      },
+      {
+        "type": "other",
+        "url": "https://www.ecomo-rakuraku.jp/ja/station/Isuzugawa/",
+        "retrieved": "2026-10-17",
+        "note": "らくらくおでかけネット：無障礙路線、站員、無障礙廁所（頁面註記 2019-04-01 現在，可能過時）"
+      },
+      {
+        "type": "official",
+        "url": "https://www.kintetsu.co.jp/soukatsu/kounai/isuzugawa.html",
+        "retrieved": "2026-10-17",
+        "note": "近鐵站內圖（只有圖片，內容是判讀圖片得到的）：電梯、手扶梯、剪票口位置"
+      },
+      {
+        "type": "official",
+        "url": "https://www.kintetsu.co.jp/gyoumu/coinlocker/",
+        "retrieved": "2026-10-17",
+        "note": "主な駅のコインロッカー：置物櫃數量"
       }
     ],
     "verified": false
@@ -242,8 +296,8 @@
     "passCovered": true,
     "staffed": false,
     "transfers": [],
-    "coinLockers": null,
-    "accessibility": null,
+    "coinLockers": "不明（CL 沒有列出）",
+    "accessibility": "高架、相對式 2 面，只有樓梯（WP）；RK：三段（入口→剪票口→月台→月台間）都需要協助。無人站、沒有廁所。電梯、手扶梯：不明",
     "sources": [
       {
         "type": "official",
@@ -267,7 +321,7 @@
         "type": "wikipedia",
         "url": "https://ja.wikipedia.org/wiki/%E6%9C%9D%E7%86%8A%E9%A7%85",
         "retrieved": "2026-10-17",
-        "note": "所在地、讀音"
+        "note": "所在地、讀音；駅構造（月台、電梯、手扶梯、斜坡）"
       },
       {
         "type": "wikipedia",
@@ -280,6 +334,18 @@
         "url": "https://www.kintetsu.co.jp/foreign/english/ticket/krp_5day.html",
         "retrieved": "2026-10-17",
         "note": "KINTETSU RAIL PASS 5day：近鐵全線可搭乘（特急另外買特急券）"
+      },
+      {
+        "type": "other",
+        "url": "https://www.ecomo-rakuraku.jp/ja/station/Asama/",
+        "retrieved": "2026-10-17",
+        "note": "らくらくおでかけネット：無障礙路線、站員、無障礙廁所（頁面註記 2019-04-01 現在，可能過時）"
+      },
+      {
+        "type": "official",
+        "url": "https://www.kintetsu.co.jp/gyoumu/coinlocker/",
+        "retrieved": "2026-10-17",
+        "note": "主な駅のコインロッカー：置物櫃數量（這一站沒有列出）"
       }
     ],
     "verified": false
@@ -311,8 +377,8 @@
     "passCovered": true,
     "staffed": false,
     "transfers": [],
-    "coinLockers": null,
-    "accessibility": null,
+    "coinLockers": "不明（CL 沒有列出）",
+    "accessibility": "高架、坡地上，相對式 2 面，樓梯（WP）；RK：三段都需要協助。無人站、沒有廁所。電梯、手扶梯：不明",
     "sources": [
       {
         "type": "official",
@@ -336,7 +402,7 @@
         "type": "wikipedia",
         "url": "https://ja.wikipedia.org/wiki/%E6%B1%A0%E3%81%AE%E6%B5%A6%E9%A7%85",
         "retrieved": "2026-10-17",
-        "note": "所在地、讀音"
+        "note": "所在地、讀音；駅構造（月台、電梯、手扶梯、斜坡）"
       },
       {
         "type": "wikipedia",
@@ -349,6 +415,18 @@
         "url": "https://www.kintetsu.co.jp/foreign/english/ticket/krp_5day.html",
         "retrieved": "2026-10-17",
         "note": "KINTETSU RAIL PASS 5day：近鐵全線可搭乘（特急另外買特急券）"
+      },
+      {
+        "type": "other",
+        "url": "https://www.ecomo-rakuraku.jp/ja/",
+        "retrieved": "2026-10-17",
+        "note": "らくらくおでかけネット：無障礙路線、站員、無障礙廁所（頁面註記 2019-04-01 現在，可能過時）；這一站的站頁網址未確認，記網站首頁"
+      },
+      {
+        "type": "official",
+        "url": "https://www.kintetsu.co.jp/gyoumu/coinlocker/",
+        "retrieved": "2026-10-17",
+        "note": "主な駅のコインロッカー：置物櫃數量（這一站沒有列出）"
       }
     ],
     "verified": false
@@ -383,8 +461,8 @@
     "transfers": [
       "jr-toba"
     ],
-    "coinLockers": null,
-    "accessibility": null,
+    "coinLockers": "有：特大 5、大 56、中 79、小 88（CL）",
+    "accessibility": "有電梯：近鐵剪票口內 2 座、1 號出口外 1 座；JR 側沒有（WP）。手扶梯通往各島式月台和 3 號出口（KM）。橋上站、島式 2 面 4 線，剪票口在 2F（WP）。有站員（站長駐站）。無障礙廁所在剪票口外（RK）。近鐵與 JR 的轉乘通道 2020-03-17 起關閉，剪票口完全分開（WP）",
     "sources": [
       {
         "type": "official",
@@ -408,7 +486,7 @@
         "type": "wikipedia",
         "url": "https://ja.wikipedia.org/wiki/%E9%B3%A5%E7%BE%BD%E9%A7%85",
         "retrieved": "2026-10-17",
-        "note": "所在地、讀音"
+        "note": "所在地、讀音；駅構造（月台、電梯、手扶梯、斜坡）"
       },
       {
         "type": "wikipedia",
@@ -427,6 +505,24 @@
         "url": "https://www.kintetsu.co.jp/foreign/english/ticket/krp_5day.html",
         "retrieved": "2026-10-17",
         "note": "KINTETSU RAIL PASS 5day：近鐵全線可搭乘（特急另外買特急券）"
+      },
+      {
+        "type": "other",
+        "url": "https://www.ecomo-rakuraku.jp/ja/station/Toba/",
+        "retrieved": "2026-10-17",
+        "note": "らくらくおでかけネット：無障礙路線、站員、無障礙廁所（頁面註記 2019-04-01 現在，可能過時）"
+      },
+      {
+        "type": "official",
+        "url": "https://www.kintetsu.co.jp/soukatsu/kounai/toba.html",
+        "retrieved": "2026-10-17",
+        "note": "近鐵站內圖（只有圖片，內容是判讀圖片得到的）：電梯、手扶梯、剪票口位置"
+      },
+      {
+        "type": "official",
+        "url": "https://www.kintetsu.co.jp/gyoumu/coinlocker/",
+        "retrieved": "2026-10-17",
+        "note": "主な駅のコインロッカー：置物櫃數量"
       }
     ],
     "verified": false
@@ -458,8 +554,8 @@
     "passCovered": true,
     "staffed": false,
     "transfers": [],
-    "coinLockers": null,
-    "accessibility": null,
+    "coinLockers": "不明（CL 沒有列出）",
+    "accessibility": "沒有電梯（WP）；有手扶梯但無人化後停用（WP）；有斜坡、隨時可以通行（WP）。橋上站房、相對式 2 面，樓梯（WP）。無人站，一般廁所。RK：三段都「需要協助，但有設施」",
     "sources": [
       {
         "type": "official",
@@ -483,7 +579,7 @@
         "type": "wikipedia",
         "url": "https://ja.wikipedia.org/wiki/%E4%B8%AD%E4%B9%8B%E9%83%B7%E9%A7%85",
         "retrieved": "2026-10-17",
-        "note": "所在地、讀音"
+        "note": "所在地、讀音；駅構造（月台、電梯、手扶梯、斜坡）"
       },
       {
         "type": "wikipedia",
@@ -496,6 +592,18 @@
         "url": "https://www.kintetsu.co.jp/foreign/english/ticket/krp_5day.html",
         "retrieved": "2026-10-17",
         "note": "KINTETSU RAIL PASS 5day：近鐵全線可搭乘（特急另外買特急券）"
+      },
+      {
+        "type": "other",
+        "url": "https://www.ecomo-rakuraku.jp/ja/station/Nakanogo/",
+        "retrieved": "2026-10-17",
+        "note": "らくらくおでかけネット：無障礙路線、站員、無障礙廁所（頁面註記 2019-04-01 現在，可能過時）"
+      },
+      {
+        "type": "official",
+        "url": "https://www.kintetsu.co.jp/gyoumu/coinlocker/",
+        "retrieved": "2026-10-17",
+        "note": "主な駅のコインロッカー：置物櫃數量（這一站沒有列出）"
       }
     ],
     "verified": false
@@ -527,8 +635,8 @@
     "passCovered": true,
     "staffed": false,
     "transfers": [],
-    "coinLockers": null,
-    "accessibility": null,
+    "coinLockers": "不明（CL 沒有列出）",
+    "accessibility": "相對式 2 面，站內平交道（WP）；RK：三段都有無障礙路線。無人站、沒有廁所。電梯、手扶梯：不明",
     "sources": [
       {
         "type": "official",
@@ -552,7 +660,7 @@
         "type": "wikipedia",
         "url": "https://ja.wikipedia.org/wiki/%E5%BF%97%E6%91%A9%E8%B5%A4%E5%B4%8E%E9%A7%85",
         "retrieved": "2026-10-17",
-        "note": "所在地、讀音"
+        "note": "所在地、讀音；駅構造（月台、電梯、手扶梯、斜坡）"
       },
       {
         "type": "wikipedia",
@@ -565,6 +673,18 @@
         "url": "https://www.kintetsu.co.jp/foreign/english/ticket/krp_5day.html",
         "retrieved": "2026-10-17",
         "note": "KINTETSU RAIL PASS 5day：近鐵全線可搭乘（特急另外買特急券）"
+      },
+      {
+        "type": "other",
+        "url": "https://www.ecomo-rakuraku.jp/ja/station/Shima-Akasaki/",
+        "retrieved": "2026-10-17",
+        "note": "らくらくおでかけネット：無障礙路線、站員、無障礙廁所（頁面註記 2019-04-01 現在，可能過時）"
+      },
+      {
+        "type": "official",
+        "url": "https://www.kintetsu.co.jp/gyoumu/coinlocker/",
+        "retrieved": "2026-10-17",
+        "note": "主な駅のコインロッカー：置物櫃數量（這一站沒有列出）"
       }
     ],
     "verified": false
@@ -596,8 +716,8 @@
     "passCovered": true,
     "staffed": false,
     "transfers": [],
-    "coinLockers": null,
-    "accessibility": null,
+    "coinLockers": "不明（CL 沒有列出）",
+    "accessibility": "相對式 2 面，站內平交道；入口是斜坡（WP）。RK：三段都有無障礙路線。無人站、沒有廁所",
     "sources": [
       {
         "type": "official",
@@ -621,7 +741,7 @@
         "type": "wikipedia",
         "url": "https://ja.wikipedia.org/wiki/%E8%88%B9%E6%B4%A5%E9%A7%85_%28%E4%B8%89%E9%87%8D%E7%9C%8C%E9%B3%A5%E7%BE%BD%E5%B8%82%29",
         "retrieved": "2026-10-17",
-        "note": "所在地、讀音"
+        "note": "所在地、讀音；駅構造（月台、電梯、手扶梯、斜坡）"
       },
       {
         "type": "wikipedia",
@@ -634,6 +754,18 @@
         "url": "https://www.kintetsu.co.jp/foreign/english/ticket/krp_5day.html",
         "retrieved": "2026-10-17",
         "note": "KINTETSU RAIL PASS 5day：近鐵全線可搭乘（特急另外買特急券）"
+      },
+      {
+        "type": "other",
+        "url": "https://www.ecomo-rakuraku.jp/ja/",
+        "retrieved": "2026-10-17",
+        "note": "らくらくおでかけネット：無障礙路線、站員、無障礙廁所（頁面註記 2019-04-01 現在，可能過時）；這一站的站頁網址未確認，記網站首頁"
+      },
+      {
+        "type": "official",
+        "url": "https://www.kintetsu.co.jp/gyoumu/coinlocker/",
+        "retrieved": "2026-10-17",
+        "note": "主な駅のコインロッカー：置物櫃數量（這一站沒有列出）"
       }
     ],
     "verified": false
@@ -665,8 +797,8 @@
     "passCovered": true,
     "staffed": false,
     "transfers": [],
-    "coinLockers": null,
-    "accessibility": null,
+    "coinLockers": "不明（CL 沒有列出）",
+    "accessibility": "築堤上、相對式 2 面（WP）；RK：剪票口→月台、月台間需要協助。無人站、沒有廁所。電梯、手扶梯：不明",
     "sources": [
       {
         "type": "official",
@@ -690,7 +822,7 @@
         "type": "wikipedia",
         "url": "https://ja.wikipedia.org/wiki/%E5%8A%A0%E8%8C%82%E9%A7%85_%28%E4%B8%89%E9%87%8D%E7%9C%8C%29",
         "retrieved": "2026-10-17",
-        "note": "所在地、讀音"
+        "note": "所在地、讀音；駅構造（月台、電梯、手扶梯、斜坡）"
       },
       {
         "type": "wikipedia",
@@ -703,6 +835,18 @@
         "url": "https://www.kintetsu.co.jp/foreign/english/ticket/krp_5day.html",
         "retrieved": "2026-10-17",
         "note": "KINTETSU RAIL PASS 5day：近鐵全線可搭乘（特急另外買特急券）"
+      },
+      {
+        "type": "other",
+        "url": "https://www.ecomo-rakuraku.jp/ja/",
+        "retrieved": "2026-10-17",
+        "note": "らくらくおでかけネット：無障礙路線、站員、無障礙廁所（頁面註記 2019-04-01 現在，可能過時）；這一站的站頁網址未確認，記網站首頁"
+      },
+      {
+        "type": "official",
+        "url": "https://www.kintetsu.co.jp/gyoumu/coinlocker/",
+        "retrieved": "2026-10-17",
+        "note": "主な駅のコインロッカー：置物櫃數量（這一站沒有列出）"
       }
     ],
     "verified": false
@@ -734,8 +878,8 @@
     "passCovered": true,
     "staffed": false,
     "transfers": [],
-    "coinLockers": null,
-    "accessibility": null,
+    "coinLockers": "不明（CL 沒有列出）",
+    "accessibility": "地面、相對式 2 面，入口在鳥羽側（WP）；RK：三段都有無障礙路線。無人站、沒有廁所",
     "sources": [
       {
         "type": "official",
@@ -759,7 +903,7 @@
         "type": "wikipedia",
         "url": "https://ja.wikipedia.org/wiki/%E6%9D%BE%E5%B0%BE%E9%A7%85_%28%E4%B8%89%E9%87%8D%E7%9C%8C%29",
         "retrieved": "2026-10-17",
-        "note": "所在地、讀音"
+        "note": "所在地、讀音；駅構造（月台、電梯、手扶梯、斜坡）"
       },
       {
         "type": "wikipedia",
@@ -772,6 +916,18 @@
         "url": "https://www.kintetsu.co.jp/foreign/english/ticket/krp_5day.html",
         "retrieved": "2026-10-17",
         "note": "KINTETSU RAIL PASS 5day：近鐵全線可搭乘（特急另外買特急券）"
+      },
+      {
+        "type": "other",
+        "url": "https://www.ecomo-rakuraku.jp/ja/",
+        "retrieved": "2026-10-17",
+        "note": "らくらくおでかけネット：無障礙路線、站員、無障礙廁所（頁面註記 2019-04-01 現在，可能過時）；這一站的站頁網址未確認，記網站首頁"
+      },
+      {
+        "type": "official",
+        "url": "https://www.kintetsu.co.jp/gyoumu/coinlocker/",
+        "retrieved": "2026-10-17",
+        "note": "主な駅のコインロッカー：置物櫃數量（這一站沒有列出）"
       }
     ],
     "verified": false
@@ -803,8 +959,8 @@
     "passCovered": true,
     "staffed": false,
     "transfers": [],
-    "coinLockers": null,
-    "accessibility": null,
+    "coinLockers": "不明（CL 沒有列出）",
+    "accessibility": "沒有電梯、手扶梯（KM）；相對式 2 面＋通過線，到 1 號線要走天橋（WP、KM）。無人站、沒有廁所。**來源衝突**：KM 只畫了天橋樓梯，RK 說有無障礙路線（車いす専用通路）",
     "sources": [
       {
         "type": "official",
@@ -828,7 +984,7 @@
         "type": "wikipedia",
         "url": "https://ja.wikipedia.org/wiki/%E7%99%BD%E6%9C%A8%E9%A7%85",
         "retrieved": "2026-10-17",
-        "note": "所在地、讀音"
+        "note": "所在地、讀音；駅構造（月台、電梯、手扶梯、斜坡）"
       },
       {
         "type": "wikipedia",
@@ -841,6 +997,24 @@
         "url": "https://www.kintetsu.co.jp/foreign/english/ticket/krp_5day.html",
         "retrieved": "2026-10-17",
         "note": "KINTETSU RAIL PASS 5day：近鐵全線可搭乘（特急另外買特急券）"
+      },
+      {
+        "type": "other",
+        "url": "https://www.ecomo-rakuraku.jp/ja/station/Shiraki/",
+        "retrieved": "2026-10-17",
+        "note": "らくらくおでかけネット：無障礙路線、站員、無障礙廁所（頁面註記 2019-04-01 現在，可能過時）"
+      },
+      {
+        "type": "official",
+        "url": "https://www.kintetsu.co.jp/soukatsu/kounai/shiraki.html",
+        "retrieved": "2026-10-17",
+        "note": "近鐵站內圖（只有圖片，內容是判讀圖片得到的）：電梯、手扶梯、剪票口位置"
+      },
+      {
+        "type": "official",
+        "url": "https://www.kintetsu.co.jp/gyoumu/coinlocker/",
+        "retrieved": "2026-10-17",
+        "note": "主な駅のコインロッカー：置物櫃數量（這一站沒有列出）"
       }
     ],
     "verified": false
@@ -872,8 +1046,8 @@
     "passCovered": true,
     "staffed": false,
     "transfers": [],
-    "coinLockers": null,
-    "accessibility": null,
+    "coinLockers": "不明（CL 沒有列出）",
+    "accessibility": "相對式 2 面、沒有站房；月台間怎麼連接：不明（WP）。RK：三段都有無障礙路線。無人站、沒有廁所",
     "sources": [
       {
         "type": "official",
@@ -897,7 +1071,7 @@
         "type": "wikipedia",
         "url": "https://ja.wikipedia.org/wiki/%E4%BA%94%E7%9F%A5%E9%A7%85",
         "retrieved": "2026-10-17",
-        "note": "所在地、讀音"
+        "note": "所在地、讀音；駅構造（月台、電梯、手扶梯、斜坡）"
       },
       {
         "type": "wikipedia",
@@ -910,6 +1084,18 @@
         "url": "https://www.kintetsu.co.jp/foreign/english/ticket/krp_5day.html",
         "retrieved": "2026-10-17",
         "note": "KINTETSU RAIL PASS 5day：近鐵全線可搭乘（特急另外買特急券）"
+      },
+      {
+        "type": "other",
+        "url": "https://www.ecomo-rakuraku.jp/ja/station/Gochi/",
+        "retrieved": "2026-10-17",
+        "note": "らくらくおでかけネット：無障礙路線、站員、無障礙廁所（頁面註記 2019-04-01 現在，可能過時）"
+      },
+      {
+        "type": "official",
+        "url": "https://www.kintetsu.co.jp/gyoumu/coinlocker/",
+        "retrieved": "2026-10-17",
+        "note": "主な駅のコインロッカー：置物櫃數量（這一站沒有列出）"
       }
     ],
     "verified": false
@@ -941,8 +1127,8 @@
     "passCovered": true,
     "staffed": false,
     "transfers": [],
-    "coinLockers": null,
-    "accessibility": null,
+    "coinLockers": "不明（CL 沒有列出）",
+    "accessibility": "島式 1 面，從平交道進站（WP）；RK：三段都有無障礙路線。無人站、沒有廁所",
     "sources": [
       {
         "type": "official",
@@ -966,7 +1152,7 @@
         "type": "wikipedia",
         "url": "https://ja.wikipedia.org/wiki/%E6%B2%93%E6%8E%9B%E9%A7%85",
         "retrieved": "2026-10-17",
-        "note": "所在地、讀音"
+        "note": "所在地、讀音；駅構造（月台、電梯、手扶梯、斜坡）"
       },
       {
         "type": "wikipedia",
@@ -979,6 +1165,18 @@
         "url": "https://www.kintetsu.co.jp/foreign/english/ticket/krp_5day.html",
         "retrieved": "2026-10-17",
         "note": "KINTETSU RAIL PASS 5day：近鐵全線可搭乘（特急另外買特急券）"
+      },
+      {
+        "type": "other",
+        "url": "https://www.ecomo-rakuraku.jp/ja/station/Kutsukake/",
+        "retrieved": "2026-10-17",
+        "note": "らくらくおでかけネット：無障礙路線、站員、無障礙廁所（頁面註記 2019-04-01 現在，可能過時）"
+      },
+      {
+        "type": "official",
+        "url": "https://www.kintetsu.co.jp/gyoumu/coinlocker/",
+        "retrieved": "2026-10-17",
+        "note": "主な駅のコインロッカー：置物櫃數量（這一站沒有列出）"
       }
     ],
     "verified": false
@@ -1010,8 +1208,8 @@
     "passCovered": true,
     "staffed": false,
     "transfers": [],
-    "coinLockers": null,
-    "accessibility": null,
+    "coinLockers": "不明（CL 沒有列出）",
+    "accessibility": "島式 1 面，從平交道進站（WP）；RK：剪票口→月台需要協助。無人站、沒有廁所",
     "sources": [
       {
         "type": "official",
@@ -1035,7 +1233,7 @@
         "type": "wikipedia",
         "url": "https://ja.wikipedia.org/wiki/%E4%B8%8A%E4%B9%8B%E9%83%B7%E9%A7%85",
         "retrieved": "2026-10-17",
-        "note": "所在地、讀音"
+        "note": "所在地、讀音；駅構造（月台、電梯、手扶梯、斜坡）"
       },
       {
         "type": "wikipedia",
@@ -1048,6 +1246,18 @@
         "url": "https://www.kintetsu.co.jp/foreign/english/ticket/krp_5day.html",
         "retrieved": "2026-10-17",
         "note": "KINTETSU RAIL PASS 5day：近鐵全線可搭乘（特急另外買特急券）"
+      },
+      {
+        "type": "other",
+        "url": "https://www.ecomo-rakuraku.jp/ja/station/Kaminogo/",
+        "retrieved": "2026-10-17",
+        "note": "らくらくおでかけネット：無障礙路線、站員、無障礙廁所（頁面註記 2019-04-01 現在，可能過時）"
+      },
+      {
+        "type": "official",
+        "url": "https://www.kintetsu.co.jp/gyoumu/coinlocker/",
+        "retrieved": "2026-10-17",
+        "note": "主な駅のコインロッカー：置物櫃數量（這一站沒有列出）"
       }
     ],
     "verified": false
@@ -1079,8 +1289,8 @@
     "passCovered": true,
     "staffed": true,
     "transfers": [],
-    "coinLockers": null,
-    "accessibility": null,
+    "coinLockers": "不明（CL 沒有列出）",
+    "accessibility": "有電梯：剪票口外 1 座、內 2 座（WP）；西側有電梯到剪票口（RK）。手扶梯全部停用、加蓋（WP）。橋上站房、2 面 3 線（WP）。有站員。剪票口內有無障礙廁所（無人工肛門設備）（RK）",
     "sources": [
       {
         "type": "official",
@@ -1104,7 +1314,7 @@
         "type": "wikipedia",
         "url": "https://ja.wikipedia.org/wiki/%E5%BF%97%E6%91%A9%E7%A3%AF%E9%83%A8%E9%A7%85",
         "retrieved": "2026-10-17",
-        "note": "所在地、讀音"
+        "note": "所在地、讀音；駅構造（月台、電梯、手扶梯、斜坡）"
       },
       {
         "type": "wikipedia",
@@ -1117,6 +1327,18 @@
         "url": "https://www.kintetsu.co.jp/foreign/english/ticket/krp_5day.html",
         "retrieved": "2026-10-17",
         "note": "KINTETSU RAIL PASS 5day：近鐵全線可搭乘（特急另外買特急券）"
+      },
+      {
+        "type": "other",
+        "url": "https://www.ecomo-rakuraku.jp/ja/",
+        "retrieved": "2026-10-17",
+        "note": "らくらくおでかけネット：無障礙路線、站員、無障礙廁所（頁面註記 2019-04-01 現在，可能過時）；這一站的站頁網址未確認，記網站首頁"
+      },
+      {
+        "type": "official",
+        "url": "https://www.kintetsu.co.jp/gyoumu/coinlocker/",
+        "retrieved": "2026-10-17",
+        "note": "主な駅のコインロッカー：置物櫃數量（這一站沒有列出）"
       }
     ],
     "verified": false
@@ -1148,8 +1370,8 @@
     "passCovered": true,
     "staffed": false,
     "transfers": [],
-    "coinLockers": null,
-    "accessibility": null,
+    "coinLockers": "不明（CL 沒有列出）",
+    "accessibility": "高架、相對式 2 面，樓梯（WP）；RK：剪票口→月台、月台間需要協助。無人站、沒有廁所",
     "sources": [
       {
         "type": "official",
@@ -1173,7 +1395,7 @@
         "type": "wikipedia",
         "url": "https://ja.wikipedia.org/wiki/%E7%A9%B4%E5%B7%9D%E9%A7%85_%28%E4%B8%89%E9%87%8D%E7%9C%8C%29",
         "retrieved": "2026-10-17",
-        "note": "所在地、讀音"
+        "note": "所在地、讀音；駅構造（月台、電梯、手扶梯、斜坡）"
       },
       {
         "type": "wikipedia",
@@ -1186,6 +1408,18 @@
         "url": "https://www.kintetsu.co.jp/foreign/english/ticket/krp_5day.html",
         "retrieved": "2026-10-17",
         "note": "KINTETSU RAIL PASS 5day：近鐵全線可搭乘（特急另外買特急券）"
+      },
+      {
+        "type": "other",
+        "url": "https://www.ecomo-rakuraku.jp/ja/",
+        "retrieved": "2026-10-17",
+        "note": "らくらくおでかけネット：無障礙路線、站員、無障礙廁所（頁面註記 2019-04-01 現在，可能過時）；這一站的站頁網址未確認，記網站首頁"
+      },
+      {
+        "type": "official",
+        "url": "https://www.kintetsu.co.jp/gyoumu/coinlocker/",
+        "retrieved": "2026-10-17",
+        "note": "主な駅のコインロッカー：置物櫃數量（這一站沒有列出）"
       }
     ],
     "verified": false
@@ -1217,8 +1451,8 @@
     "passCovered": true,
     "staffed": false,
     "transfers": [],
-    "coinLockers": null,
-    "accessibility": null,
+    "coinLockers": "不明（CL 沒有列出）",
+    "accessibility": "地面、相對式 2 面，直接進站（WP）；RK：三段都有無障礙路線。無人站、沒有廁所",
     "sources": [
       {
         "type": "official",
@@ -1242,7 +1476,7 @@
         "type": "wikipedia",
         "url": "https://ja.wikipedia.org/wiki/%E5%BF%97%E6%91%A9%E6%A8%AA%E5%B1%B1%E9%A7%85",
         "retrieved": "2026-10-17",
-        "note": "所在地、讀音"
+        "note": "所在地、讀音；駅構造（月台、電梯、手扶梯、斜坡）"
       },
       {
         "type": "wikipedia",
@@ -1255,6 +1489,18 @@
         "url": "https://www.kintetsu.co.jp/foreign/english/ticket/krp_5day.html",
         "retrieved": "2026-10-17",
         "note": "KINTETSU RAIL PASS 5day：近鐵全線可搭乘（特急另外買特急券）"
+      },
+      {
+        "type": "other",
+        "url": "https://www.ecomo-rakuraku.jp/ja/station/Shima-Yokoyama/",
+        "retrieved": "2026-10-17",
+        "note": "らくらくおでかけネット：無障礙路線、站員、無障礙廁所（頁面註記 2019-04-01 現在，可能過時）"
+      },
+      {
+        "type": "official",
+        "url": "https://www.kintetsu.co.jp/gyoumu/coinlocker/",
+        "retrieved": "2026-10-17",
+        "note": "主な駅のコインロッカー：置物櫃數量（這一站沒有列出）"
       }
     ],
     "verified": false
@@ -1286,8 +1532,8 @@
     "passCovered": true,
     "staffed": true,
     "transfers": [],
-    "coinLockers": null,
-    "accessibility": null,
+    "coinLockers": "有：特大 0、大 25、中 14、小 14（CL）；在南口樓梯旁（WP）",
+    "accessibility": "有電梯：南北兩側（RK；KM 約 4 座）；南口有手扶梯到剪票口（KM）。島式 1 面在 1F，剪票口在 3F（WP）。有站員。剪票口內有無障礙廁所（RK）。有觀光案內所、巴士、計程車",
     "sources": [
       {
         "type": "official",
@@ -1311,7 +1557,7 @@
         "type": "wikipedia",
         "url": "https://ja.wikipedia.org/wiki/%E9%B5%9C%E6%96%B9%E9%A7%85",
         "retrieved": "2026-10-17",
-        "note": "所在地、讀音"
+        "note": "所在地、讀音；駅構造（月台、電梯、手扶梯、斜坡）"
       },
       {
         "type": "wikipedia",
@@ -1324,6 +1570,24 @@
         "url": "https://www.kintetsu.co.jp/foreign/english/ticket/krp_5day.html",
         "retrieved": "2026-10-17",
         "note": "KINTETSU RAIL PASS 5day：近鐵全線可搭乘（特急另外買特急券）"
+      },
+      {
+        "type": "other",
+        "url": "https://www.ecomo-rakuraku.jp/ja/station/Ugata/",
+        "retrieved": "2026-10-17",
+        "note": "らくらくおでかけネット：無障礙路線、站員、無障礙廁所（頁面註記 2019-04-01 現在，可能過時）"
+      },
+      {
+        "type": "official",
+        "url": "https://www.kintetsu.co.jp/soukatsu/kounai/ugata.html",
+        "retrieved": "2026-10-17",
+        "note": "近鐵站內圖（只有圖片，內容是判讀圖片得到的）：電梯、手扶梯、剪票口位置"
+      },
+      {
+        "type": "official",
+        "url": "https://www.kintetsu.co.jp/gyoumu/coinlocker/",
+        "retrieved": "2026-10-17",
+        "note": "主な駅のコインロッカー：置物櫃數量"
       }
     ],
     "verified": false
@@ -1355,8 +1619,8 @@
     "passCovered": true,
     "staffed": false,
     "transfers": [],
-    "coinLockers": null,
-    "accessibility": null,
+    "coinLockers": "不明（CL 沒有列出）",
+    "accessibility": "島式 1 面；賢島側入口是斜坡（WP）。RK：三段都有無障礙路線。無人站、沒有廁所",
     "sources": [
       {
         "type": "official",
@@ -1380,7 +1644,7 @@
         "type": "wikipedia",
         "url": "https://ja.wikipedia.org/wiki/%E5%BF%97%E6%91%A9%E7%A5%9E%E6%98%8E%E9%A7%85",
         "retrieved": "2026-10-17",
-        "note": "所在地、讀音"
+        "note": "所在地、讀音；駅構造（月台、電梯、手扶梯、斜坡）"
       },
       {
         "type": "wikipedia",
@@ -1393,6 +1657,18 @@
         "url": "https://www.kintetsu.co.jp/foreign/english/ticket/krp_5day.html",
         "retrieved": "2026-10-17",
         "note": "KINTETSU RAIL PASS 5day：近鐵全線可搭乘（特急另外買特急券）"
+      },
+      {
+        "type": "other",
+        "url": "https://www.ecomo-rakuraku.jp/ja/station/Shima-Shimmei/",
+        "retrieved": "2026-10-17",
+        "note": "らくらくおでかけネット：無障礙路線、站員、無障礙廁所（頁面註記 2019-04-01 現在，可能過時）"
+      },
+      {
+        "type": "official",
+        "url": "https://www.kintetsu.co.jp/gyoumu/coinlocker/",
+        "retrieved": "2026-10-17",
+        "note": "主な駅のコインロッカー：置物櫃數量（這一站沒有列出）"
       }
     ],
     "verified": false
@@ -1424,8 +1700,8 @@
     "passCovered": true,
     "staffed": true,
     "transfers": [],
-    "coinLockers": null,
-    "accessibility": null,
+    "coinLockers": "有：特大 3、大 14、中 19、小 53（CL）",
+    "accessibility": "終點站，4 面 5 線；月台到北口（巴士、計程車、飯店接駁車）幾乎沒有階梯（WP）；剪票口和月台都在 1F（KM）。往南口（遊覽船碼頭，低一層）只有上行手扶梯；輪椅使用者可以請站員帶繞路（WP、KM）。電梯：不明（KM 的旅客動線上沒有畫）。有站員（全天）。無障礙廁所在剪票口外（RK）",
     "sources": [
       {
         "type": "official",
@@ -1449,7 +1725,7 @@
         "type": "wikipedia",
         "url": "https://ja.wikipedia.org/wiki/%E8%B3%A2%E5%B3%B6%E9%A7%85",
         "retrieved": "2026-10-17",
-        "note": "所在地、讀音"
+        "note": "所在地、讀音；駅構造（月台、電梯、手扶梯、斜坡）"
       },
       {
         "type": "wikipedia",
@@ -1462,6 +1738,24 @@
         "url": "https://www.kintetsu.co.jp/foreign/english/ticket/krp_5day.html",
         "retrieved": "2026-10-17",
         "note": "KINTETSU RAIL PASS 5day：近鐵全線可搭乘（特急另外買特急券）"
+      },
+      {
+        "type": "other",
+        "url": "https://www.ecomo-rakuraku.jp/ja/station/Kashikojima/",
+        "retrieved": "2026-10-17",
+        "note": "らくらくおでかけネット：無障礙路線、站員、無障礙廁所（頁面註記 2019-04-01 現在，可能過時）"
+      },
+      {
+        "type": "official",
+        "url": "https://www.kintetsu.co.jp/soukatsu/kounai/kashikojima.html",
+        "retrieved": "2026-10-17",
+        "note": "近鐵站內圖（只有圖片，內容是判讀圖片得到的）：電梯、手扶梯、剪票口位置"
+      },
+      {
+        "type": "official",
+        "url": "https://www.kintetsu.co.jp/gyoumu/coinlocker/",
+        "retrieved": "2026-10-17",
+        "note": "主な駅のコインロッカー：置物櫃數量"
       }
     ],
     "verified": false

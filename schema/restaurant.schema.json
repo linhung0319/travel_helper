@@ -7,109 +7,423 @@
   "items": {
     "$ref": "common.schema.json#/$defs/point",
     "properties": {
-      "type": { "const": "restaurant" },
+      "type": {
+        "const": "restaurant"
+      },
       "anchors": {
         "description": "這家店「屬於」哪些資料點",
         "type": "array",
         "items": {
           "type": "object",
           "properties": {
-            "id": { "$ref": "common.schema.json#/$defs/id" },
-            "walkMinutes": { "$ref": "common.schema.json#/$defs/nullableNumber" },
-            "walkSource": { "enum": ["estimate", "osrm", "google", null] }
+            "id": {
+              "$ref": "common.schema.json#/$defs/id"
+            },
+            "walkMinutes": {
+              "$ref": "common.schema.json#/$defs/nullableNumber"
+            },
+            "walkSource": {
+              "enum": [
+                "estimate",
+                "osrm",
+                "google",
+                null
+              ]
+            }
           },
-          "required": ["id"],
+          "required": [
+            "id"
+          ],
           "additionalProperties": false
         }
       },
       "contexts": {
         "type": "array",
-        "items": { "enum": ["lunch", "dinner", "transit", "snack", "cafe"] },
+        "items": {
+          "enum": [
+            "lunch",
+            "dinner",
+            "transit",
+            "snack",
+            "cafe"
+          ]
+        },
         "uniqueItems": true
       },
-      "cuisine": { "type": "array", "items": { "type": "string" } },
-      "priceRange": { "$ref": "common.schema.json#/$defs/nullableString" },
-      "mustTry": { "type": "array", "items": { "type": "string" } },
+      "cuisine": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        },
+        "description": "固定清單見 CONVENTIONS.md §5.3"
+      },
+      "priceRange": {
+        "$ref": "common.schema.json#/$defs/nullableString"
+      },
+      "mustTry": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
+      },
       "menu": {
         "type": "array",
         "items": {
           "type": "object",
           "properties": {
-            "url": { "$ref": "common.schema.json#/$defs/url" },
-            "source": { "type": ["string", "null"] },
-            "retrieved": { "$ref": "common.schema.json#/$defs/date" }
+            "url": {
+              "$ref": "common.schema.json#/$defs/url"
+            },
+            "source": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "retrieved": {
+              "$ref": "common.schema.json#/$defs/date"
+            }
           },
-          "required": ["url"],
+          "required": [
+            "url"
+          ],
           "additionalProperties": false
         }
       },
       "ratings": {
         "anyOf": [
-          { "type": "null" },
+          {
+            "type": "null"
+          },
           {
             "type": "object",
             "properties": {
-              "tabelog": { "$ref": "common.schema.json#/$defs/nullableNumber" },
-              "tabelogReviews": { "$ref": "common.schema.json#/$defs/nullableInteger" },
-              "google": { "$ref": "common.schema.json#/$defs/nullableNumber" },
-              "googleReviews": { "$ref": "common.schema.json#/$defs/nullableInteger" },
-              "note": { "$ref": "common.schema.json#/$defs/nullableString" }
+              "tabelog": {
+                "$ref": "common.schema.json#/$defs/nullableNumber"
+              },
+              "tabelogReviews": {
+                "$ref": "common.schema.json#/$defs/nullableInteger"
+              },
+              "google": {
+                "$ref": "common.schema.json#/$defs/nullableNumber"
+              },
+              "googleReviews": {
+                "$ref": "common.schema.json#/$defs/nullableInteger"
+              },
+              "note": {
+                "$ref": "common.schema.json#/$defs/nullableString"
+              }
             },
-            "additionalProperties": { "type": ["number", "null"] }
+            "additionalProperties": {
+              "type": [
+                "number",
+                "null"
+              ]
+            }
           }
         ]
       },
-      "notes": { "$ref": "common.schema.json#/$defs/nullableString" },
+      "notes": {
+        "$ref": "common.schema.json#/$defs/nullableString"
+      },
       "group": {
         "description": "團體可行性",
         "anyOf": [
-          { "type": "null" },
+          {
+            "type": "null"
+          },
           {
             "type": "object",
             "properties": {
-              "seats": { "$ref": "common.schema.json#/$defs/nullableInteger" },
-              "fit15": { "description": "全員 15 人", "enum": ["yes", "split", "no", "unknown"] },
-              "fitSubgroup": { "description": "分組 4～6 人", "enum": ["yes", "no", "unknown"] },
-              "privateRoom": { "$ref": "common.schema.json#/$defs/nullableBoolean" },
-              "buyout": { "$ref": "common.schema.json#/$defs/nullableString" },
-              "groupMenu": { "$ref": "common.schema.json#/$defs/nullableString" },
-              "source": { "$ref": "common.schema.json#/$defs/nullableString" },
-              "note": { "$ref": "common.schema.json#/$defs/nullableString" }
+              "seats": {
+                "$ref": "common.schema.json#/$defs/nullableInteger"
+              },
+              "fit15": {
+                "description": "全員 15 人",
+                "enum": [
+                  "yes",
+                  "split",
+                  "no",
+                  "unknown"
+                ]
+              },
+              "fitSubgroup": {
+                "description": "分組 4～6 人",
+                "enum": [
+                  "yes",
+                  "no",
+                  "unknown"
+                ]
+              },
+              "privateRoom": {
+                "$ref": "common.schema.json#/$defs/nullableBoolean"
+              },
+              "buyout": {
+                "$ref": "common.schema.json#/$defs/nullableString"
+              },
+              "groupMenu": {
+                "$ref": "common.schema.json#/$defs/nullableString"
+              },
+              "source": {
+                "$ref": "common.schema.json#/$defs/nullableString"
+              },
+              "note": {
+                "$ref": "common.schema.json#/$defs/nullableString"
+              },
+              "maxReservation": {
+                "description": "食べログ「最大予約可能人数」",
+                "$ref": "common.schema.json#/$defs/nullableInteger"
+              },
+              "confirmed15": {
+                "description": "打電話確認可以接 15 人的紀錄",
+                "anyOf": [
+                  {
+                    "type": "null"
+                  },
+                  {
+                    "type": "object",
+                    "properties": {
+                      "date": {
+                        "$ref": "common.schema.json#/$defs/date"
+                      },
+                      "note": {
+                        "$ref": "common.schema.json#/$defs/nullableString"
+                      }
+                    },
+                    "required": [
+                      "date"
+                    ],
+                    "additionalProperties": false
+                  }
+                ]
+              }
             },
-            "required": ["fit15", "fitSubgroup"],
+            "required": [
+              "fit15",
+              "fitSubgroup"
+            ],
             "additionalProperties": false
           }
         ]
       },
       "reservation": {
         "anyOf": [
-          { "type": "null" },
+          {
+            "type": "null"
+          },
           {
             "type": "object",
             "properties": {
-              "accepted": { "enum": ["yes", "no", "groups-only", "unknown"] },
+              "accepted": {
+                "enum": [
+                  "yes",
+                  "no",
+                  "groups-only",
+                  "unknown"
+                ]
+              },
               "methods": {
                 "type": "array",
-                "items": { "enum": ["phone", "web", "instagram-dm", "other"] },
+                "items": {
+                  "enum": [
+                    "phone",
+                    "web",
+                    "instagram-dm",
+                    "other"
+                  ]
+                },
                 "uniqueItems": true
               },
-              "phone": { "$ref": "common.schema.json#/$defs/nullableString" },
-              "url": { "anyOf": [{ "$ref": "common.schema.json#/$defs/url" }, { "type": "null" }] },
-              "language": { "$ref": "common.schema.json#/$defs/nullableString" },
-              "note": { "$ref": "common.schema.json#/$defs/nullableString" }
+              "phone": {
+                "$ref": "common.schema.json#/$defs/nullableString"
+              },
+              "url": {
+                "anyOf": [
+                  {
+                    "$ref": "common.schema.json#/$defs/url"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              },
+              "language": {
+                "$ref": "common.schema.json#/$defs/nullableString"
+              },
+              "note": {
+                "$ref": "common.schema.json#/$defs/nullableString"
+              },
+              "leadDays": {
+                "description": "幾天前要訂",
+                "$ref": "common.schema.json#/$defs/nullableInteger"
+              }
             },
-            "required": ["accepted"],
+            "required": [
+              "accepted"
+            ],
             "additionalProperties": false
           }
         ]
       },
       "seating": {
         "type": "array",
-        "items": { "enum": ["table", "zashiki", "horigotatsu", "counter", "terrace", "other"] },
+        "items": {
+          "enum": [
+            "table",
+            "zashiki",
+            "horigotatsu",
+            "counter",
+            "terrace",
+            "sofa",
+            "other"
+          ]
+        },
         "uniqueItems": true
       },
-      "kids": { "$ref": "common.schema.json#/$defs/nullableString" },
-      "smoking": { "$ref": "common.schema.json#/$defs/nullableString" }
+      "kids": {
+        "description": "字串是舊格式（T7b 改成物件）",
+        "anyOf": [
+          {
+            "type": "null"
+          },
+          {
+            "type": "string"
+          },
+          {
+            "type": "object",
+            "properties": {
+              "allowed": {
+                "enum": [
+                  "yes",
+                  "no",
+                  "age-limit",
+                  "unknown"
+                ]
+              },
+              "minAge": {
+                "$ref": "common.schema.json#/$defs/nullableInteger"
+              },
+              "kidsMenu": {
+                "$ref": "common.schema.json#/$defs/nullableBoolean"
+              },
+              "note": {
+                "$ref": "common.schema.json#/$defs/nullableString"
+              }
+            },
+            "required": [
+              "allowed"
+            ],
+            "additionalProperties": false
+          }
+        ]
+      },
+      "smoking": {
+        "$ref": "common.schema.json#/$defs/nullableString"
+      },
+      "price": {
+        "description": "每人價格（円）[最低, 最高]；用來估預算和價位標籤（$～$$$$）",
+        "anyOf": [
+          {
+            "type": "null"
+          },
+          {
+            "type": "object",
+            "properties": {
+              "lunch": {
+                "anyOf": [
+                  {
+                    "type": "null"
+                  },
+                  {
+                    "type": "array",
+                    "prefixItems": [
+                      {
+                        "type": "integer",
+                        "minimum": 0
+                      },
+                      {
+                        "type": [
+                          "integer",
+                          "null"
+                        ],
+                        "minimum": 0
+                      }
+                    ],
+                    "minItems": 2,
+                    "maxItems": 2
+                  }
+                ]
+              },
+              "dinner": {
+                "anyOf": [
+                  {
+                    "type": "null"
+                  },
+                  {
+                    "type": "array",
+                    "prefixItems": [
+                      {
+                        "type": "integer",
+                        "minimum": 0
+                      },
+                      {
+                        "type": [
+                          "integer",
+                          "null"
+                        ],
+                        "minimum": 0
+                      }
+                    ],
+                    "minItems": 2,
+                    "maxItems": 2
+                  }
+                ]
+              }
+            },
+            "additionalProperties": false
+          }
+        ]
+      },
+      "stayMinutes": {
+        "description": "用餐時間；null 時依料理種類用預設值",
+        "$ref": "common.schema.json#/$defs/nullableInteger"
+      },
+      "access": {
+        "description": "從最近的 anchor 怎麼到：walk | car（要搭車）| ferry（離島）",
+        "enum": [
+          "walk",
+          "car",
+          "ferry",
+          null
+        ]
+      },
+      "accessibility": {
+        "anyOf": [
+          {
+            "type": "null"
+          },
+          {
+            "type": "object",
+            "properties": {
+              "barrierFree": {
+                "$ref": "common.schema.json#/$defs/nullableString"
+              },
+              "note": {
+                "$ref": "common.schema.json#/$defs/nullableString"
+              }
+            },
+            "additionalProperties": false
+          }
+        ]
+      },
+      "tabelogOwner": {
+        "description": "食べログ店舗会員（資料由店家維護）",
+        "$ref": "common.schema.json#/$defs/nullableBoolean"
+      },
+      "googleName": {
+        "description": "Google 上的店名和食べログ不同時",
+        "$ref": "common.schema.json#/$defs/nullableString"
+      }
     },
     "unevaluatedProperties": false
   }

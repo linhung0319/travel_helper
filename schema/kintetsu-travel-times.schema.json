@@ -1,0 +1,82 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://travel-helper.local/schema/kintetsu-travel-times.schema.json",
+  "title": "近鐵各站之間的車程與列車（data/timetables/kintetsu/_travel-times.json）",
+  "description": "T1 定的格式。segments 是相鄰兩個停車站之間的車程統計；trains 是每班車的停站時刻（scripts/next-train.mjs、T11 車站面板、T14 行程引擎用）。",
+  "type": "object",
+  "properties": {
+    "validFrom": { "anyOf": [{ "$ref": "common.schema.json#/$defs/date" }, { "type": "null" }] },
+    "retrieved": { "$ref": "common.schema.json#/$defs/date" },
+    "stationOrder": {
+      "description": "車站 ID，伊勢市 → 賢島",
+      "type": "array",
+      "items": { "$ref": "common.schema.json#/$defs/id" },
+      "minItems": 2
+    },
+    "notes": { "type": ["string", "array", "null"], "items": { "type": "string" } },
+    "segments": {
+      "description": "鍵是「<A>><B>」（相鄰兩個停車站）；值是 { <列車種別>: { min, max, median, n } }（分鐘）",
+      "type": "object",
+      "propertyNames": { "pattern": "^[a-z0-9-]+>[a-z0-9-]+$" },
+      "additionalProperties": {
+        "type": "object",
+        "additionalProperties": {
+          "type": "object",
+          "properties": {
+            "min": { "type": "number", "minimum": 0 },
+            "max": { "type": "number", "minimum": 0 },
+            "median": { "type": "number", "minimum": 0 },
+            "n": { "type": "integer", "minimum": 1 }
+          },
+          "required": ["min", "max", "median", "n"],
+          "additionalProperties": false
+        }
+      }
+    },
+    "trains": {
+      "type": "object",
+      "properties": {
+        "weekday": { "$ref": "#/$defs/trainMap" },
+        "holiday": { "$ref": "#/$defs/trainMap" }
+      },
+      "required": ["weekday", "holiday"],
+      "additionalProperties": false
+    },
+    "sources": { "$ref": "common.schema.json#/$defs/sources" }
+  },
+  "required": ["retrieved", "stationOrder", "segments", "trains", "sources"],
+  "additionalProperties": false,
+  "$defs": {
+    "timeOrNull": { "anyOf": [{ "$ref": "common.schema.json#/$defs/time" }, { "type": "null" }] },
+    "trainMap": {
+      "description": "鍵是近鐵時刻表網站的列車編號（例如 1-3896），同一班車在各站相同",
+      "type": "object",
+      "additionalProperties": {
+        "type": "object",
+        "properties": {
+          "type": { "description": "普通、急行、快速急行、特急、しまかぜ…", "type": "string" },
+          "to": { "description": "終點站 ID（可以在區間外）", "$ref": "common.schema.json#/$defs/id" },
+          "dir": { "enum": ["for-kashikojima", "for-ise-nakagawa"] },
+          "note": { "$ref": "common.schema.json#/$defs/nullableString" },
+          "stops": {
+            "description": "[車站 ID, 到站 HH:MM|null, 發車 HH:MM|null]",
+            "type": "array",
+            "items": {
+              "type": "array",
+              "prefixItems": [
+                { "$ref": "common.schema.json#/$defs/id" },
+                { "$ref": "#/$defs/timeOrNull" },
+                { "$ref": "#/$defs/timeOrNull" }
+              ],
+              "minItems": 3,
+              "maxItems": 3
+            },
+            "minItems": 1
+          }
+        },
+        "required": ["type", "to", "dir", "stops"],
+        "additionalProperties": false
+      }
+    }
+  }
+}

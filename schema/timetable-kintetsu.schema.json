@@ -2,7 +2,7 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://travel-helper.local/schema/timetable-kintetsu.schema.json",
   "title": "近鐵時刻表（data/timetables/kintetsu/<station-id>.json）",
-  "description": "檔名必須和 station 一致。各站之間的車程放在 _travel-times.json（格式由 T1 決定）。",
+  "description": "檔名必須和 station 一致。各站之間的車程與每班車的停站時刻放在 _travel-times.json（kintetsu-travel-times.schema.json）。",
   "type": "object",
   "properties": {
     "station": { "$ref": "common.schema.json#/$defs/id" },
@@ -12,7 +12,7 @@
     "source": { "$ref": "common.schema.json#/$defs/url" },
     "sources": { "$ref": "common.schema.json#/$defs/sources" },
     "directions": {
-      "description": "鍵是方向，例如 for-kashikojima、for-ujiyamada",
+      "description": "鍵是方向，統一用兩個：for-kashikojima（南下，往鳥羽、賢島；在伊勢市站南下終點是宇治山田、鳥羽的車也算這個方向，實際終點看 to）和 for-ise-nakagawa（北上，往伊勢中川、名古屋、大阪）",
       "type": "object",
       "propertyNames": { "pattern": "^for-[a-z0-9-]+$" },
       "additionalProperties": {
@@ -39,7 +39,7 @@
           "dep": { "$ref": "common.schema.json#/$defs/time" },
           "type": { "description": "普通、急行、快速急行、特急、しまかぜ…", "type": "string" },
           "to": { "description": "終點站 ID（可以在目標區間外，例如 osaka-namba）", "$ref": "common.schema.json#/$defs/id" },
-          "trainNo": { "$ref": "common.schema.json#/$defs/nullableString" },
+          "trainNo": { "description": "近鐵時刻表網站的列車編號（例如 1-3896），同一班車在各站相同；對應 _travel-times.json 的 trains", "$ref": "common.schema.json#/$defs/nullableString" },
           "note": { "$ref": "common.schema.json#/$defs/nullableString" }
         },
         "required": ["dep", "type", "to"],

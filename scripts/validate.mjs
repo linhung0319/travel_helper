@@ -4,6 +4,7 @@
 //   2. 資料點 ID 全專案唯一
 //   3. 座標落在範圍內（伊勢志摩；機場交通檔案放寬到關西、中部）
 //   4. 引用的 ID（最近車站、anchors、轉乘車站…）都存在
+//   5. region 在 areas.json 該區域的 regions 裡
 //
 // 用法：node scripts/validate.mjs [--data <dir>] [--schema <dir>]
 //       或 npm run validate、scripts/validate
@@ -34,19 +35,21 @@ function parseArgs(argv) {
 const BBOX_ISESHIMA = [136.5, 34.2, 137.1, 34.65];
 const BBOX_WIDE = [134.9, 33.8, 137.3, 35.4]; // 關西機場、大阪、名古屋都在內
 
-// 依路徑決定用哪個 schema。cache/ 只檢查 JSON 格式。
+// 依路徑決定用哪個 schema。cache/、derived/ 只檢查 JSON 格式。
 const ROUTES = [
   { re: /^areas\.json$/, schema: 'area', kind: 'areas' },
   { re: /^stations\.json$/, schema: 'station', kind: 'points' },
-  { re: /^areas\/(ise|futami|toba|shima)\/spots\.json$/, schema: 'spot', kind: 'points' },
-  { re: /^areas\/(ise|futami|toba|shima)\/lodging\.json$/, schema: 'lodging', kind: 'points' },
-  { re: /^areas\/(ise|futami|toba|shima)\/restaurants\.json$/, schema: 'restaurant', kind: 'points' },
+  { re: /^areas\/(ise|futami|toba|shima|kix)\/spots\.json$/, schema: 'spot', kind: 'points' },
+  { re: /^areas\/(ise|futami|toba|shima|kix)\/lodging\.json$/, schema: 'lodging', kind: 'points' },
+  { re: /^areas\/(ise|futami|toba|shima|kix)\/restaurants\.json$/, schema: 'restaurant', kind: 'points' },
+  { re: /^timetables\/kintetsu\/_travel-times\.json$/, schema: 'kintetsu-travel-times', kind: 'travel-times' },
   { re: /^timetables\/kintetsu\/_[a-z0-9-]+\.json$/, schema: 'sourced-document', kind: 'doc' },
   { re: /^timetables\/kintetsu\/[a-z0-9-]+\.json$/, schema: 'timetable-kintetsu', kind: 'timetable' },
   { re: /^timetables\/bus\/[a-z0-9-]+\.json$/, schema: 'sourced-document', kind: 'doc' },
-  { re: /^passes\.json$/, schema: 'sourced-document', kind: 'doc' },
-  { re: /^access\/[a-z0-9-]+\.json$/, schema: 'sourced-document', kind: 'doc', bbox: BBOX_WIDE },
+  { re: /^passes\.json$/, schema: 'passes', kind: 'doc' },
+  { re: /^access\/[a-z0-9-]+\.json$/, schema: 'access', kind: 'doc', bbox: BBOX_WIDE },
   { re: /^cache\//, schema: null, kind: 'cache' },
+  { re: /^derived\//, schema: null, kind: 'cache' }, // 腳本產生（分數、分級），只檢查 JSON 格式
 ];
 
 function walk(dir) {
@@ -211,14 +214,19 @@ function main() {
       for (const rec of data) {
         if (!rec?.id) continue;
         if (Array.isArray(rec.coords) && rec.coords.length === 2) {
-          if (!inBbox(rec.coords, BBOX_ISESHIMA)) {
-            const swapped = inBbox([rec.coords[1], rec.coords[0]], BBOX_ISESHIMA);
-            err(shown, `[${rec.id}] 座標 ${JSON.stringify(rec.coords)} 不在伊勢志摩範圍內${swapped ? '（經緯度可能寫反了，應該是 [經度, 緯度]）' : ''}`);
+          // 關西機場周邊（kix）不在伊勢志摩，放寬到關西、中部
+          const range = rec.area === 'kix' ? BBOX_WIDE : BBOX_ISESHIMA;
+          if (!inBbox(rec.coords, range)) {
+            const swapped = inBbox([rec.coords[1], rec.coords[0]], range);
+            err(shown, `[${rec.id}] 座標 ${JSON.stringify(rec.coords)} 不在${rec.area === 'kix' ? '關西、中部' : '伊勢志摩'}範圍內${swapped ? '（經緯度可能寫反了，應該是 [經度, 緯度]）' : ''}`);
           } else if (areas.has(rec.area) && !inBbox(rec.coords, areas.get(rec.area).bbox)) {
             warn(shown, `[${rec.id}] 座標不在區域「${rec.area}」的大致範圍內，請確認 area 是否正確`);
           }
         }
         if (rec.area && areas.size && !areas.has(rec.area)) err(shown, `[${rec.id}] 區域「${rec.area}」不在 areas.json`);
+        if (rec.region && areas.has(rec.area) && !(areas.get(rec.area).regions ?? []).some((g) => g.id === rec.region)) {
+          err(shown, `[${rec.id}] region「${rec.region}」不在 areas.json 區域「${rec.area}」的 regions 裡`);
+        }
         checkRef(shown, rec.id, 'nearestStation', rec.nearestStation?.id);
         for (const a of rec.access ?? []) checkRef(shown, rec.id, 'access.from', a?.from);
         for (const a of rec.anchors ?? []) checkRef(shown, rec.id, 'anchors', a?.id);
@@ -248,6 +256,39 @@ function main() {
       const bbox = route.bbox ?? BBOX_ISESHIMA;
       for (const c of findCoords(data)) {
         if (!inBbox(c.coords, bbox)) err(shown, `${c.path} 座標 ${JSON.stringify(c.coords)} 超出範圍`);
+      }
+    }
+  }
+
+  // 近鐵：_travel-times.json 的停站都在 stations.json；各站時刻表的 trainNo 都在 trains 裡，而且發車時刻一致
+  const tt = loaded.find((l) => l.route.kind === 'travel-times');
+  if (tt?.data?.trains) {
+    for (const day of ['weekday', 'holiday']) {
+      for (const [no, t] of Object.entries(tt.data.trains[day] ?? {})) {
+        for (const [st] of t?.stops ?? []) {
+          if (points.size && points.get(st)?.record.type !== 'station') {
+            err(tt.shown, `trains.${day}.${no} 的停站「${st}」不在 stations.json`);
+          }
+        }
+      }
+    }
+    for (const { shown, route, data } of loaded) {
+      if (route.kind !== 'timetable' || !data?.directions) continue;
+      for (const [dir, days] of Object.entries(data.directions)) {
+        for (const day of ['weekday', 'holiday']) {
+          for (const d of days?.[day] ?? []) {
+            if (!d?.trainNo) continue;
+            const train = tt.data.trains[day]?.[d.trainNo];
+            if (!train) {
+              err(shown, `${dir}.${day} ${d.dep} 的 trainNo「${d.trainNo}」不在 _travel-times.json 的 trains.${day}`);
+              continue;
+            }
+            const stop = train.stops?.find((s) => s[0] === data.station);
+            if (stop && stop[2] !== d.dep) {
+              err(shown, `${dir}.${day} trainNo「${d.trainNo}」發車 ${d.dep}，但 _travel-times.json 寫 ${stop[2]}`);
+            }
+          }
+        }
       }
     }
   }

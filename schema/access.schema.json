@@ -1,0 +1,262 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://travel-helper.local/schema/access.schema.json",
+  "title": "機場往返交通（data/access/<id>.json）",
+  "description": "T1b 定的格式。各區塊都有自己的 sources；推估的數字在文字裡標「推估」。trainNo 對應 timetables/kintetsu/_travel-times.json 的 trains.weekday。",
+  "type": "object",
+  "properties": {
+    "id": { "$ref": "common.schema.json#/$defs/id" },
+    "name": { "$ref": "common.schema.json#/$defs/name" },
+    "retrieved": { "$ref": "common.schema.json#/$defs/date" },
+    "notes": { "$ref": "common.schema.json#/$defs/nullableString" },
+    "flights": {
+      "type": "object",
+      "properties": {
+        "arrive": { "$ref": "#/$defs/flightDay" },
+        "depart": { "$ref": "#/$defs/flightDay" },
+        "terminal": { "$ref": "common.schema.json#/$defs/nullableString" },
+        "sources": { "$ref": "common.schema.json#/$defs/sources" }
+      },
+      "required": ["arrive", "depart", "sources"],
+      "additionalProperties": false
+    },
+    "routes": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": { "$ref": "common.schema.json#/$defs/id" },
+          "name": { "type": "string" },
+          "recommended": { "$ref": "common.schema.json#/$defs/nullableBoolean" },
+          "transfers": { "type": ["integer", "null"], "minimum": 0 },
+          "transferNote": { "$ref": "common.schema.json#/$defs/nullableString" },
+          "legs": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "from": { "description": "車站 ID 或站名", "type": "string" },
+                "to": { "type": "string" },
+                "mode": { "description": "例如 nankai-rapit、kintetsu-express、walk", "type": "string" },
+                "minutes": { "$ref": "common.schema.json#/$defs/nullableNumber" },
+                "frequency": { "$ref": "common.schema.json#/$defs/nullableString" },
+                "fare": { "$ref": "#/$defs/fare" },
+                "example": { "$ref": "common.schema.json#/$defs/nullableString" },
+                "note": { "$ref": "common.schema.json#/$defs/nullableString" }
+              },
+              "required": ["from", "to", "mode"],
+              "additionalProperties": false
+            }
+          },
+          "totalMinutes": { "type": ["string", "number", "null"] },
+          "costPerPerson": { "$ref": "#/$defs/fare" },
+          "note": { "$ref": "common.schema.json#/$defs/nullableString" },
+          "driving": {
+            "type": "object",
+            "properties": {
+              "km": { "$ref": "common.schema.json#/$defs/nullableNumber" },
+              "minutes": { "$ref": "common.schema.json#/$defs/nullableNumber" },
+              "toll": { "$ref": "common.schema.json#/$defs/nullableNumber" },
+              "route": { "$ref": "common.schema.json#/$defs/nullableString" }
+            },
+            "additionalProperties": false
+          },
+          "options": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "vehicle": { "type": "string" },
+                "capacity": { "$ref": "common.schema.json#/$defs/nullableString" },
+                "price": { "$ref": "common.schema.json#/$defs/nullableString" }
+              },
+              "required": ["vehicle"],
+              "additionalProperties": false
+            }
+          },
+          "pros": { "$ref": "common.schema.json#/$defs/nullableString" },
+          "cons": { "$ref": "common.schema.json#/$defs/nullableString" },
+          "items": { "description": "只有 id 為 rejected 的項目使用", "type": "array", "items": { "type": "string" } },
+          "sources": { "$ref": "common.schema.json#/$defs/sources" }
+        },
+        "required": ["id", "name"],
+        "additionalProperties": false
+      }
+    },
+    "day1": {
+      "type": "object",
+      "properties": {
+        "answer": { "type": "string" },
+        "assumptions": { "$ref": "common.schema.json#/$defs/nullableString" },
+        "southboundTrains": {
+          "type": "object",
+          "properties": {
+            "note": { "$ref": "common.schema.json#/$defs/nullableString" },
+            "trains": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "trainNo": { "type": "string" },
+                  "type": { "type": "string" },
+                  "osakaNamba": { "$ref": "#/$defs/timeOrNull" },
+                  "tsuruhashi": { "$ref": "#/$defs/timeOrNull" },
+                  "iseshi": { "$ref": "#/$defs/timeOrNull" },
+                  "toba": { "$ref": "#/$defs/timeOrNull" },
+                  "ugata": { "$ref": "#/$defs/timeOrNull" },
+                  "kashikojima": { "$ref": "#/$defs/timeOrNull" },
+                  "note": { "$ref": "common.schema.json#/$defs/nullableString" }
+                },
+                "required": ["trainNo", "type"],
+                "additionalProperties": false
+              }
+            },
+            "sources": { "$ref": "common.schema.json#/$defs/sources" }
+          },
+          "required": ["trains", "sources"],
+          "additionalProperties": false
+        },
+        "timeline": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": { "time": { "type": "string" }, "event": { "type": "string" } },
+            "required": ["time", "event"],
+            "additionalProperties": false
+          }
+        },
+        "fallback": { "$ref": "common.schema.json#/$defs/nullableString" },
+        "dinnerWarning": { "$ref": "common.schema.json#/$defs/nullableString" },
+        "overnightEnRoute": { "$ref": "common.schema.json#/$defs/nullableString" },
+        "meetup": {
+          "type": "object",
+          "properties": {
+            "options": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "id": { "$ref": "common.schema.json#/$defs/id" },
+                  "plan": { "type": "string" },
+                  "pros": { "$ref": "common.schema.json#/$defs/nullableString" },
+                  "cons": { "$ref": "common.schema.json#/$defs/nullableString" }
+                },
+                "required": ["id", "plan"],
+                "additionalProperties": false
+              }
+            },
+            "recommendation": { "$ref": "common.schema.json#/$defs/nullableString" },
+            "sources": { "$ref": "common.schema.json#/$defs/sources" }
+          },
+          "required": ["options", "sources"],
+          "additionalProperties": false
+        },
+        "sources": { "$ref": "common.schema.json#/$defs/sources" }
+      },
+      "required": ["answer"],
+      "additionalProperties": false
+    },
+    "lastDay": {
+      "type": "object",
+      "properties": {
+        "answer": { "type": "string" },
+        "assumptions": { "$ref": "common.schema.json#/$defs/nullableString" },
+        "fromIseOptions": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "iseshiDep": { "type": "string" },
+              "train": { "type": "string" },
+              "arrive": { "type": "string" },
+              "then": { "type": "string" },
+              "airport": { "type": "string" }
+            },
+            "required": ["iseshiDep", "train"],
+            "additionalProperties": false
+          }
+        },
+        "fromIseNote": { "$ref": "common.schema.json#/$defs/nullableString" },
+        "stayOn0212": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "where": { "type": "string" },
+              "toAirport": { "type": "string" },
+              "note": { "$ref": "common.schema.json#/$defs/nullableString" }
+            },
+            "required": ["where"],
+            "additionalProperties": false
+          }
+        },
+        "recommendation": { "$ref": "common.schema.json#/$defs/nullableString" },
+        "sources": { "$ref": "common.schema.json#/$defs/sources" }
+      },
+      "required": ["answer", "sources"],
+      "additionalProperties": false
+    },
+    "luggage": {
+      "description": "說明文字欄位＋sources",
+      "type": "object",
+      "properties": { "sources": { "$ref": "common.schema.json#/$defs/sources" } },
+      "required": ["sources"],
+      "additionalProperties": { "$ref": "common.schema.json#/$defs/nullableString" }
+    },
+    "accessibility": {
+      "type": "object",
+      "properties": {
+        "transfersByRoute": { "$ref": "common.schema.json#/$defs/nullableString" },
+        "stations": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": { "station": { "type": "string" }, "note": { "type": "string" } },
+            "required": ["station", "note"],
+            "additionalProperties": false
+          }
+        },
+        "sources": { "$ref": "common.schema.json#/$defs/sources" }
+      },
+      "required": ["sources"],
+      "additionalProperties": false
+    },
+    "openQuestions": { "type": "array", "items": { "type": "string" } },
+    "sources": { "$ref": "common.schema.json#/$defs/sources" }
+  },
+  "required": ["id", "name", "retrieved", "sources"],
+  "additionalProperties": false,
+  "$defs": {
+    "timeOrNull": { "anyOf": [{ "$ref": "common.schema.json#/$defs/time" }, { "type": "null" }] },
+    "fare": {
+      "type": "object",
+      "properties": {
+        "adult": { "type": ["integer", "null"], "minimum": 0 },
+        "child": { "type": ["integer", "null"], "minimum": 0 },
+        "note": { "$ref": "common.schema.json#/$defs/nullableString" }
+      },
+      "additionalProperties": false
+    },
+    "flightDay": {
+      "type": "object",
+      "properties": {
+        "date": { "$ref": "common.schema.json#/$defs/date" },
+        "weekday": { "type": "string" },
+        "flights": {
+          "description": "[[起飛 HH:MM, 抵達 HH:MM], ...]",
+          "type": "array",
+          "items": {
+            "type": "array",
+            "prefixItems": [{ "$ref": "common.schema.json#/$defs/time" }, { "$ref": "common.schema.json#/$defs/time" }],
+            "minItems": 2,
+            "maxItems": 2
+          }
+        },
+        "airport": { "$ref": "common.schema.json#/$defs/nullableString" },
+        "targetAtAirport": { "$ref": "common.schema.json#/$defs/nullableString" }
+      },
+      "required": ["date", "flights"],
+      "additionalProperties": false
+    }
+  }
+}

@@ -7,13 +7,32 @@
   "items": {
     "type": "object",
     "properties": {
-      "id": { "$ref": "common.schema.json#/$defs/areaId" },
-      "type": { "const": "area" },
-      "name": { "$ref": "common.schema.json#/$defs/name" },
-      "municipality": { "description": "所屬的市町", "type": "string" },
-      "definition": { "description": "這個區域包含哪些範圍（以行政區為準）", "type": "string" },
-      "tripOrder": { "description": "行程順序：志摩 → 鳥羽 → 伊勢（含二見）", "type": "integer", "minimum": 1 },
-      "center": { "description": "地圖的預設中心", "$ref": "common.schema.json#/$defs/coords" },
+      "id": {
+        "$ref": "common.schema.json#/$defs/areaId"
+      },
+      "type": {
+        "const": "area"
+      },
+      "name": {
+        "$ref": "common.schema.json#/$defs/name"
+      },
+      "municipality": {
+        "description": "所屬的市町",
+        "type": "string"
+      },
+      "definition": {
+        "description": "這個區域包含哪些範圍（以行政區為準）",
+        "type": "string"
+      },
+      "tripOrder": {
+        "description": "行程順序：志摩 → 鳥羽 → 伊勢（含二見）→ 關西機場周邊",
+        "type": "integer",
+        "minimum": 1
+      },
+      "center": {
+        "description": "地圖的預設中心",
+        "$ref": "common.schema.json#/$defs/coords"
+      },
       "bbox": {
         "description": "大致範圍（用來檢查座標，不是精確的行政界線）",
         "$ref": "common.schema.json#/$defs/bbox"
@@ -21,13 +40,62 @@
       "stations": {
         "description": "區域內的車站 ID",
         "type": "array",
-        "items": { "$ref": "common.schema.json#/$defs/id" }
+        "items": {
+          "$ref": "common.schema.json#/$defs/id"
+        }
       },
-      "notes": { "$ref": "common.schema.json#/$defs/nullableString" },
-      "sources": { "$ref": "common.schema.json#/$defs/sources" },
-      "extra": { "type": "object" }
+      "notes": {
+        "$ref": "common.schema.json#/$defs/nullableString"
+      },
+      "sources": {
+        "$ref": "common.schema.json#/$defs/sources"
+      },
+      "extra": {
+        "type": "object"
+      },
+      "regions": {
+        "description": "子地區：搜尋、缺漏檢查、地圖篩選的單位",
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "$ref": "common.schema.json#/$defs/id"
+            },
+            "name": {
+              "$ref": "common.schema.json#/$defs/name"
+            },
+            "center": {
+              "$ref": "common.schema.json#/$defs/coords"
+            },
+            "needsCar": {
+              "type": "boolean",
+              "description": "大部分地點要搭車（巴士稀少）"
+            },
+            "note": {
+              "$ref": "common.schema.json#/$defs/nullableString"
+            }
+          },
+          "required": [
+            "id",
+            "name",
+            "center"
+          ],
+          "additionalProperties": false
+        }
+      }
     },
-    "required": ["id", "type", "name", "municipality", "definition", "center", "bbox", "stations", "sources"],
+    "required": [
+      "id",
+      "type",
+      "name",
+      "municipality",
+      "definition",
+      "center",
+      "bbox",
+      "stations",
+      "sources"
+    ],
     "additionalProperties": false
   }
 }
