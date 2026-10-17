@@ -262,11 +262,16 @@ function main() {
       // 候選清單：key 唯一、納入的要有 pointId 而且存在、region 在該區域的 regions 裡
       const area = areas.get(rel.split('/')[1]);
       const keys = new Set();
+      // 候選階段（例如 T8c）資料檔還沒建立：included 沒有 pointId 只警告；資料檔存在後才算錯誤
+      const dataFile = path.join(opts.data, 'areas', rel.split('/')[1], path.basename(rel));
+      const dataExists = fs.existsSync(dataFile);
       for (const c of data) {
         if (!c?.key) continue;
         if (keys.has(c.key)) err(shown, `候選 key「${c.key}」重複`);
         keys.add(c.key);
-        if (c.status === 'included' && !c.pointId) err(shown, `[${c.key}] status 是 included，但沒有 pointId`);
+        if (c.status === 'included' && !c.pointId) {
+          (dataExists ? err : warn)(shown, `[${c.key}] status 是 included，但沒有 pointId${dataExists ? '' : '（資料檔還沒建立）'}`);
+        }
         checkRef(shown, c.key, 'pointId', c.pointId);
         if (c.region && area && !(area.regions ?? []).some((g) => g.id === c.region)) {
           err(shown, `[${c.key}] region「${c.region}」不在 areas.json 區域「${area.id}」的 regions 裡`);

@@ -1,0 +1,1134 @@
+[
+  {
+    "key": "futami-ofukumochi-honke",
+    "name": {
+      "ja": "御福餅 本家"
+    },
+    "region": "futami-okitama",
+    "category": "和菓子、甘味処",
+    "status": "included",
+    "criteria": [
+      "A"
+    ],
+    "reason": null,
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.49,
+      "tabelogReviews": 203
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240301/24020823/"
+    },
+    "contexts": [
+      "snack"
+    ],
+    "note": "類型：咖啡・甜點；地址：伊勢市二見町茶屋568-1"
+  },
+  {
+    "key": "futami-asahiya-sakamoto-manju",
+    "name": {
+      "ja": "旭家 酒素饅頭製造本舗"
+    },
+    "region": "futami-okitama",
+    "category": "和菓子、カフェ",
+    "status": "included",
+    "criteria": [
+      "A"
+    ],
+    "reason": null,
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.45,
+      "tabelogReviews": 100
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240301/24006852/"
+    },
+    "contexts": [
+      "snack",
+      "cafe"
+    ],
+    "note": "類型：咖啡・甜點；地址：伊勢市二見町茶屋107-6"
+  },
+  {
+    "key": "futami-wan-honten",
+    "name": {
+      "ja": "ウァン 本店"
+    },
+    "region": "futami-okitama",
+    "category": "肉まん、餃子、飲茶・点心",
+    "status": "included",
+    "criteria": [
+      "A"
+    ],
+    "reason": null,
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.44,
+      "tabelogReviews": 133
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240301/24007882/"
+    },
+    "contexts": [
+      "snack"
+    ],
+    "note": "類型：其他；地址：伊勢市二見町茶屋53-3；定休（食べログ列表）：水曜日"
+  },
+  {
+    "key": "futami-ogiya",
+    "name": {
+      "ja": "家庭料理 扇屋"
+    },
+    "region": "futami-okitama",
+    "category": "洋食、カフェ",
+    "status": "included",
+    "criteria": [
+      "A"
+    ],
+    "reason": null,
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.43,
+      "tabelogReviews": 188
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240301/24001121/"
+    },
+    "contexts": [
+      "lunch",
+      "dinner"
+    ],
+    "note": "類型：洋食・義式；地址：伊勢市二見町茶屋6-1；定休（食べログ列表）：木曜日"
+  },
+  {
+    "key": "futami-isuzu-seigoan",
+    "name": {
+      "ja": "五十鈴勢語庵"
+    },
+    "region": "futami-okitama",
+    "category": "和菓子",
+    "status": "included",
+    "criteria": [
+      "A"
+    ],
+    "reason": null,
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.42,
+      "tabelogReviews": 56
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240301/24006947/"
+    },
+    "contexts": [
+      "snack"
+    ],
+    "note": "類型：咖啡・甜點；地址：伊勢市二見町茶屋569-35"
+  },
+  {
+    "key": "futami-bontin-cafe-misogi",
+    "name": {
+      "ja": "BonTin cafe 禊"
+    },
+    "region": "futami-okitama",
+    "category": "カフェ",
+    "status": "included",
+    "criteria": [
+      "A"
+    ],
+    "reason": null,
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.41,
+      "tabelogReviews": 61
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240301/24020912/"
+    },
+    "contexts": [
+      "snack",
+      "cafe"
+    ],
+    "note": "類型：咖啡・甜點；地址：伊勢市二見町江575-2 二見興玉神社；定休（食べログ列表）：金曜日；二見興玉神社 境內"
+  },
+  {
+    "key": "futami-le-chinois-kashiori",
+    "name": {
+      "ja": "ル・シノワ 花栞"
+    },
+    "region": "futami-okitama",
+    "category": "中華料理、ラーメン、飲茶・点心",
+    "status": "included",
+    "criteria": [
+      "A"
+    ],
+    "reason": null,
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.31,
+      "tabelogReviews": 34
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240301/24016159/"
+    },
+    "contexts": [
+      "lunch",
+      "dinner"
+    ],
+    "note": "類型：其他；地址：伊勢市二見町茶屋516-5 夢ギャラリー二見 1F 奥；定休（食べログ列表）：火曜日"
+  },
+  {
+    "key": "futami-maruhama",
+    "name": {
+      "ja": "まるはま"
+    },
+    "region": "futami-okitama",
+    "category": "うどん、麺類、ジェラート・アイスクリーム",
+    "status": "included",
+    "criteria": [
+      "C"
+    ],
+    "reason": null,
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.29,
+      "tabelogReviews": 128
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240301/24007067/"
+    },
+    "contexts": [
+      "lunch"
+    ],
+    "note": "類型：烏龍麵・蕎麥；地址：伊勢市二見町茶屋569-14；個室（食べログ列表）：個室有"
+  },
+  {
+    "key": "futami-umikaze-bijutsuten",
+    "name": {
+      "ja": "海風美術店"
+    },
+    "region": "futami-okitama",
+    "category": "カフェ",
+    "status": "included",
+    "criteria": [
+      "C"
+    ],
+    "reason": null,
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.21,
+      "tabelogReviews": 21
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240301/24020860/"
+    },
+    "contexts": [
+      "snack",
+      "cafe"
+    ],
+    "note": "類型：咖啡・甜點；地址：伊勢市二見町江575-2 二見興玉神社境内地内；定休（食べログ列表）：金曜日；個室（食べログ列表）：個室；二見興玉神社 境內"
+  },
+  {
+    "key": "futami-shiosai",
+    "name": {
+      "ja": "潮騒"
+    },
+    "region": "futami-okitama",
+    "category": "日本料理",
+    "status": "included",
+    "criteria": [
+      "C"
+    ],
+    "reason": null,
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.2,
+      "tabelogReviews": 23
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240301/24004254/"
+    },
+    "contexts": [
+      "lunch"
+    ],
+    "note": "類型：和食・割烹；地址：伊勢市二見町江580-10；個室（食べログ列表）：個室"
+  },
+  {
+    "key": "futami-shofuken",
+    "name": {
+      "ja": "松風軒"
+    },
+    "region": "futami-okitama",
+    "category": "うなぎ、日本料理、寿司",
+    "status": "included",
+    "criteria": [
+      "C"
+    ],
+    "reason": null,
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.16,
+      "tabelogReviews": 39
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240301/24008599/"
+    },
+    "contexts": [
+      "dinner"
+    ],
+    "note": "類型：和食・割烹；地址：伊勢市二見町茶屋249；個室（食べログ列表）：個室有(8人可)"
+  },
+  {
+    "key": "futami-maruru-cafe",
+    "name": {
+      "ja": "maruru cafe"
+    },
+    "region": "futami-okitama",
+    "category": "カフェ、パスタ",
+    "status": "included",
+    "criteria": [
+      "C"
+    ],
+    "reason": null,
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.15,
+      "tabelogReviews": 20
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240301/24020274/"
+    },
+    "contexts": [
+      "snack",
+      "cafe"
+    ],
+    "note": "類型：咖啡・甜點；地址：伊勢市二見町茶屋277-2 やわらの湯まるや 1F；個室（食べログ列表）：個室有(8人可)；貸切可（食べログ篩選）"
+  },
+  {
+    "key": "futami-ukichi",
+    "name": {
+      "ja": "う吉"
+    },
+    "region": "futami-okitama",
+    "category": "うなぎ、日本料理、居酒屋",
+    "status": "included",
+    "criteria": [
+      "D2"
+    ],
+    "reason": null,
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.09,
+      "tabelogReviews": 14
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240301/24022715/"
+    },
+    "contexts": [
+      "lunch",
+      "dinner"
+    ],
+    "note": "類型：和食・割烹；地址：伊勢市二見町西28-1；補的缺口：二見町西的不含晚餐住宿（オレンジガーデン、プラフィーノ，futami-outskirts）附近沒有晚餐店：D② 取二見町西口コミ數最多、有晚餐價位的店（食べログ可網路預約）；子地區：二見町西（areas.json 的 futami-okitama 包含「西」）"
+  },
+  {
+    "key": "futami-oishiya-restaurant",
+    "name": {
+      "ja": "大石屋"
+    },
+    "region": "futami-okitama",
+    "category": "旅館・民宿",
+    "status": "pending",
+    "criteria": [],
+    "reason": "住宿本體（lodging futami-oishiya，旅館）；食べログ 3.18／24 則、在二見町茶屋的個室篩選裡，符合 C；非住客能不能用餐沒有來源，T8d 先確認",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.18,
+      "tabelogReviews": 24
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240301/24009565/"
+    },
+    "contexts": [
+      "dinner"
+    ],
+    "note": "類型：和食・割烹；地址：伊勢市二見町茶屋569-75；個室（食べログ列表）：個室"
+  },
+  {
+    "key": "tabelog-24016977",
+    "name": {
+      "ja": "うまし国 伊勢おいないな"
+    },
+    "region": "futami-okitama",
+    "category": "惣菜・デリ",
+    "status": "not-included",
+    "criteria": [],
+    "reason": "未符合 A～F",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.28,
+      "tabelogReviews": 42
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240301/24016977/"
+    },
+    "contexts": [
+      "snack"
+    ],
+    "note": "類型：其他；地址：伊勢市二見町江580 伊勢夫婦岩めおと横丁"
+  },
+  {
+    "key": "tabelog-24005362",
+    "name": {
+      "ja": "竹味"
+    },
+    "region": "futami-okitama",
+    "category": "食堂、ラーメン",
+    "status": "not-included",
+    "criteria": [],
+    "reason": "未符合 A～F",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.26,
+      "tabelogReviews": 42
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240301/24005362/"
+    },
+    "contexts": [
+      "lunch",
+      "dinner"
+    ],
+    "note": "類型：定食・食堂；地址：伊勢市二見町荘322-3；定休（食べログ列表）：水曜日"
+  },
+  {
+    "key": "tabelog-24017849",
+    "name": {
+      "ja": "くうや茶屋餅 鈴木観助本舗"
+    },
+    "region": "futami-okitama",
+    "category": "和菓子",
+    "status": "not-included",
+    "criteria": [],
+    "reason": "未符合 A～F",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.21,
+      "tabelogReviews": 29
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240301/24017849/"
+    },
+    "contexts": [
+      "snack"
+    ],
+    "note": "類型：咖啡・甜點；地址：伊勢市二見町茶屋537-18；定休（食べログ列表）：水曜日"
+  },
+  {
+    "key": "tabelog-24018396",
+    "name": {
+      "ja": "伊勢二見 夫婦プリン"
+    },
+    "region": "futami-okitama",
+    "category": "プリン",
+    "status": "not-included",
+    "criteria": [],
+    "reason": "未符合 A～F",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.2,
+      "tabelogReviews": 21
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240301/24018396/"
+    },
+    "contexts": [
+      "snack"
+    ],
+    "note": "類型：咖啡・甜點；地址：伊勢市二見町江580"
+  },
+  {
+    "key": "tabelog-24007999",
+    "name": {
+      "ja": "赤福 二見支店"
+    },
+    "region": "futami-okitama",
+    "category": "甘味処、和菓子、かき氷",
+    "status": "not-included",
+    "criteria": [],
+    "reason": "未符合 A～F",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.19,
+      "tabelogReviews": 230
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240301/24007999/"
+    },
+    "contexts": [
+      "snack"
+    ],
+    "note": "類型：咖啡・甜點；地址：伊勢市二見町茶屋204-1"
+  },
+  {
+    "key": "tabelog-24018770",
+    "name": {
+      "ja": "めん処 伊勢屋"
+    },
+    "region": "futami-okitama",
+    "category": "うどん",
+    "status": "not-included",
+    "criteria": [],
+    "reason": "未符合 A～F",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.18,
+      "tabelogReviews": 44
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240301/24018770/"
+    },
+    "contexts": [
+      "lunch"
+    ],
+    "note": "類型：烏龍麵・蕎麥；地址：伊勢市二見町江580 伊勢夫婦岩めおと横丁 1F"
+  },
+  {
+    "key": "tabelog-24014042",
+    "name": {
+      "ja": "まぐろ神社 伊勢"
+    },
+    "region": "futami-okitama",
+    "category": "海鮮",
+    "status": "not-included",
+    "criteria": [],
+    "reason": "未符合 A～F",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.17,
+      "tabelogReviews": 42
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240301/24014042/"
+    },
+    "contexts": [
+      "lunch"
+    ],
+    "note": "類型：海鮮丼；地址：伊勢市二見町江580 伊勢シーパラダイス伊勢夫婦岩めおと横丁"
+  },
+  {
+    "key": "tabelog-24009939",
+    "name": {
+      "ja": "まつしん"
+    },
+    "region": "futami-okitama",
+    "category": "旅館・民宿",
+    "status": "not-included",
+    "criteria": [],
+    "reason": "住宿本體（T8b 沒有收錄的住宿）；未符合 A～F",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.12,
+      "tabelogReviews": 7
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240301/24009939/"
+    },
+    "contexts": [
+      "lunch"
+    ],
+    "note": "類型：和食・割烹；地址：伊勢市二見町茶屋570-3"
+  },
+  {
+    "key": "tabelog-24009537",
+    "name": {
+      "ja": "岩戸館"
+    },
+    "region": "futami-okitama",
+    "category": "旅館・民宿",
+    "status": "not-included",
+    "criteria": [],
+    "reason": "住宿本體（lodging futami-iwatokan）；未符合 A～F",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.11,
+      "tabelogReviews": 10
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240301/24009537/"
+    },
+    "contexts": [
+      "lunch"
+    ],
+    "note": "類型：和食・割烹；地址：伊勢市二見町茶屋566-9"
+  },
+  {
+    "key": "tabelog-24015371",
+    "name": {
+      "ja": "和"
+    },
+    "region": "futami-okitama",
+    "category": "その他",
+    "status": "not-included",
+    "criteria": [],
+    "reason": "未符合 A～F",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.11,
+      "tabelogReviews": 61
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240301/24015371/"
+    },
+    "contexts": [
+      "snack"
+    ],
+    "note": "類型：其他；地址：伊勢市二見町江580 伊勢夫婦岩めおと横丁 1F"
+  },
+  {
+    "key": "tabelog-24018842",
+    "name": {
+      "ja": "ホテルキャッスルイン 伊勢夫婦岩"
+    },
+    "region": "futami-okitama",
+    "category": "ホテル",
+    "status": "not-included",
+    "criteria": [],
+    "reason": "住宿本體（lodging futami-castle-inn）；未符合 A～F",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.1,
+      "tabelogReviews": 7
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240301/24018842/"
+    },
+    "contexts": [
+      "lunch"
+    ],
+    "note": "類型：其他；地址：伊勢市二見町茶屋537-20"
+  },
+  {
+    "key": "tabelog-24010045",
+    "name": {
+      "ja": "民宿ヤマト"
+    },
+    "region": "futami-okitama",
+    "category": "旅館・民宿",
+    "status": "not-included",
+    "criteria": [],
+    "reason": "住宿本體（lodging futami-yamato）；未符合 A～F",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.1,
+      "tabelogReviews": 7
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240301/24010045/"
+    },
+    "contexts": [
+      "lunch"
+    ],
+    "note": "類型：和食・割烹；地址：伊勢市二見町茶屋9-7"
+  },
+  {
+    "key": "tabelog-24004237",
+    "name": {
+      "ja": "多市屋"
+    },
+    "region": "futami-okitama",
+    "category": "日本料理",
+    "status": "not-included",
+    "criteria": [],
+    "reason": "未符合 A～F",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.09,
+      "tabelogReviews": 40
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240301/24004237/"
+    },
+    "contexts": [
+      "lunch",
+      "dinner"
+    ],
+    "note": "類型：和食・割烹；地址：伊勢市二見町茶屋536-13"
+  },
+  {
+    "key": "tabelog-24004499",
+    "name": {
+      "ja": "つかさ亭"
+    },
+    "region": "futami-okitama",
+    "category": "旅館・民宿",
+    "status": "not-included",
+    "criteria": [],
+    "reason": "住宿本體（lodging futami-tsukasatei）；未符合 A～F",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.09,
+      "tabelogReviews": 7
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240301/24004499/"
+    },
+    "contexts": [
+      "lunch"
+    ],
+    "note": "類型：和食・割烹；地址：伊勢市二見町江681-29；定休（食べログ列表）：水曜日"
+  },
+  {
+    "key": "tabelog-24022640",
+    "name": {
+      "ja": "食堂 喫茶 アオイ"
+    },
+    "region": "futami-okitama",
+    "category": "食堂、カフェ",
+    "status": "not-included",
+    "criteria": [],
+    "reason": "未符合 A～F",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.09,
+      "tabelogReviews": 8
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240301/24022640/"
+    },
+    "contexts": [
+      "lunch"
+    ],
+    "note": "類型：定食・食堂；地址：伊勢市二見町荘2142-1；定休（食べログ列表）：月曜日、火曜日"
+  },
+  {
+    "key": "tabelog-24004967",
+    "name": {
+      "ja": "さらさ廣"
+    },
+    "region": "futami-okitama",
+    "category": "日本料理",
+    "status": "not-included",
+    "criteria": [],
+    "reason": "未符合 A～F",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.08,
+      "tabelogReviews": 23
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240301/24004967/"
+    },
+    "contexts": [
+      "lunch",
+      "dinner"
+    ],
+    "note": "類型：和食・割烹；地址：伊勢市二見町茶屋537-20；定休（食べログ列表）：水曜日、木曜日"
+  },
+  {
+    "key": "tabelog-24017589",
+    "name": {
+      "ja": "ホテルキャッスルイン伊勢夫婦岩 夢物語"
+    },
+    "region": "futami-okitama",
+    "category": "日本料理、もつ鍋、焼肉",
+    "status": "not-included",
+    "criteria": [],
+    "reason": "未符合 A～F",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.08,
+      "tabelogReviews": 17
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240301/24017589/"
+    },
+    "contexts": [
+      "lunch",
+      "dinner"
+    ],
+    "note": "類型：和食・割烹；地址：伊勢市二見町茶屋537-20 ホテルキャッスルイン伊勢夫婦岩 10F；定休（食べログ列表）：火曜日"
+  },
+  {
+    "key": "tabelog-24006855",
+    "name": {
+      "ja": "赤福 伊勢夫婦岩めおと横丁店"
+    },
+    "region": "futami-okitama",
+    "category": "甘味処、和菓子、かき氷",
+    "status": "not-included",
+    "criteria": [],
+    "reason": "未符合 A～F",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.07,
+      "tabelogReviews": 82
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240301/24006855/"
+    },
+    "contexts": [
+      "snack"
+    ],
+    "note": "類型：咖啡・甜點；地址：伊勢市二見町江580 伊勢夫婦岩めおと横丁 1F"
+  },
+  {
+    "key": "tabelog-24006856",
+    "name": {
+      "ja": "和食処なぎさや"
+    },
+    "region": "futami-okitama",
+    "category": "海鮮、旅館・民宿",
+    "status": "not-included",
+    "criteria": [],
+    "reason": "未符合 A～F",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.07,
+      "tabelogReviews": 32
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240301/24006856/"
+    },
+    "contexts": [
+      "lunch"
+    ],
+    "note": "類型：海鮮丼；地址：伊勢市二見町江580-11"
+  },
+  {
+    "key": "tabelog-24008626",
+    "name": {
+      "ja": "浜千代館"
+    },
+    "region": "futami-okitama",
+    "category": "料理旅館、海鮮、日本料理",
+    "status": "not-included",
+    "criteria": [],
+    "reason": "住宿本體（lodging futami-hamachiyokan）；未符合 A～F",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.07,
+      "tabelogReviews": 23
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240301/24008626/"
+    },
+    "contexts": [
+      "lunch",
+      "dinner"
+    ],
+    "note": "類型：和食・割烹；地址：伊勢市二見町江537-26"
+  },
+  {
+    "key": "tabelog-24021502",
+    "name": {
+      "ja": "伊勢湾かき小屋センター"
+    },
+    "region": "futami-okitama",
+    "category": "かき、食堂、海鮮",
+    "status": "not-included",
+    "criteria": [],
+    "reason": "未符合 A～F",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.06,
+      "tabelogReviews": 26
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240301/24021502/"
+    },
+    "contexts": [
+      "lunch"
+    ],
+    "note": "類型：其他；地址：伊勢市二見町江580 2F 駐車場横"
+  },
+  {
+    "key": "tabelog-24004822",
+    "name": {
+      "ja": "森八"
+    },
+    "region": "futami-okitama",
+    "category": "レストラン",
+    "status": "not-included",
+    "criteria": [],
+    "reason": "未符合 A～F",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.06,
+      "tabelogReviews": 8
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240301/24004822/"
+    },
+    "contexts": [
+      "lunch"
+    ],
+    "note": "類型：其他；地址：伊勢市二見町荘86-1；定休（食べログ列表）：水曜日"
+  },
+  {
+    "key": "futami-wasuke",
+    "name": {
+      "ja": "中華飯店 ワスケ"
+    },
+    "region": "futami-outskirts",
+    "category": "中華料理",
+    "status": "included",
+    "criteria": [
+      "A"
+    ],
+    "reason": null,
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.39,
+      "tabelogReviews": 105
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240301/24003498/"
+    },
+    "contexts": [
+      "lunch",
+      "dinner"
+    ],
+    "note": "類型：其他；地址：伊勢市二見町溝口225-5；定休（食べログ列表）：月曜日；子地區：二見町溝口歸 futami-outskirts"
+  },
+  {
+    "key": "futami-minwa-no-eki-somin",
+    "name": {
+      "ja": "民話の駅 蘇民"
+    },
+    "region": "futami-outskirts",
+    "category": "パン、弁当、ジェラート・アイスクリーム",
+    "status": "included",
+    "criteria": [
+      "D1"
+    ],
+    "reason": null,
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.17,
+      "tabelogReviews": 21
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240301/24011265/"
+    },
+    "contexts": [
+      "lunch"
+    ],
+    "note": "類型：咖啡・甜點；地址：伊勢市二見町松下1335；補的缺口：二見外圍（futami-outskirts）唯一的 A 是ワスケ（月曜休），2/8（一）中午 0 家：D① 取口コミ數多的可以吃午餐的店；松下社旁的直賣所（パン、弁当）；松下社（futami-matsushita-yashiro）旁，T8a 建議和景點一起考慮"
+  },
+  {
+    "key": "futami-maiya",
+    "name": {
+      "ja": "タイ家庭料理 マイヤー"
+    },
+    "region": "futami-outskirts",
+    "category": "タイ料理、カレー",
+    "status": "included",
+    "criteria": [
+      "D1"
+    ],
+    "reason": null,
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.17,
+      "tabelogReviews": 16
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240301/24014460/"
+    },
+    "contexts": [
+      "lunch"
+    ],
+    "note": "類型：其他；地址：伊勢市二見町溝口230-51；補的缺口：二見外圍 月曜中午缺口 D①（溝口，タイ料理午餐）"
+  },
+  {
+    "key": "futami-pine",
+    "name": {
+      "ja": "パイン"
+    },
+    "region": "futami-outskirts",
+    "category": "喫茶店",
+    "status": "included",
+    "criteria": [
+      "D1"
+    ],
+    "reason": null,
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.08,
+      "tabelogReviews": 14
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240301/24013765/"
+    },
+    "contexts": [
+      "lunch",
+      "cafe"
+    ],
+    "note": "類型：咖啡・甜點；地址：伊勢市二見町松下1337-2；補的缺口：二見外圍 月曜中午缺口 D①（松下，國道 42 號旁的喫茶店，有午餐）"
+  },
+  {
+    "key": "futami-uminocho-restaurant",
+    "name": {
+      "ja": "旅荘 海の蝶"
+    },
+    "region": "futami-outskirts",
+    "category": "料理旅館、日本料理",
+    "status": "pending",
+    "criteria": [],
+    "reason": "住宿本體（lodging futami-uminocho，料理旅館）；食べログ 3.35／83 則符合 A，接受非住客用餐的話以 A／F③ 納入（食べログ有網路預約的コース，但心得多是住客）。二見外圍晚上沒有其他店，T8d 先確認",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.35,
+      "tabelogReviews": 83
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240301/24000262/"
+    },
+    "contexts": [
+      "dinner"
+    ],
+    "note": "類型：和食・割烹；地址：伊勢市二見町松下1693-1；個室（食べログ列表）：個室有"
+  },
+  {
+    "key": "futami-yusura-restaurant",
+    "name": {
+      "ja": "オーベルジュ ユスラ"
+    },
+    "region": "futami-outskirts",
+    "category": "日本料理、オーベルジュ",
+    "status": "pending",
+    "criteria": [],
+    "reason": "住宿本體（lodging futami-yusura，1 日 5 組的オーベルジュ）；3.23／14 則不符合 A、C（口コミ不到 15），食べログ列表有午餐價位（6,000～7,999 円），接受非住客用餐的話以 F③ 納入；二見外圍晚上沒有店。T8d 先確認",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.23,
+      "tabelogReviews": 14
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240301/24015523/"
+    },
+    "contexts": [
+      "lunch",
+      "dinner"
+    ],
+    "note": "類型：和食・割烹；地址：伊勢市二見町松下1347-2；個室（食べログ列表）：個室有(2〜20人可)；貸切可（食べログ篩選）"
+  },
+  {
+    "key": "tabelog-24017230",
+    "name": {
+      "ja": "はせがわ珈琲焙煎所"
+    },
+    "region": "futami-outskirts",
+    "category": "カフェ",
+    "status": "not-included",
+    "criteria": [],
+    "reason": "未符合 A～F",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.08,
+      "tabelogReviews": 11
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240301/24017230/"
+    },
+    "contexts": [
+      "snack",
+      "cafe"
+    ],
+    "note": "類型：咖啡・甜點；地址：伊勢市二見町松下1365-85"
+  },
+  {
+    "key": "tabelog-24016794",
+    "name": {
+      "ja": "ボーイズポテト"
+    },
+    "region": "futami-outskirts",
+    "category": "スイーツ",
+    "status": "not-included",
+    "criteria": [],
+    "reason": "未符合 A～F；二見外圍口コミ數第 2（17 則），但是甜點店、月金日休，補不了午餐缺口，D① 沒取",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.07,
+      "tabelogReviews": 17
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240302/24016794/"
+    },
+    "contexts": [
+      "snack"
+    ],
+    "note": "類型：咖啡・甜點；地址：伊勢市二見町松下1790-53；定休（食べログ列表）：月曜日、金曜日、日曜日"
+  },
+  {
+    "key": "tabelog-24009750",
+    "name": {
+      "ja": "清海"
+    },
+    "region": "futami-outskirts",
+    "category": "ホテル",
+    "status": "not-included",
+    "criteria": [],
+    "reason": "住宿本體（T8b 沒有收錄的住宿）；未符合 A～F",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.04,
+      "tabelogReviews": 13
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240301/24009750/"
+    },
+    "contexts": [
+      "dinner"
+    ],
+    "note": "類型：其他；地址：伊勢市二見町松下1349-136"
+  },
+  {
+    "key": "tabelog-24011277",
+    "name": {
+      "ja": "pippi"
+    },
+    "region": "futami-outskirts",
+    "category": "喫茶店、カフェ",
+    "status": "not-included",
+    "criteria": [],
+    "reason": "未符合 A～F",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.03,
+      "tabelogReviews": 9
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240301/24011277/"
+    },
+    "contexts": [
+      "snack",
+      "cafe"
+    ],
+    "note": "類型：咖啡・甜點；地址：伊勢市二見町松下1839-2；定休（食べログ列表）：日曜日"
+  },
+  {
+    "key": "tabelog-24014204",
+    "name": {
+      "ja": "丸万屋"
+    },
+    "region": "futami-outskirts",
+    "category": "食堂",
+    "status": "not-included",
+    "criteria": [],
+    "reason": "未符合 A～F",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.02,
+      "tabelogReviews": 4
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240301/24014204/"
+    },
+    "contexts": [
+      "lunch"
+    ],
+    "note": "類型：定食・食堂；地址：伊勢市二見町松下1349-78；定休（食べログ列表）：月曜日"
+  }
+]
