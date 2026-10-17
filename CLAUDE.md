@@ -21,7 +21,7 @@
 重點規則：
 - 使用者指定任務 ID（例如「執行 T2」）時，照 PLAN.md 的任務卡做，**只寫該任務負責的檔案**。
 - 每筆資料都要附 `sources`（網址加取得日期）；不知道就填 `null`，不要猜。
-- 不爬 Instagram；IG 只記錄店家帳號，由使用者手動瀏覽。
+- IG 不主動查，只記錄店家帳號；出發前（T18）才對選定的店少量查看。食べログ、Google Maps 要用 Claude in Chrome 瀏覽（食べログ用程式抓會被擋），不大量瀏覽，也不繞過網站限制。
 - 寫完資料要跑 `scripts/validate`，通過才 commit。
 - 文件和 commit 訊息用繁體中文。
 - 程式一律用 JavaScript／TypeScript（Node 22）。真的需要 Python 時用 uv 管理環境，不要直接用系統的 Python。
