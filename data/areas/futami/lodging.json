@@ -1,0 +1,3959 @@
+[
+  {
+    "id": "futami-hamachiyokan",
+    "type": "lodging",
+    "name": {
+      "ja": "ジャズが流れる海辺のお宿 浜千代館",
+      "zh": "濱千代館"
+    },
+    "area": "futami",
+    "region": "futami-okitama",
+    "kind": "ryokan",
+    "coords": [
+      136.7828262,
+      34.508121
+    ],
+    "coordsSource": "google-maps-url",
+    "address": "三重県伊勢市二見町茶屋537-26",
+    "hours": null,
+    "closedNote": null,
+    "febNote": "冬季有五大味覚方案（至 2027-03）；2 月休館資訊未見",
+    "closures": [],
+    "photos": [
+      {
+        "url": "https://img.travel.rakuten.co.jp/share/HOTEL/7563/7563.jpg",
+        "page": "https://travel.rakuten.co.jp/HOTEL/7563/7563.html",
+        "kind": "rakuten",
+        "credit": "楽天トラベル（施設提供）",
+        "license": null
+      },
+      {
+        "url": "https://lh3.googleusercontent.com/grass-proxy/AIM7gW20deJJpnuCpd2TRluWXkuqUcT0dZe9eoxv79Moy-b-oeyca9-PYMYcJPFPqlYB-lGSPHrVKNUABO9qt2nJv2hpGM__10ztL7NFYVrnIEWOxMpAYGSeCRUHCrPewS0Obih0OPQPsevOQtVh1sPfzHcioZIoYA46YOzM-wxSB1VmE08c9OuVMRNf=w480-h240-k-no",
+        "page": "https://maps.google.com/?cid=6915761481779294940",
+        "kind": "google",
+        "credit": "Google マップ",
+        "license": null
+      }
+    ],
+    "links": {
+      "official": null,
+      "googleMaps": "https://maps.google.com/?cid=6915761481779294940"
+    },
+    "tags": [],
+    "tier": null,
+    "nearestStation": {
+      "id": "jr-futaminoura",
+      "mode": "walk",
+      "minutes": 13,
+      "note": "JR二見浦駅から徒歩約13分（KNT）；楽天：車で約3分、送迎バスあり"
+    },
+    "pickup": "有接送巴士；接站限 JR 二見浦站、二見浦表參道巴士站，14:00～19:00（KNT）；送站時間、載客人數未寫",
+    "meals": "varies",
+    "priceRange": "每人約 15,020～19,250 円（依方案，含素泊／附早餐；詳見 prices）",
+    "prices": [
+      {
+        "currency": "JPY",
+        "plan": "【さき楽60】松阪牛・伊勢海老満喫 一般客室 1泊2食",
+        "unit": "per-person",
+        "adult": 19250,
+        "child": null,
+        "season": "最近 30 日參考",
+        "note": "4 人一房 19,250～27,830 円",
+        "source": "rakuten",
+        "url": "https://hotel.travel.rakuten.co.jp/hotelinfo/plan/7563",
+        "retrieved": "2026-10-18"
+      },
+      {
+        "currency": "JPY",
+        "plan": "伊勢志摩五大味覚（2026-10～2027-03）1泊2食",
+        "unit": "per-person",
+        "adult": 18700,
+        "child": null,
+        "season": "秋冬",
+        "note": "4 人一房 18,700～23,680 円；牡蠣、ふぐ一人鍋、伊勢牛陶板焼",
+        "source": "rakuten",
+        "url": "https://hotel.travel.rakuten.co.jp/hotelinfo/plan/7563",
+        "retrieved": "2026-10-18"
+      },
+      {
+        "plan": "一泊二食 楽天 15 人組合最低價（【三重の三大味覚プラン】至福のひと時。二見浦の老舗宿で山海の高級食材に舌鼓）",
+        "unit": "per-person",
+        "adult": 15020,
+        "child": null,
+        "currency": "JPY",
+        "season": "2027-02-09（二）1 泊，3 間 × 5 人（大人）有空房時的含晚餐最低價",
+        "note": "房型：一般客室（トイレ付）※広さ指定不可。楽天 API 空室検索（查詢 2026-10-18），含稅、不含入湯稅等。這天有空房的組合：3x5、4x4、5x3。",
+        "source": "rakuten-api",
+        "url": "https://hotel.travel.rakuten.co.jp/hotelinfo/plan/7563?f_nen1=2027&f_tuki1=2&f_hi1=9&f_nen2=2027&f_tuki2=2&f_hi2=10&f_heya_su=3&f_otona_su=5&f_s1=0&f_s2=0&f_y1=0&f_y2=0&f_y3=0&f_y4=0",
+        "retrieved": "2026-10-18"
+      },
+      {
+        "plan": "一泊二食 楽天 15 人組合最低價（【三重の三大味覚プラン】至福のひと時。二見浦の老舗宿で山海の高級食材に舌鼓）",
+        "unit": "per-person",
+        "adult": 15020,
+        "child": null,
+        "currency": "JPY",
+        "season": "2027-02-10（三，2/11 國定假日前一晚）1 泊，3 間 × 5 人（大人）有空房時的含晚餐最低價",
+        "note": "房型：一般客室（トイレ付）※広さ指定不可。楽天 API 空室検索（查詢 2026-10-18），含稅、不含入湯稅等。這天有空房的組合：3x5、4x4、5x3。",
+        "source": "rakuten-api",
+        "url": "https://hotel.travel.rakuten.co.jp/hotelinfo/plan/7563?f_nen1=2027&f_tuki1=2&f_hi1=10&f_nen2=2027&f_tuki2=2&f_hi2=11&f_heya_su=3&f_otona_su=5&f_s1=0&f_s2=0&f_y1=0&f_y2=0&f_y3=0&f_y4=0",
+        "retrieved": "2026-10-18"
+      },
+      {
+        "plan": "一泊二食 大人 3＋小學生高年級 1（1 室）最低價（【三重の三大味覚プラン】至福のひと時。二見浦の老舗宿で山海の高級食材に舌鼓）",
+        "unit": "per-person",
+        "adult": 17330,
+        "child": 12131,
+        "currency": "JPY",
+        "season": "2027-02-09（二）1 泊，1 間 大人 3＋小學生高年級 1",
+        "note": "房型：一般客室（トイレ付）※広さ指定不可。兒童價＝一間總價 64,121 円 − 大人 3 人份（約大人的 70%）。楽天 API（查詢 2026-10-18）。",
+        "source": "rakuten-api",
+        "url": "https://hotel.travel.rakuten.co.jp/hotelinfo/plan/7563?f_nen1=2027&f_tuki1=2&f_hi1=9&f_nen2=2027&f_tuki2=2&f_hi2=10&f_heya_su=1&f_otona_su=3&f_s1=1&f_s2=0&f_y1=0&f_y2=0&f_y3=0&f_y4=0",
+        "retrieved": "2026-10-18"
+      }
+    ],
+    "luggage": null,
+    "checkIn": "15:00",
+    "checkOut": "10:00",
+    "dinnerAccess": null,
+    "group": {
+      "totalRooms": 20,
+      "roomTypes": [
+        "一般客室 和室 8～12 畳 2～6 人",
+        "和モダン 恋語りの間 和室 8～10 畳 海景 2～4 人",
+        "和モダン 恋灯りの間 和室 10 畳 海景 2～4 人（不收兒童，1 日 2 組）",
+        "數寄屋風客室"
+      ],
+      "maxGuests": null,
+      "wholeRental": false,
+      "pickupCapacity": null,
+      "nearbyCombos": [],
+      "note": "楽天 20 室（KNT 寫 26 室，衝突）；有宴會場、會議室；楽天無團體方案；15 人可分 3～4 房（2～6 人房），團體用餐要電話問"
+    },
+    "ratings": {
+      "rakuten": 4.08,
+      "rakutenReviews": 1231,
+      "jalan": null,
+      "jalanReviews": null,
+      "booking": null,
+      "google": 4.1,
+      "googleReviews": 313,
+      "rakutenService": 4.2,
+      "rakutenLocation": 4.32,
+      "rakutenRoom": 4.06,
+      "rakutenEquipment": 3.87,
+      "rakutenBath": 3.69,
+      "rakutenMeal": 4.36,
+      "note": "T8b（2026-10-18）：楽天 4.08（1231 則，API）、Google 4.1（313 則，「浜千代館」），5 分制。"
+    },
+    "accessibility": {
+      "elevator": false,
+      "beds": "全和室鋪被，未見有床的房",
+      "stairs": "3 層樓無電梯，館內要爬樓梯；要低樓層需事先聯絡；館內有扶手",
+      "kids": "2 歲以上收施設使用料 2,200 円（不論用餐寢具）；0～1 歲免；小學生料金未列；有兒童拖鞋、浴衣；恋灯りの間不收兒童",
+      "note": "部分房才有洋式廁所；大浴場男女別約 30 人、無露天；貸切風呂 2,100 円／次"
+    },
+    "reservation": {
+      "methods": [
+        "rakuten",
+        "phone"
+      ],
+      "phone": "0596-43-2050",
+      "url": "https://travel.rakuten.co.jp/HOTEL/7563/7563.html",
+      "groupNote": "現場不可刷卡，卡片只能線上預付；團體需電話洽詢"
+    },
+    "bookingLinks": {
+      "rakuten": "https://travel.rakuten.co.jp/HOTEL/7563/7563.html"
+    },
+    "sources": [
+      {
+        "type": "booking-site",
+        "url": "https://travel.rakuten.co.jp/HOTEL/7563/7563.html",
+        "retrieved": "2026-10-18",
+        "note": "楽天トラベル API（SimpleHotelSearch、HotelDetailSearch、VacantHotelSearch，scripts/rakuten.mjs）：評分、細項評分、房數、check-in/out、照片、2027-02-09／02-10 的空房與價格"
+      },
+      {
+        "type": "google-maps",
+        "url": "https://maps.google.com/?cid=6915761481779294940",
+        "retrieved": "2026-10-18",
+        "note": "Google 地圖「浜千代館」：星數、評論數、座標、照片"
+      },
+      {
+        "type": "booking-site",
+        "url": "https://travel.rakuten.co.jp/HOTEL/7563/7563.html",
+        "retrieved": "2026-10-18",
+        "note": "地址、IN/OUT、停車、評分 4.08"
+      },
+      {
+        "type": "booking-site",
+        "url": "https://travel.rakuten.co.jp/HOTEL/7563/7563_std.html",
+        "retrieved": "2026-10-18",
+        "note": "20 室、無電梯 3 層、宴會場、幼兒 2,200 円、接送巴士"
+      },
+      {
+        "type": "booking-site",
+        "url": "https://hotel.travel.rakuten.co.jp/hotelinfo/plan/7563",
+        "retrieved": "2026-10-18",
+        "note": "房型和室 2～6 人、方案與價格、兒童規定"
+      },
+      {
+        "type": "booking-site",
+        "url": "https://review.travel.rakuten.co.jp/hotel/voice/7563/",
+        "retrieved": "2026-10-18",
+        "note": "晚餐 4.36 高、浴場 3.69 低；老舊、隔音差"
+      },
+      {
+        "type": "booking-site",
+        "url": "https://yado.knt.co.jp/st/S240045/",
+        "retrieved": "2026-10-18",
+        "note": "二見浦站步行 13 分、夫婦岩步行 5 分、接送 14-19 時、大浴場 30 人"
+      }
+    ],
+    "verified": false,
+    "extra": {
+      "onsen": "大浴場（黑矽石，男女別約 30 人，無露天，不提供浴巾）；貸切風呂 3～4 人 2,100 円／次 15:00～24:00",
+      "parking": "25 台免費",
+      "conflicts": [
+        "房數：楽天 20 室 vs KNT 26 室",
+        "大浴場時間：KNT 16:00～23:00 與夏季 9:00～23:00 兩種寫法"
+      ],
+      "rakutenHotelNo": 7563,
+      "rakutenVacancy": {
+        "retrieved": "2026-10-18",
+        "dates": [
+          "2027-02-09",
+          "2027-02-10"
+        ],
+        "combos": [
+          "5x3",
+          "4x4",
+          "3x5",
+          "2x8"
+        ],
+        "available": {
+          "2027-02-09": [
+            "3x5",
+            "4x4",
+            "5x3"
+          ],
+          "2027-02-10": [
+            "3x5",
+            "4x4",
+            "5x3"
+          ]
+        },
+        "note": "15 人（全部以大人計）分 N 間同住的組合，有空房的列出；只代表查詢當天楽天上的庫存"
+      }
+    }
+  },
+  {
+    "id": "futami-oishiya",
+    "type": "lodging",
+    "name": {
+      "ja": "二見浦 夫婦岩前 旅館 大石屋",
+      "zh": "大石屋"
+    },
+    "area": "futami",
+    "region": "futami-okitama",
+    "kind": "ryokan",
+    "coords": [
+      136.785877,
+      34.508198
+    ],
+    "coordsSource": "google-maps-url",
+    "address": "三重県伊勢市二見町茶屋569-75",
+    "hours": null,
+    "closedNote": null,
+    "febNote": "2 月供應伊勢湾産天然ふぐ会席、ふぐVS伊勢海老会席（10/1～2/29）、鮑ステーキ＆黒毛和牛ステーキ（1/24～）；未見休館資訊",
+    "closures": [],
+    "photos": [
+      {
+        "url": "https://www.oishiya.co.jp/room/img/sec1_fig.jpg",
+        "page": "https://www.oishiya.co.jp/room/",
+        "kind": "official",
+        "credit": "大石屋",
+        "license": null
+      },
+      {
+        "url": "https://img.travel.rakuten.co.jp/share/HOTEL/5838/5838.jpg",
+        "page": "https://travel.rakuten.co.jp/HOTEL/5838/5838.html",
+        "kind": "rakuten",
+        "credit": "楽天トラベル（施設提供）",
+        "license": null
+      },
+      {
+        "url": "https://lh3.googleusercontent.com/grass-cs/AABkmLdVt0kYo0VmIRja_c3iKPn77d4kKhtoxfrFLxkL8gxFtG93dvlc1JtYYGkym6cVSKblp61_r3pABm9GY_mgEeIxz-cZRWCoaBwO-X1EL50fj6zAF0ARHtn6qhIYhB2B9rdtMajp=w408-h274-k-no",
+        "page": "https://maps.google.com/?cid=15348681165651807623",
+        "kind": "google",
+        "credit": "Google マップ",
+        "license": null
+      }
+    ],
+    "links": {
+      "official": "https://www.oishiya.co.jp/",
+      "googleMaps": "https://maps.google.com/?cid=15348681165651807623"
+    },
+    "tags": [],
+    "tier": null,
+    "nearestStation": {
+      "id": "jr-futaminoura",
+      "mode": "shuttle",
+      "minutes": 5,
+      "note": "JR二見浦駅より無料送迎で約5分"
+    },
+    "pickup": "JR 二見浦駅、三重交通「二見浦表参道」巴士站免費接送（車約 5 分），到站打電話即來；接 14:30 起、送到 10:00；車輛人數未寫",
+    "meals": "dinner+breakfast",
+    "priceRange": null,
+    "prices": [],
+    "luggage": "入住前、退房後可寄放行李；櫃台可寄宅急便",
+    "checkIn": "15:00",
+    "checkOut": "10:00",
+    "dinnerAccess": null,
+    "group": {
+      "totalRooms": 19,
+      "roomTypes": [
+        "6F 展望風呂付和洋室 45㎡ 4 名（セミダブル 2）",
+        "5F オーシャンビュー On The Bed 和洋室 45㎡ 4 名（シングル 2）",
+        "3F コンフォート和洋室ツイン 30㎡ 2～4 名",
+        "2F オーシャンビュー和室 12 畳 4 名",
+        "バリアフリーツイン「向日葵」30㎡ 2 名"
+      ],
+      "maxGuests": null,
+      "wholeRental": false,
+      "pickupCapacity": null,
+      "nearbyCombos": [
+        "futami-iwatokan",
+        "futami-kaiyoro",
+        "futami-nisshokan",
+        "futami-hamachiyokan"
+      ],
+      "note": "官網 FAQ：無團體方案，價格同一般方案；因用餐場地限制，人數上限 10 人 → 15 人全員同住需電話確認，可能要分館。楽天 2027-02-09/10 15 人組合無空房"
+    },
+    "ratings": {
+      "rakuten": 4.64,
+      "rakutenReviews": 951,
+      "jalan": null,
+      "jalanReviews": null,
+      "booking": null,
+      "google": 4.5,
+      "googleReviews": 264,
+      "rakutenService": 4.6,
+      "rakutenLocation": 4.69,
+      "rakutenRoom": 4.61,
+      "rakutenEquipment": 4.51,
+      "rakutenBath": 4.46,
+      "rakutenMeal": 4.75,
+      "note": "T8b（2026-10-18）：楽天 4.64（951 則，API）、Google 4.5（264 則，「大石屋」），5 分制。"
+    },
+    "accessibility": {
+      "elevator": null,
+      "beds": "3F/5F/6F 和洋室有床；2F 和室鋪被；無障礙房 1 間（Simmons 電動床）",
+      "stairs": "全館總畳敷き、號稱無段差構造；玄關「盡量減少段差」；シルバースター登録",
+      "kids": "兒童只能住 2F 和室；小學高年級 ¥13,000、低年級／未滿 6 歲 ¥9,500、只要寢具 ¥4,000、只要餐 ¥5,500、嬰幼兒設施費 ¥1,500（2024-10 時點，全年固定）；炙り会席（膳）不適合帶小孩",
+      "note": "電梯：官網、楽天施設頁讀到的內容沒寫，搜尋摘要稱其他訂房站列有エレベーター（未直接確認），建築 6 層樓；有無障礙貸切風呂「槙」"
+    },
+    "reservation": {
+      "methods": [
+        "rakuten",
+        "official",
+        "phone"
+      ],
+      "phone": "0596-43-2074（8:00～20:00）",
+      "url": "https://reserve.489ban.net/client/oishiya/0/plan",
+      "groupNote": "無團體方案，上限 10 人（用餐場地限制）"
+    },
+    "bookingLinks": {
+      "rakuten": "https://travel.rakuten.co.jp/HOTEL/5838/5838.html"
+    },
+    "sources": [
+      {
+        "type": "booking-site",
+        "url": "https://travel.rakuten.co.jp/HOTEL/5838/5838.html",
+        "retrieved": "2026-10-18",
+        "note": "楽天トラベル API（SimpleHotelSearch、HotelDetailSearch、VacantHotelSearch，scripts/rakuten.mjs）：評分、細項評分、房數、check-in/out、照片、2027-02-09／02-10 的空房與價格"
+      },
+      {
+        "type": "google-maps",
+        "url": "https://maps.google.com/?cid=15348681165651807623",
+        "retrieved": "2026-10-18",
+        "note": "Google 地圖「大石屋」：星數、評論數、座標、照片"
+      },
+      {
+        "type": "booking-site",
+        "url": "https://travel.rakuten.co.jp/HOTEL/5838/5838_std.html",
+        "retrieved": "2026-10-18",
+        "note": "19 室、設施、接送時間、停車 30 台、無障礙房"
+      },
+      {
+        "type": "booking-site",
+        "url": "https://review.travel.rakuten.co.jp/hotel/voice/5838/",
+        "retrieved": "2026-10-18",
+        "note": "4.64、各項分數；晚餐量多、浴場非溫泉偏小"
+      },
+      {
+        "type": "official",
+        "url": "https://www.oishiya.co.jp/room/",
+        "retrieved": "2026-10-18",
+        "note": "5 種房型與定員"
+      },
+      {
+        "type": "official",
+        "url": "https://www.oishiya.co.jp/faq/",
+        "retrieved": "2026-10-18",
+        "note": "團體上限 10 人、兒童收費、兒童只住 2F 和室、用餐地點"
+      },
+      {
+        "type": "official",
+        "url": "https://www.oishiya.co.jp/meal/",
+        "retrieved": "2026-10-18",
+        "note": "冬季ふぐ、伊勢海老、鮑方案"
+      },
+      {
+        "type": "official",
+        "url": "https://www.oishiya.co.jp/facilities/",
+        "retrieved": "2026-10-18",
+        "note": "浴場、無段差、シルバースター、宴會場"
+      },
+      {
+        "type": "official",
+        "url": "https://www.oishiya.co.jp/access/",
+        "retrieved": "2026-10-18",
+        "note": "JR 二見浦駅接送約 5 分"
+      }
+    ],
+    "verified": false,
+    "extra": {
+      "onsen": "大浴場「五十鈴」（露天、桑拿）、「清渚」男女交替，非溫泉；貸切風呂「槙」（無障礙）「巖」；15:00～23:00、6:00～9:30",
+      "parking": "30 台免費（第 1・第 2 駐車場，FamilyMart めおと岩店附近，有接駁）",
+      "conflicts": [
+        "房數：楽天 19 室，部分訂房站 18 室",
+        "楽天評價數 951（施設頁）vs 947（評價頁）"
+      ],
+      "rakutenHotelNo": 5838,
+      "rakutenVacancy": {
+        "retrieved": "2026-10-18",
+        "dates": [
+          "2027-02-09",
+          "2027-02-10"
+        ],
+        "combos": [
+          "5x3",
+          "4x4",
+          "3x5",
+          "2x8"
+        ],
+        "available": {
+          "2027-02-09": [],
+          "2027-02-10": []
+        },
+        "note": "15 人（全部以大人計）分 N 間同住的組合，有空房的列出；只代表查詢當天楽天上的庫存"
+      }
+    }
+  },
+  {
+    "id": "futami-castle-inn",
+    "type": "lodging",
+    "name": {
+      "ja": "ホテルキャッスルイン伊勢夫婦岩",
+      "zh": "Castle Inn 伊勢夫婦岩"
+    },
+    "area": "futami",
+    "region": "futami-okitama",
+    "kind": "hotel",
+    "coords": [
+      136.781332,
+      34.5081
+    ],
+    "coordsSource": "google-maps-url",
+    "address": "三重県伊勢市二見町茶屋537-20",
+    "hours": null,
+    "closedNote": null,
+    "febNote": "朝食會場公休：さらさ廣 週三、四，夢物語 週二；2 月休館資訊不明",
+    "closures": [],
+    "photos": [
+      {
+        "url": "https://img.travel.rakuten.co.jp/share/HOTEL/40176/40176.jpg",
+        "page": "https://travel.rakuten.co.jp/HOTEL/40176/40176.html",
+        "kind": "rakuten",
+        "credit": "楽天トラベル（施設提供）",
+        "license": null
+      },
+      {
+        "url": "https://lh3.googleusercontent.com/grass-cs/AABkmLe6pHfOPYHJ-cggoeDYtNhUyz1AKVIyuRDOoRutFgemd3tv8gc_1ZiQMPIqX9qm4LLmh-HZS61yT5QGGJiVQJmBivfe-fg8fPcdBXaTrX-UNN-8XYEtWdnEQKy4R8pOsMvB2fRQH0-mlVA=w408-h272-k-no",
+        "page": "https://maps.google.com/?cid=14060385235708643334",
+        "kind": "google",
+        "credit": "Google マップ",
+        "license": null
+      }
+    ],
+    "links": {
+      "official": null,
+      "googleMaps": "https://maps.google.com/?cid=14060385235708643334"
+    },
+    "tags": [],
+    "tier": null,
+    "nearestStation": {
+      "id": "jr-futaminoura",
+      "mode": "walk",
+      "minutes": 10,
+      "note": "JR参宮線「二見浦駅」から徒歩約10分；伊勢市駅から送迎車で約17分"
+    },
+    "pickup": "伊勢市站（JR 側／外宮口）⇄飯店免費接送車，約 17 分，前一天前用自社網站或電話預約，沒預約不開。班次來源不一致（KNT：15:00、16:00、17:00 只接不送；トラベルコ摘要：伊勢市站發 15:20、16:20、17:20、18:30，飯店發 7:45、9:00、10:00）。車大小不明",
+    "meals": "varies",
+    "priceRange": "每人約 4,180～12,023 円（依方案，含素泊／附早餐；詳見 prices）",
+    "prices": [
+      {
+        "plan": "素泊 楽天 15 人組合最低價（【素泊まり/早期割14】14日前までの予約がお得プラン★貸切風呂無料・駐車場無料★）",
+        "unit": "per-person",
+        "adult": 4180,
+        "child": null,
+        "currency": "JPY",
+        "season": "2027-02-09（二）1 泊，5 間 × 3 人（大人）有空房時的最低價",
+        "note": "房型：ダブルB(禁煙)。楽天 API 空室検索（查詢 2026-10-18），含稅、不含入湯稅等。這天有空房的組合：3x5、4x4、5x3。",
+        "source": "rakuten-api",
+        "url": "https://hotel.travel.rakuten.co.jp/hotelinfo/plan/40176?f_nen1=2027&f_tuki1=2&f_hi1=9&f_nen2=2027&f_tuki2=2&f_hi2=10&f_heya_su=5&f_otona_su=3&f_s1=0&f_s2=0&f_y1=0&f_y2=0&f_y3=0&f_y4=0",
+        "retrieved": "2026-10-18"
+      },
+      {
+        "plan": "一泊二食 楽天 15 人組合最低價（【夕・朝食付】美し国三重のグルメを気軽に堪能！松阪牛鍋焼プラン）",
+        "unit": "per-person",
+        "adult": 12023,
+        "child": null,
+        "currency": "JPY",
+        "season": "2027-02-10（三，2/11 國定假日前一晚）1 泊，5 間 × 3 人（大人）有空房時的含晚餐最低價",
+        "note": "房型：ダブルB(禁煙)。楽天 API 空室検索（查詢 2026-10-18），含稅、不含入湯稅等。這天有空房的組合：3x5、4x4、5x3。",
+        "source": "rakuten-api",
+        "url": "https://hotel.travel.rakuten.co.jp/hotelinfo/plan/40176?f_nen1=2027&f_tuki1=2&f_hi1=10&f_nen2=2027&f_tuki2=2&f_hi2=11&f_heya_su=5&f_otona_su=3&f_s1=0&f_s2=0&f_y1=0&f_y2=0&f_y3=0&f_y4=0",
+        "retrieved": "2026-10-18"
+      },
+      {
+        "plan": "素泊 大人 3＋小學生高年級 1（1 室）最低價（【素泊まり/早期割14】14日前までの予約がお得プラン★貸切風呂無料・駐車場無料★）",
+        "unit": "per-person",
+        "adult": 5280,
+        "child": null,
+        "currency": "JPY",
+        "season": "2027-02-09（二）1 泊，1 間 大人 3＋小學生高年級 1",
+        "note": "房型：４ベッド(禁煙)。一間總價 21,120 円；API 的小學生價和大人相同（可能以房計價或兒童同價），兒童價不推算。楽天 API（查詢 2026-10-18）。",
+        "source": "rakuten-api",
+        "url": "https://hotel.travel.rakuten.co.jp/hotelinfo/plan/40176?f_nen1=2027&f_tuki1=2&f_hi1=9&f_nen2=2027&f_tuki2=2&f_hi2=10&f_heya_su=1&f_otona_su=3&f_s1=1&f_s2=0&f_y1=0&f_y2=0&f_y3=0&f_y4=0",
+        "retrieved": "2026-10-18"
+      }
+    ],
+    "luggage": null,
+    "checkIn": "15:00",
+    "checkOut": "10:00",
+    "dinnerAccess": null,
+    "group": {
+      "totalRooms": 92,
+      "roomTypes": [
+        "ダブル A／B／C（B、C 有沙發床最多 3 人）",
+        "ツイン A／B",
+        "4 ベッドルーム 約 39㎡ 最多 5 人"
+      ],
+      "maxGuests": null,
+      "wholeRental": false,
+      "pickupCapacity": null,
+      "nearbyCombos": [],
+      "note": "15 人可住 3 間 4 ベッドルーム（5+5+5）；沒看到和室、和洋室；團體方案、宴會場不明"
+    },
+    "ratings": {
+      "rakuten": 3.93,
+      "rakutenReviews": 2302,
+      "jalan": 3.9,
+      "jalanReviews": 3924,
+      "booking": null,
+      "google": 3.9,
+      "googleReviews": 1507,
+      "rakutenService": 3.9,
+      "rakutenLocation": 4.07,
+      "rakutenRoom": 3.88,
+      "rakutenEquipment": 3.78,
+      "rakutenBath": 3.82,
+      "rakutenMeal": 4.05,
+      "note": "T8b（2026-10-18）：楽天 3.93（2302 則，API）、Google 3.9（1507 則，「ホテルキャッスルイン伊勢夫婦岩」）、じゃらん 3.9（3924 則），5 分制。"
+    },
+    "accessibility": {
+      "elevator": true,
+      "beds": "全部是床（ベッド）",
+      "stairs": "ユニットバス有段差（備踏み台）；浴場非無障礙",
+      "kids": "有小學低／高年級、幼兒的年齡區分，金額不明；繪本、漫畫、嬰兒用品出借",
+      "note": "電梯只有 1 台，滿房時要等；有無障礙廁所、車椅子出借"
+    },
+    "reservation": {
+      "methods": [
+        "rakuten",
+        "jalan",
+        "official",
+        "phone"
+      ],
+      "phone": "0596-43-1818",
+      "url": "https://travel.rakuten.co.jp/HOTEL/40176/40176.html",
+      "groupNote": null
+    },
+    "bookingLinks": {
+      "rakuten": "https://travel.rakuten.co.jp/HOTEL/40176/40176.html"
+    },
+    "sources": [
+      {
+        "type": "booking-site",
+        "url": "https://travel.rakuten.co.jp/HOTEL/40176/40176.html",
+        "retrieved": "2026-10-18",
+        "note": "楽天トラベル API（SimpleHotelSearch、HotelDetailSearch、VacantHotelSearch，scripts/rakuten.mjs）：評分、細項評分、房數、check-in/out、照片、2027-02-09／02-10 的空房與價格"
+      },
+      {
+        "type": "google-maps",
+        "url": "https://maps.google.com/?cid=14060385235708643334",
+        "retrieved": "2026-10-18",
+        "note": "Google 地圖「ホテルキャッスルイン伊勢夫婦岩」：星數、評論數、座標、照片"
+      },
+      {
+        "type": "booking-site",
+        "url": "https://travel.rakuten.co.jp/HOTEL/40176/40176.html",
+        "retrieved": "2026-10-18",
+        "note": "楽天 3.93（2,302 則）、92 室、伊勢市站免費接送要預約、二見浦站步行 10 分"
+      },
+      {
+        "type": "booking-site",
+        "url": "https://travel.rakuten.co.jp/HOTEL/40176/40176_std.html",
+        "retrieved": "2026-10-18",
+        "note": "電梯滿房時要等、無障礙廁所、浴場時間、停車 80 台"
+      },
+      {
+        "type": "booking-site",
+        "url": "https://review.travel.rakuten.co.jp/hotel/voice/40176/",
+        "retrieved": "2026-10-18",
+        "note": "細項分數；電梯 1 台、浴場擠、夕食松阪牛鍋好評、兒童用品出借"
+      },
+      {
+        "type": "media",
+        "url": "https://tabiiro.jp/yado/s/103637-ise-castleinn-meotoiwa/",
+        "retrieved": "2026-10-18",
+        "note": "房型（4 ベッドルーム最多 5 人）、人工温泉、貸切風呂 5 間、朝食和洋定食"
+      },
+      {
+        "type": "booking-site",
+        "url": "https://yado.knt.co.jp/st/S240352/",
+        "retrieved": "2026-10-18",
+        "note": "接送 15/16/17 時只接不送、浴場每池 10 人、餐廳さらさ廣營業時間、車椅子出借"
+      },
+      {
+        "type": "booking-site",
+        "url": "https://www.jalan.net/yad379555/",
+        "retrieved": "2026-10-18",
+        "note": "搜尋摘要：じゃらん 3.9（3,924 則），未直接讀頁"
+      }
+    ],
+    "verified": false,
+    "extra": {
+      "onsen": "大浴場男女各 1（麦飯石人工温泉，非溫泉、無露天，每池約 10 人）＋免費貸切風呂 5 間（家族風呂半露天）；洗い場少、常客滿",
+      "parking": "免費平面停車場 80 台",
+      "conflicts": [
+        "接送班次：KNT 15:00/16:00/17:00 只接不送；Yahoo 摘要朝 3 夕 3；トラベルコ摘要 伊勢市站發 15:20/16:20/17:20/18:30、飯店發 7:45/9:00/10:00",
+        "大浴場時間：楽天 入住～翌 9:30；旅色 15:00～翌 10:00；KNT 16:00～翌 10:00",
+        "じゃらん 分數只來自搜尋摘要，未直接讀頁"
+      ],
+      "rakutenHotelNo": 40176,
+      "rakutenVacancy": {
+        "retrieved": "2026-10-18",
+        "dates": [
+          "2027-02-09",
+          "2027-02-10"
+        ],
+        "combos": [
+          "5x3",
+          "4x4",
+          "3x5",
+          "2x8"
+        ],
+        "available": {
+          "2027-02-09": [
+            "3x5",
+            "4x4",
+            "5x3"
+          ],
+          "2027-02-10": [
+            "3x5",
+            "4x4",
+            "5x3"
+          ]
+        },
+        "note": "15 人（全部以大人計）分 N 間同住的組合，有空房的列出；只代表查詢當天楽天上的庫存"
+      }
+    }
+  },
+  {
+    "id": "futami-iwatokan",
+    "type": "lodging",
+    "name": {
+      "ja": "塩結びの宿 岩戸館",
+      "zh": "岩戶館"
+    },
+    "area": "futami",
+    "region": "futami-okitama",
+    "kind": "ryokan",
+    "coords": [
+      136.7855235,
+      34.5081997
+    ],
+    "coordsSource": "google-maps-url",
+    "address": "三重県伊勢市二見町茶屋566-9",
+    "hours": null,
+    "closedNote": null,
+    "febNote": null,
+    "closures": [],
+    "photos": [
+      {
+        "url": "https://www.iwatokan.com/common/img/index_main_visual_002.jpg",
+        "page": "https://www.iwatokan.com/",
+        "kind": "official",
+        "credit": "岩戸館",
+        "license": null
+      },
+      {
+        "url": "https://img.travel.rakuten.co.jp/share/HOTEL/38655/38655.jpg",
+        "page": "https://travel.rakuten.co.jp/HOTEL/38655/38655.html",
+        "kind": "rakuten",
+        "credit": "楽天トラベル（施設提供）",
+        "license": null
+      },
+      {
+        "url": "https://lh3.googleusercontent.com/grass-cs/AABkmLcQsri03r-sg3WLzwJ7YAfeF-IGS9YUP6NydNZ6ZORgqylOI4K35x7mpeSZ1LR-BSSp9mHZOpXODrY8REazYTFnvOl33a_OF4hpUSZXIYSqWnNchAz5LzchNvTF4VdaUUQqA8pD=w426-h240-k-no",
+        "page": "https://maps.google.com/?cid=12046749781333364874",
+        "kind": "google",
+        "credit": "Google マップ",
+        "license": null
+      }
+    ],
+    "links": {
+      "official": "https://www.iwatokan.com/",
+      "googleMaps": "https://maps.google.com/?cid=12046749781333364874"
+    },
+    "tags": [],
+    "tier": null,
+    "nearestStation": {
+      "id": "jr-futaminoura",
+      "mode": "walk",
+      "minutes": 15,
+      "note": "JR二見浦駅より車で約5分、徒歩約15分；夫婦岩まで徒歩3分"
+    },
+    "pickup": null,
+    "meals": "breakfast",
+    "priceRange": "每人約 9,900～12,430 円（依方案，含素泊／附早餐；詳見 prices）",
+    "prices": [
+      {
+        "currency": "JPY",
+        "plan": "夫婦岩早朝参拝案内付 一泊朝食（海側和室 10 畳）",
+        "unit": "per-person",
+        "adult": 12430,
+        "child": null,
+        "season": "取得日起 30 天內",
+        "note": "3 人一室 12,430～13,750 円（含稅）；2 人一室 12,980～14,300 円",
+        "source": "rakuten",
+        "url": "https://hotel.travel.rakuten.co.jp/hotelinfo/plan/38655",
+        "retrieved": "2026-10-18"
+      },
+      {
+        "currency": "JPY",
+        "plan": "部屋タイプ6 一泊朝食（和室 10 畳，無浴室）",
+        "unit": "per-person",
+        "adult": 11880,
+        "child": null,
+        "season": "取得日起 30 天內",
+        "note": "3～4 人一室 11,880 円（含稅）",
+        "source": "rakuten",
+        "url": "https://hotel.travel.rakuten.co.jp/hotelinfo/plan/38655",
+        "retrieved": "2026-10-18"
+      },
+      {
+        "currency": "JPY",
+        "plan": "早朝参拝案内付 素泊（陸側和室 10 畳）",
+        "unit": "per-person",
+        "adult": 9900,
+        "child": null,
+        "season": "取得日起 30 天內",
+        "note": "3 人一室 9,900～11,000 円（含稅）",
+        "source": "rakuten",
+        "url": "https://hotel.travel.rakuten.co.jp/hotelinfo/plan/38655",
+        "retrieved": "2026-10-18"
+      }
+    ],
+    "luggage": null,
+    "checkIn": "15:00",
+    "checkOut": "10:00",
+    "dinnerAccess": null,
+    "group": {
+      "totalRooms": 22,
+      "roomTypes": [
+        "和室 10 畳 1～4 人（附衛浴，分海側／陸側）",
+        "和室 10 畳 1～4 人（房型 6，有廁所沒有浴室）"
+      ],
+      "maxGuests": null,
+      "wholeRental": false,
+      "pickupCapacity": null,
+      "nearbyCombos": [
+        "futami-oishiya",
+        "futami-kaiyoro",
+        "futami-nisshokan",
+        "futami-hamachiyokan"
+      ],
+      "note": "每間最多 4 人，4 間就能住 15 人；有可以辦研修的大広間；沒有團體方案的說明"
+    },
+    "ratings": {
+      "rakuten": 4.1,
+      "rakutenReviews": 331,
+      "jalan": null,
+      "jalanReviews": null,
+      "booking": null,
+      "google": 4.1,
+      "googleReviews": 129,
+      "rakutenService": 4.24,
+      "rakutenLocation": 4.59,
+      "rakutenRoom": 3.72,
+      "rakutenEquipment": 3.5,
+      "rakutenBath": 3.74,
+      "rakutenMeal": 4.53,
+      "note": "T8b（2026-10-18）：楽天 4.1（331 則，API）、Google 4.1（129 則，「岩戸館」），5 分制。"
+    },
+    "accessibility": {
+      "elevator": null,
+      "beds": "都是和室，沒有寫有沒有床",
+      "stairs": null,
+      "kids": "有兒童價（金額未列）；幼兒只添寢或只用餐時，大人 1 名可帶 1 名幼兒",
+      "note": "可用輪椅、有無障礙廁所、客房有西式馬桶、大浴場浴槽有扶手"
+    },
+    "reservation": {
+      "methods": [
+        "rakuten",
+        "jalan",
+        "official",
+        "phone"
+      ],
+      "phone": "0596-43-2122",
+      "url": "https://www.iwatokan.com/info/",
+      "groupNote": "網路預約 3 個月前開始受理；詢問表單 2～3 天回覆；不能刷卡"
+    },
+    "bookingLinks": {
+      "rakuten": "https://travel.rakuten.co.jp/HOTEL/38655/38655.html"
+    },
+    "sources": [
+      {
+        "type": "booking-site",
+        "url": "https://travel.rakuten.co.jp/HOTEL/38655/38655.html",
+        "retrieved": "2026-10-18",
+        "note": "楽天トラベル API（SimpleHotelSearch、HotelDetailSearch、VacantHotelSearch，scripts/rakuten.mjs）：評分、細項評分、房數、check-in/out、照片、2027-02-09／02-10 的空房與價格"
+      },
+      {
+        "type": "google-maps",
+        "url": "https://maps.google.com/?cid=12046749781333364874",
+        "retrieved": "2026-10-18",
+        "note": "Google 地圖「岩戸館」：星數、評論數、座標、照片"
+      },
+      {
+        "type": "booking-site",
+        "url": "https://travel.rakuten.co.jp/HOTEL/38655/38655.html",
+        "retrieved": "2026-10-18",
+        "note": "22 室、4.10（331 則）、早餐豆乳花、JR 二見浦站步行 15 分"
+      },
+      {
+        "type": "booking-site",
+        "url": "https://travel.rakuten.co.jp/HOTEL/38655/38655_std.html",
+        "retrieved": "2026-10-18",
+        "note": "無障礙設備、停車 20 台、不能刷卡"
+      },
+      {
+        "type": "booking-site",
+        "url": "https://hotel.travel.rakuten.co.jp/hotelinfo/plan/38655",
+        "retrieved": "2026-10-18",
+        "note": "方案價格；和室 10 畳 1～4 人"
+      },
+      {
+        "type": "official",
+        "url": "https://www.iwatokan.com/stay/",
+        "retrieved": "2026-10-18",
+        "note": "一泊朝食為主、にがりの湯、大広間"
+      },
+      {
+        "type": "official",
+        "url": "https://www.iwatokan.com/info/",
+        "retrieved": "2026-10-18",
+        "note": "所有方案都是一泊朝食、3 個月前開始預約"
+      },
+      {
+        "type": "blog-ja",
+        "url": "https://ameblo.jp/sealamer/entry-12965631663.html",
+        "retrieved": "2026-10-18",
+        "note": "【PR】業配推薦文，介紹岩戸の塩和にがり風呂"
+      }
+    ],
+    "verified": false,
+    "extra": {
+      "onsen": "大浴場「にがりの湯」，用自家製的「岩戸の塩」（不是天然溫泉）",
+      "parking": "免費 20 台",
+      "conflicts": [
+        "官網說所有方案都是一泊朝食，楽天、じゃらん卻有素泊方案"
+      ],
+      "rakutenHotelNo": 38655,
+      "rakutenVacancy": {
+        "retrieved": "2026-10-18",
+        "dates": [
+          "2027-02-09",
+          "2027-02-10"
+        ],
+        "combos": [
+          "5x3",
+          "4x4",
+          "3x5",
+          "2x8"
+        ],
+        "available": {
+          "2027-02-09": [],
+          "2027-02-10": []
+        },
+        "note": "15 人（全部以大人計）分 N 間同住的組合，有空房的列出；只代表查詢當天楽天上的庫存"
+      }
+    }
+  },
+  {
+    "id": "futami-nisshokan",
+    "type": "lodging",
+    "name": {
+      "ja": "活伊勢海老料理の宿 日章館",
+      "zh": "日章館"
+    },
+    "area": "futami",
+    "region": "futami-okitama",
+    "kind": "ryokan",
+    "coords": [
+      136.7832767,
+      34.5082695
+    ],
+    "coordsSource": "google-maps-url",
+    "address": "三重県伊勢市二見町茶屋537-1",
+    "hours": null,
+    "closedNote": null,
+    "febNote": "伊勢海老 8 月上旬到 4 月底都有，2 月吃得到",
+    "closures": [],
+    "photos": [
+      {
+        "url": "https://img.travel.rakuten.co.jp/share/HOTEL/7676/7676.jpg",
+        "page": "https://travel.rakuten.co.jp/HOTEL/7676/7676.html",
+        "kind": "rakuten",
+        "credit": "楽天トラベル（施設提供）",
+        "license": null
+      },
+      {
+        "url": "https://lh3.googleusercontent.com/grass-cs/AABkmLf_5gXQwJ5UiP-amd1_beF1gtYrxIkDFVWO9mzMWUcmaesexltQNAU-bAhcQEjqMh8RN_MSNxeghWxzSRZZLZUYvRKRRJZ9XDTs7ApMRg_NdbWxTxrYWp9Rt6S2P-oG_G3Xj1g=w408-h290-k-no",
+        "page": "https://maps.google.com/?cid=12169102107927815369",
+        "kind": "google",
+        "credit": "Google マップ",
+        "license": null
+      }
+    ],
+    "links": {
+      "official": null,
+      "googleMaps": "https://maps.google.com/?cid=12169102107927815369"
+    },
+    "tags": [],
+    "tier": null,
+    "nearestStation": {
+      "id": "jr-futaminoura",
+      "mode": "walk",
+      "minutes": 12,
+      "note": "JR二見浦駅より徒歩12分；バス「二見浦表参道」より徒歩10分；有送迎"
+    },
+    "pickup": "免費接送，不用預約；JR 二見浦站・二見浦表參道，15:00～21:00，到站後打電話；車子坐幾人不明",
+    "meals": "varies",
+    "priceRange": "每人約 12,100～24,200 円（依方案，含素泊／附早餐；詳見 prices）",
+    "prices": [
+      {
+        "currency": "JPY",
+        "plan": "活伊勢海老付 一泊二食（個室食，海側和室 8 畳）",
+        "unit": "per-person",
+        "adult": 24200,
+        "child": null,
+        "season": "取得時楽天上的價格",
+        "note": "2～4 人一室 24,200～27,500 円（含稅）；伊勢海老可選活造り／鬼殻焼き／具足煮",
+        "source": "rakuten",
+        "url": "https://hotel.travel.rakuten.co.jp/hotelinfo/plan/7676",
+        "retrieved": "2026-10-18"
+      },
+      {
+        "currency": "JPY",
+        "plan": "鮑の踊り焼き付 一泊二食",
+        "unit": "per-person",
+        "adult": 19800,
+        "child": null,
+        "season": "取得時楽天上的價格",
+        "note": "2～4 人一室 19,800～23,100 円（含稅）",
+        "source": "rakuten",
+        "url": "https://hotel.travel.rakuten.co.jp/hotelinfo/plan/7676",
+        "retrieved": "2026-10-18"
+      },
+      {
+        "currency": "JPY",
+        "plan": "一泊二食 ベーシック（個室食）",
+        "unit": "per-person",
+        "adult": 16500,
+        "child": null,
+        "season": "取得時楽天上的價格",
+        "note": "2～4 人一室 16,500～19,800 円（含稅）",
+        "source": "rakuten",
+        "url": "https://hotel.travel.rakuten.co.jp/hotelinfo/plan/7676",
+        "retrieved": "2026-10-18"
+      },
+      {
+        "currency": "JPY",
+        "plan": "一泊朝食",
+        "unit": "per-person",
+        "adult": 12100,
+        "child": null,
+        "season": "取得時楽天上的價格",
+        "note": "2～3 人一室 12,100～15,400 円（含稅）",
+        "source": "rakuten",
+        "url": "https://hotel.travel.rakuten.co.jp/hotelinfo/plan/7676",
+        "retrieved": "2026-10-18"
+      }
+    ],
+    "luggage": "沒有電梯，大件行李館方幫忙搬到房間",
+    "checkIn": "15:00",
+    "checkOut": "10:00",
+    "dinnerAccess": null,
+    "group": {
+      "totalRooms": 6,
+      "roomTypes": [
+        "海側和室 8 畳 1～4 人（有廁所沒有浴室）",
+        "海側和室 10 畳（定員不明）",
+        "一人用和室（無衛浴）"
+      ],
+      "maxGuests": null,
+      "wholeRental": null,
+      "pickupCapacity": null,
+      "nearbyCombos": [
+        "futami-hamachiyokan",
+        "futami-kaiyoro",
+        "futami-castle-inn",
+        "futami-iwatokan"
+      ],
+      "note": "只有 6 室，15 人要包下大部分的房間；能不能包館沒有寫，要問"
+    },
+    "ratings": {
+      "rakuten": 4.2,
+      "rakutenReviews": 307,
+      "jalan": null,
+      "jalanReviews": null,
+      "booking": null,
+      "google": 4.1,
+      "googleReviews": 92,
+      "rakutenService": 4.38,
+      "rakutenLocation": 4.45,
+      "rakutenRoom": 4.08,
+      "rakutenEquipment": 3.9,
+      "rakutenBath": 3.75,
+      "rakutenMeal": 4.41,
+      "note": "T8b（2026-10-18）：楽天 4.2（307 則，API）、Google 4.1（92 則，「日章館」），5 分制。"
+    },
+    "accessibility": {
+      "elevator": false,
+      "beds": "都是和室，沒有寫有沒有床",
+      "stairs": "客房在 2、3 樓，要爬樓梯；行動不便可以要求低樓層",
+      "kids": "有兒童價、兒童餐；添寢、幼兒 1,650 円",
+      "note": "需要協助的人（高齡、身障、帶嬰幼兒）22 點以後可免費包大浴場；借淋浴椅"
+    },
+    "reservation": {
+      "methods": [
+        "rakuten",
+        "jalan",
+        "phone"
+      ],
+      "phone": "0596-43-5000",
+      "url": "https://travel.rakuten.co.jp/HOTEL/7676/7676.html",
+      "groupNote": null
+    },
+    "bookingLinks": {
+      "rakuten": "https://travel.rakuten.co.jp/HOTEL/7676/7676.html"
+    },
+    "sources": [
+      {
+        "type": "booking-site",
+        "url": "https://travel.rakuten.co.jp/HOTEL/7676/7676.html",
+        "retrieved": "2026-10-18",
+        "note": "楽天トラベル API（SimpleHotelSearch、HotelDetailSearch、VacantHotelSearch，scripts/rakuten.mjs）：評分、細項評分、房數、check-in/out、照片、2027-02-09／02-10 的空房與價格"
+      },
+      {
+        "type": "google-maps",
+        "url": "https://maps.google.com/?cid=12169102107927815369",
+        "retrieved": "2026-10-18",
+        "note": "Google 地圖「日章館」：星數、評論數、座標、照片"
+      },
+      {
+        "type": "booking-site",
+        "url": "https://travel.rakuten.co.jp/HOTEL/7676/7676.html",
+        "retrieved": "2026-10-18",
+        "note": "4.20（307 則）、沒有電梯、客房在 2、3 樓、需要協助的人可免費包大浴場"
+      },
+      {
+        "type": "booking-site",
+        "url": "https://travel.rakuten.co.jp/HOTEL/7676/7676_std.html",
+        "retrieved": "2026-10-18",
+        "note": "6 室、停車 10 台、送迎巴士、可刷卡"
+      },
+      {
+        "type": "booking-site",
+        "url": "https://hotel.travel.rakuten.co.jp/hotelinfo/plan/7676",
+        "retrieved": "2026-10-18",
+        "note": "方案價格；海側和室 8 畳 1～4 人"
+      },
+      {
+        "type": "media",
+        "url": "https://tabiiro.jp/yado/s/103643-ise-nisshokan/",
+        "retrieved": "2026-10-18",
+        "note": "8／10 畳海景和室、伊勢海老 3 種做法、免費接送、兒童餐、添寢 1,650 円"
+      },
+      {
+        "type": "media",
+        "url": "https://www.mapple.net/region/a0405010102_g05000000/spot/",
+        "retrieved": "2026-10-18",
+        "note": "一泊二食 9,720 円起（可能是舊的）"
+      }
+    ],
+    "verified": false,
+    "extra": {
+      "onsen": "大浴場男女各一，人工トロン温泉（不是天然溫泉），15:00～22:00、6:30～9:00；包浴池 45 分 2,200 円",
+      "parking": "免費 10 台",
+      "conflicts": [
+        "マップル寫一泊二食 9,720 円起，應該是舊價格，跟楽天現在的價格差很多"
+      ],
+      "rakutenHotelNo": 7676,
+      "rakutenVacancy": {
+        "retrieved": "2026-10-18",
+        "dates": [
+          "2027-02-09",
+          "2027-02-10"
+        ],
+        "combos": [
+          "5x3",
+          "4x4",
+          "3x5",
+          "2x8"
+        ],
+        "available": {
+          "2027-02-09": [],
+          "2027-02-10": []
+        },
+        "note": "15 人（全部以大人計）分 N 間同住的組合，有空房的列出；只代表查詢當天楽天上的庫存"
+      }
+    }
+  },
+  {
+    "id": "futami-kyukaen",
+    "type": "lodging",
+    "name": {
+      "ja": "松阪屋吸霞園",
+      "zh": "松阪屋吸霞園"
+    },
+    "area": "futami",
+    "region": "futami-okitama",
+    "kind": "ryokan",
+    "coords": [
+      136.780713,
+      34.507974
+    ],
+    "coordsSource": "google-maps-url",
+    "address": "三重県伊勢市二見町茶屋537-10",
+    "hours": null,
+    "closedNote": null,
+    "febNote": "伊勢海老加點期間 10～3 月，2 月可加點（需住宿前 2 天電話）；休館日未寫",
+    "closures": [],
+    "photos": [
+      {
+        "url": "https://trvimg.r10s.jp/share/image_up/139993/origin/b545c5338af7720cc4533a54b581d6bfd7ae4cde.47.9.26.3.jpg",
+        "page": "https://travel.rakuten.co.jp/HOTEL/139993/139993.html",
+        "kind": "official",
+        "credit": "松阪屋吸霞園",
+        "license": null
+      },
+      {
+        "url": "https://img.travel.rakuten.co.jp/share/HOTEL/139993/139993.jpg",
+        "page": "https://travel.rakuten.co.jp/HOTEL/139993/139993.html",
+        "kind": "rakuten",
+        "credit": "楽天トラベル（施設提供）",
+        "license": null
+      },
+      {
+        "url": "https://lh3.googleusercontent.com/grass-cs/AABkmLd_SwsFRY3B_eWCm8SflqswYT_ql9xkJhb3CW5_AWWo_v3Zl-oiwpABoFulgjgtjW2ElBbnjYqk8uMNTry5qKtC4T5XVyCTYibzg2zopko0JsgzZx0_Nqmy6P3M1eqpU2_SxHTqFA=w408-h272-k-no",
+        "page": "https://maps.google.com/?cid=8941726351327199216",
+        "kind": "google",
+        "credit": "Google マップ",
+        "license": null
+      }
+    ],
+    "links": {
+      "official": null,
+      "googleMaps": "https://maps.google.com/?cid=8941726351327199216"
+    },
+    "tags": [],
+    "tier": null,
+    "nearestStation": {
+      "id": "jr-futaminoura",
+      "mode": "walk",
+      "minutes": 10,
+      "note": "JR二見浦駅より徒歩約10分"
+    },
+    "pickup": "有接送巴士（楽天設施資訊），班次、可載人數未寫",
+    "meals": "varies",
+    "priceRange": "每人約 7,700～18,150 円（依方案，含素泊／附早餐；詳見 prices）",
+    "prices": [
+      {
+        "currency": "JPY",
+        "plan": "【人気No.1】四季御膳（一泊二食）",
+        "unit": "per-person",
+        "adult": 16500,
+        "child": null,
+        "season": "近 30 日參考（2026-10～11）",
+        "note": "海側和室 10 畳 2 人入住，含稅 16,500～17,600 円",
+        "source": "rakuten",
+        "url": "https://hotel.travel.rakuten.co.jp/hotelinfo/plan/139993",
+        "retrieved": "2026-10-18"
+      },
+      {
+        "currency": "JPY",
+        "plan": "【お刺身グレードアップ】四季御膳（一泊二食）",
+        "unit": "per-person",
+        "adult": 18150,
+        "child": null,
+        "season": "近 30 日參考（2026-10～11）",
+        "note": "含稅 18,150～19,250 円",
+        "source": "rakuten",
+        "url": "https://hotel.travel.rakuten.co.jp/hotelinfo/plan/139993",
+        "retrieved": "2026-10-18"
+      },
+      {
+        "currency": "JPY",
+        "plan": "【ファミリープラン】お子様限定（一泊二食）",
+        "unit": "per-person",
+        "adult": 16500,
+        "child": null,
+        "season": "近 30 日參考（2026-10～11）",
+        "note": "每日限 1 組，含兒童餐；含稅 16,500～17,600 円",
+        "source": "rakuten",
+        "url": "https://hotel.travel.rakuten.co.jp/hotelinfo/plan/139993",
+        "retrieved": "2026-10-18"
+      },
+      {
+        "currency": "JPY",
+        "plan": "素泊まり",
+        "unit": "per-person",
+        "adult": 7700,
+        "child": null,
+        "season": "近 30 日參考（2026-10～11）",
+        "note": "海側和室 8 畳；含稅 7,700～8,800 円",
+        "source": "rakuten",
+        "url": "https://hotel.travel.rakuten.co.jp/hotelinfo/plan/139993",
+        "retrieved": "2026-10-18"
+      }
+    ],
+    "luggage": null,
+    "checkIn": "15:00",
+    "checkOut": "10:00",
+    "dinnerAccess": null,
+    "group": {
+      "totalRooms": 10,
+      "roomTypes": [
+        "海側和室 10 畳 附衛浴 2～3 人",
+        "海側和室 8 畳 附衛浴 1～2 人"
+      ],
+      "maxGuests": null,
+      "wholeRental": null,
+      "pickupCapacity": null,
+      "nearbyCombos": [
+        "futami-iroha",
+        "futami-castle-inn",
+        "futami-hamachiyokan",
+        "futami-asahikan"
+      ],
+      "note": "全 10 室、每間 2～3 人，15 人要 5～6 間；晚餐可選個室或廣間；宴會場、團體方案、包館未寫，要電話確認"
+    },
+    "ratings": {
+      "rakuten": 4.5,
+      "rakutenReviews": 61,
+      "jalan": null,
+      "jalanReviews": null,
+      "booking": null,
+      "google": 3.9,
+      "googleReviews": 43,
+      "note": "T8b（2026-10-18）：楽天 4.5（61 則，API）、Google 3.9（43 則，「松阪屋吸霞園」），5 分制。"
+    },
+    "accessibility": {
+      "elevator": false,
+      "beds": "和室，床型未寫（待確認）",
+      "stairs": "無電梯，全館都是樓梯（官方提醒腳不方便者留意）",
+      "kids": "ファミリープラン（小孩限定、每日 1 組，含兒童餐）；小學生以下需選家庭方案；兒童費用有設定但金額未公開",
+      "note": "有包租風呂（貸切）；建築老舊"
+    },
+    "reservation": {
+      "methods": [
+        "rakuten",
+        "phone"
+      ],
+      "phone": "0596-43-2007",
+      "url": "https://travel.rakuten.co.jp/HOTEL/139993/139993.html",
+      "groupNote": "不收信用卡；15 人或包館需電話洽詢"
+    },
+    "bookingLinks": {
+      "rakuten": "https://travel.rakuten.co.jp/HOTEL/139993/139993.html"
+    },
+    "sources": [
+      {
+        "type": "booking-site",
+        "url": "https://travel.rakuten.co.jp/HOTEL/139993/139993.html",
+        "retrieved": "2026-10-18",
+        "note": "楽天トラベル API（SimpleHotelSearch、HotelDetailSearch、VacantHotelSearch，scripts/rakuten.mjs）：評分、細項評分、房數、check-in/out、照片、2027-02-09／02-10 的空房與價格"
+      },
+      {
+        "type": "google-maps",
+        "url": "https://maps.google.com/?cid=8941726351327199216",
+        "retrieved": "2026-10-18",
+        "note": "Google 地圖「松阪屋吸霞園」：星數、評論數、座標、照片"
+      },
+      {
+        "type": "booking-site",
+        "url": "https://travel.rakuten.co.jp/HOTEL/139993/139993.html",
+        "retrieved": "2026-10-18",
+        "note": "楽天 4.50（61 則）、二見浦站步行 10 分、無電梯全館樓梯"
+      },
+      {
+        "type": "booking-site",
+        "url": "https://travel.rakuten.co.jp/HOTEL/139993/139993_std.html",
+        "retrieved": "2026-10-18",
+        "note": "10 室、接送巴士、停車 20 台、不收信用卡"
+      },
+      {
+        "type": "booking-site",
+        "url": "https://hotel.travel.rakuten.co.jp/hotelinfo/plan/139993",
+        "retrieved": "2026-10-18",
+        "note": "方案與價格、四季御膳菜色、家庭方案、伊勢海老加點"
+      },
+      {
+        "type": "booking-site",
+        "url": "https://review.travel.rakuten.co.jp/hotel/voice/139993/",
+        "retrieved": "2026-10-18",
+        "note": "近 10 則：料理和服務好評，建築老舊、浴場分數偏低"
+      }
+    ],
+    "verified": false,
+    "extra": {
+      "onsen": "有包租風呂；是否溫泉未寫；心得說水溫偏高、浴場分數偏低",
+      "parking": "免費 20 台，不用預約",
+      "rakutenHotelNo": 139993,
+      "rakutenVacancy": {
+        "retrieved": "2026-10-18",
+        "dates": [
+          "2027-02-09",
+          "2027-02-10"
+        ],
+        "combos": [
+          "5x3",
+          "4x4",
+          "3x5",
+          "2x8"
+        ],
+        "available": {
+          "2027-02-09": [],
+          "2027-02-10": []
+        },
+        "note": "15 人（全部以大人計）分 N 間同住的組合，有空房的列出；只代表查詢當天楽天上的庫存"
+      }
+    }
+  },
+  {
+    "id": "futami-kaiyoro",
+    "type": "lodging",
+    "name": {
+      "ja": "海鮮割烹の宿 海洋楼",
+      "zh": "海洋樓"
+    },
+    "area": "futami",
+    "region": "futami-okitama",
+    "kind": "ryokan",
+    "coords": [
+      136.7851964,
+      34.5079764
+    ],
+    "coordsSource": "google-maps-url",
+    "address": "三重県伊勢市二見町茶屋566-4",
+    "hours": null,
+    "closedNote": null,
+    "febNote": null,
+    "closures": [],
+    "photos": [
+      {
+        "url": "https://trvimg.r10s.jp/share/image_up/7723/origin/9817ab56b201a43cca6b790bd31be8c03692dfaf.47.1.26.2.jpg",
+        "page": "https://travel.rakuten.co.jp/HOTEL/7723/7723.html",
+        "kind": "official",
+        "credit": "名勝二見浦 海鮮割烹の宿 海洋楼",
+        "license": null
+      },
+      {
+        "url": "https://img.travel.rakuten.co.jp/share/HOTEL/7723/7723.jpg",
+        "page": "https://travel.rakuten.co.jp/HOTEL/7723/7723.html",
+        "kind": "rakuten",
+        "credit": "楽天トラベル（施設提供）",
+        "license": null
+      },
+      {
+        "url": "https://lh3.googleusercontent.com/grass-cs/AABkmLdYGUk_th7YCzT6co5asl8Z7Zv0jFVv14ayOZ-7V5Kzu2GlLpvNYVMofq2LBTP629Y64ZqbwT3sz9uqkNa-iwfcO1DYkQ41qSD_v_9JjagBHKbePpvPWXvxFVBSsDy8mulrUL5k=w408-h306-k-no",
+        "page": "https://maps.google.com/?cid=14717317136452546914",
+        "kind": "google",
+        "credit": "Google マップ",
+        "license": null
+      }
+    ],
+    "links": {
+      "official": null,
+      "googleMaps": "https://maps.google.com/?cid=14717317136452546914"
+    },
+    "tags": [],
+    "tier": null,
+    "nearestStation": {
+      "id": "jr-futaminoura",
+      "mode": "walk",
+      "minutes": 13,
+      "note": "JR二見浦駅より徒歩約13分、夫婦岩まで徒歩約3分"
+    },
+    "pickup": "接送巴士需事先聯絡，15:00～19:00 及隔天 7:30～10:00；可載人數未寫",
+    "meals": "varies",
+    "priceRange": "每人約 12,320～15,730 円（依方案，含素泊／附早餐；詳見 prices）",
+    "prices": [
+      {
+        "currency": "JPY",
+        "plan": "【楽天限定】2食付 潮風と伊勢湾で獲れた海の幸 — オーシャンビュー レトロ和室",
+        "unit": "per-person",
+        "adult": 15730,
+        "child": null,
+        "season": "近 30 日參考（2026-10～11）",
+        "note": "2～4 人同價，含稅 15,730～16,830 円",
+        "source": "rakuten",
+        "url": "https://hotel.travel.rakuten.co.jp/hotelinfo/plan/7723",
+        "retrieved": "2026-10-18"
+      },
+      {
+        "currency": "JPY",
+        "plan": "同上 — 純和風レトロの和室（バス・トイレ付）",
+        "unit": "per-person",
+        "adult": 13750,
+        "child": null,
+        "season": "近 30 日參考（2026-10～11）",
+        "note": "含稅 13,750～14,850 円",
+        "source": "rakuten",
+        "url": "https://hotel.travel.rakuten.co.jp/hotelinfo/plan/7723",
+        "retrieved": "2026-10-18"
+      },
+      {
+        "currency": "JPY",
+        "plan": "同上 — レトロな雰囲気の和室（無衛浴）",
+        "unit": "per-person",
+        "adult": 12320,
+        "child": null,
+        "season": "近 30 日參考（2026-10～11）",
+        "note": "含稅 12,320～13,420 円",
+        "source": "rakuten",
+        "url": "https://hotel.travel.rakuten.co.jp/hotelinfo/plan/7723",
+        "retrieved": "2026-10-18"
+      }
+    ],
+    "luggage": null,
+    "checkIn": "15:00",
+    "checkOut": "10:00",
+    "dinnerAccess": null,
+    "group": {
+      "totalRooms": 43,
+      "roomTypes": [
+        "【オーシャンビュー】レトロ和室 7.5～10 畳 附衛浴 2～4 人",
+        "純和風レトロ和室 附衛浴 2～3 人",
+        "レトロ和室 6～8 畳 無衛浴 2～4 人"
+      ],
+      "maxGuests": null,
+      "wholeRental": false,
+      "pickupCapacity": null,
+      "nearbyCombos": [
+        "futami-iwatokan",
+        "futami-oishiya",
+        "futami-nisshokan",
+        "futami-hamachiyokan"
+      ],
+      "note": "43 室，15 人同館應可行（4～5 間）；宴會場、團體方案未寫；晚餐在食事處，包廂每人加 1,540 円"
+    },
+    "ratings": {
+      "rakuten": 4,
+      "rakutenReviews": 58,
+      "jalan": null,
+      "jalanReviews": null,
+      "booking": null,
+      "google": 3.9,
+      "googleReviews": 92,
+      "note": "T8b（2026-10-18）：楽天 4（58 則，API）、Google 3.9（92 則，「海洋楼」），5 分制。"
+    },
+    "accessibility": {
+      "elevator": null,
+      "beds": "和室，床型未寫",
+      "stairs": null,
+      "kids": "子供料金設定有り（小學高／低年級、幼兒分類），金額未公開；預訂需告知小孩性別年齡",
+      "note": "廁所為舊式西式馬桶、無免治；部分房間偏窄"
+    },
+    "reservation": {
+      "methods": [
+        "rakuten",
+        "jalan",
+        "phone"
+      ],
+      "phone": "0596-43-2221",
+      "url": "https://travel.rakuten.co.jp/HOTEL/7723/7723.html",
+      "groupNote": "團體方案未寫，需電話洽詢"
+    },
+    "bookingLinks": {
+      "rakuten": "https://travel.rakuten.co.jp/HOTEL/7723/7723.html"
+    },
+    "sources": [
+      {
+        "type": "booking-site",
+        "url": "https://travel.rakuten.co.jp/HOTEL/7723/7723.html",
+        "retrieved": "2026-10-18",
+        "note": "楽天トラベル API（SimpleHotelSearch、HotelDetailSearch、VacantHotelSearch，scripts/rakuten.mjs）：評分、細項評分、房數、check-in/out、照片、2027-02-09／02-10 的空房與價格"
+      },
+      {
+        "type": "google-maps",
+        "url": "https://maps.google.com/?cid=14717317136452546914",
+        "retrieved": "2026-10-18",
+        "note": "Google 地圖「海洋楼」：星數、評論數、座標、照片"
+      },
+      {
+        "type": "booking-site",
+        "url": "https://travel.rakuten.co.jp/HOTEL/7723/7723.html",
+        "retrieved": "2026-10-18",
+        "note": "43 室、步行 13 分、接送時段、海景房好評、舊式馬桶"
+      },
+      {
+        "type": "booking-site",
+        "url": "https://travel.rakuten.co.jp/HOTEL/7723/7723_std.html",
+        "retrieved": "2026-10-18",
+        "note": "設施資訊：停車 30 台、用餐方式；電梯、宴會場未寫"
+      },
+      {
+        "type": "booking-site",
+        "url": "https://hotel.travel.rakuten.co.jp/hotelinfo/plan/7723",
+        "retrieved": "2026-10-18",
+        "note": "3 種和室房型與一泊二食價格，2～4 人同價"
+      },
+      {
+        "type": "booking-site",
+        "url": "https://review.travel.rakuten.co.jp/hotel/voice/7723/",
+        "retrieved": "2026-10-18",
+        "note": "總評 4.00（58 則）；晚餐偏重口、房間偏窄"
+      },
+      {
+        "type": "media",
+        "url": "https://icotto.jp/hotels/9685",
+        "retrieved": "2026-10-18",
+        "note": "只看搜尋摘要：步行 13 分、昭和レトロ割烹旅館"
+      }
+    ],
+    "verified": false,
+    "extra": {
+      "onsen": "溫泉、大浴場未寫；楽天浴室評分 4.50",
+      "parking": "免費 30 台，先到先得",
+      "conflicts": [
+        "楽天施設トップ 4.29（57 則） vs 心得頁總評 4.00（58 則）"
+      ],
+      "rakutenHotelNo": 7723,
+      "rakutenVacancy": {
+        "retrieved": "2026-10-18",
+        "dates": [
+          "2027-02-09",
+          "2027-02-10"
+        ],
+        "combos": [
+          "5x3",
+          "4x4",
+          "3x5",
+          "2x8"
+        ],
+        "available": {
+          "2027-02-09": [],
+          "2027-02-10": []
+        },
+        "note": "15 人（全部以大人計）分 N 間同住的組合，有空房的列出；只代表查詢當天楽天上的庫存"
+      }
+    }
+  },
+  {
+    "id": "futami-yamato",
+    "type": "lodging",
+    "name": {
+      "ja": "民宿ヤマト",
+      "zh": "大和民宿"
+    },
+    "area": "futami",
+    "region": "futami-okitama",
+    "kind": "minshuku",
+    "coords": [
+      136.777085,
+      34.504594
+    ],
+    "coordsSource": "google-maps-url",
+    "address": "三重県伊勢市二見町茶屋9-7",
+    "hours": null,
+    "closedNote": null,
+    "febNote": null,
+    "closures": [],
+    "photos": [
+      {
+        "url": "https://trvimg.r10s.jp/share/image_up/15478/origin/361480c15ffd890a5d72491cf9cd9020cb5266bb.47.1.26.2.jpg",
+        "page": "https://travel.rakuten.co.jp/HOTEL/15478/15478.html",
+        "kind": "official",
+        "credit": "民宿ヤマト",
+        "license": null
+      },
+      {
+        "url": "https://img.travel.rakuten.co.jp/share/HOTEL/15478/15478.jpg",
+        "page": "https://travel.rakuten.co.jp/HOTEL/15478/15478.html",
+        "kind": "rakuten",
+        "credit": "楽天トラベル（施設提供）",
+        "license": null
+      },
+      {
+        "url": "https://lh3.googleusercontent.com/grass-cs/AABkmLfdbpHGE0M5_0RZ_dMCCvZIzaVQiqnhtI1jVFkMEvay0zL_jcVA7Kr14AaX51YnPMq2_etJt2l6DAjSPGV1n7ccyz09LhJBu_6gqLWq4Grs4w-sAvV9eolUT2A8Up5yg0KXPAqhbg=w408-h612-k-no",
+        "page": "https://maps.google.com/?cid=5674074088714481344",
+        "kind": "google",
+        "credit": "Google マップ",
+        "license": null
+      }
+    ],
+    "links": {
+      "official": null,
+      "googleMaps": "https://maps.google.com/?cid=5674074088714481344"
+    },
+    "tags": [],
+    "tier": null,
+    "nearestStation": {
+      "id": "jr-futaminoura",
+      "mode": "walk",
+      "minutes": 5,
+      "note": "JR参宮線二見浦駅下車、駅から徒歩5分以内（心得寫徒歩1分）"
+    },
+    "pickup": "有接送巴士，心得提到可接送到夫婦岩、演唱會場；可載人數未寫",
+    "meals": "varies",
+    "priceRange": "每人約 4,200～14,000 円（依方案，含素泊／附早餐；詳見 prices）",
+    "prices": [
+      {
+        "currency": "JPY",
+        "plan": "伊勢海老舟盛りプラン（一泊二食）",
+        "unit": "per-person",
+        "adult": 14000,
+        "child": null,
+        "season": "近 30 日參考（2026-10～11）",
+        "note": "和室 6 畳附衛浴，2 人入住含稅",
+        "source": "rakuten",
+        "url": "https://hotel.travel.rakuten.co.jp/hotelinfo/plan/15478",
+        "retrieved": "2026-10-18"
+      },
+      {
+        "currency": "JPY",
+        "plan": "ファミリープラン（一泊二食）",
+        "unit": "per-person",
+        "adult": 11000,
+        "child": null,
+        "season": "近 30 日參考（2026-10～11）",
+        "note": "海鮮 9 道，兒童餐 1,100 円",
+        "source": "rakuten",
+        "url": "https://hotel.travel.rakuten.co.jp/hotelinfo/plan/15478",
+        "retrieved": "2026-10-18"
+      },
+      {
+        "currency": "JPY",
+        "plan": "海鮮プラン（一泊二食）",
+        "unit": "per-person",
+        "adult": 9500,
+        "child": null,
+        "season": "近 30 日參考（2026-10～11）",
+        "note": "無衛浴房、只收現金",
+        "source": "rakuten",
+        "url": "https://hotel.travel.rakuten.co.jp/hotelinfo/plan/15478",
+        "retrieved": "2026-10-18"
+      },
+      {
+        "currency": "JPY",
+        "plan": "素泊まりプラン",
+        "unit": "per-person",
+        "adult": 4200,
+        "child": null,
+        "season": "近 30 日參考（2026-10～11）",
+        "note": "2 人入住；1 人 5,000 円",
+        "source": "rakuten",
+        "url": "https://hotel.travel.rakuten.co.jp/hotelinfo/plan/15478",
+        "retrieved": "2026-10-18"
+      },
+      {
+        "plan": "一泊二食 大人 2 名 1 室最低價（ビジネスマン必見！！ＪＲ二見浦駅目の前！お得な２食付プラン ）",
+        "unit": "per-person",
+        "adult": 7200,
+        "child": null,
+        "currency": "JPY",
+        "season": "2027-02-09（二）1 泊，大人 2 名 1 室",
+        "note": "房型：現金特価和室６畳ビジネス。15 人的組合兩天都沒有空房。楽天 API（查詢 2026-10-18）。",
+        "source": "rakuten-api",
+        "url": "https://hotel.travel.rakuten.co.jp/hotelinfo/plan/15478?f_nen1=2027&f_tuki1=2&f_hi1=9&f_nen2=2027&f_tuki2=2&f_hi2=10&f_heya_su=1&f_otona_su=2&f_s1=0&f_s2=0&f_y1=0&f_y2=0&f_y3=0&f_y4=0",
+        "retrieved": "2026-10-18"
+      }
+    ],
+    "luggage": null,
+    "checkIn": "15:00",
+    "checkOut": "10:00",
+    "dinnerAccess": null,
+    "group": {
+      "totalRooms": 13,
+      "roomTypes": [
+        "和室 6 畳 附衛浴 2～3 人",
+        "和室 6 畳 無衛浴 1～3 人"
+      ],
+      "maxGuests": null,
+      "wholeRental": null,
+      "pickupCapacity": null,
+      "nearbyCombos": [
+        "futami-asahikan",
+        "futami-iroha",
+        "futami-kyukaen",
+        "futami-castle-inn"
+      ],
+      "note": "13 室、每間 2～3 人，15 人要 6～7 間；設有宴會場；包館、團體方案未寫，需電話確認"
+    },
+    "ratings": {
+      "rakuten": 4.53,
+      "rakutenReviews": 127,
+      "jalan": null,
+      "jalanReviews": null,
+      "booking": null,
+      "google": 4.2,
+      "googleReviews": 125,
+      "rakutenService": 4.66,
+      "rakutenLocation": 4.57,
+      "rakutenRoom": 4.33,
+      "rakutenEquipment": 4.2,
+      "rakutenBath": 4.31,
+      "rakutenMeal": 4.88,
+      "note": "T8b（2026-10-18）：楽天 4.53（127 則，API）、Google 4.2（125 則，「民宿ヤマト」），5 分制。"
+    },
+    "accessibility": {
+      "elevator": false,
+      "beds": "和室，床型未寫",
+      "stairs": "心得（2026-09）說只有樓梯",
+      "kids": "ファミリープラン有兒童餐（1,100 円）；兒童費用有設定，金額未公開",
+      "note": "大浴場約 4～5 人，可包租，有按摩浴缸；建築老舊；寵物友善"
+    },
+    "reservation": {
+      "methods": [
+        "rakuten",
+        "jalan",
+        "phone"
+      ],
+      "phone": "0596-43-2215",
+      "url": "https://travel.rakuten.co.jp/HOTEL/15478/15478.html",
+      "groupNote": "部分方案只收現金；團體需電話洽詢"
+    },
+    "bookingLinks": {
+      "rakuten": "https://travel.rakuten.co.jp/HOTEL/15478/15478.html"
+    },
+    "sources": [
+      {
+        "type": "booking-site",
+        "url": "https://travel.rakuten.co.jp/HOTEL/15478/15478.html",
+        "retrieved": "2026-10-18",
+        "note": "楽天トラベル API（SimpleHotelSearch、HotelDetailSearch、VacantHotelSearch，scripts/rakuten.mjs）：評分、細項評分、房數、check-in/out、照片、2027-02-09／02-10 的空房與價格"
+      },
+      {
+        "type": "google-maps",
+        "url": "https://maps.google.com/?cid=5674074088714481344",
+        "retrieved": "2026-10-18",
+        "note": "Google 地圖「民宿ヤマト」：星數、評論數、座標、照片"
+      },
+      {
+        "type": "booking-site",
+        "url": "https://travel.rakuten.co.jp/HOTEL/15478/15478.html",
+        "retrieved": "2026-10-18",
+        "note": "13 室、站前、伊勢海老舟盛照片、接送巴士"
+      },
+      {
+        "type": "booking-site",
+        "url": "https://travel.rakuten.co.jp/HOTEL/15478/15478_std.html",
+        "retrieved": "2026-10-18",
+        "note": "大浴場、宴會場、停車 20 台"
+      },
+      {
+        "type": "booking-site",
+        "url": "https://hotel.travel.rakuten.co.jp/hotelinfo/plan/15478",
+        "retrieved": "2026-10-18",
+        "note": "和室 6 畳 2～3 人，方案價格 4,200～14,000 円"
+      },
+      {
+        "type": "booking-site",
+        "url": "https://review.travel.rakuten.co.jp/hotel/voice/15478/",
+        "retrieved": "2026-10-18",
+        "note": "4.53（127 則）、晚餐 4.92；只有樓梯、大浴場 4～5 人、建築老舊"
+      }
+    ],
+    "verified": false,
+    "extra": {
+      "onsen": "大浴場（約 4～5 人，可包租，按摩浴缸）；是否溫泉未寫",
+      "parking": "免費 20 台",
+      "conflicts": [
+        "楽天施設トップ 4.57（126 則） vs 心得頁 4.53（127 則）",
+        "車站步行：楽天說明 5 分以內 vs 心得 1 分"
+      ],
+      "rakutenHotelNo": 15478,
+      "rakutenVacancy": {
+        "retrieved": "2026-10-18",
+        "dates": [
+          "2027-02-09",
+          "2027-02-10"
+        ],
+        "combos": [
+          "5x3",
+          "4x4",
+          "3x5",
+          "2x8"
+        ],
+        "available": {
+          "2027-02-09": [],
+          "2027-02-10": []
+        },
+        "note": "15 人（全部以大人計）分 N 間同住的組合，有空房的列出；只代表查詢當天楽天上的庫存"
+      }
+    }
+  },
+  {
+    "id": "futami-tsukasatei",
+    "type": "lodging",
+    "name": {
+      "ja": "民宿 つかさ亭",
+      "zh": "司亭民宿"
+    },
+    "area": "futami",
+    "region": "futami-okitama",
+    "kind": "minshuku",
+    "coords": [
+      136.7948338,
+      34.5061015
+    ],
+    "coordsSource": "google-maps-url",
+    "address": "三重県伊勢市二見町江681-29",
+    "hours": null,
+    "closedNote": null,
+    "febNote": null,
+    "closures": [],
+    "photos": [
+      {
+        "url": "https://img.travel.rakuten.co.jp/share/HOTEL/50638/50638.jpg",
+        "page": "https://travel.rakuten.co.jp/HOTEL/50638/50638.html",
+        "kind": "rakuten",
+        "credit": "楽天トラベル（施設提供）",
+        "license": null
+      },
+      {
+        "url": "https://lh3.googleusercontent.com/grass-cs/AABkmLdu29C3rpqfCQ6QN10PZIyxCVR4pJ4SNgK1LmUOGjXSaGHak1IEy7Xa2TLfRn-8IantNtFGBX0SRAEnmIftegIud9Psx9e6_dGCFwOF1rZyg7rRGjIrregvBjAaGSuDUwy1zWz3=w427-h240-k-no",
+        "page": "https://maps.google.com/?cid=13253907407936778172",
+        "kind": "google",
+        "credit": "Google マップ",
+        "license": null
+      }
+    ],
+    "links": {
+      "official": null,
+      "googleMaps": "https://maps.google.com/?cid=13253907407936778172"
+    },
+    "tags": [],
+    "tier": null,
+    "nearestStation": {
+      "id": "jr-futaminoura",
+      "mode": "taxi",
+      "minutes": 3,
+      "note": "JR二見浦駅より車で約3分"
+    },
+    "pickup": null,
+    "meals": "dinner+breakfast",
+    "priceRange": "每人約 10,000 円（一泊二食；詳見 prices）",
+    "prices": [
+      {
+        "currency": "JPY",
+        "plan": "和室 8 畳 一泊二食",
+        "unit": "per-person",
+        "adult": 10000,
+        "child": null,
+        "season": "近 30 日參考價",
+        "note": "含稅；2～4 人同價；現場付款",
+        "source": "rakuten",
+        "url": "https://hotel.travel.rakuten.co.jp/hotelinfo/plan/50638",
+        "retrieved": "2026-10-18"
+      },
+      {
+        "currency": "JPY",
+        "plan": "和室 10 畳 一泊二食",
+        "unit": "per-person",
+        "adult": 10000,
+        "child": null,
+        "season": "近 30 日參考價",
+        "note": "含稅；2～4 人同價；現場付款",
+        "source": "rakuten",
+        "url": "https://hotel.travel.rakuten.co.jp/hotelinfo/plan/50638",
+        "retrieved": "2026-10-18"
+      }
+    ],
+    "luggage": null,
+    "checkIn": "14:00",
+    "checkOut": "09:00",
+    "dinnerAccess": null,
+    "group": {
+      "totalRooms": 7,
+      "roomTypes": [
+        "和室 8 畳 2～4 人（海景，無衛浴）",
+        "和室 10 畳 2～4 人（海景，無衛浴）"
+      ],
+      "maxGuests": null,
+      "wholeRental": false,
+      "pickupCapacity": null,
+      "nearbyCombos": [
+        "futami-yusura",
+        "futami-oishiya",
+        "futami-iwatokan",
+        "futami-kaiyoro"
+      ],
+      "note": "7 室；心得說老闆年長，一天只收約 2 組，15 人能否全館需電話確認"
+    },
+    "ratings": {
+      "rakuten": null,
+      "rakutenReviews": 186,
+      "jalan": null,
+      "jalanReviews": null,
+      "booking": null,
+      "google": 4.4,
+      "googleReviews": 28,
+      "note": "T8b（2026-10-18）：楽天 API 平均回傳 0（評分不公開或舊制），186 則、Google 4.4（28 則，「民宿 つかさ亭」），5 分制。"
+    },
+    "accessibility": {
+      "elevator": null,
+      "beds": "和室鋪被",
+      "stairs": null,
+      "kids": "有小學高／低年級、幼兒兒童價，金額未列",
+      "note": "浴室、廁所共用；心得提到浴室男女輪流制"
+    },
+    "reservation": {
+      "methods": [
+        "rakuten",
+        "phone"
+      ],
+      "phone": "0596-44-0551",
+      "url": "https://travel.rakuten.co.jp/HOTEL/50638/50638.html",
+      "groupNote": "一天約 2 組（心得），團體需電話問"
+    },
+    "bookingLinks": {
+      "rakuten": "https://travel.rakuten.co.jp/HOTEL/50638/50638.html"
+    },
+    "sources": [
+      {
+        "type": "booking-site",
+        "url": "https://travel.rakuten.co.jp/HOTEL/50638/50638.html",
+        "retrieved": "2026-10-18",
+        "note": "楽天トラベル API（SimpleHotelSearch、HotelDetailSearch、VacantHotelSearch，scripts/rakuten.mjs）：評分、細項評分、房數、check-in/out、照片、2027-02-09／02-10 的空房與價格"
+      },
+      {
+        "type": "google-maps",
+        "url": "https://maps.google.com/?cid=13253907407936778172",
+        "retrieved": "2026-10-18",
+        "note": "Google 地圖「民宿 つかさ亭」：星數、評論數、座標、照片"
+      },
+      {
+        "type": "booking-site",
+        "url": "https://travel.rakuten.co.jp/HOTEL/50638/50638.html",
+        "retrieved": "2026-10-18",
+        "note": "7 室、停車 10 台、伊勢海老鮑海鮮料理、check-in/out"
+      },
+      {
+        "type": "booking-site",
+        "url": "https://travel.rakuten.co.jp/HOTEL/50638/50638_std.html",
+        "retrieved": "2026-10-18",
+        "note": "設備、無電梯與浴室資料"
+      },
+      {
+        "type": "booking-site",
+        "url": "https://hotel.travel.rakuten.co.jp/hotelinfo/plan/50638",
+        "retrieved": "2026-10-18",
+        "note": "和室 8／10 畳 2～4 人，一泊二食每人 10,000 円"
+      },
+      {
+        "type": "booking-site",
+        "url": "https://review.travel.rakuten.co.jp/hotel/voice/50638/",
+        "retrieved": "2026-10-18",
+        "note": "183 則，料理份量大 CP 高；建築老舊、共用浴廁；一天約 2 組"
+      }
+    ],
+    "verified": false,
+    "extra": {
+      "parking": "免費 10 台，不需預約",
+      "conflicts": [
+        "楽天 API 平均 0（186 則）vs 施設頁 3.00（186 則）vs 口コミ頁 183 則多為 4～5 星",
+        "不收信用卡"
+      ],
+      "rakutenHotelNo": 50638,
+      "rakutenVacancy": {
+        "retrieved": "2026-10-18",
+        "dates": [
+          "2027-02-09",
+          "2027-02-10"
+        ],
+        "combos": [
+          "5x3",
+          "4x4",
+          "3x5",
+          "2x8"
+        ],
+        "available": {
+          "2027-02-09": [],
+          "2027-02-10": []
+        },
+        "note": "15 人（全部以大人計）分 N 間同住的組合，有空房的列出；只代表查詢當天楽天上的庫存"
+      }
+    }
+  },
+  {
+    "id": "futami-asahikan",
+    "type": "lodging",
+    "name": {
+      "ja": "朝日館",
+      "zh": "朝日館"
+    },
+    "area": "futami",
+    "region": "futami-okitama",
+    "kind": "ryokan",
+    "coords": [
+      136.7785706,
+      34.5082901
+    ],
+    "coordsSource": "google-maps-url",
+    "address": "三重県伊勢市二見町茶屋228",
+    "hours": null,
+    "closedNote": null,
+    "febNote": null,
+    "closures": [],
+    "photos": [
+      {
+        "url": "https://img.travel.rakuten.co.jp/share/HOTEL/67334/67334.jpg",
+        "page": "https://travel.rakuten.co.jp/HOTEL/67334/67334.html",
+        "kind": "rakuten",
+        "credit": "楽天トラベル（施設提供）",
+        "license": null
+      },
+      {
+        "url": "https://lh3.googleusercontent.com/grass-cs/AABkmLf_8BDytGx96lxKvnRZcdt3PYGga3_uuDpxvx_gQuV_wRegs5F_73YUk7eaPtnhb6d0OiioFn0KE8Uzkvtmk2A4Ir0xQ8zuEa5OykGjV-w5RCYhMtPgubGluD-_Lh6IT8Ax_b40wF2ahPjK=w408-h395-k-no",
+        "page": "https://maps.google.com/?cid=7140215160346751373",
+        "kind": "google",
+        "credit": "Google マップ",
+        "license": null
+      }
+    ],
+    "links": {
+      "official": null,
+      "googleMaps": "https://maps.google.com/?cid=7140215160346751373"
+    },
+    "tags": [],
+    "tier": null,
+    "nearestStation": {
+      "id": "jr-futaminoura",
+      "mode": "walk",
+      "minutes": 7,
+      "note": "JR二見浦駅より徒歩約7分；JR伊勢市駅からバス約22分"
+    },
+    "pickup": null,
+    "meals": "dinner+breakfast",
+    "priceRange": "每人約 17,875～20,625 円（一泊二食；詳見 prices）",
+    "prices": [
+      {
+        "currency": "JPY",
+        "plan": "別館 和室10畳 一泊二食（夜バイキング＋松阪牛イモ煮汁）",
+        "unit": "per-person",
+        "adult": 17875,
+        "child": null,
+        "season": "近 30 日參考",
+        "note": "4 人用；3 人用 23,833 円；附廁所、無房內浴室",
+        "source": "rakuten",
+        "url": "https://hotel.travel.rakuten.co.jp/hotelinfo/plan/67334",
+        "retrieved": "2026-10-18"
+      },
+      {
+        "currency": "JPY",
+        "plan": "清風荘 和室10畳 附衛浴 一泊二食（＋アワビバター陶板焼き）",
+        "unit": "per-person",
+        "adult": 19250,
+        "child": null,
+        "season": "近 30 日參考",
+        "note": "4 人用；3 人用 25,667 円",
+        "source": "rakuten",
+        "url": "https://hotel.travel.rakuten.co.jp/hotelinfo/plan/67334",
+        "retrieved": "2026-10-18"
+      },
+      {
+        "currency": "JPY",
+        "plan": "本館 和室10畳 附衛浴 一泊二食（＋松阪牛A5ミニステーキ陶板）",
+        "unit": "per-person",
+        "adult": 20625,
+        "child": null,
+        "season": "近 30 日參考",
+        "note": "4 人用；3 人用 27,500 円",
+        "source": "rakuten",
+        "url": "https://hotel.travel.rakuten.co.jp/hotelinfo/plan/67334",
+        "retrieved": "2026-10-18"
+      },
+      {
+        "plan": "一泊二食 楽天 15 人組合最低價（４，松阪牛イモ煮汁、松阪牛A5証明書付きミニステーキ陶板と夜５０種、朝２０種程のバイキング料理）",
+        "unit": "per-person",
+        "adult": 20625,
+        "child": null,
+        "currency": "JPY",
+        "season": "2027-02-09（二）1 泊，4 間 × 4 人（大人）有空房時的含晚餐最低價",
+        "note": "房型：本館（新館）　眺めがよい、玄関付き本格和室　。楽天 API 空室検索（查詢 2026-10-18），含稅、不含入湯稅等。這天有空房的組合：4x4、5x3。",
+        "source": "rakuten-api",
+        "url": "https://hotel.travel.rakuten.co.jp/hotelinfo/plan/67334?f_nen1=2027&f_tuki1=2&f_hi1=9&f_nen2=2027&f_tuki2=2&f_hi2=10&f_heya_su=4&f_otona_su=4&f_s1=0&f_s2=0&f_y1=0&f_y2=0&f_y3=0&f_y4=0",
+        "retrieved": "2026-10-18"
+      },
+      {
+        "plan": "一泊二食 楽天 15 人組合最低價（４，松阪牛イモ煮汁、松阪牛A5証明書付きミニステーキ陶板と夜５０種、朝２０種程のバイキング料理）",
+        "unit": "per-person",
+        "adult": 20625,
+        "child": null,
+        "currency": "JPY",
+        "season": "2027-02-10（三，2/11 國定假日前一晚）1 泊，4 間 × 4 人（大人）有空房時的含晚餐最低價",
+        "note": "房型：本館（新館）　眺めがよい、玄関付き本格和室　。楽天 API 空室検索（查詢 2026-10-18），含稅、不含入湯稅等。這天有空房的組合：4x4、5x3。",
+        "source": "rakuten-api",
+        "url": "https://hotel.travel.rakuten.co.jp/hotelinfo/plan/67334?f_nen1=2027&f_tuki1=2&f_hi1=10&f_nen2=2027&f_tuki2=2&f_hi2=11&f_heya_su=4&f_otona_su=4&f_s1=0&f_s2=0&f_y1=0&f_y2=0&f_y3=0&f_y4=0",
+        "retrieved": "2026-10-18"
+      },
+      {
+        "plan": "一泊二食 大人 3＋小學生高年級 1（1 室）最低價（1，お部屋はレトロ別館、松阪牛イモ煮汁付き、夜５０種類、朝２０種類ほどのバイキングお料理）",
+        "unit": "per-person",
+        "adult": 17875,
+        "child": null,
+        "currency": "JPY",
+        "season": "2027-02-09（二）1 泊，1 間 大人 3＋小學生高年級 1",
+        "note": "房型：レトロ別館　日本建築　部屋風呂無　大浴場使用。一間總價 71,500 円；API 的小學生價和大人相同（可能以房計價或兒童同價），兒童價不推算。楽天 API（查詢 2026-10-18）。",
+        "source": "rakuten-api",
+        "url": "https://hotel.travel.rakuten.co.jp/hotelinfo/plan/67334?f_nen1=2027&f_tuki1=2&f_hi1=9&f_nen2=2027&f_tuki2=2&f_hi2=10&f_heya_su=1&f_otona_su=3&f_s1=1&f_s2=0&f_y1=0&f_y2=0&f_y3=0&f_y4=0",
+        "retrieved": "2026-10-18"
+      }
+    ],
+    "luggage": null,
+    "checkIn": "15:00",
+    "checkOut": "10:00",
+    "dinnerAccess": null,
+    "group": {
+      "totalRooms": 34,
+      "roomTypes": [
+        "和室 10 畳 2～4 人（別館／清風荘／本館）",
+        "和室 37 畳 2～5 人（鳳凰の間、雲井の間）"
+      ],
+      "maxGuests": null,
+      "wholeRental": false,
+      "pickupCapacity": null,
+      "nearbyCombos": [],
+      "note": "有宴會場、會議室；團體方案頁面未提。15 人可分 4～5 室"
+    },
+    "ratings": {
+      "rakuten": 2,
+      "rakutenReviews": 409,
+      "jalan": null,
+      "jalanReviews": null,
+      "booking": null,
+      "google": 3.9,
+      "googleReviews": 149,
+      "note": "T8b（2026-10-18）：楽天 2（409 則，API）、Google 3.9（149 則，「朝日館」），5 分制。"
+    },
+    "accessibility": {
+      "elevator": null,
+      "beds": "全部和室鋪被，未見有床的房",
+      "stairs": null,
+      "kids": "子供料金設定有り，金額未列",
+      "note": "可帶輪椅、有租借輪椅、客房西式馬桶與扶手、大浴場浴池有扶手、可提供高齡者料理"
+    },
+    "reservation": {
+      "methods": [
+        "rakuten",
+        "phone"
+      ],
+      "phone": "0596-43-2001",
+      "url": "https://travel.rakuten.co.jp/HOTEL/67334/67334.html",
+      "groupNote": null
+    },
+    "bookingLinks": {
+      "rakuten": "https://travel.rakuten.co.jp/HOTEL/67334/67334.html"
+    },
+    "sources": [
+      {
+        "type": "booking-site",
+        "url": "https://travel.rakuten.co.jp/HOTEL/67334/67334.html",
+        "retrieved": "2026-10-18",
+        "note": "楽天トラベル API（SimpleHotelSearch、HotelDetailSearch、VacantHotelSearch，scripts/rakuten.mjs）：評分、細項評分、房數、check-in/out、照片、2027-02-09／02-10 的空房與價格"
+      },
+      {
+        "type": "google-maps",
+        "url": "https://maps.google.com/?cid=7140215160346751373",
+        "retrieved": "2026-10-18",
+        "note": "Google 地圖「朝日館」：星數、評論數、座標、照片"
+      },
+      {
+        "type": "booking-site",
+        "url": "https://travel.rakuten.co.jp/HOTEL/67334/67334.html",
+        "retrieved": "2026-10-18",
+        "note": "地址、交通、入退房、歷史、自助餐與人工溫泉"
+      },
+      {
+        "type": "booking-site",
+        "url": "https://travel.rakuten.co.jp/HOTEL/67334/67334_std.html",
+        "retrieved": "2026-10-18",
+        "note": "34 室、輪椅與扶手、高齡者料理、停車 30 台"
+      },
+      {
+        "type": "booking-site",
+        "url": "https://review.travel.rakuten.co.jp/hotel/voice/67334/",
+        "retrieved": "2026-10-18",
+        "note": "總評 2.00 但多數 4～5 星；料理與員工好評，老舊、隔音差"
+      },
+      {
+        "type": "booking-site",
+        "url": "https://hotel.travel.rakuten.co.jp/hotelinfo/plan/67334",
+        "retrieved": "2026-10-18",
+        "note": "全部和室，一泊二食每人 17,875～27,500 円（3～4 人用）"
+      }
+    ],
+    "verified": false,
+    "extra": {
+      "onsen": "人工溫泉「光明の湯」（光明石），大浴場；無露天",
+      "parking": "免費 30 台，免預約",
+      "conflicts": [
+        "楽天總評 2.00（408 則）與星級分布（5 星 140、4 星 125）不一致，疑為舊制或顯示錯誤；楽天最新心得 2022-11"
+      ],
+      "rakutenHotelNo": 67334,
+      "rakutenVacancy": {
+        "retrieved": "2026-10-18",
+        "dates": [
+          "2027-02-09",
+          "2027-02-10"
+        ],
+        "combos": [
+          "5x3",
+          "4x4",
+          "3x5",
+          "2x8"
+        ],
+        "available": {
+          "2027-02-09": [
+            "4x4",
+            "5x3"
+          ],
+          "2027-02-10": [
+            "4x4",
+            "5x3"
+          ]
+        },
+        "note": "15 人（全部以大人計）分 N 間同住的組合，有空房的列出；只代表查詢當天楽天上的庫存"
+      }
+    }
+  },
+  {
+    "id": "futami-iroha",
+    "type": "lodging",
+    "name": {
+      "ja": "Tabist 麻野館別館いろは 伊勢",
+      "zh": "麻野館別館 いろは"
+    },
+    "area": "futami",
+    "region": "futami-okitama",
+    "kind": "ryokan",
+    "coords": [
+      136.7804646,
+      34.5080768
+    ],
+    "coordsSource": "google-maps-url",
+    "address": "三重県伊勢市二見町茶屋537-10",
+    "hours": null,
+    "closedNote": null,
+    "febNote": "素泊方案期間到 2027-10-31；2 月休館未提",
+    "closures": [],
+    "photos": [
+      {
+        "url": "https://img.travel.rakuten.co.jp/share/HOTEL/180248/180248.jpg",
+        "page": "https://travel.rakuten.co.jp/HOTEL/180248/180248.html",
+        "kind": "rakuten",
+        "credit": "楽天トラベル（施設提供）",
+        "license": null
+      },
+      {
+        "url": "https://lh3.googleusercontent.com/grass-cs/AABkmLc_L9OGyN5vRcS5BkqSdCnE3sHOSipT0QicjvQxjb-V4oR8OSxy6WQxsuvI7efp60PgI53hiuNL_Oa9E-41elFNAh0uzCimpjXXOcf2J8DuRw-7o7EaRr7hRyhTvbc3hmQ38zaB=w408-h306-k-no",
+        "page": "https://maps.google.com/?cid=11342866978358193585",
+        "kind": "google",
+        "credit": "Google マップ",
+        "license": null
+      }
+    ],
+    "links": {
+      "official": null,
+      "googleMaps": "https://maps.google.com/?cid=11342866978358193585"
+    },
+    "tags": [],
+    "tier": null,
+    "nearestStation": {
+      "id": "jr-futaminoura",
+      "mode": "walk",
+      "minutes": 8,
+      "note": "JR参宮線「二見浦駅」徒歩約8分；別館は送迎なし"
+    },
+    "pickup": null,
+    "meals": "none",
+    "priceRange": "每人約 6,400～8,420 円（依方案，含素泊／附早餐；詳見 prices）",
+    "prices": [
+      {
+        "currency": "JPY",
+        "plan": "素泊まり 禁煙和室 1～5名",
+        "unit": "per-person",
+        "adult": 6400,
+        "child": null,
+        "season": "近 30 日參考",
+        "note": "5 人用 6,400～18,240 円",
+        "source": "rakuten",
+        "url": "https://hotel.travel.rakuten.co.jp/hotelinfo/plan/180248",
+        "retrieved": "2026-10-18"
+      },
+      {
+        "currency": "JPY",
+        "plan": "素泊まり 禁煙和室 1～4名",
+        "unit": "per-person",
+        "adult": 6500,
+        "child": null,
+        "season": "近 30 日參考",
+        "note": "4 人用 6,500～15,675 円",
+        "source": "rakuten",
+        "url": "https://hotel.travel.rakuten.co.jp/hotelinfo/plan/180248",
+        "retrieved": "2026-10-18"
+      },
+      {
+        "currency": "JPY",
+        "plan": "素泊まり 禁煙和室 1～3名",
+        "unit": "per-person",
+        "adult": 6567,
+        "child": null,
+        "season": "近 30 日參考",
+        "note": "3 人用 6,567～20,134 円",
+        "source": "rakuten",
+        "url": "https://hotel.travel.rakuten.co.jp/hotelinfo/plan/180248",
+        "retrieved": "2026-10-18"
+      },
+      {
+        "plan": "素泊 楽天 15 人組合最低價（素泊まりプラン（通年））",
+        "unit": "per-person",
+        "adult": 8420,
+        "child": null,
+        "currency": "JPY",
+        "season": "2027-02-09（二）1 泊，3 間 × 5 人（大人）有空房時的最低價",
+        "note": "房型：【禁煙】和室１〜５名様（バス・トイレ共用）。楽天 API 空室検索（查詢 2026-10-18），含稅、不含入湯稅等。這天有空房的組合：3x5、4x4、5x3。",
+        "source": "rakuten-api",
+        "url": "https://hotel.travel.rakuten.co.jp/hotelinfo/plan/180248?f_nen1=2027&f_tuki1=2&f_hi1=9&f_nen2=2027&f_tuki2=2&f_hi2=10&f_heya_su=3&f_otona_su=5&f_s1=0&f_s2=0&f_y1=0&f_y2=0&f_y3=0&f_y4=0",
+        "retrieved": "2026-10-18"
+      },
+      {
+        "plan": "素泊 楽天 15 人組合最低價（素泊まりプラン（通年））",
+        "unit": "per-person",
+        "adult": 8320,
+        "child": null,
+        "currency": "JPY",
+        "season": "2027-02-10（三，2/11 國定假日前一晚）1 泊，3 間 × 5 人（大人）有空房時的最低價",
+        "note": "房型：【禁煙】和室１〜５名様（バス・トイレ共用）。楽天 API 空室検索（查詢 2026-10-18），含稅、不含入湯稅等。這天有空房的組合：3x5、4x4、5x3。",
+        "source": "rakuten-api",
+        "url": "https://hotel.travel.rakuten.co.jp/hotelinfo/plan/180248?f_nen1=2027&f_tuki1=2&f_hi1=10&f_nen2=2027&f_tuki2=2&f_hi2=11&f_heya_su=3&f_otona_su=5&f_s1=0&f_s2=0&f_y1=0&f_y2=0&f_y3=0&f_y4=0",
+        "retrieved": "2026-10-18"
+      },
+      {
+        "plan": "素泊 大人 3＋小學生高年級 1（1 室）最低價（素泊まりプラン（通年））",
+        "unit": "per-person",
+        "adult": 7250,
+        "child": null,
+        "currency": "JPY",
+        "season": "2027-02-09（二）1 泊，1 間 大人 3＋小學生高年級 1",
+        "note": "房型：【禁煙】和室１〜４名様（バス・トイレ共用）。一間總價 29,000 円；API 的小學生價和大人相同（可能以房計價或兒童同價），兒童價不推算。楽天 API（查詢 2026-10-18）。",
+        "source": "rakuten-api",
+        "url": "https://hotel.travel.rakuten.co.jp/hotelinfo/plan/180248?f_nen1=2027&f_tuki1=2&f_hi1=9&f_nen2=2027&f_tuki2=2&f_hi2=10&f_heya_su=1&f_otona_su=3&f_s1=1&f_s2=0&f_y1=0&f_y2=0&f_y3=0&f_y4=0",
+        "retrieved": "2026-10-18"
+      }
+    ],
+    "luggage": "只能在入住前寄放於櫃台",
+    "checkIn": "16:00",
+    "checkOut": "10:00",
+    "dinnerAccess": null,
+    "group": {
+      "totalRooms": 15,
+      "roomTypes": [
+        "禁煙和室 1～2 人",
+        "禁煙和室 1～3 人",
+        "禁煙和室 1～4 人",
+        "禁煙和室 1～5 人"
+      ],
+      "maxGuests": null,
+      "wholeRental": false,
+      "pickupCapacity": null,
+      "nearbyCombos": [],
+      "note": "2 室以上訂單取消規定不同，需聯絡旅館；團體方案未提"
+    },
+    "ratings": {
+      "rakuten": 3.69,
+      "rakutenReviews": 17,
+      "jalan": null,
+      "jalanReviews": null,
+      "booking": null,
+      "google": 4.1,
+      "googleReviews": 25,
+      "note": "T8b（2026-10-18）：楽天 3.69（17 則，API）、Google 4.1（25 則，「麻野館 別館いろは」），5 分制。"
+    },
+    "accessibility": {
+      "elevator": null,
+      "beds": "和室鋪被",
+      "stairs": null,
+      "kids": "子供料金設定有り，金額未列；每位大人最多帶 1 名不佔床幼兒（無寢具）",
+      "note": "多數房型共用浴室・廁所，部分房附廁所"
+    },
+    "reservation": {
+      "methods": [
+        "rakuten",
+        "phone"
+      ],
+      "phone": "0596-43-2014",
+      "url": "https://travel.rakuten.co.jp/HOTEL/180248/180248.html",
+      "groupNote": "2 室以上要聯絡旅館（取消規定不同）"
+    },
+    "bookingLinks": {
+      "rakuten": "https://travel.rakuten.co.jp/HOTEL/180248/180248.html"
+    },
+    "sources": [
+      {
+        "type": "booking-site",
+        "url": "https://travel.rakuten.co.jp/HOTEL/180248/180248.html",
+        "retrieved": "2026-10-18",
+        "note": "楽天トラベル API（SimpleHotelSearch、HotelDetailSearch、VacantHotelSearch，scripts/rakuten.mjs）：評分、細項評分、房數、check-in/out、照片、2027-02-09／02-10 的空房與價格"
+      },
+      {
+        "type": "google-maps",
+        "url": "https://maps.google.com/?cid=11342866978358193585",
+        "retrieved": "2026-10-18",
+        "note": "Google 地圖「麻野館 別館いろは」：星數、評論數、座標、照片"
+      },
+      {
+        "type": "booking-site",
+        "url": "https://travel.rakuten.co.jp/HOTEL/180248/180248.html",
+        "retrieved": "2026-10-18",
+        "note": "交通、入退房、禁煙和室 2～5 人、大浴場、停車"
+      },
+      {
+        "type": "booking-site",
+        "url": "https://travel.rakuten.co.jp/HOTEL/180248/180248_std.html",
+        "retrieved": "2026-10-18",
+        "note": "15 室、不收信用卡、門禁 24:00、多室訂單要聯絡"
+      },
+      {
+        "type": "booking-site",
+        "url": "https://review.travel.rakuten.co.jp/hotel/voice/180248/",
+        "retrieved": "2026-10-18",
+        "note": "3.69（18 則）；立地好，設備老舊、浴室發霉、無吹風機"
+      },
+      {
+        "type": "booking-site",
+        "url": "https://hotel.travel.rakuten.co.jp/hotelinfo/plan/180248",
+        "retrieved": "2026-10-18",
+        "note": "只有素泊，每人約 6,400 円起；不能加餐、無接送"
+      }
+    ],
+    "verified": false,
+    "extra": {
+      "onsen": "大浴場（非溫泉），24 小時可用",
+      "parking": "免費 15 台，免預約",
+      "conflicts": [
+        "方案標題寫共用浴室・廁所，內文寫無；部分房附廁所",
+        "楽天施設頁 3.67（16 則）、口コミ頁 3.69（18 則）"
+      ],
+      "rakutenHotelNo": 180248,
+      "rakutenVacancy": {
+        "retrieved": "2026-10-18",
+        "dates": [
+          "2027-02-09",
+          "2027-02-10"
+        ],
+        "combos": [
+          "5x3",
+          "4x4",
+          "3x5",
+          "2x8"
+        ],
+        "available": {
+          "2027-02-09": [
+            "3x5",
+            "4x4",
+            "5x3"
+          ],
+          "2027-02-10": [
+            "3x5",
+            "4x4",
+            "5x3"
+          ]
+        },
+        "note": "15 人（全部以大人計）分 N 間同住的組合，有空房的列出；只代表查詢當天楽天上的庫存"
+      }
+    }
+  },
+  {
+    "id": "futami-pokapokamura",
+    "type": "lodging",
+    "name": {
+      "ja": "ぽかぽか村",
+      "zh": "暖暖村"
+    },
+    "area": "futami",
+    "region": "futami-okitama",
+    "kind": "other",
+    "coords": [
+      136.7712668,
+      34.5100383
+    ],
+    "coordsSource": "google-maps-url",
+    "address": "三重県伊勢市二見町荘2031-1",
+    "hours": null,
+    "closedNote": null,
+    "febNote": "2025-12 心得反映熱水不足、寒冷；休館日未提",
+    "closures": [],
+    "photos": [
+      {
+        "url": "https://img.travel.rakuten.co.jp/share/HOTEL/146856/146856.jpg",
+        "page": "https://travel.rakuten.co.jp/HOTEL/146856/146856.html",
+        "kind": "rakuten",
+        "credit": "楽天トラベル（施設提供）",
+        "license": null
+      },
+      {
+        "url": "https://lh3.googleusercontent.com/grass-cs/AABkmLdMThY49PYcC1IaL4MdiI0grwgfOy-QiS3-1pelqiQUY3v7wJiL3KSiuFGtPGcRDkwIT1x_33CwrGg8XSnfkyYcVvrMGygYI--1WJdqhgqdbB_ou4wnlei5GPyvUJzvVBOUnXsnaccR3yFm=w408-h287-k-no",
+        "page": "https://maps.google.com/?cid=16790299573162377964",
+        "kind": "google",
+        "credit": "Google マップ",
+        "license": null
+      }
+    ],
+    "links": {
+      "official": null,
+      "googleMaps": "https://maps.google.com/?cid=16790299573162377964"
+    },
+    "tags": [],
+    "tier": null,
+    "nearestStation": {
+      "id": "jr-futaminoura",
+      "mode": "walk",
+      "minutes": 15,
+      "note": "JR参宮線「二見浦駅」徒歩約15分"
+    },
+    "pickup": null,
+    "meals": "none",
+    "priceRange": "每人約 3,700～4,900 円（依方案，含素泊／附早餐；詳見 prices）",
+    "prices": [
+      {
+        "currency": "JPY",
+        "plan": "【10畳＋縁側6畳】和室 素泊まり",
+        "unit": "per-person",
+        "adult": 4000,
+        "child": null,
+        "season": "近 30 日參考",
+        "note": "5 人以上 4,000～8,100 円；4 人 4,500～8,500 円",
+        "source": "rakuten",
+        "url": "https://hotel.travel.rakuten.co.jp/hotelinfo/plan/146856",
+        "retrieved": "2026-10-18"
+      },
+      {
+        "currency": "JPY",
+        "plan": "【8畳＋縁側3畳】和室 素泊まり",
+        "unit": "per-person",
+        "adult": 3900,
+        "child": null,
+        "season": "近 30 日參考",
+        "note": "4 人 3,900～7,800 円",
+        "source": "rakuten",
+        "url": "https://hotel.travel.rakuten.co.jp/hotelinfo/plan/146856",
+        "retrieved": "2026-10-18"
+      },
+      {
+        "plan": "素泊 楽天 15 人組合最低價（★学生限定★　とにかく安く泊まれる素泊まりプラン）",
+        "unit": "per-person",
+        "adult": 3700,
+        "child": null,
+        "currency": "JPY",
+        "season": "2027-02-09（二）1 泊，4 間 × 4 人（大人）有空房時的最低價",
+        "note": "房型：【8畳＋縁側3畳】和室◆1〜4名様。楽天 API 空室検索（查詢 2026-10-18），含稅、不含入湯稅等。這天有空房的組合：4x4、5x3。",
+        "source": "rakuten-api",
+        "url": "https://hotel.travel.rakuten.co.jp/hotelinfo/plan/146856?f_nen1=2027&f_tuki1=2&f_hi1=9&f_nen2=2027&f_tuki2=2&f_hi2=10&f_heya_su=4&f_otona_su=4&f_s1=0&f_s2=0&f_y1=0&f_y2=0&f_y3=0&f_y4=0",
+        "retrieved": "2026-10-18"
+      },
+      {
+        "plan": "素泊 楽天 15 人組合最低價（★学生限定★　とにかく安く泊まれる素泊まりプラン）",
+        "unit": "per-person",
+        "adult": 4900,
+        "child": null,
+        "currency": "JPY",
+        "season": "2027-02-10（三，2/11 國定假日前一晚）1 泊，4 間 × 4 人（大人）有空房時的最低價",
+        "note": "房型：【8畳＋縁側3畳】和室◆1〜4名様。楽天 API 空室検索（查詢 2026-10-18），含稅、不含入湯稅等。這天有空房的組合：4x4、5x3。",
+        "source": "rakuten-api",
+        "url": "https://hotel.travel.rakuten.co.jp/hotelinfo/plan/146856?f_nen1=2027&f_tuki1=2&f_hi1=10&f_nen2=2027&f_tuki2=2&f_hi2=11&f_heya_su=4&f_otona_su=4&f_s1=0&f_s2=0&f_y1=0&f_y2=0&f_y3=0&f_y4=0",
+        "retrieved": "2026-10-18"
+      },
+      {
+        "plan": "素泊 大人 3＋小學生高年級 1（1 室）最低價（★学生限定★　とにかく安く泊まれる素泊まりプラン）",
+        "unit": "per-person",
+        "adult": 3700,
+        "child": null,
+        "currency": "JPY",
+        "season": "2027-02-09（二）1 泊，1 間 大人 3＋小學生高年級 1",
+        "note": "房型：【8畳＋縁側3畳】和室◆1〜4名様。一間總價 14,800 円；API 的小學生價和大人相同（可能以房計價或兒童同價），兒童價不推算。楽天 API（查詢 2026-10-18）。",
+        "source": "rakuten-api",
+        "url": "https://hotel.travel.rakuten.co.jp/hotelinfo/plan/146856?f_nen1=2027&f_tuki1=2&f_hi1=9&f_nen2=2027&f_tuki2=2&f_hi2=10&f_heya_su=1&f_otona_su=3&f_s1=1&f_s2=0&f_y1=0&f_y2=0&f_y3=0&f_y4=0",
+        "retrieved": "2026-10-18"
+      }
+    ],
+    "luggage": null,
+    "checkIn": "16:00",
+    "checkOut": "10:00",
+    "dinnerAccess": null,
+    "group": {
+      "totalRooms": 12,
+      "roomTypes": [
+        "和室 6 畳＋縁側 1.5 畳 1～3 人",
+        "和室 8 畳＋縁側 3 畳 1～4 人",
+        "和室 10 畳＋縁側 6 畳 2～6 人"
+      ],
+      "maxGuests": null,
+      "wholeRental": false,
+      "pickupCapacity": null,
+      "nearbyCombos": [],
+      "note": "包棟、團體方案未提；性質近合宿所"
+    },
+    "ratings": {
+      "rakuten": 3.25,
+      "rakutenReviews": 93,
+      "jalan": null,
+      "jalanReviews": null,
+      "booking": null,
+      "google": 4.1,
+      "googleReviews": 92,
+      "rakutenService": 3.09,
+      "rakutenLocation": 3.1,
+      "rakutenRoom": 3.38,
+      "rakutenEquipment": 3.07,
+      "rakutenBath": 2.92,
+      "note": "T8b（2026-10-18）：楽天 3.25（93 則，API）、Google 4.1（92 則，「ぽかぽか村」），5 分制。"
+    },
+    "accessibility": {
+      "elevator": null,
+      "beds": "和室鋪被",
+      "stairs": null,
+      "kids": "子供料金設定有り，金額未列",
+      "note": "房內無衛浴，共用浴室・廁所；浴室男女分時段；冬季曾有熱水不足"
+    },
+    "reservation": {
+      "methods": [
+        "rakuten"
+      ],
+      "phone": "0596-64-8879",
+      "url": "https://travel.rakuten.co.jp/HOTEL/146856/146856.html",
+      "groupNote": null
+    },
+    "bookingLinks": {
+      "rakuten": "https://travel.rakuten.co.jp/HOTEL/146856/146856.html"
+    },
+    "sources": [
+      {
+        "type": "booking-site",
+        "url": "https://travel.rakuten.co.jp/HOTEL/146856/146856.html",
+        "retrieved": "2026-10-18",
+        "note": "楽天トラベル API（SimpleHotelSearch、HotelDetailSearch、VacantHotelSearch，scripts/rakuten.mjs）：評分、細項評分、房數、check-in/out、照片、2027-02-09／02-10 的空房與價格"
+      },
+      {
+        "type": "google-maps",
+        "url": "https://maps.google.com/?cid=16790299573162377964",
+        "retrieved": "2026-10-18",
+        "note": "Google 地圖「ぽかぽか村」：星數、評論數、座標、照片"
+      },
+      {
+        "type": "booking-site",
+        "url": "https://travel.rakuten.co.jp/HOTEL/146856/146856.html",
+        "retrieved": "2026-10-18",
+        "note": "3.25（93 則）、房型定員、交通"
+      },
+      {
+        "type": "booking-site",
+        "url": "https://travel.rakuten.co.jp/HOTEL/146856/146856_std.html",
+        "retrieved": "2026-10-18",
+        "note": "12 室、素泊、無備品、不收信用卡、取消規定"
+      },
+      {
+        "type": "booking-site",
+        "url": "https://review.travel.rakuten.co.jp/hotel/voice/146856/",
+        "retrieved": "2026-10-18",
+        "note": "老舊、共用設施、熱水不穩、附近無餐廳"
+      },
+      {
+        "type": "booking-site",
+        "url": "https://hotel.travel.rakuten.co.jp/hotelinfo/plan/146856",
+        "retrieved": "2026-10-18",
+        "note": "素泊每人約 3,900～8,500 円"
+      }
+    ],
+    "verified": false,
+    "extra": {
+      "onsen": "無溫泉；共用浴室，男女分時段，4～9 月只有淋浴",
+      "parking": "免費，免預約",
+      "conflicts": [
+        "施設情報列有朝食・夕食場所，注意事項寫素泊",
+        "搜尋摘要說可自炊，楽天心得說只有共用微波爐等、無完整廚房"
+      ],
+      "rakutenHotelNo": 146856,
+      "rakutenVacancy": {
+        "retrieved": "2026-10-18",
+        "dates": [
+          "2027-02-09",
+          "2027-02-10"
+        ],
+        "combos": [
+          "5x3",
+          "4x4",
+          "3x5",
+          "2x8"
+        ],
+        "available": {
+          "2027-02-09": [
+            "4x4",
+            "5x3"
+          ],
+          "2027-02-10": [
+            "4x4",
+            "5x3"
+          ]
+        },
+        "note": "15 人（全部以大人計）分 N 間同住的組合，有空房的列出；只代表查詢當天楽天上的庫存"
+      }
+    }
+  },
+  {
+    "id": "futami-uminocho",
+    "type": "lodging",
+    "name": {
+      "ja": "旅荘 海の蝶",
+      "zh": "海之蝶"
+    },
+    "area": "futami",
+    "region": "futami-outskirts",
+    "kind": "ryokan",
+    "coords": [
+      136.814157,
+      34.495194
+    ],
+    "coordsSource": "google-maps-url",
+    "address": "三重県伊勢市二見町松下1693-1",
+    "hours": null,
+    "closedNote": null,
+    "febNote": "冬季料理以牡蠣為主；夏季泳池、海灘 2 月不開；2 月休館日不明。秋季有蟲（椿象）的心得，冬季應無此問題（未確認）。",
+    "closures": [],
+    "photos": [
+      {
+        "url": "https://img.travel.rakuten.co.jp/share/HOTEL/40332/40332.jpg",
+        "page": "https://travel.rakuten.co.jp/HOTEL/40332/40332.html",
+        "kind": "rakuten",
+        "credit": "楽天トラベル（施設提供）",
+        "license": null
+      },
+      {
+        "url": "https://lh3.googleusercontent.com/grass-cs/AABkmLcRg12AJJtJP9c9hBTlXvMQX6y2cqzaCmKPm_td1B-1dQsqifv6guBln38lmxiETMMy0J0MxV-PRFHDWKHe0576v0JJSXa0f2jP1Mt0p3SjwU7RrX7YQNZAtgSABIks8F1IfRGByAtqJZo=w408-h272-k-no",
+        "page": "https://maps.google.com/?cid=5909140712947163409",
+        "kind": "google",
+        "credit": "Google マップ",
+        "license": null
+      }
+    ],
+    "links": {
+      "official": "https://www.uminochou.com/",
+      "googleMaps": "https://maps.google.com/?cid=5909140712947163409"
+    },
+    "tags": [],
+    "tier": null,
+    "nearestStation": {
+      "id": "toba",
+      "mode": "shuttle",
+      "minutes": 10,
+      "note": "近鉄鳥羽駅1番出口より送迎車で約10分（要予約）"
+    },
+    "pickup": "近鉄鳥羽站 1 號出口（下樓梯，手荷物配送櫃台前）免費送迎車約 10 分鐘，要預約。鳥羽站發 14:30～18:00、旅館發 9:00～11:00（官網列約每 30 分鐘、KNT 寫每整點）。車大小、JR 二見浦／松下站接送不明。",
+    "meals": "varies",
+    "priceRange": "每人約 29,150～29,700 円（依方案，含素泊／附早餐；詳見 prices）",
+    "prices": [
+      {
+        "currency": "JPY",
+        "plan": "入湯稅",
+        "unit": "per-person",
+        "adult": 150,
+        "child": null,
+        "season": null,
+        "note": "現場另付",
+        "source": "rakuten",
+        "url": "https://travel.rakuten.co.jp/HOTEL/40332/40332_std.html",
+        "retrieved": "2026-10-18"
+      },
+      {
+        "currency": "JPY",
+        "plan": "別注 伊勢海老造り／鬼殻焼 300g",
+        "unit": "per-room",
+        "adult": 9500,
+        "child": null,
+        "season": null,
+        "note": "加點料理，含稅，要事前預約",
+        "source": "official",
+        "url": "https://www.uminochou.com/cuisine.html",
+        "retrieved": "2026-10-18"
+      },
+      {
+        "currency": "JPY",
+        "plan": "別注 松阪牛ロースステーキ 80g",
+        "unit": "per-room",
+        "adult": 5000,
+        "child": null,
+        "season": null,
+        "note": "加點料理，含稅",
+        "source": "official",
+        "url": "https://www.uminochou.com/cuisine.html",
+        "retrieved": "2026-10-18"
+      },
+      {
+        "plan": "一泊二食 楽天 15 人組合最低價（【五十鈴会席】一口伊勢海老付き♪伊勢志摩の旬の味覚に舌鼓）",
+        "unit": "per-person",
+        "adult": 29150,
+        "child": null,
+        "currency": "JPY",
+        "season": "2027-02-09（二）1 泊，3 間 × 5 人（大人）有空房時的含晚餐最低價",
+        "note": "房型：【純和室】あこやタイプ（12.5畳・禁煙）。楽天 API 空室検索（查詢 2026-10-18），含稅、不含入湯稅等。這天有空房的組合：3x5、4x4、5x3。",
+        "source": "rakuten-api",
+        "url": "https://hotel.travel.rakuten.co.jp/hotelinfo/plan/40332?f_nen1=2027&f_tuki1=2&f_hi1=9&f_nen2=2027&f_tuki2=2&f_hi2=10&f_heya_su=3&f_otona_su=5&f_s1=0&f_s2=0&f_y1=0&f_y2=0&f_y3=0&f_y4=0",
+        "retrieved": "2026-10-18"
+      },
+      {
+        "plan": "一泊二食 楽天 15 人組合最低價（【五十鈴会席】一口伊勢海老付き♪伊勢志摩の旬の味覚に舌鼓）",
+        "unit": "per-person",
+        "adult": 29150,
+        "child": null,
+        "currency": "JPY",
+        "season": "2027-02-10（三，2/11 國定假日前一晚）1 泊，3 間 × 5 人（大人）有空房時的含晚餐最低價",
+        "note": "房型：【純和室】あこやタイプ（12.5畳・禁煙）。楽天 API 空室検索（查詢 2026-10-18），含稅、不含入湯稅等。這天有空房的組合：3x5、4x4、5x3。",
+        "source": "rakuten-api",
+        "url": "https://hotel.travel.rakuten.co.jp/hotelinfo/plan/40332?f_nen1=2027&f_tuki1=2&f_hi1=10&f_nen2=2027&f_tuki2=2&f_hi2=11&f_heya_su=3&f_otona_su=5&f_s1=0&f_s2=0&f_y1=0&f_y2=0&f_y3=0&f_y4=0",
+        "retrieved": "2026-10-18"
+      },
+      {
+        "plan": "一泊二食 大人 3＋小學生高年級 1（1 室）最低價（【グランピング】[New]「森と海に包まれたベイテラス」オリジナルBBQディナー＆朝食付）",
+        "unit": "per-person",
+        "adult": 29700,
+        "child": 20790,
+        "currency": "JPY",
+        "season": "2027-02-09（二）1 泊，1 間 大人 3＋小學生高年級 1",
+        "note": "房型：グランピング【ベイテラス】Bドーム／コンフォートタイプ。兒童價＝一間總價 109,890 円 − 大人 3 人份（約大人的 70%）。楽天 API（查詢 2026-10-18）。",
+        "source": "rakuten-api",
+        "url": "https://hotel.travel.rakuten.co.jp/hotelinfo/plan/40332?f_nen1=2027&f_tuki1=2&f_hi1=9&f_nen2=2027&f_tuki2=2&f_hi2=10&f_heya_su=1&f_otona_su=3&f_s1=1&f_s2=0&f_y1=0&f_y2=0&f_y3=0&f_y4=0",
+        "retrieved": "2026-10-18"
+      }
+    ],
+    "luggage": null,
+    "checkIn": "15:00",
+    "checkOut": "10:00",
+    "dinnerAccess": null,
+    "group": {
+      "totalRooms": 57,
+      "roomTypes": [
+        "白蝶館 あこやタイプ 和室 61㎡ 2～5 人",
+        "白蝶館 白蝶タイプ 和洋室 61㎡ 2～5 人",
+        "白蝶館 和洋室（最上階特別フロア）61㎡ 2～4 人",
+        "白蝶館 トップスイート 和洋室 127㎡ 2～4 人",
+        "白蝶館 天空の露天風呂付ルーム 洋室 61㎡ 2～3 人",
+        "飛島館 スイートルーム 和洋室 85㎡ 2～4 人",
+        "飛島館 スーペリアルーム 和室 78㎡ 2～4 人",
+        "飛島館 カジュアル和洋室 ツインベッド 33㎡ 2～3 人",
+        "飛島館 洋室ツイン 33㎡ 1～2 人"
+      ],
+      "maxGuests": null,
+      "wholeRental": false,
+      "pickupCapacity": null,
+      "nearbyCombos": [],
+      "note": "57 室，可分多間房（5×3 或 4×4）全員同館。大宴會場「雅」200 畳 180 人、中小宴會場 2 室；食事処「結」個室 1～6 人，10 人左右可用個室。2024-10 起不提供房內用餐。團體方案 null。"
+    },
+    "ratings": {
+      "rakuten": 4.47,
+      "rakutenReviews": 2737,
+      "jalan": null,
+      "jalanReviews": null,
+      "booking": null,
+      "google": 4.2,
+      "googleReviews": 703,
+      "rakutenService": 4.56,
+      "rakutenLocation": 4.59,
+      "rakutenRoom": 4.43,
+      "rakutenEquipment": 4.33,
+      "rakutenBath": 4.46,
+      "rakutenMeal": 4.56,
+      "note": "T8b（2026-10-18）：楽天 4.47（2737 則，API）、Google 4.2（703 則，「旅荘 海の蝶」），5 分制。"
+    },
+    "accessibility": {
+      "elevator": true,
+      "beds": "洋室、和洋室有床（カジュアル和洋室、洋室ツインは ツインベッド）；和室為鋪被",
+      "stairs": "客房 3～6F、大浴場與露天風呂在地下 GF；鳥羽站送迎乘車處要下樓梯",
+      "kids": "0～2 歲不需餐與寢具免費；有搜尋摘要寫 3～5 歲收施設利用料 3,240 円（未能打開原頁確認）；小學生收費不明。嬰兒床、兒童椅需事前預約",
+      "note": "可借輪椅、大浴場浴缸有扶手（楽天）；KNT 寫浴室無障礙「無」；4travel 無障礙評分 3.56 偏低"
+    },
+    "reservation": {
+      "methods": [
+        "rakuten",
+        "official",
+        "phone"
+      ],
+      "phone": "0596-44-1050",
+      "url": "https://travel.rakuten.co.jp/HOTEL/40332/40332.html",
+      "groupNote": "含晚餐方案需 19:00 前入住；預約時要在備註寫男女人數"
+    },
+    "bookingLinks": {
+      "rakuten": "https://travel.rakuten.co.jp/HOTEL/40332/40332.html"
+    },
+    "sources": [
+      {
+        "type": "booking-site",
+        "url": "https://travel.rakuten.co.jp/HOTEL/40332/40332.html",
+        "retrieved": "2026-10-18",
+        "note": "楽天トラベル API（SimpleHotelSearch、HotelDetailSearch、VacantHotelSearch，scripts/rakuten.mjs）：評分、細項評分、房數、check-in/out、照片、2027-02-09／02-10 的空房與價格"
+      },
+      {
+        "type": "google-maps",
+        "url": "https://maps.google.com/?cid=5909140712947163409",
+        "retrieved": "2026-10-18",
+        "note": "Google 地圖「旅荘 海の蝶」：星數、評論數、座標、照片"
+      },
+      {
+        "type": "booking-site",
+        "url": "https://travel.rakuten.co.jp/HOTEL/40332/40332_std.html",
+        "retrieved": "2026-10-18",
+        "note": "57 室、宴會場、大浴場、0～2 歲免費、可借輪椅、送迎鳥羽站"
+      },
+      {
+        "type": "booking-site",
+        "url": "https://review.travel.rakuten.co.jp/hotel/voice/40332/",
+        "retrieved": "2026-10-18",
+        "note": "4.47／2,733 則，晚餐 4.63；缺點：建物老舊、氣味、清潔偶有問題"
+      },
+      {
+        "type": "official",
+        "url": "https://www.uminochou.com/facilities.html",
+        "retrieved": "2026-10-18",
+        "note": "大宴會場 180 人、個室食事処 1～6 人、大浴場在 GF"
+      },
+      {
+        "type": "official",
+        "url": "https://www.uminochou.com/guestroom.html",
+        "retrieved": "2026-10-18",
+        "note": "房型與定員"
+      },
+      {
+        "type": "official",
+        "url": "https://www.uminochou.com/cuisine.html",
+        "retrieved": "2026-10-18",
+        "note": "別注料理價格、季節海鮮"
+      },
+      {
+        "type": "official",
+        "url": "https://www.uminochou.com/access.html",
+        "retrieved": "2026-10-18",
+        "note": "鳥羽站送迎時刻、乘車處"
+      },
+      {
+        "type": "booking-site",
+        "url": "https://yado.knt.co.jp/st/S240051/?fgid=a2727",
+        "retrieved": "2026-10-18",
+        "note": "送迎要預約、2024-10 起取消房內用餐、浴室無障礙無"
+      },
+      {
+        "type": "booking-site",
+        "url": "https://www.cocolocala.jp/hotels/16719",
+        "retrieved": "2026-10-18",
+        "note": "有電梯、兩餐方案 19:00 前入住、嬰兒床需預約"
+      },
+      {
+        "type": "blog-ja",
+        "url": "https://4travel.jp/dm_hotel-10037673",
+        "retrieved": "2026-10-18",
+        "note": "3.38／28 則，無障礙 3.56 最低，建物老舊"
+      },
+      {
+        "type": "tourism",
+        "url": "https://www.kankomie.or.jp/spot/13746",
+        "retrieved": "2026-10-18",
+        "note": "鳥羽站送迎要預約，車約 8 分"
+      }
+    ],
+    "verified": false,
+    "extra": {
+      "onsen": "地下 GF 男女別大浴場、露天風呂、三溫暖（アルカリ性単純温泉）；屋上與庭園有足湯；有刺青不能入浴",
+      "parking": "免費，楽天 60 台／観光三重 70 台",
+      "conflicts": [
+        "送迎班距：官網約每 30 分鐘、KNT 寫每整點",
+        "停車場：楽天 60 台、観光三重 70 台"
+      ],
+      "rakutenHotelNo": 40332,
+      "rakutenVacancy": {
+        "retrieved": "2026-10-18",
+        "dates": [
+          "2027-02-09",
+          "2027-02-10"
+        ],
+        "combos": [
+          "5x3",
+          "4x4",
+          "3x5",
+          "2x8"
+        ],
+        "available": {
+          "2027-02-09": [
+            "3x5",
+            "4x4",
+            "5x3"
+          ],
+          "2027-02-10": [
+            "3x5",
+            "4x4",
+            "5x3"
+          ]
+        },
+        "note": "15 人（全部以大人計）分 N 間同住的組合，有空房的列出；只代表查詢當天楽天上的庫存"
+      }
+    }
+  },
+  {
+    "id": "futami-yusura",
+    "type": "lodging",
+    "name": {
+      "ja": "AUBERGE YUSURA（オーベルジュ ゆすら）",
+      "zh": "歐貝吉 柚須良"
+    },
+    "area": "futami",
+    "region": "futami-outskirts",
+    "kind": "ryokan",
+    "coords": [
+      136.796143,
+      34.5021437
+    ],
+    "coordsSource": "google-maps-url",
+    "address": "三重県伊勢市二見町松下1347-2",
+    "hours": null,
+    "closedNote": null,
+    "febNote": "2027-02-01、02-02 維護休館，02-09～12 正常營業",
+    "closures": [
+      {
+        "from": "2027-02-01",
+        "to": "2027-02-02",
+        "note": "メンテナンス休館"
+      }
+    ],
+    "photos": [
+      {
+        "url": "https://img.travel.rakuten.co.jp/share/HOTEL/166951/166951.jpg",
+        "page": "https://travel.rakuten.co.jp/HOTEL/166951/166951.html",
+        "kind": "rakuten",
+        "credit": "楽天トラベル（施設提供）",
+        "license": null
+      },
+      {
+        "url": "https://lh3.googleusercontent.com/grass-proxy/AIM7gW3Wdb-oND-NSfeA8apUz0OS1SIQY86LJOS28CKXvJeAS4FLy37cWCmGBcZ0MgA-cfo6Wh-vn8LN5e_sYj3vPO1WzZMfatlpQEELs52jKykGVmn0eFMZKvrNnlqQIJkjLHMrAij-MgTR7w1NaX956aeROuzrrVrGL-g5ylwaK2Q3hpfO0VCDlPUMiA=w480-h240-k-no",
+        "page": "https://maps.google.com/?cid=2356653672564801568",
+        "kind": "google",
+        "credit": "Google マップ",
+        "license": null
+      }
+    ],
+    "links": {
+      "official": "https://yusura-ise.com/",
+      "googleMaps": "https://maps.google.com/?cid=2356653672564801568"
+    },
+    "tags": [],
+    "tier": null,
+    "nearestStation": {
+      "id": "jr-futaminoura",
+      "mode": "shuttle",
+      "minutes": 10,
+      "note": "JR二見浦駅・近鉄鳥羽駅から送迎あり、約10分（KNT）"
+    },
+    "pickup": "JR 二見浦站或近鉄鳥羽站免費接送，車程約 10 分；入住日 15:00 起，需事先告知抵達時間；退房日 11:00 前可送站。接送車可載人數不明",
+    "meals": "dinner+breakfast",
+    "priceRange": "每人約 47,850～67,650 円（一泊二食；詳見 prices）",
+    "prices": [
+      {
+        "currency": "JPY",
+        "plan": "料理長おすすめディナーコース（一泊二食）",
+        "unit": "per-person",
+        "adult": 47850,
+        "child": null,
+        "season": null,
+        "note": "楽天最低價",
+        "source": "rakuten",
+        "url": "https://travel.rakuten.co.jp/HOTEL/166951/166951.html",
+        "retrieved": "2026-10-18"
+      },
+      {
+        "currency": "JPY",
+        "plan": "Anniversary（香檳、蛋糕，一泊二食）",
+        "unit": "per-person",
+        "adult": 64900,
+        "child": null,
+        "season": null,
+        "note": "楽天最低價",
+        "source": "rakuten",
+        "url": "https://travel.rakuten.co.jp/HOTEL/166951/166951.html",
+        "retrieved": "2026-10-18"
+      },
+      {
+        "currency": "JPY",
+        "plan": "料理長おすすめディナー（一泊二食）",
+        "unit": "per-person",
+        "adult": 61600,
+        "child": null,
+        "season": "2026-10-17～2027-03-31",
+        "note": "61,600～116,050 円，さくら・とち 最低，けやき 最高",
+        "source": "knt",
+        "url": "https://www.knt.co.jp/highclass/yado/planlist/S240375/",
+        "retrieved": "2026-10-18"
+      },
+      {
+        "plan": "一泊二食 大人 3＋小學生高年級 1（1 室）最低價（【料理長おすすめディナーコース】伊勢の地産食材を味わう夕食）",
+        "unit": "per-person",
+        "adult": 61600,
+        "child": 24200,
+        "currency": "JPY",
+        "season": "2027-02-09（二）1 泊，1 間 大人 3＋小學生高年級 1",
+        "note": "房型：一棟建て和洋室＜とち＞ツインベッドルーム＋和室＋露天温泉。兒童價＝一間總價 209,000 円 − 大人 3 人份（約大人的 39%）。楽天 API（查詢 2026-10-18）。",
+        "source": "rakuten-api",
+        "url": "https://hotel.travel.rakuten.co.jp/hotelinfo/plan/166951?f_nen1=2027&f_tuki1=2&f_hi1=9&f_nen2=2027&f_tuki2=2&f_hi2=10&f_heya_su=1&f_otona_su=3&f_s1=1&f_s2=0&f_y1=0&f_y2=0&f_y3=0&f_y4=0",
+        "retrieved": "2026-10-18"
+      },
+      {
+        "plan": "一泊二食 大人 2 名 1 室最低價（【料理長おすすめディナーコース】伊勢の地産食材を味わう夕食）",
+        "unit": "per-person",
+        "adult": 67650,
+        "child": null,
+        "currency": "JPY",
+        "season": "2027-02-09（二）1 泊，大人 2 名 1 室",
+        "note": "房型：一棟建て和洋室＜とち＞ツインベッドルーム＋和室＋露天温泉。15 人的組合兩天都沒有空房。楽天 API（查詢 2026-10-18）。",
+        "source": "rakuten-api",
+        "url": "https://hotel.travel.rakuten.co.jp/hotelinfo/plan/166951?f_nen1=2027&f_tuki1=2&f_hi1=9&f_nen2=2027&f_tuki2=2&f_hi2=10&f_heya_su=1&f_otona_su=2&f_s1=0&f_s2=0&f_y1=0&f_y2=0&f_y3=0&f_y4=0",
+        "retrieved": "2026-10-18"
+      }
+    ],
+    "luggage": null,
+    "checkIn": "15:00",
+    "checkOut": "11:00",
+    "dinnerAccess": null,
+    "group": {
+      "totalRooms": 5,
+      "roomTypes": [
+        "けやき 一棟 villa 80㎡ 2～4 人",
+        "ひのき 一棟 villa 70㎡ 2～4 人",
+        "さくら 一棟和洋室 2～4 人",
+        "とち 一棟和洋室 2～4 人",
+        "かえで 一棟 2 人（官網）"
+      ],
+      "maxGuests": 18,
+      "wholeRental": false,
+      "pickupCapacity": null,
+      "nearbyCombos": [],
+      "note": "一日限 5 組、每棟 1 組；依 KNT 與官網定員加總全館最多約 18 人，15 人要包下全部 5 棟，無團體方案記載，需電話洽詢"
+    },
+    "ratings": {
+      "rakuten": 4.8,
+      "rakutenReviews": 27,
+      "jalan": null,
+      "jalanReviews": null,
+      "booking": null,
+      "google": 4.7,
+      "googleReviews": 91,
+      "note": "T8b（2026-10-18）：楽天 4.8（27 則，API）、Google 4.7（91 則，「オーベルジュ ゆすら」），5 分制。"
+    },
+    "accessibility": {
+      "elevator": null,
+      "beds": "ツインベッド（KNT），和洋室",
+      "stairs": null,
+      "kids": "年齡限制未記載；兒童對象年齡與料金依方案而異（KNT）；2019 年有攜 2 歲幼兒入住的心得",
+      "note": "早晚餐都在個室用餐；每棟有客房露天風呂與室內檜木浴，沒有大浴場"
+    },
+    "reservation": {
+      "methods": [
+        "rakuten",
+        "official",
+        "phone"
+      ],
+      "phone": "0596-63-5511",
+      "url": "https://reserve.489ban.net/client/yusura-ise/0/plan",
+      "groupNote": "官網訂房晚餐飲料暢飲、迷你吧免費"
+    },
+    "bookingLinks": {
+      "rakuten": "https://travel.rakuten.co.jp/HOTEL/166951/166951.html"
+    },
+    "sources": [
+      {
+        "type": "booking-site",
+        "url": "https://travel.rakuten.co.jp/HOTEL/166951/166951.html",
+        "retrieved": "2026-10-18",
+        "note": "楽天トラベル API（SimpleHotelSearch、HotelDetailSearch、VacantHotelSearch，scripts/rakuten.mjs）：評分、細項評分、房數、check-in/out、照片、2027-02-09／02-10 的空房與價格"
+      },
+      {
+        "type": "google-maps",
+        "url": "https://maps.google.com/?cid=2356653672564801568",
+        "retrieved": "2026-10-18",
+        "note": "Google 地圖「オーベルジュ ゆすら」：星數、評論數、座標、照片"
+      },
+      {
+        "type": "booking-site",
+        "url": "https://travel.rakuten.co.jp/HOTEL/166951/166951_std.html",
+        "retrieved": "2026-10-18",
+        "note": "5 室、接送、check-in/out、停車 14 台"
+      },
+      {
+        "type": "booking-site",
+        "url": "https://travel.rakuten.co.jp/HOTEL/166951/166951.html",
+        "retrieved": "2026-10-18",
+        "note": "楽天 4.80（27 則）、方案價格、5 棟 villa"
+      },
+      {
+        "type": "booking-site",
+        "url": "https://review.travel.rakuten.co.jp/hotel/voice/166951/",
+        "retrieved": "2026-10-18",
+        "note": "心得幾乎全好評；有一則忌口沒處理好"
+      },
+      {
+        "type": "official",
+        "url": "https://yusura-ise.com/",
+        "retrieved": "2026-10-18",
+        "note": "5 棟、一日 5 組、かえで 2 名限定"
+      },
+      {
+        "type": "official",
+        "url": "https://yusura-ise.com/news/%ef%bc%9c2027%e5%b9%b42%e6%9c%88%ef%bc%9e%e3%83%a1%e3%83%b3%e3%83%86%e3%83%8a%e3%83%b3%e3%82%b9%e4%bc%91%e9%a4%a8%e6%97%a5%e3%81%ae%e3%81%94%e6%a1%88%e5%86%85/",
+        "retrieved": "2026-10-18",
+        "note": "2027-02-01、02 維護休館"
+      },
+      {
+        "type": "booking-site",
+        "url": "https://www.knt.co.jp/highclass/yado/planlist/S240375/",
+        "retrieved": "2026-10-18",
+        "note": "各棟 2～4 名、面積、價格、接送規定"
+      },
+      {
+        "type": "tourism",
+        "url": "https://www.kankomie.or.jp/report/767",
+        "retrieved": "2026-10-18",
+        "note": "2021 年取材，料理（黒毛和牛、山桜桃コース）、接送"
+      }
+    ],
+    "verified": false,
+    "extra": {
+      "onsen": "每棟客房露天風呂（榊原温泉源泉、アルカリ性単純泉），入湯稅 150 円",
+      "parking": "免費 14 台",
+      "conflicts": [
+        "棟數：2021 年觀光三重寫 3 棟，現為 5 棟（2022-10 新增けやき、ひのき）",
+        "かえで：官網寫 2 名限定，又說適合家族"
+      ],
+      "rakutenHotelNo": 166951,
+      "rakutenVacancy": {
+        "retrieved": "2026-10-18",
+        "dates": [
+          "2027-02-09",
+          "2027-02-10"
+        ],
+        "combos": [
+          "5x3",
+          "4x4",
+          "3x5",
+          "2x8"
+        ],
+        "available": {
+          "2027-02-09": [],
+          "2027-02-10": []
+        },
+        "note": "15 人（全部以大人計）分 N 間同住的組合，有空房的列出；只代表查詢當天楽天上的庫存"
+      }
+    }
+  },
+  {
+    "id": "futami-plafino",
+    "type": "lodging",
+    "name": {
+      "ja": "プラフィーノリゾートヴィラ",
+      "zh": "Plafino 度假別墅"
+    },
+    "area": "futami",
+    "region": "futami-outskirts",
+    "kind": "rental-house",
+    "coords": [
+      136.7608853,
+      34.515428
+    ],
+    "coordsSource": "google-maps-url",
+    "address": "三重県伊勢市二見町西1994-3",
+    "hours": null,
+    "closedNote": null,
+    "febNote": "休館日未記載；2025-11 心得說露天風呂太冷無法泡",
+    "closures": [],
+    "photos": [
+      {
+        "url": "https://img.travel.rakuten.co.jp/share/HOTEL/188489/188489.jpg",
+        "page": "https://travel.rakuten.co.jp/HOTEL/188489/188489.html",
+        "kind": "rakuten",
+        "credit": "楽天トラベル（施設提供）",
+        "license": null
+      },
+      {
+        "url": "https://lh3.googleusercontent.com/grass-cs/AABkmLcyIf8jVqBW7cowEfSLrKyuVZl56nK3a-o2Vnu2i3z7oJz4xiumBUkjWrtq_Yv0rvGaNSRgIJnDXJ0qOEN42IIKRKGYK4jpEUC_WAvUIlWQAp-M5K1kUahYwRahZixFp-bvEY-1rPhZtwV6=w408-h240-k-no",
+        "page": "https://maps.google.com/?cid=16612280592546847093",
+        "kind": "google",
+        "credit": "Google マップ",
+        "license": null
+      }
+    ],
+    "links": {
+      "official": null,
+      "googleMaps": "https://maps.google.com/?cid=16612280592546847093"
+    },
+    "tags": [],
+    "tier": null,
+    "nearestStation": {
+      "id": "jr-futaminoura",
+      "mode": "taxi",
+      "minutes": 5,
+      "note": "JR二見浦駅から車で約5分（楽天）"
+    },
+    "pickup": null,
+    "meals": "varies",
+    "priceRange": "每人約 10,650～16,890 円（依方案，含素泊／附早餐；詳見 prices）",
+    "prices": [
+      {
+        "currency": "JPY",
+        "plan": "伊勢二見温泉 源泉100%（素泊）",
+        "unit": "per-person",
+        "adult": 12380,
+        "child": null,
+        "season": null,
+        "note": "12,380～96,770 円，依人數與日期（近 30 天參考價）",
+        "source": "rakuten",
+        "url": "https://hotel.travel.rakuten.co.jp/hotelinfo/plan/188489",
+        "retrieved": "2026-10-18"
+      },
+      {
+        "currency": "JPY",
+        "plan": "指定日一律價（お得，素泊）",
+        "unit": "per-room",
+        "adult": 46440,
+        "child": null,
+        "season": "指定日",
+        "note": "不論人數每棟固定",
+        "source": "rakuten",
+        "url": "https://hotel.travel.rakuten.co.jp/hotelinfo/plan/188489",
+        "retrieved": "2026-10-18"
+      },
+      {
+        "currency": "JPY",
+        "plan": "伊勢之恵 朝食付",
+        "unit": "per-person",
+        "adult": 16890,
+        "child": null,
+        "season": null,
+        "note": "16,890～106,700 円；早餐為伊勢之恵しゃぶしゃぶ",
+        "source": "rakuten",
+        "url": "https://hotel.travel.rakuten.co.jp/hotelinfo/plan/188489",
+        "retrieved": "2026-10-18"
+      },
+      {
+        "currency": "JPY",
+        "plan": "シニア 60 歳以上（素泊）",
+        "unit": "per-person",
+        "adult": 10650,
+        "child": null,
+        "season": null,
+        "note": "10,650～33,430 円；60 歲以上最多 2 人特價，第 3 人起一般價",
+        "source": "rakuten",
+        "url": "https://hotel.travel.rakuten.co.jp/hotelinfo/plan/188489",
+        "retrieved": "2026-10-18"
+      },
+      {
+        "plan": "素泊 楽天 15 人組合最低價（【2名〜｜60歳以上限定52％OFF】大人の休息を堪能するシニアプラン（禁煙））",
+        "unit": "per-person",
+        "adult": 10650,
+        "child": null,
+        "currency": "JPY",
+        "season": "2027-02-09（二）1 泊，3 間 × 5 人（大人）有空房時的最低價",
+        "note": "房型：【露天風呂付き客室】2階建てキッチン付きヴィラ。楽天 API 空室検索（查詢 2026-10-18），含稅、不含入湯稅等。這天有空房的組合：3x5、4x4、5x3。",
+        "source": "rakuten-api",
+        "url": "https://hotel.travel.rakuten.co.jp/hotelinfo/plan/188489?f_nen1=2027&f_tuki1=2&f_hi1=9&f_nen2=2027&f_tuki2=2&f_hi2=10&f_heya_su=3&f_otona_su=5&f_s1=0&f_s2=0&f_y1=0&f_y2=0&f_y3=0&f_y4=0",
+        "retrieved": "2026-10-18"
+      },
+      {
+        "plan": "素泊 楽天 15 人組合最低價（【2名〜｜60歳以上限定52％OFF】大人の休息を堪能するシニアプラン（禁煙））",
+        "unit": "per-person",
+        "adult": 12870,
+        "child": null,
+        "currency": "JPY",
+        "season": "2027-02-10（三，2/11 國定假日前一晚）1 泊，3 間 × 5 人（大人）有空房時的最低價",
+        "note": "房型：【露天風呂付き客室】2階建てキッチン付きヴィラ。楽天 API 空室検索（查詢 2026-10-18），含稅、不含入湯稅等。這天有空房的組合：3x5、4x4、5x3。",
+        "source": "rakuten-api",
+        "url": "https://hotel.travel.rakuten.co.jp/hotelinfo/plan/188489?f_nen1=2027&f_tuki1=2&f_hi1=10&f_nen2=2027&f_tuki2=2&f_hi2=11&f_heya_su=3&f_otona_su=5&f_s1=0&f_s2=0&f_y1=0&f_y2=0&f_y3=0&f_y4=0",
+        "retrieved": "2026-10-18"
+      },
+      {
+        "plan": "素泊 大人 3＋小學生高年級 1（1 室）最低價（【2名〜｜60歳以上限定52％OFF】大人の休息を堪能するシニアプラン（禁煙））",
+        "unit": "per-person",
+        "adult": 10870,
+        "child": 3000,
+        "currency": "JPY",
+        "season": "2027-02-09（二）1 泊，1 間 大人 3＋小學生高年級 1",
+        "note": "房型：【露天風呂付き客室】2階建てキッチン付きヴィラ。兒童價＝一間總價 35,610 円 − 大人 3 人份（約大人的 28%）。楽天 API（查詢 2026-10-18）。",
+        "source": "rakuten-api",
+        "url": "https://hotel.travel.rakuten.co.jp/hotelinfo/plan/188489?f_nen1=2027&f_tuki1=2&f_hi1=9&f_nen2=2027&f_tuki2=2&f_hi2=10&f_heya_su=1&f_otona_su=3&f_s1=1&f_s2=0&f_y1=0&f_y2=0&f_y3=0&f_y4=0",
+        "retrieved": "2026-10-18"
+      }
+    ],
+    "luggage": null,
+    "checkIn": "15:00",
+    "checkOut": "10:00",
+    "dinnerAccess": null,
+    "group": {
+      "totalRooms": 17,
+      "roomTypes": [
+        "2 層 villa 57㎡ 附廚房、露天風呂 1～6 人"
+      ],
+      "maxGuests": 102,
+      "wholeRental": false,
+      "pickupCapacity": null,
+      "nearbyCombos": [],
+      "note": "17 棟同型，每棟最多 6 人；15 人分 3 棟（5×3）或 4×4、3×5；沒有團體方案記載"
+    },
+    "ratings": {
+      "rakuten": 4,
+      "rakutenReviews": 20,
+      "jalan": null,
+      "jalanReviews": null,
+      "booking": null,
+      "google": 4.3,
+      "googleReviews": 130,
+      "note": "T8b（2026-10-18）：楽天 4（20 則，API）、Google 4.3（130 則，「プラフィーノリゾートヴィラ」），5 分制。"
+    },
+    "accessibility": {
+      "elevator": null,
+      "beds": "キング 1＋ダブル 2（楽天）／クイーン 2＋キング 1（Travelist），不能加床、無嬰兒床",
+      "stairs": "寢室在 2 樓，要走樓梯，非無障礙（楽天）",
+      "kids": "各方案有子供料金設定，金額未列",
+      "note": "長輩要爬樓梯到寢室；露天風呂冬天被評太冷"
+    },
+    "reservation": {
+      "methods": [
+        "rakuten",
+        "phone"
+      ],
+      "phone": "0596-43-2039",
+      "url": "https://hotel.travel.rakuten.co.jp/hotelinfo/plan/188489",
+      "groupNote": null
+    },
+    "bookingLinks": {
+      "rakuten": "https://travel.rakuten.co.jp/HOTEL/188489/188489.html"
+    },
+    "sources": [
+      {
+        "type": "booking-site",
+        "url": "https://travel.rakuten.co.jp/HOTEL/188489/188489.html",
+        "retrieved": "2026-10-18",
+        "note": "楽天トラベル API（SimpleHotelSearch、HotelDetailSearch、VacantHotelSearch，scripts/rakuten.mjs）：評分、細項評分、房數、check-in/out、照片、2027-02-09／02-10 的空房與價格"
+      },
+      {
+        "type": "google-maps",
+        "url": "https://maps.google.com/?cid=16612280592546847093",
+        "retrieved": "2026-10-18",
+        "note": "Google 地圖「プラフィーノリゾートヴィラ」：星數、評論數、座標、照片"
+      },
+      {
+        "type": "booking-site",
+        "url": "https://travel.rakuten.co.jp/HOTEL/188489/188489_std.html",
+        "retrieved": "2026-10-18",
+        "note": "17 室、寢室在 2 樓非無障礙、check-in/out"
+      },
+      {
+        "type": "booking-site",
+        "url": "https://travel.rakuten.co.jp/HOTEL/188489/188489.html",
+        "retrieved": "2026-10-18",
+        "note": "楽天 4.00（20 則）、每棟最多 6 人、附廚房"
+      },
+      {
+        "type": "booking-site",
+        "url": "https://hotel.travel.rakuten.co.jp/hotelinfo/plan/188489",
+        "retrieved": "2026-10-18",
+        "note": "方案與價格；除伊勢之恵外都不含餐"
+      },
+      {
+        "type": "booking-site",
+        "url": "https://review.travel.rakuten.co.jp/hotel/voice/188489/",
+        "retrieved": "2026-10-18",
+        "note": "浴室評分最低，有蟲、垃圾、露天太冷等抱怨"
+      },
+      {
+        "type": "booking-site",
+        "url": "https://travelist.jp/hotel/detail/7056306/",
+        "retrieved": "2026-10-18",
+        "note": "Travelist 3.5（11 則），施設の状態 2.9；不能加床"
+      }
+    ],
+    "verified": false,
+    "extra": {
+      "onsen": "每棟露天風呂，源泉 100%（ナトリウム塩化物泉・鉄泉），24 小時",
+      "parking": "免費專用停車場",
+      "dinner": "不供應晚餐；BBQ 庭園、在地主廚出張料理另訂（價格不明）；附廚房可自炊；車程 5 分內有超商",
+      "conflicts": [
+        "床型：楽天寫キング 1＋ダブル 2，Travelist 寫クイーン 2＋キング 1",
+        "接送：搜尋摘要說目前不提供接送，未讀到原頁"
+      ],
+      "rakutenHotelNo": 188489,
+      "rakutenVacancy": {
+        "retrieved": "2026-10-18",
+        "dates": [
+          "2027-02-09",
+          "2027-02-10"
+        ],
+        "combos": [
+          "5x3",
+          "4x4",
+          "3x5",
+          "2x8"
+        ],
+        "available": {
+          "2027-02-09": [
+            "3x5",
+            "4x4",
+            "5x3"
+          ],
+          "2027-02-10": [
+            "3x5",
+            "4x4",
+            "5x3"
+          ]
+        },
+        "note": "15 人（全部以大人計）分 N 間同住的組合，有空房的列出；只代表查詢當天楽天上的庫存"
+      }
+    }
+  },
+  {
+    "id": "futami-togenkyo",
+    "type": "lodging",
+    "name": {
+      "ja": "貸別荘 桃源郷",
+      "zh": "桃源鄉 包棟別墅"
+    },
+    "area": "futami",
+    "region": "futami-outskirts",
+    "kind": "rental-house",
+    "coords": [
+      136.8129837,
+      34.4894008
+    ],
+    "coordsSource": "google-maps-url",
+    "address": "三重県伊勢市二見町松下1790-16",
+    "hours": null,
+    "closedNote": null,
+    "febNote": null,
+    "closures": [],
+    "photos": [
+      {
+        "url": "https://img.travel.rakuten.co.jp/share/HOTEL/185547/185547.jpg",
+        "page": "https://travel.rakuten.co.jp/HOTEL/185547/185547.html",
+        "kind": "rakuten",
+        "credit": "楽天トラベル（施設提供）",
+        "license": null
+      },
+      {
+        "url": "https://lh3.googleusercontent.com/grass-cs/AABkmLdRpO4i-4YKXiaSga3wROVG8LJGqbjcZor4LVpByJvOoQNTT5GrtR0PR9A1MXIBwLSl0bvAfw8Uha6QMi6pCwj5pwOGc6rp_YkEFLxAZ1DLHEvVwn8LPGgkKOzRJQ5KgLr1EHbQ=w408-h306-k-no",
+        "page": "https://maps.google.com/?cid=9581078598415596588",
+        "kind": "google",
+        "credit": "Google マップ",
+        "license": null
+      }
+    ],
+    "links": {
+      "official": null,
+      "googleMaps": "https://maps.google.com/?cid=9581078598415596588"
+    },
+    "tags": [],
+    "tier": null,
+    "nearestStation": {
+      "id": "ikenoura",
+      "mode": "walk",
+      "minutes": 4,
+      "note": "池の浦駅から徒歩約4分"
+    },
+    "pickup": null,
+    "meals": "none",
+    "priceRange": "每人約 8,097～8,932 円（依方案，含素泊／附早餐；詳見 prices）",
+    "prices": [
+      {
+        "currency": "JPY",
+        "plan": "2階建て丸ごと一棟貸別荘（最大9名）素泊まり",
+        "unit": "per-person",
+        "adult": 8097,
+        "child": null,
+        "season": "近 30 日最低參考價",
+        "note": "5 人以上每人含稅；1 人 10,324、4 人 8,236；含 16% 手續費",
+        "source": "rakuten",
+        "url": "https://hotel.travel.rakuten.co.jp/hotelinfo/plan/185547",
+        "retrieved": "2026-10-18"
+      },
+      {
+        "plan": "素泊 大人 3＋小學生高年級 1（1 室）最低價（【海辺山の貸別荘】2階建て丸ごと一棟貸別荘(最大9名宿泊可能)和室/洋室/Wi-Fi/マッサージ器有）",
+        "unit": "per-person",
+        "adult": 8236,
+        "child": null,
+        "currency": "JPY",
+        "season": "2027-02-09（二）1 泊，1 間 大人 3＋小學生高年級 1",
+        "note": "房型：一戸建て。一間總價 32,944 円；API 的小學生價和大人相同（可能以房計價或兒童同價），兒童價不推算。楽天 API（查詢 2026-10-18）。",
+        "source": "rakuten-api",
+        "url": "https://hotel.travel.rakuten.co.jp/hotelinfo/plan/185547?f_nen1=2027&f_tuki1=2&f_hi1=9&f_nen2=2027&f_tuki2=2&f_hi2=10&f_heya_su=1&f_otona_su=3&f_s1=1&f_s2=0&f_y1=0&f_y2=0&f_y3=0&f_y4=0",
+        "retrieved": "2026-10-18"
+      },
+      {
+        "plan": "素泊 大人 2 名 1 室最低價（【海辺山の貸別荘】2階建て丸ごと一棟貸別荘(最大9名宿泊可能)和室/洋室/Wi-Fi/マッサージ器有）",
+        "unit": "per-person",
+        "adult": 8932,
+        "child": null,
+        "currency": "JPY",
+        "season": "2027-02-09（二）1 泊，大人 2 名 1 室",
+        "note": "房型：一戸建て。15 人的組合兩天都沒有空房。楽天 API（查詢 2026-10-18）。",
+        "source": "rakuten-api",
+        "url": "https://hotel.travel.rakuten.co.jp/hotelinfo/plan/185547?f_nen1=2027&f_tuki1=2&f_hi1=9&f_nen2=2027&f_tuki2=2&f_hi2=10&f_heya_su=1&f_otona_su=2&f_s1=0&f_s2=0&f_y1=0&f_y2=0&f_y3=0&f_y4=0",
+        "retrieved": "2026-10-18"
+      }
+    ],
+    "luggage": null,
+    "checkIn": "15:00",
+    "checkOut": "11:00",
+    "dinnerAccess": null,
+    "group": {
+      "totalRooms": 1,
+      "roomTypes": [
+        "2 層樓整棟 和洋室 150 m²、3 寢室，1～9 人"
+      ],
+      "maxGuests": 9,
+      "wholeRental": true,
+      "pickupCapacity": null,
+      "nearbyCombos": [
+        "futami-uminocho"
+      ],
+      "note": "最多 9 人，15 人住不下；可供 4～9 人小組"
+    },
+    "ratings": {
+      "rakuten": null,
+      "rakutenReviews": 1,
+      "jalan": null,
+      "jalanReviews": null,
+      "booking": null,
+      "google": 4.5,
+      "googleReviews": 6,
+      "note": "T8b（2026-10-18）：楽天 API 平均沒有，1 則、Google 4.5（6 則，「貸別荘桃源郷 旅館ホテル」），5 分制。"
+    },
+    "accessibility": {
+      "elevator": null,
+      "beds": "鋪被／床墊 8 組＋雙人床 1 張",
+      "stairs": "2 層樓，樓梯細節未寫",
+      "kids": "有兒童收費設定，金額未列",
+      "note": "浴室只有淋浴＋廁所，無浴缸；可帶寵物"
+    },
+    "reservation": {
+      "methods": [
+        "rakuten",
+        "jalan",
+        "phone"
+      ],
+      "phone": "090-3583-4989",
+      "url": "https://travel.rakuten.co.jp/HOTEL/185547/185547.html",
+      "groupNote": null
+    },
+    "bookingLinks": {
+      "rakuten": "https://travel.rakuten.co.jp/HOTEL/185547/185547.html"
+    },
+    "sources": [
+      {
+        "type": "booking-site",
+        "url": "https://travel.rakuten.co.jp/HOTEL/185547/185547.html",
+        "retrieved": "2026-10-18",
+        "note": "楽天トラベル API（SimpleHotelSearch、HotelDetailSearch、VacantHotelSearch，scripts/rakuten.mjs）：評分、細項評分、房數、check-in/out、照片、2027-02-09／02-10 的空房與價格"
+      },
+      {
+        "type": "google-maps",
+        "url": "https://maps.google.com/?cid=9581078598415596588",
+        "retrieved": "2026-10-18",
+        "note": "Google 地圖「貸別荘桃源郷 旅館ホテル」：星數、評論數、座標、照片"
+      },
+      {
+        "type": "booking-site",
+        "url": "https://travel.rakuten.co.jp/HOTEL/185547/185547.html",
+        "retrieved": "2026-10-18",
+        "note": "整棟 1 室、池の浦步行 4 分、取消規定、心得 1 則 5.0"
+      },
+      {
+        "type": "booking-site",
+        "url": "https://travel.rakuten.co.jp/HOTEL/185547/185547_std.html",
+        "retrieved": "2026-10-18",
+        "note": "廚房、BBQ 庭院等設備"
+      },
+      {
+        "type": "booking-site",
+        "url": "https://hotel.travel.rakuten.co.jp/hotelinfo/plan/185547",
+        "retrieved": "2026-10-18",
+        "note": "最多 9 人、150 m² 3 寢室、無浴缸、每人約 8,100～10,300 円"
+      },
+      {
+        "type": "booking-site",
+        "url": "https://www.jalan.net/yad354810/",
+        "retrieved": "2026-10-18",
+        "note": "大多亂碼；可帶寵物"
+      }
+    ],
+    "verified": false,
+    "extra": {
+      "parking": "有，台數未寫",
+      "conflicts": [
+        "搜尋摘要稱需銀行轉帳預付，施設頁未見；施設頁寫不收信用卡",
+        "じゃらん頁亂碼中看似 3.5（7 則），未記入"
+      ],
+      "rakutenHotelNo": 185547,
+      "rakutenVacancy": {
+        "retrieved": "2026-10-18",
+        "dates": [
+          "2027-02-09",
+          "2027-02-10"
+        ],
+        "combos": [
+          "5x3",
+          "4x4",
+          "3x5",
+          "2x8"
+        ],
+        "available": {
+          "2027-02-09": [],
+          "2027-02-10": []
+        },
+        "note": "15 人（全部以大人計）分 N 間同住的組合，有空房的列出；只代表查詢當天楽天上的庫存"
+      }
+    }
+  },
+  {
+    "id": "futami-orange-garden",
+    "type": "lodging",
+    "name": {
+      "ja": "民泊 伊勢オレンジガーデン",
+      "zh": "伊勢橘園（包棟民宿）"
+    },
+    "area": "futami",
+    "region": "futami-outskirts",
+    "kind": "rental-house",
+    "coords": [
+      136.753293,
+      34.51648
+    ],
+    "coordsSource": "google-maps-url",
+    "address": "三重県伊勢市二見町西1079-3",
+    "hours": null,
+    "closedNote": null,
+    "febNote": null,
+    "closures": [],
+    "photos": [
+      {
+        "url": "https://img.travel.rakuten.co.jp/share/HOTEL/193993/193993.jpg",
+        "page": "https://travel.rakuten.co.jp/HOTEL/193993/193993.html",
+        "kind": "rakuten",
+        "credit": "楽天トラベル（施設提供）",
+        "license": null
+      },
+      {
+        "url": "https://lh3.googleusercontent.com/grass-cs/AABkmLccY0U-BKTjgRwqRvlDwuiy0g9UYIsyOehRtpZ-xnAnDAJ_kcvNqJoGmrOffpJm2_dRiS2YWF14FPm30CDg4RFKaXetWDbq3jES4UshaOL6mxgvm48GcmznfVYwcojUX_W-Amqb3Q=w513-h240-k-no",
+        "page": "https://maps.google.com/?cid=1662670256767147235",
+        "kind": "google",
+        "credit": "Google マップ",
+        "license": null
+      }
+    ],
+    "links": {
+      "official": null,
+      "googleMaps": "https://maps.google.com/?cid=1662670256767147235"
+    },
+    "tags": [],
+    "tier": null,
+    "nearestStation": {
+      "id": "jr-futaminoura",
+      "mode": "taxi",
+      "minutes": 7,
+      "note": "二見浦駅から車で7分"
+    },
+    "pickup": null,
+    "meals": "none",
+    "priceRange": "每人約 8,468 円（依方案，含素泊／附早餐；詳見 prices）",
+    "prices": [
+      {
+        "currency": "JPY",
+        "plan": "段差のないフロアで幼児から車いす利用の方までOK 素泊まり",
+        "unit": "per-person",
+        "adult": 8468,
+        "child": null,
+        "season": "近 30 日參考價",
+        "note": "5 人以上每人含稅 8,468～9,628；4 人 9,135～10,585；含 16% 手續費",
+        "source": "rakuten",
+        "url": "https://hotel.travel.rakuten.co.jp/hotelinfo/plan/193993",
+        "retrieved": "2026-10-18"
+      },
+      {
+        "currency": "JPY",
+        "plan": "Airbnb 整棟",
+        "unit": "per-house",
+        "adult": 30000,
+        "child": null,
+        "season": "2024-11 採訪時",
+        "note": "4 人內 30,000 円，每加 1 人 +5,000，清潔費 1,500，另加 Airbnb 手續費",
+        "source": "media",
+        "url": "https://tabiiro.jp/plan/2565/",
+        "retrieved": "2026-10-18"
+      }
+    ],
+    "luggage": null,
+    "checkIn": "16:00",
+    "checkOut": "10:00",
+    "dinnerAccess": null,
+    "group": {
+      "totalRooms": 1,
+      "roomTypes": [
+        "整棟 和洋室 92 m²、3 寢室＋小上がり和室，1～8 人"
+      ],
+      "maxGuests": 8,
+      "wholeRental": true,
+      "pickupCapacity": null,
+      "nearbyCombos": [
+        "futami-plafino"
+      ],
+      "note": "最多 8 人，15 人住不下；可供小組"
+    },
+    "ratings": {
+      "rakuten": null,
+      "rakutenReviews": null,
+      "jalan": null,
+      "jalanReviews": null,
+      "booking": null,
+      "google": 5,
+      "googleReviews": 2,
+      "note": "T8b（2026-10-18）：楽天 API 平均沒有，0 則、Google 5（2 則，「オレンジガーデン」），5 分制。"
+    },
+    "accessibility": {
+      "elevator": null,
+      "beds": "單人床 4、雙人床 2、鋪被／床墊 2 組",
+      "stairs": "「段差のないフロア」無段差；停車場到玄關有斜坡、玄關門檻有簡易斜坡；是否平房未寫",
+      "kids": "有兒童收費設定，金額未列",
+      "note": "無障礙廁所（輪椅可進）；浴室 4 支扶手＋淋浴椅；2023 年新建"
+    },
+    "reservation": {
+      "methods": [
+        "rakuten",
+        "airbnb",
+        "phone"
+      ],
+      "phone": "090-3385-3020",
+      "url": "https://travel.rakuten.co.jp/HOTEL/193993/193993.html",
+      "groupNote": null
+    },
+    "bookingLinks": {
+      "rakuten": "https://travel.rakuten.co.jp/HOTEL/193993/193993.html"
+    },
+    "sources": [
+      {
+        "type": "booking-site",
+        "url": "https://travel.rakuten.co.jp/HOTEL/193993/193993.html",
+        "retrieved": "2026-10-18",
+        "note": "楽天トラベル API（SimpleHotelSearch、HotelDetailSearch、VacantHotelSearch，scripts/rakuten.mjs）：評分、細項評分、房數、check-in/out、照片、2027-02-09／02-10 的空房與價格"
+      },
+      {
+        "type": "google-maps",
+        "url": "https://maps.google.com/?cid=1662670256767147235",
+        "retrieved": "2026-10-18",
+        "note": "Google 地圖「オレンジガーデン」：星數、評論數、座標、照片"
+      },
+      {
+        "type": "booking-site",
+        "url": "https://travel.rakuten.co.jp/HOTEL/193993/193993.html",
+        "retrieved": "2026-10-18",
+        "note": "整棟 1 室、二見浦車程 7 分、check-in/out、取消規定"
+      },
+      {
+        "type": "booking-site",
+        "url": "https://travel.rakuten.co.jp/HOTEL/193993/193993_std.html",
+        "retrieved": "2026-10-18",
+        "note": "設備；無障礙無具體說明"
+      },
+      {
+        "type": "booking-site",
+        "url": "https://hotel.travel.rakuten.co.jp/hotelinfo/plan/193993",
+        "retrieved": "2026-10-18",
+        "note": "最多 8 人、92 m² 3 寢室、無段差、浴室扶手、每人約 8,500～10,600 円"
+      },
+      {
+        "type": "booking-site",
+        "url": "https://review.travel.rakuten.co.jp/hotel/voice/193993/",
+        "retrieved": "2026-10-18",
+        "note": "無心得"
+      },
+      {
+        "type": "media",
+        "url": "https://tabiiro.jp/plan/2565/",
+        "retrieved": "2026-10-18",
+        "note": "2024-11 採訪：斜坡、無障礙廁所、扶手浴室、超市車程 5 分"
+      }
+    ],
+    "verified": false,
+    "extra": {
+      "parking": "有，費用內含，台數未寫",
+      "conflicts": [
+        "施設頁寫不收信用卡，方案頁寫線上刷卡",
+        "寢室數：旅色 2 間（又寫 3 ベッドルーム）vs 楽天 3 間"
+      ],
+      "rakutenHotelNo": 193993,
+      "rakutenVacancy": {
+        "retrieved": "2026-10-18",
+        "dates": [
+          "2027-02-09",
+          "2027-02-10"
+        ],
+        "combos": [
+          "5x3",
+          "4x4",
+          "3x5",
+          "2x8"
+        ],
+        "available": {
+          "2027-02-09": [],
+          "2027-02-10": []
+        },
+        "note": "15 人（全部以大人計）分 N 間同住的組合，有空房的列出；只代表查詢當天楽天上的庫存"
+      }
+    }
+  }
+]

@@ -1,0 +1,4929 @@
+[
+  {
+    "id": "ise-sanco-inn",
+    "type": "lodging",
+    "name": {
+      "ja": "三交イン伊勢市駅前「本館」〜四季乃湯〜・「別館」Grande",
+      "zh": "三交 Inn 伊勢市站前"
+    },
+    "area": "ise",
+    "region": "ise-geku",
+    "kind": "hotel",
+    "coords": [
+      136.7084795,
+      34.4915092
+    ],
+    "coordsSource": "google-maps-url",
+    "address": "三重県伊勢市宮後1丁目1-1（別館 Grande：宮後1丁目1-35 MiraISE 9F）",
+    "hours": null,
+    "closedNote": null,
+    "febNote": "本館早餐餐廳 S-cafe 2027 年 2 月有改修工程，當月早餐營業日程確定後才開賣，要再確認",
+    "closures": [],
+    "photos": [
+      {
+        "url": "https://img.travel.rakuten.co.jp/share/HOTEL/158426/158426.jpg",
+        "page": "https://travel.rakuten.co.jp/HOTEL/158426/158426.html",
+        "kind": "rakuten",
+        "credit": "楽天トラベル（施設提供）",
+        "license": null
+      },
+      {
+        "url": "https://lh3.googleusercontent.com/grass-cs/AABkmLcKM-XQ25zhhYsFnMmKi5kUELEqytZob1JCBoQHf69ehCeGDqByiXPjCnkAIahrEFnuTq60H19cztZRvfn_rLfnHx5L2hfAzqiJ73lxa6cV6QMosXg_yVCphO4HadB98nweyGGq=w408-h272-k-no",
+        "page": "https://maps.google.com/?cid=13132639933777178043",
+        "kind": "google",
+        "credit": "Google マップ",
+        "license": null
+      }
+    ],
+    "links": {
+      "official": "https://www.sanco-inn.co.jp/ise/",
+      "googleMaps": "https://maps.google.com/?cid=13132639933777178043"
+    },
+    "tags": [],
+    "tier": null,
+    "nearestStation": {
+      "id": "iseshi",
+      "mode": "walk",
+      "minutes": 2,
+      "note": "近鉄・JR伊勢市駅南口（JR側）より徒歩2分（本館）；別館 Grande 徒歩3分"
+    },
+    "pickup": null,
+    "meals": "breakfast",
+    "priceRange": "每人約 9,460～10,320 円（依方案，含素泊／附早餐；詳見 prices）",
+    "prices": [
+      {
+        "currency": "JPY",
+        "plan": "早餐自助（S-cafe）",
+        "unit": "per-person",
+        "adult": 1650,
+        "child": 830,
+        "season": null,
+        "note": "小學生 830 円、乳幼兒免費；2027-02 餐廳改修，營業日程未定",
+        "source": "official",
+        "url": "https://www.sanco-inn.co.jp/ise/breakfast/",
+        "retrieved": "2026-10-18"
+      },
+      {
+        "plan": "素泊 楽天 15 人組合最低價（【別館】全室ツインルーム以上のゆったりベーシックプラン＜素泊まり＞）",
+        "unit": "per-person",
+        "adult": 9660,
+        "child": null,
+        "currency": "JPY",
+        "season": "2027-02-09（二）1 泊，3 間 × 5 人（大人）有空房時的最低價",
+        "note": "房型：【別館】モデレートツイン（2ベッド＋追加1台）。楽天 API 空室検索（查詢 2026-10-18），含稅、不含入湯稅等。這天有空房的組合：3x5、4x4、5x3。",
+        "source": "rakuten-api",
+        "url": "https://hotel.travel.rakuten.co.jp/hotelinfo/plan/158426?f_nen1=2027&f_tuki1=2&f_hi1=9&f_nen2=2027&f_tuki2=2&f_hi2=10&f_heya_su=3&f_otona_su=5&f_s1=0&f_s2=0&f_y1=0&f_y2=0&f_y3=0&f_y4=0",
+        "retrieved": "2026-10-18"
+      },
+      {
+        "plan": "素泊 楽天 15 人組合最低價（【別館】全室ツインルーム以上のゆったりベーシックプラン＜素泊まり＞）",
+        "unit": "per-person",
+        "adult": 9460,
+        "child": null,
+        "currency": "JPY",
+        "season": "2027-02-10（三，2/11 國定假日前一晚）1 泊，3 間 × 5 人（大人）有空房時的最低價",
+        "note": "房型：【別館】モデレートツイン（2ベッド＋追加1台）。楽天 API 空室検索（查詢 2026-10-18），含稅、不含入湯稅等。這天有空房的組合：3x5、4x4、5x3。",
+        "source": "rakuten-api",
+        "url": "https://hotel.travel.rakuten.co.jp/hotelinfo/plan/158426?f_nen1=2027&f_tuki1=2&f_hi1=10&f_nen2=2027&f_tuki2=2&f_hi2=11&f_heya_su=3&f_otona_su=5&f_s1=0&f_s2=0&f_y1=0&f_y2=0&f_y3=0&f_y4=0",
+        "retrieved": "2026-10-18"
+      },
+      {
+        "plan": "素泊 大人 3＋小學生高年級 1（1 室）最低價（【別館】全室ツインルーム以上のゆったりベーシックプラン＜素泊まり＞）",
+        "unit": "per-person",
+        "adult": 10320,
+        "child": null,
+        "currency": "JPY",
+        "season": "2027-02-09（二）1 泊，1 間 大人 3＋小學生高年級 1",
+        "note": "房型：【別館】スタンダードツイン（2ベッド）。一間總價 41,280 円；API 的小學生價和大人相同（可能以房計價或兒童同價），兒童價不推算。楽天 API（查詢 2026-10-18）。",
+        "source": "rakuten-api",
+        "url": "https://hotel.travel.rakuten.co.jp/hotelinfo/plan/158426?f_nen1=2027&f_tuki1=2&f_hi1=9&f_nen2=2027&f_tuki2=2&f_hi2=10&f_heya_su=1&f_otona_su=3&f_s1=1&f_s2=0&f_y1=0&f_y2=0&f_y3=0&f_y4=0",
+        "retrieved": "2026-10-18"
+      }
+    ],
+    "luggage": "別館 Grande 有自助行李寄放處（セルフクロークスペース），入住前、退房後可放；本館未載明",
+    "checkIn": "15:00",
+    "checkOut": "10:00",
+    "dinnerAccess": null,
+    "group": {
+      "totalRooms": 165,
+      "roomTypes": [
+        "本館 128 室：スタンダード 12.4㎡ 1～2 人、デラックス 15.1㎡ 1～2 人、スタンダードツイン 15.1㎡ 1～2 人、ユニバーサル 19.8㎡ 1～2 人",
+        "別館 Grande 37 室（全雙床）：スタンダードツイン 27.3㎡ 最多 4 人（有可相連房）、モデレートツイン 29.2㎡ 最多 5 人（和 style 版含布團 1 組）、デラックスツイン ワイドビュー 45.8㎡／コーナービュー 42.1㎡ 最多 6 人、プレミアムツイン 52.2㎡ 最多 5 人、ユニバーサルツイン 34㎡ 最多 4 人、カジュアルツイン 25.7㎡ 2 人、コンセプトツイン 2 種各限 1 室 4 人"
+      ],
+      "maxGuests": null,
+      "wholeRental": false,
+      "pickupCapacity": null,
+      "nearbyCombos": [],
+      "note": "本館只有 1～2 人房；15 人可分住別館 Grande 3～4 間（6 人房 ×2 + 4～5 人房等）。團體方案未載明"
+    },
+    "ratings": {
+      "rakuten": 4.31,
+      "rakutenReviews": 2409,
+      "jalan": null,
+      "jalanReviews": null,
+      "booking": null,
+      "google": 4,
+      "googleReviews": 1384,
+      "rakutenService": 4.33,
+      "rakutenLocation": 4.41,
+      "rakutenRoom": 4.34,
+      "rakutenEquipment": 4.32,
+      "rakutenBath": 4.25,
+      "rakutenMeal": 4.27,
+      "note": "T8b（2026-10-18）：楽天 4.31（2409 則，API）、Google 4（1384 則，「三交イン伊勢市駅前 本館 四季乃湯」），5 分制。"
+    },
+    "accessibility": {
+      "elevator": null,
+      "beds": "全部是床；別館モデレートツイン和 style 有 1 組布團",
+      "stairs": null,
+      "kids": "住宿兒童收費未載明；早餐小學生 830 円、乳幼兒免費；添い寝幼兒每床限 1 名",
+      "note": "本館ユニバーサルルーム 1 間、別館ユニバーサルツイン；電梯未載明（別館在 9 樓）；本館櫃檯在 2 樓"
+    },
+    "reservation": {
+      "methods": [
+        "rakuten",
+        "jalan",
+        "official",
+        "phone"
+      ],
+      "phone": "0596-20-3539（本館）／0596-65-7735（別館 Grande）",
+      "url": "https://www.sanco-inn.co.jp/ise/",
+      "groupNote": null
+    },
+    "bookingLinks": {
+      "rakuten": "https://travel.rakuten.co.jp/HOTEL/158426/158426.html"
+    },
+    "sources": [
+      {
+        "type": "booking-site",
+        "url": "https://travel.rakuten.co.jp/HOTEL/158426/158426.html",
+        "retrieved": "2026-10-18",
+        "note": "楽天トラベル API（SimpleHotelSearch、HotelDetailSearch、VacantHotelSearch，scripts/rakuten.mjs）：評分、細項評分、房數、check-in/out、照片、2027-02-09／02-10 的空房與價格"
+      },
+      {
+        "type": "google-maps",
+        "url": "https://maps.google.com/?cid=13132639933777178043",
+        "retrieved": "2026-10-18",
+        "note": "Google 地圖「三交イン伊勢市駅前 本館 四季乃湯」：星數、評論數、座標、照片"
+      },
+      {
+        "type": "official",
+        "url": "https://www.sanco-inn.co.jp/ise/",
+        "retrieved": "2026-10-18",
+        "note": "本館首頁：伊勢市站步行 2 分、和洋自助早餐、四季乃湯"
+      },
+      {
+        "type": "official",
+        "url": "https://www.sanco-inn.co.jp/ise/rooms/",
+        "retrieved": "2026-10-18",
+        "note": "本館 128 室，全為 1～2 人房"
+      },
+      {
+        "type": "official",
+        "url": "https://www.sanco-inn.co.jp/ise/bath/",
+        "retrieved": "2026-10-18",
+        "note": "四季乃湯時間 15:00～2:00、5:00～9:00"
+      },
+      {
+        "type": "official",
+        "url": "https://www.sanco-inn.co.jp/ise/breakfast/",
+        "retrieved": "2026-10-18",
+        "note": "早餐 1,650 円、小學生 830 円；2027-02 改修工程"
+      },
+      {
+        "type": "official",
+        "url": "https://www.sanco-inn.co.jp/ise-annex/rooms/",
+        "retrieved": "2026-10-18",
+        "note": "別館 Grande 37 室，4～6 人雙床房"
+      },
+      {
+        "type": "official",
+        "url": "https://www.sanco-inn.co.jp/ise-annex/facilities/",
+        "retrieved": "2026-10-18",
+        "note": "別館自助行李寄放、スカイラウンジ BAR、前台 6:00～21:00"
+      },
+      {
+        "type": "official",
+        "url": "https://www.sanco-inn.co.jp/ise_area/",
+        "retrieved": "2026-10-18",
+        "note": "本館別館比較：別館 OUT 11:00、全禁菸、最多 6 人"
+      },
+      {
+        "type": "booking-site",
+        "url": "https://travel.rakuten.co.jp/HOTEL/158426/158426_std.html",
+        "retrieved": "2026-10-18",
+        "note": "165 室、停車場 11 台 1,000 円、IN 15:00 OUT 10:00"
+      },
+      {
+        "type": "booking-site",
+        "url": "https://review.travel.rakuten.co.jp/hotel/voice/158426/",
+        "retrieved": "2026-10-18",
+        "note": "楽天 4.31，大浴場擁擠是主要負評，家庭住別館評價好"
+      }
+    ],
+    "verified": false,
+    "extra": {
+      "onsen": "大浴場「人工光明石温泉 四季乃湯」本館 2 樓，15:00～翌 2:00、5:00～9:00，限住客；別館住客能否使用未載明；心得說脫衣所動線差、尖峰擁擠",
+      "parking": "11 台，1,000 円／泊，先到先停、不可預約、不可進出（15:00～翌 10:00）",
+      "conflicts": [
+        "官網外宮距離寫步行 6 分與約 10 分兩種",
+        "官網內宮巴士寫 15 分與約 33 分兩種",
+        "別館 Grande 退房 11:00，本館 10:00"
+      ],
+      "rakutenHotelNo": 158426,
+      "rakutenVacancy": {
+        "retrieved": "2026-10-18",
+        "dates": [
+          "2027-02-09",
+          "2027-02-10"
+        ],
+        "combos": [
+          "5x3",
+          "4x4",
+          "3x5",
+          "2x8"
+        ],
+        "available": {
+          "2027-02-09": [
+            "3x5",
+            "4x4",
+            "5x3"
+          ],
+          "2027-02-10": [
+            "3x5",
+            "4x4",
+            "5x3"
+          ]
+        },
+        "note": "15 人（全部以大人計）分 N 間同住的組合，有空房的列出；只代表查詢當天楽天上的庫存"
+      }
+    }
+  },
+  {
+    "id": "ise-shinsen",
+    "type": "lodging",
+    "name": {
+      "ja": "伊勢外宮参道 伊勢神泉",
+      "zh": "伊勢神泉"
+    },
+    "area": "ise",
+    "region": "ise-geku",
+    "kind": "ryokan",
+    "coords": [
+      136.7086402,
+      34.4907082
+    ],
+    "coordsSource": "google-maps-url",
+    "address": "三重県伊勢市本町1-1",
+    "hours": null,
+    "closedNote": null,
+    "febNote": "観光三重寫無休；沒看到 2 月休館資訊",
+    "closures": [],
+    "photos": [
+      {
+        "url": "https://www.iseshinsen.jp/ogp.jpg",
+        "page": "https://www.iseshinsen.jp/",
+        "kind": "official",
+        "credit": "伊勢外宮参道 伊勢神泉",
+        "license": null
+      },
+      {
+        "url": "https://img.travel.rakuten.co.jp/share/HOTEL/142619/142619.jpg",
+        "page": "https://travel.rakuten.co.jp/HOTEL/142619/142619.html",
+        "kind": "rakuten",
+        "credit": "楽天トラベル（施設提供）",
+        "license": null
+      },
+      {
+        "url": "https://lh3.googleusercontent.com/grass-cs/AABkmLcO9oCUL_krwxW0LqaBrCX_IbDNkSpIK_e5sKRzPQ9lFdNMN11SoLG3PuV1nJND5mT8Vv6RGDZvuK7vBmSTouEgNVtn-TcA7m4wTlazekQvywKHgX7Lbu8AVNrNSlwnINzMkoKt=w408-h306-k-no",
+        "page": "https://maps.google.com/?cid=1320609226001635846",
+        "kind": "google",
+        "credit": "Google マップ",
+        "license": null
+      }
+    ],
+    "links": {
+      "official": "https://www.iseshinsen.jp/",
+      "googleMaps": "https://maps.google.com/?cid=1320609226001635846"
+    },
+    "tags": [],
+    "tier": null,
+    "nearestStation": {
+      "id": "iseshi",
+      "mode": "walk",
+      "minutes": 1,
+      "note": "伊勢市駅（JR・近鉄）徒歩1分、JR 外宮側改札口を利用"
+    },
+    "pickup": null,
+    "meals": "varies",
+    "priceRange": "每人約 23,500～26,800 円（依方案，含素泊／附早餐；詳見 prices）",
+    "prices": [
+      {
+        "plan": "一泊二食 楽天 15 人組合最低價（【60日前の予約でお得に伊勢参り】伊勢神泉の天然温泉と美食を堪能／1泊2食付 【みえ旅★さき楽】）",
+        "unit": "per-person",
+        "adult": 23500,
+        "child": null,
+        "currency": "JPY",
+        "season": "2027-02-09（二）1 泊，4 間 × 4 人（大人）有空房時的含晚餐最低價",
+        "note": "房型：【露天風呂付】和洋室（最大4名）  バルコニー喫煙可。楽天 API 空室検索（查詢 2026-10-18），含稅、不含入湯稅等。這天有空房的組合：3x5、4x4、5x3。",
+        "source": "rakuten-api",
+        "url": "https://hotel.travel.rakuten.co.jp/hotelinfo/plan/142619?f_nen1=2027&f_tuki1=2&f_hi1=9&f_nen2=2027&f_tuki2=2&f_hi2=10&f_heya_su=4&f_otona_su=4&f_s1=0&f_s2=0&f_y1=0&f_y2=0&f_y3=0&f_y4=0",
+        "retrieved": "2026-10-18"
+      },
+      {
+        "plan": "一泊二食 楽天 15 人組合最低價（【60日前の予約でお得に伊勢参り】伊勢神泉の天然温泉と美食を堪能／1泊2食付 【みえ旅★さき楽】）",
+        "unit": "per-person",
+        "adult": 26800,
+        "child": null,
+        "currency": "JPY",
+        "season": "2027-02-10（三，2/11 國定假日前一晚）1 泊，4 間 × 4 人（大人）有空房時的含晚餐最低價",
+        "note": "房型：【露天風呂付】和洋室（最大4名）  バルコニー喫煙可。楽天 API 空室検索（查詢 2026-10-18），含稅、不含入湯稅等。這天有空房的組合：3x5、4x4、5x3。",
+        "source": "rakuten-api",
+        "url": "https://hotel.travel.rakuten.co.jp/hotelinfo/plan/142619?f_nen1=2027&f_tuki1=2&f_hi1=10&f_nen2=2027&f_tuki2=2&f_hi2=11&f_heya_su=4&f_otona_su=4&f_s1=0&f_s2=0&f_y1=0&f_y2=0&f_y3=0&f_y4=0",
+        "retrieved": "2026-10-18"
+      },
+      {
+        "plan": "一泊二食 大人 3＋小學生高年級 1（1 室）最低價（【60日前の予約でお得に伊勢参り】伊勢神泉の天然温泉と美食を堪能／1泊2食付 【みえ旅★さき楽】）",
+        "unit": "per-person",
+        "adult": 25150,
+        "child": 9130,
+        "currency": "JPY",
+        "season": "2027-02-09（二）1 泊，1 間 大人 3＋小學生高年級 1",
+        "note": "房型：【露天風呂付】和洋室（最大4名）  バルコニー喫煙可。兒童價＝一間總價 84,580 円 − 大人 3 人份（約大人的 36%）。楽天 API（查詢 2026-10-18）。",
+        "source": "rakuten-api",
+        "url": "https://hotel.travel.rakuten.co.jp/hotelinfo/plan/142619?f_nen1=2027&f_tuki1=2&f_hi1=9&f_nen2=2027&f_tuki2=2&f_hi2=10&f_heya_su=1&f_otona_su=3&f_s1=1&f_s2=0&f_y1=0&f_y2=0&f_y3=0&f_y4=0",
+        "retrieved": "2026-10-18"
+      }
+    ],
+    "luggage": "入住前、退房後都可在櫃檯寄放行李",
+    "checkIn": "15:00",
+    "checkOut": "11:00",
+    "dinnerAccess": null,
+    "group": {
+      "totalRooms": 45,
+      "roomTypes": [
+        "和洋室 48㎡ 最多 4 人（2 床＋榻榻米鋪被）",
+        "洋室 48㎡ 2～3 人（部分房沙發床）",
+        "スイート 96㎡ 最多 5 人（客廳＋和室＋2 床）"
+      ],
+      "maxGuests": null,
+      "wholeRental": false,
+      "pickupCapacity": null,
+      "nearbyCombos": [],
+      "note": "15 人要分 4～5 間房。沒有宴會場、會議室；餐廳以 2～5 人桌為主，團體用餐要先問預約中心。15 人以上團體另有取消規定"
+    },
+    "ratings": {
+      "rakuten": 4.54,
+      "rakutenReviews": 1446,
+      "jalan": null,
+      "jalanReviews": null,
+      "booking": null,
+      "google": 4.4,
+      "googleReviews": 960,
+      "rakutenService": 4.64,
+      "rakutenLocation": 4.53,
+      "rakutenRoom": 4.52,
+      "rakutenEquipment": 4.53,
+      "rakutenBath": 4.53,
+      "rakutenMeal": 4.68,
+      "note": "T8b（2026-10-18）：楽天 4.54（1446 則，API）、Google 4.4（960 則，「伊勢神泉」），5 分制。"
+    },
+    "accessibility": {
+      "elevator": null,
+      "beds": "所有房型都有ツイン床；和洋室、スイート第 3 人以上鋪被",
+      "stairs": null,
+      "kids": "0～12 歲設施使用費 1,045 円，餐、被褥另計；高年級お子様会席、低年級和幼兒お子様プレート；可借嬰兒床、床護欄等",
+      "note": "可借輪椅、拐杖、洗澡椅、高座椅子；有無障礙廁所；餐廳全為桌椅、無座敷。電梯各來源都沒寫"
+    },
+    "reservation": {
+      "methods": [
+        "rakuten",
+        "official",
+        "phone"
+      ],
+      "phone": "0570-0117-22",
+      "url": "https://www.iseshinsen.jp/",
+      "groupNote": "團體用餐座位要先問預約中心（0570-0117-22，10:00～20:00）"
+    },
+    "bookingLinks": {
+      "rakuten": "https://travel.rakuten.co.jp/HOTEL/142619/142619.html"
+    },
+    "sources": [
+      {
+        "type": "booking-site",
+        "url": "https://travel.rakuten.co.jp/HOTEL/142619/142619.html",
+        "retrieved": "2026-10-18",
+        "note": "楽天トラベル API（SimpleHotelSearch、HotelDetailSearch、VacantHotelSearch，scripts/rakuten.mjs）：評分、細項評分、房數、check-in/out、照片、2027-02-09／02-10 的空房與價格"
+      },
+      {
+        "type": "google-maps",
+        "url": "https://maps.google.com/?cid=1320609226001635846",
+        "retrieved": "2026-10-18",
+        "note": "Google 地圖「伊勢神泉」：星數、評論數、座標、照片"
+      },
+      {
+        "type": "booking-site",
+        "url": "https://travel.rakuten.co.jp/HOTEL/142619/142619.html",
+        "retrieved": "2026-10-18",
+        "note": "楽天 4.54（1,446 則），餐廳伊せ吟、方案名稱"
+      },
+      {
+        "type": "booking-site",
+        "url": "https://travel.rakuten.co.jp/HOTEL/142619/142619_std.html",
+        "retrieved": "2026-10-18",
+        "note": "45 室、兒童設施費 1,045 円、15 人以上團體取消規定、停車場"
+      },
+      {
+        "type": "official",
+        "url": "https://www.iseshinsen.jp/room/",
+        "retrieved": "2026-10-18",
+        "note": "三種房型的面積、人數、床"
+      },
+      {
+        "type": "official",
+        "url": "https://www.iseshinsen.jp/faq/",
+        "retrieved": "2026-10-18",
+        "note": "無宴會場、餐廳 2～5 人桌、無接送、行李寄放"
+      },
+      {
+        "type": "tourism",
+        "url": "https://www.kankomie.or.jp/spot/23587",
+        "retrieved": "2026-10-18",
+        "note": "官網網址、無休"
+      },
+      {
+        "type": "media",
+        "url": "https://www.gltjp.com/ja/directory/item/19148/",
+        "retrieved": "2026-10-18",
+        "note": "全室露天風呂、大浴場設備"
+      }
+    ],
+    "verified": false,
+    "extra": {
+      "onsen": "自家源泉天然溫泉「きよなぎさ」（鹼性），大浴場內湯、露天、三溫暖、冷水浴；全室附信樂燒露天風呂（スイート設備表未列，要確認）；入湯稅 150 円",
+      "parking": "無專用停車場，合作的伊勢敬駅前駐車場 1 晚 1,100 円",
+      "conflicts": [
+        "電話：0570-0117-22（楽天、官網）vs 0596-26-0100（観光三重）",
+        "最晚入住：楽天 18:00 vs 其他訂房網 23:00"
+      ],
+      "rakutenHotelNo": 142619,
+      "rakutenVacancy": {
+        "retrieved": "2026-10-18",
+        "dates": [
+          "2027-02-09",
+          "2027-02-10"
+        ],
+        "combos": [
+          "5x3",
+          "4x4",
+          "3x5",
+          "2x8"
+        ],
+        "available": {
+          "2027-02-09": [
+            "3x5",
+            "4x4",
+            "5x3"
+          ],
+          "2027-02-10": [
+            "3x5",
+            "4x4",
+            "5x3"
+          ]
+        },
+        "note": "15 人（全部以大人計）分 N 間同住的組合，有空房的列出；只代表查詢當天楽天上的庫存"
+      }
+    }
+  },
+  {
+    "id": "ise-comfort-era",
+    "type": "lodging",
+    "name": {
+      "ja": "コンフォートホテルERA伊勢",
+      "zh": "Comfort Hotel ERA 伊勢"
+    },
+    "area": "ise",
+    "region": "ise-geku",
+    "kind": "hotel",
+    "coords": [
+      136.7095853,
+      34.4898761
+    ],
+    "coordsSource": "google-maps-url",
+    "address": "三重県伊勢市吹上1-3-26",
+    "hours": null,
+    "closedNote": null,
+    "febNote": "2 月沒有特別休館資訊",
+    "closures": [],
+    "photos": [
+      {
+        "url": "https://img.travel.rakuten.co.jp/share/HOTEL/166509/166509.jpg",
+        "page": "https://travel.rakuten.co.jp/HOTEL/166509/166509.html",
+        "kind": "rakuten",
+        "credit": "楽天トラベル（施設提供）",
+        "license": null
+      },
+      {
+        "url": "https://lh3.googleusercontent.com/grass-cs/AABkmLfcCrMRWWA1Y8ZcUKvJS0FLtj60CSNxTQuaAMSOapdAtfeRxojbLWS8xD_C-wlr28HUN2JjENW6hyRslgXzpJH9H1LawJyhmDBvwyOCkwwQhs7xd1b6F6oLrh2WepJaKhHabZUwLnFEgW4J=w408-h544-k-no",
+        "page": "https://maps.google.com/?cid=9105342435517923091",
+        "kind": "google",
+        "credit": "Google マップ",
+        "license": null
+      }
+    ],
+    "links": {
+      "official": "https://www.choice-hotels.jp/raku/ise/",
+      "googleMaps": "https://maps.google.com/?cid=9105342435517923091"
+    },
+    "tags": [],
+    "tier": null,
+    "nearestStation": {
+      "id": "iseshi",
+      "mode": "walk",
+      "minutes": 3,
+      "note": "近鉄・JR「伊勢市駅」南口より徒歩約3分"
+    },
+    "pickup": null,
+    "meals": "breakfast",
+    "priceRange": "每人約 8,000～9,800 円（依方案，含素泊／附早餐；詳見 prices）",
+    "prices": [
+      {
+        "currency": "JPY",
+        "plan": "朝食付 ツインスタンダード 2 名 1 室",
+        "unit": "per-person",
+        "adult": 12350,
+        "child": null,
+        "season": "2026-10～11 近期浮動價（12,350～17,000 円）",
+        "note": "含稅，非 2 月價格",
+        "source": "rakuten",
+        "url": "https://hotel.travel.rakuten.co.jp/hotelinfo/plan/166509/",
+        "retrieved": "2026-10-18"
+      },
+      {
+        "currency": "JPY",
+        "plan": "朝食付 ツインハイクラス 2 名 1 室",
+        "unit": "per-person",
+        "adult": 15350,
+        "child": null,
+        "season": "2026-10～11 近期浮動價（15,350～20,450 円）",
+        "note": "含稅，非 2 月價格",
+        "source": "rakuten",
+        "url": "https://hotel.travel.rakuten.co.jp/hotelinfo/plan/166509/",
+        "retrieved": "2026-10-18"
+      },
+      {
+        "currency": "JPY",
+        "plan": "朝食付 ダブルスタンダード 2 名 1 室",
+        "unit": "per-person",
+        "adult": 8500,
+        "child": null,
+        "season": "2026-10～11 近期浮動價（8,500～11,700 円）",
+        "note": "含稅，非 2 月價格",
+        "source": "rakuten",
+        "url": "https://hotel.travel.rakuten.co.jp/hotelinfo/plan/166509/",
+        "retrieved": "2026-10-18"
+      },
+      {
+        "plan": "素泊 楽天 15 人組合最低價（【50日前】フォースルーム◆伊勢市駅より徒歩3分◆◆地域のスイーツが無料で楽しめるカフェ◆素泊まり）",
+        "unit": "per-person",
+        "adult": 8000,
+        "child": null,
+        "currency": "JPY",
+        "season": "2027-02-09（二）1 泊，4 間 × 4 人（大人）有空房時的最低價",
+        "note": "房型：２ベッド◆ツインハイクラス◆ ＜禁煙＞。楽天 API 空室検索（查詢 2026-10-18），含稅、不含入湯稅等。這天有空房的組合：4x4。",
+        "source": "rakuten-api",
+        "url": "https://hotel.travel.rakuten.co.jp/hotelinfo/plan/166509?f_nen1=2027&f_tuki1=2&f_hi1=9&f_nen2=2027&f_tuki2=2&f_hi2=10&f_heya_su=4&f_otona_su=4&f_s1=0&f_s2=0&f_y1=0&f_y2=0&f_y3=0&f_y4=0",
+        "retrieved": "2026-10-18"
+      },
+      {
+        "plan": "素泊 大人 3＋小學生高年級 1（1 室）最低價（【50日前】トリプルルーム◆伊勢市駅より徒歩3分◆◆地域のスイーツが無料で楽しめるカフェ◆素泊まり）",
+        "unit": "per-person",
+        "adult": 9800,
+        "child": null,
+        "currency": "JPY",
+        "season": "2027-02-09（二）1 泊，1 間 大人 3＋小學生高年級 1",
+        "note": "房型：２ベッド◆ツインハイクラス◆ ＜禁煙＞。一間總價 29,400 円；API 的小學生價是 0（可能是不佔床的價格），兒童價不推算。楽天 API（查詢 2026-10-18）。",
+        "source": "rakuten-api",
+        "url": "https://hotel.travel.rakuten.co.jp/hotelinfo/plan/166509?f_nen1=2027&f_tuki1=2&f_hi1=9&f_nen2=2027&f_tuki2=2&f_hi2=10&f_heya_su=1&f_otona_su=3&f_s1=1&f_s2=0&f_y1=0&f_y2=0&f_y3=0&f_y4=0",
+        "retrieved": "2026-10-18"
+      }
+    ],
+    "luggage": "可寄放行李（大廳密碼鎖式寄物處，心得說法）",
+    "checkIn": "15:00",
+    "checkOut": "10:00",
+    "dinnerAccess": null,
+    "group": {
+      "totalRooms": 153,
+      "roomTypes": [
+        "ツインハイクラス 32㎡ 1～4 人（3～4 人時加床）",
+        "ツインスタンダード 22㎡ 1～4 人",
+        "クイーンエコノミー 15㎡ 1～3 人",
+        "ダブルスタンダード 15㎡ 1～2 人"
+      ],
+      "maxGuests": null,
+      "wholeRental": false,
+      "pickupCapacity": null,
+      "nearbyCombos": [],
+      "note": "商務飯店，15 人分 4～6 間；有「フォースルーム」方案，實際房型待確認"
+    },
+    "ratings": {
+      "rakuten": 4.39,
+      "rakutenReviews": 1980,
+      "jalan": null,
+      "jalanReviews": null,
+      "booking": null,
+      "google": 4.2,
+      "googleReviews": 1211,
+      "rakutenService": 4.48,
+      "rakutenLocation": 4.42,
+      "rakutenRoom": 4.41,
+      "rakutenEquipment": 4.29,
+      "rakutenBath": 4.18,
+      "rakutenMeal": 4.34,
+      "note": "T8b（2026-10-18）：楽天 4.39（1980 則，API）、Google 4.2（1211 則，「コンフォートホテルERA伊勢」），5 分制。"
+    },
+    "accessibility": {
+      "elevator": null,
+      "beds": "全為西式床，無和室",
+      "stairs": null,
+      "kids": "小學 6 年級以下添い寝免住宿費，小學生早餐 950 円；未就學兒添い寝免費；嬰兒床 1,100 円要預約；可索取兒童餐具",
+      "note": "沒有大浴場"
+    },
+    "reservation": {
+      "methods": [
+        "rakuten",
+        "official",
+        "phone"
+      ],
+      "phone": "0596-27-1811",
+      "url": "https://hotel.travel.rakuten.co.jp/hotelinfo/plan/166509/",
+      "groupNote": null
+    },
+    "bookingLinks": {
+      "rakuten": "https://travel.rakuten.co.jp/HOTEL/166509/166509.html"
+    },
+    "sources": [
+      {
+        "type": "booking-site",
+        "url": "https://travel.rakuten.co.jp/HOTEL/166509/166509.html",
+        "retrieved": "2026-10-18",
+        "note": "楽天トラベル API（SimpleHotelSearch、HotelDetailSearch、VacantHotelSearch，scripts/rakuten.mjs）：評分、細項評分、房數、check-in/out、照片、2027-02-09／02-10 的空房與價格"
+      },
+      {
+        "type": "google-maps",
+        "url": "https://maps.google.com/?cid=9105342435517923091",
+        "retrieved": "2026-10-18",
+        "note": "Google 地圖「コンフォートホテルERA伊勢」：星數、評論數、座標、照片"
+      },
+      {
+        "type": "booking-site",
+        "url": "https://travel.rakuten.co.jp/HOTEL/166509/166509_std.html",
+        "retrieved": "2026-10-18",
+        "note": "153 室、站步行 3 分、停車、IN/OUT"
+      },
+      {
+        "type": "booking-site",
+        "url": "https://travel.rakuten.co.jp/HOTEL/166509/166509.html",
+        "retrieved": "2026-10-18",
+        "note": "無大浴場、早餐 1,800 円、兒童添い寝規定"
+      },
+      {
+        "type": "booking-site",
+        "url": "https://review.travel.rakuten.co.jp/hotel/voice/166509/",
+        "retrieved": "2026-10-18",
+        "note": "4.39（1,982 則），服務與清潔評價高，隔壁伊勢市場有晚餐店"
+      },
+      {
+        "type": "booking-site",
+        "url": "https://hotel.travel.rakuten.co.jp/hotelinfo/plan/166509/",
+        "retrieved": "2026-10-18",
+        "note": "房型與定員（最多 4 人）、朝食付價格"
+      }
+    ],
+    "verified": false,
+    "extra": {
+      "onsen": "沒有大浴場（楽天 FAQ），只有客房浴室",
+      "parking": "18 台（另提携 9 台），1 泊 1,000 円，先到先得",
+      "conflicts": [
+        "クイーンエコノミー 面積 15㎡／17㎡ 兩處不一致",
+        "「フォースルーム」方案的實際房型待確認"
+      ],
+      "rakutenHotelNo": 166509,
+      "rakutenVacancy": {
+        "retrieved": "2026-10-18",
+        "dates": [
+          "2027-02-09",
+          "2027-02-10"
+        ],
+        "combos": [
+          "5x3",
+          "4x4",
+          "3x5",
+          "2x8"
+        ],
+        "available": {
+          "2027-02-09": [
+            "4x4"
+          ],
+          "2027-02-10": []
+        },
+        "note": "15 人（全部以大人計）分 N 間同住的組合，有空房的列出；只代表查詢當天楽天上的庫存"
+      }
+    }
+  },
+  {
+    "id": "ise-pearlpier",
+    "type": "lodging",
+    "name": {
+      "ja": "伊勢パールピアホテル",
+      "zh": "伊勢珍珠碼頭飯店"
+    },
+    "area": "ise",
+    "region": "ise-geku",
+    "kind": "hotel",
+    "coords": [
+      136.7125052,
+      34.4916901
+    ],
+    "coordsSource": "google-maps-url",
+    "address": "三重県伊勢市宮後2-26-22",
+    "hours": null,
+    "closedNote": null,
+    "febNote": null,
+    "closures": [],
+    "photos": [
+      {
+        "url": "https://www.pearlpier.com/img/home/main_slide_01.jpg",
+        "page": "https://www.pearlpier.com/",
+        "kind": "official",
+        "credit": "伊勢パールピアホテル",
+        "license": null
+      },
+      {
+        "url": "https://img.travel.rakuten.co.jp/share/HOTEL/1232/1232.jpg",
+        "page": "https://travel.rakuten.co.jp/HOTEL/1232/1232.html",
+        "kind": "rakuten",
+        "credit": "楽天トラベル（施設提供）",
+        "license": null
+      },
+      {
+        "url": "https://lh3.googleusercontent.com/grass-cs/AABkmLcySRr2NmZxSV1-EmG21qDAmQhx3CeTEfdX4RNRYi_OpClNDRXt0Yhqa9e3IJ71omo9oVl0jXx-F2QRgcHjrRcdg6aXNYWVz9ZUr8R4j2RrrF0xFhQT_dXJB9IULBqYnEHmKug=w408-h272-k-no",
+        "page": "https://maps.google.com/?cid=9516679011560871532",
+        "kind": "google",
+        "credit": "Google マップ",
+        "license": null
+      }
+    ],
+    "links": {
+      "official": "https://www.pearlpier.com/",
+      "googleMaps": "https://maps.google.com/?cid=9516679011560871532"
+    },
+    "tags": [],
+    "tier": null,
+    "nearestStation": {
+      "id": "iseshi",
+      "mode": "walk",
+      "minutes": 2,
+      "note": "近鉄伊勢市駅より徒歩2分（JR利用時は近鉄改札側）"
+    },
+    "pickup": null,
+    "meals": "varies",
+    "priceRange": "每人約 31,680～33,110 円（依方案，含素泊／附早餐；詳見 prices）",
+    "prices": [
+      {
+        "plan": "一泊二食 楽天 15 人組合最低價（◆1泊夕食付プラン（朝食なし）　会席 伊勢の国◆ 〜旬の素材を、匠の技で奏でる会席プラン〜）",
+        "unit": "per-person",
+        "adult": 33110,
+        "child": null,
+        "currency": "JPY",
+        "season": "2027-02-09（二）1 泊，5 間 × 3 人（大人）有空房時的含晚餐最低價",
+        "note": "房型：【禁煙】デラックスツイン バストイレ別 (2べッド＋1台可）。楽天 API 空室検索（查詢 2026-10-18），含稅、不含入湯稅等。這天有空房的組合：5x3。",
+        "source": "rakuten-api",
+        "url": "https://hotel.travel.rakuten.co.jp/hotelinfo/plan/1232?f_nen1=2027&f_tuki1=2&f_hi1=9&f_nen2=2027&f_tuki2=2&f_hi2=10&f_heya_su=5&f_otona_su=3&f_s1=0&f_s2=0&f_y1=0&f_y2=0&f_y3=0&f_y4=0",
+        "retrieved": "2026-10-18"
+      },
+      {
+        "plan": "一泊二食 楽天 15 人組合最低價（◆1泊夕食付プラン（朝食なし）　会席 伊勢の国◆ 〜旬の素材を、匠の技で奏でる会席プラン〜）",
+        "unit": "per-person",
+        "adult": 31680,
+        "child": null,
+        "currency": "JPY",
+        "season": "2027-02-10（三，2/11 國定假日前一晚）1 泊，5 間 × 3 人（大人）有空房時的含晚餐最低價",
+        "note": "房型：【禁煙】デラックスツイン バストイレ別 (2べッド＋1台可）。楽天 API 空室検索（查詢 2026-10-18），含稅、不含入湯稅等。這天有空房的組合：5x3。",
+        "source": "rakuten-api",
+        "url": "https://hotel.travel.rakuten.co.jp/hotelinfo/plan/1232?f_nen1=2027&f_tuki1=2&f_hi1=10&f_nen2=2027&f_tuki2=2&f_hi2=11&f_heya_su=5&f_otona_su=3&f_s1=0&f_s2=0&f_y1=0&f_y2=0&f_y3=0&f_y4=0",
+        "retrieved": "2026-10-18"
+      },
+      {
+        "plan": "一泊二食 大人 3＋小學生高年級 1（1 室）最低價（◆1泊夕食付プラン（朝食なし）　会席 伊勢の国◆ 〜旬の素材を、匠の技で奏でる会席プラン〜）",
+        "unit": "per-person",
+        "adult": 33110,
+        "child": null,
+        "currency": "JPY",
+        "season": "2027-02-09（二）1 泊，1 間 大人 3＋小學生高年級 1",
+        "note": "房型：【禁煙】コネクティングルーム（ベッド幅１００cm／４０平米）。一間總價 132,440 円；API 的小學生價和大人相同（可能以房計價或兒童同價），兒童價不推算。楽天 API（查詢 2026-10-18）。",
+        "source": "rakuten-api",
+        "url": "https://hotel.travel.rakuten.co.jp/hotelinfo/plan/1232?f_nen1=2027&f_tuki1=2&f_hi1=9&f_nen2=2027&f_tuki2=2&f_hi2=10&f_heya_su=1&f_otona_su=3&f_s1=1&f_s2=0&f_y1=0&f_y2=0&f_y3=0&f_y4=0",
+        "retrieved": "2026-10-18"
+      }
+    ],
+    "luggage": "有 100 日圓退幣式置物櫃（貴重品不可），退房後也可使用",
+    "checkIn": "15:00",
+    "checkOut": "10:00",
+    "dinnerAccess": null,
+    "group": {
+      "totalRooms": 100,
+      "roomTypes": [
+        "コネクティングルーム 4 人 40㎡",
+        "デラックスツイン 2～3 人 33㎡",
+        "ジュニアスイート 2～3 人 40㎡",
+        "バリアフリールーム 2～3 人 33㎡",
+        "スタンダードツイン 2 人",
+        "ダブル 2 人",
+        "シングル 1 人"
+      ],
+      "maxGuests": null,
+      "wholeRental": false,
+      "pickupCapacity": null,
+      "nearbyCombos": [],
+      "note": "全為西式床房，最大房 4 人；15 人需分 5～6 間。宴會・會議室 3 間打通最多 30 人，可做全員聚餐。團體方案未查到"
+    },
+    "ratings": {
+      "rakuten": 4.33,
+      "rakutenReviews": 2326,
+      "jalan": null,
+      "jalanReviews": null,
+      "booking": null,
+      "google": 4,
+      "googleReviews": 972,
+      "rakutenService": 4.37,
+      "rakutenLocation": 4.18,
+      "rakutenRoom": 4.26,
+      "rakutenEquipment": 4.21,
+      "rakutenBath": 4.35,
+      "rakutenMeal": 4.63,
+      "note": "T8b（2026-10-18）：楽天 4.33（2326 則，API）、Google 4（972 則，「伊勢パールピアホテル」），5 分制。"
+    },
+    "accessibility": {
+      "elevator": null,
+      "beds": "全室床（無和室）",
+      "stairs": "館內輪椅可、無障礙廁所、有バリアフリールーム",
+      "kids": null,
+      "note": "官網提到各樓層電梯前有飲水機，推測有電梯但未正式列出；大浴場在 2F"
+    },
+    "reservation": {
+      "methods": [
+        "rakuten",
+        "jalan",
+        "official",
+        "phone"
+      ],
+      "phone": "0596-26-1111",
+      "url": "https://travel.rakuten.co.jp/HOTEL/1232/1232.html",
+      "groupNote": "電話受付 9:00～18:00"
+    },
+    "bookingLinks": {
+      "rakuten": "https://travel.rakuten.co.jp/HOTEL/1232/1232.html"
+    },
+    "sources": [
+      {
+        "type": "booking-site",
+        "url": "https://travel.rakuten.co.jp/HOTEL/1232/1232.html",
+        "retrieved": "2026-10-18",
+        "note": "楽天トラベル API（SimpleHotelSearch、HotelDetailSearch、VacantHotelSearch，scripts/rakuten.mjs）：評分、細項評分、房數、check-in/out、照片、2027-02-09／02-10 的空房與價格"
+      },
+      {
+        "type": "google-maps",
+        "url": "https://maps.google.com/?cid=9516679011560871532",
+        "retrieved": "2026-10-18",
+        "note": "Google 地圖「伊勢パールピアホテル」：星數、評論數、座標、照片"
+      },
+      {
+        "type": "booking-site",
+        "url": "https://travel.rakuten.co.jp/HOTEL/1232/1232_std.html",
+        "retrieved": "2026-10-18",
+        "note": "100 室、大浴場時間、晚餐「海」、停車場 120 台免費、伊勢市駅步行 2 分"
+      },
+      {
+        "type": "booking-site",
+        "url": "https://travel.rakuten.co.jp/HOTEL/1232/1232.html",
+        "retrieved": "2026-10-18",
+        "note": "楽天 4.33（2,326 則）、置物櫃、アワード 2024 Gold／2025 Silver"
+      },
+      {
+        "type": "booking-site",
+        "url": "https://travel.rakuten.co.jp/HOTEL/1232/review.html",
+        "retrieved": "2026-10-18",
+        "note": "夕食 4.83、朝食 4.61；家族心得多好評，缺點是建物較舊、女湯置物櫃擁擠"
+      },
+      {
+        "type": "official",
+        "url": "https://www.pearlpier.com/",
+        "retrieved": "2026-10-18",
+        "note": "宴會室 3 間最多 30 人、會席有伊勢海老・鮑・松阪牛方案"
+      },
+      {
+        "type": "official",
+        "url": "https://www.pearlpier.com/room/",
+        "retrieved": "2026-10-18",
+        "note": "房型定員：コネクティング 4 人為最大、全為床"
+      }
+    ],
+    "verified": false,
+    "extra": {
+      "onsen": "大浴場「やわらぎの湯」2F，16:00～24:00、5:00～9:00，有サウナ（男用在室外需穿館內泳衣），2023 年翻修",
+      "parking": "自走式立體停車場約 120 台，住客免費，入住前、退房後也可停",
+      "conflicts": [
+        "電梯未明確列出（推測有）",
+        "兒童收費、加床、添い寝未查到"
+      ],
+      "rakutenHotelNo": 1232,
+      "rakutenVacancy": {
+        "retrieved": "2026-10-18",
+        "dates": [
+          "2027-02-09",
+          "2027-02-10"
+        ],
+        "combos": [
+          "5x3",
+          "4x4",
+          "3x5",
+          "2x8"
+        ],
+        "available": {
+          "2027-02-09": [
+            "5x3"
+          ],
+          "2027-02-10": [
+            "5x3"
+          ]
+        },
+        "note": "15 人（全部以大人計）分 N 間同住的組合，有空房的列出；只代表查詢當天楽天上的庫存"
+      }
+    }
+  },
+  {
+    "id": "ise-toyoko-inn",
+    "type": "lodging",
+    "name": {
+      "ja": "東横INN伊勢市駅",
+      "zh": "東橫 INN 伊勢市站"
+    },
+    "area": "ise",
+    "region": "ise-geku",
+    "kind": "hotel",
+    "coords": [
+      136.703245,
+      34.496303
+    ],
+    "coordsSource": "google-maps-url",
+    "address": "三重県伊勢市大世古2-9-11",
+    "hours": null,
+    "closedNote": null,
+    "febNote": "2 月沒有特別休館資訊",
+    "closures": [],
+    "photos": [
+      {
+        "url": "https://img.travel.rakuten.co.jp/share/HOTEL/184219/184219.jpg",
+        "page": "https://travel.rakuten.co.jp/HOTEL/184219/184219.html",
+        "kind": "rakuten",
+        "credit": "楽天トラベル（施設提供）",
+        "license": null
+      },
+      {
+        "url": "https://lh3.googleusercontent.com/grass-cs/AABkmLeS_xInCajaWNq5A6rsOGo07M-KyoC8Dink6cGyGijF5B6x2tkn-QQqKEOZnBJ27chLOn575p1gUnO6uhay4hJOudOHGfQxSE4MVXW8Bt615ACIyubCK4zV7-YSdEAe-Kelhc19851kd7uN=w408-h725-k-no",
+        "page": "https://maps.google.com/?cid=8954045600785852833",
+        "kind": "google",
+        "credit": "Google マップ",
+        "license": null
+      }
+    ],
+    "links": {
+      "official": null,
+      "googleMaps": "https://maps.google.com/?cid=8954045600785852833"
+    },
+    "tags": [],
+    "tier": null,
+    "nearestStation": {
+      "id": "iseshi",
+      "mode": "walk",
+      "minutes": 12,
+      "note": "JR・近鉄伊勢市駅より徒歩約12分、JR側改札口より送迎バスあり"
+    },
+    "pickup": "JR 側改札口有免費送迎巴士；心得說約 20 分鐘一班、晚上約 21 點前有車，尖峰可能坐滿；載客數不明",
+    "meals": "breakfast",
+    "priceRange": "每人約 4,515 円（依方案，含素泊／附早餐；詳見 prices）",
+    "prices": [
+      {
+        "currency": "JPY",
+        "plan": "朝食付 禁煙ツイン 2 名 1 室",
+        "unit": "per-person",
+        "adult": 6458,
+        "child": null,
+        "season": "2026-10～11 近期浮動價（6,458～7,865 円）",
+        "note": "含稅，非 2 月價格",
+        "source": "rakuten",
+        "url": "https://hotel.travel.rakuten.co.jp/hotelinfo/plan/184219/",
+        "retrieved": "2026-10-18"
+      },
+      {
+        "currency": "JPY",
+        "plan": "朝食付 禁煙トリプル 3 名 1 室",
+        "unit": "per-person",
+        "adult": 5635,
+        "child": null,
+        "season": "2026-10～11 近期浮動價（5,635～6,600 円）",
+        "note": "含稅，非 2 月價格",
+        "source": "rakuten",
+        "url": "https://hotel.travel.rakuten.co.jp/hotelinfo/plan/184219/",
+        "retrieved": "2026-10-18"
+      },
+      {
+        "currency": "JPY",
+        "plan": "朝食付 禁煙ファミリーツイン 3 名 1 室",
+        "unit": "per-person",
+        "adult": 5250,
+        "child": null,
+        "season": "2026-10～11 近期浮動價（5,250～6,160 円）",
+        "note": "含稅，非 2 月價格；3 人時 2 人睡一床",
+        "source": "rakuten",
+        "url": "https://hotel.travel.rakuten.co.jp/hotelinfo/plan/184219/",
+        "retrieved": "2026-10-18"
+      },
+      {
+        "plan": "附早餐 楽天 15 人組合最低價（★【無料の元気朝食付】いつでも安心価格♪ビジネス・レジャーに！ 禁煙ファミリーツイン）",
+        "unit": "per-person",
+        "adult": 4515,
+        "child": null,
+        "currency": "JPY",
+        "season": "2027-02-09（二）1 泊，5 間 × 3 人（大人）有空房時的最低價",
+        "note": "房型：禁煙ファミリーツイン。楽天 API 空室検索（查詢 2026-10-18），含稅、不含入湯稅等。這天有空房的組合：5x3。",
+        "source": "rakuten-api",
+        "url": "https://hotel.travel.rakuten.co.jp/hotelinfo/plan/184219?f_nen1=2027&f_tuki1=2&f_hi1=9&f_nen2=2027&f_tuki2=2&f_hi2=10&f_heya_su=5&f_otona_su=3&f_s1=0&f_s2=0&f_y1=0&f_y2=0&f_y3=0&f_y4=0",
+        "retrieved": "2026-10-18"
+      },
+      {
+        "plan": "附早餐 楽天 15 人組合最低價（★【無料の元気朝食付】いつでも安心価格♪ビジネス・レジャーに！ 禁煙ファミリーツイン）",
+        "unit": "per-person",
+        "adult": 4515,
+        "child": null,
+        "currency": "JPY",
+        "season": "2027-02-10（三，2/11 國定假日前一晚）1 泊，5 間 × 3 人（大人）有空房時的最低價",
+        "note": "房型：禁煙ファミリーツイン。楽天 API 空室検索（查詢 2026-10-18），含稅、不含入湯稅等。這天有空房的組合：5x3。",
+        "source": "rakuten-api",
+        "url": "https://hotel.travel.rakuten.co.jp/hotelinfo/plan/184219?f_nen1=2027&f_tuki1=2&f_hi1=10&f_nen2=2027&f_tuki2=2&f_hi2=11&f_heya_su=5&f_otona_su=3&f_s1=0&f_s2=0&f_y1=0&f_y2=0&f_y3=0&f_y4=0",
+        "retrieved": "2026-10-18"
+      }
+    ],
+    "luggage": "可寄放行李（心得）；另有住客專用免費置物櫃 23 台",
+    "checkIn": "15:00",
+    "checkOut": "10:00",
+    "dinnerAccess": null,
+    "group": {
+      "totalRooms": 147,
+      "roomTypes": [
+        "禁煙トリプル 20㎡ 1～3 人",
+        "禁煙ワイドツイン 12㎡ 1～3 人（3 人時 2 人睡一床）",
+        "禁煙ファミリーツイン 14㎡ 1～3 人（3 人時 2 人睡一床）",
+        "禁煙ツイン 14㎡ 1～2 人"
+      ],
+      "maxGuests": null,
+      "wholeRental": false,
+      "pickupCapacity": null,
+      "nearbyCombos": [],
+      "note": "沒有 4 人房、不能加床；15 人約 5～6 間"
+    },
+    "ratings": {
+      "rakuten": 4.12,
+      "rakutenReviews": 525,
+      "jalan": null,
+      "jalanReviews": null,
+      "booking": null,
+      "google": 4,
+      "googleReviews": 556,
+      "rakutenService": 4.08,
+      "rakutenLocation": 3.9,
+      "rakutenRoom": 4.21,
+      "rakutenEquipment": 4.04,
+      "rakutenBath": 4.03,
+      "rakutenMeal": 4.01,
+      "note": "T8b（2026-10-18）：楽天 4.12（525 則，API）、Google 4（556 則，「東横INN伊勢市駅」），5 分制。"
+    },
+    "accessibility": {
+      "elevator": true,
+      "beds": "全為西式床，無和室",
+      "stairs": "立體停車場到櫃台沒有電梯，要走階梯或坡道（搜尋摘要的心得）",
+      "kids": "小學生以下添い寝免費",
+      "note": "電梯要用房卡感應；沒有大浴場"
+    },
+    "reservation": {
+      "methods": [
+        "rakuten",
+        "official",
+        "phone"
+      ],
+      "phone": "0596-20-1045",
+      "url": "https://hotel.travel.rakuten.co.jp/hotelinfo/plan/184219/",
+      "groupNote": null
+    },
+    "bookingLinks": {
+      "rakuten": "https://travel.rakuten.co.jp/HOTEL/184219/184219.html"
+    },
+    "sources": [
+      {
+        "type": "booking-site",
+        "url": "https://travel.rakuten.co.jp/HOTEL/184219/184219.html",
+        "retrieved": "2026-10-18",
+        "note": "楽天トラベル API（SimpleHotelSearch、HotelDetailSearch、VacantHotelSearch，scripts/rakuten.mjs）：評分、細項評分、房數、check-in/out、照片、2027-02-09／02-10 的空房與價格"
+      },
+      {
+        "type": "google-maps",
+        "url": "https://maps.google.com/?cid=8954045600785852833",
+        "retrieved": "2026-10-18",
+        "note": "Google 地圖「東横INN伊勢市駅」：星數、評論數、座標、照片"
+      },
+      {
+        "type": "booking-site",
+        "url": "https://travel.rakuten.co.jp/HOTEL/184219/184219_std.html",
+        "retrieved": "2026-10-18",
+        "note": "147 室、站步行 12 分、送迎巴士、小學生以下添い寝免費"
+      },
+      {
+        "type": "booking-site",
+        "url": "https://travel.rakuten.co.jp/HOTEL/184219/184219.html",
+        "retrieved": "2026-10-18",
+        "note": "免費早餐、3 人房 2 人睡一床、停車台數不一致"
+      },
+      {
+        "type": "booking-site",
+        "url": "https://review.travel.rakuten.co.jp/hotel/voice/184219/",
+        "retrieved": "2026-10-18",
+        "note": "4.12（526 則），乾淨、送迎方便，缺點是離站遠、無大浴場"
+      },
+      {
+        "type": "booking-site",
+        "url": "https://hotel.travel.rakuten.co.jp/hotelinfo/plan/184219/",
+        "retrieved": "2026-10-18",
+        "note": "房型最多 3 人、含早價格"
+      }
+    ],
+    "verified": false,
+    "extra": {
+      "onsen": "沒有大浴場，客房浴缸放水慢",
+      "parking": "免費，先到先停，不能預約",
+      "conflicts": [
+        "停車場 70 台（FAQ）vs 79 台（施設情報）",
+        "徒步 12 分 vs 某旅行社頁面徒步約 4 分（無法確認是本館）"
+      ],
+      "rakutenHotelNo": 184219,
+      "rakutenVacancy": {
+        "retrieved": "2026-10-18",
+        "dates": [
+          "2027-02-09",
+          "2027-02-10"
+        ],
+        "combos": [
+          "5x3",
+          "4x4",
+          "3x5",
+          "2x8"
+        ],
+        "available": {
+          "2027-02-09": [
+            "5x3"
+          ],
+          "2027-02-10": [
+            "5x3"
+          ]
+        },
+        "note": "15 人（全部以大人計）分 N 間同住的組合，有空房的列出；只代表查詢當天楽天上的庫存"
+      }
+    }
+  },
+  {
+    "id": "ise-hinode-ryokan",
+    "type": "lodging",
+    "name": {
+      "ja": "日の出旅館",
+      "zh": "日之出旅館"
+    },
+    "area": "ise",
+    "region": "ise-geku",
+    "kind": "ryokan",
+    "coords": [
+      136.7103253,
+      34.4903228
+    ],
+    "coordsSource": "google-maps-url",
+    "address": "三重県伊勢市吹上1-8-35",
+    "hours": null,
+    "closedNote": null,
+    "febNote": null,
+    "closures": [],
+    "photos": [
+      {
+        "url": "https://img.travel.rakuten.co.jp/share/HOTEL/56193/56193.jpg",
+        "page": "https://travel.rakuten.co.jp/HOTEL/56193/56193.html",
+        "kind": "rakuten",
+        "credit": "楽天トラベル（施設提供）",
+        "license": null
+      },
+      {
+        "url": "https://lh3.googleusercontent.com/grass-proxy/AIM7gW2xZRLHzxtMg_UEwLygdqfjfgpZp8I5Dg-LtPRRjDibPzx_qfhkqYHbSh5Cwbl9BwGTgzqggWBBcqul3xCi4s6mfOh0n3DbPG8IP4cRO-m9VWWwnLyPspzwBToaBA10CRYVotettUKfA3TGzBLAxopGIAd8XaspBShP1am7_X_4jer0SCU3pWg9KA=w408-h271-k-no",
+        "page": "https://maps.google.com/?cid=7375533064905331946",
+        "kind": "google",
+        "credit": "Google マップ",
+        "license": null
+      }
+    ],
+    "links": {
+      "official": null,
+      "googleMaps": "https://maps.google.com/?cid=7375533064905331946"
+    },
+    "tags": [],
+    "tier": null,
+    "nearestStation": {
+      "id": "iseshi",
+      "mode": "walk",
+      "minutes": 2,
+      "note": "JR・近鉄「伊勢市駅」徒歩約2分（JR側出口左、魚民隣）"
+    },
+    "pickup": null,
+    "meals": "breakfast",
+    "priceRange": "每人約 8,950～12,950 円（依方案，含素泊／附早餐；詳見 prices）",
+    "prices": [
+      {
+        "currency": "JPY",
+        "plan": "スタンダードプラン 朝食付 和室10畳（バス・トイレなし）",
+        "unit": "per-person",
+        "adult": 10450,
+        "child": null,
+        "season": "近 30 日最低價（2026-10 查）",
+        "note": "3～4 人一室；2 人時 10,950 円",
+        "source": "rakuten",
+        "url": "https://hotel.travel.rakuten.co.jp/hotelinfo/plan/56193",
+        "retrieved": "2026-10-18"
+      },
+      {
+        "currency": "JPY",
+        "plan": "スタンダードプラン 朝食付 和室11畳（トイレ付）",
+        "unit": "per-person",
+        "adult": 10950,
+        "child": null,
+        "season": "近 30 日最低價（2026-10 查）",
+        "note": "3～4 人一室 10,950～11,950 円",
+        "source": "rakuten",
+        "url": "https://hotel.travel.rakuten.co.jp/hotelinfo/plan/56193",
+        "retrieved": "2026-10-18"
+      },
+      {
+        "currency": "JPY",
+        "plan": "スタンダードプラン 朝食付 特別室（ユニバーサルデザインルーム）",
+        "unit": "per-person",
+        "adult": 12950,
+        "child": null,
+        "season": "近 30 日最低價（2026-10 查）",
+        "note": "3 人一室 12,950～13,950 円",
+        "source": "rakuten",
+        "url": "https://hotel.travel.rakuten.co.jp/hotelinfo/plan/56193",
+        "retrieved": "2026-10-18"
+      },
+      {
+        "currency": "JPY",
+        "plan": "スタンダードプラン 素泊まり 和室10畳",
+        "unit": "per-person",
+        "adult": 8950,
+        "child": null,
+        "season": "近 30 日最低價（2026-10 查）",
+        "note": "3～4 人一室；2 泊以上連泊割再便宜約 500 円",
+        "source": "rakuten",
+        "url": "https://hotel.travel.rakuten.co.jp/hotelinfo/plan/56193",
+        "retrieved": "2026-10-18"
+      },
+      {
+        "plan": "素泊 大人 3＋小學生高年級 1（1 室）最低價（スタンダードプラン★Wi-Fi接続無料★≪素泊まり≫）",
+        "unit": "per-person",
+        "adult": 8950,
+        "child": null,
+        "currency": "JPY",
+        "season": "2027-02-09（二）1 泊，1 間 大人 3＋小學生高年級 1",
+        "note": "房型：■和室10畳（バス・トイレなし）禁煙。一間總價 35,800 円；API 的小學生價和大人相同（可能以房計價或兒童同價），兒童價不推算。楽天 API（查詢 2026-10-18）。",
+        "source": "rakuten-api",
+        "url": "https://hotel.travel.rakuten.co.jp/hotelinfo/plan/56193?f_nen1=2027&f_tuki1=2&f_hi1=9&f_nen2=2027&f_tuki2=2&f_hi2=10&f_heya_su=1&f_otona_su=3&f_s1=1&f_s2=0&f_y1=0&f_y2=0&f_y3=0&f_y4=0",
+        "retrieved": "2026-10-18"
+      },
+      {
+        "plan": "素泊 大人 2 名 1 室最低價（スタンダードプラン★Wi-Fi接続無料★≪素泊まり≫）",
+        "unit": "per-person",
+        "adult": 9450,
+        "child": null,
+        "currency": "JPY",
+        "season": "2027-02-09（二）1 泊，大人 2 名 1 室",
+        "note": "房型：■和室10畳（バス・トイレなし）禁煙。15 人的組合兩天都沒有空房。楽天 API（查詢 2026-10-18）。",
+        "source": "rakuten-api",
+        "url": "https://hotel.travel.rakuten.co.jp/hotelinfo/plan/56193?f_nen1=2027&f_tuki1=2&f_hi1=9&f_nen2=2027&f_tuki2=2&f_hi2=10&f_heya_su=1&f_otona_su=2&f_s1=0&f_s2=0&f_y1=0&f_y2=0&f_y3=0&f_y4=0",
+        "retrieved": "2026-10-18"
+      }
+    ],
+    "luggage": "口コミ提到可寄放行李；可用宅配",
+    "checkIn": "15:00",
+    "checkOut": "10:00",
+    "dinnerAccess": null,
+    "group": {
+      "totalRooms": 10,
+      "roomTypes": [
+        "和室 10 畳 1～4 人（無衛浴）",
+        "和室 11 畳 1～5 人（附廁所）",
+        "特別室 和洋室 2～3 人（附淋浴・廁所，ユニバーサルデザイン）",
+        "和室 8 畳 1～2 人（附廁所）",
+        "和室 5 畳 1 人（無衛浴）",
+        "2 樓木地板單人房 1 人"
+      ],
+      "maxGuests": null,
+      "wholeRental": null,
+      "pickupCapacity": null,
+      "nearbyCombos": [
+        "ise-comfort-era",
+        "ise-shinsen",
+        "ise-sanco-inn",
+        "ise-pearlpier"
+      ],
+      "note": "各房型間數未標示；無包棟、團體方案記載；15 人全館包下要電話確認"
+    },
+    "ratings": {
+      "rakuten": 4.54,
+      "rakutenReviews": 404,
+      "jalan": null,
+      "jalanReviews": null,
+      "booking": null,
+      "google": 4.5,
+      "googleReviews": 235,
+      "rakutenService": 4.59,
+      "rakutenLocation": 4.52,
+      "rakutenRoom": 4.5,
+      "rakutenEquipment": 4.36,
+      "rakutenBath": 4.37,
+      "rakutenMeal": 4.52,
+      "note": "T8b（2026-10-18）：楽天 4.54（404 則，API）、Google 4.5（235 則，「日の出旅館」），5 分制。"
+    },
+    "accessibility": {
+      "elevator": false,
+      "beds": "和室鋪被；特別室為和洋室",
+      "stairs": "無電梯，部分客房需爬約 13 階樓梯（有扶手）；浴場在 1 樓",
+      "kids": "標「子供料金設定有り」，金額未列",
+      "note": "多數和室廁所、洗臉台共用；男女浴場分開但很小（女 4 人、男 3 人同時）；特別室給長者、行動不便者"
+    },
+    "reservation": {
+      "methods": [
+        "rakuten",
+        "jalan",
+        "phone"
+      ],
+      "phone": "0596-28-2954",
+      "url": "https://travel.rakuten.co.jp/HOTEL/56193/56193.html",
+      "groupNote": "未見團體方案，需電話詢問"
+    },
+    "bookingLinks": {
+      "rakuten": "https://travel.rakuten.co.jp/HOTEL/56193/56193.html"
+    },
+    "sources": [
+      {
+        "type": "booking-site",
+        "url": "https://travel.rakuten.co.jp/HOTEL/56193/56193.html",
+        "retrieved": "2026-10-18",
+        "note": "楽天トラベル API（SimpleHotelSearch、HotelDetailSearch、VacantHotelSearch，scripts/rakuten.mjs）：評分、細項評分、房數、check-in/out、照片、2027-02-09／02-10 的空房與價格"
+      },
+      {
+        "type": "google-maps",
+        "url": "https://maps.google.com/?cid=7375533064905331946",
+        "retrieved": "2026-10-18",
+        "note": "Google 地圖「日の出旅館」：星數、評論數、座標、照片"
+      },
+      {
+        "type": "booking-site",
+        "url": "https://travel.rakuten.co.jp/HOTEL/56193/56193.html",
+        "retrieved": "2026-10-18",
+        "note": "楽天 4.53～4.54、check-in/out、昭和 4 年創業木造旅館、隔音差"
+      },
+      {
+        "type": "booking-site",
+        "url": "https://travel.rakuten.co.jp/HOTEL/56193/56193_std.html",
+        "retrieved": "2026-10-18",
+        "note": "全 10 室、浴場容量、電話、停車 6 台、早餐房內或個室"
+      },
+      {
+        "type": "booking-site",
+        "url": "https://hotel.travel.rakuten.co.jp/hotelinfo/plan/56193",
+        "retrieved": "2026-10-18",
+        "note": "房型定員、衛浴、價格；全方案無晚餐；無電梯約 13 階樓梯"
+      },
+      {
+        "type": "booking-site",
+        "url": "https://travel.rakuten.co.jp/HOTEL/56193/review.html",
+        "retrieved": "2026-10-18",
+        "note": "4.54（404 則），清潔服務早餐好評，老舊隔音差，共用廁所"
+      },
+      {
+        "type": "tourism",
+        "url": "https://www.kankomie.or.jp/spot/592",
+        "retrieved": "2026-10-18",
+        "note": "電話、停車 12 台、寫朝夕房內用餐（與楽天衝突）"
+      }
+    ],
+    "verified": false,
+    "extra": {
+      "onsen": "非溫泉；男女小浴場（伊勢の湯・扇の湯），15:00～24:00、6:00～9:00",
+      "parking": "需預約，楽天寫 6 台（每房 1 台）",
+      "conflicts": [
+        "観光三重寫朝夕兩餐在房內，楽天所有方案皆夕食なし",
+        "停車：楽天 6 台、観光三重 12 台",
+        "築年：楽天約 60 年、口コミ說約 100 年（昭和 4 年創業）",
+        "國登錄有形文化財：來源皆未提及"
+      ],
+      "rakutenHotelNo": 56193,
+      "rakutenVacancy": {
+        "retrieved": "2026-10-18",
+        "dates": [
+          "2027-02-09",
+          "2027-02-10"
+        ],
+        "combos": [
+          "5x3",
+          "4x4",
+          "3x5",
+          "2x8"
+        ],
+        "available": {
+          "2027-02-09": [],
+          "2027-02-10": []
+        },
+        "note": "15 人（全部以大人計）分 N 間同住的組合，有空房的列出；只代表查詢當天楽天上的庫存"
+      }
+    }
+  },
+  {
+    "id": "ise-fav",
+    "type": "lodging",
+    "name": {
+      "ja": "fav 伊勢",
+      "zh": "fav 伊勢"
+    },
+    "area": "ise",
+    "region": "ise-geku",
+    "kind": "hotel",
+    "coords": [
+      136.7046387,
+      34.4929057
+    ],
+    "coordsSource": "google-maps-url",
+    "address": "三重県伊勢市一之木1-3-7",
+    "hours": null,
+    "closedNote": null,
+    "febNote": null,
+    "closures": [],
+    "photos": [
+      {
+        "url": "https://www.kankomie.or.jp/rails/active_storage/representations/proxy/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBdU1mIiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--c217012a23a3b1b247631901db74498cec3c0fbe/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdCem9MWm05eWJXRjBPZ2wzWldKd09oSnlaWE5wZW1WZmRHOWZabWwwV3dkcEFvUURNQT09IiwiZXhwIjpudWxsLCJwdXIiOiJ2YXJpYXRpb24ifX0=--ef4af471d0804d4a7b7d74cb943d03ada1b9519d/24710_1_org.jpg",
+        "page": "https://www.kankomie.or.jp/spot/24710",
+        "kind": "official",
+        "credit": "fav 伊勢（観光三重）",
+        "license": null
+      },
+      {
+        "url": "https://img.travel.rakuten.co.jp/share/HOTEL/183396/183396.jpg",
+        "page": "https://travel.rakuten.co.jp/HOTEL/183396/183396.html",
+        "kind": "rakuten",
+        "credit": "楽天トラベル（施設提供）",
+        "license": null
+      },
+      {
+        "url": "https://lh3.googleusercontent.com/grass-cs/AABkmLc0tgOLswp46t-l7lmhTXT-bgpBRXoAit1lXGvQaGGsqnOCthdEKqJc_a_OpcbpEjGEGWm7XML9WGN0QM4DgL4JwX8a9ejmNeuO7gOcs4xcwcCYgEvEsyl6W-GfoDsqVTbJvqKXBQ=w432-h240-k-no",
+        "page": "https://maps.google.com/?cid=13353400713495993155",
+        "kind": "google",
+        "credit": "Google マップ",
+        "license": null
+      }
+    ],
+    "links": {
+      "official": null,
+      "googleMaps": "https://maps.google.com/?cid=13353400713495993155"
+    },
+    "tags": [],
+    "tier": null,
+    "nearestStation": {
+      "id": "iseshi",
+      "mode": "walk",
+      "minutes": 7,
+      "note": "伊勢市駅（外宮側）から徒歩約7分"
+    },
+    "pickup": null,
+    "meals": "breakfast",
+    "priceRange": "每人約 8,000～8,750 円（依方案，含素泊／附早餐；詳見 prices）",
+    "prices": [
+      {
+        "currency": "JPY",
+        "plan": "早餐（單點）",
+        "unit": "per-person",
+        "adult": 1400,
+        "child": null,
+        "season": null,
+        "note": "7:00～10:00，大廳旁咖啡店 4 種盤餐，可帶回房間",
+        "source": "rakuten",
+        "url": "https://travel.rakuten.co.jp/HOTEL/183396/183396.html",
+        "retrieved": "2026-10-18"
+      },
+      {
+        "plan": "素泊 楽天 15 人組合最低價（【返金不可】早割60）",
+        "unit": "per-person",
+        "adult": 8000,
+        "child": null,
+        "currency": "JPY",
+        "season": "2027-02-09（二）1 泊，4 間 × 4 人（大人）有空房時的最低價",
+        "note": "房型：クイーンツイン。楽天 API 空室検索（查詢 2026-10-18），含稅、不含入湯稅等。這天有空房的組合：4x4、5x3。",
+        "source": "rakuten-api",
+        "url": "https://hotel.travel.rakuten.co.jp/hotelinfo/plan/183396?f_nen1=2027&f_tuki1=2&f_hi1=9&f_nen2=2027&f_tuki2=2&f_hi2=10&f_heya_su=4&f_otona_su=4&f_s1=0&f_s2=0&f_y1=0&f_y2=0&f_y3=0&f_y4=0",
+        "retrieved": "2026-10-18"
+      },
+      {
+        "plan": "素泊 楽天 15 人組合最低價（スタンダードプラン）",
+        "unit": "per-person",
+        "adult": 8750,
+        "child": null,
+        "currency": "JPY",
+        "season": "2027-02-10（三，2/11 國定假日前一晚）1 泊，4 間 × 4 人（大人）有空房時的最低價",
+        "note": "房型：クイーンツイン。楽天 API 空室検索（查詢 2026-10-18），含稅、不含入湯稅等。這天有空房的組合：4x4、5x3。",
+        "source": "rakuten-api",
+        "url": "https://hotel.travel.rakuten.co.jp/hotelinfo/plan/183396?f_nen1=2027&f_tuki1=2&f_hi1=10&f_nen2=2027&f_tuki2=2&f_hi2=11&f_heya_su=4&f_otona_su=4&f_s1=0&f_s2=0&f_y1=0&f_y2=0&f_y3=0&f_y4=0",
+        "retrieved": "2026-10-18"
+      },
+      {
+        "plan": "素泊 大人 3＋小學生高年級 1（1 室）最低價（【返金不可】早割60）",
+        "unit": "per-person",
+        "adult": 8000,
+        "child": null,
+        "currency": "JPY",
+        "season": "2027-02-09（二）1 泊，1 間 大人 3＋小學生高年級 1",
+        "note": "房型：クイーンツイン。一間總價 32,000 円；API 的小學生價和大人相同（可能以房計價或兒童同價），兒童價不推算。楽天 API（查詢 2026-10-18）。",
+        "source": "rakuten-api",
+        "url": "https://hotel.travel.rakuten.co.jp/hotelinfo/plan/183396?f_nen1=2027&f_tuki1=2&f_hi1=9&f_nen2=2027&f_tuki2=2&f_hi2=10&f_heya_su=1&f_otona_su=3&f_s1=1&f_s2=0&f_y1=0&f_y2=0&f_y3=0&f_y4=0",
+        "retrieved": "2026-10-18"
+      }
+    ],
+    "luggage": "衝突：楽天寫有寄放空間但有限、有條件；KNT 寫入住前、退房後不寄放",
+    "checkIn": "15:00",
+    "checkOut": "10:00",
+    "dinnerAccess": null,
+    "group": {
+      "totalRooms": 36,
+      "roomTypes": [
+        "ROOM-A 4 人",
+        "ROOM-B 4 人",
+        "ROOM-C 2 人",
+        "ROOM-D 4 人",
+        "ROOM-E 4 人",
+        "ハリウッドツイン（淋浴間）",
+        "フォーベッド（含雙層床）",
+        "ジャパニーズモダン（床＋鋪被）"
+      ],
+      "maxGuests": null,
+      "wholeRental": false,
+      "pickupCapacity": null,
+      "nearbyCombos": [],
+      "note": "最大房 4 人，沒查到 5 人以上房；15 人約 4 間。全室有簡易廚房。團體方案未查到"
+    },
+    "ratings": {
+      "rakuten": 4.25,
+      "rakutenReviews": 386,
+      "jalan": null,
+      "jalanReviews": null,
+      "booking": null,
+      "google": 4.2,
+      "googleReviews": 338,
+      "rakutenService": 4.19,
+      "rakutenLocation": 4.2,
+      "rakutenRoom": 4.27,
+      "rakutenEquipment": 4.12,
+      "rakutenBath": 3.98,
+      "rakutenMeal": 4.41,
+      "note": "T8b（2026-10-18）：楽天 4.25（386 則，API）、Google 4.2（338 則，「fav 伊勢」），5 分制。"
+    },
+    "accessibility": {
+      "elevator": null,
+      "beds": "床為主；フォーベッド有雙層床上鋪；ジャパニーズモダン為床＋鋪被",
+      "stairs": null,
+      "kids": null,
+      "note": "土禁（脫鞋）房；無大浴場資料，只有房內浴室；夜間櫃台無人；外走廊"
+    },
+    "reservation": {
+      "methods": [
+        "rakuten",
+        "phone"
+      ],
+      "phone": "0596-23-7210",
+      "url": "https://travel.rakuten.co.jp/HOTEL/183396/183396.html",
+      "groupNote": "mail: ise@fav-hotels.com"
+    },
+    "bookingLinks": {
+      "rakuten": "https://travel.rakuten.co.jp/HOTEL/183396/183396.html"
+    },
+    "sources": [
+      {
+        "type": "booking-site",
+        "url": "https://travel.rakuten.co.jp/HOTEL/183396/183396.html",
+        "retrieved": "2026-10-18",
+        "note": "楽天トラベル API（SimpleHotelSearch、HotelDetailSearch、VacantHotelSearch，scripts/rakuten.mjs）：評分、細項評分、房數、check-in/out、照片、2027-02-09／02-10 的空房與價格"
+      },
+      {
+        "type": "google-maps",
+        "url": "https://maps.google.com/?cid=13353400713495993155",
+        "retrieved": "2026-10-18",
+        "note": "Google 地圖「fav 伊勢」：星數、評論數、座標、照片"
+      },
+      {
+        "type": "booking-site",
+        "url": "https://travel.rakuten.co.jp/HOTEL/183396/183396_std.html",
+        "retrieved": "2026-10-18",
+        "note": "36 室、停車場 10 台、行李寄放有限、伊勢市駅步行 7 分"
+      },
+      {
+        "type": "booking-site",
+        "url": "https://travel.rakuten.co.jp/HOTEL/183396/183396.html",
+        "retrieved": "2026-10-18",
+        "note": "ROOM-A～E 定員（最大 4 人）、早餐 1,400 日圓"
+      },
+      {
+        "type": "booking-site",
+        "url": "https://travel.rakuten.co.jp/HOTEL/183396/review.html",
+        "retrieved": "2026-10-18",
+        "note": "楽天 4.25（387 則）；家族好評清潔、廚房，缺點夜間無人、噪音、蟲"
+      },
+      {
+        "type": "booking-site",
+        "url": "https://yado.knt.co.jp/st/S240379/",
+        "retrieved": "2026-10-18",
+        "note": "館內無餐廳、無接送、不寄放行李"
+      },
+      {
+        "type": "tourism",
+        "url": "https://www.kankomie.or.jp/spot/24710",
+        "retrieved": "2026-10-18",
+        "note": "全室廚房、外宮步行 5 分"
+      }
+    ],
+    "verified": false,
+    "extra": {
+      "parking": "先到先停 10 台，1 晚 1,100 日圓，不可預約，只限 15:00～翌 10:00",
+      "conflicts": [
+        "行李寄放：楽天說有限度可寄，KNT 說不寄放",
+        "電梯未查到"
+      ],
+      "rakutenHotelNo": 183396,
+      "rakutenVacancy": {
+        "retrieved": "2026-10-18",
+        "dates": [
+          "2027-02-09",
+          "2027-02-10"
+        ],
+        "combos": [
+          "5x3",
+          "4x4",
+          "3x5",
+          "2x8"
+        ],
+        "available": {
+          "2027-02-09": [
+            "4x4",
+            "5x3"
+          ],
+          "2027-02-10": [
+            "4x4",
+            "5x3"
+          ]
+        },
+        "note": "15 人（全部以大人計）分 N 間同住的組合，有空房的列出；只代表查詢當天楽天上的庫存"
+      }
+    }
+  },
+  {
+    "id": "ise-en-hotel",
+    "type": "lodging",
+    "name": {
+      "ja": "EN HOTEL Ise（エンホテル伊勢）",
+      "zh": "EN HOTEL 伊勢"
+    },
+    "area": "ise",
+    "region": "ise-geku",
+    "kind": "hotel",
+    "coords": [
+      136.7131271,
+      34.4920599
+    ],
+    "coordsSource": "google-maps-url",
+    "address": "三重県伊勢市吹上2-5-11",
+    "hours": null,
+    "closedNote": null,
+    "febNote": "2 月沒有特別休館資訊",
+    "closures": [],
+    "photos": [
+      {
+        "url": "https://img.travel.rakuten.co.jp/share/HOTEL/184858/184858.jpg",
+        "page": "https://travel.rakuten.co.jp/HOTEL/184858/184858.html",
+        "kind": "rakuten",
+        "credit": "楽天トラベル（施設提供）",
+        "license": null
+      },
+      {
+        "url": "https://lh3.googleusercontent.com/grass-cs/AABkmLfZTIEXUMsnew5KK8BxZ5sq8QDopokts10aj-liF1_UFB7cFekOu_XGM-tI9xxoYoVNp4MeFnOX8bDnJGRUnSx0XBaPzb87x0O3SAoEwmHvmvhXoSHR0jy8To2VwnjhLbchrf4=w408-h544-k-no",
+        "page": "https://maps.google.com/?cid=4244877151196628979",
+        "kind": "google",
+        "credit": "Google マップ",
+        "license": null
+      }
+    ],
+    "links": {
+      "official": "https://en-hotel.com/ise/",
+      "googleMaps": "https://maps.google.com/?cid=4244877151196628979"
+    },
+    "tags": [],
+    "tier": null,
+    "nearestStation": {
+      "id": "iseshi",
+      "mode": "walk",
+      "minutes": 4,
+      "note": "近鉄・JR「伊勢市駅」より徒歩約4分"
+    },
+    "pickup": null,
+    "meals": "varies",
+    "priceRange": "每人約 6,390～9,930 円（依方案，含素泊／附早餐；詳見 prices）",
+    "prices": [
+      {
+        "currency": "JPY",
+        "plan": "4 連泊 和洋バイキング朝食付 ENツイン 2 名 1 室",
+        "unit": "per-person",
+        "adult": 9930,
+        "child": null,
+        "season": "2026-10～11 近期浮動價（9,930～25,230 円）",
+        "note": "含稅，非 2 月價格",
+        "source": "rakuten",
+        "url": "https://hotel.travel.rakuten.co.jp/hotelinfo/plan/184858/",
+        "retrieved": "2026-10-18"
+      },
+      {
+        "currency": "JPY",
+        "plan": "4 連泊 和洋バイキング朝食付 Cozyダブル 2 名 1 室",
+        "unit": "per-person",
+        "adult": 6710,
+        "child": null,
+        "season": "2026-10～11 近期浮動價（6,710～16,860 円）",
+        "note": "含稅，非 2 月價格",
+        "source": "rakuten",
+        "url": "https://hotel.travel.rakuten.co.jp/hotelinfo/plan/184858/",
+        "retrieved": "2026-10-18"
+      },
+      {
+        "currency": "JPY",
+        "plan": "早餐單點（和洋バイキング）",
+        "unit": "per-person",
+        "adult": 1600,
+        "child": 800,
+        "season": null,
+        "note": "小學生 800 円、幼兒免費；6:30～9:30",
+        "source": "rakuten",
+        "url": "https://travel.rakuten.co.jp/HOTEL/184858/184858.html",
+        "retrieved": "2026-10-18"
+      },
+      {
+        "plan": "素泊 楽天 15 人組合最低價（◆最大15％OFF!! 早期割引60　ステイプラン＊素泊り◆）",
+        "unit": "per-person",
+        "adult": 6390,
+        "child": null,
+        "currency": "JPY",
+        "season": "2027-02-09（二）1 泊，5 間 × 3 人（大人）有空房時的最低價",
+        "note": "房型：ENツイン【禁煙】。楽天 API 空室検索（查詢 2026-10-18），含稅、不含入湯稅等。這天有空房的組合：5x3。",
+        "source": "rakuten-api",
+        "url": "https://hotel.travel.rakuten.co.jp/hotelinfo/plan/184858?f_nen1=2027&f_tuki1=2&f_hi1=9&f_nen2=2027&f_tuki2=2&f_hi2=10&f_heya_su=5&f_otona_su=3&f_s1=0&f_s2=0&f_y1=0&f_y2=0&f_y3=0&f_y4=0",
+        "retrieved": "2026-10-18"
+      },
+      {
+        "plan": "素泊 楽天 15 人組合最低價（◆最大15％OFF!! 早期割引60　ステイプラン＊素泊り◆）",
+        "unit": "per-person",
+        "adult": 6390,
+        "child": null,
+        "currency": "JPY",
+        "season": "2027-02-10（三，2/11 國定假日前一晚）1 泊，5 間 × 3 人（大人）有空房時的最低價",
+        "note": "房型：ENツイン【禁煙】。楽天 API 空室検索（查詢 2026-10-18），含稅、不含入湯稅等。這天有空房的組合：5x3。",
+        "source": "rakuten-api",
+        "url": "https://hotel.travel.rakuten.co.jp/hotelinfo/plan/184858?f_nen1=2027&f_tuki1=2&f_hi1=10&f_nen2=2027&f_tuki2=2&f_hi2=11&f_heya_su=5&f_otona_su=3&f_s1=0&f_s2=0&f_y1=0&f_y2=0&f_y3=0&f_y4=0",
+        "retrieved": "2026-10-18"
+      }
+    ],
+    "luggage": null,
+    "checkIn": "15:00",
+    "checkOut": "10:00",
+    "dinnerAccess": null,
+    "group": {
+      "totalRooms": 143,
+      "roomTypes": [
+        "ENツイン 23㎡ 1～3 人（120cm×2＋沙發床）",
+        "ENダブル 15㎡ 1～2 人",
+        "Cozyダブル 15㎡ 1～2 人"
+      ],
+      "maxGuests": null,
+      "wholeRental": false,
+      "pickupCapacity": null,
+      "nearbyCombos": [],
+      "note": "沒看到 4 人房；15 人約 5～6 間"
+    },
+    "ratings": {
+      "rakuten": 3.89,
+      "rakutenReviews": 1115,
+      "jalan": null,
+      "jalanReviews": null,
+      "booking": null,
+      "google": 3.5,
+      "googleReviews": 359,
+      "rakutenService": 3.95,
+      "rakutenLocation": 3.82,
+      "rakutenRoom": 3.88,
+      "rakutenEquipment": 3.79,
+      "rakutenBath": 3.62,
+      "rakutenMeal": 4.11,
+      "note": "T8b（2026-10-18）：楽天 3.89（1115 則，API）、Google 3.5（359 則，「EN HOTEL Ise（エンホテル伊勢）」），5 分制。"
+    },
+    "accessibility": {
+      "elevator": null,
+      "beds": "全為西式床，無和室",
+      "stairs": null,
+      "kids": "幼兒每張床可添い寝 1 人；早餐小學生 800 円、幼兒免費",
+      "note": "沒有大浴場；0:00～6:00 入口關閉"
+    },
+    "reservation": {
+      "methods": [
+        "rakuten",
+        "official",
+        "phone"
+      ],
+      "phone": "0596-29-3720",
+      "url": "https://hotel.travel.rakuten.co.jp/hotelinfo/plan/184858/",
+      "groupNote": null
+    },
+    "bookingLinks": {
+      "rakuten": "https://travel.rakuten.co.jp/HOTEL/184858/184858.html"
+    },
+    "sources": [
+      {
+        "type": "booking-site",
+        "url": "https://travel.rakuten.co.jp/HOTEL/184858/184858.html",
+        "retrieved": "2026-10-18",
+        "note": "楽天トラベル API（SimpleHotelSearch、HotelDetailSearch、VacantHotelSearch，scripts/rakuten.mjs）：評分、細項評分、房數、check-in/out、照片、2027-02-09／02-10 的空房與價格"
+      },
+      {
+        "type": "google-maps",
+        "url": "https://maps.google.com/?cid=4244877151196628979",
+        "retrieved": "2026-10-18",
+        "note": "Google 地圖「EN HOTEL Ise（エンホテル伊勢）」：星數、評論數、座標、照片"
+      },
+      {
+        "type": "booking-site",
+        "url": "https://travel.rakuten.co.jp/HOTEL/184858/184858_std.html",
+        "retrieved": "2026-10-18",
+        "note": "143 室、站步行 4 分、停車 29 台"
+      },
+      {
+        "type": "booking-site",
+        "url": "https://travel.rakuten.co.jp/HOTEL/184858/184858.html",
+        "retrieved": "2026-10-18",
+        "note": "早餐 1,600 円／小學生 800 円、晚餐 17～22 時"
+      },
+      {
+        "type": "booking-site",
+        "url": "https://review.travel.rakuten.co.jp/hotel/voice/184858/",
+        "retrieved": "2026-10-18",
+        "note": "3.89（1,116 則），餐食好評，浴室清潔與老舊被抱怨"
+      },
+      {
+        "type": "booking-site",
+        "url": "https://hotel.travel.rakuten.co.jp/hotelinfo/plan/184858/",
+        "retrieved": "2026-10-18",
+        "note": "房型最多 3 人、添い寝規定、價格"
+      },
+      {
+        "type": "official",
+        "url": "https://en-hotel.com/ise/",
+        "retrieved": "2026-10-18",
+        "note": "2023-03 改名開幕、館前借自行車"
+      }
+    ],
+    "verified": false,
+    "extra": {
+      "onsen": "沒有大浴場（官網介紹附近公共浴場）",
+      "parking": "免費 29 台，先到先停，不能預約",
+      "dinner": "館內餐廳晚餐 17:00～22:00，定食 2,500 円起；楽天晚餐分數 4.26",
+      "conflicts": [
+        "站步行約 4 分 vs 5 分圈內"
+      ],
+      "rakutenHotelNo": 184858,
+      "rakutenVacancy": {
+        "retrieved": "2026-10-18",
+        "dates": [
+          "2027-02-09",
+          "2027-02-10"
+        ],
+        "combos": [
+          "5x3",
+          "4x4",
+          "3x5",
+          "2x8"
+        ],
+        "available": {
+          "2027-02-09": [
+            "5x3"
+          ],
+          "2027-02-10": [
+            "5x3"
+          ]
+        },
+        "note": "15 人（全部以大人計）分 N 間同住的組合，有空房的列出；只代表查詢當天楽天上的庫存"
+      }
+    }
+  },
+  {
+    "id": "ise-momijiken",
+    "type": "lodging",
+    "name": {
+      "ja": "伊勢の宿 紅葉軒",
+      "zh": "紅葉軒"
+    },
+    "area": "ise",
+    "region": "ise-geku",
+    "kind": "ryokan",
+    "coords": [
+      136.6985409,
+      34.4918445
+    ],
+    "coordsSource": "google-maps-url",
+    "address": "三重県伊勢市宮町1-14-17",
+    "hours": null,
+    "closedNote": null,
+    "febNote": null,
+    "closures": [],
+    "photos": [
+      {
+        "url": "https://static.wixstatic.com/media/c01f6c_4cf312c6a75b4b3daad1d156c498c51b~mv2_d_2816_2112_s_2.jpg",
+        "page": "http://www.kouyouken.com/",
+        "kind": "official",
+        "credit": "紅葉軒",
+        "license": null
+      },
+      {
+        "url": "https://img.travel.rakuten.co.jp/share/HOTEL/19502/19502.jpg",
+        "page": "https://travel.rakuten.co.jp/HOTEL/19502/19502.html",
+        "kind": "rakuten",
+        "credit": "楽天トラベル（施設提供）",
+        "license": null
+      },
+      {
+        "url": "https://lh3.googleusercontent.com/grass-cs/AABkmLcHS8XV4HO0L0H5deL8bk3ESciaCmWT3P1MEwzSDemrUxfvv5rBdUhvv6EJCdTAaVVRTXpBnJUoXNSq6LfQtamtVCZpD8ZpmoU14o0qmzDc2BtTzDCbGJgD30r1WKvf3OU_HNPM=w408-h306-k-no",
+        "page": "https://maps.google.com/?cid=17320665345915300173",
+        "kind": "google",
+        "credit": "Google マップ",
+        "license": null
+      }
+    ],
+    "links": {
+      "official": "http://www.kouyouken.com/",
+      "googleMaps": "https://maps.google.com/?cid=17320665345915300173"
+    },
+    "tags": [],
+    "tier": null,
+    "nearestStation": {
+      "id": "iseshi",
+      "mode": "walk",
+      "minutes": 18,
+      "note": "楽天：JR・近鉄伊勢市駅より徒歩約18分；じゃらん：JR伊勢市駅徒歩15分、タクシー5分；近鉄宮町駅の徒歩分數無資料"
+    },
+    "pickup": null,
+    "meals": "varies",
+    "priceRange": "每人約 7,700～13,750 円（依方案，含素泊／附早餐；詳見 prices）",
+    "prices": [
+      {
+        "currency": "JPY",
+        "plan": "1泊2食付き◎プラン（トイレ付き部屋）",
+        "unit": "per-person",
+        "adult": 13750,
+        "child": null,
+        "season": "直近30日",
+        "note": "含稅 13,750（3 人一室）～17,050（1 人一室）",
+        "source": "rakuten",
+        "url": "https://hotel.travel.rakuten.co.jp/hotelinfo/plan/19502",
+        "retrieved": "2026-10-18"
+      },
+      {
+        "currency": "JPY",
+        "plan": "1泊2食付き◎プラン",
+        "unit": "per-person",
+        "adult": 13200,
+        "child": null,
+        "season": "直近30日",
+        "note": "含稅 13,200（3 人一室）～16,500（1 人一室）；房內廁所未標示",
+        "source": "rakuten",
+        "url": "https://hotel.travel.rakuten.co.jp/hotelinfo/plan/19502",
+        "retrieved": "2026-10-18"
+      },
+      {
+        "currency": "JPY",
+        "plan": "ゆっくり観光・1泊朝食付き◎プラン",
+        "unit": "per-person",
+        "adult": 9350,
+        "child": null,
+        "season": "直近30日",
+        "note": "含稅 9,350～12,650",
+        "source": "rakuten",
+        "url": "https://hotel.travel.rakuten.co.jp/hotelinfo/plan/19502",
+        "retrieved": "2026-10-18"
+      },
+      {
+        "currency": "JPY",
+        "plan": "ゆったり観光♪ 素泊り◎プラン",
+        "unit": "per-person",
+        "adult": 7700,
+        "child": null,
+        "season": "直近30日",
+        "note": "含稅 7,700～11,000",
+        "source": "rakuten",
+        "url": "https://hotel.travel.rakuten.co.jp/hotelinfo/plan/19502",
+        "retrieved": "2026-10-18"
+      }
+    ],
+    "luggage": null,
+    "checkIn": "16:00",
+    "checkOut": "10:00",
+    "dinnerAccess": null,
+    "group": {
+      "totalRooms": 8,
+      "roomTypes": [
+        "和室 8～10 畳 1～3 人（部分附廁所）"
+      ],
+      "maxGuests": null,
+      "wholeRental": null,
+      "pickupCapacity": null,
+      "nearbyCombos": [
+        "ise-okubun",
+        "ise-todaya-ryoan",
+        "ise-fav",
+        "ise-toyoko-inn"
+      ],
+      "note": "8 室每室 1～3 人，15 人需 5～6 室；無團體方案資訊，要電話詢問能否包下大部分房間"
+    },
+    "ratings": {
+      "rakuten": 4.62,
+      "rakutenReviews": 324,
+      "jalan": 4.6,
+      "jalanReviews": 530,
+      "booking": null,
+      "google": 4.5,
+      "googleReviews": 108,
+      "rakutenService": 4.63,
+      "rakutenLocation": 4.19,
+      "rakutenRoom": 4.56,
+      "rakutenEquipment": 4.35,
+      "rakutenBath": 4.22,
+      "rakutenMeal": 4.72,
+      "note": "T8b（2026-10-18）：楽天 4.62（324 則，API）、Google 4.5（108 則，「紅葉軒」）、じゃらん 4.6（530 則），5 分制。"
+    },
+    "accessibility": {
+      "elevator": null,
+      "beds": "和室（鋪被，未明寫）",
+      "stairs": null,
+      "kids": "子供料金設定有り，金額未列",
+      "note": "約 130 年老建築；浴池非溫泉、可上鎖輪流使用、需排隊；有人希望房內有高座椅"
+    },
+    "reservation": {
+      "methods": [
+        "rakuten",
+        "jalan",
+        "phone"
+      ],
+      "phone": "0596-28-2456",
+      "url": "https://travel.rakuten.co.jp/HOTEL/19502/19502.html",
+      "groupNote": null
+    },
+    "bookingLinks": {
+      "rakuten": "https://travel.rakuten.co.jp/HOTEL/19502/19502.html"
+    },
+    "sources": [
+      {
+        "type": "booking-site",
+        "url": "https://travel.rakuten.co.jp/HOTEL/19502/19502.html",
+        "retrieved": "2026-10-18",
+        "note": "楽天トラベル API（SimpleHotelSearch、HotelDetailSearch、VacantHotelSearch，scripts/rakuten.mjs）：評分、細項評分、房數、check-in/out、照片、2027-02-09／02-10 的空房與價格"
+      },
+      {
+        "type": "google-maps",
+        "url": "https://maps.google.com/?cid=17320665345915300173",
+        "retrieved": "2026-10-18",
+        "note": "Google 地圖「紅葉軒」：星數、評論數、座標、照片"
+      },
+      {
+        "type": "booking-site",
+        "url": "https://travel.rakuten.co.jp/HOTEL/19502/19502_std.html",
+        "retrieved": "2026-10-18",
+        "note": "8 室、IN16/OUT10、停車 10 台、伊勢市站步行 18 分"
+      },
+      {
+        "type": "booking-site",
+        "url": "https://hotel.travel.rakuten.co.jp/hotelinfo/plan/19502",
+        "retrieved": "2026-10-18",
+        "note": "方案價格、和室 8～10 畳 1～3 人、子供料金あり"
+      },
+      {
+        "type": "booking-site",
+        "url": "https://review.travel.rakuten.co.jp/hotel/voice/19502/",
+        "retrieved": "2026-10-18",
+        "note": "總合 4.62（323）、晚餐 4.76；老但乾淨、女將款待、份量大"
+      },
+      {
+        "type": "tourism",
+        "url": "https://www.kankomie.or.jp/spot/622",
+        "retrieved": "2026-10-18",
+        "note": "明治 30 年創業、官網網址"
+      },
+      {
+        "type": "official",
+        "url": "http://www.kouyouken.com/",
+        "retrieved": "2026-10-18",
+        "note": "外宮步行 10～15 分、餐廳お食事処あきのは"
+      },
+      {
+        "type": "booking-site",
+        "url": "https://www.jalan.net/yad323334/",
+        "retrieved": "2026-10-18",
+        "note": "じゃらん 4.6（530 件）、伊勢市站步行 15 分（頁面多亂碼）"
+      }
+    ],
+    "verified": false,
+    "extra": {
+      "onsen": "非溫泉，浴池可上鎖輪流使用，規模小需排隊",
+      "parking": "免費 10 台；導航可能帶到後門，請走正面玄關",
+      "conflicts": [
+        "伊勢市站步行：楽天 18 分 vs じゃらん 15 分",
+        "浴室是否在房內：心得說法不一，應為可上鎖的共用浴室，待確認"
+      ],
+      "rakutenHotelNo": 19502,
+      "rakutenVacancy": {
+        "retrieved": "2026-10-18",
+        "dates": [
+          "2027-02-09",
+          "2027-02-10"
+        ],
+        "combos": [
+          "5x3",
+          "4x4",
+          "3x5",
+          "2x8"
+        ],
+        "available": {
+          "2027-02-09": [],
+          "2027-02-10": []
+        },
+        "note": "15 人（全部以大人計）分 N 間同住的組合，有空房的列出；只代表查詢當天楽天上的庫存"
+      }
+    }
+  },
+  {
+    "id": "ise-hoshidekan",
+    "type": "lodging",
+    "name": {
+      "ja": "伊勢河崎の町宿 星出館",
+      "zh": "星出館"
+    },
+    "area": "ise",
+    "region": "ise-geku",
+    "kind": "ryokan",
+    "coords": [
+      136.714047,
+      34.4948738
+    ],
+    "coordsSource": "google-maps-url",
+    "address": "三重県伊勢市河崎2-15-2",
+    "hours": null,
+    "closedNote": null,
+    "febNote": "官網公告冬季每週約 1～2 天休館，前一天無預約時可能休館；2027-02 的休館日未公告",
+    "closures": [],
+    "photos": [
+      {
+        "url": "https://img.travel.rakuten.co.jp/share/HOTEL/30971/30971.jpg",
+        "page": "https://travel.rakuten.co.jp/HOTEL/30971/30971.html",
+        "kind": "rakuten",
+        "credit": "楽天トラベル（施設提供）",
+        "license": null
+      },
+      {
+        "url": "https://lh3.googleusercontent.com/grass-proxy/AIM7gW0rnMY_j4BMmTinVWZyE9DCM_Pp4d0LJa9_cyss1EUXMvxCAM4voabAy-hVF92wRxfvbgSwvL8pa7Hxw2xn0awYTsDZOUnKqH5_TdrzEg-Zx_f0WU62Wj24ONIJMakfLdv5x2sUTQ3_H2MxsK5fgZgt8YT2O2j-rMdDRkj4dvVjtck5z3607iTaXg=w408-h272-k-no",
+        "page": "https://maps.google.com/?cid=15926123671796940193",
+        "kind": "google",
+        "credit": "Google マップ",
+        "license": null
+      }
+    ],
+    "links": {
+      "official": "https://www.hoshidekan.jp/",
+      "googleMaps": "https://maps.google.com/?cid=15926123671796940193"
+    },
+    "tags": [],
+    "tier": null,
+    "nearestStation": {
+      "id": "iseshi",
+      "mode": "walk",
+      "minutes": 7,
+      "note": "近鉄伊勢市駅から北へ徒歩約7分（JR口は反対側で遠回り）"
+    },
+    "pickup": null,
+    "meals": "varies",
+    "priceRange": "每人約 5,590～6,960 円（依方案，含素泊／附早餐；詳見 prices）",
+    "prices": [
+      {
+        "currency": "JPY",
+        "plan": "2～3 名素泊（房間おまかせ）",
+        "unit": "per-person",
+        "adult": 6020,
+        "child": null,
+        "season": "直近 30 日",
+        "note": "3 人 6,020～6,470；2 人 6,250～6,650（含稅）",
+        "source": "rakuten",
+        "url": "https://hotel.travel.rakuten.co.jp/hotelinfo/plan/30971",
+        "retrieved": "2026-10-18"
+      },
+      {
+        "currency": "JPY",
+        "plan": "3～4 名素泊（房間おまかせ）",
+        "unit": "per-person",
+        "adult": 5590,
+        "child": null,
+        "season": "直近 30 日",
+        "note": "4 人 5,590～6,060；3 人 6,020～6,470（含稅）",
+        "source": "rakuten",
+        "url": "https://hotel.travel.rakuten.co.jp/hotelinfo/plan/30971",
+        "retrieved": "2026-10-18"
+      },
+      {
+        "currency": "JPY",
+        "plan": "3～4 名附早餐",
+        "unit": "per-person",
+        "adult": 6960,
+        "child": null,
+        "season": "直近 30 日",
+        "note": "4 人 6,960～7,490；3 人 7,390～7,890（含稅）",
+        "source": "rakuten",
+        "url": "https://hotel.travel.rakuten.co.jp/hotelinfo/plan/30971",
+        "retrieved": "2026-10-18"
+      },
+      {
+        "currency": "JPY",
+        "plan": "單人素泊",
+        "unit": "per-person",
+        "adult": 6800,
+        "child": null,
+        "season": "直近 30 日",
+        "note": "6,800～7,240（含稅）",
+        "source": "rakuten",
+        "url": "https://hotel.travel.rakuten.co.jp/hotelinfo/plan/30971",
+        "retrieved": "2026-10-18"
+      }
+    ],
+    "luggage": "時間外 check-in 時可先寄放行李；可收宅配",
+    "checkIn": "16:00",
+    "checkOut": "10:00",
+    "dinnerAccess": null,
+    "group": {
+      "totalRooms": 10,
+      "roomTypes": [
+        "和室 4.5～6 疊 1 人",
+        "和室 6 疊～ 2～3 人",
+        "和室 8 疊以上 3～4 人"
+      ],
+      "maxGuests": null,
+      "wholeRental": null,
+      "pickupCapacity": null,
+      "nearbyCombos": [
+        "ise-nipponia-kawasaki",
+        "ise-en-hotel",
+        "ise-pearlpier",
+        "ise-oyado-ichi"
+      ],
+      "note": "10 室全和室、房間由宿方分配；全館人數、包棟、團體方案未記載，要電話確認"
+    },
+    "ratings": {
+      "rakuten": 4.46,
+      "rakutenReviews": 314,
+      "jalan": null,
+      "jalanReviews": null,
+      "booking": null,
+      "google": 4.5,
+      "googleReviews": 160,
+      "rakutenService": 4.46,
+      "rakutenLocation": 4.35,
+      "rakutenRoom": 4.46,
+      "rakutenEquipment": 4.27,
+      "rakutenBath": 4.24,
+      "note": "T8b（2026-10-18）：楽天 4.46（314 則，API）、Google 4.5（160 則，「星出館」），5 分制。"
+    },
+    "accessibility": {
+      "elevator": null,
+      "beds": "和室鋪被",
+      "stairs": "木造 2 層，客室全在 2 樓（じゃらん摘要）",
+      "kids": "兒童價未記載；國中以下不可單獨住",
+      "note": "房內無衛浴；廁所（洋式）、洗手台共用；浴室為家族風呂式輪流包場"
+    },
+    "reservation": {
+      "methods": [
+        "rakuten",
+        "jalan",
+        "official",
+        "phone"
+      ],
+      "phone": "0596-28-2377",
+      "url": "https://travel.rakuten.co.jp/HOTEL/30971/30971.html",
+      "groupNote": null
+    },
+    "bookingLinks": {
+      "rakuten": "https://travel.rakuten.co.jp/HOTEL/30971/30971.html"
+    },
+    "sources": [
+      {
+        "type": "booking-site",
+        "url": "https://travel.rakuten.co.jp/HOTEL/30971/30971.html",
+        "retrieved": "2026-10-18",
+        "note": "楽天トラベル API（SimpleHotelSearch、HotelDetailSearch、VacantHotelSearch，scripts/rakuten.mjs）：評分、細項評分、房數、check-in/out、照片、2027-02-09／02-10 的空房與價格"
+      },
+      {
+        "type": "google-maps",
+        "url": "https://maps.google.com/?cid=15926123671796940193",
+        "retrieved": "2026-10-18",
+        "note": "Google 地圖「星出館」：星數、評論數、座標、照片"
+      },
+      {
+        "type": "booking-site",
+        "url": "https://travel.rakuten.co.jp/HOTEL/30971/30971.html",
+        "retrieved": "2026-10-18",
+        "note": "楽天 4.43（313 則）、步行 7 分、10 室、廁所洗手台共用"
+      },
+      {
+        "type": "booking-site",
+        "url": "https://travel.rakuten.co.jp/HOTEL/30971/30971_std.html",
+        "retrieved": "2026-10-18",
+        "note": "登錄有形文化財、無接送、停車 5 台、電話"
+      },
+      {
+        "type": "booking-site",
+        "url": "https://hotel.travel.rakuten.co.jp/hotelinfo/plan/30971",
+        "retrieved": "2026-10-18",
+        "note": "全和室、無房內衛浴、1～4 人房方案與價格"
+      },
+      {
+        "type": "official",
+        "url": "https://www.hoshidekan.jp/",
+        "retrieved": "2026-10-18",
+        "note": "和風 B&B、夫婦經營、冬季休館日公告"
+      },
+      {
+        "type": "booking-site",
+        "url": "https://www.jalan.net/yad388580/",
+        "retrieved": "2026-10-18",
+        "note": "WebFetch 亂碼；搜尋摘要：木造 2 層、客室全在 2 樓、浴廁共用"
+      },
+      {
+        "type": "tourism",
+        "url": "https://www.pref.mie.lg.jp/common/content/000968175.pdf",
+        "retrieved": "2026-10-18",
+        "note": "文化財概要：昭和 2 年建、原名花屋、昭和 27 年改名"
+      }
+    ],
+    "verified": false,
+    "extra": {
+      "onsen": "無溫泉；浴室用光明石，家族風呂式輪流包場",
+      "parking": "5 台免費，要預約",
+      "conflicts": [
+        "楽天分數頁面 4.43（313 則）vs 任務給 4.46（314 則）",
+        "創業：官網昭和元年 vs 三重縣文化財資料昭和 2 年建造、原名花屋"
+      ],
+      "rakutenHotelNo": 30971,
+      "rakutenVacancy": {
+        "retrieved": "2026-10-18",
+        "dates": [
+          "2027-02-09",
+          "2027-02-10"
+        ],
+        "combos": [
+          "5x3",
+          "4x4",
+          "3x5",
+          "2x8"
+        ],
+        "available": {
+          "2027-02-09": [],
+          "2027-02-10": []
+        },
+        "note": "15 人（全部以大人計）分 N 間同住的組合，有空房的列出；只代表查詢當天楽天上的庫存"
+      }
+    }
+  },
+  {
+    "id": "ise-nipponia-kawasaki",
+    "type": "lodging",
+    "name": {
+      "ja": "NIPPONIA HOTEL 伊勢河崎 商人町",
+      "zh": "NIPPONIA HOTEL 伊勢河崎 商人町"
+    },
+    "area": "ise",
+    "region": "ise-geku",
+    "kind": "hotel",
+    "coords": [
+      136.7148995,
+      34.4948658
+    ],
+    "coordsSource": "google-maps-url",
+    "address": "三重県伊勢市河崎2丁目14-12",
+    "hours": null,
+    "closedNote": null,
+    "febNote": "未見 2 月休館資訊；不供應晚餐，要在河崎附近餐廳或居酒屋吃（部分要預約）",
+    "closures": [],
+    "photos": [
+      {
+        "url": "https://www.kazenoheritage.jp/hotels/ise-kawasaki/wp-content/uploads/sites/26/2026/09/tokiwa-img01.jpg",
+        "page": "https://www.kazenoheritage.jp/hotels/ise-kawasaki/rooms/",
+        "kind": "official",
+        "credit": "NIPPONIA HOTEL 伊勢河崎 商人町",
+        "license": null
+      },
+      {
+        "url": "https://www.kazenoheritage.jp/hotels/ise-kawasaki/wp-content/uploads/sites/26/2026/09/asama-img01.jpg",
+        "page": "https://www.kazenoheritage.jp/hotels/ise-kawasaki/rooms/",
+        "kind": "official",
+        "credit": "NIPPONIA HOTEL 伊勢河崎 商人町",
+        "license": null
+      },
+      {
+        "url": "https://img.travel.rakuten.co.jp/share/HOTEL/196826/196826.jpg",
+        "page": "https://travel.rakuten.co.jp/HOTEL/196826/196826.html",
+        "kind": "rakuten",
+        "credit": "楽天トラベル（施設提供）",
+        "license": null
+      }
+    ],
+    "links": {
+      "official": "https://www.kazenoheritage.jp/hotels/ise-kawasaki/",
+      "googleMaps": "https://maps.google.com/?cid=11205755571838556776"
+    },
+    "tags": [],
+    "tier": null,
+    "nearestStation": {
+      "id": "iseshi",
+      "mode": "walk",
+      "minutes": 10,
+      "note": "伊勢市駅（北口）より徒歩約10分"
+    },
+    "pickup": null,
+    "meals": "breakfast",
+    "priceRange": "每人約 28,197～38,216 円（依方案，含素泊／附早餐；詳見 prices）",
+    "prices": [
+      {
+        "currency": "JPY",
+        "plan": "【期間限定】神饌朝食付き SEICHO 501",
+        "unit": "per-person",
+        "adult": 28197,
+        "child": null,
+        "season": "2026-10-18 查詢最低（計畫期間至 2027-09-30）",
+        "note": "4 人 1 室、含稅（未稅 25,634）",
+        "source": "rakuten",
+        "url": "https://hotel.travel.rakuten.co.jp/hotelinfo/plan/196826",
+        "retrieved": "2026-10-18"
+      },
+      {
+        "currency": "JPY",
+        "plan": "【期間限定】神饌朝食付き TOKIWA 301／303",
+        "unit": "per-person",
+        "adult": 31537,
+        "child": null,
+        "season": "2026-10-18 查詢最低",
+        "note": "4 人 1 室、含稅（未稅 28,670）",
+        "source": "rakuten",
+        "url": "https://hotel.travel.rakuten.co.jp/hotelinfo/plan/196826",
+        "retrieved": "2026-10-18"
+      },
+      {
+        "currency": "JPY",
+        "plan": "【期間限定】神饌朝食付き ASAMA 101／ASAGIRI 201",
+        "unit": "per-person",
+        "adult": 34876,
+        "child": null,
+        "season": "2026-10-18 查詢最低",
+        "note": "4 人 1 室、含稅（未稅 31,706）；TOKIWA 302（3 人）、TOKOWAKA 601（2 人）同價",
+        "source": "rakuten",
+        "url": "https://hotel.travel.rakuten.co.jp/hotelinfo/plan/196826",
+        "retrieved": "2026-10-18"
+      },
+      {
+        "currency": "JPY",
+        "plan": "【期間限定】神饌朝食付き KAMIJI 401",
+        "unit": "per-person",
+        "adult": 38216,
+        "child": null,
+        "season": "2026-10-18 查詢最低",
+        "note": "2 人 1 室、含稅（未稅 34,742）",
+        "source": "rakuten",
+        "url": "https://hotel.travel.rakuten.co.jp/hotelinfo/plan/196826",
+        "retrieved": "2026-10-18"
+      },
+      {
+        "plan": "素泊 大人 3＋小學生高年級 1（1 室）最低價（【期間限定プラン】お伊勢参りに便利。伊勢河崎のまちなみを堪能＜素泊まり＞）",
+        "unit": "per-person",
+        "adult": 34691,
+        "child": 7400,
+        "currency": "JPY",
+        "season": "2027-02-09（二）1 泊，1 間 大人 3＋小學生高年級 1",
+        "note": "房型：【SEICHO 501】フロント棟2階・フラット｜57平米。兒童價＝一間總價 111,473 円 − 大人 3 人份（約大人的 21%）。楽天 API（查詢 2026-10-18）。",
+        "source": "rakuten-api",
+        "url": "https://hotel.travel.rakuten.co.jp/hotelinfo/plan/196826?f_nen1=2027&f_tuki1=2&f_hi1=9&f_nen2=2027&f_tuki2=2&f_hi2=10&f_heya_su=1&f_otona_su=3&f_s1=1&f_s2=0&f_y1=0&f_y2=0&f_y3=0&f_y4=0",
+        "retrieved": "2026-10-18"
+      }
+    ],
+    "luggage": null,
+    "checkIn": "15:00",
+    "checkOut": "11:00",
+    "dinnerAccess": null,
+    "group": {
+      "totalRooms": 8,
+      "roomTypes": [
+        "SEICHO 501 フロント棟2階・フラット 57㎡ 1～4 人",
+        "ASAMA 101 檜風呂付き一棟貸切 120㎡ 1～4 人",
+        "ASAGIRI 201 檜風呂一棟貸切 113㎡ 1～4 人",
+        "TOKIWA 301 2階建て・4ベッド 102㎡ 1～4 人",
+        "TOKIWA 302 蔵まるごと貸切・3ベッド（閣樓）80㎡ 1～3 人（官網寫 4 人）",
+        "TOKIWA 303 蔵まるごと貸切・4ベッド（閣樓）78㎡ 1～4 人",
+        "KAMIJI 401 庭付き一棟貸切・平屋 64㎡ 1～2 人",
+        "TOKOWAKA 601 蔵まるごと貸切・ツイン 64㎡ 1～2 人"
+      ],
+      "maxGuests": 27,
+      "wholeRental": null,
+      "pickupCapacity": null,
+      "nearbyCombos": [],
+      "note": "8 室分散在 5～6 棟古民家，各室為整棟／整間貸切；定員合計 27（楽天）～28（官網）人，15 人可分住 4～5 室。官網有 10 名以上團體頁與表單，早餐餐廳空間最多 30 人可包場。全館包下未明說，要問。"
+    },
+    "ratings": {
+      "rakuten": 4.71,
+      "rakutenReviews": 14,
+      "jalan": null,
+      "jalanReviews": null,
+      "booking": null,
+      "google": 4.9,
+      "googleReviews": 162,
+      "note": "T8b（2026-10-18）：楽天 4.71（14 則，API）、Google 4.9（162 則，「NIPPONIA HOTEL 伊勢河崎 商人町 SEICHO（フロント棟）」），5 分制。"
+    },
+    "accessibility": {
+      "elevator": null,
+      "beds": "全部是床：TOKIWA 301 4 床、302 3 床（1 樓 2、閣樓 1）、303 4 床（1 樓 2、閣樓 2）、TOKOWAKA 601 雙床；其他房床數未寫",
+      "stairs": "SEICHO 501 在フロント棟 2 樓；TOKIWA 301 臥室在 2 樓；302/303 蔵的閣樓有床；KAMIJI 401 平屋（フラット）",
+      "kids": "6 歲以下可與父母同床（添い寝）；楽天標示有兒童料金，金額未讀到；無兒童餐資訊",
+      "note": "各房離フロント（SEICHO）步行 30 秒～4 分，要在街上移動；長輩適合 KAMIJI 401（平屋、2 人）或 1 樓有床的房"
+    },
+    "reservation": {
+      "methods": [
+        "rakuten",
+        "official",
+        "phone"
+      ],
+      "phone": "0120-210-289",
+      "url": "https://www.kazenoheritage.jp/hotels/ise-kawasaki/group/",
+      "groupNote": "10 名以上用官網團體表單洽詢；電話 11:00～20:00"
+    },
+    "bookingLinks": {
+      "rakuten": "https://travel.rakuten.co.jp/HOTEL/196826/196826.html"
+    },
+    "sources": [
+      {
+        "type": "booking-site",
+        "url": "https://travel.rakuten.co.jp/HOTEL/196826/196826.html",
+        "retrieved": "2026-10-18",
+        "note": "楽天トラベル API（SimpleHotelSearch、HotelDetailSearch、VacantHotelSearch，scripts/rakuten.mjs）：評分、細項評分、房數、check-in/out、照片、2027-02-09／02-10 的空房與價格"
+      },
+      {
+        "type": "google-maps",
+        "url": "https://maps.google.com/?cid=11205755571838556776",
+        "retrieved": "2026-10-18",
+        "note": "Google 地圖「NIPPONIA HOTEL 伊勢河崎 商人町 SEICHO（フロント棟）」：星數、評論數、座標、照片"
+      },
+      {
+        "type": "booking-site",
+        "url": "https://travel.rakuten.co.jp/HOTEL/196826/196826_std.html",
+        "retrieved": "2026-10-18",
+        "note": "8 室、15:00/11:00、停車 8 台、取消規定、楽天 4.69（13 則）"
+      },
+      {
+        "type": "booking-site",
+        "url": "https://hotel.travel.rakuten.co.jp/hotelinfo/plan/196826",
+        "retrieved": "2026-10-18",
+        "note": "各房面積、定員、床數與朝食付每人價格"
+      },
+      {
+        "type": "official",
+        "url": "https://www.kazenoheritage.jp/hotels/ise-kawasaki/rooms/",
+        "retrieved": "2026-10-18",
+        "note": "8 室所在建築、定員、樓層、離フロント步行時間"
+      },
+      {
+        "type": "official",
+        "url": "https://www.kazenoheritage.jp/hotels/ise-kawasaki/group/",
+        "retrieved": "2026-10-18",
+        "note": "10 名以上團體表單、餐廳空間最多 30 人"
+      },
+      {
+        "type": "official",
+        "url": "https://www.kazenoheritage.jp/hotels/ise-kawasaki/dining",
+        "retrieved": "2026-10-18",
+        "note": "只供應神饌早餐、無晚餐"
+      },
+      {
+        "type": "media",
+        "url": "https://www.travelvoice.jp/20250219-157205",
+        "retrieved": "2026-10-18",
+        "note": "2025-04-25 開業、6 棟 8 室、バリューマネジメント營運"
+      }
+    ],
+    "verified": false,
+    "extra": {
+      "parking": "免費 8 台（每室 1 台），需預約；先到 SEICHO 再引導",
+      "conflicts": [
+        "棟數：官網概要「5 棟 8 室」vs 官網重點、楽天、トラベルボイス「6 棟 8 室」",
+        "TOKIWA 302 定員：官網 TOKIWA 系列「4 名まで」vs 楽天「1～3 名・3 ベッド」"
+      ],
+      "rakutenHotelNo": 196826,
+      "rakutenVacancy": {
+        "retrieved": "2026-10-18",
+        "dates": [
+          "2027-02-09",
+          "2027-02-10"
+        ],
+        "combos": [
+          "5x3",
+          "4x4",
+          "3x5",
+          "2x8"
+        ],
+        "available": {
+          "2027-02-09": [],
+          "2027-02-10": []
+        },
+        "note": "15 人（全部以大人計）分 N 間同住的組合，有空房的列出；只代表查詢當天楽天上的庫存"
+      }
+    }
+  },
+  {
+    "id": "ise-okubun",
+    "type": "lodging",
+    "name": {
+      "ja": "料理旅館 おく文",
+      "zh": "料理旅館 奧文"
+    },
+    "area": "ise",
+    "region": "ise-geku",
+    "kind": "ryokan",
+    "coords": [
+      136.700139,
+      34.49301
+    ],
+    "coordsSource": "google-maps-url",
+    "address": "三重県伊勢市宮町1-9-49",
+    "hours": null,
+    "closedNote": null,
+    "febNote": null,
+    "closures": [],
+    "photos": [
+      {
+        "url": "https://trvimg.r10s.jp/share/image_up/38483/LARGE/ttHV7w.jpeg",
+        "page": "https://travel.rakuten.co.jp/HOTEL/38483/38483.html",
+        "kind": "official",
+        "credit": "料理旅館 おく文",
+        "license": null
+      },
+      {
+        "url": "https://img.travel.rakuten.co.jp/share/HOTEL/38483/38483.jpg",
+        "page": "https://travel.rakuten.co.jp/HOTEL/38483/38483.html",
+        "kind": "rakuten",
+        "credit": "楽天トラベル（施設提供）",
+        "license": null
+      },
+      {
+        "url": "https://lh3.googleusercontent.com/grass-cs/AABkmLeNwdvfBgoecOmwQUyaI7n7xrJ11hPbds9GAR0toLpBoG0Ei-pOrcGkUHU8qfZg9le8-RdWbk3vXjZ8x9hIw3JTB_zKeRPmW7dlw0ikU7FRLDo2TKPdZksOyqAzLpRMi7QVPjry=w408-h306-k-no",
+        "page": "https://maps.google.com/?cid=7072040251221998084",
+        "kind": "google",
+        "credit": "Google マップ",
+        "license": null
+      }
+    ],
+    "links": {
+      "official": null,
+      "googleMaps": "https://maps.google.com/?cid=7072040251221998084"
+    },
+    "tags": [],
+    "tier": null,
+    "nearestStation": {
+      "id": "jr-iseshi",
+      "mode": "walk",
+      "minutes": 15,
+      "note": "直線 912 m×1.3÷80 m/分估算（T8b）"
+    },
+    "pickup": "楽天未列一般接送；2022 年心得提到有接送到車站，需事先確認",
+    "meals": "varies",
+    "priceRange": "每人約 9,900～16,500 円（依方案，含素泊／附早餐；詳見 prices）",
+    "prices": [
+      {
+        "currency": "JPY",
+        "plan": "伊勢楽市膳（一泊二食）",
+        "unit": "per-person",
+        "adult": 16500,
+        "child": null,
+        "season": null,
+        "note": "2～4 人一室含稅；伊勢海老、さめのたれ、サザエ等",
+        "source": "rakuten",
+        "url": "https://hotel.travel.rakuten.co.jp/hotelinfo/plan/38483",
+        "retrieved": "2026-10-18"
+      },
+      {
+        "currency": "JPY",
+        "plan": "【うな重】コース（一泊二食）",
+        "unit": "per-person",
+        "adult": 16500,
+        "child": null,
+        "season": null,
+        "note": "2～4 人一室含稅；うな重 3 切",
+        "source": "rakuten",
+        "url": "https://hotel.travel.rakuten.co.jp/hotelinfo/plan/38483",
+        "retrieved": "2026-10-18"
+      },
+      {
+        "currency": "JPY",
+        "plan": "旬会席◆スタンダード（一泊二食）",
+        "unit": "per-person",
+        "adult": 14300,
+        "child": null,
+        "season": null,
+        "note": "2～4 人一室含稅",
+        "source": "rakuten",
+        "url": "https://hotel.travel.rakuten.co.jp/hotelinfo/plan/38483",
+        "retrieved": "2026-10-18"
+      },
+      {
+        "currency": "JPY",
+        "plan": "【朝食付】割烹旅館の朝ご飯",
+        "unit": "per-person",
+        "adult": 11550,
+        "child": null,
+        "season": "全日同料金",
+        "note": "含稅",
+        "source": "rakuten",
+        "url": "https://hotel.travel.rakuten.co.jp/hotelinfo/plan/38483",
+        "retrieved": "2026-10-18"
+      },
+      {
+        "currency": "JPY",
+        "plan": "【素泊まり】",
+        "unit": "per-person",
+        "adult": 9900,
+        "child": null,
+        "season": null,
+        "note": "含稅；20 時前入住",
+        "source": "rakuten",
+        "url": "https://hotel.travel.rakuten.co.jp/hotelinfo/plan/38483",
+        "retrieved": "2026-10-18"
+      }
+    ],
+    "luggage": null,
+    "checkIn": "16:00",
+    "checkOut": "10:00",
+    "dinnerAccess": null,
+    "group": {
+      "totalRooms": 10,
+      "roomTypes": [
+        "お任せ和室 1～4 人"
+      ],
+      "maxGuests": null,
+      "wholeRental": null,
+      "pickupCapacity": null,
+      "nearbyCombos": [
+        "ise-momijiken",
+        "ise-todaya-ryoan",
+        "ise-fav",
+        "ise-toyoko-inn"
+      ],
+      "note": "10 室每室 1～4 人，食事處 40 席；無團體方案資訊，要電話詢問能否 15 人包下"
+    },
+    "ratings": {
+      "rakuten": null,
+      "rakutenReviews": 92,
+      "jalan": null,
+      "jalanReviews": null,
+      "booking": null,
+      "google": 3.9,
+      "googleReviews": 58,
+      "note": "T8b（2026-10-18）：楽天 API 平均回傳 0（評分不公開或舊制），92 則、Google 3.9（58 則，「料理旅館 おく文」），5 分制。"
+    },
+    "accessibility": {
+      "elevator": null,
+      "beds": "和室（鋪被，未明寫）",
+      "stairs": null,
+      "kids": "子供料金設定有り（小學高、低年級、幼兒分級），金額未列；兒童餐為お子様ランチ，要大人餐付大人價",
+      "note": "昭和初期老建築，浴室小；フォートラベル 無障礙 2.00"
+    },
+    "reservation": {
+      "methods": [
+        "rakuten",
+        "phone"
+      ],
+      "phone": "0596-28-2231",
+      "url": "https://travel.rakuten.co.jp/HOTEL/38483/38483.html",
+      "groupNote": null
+    },
+    "bookingLinks": {
+      "rakuten": "https://travel.rakuten.co.jp/HOTEL/38483/38483.html"
+    },
+    "sources": [
+      {
+        "type": "booking-site",
+        "url": "https://travel.rakuten.co.jp/HOTEL/38483/38483.html",
+        "retrieved": "2026-10-18",
+        "note": "楽天トラベル API（SimpleHotelSearch、HotelDetailSearch、VacantHotelSearch，scripts/rakuten.mjs）：評分、細項評分、房數、check-in/out、照片、2027-02-09／02-10 的空房與價格"
+      },
+      {
+        "type": "google-maps",
+        "url": "https://maps.google.com/?cid=7072040251221998084",
+        "retrieved": "2026-10-18",
+        "note": "Google 地圖「料理旅館 おく文」：星數、評論數、座標、照片"
+      },
+      {
+        "type": "booking-site",
+        "url": "https://travel.rakuten.co.jp/HOTEL/38483/38483.html",
+        "retrieved": "2026-10-18",
+        "note": "鰻魚店起家、昭和初期建築、浴室小、全室廁所浴室共用"
+      },
+      {
+        "type": "booking-site",
+        "url": "https://travel.rakuten.co.jp/HOTEL/38483/38483_std.html",
+        "retrieved": "2026-10-18",
+        "note": "10 室、IN16/OUT10、停車 6 台、伊勢市站車程 5 分"
+      },
+      {
+        "type": "booking-site",
+        "url": "https://hotel.travel.rakuten.co.jp/hotelinfo/plan/38483",
+        "retrieved": "2026-10-18",
+        "note": "方案價格 9,900～16,500、和室 1～4 人、子供料金分級"
+      },
+      {
+        "type": "booking-site",
+        "url": "https://review.travel.rakuten.co.jp/hotel/voice/38483/",
+        "retrieved": "2026-10-18",
+        "note": "平均分不公開，最新心得 2023-06；料理好、浴室簡陋"
+      },
+      {
+        "type": "media",
+        "url": "https://r.gnavi.co.jp/s7kh6m8d0000/",
+        "retrieved": "2026-10-18",
+        "note": "宮町站步行 8 分、40 席"
+      },
+      {
+        "type": "booking-site",
+        "url": "https://4travel.jp/dm_hotel-10037579",
+        "retrieved": "2026-10-18",
+        "note": "3.15（3 則，2011～2021），餐食 4.25、無障礙 2.00"
+      }
+    ],
+    "verified": false,
+    "extra": {
+      "onsen": "非溫泉，浴室小（家用規模），輪流使用",
+      "parking": "免費 6 台先到先得；客滿時可代安排附近停車場（需預約）",
+      "conflicts": [
+        "廁所：楽天方案頁寫全室廁所浴室共用，2022 年心得提到房內廁所、免治馬桶",
+        "價格：楽天施設頁季節の会席 13,200 円 vs 方案頁旬会席 14,300 円",
+        "楽天平均分不公開（顯示「-」），92 則中 5 分 45、4 分 26"
+      ],
+      "rakutenHotelNo": 38483,
+      "rakutenVacancy": {
+        "retrieved": "2026-10-18",
+        "dates": [
+          "2027-02-09",
+          "2027-02-10"
+        ],
+        "combos": [
+          "5x3",
+          "4x4",
+          "3x5",
+          "2x8"
+        ],
+        "available": {
+          "2027-02-09": [],
+          "2027-02-10": []
+        },
+        "note": "15 人（全部以大人計）分 N 間同住的組合，有空房的列出；只代表查詢當天楽天上的庫存"
+      }
+    }
+  },
+  {
+    "id": "ise-todaya-ryoan",
+    "type": "lodging",
+    "name": {
+      "ja": "伊勢戸田家 料庵",
+      "zh": "伊勢戶田家 料庵"
+    },
+    "area": "ise",
+    "region": "ise-geku",
+    "kind": "ryokan",
+    "coords": [
+      136.7031006,
+      34.4943359
+    ],
+    "coordsSource": "google-maps-url",
+    "address": "三重県伊勢市大世古1-1-20",
+    "hours": null,
+    "closedNote": null,
+    "febNote": null,
+    "closures": [],
+    "photos": [
+      {
+        "url": "https://trvimg.r10s.jp/share/image_up/5668/LARGE/IArXOO.jpeg",
+        "page": "https://travel.rakuten.co.jp/HOTEL/5668/5668.html",
+        "kind": "official",
+        "credit": "伊勢戸田家 料庵（楽天トラベル）",
+        "license": null
+      },
+      {
+        "url": "https://img.travel.rakuten.co.jp/share/HOTEL/5668/5668.jpg",
+        "page": "https://travel.rakuten.co.jp/HOTEL/5668/5668.html",
+        "kind": "rakuten",
+        "credit": "楽天トラベル（施設提供）",
+        "license": null
+      },
+      {
+        "url": "https://lh3.googleusercontent.com/grass-cs/AABkmLcrJ-_-v_8hesiWTm4RRv8AWjb7Yz6Ew1DKOfKNXeuvJST9ZWZgqonihwG98ieCx9RjPgJYqb462iFmu7begXFSgFQiV2-Dl1Tfyv5nmQWEZaoovNfqaRI5cpmSi3wy-PrBCbsoDQ=w750-h240-k-no",
+        "page": "https://maps.google.com/?cid=14560981749051810275",
+        "kind": "google",
+        "credit": "Google マップ",
+        "license": null
+      }
+    ],
+    "links": {
+      "official": null,
+      "googleMaps": "https://maps.google.com/?cid=14560981749051810275"
+    },
+    "tags": [],
+    "tier": null,
+    "nearestStation": {
+      "id": "iseshi",
+      "mode": "walk",
+      "minutes": 7,
+      "note": "伊勢市駅から徒歩7分"
+    },
+    "pickup": null,
+    "meals": "dinner+breakfast",
+    "priceRange": "每人約 29,095～36,685 円（一泊二食；詳見 prices）",
+    "prices": [
+      {
+        "currency": "JPY",
+        "plan": "和室10畳+6畳 1泊2食（懐石）",
+        "unit": "per-person",
+        "adult": 29095,
+        "child": null,
+        "season": "直近 30 日目安（2026-10）",
+        "note": "4～5 人 1 室時；3 人 32,890 円、2 人 36,685 円",
+        "source": "rakuten",
+        "url": "https://hotel.travel.rakuten.co.jp/hotelinfo/plan/5668",
+        "retrieved": "2026-10-18"
+      },
+      {
+        "currency": "JPY",
+        "plan": "和室8畳+6畳 百鱗の間 1泊2食（本格懐石）",
+        "unit": "per-person",
+        "adult": 36685,
+        "child": null,
+        "season": "直近 30 日目安（2026-10）",
+        "note": "4～5 人 1 室時；3 人 40,480 円",
+        "source": "rakuten",
+        "url": "https://hotel.travel.rakuten.co.jp/hotelinfo/plan/5668",
+        "retrieved": "2026-10-18"
+      }
+    ],
+    "luggage": null,
+    "checkIn": "15:00",
+    "checkOut": "10:00",
+    "dinnerAccess": null,
+    "group": {
+      "totalRooms": 10,
+      "roomTypes": [
+        "和室 10 畳+6 畳（16 畳、附浴廁）1～5 人",
+        "和室 8 畳+6 畳 百鱗の間（18 畳、附浴廁）1～5 人"
+      ],
+      "maxGuests": null,
+      "wholeRental": false,
+      "pickupCapacity": null,
+      "nearbyCombos": [
+        "ise-fav",
+        "ise-toyoko-inn",
+        "ise-okubun",
+        "ise-momijiken"
+      ],
+      "note": "楽天只列 2 種房型，其餘房型不明；有宴會場、會議室；無正式包館方案，15 人需 3～4 間，需電話確認"
+    },
+    "ratings": {
+      "rakuten": null,
+      "rakutenReviews": 19,
+      "jalan": null,
+      "jalanReviews": null,
+      "booking": null,
+      "google": 3.6,
+      "googleReviews": 70,
+      "note": "T8b（2026-10-18）：楽天 API 平均回傳 0（評分不公開或舊制），19 則、Google 3.6（70 則，「伊勢 戸田家料唵」），5 分制。"
+    },
+    "accessibility": {
+      "elevator": null,
+      "beds": "和室鋪被",
+      "stairs": null,
+      "kids": "楽天有兒童料金設定（小學高低年級、幼兒），金額不明",
+      "note": "無大浴場，浴室小、一次一人（2013、2017 心得）；房內洋式免治馬桶（KNT）；1994 年建；門禁 22:00"
+    },
+    "reservation": {
+      "methods": [
+        "rakuten",
+        "phone"
+      ],
+      "phone": "0596-28-4855",
+      "url": "https://travel.rakuten.co.jp/HOTEL/5668/5668.html",
+      "groupNote": null
+    },
+    "bookingLinks": {
+      "rakuten": "https://travel.rakuten.co.jp/HOTEL/5668/5668.html"
+    },
+    "sources": [
+      {
+        "type": "booking-site",
+        "url": "https://travel.rakuten.co.jp/HOTEL/5668/5668.html",
+        "retrieved": "2026-10-18",
+        "note": "楽天トラベル API（SimpleHotelSearch、HotelDetailSearch、VacantHotelSearch，scripts/rakuten.mjs）：評分、細項評分、房數、check-in/out、照片、2027-02-09／02-10 的空房與價格"
+      },
+      {
+        "type": "google-maps",
+        "url": "https://maps.google.com/?cid=14560981749051810275",
+        "retrieved": "2026-10-18",
+        "note": "Google 地圖「伊勢 戸田家料唵」：星數、評論數、座標、照片"
+      },
+      {
+        "type": "booking-site",
+        "url": "https://travel.rakuten.co.jp/HOTEL/5668/5668.html",
+        "retrieved": "2026-10-18",
+        "note": "基本資料：10 室、伊勢市站步行 7 分、門禁 22:00、駐車 17 台"
+      },
+      {
+        "type": "booking-site",
+        "url": "https://travel.rakuten.co.jp/HOTEL/5668/5668_std.html",
+        "retrieved": "2026-10-18",
+        "note": "設施：宴會場、會議室、無電梯記載"
+      },
+      {
+        "type": "booking-site",
+        "url": "https://hotel.travel.rakuten.co.jp/hotelinfo/plan/5668",
+        "retrieved": "2026-10-18",
+        "note": "2 個 1 泊 2 食方案，每間 1～5 人，每人 29,095 円起，仍可預約"
+      },
+      {
+        "type": "booking-site",
+        "url": "https://review.travel.rakuten.co.jp/hotel/voice/5668/",
+        "retrieved": "2026-10-18",
+        "note": "19 則，料理、庭、女將好評；浴室小；最新 2022-12"
+      },
+      {
+        "type": "booking-site",
+        "url": "https://yado.knt.co.jp/st/S240237/",
+        "retrieved": "2026-10-18",
+        "note": "1994 年建、洋式免治馬桶、懷石料理"
+      }
+    ],
+    "verified": false,
+    "extra": {
+      "parking": "17 台",
+      "conflicts": [
+        "楽天口コミ總分顯示「-」，各則分布 5 點 4、4 點 5、3 點 1、2 點 1",
+        "官網 URL 未找到"
+      ],
+      "rakutenHotelNo": 5668,
+      "rakutenVacancy": {
+        "retrieved": "2026-10-18",
+        "dates": [
+          "2027-02-09",
+          "2027-02-10"
+        ],
+        "combos": [
+          "5x3",
+          "4x4",
+          "3x5",
+          "2x8"
+        ],
+        "available": {
+          "2027-02-09": [],
+          "2027-02-10": []
+        },
+        "note": "15 人（全部以大人計）分 N 間同住的組合，有空房的列出；只代表查詢當天楽天上的庫存"
+      }
+    }
+  },
+  {
+    "id": "ise-oyado-ichi",
+    "type": "lodging",
+    "name": {
+      "ja": "お宿 壱",
+      "zh": "壹之宿（一棟包租）"
+    },
+    "area": "ise",
+    "region": "ise-geku",
+    "kind": "rental-house",
+    "coords": [
+      136.7085633,
+      34.4928183
+    ],
+    "coordsSource": "other",
+    "address": "三重県伊勢市宮後2-20-25",
+    "hours": null,
+    "closedNote": null,
+    "febNote": null,
+    "closures": [],
+    "photos": [
+      {
+        "url": "https://trvimg.r10s.jp/share/image_up/193960/origin/7d6c3731942d572a13ebb0f8e7c193a2d970d13c.47.9.26.3.jpg",
+        "page": "https://travel.rakuten.co.jp/HOTEL/193960/193960.html",
+        "kind": "official",
+        "credit": "お宿 壱",
+        "license": null
+      },
+      {
+        "url": "https://img.travel.rakuten.co.jp/share/HOTEL/193960/193960.jpg",
+        "page": "https://travel.rakuten.co.jp/HOTEL/193960/193960.html",
+        "kind": "rakuten",
+        "credit": "楽天トラベル（施設提供）",
+        "license": null
+      }
+    ],
+    "links": {
+      "official": null,
+      "googleMaps": "https://www.google.com/maps/search/?api=1&query=34.4928183,136.7085633"
+    },
+    "tags": [],
+    "tier": null,
+    "nearestStation": {
+      "id": "iseshi",
+      "mode": "walk",
+      "minutes": 1,
+      "note": "伊勢市駅より徒歩約1分（方案名は徒歩3分）"
+    },
+    "pickup": null,
+    "meals": "none",
+    "priceRange": "每人約 8,236～11,600 円（依方案，含素泊／附早餐；詳見 prices）",
+    "prices": [
+      {
+        "currency": "JPY",
+        "plan": "伊勢市駅徒歩3分！一棟貸し民宿",
+        "unit": "per-person",
+        "adult": 8236,
+        "child": null,
+        "season": "直近 30 日參考價",
+        "note": "5 人以上每人 8,236～10,556 円；含 16% 手續費；方案期間到 2027-12-31",
+        "source": "rakuten",
+        "url": "https://hotel.travel.rakuten.co.jp/hotelinfo/plan/193960",
+        "retrieved": "2026-10-18"
+      },
+      {
+        "plan": "素泊 大人 3＋小學生高年級 1（1 室）最低價（伊勢市駅から徒歩3分!近くにごはん屋さんも多い1棟貸しのお宿です）",
+        "unit": "per-person",
+        "adult": 11600,
+        "child": null,
+        "currency": "JPY",
+        "season": "2027-02-09（二）1 泊，1 間 大人 3＋小學生高年級 1",
+        "note": "房型：一戸建て。一間總價 46,400 円；API 的小學生價和大人相同（可能以房計價或兒童同價），兒童價不推算。楽天 API（查詢 2026-10-18）。",
+        "source": "rakuten-api",
+        "url": "https://hotel.travel.rakuten.co.jp/hotelinfo/plan/193960?f_nen1=2027&f_tuki1=2&f_hi1=9&f_nen2=2027&f_tuki2=2&f_hi2=10&f_heya_su=1&f_otona_su=3&f_s1=1&f_s2=0&f_y1=0&f_y2=0&f_y3=0&f_y4=0",
+        "retrieved": "2026-10-18"
+      }
+    ],
+    "luggage": null,
+    "checkIn": "15:00",
+    "checkOut": "11:00",
+    "dinnerAccess": null,
+    "group": {
+      "totalRooms": 1,
+      "roomTypes": [
+        "一戸建て 和洋室 158 m² 1～10 人"
+      ],
+      "maxGuests": 10,
+      "wholeRental": true,
+      "pickupCapacity": null,
+      "nearbyCombos": [
+        "ise-sanco-inn",
+        "ise-shinsen",
+        "ise-hinode-ryokan",
+        "ise-comfort-era"
+      ],
+      "note": "只有這一棟，15 人住不下；最多 10 人"
+    },
+    "ratings": {
+      "rakuten": null,
+      "rakutenReviews": 1,
+      "jalan": null,
+      "jalanReviews": null,
+      "booking": null,
+      "google": null,
+      "googleReviews": null,
+      "note": "T8b（2026-10-18）：楽天 API 平均沒有，1 則、Google 地圖找不到這間，5 分制。"
+    },
+    "accessibility": {
+      "elevator": null,
+      "beds": "1 樓 2 間臥室：雙人床 1、單人床 2；2 樓布團／床墊 6 組",
+      "stairs": "兩層樓住宅，樓梯細節 null",
+      "kids": "有兒童料金，金額未寫",
+      "note": "浴室 1 間（有浴缸），廁所數 null；有廚房、洗衣機、烘乾機"
+    },
+    "reservation": {
+      "methods": [
+        "rakuten",
+        "phone"
+      ],
+      "phone": "090-1724-3367",
+      "url": "https://travel.rakuten.co.jp/HOTEL/193960/193960.html",
+      "groupNote": "最多 10 人"
+    },
+    "bookingLinks": {
+      "rakuten": "https://travel.rakuten.co.jp/HOTEL/193960/193960.html"
+    },
+    "sources": [
+      {
+        "type": "booking-site",
+        "url": "https://travel.rakuten.co.jp/HOTEL/193960/193960.html",
+        "retrieved": "2026-10-18",
+        "note": "楽天トラベル API（SimpleHotelSearch、HotelDetailSearch、VacantHotelSearch，scripts/rakuten.mjs）：評分、細項評分、房數、check-in/out、照片、2027-02-09／02-10 的空房與價格"
+      },
+      {
+        "type": "booking-site",
+        "url": "https://travel.rakuten.co.jp/HOTEL/193960/193960.html",
+        "retrieved": "2026-10-18",
+        "note": "5.00 分 1 則；伊勢市站步行 1 分"
+      },
+      {
+        "type": "booking-site",
+        "url": "https://travel.rakuten.co.jp/HOTEL/193960/193960_std.html",
+        "retrieved": "2026-10-18",
+        "note": "1 室一棟貸、有廚房、電話"
+      },
+      {
+        "type": "booking-site",
+        "url": "https://hotel.travel.rakuten.co.jp/hotelinfo/plan/193960",
+        "retrieved": "2026-10-18",
+        "note": "定員 10、寢具配置、浴室 1、停車 1 台、價格"
+      }
+    ],
+    "verified": false,
+    "extra": {
+      "parking": "用地內 1 台（有屋頂），2 台以上用附近付費停車場",
+      "conflicts": [
+        "伊勢市站步行 1 分 vs 3 分"
+      ],
+      "rakutenHotelNo": 193960,
+      "rakutenVacancy": {
+        "retrieved": "2026-10-18",
+        "dates": [
+          "2027-02-09",
+          "2027-02-10"
+        ],
+        "combos": [
+          "5x3",
+          "4x4",
+          "3x5",
+          "2x8"
+        ],
+        "available": {
+          "2027-02-09": [],
+          "2027-02-10": []
+        },
+        "note": "15 人（全部以大人計）分 N 間同住的組合，有空房的列出；只代表查詢當天楽天上的庫存"
+      },
+      "googleMapsNote": "Google 地圖搜尋不到這間（2026-10-18），links.googleMaps 用座標搜尋連結"
+    }
+  },
+  {
+    "id": "ise-wasoan",
+    "type": "lodging",
+    "name": {
+      "ja": "和装庵",
+      "zh": "和裝庵"
+    },
+    "area": "ise",
+    "region": "ise-geku",
+    "kind": "ryokan",
+    "coords": [
+      136.7112201,
+      34.4866098
+    ],
+    "coordsSource": "google-maps-url",
+    "address": "三重県伊勢市岡本1-3-9",
+    "hours": null,
+    "closedNote": null,
+    "febNote": "楽天方案期間只到 2026-12-31，2027-02 方案尚未上架",
+    "closures": [],
+    "photos": [
+      {
+        "url": "https://img.travel.rakuten.co.jp/share/HOTEL/172712/172712.jpg",
+        "page": "https://travel.rakuten.co.jp/HOTEL/172712/172712.html",
+        "kind": "rakuten",
+        "credit": "楽天トラベル（施設提供）",
+        "license": null
+      },
+      {
+        "url": "https://lh3.googleusercontent.com/grass-cs/AABkmLdUMgRC60r_53X7oOMyboNJ2WJSpwAJKh7X0a9Mte89SS6Z6F811aMa-PZZccvi9pzVQj2zlN8IQkbRiCXSsn_-TScHu7qJWgdqnCVtLOCkvlVqDUF-lKHux2KY666QG4cfFJbmYw=w408-h612-k-no",
+        "page": "https://maps.google.com/?cid=10237502575733505714",
+        "kind": "google",
+        "credit": "Google マップ",
+        "license": null
+      }
+    ],
+    "links": {
+      "official": null,
+      "googleMaps": "https://maps.google.com/?cid=10237502575733505714"
+    },
+    "tags": [],
+    "tier": null,
+    "nearestStation": {
+      "id": "ujiyamada",
+      "mode": "walk",
+      "minutes": 5,
+      "note": "近鉄宇治山田駅より徒歩約5分、JR伊勢市駅より徒歩8分、外宮まで徒歩5分"
+    },
+    "pickup": null,
+    "meals": "none",
+    "priceRange": "每人約 6,000～6,500 円（依方案，含素泊／附早餐；詳見 prices）",
+    "prices": [
+      {
+        "currency": "JPY",
+        "plan": "スタンダード 3F 和室素泊",
+        "unit": "per-person",
+        "adult": 6200,
+        "child": null,
+        "season": "方案期間至 2026-12-31",
+        "note": "5 人 6,200～8,200；4 人 6,500～8,500（含稅）",
+        "source": "rakuten",
+        "url": "https://hotel.travel.rakuten.co.jp/hotelinfo/plan/172712",
+        "retrieved": "2026-10-18"
+      },
+      {
+        "currency": "JPY",
+        "plan": "スタンダード 2F 洋室素泊",
+        "unit": "per-person",
+        "adult": 6500,
+        "child": null,
+        "season": "方案期間至 2026-12-31",
+        "note": "4 人 6,500～8,500（含稅）",
+        "source": "rakuten",
+        "url": "https://hotel.travel.rakuten.co.jp/hotelinfo/plan/172712",
+        "retrieved": "2026-10-18"
+      },
+      {
+        "currency": "JPY",
+        "plan": "平日限定連泊（2～5 泊）3F 和室素泊",
+        "unit": "per-person",
+        "adult": 6000,
+        "child": null,
+        "season": "方案期間至 2026-12-31",
+        "note": "5 人 6,000～6,600（含稅）",
+        "source": "rakuten",
+        "url": "https://hotel.travel.rakuten.co.jp/hotelinfo/plan/172712",
+        "retrieved": "2026-10-18"
+      }
+    ],
+    "luggage": "前一天以前電話聯絡可寄放；當天聯絡可能不行",
+    "checkIn": "17:30",
+    "checkOut": "09:00",
+    "dinnerAccess": null,
+    "group": {
+      "totalRooms": 2,
+      "roomTypes": [
+        "3F 和室 30㎡（10 疊＋板間）1～5 人，有衛浴",
+        "2F 洋室雙床 28㎡ 1～4 人，有衛浴"
+      ],
+      "maxGuests": 9,
+      "wholeRental": null,
+      "pickupCapacity": null,
+      "nearbyCombos": [
+        "ise-comfort-era",
+        "ise-hinode-ryokan",
+        "ise-shinsen",
+        "ise-pearlpier"
+      ],
+      "note": "每層一間；兩間都訂即整館約 9 人，15 人住不下；包棟方案未記載"
+    },
+    "ratings": {
+      "rakuten": 4.72,
+      "rakutenReviews": 116,
+      "jalan": null,
+      "jalanReviews": null,
+      "booking": null,
+      "google": 4.9,
+      "googleReviews": 14,
+      "rakutenService": 4.75,
+      "rakutenLocation": 4.64,
+      "rakutenRoom": 4.72,
+      "rakutenEquipment": 4.53,
+      "rakutenBath": 4.42,
+      "note": "T8b（2026-10-18）：楽天 4.72（116 則，API）、Google 4.9（14 則，「和装庵」），5 分制。"
+    },
+    "accessibility": {
+      "elevator": null,
+      "beds": "3F 和室（鋪被未明寫）、2F 床",
+      "stairs": "有樓梯，客室在 2F、3F",
+      "kids": "添い寝 3 歲以下免費（大人 1 配 1），4 歲起收費、金額未寫",
+      "note": "各層衛浴獨立；共用空間只有櫃台和樓梯；非相部屋"
+    },
+    "reservation": {
+      "methods": [
+        "rakuten",
+        "phone"
+      ],
+      "phone": "070-4483-2362",
+      "url": "https://travel.rakuten.co.jp/HOTEL/172712/172712.html",
+      "groupNote": "只收現金"
+    },
+    "bookingLinks": {
+      "rakuten": "https://travel.rakuten.co.jp/HOTEL/172712/172712.html"
+    },
+    "sources": [
+      {
+        "type": "booking-site",
+        "url": "https://travel.rakuten.co.jp/HOTEL/172712/172712.html",
+        "retrieved": "2026-10-18",
+        "note": "楽天トラベル API（SimpleHotelSearch、HotelDetailSearch、VacantHotelSearch，scripts/rakuten.mjs）：評分、細項評分、房數、check-in/out、照片、2027-02-09／02-10 的空房與價格"
+      },
+      {
+        "type": "google-maps",
+        "url": "https://maps.google.com/?cid=10237502575733505714",
+        "retrieved": "2026-10-18",
+        "note": "Google 地圖「和装庵」：星數、評論數、座標、照片"
+      },
+      {
+        "type": "booking-site",
+        "url": "https://travel.rakuten.co.jp/HOTEL/172712/172712.html",
+        "retrieved": "2026-10-18",
+        "note": "楽天 4.72（116 則）、2 室、check-in 17:30、只收現金"
+      },
+      {
+        "type": "booking-site",
+        "url": "https://travel.rakuten.co.jp/HOTEL/172712/172712_std.html",
+        "retrieved": "2026-10-18",
+        "note": "各層衛浴獨立、添い寝規定、行李寄放、洗衣機"
+      },
+      {
+        "type": "booking-site",
+        "url": "https://hotel.travel.rakuten.co.jp/hotelinfo/plan/172712",
+        "retrieved": "2026-10-18",
+        "note": "3F 和室 1～5 人、2F 洋室 1～4 人、素泊價格"
+      },
+      {
+        "type": "tourism",
+        "url": "https://www.kankomie.or.jp/spot/24602",
+        "retrieved": "2026-10-18",
+        "note": "外宮步行 5 分、各房 4～5 人；地址電話與楽天不同"
+      },
+      {
+        "type": "booking-site",
+        "url": "https://4travel.jp/dm_hotel-11774859",
+        "retrieved": "2026-10-18",
+        "note": "使用者投稿資料：女性專用 guesthouse、大浴場（可能過時）"
+      }
+    ],
+    "verified": false,
+    "extra": {
+      "parking": "2 台要預約；18～翌 9 時免費，其餘 1,100 円/日",
+      "conflicts": [
+        "地址：楽天 1-3-9 vs 観光三重 1-3-10",
+        "電話：楽天 070-4483-2362 vs 観光三重 090-6765-1398",
+        "女性專用：楽天說現在男性也可住；フォートラベル（使用者投稿）仍寫女性專用、有大浴場露天",
+        "定員：楽天 2F 1～4 人 vs 観光三重各房 4～5 人"
+      ],
+      "rakutenHotelNo": 172712,
+      "rakutenVacancy": {
+        "retrieved": "2026-10-18",
+        "dates": [
+          "2027-02-09",
+          "2027-02-10"
+        ],
+        "combos": [
+          "5x3",
+          "4x4",
+          "3x5",
+          "2x8"
+        ],
+        "available": {
+          "2027-02-09": [],
+          "2027-02-10": []
+        },
+        "note": "15 人（全部以大人計）分 N 間同住的組合，有空房的列出；只代表查詢當天楽天上的庫存"
+      }
+    }
+  },
+  {
+    "id": "ise-asakichi",
+    "type": "lodging",
+    "name": {
+      "ja": "麻吉旅館",
+      "zh": "麻吉旅館"
+    },
+    "area": "ise",
+    "region": "ise-kurata",
+    "kind": "ryokan",
+    "coords": [
+      136.7220455,
+      34.4775627
+    ],
+    "coordsSource": "google-maps-url",
+    "address": "三重県伊勢市中之町109",
+    "hours": null,
+    "closedNote": null,
+    "febNote": "建物老舊有隙間風，冬天冷（4travel 心得）；休業日要問",
+    "closures": [],
+    "photos": [
+      {
+        "url": "https://lh3.googleusercontent.com/grass-cs/AABkmLfd_6lcSTvf7QLeD_tBf50e04J7P4GteIbzbzpLpJVUgpFONiw6XQMbSeVxtVx8b3kvdKZuOkdTJbJ5uUEObKOkqFFzIvU10F8fxT2XsIooBOl3N9rXPD6E64tQuQ4ITZ2d8agLEQ=w408-h272-k-no",
+        "page": "https://maps.google.com/?cid=3024080929685128171",
+        "kind": "google",
+        "credit": "Google マップ",
+        "license": null
+      }
+    ],
+    "links": {
+      "official": null,
+      "googleMaps": "https://maps.google.com/?cid=3024080929685128171"
+    },
+    "tags": [],
+    "tier": null,
+    "nearestStation": {
+      "id": "isuzugawa",
+      "mode": "walk",
+      "minutes": 15,
+      "note": "近鉄 五十鈴川駅より徒歩15分；或伊勢市駅、宇治山田駅搭往浦田町的巴士約 10 分，中之町下車"
+    },
+    "pickup": null,
+    "meals": "dinner+breakfast",
+    "priceRange": "每人約 12,960～15,000 円（一泊二食；詳見 prices）",
+    "prices": [
+      {
+        "currency": "JPY",
+        "plan": "1泊2食",
+        "unit": "per-person",
+        "adult": 12960,
+        "child": null,
+        "season": null,
+        "note": "起價；同一篇另寫 15,000 円起（衝突）",
+        "source": "media",
+        "url": "https://www.mapple.net/article/32476/",
+        "retrieved": "2026-10-18"
+      },
+      {
+        "currency": "JPY",
+        "plan": "1泊2食",
+        "unit": "per-person",
+        "adult": 15000,
+        "child": null,
+        "season": null,
+        "note": "起價，取材時點",
+        "source": "media",
+        "url": "https://www.mapple.net/spot/24000634/",
+        "retrieved": "2026-10-18"
+      }
+    ],
+    "luggage": null,
+    "checkIn": "16:00",
+    "checkOut": "10:00",
+    "dinnerAccess": null,
+    "group": {
+      "totalRooms": null,
+      "roomTypes": [
+        "純和風和室（間數、人數不明）"
+      ],
+      "maxGuests": null,
+      "wholeRental": null,
+      "pickupCapacity": null,
+      "nearbyCombos": [],
+      "note": "沒有房數資料；4travel 2024-04 心得說老朽化後可住只剩 6 間。15 人同住、包館要電話確認"
+    },
+    "ratings": {
+      "rakuten": null,
+      "rakutenReviews": null,
+      "jalan": null,
+      "jalanReviews": null,
+      "booking": null,
+      "google": 4.5,
+      "googleReviews": 199,
+      "note": "T8b（2026-10-18）：沒有上楽天、Google 4.5（199 則，「麻吉旅館」），5 分制。"
+    },
+    "accessibility": {
+      "elevator": null,
+      "beds": "和室（應為鋪被，來源沒寫明）",
+      "stairs": "懸崖造木造 6 層，沿石階斜坡建，館內階梯、高低差多，心得說不適合腳不好的人；4travel バリアフリー 2.00",
+      "kids": null,
+      "note": "館內像迷宮；冬季隙間風；廁所浴室是否共用不明"
+    },
+    "reservation": {
+      "methods": [
+        "phone"
+      ],
+      "phone": "0596-22-4101",
+      "url": null,
+      "groupNote": "沒找到官網、楽天、じゃらん的住宿頁，只有電話"
+    },
+    "bookingLinks": {},
+    "sources": [
+      {
+        "type": "google-maps",
+        "url": "https://maps.google.com/?cid=3024080929685128171",
+        "retrieved": "2026-10-18",
+        "note": "Google 地圖「麻吉旅館」：星數、評論數、座標、照片"
+      },
+      {
+        "type": "tourism",
+        "url": "https://www.kankomie.or.jp/spot/617",
+        "retrieved": "2026-10-18",
+        "note": "地址、電話、巴士交通、停車 15 台"
+      },
+      {
+        "type": "media",
+        "url": "https://www.mapple.net/article/32476/",
+        "retrieved": "2026-10-18",
+        "note": "2024-02 更新；創業 200 年、石階旁建築、一泊二食 12,960／15,000 円起"
+      },
+      {
+        "type": "media",
+        "url": "https://www.mapple.net/spot/24000634/",
+        "retrieved": "2026-10-18",
+        "note": "IN 16:00／OUT 10:00、15,000 円起、停車免費"
+      },
+      {
+        "type": "booking-site",
+        "url": "https://4travel.jp/dm_hotel-10058529",
+        "retrieved": "2026-10-18",
+        "note": "3.27 分 9 則；階梯多、隙間風、可住 6 間（2024-04）、料理好吃"
+      },
+      {
+        "type": "media",
+        "url": "https://allabout.co.jp/gm/gc/75549/",
+        "retrieved": "2026-10-18",
+        "note": "2003 年舊文；木造 6 層懸崖造"
+      }
+    ],
+    "verified": false,
+    "extra": {
+      "parking": "觀光三重：15 台；まっぷる：有、免費",
+      "conflicts": [
+        "價格 12,960 円起 vs 15,000 円起",
+        "營業狀況：最新心得 2024-10，舊官方頁 ise-kanko.jp 已 404，要電話確認是否仍營業"
+      ]
+    }
+  },
+  {
+    "id": "ise-area-one",
+    "type": "lodging",
+    "name": {
+      "ja": "ホテルエリアワン伊勢インター",
+      "zh": "Hotel Area One 伊勢交流道"
+    },
+    "area": "ise",
+    "region": "ise-kurata",
+    "kind": "hotel",
+    "coords": [
+      136.7413797,
+      34.4948926
+    ],
+    "coordsSource": "google-maps-url",
+    "address": "三重県伊勢市黒瀬町1237",
+    "hours": null,
+    "closedNote": null,
+    "febNote": null,
+    "closures": [],
+    "photos": [
+      {
+        "url": "https://img.travel.rakuten.co.jp/share/HOTEL/181078/181078.jpg",
+        "page": "https://travel.rakuten.co.jp/HOTEL/181078/181078.html",
+        "kind": "rakuten",
+        "credit": "楽天トラベル（施設提供）",
+        "license": null
+      },
+      {
+        "url": "https://lh3.googleusercontent.com/grass-cs/AABkmLf3HmcbbGSAJkga-sxno4sV0ymkepFbI2SVrctlv3D0zYnGNsVEm8QeFgJmlPhXWTSjw8SgfqKATT4njNIYGyCyUn4qKJLf6cWU4HPMMWivfmW_Tb8Y4YaTA9FKGvTwb19jKboOxQ=w429-h240-k-no",
+        "page": "https://maps.google.com/?cid=2634670890243818769",
+        "kind": "google",
+        "credit": "Google マップ",
+        "license": null
+      }
+    ],
+    "links": {
+      "official": "https://www.hotel-areaone.com/ise/",
+      "googleMaps": "https://maps.google.com/?cid=2634670890243818769"
+    },
+    "tags": [],
+    "tier": null,
+    "nearestStation": {
+      "id": "jr-isuzugaoka",
+      "mode": "walk",
+      "minutes": 3,
+      "note": "JR参宮線 五十鈴ヶ丘駅 徒歩約3分；伊勢市駅・宇治山田駅・五十鈴川駅から車で約10分"
+    },
+    "pickup": null,
+    "meals": "breakfast",
+    "priceRange": "每人約 3,500～5,652 円（依方案，含素泊／附早餐；詳見 prices）",
+    "prices": [
+      {
+        "currency": "JPY",
+        "plan": "＜公式限定＞スタンダードプラン〔朝食付〕トリプル",
+        "unit": "per-person",
+        "adult": 4845,
+        "child": null,
+        "season": "起價，依日期浮動",
+        "note": "3 人 1 室",
+        "source": "official",
+        "url": "https://reserve.489ban.net/client/areaone-ise/0/detail/1164788",
+        "retrieved": "2026-10-18"
+      },
+      {
+        "currency": "JPY",
+        "plan": "＜公式限定＞スタンダードプラン〔朝食付〕和室 15 畳",
+        "unit": "per-person",
+        "adult": 4750,
+        "child": null,
+        "season": "起價，依日期浮動",
+        "note": "4 人 1 室，定員 4～7 人；頁面顯示售完",
+        "source": "official",
+        "url": "https://reserve.489ban.net/client/areaone-ise/0/detail/1164788",
+        "retrieved": "2026-10-18"
+      },
+      {
+        "currency": "JPY",
+        "plan": "＜公式限定＞スタンダードプラン〔朝食付〕和室 6 畳",
+        "unit": "per-person",
+        "adult": 4845,
+        "child": null,
+        "season": "起價，依日期浮動",
+        "note": "2 人 1 室，定員 1～3 人",
+        "source": "official",
+        "url": "https://reserve.489ban.net/client/areaone-ise/0/detail/1164788",
+        "retrieved": "2026-10-18"
+      },
+      {
+        "currency": "JPY",
+        "plan": "＜公式限定＞スタンダードプラン〔朝食付〕ファミリーツイン",
+        "unit": "per-person",
+        "adult": 5652,
+        "child": null,
+        "season": "起價，依日期浮動",
+        "note": "2 人 1 室，定員 2～3 人",
+        "source": "official",
+        "url": "https://reserve.489ban.net/client/areaone-ise/0/detail/1164788",
+        "retrieved": "2026-10-18"
+      },
+      {
+        "currency": "JPY",
+        "plan": "早餐加購",
+        "unit": "per-person",
+        "adult": 1200,
+        "child": 600,
+        "season": null,
+        "note": "兒童為 6 歲以下；前一天在櫃台購買，當天不可加購",
+        "source": "rakuten",
+        "url": "https://travel.rakuten.co.jp/HOTEL/181078/181078.html",
+        "retrieved": "2026-10-18"
+      },
+      {
+        "plan": "素泊 大人 3＋小學生高年級 1（1 室）最低價（★スタンダードプラン★≪素泊まり≫）",
+        "unit": "per-person",
+        "adult": 4700,
+        "child": null,
+        "currency": "JPY",
+        "season": "2027-02-09（二）1 泊，1 間 大人 3＋小學生高年級 1",
+        "note": "房型：禁煙和室15畳。一間總價 18,800 円；API 的小學生價和大人相同（可能以房計價或兒童同價），兒童價不推算。楽天 API（查詢 2026-10-18）。",
+        "source": "rakuten-api",
+        "url": "https://hotel.travel.rakuten.co.jp/hotelinfo/plan/181078?f_nen1=2027&f_tuki1=2&f_hi1=9&f_nen2=2027&f_tuki2=2&f_hi2=10&f_heya_su=1&f_otona_su=3&f_s1=1&f_s2=0&f_y1=0&f_y2=0&f_y3=0&f_y4=0",
+        "retrieved": "2026-10-18"
+      },
+      {
+        "plan": "素泊 大人 2 名 1 室最低價（★スタンダードプラン★≪素泊まり≫）",
+        "unit": "per-person",
+        "adult": 3500,
+        "child": null,
+        "currency": "JPY",
+        "season": "2027-02-09（二）1 泊，大人 2 名 1 室",
+        "note": "房型：◆禁煙◆セミダブル【カップルおすすめ・WiFi完備】。15 人的組合兩天都沒有空房。楽天 API（查詢 2026-10-18）。",
+        "source": "rakuten-api",
+        "url": "https://hotel.travel.rakuten.co.jp/hotelinfo/plan/181078?f_nen1=2027&f_tuki1=2&f_hi1=9&f_nen2=2027&f_tuki2=2&f_hi2=10&f_heya_su=1&f_otona_su=2&f_s1=0&f_s2=0&f_y1=0&f_y2=0&f_y3=0&f_y4=0",
+        "retrieved": "2026-10-18"
+      }
+    ],
+    "luggage": null,
+    "checkIn": "15:00",
+    "checkOut": "10:00",
+    "dinnerAccess": null,
+    "group": {
+      "totalRooms": 74,
+      "roomTypes": [
+        "シングル 1 人",
+        "セミダブル／ダブル 1～2 人",
+        "スタジオツイン 2 人",
+        "ファミリーツイン 2～3 人",
+        "トリプル 3 人",
+        "和室 6 畳 1～3 人（3 間）",
+        "和室 15 畳 4～7 人（僅 1 間，7 樓）"
+      ],
+      "maxGuests": null,
+      "wholeRental": false,
+      "pickupCapacity": null,
+      "nearbyCombos": [],
+      "note": "商務飯店，15 人可分 3～5 間房（例：和室 15 畳 1 間＋トリプル／和室 6 畳數間）；沒有團體方案資訊；15 畳和室在公式方案頁顯示售完"
+    },
+    "ratings": {
+      "rakuten": 4.01,
+      "rakutenReviews": 777,
+      "jalan": null,
+      "jalanReviews": null,
+      "booking": null,
+      "google": 3.6,
+      "googleReviews": 512,
+      "rakutenService": 4.17,
+      "rakutenLocation": 3.77,
+      "rakutenRoom": 3.89,
+      "rakutenEquipment": 3.84,
+      "rakutenBath": 3.74,
+      "rakutenMeal": 4.29,
+      "note": "T8b（2026-10-18）：楽天 4.01（777 則，API）、Google 3.6（512 則，「ホテルエリアワン伊勢インター」），5 分制。"
+    },
+    "accessibility": {
+      "elevator": true,
+      "beds": "多數房型為床；和室 6 畳、15 畳鋪被",
+      "stairs": "電梯只到 6 樓，6～7 樓要走樓梯（15 畳和室在 7 樓）",
+      "kids": "官網：5 歲以下添い寝免費（每房人數有限）；公式單人房寫未就學兒可添い寝；心得提到小學生以下添い寝免費的家庭方案（衝突）。早餐加購 6 歲以下 600 円",
+      "note": "大浴場只限男性，女性長輩只能用房內浴室"
+    },
+    "reservation": {
+      "methods": [
+        "official",
+        "rakuten",
+        "jalan",
+        "phone"
+      ],
+      "phone": "0596-28-0115",
+      "url": "https://reserve.489ban.net/client/areaone-ise/0/plan",
+      "groupNote": "公式預約有最低價保證；團體需電話確認"
+    },
+    "bookingLinks": {
+      "rakuten": "https://travel.rakuten.co.jp/HOTEL/181078/181078.html"
+    },
+    "sources": [
+      {
+        "type": "booking-site",
+        "url": "https://travel.rakuten.co.jp/HOTEL/181078/181078.html",
+        "retrieved": "2026-10-18",
+        "note": "楽天トラベル API（SimpleHotelSearch、HotelDetailSearch、VacantHotelSearch，scripts/rakuten.mjs）：評分、細項評分、房數、check-in/out、照片、2027-02-09／02-10 的空房與價格"
+      },
+      {
+        "type": "google-maps",
+        "url": "https://maps.google.com/?cid=2634670890243818769",
+        "retrieved": "2026-10-18",
+        "note": "Google 地圖「ホテルエリアワン伊勢インター」：星數、評論數、座標、照片"
+      },
+      {
+        "type": "booking-site",
+        "url": "https://travel.rakuten.co.jp/HOTEL/181078/181078.html",
+        "retrieved": "2026-10-18",
+        "note": "交通、電梯只到 6 樓、15 畳和室在 7 樓、早餐加購價格、停車 60 台"
+      },
+      {
+        "type": "booking-site",
+        "url": "https://travel.rakuten.co.jp/HOTEL/181078/181078_std.html",
+        "retrieved": "2026-10-18",
+        "note": "74 室、電話、check-in/out"
+      },
+      {
+        "type": "official",
+        "url": "https://reserve.489ban.net/client/areaone-ise/0/detail/1164788",
+        "retrieved": "2026-10-18",
+        "note": "房型定員與朝食付起價、自助早餐內容、男性限定浴場"
+      },
+      {
+        "type": "official",
+        "url": "https://www.hotel-areaone.com/ise/",
+        "retrieved": "2026-10-18",
+        "note": "5 歲以下添い寝免費、交通、73 室"
+      },
+      {
+        "type": "booking-site",
+        "url": "https://review.travel.rakuten.co.jp/hotel/voice/181078/",
+        "retrieved": "2026-10-18",
+        "note": "楽天 4.01／779 則；早餐好評、建築老舊、女性無大浴場、附近餐廳意見分歧"
+      }
+    ],
+    "verified": false,
+    "extra": {
+      "onsen": "中浴場只限男性；女性無大浴場",
+      "parking": "免費約 60 台，先到先得；另有屋頂機車、自行車停車場",
+      "conflicts": [
+        "總房數：楽天 74 室 vs 官網 73 室",
+        "免費添い寝年齡：官網 5 歲以下 vs 公式單人房未就學 vs 心得提到小學生以下家庭方案"
+      ],
+      "rakutenHotelNo": 181078,
+      "rakutenVacancy": {
+        "retrieved": "2026-10-18",
+        "dates": [
+          "2027-02-09",
+          "2027-02-10"
+        ],
+        "combos": [
+          "5x3",
+          "4x4",
+          "3x5",
+          "2x8"
+        ],
+        "available": {
+          "2027-02-09": [],
+          "2027-02-10": []
+        },
+        "note": "15 人（全部以大人計）分 N 間同住的組合，有空房的列出；只代表查詢當天楽天上的庫存"
+      }
+    }
+  },
+  {
+    "id": "ise-iku",
+    "type": "lodging",
+    "name": {
+      "ja": "いにしえの宿 伊久",
+      "zh": "古之宿 伊久"
+    },
+    "area": "ise",
+    "region": "ise-naiku",
+    "kind": "ryokan",
+    "coords": [
+      136.7277018,
+      34.4618537
+    ],
+    "coordsSource": "google-maps-url",
+    "address": "三重県伊勢市宇治館町字岩井田山679-2",
+    "hours": null,
+    "closedNote": null,
+    "febNote": "2026-04-01 改裝後重新開幕（2025-12～2026-03 休館）。2027 年 2 月有伊勢海老刺身方案；2 月的休館日沒有資料。",
+    "closures": [
+      {
+        "from": "2025-12-01",
+        "to": "2026-03-31",
+        "note": "改裝休館（已結束；起訖日只寫到月份）"
+      }
+    ],
+    "photos": [
+      {
+        "url": "https://img.dormy-hotels.com/resort/hotels/ikyu/rooms/images/img_intro-tab.png",
+        "page": "https://dormy-hotels.com/resort/hotels/ikyu/rooms/",
+        "kind": "official",
+        "credit": "いにしえの宿 伊久（共立リゾート）",
+        "license": null
+      },
+      {
+        "url": "https://img.travel.rakuten.co.jp/share/HOTEL/142809/142809.jpg",
+        "page": "https://travel.rakuten.co.jp/HOTEL/142809/142809.html",
+        "kind": "rakuten",
+        "credit": "楽天トラベル（施設提供）",
+        "license": null
+      },
+      {
+        "url": "https://lh3.googleusercontent.com/grass-proxy/AIM7gW0gVDcnpvYkVKRaLwqfpDXblc2XYOf1QoaQbnHB22ib5omzN3FRicXXXQge7s1_oU5-LDogSNxWVdKP0hiGxMQYkN5eFJWZN26ocIzVFBgAdpFEUllc3hQ-JhuqMy0iDrfNbg3K4-W8g_8XwthPTR3togbFUmnr1kEiWw7MqUSGAZuTLgBjlxIj=w408-h272-k-no",
+        "page": "https://maps.google.com/?cid=5571358783118802236",
+        "kind": "google",
+        "credit": "Google マップ",
+        "license": null
+      }
+    ],
+    "links": {
+      "official": "https://dormy-hotels.com/resort/hotels/ikyu/",
+      "googleMaps": "https://maps.google.com/?cid=5571358783118802236"
+    },
+    "tags": [],
+    "tier": null,
+    "nearestStation": {
+      "id": "isuzugawa",
+      "mode": "shuttle",
+      "minutes": 10,
+      "note": "近鉄五十鈴川駅より無料送迎（要予約）約10分、タクシー約8分"
+    },
+    "pickup": "近鐵五十鈴川站免費接送，要先預約。站→館 14:45、15:45、16:45、17:45；館→站 9:10、10:10、11:10；車程約 10 分，超過定員會加開。車型、座位數官網沒寫。",
+    "meals": "varies",
+    "priceRange": "每人約 35,564～61,605 円（依方案，含素泊／附早餐；詳見 prices）",
+    "prices": [
+      {
+        "currency": "JPY",
+        "plan": "【2026年4月1日リニューアルオープン】早期割60・1泊夕朝食付",
+        "unit": "per-person",
+        "adult": 35564,
+        "child": null,
+        "season": "依日期變動",
+        "note": "和ツイン 2 名 1 室的最低價；和DXツイン 3 名 1 室 ¥40,626",
+        "source": "rakuten",
+        "url": "https://hotel.travel.rakuten.co.jp/hotelinfo/plan/142809",
+        "retrieved": "2026-10-18"
+      },
+      {
+        "currency": "JPY",
+        "plan": "早期割30・1泊夕朝食付 和洋室 42㎡",
+        "unit": "per-person",
+        "adult": 48285,
+        "child": null,
+        "season": "依日期變動",
+        "note": "4 名 1 室，每人 ¥48,285～56,943",
+        "source": "rakuten",
+        "url": "https://hotel.travel.rakuten.co.jp/hotelinfo/plan/142809",
+        "retrieved": "2026-10-18"
+      },
+      {
+        "currency": "JPY",
+        "plan": "伊勢海老のお造り付（2026/10/1～2027/2/28）和洋室 42㎡",
+        "unit": "per-person",
+        "adult": 61605,
+        "child": null,
+        "season": "2026-10～2027-02",
+        "note": "4 名 1 室，每人 ¥61,605～79,920；2 人房每人 ¥51,615 起",
+        "source": "rakuten",
+        "url": "https://hotel.travel.rakuten.co.jp/hotelinfo/plan/142809",
+        "retrieved": "2026-10-18"
+      }
+    ],
+    "luggage": "入住前、退房後可在櫃台寄放行李；可事先寄行李到館（元払い，註明住宿日與代表人），也可代寄。",
+    "checkIn": "15:00",
+    "checkOut": "11:00",
+    "dinnerAccess": null,
+    "group": {
+      "totalRooms": 58,
+      "roomTypes": [
+        "和ツイン 27～29㎡ 2 人",
+        "和ダブル 21㎡ 2 人",
+        "和デラックスダブル 29㎡ 2 人",
+        "和デラックスツイン 37㎡ 3 人",
+        "和トリプル 37㎡ 3 人（3 床）",
+        "和洋室 42㎡ 4 人（4 床）",
+        "特別室 48／59㎡ 2 人",
+        "雅フロア（和ツイン、和ダブル、和DXツイン、和トリプル、和洋室）"
+      ],
+      "maxGuests": null,
+      "wholeRental": false,
+      "pickupCapacity": null,
+      "nearbyCombos": [
+        "ise-yadoya-isuzu",
+        "ise-jingu-kaikan",
+        "ise-okage-mairi-shukuba"
+      ],
+      "note": "沒有 5 人房，最大和洋室 4 人（一般 2～3 室＋雅 1 室）。15 人可分房同住，例如和洋室 3 室＋3 人房 1 室。15 名以上團體取消費另計，要直接詢問。"
+    },
+    "ratings": {
+      "rakuten": 4.66,
+      "rakutenReviews": 1290,
+      "jalan": null,
+      "jalanReviews": null,
+      "booking": null,
+      "google": 4.2,
+      "googleReviews": 1272,
+      "rakutenService": 4.7,
+      "rakutenLocation": 4.63,
+      "rakutenRoom": 4.59,
+      "rakutenEquipment": 4.53,
+      "rakutenBath": 4.74,
+      "rakutenMeal": 4.72,
+      "note": "T8b（2026-10-18）：楽天 4.66（1290 則，API）、Google 4.2（1272 則，「いにしえの宿 伊久」），5 分制。"
+    },
+    "accessibility": {
+      "elevator": null,
+      "beds": "全室「畳敷きに和ベッド」（榻榻米上的床）；和洋室 4 床、和トリプル 3 床",
+      "stairs": null,
+      "kids": "兒童方案按大人 50%（B）或 70%（A）收費；3 歲以上不按小學生計價的幼兒另收設施費 ¥2,200。小學高年級吃接近大人的晚餐，低年級和幼兒給兒童餐盤（晚、早）。有兒童作務衣 100～120cm，沒有兒童浴衣。",
+      "note": "館內可坐輪椅移動，無障礙客房 1 間（拉門衛浴）、無障礙廁所、館內輪椅免費借（數量有限）。全館榻榻米不穿拖鞋。"
+    },
+    "reservation": {
+      "methods": [
+        "rakuten",
+        "official",
+        "phone"
+      ],
+      "phone": "0596-20-3777（予約專用 10:00～19:00）；代表 0596-20-3778",
+      "url": "https://dormy-hotels.com/resort/hotels/ikyu/",
+      "groupNote": "15 名以上團體取消規定不同，要直接詢問"
+    },
+    "bookingLinks": {
+      "rakuten": "https://travel.rakuten.co.jp/HOTEL/142809/142809.html"
+    },
+    "sources": [
+      {
+        "type": "booking-site",
+        "url": "https://travel.rakuten.co.jp/HOTEL/142809/142809.html",
+        "retrieved": "2026-10-18",
+        "note": "楽天トラベル API（SimpleHotelSearch、HotelDetailSearch、VacantHotelSearch，scripts/rakuten.mjs）：評分、細項評分、房數、check-in/out、照片、2027-02-09／02-10 的空房與價格"
+      },
+      {
+        "type": "google-maps",
+        "url": "https://maps.google.com/?cid=5571358783118802236",
+        "retrieved": "2026-10-18",
+        "note": "Google 地圖「いにしえの宿 伊久」：星數、評論數、座標、照片"
+      },
+      {
+        "type": "booking-site",
+        "url": "https://travel.rakuten.co.jp/HOTEL/142809/142809.html",
+        "retrieved": "2026-10-18",
+        "note": "送迎時刻、兒童設施費、餐食、評分"
+      },
+      {
+        "type": "booking-site",
+        "url": "https://travel.rakuten.co.jp/HOTEL/142809/142809_std.html",
+        "retrieved": "2026-10-18",
+        "note": "58 室、無障礙、兒童餐、溫泉、停車、改裝休館期"
+      },
+      {
+        "type": "official",
+        "url": "https://dormy-hotels.com/resort/hotels/ikyu/",
+        "retrieved": "2026-10-18",
+        "note": "全室露天、和ベッド、電話、內宮步行 15 分"
+      },
+      {
+        "type": "official",
+        "url": "https://dormy-hotels.com/resort/hotels/ikyu/rooms/",
+        "retrieved": "2026-10-18",
+        "note": "房型、面積、房數（有不一致）"
+      },
+      {
+        "type": "official",
+        "url": "https://dormy-hotels.com/resort/hotels/ikyu/faq/",
+        "retrieved": "2026-10-18",
+        "note": "行李、團體取消、兒童備品、無障礙"
+      },
+      {
+        "type": "official",
+        "url": "https://dormy-hotels.com/resort/hotels/ikyu/access/",
+        "retrieved": "2026-10-18",
+        "note": "送迎時刻表、要預約"
+      },
+      {
+        "type": "booking-site",
+        "url": "https://review.travel.rakuten.co.jp/hotel/voice/142809/",
+        "retrieved": "2026-10-18",
+        "note": "4.66／1,291 則，各項分數與近期負評"
+      },
+      {
+        "type": "booking-site",
+        "url": "https://hotel.travel.rakuten.co.jp/hotelinfo/plan/142809",
+        "retrieved": "2026-10-18",
+        "note": "方案價格、各房型定員"
+      }
+    ],
+    "verified": false,
+    "extra": {
+      "onsen": "天然溫泉（鹼性單純泉）；大浴場「森の湯」岩風呂、「社の湯」檜風呂早晚交換；貸切風呂 3 間免費；全室客房露天風呂（只有特別室是天然溫泉）。入湯稅 ¥150。",
+      "parking": "免費 24 台，先到先停；滿了引導到隔壁外部停車場（免費）",
+      "conflicts": [
+        "客室頁分節的房數和「客室概要」不一致（和ツイン 23 對 32、和洋室 2 對 3、和トリプル 2 對 3 等）",
+        "官網寫 9 タイプ客室，頁面列 12 項"
+      ],
+      "rakutenHotelNo": 142809,
+      "rakutenVacancy": {
+        "retrieved": "2026-10-18",
+        "dates": [
+          "2027-02-09",
+          "2027-02-10"
+        ],
+        "combos": [
+          "5x3",
+          "4x4",
+          "3x5",
+          "2x8"
+        ],
+        "available": {
+          "2027-02-09": [],
+          "2027-02-10": []
+        },
+        "note": "15 人（全部以大人計）分 N 間同住的組合，有空房的列出；只代表查詢當天楽天上的庫存"
+      }
+    }
+  },
+  {
+    "id": "ise-jingu-kaikan",
+    "type": "lodging",
+    "name": {
+      "ja": "神宮会館",
+      "zh": "神宮會館"
+    },
+    "area": "ise",
+    "region": "ise-naiku",
+    "kind": "hotel",
+    "coords": [
+      136.7212322,
+      34.4628085
+    ],
+    "coordsSource": "google-maps-url",
+    "address": "三重県伊勢市宇治中之切町152",
+    "hours": null,
+    "closedNote": null,
+    "febNote": "2 月休館日未見；早朝參拜只在 1/1～1/3 停辦。神宮祭典時可能一般客訂不到，要確認。",
+    "closures": [],
+    "photos": [
+      {
+        "url": "https://img.travel.rakuten.co.jp/share/HOTEL/140958/140958.jpg",
+        "page": "https://travel.rakuten.co.jp/HOTEL/140958/140958.html",
+        "kind": "rakuten",
+        "credit": "楽天トラベル（施設提供）",
+        "license": null
+      },
+      {
+        "url": "https://lh3.googleusercontent.com/grass-cs/AABkmLflIkL7sTT8lPjzb41Sd73rfx3Hw-E1gKCqhpy0djHFv1rkiFpNi8bbRI5QRaHg3t-RdzhuPiDexc5o7phMW1cy7g3siKI5hG__amtRy5emklUqd4_RHqXsxpNOYr9KCba7OI4-xQ=w408-h285-k-no",
+        "page": "https://maps.google.com/?cid=8303533656005788219",
+        "kind": "google",
+        "credit": "Google マップ",
+        "license": null
+      }
+    ],
+    "links": {
+      "official": "https://www.jingukaikan.jp/",
+      "googleMaps": "https://maps.google.com/?cid=8303533656005788219"
+    },
+    "tags": [],
+    "tier": null,
+    "nearestStation": {
+      "id": "ujiyamada",
+      "mode": "bus",
+      "minutes": 15,
+      "note": "近鉄宇治山田駅から内宮前行きバス約15分（楽天）；「神宮会館前」站在正門旁約 20m，也有往伊勢市駅的巴士"
+    },
+    "pickup": null,
+    "meals": "varies",
+    "priceRange": "每人約 13,200～18,150 円（依方案，含素泊／附早餐；詳見 prices）",
+    "prices": [
+      {
+        "currency": "JPY",
+        "plan": "本館和室 一泊二食（お伊勢まいり会席／彩り会席／料理長おすすめ会席）3 名以上",
+        "unit": "per-person",
+        "adult": 15400,
+        "child": 10500,
+        "season": "平日（令和 7 年 10 月起價格）",
+        "note": "三種晚餐依序 15,400／17,050／18,700 円；休日前 20,350／22,550／24,200 円；含稅",
+        "source": "official",
+        "url": "https://www.jingukaikan.jp/kaikan/shukuhaku/ryoukin.html",
+        "retrieved": "2026-10-18"
+      },
+      {
+        "currency": "JPY",
+        "plan": "本館洋室ツイン 一泊二食 2 名使用",
+        "unit": "per-person",
+        "adult": 16500,
+        "child": 10500,
+        "season": "平日",
+        "note": "三種晚餐 16,500／18,150／19,800 円；休日前 21,450～25,300 円",
+        "source": "official",
+        "url": "https://www.jingukaikan.jp/kaikan/shukuhaku/ryoukin.html",
+        "retrieved": "2026-10-18"
+      },
+      {
+        "currency": "JPY",
+        "plan": "西館和室 12 畳 一泊二食（5 名以內）",
+        "unit": "per-person",
+        "adult": 13200,
+        "child": 9500,
+        "season": "平日",
+        "note": "無衛浴；三種晚餐 13,200／14,850／16,500 円；休日前 18,150～22,000 円",
+        "source": "official",
+        "url": "https://www.jingukaikan.jp/kaikan/shukuhaku/ryoukin.html",
+        "retrieved": "2026-10-18"
+      },
+      {
+        "plan": "一泊二食 楽天 15 人組合最低價（【禁煙室】◆バス・トイレ無し和室or和室ツイン1泊2食付★彩り会席プラン）",
+        "unit": "per-person",
+        "adult": 18150,
+        "child": null,
+        "currency": "JPY",
+        "season": "2027-02-10（三，2/11 國定假日前一晚）1 泊，3 間 × 5 人（大人）有空房時的含晚餐最低價",
+        "note": "房型：西館バストイレ無し和室。楽天 API 空室検索（查詢 2026-10-18），含稅、不含入湯稅等。這天有空房的組合：3x5。",
+        "source": "rakuten-api",
+        "url": "https://hotel.travel.rakuten.co.jp/hotelinfo/plan/140958?f_nen1=2027&f_tuki1=2&f_hi1=10&f_nen2=2027&f_tuki2=2&f_hi2=11&f_heya_su=3&f_otona_su=5&f_s1=0&f_s2=0&f_y1=0&f_y2=0&f_y3=0&f_y4=0",
+        "retrieved": "2026-10-18"
+      }
+    ],
+    "luggage": "入住前、退房後都可寄放行李，宅配行李也收（註明住宿日與團體名）",
+    "checkIn": "15:00",
+    "checkOut": "10:00",
+    "dinnerAccess": null,
+    "group": {
+      "totalRooms": 65,
+      "roomTypes": [
+        "本館和室 10 畳 最多 4 人（附衛浴）",
+        "本館和室 12 畳 最多 5 人（附衛浴）",
+        "本館和室 21 畳 最多 8 人（附衛浴）",
+        "本館洋室ツイン 42㎡ 2 人（附衛浴）",
+        "西館 12 畳和室ツイン（床 2 張，第 3 人起鋪被，無衛浴）",
+        "西館和室 12 畳 最多 5 人（無衛浴）"
+      ],
+      "maxGuests": null,
+      "wholeRental": false,
+      "pickupCapacity": null,
+      "nearbyCombos": [],
+      "note": "15 人可分 2～4 室同館（例：21 畳 8 人＋12 畳 5 人＋洋室 2 人）。取消規定另有 15 人以上條款，顯示可接團體；團體專用住宿方案未見。有宴會場、會議室，大廣間未提及。神宮祭典期間可能作為神職人員住宿。"
+    },
+    "ratings": {
+      "rakuten": 4.68,
+      "rakutenReviews": 578,
+      "jalan": null,
+      "jalanReviews": null,
+      "booking": null,
+      "google": 4.2,
+      "googleReviews": 1278,
+      "rakutenService": 4.72,
+      "rakutenLocation": 4.74,
+      "rakutenRoom": 4.47,
+      "rakutenEquipment": 4.46,
+      "rakutenBath": 4.43,
+      "rakutenMeal": 4.7,
+      "note": "T8b（2026-10-18）：楽天 4.68（578 則，API）、Google 4.2（1278 則，「神宮会館」），5 分制。"
+    },
+    "accessibility": {
+      "elevator": null,
+      "beds": "本館洋室ツイン有床；西館有 12 畳和室配 2 張床的房型；其他和室鋪被",
+      "stairs": "本館客室在 2、3 樓，大浴場在西館 1 樓；電梯與階梯資訊官網、楽天都未寫",
+      "kids": "4 歲～小學 6 年級：一泊二食本館 10,500 円、西館 9,500 円（兒童餐）；3 歲以下免宿泊費（被褥、餐另計）；國中生以上大人價",
+      "note": "可借輪椅、有 AED；4travel 無障礙評分 3.29（各項最低）"
+    },
+    "reservation": {
+      "methods": [
+        "rakuten",
+        "jalan",
+        "official",
+        "phone"
+      ],
+      "phone": "0596-22-0001",
+      "url": "http://www.jhpds.net/zingukaikan/uw/uwp3100/uww3101.do?yadNo=328192",
+      "groupNote": "電話預約一年前起受理（9:00～19:00）；15 人以上取消費 14 或 30 天前起收；早朝參拜 10 人以上要事先洽詢"
+    },
+    "bookingLinks": {
+      "rakuten": "https://travel.rakuten.co.jp/HOTEL/140958/140958.html"
+    },
+    "sources": [
+      {
+        "type": "booking-site",
+        "url": "https://travel.rakuten.co.jp/HOTEL/140958/140958.html",
+        "retrieved": "2026-10-18",
+        "note": "楽天トラベル API（SimpleHotelSearch、HotelDetailSearch、VacantHotelSearch，scripts/rakuten.mjs）：評分、細項評分、房數、check-in/out、照片、2027-02-09／02-10 的空房與價格"
+      },
+      {
+        "type": "google-maps",
+        "url": "https://maps.google.com/?cid=8303533656005788219",
+        "retrieved": "2026-10-18",
+        "note": "Google 地圖「神宮会館」：星數、評論數、座標、照片"
+      },
+      {
+        "type": "booking-site",
+        "url": "https://travel.rakuten.co.jp/HOTEL/140958/140958.html",
+        "retrieved": "2026-10-18",
+        "note": "楽天 4.68（577 則），65 室，步行 5 分到內宮"
+      },
+      {
+        "type": "booking-site",
+        "url": "https://travel.rakuten.co.jp/HOTEL/140958/140958_std.html",
+        "retrieved": "2026-10-18",
+        "note": "兒童收費區分、宴會場、輪椅出借"
+      },
+      {
+        "type": "official",
+        "url": "https://www.jingukaikan.jp/kaikan/shukuhaku/index.html",
+        "retrieved": "2026-10-18",
+        "note": "房型與各房最大人數"
+      },
+      {
+        "type": "official",
+        "url": "https://www.jingukaikan.jp/kaikan/shukuhaku/ryoukin.html",
+        "retrieved": "2026-10-18",
+        "note": "令和 7 年 10 月起宿泊料金"
+      },
+      {
+        "type": "official",
+        "url": "https://www.jingukaikan.jp/kaikan/inquiry/index.html",
+        "retrieved": "2026-10-18",
+        "note": "FAQ：取消規定、行李、晚餐時間、周邊店家傍晚關門"
+      },
+      {
+        "type": "official",
+        "url": "https://www.jingukaikan.jp/kaikan/sanpai/index.html",
+        "retrieved": "2026-10-18",
+        "note": "早朝參拜 6:30、免費限住客"
+      },
+      {
+        "type": "official",
+        "url": "https://www.jingukaikan.jp/kaikan/ryouri/index.html",
+        "retrieved": "2026-10-18",
+        "note": "三種會席與兒童餐內容"
+      },
+      {
+        "type": "official",
+        "url": "https://www.jingukaikan.jp/kaikan/kannai/daiyokujo.html",
+        "retrieved": "2026-10-18",
+        "note": "大浴場西館 1F 男女別"
+      },
+      {
+        "type": "booking-site",
+        "url": "https://4travel.jp/dm_hotel-10037575",
+        "retrieved": "2026-10-18",
+        "note": "3.84（87 則），設備不新、西館無衛浴、無障礙分數低"
+      }
+    ],
+    "verified": false,
+    "extra": {
+      "onsen": "大浴場男女別（西館 1F），15:00～24:00、5:00～9:30；是否溫泉未寫",
+      "parking": "神宮參拜者停車場 轎車 200 台、巴士 7 台，住客免費",
+      "earlyVisit": "早朝參拜：每天 6:30 職員帶領內宮，約 1 小時 40 分，免費限住客，入住時向櫃台申請；惡天候可能取消",
+      "conflicts": [
+        "4travel 口コミ稱本館部分房間沒有廁所，官網稱本館全室附ユニットバス",
+        "電梯有無未查到"
+      ],
+      "rakutenHotelNo": 140958,
+      "rakutenVacancy": {
+        "retrieved": "2026-10-18",
+        "dates": [
+          "2027-02-09",
+          "2027-02-10"
+        ],
+        "combos": [
+          "5x3",
+          "4x4",
+          "3x5",
+          "2x8"
+        ],
+        "available": {
+          "2027-02-09": [],
+          "2027-02-10": [
+            "3x5"
+          ]
+        },
+        "note": "15 人（全部以大人計）分 N 間同住的組合，有空房的列出；只代表查詢當天楽天上的庫存"
+      }
+    }
+  },
+  {
+    "id": "ise-yadoya-isuzu",
+    "type": "lodging",
+    "name": {
+      "ja": "参宮の宿 宿屋五十鈴",
+      "zh": "參宮之宿 宿屋五十鈴"
+    },
+    "area": "ise",
+    "region": "ise-naiku",
+    "kind": "minshuku",
+    "coords": [
+      136.7234952,
+      34.4648136
+    ],
+    "coordsSource": "google-maps-url",
+    "address": "三重県伊勢市宇治浦田1-4-10",
+    "hours": null,
+    "closedNote": null,
+    "febNote": "楽天方案期間到 2027-02-28，涵蓋 2 月；おかげ横丁晚上多休息，晚餐建議在外宮附近",
+    "closures": [],
+    "photos": [
+      {
+        "url": "https://trvimg.r10s.jp/share/image_up/147038/LARGE/462c23290840620d40644bb888112282770f891f.47.9.26.3.jpg",
+        "page": "https://travel.rakuten.co.jp/HOTEL/147038/147038.html",
+        "kind": "official",
+        "credit": "参宮の宿 宿屋五十鈴",
+        "license": null
+      },
+      {
+        "url": "https://img.travel.rakuten.co.jp/share/HOTEL/147038/147038.jpg",
+        "page": "https://travel.rakuten.co.jp/HOTEL/147038/147038.html",
+        "kind": "rakuten",
+        "credit": "楽天トラベル（施設提供）",
+        "license": null
+      },
+      {
+        "url": "https://lh3.googleusercontent.com/grass-cs/AABkmLcoMQHFbEK1-KUmTk-45vic5WbrnYoNSVei0xRJ4Xy0pW7899FLPVj9cE-leHXkdCYJ2mnjROQUTQTLGSPN9Mc_NjfAM4Ocm-lHfHZNdoEEYE6NGNm0X0lwnnxB6dYr3uaQPp3ZKw=w408-h306-k-no",
+        "page": "https://maps.google.com/?cid=5845092566921505709",
+        "kind": "google",
+        "credit": "Google マップ",
+        "license": null
+      }
+    ],
+    "links": {
+      "official": null,
+      "googleMaps": "https://maps.google.com/?cid=5845092566921505709"
+    },
+    "tags": [],
+    "tier": null,
+    "nearestStation": {
+      "id": "isuzugawa",
+      "mode": "walk",
+      "minutes": 20,
+      "note": "近鉄五十鈴川駅より徒歩約20分；伊勢市駅からは三重交通バス「浦田町」下車徒歩1分"
+    },
+    "pickup": null,
+    "meals": "none",
+    "priceRange": "每人約 7,686～10,450 円（依方案，含素泊／附早餐；詳見 prices）",
+    "prices": [
+      {
+        "currency": "JPY",
+        "plan": "一生に一度は家族で両宮参拝！包棟 1～5 名",
+        "unit": "per-person",
+        "adult": 9560,
+        "child": null,
+        "season": "直近 30 日參考價",
+        "note": "5 人以上每人 9,560～12,560 円；方案期間到 2027-02-28",
+        "source": "rakuten",
+        "url": "https://hotel.travel.rakuten.co.jp/hotelinfo/plan/147038",
+        "retrieved": "2026-10-18"
+      },
+      {
+        "currency": "JPY",
+        "plan": "同方案 6 名",
+        "unit": "per-person",
+        "adult": 8967,
+        "child": null,
+        "season": "直近 30 日參考價",
+        "note": null,
+        "source": "rakuten",
+        "url": "https://hotel.travel.rakuten.co.jp/hotelinfo/plan/147038",
+        "retrieved": "2026-10-18"
+      },
+      {
+        "currency": "JPY",
+        "plan": "同方案 7 名",
+        "unit": "per-person",
+        "adult": 7686,
+        "child": null,
+        "season": "直近 30 日參考價",
+        "note": null,
+        "source": "rakuten",
+        "url": "https://hotel.travel.rakuten.co.jp/hotelinfo/plan/147038",
+        "retrieved": "2026-10-18"
+      },
+      {
+        "plan": "素泊 大人 3＋小學生高年級 1（1 室）最低價（【１〜５名様１日１組】一生に一度は家族で両宮参拝！お伊勢さん専属ガイド付き神宮と道開きの猿田彦神社）",
+        "unit": "per-person",
+        "adult": 10450,
+        "child": null,
+        "currency": "JPY",
+        "season": "2027-02-09（二）1 泊，1 間 大人 3＋小學生高年級 1",
+        "note": "房型：貸切　参宮の宿　宿屋五十鈴。一間總價 41,800 円；API 的小學生價和大人相同（可能以房計價或兒童同價），兒童價不推算。楽天 API（查詢 2026-10-18）。",
+        "source": "rakuten-api",
+        "url": "https://hotel.travel.rakuten.co.jp/hotelinfo/plan/147038?f_nen1=2027&f_tuki1=2&f_hi1=9&f_nen2=2027&f_tuki2=2&f_hi2=10&f_heya_su=1&f_otona_su=3&f_s1=1&f_s2=0&f_y1=0&f_y2=0&f_y3=0&f_y4=0",
+        "retrieved": "2026-10-18"
+      }
+    ],
+    "luggage": "可寄放行李（楽天交通頁標語「荷物預かり致します」）",
+    "checkIn": "17:30",
+    "checkOut": "10:00",
+    "dinnerAccess": null,
+    "group": {
+      "totalRooms": 4,
+      "roomTypes": [
+        "和洋室 附浴室廁所（包棟方案）"
+      ],
+      "maxGuests": 7,
+      "wholeRental": true,
+      "pickupCapacity": null,
+      "nearbyCombos": [
+        "ise-okage-mairi-shukuba",
+        "ise-jingu-kaikan",
+        "ise-iku"
+      ],
+      "note": "楽天方案全為包棟，定員 5／6／7 名，超過預約無效；15 人住不下，最多 7 人一組。2 泊以上導覽方案顯示 1～10 人，定員待確認"
+    },
+    "ratings": {
+      "rakuten": 5,
+      "rakutenReviews": 210,
+      "jalan": null,
+      "jalanReviews": null,
+      "booking": null,
+      "google": 4.8,
+      "googleReviews": 129,
+      "note": "T8b（2026-10-18）：楽天 5（210 則，API）、Google 4.8（129 則，「参宮の宿 宿屋五十鈴」），5 分制。"
+    },
+    "accessibility": {
+      "elevator": null,
+      "beds": null,
+      "stairs": "車不能開到門口，從浦田町巴士站走小路約 200 m 過橋；館內階梯 null",
+      "kids": "未上小學不可住（隔音），包棟方案所有年齡可；有兒童料金但金額未寫",
+      "note": "無電視，22:00 門禁、22:30 熄燈（包棟除外）"
+    },
+    "reservation": {
+      "methods": [
+        "rakuten",
+        "phone"
+      ],
+      "phone": "0596-65-6455",
+      "url": "https://travel.rakuten.co.jp/HOTEL/147038/147038.html",
+      "groupNote": "最多 7 人包棟"
+    },
+    "bookingLinks": {
+      "rakuten": "https://travel.rakuten.co.jp/HOTEL/147038/147038.html"
+    },
+    "sources": [
+      {
+        "type": "booking-site",
+        "url": "https://travel.rakuten.co.jp/HOTEL/147038/147038.html",
+        "retrieved": "2026-10-18",
+        "note": "楽天トラベル API（SimpleHotelSearch、HotelDetailSearch、VacantHotelSearch，scripts/rakuten.mjs）：評分、細項評分、房數、check-in/out、照片、2027-02-09／02-10 的空房與價格"
+      },
+      {
+        "type": "google-maps",
+        "url": "https://maps.google.com/?cid=5845092566921505709",
+        "retrieved": "2026-10-18",
+        "note": "Google 地圖「参宮の宿 宿屋五十鈴」：星數、評論數、座標、照片"
+      },
+      {
+        "type": "booking-site",
+        "url": "https://travel.rakuten.co.jp/HOTEL/147038/147038.html",
+        "retrieved": "2026-10-18",
+        "note": "5.00 分 209 則；未上小學不可住（包棟除外）；導覽"
+      },
+      {
+        "type": "booking-site",
+        "url": "https://travel.rakuten.co.jp/HOTEL/147038/147038_std.html",
+        "retrieved": "2026-10-18",
+        "note": "4 室、素泊"
+      },
+      {
+        "type": "booking-site",
+        "url": "https://hotel.travel.rakuten.co.jp/hotelinfo/plan/147038",
+        "retrieved": "2026-10-18",
+        "note": "包棟方案定員 5／6／7 名與價格"
+      },
+      {
+        "type": "booking-site",
+        "url": "https://travel.rakuten.co.jp/HOTEL/147038/CUSTOM/147038150126171443.html",
+        "retrieved": "2026-10-18",
+        "note": "交通與步行路線、電話"
+      }
+    ],
+    "verified": false,
+    "extra": {
+      "parking": "指定停車場（伊勢市宇治浦田1-21-4）3 台（另一處寫 4 台），要預約",
+      "conflicts": [
+        "check-in 17:30～20:00 vs 停車段落寫 13:30～13:00",
+        "停車 3 台 vs 4 台"
+      ],
+      "rakutenHotelNo": 147038,
+      "rakutenVacancy": {
+        "retrieved": "2026-10-18",
+        "dates": [
+          "2027-02-09",
+          "2027-02-10"
+        ],
+        "combos": [
+          "5x3",
+          "4x4",
+          "3x5",
+          "2x8"
+        ],
+        "available": {
+          "2027-02-09": [],
+          "2027-02-10": []
+        },
+        "note": "15 人（全部以大人計）分 N 間同住的組合，有空房的列出；只代表查詢當天楽天上的庫存"
+      }
+    }
+  },
+  {
+    "id": "ise-okage-mairi-shukuba",
+    "type": "lodging",
+    "name": {
+      "ja": "おかげ参り宿場",
+      "zh": "托福參拜宿場"
+    },
+    "area": "ise",
+    "region": "ise-naiku",
+    "kind": "minshuku",
+    "coords": [
+      136.7224688,
+      34.465693
+    ],
+    "coordsSource": "google-maps-url",
+    "address": "三重県伊勢市宇治浦田1-8-3",
+    "hours": null,
+    "closedNote": null,
+    "febNote": null,
+    "closures": [],
+    "photos": [
+      {
+        "url": "https://trvimg.r10s.jp/share/image_up/201681/origin/1c4a3cf61d9cf8857ce3f2bbbed39385d1d68a73.47.9.26.3.jpg",
+        "page": "https://travel.rakuten.co.jp/HOTEL/201681/201681.html",
+        "kind": "official",
+        "credit": "おかげ参り宿場",
+        "license": null
+      },
+      {
+        "url": "https://img.travel.rakuten.co.jp/share/HOTEL/201681/201681.jpg",
+        "page": "https://travel.rakuten.co.jp/HOTEL/201681/201681.html",
+        "kind": "rakuten",
+        "credit": "楽天トラベル（施設提供）",
+        "license": null
+      },
+      {
+        "url": "https://lh3.googleusercontent.com/grass-cs/AABkmLdUc2GcqMTwaIzN7T0H7rfO1UCRaEIBNn2y-ek4pHrw7n-mgO3Zcxti1iAardYlboL0ozdxjhG_wmoJ3KHT102kExlmUGeT9ItNlPvTZ7bN4U9_4DqyCmdM1xuMfPGfjD-z633zGkJrFalz=w408-h306-k-no",
+        "page": "https://maps.google.com/?cid=13059494982787400317",
+        "kind": "google",
+        "credit": "Google マップ",
+        "license": null
+      }
+    ],
+    "links": {
+      "official": null,
+      "googleMaps": "https://maps.google.com/?cid=13059494982787400317"
+    },
+    "tags": [],
+    "tier": null,
+    "nearestStation": {
+      "id": "isuzugawa",
+      "mode": "walk",
+      "minutes": 24,
+      "note": "近鉄五十鈴川駅より徒歩約24分；内宮前行きバス 2 つ目「猿田彦神社前」下車"
+    },
+    "pickup": null,
+    "meals": "none",
+    "priceRange": "每人約 4,026～5,960 円（依方案，含素泊／附早餐；詳見 prices）",
+    "prices": [
+      {
+        "currency": "JPY",
+        "plan": "宇治浦田荘 一棟丸ごと貸切",
+        "unit": "per-person",
+        "adult": 5960,
+        "child": null,
+        "season": "直近 30 日參考價",
+        "note": "5 人以上每人 5,960～7,960 円",
+        "source": "rakuten",
+        "url": "https://hotel.travel.rakuten.co.jp/hotelinfo/plan/201681",
+        "retrieved": "2026-10-18"
+      },
+      {
+        "currency": "JPY",
+        "plan": "おはらい町通り荘 つきよみ 4 名",
+        "unit": "per-person",
+        "adult": 4320,
+        "child": null,
+        "season": "直近 30 日參考價",
+        "note": "4 人每人 4,320～6,120 円",
+        "source": "rakuten",
+        "url": "https://hotel.travel.rakuten.co.jp/hotelinfo/plan/201681",
+        "retrieved": "2026-10-18"
+      },
+      {
+        "currency": "JPY",
+        "plan": "おはらい町通り荘 いすず／まがたま 3 名",
+        "unit": "per-person",
+        "adult": 4026,
+        "child": null,
+        "season": "直近 30 日參考價",
+        "note": "3 人每人 4,026～6,160 円；あこね 2 人每人 4,340～7,240 円",
+        "source": "rakuten",
+        "url": "https://hotel.travel.rakuten.co.jp/hotelinfo/plan/201681",
+        "retrieved": "2026-10-18"
+      },
+      {
+        "plan": "素泊 大人 3＋小學生高年級 1（1 室）最低價（null）",
+        "unit": "per-person",
+        "adult": 4895,
+        "child": 2448,
+        "currency": "JPY",
+        "season": "2027-02-09（二）1 泊，1 間 大人 3＋小學生高年級 1",
+        "note": "房型：おはらい町通り荘 つきよみ（2階洋室）4名まで。兒童價＝一間總價 17,133 円 − 大人 3 人份（約大人的 50%）。楽天 API（查詢 2026-10-18）。",
+        "source": "rakuten-api",
+        "url": "https://hotel.travel.rakuten.co.jp/hotelinfo/plan/201681?f_nen1=2027&f_tuki1=2&f_hi1=9&f_nen2=2027&f_tuki2=2&f_hi2=10&f_heya_su=1&f_otona_su=3&f_s1=1&f_s2=0&f_y1=0&f_y2=0&f_y3=0&f_y4=0",
+        "retrieved": "2026-10-18"
+      },
+      {
+        "plan": "素泊 大人 2 名 1 室最低價（null）",
+        "unit": "per-person",
+        "adult": 4940,
+        "child": null,
+        "currency": "JPY",
+        "season": "2027-02-09（二）1 泊，大人 2 名 1 室",
+        "note": "房型：おはらい町通り荘 まがたま（1階洋室）3名まで。15 人的組合兩天都沒有空房。楽天 API（查詢 2026-10-18）。",
+        "source": "rakuten-api",
+        "url": "https://hotel.travel.rakuten.co.jp/hotelinfo/plan/201681?f_nen1=2027&f_tuki1=2&f_hi1=9&f_nen2=2027&f_tuki2=2&f_hi2=10&f_heya_su=1&f_otona_su=2&f_s1=0&f_s2=0&f_y1=0&f_y2=0&f_y3=0&f_y4=0",
+        "retrieved": "2026-10-18"
+      }
+    ],
+    "luggage": null,
+    "checkIn": "15:00",
+    "checkOut": "10:00",
+    "dinnerAccess": null,
+    "group": {
+      "totalRooms": 5,
+      "roomTypes": [
+        "おはらい町通り荘 いすず 2F 和室 3 人",
+        "おはらい町通り荘 つきよみ 2F 洋室 4 人",
+        "おはらい町通り荘 あこね 1F 和室 2 人",
+        "おはらい町通り荘 まがたま 1F 洋室 3 人",
+        "宇治浦田荘 一棟丸ごと貸切 和室 65.6 m² 1～6 人 附浴室廁所"
+      ],
+      "maxGuests": 18,
+      "wholeRental": true,
+      "pickupCapacity": null,
+      "nearbyCombos": [],
+      "note": "おはらい町通り荘 4 間（合計 12 人、衛浴共用）＋宇治浦田荘包棟 6 人，全訂理論上 18 人；兩棟距離未寫"
+    },
+    "ratings": {
+      "rakuten": null,
+      "rakutenReviews": 4,
+      "jalan": null,
+      "jalanReviews": null,
+      "booking": null,
+      "google": null,
+      "googleReviews": 0,
+      "note": "T8b（2026-10-18）：楽天 API 平均沒有，4 則、Google「おかげ参り宿場 宇治浦田荘」沒有星數，5 分制。"
+    },
+    "accessibility": {
+      "elevator": null,
+      "beds": null,
+      "stairs": "おはらい町通り荘有 2 樓房，樓梯細節 null",
+      "kids": "有兒童料金，細節未寫",
+      "note": "古民家改造，部分老舊"
+    },
+    "reservation": {
+      "methods": [
+        "rakuten",
+        "jalan",
+        "phone"
+      ],
+      "phone": "050-5367-2400",
+      "url": "https://travel.rakuten.co.jp/HOTEL/201681/201681.html",
+      "groupNote": "15 人需兩棟全訂"
+    },
+    "bookingLinks": {
+      "rakuten": "https://travel.rakuten.co.jp/HOTEL/201681/201681.html"
+    },
+    "sources": [
+      {
+        "type": "booking-site",
+        "url": "https://travel.rakuten.co.jp/HOTEL/201681/201681.html",
+        "retrieved": "2026-10-18",
+        "note": "楽天トラベル API（SimpleHotelSearch、HotelDetailSearch、VacantHotelSearch，scripts/rakuten.mjs）：評分、細項評分、房數、check-in/out、照片、2027-02-09／02-10 的空房與價格"
+      },
+      {
+        "type": "google-maps",
+        "url": "https://maps.google.com/?cid=13059494982787400317",
+        "retrieved": "2026-10-18",
+        "note": "Google 地圖「おかげ参り宿場 宇治浦田荘」：星數、評論數、座標、照片"
+      },
+      {
+        "type": "booking-site",
+        "url": "https://travel.rakuten.co.jp/HOTEL/201681/201681.html",
+        "retrieved": "2026-10-18",
+        "note": "4.75 分 4 則；古民家略舊但乾淨；附近手こね茶屋"
+      },
+      {
+        "type": "booking-site",
+        "url": "https://travel.rakuten.co.jp/HOTEL/201681/201681_std.html",
+        "retrieved": "2026-10-18",
+        "note": "5 室、停車 3～5 台"
+      },
+      {
+        "type": "booking-site",
+        "url": "https://hotel.travel.rakuten.co.jp/hotelinfo/plan/201681",
+        "retrieved": "2026-10-18",
+        "note": "各房定員、宇治浦田荘包棟 6 人、價格"
+      },
+      {
+        "type": "booking-site",
+        "url": "https://www.jalan.net/yad386316/",
+        "retrieved": "2026-10-18",
+        "note": "亂碼多；評分未公開"
+      }
+    ],
+    "verified": false,
+    "extra": {
+      "parking": "3 台免費，要電話預約；同團體同時進出可縱列 5 台",
+      "conflicts": [
+        "宇治浦田荘定員：楽天 1～6 人 vs じゃらん「最多 4 人」（じゃらん頁亂碼）"
+      ],
+      "rakutenHotelNo": 201681,
+      "rakutenVacancy": {
+        "retrieved": "2026-10-18",
+        "dates": [
+          "2027-02-09",
+          "2027-02-10"
+        ],
+        "combos": [
+          "5x3",
+          "4x4",
+          "3x5",
+          "2x8"
+        ],
+        "available": {
+          "2027-02-09": [],
+          "2027-02-10": []
+        },
+        "note": "15 人（全部以大人計）分 N 間同住的組合，有空房的列出；只代表查詢當天楽天上的庫存"
+      }
+    }
+  }
+]
