@@ -100,7 +100,7 @@ T7b（2026-10-18）從 T2～T4c 的筆記集中過來；原本的上下文見 `l
 - [ ] toba-daiharu：2 月營業與否；中午要事先聯絡
 - [ ] toba-sugashima-jutaroya：2 月營業與否（菅島唯一的店，週三休）
 - [ ] toba-kamishima-yamami：營業時間、2 月營業與否（神島唯一的店，營業時間不明）
-- [ ] okageya（候選）：菅島的便當，2 天前電話預約（0599-34-2525）；T7e 照 D③ 補查
+- [x] okageya（候選）：菅島的便當，2 天前電話預約（0599-34-2525）→ T7e 已收錄 `toba-sugashima-okageya`（剩下的問題見下面「T7e 新店」）
 
 ### 營業時間來源不一致（T18 出發前再確認）
 - [ ] toba-kitchen-takama：Google 每天 8:00～15:00、食べログ 7:30～20:30 週三休
@@ -110,3 +110,17 @@ T7b（2026-10-18）從 T2～T4c 的筆記集中過來；原本的上下文見 `l
 
 ### 小孩
 - [ ] toba-yakatabune-okita：6 歲的小孩能不能一起上船（網路訂位限小學生以上，6 歲以下要先洽詢）
+
+### T7e 新店（第 1 批補店）
+- [ ] toba-osatsu-denyou（候選 tabelog-24008197）：伝洋 非住客能不能吃午餐、晚餐（0599-33-6166；官網打不開，楽天日帰り沒有方案）
+- [ ] toba-osatsu-hanatsubaki（候選 tabelog-24003550）：花椿 非住客能不能用餐（0599-33-7733）
+- [ ] toba-kuzaki-marusen：2 月有沒有開（食べログ寫營業日＝海女小屋的營業日）、不住宿的かまど用餐價格、15 人午餐套餐、かまど席是不是矮凳
+- [ ] toba-carocaro：非住客午餐有沒有、價格；晚餐的中學生以下限制（食べログ）是否仍適用；公休日（官網不定休 vs 食べログ月火）
+- [ ] toba-ijika-poseidon：公休日、冬季營業（官網已失效，只有 Google、食べログ）
+- [ ] toba-osatsu-bonten：晚餐能不能預約、打烊 21:00 還是 22:00
+- [ ] toba-osatsu-tenkai：還有沒有營業（官網 404）
+- [ ] toba-adako-oyster-grow：15 人能不能包場（最大予約 14、貸切 20 人以下）；晚餐幾點開始；小孩能不能把生牡蠣換成熟的
+- [ ] toba-osatsu-michishio-dining、toba-ijika-kagura-dining、toba-motoura-sun-urashima-dining：楽天方案每筆上限 6 人，15 人能不能用宴會場一起吃（神具良 FAQ：8 人以上可洽宴會場）
+- [ ] toba-sugashima-okageya：能不能一次訂 15 個、在哪裡吃（港邊有沒有休息處）、2 月營業
+- [ ] toba-kamishima-sankaiso-dining：昼食哪幾天可以、價格、人數上限、幾天前訂（0599-38-2032）
+- [ ] toba-todaya（候選 tabelog-24000531）：2027 年 2 月的非住客昼食方案有沒有
