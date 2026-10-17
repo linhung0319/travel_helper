@@ -1,0 +1,186 @@
+[
+  {
+    "id": "fixture-toba-spot-1",
+    "type": "spot",
+    "name": {
+      "ja": "仮spot1",
+      "zh": "（假）景點 toba-1"
+    },
+    "area": "toba",
+    "coords": [
+      136.8462,
+      34.4815
+    ],
+    "coordsSource": "manual",
+    "sources": [
+      {
+        "type": "manual",
+        "url": "https://example.com/fixture",
+        "retrieved": "2026-10-17",
+        "note": "開發用假資料，不是真的店家"
+      }
+    ],
+    "verified": false,
+    "extra": {
+      "fixtureNote": "假資料"
+    },
+    "stayMinutes": 120,
+    "indoor": true
+  },
+  {
+    "id": "fixture-toba-spot-2",
+    "type": "spot",
+    "name": {
+      "ja": "仮spot2",
+      "zh": "（假）景點 toba-2"
+    },
+    "area": "toba",
+    "coords": [
+      136.869,
+      34.498
+    ],
+    "coordsSource": "manual",
+    "sources": [
+      {
+        "type": "manual",
+        "url": "https://example.com/fixture",
+        "retrieved": "2026-10-17",
+        "note": "開發用假資料，不是真的店家"
+      }
+    ],
+    "verified": false,
+    "extra": {
+      "fixtureNote": "假資料"
+    }
+  },
+  {
+    "id": "fixture-shima-spot-1",
+    "type": "spot",
+    "name": {
+      "ja": "仮spot1",
+      "zh": "（假）景點 shima-1"
+    },
+    "area": "shima",
+    "coords": [
+      136.8205,
+      34.31
+    ],
+    "coordsSource": "manual",
+    "sources": [
+      {
+        "type": "manual",
+        "url": "https://example.com/fixture",
+        "retrieved": "2026-10-17",
+        "note": "開發用假資料，不是真的店家"
+      }
+    ],
+    "verified": false,
+    "extra": {
+      "fixtureNote": "假資料"
+    }
+  },
+  {
+    "id": "fixture-shima-spot-2",
+    "type": "spot",
+    "name": {
+      "ja": "仮spot2",
+      "zh": "（假）景點 shima-2"
+    },
+    "area": "shima",
+    "coords": [
+      136.896,
+      34.278
+    ],
+    "coordsSource": "manual",
+    "sources": [
+      {
+        "type": "manual",
+        "url": "https://example.com/fixture",
+        "retrieved": "2026-10-17",
+        "note": "開發用假資料，不是真的店家"
+      }
+    ],
+    "verified": false,
+    "extra": {
+      "fixtureNote": "假資料"
+    }
+  },
+  {
+    "id": "fixture-ise-spot-1",
+    "type": "spot",
+    "name": {
+      "ja": "仮spot1",
+      "zh": "（假）景點 ise-1"
+    },
+    "area": "ise",
+    "coords": [
+      136.7255,
+      34.4555
+    ],
+    "coordsSource": "manual",
+    "sources": [
+      {
+        "type": "manual",
+        "url": "https://example.com/fixture",
+        "retrieved": "2026-10-17",
+        "note": "開發用假資料，不是真的店家"
+      }
+    ],
+    "verified": false,
+    "extra": {
+      "fixtureNote": "假資料"
+    }
+  },
+  {
+    "id": "fixture-futami-spot-1",
+    "type": "spot",
+    "name": {
+      "ja": "仮spot1",
+      "zh": "（假）景點 futami-1"
+    },
+    "area": "futami",
+    "coords": [
+      136.789,
+      34.509
+    ],
+    "coordsSource": "manual",
+    "sources": [
+      {
+        "type": "manual",
+        "url": "https://example.com/fixture",
+        "retrieved": "2026-10-17",
+        "note": "開發用假資料，不是真的店家"
+      }
+    ],
+    "verified": false,
+    "extra": {
+      "fixtureNote": "假資料"
+    }
+  },
+  {
+    "id": "fixture-toba-spot-3",
+    "type": "spot",
+    "name": {
+      "ja": "仮spot3",
+      "zh": "（假）景點 toba-3"
+    },
+    "area": "toba",
+    "coords": [
+      136.71,
+      34.487
+    ],
+    "coordsSource": "manual",
+    "sources": [
+      {
+        "type": "manual",
+        "url": "https://example.com/fixture",
+        "retrieved": "2026-10-17",
+        "note": "開發用假資料，不是真的店家"
+      }
+    ],
+    "verified": false,
+    "extra": {
+      "fixtureNote": "故意的錯誤：area 是 toba，座標卻在伊勢市站附近"
+    }
+  }
+]
