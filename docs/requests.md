@@ -102,3 +102,16 @@
 - 內容：目前 `stations.json` 沒有大阪難波、鶴橋、大阪上本町、伊勢中川。這些站的電梯資訊整理在 `data/access/kix.json` 的 `accessibility.stations` 和 `data/raw/access/kintetsu-osaka.md`。如果 T11 的地圖要顯示機場往返路線，再考慮新增（`passes.json` 已經用 `osaka-namba` 當 ID）。
 - 原因：長輩帶行李轉乘時，難波、鶴橋的無障礙路線和一般路線不同。
 - 狀態：待處理
+
+## [T4b] restaurant schema：常用的 extra 欄位升格
+- 要改的檔案：`schema/restaurant.schema.json`、`docs/CONVENTIONS.md` 的餐廳範例
+- 內容：T4b 在 71 家餐廳裡反覆用到下面這些 `extra` 欄位，建議 T7 決定要不要變成正式欄位：
+  - `extra.region`（候選表的地區：鳥羽站周邊、浦村、相差……）、`extra.inclusion`（納入條件 A～F）：地圖篩選和 T7 檢討門檻會用到。
+  - `extra.tabelogOwner`（CONVENTIONS 已規定放 extra）。
+  - `extra.barrierFree`（食べログ「バリアフリー」「車椅子で入店可」）：長輩相關，建議和景點一樣放進 `accessibility`。
+  - `extra.googleStatus`（Google 顯示「臨時休業」）、`extra.movedFrom`（食べログ的移轉前地址）。
+  - `extra.googleName`（Google 上的店名和食べログ不同時）。
+  - `group` 建議加 `maxReservation`（食べログ「最大予約可能人数」）；目前只寫在 `group.source` 的文字裡。
+  - `seating` 的 `other` 目前用來表示沙發座，建議加 `sofa`。
+- 原因：這些資訊 T11 詳情面板、T14 團體檢查會用到，放在 extra 裡格式不固定。
+- 狀態：待處理
