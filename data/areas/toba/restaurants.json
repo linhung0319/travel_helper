@@ -189,13 +189,13 @@
         "walkSource": "osrm"
       },
       {
-        "id": "toba-edogawa-rampo-museum",
+        "id": "toba-bay-cruise-irukajima",
         "walkMinutes": 4,
         "walkSource": "osrm"
       },
       {
-        "id": "toba-aquarium",
-        "walkMinutes": 6,
+        "id": "toba-edogawa-rampo-museum",
+        "walkMinutes": 4,
         "walkSource": "osrm"
       },
       {
@@ -512,11 +512,6 @@
         "walkSource": "estimate"
       },
       {
-        "id": "toba-bay-cruise-irukajima",
-        "walkMinutes": 6,
-        "walkSource": "estimate"
-      },
-      {
         "id": "toba-sadahama-marine-terminal",
         "walkMinutes": 6,
         "walkSource": "estimate"
@@ -524,6 +519,11 @@
       {
         "id": "toba-ichibangai",
         "walkMinutes": 9,
+        "walkSource": "estimate"
+      },
+      {
+        "id": "toba-marche",
+        "walkMinutes": 10,
         "walkSource": "estimate"
       },
       {
@@ -966,17 +966,17 @@
         "walkSource": "osrm"
       },
       {
+        "id": "toba-bay-cruise-irukajima",
+        "walkMinutes": 4,
+        "walkSource": "osrm"
+      },
+      {
         "id": "toba-marche",
         "walkMinutes": 6,
         "walkSource": "osrm"
       },
       {
         "id": "toba-ichibangai",
-        "walkMinutes": 7,
-        "walkSource": "osrm"
-      },
-      {
-        "id": "toba-hiyoriyama-observatory",
         "walkMinutes": 7,
         "walkSource": "osrm"
       },
@@ -1413,11 +1413,6 @@
         "walkSource": "estimate"
       },
       {
-        "id": "toba-bay-cruise-irukajima",
-        "walkMinutes": 6,
-        "walkSource": "estimate"
-      },
-      {
         "id": "toba-sadahama-marine-terminal",
         "walkMinutes": 6,
         "walkSource": "estimate"
@@ -1425,6 +1420,11 @@
       {
         "id": "toba-ichibangai",
         "walkMinutes": 9,
+        "walkSource": "estimate"
+      },
+      {
+        "id": "toba-marche",
+        "walkMinutes": 10,
         "walkSource": "estimate"
       },
       {
@@ -1635,17 +1635,17 @@
         "walkSource": "osrm"
       },
       {
+        "id": "toba-bay-cruise-irukajima",
+        "walkMinutes": 4,
+        "walkSource": "osrm"
+      },
+      {
         "id": "toba-marche",
         "walkMinutes": 6,
         "walkSource": "osrm"
       },
       {
         "id": "toba-ichibangai",
-        "walkMinutes": 7,
-        "walkSource": "osrm"
-      },
-      {
-        "id": "toba-hiyoriyama-observatory",
         "walkMinutes": 7,
         "walkSource": "osrm"
       },
@@ -1898,13 +1898,13 @@
         "walkSource": "osrm"
       },
       {
-        "id": "toba-edogawa-rampo-museum",
+        "id": "toba-bay-cruise-irukajima",
         "walkMinutes": 5,
         "walkSource": "osrm"
       },
       {
-        "id": "toba-hiyoriyama-observatory",
-        "walkMinutes": 7,
+        "id": "toba-edogawa-rampo-museum",
+        "walkMinutes": 5,
         "walkSource": "osrm"
       },
       {
@@ -2146,11 +2146,6 @@
         "walkSource": "estimate"
       },
       {
-        "id": "toba-bay-cruise-irukajima",
-        "walkMinutes": 5,
-        "walkSource": "estimate"
-      },
-      {
         "id": "toba-sadahama-marine-terminal",
         "walkMinutes": 5,
         "walkSource": "estimate"
@@ -2158,6 +2153,11 @@
       {
         "id": "toba-ichibangai",
         "walkMinutes": 9,
+        "walkSource": "estimate"
+      },
+      {
+        "id": "toba-marche",
+        "walkMinutes": 10,
         "walkSource": "estimate"
       },
       {
@@ -2380,17 +2380,17 @@
         "walkSource": "osrm"
       },
       {
+        "id": "toba-bay-cruise-irukajima",
+        "walkMinutes": 5,
+        "walkSource": "osrm"
+      },
+      {
         "id": "toba-marche",
         "walkMinutes": 6,
         "walkSource": "osrm"
       },
       {
         "id": "toba-ichibangai",
-        "walkMinutes": 7,
-        "walkSource": "osrm"
-      },
-      {
-        "id": "toba-hiyoriyama-observatory",
         "walkMinutes": 7,
         "walkSource": "osrm"
       },
@@ -2610,17 +2610,17 @@
         "walkSource": "osrm"
       },
       {
+        "id": "toba-bay-cruise-irukajima",
+        "walkMinutes": 4,
+        "walkSource": "osrm"
+      },
+      {
         "id": "toba-marche",
         "walkMinutes": 6,
         "walkSource": "osrm"
       },
       {
         "id": "toba-ichibangai",
-        "walkMinutes": 7,
-        "walkSource": "osrm"
-      },
-      {
-        "id": "toba-hiyoriyama-observatory",
         "walkMinutes": 7,
         "walkSource": "osrm"
       },
@@ -2851,7 +2851,7 @@
       },
       {
         "id": "toba-bay-cruise-irukajima",
-        "walkMinutes": 8,
+        "walkMinutes": 5,
         "walkSource": "osrm"
       },
       {
@@ -3058,6 +3058,11 @@
         "walkSource": "osrm"
       },
       {
+        "id": "toba-bay-cruise-irukajima",
+        "walkMinutes": 1,
+        "walkSource": "osrm"
+      },
+      {
         "id": "toba-castle-ruins",
         "walkMinutes": 4,
         "walkSource": "osrm"
@@ -3065,11 +3070,6 @@
       {
         "id": "toba-mikimoto-pearl-island",
         "walkMinutes": 4,
-        "walkSource": "osrm"
-      },
-      {
-        "id": "toba-aquarium",
-        "walkMinutes": 5,
         "walkSource": "osrm"
       },
       {
@@ -3308,12 +3308,12 @@
         "walkSource": "osrm"
       },
       {
-        "id": "toba-mikimoto-pearl-island",
-        "walkMinutes": 5,
+        "id": "toba-bay-cruise-irukajima",
+        "walkMinutes": 3,
         "walkSource": "osrm"
       },
       {
-        "id": "toba-edogawa-rampo-museum",
+        "id": "toba-mikimoto-pearl-island",
         "walkMinutes": 5,
         "walkSource": "osrm"
       },
@@ -3549,6 +3549,11 @@
         "walkSource": "osrm"
       },
       {
+        "id": "toba-bay-cruise-irukajima",
+        "walkMinutes": 2,
+        "walkSource": "osrm"
+      },
+      {
         "id": "toba-castle-ruins",
         "walkMinutes": 5,
         "walkSource": "osrm"
@@ -3556,11 +3561,6 @@
       {
         "id": "toba-mikimoto-pearl-island",
         "walkMinutes": 5,
-        "walkSource": "osrm"
-      },
-      {
-        "id": "toba-aquarium",
-        "walkMinutes": 6,
         "walkSource": "osrm"
       },
       {
@@ -3773,17 +3773,17 @@
         "walkSource": "osrm"
       },
       {
+        "id": "toba-bay-cruise-irukajima",
+        "walkMinutes": 6,
+        "walkSource": "osrm"
+      },
+      {
         "id": "toba-marche",
         "walkMinutes": 7,
         "walkSource": "osrm"
       },
       {
         "id": "toba-ichibangai",
-        "walkMinutes": 8,
-        "walkSource": "osrm"
-      },
-      {
-        "id": "toba-hiyoriyama-observatory",
         "walkMinutes": 8,
         "walkSource": "osrm"
       },
@@ -4091,13 +4091,13 @@
         "walkSource": "osrm"
       },
       {
-        "id": "toba-edogawa-rampo-museum",
-        "walkMinutes": 5,
+        "id": "toba-bay-cruise-irukajima",
+        "walkMinutes": 4,
         "walkSource": "osrm"
       },
       {
-        "id": "toba-hiyoriyama-observatory",
-        "walkMinutes": 7,
+        "id": "toba-edogawa-rampo-museum",
+        "walkMinutes": 5,
         "walkSource": "osrm"
       },
       {
@@ -4336,11 +4336,6 @@
         "walkSource": "estimate"
       },
       {
-        "id": "toba-bay-cruise-irukajima",
-        "walkMinutes": 6,
-        "walkSource": "estimate"
-      },
-      {
         "id": "toba-sadahama-marine-terminal",
         "walkMinutes": 6,
         "walkSource": "estimate"
@@ -4348,6 +4343,11 @@
       {
         "id": "toba-ichibangai",
         "walkMinutes": 9,
+        "walkSource": "estimate"
+      },
+      {
+        "id": "toba-marche",
+        "walkMinutes": 10,
         "walkSource": "estimate"
       },
       {
@@ -4595,13 +4595,13 @@
         "walkSource": "osrm"
       },
       {
-        "id": "toba-edogawa-rampo-museum",
-        "walkMinutes": 5,
+        "id": "toba-bay-cruise-irukajima",
+        "walkMinutes": 4,
         "walkSource": "osrm"
       },
       {
-        "id": "toba-hiyoriyama-observatory",
-        "walkMinutes": 7,
+        "id": "toba-edogawa-rampo-museum",
+        "walkMinutes": 5,
         "walkSource": "osrm"
       },
       {
@@ -4848,6 +4848,11 @@
         "walkSource": "osrm"
       },
       {
+        "id": "toba-bay-cruise-irukajima",
+        "walkMinutes": 4,
+        "walkSource": "osrm"
+      },
+      {
         "id": "toba-marche",
         "walkMinutes": 6,
         "walkSource": "osrm"
@@ -4855,11 +4860,6 @@
       {
         "id": "toba-ichibangai",
         "walkMinutes": 6,
-        "walkSource": "osrm"
-      },
-      {
-        "id": "toba-hiyoriyama-observatory",
-        "walkMinutes": 7,
         "walkSource": "osrm"
       },
       {
@@ -5085,6 +5085,11 @@
         "walkSource": "osrm"
       },
       {
+        "id": "toba-bay-cruise-irukajima",
+        "walkMinutes": 2,
+        "walkSource": "osrm"
+      },
+      {
         "id": "toba-castle-ruins",
         "walkMinutes": 5,
         "walkSource": "osrm"
@@ -5092,11 +5097,6 @@
       {
         "id": "toba-mikimoto-pearl-island",
         "walkMinutes": 5,
-        "walkSource": "osrm"
-      },
-      {
-        "id": "toba-marche",
-        "walkMinutes": 6,
         "walkSource": "osrm"
       },
       {
@@ -5361,11 +5361,6 @@
         "walkSource": "estimate"
       },
       {
-        "id": "toba-bay-cruise-irukajima",
-        "walkMinutes": 7,
-        "walkSource": "estimate"
-      },
-      {
         "id": "toba-sadahama-marine-terminal",
         "walkMinutes": 7,
         "walkSource": "estimate"
@@ -5373,6 +5368,11 @@
       {
         "id": "toba-ichibangai",
         "walkMinutes": 8,
+        "walkSource": "estimate"
+      },
+      {
+        "id": "toba-marche",
+        "walkMinutes": 9,
         "walkSource": "estimate"
       },
       {
@@ -5586,6 +5586,11 @@
         "walkSource": "osrm"
       },
       {
+        "id": "toba-bay-cruise-irukajima",
+        "walkMinutes": 4,
+        "walkSource": "osrm"
+      },
+      {
         "id": "toba-marche",
         "walkMinutes": 6,
         "walkSource": "osrm"
@@ -5593,11 +5598,6 @@
       {
         "id": "toba-ichibangai",
         "walkMinutes": 6,
-        "walkSource": "osrm"
-      },
-      {
-        "id": "toba-hiyoriyama-observatory",
-        "walkMinutes": 7,
         "walkSource": "osrm"
       },
       {
@@ -5824,13 +5824,13 @@
         "walkSource": "osrm"
       },
       {
-        "id": "toba-edogawa-rampo-museum",
-        "walkMinutes": 5,
+        "id": "toba-bay-cruise-irukajima",
+        "walkMinutes": 4,
         "walkSource": "osrm"
       },
       {
-        "id": "toba-mikimoto-pearl-island",
-        "walkMinutes": 6,
+        "id": "toba-edogawa-rampo-museum",
+        "walkMinutes": 5,
         "walkSource": "osrm"
       },
       {
@@ -6082,8 +6082,8 @@
         "walkSource": "osrm"
       },
       {
-        "id": "toba-hiyoriyama-observatory",
-        "walkMinutes": 7,
+        "id": "toba-bay-cruise-irukajima",
+        "walkMinutes": 6,
         "walkSource": "osrm"
       },
       {
@@ -6340,12 +6340,12 @@
         "walkSource": "osrm"
       },
       {
-        "id": "toba-castle-ruins",
-        "walkMinutes": 6,
+        "id": "toba-bay-cruise-irukajima",
+        "walkMinutes": 3,
         "walkSource": "osrm"
       },
       {
-        "id": "toba-mikimoto-pearl-island",
+        "id": "toba-castle-ruins",
         "walkMinutes": 6,
         "walkSource": "osrm"
       },
@@ -6599,13 +6599,13 @@
         "walkSource": "osrm"
       },
       {
-        "id": "toba-edogawa-rampo-museum",
+        "id": "toba-bay-cruise-irukajima",
         "walkMinutes": 5,
         "walkSource": "osrm"
       },
       {
-        "id": "toba-hiyoriyama-observatory",
-        "walkMinutes": 7,
+        "id": "toba-edogawa-rampo-museum",
+        "walkMinutes": 5,
         "walkSource": "osrm"
       },
       {
@@ -6818,17 +6818,17 @@
         "walkSource": "osrm"
       },
       {
+        "id": "toba-bay-cruise-irukajima",
+        "walkMinutes": 4,
+        "walkSource": "osrm"
+      },
+      {
         "id": "toba-marche",
         "walkMinutes": 6,
         "walkSource": "osrm"
       },
       {
         "id": "toba-ichibangai",
-        "walkMinutes": 7,
-        "walkSource": "osrm"
-      },
-      {
-        "id": "toba-hiyoriyama-observatory",
         "walkMinutes": 7,
         "walkSource": "osrm"
       },
@@ -7044,13 +7044,13 @@
         "walkSource": "osrm"
       },
       {
-        "id": "toba-mikimoto-pearl-island",
-        "walkMinutes": 7,
+        "id": "toba-bay-cruise-irukajima",
+        "walkMinutes": 5,
         "walkSource": "osrm"
       },
       {
-        "id": "toba-aquarium",
-        "walkMinutes": 8,
+        "id": "toba-mikimoto-pearl-island",
+        "walkMinutes": 7,
         "walkSource": "osrm"
       },
       {
@@ -7353,7 +7353,7 @@
         "walkSource": "osrm"
       },
       {
-        "id": "toba-bay-cruise-irukajima",
+        "id": "toba-sadahama-marine-terminal",
         "walkMinutes": 12,
         "walkSource": "osrm"
       },
@@ -7601,7 +7601,7 @@
         "walkSource": "estimate"
       },
       {
-        "id": "toba-bay-cruise-irukajima",
+        "id": "toba-sadahama-marine-terminal",
         "walkMinutes": 13,
         "walkSource": "estimate"
       },
@@ -14140,13 +14140,18 @@
     "verified": false,
     "anchors": [
       {
-        "id": "toba-toshijima-wagu",
+        "id": "toba-port-wagu",
         "walkMinutes": 4,
         "walkSource": "osrm"
       },
       {
         "id": "toba-toshijima-toshi",
-        "walkMinutes": 15,
+        "walkMinutes": 9,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "toba-toshijima-wagu",
+        "walkMinutes": 10,
         "walkSource": "osrm"
       },
       {
@@ -14335,8 +14340,18 @@
     "verified": false,
     "anchors": [
       {
-        "id": "toba-toshijima-wagu",
+        "id": "toba-port-wagu",
         "walkMinutes": 5,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "toba-toshijima-wagu",
+        "walkMinutes": 7,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "toba-toshijima-toshi",
+        "walkMinutes": 10,
         "walkSource": "osrm"
       },
       {
@@ -14593,8 +14608,13 @@
     "verified": false,
     "anchors": [
       {
+        "id": "toba-port-toshi",
+        "walkMinutes": 3,
+        "walkSource": "osrm"
+      },
+      {
         "id": "toba-toshijima-toshi",
-        "walkMinutes": 4,
+        "walkMinutes": 9,
         "walkSource": "osrm"
       },
       {
@@ -14808,6 +14828,11 @@
     "verified": false,
     "anchors": [
       {
+        "id": "toba-port-sugashima",
+        "walkMinutes": 4,
+        "walkSource": "estimate"
+      },
+      {
         "id": "toba-sugashima-lighthouse",
         "walkMinutes": 13,
         "walkSource": "osrm"
@@ -14932,6 +14957,11 @@
     "verified": false,
     "anchors": [
       {
+        "id": "toba-port-kamishima",
+        "walkMinutes": 2,
+        "walkSource": "osrm"
+      },
+      {
         "id": "toba-kamishima-yatsushiro-jinja",
         "walkMinutes": 4,
         "walkSource": "osrm"
@@ -14939,11 +14969,6 @@
       {
         "id": "toba-kamishima-lighthouse",
         "walkMinutes": 9,
-        "walkSource": "osrm"
-      },
-      {
-        "id": "toba-kamishima-kantekisho",
-        "walkMinutes": 11,
         "walkSource": "osrm"
       },
       {

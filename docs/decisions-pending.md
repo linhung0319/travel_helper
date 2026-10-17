@@ -36,3 +36,6 @@
 | 2026-10-18 | T7e | 照片只採用官網網域的照片，讀文回報的媒體照片（みえメン 的七越本店、觀光三重 的やま海）不用，改用 Google 主圖 | CONVENTIONS §4「照片」的順序是官網 → Google，媒體不在清單 | 換成筆記裡的媒體照片網址 |
 | 2026-10-18 | T7e | 筆記沒有 `[招牌]` 的店 `mustTry` 留空（大春、オレンジ、中山牡蠣、重太郎屋、ポセイドン、天海、たくちゃん），不用食べログ菜單或コース名稱補 | CONVENTIONS：`mustTry` 從讀文筆記的 `[招牌]` 整理 | 從食べログ `dtlmenu/`、`party/` 挑 2～3 道補上 |
 | 2026-10-18 | T7e | 黒潮 相差店 的 `links.instagram` 不填（官網連的是伊勢店 @hana_seafood_don）；喜久屋 保留食べログ的 @104kikuya（官網寫 kikuya104）、馳走 保留 @tisou.toba（官網另有 @chiso_toba），差異寫在 `ig-notes.md` | 不確定是同一家店的帳號時不填；兩個都可能對時保留現有值 | 改 `links.instagram` |
+| 2026-10-18 | T7f | `meals: varies` 的 13 筆住宿 `dinnerAccess` 照「選素泊／朝食方案時，步行 20 分內有沒有晚上營業的店」判斷（OSRM 係數 1，晚餐店＝`contexts` 有 dinner 而且旅程中有一天 18:00～19:00 營業，住宿附設餐廳 `-dining` 不算）：walk 10 筆（戸田家、鳥羽国際、潮路亭、扇芳閣、海女乃島、蒼空の風、大田家、神具良、サン浦島、銀鱗），car 3 筆（シーサイド、彩朝楽、亀の井）；分鐘數和店名寫在 `extra.dinnerAccessNote` | CONVENTIONS：walk＝步行 20 分內有店；只看有沒有店，不看 fit15。海女乃島只有 華月 剛好 20 分、相差 2 間只有 梵天 1 家、浦村 2 間只有 CaroCaro（限中學生以上），都寫在 note | 改 `dinnerAccess`（`lodging.json`），或全部改回 null |
+| 2026-10-18 | T7f | 旅館なおみ 的 `dinnerAccess` car → `walk` | T7e 新增的 ホルモン たくちゃん 步行 19 分（OSRM），在 20 分內 | 改回 `car` |
+| 2026-10-18 | T7f | 東の窓 的 `dinnerAccess` 維持 `car`（沒有改成 walk） | 20 分內只有 天海 12 分（還有沒有營業不確定，T7e）和 Grow 8 分（完全預約、`hours` 沒有晚上時段，不算晚餐店）；不能確定有店就不改 | 改成 `walk` |

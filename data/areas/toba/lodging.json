@@ -200,7 +200,7 @@
     "luggage": "入住前、退房後都可在櫃台寄放（官網 FAQ、楽天 FAQ）。也可事先宅配到館（收件人需與訂房人同名，不收貨到付款、冷藏冷凍品）。",
     "checkIn": "15:00",
     "checkOut": "10:00",
-    "dinnerAccess": null,
+    "dinnerAccess": "walk",
     "group": {
       "totalRooms": 160,
       "roomTypes": [
@@ -366,7 +366,8 @@
           ]
         },
         "note": "15 人（全部以大人計）分 N 間同住的組合，有空房的列出；只代表查詢當天楽天上的庫存"
-      }
+      },
+      "dinnerAccessNote": "素泊／朝食方案時：步行 20 分內有 8 家晚上營業的店（一栄 5 分、Dining 白石 6 分、屋形船 おきた 7 分、シーホース 9 分等）。T7f（2026-10-18，OSRM 步行，係數 1）"
     }
   },
   {
@@ -520,7 +521,7 @@
     "luggage": "可事先宅配行李到飯店代收（送り状寫住宿日與代表人姓名）（楽天）。",
     "checkIn": "14:00",
     "checkOut": "11:00",
-    "dinnerAccess": null,
+    "dinnerAccess": "walk",
     "group": {
       "totalRooms": 84,
       "roomTypes": [
@@ -667,7 +668,8 @@
           ]
         },
         "note": "15 人（全部以大人計）分 N 間同住的組合，有空房的列出；只代表查詢當天楽天上的庫存"
-      }
+      },
+      "dinnerAccessNote": "素泊／朝食方案時：館內 もんど岬 1 分、シーホース 2 分；Dining 白石 5 分、一栄 8 分。T7f（2026-10-18，OSRM 步行，係數 1）"
     }
   },
   {
@@ -791,7 +793,7 @@
     "luggage": null,
     "checkIn": "14:00",
     "checkOut": "11:00",
-    "dinnerAccess": null,
+    "dinnerAccess": "walk",
     "group": {
       "totalRooms": 46,
       "roomTypes": [
@@ -933,7 +935,8 @@
       },
       "conflicts": [
         "評分落差大：じゃらん 4.7、Relux 4.2（123 件）、4travel 3.46（46 件，2019～2022 舊）。"
-      ]
+      ],
+      "dinnerAccessNote": "素泊／朝食方案時：Dining 白石 2 分、もんど岬・シーホース 5 分、一栄 5 分。T7f（2026-10-18，OSRM 步行，係數 1）"
     }
   },
   {
@@ -1105,7 +1108,7 @@
     "luggage": "可事先宅配行李到館（官網 FAQ）；當天寄放未寫明。",
     "checkIn": "15:00",
     "checkOut": "10:00",
-    "dinnerAccess": null,
+    "dinnerAccess": "car",
     "group": {
       "totalRooms": 206,
       "roomTypes": [
@@ -1268,7 +1271,8 @@
           ]
         },
         "note": "15 人（全部以大人計）分 N 間同住的組合，有空房的列出；只代表查詢當天楽天上的庫存"
-      }
+      },
+      "dinnerAccessNote": "素泊方案時：步行 20 分內沒有晚上營業的店（最近 オレンジ 41 分）。T7f（2026-10-18，OSRM 步行，係數 1）"
     }
   },
   {
@@ -1744,7 +1748,7 @@
     "luggage": "可在櫃台寄放（官網 FAQ）；也可事先宅配。",
     "checkIn": "15:00",
     "checkOut": "10:00",
-    "dinnerAccess": null,
+    "dinnerAccess": "walk",
     "group": {
       "totalRooms": 65,
       "roomTypes": [
@@ -1924,7 +1928,8 @@
       },
       "conflicts": [
         "送迎時刻：官網首頁 8:15～10:15 每 30 分（2026-09-01 起）；FAQ 8:00～10:20 每 20 分。"
-      ]
+      ],
+      "dinnerAccessNote": "素泊／朝食方案時：太助 6 分、すし梅 9 分、海鮮 ぶん 10 分、天びん屋 11 分等。T7f（2026-10-18，OSRM 步行，係數 1）"
     }
   },
   {
@@ -2670,7 +2675,7 @@
     "luggage": null,
     "checkIn": "15:00",
     "checkOut": "11:00",
-    "dinnerAccess": null,
+    "dinnerAccess": "car",
     "group": {
       "totalRooms": 92,
       "roomTypes": [
@@ -2821,7 +2826,8 @@
           ]
         },
         "note": "15 人（全部以大人計）分 N 間同住的組合，有空房的列出；只代表查詢當天楽天上的庫存"
-      }
+      },
+      "dinnerAccessNote": "素泊方案時：步行 20 分內沒有晚上營業的店（最近 たくちゃん 24 分、一栄 25 分）。T7f（2026-10-18，OSRM 步行，係數 1）"
     }
   },
   {
@@ -3287,7 +3293,7 @@
     "luggage": "有宅配便服務；當天寄放沒寫（楽天）。",
     "checkIn": "15:00",
     "checkOut": "10:00",
-    "dinnerAccess": null,
+    "dinnerAccess": "walk",
     "group": {
       "totalRooms": 33,
       "roomTypes": [
@@ -3454,7 +3460,8 @@
       "conflicts": [
         "客室數：楽天 33、じゃらん 31、KNT 46。",
         "去程接送：KNT 15～19 時；楽天 15～18 時。"
-      ]
+      ],
+      "dinnerAccessNote": "素泊／朝食方案時：只有 華月 20 分（剛好在 20 分上限）；みなと食堂、まつむら 22 分。長輩、夜間步行建議叫車。T7f（2026-10-18，OSRM 步行，係數 1）"
     }
   },
   {
@@ -3610,7 +3617,7 @@
     "luggage": "入住前、退房後可在櫃台寄放；可事先聯絡後宅配寄存（官網 FAQ）。",
     "checkIn": "15:00",
     "checkOut": "10:00",
-    "dinnerAccess": null,
+    "dinnerAccess": "car",
     "group": {
       "totalRooms": 68,
       "roomTypes": [
@@ -3786,7 +3793,8 @@
           ]
         },
         "note": "15 人（全部以大人計）分 N 間同住的組合，有空房的列出；只代表查詢當天楽天上的庫存"
-      }
+      },
+      "dinnerAccessNote": "素泊方案時：步行 20 分內沒有晚上營業的店（最近 華月 23 分、みなと食堂・まつむら 24 分）。T7f（2026-10-18，OSRM 步行，係數 1）"
     }
   },
   {
@@ -4257,7 +4265,7 @@
     "luggage": "楽天：停車場在入住前、退房後都可使用，有免費溫水淋浴和置物櫃；沒有寫行李寄放。",
     "checkIn": "15:00",
     "checkOut": "10:00",
-    "dinnerAccess": null,
+    "dinnerAccess": "walk",
     "group": {
       "totalRooms": 34,
       "roomTypes": [
@@ -4416,7 +4424,8 @@
       },
       "conflicts": [
         "房型分類：官網和室 15、洋室 4、露天風呂付 11、高層階 4；じゃらん洋 10／和 20／和洋 2／其他 2。"
-      ]
+      ],
+      "dinnerAccessNote": "素泊／朝食方案時：梵天 9 分（只有 1 家；fit15 unknown）。T7f（2026-10-18，OSRM 步行，係數 1）"
     }
   },
   {
@@ -4842,7 +4851,7 @@
     "luggage": "可寄宅配便；當天寄放沒寫（楽天）。",
     "checkIn": "15:00",
     "checkOut": "11:00",
-    "dinnerAccess": null,
+    "dinnerAccess": "walk",
     "group": {
       "totalRooms": 10,
       "roomTypes": [
@@ -4986,7 +4995,8 @@
           ]
         },
         "note": "15 人（全部以大人計）分 N 間同住的組合，有空房的列出；只代表查詢當天楽天上的庫存"
-      }
+      },
+      "dinnerAccessNote": "素泊／朝食方案時：梵天 3 分（只有 1 家；fit15 unknown）。T7f（2026-10-18，OSRM 步行，係數 1）"
     }
   },
   {
@@ -5916,7 +5926,7 @@
     "luggage": null,
     "checkIn": "15:00",
     "checkOut": "10:00",
-    "dinnerAccess": null,
+    "dinnerAccess": "walk",
     "group": {
       "totalRooms": 29,
       "roomTypes": [
@@ -6066,7 +6076,8 @@
           ]
         },
         "note": "15 人（全部以大人計）分 N 間同住的組合，有空房的列出；只代表查詢當天楽天上的庫存"
-      }
+      },
+      "dinnerAccessNote": "素泊／朝食方案時：ポセイドン 11 分、西村食堂 12 分（ポセイドン 冬季營業不明）。T7f（2026-10-18，OSRM 步行，係數 1）"
     }
   },
   {
@@ -6222,7 +6233,7 @@
     "luggage": "可寄放行李（cocolocala 設施列表）。",
     "checkIn": "15:00",
     "checkOut": "11:00",
-    "dinnerAccess": null,
+    "dinnerAccess": "walk",
     "group": {
       "totalRooms": 32,
       "roomTypes": [
@@ -6378,7 +6389,8 @@
           ]
         },
         "note": "15 人（全部以大人計）分 N 間同住的組合，有空房的列出；只代表查詢當天楽天上的庫存"
-      }
+      },
+      "dinnerAccessNote": "素泊／朝食方案時：CaroCaro 12 分（只有 1 家，晚餐限中學生以上，旅程中 9/12 天營業）。T7f（2026-10-18，OSRM 步行，係數 1）"
     }
   },
   {
@@ -7060,7 +7072,7 @@
     "luggage": null,
     "checkIn": "15:00",
     "checkOut": "10:00",
-    "dinnerAccess": null,
+    "dinnerAccess": "walk",
     "group": {
       "totalRooms": 7,
       "roomTypes": [
@@ -7217,7 +7229,8 @@
           ]
         },
         "note": "15 人（全部以大人計）分 N 間同住的組合，有空房的列出；只代表查詢當天楽天上的庫存"
-      }
+      },
+      "dinnerAccessNote": "素泊／朝食方案時：CaroCaro 10 分（只有 1 家，晚餐限中學生以上，旅程中 9/12 天營業）。T7f（2026-10-18，OSRM 步行，係數 1）"
     }
   },
   {
@@ -10328,7 +10341,7 @@
     "luggage": null,
     "checkIn": "15:00",
     "checkOut": "10:00",
-    "dinnerAccess": "car",
+    "dinnerAccess": "walk",
     "group": {
       "totalRooms": 1,
       "roomTypes": [
@@ -10474,7 +10487,8 @@
         ],
         "available": {},
         "note": "查詢的 15 人組合（5×3、4×4、3×5、2×8）兩個日期都沒有空房；可能是房數不夠、2027 年方案還沒開放，或楽天的庫存只有部分房間"
-      }
+      },
+      "dinnerAccessNote": "不含餐：ホルモン たくちゃん 19 分（T7e 新增，剛好在 20 分內，fit15 unknown）；一栄 21 分。T4c 時是 car。T7f（2026-10-18，OSRM 步行，係數 1）"
     }
   }
 ]
