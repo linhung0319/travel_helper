@@ -7718,7 +7718,7 @@
     "summary": {
       "text": "鳥羽站步行約 6 分、只有晚上營業的海鮮料理店，老闆曾任伊勢老字號割烹料理長，海鮮丼 1,980 円只用嚴選在地魚，烏魚子、魚乾也自製。",
       "pros": [
-        "Google 4.4（181 則）",
+        "Google 4.4（181 則）；まっぷる 介紹老闆曾任伊勢老字號割烹料理長",
         "有包廂、吧台、座敷，免費停車場"
       ],
       "cons": [
@@ -7734,14 +7734,14 @@
     "assessment": {
       "rubric": "restaurant-v1",
       "scores": {
-        "recommend": 2,
+        "recommend": 3,
         "localFlavor": 3,
         "groupFit": 3,
         "elderFit": 3,
         "kidsFit": null
       },
       "rationale": {
-        "recommend": "食べログ 3.19（35 則），讀文只有 1 篇介紹、沒有心得 → 冷門",
+        "recommend": "食べログ 3.19（35 則）、Google 4.4（181 則），評論數上限 3；介紹只有 まっぷる 1 篇、沒有心得",
         "localFlavor": "在地魚的海鮮丼、自製烏魚子",
         "groupFit": "fit15 split：30 席、有包廂，可預約",
         "elderFit": "吧台和座敷，桌席有無資料矛盾",

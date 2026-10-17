@@ -36,7 +36,7 @@
 - 只讀 `data/areas/toba/restaurants.json` 和 `dossiers/` 的 83 份餐廳筆記；沒有重新爬文、沒有用 Chrome、WebSearch。先讀了 `assessment-notes.md`「景點」「住宿」兩節和第 1、2 批的紀錄，沿用「評論少的高星數不直接當高分（評論數上限）」「資料沒來源就 null」「心得少就 low」，數字門檻改成餐廳版（食べログ＋Google）。
 - 寫法同第 1、2 批：摘要、分數先寫成 scratchpad 的資料檔（4 個，每個約 20 家），再用臨時 Node 腳本寫進 `restaurants.json`（不進 repo）。`summary.basedOn` 取讀文筆記「來源」列的網址；筆記的來源沒有提到這家店或網址已失效的 5 家（重太郎屋、たくちゃん、大春、オレンジ、中山牡蠣）和完全沒有來源的ちさと，改用資料檔 `sources` 的網址。null 的面向在 `rationale` 寫「資料不足」的理由。`generated`、`assessed` 2026-10-18，`rubric: "restaurant-v1"`。
 - 結果（83 筆）：
-  - S 2（漣、西村食堂）、A 15（シーホース、水沼さざえ、一栄、大阪屋、焼貝いろは、ミネルヴァ、キッチンたかま、七越茶屋、屋形船おきた、モトかき、肉料理まつむら、むつみ、華月、みち潮、サン浦島）、B 66（3 星 48、2 星 16、1 星 2：ポセイドン、梵天）。
+  - S 2（漣、西村食堂）、A 15（シーホース、水沼さざえ、一栄、大阪屋、焼貝いろは、ミネルヴァ、キッチンたかま、七越茶屋、屋形船おきた、モトかき、肉料理まつむら、むつみ、華月、みち潮、サン浦島）、B 66（3 星 49、2 星 15、1 星 2：ポセイドン、梵天；海鮮ぶん 在檢查腳本後從 2 改 3，見下面「檢查腳本」）。
   - `confidence`：medium 26、low 57、high 0。筆記標「心得未補」的 39 家，除了評論合計 1,000 則以上或有口コミ彙整（Retty、Wanderlog 等）的，都是 low（README 的建議）。
   - null 的面向：`elderFit` 26（座位形式沒有來源）、`kidsFit` 15、`localFlavor` 3（重太郎屋、ポセイドン、天海：菜單沒有來源）、`groupFit` 3（海楽園、重太郎屋、梵天：預約、席數都沒有來源）。
 - 判斷規則（推薦度的 4 條路徑、上限 3、2 星與 1 星的條件，以及 `localFlavor`、`groupFit`、`elderFit`、`kidsFit`、`confidence`）和校準範例寫在 `assessment-notes.md`「餐廳」一節。
@@ -44,5 +44,19 @@
   - 推薦度和適合度分開：漣、西村食堂 推薦度 5 但都不接受預約（`groupFit` 1），全員用餐要排別家；天びん屋 本店、はっかい、みなと食堂 `groupFit` 5 但推薦度 3。
   - `groupFit` 5 的 12 家（シーホース、天びん屋 本店、クッカーニャ、オレンジ、おきた、はっかい、大春、まつむら、みなと食堂、王将、丸仙、CaroCaro）是全員用餐的候選；オレンジ、大春 營業狀況要先確認，CaroCaro 晚餐不接受中學生以下（`kidsFit` 1）。
   - 料理旅館的非住客用餐（F③）照住宿本體的楽天「餐」分數打推薦度，最高 4。
-  - 中途調整：ザ・貝屋 原本 4，對照規則（2 種以上來源）只有 なっぷ 一種 → 3；七越茶屋 `groupFit` 4 → 3、○八食堂 `localFlavor` 4 → 3（統一成規則的寫法）。
+  - 中途調整（寫進資料檔前）：ザ・貝屋 原本 4，對照規則（2 種以上來源）只有 なっぷ 一種 → 3；七越茶屋 `groupFit` 4 → 3、○八食堂 `localFlavor` 4 → 3（統一成規則的寫法）。
+- 驗證：`scripts/validate` 通過（錯誤 0，警告 811 都是已知的「retrieved 在未來」）。
+
+### 4. 檢查腳本（第 3 批）
+- 新增 `scripts/assessment-check.mjs`（Node，風格照 `restaurant-gaps.mjs`）：`node scripts/assessment-check.mjs <area> [<area> ...] [--types spot,lodging,restaurant] [--stdout]`。讀 `data/areas/<area>/` 的三個資料檔，把 `recommend` 和評分數字明顯矛盾的列出來，寫 `data/derived/assessment-check-<area>.json`（給程式）和 `.md`（給人看）；`--stdout` 只印 Markdown。T8f（`ise futami`）、T9f（`shima`）、T19（`kix`）直接用；沒有資料檔的區域會跳過。
+- 規則（門檻集中在腳本的 `RULES`，比 `assessment-notes.md` 的打分門檻寬一級，只抓差很多的）：
+  - 共通：`tier` 和 `recommend` 對不上；`confidence` high 但評論合計不到 300。
+  - 餐廳：5 星但食べログ 3.5 或 Google 4.0 以下；4 星但食べログ 3.3 或 Google 3.8 以下；2 星以下但食べログ 3.5 以上或 Google 4.4 以上（100 則以上）；4 星以上但食べログ不到 100 則、Google 不到 300 則。
+  - 景點：5 星但 Google 不到 4.2 或不到 500 則；4 星但 Google 不到 4.0；2 星以下但 Google 4.4 以上（200 則以上）；4 星以上但不到 100 則。
+  - 住宿：訂房網分數取楽天、じゃらん、Airbnb、Booking÷2 裡評論數最多的；5 星但訂房網 4.5 或 Google 4.2 以下；4 星但訂房網 4.2 或 Google 3.9 以下；2 星以下但兩邊都很高；4 星以上但兩邊都不到 100 則。
+- 第一次跑列出 7 項（住宿取分方式修正後 6 項），看過後的處理（寫進 `docs/decisions-pending.md`）：
+  - **改**：海鮮ぶん 2 → 3（Google 4.4、181 則）。原本照「冷門（介紹只有 1 篇、心得 0）→ 2」，但同樣只有 1 篇介紹的 久兵衛、錦屋 都打 3，規則套用不一致；改成「讀文沒有任何介紹才打 2」，`assessment-notes.md` 一起改。
+  - **維持**：鳥羽灣遊覽船 4（Google 3.9，觀光三重主打，景點推薦度不只看 Google）；屋形船 おきた 4（體驗型，Google 4.8、449 則）；みち潮 日帰り夕食 4（F③ 看住宿本體的楽天餐 4.55）；ロッキー 4（じゃらん 205 則只寫在 `ratings.note`，沒有 `jalanReviews` 欄位，腳本當 0）；なおみ 4（Airbnb 142 則同樣只在 note，是第 2 批已記的決定）。
+  - 一開始住宿固定先用楽天，鳥羽國際飯店（楽天 4.45、じゃらん 4.6 評論較多）被列出；改成照「評論數多的那個」後不再列出（和住宿的打分規則一致）。
+- 改完重跑：列出 5 項（景點 1、住宿 2、餐廳 2），都是上面維持的項目。輸出 `data/derived/assessment-check-toba.json`、`.md`。
 - 驗證：`scripts/validate` 通過（錯誤 0，警告 811 都是已知的「retrieved 在未來」）。
