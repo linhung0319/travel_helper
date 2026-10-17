@@ -45,3 +45,41 @@
 - `data/areas/ise/spots.json` 18 筆、`data/areas/futami/spots.json` 4 筆。
 - 候選：伊勢 50 筆（included 18、not-included 24、excluded 8）、二見 19 筆（included 4、not-included 12、excluded 3）。
 - `scripts/validate`：錯誤 0（警告只有已知的「retrieved 在未來」）。
+
+## 第 2 批：ise-geku、ise-kurata、ise-asama、ise-outskirts 的 14 個景點（2026-10-18，自動模式）
+
+範圍：Google Maps（Chrome）、照片、讀文筆記，依讀文回填 `stayMinutes`、`kids`、`accessibility` 等。ise-naiku 4 筆和二見 4 筆留給第 3 批。
+
+### 讀文
+- 11 個 subagent（`docs/prompts/dossier.md`，同時最多 5 個，背景執行）：外宮、せんぐう館、外宮參道、河崎、若松屋、徴古館、松尾觀音寺、伊勢苺園、菊池パール 各一；宮域外別宮 3 筆（月夜見宮、月讀宮、倭姬宮）合一；朝熊山 2 筆（金剛證寺、山頂展望台）合一。
+- 共同規則放在 session scratchpad 的 `dossier-rules.md`（範本內容＋spot-v1 面向），每個 prompt 只寫資料點、已知來源、要找的重點。
+- WebSearch：每個 subagent 都用滿 3 次，合計 33 次。讀不到的：co-trip、iko-yo（外宮）、tabi-mag、gazoo、VELTRA（403）、伊勢市步行路線 PDF（404）。
+- 發現：個人心得非常少，多數只有官網、觀光協會、觀光三重、4travel／じゃらん／asoview 口コミ；中文心得 1 篇（gltjp，沒有實用細節）。朝熊山 2 筆完全沒有心得，冬季封路、足湯、拜觀費都沒有來源。
+- 回填由主 session 寫（套用腳本在 scratchpad 的 `apply-t8a2.mjs`，從 59fa7c8 的 `spots.json` 讀，可以重跑）。subagent 推斷的值沒有採用：金剛證寺 `stairs: 少`（來源只說有石階）→ null；倭姬宮 `stairs: 多`（來源「石段が続く参道」）採用。
+
+### Google Maps（Chrome）
+- 方式同 T7c：`/maps/search/<名稱>?hl=ja` → JS 讀 `h1`、`div.F7nice`、網址 `!1s0x…:0x…`（第二段轉十進位＝cid）、`!3d!4d`、主圖（寬 300 以上的 `googleusercontent` 圖）。單一分頁，約 20 次頁面操作，沒有遇到驗證碼、登入或封鎖；結束時關掉分頁。
+- 單一結果直接跳到地點頁時網址還沒更新，要多等幾秒再讀座標（河崎、倭姬宮各重讀一次）。
+- 搜尋結果有多筆：
+  - 外宮參道：直接搜尋跳到道路「伊勢市道外宮参道線」（沒有評論）；「外宮参道 商店街」的列表有兩筆「外宮参道」（4.4／19 則、0 則），取前者。列表另有 参道terrace 4.0（600）、伊勢百貨店 3.9（223）、伊勢菊一 4.5（67）。
+  - 外宮：列表另有 多賀宮 4.5（180）、風宮 4.4（178）、せんぐう館 4.5（955）。
+  - 月夜見宮：另有 高河原神社 4.1（40）。月讀宮：另有 葭原神社 4.4（47）、伊佐奈彌宮 4.6（28）。
+  - 金剛證寺：另有 奥之院 4.2（151）。山頂展望台：另有 天空のポスト 4.3（950）。
+  - 若松屋：Google 是店舖（日本食材店），沒有體驗的獨立地點；下野工場沒查。
+- 座標差（Google vs 原座標）：伊勢苺園 236 m、山頂展望台 156 m、外宮參道 102 m、倭姬宮 82 m、其他 50 m 以內 → 全部保留原座標（300 m 規則）。
+
+### 照片
+- 官網／觀光協會（ise-kanko.jp 的 og:image 或主圖）優先；Wikimedia 用 Commons geosearch（半徑 250 m）找，選 8 張＋朝熊山 2 張（作者、授權從 extmetadata 取）；不夠的補 Google 主圖。
+- Commons API 連續查詢會被擋（"too many requests"），間隔 2 秒以上再查就可以。
+- 沒採用：神宮・徴古館・伊勢苺園官網的 og:image（全站共用圖）；觀光協會徴古館頁的 og:image（路線圖）。
+- 44 個網址全部用 curl 確認 200。
+
+### 其他
+- 菊池パール 官網首頁有「※珠出し体験は、対応出来ません」的一行，看上下文是在講定休日（定休日可以買商品、不能體驗），見 `docs/decisions-pending.md`。
+- 近鐵小俣站的新增請求寫在 `docs/requests.md`（座標用 OSM way 184365192）。
+- 新的人工確認項目加在 `questions.md`（スカイライン冬季路況、金剛證寺石階、若松屋本店上限、菊池パール金具費等 8 條）。
+
+### 結果
+- `spots.json` 14 筆：`links.googleMaps`（cid）、`ratings`、`photos`（2～3 張）都有；`stayMinutes` 7 筆、`kids.friendly` 5 筆（high 4、medium 1）、`indoor` 13 筆（松尾觀音寺 沒有來源）。
+- 筆記 14 份（`dossiers/`）。
+- `scripts/validate`：錯誤 0（警告只有已知的「retrieved 在未來」）。
