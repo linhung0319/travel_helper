@@ -1,0 +1,232 @@
+{
+  "id": "access-kix",
+  "name": { "ja": "関西国際空港 ⇔ 伊勢志摩", "zh": "關西機場 ⇔ 伊勢志摩交通", "en": "Kansai Airport ⇔ Ise-Shima access" },
+  "retrieved": "2026-10-17",
+  "notes": "T1b 整理。研究筆記：data/raw/access/kintetsu-osaka.md（近鐵、難波轉乘、行李）、kix-side.md（機場、南海、JR、利木津巴士、宅配、機場飯店）、road-charter.md（包車、巴士、租車、路況）。近鐵時刻以 2026-03-14 改版為準，南海以 2024-12-21 改版為準，出發前要重查。近鐵票價、特急費用、5 日券見 data/passes.json，這裡只引用不重抄。時間標「推估」的是依公開資料推算，不是官方數字。",
+  "flights": {
+    "arrive": { "date": "2027-02-02", "weekday": "二（近鐵平日時刻）", "flights": [["08:20", "11:55"], ["09:45", "13:20"]], "airport": "関西国際空港" },
+    "depart": { "date": "2027-02-13", "weekday": "六（近鐵土休日時刻）", "flights": [["12:45", "15:00"], ["12:55", "15:05"]], "targetAtAirport": "10:45" },
+    "terminal": "台北線大多用第 1 航廈（T2 官方只列 Peach、濟州航空、春秋航空）；各航空公司實際航廈不明，訂票後確認。鐵路車站只連 T1，T2 要搭免費接駁巴士約 7～9 分",
+    "sources": [
+      { "type": "official", "url": "https://www.kansai-airport.or.jp/en/notices/3054", "retrieved": "2026-10-17", "note": "T2 使用的航空公司" }
+    ]
+  },
+
+  "routes": [
+    {
+      "id": "nankai-kintetsu",
+      "name": "南海ラピート → なんば（步行轉乘）→ 近鐵特急 大阪難波 → 鵜方／賢島",
+      "recommended": true,
+      "transfers": 1,
+      "transferNote": "南海なんば → 近鐵大阪難波 要走地下街。官方 11 分的路線（東改札）沒有電梯；無障礙路線：南海 3F 北改札 → 御堂筋線剪票口旁 → なんばウォーク往西 → 22 號電梯 → 近鐵西改札（B2F）→ 月台 B3F。15 人帶行李抓 20～30 分（推估）",
+      "legs": [
+        { "from": "関西空港", "to": "なんば", "mode": "nankai-rapit", "minutes": 39, "frequency": "平日 :05、:35 發（例 13:35→14:14、14:05→14:43）", "fare": { "adult": 970, "child": 490, "note": "運賃（第三方查詢）＋ラピート レギュラーシート 700／350（網路チケットレス便宜 150；車上買多 300）" } },
+        { "from": "なんば", "to": "大阪難波（近鐵）", "mode": "walk", "minutes": 20, "note": "推估，含電梯路線與 15 人行李" },
+        { "from": "osaka-namba", "to": "ugata", "mode": "kintetsu-express", "minutes": 145, "note": "票價見 passes.json fares.segments（osaka-namba→ugata、→kashikojima）" }
+      ],
+      "totalMinutes": "落地到鵜方約 5 小時（含出關、等車）",
+      "costPerPerson": { "adult": 6080, "child": 3050, "note": "南海 970＋700 加近鐵 2,770＋1,640（passes.json）。用 5 日券的話近鐵運賃包含在券內，只付特急費用" },
+      "sources": [
+        { "type": "official", "url": "https://www.nankai.co.jp/lib/traffic/express/rapit/pdf/rairt_up.pdf", "retrieved": "2026-10-17", "note": "ラピート時刻（2024-12-21 改正）" },
+        { "type": "official", "url": "https://www.nankai.co.jp/lib/traffic/express/rapit/pdf/rairt_down.pdf", "retrieved": "2026-10-17", "note": "ラピート時刻（2024-12-21 改正）" },
+        { "type": "official", "url": "https://www.nankai.co.jp/traffic/express/rapit.html", "retrieved": "2026-10-17", "note": "ラピート特急料金" },
+        { "type": "other", "url": "https://ekitan.com/transit/fare/sf-5130/st-4104", "retrieved": "2026-10-17", "note": "南海 なんば～關西機場 運賃 970／490（非官方）" },
+        { "type": "official", "url": "https://www.kintetsu.co.jp/soukatsu/kounai/nanba.html", "retrieved": "2026-10-17", "note": "大阪難波站內圖：東改札無電梯、無障礙走西改札" },
+        { "type": "official", "url": "https://www.city.osaka.lg.jp/toshikeikaku/cmsfiles/contents/0000369/369380/nanba05-2(202606).pdf", "retrieved": "2026-10-17", "note": "難波無障礙路線圖" },
+        { "type": "official", "url": "https://eki.kintetsu.co.jp/norikae/T5?USR=PC&slCode=350-0&d=1&dw=0", "retrieved": "2026-10-17", "note": "大阪難波 平日時刻表（2026-03-14 現在）" }
+      ]
+    },
+    {
+      "id": "jr-kintetsu",
+      "name": "JR 関空快速 → 鶴橋 → 近鐵特急",
+      "recommended": false,
+      "transfers": 2,
+      "transferNote": "関空快速到天王寺或直通環狀線到鶴橋（はるか不停鶴橋）。鶴橋 JR 轉乘口（3F）到近鐵月台沒有電梯，無障礙路線要先出 JR 中央改札到地面，再進近鐵西改札（1F，有電梯到 2F 月台）",
+      "legs": [
+        { "from": "関西空港", "to": "鶴橋", "mode": "jr-kanku-rapid", "minutes": 68, "example": "13:17 → 鶴橋 14:25（含天王寺轉環狀線）", "fare": { "adult": 1060, "child": null } },
+        { "from": "tsuruhashi", "to": "ugata", "mode": "kintetsu-express", "note": "同一班難波發特急，鶴橋發車晚 6 分（例 16:16）" }
+      ],
+      "note": "外國觀光客的 HARUKA One-way Ticket（關西機場→天王寺 1,300／650）不能中途下車，對鶴橋沒有幫助。比南海路線多一次轉乘、慢，只當南海停駛時的備案",
+      "sources": [
+        { "type": "official", "url": "https://www.westjr.co.jp/travel-information/en/tickets-passes/oneway/haruka/", "retrieved": "2026-10-17", "note": "HARUKA One-way Ticket" },
+        { "type": "official", "url": "https://www.city.osaka.lg.jp/toshikeikaku/cmsfiles/contents/0000369/369380/turuhashi02(202404).pdf", "retrieved": "2026-10-17", "note": "鶴橋無障礙路線" },
+        { "type": "other", "url": "https://transit.yahoo.co.jp/search/result?from=関西空港&to=鶴橋&y=2026&m=10&d=20&hh=13&m1=0&m2=0&type=1", "retrieved": "2026-10-17", "note": "関空快速時刻、運賃（非官方）" }
+      ]
+    },
+    {
+      "id": "limousine-uehommachi",
+      "name": "利木津巴士 關西機場 → 近鐵上本町 → 近鐵特急",
+      "recommended": false,
+      "transfers": 1,
+      "transferNote": "上本町巴士站就在近鐵站旁，地面月台和剪票口同一層，轉乘最平順。但難波發往伊勢志摩的特急，上本町地面月台不停（只有松阪行），要改搭地下月台或去鶴橋，實際轉乘要再確認",
+      "legs": [
+        { "from": "関西空港", "to": "近鉄上本町", "mode": "limousine-bus", "minutes": 55, "frequency": "約每 30 分（例 T1 12:15、12:45、13:15、13:45；表格難讀，要再確認）", "fare": { "adult": 1800, "child": 900 }, "note": "不能預約，先到先上；每人 2 件、合計 30 kg" }
+      ],
+      "sources": [
+        { "type": "official", "url": "https://www.kate.co.jp/timetable/detail/UH", "retrieved": "2026-10-17", "note": "關西機場⇔上本町 時刻、票價" },
+        { "type": "official", "url": "https://www.kate.co.jp/guide/", "retrieved": "2026-10-17", "note": "行李規定" }
+      ]
+    },
+    {
+      "id": "charter",
+      "name": "包車：ジャンボタクシー（Hiace）2 台 或 貸切巴士 1 台",
+      "recommended": null,
+      "transfers": 0,
+      "driving": { "km": 206, "minutes": 174, "toll": 3770, "route": "西名阪＋名阪国道 到 伊勢西 IC（普通車 ETC）；走新名神 233 km、2 時 51 分、6,400 円。伊勢西 IC 到鵜方、賢島再 35～45 分。含休息全程約 3.5～4 小時" },
+      "options": [
+        { "vehicle": "ジャンボタクシー Hiace ×2", "capacity": "每台 9 人（建議 8 人）＋9 個 90L 行李箱（MK 官方表），2 台裝得下 15 人＋15 箱", "price": "每台約 8～9 萬円（依三重近鉄タクシー時間制每小時 11,200 円推估，回送費不明）；參考：フィールドデザイン 大阪⇔伊勢志摩 每台 167,000 円含過路費，但不能在機場上下車" },
+        { "vehicle": "貸切巴士 小型／中型 ×1", "capacity": "マイクロバス很多沒有行李艙，行李能不能放空位要問業者", "price": "依國交省 2025-09 公示下限推估：三重業者約 10.3～12 萬円、大阪業者約 12.4～14.3 萬円（單程，過路費、停車費另計）" }
+      ],
+      "pros": "零轉乘，長輩、小孩最輕鬆；行李不用自己搬上下車",
+      "cons": "比電車貴很多（15 人電車約 6～7 萬，包車 12～18 萬）；2 月名阪国道曾因大雪預防性封路（2024-01、2025-02、2026-01），要有改走新名神的備案、確認雪胎和改道的過路費；要用綠牌車（白牌車違法）；KKday、Klook 沒有現成的關西機場→伊勢商品",
+      "sources": [
+        { "type": "other", "url": "https://www.driveplaza.com/dp/SearchQuick?startPlaceKana=関西国際空港&arrivePlaceKana=伊勢西", "retrieved": "2026-10-17", "note": "距離、時間、過路費" },
+        { "type": "official", "url": "https://www.mk-group.co.jp/osaka/airport/model", "retrieved": "2026-10-17", "note": "Hiace 載客與行李數" },
+        { "type": "official", "url": "https://www.mk-group.co.jp/osaka/airport/", "retrieved": "2026-10-17", "note": "MK 空港定額不含三重" },
+        { "type": "other", "url": "https://fd-system.tours/plan/?lang=1&plan=plan000784", "retrieved": "2026-10-17", "note": "大阪⇔伊勢志摩 Hiace 167,000 円" },
+        { "type": "official", "url": "https://wwwtb.mlit.go.jp/kinki/content/000358939.pdf", "retrieved": "2026-10-17", "note": "近畿 貸切巴士公示運賃" },
+        { "type": "official", "url": "https://wwwtb.mlit.go.jp/chubu/jikou/kasikiri/shinunchin.html", "retrieved": "2026-10-17", "note": "中部 貸切巴士公示運賃" },
+        { "type": "official", "url": "https://www.sanco.co.jp/charter/inquiry/", "retrieved": "2026-10-17", "note": "三重交通 貸切預約 059-229-5534" },
+        { "type": "official", "url": "https://www.pref.nara.jp/secure/332121/20260125houdou3.pdf", "retrieved": "2026-10-17", "note": "名阪国道 大雪預防性封路" },
+        { "type": "official", "url": "https://wwwtb.mlit.go.jp/kinki/content/000367359.pdf", "retrieved": "2026-10-17", "note": "白牌車違法" }
+      ]
+    },
+    {
+      "id": "rejected",
+      "name": "不採用的路線",
+      "items": [
+        "JR はるか → 新大阪 → 新幹線 → 名古屋 → 近鐵特急：約 4.5 小時以上、轉 2 次，比南海＋近鐵慢",
+        "JR 快速みえ（名古屋 → 鳥羽）：只有 2 節車廂、很擠，不適合 15 人帶行李",
+        "JR 関西本線（加茂～亀山）：慢、轉乘多",
+        "高速巴士：關西機場、大阪都沒有直達伊勢志摩的路線",
+        "租車：15 人坐滿 2 台 8 人座就放不下 15 個大行李箱；台灣駕照（附日文譯本）可能只能開 9 座以下；剛下飛機開 3～4 小時加上下雪風險，不建議"
+      ],
+      "sources": [
+        { "type": "media", "url": "https://trafficnews.jp/post/662991/2", "retrieved": "2026-10-17", "note": "快速みえ" },
+        { "type": "official", "url": "https://www.sanco.co.jp/charter/charter01/", "retrieved": "2026-10-17", "note": "三重交通高速巴士路線" },
+        { "type": "official", "url": "https://www.pref.aichi.jp/police/menkyo/qa/menkyo/gaikokumenkyo.html", "retrieved": "2026-10-17", "note": "台灣駕照日文譯本" }
+      ]
+    }
+  ],
+
+  "day1": {
+    "answer": "到得了。以 13:20 那批算，搭南海＋近鐵可以趕上大阪難波 16:10 發的直達特急，18:35 到鵜方、18:40 到賢島；趕不上的話，17:10 那班到鳥羽再轉，20:16 到鵜方。不需要在途中先住一晚",
+    "assumptions": "落地到出關（入境、領 15 人的行李）抓 60～75 分（推估，沒有查到官方數字）",
+    "southboundTrains": {
+      "note": "2/2 是週二，平日時刻。大阪難波往伊勢志摩的特急每小時只有 :10 一班；這段時間沒有しまかぜ（難波發的しまかぜ 10:40 發，而且週二停駛）。trainNo 對應 data/timetables/kintetsu/_travel-times.json 的 trains.weekday",
+      "trains": [
+        { "trainNo": "1-380", "type": "特急（ビスタカー）", "osakaNamba": "14:10", "tsuruhashi": "14:16", "iseshi": "15:55", "toba": "16:09", "ugata": "16:35", "kashikojima": "16:41" },
+        { "trainNo": "1-381", "type": "特急（伊勢志摩ライナー）", "osakaNamba": "15:10", "tsuruhashi": "15:16", "iseshi": "16:55", "toba": "17:09", "ugata": "17:38", "kashikojima": "17:43" },
+        { "trainNo": "1-382", "type": "特急（ビスタカー）", "osakaNamba": "16:10", "tsuruhashi": "16:16", "iseshi": "17:54", "toba": "18:08", "ugata": "18:35", "kashikojima": "18:40", "note": "大阪難波直達賢島的最後一班" },
+        { "trainNo": "1-555", "type": "特急（ビスタカー）", "osakaNamba": "17:10", "tsuruhashi": "17:16", "iseshi": "18:55", "toba": "19:09", "ugata": null, "kashikojima": null, "note": "終點鳥羽。鳥羽轉特急 1-4209（19:52 發 → 鵜方 20:16、賢島 20:21）或普通（19:39 發 → 鵜方 20:13）" },
+        { "trainNo": "1-560", "type": "特急（ビスタカー）", "osakaNamba": "18:10", "tsuruhashi": "18:16", "iseshi": "19:58", "toba": null, "ugata": null, "kashikojima": null, "note": "終點五十鈴川。宇治山田轉普通 20:26 → 鵜方 21:17" },
+        { "trainNo": "1-542", "type": "特急（ビスタカー）", "osakaNamba": "19:10", "tsuruhashi": "19:16", "iseshi": "20:57", "toba": null, "ugata": null, "kashikojima": null, "note": "終點宇治山田。轉特急 1-4208（宇治山田 21:11 → 鵜方 21:47、賢島 21:52）。當天最晚的可行組合" }
+      ],
+      "sources": [
+        { "type": "official", "url": "https://eki.kintetsu.co.jp/norikae/T5?USR=PC&slCode=350-0&d=1&dw=0", "retrieved": "2026-10-17", "note": "大阪難波 平日時刻表（2026-03-14 現在）" },
+        { "type": "official", "url": "https://eki.kintetsu.co.jp/norikae/T5?USR=PC&slCode=452-13&d=1&dw=0", "retrieved": "2026-10-17", "note": "伊勢市 平日時刻表" }
+      ]
+    },
+    "timeline": [
+      { "time": "13:20", "event": "第二批落地" },
+      { "time": "14:20～14:35", "event": "出關（推估）" },
+      { "time": "14:35", "event": "ラピート 關西機場發 → なんば 15:14" },
+      { "time": "15:15～15:45", "event": "步行到近鐵大阪難波（無障礙路線）、買便當" },
+      { "time": "16:10", "event": "近鐵特急 1-382 大阪難波發" },
+      { "time": "18:35／18:40", "event": "到鵜方／賢島" }
+    ],
+    "fallback": "出關太慢、搭 15:05 的ラピート（15:43 到なんば）就趕不上 16:10，改搭 17:10 → 鳥羽轉車，20:16 到鵜方、20:21 到賢島。航班延誤 2 小時以上，最晚還有 19:10 → 宇治山田轉車 21:47 到鵜方",
+    "dinnerWarning": "一泊二食的晚餐通常 18:00～19:00 開始，18:35 到鵜方再搭接駁或計程車，大約 19:00 後才到住宿。訂房時要先問晚餐能不能延到 19:30 以後；搭 17:10 那班的話，第一晚最好選不含晚餐的住宿，或在車上吃便當",
+    "overnightEnRoute": "不需要。只有在航班嚴重延誤、連 19:10 那班都趕不上時，才考慮住大阪難波或伊勢市。如果想讓第一天輕鬆一點，可以第一晚住伊勢市或鳥羽（近 30～45 分鐘），但會打亂「志摩 → 鳥羽 → 伊勢」由南往北的順序，第二天要再往南",
+    "meetup": {
+      "options": [
+        { "id": "wait-at-airport", "plan": "第一批（11:55 落地，約 13:00 出關）在機場等第二批，全員一起搭 14:35 ラピート → 16:10 特急", "pros": "15 人一起行動、一起訂特急（チケットレス每筆最多 8 人，分 2 筆同時訂）；搬行李人手多", "cons": "第一批要在機場等約 1.5 小時" },
+        { "id": "split", "plan": "第一批先走：13:35 的ラピート（14:14 到なんば）→ 15:10 特急（17:38 到鵜方），先 check-in；第二批搭 16:10 特急，在住宿會合", "pros": "第一批（如果長輩在這批）可以早點休息；特急分兩班，各班要訂的座位少", "cons": "兩批各自轉乘難波，各需要會講日文或會看路的人；要訂兩班的特急" },
+        { "id": "charter-wait", "plan": "包車：第一批在機場等，全員約 14:30 上車，約 18:00～18:30 到賢島", "pros": "零轉乘", "cons": "見 routes 的 charter" }
+      ],
+      "recommendation": "電車的話建議全員在機場會合再一起走（wait-at-airport），難波轉乘、訂特急、行李都比較好處理。機場等待時間可以吃午餐。要包車的話一定是全員一起走",
+      "sources": [
+        { "type": "official", "url": "https://www.kintetsu.co.jp/gyoumu/ticket/help/m/rules.html", "retrieved": "2026-10-17", "note": "チケットレス每筆最多 8 人（詳見 passes.json booking）" }
+      ]
+    }
+  },
+
+  "lastDay": {
+    "answer": "從伊勢市出發，最晚要搭 06:24 的特急（或 06:07 直達上本町），也就是 5 點多就要退房，15 人帶長輩小孩很趕。建議 2/12 晚上改住大阪（難波、上本町）或關西機場附近",
+    "assumptions": "2/13 是週六，近鐵用土休日時刻。國際線起飛前約 2 小時到機場（10:45）；15 人帶大行李箱，最好 10:15～10:30 就到（推估）",
+    "fromIseOptions": [
+      { "iseshiDep": "06:07", "train": "1-10209 特急（宇治山田 06:05 發）", "arrive": "鶴橋 07:54、大阪上本町 07:57（終點）", "then": "上本町搭利木津巴士（例 09:10 → T1 10:01），或近鐵到難波轉ラピート 09:30 → 10:08", "airport": "約 10:00～10:10" },
+      { "iseshiDep": "06:24", "train": "1-9174 特急 → 伊勢中川 07:11 轉 1-9186 特急", "arrive": "鶴橋 08:30、上本町 08:33", "then": "到難波轉ラピート 09:30 → 10:08；或鶴橋轉 JR 関空快速", "airport": "約 10:08" },
+      { "iseshiDep": "06:30", "train": "1-10208 急行（不用特急券，鳥羽 06:13 發）", "arrive": "鶴橋 08:53、上本町 08:56", "then": "難波 ラピート 10:00 → 10:38，或鶴橋 09:26 JR 関空快速 → 10:39", "airport": "約 10:38（剛好，沒有餘裕）" },
+      { "iseshiDep": "06:59／07:13", "train": "特急 → 伊勢中川轉 1-9183", "arrive": "鶴橋 09:16", "then": "鶴橋 09:26 JR 関空快速 → 10:39；鶴橋 JR 轉乘無障礙路線要繞到地面，10 分鐘不夠 15 人", "airport": "不建議" }
+    ],
+    "fromIseNote": "伊勢中川轉乘的月台、電梯情況不明。08:49 伊勢市發直達難波的 1-9080 太晚。包車從伊勢 06:45～07:00 出發約 10:15 到機場（推估），但 2 月有名阪国道雪封路的風險，不建議當唯一方案",
+    "stayOn0212": [
+      { "where": "關西機場（ホテル日航関西空港）", "toAirport": "步行直通 T1", "note": "最輕鬆；價格不明" },
+      { "where": "りんくうタウン（OMO関西空港、スターゲイトホテル関西エアポート 等）", "toAirport": "OMO 有免費接駁（只限飯店→機場，05:00～11:00，到 T1 約 10 分，20～24 座，要預約）；或南海、JR 1 站", "note": "價格不明" },
+      { "where": "大阪難波／上本町", "toAirport": "ラピート 09:30 → 10:08（約 40 分）", "note": "2/12 可以多一個大阪晚上；從伊勢 2/12 下午搭特急直達難波（不用轉車）。具體飯店沒查" }
+    ],
+    "recommendation": "2/12 晚上住大阪難波或機場附近。2/12 下午從伊勢市搭直達難波的特急，2/13 早上從難波搭ラピート（09:00 → 09:38 或 09:30 → 10:08），或住機場飯店直接走到航廈。住大阪的話 2/12 白天的伊勢行程要提早結束",
+    "sources": [
+      { "type": "official", "url": "https://eki.kintetsu.co.jp/norikae/T5?USR=PC&slCode=452-13&d=1&dw=0", "retrieved": "2026-10-17", "note": "伊勢市 時刻表（土休日）" },
+      { "type": "official", "url": "https://www.nankai.co.jp/lib/traffic/express/rapit/pdf/rairt_up.pdf", "retrieved": "2026-10-17", "note": "ラピート なんば→關西機場 土休日" },
+      { "type": "official", "url": "https://www.kate.co.jp/timetable/detail/UH", "retrieved": "2026-10-17", "note": "上本町 → 關西機場 利木津巴士" },
+      { "type": "official", "url": "https://www.nankai.co.jp/traffic/otoku/kankutokuwari.html", "retrieved": "2026-10-17", "note": "関空トク割ラピートきっぷ（往機場方向限定）大人 1,560／兒童 780" }
+    ]
+  },
+
+  "luggage": {
+    "kintetsuRules": "每人最多 2 件、三邊合計 250 cm 以內、30 kg 以內；沒有像新幹線那樣的大型行李預約制度",
+    "trainSpace": "ビスタカー（30000 系）、ACE 只有頭頂行李架，車廂內大型行李區不明；伊勢志摩ライナー在サロン席、ツイン席有行李空間；しまかぜ車廂兩端有置物櫃和大型行李區。15 個大行李箱要分散放在座位前、車廂兩端，建議訂座時選靠車廂兩端的位子（推估）",
+    "rapit": "ラピート有行李放置區，容量不明；沒有公開的團體訂位方式",
+    "kixDelivery": "ヤマト在 T1 4F 出境大廳有櫃台（06:30～22:30，2026-08 開設；1F 入境大廳預計 2026-11 開設），JAL ABC 也在 T1。當天送達只限關西 2 府 4 縣，三重不包括，2/2 寄出最快 2/3 才到志摩。如果第一、二晚住同一間志摩的住宿，可以把大行李寄過去、只帶過夜包；160 尺寸單程約 2,510 円（推估）",
+    "returnDelivery": "ヤマト「空港宅急便」：出發前 2 天（部分地區 3 天）寄出，即最晚 2/11（保險 2/10）從伊勢的住宿寄，2/12 到機場，當天在櫃台領。三重 → 關西機場（含機場手續費 660 円，現金價）：120 尺寸 2,510、140 尺寸 2,850、160 尺寸 3,170、180 尺寸 3,720 円；超過 30 kg 不收；同一地址多件每件減 100 円",
+    "handsFree": "伊勢市站手荷物預かり所（JR 剪票口外）：寄放 600 円；13:10 前交件，17:00 前送到伊勢、鳥羽、志摩的住宿，每件 1,150 円。鳥羽站：寄放 500 円；送住宿每件 1,150 円（12:00 前交件），送伊勢市站 1,100 円。宇治山田、鵜方、賢島不明。伊勢市站的寄放處 2026-03 曾報導很擠，15 件要先打電話。適合旅程中換住宿的日子",
+    "recommendation": "第一天行李自己帶（宅配隔天才到）。中途換住宿用伊勢市站、鳥羽站的手ぶら観光。最後一天如果 2/12 住大阪或機場，就自己帶；如果直接從伊勢去機場，2/11 寄空港宅急便、只帶隨身行李",
+    "sources": [
+      { "type": "official", "url": "https://www.kintetsu.co.jp/gyoumu/kippu/nyuujouken/nyuujouken.html", "retrieved": "2026-10-17", "note": "近鐵隨身行李規定" },
+      { "type": "wikipedia", "url": "https://ja.wikipedia.org/wiki/近鉄23000系電車", "retrieved": "2026-10-17", "note": "伊勢志摩ライナー行李空間" },
+      { "type": "official", "url": "https://cdn.kyodonewsprwire.jp/prwfile/release/M106587/202607162672/_prw_OR1fl_oYk435xA.pdf", "retrieved": "2026-10-17", "note": "ヤマト關西機場新櫃台（新聞稿）" },
+      { "type": "official", "url": "https://www.kuronekoyamato.co.jp/ytc/customer/send/services/airport/", "retrieved": "2026-10-17", "note": "空港宅急便規則、價格" },
+      { "type": "tourism", "url": "https://www.kankomie.or.jp/spot/22158", "retrieved": "2026-10-17", "note": "伊勢市站手荷物預かり所" },
+      { "type": "tourism", "url": "https://www.toba.gr.jp/helpful/baggage/", "retrieved": "2026-10-17", "note": "鳥羽站行李寄放、配送" }
+    ]
+  },
+
+  "accessibility": {
+    "transfersByRoute": "南海＋近鐵：轉 1 次（難波，要走地下街）；JR＋近鐵：轉 2 次；包車：0 次。第一天 17:10 的備案在鳥羽多轉 1 次（同站換月台）",
+    "stations": [
+      { "station": "關西機場站", "note": "南海、JR 共用，連 T1 2F；ホテル日航関西空港步行直通" },
+      { "station": "南海なんば", "note": "有電梯、手扶梯、無障礙廁所；2F 中央改札、南改札到月台沒有電梯，無障礙走 3F 北改札" },
+      { "station": "近鐵大阪難波", "note": "剪票口 B2F、月台 B3F；東改札沒有電梯，用西改札（なんばウォーク 22 號電梯）" },
+      { "station": "鶴橋", "note": "JR 轉乘口沒有電梯，無障礙路線要出站到地面，近鐵西改札有電梯" },
+      { "station": "大阪上本町（地面月台）", "note": "終點式月台和剪票口同一層，無階梯；旁邊就是利木津巴士站" },
+      { "station": "伊勢中川", "note": "不明" },
+      { "station": "伊勢市、宇治山田、鳥羽、鵜方、賢島", "note": "見 docs/requests.md 的 [T1] stations.json 請求：都有電梯；賢島月台到北口（巴士、計程車、飯店接駁）幾乎平面" }
+    ],
+    "sources": [
+      { "type": "official", "url": "https://www.kintetsu.co.jp/soukatsu/kounai/nanba.html", "retrieved": "2026-10-17", "note": "大阪難波站內圖" },
+      { "type": "official", "url": "https://www.city.osaka.lg.jp/toshikeikaku/cmsfiles/contents/0000369/369380/nanba05-2(202606).pdf", "retrieved": "2026-10-17", "note": "難波無障礙路線" },
+      { "type": "official", "url": "https://www.city.osaka.lg.jp/toshikeikaku/cmsfiles/contents/0000369/369380/turuhashi02(202404).pdf", "retrieved": "2026-10-17", "note": "鶴橋無障礙路線" }
+    ]
+  },
+
+  "openQuestions": [
+    "台北線各航空公司在關西機場用哪個航廈",
+    "落地到出關的實際時間（官網 403，沒有取得）",
+    "ラピート的團體訂位方式、行李空間容量",
+    "近鐵 16:10、15:10 特急的實際車型（影響行李空間）",
+    "伊勢中川站的電梯、轉乘月台",
+    "上本町利木津巴士的完整時刻；上本町地下月台和特急的關係",
+    "包車業者的正式報價（三重交通貸切 059-229-5534、三重近鉄タクシー、三交タクシー）",
+    "2027 年 2 月的近鐵、南海時刻有沒有改",
+    "機場、大阪飯店的 2/12 價格"
+  ],
+
+  "sources": [
+    { "type": "official", "url": "https://eki.kintetsu.co.jp/norikae/T5?USR=PC&slCode=350-0&d=1&dw=0", "retrieved": "2026-10-17", "note": "近鐵大阪難波時刻表" },
+    { "type": "official", "url": "https://www.nankai.co.jp/traffic/express/rapit.html", "retrieved": "2026-10-17", "note": "南海ラピート" },
+    { "type": "official", "url": "https://www.kuronekoyamato.co.jp/ytc/customer/send/services/airport/", "retrieved": "2026-10-17", "note": "空港宅急便" },
+    { "type": "other", "url": "https://www.driveplaza.com/dp/SearchQuick?startPlaceKana=関西国際空港&arrivePlaceKana=伊勢西", "retrieved": "2026-10-17", "note": "開車距離、過路費" }
+  ]
+}
