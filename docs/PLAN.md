@@ -156,7 +156,7 @@
 | 階段 1 | T1→T1b、T2→T3→T4a→T4b→T4c（同一條 lane 依序）、T5、T6 | **4**（T1b 也可以另開第 5 個；T4b 可以拆成 2 個並行） |
 | 階段 2 | T7（和你一起討論） | **1** |
 | 階段 3 開始 | T7b、T8a、T9a、T11、T14 | **5**（資料 3 條 lane 各 1 個，介面 2 個） |
-| 階段 3 中 | 鳥羽 T7c、T7d、T7e（3 個並行）；伊勢、志摩各自往下一步；T19 | **5～7**；同時用 Chrome 的 session 建議不超過 3 個 |
+| 階段 3 中 | 鳥羽 T7c、T7d、T7e（3 個並行）；伊勢、志摩各自往下一步；T19 | **5～7**；但**用 Chrome 的 session 同時只開 1 個**（見下方「Chrome 的操作」） |
 | 階段 3 後 | T7f→T7g、T8c～T8f、T9c～T9f、T10、T11/T12、T14 | 4～5 |
 | 階段 3 最後 | T13，以及繼續 T11/T12/T14 | 2～3 |
 | 階段 4 | T15（可拆成兩個子任務，見任務說明） | 1～2 |
@@ -168,7 +168,10 @@
 - **不同區域可以並行**：伊勢、志摩、關西機場周邊各自寫自己的檔案，不會互相衝突。唯一共用的是 `areas.json`（T8a、T9a 各自加自己區域的 `regions`），merge 時兩邊都保留。
 - **同一個檔案不要兩個 session 同時寫**：鳥羽的 T7b 會同時改三個檔案，所以要先單獨做；之後 T7c（`spots.json`）、T7d（`lodging.json`）、T7e（`restaurants.json`）各寫一個檔案，可以並行。T7f 重算 anchors 要用 T7c 新增的港口，所以等三個都 merge 後再做。
 - **共用腳本誰先寫**：楽天 API 的查詢腳本由 T7d 寫，T8b、T9b、T19 直接用；評分檢查腳本和校準範例由 T7g 產生，T8f、T9f、T19 的評分部分要等 T7g。
-- **Chrome 的操作**：T7c、T7d、T7e、T8a～T8d、T9a～T9d 都要用 Claude in Chrome。多個 session 可以各開自己的分頁，但同時太多容易互相干擾，也容易變成大量瀏覽，建議同時不超過 3 個。
+- **Chrome 的操作**：T7c、T7d、T7e、T8a～T8d、T9a～T9d 都要用 Claude in Chrome。官方文件沒有說明多個 Claude Code session 同時用同一個 Chrome 是否支援；Windows 上有具名管道衝突（EADDRINUSE）的已知問題，文件的處理方式是「關掉其他使用 Chrome 的 Claude Code session」；社群回報過多個 session 共用同一個分頁群組。所以：
+  - **預設同時只開 1 個用 Chrome 的 session**；其他 session 做不用 Chrome 的工作（T7b、讀文 subagent、楽天 API、收尾、摘要與評分、T10、T11、T14）。
+  - 同一個任務裡，Chrome 的部分集中在主 session，讀文交給 subagent（WebFetch），所以一個 session 用 Chrome 也不會太慢。
+  - 想多開的話，先用 2 個 session 做一次小測試（各開一個頁面、互相切換），確認沒有搶分頁或斷線，再寫進這裡。
 - **T7 是匯流點**：試做的資料和地圖都要看過之後才能訂規則，訂好再擴展。
 - **介面和資料可以並行**：地圖只依賴 schema，可以先用鳥羽的資料或假資料開發。
 
