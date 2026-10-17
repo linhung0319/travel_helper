@@ -1,0 +1,137 @@
+[
+  {
+    "id": "fixture-toba-lodging-1",
+    "type": "lodging",
+    "name": {
+      "ja": "仮lodging1",
+      "zh": "（假）住宿 toba-1"
+    },
+    "area": "toba",
+    "coords": [
+      136.844,
+      34.488
+    ],
+    "coordsSource": "manual",
+    "sources": [
+      {
+        "type": "manual",
+        "url": "https://example.com/fixture",
+        "retrieved": "2026-10-17",
+        "note": "開發用假資料，不是真的店家"
+      }
+    ],
+    "verified": false,
+    "extra": {
+      "fixtureNote": "假資料"
+    },
+    "kind": "hotel"
+  },
+  {
+    "id": "fixture-toba-lodging-2",
+    "type": "lodging",
+    "name": {
+      "ja": "仮lodging2",
+      "zh": "（假）住宿 toba-2"
+    },
+    "area": "toba",
+    "coords": [
+      136.853,
+      34.47
+    ],
+    "coordsSource": "manual",
+    "sources": [
+      {
+        "type": "manual",
+        "url": "https://example.com/fixture",
+        "retrieved": "2026-10-17",
+        "note": "開發用假資料，不是真的店家"
+      }
+    ],
+    "verified": false,
+    "extra": {
+      "fixtureNote": "假資料"
+    },
+    "kind": "ryokan"
+  },
+  {
+    "id": "fixture-shima-lodging-1",
+    "type": "lodging",
+    "name": {
+      "ja": "仮lodging1",
+      "zh": "（假）住宿 shima-1"
+    },
+    "area": "shima",
+    "coords": [
+      136.823,
+      34.308
+    ],
+    "coordsSource": "manual",
+    "sources": [
+      {
+        "type": "manual",
+        "url": "https://example.com/fixture",
+        "retrieved": "2026-10-17",
+        "note": "開發用假資料，不是真的店家"
+      }
+    ],
+    "verified": false,
+    "extra": {
+      "fixtureNote": "假資料"
+    },
+    "kind": "hotel"
+  },
+  {
+    "id": "fixture-ise-lodging-1",
+    "type": "lodging",
+    "name": {
+      "ja": "仮lodging1",
+      "zh": "（假）住宿 ise-1"
+    },
+    "area": "ise",
+    "coords": [
+      136.712,
+      34.49
+    ],
+    "coordsSource": "manual",
+    "sources": [
+      {
+        "type": "manual",
+        "url": "https://example.com/fixture",
+        "retrieved": "2026-10-17",
+        "note": "開發用假資料，不是真的店家"
+      }
+    ],
+    "verified": false,
+    "extra": {
+      "fixtureNote": "假資料"
+    },
+    "kind": "hotel"
+  },
+  {
+    "id": "fixture-shima-lodging-2",
+    "type": "lodging",
+    "name": {
+      "ja": "仮lodging2",
+      "zh": "（假）住宿 shima-2"
+    },
+    "area": "shima",
+    "coords": [
+      34.33,
+      136.826
+    ],
+    "coordsSource": "manual",
+    "sources": [
+      {
+        "type": "manual",
+        "url": "https://example.com/fixture",
+        "retrieved": "2026-10-17",
+        "note": "開發用假資料，不是真的店家"
+      }
+    ],
+    "verified": false,
+    "extra": {
+      "fixtureNote": "故意的錯誤：經緯度顛倒"
+    },
+    "kind": "minshuku"
+  }
+]

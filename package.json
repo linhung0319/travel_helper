@@ -6,7 +6,8 @@
   "scripts": {
     "validate": "node scripts/validate.mjs",
     "kintetsu:fetch": "node scripts/kintetsu-timetable.mjs",
-    "next-train": "node scripts/next-train.mjs"
+    "next-train": "node scripts/next-train.mjs",
+    "test:geo": "node --experimental-strip-types --disable-warning=ExperimentalWarning --test \"scripts/test/*.test.ts\""
   },
   "devDependencies": {
     "ajv": "^8.20.0",

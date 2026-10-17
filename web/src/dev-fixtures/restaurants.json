@@ -1,0 +1,176 @@
+[
+  {
+    "id": "fixture-toba-restaurant-1",
+    "type": "restaurant",
+    "name": {
+      "ja": "仮restaurant1",
+      "zh": "（假）餐廳 toba-1"
+    },
+    "area": "toba",
+    "coords": [
+      136.8445,
+      34.486
+    ],
+    "coordsSource": "manual",
+    "sources": [
+      {
+        "type": "manual",
+        "url": "https://example.com/fixture",
+        "retrieved": "2026-10-17",
+        "note": "開發用假資料，不是真的店家"
+      }
+    ],
+    "verified": false,
+    "extra": {
+      "fixtureNote": "假資料"
+    },
+    "contexts": [
+      "lunch"
+    ]
+  },
+  {
+    "id": "fixture-toba-restaurant-2",
+    "type": "restaurant",
+    "name": {
+      "ja": "仮restaurant2",
+      "zh": "（假）餐廳 toba-2"
+    },
+    "area": "toba",
+    "coords": [
+      136.847,
+      34.483
+    ],
+    "coordsSource": "manual",
+    "sources": [
+      {
+        "type": "manual",
+        "url": "https://example.com/fixture",
+        "retrieved": "2026-10-17",
+        "note": "開發用假資料，不是真的店家"
+      }
+    ],
+    "verified": false,
+    "extra": {
+      "fixtureNote": "假資料"
+    },
+    "contexts": [
+      "dinner"
+    ]
+  },
+  {
+    "id": "fixture-toba-restaurant-3",
+    "type": "restaurant",
+    "name": {
+      "ja": "仮restaurant3",
+      "zh": "（假）餐廳 toba-3"
+    },
+    "area": "toba",
+    "coords": [
+      136.8425,
+      34.487
+    ],
+    "coordsSource": "manual",
+    "sources": [
+      {
+        "type": "manual",
+        "url": "https://example.com/fixture",
+        "retrieved": "2026-10-17",
+        "note": "開發用假資料，不是真的店家"
+      }
+    ],
+    "verified": false,
+    "extra": {
+      "fixtureNote": "假資料"
+    },
+    "contexts": [
+      "transit"
+    ]
+  },
+  {
+    "id": "fixture-shima-restaurant-1",
+    "type": "restaurant",
+    "name": {
+      "ja": "仮restaurant1",
+      "zh": "（假）餐廳 shima-1"
+    },
+    "area": "shima",
+    "coords": [
+      136.8262,
+      34.33
+    ],
+    "coordsSource": "manual",
+    "sources": [
+      {
+        "type": "manual",
+        "url": "https://example.com/fixture",
+        "retrieved": "2026-10-17",
+        "note": "開發用假資料，不是真的店家"
+      }
+    ],
+    "verified": false,
+    "extra": {
+      "fixtureNote": "假資料"
+    },
+    "contexts": [
+      "lunch"
+    ]
+  },
+  {
+    "id": "fixture-ise-restaurant-1",
+    "type": "restaurant",
+    "name": {
+      "ja": "仮restaurant1",
+      "zh": "（假）餐廳 ise-1"
+    },
+    "area": "ise",
+    "coords": [
+      136.725,
+      34.46
+    ],
+    "coordsSource": "manual",
+    "sources": [
+      {
+        "type": "manual",
+        "url": "https://example.com/fixture",
+        "retrieved": "2026-10-17",
+        "note": "開發用假資料，不是真的店家"
+      }
+    ],
+    "verified": false,
+    "extra": {
+      "fixtureNote": "假資料"
+    },
+    "contexts": [
+      "snack"
+    ]
+  },
+  {
+    "id": "fixture-toba-restaurant-1",
+    "type": "restaurant",
+    "name": {
+      "ja": "仮restaurant1",
+      "zh": "（假）餐廳 toba-1"
+    },
+    "area": "toba",
+    "coords": [
+      136.845,
+      34.485
+    ],
+    "coordsSource": "manual",
+    "sources": [
+      {
+        "type": "manual",
+        "url": "https://example.com/fixture",
+        "retrieved": "2026-10-17",
+        "note": "開發用假資料，不是真的店家"
+      }
+    ],
+    "verified": false,
+    "extra": {
+      "fixtureNote": "故意的錯誤：ID 重複"
+    },
+    "contexts": [
+      "cafe"
+    ]
+  }
+]
