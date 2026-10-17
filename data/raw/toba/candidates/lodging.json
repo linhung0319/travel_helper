@@ -11,7 +11,12 @@
     "pointId": "toba-todaya",
     "ratings": {
       "rakuten": 4.42,
-      "rakutenReviews": 2326
+      "rakutenReviews": 2343,
+      "google": 4,
+      "googleReviews": 959
+    },
+    "links": {
+      "googleMaps": "https://maps.google.com/?cid=16764296179127339954"
     }
   },
   {
@@ -26,7 +31,12 @@
     "pointId": "toba-kokusai-hotel",
     "ratings": {
       "rakuten": 4.45,
-      "rakutenReviews": 1134
+      "rakutenReviews": 1147,
+      "google": 4.3,
+      "googleReviews": 1311
+    },
+    "links": {
+      "googleMaps": "https://maps.google.com/?cid=7322715018306743510"
     }
   },
   {
@@ -41,7 +51,12 @@
     "pointId": "toba-shiojitei",
     "ratings": {
       "rakuten": 4.55,
-      "rakutenReviews": 997
+      "rakutenReviews": 997,
+      "google": 4.3,
+      "googleReviews": 827
+    },
+    "links": {
+      "googleMaps": "https://maps.google.com/?cid=15272840618039616145"
     }
   },
   {
@@ -55,8 +70,13 @@
     "reason": null,
     "pointId": "toba-seaside-hotel",
     "ratings": {
-      "rakuten": 4.41,
-      "rakutenReviews": 1634
+      "rakuten": 4.42,
+      "rakutenReviews": 1650,
+      "google": 4.1,
+      "googleReviews": 2285
+    },
+    "links": {
+      "googleMaps": "https://maps.google.com/?cid=5370321429050937368"
     }
   },
   {
@@ -71,7 +91,12 @@
     "pointId": "toba-view-hotel-hanashinju",
     "ratings": {
       "rakuten": 4.39,
-      "rakutenReviews": 1717
+      "rakutenReviews": 1724,
+      "google": 4,
+      "googleReviews": 867
+    },
+    "links": {
+      "googleMaps": "https://maps.google.com/?cid=5649092476483122273"
     }
   },
   {
@@ -85,8 +110,13 @@
     "reason": null,
     "pointId": "toba-senpokaku",
     "ratings": {
-      "rakuten": 4.28,
-      "rakutenReviews": 1275
+      "rakuten": 4.29,
+      "rakutenReviews": 1278,
+      "google": 3.9,
+      "googleReviews": 884
+    },
+    "links": {
+      "googleMaps": "https://maps.google.com/?cid=7828602569851740785"
     }
   },
   {
@@ -100,8 +130,13 @@
     "reason": null,
     "pointId": "toba-grand-hotel",
     "ratings": {
-      "rakuten": 4.49,
-      "rakutenReviews": 4318
+      "rakuten": 4.47,
+      "rakutenReviews": 4329,
+      "google": 4.1,
+      "googleReviews": 1887
+    },
+    "links": {
+      "googleMaps": "https://maps.google.com/?cid=10450912265696800281"
     }
   },
   {
@@ -116,7 +151,12 @@
     "pointId": "toba-kochoran",
     "ratings": {
       "rakuten": 4.44,
-      "rakutenReviews": 1491
+      "rakutenReviews": 1495,
+      "google": 4.1,
+      "googleReviews": 738
+    },
+    "links": {
+      "googleMaps": "https://maps.google.com/?cid=5782841468991380273"
     }
   },
   {
@@ -130,8 +170,13 @@
     "reason": null,
     "pointId": "toba-saichoraku",
     "ratings": {
-      "rakuten": 3.85,
-      "rakutenReviews": 1229
+      "rakuten": 3.83,
+      "rakutenReviews": 1239,
+      "google": 3.6,
+      "googleReviews": 1669
+    },
+    "links": {
+      "googleMaps": "https://maps.google.com/?cid=14388968417459406705"
     }
   },
   {
@@ -145,8 +190,13 @@
     "reason": null,
     "pointId": "toba-ocean-resort",
     "ratings": {
-      "rakuten": 4.12,
-      "rakutenReviews": 2733
+      "rakuten": 4.09,
+      "rakutenReviews": 2739,
+      "google": 4,
+      "googleReviews": 1277
+    },
+    "links": {
+      "googleMaps": "https://maps.google.com/?cid=10883172910691436448"
     }
   },
   {
@@ -160,8 +210,13 @@
     "reason": null,
     "pointId": "toba-amanoshima",
     "ratings": {
-      "rakuten": 4.2,
-      "rakutenReviews": 1098
+      "rakuten": 4.22,
+      "rakutenReviews": 1102,
+      "google": 3.9,
+      "googleReviews": 288
+    },
+    "links": {
+      "googleMaps": "https://maps.google.com/?cid=15497936183367246491"
     }
   },
   {
@@ -176,7 +231,12 @@
     "pointId": "toba-kamenoi-hotel",
     "ratings": {
       "rakuten": 4.15,
-      "rakutenReviews": 1139
+      "rakutenReviews": 1146,
+      "google": 3.9,
+      "googleReviews": 928
+    },
+    "links": {
+      "googleMaps": "https://maps.google.com/?cid=2454234225546370204"
     }
   },
   {
@@ -190,7 +250,13 @@
     "reason": null,
     "pointId": "toba-osatsu-michishio",
     "ratings": {
-      "rakuten": 4.38
+      "rakuten": 4.39,
+      "rakutenReviews": 4943,
+      "google": 4.3,
+      "googleReviews": 773
+    },
+    "links": {
+      "googleMaps": "https://maps.google.com/?cid=10961817507857237206"
     }
   },
   {
@@ -204,7 +270,13 @@
     "reason": null,
     "pointId": "toba-osatsu-sora-no-kaze",
     "ratings": {
-      "rakuten": 4.5
+      "rakuten": 4.5,
+      "rakutenReviews": 1801,
+      "google": 4.2,
+      "googleReviews": 619
+    },
+    "links": {
+      "googleMaps": "https://maps.google.com/?cid=8217610275262821245"
     }
   },
   {
@@ -218,7 +290,13 @@
     "reason": null,
     "pointId": "toba-osatsu-ichii",
     "ratings": {
-      "rakuten": 4.23
+      "rakuten": 4.23,
+      "rakutenReviews": 2029,
+      "google": 3.8,
+      "googleReviews": 558
+    },
+    "links": {
+      "googleMaps": "https://maps.google.com/?cid=10084562737584440196"
     }
   },
   {
@@ -232,7 +310,13 @@
     "reason": null,
     "pointId": "toba-osatsu-ohtaya",
     "ratings": {
-      "rakuten": 4.64
+      "rakuten": 4.64,
+      "rakutenReviews": 463,
+      "google": 4.3,
+      "googleReviews": 162
+    },
+    "links": {
+      "googleMaps": "https://maps.google.com/?cid=17015909701539195772"
     }
   },
   {
@@ -246,7 +330,13 @@
     "reason": null,
     "pointId": "toba-osatsu-nakayoshi",
     "ratings": {
-      "rakuten": 4.74
+      "rakuten": 4.74,
+      "rakutenReviews": 138,
+      "google": 4.4,
+      "googleReviews": 129
+    },
+    "links": {
+      "googleMaps": "https://maps.google.com/?cid=5225507501311499002"
     }
   },
   {
@@ -260,7 +350,13 @@
     "reason": null,
     "pointId": "toba-osatsu-kashio",
     "ratings": {
-      "rakuten": 5
+      "rakuten": 4.94,
+      "rakutenReviews": 137,
+      "google": 4.7,
+      "googleReviews": 90
+    },
+    "links": {
+      "googleMaps": "https://maps.google.com/?cid=8637192482555009752"
     }
   },
   {
@@ -274,7 +370,13 @@
     "reason": null,
     "pointId": "toba-kuzaki-tamaya",
     "ratings": {
-      "rakuten": 4.81
+      "rakuten": 4.81,
+      "rakutenReviews": 435,
+      "google": 4.1,
+      "googleReviews": 38
+    },
+    "links": {
+      "googleMaps": "https://maps.google.com/?cid=8932163273057432273"
     }
   },
   {
@@ -288,7 +390,13 @@
     "reason": null,
     "pointId": "toba-ijika-kagura",
     "ratings": {
-      "rakuten": 4.35
+      "rakuten": 4.35,
+      "rakutenReviews": 3880,
+      "google": 4.1,
+      "googleReviews": 1041
+    },
+    "links": {
+      "googleMaps": "https://maps.google.com/?cid=5234885912897678253"
     }
   },
   {
@@ -302,7 +410,13 @@
     "reason": null,
     "pointId": "toba-motoura-sun-urashima",
     "ratings": {
-      "rakuten": 4.63
+      "rakuten": 4.63,
+      "rakutenReviews": 1045,
+      "google": 4.5,
+      "googleReviews": 984
+    },
+    "links": {
+      "googleMaps": "https://maps.google.com/?cid=10853908049603136495"
     }
   },
   {
@@ -316,7 +430,13 @@
     "reason": null,
     "pointId": "toba-uramura-marusan",
     "ratings": {
-      "rakuten": 4.84
+      "rakuten": 4.85,
+      "rakutenReviews": 306,
+      "google": 4.6,
+      "googleReviews": 77
+    },
+    "links": {
+      "googleMaps": "https://maps.google.com/?cid=13910879656447217722"
     }
   },
   {
@@ -330,7 +450,13 @@
     "reason": null,
     "pointId": "toba-uramura-miurasou",
     "ratings": {
-      "rakuten": 4.63
+      "rakuten": 4.6,
+      "rakutenReviews": 196,
+      "google": 4.5,
+      "googleReviews": 113
+    },
+    "links": {
+      "googleMaps": "https://maps.google.com/?cid=13238399340348917645"
     }
   },
   {
@@ -344,7 +470,13 @@
     "reason": null,
     "pointId": "toba-motoura-ginrin",
     "ratings": {
-      "rakuten": 4.51
+      "rakuten": 4.54,
+      "rakutenReviews": 228,
+      "google": 4.4,
+      "googleReviews": 127
+    },
+    "links": {
+      "googleMaps": "https://maps.google.com/?cid=12443972553253250301"
     }
   },
   {
@@ -358,7 +490,13 @@
     "reason": null,
     "pointId": "toba-toshijima-nakamuraya",
     "ratings": {
-      "rakuten": 4.36
+      "rakuten": 4.36,
+      "rakutenReviews": 237,
+      "google": 4.3,
+      "googleReviews": 208
+    },
+    "links": {
+      "googleMaps": "https://maps.google.com/?cid=3999162207774915938"
     }
   },
   {
@@ -372,7 +510,13 @@
     "reason": null,
     "pointId": "toba-toshijima-suzunami",
     "ratings": {
-      "rakuten": 4.62
+      "rakuten": 4.56,
+      "rakutenReviews": 187,
+      "google": 4.1,
+      "googleReviews": 190
+    },
+    "links": {
+      "googleMaps": "https://maps.google.com/?cid=16995950068400360330"
     }
   },
   {
@@ -386,7 +530,13 @@
     "reason": null,
     "pointId": "toba-toshijima-yamashichi",
     "ratings": {
-      "rakuten": 4.29
+      "rakuten": 4.29,
+      "rakutenReviews": 127,
+      "google": 4.2,
+      "googleReviews": 102
+    },
+    "links": {
+      "googleMaps": "https://maps.google.com/?cid=4829018036424678639"
     }
   },
   {
@@ -400,7 +550,13 @@
     "reason": null,
     "pointId": "toba-toshijima-misaki",
     "ratings": {
-      "rakuten": 4.5
+      "rakuten": 4.52,
+      "rakutenReviews": 126,
+      "google": 4.3,
+      "googleReviews": 179
+    },
+    "links": {
+      "googleMaps": "https://maps.google.com/?cid=2587708139054811993"
     }
   },
   {
@@ -412,7 +568,14 @@
     "category": "ryokan",
     "status": "included",
     "reason": null,
-    "pointId": "toba-toshijima-takaraya"
+    "pointId": "toba-toshijima-takaraya",
+    "ratings": {
+      "google": 3.8,
+      "googleReviews": 28
+    },
+    "links": {
+      "googleMaps": "https://maps.google.com/?cid=2775753212133451391"
+    }
   },
   {
     "key": "toba-toshijima-teiyou",
@@ -423,7 +586,14 @@
     "category": "ryokan",
     "status": "included",
     "reason": null,
-    "pointId": "toba-toshijima-teiyou"
+    "pointId": "toba-toshijima-teiyou",
+    "ratings": {
+      "google": 4,
+      "googleReviews": 99
+    },
+    "links": {
+      "googleMaps": "https://maps.google.com/?cid=5567997637837955378"
+    }
   },
   {
     "key": "toba-sugashima-nakora",
@@ -436,7 +606,13 @@
     "reason": null,
     "pointId": "toba-sugashima-nakora",
     "ratings": {
-      "rakuten": 4.77
+      "rakuten": 4.77,
+      "rakutenReviews": 55,
+      "google": 4.4,
+      "googleReviews": 25
+    },
+    "links": {
+      "googleMaps": "https://maps.google.com/?cid=5152374692758245772"
     }
   },
   {
@@ -448,7 +624,14 @@
     "category": "ryokan",
     "status": "included",
     "reason": null,
-    "pointId": "toba-kamishima-sankaiso"
+    "pointId": "toba-kamishima-sankaiso",
+    "ratings": {
+      "google": 4.3,
+      "googleReviews": 119
+    },
+    "links": {
+      "googleMaps": "https://maps.google.com/?cid=11122903887573328734"
+    }
   },
   {
     "key": "toba-anchor-ajito",
@@ -459,7 +642,14 @@
     "category": "rental-house",
     "status": "included",
     "reason": null,
-    "pointId": "toba-anchor-ajito"
+    "pointId": "toba-anchor-ajito",
+    "ratings": {
+      "google": 4.4,
+      "googleReviews": 19
+    },
+    "links": {
+      "googleMaps": "https://maps.google.com/?cid=15948663119491858823"
+    }
   },
   {
     "key": "toba-log-rocky",
@@ -472,7 +662,13 @@
     "reason": null,
     "pointId": "toba-log-rocky",
     "ratings": {
-      "rakuten": 4.67
+      "rakuten": 4.67,
+      "rakutenReviews": 76,
+      "google": 4.3,
+      "googleReviews": 47
+    },
+    "links": {
+      "googleMaps": "https://maps.google.com/?cid=7265743898059284989"
     }
   },
   {
@@ -484,7 +680,14 @@
     "category": "rental-house",
     "status": "included",
     "reason": null,
-    "pointId": "toba-higashinomado"
+    "pointId": "toba-higashinomado",
+    "ratings": {
+      "google": 4.9,
+      "googleReviews": 14
+    },
+    "links": {
+      "googleMaps": "https://maps.google.com/?cid=945427071493168684"
+    }
   },
   {
     "key": "toba-mfr-iseshima",
@@ -495,7 +698,14 @@
     "category": "rental-house",
     "status": "included",
     "reason": null,
-    "pointId": "toba-mfr-iseshima"
+    "pointId": "toba-mfr-iseshima",
+    "ratings": {
+      "google": 4.1,
+      "googleReviews": 72
+    },
+    "links": {
+      "googleMaps": "https://maps.google.com/?cid=10775911689328628639"
+    }
   },
   {
     "key": "toba-lido-porte",
@@ -506,7 +716,14 @@
     "category": "rental-house",
     "status": "included",
     "reason": null,
-    "pointId": "toba-lido-porte"
+    "pointId": "toba-lido-porte",
+    "ratings": {
+      "google": 4.5,
+      "googleReviews": 2
+    },
+    "links": {
+      "googleMaps": "https://maps.google.com/?cid=13252439974021550028"
+    }
   },
   {
     "key": "toba-ryokan-naomi",
@@ -519,7 +736,13 @@
     "reason": null,
     "pointId": "toba-ryokan-naomi",
     "ratings": {
-      "rakuten": 4.33
+      "rakuten": 4.33,
+      "rakutenReviews": 3,
+      "google": 4.3,
+      "googleReviews": 7
+    },
+    "links": {
+      "googleMaps": "https://maps.google.com/?cid=14316468174299138608"
     }
   },
   {

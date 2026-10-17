@@ -4099,6 +4099,13 @@
     "closedNote": null,
     "photos": [
       {
+        "url": "https://www.toyohama.co.jp/images/mv_home_06.webp",
+        "page": "https://www.toyohama.co.jp/",
+        "kind": "official",
+        "credit": "リゾートヒルズ豊浜 蒼空の風",
+        "license": null
+      },
+      {
         "url": "https://img.travel.rakuten.co.jp/share/HOTEL/4723/4723.jpg",
         "page": "https://travel.rakuten.co.jp/HOTEL/4723/4723.html",
         "kind": "rakuten",
@@ -7508,9 +7515,16 @@
     "address": "〒517-0002 三重県鳥羽市答志町735",
     "hours": null,
     "closedNote": null,
-    "febNote": "2 月營業與冬季方案未查到（官網目前主打伊勢海老＋鮑方案）。2026-10 官網公告：6 樓展望大浴場的小浴槽暫不放水（大浴槽照常）。2 月常有北西季風，市營定期船遇荒天會停航或減班，可能被困島上或上不了島；出發當天要看定期船官網或打 0599-25-4776（定期船課）確認。",
+    "febNote": "2 月營業與冬季方案未查到（官網目前主打伊勢海老＋鮑方案）。2026-10 官網公告：6 樓展望大浴場的小浴槽暫不放水（大浴槽照常）。2 月常有北西季風，市營定期船遇荒天會停航或減班，可能被困島上或上不了島；出發當天要看定期船官網或打 0599-25-4776（定期船課）確認。 2026-02 評論說強風時客室窗戶嘎嘎響、睡不好（cocolocala）。",
     "closures": [],
     "photos": [
+      {
+        "url": "https://www.suzunami.net/img/kannai/6f_1.jpg",
+        "page": "http://www.suzunami.net/kannai.php",
+        "kind": "official",
+        "credit": "答志島温泉 海心の宿 寿々波",
+        "license": null
+      },
       {
         "url": "https://img.travel.rakuten.co.jp/share/HOTEL/9646/9646.jpg",
         "page": "https://travel.rakuten.co.jp/HOTEL/9646/9646.html",
@@ -7540,7 +7554,7 @@
       "minutes": 29,
       "note": "鳥羽站→佐田浜（鳥羽マリンターミナル）步行約 7 分＋市營定期船 佐田浜→和具 約 15～19 分（R8-04 時刻表，多數班次 18 分）＋和具港步行約 3 分（官網）＝約 29 分，不含候船時間。末班 佐田浜 18:45 發（只到和具）。"
     },
-    "pickup": "近畿日本ツーリスト頁面寫有和具港接送（頁面誤植為「和見港」；送：到退房時間左右、迎：入住時間內）。官網只寫「和具港步行 3 分」。要不要預約、是否免費未確認。",
+    "pickup": "近畿日本ツーリスト頁面寫有和具港接送（頁面誤植為「和見港」；送：到退房時間左右、迎：入住時間內）。官網只寫「和具港步行 3 分」。要不要預約、是否免費未確認。 迎：只接 15 時以後到港的船，在佐田浜港上船前打電話；車滿時要在候船室等約 10 分（ゆこゆこ、cocolocala）。",
     "meals": "dinner+breakfast",
     "priceRange": null,
     "prices": [],
@@ -7566,7 +7580,7 @@
         "toba-toshijima-yamashichi",
         "toba-toshijima-takaraya"
       ],
-      "note": "客房 20 間（官網），15 人可住同一間（例如 3～4 間和室）；有舞台大廣間 88 畳、中廣間可全員一起吃飯。只接受大人 2 名以上的預約。官網 FAQ 有「團體利用」分類，但內容未取得；團體建議電話洽詢。"
+      "note": "客房 20 間（官網），15 人可住同一間（例如 3～4 間和室）；有舞台大廣間 88 畳、中廣間可全員一起吃飯。只接受大人 2 名以上的預約。官網 FAQ 有「團體利用」分類，但內容未取得；團體建議電話洽詢。 6 樓：和室 10～14 疊 19 間、和洋室 1 間（官網）；2 人以上在食事処個室用餐，不提供客室用餐（楽天）。團體方案、包棟都沒寫。"
     },
     "ratings": {
       "rakuten": 4.56,
@@ -7586,9 +7600,9 @@
     "accessibility": {
       "elevator": true,
       "beds": "和室為主（鋪被），另有和洋室 1 間。",
-      "stairs": "官網 FAQ：「バリアフリーでは御座いません」，輪椅只有 1 台可借。館內有電梯（官網「エレベータ完備」），大浴場在 6 樓。KNT：「玄関館内段差対応」，浴場無無障礙設計。港口步行 3 分。",
+      "stairs": "官網 FAQ：「バリアフリーでは御座いません」，輪椅只有 1 台可借。館內有電梯（官網「エレベータ完備」），大浴場在 6 樓。KNT：「玄関館内段差対応」，浴場無無障礙設計。港口步行 3 分。 玄關有段差，客室到大浴場要走 1 層樓梯；洗身處到浴槽有段差（ゆこゆこ）。",
       "kids": null,
-      "note": "晚餐在別室的個室吃，不提供客房用餐（官網 FAQ 2024-03）。沒有包租浴池。"
+      "note": "晚餐在別室的個室吃，不提供客房用餐（官網 FAQ 2024-03）。沒有包租浴池。 非無障礙設施，可借輪椅 1 台（官網 FAQ）；只有和室鋪被、沒有床（ゆこゆこ）。KNT 寫玄關、館內段差有對應（衝突）。"
     },
     "reservation": {
       "methods": [
@@ -7667,6 +7681,24 @@
         "url": "https://maps.google.com/?cid=16995950068400360330",
         "retrieved": "2026-10-18",
         "note": "Google 地圖「答志島温泉 海心（うみごころ）の宿 寿々波」：星數、評論數、照片"
+      },
+      {
+        "type": "booking-site",
+        "url": "https://www.yukoyuko.net/2402",
+        "retrieved": "2026-10-18",
+        "note": "只有和室、沒有床；有電梯但玄關段差、到大浴場要走樓梯；接送條件"
+      },
+      {
+        "type": "other",
+        "url": "https://www.cocolocala.jp/hotels/16818",
+        "retrieved": "2026-10-18",
+        "note": "3 則短評 3.0／2.0／3.0：設施老舊、強風窗戶響"
+      },
+      {
+        "type": "media",
+        "url": "https://tabiiro.jp/yado/s/101401-toba-suzunami/",
+        "retrieved": "2026-10-18",
+        "note": "若女將採購的磯料理，昭和復古風客室"
       }
     ],
     "verified": false,
@@ -7676,7 +7708,9 @@
       "parking": "佐田浜第一駐車場 24 小時由旅館負擔",
       "conflicts": [
         "總房數：官網、楽天 20 間；近畿日本ツーリスト 32 室。",
-        "最晚 check-in：楽天 18:00、官網 19:00。"
+        "最晚 check-in：楽天 18:00、官網 19:00。",
+        "總客室數：楽天、ゆこゆこ 20 室；cocolocala 26 室；KNT 32 室。",
+        "無障礙：ゆこゆこ 玄關有段差、要走樓梯；KNT 寫段差有對應。"
       ],
       "rakutenVacancy": {
         "retrieved": "2026-10-18",
@@ -7718,6 +7752,13 @@
     "febNote": "冬季有答志島產牡蠣（品牌「桃こまち」）方案：じゃらん列「カキ三昧」1 泊 2 食 15,400 円～、「牡蠣☆伊勢海老」22,000 円～（搜尋摘要）；楽天 2026-04 也有「牡蠣づくし」口コミ。11 月底～3 月左右客房可看海上日出。貸切露天風呂修繕中（楽天）。2 月常有北西季風，市營定期船遇荒天會停航或減班，可能被困島上或上不了島；出發當天要看定期船官網或打 0599-25-4776（定期船課）確認。",
     "closures": [],
     "photos": [
+      {
+        "url": "https://yama7.net/facilities/front.png",
+        "page": "https://yama7.net/facilities.html",
+        "kind": "official",
+        "credit": "潮風の宿 やま七",
+        "license": null
+      },
       {
         "url": "https://img.travel.rakuten.co.jp/share/HOTEL/11026/11026.jpg",
         "page": "https://travel.rakuten.co.jp/HOTEL/11026/11026.html",
@@ -7844,6 +7885,18 @@
         "source": "rakuten-api",
         "url": "https://hotel.travel.rakuten.co.jp/hotelinfo/plan/11026?f_nen1=2027&f_tuki1=2&f_hi1=9&f_nen2=2027&f_tuki2=2&f_hi2=10&f_heya_su=1&f_otona_su=3&f_s1=1&f_s2=0&f_y1=0&f_y2=0&f_y3=0&f_y4=0",
         "retrieved": "2026-10-18"
+      },
+      {
+        "plan": "スタンダード（伊勢海老の姿づくり）",
+        "unit": "per-person",
+        "adult": 15950,
+        "child": null,
+        "currency": "JPY",
+        "season": null,
+        "note": "1 泊 2 食，每人起；適用季節未寫。",
+        "source": "other",
+        "url": "https://www.yado-sagashi.net/yoyaku/plan/index2.jsp?yid=4217165392883",
+        "retrieved": "2026-10-18"
       }
     ],
     "luggage": null,
@@ -7865,7 +7918,7 @@
         "toba-toshijima-suzunami",
         "toba-toshijima-takaraya"
       ],
-      "note": "全 18 間，15 人可住同一間（和室 2～5 名 ×3～4 間）。有 20～100 畳大廣間，全員可一起吃飯。官網舊公告寫「團體、大型宴會旅行請洽詢」。"
+      "note": "全 18 間，15 人可住同一間（和室 2～5 名 ×3～4 間）。有 20～100 畳大廣間，全員可一起吃飯。官網舊公告寫「團體、大型宴會旅行請洽詢」。 全 18 室和室（10 疊 12、12.5～13.5 疊 6），每室 2～5 人，15 人約 3～4 室；有 20～100 疊大廣間；沒寫團體方案或包棟（官網）。貸切露天目前修繕停用。"
     },
     "ratings": {
       "rakuten": 4.29,
@@ -7880,8 +7933,8 @@
       "elevator": true,
       "beds": "全部是和室（鋪被）。",
       "stairs": "旅館在「へーふり峠」高台，從和具港步行約 5 分（上坡），長輩建議搭小巴。館內有電梯（官網）。",
-      "kids": "兒童為專用菜單（小學生：兒童午餐盤＋生魚片等數道；幼兒：兒童午餐盤）；要和大人同菜色就用大人價訂。小學生以上浴衣有大中小，幼兒睡衣要自備。兒童價格未列出。",
-      "note": "玄關旁有流木手作足湯（退房後也可用）、卓球、咖啡角。"
+      "kids": "兒童為專用菜單（小學生：兒童午餐盤＋生魚片等數道；幼兒：兒童午餐盤）；要和大人同菜色就用大人價訂。小學生以上浴衣有大中小，幼兒睡衣要自備。兒童價格未列出。 幼兒是兒童餐（お子様ランチ），小學生是兒童餐加生魚片等；兒童價格沒寫（宿さがし）。",
+      "note": "玄關旁有流木手作足湯（退房後也可用）、卓球、咖啡角。 有電梯；客房只有和室，沒寫有床；宿在高台；展望大浴場（內湯＋露天）男女各一，女湯脫衣所有嬰兒床（官網）。"
     },
     "reservation": {
       "methods": [
@@ -7961,6 +8014,24 @@
         "url": "https://maps.google.com/?cid=4829018036424678639",
         "retrieved": "2026-10-18",
         "note": "Google 地圖「ニューやま七」：星數、評論數、照片"
+      },
+      {
+        "type": "official",
+        "url": "https://yama7.net/facilities.html",
+        "retrieved": "2026-10-18",
+        "note": "全 18 室和室、大廣間、電梯"
+      },
+      {
+        "type": "official",
+        "url": "https://yama7.net/bath.html",
+        "retrieved": "2026-10-18",
+        "note": "展望內湯、露天；貸切露天修繕中"
+      },
+      {
+        "type": "booking-site",
+        "url": "https://www.jalan.net/yad359721/kuchikomi/",
+        "retrieved": "2026-10-18",
+        "note": "口コミ稱讚料理、服務；舊但乾淨，2026-06 一則嫌房間舊暗"
       }
     ],
     "verified": false,
@@ -8019,6 +8090,13 @@
     "febNote": "2027-02 已開放訂房：2027-02-03（三）1 晚查到伊勢海老會席、松阪牛會席方案（見 prices）。「伊勢海老会席」每日限 6 組。和具港接送只限鳥羽 13:00 以後的船班。2 月常有北西季風，市營定期船遇荒天會停航或減班，可能被困島上或上不了島；出發當天要看定期船官網或打 0599-25-4776（定期船課）確認。",
     "closures": [],
     "photos": [
+      {
+        "url": "https://misakiryokan.co.jp/wp-content/uploads/2015/10/IMG_0448-960x500.jpg",
+        "page": "https://misakiryokan.co.jp/",
+        "kind": "official",
+        "credit": "くつろぎの宿 美さき",
+        "license": null
+      },
       {
         "url": "https://img.travel.rakuten.co.jp/share/HOTEL/32033/32033.jpg",
         "page": "https://travel.rakuten.co.jp/HOTEL/32033/32033.html",
@@ -8132,7 +8210,7 @@
         "retrieved": "2026-10-17"
       }
     ],
-    "luggage": null,
+    "luggage": "入住前可以寄放行李（楽天心得 2026-04）。",
     "checkIn": "14:00",
     "checkOut": "10:00",
     "dinnerAccess": null,
@@ -8154,7 +8232,7 @@
       "nearbyCombos": [
         "toba-toshijima-teiyou"
       ],
-      "note": "房間 12～15 間（各來源不同），15 人可住同一間：例如 和室18畳（5 名以上）＋和室10／12畳 ×2～3。「伊勢海老会席」每日限 6 組，15 人分 3～4 間可能用掉大半名額，要早訂或改松阪牛會席。答志港這側只有本宿和定洋兩家，與和具港那群旅館步行約 15 分。"
+      "note": "房間 12～15 間（各來源不同），15 人可住同一間：例如 和室18畳（5 名以上）＋和室10／12畳 ×2～3。「伊勢海老会席」每日限 6 組，15 人分 3～4 間可能用掉大半名額，要早訂或改松阪牛會席。答志港這側只有本宿和定洋兩家，與和具港那群旅館步行約 15 分。 和室 15 間（官網）；官網沒寫包棟和團體方案；卡拉 OK 酒廊「花いち」可包場，約 30 人。"
     },
     "ratings": {
       "rakuten": 4.52,
@@ -8176,7 +8254,7 @@
       "beds": "和室為主；有和洋室（有床）。",
       "stairs": "旅館就在答志港邊海岸（門口步行 10 秒可釣魚），港口到宿約 5 分平路（観光三重寫步行 5 分；坡度未確認）。館內樓梯、電梯未查到。",
       "kids": "小學生約大人 7 成（2027-02 推算 11,165 円），兒童餐不含伊勢海老、鮑、松阪牛。2 歲以下添い寝免費；3 歲以上素泊收施設利用費 2,200 円。有釣竿出租（含餌 1,500 円，釣到的魚 2 條免費料理）、彩色魚拓體驗，適合小孩。",
-      "note": "餐廳為個室或用隔板隔開的和室。"
+      "note": "餐廳為個室或用隔板隔開的和室。 心得（2025-06、2025-12）：櫃台 2 樓、大浴場 1 樓，館內移動全靠樓梯，帶高齡父母覺得吃力；可能沒有電梯，但官網沒寫（elevator 未填，要電話確認）。客室有放大鏡；有兒童椅和餐具。"
     },
     "reservation": {
       "methods": [
@@ -8260,6 +8338,24 @@
         "url": "https://maps.google.com/?cid=2587708139054811993",
         "retrieved": "2026-10-18",
         "note": "Google 地圖「答志島温泉 美さき」：星數、評論數、照片"
+      },
+      {
+        "type": "booking-site",
+        "url": "https://review.travel.rakuten.co.jp/hotel/voice/32033/",
+        "retrieved": "2026-10-18",
+        "note": "楽天心得：服務溫暖、乾淨，建築老，館內全靠樓梯，可寄放行李"
+      },
+      {
+        "type": "other",
+        "url": "https://4travel.jp/dm_hotel-10037582",
+        "retrieved": "2026-10-18",
+        "note": "口コミ 1 篇（2018，舊）"
+      },
+      {
+        "type": "official",
+        "url": "https://misakiryokan.co.jp/dining",
+        "retrieved": "2026-10-18",
+        "note": "老闆有仲買人資格，自己進伊勢海老、鮑魚"
       }
     ],
     "verified": false,
@@ -8271,7 +8367,8 @@
       "conflicts": [
         "房間數：楽天 13、じゃらん 12、官網「和室15」。",
         "check-in：官網 14:00、楽天 13:30。",
-        "最近港口：観光三重、じゃらん寫答志港步行 5 分；官網 access 寫到和具港再接送。"
+        "最近港口：観光三重、じゃらん寫答志港步行 5 分；官網 access 寫到和具港再接送。",
+        "和具港接送：4travel（2018）鳥羽 13:20 發以後；楽天 13:00 以後。"
       ],
       "checkInNote": "14:00（楽天 13:30），最晚 19:00",
       "rakutenVacancy": {
@@ -8311,7 +8408,7 @@
     "address": "〒517-0002 三重県鳥羽市答志町2782",
     "hours": null,
     "closedNote": null,
-    "febNote": "10/20～3/25 有「答志島水揚 とらふぐ（虎河豚）コース」期間限定方案（てっさ・てっちり・唐揚・雑炊等，可加伊勢海老），價格官網未列。冬季也有牡蠣（官網料理頁提到カキ）。官網最新消息停在 2023 年、時刻表還是 R6 版，營業狀態建議電話確認。2 月常有北西季風，市營定期船遇荒天會停航或減班，可能被困島上或上不了島；出發當天要看定期船官網或打 0599-25-4776（定期船課）確認。",
+    "febNote": "10/20～3/25 有「答志島水揚 とらふぐ（虎河豚）コース」期間限定方案（てっさ・てっちり・唐揚・雑炊等，可加伊勢海老），價格官網未列。冬季也有牡蠣（官網料理頁提到カキ）。官網最新消息停在 2023 年、時刻表還是 R6 版，營業狀態建議電話確認。2 月常有北西季風，市營定期船遇荒天會停航或減班，可能被困島上或上不了島；出發當天要看定期船官網或打 0599-25-4776（定期船課）確認。 10～3 月推答志島產天然河豚（觀光三重）；官網價格可能是舊的（官網停在 2023）。",
     "closures": [],
     "photos": [
       {
@@ -8405,7 +8502,7 @@
         "toba-toshijima-suzunami",
         "toba-toshijima-yamashichi"
       ],
-      "note": "10 間和室，各房人數未寫；15 人大概要 4 間左右，應該住得下，要電話確認。有「平日 4 名以上」的團體優惠方案。和具港那群旅館（中村屋、寿々波、やま七）可搭配。"
+      "note": "10 間和室，各房人數未寫；15 人大概要 4 間左右，應該住得下，要電話確認。有「平日 4 名以上」的團體優惠方案。和具港那群旅館（中村屋、寿々波、やま七）可搭配。 和室（附洗手台）10 間；有広間；用餐在別室；「海幸マル得プラン」平日限定 4 人以上（官網）。じゃらん 111 則但近一年有效數不足、不顯示總分。"
     },
     "ratings": {
       "rakuten": null,
@@ -8413,14 +8510,15 @@
       "booking": null,
       "google": 3.8,
       "googleReviews": 28,
-      "note": "T7d（2026-10-18）：Google 3.8（28 則），5 分制。先前的紀錄：じゃらん有宿頁（yad332171），但近一年口コミ數不足、不顯示分數；4travel「評価なし」；楽天未找到。評價資料不足。"
+      "note": "T7d（2026-10-18）：Google 3.8（28 則），5 分制。先前的紀錄：じゃらん有宿頁（yad332171），但近一年口コミ數不足、不顯示分數；4travel「評価なし」；楽天未找到。評價資料不足。",
+      "jalanReviews": 111
     },
     "accessibility": {
       "elevator": null,
       "beds": "和室（鋪被）",
       "stairs": "未查到；KNT：無障礙對應「無」。",
       "kids": null,
-      "note": "露天風呂（竹籬圍起）平日可免費包租（要洽詢）；男女別內湯。"
+      "note": "露天風呂（竹籬圍起）平日可免費包租（要洽詢）；男女別內湯。 KNT 標示バリアフリー「無」；露天風呂＋內湯男女別，露天平日可免費包租（要問）。"
     },
     "reservation": {
       "methods": [
@@ -8498,6 +8596,12 @@
         "url": "https://maps.google.com/?cid=2775753212133451391",
         "retrieved": "2026-10-18",
         "note": "Google 地圖「宝屋旅館」：星數、評論數、照片"
+      },
+      {
+        "type": "booking-site",
+        "url": "https://www.jalan.net/yad332171/kuchikomi/",
+        "retrieved": "2026-10-18",
+        "note": "共 111 則；最新 2025-12：海鮮新鮮、接待親切，浴室與清潔感 2"
       }
     ],
     "verified": false,
@@ -8506,7 +8610,8 @@
       "parking": "佐田浜第一駐車場 24 小時由旅館負擔",
       "conflicts": [
         "和具港步行：観光三重 5 分、4travel 15 分（座標在和具港西方約 700m，推估 10 分前後）。",
-        "方案價：plan 頁標稅込（荒磯焼き 14,300），dish 頁標稅別（13,000）。"
+        "方案價：plan 頁標稅込（荒磯焼き 14,300），dish 頁標稅別（13,000）。",
+        "和具港到旅館：觀光三重步行 5 分；KNT 步行約 15 分、開車約 5 分。"
       ]
     }
   },
@@ -8570,7 +8675,7 @@
       "nearbyCombos": [
         "toba-toshijima-misaki"
       ],
-      "note": "總客室 18 間（KNT），規模上住得下 15 人，但房型、人數、價格都沒查到，要電話問。和美さき在同一聚落（相距約 500m）。"
+      "note": "總客室 18 間（KNT），規模上住得下 15 人，但房型、人數、價格都沒查到，要電話問。和美さき在同一聚落（相距約 500m）。 客房 18 間；大浴場可容 15 人（女湯 10 人）；沒有包租浴池；KNT 目前 0 個可訂方案（KNT）。答志港步行約 4 分。觀光三重寫不定休。營業狀態待確認（官網連不上）。"
     },
     "ratings": {
       "rakuten": null,
@@ -8585,7 +8690,7 @@
       "beds": null,
       "stairs": "浴場在 5 樓（潮望風呂），電梯有無未查到。1961 年建、1970 年改建（KNT）。",
       "kids": "有兒童浴衣、兒童拖鞋（部分房間）（KNT）。",
-      "note": "KNT：車椅子出借；浴場無無障礙設計。"
+      "note": "KNT：車椅子出借；浴場無無障礙設計。 可借輪椅；浴室無障礙「無」；有兒童浴衣、部分客房有兒童拖鞋（KNT）。"
     },
     "reservation": {
       "methods": [
@@ -8619,12 +8724,6 @@
         "note": "座標（tourism=hotel「定洋」）"
       },
       {
-        "type": "booking-site",
-        "url": "https://4travel.jp/dm_hotel-10058241",
-        "retrieved": "2026-10-17",
-        "note": "口コミ（搜尋摘要）"
-      },
-      {
         "type": "official",
         "url": "https://www.city.toba.mie.jp/material/files/group/45/teikisendaiya260401.pdf",
         "retrieved": "2026-10-17",
@@ -8635,6 +8734,12 @@
         "url": "https://maps.google.com/?cid=5567997637837955378",
         "retrieved": "2026-10-18",
         "note": "Google 地圖「定洋」：星數、評論數、照片"
+      },
+      {
+        "type": "other",
+        "url": "https://4travel.jp/dm_hotel-10048688",
+        "retrieved": "2026-10-18",
+        "note": "定洋本館：5 則心得（2013～2020，舊），總合 3.17，食事 5.00、風呂 2.50"
       }
     ],
     "verified": false,
@@ -8643,7 +8748,8 @@
       "parking": "佐田浜（KNT 寫「乘用車 300 台、免費、先到先停」）",
       "builtYear": 1961,
       "conflicts": [
-        "郵遞區號：観光三重寫 〒517-0062，KNT 寫 517-0002（答志町應為 517-0002）。"
+        "郵遞區號：観光三重寫 〒517-0062，KNT 寫 517-0002（答志町應為 517-0002）。",
+        "T7d 讀文：原 sources 的 4travel dm_hotel-10058241 其實是「漁師の宿 やまよ」，已移除，改用定洋本館頁 dm_hotel-10048688。"
       ]
     }
   },
@@ -8726,8 +8832,8 @@
         "retrieved": "2026-10-18"
       }
     ],
-    "luggage": null,
-    "checkIn": null,
+    "luggage": "只寫有宅配便服務，沒寫當天寄放（楽天）。",
+    "checkIn": "14:30",
     "checkOut": "10:00",
     "dinnerAccess": null,
     "group": {
@@ -8739,7 +8845,7 @@
       "wholeRental": null,
       "pickupCapacity": null,
       "nearbyCombos": [],
-      "note": "只有 5～7 間（各來源不同），由一對年長夫婦經營（楽天口コミ）。15 人全住可能剛好塞滿或不夠，要問能否包下全館。菅島上其他住宿（くろしお）資料太少，沒有收錄；分住的話菅島和答志島不同島，不建議。"
+      "note": "只有 5～7 間（各來源不同），由一對年長夫婦經營（楽天口コミ）。15 人全住可能剛好塞滿或不夠，要問能否包下全館。菅島上其他住宿（くろしお）資料太少，沒有收錄；分住的話菅島和答志島不同島，不建議。 和室 8 畳（無衛浴）定員 2～4 人；有貸切風呂；晚餐、早餐在個室或広間；沒有團體或包棟方案資料（KNT、楽天）。KNT 2026-10～12 方案每位大人 13,200～18,700 円（不是 2 月）。"
     },
     "ratings": {
       "rakuten": 4.77,
@@ -8754,8 +8860,8 @@
       "elevator": null,
       "beds": "和室（鋪被）",
       "stairs": "港口到民宿約 5 分，有車接；館內未查到。KNT 無障礙「無」。",
-      "kids": null,
-      "note": "包租浴池 2 個（じゃらん）；無溫泉。"
+      "kids": "KNT 寫有帶小小孩的家庭入住；兒童價無資料。",
+      "note": "包租浴池 2 個（じゃらん）；無溫泉。 KNT バリアフリー「無」；4travel 2014 心得說往浴室的樓梯很陡，對長輩、小孩危險。"
     },
     "reservation": {
       "methods": [
@@ -8821,6 +8927,24 @@
         "url": "https://maps.google.com/?cid=5152374692758245772",
         "retrieved": "2026-10-18",
         "note": "Google 地圖「なこら」：星數、評論數、照片"
+      },
+      {
+        "type": "booking-site",
+        "url": "https://yado.knt.co.jp/st/S240286/",
+        "retrieved": "2026-10-18",
+        "note": "客室 7 室、貸切風呂、バリアフリー無"
+      },
+      {
+        "type": "booking-site",
+        "url": "https://yado.knt.co.jp/planlist/S240286/",
+        "retrieved": "2026-10-18",
+        "note": "和室 8 畳 2～4 人，2026 秋季方案"
+      },
+      {
+        "type": "other",
+        "url": "https://4travel.jp/dm_hotel-10037587",
+        "retrieved": "2026-10-18",
+        "note": "3.09（3 篇，2009～2014 很舊）；料理好，往浴室樓梯陡"
       }
     ],
     "verified": false,
@@ -8828,7 +8952,9 @@
       "parking": "佐田浜第一駐車場（離開時給免費券）",
       "conflicts": [
         "房間數：楽天 5、KNT 7、じゃらん和室 7（合計欄寫 5）。",
-        "check-in：楽天 14:30、じゃらん 15:00。"
+        "check-in：楽天 14:30、じゃらん 15:00。",
+        "check-in：楽天 14:30（最晚 15:00）；じゃらん 15:00。",
+        "客室數：楽天 5 室；KNT 7 室。"
       ],
       "checkIn": "14:30（楽天，最晚 15:00）／15:00（じゃらん）",
       "rakutenVacancy": {
@@ -8868,7 +8994,7 @@
     "address": "三重県鳥羽市神島町75",
     "hours": null,
     "closedNote": "観光三重 2023 年採訪：住宿只有週五、六、日、一晚上接受（其他日子不接住宿）。現況要電話確認。",
-    "febNote": "神島航路冬季（10/16～2 月底）傍晚班改為 佐田浜 17:00 發、神島 17:35 發；一天約 4 班。神島在外海側，冬季季風停航風險比答志島、菅島高。2 月常有北西季風，市營定期船遇荒天會停航或減班，可能被困島上或上不了島；出發當天要看定期船官網或打 0599-25-4776（定期船課）確認。",
+    "febNote": "神島航路冬季（10/16～2 月底）傍晚班改為 佐田浜 17:00 發、神島 17:35 發；一天約 4 班。神島在外海側，冬季季風停航風險比答志島、菅島高。2 月常有北西季風，市營定期船遇荒天會停航或減班，可能被困島上或上不了島；出發當天要看定期船官網或打 0599-25-4776（定期船課）確認。 2023 年採訪時住宿只在週五、六、日、一營業，2027-02 入住日要打 0599-38-2032 確認；只收現金。",
     "closures": [],
     "photos": [
       {
@@ -8935,8 +9061,8 @@
       "elevator": null,
       "beds": "純和室（鋪被）",
       "stairs": "4 層樓建築；玄關要從巷子爬一小段階梯（観光三重 2023）。電梯未提及。神島聚落本身坡道、階梯多。",
-      "kids": null,
-      "note": null
+      "kids": "とばーる標「家族向け」，兒童價無資料。",
+      "note": "廁所是各樓層走廊共用洋式；客室純和室；有沒有電梯沒有資料（觀光三重 2023-02）。"
     },
     "reservation": {
       "methods": [
@@ -8992,6 +9118,18 @@
         "url": "https://maps.google.com/?cid=11122903887573328734",
         "retrieved": "2026-10-18",
         "note": "Google 地圖「潮騒の宿 山海荘」：星數、評論數、照片"
+      },
+      {
+        "type": "tourism",
+        "url": "https://www.kankomie.or.jp/report/1412",
+        "retrieved": "2026-10-18",
+        "note": "2023-02 採訪：舟盛、伊勢海老；大浴場 4 樓、玄關階梯；週五～週一營業、只收現金"
+      },
+      {
+        "type": "tourism",
+        "url": "https://tobaru-life.jp/stay/394/",
+        "retrieved": "2026-10-18",
+        "note": "一泊二食 11,000 円起，IN 15:00／OUT 10:00"
       }
     ],
     "verified": false,
@@ -9020,9 +9158,23 @@
     "address": "〒517-0025 三重県鳥羽市浦村町1558-5",
     "hours": null,
     "closedNote": null,
-    "febNote": "2 月不是旺季（旺季只有 GW、暑假、年末年始，旺季每晚加 10,000 円）。官網沒有寫冬季休業。附近的浦村是牡蠣產地，冬天是牡蠣季。",
+    "febNote": "2 月不是旺季（旺季只有 GW、暑假、年末年始，旺季每晚加 10,000 円）。官網沒有寫冬季休業。附近的浦村是牡蠣產地，冬天是牡蠣季。 冬季限定浦村真牡蠣食材套組要 3 天前預約；牡蠣打ち體驗 1～3 月、ワカメ狩り 2～4 月上旬從這裡集合。",
     "closures": [],
     "photos": [
+      {
+        "url": "https://anchorajito.com/wp-content/uploads/2020/11/LivingC-500x347.jpg",
+        "page": "https://anchorajito.com/",
+        "kind": "official",
+        "credit": "Anchor. 漁師の貸切アジト",
+        "license": null
+      },
+      {
+        "url": "https://anchorajito.com/wp-content/uploads/2020/01/IMG_2641-3-e1579696460193-1000x320.jpg",
+        "page": "https://anchorajito.com/",
+        "kind": "official",
+        "credit": "Anchor. 漁師の貸切アジト",
+        "license": null
+      },
       {
         "url": "https://lh3.googleusercontent.com/gps-cs-s/ANWiy9TRbXi63qn7OjrSrSAU0Y-GFaqhZz3jcsHKsrZI3LNn0nK4WMrw9korm_0Y1oLiMMSt4eIlcv5RxFAU2WOZ6ryFSb2rc0LItYem-kS_Dv2capVi3HcaVeAR55Mxqx6N_3khpUTU=w446-h298-k-no",
         "page": "https://maps.google.com/?cid=15948663119491858823",
@@ -9079,7 +9231,7 @@
       "wholeRental": true,
       "pickupCapacity": null,
       "nearbyCombos": [],
-      "note": "1 日 1 組包棟，最大 34 人，15 人全員可以同住。寢具合計：單人床 4、半雙人床 6、雙人床 1、沙發床 6、鋪被 16 組，只提供預約人數（3 歲以上）份。浴室 2 間＋整體浴室 3 間、西式廁所 6 間。"
+      "note": "1 日 1 組包棟，最大 34 人，15 人全員可以同住。寢具合計：單人床 4、半雙人床 6、雙人床 1、沙發床 6、鋪被 16 組，只提供預約人數（3 歲以上）份。浴室 2 間＋整體浴室 3 間、西式廁所 6 間。 7 間寢室（5 間有衛浴）：A、B 單人床×2＋10 疊和室各約 8 人；C～E 約 4 人；F 約 2 人；G 10 疊和室約 4 人（ACO）。15 人以上可優先預約。最近的超市、便利商店車程約 15 分，建議自炊或 BBQ（BBQ 台免費）。"
     },
     "ratings": {
       "rakuten": null,
@@ -9094,7 +9246,7 @@
       "beds": "有床（單人、半雙人、雙人、沙發床）也有和室鋪被；長輩可以排有床的 C～F 室",
       "stairs": "客廳、廚房在 2 樓，寢室在 3 樓；沒有寫有電梯。評論提到 2～3 樓之間的樓梯沒有扶手（業主說會改善），BBQ 區的樓梯附近也沒有柵欄",
       "kids": "3 歲以上和大人同價；0～2 歲免費。備有兒童救生衣約 4 件。附近沒有海水浴場",
-      "note": "長輩要爬到 3 樓寢室，需要確認樓梯扶手是否已改善"
+      "note": "長輩要爬到 3 樓寢室，需要確認樓梯扶手是否已改善 官網沒寫電梯；客廳、廚房在 2 樓，寢室在 3 樓要爬樓梯；2023 評論說 3 樓樓梯沒扶手、BBQ 區旁樓梯沒柵門，業者回覆會改（官網 FAQ、ACO）。"
     },
     "reservation": {
       "methods": [
@@ -9144,6 +9296,24 @@
         "url": "https://maps.google.com/?cid=15948663119491858823",
         "retrieved": "2026-10-18",
         "note": "Google 地圖「Anchor.（アンカー）漁師の貸切アジト」：星數、評論數、照片"
+      },
+      {
+        "type": "official",
+        "url": "https://anchorajito.com/booking/",
+        "retrieved": "2026-10-18",
+        "note": "料金：10 人以下 110,000 円，之後每人 +6,600 円，旺季 +10,000 円"
+      },
+      {
+        "type": "booking-site",
+        "url": "https://www.aco.co.jp/id/65442.html",
+        "retrieved": "2026-10-18",
+        "note": "各寢室床、布團配置；2023 評論說樓梯沒扶手"
+      },
+      {
+        "type": "tourism",
+        "url": "https://www.kankomie.or.jp/report/761",
+        "retrieved": "2026-10-18",
+        "note": "2021：牡蠣打ち 1～3 月、ワカメ狩り 2～4 月"
       }
     ],
     "verified": false,
@@ -9159,7 +9329,8 @@
       "operator": "和 toBAshare（鳥羽 1 丁目的包棟民宿）是同一集團，電話相同",
       "conflicts": [
         "最大人數：官網、ACO 34 人；伊勢志摩觀光協會特集（2024-06）29 人",
-        "停車：ACO 摘要 1 台、內文與官網 Q&A 約 6 台"
+        "停車：ACO 摘要 1 台、內文與官網 Q&A 約 6 台",
+        "定員：官網 34 人；伊勢志摩観光ナビ 29 人。"
       ],
       "checkInNote": "15:00～22:00"
     }
@@ -9187,6 +9358,13 @@
     "febNote": "冬季（約 11～3 月）有伊勢龍蝦鍋（伊勢エビ鍋セット）、雞肉鍋、泡菜鍋的食材方案。2 月平日用平日價。沒有看到冬季休業。",
     "closures": [],
     "photos": [
+      {
+        "url": "https://toba-log.com/wp/wp-content/uploads/2019/10/rocky1-1024x768.jpg",
+        "page": "https://toba-log.com/%e6%96%bd%e8%a8%ad%e6%a1%88%e5%86%85/",
+        "kind": "official",
+        "credit": "貸切ログハウス ロッキー",
+        "license": null
+      },
       {
         "url": "https://img.travel.rakuten.co.jp/share/HOTEL/104562/104562.jpg",
         "page": "https://travel.rakuten.co.jp/HOTEL/104562/104562.html",
@@ -9287,12 +9465,24 @@
         "source": "rakuten-api",
         "url": "https://hotel.travel.rakuten.co.jp/hotelinfo/plan/104562?f_nen1=2027&f_tuki1=2&f_hi1=9&f_nen2=2027&f_tuki2=2&f_hi2=10&f_heya_su=1&f_otona_su=3&f_s1=1&f_s2=0&f_y1=0&f_y2=0&f_y3=0&f_y4=0",
         "retrieved": "2026-10-18"
+      },
+      {
+        "plan": "肉肉鍋セット（冬季雞肉鍋、泡菜鍋同價）",
+        "unit": "per-person",
+        "adult": 11850,
+        "child": null,
+        "currency": "JPY",
+        "season": "平日（休前日 12,850 円），4 名以上",
+        "note": "官網沒寫明是每人價（從分級推測）；未就學兒免費、小學生以上同大人。",
+        "source": "official",
+        "url": "https://toba-log.com/%e6%96%99%e9%87%91/",
+        "retrieved": "2026-10-18"
       }
     ],
     "luggage": null,
     "checkIn": "15:00",
     "checkOut": "11:00",
-    "dinnerAccess": null,
+    "dinnerAccess": "car",
     "group": {
       "totalRooms": 2,
       "roomTypes": [
@@ -9307,7 +9497,7 @@
         "toba-view-hotel-hanashinju",
         "toba-ocean-resort"
       ],
-      "note": "共 2 棟（1 日 2 組限定），每棟床 9 張，加鋪被（每組 2,000 円）楽天寫每棟最多 13 人。15 人一棟住不下，要把 2 棟都包下（例如 8＋7 人，全部睡床）；兩棟在同一塊地。要先確認兩棟能不能同一團一起訂。"
+      "note": "共 2 棟（1 日 2 組限定），每棟床 9 張，加鋪被（每組 2,000 円）楽天寫每棟最多 13 人。15 人一棟住不下，要把 2 棟都包下（例如 8＋7 人，全部睡床）；兩棟在同一塊地。要先確認兩棟能不能同一團一起訂。 不供餐、要自炊或訂食材組；口コミ提到附近有 AEON 可採買，沒有步行可到的晚餐店（楽天口コミ）。沒有接送（官網 FAQ）；鳥羽站搭計程車約 10 分、約 2,000 円。免費停車 8 台。"
     },
     "ratings": {
       "rakuten": 4.67,
@@ -9323,7 +9513,7 @@
       "beds": "全部是床（每棟 9 床）；人多時加鋪被",
       "stairs": "2 層樓，寢室分在 1、2 樓；1 樓有床 4 張的寢室，長輩可以住 1 樓",
       "kids": "楽天：小學生為大人的 8 成；未就學可同床免費，加鋪被 2,000 円。官網：未就學免費",
-      "note": "每棟廁所 3 間（1 樓男女各 1、2 樓 1），洗臉台 4 處"
+      "note": "每棟廁所 3 間（1 樓男女各 1、2 樓 1），洗臉台 4 處 2F 有寢室要爬樓梯，1F 洋室 4 床；ロッキーⅠ只有淋浴間；じゃらん口コミ提到要走坡道或階梯（頁面亂碼，待確認）（官網施設案内）。"
     },
     "reservation": {
       "methods": [
@@ -9402,6 +9592,18 @@
         "url": "https://maps.google.com/?cid=7265743898059284989",
         "retrieved": "2026-10-18",
         "note": "Google 地圖「貸切ログハウスロッキー」：星數、評論數、照片"
+      },
+      {
+        "type": "booking-site",
+        "url": "https://www.jalan.net/yad359459/kuchikomi/",
+        "retrieved": "2026-10-18",
+        "note": "205 件、清潔 4.8；乾淨、服務好，提到老舊、蟲、坡道"
+      },
+      {
+        "type": "booking-site",
+        "url": "https://travel.rakuten.co.jp/HOTEL/104562/review.html",
+        "retrieved": "2026-10-18",
+        "note": "適合家族；附近有 AEON；冬天冷氣、只有淋浴是缺點"
       }
     ],
     "verified": false,
@@ -9418,7 +9620,8 @@
       "conflicts": [
         "定員：官網設施頁 2～9 人（床數）；楽天 1～13 人（含加鋪被）；觀光協會 13 人",
         "兒童價：楽天寫小學生 8 成；官網價格頁只寫未就學免費、小學生起收費",
-        "鳥羽站計程車：官網 10 分、楽天 7 分"
+        "鳥羽站計程車：官網 10 分、楽天 7 分",
+        "鳥羽站計程車：官網 FAQ 約 10 分；じゃらん約 7 分。"
       ],
       "checkInNote": "15:00～20:00（抵達前約 1 小時打 080-2666-8959 給管理人）",
       "rakutenVacancy": {
@@ -9465,6 +9668,13 @@
     "febNote": "ACO 價格表的優惠期是 10/1～10/22、11/1～12/22，2 月是一般平日價。沒有寫冬季休業。附近海鮮店約 17:00 就關。",
     "closures": [],
     "photos": [
+      {
+        "url": "https://www.aco2.jp/_file/facility/64128/md_01.jpg",
+        "page": "https://www.aco.co.jp/id/64128.html",
+        "kind": "official",
+        "credit": "東の窓（ACO 掲載）",
+        "license": null
+      },
       {
         "url": "https://lh3.googleusercontent.com/gps-cs-s/ANWiy9T8CI4DjTn1DZLOoi5ss8z2N9xl5EemKwlXX5goZvG4r_tdnEd1K5qZrfPr6wtle0J397bx2BHWsHLZlQmj1ft5s_rtbmYWOjXIn2gdG5THtc5OApWtfCK-3GsxnOGYXm8V8ynEKuSJxmPP=w400-h298-k-no",
         "page": "https://maps.google.com/?cid=945427071493168684",
@@ -9529,7 +9739,7 @@
       "wholeRental": true,
       "pickupCapacity": null,
       "nearbyCombos": [],
-      "note": "1 日 1 組。大人約 12 人；不需要鋪被的小孩（幼兒、小學生）可再加到 18 人。15 人（大人 11＋小孩 4）應該住得下，但寢具 STAY JAPAN 寫只有床 2＋鋪被 10 組，小孩要和大人擠，要先確認。浴室只有 1 間（廁所 2 間），15 人洗澡要排隊。"
+      "note": "1 日 1 組。大人約 12 人；不需要鋪被的小孩（幼兒、小學生）可再加到 18 人。15 人（大人 11＋小孩 4）應該住得下，但寢具 STAY JAPAN 寫只有床 2＋鋪被 10 組，小孩要和大人擠，要先確認。浴室只有 1 間（廁所 2 間），15 人洗澡要排隊。 ACO 價目：平日 85,000 円、週末假日旺季 100,000 円、年末年始盂蘭盆 120,000 円（12 人／晚，13 人起每人 +3,000 円；另收宿泊稅每人 200 円現金）。不提供食材；附近海鮮店約 17:00 關，Family Mart 車程 10～15 分。"
     },
     "ratings": {
       "rakuten": null,
@@ -9544,7 +9754,7 @@
       "beds": "床 2 張（2 樓洋室）＋鋪被 10 組（STAY JAPAN）；大多是鋪被",
       "stairs": "2 層樓，洋室在 2 樓",
       "kids": "ACO：兒童費平日小學生 2,000 円、幼兒 500 円（週末小學生 3,000 円）；STAY JAPAN 說兒童費可能另計，要問房東",
-      "note": "位在高台，開車 2 分到海"
+      "note": "位在高台，開車 2 分到海 兩層樓，有床的洋室在 2 樓；沒寫扶手、無障礙（ACO）。"
     },
     "reservation": {
       "methods": [
@@ -9592,6 +9802,18 @@
         "url": "https://maps.google.com/?cid=945427071493168684",
         "retrieved": "2026-10-18",
         "note": "Google 地圖「伊勢志摩 The Guest House 東の窓」：星數、評論數、照片"
+      },
+      {
+        "type": "booking-site",
+        "url": "https://stayjapan.com/area/mie/toba/pr/14765",
+        "retrieved": "2026-10-18",
+        "note": "定員 12 人＋小孩約 6 人，床 2、布團 10，評論 0 件"
+      },
+      {
+        "type": "tourism",
+        "url": "https://www.iseshima-kanko.jp/feature/Private%20Accommodation",
+        "retrieved": "2026-10-18",
+        "note": "最多 18 人、沒有接送、停車 5 台"
       }
     ],
     "verified": false,
@@ -9606,7 +9828,8 @@
       "towels": "浴巾、毛巾不附，拋棄式一組 500 円",
       "conflicts": [
         "定員：ACO 標題 18 人、內文大人約 12 人；810.jp 寫 12 人；STAY JAPAN 寫 12 人（＋小孩可到 18）",
-        "價格：ACO 與 STAY JAPAN 的計價方式不同，15 人總價差約 2 萬円"
+        "價格：ACO 與 STAY JAPAN 的計價方式不同，15 人總價差約 2 萬円",
+        "接送：ACO 標「送迎あり」；伊勢志摩観光ナビ寫沒有接送。"
       ],
       "checkInNote": "15:00（STAY JAPAN：15:00～23:00）",
       "checkOutNote": "10:00（延後 30 分 5,000 円、60 分 10,000 円）"
@@ -9632,9 +9855,16 @@
     "address": "〒517-0025 三重県鳥羽市浦村町100-7",
     "hours": null,
     "closedNote": null,
-    "febNote": "冬季（11～5 月）可以加購牡蠣（50 個 5,000 円～200 個 18,000 円）、豬肉鍋等。獨木舟只有 5～10 月。沒有寫冬季休業。",
+    "febNote": "冬季（11～5 月）可以加購牡蠣（50 個 5,000 円～200 個 18,000 円）、豬肉鍋等。獨木舟只有 5～10 月。沒有寫冬季休業。 冬季（11～5 月）有牡蠣收穫體驗＋漁船巡航（2 人 8,000 円）（官網）。",
     "closures": [],
     "photos": [
+      {
+        "url": "https://mfresort.com/wp-content/uploads/2025/04/ise_M_exterior05_1000x550-1.jpg",
+        "page": "https://mfresort.com/mfrgroup/iseshima_honkan01/",
+        "kind": "official",
+        "credit": "MFR伊勢志摩",
+        "license": null
+      },
       {
         "url": "https://lh3.googleusercontent.com/gps-cs-s/ANWiy9SmqP-242bE3oU8dMXZ9it80rbpKPl8uk2V7mD_EaQzP1HWHOQMmvTX8GlbOfQwH_tNhI97Jr83fMZ_XP9Reh0M7A6_sD5QVvDJELAlXe9GZMdQl0US_jBouhnfzZYiwz6fPrbLx_5_cLaN=w541-h298-k-no",
         "page": "https://maps.google.com/?cid=10775911689328628639",
@@ -9701,7 +9931,7 @@
       "wholeRental": true,
       "pickupCapacity": null,
       "nearbyCombos": [],
-      "note": "海灘旁約 6,000㎡ 的地，本館＋2 棟 HANARE，可以單獨或組合包下，最多 60 人。15 人包本館就住得下；或包 HANARE B（10 人）＋A。じゃらん房間資料：總 10 室（洋室、和室、和洋室都有）。各房寢具不明。"
+      "note": "海灘旁約 6,000㎡ 的地，本館＋2 棟 HANARE，可以單獨或組合包下，最多 60 人。15 人包本館就住得下；或包 HANARE B（10 人）＋A。じゃらん房間資料：總 10 室（洋室、和室、和洋室都有）。各房寢具不明。 本館 634㎡ 10 室定員 46；HANARE A 棟 4 人、B 棟 10 人；15 人只能包本館（A＋B 14 人差 1）。本館有大浴場、桑拿、廚房。官網先行予約：第 1 位大人約 10,000 円起，加人中學生以上 10,000、小學生 5,000、幼兒 3,000 円（每人每泊；實價要進預約流程才看得到）。不含餐，可加購 BBQ 套餐；事前申請會提供周邊餐廳資訊。"
     },
     "ratings": {
       "rakuten": null,
@@ -9713,10 +9943,10 @@
     },
     "accessibility": {
       "elevator": null,
-      "beds": null,
+      "beds": "本館洋室 9 間是床，和室 1 間床或布団；HANARE B 棟床 5 張＋沙發床（官網）。",
       "stairs": "HANARE A 棟是平房；B 棟 2 層；本館樓層與電梯不明（有 B1F 三溫暖）",
       "kids": "小學生每人 5,000 円、幼兒 3,000 円",
-      "note": "到海灘步行 5 分以內"
+      "note": "到海灘步行 5 分以內 本館客室全在 2F（另有 B1F／B2F 海景露台、廚房）；沒寫電梯，頁面有樓梯照片。B 棟 2 層，寢室 1F、2F 各一（官網）。"
     },
     "reservation": {
       "methods": [
@@ -9771,6 +10001,30 @@
         "url": "https://maps.google.com/?cid=10775911689328628639",
         "retrieved": "2026-10-18",
         "note": "Google 地圖「MFR伊勢志摩」：星數、評論數、照片。另有「Mfr伊勢志摩 本館 貸切リゾートホテル - Villa」（無評分）、HANARE A 棟（5.0／1 則）、B 棟（4.5／2 則）"
+      },
+      {
+        "type": "official",
+        "url": "https://mfresort.com/mfrgroup/iseshima_honkan01/",
+        "retrieved": "2026-10-18",
+        "note": "本館客室全在 2F、洋室 9 間是床，定員 46"
+      },
+      {
+        "type": "official",
+        "url": "https://mfresort.com/roomintroduction/",
+        "retrieved": "2026-10-18",
+        "note": "三棟定員：本館 46、A 棟 4、B 棟 10"
+      },
+      {
+        "type": "official",
+        "url": "https://mfresort.com/booking/",
+        "retrieved": "2026-10-18",
+        "note": "先行予約價格、加人費、冬季體驗"
+      },
+      {
+        "type": "official",
+        "url": "https://mfresort.com/food/",
+        "retrieved": "2026-10-18",
+        "note": "加購 BBQ 套餐"
       }
     ],
     "verified": false,
@@ -9884,7 +10138,7 @@
         "toba-ryokan-naomi",
         "toba-senpokaku"
       ],
-      "note": "最多 9 人，15 人住不下。可以和小浜町的「旅館なおみ」（6 人）分住，合計 15 人；兩處直線約 2.6 km，不能走路互通（要搭車）。也可以和其他組找到的鳥羽站周邊飯店搭配。"
+      "note": "最多 9 人，15 人住不下。可以和小浜町的「旅館なおみ」（6 人）分住，合計 15 人；兩處直線約 2.6 km，不能走路互通（要搭車）。也可以和其他組找到的鳥羽站周邊飯店搭配。 停車 2 台含在房價內（楽天）。Trip.com 9.4/10（17 則）。"
     },
     "ratings": {
       "rakuten": null,
@@ -9950,6 +10204,18 @@
         "url": "https://maps.google.com/?cid=13252439974021550028",
         "retrieved": "2026-10-18",
         "note": "Google 地圖「ゲストハウス リド・ポルテ」：星數、評論數、照片"
+      },
+      {
+        "type": "tourism",
+        "url": "https://workation.pref.mie.lg.jp/en/facility/172",
+        "retrieved": "2026-10-18",
+        "note": "三重縣頁面：空屋改建、昭和風老街，中之郷站約 5 分"
+      },
+      {
+        "type": "booking-site",
+        "url": "https://ae.trip.com/hotels/toba-hotel-detail-97725552/guest-house-lido-porte",
+        "retrieved": "2026-10-18",
+        "note": "Trip.com 9.4/10（17 則）"
       }
     ],
     "verified": false,
@@ -10076,24 +10342,23 @@
         "toba-saichoraku",
         "toba-grand-hotel"
       ],
-      "note": "最多 6 人，只能當分住的一部分（例如 6 人住這裡、9 人住 Lido Porte）。"
+      "note": "最多 6 人，只能當分住的一部分（例如 6 人住這裡、9 人住 Lido Porte）。 整棟 1 室，定員 6 人（2 寢室 6 床），15 人無法同住（楽天、Airbnb）。不提供早晚餐，可自炊；官網只寫請利用附近餐廳或超市（沒列店名）。"
     },
     "ratings": {
-      "rakuten": null,
+      "rakuten": 4.33,
       "jalan": null,
       "booking": null,
       "google": 4.3,
       "googleReviews": 7,
       "airbnb": 4.8,
-      "note": "T7d（2026-10-18）：Google 4.3（7 則），5 分制。先前的紀錄：Airbnb 4.8（142 則）；楽天 4.33（3 件），2026-10-17 取得",
-      "rakutenReviews": 3
+      "note": "T7d（2026-10-18）：楽天 4.33（T3 網頁值）、Google 4.3（7 則），5 分制。先前的紀錄：Airbnb 4.8（142 則）；楽天 4.33（3 件），2026-10-17 取得"
     },
     "accessibility": {
       "elevator": false,
       "beds": "床 6 張（Airbnb）",
       "stairs": "有樓梯（官網房間名稱有「階梯下」），樓層不明",
       "kids": null,
-      "note": "五右衛門風呂是深的鐵／木桶浴缸，長輩進出可能不方便"
+      "note": "五右衛門風呂是深的鐵／木桶浴缸，長輩進出可能不方便 有床（6 床，Airbnb）；有樓梯，畫廊在 2 樓，寢室樓層沒寫；浴室是檜木五右衛門風呂（官網）。無人自助入住；不收信用卡。"
     },
     "reservation": {
       "methods": [
@@ -10150,6 +10415,36 @@
         "url": "https://maps.google.com/?cid=14316468174299138608",
         "retrieved": "2026-10-18",
         "note": "Google 地圖「旅館なおみ」：星數、評論數、照片"
+      },
+      {
+        "type": "official",
+        "url": "https://mori-kikaku.info/ryokan-naomi/info/",
+        "retrieved": "2026-10-18",
+        "note": "IN 15:00、OUT 10:00，不供餐，可自炊，停車 2 台"
+      },
+      {
+        "type": "official",
+        "url": "https://mori-kikaku.info/ryokan-naomi/access/",
+        "retrieved": "2026-10-18",
+        "note": "鳥羽站搭巴士 6～7 分"
+      },
+      {
+        "type": "official",
+        "url": "https://mori-kikaku.info/ryokan-naomi/rooms/",
+        "retrieved": "2026-10-18",
+        "note": "居間、寢室、廚房、五右衛門風呂、2 樓畫廊"
+      },
+      {
+        "type": "booking-site",
+        "url": "https://www.airbnb.jp/rooms/951814713132653195",
+        "retrieved": "2026-10-18",
+        "note": "定員 6、2 寢室 6 床，4.8（142 則）"
+      },
+      {
+        "type": "media",
+        "url": "https://www.kenbiya.com/ar/cl/lion/45.html",
+        "retrieved": "2026-10-18",
+        "note": "經營者專欄（2024-02）：2023 年改裝開業"
       }
     ],
     "verified": false,
@@ -10161,7 +10456,8 @@
       "manager": "不常駐",
       "dinnerNearby": "在小浜漁港旁，楽天介紹寫門口可以釣魚、可自炊；附近餐廳未查",
       "conflicts": [
-        "鳥羽站交通：官網巴士 7 分；楽天步行 4 分（距離不符，以官網為準）"
+        "鳥羽站交通：官網巴士 7 分；楽天步行 4 分（距離不符，以官網為準）",
+        "交通：官網寫鳥羽站搭巴士 6～7 分；楽天寫步行 4 分。"
       ],
       "checkInNote": "15:00（最晚 23:00）",
       "rakutenVacancy": {
