@@ -1,0 +1,267 @@
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+  margin: 0;
+}
+
+body {
+  font-family: system-ui, -apple-system, 'Noto Sans TC', 'Microsoft JhengHei', sans-serif;
+  font-size: 14px;
+  color: #1f2328;
+  background: #fff;
+}
+
+code {
+  font-size: 12px;
+  background: #f0f2f4;
+  padding: 0 3px;
+  border-radius: 3px;
+  word-break: break-all;
+}
+
+a {
+  color: #0969da;
+  word-break: break-all;
+}
+
+.muted {
+  color: #656d76;
+  font-size: 12px;
+}
+
+.dot {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  margin-right: 6px;
+  flex: none;
+}
+
+.badge {
+  font-size: 11px;
+  background: #fff8c5;
+  border: 1px solid #d4a72c;
+  border-radius: 3px;
+  padding: 0 4px;
+  margin-left: 6px;
+}
+
+/* 版面：桌機左側面板；手機（窄螢幕）下方面板，可以收起 */
+.app {
+  display: grid;
+  grid-template-columns: 360px 1fr;
+  height: 100%;
+}
+
+.map {
+  grid-column: 2;
+  grid-row: 1;
+  min-height: 0;
+}
+
+.panel {
+  grid-column: 1;
+  grid-row: 1;
+  overflow-y: auto;
+  border-right: 1px solid #d0d7de;
+  min-height: 0;
+}
+
+.panel-toggle {
+  display: none;
+}
+
+.panel-body {
+  padding: 8px 12px 24px;
+}
+
+section {
+  border-bottom: 1px solid #eaeef2;
+  padding: 6px 0 10px;
+}
+
+h2 {
+  font-size: 14px;
+  margin: 6px 0;
+}
+
+h3 {
+  font-size: 15px;
+  margin: 6px 0;
+  display: flex;
+  align-items: center;
+}
+
+h4 {
+  font-size: 13px;
+  margin: 10px 0 4px;
+}
+
+.row {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 3px 0;
+  cursor: pointer;
+}
+
+.row input {
+  margin: 0 4px 0 0;
+  width: 18px;
+  height: 18px;
+}
+
+.buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+button {
+  font: inherit;
+  padding: 5px 10px;
+  border: 1px solid #d0d7de;
+  border-left-width: 4px;
+  background: #f6f8fa;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.pick-list,
+.issue-list,
+.sources,
+.issues-inline {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.pick-list button,
+.issue-list button {
+  width: 100%;
+  text-align: left;
+  border-left-width: 1px;
+  margin: 2px 0;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 4px;
+}
+
+.pick-list button.active {
+  background: #ddf4ff;
+  border-color: #54aeff;
+}
+
+.issue-list li {
+  margin-bottom: 6px;
+}
+
+.issues-inline li {
+  color: #cf222e;
+  font-size: 13px;
+}
+
+.sources li {
+  margin-bottom: 4px;
+  font-size: 13px;
+}
+
+dl {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 2px 8px;
+  margin: 4px 0;
+}
+
+dt {
+  color: #656d76;
+}
+
+dd {
+  margin: 0;
+  min-width: 0;
+}
+
+details summary {
+  cursor: pointer;
+  margin-top: 8px;
+  font-weight: 600;
+}
+
+.json {
+  font-size: 11px;
+  background: #f6f8fa;
+  padding: 8px;
+  border-radius: 6px;
+  white-space: pre-wrap;
+  word-break: break-all;
+  max-height: 60vh;
+  overflow: auto;
+}
+
+.counts {
+  border-collapse: collapse;
+  font-size: 12px;
+  width: 100%;
+}
+
+.counts th,
+.counts td {
+  border: 1px solid #d0d7de;
+  padding: 2px 4px;
+  text-align: center;
+}
+
+.counts td.zero {
+  color: #cf222e;
+}
+
+@media (max-width: 760px) {
+  .app {
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr auto;
+  }
+
+  .map {
+    grid-column: 1;
+    grid-row: 1;
+  }
+
+  .panel {
+    grid-column: 1;
+    grid-row: 2;
+    border-right: none;
+    border-top: 1px solid #d0d7de;
+    max-height: 50vh;
+  }
+
+  .panel-closed .panel {
+    overflow: hidden;
+  }
+
+  .panel-toggle {
+    display: block;
+    width: 100%;
+    border: none;
+    border-bottom: 1px solid #d0d7de;
+    border-radius: 0;
+    position: sticky;
+    top: 0;
+    z-index: 1;
+    padding: 8px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .panel-closed .panel-body {
+    display: none;
+  }
+}
