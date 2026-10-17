@@ -16,3 +16,18 @@
   - 伊射波神社推薦度 4、`elderFit` 1：推薦度只看地點本身，長輩難度放在適合度。
   - 相差かまど 的座位形式（椅子或坐地）不明，`elderFit` 打 3、`confidence` low。
 - 驗證：`scripts/validate` 通過（錯誤 0，警告都是已知的「retrieved 在未來」）。
+
+### 2. 住宿（第 2 批）
+- 只讀 `data/areas/toba/lodging.json` 和 `dossiers/` 的 38 份住宿筆記；沒有重新爬文、沒有用 Chrome、WebSearch。先讀了 `assessment-notes.md`「景點」一節和第 1 批的紀錄，沿用「資料沒來源就 null」「評論少的高星數不直接當高分」「心得舊就降 confidence」的規則，數字門檻改成住宿版。
+- 寫法同第 1 批：摘要、分數先寫成 scratchpad 的資料檔，再用臨時 Node 腳本寫進 `lodging.json`（不進 repo）。`summary.basedOn` 取讀文筆記「來源」列的網址；`generated`、`assessed` 2026-10-18，`rubric: "lodging-v1"`。
+- 結果（38 筆）：
+  - S 5（鳥羽國際飯店、蒼空の風、大田家、サン浦島、まるさん）、A 18、B 15（3 星 12、2 星 3：彩朝楽、宝屋、リド・ポルテ；1 星 0）。
+  - `confidence`：high 14（市區、南部的大型飯店旅館）、medium 14、low 10（離島小宿、包棟）。
+  - null 的面向：神島 山海荘 的 `meals`、`groupFit`（只有 1 篇觀光協會採訪，房間數沒查到）。
+- 判斷規則（推薦度的數字門檻、評論數上限、往下調一級的條件，以及 `meals`、`groupFit`、`elderFit`、`accessEase`、`confidence`）和校準範例寫在 `assessment-notes.md`「住宿」一節。
+- 注意：
+  - 接送車載客數幾乎每間都沒寫，`accessEase` 沒有因為「能載全員的接送」打 5 的；選定住宿後要問（`questions.md` 已有）。
+  - 小宿（大田家、香潮、たまや、まるさん、美浦荘）推薦度和料理分數高，但 `groupFit` 3：15 人要佔一半到全館，要電話問。
+  - `meals` 5 的 8 間（大田家、なかよし、香潮、たまや、まるさん、美浦荘、銀鱗、寿々波；楽天餐 4.7 以上）都是南部和答志島的小宿；市區的大型旅館最多 4。
+  - 長輩最友善（`elderFit` 5）：扇芳閣、オーシャンリゾート、亀の井；推薦度都只有 3。
+- 驗證：`scripts/validate` 通過（錯誤 0，警告 811 都是已知的「retrieved 在未來」，和改之前相同）。

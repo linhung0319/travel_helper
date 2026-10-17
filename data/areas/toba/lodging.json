@@ -8804,14 +8804,14 @@
       "rubric": "lodging-v1",
       "scores": {
         "recommend": 3,
-        "meals": 4,
+        "meals": 5,
         "groupFit": 4,
         "elderFit": 3,
         "accessEase": 3
       },
       "rationale": {
         "recommend": "楽天 4.56（187 則），但 Google 4.1、cocolocala 3 則 2.0～3.0，負評說設施老舊",
-        "meals": "楽天餐 4.74",
+        "meals": "楽天餐 4.74，桶盛海鮮會席（訂房要確認方案有沒有伊勢海老）",
         "groupFit": "20 室、88 疊大廣間；只接受大人 2 名以上，團體要電話問",
         "elderFit": "有電梯，但玄關有段差、到大浴場要走樓梯，只有鋪被",
         "accessEase": "和具港步行 3 分或接送（只接 15 時以後的船）；定期船約 18 分"
