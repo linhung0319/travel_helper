@@ -58,6 +58,7 @@
 //     「可帶小孩」或有寫小孩價 → allowed: yes；「有兒童餐／兒童套餐」→ kidsMenu: true，其他 null；
 //     年齡限制、看不出來的用 KIDS_OVERRIDE。舊值 null 的維持 null。
 //   seating：舊的 other 用來表示沙發座（T4b），extra.seatingNote 寫「沙發」的改成／加上 sofa。
+//   notes 裡指到舊筆記「（見 restaurants.md）」的改成 log/T4b.md（舊筆記 T7b 刪掉了）。
 //   access：照 T4c 的分類（restaurants.md「需搭車的店」）：浦村、國崎・パールロード、外圍 → car；
 //     離島 → ferry；鳥羽站周邊、中之郷、相差 → walk（從 anchors 走得到）。
 //
@@ -497,6 +498,7 @@ function migrateRestaurant(p) {
     const m = (q.group.source ?? '').match(/最大予約可能人数\s*(?:着席\s*)?(\d+)\s*人/);
     q.group = withKey(q.group, 'seats', 'maxReservation', m ? Number(m[1]) : null);
   }
+  if (q.notes) q.notes = q.notes.replace('（見 restaurants.md）', '（見 data/raw/toba/log/T4b.md）');
   q.kids = migrateKids(p);
   if (barrierFree) q = withKey(q, 'kids', 'accessibility', { barrierFree, note: null });
   if (/沙發/.test(extra.seatingNote ?? '')) {
@@ -678,6 +680,7 @@ const SPOT_CANDIDATES = [
   sx('shima-spain-village', '志摩スペイン村', null, '主題樂園', 'excluded', '在志摩市，不屬鳥羽'),
   sx('yokoyama-observatory', '横山展望台', null, '展望台', 'excluded', '在志摩市，不屬鳥羽'),
   sx('asamayama-observatory', '朝熊山頂展望台', null, '展望台', 'excluded', '在伊勢市，不屬鳥羽'),
+  sx('uramura-kaki', '浦村牡蠣小屋・牡蠣體驗', 'uramura', '餐廳／體驗', 'excluded', '牡蠣小屋屬餐廳（見 candidates/restaurants.json）；沒找到獨立的牡蠣「體驗」設施（剝殼體驗等）', { note: '浦村牡蠣季約 11 月初～4 月下旬（2 月在季中），食べ放題需預約、很快額滿；例：山安水產パールロード店 2025 季大人 3,000／小學生 1,700；かき丸 大 3,500／小 1,750；かきいち 大人 3,300／小學生 1,650／幼兒 550（2023 報導）' }),
   sx('anori-lighthouse', '安乗埼灯台', null, '燈塔', 'excluded', '在志摩市阿児町，不屬鳥羽'),
   // T2-C 離島
   sx('sakatejima', '坂手島', null, '離島', 'not-included', '主要景點是アヤメ池的カキツバタ（5 月中旬～初夏），2 月不是花期；其他是海水浴場、展望台，冬季吸引力低', { links: { official: 'https://www.kankomie.or.jp/report/1423' }, note: '定期船 220 円、約 10 分、一周步道約 1 小時，公廁只在碼頭' }),

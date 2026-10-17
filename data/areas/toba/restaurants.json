@@ -11027,7 +11027,7 @@
     },
     "tabelogOwner": false,
     "googleName": null,
-    "notes": "石鏡漁港旁的食堂，這一區唯一高人氣的店。不能預約。同一個地址（石鏡町 336-1）另有「漁師酒場 鏡」，但電話、公休日、營業時間都不同，是另一家店（見 restaurants.md）。",
+    "notes": "石鏡漁港旁的食堂，這一區唯一高人氣的店。不能預約。同一個地址（石鏡町 336-1）另有「漁師酒場 鏡」，但電話、公休日、營業時間都不同，是另一家店（見 data/raw/toba/log/T4b.md）。",
     "group": {
       "seats": null,
       "maxReservation": null,
