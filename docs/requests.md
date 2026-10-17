@@ -83,3 +83,22 @@
 - 內容：建議另外蒐集 JR 參宮線 伊勢市～五十鈴ケ丘～二見浦～松下～鳥羽 的時刻表（存成 `data/timetables/jr/<station-id>.json`，格式沿用近鐵時刻表）。JR 不能用近鐵 5 日券，車資另付。
 - 原因：二見（夫婦岩、二見興玉神社）最近的車站是 JR 二見浦，近鐵沒有經過；JR 參宮線班次比近鐵少（實際班距待蒐集時確認），15 人搭車要先看時刻表，否則容易等很久。也要注意鳥羽站的近鐵、JR 轉乘通道 2020 年起關閉，要出站再進站。替代方案是巴士（CAN バス等，由 T10 處理）。
 - 狀態：待處理
+
+## [T1b] 為 data/access/kix.json 建立正式 schema
+- 要改的檔案：`schema/`（新增 `access.schema.json`）、`scripts/validate.mjs` 的 ROUTES（`access/*.json` 改用新 schema）
+- 內容：T1b 定的格式如下（實際內容見 `data/access/kix.json`）。各區塊都有自己的 `sources`；推估的數字在文字裡標「推估」。
+  - 最外層：`id`、`name`（common 的 name）、`retrieved`、`notes`、`flights`、`routes`、`day1`、`lastDay`、`luggage`、`accessibility`、`openQuestions`（字串陣列）、`sources`（必填）
+  - `flights`：`arrive` / `depart`（`date`、`weekday`、`flights: [[起飛 HH:MM, 抵達 HH:MM], ...]`，`depart` 另有 `targetAtAirport`）、`terminal`、`sources`
+  - `routes[]`：`id`、`name`、`recommended`（boolean | null）、`transfers`（整數）、`transferNote`、`legs[]`（`{ from, to（車站 ID 或站名）, mode, minutes, frequency?, fare?: { adult, child, note? }, note? }`）、`totalMinutes`、`costPerPerson`、`note`、包車另有 `driving`、`options[]`、`pros`、`cons`；`id: "rejected"` 的項目只有 `items`（字串陣列）
+  - `day1`：`answer`、`assumptions`、`southboundTrains`（`note`、`trains[]`：`{ trainNo, type, osakaNamba, tsuruhashi, iseshi, toba, ugata, kashikojima（HH:MM | null）, note? }`、`sources`）、`timeline[]`（`{ time, event }`）、`fallback`、`dinnerWarning`、`overnightEnRoute`、`meetup`（`options[]`：`{ id, plan, pros, cons }`、`recommendation`、`sources`）
+  - `lastDay`：`answer`、`assumptions`、`fromIseOptions[]`（`{ iseshiDep, train, arrive, then, airport }`）、`fromIseNote`、`stayOn0212[]`（`{ where, toAirport, note }`）、`recommendation`、`sources`
+  - `luggage`、`accessibility`：說明文字欄位＋`sources`；`accessibility.stations[]` 是 `{ station, note }`
+  - `trainNo` 對應 `data/timetables/kintetsu/_travel-times.json` 的 `trains.weekday`，建議 validate 檢查存在。
+- 原因：目前 `access/*.json` 用 `sourced-document`，只檢查最外層有 `sources`；T14 行程引擎、T16 行程 UI 排第一天、最後一天時會讀這些欄位。
+- 狀態：待處理
+
+## [T1b] stations.json：大阪側轉乘站的無障礙資訊（參考）
+- 要改的檔案：`data/stations.json`（只有在決定把大阪側車站加進來時）
+- 內容：目前 `stations.json` 沒有大阪難波、鶴橋、大阪上本町、伊勢中川。這些站的電梯資訊整理在 `data/access/kix.json` 的 `accessibility.stations` 和 `data/raw/access/kintetsu-osaka.md`。如果 T11 的地圖要顯示機場往返路線，再考慮新增（`passes.json` 已經用 `osaka-namba` 當 ID）。
+- 原因：長輩帶行李轉乘時，難波、鶴橋的無障礙路線和一般路線不同。
+- 狀態：待處理
