@@ -44,9 +44,14 @@
 | @motokaki5522 | モトかき養殖場（`toba-motokaki`） | | 食べログ公式アカウント欄 | #モトかき養殖場 #浦村牡蠣 #浦村かき |
 | @tobafood_arashima | 鳥羽風土（`toba-tobafood`） | | 食べログ公式アカウント欄 | #鳥羽風土 #浦村牡蠣 #浦村かき |
 | @kakiichi_staff | かきいち 本店（`toba-kakiichi-honten`） | | 食べログ公式アカウント欄 | #かきいち本店 #浦村牡蠣 #浦村かき |
+| @yamayasu2020 | 山安水産 パールロード店（`toba-yamayasu-pearlroad`） | | 官網（T7e 第 3 批讀文） | #山安水産 #浦村牡蠣 #浦村かき |
+| @sugimuratomomi | スギムラ水産（`toba-sugimura-suisan`） | | 官網（T7e 第 3 批讀文） | #スギムラ水産 #浦村牡蠣 #浦村かき |
+| @hamah_ide | 浜英水産（`toba-hamahide-suisan`） | | 官網（T7e 第 3 批讀文） | #浜英水産 #浦村牡蠣 #浦村かき |
+| @marugensuisan | マル源水産（`toba-marugen-suisan`） | | 官網（T7e 第 3 批讀文） | #マル源水産 #浦村牡蠣 #浦村かき |
 | **相差** | | | | |
 | @osatsu_kitchen0032 | オウサツキッチン0032（`toba-osatsu-kitchen-0032`） | | 食べログ公式アカウント欄 | #オウサツキッチン0032 #相差 #石神さん |
 | @amakoyauemura | プチかまど うえむら（`toba-petit-kamado-uemura`） | | 食べログ公式アカウント欄 | #プチかまどうえむら #相差 #石神さん |
+| @amanoie_gozaya | 海女の家 五左屋（`toba-amanoie-gozaya`） | | 官網（T7e 第 3 批讀文） | #五左屋 #相差 #石神さん |
 | **國崎・パールロード** | | | | |
 | @tobatenboudai | 海女のテラス（`toba-ama-terrace`） | 設施（鳥羽展望台） | 食べログ公式アカウント欄 | #海女のテラス #鳥羽展望台 #パールロード |
 | **離島（答志島）** | | | | |
@@ -54,6 +59,13 @@
 | @104kikuya | 喜久屋（`toba-kikuya`） | | 食べログ公式アカウント欄 | #喜久屋 #答志島 |
 | **鳥羽站周邊（外圍・需車）** | | | | |
 | @tisou.toba | 季節料理 馳走（`toba-chiso`） | | 食べログ公式アカウント欄 | #季節料理馳走 #鳥羽グルメ |
+| @iseebi_kagez | 伊勢海老 海鮮蒸し料理 華月（`toba-kagetsu`） | | 官網（T7e 第 3 批讀文） | #華月 #伊勢海老 #鳥羽グルメ |
+
+## T7e 第 3 批的補充（2026-10-18）
+- 讀文 subagent 從官網找到 6 個新帳號（上表標「T7e 第 3 批讀文」），`restaurants.json` 的 `links.instagram` 已同步。
+- 海の駅 黒潮 相差店：官網的 IG 連結是伊勢店（黒潮ダイニング 花）的 @hana_seafood_don，不是相差店，沒有填。
+- 季節料理 馳走：官網另列 @chiso_toba（和表上的 @tisou.toba 是兩個帳號，T18 看哪個有在更新）。
+- 喜久屋：官網連結寫 kikuya104（表上是食べログ的 @104kikuya），T18 確認。
 
 ## 沒有帳號、但可以用 hashtag 找的店
 - 海の食堂 久兵衛（`toba-umino-shokudo-kyubei`）：食べログ的公式アカウント欄放的是 hashtag 頁 #海の食堂久兵衛，不是帳號。
