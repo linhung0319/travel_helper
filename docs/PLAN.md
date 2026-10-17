@@ -53,7 +53,7 @@
 | T5 | 地圖檢視器 v0（檢查資料用） | M | T0 | 1 | ✅ |
 | T6 | 地理工具：距離估算、步行路線、最近車站計算 | S | T0 | 1 | ✅ |
 | T7 | 👤 檢討試做結果、訂規則 | S | T1～T6 | 2 | ⬜ |
-| T7b | 鳥羽補資料：欄位搬移（腳本，三個檔案一起改） | S | T7 | 3 | ⬜ |
+| T7b | 鳥羽補資料：欄位搬移、研究筆記改結構（腳本為主） | M | T7 | 3 | ⬜ |
 | T7c | 鳥羽補資料：景點（Google 連結與評分、照片、心得、離島港口） | M | T7b | 3 | ⬜ |
 | T7d | 鳥羽補資料：住宿（楽天 API 腳本與重查、Google 連結與評分、照片、心得） | M | T7b、👤 楽天 key | 3 | ⬜ |
 | T7e | 鳥羽補資料：餐廳（依新納入標準補店、照片、心得） | M | T7b | 3 | ⬜ |
@@ -350,16 +350,22 @@
 ### T7b～T7g 鳥羽補資料
 照 T7 的新規則（CONVENTIONS.md §4、§5，討論見 T7-review.md）補鳥羽已有的 137 筆資料，讓鳥羽成為 T8、T9 的範本。
 
-#### T7b 欄位搬移 〔S〕
-- **先單獨做**（會同時改 `spots.json`、`lodging.json`、`restaurants.json`）。以腳本為主，不用 Chrome。
+#### T7b 欄位搬移、筆記改結構 〔M〕
+- **先單獨做**（會同時改 `spots.json`、`lodging.json`、`restaurants.json` 和 `data/raw/toba/`）。以腳本為主，不用 Chrome。
 - `extra.region` → `region`（子地區 ID 見 `areas.json`），景點 `tags` 裡的子地區拿掉；`extra.tabelogOwner`、`extra.googleName`、`extra.barrierFree`（→ `accessibility.barrierFree`）、`extra.phone`（景點 → `phone`）、`extra.checkIn`/`checkOut`（住宿）升格；`kids` 改成物件；`group.maxReservation` 從 `group.source` 的文字取出；`cuisine`、`tags` 改成固定清單；數字的 `price`（從 `priceRange` 轉）；`hours.always`、`hours.lastEntry`、`closures`（從 `febNote`、`hours.note` 轉，只轉來源寫明日期的）；住宿 `dinnerAccess`、餐廳 `access`（照 T4c 的缺漏檢查結果）。
-- 轉不了的（例如文字太模糊）留原樣，列在 `data/raw/toba/migration.md`。
+- 轉不了的（例如文字太模糊）留原樣，列在 `data/raw/toba/log/T7b.md`。
+- **筆記改結構**（CONVENTIONS §4「研究筆記怎麼存」）：
+  - `restaurants.md` 的候選表 205 家轉成 `candidates/restaurants.json`（寫轉換腳本，文章標題放進 `mentions`）；`spots.md`、`lodging.md` 裡被排除、沒收錄的候選轉成 `candidates/spots.json`、`candidates/lodging.json`。
+  - 各檔案裡的「待確認」「要打電話問」集中到 `questions.md`。
+  - 其餘過程紀錄原文搬到 `log/T2.md`、`log/T3.md`、`log/T4a.md`、`log/T4b.md`、`log/T4c.md`（只搬不改寫）；貼上的腳本輸出刪掉，只留結論。
+  - 寫 `README.md`：每個類型的現況、重要決定（例如數量控制、fit15 的判斷疑問、缺口）、給 T7c 之後的建議。
+  - 刪掉舊的 `spots.md`、`lodging.md`、`restaurants.md`（內容都已經搬走）。
 
 #### T7c 景點 〔M〕（Chrome）
 - 每筆補 `links.googleMaps`、Google 星數與評論數（`ratings`）、照片 1～3 張（CONVENTIONS §4「照片」）。
 - **讀文**：每個景點開一個 subagent（`docs/prompts/dossier.md`），讀 T2 的來源和 2～4 篇心得，寫筆記 `data/raw/toba/dossiers/<id>.md`，回報要補的欄位和官網照片（CONVENTIONS §4「讀文與筆記」）。主 session 同時用 Chrome 查 Google Maps。
 - 離島港口（`docs/requests.md` 的 T4c 請求）：菅島港、神島港、答志島的和具港與答志港（和景點分開）、桃取港。
-- 只寫 `spots.json`、`data/raw/toba/spots.md`、景點的筆記。
+- 只寫 `spots.json`、`data/raw/toba/` 的景點部分（`candidates/spots.json`、筆記、`log/T7c.md`；`README.md` 只改景點那一節）。
 
 #### T7d 住宿 〔M〕（楽天 API＋Chrome）
 - **需要 👤 先申請楽天 API key**（CONVENTIONS §4「楽天トラベル API」）。
@@ -367,13 +373,13 @@
 - 用 2 月的日期重查 38 筆裡有上楽天的：價格、15 人的房型組合有沒有空房、細項評分、照片。
 - 全部住宿補 `links.googleMaps`、Google 星數與評論數、照片（Chrome）。
 - **讀文**：每間住宿一個 subagent，寫筆記（同 T7c）。
-- 只寫 `lodging.json`、`data/raw/toba/lodging.md`、住宿的筆記、`scripts/rakuten.mjs`。
+- 只寫 `lodging.json`、`data/raw/toba/` 的住宿部分（`candidates/lodging.json`、筆記、`log/T7d.md`；`README.md` 只改住宿那一節）、`scripts/rakuten.mjs`。
 
 #### T7e 餐廳 〔M〕（Chrome）
 - 照修訂後的納入標準補店：D 的「任何一天 0 家」（菅島週三、國崎週三週四）、F③ 接受非住客用餐的料理旅館（相差的伝洋、花椿等）、D③ 離島便當（菅島 おかげ屋）；新店照 T4b 的方式查詳細資料。
 - 全部餐廳補照片（官網或 Google Maps 的照片 URL，不用食べログ的照片）。
-- **讀文**：每家店一個 subagent（來源少的 3 家合一個），T4a 候選表記錄的文章當已知來源，再找 1～3 篇心得，寫筆記。
-- 只寫 `restaurants.json`、`data/raw/toba/restaurants.md`、`ig-notes.md`、餐廳的筆記。
+- **讀文**：每家店一個 subagent（來源少的 3 家合一個），候選清單 `mentions` 裡的文章當已知來源，再找 1～3 篇心得，寫筆記。
+- 只寫 `restaurants.json`、`data/raw/toba/` 的餐廳部分（`candidates/restaurants.json`、筆記、`ig-notes.md`、`log/T7e.md`；`README.md` 只改餐廳那一節）。
 
 #### T7f 收尾 〔S〕
 - T7c、T7d、T7e 都 merge 後才做。
@@ -385,14 +391,14 @@
 - 寫評分一致性檢查腳本（推薦度和評分數字明顯矛盾的列出來，輸出到 `data/derived/`），👤 看過列出來的項目。
 
 ### T8a～T8f 伊勢（含二見）／ T9a～T9f 志摩
-兩區的步驟相同，照 CONVENTIONS §4 的「標準作業流程」（步驟 0～10）和 §5 的規則。**兩區可以並行；同一區的步驟依序**。每筆從一開始就填新欄位：`region`、`links.googleMaps`、Google 星數與評論數、`photos`、數字的 `price`、`closures`，並且每筆都要有讀文筆記（subagent，`docs/prompts/dossier.md`）。
+兩區的步驟相同，照 CONVENTIONS §4 的「標準作業流程」（步驟 0～10）、「研究筆記怎麼存」和 §5 的規則。每一步都更新 `data/raw/<area>/README.md` 自己的那一節，過程寫在 `log/<任務 ID>.md`；開工先讀 README，不要整份讀其他 session 的 log。**兩區可以並行；同一區的步驟依序**。每筆從一開始就填新欄位：`region`、`links.googleMaps`、Google 星數與評論數、`photos`、數字的 `price`、`closures`，並且每筆都要有讀文筆記（subagent，`docs/prompts/dossier.md`）。
 
 | 步驟 | 內容 | 工具 | 寫入 |
 |---|---|---|---|
-| a 子地區與景點 〔M〕 | 流程步驟 0～3：先定子地區，寫進 `areas.json` 該區域的 `regions`（例外允許，見 CONVENTIONS §2），👤 確認後列景點候選；每個景點一個讀文 subagent；Google Maps 用 Chrome 批次查 | WebSearch、subagent、Chrome | `areas.json` 的 regions、`spots.json`、`raw/<area>/spots.md`、筆記 |
-| b 住宿 〔M〕 | 流程步驟 4～6：用 T7d 的 `scripts/rakuten.mjs` 依子地區和 2 月日期撈候選，套 §5.7 門檻；包棟、小民宿另外找；每間一個讀文 subagent；Google Maps 用 Chrome | 楽天 API、subagent、Chrome | `lodging.json`、`raw/<area>/lodging.md`、筆記 |
-| c 餐廳候選 〔M〕 | 流程步驟 7：依子地區用食べログ列表、觀光協會、媒體蒐集，套 A～F（同 T4a）；列表文章的「推薦重點」寫進候選表 | Chrome | `raw/<area>/restaurants.md` |
-| d 餐廳詳細 〔M～L〕 | 流程步驟 8：逐家查食べログ、Google Maps（同 T4b），同時在背景開讀文 subagent；**可以依子地區拆成 2 個並行 session**，merge 時陣列衝突兩邊都保留 | Chrome、subagent | `restaurants.json`、`raw/<area>/ig-notes.md`、筆記 |
+| a 子地區與景點 〔M〕 | 流程步驟 0～3：先定子地區，寫進 `areas.json` 該區域的 `regions`（例外允許，見 CONVENTIONS §2），👤 確認後列景點候選；每個景點一個讀文 subagent；Google Maps 用 Chrome 批次查 | WebSearch、subagent、Chrome | `areas.json` 的 regions、`spots.json`、`candidates/spots.json`、筆記 |
+| b 住宿 〔M〕 | 流程步驟 4～6：用 T7d 的 `scripts/rakuten.mjs` 依子地區和 2 月日期撈候選，套 §5.7 門檻；包棟、小民宿另外找；每間一個讀文 subagent；Google Maps 用 Chrome | 楽天 API、subagent、Chrome | `lodging.json`、`candidates/lodging.json`、筆記 |
+| c 餐廳候選 〔M〕 | 流程步驟 7：依子地區用食べログ列表、觀光協會、媒體蒐集，套 A～F（同 T4a）；列表文章的推薦重點寫進 `mentions` | Chrome | `candidates/restaurants.json` |
+| d 餐廳詳細 〔M～L〕 | 流程步驟 8：逐家查食べログ、Google Maps（同 T4b），同時在背景開讀文 subagent；**可以依子地區拆成 2 個並行 session**，merge 時陣列衝突兩邊都保留 | Chrome、subagent | `restaurants.json`、`ig-notes.md`、筆記 |
 | e 收尾 〔S〕 | anchors（OSRM）、缺漏檢查、地圖檢查（同 T4c、T7f） | 腳本 | `restaurants.json`、筆記 |
 | f 摘要與評分 〔M〕 | 流程步驟 10：先讀 `data/raw/toba/assessment-notes.md`，再只讀資料檔和筆記，照 §5.1 寫 `summary`、`assessment`、`tier`（同 T7g；可以依類型拆 3 個並行） | — | 三個檔案 |
 

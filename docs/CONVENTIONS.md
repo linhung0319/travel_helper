@@ -26,8 +26,12 @@ travel_helper/
 │  ├─ timetables/
 │  │  ├─ kintetsu/<station-id>.json
 │  │  └─ bus/<route-id>.json
-│  ├─ raw/<area-id>/         研究筆記（Markdown）：搜尋過程、候選清單、被排除的原因
-│  │  └─ dossiers/<id>.md    每個資料點的讀文筆記（摘要、評分的依據）
+│  ├─ raw/<area-id>/         研究筆記（怎麼存見 §4「研究筆記怎麼存」）
+│  │  ├─ README.md           區域的現況、決定、給後續的建議（開工先讀這個）
+│  │  ├─ candidates/         候選清單 JSON（含沒納入、被排除的）
+│  │  ├─ dossiers/<id>.md    每個資料點的讀文筆記（摘要、評分的依據）
+│  │  ├─ questions.md        要打電話或人工確認的事
+│  │  └─ log/<任務 ID>.md    各任務的過程紀錄（寫完不再改）
 │  ├─ derived/               腳本產生的檢查結果（例如評分一致性），不要手改
 │  └─ cache/routes/          路線計算的快取
 ├─ scripts/                  驗證、蒐集、地理計算的腳本
@@ -42,9 +46,9 @@ travel_helper/
 
 ## 1.5 Schema 與驗證（T0 建立）
 
-- JSON Schema 放在 `schema/`：`common`（共同欄位）、`station`、`spot`、`lodging`、`restaurant`、`area`、`timetable-kintetsu`、`kintetsu-travel-times`、`passes`、`access`，以及格式還沒定的檔案共用的 `sourced-document`（目前只有 `timetables/bus/*.json`：只要求最外層是物件、有 `sources`，T10 定好格式後到 `docs/requests.md` 提出）。
+- JSON Schema 放在 `schema/`：`common`（共同欄位）、`station`、`spot`、`lodging`、`restaurant`、`area`、`timetable-kintetsu`、`kintetsu-travel-times`、`passes`、`access`、`candidate`（`raw/<area>/candidates/*.json`），以及格式還沒定的檔案共用的 `sourced-document`（目前只有 `timetables/bus/*.json`：只要求最外層是物件、有 `sources`，T10 定好格式後到 `docs/requests.md` 提出）。
 - 驗證：`npm run validate`（或 `node scripts/validate.mjs`；bash 下可以直接跑 `scripts/validate`）。第一次使用前要先 `npm install`。
-  - 檢查：符合 schema、資料點 ID 全專案唯一、座標在伊勢志摩範圍內（`access/`、`kix` 區域放寬到關西、中部）、引用的 ID 存在（`nearestStation`、`access.from`、`anchors`、`transfers`、`group.nearbyCombos`、`areas.json` 的 `stations`）、`region` 在該區域的 `regions` 裡、檔案在規定的位置。
+  - 檢查：符合 schema、資料點 ID 全專案唯一、座標在伊勢志摩範圍內（`access/`、`kix` 區域放寬到關西、中部）、引用的 ID 存在（`nearestStation`、`access.from`、`anchors`、`transfers`、`group.nearbyCombos`、`areas.json` 的 `stations`）、`region` 在該區域的 `regions` 裡、候選清單的 key 不重複而且 `pointId` 存在、有 `assessment` 時 `tier` 和推薦度一致、檔案在規定的位置。
   - 座標不在所屬區域的 `bbox` 內只會警告（bbox 是大致範圍）。
 - `areas/*.json`、`stations.json` 等清單檔的最外層是**陣列**，每個元素一筆資料。
 - schema 不允許沒定義的欄位：暫時放進 `extra`，需要正式欄位的話寫到 `docs/requests.md`。
@@ -378,10 +382,10 @@ travel_helper/
   - 便利商店、連鎖速食、スナック和酒吧、食べログ標示「閉店」「移転」「休業」的店、只做外帶的店（甜點、小吃除外）。
   - **會員制、只限住客**：會員制度假飯店（例如エクシブ、ウイスタリアンライフクラブ）裡的餐廳，以及寫明只接待住客（宿泊者のみ）的店。能不能讓非會員用餐不確定時，標「待確認」先不算進納入數，T4b 第一步確認，確認可以用餐才補查其他欄位。
   - **旅程期間大多不營業**：來源明寫的公休日蓋過旅程大部分日子（例如平日公休），或來源明寫 2 月休業。只在來源已經寫明時套用，營業時間的細節由 T4b 查。
-- **同類型上限**：同一地區、同一類型的店（例如浦村的牡蠣小屋）最多 12 家，依 A → F → B → C 的順序取，同一條件內依口コミ數。超過的標「同類型上限」留在候選表。
+- **同類型上限**：同一地區、同一類型的店（例如浦村的牡蠣小屋）最多 12 家，依 A → F → B → C 的順序取，同一條件內依口コミ數。超過的標 `over-limit` 留在候選清單。
 - **數量控制**：一區總數目標約 50～70 家（伊勢含おはらい町，店多很多，目標 80～100 家）。套用上面的規則後仍超過時，只提高店最多的地區（鳥羽是鳥羽站周邊）的 A 門檻，例如食べログ改成 3.40；其他地區不動。
 - **只用規則過濾**：無法寫成規則的判斷（例如「有特色」「同區已有類似的店」）不拿來刪店，符合條件就放行。
-- 沒納入的店留在 `data/raw/<area>/restaurants.md` 的候選表裡，附分數和口コミ數。
+- 沒納入的店留在 `data/raw/<area>/candidates/restaurants.json`（`status: not-included`），附分數和口コミ數；T7 之後調整門檻時可以用程式重新篩選。
 
 ### 讀文與筆記（dossier）
 摘要和評分要根據文章內容，但文章很多、很長，不能都塞進同一個 session。所以**讀文**和**判斷**分開：
@@ -396,7 +400,7 @@ travel_helper/
 - **同時最多 5 個 subagent**；景點、住宿一點一個；餐廳來源少（2 篇以內）的可以 3 家合成一個。
 - **不存全文**：筆記只寫重點（繁體中文，菜名附日文），不要複製原文；要再看就點來源連結。
 - 心得的搜尋關鍵字範本（日文優先）：`<店名> 口コミ`、`<店名> ブログ`、`<名稱> 子連れ`、`<名稱> 高齢者 階段`（景點）、`<名稱> 冬`（景點）、`<中文名> 心得`、`<中文名> 團體`。
-- **候選階段讀過的文章不要白讀**：T4a 這類候選名單步驟讀列表型文章（「鳥羽ランチ 11 選」）時，在候選表的「推薦重點」欄寫一句這篇為什麼推薦這家，之後交給該店的 subagent 當已知來源。
+- **候選階段讀過的文章不要白讀**：T4a 這類候選名單步驟讀列表型文章（「鳥羽ランチ 11 選」）時，在候選清單該店的 `mentions[].highlight` 寫一句這篇為什麼推薦這家，之後交給該店的 subagent 當已知來源。
 - `summary.cons` 要涵蓋結構化欄位裡的問題（不能訂位、公休日、2 月休業、長階梯、只有榻榻米、不接受小孩、要搭車、坐不下 15 人）。
 
 ### 照片
@@ -408,18 +412,34 @@ travel_helper/
 | 步驟 | 主 session 做的事 | subagent 做的事 | 產出 |
 |---|---|---|---|
 | 0 子地區 | 定子地區和中心點，👤 確認 | — | `areas.json` 的 `regions` |
-| 1 景點候選 | 觀光協會、觀光三重的景點列表＋WebSearch，列候選和要給 sub 的已知來源 | — | `raw/<area>/spots.md` 候選表 |
+| 1 景點候選 | 觀光協會、觀光三重的景點列表＋WebSearch，列候選和要給 sub 的已知來源 | — | `candidates/spots.json` |
 | 2 景點讀文 | 每個景點開 sub，收回事實欄位寫進 `spots.json` | 官網（營業、票價、無障礙、團體）、觀光協會、心得 2～4 篇、官網照片 | `spots.json`、筆記 |
 | 3 景點 Chrome | 批次查 Google Maps：座標、`links.googleMaps`、星數、評論數、照片 URL | — | `spots.json` |
-| 4 住宿候選 | `scripts/rakuten.mjs` 依子地區、2 月日期撈候選（價格、15 人房型組合的空房、細項評分、照片），套 §5.7；另外找沒上楽天的包棟、民宿 | — | `raw/<area>/lodging.md` 候選表 |
+| 4 住宿候選 | `scripts/rakuten.mjs` 依子地區、2 月日期撈候選（價格、15 人房型組合的空房、細項評分、照片），套 §5.7；另外找沒上楽天的包棟、民宿 | — | `candidates/lodging.json` |
 | 5 住宿讀文 | 每間開 sub，收回欄位寫進 `lodging.json` | 官網（團體、接送、電梯、床、兒童價）、心得 2～3 篇 | `lodging.json`、筆記 |
 | 6 住宿 Chrome | Google Maps 的連結、星數、評論數；楽天沒有的評分（じゃらん） | — | `lodging.json` |
-| 7 餐廳候選 | 食べログ列表（Chrome）＋觀光協會、媒體；套 A～F；列表文章的「推薦重點」寫進候選表 | — | `raw/<area>/restaurants.md` 候選表 |
-| 8 餐廳詳細 | 逐家查食べログ店家頁、Google Maps（Chrome），寫進 `restaurants.json`；同時在背景開 sub 讀文 | 官網、候選表的已知文章、心得 1～3 篇 | `restaurants.json`、筆記 |
+| 7 餐廳候選 | 食べログ列表（Chrome）＋觀光協會、媒體；套 A～F；列表文章的推薦重點寫進 `mentions[].highlight` | — | `candidates/restaurants.json` |
+| 8 餐廳詳細 | 逐家查食べログ店家頁、Google Maps（Chrome），寫進 `restaurants.json`；同時在背景開 sub 讀文 | 官網、候選清單 `mentions` 裡的文章、心得 1～3 篇 | `restaurants.json`、筆記 |
 | 9 收尾 | `restaurant-anchors.mjs`、`restaurant-gaps.mjs`、地圖檢查 | — | `restaurants.json`、筆記 |
 | 10 摘要與評分 | 先讀 `data/raw/toba/assessment-notes.md`（校準範例），每個類型一次讀完筆記，寫 `summary`、`assessment`、`tier` | 筆記不夠時補讀 | 三個資料檔 |
 
-每一步結束時：跑 `scripts/validate`、commit，筆記最後寫「給下一步的建議」。
+每一步結束時：跑 `scripts/validate`、commit；更新 `README.md`（現況、決定、給下一步的建議），過程寫在 `log/<任務 ID>.md`。
+
+### 研究筆記怎麼存
+鳥羽的 `restaurants.md` 長到 97 KB：一半是候選表，四分之一是貼上的腳本輸出，其他是各任務一路追加的過程紀錄。之後每個 session 都要讀它，會越來越吃 context。所以**依內容的性質分開存**：
+
+| 內容 | 存在哪裡 | 怎麼寫 |
+|---|---|---|
+| 區域的現況、重要決定、例外、給後續的建議 | `README.md` | **覆寫成最新狀態**，不是一路追加；200 行以內，每個類型一節。之後的 session 開工先讀這個 |
+| 候選（含沒納入、被排除、同類型上限外）和原因 | `candidates/<spots\|lodging\|restaurants>.json` | 一筆一個候選，格式見 `schema/candidate.schema.json`（`status`、`criteria`、`reason`、`ratings`、`mentions`）。要看時用程式過濾，不整份讀 |
+| 每個資料點的心得、優缺點 | `dossiers/<id>.md` | §4「讀文與筆記」，40 行以內 |
+| 要打電話、人工確認的事 | `questions.md` | 一條一行：`- [ ] <資料點 ID>：問題（為什麼要問）`；問到了改成 `[x]` 並把結果寫進資料檔 |
+| 搜尋關鍵字、看過的列表頁、操作次數、遇到的問題 | `log/<任務 ID>.md` | 每個任務一個檔，任務結束後不再改；之後的 session 只在需要時讀。300 行以內 |
+| 腳本的輸出（缺漏檢查、anchors 檢查） | **不存** | 要看就重跑腳本；只把結論（缺口在哪、決定怎麼補）寫進 README |
+| 交通選項（計程車、包車）、IG 帳號 | `transport.md`、`ig-notes.md` | 照舊 |
+
+- **每筆資料點的事實**寫在資料檔（JSON），不要在筆記裡再寫一次「各間重點」。
+- 鳥羽的舊筆記由 T7b 改成這個結構。
 
 ### 語言：日文蒐集、中文呈現
 蒐集時**日文資料優先**：營業時間、公休、2 月休業、團體預約、席數、包場這些資訊，幾乎只有日文的官網、食べログ、觀光協會頁面才有，而且最新。中文部落格常常已經過時，而且偏向台灣觀光客熟悉的店。
@@ -464,7 +484,7 @@ travel_helper/
 - 不同來源的資訊衝突時，以官方網站為準，並把衝突寫在 `extra.conflicts`。
 - 只存事實資訊（營業時間、價格、評分）和連結；**不要大段複製評論或文章內容。**
 - 不大量瀏覽 Instagram、食べログ等網站，也不繞過登入或網站的限制（驗證碼、封鎖）。在 Chrome 裡只看任務需要的頁面；IG 只在 T18 對選定的店少量查看。
-- 被排除的候選資料點，在 `data/raw/<area>/` 的筆記裡寫下排除原因（例如已經歇業、太遠），之後的任務才不會重複搜尋。
+- 被排除的候選資料點，在 `data/raw/<area>/candidates/` 裡標 `status: excluded` 並寫 `reason`（例如已經歇業、太遠），之後的任務才不會重複搜尋。
 - 寫完資料要跑 `scripts/validate`，通過才 commit。
 
 ---

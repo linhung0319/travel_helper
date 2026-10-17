@@ -50,6 +50,7 @@ const ROUTES = [
   { re: /^access\/[a-z0-9-]+\.json$/, schema: 'access', kind: 'doc', bbox: BBOX_WIDE },
   { re: /^cache\//, schema: null, kind: 'cache' },
   { re: /^derived\//, schema: null, kind: 'cache' }, // 腳本產生（分數、分級），只檢查 JSON 格式
+  { re: /^raw\/(ise|futami|toba|shima|kix)\/candidates\/(spots|lodging|restaurants)\.json$/, schema: 'candidate', kind: 'candidates' },
 ];
 
 function walk(dir) {
@@ -209,7 +210,7 @@ function main() {
     if (id && !points.has(id)) err(shown, `[${owner}] ${field} 引用的「${id}」不存在`);
   };
 
-  for (const { shown, route, data } of loaded) {
+  for (const { shown, rel, route, data } of loaded) {
     if (route.kind === 'points' && Array.isArray(data)) {
       for (const rec of data) {
         if (!rec?.id) continue;
@@ -256,6 +257,20 @@ function main() {
     } else if (route.kind === 'timetable') {
       if (data?.station && points.size && points.get(data.station)?.record.type !== 'station') {
         err(shown, `station「${data.station}」不在 stations.json`);
+      }
+    } else if (route.kind === 'candidates' && Array.isArray(data)) {
+      // 候選清單：key 唯一、納入的要有 pointId 而且存在、region 在該區域的 regions 裡
+      const area = areas.get(rel.split('/')[1]);
+      const keys = new Set();
+      for (const c of data) {
+        if (!c?.key) continue;
+        if (keys.has(c.key)) err(shown, `候選 key「${c.key}」重複`);
+        keys.add(c.key);
+        if (c.status === 'included' && !c.pointId) err(shown, `[${c.key}] status 是 included，但沒有 pointId`);
+        checkRef(shown, c.key, 'pointId', c.pointId);
+        if (c.region && area && !(area.regions ?? []).some((g) => g.id === c.region)) {
+          err(shown, `[${c.key}] region「${c.region}」不在 areas.json 區域「${area.id}」的 regions 裡`);
+        }
       }
     } else if (route.kind === 'doc') {
       const bbox = route.bbox ?? BBOX_ISESHIMA;
