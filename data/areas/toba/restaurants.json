@@ -1,0 +1,2252 @@
+[
+  {
+    "id": "toba-sazanami",
+    "type": "restaurant",
+    "name": {
+      "ja": "漣 鳥羽店",
+      "kana": "さざなみ",
+      "zh": "漣 鳥羽店",
+      "en": null
+    },
+    "area": "toba",
+    "coords": [
+      136.8428997,
+      34.4835783
+    ],
+    "coordsSource": "google-maps-url",
+    "address": "三重県鳥羽市鳥羽3-5-28",
+    "hours": {
+      "mon": [
+        [
+          "11:00",
+          "15:00"
+        ],
+        [
+          "16:30",
+          "19:30"
+        ]
+      ],
+      "tue": [],
+      "wed": [
+        [
+          "11:00",
+          "15:00"
+        ],
+        [
+          "16:30",
+          "19:30"
+        ]
+      ],
+      "thu": [
+        [
+          "11:00",
+          "15:00"
+        ],
+        [
+          "16:30",
+          "19:30"
+        ]
+      ],
+      "fri": [
+        [
+          "11:00",
+          "15:00"
+        ],
+        [
+          "16:30",
+          "19:30"
+        ]
+      ],
+      "sat": [
+        [
+          "10:30",
+          "15:00"
+        ],
+        [
+          "16:30",
+          "19:30"
+        ]
+      ],
+      "sun": [
+        [
+          "10:30",
+          "15:00"
+        ],
+        [
+          "16:30",
+          "19:30"
+        ]
+      ],
+      "holiday": null,
+      "note": "L.O. 14:30、18:30；售完提早打烊；繁忙期 10:30～19:30 不休息（官網）"
+    },
+    "closedNote": "週二公休（逢國定假日營業，另擇日補休）",
+    "febNote": null,
+    "photos": [],
+    "links": {
+      "official": "http://www.sazanami.co.jp/",
+      "googleMaps": "https://maps.google.com/?cid=2159664181539964662",
+      "tabelog": "https://tabelog.com/mie/A2403/A240302/24000445/",
+      "instagram": null
+    },
+    "tags": [],
+    "tier": null,
+    "sources": [
+      {
+        "retrieved": "2026-10-17",
+        "note": "店舗情報：分數、席數、預約、營業時間、お子様連れ",
+        "type": "tabelog",
+        "url": "https://tabelog.com/mie/A2403/A240302/24000445/"
+      },
+      {
+        "retrieved": "2026-10-17",
+        "note": "星數、評論數、營業時間、座標",
+        "type": "google-maps",
+        "url": "https://maps.google.com/?cid=2159664181539964662"
+      },
+      {
+        "type": "media",
+        "url": "https://www.nap-camp.com/mag/50903",
+        "retrieved": "2026-10-17",
+        "note": "なっぷ「鳥羽のおすすめ人気ランチ11選」（2026-10-01 更新）"
+      },
+      {
+        "type": "media",
+        "url": "https://www.nap-camp.com/mag/23934",
+        "retrieved": "2026-10-17",
+        "note": "なっぷ「鳥羽のご当地グルメ15選」（2026-10-01 更新）"
+      },
+      {
+        "type": "media",
+        "url": "https://www.mapple.net/article/32428/",
+        "retrieved": "2026-10-17",
+        "note": "まっぷる 鳥羽・相差的美食介紹"
+      },
+      {
+        "retrieved": "2026-10-17",
+        "note": "營業時間、定休日",
+        "type": "official",
+        "url": "http://www.sazanami.co.jp/"
+      }
+    ],
+    "verified": false,
+    "anchors": [
+      {
+        "id": "jr-toba",
+        "walkMinutes": 5,
+        "walkSource": "estimate"
+      },
+      {
+        "id": "toba-castle-ruins",
+        "walkMinutes": 2,
+        "walkSource": "estimate"
+      },
+      {
+        "id": "toba-edogawa-rampo-museum",
+        "walkMinutes": 4,
+        "walkSource": "estimate"
+      }
+    ],
+    "contexts": [
+      "lunch",
+      "dinner",
+      "transit"
+    ],
+    "cuisine": [
+      "海鮮",
+      "炸物（コロッケ）",
+      "日本料理"
+    ],
+    "priceRange": "¥3,000～3,999",
+    "mustTry": [],
+    "menu": [],
+    "ratings": {
+      "tabelog": 3.74,
+      "tabelogReviews": 1048,
+      "google": 4.3,
+      "googleReviews": 2054,
+      "note": null
+    },
+    "notes": "鳥羽站步行約 7 分。不接受預約，熱門店要排隊。1 樓桌席、2 樓也有座位（官網）。",
+    "group": {
+      "seats": 60,
+      "privateRoom": false,
+      "buyout": "不可",
+      "groupMenu": null,
+      "source": "食べログ：席数 60、予約不可、貸切不可；可以訂位才算 split，所以是 unknown",
+      "note": null,
+      "fit15": "unknown",
+      "fitSubgroup": "yes"
+    },
+    "reservation": {
+      "methods": [],
+      "phone": "0599-25-2220",
+      "url": null,
+      "language": "日文",
+      "note": "食べログ：予約不可",
+      "accepted": "no"
+    },
+    "seating": [
+      "table",
+      "zashiki"
+    ],
+    "kids": "可帶小孩（含幼兒），有兒童餐（食べログ）",
+    "smoking": "全席禁煙",
+    "extra": {
+      "region": "鳥羽站周邊",
+      "inclusion": "A",
+      "tabelogOwner": false,
+      "conflicts": [
+        "Google 的營業時間寫到 14:30、18:30（是 L.O.）；官網、食べログ寫 15:00、19:30 打烊"
+      ]
+    }
+  },
+  {
+    "id": "toba-seahorse",
+    "type": "restaurant",
+    "name": {
+      "ja": "メインダイニング シーホース",
+      "kana": null,
+      "zh": "主餐廳 Sea Horse（鳥羽國際飯店）",
+      "en": "Main Dining SEA HORSE"
+    },
+    "area": "toba",
+    "coords": [
+      136.8418079,
+      34.4919013
+    ],
+    "coordsSource": "google-maps-url",
+    "address": "三重県鳥羽市鳥羽1-23-1 鳥羽国際ホテル オーシャンウイング 1F",
+    "hours": {
+      "mon": [
+        [
+          "07:00",
+          "10:00"
+        ],
+        [
+          "11:30",
+          "14:30"
+        ],
+        [
+          "17:30",
+          "22:00"
+        ]
+      ],
+      "tue": [
+        [
+          "07:00",
+          "10:00"
+        ],
+        [
+          "11:30",
+          "14:30"
+        ],
+        [
+          "17:30",
+          "22:00"
+        ]
+      ],
+      "wed": [
+        [
+          "07:00",
+          "10:00"
+        ],
+        [
+          "11:30",
+          "14:30"
+        ],
+        [
+          "17:30",
+          "22:00"
+        ]
+      ],
+      "thu": [
+        [
+          "07:00",
+          "10:00"
+        ],
+        [
+          "11:30",
+          "14:30"
+        ],
+        [
+          "17:30",
+          "22:00"
+        ]
+      ],
+      "fri": [
+        [
+          "07:00",
+          "10:00"
+        ],
+        [
+          "17:30",
+          "22:00"
+        ]
+      ],
+      "sat": [
+        [
+          "07:00",
+          "10:00"
+        ],
+        [
+          "11:30",
+          "14:30"
+        ],
+        [
+          "17:30",
+          "22:00"
+        ]
+      ],
+      "sun": [
+        [
+          "07:00",
+          "10:00"
+        ],
+        [
+          "11:30",
+          "14:30"
+        ],
+        [
+          "17:30",
+          "22:00"
+        ]
+      ],
+      "holiday": [
+        [
+          "07:00",
+          "10:00"
+        ],
+        [
+          "11:30",
+          "14:30"
+        ],
+        [
+          "17:30",
+          "22:00"
+        ]
+      ],
+      "note": "L.O. 早餐 9:30、午餐 13:30、晚餐 20:30；2026 年 3 月起週五午餐公休（國定假日、黃金週、盂蘭盆、年末年始照常）"
+    },
+    "closedNote": "午餐週五公休（2026-03 起）；食べログ另寫「不定期年 2 回」",
+    "febNote": null,
+    "photos": [],
+    "links": {
+      "official": "https://www.tobahotel.co.jp/restaurant_list/seahorse/",
+      "googleMaps": "https://www.google.com/maps/search/?api=1&query=%E3%83%A1%E3%82%A4%E3%83%B3%E3%83%80%E3%82%A4%E3%83%8B%E3%83%B3%E3%82%B0%20%E3%82%B7%E3%83%BC%E3%83%9B%E3%83%BC%E3%82%B9%20%E4%B8%89%E9%87%8D%E7%9C%8C%E9%B3%A5%E7%BE%BD%E5%B8%82%E9%B3%A5%E7%BE%BD1-23-1%20%E9%B3%A5%E7%BE%BD%E5%9B%BD%E9%9A%9B%E3%83%9B%E3%83%86%E3%83%AB%20%E3%82%AA%E3%83%BC%E3%82%B7%E3%83%A3%E3%83%B3%E3%82%A6%E3%82%A4%E3%83%B3%E3%82%B0%201F",
+      "tabelog": "https://tabelog.com/mie/A2403/A240302/24000268/",
+      "instagram": "@toba_hotel_international"
+    },
+    "tags": [],
+    "tier": null,
+    "sources": [
+      {
+        "retrieved": "2026-10-17",
+        "note": "店舗情報：分數、席數、預約、營業時間、お子様連れ",
+        "type": "tabelog",
+        "url": "https://tabelog.com/mie/A2403/A240302/24000268/"
+      },
+      {
+        "retrieved": "2026-10-17",
+        "note": "星數、評論數、營業時間、座標",
+        "type": "google-maps",
+        "url": "https://www.google.com/maps/search/?api=1&query=%E3%83%A1%E3%82%A4%E3%83%B3%E3%83%80%E3%82%A4%E3%83%8B%E3%83%B3%E3%82%B0%20%E3%82%B7%E3%83%BC%E3%83%9B%E3%83%BC%E3%82%B9%20%E4%B8%89%E9%87%8D%E7%9C%8C%E9%B3%A5%E7%BE%BD%E5%B8%82%E9%B3%A5%E7%BE%BD1-23-1%20%E9%B3%A5%E7%BE%BD%E5%9B%BD%E9%9A%9B%E3%83%9B%E3%83%86%E3%83%AB%20%E3%82%AA%E3%83%BC%E3%82%B7%E3%83%A3%E3%83%B3%E3%82%A6%E3%82%A4%E3%83%B3%E3%82%B0%201F"
+      },
+      {
+        "type": "media",
+        "url": "https://www.nap-camp.com/mag/23934",
+        "retrieved": "2026-10-17",
+        "note": "なっぷ「鳥羽のご当地グルメ15選」（2026-10-01 更新）"
+      },
+      {
+        "retrieved": "2026-10-17",
+        "note": "營業時間、週五午餐公休、席數、訂位",
+        "type": "official",
+        "url": "https://www.tobahotel.co.jp/restaurant_list/seahorse/"
+      }
+    ],
+    "verified": false,
+    "anchors": [
+      {
+        "id": "toba",
+        "walkMinutes": 9,
+        "walkSource": "estimate"
+      },
+      {
+        "id": "toba-bay-cruise-irukajima",
+        "walkMinutes": 5,
+        "walkSource": "estimate"
+      },
+      {
+        "id": "toba-sadahama-marine-terminal",
+        "walkMinutes": 5,
+        "walkSource": "estimate"
+      }
+    ],
+    "contexts": [
+      "lunch",
+      "dinner"
+    ],
+    "cuisine": [
+      "法式料理",
+      "西餐",
+      "咖哩"
+    ],
+    "priceRange": "晚餐 ¥15,000～19,999；午餐 ¥4,000～4,999",
+    "mustTry": [],
+    "menu": [],
+    "ratings": {
+      "tabelog": 3.62,
+      "tabelogReviews": 222,
+      "google": 4.6,
+      "googleReviews": 104,
+      "note": "IG 是鳥羽國際飯店的帳號"
+    },
+    "notes": "鳥羽國際飯店內，鳥羽站搭車 3 分，站前有接駁車。",
+    "group": {
+      "seats": 88,
+      "privateRoom": false,
+      "buyout": "可包場（20～50 人）",
+      "groupMenu": null,
+      "source": "食べログ：貸切可（20人～50人可）、席数 88；官網：88 席",
+      "note": null,
+      "fit15": "yes",
+      "fitSubgroup": "yes"
+    },
+    "reservation": {
+      "methods": [
+        "phone",
+        "web"
+      ],
+      "phone": "0599-26-4121",
+      "url": "https://www.tobahotel.co.jp/restaurant_list/seahorse/",
+      "language": "日文",
+      "note": "官網訂位電話 9:00～17:00；食べログ電話 0599-25-3121（飯店代表）",
+      "accepted": "yes"
+    },
+    "seating": [
+      "table"
+    ],
+    "kids": "可帶小孩（乳兒、學齡前、小學生），有兒童餐，可推嬰兒車（食べログ）",
+    "smoking": "全席禁煙",
+    "extra": {
+      "region": "鳥羽站周邊",
+      "inclusion": "AC",
+      "tabelogOwner": false,
+      "barrierFree": "可坐輪椅入店（食べログ）",
+      "conflicts": [
+        "Google 的時間是 L.O.（午餐到 13:30、晚餐到 20:30），也沒有反映週五午餐公休"
+      ]
+    }
+  },
+  {
+    "id": "toba-tasuke",
+    "type": "restaurant",
+    "name": {
+      "ja": "太助",
+      "kana": "たすけ",
+      "zh": "太助（壽司）",
+      "en": null
+    },
+    "area": "toba",
+    "coords": [
+      136.8391442,
+      34.4824264
+    ],
+    "coordsSource": "google-maps-url",
+    "address": "三重県鳥羽市鳥羽2-8-16",
+    "hours": {
+      "mon": [
+        [
+          "17:00",
+          "21:00"
+        ]
+      ],
+      "tue": [
+        [
+          "17:00",
+          "21:00"
+        ]
+      ],
+      "wed": [],
+      "thu": [],
+      "fri": [
+        [
+          "17:00",
+          "21:00"
+        ]
+      ],
+      "sat": [
+        [
+          "17:00",
+          "21:00"
+        ]
+      ],
+      "sun": [
+        [
+          "17:00",
+          "21:00"
+        ]
+      ],
+      "holiday": null,
+      "note": null
+    },
+    "closedNote": "週三、週四公休",
+    "febNote": null,
+    "photos": [],
+    "links": {
+      "official": null,
+      "googleMaps": "https://maps.google.com/?cid=8699063308523596507",
+      "tabelog": "https://tabelog.com/mie/A2403/A240302/24003344/",
+      "instagram": null
+    },
+    "tags": [],
+    "tier": null,
+    "sources": [
+      {
+        "retrieved": "2026-10-17",
+        "note": "店舗情報：分數、席數、預約、營業時間、お子様連れ",
+        "type": "tabelog",
+        "url": "https://tabelog.com/mie/A2403/A240302/24003344/"
+      },
+      {
+        "retrieved": "2026-10-17",
+        "note": "星數、評論數、營業時間、座標",
+        "type": "google-maps",
+        "url": "https://maps.google.com/?cid=8699063308523596507"
+      },
+      {
+        "type": "media",
+        "url": "https://www.mapple.net/article/32188/",
+        "retrieved": "2026-10-17",
+        "note": "まっぷる「鳥羽のかき小屋＆かき料理の人気店」（2025-03-21 更新）"
+      }
+    ],
+    "verified": false,
+    "anchors": [
+      {
+        "id": "jr-toba",
+        "walkMinutes": 9,
+        "walkSource": "estimate"
+      },
+      {
+        "id": "toba-edogawa-rampo-museum",
+        "walkMinutes": 2,
+        "walkSource": "estimate"
+      },
+      {
+        "id": "toba-hiyoriyama-observatory",
+        "walkMinutes": 5,
+        "walkSource": "estimate"
+      }
+    ],
+    "contexts": [
+      "dinner"
+    ],
+    "cuisine": [
+      "壽司"
+    ],
+    "priceRange": "¥10,000～14,999",
+    "mustTry": [],
+    "menu": [],
+    "ratings": {
+      "tabelog": 3.6,
+      "tabelogReviews": 51,
+      "google": 4.6,
+      "googleReviews": 95,
+      "note": null
+    },
+    "notes": "鳥羽站步行約 10 分。只有晚上營業。",
+    "group": {
+      "seats": null,
+      "privateRoom": false,
+      "buyout": "可（沒寫人數）",
+      "groupMenu": null,
+      "source": "食べログ：貸切可（沒寫人數）、沒有席数；有カウンター席",
+      "note": null,
+      "fit15": "unknown",
+      "fitSubgroup": "unknown"
+    },
+    "reservation": {
+      "methods": [
+        "phone"
+      ],
+      "phone": "0599-25-6228",
+      "url": null,
+      "language": "日文",
+      "note": null,
+      "accepted": "yes"
+    },
+    "seating": [
+      "counter"
+    ],
+    "kids": null,
+    "smoking": "全席喫煙可（食べログ，可能是舊資料）",
+    "extra": {
+      "region": "鳥羽站周邊",
+      "inclusion": "AC",
+      "tabelogOwner": false,
+      "conflicts": [
+        "食べログ（非店舗会員）寫 17:00～22:00，Google 寫 17:00～21:00，採用 Google"
+      ]
+    }
+  },
+  {
+    "id": "toba-mizunuma-sazae",
+    "type": "restaurant",
+    "name": {
+      "ja": "水沼さざえ店",
+      "kana": "みずぬまさざえてん",
+      "zh": "水沼蠑螺店",
+      "en": null
+    },
+    "area": "toba",
+    "coords": [
+      136.8438024,
+      34.4860983
+    ],
+    "coordsSource": "google-maps-url",
+    "address": "三重県鳥羽市鳥羽1-8-7",
+    "hours": {
+      "mon": [
+        [
+          "09:00",
+          "17:00"
+        ]
+      ],
+      "tue": [
+        [
+          "09:00",
+          "17:00"
+        ]
+      ],
+      "wed": [
+        [
+          "09:00",
+          "17:00"
+        ]
+      ],
+      "thu": [
+        [
+          "09:00",
+          "17:00"
+        ]
+      ],
+      "fri": [
+        [
+          "09:00",
+          "17:00"
+        ]
+      ],
+      "sat": [
+        [
+          "09:00",
+          "17:00"
+        ]
+      ],
+      "sun": [
+        [
+          "09:00",
+          "17:00"
+        ]
+      ],
+      "holiday": null,
+      "note": null
+    },
+    "closedNote": null,
+    "febNote": null,
+    "photos": [],
+    "links": {
+      "official": null,
+      "googleMaps": "https://maps.google.com/?cid=1831025165871223376",
+      "tabelog": "https://tabelog.com/mie/A2403/A240302/24010333/",
+      "instagram": null
+    },
+    "tags": [],
+    "tier": null,
+    "sources": [
+      {
+        "retrieved": "2026-10-17",
+        "note": "店舗情報：分數、席數、預約、營業時間、お子様連れ",
+        "type": "tabelog",
+        "url": "https://tabelog.com/mie/A2403/A240302/24010333/"
+      },
+      {
+        "retrieved": "2026-10-17",
+        "note": "星數、評論數、營業時間、座標",
+        "type": "google-maps",
+        "url": "https://maps.google.com/?cid=1831025165871223376"
+      },
+      {
+        "type": "media",
+        "url": "https://www.nap-camp.com/mag/50903",
+        "retrieved": "2026-10-17",
+        "note": "なっぷ「鳥羽のおすすめ人気ランチ11選」（2026-10-01 更新）"
+      },
+      {
+        "type": "media",
+        "url": "https://www.mapple.net/article/32428/",
+        "retrieved": "2026-10-17",
+        "note": "まっぷる 鳥羽・相差的美食介紹"
+      }
+    ],
+    "verified": false,
+    "anchors": [
+      {
+        "id": "toba",
+        "walkMinutes": 2,
+        "walkSource": "estimate"
+      },
+      {
+        "id": "toba-ichibangai",
+        "walkMinutes": 2,
+        "walkSource": "estimate"
+      },
+      {
+        "id": "toba-marche",
+        "walkMinutes": 2,
+        "walkSource": "estimate"
+      }
+    ],
+    "contexts": [
+      "lunch",
+      "snack",
+      "transit"
+    ],
+    "cuisine": [
+      "海鮮",
+      "烤蠑螺（さざえ）"
+    ],
+    "priceRange": "¥4,000～4,999",
+    "mustTry": [],
+    "menu": [],
+    "ratings": {
+      "tabelog": 3.58,
+      "tabelogReviews": 189,
+      "google": 4.4,
+      "googleReviews": 136,
+      "note": null
+    },
+    "notes": "鳥羽站前さざえ店街（鳥羽 1-8-7）的攤位，鳥羽站步行約 3 分。廁所在店後面。",
+    "group": {
+      "seats": 13,
+      "privateRoom": false,
+      "buyout": "可（13 席）",
+      "groupMenu": null,
+      "source": "食べログ：席数 13（カウンター 5、4 人桌 ×2）",
+      "note": null,
+      "fit15": "no",
+      "fitSubgroup": "yes"
+    },
+    "reservation": {
+      "methods": [
+        "phone"
+      ],
+      "phone": "0599-25-2511",
+      "url": null,
+      "language": "日文",
+      "note": null,
+      "accepted": "yes"
+    },
+    "seating": [
+      "counter",
+      "table"
+    ],
+    "kids": null,
+    "smoking": "全席喫煙可（食べログ，可能是舊資料）",
+    "extra": {
+      "region": "鳥羽站周邊",
+      "inclusion": "ACE",
+      "tabelogOwner": false,
+      "conflicts": [
+        "食べログ（非店舗会員）寫 08:30～17:00，Google 寫 9:00～17:00，採用 Google"
+      ],
+      "googleName": "水沼サザエ店"
+    }
+  },
+  {
+    "id": "toba-kazuei",
+    "type": "restaurant",
+    "name": {
+      "ja": "一栄",
+      "kana": "かずえい",
+      "zh": "一榮",
+      "en": null
+    },
+    "area": "toba",
+    "coords": [
+      136.8384135,
+      34.4888434
+    ],
+    "coordsSource": "google-maps-url",
+    "address": "三重県鳥羽市鳥羽1-22-21",
+    "hours": {
+      "mon": [
+        [
+          "17:00",
+          "23:00"
+        ]
+      ],
+      "tue": [
+        [
+          "17:00",
+          "23:00"
+        ]
+      ],
+      "wed": [],
+      "thu": [
+        [
+          "17:00",
+          "23:00"
+        ]
+      ],
+      "fri": [
+        [
+          "17:00",
+          "23:00"
+        ]
+      ],
+      "sat": [
+        [
+          "17:00",
+          "23:00"
+        ]
+      ],
+      "sun": [
+        [
+          "17:00",
+          "23:00"
+        ]
+      ],
+      "holiday": null,
+      "note": null
+    },
+    "closedNote": "週三公休",
+    "febNote": null,
+    "photos": [],
+    "links": {
+      "official": null,
+      "googleMaps": "https://maps.google.com/?cid=14385888882422214500",
+      "tabelog": "https://tabelog.com/mie/A2403/A240302/24000078/",
+      "instagram": "@kazuei.toba"
+    },
+    "tags": [],
+    "tier": null,
+    "sources": [
+      {
+        "retrieved": "2026-10-17",
+        "note": "店舗情報：分數、席數、預約、營業時間、お子様連れ",
+        "type": "tabelog",
+        "url": "https://tabelog.com/mie/A2403/A240302/24000078/"
+      },
+      {
+        "retrieved": "2026-10-17",
+        "note": "星數、評論數、營業時間、座標",
+        "type": "google-maps",
+        "url": "https://maps.google.com/?cid=14385888882422214500"
+      }
+    ],
+    "verified": false,
+    "anchors": [
+      {
+        "id": "jr-toba",
+        "walkMinutes": 8,
+        "walkSource": "estimate"
+      },
+      {
+        "id": "toba-hiyoriyama-observatory",
+        "walkMinutes": 7,
+        "walkSource": "estimate"
+      },
+      {
+        "id": "toba-ichibangai",
+        "walkMinutes": 9,
+        "walkSource": "estimate"
+      },
+      {
+        "id": "toba-ryokan-naomi",
+        "walkMinutes": 19,
+        "walkSource": "estimate"
+      }
+    ],
+    "contexts": [
+      "dinner"
+    ],
+    "cuisine": [
+      "海鮮",
+      "居酒屋"
+    ],
+    "priceRange": null,
+    "mustTry": [],
+    "menu": [],
+    "ratings": {
+      "tabelog": 3.56,
+      "tabelogReviews": 155,
+      "google": 4.4,
+      "googleReviews": 458,
+      "note": "Google 網站欄是 IG"
+    },
+    "notes": "鳥羽站步行約 6 分（小浜方向）。不含晚餐的旅館なおみ（小浜）附近的晚餐選擇之一。",
+    "group": {
+      "seats": 30,
+      "privateRoom": false,
+      "buyout": "不可",
+      "groupMenu": null,
+      "source": "食べログ：席数 30（カウンター 12、テーブル 18）、予約可、貸切不可",
+      "note": null,
+      "fit15": "split",
+      "fitSubgroup": "yes"
+    },
+    "reservation": {
+      "methods": [
+        "phone"
+      ],
+      "phone": "0599-25-2885",
+      "url": null,
+      "language": "日文",
+      "note": null,
+      "accepted": "yes"
+    },
+    "seating": [
+      "counter",
+      "table"
+    ],
+    "kids": null,
+    "smoking": "全席禁煙",
+    "extra": {
+      "region": "鳥羽站周邊",
+      "inclusion": "A",
+      "tabelogOwner": false
+    }
+  },
+  {
+    "id": "toba-mondomisaki",
+    "type": "restaurant",
+    "name": {
+      "ja": "鳥羽国際ホテル もんど岬",
+      "kana": "もんどみさき",
+      "zh": "和食餐廳 もんど岬（鳥羽國際飯店）",
+      "en": null
+    },
+    "area": "toba",
+    "coords": [
+      136.8417728,
+      34.49187
+    ],
+    "coordsSource": "google-maps-url",
+    "address": "三重県鳥羽市鳥羽1-23-1 鳥羽国際ホテル オーシャンウイング 3F",
+    "hours": {
+      "mon": [
+        [
+          "17:30",
+          "22:00"
+        ]
+      ],
+      "tue": [
+        [
+          "17:30",
+          "22:00"
+        ]
+      ],
+      "wed": [
+        [
+          "17:30",
+          "22:00"
+        ]
+      ],
+      "thu": [
+        [
+          "17:30",
+          "22:00"
+        ]
+      ],
+      "fri": [
+        [
+          "17:30",
+          "22:00"
+        ]
+      ],
+      "sat": [
+        [
+          "17:30",
+          "22:00"
+        ]
+      ],
+      "sun": [
+        [
+          "17:30",
+          "22:00"
+        ]
+      ],
+      "holiday": [
+        [
+          "17:30",
+          "22:00"
+        ]
+      ],
+      "note": "L.O. 20:30；時間預約制"
+    },
+    "closedNote": "食べログ：不定期年 2 回",
+    "febNote": null,
+    "photos": [],
+    "links": {
+      "official": "https://www.tobahotel.co.jp/restaurant_list/mondomisaki/",
+      "googleMaps": "https://maps.google.com/?cid=4767350419803413887",
+      "tabelog": "https://tabelog.com/mie/A2403/A240302/24001904/",
+      "instagram": "@toba_hotel_international"
+    },
+    "tags": [],
+    "tier": null,
+    "sources": [
+      {
+        "retrieved": "2026-10-17",
+        "note": "店舗情報：分數、席數、預約、營業時間、お子様連れ",
+        "type": "tabelog",
+        "url": "https://tabelog.com/mie/A2403/A240302/24001904/"
+      },
+      {
+        "retrieved": "2026-10-17",
+        "note": "星數、評論數、營業時間、座標",
+        "type": "google-maps",
+        "url": "https://maps.google.com/?cid=4767350419803413887"
+      },
+      {
+        "retrieved": "2026-10-17",
+        "note": "營業時間、席數、包廂、訂位",
+        "type": "official",
+        "url": "https://www.tobahotel.co.jp/restaurant_list/mondomisaki/"
+      }
+    ],
+    "verified": false,
+    "anchors": [
+      {
+        "id": "toba",
+        "walkMinutes": 9,
+        "walkSource": "estimate"
+      },
+      {
+        "id": "toba-bay-cruise-irukajima",
+        "walkMinutes": 5,
+        "walkSource": "estimate"
+      },
+      {
+        "id": "toba-sadahama-marine-terminal",
+        "walkMinutes": 5,
+        "walkSource": "estimate"
+      }
+    ],
+    "contexts": [
+      "dinner"
+    ],
+    "cuisine": [
+      "日本料理",
+      "海鮮"
+    ],
+    "priceRange": "¥10,000～14,999",
+    "mustTry": [],
+    "menu": [],
+    "ratings": {
+      "tabelog": 3.55,
+      "tabelogReviews": 48,
+      "google": 4.8,
+      "googleReviews": 12,
+      "note": "Google 評論只有 12 則"
+    },
+    "notes": "鳥羽國際飯店內，只有晚餐，完全預約制。桌位以 2 人、4 人為單位；5 人以上安排相鄰的不同桌，或用包廂。",
+    "group": {
+      "seats": 72,
+      "privateRoom": true,
+      "buyout": "不可",
+      "groupMenu": null,
+      "source": "食べログ：席数 72、個室 6 人・8 人（最多 14 人，室料 ¥11,000）、完全予約制；官網：60 名、個室最多 14 名",
+      "note": "包廂最多 14 人，15 人要包廂加相鄰的桌",
+      "fit15": "split",
+      "fitSubgroup": "yes"
+    },
+    "reservation": {
+      "methods": [
+        "phone",
+        "web"
+      ],
+      "phone": "0599-26-4121",
+      "url": "https://www.tobahotel.co.jp/restaurant_list/mondomisaki/",
+      "language": "日文",
+      "note": "完全予約制、時間預約制；電話 9:00～17:00",
+      "accepted": "yes"
+    },
+    "seating": [
+      "table"
+    ],
+    "kids": "可帶小孩，有兒童套餐（かもめ ¥3,850、みつしま ¥5,500、やまとたちばな ¥8,800）（食べログ）",
+    "smoking": "全席禁煙",
+    "extra": {
+      "region": "鳥羽站周邊",
+      "inclusion": "AC",
+      "tabelogOwner": false,
+      "barrierFree": "可坐輪椅入店（食べログ）",
+      "conflicts": [
+        "席數：食べログ 72 席、官網 60 名"
+      ],
+      "googleName": "和食レストラン もんど岬／鳥羽国際ホテル"
+    }
+  },
+  {
+    "id": "toba-amagoya-chisato",
+    "type": "restaurant",
+    "name": {
+      "ja": "海女小屋 ちさと",
+      "kana": "あまごやちさと",
+      "zh": "海女小屋 千里",
+      "en": null
+    },
+    "area": "toba",
+    "coords": [
+      136.8438008,
+      34.4860737
+    ],
+    "coordsSource": "google-maps-url",
+    "address": "三重県鳥羽市鳥羽1-8-7",
+    "hours": {
+      "mon": [
+        [
+          "10:00",
+          "17:00"
+        ]
+      ],
+      "tue": [],
+      "wed": [
+        [
+          "10:00",
+          "17:00"
+        ]
+      ],
+      "thu": [
+        [
+          "10:00",
+          "17:00"
+        ]
+      ],
+      "fri": [
+        [
+          "10:00",
+          "17:00"
+        ]
+      ],
+      "sat": [
+        [
+          "10:00",
+          "17:00"
+        ]
+      ],
+      "sun": [
+        [
+          "10:00",
+          "17:00"
+        ]
+      ],
+      "holiday": [
+        [
+          "10:00",
+          "17:00"
+        ]
+      ],
+      "note": "L.O. 16:30；食材賣完會提早打烊；也會因人手不足臨時休業"
+    },
+    "closedNote": "週二公休（逢國定假日營業，改週四休；盂蘭盆、新年、黃金週除外）",
+    "febNote": null,
+    "photos": [],
+    "links": {
+      "official": null,
+      "googleMaps": "https://maps.google.com/?cid=3574148002568627504",
+      "tabelog": "https://tabelog.com/mie/A2403/A240302/24006770/",
+      "instagram": "@amagoyachisato"
+    },
+    "tags": [],
+    "tier": null,
+    "sources": [
+      {
+        "retrieved": "2026-10-17",
+        "note": "店舗情報：分數、席數、預約、營業時間、お子様連れ",
+        "type": "tabelog",
+        "url": "https://tabelog.com/mie/A2403/A240302/24006770/"
+      },
+      {
+        "retrieved": "2026-10-17",
+        "note": "星數、評論數、營業時間、座標",
+        "type": "google-maps",
+        "url": "https://maps.google.com/?cid=3574148002568627504"
+      }
+    ],
+    "verified": false,
+    "anchors": [
+      {
+        "id": "toba",
+        "walkMinutes": 2,
+        "walkSource": "estimate"
+      },
+      {
+        "id": "toba-ichibangai",
+        "walkMinutes": 2,
+        "walkSource": "estimate"
+      },
+      {
+        "id": "toba-marche",
+        "walkMinutes": 2,
+        "walkSource": "estimate"
+      }
+    ],
+    "contexts": [
+      "lunch",
+      "transit"
+    ],
+    "cuisine": [
+      "海鮮",
+      "浜焼",
+      "伊勢龍蝦（伊勢海老）",
+      "牡蠣"
+    ],
+    "priceRange": "¥3,000～3,999（口コミ集計 ¥8,000～9,999）",
+    "mustTry": [],
+    "menu": [],
+    "ratings": {
+      "tabelog": 3.53,
+      "tabelogReviews": 180,
+      "google": 4.4,
+      "googleReviews": 352,
+      "note": null
+    },
+    "notes": "鳥羽站前さざえ店街的海女小屋風格浜焼店，鳥羽站步行 2～3 分。體驗型（海女小屋）。沒有停車場。",
+    "group": {
+      "seats": 14,
+      "privateRoom": false,
+      "buyout": "不可",
+      "groupMenu": null,
+      "source": "食べログ（店舗会員）：席数 14（カウンター 4、3 人桌 ×2、4 人桌 ×1）、予約不可、貸切不可",
+      "note": null,
+      "fit15": "no",
+      "fitSubgroup": "yes"
+    },
+    "reservation": {
+      "methods": [],
+      "phone": "0599-26-7520",
+      "url": null,
+      "language": "日文",
+      "note": "食べログ：予約不可；電話取自 Google",
+      "accepted": "no"
+    },
+    "seating": [
+      "counter",
+      "table"
+    ],
+    "kids": "可帶小孩（食べログ）",
+    "smoking": "全席禁煙（店外有吸菸處）",
+    "extra": {
+      "region": "鳥羽站周邊",
+      "inclusion": "AFE",
+      "tabelogOwner": true,
+      "conflicts": [
+        "Google 寫 10:00～17:00、週二公休，與食べログ（店舗会員）一致"
+      ]
+    }
+  },
+  {
+    "id": "toba-osakaya",
+    "type": "restaurant",
+    "name": {
+      "ja": "大阪屋 鳥羽店",
+      "kana": "おおさかや",
+      "zh": "大阪屋 鳥羽店",
+      "en": null
+    },
+    "area": "toba",
+    "coords": [
+      136.8428446,
+      34.4841146
+    ],
+    "coordsSource": "google-maps-url",
+    "address": "三重県鳥羽市鳥羽1-4-64",
+    "hours": {
+      "mon": [
+        [
+          "11:00",
+          "14:00"
+        ],
+        [
+          "17:00",
+          "20:00"
+        ]
+      ],
+      "tue": [
+        [
+          "11:00",
+          "14:00"
+        ],
+        [
+          "17:00",
+          "20:00"
+        ]
+      ],
+      "wed": [
+        [
+          "11:00",
+          "14:00"
+        ],
+        [
+          "17:00",
+          "20:00"
+        ]
+      ],
+      "thu": [],
+      "fri": [
+        [
+          "11:00",
+          "14:00"
+        ],
+        [
+          "17:00",
+          "20:00"
+        ]
+      ],
+      "sat": [
+        [
+          "11:00",
+          "14:00"
+        ],
+        [
+          "17:00",
+          "20:00"
+        ]
+      ],
+      "sun": [
+        [
+          "11:00",
+          "14:00"
+        ],
+        [
+          "17:00",
+          "20:00"
+        ]
+      ],
+      "note": "賣完就打烊"
+    },
+    "closedNote": "週四公休（逢國定假日營業）",
+    "febNote": null,
+    "photos": [],
+    "links": {
+      "official": "http://www.oosakaya.net/",
+      "googleMaps": "https://maps.google.com/?cid=9695894259425538601",
+      "tabelog": "https://tabelog.com/mie/A2403/A240302/24000562/",
+      "instagram": null
+    },
+    "tags": [],
+    "tier": null,
+    "sources": [
+      {
+        "retrieved": "2026-10-17",
+        "note": "店舗情報：分數、席數、預約、營業時間、お子様連れ",
+        "type": "tabelog",
+        "url": "https://tabelog.com/mie/A2403/A240302/24000562/"
+      },
+      {
+        "retrieved": "2026-10-17",
+        "note": "星數、評論數、營業時間、座標",
+        "type": "google-maps",
+        "url": "https://maps.google.com/?cid=9695894259425538601"
+      },
+      {
+        "type": "blog-zh",
+        "url": "https://chubu.letsgojp.com/archives/810883/",
+        "retrieved": "2026-10-17",
+        "note": "樂吃購！日本「日本鳥羽景點攻略」（2025-12-04）"
+      }
+    ],
+    "verified": false,
+    "anchors": [
+      {
+        "id": "jr-toba",
+        "walkMinutes": 4,
+        "walkSource": "estimate"
+      },
+      {
+        "id": "toba-castle-ruins",
+        "walkMinutes": 3,
+        "walkSource": "estimate"
+      },
+      {
+        "id": "toba-hiyoriyama-observatory",
+        "walkMinutes": 5,
+        "walkSource": "estimate"
+      }
+    ],
+    "contexts": [
+      "lunch",
+      "dinner",
+      "transit"
+    ],
+    "cuisine": [
+      "食堂",
+      "壽司",
+      "海鮮"
+    ],
+    "priceRange": "¥2,000～2,999",
+    "mustTry": [],
+    "menu": [],
+    "ratings": {
+      "tabelog": 3.52,
+      "tabelogReviews": 132,
+      "google": 4.1,
+      "googleReviews": 401,
+      "note": null
+    },
+    "notes": "鳥羽站 4 號出口步行約 5 分。T4a 搜尋結果裡「大廣間與包廂約 100 席」是另一家「伊勢大阪屋」，鳥羽店是食べログ的 80 席。",
+    "group": {
+      "seats": 80,
+      "privateRoom": true,
+      "buyout": "不可",
+      "groupMenu": null,
+      "source": "食べログ：席数 80、予約可、個室有（2 人可）、貸切不可",
+      "note": "包廂只有 2 人用",
+      "fit15": "split",
+      "fitSubgroup": "yes"
+    },
+    "reservation": {
+      "methods": [
+        "phone"
+      ],
+      "phone": "0599-25-2336",
+      "url": null,
+      "language": "日文",
+      "note": null,
+      "accepted": "yes"
+    },
+    "seating": [
+      "counter",
+      "zashiki"
+    ],
+    "kids": "可帶小孩（食べログ）",
+    "smoking": "全席禁煙",
+    "extra": {
+      "region": "鳥羽站周邊",
+      "inclusion": "AC",
+      "tabelogOwner": false,
+      "conflicts": [
+        "Google、食べログ（非店舗会員）都寫 11:00～14:00、17:00～20:00、週四公休，一致；官網 oosakaya.net 沒讀到（憑證錯誤）"
+      ]
+    }
+  },
+  {
+    "id": "toba-the-lobby-lounge",
+    "type": "restaurant",
+    "name": {
+      "ja": "ザ・ロビーラウンジ",
+      "kana": null,
+      "zh": "大廳酒廊（鳥羽國際飯店）",
+      "en": "The Lobby Lounge"
+    },
+    "area": "toba",
+    "coords": [
+      136.8419896,
+      34.4916996
+    ],
+    "coordsSource": "google-maps-url",
+    "address": "三重県鳥羽市鳥羽1-23-1 鳥羽国際ホテル オーシャンウィング エントランスフロア",
+    "hours": {
+      "mon": [
+        [
+          "10:00",
+          "22:30"
+        ]
+      ],
+      "tue": [
+        [
+          "10:00",
+          "22:30"
+        ]
+      ],
+      "wed": [
+        [
+          "10:00",
+          "22:30"
+        ]
+      ],
+      "thu": [
+        [
+          "10:00",
+          "22:30"
+        ]
+      ],
+      "fri": [
+        [
+          "10:00",
+          "22:30"
+        ]
+      ],
+      "sat": [
+        [
+          "10:00",
+          "22:30"
+        ]
+      ],
+      "sun": [
+        [
+          "10:00",
+          "22:30"
+        ]
+      ],
+      "holiday": [
+        [
+          "10:00",
+          "22:30"
+        ]
+      ],
+      "note": "下午茶時段 10:00～17:00；午餐 11:00～14:00（L.O. 13:30）；Afternoon tea 11:30～13:00、13:30～15:00（各 90 分，前一天 18 時前預約）；輕食、外帶 11:00～17:00；酒吧 17:00～22:30（L.O. 22:00）"
+    },
+    "closedNote": "不定休",
+    "febNote": null,
+    "photos": [],
+    "links": {
+      "official": "https://www.tobahotel.co.jp/restaurant_list/cafe-lounge/",
+      "googleMaps": "https://maps.google.com/?cid=2543427536592370660",
+      "tabelog": "https://tabelog.com/mie/A2403/A240302/24010743/",
+      "instagram": "@toba_hotel_international"
+    },
+    "tags": [],
+    "tier": null,
+    "sources": [
+      {
+        "retrieved": "2026-10-17",
+        "note": "店舗情報：分數、席數、預約、營業時間、お子様連れ",
+        "type": "tabelog",
+        "url": "https://tabelog.com/mie/A2403/A240302/24010743/"
+      },
+      {
+        "retrieved": "2026-10-17",
+        "note": "星數、評論數、營業時間、座標",
+        "type": "google-maps",
+        "url": "https://maps.google.com/?cid=2543427536592370660"
+      }
+    ],
+    "verified": false,
+    "anchors": [
+      {
+        "id": "toba",
+        "walkMinutes": 9,
+        "walkSource": "estimate"
+      },
+      {
+        "id": "toba-bay-cruise-irukajima",
+        "walkMinutes": 5,
+        "walkSource": "estimate"
+      },
+      {
+        "id": "toba-sadahama-marine-terminal",
+        "walkMinutes": 5,
+        "walkSource": "estimate"
+      }
+    ],
+    "contexts": [
+      "cafe",
+      "snack",
+      "lunch"
+    ],
+    "cuisine": [
+      "蛋糕",
+      "咖啡",
+      "漢堡",
+      "Afternoon tea"
+    ],
+    "priceRange": "¥2,000～2,999",
+    "mustTry": [],
+    "menu": [],
+    "ratings": {
+      "tabelog": 3.51,
+      "tabelogReviews": 147,
+      "google": 3.4,
+      "googleReviews": 8,
+      "note": "Google 只有 8 則評論；IG 是飯店帳號"
+    },
+    "notes": "鳥羽國際飯店大廳，非住客也可以用（食べログ備考）。看得到鳥羽灣。吧台座位未成年不能坐。",
+    "group": {
+      "seats": 51,
+      "privateRoom": false,
+      "buyout": "不可",
+      "groupMenu": null,
+      "source": "食べログ：席数 51（テーブル 46、バーカウンター 5）、予約可、貸切不可",
+      "note": null,
+      "fit15": "split",
+      "fitSubgroup": "yes"
+    },
+    "reservation": {
+      "methods": [
+        "phone"
+      ],
+      "phone": "0599-25-3121",
+      "url": null,
+      "language": "日文",
+      "note": "Afternoon tea 要前一天 18 時前預約",
+      "accepted": "yes"
+    },
+    "seating": [
+      "table",
+      "counter",
+      "terrace",
+      "other"
+    ],
+    "kids": "可帶小孩（乳兒、學齡前、小學生），可推嬰兒車（食べログ）",
+    "smoking": "全席禁煙",
+    "extra": {
+      "region": "鳥羽站周邊",
+      "inclusion": "A",
+      "tabelogOwner": false,
+      "barrierFree": "可坐輪椅入店（食べログ）",
+      "seatingNote": "有沙發座、露天座",
+      "conflicts": [
+        "Google 寫 10:00～17:00、18:00～22:00，食べログ（非店舗会員）寫 10:00～22:30；Google 沒有細分時段，採用食べログ的細項（官網沒查）"
+      ],
+      "googleName": "ザ・ロビーラウンジ／鳥羽国際ホテル",
+      "tabelogOldName": "鳥羽国際ホテル カフェ＆ラウンジ"
+    }
+  },
+  {
+    "id": "toba-yakigai-iroha",
+    "type": "restaurant",
+    "name": {
+      "ja": "焼貝いろは",
+      "kana": "やきがいいろは",
+      "zh": "燒貝 いろは",
+      "en": null
+    },
+    "area": "toba",
+    "coords": [
+      136.8436442,
+      34.4861547
+    ],
+    "coordsSource": "google-maps-url",
+    "address": "三重県鳥羽市鳥羽1-8-7",
+    "hours": {
+      "mon": [
+        [
+          "10:15",
+          "18:30"
+        ]
+      ],
+      "tue": [
+        [
+          "10:15",
+          "18:30"
+        ]
+      ],
+      "wed": [
+        [
+          "10:15",
+          "18:30"
+        ]
+      ],
+      "thu": [
+        [
+          "10:15",
+          "18:30"
+        ]
+      ],
+      "fri": [
+        [
+          "10:15",
+          "18:30"
+        ]
+      ],
+      "sat": [
+        [
+          "10:15",
+          "18:30"
+        ]
+      ],
+      "sun": [
+        [
+          "10:15",
+          "18:30"
+        ]
+      ],
+      "note": "L.O. 18:00、最後預約 17:45；營業時間可能臨時變更；不定休"
+    },
+    "closedNote": "不定休",
+    "febNote": null,
+    "photos": [],
+    "links": {
+      "official": null,
+      "googleMaps": "https://maps.google.com/?cid=8841374608501535362",
+      "tabelog": "https://tabelog.com/mie/A2403/A240302/24010352/",
+      "instagram": "@iroha_toba"
+    },
+    "tags": [],
+    "tier": null,
+    "sources": [
+      {
+        "retrieved": "2026-10-17",
+        "note": "店舗情報：分數、席數、預約、營業時間、お子様連れ",
+        "type": "tabelog",
+        "url": "https://tabelog.com/mie/A2403/A240302/24010352/"
+      },
+      {
+        "retrieved": "2026-10-17",
+        "note": "星數、評論數、營業時間、座標",
+        "type": "google-maps",
+        "url": "https://maps.google.com/?cid=8841374608501535362"
+      }
+    ],
+    "verified": false,
+    "anchors": [
+      {
+        "id": "toba",
+        "walkMinutes": 1,
+        "walkSource": "estimate"
+      },
+      {
+        "id": "toba-ichibangai",
+        "walkMinutes": 2,
+        "walkSource": "estimate"
+      },
+      {
+        "id": "toba-marche",
+        "walkMinutes": 2,
+        "walkSource": "estimate"
+      }
+    ],
+    "contexts": [
+      "lunch",
+      "dinner",
+      "snack",
+      "transit"
+    ],
+    "cuisine": [
+      "海鮮",
+      "烤貝",
+      "居酒屋",
+      "日本酒"
+    ],
+    "priceRange": "晚 ¥4,000～4,999；午 ¥2,000～2,999",
+    "mustTry": [],
+    "menu": [],
+    "ratings": {
+      "tabelog": 3.5,
+      "tabelogReviews": 276,
+      "google": 4.3,
+      "googleReviews": 285,
+      "note": null
+    },
+    "notes": "鳥羽站步行 1 分（さざえ店街）。限時 90 分。當天取消不可，無故遲到 10 分視為取消，取消費每人 ¥1,000。",
+    "group": {
+      "seats": 30,
+      "privateRoom": true,
+      "buyout": "可包場（20 人以下、20～50 人）",
+      "groupMenu": null,
+      "source": "食べログ（店舗会員）：席数 30、半個室 10～20 名 OK、貸切可（20人以下可、20人～50人可）",
+      "note": null,
+      "fit15": "yes",
+      "fitSubgroup": "yes"
+    },
+    "reservation": {
+      "methods": [
+        "phone",
+        "web"
+      ],
+      "phone": "0599-25-4809",
+      "url": "https://tabelog.com/mie/A2403/A240302/24010352/",
+      "language": "日文",
+      "note": "食べログ網路訂位（050-5595-9662）；帶寵物要電話訂；限時 90 分；當天取消不可",
+      "accepted": "yes"
+    },
+    "seating": [
+      "counter",
+      "table"
+    ],
+    "kids": "可帶小孩（乳兒、學齡前、小學生），有兒童餐，可推嬰兒車（食べログ）",
+    "smoking": "全席禁煙",
+    "extra": {
+      "region": "鳥羽站周邊",
+      "inclusion": "ACE",
+      "tabelogOwner": true,
+      "barrierFree": "無障礙、可坐輪椅入店（食べログ）",
+      "conflicts": [
+        "Google 寫 10:00～18:30，食べログ（店舗会員）寫 10:15～18:30，採用食べログ",
+        "地址：Google 寫鳥羽 1-8-5，食べログ寫 1-8-7（さざえ店街同一棟）"
+      ]
+    }
+  },
+  {
+    "id": "toba-matsumoto-sazae",
+    "type": "restaurant",
+    "name": {
+      "ja": "松本さざえ店",
+      "kana": "まつもとさざえてん",
+      "zh": "松本蠑螺店",
+      "en": null
+    },
+    "area": "toba",
+    "coords": [
+      136.8436781,
+      34.4861422
+    ],
+    "coordsSource": "google-maps-url",
+    "address": "三重県鳥羽市鳥羽1-8-7",
+    "hours": {
+      "mon": [
+        [
+          "09:00",
+          "16:00"
+        ]
+      ],
+      "tue": [
+        [
+          "09:00",
+          "16:00"
+        ]
+      ],
+      "wed": [],
+      "thu": [
+        [
+          "09:00",
+          "16:00"
+        ]
+      ],
+      "fri": [
+        [
+          "09:00",
+          "16:00"
+        ]
+      ],
+      "sat": [
+        [
+          "09:00",
+          "16:00"
+        ]
+      ],
+      "sun": [
+        [
+          "09:00",
+          "16:00"
+        ]
+      ],
+      "note": null
+    },
+    "closedNote": "週三公休（逢國定假日營業）",
+    "febNote": null,
+    "photos": [],
+    "links": {
+      "official": null,
+      "googleMaps": "https://maps.google.com/?cid=16335716891323282762",
+      "tabelog": "https://tabelog.com/mie/A2403/A240302/24002147/",
+      "instagram": null
+    },
+    "tags": [],
+    "tier": null,
+    "sources": [
+      {
+        "retrieved": "2026-10-17",
+        "note": "店舗情報：分數、席數、預約、營業時間、お子様連れ",
+        "type": "tabelog",
+        "url": "https://tabelog.com/mie/A2403/A240302/24002147/"
+      },
+      {
+        "retrieved": "2026-10-17",
+        "note": "星數、評論數、營業時間、座標",
+        "type": "google-maps",
+        "url": "https://maps.google.com/?cid=16335716891323282762"
+      }
+    ],
+    "verified": false,
+    "anchors": [
+      {
+        "id": "toba",
+        "walkMinutes": 1,
+        "walkSource": "estimate"
+      },
+      {
+        "id": "toba-ichibangai",
+        "walkMinutes": 2,
+        "walkSource": "estimate"
+      },
+      {
+        "id": "toba-marche",
+        "walkMinutes": 2,
+        "walkSource": "estimate"
+      }
+    ],
+    "contexts": [
+      "lunch",
+      "snack",
+      "transit"
+    ],
+    "cuisine": [
+      "海鮮",
+      "鄉土料理",
+      "食堂"
+    ],
+    "priceRange": "¥2,000～2,999（口コミ集計）",
+    "mustTry": [],
+    "menu": [],
+    "ratings": {
+      "tabelog": 3.5,
+      "tabelogReviews": 93,
+      "google": 4.5,
+      "googleReviews": 62,
+      "note": null
+    },
+    "notes": "JR 鳥羽站步行 1 分、近鐵鳥羽站 3 分（さざえ店街）。",
+    "group": {
+      "seats": 18,
+      "privateRoom": false,
+      "buyout": "不可",
+      "groupMenu": null,
+      "source": "食べログ（店舗会員）：席数 18（カウンター 5、5 人桌 ×2）、予約不可、貸切不可",
+      "note": "18 席但不能訂位、桌只有 5 人桌 2 張，15 人坐不下",
+      "fit15": "no",
+      "fitSubgroup": "yes"
+    },
+    "reservation": {
+      "methods": [],
+      "phone": "0599-25-2444",
+      "url": null,
+      "language": "日文",
+      "note": "食べログ：予約不可（週末假日不接網路預約，可直接問店）",
+      "accepted": "no"
+    },
+    "seating": [
+      "counter",
+      "table"
+    ],
+    "kids": "可帶小孩（乳兒、學齡前、小學生），有兒童餐，可推嬰兒車（食べログ）",
+    "smoking": "分煙（週末假日全面禁煙）",
+    "extra": {
+      "region": "鳥羽站周邊",
+      "inclusion": "AE",
+      "tabelogOwner": true,
+      "barrierFree": "無障礙、可坐輪椅入店（食べログ）",
+      "conflicts": [
+        "Google 寫 10:00～16:00，食べログ（店舗会員）寫 09:00～16:00，採用食べログ",
+        "地址：Google 寫鳥羽 1-8-5"
+      ]
+    }
+  },
+  {
+    "id": "toba-minerva",
+    "type": "restaurant",
+    "name": {
+      "ja": "ミネルヴァ",
+      "kana": null,
+      "zh": "手工義式冰淇淋 Minerva",
+      "en": "Minerva"
+    },
+    "area": "toba",
+    "coords": [
+      136.8440762,
+      34.4871598
+    ],
+    "coordsSource": "google-maps-url",
+    "address": "三重県鳥羽市鳥羽1丁目2383-13 鳥羽一番街1F",
+    "hours": {
+      "mon": [
+        [
+          "09:30",
+          "17:30"
+        ]
+      ],
+      "tue": [
+        [
+          "09:30",
+          "17:30"
+        ]
+      ],
+      "wed": [
+        [
+          "09:30",
+          "17:30"
+        ]
+      ],
+      "thu": [],
+      "fri": [
+        [
+          "09:30",
+          "17:30"
+        ]
+      ],
+      "sat": [
+        [
+          "09:30",
+          "18:00"
+        ]
+      ],
+      "sun": [
+        [
+          "09:30",
+          "18:00"
+        ]
+      ],
+      "holiday": null,
+      "note": null
+    },
+    "closedNote": "週四公休",
+    "febNote": null,
+    "photos": [],
+    "links": {
+      "official": "http://minerva-gelato.com/",
+      "googleMaps": "https://maps.google.com/?cid=17648914698766520317",
+      "tabelog": "https://tabelog.com/mie/A2403/A240302/24001613/",
+      "instagram": "@minervagelato"
+    },
+    "tags": [],
+    "tier": null,
+    "sources": [
+      {
+        "retrieved": "2026-10-17",
+        "note": "店舗情報：分數、席數、預約、營業時間、お子様連れ",
+        "type": "tabelog",
+        "url": "https://tabelog.com/mie/A2403/A240302/24001613/"
+      },
+      {
+        "retrieved": "2026-10-17",
+        "note": "星數、評論數、營業時間、座標",
+        "type": "google-maps",
+        "url": "https://maps.google.com/?cid=17648914698766520317"
+      },
+      {
+        "type": "media",
+        "url": "https://www.mapple.net/article/31782/",
+        "retrieved": "2026-10-17",
+        "note": "まっぷる「鳥羽1番街」"
+      }
+    ],
+    "verified": false,
+    "anchors": [
+      {
+        "id": "toba",
+        "walkMinutes": 2,
+        "walkSource": "estimate"
+      },
+      {
+        "id": "toba-ichibangai",
+        "walkMinutes": 1,
+        "walkSource": "estimate"
+      },
+      {
+        "id": "toba-marche",
+        "walkMinutes": 1,
+        "walkSource": "estimate"
+      }
+    ],
+    "contexts": [
+      "cafe",
+      "snack",
+      "transit"
+    ],
+    "cuisine": [
+      "義式冰淇淋（ジェラート）",
+      "喫茶"
+    ],
+    "priceRange": "～¥999",
+    "mustTry": [],
+    "menu": [],
+    "ratings": {
+      "tabelog": 3.49,
+      "tabelogReviews": 193,
+      "google": 4.2,
+      "googleReviews": 199,
+      "note": null
+    },
+    "notes": "鳥羽一番街 1 樓，鳥羽站步行約 2 分。",
+    "group": {
+      "seats": null,
+      "privateRoom": false,
+      "buyout": "不可",
+      "groupMenu": null,
+      "source": "食べログ：沒有席数、予約不可、貸切不可",
+      "note": null,
+      "fit15": "unknown",
+      "fitSubgroup": "unknown"
+    },
+    "reservation": {
+      "methods": [],
+      "phone": "0599-26-2082",
+      "url": null,
+      "language": "日文",
+      "note": null,
+      "accepted": "no"
+    },
+    "seating": [],
+    "kids": null,
+    "smoking": "全席禁煙",
+    "extra": {
+      "region": "鳥羽站周邊",
+      "inclusion": "A",
+      "tabelogOwner": false,
+      "conflicts": [
+        "食べログ（非店舗会員）寫 9:00～17:00（週末假日～18:00），Google 寫 9:30～17:30（週末～18:00），採用 Google",
+        "網站：食べログ寫 minerva-gelato.com，Google 寫 web-minerva.com"
+      ],
+      "googleName": "手作りジェラート ミネルヴァ"
+    }
+  },
+  {
+    "id": "toba-kitchen-takama",
+    "type": "restaurant",
+    "name": {
+      "ja": "キッチン たかま",
+      "kana": null,
+      "zh": "Kitchen Takama",
+      "en": "KITCHEN.TAKAMA"
+    },
+    "area": "toba",
+    "coords": [
+      136.84466,
+      34.4842752
+    ],
+    "coordsSource": "google-maps-url",
+    "address": "三重県鳥羽市鳥羽1-2383-5",
+    "hours": {
+      "mon": [
+        [
+          "08:00",
+          "15:00"
+        ]
+      ],
+      "tue": [
+        [
+          "08:00",
+          "15:00"
+        ]
+      ],
+      "wed": [
+        [
+          "08:00",
+          "15:00"
+        ]
+      ],
+      "thu": [
+        [
+          "08:00",
+          "15:00"
+        ]
+      ],
+      "fri": [
+        [
+          "08:00",
+          "15:00"
+        ]
+      ],
+      "sat": [
+        [
+          "08:00",
+          "15:00"
+        ]
+      ],
+      "sun": [
+        [
+          "08:00",
+          "15:00"
+        ]
+      ],
+      "holiday": null,
+      "note": null
+    },
+    "closedNote": null,
+    "febNote": null,
+    "photos": [],
+    "links": {
+      "official": null,
+      "googleMaps": "https://maps.google.com/?cid=11319526317370387249",
+      "tabelog": "https://tabelog.com/mie/A2403/A240302/24006357/",
+      "instagram": null
+    },
+    "tags": [],
+    "tier": null,
+    "sources": [
+      {
+        "retrieved": "2026-10-17",
+        "note": "店舗情報：分數、席數、預約、營業時間、お子様連れ",
+        "type": "tabelog",
+        "url": "https://tabelog.com/mie/A2403/A240302/24006357/"
+      },
+      {
+        "retrieved": "2026-10-17",
+        "note": "星數、評論數、營業時間、座標",
+        "type": "google-maps",
+        "url": "https://maps.google.com/?cid=11319526317370387249"
+      },
+      {
+        "type": "media",
+        "url": "https://www.nap-camp.com/mag/50903",
+        "retrieved": "2026-10-17",
+        "note": "なっぷ「鳥羽のおすすめ人気ランチ11選」（2026-10-01 更新）"
+      }
+    ],
+    "verified": false,
+    "anchors": [
+      {
+        "id": "jr-toba",
+        "walkMinutes": 5,
+        "walkSource": "estimate"
+      },
+      {
+        "id": "toba-castle-ruins",
+        "walkMinutes": 3,
+        "walkSource": "estimate"
+      },
+      {
+        "id": "toba-mikimoto-pearl-island",
+        "walkMinutes": 4,
+        "walkSource": "estimate"
+      }
+    ],
+    "contexts": [
+      "cafe",
+      "lunch",
+      "snack",
+      "transit"
+    ],
+    "cuisine": [
+      "喫茶",
+      "洋食",
+      "咖啡"
+    ],
+    "priceRange": "¥1,000～1,999",
+    "mustTry": [],
+    "menu": [],
+    "ratings": {
+      "tabelog": 3.48,
+      "tabelogReviews": 233,
+      "google": 4.1,
+      "googleReviews": 701,
+      "note": null
+    },
+    "notes": "鳥羽站步行約 4 分。營業時間 Google 和食べログ差很多，要再確認。",
+    "group": {
+      "seats": null,
+      "privateRoom": false,
+      "buyout": "不可",
+      "groupMenu": null,
+      "source": "食べログ：沒有席数、予約不可、貸切不可",
+      "note": null,
+      "fit15": "unknown",
+      "fitSubgroup": "unknown"
+    },
+    "reservation": {
+      "methods": [],
+      "phone": "0599-25-4750",
+      "url": null,
+      "language": "日文",
+      "note": null,
+      "accepted": "no"
+    },
+    "seating": [],
+    "kids": null,
+    "smoking": "全席禁煙",
+    "extra": {
+      "region": "鳥羽站周邊",
+      "inclusion": "A",
+      "tabelogOwner": false,
+      "conflicts": [
+        "食べログ（非店舗会員）寫 7:30～20:30、週三公休（11:00～14:00 不能點甜點）；Google 寫每天 8:00～15:00。照優先順序採用 Google，差異很大"
+      ],
+      "addressGoogle": "三重県鳥羽市鳥羽1丁目6-2379-24"
+    }
+  }
+]
