@@ -124,7 +124,7 @@
   - 桃取港（答志島西側）如果行程會用到也一起加。
   - 座標用 Google Maps 的 `!3d!4d`；可以順便記鳥羽市營定期船的班次連結（佐田浜 `toba-sadahama-marine-terminal` 已有）。
 - 原因：離島的店（まるみつ寿司、大春、喜久屋、重太郎屋、やま海）要配合船班，T14 需要「港口 → 店」的步行時間。補上港口後重跑 `node scripts/restaurant-anchors.mjs toba --write` 就會自動選進 anchors（港口在 spots.json 裡就會被當成景點候選）。
-- 狀態：轉給 T7b（鳥羽補資料）
+- 狀態：已處理（T7c 新增 5 個港口 `toba-port-wagu`、`-toshi`、`-momotori`、`-sugashima`、`-kamishima`，答志島兩筆景點改到首塚、美多羅志神社；T7f 重跑 anchors，離島 7 家都有港口 anchor（桃取港附近沒有店））
 
 ## [T7b] hours.lastEntry 只能放一個時間；cuisine 固定清單沒有籠統的「海鮮」
 - 要改的檔案：`schema/common.schema.json`（`hours.lastEntry`）、`docs/CONVENTIONS.md` §1.5、§5.3
