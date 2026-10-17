@@ -55,11 +55,12 @@
       "B"
     ],
     "reason": null,
-    "pointId": null,
-    "detailPending": true,
+    "pointId": "ise-fukusuke",
     "ratings": {
       "tabelog": 3.59,
-      "tabelogReviews": 3325
+      "tabelogReviews": 3325,
+      "google": 4.1,
+      "googleReviews": 1981
     },
     "links": {
       "tabelog": "https://tabelog.com/mie/A2403/A240301/24000009/"
@@ -170,11 +171,12 @@
       "C"
     ],
     "reason": null,
-    "pointId": null,
-    "detailPending": true,
+    "pointId": "ise-sushikyu",
     "ratings": {
       "tabelog": 3.49,
-      "tabelogReviews": 1424
+      "tabelogReviews": 1424,
+      "google": 4.2,
+      "googleReviews": 2616
     },
     "links": {
       "tabelog": "https://tabelog.com/mie/A2403/A240301/24000007/"
@@ -324,11 +326,12 @@
       "A"
     ],
     "reason": null,
-    "pointId": null,
-    "detailPending": true,
+    "pointId": "ise-kadoya-naikumae",
     "ratings": {
       "tabelog": 3.49,
-      "tabelogReviews": 654
+      "tabelogReviews": 654,
+      "google": 4.3,
+      "googleReviews": 844
     },
     "links": {
       "tabelog": "https://tabelog.com/mie/A2403/A240301/24001784/"
@@ -428,11 +431,12 @@
       "C"
     ],
     "reason": null,
-    "pointId": null,
-    "detailPending": true,
+    "pointId": "ise-ebiya-shokudo",
     "ratings": {
       "tabelog": 3.48,
-      "tabelogReviews": 569
+      "tabelogReviews": 569,
+      "google": 4.4,
+      "googleReviews": 3453
     },
     "links": {
       "tabelog": "https://tabelog.com/mie/A2403/A240301/24001876/"
@@ -455,11 +459,12 @@
       "C"
     ],
     "reason": null,
-    "pointId": null,
-    "detailPending": true,
+    "pointId": "ise-okunoya",
     "ratings": {
       "tabelog": 3.5,
-      "tabelogReviews": 554
+      "tabelogReviews": 554,
+      "google": 3.9,
+      "googleReviews": 573
     },
     "links": {
       "tabelog": "https://tabelog.com/mie/A2403/A240301/24001335/"
@@ -524,11 +529,12 @@
       "A"
     ],
     "reason": null,
-    "pointId": null,
-    "detailPending": true,
+    "pointId": "ise-okadaya",
     "ratings": {
       "tabelog": 3.47,
-      "tabelogReviews": 491
+      "tabelogReviews": 491,
+      "google": 3.8,
+      "googleReviews": 439
     },
     "links": {
       "tabelog": "https://tabelog.com/mie/A2403/A240301/24000005/"
@@ -595,11 +601,12 @@
       "C"
     ],
     "reason": null,
-    "pointId": null,
-    "detailPending": true,
+    "pointId": "ise-tofuya",
     "ratings": {
       "tabelog": 3.5,
-      "tabelogReviews": 443
+      "tabelogReviews": 443,
+      "google": 4.3,
+      "googleReviews": 1104
     },
     "links": {
       "tabelog": "https://tabelog.com/mie/A2403/A240301/24001062/"
@@ -630,11 +637,12 @@
       "A"
     ],
     "reason": null,
-    "pointId": null,
-    "detailPending": true,
+    "pointId": "ise-shoyu-honpo",
     "ratings": {
       "tabelog": 3.48,
-      "tabelogReviews": 438
+      "tabelogReviews": 438,
+      "google": 4.1,
+      "googleReviews": 295
     },
     "links": {
       "tabelog": "https://tabelog.com/mie/A2403/A240301/24010735/"
@@ -665,11 +673,12 @@
       "A"
     ],
     "reason": null,
-    "pointId": null,
-    "detailPending": true,
+    "pointId": "ise-horaitei",
     "ratings": {
       "tabelog": 3.48,
-      "tabelogReviews": 407
+      "tabelogReviews": 407,
+      "google": 3.9,
+      "googleReviews": 467
     },
     "links": {
       "tabelog": "https://tabelog.com/mie/A2403/A240301/24000585/"
@@ -750,11 +759,12 @@
       "A"
     ],
     "reason": null,
-    "pointId": null,
-    "detailPending": true,
+    "pointId": "ise-ebimaru",
     "ratings": {
       "tabelog": 3.46,
-      "tabelogReviews": 402
+      "tabelogReviews": 402,
+      "google": 4,
+      "googleReviews": 840
     },
     "links": {
       "tabelog": "https://tabelog.com/mie/A2403/A240301/24000224/"
@@ -1002,11 +1012,12 @@
       "A"
     ],
     "reason": null,
-    "pointId": null,
-    "detailPending": true,
+    "pointId": "ise-tekone-chaya-chuo",
     "ratings": {
       "tabelog": 3.44,
-      "tabelogReviews": 290
+      "tabelogReviews": 290,
+      "google": 3.8,
+      "googleReviews": 632
     },
     "links": {
       "tabelog": "https://tabelog.com/mie/A2403/A240301/24013004/"
@@ -1038,11 +1049,12 @@
       "A"
     ],
     "reason": null,
-    "pointId": null,
-    "detailPending": true,
+    "pointId": "ise-nakaiya",
     "ratings": {
       "tabelog": 3.44,
-      "tabelogReviews": 258
+      "tabelogReviews": 258,
+      "google": 3.7,
+      "googleReviews": 293
     },
     "links": {
       "tabelog": "https://tabelog.com/mie/A2403/A240301/24000006/"
@@ -1064,11 +1076,12 @@
       "A"
     ],
     "reason": null,
-    "pointId": null,
-    "detailPending": true,
+    "pointId": "ise-maruyoshi-oharai",
     "ratings": {
       "tabelog": 3.41,
-      "tabelogReviews": 246
+      "tabelogReviews": 246,
+      "google": 3.8,
+      "googleReviews": 385
     },
     "links": {
       "tabelog": "https://tabelog.com/mie/A2403/A240301/24017325/"
@@ -1107,11 +1120,12 @@
       "A"
     ],
     "reason": null,
-    "pointId": null,
-    "detailPending": true,
+    "pointId": "ise-tekone-chaya-naiku",
     "ratings": {
       "tabelog": 3.42,
-      "tabelogReviews": 235
+      "tabelogReviews": 235,
+      "google": 4,
+      "googleReviews": 668
     },
     "links": {
       "tabelog": "https://tabelog.com/mie/A2403/A240301/24001385/"
@@ -1133,11 +1147,12 @@
       "A"
     ],
     "reason": null,
-    "pointId": null,
-    "detailPending": true,
+    "pointId": "ise-kawanishiya",
     "ratings": {
       "tabelog": 3.41,
-      "tabelogReviews": 235
+      "tabelogReviews": 235,
+      "google": 4.3,
+      "googleReviews": 91
     },
     "links": {
       "tabelog": "https://tabelog.com/mie/A2403/A240301/24015250/"
@@ -1169,11 +1184,12 @@
       "C"
     ],
     "reason": null,
-    "pointId": null,
-    "detailPending": true,
+    "pointId": "ise-ikadaso",
     "ratings": {
       "tabelog": 3.54,
-      "tabelogReviews": 178
+      "tabelogReviews": 178,
+      "google": 4.3,
+      "googleReviews": 215
     },
     "links": {
       "tabelog": "https://tabelog.com/mie/A2403/A240301/24017587/"
@@ -1197,11 +1213,12 @@
       "C"
     ],
     "reason": null,
-    "pointId": null,
-    "detailPending": true,
+    "pointId": "ise-noasobidana",
     "ratings": {
       "tabelog": 3.41,
-      "tabelogReviews": 171
+      "tabelogReviews": 171,
+      "google": 4.2,
+      "googleReviews": 178
     },
     "links": {
       "tabelog": "https://tabelog.com/mie/A2403/A240301/24008115/"
@@ -1223,11 +1240,12 @@
       "C"
     ],
     "reason": null,
-    "pointId": null,
-    "detailPending": true,
+    "pointId": "ise-okuno-steak",
     "ratings": {
       "tabelog": 3.36,
-      "tabelogReviews": 145
+      "tabelogReviews": 145,
+      "google": 4.1,
+      "googleReviews": 291
     },
     "links": {
       "tabelog": "https://tabelog.com/mie/A2403/A240301/24000535/"
@@ -1249,11 +1267,12 @@
       "C"
     ],
     "reason": null,
-    "pointId": null,
-    "detailPending": true,
+    "pointId": "ise-isshobin-naiku",
     "ratings": {
       "tabelog": 3.16,
-      "tabelogReviews": 111
+      "tabelogReviews": 111,
+      "google": 4.2,
+      "googleReviews": 383
     },
     "links": {
       "tabelog": "https://tabelog.com/mie/A2403/A240301/24011753/"
@@ -1285,11 +1304,12 @@
       "C"
     ],
     "reason": null,
-    "pointId": null,
-    "detailPending": true,
+    "pointId": "ise-sanguutei-isuzu",
     "ratings": {
       "tabelog": 3.4,
-      "tabelogReviews": 105
+      "tabelogReviews": 105,
+      "google": 4.1,
+      "googleReviews": 276
     },
     "links": {
       "tabelog": "https://tabelog.com/mie/A2403/A240301/24019272/"
@@ -1311,11 +1331,12 @@
       "C"
     ],
     "reason": null,
-    "pointId": null,
-    "detailPending": true,
+    "pointId": "ise-haikarasan",
     "ratings": {
       "tabelog": 3.34,
-      "tabelogReviews": 86
+      "tabelogReviews": 86,
+      "google": 4,
+      "googleReviews": 341
     },
     "links": {
       "tabelog": "https://tabelog.com/mie/A2403/A240301/24004385/"
@@ -1346,11 +1367,12 @@
       "C"
     ],
     "reason": null,
-    "pointId": null,
-    "detailPending": true,
+    "pointId": "ise-ebisei",
     "ratings": {
       "tabelog": 3.19,
-      "tabelogReviews": 72
+      "tabelogReviews": 72,
+      "google": 3.1,
+      "googleReviews": 250
     },
     "links": {
       "tabelog": "https://tabelog.com/mie/A2403/A240301/24016990/"
@@ -1372,11 +1394,12 @@
       "C"
     ],
     "reason": null,
-    "pointId": null,
-    "detailPending": true,
+    "pointId": "ise-umisachi-yamasachi",
     "ratings": {
       "tabelog": 3.31,
-      "tabelogReviews": 48
+      "tabelogReviews": 48,
+      "google": 4.7,
+      "googleReviews": 36
     },
     "links": {
       "tabelog": "https://tabelog.com/mie/A2403/A240301/24021239/"
@@ -1398,11 +1421,12 @@
       "C"
     ],
     "reason": null,
-    "pointId": null,
-    "detailPending": true,
+    "pointId": "ise-sudaku-oharai",
     "ratings": {
       "tabelog": 3.14,
-      "tabelogReviews": 22
+      "tabelogReviews": 22,
+      "google": 4.7,
+      "googleReviews": 203
     },
     "links": {
       "tabelog": "https://tabelog.com/mie/A2403/A240301/24021537/"
@@ -1425,11 +1449,12 @@
       "C"
     ],
     "reason": null,
-    "pointId": null,
-    "detailPending": true,
+    "pointId": "ise-kakiaki-hanare",
     "ratings": {
       "tabelog": 3.1,
-      "tabelogReviews": 18
+      "tabelogReviews": 18,
+      "google": 3.4,
+      "googleReviews": 40
     },
     "links": {
       "tabelog": "https://tabelog.com/mie/A2403/A240301/24018019/"
@@ -1447,11 +1472,11 @@
     },
     "region": "ise-naiku",
     "category": "料理旅館、日本料理",
-    "status": "pending",
+    "status": "excluded",
     "criteria": [
       "A"
     ],
-    "reason": "住宿本體（lodging ise-iku，料理旅館）；接受非住客用餐的話以 F③ 納入（3.46／129 則也符合 A），T8d 先確認",
+    "reason": "住宿本體（lodging ise-iku）。T8d 確認：官網 FAQ 寫不提供午餐（ランチ営業なし）、日帰り入浴只限住客；食べログ 完全予約制、營業時間只有 check-in／out；沒有任何來源寫非住客可以只用晚餐 → 不收錄（2026-10-18）",
     "pointId": null,
     "ratings": {
       "tabelog": 3.46,
@@ -1472,21 +1497,24 @@
     },
     "region": "ise-naiku",
     "category": "ホテル",
-    "status": "pending",
+    "status": "included",
     "criteria": [
-      "C"
+      "C",
+      "F3"
     ],
-    "reason": "住宿本體（lodging ise-jingu-kaikan，食べログ類別ホテル）；在個室篩選裡、3.23／61 則，非住客能用餐的話符合 C，T8d 先確認",
-    "pointId": null,
+    "reason": "住宿本體（lodging ise-jingu-kaikan）；T8d 確認官網有「神宮参拝の昼食」團體昼食（10 名以上），以 F③（料理旅館的非住客用餐）＋C 收錄；非住客可否官網沒有明寫，訂的時候確認",
+    "pointId": "ise-jingu-kaikan-dining",
     "ratings": {
       "tabelog": 3.23,
-      "tabelogReviews": 61
+      "tabelogReviews": 61,
+      "google": 4.2,
+      "googleReviews": 1278
     },
     "links": {
       "tabelog": "https://tabelog.com/mie/A2403/A240301/24009050/"
     },
     "contexts": [
-      "snack"
+      "lunch"
     ],
     "note": "類型：其他；地址：伊勢市宇治中之切町152 ４階；食べログ篩選：個室"
   },
