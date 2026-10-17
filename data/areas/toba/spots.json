@@ -105,7 +105,7 @@
       "親子",
       "長輩友善"
     ],
-    "tier": null,
+    "tier": "S",
     "nearestStation": {
       "id": "toba",
       "mode": "walk",
@@ -239,6 +239,47 @@
       "google": 4.4,
       "googleReviews": 17037,
       "note": null
+    },
+    "summary": {
+      "text": "日本飼養種類最多（約 1,200 種）的水族館，國內唯一看得到儒艮，也有日本僅存的 2 隻海獺。全館室內、沒有固定路線，可以挑有興趣的區域慢慢看，雨天、冬天都適合，是鳥羽最代表性的景點。",
+      "pros": [
+        "鳥羽人氣第一（Google 4.4、1.7 萬則），觀光三重主打",
+        "海獅表演、海象互動、可以摸海洋生物，小孩很喜歡",
+        "鳥羽站步行 10 分的平路；有坡道、電梯，免費借輪椅與電動代步車"
+      ],
+      "cons": [
+        "館內大、走很多路，暗的展示室容易累，長輩要中途休息",
+        "海獺要排隊（曾排約 50 分）；週末、假日下午擁擠",
+        "15 人不到團體價（25 人以上）；館內餐飲偏貴"
+      ],
+      "basedOn": [
+        "https://www.kankomie.or.jp/report/1647",
+        "https://www.kankomie.or.jp/topic/371",
+        "https://4travel.jp/dm_shisetsu/10000104",
+        "https://www.jeepe.jp/ja/articles/toba-aquarium-guide-2117",
+        "https://www.asoview.com/note/8061/",
+        "https://iko-yo.net/rankings/areas/178/indoor/yearly"
+      ],
+      "generated": "2026-10-18"
+    },
+    "assessment": {
+      "rubric": "spot-v1",
+      "scores": {
+        "recommend": 5,
+        "winterFit": 5,
+        "elderFit": 4,
+        "kidsFit": 5,
+        "accessEase": 5
+      },
+      "rationale": {
+        "recommend": "鳥羽評論數最多的景點，多個來源都說來鳥羽必去，展示充實度評價高",
+        "winterFit": "全館室內、2 月照常營業，冬天雨天都不受影響",
+        "elderFit": "有坡道與電梯、可借輪椅和代步車，但館內面積大、步行長，扣一顆",
+        "kidsFit": "表演、互動、觸摸池，いこーよ 室內設施排名第 1",
+        "accessEase": "鳥羽站步行約 10 分，沿國道平路"
+      },
+      "confidence": "high",
+      "assessed": "2026-10-18"
     }
   },
   {
@@ -337,7 +378,7 @@
       "室內",
       "雨天備案"
     ],
-    "tier": null,
+    "tier": "A",
     "nearestStation": {
       "id": "toba",
       "mode": "walk",
@@ -472,6 +513,47 @@
       "google": 4,
       "googleReviews": 1772,
       "note": null
+    },
+    "summary": {
+      "text": "養殖珍珠發祥地的小島，有珍珠博物館和每天數場的海女實演（白衣海女潛水、磯笛聲）。全程約 1 小時，就在鳥羽站和水族館旁，容易和水族館排在同一天。",
+      "pros": [
+        "海女實演是多篇心得最難忘的部分",
+        "鳥羽站步行 5 分，和水族館相鄰",
+        "人不多、安靜；博物館有英文說明"
+      ],
+      "cons": [
+        "海女實演在戶外看台觀看，冬天冷，看台要爬一段樓梯（段數不明）",
+        "珍珠博物館偏大人，小孩興趣有限",
+        "門票 1,650 円有人覺得偏貴；15 人不到團體價（20 人以上）"
+      ],
+      "basedOn": [
+        "https://www.mikimoto-pearl-island.jp/",
+        "https://4travel.jp/dm_shisetsu/10014797",
+        "https://en.japantravel.com/mie/visiting-mikimoto-pearl-island/19568",
+        "https://www.mapple.net/article/32025/",
+        "https://www.gltjp.com/ja/directory/item/12408/",
+        "https://www.kankomie.or.jp/report/227"
+      ],
+      "generated": "2026-10-18"
+    },
+    "assessment": {
+      "rubric": "spot-v1",
+      "scores": {
+        "recommend": 4,
+        "winterFit": 4,
+        "elderFit": 4,
+        "kidsFit": 3,
+        "accessEase": 5
+      },
+      "rationale": {
+        "recommend": "Google 4.0（1,772 則），觀光三重、まっぷる都列為代表景點，但 4travel 3.5，不到必去",
+        "winterFit": "博物館室內、2 月照常營業；海女實演看台在戶外，冬天冷",
+        "elderFit": "島內有電梯、步行少；入口珍珠橋與海女看台要走樓梯，工作人員會協助",
+        "kidsFit": "海女實演小孩會有興趣，博物館部分偏大人",
+        "accessEase": "鳥羽站步行約 5 分"
+      },
+      "confidence": "high",
+      "assessed": "2026-10-18"
     }
   },
   {
@@ -537,7 +619,7 @@
       "親子",
       "長階梯"
     ],
-    "tier": null,
+    "tier": "A",
     "nearestStation": {
       "id": "toba",
       "mode": "walk",
@@ -701,6 +783,50 @@
       "google": 3.9,
       "googleReviews": 250,
       "note": "Google 登錄名稱：鳥羽湾めぐり観光船 真珠島・水族館前のりば"
+    },
+    "summary": {
+      "text": "從鳥羽港搭遊覽船繞鳥羽灣，中途停靠海豚島看海豚、海獅表演，船票含入園。但每年 1 月中旬～2 月上旬船舶定期檢查休業，2027 年日期未公告，旅程期間很可能停航。",
+      "pros": [
+        "海豚、海獅、水獺表演，還能付費餵海豚，小孩會很喜歡",
+        "鳥羽站步行 5 分就能上船；15 人以上可以預約",
+        "海豚表演區在碼頭旁，不爬階梯也能看"
+      ],
+      "cons": [
+        "2/2～2/10 前後很可能年度休業，排行程前一定要打電話（0599-25-3147）",
+        "海豚島展望台約 226～248 階；冬天海上風大很冷",
+        "船上自由席，人多時可能沒座位；廁所要過段差"
+      ],
+      "basedOn": [
+        "https://shima-marineleisure.com/toba",
+        "https://shima-marineleisure.com/question",
+        "https://shima-marineleisure.com/all/toba/%e3%82%a4%e3%83%ab%e3%82%ab%e5%b3%b6%e3%80%80%e4%bc%91%e5%9c%92%e3%81%ae%e3%81%8a%e7%9f%a5%e3%82%89%e3%81%9b.php",
+        "https://shima-marineleisure.com/category/all/toba/info-toba",
+        "https://www.kankomie.or.jp/spot/3101",
+        "https://www.kankomie.or.jp/report/176",
+        "https://www.asoview.com/note/1008/",
+        "https://iko-yo.net/experiences/108350",
+        "https://iko-yo.net/experiences/109925"
+      ],
+      "generated": "2026-10-18"
+    },
+    "assessment": {
+      "rubric": "spot-v1",
+      "scores": {
+        "recommend": 4,
+        "winterFit": 2,
+        "elderFit": 3,
+        "kidsFit": 5,
+        "accessEase": 5
+      },
+      "rationale": {
+        "recommend": "觀光三重主打景點，一票玩遊覽船與海豚島；Google 3.9（250 則）",
+        "winterFit": "1 月中旬～2 月上旬有年度休業，旅程大半很可能停航；有開的話海上也冷",
+        "elderFit": "輪椅可上船、海豚表演在碼頭旁；但展望台是長階梯（可改搭單人吊椅）",
+        "kidsFit": "海豚、海獅表演和餵食，親子評價高",
+        "accessEase": "鳥羽站步行約 5 分到乘船處"
+      },
+      "confidence": "medium",
+      "assessed": "2026-10-18"
     }
   },
   {
@@ -759,7 +885,7 @@
       "展望",
       "長階梯"
     ],
-    "tier": null,
+    "tier": "B",
     "nearestStation": {
       "id": "toba",
       "mode": "walk",
@@ -868,6 +994,45 @@
       "google": 3.8,
       "googleReviews": 271,
       "note": "Google 登錄名稱：鳥羽城本丸跡"
+    },
+    "summary": {
+      "text": "九鬼嘉隆在 1594 年築的「海城」遺跡，天守已拆除，只剩石垣，本丸跡現在是芝生廣場。從上面可以看鳥羽灣、坂手島、答志島和近鐵電車，展望評價不錯，但整體偏城跡愛好者取向。",
+      "pros": [
+        "免費、無休，鳥羽站步行 10～15 分",
+        "本丸跡眺望鳥羽灣和島嶼",
+        "在水族館對面的小山，可以順路"
+      ],
+      "cons": [
+        "三之丸爬階梯上本丸，心得說相當吃力，長輩要斟酌",
+        "沒有建築，只靠解說牌，看 15 分就夠",
+        "戶外高台，冬天吹海風；2 月沒有櫻花；公園沒有停車場"
+      ],
+      "basedOn": [
+        "https://www.kankomie.or.jp/spot/23730",
+        "https://www.city.toba.mie.jp/soshiki/k_shakaikyoiku/gyomu/rekishi_bunkazai/bunkazai/1/2549.html",
+        "https://www.kankomie.or.jp/report/903",
+        "https://4travel.jp/dm_shisetsu/10007955"
+      ],
+      "generated": "2026-10-18"
+    },
+    "assessment": {
+      "rubric": "spot-v1",
+      "scores": {
+        "recommend": 3,
+        "winterFit": 3,
+        "elderFit": 2,
+        "kidsFit": 2,
+        "accessEase": 4
+      },
+      "rationale": {
+        "recommend": "4travel 3.35、Google 3.8，展望受好評但只剩石垣，適合順路",
+        "winterFit": "全年開放，戶外高台冬天冷，2 月沒有花",
+        "elderFit": "要爬一段吃力的階梯，4travel 無障礙子項 2.57",
+        "kidsFit": "只有草地廣場和拍照紀念物，小孩容易無聊",
+        "accessEase": "鳥羽站步行 10～15 分，最後要上坡"
+      },
+      "confidence": "medium",
+      "assessed": "2026-10-18"
     }
   },
   {
@@ -926,7 +1091,7 @@
     "tags": [
       "展望"
     ],
-    "tier": null,
+    "tier": "B",
     "nearestStation": {
       "id": "toba",
       "mode": "walk",
@@ -1021,6 +1186,46 @@
       "google": 3.5,
       "googleReviews": 31,
       "note": null
+    },
+    "summary": {
+      "text": "標高約 60 m 的小山頂展望台，江戶時代船員在這裡看天氣決定出航，留有 1822 年的八角方位石、芭蕉句碑。可以眺望鳥羽灣和日出，但口碑少，有心得說樹長高擋住視野、整備不足。",
+      "pros": [
+        "免費，鳥羽站步行約 15 分",
+        "方位石、無線電話紀念碑等歷史小景",
+        "眺望鳥羽灣、看日出"
+      ],
+      "cons": [
+        "從賀多神社上去有陡坡，心得說「意外地累」，長輩不建議",
+        "樹擋住部分視野、雜草多；「幸せの鐘」已撤除",
+        "廁所、休息處都沒有資料"
+      ],
+      "basedOn": [
+        "https://www.kankomie.or.jp/spot/4622",
+        "https://4travel.jp/dm_shisetsu/10010780",
+        "https://www.mlit.go.jp/tagengo-db/common/001537360.docx",
+        "https://www.mapple.net/spot/24000125/",
+        "https://yamap.com/activities/30174234/article"
+      ],
+      "generated": "2026-10-18"
+    },
+    "assessment": {
+      "rubric": "spot-v1",
+      "scores": {
+        "recommend": 2,
+        "winterFit": 3,
+        "elderFit": 2,
+        "kidsFit": 2,
+        "accessEase": 4
+      },
+      "rationale": {
+        "recommend": "Google 3.5（31 則）、4travel 3.30，評論少，有視野被擋的負評",
+        "winterFit": "全年可去，冬天空氣清澈但山頂海風冷",
+        "elderFit": "小山的步道約 20 分，有陡坡，長輩負擔不小",
+        "kidsFit": "以眺望和石碑為主，6～10 歲走得上去但沒有互動",
+        "accessEase": "鳥羽站步行約 15 分（含上山）"
+      },
+      "confidence": "low",
+      "assessed": "2026-10-18"
     }
   },
   {
@@ -1122,7 +1327,7 @@
       "室內",
       "雨天備案"
     ],
-    "tier": null,
+    "tier": "B",
     "nearestStation": {
       "id": "toba",
       "mode": "walk",
@@ -1245,6 +1450,48 @@
       "google": 3.7,
       "googleReviews": 1322,
       "note": null
+    },
+    "summary": {
+      "text": "鳥羽站旁的農水產直售所，賣當天上岸的魚、當季蔬果和加工品，買的魚可以請店家處理、自組海鮮丼。附設餐廳 2025 年起改成「鳥羽めし」單點，旁邊有免費足湯。",
+      "pros": [
+        "鳥羽站步行 2 分，平地，適合等車或回程前逛",
+        "在地漁獲和伴手禮多，價格划算",
+        "旁邊免費足湯「とまり湯」，外帶區有紅珍珠草莓霜淇淋"
+      ],
+      "cons": [
+        "週三公休、年末年始休；餐廳週二也休，心得提到有天餐廳沒開",
+        "餐廳不接受預約、每日限量，15 人要分批",
+        "多數口碑是 2025 年以前自助餐時代的舊資料"
+      ],
+      "basedOn": [
+        "http://tobamarche.jp/",
+        "http://tobamarche.jp/restaurant.html?id=mnew",
+        "https://www.kankomie.or.jp/spot/22222",
+        "https://www.iseshima-kanko.jp/en/see-and-do/2947",
+        "https://4travel.jp/dm_shisetsu/11373835",
+        "https://www.gltjp.com/zh-hant/directory/item/16092/",
+        "https://www.kankomie.or.jp/spot/22375"
+      ],
+      "generated": "2026-10-18"
+    },
+    "assessment": {
+      "rubric": "spot-v1",
+      "scores": {
+        "recommend": 3,
+        "winterFit": 4,
+        "elderFit": 4,
+        "kidsFit": 3,
+        "accessEase": 5
+      },
+      "rationale": {
+        "recommend": "Google 3.7（1,322 則），站前方便的產地市場，不是專程目的地",
+        "winterFit": "室內，2 月照常營業（週三休），足湯全年開放",
+        "elderFit": "平地、站前步行 2 分；擁擠時不好走，休息座位不明",
+        "kidsFit": "噴水池、海豚像、霜淇淋和足湯，小孩可以待一下",
+        "accessEase": "鳥羽站步行約 2 分"
+      },
+      "confidence": "medium",
+      "assessed": "2026-10-18"
     }
   },
   {
@@ -1339,7 +1586,7 @@
       "展望",
       "室內"
     ],
-    "tier": null,
+    "tier": "B",
     "nearestStation": {
       "id": "toba",
       "mode": "walk",
@@ -1458,6 +1705,48 @@
       "google": 3.6,
       "googleReviews": 1528,
       "note": null
+    },
+    "summary": {
+      "text": "和鳥羽站以有屋頂的通道相連的伴手禮商場，1、2 樓是珍珠、海產、點心，3 樓是餐廳和可以看鳥羽灣的展望室。觀光三重的冬季行程把它當購物、午餐站，性質是順路，不是目的地。",
+      "pros": [
+        "鳥羽站直通、室內，雨天冷天都方便",
+        "3F 展望室、1F 無水足湯和休憩空間，可以借輪椅、嬰兒車、寄放行李",
+        "3F 和洋餐廳接受團體午餐預約"
+      ],
+      "cons": [
+        "週四不定休，出發前要查營業日曆",
+        "電梯、多功能廁所官網沒寫",
+        "設施整體的心得很少；3F 海鮮店舊口碑說價格偏高"
+      ],
+      "basedOn": [
+        "https://www.toba1ban.co.jp/about/shisetsu.html",
+        "https://www.toba1ban.co.jp/about/floormap.html",
+        "https://www.toba1ban.co.jp/lunch/",
+        "https://www.kankomie.or.jp/report/675",
+        "https://www.kankomie.or.jp/report/516",
+        "https://www.gltjp.com/zh-hant/directory/item/18382/",
+        "https://4travel.jp/dm_shisetsu/11078157"
+      ],
+      "generated": "2026-10-18"
+    },
+    "assessment": {
+      "rubric": "spot-v1",
+      "scores": {
+        "recommend": 3,
+        "winterFit": 4,
+        "elderFit": 4,
+        "kidsFit": 3,
+        "accessEase": 5
+      },
+      "rationale": {
+        "recommend": "Google 3.6（1,528 則），站前方便的商場，觀光三重當順路站介紹",
+        "winterFit": "室內、和車站有屋頂通道，2 月營業（週四可能休）",
+        "elderFit": "借輪椅、有休憩空間和足湯；電梯資訊不明，扣一顆",
+        "kidsFit": "2F 脫鞋遊戲區、海的圖書室、冰淇淋，小孩可以打發時間",
+        "accessEase": "鳥羽站步行 1～2 分"
+      },
+      "confidence": "medium",
+      "assessed": "2026-10-18"
     }
   },
   {
@@ -1549,7 +1838,7 @@
       "室內",
       "雨天備案"
     ],
-    "tier": null,
+    "tier": "B",
     "nearestStation": {
       "id": "toba",
       "mode": "walk",
@@ -1672,6 +1961,47 @@
       "google": 4.1,
       "googleReviews": 136,
       "note": "Google 登錄名稱：江戸川乱歩館"
+    },
+    "summary": {
+      "text": "由江戶川亂步的友人岩田準一老家改建的小文學館，展示亂步的愛用品、拍攝的海女影片和文人書信，後面有重現昭和巷弄的小路。內容偏日本文學迷，觀光協會有介紹但不是主打。",
+      "pros": [
+        "鳥羽站步行 10 分，室內",
+        "昭和復古小巷拍照氣氛好",
+        "小學生以下免費"
+      ],
+      "cons": [
+        "週二、三休館，平日要預約（鳥羽ガイドセンター）",
+        "民家改建空間小，15 人要分批；階梯、脫鞋、廁所都沒有資料",
+        "展示以日文文學資料為主，小孩興趣不高"
+      ],
+      "basedOn": [
+        "http://rampomuseum.com/",
+        "https://www.kankomie.or.jp/spot/22170",
+        "https://www.iseshima-kanko.jp/en/see-and-do/1549",
+        "https://www.travel.co.jp/guide/article/40724/",
+        "https://www.mlit.go.jp/tagengo-db/R1-02382.html",
+        "https://www.pref.mie.lg.jp/TOPICS/m0046300260.htm"
+      ],
+      "generated": "2026-10-18"
+    },
+    "assessment": {
+      "rubric": "spot-v1",
+      "scores": {
+        "recommend": 2,
+        "winterFit": 4,
+        "elderFit": null,
+        "kidsFit": 2,
+        "accessEase": 5
+      },
+      "rationale": {
+        "recommend": "Google 4.1（136 則）但找不到心得，屬小眾文學館",
+        "winterFit": "室內展示，2 月照常開館（週二、三休）",
+        "elderFit": "階梯、坡道、脫鞋、廁所所有來源都沒寫，資料不足",
+        "kidsFit": "文學資料為主，6～10 歲容易無聊",
+        "accessEase": "鳥羽站步行約 10 分"
+      },
+      "confidence": "low",
+      "assessed": "2026-10-18"
     }
   },
   {
@@ -1779,7 +2109,7 @@
       "室內",
       "雨天備案"
     ],
-    "tier": null,
+    "tier": "B",
     "nearestStation": {
       "id": "nakanogo",
       "mode": "walk",
@@ -1887,6 +2217,47 @@
       "google": 4.3,
       "googleReviews": 98,
       "note": "Google 登錄名稱：鳥羽大庄屋 かどや"
+    },
+    "summary": {
+      "text": "江戶時代大庄屋廣野家的宅邸，國登錄有形文化財，免費參觀。看點是歪斜的老玻璃、色玻璃窗、欄間雕刻、手繪瀨戶燒馬桶和腳踏風琴收藏，是安靜的冷門古民家。",
+      "pros": [
+        "免費，近鐵中之郷站步行約 10 分",
+        "老玻璃、雕刻、風琴等細節多，Google 4.3",
+        "室內，可以和城跡、中之郷一帶順路"
+      ],
+      "cons": [
+        "週二休館、年末年始休",
+        "古民家推測要脫鞋、有門檻，無障礙資訊都沒有",
+        "幾乎找不到心得；互動少，小孩可能無聊"
+      ],
+      "basedOn": [
+        "https://www.toba.gr.jp/sightseeing/1890/",
+        "http://www.hironotei.jp/",
+        "https://www.iseshima-kanko.jp/en/see-and-do/1613",
+        "https://www.mlit.go.jp/tagengo-db/R1-02378.html",
+        "https://kankomie.or.jp/spot/22108",
+        "https://www.mapple.net/station/287236/spot/"
+      ],
+      "generated": "2026-10-18"
+    },
+    "assessment": {
+      "rubric": "spot-v1",
+      "scores": {
+        "recommend": 3,
+        "winterFit": 4,
+        "elderFit": null,
+        "kidsFit": 2,
+        "accessEase": 5
+      },
+      "rationale": {
+        "recommend": "Google 4.3（98 則），文化財宅邸看點具體，適合順路",
+        "winterFit": "室內，2 月照常開館（週二休）",
+        "elderFit": "推測要脫鞋、有門檻，但沒有來源確認，資料不足",
+        "kidsFit": "以古建築和老物件為主，互動少",
+        "accessEase": "近鐵中之郷站步行約 10 分（鳥羽站約 25 分）"
+      },
+      "confidence": "low",
+      "assessed": "2026-10-18"
     }
   },
   {
@@ -1999,7 +2370,7 @@
       "室內",
       "雨天備案"
     ],
-    "tier": null,
+    "tier": "A",
     "nearestStation": {
       "id": "toba",
       "mode": "bus",
@@ -2165,6 +2536,50 @@
       "google": 4,
       "googleReviews": 827,
       "note": "Google 登錄名稱：鳥羽市立海の博物館"
+    },
+    "summary": {
+      "text": "收藏約 6 萬件海女、漁業民俗資料（含國指定重要有形民俗文化財）的博物館，木造船收藏庫約 80～90 艘很壯觀，建築得過日本建築學會賞。位在鳥羽南部山邊，要搭巴士約 40 分。",
+      "pros": [
+        "海女與漁業文化最完整的展示，多篇心得推薦船的收藏庫",
+        "2 月照常開館（冬季 9:00～16:30），附設咖啡廳有浦村牡蠣咖哩",
+        "可預約導覽、聽海女說話、柴魚削體驗"
+      ],
+      "cons": [
+        "沒有電梯，室外坡道 40 m、8 度長而陡，A 棟 3F 只能爬 16 階，長輩辛苦",
+        "6 棟分散、棟與棟之間走室外；船の棟要脫鞋、有落差",
+        "要搭巴士約 40 分（平日約 9 班）或計程車 20 分；15 人不到團體價"
+      ],
+      "basedOn": [
+        "https://www.umihaku.com/",
+        "https://www.umihaku.com/facility/cafe.php",
+        "https://www.barifuri.com/barrierfree/facility/umihaku/",
+        "https://4travel.jp/dm_shisetsu/10014802",
+        "https://www.kankomie.or.jp/report/746",
+        "https://www.iseshima-kanko.jp/feature/umihaku",
+        "https://traveldiary.kimamanalife.jp/umihaku/",
+        "https://w-koharu.com/archives/6423",
+        "https://www.jalan.net/kankou/spt_24211cc3290032864/"
+      ],
+      "generated": "2026-10-18"
+    },
+    "assessment": {
+      "rubric": "spot-v1",
+      "scores": {
+        "recommend": 4,
+        "winterFit": 4,
+        "elderFit": 2,
+        "kidsFit": 3,
+        "accessEase": 3
+      },
+      "rationale": {
+        "recommend": "じゃらん約 4.0、Google 4.0（827 則），收藏和建築都有評價，但 4travel 3.34",
+        "winterFit": "展示室內、2 月照常開館，只有棟與棟之間要走室外",
+        "elderFit": "沒有電梯、長陡坡道和階梯，館內約走 60 分",
+        "kidsFit": "偏靜態，但有潛水艇可以進去、週末有手作，三代同行心得說小孩不無聊",
+        "accessEase": "巴士約 40 分、平日約 9 班，或計程車約 20 分"
+      },
+      "confidence": "medium",
+      "assessed": "2026-10-18"
     }
   },
   {
@@ -2264,7 +2679,7 @@
     "tags": [
       "展望"
     ],
-    "tier": null,
+    "tier": "A",
     "nearestStation": {
       "id": "toba",
       "mode": "taxi",
@@ -2406,6 +2821,48 @@
       "google": 4,
       "googleReviews": 5403,
       "note": null
+    },
+    "summary": {
+      "text": "パールロード中段、標高約 163 m 的展望台，360 度看リアス式海岸和太平洋，附設咖啡廳「海女のテラス」。冬天晴天空氣清澈時有機會看到富士山，但大眾運輸只有週末少數班次。",
+      "pros": [
+        "鳥羽南部最熱門的展望點（Google 4.0、5,403 則），多家媒體介紹",
+        "停車場到展望區近、起伏小，有多功能廁所和店內座位",
+        "咖啡廳有浦村牡蠣、伊勢海老的夾餡麵包，可以外帶到展望區吃"
+      ],
+      "cons": [
+        "平日沒有公車，要計程車（約 25 分）或包車",
+        "高處海風強，冬天要外套帽子；週三公休",
+        "團體用咖啡廳要用官網表單事先申請"
+      ],
+      "basedOn": [
+        "https://www.toba-tenboudai.co.jp/",
+        "https://www.toba-tenboudai.co.jp/reserve/",
+        "https://www.kankomie.or.jp/report/1376",
+        "https://www.kankomie.or.jp/report/1639",
+        "https://www.nap-camp.com/mag/123756",
+        "https://www.jeepe.jp/zh_TW/articles/toba-observatory-2722",
+        "https://www.mapple.net/original/205631/"
+      ],
+      "generated": "2026-10-18"
+    },
+    "assessment": {
+      "rubric": "spot-v1",
+      "scores": {
+        "recommend": 4,
+        "winterFit": 4,
+        "elderFit": 4,
+        "kidsFit": 3,
+        "accessEase": 2
+      },
+      "rationale": {
+        "recommend": "評論數多、媒體與觀光三重都介紹，景色是鳥羽南部代表",
+        "winterFit": "2 月營業（週三休），冬季空氣清澈可能看到富士山，但風大",
+        "elderFit": "停車場近、散步道起伏小、有多功能廁所，坡度鋪面各處不同",
+        "kidsFit": "有草地廣場可以跑，但主要是看風景",
+        "accessEase": "平日沒有公車，只有週末 2～3 班；要計程車或包車"
+      },
+      "confidence": "medium",
+      "assessed": "2026-10-18"
     }
   },
   {
@@ -2463,7 +2920,7 @@
     "tags": [
       "神社寺院"
     ],
-    "tier": null,
+    "tier": "S",
     "nearestStation": {
       "id": "toba",
       "mode": "bus",
@@ -2615,6 +3072,47 @@
       "google": 4.4,
       "googleReviews": 2676,
       "note": "Google 登錄名稱：神明神社"
+    },
+    "summary": {
+      "text": "相差的神明神社境內的「石神さん」，傳說會實現女性的一個願望，海女自古來祈求平安，全國各地都有人專程來參拜。寫一張祈願紙投入箱子再參拜，參道沿途有海產店和咖啡廳。",
+      "pros": [
+        "鳥羽南部人氣最高的參拜地（Google 4.4、2,676 則）",
+        "境內整體無障礙，有斜坡到本殿、有輪椅可用廁所",
+        "可以和海女文化資料館、海女小屋排在同一個半天"
+      ],
+      "cons": [
+        "停車場到境內的參道是又長又陡的坡，長輩要有人陪",
+        "神社小，常要排隊；大型車停車要付 1,000 円",
+        "從鳥羽要搭巴士約 55 分（約每小時 1 班）或計程車 24 分"
+      ],
+      "basedOn": [
+        "https://ishigamisan-shinmei.com/faq/",
+        "https://ishigamisan-shinmei.com/2020/11/12/20201112/",
+        "https://ishigamisan-shinmei.com/prayer/",
+        "https://odekake7.net/?p=782",
+        "https://www.kankomie.or.jp/report/75",
+        "https://www.gltjp.com/zh-hant/directory/item/12922/"
+      ],
+      "generated": "2026-10-18"
+    },
+    "assessment": {
+      "rubric": "spot-v1",
+      "scores": {
+        "recommend": 5,
+        "winterFit": 3,
+        "elderFit": 3,
+        "kidsFit": 3,
+        "accessEase": 3
+      },
+      "rationale": {
+        "recommend": "鳥羽評論數第 3 多、星數 4.4，心得說值得遠道而來，是相差的代表",
+        "winterFit": "戶外神社全年可參拜，冬天沒有特別加分",
+        "elderFit": "境內無障礙，但參道有又長又陡的坡",
+        "kidsFit": "寫祈願紙、參道小吃有少許樂趣，停留時間短",
+        "accessEase": "かもめバス約 55 分、一天約 10 班，或計程車約 24 分"
+      },
+      "confidence": "medium",
+      "assessed": "2026-10-18"
     }
   },
   {
@@ -2720,7 +3218,7 @@
       "室內",
       "雨天備案"
     ],
-    "tier": null,
+    "tier": "B",
     "nearestStation": {
       "id": "toba",
       "mode": "bus",
@@ -2830,6 +3328,46 @@
       "google": 3.8,
       "googleReviews": 241,
       "note": null
+    },
+    "summary": {
+      "text": "石神さん旁的免費小資料館，展示海女舊工具、磯着、等身大的海女作業模型，可以用模型體驗採鮑魚。只有 1 間展示室，很快看完，比較像參拜前後的休息處，也是石神さん的停車場和相差かまど的窗口。",
+      "pros": [
+        "免費，有冷氣、Wi-Fi，廁所乾淨（石神さん那邊沒有廁所）",
+        "可以當天借輪椅",
+        "了解海女文化和「セーマン・ドーマン」護符的由來"
+      ],
+      "cons": [
+        "展示只有 1 間，心得說規模小、有點失望",
+        "中午前後可能暫停開放",
+        "要搭巴士約 50 分；停車場只有約 10 台"
+      ],
+      "basedOn": [
+        "https://osatsu.org/amabunka/",
+        "https://www.kankomie.or.jp/spot/16889",
+        "https://www.kankomie.or.jp/report/508",
+        "https://4travel.jp/dm_shisetsu/11287728",
+        "https://www.kankomie.or.jp/report/81"
+      ],
+      "generated": "2026-10-18"
+    },
+    "assessment": {
+      "rubric": "spot-v1",
+      "scores": {
+        "recommend": 2,
+        "winterFit": 4,
+        "elderFit": 4,
+        "kidsFit": 3,
+        "accessEase": 3
+      },
+      "rationale": {
+        "recommend": "4travel 3.33、Google 3.8，定位是順路的免費小館",
+        "winterFit": "室內，官網寫無休，2 月應照常開館",
+        "elderFit": "有休息空間、廁所、可借輪椅；階梯坡道沒有資料",
+        "kidsFit": "有採鮑魚模型體驗，但 10 多分鐘就看完",
+        "accessEase": "かもめバス約 45～50 分、一天約 10 班"
+      },
+      "confidence": "medium",
+      "assessed": "2026-10-18"
     }
   },
   {
@@ -2937,7 +3475,7 @@
       "雨天備案",
       "親子"
     ],
-    "tier": null,
+    "tier": "A",
     "nearestStation": {
       "id": "toba",
       "mode": "bus",
@@ -3081,6 +3619,48 @@
       "google": 4.4,
       "googleReviews": 362,
       "note": "Google 登錄名稱：海女小屋 相差かまど 前の浜；另一個小屋「相差かまど おぜごさん」4.4 (151)"
+    },
+    "summary": {
+      "text": "相差的海女小屋，現役海女在炭火灶前現烤蠑螺、扇貝、大文蛤和干物，最後是海膽飯和味噌湯，邊吃邊聽海女用方言講出海故事，還能免費試穿海女服拍照。完全預約制，「前の浜」小屋最多 40 人，15 人可以同場。",
+      "pros": [
+        "正宗的海女小屋體驗，觀光三重、JNTO 都有介紹",
+        "15 人可以在「前の浜」同場，有兒童午餐（1,800 円）",
+        "前の浜有無障礙廁所；小屋有炭火，冬天也暖"
+      ],
+      "cons": [
+        "完全預約制（前一天 17:00 前）；2 月是否營業、休業日要預約時問",
+        "圍著灶坐，座位是椅子還是坐地未確認，長輩要先問",
+        "找不到個人心得；從鳥羽要搭巴士約 55 分"
+      ],
+      "basedOn": [
+        "https://osatsu.org/html/meal.html",
+        "https://osatsu.org/html/facilities.html／faq.html／flow.html",
+        "https://www.kankomie.or.jp/report/2067.html",
+        "https://www.nap-camp.com/mag/123762",
+        "https://www.gltjp.com/zh-hans/directory/item/12931/",
+        "https://www.iseshima-kanko.jp/en/en-gourmet/1653",
+        "https://www.kankomie.or.jp/report/801.html"
+      ],
+      "generated": "2026-10-18"
+    },
+    "assessment": {
+      "rubric": "spot-v1",
+      "scores": {
+        "recommend": 4,
+        "winterFit": 4,
+        "elderFit": 3,
+        "kidsFit": 5,
+        "accessEase": 3
+      },
+      "rationale": {
+        "recommend": "Google 4.4（362 則），觀光單位都介紹，但沒有個人心得，比はちまんかまど 少一顆",
+        "winterFit": "室內有炭火、冬天是貝類的季節；2 月營業沒有來源確認",
+        "elderFit": "小屋在沙灘上，座位形式不明；有無障礙廁所",
+        "kidsFit": "看海女烤海鮮、試穿海女服、有兒童餐",
+        "accessEase": "かもめバス約 55 分、約每小時 1 班，或開車約 30 分"
+      },
+      "confidence": "low",
+      "assessed": "2026-10-18"
     }
   },
   {
@@ -3195,7 +3775,7 @@
       "雨天備案",
       "親子"
     ],
-    "tier": null,
+    "tier": "S",
     "nearestStation": {
       "id": "toba",
       "mode": "shuttle",
@@ -3333,6 +3913,47 @@
       "google": 4.4,
       "googleReviews": 753,
       "note": "Google 登錄名稱：海女小屋 はちまんかまど・あさり浜"
+    },
+    "summary": {
+      "text": "畔蛸的海女小屋，海女現場炭烤蠑螺、鮑魚、干物，邊吃邊聽漁獵故事、看唱歌跳舞，可以試穿海女服合照。全館無障礙、全部椅子座位，3 間房合計 83 人，15 人可以同場，還有可以載全員的預約制接駁車。",
+      "pros": [
+        "心得一致好評（Retty 3 篇都是最高分、Google 4.4、753 則）",
+        "全館無障礙、全部椅子座位、輪椅廁所 9 座，對長輩最友善",
+        "兒童價 3～12 歲、有兒童菜單；接駁車「あまバス」定員 24 人"
+      ],
+      "cons": [
+        "完全預約制（約 2 天前）；要等店家回信才成立，急的話打電話",
+        "小孩 5 人以上的團體要另外洽詢（本團 4 人，仍建議說明）",
+        "天候或海女漁的安排可能中止；接駁車一天只有 1 班（12:45 鳥羽站發）"
+      ],
+      "basedOn": [
+        "https://amakoya.com/",
+        "https://amakoya.com/taiken/",
+        "https://amakoya.com/amayoyaku/",
+        "https://retty.me/restaurant/100001691698/",
+        "https://travel.yam.com/article/115077",
+        "https://www.nap-camp.com/mag/123762"
+      ],
+      "generated": "2026-10-18"
+    },
+    "assessment": {
+      "rubric": "spot-v1",
+      "scores": {
+        "recommend": 5,
+        "winterFit": 5,
+        "elderFit": 5,
+        "kidsFit": 5,
+        "accessEase": 4
+      },
+      "rationale": {
+        "recommend": "心得、評分都高，是伊勢志摩海女小屋體驗的代表",
+        "winterFit": "2 月不在固定休業期間；冬天會關拉窗，心得說冬天也舒適，炭火更溫暖",
+        "elderFit": "全館無高低差、全部椅子座位、輪椅廁所 9 座",
+        "kidsFit": "看海女炭烤、試穿海女服、有兒童價與兒童菜單",
+        "accessEase": "有能載全員的預約制接駁車，但一天只有 1 班；否則巴士約 50 分或計程車 25 分"
+      },
+      "confidence": "medium",
+      "assessed": "2026-10-18"
     }
   },
   {
@@ -3383,7 +4004,7 @@
     "tags": [
       "海邊"
     ],
-    "tier": null,
+    "tier": "B",
     "nearestStation": {
       "id": "toba",
       "mode": "bus",
@@ -3508,6 +4129,47 @@
       "google": 4,
       "googleReviews": 47,
       "note": null
+    },
+    "summary": {
+      "text": "志摩半島最東端的白色八角形燈塔（1963 年點燈），所在的鎧崎是「鳥羽十景」之一，可以看太平洋和岩礁。觀光三重稱是人少安靜的「穴場」，燈塔內部不開放。",
+      "pros": [
+        "人少、安靜，看太平洋的海角景色",
+        "免費、全天可去",
+        "附近有海士潜女神社和うに飯的店（かどや）"
+      ],
+      "cons": [
+        "找不到心得，只有觀光網站的簡短介紹",
+        "停車場到燈塔步行約 10 分，路上有沒有階梯、廁所都沒有資料",
+        "巴士到終點国崎約 50 分再走 10～20 分；海角沒有避風處"
+      ],
+      "basedOn": [
+        "https://www.kankomie.or.jp/spot/1717",
+        "https://www.kankomie.or.jp/report/1639",
+        "https://www.iseshima-kanko.jp/en/see-and-do/1572",
+        "https://www.kankomie.or.jp/spot/22230",
+        "https://rurubu.jp/andmore/spot/80024996",
+        "https://rurubu.jp/andmore/spot/80024995（前次已讀"
+      ],
+      "generated": "2026-10-18"
+    },
+    "assessment": {
+      "rubric": "spot-v1",
+      "scores": {
+        "recommend": 2,
+        "winterFit": 3,
+        "elderFit": null,
+        "kidsFit": 2,
+        "accessEase": 3
+      },
+      "rationale": {
+        "recommend": "Google 4.0（47 則），只有觀光網站簡介，屬穴場",
+        "winterFit": "戶外自由參觀、無休；海角風大、沒有室內避風處",
+        "elderFit": "停車場到燈塔約 10 分，階梯坡道沒有來源，資料不足",
+        "kidsFit": "只能看海景，沒有互動設施",
+        "accessEase": "かもめバス約 50 分到国崎、一天約 10 班，再步行 10～20 分"
+      },
+      "confidence": "low",
+      "assessed": "2026-10-18"
     }
   },
   {
@@ -3558,7 +4220,7 @@
     "tags": [
       "展望"
     ],
-    "tier": null,
+    "tier": "B",
     "nearestStation": {
       "id": "toba",
       "mode": "taxi",
@@ -3655,6 +4317,45 @@
       "google": 4.1,
       "googleReviews": 123,
       "note": "Google 登錄名稱：菅崎園地；Google 沒有「春雨展望台」單獨一筆，用菅崎園地（Google 地址寫相差町）"
+    },
+    "summary": {
+      "text": "相差南端的菅崎園地展望台，面向太平洋和的矢湾，正對安乗崎，也是看夕陽的地點，有傳說情侶一起敲會永遠相愛的「常永久の鐘」。觀光三重有專頁，但沒有心得。",
+      "pros": [
+        "看太平洋、的矢湾和夕陽",
+        "免費、有停車場",
+        "在はちまんかまど附近，開車可以順路"
+      ],
+      "cons": [
+        "公車到相差後還要走約 30 分，實際上要計程車或包車；進出道路有狹窄處",
+        "階梯、廁所、休息處都沒有資料",
+        "能做的事只有看海、敲鐘，小孩容易無聊"
+      ],
+      "basedOn": [
+        "https://www.kankomie.or.jp/spot/22231",
+        "https://www.kankomie.or.jp/report/1639",
+        "https://www.kankomie.or.jp/report/1376",
+        "https://www.mapple.net/region/a0405010300_g04010000/spot/"
+      ],
+      "generated": "2026-10-18"
+    },
+    "assessment": {
+      "rubric": "spot-v1",
+      "scores": {
+        "recommend": 2,
+        "winterFit": 3,
+        "elderFit": null,
+        "kidsFit": 2,
+        "accessEase": 1
+      },
+      "rationale": {
+        "recommend": "Google 4.1（123 則）但沒有心得，觀光三重沒有主打",
+        "winterFit": "戶外自由參觀，海角冬天風應該強，沒有冬季資料",
+        "elderFit": "階梯、坡道、廁所都沒有來源，資料不足",
+        "kidsFit": "只有看海和敲鐘",
+        "accessEase": "沒有直達公車，實際上只能開車或計程車"
+      },
+      "confidence": "low",
+      "assessed": "2026-10-18"
     }
   },
   {
@@ -3705,7 +4406,7 @@
     "tags": [
       "展望"
     ],
-    "tier": null,
+    "tier": "B",
     "nearestStation": {
       "id": "toba",
       "mode": "car",
@@ -3816,6 +4517,45 @@
       "google": 3.8,
       "googleReviews": 510,
       "note": null
+    },
+    "summary": {
+      "text": "パールロード旁、相差地區入口的路邊展望台，可以眺望的矢湾、安乗埼到大王埼的リアス式海岸，也是夜景點。有免費停車場和乾淨的木造廁所，適合開車途中停一下。",
+      "pros": [
+        "免費停車場 30 台、乾淨廁所，開車途中休息方便",
+        "的矢湾與リアス式海岸的眺望",
+        "狸地蔵和狸貓造型長椅，小孩可能覺得有趣"
+      ],
+      "cons": [
+        "沒有公車，只能開車或計程車",
+        "找不到心得，停留約 15 分",
+        "戶外，冬天晚上風冷"
+      ],
+      "basedOn": [
+        "https://www.kankomie.or.jp/spot/23390",
+        "https://tabi-mag.jp/me0054/",
+        "https://jafmate.jp/drive/driveroute_20240206.html",
+        "https://www.kankomie.or.jp/report/1376"
+      ],
+      "generated": "2026-10-18"
+    },
+    "assessment": {
+      "rubric": "spot-v1",
+      "scores": {
+        "recommend": 2,
+        "winterFit": 3,
+        "elderFit": 4,
+        "kidsFit": 2,
+        "accessEase": 1
+      },
+      "rationale": {
+        "recommend": "Google 3.8（510 則），定位是開車路過的休息點",
+        "winterFit": "戶外全天開放，冬天沒有加分",
+        "elderFit": "停車場旁、步行約 5 分、有廁所；階梯沒有資料",
+        "kidsFit": "狸貓長椅可以拍照，但停留很短",
+        "accessEase": "沒有公車資訊，只能開車或計程車"
+      },
+      "confidence": "low",
+      "assessed": "2026-10-18"
     }
   },
   {
@@ -3874,7 +4614,7 @@
       "神社寺院",
       "海邊"
     ],
-    "tier": null,
+    "tier": "A",
     "nearestStation": {
       "id": "toba",
       "mode": "bus",
@@ -3990,6 +4730,46 @@
       "google": 4.5,
       "googleReviews": 210,
       "note": "Google 登錄名稱：志摩国一宮 伊射波神社"
+    },
+    "summary": {
+      "text": "鳥羽三女神之一、志摩國一宮，藏在安楽島半島森林裡，要走約 1.5 km 的竹林山路參拜，本殿後方的「奇跡の窓」可以看海。觀光協會把它做成健行特集，評價高，但是長輩很難去。",
+      "pros": [
+        "Google 4.5（210 則），志摩國一宮、觀光協會的健行主打",
+        "竹林山路和「奇跡の窓」的海景，人少有氣氛",
+        "免費，登山口有借用的手杖"
+      ],
+      "cons": [
+        "山路往返約 2.6 km、約 1 小時，有石段，雨後濕滑，膝蓋不好的人危險",
+        "巴士到安楽島約 20 分再走 30～40 分，或開車停車後再走約 20 分",
+        "境內平常無人，路標不夠清楚；冬天出發冷、爬坡熱"
+      ],
+      "basedOn": [
+        "https://iseshimahiking.toba.or.jp/kaburakosan-hiking/",
+        "https://www.iseshima-kanko.jp/feature/isawajinja",
+        "https://www.kankomie.or.jp/spot/22168",
+        "https://note.com/yanotatsuya/n/n8ec8afc26c43",
+        "https://ise-pit.com/isawa-shrine/"
+      ],
+      "generated": "2026-10-18"
+    },
+    "assessment": {
+      "rubric": "spot-v1",
+      "scores": {
+        "recommend": 4,
+        "winterFit": 3,
+        "elderFit": 1,
+        "kidsFit": 2,
+        "accessEase": 2
+      },
+      "rationale": {
+        "recommend": "星數 4.5 是鳥羽景點裡最高之一，觀光協會特集主打，但屬健行取向",
+        "winterFit": "全年可參拜，冬天健行還可以，最適合是春秋",
+        "elderFit": "往返約 1 小時的山路加石段，長輩很難去",
+        "kidsFit": "健行型參拜，沒有互動，要防滑鞋",
+        "accessEase": "車不能開到神社，巴士或開車之後都還要走 20～40 分"
+      },
+      "confidence": "medium",
+      "assessed": "2026-10-18"
     }
   },
   {
@@ -4088,7 +4868,7 @@
       "室內",
       "雨天備案"
     ],
-    "tier": null,
+    "tier": "B",
     "nearestStation": {
       "id": "toba",
       "mode": "walk",
@@ -4213,6 +4993,48 @@
       "google": 3.7,
       "googleReviews": 1028,
       "note": "Google 登錄名稱：鳥羽マリンターミナル"
+    },
+    "summary": {
+      "text": "往答志島、菅島、神島、坂手島的市營定期船和鳥羽灣遊覽船的碼頭，不是景點。2 樓有整面玻璃看海的交流ラウンジ和咖啡廳，等船時可以坐。",
+      "pros": [
+        "鳥羽站步行 7～10 分、平地，有電梯和候船座位",
+        "2 樓整面玻璃看海；有投幣置物櫃、免費 Wi-Fi",
+        "新船「はばたき」是寶可夢水水獺彩繪"
+      ],
+      "cons": [
+        "定期船只收現金，沒有預售和來回票，開船前 10 分買",
+        "2026-04 起減為 4 艘船，冬季北西季風時可能停航",
+        "交通節點，本身沒什麼可看"
+      ],
+      "basedOn": [
+        "https://www.city.toba.mie.jp/material/files/group/45/teikisendaiya260401.pdf",
+        "https://www.city.toba.mie.jp/soshiki/t_kanri/gyomu/doro_kotsu/kokyo_kotsu/7604.html",
+        "https://www.city.toba.mie.jp/material/files/group/45/r7zenntaikai3.pdf",
+        "https://www.kankomie.or.jp/report/1405",
+        "https://www.kankomie.or.jp/spot/25081",
+        "https://ja.wikipedia.org/wiki/鳥羽マリンターミナル",
+        "https://www.tripadvisor.jp/8628231"
+      ],
+      "generated": "2026-10-18"
+    },
+    "assessment": {
+      "rubric": "spot-v1",
+      "scores": {
+        "recommend": 2,
+        "winterFit": 4,
+        "elderFit": 4,
+        "kidsFit": 3,
+        "accessEase": 5
+      },
+      "rationale": {
+        "recommend": "交通節點，只在搭船時順路，心得也只談候船設施",
+        "winterFit": "室內、年中無休；冬天的風險在船班，不在碼頭本身",
+        "elderFit": "平地、有電梯和候船座位；多功能廁所不明",
+        "kidsFit": "寶可夢彩繪船可能讓小孩開心，其他沒什麼",
+        "accessEase": "鳥羽站步行 7～10 分"
+      },
+      "confidence": "medium",
+      "assessed": "2026-10-18"
     }
   },
   {
@@ -4270,7 +5092,7 @@
     "tags": [
       "長階梯"
     ],
-    "tier": null,
+    "tier": "B",
     "nearestStation": {
       "id": "toba",
       "mode": "ferry",
@@ -4412,6 +5234,49 @@
       "google": 4.7,
       "googleReviews": 7,
       "note": "Google 登錄名稱：九鬼嘉隆墓(首塚)"
+    },
+    "summary": {
+      "text": "答志島和具港附近，戰國水軍大將九鬼嘉隆的首塚和胴塚。首塚在可以眺望鳥羽灣、鳥羽城方向的高處，夕陽評價好，但要從港邊爬約 580 m 的石階，偏歷史迷取向。",
+      "pros": [
+        "首塚眺望鳥羽灣，九鬼水軍的歷史故事",
+        "2 月草少、沒有蚊子，反而好走",
+        "可以和答志聚落散步排在同一天（步行約 15 分）"
+      ],
+      "cons": [
+        "港邊到首塚約 580 m 一路石階，有磨損、下坡滑，長輩建議只到山腳的胴塚",
+        "島上沒有巴士、計程車；冬季季風時定期船可能停航",
+        "只有歷史迷會特地來，心得少"
+      ],
+      "basedOn": [
+        "https://www.kankomie.or.jp/spot/4605",
+        "https://4travel.jp/travelogue/11627644",
+        "https://4travel.jp/dm_shisetsu/11310248",
+        "https://ameblo.jp/pont-neuf0603/entry-12853726314.html",
+        "https://www.toretabi.jp/zipangclub/page/plan_shun2407_tokai.html",
+        "https://4travel.jp/dm_shisetsu/11355526",
+        "https://www.city.toba.mie.jp/soshiki/t_kanri/gyomu/doro_kotsu/kokyo_kotsu/1913.html",
+        "https://www.city.toba.mie.jp/material/files/group/45/unkoukijun_r61009.pdf"
+      ],
+      "generated": "2026-10-18"
+    },
+    "assessment": {
+      "rubric": "spot-v1",
+      "scores": {
+        "recommend": 2,
+        "winterFit": 3,
+        "elderFit": 1,
+        "kidsFit": 3,
+        "accessEase": 3
+      },
+      "rationale": {
+        "recommend": "4travel 3.25（6 件）、Google 只有 7 則，熱度中等",
+        "winterFit": "全年可去，2 月路況好；但季風時船可能停",
+        "elderFit": "首塚是長石階，長輩很難去；山腳的胴塚比較近",
+        "kidsFit": "6～10 歲可以走，沒有互動設施，要先講故事",
+        "accessEase": "定期船約 18 分、一天約 9 班，港邊步行 10～15 分"
+      },
+      "confidence": "low",
+      "assessed": "2026-10-18"
     }
   },
   {
@@ -4462,7 +5327,7 @@
     "tags": [
       "神社寺院"
     ],
-    "tier": null,
+    "tier": "B",
     "nearestStation": {
       "id": "toba",
       "mode": "ferry",
@@ -4604,6 +5469,48 @@
       "google": 4.1,
       "googleReviews": 50,
       "note": "Google 登錄名稱：美多羅志神社"
+    },
+    "summary": {
+      "text": "答志島答志港旁的漁村聚落，迷宮般的一人寬窄巷、家家牆上的「丸に八」記號，是寝屋子習俗的島。港邊步行 5 分有美多羅志神社和潮音寺；八幡祭 2026 年在 2/14～15，2027 年可能落在旅程內。",
+      "pros": [
+        "觀光三重、媒體主打的路地散步，漁村氣氛濃",
+        "小孩可以在巷弄找「丸に八」記號",
+        "島の旅社有路地裏導覽（大人 4 人以上，4 天前預約）"
+      ],
+      "cons": [
+        "巷子只有一人寬，15 人要分成 4～6 人一組；神社要爬石段、上方要脫鞋",
+        "島上沒有巴士、計程車；冬季季風時定期船可能停航",
+        "八幡祭 2027 年日期未公告，要問鳥羽市観光商工課"
+      ],
+      "basedOn": [
+        "https://www.toretabi.jp/zipangclub/page/plan_shun2407sp_tokai.html",
+        "https://www.kankomie.or.jp/report/720",
+        "https://chihirog.com/toshijima/",
+        "https://www.mirrormedia.mg/story/amp/20260323tour001",
+        "https://www.kankomie.or.jp/event/41608",
+        "https://www.shima-tabi.net/rojiura.html",
+        "https://www.city.toba.mie.jp/material/files/group/45/unkoukijun_r61009.pdf"
+      ],
+      "generated": "2026-10-18"
+    },
+    "assessment": {
+      "rubric": "spot-v1",
+      "scores": {
+        "recommend": 3,
+        "winterFit": 3,
+        "elderFit": 3,
+        "kidsFit": 3,
+        "accessEase": 3
+      },
+      "rationale": {
+        "recommend": "Google 4.1（50 則），媒體主打的路地散步，有時間的好選擇",
+        "winterFit": "全年可散步，2 月有裙帶菜，八幡祭可能在旅程內；但戶外海風冷、船可能停",
+        "elderFit": "主路是平緩車道，但神社有石段、巷子有窄急坡",
+        "kidsFit": "找記號、迷宮巷弄有樂趣，但要注意機車",
+        "accessEase": "定期船約 17～27 分、一天約 8 班，下船即到"
+      },
+      "confidence": "low",
+      "assessed": "2026-10-18"
     }
   },
   {
@@ -4654,7 +5561,7 @@
     "tags": [
       "展望"
     ],
-    "tier": null,
+    "tier": "B",
     "nearestStation": {
       "id": "toba",
       "mode": "ferry",
@@ -4785,6 +5692,48 @@
       "google": 4.5,
       "googleReviews": 23,
       "note": null
+    },
+    "summary": {
+      "text": "1873 年點燈、現役燈塔中日本最古的磚造洋式燈塔，國重要文化財，是菅島最大的看點。從菅島港沿しろんご海道緩上坡走約 30 分，2 月中下旬燈塔周邊有水仙。",
+      "pros": [
+        "日本最古的現役磚造燈塔，登山心得都說是全島最大看點",
+        "2 月中下旬燈塔周邊水仙盛開",
+        "可以和しろんご浜排成一條路線"
+      ],
+      "cons": [
+        "港到燈塔一路緩上坡，來回加停留約 1～1.5 小時，長輩負擔大",
+        "廁所基本在港邊，步道上沒有自動販賣機；高處風很強",
+        "定期船 1～3 小時一班，冬季季風時可能停航"
+      ],
+      "basedOn": [
+        "https://www.kankomie.or.jp/spot/9056",
+        "https://www.kankomie.or.jp/report/1424",
+        "https://www.mlit.go.jp/tagengo-db/en/R1-02398.html",
+        "https://www.mlit.go.jp/tagengo-db/R1-02400.html",
+        "https://yamap.com/activities/28504278/article",
+        "https://yamap.com/activities/46571303",
+        "https://www.nap-camp.com/mag/123751"
+      ],
+      "generated": "2026-10-18"
+    },
+    "assessment": {
+      "rubric": "spot-v1",
+      "scores": {
+        "recommend": 3,
+        "winterFit": 3,
+        "elderFit": 2,
+        "kidsFit": 3,
+        "accessEase": 2
+      },
+      "rationale": {
+        "recommend": "Google 4.5 但只有 23 則，文化財燈塔，有時間的好選擇",
+        "winterFit": "水仙在 2 月中下旬，但高處風強、船可能停",
+        "elderFit": "燈塔本身不用爬階梯，但港邊來回走約 1 小時緩上坡",
+        "kidsFit": "6～10 歲走得動的步道，草叢要注意壁蝨",
+        "accessEase": "定期船約 13～22 分、一天約 8 班，下船再走約 30 分"
+      },
+      "confidence": "low",
+      "assessed": "2026-10-18"
     }
   },
   {
@@ -4829,7 +5778,7 @@
       "展望",
       "海邊"
     ],
-    "tier": null,
+    "tier": "B",
     "nearestStation": {
       "id": "toba",
       "mode": "ferry",
@@ -4951,6 +5900,47 @@
       "google": 3.9,
       "googleReviews": 7,
       "note": null
+    },
+    "summary": {
+      "text": "菅島的白沙海灘，翠綠海水被稱為這一帶最美的地方之一，也是 7 月海女祭典「しろんご祭」的神聖海灘。冬天沒有活動，是一般的海灘景色，通常和菅島燈塔排成一條路線。",
+      "pros": [
+        "白沙配翠綠海水，從崖邊路看下去景色好",
+        "在往燈塔的路上，可以一起走",
+        "免費、全天可去"
+      ],
+      "cons": [
+        "冬天不能玩水、沒有活動；北風強",
+        "港邊步行 20～30 分緩上坡；海灘上方的神社要爬階梯，廁所有沒有說法衝突",
+        "定期船 1～3 小時一班，冬季季風時可能停航"
+      ],
+      "basedOn": [
+        "https://www.kankomie.or.jp/spot/22273",
+        "https://www.kankomie.or.jp/report/1424",
+        "https://www.mlit.go.jp/tagengo-db/R1-02400.html",
+        "https://yamap.com/activities/28504278/article",
+        "https://yamap.com/activities/46571303",
+        "https://www.mlit.go.jp/tagengo-db/common/001540573.docx"
+      ],
+      "generated": "2026-10-18"
+    },
+    "assessment": {
+      "rubric": "spot-v1",
+      "scores": {
+        "recommend": 2,
+        "winterFit": 2,
+        "elderFit": 2,
+        "kidsFit": 3,
+        "accessEase": 2
+      },
+      "rationale": {
+        "recommend": "Google 3.9 只有 7 則，景色好看在夏天，冬天只是順路",
+        "winterFit": "2 月沒有活動、北風強，冬天景色普通",
+        "elderFit": "港邊走 20～30 分緩上坡，到沙灘的階梯數不明",
+        "kidsFit": "冬天只能在沙灘走走",
+        "accessEase": "定期船約 13～22 分、一天約 8 班，下船再走 20～30 分"
+      },
+      "confidence": "low",
+      "assessed": "2026-10-18"
     }
   },
   {
@@ -5002,7 +5992,7 @@
       "長階梯",
       "神社寺院"
     ],
-    "tier": null,
+    "tier": "B",
     "nearestStation": {
       "id": "toba",
       "mode": "ferry",
@@ -5138,6 +6128,48 @@
       "google": 4.2,
       "googleReviews": 53,
       "note": "Google 登錄名稱：八代神社"
+    },
+    "summary": {
+      "text": "三島由紀夫《潮騒》舞台神島上的神社，祭海神綿津見命，社寶銅鏡是國重要文化財。從港邊聚落爬 214 階陡石段才到，是環島步道（約 4 km、2～3 小時）的第一站。",
+      "pros": [
+        "《潮騒》舞台，神社可以眺望周邊島嶼",
+        "環島步道的起點，往燈塔約 10 分",
+        "免費、全天可去"
+      ],
+      "cons": [
+        "鳥居上方 214 階陡石段，雨後下坡滑，長輩可能要在港邊等",
+        "島上公廁只有港邊一處，沿途沒有店",
+        "定期船冬季一天只有 4 班，伊良湖水道浪大、季風時易停航"
+      ],
+      "basedOn": [
+        "https://www.kankomie.or.jp/report/1412",
+        "https://www.kankomie.or.jp/spot/9054",
+        "https://www.iseshima-kanko.jp/en/see-and-do/1570",
+        "https://yamap.com/activities/4962071/article",
+        "https://yamap.com/activities/48906809/article",
+        "https://rurubu.jp/andmore/spot/80024969",
+        "https://www.toretabi.jp/zipangclub/page/meisaku002.html"
+      ],
+      "generated": "2026-10-18"
+    },
+    "assessment": {
+      "rubric": "spot-v1",
+      "scores": {
+        "recommend": 3,
+        "winterFit": 2,
+        "elderFit": 1,
+        "kidsFit": 3,
+        "accessEase": 1
+      },
+      "rationale": {
+        "recommend": "Google 4.2（53 則），文化財與《潮騒》的舞台，環島順路",
+        "winterFit": "全年可參拜，但神島航路冬季最容易停航",
+        "elderFit": "214 階陡石段，長輩很難上去",
+        "kidsFit": "6～10 歲爬得上去，但階梯長、沒有互動",
+        "accessEase": "定期船約 30～40 分、冬季一天只有 4 班"
+      },
+      "confidence": "low",
+      "assessed": "2026-10-18"
     }
   },
   {
@@ -5189,7 +6221,7 @@
       "長階梯",
       "展望"
     ],
-    "tier": null,
+    "tier": "B",
     "nearestStation": {
       "id": "toba",
       "mode": "ferry",
@@ -5315,6 +6347,47 @@
       "google": 4.3,
       "googleReviews": 25,
       "note": null
+    },
+    "summary": {
+      "text": "1910 年點燈的神島燈塔，入選日本燈塔 50 選，也是《潮騒》的舞台，可以眺望伊良湖水道和伊良湖岬。從八代神社後面走山路約 10 分（港邊約 35 分），內部不開放。",
+      "pros": [
+        "日本燈塔 50 選，眺望伊良湖水道",
+        "《潮騒》舞台、「恋人の聖地」",
+        "環島步道的中段，之後大多下坡"
+      ],
+      "cons": [
+        "要先爬 200 多階石段再走山路，燈塔後面還有上坡階梯",
+        "沿途沒有廁所，只有港邊一處；高處風很大",
+        "定期船冬季一天只有 4 班，季風時易停航"
+      ],
+      "basedOn": [
+        "https://www.kankomie.or.jp/report/1412",
+        "https://www.kankomie.or.jp/spot/9055",
+        "https://yamap.com/activities/4962071/article",
+        "https://yamap.com/activities/48906809/article",
+        "https://www.toretabi.jp/zipangclub/page/meisaku002.html",
+        "https://rurubu.jp/andmore/spot/80024969"
+      ],
+      "generated": "2026-10-18"
+    },
+    "assessment": {
+      "rubric": "spot-v1",
+      "scores": {
+        "recommend": 3,
+        "winterFit": 2,
+        "elderFit": 1,
+        "kidsFit": 3,
+        "accessEase": 1
+      },
+      "rationale": {
+        "recommend": "Google 4.3（25 則），燈塔 50 選、名作舞台，環島的看點之一",
+        "winterFit": "全年可在外參觀，但高處風大、冬季船最容易停",
+        "elderFit": "石段加山路，對 70 歲長輩負擔重",
+        "kidsFit": "路程對小孩是健行，可以看船和海峽",
+        "accessEase": "定期船約 30～40 分、冬季一天只有 4 班，港邊步行約 35 分"
+      },
+      "confidence": "low",
+      "assessed": "2026-10-18"
     }
   },
   {
@@ -5366,7 +6439,7 @@
       "長階梯",
       "展望"
     ],
-    "tier": null,
+    "tier": "B",
     "nearestStation": {
       "id": "toba",
       "mode": "ferry",
@@ -5488,6 +6561,47 @@
       "google": 4.6,
       "googleReviews": 27,
       "note": null
+    },
+    "summary": {
+      "text": "1929 年陸軍建來觀測試射砲彈落點的混凝土建築，《潮騒》高潮場景的舞台，現在當展望台，可以上屋頂看伊良湖岬和志摩半島，是神島最好的展望點。",
+      "pros": [
+        "神島最好的展望點，Google 4.6",
+        "《潮騒》高潮場景的舞台",
+        "燈塔步行約 15 分，再下坡 10 分到喀斯特地形"
+      ],
+      "cons": [
+        "位在山頂附近，前後是坡道和階梯，建築內要爬樓梯上屋頂",
+        "屋頂柵欄現況不明，強風時危險，小孩要大人看顧",
+        "沿途沒有廁所；定期船冬季一天只有 4 班"
+      ],
+      "basedOn": [
+        "https://www.kankomie.or.jp/report/1412",
+        "https://yamap.com/activities/4962071/article",
+        "https://yamap.com/activities/48906809/article",
+        "https://www.toretabi.jp/zipangclub/page/meisaku002.html",
+        "https://rurubu.jp/andmore/spot/80024969",
+        "https://www.gltjp.com/ja/directory/item/12921/"
+      ],
+      "generated": "2026-10-18"
+    },
+    "assessment": {
+      "rubric": "spot-v1",
+      "scores": {
+        "recommend": 3,
+        "winterFit": 2,
+        "elderFit": 1,
+        "kidsFit": 3,
+        "accessEase": 1
+      },
+      "rationale": {
+        "recommend": "Google 4.6 但只有 27 則，名作舞台、展望最好，環島順路",
+        "winterFit": "全年可去，但屋頂風大、冬季船最容易停",
+        "elderFit": "山頂附近、坡道階梯連續，再爬樓梯上屋頂",
+        "kidsFit": "上屋頂看海有趣，但要大人看顧",
+        "accessEase": "定期船冬季一天只有 4 班，港邊步行約 50 分"
+      },
+      "confidence": "low",
+      "assessed": "2026-10-18"
     }
   },
   {
@@ -5532,7 +6646,7 @@
       "展望",
       "海邊"
     ],
-    "tier": null,
+    "tier": "B",
     "nearestStation": {
       "id": "toba",
       "mode": "ferry",
@@ -5646,6 +6760,46 @@
       "google": 4.6,
       "googleReviews": 16,
       "note": null
+    },
+    "summary": {
+      "text": "神島南側、ニワの浜往南延伸的白色石灰岩海岸，巨大岩石風化成特別的岩景，附近有鏡岩。可以從港邊直接走約 30 分過來，不用爬八代神社的石段，是長輩比較能去的神島路線。",
+      "pros": [
+        "白色石灰岩海岸景觀特別，Google 4.6",
+        "港邊直接走約 30 分，不必爬 214 階石段",
+        "最後一段是鋪裝路回港"
+      ],
+      "cons": [
+        "沿途沒有廁所；島南側面向外海，冬天風浪大",
+        "下坡雨後易滑，鏡岩附近有短上坡",
+        "定期船冬季一天只有 4 班，季風時易停航"
+      ],
+      "basedOn": [
+        "https://www.kankomie.or.jp/report/1412",
+        "https://yamap.com/activities/4962071/article",
+        "https://yamap.com/activities/48906809/article",
+        "https://www.gltjp.com/ja/directory/item/12921/",
+        "https://rurubu.jp/andmore/spot/80024969"
+      ],
+      "generated": "2026-10-18"
+    },
+    "assessment": {
+      "rubric": "spot-v1",
+      "scores": {
+        "recommend": 3,
+        "winterFit": 2,
+        "elderFit": 2,
+        "kidsFit": 3,
+        "accessEase": 1
+      },
+      "rationale": {
+        "recommend": "Google 4.6 但只有 16 則，景觀特別，環島順路",
+        "winterFit": "全年可看，但面向外海風浪大、冬季船最容易停",
+        "elderFit": "可以從港邊走約 30 分、不爬石段，但有坡道、沒有廁所",
+        "kidsFit": "岩石海岸可以看，沒有互動設施",
+        "accessEase": "定期船冬季一天只有 4 班，港邊步行約 30 分"
+      },
+      "confidence": "low",
+      "assessed": "2026-10-18"
     }
   },
   {
@@ -5744,7 +6898,25 @@
     "extra": {
       "kind": "port",
       "addedBy": "T7c（docs/requests.md 的 T4c 請求）"
-    }
+    },
+    "summary": {
+      "text": "答志島東側的定期船碼頭，佐田浜出發約 15～18 分，九鬼嘉隆首塚、胴塚就在附近。是交通節點，不是景點，不評分。",
+      "pros": [
+        "候船室有男女分開的公廁",
+        "10:40、18:45 班只到和具，可以當答志島的上下船點"
+      ],
+      "cons": [
+        "8:00 班直達答志、不停和具",
+        "冬季北西季風時可能停航或減班，全員上島要先確認回程末班船"
+      ],
+      "basedOn": [
+        "https://www.city.toba.mie.jp/material/files/group/45/teikisendaiya260401.pdf",
+        "https://www.city.toba.mie.jp/material/files/group/45/unkoukijun_r61009.pdf",
+        "https://maps.google.com/?cid=12868033147585851620"
+      ],
+      "generated": "2026-10-18"
+    },
+    "assessment": null
   },
   {
     "id": "toba-port-toshi",
@@ -5842,7 +7014,25 @@
     "extra": {
       "kind": "port",
       "addedBy": "T7c（docs/requests.md 的 T4c 請求）"
-    }
+    },
+    "summary": {
+      "text": "答志島的主要碼頭（答志定期船待合所），佐田浜出發約 17～27 分，下船即是答志聚落和美多羅志神社。是交通節點，不是景點，不評分。",
+      "pros": [
+        "下船就是答志聚落，步行 5 分到美多羅志神社",
+        "8:00 班直達約 17 分"
+      ],
+      "cons": [
+        "10:40、18:45 班不到答志（只到和具）",
+        "冬季北西季風時可能停航或減班，全員上島要先確認回程末班船"
+      ],
+      "basedOn": [
+        "https://www.city.toba.mie.jp/material/files/group/45/teikisendaiya260401.pdf",
+        "https://www.city.toba.mie.jp/material/files/group/45/unkoukijun_r61009.pdf",
+        "https://maps.google.com/?cid=12564111441839441646"
+      ],
+      "generated": "2026-10-18"
+    },
+    "assessment": null
   },
   {
     "id": "toba-port-momotori",
@@ -5940,7 +7130,24 @@
     "extra": {
       "kind": "port",
       "addedBy": "T7c（docs/requests.md 的 T4c 請求）"
-    }
+    },
+    "summary": {
+      "text": "答志島西側的碼頭，佐田浜出發約 12 分（桃取航路）。附近沒有收錄的景點或餐廳，是交通節點，不評分。",
+      "pros": [
+        "離佐田浜最近的答志島碼頭，約 12 分"
+      ],
+      "cons": [
+        "附近沒有收錄的店家或景點",
+        "冬季北西季風時可能停航或減班，要先確認回程末班船"
+      ],
+      "basedOn": [
+        "https://www.city.toba.mie.jp/material/files/group/45/teikisendaiya260401.pdf",
+        "https://www.city.toba.mie.jp/material/files/group/45/unkoukijun_r61009.pdf",
+        "https://maps.google.com/?cid=3935635927926764363"
+      ],
+      "generated": "2026-10-18"
+    },
+    "assessment": null
   },
   {
     "id": "toba-port-sugashima",
@@ -6038,7 +7245,25 @@
     "extra": {
       "kind": "port",
       "addedBy": "T7c（docs/requests.md 的 T4c 請求）"
-    }
+    },
+    "summary": {
+      "text": "菅島的定期船碼頭，佐田浜出發直達約 13 分、經坂手約 22 分，往菅島燈塔、しろんご浜的步道從這裡出發。是交通節點，不是景點，不評分。",
+      "pros": [
+        "待合所旁有男女分開的廁所（島上步道沿途基本沒有）",
+        "自動販賣機只在漁港周邊，出發前在這裡準備"
+      ],
+      "cons": [
+        "Google 只有 9 則、2.6 分",
+        "冬季北西季風時可能停航或減班，要先確認回程末班船"
+      ],
+      "basedOn": [
+        "https://www.city.toba.mie.jp/material/files/group/45/teikisendaiya260401.pdf",
+        "https://www.city.toba.mie.jp/material/files/group/45/unkoukijun_r61009.pdf",
+        "https://maps.google.com/?cid=17469300451625428592"
+      ],
+      "generated": "2026-10-18"
+    },
+    "assessment": null
   },
   {
     "id": "toba-port-kamishima",
@@ -6136,6 +7361,24 @@
     "extra": {
       "kind": "port",
       "addedBy": "T7c（docs/requests.md 的 T4c 請求）"
-    }
+    },
+    "summary": {
+      "text": "神島的定期船碼頭，佐田浜出發約 30～40 分，環島步道從港邊出發也回到港邊。是交通節點，不是景點，不評分。",
+      "pros": [
+        "島上唯一一處男女分開的公廁在港邊附近",
+        "冬季傍晚有 17:00 班（10/16～2 月底）"
+      ],
+      "cons": [
+        "冬季一天只有 4 班，伊良湖水道浪大、季風時易停航",
+        "全員上島一定要先確認回程末班船"
+      ],
+      "basedOn": [
+        "https://www.city.toba.mie.jp/material/files/group/45/teikisendaiya260401.pdf",
+        "https://www.city.toba.mie.jp/material/files/group/45/unkoukijun_r61009.pdf",
+        "https://maps.google.com/?cid=4218354266929250433"
+      ],
+      "generated": "2026-10-18"
+    },
+    "assessment": null
   }
 ]

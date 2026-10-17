@@ -1,0 +1,176 @@
+{
+  "area": "toba",
+  "generated": "2026-10-18",
+  "script": "scripts/assessment-check.mjs",
+  "rules": {
+    "restaurant": {
+      "star5": {
+        "tabelogMin": 3.5,
+        "googleMin": 4
+      },
+      "star4": {
+        "tabelogMin": 3.3,
+        "googleMin": 3.8
+      },
+      "low": {
+        "maxStar": 2,
+        "tabelogHigh": 3.5,
+        "googleHigh": 4.4,
+        "googleReviewsMin": 100
+      },
+      "few": {
+        "minStar": 4,
+        "tabelogReviewsMax": 100,
+        "googleReviewsMax": 300
+      }
+    },
+    "spot": {
+      "star5": {
+        "googleMin": 4.2,
+        "googleReviewsMin": 500
+      },
+      "star4": {
+        "googleMin": 4
+      },
+      "low": {
+        "maxStar": 2,
+        "googleHigh": 4.4,
+        "googleReviewsMin": 200
+      },
+      "few": {
+        "minStar": 4,
+        "googleReviewsMax": 100
+      }
+    },
+    "lodging": {
+      "star5": {
+        "siteMin": 4.5,
+        "googleMin": 4.2
+      },
+      "star4": {
+        "siteMin": 4.2,
+        "googleMin": 3.9
+      },
+      "low": {
+        "maxStar": 2,
+        "siteHigh": 4.5,
+        "googleHigh": 4.3
+      },
+      "few": {
+        "minStar": 4,
+        "siteReviewsMax": 100,
+        "googleReviewsMax": 100
+      }
+    },
+    "common": {
+      "highConfidenceReviewsMin": 300
+    }
+  },
+  "counts": {
+    "spot": {
+      "total": 33,
+      "assessed": 28,
+      "notAssessed": [
+        "toba-port-wagu",
+        "toba-port-toshi",
+        "toba-port-momotori",
+        "toba-port-sugashima",
+        "toba-port-kamishima"
+      ],
+      "flagged": 1,
+      "byStar": {
+        "2": 9,
+        "3": 10,
+        "4": 6,
+        "5": 3
+      }
+    },
+    "lodging": {
+      "total": 38,
+      "assessed": 38,
+      "notAssessed": [],
+      "flagged": 2,
+      "byStar": {
+        "2": 3,
+        "3": 12,
+        "4": 18,
+        "5": 5
+      }
+    },
+    "restaurant": {
+      "total": 83,
+      "assessed": 83,
+      "notAssessed": [],
+      "flagged": 2,
+      "byStar": {
+        "1": 2,
+        "2": 15,
+        "3": 49,
+        "4": 15,
+        "5": 2
+      }
+    }
+  },
+  "items": [
+    {
+      "type": "spot",
+      "id": "toba-bay-cruise-irukajima",
+      "name": "鳥羽湾めぐりとイルカ島",
+      "recommend": 4,
+      "tier": "A",
+      "confidence": "medium",
+      "ratings": "Google 3.9（250 則）",
+      "rule": "high-star-low-rating",
+      "message": "4 星但 Google 不到 4",
+      "rationale": "觀光三重主打景點，一票玩遊覽船與海豚島；Google 3.9（250 則）"
+    },
+    {
+      "type": "lodging",
+      "id": "toba-log-rocky",
+      "name": "貸切ログハウス ロッキー",
+      "recommend": 4,
+      "tier": "A",
+      "confidence": "medium",
+      "ratings": "楽天 4.67（76 則）、Google 4.3（47 則）",
+      "rule": "high-star-few-reviews",
+      "message": "4 星但訂房網、Google 都不到 100 則（訂房網評論數沒記的當 0）",
+      "rationale": "楽天 4.67（76 則）、じゃらん 4.4（205 則）、Google 4.3；有小故障的意見"
+    },
+    {
+      "type": "lodging",
+      "id": "toba-ryokan-naomi",
+      "name": "旅館なおみ",
+      "recommend": 4,
+      "tier": "A",
+      "confidence": "low",
+      "ratings": "楽天 4.33、Google 4.3（7 則）",
+      "rule": "high-star-few-reviews",
+      "message": "4 星但訂房網、Google 都不到 100 則（訂房網評論數沒記的當 0）",
+      "rationale": "Airbnb 4.8（142 則）、Google 4.3（7 則），心得 0 篇"
+    },
+    {
+      "type": "restaurant",
+      "id": "toba-yakatabune-okita",
+      "name": "鳥羽 海鮮料理 屋形船 おきた",
+      "recommend": 4,
+      "tier": "A",
+      "confidence": "low",
+      "ratings": "食べログ 3.08（21 則）、Google 4.8（449 則）",
+      "rule": "high-star-low-rating",
+      "message": "4 星但食べログ或 Google 偏低（門檻 3.3／3.8）",
+      "rationale": "Google 4.8（449 則），觀光三重 2 篇、Travel.jp 介紹，都沒有負評；食べログ 3.08 只有 21 則（體驗型分數偏低）"
+    },
+    {
+      "type": "restaurant",
+      "id": "toba-osatsu-michishio-dining",
+      "name": "味の宿 みち潮（日帰り夕食）",
+      "recommend": 4,
+      "tier": "A",
+      "confidence": "medium",
+      "ratings": "食べログ 3.23（33 則）、Google 4.3（773 則）",
+      "rule": "high-star-low-rating",
+      "message": "4 星但食べログ或 Google 偏低（門檻 3.3／3.8）",
+      "rationale": "料理旅館的非住客用餐（F③）：住宿本體楽天餐 4.55（4,943 則）、Google 4.3"
+    }
+  ]
+}

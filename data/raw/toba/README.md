@@ -49,6 +49,7 @@
 - `hours.always: true` 現在 15 筆（T7b 時 7 筆）：神島 4、菅島 2、日和山、伊射波神社是 T7c 加的；`hours` 是 null 的已經沒有。**日和山、伊射波神社、菅島 2 筆是推定**（戶外、無人、來源沒寫時間），已列在 `questions.md`。
 - `tags` 照結構化欄位用同一條規則補：`indoor: true` → 室內＋雨天備案；`accessibility.stairs: 多` → 長階梯；`kids.friendly: high` → 親子（只加不刪）。
 - 候選：`candidates/spots.json` 71 筆（已收錄 33＝景點 28＋港口 5、沒收錄 23、排除 15）。
+- **評分（T7g，spot-v1）**：28 筆景點都有 `summary`、`assessment`、`tier`（S 3：水族館、石神さん、はちまんかまど；A 6；B 19），`confidence` 多半是 low／medium；港口 5 筆只有 `summary`、不評分。校準範例在 `assessment-notes.md`。
 
 ### 重要決定、風險
 - **鳥羽灣遊覽船・イルカ島 2 月很可能停航**：官網 FAQ 寫每年 1 月中旬～2 月上旬休業（船舶定期檢查），2027 年日期未公告（2017 年實例 1/23～2/10）；只有 15 人以上能預約。排行程前一定要打電話（`questions.md` 第一條）。
@@ -77,6 +78,7 @@
 - `dinnerAccess`（T7f 補齊，判斷依據寫在 `extra.dinnerAccessNote`）：walk 13、car 6；一泊二食的 19 筆是 null（不適用）。`varies` 的 13 筆照「選素泊／朝食方案時步行 20 分內有沒有晚上營業的店」判斷：walk 10（戸田家、鳥羽国際、潮路亭、扇芳閣、海女乃島、蒼空の風、大田家、神具良、サン浦島、銀鱗）、car 3（シーサイド、彩朝楽、亀の井）。なおみ car → walk（たくちゃん 19 分）；東の窓 維持 car（天海 營業不確定、Grow 晚餐沒有時段）。**勉強算 walk 的**：海女乃島（華月 剛好 20 分）、相差 2 間只有梵天 1 家、浦村 2 間只有 CaroCaro（限中學生以上，小孩同行不能用）。
 - 候選：`candidates/lodging.json` 112 筆（已收錄 38、沒收錄 60、排除 14）；已收錄的 38 筆同步了楽天、Google 評分和 Google 連結。
 - 沒找到住宿的地方：池の浦・堅神・赤崎、千賀・堅子、桃取・坂手島；南部沒有一棟貸し，離島沒有包棟。
+- **評分（T7g，lodging-v1）**：38 筆都有 `summary`、`assessment`、`tier`（S 5：鳥羽國際飯店、蒼空の風、大田家、サン浦島、まるさん；A 18；B 15，其中 2 星是彩朝楽、宝屋、リド・ポルテ），`confidence` high 14、medium 14、low 10；神島 山海荘 的 `meals`、`groupFit` 是 null。小宿料理分數高但 `groupFit` 多半 3（要佔大半個館）；接送車載客數沒有資料，`accessEase` 沒有人拿 5（步行 5 分內的戸田家、リド・ポルテ除外）。校準範例在 `assessment-notes.md`。
 
 ### 重要決定
 - **15 人全員同館的首選**：市區 戸田家（鳥羽站 3 分、團體方案 8 名以上、電梯 5 台）、鳥羽シーサイドホテル（團體方案 10～500 名）；南部 みち潮（收容 130、電梯 2 座、大廣間）、蒼空の風（無障礙最好，14 人以上可用個室餐廳，平日 15 人以上可洽接送）。楽天兩天都有空房。
@@ -105,6 +107,7 @@
 - **T7f 收尾**（`log/T7f.md`）：anchors 全部 83 家重算（354 筆：osrm 304、estimate 50）；`extra.dossierFacts` 的價格轉成 `price`（12 家）；みなと食堂 `hours` 改用官網、かきいち 週四改 null；かどや 地址改用官網 378。
 - `price` 68 筆有數字、15 筆 null；`kids` 49 筆是物件、34 筆 null；`seating` 27 筆空的。
 - 住宿兼用餐（F③）的 4 筆用 `<住宿 id>-dining`，`extra.lodgingId` 指回住宿。
+- **評分（T7g，restaurant-v1）**：83 筆都有 `summary`、`assessment`、`tier`（S 2：漣、西村食堂；A 15；B 66，其中 2 星 15、1 星 2：ポセイドン、梵天），`confidence` medium 26、low 57（沒有 high：心得 0 篇的店太多）。食べログ評論少的店多，評論數上限讓 3 星佔一半以上；缺口保底（D）的店最多 2。適合度裡 `groupFit` 5 的 12 家是全員用餐的候選；`elderFit` 26 筆、`kidsFit` 15 筆因為來源沒寫是 null。校準範例在 `assessment-notes.md`，評分和數字的矛盾檢查見 `data/derived/assessment-check-toba.json`。
 - 候選：`candidates/restaurants.json` 206 家（included 83、not-included 62、excluded 53、pending 3（伝洋、花椿、戸田家）、over-limit 5），`criteria`：D1 地區保底、D2 晚餐缺口、D3 離島便當、F1 浦村牡蠣、F2 體驗型、F3 料理旅館的非住客用餐。
 
 ### 重要決定（T4 以來；T7e 自動決定的完整清單在 `docs/decisions-pending.md`）
