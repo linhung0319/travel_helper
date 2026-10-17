@@ -24,3 +24,4 @@
 - 不爬 Instagram；IG 只記錄店家帳號，由使用者手動瀏覽。
 - 寫完資料要跑 `scripts/validate`，通過才 commit。
 - 文件和 commit 訊息用繁體中文。
+- 程式一律用 JavaScript／TypeScript（Node 22）。真的需要 Python 時用 uv 管理環境，不要直接用系統的 Python。
