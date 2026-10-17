@@ -357,42 +357,44 @@
 
 #### T7c 景點 〔M〕（Chrome）
 - 每筆補 `links.googleMaps`、Google 星數與評論數（`ratings`）、照片 1～3 張（CONVENTIONS §4「照片」）。
-- 心得、介紹文：T2 讀過的文章重點補進 `sources[].note`；每筆再找 1～2 篇心得（日文或中文部落格），記推薦原因和缺點。
+- **讀文**：每個景點開一個 subagent（`docs/prompts/dossier.md`），讀 T2 的來源和 2～4 篇心得，寫筆記 `data/raw/toba/dossiers/<id>.md`，回報要補的欄位和官網照片（CONVENTIONS §4「讀文與筆記」）。主 session 同時用 Chrome 查 Google Maps。
 - 離島港口（`docs/requests.md` 的 T4c 請求）：菅島港、神島港、答志島的和具港與答志港（和景點分開）、桃取港。
-- 只寫 `spots.json`、`data/raw/toba/spots.md`。
+- 只寫 `spots.json`、`data/raw/toba/spots.md`、景點的筆記。
 
 #### T7d 住宿 〔M〕（楽天 API＋Chrome）
 - **需要 👤 先申請楽天 API key**（CONVENTIONS §4「楽天トラベル API」）。
 - 寫共用的查詢腳本 `scripts/rakuten.mjs`（空室検索、施設情報；T8b、T9b、T19 會沿用，參數要能指定區域和日期）。
 - 用 2 月的日期重查 38 筆裡有上楽天的：價格、15 人的房型組合有沒有空房、細項評分、照片。
-- 全部住宿補 `links.googleMaps`、Google 星數與評論數、照片、心得（沒上楽天的包棟、小民宿用 Chrome 查）。
-- 只寫 `lodging.json`、`data/raw/toba/lodging.md`、`scripts/rakuten.mjs`。
+- 全部住宿補 `links.googleMaps`、Google 星數與評論數、照片（Chrome）。
+- **讀文**：每間住宿一個 subagent，寫筆記（同 T7c）。
+- 只寫 `lodging.json`、`data/raw/toba/lodging.md`、住宿的筆記、`scripts/rakuten.mjs`。
 
 #### T7e 餐廳 〔M〕（Chrome）
 - 照修訂後的納入標準補店：D 的「任何一天 0 家」（菅島週三、國崎週三週四）、F③ 接受非住客用餐的料理旅館（相差的伝洋、花椿等）、D③ 離島便當（菅島 おかげ屋）；新店照 T4b 的方式查詳細資料。
-- 全部餐廳補照片（官網或 Google Maps 的照片 URL，不用食べログ的照片）；心得、介紹文的重點補進 `sources[].note`（T4a 讀過的文章優先，不另外大量搜尋）。
-- 只寫 `restaurants.json`、`data/raw/toba/restaurants.md`、`ig-notes.md`。
+- 全部餐廳補照片（官網或 Google Maps 的照片 URL，不用食べログ的照片）。
+- **讀文**：每家店一個 subagent（來源少的 3 家合一個），T4a 候選表記錄的文章當已知來源，再找 1～3 篇心得，寫筆記。
+- 只寫 `restaurants.json`、`data/raw/toba/restaurants.md`、`ig-notes.md`、餐廳的筆記。
 
 #### T7f 收尾 〔S〕
 - T7c、T7d、T7e 都 merge 後才做。
 - 重跑 `node scripts/restaurant-anchors.mjs toba --write`（加入港口）、`node scripts/restaurant-gaps.mjs toba`；地圖檢查新增的資料點。
 
 #### T7g 摘要與評分 〔M〕
-- 照 CONVENTIONS §5.1：讀每筆的欄位和 `sources[].note`，寫 `summary`、`assessment`、`tier`。**每個類型在同一個 session 打完**；可以拆成 3 個並行 session（景點、住宿、餐廳各一個，各寫各的檔案）。
+- 照 CONVENTIONS §5.1：只讀資料檔和筆記（不重新爬文），寫 `summary`、`assessment`、`tier`。**每個類型在同一個 session 打完**；可以拆成 3 個並行 session（景點、住宿、餐廳各一個，各寫各的檔案）。
 - 每個類型、每個星等挑 1～2 筆當校準範例，寫進 `data/raw/toba/assessment-notes.md`（附理由），T8f、T9f、T19 打分前要讀。
 - 寫評分一致性檢查腳本（推薦度和評分數字明顯矛盾的列出來，輸出到 `data/derived/`），👤 看過列出來的項目。
 
 ### T8a～T8f 伊勢（含二見）／ T9a～T9f 志摩
-兩區的步驟相同，照鳥羽（T2～T4c、T7b～T7g）的流程和 T7 的規則（CONVENTIONS §4、§5）。**兩區可以並行；同一區的步驟依序**。每筆從一開始就填新欄位：`region`、`links.googleMaps`、Google 星數與評論數、`photos`、`sources[].note`（心得、介紹文的重點）、數字的 `price`、`closures`。
+兩區的步驟相同，照 CONVENTIONS §4 的「標準作業流程」（步驟 0～10）和 §5 的規則。**兩區可以並行；同一區的步驟依序**。每筆從一開始就填新欄位：`region`、`links.googleMaps`、Google 星數與評論數、`photos`、數字的 `price`、`closures`，並且每筆都要有讀文筆記（subagent，`docs/prompts/dossier.md`）。
 
 | 步驟 | 內容 | 工具 | 寫入 |
 |---|---|---|---|
-| a 子地區與景點 〔M〕 | 先定子地區，寫進 `areas.json` 該區域的 `regions`（例外允許，見 CONVENTIONS §2），👤 確認後再蒐集景點（同 T2） | WebSearch、Chrome | `areas.json` 的 regions、`spots.json`、`raw/<area>/spots.md` |
-| b 住宿 〔M〕 | 用 T7d 的 `scripts/rakuten.mjs` 依子地區和 2 月日期撈候選，套 §5.7 門檻；官網補團體、無障礙、接送；包棟、小民宿人工找（同 T3） | 楽天 API、WebFetch、Chrome | `lodging.json`、`raw/<area>/lodging.md` |
-| c 餐廳候選 〔M〕 | 依子地區用食べログ列表、觀光協會、媒體蒐集，套 A～F（同 T4a） | Chrome | `raw/<area>/restaurants.md` |
-| d 餐廳詳細 〔M～L〕 | 逐家查食べログ、Google Maps（同 T4b）；**可以依子地區拆成 2 個並行 session**，merge 時陣列衝突兩邊都保留 | Chrome | `restaurants.json`、`raw/<area>/ig-notes.md` |
+| a 子地區與景點 〔M〕 | 流程步驟 0～3：先定子地區，寫進 `areas.json` 該區域的 `regions`（例外允許，見 CONVENTIONS §2），👤 確認後列景點候選；每個景點一個讀文 subagent；Google Maps 用 Chrome 批次查 | WebSearch、subagent、Chrome | `areas.json` 的 regions、`spots.json`、`raw/<area>/spots.md`、筆記 |
+| b 住宿 〔M〕 | 流程步驟 4～6：用 T7d 的 `scripts/rakuten.mjs` 依子地區和 2 月日期撈候選，套 §5.7 門檻；包棟、小民宿另外找；每間一個讀文 subagent；Google Maps 用 Chrome | 楽天 API、subagent、Chrome | `lodging.json`、`raw/<area>/lodging.md`、筆記 |
+| c 餐廳候選 〔M〕 | 流程步驟 7：依子地區用食べログ列表、觀光協會、媒體蒐集，套 A～F（同 T4a）；列表文章的「推薦重點」寫進候選表 | Chrome | `raw/<area>/restaurants.md` |
+| d 餐廳詳細 〔M～L〕 | 流程步驟 8：逐家查食べログ、Google Maps（同 T4b），同時在背景開讀文 subagent；**可以依子地區拆成 2 個並行 session**，merge 時陣列衝突兩邊都保留 | Chrome、subagent | `restaurants.json`、`raw/<area>/ig-notes.md`、筆記 |
 | e 收尾 〔S〕 | anchors（OSRM）、缺漏檢查、地圖檢查（同 T4c、T7f） | 腳本 | `restaurants.json`、筆記 |
-| f 摘要與評分 〔M〕 | 先讀 `data/raw/toba/assessment-notes.md`，再照 §5.1 寫 `summary`、`assessment`、`tier`（同 T7g；可以依類型拆 3 個並行） | — | 三個檔案 |
+| f 摘要與評分 〔M〕 | 流程步驟 10：先讀 `data/raw/toba/assessment-notes.md`，再只讀資料檔和筆記，照 §5.1 寫 `summary`、`assessment`、`tier`（同 T7g；可以依類型拆 3 個並行） | — | 三個檔案 |
 
 各區注意：
 - **伊勢（T8）**包含兩個區域：`ise`、`futami`（寫 `data/areas/ise/`、`data/areas/futami/`，筆記各自放在 `data/raw/ise/`、`data/raw/futami/`）。おはらい町的店很多，餐廳目標 80～100 家，T8d 建議拆成 2～3 個 session（例如：內宮・おはらい町／外宮・伊勢市站／二見）。旅程期間有 **2/3 節分**（神社活動）、**2/11 國定假日**，記在 `events`。
@@ -402,6 +404,7 @@
 - 區域 `kix`（子地區：空港島、りんくうタウン），**不蒐集景點**。T7d 的楽天腳本完成後就可以開始，和 T8、T9 並行。
 - 住宿 5～10 間（用 `scripts/rakuten.mjs`，2027-02-12 入住）：到機場的接駁（時間、班次、能不能一次載 15 人和行李）、早上能不能在 10:45 前到機場、從伊勢過來的交通（參考 `data/access/kix.json`）。照 §5.7 的評分門檻。
 - 餐廳：住宿附近能接 15 人的 3～5 家（晚餐）。
+- 每筆都要有讀文筆記（subagent，`docs/prompts/dossier.md`）。
 - 最後寫 `summary`、`assessment`、`tier`（要等 T7g 的校準範例）。
 - `stations.json` 目前沒有りんくうタウン、関西空港站；需要的話寫到 `docs/requests.md`。
 - 寫 `data/areas/kix/`、`data/raw/kix/`。
