@@ -133,18 +133,38 @@
     "anchors": [
       {
         "id": "jr-toba",
-        "walkMinutes": 5,
-        "walkSource": "estimate"
+        "walkMinutes": 8,
+        "walkSource": "osrm"
       },
       {
         "id": "toba-castle-ruins",
-        "walkMinutes": 2,
-        "walkSource": "estimate"
+        "walkMinutes": 3,
+        "walkSource": "osrm"
       },
       {
         "id": "toba-edogawa-rampo-museum",
         "walkMinutes": 4,
-        "walkSource": "estimate"
+        "walkSource": "osrm"
+      },
+      {
+        "id": "toba-aquarium",
+        "walkMinutes": 6,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "toba-senpokaku",
+        "walkMinutes": 11,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "toba-todaya",
+        "walkMinutes": 12,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "toba-lido-porte",
+        "walkMinutes": 12,
+        "walkSource": "osrm"
       }
     ],
     "contexts": [
@@ -369,18 +389,33 @@
     "anchors": [
       {
         "id": "toba",
-        "walkMinutes": 9,
+        "walkMinutes": 10,
         "walkSource": "estimate"
       },
       {
         "id": "toba-bay-cruise-irukajima",
-        "walkMinutes": 5,
+        "walkMinutes": 6,
         "walkSource": "estimate"
       },
       {
         "id": "toba-sadahama-marine-terminal",
-        "walkMinutes": 5,
+        "walkMinutes": 6,
         "walkSource": "estimate"
+      },
+      {
+        "id": "toba-ichibangai",
+        "walkMinutes": 9,
+        "walkSource": "estimate"
+      },
+      {
+        "id": "toba-kokusai-hotel",
+        "walkMinutes": 2,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "toba-shiojitei",
+        "walkMinutes": 5,
+        "walkSource": "osrm"
       }
     ],
     "contexts": [
@@ -526,18 +561,33 @@
     "anchors": [
       {
         "id": "jr-toba",
-        "walkMinutes": 9,
-        "walkSource": "estimate"
+        "walkMinutes": 11,
+        "walkSource": "osrm"
       },
       {
         "id": "toba-edogawa-rampo-museum",
         "walkMinutes": 2,
-        "walkSource": "estimate"
+        "walkSource": "osrm"
       },
       {
         "id": "toba-hiyoriyama-observatory",
-        "walkMinutes": 5,
-        "walkSource": "estimate"
+        "walkMinutes": 7,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "toba-castle-ruins",
+        "walkMinutes": 7,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "toba-senpokaku",
+        "walkMinutes": 6,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "toba-lido-porte",
+        "walkMinutes": 13,
+        "walkSource": "osrm"
       }
     ],
     "contexts": [
@@ -695,16 +745,31 @@
       {
         "id": "toba",
         "walkMinutes": 2,
-        "walkSource": "estimate"
-      },
-      {
-        "id": "toba-ichibangai",
-        "walkMinutes": 2,
-        "walkSource": "estimate"
+        "walkSource": "osrm"
       },
       {
         "id": "toba-marche",
-        "walkMinutes": 2,
+        "walkMinutes": 6,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "toba-ichibangai",
+        "walkMinutes": 7,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "toba-hiyoriyama-observatory",
+        "walkMinutes": 7,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "toba-todaya",
+        "walkMinutes": 10,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "toba-shiojitei",
+        "walkMinutes": 10,
         "walkSource": "estimate"
       }
     ],
@@ -850,23 +915,38 @@
     "anchors": [
       {
         "id": "jr-toba",
-        "walkMinutes": 8,
-        "walkSource": "estimate"
+        "walkMinutes": 9,
+        "walkSource": "osrm"
       },
       {
         "id": "toba-hiyoriyama-observatory",
-        "walkMinutes": 7,
-        "walkSource": "estimate"
+        "walkMinutes": 8,
+        "walkSource": "osrm"
       },
       {
         "id": "toba-ichibangai",
-        "walkMinutes": 9,
-        "walkSource": "estimate"
+        "walkMinutes": 14,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "toba-marche",
+        "walkMinutes": 14,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "toba-shiojitei",
+        "walkMinutes": 5,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "toba-todaya",
+        "walkMinutes": 5,
+        "walkSource": "osrm"
       },
       {
         "id": "toba-ryokan-naomi",
-        "walkMinutes": 19,
-        "walkSource": "estimate"
+        "walkMinutes": 21,
+        "walkSource": "osrm"
       }
     ],
     "contexts": [
@@ -1021,18 +1101,33 @@
     "anchors": [
       {
         "id": "toba",
-        "walkMinutes": 9,
+        "walkMinutes": 10,
         "walkSource": "estimate"
       },
       {
         "id": "toba-bay-cruise-irukajima",
-        "walkMinutes": 5,
+        "walkMinutes": 6,
         "walkSource": "estimate"
       },
       {
         "id": "toba-sadahama-marine-terminal",
-        "walkMinutes": 5,
+        "walkMinutes": 6,
         "walkSource": "estimate"
+      },
+      {
+        "id": "toba-ichibangai",
+        "walkMinutes": 9,
+        "walkSource": "estimate"
+      },
+      {
+        "id": "toba-kokusai-hotel",
+        "walkMinutes": 1,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "toba-shiojitei",
+        "walkMinutes": 5,
+        "walkSource": "osrm"
       }
     ],
     "contexts": [
@@ -1182,16 +1277,31 @@
       {
         "id": "toba",
         "walkMinutes": 2,
-        "walkSource": "estimate"
-      },
-      {
-        "id": "toba-ichibangai",
-        "walkMinutes": 2,
-        "walkSource": "estimate"
+        "walkSource": "osrm"
       },
       {
         "id": "toba-marche",
-        "walkMinutes": 2,
+        "walkMinutes": 6,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "toba-ichibangai",
+        "walkMinutes": 7,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "toba-hiyoriyama-observatory",
+        "walkMinutes": 7,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "toba-todaya",
+        "walkMinutes": 10,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "toba-shiojitei",
+        "walkMinutes": 10,
         "walkSource": "estimate"
       }
     ],
@@ -1364,18 +1474,38 @@
     "anchors": [
       {
         "id": "jr-toba",
-        "walkMinutes": 4,
-        "walkSource": "estimate"
+        "walkMinutes": 6,
+        "walkSource": "osrm"
       },
       {
         "id": "toba-castle-ruins",
         "walkMinutes": 3,
-        "walkSource": "estimate"
+        "walkSource": "osrm"
+      },
+      {
+        "id": "toba-edogawa-rampo-museum",
+        "walkMinutes": 5,
+        "walkSource": "osrm"
       },
       {
         "id": "toba-hiyoriyama-observatory",
-        "walkMinutes": 5,
-        "walkSource": "estimate"
+        "walkMinutes": 7,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "toba-senpokaku",
+        "walkMinutes": 11,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "toba-todaya",
+        "walkMinutes": 12,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "toba-lido-porte",
+        "walkMinutes": 13,
+        "walkSource": "osrm"
       }
     ],
     "contexts": [
@@ -1530,7 +1660,7 @@
     "anchors": [
       {
         "id": "toba",
-        "walkMinutes": 9,
+        "walkMinutes": 10,
         "walkSource": "estimate"
       },
       {
@@ -1542,6 +1672,21 @@
         "id": "toba-sadahama-marine-terminal",
         "walkMinutes": 5,
         "walkSource": "estimate"
+      },
+      {
+        "id": "toba-ichibangai",
+        "walkMinutes": 9,
+        "walkSource": "estimate"
+      },
+      {
+        "id": "toba-kokusai-hotel",
+        "walkMinutes": 2,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "toba-shiojitei",
+        "walkMinutes": 5,
+        "walkSource": "osrm"
       }
     ],
     "contexts": [
@@ -1697,18 +1842,38 @@
     "anchors": [
       {
         "id": "toba",
-        "walkMinutes": 1,
-        "walkSource": "estimate"
-      },
-      {
-        "id": "toba-ichibangai",
         "walkMinutes": 2,
-        "walkSource": "estimate"
+        "walkSource": "osrm"
       },
       {
         "id": "toba-marche",
-        "walkMinutes": 2,
+        "walkMinutes": 6,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "toba-ichibangai",
+        "walkMinutes": 7,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "toba-hiyoriyama-observatory",
+        "walkMinutes": 7,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "toba-todaya",
+        "walkMinutes": 10,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "toba-shiojitei",
+        "walkMinutes": 10,
         "walkSource": "estimate"
+      },
+      {
+        "id": "toba-lido-porte",
+        "walkMinutes": 17,
+        "walkSource": "osrm"
       }
     ],
     "contexts": [
@@ -1857,17 +2022,32 @@
     "anchors": [
       {
         "id": "toba",
-        "walkMinutes": 1,
-        "walkSource": "estimate"
-      },
-      {
-        "id": "toba-ichibangai",
         "walkMinutes": 2,
-        "walkSource": "estimate"
+        "walkSource": "osrm"
       },
       {
         "id": "toba-marche",
-        "walkMinutes": 2,
+        "walkMinutes": 6,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "toba-ichibangai",
+        "walkMinutes": 7,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "toba-hiyoriyama-observatory",
+        "walkMinutes": 7,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "toba-todaya",
+        "walkMinutes": 10,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "toba-shiojitei",
+        "walkMinutes": 10,
         "walkSource": "estimate"
       }
     ],
@@ -2018,18 +2198,33 @@
     "verified": false,
     "anchors": [
       {
-        "id": "toba",
-        "walkMinutes": 2,
-        "walkSource": "estimate"
+        "id": "jr-toba",
+        "walkMinutes": 7,
+        "walkSource": "osrm"
       },
       {
         "id": "toba-ichibangai",
-        "walkMinutes": 1,
-        "walkSource": "estimate"
+        "walkMinutes": 2,
+        "walkSource": "osrm"
       },
       {
         "id": "toba-marche",
-        "walkMinutes": 1,
+        "walkMinutes": 2,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "toba-bay-cruise-irukajima",
+        "walkMinutes": 8,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "toba-todaya",
+        "walkMinutes": 6,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "toba-shiojitei",
+        "walkMinutes": 9,
         "walkSource": "estimate"
       }
     ],
@@ -2183,17 +2378,32 @@
       {
         "id": "jr-toba",
         "walkMinutes": 5,
-        "walkSource": "estimate"
+        "walkSource": "osrm"
       },
       {
         "id": "toba-castle-ruins",
-        "walkMinutes": 3,
-        "walkSource": "estimate"
+        "walkMinutes": 4,
+        "walkSource": "osrm"
       },
       {
         "id": "toba-mikimoto-pearl-island",
         "walkMinutes": 4,
-        "walkSource": "estimate"
+        "walkSource": "osrm"
+      },
+      {
+        "id": "toba-aquarium",
+        "walkMinutes": 5,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "toba-todaya",
+        "walkMinutes": 10,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "toba-senpokaku",
+        "walkMinutes": 13,
+        "walkSource": "osrm"
       }
     ],
     "contexts": [
@@ -2347,18 +2557,33 @@
     "anchors": [
       {
         "id": "jr-toba",
-        "walkMinutes": 5,
-        "walkSource": "estimate"
+        "walkMinutes": 7,
+        "walkSource": "osrm"
       },
       {
         "id": "toba-castle-ruins",
-        "walkMinutes": 2,
-        "walkSource": "estimate"
+        "walkMinutes": 3,
+        "walkSource": "osrm"
       },
       {
-        "id": "toba-aquarium",
-        "walkMinutes": 4,
-        "walkSource": "estimate"
+        "id": "toba-mikimoto-pearl-island",
+        "walkMinutes": 5,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "toba-edogawa-rampo-museum",
+        "walkMinutes": 5,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "toba-senpokaku",
+        "walkMinutes": 11,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "toba-todaya",
+        "walkMinutes": 11,
+        "walkSource": "osrm"
       }
     ],
     "contexts": [
@@ -2512,18 +2737,38 @@
     "anchors": [
       {
         "id": "jr-toba",
-        "walkMinutes": 4,
-        "walkSource": "estimate"
+        "walkMinutes": 5,
+        "walkSource": "osrm"
       },
       {
         "id": "toba-castle-ruins",
-        "walkMinutes": 4,
-        "walkSource": "estimate"
+        "walkMinutes": 5,
+        "walkSource": "osrm"
       },
       {
         "id": "toba-mikimoto-pearl-island",
-        "walkMinutes": 4,
+        "walkMinutes": 5,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "toba-aquarium",
+        "walkMinutes": 6,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "toba-todaya",
+        "walkMinutes": 10,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "toba-shiojitei",
+        "walkMinutes": 13,
         "walkSource": "estimate"
+      },
+      {
+        "id": "toba-lido-porte",
+        "walkMinutes": 14,
+        "walkSource": "osrm"
       }
     ],
     "contexts": [
@@ -2670,17 +2915,37 @@
       {
         "id": "jr-toba",
         "walkMinutes": 1,
-        "walkSource": "estimate"
-      },
-      {
-        "id": "toba-ichibangai",
-        "walkMinutes": 2,
-        "walkSource": "estimate"
+        "walkSource": "osrm"
       },
       {
         "id": "toba-marche",
-        "walkMinutes": 3,
+        "walkMinutes": 7,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "toba-ichibangai",
+        "walkMinutes": 8,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "toba-hiyoriyama-observatory",
+        "walkMinutes": 8,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "toba-shiojitei",
+        "walkMinutes": 9,
         "walkSource": "estimate"
+      },
+      {
+        "id": "toba-kokusai-hotel",
+        "walkMinutes": 10,
+        "walkSource": "estimate"
+      },
+      {
+        "id": "toba-lido-porte",
+        "walkMinutes": 18,
+        "walkSource": "osrm"
       }
     ],
     "contexts": [
@@ -2885,18 +3150,38 @@
     "anchors": [
       {
         "id": "jr-toba",
-        "walkMinutes": 4,
-        "walkSource": "estimate"
+        "walkMinutes": 6,
+        "walkSource": "osrm"
       },
       {
         "id": "toba-castle-ruins",
-        "walkMinutes": 3,
-        "walkSource": "estimate"
+        "walkMinutes": 4,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "toba-edogawa-rampo-museum",
+        "walkMinutes": 5,
+        "walkSource": "osrm"
       },
       {
         "id": "toba-hiyoriyama-observatory",
-        "walkMinutes": 5,
-        "walkSource": "estimate"
+        "walkMinutes": 7,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "toba-senpokaku",
+        "walkMinutes": 11,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "toba-todaya",
+        "walkMinutes": 12,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "toba-lido-porte",
+        "walkMinutes": 13,
+        "walkSource": "osrm"
       }
     ],
     "contexts": [
@@ -3052,18 +3337,33 @@
     "anchors": [
       {
         "id": "toba",
-        "walkMinutes": 9,
+        "walkMinutes": 10,
         "walkSource": "estimate"
       },
       {
         "id": "toba-bay-cruise-irukajima",
-        "walkMinutes": 5,
+        "walkMinutes": 6,
         "walkSource": "estimate"
       },
       {
         "id": "toba-sadahama-marine-terminal",
-        "walkMinutes": 5,
+        "walkMinutes": 6,
         "walkSource": "estimate"
+      },
+      {
+        "id": "toba-ichibangai",
+        "walkMinutes": 9,
+        "walkSource": "estimate"
+      },
+      {
+        "id": "toba-kokusai-hotel",
+        "walkMinutes": 1,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "toba-shiojitei",
+        "walkMinutes": 5,
+        "walkSource": "osrm"
       }
     ],
     "contexts": [
@@ -3233,18 +3533,38 @@
     "anchors": [
       {
         "id": "jr-toba",
-        "walkMinutes": 4,
-        "walkSource": "estimate"
+        "walkMinutes": 6,
+        "walkSource": "osrm"
       },
       {
         "id": "toba-castle-ruins",
-        "walkMinutes": 3,
-        "walkSource": "estimate"
+        "walkMinutes": 4,
+        "walkSource": "osrm"
       },
       {
         "id": "toba-edogawa-rampo-museum",
         "walkMinutes": 5,
-        "walkSource": "estimate"
+        "walkSource": "osrm"
+      },
+      {
+        "id": "toba-hiyoriyama-observatory",
+        "walkMinutes": 7,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "toba-senpokaku",
+        "walkMinutes": 11,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "toba-todaya",
+        "walkMinutes": 12,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "toba-lido-porte",
+        "walkMinutes": 13,
+        "walkSource": "osrm"
       }
     ],
     "contexts": [
@@ -3410,18 +3730,33 @@
     "verified": false,
     "anchors": [
       {
-        "id": "toba",
+        "id": "jr-toba",
         "walkMinutes": 2,
-        "walkSource": "estimate"
+        "walkSource": "osrm"
       },
       {
         "id": "toba-marche",
-        "walkMinutes": 2,
-        "walkSource": "estimate"
+        "walkMinutes": 6,
+        "walkSource": "osrm"
       },
       {
         "id": "toba-ichibangai",
-        "walkMinutes": 2,
+        "walkMinutes": 6,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "toba-hiyoriyama-observatory",
+        "walkMinutes": 7,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "toba-todaya",
+        "walkMinutes": 9,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "toba-shiojitei",
+        "walkMinutes": 10,
         "walkSource": "estimate"
       }
     ],
@@ -3572,18 +3907,38 @@
     "anchors": [
       {
         "id": "jr-toba",
-        "walkMinutes": 4,
-        "walkSource": "estimate"
+        "walkMinutes": 5,
+        "walkSource": "osrm"
       },
       {
         "id": "toba-castle-ruins",
-        "walkMinutes": 4,
-        "walkSource": "estimate"
+        "walkMinutes": 5,
+        "walkSource": "osrm"
       },
       {
         "id": "toba-mikimoto-pearl-island",
-        "walkMinutes": 4,
+        "walkMinutes": 5,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "toba-marche",
+        "walkMinutes": 6,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "toba-todaya",
+        "walkMinutes": 10,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "toba-shiojitei",
+        "walkMinutes": 13,
         "walkSource": "estimate"
+      },
+      {
+        "id": "toba-lido-porte",
+        "walkMinutes": 14,
+        "walkSource": "osrm"
       }
     ],
     "contexts": [
@@ -3784,9 +4139,19 @@
         "walkSource": "estimate"
       },
       {
-        "id": "toba-shiojitei",
-        "walkMinutes": 1,
+        "id": "toba-ichibangai",
+        "walkMinutes": 8,
         "walkSource": "estimate"
+      },
+      {
+        "id": "toba-shiojitei",
+        "walkMinutes": 2,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "toba-kokusai-hotel",
+        "walkMinutes": 5,
+        "walkSource": "osrm"
       }
     ],
     "contexts": [
@@ -3930,18 +4295,33 @@
     "verified": false,
     "anchors": [
       {
-        "id": "toba",
+        "id": "jr-toba",
         "walkMinutes": 2,
-        "walkSource": "estimate"
+        "walkSource": "osrm"
       },
       {
         "id": "toba-marche",
-        "walkMinutes": 2,
-        "walkSource": "estimate"
+        "walkMinutes": 6,
+        "walkSource": "osrm"
       },
       {
         "id": "toba-ichibangai",
-        "walkMinutes": 2,
+        "walkMinutes": 6,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "toba-hiyoriyama-observatory",
+        "walkMinutes": 7,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "toba-todaya",
+        "walkMinutes": 10,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "toba-shiojitei",
+        "walkMinutes": 10,
         "walkSource": "estimate"
       }
     ],
@@ -4085,18 +4465,33 @@
     "anchors": [
       {
         "id": "jr-toba",
-        "walkMinutes": 5,
-        "walkSource": "estimate"
+        "walkMinutes": 8,
+        "walkSource": "osrm"
       },
       {
         "id": "toba-castle-ruins",
-        "walkMinutes": 2,
-        "walkSource": "estimate"
+        "walkMinutes": 3,
+        "walkSource": "osrm"
       },
       {
-        "id": "toba-aquarium",
-        "walkMinutes": 4,
-        "walkSource": "estimate"
+        "id": "toba-edogawa-rampo-museum",
+        "walkMinutes": 5,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "toba-mikimoto-pearl-island",
+        "walkMinutes": 6,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "toba-senpokaku",
+        "walkMinutes": 11,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "toba-todaya",
+        "walkMinutes": 12,
+        "walkSource": "osrm"
       }
     ],
     "contexts": [
@@ -4253,18 +4648,33 @@
     "anchors": [
       {
         "id": "jr-toba",
-        "walkMinutes": 6,
-        "walkSource": "estimate"
+        "walkMinutes": 8,
+        "walkSource": "osrm"
       },
       {
         "id": "toba-edogawa-rampo-museum",
-        "walkMinutes": 2,
-        "walkSource": "estimate"
+        "walkMinutes": 3,
+        "walkSource": "osrm"
       },
       {
         "id": "toba-castle-ruins",
-        "walkMinutes": 4,
-        "walkSource": "estimate"
+        "walkMinutes": 5,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "toba-hiyoriyama-observatory",
+        "walkMinutes": 7,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "toba-senpokaku",
+        "walkMinutes": 9,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "toba-lido-porte",
+        "walkMinutes": 10,
+        "walkSource": "osrm"
       }
     ],
     "contexts": [
@@ -4447,18 +4857,38 @@
     "anchors": [
       {
         "id": "jr-toba",
-        "walkMinutes": 3,
-        "walkSource": "estimate"
+        "walkMinutes": 4,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "toba-castle-ruins",
+        "walkMinutes": 6,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "toba-mikimoto-pearl-island",
+        "walkMinutes": 6,
+        "walkSource": "osrm"
       },
       {
         "id": "toba-marche",
-        "walkMinutes": 4,
+        "walkMinutes": 7,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "toba-todaya",
+        "walkMinutes": 11,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "toba-shiojitei",
+        "walkMinutes": 11,
         "walkSource": "estimate"
       },
       {
-        "id": "toba-ichibangai",
-        "walkMinutes": 4,
-        "walkSource": "estimate"
+        "id": "toba-lido-porte",
+        "walkMinutes": 15,
+        "walkSource": "osrm"
       }
     ],
     "contexts": [
@@ -4636,18 +5066,38 @@
     "anchors": [
       {
         "id": "jr-toba",
-        "walkMinutes": 5,
-        "walkSource": "estimate"
+        "walkMinutes": 6,
+        "walkSource": "osrm"
       },
       {
         "id": "toba-castle-ruins",
         "walkMinutes": 3,
-        "walkSource": "estimate"
+        "walkSource": "osrm"
       },
       {
         "id": "toba-edogawa-rampo-museum",
-        "walkMinutes": 4,
-        "walkSource": "estimate"
+        "walkMinutes": 5,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "toba-hiyoriyama-observatory",
+        "walkMinutes": 7,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "toba-senpokaku",
+        "walkMinutes": 10,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "toba-todaya",
+        "walkMinutes": 12,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "toba-lido-porte",
+        "walkMinutes": 12,
+        "walkSource": "osrm"
       }
     ],
     "contexts": [
@@ -4799,16 +5249,31 @@
       {
         "id": "toba",
         "walkMinutes": 2,
-        "walkSource": "estimate"
-      },
-      {
-        "id": "toba-ichibangai",
-        "walkMinutes": 2,
-        "walkSource": "estimate"
+        "walkSource": "osrm"
       },
       {
         "id": "toba-marche",
-        "walkMinutes": 2,
+        "walkMinutes": 6,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "toba-ichibangai",
+        "walkMinutes": 7,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "toba-hiyoriyama-observatory",
+        "walkMinutes": 7,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "toba-todaya",
+        "walkMinutes": 10,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "toba-shiojitei",
+        "walkMinutes": 10,
         "walkSource": "estimate"
       }
     ],
@@ -4956,17 +5421,32 @@
     "anchors": [
       {
         "id": "jr-toba",
-        "walkMinutes": 4,
-        "walkSource": "estimate"
+        "walkMinutes": 9,
+        "walkSource": "osrm"
       },
       {
         "id": "toba-castle-ruins",
-        "walkMinutes": 3,
-        "walkSource": "estimate"
+        "walkMinutes": 4,
+        "walkSource": "osrm"
       },
       {
         "id": "toba-mikimoto-pearl-island",
-        "walkMinutes": 4,
+        "walkMinutes": 7,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "toba-aquarium",
+        "walkMinutes": 8,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "toba-senpokaku",
+        "walkMinutes": 13,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "toba-shiojitei",
+        "walkMinutes": 13,
         "walkSource": "estimate"
       }
     ],
@@ -5152,17 +5632,32 @@
     "anchors": [
       {
         "id": "toba",
+        "walkMinutes": 11,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "toba-ichibangai",
+        "walkMinutes": 6,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "toba-marche",
+        "walkMinutes": 6,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "toba-bay-cruise-irukajima",
+        "walkMinutes": 12,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "toba-kokusai-hotel",
         "walkMinutes": 5,
         "walkSource": "estimate"
       },
       {
-        "id": "toba-bay-cruise-irukajima",
-        "walkMinutes": 3,
-        "walkSource": "estimate"
-      },
-      {
-        "id": "toba-sadahama-marine-terminal",
-        "walkMinutes": 3,
+        "id": "toba-shiojitei",
+        "walkMinutes": 5,
         "walkSource": "estimate"
       }
     ],
@@ -5352,9 +5847,24 @@
         "walkSource": "estimate"
       },
       {
-        "id": "toba-ryokan-naomi",
-        "walkMinutes": 16,
+        "id": "toba-bay-cruise-irukajima",
+        "walkMinutes": 13,
         "walkSource": "estimate"
+      },
+      {
+        "id": "toba-kochoran",
+        "walkMinutes": 6,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "toba-todaya",
+        "walkMinutes": 8,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "toba-ryokan-naomi",
+        "walkMinutes": 17,
+        "walkSource": "osrm"
       }
     ],
     "contexts": [
@@ -5497,12 +6007,12 @@
     "anchors": [
       {
         "id": "shima-akasaki",
-        "walkMinutes": 3,
-        "walkSource": "estimate"
+        "walkMinutes": 4,
+        "walkSource": "osrm"
       },
       {
         "id": "toba-kadoya",
-        "walkMinutes": 14,
+        "walkMinutes": 15,
         "walkSource": "estimate"
       }
     ],
@@ -5650,23 +6160,28 @@
     "anchors": [
       {
         "id": "nakanogo",
-        "walkMinutes": 2,
-        "walkSource": "estimate"
+        "walkMinutes": 3,
+        "walkSource": "osrm"
       },
       {
         "id": "toba-kadoya",
-        "walkMinutes": 4,
-        "walkSource": "estimate"
+        "walkMinutes": 5,
+        "walkSource": "osrm"
       },
       {
         "id": "toba-aquarium",
         "walkMinutes": 6,
-        "walkSource": "estimate"
+        "walkSource": "osrm"
+      },
+      {
+        "id": "toba-castle-ruins",
+        "walkMinutes": 11,
+        "walkSource": "osrm"
       },
       {
         "id": "toba-lido-porte",
-        "walkMinutes": 3,
-        "walkSource": "estimate"
+        "walkMinutes": 4,
+        "walkSource": "osrm"
       }
     ],
     "contexts": [
@@ -5840,7 +6355,12 @@
       },
       {
         "id": "toba-kadoya",
-        "walkMinutes": 16,
+        "walkMinutes": 17,
+        "walkSource": "estimate"
+      },
+      {
+        "id": "toba-lido-porte",
+        "walkMinutes": 18,
         "walkSource": "estimate"
       }
     ],
@@ -5981,22 +6501,27 @@
       {
         "id": "nakanogo",
         "walkMinutes": 4,
-        "walkSource": "estimate"
+        "walkSource": "osrm"
       },
       {
         "id": "toba-kadoya",
-        "walkMinutes": 3,
-        "walkSource": "estimate"
+        "walkMinutes": 4,
+        "walkSource": "osrm"
       },
       {
         "id": "toba-aquarium",
         "walkMinutes": 8,
-        "walkSource": "estimate"
+        "walkSource": "osrm"
+      },
+      {
+        "id": "toba-castle-ruins",
+        "walkMinutes": 12,
+        "walkSource": "osrm"
       },
       {
         "id": "toba-lido-porte",
-        "walkMinutes": 2,
-        "walkSource": "estimate"
+        "walkMinutes": 3,
+        "walkSource": "osrm"
       }
     ],
     "contexts": [
@@ -6102,13 +6627,13 @@
     "anchors": [
       {
         "id": "toba-sea-folk-museum",
-        "walkMinutes": 27,
-        "walkSource": "estimate"
+        "walkMinutes": 44,
+        "walkSource": "osrm"
       },
       {
         "id": "toba-motoura-ginrin",
-        "walkMinutes": 2,
-        "walkSource": "estimate"
+        "walkMinutes": 3,
+        "walkSource": "osrm"
       }
     ],
     "contexts": [
@@ -6272,14 +6797,14 @@
     "verified": false,
     "anchors": [
       {
-        "id": "toba-sea-folk-museum",
-        "walkMinutes": 37,
-        "walkSource": "estimate"
+        "id": "toba-izawa-jinja",
+        "walkMinutes": 58,
+        "walkSource": "osrm"
       },
       {
         "id": "toba-mfr-iseshima",
         "walkMinutes": 3,
-        "walkSource": "estimate"
+        "walkSource": "osrm"
       }
     ],
     "contexts": [
@@ -6444,8 +6969,13 @@
     "anchors": [
       {
         "id": "toba-sea-folk-museum",
-        "walkMinutes": 17,
-        "walkSource": "estimate"
+        "walkMinutes": 34,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "toba-motoura-sun-urashima",
+        "walkMinutes": 14,
+        "walkSource": "osrm"
       }
     ],
     "contexts": [
@@ -6590,13 +7120,13 @@
     "anchors": [
       {
         "id": "toba-izawa-jinja",
-        "walkMinutes": 31,
-        "walkSource": "estimate"
+        "walkMinutes": 32,
+        "walkSource": "osrm"
       },
       {
         "id": "toba-mfr-iseshima",
-        "walkMinutes": 23,
-        "walkSource": "estimate"
+        "walkMinutes": 32,
+        "walkSource": "osrm"
       }
     ],
     "contexts": [
@@ -6756,8 +7286,13 @@
     "anchors": [
       {
         "id": "toba-sea-folk-museum",
-        "walkMinutes": 11,
-        "walkSource": "estimate"
+        "walkMinutes": 44,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "toba-anchor-ajito",
+        "walkMinutes": 5,
+        "walkSource": "osrm"
       }
     ],
     "contexts": [
@@ -6926,13 +7461,13 @@
     "anchors": [
       {
         "id": "toba-izawa-jinja",
-        "walkMinutes": 36,
-        "walkSource": "estimate"
+        "walkMinutes": 44,
+        "walkSource": "osrm"
       },
       {
         "id": "toba-mfr-iseshima",
-        "walkMinutes": 14,
-        "walkSource": "estimate"
+        "walkMinutes": 18,
+        "walkSource": "osrm"
       }
     ],
     "contexts": [
@@ -7088,13 +7623,13 @@
     "anchors": [
       {
         "id": "toba-izawa-jinja",
-        "walkMinutes": 34,
-        "walkSource": "estimate"
+        "walkMinutes": 49,
+        "walkSource": "osrm"
       },
       {
         "id": "toba-mfr-iseshima",
-        "walkMinutes": 11,
-        "walkSource": "estimate"
+        "walkMinutes": 13,
+        "walkSource": "osrm"
       }
     ],
     "contexts": [
@@ -7247,13 +7782,13 @@
     "anchors": [
       {
         "id": "toba-izawa-jinja",
-        "walkMinutes": 31,
-        "walkSource": "estimate"
+        "walkMinutes": 32,
+        "walkSource": "osrm"
       },
       {
         "id": "toba-mfr-iseshima",
-        "walkMinutes": 23,
-        "walkSource": "estimate"
+        "walkMinutes": 32,
+        "walkSource": "osrm"
       }
     ],
     "contexts": [
@@ -7401,14 +7936,14 @@
     "verified": false,
     "anchors": [
       {
-        "id": "toba-sea-folk-museum",
-        "walkMinutes": 38,
-        "walkSource": "estimate"
+        "id": "toba-izawa-jinja",
+        "walkMinutes": 55,
+        "walkSource": "osrm"
       },
       {
         "id": "toba-mfr-iseshima",
-        "walkMinutes": 5,
-        "walkSource": "estimate"
+        "walkMinutes": 7,
+        "walkSource": "osrm"
       }
     ],
     "contexts": [
@@ -7572,8 +8107,13 @@
     "anchors": [
       {
         "id": "toba-sea-folk-museum",
-        "walkMinutes": 18,
-        "walkSource": "estimate"
+        "walkMinutes": 44,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "toba-motoura-sun-urashima",
+        "walkMinutes": 5,
+        "walkSource": "osrm"
       }
     ],
     "contexts": [
@@ -7745,8 +8285,13 @@
     "anchors": [
       {
         "id": "toba-sea-folk-museum",
-        "walkMinutes": 20,
-        "walkSource": "estimate"
+        "walkMinutes": 45,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "toba-motoura-sun-urashima",
+        "walkMinutes": 3,
+        "walkSource": "osrm"
       }
     ],
     "contexts": [
@@ -7910,13 +8455,13 @@
     "anchors": [
       {
         "id": "toba-sea-folk-museum",
-        "walkMinutes": 29,
-        "walkSource": "estimate"
+        "walkMinutes": 51,
+        "walkSource": "osrm"
       },
       {
         "id": "toba-motoura-ginrin",
         "walkMinutes": 5,
-        "walkSource": "estimate"
+        "walkSource": "osrm"
       }
     ],
     "contexts": [
@@ -8070,13 +8615,13 @@
     "anchors": [
       {
         "id": "toba-sea-folk-museum",
-        "walkMinutes": 26,
-        "walkSource": "estimate"
+        "walkMinutes": 48,
+        "walkSource": "osrm"
       },
       {
         "id": "toba-motoura-ginrin",
         "walkMinutes": 2,
-        "walkSource": "estimate"
+        "walkSource": "osrm"
       }
     ],
     "contexts": [
@@ -8223,8 +8768,13 @@
     "anchors": [
       {
         "id": "toba-sea-folk-museum",
-        "walkMinutes": 14,
-        "walkSource": "estimate"
+        "walkMinutes": 28,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "toba-motoura-sun-urashima",
+        "walkMinutes": 18,
+        "walkSource": "osrm"
       }
     ],
     "contexts": [
@@ -8392,8 +8942,13 @@
     "anchors": [
       {
         "id": "toba-sea-folk-museum",
-        "walkMinutes": 15,
-        "walkSource": "estimate"
+        "walkMinutes": 43,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "toba-motoura-sun-urashima",
+        "walkMinutes": 11,
+        "walkSource": "osrm"
       }
     ],
     "contexts": [
@@ -8606,8 +9161,13 @@
     "anchors": [
       {
         "id": "toba-sea-folk-museum",
-        "walkMinutes": 21,
-        "walkSource": "estimate"
+        "walkMinutes": 45,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "toba-motoura-sun-urashima",
+        "walkMinutes": 3,
+        "walkSource": "osrm"
       }
     ],
     "contexts": [
@@ -8753,13 +9313,13 @@
     "anchors": [
       {
         "id": "toba-hachiman-kamado",
-        "walkMinutes": 18,
-        "walkSource": "estimate"
+        "walkMinutes": 21,
+        "walkSource": "osrm"
       },
       {
-        "id": "toba-osatsu-ishigami",
-        "walkMinutes": 19,
-        "walkSource": "estimate"
+        "id": "toba-higashinomado",
+        "walkMinutes": 8,
+        "walkSource": "osrm"
       }
     ],
     "contexts": [
@@ -8902,13 +9462,28 @@
     "anchors": [
       {
         "id": "toba-osatsu-ama-culture-museum",
-        "walkMinutes": 1,
-        "walkSource": "estimate"
+        "walkMinutes": 2,
+        "walkSource": "osrm"
       },
       {
         "id": "toba-osatsu-ishigami",
-        "walkMinutes": 3,
-        "walkSource": "estimate"
+        "walkMinutes": 5,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "toba-osatsu-kamado",
+        "walkMinutes": 8,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "toba-osatsu-ohtaya",
+        "walkMinutes": 2,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "toba-osatsu-kashio",
+        "walkMinutes": 4,
+        "walkSource": "osrm"
       }
     ],
     "contexts": [
@@ -9060,13 +9635,28 @@
     "anchors": [
       {
         "id": "toba-hachiman-kamado",
-        "walkMinutes": 5,
-        "walkSource": "estimate"
+        "walkMinutes": 6,
+        "walkSource": "osrm"
       },
       {
         "id": "toba-osatsu-ishigami",
+        "walkMinutes": 12,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "toba-osatsu-ama-culture-museum",
+        "walkMinutes": 12,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "toba-osatsu-nakayoshi",
         "walkMinutes": 8,
-        "walkSource": "estimate"
+        "walkSource": "osrm"
+      },
+      {
+        "id": "toba-osatsu-kashio",
+        "walkMinutes": 9,
+        "walkSource": "osrm"
       }
     ],
     "contexts": [
@@ -9214,12 +9804,27 @@
       {
         "id": "toba-osatsu-ama-culture-museum",
         "walkMinutes": 1,
-        "walkSource": "estimate"
+        "walkSource": "osrm"
       },
       {
         "id": "toba-osatsu-ishigami",
+        "walkMinutes": 6,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "toba-osatsu-kamado",
+        "walkMinutes": 7,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "toba-osatsu-ohtaya",
+        "walkMinutes": 1,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "toba-osatsu-kashio",
         "walkMinutes": 5,
-        "walkSource": "estimate"
+        "walkSource": "osrm"
       }
     ],
     "contexts": [
@@ -9373,13 +9978,28 @@
     "anchors": [
       {
         "id": "toba-osatsu-ama-culture-museum",
-        "walkMinutes": 1,
-        "walkSource": "estimate"
+        "walkMinutes": 2,
+        "walkSource": "osrm"
       },
       {
         "id": "toba-osatsu-ishigami",
-        "walkMinutes": 3,
-        "walkSource": "estimate"
+        "walkMinutes": 4,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "toba-osatsu-kamado",
+        "walkMinutes": 8,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "toba-osatsu-ohtaya",
+        "walkMinutes": 2,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "toba-osatsu-kashio",
+        "walkMinutes": 4,
+        "walkSource": "osrm"
       }
     ],
     "contexts": [
@@ -9526,13 +10146,28 @@
     "anchors": [
       {
         "id": "toba-osatsu-ama-culture-museum",
-        "walkMinutes": 1,
-        "walkSource": "estimate"
+        "walkMinutes": 2,
+        "walkSource": "osrm"
       },
       {
         "id": "toba-osatsu-ishigami",
-        "walkMinutes": 4,
-        "walkSource": "estimate"
+        "walkMinutes": 5,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "toba-osatsu-kamado",
+        "walkMinutes": 6,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "toba-osatsu-ohtaya",
+        "walkMinutes": 2,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "toba-osatsu-kashio",
+        "walkMinutes": 3,
+        "walkSource": "osrm"
       }
     ],
     "contexts": [
@@ -9688,13 +10323,13 @@
     "anchors": [
       {
         "id": "toba-sea-folk-museum",
-        "walkMinutes": 29,
-        "walkSource": "estimate"
+        "walkMinutes": 31,
+        "walkSource": "osrm"
       },
       {
         "id": "toba-ijika-kagura",
-        "walkMinutes": 8,
-        "walkSource": "estimate"
+        "walkMinutes": 12,
+        "walkSource": "osrm"
       }
     ],
     "contexts": [
@@ -9844,8 +10479,13 @@
     "anchors": [
       {
         "id": "toba-observatory-pearl-road",
-        "walkMinutes": 0,
-        "walkSource": "estimate"
+        "walkMinutes": 1,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "toba-ijika-kagura",
+        "walkMinutes": 39,
+        "walkSource": "osrm"
       }
     ],
     "contexts": [
@@ -9989,18 +10629,18 @@
     "anchors": [
       {
         "id": "toba-yoroizaki-lighthouse",
-        "walkMinutes": 3,
-        "walkSource": "estimate"
+        "walkMinutes": 4,
+        "walkSource": "osrm"
       },
       {
-        "id": "toba-omoshiro-observatory",
-        "walkMinutes": 21,
-        "walkSource": "estimate"
+        "id": "toba-kuzaki-tamaya",
+        "walkMinutes": 16,
+        "walkSource": "osrm"
       },
       {
         "id": "toba-higashinomado",
-        "walkMinutes": 63,
-        "walkSource": "estimate"
+        "walkMinutes": 64,
+        "walkSource": "osrm"
       }
     ],
     "contexts": [
@@ -10159,13 +10799,23 @@
     "anchors": [
       {
         "id": "toba-toshijima-wagu",
-        "walkMinutes": 2,
-        "walkSource": "estimate"
+        "walkMinutes": 4,
+        "walkSource": "osrm"
       },
       {
         "id": "toba-toshijima-toshi",
         "walkMinutes": 15,
-        "walkSource": "estimate"
+        "walkSource": "osrm"
+      },
+      {
+        "id": "toba-toshijima-suzunami",
+        "walkMinutes": 4,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "toba-toshijima-yamashichi",
+        "walkMinutes": 5,
+        "walkSource": "osrm"
       }
     ],
     "contexts": [
@@ -10314,13 +10964,18 @@
     "anchors": [
       {
         "id": "toba-toshijima-wagu",
-        "walkMinutes": 4,
-        "walkSource": "estimate"
+        "walkMinutes": 5,
+        "walkSource": "osrm"
       },
       {
-        "id": "toba-toshijima-toshi",
-        "walkMinutes": 14,
-        "walkSource": "estimate"
+        "id": "toba-toshijima-suzunami",
+        "walkMinutes": 1,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "toba-toshijima-yamashichi",
+        "walkMinutes": 7,
+        "walkSource": "osrm"
       }
     ],
     "contexts": [
@@ -10508,12 +11163,17 @@
       {
         "id": "toba-toshijima-toshi",
         "walkMinutes": 4,
-        "walkSource": "estimate"
+        "walkSource": "osrm"
       },
       {
-        "id": "toba-toshijima-wagu",
-        "walkMinutes": 17,
-        "walkSource": "estimate"
+        "id": "toba-toshijima-teiyou",
+        "walkMinutes": 2,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "toba-toshijima-misaki",
+        "walkMinutes": 7,
+        "walkSource": "osrm"
       }
     ],
     "contexts": [
@@ -10657,14 +11317,14 @@
     "verified": false,
     "anchors": [
       {
-        "id": "toba-sugashima-shirongo-beach",
-        "walkMinutes": 11,
-        "walkSource": "estimate"
+        "id": "toba-sugashima-lighthouse",
+        "walkMinutes": 13,
+        "walkSource": "osrm"
       },
       {
-        "id": "toba-sugashima-lighthouse",
-        "walkMinutes": 12,
-        "walkSource": "estimate"
+        "id": "toba-sugashima-nakora",
+        "walkMinutes": 6,
+        "walkSource": "osrm"
       }
     ],
     "contexts": [
@@ -10757,13 +11417,23 @@
     "anchors": [
       {
         "id": "toba-kamishima-yatsushiro-jinja",
-        "walkMinutes": 3,
-        "walkSource": "estimate"
+        "walkMinutes": 4,
+        "walkSource": "osrm"
       },
       {
         "id": "toba-kamishima-lighthouse",
-        "walkMinutes": 8,
-        "walkSource": "estimate"
+        "walkMinutes": 9,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "toba-kamishima-kantekisho",
+        "walkMinutes": 11,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "toba-kamishima-sankaiso",
+        "walkMinutes": 2,
+        "walkSource": "osrm"
       }
     ],
     "contexts": [
@@ -10931,13 +11601,23 @@
     "anchors": [
       {
         "id": "shima-akasaki",
-        "walkMinutes": 13,
+        "walkMinutes": 14,
         "walkSource": "estimate"
       },
       {
         "id": "toba-kadoya",
-        "walkMinutes": 18,
-        "walkSource": "estimate"
+        "walkMinutes": 16,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "toba-view-hotel-hanashinju",
+        "walkMinutes": 21,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "toba-lido-porte",
+        "walkMinutes": 17,
+        "walkSource": "osrm"
       }
     ],
     "contexts": [
@@ -11116,9 +11796,19 @@
     "verified": false,
     "anchors": [
       {
-        "id": "funatsu",
-        "walkMinutes": 23,
+        "id": "shima-akasaki",
+        "walkMinutes": 25,
         "walkSource": "estimate"
+      },
+      {
+        "id": "toba-kadoya",
+        "walkMinutes": 28,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "toba-view-hotel-hanashinju",
+        "walkMinutes": 26,
+        "walkSource": "osrm"
       }
     ],
     "contexts": [
@@ -11301,8 +11991,18 @@
     "anchors": [
       {
         "id": "shima-akasaki",
-        "walkMinutes": 22,
+        "walkMinutes": 23,
         "walkSource": "estimate"
+      },
+      {
+        "id": "toba-kadoya",
+        "walkMinutes": 25,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "toba-view-hotel-hanashinju",
+        "walkMinutes": 19,
+        "walkSource": "osrm"
       }
     ],
     "contexts": [
@@ -11477,8 +12177,18 @@
       },
       {
         "id": "toba-kadoya",
-        "walkMinutes": 20,
-        "walkSource": "estimate"
+        "walkMinutes": 19,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "toba-view-hotel-hanashinju",
+        "walkMinutes": 21,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "toba-lido-porte",
+        "walkMinutes": 19,
+        "walkSource": "osrm"
       }
     ],
     "contexts": [
@@ -11618,9 +12328,14 @@
     "verified": false,
     "anchors": [
       {
-        "id": "funatsu",
-        "walkMinutes": 27,
-        "walkSource": "estimate"
+        "id": "toba-izawa-jinja",
+        "walkMinutes": 32,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "toba-amanoshima",
+        "walkMinutes": 33,
+        "walkSource": "osrm"
       }
     ],
     "contexts": [
@@ -11790,8 +12505,8 @@
     "anchors": [
       {
         "id": "kamo",
-        "walkMinutes": 10,
-        "walkSource": "estimate"
+        "walkMinutes": 20,
+        "walkSource": "osrm"
       }
     ],
     "contexts": [
