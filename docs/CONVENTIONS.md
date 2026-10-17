@@ -66,11 +66,11 @@ travel_helper/
 | 檔案 | 誰可以寫 |
 |---|---|
 | `schema/`、`data/areas.json`、`data/stations.json` | 只有 T0、T7 |
-| `data/areas.json` 裡**自己區域的 `regions`** | 負責該區的任務（T7b、T8、T8b、T9）；其他欄位仍然只有 T0、T7 |
+| `data/areas.json` 裡**自己區域的 `regions`** | 負責該區的任務（T7b～T7g、T8a、T9a、T19）；其他欄位仍然只有 T0、T7 |
 | `data/timetables/kintetsu/`、`data/passes.json` | T1 |
 | `data/access/`、`data/raw/access/` | T1b（機場往返交通） |
 | `data/timetables/bus/` | T10（`passes.json` 的巴士部分也由 T10 補充） |
-| `data/areas/<area>/`、`data/raw/<area>/` | 負責該區的任務（T2～T4、T8、T9） |
+| `data/areas/<area>/`、`data/raw/<area>/` | 負責該區的任務（鳥羽 T2～T4c、T7b～T7g；伊勢 T8a～T8f；志摩 T9a～T9f；關西機場周邊 T19） |
 | `data/cache/` | 任何任務都可以新增，不可以刪除別人的檔案 |
 | `data/derived/` | 只由腳本產生（例如評分的一致性檢查），不要手改 |
 | `web/` | T5、T11、T12、T15、T16、T17（同時進行時，各自負責的目錄要先講好） |
@@ -478,8 +478,8 @@ travel_helper/
 
 #### 一致性
 - 同一區的同類型**在同一個 session 一次打完**，避免標準漂移。
-- **校準**：T7b 打完鳥羽後，每個類型挑每個星等 1～2 筆當「範例」，記在 `data/raw/toba/assessment-notes.md`；T8、T9 打分前先讀這份範例。
-- **檢查腳本**（T7b 寫）：把 `recommend` 和評分數字明顯矛盾的（例如 5 顆星但食べログ 3.1、Google 3.6；或 2 顆星但兩邊都很高）列出來，輸出到 `data/derived/`，人工確認理由是否合理。
+- **校準**：T7g 打完鳥羽後，每個類型挑每個星等 1～2 筆當「範例」，記在 `data/raw/toba/assessment-notes.md`；T8f、T9f、T19 打分前先讀這份範例。
+- **檢查腳本**（T7g 寫）：把 `recommend` 和評分數字明顯矛盾的（例如 5 顆星但食べログ 3.1、Google 3.6；或 2 顆星但兩邊都很高）列出來，輸出到 `data/derived/`，人工確認理由是否合理。
 - T13 跨區整理時，看各區的星等分布是否差太多。
 
 ### 5.2 搜尋範圍
