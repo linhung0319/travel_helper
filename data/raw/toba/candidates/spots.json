@@ -709,5 +709,60 @@
     "links": {
       "official": "https://www.toba.gr.jp/play/2630/"
     }
+  },
+  {
+    "key": "toba-port-wagu",
+    "name": {
+      "ja": "鳥羽市営定期船 和具港"
+    },
+    "region": "toshijima",
+    "category": "港口（交通節點）",
+    "status": "included",
+    "reason": "T7c 依 T4c 請求新增：離島餐廳 anchors 用的乘船處，不是觀光景點（extra.kind: port）",
+    "pointId": "toba-port-wagu"
+  },
+  {
+    "key": "toba-port-toshi",
+    "name": {
+      "ja": "鳥羽市営定期船 答志港"
+    },
+    "region": "toshijima",
+    "category": "港口（交通節點）",
+    "status": "included",
+    "reason": "T7c 依 T4c 請求新增：離島餐廳 anchors 用的乘船處，不是觀光景點（extra.kind: port）",
+    "pointId": "toba-port-toshi"
+  },
+  {
+    "key": "toba-port-momotori",
+    "name": {
+      "ja": "鳥羽市営定期船 桃取港"
+    },
+    "region": "toshijima",
+    "category": "港口（交通節點）",
+    "status": "included",
+    "reason": "T7c 依 T4c 請求新增：離島餐廳 anchors 用的乘船處，不是觀光景點（extra.kind: port）",
+    "pointId": "toba-port-momotori"
+  },
+  {
+    "key": "toba-port-sugashima",
+    "name": {
+      "ja": "鳥羽市営定期船 菅島港"
+    },
+    "region": "sugashima",
+    "category": "港口（交通節點）",
+    "status": "included",
+    "reason": "T7c 依 T4c 請求新增：離島餐廳 anchors 用的乘船處，不是觀光景點（extra.kind: port）",
+    "pointId": "toba-port-sugashima"
+  },
+  {
+    "key": "toba-port-kamishima",
+    "name": {
+      "ja": "鳥羽市営定期船 神島港"
+    },
+    "region": "kamishima",
+    "category": "港口（交通節點）",
+    "status": "included",
+    "reason": "T7c 依 T4c 請求新增：離島餐廳 anchors 用的乘船處，不是觀光景點（extra.kind: port）",
+    "pointId": "toba-port-kamishima"
   }
 ]
