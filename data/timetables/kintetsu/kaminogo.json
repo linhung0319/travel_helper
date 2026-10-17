@@ -1,0 +1,813 @@
+{
+  "station": "kaminogo",
+  "validFrom": "2026-03-14",
+  "validTo": null,
+  "retrieved": "2026-10-17",
+  "source": "https://eki.kintetsu.co.jp/norikae/T5?USR=PC&slCode=454-10&d=1&dw=0",
+  "sources": [
+    {
+      "type": "official",
+      "url": "https://eki.kintetsu.co.jp/norikae/T5?USR=PC&slCode=454-10&d=1&dw=0",
+      "retrieved": "2026-10-17",
+      "note": "近鐵時刻表：志摩線 伊勢中川・白塚方面（平日）"
+    },
+    {
+      "type": "official",
+      "url": "https://eki.kintetsu.co.jp/norikae/T5?USR=PC&slCode=454-10&d=2&dw=0",
+      "retrieved": "2026-10-17",
+      "note": "近鐵時刻表：志摩線 賢島方面（平日）"
+    },
+    {
+      "type": "official",
+      "url": "https://eki.kintetsu.co.jp/norikae/T5?USR=PC&slCode=454-10&d=1&dw=1",
+      "retrieved": "2026-10-17",
+      "note": "近鐵時刻表：志摩線 伊勢中川・白塚方面（土休日）"
+    },
+    {
+      "type": "official",
+      "url": "https://eki.kintetsu.co.jp/norikae/T5?USR=PC&slCode=454-10&d=2&dw=1",
+      "retrieved": "2026-10-17",
+      "note": "近鐵時刻表：志摩線 賢島方面（土休日）"
+    },
+    {
+      "type": "official",
+      "url": "https://www.kintetsu.co.jp/station/station_info/station20014.html",
+      "retrieved": "2026-10-17",
+      "note": "近鐵車站頁（時刻表連結）"
+    }
+  ],
+  "directions": {
+    "for-ise-nakagawa": {
+      "weekday": [
+        {
+          "dep": "05:24",
+          "type": "普通",
+          "to": "ise-nakagawa",
+          "trainNo": "1-3896",
+          "note": null
+        },
+        {
+          "dep": "05:55",
+          "type": "普通",
+          "to": "ise-nakagawa",
+          "trainNo": "1-3897",
+          "note": null
+        },
+        {
+          "dep": "06:22",
+          "type": "普通",
+          "to": "toba",
+          "trainNo": "1-3873",
+          "note": null
+        },
+        {
+          "dep": "06:53",
+          "type": "普通",
+          "to": "ise-nakagawa",
+          "trainNo": "1-3899",
+          "note": null
+        },
+        {
+          "dep": "07:19",
+          "type": "普通",
+          "to": "toba",
+          "trainNo": "1-3872",
+          "note": null
+        },
+        {
+          "dep": "07:47",
+          "type": "普通",
+          "to": "toba",
+          "trainNo": "1-3874",
+          "note": null
+        },
+        {
+          "dep": "08:27",
+          "type": "普通",
+          "to": "ise-nakagawa",
+          "trainNo": "1-3903",
+          "note": null
+        },
+        {
+          "dep": "08:52",
+          "type": "普通",
+          "to": "ise-nakagawa",
+          "trainNo": "1-3900",
+          "note": null
+        },
+        {
+          "dep": "09:27",
+          "type": "普通",
+          "to": "ise-nakagawa",
+          "trainNo": "1-3906",
+          "note": null
+        },
+        {
+          "dep": "10:30",
+          "type": "普通",
+          "to": "ise-nakagawa",
+          "trainNo": "1-3898",
+          "note": null
+        },
+        {
+          "dep": "11:30",
+          "type": "普通",
+          "to": "ise-nakagawa",
+          "trainNo": "1-3907",
+          "note": null
+        },
+        {
+          "dep": "12:30",
+          "type": "普通",
+          "to": "ise-nakagawa",
+          "trainNo": "1-3908",
+          "note": null
+        },
+        {
+          "dep": "13:30",
+          "type": "普通",
+          "to": "ise-nakagawa",
+          "trainNo": "1-3909",
+          "note": null
+        },
+        {
+          "dep": "14:30",
+          "type": "普通",
+          "to": "ise-nakagawa",
+          "trainNo": "1-3910",
+          "note": null
+        },
+        {
+          "dep": "15:28",
+          "type": "普通",
+          "to": "ise-nakagawa",
+          "trainNo": "1-3911",
+          "note": null
+        },
+        {
+          "dep": "16:00",
+          "type": "普通",
+          "to": "ise-nakagawa",
+          "trainNo": "1-3917",
+          "note": null
+        },
+        {
+          "dep": "16:31",
+          "type": "普通",
+          "to": "ise-nakagawa",
+          "trainNo": "1-3912",
+          "note": null
+        },
+        {
+          "dep": "16:58",
+          "type": "普通",
+          "to": "ise-nakagawa",
+          "trainNo": "1-3918",
+          "note": null
+        },
+        {
+          "dep": "17:29",
+          "type": "普通",
+          "to": "ise-nakagawa",
+          "trainNo": "1-3913",
+          "note": null
+        },
+        {
+          "dep": "17:55",
+          "type": "普通",
+          "to": "ise-nakagawa",
+          "trainNo": "1-3901",
+          "note": null
+        },
+        {
+          "dep": "18:31",
+          "type": "普通",
+          "to": "ise-nakagawa",
+          "trainNo": "1-3914",
+          "note": null
+        },
+        {
+          "dep": "19:13",
+          "type": "普通",
+          "to": "shiratsuka",
+          "trainNo": "1-4299",
+          "note": null
+        },
+        {
+          "dep": "19:39",
+          "type": "普通",
+          "to": "ise-nakagawa",
+          "trainNo": "1-3915",
+          "note": null
+        },
+        {
+          "dep": "20:13",
+          "type": "普通",
+          "to": "ise-nakagawa",
+          "trainNo": "1-3905",
+          "note": null
+        },
+        {
+          "dep": "20:49",
+          "type": "普通",
+          "to": "ise-nakagawa",
+          "trainNo": "1-3916",
+          "note": null
+        },
+        {
+          "dep": "21:44",
+          "type": "普通",
+          "to": "ise-nakagawa",
+          "trainNo": "1-3902",
+          "note": null
+        },
+        {
+          "dep": "22:29",
+          "type": "普通",
+          "to": "ise-nakagawa",
+          "trainNo": "1-3904",
+          "note": null
+        }
+      ],
+      "holiday": [
+        {
+          "dep": "05:31",
+          "type": "普通",
+          "to": "ise-nakagawa",
+          "trainNo": "1-8866",
+          "note": null
+        },
+        {
+          "dep": "05:56",
+          "type": "普通",
+          "to": "toba",
+          "trainNo": "1-8838",
+          "note": null
+        },
+        {
+          "dep": "06:33",
+          "type": "普通",
+          "to": "ise-nakagawa",
+          "trainNo": "1-8883",
+          "note": null
+        },
+        {
+          "dep": "06:55",
+          "type": "普通",
+          "to": "ise-nakagawa",
+          "trainNo": "1-8864",
+          "note": null
+        },
+        {
+          "dep": "07:21",
+          "type": "普通",
+          "to": "toba",
+          "trainNo": "1-8837",
+          "note": null
+        },
+        {
+          "dep": "07:47",
+          "type": "普通",
+          "to": "toba",
+          "trainNo": "1-8839",
+          "note": null
+        },
+        {
+          "dep": "08:24",
+          "type": "普通",
+          "to": "ise-nakagawa",
+          "trainNo": "1-8862",
+          "note": null
+        },
+        {
+          "dep": "08:59",
+          "type": "普通",
+          "to": "ise-nakagawa",
+          "trainNo": "1-8865",
+          "note": null
+        },
+        {
+          "dep": "09:29",
+          "type": "普通",
+          "to": "ise-nakagawa",
+          "trainNo": "1-8878",
+          "note": null
+        },
+        {
+          "dep": "10:31",
+          "type": "普通",
+          "to": "ise-nakagawa",
+          "trainNo": "1-8881",
+          "note": null
+        },
+        {
+          "dep": "11:30",
+          "type": "普通",
+          "to": "ise-nakagawa",
+          "trainNo": "1-8882",
+          "note": null
+        },
+        {
+          "dep": "12:30",
+          "type": "普通",
+          "to": "ise-nakagawa",
+          "trainNo": "1-8879",
+          "note": null
+        },
+        {
+          "dep": "13:31",
+          "type": "普通",
+          "to": "ise-nakagawa",
+          "trainNo": "1-8880",
+          "note": null
+        },
+        {
+          "dep": "14:28",
+          "type": "普通",
+          "to": "ise-nakagawa",
+          "trainNo": "1-8876",
+          "note": null
+        },
+        {
+          "dep": "15:29",
+          "type": "普通",
+          "to": "ise-nakagawa",
+          "trainNo": "1-8867",
+          "note": null
+        },
+        {
+          "dep": "16:00",
+          "type": "普通",
+          "to": "ise-nakagawa",
+          "trainNo": "1-8868",
+          "note": null
+        },
+        {
+          "dep": "16:30",
+          "type": "普通",
+          "to": "ise-nakagawa",
+          "trainNo": "1-8869",
+          "note": null
+        },
+        {
+          "dep": "16:56",
+          "type": "普通",
+          "to": "ise-nakagawa",
+          "trainNo": "1-8870",
+          "note": null
+        },
+        {
+          "dep": "17:32",
+          "type": "普通",
+          "to": "ise-nakagawa",
+          "trainNo": "1-8861",
+          "note": null
+        },
+        {
+          "dep": "17:55",
+          "type": "普通",
+          "to": "ise-nakagawa",
+          "trainNo": "1-8871",
+          "note": null
+        },
+        {
+          "dep": "18:31",
+          "type": "普通",
+          "to": "ise-nakagawa",
+          "trainNo": "1-8872",
+          "note": null
+        },
+        {
+          "dep": "18:58",
+          "type": "普通",
+          "to": "ise-nakagawa",
+          "trainNo": "1-8863",
+          "note": null
+        },
+        {
+          "dep": "19:30",
+          "type": "普通",
+          "to": "ise-nakagawa",
+          "trainNo": "1-8873",
+          "note": null
+        },
+        {
+          "dep": "20:13",
+          "type": "普通",
+          "to": "ise-nakagawa",
+          "trainNo": "1-8877",
+          "note": null
+        },
+        {
+          "dep": "20:39",
+          "type": "普通",
+          "to": "ise-nakagawa",
+          "trainNo": "1-8875",
+          "note": null
+        },
+        {
+          "dep": "21:24",
+          "type": "普通",
+          "to": "ise-nakagawa",
+          "trainNo": "1-8874",
+          "note": null
+        },
+        {
+          "dep": "22:29",
+          "type": "普通",
+          "to": "ise-nakagawa",
+          "trainNo": "1-8860",
+          "note": null
+        }
+      ]
+    },
+    "for-kashikojima": {
+      "weekday": [
+        {
+          "dep": "06:17",
+          "type": "普通",
+          "to": "kashikojima",
+          "trainNo": "1-3792",
+          "note": null
+        },
+        {
+          "dep": "06:43",
+          "type": "普通",
+          "to": "kashikojima",
+          "trainNo": "1-3717",
+          "note": null
+        },
+        {
+          "dep": "07:09",
+          "type": "普通",
+          "to": "kashikojima",
+          "trainNo": "1-3793",
+          "note": null
+        },
+        {
+          "dep": "07:51",
+          "type": "普通",
+          "to": "kashikojima",
+          "trainNo": "1-3967",
+          "note": null
+        },
+        {
+          "dep": "08:16",
+          "type": "普通",
+          "to": "kashikojima",
+          "trainNo": "1-3794",
+          "note": null
+        },
+        {
+          "dep": "08:46",
+          "type": "普通",
+          "to": "kashikojima",
+          "trainNo": "1-3969",
+          "note": null
+        },
+        {
+          "dep": "09:53",
+          "type": "普通",
+          "to": "kashikojima",
+          "trainNo": "1-3800",
+          "note": null
+        },
+        {
+          "dep": "10:53",
+          "type": "普通",
+          "to": "kashikojima",
+          "trainNo": "1-3798",
+          "note": null
+        },
+        {
+          "dep": "11:54",
+          "type": "普通",
+          "to": "kashikojima",
+          "trainNo": "1-3799",
+          "note": null
+        },
+        {
+          "dep": "12:55",
+          "type": "普通",
+          "to": "kashikojima",
+          "trainNo": "1-3805",
+          "note": null
+        },
+        {
+          "dep": "13:53",
+          "type": "普通",
+          "to": "kashikojima",
+          "trainNo": "1-3803",
+          "note": null
+        },
+        {
+          "dep": "14:53",
+          "type": "普通",
+          "to": "kashikojima",
+          "trainNo": "1-3802",
+          "note": null
+        },
+        {
+          "dep": "15:22",
+          "type": "普通",
+          "to": "kashikojima",
+          "trainNo": "1-3813",
+          "note": null
+        },
+        {
+          "dep": "15:53",
+          "type": "普通",
+          "to": "kashikojima",
+          "trainNo": "1-3797",
+          "note": null
+        },
+        {
+          "dep": "16:23",
+          "type": "普通",
+          "to": "kashikojima",
+          "trainNo": "1-3809",
+          "note": null
+        },
+        {
+          "dep": "16:52",
+          "type": "普通",
+          "to": "kashikojima",
+          "trainNo": "1-3808",
+          "note": null
+        },
+        {
+          "dep": "17:21",
+          "type": "普通",
+          "to": "kashikojima",
+          "trainNo": "1-3796",
+          "note": null
+        },
+        {
+          "dep": "17:50",
+          "type": "普通",
+          "to": "kashikojima",
+          "trainNo": "1-3795",
+          "note": null
+        },
+        {
+          "dep": "18:22",
+          "type": "普通",
+          "to": "kashikojima",
+          "trainNo": "1-3801",
+          "note": null
+        },
+        {
+          "dep": "18:59",
+          "type": "普通",
+          "to": "kashikojima",
+          "trainNo": "1-3812",
+          "note": null
+        },
+        {
+          "dep": "19:33",
+          "type": "普通",
+          "to": "kashikojima",
+          "trainNo": "1-3806",
+          "note": null
+        },
+        {
+          "dep": "20:03",
+          "type": "普通",
+          "to": "kashikojima",
+          "trainNo": "1-3810",
+          "note": null
+        },
+        {
+          "dep": "20:34",
+          "type": "普通",
+          "to": "kashikojima",
+          "trainNo": "1-3807",
+          "note": null
+        },
+        {
+          "dep": "21:07",
+          "type": "普通",
+          "to": "kashikojima",
+          "trainNo": "1-3811",
+          "note": null
+        },
+        {
+          "dep": "21:52",
+          "type": "普通",
+          "to": "kashikojima",
+          "trainNo": "1-3970",
+          "note": null
+        },
+        {
+          "dep": "22:34",
+          "type": "普通",
+          "to": "kashikojima",
+          "trainNo": "1-3968",
+          "note": null
+        },
+        {
+          "dep": "23:13",
+          "type": "普通",
+          "to": "kashikojima",
+          "trainNo": "1-3804",
+          "note": null
+        }
+      ],
+      "holiday": [
+        {
+          "dep": "06:17",
+          "type": "普通",
+          "to": "kashikojima",
+          "trainNo": "1-8782",
+          "note": null
+        },
+        {
+          "dep": "06:46",
+          "type": "普通",
+          "to": "kashikojima",
+          "trainNo": "1-8707",
+          "note": null
+        },
+        {
+          "dep": "07:11",
+          "type": "普通",
+          "to": "kashikojima",
+          "trainNo": "1-8783",
+          "note": null
+        },
+        {
+          "dep": "07:50",
+          "type": "普通",
+          "to": "kashikojima",
+          "trainNo": "1-8920",
+          "note": null
+        },
+        {
+          "dep": "08:17",
+          "type": "普通",
+          "to": "kashikojima",
+          "trainNo": "1-8776",
+          "note": null
+        },
+        {
+          "dep": "08:51",
+          "type": "普通",
+          "to": "kashikojima",
+          "trainNo": "1-8921",
+          "note": null
+        },
+        {
+          "dep": "09:55",
+          "type": "普通",
+          "to": "kashikojima",
+          "trainNo": "1-8919",
+          "note": null
+        },
+        {
+          "dep": "10:55",
+          "type": "普通",
+          "to": "kashikojima",
+          "trainNo": "1-8785",
+          "note": null
+        },
+        {
+          "dep": "11:54",
+          "type": "普通",
+          "to": "kashikojima",
+          "trainNo": "1-8788",
+          "note": null
+        },
+        {
+          "dep": "12:55",
+          "type": "普通",
+          "to": "kashikojima",
+          "trainNo": "1-8781",
+          "note": null
+        },
+        {
+          "dep": "13:53",
+          "type": "普通",
+          "to": "kashikojima",
+          "trainNo": "1-8773",
+          "note": null
+        },
+        {
+          "dep": "14:53",
+          "type": "普通",
+          "to": "kashikojima",
+          "trainNo": "1-8774",
+          "note": null
+        },
+        {
+          "dep": "15:24",
+          "type": "普通",
+          "to": "kashikojima",
+          "trainNo": "1-8786",
+          "note": null
+        },
+        {
+          "dep": "15:54",
+          "type": "普通",
+          "to": "kashikojima",
+          "trainNo": "1-8772",
+          "note": null
+        },
+        {
+          "dep": "16:20",
+          "type": "普通",
+          "to": "kashikojima",
+          "trainNo": "1-8789",
+          "note": null
+        },
+        {
+          "dep": "16:49",
+          "type": "普通",
+          "to": "kashikojima",
+          "trainNo": "1-8778",
+          "note": null
+        },
+        {
+          "dep": "17:20",
+          "type": "普通",
+          "to": "kashikojima",
+          "trainNo": "1-8777",
+          "note": null
+        },
+        {
+          "dep": "17:50",
+          "type": "普通",
+          "to": "kashikojima",
+          "trainNo": "1-8780",
+          "note": null
+        },
+        {
+          "dep": "18:22",
+          "type": "普通",
+          "to": "kashikojima",
+          "trainNo": "1-8779",
+          "note": null
+        },
+        {
+          "dep": "18:53",
+          "type": "普通",
+          "to": "kashikojima",
+          "trainNo": "1-8784",
+          "note": null
+        },
+        {
+          "dep": "19:35",
+          "type": "普通",
+          "to": "kashikojima",
+          "trainNo": "1-8918",
+          "note": null
+        },
+        {
+          "dep": "19:59",
+          "type": "普通",
+          "to": "kashikojima",
+          "trainNo": "1-8922",
+          "note": null
+        },
+        {
+          "dep": "20:29",
+          "type": "普通",
+          "to": "kashikojima",
+          "trainNo": "1-8790",
+          "note": null
+        },
+        {
+          "dep": "21:07",
+          "type": "普通",
+          "to": "kashikojima",
+          "trainNo": "1-8787",
+          "note": null
+        },
+        {
+          "dep": "21:52",
+          "type": "普通",
+          "to": "kashikojima",
+          "trainNo": "1-8923",
+          "note": null
+        },
+        {
+          "dep": "22:34",
+          "type": "普通",
+          "to": "kashikojima",
+          "trainNo": "1-8924",
+          "note": null
+        },
+        {
+          "dep": "23:13",
+          "type": "普通",
+          "to": "kashikojima",
+          "trainNo": "1-8775",
+          "note": null
+        }
+      ]
+    }
+  },
+  "notes": "方向鍵統一：for-kashikojima＝往鳥羽、賢島方向（南下），for-ise-nakagawa＝往伊勢中川、名古屋、大阪方向（北上）；實際終點看 to。trainNo 是近鐵時刻表網站的列車編號（tx），同一班車在各站相同，可以用來對照 _travel-times.json 的停站時刻。「holiday」是近鐵的土休日ダイヤ（週六、週日、國定假日）。しまかぜ不是每天行駛（有固定休日、檢修日），搭乘前要查運行日。",
+  "extra": {
+    "slCode": "454-10"
+  }
+}

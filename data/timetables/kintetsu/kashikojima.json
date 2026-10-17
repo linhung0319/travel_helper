@@ -1,0 +1,802 @@
+{
+  "station": "kashikojima",
+  "validFrom": "2026-03-14",
+  "validTo": null,
+  "retrieved": "2026-10-17",
+  "source": "https://eki.kintetsu.co.jp/norikae/T5?USR=PC&slCode=454-16&d=1&dw=0",
+  "sources": [
+    {
+      "type": "official",
+      "url": "https://eki.kintetsu.co.jp/norikae/T5?USR=PC&slCode=454-16&d=1&dw=0",
+      "retrieved": "2026-10-17",
+      "note": "近鐵時刻表：志摩線 伊勢中川・白塚・近鉄名古屋・大阪難波・京都方面（平日）"
+    },
+    {
+      "type": "official",
+      "url": "https://eki.kintetsu.co.jp/norikae/T5?USR=PC&slCode=454-16&d=1&dw=1",
+      "retrieved": "2026-10-17",
+      "note": "近鐵時刻表：志摩線 伊勢中川・白塚・近鉄名古屋・大阪難波・京都方面（土休日）"
+    },
+    {
+      "type": "official",
+      "url": "https://www.kintetsu.co.jp/station/station_info/station20020.html",
+      "retrieved": "2026-10-17",
+      "note": "近鐵車站頁（時刻表連結）"
+    }
+  ],
+  "directions": {
+    "for-ise-nakagawa": {
+      "weekday": [
+        {
+          "dep": "05:09",
+          "type": "普通",
+          "to": "ise-nakagawa",
+          "trainNo": "1-3896",
+          "note": null
+        },
+        {
+          "dep": "05:40",
+          "type": "普通",
+          "to": "ise-nakagawa",
+          "trainNo": "1-3897",
+          "note": null
+        },
+        {
+          "dep": "06:06",
+          "type": "普通",
+          "to": "toba",
+          "trainNo": "1-3873",
+          "note": null
+        },
+        {
+          "dep": "06:13",
+          "type": "特急",
+          "to": "kintetsu-nagoya",
+          "trainNo": "1-4196",
+          "note": "ビスタカー"
+        },
+        {
+          "dep": "06:37",
+          "type": "普通",
+          "to": "ise-nakagawa",
+          "trainNo": "1-3899",
+          "note": null
+        },
+        {
+          "dep": "07:03",
+          "type": "普通",
+          "to": "toba",
+          "trainNo": "1-3872",
+          "note": null
+        },
+        {
+          "dep": "07:25",
+          "type": "特急",
+          "to": "kintetsu-nagoya",
+          "trainNo": "1-4197",
+          "note": null
+        },
+        {
+          "dep": "07:31",
+          "type": "普通",
+          "to": "toba",
+          "trainNo": "1-3874",
+          "note": null
+        },
+        {
+          "dep": "08:11",
+          "type": "普通",
+          "to": "ise-nakagawa",
+          "trainNo": "1-3903",
+          "note": null
+        },
+        {
+          "dep": "08:37",
+          "type": "普通",
+          "to": "ise-nakagawa",
+          "trainNo": "1-3900",
+          "note": null
+        },
+        {
+          "dep": "09:00",
+          "type": "特急",
+          "to": "osaka-namba",
+          "trainNo": "1-4232",
+          "note": "ビスタカー"
+        },
+        {
+          "dep": "09:12",
+          "type": "普通",
+          "to": "ise-nakagawa",
+          "trainNo": "1-3906",
+          "note": null
+        },
+        {
+          "dep": "09:30",
+          "type": "特急",
+          "to": "kintetsu-nagoya",
+          "trainNo": "1-4198",
+          "note": "アーバンライナー；車いす対応車両"
+        },
+        {
+          "dep": "10:00",
+          "type": "特急",
+          "to": "osaka-namba",
+          "trainNo": "1-4234",
+          "note": null
+        },
+        {
+          "dep": "10:15",
+          "type": "普通",
+          "to": "ise-nakagawa",
+          "trainNo": "1-3898",
+          "note": null
+        },
+        {
+          "dep": "10:30",
+          "type": "特急",
+          "to": "kintetsu-nagoya",
+          "trainNo": "1-4199",
+          "note": null
+        },
+        {
+          "dep": "11:00",
+          "type": "特急",
+          "to": "osaka-namba",
+          "trainNo": "1-4233",
+          "note": null
+        },
+        {
+          "dep": "11:15",
+          "type": "普通",
+          "to": "ise-nakagawa",
+          "trainNo": "1-3907",
+          "note": null
+        },
+        {
+          "dep": "12:00",
+          "type": "特急",
+          "to": "osaka-namba",
+          "trainNo": "1-4235",
+          "note": "伊勢志摩ライナー；車いす対応車両"
+        },
+        {
+          "dep": "12:15",
+          "type": "普通",
+          "to": "ise-nakagawa",
+          "trainNo": "1-3908",
+          "note": null
+        },
+        {
+          "dep": "12:30",
+          "type": "特急",
+          "to": "kintetsu-nagoya",
+          "trainNo": "1-4200",
+          "note": "アーバンライナー；車いす対応車両"
+        },
+        {
+          "dep": "13:00",
+          "type": "特急",
+          "to": "osaka-namba",
+          "trainNo": "1-4236",
+          "note": "伊勢志摩ライナー；車いす対応車両"
+        },
+        {
+          "dep": "13:15",
+          "type": "普通",
+          "to": "ise-nakagawa",
+          "trainNo": "1-3909",
+          "note": null
+        },
+        {
+          "dep": "14:00",
+          "type": "特急",
+          "to": "osaka-namba",
+          "trainNo": "1-4237",
+          "note": "ビスタカー"
+        },
+        {
+          "dep": "14:14",
+          "type": "普通",
+          "to": "ise-nakagawa",
+          "trainNo": "1-3910",
+          "note": null
+        },
+        {
+          "dep": "14:20",
+          "type": "特急",
+          "to": "kyoto",
+          "trainNo": "1-4055",
+          "note": "伊勢志摩ライナー；車いす対応車両"
+        },
+        {
+          "dep": "14:30",
+          "type": "特急",
+          "to": "kintetsu-nagoya",
+          "trainNo": "1-4201",
+          "note": "伊勢志摩ライナー；車いす対応車両"
+        },
+        {
+          "dep": "14:50",
+          "type": "しまかぜ",
+          "to": "kyoto",
+          "trainNo": "1-4268",
+          "note": "京都発着；車いす対応車両"
+        },
+        {
+          "dep": "15:00",
+          "type": "特急",
+          "to": "osaka-namba",
+          "trainNo": "1-4238",
+          "note": "ビスタカー"
+        },
+        {
+          "dep": "15:12",
+          "type": "普通",
+          "to": "ise-nakagawa",
+          "trainNo": "1-3911",
+          "note": null
+        },
+        {
+          "dep": "15:30",
+          "type": "特急",
+          "to": "kintetsu-nagoya",
+          "trainNo": "1-4202",
+          "note": "ビスタカー"
+        },
+        {
+          "dep": "15:40",
+          "type": "しまかぜ",
+          "to": "kintetsu-nagoya",
+          "trainNo": "1-4267",
+          "note": "近鉄名古屋発着；車いす対応車両"
+        },
+        {
+          "dep": "15:45",
+          "type": "普通",
+          "to": "ise-nakagawa",
+          "trainNo": "1-3917",
+          "note": null
+        },
+        {
+          "dep": "16:00",
+          "type": "しまかぜ",
+          "to": "osaka-namba",
+          "trainNo": "1-4269",
+          "note": "大阪難波発着；車いす対応車両"
+        },
+        {
+          "dep": "16:03",
+          "type": "特急",
+          "to": "osaka-namba",
+          "trainNo": "1-4239",
+          "note": "ビスタカー"
+        },
+        {
+          "dep": "16:15",
+          "type": "普通",
+          "to": "ise-nakagawa",
+          "trainNo": "1-3912",
+          "note": null
+        },
+        {
+          "dep": "16:30",
+          "type": "特急",
+          "to": "kintetsu-nagoya",
+          "trainNo": "1-4203",
+          "note": null
+        },
+        {
+          "dep": "16:42",
+          "type": "普通",
+          "to": "ise-nakagawa",
+          "trainNo": "1-3918",
+          "note": null
+        },
+        {
+          "dep": "17:00",
+          "type": "特急",
+          "to": "osaka-namba",
+          "trainNo": "1-4240",
+          "note": "ビスタカー"
+        },
+        {
+          "dep": "17:13",
+          "type": "普通",
+          "to": "ise-nakagawa",
+          "trainNo": "1-3913",
+          "note": null
+        },
+        {
+          "dep": "17:30",
+          "type": "特急",
+          "to": "kintetsu-nagoya",
+          "trainNo": "1-4204",
+          "note": "アーバンライナー；車いす対応車両"
+        },
+        {
+          "dep": "17:40",
+          "type": "普通",
+          "to": "ise-nakagawa",
+          "trainNo": "1-3901",
+          "note": null
+        },
+        {
+          "dep": "18:00",
+          "type": "特急",
+          "to": "osaka-namba",
+          "trainNo": "1-4241",
+          "note": "伊勢志摩ライナー；車いす対応車両"
+        },
+        {
+          "dep": "18:16",
+          "type": "普通",
+          "to": "ise-nakagawa",
+          "trainNo": "1-3914",
+          "note": null
+        },
+        {
+          "dep": "18:30",
+          "type": "特急",
+          "to": "kintetsu-nagoya",
+          "trainNo": "1-4205",
+          "note": "伊勢志摩ライナー；車いす対応車両"
+        },
+        {
+          "dep": "18:58",
+          "type": "普通",
+          "to": "shiratsuka",
+          "trainNo": "1-4299",
+          "note": null
+        },
+        {
+          "dep": "19:23",
+          "type": "普通",
+          "to": "ise-nakagawa",
+          "trainNo": "1-3915",
+          "note": null
+        },
+        {
+          "dep": "19:30",
+          "type": "特急",
+          "to": "kintetsu-nagoya",
+          "trainNo": "1-4206",
+          "note": "伊勢志摩ライナー；車いす対応車両"
+        },
+        {
+          "dep": "19:45",
+          "type": "特急",
+          "to": "osaka-namba",
+          "trainNo": "1-4242",
+          "note": "ビスタカー"
+        },
+        {
+          "dep": "19:57",
+          "type": "普通",
+          "to": "ise-nakagawa",
+          "trainNo": "1-3905",
+          "note": null
+        },
+        {
+          "dep": "20:34",
+          "type": "普通",
+          "to": "ise-nakagawa",
+          "trainNo": "1-3916",
+          "note": null
+        },
+        {
+          "dep": "21:29",
+          "type": "普通",
+          "to": "ise-nakagawa",
+          "trainNo": "1-3902",
+          "note": null
+        },
+        {
+          "dep": "22:14",
+          "type": "普通",
+          "to": "ise-nakagawa",
+          "trainNo": "1-3904",
+          "note": null
+        }
+      ],
+      "holiday": [
+        {
+          "dep": "05:15",
+          "type": "普通",
+          "to": "ise-nakagawa",
+          "trainNo": "1-8866",
+          "note": null
+        },
+        {
+          "dep": "05:41",
+          "type": "普通",
+          "to": "toba",
+          "trainNo": "1-8838",
+          "note": null
+        },
+        {
+          "dep": "06:14",
+          "type": "特急",
+          "to": "kintetsu-nagoya",
+          "trainNo": "1-9131",
+          "note": null
+        },
+        {
+          "dep": "06:17",
+          "type": "普通",
+          "to": "ise-nakagawa",
+          "trainNo": "1-8883",
+          "note": null
+        },
+        {
+          "dep": "06:40",
+          "type": "普通",
+          "to": "ise-nakagawa",
+          "trainNo": "1-8864",
+          "note": null
+        },
+        {
+          "dep": "07:05",
+          "type": "普通",
+          "to": "toba",
+          "trainNo": "1-8837",
+          "note": null
+        },
+        {
+          "dep": "07:25",
+          "type": "特急",
+          "to": "kintetsu-nagoya",
+          "trainNo": "1-9132",
+          "note": "ビスタカー"
+        },
+        {
+          "dep": "07:32",
+          "type": "普通",
+          "to": "toba",
+          "trainNo": "1-8839",
+          "note": null
+        },
+        {
+          "dep": "08:09",
+          "type": "普通",
+          "to": "ise-nakagawa",
+          "trainNo": "1-8862",
+          "note": null
+        },
+        {
+          "dep": "08:44",
+          "type": "普通",
+          "to": "ise-nakagawa",
+          "trainNo": "1-8865",
+          "note": null
+        },
+        {
+          "dep": "09:00",
+          "type": "特急",
+          "to": "osaka-namba",
+          "trainNo": "1-9167",
+          "note": "ビスタカー"
+        },
+        {
+          "dep": "09:14",
+          "type": "普通",
+          "to": "ise-nakagawa",
+          "trainNo": "1-8878",
+          "note": null
+        },
+        {
+          "dep": "09:30",
+          "type": "特急",
+          "to": "kintetsu-nagoya",
+          "trainNo": "1-9133",
+          "note": null
+        },
+        {
+          "dep": "10:00",
+          "type": "特急",
+          "to": "osaka-namba",
+          "trainNo": "1-9164",
+          "note": null
+        },
+        {
+          "dep": "10:16",
+          "type": "普通",
+          "to": "ise-nakagawa",
+          "trainNo": "1-8881",
+          "note": null
+        },
+        {
+          "dep": "10:30",
+          "type": "特急",
+          "to": "kintetsu-nagoya",
+          "trainNo": "1-9134",
+          "note": "アーバンライナー；車いす対応車両"
+        },
+        {
+          "dep": "11:00",
+          "type": "特急",
+          "to": "osaka-namba",
+          "trainNo": "1-9166",
+          "note": null
+        },
+        {
+          "dep": "11:15",
+          "type": "普通",
+          "to": "ise-nakagawa",
+          "trainNo": "1-8882",
+          "note": null
+        },
+        {
+          "dep": "11:31",
+          "type": "特急",
+          "to": "kintetsu-nagoya",
+          "trainNo": "1-9135",
+          "note": "伊勢志摩ライナー；車いす対応車両"
+        },
+        {
+          "dep": "12:00",
+          "type": "特急",
+          "to": "osaka-namba",
+          "trainNo": "1-9168",
+          "note": "伊勢志摩ライナー；車いす対応車両"
+        },
+        {
+          "dep": "12:15",
+          "type": "普通",
+          "to": "ise-nakagawa",
+          "trainNo": "1-8879",
+          "note": null
+        },
+        {
+          "dep": "12:30",
+          "type": "特急",
+          "to": "kintetsu-nagoya",
+          "trainNo": "1-9136",
+          "note": "伊勢志摩ライナー；車いす対応車両"
+        },
+        {
+          "dep": "13:00",
+          "type": "特急",
+          "to": "osaka-namba",
+          "trainNo": "1-9169",
+          "note": "ビスタカー"
+        },
+        {
+          "dep": "13:15",
+          "type": "普通",
+          "to": "ise-nakagawa",
+          "trainNo": "1-8880",
+          "note": null
+        },
+        {
+          "dep": "13:30",
+          "type": "特急",
+          "to": "kintetsu-nagoya",
+          "trainNo": "1-9137",
+          "note": "ビスタカー"
+        },
+        {
+          "dep": "14:00",
+          "type": "特急",
+          "to": "osaka-namba",
+          "trainNo": "1-9170",
+          "note": "伊勢志摩ライナー；車いす対応車両"
+        },
+        {
+          "dep": "14:13",
+          "type": "普通",
+          "to": "ise-nakagawa",
+          "trainNo": "1-8876",
+          "note": null
+        },
+        {
+          "dep": "14:20",
+          "type": "特急",
+          "to": "kyoto",
+          "trainNo": "1-8994",
+          "note": "伊勢志摩ライナー；車いす対応車両"
+        },
+        {
+          "dep": "14:40",
+          "type": "特急",
+          "to": "kintetsu-nagoya",
+          "trainNo": "1-10189",
+          "note": "アーバンライナー；車いす対応車両"
+        },
+        {
+          "dep": "14:50",
+          "type": "しまかぜ",
+          "to": "kyoto",
+          "trainNo": "1-10190",
+          "note": "京都発着；車いす対応車両"
+        },
+        {
+          "dep": "15:00",
+          "type": "特急",
+          "to": "osaka-namba",
+          "trainNo": "1-10162",
+          "note": "伊勢志摩ライナー；車いす対応車両"
+        },
+        {
+          "dep": "15:13",
+          "type": "普通",
+          "to": "ise-nakagawa",
+          "trainNo": "1-8867",
+          "note": null
+        },
+        {
+          "dep": "15:20",
+          "type": "特急",
+          "to": "kyoto",
+          "trainNo": "1-8993",
+          "note": "ビスタカー"
+        },
+        {
+          "dep": "15:30",
+          "type": "特急",
+          "to": "kintetsu-nagoya",
+          "trainNo": "1-9138",
+          "note": null
+        },
+        {
+          "dep": "15:40",
+          "type": "しまかぜ",
+          "to": "kintetsu-nagoya",
+          "trainNo": "1-10192",
+          "note": "近鉄名古屋発着；車いす対応車両"
+        },
+        {
+          "dep": "15:45",
+          "type": "普通",
+          "to": "ise-nakagawa",
+          "trainNo": "1-8868",
+          "note": null
+        },
+        {
+          "dep": "16:00",
+          "type": "しまかぜ",
+          "to": "osaka-namba",
+          "trainNo": "1-10191",
+          "note": "大阪難波発着；車いす対応車両"
+        },
+        {
+          "dep": "16:05",
+          "type": "特急",
+          "to": "osaka-namba",
+          "trainNo": "1-9165",
+          "note": null
+        },
+        {
+          "dep": "16:15",
+          "type": "普通",
+          "to": "ise-nakagawa",
+          "trainNo": "1-8869",
+          "note": null
+        },
+        {
+          "dep": "16:30",
+          "type": "特急",
+          "to": "kintetsu-nagoya",
+          "trainNo": "1-9139",
+          "note": "ビスタカー"
+        },
+        {
+          "dep": "16:41",
+          "type": "普通",
+          "to": "ise-nakagawa",
+          "trainNo": "1-8870",
+          "note": null
+        },
+        {
+          "dep": "17:00",
+          "type": "特急",
+          "to": "osaka-namba",
+          "trainNo": "1-9171",
+          "note": null
+        },
+        {
+          "dep": "17:16",
+          "type": "普通",
+          "to": "ise-nakagawa",
+          "trainNo": "1-8861",
+          "note": null
+        },
+        {
+          "dep": "17:30",
+          "type": "特急",
+          "to": "kintetsu-nagoya",
+          "trainNo": "1-9140",
+          "note": "伊勢志摩ライナー；車いす対応車両"
+        },
+        {
+          "dep": "17:40",
+          "type": "普通",
+          "to": "ise-nakagawa",
+          "trainNo": "1-8871",
+          "note": null
+        },
+        {
+          "dep": "18:00",
+          "type": "特急",
+          "to": "osaka-namba",
+          "trainNo": "1-9172",
+          "note": "伊勢志摩ライナー；車いす対応車両"
+        },
+        {
+          "dep": "18:15",
+          "type": "普通",
+          "to": "ise-nakagawa",
+          "trainNo": "1-8872",
+          "note": null
+        },
+        {
+          "dep": "18:30",
+          "type": "特急",
+          "to": "kintetsu-nagoya",
+          "trainNo": "1-9141",
+          "note": "伊勢志摩ライナー；車いす対応車両"
+        },
+        {
+          "dep": "18:43",
+          "type": "普通",
+          "to": "ise-nakagawa",
+          "trainNo": "1-8863",
+          "note": null
+        },
+        {
+          "dep": "19:15",
+          "type": "普通",
+          "to": "ise-nakagawa",
+          "trainNo": "1-8873",
+          "note": null
+        },
+        {
+          "dep": "19:30",
+          "type": "特急",
+          "to": "kintetsu-nagoya",
+          "trainNo": "1-9142",
+          "note": "アーバンライナー；車いす対応車両"
+        },
+        {
+          "dep": "19:45",
+          "type": "特急",
+          "to": "osaka-namba",
+          "trainNo": "1-9173",
+          "note": "ビスタカー"
+        },
+        {
+          "dep": "19:57",
+          "type": "普通",
+          "to": "ise-nakagawa",
+          "trainNo": "1-8877",
+          "note": null
+        },
+        {
+          "dep": "20:23",
+          "type": "普通",
+          "to": "ise-nakagawa",
+          "trainNo": "1-8875",
+          "note": null
+        },
+        {
+          "dep": "21:09",
+          "type": "普通",
+          "to": "ise-nakagawa",
+          "trainNo": "1-8874",
+          "note": null
+        },
+        {
+          "dep": "22:14",
+          "type": "普通",
+          "to": "ise-nakagawa",
+          "trainNo": "1-8860",
+          "note": null
+        }
+      ]
+    }
+  },
+  "notes": "方向鍵統一：for-kashikojima＝往鳥羽、賢島方向（南下），for-ise-nakagawa＝往伊勢中川、名古屋、大阪方向（北上）；實際終點看 to。trainNo 是近鐵時刻表網站的列車編號（tx），同一班車在各站相同，可以用來對照 _travel-times.json 的停站時刻。「holiday」是近鐵的土休日ダイヤ（週六、週日、國定假日）。しまかぜ不是每天行駛（有固定休日、檢修日），搭乘前要查運行日。",
+  "extra": {
+    "slCode": "454-16"
+  }
+}

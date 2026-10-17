@@ -4,7 +4,9 @@
   "type": "module",
   "description": "伊勢志摩旅遊規劃：資料與驗證腳本",
   "scripts": {
-    "validate": "node scripts/validate.mjs"
+    "validate": "node scripts/validate.mjs",
+    "kintetsu:fetch": "node scripts/kintetsu-timetable.mjs",
+    "next-train": "node scripts/next-train.mjs"
   },
   "devDependencies": {
     "ajv": "^8.20.0",
