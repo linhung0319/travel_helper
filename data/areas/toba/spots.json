@@ -1,0 +1,4183 @@
+[
+  {
+    "id": "toba-aquarium",
+    "type": "spot",
+    "name": {
+      "ja": "鳥羽水族館",
+      "kana": "とばすいぞくかん",
+      "zh": "鳥羽水族館",
+      "en": "Toba Aquarium"
+    },
+    "area": "toba",
+    "coords": [
+      136.84533,
+      34.482015
+    ],
+    "coordsSource": "osm",
+    "address": "〒517-8517 三重県鳥羽市鳥羽3-3-6",
+    "hours": {
+      "mon": [
+        [
+          "09:30",
+          "17:00"
+        ]
+      ],
+      "tue": [
+        [
+          "09:30",
+          "17:00"
+        ]
+      ],
+      "wed": [
+        [
+          "09:30",
+          "17:00"
+        ]
+      ],
+      "thu": [
+        [
+          "09:30",
+          "17:00"
+        ]
+      ],
+      "fri": [
+        [
+          "09:30",
+          "17:00"
+        ]
+      ],
+      "sat": [
+        [
+          "09:30",
+          "17:00"
+        ]
+      ],
+      "sun": [
+        [
+          "09:30",
+          "17:00"
+        ]
+      ],
+      "holiday": [
+        [
+          "09:30",
+          "17:00"
+        ]
+      ],
+      "note": "通常期 9:30～17:00，最後入館 16:00。黃金週（5/2～5/6）、暑假（8/1～8/28）、銀週（9/19～9/23）延長為 9:00～17:30（最後入館 16:30）。2 月為通常期。"
+    },
+    "closedNote": "全年無休（年中無休）。",
+    "febNote": "2 月照常營業（通常期 9:30～17:00）。室內設施，冬天、雨天都適合。",
+    "photos": [],
+    "links": {
+      "official": "https://aquarium.co.jp/",
+      "googleMaps": null,
+      "instagram": null
+    },
+    "tags": [
+      "水族館",
+      "室內",
+      "雨天備案",
+      "親子",
+      "長輩友善",
+      "鳥羽站周邊"
+    ],
+    "tier": null,
+    "nearestStation": {
+      "id": "toba",
+      "mode": "walk",
+      "minutes": 10,
+      "note": "JR・近鐵鳥羽站步行約 10 分（官網）。"
+    },
+    "access": [
+      {
+        "from": "toba",
+        "mode": "walk",
+        "minutes": 10,
+        "note": "沿國道 42 號往南步行，平路。"
+      },
+      {
+        "from": "toba",
+        "mode": "bus",
+        "minutes": null,
+        "note": "CANばす（伊勢二見鳥羽周遊巴士）有「鳥羽水族館・ミキモト真珠島」站，約每小時 1 班。"
+      }
+    ],
+    "admission": "大人 2,800 円、小中學生 1,600 円、3 歲以上幼兒 800 円；25 人以上團體有折扣。",
+    "stayMinutes": 150,
+    "indoor": true,
+    "fares": {
+      "adult": "2,800 円（團體 25 人以上 2,600 円）",
+      "child": "小中學生 1,600 円（團體 1,500 円）；幼兒（3 歲以上）800 円（團體 700 円）；未滿 3 歲免費",
+      "senior": "官網票價頁未列長輩優惠（第三方 mapple 寫 65 歲以上 2,200 円，疑為舊資訊，見 conflicts）",
+      "group": "25 人以上團體價（大人 2,600／小中 1,500／幼兒 700 円），在售票處申報。15 人不夠團體價。",
+      "note": "障礙者手冊本人＋陪同 1 人：大人 2,000、小中 1,200、幼兒 600 円（僅限日本國內發行的手冊）。可事先買網路票（WEBチケット）避開售票處排隊。"
+    },
+    "group": {
+      "reservation": "一般團體不需預約，到售票處申報即可（25 人以上才有團體價）。官網另有團體方案頁。",
+      "contact": {
+        "phone": "0599-25-2555",
+        "url": "https://aquarium.co.jp/ryoukin/group-benefit.html",
+        "note": "代表電話。団体プランのページあり。"
+      },
+      "note": null
+    },
+    "accessibility": {
+      "walkInsideMinutes": null,
+      "stairs": "少",
+      "slope": "館內各處有坡道與電梯，輪椅、嬰兒車幾乎所有區域都能參觀；部分地方需走樓梯、或到不了水槽前。",
+      "restAreas": null,
+      "toilets": true,
+      "barrierFree": "輪椅 16 台、電動代步車（シニアカー）3 台免費出借（向工作人員申請，不接受預約）；身障者廁所 4 處（含成人尿布台、人工肛門設備）；國道側售票處旁有無障礙出入口。",
+      "note": "館內沒有固定參觀路線（順路なし），可自由安排。嬰兒車不能推進表演場，需停放在會場的嬰兒車停放處。"
+    },
+    "kids": {
+      "friendly": "high",
+      "note": "飼養約 1,200 種生物，有儒艮（ジュゴン）、海獅表演（約 15 分）、海象互動等；「奇跡の森」有吊橋。週末較擠，平日較空。"
+    },
+    "sources": [
+      {
+        "type": "official",
+        "url": "https://aquarium.co.jp/eigyo/",
+        "retrieved": "2026-10-17",
+        "note": "營業時間、全年無休、地址、電話、鳥羽站步行 10 分"
+      },
+      {
+        "type": "official",
+        "url": "https://aquarium.co.jp/ryoukin/",
+        "retrieved": "2026-10-17",
+        "note": "個人與 25 人以上團體票價、障礙者優惠"
+      },
+      {
+        "type": "official",
+        "url": "https://aquarium.co.jp/kannai/barrier.html",
+        "retrieved": "2026-10-17",
+        "note": "輪椅／代步車出借、無障礙廁所、坡道與電梯"
+      },
+      {
+        "type": "tourism",
+        "url": "https://www.kankomie.or.jp/report/1336",
+        "retrieved": "2026-10-17",
+        "note": "海獅表演時間、擁擠時段、奇跡の森（2023-09 文章）"
+      },
+      {
+        "type": "osm",
+        "url": "https://www.openstreetmap.org/way/183967154",
+        "retrieved": "2026-10-17",
+        "note": "座標"
+      }
+    ],
+    "verified": false,
+    "extra": {
+      "conflicts": [
+        "mapple 等第三方網站寫大人 2,500 円、65 歲以上長輩 2,200 円、營業 9:00～17:00，與官網（大人 2,800 円、無長輩價、9:30～17:00）不同，以官網為準。"
+      ],
+      "phone": "0599-25-2555",
+      "stayMinutesNote": "官網沒有建議停留時間，依館內規模（約 1,200 種、12 個區域）估計 2.5 小時，看表演會更久。",
+      "showTimes": "海獅表演（パフォーマンススタジアム）10:00、11:30、13:00、15:30 各約 15 分（2023 年觀光三重文章，實際以當日館內公告為準）。"
+    }
+  },
+  {
+    "id": "toba-mikimoto-pearl-island",
+    "type": "spot",
+    "name": {
+      "ja": "ミキモト真珠島",
+      "kana": "みきもとしんじゅしま",
+      "zh": "御木本珍珠島",
+      "en": "Mikimoto Pearl Island"
+    },
+    "area": "toba",
+    "coords": [
+      136.846888,
+      34.483394
+    ],
+    "coordsSource": "osm",
+    "address": "〒517-8511 三重県鳥羽市鳥羽1-7-1",
+    "hours": {
+      "mon": [
+        [
+          "09:00",
+          "17:00"
+        ]
+      ],
+      "tue": [
+        [
+          "09:00",
+          "17:00"
+        ]
+      ],
+      "wed": [
+        [
+          "09:00",
+          "17:00"
+        ]
+      ],
+      "thu": [
+        [
+          "09:00",
+          "17:00"
+        ]
+      ],
+      "fri": [
+        [
+          "09:00",
+          "17:00"
+        ]
+      ],
+      "sat": [
+        [
+          "09:00",
+          "17:00"
+        ]
+      ],
+      "sun": [
+        [
+          "09:00",
+          "17:00"
+        ]
+      ],
+      "holiday": [
+        [
+          "09:00",
+          "17:00"
+        ]
+      ],
+      "note": "官網營業案內：2027-01-06～03-18 為 9:00～17:00（此為 2 月的時段）。營業時間依季節變動。"
+    },
+    "closedNote": "每年 12 月第 2 個星期二起休 3 天（毎年12月第2火曜日より3日間休業）。2 月沒有公休。",
+    "febNote": "2027 年 2 月照常營業 9:00～17:00。海女實演每天 9:30、10:30、11:30、13:30、14:30、15:30、16:30（營業到 16:30 的日子最後一場是 15:30）；冬季是否照常實演、天候影響請當天確認。",
+    "photos": [],
+    "links": {
+      "official": "https://www.mikimoto-pearl-island.jp/",
+      "googleMaps": null,
+      "instagram": null
+    },
+    "tags": [
+      "博物館",
+      "珍珠",
+      "海女",
+      "室內為主",
+      "鳥羽站周邊"
+    ],
+    "tier": null,
+    "nearestStation": {
+      "id": "toba",
+      "mode": "walk",
+      "minutes": 5,
+      "note": "JR・近鐵鳥羽站步行約 5 分，經珍珠橋（パールブリッジ）上島。"
+    },
+    "access": [
+      {
+        "from": "toba",
+        "mode": "walk",
+        "minutes": 5,
+        "note": null
+      },
+      {
+        "from": "toba-aquarium",
+        "mode": "walk",
+        "minutes": null,
+        "note": "就在鳥羽水族館旁，步行數分鐘。"
+      }
+    ],
+    "admission": "大人 1,650 円、小中學生 820 円（含海女實演參觀）；20 人以上團體有折扣。",
+    "stayMinutes": 75,
+    "indoor": true,
+    "fares": {
+      "adult": "1,650 円（含稅、含海女實演）",
+      "child": "小中學生 820 円；未就學兒童官網未列（null）",
+      "senior": "無長輩優惠（官網未列長輩票價）",
+      "group": "20 人以上：大人 1,320 円、小中學生 660 円。15 人不夠團體價。",
+      "note": "有障礙者優惠（個人在窗口出示手冊或ミライロID；團體需預約時申報）。學生團體另有價格。"
+    },
+    "group": {
+      "reservation": "20 人以上團體價；官網有「各種団体向け」頁面，團體可預約手霜（ハンドクリーム）製作體驗。一般參觀不需預約。",
+      "contact": {
+        "phone": "0599-25-2028",
+        "url": "https://www.mikimoto-pearl-island.jp/copy-of-団体-学校向け",
+        "note": "メール info@pearl-island.jp"
+      },
+      "note": null
+    },
+    "accessibility": {
+      "walkInsideMinutes": null,
+      "stairs": "少",
+      "slope": null,
+      "restAreas": null,
+      "toilets": true,
+      "barrierFree": "第三方資料：有輪椅、嬰兒車出借，島內有坡道與電梯；入口的珍珠橋（パールブリッジ）沒有電梯，由工作人員協助。",
+      "note": "觀光協會文章提到上島後有屋簷遮蔽的通道，天候不佳也能參觀。無障礙資訊官網 FAQ 沒有寫，需電話確認。"
+    },
+    "kids": {
+      "friendly": "medium",
+      "note": "海女實演（白衣海女潛水）小孩會有興趣；珍珠博物館偏大人。GW、暑假才有親子體驗活動。"
+    },
+    "sources": [
+      {
+        "type": "official",
+        "url": "https://www.mikimoto-pearl-island.jp/営業案内",
+        "retrieved": "2026-10-17",
+        "note": "2027 年 2 月營業時間、休業日、個人／團體票價、障礙者優惠"
+      },
+      {
+        "type": "official",
+        "url": "https://www.mikimoto-pearl-island.jp/海女時間",
+        "retrieved": "2026-10-17",
+        "note": "海女實演時刻"
+      },
+      {
+        "type": "official",
+        "url": "https://www.mikimoto-pearl-island.jp/よくある質問",
+        "retrieved": "2026-10-17",
+        "note": "建議停留 1～1.5 小時、團體"
+      },
+      {
+        "type": "tourism",
+        "url": "https://www.kankomie.or.jp/report/227",
+        "retrieved": "2026-10-17",
+        "note": "地址、電話、步行 5 分、屋簷通道（2017 年舊文，票價已過時）"
+      },
+      {
+        "type": "other",
+        "url": "https://epark.jp/shopinfo/odk464284/",
+        "retrieved": "2026-10-17",
+        "note": "輪椅／嬰兒車出借、珍珠橋無電梯（第三方）"
+      },
+      {
+        "type": "osm",
+        "url": "https://www.openstreetmap.org/way/131049872",
+        "retrieved": "2026-10-17",
+        "note": "座標（真珠島 島嶼範圍的中心）"
+      }
+    ],
+    "verified": false,
+    "extra": {
+      "conflicts": [
+        "觀光三重 2017 年文章寫大人 1,500 円、團體 1,200 円、1～3 月 8:30～17:00；官網現行為大人 1,650 円、團體 1,320 円、2027-01-06～03-18 為 9:00～17:00，以官網為準。",
+        "舊官網網域 www.mikimoto-pearl-museum.co.jp 已無法連線（DNS 查不到），現行官網為 www.mikimoto-pearl-island.jp。"
+      ],
+      "phone": "0599-25-2028",
+      "stayMinutesNote": "官網 FAQ：全部看完約 1 小時～1 小時 30 分，取 75 分。",
+      "facilities": "真珠博物館、御木本幸吉記念館、海女實演、餐廳"
+    }
+  },
+  {
+    "id": "toba-bay-cruise-irukajima",
+    "type": "spot",
+    "name": {
+      "ja": "鳥羽湾めぐりとイルカ島",
+      "kana": "とばわんめぐりといるかじま",
+      "zh": "鳥羽灣遊覽船與海豚島",
+      "en": "Toba Bay Cruise & Dolphin Island"
+    },
+    "area": "toba",
+    "coords": [
+      136.84494,
+      34.490423
+    ],
+    "coordsSource": "osm",
+    "address": "〒517-0011 三重県鳥羽市鳥羽1-2383-51（鳥羽マリンターミナル）",
+    "hours": {
+      "mon": null,
+      "tue": null,
+      "wed": null,
+      "thu": null,
+      "fri": null,
+      "sat": null,
+      "sun": null,
+      "holiday": null,
+      "note": "官網有 A／B／C 三種班表（9 點台～16 點台出航，大致每 30 分一班），但沒寫哪種班表適用哪些日子，2027 年 2 月的班表要問。觀光三重寫營業時間 9:30～15:30（依季節、星期變動）。最後一班不能上海豚島。請在開船前 15 分鐘到。"
+    },
+    "closedNote": "觀光三重、gltjp、るるぶ寫每年「1 月中旬～2 月上旬」休業（船舶定期檢查、設施點檢）；ジョルダン寫「1 月下旬～2 月中旬」。天候不佳停航。",
+    "febNote": "⚠ 2 月初可能遇到年度停航檢修（第三方資料寫 1 月中旬～2 月上旬）。另外官網 2026-09-11 公告：海豚島 2026-12-14～12-28 因設施點檢休園（期間遊覽船照常、不停靠海豚島）。2027 年 1～2 月是否還有停航期，官網目前沒寫，務必向志摩マリンレジャー確認。",
+    "photos": [],
+    "links": {
+      "official": "https://shima-marineleisure.com/toba",
+      "googleMaps": null,
+      "instagram": null
+    },
+    "tags": [
+      "遊覽船",
+      "海豚",
+      "海獅",
+      "戶外",
+      "親子",
+      "鳥羽站周邊"
+    ],
+    "tier": null,
+    "nearestStation": {
+      "id": "toba",
+      "mode": "walk",
+      "minutes": 5,
+      "note": "乘船處：鳥羽マリンターミナル（佐田浜）或「真珠島・水族館前のりば」，官網寫鳥羽站步行約 5～10 分。"
+    },
+    "access": [
+      {
+        "from": "toba",
+        "mode": "walk",
+        "minutes": 5,
+        "note": "到鳥羽マリンターミナル乘船處。"
+      },
+      {
+        "from": "toba-mikimoto-pearl-island",
+        "mode": "walk",
+        "minutes": null,
+        "note": "另一個乘船處「真珠島・水族館前のりば」（鳥羽 1 丁目 7）在真珠島、水族館旁。"
+      }
+    ],
+    "admission": "大人（國中以上）2,400 円、小人（4 歲～小學生）1,300 円，含海豚島入園；15 人以上團體有折扣。",
+    "stayMinutes": 120,
+    "indoor": false,
+    "fares": {
+      "adult": "國中生以上 2,400 円（含海豚島入園）",
+      "child": "4 歲～小學生 1,300 円；未滿 4 歲每位大人可免費帶 1 名",
+      "senior": "無長輩優惠（官網未列）",
+      "group": "15 人以上有團體折扣（金額未公開，需洽詢）。本團 15 人剛好達標。",
+      "note": "海豚島上另有付費項目：單人吊椅纜車（4 歲以上）單程 400／來回 700 円；海豚餵食 600 円／桶；海豚健康檢查體驗 800 円（小學生以上，每場 15 人）。有障礙者優惠（出示手冊）。2026-02 官網公告「鳥羽周遊共通券」改價。"
+    },
+    "group": {
+      "reservation": "15 人以上團體價需洽詢；官網有網路購票。",
+      "contact": {
+        "phone": "0599-25-3147",
+        "url": "https://shima-marineleisure.com/inquiry",
+        "note": "志摩マリンレジャー株式会社 業務部（平日 8:30～17:00、土日祝休）。観光三重記載の鳥羽営業所は 0599-25-3145。"
+      },
+      "note": "船：フラワーマーメイド、龍宮城（各定員 360 人）、みつしま（85 人），15 人搭乘沒問題。"
+    },
+    "accessibility": {
+      "walkInsideMinutes": null,
+      "stairs": "多",
+      "slope": "海豚島：到水獺區走階梯約 8 分、到海獅之森約 7 分；Flipper Pool（2 樓）要爬樓梯。山頂展望台可搭單人吊椅（天候差會停）。",
+      "restAreas": null,
+      "toilets": null,
+      "barrierFree": "官網只連結到外部無障礙資訊頁，船上及島上的輪椅對應沒有確認到。",
+      "note": "海豚表演區在碼頭附近；展望台、水獺區需爬階梯，長輩可只看海豚、海獅。冬天海上風大很冷。"
+    },
+    "kids": {
+      "friendly": "high",
+      "note": "海豚、海獅、水獺表演（各約 15 分）；可付費餵海豚。吊椅 4 歲以上、不能抱著坐。"
+    },
+    "sources": [
+      {
+        "type": "official",
+        "url": "https://shima-marineleisure.com/toba",
+        "retrieved": "2026-10-17",
+        "note": "票價、A/B/C 班表、乘船處、最後一班不能上島"
+      },
+      {
+        "type": "official",
+        "url": "https://shima-marineleisure.com/toba/island",
+        "retrieved": "2026-10-17",
+        "note": "海豚島表演時間、吊椅票價、階梯步行時間"
+      },
+      {
+        "type": "official",
+        "url": "https://shima-marineleisure.com/toba/course",
+        "retrieved": "2026-10-17",
+        "note": "船隻名稱與定員"
+      },
+      {
+        "type": "official",
+        "url": "https://shima-marineleisure.com/toba/access",
+        "retrieved": "2026-10-17",
+        "note": "兩個乘船處地址、佐田浜停車場"
+      },
+      {
+        "type": "official",
+        "url": "https://shima-marineleisure.com/all/toba/%e3%82%a4%e3%83%ab%e3%82%ab%e5%b3%b6%e3%80%80%e4%bc%91%e5%9c%92%e3%81%ae%e3%81%8a%e7%9f%a5%e3%82%89%e3%81%9b.php",
+        "retrieved": "2026-10-17",
+        "note": "海豚島 2026-12-14～12-28 休園公告、約 50 分航程"
+      },
+      {
+        "type": "tourism",
+        "url": "https://www.kankomie.or.jp/spot/3101",
+        "retrieved": "2026-10-17",
+        "note": "營業 9:30～15:30、休業 1 月中旬～2 月上旬、15 人以上團體折扣、電話"
+      },
+      {
+        "type": "other",
+        "url": "https://www.gltjp.com/ja/directory/item/19225/",
+        "retrieved": "2026-10-17",
+        "note": "1 月中旬～2 月上旬為船舶定期檢查期間"
+      },
+      {
+        "type": "osm",
+        "url": "https://www.openstreetmap.org/way/183719455",
+        "retrieved": "2026-10-17",
+        "note": "座標（鳥羽マリンターミナル乘船處）"
+      }
+    ],
+    "verified": false,
+    "extra": {
+      "conflicts": [
+        "冬季停航期：觀光三重、gltjp、るるぶ寫 1 月中旬～2 月上旬；ジョルダン寫 1 月下旬～2 月中旬；官網 2026 年只公告海豚島 12/14～12/28 休園。年度檢修時段可能每年不同。"
+      ],
+      "phone": "0599-25-3147",
+      "stayMinutesNote": "遊覽一圈約 50 分（不下船）；在海豚島下船看表演再搭下一班回來，估計 1.5～2 小時。",
+      "irukajimaCoords": [
+        136.835903,
+        34.504731
+      ],
+      "irukajimaNote": "イルカ島即日向島（OSM way 688902219）。",
+      "cruiseMinutes": 50
+    }
+  },
+  {
+    "id": "toba-castle-ruins",
+    "type": "spot",
+    "name": {
+      "ja": "鳥羽城跡（城山公園）",
+      "kana": "とばじょうあと（しろやまこうえん）",
+      "zh": "鳥羽城跡（城山公園）",
+      "en": "Toba Castle Ruins"
+    },
+    "area": "toba",
+    "coords": [
+      136.843699,
+      34.482564
+    ],
+    "coordsSource": "osm",
+    "address": "〒517-0011 三重県鳥羽市鳥羽3丁目4",
+    "hours": {
+      "mon": [
+        [
+          "00:00",
+          "24:00"
+        ]
+      ],
+      "tue": [
+        [
+          "00:00",
+          "24:00"
+        ]
+      ],
+      "wed": [
+        [
+          "00:00",
+          "24:00"
+        ]
+      ],
+      "thu": [
+        [
+          "00:00",
+          "24:00"
+        ]
+      ],
+      "fri": [
+        [
+          "00:00",
+          "24:00"
+        ]
+      ],
+      "sat": [
+        [
+          "00:00",
+          "24:00"
+        ]
+      ],
+      "sun": [
+        [
+          "00:00",
+          "24:00"
+        ]
+      ],
+      "holiday": [
+        [
+          "00:00",
+          "24:00"
+        ]
+      ],
+      "note": "全天開放（終日開放）、免費。"
+    },
+    "closedNote": "無休。",
+    "febNote": "戶外公園，2 月可參觀。春天是賞櫻名所，2 月沒有花。",
+    "photos": [],
+    "links": {
+      "official": "https://www.city.toba.mie.jp/soshiki/k_shakaikyoiku/gyomu/rekishi_bunkazai/bunkazai/1/2549.html",
+      "googleMaps": null,
+      "instagram": null
+    },
+    "tags": [
+      "城跡",
+      "歷史",
+      "公園",
+      "展望",
+      "免費",
+      "戶外",
+      "九鬼水軍"
+    ],
+    "tier": null,
+    "nearestStation": {
+      "id": "toba",
+      "mode": "walk",
+      "minutes": 10,
+      "note": "鳥羽市官網：從鳥羽站山側出口步行 10 分；觀光三重寫約 15 分。"
+    },
+    "access": [
+      {
+        "from": "toba",
+        "mode": "walk",
+        "minutes": 10,
+        "note": "位在鳥羽水族館隔著國道與近鐵線路的對面小山上。"
+      },
+      {
+        "from": "toba-aquarium",
+        "mode": "walk",
+        "minutes": null,
+        "note": "就在水族館對面的小山。"
+      }
+    ],
+    "admission": "免費",
+    "stayMinutes": 30,
+    "indoor": false,
+    "fares": {
+      "adult": "免費",
+      "child": "免費",
+      "senior": "免費",
+      "group": "免費",
+      "note": null
+    },
+    "group": {
+      "reservation": "不需預約",
+      "contact": {
+        "phone": "0599-25-1157",
+        "url": null,
+        "note": "鳥羽市観光商工課。史跡については鳥羽市教育委員会 生涯学習課 0599-25-1268"
+      },
+      "note": "鳥羽ガイドボランティアの会可導覽（每位導遊 3,000 円，鳥羽ガイドセンター 0599-25-8255）。"
+    },
+    "accessibility": {
+      "walkInsideMinutes": 20,
+      "stairs": null,
+      "slope": "城山標高約 40 m，需走上坡（坡道或階梯，具體情況未確認）。",
+      "restAreas": null,
+      "toilets": true,
+      "barrierFree": null,
+      "note": "公園本身沒有停車場。九鬼嘉隆 1594 年築的「海城」，天守已在明治初年拆除，現存部分石垣，三之丸整備成廣場。"
+    },
+    "kids": {
+      "friendly": "low",
+      "note": "主要是石垣與展望，小孩可在廣場活動；「ハートTOBA」紀念物可拍照。"
+    },
+    "sources": [
+      {
+        "type": "tourism",
+        "url": "https://www.kankomie.or.jp/spot/23730",
+        "retrieved": "2026-10-17",
+        "note": "全天開放、免費、無休、有廁所、無停車場、標高 40 m、地址、電話"
+      },
+      {
+        "type": "official",
+        "url": "https://www.city.toba.mie.jp/soshiki/k_shakaikyoiku/gyomu/rekishi_bunkazai/bunkazai/1/2549.html",
+        "retrieved": "2026-10-17",
+        "note": "歷史、石垣、鳥羽站山側出口步行 10 分（2022-03-31 更新）"
+      },
+      {
+        "type": "tourism",
+        "url": "https://www.toba.gr.jp/course/1501/",
+        "retrieved": "2026-10-17",
+        "note": "鳥羽市觀光協會散步路線，城山公園停留約 20 分"
+      },
+      {
+        "type": "osm",
+        "url": "https://www.openstreetmap.org/node/10209305898",
+        "retrieved": "2026-10-17",
+        "note": "座標（城山児童公園；與觀光三重地圖座標 34.482452,136.843772 一致）"
+      }
+    ],
+    "verified": false,
+    "extra": {
+      "conflicts": [
+        "鳥羽站步行時間：鳥羽市官網 10 分、觀光三重 15 分。"
+      ],
+      "phone": "0599-25-1157",
+      "stayMinutesNote": "估計值：觀光協會散步路線排 20 分，加上上坡移動估 30 分。"
+    }
+  },
+  {
+    "id": "toba-hiyoriyama-observatory",
+    "type": "spot",
+    "name": {
+      "ja": "日和山展望台",
+      "kana": "ひよりやまてんぼうだい",
+      "zh": "日和山展望台",
+      "en": "Hiyoriyama Observatory"
+    },
+    "area": "toba",
+    "coords": [
+      136.840081,
+      34.485182
+    ],
+    "coordsSource": "osm",
+    "address": "〒517-0011 三重県鳥羽市鳥羽2丁目",
+    "hours": {
+      "mon": null,
+      "tue": null,
+      "wed": null,
+      "thu": null,
+      "fri": null,
+      "sat": null,
+      "sun": null,
+      "holiday": null,
+      "note": "戶外山頂展望台，沒有公布開放時間（應為自由參觀，但未確認）。"
+    },
+    "closedNote": null,
+    "febNote": null,
+    "photos": [],
+    "links": {
+      "official": null,
+      "googleMaps": null,
+      "instagram": null
+    },
+    "tags": [
+      "展望台",
+      "登山步道",
+      "免費",
+      "戶外",
+      "歷史"
+    ],
+    "tier": null,
+    "nearestStation": {
+      "id": "toba",
+      "mode": "walk",
+      "minutes": 15,
+      "note": "觀光三重：鳥羽站步行約 15 分（含上山）。"
+    },
+    "access": [
+      {
+        "from": "toba",
+        "mode": "walk",
+        "minutes": 15,
+        "note": "可經賀多神社（鳥羽站步行約 10 分）到登山口；口碑提到有相當陡的坡。"
+      }
+    ],
+    "admission": "免費（推定，未見收費資訊）",
+    "stayMinutes": 60,
+    "indoor": false,
+    "fares": null,
+    "group": {
+      "reservation": "不需預約",
+      "contact": {
+        "phone": "0599-25-1157",
+        "url": null,
+        "note": "鳥羽市観光商工課"
+      },
+      "note": null
+    },
+    "accessibility": {
+      "walkInsideMinutes": null,
+      "stairs": null,
+      "slope": "山頂展望台，有整備步道，但口碑說有相當陡的坡（結構な急坂）。",
+      "restAreas": null,
+      "toilets": null,
+      "barrierFree": null,
+      "note": "長輩不建議。展望台中央有江戶時代用來預測海上天氣的八角柱「方位石」，及日本第一次無線電話通話紀念碑；原有的「幸せの鐘」因崩落危險已撤除。"
+    },
+    "kids": {
+      "friendly": "low",
+      "note": "需登山，6～10 歲可以走，但景點本身以眺望為主。"
+    },
+    "sources": [
+      {
+        "type": "tourism",
+        "url": "https://www.kankomie.or.jp/spot/4622",
+        "retrieved": "2026-10-17",
+        "note": "說明、方位石、地址、鳥羽站步行 15 分、停車場、洽詢電話；地圖座標 34.484859,136.840311"
+      },
+      {
+        "type": "other",
+        "url": "https://4travel.jp/dm_shisetsu/10010780",
+        "retrieved": "2026-10-17",
+        "note": "口碑：步行約 10～15 分、有陡坡"
+      },
+      {
+        "type": "osm",
+        "url": "https://www.openstreetmap.org/node/4607184263",
+        "retrieved": "2026-10-17",
+        "note": "座標（日和山山頂 natural=peak，與觀光三重座標相距約 40 m）"
+      }
+    ],
+    "verified": false,
+    "extra": {
+      "conflicts": [],
+      "phone": "0599-25-1157",
+      "stayMinutesNote": "估計值：往返登山約 30 分加上山頂停留。"
+    }
+  },
+  {
+    "id": "toba-marche",
+    "type": "spot",
+    "name": {
+      "ja": "鳥羽マルシェ",
+      "kana": "とばまるしぇ",
+      "zh": "鳥羽市集（Toba Marché）",
+      "en": "Toba Marché"
+    },
+    "area": "toba",
+    "coords": [
+      136.844663,
+      34.487118
+    ],
+    "coordsSource": "osm",
+    "address": "〒517-0011 三重県鳥羽市鳥羽一丁目2383-42",
+    "hours": {
+      "mon": [
+        [
+          "10:00",
+          "18:00"
+        ]
+      ],
+      "tue": [
+        [
+          "10:00",
+          "18:00"
+        ]
+      ],
+      "wed": [],
+      "thu": [
+        [
+          "10:00",
+          "18:00"
+        ]
+      ],
+      "fri": [
+        [
+          "10:00",
+          "18:00"
+        ]
+      ],
+      "sat": [
+        [
+          "10:00",
+          "18:00"
+        ]
+      ],
+      "sun": [
+        [
+          "10:00",
+          "18:00"
+        ]
+      ],
+      "holiday": null,
+      "note": "農水產直售所 10:00～18:00；外帶區 10:00～16:30（官網 FAQ 寫 10:00～17:00）；餐廳「地産鳥羽めしレストラン」11:00～14:00（官網 FAQ 寫最後受理 13:30 或 14:00），餐廳星期二也休。週三公休。"
+    },
+    "closedNote": "每週三、年末年始（12/31～1/3）公休；餐廳每週二也休。",
+    "febNote": "2 月照常營業（週三公休）。",
+    "photos": [],
+    "links": {
+      "official": "http://tobamarche.jp/",
+      "googleMaps": null,
+      "instagram": null
+    },
+    "tags": [
+      "購物",
+      "產地直售",
+      "伴手禮",
+      "餐廳",
+      "鳥羽站周邊"
+    ],
+    "tier": null,
+    "nearestStation": {
+      "id": "toba",
+      "mode": "walk",
+      "minutes": 2,
+      "note": "鳥羽站近鐵側出口步行約 2 分（觀光三重）。"
+    },
+    "access": [
+      {
+        "from": "toba",
+        "mode": "walk",
+        "minutes": 2,
+        "note": null
+      }
+    ],
+    "admission": "免費入場（購物、用餐另計）",
+    "stayMinutes": 30,
+    "indoor": true,
+    "fares": null,
+    "group": {
+      "reservation": "餐廳目前不接受預約，依到店順序入座；每日限 150 份。15 人一起用餐恐需分批。",
+      "contact": {
+        "phone": "0599-21-1080",
+        "url": "http://tobamarche.jp/qanda.html",
+        "note": "FAX 0599-21-1081"
+      },
+      "note": null
+    },
+    "accessibility": {
+      "walkInsideMinutes": 20,
+      "stairs": null,
+      "slope": "位在佐田浜平地，鳥羽站旁。",
+      "restAreas": null,
+      "toilets": null,
+      "barrierFree": null,
+      "note": "佐田浜第 1 停車場 1 小時內免費。"
+    },
+    "kids": {
+      "friendly": "medium",
+      "note": "產地直售市場，有外帶小吃。"
+    },
+    "sources": [
+      {
+        "type": "official",
+        "url": "http://tobamarche.jp/qanda.html",
+        "retrieved": "2026-10-17",
+        "note": "各區營業時間、餐廳不接受預約、每日 150 份、餐廳改為「鳥羽めしレストラン」"
+      },
+      {
+        "type": "official",
+        "url": "http://tobamarche.jp/",
+        "retrieved": "2026-10-17",
+        "note": "餐廳週二休業、地址、電話"
+      },
+      {
+        "type": "tourism",
+        "url": "https://www.kankomie.or.jp/spot/22222",
+        "retrieved": "2026-10-17",
+        "note": "營業時間、週三公休＋年末年始、餐廳週二休、地產自助餐 2025-01 結束、鳥羽站步行 2 分"
+      },
+      {
+        "type": "tourism",
+        "url": "https://www.toba.gr.jp/eat/1919/",
+        "retrieved": "2026-10-17",
+        "note": "10:00～18:00、週三公休、地址電話"
+      },
+      {
+        "type": "osm",
+        "url": "https://www.openstreetmap.org/node/4199980802",
+        "retrieved": "2026-10-17",
+        "note": "座標"
+      }
+    ],
+    "verified": false,
+    "extra": {
+      "conflicts": [
+        "原本的「地産ビュッフェレストラン」（Retty 舊資料：60 分 1,800 円）已在 2025 年 1 月結束，改為「地産鳥羽めしレストラン」，新菜單價格未查到。",
+        "外帶區結束時間：觀光三重 16:30、官網 FAQ 17:00；餐廳最後受理：官網 FAQ 內 13:30 與 14:00 兩種寫法。"
+      ],
+      "phone": "0599-21-1080",
+      "stayMinutesNote": "估計值：逛直售所約 30 分，用餐另計。",
+      "restaurantNote": "也可列入餐廳資料，但不接受預約、不適合 15 人一起。"
+    }
+  },
+  {
+    "id": "toba-ichibangai",
+    "type": "spot",
+    "name": {
+      "ja": "鳥羽1番街",
+      "kana": "とばいちばんがい",
+      "zh": "鳥羽一番街",
+      "en": "Toba Ichibangai"
+    },
+    "area": "toba",
+    "coords": [
+      136.843889,
+      34.48729
+    ],
+    "coordsSource": "osm",
+    "address": "〒517-0011 三重県鳥羽市鳥羽1-2383-13",
+    "hours": {
+      "mon": [
+        [
+          "09:30",
+          "17:30"
+        ]
+      ],
+      "tue": [
+        [
+          "09:30",
+          "17:30"
+        ]
+      ],
+      "wed": [
+        [
+          "09:30",
+          "17:30"
+        ]
+      ],
+      "thu": null,
+      "fri": [
+        [
+          "09:30",
+          "17:30"
+        ]
+      ],
+      "sat": [
+        [
+          "09:30",
+          "18:00"
+        ]
+      ],
+      "sun": [
+        [
+          "09:30",
+          "18:00"
+        ]
+      ],
+      "holiday": [
+        [
+          "09:30",
+          "18:00"
+        ]
+      ],
+      "note": "官網：平日 9:30～17:30、週六日與國定假日 9:30～18:00；依季節變動。星期四不定休（看官網營業日曆）。"
+    },
+    "closedNote": "星期四不定期公休；第三方資料寫春假、暑假、寒假、黃金週無休。",
+    "febNote": "2 月不是學校長假，週四可能公休，請查官網營業日曆。",
+    "photos": [],
+    "links": {
+      "official": "https://www.toba1ban.co.jp",
+      "googleMaps": null,
+      "instagram": null
+    },
+    "tags": [
+      "購物",
+      "伴手禮",
+      "珍珠",
+      "餐廳",
+      "展望室",
+      "足湯",
+      "鳥羽站周邊",
+      "雨天備案"
+    ],
+    "tier": null,
+    "nearestStation": {
+      "id": "toba",
+      "mode": "walk",
+      "minutes": 2,
+      "note": "鳥羽站前，與鳥羽巴士中心相連。"
+    },
+    "access": [
+      {
+        "from": "toba",
+        "mode": "walk",
+        "minutes": 2,
+        "note": null
+      }
+    ],
+    "admission": "免費入場",
+    "stayMinutes": 45,
+    "indoor": true,
+    "fares": null,
+    "group": {
+      "reservation": "官網有「団体予約について」頁面（館內餐廳的團體用餐）。",
+      "contact": {
+        "phone": "0599-26-3331",
+        "url": "https://www.toba1ban.co.jp",
+        "note": "鳥羽1番街協同組合"
+      },
+      "note": null
+    },
+    "accessibility": {
+      "walkInsideMinutes": 30,
+      "stairs": null,
+      "slope": null,
+      "restAreas": true,
+      "toilets": null,
+      "barrierFree": "館內有「伊勢志摩バリアフリーツアーセンター」（無障礙旅遊諮詢）。電梯有無官網首頁未寫。",
+      "note": "1、2 樓伴手禮、3 樓餐飲；有「ゆ～ったり展望室」可眺望鳥羽灣、休息區、免費茶、無水足湯；有哺乳室、投幣置物櫃、行李寄放；1 樓「鳥羽一番旅コンシェルジュ」可租自行車、寄放行李。"
+    },
+    "kids": {
+      "friendly": "medium",
+      "note": "1 樓有手工義式冰淇淋店。"
+    },
+    "sources": [
+      {
+        "type": "official",
+        "url": "https://www.toba1ban.co.jp",
+        "retrieved": "2026-10-17",
+        "note": "營業時間、地址、電話、館內設施（哺乳室、置物櫃、行李寄放、團體預約）"
+      },
+      {
+        "type": "tourism",
+        "url": "https://www.kankomie.or.jp/spot/14861",
+        "retrieved": "2026-10-17",
+        "note": "17 間店舖、展望室、足湯、無障礙旅遊中心、週四不定休、佐田浜停車場"
+      },
+      {
+        "type": "osm",
+        "url": "https://www.openstreetmap.org/way/183309104",
+        "retrieved": "2026-10-17",
+        "note": "座標"
+      }
+    ],
+    "verified": false,
+    "extra": {
+      "conflicts": [],
+      "phone": "0599-26-3331",
+      "stayMinutesNote": "估計值。"
+    }
+  },
+  {
+    "id": "toba-edogawa-rampo-museum",
+    "type": "spot",
+    "name": {
+      "ja": "江戸川乱歩館～鳥羽みなとまち文学館～",
+      "kana": "えどがわらんぽかん～とばみなとまちぶんがくかん～",
+      "zh": "江戶川亂步館（鳥羽港町文學館）",
+      "en": "Edogawa Rampo Museum (Toba Minatomachi Literature Museum)"
+    },
+    "area": "toba",
+    "coords": [
+      136.840552,
+      34.482397
+    ],
+    "coordsSource": "osm",
+    "address": "〒517-0011 三重県鳥羽市鳥羽2丁目5-11",
+    "hours": {
+      "mon": [
+        [
+          "10:00",
+          "16:00"
+        ]
+      ],
+      "tue": [],
+      "wed": [],
+      "thu": [
+        [
+          "10:00",
+          "16:00"
+        ]
+      ],
+      "fri": [
+        [
+          "10:00",
+          "16:00"
+        ]
+      ],
+      "sat": [
+        [
+          "10:00",
+          "16:00"
+        ]
+      ],
+      "sun": [
+        [
+          "10:00",
+          "16:00"
+        ]
+      ],
+      "holiday": null,
+      "note": "官網：10:00～16:00，最後入館 15:00。觀光三重則寫 10:00～15:00，且平日採預約制（向鳥羽ガイドセンター 0599-25-8255 預約）。"
+    },
+    "closedNote": "每週二、三及年末年始休館。",
+    "febNote": "2 月照常開館（週二、三休）。平日可能需預約（觀光三重）。2021 年 10 月火災後長期休館，2023-04-29 重新開館，目前營業中。",
+    "photos": [],
+    "links": {
+      "official": "http://rampomuseum.com/",
+      "googleMaps": null,
+      "instagram": "@rampomuseum"
+    },
+    "tags": [
+      "文學館",
+      "博物館",
+      "江戶川亂步",
+      "室內",
+      "雨天備案",
+      "鳥羽站周邊"
+    ],
+    "tier": null,
+    "nearestStation": {
+      "id": "toba",
+      "mode": "walk",
+      "minutes": 10,
+      "note": null
+    },
+    "access": [
+      {
+        "from": "toba",
+        "mode": "walk",
+        "minutes": 10,
+        "note": null
+      }
+    ],
+    "admission": "大人 500 円、國高中生 300 円、小學生以下免費",
+    "stayMinutes": 45,
+    "indoor": true,
+    "fares": {
+      "adult": "500 円",
+      "child": "國高中生 300 円、小學生以下免費",
+      "senior": "無長輩優惠（官網未列）",
+      "group": null,
+      "note": null
+    },
+    "group": {
+      "reservation": "平日需預約（觀光三重），團體建議事先聯絡。",
+      "contact": {
+        "phone": "0599-26-3745",
+        "url": "http://rampomuseum.com/",
+        "note": "平日の予約は鳥羽ガイドセンター 0599-25-8255"
+      },
+      "note": "設施由民家改建，空間不大，15 人可能需分批。"
+    },
+    "accessibility": {
+      "walkInsideMinutes": null,
+      "stairs": null,
+      "slope": null,
+      "restAreas": null,
+      "toilets": null,
+      "barrierFree": null,
+      "note": "由畫家・風俗研究家岩田準一的老家改建（岩田準一と乱歩・夢二館），中庭另有乱歩館・鳥羽文学ギャラリー、以本為造型的「幻影城」展示；附近有昭和復古小巷「みなとまち文学館小路」。"
+    },
+    "kids": {
+      "friendly": "low",
+      "note": "以文學資料為主，小孩興趣可能不高。"
+    },
+    "sources": [
+      {
+        "type": "official",
+        "url": "http://rampomuseum.com/",
+        "retrieved": "2026-10-17",
+        "note": "開館時間、休館日、票價、地址、電話、Instagram"
+      },
+      {
+        "type": "tourism",
+        "url": "https://www.kankomie.or.jp/spot/22170",
+        "retrieved": "2026-10-17",
+        "note": "10:00～15:00、平日預約制、步行 10 分、有停車場"
+      },
+      {
+        "type": "tourism",
+        "url": "https://www.toba.gr.jp/news/11421/",
+        "retrieved": "2026-10-17",
+        "note": "火災後重新開館的公告（標題）"
+      },
+      {
+        "type": "tourism",
+        "url": "https://www.kankomie.or.jp/volunteer/16",
+        "retrieved": "2026-10-17",
+        "note": "館內各區介紹"
+      },
+      {
+        "type": "osm",
+        "url": "https://www.openstreetmap.org/node/1944360872",
+        "retrieved": "2026-10-17",
+        "note": "座標（鳥羽みなとまち文学館，與觀光三重座標 34.482385,136.840623 一致）"
+      }
+    ],
+    "verified": false,
+    "extra": {
+      "conflicts": [
+        "開館時間：官網 10:00～16:00（最後入館 15:00），觀光三重 10:00～15:00 且平日預約制。",
+        "地址：官網與觀光三重寫鳥羽 2-5-11，第三方網站寫 2-5-2。",
+        "asoview 舊頁面寫「因火災休館、重開未定」，為 2021 年火災後的舊資訊；2023-04-29 已重新開館。"
+      ],
+      "phone": "0599-26-3745",
+      "stayMinutesNote": "估計值。"
+    }
+  },
+  {
+    "id": "toba-kadoya",
+    "type": "spot",
+    "name": {
+      "ja": "鳥羽大庄屋かどや（旧広野家住宅）",
+      "kana": "とばおおじょうやかどや（きゅうひろのけじゅうたく）",
+      "zh": "鳥羽大庄屋 角屋（舊廣野家住宅）",
+      "en": null
+    },
+    "area": "toba",
+    "coords": [
+      136.84452,
+      34.476247
+    ],
+    "coordsSource": "google-maps-url",
+    "address": "〒517-0011 三重県鳥羽市鳥羽4丁目",
+    "hours": {
+      "mon": [
+        [
+          "10:00",
+          "16:00"
+        ]
+      ],
+      "tue": [],
+      "wed": [
+        [
+          "10:00",
+          "16:00"
+        ]
+      ],
+      "thu": [
+        [
+          "10:00",
+          "16:00"
+        ]
+      ],
+      "fri": [
+        [
+          "10:00",
+          "16:00"
+        ]
+      ],
+      "sat": [
+        [
+          "10:00",
+          "16:00"
+        ]
+      ],
+      "sun": [
+        [
+          "10:00",
+          "16:00"
+        ]
+      ],
+      "holiday": [
+        [
+          "10:00",
+          "16:00"
+        ]
+      ],
+      "note": "最後入館 15:45。星期二遇國定假日則開館。"
+    },
+    "closedNote": "每週二（遇國定假日開館）、年末年始（12/29～1/3）。",
+    "febNote": "2 月照常開館（週二休）。",
+    "photos": [],
+    "links": {
+      "official": null,
+      "googleMaps": null,
+      "instagram": null
+    },
+    "tags": [
+      "歷史建築",
+      "免費",
+      "室內",
+      "江戶時代"
+    ],
+    "tier": null,
+    "nearestStation": {
+      "id": "nakanogo",
+      "mode": "walk",
+      "minutes": 10,
+      "note": "近鐵中之郷站步行約 10 分；鳥羽站步行約 25 分。"
+    },
+    "access": [
+      {
+        "from": "nakanogo",
+        "mode": "walk",
+        "minutes": 10,
+        "note": null
+      },
+      {
+        "from": "toba",
+        "mode": "walk",
+        "minutes": 25,
+        "note": null
+      }
+    ],
+    "admission": "免費",
+    "stayMinutes": 30,
+    "indoor": true,
+    "fares": {
+      "adult": "免費",
+      "child": "免費",
+      "senior": "免費",
+      "group": "免費",
+      "note": null
+    },
+    "group": {
+      "reservation": null,
+      "contact": {
+        "phone": "0599-25-8686",
+        "url": null,
+        "note": "かどや事務局"
+      },
+      "note": null
+    },
+    "accessibility": {
+      "walkInsideMinutes": null,
+      "stairs": null,
+      "slope": null,
+      "restAreas": null,
+      "toilets": null,
+      "barrierFree": null,
+      "note": "江戶時代擔任大庄屋的鳥羽富商廣野家宅邸，2004 年捐給市府。古民家，推測需脫鞋、有門檻（未確認）。停車在南方約 240 m 的舊法務局。"
+    },
+    "kids": {
+      "friendly": "low",
+      "note": null
+    },
+    "sources": [
+      {
+        "type": "tourism",
+        "url": "https://kankomie.or.jp/spot/22108",
+        "retrieved": "2026-10-17",
+        "note": "開館時間、休館日、免費、地址、電話、交通；頁面地圖座標 34.476247,136.84452"
+      }
+    ],
+    "verified": false,
+    "extra": {
+      "conflicts": [],
+      "phone": "0599-25-8686",
+      "coordsNote": "OSM 查不到，座標取自觀光三重（三重縣觀光連盟）頁面內嵌地圖的緯經度，coordsSource 記為 google-maps-url（觀光三重是縣觀光連盟，不是設施官方）。",
+      "stayMinutesNote": "估計值。"
+    }
+  },
+  {
+    "id": "toba-sea-folk-museum",
+    "type": "spot",
+    "name": {
+      "ja": "鳥羽市立 海の博物館",
+      "kana": "とばしりつ うみのはくぶつかん",
+      "zh": "鳥羽市立海之博物館",
+      "en": "Toba Sea-Folk Museum"
+    },
+    "area": "toba",
+    "coords": [
+      136.899503,
+      34.449328
+    ],
+    "coordsSource": "osm",
+    "address": "〒517-0025 三重県鳥羽市浦村町1731-68",
+    "hours": {
+      "mon": [
+        [
+          "09:00",
+          "16:30"
+        ]
+      ],
+      "tue": [
+        [
+          "09:00",
+          "16:30"
+        ]
+      ],
+      "wed": [
+        [
+          "09:00",
+          "16:30"
+        ]
+      ],
+      "thu": [
+        [
+          "09:00",
+          "16:30"
+        ]
+      ],
+      "fri": [
+        [
+          "09:00",
+          "16:30"
+        ]
+      ],
+      "sat": [
+        [
+          "09:00",
+          "16:30"
+        ]
+      ],
+      "sun": [
+        [
+          "09:00",
+          "16:30"
+        ]
+      ],
+      "holiday": [
+        [
+          "09:00",
+          "16:30"
+        ]
+      ],
+      "note": "12/1～2月底為 9:00～16:30（3～11 月為 9:00～17:00）。最後入館為閉館前 30 分（2 月即 16:00）；船の収蔵庫（木造船收藏庫）參觀只到 16:00。"
+    },
+    "closedNote": "休館日：6/26～6/30、12/26～12/30（官網）。其餘每日開館。",
+    "febNote": "2 月照常開館，冬季時段 9:00～16:30（最後入館 16:00）。2/2～2/13 無休館日。",
+    "photos": [],
+    "links": {
+      "official": "https://www.umihaku.com/",
+      "googleMaps": null,
+      "instagram": null
+    },
+    "tags": [
+      "博物館",
+      "海女文化",
+      "漁業民俗",
+      "室內",
+      "建築",
+      "雨天備案"
+    ],
+    "tier": null,
+    "nearestStation": {
+      "id": "toba",
+      "mode": "bus",
+      "minutes": 40,
+      "note": "鳥羽バスセンター搭かもめバス④小浜～石鏡港線（石鏡港方向），於「海の博物館」或「海の博物館東」下車即到。車程約 35～45 分。"
+    },
+    "access": [
+      {
+        "from": "toba",
+        "mode": "bus",
+        "minutes": 40,
+        "note": "かもめバス④小浜～石鏡港線，鳥羽バスセンター發。2026-09-01 時刻表：平日約 9 班（7:35、8:12、9:49、10:50、12:17、14:17、15:47、17:12、18:20），土日祝約 8 班（8:12、9:10、10:27、12:55、13:36、15:47、17:07、18:28）。回程平日從博物館約 10:48、11:58、13:28、15:38、16:58 等。班次會變，出發前要再查。"
+      },
+      {
+        "from": "toba",
+        "mode": "taxi",
+        "minutes": 20,
+        "note": "官網：鳥羽站搭計程車約 20 分。"
+      },
+      {
+        "from": "toba",
+        "mode": "car",
+        "minutes": 35,
+        "note": "伊勢 IC 經伊勢二見鳥羽ライン約 35～40 分；免費停車場，車位充足。"
+      }
+    ],
+    "admission": "大人 800 日圓、大學生以下 400 日圓；20 人以上團體大人 720、學生 320。",
+    "stayMinutes": 90,
+    "indoor": true,
+    "fares": {
+      "adult": "800 日圓（18 歲以上）",
+      "child": "大學生以下 400 日圓（大學生須出示學生證）；未就學兒童是否免費官網未寫",
+      "senior": "無長輩優惠",
+      "group": "20～99 人：大人 720、學生 320；100 人以上：大人 640、學生 280",
+      "note": "身心障礙手帳持有者本人＋陪同 1 人半價（含ミライロID）。"
+    },
+    "group": {
+      "reservation": "團體可用電話／FAX 預約導覽與體驗（映像鑑賞、學藝員解說、收藏庫參觀、聽海女說話 2,000 日圓/每位海女、柴魚削體驗 材料費 300 日圓等）",
+      "contact": {
+        "phone": "0599-32-6006",
+        "url": "https://www.umihaku.com/school/",
+        "note": "TEL 0599-32-6006／FAX 0599-32-5581。ご予約いただければご案内させていただきます。"
+      },
+      "note": "映像ホール 90 人；クラフト体験一次約 60 人。15 人不到團體票門檻（20 人）。"
+    },
+    "accessibility": {
+      "walkInsideMinutes": 60,
+      "stairs": "少",
+      "slope": "館內有坡道（部分只有階梯），官網有坡道導覽圖 PDF",
+      "restAreas": null,
+      "toilets": true,
+      "barrierFree": "有輪椅出借、坡道；有哺乳室、尿布台",
+      "note": "展示分 A 棟、B 棟、船の収蔵庫、重要文化財収蔵庫等多棟，棟與棟之間要走室外。"
+    },
+    "kids": {
+      "friendly": "medium",
+      "note": "以民俗資料、漁具、木造船為主，偏靜態；土日祝與長假有海洋手作（海のマグネット 2 個 600 日圓等，約 20～40 分），2/2～2/13 中只有週末與 2/11 可能有，須事先確認。"
+    },
+    "sources": [
+      {
+        "type": "official",
+        "url": "https://www.umihaku.com/",
+        "retrieved": "2026-10-17",
+        "note": "開館時間（冬季 9:00～16:30）、休館日、入館料、團體票、地址電話、巴士交通"
+      },
+      {
+        "type": "official",
+        "url": "https://www.umihaku.com/facility/",
+        "retrieved": "2026-10-17",
+        "note": "障礙者優惠、輪椅出借、坡道、停車場、計程車約 20 分"
+      },
+      {
+        "type": "official",
+        "url": "https://www.umihaku.com/school/",
+        "retrieved": "2026-10-17",
+        "note": "團體預約方式與體驗菜單、價格"
+      },
+      {
+        "type": "official",
+        "url": "https://www.umihaku.com/event/craft.php",
+        "retrieved": "2026-10-17",
+        "note": "海洋手作內容、實施日、價格"
+      },
+      {
+        "type": "tourism",
+        "url": "https://www.kankomie.or.jp/spot/3179",
+        "retrieved": "2026-10-17",
+        "note": "大人（18 歲以上）／大學生以下票價區分、座標交叉確認 34.449038,136.899943"
+      },
+      {
+        "type": "official",
+        "url": "https://www.city.toba.mie.jp/kurashi/kotsu/kokyo_kotsu/5528.html",
+        "retrieved": "2026-10-17",
+        "note": "かもめバス時刻表（令和8年9月1日改正）"
+      },
+      {
+        "type": "osm",
+        "url": "https://www.openstreetmap.org/node/1420992984",
+        "retrieved": "2026-10-17",
+        "note": "座標（OSM 名稱「海の博物館」）"
+      }
+    ],
+    "verified": false,
+    "extra": {
+      "conflicts": [],
+      "phone": "0599-32-6006",
+      "fax": "0599-32-5581",
+      "stayMinutesNote": "官方未提供建議停留時間，依多棟展示規模估計 60～90 分。",
+      "cafe": "館內有咖啡廳「カフェあらみ」（海の幸牡蠣カレー等），營業時間未確認。",
+      "parking": "免費、車位充足"
+    }
+  },
+  {
+    "id": "toba-observatory-pearl-road",
+    "type": "spot",
+    "name": {
+      "ja": "鳥羽展望台 海女のテラス",
+      "kana": "とばてんぼうだい あまのてらす",
+      "zh": "鳥羽展望台（海女露台）",
+      "en": "Toba Observatory (Ama Terrace)"
+    },
+    "area": "toba",
+    "coords": [
+      136.91504,
+      34.427701
+    ],
+    "coordsSource": "osm",
+    "address": "〒517-0031 三重県鳥羽市国崎町大岳3-3",
+    "hours": {
+      "mon": [
+        [
+          "09:30",
+          "16:30"
+        ]
+      ],
+      "tue": [
+        [
+          "09:30",
+          "16:30"
+        ]
+      ],
+      "wed": [],
+      "thu": [
+        [
+          "09:30",
+          "16:30"
+        ]
+      ],
+      "fri": [
+        [
+          "09:30",
+          "16:30"
+        ]
+      ],
+      "sat": [
+        [
+          "09:30",
+          "16:30"
+        ]
+      ],
+      "sun": [
+        [
+          "09:30",
+          "16:30"
+        ]
+      ],
+      "holiday": [
+        [
+          "09:30",
+          "16:30"
+        ]
+      ],
+      "note": "此為咖啡＆商店「海女のテラス」的營業時間（官網）；咖啡最後點餐為打烊前 30 分。週三公休（旺季照常營業，可能改休他日）；週二因設備保養最後點餐可能提早到 15:30。戶外展望廣場本身應可自由進入，但開放時間未查到官方說明。"
+    },
+    "closedNote": "海女のテラス週三公休（旺季營業、可能補休）。鳥羽市觀光協會寫「年中無休、9:00～17:00」，與官網不同，以官網為準。",
+    "febNote": "官網未特別寫冬季休業，2 月應照常（週三休）。冬季晴天空氣清澈時，有機會遠眺富士山（kankomie 報導）。",
+    "photos": [],
+    "links": {
+      "official": "https://www.toba-tenboudai.co.jp/",
+      "googleMaps": null,
+      "instagram": null
+    },
+    "tags": [
+      "展望台",
+      "絕景",
+      "太平洋",
+      "パールロード",
+      "咖啡",
+      "伴手禮",
+      "戶外"
+    ],
+    "tier": null,
+    "nearestStation": {
+      "id": "toba",
+      "mode": "taxi",
+      "minutes": 25,
+      "note": "沒有平日公車可達；計程車約 25 分。"
+    },
+    "access": [
+      {
+        "from": "toba",
+        "mode": "taxi",
+        "minutes": 25,
+        "note": "鳥羽站計程車約 25 分（kankomie）。"
+      },
+      {
+        "from": "toba",
+        "mode": "bus",
+        "minutes": 56,
+        "note": "只有土日祝有公車：かもめバス④石鏡港線延伸班（鳥羽バスセンター 10:27→鳥羽展望台約 11:23；13:36→約 14:32），以及⑤鳥羽～国崎線土日祝 11:23 發的一班延伸到鳥羽展望台（約 12:19）。回程土日祝約 12:09、12:29、15:31 從展望台發。平日無班次。（2026-09-01 時刻表）"
+      },
+      {
+        "from": "toba",
+        "mode": "car",
+        "minutes": 40,
+        "note": "伊勢 IC 經パールロード約 40 分；免費停車場約 250 台。"
+      }
+    ],
+    "admission": "免費（展望台）；咖啡、商店另計",
+    "stayMinutes": 40,
+    "indoor": false,
+    "fares": {
+      "adult": "免費",
+      "child": "免費",
+      "senior": "免費",
+      "group": null,
+      "note": "咖啡菜單有伊勢海老、浦村牡蠣、松阪牛等夾餡麵包（例：浦村牡蠣アヒージョサラダサンド 1,280 日圓，kankomie 2023 年報導）。"
+    },
+    "group": {
+      "reservation": "官網有「グループ・団体・旅行業者様」預約頁，詳細未載",
+      "contact": {
+        "phone": "0599-33-6201",
+        "url": "https://www.toba-tenboudai.co.jp/",
+        "note": "鳥羽展望台 海女のテラス"
+      },
+      "note": null
+    },
+    "accessibility": {
+      "walkInsideMinutes": 15,
+      "stairs": null,
+      "slope": null,
+      "restAreas": true,
+      "toilets": true,
+      "barrierFree": null,
+      "note": "停車場到展望廣場步行數分鐘；有男女分開廁所（kankomie）。標高 163m，冬天風大要保暖。芝生廣場在咖啡廳步行約 5 分。"
+    },
+    "kids": {
+      "friendly": "medium",
+      "note": "看風景為主，有草地廣場可野餐。"
+    },
+    "sources": [
+      {
+        "type": "official",
+        "url": "https://www.toba-tenboudai.co.jp/",
+        "retrieved": "2026-10-17",
+        "note": "營業時間 9:30～16:30、週三公休、週二保養、團體預約頁"
+      },
+      {
+        "type": "tourism",
+        "url": "https://www.kankomie.or.jp/spot/24853",
+        "retrieved": "2026-10-17",
+        "note": "地址、電話、計程車 25 分、座標交叉確認 34.427664,136.915009"
+      },
+      {
+        "type": "tourism",
+        "url": "https://www.toba.gr.jp/sightseeing/1760/",
+        "retrieved": "2026-10-17",
+        "note": "觀光協會寫 9:00～17:00、年中無休（與官網衝突）"
+      },
+      {
+        "type": "tourism",
+        "url": "https://www.kankomie.or.jp/report/1376",
+        "retrieved": "2026-10-17",
+        "note": "停車場 250 台免費、廁所、標高 163m、冬季可見富士山、菜單價格"
+      },
+      {
+        "type": "official",
+        "url": "https://www.city.toba.mie.jp/kurashi/kotsu/kokyo_kotsu/5528.html",
+        "retrieved": "2026-10-17",
+        "note": "かもめバス時刻表（令和8年9月1日改正），只有土日祝有到鳥羽展望台的班次"
+      },
+      {
+        "type": "osm",
+        "url": "https://www.openstreetmap.org/way/713902690",
+        "retrieved": "2026-10-17",
+        "note": "座標（OSM 名稱「鳥羽展望台」）"
+      }
+    ],
+    "verified": false,
+    "extra": {
+      "conflicts": [
+        "營業時間／公休：官網與 kankomie 為 9:30～16:30、週三休；鳥羽市觀光協會（toba.gr.jp）為 9:00～17:00、年中無休。以官網為準。"
+      ],
+      "phone": "0599-33-6201",
+      "stayMinutesNote": "無官方建議停留時間，依展望＋咖啡休息估計 30～45 分。",
+      "parking": "免費約 250 台",
+      "elevation": "163m"
+    }
+  },
+  {
+    "id": "toba-osatsu-ishigami",
+    "type": "spot",
+    "name": {
+      "ja": "神明神社（石神さん）",
+      "kana": "しんめいじんじゃ（いしがみさん）",
+      "zh": "神明神社（石神樣）",
+      "en": "Shinmei Shrine (Ishigami-san)"
+    },
+    "area": "toba",
+    "coords": [
+      136.904491,
+      34.392077
+    ],
+    "coordsSource": "osm",
+    "address": "三重県鳥羽市相差町1385",
+    "hours": {
+      "mon": [
+        [
+          "00:00",
+          "24:00"
+        ]
+      ],
+      "tue": [
+        [
+          "00:00",
+          "24:00"
+        ]
+      ],
+      "wed": [
+        [
+          "00:00",
+          "24:00"
+        ]
+      ],
+      "thu": [
+        [
+          "00:00",
+          "24:00"
+        ]
+      ],
+      "fri": [
+        [
+          "00:00",
+          "24:00"
+        ]
+      ],
+      "sat": [
+        [
+          "00:00",
+          "24:00"
+        ]
+      ],
+      "sun": [
+        [
+          "00:00",
+          "24:00"
+        ]
+      ],
+      "holiday": [
+        [
+          "00:00",
+          "24:00"
+        ]
+      ],
+      "note": "官方 FAQ：「參拜隨時都可以」。授與所（御守、御朱印）參考時間 8:30～16:30（御朱印受理到 16:15），此時間來自觀光媒體，官網未寫。"
+    },
+    "closedNote": null,
+    "febNote": "神社全年可參拜，2 月無特別休止。",
+    "photos": [],
+    "links": {
+      "official": "https://ishigamisan-shinmei.com/",
+      "googleMaps": null,
+      "instagram": "@ishigamisan_shinmei"
+    },
+    "tags": [
+      "神社",
+      "海女信仰",
+      "許願",
+      "女性守護",
+      "戶外"
+    ],
+    "tier": null,
+    "nearestStation": {
+      "id": "toba",
+      "mode": "bus",
+      "minutes": 55,
+      "note": "鳥羽バスセンター搭かもめバス⑤鳥羽～国崎線（国崎行），於「相差（石神さん前）」下車，步行 5～7 分（約 500m）。"
+    },
+    "access": [
+      {
+        "from": "toba",
+        "mode": "bus",
+        "minutes": 55,
+        "note": "かもめバス⑤鳥羽～国崎線，車程約 40～50 分＋步行 5～7 分。2026-09-01 時刻表，平日鳥羽バスセンター發 6:50、7:37、8:30、9:48、13:38、15:20、16:30、17:30、19:09、20:11 等約 10～11 班（部分班次不經鳥羽バスセンター），土日祝約 10 班。回程從相差（石神さん前）平日約 6:09、6:54、7:51、8:53、9:44、11:14、12:44、14:59、16:39、17:43、18:49。票價 600 日圓（區間制）。"
+      },
+      {
+        "from": "toba",
+        "mode": "taxi",
+        "minutes": 24,
+        "note": "鳥羽站計程車約 24 分（16.5km）（kankomie）。"
+      },
+      {
+        "from": "toba-osatsu-ama-culture-museum",
+        "mode": "walk",
+        "minutes": 4,
+        "note": "官方建議開車導航設「海女文化資料館」，停車後步行約 4 分；參道狹窄。"
+      }
+    ],
+    "admission": "免費參拜",
+    "stayMinutes": 40,
+    "indoor": false,
+    "fares": {
+      "adult": "免費",
+      "child": "免費",
+      "senior": "免費",
+      "group": null,
+      "note": "御守、御朱印另計。"
+    },
+    "group": {
+      "reservation": "一般參拜不需預約；祈禱另洽",
+      "contact": {
+        "phone": "0599-33-6873",
+        "url": "https://ishigamisan-shinmei.com/access/",
+        "note": "大型車・バス駐車場は有料、一律1,000円（上村石油 0599-33-6130 で支払い）"
+      },
+      "note": "乘大型車需付費停車場 1,000 日圓。"
+    },
+    "accessibility": {
+      "walkInsideMinutes": 15,
+      "stairs": null,
+      "slope": "從停車場到神社走狹窄巷弄（參道）約 4～7 分",
+      "restAreas": null,
+      "toilets": true,
+      "barrierFree": "境內有 1 座輪椅可用廁所；輪椅可在海女文化資料館當天借用（不受理預約）",
+      "note": "官網有「車いすでのご参拝」文章，但內容未取得；階梯、高低差狀況未確認。"
+    },
+    "kids": {
+      "friendly": "medium",
+      "note": "小神社，停留時間短；周邊有海產店、小吃。"
+    },
+    "sources": [
+      {
+        "type": "official",
+        "url": "https://ishigamisan-shinmei.com/",
+        "retrieved": "2026-10-17",
+        "note": "地址、電話、Instagram 帳號"
+      },
+      {
+        "type": "official",
+        "url": "https://ishigamisan-shinmei.com/access/",
+        "retrieved": "2026-10-17",
+        "note": "巴士站步行 5～7 分、導航設海女文化資料館、大型車停車 1,000 日圓"
+      },
+      {
+        "type": "official",
+        "url": "https://ishigamisan-shinmei.com/faq/",
+        "retrieved": "2026-10-17",
+        "note": "隨時可參拜、停車免費、輪椅廁所、輪椅出借"
+      },
+      {
+        "type": "tourism",
+        "url": "https://www.kankomie.or.jp/spot/21293",
+        "retrieved": "2026-10-17",
+        "note": "かもめバス約 40 分、計程車 24 分（16.5km）、座標交叉確認 34.392018,136.904326"
+      },
+      {
+        "type": "media",
+        "url": "https://rurubu.jp/andmore/spot/80024967",
+        "retrieved": "2026-10-17",
+        "note": "授與所 8:30～16:30（搜尋結果摘要，未逐字核對）"
+      },
+      {
+        "type": "official",
+        "url": "https://www.city.toba.mie.jp/kurashi/kotsu/kokyo_kotsu/5528.html",
+        "retrieved": "2026-10-17",
+        "note": "かもめバス時刻表（令和8年9月1日改正）、區間票價（鳥羽バスセンター→相差 600 日圓）"
+      },
+      {
+        "type": "osm",
+        "url": "https://www.openstreetmap.org/node/10125789093",
+        "retrieved": "2026-10-17",
+        "note": "座標（OSM 為無名稱的神道設施節點，位置與 kankomie 地圖座標相差約 20m，判定為同一神社）"
+      }
+    ],
+    "verified": false,
+    "extra": {
+      "conflicts": [
+        "巴士站步行時間：官網 5～7 分、kankomie 本文 7 分與 10 分並存。"
+      ],
+      "phone": "0599-33-6873",
+      "stayMinutesNote": "無官方建議停留時間，估計 30～45 分（含參道散步）。",
+      "parking": "周邊有多處免費停車場（海女文化資料館停車場最近）"
+    }
+  },
+  {
+    "id": "toba-osatsu-ama-culture-museum",
+    "type": "spot",
+    "name": {
+      "ja": "相差海女文化資料館",
+      "kana": "おうさつあまぶんかしりょうかん",
+      "zh": "相差海女文化資料館",
+      "en": "Osatsu Ama Culture Museum"
+    },
+    "area": "toba",
+    "coords": [
+      136.907197,
+      34.391279
+    ],
+    "coordsSource": "google-maps-url",
+    "address": "〒517-0032 三重県鳥羽市相差町1238",
+    "hours": {
+      "mon": [
+        [
+          "09:00",
+          "17:00"
+        ]
+      ],
+      "tue": [
+        [
+          "09:00",
+          "17:00"
+        ]
+      ],
+      "wed": [
+        [
+          "09:00",
+          "17:00"
+        ]
+      ],
+      "thu": [
+        [
+          "09:00",
+          "17:00"
+        ]
+      ],
+      "fri": [
+        [
+          "09:00",
+          "17:00"
+        ]
+      ],
+      "sat": [
+        [
+          "09:00",
+          "17:00"
+        ]
+      ],
+      "sun": [
+        [
+          "09:00",
+          "17:00"
+        ]
+      ],
+      "holiday": [
+        [
+          "09:00",
+          "17:00"
+        ]
+      ],
+      "note": "12:00～13:00 前後可能暫停開放（官網）。"
+    },
+    "closedNote": "無休，但可能臨時休館。",
+    "febNote": "官網寫無休；2 月應開館，未見冬季休館說明。",
+    "photos": [],
+    "links": {
+      "official": "https://osatsu.org/amabunka/",
+      "googleMaps": "https://goo.gl/maps/Z2N7Ru8AUHx",
+      "instagram": null
+    },
+    "tags": [
+      "資料館",
+      "海女文化",
+      "免費",
+      "室內",
+      "觀光案內",
+      "停車場"
+    ],
+    "tier": null,
+    "nearestStation": {
+      "id": "toba",
+      "mode": "bus",
+      "minutes": 50,
+      "note": "かもめバス⑤鳥羽～国崎線約 45 分，「相差」一帶下車步行數分。"
+    },
+    "access": [
+      {
+        "from": "toba",
+        "mode": "bus",
+        "minutes": 50,
+        "note": "鳥羽站搭かもめバス約 45 分，相差下車（kankomie）。"
+      },
+      {
+        "from": "toba-osatsu-ishigami",
+        "mode": "walk",
+        "minutes": 4,
+        "note": "是石神さん最近的停車場。"
+      }
+    ],
+    "admission": "免費",
+    "stayMinutes": 20,
+    "indoor": true,
+    "fares": {
+      "adult": "免費",
+      "child": "免費",
+      "senior": "免費",
+      "group": null,
+      "note": null
+    },
+    "group": {
+      "reservation": "參觀不需預約",
+      "contact": {
+        "phone": "0599-33-7453",
+        "url": "https://osatsu.org/amabunka/",
+        "note": "相差海女文化資料館"
+      },
+      "note": "同時是相差かまど（海女小屋）的聯絡窗口，也兼觀光案內與石神さん停車場。"
+    },
+    "accessibility": {
+      "walkInsideMinutes": 15,
+      "stairs": null,
+      "slope": null,
+      "restAreas": null,
+      "toilets": null,
+      "barrierFree": "可借輪椅（當天申請，不受理預約；石神さん官網 FAQ）",
+      "note": null
+    },
+    "kids": {
+      "friendly": "medium",
+      "note": "有用模型體驗採鮑魚、作業情景模型，小規模。"
+    },
+    "sources": [
+      {
+        "type": "official",
+        "url": "https://osatsu.org/amabunka/",
+        "retrieved": "2026-10-17",
+        "note": "開館時間、無休、免費、展示內容、停車場、Google Maps 連結（座標 34.391279,136.907197）"
+      },
+      {
+        "type": "tourism",
+        "url": "https://www.kankomie.or.jp/spot/16889",
+        "retrieved": "2026-10-17",
+        "note": "地址、電話、公車約 45 分、座標交叉確認"
+      },
+      {
+        "type": "official",
+        "url": "https://ishigamisan-shinmei.com/faq/",
+        "retrieved": "2026-10-17",
+        "note": "輪椅在海女文化資料館出借"
+      }
+    ],
+    "verified": false,
+    "extra": {
+      "conflicts": [],
+      "phone": "0599-33-7453",
+      "stayMinutesNote": "無官方建議停留時間，小型資料館估計 15～20 分。",
+      "parking": "免費（滿車時用其他停車場）",
+      "existence": "已確認存在並營業（osatsu.org 與 kankomie 皆有現行資料）。"
+    }
+  },
+  {
+    "id": "toba-osatsu-kamado",
+    "type": "spot",
+    "name": {
+      "ja": "海女小屋 相差かまど",
+      "kana": "あまごや おうさつかまど",
+      "zh": "海女小屋 相差灶（相差かまど）",
+      "en": "Ama Hut Osatsu Kamado"
+    },
+    "area": "toba",
+    "coords": [
+      136.908493,
+      34.388306
+    ],
+    "coordsSource": "google-maps-url",
+    "address": "三重県鳥羽市相差町（聯絡處：相差町1238 相差海女文化資料館）",
+    "hours": {
+      "mon": [
+        [
+          "11:30",
+          "15:00"
+        ]
+      ],
+      "tue": [
+        [
+          "11:30",
+          "15:00"
+        ]
+      ],
+      "wed": [
+        [
+          "11:30",
+          "15:00"
+        ]
+      ],
+      "thu": [
+        [
+          "11:30",
+          "15:00"
+        ]
+      ],
+      "fri": [
+        [
+          "11:30",
+          "15:00"
+        ]
+      ],
+      "sat": [
+        [
+          "11:30",
+          "15:00"
+        ]
+      ],
+      "sun": [
+        [
+          "11:30",
+          "15:00"
+        ]
+      ],
+      "holiday": [
+        [
+          "11:30",
+          "15:00"
+        ]
+      ],
+      "note": "完全預約制，非固定營業時段：午餐場 11:30～14:00 之間（約 1 小時）；下午茶場 14:00、15:00 兩場（約 1 小時；有海女出海時 14:00 場可能變動）。休業日官網未寫明，每天是否都能訂未確認。"
+    },
+    "closedNote": "官網提到有休業日，但未列出日期；需預約時確認。",
+    "febNote": "未查到冬季休業的說明；2 月是否接單需直接詢問。",
+    "photos": [],
+    "links": {
+      "official": "https://osatsu.org/",
+      "googleMaps": "https://maps.app.goo.gl/FRcmvouv76RGYhCG8",
+      "instagram": null
+    },
+    "tags": [
+      "海女小屋",
+      "體驗",
+      "用餐",
+      "海鮮炭烤",
+      "海女文化",
+      "需預約"
+    ],
+    "tier": null,
+    "nearestStation": {
+      "id": "toba",
+      "mode": "bus",
+      "minutes": 55,
+      "note": "かもめバス⑤鳥羽～国崎線（国崎行）約 45 分，「相差（石神さん前）」下車。"
+    },
+    "access": [
+      {
+        "from": "toba",
+        "mode": "bus",
+        "minutes": 55,
+        "note": "鳥羽バスセンター→相差（石神さん前）約 45 分、單程 600 日圓、約每小時一班（一天約 10 班）。鳥羽バスセンター有售かもめバス 1 日周遊券（大人 1,000、小孩 500）、2 日券（大人 1,500、小孩 800）。"
+      },
+      {
+        "from": "toba",
+        "mode": "car",
+        "minutes": 30,
+        "note": "鳥羽站開車約 30 分；官網建議租車。"
+      },
+      {
+        "from": "toba-osatsu-ishigami",
+        "mode": "walk",
+        "minutes": 10,
+        "note": "官網 FAQ：從「相差かまど前の浜」走到石神さん約 10 分。"
+      }
+    ],
+    "admission": "完全預約制；午餐大人 4,500 日圓、小孩 1,800 日圓；下午茶大人 2,500 日圓",
+    "stayMinutes": 60,
+    "indoor": true,
+    "fares": {
+      "adult": "午餐 4,500 日圓（含稅；サザエ、ヒオウギ貝、大アサリ、干物、うに飯、餅入り味噌汁等）；下午茶 2,500 日圓（4 人以上）",
+      "child": "午餐「小人」1,800 日圓（うにご飯、味噌汁、干物、貝 2 個、小鉢；年齡區間未寫）；下午茶小孩價未寫",
+      "senior": "無長輩優惠",
+      "group": "無團體折扣資訊；「前の浜」小屋最多 40 人同時使用",
+      "note": "伊勢海老、鮑魚另計（時價、數量有限）。飲料另計（啤酒 400、鳥羽サイダー 350），茶免費，沒有兒童軟性飲料但可自帶。"
+    },
+    "group": {
+      "reservation": "完全預約制，最晚前一天 17:00 前（kankomie）；可用官網預約表單、電話、アソビュー、じゃらん預約",
+      "contact": {
+        "phone": "0599-33-7453",
+        "url": "https://osatsu.org/html/form.php",
+        "note": "相差海女文化資料館が窓口"
+      },
+      "note": "海女小屋 2 處：「前の浜」最多 40 人，「おぜごさん」最多 8 人。15 人全員可在前の浜同場。"
+    },
+    "accessibility": {
+      "walkInsideMinutes": 10,
+      "stairs": null,
+      "slope": null,
+      "restAreas": true,
+      "toilets": true,
+      "barrierFree": "「海女小屋 前の浜」有無障礙廁所（官網 FAQ）",
+      "note": "座位是椅子還是坐地未確認（長輩要問）。在海邊，冬季可能較冷，但小屋內有炭火。"
+    },
+    "kids": {
+      "friendly": "high",
+      "note": "有兒童套餐；可近距離看海女烤海鮮、聽故事。"
+    },
+    "sources": [
+      {
+        "type": "official",
+        "url": "https://osatsu.org/html/meal.html",
+        "retrieved": "2026-10-17",
+        "note": "午餐／下午茶時段、價格、兒童套餐、飲料"
+      },
+      {
+        "type": "official",
+        "url": "https://osatsu.org/html/facilities.html",
+        "retrieved": "2026-10-17",
+        "note": "小屋 2 處與容量（40 人／8 人）"
+      },
+      {
+        "type": "official",
+        "url": "https://osatsu.org/html/access.html",
+        "retrieved": "2026-10-17",
+        "note": "かもめバス 600 日圓、約 10 班、周遊券；Google Maps 連結（前の浜 34.3883057,136.908493）"
+      },
+      {
+        "type": "official",
+        "url": "https://osatsu.org/html/faq.html",
+        "retrieved": "2026-10-17",
+        "note": "過敏可對應、無障礙廁所、到石神さん步行 10 分"
+      },
+      {
+        "type": "tourism",
+        "url": "https://www.kankomie.or.jp/spot/detail_16891.html",
+        "retrieved": "2026-10-17",
+        "note": "完全預約制（前一天 17 時前）、價格、電話"
+      }
+    ],
+    "verified": false,
+    "extra": {
+      "conflicts": [
+        "午餐時段：官網 11:30～14:00、kankomie 11:30～13:30。"
+      ],
+      "phone": "0599-33-7453",
+      "stayMinutesNote": "官網：各場約 1 小時。",
+      "allergy": "盡量對應，預約時告知。"
+    }
+  },
+  {
+    "id": "toba-hachiman-kamado",
+    "type": "spot",
+    "name": {
+      "ja": "海女小屋 はちまんかまど",
+      "kana": "あまごや はちまんかまど",
+      "zh": "海女小屋 八幡灶（はちまんかまど）",
+      "en": "Ama Hut Hachiman Kamado"
+    },
+    "area": "toba",
+    "coords": [
+      136.898846,
+      34.387864
+    ],
+    "coordsSource": "osm",
+    "address": "〒517-0032 三重県鳥羽市相差町819",
+    "hours": {
+      "mon": [
+        [
+          "10:00",
+          "17:00"
+        ]
+      ],
+      "tue": [
+        [
+          "10:00",
+          "17:00"
+        ]
+      ],
+      "wed": [
+        [
+          "10:00",
+          "17:00"
+        ]
+      ],
+      "thu": [
+        [
+          "10:00",
+          "17:00"
+        ]
+      ],
+      "fri": [
+        [
+          "10:00",
+          "17:00"
+        ]
+      ],
+      "sat": [
+        [
+          "10:00",
+          "17:00"
+        ]
+      ],
+      "sun": [
+        [
+          "10:00",
+          "17:00"
+        ]
+      ],
+      "holiday": [
+        [
+          "10:00",
+          "17:00"
+        ]
+      ],
+      "note": "完全預約制；各課程約 50 分～1 小時 15 分。"
+    },
+    "closedNote": "休業：1/1～1/5、8/13～8/15、12/30～12/31，另有不定休。",
+    "febNote": "2 月不在固定休業期間，需預約時確認是否不定休。天候不佳可能中止。",
+    "photos": [],
+    "links": {
+      "official": "https://amakoya.com/",
+      "googleMaps": null,
+      "instagram": null
+    },
+    "tags": [
+      "海女小屋",
+      "體驗",
+      "用餐",
+      "海鮮炭烤",
+      "海女文化",
+      "需預約",
+      "無障礙",
+      "接駁車"
+    ],
+    "tier": null,
+    "nearestStation": {
+      "id": "toba",
+      "mode": "shuttle",
+      "minutes": 30,
+      "note": "接駁車「あまバス」（要預約）：鳥羽站 12:45 發，海女小屋 15:15 回程，約 30 分。"
+    },
+    "access": [
+      {
+        "from": "toba",
+        "mode": "shuttle",
+        "minutes": 30,
+        "note": "あまバス：要預約，定員 24 人（一般座 15＋輔助座 6、輪椅 2），鳥羽站 12:45 發／海女小屋 15:15 發；可預約時要求順道去石神さん。費用官網未寫（kankomie 報導說免費接送）。"
+      },
+      {
+        "from": "toba",
+        "mode": "bus",
+        "minutes": 50,
+        "note": "三重交通鳥羽バスターミナル 5 號乘車處搭国崎行（かもめバス⑤），「畔蛸口」下車約 42 分；聯絡後可來巴士站接（步行約 10 分）。"
+      },
+      {
+        "from": "toba",
+        "mode": "taxi",
+        "minutes": 25,
+        "note": "鳥羽站計程車約 25 分（約 16km）。"
+      }
+    ],
+    "admission": "完全預約制；Tea Time 大人 3,000／兒童 1,500 日圓，料理體驗 大人 4,700／兒童 2,600 日圓起",
+    "stayMinutes": 75,
+    "indoor": true,
+    "fares": {
+      "adult": "A. Tea Time（50 分）3,000；B. 海女小屋料理體驗（1 小時 15 分）4,700；C. 伊勢海老或鮑魚 9,500／9,000；D. 13,800；F. 29,000（日圓，含稅）",
+      "child": "A 1,500、B 2,600 日圓（3～12 歲／小學生）；3 歲以下未寫",
+      "senior": "無長輩優惠",
+      "group": "無團體折扣資訊；小孩 5 人以上的團體需另外洽詢",
+      "note": "伊勢海老 6/1～8/15 無貨；E 課程（特大伊勢海老）限 10/15～12/15 且目前售完。舊資料有障礙者 9 折。"
+    },
+    "group": {
+      "reservation": "完全預約制，原則上 2 天前截止（G 課程約 1 個月前）",
+      "contact": {
+        "phone": "0599-33-1023",
+        "url": "https://amakoya.com/amayoyaku/",
+        "note": "海女小屋はちまんかまど"
+      },
+      "note": "3 個房間合計 83 人（35＋24＋24），15 人可同場。大型巴士停車 4 台、小客車 20 台。"
+    },
+    "accessibility": {
+      "walkInsideMinutes": 5,
+      "stairs": "無",
+      "slope": null,
+      "restAreas": true,
+      "toilets": true,
+      "barrierFree": "全館無障礙：各室出入口無高低差、全部椅子座位、輪椅用廁所 9 座、免費輪椅出借（可加 JINRIKI 牽引）、接駁車可載 2 台輪椅",
+      "note": "長輩友善度高（官網「ユニバーサルツーリズム」頁）。"
+    },
+    "kids": {
+      "friendly": "high",
+      "note": "有兒童價（3～12 歲）；兒童 Tea Time 是海螺、蠑螺加點心或水果。"
+    },
+    "sources": [
+      {
+        "type": "official",
+        "url": "https://amakoya.com/",
+        "retrieved": "2026-10-17",
+        "note": "地址、電話、10:00～17:00 完全預約制、休業日、容量 83 人、停車場"
+      },
+      {
+        "type": "official",
+        "url": "https://amakoya.com/taiken/",
+        "retrieved": "2026-10-17",
+        "note": "各課程價格、時間、兒童價、預約截止"
+      },
+      {
+        "type": "official",
+        "url": "https://amakoya.com/access/",
+        "retrieved": "2026-10-17",
+        "note": "あまバス時刻與定員、路線巴士畔蛸口、計程車 25 分與計程車公司電話"
+      },
+      {
+        "type": "official",
+        "url": "https://amakoya.com/universaltourism/",
+        "retrieved": "2026-10-17",
+        "note": "無障礙設施、椅子座位、輪椅出借"
+      },
+      {
+        "type": "tourism",
+        "url": "https://www.kankomie.or.jp/report/1639",
+        "retrieved": "2026-10-17",
+        "note": "畔蛸口步行約 10 分、要預約的免費接送"
+      },
+      {
+        "type": "osm",
+        "url": "https://www.openstreetmap.org/node/5846748285",
+        "retrieved": "2026-10-17",
+        "note": "座標（OSM 名稱「海女小屋はちまんかまど」，含電話與官網）"
+      }
+    ],
+    "verified": false,
+    "extra": {
+      "conflicts": [
+        "價格：舊的第三方資料寫 Tea Time 2,900／1,450、料理 4,500，官網現為 3,000／1,500、4,700／2,600，以官網為準。",
+        "接駁車費用：官網未寫，kankomie 寫免費。"
+      ],
+      "phone": "0599-33-1023",
+      "stayMinutesNote": "官網：料理課程 1 小時 15 分，Tea Time 50 分。",
+      "parking": "大型巴士 4 台、小客車 20 台",
+      "nearby": "春雨展望台（toba-harusame-observatory）在附近，官網也有介紹。"
+    }
+  },
+  {
+    "id": "toba-yoroizaki-lighthouse",
+    "type": "spot",
+    "name": {
+      "ja": "鎧埼灯台",
+      "kana": "よろいさきとうだい",
+      "zh": "鎧埼燈塔",
+      "en": "Yoroisaki Lighthouse"
+    },
+    "area": "toba",
+    "coords": [
+      136.927914,
+      34.413333
+    ],
+    "coordsSource": "osm",
+    "address": "三重県鳥羽市国崎町254",
+    "hours": null,
+    "closedNote": "戶外自由參觀，燈塔內部不開放。",
+    "febNote": null,
+    "photos": [],
+    "links": {
+      "official": null,
+      "googleMaps": null,
+      "instagram": null
+    },
+    "tags": [
+      "燈塔",
+      "海岬",
+      "太平洋",
+      "志摩半島最東端",
+      "戶外",
+      "國崎"
+    ],
+    "tier": null,
+    "nearestStation": {
+      "id": "toba",
+      "mode": "bus",
+      "minutes": 60,
+      "note": "かもめバス⑤鳥羽～国崎線終點「国崎」下車，步行約 8～15 分。"
+    },
+    "access": [
+      {
+        "from": "toba",
+        "mode": "bus",
+        "minutes": 60,
+        "note": "鳥羽バスセンター→国崎約 45～50 分＋步行 8～15 分（各來源不同）。平日約 10 班。"
+      },
+      {
+        "from": "toba",
+        "mode": "car",
+        "minutes": 45,
+        "note": "伊勢 IC 約 50 分；停車場 60 分內免費，停車場到燈塔步行約 10 分（kankomie）。"
+      }
+    ],
+    "admission": "免費（燈塔內部不可進入）",
+    "stayMinutes": 30,
+    "indoor": false,
+    "fares": {
+      "adult": "免費",
+      "child": "免費",
+      "senior": "免費",
+      "group": null,
+      "note": null
+    },
+    "group": {
+      "reservation": "不需要",
+      "contact": {
+        "phone": "0599-25-1157",
+        "url": null,
+        "note": "鳥羽市観光商工課"
+      },
+      "note": null
+    },
+    "accessibility": {
+      "walkInsideMinutes": 25,
+      "stairs": null,
+      "slope": null,
+      "restAreas": null,
+      "toilets": null,
+      "barrierFree": null,
+      "note": "停車場到燈塔步行約 10 分，路況（階梯、坡道）未查到。"
+    },
+    "kids": {
+      "friendly": "low",
+      "note": "主要是看海景，對小孩吸引力有限。"
+    },
+    "sources": [
+      {
+        "type": "wikipedia",
+        "url": "https://ja.wikipedia.org/wiki/鎧埼灯台",
+        "retrieved": "2026-10-17",
+        "note": "地址、概要、座標 34.413389,136.927917（與 OSM 一致）、国崎下車步行約 10 分"
+      },
+      {
+        "type": "tourism",
+        "url": "https://www.kankomie.or.jp/report/1639",
+        "retrieved": "2026-10-17",
+        "note": "內部不可入、停車場 60 分免費、步行 10 分、国崎下車步行 15 分"
+      },
+      {
+        "type": "media",
+        "url": "https://rurubu.jp/andmore/spot/80024995",
+        "retrieved": "2026-10-17",
+        "note": "かもめバス 45 分、終點下車步行 8 分（搜尋摘要）"
+      },
+      {
+        "type": "osm",
+        "url": "https://www.openstreetmap.org/node/1384378045",
+        "retrieved": "2026-10-17",
+        "note": "座標（OSM 名稱誤植為「錨崎灯台」，位置與 Wikipedia 座標相差約 10m）"
+      }
+    ],
+    "verified": false,
+    "extra": {
+      "conflicts": [
+        "国崎巴士站步行時間：8 分、10 分、15 分、20 分（鎧崎岬）各來源不同。",
+        "停車場：rurubu 寫無停車場，kankomie 寫有（60 分免費）。"
+      ],
+      "phone": null,
+      "stayMinutesNote": "估計 30 分（含步行往返）。",
+      "nearby": "海士潜女神社（国崎巴士站步行約 5 分；座標不確定未收錄），国崎是供奉伊勢神宮鮑魚（熨斗鰒）的地方。"
+    }
+  },
+  {
+    "id": "toba-harusame-observatory",
+    "type": "spot",
+    "name": {
+      "ja": "春雨展望台（菅崎園地）",
+      "kana": "はるさめてんぼうだい（すがさきえんち）",
+      "zh": "春雨展望台（菅崎園地）",
+      "en": null
+    },
+    "area": "toba",
+    "coords": [
+      136.909932,
+      34.376196
+    ],
+    "coordsSource": "osm",
+    "address": "三重県鳥羽市畔蛸町",
+    "hours": null,
+    "closedNote": "戶外展望台，自由參觀。",
+    "febNote": null,
+    "photos": [],
+    "links": {
+      "official": null,
+      "googleMaps": null,
+      "instagram": null
+    },
+    "tags": [
+      "展望台",
+      "的矢灣",
+      "夕陽",
+      "鐘",
+      "戶外"
+    ],
+    "tier": null,
+    "nearestStation": {
+      "id": "toba",
+      "mode": "taxi",
+      "minutes": 30,
+      "note": "公車到相差後還要步行約 30 分，實際上要開車或計程車。"
+    },
+    "access": [
+      {
+        "from": "toba",
+        "mode": "bus",
+        "minutes": 80,
+        "note": "かもめバス相差下車步行約 30 分（kankomie）。"
+      },
+      {
+        "from": "toba-hachiman-kamado",
+        "mode": "car",
+        "minutes": null,
+        "note": "在はちまんかまど附近（同為畔蛸／相差一帶），可搭配。"
+      }
+    ],
+    "admission": "免費",
+    "stayMinutes": 20,
+    "indoor": false,
+    "fares": {
+      "adult": "免費",
+      "child": "免費",
+      "senior": "免費",
+      "group": null,
+      "note": null
+    },
+    "group": {
+      "reservation": "不需要",
+      "contact": {
+        "phone": null,
+        "url": null,
+        "note": null
+      },
+      "note": null
+    },
+    "accessibility": {
+      "walkInsideMinutes": 10,
+      "stairs": null,
+      "slope": null,
+      "restAreas": null,
+      "toilets": null,
+      "barrierFree": null,
+      "note": "有停車場；進出道路有狹窄處（kankomie）。"
+    },
+    "kids": {
+      "friendly": "low",
+      "note": "可敲「常永久の鐘」。"
+    },
+    "sources": [
+      {
+        "type": "tourism",
+        "url": "https://www.kankomie.or.jp/report/1639",
+        "retrieved": "2026-10-17",
+        "note": "概要、常永久の鐘、相差下車步行 30 分"
+      },
+      {
+        "type": "tourism",
+        "url": "https://www.kankomie.or.jp/report/1376",
+        "retrieved": "2026-10-17",
+        "note": "停車場有、道路狹窄、夕陽"
+      },
+      {
+        "type": "osm",
+        "url": "https://www.openstreetmap.org/node/3698354498",
+        "retrieved": "2026-10-17",
+        "note": "座標（OSM 名稱「春雨展望台」tourism=viewpoint）"
+      }
+    ],
+    "verified": false,
+    "extra": {
+      "conflicts": [],
+      "phone": null,
+      "stayMinutesNote": "估計 15～20 分。"
+    }
+  },
+  {
+    "id": "toba-omoshiro-observatory",
+    "type": "spot",
+    "name": {
+      "ja": "面白展望台",
+      "kana": "おもしろてんぼうだい",
+      "zh": "面白展望台",
+      "en": null
+    },
+    "area": "toba",
+    "coords": [
+      136.911969,
+      34.416032
+    ],
+    "coordsSource": "osm",
+    "address": "三重県鳥羽市（パールロード沿い、国崎町／畔蛸町付近）",
+    "hours": null,
+    "closedNote": "戶外展望台，OSM 標示 24 小時。",
+    "febNote": null,
+    "photos": [],
+    "links": {
+      "official": null,
+      "googleMaps": null,
+      "instagram": null
+    },
+    "tags": [
+      "展望台",
+      "パールロード",
+      "リアス海岸",
+      "廁所",
+      "戶外"
+    ],
+    "tier": null,
+    "nearestStation": {
+      "id": "toba",
+      "mode": "car",
+      "minutes": 30,
+      "note": "沒有公車資訊，開車或計程車。"
+    },
+    "access": [
+      {
+        "from": "toba",
+        "mode": "car",
+        "minutes": 30,
+        "note": "伊勢二見鳥羽ライン鳥羽 IC 開車約 30 分（kankomie）。"
+      },
+      {
+        "from": "toba-observatory-pearl-road",
+        "mode": "car",
+        "minutes": null,
+        "note": "同在パールロード上，鳥羽展望台南方約 1.3km。"
+      }
+    ],
+    "admission": "免費",
+    "stayMinutes": 15,
+    "indoor": false,
+    "fares": {
+      "adult": "免費",
+      "child": "免費",
+      "senior": "免費",
+      "group": null,
+      "note": null
+    },
+    "group": {
+      "reservation": "不需要",
+      "contact": {
+        "phone": null,
+        "url": null,
+        "note": null
+      },
+      "note": null
+    },
+    "accessibility": {
+      "walkInsideMinutes": 5,
+      "stairs": null,
+      "slope": null,
+      "restAreas": null,
+      "toilets": true,
+      "barrierFree": null,
+      "note": "有停車場和木造的乾淨廁所（kankomie），適合開車途中休息。"
+    },
+    "kids": {
+      "friendly": "low",
+      "note": null
+    },
+    "sources": [
+      {
+        "type": "tourism",
+        "url": "https://www.kankomie.or.jp/report/1376",
+        "retrieved": "2026-10-17",
+        "note": "停車場、木造廁所、眺望畔蛸～相差"
+      },
+      {
+        "type": "tourism",
+        "url": "https://www.kankomie.or.jp/report/1639",
+        "retrieved": "2026-10-17",
+        "note": "所在畔蛸町、鳥羽 IC 約 30 分"
+      },
+      {
+        "type": "osm",
+        "url": "https://www.openstreetmap.org/node/7968805704",
+        "retrieved": "2026-10-17",
+        "note": "座標（OSM 名稱「面白展望台」，opening_hours=24/7）"
+      }
+    ],
+    "verified": false,
+    "extra": {
+      "conflicts": [
+        "所在町名：kankomie 歸在畔蛸町，OSM 反查地址為国崎町。"
+      ],
+      "phone": null,
+      "stayMinutesNote": "估計 10～15 分（休息點）。"
+    }
+  },
+  {
+    "id": "toba-izawa-jinja",
+    "type": "spot",
+    "name": {
+      "ja": "伊射波神社",
+      "kana": "いざわじんじゃ",
+      "zh": "伊射波神社",
+      "en": "Izawa Shrine"
+    },
+    "area": "toba",
+    "coords": [
+      136.874333,
+      34.472889
+    ],
+    "coordsSource": "wikipedia",
+    "address": "三重県鳥羽市安楽島町",
+    "hours": null,
+    "closedNote": null,
+    "febNote": null,
+    "photos": [],
+    "links": {
+      "official": null,
+      "googleMaps": null,
+      "instagram": null
+    },
+    "tags": [
+      "神社",
+      "志摩國一宮",
+      "海岬",
+      "森林步道",
+      "難走",
+      "戶外"
+    ],
+    "tier": null,
+    "nearestStation": {
+      "id": "toba",
+      "mode": "bus",
+      "minutes": 50,
+      "note": "かもめバス到「安楽島」約 20 分，再步行約 30～40 分（森林中的參道）。"
+    },
+    "access": [
+      {
+        "from": "toba",
+        "mode": "bus",
+        "minutes": 50,
+        "note": "かもめバス①鳥羽小学校～安楽島線或④線到「安楽島」約 20 分＋步行 30～40 分。"
+      },
+      {
+        "from": "toba",
+        "mode": "car",
+        "minutes": null,
+        "note": "伊勢 IC 約 20 分；有停車場，但停車後仍要走森林參道約 20 分。"
+      }
+    ],
+    "admission": "免費參拜",
+    "stayMinutes": 90,
+    "indoor": false,
+    "fares": {
+      "adult": "免費",
+      "child": "免費",
+      "senior": "免費",
+      "group": null,
+      "note": null
+    },
+    "group": {
+      "reservation": "不需要",
+      "contact": {
+        "phone": "0599-25-1157",
+        "url": null,
+        "note": "鳥羽市観光商工課"
+      },
+      "note": null
+    },
+    "accessibility": {
+      "walkInsideMinutes": 60,
+      "stairs": null,
+      "slope": "森林山路，往返步行 40～80 分",
+      "restAreas": null,
+      "toilets": null,
+      "barrierFree": null,
+      "note": "口碑：停車場起在森林中走約 20 分，不適合高跟鞋、涼鞋；有蜈蚣出沒報告。長輩負擔大。"
+    },
+    "kids": {
+      "friendly": "low",
+      "note": "健行型參拜。"
+    },
+    "sources": [
+      {
+        "type": "wikipedia",
+        "url": "https://ja.wikipedia.org/wiki/伊射波神社",
+        "retrieved": "2026-10-17",
+        "note": "座標 34.472889,136.874333、概要、安楽島下車步行約 40 分"
+      },
+      {
+        "type": "tourism",
+        "url": "https://www.kankomie.or.jp/spot/22168",
+        "retrieved": "2026-10-17",
+        "note": "安楽島下車步行約 30 分、停車場有、志摩國一宮、座標 34.473422,136.87412"
+      },
+      {
+        "type": "other",
+        "url": "https://4travel.jp/dm_shisetsu/11331110",
+        "retrieved": "2026-10-17",
+        "note": "口碑：停車場起森林步行約 20 分、蜈蚣"
+      }
+    ],
+    "verified": false,
+    "extra": {
+      "conflicts": [
+        "安楽島巴士站步行：kankomie 30 分、Wikipedia 40 分。"
+      ],
+      "phone": null,
+      "stayMinutesNote": "估計 60～90 分（以步行往返為主）。",
+      "osmNote": "OSM 只有參道入口的告示牌／紀念碑節點（node 7659977092、7659977189），神社本體沒有名稱節點，故採 Wikipedia 座標。"
+    }
+  },
+  {
+    "id": "toba-sadahama-marine-terminal",
+    "type": "spot",
+    "name": {
+      "ja": "鳥羽マリンターミナル（佐田浜港）",
+      "kana": "とばまりんたーみなる（さだはまこう）",
+      "zh": "鳥羽海洋碼頭（佐田濱港）",
+      "en": "Toba Marine Terminal (Sadahama Port)"
+    },
+    "area": "toba",
+    "coords": [
+      136.84494,
+      34.490423
+    ],
+    "coordsSource": "osm",
+    "address": "三重県鳥羽市鳥羽一丁目2383番地51",
+    "hours": {
+      "mon": [
+        [
+          "06:40",
+          "20:20"
+        ]
+      ],
+      "tue": [
+        [
+          "06:40",
+          "20:20"
+        ]
+      ],
+      "wed": [
+        [
+          "06:40",
+          "20:20"
+        ]
+      ],
+      "thu": [
+        [
+          "06:40",
+          "20:20"
+        ]
+      ],
+      "fri": [
+        [
+          "06:40",
+          "20:20"
+        ]
+      ],
+      "sat": [
+        [
+          "06:40",
+          "20:20"
+        ]
+      ],
+      "sun": [
+        [
+          "06:40",
+          "20:20"
+        ]
+      ],
+      "holiday": [
+        [
+          "06:40",
+          "20:20"
+        ]
+      ],
+      "note": "碼頭建築開放時間（Wikipedia 記載，年中無休）。船班時刻另見 extra.ferryTimetable。"
+    },
+    "closedNote": "年中無休（Wikipedia）",
+    "febNote": "2 月照常營運。鳥羽市營定期船 2026-04-01 改正時刻表全年通用，只有神島航路傍晚一班分冬季（10/16～2 月底）與夏季時刻。荒天（2 月常有北西季風）時可能停航或改船，出發當天請看定期船官網或致電 0599-25-4776。",
+    "photos": [],
+    "links": {
+      "official": "https://www.city.toba.mie.jp/material/files/group/45/teikisendaiya260401.pdf",
+      "googleMaps": null,
+      "instagram": null
+    },
+    "tags": [
+      "碼頭",
+      "交通",
+      "離島出發點",
+      "室內"
+    ],
+    "tier": null,
+    "nearestStation": {
+      "id": "toba",
+      "mode": "walk",
+      "minutes": 7,
+      "note": "近鐵／JR 鳥羽站步行約 7 分（各來源 7～15 分不一，直線約 450m）"
+    },
+    "access": [
+      {
+        "from": "toba",
+        "mode": "walk",
+        "minutes": 7,
+        "note": "鳥羽站往北沿國道 42 號，經鳥羽マルシェ旁"
+      },
+      {
+        "from": "jr-toba",
+        "mode": "walk",
+        "minutes": 7,
+        "note": "與近鐵鳥羽站相鄰"
+      }
+    ],
+    "admission": "免費（碼頭本身）；搭船另計",
+    "stayMinutes": 20,
+    "indoor": true,
+    "fares": {
+      "adult": "鳥羽（佐田浜）出發單程：坂手 220 円、桃取 450 円、菅島 510 円、答志・和具 550 円、神島 740 円",
+      "child": "小孩（6 歲以上未滿 12 歲）約半價：坂手 110、桃取 230、菅島 260、答志・和具 280、神島 370 円（觀光三重記事）",
+      "senior": "無長輩優惠（官方資料未見長輩票）",
+      "group": null,
+      "note": "1日フリー乗船券 1,480 円（當日有效、全航路可用、上船後不退款）；兒童版價格未查到。離島之間：神島⇔答志(和具) 510、神島⇔菅島 510、坂手⇔菅島 280 円（大人）。"
+    },
+    "group": {
+      "reservation": "定期船為一般航班，官方資料未提及團體預約制度或團體折扣；15 人同行建議事前致電定期船課確認座位與是否需通知",
+      "contact": {
+        "phone": "0599-25-4776",
+        "url": "https://www.city.toba.mie.jp/material/files/group/45/teikisendaiya260401.pdf",
+        "note": "鳥羽市定期船課"
+      },
+      "note": "定期船乗り場為 7～10 號棧橋，依航線與時段變動，請看候船室顯示器。2026 年 4 月起因船員不足，船隻由 5 艘減為 4 艘並全面改正時刻。"
+    },
+    "accessibility": {
+      "walkInsideMinutes": 5,
+      "stairs": "少",
+      "slope": "平坦",
+      "restAreas": true,
+      "toilets": null,
+      "barrierFree": "有電梯 1 座（Wikipedia）；定期船除預備船與小型包船班次外皆為無障礙對應",
+      "note": "1 樓為交流大廳（候船室・資訊角），2 樓有咖啡廳。2014 年起無商店。"
+    },
+    "kids": {
+      "friendly": "medium",
+      "note": "交通節點，不是景點"
+    },
+    "sources": [
+      {
+        "type": "osm",
+        "url": "https://www.openstreetmap.org/way/183719455",
+        "retrieved": "2026-10-17",
+        "note": "座標（鳥羽マリンターミナル建築）"
+      },
+      {
+        "type": "official",
+        "url": "https://www.city.toba.mie.jp/material/files/group/45/teikisendaiya260401.pdf",
+        "retrieved": "2026-10-17",
+        "note": "鳥羽市營定期船時刻表 R8.4.1 改正：全航路時刻、大人票價表、1日フリー乗船券、無障礙說明、電話"
+      },
+      {
+        "type": "tourism",
+        "url": "https://www.kankomie.or.jp/report/1405",
+        "retrieved": "2026-10-17",
+        "note": "大人／小孩（6～12 歲未滿）票價表；舊周遊券已於 2024 年 9 月廢止"
+      },
+      {
+        "type": "wikipedia",
+        "url": "https://ja.wikipedia.org/wiki/鳥羽マリンターミナル",
+        "retrieved": "2026-10-17",
+        "note": "地址、開放時間 6:40～20:20、電梯、棧橋編號"
+      }
+    ],
+    "verified": false,
+    "extra": {
+      "conflicts": [
+        "鳥羽站到碼頭步行時間：るるぶ 7 分；觀光三重記事同篇寫 10 分與 15 分",
+        "神島票價：部分舊資料寫大人 1,140 円；2026 官方時刻表為 740 円，以官方為準"
+      ],
+      "phone": "0599-25-4776",
+      "ferryTimetable": {
+        "source": "鳥羽市営定期船時刻表 R8年4月1日改正（2027 年 2 月時是否再改正未知）",
+        "toshi": "佐田浜→和具→答志：7:40→7:55→(不停答志)、8:00→(直達)→8:17、9:15→9:33→9:42、10:40→10:55(只到和具)、11:40→11:58→12:08、13:00→13:19→13:29、15:15→15:33→15:42、16:45→17:02→17:11、17:45→18:02→18:11、18:45→19:01(只到和具)。答志→和具→佐田浜：6:55→7:10→7:25、8:30→8:45→9:00、10:00→10:15→10:30、12:20→12:35→12:51、13:45→14:00→14:16、16:00→16:15→16:30、17:25→17:40→17:55、18:25→18:40→18:55",
+        "momotori": "佐田浜→桃取 約12 分：7:00、8:05、9:30、11:50、14:10、15:10、16:50、18:10、19:50。桃取→佐田浜：6:45、7:20、8:30、9:50、12:10、14:30、15:30、17:25、18:30",
+        "sugashima": "佐田浜→(坂手)→菅島：7:40→8:02、9:40→9:53、11:50→12:12、14:00→14:22、15:00→15:13、16:50→17:03、18:15→18:37、19:30→19:52（直達約 13 分，經坂手約 22 分）。菅島→佐田浜：6:40、7:15、8:10、9:00、10:10、12:20、14:30、16:10、17:30、18:50",
+        "sakate": "佐田浜→坂手 約 10 分：7:40、9:00、11:50、13:10(包船)、14:00、16:10、18:15、19:30。坂手→佐田浜：6:55、8:25、9:15、11:00(包船)、12:35、13:40(包船)、14:45、16:25、17:45、19:05",
+        "kamishima": "佐田浜→神島：7:40→8:20（經和具 8:00）、10:40→11:20（經和具）、14:30→15:00、冬季 17:00→17:30。神島→佐田浜：6:50→7:28（經菅島 7:15）、8:35→9:13（經菅島 9:00）、11:35→12:00、15:10→15:40、冬季 17:35→18:05"
+      },
+      "busTransfer": "搭定期船轉かもめバス可在佐田浜索取免費乗継割引券，巴士車資往返各減 100 円；鳥羽マリンターミナル～中之郷桟橋區間巴士免費"
+    }
+  },
+  {
+    "id": "toba-toshijima-wagu",
+    "type": "spot",
+    "name": {
+      "ja": "答志島 和具港・九鬼嘉隆の首塚・胴塚",
+      "kana": "とうしじま わぐこう・くきよしたかのくびづか・どうづか",
+      "zh": "答志島 和具港・九鬼嘉隆首塚與胴塚",
+      "en": "Toshijima Wagu Port / Kuki Yoshitaka's Head and Body Mounds"
+    },
+    "area": "toba",
+    "coords": [
+      136.897948,
+      34.522448
+    ],
+    "coordsSource": "osm",
+    "address": "三重県鳥羽市答志町（和具）",
+    "hours": null,
+    "closedNote": "戶外史跡，無開放時間限制（官方未記載）",
+    "febNote": "史跡全年可參觀。2 月是答志島裙帶菜（ワカメ）漁期開始（2～4 月）。島の旅社的「九鬼嘉隆史跡巡りツアー」寫「4 月 1 日開始」，2 月是否有團需洽詢。季風強時船可能停航。",
+    "photos": [],
+    "links": {
+      "official": null,
+      "googleMaps": null,
+      "instagram": null
+    },
+    "tags": [
+      "離島",
+      "歷史",
+      "史跡",
+      "九鬼水軍",
+      "搭船",
+      "戶外"
+    ],
+    "tier": null,
+    "nearestStation": {
+      "id": "toba",
+      "mode": "ferry",
+      "minutes": 30,
+      "note": "鳥羽站步行約 7 分到佐田浜港，搭鳥羽市營定期船到和具港約 15～18 分"
+    },
+    "access": [
+      {
+        "from": "toba-sadahama-marine-terminal",
+        "mode": "ferry",
+        "minutes": 18,
+        "note": "鳥羽市營定期船答志航路，佐田浜→和具約 15～18 分；8:00 班直達答志不停和具"
+      },
+      {
+        "from": "toba-toshijima-toshi",
+        "mode": "walk",
+        "minutes": 15,
+        "note": "答志港與和具港間步行約 15 分（同航線也可坐船一站）"
+      }
+    ],
+    "admission": "免費（戶外史跡）",
+    "stayMinutes": 60,
+    "indoor": false,
+    "fares": {
+      "adult": "定期船 鳥羽⇔和具 單程 550 円",
+      "child": "定期船 單程 280 円（6 歲以上未滿 12 歲）",
+      "senior": "無長輩優惠",
+      "group": null,
+      "note": "1日フリー乗船券 1,480 円（全航路當日有效）。島の旅社「九鬼嘉隆史跡巡りツアー」4 人以上每人 3,000 円（含稅，大人小孩同價），約 1.5 小時。"
+    },
+    "group": {
+      "reservation": "史跡本身不需預約；導覽團需事前預約（4 人以上成團）",
+      "contact": {
+        "phone": "0599-37-3339",
+        "url": "https://www.shima-tabi.net/shisekimeguri.html",
+        "note": "島の旅社（平日10時～16時受付）"
+      },
+      "note": "定期船團體折扣未查到，見 toba-sadahama-marine-terminal"
+    },
+    "accessibility": {
+      "walkInsideMinutes": 40,
+      "stairs": null,
+      "slope": "首塚在海角的築上山山頂，需上坡；坡度與階梯數未查到",
+      "restAreas": null,
+      "toilets": true,
+      "barrierFree": "定期船（非預備船）為無障礙對應；島上史跡無無障礙資訊",
+      "note": "和具港步行到胴塚・血洗い池約 7 分、到首塚約 10～15 分。島上沒有巴士、計程車，基本步行；港邊有 HELLO CYCLING 電動自行車站（OSM）與旅館出租自行車。和具港候船室有男女分開公廁。"
+    },
+    "kids": {
+      "friendly": "medium",
+      "note": "歷史故事＋首塚眺望鳥羽灣；需走上坡"
+    },
+    "sources": [
+      {
+        "type": "osm",
+        "url": "https://www.openstreetmap.org/node/9533745175",
+        "retrieved": "2026-10-17",
+        "note": "和具港定期船碼頭座標（首塚、胴塚本身在 OSM 查無座標，座標代表和具港）"
+      },
+      {
+        "type": "official",
+        "url": "https://www.city.toba.mie.jp/material/files/group/45/teikisendaiya260401.pdf",
+        "retrieved": "2026-10-17",
+        "note": "答志航路時刻、票價"
+      },
+      {
+        "type": "tourism",
+        "url": "https://www.kankomie.or.jp/report/1636",
+        "retrieved": "2026-10-17",
+        "note": "和具港公廁、島上各點"
+      },
+      {
+        "type": "media",
+        "url": "https://www.toretabi.jp/zipangclub/page/plan_shun2407_tokai.html",
+        "retrieved": "2026-10-17",
+        "note": "首塚・胴塚・血洗い池說明、和具港步行時間、島上無巴士計程車、出租自行車"
+      },
+      {
+        "type": "media",
+        "url": "https://rurubu.jp/andmore/spot/80024978",
+        "retrieved": "2026-10-17",
+        "note": "首塚石碑、胴塚五輪塔為三重縣文化財；和具港步行 15 分"
+      },
+      {
+        "type": "official",
+        "url": "https://www.shima-tabi.net/shisekimeguri.html",
+        "retrieved": "2026-10-17",
+        "note": "史跡巡りツアー價格、人數、時間"
+      }
+    ],
+    "verified": false,
+    "extra": {
+      "conflicts": [
+        "和具港到首塚步行：トレたび約 10 分、るるぶ約 15 分"
+      ],
+      "phone": null,
+      "stayMinutesNote": "估計值：首塚＋胴塚往返約 40 分加拍照",
+      "history": "九鬼嘉隆在關原之戰後逃到答志島切腹；依遺言首級葬於可望見鳥羽城的築上山山頂（首塚），遺體葬於山腳（胴塚，五輪塔），旁有洗刀的血洗い池。",
+      "returnFerryFromWagu": "和具→佐田浜 7:10、8:45、10:15、12:35、14:00、16:15、17:40、18:40"
+    }
+  },
+  {
+    "id": "toba-toshijima-toshi",
+    "type": "spot",
+    "name": {
+      "ja": "答志島 答志港・答志集落（寝屋子の町並み・美多羅志神社・潮音寺）",
+      "kana": "とうしじま とうしこう・とうししゅうらく",
+      "zh": "答志島 答志港・答志聚落（寢屋子街區、美多羅志神社、潮音寺）",
+      "en": "Toshijima Toshi Port and Village"
+    },
+    "area": "toba",
+    "coords": [
+      136.903494,
+      34.530394
+    ],
+    "coordsSource": "osm",
+    "address": "三重県鳥羽市答志町",
+    "hours": null,
+    "closedNote": "聚落與神社寺院為戶外自由參觀；官方未記載時間",
+    "febNote": "全年可散步。答志島トロさわら一本釣期為 10 月初～1 月底，2 月已過；2～4 月為裙帶菜漁期。原本的海女小屋體驗（BBQ）已於 2026-01-27 宣布結束。季風強時船可能停航。",
+    "photos": [],
+    "links": {
+      "official": "https://www.shima-tabi.net/",
+      "googleMaps": null,
+      "instagram": "@shimatabi_toshi"
+    },
+    "tags": [
+      "離島",
+      "漁村",
+      "街區散步",
+      "神社",
+      "寺院",
+      "搭船",
+      "戶外"
+    ],
+    "tier": null,
+    "nearestStation": {
+      "id": "toba",
+      "mode": "ferry",
+      "minutes": 35,
+      "note": "鳥羽站步行約 7 分到佐田浜港，搭鳥羽市營定期船到答志港約 17～27 分（直達班約 17 分）"
+    },
+    "access": [
+      {
+        "from": "toba-sadahama-marine-terminal",
+        "mode": "ferry",
+        "minutes": 27,
+        "note": "定期船答志航路經和具到答志；8:00 班直達 17 分；10:40 與 18:45 班只到和具"
+      },
+      {
+        "from": "toba-toshijima-wagu",
+        "mode": "walk",
+        "minutes": 15,
+        "note": "和具港步行到答志聚落約 15 分"
+      }
+    ],
+    "admission": "免費（散步、參拜）",
+    "stayMinutes": 90,
+    "indoor": false,
+    "fares": {
+      "adult": "定期船 鳥羽⇔答志 單程 550 円",
+      "child": "定期船 單程 280 円（6 歲以上未滿 12 歲）",
+      "senior": "無長輩優惠",
+      "group": null,
+      "note": "島の旅社「路地裏散策ツアー」大人 4 人以上每人 2,000 円（含稅），約 1.5 小時，4 天前預約；小孩價未記載。"
+    },
+    "group": {
+      "reservation": "自由散步不需預約；導覽需 4 天前預約、大人 4 人以上",
+      "contact": {
+        "phone": "0599-37-3339",
+        "url": "https://www.shima-tabi.net/rojiura.html",
+        "note": "島の旅社（三重県鳥羽市答志町943、平日10時～16時）"
+      },
+      "note": "路地極窄，15 人一起走會很擁擠，建議分組"
+    },
+    "accessibility": {
+      "walkInsideMinutes": 60,
+      "stairs": null,
+      "slope": "聚落為密集住宅與狹窄小巷（迷路般）；階梯坡度未查到",
+      "restAreas": null,
+      "toilets": null,
+      "barrierFree": "定期船（非預備船）為無障礙對應",
+      "note": "答志港步行到美多羅志神社約 5 分；潮音寺在神社旁。島上沒有巴士、計程車；港前有 HELLO CYCLING 站（OSM）。"
+    },
+    "kids": {
+      "friendly": "medium",
+      "note": "迷宮般的巷弄、家家戶戶牆上的「丸に八」記號，適合小孩找找看"
+    },
+    "sources": [
+      {
+        "type": "osm",
+        "url": "https://www.openstreetmap.org/node/9533745202",
+        "retrieved": "2026-10-17",
+        "note": "答志港定期船碼頭座標（代表答志聚落入口）"
+      },
+      {
+        "type": "official",
+        "url": "https://www.city.toba.mie.jp/material/files/group/45/teikisendaiya260401.pdf",
+        "retrieved": "2026-10-17",
+        "note": "答志航路時刻、票價"
+      },
+      {
+        "type": "tourism",
+        "url": "https://www.kankomie.or.jp/report/720",
+        "retrieved": "2026-10-17",
+        "note": "美多羅志神社（龍神さん御神木、2020 年式年遷宮）、潮音寺（大般若札）、八幡神社神祭與丸八記號、トロさわら"
+      },
+      {
+        "type": "official",
+        "url": "https://www.shima-tabi.net/rojiura.html",
+        "retrieved": "2026-10-17",
+        "note": "路地裏散策ツアー價格、人數、預約期限"
+      },
+      {
+        "type": "official",
+        "url": "https://www.shima-tabi.net/news/index.php?id=206",
+        "retrieved": "2026-10-17",
+        "note": "海女小屋體驗（BBQ）結束公告 2026-01-27"
+      },
+      {
+        "type": "media",
+        "url": "https://www.toretabi.jp/zipangclub/page/plan_shun2407_tokai.html",
+        "retrieved": "2026-10-17",
+        "note": "美多羅志神社步行時間、聚落路地、島上無巴士計程車"
+      },
+      {
+        "type": "wikipedia",
+        "url": "https://ja.wikipedia.org/wiki/答志島",
+        "retrieved": "2026-10-17",
+        "note": "寝屋子制度為鳥羽市無形民俗文化財、島概要"
+      }
+    ],
+    "verified": false,
+    "extra": {
+      "conflicts": [
+        "寝屋子交流設施「ねやこや」：觀光三重寫在和具港附近，OSM「寝屋子交流の館」節點在答志港附近（34.53075, 136.90115），未確認"
+      ],
+      "phone": "0599-37-3339",
+      "stayMinutesNote": "估計值：聚落散步＋神社寺院約 1～1.5 小時；導覽團 1.5 小時",
+      "neyako": "寝屋子：島上青年寄宿於「寝屋親」家共同生活的傳統制度，至今仍實行，為鳥羽市無形民俗文化財。",
+      "returnFerryFromToshi": "答志→佐田浜 6:55、8:30、10:00、12:20、13:45、16:00、17:25、18:25"
+    }
+  },
+  {
+    "id": "toba-sugashima-lighthouse",
+    "type": "spot",
+    "name": {
+      "ja": "菅島灯台",
+      "kana": "すがしまとうだい",
+      "zh": "菅島燈塔",
+      "en": "Sugashima Lighthouse"
+    },
+    "area": "toba",
+    "coords": [
+      136.908746,
+      34.499886
+    ],
+    "coordsSource": "google-maps-url",
+    "address": "三重県鳥羽市菅島町122",
+    "hours": null,
+    "closedNote": "燈塔內部不開放攀登，只能在外面參觀",
+    "febNote": "燈塔周邊水仙 2 月中旬～下旬盛開（觀光三重）。冬季北風強，高處風大。船可能因荒天停航。",
+    "photos": [],
+    "links": {
+      "official": null,
+      "googleMaps": null,
+      "instagram": null
+    },
+    "tags": [
+      "離島",
+      "燈塔",
+      "重要文化財",
+      "健行",
+      "絕景",
+      "水仙",
+      "搭船",
+      "戶外"
+    ],
+    "tier": null,
+    "nearestStation": {
+      "id": "toba",
+      "mode": "ferry",
+      "minutes": 55,
+      "note": "鳥羽站步行約 7 分到佐田浜港，定期船到菅島約 13～22 分，菅島港步行 20～30 分"
+    },
+    "access": [
+      {
+        "from": "toba-sadahama-marine-terminal",
+        "mode": "ferry",
+        "minutes": 15,
+        "note": "鳥羽市營定期船菅島航路，直達約 13 分、經坂手約 22 分"
+      },
+      {
+        "from": "toba-sugashima-shirongo-beach",
+        "mode": "walk",
+        "minutes": 10,
+        "note": "しろんご浜與燈塔相近（估計，依座標約 350m）"
+      }
+    ],
+    "admission": "免費（外觀參觀）",
+    "stayMinutes": 30,
+    "indoor": false,
+    "fares": {
+      "adult": "定期船 鳥羽⇔菅島 單程 510 円",
+      "child": "定期船 單程 260 円（6 歲以上未滿 12 歲）",
+      "senior": "無長輩優惠",
+      "group": null,
+      "note": "1日フリー乗船券 1,480 円。神島⇔菅島 510 円，可與神島同日串聯（神島 8:35 班經菅島 9:00）。"
+    },
+    "group": {
+      "reservation": "不需預約",
+      "contact": {
+        "phone": "0599-25-1157",
+        "url": "https://www.kankomie.or.jp/spot/9056",
+        "note": "鳥羽市観光商工課"
+      },
+      "note": null
+    },
+    "accessibility": {
+      "walkInsideMinutes": 60,
+      "stairs": null,
+      "slope": "港到燈塔走しろんご海道／近畿自然歩道，緩上坡持續，有像切通的路段",
+      "restAreas": null,
+      "toilets": true,
+      "barrierFree": "無",
+      "note": "港出發單程約 20～30 分。自動販賣機只有漁港附近，進步道後沒有。島上無計程車、巴士（未見記載），步行為主。建議運動鞋。"
+    },
+    "kids": {
+      "friendly": "medium",
+      "note": "步道距離適中，6～10 歲可走；風大注意保暖"
+    },
+    "sources": [
+      {
+        "type": "tourism",
+        "url": "https://www.kankomie.or.jp/spot/9056",
+        "retrieved": "2026-10-17",
+        "note": "座標（Google Maps 連結）、交通、日本最古磚造燈塔、燈塔 50 選、重要文化財"
+      },
+      {
+        "type": "wikipedia",
+        "url": "https://ja.wikipedia.org/wiki/菅島灯台",
+        "retrieved": "2026-10-17",
+        "note": "座標交叉確認（34.50000, 136.90861）、地址、1873 年初點燈、2022 年重要文化財、港步行約 20 分"
+      },
+      {
+        "type": "tourism",
+        "url": "https://www.kankomie.or.jp/report/1424",
+        "retrieved": "2026-10-17",
+        "note": "水仙 2 月中下旬、坡道、廁所、自動販賣機、冬季北風"
+      },
+      {
+        "type": "official",
+        "url": "https://www.city.toba.mie.jp/material/files/group/45/teikisendaiya260401.pdf",
+        "retrieved": "2026-10-17",
+        "note": "菅島航路時刻、票價"
+      }
+    ],
+    "verified": false,
+    "extra": {
+      "conflicts": [
+        "港到燈塔步行：觀光三重 spot 頁約 30 分，Wikipedia 約 20 分",
+        "廁所：觀光三重記事說港、しろんご浜、沖ノ島有公廁；國交省多語言解說說只有港有廁所"
+      ],
+      "phone": "0599-25-1157",
+      "coordsNote": "座標取自觀光三重（三重縣觀光連盟）頁面的 Google Maps 連結，與 Wikipedia 座標差約 100m；OSM 無此燈塔名稱",
+      "stayMinutesNote": "估計值（不含往返步行）",
+      "fullCourse": "觀光三重記事的菅島一周（しろんご浜、燈塔、監的哨、おんま浜）約 4 小時；監的哨分岔後爬階梯約 2 分",
+      "returnFerryFromSugashima": "菅島→佐田浜 6:40、7:15、8:10、9:00、10:10、12:20、14:30、16:10、17:30、18:50"
+    }
+  },
+  {
+    "id": "toba-sugashima-shirongo-beach",
+    "type": "spot",
+    "name": {
+      "ja": "しろんご浜",
+      "kana": "しろんごはま",
+      "zh": "白浜（Shirongo 海灘）",
+      "en": "Shirongo Beach"
+    },
+    "area": "toba",
+    "coords": [
+      136.906797,
+      34.502347
+    ],
+    "coordsSource": "google-maps-url",
+    "address": "三重県鳥羽市菅島町",
+    "hours": null,
+    "closedNote": null,
+    "febNote": "冬季為一般海灘景觀，沒有活動；「しろんご祭」在 7 月（2026 年為 7/11）。冬季北風強。",
+    "photos": [],
+    "links": {
+      "official": null,
+      "googleMaps": null,
+      "instagram": null
+    },
+    "tags": [
+      "離島",
+      "海灘",
+      "海女",
+      "絕景",
+      "搭船",
+      "戶外"
+    ],
+    "tier": null,
+    "nearestStation": {
+      "id": "toba",
+      "mode": "ferry",
+      "minutes": 45,
+      "note": "鳥羽站步行約 7 分到佐田浜港，定期船到菅島約 13～22 分，菅島港步行約 20 分"
+    },
+    "access": [
+      {
+        "from": "toba-sadahama-marine-terminal",
+        "mode": "ferry",
+        "minutes": 15,
+        "note": "鳥羽市營定期船菅島航路，菅島港下船後沿しろんご海道步行約 20 分"
+      },
+      {
+        "from": "toba-sugashima-lighthouse",
+        "mode": "walk",
+        "minutes": 10,
+        "note": "與燈塔相近（估計）"
+      }
+    ],
+    "admission": "免費",
+    "stayMinutes": 30,
+    "indoor": false,
+    "fares": {
+      "adult": "定期船 鳥羽⇔菅島 單程 510 円",
+      "child": "定期船 單程 260 円（6 歲以上未滿 12 歲）",
+      "senior": "無長輩優惠",
+      "group": null,
+      "note": "1日フリー乗船券 1,480 円"
+    },
+    "group": {
+      "reservation": "不需預約",
+      "contact": {
+        "phone": "0599-25-1157",
+        "url": "https://www.kankomie.or.jp/spot/22273",
+        "note": "鳥羽市観光商工課"
+      },
+      "note": null
+    },
+    "accessibility": {
+      "walkInsideMinutes": 45,
+      "stairs": null,
+      "slope": "しろんご海道緩上坡",
+      "restAreas": null,
+      "toilets": null,
+      "barrierFree": "無",
+      "note": "白沙與翡翠綠海水；海女祭典的神聖海灘，祭典以外禁止採集海產。"
+    },
+    "kids": {
+      "friendly": "medium",
+      "note": "冬季不能玩水，可在沙灘走走"
+    },
+    "sources": [
+      {
+        "type": "tourism",
+        "url": "https://www.kankomie.or.jp/spot/22273",
+        "retrieved": "2026-10-17",
+        "note": "座標（Google Maps 連結）、交通、電話"
+      },
+      {
+        "type": "tourism",
+        "url": "https://www.kankomie.or.jp/report/1424",
+        "retrieved": "2026-10-17",
+        "note": "景觀、坡道、廁所（記事稱しろんご浜有公廁）"
+      },
+      {
+        "type": "other",
+        "url": "https://www.mlit.go.jp/tagengo-db/R1-02387.html",
+        "retrieved": "2026-10-17",
+        "note": "國交省多語言解說：祭典以外可游泳、禁止採集"
+      },
+      {
+        "type": "official",
+        "url": "https://www.city.toba.mie.jp/material/files/group/45/teikisendaiya260401.pdf",
+        "retrieved": "2026-10-17",
+        "note": "菅島航路時刻、票價"
+      }
+    ],
+    "verified": false,
+    "extra": {
+      "conflicts": [
+        "廁所：觀光三重記事說しろんご浜有公廁；國交省資料說只有港有"
+      ],
+      "phone": "0599-25-1157",
+      "coordsNote": "座標取自觀光三重頁面 Google Maps 連結；OSM 無此海灘名稱",
+      "stayMinutesNote": "估計值"
+    }
+  },
+  {
+    "id": "toba-kamishima-yatsushiro-jinja",
+    "type": "spot",
+    "name": {
+      "ja": "八代神社（神島）",
+      "kana": "やつしろじんじゃ",
+      "zh": "八代神社（神島）",
+      "en": "Yatsushiro Shrine (Kamishima)"
+    },
+    "area": "toba",
+    "coords": [
+      136.982832,
+      34.549152
+    ],
+    "coordsSource": "osm",
+    "address": "三重県鳥羽市神島町",
+    "hours": null,
+    "closedNote": null,
+    "febNote": "神社全年可參拜。2 月神島航路走冬季時刻（10/16～2 月底）：佐田浜→神島 7:40、10:40、14:30、17:00；神島→佐田浜 6:50、8:35、11:35、15:10、17:35。伊良湖水道一帶浪大，冬季季風時易停航。",
+    "photos": [],
+    "links": {
+      "official": null,
+      "googleMaps": null,
+      "instagram": null
+    },
+    "tags": [
+      "離島",
+      "神社",
+      "潮騒",
+      "三島由紀夫",
+      "階梯多",
+      "搭船",
+      "戶外"
+    ],
+    "tier": null,
+    "nearestStation": {
+      "id": "toba",
+      "mode": "ferry",
+      "minutes": 55,
+      "note": "鳥羽站步行約 7 分到佐田浜港，定期船到神島約 30～40 分，港步行數分到石段下再爬 200 多階"
+    },
+    "access": [
+      {
+        "from": "toba-sadahama-marine-terminal",
+        "mode": "ferry",
+        "minutes": 40,
+        "note": "鳥羽市營定期船神島航路，直達 30 分、經和具 40 分"
+      },
+      {
+        "from": "toba-kamishima-lighthouse",
+        "mode": "walk",
+        "minutes": 10,
+        "note": "神社往燈塔走山路約 10 分（坂道、階梯續）"
+      }
+    ],
+    "admission": "免費",
+    "stayMinutes": 30,
+    "indoor": false,
+    "fares": {
+      "adult": "定期船 鳥羽⇔神島 單程 740 円",
+      "child": "定期船 單程 370 円（6 歲以上未滿 12 歲）",
+      "senior": "無長輩優惠",
+      "group": null,
+      "note": "1日フリー乗船券 1,480 円（神島往返 1,480 円，等於往返價，順道去菅島／答志就划算）"
+    },
+    "group": {
+      "reservation": "不需預約",
+      "contact": {
+        "phone": "0599-25-1157",
+        "url": "https://www.kankomie.or.jp/spot/21737",
+        "note": "鳥羽市観光商工課"
+      },
+      "note": null
+    },
+    "accessibility": {
+      "walkInsideMinutes": 30,
+      "stairs": "多",
+      "slope": "社殿在鳥居上方 200 多階石段頂；聚落路地也有階梯",
+      "restAreas": null,
+      "toilets": false,
+      "barrierFree": "無",
+      "note": "島上男女分開的公廁只有港附近近畿自然步道看板旁一處；自動販賣機也只有那裡。島上無車輛交通，全程步行。長輩可能需在港邊聚落等候。"
+    },
+    "kids": {
+      "friendly": "medium",
+      "note": "6～10 歲可爬，但階梯長"
+    },
+    "sources": [
+      {
+        "type": "osm",
+        "url": "https://www.openstreetmap.org/node/6345064777",
+        "retrieved": "2026-10-17",
+        "note": "八代神社座標"
+      },
+      {
+        "type": "tourism",
+        "url": "https://www.kankomie.or.jp/report/1412",
+        "retrieved": "2026-10-17",
+        "note": "散步路線、石段 200 段以上、各點步行時間、廁所位置、食堂やま海"
+      },
+      {
+        "type": "tourism",
+        "url": "https://www.kankomie.or.jp/spot/21737",
+        "retrieved": "2026-10-17",
+        "note": "神島（潮騒舞台）概要、長石段、交通 35 分"
+      },
+      {
+        "type": "official",
+        "url": "https://www.city.toba.mie.jp/material/files/group/45/teikisendaiya260401.pdf",
+        "retrieved": "2026-10-17",
+        "note": "神島航路冬季時刻、票價"
+      }
+    ],
+    "verified": false,
+    "extra": {
+      "conflicts": [
+        "神島一周時間：國交省日文資料約 3 小時、英文資料約 2 小時、觀光三重 2～3 小時"
+      ],
+      "phone": "0599-25-1157",
+      "stayMinutesNote": "估計值（含爬階梯）",
+      "islandLoop": "神島一周約 4km：港→八代神社→山道→神島燈台（約 10 分）→監的哨跡（約 15 分）→カルスト地形（約 10 分下坡）→古里の浜（約 10 分）→聚落高台（約 20 分）→港。共 2～3 小時。",
+      "food": "食堂「やま海」中午營業，建議事前電話確認營業日",
+      "dayTripPlan": "例：佐田浜 10:40→神島 11:20，神島 15:10→佐田浜 15:40（島上約 3 小時 50 分）"
+    }
+  },
+  {
+    "id": "toba-kamishima-lighthouse",
+    "type": "spot",
+    "name": {
+      "ja": "神島灯台",
+      "kana": "かみしまとうだい",
+      "zh": "神島燈塔",
+      "en": "Kamishima Lighthouse"
+    },
+    "area": "toba",
+    "coords": [
+      136.986296,
+      34.548732
+    ],
+    "coordsSource": "osm",
+    "address": "三重県鳥羽市神島町",
+    "hours": null,
+    "closedNote": "燈塔內部不開放（未見參觀燈塔記載）",
+    "febNote": "全年可在外參觀。2 月神島航路走冬季時刻；冬季季風強時易停航，燈塔所在高處風很大。",
+    "photos": [],
+    "links": {
+      "official": null,
+      "googleMaps": null,
+      "instagram": null
+    },
+    "tags": [
+      "離島",
+      "燈塔",
+      "潮騒",
+      "絕景",
+      "階梯多",
+      "健行",
+      "搭船",
+      "戶外"
+    ],
+    "tier": null,
+    "nearestStation": {
+      "id": "toba",
+      "mode": "ferry",
+      "minutes": 80,
+      "note": "鳥羽站步行約 7 分到佐田浜港，定期船到神島約 30～40 分，神島港步行約 35 分"
+    },
+    "access": [
+      {
+        "from": "toba-sadahama-marine-terminal",
+        "mode": "ferry",
+        "minutes": 40,
+        "note": "鳥羽市營定期船神島航路，下船後步行約 35 分（多階梯與坡道）"
+      },
+      {
+        "from": "toba-kamishima-yatsushiro-jinja",
+        "mode": "walk",
+        "minutes": 10,
+        "note": "八代神社後山路約 10 分"
+      },
+      {
+        "from": "toba-kamishima-kantekisho",
+        "mode": "walk",
+        "minutes": 15,
+        "note": "燈塔到監的哨跡約 15 分"
+      }
+    ],
+    "admission": "免費（外觀參觀）",
+    "stayMinutes": 20,
+    "indoor": false,
+    "fares": {
+      "adult": "定期船 鳥羽⇔神島 單程 740 円",
+      "child": "定期船 單程 370 円（6 歲以上未滿 12 歲）",
+      "senior": "無長輩優惠",
+      "group": null,
+      "note": "1日フリー乗船券 1,480 円"
+    },
+    "group": {
+      "reservation": "不需預約",
+      "contact": {
+        "phone": "0599-25-1157",
+        "url": "https://www.kankomie.or.jp/spot/9055",
+        "note": "鳥羽市観光商工課"
+      },
+      "note": null
+    },
+    "accessibility": {
+      "walkInsideMinutes": 70,
+      "stairs": "多",
+      "slope": "從港爬 200 多階石段到八代神社，再走坡道與階梯持續的山路",
+      "restAreas": null,
+      "toilets": false,
+      "barrierFree": "無",
+      "note": "對 70 歲長輩負擔重；廁所只有港邊一處。"
+    },
+    "kids": {
+      "friendly": "medium",
+      "note": "可眺望伊良湖水道與伊良湖岬，路程對小孩是健行"
+    },
+    "sources": [
+      {
+        "type": "osm",
+        "url": "https://www.openstreetmap.org/node/6360505498",
+        "retrieved": "2026-10-17",
+        "note": "燈塔座標（man_made=lighthouse）。Nominatim 反查地址誤標為愛知縣田原市，但與觀光三重座標一致"
+      },
+      {
+        "type": "tourism",
+        "url": "https://www.kankomie.or.jp/spot/9055",
+        "retrieved": "2026-10-17",
+        "note": "港步行約 35 分、燈塔 50 選、伊良湖水道、座標 34.548727, 136.986296"
+      },
+      {
+        "type": "tourism",
+        "url": "https://www.kankomie.or.jp/report/1412",
+        "retrieved": "2026-10-17",
+        "note": "各點步行時間、階梯"
+      },
+      {
+        "type": "official",
+        "url": "https://www.city.toba.mie.jp/material/files/group/45/teikisendaiya260401.pdf",
+        "retrieved": "2026-10-17",
+        "note": "神島航路時刻、票價"
+      }
+    ],
+    "verified": false,
+    "extra": {
+      "conflicts": [],
+      "phone": "0599-25-1157",
+      "stayMinutesNote": "估計值（不含步行）"
+    }
+  },
+  {
+    "id": "toba-kamishima-kantekisho",
+    "type": "spot",
+    "name": {
+      "ja": "神島監的哨跡",
+      "kana": "かみしまかんてきしょうあと",
+      "zh": "神島監的哨遺跡",
+      "en": "Kamishima Kantekisho Ruins"
+    },
+    "area": "toba",
+    "coords": [
+      136.98585,
+      34.546167
+    ],
+    "coordsSource": "osm",
+    "address": "三重県鳥羽市神島町",
+    "hours": null,
+    "closedNote": null,
+    "febNote": "全年可參觀；屋頂風大，強風時危險。2 月神島航路冬季時刻，季風強時易停航。",
+    "photos": [],
+    "links": {
+      "official": null,
+      "googleMaps": null,
+      "instagram": null
+    },
+    "tags": [
+      "離島",
+      "戰爭遺跡",
+      "潮騒",
+      "展望台",
+      "階梯多",
+      "搭船",
+      "戶外"
+    ],
+    "tier": null,
+    "nearestStation": {
+      "id": "toba",
+      "mode": "ferry",
+      "minutes": 95,
+      "note": "鳥羽站步行約 7 分到佐田浜港，定期船到神島約 30～40 分，經八代神社、燈塔步行約 50 分"
+    },
+    "access": [
+      {
+        "from": "toba-kamishima-lighthouse",
+        "mode": "walk",
+        "minutes": 15,
+        "note": "燈塔往監的哨跡約 15 分"
+      },
+      {
+        "from": "toba-kamishima-karst",
+        "mode": "walk",
+        "minutes": 10,
+        "note": "監的哨跡往カルスト地形下坡約 10 分"
+      }
+    ],
+    "admission": "免費",
+    "stayMinutes": 20,
+    "indoor": false,
+    "fares": {
+      "adult": "定期船 鳥羽⇔神島 單程 740 円",
+      "child": "定期船 單程 370 円（6 歲以上未滿 12 歲）",
+      "senior": "無長輩優惠",
+      "group": null,
+      "note": null
+    },
+    "group": {
+      "reservation": "不需預約",
+      "contact": {
+        "phone": "0599-25-1157",
+        "url": "https://www.kankomie.or.jp/spot/21737",
+        "note": "鳥羽市観光商工課"
+      },
+      "note": null
+    },
+    "accessibility": {
+      "walkInsideMinutes": 60,
+      "stairs": "多",
+      "slope": "位於高台，前後路段有坡道與階梯；建築內部需爬樓梯到屋頂",
+      "restAreas": null,
+      "toilets": false,
+      "barrierFree": "無",
+      "note": "1929 年陸軍建造、用於觀測試射砲彈落點的混凝土建築，《潮騒》高潮場景舞台，現作展望台。晴天可望伊良湖岬燈塔、弁天岬。"
+    },
+    "kids": {
+      "friendly": "medium",
+      "note": "可上屋頂眺望；屋頂護欄狀況未查到，需大人看顧"
+    },
+    "sources": [
+      {
+        "type": "osm",
+        "url": "https://www.openstreetmap.org/way/677653363",
+        "retrieved": "2026-10-17",
+        "note": "監的哨跡建物座標（way 中心）"
+      },
+      {
+        "type": "other",
+        "url": "https://www.mlit.go.jp/tagengo-db/R1-02411.html",
+        "retrieved": "2026-10-17",
+        "note": "國交省多語言解說：1929 年建、戰後用途、現為展望台"
+      },
+      {
+        "type": "tourism",
+        "url": "https://www.kankomie.or.jp/report/1412",
+        "retrieved": "2026-10-17",
+        "note": "燈塔→監的哨跡 15 分、→カルスト 10 分下坡"
+      }
+    ],
+    "verified": false,
+    "extra": {
+      "conflicts": [],
+      "phone": "0599-25-1157",
+      "stayMinutesNote": "估計值"
+    }
+  },
+  {
+    "id": "toba-kamishima-karst",
+    "type": "spot",
+    "name": {
+      "ja": "神島のカルスト地形",
+      "kana": "かみしまのかるすとちけい",
+      "zh": "神島喀斯特地形",
+      "en": "Kamishima Karst Landscape"
+    },
+    "area": "toba",
+    "coords": [
+      136.98316,
+      34.543706
+    ],
+    "coordsSource": "osm",
+    "address": "三重県鳥羽市神島町",
+    "hours": null,
+    "closedNote": null,
+    "febNote": "全年可看；島南側面向外海，冬季風浪大時注意。",
+    "photos": [],
+    "links": {
+      "official": null,
+      "googleMaps": null,
+      "instagram": null
+    },
+    "tags": [
+      "離島",
+      "地質",
+      "海岸",
+      "絕景",
+      "搭船",
+      "戶外"
+    ],
+    "tier": null,
+    "nearestStation": {
+      "id": "toba",
+      "mode": "ferry",
+      "minutes": 75,
+      "note": "鳥羽站步行約 7 分到佐田浜港，定期船到神島約 30～40 分；從港經聚落步行約 30 分（逆向走法）"
+    },
+    "access": [
+      {
+        "from": "toba-kamishima-kantekisho",
+        "mode": "walk",
+        "minutes": 10,
+        "note": "監的哨跡下坡約 10 分"
+      },
+      {
+        "from": "toba-sadahama-marine-terminal",
+        "mode": "ferry",
+        "minutes": 40,
+        "note": "定期船到神島，港邊民宿山海荘附近步行到此約 30 分"
+      }
+    ],
+    "admission": "免費",
+    "stayMinutes": 20,
+    "indoor": false,
+    "fares": {
+      "adult": "定期船 鳥羽⇔神島 單程 740 円",
+      "child": "定期船 單程 370 円（6 歲以上未滿 12 歲）",
+      "senior": "無長輩優惠",
+      "group": null,
+      "note": null
+    },
+    "group": {
+      "reservation": "不需預約",
+      "contact": {
+        "phone": "0599-25-1157",
+        "url": "https://www.kankomie.or.jp/spot/21737",
+        "note": "鳥羽市観光商工課"
+      },
+      "note": null
+    },
+    "accessibility": {
+      "walkInsideMinutes": 60,
+      "stairs": null,
+      "slope": "監的哨跡往下坡道；附近有ニワの浜",
+      "restAreas": null,
+      "toilets": false,
+      "barrierFree": "無",
+      "note": "白色石灰岩露出的海岸景觀，旁邊為ニワの浜（OSM 海灘）"
+    },
+    "kids": {
+      "friendly": "medium",
+      "note": null
+    },
+    "sources": [
+      {
+        "type": "osm",
+        "url": "https://www.openstreetmap.org/node/6360505260",
+        "retrieved": "2026-10-17",
+        "note": "「神島のカルスト地形」解說看板座標"
+      },
+      {
+        "type": "tourism",
+        "url": "https://www.kankomie.or.jp/report/1412",
+        "retrieved": "2026-10-17",
+        "note": "路線、步行時間"
+      },
+      {
+        "type": "tourism",
+        "url": "https://www.kankomie.or.jp/spot/21737",
+        "retrieved": "2026-10-17",
+        "note": "神島見どころ列出カルスト地形"
+      }
+    ],
+    "verified": false,
+    "extra": {
+      "conflicts": [],
+      "phone": "0599-25-1157",
+      "stayMinutesNote": "估計值"
+    }
+  }
+]
