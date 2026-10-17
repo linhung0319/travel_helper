@@ -1,0 +1,71 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://travel-helper.local/schema/candidate.schema.json",
+  "title": "候選清單（data/raw/<area>/candidates/<spots|lodging|restaurants>.json）",
+  "description": "蒐集時看過的所有候選，包括沒納入、被排除的。納入後的詳細資料在 data/areas/<area>/ 裡，這裡只放判斷用的資訊。",
+  "type": "array",
+  "items": {
+    "type": "object",
+    "properties": {
+      "key": {
+        "description": "候選表內唯一的代號；納入後通常和 pointId 相同",
+        "$ref": "common.schema.json#/$defs/id"
+      },
+      "name": { "$ref": "common.schema.json#/$defs/name" },
+      "region": { "description": "子地區 ID", "$ref": "common.schema.json#/$defs/id" },
+      "category": { "description": "類別（料理種類、住宿種類、景點種類），給人看", "type": ["string", "null"] },
+      "status": {
+        "description": "included：已納入；not-included：沒符合條件；excluded：符合但被排除規則排除；pending：待確認；over-limit：同類型上限外",
+        "enum": ["included", "not-included", "excluded", "pending", "over-limit"]
+      },
+      "criteria": {
+        "description": "符合的納入條件（餐廳的 A～F，例如 [\"A\", \"F2\"]）",
+        "type": "array",
+        "items": { "type": "string" },
+        "uniqueItems": true
+      },
+      "reason": { "description": "排除、待確認、沒納入的原因", "type": ["string", "null"] },
+      "pointId": {
+        "description": "納入後在 data/areas/ 裡的 ID",
+        "anyOf": [{ "$ref": "common.schema.json#/$defs/id" }, { "type": "null" }]
+      },
+      "ratings": {
+        "type": "object",
+        "properties": {
+          "tabelog": { "$ref": "common.schema.json#/$defs/nullableNumber" },
+          "tabelogReviews": { "$ref": "common.schema.json#/$defs/nullableInteger" },
+          "google": { "$ref": "common.schema.json#/$defs/nullableNumber" },
+          "googleReviews": { "$ref": "common.schema.json#/$defs/nullableInteger" },
+          "rakuten": { "$ref": "common.schema.json#/$defs/nullableNumber" },
+          "rakutenReviews": { "$ref": "common.schema.json#/$defs/nullableInteger" }
+        },
+        "additionalProperties": false
+      },
+      "links": { "$ref": "common.schema.json#/$defs/links" },
+      "contexts": {
+        "type": "array",
+        "items": { "enum": ["lunch", "dinner", "transit", "snack", "cafe"] },
+        "uniqueItems": true
+      },
+      "mentions": {
+        "description": "推薦這個候選的來源（算來源種類、交給讀文 subagent 當已知來源）。highlight 是這篇推薦它的原因，一句",
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "type": { "$ref": "common.schema.json#/$defs/source/properties/type" },
+            "url": { "$ref": "common.schema.json#/$defs/url" },
+            "title": { "type": ["string", "null"] },
+            "highlight": { "type": ["string", "null"] },
+            "retrieved": { "$ref": "common.schema.json#/$defs/date" }
+          },
+          "required": ["type", "url"],
+          "additionalProperties": false
+        }
+      },
+      "note": { "type": ["string", "null"] }
+    },
+    "required": ["key", "name", "status"],
+    "additionalProperties": false
+  }
+}

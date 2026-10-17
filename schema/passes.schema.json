@@ -1,0 +1,190 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://travel-helper.local/schema/passes.schema.json",
+  "title": "票券與特急費用（data/passes.json）",
+  "description": "T1 定的格式。金額一律是日圓整數；不知道的留 null 或寫在說明文字裡。T10 之後在 passes 補巴士的部分，格式沿用 passes[]。",
+  "type": "object",
+  "properties": {
+    "retrieved": { "$ref": "common.schema.json#/$defs/date" },
+    "notes": { "$ref": "common.schema.json#/$defs/nullableString" },
+    "childRules": {
+      "type": "object",
+      "properties": {
+        "adult": { "type": "string" },
+        "child": { "type": "string" },
+        "infant": { "type": "string" },
+        "childAmount": { "type": "string" },
+        "sources": { "$ref": "common.schema.json#/$defs/sources" }
+      },
+      "required": ["sources"],
+      "additionalProperties": false
+    },
+    "passes": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": { "$ref": "common.schema.json#/$defs/id" },
+          "name": { "$ref": "common.schema.json#/$defs/name" },
+          "price": { "$ref": "#/$defs/adultChild" },
+          "validity": { "$ref": "common.schema.json#/$defs/nullableString" },
+          "eligibility": { "$ref": "common.schema.json#/$defs/nullableString" },
+          "purchase": { "$ref": "common.schema.json#/$defs/nullableString" },
+          "coverage": { "$ref": "common.schema.json#/$defs/nullableString" },
+          "excludes": { "type": "array", "items": { "type": "string" } },
+          "perks": { "$ref": "common.schema.json#/$defs/nullableString" },
+          "sources": { "$ref": "common.schema.json#/$defs/sources" }
+        },
+        "required": ["id", "name", "price", "sources"],
+        "additionalProperties": false
+      }
+    },
+    "passNotes": { "$ref": "common.schema.json#/$defs/nullableString" },
+    "fares": {
+      "type": "object",
+      "properties": {
+        "note": { "$ref": "common.schema.json#/$defs/nullableString" },
+        "expressByDistance": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "upToKm": { "type": ["integer", "null"], "minimum": 0 },
+              "adult": { "$ref": "#/$defs/yen" },
+              "child": { "$ref": "#/$defs/yen" },
+              "note": { "$ref": "common.schema.json#/$defs/nullableString" }
+            },
+            "required": ["upToKm", "adult", "child"],
+            "additionalProperties": false
+          }
+        },
+        "segments": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "from": { "description": "車站 ID，可以在區間外（例如 osaka-namba、kintetsu-nagoya）", "$ref": "common.schema.json#/$defs/id" },
+              "to": { "$ref": "common.schema.json#/$defs/id" },
+              "fare": { "$ref": "#/$defs/adultChild" },
+              "express": { "$ref": "#/$defs/adultChild" },
+              "shimakaze": { "anyOf": [{ "$ref": "#/$defs/adultChild" }, { "type": "null" }] },
+              "note": { "$ref": "common.schema.json#/$defs/nullableString" }
+            },
+            "required": ["from", "to", "fare", "express"],
+            "additionalProperties": false
+          }
+        },
+        "segmentNote": { "$ref": "common.schema.json#/$defs/nullableString" },
+        "sources": { "$ref": "common.schema.json#/$defs/sources" }
+      },
+      "required": ["sources"],
+      "additionalProperties": false
+    },
+    "shimakaze": {
+      "type": "object",
+      "properties": {
+        "name": { "$ref": "common.schema.json#/$defs/name" },
+        "charge": { "$ref": "common.schema.json#/$defs/nullableString" },
+        "oneWayTotals": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "from": { "$ref": "common.schema.json#/$defs/id" },
+              "to": { "$ref": "common.schema.json#/$defs/id" },
+              "adult": { "$ref": "#/$defs/yen" },
+              "child": { "$ref": "#/$defs/yen" }
+            },
+            "required": ["from", "to", "adult", "child"],
+            "additionalProperties": false
+          }
+        },
+        "seats": { "$ref": "common.schema.json#/$defs/nullableString" },
+        "operation": { "$ref": "common.schema.json#/$defs/nullableString" },
+        "tripImpact": { "$ref": "common.schema.json#/$defs/nullableString" },
+        "sources": { "$ref": "common.schema.json#/$defs/sources" }
+      },
+      "required": ["sources"],
+      "additionalProperties": false
+    },
+    "otherExpress": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "note": { "$ref": "common.schema.json#/$defs/nullableString" }
+        },
+        "required": ["name"],
+        "additionalProperties": false
+      }
+    },
+    "otherExpressSources": { "$ref": "common.schema.json#/$defs/sources" },
+    "booking": {
+      "type": "object",
+      "properties": {
+        "opens": { "$ref": "common.schema.json#/$defs/nullableString" },
+        "online": { "$ref": "common.schema.json#/$defs/nullableString" },
+        "group15": { "$ref": "common.schema.json#/$defs/nullableString" },
+        "refund": { "$ref": "common.schema.json#/$defs/nullableString" },
+        "groupExpress": { "$ref": "common.schema.json#/$defs/nullableString" },
+        "sources": { "$ref": "common.schema.json#/$defs/sources" }
+      },
+      "required": ["sources"],
+      "additionalProperties": false
+    },
+    "groupTicket": {
+      "type": "object",
+      "properties": {
+        "name": { "$ref": "common.schema.json#/$defs/name" },
+        "minPeople": { "type": ["integer", "null"], "minimum": 1 },
+        "discount": { "$ref": "common.schema.json#/$defs/nullableString" },
+        "freePersons": { "$ref": "common.schema.json#/$defs/nullableString" },
+        "conditions": { "$ref": "common.schema.json#/$defs/nullableString" },
+        "deadline": { "$ref": "common.schema.json#/$defs/nullableString" },
+        "fitForThisTrip": { "$ref": "common.schema.json#/$defs/nullableString" },
+        "sources": { "$ref": "common.schema.json#/$defs/sources" }
+      },
+      "required": ["sources"],
+      "additionalProperties": false
+    },
+    "comparison": {
+      "type": "object",
+      "properties": {
+        "assumption": { "$ref": "common.schema.json#/$defs/nullableString" },
+        "cases": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "case": { "type": "string" },
+              "total": { "$ref": "#/$defs/yen" },
+              "insteadOf": { "$ref": "#/$defs/yen" }
+            },
+            "required": ["case", "total"],
+            "additionalProperties": false
+          }
+        },
+        "conclusion": { "$ref": "common.schema.json#/$defs/nullableString" },
+        "sources": { "$ref": "common.schema.json#/$defs/sources" }
+      },
+      "required": ["sources"],
+      "additionalProperties": false
+    },
+    "sources": { "$ref": "common.schema.json#/$defs/sources" }
+  },
+  "required": ["retrieved", "passes", "sources"],
+  "additionalProperties": false,
+  "$defs": {
+    "yen": { "description": "日圓整數", "type": ["integer", "null"], "minimum": 0 },
+    "adultChild": {
+      "type": "object",
+      "properties": {
+        "adult": { "$ref": "#/$defs/yen" },
+        "child": { "$ref": "#/$defs/yen" }
+      },
+      "required": ["adult", "child"],
+      "additionalProperties": false
+    }
+  }
+}

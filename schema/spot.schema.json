@@ -6,37 +6,73 @@
   "items": {
     "$ref": "common.schema.json#/$defs/point",
     "properties": {
-      "type": { "const": "spot" },
-      "nearestStation": { "$ref": "common.schema.json#/$defs/stationRef" },
+      "type": {
+        "const": "spot"
+      },
+      "nearestStation": {
+        "$ref": "common.schema.json#/$defs/stationRef"
+      },
       "access": {
         "type": "array",
         "items": {
           "type": "object",
           "properties": {
-            "from": { "description": "出發的車站或資料點 ID", "$ref": "common.schema.json#/$defs/id" },
-            "mode": { "$ref": "common.schema.json#/$defs/mode" },
-            "minutes": { "$ref": "common.schema.json#/$defs/nullableNumber" },
-            "note": { "$ref": "common.schema.json#/$defs/nullableString" }
+            "from": {
+              "description": "出發的車站或資料點 ID",
+              "$ref": "common.schema.json#/$defs/id"
+            },
+            "mode": {
+              "$ref": "common.schema.json#/$defs/mode"
+            },
+            "minutes": {
+              "$ref": "common.schema.json#/$defs/nullableNumber"
+            },
+            "note": {
+              "$ref": "common.schema.json#/$defs/nullableString"
+            }
           },
-          "required": ["from", "mode", "minutes"],
+          "required": [
+            "from",
+            "mode",
+            "minutes"
+          ],
           "additionalProperties": false
         }
       },
-      "admission": { "$ref": "common.schema.json#/$defs/nullableString" },
-      "stayMinutes": { "$ref": "common.schema.json#/$defs/nullableInteger" },
-      "indoor": { "description": "下雨天的替代選擇", "$ref": "common.schema.json#/$defs/nullableBoolean" },
+      "admission": {
+        "$ref": "common.schema.json#/$defs/nullableString"
+      },
+      "stayMinutes": {
+        "$ref": "common.schema.json#/$defs/nullableInteger"
+      },
+      "indoor": {
+        "description": "下雨天的替代選擇",
+        "$ref": "common.schema.json#/$defs/nullableBoolean"
+      },
       "fares": {
         "description": "票價：大人、小孩、長輩、團體分開記",
         "anyOf": [
-          { "type": "null" },
+          {
+            "type": "null"
+          },
           {
             "type": "object",
             "properties": {
-              "adult": { "$ref": "common.schema.json#/$defs/nullableString" },
-              "child": { "$ref": "common.schema.json#/$defs/nullableString" },
-              "senior": { "$ref": "common.schema.json#/$defs/nullableString" },
-              "group": { "$ref": "common.schema.json#/$defs/nullableString" },
-              "note": { "$ref": "common.schema.json#/$defs/nullableString" }
+              "adult": {
+                "$ref": "common.schema.json#/$defs/nullableString"
+              },
+              "child": {
+                "$ref": "common.schema.json#/$defs/nullableString"
+              },
+              "senior": {
+                "$ref": "common.schema.json#/$defs/nullableString"
+              },
+              "group": {
+                "$ref": "common.schema.json#/$defs/nullableString"
+              },
+              "note": {
+                "$ref": "common.schema.json#/$defs/nullableString"
+              }
             },
             "additionalProperties": false
           }
@@ -44,13 +80,21 @@
       },
       "group": {
         "anyOf": [
-          { "type": "null" },
+          {
+            "type": "null"
+          },
           {
             "type": "object",
             "properties": {
-              "reservation": { "$ref": "common.schema.json#/$defs/nullableString" },
-              "contact": { "$ref": "common.schema.json#/$defs/contact" },
-              "note": { "$ref": "common.schema.json#/$defs/nullableString" }
+              "reservation": {
+                "$ref": "common.schema.json#/$defs/nullableString"
+              },
+              "contact": {
+                "$ref": "common.schema.json#/$defs/contact"
+              },
+              "note": {
+                "$ref": "common.schema.json#/$defs/nullableString"
+              }
             },
             "additionalProperties": false
           }
@@ -59,17 +103,38 @@
       "accessibility": {
         "description": "長輩（約 70 歲）友善程度；只記錄、不拿來排除景點",
         "anyOf": [
-          { "type": "null" },
+          {
+            "type": "null"
+          },
           {
             "type": "object",
             "properties": {
-              "walkInsideMinutes": { "$ref": "common.schema.json#/$defs/nullableInteger" },
-              "stairs": { "enum": ["無", "少", "多", null] },
-              "slope": { "$ref": "common.schema.json#/$defs/nullableString" },
-              "restAreas": { "$ref": "common.schema.json#/$defs/nullableBoolean" },
-              "toilets": { "$ref": "common.schema.json#/$defs/nullableBoolean" },
-              "barrierFree": { "$ref": "common.schema.json#/$defs/nullableString" },
-              "note": { "$ref": "common.schema.json#/$defs/nullableString" }
+              "walkInsideMinutes": {
+                "$ref": "common.schema.json#/$defs/nullableInteger"
+              },
+              "stairs": {
+                "enum": [
+                  "無",
+                  "少",
+                  "多",
+                  null
+                ]
+              },
+              "slope": {
+                "$ref": "common.schema.json#/$defs/nullableString"
+              },
+              "restAreas": {
+                "$ref": "common.schema.json#/$defs/nullableBoolean"
+              },
+              "toilets": {
+                "$ref": "common.schema.json#/$defs/nullableBoolean"
+              },
+              "barrierFree": {
+                "$ref": "common.schema.json#/$defs/nullableString"
+              },
+              "note": {
+                "$ref": "common.schema.json#/$defs/nullableString"
+              }
             },
             "additionalProperties": false
           }
@@ -78,13 +143,131 @@
       "kids": {
         "description": "小孩（6～10 歲）",
         "anyOf": [
-          { "type": "null" },
+          {
+            "type": "null"
+          },
           {
             "type": "object",
             "properties": {
-              "friendly": { "enum": ["high", "medium", "low", null] },
-              "note": { "$ref": "common.schema.json#/$defs/nullableString" }
+              "friendly": {
+                "enum": [
+                  "high",
+                  "medium",
+                  "low",
+                  null
+                ]
+              },
+              "note": {
+                "$ref": "common.schema.json#/$defs/nullableString"
+              }
             },
+            "additionalProperties": false
+          }
+        ]
+      },
+      "ratings": {
+        "anyOf": [
+          {
+            "type": "null"
+          },
+          {
+            "type": "object",
+            "properties": {
+              "google": {
+                "$ref": "common.schema.json#/$defs/nullableNumber"
+              },
+              "googleReviews": {
+                "$ref": "common.schema.json#/$defs/nullableInteger"
+              },
+              "note": {
+                "$ref": "common.schema.json#/$defs/nullableString"
+              }
+            },
+            "additionalProperties": {
+              "type": [
+                "number",
+                "null"
+              ]
+            }
+          }
+        ]
+      },
+      "phone": {
+        "$ref": "common.schema.json#/$defs/nullableString"
+      },
+      "assessment": {
+        "description": "Claude 依 CONVENTIONS.md §5.1 的「spot」標準打分",
+        "anyOf": [
+          {
+            "type": "null"
+          },
+          {
+            "type": "object",
+            "properties": {
+              "rubric": {
+                "type": "string",
+                "pattern": "^spot-v[0-9]+$"
+              },
+              "scores": {
+                "type": "object",
+                "properties": {
+                  "recommend": {
+                    "$ref": "common.schema.json#/$defs/star"
+                  },
+                  "winterFit": {
+                    "$ref": "common.schema.json#/$defs/star"
+                  },
+                  "elderFit": {
+                    "$ref": "common.schema.json#/$defs/star"
+                  },
+                  "kidsFit": {
+                    "$ref": "common.schema.json#/$defs/star"
+                  },
+                  "accessEase": {
+                    "$ref": "common.schema.json#/$defs/star"
+                  }
+                },
+                "required": [
+                  "recommend",
+                  "winterFit",
+                  "elderFit",
+                  "kidsFit",
+                  "accessEase"
+                ],
+                "additionalProperties": false
+              },
+              "rationale": {
+                "type": "object",
+                "propertyNames": {
+                  "enum": [
+                    "recommend",
+                    "winterFit",
+                    "elderFit",
+                    "kidsFit",
+                    "accessEase"
+                  ]
+                },
+                "additionalProperties": {
+                  "type": "string"
+                }
+              },
+              "confidence": {
+                "enum": [
+                  "high",
+                  "medium",
+                  "low"
+                ]
+              },
+              "assessed": {
+                "$ref": "common.schema.json#/$defs/date"
+              }
+            },
+            "required": [
+              "rubric",
+              "scores",
+              "confidence",
+              "assessed"
+            ],
             "additionalProperties": false
           }
         ]

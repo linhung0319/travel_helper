@@ -1,6 +1,6 @@
 # 共同規則與資料格式
 
-所有 Claude Code session 都要遵守這份文件。這裡的資料格式是**草稿**：T0 會把它寫成 JSON Schema，T7 再根據鳥羽試做的結果修正。
+所有 Claude Code session 都要遵守這份文件。資料格式已由 T0 寫成 JSON Schema，T7（2026-10-17）根據鳥羽試做的結果修正；T7 的討論過程見 [T7-review.md](T7-review.md)。
 
 ---
 
@@ -26,21 +26,29 @@ travel_helper/
 │  ├─ timetables/
 │  │  ├─ kintetsu/<station-id>.json
 │  │  └─ bus/<route-id>.json
-│  ├─ raw/<area-id>/         研究筆記（Markdown）：搜尋過程、候選清單、被排除的原因
+│  ├─ raw/<area-id>/         研究筆記（怎麼存見 §4「研究筆記怎麼存」）
+│  │  ├─ README.md           區域的現況、決定、給後續的建議（開工先讀這個）
+│  │  ├─ candidates/         候選清單 JSON（含沒納入、被排除的）
+│  │  ├─ dossiers/<id>.md    每個資料點的讀文筆記（摘要、評分的依據）
+│  │  ├─ questions.md        要打電話或人工確認的事
+│  │  └─ log/<任務 ID>.md    各任務的過程紀錄（寫完不再改）
+│  ├─ derived/               腳本產生的檢查結果（例如評分一致性），不要手改
 │  └─ cache/routes/          路線計算的快取
 ├─ scripts/                  驗證、蒐集、地理計算的腳本
 └─ web/                      前端（Vite + React + TypeScript + MapLibre GL）
 ```
 
-區域 ID：`ise`、`futami`、`toba`、`shima`
+區域 ID：`ise`、`futami`、`toba`、`shima`、`kix`（關西機場周邊，只有住宿和晚餐）
+
+每個區域在 `areas.json` 有**子地區**（`regions`），是搜尋、缺漏檢查、地圖篩選的單位；資料點的 `region` 填子地區 ID。
 
 ---
 
 ## 1.5 Schema 與驗證（T0 建立）
 
-- JSON Schema 放在 `schema/`：`common`（共同欄位）、`station`、`spot`、`lodging`、`restaurant`、`area`、`timetable-kintetsu`，以及格式還沒定的檔案共用的 `sourced-document`（`passes.json`、`access/*.json`、`timetables/bus/*.json`、`timetables/kintetsu/_travel-times.json`：目前只要求最外層是物件、有 `sources`，負責的任務定好格式後到 `docs/requests.md` 提出）。
+- JSON Schema 放在 `schema/`：`common`（共同欄位）、`station`、`spot`、`lodging`、`restaurant`、`area`、`timetable-kintetsu`、`kintetsu-travel-times`、`passes`、`access`、`candidate`（`raw/<area>/candidates/*.json`），以及格式還沒定的檔案共用的 `sourced-document`（目前只有 `timetables/bus/*.json`：只要求最外層是物件、有 `sources`，T10 定好格式後到 `docs/requests.md` 提出）。
 - 驗證：`npm run validate`（或 `node scripts/validate.mjs`；bash 下可以直接跑 `scripts/validate`）。第一次使用前要先 `npm install`。
-  - 檢查：符合 schema、資料點 ID 全專案唯一、座標在伊勢志摩範圍內（`access/` 放寬到關西、中部）、引用的 ID 存在（`nearestStation`、`access.from`、`anchors`、`transfers`、`group.nearbyCombos`、`areas.json` 的 `stations`）、檔案在規定的位置。
+  - 檢查：符合 schema、資料點 ID 全專案唯一、座標在伊勢志摩範圍內（`access/`、`kix` 區域放寬到關西、中部）、引用的 ID 存在（`nearestStation`、`access.from`、`anchors`、`transfers`、`group.nearbyCombos`、`areas.json` 的 `stations`）、`region` 在該區域的 `regions` 裡、候選清單的 key 不重複而且 `pointId` 存在、有 `assessment` 時 `tier` 和推薦度一致、檔案在規定的位置。
   - 座標不在所屬區域的 `bbox` 內只會警告（bbox 是大致範圍）。
 - `areas/*.json`、`stations.json` 等清單檔的最外層是**陣列**，每個元素一筆資料。
 - schema 不允許沒定義的欄位：暫時放進 `extra`，需要正式欄位的話寫到 `docs/requests.md`。
@@ -52,7 +60,9 @@ travel_helper/
 
 ### 營業時間（`hours`）
 - 整個欄位 `null`：不知道。某一天 `null`：那天不知道；`[]`：那天公休；可以有多個時段，例如 `[["11:00", "14:00"], ["17:00", "21:00"]]`。
-- 可以加 `holiday`（國定假日）和 `note`（例如「最後入場 16:00」）。過了午夜寫 `25:00`。
+- 可以加 `holiday`（國定假日）和 `note`。過了午夜寫 `25:00`。
+- `lastEntry`：最後入場或最後點餐（程式會用來檢查）；`always: true`：戶外、自由參觀，全天開放。
+- 冬季休業、改裝這類**有日期的休業**寫進 `closures`（`[{ "from": "2027-01-10", "to": "2027-02-28", "note": "冬季休業" }]`），程式才判斷得了；`febNote` 仍然寫給人看的說明。
 
 ---
 
@@ -61,11 +71,13 @@ travel_helper/
 | 檔案 | 誰可以寫 |
 |---|---|
 | `schema/`、`data/areas.json`、`data/stations.json` | 只有 T0、T7 |
+| `data/areas.json` 裡**自己區域的 `regions`** | 負責該區的任務（T7b～T7g、T8a、T9a、T19）；其他欄位仍然只有 T0、T7 |
 | `data/timetables/kintetsu/`、`data/passes.json` | T1 |
 | `data/access/`、`data/raw/access/` | T1b（機場往返交通） |
 | `data/timetables/bus/` | T10（`passes.json` 的巴士部分也由 T10 補充） |
-| `data/areas/<area>/`、`data/raw/<area>/` | 負責該區的任務（T2～T4、T8、T9） |
+| `data/areas/<area>/`、`data/raw/<area>/` | 負責該區的任務（鳥羽 T2～T4c、T7b～T7g；伊勢 T8a～T8f；志摩 T9a～T9f；關西機場周邊 T19） |
 | `data/cache/` | 任何任務都可以新增，不可以刪除別人的檔案 |
+| `data/derived/` | 只由腳本產生（例如評分的一致性檢查），不要手改 |
 | `web/` | T5、T11、T12、T15、T16、T17（同時進行時，各自負責的目錄要先講好） |
 | `scripts/` | 新增檔案自由；修改別人的腳本要在 commit 訊息裡說明 |
 
@@ -90,11 +102,28 @@ travel_helper/
     "mon": [["09:00", "17:00"]], "tue": null
   },
   "closedNote": "不定休",
-  "febNote": "2 月照常營業",          // 冬季、淡季的特別狀況
-  "photos": [{ "url": "...", "source": "..." }],
+  "febNote": "2 月照常營業",          // 冬季、淡季的特別狀況（給人看）
+  "closures": [],                    // 有日期的休業（給程式判斷），見 §1.5
+  "events": [{ "date": "2027-02-03", "note": "節分祭" }],
+  "region": "toba-station",          // 子地區（areas.json 的 regions）
+  "photos": [                        // 1～3 張，只記 URL，不下載（見 §4「照片」）
+    { "url": "...", "page": "...", "kind": "official", "credit": "鳥羽水族館", "license": null }
+  ],
+  "summary": {                       // 給使用者看的介紹（見 §4「摘要」）
+    "text": "2～3 句介紹",
+    "pros": ["推薦原因"], "cons": ["可能的問題"],
+    "basedOn": ["https://..."], "generated": "2026-11-01"
+  },
+  "assessment": {                    // Claude 依類型的評分標準打分（見 §5.1），和 summary 一起寫
+    "rubric": "restaurant-v1",
+    "scores": { "recommend": 4, "localFlavor": 5, "groupFit": 2, "elderFit": 3, "kidsFit": 4 },   // 1～5 顆星；資料不足填 null
+    "rationale": { "recommend": "一句理由", "groupFit": "最大予約 8 人" },
+    "confidence": "medium",          // high | medium | low
+    "assessed": "2026-11-01"
+  },
   "links": { "official": "...", "googleMaps": "...", "tabelog": "...", "instagram": "@xxx" },
   "tags": [],
-  "tier": null,                      // 分級，T7 訂規則後才填
+  "tier": null,                      // S | A | B，由 assessment.scores.recommend 決定（5＝S、4＝A、其他＝B），和 assessment 一起寫
   "sources": [                       // 必填，至少一筆
     { "type": "official", "url": "...", "retrieved": "2026-10-20", "note": "營業時間" }
   ],
@@ -122,6 +151,8 @@ travel_helper/
   "admission": "大人 2800 円",
   "stayMinutes": 120,
   "indoor": true,                    // 下雨天的替代選擇
+  "ratings": { "google": 4.3, "googleReviews": 5200 },   // 景點用評論數當人氣
+  "phone": "0599-xx-xxxx",
   "fares": {                         // 票價：長輩、小孩分開記
     "adult": "2800 円", "child": "1400 円（小學生）", "senior": "65 歲以上 2500 円", "group": "15 人以上 9 折"
   },
@@ -159,6 +190,8 @@ travel_helper/
     { "plan": "包棟（素泊）", "unit": "per-house", "price": 120000, "maxGuests": 16, "source": "official", "retrieved": "2026-10-20" }
   ],
   "luggage": "可以在入住前寄放",
+  "checkIn": "15:00", "checkOut": "10:00",
+  "dinnerAccess": "car",             // 不含晚餐時：walk（步行 20 分內有店）| car（要搭車）| null
   "group": {                         // 能不能容納 15 人
     "totalRooms": 8,
     "roomTypes": ["和室 4～5 人", "洋室 2 人"],
@@ -167,7 +200,7 @@ travel_helper/
     "pickupCapacity": 9,             // 接送車一次能載幾人
     "note": null
   },
-  "ratings": { "rakuten": 4.5, "google": 4.4, "googleReviews": 320, "jalan": null },
+  "ratings": { "rakuten": 4.5, "rakutenReviews": 900, "google": 4.4, "googleReviews": 320, "jalan": null, "jalanReviews": null },
   "accessibility": {                 // 長輩、小孩
     "elevator": true,
     "beds": "和室鋪被（有和洋室）",    // 長輩可能偏好有床的房間
@@ -191,14 +224,21 @@ travel_helper/
     { "id": "toba-aquarium", "walkMinutes": 6, "walkSource": "estimate" }  // estimate | osrm | google
   ],
   "contexts": ["lunch"],             // lunch | dinner | transit | snack | cafe
-  "cuisine": ["海鮮丼"],
-  "priceRange": "¥1500～3000",
+  "access": "walk",                  // walk | car（要搭車）| ferry（離島）
+  "cuisine": ["海鮮丼"],              // 固定清單，見 §5.3
+  "priceRange": "¥1500～3000",        // 給人看
+  "price": { "lunch": [1500, 3000], "dinner": null },   // 每人（円），估預算、價位標籤用
+  "stayMinutes": null,               // null 時依料理種類用預設值（§5.5）
   "mustTry": ["伊勢海老丼"],
   "menu": [{ "url": "...", "source": "instagram", "retrieved": "..." }],
-  "ratings": { "tabelog": 3.62, "google": 4.3, "googleReviews": 850 },
+  "ratings": { "tabelog": 3.62, "tabelogReviews": 120, "google": 4.3, "googleReviews": 850 },
+  "tabelogOwner": false,             // 食べログ店舗会員（資料由店家維護）
+  "googleName": null,                // Google 上的店名和食べログ不同時
   "notes": "中午常常賣完；週三公休",
   "group": {                         // 團體可行性
     "seats": 30,
+    "maxReservation": 20,            // 食べログ「最大予約可能人数」
+    "confirmed15": null,             // 打電話確認可以接 15 人：{ "date": "2026-12-01", "note": "..." }
     "fit15": "yes",                  // 全員 15 人：yes | split（要分桌或分批）| no | unknown
     "fitSubgroup": "yes",            // 分組 4～6 人：yes | no | unknown
     "privateRoom": true,             // 有沒有包廂
@@ -212,10 +252,12 @@ travel_helper/
     "phone": "0599-xx-xxxx",
     "url": "https://...",            // 網路訂位頁（食べログ、ホットペッパー、TableCheck、官網等）
     "language": "日文",
-    "note": "團體要 3 天前預約"
+    "note": "團體要 3 天前預約",
+    "leadDays": 3                    // 幾天前要訂
   },
-  "seating": ["table", "zashiki"],   // table（椅子）| zashiki（榻榻米席）| horigotatsu（下挖式）| counter
-  "kids": "有兒童餐；可帶小孩",       // 小孩相關，不知道就 null
+  "seating": ["table", "zashiki"],   // table（椅子）| zashiki（榻榻米席）| horigotatsu（下挖式）| counter | terrace | sofa | other
+  "kids": { "allowed": "yes", "minAge": null, "kidsMenu": true, "note": null },   // allowed: yes | no | age-limit | unknown（舊格式是字串，T7b 改）
+  "accessibility": { "barrierFree": "車椅子で入店可", "note": null },
   "smoking": "全面禁煙"
 }
 ```
@@ -232,11 +274,13 @@ travel_helper/
       "weekday": [ { "dep": "06:12", "type": "普通", "to": "kashikojima", "trainNo": null } ],
       "holiday": [ ]
     },
-    "for-ujiyamada": { "weekday": [], "holiday": [] }
+    "for-ise-nakagawa": { "weekday": [], "holiday": [] }
   }
 }
 ```
-各站之間的車程另外存在 `data/timetables/kintetsu/_travel-times.json`（T1 決定格式）。
+- 方向鍵只有兩個：`for-kashikojima`（南下，往鳥羽、賢島；伊勢市站終點是宇治山田、鳥羽的車也算這邊，實際終點看 `to`）和 `for-ise-nakagawa`（北上，往伊勢中川、名古屋、大阪）。
+- `trainNo` 是近鐵時刻表網站的列車編號（例如 `1-3896`），同一班車在各站相同，可以對到 `_travel-times.json` 的 `trains`。
+- 各站之間的車程和每班車的停站時刻存在 `data/timetables/kintetsu/_travel-times.json`（格式見 `schema/kintetsu-travel-times.schema.json`）。
 
 ### 行程（T14 會訂出完整格式，這裡先放草稿）
 ```jsonc
@@ -280,7 +324,9 @@ travel_helper/
 | 日文部落格、地方媒體 | 在地人推薦 |
 | 中文部落格（台灣旅遊部落客、PTT、Dcard） | 觀光客視角、點餐建議、排隊狀況 |
 | Instagram | **不主動查**，只記錄帳號（從食べログ或 Google 取得）。出發前（T18）才對行程中選定的店少量確認 |
-| ホットペッパーグルメ | 不使用：它有的欄位食べログ都有，而且很難操作 |
+| ホットペッパーグルメ | 網站不使用（難操作）。官方 API 有總席數、包廂、包場、小孩、照片，**要不要用待 👤 決定**（先測鳥羽的覆蓋率，見 T7-review.md §4） |
+| 楽天トラベル API | **住宿的主要來源**（T7 決定）：空室検索 API 用座標和旅程日期查空房、實際價格、照片，可以直接指定「5 間 × 3 人」這種房型組合；施設情報 API 有總評分和晚餐、早餐、浴場、清潔度等細項評分。用法見下方「楽天トラベル API」。沒上楽天的小民宿、包棟照舊人工查 |
+| Google Maps | 不使用 API（T7 決定）。星數、評論數、照片 URL 用 Chrome 查；**每筆都要有 `links.googleMaps`**，需要即時資訊（臨時休業、最新評論、照片）的人點連結看 |
 | 近鐵官網 | 時刻表、票券規則 |
 
 #### 食べログ、Google Maps 的讀取方式（2026-10-17 實測）
@@ -297,6 +343,14 @@ travel_helper/
   - 評論會被機器翻譯，不要引用評論內容。
 - Instagram：很多帳號早就停止更新（例如最後一篇是 2021 年），簡介裡的營業時間不一定是最新的；要先看最近一篇貼文的日期再判斷。
 
+#### 楽天トラベル API
+- 需要 👤 到楽天ウェブサービス註冊，取得 `applicationId` 和 `accessKey`，放在環境變數 `RAKUTEN_APP_ID`、`RAKUTEN_ACCESS_KEY`（寫在 `.env`，**不要 commit**）。
+- **空室検索**（`VacantHotelSearch`）：子地區中心座標、半徑最多 3 km、入住和退房日期（用旅程實際可能住的日期），`roomNum`（最多 10）× `adultNum`（每間最多 10）。例如 15 人查「5 間 × 3 人」和「4 間 × 4 人」，結果裡有空房的就是能全員同住的候選。
+- **施設情報**（`HotelDetailSearch`）：`reviewAverage`、`reviewCount`，以及服務、地點、房間、設備、浴場、早餐、晚餐、清潔度的細項評分；評分時晚餐、浴場的細項很有用。
+- 取得的價格寫進 `prices`（`source: "rakuten-api"`，附查詢日期和入住日期）；照片寫進 `photos`（`kind: "rakuten"`）。
+- 規約要求顯示楽天的標示，T11 顯示這些資料時要加上；申請時順便確認規約對存放資料的規定，有限制的話寫進 `docs/requests.md`。
+- 呼叫間隔至少 1 秒，查詢腳本放在 `scripts/`。
+
 #### 營業時間、地址的優先順序
 不同來源常常互相矛盾（實測：同一家店，Google 寫 10:00 開，食べログ寫 10:15，IG 寫 9:30）。依下面的順序採用，其他來源的值寫進 `extra.conflicts`：
 1. 官網
@@ -305,10 +359,13 @@ travel_helper/
 4. 食べログ（非店舗会員）
 5. IG（只採用最近一年內的貼文或簡介）
 
-座標一律以 Google Maps 為準（`coordsSource: "google-maps-url"`）。
+**座標**：餐廳以 Google Maps 為準（`coordsSource: "google-maps-url"`）；景點、住宿如果 OSM 有而且位置正確，可以用 OSM（`"osm"`，可以自由存放），否則用 Google。
 
-### 餐廳候選納入標準（鳥羽試做版，T7 會檢討）
+**Google 的資料**：星數、評論數、營業時間照現行做法（Chrome）存在各區的 JSON；景點、住宿也要記 Google 星數和評論數（給 Claude 評分時參考）。
+
+### 餐廳候選納入標準
 > 2026-10-17 依 T4a 鳥羽的結果修訂：B 不算會員名錄、C 加口コミ下限、D 加晚餐缺口、新增會員制與旅程期間不營業的排除、同類型上限；F 加入體驗型的用餐。
+> 2026-10-17 T7：D 加「任何一天 0 家」、離島可以用外帶便當保底；F 加入接受非住客用餐的料理旅館；伊勢的數量目標改成 80～100 家。
 
 這個標準只決定「哪些候選店值得詳細查」（T4a → T4b），**不是推薦分級**（分級由 T7 訂）。符合**任一條**就納入：
 
@@ -317,18 +374,72 @@ travel_helper/
 | A | **人氣**：食べログ 3.30 以上而且口コミ 10 則以上，**或** Google 4.0 以上而且評論 50 則以上 | 公認好吃的店；評論數門檻是為了排除少數評論造成的高分 |
 | B | **多來源推薦**：被 2 種以上獨立來源推薦。來源種類是觀光協會、觀光三重、日文部落格與媒體、中文部落格，**同一種算一個**（兩篇日文文章仍算 1）。觀光協會的**會員店家名錄不算推薦**，精選特集（例如牡蠣特集）才算；食べログ本身不算 | 分數普通但常被推薦的店 |
 | C | **能接團體**：食べログ 3.10 以上**而且口コミ 15 則以上**，而且在「貸切可」或「個室」（食べログ的勾選預設含半個室）的篩選結果裡 | 能坐下 15 人的店很稀少；口コミ下限是為了排除只在食べログ勾了「貸切可」、但沒人去過的店 |
-| D | **缺口保底**：A～C 都沒有店時才用，每家要寫明補的是哪個缺口。① 店少的地區（相差、國崎與パールロード、各離島、中之郷）取口コミ數最多的前 3～5 家；② 不含晚餐的住宿附近沒有晚餐的店時，取附近口コミ數最多的 1～3 家 | 每個景點、每個住宿附近都要有地方吃飯 |
+| D | **缺口保底**：A～C 都沒有店，**或旅程中有任何一天這個子地區中午 0 家有營業**時才用，每家要寫明補的是哪個缺口。① 店少的子地區取口コミ數最多的前 3～5 家；② 不含晚餐的住宿附近沒有晚餐的店時，取附近口コミ數最多的 1～3 家；③ 離島找不到可以坐下吃的店時，外帶便當店也可以（例外於「只做外帶」的排除） | 每個景點、每個住宿附近、旅程的每一天都要有地方吃飯 |
 | E | **車站保底**：主要車站步行 5 分鐘內至少 3 家 | 轉車空檔（`transit`） |
-| F | **目的地型**：① 浦村牡蠣這類特產聚落（牡蠣小屋、吃到飽），取口コミ數前 5～8 家；② **體驗型的用餐**（屋形船、海上料亭、海女小屋這類，用餐本身就是體驗），不看分數和口コミ門檻；已以景點收錄的不重複 | 本身就是行程重點的用餐地點；體驗型的店評論常常很少，分數反映不出價值 |
+| F | **目的地型**：① 浦村牡蠣這類特產聚落（牡蠣小屋、吃到飽），取口コミ數前 5～8 家；② **體驗型的用餐**（屋形船、海上料亭、海女小屋這類，用餐本身就是體驗），不看分數和口コミ門檻；已以景點收錄的不重複；③ **接受非住客用餐的料理旅館**（例如相差的伝洋、花椿），在晚上沒有店的子地區特別重要；住宿本體另外收在 `lodging.json`，餐廳這筆的 `notes` 註明 | 本身就是行程重點的用餐地點；體驗型的店評論常常很少，分數反映不出價值 |
 
 - **排除**：
   - 便利商店、連鎖速食、スナック和酒吧、食べログ標示「閉店」「移転」「休業」的店、只做外帶的店（甜點、小吃除外）。
   - **會員制、只限住客**：會員制度假飯店（例如エクシブ、ウイスタリアンライフクラブ）裡的餐廳，以及寫明只接待住客（宿泊者のみ）的店。能不能讓非會員用餐不確定時，標「待確認」先不算進納入數，T4b 第一步確認，確認可以用餐才補查其他欄位。
   - **旅程期間大多不營業**：來源明寫的公休日蓋過旅程大部分日子（例如平日公休），或來源明寫 2 月休業。只在來源已經寫明時套用，營業時間的細節由 T4b 查。
-- **同類型上限**：同一地區、同一類型的店（例如浦村的牡蠣小屋）最多 12 家，依 A → F → B → C 的順序取，同一條件內依口コミ數。超過的標「同類型上限」留在候選表。
-- **數量控制**：一區總數目標約 50～70 家。套用上面的規則後仍超過時，只提高店最多的地區（鳥羽是鳥羽站周邊）的 A 門檻，例如食べログ改成 3.40；其他地區不動。
+- **同類型上限**：同一地區、同一類型的店（例如浦村的牡蠣小屋）最多 12 家，依 A → F → B → C 的順序取，同一條件內依口コミ數。超過的標 `over-limit` 留在候選清單。
+- **數量控制**：一區總數目標約 50～70 家（伊勢含おはらい町，店多很多，目標 80～100 家）。套用上面的規則後仍超過時，只提高店最多的地區（鳥羽是鳥羽站周邊）的 A 門檻，例如食べログ改成 3.40；其他地區不動。
 - **只用規則過濾**：無法寫成規則的判斷（例如「有特色」「同區已有類似的店」）不拿來刪店，符合條件就放行。
-- 沒納入的店留在 `data/raw/<area>/restaurants.md` 的候選表裡，附分數和口コミ數。
+- 沒納入的店留在 `data/raw/<area>/candidates/restaurants.json`（`status: not-included`），附分數和口コミ數；T7 之後調整門檻時可以用程式重新篩選。
+
+### 讀文與筆記（dossier）
+摘要和評分要根據文章內容，但文章很多、很長，不能都塞進同一個 session。所以**讀文**和**判斷**分開：
+
+1. **讀文（每個資料點一個 subagent）**：主 session 每個資料點開一個 subagent，指令用 [docs/prompts/dossier.md](prompts/dossier.md) 的範本。subagent 讀官網、觀光協會、媒體、心得（2～4 篇），做兩件事：
+   - 寫筆記 `data/raw/<area>/dossiers/<id>.md`：每條重點附來源編號，用固定標籤（推薦、缺點、團體、長輩、小孩、冬季、交通、價格），40 行以內。
+   - 回覆主 session 要回填的事實欄位和 `sources` 項目（JSON），**由主 session 寫進資料檔**（subagent 不改 JSON，避免互相覆蓋）。
+2. **判斷（每個類型一次）**：區域蒐集完，主 session 只讀筆記和資料檔，寫 `summary`、`assessment`、`tier`（§5.1），**不重新爬文**。筆記資訊不夠的，`confidence` 填 low，或再開一個 subagent 補讀。
+
+規則：
+- **subagent 不用 Chrome**：只有一個瀏覽器，給主 session 查食べログ、Google Maps；subagent 只用 WebSearch、WebFetch，也不要讀食べログ、Google Maps。主 session 可以一邊在 Chrome 查，一邊讓 subagent 在背景讀文。
+- **同時最多 5 個 subagent**；景點、住宿一點一個；餐廳來源少（2 篇以內）的可以 3 家合成一個。
+- **不存全文**：筆記只寫重點（繁體中文，菜名附日文），不要複製原文；要再看就點來源連結。
+- 心得的搜尋關鍵字範本（日文優先）：`<店名> 口コミ`、`<店名> ブログ`、`<名稱> 子連れ`、`<名稱> 高齢者 階段`（景點）、`<名稱> 冬`（景點）、`<中文名> 心得`、`<中文名> 團體`。
+- **候選階段讀過的文章不要白讀**：T4a 這類候選名單步驟讀列表型文章（「鳥羽ランチ 11 選」）時，在候選清單該店的 `mentions[].highlight` 寫一句這篇為什麼推薦這家，之後交給該店的 subagent 當已知來源。
+- `summary.cons` 要涵蓋結構化欄位裡的問題（不能訂位、公休日、2 月休業、長階梯、只有榻榻米、不接受小孩、要搭車、坐不下 15 人）。
+
+### 照片
+- **照片**（`photos`）：每筆 1～3 張，**只記 URL，不下載**。來源優先順序：官網（`og:image` 或主視覺）→ 楽天トラベル API 的飯店照片（住宿）→ Wikimedia Commons（景點，記作者和授權）→ Google Maps 上的照片 URL（Chrome，`kind: "google"`，`page` 記 Google Maps 連結）。**不使用食べログ的照片**（版權屬投稿者）。Wikimedia 等可以自由使用的照片才可以存縮圖。官網照片可以由讀文 subagent 順便回報。
+
+### 標準作業流程
+每一區照這個順序做（同一區依序，不同區可以並行；任務拆分見 PLAN.md）。「主」是主 session，「sub」是讀文 subagent。
+
+| 步驟 | 主 session 做的事 | subagent 做的事 | 產出 |
+|---|---|---|---|
+| 0 子地區 | 定子地區和中心點，👤 確認 | — | `areas.json` 的 `regions` |
+| 1 景點候選 | 觀光協會、觀光三重的景點列表＋WebSearch，列候選和要給 sub 的已知來源 | — | `candidates/spots.json` |
+| 2 景點讀文 | 每個景點開 sub，收回事實欄位寫進 `spots.json` | 官網（營業、票價、無障礙、團體）、觀光協會、心得 2～4 篇、官網照片 | `spots.json`、筆記 |
+| 3 景點 Chrome | 批次查 Google Maps：座標、`links.googleMaps`、星數、評論數、照片 URL | — | `spots.json` |
+| 4 住宿候選 | `scripts/rakuten.mjs` 依子地區、2 月日期撈候選（價格、15 人房型組合的空房、細項評分、照片），套 §5.7；另外找沒上楽天的包棟、民宿 | — | `candidates/lodging.json` |
+| 5 住宿讀文 | 每間開 sub，收回欄位寫進 `lodging.json` | 官網（團體、接送、電梯、床、兒童價）、心得 2～3 篇 | `lodging.json`、筆記 |
+| 6 住宿 Chrome | Google Maps 的連結、星數、評論數；楽天沒有的評分（じゃらん） | — | `lodging.json` |
+| 7 餐廳候選 | 食べログ列表（Chrome）＋觀光協會、媒體；套 A～F；列表文章的推薦重點寫進 `mentions[].highlight` | — | `candidates/restaurants.json` |
+| 8 餐廳詳細 | 逐家查食べログ店家頁、Google Maps（Chrome），寫進 `restaurants.json`；同時在背景開 sub 讀文 | 官網、候選清單 `mentions` 裡的文章、心得 1～3 篇 | `restaurants.json`、筆記 |
+| 9 收尾 | `restaurant-anchors.mjs`、`restaurant-gaps.mjs`、地圖檢查 | — | `restaurants.json`、筆記 |
+| 10 摘要與評分 | 先讀 `data/raw/toba/assessment-notes.md`（校準範例），每個類型一次讀完筆記，寫 `summary`、`assessment`、`tier` | 筆記不夠時補讀 | 三個資料檔 |
+
+每一步結束時：跑 `scripts/validate`、commit；更新 `README.md`（現況、決定、給下一步的建議），過程寫在 `log/<任務 ID>.md`。
+
+### 研究筆記怎麼存
+鳥羽的 `restaurants.md` 長到 97 KB：一半是候選表，四分之一是貼上的腳本輸出，其他是各任務一路追加的過程紀錄。之後每個 session 都要讀它，會越來越吃 context。所以**依內容的性質分開存**：
+
+| 內容 | 存在哪裡 | 怎麼寫 |
+|---|---|---|
+| 區域的現況、重要決定、例外、給後續的建議 | `README.md` | **覆寫成最新狀態**，不是一路追加；200 行以內，每個類型一節。之後的 session 開工先讀這個 |
+| 候選（含沒納入、被排除、同類型上限外）和原因 | `candidates/<spots\|lodging\|restaurants>.json` | 一筆一個候選，格式見 `schema/candidate.schema.json`（`status`、`criteria`、`reason`、`ratings`、`mentions`）。要看時用程式過濾，不整份讀 |
+| 每個資料點的心得、優缺點 | `dossiers/<id>.md` | §4「讀文與筆記」，40 行以內 |
+| 要打電話、人工確認的事 | `questions.md` | 一條一行：`- [ ] <資料點 ID>：問題（為什麼要問）`；問到了改成 `[x]` 並把結果寫進資料檔 |
+| 搜尋關鍵字、看過的列表頁、操作次數、遇到的問題 | `log/<任務 ID>.md` | 每個任務一個檔，任務結束後不再改；之後的 session 只在需要時讀。300 行以內 |
+| 腳本的輸出（缺漏檢查、anchors 檢查） | **不存** | 要看就重跑腳本；只把結論（缺口在哪、決定怎麼補）寫進 README |
+| 交通選項（計程車、包車）、IG 帳號 | `transport.md`、`ig-notes.md` | 照舊 |
+
+- **每筆資料點的事實**寫在資料檔（JSON），不要在筆記裡再寫一次「各間重點」。
+- 鳥羽的舊筆記由 T7b 改成這個結構。
 
 ### 語言：日文蒐集、中文呈現
 蒐集時**日文資料優先**：營業時間、公休、2 月休業、團體預約、席數、包場這些資訊，幾乎只有日文的官網、食べログ、觀光協會頁面才有，而且最新。中文部落格常常已經過時，而且偏向台灣觀光客熟悉的店。
@@ -373,26 +484,96 @@ travel_helper/
 - 不同來源的資訊衝突時，以官方網站為準，並把衝突寫在 `extra.conflicts`。
 - 只存事實資訊（營業時間、價格、評分）和連結；**不要大段複製評論或文章內容。**
 - 不大量瀏覽 Instagram、食べログ等網站，也不繞過登入或網站的限制（驗證碼、封鎖）。在 Chrome 裡只看任務需要的頁面；IG 只在 T18 對選定的店少量查看。
-- 被排除的候選資料點，在 `data/raw/<area>/` 的筆記裡寫下排除原因（例如已經歇業、太遠），之後的任務才不會重複搜尋。
+- 被排除的候選資料點，在 `data/raw/<area>/candidates/` 裡標 `status: excluded` 並寫 `reason`（例如已經歇業、太遠），之後的任務才不會重複搜尋。
 - 寫完資料要跑 `scripts/validate`，通過才 commit。
 
 ---
 
-## 5. 規則（T7 填寫）
+## 5. 規則（T7 訂定，2026-10-17）
 
-以下要在看過鳥羽試做的資料後再決定：
+討論過程和試算見 [T7-review.md](T7-review.md)。這些是預設值，T13、T14 實作時可以再調。
 
-- [ ] 分級（`tier`）的門檻
-- [ ] 各區的搜尋半徑
-- [ ] 標籤清單（料理種類、價位級距）
-- [ ] 交通方式判斷規則（步行上限、巴士與計程車的條件）
-- [ ] 步行時間估算的係數：有長輩和小孩，全員行動時要比一般時間多抓（例如多 30～50%），分組時可以依組別調整
-- [ ] 步行上限：全員行動時連續步行幾分鐘以內、超過就搭車
-- [ ] 每天的行程密度：長輩、小孩需要休息時間，每天排幾個景點、午後要不要留休息時間
-- [ ] 團體用餐規則：哪些情況一定要預約；全員用餐和分組用餐各在什麼時段
-- [ ] 住宿的評分門檻
-- [ ] 餐廳的推薦指數（地圖上點的大小、顏色）：食べログ分數、Google 星數、評論數、來源數的組合；評論數少的要打折
-- [ ] 餐廳候選納入標準（§4）的門檻要不要調整
+### 5.1 評分（`assessment`）與分級（`tier`）
+**由 Claude 打分，不用公式**：Claude 讀過該筆的評分數字、評論數、讀文筆記（`data/raw/<area>/dossiers/<id>.md`，見 §4「讀文與筆記」）、結構化欄位，依下面的標準給 1～5 顆星，每個面向附一句理由。景點沒有訂房網站或食べログ的評分也沒關係，只要有心得、介紹文就能打分。
+
+- **只和同類型比**：景點、住宿、餐廳各有自己的標準（`rubric`），推薦度是「在鳥羽的餐廳裡算不算值得去」，不和住宿、景點比。地圖上也是各圖層各自表示。
+- **推薦度**和**適合度**分開：推薦度是地點本身值不值得（地圖上點的大小、`tier`）；適合度是對我們這團（15 人、長輩、小孩、2 月）方不方便（地圖上的顏色或篩選）。
+- **資料不足**：該面向填 `null`，不要猜；`confidence` 依資料量填 `high`（多個評分來源而且有心得）、`medium`、`low`（只有一個來源或評論很少）。
+- **分級**：`recommend` 5＝S、4＝A、1～3＝B。
+- **標準有版本**（`rubric: "restaurant-v1"`）：改標準就升版本，舊版本打的分在之後重評。
+
+#### 餐廳（`restaurant-v1`）
+| 面向 | 看什麼 | 5 顆星 | 3 顆星 | 1 顆星 |
+|---|---|---|---|---|
+| `recommend` 推薦度 | 食べログ分數與口コミ數、Google 星數與評論數、被幾種獨立來源推薦、心得的評價 | 地區代表性的店：分數高而且評論多，多個來源都說值得專程去 | 評價穩定、普通好吃，適合順路 | 有明顯負評（品質不穩、服務差），或只是填缺口 |
+| `localFlavor` 在地特色 | 是不是伊勢志摩的特產或體驗（海女小屋、牡蠣、伊勢海老、手こね寿司、伊勢烏龍） | 本身就是行程重點的在地體驗 | 有在地食材，但哪裡都吃得到類似的 | 和在地無關（連鎖、一般洋食） |
+| `groupFit` 15 人 | `fit15`、最大予約人数、包廂、包場、能不能訂位 | 明確可以接 15 人以上，可以預約 | 要分桌或分批、或要電話確認 | 坐不下或不接受預約 |
+| `elderFit` 長輩 | 椅子座位、無障礙、要不要排隊、離車站或停車處多遠 | 椅子座位、平地、不用排隊 | 有些不便（部分榻榻米、要走一段） | 只有榻榻米、要爬坡或排很久 |
+| `kidsFit` 小孩 | `kids`、兒童餐、料理類型（生食為主？） | 歡迎小孩、有兒童餐或小孩愛吃的選項 | 可以帶小孩，但選擇少 | 不接受小孩或有年齡限制 |
+
+#### 景點（`spot-v1`）
+| 面向 | 看什麼 | 5 顆星 | 3 顆星 | 1 顆星 |
+|---|---|---|---|---|
+| `recommend` 推薦度 | 觀光協會、觀光三重是不是主打，媒體與部落格提到的次數，Google 評論數（人氣）與星數，心得的評價 | 這一區的代表景點，來這裡就該去 | 有時間可以去，順路的好選擇 | 心得普遍說不值得、或已經沒什麼可看 |
+| `winterFit` 2 月 | 2 月是否營業、室內或室外、海風、冬季限定（牡蠣、日出） | 2 月正常營業而且冬天去也好（或冬季才有） | 營業，但冬天比較冷或景色普通 | 2 月休業或冬天幾乎不適合 |
+| `elderFit` 長輩 | 階梯、坡道、景點內步行時間、休息處、廁所 | 平地、步行少、有休息處 | 有一段階梯或坡道 | 長階梯或山路，長輩很難去 |
+| `kidsFit` 小孩 | `kids.friendly`、互動、安全 | 小孩會很喜歡（動物、體驗、互動） | 小孩可以去但會無聊 | 不適合小孩 |
+| `accessEase` 交通 | 離車站多遠、巴士班次、要不要包車或搭船 | 車站步行 10 分內 | 要搭巴士或計程車，但班次還可以 | 只能開車或船班很少 |
+
+#### 住宿（`lodging-v1`）
+| 面向 | 看什麼 | 5 顆星 | 3 顆星 | 1 顆星 |
+|---|---|---|---|---|
+| `recommend` 推薦度 | 楽天、じゃらん、Google 的評分與評論數，楽天細項評分，心得的評價 | 評分高而且評論多，心得幾乎都是好評 | 評價普通、沒有明顯問題 | 有明顯負評（老舊、不乾淨、服務差） |
+| `meals` 餐食 | 楽天晚餐、早餐細項評分，心得對料理的評價；不含餐時看附近的晚餐（`dinnerAccess`） | 料理本身就是住這裡的理由 | 普通；或不含晚餐但附近步行有店 | 不含晚餐而且附近沒有店（要開車） |
+| `groupFit` 15 人 | 全員能不能同住、包棟、房型、團體方案 | 15 人可以同住（或包棟），有團體方案 | 要分 2 間住、或要電話確認 | 住不下，附近也沒有可以搭配的住宿 |
+| `elderFit` 長輩 | 電梯、床、入口階梯、大浴場的動線 | 有電梯、有床的房間 | 部分不便（只有鋪被、要爬一層樓） | 沒有電梯又有很多階梯 |
+| `accessEase` 交通 | 離車站多遠、接送、接送車能載幾人 | 車站步行 5 分內或有能載全員的接送 | 要搭計程車，或接送要分批 | 只能開車到，沒有接送 |
+
+#### 一致性
+- 同一區的同類型**在同一個 session 一次打完**，避免標準漂移。
+- **校準**：T7g 打完鳥羽後，每個類型挑每個星等 1～2 筆當「範例」，記在 `data/raw/toba/assessment-notes.md`；T8f、T9f、T19 打分前先讀這份範例。
+- **檢查腳本**（T7g 寫）：把 `recommend` 和評分數字明顯矛盾的（例如 5 顆星但食べログ 3.1、Google 3.6；或 2 顆星但兩邊都很高）列出來，輸出到 `data/derived/`，人工確認理由是否合理。
+- T13 跨區整理時，看各區的星等分布是否差太多。
+
+### 5.2 搜尋範圍
+- 用**子地區**（`areas.json` 的 `regions`），不用半徑。每區開始蒐集前先定子地區。
+- anchors 的步行範圍：車站、景點、住宿 15 分；不含晚餐的住宿 20 分。分鐘數存**係數 1** 的值，使用時才乘團體係數。詳情面板只顯示最近的 3 個。
+
+### 5.3 標籤
+- **料理種類**（`cuisine`，可複選）：海鮮丼、壽司、浜焼き・貝、牡蠣、伊勢海老・高級海鮮、定食・食堂、和食・割烹、烏龍麵・蕎麥、燒肉・肉料理、洋食・義式、咖啡・甜點、居酒屋、其他。
+- **價位**（每人，看 `price`）：`$` 1,500 円以下、`$$` 1,500～3,000、`$$$` 3,000～6,000、`$$$$` 6,000 以上。
+- **景點、住宿的 `tags`**（固定清單）：室內、雨天備案、親子、長輩友善、長階梯、展望、神社寺院、海邊、體驗、溫泉、包棟、無障礙。子地區不放在 tags（用 `region`）。
+
+### 5.4 交通方式與步行
+| 項目 | 規則 |
+|---|---|
+| 基本步速 | 80 m/分 × OSRM 路線距離 |
+| 團體係數 | 全員 **1.4**；分組有長輩或小孩 1.2；分組只有大人 1.0 |
+| 單段步行上限 | 全員：套係數後 **15 分**；分組：25 分 |
+| 一天累計步行（景點內不算） | 全員約 60 分以內 |
+| 超過上限 | ① 巴士：等車 20 分以內、不是 1 小時以上才一班 → 搭巴士；② 否則計程車：全員 4 台一般計程車，或大型計程車（9 人座）2 台；③ 一整天都在巴士稀少的子地區（`needsCar: true`）→ 建議包車 |
+| 離島 | 以船班為主；全員上島要確認回程末班船和冬季停航 |
+
+### 5.5 每天的行程密度（T14 的警告，不是硬性限制）
+- 全員日：主要景點 2 個＋午餐；09:30 以後出發，**16:30～17:00 回到住宿**（2 月日落約 17:20）。
+- 連續兩天內最多一天是「累」的行程（長階梯、景點內步行 60 分以上、或船程）。
+- 到達日（2/2）、最後一天（2/13）不排景點；中間至少一個半天自由時間。
+- 餐廳沒有 `stayMinutes` 時的預設：定食・食堂、海鮮丼 45 分；浜焼き、牡蠣小屋 75 分；和食・割烹、套餐 90 分；咖啡 40 分。
+
+### 5.6 團體用餐
+- **全員用餐一定要預約**，只能選 `fit15: yes`，或 `split`／`unknown` 但已經電話確認（`group.confirmed15`）。
+- 晚餐預設在住宿吃（一泊二食）；餐廳晚餐只排在不含晚餐的住宿那幾天，或刻意安排的一餐。
+- 分組（4～6 人）：午餐可以不預約；完全預約制的店照店家規定。
+- 不接受小孩或有年齡限制的店（`kids.allowed`），在有小孩的組裡要警告。
+
+### 5.7 住宿評分門檻
+- **排除**：所有評分來源（評論 10 則以上的）都低於 **3.8**。
+- **評價普通**：3.8～4.0，照常收錄，地圖和詳情面板標示。
+- **沒有評分**（小民宿、包棟）：不排除，標示「無評分」。
+- 選住宿時看 `dinnerAccess`：不含晚餐、附近又沒有店（`car`）的住宿，要先規劃晚餐的交通。
+
+### 5.8 餐廳候選納入標準
+見 §4「餐廳候選納入標準」（T7 已修訂 D、F 和數量目標）。
 
 ---
 

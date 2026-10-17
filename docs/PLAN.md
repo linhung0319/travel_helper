@@ -53,17 +53,34 @@
 | T5 | 地圖檢視器 v0（檢查資料用） | M | T0 | 1 | ✅ |
 | T6 | 地理工具：距離估算、步行路線、最近車站計算 | S | T0 | 1 | ✅ |
 | T7 | 👤 檢討試做結果、訂規則 | S | T1～T6 | 2 | ⬜ |
-| T8 | 伊勢（含二見）：景點 → 住宿 → 餐廳 | L | T7 | 3 | ⬜ |
-| T9 | 志摩：景點 → 住宿 → 餐廳 | L | T7 | 3 | ⬜ |
-| T10 | 巴士時刻表（需要搭巴士的景點路線） | M | T8、T9 的景點部分 | 3 | ⬜ |
+| T7b | 鳥羽補資料：欄位搬移、研究筆記改結構（腳本為主） | M | T7 | 3 | ⬜ |
+| T7c | 鳥羽補資料：景點（Google 連結與評分、照片、心得、離島港口） | M | T7b | 3 | ⬜ |
+| T7d | 鳥羽補資料：住宿（楽天 API 腳本與重查、Google 連結與評分、照片、心得） | M | T7b、👤 楽天 key | 3 | ⬜ |
+| T7e | 鳥羽補資料：餐廳（依新納入標準補店、照片、心得） | M | T7b | 3 | ⬜ |
+| T7f | 鳥羽補資料：收尾（重算 anchors、缺漏檢查、地圖檢查） | S | T7c、T7d、T7e | 3 | ⬜ |
+| T7g | 鳥羽：摘要與評分、校準範例、評分檢查腳本 | M | T7f | 3 | ⬜ |
+| T8a | 伊勢（含二見）：子地區與景點 | M | T7 | 3 | ⬜ |
+| T8b | 伊勢（含二見）：住宿 | M | T8a、T7d | 3 | ⬜ |
+| T8c | 伊勢（含二見）餐廳：候選名單 | M | T8b | 3 | ⬜ |
+| T8d | 伊勢（含二見）餐廳：詳細資料 | L | T8c | 3 | ⬜ |
+| T8e | 伊勢（含二見）：收尾（anchors、缺漏檢查、地圖檢查） | S | T8d | 3 | ⬜ |
+| T8f | 伊勢（含二見）：摘要與評分 | M | T8e、T7g | 3 | ⬜ |
+| T9a | 志摩：子地區與景點 | M | T7 | 3 | ⬜ |
+| T9b | 志摩：住宿 | M | T9a、T7d | 3 | ⬜ |
+| T9c | 志摩餐廳：候選名單 | M | T9b | 3 | ⬜ |
+| T9d | 志摩餐廳：詳細資料 | M | T9c | 3 | ⬜ |
+| T9e | 志摩：收尾（anchors、缺漏檢查、地圖檢查） | S | T9d | 3 | ⬜ |
+| T9f | 志摩：摘要與評分 | M | T9e、T7g | 3 | ⬜ |
+| T10 | 巴士時刻表（需要搭巴士的景點路線）、JR 參宮線 | M | T8a、T9a | 3 | ⬜ |
 | T11 | 地圖網站 v1：圖層、詳情面板、車站時刻表面板 | M | T5、T7 | 3 | ⬜ |
 | T12 | 地圖動作 API（給 UI 和 AI 共用的地圖指令） | S | T11 | 3 | ⬜ |
-| T13 | 跨區整理與驗證：去除重複、分級、缺漏檢查 | M | T8、T9 | 3 | ⬜ |
+| T13 | 跨區整理與驗證：去除重複、分級、缺漏檢查 | M | T7g、T8f、T9f、T19 | 3 | ⬜ |
 | T14 | 行程引擎：時間軸、交通方式判斷、衝突檢查（純邏輯） | M | T6、T7 | 4 | ⬜ |
 | T15 | 行程規劃 UI：候選清單、分天、拖拉、交通顯示 | L | T11、T14 | 4 | ⬜ |
 | T16 | AI Agent：查資料工具、地圖動作工具、對話介面 | L | T12、T14、T15 | 5 | ⬜ |
 | T17 | 離線與手機使用（PWA） | S | T15 | 5 | ⬜ |
 | T18 | 👤 出發前驗證：營業時間、IG 公告、時刻表改版 | M | 全部 | 6 | ⬜ |
+| T19 | 關西機場周邊：2/12 住宿與晚餐、摘要與評分 | S | T7d（評分部分等 T7g） | 3 | ⬜ |
 
 ---
 
@@ -94,14 +111,35 @@
 階段 2                           ▼
                          [T7 👤 檢討、訂規則]  ← 匯流點，依序
                                  │
-           ┌──────────────┬──────┴───────┬──────────────┐
-階段 3     ▼              ▼              ▼              ▼
-        [T8 伊勢]      [T9 志摩]      [T11 地圖 v1]  [T14 行程引擎]
-           │              │              ▼          （可提早到這裡做）
-           └──────┬───────┘          [T12 地圖動作 API]
-                  ▼
-           [T10 巴士時刻表]
-           [T13 跨區整理]
+                                 │
+階段 3（資料）     ┌─────────────────┼─────────────────┐
+                   ▼                 ▼                 ▼
+               Lane 鳥羽         Lane 伊勢         Lane 志摩
+              [T7b 欄位搬移]    [T8a 子地區、景點] [T9a 子地區、景點]
+                   │                 │                 │
+          ┌────────┼────────┐        │                 │
+          ▼        ▼        ▼        │                 │
+       [T7c     [T7d      [T7e       │                 │
+        景點]    住宿*]    餐廳]      │                 │
+          └────────┼────────┘        │                 │
+                   │   （T7d 的楽天腳本完成後才能開始）  │
+                   │        ├──────► [T8b 住宿]        │
+                   │        ├────────────────────────► [T9b 住宿]
+                   │        └──► [T19 關西機場周邊]     │
+                   ▼                 ▼                 ▼
+              [T7f 收尾]        [T8c 餐廳候選]     [T9c 餐廳候選]
+                   ▼                 ▼                 ▼
+              [T7g 摘要評分     [T8d 餐廳詳細]     [T9d 餐廳詳細]
+               ＋校準範例]           ▼                 ▼
+                   │            [T8e 收尾]         [T9e 收尾]
+                   │                 ▼                 ▼
+                   └─（校準範例）──► [T8f 摘要評分]   [T9f 摘要評分]
+                                     │                 │
+                   [T10 巴士時刻表]（T8a、T9a 完成就可以開始）
+                   [T13 跨區整理]（全部資料完成後）
+  * T7d 需要 👤 先申請楽天 API key
+
+階段 3（介面，和資料並行）  [T11 地圖 v1] → [T12 地圖動作 API]    [T14 行程引擎]
                   │
 階段 4            └──────────► [T15 行程規劃 UI]（需 T11 + T14）
                                       │
@@ -117,15 +155,23 @@
 | 階段 0 | T0 | **1** |
 | 階段 1 | T1→T1b、T2→T3→T4a→T4b→T4c（同一條 lane 依序）、T5、T6 | **4**（T1b 也可以另開第 5 個；T4b 可以拆成 2 個並行） |
 | 階段 2 | T7（和你一起討論） | **1** |
-| 階段 3 | T8、T9、T11→T12、T14 | **4** |
-| 階段 3 後半 | T10、T13，以及繼續 T11/T12/T14 | 2～3 |
+| 階段 3 開始 | T7b、T8a、T9a、T11、T14 | **5**（資料 3 條 lane 各 1 個，介面 2 個） |
+| 階段 3 中 | 鳥羽 T7c、T7d、T7e（3 個並行）；伊勢、志摩各自往下一步；T19 | **5～7**；但**用 Chrome 的 session 同時只開 1 個**（見下方「Chrome 的操作」） |
+| 階段 3 後 | T7f→T7g、T8c～T8f、T9c～T9f、T10、T11/T12、T14 | 4～5 |
+| 階段 3 最後 | T13，以及繼續 T11/T12/T14 | 2～3 |
 | 階段 4 | T15（可拆成兩個子任務，見任務說明） | 1～2 |
 | 階段 5 | T16、T17 | 2 |
 
 ### 為什麼這樣排
 - **T0 一定要先做**：所有 session 都要照同一份 schema 寫資料，否則之後合併會很痛苦。
 - **同一區的 景點 → 住宿 → 餐廳 要依序**：餐廳要以景點和住宿為搜尋中心，住宿要看景點分布。
-- **不同區域可以並行**：伊勢、志摩各自寫自己的檔案，不會互相衝突。
+- **不同區域可以並行**：伊勢、志摩、關西機場周邊各自寫自己的檔案，不會互相衝突。唯一共用的是 `areas.json`（T8a、T9a 各自加自己區域的 `regions`），merge 時兩邊都保留。
+- **同一個檔案不要兩個 session 同時寫**：鳥羽的 T7b 會同時改三個檔案，所以要先單獨做；之後 T7c（`spots.json`）、T7d（`lodging.json`）、T7e（`restaurants.json`）各寫一個檔案，可以並行。T7f 重算 anchors 要用 T7c 新增的港口，所以等三個都 merge 後再做。
+- **共用腳本誰先寫**：楽天 API 的查詢腳本由 T7d 寫，T8b、T9b、T19 直接用；評分檢查腳本和校準範例由 T7g 產生，T8f、T9f、T19 的評分部分要等 T7g。
+- **Chrome 的操作**：T7c、T7d、T7e、T8a～T8d、T9a～T9d 都要用 Claude in Chrome。官方文件沒有說明多個 Claude Code session 同時用同一個 Chrome 是否支援；Windows 上有具名管道衝突（EADDRINUSE）的已知問題，文件的處理方式是「關掉其他使用 Chrome 的 Claude Code session」；社群回報過多個 session 共用同一個分頁群組。所以：
+  - **預設同時只開 1 個用 Chrome 的 session**；其他 session 做不用 Chrome 的工作（T7b、讀文 subagent、楽天 API、收尾、摘要與評分、T10、T11、T14）。
+  - 同一個任務裡，Chrome 的部分集中在主 session，讀文交給 subagent（WebFetch），所以一個 session 用 Chrome 也不會太慢。
+  - 想多開的話，先用 2 個 session 做一次小測試（各開一個頁面、互相切換），確認沒有搶分頁或斷線，再寫進這裡。
 - **T7 是匯流點**：試做的資料和地圖都要看過之後才能訂規則，訂好再擴展。
 - **介面和資料可以並行**：地圖只依賴 schema，可以先用鳥羽的資料或假資料開發。
 
@@ -304,15 +350,78 @@
   - schema 要不要調整
 - 把結果更新到 CONVENTIONS.md 的「規則」區段，並修改 schema。
 
-### T8 伊勢（含二見）〔L〕／ T9 志摩 〔L〕
-- 照 T2 → T3 → T4 的流程，**依 T7 定好的規則**來做。
-- 兩區可以各開一個 session 並行；每區內部依序執行。
-- 每區建議拆成 3 個 session：景點、住宿、餐廳。
-- 志摩的店比較分散，要特別記下需要搭巴士或開車的地點。
+### T7b～T7g 鳥羽補資料
+照 T7 的新規則（CONVENTIONS.md §4、§5，討論見 T7-review.md）補鳥羽已有的 137 筆資料，讓鳥羽成為 T8、T9 的範本。
+
+#### T7b 欄位搬移、筆記改結構 〔M〕
+- **先單獨做**（會同時改 `spots.json`、`lodging.json`、`restaurants.json` 和 `data/raw/toba/`）。以腳本為主，不用 Chrome。
+- `extra.region` → `region`（子地區 ID 見 `areas.json`），景點 `tags` 裡的子地區拿掉；`extra.tabelogOwner`、`extra.googleName`、`extra.barrierFree`（→ `accessibility.barrierFree`）、`extra.phone`（景點 → `phone`）、`extra.checkIn`/`checkOut`（住宿）升格；`kids` 改成物件；`group.maxReservation` 從 `group.source` 的文字取出；`cuisine`、`tags` 改成固定清單；數字的 `price`（從 `priceRange` 轉）；`hours.always`、`hours.lastEntry`、`closures`（從 `febNote`、`hours.note` 轉，只轉來源寫明日期的）；住宿 `dinnerAccess`、餐廳 `access`（照 T4c 的缺漏檢查結果）。
+- 轉不了的（例如文字太模糊）留原樣，列在 `data/raw/toba/log/T7b.md`。
+- **筆記改結構**（CONVENTIONS §4「研究筆記怎麼存」）：
+  - `restaurants.md` 的候選表 205 家轉成 `candidates/restaurants.json`（寫轉換腳本，文章標題放進 `mentions`）；`spots.md`、`lodging.md` 裡被排除、沒收錄的候選轉成 `candidates/spots.json`、`candidates/lodging.json`。
+  - 各檔案裡的「待確認」「要打電話問」集中到 `questions.md`。
+  - 其餘過程紀錄原文搬到 `log/T2.md`、`log/T3.md`、`log/T4a.md`、`log/T4b.md`、`log/T4c.md`（只搬不改寫）；貼上的腳本輸出刪掉，只留結論。
+  - 寫 `README.md`：每個類型的現況、重要決定（例如數量控制、fit15 的判斷疑問、缺口）、給 T7c 之後的建議。
+  - 刪掉舊的 `spots.md`、`lodging.md`、`restaurants.md`（內容都已經搬走）。
+
+#### T7c 景點 〔M〕（Chrome）
+- 每筆補 `links.googleMaps`、Google 星數與評論數（`ratings`）、照片 1～3 張（CONVENTIONS §4「照片」）。
+- **讀文**：每個景點開一個 subagent（`docs/prompts/dossier.md`），讀 T2 的來源和 2～4 篇心得，寫筆記 `data/raw/toba/dossiers/<id>.md`，回報要補的欄位和官網照片（CONVENTIONS §4「讀文與筆記」）。主 session 同時用 Chrome 查 Google Maps。
+- 離島港口（`docs/requests.md` 的 T4c 請求）：菅島港、神島港、答志島的和具港與答志港（和景點分開）、桃取港。
+- 只寫 `spots.json`、`data/raw/toba/` 的景點部分（`candidates/spots.json`、筆記、`log/T7c.md`；`README.md` 只改景點那一節）。
+
+#### T7d 住宿 〔M〕（楽天 API＋Chrome）
+- **需要 👤 先申請楽天 API key**（CONVENTIONS §4「楽天トラベル API」）。
+- 寫共用的查詢腳本 `scripts/rakuten.mjs`（空室検索、施設情報；T8b、T9b、T19 會沿用，參數要能指定區域和日期）。
+- 用 2 月的日期重查 38 筆裡有上楽天的：價格、15 人的房型組合有沒有空房、細項評分、照片。
+- 全部住宿補 `links.googleMaps`、Google 星數與評論數、照片（Chrome）。
+- **讀文**：每間住宿一個 subagent，寫筆記（同 T7c）。
+- 只寫 `lodging.json`、`data/raw/toba/` 的住宿部分（`candidates/lodging.json`、筆記、`log/T7d.md`；`README.md` 只改住宿那一節）、`scripts/rakuten.mjs`。
+
+#### T7e 餐廳 〔M〕（Chrome）
+- 照修訂後的納入標準補店：D 的「任何一天 0 家」（菅島週三、國崎週三週四）、F③ 接受非住客用餐的料理旅館（相差的伝洋、花椿等）、D③ 離島便當（菅島 おかげ屋）；新店照 T4b 的方式查詳細資料。
+- 全部餐廳補照片（官網或 Google Maps 的照片 URL，不用食べログ的照片）。
+- **讀文**：每家店一個 subagent（來源少的 3 家合一個），候選清單 `mentions` 裡的文章當已知來源，再找 1～3 篇心得，寫筆記。
+- 只寫 `restaurants.json`、`data/raw/toba/` 的餐廳部分（`candidates/restaurants.json`、筆記、`ig-notes.md`、`log/T7e.md`；`README.md` 只改餐廳那一節）。
+
+#### T7f 收尾 〔S〕
+- T7c、T7d、T7e 都 merge 後才做。
+- 重跑 `node scripts/restaurant-anchors.mjs toba --write`（加入港口）、`node scripts/restaurant-gaps.mjs toba`；地圖檢查新增的資料點。
+
+#### T7g 摘要與評分 〔M〕
+- 照 CONVENTIONS §5.1：只讀資料檔和筆記（不重新爬文），寫 `summary`、`assessment`、`tier`。**每個類型在同一個 session 打完**；可以拆成 3 個並行 session（景點、住宿、餐廳各一個，各寫各的檔案）。
+- 每個類型、每個星等挑 1～2 筆當校準範例，寫進 `data/raw/toba/assessment-notes.md`（附理由），T8f、T9f、T19 打分前要讀。
+- 寫評分一致性檢查腳本（推薦度和評分數字明顯矛盾的列出來，輸出到 `data/derived/`），👤 看過列出來的項目。
+
+### T8a～T8f 伊勢（含二見）／ T9a～T9f 志摩
+兩區的步驟相同，照 CONVENTIONS §4 的「標準作業流程」（步驟 0～10）、「研究筆記怎麼存」和 §5 的規則。每一步都更新 `data/raw/<area>/README.md` 自己的那一節，過程寫在 `log/<任務 ID>.md`；開工先讀 README，不要整份讀其他 session 的 log。**兩區可以並行；同一區的步驟依序**。每筆從一開始就填新欄位：`region`、`links.googleMaps`、Google 星數與評論數、`photos`、數字的 `price`、`closures`，並且每筆都要有讀文筆記（subagent，`docs/prompts/dossier.md`）。
+
+| 步驟 | 內容 | 工具 | 寫入 |
+|---|---|---|---|
+| a 子地區與景點 〔M〕 | 流程步驟 0～3：先定子地區，寫進 `areas.json` 該區域的 `regions`（例外允許，見 CONVENTIONS §2），👤 確認後列景點候選；每個景點一個讀文 subagent；Google Maps 用 Chrome 批次查 | WebSearch、subagent、Chrome | `areas.json` 的 regions、`spots.json`、`candidates/spots.json`、筆記 |
+| b 住宿 〔M〕 | 流程步驟 4～6：用 T7d 的 `scripts/rakuten.mjs` 依子地區和 2 月日期撈候選，套 §5.7 門檻；包棟、小民宿另外找；每間一個讀文 subagent；Google Maps 用 Chrome | 楽天 API、subagent、Chrome | `lodging.json`、`candidates/lodging.json`、筆記 |
+| c 餐廳候選 〔M〕 | 流程步驟 7：依子地區用食べログ列表、觀光協會、媒體蒐集，套 A～F（同 T4a）；列表文章的推薦重點寫進 `mentions` | Chrome | `candidates/restaurants.json` |
+| d 餐廳詳細 〔M～L〕 | 流程步驟 8：逐家查食べログ、Google Maps（同 T4b），同時在背景開讀文 subagent；**可以依子地區拆成 2 個並行 session**，merge 時陣列衝突兩邊都保留 | Chrome、subagent | `restaurants.json`、`ig-notes.md`、筆記 |
+| e 收尾 〔S〕 | anchors（OSRM）、缺漏檢查、地圖檢查（同 T4c、T7f） | 腳本 | `restaurants.json`、筆記 |
+| f 摘要與評分 〔M〕 | 流程步驟 10：先讀 `data/raw/toba/assessment-notes.md`，再只讀資料檔和筆記，照 §5.1 寫 `summary`、`assessment`、`tier`（同 T7g；可以依類型拆 3 個並行） | — | 三個檔案 |
+
+各區注意：
+- **伊勢（T8）**包含兩個區域：`ise`、`futami`（寫 `data/areas/ise/`、`data/areas/futami/`，筆記各自放在 `data/raw/ise/`、`data/raw/futami/`）。おはらい町的店很多，餐廳目標 80～100 家，T8d 建議拆成 2～3 個 session（例如：內宮・おはらい町／外宮・伊勢市站／二見）。旅程期間有 **2/3 節分**（神社活動）、**2/11 國定假日**，記在 `events`。
+- **志摩（T9）**的店和景點比較分散，很多地方要搭巴士或開車：子地區要標 `needsCar`，餐廳要填 `access`。第一天（2/2）傍晚才會到志摩，T9b 要特別看鵜方、賢島一帶的住宿，T9c 要找第一晚的晚餐。
+
+### T19 關西機場周邊：2/12 住宿與晚餐 〔S〕
+- 區域 `kix`（子地區：空港島、りんくうタウン），**不蒐集景點**。T7d 的楽天腳本完成後就可以開始，和 T8、T9 並行。
+- 住宿 5～10 間（用 `scripts/rakuten.mjs`，2027-02-12 入住）：到機場的接駁（時間、班次、能不能一次載 15 人和行李）、早上能不能在 10:45 前到機場、從伊勢過來的交通（參考 `data/access/kix.json`）。照 §5.7 的評分門檻。
+- 餐廳：住宿附近能接 15 人的 3～5 家（晚餐）。
+- 每筆都要有讀文筆記（subagent，`docs/prompts/dossier.md`）。
+- 最後寫 `summary`、`assessment`、`tier`（要等 T7g 的校準範例）。
+- `stations.json` 目前沒有りんくうタウン、関西空港站；需要的話寫到 `docs/requests.md`。
+- 寫 `data/areas/kix/`、`data/raw/kix/`。
 
 ### T10 巴士時刻表 〔M〕
-- 從 T2、T8、T9 的景點資料，挑出「需要搭巴士」的路線。
+- 從 T2、T8a、T9a 的景點資料，挑出「需要搭巴士」的路線。
 - 蒐集三重交通等業者的時刻表（先找 gtfs-data.jp 有沒有 GTFS-JP 資料，沒有的話就從官網整理）。
+- **JR 參宮線**（伊勢市～二見浦～鳥羽，T1 建議）：二見最近的車站是 JR 二見浦，近鐵沒有經過；存成 `data/timetables/jr/<station-id>.json`，格式沿用近鐵時刻表（需要 T7 加 schema 與驗證路徑，寫到 requests.md）。
 - 存成 `data/timetables/bus/<route-id>.json`，並在 `passes.json` 註明 5 日券不含巴士、Plus 版的涵蓋範圍。
 
 ### T11 地圖網站 v1 〔M〕

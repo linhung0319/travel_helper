@@ -95,7 +95,129 @@
         "retrieved": "2026-10-17",
         "note": "池の浦站位於鳥羽市堅神町"
       }
-    ]
+    ],
+    "regions": [
+      {
+        "id": "toba-station",
+        "name": {
+          "ja": "鳥羽駅周辺",
+          "zh": "鳥羽站周邊"
+        },
+        "center": [
+          136.8427,
+          34.4864
+        ],
+        "needsCar": false,
+        "note": "鳥羽 1～3 丁目、小浜：鳥羽站、佐田浜、水族館、真珠島、城跡"
+      },
+      {
+        "id": "toba-outskirts",
+        "name": {
+          "ja": "鳥羽市街外縁",
+          "zh": "鳥羽站周邊（外圍）"
+        },
+        "center": [
+          136.8526,
+          34.4609
+        ],
+        "needsCar": true,
+        "note": "安楽島、大明、船津、河内、松尾、堅神；大多要搭車"
+      },
+      {
+        "id": "nakanogo",
+        "name": {
+          "ja": "中之郷",
+          "zh": "中之郷"
+        },
+        "center": [
+          136.8435,
+          34.4731
+        ],
+        "needsCar": false,
+        "note": "中之郷站、志摩赤崎站一帶（鳥羽 4～5 丁目）"
+      },
+      {
+        "id": "uramura",
+        "name": {
+          "ja": "浦村",
+          "zh": "浦村"
+        },
+        "center": [
+          136.8816,
+          34.4473
+        ],
+        "needsCar": true,
+        "note": "浦村牡蠣聚落；安楽島的パールロード入口一帶也歸這裡"
+      },
+      {
+        "id": "osatsu",
+        "name": {
+          "ja": "相差",
+          "zh": "相差"
+        },
+        "center": [
+          136.9033,
+          34.392
+        ],
+        "needsCar": true,
+        "note": "相差、畔蛸；相差海女シャトル只給住客搭"
+      },
+      {
+        "id": "kuzaki",
+        "name": {
+          "ja": "国崎・パールロード",
+          "zh": "國崎・パールロード"
+        },
+        "center": [
+          136.9198,
+          34.4293
+        ],
+        "needsCar": true,
+        "note": "國崎、石鏡、鎧埼燈塔、パールロード沿線的展望台"
+      },
+      {
+        "id": "toshijima",
+        "name": {
+          "ja": "答志島",
+          "zh": "答志島"
+        },
+        "center": [
+          136.9,
+          34.526
+        ],
+        "needsCar": false,
+        "note": "離島：和具、答志、桃取；佐田浜搭定期船"
+      },
+      {
+        "id": "sugashima",
+        "name": {
+          "ja": "菅島",
+          "zh": "菅島"
+        },
+        "center": [
+          136.9009,
+          34.4991
+        ],
+        "needsCar": false,
+        "note": "離島"
+      },
+      {
+        "id": "kamishima",
+        "name": {
+          "ja": "神島",
+          "zh": "神島"
+        },
+        "center": [
+          136.9813,
+          34.5498
+        ],
+        "needsCar": false,
+        "note": "離島；船程最長，冬季可能停航"
+      }
+    ],
+    "extra": {
+      "regionsNote": "regions 沿用 T4a 的地區劃分（data/raw/toba/restaurants.md）；center 是該地區已收錄餐廳座標的平均（T7，2026-10-17）"
+    }
   },
   {
     "id": "futami",
@@ -188,6 +310,67 @@
         "url": "https://ja.wikipedia.org/wiki/%E4%BC%8A%E5%8B%A2%E5%B8%82",
         "retrieved": "2026-10-17",
         "note": "行政區"
+      }
+    ]
+  },
+  {
+    "id": "kix",
+    "type": "area",
+    "name": {
+      "ja": "関西空港周辺",
+      "kana": "かんさいくうこうしゅうへん",
+      "zh": "關西機場周邊",
+      "en": "Kansai Airport area"
+    },
+    "municipality": "泉佐野市",
+    "definition": "關西機場（空港島）、りんくうタウン、泉佐野站一帶。只蒐集回程前一晚（2/12）的住宿和晚餐，不蒐集景點。",
+    "tripOrder": 4,
+    "center": [
+      135.2948,
+      34.4048
+    ],
+    "bbox": [
+      135.2,
+      34.36,
+      135.36,
+      34.45
+    ],
+    "stations": [],
+    "notes": "不在伊勢志摩，驗證腳本對這區的座標放寬到關西、中部。重點是住宿到機場的接駁（時間、班次、15 人和行李）。車站（りんくうタウン、関西空港）目前不在 stations.json。",
+    "regions": [
+      {
+        "id": "kix-island",
+        "name": {
+          "ja": "関西空港（空港島）",
+          "zh": "關西機場（空港島）"
+        },
+        "center": [
+          135.244,
+          34.4347
+        ],
+        "needsCar": false,
+        "note": "機場島內的飯店"
+      },
+      {
+        "id": "rinku",
+        "name": {
+          "ja": "りんくうタウン",
+          "zh": "臨空城"
+        },
+        "center": [
+          135.2948,
+          34.4048
+        ],
+        "needsCar": false,
+        "note": "りんくうタウン站一帶，到機場 1 站"
+      }
+    ],
+    "sources": [
+      {
+        "type": "wikipedia",
+        "url": "https://ja.wikipedia.org/wiki/%E3%82%8A%E3%82%93%E3%81%8F%E3%81%86%E3%82%BF%E3%82%A6%E3%83%B3%E9%A7%85",
+        "retrieved": "2026-10-17",
+        "note": "りんくうタウン站的位置（center 是大致位置，T8b 用 Google Maps 確認）"
       }
     ]
   }

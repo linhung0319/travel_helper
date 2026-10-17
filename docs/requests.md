@@ -25,7 +25,7 @@
   - `comparison`：`assumption`、`cases[]`（`{ case, total: 整數, insteadOf?: 整數 }`）、`conclusion`、`sources`
   - T10 之後要在 `passes` 補巴士的部分（5day plus 的巴士範圍），格式沿用 `passes[]`。
 - 原因：目前 `passes.json` 用 `sourced-document`，只檢查最外層有 `sources`；T11、T14、T16 會讀這些欄位，需要固定格式。
-- 狀態：待處理
+- 狀態：已處理（T7，2026-10-17）：新增 `schema/passes.schema.json`
 
 ## [T1] 為 data/timetables/kintetsu/_travel-times.json 建立正式 schema
 - 要改的檔案：`schema/`（新增 `kintetsu-travel-times.schema.json`）、`scripts/validate.mjs` 的 ROUTES
@@ -35,13 +35,13 @@
   - `trains`：`{ weekday: { <trainNo>: Train }, holiday: { ... } }`；`Train = { type, to（終點站 ID）, dir（for-kashikojima | for-ise-nakagawa）, stops: [[車站 ID, 到站 HH:MM|null, 發車 HH:MM|null], ...] }`
   - 建議 validate 多檢查：stops 的車站 ID 都在 `stations.json`；各站時刻表的 `trainNo` 都能在 `trains` 找到，而且發車時刻一致。
 - 原因：`scripts/next-train.mjs`（以及之後的 T11 車站面板、T14 行程引擎）靠 `trains` 查下一班車和車程。
-- 狀態：待處理
+- 狀態：已處理（T7）：新增 `schema/kintetsu-travel-times.schema.json`；validate 加上 stops 車站存在、各站 trainNo 存在且發車時刻一致的檢查
 
 ## [T1] 時刻表 schema：方向鍵的命名
 - 要改的檔案：`schema/timetable-kintetsu.schema.json`（只改 description）、`docs/CONVENTIONS.md` 的時刻表範例
 - 內容：T1 把方向鍵統一成兩個：`for-kashikojima`（南下，往鳥羽、賢島）和 `for-ise-nakagawa`（北上，往伊勢中川、名古屋、大阪）。CONVENTIONS.md 範例裡的 `for-ujiyamada` 請改成 `for-ise-nakagawa`。在伊勢市站南下終點是宇治山田、鳥羽的車也算 `for-kashikojima`，實際終點看 `to`。另外 `trainNo` 存的是近鐵時刻表網站的列車編號（例如 `1-3896`），同一班車在各站相同。
 - 原因：讓各站檔案的方向一致，程式不用逐站判斷。
-- 狀態：待處理
+- 狀態：已處理（T7）：schema description 與 CONVENTIONS.md 範例已改
 
 ## [T1] stations.json：各站電梯、手扶梯、置物櫃（accessibility、coinLockers）
 - 要改的檔案：`data/stations.json`（21 個近鐵車站的 `accessibility`、`coinLockers`，以及 `sources`）
@@ -76,13 +76,13 @@
   - 給長輩的重點：有電梯的站是伊勢市、宇治山田、五十鈴川、鳥羽、志摩磯部、鵜方；賢島月台到北口幾乎平面。朝熊、池の浦、穴川只有樓梯。無人站需要協助時，RK 說要在前一天以前聯絡鳥羽站（0599-25-2126）。
   - 未確認：宇治山田的樓梯牆與柱子間距不到 60 cm（伊勢市的文件，搜尋摘要提到，沒有打開原文）；中之郷月台間是否用平交道連接（說法不一，沒有列入）。
 - 原因：長輩上下月台、帶行李時很重要（PLAN.md T1）；`stations.json` 只有 T0、T7 可以改。
-- 狀態：待處理
+- 狀態：已處理（T7）：21 站照表填入，來源 WP/RK/KM/CL 已加；RK 有 6 站（池の浦、船津、加茂、松尾、志摩磯部、穴川）找不到站頁，來源指向首頁並註明
 
 ## [T1] 建議：JR 參宮線時刻表（伊勢市～二見浦～鳥羽）
 - 要改的檔案：無（建議在 PLAN.md 新增任務，或併入 T10）
 - 內容：建議另外蒐集 JR 參宮線 伊勢市～五十鈴ケ丘～二見浦～松下～鳥羽 的時刻表（存成 `data/timetables/jr/<station-id>.json`，格式沿用近鐵時刻表）。JR 不能用近鐵 5 日券，車資另付。
 - 原因：二見（夫婦岩、二見興玉神社）最近的車站是 JR 二見浦，近鐵沒有經過；JR 參宮線班次比近鐵少（實際班距待蒐集時確認），15 人搭車要先看時刻表，否則容易等很久。也要注意鳥羽站的近鐵、JR 轉乘通道 2020 年起關閉，要出站再進站。替代方案是巴士（CAN バス等，由 T10 處理）。
-- 狀態：待處理
+- 狀態：已處理（T7）：併入 T10（PLAN.md 的 T10 任務卡已加上）
 
 ## [T1b] 為 data/access/kix.json 建立正式 schema
 - 要改的檔案：`schema/`（新增 `access.schema.json`）、`scripts/validate.mjs` 的 ROUTES（`access/*.json` 改用新 schema）
@@ -95,13 +95,13 @@
   - `luggage`、`accessibility`：說明文字欄位＋`sources`；`accessibility.stations[]` 是 `{ station, note }`
   - `trainNo` 對應 `data/timetables/kintetsu/_travel-times.json` 的 `trains.weekday`，建議 validate 檢查存在。
 - 原因：目前 `access/*.json` 用 `sourced-document`，只檢查最外層有 `sources`；T14 行程引擎、T16 行程 UI 排第一天、最後一天時會讀這些欄位。
-- 狀態：待處理
+- 狀態：已處理（T7）：新增 `schema/access.schema.json`（另外收了 request 沒列的 `legs[].example`、`flights.arrive.airport`、`routes[].note`）
 
 ## [T1b] stations.json：大阪側轉乘站的無障礙資訊（參考）
 - 要改的檔案：`data/stations.json`（只有在決定把大阪側車站加進來時）
 - 內容：目前 `stations.json` 沒有大阪難波、鶴橋、大阪上本町、伊勢中川。這些站的電梯資訊整理在 `data/access/kix.json` 的 `accessibility.stations` 和 `data/raw/access/kintetsu-osaka.md`。如果 T11 的地圖要顯示機場往返路線，再考慮新增（`passes.json` 已經用 `osaka-namba` 當 ID）。
 - 原因：長輩帶行李轉乘時，難波、鶴橋的無障礙路線和一般路線不同。
-- 狀態：待處理
+- 狀態：保留（參考）：等 T11 決定要不要在地圖顯示機場往返路線
 
 ## [T4b] restaurant schema：常用的 extra 欄位升格
 - 要改的檔案：`schema/restaurant.schema.json`、`docs/CONVENTIONS.md` 的餐廳範例
@@ -114,7 +114,7 @@
   - `group` 建議加 `maxReservation`（食べログ「最大予約可能人数」）；目前只寫在 `group.source` 的文字裡。
   - `seating` 的 `other` 目前用來表示沙發座，建議加 `sofa`。
 - 原因：這些資訊 T11 詳情面板、T14 團體檢查會用到，放在 extra 裡格式不固定。
-- 狀態：待處理
+- 狀態：已處理（T7）：`tabelogOwner`、`googleName`、`accessibility.barrierFree`、`group.maxReservation`、`seating: sofa` 升格；`region` 改成共同欄位；`inclusion`、`googleStatus`、`movedFrom` 維持在 extra。資料搬移由 T7b 做
 
 ## [T4c] spots.json：離島的港口資料點
 - 要改的檔案：`data/areas/toba/spots.json`（T2 的檔案）
@@ -124,4 +124,4 @@
   - 桃取港（答志島西側）如果行程會用到也一起加。
   - 座標用 Google Maps 的 `!3d!4d`；可以順便記鳥羽市營定期船的班次連結（佐田浜 `toba-sadahama-marine-terminal` 已有）。
 - 原因：離島的店（まるみつ寿司、大春、喜久屋、重太郎屋、やま海）要配合船班，T14 需要「港口 → 店」的步行時間。補上港口後重跑 `node scripts/restaurant-anchors.mjs toba --write` 就會自動選進 anchors（港口在 spots.json 裡就會被當成景點候選）。
-- 狀態：待處理
+- 狀態：轉給 T7b（鳥羽補資料）
