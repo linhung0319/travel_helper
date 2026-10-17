@@ -38,7 +38,7 @@
 
 表中「👤」代表需要你親自參與（決策、檢查、手動操作）。
 
-狀態：✅ 完成、🔄 進行中、⬜ 未開始。任務做完（通過完成條件並 commit）時，由該任務的 session 更新自己那一列。
+狀態：✅ 完成、🔄 進行中、⬜ 未開始。任務的分支 merge 回 master 後，在 master 上更新該列（見 §3「多個 session 同時執行的方式」）。
 
 | ID | 任務 | 工作量 | 前置任務 | 階段 | 狀態 |
 |---|---|---|---|---|---|
@@ -126,7 +126,35 @@
 ### 並行時避免衝突
 - **每個任務只寫自己負責的檔案**（見 CONVENTIONS.md 的「檔案歸屬」）。
 - 共用檔案（schema、`stations.json`）只有 T0 和 T7 可以修改；其他任務需要改的話，寫在 `docs/requests.md` 裡提出。
-- 每個 session 完成一個小段落就 commit；也可以用 Claude Code 的 worktree 功能，讓每個 session 在自己的分支上工作。
+- 每個 session 完成一個小段落就 commit。
+
+### 多個 session 同時執行的方式
+
+同時開多個 Claude Code session 時，每個任務在**自己的分支和 worktree** 上工作，不直接改 master。
+
+1. **開始**：session 開始時，從最新的 master 建立分支和 worktree，之後所有工作都在 worktree 目錄裡做。
+   ```sh
+   git worktree add ../travel_helper-t3 -b t3 master   # 分支名稱用任務 ID 的小寫，例如 t1b、t3
+   cd ../travel_helper-t3
+   npm install && (cd web && npm install)              # worktree 不會共用 node_modules
+   ```
+2. **進行中**：照常在分支上 commit（跑過 `scripts/validate` 才 commit）。
+3. **結束**：任務完成後**先不要 merge**，回報分支名稱、commit 清單和驗證結果，等 👤 你說「merge」。
+4. **merge**：你說 merge 之後才合併回 master：
+   ```sh
+   cd <主目錄>
+   git checkout master
+   git merge --no-ff t3
+   scripts/validate                                    # 合併後再驗證一次
+   ```
+   有衝突時先回報，不要自己決定取捨（`package.json` 這類檔案通常是兩邊都保留）。
+5. **清理**：merge 完成、驗證通過後，刪除用完的 worktree 和分支：
+   ```sh
+   git worktree remove ../travel_helper-t3
+   git branch -d t3
+   ```
+
+**任務總覽的狀態**：為了避免多個分支同時改同一張表而衝突，分支上不要改 §2 的狀態欄；merge 完成後在 master 上把該任務改成 ✅ 再 commit。
 
 ---
 
