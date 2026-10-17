@@ -78,6 +78,8 @@ travel_helper/
 | `data/areas/<area>/`、`data/raw/<area>/` | 負責該區的任務（鳥羽 T2～T4c、T7b～T7g；伊勢 T8a～T8f；志摩 T9a～T9f；關西機場周邊 T19） |
 | `data/cache/` | 任何任務都可以新增，不可以刪除別人的檔案 |
 | `data/derived/` | 只由腳本產生（例如評分的一致性檢查），不要手改 |
+| `docs/decisions-pending.md` | 任何任務都可以新增（自動模式下代替 👤 做的決定）；只追加，不改別人的項目 |
+| `docs/auto-run-log.md` | 只有指揮 session（PLAN §3「自動依序執行」） |
 | `web/` | T5、T11、T12、T15、T16、T17（同時進行時，各自負責的目錄要先講好） |
 | `scripts/` | 新增檔案自由；修改別人的腳本要在 commit 訊息裡說明 |
 

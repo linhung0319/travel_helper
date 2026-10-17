@@ -211,6 +211,31 @@
 
 **任務總覽的狀態**：為了避免多個分支同時改同一張表而衝突，分支上不要改 §2 的狀態欄；merge 完成後在 master 上把該任務改成 ✅ 再 commit。
 
+### 自動依序執行（指揮 session）
+
+資料任務可以交給一個**指揮 session** 自動依序做完，不用每個任務都等 👤 說 merge（2026-10-18 測試過：subagent 可以用 Chrome、可以再開一層讀文 subagent，依序使用 Chrome 沒有問題）。指令範本在 [docs/prompts/orchestrator.md](prompts/orchestrator.md)。
+
+**範圍與順序**（到 T11 之前為止；已經 ✅ 的跳過）：
+T7c → T7d → T7e → T7f → T7g → T8a → T8b → T8c → T8d → T8e → T8f → T9a → T9b → T9c → T9d → T9e → T9f → T19 → T10
+
+**和手動模式不同的規則**：
+- **分支**：每個任務從 master 開自己的分支（不用 worktree，指揮 session 在主目錄工作），做完由指揮 session 驗證後**自動 merge**、再驗證、把 §2 的狀態改成 ✅、刪分支。出問題時只要 revert 那一個 merge。
+- **不問問題**：任務卡裡要 👤 決定的地方（T8a、T9a 的子地區確認、T7g 評分檢查列出的項目、fit15 的疑問、納入標準的邊界等）照規則自己決定，寫進 `docs/decisions-pending.md`（日期、任務、決定、理由、怎麼改回）。👤 之後再看，要改的話另外開 session 改。
+- **只有這些情況才停**：驗證修 2 次還不過、merge 衝突、前置任務失敗、整個任務因為 API 或 Chrome 連續失敗而做不下去。網站要求驗證碼、登入或封鎖時**不繞過**：那一部分跳過、記錄，繼續做其他部分。
+- **紀錄**：每個任務結束在 `docs/auto-run-log.md` 加一行（任務、時間、merge commit、驗證、跳過或要 👤 看的事）。中斷後重開指揮 session，從這份紀錄接著做。
+- **分批**：一個 subagent 的 context 有限，大任務分成幾批，一批一個 subagent，依序做：
+  | 任務 | 一批的範圍 |
+  |---|---|
+  | T7c、T7d | 景點、住宿各一批 |
+  | T7e | 補店一批、照片與讀文依子地區分批 |
+  | T8a、T9a | 子地區＋景點候選一批；景點讀文與 Chrome 依子地區分批 |
+  | T8b、T9b、T19 | 一批 |
+  | T8c、T9c | 依子地區分批（每批的候選清單寫進同一個 candidates 檔） |
+  | T8d、T9d | 依子地區分批，每批約 20 家 |
+  | T7g、T8f、T9f | 景點、住宿、餐廳各一批（同一類型不要拆開，避免評分標準漂移） |
+- **Chrome**：同一時間只有一個 subagent 用 Chrome。用 Chrome 的 subagent 先呼叫 `tabs_context_mcp(createIfEmpty: true)`（新的 subagent 沒有自己的分頁群組，直接開分頁會失敗），結束時關掉自己開的分頁。
+- 指揮 session 跑的時候，👤 可以另外開不用 Chrome 的 session（T11、T14），照手動模式用 worktree。
+
 ---
 
 ## 4. 建議時程
