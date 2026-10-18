@@ -29,3 +29,15 @@
 | @yoko_ikada | 横丁 いかだ荘（`ise-ikadaso`） | | 食べログ公式アカウント欄（集團另有 ikadasou_group_official） |
 | @okage.isesyouyuhonpo.official | 伊勢醤油本舗（`ise-shoyu-honpo`） | | 官網 |
 | @kawanishiya.134 | 川西屋（`ise-kawanishiya`） | | 食べログ公式アカウント欄 |
+| **第 2 批：ise-naiku 甜點・小吃、ise-asama** | | | |
+| @akafuku.official | 赤福 本店、本店別店舗、内宮前支店、五十鈴川店（`ise-akafuku-honten`、`ise-akafuku-bettenpo`、`ise-akafuku-naikumae`、`ise-akafuku-isuzugawa`） | 多店（公司） | 食べログ公式アカウント欄、官網 |
+| @isuzuchaya.official | 五十鈴茶屋 本店（`ise-isuzu-chaya-honten`） | 可能多店 | 食べログ公式アカウント欄、官網 |
+| @okage.butasute.official | おかげ横丁 豚捨（`ise-butasute-okage`） | | 食べログ公式アカウント欄、おかげ横丁官網 |
+| @tofuanyamanaka | 豆腐庵山中（`ise-tofuan-yamanaka`） | | 食べログ公式アカウント欄、官網 |
+| @okage.dangorochaya.official | 団五郎茶屋（`ise-dangoro-chaya`） | | おかげ横丁官網 |
+| @okage.wakamatsuya.official | 若松屋 おかげ横丁（`ise-wakamatsuya-okage`） | | おかげ横丁官網（食べログ 欄是公司帳號 @wakamatsuya_since_1905） |
+| @imonne_gram | いもんね 伊勢内宮前本店（`ise-imonne`） | 可能多店 | 食べログ公式アカウント欄、官網 |
+| @snoopychaya_japan | SNOOPY茶屋 伊勢店（`ise-snoopy-chaya`） | 多店（全國） | 官網 |
+| @iwatoya | 岩戸屋 本店（`ise-iwatoya-honten`） | 設施（和参宮亭五十鈴食堂共用） | 食べログ公式アカウント欄 |
+| @fujiyasogetsudo_vi | 藤屋窓月堂 本館（`ise-fujiya-sogetsudo-honkan`） | | 食べログ公式アカウント欄 |
+| @oiseyahonpo | お伊勢屋本舗（`ise-oiseya-honpo`） | | 食べログ公式アカウント欄 |
