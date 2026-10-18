@@ -46,3 +46,37 @@
 - `candidates/spots.json` 110 筆：included 25（`detailPending: true`、`pointId` null）、not-included 60、excluded 25。
 - 後續批次 `data/cache/work/t9a-plan.json`：第 2 批 13 筆（沿近鐵、北部）、第 3 批 12 筆（南部、要開車）。
 - `scripts/validate`：錯誤 0、警告 25（都是 included 還沒有 pointId，資料檔還沒建立）。
+
+## 第 2 批：沿近鐵、北部的景點 13 筆（讀文＋Chrome＋spots.json）（2026-10-18，自動模式）
+
+範圍：`t9a-plan.json` 的 `batch: 1` 13 筆（kashikojima 6、ugata 2、yokoyama、isobe、amanoiwato、matoya、anori）。plan.json 的 batch 編號是景點批次的序號，和 README 的「第 2 批」是同一組。工作目錄 `data/cache/work/t9a-2/`。
+
+### 讀文
+- 13 個 subagent（`docs/prompts/dossier.md`；共同規則寫成 `t9a-2/prompt-common.md`，個別 prompt 只寫 id、已知來源、要確認的重點），同時最多 5 個、背景執行。
+- WebSearch：間崎島、海遊苑、Rays Farm、天の岩戸、安乗埼 各 1 次，合計 5 次；其他 8 個 0 次。主 session 0 次。搜尋都有結果，沒有額度用完的跡象。
+- 讀不到的：nta.co.jp（520，Rays Farm）、海上保安廳的燈塔參觀頁（404）、すし べんけい 觀光協會連的官網（JS 頁）。官網 SSL 錯誤的（kashikojima-boat.jp、amigo.ne.jp）subagent 改用 curl 讀 http；じゃらん 用 curl＋iconv 解 Shift_JIS。
+- 重要發現：エスパーニャクルーズ 2027-02-01～03-05 大船休業（小型代替船）；横山展望台 2026-11-24～2027-03-01 工事（VC→展望台停車場不能通行、迂回步道沒有斜坡）；横山VIEWタクシー 土日祝不運行；サミエール 已有階段昇降機（觀光三重的 2017 舊文過時）；Rays Farm 2 月只有志摩藍染め、限 10 歲以上；的矢湾 BBQ 現在用じゃらん 預約、官網 2010 年停更、集合地在對岸。
+
+### Google Maps（Chrome）
+- `chrome-actions.mjs --script google-place --google … --store`，單一分頁，3 個 batch（各 5 筆）＋列表點選 3 次：エスパーニャ（列表：きっぷうりば、賢島のりば、定期船のりば → 取 賢島のりば 4.2／217）、天の岩戸（列表：天の岩戸、天の岩戸口 → 天の岩戸）；Rays Farm 重搜一次確認只有一筆。
+- 程式誤判：的矢湾「船上BBQ 大東丸観光」回傳 rating 5，截圖確認沒有星數、評論 → null；Rays Farm 的 `closed` 是真的「閉業しました」。
+- 座標差：的矢湾 818 m（改用 Google，規則）、エスパーニャ 119 m、天の岩戸 31 m、安乗埼 21 m、伊雑宮 14 m、横山 7 m、海遊苑 0 m（保留觀光三重座標）；沒有觀光三重座標的 6 筆用 Google。
+- 沒有遇到驗證碼、登入或封鎖。
+
+### Google 評論（心得不到 2 篇的景點，13 筆的筆記全部是 0 篇）
+- `google-reviews.js`（`--store`，之後 `--stored`），一筆一個 batch：横山（冬、階段、工事）、エスパーニャ（冬、子供、階段）、遊覧船組合（冬、子供）、サミエール（階段、子供）、海遊苑（冬、子供）、Entrada（冬、子供）、伊雑宮（階段、冬）、天の岩戸（階段、冬、子供）、安乗埼（階段、子供、冬）、間崎島（9 則全讀）。合計約 12 個 batch、約 150 個動作。
+- 沒讀：すし べんけい（沒有クチコミ分頁）、的矢湾（沒有評論）、Rays Farm（排除）。
+- 遇到的問題：間崎島（9 則）`open` 後直接 `extract` 抽到 0 則、改跑 `lowest` 才有（CONVENTIONS 寫的是反過來的情況）；天の岩戸 `?cid=` 網址轉到 www.google.com，batch 第一個 JS 因「換網域」失敗 → navigate 後等 2 秒；`lowest` 第一次找不到「評価の低い順」、再跑一次成功。
+- 寫進筆記用 `t9a-2/add-reviews.mjs`（在來源清單加一行、在「衝突」前插入重點、改「資料量」）。
+- 結束時 `removeItem` 兩個 localStorage 鍵、關掉分頁。
+
+### 組裝
+- 新增 `scripts/build-spots.mjs`（`scripts/lib/spot-build.mjs`，測試 `scripts/test/spot-build.test.ts` 7 個）：Claude 寫 `judgement.json`，程式做 Google 連結、星數、座標 300 m 規則、照片（photo-check 結果，最多 3 張、Google 主圖補位）、tags、sources 合併、寫回、候選 pointId。
+- 照片 39 張全部 `photo-check` 200。
+- 步行分鐘沒有來源的 2 筆用 `geo.mjs walk`（OSRM）：海遊苑 志摩神明站 1.2 km 15 分（賢島站要繞 3.7 km、46 分）、すし べんけい 鵜方站 1.6 km 20 分；伊雑宮 上之郷站 360 m。
+- 決定寫進 `docs/decisions-pending.md`（10 條，「👤 建議先看」2 條：Rays Farm 排除、横山 stairs 多）；`questions.md` 新增 10 條、打勾 2 條。
+
+### 結果
+- `data/areas/shima/spots.json` 12 筆；候選 included 24（12 筆有 pointId）、excluded 26（＋Rays Farm）。
+- 筆記 13 份（含 Rays Farm）；心得：Google 評論 7～30 則（10 筆），すし べんけい、的矢湾 0。
+- `scripts/validate`：錯誤 0、警告 12（第 3 批的 included 還沒有 pointId）。`npm test` 79 個通過。
