@@ -2862,5 +2862,1178 @@
     ],
     "mentions": [],
     "note": "類型：和食・割烹；地址：磯部町渡鹿野524；個室（食べログ列表）：個室有；預算（食べログ列表）：夜 20000～29999／昼 -"
+  },
+  {
+    "key": "tabelog-24002114",
+    "name": {
+      "ja": "レストラン はまなぎ"
+    },
+    "region": "shima-tomoyama",
+    "category": "日本料理、ビュッフェ",
+    "status": "included",
+    "criteria": [
+      "D1",
+      "D2"
+    ],
+    "reason": null,
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.05,
+      "tabelogReviews": 13
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240303/24002114/"
+    },
+    "contexts": [
+      "lunch",
+      "dinner"
+    ],
+    "mentions": [],
+    "note": "類型：和食・割烹；地址：大王町船越3238-1 都リゾート 奥志摩 アクアフォレスト；個室（食べログ列表）：個室有；都リゾート 奥志摩 アクアフォレスト 館內的餐廳（lodging shima-aqua-forest），住宿附設，非住客用餐 T9d 確認；D①（tomoyama A～C 0 家）＋D②（不含晚餐的 リゾートパーク ともやま、Tabist ヴィラダイオー、UMIBE、UMIBE Terrace 附近沒有晚餐的店）；觀光三重 report/997（2021-11-18）：夕食ビュッフェ 大人 4,840 円、小人 3,390 円、幼兒 2,600 円（住客方案的寫法）"
+  },
+  {
+    "key": "tabelog-24011599",
+    "name": {
+      "ja": "都リゾート 奥志摩 アクアフォレスト"
+    },
+    "region": "shima-tomoyama",
+    "category": "ホテル",
+    "status": "not-included",
+    "criteria": [],
+    "reason": "未符合 A～F",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.21,
+      "tabelogReviews": 39
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240303/24011599/"
+    },
+    "contexts": [
+      "dinner"
+    ],
+    "mentions": [],
+    "note": "類型：其他；地址：大王町船越3238-1；預算（食べログ列表）：夜 10000～14999／昼 -；住宿本體（lodging shima-aqua-forest）；館內餐廳 レストラン はまなぎ 另列"
+  },
+  {
+    "key": "tabelog-24018372",
+    "name": {
+      "ja": "喫茶 どんぐり"
+    },
+    "region": "shima-tomoyama",
+    "category": "喫茶店、食堂",
+    "status": "included",
+    "criteria": [
+      "D1"
+    ],
+    "reason": null,
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.03,
+      "tabelogReviews": 3
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240303/24018372/"
+    },
+    "contexts": [
+      "lunch"
+    ],
+    "mentions": [],
+    "note": "類型：咖啡・甜點；地址：大王町船越314-35；D①（tomoyama A～C 0 家）：3.03／3，喫茶・食堂；大王町船越314-35（住宿 UMIBE 船越312-5 旁）；營業時間沒有來源（T9d 查）"
+  },
+  {
+    "key": "tabelog-24010504",
+    "name": {
+      "ja": "海女小屋体験 磯人"
+    },
+    "region": "shima-goza",
+    "category": "バーベキュー、海鮮",
+    "status": "included",
+    "criteria": [
+      "F2"
+    ],
+    "reason": null,
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.07,
+      "tabelogReviews": 13
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240303/24010504/"
+    },
+    "contexts": [
+      "lunch"
+    ],
+    "mentions": [],
+    "note": "類型：燒肉・肉料理；地址：志摩町御座484；預算（食べログ列表）：夜 -／昼 4000～4999；F②（體驗型用餐：海女小屋體驗）：3.07／13；營業時間、預約方式沒有觀光協會的資料（T9d 查）"
+  },
+  {
+    "key": "tabelog-24021031",
+    "name": {
+      "ja": "海女の庭"
+    },
+    "region": "shima-goza",
+    "category": "海鮮",
+    "status": "included",
+    "criteria": [
+      "F2"
+    ],
+    "reason": null,
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.04,
+      "tabelogReviews": 3
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240303/24021031/"
+    },
+    "contexts": [
+      "lunch"
+    ],
+    "mentions": [
+      {
+        "type": "tourism",
+        "url": "https://www.kankomie.or.jp/topic/480",
+        "title": "觀光三重「伊勢海老・あわび・サザエなど海の幸がたくさん！海女さんと触れ合える「海女の庭」」（2024-03-27）",
+        "highlight": "完全予約コース 4,980～14,800 円、ランチ 1,500 円（當天 OK）、伊勢海老 時価 2,500 円～；11:00～15:00 L.O.",
+        "retrieved": "2026-10-18"
+      }
+    ],
+    "note": "類型：海鮮丼；地址：志摩町御座40-2；定休（食べログ列表）：月曜日、火曜日、水曜日、木曜日、金曜日、土曜日、日曜日...；預算（食べログ列表）：夜 -／昼 3000～3999；F②（體驗型用餐：吃伊勢えび、アワビ、聽現役海女說話）：3.04／3；觀光三重 topic/480（2024-03-27）：11:00～15:00 L.O.，完全予約コース 4,980～14,800 円、ランチ 1,500 円（當天 OK）；食べログ列表的定休欄是「月曜日、火曜日、…日曜日...」（截斷，可能是不定休或預約制），T9d 確認"
+  },
+  {
+    "key": "tabelog-24001184",
+    "name": {
+      "ja": "網元の店八代"
+    },
+    "region": "shima-hamajima",
+    "category": "海鮮",
+    "status": "included",
+    "criteria": [
+      "A",
+      "C"
+    ],
+    "reason": null,
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.52,
+      "tabelogReviews": 127
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240303/24001184/"
+    },
+    "contexts": [
+      "lunch",
+      "dinner"
+    ],
+    "mentions": [],
+    "note": "類型：海鮮丼；地址：浜島町浜島1776-4；定休（食べログ列表）：水曜日；貸切可（食べログ列表）；預算（食べログ列表）：夜 3000～3999／昼 2000～2999；觀光協會「食べる」：11:00～14:00、17:00～20:00（售完為止），水休、第 1・3 木休（祝日營業）→ 旅程中 2/3、2/4、2/10 休"
+  },
+  {
+    "key": "tabelog-24009839",
+    "name": {
+      "ja": "湯元館 ニュー浜島"
+    },
+    "region": "shima-hamajima",
+    "category": "料理旅館、海鮮",
+    "status": "pending",
+    "criteria": [
+      "C"
+    ],
+    "reason": "住宿本體（lodging shima-hamajima-tsubaki，湯元館 ニュー浜島），符合 C（個室、貸切；3.22／27）：個室只寫 2 人；非住客用餐沒有來源（判斷細則 F③），T9d 確認",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.22,
+      "tabelogReviews": 27
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240303/24009839/"
+    },
+    "contexts": [
+      "dinner"
+    ],
+    "mentions": [],
+    "note": "類型：和食・割烹；地址：浜島町浜島3020；個室（食べログ列表）：個室有(2人可)；貸切可（食べログ列表）；預算（食べログ列表）：夜 20000～29999／昼 -"
+  },
+  {
+    "key": "tabelog-24011169",
+    "name": {
+      "ja": "大江戸温泉物語Premium 伊勢志摩"
+    },
+    "region": "shima-hamajima",
+    "category": "ホテル",
+    "status": "pending",
+    "criteria": [
+      "C"
+    ],
+    "reason": "住宿本體（lodging shima-oedo-iseshima），符合 C（個室；3.10／45）：大型溫泉飯店的ビュッフェ，非住客用餐沒有來源（判斷細則 F③），T9d 確認",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.1,
+      "tabelogReviews": 45
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240303/24011169/"
+    },
+    "contexts": [
+      "dinner"
+    ],
+    "mentions": [],
+    "note": "類型：其他；地址：浜島町浜島1035；個室（食べログ列表）：個室有；預算（食べログ列表）：夜 8000～9999／昼 -"
+  },
+  {
+    "key": "tabelog-24001105",
+    "name": {
+      "ja": "御食事処 味幸"
+    },
+    "region": "shima-hamajima",
+    "category": "海鮮",
+    "status": "included",
+    "criteria": [
+      "D2"
+    ],
+    "reason": null,
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.03,
+      "tabelogReviews": 8
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240303/24001105/"
+    },
+    "contexts": [
+      "dinner"
+    ],
+    "mentions": [],
+    "note": "類型：海鮮丼；地址：浜島町浜島2798；定休（食べログ列表）：火曜日；個室（食べログ列表）：個室有(4〜6人可)；D②（不含晚餐的 OCEAN VILLA 倭（南張1681）附近沒有晚餐的店；南張只有 メロンハウス、SEA HOUSE）：3.03／8，個室 4〜6 人；觀光協會「食べる」：17:00～22:00，火休（祝日營業）；浜島市街，距離 T9e 用座標算"
+  },
+  {
+    "key": "tabelog-24001160",
+    "name": {
+      "ja": "磯料理ヨット"
+    },
+    "region": "shima-hamajima",
+    "category": "海鮮、郷土料理",
+    "status": "included",
+    "criteria": [
+      "D1"
+    ],
+    "reason": null,
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.22,
+      "tabelogReviews": 65
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240303/24001160/"
+    },
+    "contexts": [
+      "lunch"
+    ],
+    "mentions": [],
+    "note": "類型：海鮮丼；地址：浜島町浜島1161-6；D①（hamajima 2/3、2/10（週三）、2/4（第 1 木）午餐 0 家：網元の店八代 休）：3.22／65；觀光協會「食べる」：平日 11:00～18:00 入店（無休息）、日祝 11:00～售完，火休（遇祝日營業）"
+  },
+  {
+    "key": "tabelog-24022003",
+    "name": {
+      "ja": "TAOYA 南志摩"
+    },
+    "region": "shima-hamajima",
+    "category": "ホテル",
+    "status": "not-included",
+    "criteria": [],
+    "reason": "未符合 A～F",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.1,
+      "tabelogReviews": 17
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240303/24022003/"
+    },
+    "contexts": [
+      "dinner"
+    ],
+    "mentions": [],
+    "note": "類型：其他；地址：浜島町浜島1645；預算（食べログ列表）：夜 20000～29999／昼 -；住宿本體（lodging shima-taoya）"
+  },
+  {
+    "key": "tabelog-24011240",
+    "name": {
+      "ja": "西口屋"
+    },
+    "region": "shima-hamajima",
+    "category": "ラーメン、食堂、うどん",
+    "status": "included",
+    "criteria": [
+      "D1"
+    ],
+    "reason": null,
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.06,
+      "tabelogReviews": 17
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240303/24011240/"
+    },
+    "contexts": [
+      "lunch"
+    ],
+    "mentions": [],
+    "note": "類型：其他；地址：浜島町浜島2872-1；定休（食べログ列表）：水曜日；預算（食べログ列表）：夜 -／昼 ～999；D①（hamajima 店少，依口コミ數取第 3 家）：3.06／17，ラーメン・食堂・うどん；水休（補不了週三）"
+  },
+  {
+    "key": "tabelog-24013678",
+    "name": {
+      "ja": "坂のうえ"
+    },
+    "region": "shima-hamajima",
+    "category": "カフェ、ラーメン、カレー",
+    "status": "included",
+    "criteria": [
+      "D1"
+    ],
+    "reason": null,
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.18,
+      "tabelogReviews": 40
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240303/24013678/"
+    },
+    "contexts": [
+      "lunch",
+      "cafe"
+    ],
+    "mentions": [],
+    "note": "類型：咖啡・甜點；地址：浜島町桧山路31-26；定休（食べログ列表）：月曜日、火曜日、水曜日、木曜日、金曜日；預算（食べログ列表）：夜 5000～5999／昼 1000～1999；D①（hamajima 週三、2/4 午餐 0 家）：3.18／40；**定休不一致**：食べログ列表 月～金休、觀光協會「食べる」11:00〜16:30（L.O. ランチ 14:00），月休 → T9d 確認"
+  },
+  {
+    "key": "tabelog-24020633",
+    "name": {
+      "ja": "COVA KAKUDA"
+    },
+    "region": "shima-wagu",
+    "category": "ホテル",
+    "status": "not-included",
+    "criteria": [],
+    "reason": "未符合 A～F",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.1,
+      "tabelogReviews": 3
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240303/24020633/"
+    },
+    "contexts": [
+      "lunch"
+    ],
+    "mentions": [],
+    "note": "類型：其他；地址：志摩町片田1397-14"
+  },
+  {
+    "key": "tabelog-24002211",
+    "name": {
+      "ja": "海女小屋体験施設 さとうみ庵"
+    },
+    "region": "shima-goza",
+    "category": "海鮮、ろばた焼き",
+    "status": "excluded",
+    "criteria": [
+      "A",
+      "C"
+    ],
+    "reason": "用餐見 spot shima-satoumian（海女小屋體驗，景點已收錄；同鳥羽 はちまんかまど 的做法）；食べログ 3.51／42，符合 A；個室 2〜4 人、貸切可",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.51,
+      "tabelogReviews": 42
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240303/24002211/"
+    },
+    "contexts": [
+      "lunch",
+      "dinner"
+    ],
+    "mentions": [],
+    "note": "類型：海鮮丼；地址：志摩町越賀2279；個室（食べログ列表）：個室有(2〜4人可)；貸切可（食べログ列表）；預算（食べログ列表）：夜 3000～3999／昼 3000～3999"
+  },
+  {
+    "key": "tabelog-24015878",
+    "name": {
+      "ja": "縁"
+    },
+    "region": "shima-goza",
+    "category": "カフェ、洋食、丼",
+    "status": "included",
+    "criteria": [
+      "D1"
+    ],
+    "reason": null,
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.09,
+      "tabelogReviews": 12
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240303/24015878/"
+    },
+    "contexts": [
+      "lunch"
+    ],
+    "mentions": [],
+    "note": "類型：咖啡・甜點；地址：志摩町越賀2249-13；定休（食べログ列表）：水曜日；貸切可（食べログ列表）；預算（食べログ列表）：夜 -／昼 1000～1999；D①（goza A～C 0 家：さとうみ庵 用餐見景點）：3.09／12，在貸切篩選但口コミ未達 C 的 15 則；水休；カフェ・洋食・丼"
+  },
+  {
+    "key": "tabelog-24009723",
+    "name": {
+      "ja": "志摩半島"
+    },
+    "region": "shima-goza",
+    "category": "料理旅館、日本料理",
+    "status": "pending",
+    "criteria": [
+      "D1",
+      "D2"
+    ],
+    "reason": "D①（goza A～C 0 家）＋D②（不含晚餐的 Small Resort 志摩（越賀759-3）附近的晚餐店）：住宿本體（lodging shima-shimahanto），3.04／8，個室 10〜20 人；非住客用餐沒有來源（判斷細則 F③），T9d 確認",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.04,
+      "tabelogReviews": 8
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240303/24009723/"
+    },
+    "contexts": [
+      "lunch"
+    ],
+    "mentions": [],
+    "note": "類型：和食・割烹；地址：志摩町越賀1922-4；個室（食べログ列表）：個室有(10〜20人可)"
+  },
+  {
+    "key": "tabelog-24001159",
+    "name": {
+      "ja": "田中料理店"
+    },
+    "region": "shima-daio",
+    "category": "海鮮",
+    "status": "included",
+    "criteria": [
+      "A",
+      "C"
+    ],
+    "reason": null,
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.33,
+      "tabelogReviews": 59
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240303/24001159/"
+    },
+    "contexts": [
+      "lunch",
+      "dinner"
+    ],
+    "mentions": [
+      {
+        "type": "tourism",
+        "url": "https://www.kankomie.or.jp/report/2225",
+        "title": "觀光三重「伊勢志摩の海辺の町をつないで巡る1日ドライブモデルコース｜灯台・町歩き・英虞湾の景色を楽しむ」（2026-09-29）",
+        "highlight": "波切で海鮮：名物「かつお茶漬け」；11:30～14:00（L.O.13:30）／17:30～21:00（L.O.20:30）",
+        "retrieved": "2026-10-18"
+      }
+    ],
+    "note": "類型：海鮮丼；地址：大王町波切250-1；定休（食べログ列表）：火曜日；貸切可（食べログ列表）；預算（食べログ列表）：夜 3000～3999／昼 1000～1999；觀光協會「食べる」：11:30～14:00（L.O.13:30）、17:30～21:00（L.O.20:30），火休；觀光三重 2026-09-29 的兜風路線也寫同樣的時間；大王埼灯台 的町歩き途中"
+  },
+  {
+    "key": "tabelog-24007641",
+    "name": {
+      "ja": "漁師料理十次郎"
+    },
+    "region": "shima-daio",
+    "category": "海鮮",
+    "status": "included",
+    "criteria": [
+      "C"
+    ],
+    "reason": null,
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.17,
+      "tabelogReviews": 16
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240303/24007641/"
+    },
+    "contexts": [
+      "lunch"
+    ],
+    "mentions": [],
+    "note": "類型：海鮮丼；地址：大王町波切1473-5；定休（食べログ列表）：火曜日；個室（食べログ列表）：個室有；貸切可（食べログ列表）；預算（食べログ列表）：夜 -／昼 3000～3999；營業時間沒有觀光協會的資料（T9d 查）；食べログ列表只有午餐價位"
+  },
+  {
+    "key": "tabelog-24018834",
+    "name": {
+      "ja": "ストップバイジョー"
+    },
+    "region": "shima-daio",
+    "category": "ハンバーガー、カレー",
+    "status": "not-included",
+    "criteria": [],
+    "reason": "在貸切篩選裡但口コミ 7 則（C 要 15 則）",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.14,
+      "tabelogReviews": 7
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240303/24018834/"
+    },
+    "contexts": [
+      "lunch"
+    ],
+    "mentions": [],
+    "note": "類型：洋食・義式；地址：大王町波切178；定休（食べログ列表）：火曜日、水曜日、木曜日、日曜日；貸切可（食べログ列表）；預算（食べログ列表）：夜 -／昼 1000～1999"
+  },
+  {
+    "key": "tabelog-24000826",
+    "name": {
+      "ja": "しまや"
+    },
+    "region": "shima-daio",
+    "category": "うなぎ、寿司",
+    "status": "included",
+    "criteria": [
+      "D1"
+    ],
+    "reason": null,
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.13,
+      "tabelogReviews": 28
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240303/24000826/"
+    },
+    "contexts": [
+      "lunch"
+    ],
+    "mentions": [],
+    "note": "類型：和食・割烹；地址：大王町波切234；定休（食べログ列表）：火曜日；預算（食べログ列表）：夜 1000～1999／昼 1000～1999；D①（daio 週二 2/2、2/9 午餐：田中料理店、十次郎 都火休；這家也火休，依口コミ數取前幾家）：3.13／28；觀光協會「食べる」：10:00～17:30（L.O.17:00），火休"
+  },
+  {
+    "key": "tabelog-24007621",
+    "name": {
+      "ja": "Cafe.C.C"
+    },
+    "region": "shima-daio",
+    "category": "カフェ",
+    "status": "included",
+    "criteria": [
+      "D1"
+    ],
+    "reason": null,
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.1,
+      "tabelogReviews": 19
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240303/24007621/"
+    },
+    "contexts": [
+      "lunch",
+      "cafe"
+    ],
+    "mentions": [],
+    "note": "類型：咖啡・甜點；地址：大王町波切3179-1；定休（食べログ列表）：月曜日；預算（食べログ列表）：夜 -／昼 ～999；D①（daio 週二 2/2、2/9 午餐 0 家：田中料理店、十次郎、しまや 都火休）：3.10／19（不在個室、貸切篩選，不符合 C）；觀光協會「食べる」：8:00～18:00，月休；カフェ，餐點內容 T9d 確認"
+  },
+  {
+    "key": "tabelog-24006889",
+    "name": {
+      "ja": "槙之木"
+    },
+    "region": "shima-tomoyama",
+    "category": "フレンチ、オーベルジュ",
+    "status": "pending",
+    "criteria": [
+      "D1"
+    ],
+    "reason": "D①（tomoyama A～C 0 家）：住宿本體（ホテル槇之木，楽天 shima-rakuten-15027，T9b not-included），3.03／3，フレンチ・オーベルジュ；館內的「レストラン ビビット」（24000877，3.01／1）是同一處；非住客的午餐、晚餐沒有來源（判斷細則 F③），T9d 確認",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.03,
+      "tabelogReviews": 3
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240303/24006889/"
+    },
+    "contexts": [
+      "lunch"
+    ],
+    "mentions": [],
+    "note": "類型：洋食・義式；地址：大王町波切ともやま2235-13"
+  },
+  {
+    "key": "tabelog-24008343",
+    "name": {
+      "ja": "大万"
+    },
+    "region": "shima-daio",
+    "category": "海鮮",
+    "status": "included",
+    "criteria": [
+      "D1"
+    ],
+    "reason": null,
+    "pointId": null,
+    "ratings": {
+      "tabelog": null,
+      "tabelogReviews": null
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240303/24008343/"
+    },
+    "contexts": [
+      "lunch",
+      "dinner"
+    ],
+    "mentions": [
+      {
+        "type": "tourism",
+        "url": "https://www.kankomie.or.jp/season/article/178",
+        "title": "觀光三重 てこね寿司特集（2025-12-19）",
+        "highlight": "大王荘：漁師ずし 900 円、漁師ずし御膳 1,100 円（稅込）；ランチ 11:30～14:00、ディナー 18:00～不定",
+        "retrieved": "2026-10-18"
+      }
+    ],
+    "note": "類型：海鮮丼；地址：大王町波切244；D①（daio 週二 2/2、2/9 午餐 0 家）：大王荘（旅館，大王町波切244，楽天 shima-rakuten-30937，T9b not-included）的お食事処 大万，食べログ沒有分數；觀光協會「食べる」（大王荘 お食事処 大万）：11:30～14:00、18:00～22:00，水休；觀光三重 てこね寿司特集（2025-12-19）：ランチ 11:30～14:00、ディナー 18:00～不定"
+  },
+  {
+    "key": "tabelog-24013778",
+    "name": {
+      "ja": "メロン ハウス かわぐち"
+    },
+    "region": "shima-hamajima",
+    "category": "カフェ",
+    "status": "excluded",
+    "criteria": [
+      "A"
+    ],
+    "reason": "旅程期間大多不營業：食べログ列表定休 月～金（旅程 12 天裡 9 天），觀光協會「食べる」（南張メロン 川口農園）：10:00～16:00、沒有メロン的日子臨時休業；符合 A（3.36／53）",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.36,
+      "tabelogReviews": 53
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240303/24013778/"
+    },
+    "contexts": [
+      "snack",
+      "cafe"
+    ],
+    "mentions": [],
+    "note": "類型：咖啡・甜點；地址：浜島町南張499-13；定休（食べログ列表）：月曜日、火曜日、水曜日、木曜日、金曜日；預算（食べログ列表）：夜 -／昼 ～999"
+  },
+  {
+    "key": "tabelog-24015478",
+    "name": {
+      "ja": "リアス バイ ココチャ"
+    },
+    "region": "shima-sakko",
+    "category": "スペイン料理、洋食",
+    "status": "included",
+    "criteria": [
+      "A",
+      "C"
+    ],
+    "reason": null,
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.6,
+      "tabelogReviews": 90
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240303/24015478/"
+    },
+    "contexts": [
+      "lunch",
+      "dinner"
+    ],
+    "mentions": [
+      {
+        "type": "tourism",
+        "url": "https://www.kankomie.or.jp/report/993",
+        "title": "觀光三重「志摩地中海村とは？ホテルの魅力や楽しみ方を紹介！」（2021-11-20）",
+        "highlight": "スペイン 1 つ星レストラン提携；夕食コース「Pasaia」11,000 円（要予約）、伊勢海老のソカラ；日帰りでも利用可",
+        "retrieved": "2026-10-18"
+      }
+    ],
+    "note": "類型：洋食・義式；地址：浜島町迫子2619-1；個室（食べログ列表）：個室有；貸切可（食べログ列表）；預算（食べログ列表）：夜 10000～14999／昼 -；志摩地中海村 內（lodging shima-chichukaimura-hotel）；觀光協會「食べる」：Lunch 11:30～14:00（13:00 L.O.）、Dinner 17:30～22:00（20:00 L.O.），志摩地中海村的休館日休（2/17～2/19，旅程後）；觀光三重 2021-11-20：「日帰りでも利用可」、ディナー 事前予約のみ、營業日看官網"
+  },
+  {
+    "key": "tabelog-24008794",
+    "name": {
+      "ja": "志摩地中海村"
+    },
+    "region": "shima-sakko",
+    "category": "カフェ、ヨーロッパ料理、オーベルジュ",
+    "status": "pending",
+    "criteria": [
+      "C"
+    ],
+    "reason": "住宿本體（lodging shima-chichukaimura-hotel），符合 C（個室；3.25／76）：館內餐廳 リアス バイ ココチャ、タベルナ・アスール、カフェ アミーゴ 另列；這筆可能是オーベルジュ的晚餐，T9d 確認非住客用餐",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.25,
+      "tabelogReviews": 76
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240303/24008794/"
+    },
+    "contexts": [
+      "snack",
+      "cafe"
+    ],
+    "mentions": [],
+    "note": "類型：咖啡・甜點；地址：浜島町迫子2619-1；個室（食べログ列表）：個室有；預算（食べログ列表）：夜 15000～19999／昼 1000～1999"
+  },
+  {
+    "key": "tabelog-24013837",
+    "name": {
+      "ja": "里海"
+    },
+    "region": "shima-sakko",
+    "category": "日本料理、海鮮",
+    "status": "included",
+    "criteria": [
+      "C"
+    ],
+    "reason": null,
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.13,
+      "tabelogReviews": 30
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240303/24013837/"
+    },
+    "contexts": [
+      "dinner"
+    ],
+    "mentions": [
+      {
+        "type": "tourism",
+        "url": "https://www.kankomie.or.jp/report/305",
+        "title": "觀光三重「NEMU RESORTで極上リゾートステイ。ホテル・ヴィラの過ごし方や魅力を紹介します」（2022-10-12）",
+        "highlight": "HOTEL NEMU 內的和食，伊勢志摩的當季食材；朝食ビュッフェ",
+        "retrieved": "2026-10-18"
+      }
+    ],
+    "note": "類型：和食・割烹；地址：浜島町迫子2692-3；個室（食べログ列表）：個室有(2〜20人可)；預算（食べログ列表）：夜 10000～14999／昼 -；HOTEL NEMU 內的和食（lodging shima-nemu-resort），住宿附設，非住客用餐 T9d 確認（NEMU 2026-04-18 改裝重開，觀光三重 2022 的介紹可能已經不同）；個室 2〜20 人 → 全員晚餐的候選"
+  },
+  {
+    "key": "tabelog-24014037",
+    "name": {
+      "ja": "アマネム"
+    },
+    "region": "shima-sakko",
+    "category": "料理旅館",
+    "status": "pending",
+    "criteria": [
+      "A"
+    ],
+    "reason": "住宿本體（AMANEMU，T9b 沒有候選：楽天沒有），符合 A（3.84／78）：館內餐廳 アマネムダイニング 另列；非住客用餐沒有來源（判斷細則 F③），T9d 確認",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.84,
+      "tabelogReviews": 78
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240303/24014037/"
+    },
+    "contexts": [
+      "dinner"
+    ],
+    "mentions": [],
+    "note": "類型：和食・割烹；地址：浜島町迫子2165；預算（食べログ列表）：夜 100000～／昼 -"
+  },
+  {
+    "key": "tabelog-24015181",
+    "name": {
+      "ja": "アマネムダイニング"
+    },
+    "region": "shima-sakko",
+    "category": "日本料理",
+    "status": "included",
+    "criteria": [
+      "A"
+    ],
+    "reason": null,
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.56,
+      "tabelogReviews": 91
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240303/24015181/"
+    },
+    "contexts": [
+      "dinner"
+    ],
+    "mentions": [],
+    "note": "類型：和食・割烹；地址：浜島町迫子2165；預算（食べログ列表）：夜 100000～／昼 -；アマネム（AMANEMU）館內的餐廳，住宿附設，非住客用餐 T9d 確認（T9b 沒有アマネム的候選：楽天沒有）；夜 100,000 円～"
+  },
+  {
+    "key": "tabelog-24016781",
+    "name": {
+      "ja": "タベルナ・アスール"
+    },
+    "region": "shima-sakko",
+    "category": "ビュッフェ",
+    "status": "included",
+    "criteria": [
+      "A"
+    ],
+    "reason": null,
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.33,
+      "tabelogReviews": 49
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240303/24016781/"
+    },
+    "contexts": [
+      "lunch"
+    ],
+    "mentions": [
+      {
+        "type": "tourism",
+        "url": "https://www.kankomie.or.jp/report/993",
+        "title": "觀光三重「志摩地中海村とは？ホテルの魅力や楽しみ方を紹介！」（2021-11-20）",
+        "highlight": "ビュッフェ：朝食 約 40 種（大人 2,200 円、小學生 1,650 円）；ランチ 土日祝 12:00～14:00",
+        "retrieved": "2026-10-18"
+      }
+    ],
+    "note": "類型：其他；地址：浜島町迫子2619-1；預算（食べログ列表）：夜 -／昼 2000～2999；志摩地中海村 內的ビュッフェ；觀光三重 2021-11-20：朝食 7:30～10:00、ランチ 土日祝 12:00～14:00（平日沒有午餐，T9d 看官網確認現在的營業）"
+  },
+  {
+    "key": "tabelog-24013194",
+    "name": {
+      "ja": "カフェ アミーゴ"
+    },
+    "region": "shima-sakko",
+    "category": "カフェ",
+    "status": "not-included",
+    "criteria": [],
+    "reason": "未符合 A～F",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.29,
+      "tabelogReviews": 117
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240303/24013194/"
+    },
+    "contexts": [
+      "snack",
+      "cafe"
+    ],
+    "mentions": [],
+    "note": "類型：咖啡・甜點；地址：浜島町迫子2619-1 志摩地中海村；預算（食べログ列表）：夜 -／昼 1000～1999；志摩地中海村 內；觀光協會「食べる」：9:00～18:00（L.O.17:30），無休（冬季休暇あり）；3.29／117 差 A 一點"
+  },
+  {
+    "key": "tabelog-24010603",
+    "name": {
+      "ja": "NEMU GOLF CLUB GREEN SIDE"
+    },
+    "region": "shima-sakko",
+    "category": "日本料理、洋食",
+    "status": "not-included",
+    "criteria": [],
+    "reason": "未符合 A～F",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.24,
+      "tabelogReviews": 28
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240303/24010603/"
+    },
+    "contexts": [
+      "lunch"
+    ],
+    "mentions": [],
+    "note": "類型：和食・割烹；地址：浜島町迫子2692-3 NEMU GOLF CLUB；NEMU GOLF CLUB 的餐廳（ゴルフ場）"
+  },
+  {
+    "key": "tabelog-24015115",
+    "name": {
+      "ja": "ネム ホテルアンドリゾート"
+    },
+    "region": "shima-sakko",
+    "category": "ホテル",
+    "status": "not-included",
+    "criteria": [],
+    "reason": "未符合 A～F",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.19,
+      "tabelogReviews": 29
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240303/24015115/"
+    },
+    "contexts": [
+      "dinner"
+    ],
+    "mentions": [],
+    "note": "類型：其他；地址：浜島町迫子2692-3；預算（食べログ列表）：夜 10000～14999／昼 -；住宿本體（lodging shima-nemu-resort）；館內 里海 另列"
+  },
+  {
+    "key": "tabelog-24018761",
+    "name": {
+      "ja": "カフェ ペスカドール"
+    },
+    "region": "shima-sakko",
+    "category": "カフェ",
+    "status": "not-included",
+    "criteria": [],
+    "reason": "未符合 A～F",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.18,
+      "tabelogReviews": 21
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240303/24018761/"
+    },
+    "contexts": [
+      "snack",
+      "cafe"
+    ],
+    "mentions": [],
+    "note": "類型：咖啡・甜點；地址：浜島町迫子2619-1"
+  },
+  {
+    "key": "tabelog-24003661",
+    "name": {
+      "ja": "居酒屋 庄助"
+    },
+    "region": "shima-other",
+    "category": "居酒屋",
+    "status": "included",
+    "criteria": [
+      "D2"
+    ],
+    "reason": null,
+    "pointId": null,
+    "ratings": {
+      "tabelog": null,
+      "tabelogReviews": 1
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240303/24003661/"
+    },
+    "contexts": [
+      "dinner"
+    ],
+    "mentions": [],
+    "note": "類型：居酒屋；地址：阿児町立神2605-2；定休（食べログ列表）：火曜日、木曜日；個室（食べログ列表）：個室有(8人可)；貸切可（食べログ列表）；預算（食べログ列表）：夜 2000～2999／昼 -；D②（やどかり志摩 附近沒有晚餐的店）：食べログ沒有分數（口コミ 1），居酒屋，個室 8 人、貸切可，火木休；營業時間沒有來源（T9d 查）"
+  },
+  {
+    "key": "tabelog-24015044",
+    "name": {
+      "ja": "ぱん屋 ふじ田"
+    },
+    "region": "shima-other",
+    "category": "パン",
+    "status": "not-included",
+    "criteria": [],
+    "reason": "未符合 A～F",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.14,
+      "tabelogReviews": 24
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240303/24015044/"
+    },
+    "contexts": [
+      "snack"
+    ],
+    "mentions": [],
+    "note": "類型：咖啡・甜點；地址：阿児町立神2038-4；定休（食べログ列表）：月曜日、土曜日、日曜日"
+  },
+  {
+    "key": "tabelog-24002704",
+    "name": {
+      "ja": "居酒屋きゅう"
+    },
+    "region": "shima-other",
+    "category": "日本料理、居酒屋",
+    "status": "included",
+    "criteria": [
+      "D2"
+    ],
+    "reason": null,
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.01,
+      "tabelogReviews": 3
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240303/24002704/"
+    },
+    "contexts": [
+      "dinner"
+    ],
+    "mentions": [],
+    "note": "類型：和食・割烹；地址：阿児町立神3387-5；D②（不含晚餐的 やどかり志摩（立神1030-4，包棟）附近沒有晚餐的店）：3.01／3，日本料理・居酒屋；營業時間沒有來源（T9d 查），距離 T9e 用座標算"
+  },
+  {
+    "key": "tabelog-24017797",
+    "name": {
+      "ja": "トッポリーノ"
+    },
+    "region": "shima-wagu",
+    "category": "レストラン",
+    "status": "not-included",
+    "criteria": [],
+    "reason": "在貸切篩選裡但口コミ 11 則（C 要 15 則）",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.22,
+      "tabelogReviews": 11
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240303/24017797/"
+    },
+    "contexts": [
+      "lunch",
+      "dinner"
+    ],
+    "mentions": [
+      {
+        "type": "tourism",
+        "url": "https://www.kankomie.or.jp/report/1992",
+        "title": "觀光三重「知られざる絶景のお店で夏の景色を楽しんで。伊勢～熊野の絶景の飲食店4軒を紹介します！」（2025-07-22）",
+        "highlight": "真鯛のカルパッチョ 850 円～、志摩産カツオの自家製ツナのスパゲティ 1,000 円、バスクチーズケーキ；月火休",
+        "retrieved": "2026-10-18"
+      }
+    ],
+    "note": "類型：其他；地址：志摩町和具1683-2；定休（食べログ列表）：月曜日、火曜日；貸切可（食べログ列表）；預算（食べログ列表）：夜 2000～2999／昼 1000～1999；觀光三重 2025-07-22：ランチ 12:00～15:00（L.O.14:00）、ディナー 17:00～22:00（20:00 以後要預約），月火休；在貸切篩選但口コミ 11 則（C 要 15 則）"
+  },
+  {
+    "key": "tabelog-24018498",
+    "name": {
+      "ja": "鮨裕禅"
+    },
+    "region": "shima-wagu",
+    "category": "寿司、オーベルジュ",
+    "status": "included",
+    "criteria": [
+      "C"
+    ],
+    "reason": null,
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.18,
+      "tabelogReviews": 22
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240303/24018498/"
+    },
+    "contexts": [
+      "lunch",
+      "dinner"
+    ],
+    "mentions": [],
+    "note": "類型：壽司；地址：志摩町和具4442；貸切可（食べログ列表）；預算（食べログ列表）：夜 30000～39999／昼 30000～39999；食べログ類別含オーベルジュ（住宿附設），非住客用餐 T9d 確認；昼夜都 30,000 円以上"
+  },
+  {
+    "key": "tabelog-24009868",
+    "name": {
+      "ja": "パールグルメイン竹正"
+    },
+    "region": "shima-wagu",
+    "category": "旅館・民宿",
+    "status": "not-included",
+    "criteria": [],
+    "reason": "在個室篩選裡但口コミ 9 則（C 要 15 則）",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.13,
+      "tabelogReviews": 9
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240303/24009868/"
+    },
+    "contexts": [
+      "dinner"
+    ],
+    "mentions": [],
+    "note": "類型：和食・割烹；地址：志摩町和具3100-1；個室（食べログ列表）：個室有(10〜20人可)；貸切可（食べログ列表）；預算（食べログ列表）：夜 15000～19999／昼 -；住宿本體（パールグルメイン竹正，楽天 shima-rakuten-50578，T9b not-included）；個室 10〜20 人但口コミ 9 則"
+  },
+  {
+    "key": "tabelog-24017668",
+    "name": {
+      "ja": "海女小屋体験 火場 広の浜"
+    },
+    "region": "shima-wagu",
+    "category": "その他",
+    "status": "included",
+    "criteria": [
+      "F2"
+    ],
+    "reason": null,
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.01,
+      "tabelogReviews": 1
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240303/24017668/"
+    },
+    "contexts": [
+      "lunch"
+    ],
+    "mentions": [],
+    "note": "類型：其他；地址：志摩町和具1641-1；個室（食べログ列表）：個室有(4人可)；貸切可（食べログ列表）；預算（食べログ列表）：夜 2000～2999／昼 2000～2999；F②（體驗型用餐：海女小屋體驗）：3.01／1；觀光協會「食べる」有登錄（營業時間沒寫，T9d 查）"
+  },
+  {
+    "key": "tabelog-24014579",
+    "name": {
+      "ja": "お食事処 ひでちゃん"
+    },
+    "region": "shima-wagu",
+    "category": "海鮮、食堂、居酒屋",
+    "status": "included",
+    "criteria": [
+      "A"
+    ],
+    "reason": null,
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.39,
+      "tabelogReviews": 50
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240303/24014579/"
+    },
+    "contexts": [
+      "lunch",
+      "dinner"
+    ],
+    "mentions": [],
+    "note": "類型：海鮮丼；地址：志摩町和具1896-23；定休（食べログ列表）：日曜日；預算（食べログ列表）：夜 1000～1999／昼 1000～1999；營業時間沒有觀光協會的資料（T9d 查）；日休"
   }
 ]
