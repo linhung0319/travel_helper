@@ -89,7 +89,7 @@
       "total": 38,
       "assessed": 38,
       "notAssessed": [],
-      "flagged": 2,
+      "flagged": 1,
       "byStar": {
         "2": 3,
         "3": 12,
@@ -126,27 +126,15 @@
     },
     {
       "type": "lodging",
-      "id": "toba-log-rocky",
-      "name": "貸切ログハウス ロッキー",
-      "recommend": 4,
-      "tier": "A",
-      "confidence": "medium",
-      "ratings": "楽天 4.67（76 則）、Google 4.3（47 則）",
-      "rule": "high-star-few-reviews",
-      "message": "4 星但訂房網、Google 都不到 100 則（訂房網評論數沒記的當 0）",
-      "rationale": "楽天 4.67（76 則）、じゃらん 4.4（205 則）、Google 4.3；有小故障的意見"
-    },
-    {
-      "type": "lodging",
       "id": "toba-ryokan-naomi",
       "name": "旅館なおみ",
       "recommend": 4,
       "tier": "A",
-      "confidence": "low",
+      "confidence": "medium",
       "ratings": "楽天 4.33、Google 4.3（7 則）",
       "rule": "high-star-few-reviews",
       "message": "4 星但訂房網、Google 都不到 100 則（訂房網評論數沒記的當 0）",
-      "rationale": "Airbnb 4.8（142 則）、Google 4.3（7 則），心得 0 篇"
+      "rationale": "Airbnb 4.8（142 則）、Google 4.3（7 則）；Google 有內文的 5 則是 4 則 5 星、1 則 1 星（樓梯陡、暗、入住流程）"
     },
     {
       "type": "restaurant",
@@ -154,11 +142,11 @@
       "name": "鳥羽 海鮮料理 屋形船 おきた",
       "recommend": 4,
       "tier": "A",
-      "confidence": "low",
+      "confidence": "medium",
       "ratings": "食べログ 3.08（21 則）、Google 4.8（449 則）",
       "rule": "high-star-low-rating",
       "message": "4 星但食べログ或 Google 偏低（門檻 3.3／3.8）",
-      "rationale": "Google 4.8（449 則），觀光三重 2 篇、Travel.jp 介紹，都沒有負評；食べログ 3.08 只有 21 則（體驗型分數偏低）"
+      "rationale": "體驗型：Google 4.8（449 則），觀光三重 2 篇、Travel.jp 介紹，口コミ的接待好評多；食べログ 3.08 只有 21 則"
     },
     {
       "type": "restaurant",
@@ -170,7 +158,7 @@
       "ratings": "食べログ 3.23（33 則）、Google 4.3（773 則）",
       "rule": "high-star-low-rating",
       "message": "4 星但食べログ或 Google 偏低（門檻 3.3／3.8）",
-      "rationale": "料理旅館的非住客用餐（F③）：住宿本體楽天餐 4.55（4,943 則）、Google 4.3"
+      "rationale": "料理旅館的非住客用餐（F③）：住宿本體楽天餐 4.55（4,943 則）、Google 4.3；Google 低分有料理品質不一的意見"
     }
   ]
 }
