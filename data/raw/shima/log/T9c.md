@@ -51,3 +51,47 @@
 
 ### 數量
 - 第 1 批收錄預定 35、pending 9。數量控制還沒套用（見 README「數量控制」）。
+
+---
+
+## 第 2 批：shima-isobe、shima-amanoiwato、shima-matoya、shima-anori、shima-kokufu
+
+- 日期：2026-10-18。工作目錄 `data/cache/work/t9c-2/`。
+- Chrome：1 個分頁，browser_batch 6 次（列表 30 頁＋關鍵字搜尋 2 頁）＋單獨的 javascript 1 次（町名代碼、確認磯部町只有 7 個町名頁）；沒有遇到驗證碼、登入、封鎖。結束時 `localStorage.removeItem("__th_tabelog-list")`、關掉分頁。
+- **WebSearch 3 次**（限 kankomie.or.jp）、WebFetch 9 次（觀光三重 season/article/189、report/2129、topic/1104、report/1295、spot/22848、report/1992、report/2037、topic/1303、report/355，一篇一次）。沒有遇到搜尋沒結果、額度用完。
+
+### 工具（修改）
+- `scripts/restaurant-candidates.mjs` 的 rules 加 **`onlyRegions`**：只輸出指定子地區的店。「磯部町」關鍵字搜尋的頁面混到第 1 批的店（スペイン村、大田屋 鵜方支店），`candidates add` 會因 key 衝突整批不寫。附測試（`scripts/test/restaurant-cand.test.ts`）。
+
+### 看過的食べログ列表（全部評分排序 `?SrtT=rt`；個室 `&ChkRoom=1&ChkSemiRoom=1`、貸切 `cond09-00-00`）
+| 町 | 網址 | 件數（rt／個室／貸切） | 看到 |
+|---|---|---|---|
+| 阿児町安乗 | https://tabelog.com/mie/C24215/C70660/rstLst/ | 14／5／3 | 全部 |
+| 阿児町国府 | https://tabelog.com/mie/C24215/C70662/rstLst/（＋/2/） | 24／2／1 | 全部 |
+| 阿児町甲賀 | https://tabelog.com/mie/C24215/C70663/rstLst/ | 20／8／3 | 全部 |
+| 阿児町志島 | https://tabelog.com/mie/C24215/C70664/rstLst/ | 3／—／— | rt 全部（沒有 3.10 以上的店，篩選沒看） |
+| 磯部町穴川 | https://tabelog.com/mie/C24215/C70667/rstLst/ | 17／2／4 | 全部 |
+| 磯部町恵利原 | https://tabelog.com/mie/C24215/C70669/rstLst/ | 3／0／0 | 全部 |
+| 磯部町上之郷 | https://tabelog.com/mie/C24215/C70670/rstLst/ | 1／1／0 | 全部 |
+| 磯部町迫間 | https://tabelog.com/mie/C24215/C70678/rstLst/ | 9／1／0 | 全部 |
+| 磯部町的矢 | https://tabelog.com/mie/C24215/C70680/rstLst/ | 14／4／2 | 全部 |
+| 磯部町渡鹿野 | https://tabelog.com/mie/C24215/C70683/rstLst/ | 9／2／0 | 全部 |
+| 「磯部町」關鍵字 | https://tabelog.com/mie/C24215/rstLst/?SrtT=rt&sw=磯部町（＋/2/） | 36 | 全部；町名列表外的只有 お食事処 祭（第 2 頁沒有新店，沒存檔） |
+
+- 食べログ的磯部町町名頁只有穴川、恵利原、上之郷、坂崎、迫間、的矢、渡鹿野 7 個；五知、築地、下之郷、山原、三ヶ所 等大字的店只能用關鍵字或座標找。阿児町（安乗、国府、甲賀、志島）沒有做關鍵字搜尋（「阿児町」會撈到鵜方、神明的幾百家）。
+- 3.10 未満的店沒有寫進候選（同第 1 批），例外是有 override 的 はしもと、別亭 まとや、丸寅、丸定旅館、shima cafe。
+
+### 媒體、觀光（WebSearch 3 次）
+1. 「観光三重 的矢かき 牡蠣 食べられる店 特集」→ 的矢かきテラス report/1295（2022-11-07）、牡蠣特集 report/2129、topic/1104（2025-12-24，志摩的店 0）、いかだ荘 山上 spot/22848（營業時間 9:00～21:00、不定休，沒有非住客用餐的記載）。
+2. 「観光三重 伊雑宮 磯部 うなぎ ランチ 志摩 安乗ふぐ」→ **あのりふぐ特集 season/article/189（2025-11-19：まるせい、丸寅、ひさだ，都有昼食營業時間）**。磯部的うなぎ（中六、川うめ）沒有觀光三重的特集。
+3. 「観光三重 国府白浜 甲賀 志摩 カフェ ランチ 鮨 おすすめ」→ 阿児の松原 report/355（2018，シェブロン 11:00-21:00）、RVパーク topic/1303（2026-08-17，BALI HOUSE 昼夜、PaAni）、かき氷特集 report/2037（2025-06-17，shima cafe；id BOWL（国府1-13）食べログ列表上沒有）、絶景の飲食店 report/1992（志摩只有和具的トッポリーノ，第 3 批 wagu 用）。
+
+### 納入判斷
+- **子地區**：`rules.json` 的 `regions`（磯部町的矢・渡鹿野・三ヶ所 → matoya；恵利原 1000 番台以上 → amanoiwato；其他磯部町 → isobe；安乗 → anori；国府・甲賀・志島 → kokufu）。恵利原 240（板橋）、1421（えりはら）是推定。
+- **F①（的矢牡蠣）**：比照浦村牡蠣的「特產聚落」，牡蠣類別的店依口コミ數取：かきテラス（A）、はしもと、別亭 まとや；佐藤養殖場 是かきテラス 同址（伴手禮＋食事處只收食事處）。
+- **住宿本體**：同第 1 批標 pending（いかだ荘 山上、橘、はいふう、福寿荘、丸定旅館）；Grand Mercure 本體是バー類別 → 自動排除。**例外**：安乗的料理旅館 ひさだ（C）、丸寅（D①）included，根據是觀光三重 あのりふぐ特集的昼食營業時間（不是官網）。
+- **D**：matoya、anori 週二午餐 0 家 → D①（丸定旅館 pending、丸寅 included）；森と海 附近沒有確定的晚餐 → D②（BALI HOUSE）；amanoiwato 沒有能補的店。E 沒有用（這 5 區沒有轉車的主要車站；志摩磯部站周邊的店是 川うめ 700 m）。
+- **contexts**：照觀光協會、觀光三重的營業時間改：中六 lunch；川うめ、はま崎、まるせい、ひさだ、鮨暁、シェブロン、BALI HOUSE 加 dinner；別亭 まとや dinner。
+
+### 數量
+- 第 2 批 33 筆：included 16、pending 5、excluded 1、not-included 11。兩批合計收錄預定 51、pending 14。
