@@ -44,12 +44,37 @@ await (async (step) => {
   const noResult = () => /に言及しているクチコミはありません/.test(document.body.innerText);
   const loading = () => /読み込んでいます/.test(document.body.innerText);
   // 換排序或搜尋後，等清單換掉：第一則不一樣了、或出現「沒有結果」；第一則剛好一樣時等到逾時（8 秒）再抽
+  // 評論清單是捲到才載入：換排序、搜尋後清單會清空，視窗不高時一則都不會出現（T8e 實測，桂 外宮）。
+  // 所以等待時把評論面板（排序按鈕往上第一個可捲動的容器）捲到底；只捲動，不點東西
+  const scroller = () => {
+    let el = sortButton();
+    while (el && !(el.scrollHeight > el.clientHeight + 50 && /auto|scroll/.test(getComputedStyle(el).overflowY))) el = el.parentElement;
+    return el;
+  };
+  const nudge = () => {
+    const el = scroller();
+    if (el) el.scrollTop = el.scrollHeight;
+  };
+  // 兩段：先不捲動，等舊清單換掉（實測約 2.5 秒後清空；太早捲會載入更多「舊排序」的評論，抽到的是舊清單）；
+  // 清空後才捲到底，讓新清單載入
   const waitForNewList = async (before) => {
-    await waitFor(() => !loading() && (noResult() || (firstId() && firstId() !== before)));
+    await waitFor(() => noResult() || firstId() !== before);
+    await waitFor(() => {
+      if (!firstId() && !noResult()) nudge();
+      return !loading() && (noResult() || firstId());
+    });
     await sleep(500);
   };
 
   const extract = async () => {
+    // 不到 LIMIT 則時再捲幾次，讓後面的評論載入（評論總數少於 LIMIT 時就停）
+    for (let i = 0, n = -1; i < 4 && reviewEls().length < LIMIT && reviewEls().length !== n; i++) {
+      n = reviewEls().length;
+      nudge();
+      await sleep(1200);
+    }
+    const sc = scroller();
+    if (sc) sc.scrollTop = 0;
     // 「もっと見る」全部展開（只點評論裡面的）
     for (const b of document.querySelectorAll('div[data-review-id] button[aria-expanded="false"]')) {
       if (b.textContent.includes('もっと見る')) b.click();

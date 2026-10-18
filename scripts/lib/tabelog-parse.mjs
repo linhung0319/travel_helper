@@ -61,7 +61,8 @@ export function suggestFit15({ accepted, seats, maxReservation, privateRoomMax, 
 
 export function parseTabelog(info) {
   const r = info?.rows ?? {};
-  const row = (k) => Object.entries(r).find(([th]) => th.startsWith(k))?.[1] ?? null;
+  // 「予算（口コミ集計）」是口コミ的集計，不是店家寫的預算：startsWith 會把它當成「予算」（T8e 實測：沒有「予算」的店）
+  const row = (k) => Object.entries(r).find(([th]) => th.startsWith(k) && !th.includes("口コミ集計"))?.[1] ?? null;
   const warnings = [];
 
   const resText = row('予約可否');
