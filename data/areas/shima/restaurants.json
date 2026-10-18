@@ -12650,6 +12650,12 @@
         "url": "https://www.kankomie.or.jp/report/2225",
         "retrieved": "2026-10-19",
         "note": "2026-09-29 兜風路線：波切午餐點、名物かつお茶漬け，同樣的營業時間；停車在絵かきの町交流広場"
+      },
+      {
+        "type": "tabelog",
+        "url": "https://tabelog.com/mie/A2403/A240303/24001159/dtlrvwlst/",
+        "retrieved": "2026-10-19",
+        "note": "食べログ口コミ（最新 20 則、搜尋「中止」「冬」「子供」「団体」「座敷」）"
       }
     ],
     "verified": false,
@@ -12675,7 +12681,11 @@
       ]
     },
     "stayMinutes": null,
-    "mustTry": [],
+    "mustTry": [
+      "かつお茶漬け（吃到一半加熱高湯）",
+      "造りセット かつお茶漬け付き 2,100 円",
+      "天ぷら定食（かつを茶漬け付き）2,200 円"
+    ],
     "menu": [
       {
         "url": "https://tabelog.com/mie/A2403/A240303/24001159/dtlmenu/photo/",
@@ -12715,7 +12725,7 @@
       "phone": "0599-72-0564",
       "url": null,
       "language": "日文",
-      "note": "電話（食べログ 予約可）",
+      "note": "電話；中午開店不久就滿席、沒預約可能被拒（口コミ 2024～2025）",
       "leadDays": null
     },
     "seating": [
@@ -12836,6 +12846,12 @@
         "url": "https://isesima.info/shimaya/",
         "retrieved": "2026-10-19",
         "note": "創業 75 年鰻魚・壽司店；10:00～19:00 火休；完整菜單價格（鰻丼 2,000～3,300円等）；外帶"
+      },
+      {
+        "type": "tabelog",
+        "url": "https://tabelog.com/mie/A2403/A240303/24000826/dtlrvwlst/",
+        "retrieved": "2026-10-19",
+        "note": "食べログ口コミ（最新 20 則、搜尋「中止」「冬」「子供」）"
       }
     ],
     "verified": false,
@@ -12861,7 +12877,10 @@
       ]
     },
     "stayMinutes": null,
-    "mustTry": [],
+    "mustTry": [
+      "鰻丼（うな丼）特上 3,000～3,300 円",
+      "鰻ご飯の巻（外帶）"
+    ],
     "menu": [
       {
         "url": "https://isesima.info/shimaya/",
@@ -12988,7 +13007,7 @@
       "note": "觀光協會、食べログ：8:00～18:00，週一休（週二有營業）"
     },
     "closedNote": "週一",
-    "febNote": "2/8（一）休；官網 cafecc.jp 已是待售網域的停放頁（2026-10-19），營業要再確認",
+    "febNote": "2/8（一）休；Google 最新評論約 2026-05，營業中（官網網域已過期）；週日只到 11 時的說法（Google 約 2022）要確認",
     "closures": [],
     "photos": [
       {
@@ -13031,6 +13050,12 @@
         "url": "http://www.cafecc.jp/",
         "retrieved": "2026-10-19",
         "note": "網域待售停放頁，沒有店家內容，未採用"
+      },
+      {
+        "type": "tabelog",
+        "url": "https://tabelog.com/mie/A2403/A240303/24007621/dtlrvwlst/",
+        "retrieved": "2026-10-19",
+        "note": "食べログ口コミ（最新 20 則）"
       }
     ],
     "verified": false,
@@ -13053,7 +13078,9 @@
       "dinner": null
     },
     "stayMinutes": null,
-    "mustTry": [],
+    "mustTry": [
+      "日替わりランチ（每月換菜單，IG 公布）"
+    ],
     "menu": [
       {
         "url": "https://tabelog.com/mie/A2403/A240303/24007621/dtlmenu/photo/",
@@ -13111,7 +13138,8 @@
       "conflicts": [
         "官網 http://www.cafecc.jp/ 現為待售網域停放頁，店是否還在營業待確認",
         "席數：觀光協會 28 席，食べログ店舗情報 27 席",
-        "席數：食べログ 27 vs 觀光協會 28"
+        "席數：食べログ 27 vs 觀光協會 28",
+        "週日營業：觀光協會・食べログ 8:00～18:00 vs Google 評論（約 2022）週日 11 時打烊 vs 食べログ口コミ（2023/03）週日到 23:00"
       ]
     }
   },
@@ -13269,7 +13297,9 @@
       "dinner": null
     },
     "stayMinutes": null,
-    "mustTry": [],
+    "mustTry": [
+      "漁師ずし（てこね寿司）900 円"
+    ],
     "menu": [
       {
         "url": "http://www.shima.mctv.ne.jp/~daiohso/osyokuji.html",
@@ -13953,7 +13983,7 @@
     },
     "accessibility": {
       "barrierFree": null,
-      "note": "登茂山半島；賢島站車程 18 分，賢島站接送「現在行っておりません」（官網）"
+      "note": "登茂山半島；賢島站車程 18 分，賢島站接送「現在行っておりません」（官網）；最後一段路很窄，大車・低底盤車要小心（Google 評論 3 則）"
     },
     "smoking": null,
     "extra": {
@@ -14030,7 +14060,7 @@
       "note": "食べログ：11:00 頃～15:00 頃，完全予約制；天候不定休（海況長期不佳無法取得食材時）"
     },
     "closedNote": "不定休（天候）",
-    "febNote": "冬季營業、2 月是否在室內都沒有來源；官網 2026-10-19 讀不到（憑證錯誤）",
+    "febNote": "營業中（Google 最新評論約 2026-09）；冬季營業、2 月室內與否沒有來源；海況差時先電話，店家會保留食材（Google 約 2025）",
     "closures": [],
     "photos": [
       {
@@ -14373,7 +14403,7 @@
       "note": "食べログ：10:00～15:00，不定休（スタッフ体調による）；官網兩處寫 AM10:00～PM22:00、AM10:00～PM17:00（衝突）；2 天前電話預約"
     },
     "closedNote": "不定休（食べログ）",
-    "febNote": "冬季營業、暖氣沒有來源；30 畳的小屋ハウス是室內",
+    "febNote": "2026-01-14（平日）有營業、前一天電話預約即可（Google 評論）；冬季營業的官方來源沒有；30 畳小屋是室內",
     "closures": [],
     "photos": [
       {
@@ -14448,7 +14478,10 @@
       "dinner": null
     },
     "stayMinutes": null,
-    "mustTry": [],
+    "mustTry": [
+      "広の浜御膳（栄螺・貝・烤魚・手こね寿司）4,000 円",
+      "手こね寿司（鰹）"
+    ],
     "menu": [
       {
         "url": "https://www.hironohama.com/menu",
@@ -14635,6 +14668,12 @@
         "url": "https://www.iseshima-kanko.jp/gourmet/2507",
         "retrieved": "2026-10-19",
         "note": "伊勢志摩観光ナビ（お食事処 秀ちゃん）：収容 20 名、和具バス停徒歩数分、駐車 5～6 台"
+      },
+      {
+        "type": "tabelog",
+        "url": "https://tabelog.com/mie/A2403/A240303/24014579/dtlrvwlst/",
+        "retrieved": "2026-10-19",
+        "note": "食べログ口コミ（最新 20 則、搜尋「中止」「冬」「子供」「座敷」「団体」「予約」）"
       }
     ],
     "verified": false,
@@ -14661,7 +14700,11 @@
       ]
     },
     "stayMinutes": null,
-    "mustTry": [],
+    "mustTry": [
+      "おまかせ地魚刺身定食 1,760～1,890 円（每天限量）",
+      "カツオ 手こね寿司定食",
+      "20cm 有頭エビフライ定食 1,460 円"
+    ],
     "menu": [
       {
         "url": "https://tabelog.com/mie/A2403/A240303/24014579/dtlmenu/photo/",
@@ -14700,7 +14743,7 @@
       "phone": "0599-85-3197",
       "url": null,
       "language": "日文",
-      "note": "電話（食べログ 予約可）",
+      "note": "電話；預約客優先，刺身定食每天約 10～15 份限量、中午 12 時前可「點餐預約」；平日也常因預約滿席（口コミ 2025～2026）",
       "leadDays": null
     },
     "seating": [
@@ -14869,7 +14912,7 @@
       "phone": "0599-45-4100",
       "url": null,
       "language": "日文",
-      "note": "電話（食べログ 予約可）",
+      "note": "電話（食べログ 予約可）；只收現金（Google 約 2022）",
       "leadDays": null
     },
     "seating": [
