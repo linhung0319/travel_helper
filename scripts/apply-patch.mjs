@@ -12,7 +12,8 @@
 //      "set": { "group.seats": 42, "kids.kidsMenu": true },
 //      "overwrite": { "hours": { ... } },
 //      "sources": [{ "type": "official", "url": "...", "retrieved": "2026-10-20", "note": "..." }],
-//      "conflicts": ["營業時間：官網 11:00～、食べログ 11:30～"] }]
+//      "conflicts": ["營業時間：官網 11:00～、食べログ 11:30～"],
+//      "recordOld": false }]                        ← 規則修正（不是來源衝突）時，overwrite 的舊值不寫進 conflicts
 // 路徑用 a.b.c；陣列整個當成一個值（例如 seating、hours.mon）。
 
 import fs from 'node:fs';
@@ -64,7 +65,7 @@ for (const p of patch) {
       total.same++;
       continue;
     }
-    if (cur != null) conflicts.push(`${k}：原本 ${show(cur)}，改用 ${show(v)}${from}`);
+    if (cur != null && p.recordOld !== false) conflicts.push(`${k}：原本 ${show(cur)}，改用 ${show(v)}${from}`);
     setPath(point, k, v);
     log.push(`改 ${k}`);
     total.overwrite++;

@@ -86,7 +86,7 @@ export function parseTabelog(info) {
   if (seatsText && seats == null) warnings.push(`席数看不懂：「${seatsText}」`);
   if (maxText && maxReservation == null) warnings.push(`最大予約可能人数看不懂：「${maxText}」`);
   if (remarks && /団体|宴会|貸切|個室/.test(remarks)) warnings.push(`備考提到團體、宴會：「${remarks.slice(0, 120)}」（明寫接團體的話 fit15 可以是 yes）`);
-  if (kids?.allowed === 'no') warnings.push('不接小孩：fit15 照 CONVENTIONS 的現行規則判斷（見 decisions-pending T8d）');
+  if (kids?.allowed === 'no') warnings.push('不接小孩：不影響 fit15（只看容量），記在 kids.allowed，notes 寫明全員不能去');
   if (resText && accepted === 'unknown') warnings.push(`予約可否看不懂：「${resText}」`);
 
   const fit15 = suggestFit15({ accepted, seats, maxReservation, privateRoomMax, buyoutAllowed, buyoutMax });
