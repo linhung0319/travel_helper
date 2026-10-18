@@ -64,6 +64,7 @@ T7b（2026-10-18）從 T2～T4c 的筆記集中過來；原本的上下文見 `l
 - [ ] toba-toshijima-yamashichi：團體方案、接送車定員、行李寄放（0599-37-2034）（T7d 讀文）
 - [ ] toba-toshijima-misaki：有沒有電梯（心得說館內全靠樓梯）（T7d 讀文）
 - [ ] toba-toshijima-teiyou：還有沒有營業（官網連不上、KNT 0 個方案），電話 0599-37-2011（T7d 讀文）
+- [ ] toba-ryokan-naomi（旅館なおみ）：寢室在幾樓、樓梯坡度（Google 約 2026/07 說樓梯很陡、2F 寢室）
 
 ## 餐廳
 

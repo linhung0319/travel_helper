@@ -2728,7 +2728,7 @@
     },
     "accessibility": {
       "walkInsideMinutes": 15,
-      "stairs": null,
+      "stairs": "少",
       "slope": null,
       "restAreas": true,
       "toilets": true,
