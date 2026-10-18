@@ -67,3 +67,34 @@
 ### 給下一批
 - 第 3 批（isobe＋matoya＋anori＋kokufu 21＋pending 5）照這批的步驟；`t9d-2/judgement-src.mjs`、`patch-r-src.mjs`、`dp-add.mjs` 可以照抄改內容。
 - `google-reviews` 一次跑 3 家的 open＋lowest（12 個動作）沒問題；食べログ口コミ 7 頁一個 batch 也沒逾時。
+
+## 第 3 批：shima-isobe＋matoya＋anori＋kokufu 21 家（2026-10-19）
+
+### 結果
+- 收錄 **19 筆**（isobe 4、matoya 8、anori 4、kokufu 3）：はま崎、川うめ、中六、まんぷく食堂 板橋、的矢かきテラス、いかだ荘 山上、橘、福寿荘、丸定旅館、はしもと、別亭 まとや、まるせい、ひさだ、丸寅、灯台カフェ、シェブロンカフェ、BALI HOUSE、鮨暁、まつむら。
+- **pending 5**：收錄 4（F3）——いかだ荘 山上（官網 FAQ）、橘（官網各套餐可只用餐預約）、丸定旅館（官網お食事プラン 1 日 3 組 10 名）、福寿荘（團體昼食プラン）；排除 はいふう（官網沒有只用餐方案）。
+- **included → excluded 1**：ポンチーズ・ピザ（Google「閉業」、官網 404）。ひさだ、丸寅 的非住客午餐在官網確認（criteria 加 F3）。
+- fit15：yes 6、split 4、no 1、unknown 8。照片：官網 9 張＋住宿的官網照片（photo-check 10 張全部 200；別亭 まとや 的「【AI】」外觀圖不用）＋Google 主圖。
+- matoya 週二午餐的結論寫在 README「的矢湾（matoya）週二」。
+
+### 步驟
+1. `candidates.mjs export --keys … --ids …` → `t9d-3/batch.json`（21 家；住宿附設 `<住宿 id>-dining` 5 家，別亭 まとや 用自己的 id＋`lodgingId: shima-grand-mercure`）。排除的 2 家從 batch 拿掉後才 draft（原檔 `batch.all.json`）。
+2. **食べログ（Chrome）**：`tabelog-info --store`，店家頁 21＋コース頁 5（まるせい、川うめ、いかだ荘、かきテラス、丸定）＝ browser_batch 5 次。沒有 Cloudflare 畫面。橘 的備考有「￥」被抓成反斜線，手改 tabelog.jsonl（heredoc 裡的反斜線會被吃掉，改用 `String.fromCharCode(92)`）。
+3. **讀文 subagent 5 個**（背景，`t9d-3/prompt-common.md`：重點是住宿附設的非住客用餐（facts `nonGuestDining`）、週二午餐、團體、交通）：3＋3＋5＋5＋5 家，21 份筆記（含排除的 2 家）。ひさだ、丸寅 官網是 Shift_JIS，用 Node fetch＋TextDecoder 讀；Grand Mercure 官網 Node fetch 403，改 WebFetch。D 用 curl 下載灯台カフェ 的菜單圖到 scratchpad 讀（decisions-pending）。
+4. **Google Maps**：`google-place --google --store`，browser_batch 4 次＋BALI HOUSE 列表重搜 1 次（「バリハウス 国府3003」直接命中）。住宿附設 5 家借住宿本體（lodgingId）。**5 家被標 `closed-or-temporary`**，用 JS 看面板文字確認：まるせい、かきテラス、鮨暁 是貼文・訪問者情報裡的「臨時休業」（誤判），ポンチーズ「閉業」、はしもと「臨時休業」是真的 → 修 `google-place.js`（只看「概要」之前的面板開頭，加測試），google.jsonl 手改。
+5. `candidates.mjs set`（`cand-status.json`）→ `photo-check` → `build-restaurants draft` → `judgement-src.mjs` → `build --candidates`（先 `--dry-run`）。validate 通過，commit。之後 `cand-criteria.json`（ひさだ、丸寅、別亭 加 F3）。
+6. **口コミ・評論**（`review-targets.mjs shima` → 13 家：fit15 yes／split 10＋Google 4.3／100 以上的 中六、はしもと、丸定）：tabelog-reviews browser_batch 5 次（一次 5～8 頁）、google-reviews 6 次（低分順 3 家一批；住宿本體 4 家只搜「ランチ」「昼食」；福寿荘 第一次把「昼食」打成別字，重跑 1 次）。はしもと 加跑 `newest`（看最新評論日期）。截圖 0、逾時 0。重點寫 `t9d-3/notes/` → `notes-to-json.mjs` → `dossier-merge.mjs`；回填 `patch-r-src.mjs` → `patch-r.json` → `apply-patch.mjs`（先 `--dry-run`）；いかだ荘 hours 另外 `patch-h.json`（照食べログ原文）。
+7. 結束：www.google.com、tabelog.com 的 `__th_*` localStorage 都 removeItem（確認 0 筆），關掉分頁。沒有遇到驗證碼、登入、封鎖、對話框。
+
+### 口コミ・評論的讀法
+- 食べログ：最新 20＋「中止」「冬」，依缺口加「子供」（中六、橘、まるせい、鮨暁）、「団体」（かきテラス）、「椅子」（川うめ，0 則）；住宿本體 福寿荘 搜「ランチ」「昼食」；口コミ 25 則以下的（はま崎、丸定、はしもと）只讀全部／最新 20。まつむら 只讀最新 20（漏搜「子供」「団体」）。
+- Google：低分順 10 則（9 家）；住宿本體（いかだ荘、橘、福寿荘、丸定）只搜「ランチ」（福寿荘 加「昼食」0 則）。
+- 發現：**的矢かきテラス、いかだ荘 2026/01～02 生牡蠣停止供應**（ノロ・食中毒對策，多則）、かきテラス 吃完腹痛 1 星 3 則；はしもと「只在牡蠣季營業」（Google 臨時休業＝季節外）；丸定 牡蠣季以外沒有午餐；福寿荘 ランチ＋溫泉 3,800～5,000 円（約 2024）、「かいげつ」是玄關外的獨立店；はま崎 Google 有菸灰缸・菸味；まつむら 是洋食店；中六 只開 2 小時、排隊 15～50 分。
+
+### WebSearch
+- 主 session 0 次；讀文 subagent 9 次（A 1、B 3、C 1、D 1、E 3）。搜尋都有回應（はしもと、ポンチーズ、まつむら、シェブロン、はいふう、別亭 沒找到新事實），沒有額度用完的跡象。
+
+### 給下一批
+- 第 4 批（daio＋tomoyama＋goza＋wagu＋other 17＋pending 2：槙之木、志摩半島）照這批的步驟；`t9d-3/judgement-src.mjs`、`patch-r-src.mjs`、`dp-add.mjs` 可以照抄改內容。
+- 新的 `google-place.js` 存進 localStorage 前要用 `--store`（舊程式還在其他瀏覽器分頁的話不影響，這批已清掉）。
+- 海女小屋（磯人、海女の庭、火場）、大万 的營業・預約・人數是重點；牡蠣、生食的 2 月狀況看口コミ「中止」。

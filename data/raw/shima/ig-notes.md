@@ -7,6 +7,7 @@
 
 - `@shimakankohotel`：志摩観光ホテル 的飯店帳號，館內 5 家（ラ・メール、ラ・メール ザ クラシック、浜木綿、リアン、山吹）共用。
 - `@shimabaysideterrace`：都リゾート 志摩 ベイサイドテラス 的飯店帳號，館內和食・カフェ（`shima-miyako-bayside-terrace-dining`）和 マレナSHIMA フレンチ 共用。
+- `@kazamachinoyu_fukujyuso`：福寿荘（風待ちの湯）的住宿帳號，非住客用餐（`shima-fukujuso-dining`）用同一個；別館 はいふう（excluded）沒有另外查。
 
 ## 帳號一覽（依批次）
 
@@ -35,5 +36,13 @@
 | @6903michelle | パスタ屋 Michelle（`shima-michelle`） |  | 食べログ公式アカウント欄、Google 網站欄 |
 | @auberge_provence | プロヴァンス（`shima-provence-dining`） | 住宿本體 | 食べログ公式アカウント欄 |
 | @fiore.shima | フィオーレ志摩（excluded，沒有資料點；住宿 shima-nocturne-no-mori） | 住宿 | 食べログ公式アカウント欄 |
+| @kinkoimo_shop_ueda | きんこ芋工房 上田商店 灯台カフェ（`shima-todai-cafe`） |  | 食べログ公式アカウント欄（另有 FB）；官網寫臨時休業在 IG 公告 |
+| @kawaume_unagi | 川うめ（`shima-kawaume`） |  | 食べログ公式アカウント欄 |
+| @seijyoumatoyakaki | 的矢かきテラス（`shima-matoya-kaki-terrace`） | 佐藤養殖場 | 食べログ公式アカウント欄、官網 |
+| @ikadaso | いかだ荘 山上（`shima-ikadaso-sanjo-dining`） | 住宿本體 | 食べログ公式アカウント欄（另有 FB、X @EnjoyOyster）；**官網連的是 @ikadasou_group_official**（讀文），哪個是現行帳號不確定，保留食べログ的值 |
+| @kazamachinoyu_fukujyuso | 福寿荘（`shima-fukujuso-dining`） | 住宿本體 | 官網（讀文） |
+| @balihousekou | BALI HOUSE（`shima-bali-house`） |  | 食べログ公式アカウント欄、Google 網站欄（另有 FB @balihouse.futami）；沒有官網，營業時間 T18 看最近貼文 |
+| @bettei_matoya | 別亭 まとや（`shima-bettei-matoya`） | Grand Mercure 館內 | 食べログ公式アカウント欄；官網沒有連結 |
 - 沒有帳號：はな屋 あじさい、芳カツ亭、近鉄賢島カンツリークラブ レストラン（官網、食べログ 都沒有連結）。
 - 第 2 批沒有帳號：鯛、伊鈴屋、銀鱗、みやぎ野、京城、LA PIZZICA、ろっぽん木、しまかぜ食堂、グリルエドイチ、みやま亭、shucafe（食べログ、官網、Google 都沒有連結）。
+- 第 3 批沒有帳號：はま崎、まるせい、ひさだ、丸寅、まんぷく食堂 板橋、中六、橘、シェブロンカフェ、鮨暁、まつむら、はしもと、丸定旅館（食べログ、官網、Google 都沒有連結）。

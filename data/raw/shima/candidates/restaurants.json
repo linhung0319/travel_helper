@@ -2217,7 +2217,8 @@
     "category": "料理旅館、海鮮",
     "status": "included",
     "criteria": [
-      "C"
+      "C",
+      "F3"
     ],
     "reason": null,
     "pointId": "shima-hisada",
@@ -2254,7 +2255,8 @@
     "category": "海鮮、ふぐ",
     "status": "included",
     "criteria": [
-      "D1"
+      "D1",
+      "F3"
     ],
     "reason": null,
     "pointId": "shima-marutora",
@@ -2936,7 +2938,8 @@
     "category": "かき",
     "status": "included",
     "criteria": [
-      "F1"
+      "F1",
+      "F3"
     ],
     "reason": null,
     "pointId": "shima-bettei-matoya",
