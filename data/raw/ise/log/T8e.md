@@ -106,3 +106,34 @@
 - 對象清單 `data/cache/work/t8e-targets.json`，一批照 `batch` 欄位做；每筆的 `keywords` 已經照資料檔決定好，`chrome-actions.mjs --script tabelog-reviews --keywords <keywords>`、`--script google-reviews --keywords <食べログ沒結果的詞>`。
 - 景點、住宿只做 Google（評価の低い順 10＋關鍵字搜尋）；住宿的楽天細項已經在 `ratings`（`rakutenService`…），不用再查。
 - 住宿附設的 `-dining`（神宮会館、おく文、海の蝶）Google 評論是住宿本體的，讀的時候只取用餐相關的。
+
+## 第 3 批：補心得 ise-geku 23 筆（2026-10-18）
+
+### 範圍
+- 對象清單 `data/cache/work/t8e-targets.json` 的 batch 1：餐廳 18（向井、虎丸、豚捨 若柳、鉄饌、酒場 森下、まめや、倭庵 黒石、柚、かみむら、町家バル、大喜、匠 PART2、ひびの、能代、炭火焼肉匠、ふぐや、一升びん、おく文）、景點 4（外宮參道、月夜見宮、河崎商人館、若松屋）、住宿 1（伊勢神泉）。
+- 工作目錄 `data/cache/work/t8e-3/`：`batch.json`（id、食べログ、Google、關鍵字）、`notes/`、`notes-s/`（每筆的重點 JSON）、`notes-r.json`、`notes-s.json`、`patch-r.json`、`patch-r2.json`、`patch-l.json`、`dossier-merge.mjs`（工作用：把重點併進筆記的來源、重點、待確認、資料量，保留 CRLF）。
+
+### 步驟
+1. Chrome 1 個分頁（結束關掉；兩個網站的 localStorage 都 removeItem）。食べログ：每家 1 次 batch（最新 20＋關鍵字頁），第一頁 Cloudflare 會重新載入、讓第一個 JS 失敗，從 JS 那步重跑就好。Google：低分順 10＋食べログ 0 筆的關鍵字，和下一家的食べログ合併成 1 次 batch。每家約 1.5～2 次 batch。
+2. 沒有遇到驗證碼、登入、封鎖。
+3. 重點寫成 `notes/<id>.json`（固定標籤、不引用原文、日期換算成約略年份），`dossier-merge.mjs` 併進 `dossiers/`；回填用 `apply-patch.mjs`。
+
+### 程式修正（`scripts/chrome/google-reviews.js`、`chrome-actions.mjs`；commit 155b916 和第 3 批收尾的 commit）
+- 低分順沒套用：柚 クッチーナ 第一次抽到關聯度順（4、5 星混雜）卻沒有警告。加 `starsAscending` 檢查（附測試）→ 匠 PART2、一升びん 跳出警告；改送 pointer／mouse 事件（手動測試在一升びん 有效）；河崎商人館 還是不行，再加「等 0.7 秒才點選單項目」後成功。共同點是網址變成 `/place//@25.10…,121.52…` 的頁面。
+- `search` 在 `open` 之後馬上跑，輸入框沒打開（かみむら）→ 再點一次。
+- 住宿版型（おく文、伊勢神泉）：排序按鈕、星數「4/5」、常開的搜尋框、捲動才載入評論 → 都支援；分頁用 `.click()`（pointer 事件反而不切換）。
+- `chrome-actions.mjs --store`：拿掉整行註解。執行中的修正是直接改 localStorage 裡的那份（字串替換），檔案同步改。
+
+### 結果
+- 23 筆筆記都追加了口コミ／評論（餐廳每家約 26～70 則，景點、住宿 8～15 則）。
+- 回填：`accessibility.barrierFree` 4（豚捨 若柳、大喜、向井、鉄饌）、まめや `kids.kidsMenu: true`、伊勢神泉 `accessibility.elevator: true`；向井、虎丸 `kids.allowed` unknown → yes（overwrite，decisions-pending「👤 建議先看」）；conflicts：虎丸 seating、倭庵 黒石 kids。
+- `questions.md` +11（3～5 年前的事實、經營變動、吸菸、樓梯、時段）。
+- 讀法的例外：町家バル Google 漏搜「座敷」；若松屋 多搜「体験」；一升びん 另讀關聯度順 10 則；おく文 的 Google 是住宿本體，只取用餐相關。
+
+### WebSearch
+- 0 次（沒有開讀文 subagent）。
+
+### 給下一批（第 4 批起：kurata・isuzugaoka・obata 15 筆）
+- 直接用修好的 `google-reviews.js`（`--store` 第一次存，之後 `--stored`）；低分順有警告時截圖點「評価の低い順」再跑 `extract`。
+- 食べログ和 Google 可以放同一個 batch（兩個網站的程式都存在各自的 localStorage）。
+- `dossier-merge.mjs` 可以照抄這批的 notes JSON 格式（`data/cache/work/t8e-3/notes/*.json`）。
