@@ -35,7 +35,7 @@ if (!process.features.typescript) {
 const geo = await import('../web/src/lib/geo/index.ts');
 const { fileRouteCache } = await import('./lib/route-cache.mjs');
 
-const { isWalkRegion, needsCarMap } = await import('./lib/anchor-rules.mjs');
+const { isWalkRegion, needsCarMap, pairRule } = await import('./lib/anchor-rules.mjs');
 const STATION_MAX = 30; // 車站 anchor 的上限（分）
 const NEARBY_MAX = 15; // 步行圈內景點、住宿的上限（分）
 const DINNER_LODGING_MAX = 20; // 不含晚餐的住宿 → 晚上營業的店（分）
@@ -45,18 +45,7 @@ const CANDIDATES = { spots: 4, lodging: 3 }; // 步行圈每類先用直線距�
 // 不合理的判斷
 const SNAP_MAX = 150; // 起訖點離道路超過這個距離（公尺）
 const DETOUR_MAX = 3; // 路線距離 ÷ 直線距離超過這個倍數（直線 300 m 以上才看）
-// 繞路倍數超過、但人工看過地圖確定是真的要繞（中間隔著海灣、河口）的組合：照 OSRM（T4c，2026-10-17）
-const REAL_DETOURS = new Set([
-  // 浦村：三ノ浦、今浦一帶和海の博物館之間隔著浦村灣，要沿灣繞
-  'toba-motokaki>toba-sea-folk-museum',
-  'toba-yoshiyu-suisan>toba-sea-folk-museum',
-  'toba-marugen-suisan>toba-sea-folk-museum',
-  // 中之郷站一帶和安楽島的鳥羽シーサイドホテル、亀の井ホテル之間隔著鳥羽灣的入江，要繞約 3 km
-  'toba-nishikiya>toba-seaside-hotel',
-  'toba-cafeterrace-orange>toba-seaside-hotel',
-  'toba-nishikiya>toba-kamenoi-hotel',
-  'toba-cafeterrace-orange>toba-kamenoi-hotel',
-]);
+// 真的要繞的組合（REAL_DETOURS）、離島的店只和同島的點算（ISLAND_ONLY）在 scripts/lib/anchor-rules.mjs 的 pairRule（T9e 搬過去）
 
 const args = process.argv.slice(2);
 const area = args.find((a) => !a.startsWith('--'));
@@ -90,13 +79,14 @@ async function walk(from, to) {
   const issues = [];
   if (r.source === 'osrm') {
     if (Math.max(...r.snapMeters) > SNAP_MAX) issues.push(`吸附 ${r.snapMeters.map((v) => Math.round(v)).join('/')} m`);
-    if (r.straightMeters >= 300 && r.meters / r.straightMeters > DETOUR_MAX && !REAL_DETOURS.has(`${from.id}>${to.id}`)) {
+    if (r.straightMeters >= 300 && r.meters / r.straightMeters > DETOUR_MAX) {
       issues.push(`繞路 ${(r.meters / r.straightMeters).toFixed(1)} 倍（直線 ${Math.round(r.straightMeters)} m、路線 ${Math.round(r.meters)} m）`);
     }
   } else {
     issues.push(r.error ?? 'OSRM 沒有結果');
   }
-  const ok = r.source === 'osrm' && issues.length === 0;
+  // pairRule 'osrm'：確認過是真的路線（隔著海灣），吸附、繞路的警告都不管，照 OSRM
+  const ok = r.source === 'osrm' && (issues.length === 0 || pairRule(from.id, to.id) === 'osrm');
   const est = geo.estimateWalk(from.coords, to.coords);
   return {
     id: to.id,
@@ -132,9 +122,11 @@ for (const r of restaurants) {
   const notes = [];
 
   // 車站：直線最近的 2 站查 OSRM，取近的；直線就超過上限（離島、浦村等）的不查
-  const nearSt = nearestBy(r, stations, 2);
-  const stStraight = geo.haversineMeters(r.coords, nearSt[0].coords);
-  if (stStraight <= STATION_MAX * 80) {
+  const walkable = (list) => list.filter((p) => pairRule(r.id, p.id) !== 'skip'); // ISLAND_ONLY：島外的不放
+  const nearSt = nearestBy(r, walkable(stations), 2);
+  const stStraight = nearSt.length ? geo.haversineMeters(r.coords, nearSt[0].coords) : Infinity;
+  if (!nearSt.length) notes.push('離島：只算同島的資料點');
+  else if (stStraight <= STATION_MAX * 80) {
     const st = (await walkAll(r, nearSt))[0];
     if (st.walkMinutes <= STATION_MAX) anchors.push(st);
     else notes.push(`最近車站 ${st.id} ${st.walkMinutes} 分，超過 ${STATION_MAX} 分不放`);
@@ -142,7 +134,7 @@ for (const r of restaurants) {
 
   // 步行圈：直線 NEARBY_MAX 分 × 80 m 以內的最近 CANDIDATES 個（OSRM 不會比直線短）；需搭車：最近 2 個
   const cands = (list, n) => {
-    const near = nearestBy(r, list, walkRegion ? n : 2);
+    const near = nearestBy(r, walkable(list), walkRegion ? n : 2);
     const inRange = near.filter((p) => geo.haversineMeters(r.coords, p.coords) <= NEARBY_MAX * 80);
     return walkRegion && inRange.length ? inRange : near.slice(0, 2);
   };
@@ -153,11 +145,11 @@ for (const r of restaurants) {
     const l = lodgCands.filter((a) => a.walkMinutes <= NEARBY_MAX).slice(0, MAX_LODGING);
     if (s.length) anchors.push(...s);
     else {
-      anchors.push(spotCands[0]);
+      if (spotCands[0]) anchors.push(spotCands[0]); // 離島的店（ISLAND_ONLY）可能一個都沒有
       notes.push(`${NEARBY_MAX} 分內沒有景點，改放最近的景點`);
     }
     if (l.length) anchors.push(...l);
-    else if (!s.length) anchors.push(lodgCands[0]);
+    else if (!s.length && lodgCands[0]) anchors.push(lodgCands[0]);
   } else {
     // 已經有 30 分內的車站時，超過 30 分的景點、住宿沒有參考價值，不放
     const hasStation = anchors.length > 0;
@@ -170,7 +162,7 @@ for (const r of restaurants) {
   const have = new Set(anchors.map((a) => a.id));
   const keepIds = (r.anchors ?? []).map((a) => a.id).filter((id) => noDinnerIds.has(id) && !have.has(id));
   for (const l of noDinner) {
-    if (have.has(l.id)) continue;
+    if (have.has(l.id) || pairRule(r.id, l.id) === 'skip') continue;
     const keep = keepIds.includes(l.id);
     if (!keep && (!hasDinner || geo.haversineMeters(r.coords, l.coords) > DINNER_LODGING_MAX * 80)) continue;
     const a = await walk(r, l);
