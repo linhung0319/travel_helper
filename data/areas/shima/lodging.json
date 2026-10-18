@@ -262,7 +262,7 @@
         },
         "note": "15 人（全部以大人計）分 N 間同住的組合，有空房的列出；只代表查詢當天楽天上的庫存"
       },
-      "dinnerAccessNote": "步行 20 分內的晚餐店 4 家：ラ・メール ザ クラシック 3 分、鉄板焼きレストラン 山吹 4 分、ラ・メール 5 分（直線估算） 等（選素泊、朝食付方案時；OSRM，scripts/lodging-dinner-access.mjs，2026-10-19）"
+      "dinnerAccessNote": "步行 20 分內的晚餐店 3 家：鉄板焼きレストラン 山吹 4 分、ラ・メール 5 分（直線估算）、和食 浜木綿 5 分（直線估算）（選素泊、朝食付方案時；OSRM，scripts/lodging-dinner-access.mjs，2026-10-19）"
     },
     "summary": null,
     "assessment": null
@@ -774,7 +774,7 @@
         },
         "note": "15 人（全部以大人計）分 N 間同住的組合，有空房的列出；只代表查詢當天楽天上的庫存"
       },
-      "dinnerAccessNote": "步行 20 分內的晚餐店 4 家：和食 浜木綿 4 分（直線估算）、ラ・メール 4 分（直線估算）、鉄板焼きレストラン 山吹 7 分（直線估算） 等（選素泊、朝食付方案時；OSRM，scripts/lodging-dinner-access.mjs，2026-10-19）"
+      "dinnerAccessNote": "步行 20 分內的晚餐店 3 家：和食 浜木綿 4 分（直線估算）、ラ・メール 4 分（直線估算）、鉄板焼きレストラン 山吹 7 分（直線估算）（選素泊、朝食付方案時；OSRM，scripts/lodging-dinner-access.mjs，2026-10-19）"
     },
     "summary": null,
     "assessment": null
@@ -959,7 +959,7 @@
         },
         "note": "15 人（全部以大人計）分 N 間同住的組合，有空房的列出；只代表查詢當天楽天上的庫存"
       },
-      "dinnerAccessNote": "步行 20 分內的晚餐店 4 家：和食 浜木綿 5 分（直線估算）、ラ・メール 6 分（直線估算）、鉄板焼きレストラン 山吹 8 分（直線估算） 等（OSRM，scripts/lodging-dinner-access.mjs，2026-10-19）"
+      "dinnerAccessNote": "步行 20 分內的晚餐店 3 家：和食 浜木綿 5 分（直線估算）、ラ・メール 6 分（直線估算）、鉄板焼きレストラン 山吹 8 分（直線估算）（OSRM，scripts/lodging-dinner-access.mjs，2026-10-19）"
     },
     "summary": null,
     "assessment": null
@@ -2723,7 +2723,7 @@
         },
         "note": "15 人（全部以大人計）分 N 間同住的組合，有空房的列出；只代表查詢當天楽天上的庫存"
       },
-      "dinnerAccessNote": "步行 20 分內的晚餐店 4 家：ラ・メール ザ クラシック 17 分（直線估算）、鉄板焼きレストラン 山吹 17 分（直線估算）、和食 浜木綿 19 分（直線估算） 等（選素泊、朝食付方案時；OSRM，scripts/lodging-dinner-access.mjs，2026-10-19）"
+      "dinnerAccessNote": "步行 20 分內的晚餐店 3 家：鉄板焼きレストラン 山吹 17 分（直線估算）、和食 浜木綿 19 分（直線估算）、ラ・メール 19 分（直線估算）（選素泊、朝食付方案時；OSRM，scripts/lodging-dinner-access.mjs，2026-10-19）"
     },
     "summary": null,
     "assessment": null
@@ -6788,7 +6788,7 @@
         },
         "note": "15 人（全部以大人計）分 N 間同住的組合，有空房的列出；只代表查詢當天楽天上的庫存"
       },
-      "dinnerAccessNote": "步行 20 分內的晚餐店 4 家：ラ・メール ザ クラシック 5 分（直線估算）、ラ・メール 10 分、和食 浜木綿 10 分 等（選素泊、朝食付方案時；OSRM，scripts/lodging-dinner-access.mjs，2026-10-19）"
+      "dinnerAccessNote": "步行 20 分內的晚餐店 3 家：ラ・メール 10 分、和食 浜木綿 10 分、鉄板焼きレストラン 山吹 14 分（選素泊、朝食付方案時；OSRM，scripts/lodging-dinner-access.mjs，2026-10-19）"
     },
     "summary": null,
     "assessment": null
@@ -9357,7 +9357,7 @@
         },
         "note": "15 人（全部以大人計）分 N 間同住的組合，有空房的列出；只代表查詢當天楽天上的庫存"
       },
-      "dinnerAccessNote": "步行 20 分內的晚餐店 4 家：和食 浜木綿 4 分（直線估算）、ラ・メール 4 分（直線估算）、鉄板焼きレストラン 山吹 9 分 等（OSRM，scripts/lodging-dinner-access.mjs，2026-10-19）"
+      "dinnerAccessNote": "步行 20 分內的晚餐店 3 家：和食 浜木綿 4 分（直線估算）、ラ・メール 4 分（直線估算）、鉄板焼きレストラン 山吹 9 分（OSRM，scripts/lodging-dinner-access.mjs，2026-10-19）"
     },
     "summary": null,
     "assessment": null
@@ -12304,7 +12304,7 @@
         },
         "note": "15 人（全部以大人計）分 N 間同住的組合，有空房的列出；只代表查詢當天楽天上的庫存"
       },
-      "dinnerAccessNote": "步行 20 分內的晚餐店 5 家：ラ・メール ザ クラシック 17 分、Shimaフレンチ食堂 ノルポル 18 分、マレナSHIMA フレンチ 18 分 等（OSRM，scripts/lodging-dinner-access.mjs，2026-10-19）"
+      "dinnerAccessNote": "步行 20 分內的晚餐店 4 家：Shimaフレンチ食堂 ノルポル 18 分、マレナSHIMA フレンチ 18 分、鉄板焼きレストラン 山吹 18 分 等（OSRM，scripts/lodging-dinner-access.mjs，2026-10-19）"
     },
     "summary": null,
     "assessment": null

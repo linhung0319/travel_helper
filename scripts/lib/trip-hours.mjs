@@ -1,6 +1,7 @@
 // 旅程期間的營業判斷（restaurant-gaps.mjs、lodging-dinner-access.mjs 共用；T8e 從 restaurant-gaps.mjs 拆出來）。
 //   tripDays：旅程每天的日期、星期、是不是國定假日。
 //   tripCount：旅程中某個時段有營業的天數、不明的天數（hours 為 null 時回傳 null）。國定假日用 hours.holiday（沒有就用星期幾）。
+//   closedOn：closures（臨時休業、改裝等期間）涵蓋那天；slotsOn 遇到 closures 回傳 []（T9e 加：之前 gaps 沒算 closures）。
 //   isLunch／isDinner：CONVENTIONS「判斷細則」的午餐店（11:30～13:30）、晚餐店（18:00～19:00，hours 不明的不算）。
 
 const DAYS = ['sun', 'mon', 'tue', 'wed', 'thu', 'fri', 'sat'];
@@ -21,7 +22,10 @@ export const mins = (t) => {
 };
 export const overlaps = (slots, a, b) => slots.some(([s, e]) => mins(s) < mins(b) && mins(e) > mins(a));
 
+export const closedOn = (r, d) => (r.closures ?? []).some((c) => c.from <= d.iso && d.iso <= c.to);
+
 export function slotsOn(r, d) {
+  if (closedOn(r, d)) return [];
   return d.holiday && r.hours.holiday !== undefined && r.hours.holiday !== null ? r.hours.holiday : r.hours[d.dow];
 }
 
