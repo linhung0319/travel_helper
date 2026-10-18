@@ -1,0 +1,499 @@
+{
+ "source": "https://www.jalan.net/240000/LRG_241400/",
+ "retrieved": "2026-10-18",
+ "count": 82,
+ "hotels": [
+  {
+   "yadNo": 303899,
+   "name": "グランドメルキュール伊勢志摩リゾート＆スパ",
+   "rating": 4.1,
+   "reviews": 1151
+  },
+  {
+   "yadNo": 338676,
+   "name": "大江戸温泉物語Premium 志摩彩朝楽（2025年12月26日オープン）",
+   "rating": 3.8,
+   "reviews": 1268
+  },
+  {
+   "yadNo": 331417,
+   "name": "NEMU RESORT 2026年4月リニューアルオープン",
+   "rating": 4.6,
+   "reviews": 464
+  },
+  {
+   "yadNo": 327206,
+   "name": "賢島宝生苑",
+   "rating": 4.3,
+   "reviews": 2741
+  },
+  {
+   "yadNo": 324307,
+   "name": "都リゾート 志摩 ベイサイドテラス",
+   "rating": 4.5,
+   "reviews": 1471
+  },
+  {
+   "yadNo": 310666,
+   "name": "旅の宿 潮の灯 鯨望荘",
+   "rating": 3.9,
+   "reviews": 613
+  },
+  {
+   "yadNo": 395984,
+   "name": "名代的矢かき料理の宿 いかだ荘山上",
+   "rating": 4.4,
+   "reviews": 2000
+  },
+  {
+   "yadNo": 347515,
+   "name": "TAOYA南志摩",
+   "rating": 4.2,
+   "reviews": 190
+  },
+  {
+   "yadNo": 349958,
+   "name": "都リゾート 奥志摩 アクアフォレスト",
+   "rating": 4.3,
+   "reviews": 2205
+  },
+  {
+   "yadNo": 312380,
+   "name": "海を望む全室露天風呂の宿 はいふう",
+   "rating": 4.6,
+   "reviews": 1898
+  },
+  {
+   "yadNo": 316648,
+   "name": "風待ちの湯 福寿荘",
+   "rating": 4.4,
+   "reviews": 2014
+  },
+  {
+   "yadNo": 342857,
+   "name": "伊勢志摩 温泉掛け流しの宿 ねぼーや 志摩別邸",
+   "rating": 4.8,
+   "reviews": 1617
+  },
+  {
+   "yadNo": 342596,
+   "name": "Ｖｉｌｌａｇｅ ＆ Ｈｏｔｅｌ 志摩地中海村",
+   "rating": 4.6,
+   "reviews": 1071
+  },
+  {
+   "yadNo": 338802,
+   "name": "志摩観光ホテル ザ ベイスイート",
+   "rating": 4.9,
+   "reviews": 206
+  },
+  {
+   "yadNo": 318960,
+   "name": "ホテル志摩スペイン村",
+   "rating": 4.6,
+   "reviews": 2377
+  },
+  {
+   "yadNo": 312114,
+   "name": "志摩観光ホテル ザ クラシック",
+   "rating": 4.7,
+   "reviews": 790
+  },
+  {
+   "yadNo": 318402,
+   "name": "美食の隠れ家 プロヴァンス",
+   "rating": 4.7,
+   "reviews": 2248
+  },
+  {
+   "yadNo": 321110,
+   "name": "大江戸温泉物語Premium 伊勢志摩",
+   "rating": 4.3,
+   "reviews": 1854
+  },
+  {
+   "yadNo": 302904,
+   "name": "里創人倶楽部 伊勢志摩 （旧：サンぺルラ志摩）",
+   "rating": 4.5,
+   "reviews": 946
+  },
+  {
+   "yadNo": 388000,
+   "name": "湯元館 ニュー浜島 花の館 椿",
+   "rating": 4.4,
+   "reviews": 519
+  },
+  {
+   "yadNo": 361058,
+   "name": "汀渚 ばさら邸",
+   "rating": 4.4,
+   "reviews": 883
+  },
+  {
+   "yadNo": 317598,
+   "name": "伊勢志摩国立公園 賢島の宿 みち潮",
+   "rating": 4.4,
+   "reviews": 50
+  },
+  {
+   "yadNo": 308284,
+   "name": "ＴＨＥ ＧＬＡＭＰＩＮＧ ＰＬＡＺＡ 伊勢志摩ＢＡＳＥ",
+   "rating": 4.7,
+   "reviews": 43
+  },
+  {
+   "yadNo": 321594,
+   "name": "クインテッサホテル伊勢志摩",
+   "rating": 4.2,
+   "reviews": 81
+  },
+  {
+   "yadNo": 373882,
+   "name": "ノクターンの森 志摩（旧：フィオーレ志摩）",
+   "rating": 4.6,
+   "reviews": 262
+  },
+  {
+   "yadNo": 393183,
+   "name": "賢島グランドホテル",
+   "rating": 3.4,
+   "reviews": 91
+  },
+  {
+   "yadNo": 377885,
+   "name": "一楽温泉ホテル",
+   "rating": 4.6,
+   "reviews": 144
+  },
+  {
+   "yadNo": 307126,
+   "name": "檜扇荘",
+   "rating": 4.2,
+   "reviews": 305
+  },
+  {
+   "yadNo": 311292,
+   "name": "弁天荘",
+   "rating": 4.2,
+   "reviews": 298
+  },
+  {
+   "yadNo": 357494,
+   "name": "セラピーリゾート伊勢志摩",
+   "rating": 4.9,
+   "reviews": 148
+  },
+  {
+   "yadNo": 318127,
+   "name": "まごころの宿 丸定",
+   "rating": 4.8,
+   "reviews": 407
+  },
+  {
+   "yadNo": 334749,
+   "name": "料理旅館 丸寅",
+   "rating": 4.5,
+   "reviews": 71
+  },
+  {
+   "yadNo": 317255,
+   "name": "美味し国の旅館 橘",
+   "rating": 4.7,
+   "reviews": 158
+  },
+  {
+   "yadNo": 325195,
+   "name": "プチホテル賢島ハーバー",
+   "rating": 4.5,
+   "reviews": 739
+  },
+  {
+   "yadNo": 324418,
+   "name": "民宿豊",
+   "rating": 4.5,
+   "reviews": 229
+  },
+  {
+   "yadNo": 320403,
+   "name": "海辺の宿 わたかの荘",
+   "rating": 4.5,
+   "reviews": 165
+  },
+  {
+   "yadNo": 373724,
+   "name": "1 and Only Hotel IO",
+   "rating": null,
+   "reviews": null
+  },
+  {
+   "yadNo": 328339,
+   "name": "Cometa伊勢志摩",
+   "rating": null,
+   "reviews": null
+  },
+  {
+   "yadNo": 343552,
+   "name": "志摩和荘",
+   "rating": 4.4,
+   "reviews": 168
+  },
+  {
+   "yadNo": 331214,
+   "name": "賢島・ホテルベイガーデン",
+   "rating": 4.4,
+   "reviews": 209
+  },
+  {
+   "yadNo": 342770,
+   "name": "ビジネスホテル藤",
+   "rating": 4.3,
+   "reviews": 201
+  },
+  {
+   "yadNo": 322906,
+   "name": "ＶＩＬＬＡ ＳＯＵＴＨ ＣＯＡＳＴ ＳＨＩＭＡ",
+   "rating": null,
+   "reviews": null
+  },
+  {
+   "yadNo": 341055,
+   "name": "民宿森源",
+   "rating": 4.2,
+   "reviews": 163
+  },
+  {
+   "yadNo": 370740,
+   "name": "Love ＆ Peace Resort",
+   "rating": null,
+   "reviews": null
+  },
+  {
+   "yadNo": 354514,
+   "name": "ＬＵＸＵＮＡ伊勢志摩（ラグナ）",
+   "rating": null,
+   "reviews": null
+  },
+  {
+   "yadNo": 382916,
+   "name": "活鮮旅館 志摩半島",
+   "rating": 4.2,
+   "reviews": 226
+  },
+  {
+   "yadNo": 314803,
+   "name": "寿し友旅館",
+   "rating": 4.4,
+   "reviews": 24
+  },
+  {
+   "yadNo": 374282,
+   "name": "ホテル旬香 伊勢志摩リゾート",
+   "rating": null,
+   "reviews": null
+  },
+  {
+   "yadNo": 319889,
+   "name": "ホテル 槇之木",
+   "rating": null,
+   "reviews": null
+  },
+  {
+   "yadNo": 341761,
+   "name": "Retreat Hotel ENTO ISESHIMA",
+   "rating": null,
+   "reviews": null
+  },
+  {
+   "yadNo": 344647,
+   "name": "LAIDBACK HOTEL 伊勢志摩",
+   "rating": null,
+   "reviews": null
+  },
+  {
+   "yadNo": 310171,
+   "name": "ハートフル ひこべ",
+   "rating": null,
+   "reviews": null
+  },
+  {
+   "yadNo": 356622,
+   "name": "Tabist ヴィラダイオーリゾート 伊勢志摩",
+   "rating": null,
+   "reviews": null
+  },
+  {
+   "yadNo": 317445,
+   "name": "石山荘",
+   "rating": null,
+   "reviews": null
+  },
+  {
+   "yadNo": 311974,
+   "name": "ペンション グーグー",
+   "rating": null,
+   "reviews": null
+  },
+  {
+   "yadNo": 394076,
+   "name": "ゲストハウス 志摩サンライズ",
+   "rating": 3.9,
+   "reviews": 66
+  },
+  {
+   "yadNo": 336523,
+   "name": "ネットワークリゾートなんせい",
+   "rating": null,
+   "reviews": null
+  },
+  {
+   "yadNo": 390432,
+   "name": "花多來",
+   "rating": 4.9,
+   "reviews": 475
+  },
+  {
+   "yadNo": 322106,
+   "name": "ペンション海老蔵",
+   "rating": null,
+   "reviews": null
+  },
+  {
+   "yadNo": 319620,
+   "name": "UMIBE Terrace Ise Shima",
+   "rating": null,
+   "reviews": null
+  },
+  {
+   "yadNo": 341126,
+   "name": "お宿 恋波",
+   "rating": null,
+   "reviews": null
+  },
+  {
+   "yadNo": 352124,
+   "name": "観光旅館みさき荘",
+   "rating": null,
+   "reviews": null
+  },
+  {
+   "yadNo": 300390,
+   "name": "ペンション マリンハウス つるやま",
+   "rating": null,
+   "reviews": null
+  },
+  {
+   "yadNo": 345631,
+   "name": "ｙｙｌａｎｄ",
+   "rating": null,
+   "reviews": null
+  },
+  {
+   "yadNo": 384247,
+   "name": "ペンション伊勢志摩プチシャンブル",
+   "rating": null,
+   "reviews": null
+  },
+  {
+   "yadNo": 398772,
+   "name": "ＵＭＩＢＥ ＩｓｅＳｈｉｍａ",
+   "rating": null,
+   "reviews": null
+  },
+  {
+   "yadNo": 321720,
+   "name": "グルメペンション 青い海",
+   "rating": null,
+   "reviews": null
+  },
+  {
+   "yadNo": 337591,
+   "name": "SOLBELLEZA",
+   "rating": null,
+   "reviews": null
+  },
+  {
+   "yadNo": 362222,
+   "name": "シーサイドガレージ",
+   "rating": null,
+   "reviews": null
+  },
+  {
+   "yadNo": 326464,
+   "name": "伊勢志摩パールヴィレッジ「ヴィラ」",
+   "rating": null,
+   "reviews": null
+  },
+  {
+   "yadNo": 399550,
+   "name": "民宿やっこ",
+   "rating": null,
+   "reviews": null
+  },
+  {
+   "yadNo": 364470,
+   "name": "活魚料理 民宿松ヶ枝屋",
+   "rating": null,
+   "reviews": null
+  },
+  {
+   "yadNo": 361802,
+   "name": "Retreat Villa iki",
+   "rating": null,
+   "reviews": null
+  },
+  {
+   "yadNo": 397562,
+   "name": "はなれ月灯",
+   "rating": null,
+   "reviews": null
+  },
+  {
+   "yadNo": 349815,
+   "name": "MOKU ISESHIMA",
+   "rating": null,
+   "reviews": null
+  },
+  {
+   "yadNo": 349705,
+   "name": "だんらん賢島",
+   "rating": null,
+   "reviews": null
+  },
+  {
+   "yadNo": 361095,
+   "name": "森と海",
+   "rating": null,
+   "reviews": null
+  },
+  {
+   "yadNo": 345511,
+   "name": "リゾートパーク ともやま",
+   "rating": null,
+   "reviews": null
+  },
+  {
+   "yadNo": 326976,
+   "name": "YYLAND RETRO",
+   "rating": null,
+   "reviews": null
+  },
+  {
+   "yadNo": 339692,
+   "name": "VILLA MEATON ISE SHIMA",
+   "rating": null,
+   "reviews": null
+  },
+  {
+   "yadNo": 307323,
+   "name": "岬の宿 礒崎",
+   "rating": null,
+   "reviews": null
+  },
+  {
+   "yadNo": 301075,
+   "name": "ｗａｎｄｅｒｌｕｓｔ ｓｈｉｍａ",
+   "rating": null,
+   "reviews": null
+  }
+ ]
+}

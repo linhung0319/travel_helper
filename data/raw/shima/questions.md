@@ -26,3 +26,23 @@
 - [ ] shima-daio-gallery：有沒有電梯（展示在 2、3 樓）（0599-72-4336）
 - [ ] shima-tomoyama-park：`hours.always` 是推定（公園、展望台的開放時間沒有來源）
 - [ ] shima-shinju-no-sato：越賀巴士站、和具港的接送一次能載幾人（15 人要不要改搭計程車）；2027-02 的臨時休業日（官網逐月公布）
+
+## 住宿（T9b）
+- [ ] 第一晚（2/2 18:35 鵜方／18:40 賢島到站）：下面這些的最晚入住、晚餐最晚開始時間、車站接送到幾點要電話確認——shima-michishio（晚餐最晚 19:00、18:30 以後到要聯絡）、shima-kanko-classic（接駁站發末班 18:50 是推算）、shima-miyako-bayside-terrace（接駁末班 18:50；2/2 週二和食餐廳休）、shima-hoseien（接駁到 18:30、入住到 18:00）、shima-provence（接送到 17:30、含晚餐建議 17:30 前到）、shima-hikobe（19 點以後入住沒有晚餐）、shima-bentenso（晚餐最晚時間不明）、shima-villa-ryusei（入住最晚 17:00）、shima-saichoraku（最晚 19:00、接送要預約）
+- [ ] shima-quintessa：2027-02 有沒有晚餐（官網 FAQ：只在 GW、年末年始、盂蘭盆）；鵜方站接送巴士幾人座
+- [ ] shima-hotel-bay-garden：2027-02 一泊二食、朝食方案會不會恢復（現在休止中）（0599-44-5000）
+- [ ] shima-tachibana：官網滿席公告 2/2、2/3 晚餐已滿（2026-10-18），其他日子的空位
+- [ ] shima-grand-mercure：2/1 11:00～2/3 15:00 施設メンテナンス休館，2/3 晚起可住；團體洽詢用專用信箱
+- [ ] shima-ichiraku-onsen：還在營業嗎（官網消息只有 2019、楽天 2/2、2/3 沒空房）；整館包場最多 66 名的條件（0599-84-3300）
+- [ ] shima-station-hotel-annex：2027-02 是否營業、方案是否開放（官網 404、楽天沒有空房）
+- [ ] shima-boat-house（excluded）：還在營業嗎、2027-02 能不能訂 15 人（只收 e-mail；最新公告 2022-11）
+- [ ] shima-bb-forest（pending）：是否已停業（楽天沒有可訂方案、Google 有閉業或臨時休業字樣）（0599-52-1771）
+- [ ] shima-umibe／shima-umibe-terrace：兩棟同時預約（最多 22 人）的方式、兩棟的布團數與浴室數（090-9118-8014）
+- [ ] shima-log-anori：OCEAN（10 人）＋FOREST（6 人）兩棟能不能同時包、兩棟是否同一地點（070-1369-1334）
+- [ ] shima-yadokari：本棟最多 10 還是 12 人、和「隠れ家」兩棟的距離（同一電話）
+- [ ] shima-mori-to-umi：16 人時床／布團的數量（只有 1 間浴室、1 間廁所）；Google 有 1 星「霉味」評論（約 2025），現況
+- [ ] shima-ocean-villa-wa：最多 6 人（官網）還是 10 人（觀光三重）；IN／OUT 時間
+- [ ] shima-ichiyo：3 間 6 畳各住 5 人是否實際可行、海女小屋體驗（0599-88-3253）
+- [ ] shima-fukujuso、shima-haifu、shima-watakanoso：渡鹿野島 18:00 以後的渡船、鵜方站接送能不能加開（第一晚以外也要注意 16:45 是最後一班）
+- [ ] shima-neboya、shima-therapy-resort、shima-marusada、shima-shimawaso：最晚入住 17:00～18:00，晚到的處理
+- [ ] 楽天 2027-02 方案還沒開的住宿（shima-hoseien、shima-kanko-bay-suites、shima-marusada、shima-shimahanto、shima-hamajima-tsubaki、shima-villa-ryusei 等 2/2、2/3 所有人數都沒空房）：行程定了以後用 `scripts/rakuten.mjs party` 重查

@@ -1,0 +1,3198 @@
+[
+  {
+    "key": "shima-kanko-classic",
+    "name": {
+      "ja": "志摩観光ホテル　ザ　クラシック"
+    },
+    "region": "shima-kashikojima",
+    "category": "hotel",
+    "status": "included",
+    "reason": null,
+    "pointId": "shima-kanko-classic",
+    "ratings": {
+      "rakuten": 4.7,
+      "rakutenReviews": 962,
+      "google": 4.6,
+      "googleReviews": 806,
+      "jalan": 4.7,
+      "jalanReviews": 790
+    },
+    "links": {
+      "googleMaps": "https://maps.google.com/?cid=435405046205010941"
+    },
+    "note": "楽天 1150，112 室，楽天最低 16,005 円；15 人組合 2/2：5x3、2/3：5x3；2/2 一間可住：4 人；じゃらん yad312114"
+  },
+  {
+    "key": "shima-rakuten-4803",
+    "name": {
+      "ja": "石山荘"
+    },
+    "region": "shima-kashikojima",
+    "category": "ryokan",
+    "status": "not-included",
+    "reason": "6 室，15 人組合 2/2、2/3 都沒有空房；評分 —（楽天 4 則），未達「4.3 以上、50 則以上、8 室以上」或「4.6 以上、50 則以上」，也不在第一晚的賢島・鵜方一帶；沒有讀文",
+    "pointId": null,
+    "ratings": {
+      "rakuten": null,
+      "rakutenReviews": 4,
+      "google": null,
+      "googleReviews": null,
+      "jalan": null,
+      "jalanReviews": null
+    },
+    "links": {},
+    "note": "楽天 4803，6 室；15 人組合 2/2：無、2/3：無；2/2 一間可住：無空房；じゃらん yad317445"
+  },
+  {
+    "key": "shima-provence",
+    "name": {
+      "ja": "美食の隠れ家　ＰＲＯＶＥＮＣＥ（プロヴァンス）"
+    },
+    "region": "shima-ugata",
+    "category": "hotel",
+    "status": "included",
+    "reason": null,
+    "pointId": "shima-provence",
+    "ratings": {
+      "rakuten": 4.64,
+      "rakutenReviews": 726,
+      "google": 4.2,
+      "googleReviews": 398,
+      "jalan": 4.7,
+      "jalanReviews": 2248
+    },
+    "links": {
+      "googleMaps": "https://maps.google.com/?cid=1560447232878720288"
+    },
+    "note": "楽天 4982，24 室，楽天最低 9,900 円；15 人組合 2/2：5x3、2/3：5x3；2/2 一間可住：2 人；じゃらん yad318402"
+  },
+  {
+    "key": "shima-michishio",
+    "name": {
+      "ja": "伊勢志摩国立公園　賢島の宿　みち潮"
+    },
+    "region": "shima-kashikojima",
+    "category": "ryokan",
+    "status": "included",
+    "reason": null,
+    "pointId": "shima-michishio",
+    "ratings": {
+      "rakuten": 4.3,
+      "rakutenReviews": 1241,
+      "google": 4.1,
+      "googleReviews": 674,
+      "jalan": 4.4,
+      "jalanReviews": 50
+    },
+    "links": {
+      "googleMaps": "https://maps.google.com/?cid=3807650304058444541"
+    },
+    "note": "楽天 5129，44 室，楽天最低 7,000 円；15 人組合 2/2：4x4/3x5/2x8、2/3：4x4/3x5/2x8；2/2 一間可住：8 人；じゃらん yad317598"
+  },
+  {
+    "key": "shima-kashikojima-harbor",
+    "name": {
+      "ja": "プチホテル　賢島ハーバー"
+    },
+    "region": "shima-kashikojima",
+    "category": "pension／民泊",
+    "status": "included",
+    "reason": null,
+    "pointId": "shima-kashikojima-harbor",
+    "ratings": {
+      "rakuten": 4.79,
+      "rakutenReviews": 387,
+      "google": 4.5,
+      "googleReviews": 144,
+      "jalan": 4.5,
+      "jalanReviews": 739
+    },
+    "links": {
+      "googleMaps": "https://maps.google.com/?cid=1325129138608243424"
+    },
+    "note": "楽天 6247，5 室，楽天最低 4,700 円；15 人組合 2/2：無、2/3：無；2/2 一間可住：無空房；じゃらん yad325195"
+  },
+  {
+    "key": "shima-rakuten-7475",
+    "name": {
+      "ja": "料理旅館　新和具荘"
+    },
+    "region": "shima-wagu",
+    "category": "ryokan",
+    "status": "not-included",
+    "reason": "9 室，15 人組合 2/2、2/3 都沒有空房；評分 —（楽天 0 則），未達「4.3 以上、50 則以上、8 室以上」或「4.6 以上、50 則以上」，也不在第一晚的賢島・鵜方一帶；沒有讀文",
+    "pointId": null,
+    "ratings": {
+      "rakuten": null,
+      "rakutenReviews": null,
+      "google": null,
+      "googleReviews": null,
+      "jalan": null,
+      "jalanReviews": null
+    },
+    "links": {},
+    "note": "楽天 7475，9 室；15 人組合 2/2：無、2/3：無；2/2 一間可住：無空房"
+  },
+  {
+    "key": "shima-rakuten-7493",
+    "name": {
+      "ja": "ステーションホテル鵜方"
+    },
+    "region": "shima-ugata",
+    "category": "hotel",
+    "status": "excluded",
+    "reason": "§5.7：評論 10 則以上的評分來源都低於 3.8（楽天 3.37／329 則、Google 3.2／63 則、じゃらん沒有分數）",
+    "pointId": null,
+    "ratings": {
+      "rakuten": 3.37,
+      "rakutenReviews": 329,
+      "google": 3.2,
+      "googleReviews": 63,
+      "jalan": null,
+      "jalanReviews": null
+    },
+    "links": {
+      "googleMaps": "https://maps.google.com/?cid=7843059441067586229"
+    },
+    "note": "楽天 7493，28 室，楽天最低 5,500 円；15 人組合 2/2：無、2/3：無；2/2 一間可住：無空房"
+  },
+  {
+    "key": "shima-shimahanto",
+    "name": {
+      "ja": "活鮮旅館　志摩半島"
+    },
+    "region": "shima-goza",
+    "category": "ryokan",
+    "status": "included",
+    "reason": null,
+    "pointId": "shima-shimahanto",
+    "ratings": {
+      "rakuten": 4.38,
+      "rakutenReviews": 66,
+      "google": 4.2,
+      "googleReviews": 158,
+      "jalan": 4.2,
+      "jalanReviews": 226
+    },
+    "links": {
+      "googleMaps": "https://maps.google.com/?cid=9105299783259565138"
+    },
+    "note": "楽天 7508，12 室，楽天最低 5,850 円；15 人組合 2/2：無、2/3：無；2/2 一間可住：無空房；じゃらん yad382916"
+  },
+  {
+    "key": "shima-watakanoso",
+    "name": {
+      "ja": "ペットと泊まれる宿　わたかの荘＜渡鹿野島＞"
+    },
+    "region": "shima-matoya",
+    "category": "ryokan",
+    "status": "included",
+    "reason": null,
+    "pointId": "shima-watakanoso",
+    "ratings": {
+      "rakuten": 4.33,
+      "rakutenReviews": 119,
+      "google": 4.1,
+      "googleReviews": 77,
+      "jalan": 4.5,
+      "jalanReviews": 165
+    },
+    "links": {
+      "googleMaps": "https://maps.google.com/?cid=5745118419183234668"
+    },
+    "note": "楽天 7622，10 室，楽天最低 6,050 円；15 人組合 2/2：3x5、2/3：3x5；2/2 一間可住：6 人；じゃらん yad320403"
+  },
+  {
+    "key": "shima-rakuten-7770",
+    "name": {
+      "ja": "ホテル志摩スペイン村"
+    },
+    "region": "shima-spain",
+    "category": "hotel",
+    "status": "not-included",
+    "reason": "志摩スペイン村 2027-01-12～02-12 休園；楽天 2/2、2/3 的 15 人組合和 2/2 所有人數都沒有空房（休園期間可能休館或未開放），沒有讀文。2/13 以後才有用",
+    "pointId": null,
+    "ratings": {
+      "rakuten": 4.54,
+      "rakutenReviews": 2692,
+      "google": null,
+      "googleReviews": null,
+      "jalan": 4.6,
+      "jalanReviews": 2377
+    },
+    "links": {},
+    "note": "楽天 7770，252 室，楽天最低 8,000 円；15 人組合 2/2：無、2/3：無；2/2 一間可住：無空房；じゃらん yad318960"
+  },
+  {
+    "key": "shima-rakuten-7774",
+    "name": {
+      "ja": "Ｔａｂｉｓｔ　中日ビジネスホテル　伊勢志摩"
+    },
+    "region": "shima-ugata",
+    "category": "hotel",
+    "status": "excluded",
+    "reason": "§5.7：評論 10 則以上的評分來源都低於 3.8（楽天 3.23／296 則、Google 2.9／152 則、じゃらん沒有分數）",
+    "pointId": null,
+    "ratings": {
+      "rakuten": 3.23,
+      "rakutenReviews": 296,
+      "google": 2.9,
+      "googleReviews": 152,
+      "jalan": null,
+      "jalanReviews": null
+    },
+    "links": {
+      "googleMaps": "https://maps.google.com/?cid=3138971971669033065"
+    },
+    "note": "楽天 7774，20 室，楽天最低 1,900 円；15 人組合 2/2：5x3、2/3：5x3；2/2 一間可住：2 人"
+  },
+  {
+    "key": "shima-marusada",
+    "name": {
+      "ja": "丸定旅館"
+    },
+    "region": "shima-matoya",
+    "category": "ryokan",
+    "status": "included",
+    "reason": null,
+    "pointId": "shima-marusada",
+    "ratings": {
+      "rakuten": 4.8,
+      "rakutenReviews": 92,
+      "google": 4.6,
+      "googleReviews": 120,
+      "jalan": 4.8,
+      "jalanReviews": 407
+    },
+    "links": {
+      "googleMaps": "https://maps.google.com/?cid=10463726941960790590"
+    },
+    "note": "楽天 7836，5 室，楽天最低 12,100 円；15 人組合 2/2：無、2/3：無；2/2 一間可住：無空房；じゃらん yad318127"
+  },
+  {
+    "key": "shima-rakuten-8266",
+    "name": {
+      "ja": "御座白浜の宿　御座岬"
+    },
+    "region": "shima-goza",
+    "category": "ryokan",
+    "status": "not-included",
+    "reason": "18 室，15 人組合 2/2、2/3 都沒有空房；評分 —（楽天 68 則），未達「4.3 以上、50 則以上、8 室以上」或「4.6 以上、50 則以上」，也不在第一晚的賢島・鵜方一帶；沒有讀文",
+    "pointId": null,
+    "ratings": {
+      "rakuten": null,
+      "rakutenReviews": 68,
+      "google": null,
+      "googleReviews": null,
+      "jalan": null,
+      "jalanReviews": null
+    },
+    "links": {},
+    "note": "楽天 8266，18 室；15 人組合 2/2：無、2/3：無；2/2 一間可住：無空房"
+  },
+  {
+    "key": "shima-rakuten-8605",
+    "name": {
+      "ja": "みさき荘　魚魚庵＜三重県＞"
+    },
+    "region": "shima-goza",
+    "category": "ryokan",
+    "status": "excluded",
+    "reason": "§5.7：評論 10 則以上的評分來源都低於 3.8（楽天 3.33／82 則、Google 3.7／21 則、じゃらん沒有分數）",
+    "pointId": null,
+    "ratings": {
+      "rakuten": 3.33,
+      "rakutenReviews": 82,
+      "google": 3.7,
+      "googleReviews": 21,
+      "jalan": null,
+      "jalanReviews": null
+    },
+    "links": {
+      "googleMaps": "https://maps.google.com/?cid=11168601425028982087"
+    },
+    "note": "楽天 8605，13 室，楽天最低 8,000 円；15 人組合 2/2：無、2/3：無；2/2 一間可住：無空房；じゃらん yad352124"
+  },
+  {
+    "key": "shima-tachibana",
+    "name": {
+      "ja": "美味し国の旅館　橘＜三重県＞"
+    },
+    "region": "shima-matoya",
+    "category": "ryokan",
+    "status": "included",
+    "reason": null,
+    "pointId": "shima-tachibana",
+    "ratings": {
+      "rakuten": 4.56,
+      "rakutenReviews": 118,
+      "google": 4.2,
+      "googleReviews": 97,
+      "jalan": 4.7,
+      "jalanReviews": 158
+    },
+    "links": {
+      "googleMaps": "https://maps.google.com/?cid=5093322601112102177"
+    },
+    "note": "楽天 9406，16 室，楽天最低 10,000 円；15 人組合 2/2：無、2/3：無；2/2 一間可住：無空房；じゃらん yad317255"
+  },
+  {
+    "key": "shima-rakuten-13527",
+    "name": {
+      "ja": "グルメペンション青い海"
+    },
+    "region": "shima-hamajima",
+    "category": "pension／民泊",
+    "status": "not-included",
+    "reason": "9 室，15 人組合 2/2、2/3 都沒有空房；評分 3.25（楽天 7 則），未達「4.3 以上、50 則以上、8 室以上」或「4.6 以上、50 則以上」，也不在第一晚的賢島・鵜方一帶；沒有讀文",
+    "pointId": null,
+    "ratings": {
+      "rakuten": 3.25,
+      "rakutenReviews": 7,
+      "google": null,
+      "googleReviews": null,
+      "jalan": null,
+      "jalanReviews": null
+    },
+    "links": {},
+    "note": "楽天 13527，9 室，楽天最低 6,650 円；15 人組合 2/2：無、2/3：無；2/2 一間可住：無空房；じゃらん yad321720"
+  },
+  {
+    "key": "shima-station-hotel-annex",
+    "name": {
+      "ja": "ステーションホテル　アネックス"
+    },
+    "region": "shima-ugata",
+    "category": "hotel",
+    "status": "included",
+    "reason": null,
+    "pointId": "shima-station-hotel-annex",
+    "ratings": {
+      "rakuten": 3.8,
+      "rakutenReviews": 181,
+      "google": 3.1,
+      "googleReviews": 48,
+      "jalan": null,
+      "jalanReviews": null
+    },
+    "links": {
+      "googleMaps": "https://maps.google.com/?cid=1669856417239245213"
+    },
+    "note": "楽天 13587，48 室；15 人組合 2/2：無、2/3：無；2/2 一間可住：無空房"
+  },
+  {
+    "key": "shima-geiboso",
+    "name": {
+      "ja": "旅の宿　潮の灯　鯨望荘"
+    },
+    "region": "shima-hamajima",
+    "category": "ryokan",
+    "status": "included",
+    "reason": null,
+    "pointId": "shima-geiboso",
+    "ratings": {
+      "rakuten": 4.13,
+      "rakutenReviews": 842,
+      "google": 3.7,
+      "googleReviews": 433,
+      "jalan": 3.9,
+      "jalanReviews": 613
+    },
+    "links": {
+      "googleMaps": "https://maps.google.com/?cid=17904793561798892697"
+    },
+    "note": "楽天 13891，35 室，楽天最低 6,600 円；15 人組合 2/2：4x4/3x5/2x8、2/3：5x3/4x4/3x5/2x8；2/2 一間可住：10 人；じゃらん yad310666"
+  },
+  {
+    "key": "shima-grand-mercure",
+    "name": {
+      "ja": "グランドメルキュール伊勢志摩リゾート＆スパ"
+    },
+    "region": "shima-matoya",
+    "category": "hotel",
+    "status": "included",
+    "reason": null,
+    "pointId": "shima-grand-mercure",
+    "ratings": {
+      "rakuten": 3.93,
+      "rakutenReviews": 4405,
+      "google": 3.7,
+      "googleReviews": 3216,
+      "jalan": 4.1,
+      "jalanReviews": 1151
+    },
+    "links": {
+      "googleMaps": "https://maps.google.com/?cid=4822371600113264740"
+    },
+    "note": "楽天 13971，372 室，楽天最低 5,568 円；15 人組合 2/2：無、2/3：5x3/4x4/3x5；2/2 一間可住：無空房；じゃらん yad303899"
+  },
+  {
+    "key": "shima-bentenso",
+    "name": {
+      "ja": "旅館　弁天荘"
+    },
+    "region": "shima-kashikojima",
+    "category": "ryokan",
+    "status": "included",
+    "reason": null,
+    "pointId": "shima-bentenso",
+    "ratings": {
+      "rakuten": 4.31,
+      "rakutenReviews": 184,
+      "google": 4.1,
+      "googleReviews": 81,
+      "jalan": 4.2,
+      "jalanReviews": 298
+    },
+    "links": {
+      "googleMaps": "https://maps.google.com/?cid=13297500277898887666"
+    },
+    "note": "楽天 14266，15 室，楽天最低 6,300 円；15 人組合 2/2：無、2/3：無；2/2 一間可住：4 人；じゃらん yad311292"
+  },
+  {
+    "key": "shima-rakuten-15027",
+    "name": {
+      "ja": "ホテル槇之木"
+    },
+    "region": "shima-tomoyama",
+    "category": "hotel",
+    "status": "not-included",
+    "reason": "5 室小飯店：楽天 API 的評分是 2（99 則，細項全是 0，疑似怪值）、Google 4.5／41 則，不算 §5.7 排除；15 人組合沒空房、不到 50 則的好評，沒有讀文",
+    "pointId": null,
+    "ratings": {
+      "rakuten": 2,
+      "rakutenReviews": 99,
+      "google": 4.5,
+      "googleReviews": 41,
+      "jalan": null,
+      "jalanReviews": null
+    },
+    "links": {
+      "googleMaps": "https://maps.google.com/?cid=8583490104720383879"
+    },
+    "note": "楽天 15027，5 室，楽天最低 12,500 円；15 人組合 2/2：無、2/3：無；2/2 一間可住：4 人；じゃらん yad319889"
+  },
+  {
+    "key": "shima-rakuten-15479",
+    "name": {
+      "ja": "賢島ファミリーホテル　はな屋"
+    },
+    "region": "shima-kashikojima",
+    "category": "ryokan",
+    "status": "not-included",
+    "reason": "8 室，15 人組合 2/2、2/3 都沒有空房；評分 —（楽天 2 則），未達「4.3 以上、50 則以上、8 室以上」或「4.6 以上、50 則以上」，也不在第一晚的賢島・鵜方一帶；沒有讀文",
+    "pointId": null,
+    "ratings": {
+      "rakuten": null,
+      "rakutenReviews": 2,
+      "google": null,
+      "googleReviews": null,
+      "jalan": null,
+      "jalanReviews": null
+    },
+    "links": {},
+    "note": "楽天 15479，8 室；15 人組合 2/2：無、2/3：無；2/2 一間可住：無空房"
+  },
+  {
+    "key": "shima-hoseien",
+    "name": {
+      "ja": "賢島宝生苑"
+    },
+    "region": "shima-kashikojima",
+    "category": "ryokan",
+    "status": "included",
+    "reason": null,
+    "pointId": "shima-hoseien",
+    "ratings": {
+      "rakuten": 4.47,
+      "rakutenReviews": 2641,
+      "google": 4.3,
+      "googleReviews": 2596,
+      "jalan": 4.3,
+      "jalanReviews": 2741
+    },
+    "links": {
+      "googleMaps": "https://maps.google.com/?cid=1489525318797124424"
+    },
+    "note": "楽天 15716，165 室，楽天最低 14,500 円；15 人組合 2/2：無、2/3：無；2/2 一間可住：無空房；じゃらん yad327206"
+  },
+  {
+    "key": "shima-fukujuso",
+    "name": {
+      "ja": "風待ちの湯福寿荘　伊勢志摩の温泉旅館＜渡鹿野島＞"
+    },
+    "region": "shima-matoya",
+    "category": "ryokan",
+    "status": "included",
+    "reason": null,
+    "pointId": "shima-fukujuso",
+    "ratings": {
+      "rakuten": 4.27,
+      "rakutenReviews": 829,
+      "google": 4.1,
+      "googleReviews": 647,
+      "jalan": 4.4,
+      "jalanReviews": 2014
+    },
+    "links": {
+      "googleMaps": "https://maps.google.com/?cid=3922457230759835323"
+    },
+    "note": "楽天 15941，66 室，楽天最低 8,800 円；15 人組合 2/2：5x3/4x4/3x5/2x8、2/3：無；2/2 一間可住：8 人；じゃらん yad316648"
+  },
+  {
+    "key": "shima-quintessa",
+    "name": {
+      "ja": "クインテッサホテル伊勢志摩"
+    },
+    "region": "shima-ugata",
+    "category": "hotel",
+    "status": "included",
+    "reason": null,
+    "pointId": "shima-quintessa",
+    "ratings": {
+      "rakuten": 4.22,
+      "rakutenReviews": 1715,
+      "google": 3.8,
+      "googleReviews": 1101,
+      "jalan": 4.2,
+      "jalanReviews": 81
+    },
+    "links": {
+      "googleMaps": "https://maps.google.com/?cid=17417283536449565950"
+    },
+    "note": "楽天 16258，150 室，楽天最低 3,848 円；15 人組合 2/2：5x3/4x4、2/3：5x3/4x4；2/2 一間可住：4 人；じゃらん yad321594"
+  },
+  {
+    "key": "shima-risoujin-club",
+    "name": {
+      "ja": "里創人倶楽部　伊勢志摩"
+    },
+    "region": "shima-matoya",
+    "category": "ryokan",
+    "status": "included",
+    "reason": null,
+    "pointId": "shima-risoujin-club",
+    "ratings": {
+      "rakuten": 4.38,
+      "rakutenReviews": 1393,
+      "google": 4.2,
+      "googleReviews": 491,
+      "jalan": 4.5,
+      "jalanReviews": 946
+    },
+    "links": {
+      "googleMaps": "https://maps.google.com/?cid=535107031864105846"
+    },
+    "note": "楽天 19295，32 室，楽天最低 7,400 円；15 人組合 2/2：5x3/4x4/3x5、2/3：5x3/4x4/3x5；2/2 一間可住：6 人；じゃらん yad302904"
+  },
+  {
+    "key": "shima-rakuten-19499",
+    "name": {
+      "ja": "安乗シーサイドホテル"
+    },
+    "region": "shima-anori",
+    "category": "ryokan",
+    "status": "not-included",
+    "reason": "17 室，15 人組合 2/2、2/3 都沒有空房；評分 —（楽天 0 則），未達「4.3 以上、50 則以上、8 室以上」或「4.6 以上、50 則以上」，也不在第一晚的賢島・鵜方一帶；沒有讀文",
+    "pointId": null,
+    "ratings": {
+      "rakuten": null,
+      "rakutenReviews": null,
+      "google": null,
+      "googleReviews": null,
+      "jalan": null,
+      "jalanReviews": null
+    },
+    "links": {},
+    "note": "楽天 19499，17 室；15 人組合 2/2：無、2/3：無；2/2 一間可住：無空房"
+  },
+  {
+    "key": "shima-rakuten-19500",
+    "name": {
+      "ja": "料理旅館　魚元"
+    },
+    "region": "shima-anori",
+    "category": "ryokan",
+    "status": "not-included",
+    "reason": "5 室，15 人組合 2/2、2/3 都沒有空房；評分 —（楽天 15 則），未達「4.3 以上、50 則以上、8 室以上」或「4.6 以上、50 則以上」，也不在第一晚的賢島・鵜方一帶；沒有讀文",
+    "pointId": null,
+    "ratings": {
+      "rakuten": null,
+      "rakutenReviews": 15,
+      "google": null,
+      "googleReviews": null,
+      "jalan": null,
+      "jalanReviews": null
+    },
+    "links": {},
+    "note": "楽天 19500，5 室；15 人組合 2/2：無、2/3：無；2/2 一間可住：無空房"
+  },
+  {
+    "key": "shima-rakuten-20176",
+    "name": {
+      "ja": "活魚問屋の宿　まるやす"
+    },
+    "region": "shima-kokufu",
+    "category": "ryokan",
+    "status": "not-included",
+    "reason": "12 室，15 人組合 2/2、2/3 都沒有空房；評分 —（楽天 23 則），未達「4.3 以上、50 則以上、8 室以上」或「4.6 以上、50 則以上」，也不在第一晚的賢島・鵜方一帶；沒有讀文",
+    "pointId": null,
+    "ratings": {
+      "rakuten": null,
+      "rakutenReviews": 23,
+      "google": null,
+      "googleReviews": null,
+      "jalan": null,
+      "jalanReviews": null
+    },
+    "links": {},
+    "note": "楽天 20176，12 室；15 人組合 2/2：無、2/3：無；2/2 一間可住：無空房"
+  },
+  {
+    "key": "shima-miyako-bayside-terrace",
+    "name": {
+      "ja": "都リゾート　志摩　ベイサイドテラス"
+    },
+    "region": "shima-kashikojima",
+    "category": "hotel",
+    "status": "included",
+    "reason": null,
+    "pointId": "shima-miyako-bayside-terrace",
+    "ratings": {
+      "rakuten": 4.54,
+      "rakutenReviews": 1126,
+      "google": 4.2,
+      "googleReviews": 1177,
+      "jalan": 4.5,
+      "jalanReviews": 1471
+    },
+    "links": {
+      "googleMaps": "https://maps.google.com/?cid=15504403311963173180"
+    },
+    "note": "楽天 27737，108 室，楽天最低 10,250 円；15 人組合 2/2：5x3/4x4/3x5、2/3：5x3/4x4/3x5；2/2 一間可住：6 人；じゃらん yad324307"
+  },
+  {
+    "key": "shima-rakuten-28032",
+    "name": {
+      "ja": "公共の宿　伊勢志摩ユースホステル"
+    },
+    "region": "shima-isobe",
+    "category": "hotel",
+    "status": "not-included",
+    "reason": "ユースホステル，15 人組合和 2/2 所有人數都沒空房，沒有讀文",
+    "pointId": null,
+    "ratings": {
+      "rakuten": 4.5,
+      "rakutenReviews": 80,
+      "google": null,
+      "googleReviews": null,
+      "jalan": null,
+      "jalanReviews": null
+    },
+    "links": {},
+    "note": "楽天 28032，18 室；15 人組合 2/2：無、2/3：無；2/2 一間可住：無空房"
+  },
+  {
+    "key": "shima-rakuten-29502",
+    "name": {
+      "ja": "民宿やまや"
+    },
+    "region": "shima-goza",
+    "category": "ryokan",
+    "status": "not-included",
+    "reason": "5 室，15 人組合 2/2、2/3 都沒有空房；評分 4.06（楽天 41 則），未達「4.3 以上、50 則以上、8 室以上」或「4.6 以上、50 則以上」，也不在第一晚的賢島・鵜方一帶；沒有讀文",
+    "pointId": null,
+    "ratings": {
+      "rakuten": 4.06,
+      "rakutenReviews": 41,
+      "google": null,
+      "googleReviews": null,
+      "jalan": null,
+      "jalanReviews": null
+    },
+    "links": {},
+    "note": "楽天 29502，5 室，楽天最低 10,450 円；15 人組合 2/2：無、2/3：無；2/2 一間可住：4 人"
+  },
+  {
+    "key": "shima-rakuten-30886",
+    "name": {
+      "ja": "賢島グランドホテル"
+    },
+    "region": "shima-kashikojima",
+    "category": "hotel",
+    "status": "excluded",
+    "reason": "§5.7：評論 10 則以上的評分來源都低於 3.8（楽天 3.06／294 則、Google 3／146 則、じゃらん 3.4／91 則）",
+    "pointId": null,
+    "ratings": {
+      "rakuten": 3.06,
+      "rakutenReviews": 294,
+      "google": 3,
+      "googleReviews": 146,
+      "jalan": 3.4,
+      "jalanReviews": 91
+    },
+    "links": {
+      "googleMaps": "https://maps.google.com/?cid=3775766886753067902"
+    },
+    "note": "楽天 30886，20 室，楽天最低 5,500 円；15 人組合 2/2：無、2/3：無；2/2 一間可住：無空房；じゃらん yad393183"
+  },
+  {
+    "key": "shima-rakuten-30937",
+    "name": {
+      "ja": "大王荘"
+    },
+    "region": "shima-daio",
+    "category": "pension／民泊",
+    "status": "not-included",
+    "reason": "7 室，15 人組合 2/2、2/3 都沒有空房；評分 —（楽天 0 則），未達「4.3 以上、50 則以上、8 室以上」或「4.6 以上、50 則以上」，也不在第一晚的賢島・鵜方一帶；沒有讀文",
+    "pointId": null,
+    "ratings": {
+      "rakuten": null,
+      "rakutenReviews": null,
+      "google": null,
+      "googleReviews": null,
+      "jalan": null,
+      "jalanReviews": null
+    },
+    "links": {},
+    "note": "楽天 30937，7 室；15 人組合 2/2：無、2/3：無；2/2 一間可住：無空房"
+  },
+  {
+    "key": "shima-rakuten-31222",
+    "name": {
+      "ja": "ペンション　マリンハウス　つるやま"
+    },
+    "region": "shima-kokufu",
+    "category": "pension／民泊",
+    "status": "excluded",
+    "reason": "§5.7：評論 10 則以上的評分來源都低於 3.8（楽天 3.5／29 則、Google 3.7／7 則、じゃらん沒有分數）",
+    "pointId": null,
+    "ratings": {
+      "rakuten": 3.5,
+      "rakutenReviews": 29,
+      "google": 3.7,
+      "googleReviews": 7,
+      "jalan": null,
+      "jalanReviews": null
+    },
+    "links": {
+      "googleMaps": "https://maps.google.com/?cid=17808893374819928870"
+    },
+    "note": "楽天 31222，5 室，楽天最低 4,400 円；15 人組合 2/2：無、2/3：無；2/2 一間可住：無空房；じゃらん yad300390"
+  },
+  {
+    "key": "shima-ichiyo",
+    "name": {
+      "ja": "海女と漁師の宿　民宿　一葉"
+    },
+    "region": "shima-goza",
+    "category": "ryokan",
+    "status": "included",
+    "reason": null,
+    "pointId": "shima-ichiyo",
+    "ratings": {
+      "rakuten": 3.94,
+      "rakutenReviews": 52,
+      "google": 4.2,
+      "googleReviews": 31,
+      "jalan": null,
+      "jalanReviews": null
+    },
+    "links": {
+      "googleMaps": "https://maps.google.com/?cid=14574803509563322501"
+    },
+    "note": "楽天 31468，3 室，楽天最低 4,600 円；15 人組合 2/2：3x5、2/3：3x5；2/2 一間可住：4 人"
+  },
+  {
+    "key": "shima-hiougiso",
+    "name": {
+      "ja": "檜扇荘"
+    },
+    "region": "shima-kashikojima",
+    "category": "ryokan",
+    "status": "included",
+    "reason": null,
+    "pointId": "shima-hiougiso",
+    "ratings": {
+      "rakuten": 4.44,
+      "rakutenReviews": 400,
+      "google": 4.2,
+      "googleReviews": 242,
+      "jalan": 4.2,
+      "jalanReviews": 305
+    },
+    "links": {
+      "googleMaps": "https://maps.google.com/?cid=3928766524523123695"
+    },
+    "note": "楽天 31698，21 室，楽天最低 8,900 円；15 人組合 2/2：5x3/4x4/3x5/2x8、2/3：5x3/4x4/3x5/2x8；2/2 一間可住：8 人；じゃらん yad307126"
+  },
+  {
+    "key": "shima-haifu",
+    "name": {
+      "ja": "海を望む全室露天風呂の宿　はいふう＜渡鹿野島＞"
+    },
+    "region": "shima-matoya",
+    "category": "ryokan",
+    "status": "included",
+    "reason": null,
+    "pointId": "shima-haifu",
+    "ratings": {
+      "rakuten": 4.65,
+      "rakutenReviews": 923,
+      "google": 4.4,
+      "googleReviews": 352,
+      "jalan": 4.6,
+      "jalanReviews": 1898
+    },
+    "links": {
+      "googleMaps": "https://maps.google.com/?cid=3996739810988013705"
+    },
+    "note": "楽天 37458，21 室，楽天最低 24,600 円；15 人組合 2/2：4x4、2/3：4x4；2/2 一間可住：6 人；じゃらん yad312380"
+  },
+  {
+    "key": "shima-rakuten-38468",
+    "name": {
+      "ja": "民宿旅館　山万"
+    },
+    "region": "shima-goza",
+    "category": "ryokan",
+    "status": "not-included",
+    "reason": "12 室，15 人組合 2/2、2/3 都沒有空房；評分 —（楽天 5 則），未達「4.3 以上、50 則以上、8 室以上」或「4.6 以上、50 則以上」，也不在第一晚的賢島・鵜方一帶；沒有讀文",
+    "pointId": null,
+    "ratings": {
+      "rakuten": null,
+      "rakutenReviews": 5,
+      "google": null,
+      "googleReviews": null,
+      "jalan": null,
+      "jalanReviews": null
+    },
+    "links": {},
+    "note": "楽天 38468，12 室；15 人組合 2/2：無、2/3：無；2/2 一間可住：無空房"
+  },
+  {
+    "key": "shima-ugata-business-hotel",
+    "name": {
+      "ja": "鵜方ビジネスホテル"
+    },
+    "region": "shima-ugata",
+    "category": "hotel",
+    "status": "included",
+    "reason": null,
+    "pointId": "shima-ugata-business-hotel",
+    "ratings": {
+      "rakuten": 4.27,
+      "rakutenReviews": 250,
+      "google": 4.2,
+      "googleReviews": 44,
+      "jalan": null,
+      "jalanReviews": null
+    },
+    "links": {
+      "googleMaps": "https://maps.google.com/?cid=3255433810012442309"
+    },
+    "note": "楽天 39912，8 室，楽天最低 4,000 円；15 人組合 2/2：無、2/3：無；2/2 一間可住：無空房"
+  },
+  {
+    "key": "shima-rakuten-40335",
+    "name": {
+      "ja": "ペンション　グーグー"
+    },
+    "region": "shima-yokoyama",
+    "category": "pension／民泊",
+    "status": "not-included",
+    "reason": "6 室，15 人組合 2/2、2/3 都沒有空房；評分 —（楽天 0 則），未達「4.3 以上、50 則以上、8 室以上」或「4.6 以上、50 則以上」，也不在第一晚的賢島・鵜方一帶；沒有讀文",
+    "pointId": null,
+    "ratings": {
+      "rakuten": null,
+      "rakutenReviews": null,
+      "google": null,
+      "googleReviews": null,
+      "jalan": null,
+      "jalanReviews": null
+    },
+    "links": {},
+    "note": "楽天 40335，6 室；15 人組合 2/2：無、2/3：無；2/2 一間可住：無空房；じゃらん yad311974"
+  },
+  {
+    "key": "shima-rakuten-40366",
+    "name": {
+      "ja": "民宿　まるみつ"
+    },
+    "region": "shima-goza",
+    "category": "ryokan",
+    "status": "not-included",
+    "reason": "9 室，15 人組合 2/2、2/3 都沒有空房；評分 —（楽天 1 則），未達「4.3 以上、50 則以上、8 室以上」或「4.6 以上、50 則以上」，也不在第一晚的賢島・鵜方一帶；沒有讀文",
+    "pointId": null,
+    "ratings": {
+      "rakuten": null,
+      "rakutenReviews": 1,
+      "google": null,
+      "googleReviews": null,
+      "jalan": null,
+      "jalanReviews": null
+    },
+    "links": {},
+    "note": "楽天 40366，9 室；15 人組合 2/2：無、2/3：無；2/2 一間可住：無空房"
+  },
+  {
+    "key": "shima-rakuten-40727",
+    "name": {
+      "ja": "マリン・ブルー"
+    },
+    "region": "shima-goza",
+    "category": "pension／民泊",
+    "status": "not-included",
+    "reason": "5 室，15 人組合 2/2、2/3 都沒有空房；評分 —（楽天 0 則），未達「4.3 以上、50 則以上、8 室以上」或「4.6 以上、50 則以上」，也不在第一晚的賢島・鵜方一帶；沒有讀文",
+    "pointId": null,
+    "ratings": {
+      "rakuten": null,
+      "rakutenReviews": null,
+      "google": null,
+      "googleReviews": null,
+      "jalan": null,
+      "jalanReviews": null
+    },
+    "links": {},
+    "note": "楽天 40727，5 室；15 人組合 2/2：無、2/3：無；2/2 一間可住：無空房"
+  },
+  {
+    "key": "shima-rakuten-40784",
+    "name": {
+      "ja": "季彩の宿　沙都邑（ときいろのやど　さとむら）"
+    },
+    "region": "shima-kokufu",
+    "category": "ryokan",
+    "status": "not-included",
+    "reason": "18 室，15 人組合 2/2、2/3 都沒有空房；評分 —（楽天 0 則），未達「4.3 以上、50 則以上、8 室以上」或「4.6 以上、50 則以上」，也不在第一晚的賢島・鵜方一帶；沒有讀文",
+    "pointId": null,
+    "ratings": {
+      "rakuten": null,
+      "rakutenReviews": null,
+      "google": null,
+      "googleReviews": null,
+      "jalan": null,
+      "jalanReviews": null
+    },
+    "links": {},
+    "note": "楽天 40784，18 室；15 人組合 2/2：無、2/3：無；2/2 一間可住：無空房"
+  },
+  {
+    "key": "shima-rakuten-41459",
+    "name": {
+      "ja": "伊勢志摩　国府白浜海岸　活魚民宿　豊"
+    },
+    "region": "shima-kokufu",
+    "category": "ryokan",
+    "status": "not-included",
+    "reason": "6 室，15 人組合 2/2、2/3 都沒有空房；評分 4.33（楽天 83 則）、じゃらん 4.5／229 則，未達「4.3 以上、50 則以上、8 室以上」或「4.6 以上、50 則以上」，也不在第一晚的賢島・鵜方一帶；沒有讀文",
+    "pointId": null,
+    "ratings": {
+      "rakuten": 4.33,
+      "rakutenReviews": 83,
+      "google": null,
+      "googleReviews": null,
+      "jalan": 4.5,
+      "jalanReviews": 229
+    },
+    "links": {},
+    "note": "楽天 41459，6 室，楽天最低 5,500 円；15 人組合 2/2：無、2/3：無；2/2 一間可住：無空房；じゃらん yad324418"
+  },
+  {
+    "key": "shima-hamajima-tsubaki",
+    "name": {
+      "ja": "湯元館　ニュー浜島　別館花の館　椿"
+    },
+    "region": "shima-hamajima",
+    "category": "ryokan",
+    "status": "included",
+    "reason": null,
+    "pointId": "shima-hamajima-tsubaki",
+    "ratings": {
+      "rakuten": 4.47,
+      "rakutenReviews": 410,
+      "google": 4,
+      "googleReviews": 458,
+      "jalan": 4.4,
+      "jalanReviews": 519
+    },
+    "links": {
+      "googleMaps": "https://maps.google.com/?cid=4890126790870026207"
+    },
+    "note": "楽天 44981，33 室，楽天最低 23,100 円；15 人組合 2/2：無、2/3：無；2/2 一間可住：無空房；じゃらん yad388000"
+  },
+  {
+    "key": "shima-rakuten-50578",
+    "name": {
+      "ja": "パールグルメイン竹正"
+    },
+    "region": "shima-wagu",
+    "category": "ryokan",
+    "status": "not-included",
+    "reason": "15 室，15 人組合 2/2、2/3 都沒有空房；評分 4（楽天 287 則），未達「4.3 以上、50 則以上、8 室以上」或「4.6 以上、50 則以上」，也不在第一晚的賢島・鵜方一帶；沒有讀文",
+    "pointId": null,
+    "ratings": {
+      "rakuten": 4,
+      "rakutenReviews": 287,
+      "google": null,
+      "googleReviews": null,
+      "jalan": null,
+      "jalanReviews": null
+    },
+    "links": {},
+    "note": "楽天 50578，15 室，楽天最低 6,500 円；15 人組合 2/2：無、2/3：無；2/2 一間可住：無空房"
+  },
+  {
+    "key": "shima-chichukaimura-hotel",
+    "name": {
+      "ja": "志摩地中海村"
+    },
+    "region": "shima-sakko",
+    "category": "hotel",
+    "status": "included",
+    "reason": null,
+    "pointId": "shima-chichukaimura-hotel",
+    "ratings": {
+      "rakuten": 4.47,
+      "rakutenReviews": 944,
+      "google": 4,
+      "googleReviews": 2625,
+      "jalan": 4.6,
+      "jalanReviews": 1071
+    },
+    "links": {
+      "googleMaps": "https://maps.google.com/?cid=670699759400185044"
+    },
+    "note": "楽天 51449，53 室，楽天最低 12,200 円；15 人組合 2/2：5x3/4x4、2/3：5x3/4x4；2/2 一間可住：4 人；じゃらん yad342596"
+  },
+  {
+    "key": "shima-ikadaso-sanjo",
+    "name": {
+      "ja": "いかだ荘　山上"
+    },
+    "region": "shima-matoya",
+    "category": "ryokan",
+    "status": "included",
+    "reason": null,
+    "pointId": "shima-ikadaso-sanjo",
+    "ratings": {
+      "rakuten": 4.4,
+      "rakutenReviews": 94,
+      "google": 4.4,
+      "googleReviews": 696,
+      "jalan": 4.4,
+      "jalanReviews": 2000
+    },
+    "links": {
+      "googleMaps": "https://maps.google.com/?cid=5256037722473781442"
+    },
+    "note": "楽天 67262，16 室，楽天最低 5,500 円；15 人組合 2/2：2x8、2/3：2x8；2/2 一間可住：8 人；じゃらん yad395984"
+  },
+  {
+    "key": "shima-morigen",
+    "name": {
+      "ja": "民宿　森源"
+    },
+    "region": "shima-goza",
+    "category": "ryokan",
+    "status": "included",
+    "reason": null,
+    "pointId": "shima-morigen",
+    "ratings": {
+      "rakuten": 4.83,
+      "rakutenReviews": 63,
+      "google": 4.6,
+      "googleReviews": 82,
+      "jalan": 4.2,
+      "jalanReviews": 163
+    },
+    "links": {
+      "googleMaps": "https://maps.google.com/?cid=3773687155928136655"
+    },
+    "note": "楽天 67388，4 室，楽天最低 6,600 円；15 人組合 2/2：無、2/3：無；2/2 一間可住：4 人；じゃらん yad341055"
+  },
+  {
+    "key": "shima-neboya",
+    "name": {
+      "ja": "伊勢志摩　温泉掛け流しの宿　ねぼーや　志摩別邸"
+    },
+    "region": "shima-kokufu",
+    "category": "ryokan",
+    "status": "included",
+    "reason": null,
+    "pointId": "shima-neboya",
+    "ratings": {
+      "rakuten": 4.61,
+      "rakutenReviews": 353,
+      "google": 4.2,
+      "googleReviews": 239,
+      "jalan": 4.8,
+      "jalanReviews": 1617
+    },
+    "links": {
+      "googleMaps": "https://maps.google.com/?cid=1442389308072069358"
+    },
+    "note": "楽天 67420，9 室，楽天最低 22,660 円；15 人組合 2/2：無、2/3：無；2/2 一間可住：4 人；じゃらん yad342857"
+  },
+  {
+    "key": "shima-resort-park-tomoyama",
+    "name": {
+      "ja": "リゾートパーク　ともやま"
+    },
+    "region": "shima-tomoyama",
+    "category": "pension／民泊",
+    "status": "included",
+    "reason": null,
+    "pointId": "shima-resort-park-tomoyama",
+    "ratings": {
+      "rakuten": 4,
+      "rakutenReviews": 319,
+      "google": null,
+      "googleReviews": null,
+      "jalan": null,
+      "jalanReviews": null
+    },
+    "links": {
+      "googleMaps": "https://maps.google.com/?cid=2637377338850702748"
+    },
+    "note": "楽天 67913，18 室，楽天最低 6,930 円；15 人組合 2/2：5x3/4x4/3x5/2x8、2/3：5x3/4x4/3x5/2x8；2/2 一間可住：8 人；じゃらん yad345511"
+  },
+  {
+    "key": "shima-aqua-forest",
+    "name": {
+      "ja": "都リゾート　奥志摩　アクアフォレスト"
+    },
+    "region": "shima-tomoyama",
+    "category": "hotel",
+    "status": "included",
+    "reason": null,
+    "pointId": "shima-aqua-forest",
+    "ratings": {
+      "rakuten": 4.24,
+      "rakutenReviews": 3132,
+      "google": 4,
+      "googleReviews": 1372,
+      "jalan": 4.3,
+      "jalanReviews": 2205
+    },
+    "links": {
+      "googleMaps": "https://maps.google.com/?cid=2500419946184316378"
+    },
+    "note": "楽天 67941，127 室，楽天最低 10,600 円；15 人組合 2/2：5x3/4x4/3x5、2/3：5x3/4x4/3x5；2/2 一間可住：6 人；じゃらん yad349958"
+  },
+  {
+    "key": "shima-rakuten-70389",
+    "name": {
+      "ja": "農家民宿「源」"
+    },
+    "region": "shima-kokufu",
+    "category": "ryokan",
+    "status": "not-included",
+    "reason": "小型一棟貸し／民泊：楽天 2027-02-02 查「1 間 10／8／6 人」都沒有空房（容量不明或 2027 年方案未開）；沒有讀文",
+    "pointId": null,
+    "ratings": {
+      "rakuten": 4.83,
+      "rakutenReviews": 28,
+      "google": null,
+      "googleReviews": null,
+      "jalan": null,
+      "jalanReviews": null
+    },
+    "links": {},
+    "note": "楽天 70389，1 室，楽天最低 6,500 円；15 人組合 2/2：無、2/3：無；2/2 一間可住：無空房"
+  },
+  {
+    "key": "shima-kanko-bay-suites",
+    "name": {
+      "ja": "志摩観光ホテル　ザ　ベイスイート"
+    },
+    "region": "shima-kashikojima",
+    "category": "hotel",
+    "status": "included",
+    "reason": null,
+    "pointId": "shima-kanko-bay-suites",
+    "ratings": {
+      "rakuten": 4.88,
+      "rakutenReviews": 301,
+      "google": 4.6,
+      "googleReviews": 1683,
+      "jalan": 4.9,
+      "jalanReviews": 206
+    },
+    "links": {
+      "googleMaps": "https://maps.google.com/?cid=16211176179024320156"
+    },
+    "note": "楽天 105964，50 室，楽天最低 28,809 円；15 人組合 2/2：無、2/3：無；2/2 一間可住：4 人；じゃらん yad338802"
+  },
+  {
+    "key": "shima-rakuten-108192",
+    "name": {
+      "ja": "料理旅館　丸寅"
+    },
+    "region": "shima-anori",
+    "category": "ryokan",
+    "status": "not-included",
+    "reason": "10 室，15 人組合 2/2、2/3 都沒有空房；評分 4.14（楽天 22 則）、じゃらん 4.5／71 則，未達「4.3 以上、50 則以上、8 室以上」或「4.6 以上、50 則以上」，也不在第一晚的賢島・鵜方一帶；沒有讀文",
+    "pointId": null,
+    "ratings": {
+      "rakuten": 4.14,
+      "rakutenReviews": 22,
+      "google": null,
+      "googleReviews": null,
+      "jalan": 4.5,
+      "jalanReviews": 71
+    },
+    "links": {},
+    "note": "楽天 108192，10 室，楽天最低 19,800 円；15 人組合 2/2：無、2/3：無；2/2 一間可住：6 人；じゃらん yad334749"
+  },
+  {
+    "key": "shima-basaratei",
+    "name": {
+      "ja": "汀渚　ばさら邸"
+    },
+    "region": "shima-kashikojima",
+    "category": "ryokan",
+    "status": "excluded",
+    "reason": "讀文：楽天施設情報寫「お子様の宿泊を中学生から」，團裡 4 位 6～10 歲小孩不能住（判斷細則「所有方案限制學齡前不能住的排除」擴大到小學生；只有大人分組才可能，留給 T9g）。楽天 4.63／309、Google 4.4／487、じゃらん 4.4／883（筆記 dossiers/shima-basaratei.md）",
+    "pointId": null,
+    "ratings": {
+      "rakuten": 4.63,
+      "rakutenReviews": 309,
+      "google": 4.4,
+      "googleReviews": 487,
+      "jalan": 4.4,
+      "jalanReviews": 883
+    },
+    "links": {
+      "googleMaps": "https://maps.google.com/?cid=10033384969430321116"
+    },
+    "note": "楽天 108260，20 室，楽天最低 51,700 円；15 人組合 2/2：無、2/3：無；2/2 一間可住：4 人；じゃらん yad361058"
+  },
+  {
+    "key": "shima-rakuten-108683",
+    "name": {
+      "ja": "料理旅館　高曽"
+    },
+    "region": "shima-goza",
+    "category": "ryokan",
+    "status": "not-included",
+    "reason": "10 室，15 人組合 2/2、2/3 都沒有空房；評分 —（楽天 19 則），未達「4.3 以上、50 則以上、8 室以上」或「4.6 以上、50 則以上」，也不在第一晚的賢島・鵜方一帶；沒有讀文",
+    "pointId": null,
+    "ratings": {
+      "rakuten": null,
+      "rakutenReviews": 19,
+      "google": null,
+      "googleReviews": null,
+      "jalan": null,
+      "jalanReviews": null
+    },
+    "links": {},
+    "note": "楽天 108683，10 室；15 人組合 2/2：無、2/3：無；2/2 一間可住：無空房"
+  },
+  {
+    "key": "shima-therapy-resort",
+    "name": {
+      "ja": "セラピーリゾート伊勢志摩"
+    },
+    "region": "shima-anori",
+    "category": "hotel",
+    "status": "included",
+    "reason": null,
+    "pointId": "shima-therapy-resort",
+    "ratings": {
+      "rakuten": 4.93,
+      "rakutenReviews": 250,
+      "google": 4.4,
+      "googleReviews": 55,
+      "jalan": 4.9,
+      "jalanReviews": 148
+    },
+    "links": {
+      "googleMaps": "https://maps.google.com/?cid=13934231510455400455"
+    },
+    "note": "楽天 109444，5 室，楽天最低 19,800 円；15 人組合 2/2：無、2/3：無；2/2 一間可住：4 人；じゃらん yad357494"
+  },
+  {
+    "key": "shima-rakuten-109462",
+    "name": {
+      "ja": "素朴なおもてなしの宿　やまもと"
+    },
+    "region": "shima-kokufu",
+    "category": "ryokan",
+    "status": "not-included",
+    "reason": "4 室，15 人組合 2/2、2/3 都沒有空房；評分 5（楽天 11 則），評論不到 50 則，也不在第一晚的賢島・鵜方一帶；沒有讀文",
+    "pointId": null,
+    "ratings": {
+      "rakuten": 5,
+      "rakutenReviews": 11,
+      "google": null,
+      "googleReviews": null,
+      "jalan": null,
+      "jalanReviews": null
+    },
+    "links": {},
+    "note": "楽天 109462，4 室，楽天最低 12,800 円；15 人組合 2/2：無、2/3：無；2/2 一間可住：無空房"
+  },
+  {
+    "key": "shima-business-hotel-fuji",
+    "name": {
+      "ja": "ビジネスホテル藤"
+    },
+    "region": "shima-ugata",
+    "category": "hotel",
+    "status": "included",
+    "reason": null,
+    "pointId": "shima-business-hotel-fuji",
+    "ratings": {
+      "rakuten": 3.96,
+      "rakutenReviews": 313,
+      "google": 3.6,
+      "googleReviews": 101,
+      "jalan": 4.3,
+      "jalanReviews": 201
+    },
+    "links": {
+      "googleMaps": "https://maps.google.com/?cid=1993285495210129812"
+    },
+    "note": "楽天 128302，22 室，楽天最低 6,050 円；15 人組合 2/2：無、2/3：無；2/2 一間可住：2 人；じゃらん yad342770"
+  },
+  {
+    "key": "shima-rakuten-128360",
+    "name": {
+      "ja": "お宿　恋波"
+    },
+    "region": "shima-kokufu",
+    "category": "pension／民泊",
+    "status": "not-included",
+    "reason": "4 室，15 人組合 2/2、2/3 都沒有空房；評分 3.8（楽天 34 則），未達「4.3 以上、50 則以上、8 室以上」或「4.6 以上、50 則以上」，也不在第一晚的賢島・鵜方一帶；沒有讀文",
+    "pointId": null,
+    "ratings": {
+      "rakuten": 3.8,
+      "rakutenReviews": 34,
+      "google": null,
+      "googleReviews": null,
+      "jalan": null,
+      "jalanReviews": null
+    },
+    "links": {},
+    "note": "楽天 128360，4 室，楽天最低 1,900 円；15 人組合 2/2：無、2/3：無；2/2 一間可住：無空房；じゃらん yad341126"
+  },
+  {
+    "key": "shima-fukushio",
+    "name": {
+      "ja": "料理旅館　富久潮"
+    },
+    "region": "shima-kokufu",
+    "category": "ryokan",
+    "status": "included",
+    "reason": null,
+    "pointId": "shima-fukushio",
+    "ratings": {
+      "rakuten": 4.63,
+      "rakutenReviews": 45,
+      "google": 4.5,
+      "googleReviews": 24,
+      "jalan": null,
+      "jalanReviews": null
+    },
+    "links": {
+      "googleMaps": "https://maps.google.com/?cid=12959129900314083295"
+    },
+    "note": "楽天 128552，12 室，楽天最低 18,700 円；15 人組合 2/2：4x4、2/3：4x4；2/2 一間可住：4 人"
+  },
+  {
+    "key": "shima-rakuten-129615",
+    "name": {
+      "ja": "海辺の宿　志摩椿"
+    },
+    "region": "shima-wagu",
+    "category": "pension／民泊",
+    "status": "not-included",
+    "reason": "5 室，15 人組合 2/2、2/3 都沒有空房；評分 —（楽天 0 則），未達「4.3 以上、50 則以上、8 室以上」或「4.6 以上、50 則以上」，也不在第一晚的賢島・鵜方一帶；沒有讀文",
+    "pointId": null,
+    "ratings": {
+      "rakuten": null,
+      "rakutenReviews": null,
+      "google": null,
+      "googleReviews": null,
+      "jalan": null,
+      "jalanReviews": null
+    },
+    "links": {},
+    "note": "楽天 129615，5 室；15 人組合 2/2：無、2/3：無；2/2 一間可住：無空房"
+  },
+  {
+    "key": "shima-rakuten-129990",
+    "name": {
+      "ja": "Ｔａｂｉｓｔ　ステーションホテル磯部　伊勢志摩"
+    },
+    "region": "shima-isobe",
+    "category": "hotel",
+    "status": "excluded",
+    "reason": "§5.7：評論 10 則以上的評分來源都低於 3.8（楽天 3.65／101 則、Google 3.6／91 則、じゃらん沒有分數）",
+    "pointId": null,
+    "ratings": {
+      "rakuten": 3.65,
+      "rakutenReviews": 101,
+      "google": 3.6,
+      "googleReviews": 91,
+      "jalan": null,
+      "jalanReviews": null
+    },
+    "links": {
+      "googleMaps": "https://maps.google.com/?cid=5098619443070370447"
+    },
+    "note": "楽天 129990，20 室；15 人組合 2/2：無、2/3：無；2/2 一間可住：無空房"
+  },
+  {
+    "key": "shima-hikobe",
+    "name": {
+      "ja": "ハートフル　ひこべ"
+    },
+    "region": "shima-ugata",
+    "category": "ryokan",
+    "status": "included",
+    "reason": null,
+    "pointId": "shima-hikobe",
+    "ratings": {
+      "rakuten": 4.75,
+      "rakutenReviews": 37,
+      "google": 4.1,
+      "googleReviews": 29,
+      "jalan": null,
+      "jalanReviews": null
+    },
+    "links": {
+      "googleMaps": "https://maps.google.com/?cid=8157077732137536141"
+    },
+    "note": "楽天 134852，13 室，楽天最低 13,500 円；15 人組合 2/2：3x5、2/3：3x5；2/2 一間可住：6 人；じゃらん yad310171"
+  },
+  {
+    "key": "shima-rakuten-134855",
+    "name": {
+      "ja": "中井荘"
+    },
+    "region": "shima-hamajima",
+    "category": "ryokan",
+    "status": "excluded",
+    "reason": "§5.7：評論 10 則以上的評分來源都低於 3.8（楽天 2.89／24 則、Google 2.9／24 則、じゃらん沒有分數）",
+    "pointId": null,
+    "ratings": {
+      "rakuten": 2.89,
+      "rakutenReviews": 24,
+      "google": 2.9,
+      "googleReviews": 24,
+      "jalan": null,
+      "jalanReviews": null
+    },
+    "links": {
+      "googleMaps": "https://maps.google.com/?cid=2357858601931959011"
+    },
+    "note": "楽天 134855，6 室，楽天最低 5,500 円；15 人組合 2/2：5x3/4x4、2/3：5x3/4x4；2/2 一間可住：4 人"
+  },
+  {
+    "key": "shima-rakuten-134856",
+    "name": {
+      "ja": "松阪屋別館"
+    },
+    "region": "shima-hamajima",
+    "category": "ryokan",
+    "status": "not-included",
+    "reason": "7 室，15 人組合 2/2、2/3 都沒有空房；評分 —（楽天 0 則），未達「4.3 以上、50 則以上、8 室以上」或「4.6 以上、50 則以上」，也不在第一晚的賢島・鵜方一帶；沒有讀文",
+    "pointId": null,
+    "ratings": {
+      "rakuten": null,
+      "rakutenReviews": null,
+      "google": null,
+      "googleReviews": null,
+      "jalan": null,
+      "jalanReviews": null
+    },
+    "links": {},
+    "note": "楽天 134856，7 室；15 人組合 2/2：無、2/3：無；2/2 一間可住：無空房"
+  },
+  {
+    "key": "shima-oedo-iseshima",
+    "name": {
+      "ja": "大江戸温泉物語Ｐｒｅｍｉｕｍ　伊勢志摩"
+    },
+    "region": "shima-hamajima",
+    "category": "ryokan",
+    "status": "included",
+    "reason": null,
+    "pointId": "shima-oedo-iseshima",
+    "ratings": {
+      "rakuten": 4.15,
+      "rakutenReviews": 1144,
+      "google": 3.9,
+      "googleReviews": 1749,
+      "jalan": 4.3,
+      "jalanReviews": 1854
+    },
+    "links": {
+      "googleMaps": "https://maps.google.com/?cid=12781768572398887161"
+    },
+    "note": "楽天 137490，83 室，楽天最低 11,400 円；15 人組合 2/2：5x3/4x4/3x5、2/3：5x3/4x4/3x5；2/2 一間可住：10 人；じゃらん yad321110"
+  },
+  {
+    "key": "shima-rakuten-139411",
+    "name": {
+      "ja": "ルースターテール　シークレット（ＲｏｏｓｔｅｒＴａｉｌ　ＳＥＣＲＥＴ）"
+    },
+    "region": "shima-kokufu",
+    "category": "pension／民泊",
+    "status": "not-included",
+    "reason": "小型一棟貸し／民泊：楽天 2027-02-02 查「1 間 10／8／6 人」都沒有空房（容量不明或 2027 年方案未開）；沒有讀文",
+    "pointId": null,
+    "ratings": {
+      "rakuten": null,
+      "rakutenReviews": null,
+      "google": null,
+      "googleReviews": null,
+      "jalan": null,
+      "jalanReviews": null
+    },
+    "links": {},
+    "note": "楽天 139411，2 室；15 人組合 2/2：無、2/3：無；2/2 一間可住：無空房"
+  },
+  {
+    "key": "shima-rakuten-139897",
+    "name": {
+      "ja": "民宿　松ヶ枝屋"
+    },
+    "region": "shima-tomoyama",
+    "category": "ryokan",
+    "status": "not-included",
+    "reason": "5 室，15 人組合 2/2、2/3 都沒有空房；評分 4.6（楽天 23 則），評論不到 50 則，也不在第一晚的賢島・鵜方一帶；沒有讀文",
+    "pointId": null,
+    "ratings": {
+      "rakuten": 4.6,
+      "rakutenReviews": 23,
+      "google": null,
+      "googleReviews": null,
+      "jalan": null,
+      "jalanReviews": null
+    },
+    "links": {},
+    "note": "楽天 139897，5 室，楽天最低 4,000 円；15 人組合 2/2：無、2/3：無；2/2 一間可住：無空房；じゃらん yad364470"
+  },
+  {
+    "key": "shima-oonami",
+    "name": {
+      "ja": "くつろぎの小さな宿おおなみ"
+    },
+    "region": "shima-anori",
+    "category": "ryokan",
+    "status": "included",
+    "reason": null,
+    "pointId": "shima-oonami",
+    "ratings": {
+      "rakuten": 4.81,
+      "rakutenReviews": 55,
+      "google": 4.8,
+      "googleReviews": 61,
+      "jalan": null,
+      "jalanReviews": null
+    },
+    "links": {
+      "googleMaps": "https://maps.google.com/?cid=16560943870457082864"
+    },
+    "note": "楽天 139963，5 室，楽天最低 19,800 円；15 人組合 2/2：無、2/3：無；2/2 一間可住：2 人"
+  },
+  {
+    "key": "shima-saichoraku",
+    "name": {
+      "ja": "大江戸温泉物語Ｐｒｅｍｉｕｍ　志摩彩朝楽"
+    },
+    "region": "shima-kashikojima",
+    "category": "ryokan",
+    "status": "included",
+    "reason": null,
+    "pointId": "shima-saichoraku",
+    "ratings": {
+      "rakuten": 3.83,
+      "rakutenReviews": 1167,
+      "google": 3.6,
+      "googleReviews": 1574,
+      "jalan": 3.8,
+      "jalanReviews": 1268
+    },
+    "links": {
+      "googleMaps": "https://maps.google.com/?cid=1717074060645530770"
+    },
+    "note": "楽天 142676，100 室，楽天最低 10,300 円；15 人組合 2/2：無、2/3：5x3/4x4/3x5；2/2 一間可住：無空房；じゃらん yad338676"
+  },
+  {
+    "key": "shima-rakuten-142677",
+    "name": {
+      "ja": "ゲストハウス　志摩サンライズ"
+    },
+    "region": "shima-daio",
+    "category": "pension／民泊",
+    "status": "not-included",
+    "reason": "ゲストハウス（背包客棧型；楽天 3.63／47、じゃらん 3.9／66），不適合有長輩的團體；沒有讀文",
+    "pointId": null,
+    "ratings": {
+      "rakuten": 3.63,
+      "rakutenReviews": 47,
+      "google": null,
+      "googleReviews": null,
+      "jalan": 3.9,
+      "jalanReviews": 66
+    },
+    "links": {},
+    "note": "楽天 142677，9 室，楽天最低 3,000 円；15 人組合 2/2：無、2/3：無；2/2 一間可住：4 人；じゃらん yad394076"
+  },
+  {
+    "key": "shima-nemu-resort",
+    "name": {
+      "ja": "ＮＥＭＵ　ＲＥＳＯＲＴ（ネムリゾート）２０２６年４月１８日リニューアルオープン"
+    },
+    "region": "shima-sakko",
+    "category": "hotel",
+    "status": "included",
+    "reason": null,
+    "pointId": "shima-nemu-resort",
+    "ratings": {
+      "rakuten": 4.5,
+      "rakutenReviews": 484,
+      "google": 4.2,
+      "googleReviews": 976,
+      "jalan": 4.6,
+      "jalanReviews": 464
+    },
+    "links": {
+      "googleMaps": "https://maps.google.com/?cid=9136303781188342853"
+    },
+    "note": "楽天 147923，86 室，楽天最低 6,897 円；15 人組合 2/2：5x3/4x4、2/3：5x3/4x4；2/2 一間可住：6 人；じゃらん yad331417"
+  },
+  {
+    "key": "shima-rakuten-148899",
+    "name": {
+      "ja": "伊勢志摩の心温まる料理宿　ひろおか荘"
+    },
+    "region": "shima-kokufu",
+    "category": "ryokan",
+    "status": "not-included",
+    "reason": "5 室，15 人組合 2/2、2/3 都沒有空房；評分 4.31（楽天 39 則），未達「4.3 以上、50 則以上、8 室以上」或「4.6 以上、50 則以上」，也不在第一晚的賢島・鵜方一帶；沒有讀文",
+    "pointId": null,
+    "ratings": {
+      "rakuten": 4.31,
+      "rakutenReviews": 39,
+      "google": null,
+      "googleReviews": null,
+      "jalan": null,
+      "jalanReviews": null
+    },
+    "links": {},
+    "note": "楽天 148899，5 室，楽天最低 3,000 円；15 人組合 2/2：無、2/3：無；2/2 一間可住：4 人"
+  },
+  {
+    "key": "shima-rakuten-149383",
+    "name": {
+      "ja": "伊勢志摩プチシャンブル"
+    },
+    "region": "shima-isobe",
+    "category": "pension／民泊",
+    "status": "not-included",
+    "reason": "小型一棟貸し／民泊：楽天 2027-02-02 查「1 間 10／8／6 人」都沒有空房（容量不明或 2027 年方案未開）；沒有讀文",
+    "pointId": null,
+    "ratings": {
+      "rakuten": null,
+      "rakutenReviews": 3,
+      "google": null,
+      "googleReviews": null,
+      "jalan": null,
+      "jalanReviews": null
+    },
+    "links": {},
+    "note": "楽天 149383，3 室，楽天最低 5,500 円；15 人組合 2/2：無、2/3：無；2/2 一間可住：無空房；じゃらん yad384247"
+  },
+  {
+    "key": "shima-shunka",
+    "name": {
+      "ja": "ホテル旬香　伊勢志摩リゾート"
+    },
+    "region": "shima-kokufu",
+    "category": "hotel",
+    "status": "included",
+    "reason": null,
+    "pointId": "shima-shunka",
+    "ratings": {
+      "rakuten": 4.47,
+      "rakutenReviews": 64,
+      "google": 4.4,
+      "googleReviews": 223,
+      "jalan": null,
+      "jalanReviews": null
+    },
+    "links": {
+      "googleMaps": "https://maps.google.com/?cid=15290732935309405626"
+    },
+    "note": "楽天 151115，16 室，楽天最低 14,520 円；15 人組合 2/2：無、2/3：5x3/4x4/3x5/2x8；2/2 一間可住：無空房；じゃらん yad374282"
+  },
+  {
+    "key": "shima-nocturne-no-mori",
+    "name": {
+      "ja": "ノクターンの森　志摩　ｂｙ　ＲＩＯＨＯＴＥＬＳ（旧：フィオーレ志摩）"
+    },
+    "region": "shima-ugata",
+    "category": "hotel",
+    "status": "included",
+    "reason": null,
+    "pointId": "shima-nocturne-no-mori",
+    "ratings": {
+      "rakuten": 4.39,
+      "rakutenReviews": 852,
+      "google": 4.3,
+      "googleReviews": 312,
+      "jalan": 4.6,
+      "jalanReviews": 262
+    },
+    "links": {
+      "googleMaps": "https://maps.google.com/?cid=10268265578103643069"
+    },
+    "note": "楽天 151475，32 室，楽天最低 4,750 円；15 人組合 2/2：5x3/4x4/3x5、2/3：5x3/4x4/3x5；2/2 一間可住：6 人；じゃらん yad373882"
+  },
+  {
+    "key": "shima-rakuten-153616",
+    "name": {
+      "ja": "漁師と仲買人の宿　華夕閣"
+    },
+    "region": "shima-kokufu",
+    "category": "ryokan",
+    "status": "excluded",
+    "reason": "§5.7：評論 10 則以上的評分來源都低於 3.8（楽天 2.5／106 則、Google 3.5／60 則、じゃらん沒有分數）",
+    "pointId": null,
+    "ratings": {
+      "rakuten": 2.5,
+      "rakutenReviews": 106,
+      "google": 3.5,
+      "googleReviews": 60,
+      "jalan": null,
+      "jalanReviews": null
+    },
+    "links": {
+      "googleMaps": "https://maps.google.com/?cid=13681188043829125269"
+    },
+    "note": "楽天 153616，9 室，楽天最低 4,000 円；15 人組合 2/2：無、2/3：無；2/2 一間可住：無空房"
+  },
+  {
+    "key": "shima-rakuten-158451",
+    "name": {
+      "ja": "岬の宿　磯崎"
+    },
+    "region": "shima-anori",
+    "category": "ryokan",
+    "status": "not-included",
+    "reason": "5 室，15 人組合 2/2、2/3 都沒有空房；評分 4.56（楽天 21 則），未達「4.3 以上、50 則以上、8 室以上」或「4.6 以上、50 則以上」，也不在第一晚的賢島・鵜方一帶；沒有讀文",
+    "pointId": null,
+    "ratings": {
+      "rakuten": 4.56,
+      "rakutenReviews": 21,
+      "google": null,
+      "googleReviews": null,
+      "jalan": null,
+      "jalanReviews": null
+    },
+    "links": {},
+    "note": "楽天 158451，5 室，楽天最低 12,000 円；15 人組合 2/2：無、2/3：無；2/2 一間可住：4 人；じゃらん yad307323"
+  },
+  {
+    "key": "shima-hotel-bay-garden",
+    "name": {
+      "ja": "賢島・ホテルベイガーデン"
+    },
+    "region": "shima-kashikojima",
+    "category": "hotel",
+    "status": "included",
+    "reason": null,
+    "pointId": "shima-hotel-bay-garden",
+    "ratings": {
+      "rakuten": 4.02,
+      "rakutenReviews": 354,
+      "google": 4.3,
+      "googleReviews": 255,
+      "jalan": 4.4,
+      "jalanReviews": 209
+    },
+    "links": {
+      "googleMaps": "https://maps.google.com/?cid=10250513279871879338"
+    },
+    "note": "楽天 166181，29 室，楽天最低 4,800 円；15 人組合 2/2：無、2/3：無；2/2 一間可住：4 人；じゃらん yad331214"
+  },
+  {
+    "key": "shima-rakuten-166361",
+    "name": {
+      "ja": "佳景の宿　かねよ"
+    },
+    "region": "shima-anori",
+    "category": "pension／民泊",
+    "status": "not-included",
+    "reason": "4 室，15 人組合 2/2、2/3 都沒有空房；評分 4.89（楽天 19 則），評論不到 50 則，也不在第一晚的賢島・鵜方一帶；沒有讀文",
+    "pointId": null,
+    "ratings": {
+      "rakuten": 4.89,
+      "rakutenReviews": 19,
+      "google": null,
+      "googleReviews": null,
+      "jalan": null,
+      "jalanReviews": null
+    },
+    "links": {},
+    "note": "楽天 166361，4 室，楽天最低 18,000 円；15 人組合 2/2：無、2/3：無；2/2 一間可住：無空房"
+  },
+  {
+    "key": "shima-boat-house",
+    "name": {
+      "ja": "ＳＨＩＭＡ　ＢＯＡＴ　ＨＯＵＳＥ"
+    },
+    "region": "shima-kashikojima",
+    "category": "pension／民泊",
+    "status": "excluded",
+    "reason": "§5.7：評論 10 則以上的評分來源都低於 3.8（楽天沒有評分、Google 3.6／20 則、じゃらん沒有）。一棟貸し（舊旅館改裝 7 室，國交省資料寫最多 20～24 人），是賢島一帶唯一可能讓 15 人同住一棟的；楽天 2/2 查「1 間 10／8／6 人」都沒空房。有讀文筆記（dossiers/shima-boat-house.md），留給 T9g 和 👤 決定要不要破例",
+    "pointId": null,
+    "ratings": {
+      "rakuten": null,
+      "rakutenReviews": null,
+      "google": 3.6,
+      "googleReviews": 20,
+      "jalan": null,
+      "jalanReviews": null
+    },
+    "links": {
+      "googleMaps": "https://maps.google.com/?cid=10480314132367996125"
+    },
+    "note": "楽天 167470，1 室；15 人組合 2/2：無、2/3：無；2/2 一間可住：無空房"
+  },
+  {
+    "key": "shima-bb-forest",
+    "name": {
+      "ja": "Ｂ＆Ｂフォレスト志摩"
+    },
+    "region": "shima-sakko",
+    "category": "pension／民泊",
+    "status": "pending",
+    "reason": "讀文：楽天方案一覽「現在予約可能なプランがありません」、Google 地點頁顯示閉業或臨時休業字樣，營業狀態不明（判斷細則：營業狀態不明的標 pending）；楽天 5.00／89、Google 4.7／69（筆記 dossiers/shima-bb-forest.md）",
+    "pointId": null,
+    "ratings": {
+      "rakuten": 5,
+      "rakutenReviews": 89,
+      "google": null,
+      "googleReviews": null,
+      "jalan": null,
+      "jalanReviews": null
+    },
+    "links": {},
+    "note": "楽天 167684，12 室；15 人組合 2/2：無、2/3：無；2/2 一間可住：無空房"
+  },
+  {
+    "key": "shima-rakuten-167880",
+    "name": {
+      "ja": "ＧＲＡＮＰ　ＧＬＡＭＰＩＮＧ　ＲＥＳＯＲＴ（グランパ　グランピング　リゾート）"
+    },
+    "region": "shima-kashikojima",
+    "category": "hotel",
+    "status": "not-included",
+    "reason": "グランピング（21 棟），2 月夜間冷、長輩不便；15 人組合、2/2 所有人數都沒空房，沒有讀文",
+    "pointId": null,
+    "ratings": {
+      "rakuten": 4.08,
+      "rakutenReviews": 74,
+      "google": null,
+      "googleReviews": null,
+      "jalan": null,
+      "jalanReviews": null
+    },
+    "links": {},
+    "note": "楽天 167880，21 室；15 人組合 2/2：無、2/3：無；2/2 一間可住：無空房"
+  },
+  {
+    "key": "shima-rakuten-168409",
+    "name": {
+      "ja": "Ｒｅａｌ"
+    },
+    "region": "shima-sakko",
+    "category": "pension／民泊",
+    "status": "not-included",
+    "reason": "小型一棟貸し／民泊：楽天 2027-02-02 查「1 間 10／8／6 人」都沒有空房（容量不明或 2027 年方案未開）；沒有讀文",
+    "pointId": null,
+    "ratings": {
+      "rakuten": null,
+      "rakutenReviews": null,
+      "google": null,
+      "googleReviews": null,
+      "jalan": null,
+      "jalanReviews": null
+    },
+    "links": {},
+    "note": "楽天 168409，1 室；15 人組合 2/2：無、2/3：無；2/2 一間可住：無空房"
+  },
+  {
+    "key": "shima-rakuten-168931",
+    "name": {
+      "ja": "伊勢志摩でペットＯＫのコテージ　ＳＨＩＭＡ　ＩＲＩＥ　ＨＯＵＳＥ（アイリーハウス）"
+    },
+    "region": "shima-kashikojima",
+    "category": "pension／民泊",
+    "status": "not-included",
+    "reason": "一棟貸し（觀光三重寫最多 12 人，WebSearch 摘要）：楽天 2027-02-02 查「1 間 10／8／6／4／2 人」都沒有空房（2027 年方案可能未開），15 人住不下；沒有讀文",
+    "pointId": null,
+    "ratings": {
+      "rakuten": null,
+      "rakutenReviews": null,
+      "google": null,
+      "googleReviews": null,
+      "jalan": null,
+      "jalanReviews": null
+    },
+    "links": {},
+    "note": "楽天 168931，1 室；15 人組合 2/2：無、2/3：無；2/2 一間可住：無空房"
+  },
+  {
+    "key": "shima-rakuten-169087",
+    "name": {
+      "ja": "Ｇｏｕｒｍｅｔｐｅｎｓｉｏｎ　Ａｏｉｕｍｉ"
+    },
+    "region": "shima-hamajima",
+    "category": "pension／民泊",
+    "status": "not-included",
+    "reason": "8 室，15 人組合 2/2、2/3 都沒有空房；評分 —（楽天 0 則），未達「4.3 以上、50 則以上、8 室以上」或「4.6 以上、50 則以上」，也不在第一晚的賢島・鵜方一帶；沒有讀文",
+    "pointId": null,
+    "ratings": {
+      "rakuten": null,
+      "rakutenReviews": null,
+      "google": null,
+      "googleReviews": null,
+      "jalan": null,
+      "jalanReviews": null
+    },
+    "links": {},
+    "note": "楽天 169087，8 室；15 人組合 2/2：無、2/3：無；2/2 一間可住：無空房"
+  },
+  {
+    "key": "shima-rakuten-171495",
+    "name": {
+      "ja": "ＩＳＵ　ＢＡＳＥ／民泊"
+    },
+    "region": "shima-ugata",
+    "category": "pension／民泊",
+    "status": "not-included",
+    "reason": "小型一棟貸し／民泊：楽天 2027-02-02 查「1 間 10／8／6 人」都沒有空房（容量不明或 2027 年方案未開）；沒有讀文",
+    "pointId": null,
+    "ratings": {
+      "rakuten": null,
+      "rakutenReviews": null,
+      "google": null,
+      "googleReviews": null,
+      "jalan": null,
+      "jalanReviews": null
+    },
+    "links": {},
+    "note": "楽天 171495，1 室，楽天最低 12,946 円；15 人組合 2/2：無、2/3：無；2/2 一間可住：無空房"
+  },
+  {
+    "key": "shima-rakuten-172723",
+    "name": {
+      "ja": "民宿弁当やっ古"
+    },
+    "region": "shima-ugata",
+    "category": "ryokan",
+    "status": "not-included",
+    "reason": "4 室，15 人組合 2/2、2/3 都沒有空房；評分 —（楽天 2 則），未達「4.3 以上、50 則以上、8 室以上」或「4.6 以上、50 則以上」，也不在第一晚的賢島・鵜方一帶；沒有讀文",
+    "pointId": null,
+    "ratings": {
+      "rakuten": null,
+      "rakutenReviews": 2,
+      "google": null,
+      "googleReviews": null,
+      "jalan": null,
+      "jalanReviews": null
+    },
+    "links": {},
+    "note": "楽天 172723，4 室，楽天最低 4,000 円；15 人組合 2/2：無、2/3：無；2/2 一間可住：6 人；じゃらん yad399550"
+  },
+  {
+    "key": "shima-ichiraku-onsen",
+    "name": {
+      "ja": "一楽温泉ホテル"
+    },
+    "region": "shima-wagu",
+    "category": "hotel",
+    "status": "included",
+    "reason": null,
+    "pointId": "shima-ichiraku-onsen",
+    "ratings": {
+      "rakuten": 4.26,
+      "rakutenReviews": 63,
+      "google": 4.4,
+      "googleReviews": 78,
+      "jalan": 4.6,
+      "jalanReviews": 144
+    },
+    "links": {
+      "googleMaps": "https://maps.google.com/?cid=3481688737457633644"
+    },
+    "note": "楽天 172942，14 室，楽天最低 6,500 円；15 人組合 2/2：無、2/3：無；2/2 一間可住：無空房；じゃらん yad377885"
+  },
+  {
+    "key": "shima-rakuten-174103",
+    "name": {
+      "ja": "ログコテージはた／民泊"
+    },
+    "region": "shima-ugata",
+    "category": "pension／民泊",
+    "status": "not-included",
+    "reason": "小型一棟貸し／民泊：楽天 2027-02-02 查「1 間 10／8／6 人」都沒有空房（容量不明或 2027 年方案未開）；沒有讀文",
+    "pointId": null,
+    "ratings": {
+      "rakuten": null,
+      "rakutenReviews": null,
+      "google": null,
+      "googleReviews": null,
+      "jalan": null,
+      "jalanReviews": null
+    },
+    "links": {},
+    "note": "楽天 174103，1 室；15 人組合 2/2：無、2/3：無；2/2 一間可住：無空房"
+  },
+  {
+    "key": "shima-shimawaso",
+    "name": {
+      "ja": "志摩和荘"
+    },
+    "region": "shima-ugata",
+    "category": "pension／民泊",
+    "status": "included",
+    "reason": null,
+    "pointId": "shima-shimawaso",
+    "ratings": {
+      "rakuten": 4.2,
+      "rakutenReviews": 56,
+      "google": 3.6,
+      "googleReviews": 37,
+      "jalan": 4.4,
+      "jalanReviews": 168
+    },
+    "links": {
+      "googleMaps": "https://maps.google.com/?cid=15461237563294042121"
+    },
+    "note": "楽天 176725，6 室，楽天最低 3,000 円；15 人組合 2/2：5x3/4x4、2/3：5x3/4x4；2/2 一間可住：6 人；じゃらん yad343552"
+  },
+  {
+    "key": "shima-kabuku-resort",
+    "name": {
+      "ja": "Ｋａｂｕｋｕ　Ｒｅｓｏｒｔ"
+    },
+    "region": "shima-kokufu",
+    "category": "pension／民泊",
+    "status": "included",
+    "reason": null,
+    "pointId": "shima-kabuku-resort",
+    "ratings": {
+      "rakuten": 3.96,
+      "rakutenReviews": 69,
+      "google": 4.1,
+      "googleReviews": 63,
+      "jalan": null,
+      "jalanReviews": null
+    },
+    "links": {
+      "googleMaps": "https://maps.google.com/?cid=3576074641729507689"
+    },
+    "note": "楽天 177971，8 室，楽天最低 5,300 円；15 人組合 2/2：4x4/3x5、2/3：4x4/3x5；2/2 一間可住：8 人"
+  },
+  {
+    "key": "shima-villa-daio",
+    "name": {
+      "ja": "Ｔａｂｉｓｔ　ヴィラダイオーリゾート　伊勢志摩"
+    },
+    "region": "shima-tomoyama",
+    "category": "hotel",
+    "status": "included",
+    "reason": null,
+    "pointId": "shima-villa-daio",
+    "ratings": {
+      "rakuten": 4.08,
+      "rakutenReviews": 35,
+      "google": 4.5,
+      "googleReviews": 105,
+      "jalan": null,
+      "jalanReviews": null
+    },
+    "links": {
+      "googleMaps": "https://maps.google.com/?cid=420662562356104962"
+    },
+    "note": "楽天 178448，10 室，楽天最低 4,200 円；15 人組合 2/2：5x3/4x4/3x5、2/3：5x3/4x4/3x5；2/2 一間可住：4 人；じゃらん yad356622"
+  },
+  {
+    "key": "shima-rakuten-180007",
+    "name": {
+      "ja": "料理旅館ひさだ"
+    },
+    "region": "shima-anori",
+    "category": "ryokan",
+    "status": "not-included",
+    "reason": "12 室，15 人組合 2/2、2/3 都沒有空房；評分 4（楽天 8 則），未達「4.3 以上、50 則以上、8 室以上」或「4.6 以上、50 則以上」，也不在第一晚的賢島・鵜方一帶；沒有讀文",
+    "pointId": null,
+    "ratings": {
+      "rakuten": 4,
+      "rakutenReviews": 8,
+      "google": null,
+      "googleReviews": null,
+      "jalan": null,
+      "jalanReviews": null
+    },
+    "links": {},
+    "note": "楽天 180007，12 室，楽天最低 19,200 円；15 人組合 2/2：無、2/3：無；2/2 一間可住：無空房"
+  },
+  {
+    "key": "shima-rakuten-180469",
+    "name": {
+      "ja": "シーズンインアミーゴス"
+    },
+    "region": "shima-spain",
+    "category": "hotel",
+    "status": "not-included",
+    "reason": "志摩スペイン村旁的飯店（楽天 3.91／114）：2/2、2/3 沒有任何空房（休園期間），沒有讀文",
+    "pointId": null,
+    "ratings": {
+      "rakuten": 3.91,
+      "rakutenReviews": 114,
+      "google": null,
+      "googleReviews": null,
+      "jalan": null,
+      "jalanReviews": null
+    },
+    "links": {},
+    "note": "楽天 180469，106 室；15 人組合 2/2：無、2/3：無；2/2 一間可住：無空房"
+  },
+  {
+    "key": "shima-log-anori",
+    "name": {
+      "ja": "ＬＯＧ"
+    },
+    "region": "shima-anori",
+    "category": "pension／民泊",
+    "status": "included",
+    "reason": null,
+    "pointId": "shima-log-anori",
+    "ratings": {
+      "rakuten": null,
+      "rakutenReviews": 3,
+      "google": 3.8,
+      "googleReviews": 4,
+      "jalan": null,
+      "jalanReviews": null
+    },
+    "links": {
+      "googleMaps": "https://maps.google.com/?cid=17974993286291856197"
+    },
+    "note": "楽天 181598，1 室，楽天最低 5,660 円；15 人組合 2/2：無、2/3：無；2/2 一間可住：10 人"
+  },
+  {
+    "key": "shima-villa-ryusei",
+    "name": {
+      "ja": "全室露天風呂付き！たった９室だけの伊勢志摩リゾートヴィラ　伊勢志摩・賢島｜Ｖｉｌｌａ　Ｒｙｕｓｅｉ"
+    },
+    "region": "shima-kashikojima",
+    "category": "hotel",
+    "status": "included",
+    "reason": null,
+    "pointId": "shima-villa-ryusei",
+    "ratings": {
+      "rakuten": 4.38,
+      "rakutenReviews": 86,
+      "google": 4.2,
+      "googleReviews": 60,
+      "jalan": null,
+      "jalanReviews": null
+    },
+    "links": {
+      "googleMaps": "https://maps.google.com/?cid=8507857770425951803"
+    },
+    "note": "楽天 182365，9 室，楽天最低 17,850 円；15 人組合 2/2：無、2/3：無；2/2 一間可住：無空房"
+  },
+  {
+    "key": "shima-yadokari",
+    "name": {
+      "ja": "やどかり志摩"
+    },
+    "region": "shima-other",
+    "category": "pension／民泊",
+    "status": "included",
+    "reason": null,
+    "pointId": "shima-yadokari",
+    "ratings": {
+      "rakuten": null,
+      "rakutenReviews": null,
+      "google": 4,
+      "googleReviews": 6,
+      "jalan": null,
+      "jalanReviews": null
+    },
+    "links": {
+      "googleMaps": "https://maps.google.com/?cid=10446467054877278379"
+    },
+    "note": "楽天 183148，1 室，楽天最低 10,980 円；15 人組合 2/2：無、2/3：無；2/2 一間可住：10 人"
+  },
+  {
+    "key": "shima-umibe",
+    "name": {
+      "ja": "ＵＭＩＢＥ　ＩｓｅＳｈｉｍａ"
+    },
+    "region": "shima-tomoyama",
+    "category": "hotel",
+    "status": "included",
+    "reason": null,
+    "pointId": "shima-umibe",
+    "ratings": {
+      "rakuten": null,
+      "rakutenReviews": null,
+      "google": 4.8,
+      "googleReviews": 33,
+      "jalan": null,
+      "jalanReviews": null
+    },
+    "links": {
+      "googleMaps": "https://maps.google.com/?cid=3943889506979948615"
+    },
+    "note": "楽天 184799，1 室，楽天最低 16,400 円；15 人組合 2/2：無、2/3：無；2/2 一間可住：10 人；じゃらん yad398772"
+  },
+  {
+    "key": "shima-rakuten-186561",
+    "name": {
+      "ja": "ログハウスはた"
+    },
+    "region": "shima-ugata",
+    "category": "pension／民泊",
+    "status": "not-included",
+    "reason": "小型一棟貸し／民泊：楽天 2027-02-02 查「1 間 10／8／6 人」都沒有空房（容量不明或 2027 年方案未開）；沒有讀文",
+    "pointId": null,
+    "ratings": {
+      "rakuten": null,
+      "rakutenReviews": null,
+      "google": null,
+      "googleReviews": null,
+      "jalan": null,
+      "jalanReviews": null
+    },
+    "links": {},
+    "note": "楽天 186561，1 室，楽天最低 6,496 円；15 人組合 2/2：無、2/3：無；2/2 一間可住：4 人"
+  },
+  {
+    "key": "shima-rakuten-186865",
+    "name": {
+      "ja": "シーサイドガレージ志摩"
+    },
+    "region": "shima-daio",
+    "category": "pension／民泊",
+    "status": "not-included",
+    "reason": "小型一棟貸し／民泊：楽天 2027-02-02 查「1 間 10／8／6 人」最多 6 人有空房，15 人住不下，也不在第一晚的賢島・鵜方一帶；沒有讀文",
+    "pointId": null,
+    "ratings": {
+      "rakuten": null,
+      "rakutenReviews": null,
+      "google": null,
+      "googleReviews": null,
+      "jalan": null,
+      "jalanReviews": null
+    },
+    "links": {},
+    "note": "楽天 186865，1 室，楽天最低 3,573 円；15 人組合 2/2：無、2/3：無；2/2 一間可住：6 人；じゃらん yad362222"
+  },
+  {
+    "key": "shima-circle-apartment",
+    "name": {
+      "ja": "ｔｈｅ　ｃｉｒｃｌｅ　ａｐａｒｔｍｅｎｔ"
+    },
+    "region": "shima-ugata",
+    "category": "hotel",
+    "status": "excluded",
+    "reason": "讀文：官網寫「0〜12歳:宿泊不可」，小孩不能住；而且是共居／膠囊型（共用淋浴、ドミトリー），不適合長輩（筆記 dossiers/shima-circle-apartment.md）",
+    "pointId": null,
+    "ratings": {
+      "rakuten": 3.65,
+      "rakutenReviews": 51,
+      "google": 4.1,
+      "googleReviews": 46,
+      "jalan": null,
+      "jalanReviews": null
+    },
+    "links": {
+      "googleMaps": "https://maps.google.com/?cid=10430679290165419946"
+    },
+    "note": "楽天 187267，24 室，楽天最低 4,250 円；15 人組合 2/2：無、2/3：無；2/2 一間可住：2 人"
+  },
+  {
+    "key": "shima-rakuten-187538",
+    "name": {
+      "ja": "ソルベレーゼ"
+    },
+    "region": "shima-sakko",
+    "category": "hotel",
+    "status": "not-included",
+    "reason": "9 室，15 人組合 2/2、2/3 都沒有空房；評分 —（楽天 2 則），未達「4.3 以上、50 則以上、8 室以上」或「4.6 以上、50 則以上」，也不在第一晚的賢島・鵜方一帶；沒有讀文",
+    "pointId": null,
+    "ratings": {
+      "rakuten": null,
+      "rakutenReviews": 2,
+      "google": null,
+      "googleReviews": null,
+      "jalan": null,
+      "jalanReviews": null
+    },
+    "links": {},
+    "note": "楽天 187538，9 室，楽天最低 5,230 円；15 人組合 2/2：無、2/3：無；2/2 一間可住：無空房；じゃらん yad337591"
+  },
+  {
+    "key": "shima-rakuten-188766",
+    "name": {
+      "ja": "志摩の別荘"
+    },
+    "region": "shima-ugata",
+    "category": "pension／民泊",
+    "status": "not-included",
+    "reason": "小型一棟貸し／民泊：楽天 2027-02-02 查「1 間 10／8／6 人」都沒有空房（容量不明或 2027 年方案未開）；沒有讀文",
+    "pointId": null,
+    "ratings": {
+      "rakuten": null,
+      "rakutenReviews": null,
+      "google": null,
+      "googleReviews": null,
+      "jalan": null,
+      "jalanReviews": null
+    },
+    "links": {},
+    "note": "楽天 188766，1 室；15 人組合 2/2：無、2/3：無；2/2 一間可住：無空房"
+  },
+  {
+    "key": "shima-rakuten-188975",
+    "name": {
+      "ja": "Ｖｉｌｌａ３３ｋａｓｈｉｋｏｊｉｍａ"
+    },
+    "region": "shima-kashikojima",
+    "category": "pension／民泊",
+    "status": "not-included",
+    "reason": "Villa（10 室，PENSION 類別）：楽天沒有評論、2027-02-02 所有人數都沒有空房（方案可能未開），沒有讀文；開放 2027 年方案後可以再看",
+    "pointId": null,
+    "ratings": {
+      "rakuten": null,
+      "rakutenReviews": null,
+      "google": null,
+      "googleReviews": null,
+      "jalan": null,
+      "jalanReviews": null
+    },
+    "links": {},
+    "note": "楽天 188975，10 室；15 人組合 2/2：無、2/3：無；2/2 一間可住：無空房"
+  },
+  {
+    "key": "shima-rakuten-189049",
+    "name": {
+      "ja": "ＴＨＥ　ＧＬＡＭＰＩＮＧ　ＰＬＡＺＡ　伊勢志摩ＢＡＳＥ"
+    },
+    "region": "shima-ugata",
+    "category": "pension／民泊",
+    "status": "not-included",
+    "reason": "グランピング（7 棟），2 月夜間冷、長輩不便；15 人組合沒空房，沒有讀文",
+    "pointId": null,
+    "ratings": {
+      "rakuten": 4.6,
+      "rakutenReviews": 50,
+      "google": null,
+      "googleReviews": null,
+      "jalan": 4.7,
+      "jalanReviews": 43
+    },
+    "links": {},
+    "note": "楽天 189049，7 室，楽天最低 15,280 円；15 人組合 2/2：無、2/3：無；2/2 一間可住：無空房；じゃらん yad308284"
+  },
+  {
+    "key": "shima-rakuten-189719",
+    "name": {
+      "ja": "ＳｌｏｗＴｉｍｅ"
+    },
+    "region": "shima-goza",
+    "category": "pension／民泊",
+    "status": "not-included",
+    "reason": "小型一棟貸し／民泊：楽天 2027-02-02 查「1 間 10／8／6 人」都沒有空房（容量不明或 2027 年方案未開）；沒有讀文",
+    "pointId": null,
+    "ratings": {
+      "rakuten": null,
+      "rakutenReviews": null,
+      "google": null,
+      "googleReviews": null,
+      "jalan": null,
+      "jalanReviews": null
+    },
+    "links": {},
+    "note": "楽天 189719，1 室；15 人組合 2/2：無、2/3：無；2/2 一間可住：無空房"
+  },
+  {
+    "key": "shima-rakuten-189924",
+    "name": {
+      "ja": "陸の孤島　ラグナ伊勢志摩"
+    },
+    "region": "shima-goza",
+    "category": "pension／民泊",
+    "status": "not-included",
+    "reason": "小型一棟貸し／民泊：楽天 2027-02-02 查「1 間 10／8／6 人」都沒有空房（容量不明或 2027 年方案未開）；沒有讀文",
+    "pointId": null,
+    "ratings": {
+      "rakuten": null,
+      "rakutenReviews": null,
+      "google": null,
+      "googleReviews": null,
+      "jalan": null,
+      "jalanReviews": null
+    },
+    "links": {},
+    "note": "楽天 189924，1 室；15 人組合 2/2：無、2/3：無；2/2 一間可住：無空房"
+  },
+  {
+    "key": "shima-rakuten-190487",
+    "name": {
+      "ja": "ＣＡＭＰ＆ＢＥＥＲ　ＢＥＥＲＢＥＬＬＹ伊勢志摩"
+    },
+    "region": "shima-kokufu",
+    "category": "pension／民泊",
+    "status": "not-included",
+    "reason": "露營＋啤酒的設施（1 室），沒有讀文",
+    "pointId": null,
+    "ratings": {
+      "rakuten": null,
+      "rakutenReviews": 1,
+      "google": null,
+      "googleReviews": null,
+      "jalan": null,
+      "jalanReviews": null
+    },
+    "links": {},
+    "note": "楽天 190487，1 室，楽天最低 24,244 円；15 人組合 2/2：無、2/3：無；2/2 一間可住：無空房"
+  },
+  {
+    "key": "shima-umilabo",
+    "name": {
+      "ja": "海の貸切リトリート「ＵＭＩＬＡＢＯ」"
+    },
+    "region": "shima-kashikojima",
+    "category": "pension／民泊",
+    "status": "included",
+    "reason": null,
+    "pointId": "shima-umilabo",
+    "ratings": {
+      "rakuten": null,
+      "rakutenReviews": null,
+      "google": 5,
+      "googleReviews": 75,
+      "jalan": null,
+      "jalanReviews": null
+    },
+    "links": {
+      "googleMaps": "https://maps.google.com/?cid=2270449584742145187"
+    },
+    "note": "楽天 191038，1 室，楽天最低 27,840 円；15 人組合 2/2：無、2/3：無；2/2 一間可住：8 人"
+  },
+  {
+    "key": "shima-rakuten-191475",
+    "name": {
+      "ja": "ＴＨＥ　ＨＩＲＡＭＡＴＳＵ　ＨＯＴＥＬＳ　＆　ＲＥＳＯＲＴＳ　賢島"
+    },
+    "region": "shima-yokoyama",
+    "category": "pension／民泊",
+    "status": "not-included",
+    "reason": "高價小型（8 室，楽天最低 84,800 円），4.86 但只有 22 則；15 人組合、1 間 2 人以上 2/2 都沒空房，沒有讀文",
+    "pointId": null,
+    "ratings": {
+      "rakuten": 4.86,
+      "rakutenReviews": 22,
+      "google": null,
+      "googleReviews": null,
+      "jalan": null,
+      "jalanReviews": null
+    },
+    "links": {},
+    "note": "楽天 191475，8 室，楽天最低 84,800 円；15 人組合 2/2：無、2/3：無；2/2 一間可住：無空房"
+  },
+  {
+    "key": "shima-rakuten-191487",
+    "name": {
+      "ja": "Ｒｅｔｒｅａｔ　Ｖｉｌｌａ　ｉｋｉ"
+    },
+    "region": "shima-kokufu",
+    "category": "pension／民泊",
+    "status": "not-included",
+    "reason": "小型一棟貸し／民泊：楽天 2027-02-02 查「1 間 10／8／6 人」都沒有空房（容量不明或 2027 年方案未開）；沒有讀文",
+    "pointId": null,
+    "ratings": {
+      "rakuten": null,
+      "rakutenReviews": 3,
+      "google": null,
+      "googleReviews": null,
+      "jalan": null,
+      "jalanReviews": null
+    },
+    "links": {},
+    "note": "楽天 191487，1 室，楽天最低 27,200 円；15 人組合 2/2：無、2/3：無；2/2 一間可住：無空房；じゃらん yad361802"
+  },
+  {
+    "key": "shima-rakuten-191505",
+    "name": {
+      "ja": "Ｌｏｖｅ＆ＰｅａｃｅＲｅｓｏｒｔ"
+    },
+    "region": "shima-wagu",
+    "category": "pension／民泊",
+    "status": "not-included",
+    "reason": "6 室，15 人組合 2/2、2/3 都沒有空房；評分 5（楽天 7 則），評論不到 50 則，也不在第一晚的賢島・鵜方一帶；沒有讀文",
+    "pointId": null,
+    "ratings": {
+      "rakuten": 5,
+      "rakutenReviews": 7,
+      "google": null,
+      "googleReviews": null,
+      "jalan": null,
+      "jalanReviews": null
+    },
+    "links": {},
+    "note": "楽天 191505，6 室，楽天最低 11,700 円；15 人組合 2/2：無、2/3：無；2/2 一間可住：4 人；じゃらん yad370740"
+  },
+  {
+    "key": "shima-rakuten-191952",
+    "name": {
+      "ja": "ＭＯＫＵ　ＩＳＥＳＨＩＭＡ（モク伊勢志摩）"
+    },
+    "region": "shima-wagu",
+    "category": "pension／民泊",
+    "status": "not-included",
+    "reason": "小型一棟貸し／民泊：楽天 2027-02-02 查「1 間 10／8／6 人」都沒有空房（容量不明或 2027 年方案未開）；沒有讀文",
+    "pointId": null,
+    "ratings": {
+      "rakuten": null,
+      "rakutenReviews": null,
+      "google": null,
+      "googleReviews": null,
+      "jalan": null,
+      "jalanReviews": null
+    },
+    "links": {},
+    "note": "楽天 191952，1 室，楽天最低 207,500 円；15 人組合 2/2：無、2/3：無；2/2 一間可住：無空房；じゃらん yad349815"
+  },
+  {
+    "key": "shima-rakuten-192022",
+    "name": {
+      "ja": "伊勢志摩パールヴィレッジ　ヴィラ"
+    },
+    "region": "shima-kashikojima",
+    "category": "pension／民泊",
+    "status": "not-included",
+    "reason": "小型一棟貸し／民泊：楽天 2027-02-02 查「1 間 10／8／6 人」都沒有空房（容量不明或 2027 年方案未開）；沒有讀文",
+    "pointId": null,
+    "ratings": {
+      "rakuten": 4,
+      "rakutenReviews": 12,
+      "google": null,
+      "googleReviews": null,
+      "jalan": null,
+      "jalanReviews": null
+    },
+    "links": {},
+    "note": "楽天 192022，2 室，楽天最低 9,500 円；15 人組合 2/2：無、2/3：無；2/2 一間可住：無空房；じゃらん yad326464"
+  },
+  {
+    "key": "shima-rakuten-192129",
+    "name": {
+      "ja": "ｗａｎｄｅｒｌｕｓｔ，ＳＨＩＭＡ"
+    },
+    "region": "shima-kokufu",
+    "category": "pension／民泊",
+    "status": "not-included",
+    "reason": "小型一棟貸し／民泊：楽天 2027-02-02 查「1 間 10／8／6 人」都沒有空房（容量不明或 2027 年方案未開）；沒有讀文",
+    "pointId": null,
+    "ratings": {
+      "rakuten": null,
+      "rakutenReviews": null,
+      "google": null,
+      "googleReviews": null,
+      "jalan": null,
+      "jalanReviews": null
+    },
+    "links": {},
+    "note": "楽天 192129，1 室；15 人組合 2/2：無、2/3：無；2/2 一間可住：無空房；じゃらん yad301075"
+  },
+  {
+    "key": "shima-rakuten-193237",
+    "name": {
+      "ja": "ＶＩＬＬＡ　ＭＥＡＴＯＮ　ＩＳＥ　ＳＨＩＭＡ"
+    },
+    "region": "shima-kokufu",
+    "category": "pension／民泊",
+    "status": "not-included",
+    "reason": "小型一棟貸し／民泊：楽天 2027-02-02 查「1 間 10／8／6 人」最多 6 人有空房，15 人住不下，也不在第一晚的賢島・鵜方一帶；沒有讀文",
+    "pointId": null,
+    "ratings": {
+      "rakuten": null,
+      "rakutenReviews": null,
+      "google": null,
+      "googleReviews": null,
+      "jalan": null,
+      "jalanReviews": null
+    },
+    "links": {},
+    "note": "楽天 193237，1 室，楽天最低 9,900 円；15 人組合 2/2：無、2/3：無；2/2 一間可住：6 人；じゃらん yad339692"
+  },
+  {
+    "key": "shima-rakuten-193413",
+    "name": {
+      "ja": "ｏｃｅａｎ　ｈｏｕｓｅ伊勢　志摩"
+    },
+    "region": "shima-anori",
+    "category": "pension／民泊",
+    "status": "not-included",
+    "reason": "4 室，15 人組合 2/2、2/3 都沒有空房；評分 4.9（楽天 10 則），評論不到 50 則，也不在第一晚的賢島・鵜方一帶；沒有讀文",
+    "pointId": null,
+    "ratings": {
+      "rakuten": 4.9,
+      "rakutenReviews": 10,
+      "google": null,
+      "googleReviews": null,
+      "jalan": null,
+      "jalanReviews": null
+    },
+    "links": {},
+    "note": "楽天 193413，4 室；15 人組合 2/2：無、2/3：無；2/2 一間可住：無空房"
+  },
+  {
+    "key": "shima-rakuten-195397",
+    "name": {
+      "ja": "Ｃｕｒｒｅｎｔ　Ｓｈｉｍａ　カレント志摩"
+    },
+    "region": "shima-kokufu",
+    "category": "hotel",
+    "status": "not-included",
+    "reason": "小型一棟貸し／民泊：楽天 2027-02-02 查「1 間 10／8／6 人」都沒有空房（容量不明或 2027 年方案未開）；沒有讀文",
+    "pointId": null,
+    "ratings": {
+      "rakuten": null,
+      "rakutenReviews": null,
+      "google": null,
+      "googleReviews": null,
+      "jalan": null,
+      "jalanReviews": null
+    },
+    "links": {},
+    "note": "楽天 195397，1 室；15 人組合 2/2：無、2/3：無；2/2 一間可住：無空房"
+  },
+  {
+    "key": "shima-rakuten-195563",
+    "name": {
+      "ja": "志摩オートキャンプ場"
+    },
+    "region": "shima-goza",
+    "category": "hotel",
+    "status": "not-included",
+    "reason": "オートキャンプ場（露營場），不適合 2 月有長輩的團體；沒有讀文",
+    "pointId": null,
+    "ratings": {
+      "rakuten": null,
+      "rakutenReviews": null,
+      "google": null,
+      "googleReviews": null,
+      "jalan": null,
+      "jalanReviews": null
+    },
+    "links": {},
+    "note": "楽天 195563，1 室，楽天最低 4,125 円；15 人組合 2/2：無、2/3：無；2/2 一間可住：無空房"
+  },
+  {
+    "key": "shima-rakuten-195751",
+    "name": {
+      "ja": "お宿　壱　飯浜"
+    },
+    "region": "shima-isobe",
+    "category": "hotel",
+    "status": "not-included",
+    "reason": "小型一棟貸し／民泊：楽天 2027-02-02 查「1 間 10／8／6 人」都沒有空房（容量不明或 2027 年方案未開）；沒有讀文",
+    "pointId": null,
+    "ratings": {
+      "rakuten": null,
+      "rakutenReviews": null,
+      "google": null,
+      "googleReviews": null,
+      "jalan": null,
+      "jalanReviews": null
+    },
+    "links": {},
+    "note": "楽天 195751，1 室，楽天最低 9,048 円；15 人組合 2/2：無、2/3：無；2/2 一間可住：無空房"
+  },
+  {
+    "key": "shima-umibe-terrace",
+    "name": {
+      "ja": "ＵＭＩＢＥ　Ｔｅｒｒａｃｅ　ＩｓｅＳｈｉｍａ"
+    },
+    "region": "shima-tomoyama",
+    "category": "pension／民泊",
+    "status": "included",
+    "reason": null,
+    "pointId": "shima-umibe-terrace",
+    "ratings": {
+      "rakuten": null,
+      "rakutenReviews": 2,
+      "google": 5,
+      "googleReviews": 10,
+      "jalan": null,
+      "jalanReviews": null
+    },
+    "links": {
+      "googleMaps": "https://maps.google.com/?cid=1955403319882222234"
+    },
+    "note": "楽天 196440，1 室，楽天最低 19,400 円；15 人組合 2/2：無、2/3：無；2/2 一間可住：8 人；じゃらん yad319620"
+  },
+  {
+    "key": "shima-rakuten-196600",
+    "name": {
+      "ja": "Ｆｏｒｔｕｎｅ　ＩＮＮ"
+    },
+    "region": "shima-kokufu",
+    "category": "pension／民泊",
+    "status": "not-included",
+    "reason": "小型一棟貸し／民泊：楽天 2027-02-02 查「1 間 10／8／6 人」都沒有空房（容量不明或 2027 年方案未開）；沒有讀文",
+    "pointId": null,
+    "ratings": {
+      "rakuten": null,
+      "rakutenReviews": 3,
+      "google": null,
+      "googleReviews": null,
+      "jalan": null,
+      "jalanReviews": null
+    },
+    "links": {},
+    "note": "楽天 196600，2 室，楽天最低 3,500 円；15 人組合 2/2：無、2/3：無；2/2 一間可住：無空房"
+  },
+  {
+    "key": "shima-taoya",
+    "name": {
+      "ja": "ＴＡＯＹＡ南志摩"
+    },
+    "region": "shima-hamajima",
+    "category": "ryokan",
+    "status": "included",
+    "reason": null,
+    "pointId": "shima-taoya",
+    "ratings": {
+      "rakuten": 4.23,
+      "rakutenReviews": 401,
+      "google": 4,
+      "googleReviews": 162,
+      "jalan": 4.2,
+      "jalanReviews": 190
+    },
+    "links": {
+      "googleMaps": "https://maps.google.com/?cid=12900116021146004508"
+    },
+    "note": "楽天 196797，93 室，楽天最低 16,500 円；15 人組合 2/2：5x3/4x4/3x5、2/3：5x3/4x4/3x5；2/2 一間可住：6 人；じゃらん yad347515"
+  },
+  {
+    "key": "shima-rakuten-197718",
+    "name": {
+      "ja": "しまみらい自然学校"
+    },
+    "region": "shima-kokufu",
+    "category": "hotel",
+    "status": "not-included",
+    "reason": "自然學校的住宿設施（評論 3 則），15 人組合沒空房；沒有讀文",
+    "pointId": null,
+    "ratings": {
+      "rakuten": null,
+      "rakutenReviews": 3,
+      "google": null,
+      "googleReviews": null,
+      "jalan": null,
+      "jalanReviews": null
+    },
+    "links": {},
+    "note": "楽天 197718，6 室，楽天最低 7,700 円；15 人組合 2/2：無、2/3：無；2/2 一間可住：無空房"
+  },
+  {
+    "key": "shima-small-resort",
+    "name": {
+      "ja": "Ｓｍａｌｌ　Ｒｅｓｏｒｔ　志摩"
+    },
+    "region": "shima-goza",
+    "category": "hotel",
+    "status": "included",
+    "reason": null,
+    "pointId": "shima-small-resort",
+    "ratings": {
+      "rakuten": null,
+      "rakutenReviews": 2,
+      "google": 4.9,
+      "googleReviews": 29,
+      "jalan": null,
+      "jalanReviews": null
+    },
+    "links": {
+      "googleMaps": "https://maps.google.com/?cid=18045061623048286687"
+    },
+    "note": "楽天 197802，1 室，楽天最低 65,789 円；15 人組合 2/2：無、2/3：無；2/2 一間可住：10 人"
+  },
+  {
+    "key": "shima-rakuten-197997",
+    "name": {
+      "ja": "だんらん賢島"
+    },
+    "region": "shima-kashikojima",
+    "category": "hotel",
+    "status": "not-included",
+    "reason": "8 室，15 人組合 2/2、2/3 都沒有空房；評分 —（楽天 1 則），未達「4.3 以上、50 則以上、8 室以上」或「4.6 以上、50 則以上」，也不在第一晚的賢島・鵜方一帶；沒有讀文",
+    "pointId": null,
+    "ratings": {
+      "rakuten": null,
+      "rakutenReviews": 1,
+      "google": null,
+      "googleReviews": null,
+      "jalan": null,
+      "jalanReviews": null
+    },
+    "links": {},
+    "note": "楽天 197997，8 室，楽天最低 5,810 円；15 人組合 2/2：無、2/3：無；2/2 一間可住：無空房；じゃらん yad349705"
+  },
+  {
+    "key": "shima-rakuten-198596",
+    "name": {
+      "ja": "ＳＥＡ　ＣＯＬＯＲ"
+    },
+    "region": "shima-kokufu",
+    "category": "hotel",
+    "status": "not-included",
+    "reason": "小型一棟貸し／民泊：楽天 2027-02-02 查「1 間 10／8／6 人」都沒有空房（容量不明或 2027 年方案未開）；沒有讀文",
+    "pointId": null,
+    "ratings": {
+      "rakuten": null,
+      "rakutenReviews": null,
+      "google": null,
+      "googleReviews": null,
+      "jalan": null,
+      "jalanReviews": null
+    },
+    "links": {},
+    "note": "楽天 198596，3 室；15 人組合 2/2：無、2/3：無；2/2 一間可住：無空房"
+  },
+  {
+    "key": "shima-mori-to-umi",
+    "name": {
+      "ja": "森と海"
+    },
+    "region": "shima-kokufu",
+    "category": "hotel",
+    "status": "included",
+    "reason": null,
+    "pointId": "shima-mori-to-umi",
+    "ratings": {
+      "rakuten": null,
+      "rakutenReviews": null,
+      "google": 4.5,
+      "googleReviews": 22,
+      "jalan": null,
+      "jalanReviews": null
+    },
+    "links": {
+      "googleMaps": "https://maps.google.com/?cid=2801035219297466723"
+    },
+    "note": "楽天 198954，1 室，楽天最低 27,500 円；15 人組合 2/2：無、2/3：無；2/2 一間可住：10 人；じゃらん yad361095"
+  },
+  {
+    "key": "shima-rakuten-199387",
+    "name": {
+      "ja": "Ｃｏｍｅｔａ伊勢志摩"
+    },
+    "region": "shima-anori",
+    "category": "hotel",
+    "status": "not-included",
+    "reason": "小型一棟貸し／民泊：楽天 2027-02-02 查「1 間 10／8／6 人」都沒有空房（容量不明或 2027 年方案未開）；沒有讀文",
+    "pointId": null,
+    "ratings": {
+      "rakuten": null,
+      "rakutenReviews": null,
+      "google": null,
+      "googleReviews": null,
+      "jalan": null,
+      "jalanReviews": null
+    },
+    "links": {},
+    "note": "楽天 199387，1 室，楽天最低 22,500 円；15 人組合 2/2：無、2/3：無；2/2 一間可住：4 人；じゃらん yad328339"
+  },
+  {
+    "key": "shima-rakuten-199526",
+    "name": {
+      "ja": "ＬＵＸＵＮＡ伊勢志摩"
+    },
+    "region": "shima-goza",
+    "category": "hotel",
+    "status": "not-included",
+    "reason": "小型一棟貸し／民泊：楽天 2027-02-02 查「1 間 10／8／6 人」都沒有空房（容量不明或 2027 年方案未開）；沒有讀文",
+    "pointId": null,
+    "ratings": {
+      "rakuten": null,
+      "rakutenReviews": null,
+      "google": null,
+      "googleReviews": null,
+      "jalan": null,
+      "jalanReviews": null
+    },
+    "links": {},
+    "note": "楽天 199526，1 室，楽天最低 20,648 円；15 人組合 2/2：無、2/3：無；2/2 一間可住：無空房；じゃらん yad354514"
+  },
+  {
+    "key": "shima-rakuten-200044",
+    "name": {
+      "ja": "浜辺の宿しらはまハナレ"
+    },
+    "region": "shima-kokufu",
+    "category": "hotel",
+    "status": "not-included",
+    "reason": "小型一棟貸し／民泊：楽天 2027-02-02 查「1 間 10／8／6 人」都沒有空房（容量不明或 2027 年方案未開）；沒有讀文",
+    "pointId": null,
+    "ratings": {
+      "rakuten": null,
+      "rakutenReviews": null,
+      "google": null,
+      "googleReviews": null,
+      "jalan": null,
+      "jalanReviews": null
+    },
+    "links": {},
+    "note": "楽天 200044，1 室，楽天最低 6,380 円；15 人組合 2/2：無、2/3：無；2/2 一間可住：4 人"
+  },
+  {
+    "key": "shima-rakuten-200141",
+    "name": {
+      "ja": "ｍｇ〜ミリグラム〜／民泊"
+    },
+    "region": "shima-yokoyama",
+    "category": "hotel",
+    "status": "not-included",
+    "reason": "小型一棟貸し／民泊：楽天 2027-02-02 查「1 間 10／8／6 人」都沒有空房（容量不明或 2027 年方案未開）；沒有讀文",
+    "pointId": null,
+    "ratings": {
+      "rakuten": null,
+      "rakutenReviews": 2,
+      "google": null,
+      "googleReviews": null,
+      "jalan": null,
+      "jalanReviews": null
+    },
+    "links": {},
+    "note": "楽天 200141，1 室；15 人組合 2/2：無、2/3：無；2/2 一間可住：無空房"
+  },
+  {
+    "key": "shima-rakuten-200158",
+    "name": {
+      "ja": "ｇ　〜グラム〜／民泊"
+    },
+    "region": "shima-yokoyama",
+    "category": "hotel",
+    "status": "not-included",
+    "reason": "小型一棟貸し／民泊：楽天 2027-02-02 查「1 間 10／8／6 人」最多 6 人有空房，15 人住不下，也不在第一晚的賢島・鵜方一帶；沒有讀文",
+    "pointId": null,
+    "ratings": {
+      "rakuten": null,
+      "rakutenReviews": null,
+      "google": null,
+      "googleReviews": null,
+      "jalan": null,
+      "jalanReviews": null
+    },
+    "links": {},
+    "note": "楽天 200158，1 室，楽天最低 17,122 円；15 人組合 2/2：無、2/3：無；2/2 一間可住：6 人"
+  },
+  {
+    "key": "shima-rakuten-200514",
+    "name": {
+      "ja": "ゲストハウスＢＵＮ／民泊"
+    },
+    "region": "shima-isobe",
+    "category": "hotel",
+    "status": "not-included",
+    "reason": "ゲストハウス／民泊（1 室），沒有讀文",
+    "pointId": null,
+    "ratings": {
+      "rakuten": null,
+      "rakutenReviews": null,
+      "google": null,
+      "googleReviews": null,
+      "jalan": null,
+      "jalanReviews": null
+    },
+    "links": {},
+    "note": "楽天 200514，1 室，楽天最低 7,193 円；15 人組合 2/2：無、2/3：無；2/2 一間可住：6 人"
+  },
+  {
+    "key": "shima-rakuten-200624",
+    "name": {
+      "ja": "御宿はな"
+    },
+    "region": "shima-kokufu",
+    "category": "hotel",
+    "status": "not-included",
+    "reason": "小型一棟貸し／民泊：楽天 2027-02-02 查「1 間 10／8／6 人」最多 8 人有空房，15 人住不下，也不在第一晚的賢島・鵜方一帶；沒有讀文",
+    "pointId": null,
+    "ratings": {
+      "rakuten": null,
+      "rakutenReviews": null,
+      "google": null,
+      "googleReviews": null,
+      "jalan": null,
+      "jalanReviews": null
+    },
+    "links": {},
+    "note": "楽天 200624，1 室，楽天最低 6,896 円；15 人組合 2/2：無、2/3：無；2/2 一間可住：8 人"
+  },
+  {
+    "key": "shima-villa-ise-shima",
+    "name": {
+      "ja": "Ｖｉｌｌａ　ＩＳＥ　ｓｈｉｍａ"
+    },
+    "region": "shima-ugata",
+    "category": "hotel",
+    "status": "included",
+    "reason": null,
+    "pointId": "shima-villa-ise-shima",
+    "ratings": {
+      "rakuten": null,
+      "rakutenReviews": null,
+      "google": 5,
+      "googleReviews": 4,
+      "jalan": null,
+      "jalanReviews": null
+    },
+    "links": {
+      "googleMaps": "https://maps.google.com/?cid=6890431814609024026"
+    },
+    "note": "楽天 201724，1 室，楽天最低 9,744 円；15 人組合 2/2：無、2/3：無；2/2 一間可住：8 人"
+  },
+  {
+    "key": "shima-rakuten-201960",
+    "name": {
+      "ja": "民泊　御座岬"
+    },
+    "region": "shima-goza",
+    "category": "hotel",
+    "status": "not-included",
+    "reason": "小型一棟貸し／民泊：楽天 2027-02-02 查「1 間 10／8／6 人」都沒有空房（容量不明或 2027 年方案未開）；沒有讀文",
+    "pointId": null,
+    "ratings": {
+      "rakuten": null,
+      "rakutenReviews": null,
+      "google": null,
+      "googleReviews": null,
+      "jalan": null,
+      "jalanReviews": null
+    },
+    "links": {},
+    "note": "楽天 201960，12 室，楽天最低 3,000 円；15 人組合 2/2：無、2/3：無；2/2 一間可住：無空房"
+  },
+  {
+    "key": "shima-rakuten-202779",
+    "name": {
+      "ja": "やどかり志摩の隠れ家"
+    },
+    "region": "shima-other",
+    "category": "hotel",
+    "status": "not-included",
+    "reason": "小型一棟貸し／民泊：楽天 2027-02-02 查「1 間 10／8／6 人」都沒有空房（容量不明或 2027 年方案未開）；沒有讀文",
+    "pointId": null,
+    "ratings": {
+      "rakuten": null,
+      "rakutenReviews": null,
+      "google": null,
+      "googleReviews": null,
+      "jalan": null,
+      "jalanReviews": null
+    },
+    "links": {},
+    "note": "楽天 202779，1 室，楽天最低 8,520 円；15 人組合 2/2：無、2/3：無；2/2 一間可住：4 人"
+  },
+  {
+    "key": "shima-hanataku",
+    "name": {
+      "ja": "花多來"
+    },
+    "region": "shima-kokufu",
+    "category": "ryokan",
+    "status": "included",
+    "reason": null,
+    "pointId": "shima-hanataku",
+    "ratings": {
+      "jalan": 4.9,
+      "jalanReviews": 475,
+      "google": 4.6,
+      "googleReviews": 65
+    },
+    "links": {
+      "googleMaps": "https://maps.google.com/?cid=14344078588759316607"
+    },
+    "note": "沒上楽天；じゃらん yad390432（阿児町甲賀2671），じゃらん 4.9／475 則"
+  },
+  {
+    "key": "shima-ocean-villa-wa",
+    "name": {
+      "ja": "ISE-SHIMA OCEAN VILLA 倭"
+    },
+    "region": "shima-hamajima",
+    "category": "rental-house",
+    "status": "included",
+    "reason": null,
+    "pointId": "shima-ocean-villa-wa",
+    "ratings": {
+      "google": 3.2,
+      "googleReviews": 9
+    },
+    "links": {
+      "googleMaps": "https://maps.google.com/?cid=14254672148458479494"
+    },
+    "note": "沒上楽天；觀光三重 https://www.kankomie.or.jp/spot/23842（WebSearch 摘要：最多 10 人包棟）"
+  },
+  {
+    "key": "shima-villa-south-coast",
+    "name": {
+      "ja": "ＶＩＬＬＡ ＳＯＵＴＨ ＣＯＡＳＴ ＳＨＩＭＡ"
+    },
+    "region": "shima-hamajima",
+    "category": "rental-house",
+    "status": "not-included",
+    "reason": "沒上楽天；じゃらん yad322906（浜島町南張）沒有評分、容量不明，沒有讀文",
+    "pointId": null,
+    "ratings": {},
+    "links": {},
+    "note": "じゃらん地區列表 241400"
+  },
+  {
+    "key": "shima-laidback-hotel",
+    "name": {
+      "ja": "LAIDBACK HOTEL 伊勢志摩"
+    },
+    "region": "shima-kokufu",
+    "category": "hotel",
+    "status": "not-included",
+    "reason": "沒上楽天；じゃらん yad344647（阿児町国府）沒有評分，沒有讀文",
+    "pointId": null,
+    "ratings": {},
+    "links": {},
+    "note": "じゃらん地區列表 241400"
+  },
+  {
+    "key": "shima-pension-ebizo",
+    "name": {
+      "ja": "ペンション海老蔵"
+    },
+    "region": "shima-ugata",
+    "category": "pension",
+    "status": "not-included",
+    "reason": "沒上楽天；じゃらん yad322106（阿児町神明2081）沒有評分、房數不明，沒有讀文",
+    "pointId": null,
+    "ratings": {},
+    "links": {},
+    "note": "じゃらん地區列表 241400"
+  }
+]
