@@ -11,6 +11,7 @@
 //       "minScore": 3.1,                       // 低於這個分數、又沒有 override 的店不記（T8c 第 2 批起看到 3.10 為止）
 //       "regions": [{ "re": "阿児町神明(6[89]\\d|7[0-5]\\d)", "region": "shima-kashikojima" }, …],  // 依住所，第一個符合的
 //       "thresholds": { "shima-ugata": { "aScore": 3.4 } },   // 數量控制（沒寫的照 A 3.30／10 則、C 3.10／15 則）
+//       "onlyRegions": ["shima-isobe", …],     // 只輸出這些子地區（關鍵字搜尋、跨町的頁面混到別批的店時用；沒寫 = 全部）
 //       "regionDefaults": { "shima-spain": { "status": "excluded", "reason": "…" } },   // 整個子地區共用（店家的 override 優先）
 //       "overrides": { "<店家 ID>": { "status", "criteria": ["D2"], "reason", "region", "note", "contexts" } },
 //       "mentions": { "<店家 ID>": [{ "type", "url", "title", "highlight", "retrieved" }] }
@@ -73,6 +74,7 @@ export function build(shops, rules) {
     const own = rules.overrides?.[s.id] ?? {};
     if ((s.score ?? 0) < (rules.minScore ?? 0) && !rules.overrides?.[s.id]) continue;
     const region = own.region ?? rules.regions?.find((r) => new RegExp(r.re).test(s.address ?? ''))?.region ?? null;
+    if (rules.onlyRegions && !rules.onlyRegions.includes(region)) continue;
     // regionDefaults：整個子地區共用的判斷（例如スペイン村休園 → 全部 excluded）；店家自己的 override 優先
     const ov = { ...(rules.regionDefaults?.[region] ?? {}), ...own };
     const th = rules.thresholds?.[region] ?? {};

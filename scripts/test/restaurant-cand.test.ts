@@ -90,6 +90,15 @@ test('build：合併篩選、子地區、override、3.10 未満不記', () => {
   assert.equal(by['tabelog-1'].links.tabelog, 'https://tabelog.com/mie/A2403/A240303/1/');
 });
 
+test('build：onlyRegions 只輸出指定的子地區', () => {
+  const { shops } = mergeLists([{ name: 'kw-rt-1.txt', text: page('kw', [
+    '1|中六|うなぎ、丼|3.39|125|||2000～2999|磯部町上之郷392|||A2403-A240303|',
+    '2|大田屋|たい焼き・大判焼き|3.37|62|||～999|阿児町鵜方4066|||A2403-A240303|',
+  ]) }]);
+  const out = build(shops, { minScore: 3.1, regions: [{ re: '磯部町', region: 'isobe' }, { re: '阿児町鵜方', region: 'ugata' }], onlyRegions: ['isobe'] });
+  assert.deepEqual(out.map((c) => c.key), ['tabelog-1']);
+});
+
 test('build：檔名不對、沒讀完就停', () => {
   assert.throws(() => mergeLists([{ name: 'ugata-1.txt', text: page('x', []) }]), /檔名/);
   assert.throws(() => mergeLists([{ name: 'ugata-rt-1.txt', text: '#P|x|1-1/1|0\n' }]), /沒有讀完/);
