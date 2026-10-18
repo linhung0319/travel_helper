@@ -331,6 +331,7 @@ travel_helper/
 - **Chrome 是最稀缺的資源**（只有一個瀏覽器、只有主 session 用、每家 3～10 次操作），只用在「固定網站但程式會被擋」的地方：食べログ、Google Maps。不要拿 Chrome 找零散資料。
 - **WebSearch 用來找、WebFetch 用來讀**：知道網址就直接 WebFetch，不要再搜尋。
 - **WebSearch 有次數上限**（Claude Code 官方文件，2026-10-18 查）：一個互動 session 預設 200 次，**主 session 和所有 subagent 共用**；用完後約每小時補回 100 次，`/clear` 歸零；上限可以用環境變數 `CLAUDE_CODE_MAX_WEB_SEARCHES_PER_SESSION` 調高，但不能取消。用完時**不會報錯**，只會提示 Claude 用現有資料繼續，所以要靠每個 subagent 限 2～3 次來控制（T7e 沒限制，用完兩次，讀文 subagent 默默只剩 WebFetch）。指揮 session 連續跑多個任務也共用這 200 次。
+- **WebSearch 的分配**（2026-10-18）：蒐集階段（標準作業流程步驟 1～10）只用 WebSearch 找官網和事實來源，**不找部落格心得**；心得先靠食べログ口コミ、Google 評論。部落格心得留到各區評分完成後的「深入調查」（見下方），只對各區的前幾名做，而且另開 session，才有自己的 200 次。
 - **WebFetch 沒有次數上限，但回傳的是摘要**：網頁轉成 Markdown 後，由另一個小模型照指令摘要，Claude 拿到的不是原文，數字可能被簡化或漏掉（例如平日、週末不同的營業時間只剩一個）。所以：
   - 讀營業時間、休業、票價、席數這些事實欄位時，WebFetch 的指令要寫「**原文照抄**相關段落」，不要叫它總結（`docs/prompts/dossier.md` 規則 5）。
   - 要準確比對或重複執行的（T18 的官網比對、じゃらん），用腳本 `fetch` 或 `curl` 讀原始頁面，不用 WebFetch。
@@ -354,8 +355,8 @@ travel_helper/
 | Google Maps | 星數、評論數、座標、營業時間、臨時休業或閉業；網站欄常常就是店家的 IG；評論是重點資料點的**心得來源** |
 | 觀光三重 | 景點列表（固定網站、固定欄位）：先試用腳本抓列表當景點候選的母體，被擋才改人工 |
 | じゃらん | 住宿評分、評論數（楽天沒有的補充）：用腳本（`scripts/jalan.mjs`，T7i）讀。**頁面是 Shift_JIS**，WebFetch 會亂碼（T7d、T8b 因此幾乎沒記到），要自己抓原始位元組再用 `new TextDecoder('shift_jis')` 解碼（T3 這樣讀成功過）。方案、價格是動態載入，抓不到，價格照舊用楽天 API |
-| 日文部落格、地方媒體 | 在地人推薦（鄉下小店幾乎沒有個人部落格，找不到就停，不要一直搜尋） |
-| 中文部落格（台灣旅遊部落客、PTT、Dcard） | 觀光客視角、點餐建議、排隊狀況 |
+| 日文部落格、地方媒體 | 在地人推薦。**蒐集階段不搜尋**，只讀候選清單 `mentions` 裡已知的文章；搜尋留給「深入調查」（鄉下小店幾乎沒有個人部落格，找不到就停，不要一直搜尋） |
+| 中文部落格（台灣旅遊部落客、PTT、Dcard） | 觀光客視角、點餐建議、排隊狀況。只在「深入調查」搜尋 |
 | Instagram | **不主動查**，只記錄帳號（從食べログ或 Google 取得）。出發前（T18）才對行程中選定的店少量確認 |
 | ホットペッパーグルメ | 網站不使用（難操作）。官方 API 有總席數、包廂、包場、小孩、照片，**要不要用待 👤 決定**（先測鳥羽的覆蓋率，見 T7-review.md §4） |
 | 楽天トラベル API | **住宿的主要來源**（T7 決定）：空室検索 API 用座標和旅程日期查空房、實際價格、照片，可以直接指定「5 間 × 3 人」這種房型組合；施設情報 API 有總評分和晚餐、早餐、浴場、清潔度等細項評分。用法見下方「楽天トラベル API」。沒上楽天的小民宿、包棟照舊人工查 |
@@ -474,19 +475,41 @@ T7、T8 的心得幾乎是 0：鄉下小店本來就沒有個人部落格，而�
 ### 讀文與筆記（dossier）
 摘要和評分要根據文章內容，但文章很多、很長，不能都塞進同一個 session。所以**讀文**和**判斷**分開：
 
-1. **讀文（每個資料點一個 subagent）**：主 session 每個資料點開一個 subagent，指令用 [docs/prompts/dossier.md](prompts/dossier.md) 的範本。subagent 讀官網、觀光協會、媒體、部落格心得（找得到的話），做兩件事：
+1. **讀文（每個資料點一個 subagent）**：主 session 每個資料點開一個 subagent，指令用 [docs/prompts/dossier.md](prompts/dossier.md) 的範本。subagent 讀官網、觀光協會、媒體、口コミ站的**已知網址**（主 session 給的、候選清單 `mentions` 裡的，或 Chrome 步驟從食べログ HP 欄、Google 網站欄拿到的官網），不搜尋部落格心得，做兩件事：
    - 寫筆記 `data/raw/<area>/dossiers/<id>.md`：每條重點附來源編號，用固定標籤（推薦、缺點、團體、長輩、小孩、冬季、交通、價格），40 行以內。
    - 回覆主 session 要回填的事實欄位和 `sources` 項目（JSON），**由主 session 寫進資料檔**（subagent 不改 JSON，避免互相覆蓋）。
-2. **判斷（每個類型一次）**：區域蒐集完，主 session 只讀筆記和資料檔，寫 `summary`、`assessment`、`tier`（§5.1），**不重新爬文**。筆記資訊不夠的，`confidence` 填 low，或再開一個 subagent 補讀。
+2. **判斷（每個類型一次）**：區域蒐集完，主 session 只讀筆記和資料檔，寫 `summary`、`assessment`、`tier`（§5.1），**不重新爬文**。筆記資訊不夠的，`confidence` 填 low，或再開一個 subagent 用已知網址補讀；部落格心得留給「深入調查」。
 
 規則：
 - **subagent 不用 Chrome**：只有一個瀏覽器，給主 session 查食べログ、Google Maps；subagent 只用 WebSearch、WebFetch，也不要讀食べログ、Google Maps。主 session 可以一邊在 Chrome 查，一邊讓 subagent 在背景讀文。食べログ口コミ、Google 評論的心得由主 session 補（見上方「口コミ、Google 評論」）。
-- **subagent 的 WebSearch 每個限 2～3 次**：先 WebFetch 主 session 給的已知網址，再搜尋；搜不到部落格心得就停，筆記「資料量」寫「部落格心得 0 篇」，不要換關鍵字一直搜。
+- **subagent 的 WebSearch 每個資料點最多 1 次，而且只用來找官網或事實來源**（例如官網網址不知道、要確認非住客能不能用餐）：先 WebFetch 已知網址，已知網址就夠的不搜尋。**不找部落格心得**，筆記「資料量」寫「部落格心得：未查（深入調查）」。
 - **同時最多 5 個 subagent**；景點、住宿一點一個；餐廳來源少（2 篇以內）的可以 3 家合成一個。
 - **不存全文**：筆記只寫重點（繁體中文，菜名附日文），不要複製原文；要再看就點來源連結。
-- 心得的搜尋關鍵字範本（日文優先）：`<店名> 口コミ`、`<店名> ブログ`、`<名稱> 子連れ`、`<名稱> 高齢者 階段`（景點）、`<名稱> 冬`（景點）、`<中文名> 心得`、`<中文名> 團體`。
 - **候選階段讀過的文章不要白讀**：T4a 這類候選名單步驟讀列表型文章（「鳥羽ランチ 11 選」）時，在候選清單該店的 `mentions[].highlight` 寫一句這篇為什麼推薦這家，之後交給該店的 subagent 當已知來源。
 - `summary.cons` 要涵蓋結構化欄位裡的問題（不能訂位、公休日、2 月休業、長階梯、只有榻榻米、不接受小孩、要搭車、坐不下 15 人）。
+
+### 深入調查（部落格心得）
+2026-10-18 決定：鄉下小店的部落格心得很少，蒐集階段每家都搜尋，搜尋次數用掉很多卻幾乎找不到。所以蒐集階段的心得只靠口コミ、Google 評論，**部落格心得等各區評分完成後，只對前幾名找**，找到的補進筆記，再對有新資訊的那幾筆重新打分（補丁式）。
+- **時機**：
+  - 第一輪：該區的摘要與評分（T7g／T7h、T8f、T9f）完成後。
+  - 第二輪：行程大致定下來後（T15 前後），對行程選中、但第一輪沒做過的資料點再做一次。
+- **對象**（預設值，每區最多 25 筆；超過時依 `recommend`、`groupFit` 由高到低取）：
+  - 住宿：`tier` S、A，而且 `assessment.groupFit` 4 以上（可能真的會訂的）。
+  - 餐廳：`tier` S、A，加上 `assessment.groupFit` 5（全員用餐的候選）。
+  - 景點：`tier` S，加上 `confidence` low 的 A。
+  - 筆記裡已經有 `[blog]` 來源的不重做。
+- **找什麼**：口コミ、Google 評論回答不了的事，筆記裡已經有的不重複找：
+  - 觀光客的角度：點什麼、排多久、值不值得專程去
+  - 中文心得（台灣旅客怎麼安排、踩過的雷）
+  - 2 月（冬季）實際去的經驗
+  - 團體、帶長輩或小孩去的實際經驗
+- **怎麼做**：
+  - 每筆一個 subagent（同時最多 5 個），範本用 [docs/prompts/dossier.md](prompts/dossier.md) 的「深入調查」一節；**每筆 WebSearch 2～3 次**，找不到就停，不要換關鍵字一直搜。
+  - 關鍵字範本（日文優先）：`<店名> ブログ`、`<名稱> 子連れ`、`<名稱> 高齢者 階段`（景點）、`<名稱> 冬`（景點）、`<中文名> 心得`、`<中文名> 團體`。
+  - 結果**追加**在 `dossiers/<id>.md`：標籤照讀文筆記，來源類型寫 `[blog]`（中文另標「中」），日期規則同「口コミ、Google 評論」（近 3 年優先、5 年以上不寫）；「資料量」改成實際篇數。
+  - 部落格寫的事實（營業時間、席數）不覆蓋資料檔，和資料檔不同時寫進 `extra.conflicts` 或 `questions.md`。
+- **重新打分**：只對有新資訊的那幾筆重寫 `summary`、`assessment`、`tier`（先讀 `data/raw/toba/assessment-notes.md`，標準不變），不重打整區。星等或 tier 有變的列在該區 `README.md`；重跑評分檢查腳本。
+- **另開 session**：WebSearch 額度由 session 和所有 subagent 共用，所以深入調查**不放進指揮 session**，每區另開一個新的 Claude Code session（或先 `/clear`）。它沒有其他任務依賴，但會改該區的筆記和三個資料檔的評分，所以用自己的 worktree，不和同區其他任務、T13 同時做。`log/<任務 ID>.md` 記每筆的搜尋次數和找到的篇數。
 
 ### 菜單
 菜單很零散（官網的圖片或 PDF、食べログ、IG、Google Maps 的使用者照片），價格常改又有季節限定，所以**不蒐集完整菜單**，只記對決策有用、又幾乎不用多花工夫的部分：
@@ -511,15 +534,16 @@ T7、T8 的心得幾乎是 0：鄉下小店本來就沒有個人部落格，而�
 |---|---|---|---|
 | 0 子地區 | 定子地區和中心點，👤 確認 | — | `areas.json` 的 `regions` |
 | 1 景點候選 | 觀光三重的景點列表（腳本）、觀光協會＋WebSearch，列候選和要給 sub 的已知來源 | — | `candidates/spots.json` |
-| 2 景點讀文 | 每個景點開 sub，收回事實欄位寫進 `spots.json` | 官網（營業、票價、無障礙、團體）、觀光協會、心得 2～4 篇、官網照片 | `spots.json`、筆記 |
+| 2 景點讀文 | 每個景點開 sub，收回事實欄位寫進 `spots.json` | 官網（營業、票價、無障礙、團體）、觀光協會、已知網址的口コミ站、官網照片（不搜尋部落格） | `spots.json`、筆記 |
 | 3 景點 Chrome | 批次查 Google Maps：座標、`links.googleMaps`、星數、評論數、照片 URL；筆記心得不到 2 篇的順便讀評論，補進筆記 | — | `spots.json`、筆記 |
 | 4 住宿候選 | `scripts/rakuten.mjs` 依子地區、2 月日期撈候選（價格、15 人房型組合的空房、細項評分、照片），套 §5.7；另外找沒上楽天的包棟、民宿 | — | `candidates/lodging.json` |
-| 5 住宿讀文 | 每間開 sub，收回欄位寫進 `lodging.json` | 官網（團體、接送、電梯、床、兒童價）、心得 2～3 篇 | `lodging.json`、筆記 |
+| 5 住宿讀文 | 每間開 sub，收回欄位寫進 `lodging.json` | 官網（團體、接送、電梯、床、兒童價）、已知網址的口コミ站（不搜尋部落格） | `lodging.json`、筆記 |
 | 6 住宿 Chrome | Google Maps 的連結、星數、評論數；筆記心得不到 2 篇的順便讀評論，補進筆記。じゃらん評分用腳本（讀不到才用 Chrome） | — | `lodging.json`、筆記 |
 | 7 餐廳候選 | 食べログ列表（Chrome）＋觀光協會、媒體；套 A～F；列表文章的推薦重點寫進 `mentions[].highlight` | — | `candidates/restaurants.json` |
-| 8 餐廳詳細 | 逐家查食べログ店家頁、Google Maps（Chrome），寫進 `restaurants.json`；店家頁有菜單、コース分頁就記連結（`menu`），fit15 是 yes 或 split 的店再看コース頁記團體套餐（`group.groupMenu`）；重點店讀口コミ、Google 評論，補進筆記（見「口コミ、Google 評論」）；同時在背景開 sub 讀文 | 官網、候選清單 `mentions` 裡的文章、部落格心得（找得到的話） | `restaurants.json`、筆記 |
+| 8 餐廳詳細 | 逐家查食べログ店家頁、Google Maps（Chrome），寫進 `restaurants.json`；店家頁有菜單、コース分頁就記連結（`menu`），fit15 是 yes 或 split 的店再看コース頁記團體套餐（`group.groupMenu`）；重點店讀口コミ、Google 評論，補進筆記（見「口コミ、Google 評論」）；同時在背景開 sub 讀文 | 官網、候選清單 `mentions` 裡的文章（不搜尋部落格） | `restaurants.json`、筆記 |
 | 9 收尾 | `restaurant-anchors.mjs`、`restaurant-gaps.mjs`、地圖檢查 | — | `restaurants.json`、筆記 |
-| 10 摘要與評分 | 先讀 `data/raw/toba/assessment-notes.md`（校準範例），每個類型一次讀完筆記，寫 `summary`、`assessment`、`tier` | 筆記不夠時補讀 | 三個資料檔 |
+| 10 摘要與評分 | 先讀 `data/raw/toba/assessment-notes.md`（校準範例），每個類型一次讀完筆記，寫 `summary`、`assessment`、`tier` | 筆記不夠時用已知網址補讀 | 三個資料檔 |
+| 11 深入調查（另開 session） | 照「深入調查」挑前幾名、開 sub；收回後重寫有新資訊那幾筆的 `summary`、`assessment`、`tier` | 部落格、中文心得（每筆 WebSearch 2～3 次） | 筆記、三個資料檔 |
 
 每一步結束時：跑 `scripts/validate`、commit；更新 `README.md`（現況、決定、給下一步的建議），過程寫在 `log/<任務 ID>.md`。
 
