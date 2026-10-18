@@ -11,6 +11,8 @@
 //       （{店家頁}dtlrvwlst/ 最新 20 則＋每個關鍵字的 dtlrvwlst/?sw=<關鍵字>；網址也可以直接給食べログ店家頁）
 //   node scripts/chrome-actions.mjs --tab <tabId> --script google-reviews --keywords 子供,団体 [--steps open,lowest] <links.googleMaps>
 //       （navigate {網址}&hl=ja → open → lowest → 每個關鍵字 search → computer type → Return → extract）
+//   node scripts/chrome-actions.mjs --tab <tabId> --script tabelog-list [--parts 3] <食べログ列表網址>...
+//       （每頁 navigate → 抽取（回傳第 1 段）→ 再讀第 2～N 段；browser_batch 每個動作只留約 1,000 字，20 家約要 3 段）
 //
 // --wait <秒>：navigate 後先等幾秒（google-place、tabelog-info 自己會等，不用加）。
 // --store：程式本體只傳一次（第一頁存進該網站的 localStorage，之後每頁只傳一行 eval），每頁省約 3k 字的 token。
@@ -23,7 +25,7 @@ import { fileURLToPath } from 'node:url';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const args = process.argv.slice(2);
-const VALUED = ['--tab', '--script', '--wait', '--batch', '--keywords', '--steps'];
+const VALUED = ['--tab', '--script', '--wait', '--batch', '--keywords', '--steps', '--parts'];
 const opt = (k) => (args.includes(`--${k}`) ? args[args.indexOf(`--${k}`) + 1] : null);
 const flag = (k) => args.includes(`--${k}`);
 const tab = Number(opt('tab'));
@@ -104,9 +106,14 @@ if (script === 'tabelog-reviews') {
     actions.push(js1('extract'));
   }
 } else {
+  const parts = script === 'tabelog-list' ? Number(opt('parts') ?? 3) : 1;
   for (const t of targets) {
     nav(urlOf(t));
     actions.push(js1());
+    // tabelog-list.js 把全文存在 window.__thTabelogList、回傳第 1 段（900 字）；這裡接著讀第 2～N 段
+    for (let i = 1; i < parts; i++) {
+      actions.push({ name: 'javascript_tool', input: { action: 'javascript_exec', tabId: tab, text: `'[${i + 1}]' + (window.__thTabelogList || '').slice(${900 * i}, ${900 * (i + 1)})` } });
+    }
   }
 }
 if (flag('cleanup')) {

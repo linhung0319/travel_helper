@@ -1,6 +1,6 @@
 # 志摩：研究筆記 README
 
-> 開工先讀這份。最後更新：2026-10-18（T9a 完成：景點資料點 24 筆；T9b 完成：住宿 56 筆）。這份是**現況**，各任務更新自己的那一節（覆寫，不是追加）；過程紀錄在 `log/`，需要時才讀。
+> 開工先讀這份。最後更新：2026-10-18（T9a 完成：景點資料點 24 筆；T9b 完成：住宿 56 筆；T9c 完成：餐廳候選 150 筆，收錄預定 72、pending 20）。這份是**現況**，各任務更新自己的那一節（覆寫，不是追加）；過程紀錄在 `log/`，需要時才讀。
 
 ## 檔案地圖
 
@@ -15,9 +15,16 @@
 | `data/cache/work/t9a-3/` | 第 3 批的工作檔（格式同第 2 批）：`judgement-src.mjs`（產生 `judgement.json`）、`patch-facts.json`（apply-patch）、`cand-*.json`（candidates set）、`list-notes.txt`（Google 列表的其他候選） |
 | `candidates/lodging.json` | 住宿候選 147 筆（included 56、not-included 79、excluded 11、pending 1）。楽天 SimpleHotelSearch 16 個子地區中心 3 km（志摩市內 142 間）＋じゃらん列表上沒上楽天的 5 間；每筆 note 有楽天番号、房數、2/2・2/3 的 15 人組合、2/2 一間可住人數 |
 | `data/cache/work/t9b-1/` | T9b 的工作檔：`rk/`（楽天 detail、party-*.json、kids.json、rooms-N.json）、`google.jsonl`、`photos.json`、`facts/`、`judgement-src.mjs`（產生 `judgement.json`，`build-lodging.mjs` 的輸入）、`build-candidates.mjs`、`rv/`（Google 評論重點）、`reports.md`（讀文 subagent 的回報） |
+| `candidates/restaurants.json` | 餐廳候選 150 筆（T9c，三批寫同一個檔：included 72、pending 20、excluded 13、not-included 45）。key 是 `tabelog-<店家 ID>`、`pointId` 還是 null（T9d 用 `candidates.mjs export --ids` 指定 id）。用 `scripts/candidates.mjs list shima restaurants` 過濾 |
+| `data/derived/kanko-shima-eat.json` | 志摩市観光協会「食べる」80 筆（`scripts/kanko-shima.mjs fetch --lists eat`，T9c）：住所、營業時間、定休日原文。**會員名錄，不算 B 的推薦**，只當營業時間的參考 |
+| `data/cache/work/t9c-1/` | T9c 第 1 批的工作檔：`lists/*.txt`（食べログ列表的抽取結果，一頁一檔）、`rules.json`（子地區規則、override、mentions；`restaurant-candidates.mjs build` 的輸入）、`new.json`（輸出）、`day-check.mjs`（每天有幾家沒公休，一次性） |
+| `data/cache/work/t9c-2/` | T9c 第 2 批的工作檔（格式同第 1 批；`rules.json` 多了 `onlyRegions`，`lists/isobekw-rt-1.txt` 是「磯部町」關鍵字搜尋） |
+| `data/cache/work/t9c-3/` | T9c 第 3 批的工作檔（格式同第 2 批）；`kw/ago-keywords.txt`（阿児町、大王町 等關鍵字搜尋的比對）、`qc-patch.json`（數量控制寫回的 7 筆）、`t9c-1-rules.before.json`（加 thresholds 前的第 1 批 rules） |
+| `data/cache/work/t9d-plan.json` | T9d 的分批：`[{batch, regions, count, pending, keys}]`（included＋pending 92 家，5 批） |
 | `questions.md` | 要打電話、人工確認的事 |
 | `log/T9a.md` | T9a 的過程紀錄 |
 | `log/T9b.md` | T9b 的過程紀錄（楽天查詢、Chrome、讀文、WebSearch 次數） |
+| `log/T9c.md` | T9c 的過程紀錄（看過的食べログ列表網址、媒體、WebSearch 次數） |
 
 `data/areas/shima/spots.json`：景點 24 筆；`data/areas/shima/lodging.json`：住宿 56 筆。讀文筆記在 `dossiers/`（景點 25 份，含排除的 Rays Farm；住宿 60 份，含排除的 SHIMA BOAT HOUSE、ばさら邸、the circle 和 pending 的 B&B フォレスト）。
 
@@ -147,3 +154,82 @@
 - **T9c／T9d（餐廳）**：不含晚餐或方案不同的住宿集中在賢島站周邊（ベイガーデン、ハーバー）、鵜方站周邊（クインテッサ、ビジネスホテル、アネックス、藤）、志摩神明（Villa ISE shima）和包棟（UMIBE、LOG、森と海、やどかり、Small Resort、倭）：第一晚 19 時以後能吃的晚餐要特別找。
 - **T9e**：跑 `node scripts/lodging-dinner-access.mjs shima --write`（現在沒有 restaurants.json，工具會跳過）。
 - **T9f**：groupFit 要分「楽天有 15 人空房」和「只是容量夠」（ねぼーや、一楽、志摩和荘、民宿一葉、森と海）；Kabuku（露營）、地中海村（非無障礙）的 elderFit；大型飯店的 Google 偏低要看評論重點。
+
+## 餐廳
+
+### 現況（T9c 完成：候選 150 筆，收錄預定 72、pending 20）
+- **母體**：食べログ町名列表（評分排序）志摩市 27 個町名頁全部看過（阿児町 7、磯部町 7、志摩町 5、大王町 3、浜島町 5；鵜方 161 家只看到 3.06），3.10 以上而且 15 則以上的店再看個室（含半個室）、貸切可篩選；沒有町名頁的大字用關鍵字搜尋補（「磯部町」找到 お食事処 祭；「阿児町<大字>」只多 ESSE（3.02，沒記）；「大王町」0；**「志摩町」「浜島町」關鍵字只比對店名，不能用**）。3.10 未満的店不記，例外是 D、F 的 override。觀光三重的特集、報導＋觀光協會「食べる」（會員名錄，不算 B，只用營業時間）；Google 沒查（同 T8c）。看過的網址、WebSearch 次數見 `log/T9c.md`。
+- **工具**：`scripts/chrome/tabelog-list.js`（列表抽取）→ `lists/*.txt` → `scripts/restaurant-candidates.mjs build`（A～C、類型、contexts、排除、同類型上限照規則算；D～F、pending、子地區、`onlyRegions`、`thresholds` 由 `rules.json` 寫）→ `scripts/candidates.mjs add`。工作檔 `data/cache/work/t9c-1/`～`t9c-3/`（`rules.json` 是判斷的全部紀錄）。
+- **子地區**：照住所的大字＋番地（各批 `rules.json` 的 `regions`）。推定的：神明 2180、473、480（ugata）、恵利原 240（isobe）、「波切ともやま」（tomoyama），T9d 看座標。
+
+| 子地區 | 候選 | included | pending | excluded | not-included | criteria（included） |
+|---|---|---|---|---|---|---|
+| kashikojima | 20 | 8 | 7 | 1 | 4 | A 7、A＋C 1 |
+| ugata | 45 | 23 | 2 | 1 | 19 | C 17、A＋C 4、A 2 |
+| yokoyama | 1 | 1 | 0 | 0 | 0 | A 1 |
+| isobe | 10 | 4 | 0 | 0 | 6 | A＋C 2、A 1、C 1 |
+| spain | 8 | 0 | 0 | 8 | 0 | —（休園） |
+| amanoiwato | 0 | 0 | 0 | 0 | 0 | — |
+| matoya | 11 | 3 | 5 | 1 | 2 | A＋F① 1、F① 2 |
+| anori | 4 | 4 | 0 | 0 | 0 | A＋C 2、C 1、D① 1 |
+| kokufu | 8 | 5 | 0 | 0 | 3 | A＋C 1、A 1、C 2、D② 1 |
+| daio | 6 | 5 | 0 | 0 | 1 | A＋C 1、C 1、D① 3 |
+| tomoyama | 4 | 2 | 1 | 0 | 1 | D①＋D② 1、D① 1 |
+| goza | 5 | 3 | 1 | 1 | 0 | F② 2、D① 1 |
+| wagu | 6 | 3 | 0 | 0 | 3 | A 1、C 1、F② 1 |
+| hamajima | 9 | 5 | 2 | 1 | 1 | A＋C 1、D① 3、D② 1 |
+| sakko | 10 | 4 | 2 | 0 | 4 | A＋C 1、A 2、C 1 |
+| other | 3 | 2 | 0 | 0 | 1 | D② 2 |
+| **合計** | **150** | **72** | **20** | **13** | **45** | 含 A 29、C 37、D 14（D① 10、D② 5）、F 6（F① 3、F② 3）；B、E 0 |
+
+- **B、E 都是 0**：mentions 全部是觀光三重（1 種來源），志摩市観光協会沒有餐廳的精選特集；E 的「主要車站」只有鵜方、賢島，店都在 A～C 裡。over-limit 0（同類型最多是 ugata 的和食・割烹）。
+- **各區的店**（第 1、2 批的細節見 `log/T9c.md`）：
+  - kashikojima 8：志摩観光ホテル的 ラ・メール、ラ・メール ザ クラシック、浜木綿、山吹、リアン，都リゾート マレナSHIMA，イワジン喫茶室，芳カツ亭（前 6 家是飯店內的餐廳）。
+  - ugata 23：A——東山物産、宮本；A＋C——とばり、鯛、長太屋、大家族；C——おとや、みやま亭、磯っ子、わさび、エドイチ、Michelle、PIZZICA、うえむら、いちや、ノルポル、shucafe、みやぎ野、ろっぽん木、しまかぜ、京城、伊鈴屋、銀鱗。
+  - isobe 4：中六、まんぷく食堂 板橋、川うめ（個室 2〜30）、はま崎。matoya 3：的矢かきテラス、はしもと、別亭 まとや。anori 4：灯台カフェ、まるせい、ひさだ、丸寅。kokufu 5：鮨暁、ポンチーズ、シェブロン、まつむら、BALI HOUSE。
+  - **daio 5**：田中料理店（A＋C 3.33／59，かつお茶漬け，火休）、漁師料理十次郎（C，個室・貸切）、D①：しまや（うなぎ・寿司）、Cafe.C.C（月休）、**大王荘の お食事処 大万**（觀光三重 てこね寿司特集：漁師ずし御膳 1,100 円；水休）。
+  - **tomoyama 2＋pending 1**：A～C 0 家 → D①：レストラン はまなぎ（都リゾート アクアフォレスト 館內，也是 D②）、喫茶 どんぐり（UMIBE 旁）；槙之木（ホテル槇之木，pending）。
+  - **goza 3＋pending 1**：さとうみ庵（A 3.51）是景點 → excluded（用餐見 spot）；F② 海女小屋 磯人、海女の庭（觀光三重 2024：ランチ 1,500 円當天可、コース 4,980 円～）；D① 縁；志摩半島（料理旅館，個室 10〜20，pending）。
+  - **wagu 3**：お食事処 ひでちゃん（A 3.39／50，日休）、鮨裕禅（C，昼夜 30,000 円～，オーベルジュ）、F② 海女小屋 火場 広の浜。トッポリーノ（3.22／11，觀光三重 絶景の飲食店 2025）沒達門檻。
+  - **hamajima 5＋pending 2**：網元の店八代（A＋C 3.52／127，水休＋第 1・3 木）、D①：磯料理ヨット（3.22／65，火休）、坂のうえ（定休不一致）、西口屋；D② 味幸（晚餐 17～22 時，個室 4〜6）。pending：ニュー浜島、大江戸温泉 伊勢志摩。メロンハウス かわぐち excluded（月～金休）。
+  - **sakko 4＋pending 2**：リアス バイ ココチャ（A＋C 3.60／90，地中海村，日帰り可）、アマネムダイニング（A 3.56／91，夜 100,000 円～）、タベルナ・アスール（A，ランチ只有土日祝，2021 資料）、**里海**（C，HOTEL NEMU，**個室 2〜20 人**）。pending：アマネム 本體、志摩地中海村 本體。カフェ アミーゴ 3.29／117 差 A 一點。
+  - other 2：D② 居酒屋きゅう、居酒屋 庄助（やどかり志摩 附近）。
+- **住宿本體 pending 20**：kashikojima 7（宝生苑、志摩観光ホテル、ベイスイート、はな屋、都リゾート、HIRAMATSU、賢島カンツリー）、ugata 2（プロヴァンス、フィオーレ志摩）、matoya 5（いかだ荘 山上、橘、はいふう、福寿荘、丸定旅館）、tomoyama 1（槙之木）、goza 1（志摩半島）、hamajima 2（ニュー浜島、大江戸）、sakko 2（アマネム、地中海村）。飯店內有自己店名的餐廳當一般的店 included（note 寫「住宿附設，非住客用餐 T9d 確認」）。
+- **excluded 13**：スペイン村 8（休園）、ばさら邸、志摩醸造（ビアバー）、Grand Mercure 本體（バー類別）、さとうみ庵（景點）、メロンハウス（月～金休）。
+
+### 數量控制（第 3 批套用）
+- 三批合計收錄預定 75（第 1 批 35、第 2 批 16、第 3 批 24）→ 照第 1 批的決定**只提高 ugata 的 A 到 3.40**：大田屋 鵜方支店、おとべ、すず木 改 not-included（reason「A 因數量控制（3.40）取消」）；おとや、みやま亭、磯っ子、わさび 剩 C → **72**。
+- C 沒有提高（3.20 會再少約 10 家，多是鵜方站周邊、第一晚的晚餐店）；A 再提高也只會少宮本 1 家，所以停在 72（比約 70 多 2，CONVENTIONS「超過一些可以接受」）。能坐 15 人的店不受影響。店少的 14 個子地區沒動，缺口照 D 補。
+- 做法：`t9c-1/rules.json` 加 `thresholds: {"shima-ugata": {"aScore": 3.4}}` 重跑 build，差異 7 筆用 `candidates.mjs set`（`t9c-3/qc-patch.json`）寫回。
+
+### 第一晚（2/2，週二）的晚餐
+- **結論：在鵜方站下車吃最穩**（18:35 到）。週二有營業、19 時以後還能點餐的收錄預定店（觀光協會「食べる」）：**日本料理 鯛**（站 3 分，16:30～21:30，月休，**個室 2〜30 人** → 15 人一起的第一候選）、長太屋（站 5 分，～21:00，個室 4〜8）、磯っ子（～22:00）、銀鱗（～23:00，無休）、みやぎ野（～21:30）、みやま亭（L.O. 19:30）、LA PIZZICA（～21:00）、大家族、焼肉うえむら（個室 2〜20，時間 T9d 查）。分 3 組時鯛＋長太屋＋磯っ子／銀鱗 可以同時在站周邊。
+- 2/2 週二公休：東山物産、とばり、おとや、宮本、ノルポル、京城、伊鈴屋。
+- **賢島站（18:40 到）**：晚上只有飯店內的餐廳（志摩観光ホテル 17:30～20:30 L.O.、20,000 円以上、限小學生以上；マレナSHIMA 週二只有法式）。賢島沒有平價的晚餐店。
+- 數量控制刷掉的 3 家（大田屋、おとべ、すず木）都不是晚餐店，第一晚的候選沒變。
+
+### 旅程期間每天有幾家（`t9c-1/day-check.mjs`：食べログ列表的定休，再對觀光協會的定休手算）
+- **午餐 0 家的日子**：
+  - **matoya 週二（2/2、2/9）**：かきテラス、はしもと 都火休，只剩住宿本體（いかだ荘 山上、橘、丸定旅館，pending）。T9d 確認不到的話週二不排的矢湾，或到 isobe（川うめ、中六）。
+  - **amanoiwato、shima-other 每天 0 家**：子地區裡沒有能吃午餐的店（只有麵包店），D 補不了；amanoiwato 最近的是 isobe 的 川うめ（車 10 分），other 是零散的子地區。
+  - spain：整區休園，不用補。
+- **只靠 D 補上的日子**：anori 週二（丸寅、ひさだ）、daio 週二（Cafe.C.C、大万；田中、十次郎、しまや 都火休）、hamajima 2/3、2/4、2/10（ヨット；八代 水休＋第 1 木）、goza、tomoyama 全部（A～C 0 家）。
+- 最少的：kashikojima 週三午餐 1 家（ラ・メール ザ クラシック；觀光協會寫リアン、山吹 無休，T9d 確認）、goza 週三（磯人；縁 水休、海女の庭 的定休不明）、wagu 週日（鮨裕禅、火場；ひでちゃん 日休）、sakko 平日午餐只有 ココチャ（アスール 土日祝）。
+- **晚餐**：goza **每天 0 家**（只有 pending 的志摩半島；景點 さとうみ庵 11:00～20:30 L.O.19:00 完全預約制）；tomoyama 只有 はまなぎ（非住客未確認）；matoya 只有 別亭 まとや（2/2 Grand Mercure 休館）；daio 週二只有大万、週三只有田中；hamajima 週二、三 1 家；isobe、kokufu 2～3 家；ugata 每天 12 家以上。這些子地區的住宿大多是一泊二食。
+- 2/11（週四、祝日）：收錄店沒有「祝日休」；木休的是 グリルエドイチ、LA PIZZICA、長太屋（觀光協會）。2/4 是第 1 木（八代 休）。
+
+### 不含晚餐的住宿附近（D②）
+- 第一晚的鵜方站周邊、賢島站周邊、Villa ISE shima：附近都有收錄預定的晚餐店，D② 沒用（賢島只有高價的飯店餐廳）。
+- **用了 D② 的**：森と海（国府）→ BALI HOUSE；**リゾートパーク ともやま、Tabist ヴィラダイオー、UMIBE／UMIBE Terrace（登茂山）→ レストラン はまなぎ**（波切的 田中料理店、大万 開車約 10 分）；**OCEAN VILLA 倭（南張）→ 味幸**（浜島市街）；**Small Resort 志摩（越賀）→ 志摩半島（pending）**；**やどかり志摩（立神）→ 居酒屋きゅう、庄助**。距離 T9e 用座標算（`lodging-dinner-access.mjs`），太遠的改 not-included。
+- LOG（安乗）、花多來・ねぼーや（甲賀）、Kabuku（志島）附近有 まるせい、ひさだ、まつむら、鮨暁。
+
+### 15 人
+- 列表寫明個室 15 人以上：**日本料理 鯛（2〜30）**、**川うめ（2〜30、30 人以上可）**、おとや（10〜20）、焼肉うえむら（2〜20）、**里海（2〜20，NEMU）**；pending 的料理旅館 橘（30 人以上）、志摩半島（10〜20）。個室有但沒寫人數的 T9d 看店家頁的席數、最大予約人數。
+- 南部（daio～sakko）全員午餐的候選很少：田中料理店、十次郎、八代、ココチャ（貸切可）、鮨裕禅（貸切），其他都要 T9d 看席數。
+
+### 給 T9d 的提醒
+- **分批**：`data/cache/work/t9d-plan.json`（`[{batch, regions, count, pending, keys}]`，included＋pending 92 家）——1：kashikojima＋yokoyama 16（pending 7）；2：ugata 25（2）；3：isobe＋matoya＋anori＋kokufu 21（5）；4：daio＋tomoyama＋goza＋wagu＋other 17（2）；5：hamajima＋sakko 13（4）。可以拆成 2 個並行 session（例如 1・2 和 3～5）。
+- **pending 要先確認的事**（非住客能不能用餐，判斷細則 F③：官網、訂房網要有非住客方案或用餐營業時間）：住宿本體 20 筆（見上）；賢島カンツリー（不打球能不能吃）；HIRAMATSU、アマネム 是高價的住宿餐廳。
+- **included 但要確認的**：飯店內的店（志摩観光ホテル 5 家、マレナ、はまなぎ、里海、アマネムダイニング、ココチャ、アスール、鮨裕禅、別亭 まとや）的非住客用餐、年齡限制（志摩観光ホテル 限小學生以上）、2/2 的營業；安乗 ひさだ、丸寅 的非住客午餐（來源是觀光三重，不是官網）；**海女小屋 3 家（磯人、海女の庭、火場 広の浜）的營業、預約、人數**（海女の庭 食べログ的定休欄被截斷）；大万（大王荘）是不是對外營業的食事處。
+- **營業時間、定休要看官網的**：觀光協會和食べログ不同的（リアン、山吹、京城、伊鈴屋、LA PIZZICA、長太屋、坂のうえ（食べログ 月～金休 vs 觀光協會 月休））；シェブロン（**觀光三重 2026-09-29：10:00～20:00、火 10:00～15:00** → 晚上有營業，可以修 contexts）、まつむら（同文：11:00～14:00、17:00～20:30）、まるせい 的火休；タベルナ・アスール 平日午餐（2021 資料只有土日祝）；NEMU 2026-04 改裝後的 里海；横山 ミラドール（展望台工期）。
+- **座標**：子地區是推定的（神明 2180 等、恵利原 240、波切ともやま 2235）、D② 的距離；渡鹿野島「カフェ・レストランかいげつ」是不是福寿荘 館內；ESSE（国府3489，森と海 旁，3.02／3）在 T9e 缺漏檢查時再看。
