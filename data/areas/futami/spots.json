@@ -65,7 +65,7 @@
       "神社寺院",
       "海邊"
     ],
-    "tier": null,
+    "tier": "S",
     "nearestStation": {
       "id": "jr-futaminoura",
       "mode": "walk",
@@ -204,6 +204,47 @@
         "冬季拝殿前授與所結束時間：FAQ 16:15、授與品頁 16:00。",
         "JR 二見浦站步行：多數來源 15 分，有一篇記事 10 分。"
       ]
+    },
+    "summary": {
+      "text": "以海中的夫婦岩聞名的神社，夫婦岩是伊勢志摩的代表景觀。境內沿著海邊，到處是祈求平安歸來的青蛙像，免費、全天都能參拜。",
+      "pros": [
+        "二見人氣第一（Google 4.4、1.25 萬則），觀光協會、觀光三重都介紹",
+        "全天可參拜、免費；境內很多カエル像，小孩喜歡找",
+        "2/3 節分祭 14:00 有撒豆趕鬼、撒福豆和紅白餅"
+      ],
+      "cons": [
+        "2 月不是夫婦岩日出（5～7 月）、月出（11～1 月）的季節；海邊戶外",
+        "JR 二見浦站步行約 15 分（不能用近鐵 5 日券），計程車常不在現場待命",
+        "階梯、坡道、輪椅、多功能廁所都沒有來源，要問社務所"
+      ],
+      "basedOn": [
+        "https://futamiokitamajinja.or.jp/faq/",
+        "https://futamiokitamajinja.or.jp/access/",
+        "https://ise-kanko.jp/purpose/futamiokitamajinjya/",
+        "https://www.kankomie.or.jp/spot/2953.html",
+        "https://www.kankomie.or.jp/event/8199",
+        "https://banzokubiology.com/meotoiwa-time/"
+      ],
+      "generated": "2026-10-18"
+    },
+    "assessment": {
+      "rubric": "spot-v1",
+      "scores": {
+        "recommend": 5,
+        "winterFit": 3,
+        "elderFit": null,
+        "kidsFit": 3,
+        "accessEase": 4
+      },
+      "rationale": {
+        "recommend": "Google 4.4（12,515 則），夫婦岩是二見的代表，來二見必去",
+        "winterFit": "全天開放，但 2 月不是日出、月出季，海邊冬天冷；2/3 有節分祭",
+        "elderFit": "階梯、坡道、無障礙官網和觀光頁都沒寫",
+        "kidsFit": "kids.friendly medium：找青蛙像、海邊",
+        "accessEase": "JR 二見浦站步行約 15 分，CANばす「夫婦岩東口」下車 5 分"
+      },
+      "confidence": "medium",
+      "assessed": "2026-10-18"
     }
   },
   {
@@ -317,7 +358,7 @@
       "雨天備案",
       "親子"
     ],
-    "tier": null,
+    "tier": "A",
     "nearestStation": {
       "id": "jr-futaminoura",
       "mode": "walk",
@@ -480,6 +521,46 @@
         "JR 二見浦站步行：asoview（2018）15 分、部落格 20 分。",
         "海豚：2023 年報導和口碑提到海豚接球，2026-10 的官網活動表沒有海豚。"
       ]
+    },
+    "summary": {
+      "text": "夫婦岩旁的小型水族館，主打「零距離」：可以摸斑海豹、海象，和水獺握手，動物和人之間沒有柵欄。規模不大，但互動多，看齊各場活動約 2.5～3 小時。",
+      "pros": [
+        "Google 4.2（5,647 則），互動多，口碑說小孩很開心",
+        "室內為主（只有トドプール在屋外），雨天、冬天都適合",
+        "1F UOASIS、2F ごろりんホール 可以坐著、躺著休息；夫婦岩東口巴士站就在前面"
+      ],
+      "cons": [
+        "規模小，平日活動之間空檔長；沒有正式的表演秀",
+        "2F 回遊水槽等區域只能走樓梯，電梯在隔壁めおと横丁",
+        "2027 年的營業日曆、票價等級還沒公布；15 人不到團體價（20 人以上），館內不能吃便當"
+      ],
+      "basedOn": [
+        "https://ise-seaparadise.com/event-schedule",
+        "https://ise-seaparadise.com/question",
+        "https://banzokubiology.com/iseseaparadise-shoyojikan/",
+        "https://www.asoview.com/asorepo/130456/",
+        "https://www.kankomie.or.jp/report/1322"
+      ],
+      "generated": "2026-10-18"
+    },
+    "assessment": {
+      "rubric": "spot-v1",
+      "scores": {
+        "recommend": 4,
+        "winterFit": 4,
+        "elderFit": 3,
+        "kidsFit": 5,
+        "accessEase": 4
+      },
+      "rationale": {
+        "recommend": "Google 4.2（5,647 則），二見第二熱門；規模小、種類比鳥羽水族館少，不到 S",
+        "winterFit": "室內為主，只有トドプール在屋外；2 月照常（2026 年平日 9:30～16:30）",
+        "elderFit": "2 層樓、部分區域只能走樓梯，但有多處可以坐著休息、可以借輪椅",
+        "kidsFit": "kids.friendly high：摸海豹、海象，水獺握手",
+        "accessEase": "巴士「夫婦岩東口」下車即到（鳥羽站約 12 分）；JR 二見浦站步行 15～20 分"
+      },
+      "confidence": "high",
+      "assessed": "2026-10-18"
     }
   },
   {
@@ -538,7 +619,7 @@
     "tags": [
       "海邊"
     ],
-    "tier": null,
+    "tier": "B",
     "nearestStation": {
       "id": "jr-futaminoura",
       "mode": "walk",
@@ -611,6 +692,45 @@
       "conflicts": [
         "JR 二見浦站到夫婦岩：觀光三重約 10 分、mapple 等約 15 分（到表參道 5 分，觀光協會）。"
       ]
+    },
+    "summary": {
+      "text": "JR 二見浦站到夫婦岩之間的旅館街，保留參宮客的舊旅籠和餅屋，沿路有 1738 年創業的御福餅本家、扇屋等。是往二見興玉神社途中順路走的街道，不是獨立的目的地。",
+      "pros": [
+        "JR 二見浦站步行 5 分，沿海的松林、堤防可以看伊勢灣",
+        "街道平坦，可以順路買御福餅",
+        "免費"
+      ],
+      "cons": [
+        "沿路的國家重要文化財「賓日館」2026-03～2032 休館，只能看外觀",
+        "沒有評論、心得（Google 是地址型地點）；沿路店家 2 月的營業時間沒有來源",
+        "長椅、廁所位置沒有來源；JR 不能用近鐵 5 日券"
+      ],
+      "basedOn": [
+        "https://ise-kanko.jp/purpose/meotoiwasando/",
+        "https://ise-kanko.jp/purpose/hinjitsukan/",
+        "https://www.navitime.co.jp/walkingcourse/240019/",
+        "https://www.kankomie.or.jp/spot/1724"
+      ],
+      "generated": "2026-10-18"
+    },
+    "assessment": {
+      "rubric": "spot-v1",
+      "scores": {
+        "recommend": 2,
+        "winterFit": 3,
+        "elderFit": 4,
+        "kidsFit": null,
+        "accessEase": 5
+      },
+      "rationale": {
+        "recommend": "沒有任何心得、Google 沒有評論；主要的室內看點賓日館休館，是往夫婦岩的路",
+        "winterFit": "戶外街道、全年通行，2 月店家營業不明",
+        "elderFit": "沿海三角洲地形、街道平坦（觀光三重），長椅、廁所沒有來源",
+        "kidsFit": "沒有來源提到小孩",
+        "accessEase": "JR 二見浦站步行約 5 分"
+      },
+      "confidence": "low",
+      "assessed": "2026-10-18"
     }
   },
   {
@@ -659,7 +779,7 @@
     "tags": [
       "神社寺院"
     ],
-    "tier": null,
+    "tier": "B",
     "nearestStation": {
       "id": "jr-matsushita",
       "mode": "walk",
@@ -730,6 +850,44 @@
       "kusu": "大楠樹齡約 2000 年，1937-11-10 指定縣天然紀念物，在蘇民の森西南角朝道路，主幹地上只剩約 5 m（觀光三重）",
       "nearby": "隔壁有二見しょうぶロマンの森、直賣所「民話の駅 蘇民」（觀光三重）",
       "shimenawa": "伊勢志摩全年在玄關掛蘇民將來注連繩；松下社在哪裡授與、正月以外買不買得到、價格都沒有來源（觀光三重 2024-05）"
+    },
+    "summary": {
+      "text": "相傳安倍晴明勸請的小神社，被介紹為伊勢志摩家家戶戶全年掛「蘇民将来子孫家門」注連繩的發祥地。境內有樹齡約 2000 年、三重縣天然紀念物的大楠。",
+      "pros": [
+        "蘇民將來信仰的發祥神社，大楠是縣天然紀念物",
+        "隔壁有直賣所「民話の駅 蘇民」，可以一起排",
+        "JR 松下站步行約 10 分"
+      ],
+      "cons": [
+        "小而舊的無人神社，評論幾乎沒有內容（近 3 年有內文的只有 1 則）",
+        "注連繩在哪裡授與、價格都沒有來源",
+        "在外圍子地區（needsCar），JR 不能用近鐵 5 日券；階梯、廁所、停車場沒有來源"
+      ],
+      "basedOn": [
+        "https://ise-kanko.jp/purpose/matsushitayashiro/",
+        "https://www.kankomie.or.jp/spot/21693",
+        "https://www.kankomie.or.jp/topic/624"
+      ],
+      "generated": "2026-10-18"
+    },
+    "assessment": {
+      "rubric": "spot-v1",
+      "scores": {
+        "recommend": 2,
+        "winterFit": 3,
+        "elderFit": null,
+        "kidsFit": null,
+        "accessEase": 5
+      },
+      "rationale": {
+        "recommend": "Google 4.3 但只有 57 則、評論幾乎沒有內容；觀光三重特集只有小篇幅",
+        "winterFit": "戶外神社，2 月沒有特別的資料",
+        "elderFit": "階梯、境內大小都沒有來源",
+        "kidsFit": "沒有來源提到小孩",
+        "accessEase": "JR 松下站步行約 10 分（JR 參宮線班次少）"
+      },
+      "confidence": "low",
+      "assessed": "2026-10-18"
     }
   }
 ]

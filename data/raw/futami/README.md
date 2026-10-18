@@ -1,20 +1,21 @@
 # 二見：研究筆記 README
 
-> 開工先讀這份。最後更新：2026-10-18（T8d 完成：餐廳 18 筆；T8e 收尾：anchors、dinnerAccess；T8e 第 6 批 補心得 11 筆）。這份是**現況**，各任務更新自己的那一節（覆寫，不是追加）。二見和伊勢一起規劃（T8），過程紀錄寫在 `data/raw/ise/log/`（`log/T8a.md`、`log/T8b.md` 只放指向；`log/T8c.md`、`log/T8d.md` 寫二見的部分，共同方法在伊勢的 `log/T8c.md`、`log/T8d.md`）。
+> 開工先讀這份。最後更新：2026-10-18（T8d 完成：餐廳 18 筆；T8e 收尾：anchors、dinnerAccess；T8e 第 6 批 補心得 11 筆；T8f 完成：景點、住宿、餐廳的摘要與評分）。這份是**現況**，各任務更新自己的那一節（覆寫，不是追加）。二見和伊勢一起規劃（T8），過程紀錄寫在 `data/raw/ise/log/`（`log/T8a.md`、`log/T8b.md` 只放指向；`log/T8c.md`、`log/T8d.md` 寫二見的部分，共同方法在伊勢的 `log/T8c.md`、`log/T8d.md`）。
 
 ## 檔案地圖
 
 | 檔案 | 內容 |
 |---|---|
-| `data/areas/futami/spots.json` | 景點 4 筆（T8a：基本欄位、Google、照片、讀文回填；`summary`／`assessment` 待 T8f） |
-| `data/areas/futami/lodging.json` | 住宿 17 筆（T8b：楽天 API、Google、照片、讀文回填；`summary`／`assessment` 待 T8f） |
-| `data/areas/futami/restaurants.json` | 餐廳 18 筆（T8d：食べログ、Google、照片、讀文；`summary`／`assessment`／`tier` 待 T8f，`anchors` T8e 算好） |
+| `data/areas/futami/spots.json` | 景點 4 筆（T8a：基本欄位、Google、照片、讀文回填；T8f 第 1 批寫了 `summary`／`assessment`／`tier`） |
+| `data/areas/futami/lodging.json` | 住宿 17 筆（T8b：楽天 API、Google、照片、讀文回填；T8f 第 2 批寫了 `summary`／`assessment`／`tier`） |
+| `data/areas/futami/restaurants.json` | 餐廳 18 筆（T8d：食べログ、Google、照片、讀文；`anchors` T8e 算好；T8f 第 3 批寫了 `summary`／`assessment`／`tier`） |
 | `dossiers/<id>.md` | 讀文筆記（景點 4 份 T8a；住宿 17 份 T8b；餐廳 19 份 T8d，含不收的 `futami-yusura-dining`；T8e 第 6 批 11 份追加食べログ口コミ、Google 評論） |
 | `candidates/spots.json` | 景點候選 19 筆（已收錄 4、沒收錄 12、排除 3）。用程式過濾，不要整份讀 |
 | `candidates/lodging.json` | 住宿候選 23 筆（已收錄 17、排除 4、沒收錄 2） |
 | `candidates/restaurants.json` | 餐廳候選 47 筆（收錄 18、排除 2、未納入 27）。用程式過濾 |
 | `log/T8c.md` | T8c 二見的過程紀錄（町名列表、篩選、D①／D② 怎麼補） |
 | `log/T8d.md` | T8d 第 6 批（二見）的過程紀錄 |
+| `data/raw/ise/log/T8f.md` | T8f（伊勢、二見共用）：第 1～3 批 景點、住宿、餐廳評分；總結 |
 | `data/raw/ise/log/T8e.md` | T8e（伊勢、二見共用）：第 2 批的收尾、補心得的對象；第 6 批 二見的補心得；總結 |
 | `ig-notes.md` | 餐廳 IG 帳號（沒打開 IG，T18 才看） |
 | `questions.md` | 要打電話、人工確認的事 |
@@ -32,10 +33,16 @@
 
 ### 現況（T8a 完成）
 - 收錄：二見興玉神社（夫婦岩）、伊勢シーパラダイス、夫婦岩表參道（旅館街）、松下社（蘇民將來、大楠）。
-- **4 筆都有**：基本欄位、`links.googleMaps`（cid）、Google 星數與評論數（夫婦岩表參道是地址型地點，沒有星數）、照片 2～3 張、讀文筆記（`dossiers/` 4 份）、`sources`；矛盾寫在 `extra.conflicts`。**還沒填**：`summary`／`assessment`（T8f）。
+- **4 筆都有**：基本欄位、`links.googleMaps`（cid）、Google 星數與評論數（夫婦岩表參道是地址型地點，沒有星數）、照片 2～3 張、讀文筆記（`dossiers/` 4 份）、`sources`；矛盾寫在 `extra.conflicts`。`summary`／`assessment`／`tier` 是 T8f 第 1 批寫的（見下面「評分」）。
 - 讀文回填：`stayMinutes` 二見興玉神社 45、シーパラ 150（表參道、松下社沒有來源）；`kids.friendly` シーパラ high、二見興玉神社 medium；シーパラ `indoor: true`（只有トドプール在屋外，加了室內、雨天備案、親子 tags）。
 - Google：二見興玉神社 4.4（12,515 則；夫婦岩另有 2,028 則）、シーパラ 4.2（5,647）、松下社 4.3（57）。
 - 座標：OSM 3 筆（和 Google 差 300 m 以內）；松下社 改用 Google（地址座標差 648 m）。
+
+### 評分（T8f 第 1 批，2026-10-18，`spot-v1`）
+- 分布：**S 1**（二見興玉神社：Google 4.4／12,515）、**A 1**（伊勢シーパラダイス：4.2／5,647）、3 星 0、2 星 2（夫婦岩表參道：沒有評論、賓日館休館；松下社：57 則、評論幾乎沒有內容）。
+- 門檻和伊勢相同（`data/raw/toba/assessment-notes.md`「依區調整」）：照鳥羽範例試算 A 以上 2／4＝50%，改用伊勢的門檻還是 50%。只有 4 筆，1 筆就是 25%，照規則不再往上加，列在 decisions-pending「👤 建議先看」給 T8g。
+- `confidence`：high 1（シーパラ）、medium 1（二見興玉神社：沒讀 Google 評論）、low 2。null：`elderFit` 2（二見興玉神社、松下社）、`kidsFit` 2（表參道、松下社）。
+- 評分檢查（`scripts/assessment-check.mjs futami --types spot`）列出 0 項。
 
 ### 旅程期間的日子
 - **2/3（三）二見興玉神社 節分祭 14:00**（官網：立春前一天 14:00）：境內特設撒豆台趕鬼、撒福豆和紅白餅；一般遊客能不能接豆、人潮沒有來源。
@@ -59,6 +66,13 @@
 
 ## 住宿（17 筆）
 
+### 評分（T8f 第 2 批，2026-10-18，`lodging-v1`）
+- 照鳥羽住宿的門檻試算 A 以上 3／17（18%），**不調整**（伊勢的住宿有調整，見 `data/raw/toba/assessment-notes.md`「依區調整」）。
+- 分布：**S 2**（大石屋：じゃらん 4.8／1,634、楽天晚餐 4.75；民宿ヤマト：じゃらん 4.7／710、楽天晚餐 4.92）、**A 1**（海の蝶：楽天 4.47／2,737、近鐵鳥羽站接送）、3 星 10、2 星 4（岩戸館、いろは、ぽかぽか村、プラフィーノ）、1 星 0。
+- T8e 的負面資訊：岩戸館 楽天客室 3.72、設備 3.5、2026/08 沒熱水 → 照數字的 3 往下調成 2；ぽかぽか村 冬天沒熱水（2025-12）→ 2。朝日館 楽天 API 2.0 不用，照 Google 3.9 和星級分布打 3（confidence low）。
+- 大石屋 是 S 但 `groupFit` 2（官網：用餐場地最多 10 人、沒有團體方案）；ヤマト `groupFit` 3、`elderFit` 2（只有樓梯）。`elderFit` 2 的多（浜千代館、日章館、吸霞園、ヤマト 確定沒有電梯）；4 是キャッスルイン夫婦岩、海の蝶、大石屋、オレンジガーデン。
+- `confidence`：high 0、medium 7、low 10。評分檢查（`scripts/assessment-check.mjs futami`）住宿列出 0 項。
+
 > **じゃらん評分**（T7i，2026-10-18，`scripts/jalan.mjs`）：17 間有 7 間有分數，大石屋 4.8（1,634 則）、ヤマト 4.7（710 則）、海の蝶 4.5（1,163 則）；キャッスルイン夫婦岩 3.9 → 4.0。朝日館 不在じゃらん（楽天 API 2.0 的疑問還是要看 Google 和筆記）；日章館、吸霞園、ゆすら 近一年評論數不夠、不顯示分數。排除的清海（3.4）、麻野館（不顯示）維持排除。
 
 ### 現況（T8b 完成）
@@ -80,6 +94,14 @@
 - T8f：朝日館 的楽天 2.0 是 API 值，和頁面星級分布衝突，評分時參考 Google 和筆記。
 
 ## 餐廳（18 筆）
+### 評分（T8f 第 3 批，2026-10-18，`restaurant-v1`）
+- 照原門檻（食べログ 3.45 以上、100 則以上＋ Google 4.0 以上）試算 2／18＝11%，加上料理旅館的非住客用餐（F③）海の蝶 → **3／18＝17%**，不調整（伊勢的餐廳有調整，見 `data/raw/toba/assessment-notes.md`「依區調整」）。
+- 分布：**S 0**、**A 3**（御福餅本家：食べログ 3.49／203、Google 4.2／604；旭家 酒素饅頭：3.45／100、4.6／175；海の蝶 日帰り夕食：楽天餐 4.56／2,737，口コミ全是住客餐）、3 星 6、2 星 9、1 星 0。
+- 2 星：まるはま（Google 3.3）、松風軒（3.9＋服務負評）、maruru cafe（3.8＋一人一杯飲料的負評）、潮騒・海風美術店（食べログ 3.3 未満、沒有介紹）、缺口保底（D）的 う吉・蘇民・マイヤー・パイン。二見 Google 4.0 以上又有 100 則以上評論的店很少，B 多。
+- **全員 15 人能吃的 `groupFit` 5：maruru cafe（貸切 20～50 人，晚餐時段幼兒不行、6～10 歲可）、う吉（貸切 20～50 人，2026-07 新店、週四休）**，都在 futami-okitama（う吉 要開車）。松風軒、海の蝶 是 4（要電話問能不能事先訂、日帰り能不能用宴會場）；ワスケ 3（split）。
+- `kidsFit` 全席可吸菸扣一級（松風軒、パイン）；`elderFit` null 9（座位形式沒有來源的甜點店、小店）。`confidence`：high 0、medium 5、low 13。
+- 評分檢查（`scripts/assessment-check.mjs futami`）餐廳列出 0 項。
+
 
 ### 現況（T8d 完成）
 - 收錄 18 筆（`data/areas/futami/restaurants.json`）：futami-okitama 13（御福餅、旭家、ウァン、扇屋、勢語庵、BonTin cafe 禊、ル・シノワ 花栞、まるはま、海風美術店、潮騒、松風軒、maruru cafe、う吉）、futami-outskirts 5（ワスケ、民話の駅 蘇民、マイヤー、パイン、旅荘 海の蝶 `futami-uminocho-dining`）。過程見 `log/T8d.md`。

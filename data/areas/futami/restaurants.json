@@ -94,7 +94,7 @@
       "instagram": "@ofukumochi_"
     },
     "tags": [],
-    "tier": null,
+    "tier": "A",
     "sources": [
       {
         "type": "tabelog",
@@ -246,6 +246,47 @@
         "3種盛り：官網 900 円；まっぷる 880 円",
         "4travel 寫「二見本店閉鎖」是舊址（茶屋 197-1），它的口碑是舊店的（2014～2023）；現在是新社屋（茶屋 568-1，2024-04 起）"
       ]
+    },
+    "summary": {
+      "text": "1738 年創業、和赤福齊名的「御福餅」本家，2024 年搬到夫婦岩表參道上的新社屋，甘味處有附抹茶的 3 種盛り 900 円、あんみつ。二見興玉神社步行約 400 m，參拜後的點心。",
+      "pros": [
+        "食べログ 3.49（203 則）、Google 4.2（604 則），二見甜點裡評論最多",
+        "年中無休，2/3 節分、2/11 也可能照常營業",
+        "外帶伴手禮也在這裡買，有 12 台停車場"
+      ],
+      "cons": [
+        "不能預約、席數沒寫，只有吧台席",
+        "口コミ多半是搬遷前舊店的（2023 以前），新店的心得 0 篇",
+        "JR 二見浦站步行約 12 分"
+      ],
+      "basedOn": [
+        "https://ofukumochi.com/shops/futami/",
+        "https://ofukumochi.com/%e6%96%b0%e7%a4%be%e5%b1%8b%e3%80%80%e5%be%a1%e7%a6%8f%e9%a4%85%e6%9c%ac%e5%ae%b6%e3%80%80%e6%9c%ac%e5%ba%97%e3%80%80%e3%82%a2%e3%82%af%e3%82%bb%e3%82%b9%e3%80%80%e3%81%94%e6%a1%88%e5%86%85/",
+        "https://www.mapple.net/spot/24011350/",
+        "https://4travel.jp/dm_shisetsu/11075379",
+        "https://tabelog.com/mie/A2403/A240301/24020823/",
+        "https://maps.google.com/?cid=14463137259893633306"
+      ],
+      "generated": "2026-10-18"
+    },
+    "assessment": {
+      "rubric": "restaurant-v1",
+      "scores": {
+        "recommend": 4,
+        "localFlavor": 4,
+        "groupFit": 3,
+        "elderFit": 3,
+        "kidsFit": 3
+      },
+      "rationale": {
+        "recommend": "食べログ 3.49（203 則）、Google 4.2（604 則），まっぷる、4travel 都有介紹；口コミ多半是 2024 年搬遷前的舊店",
+        "localFlavor": "伊勢名物「御福餅」的本家（1738 年創業）",
+        "groupFit": "不能預約、席數沒寫；外帶伴手禮可以分批買",
+        "elderFit": "只有吧台席；有多目的廁所、沒有電梯",
+        "kidsFit": "小孩規定沒寫；甜點、冰品小孩可吃"
+      },
+      "confidence": "low",
+      "assessed": "2026-10-18"
     }
   },
   {
@@ -335,7 +376,7 @@
       "instagram": "@asahiya1913"
     },
     "tags": [],
-    "tier": null,
+    "tier": "A",
     "sources": [
       {
         "type": "tabelog",
@@ -475,6 +516,47 @@
         "價格：82 円（2015）、90 円（2020～21 口碑）、100 円（るるぶ・まっぷる）",
         "席數：食べログ 10 席；讀文來源說外帶店"
       ]
+    },
+    "summary": {
+      "text": "1913 年創業、只賣一種「酒素まんじゅう」的老舖，米麹發酵的薄皮包紅豆粒餡，一個 100 円、現蒸。JR 二見浦站步行 3 分，散步時順手買的點心。",
+      "pros": [
+        "食べログ 3.45、Google 4.6，觀光三重、るるぶ、まっぷる 都有介紹",
+        "一個 100 円，剛蒸好溫熱的最受好評",
+        "二見浦站步行 3 分、停車 10 台"
+      ],
+      "cons": [
+        "外帶為主，內用座位沒有正式資料",
+        "不定休（月 1 次左右）、賣完就關，要早點去",
+        "4travel 口碑最新是 2023-03"
+      ],
+      "basedOn": [
+        "https://www.kankomie.or.jp/spot/24471",
+        "https://rurubu.jp/andmore/spot/80024656",
+        "https://www.mapple.net/spot/24001158/",
+        "https://4travel.jp/dm_shisetsu/11080748",
+        "https://tabelog.com/mie/A2403/A240301/24006852/",
+        "https://maps.google.com/?cid=16967573432617653115"
+      ],
+      "generated": "2026-10-18"
+    },
+    "assessment": {
+      "rubric": "restaurant-v1",
+      "scores": {
+        "recommend": 4,
+        "localFlavor": 4,
+        "groupFit": 3,
+        "elderFit": null,
+        "kidsFit": 3
+      },
+      "rationale": {
+        "recommend": "食べログ 3.45（100 則）、Google 4.6（175 則），観光三重、るるぶ、まっぷる 都介紹",
+        "localFlavor": "1913 年創業的二見名物 酒素饅頭",
+        "groupFit": "外帶為主，15 人可以分批買",
+        "elderFit": "外帶店，座位形式沒有來源",
+        "kidsFit": "小孩規定沒寫；一口大小的饅頭小孩可吃"
+      },
+      "confidence": "low",
+      "assessed": "2026-10-18"
     }
   },
   {
@@ -559,7 +641,7 @@
       "instagram": "@wan_butaman"
     },
     "tags": [],
-    "tier": null,
+    "tier": "B",
     "sources": [
       {
         "type": "tabelog",
@@ -694,6 +776,46 @@
         "地址：食べログ・4travel 茶屋 53-3；HAMONI 茶屋 100-1",
         "以前可以搭電梯到頂樓內用（IG 心得），現在外帶專門"
       ]
+    },
+    "summary": {
+      "text": "二見浦站步行 3 分的豚まん專門店，皮鬆軟、餡多，一個 250 円，也有栗あんまん、炸物棒。現在只能外帶，邊走邊吃。",
+      "pros": [
+        "Google 4.4（229 則），4travel 評價多 4.0～4.5",
+        "一個 250 円，冬天吃熱的剛好",
+        "可刷卡、電子支付"
+      ],
+      "cons": [
+        "只能外帶，沒有座位",
+        "週三休（2/3、2/10）；傍晚常賣完",
+        "不是正餐"
+      ],
+      "basedOn": [
+        "https://4travel.jp/dm_shisetsu/11081768",
+        "https://hamoni.jp/shop/n7RsWEUSUOUi8nyly966UMf8m8HvcSOI",
+        "https://hamoni.jp/area/mie/ise/futamiura/shops",
+        "https://tabelog.com/mie/A2403/A240301/24007882/",
+        "https://maps.google.com/?cid=2200526588735721246"
+      ],
+      "generated": "2026-10-18"
+    },
+    "assessment": {
+      "rubric": "restaurant-v1",
+      "scores": {
+        "recommend": 3,
+        "localFlavor": 2,
+        "groupFit": 3,
+        "elderFit": 2,
+        "kidsFit": 4
+      },
+      "rationale": {
+        "recommend": "食べログ 3.44（133 則）、Google 4.4（229 則），差一點到 4 的門檻；4travel 評價多 4.0～4.5",
+        "localFlavor": "豚まん、炸物棒，有松阪牛まん，但不是伊勢志摩的特產",
+        "groupFit": "外帶專門，15 人可以分批買",
+        "elderFit": "外帶專門、沒有內用座位，只能站著吃或帶回車上",
+        "kidsFit": "可帶小孩，2020 年心得說小孩很喜歡；熟食"
+      },
+      "confidence": "medium",
+      "assessed": "2026-10-18"
     }
   },
   {
@@ -800,7 +922,7 @@
       "instagram": "@oogiyaise"
     },
     "tags": [],
-    "tier": null,
+    "tier": "B",
     "sources": [
       {
         "type": "tabelog",
@@ -993,6 +1115,49 @@
         "停車：るるぶ 30 台；官網 店前 3＋約 10 台",
         "伊勢えびフライ定食：るるぶ 3,600、まっぷる 3,300 円；官網現行菜單沒有，只有大えびフライ定食 2,100 円"
       ]
+    },
+    "summary": {
+      "text": "二見浦站前步行 1 分的古民家洋食・定食，松阪牛漢堡排定食 1,700 円，2 月有冬季限定的浦村かきフライ定食 1,750 円。二見浦少數晚上有開的店，但 19:30 就收。",
+      "pros": [
+        "冬季限定 浦村牡蠣フライ，口碑多篇好評",
+        "晚上開到 19:30，二見浦晚餐的選項",
+        "桌席、店內寬敞，有蛋包飯、咖哩給小孩"
+      ],
+      "cons": [
+        "不接受預約，15 人只能分組或開店就去",
+        "週四休、週三只有午餐（2/3、2/10 晚上、2/4 全天休；2/11 可能休）",
+        "只收現金；份量偏女性向"
+      ],
+      "basedOn": [
+        "https://ougiyafutami.com/",
+        "https://ougiyafutami.com/menus",
+        "https://ougiyafutami.com/about",
+        "https://rurubu.jp/andmore/spot/80024566",
+        "https://www.mapple.net/spot/24000224/",
+        "https://www.nap-camp.com/mag/50460",
+        "https://4travel.jp/dm_shisetsu/11075068",
+        "https://hamoni.jp/shop/amztrMyf0MvNdi7TzN90"
+      ],
+      "generated": "2026-10-18"
+    },
+    "assessment": {
+      "rubric": "restaurant-v1",
+      "scores": {
+        "recommend": 3,
+        "localFlavor": 3,
+        "groupFit": 1,
+        "elderFit": 3,
+        "kidsFit": 4
+      },
+      "rationale": {
+        "recommend": "食べログ 3.43（188 則）、Google 4.1（570 則），評價穩定；冬季牡蠣フライ多篇好評",
+        "localFlavor": "松阪牛漢堡排、浦村牡蠣フライ（冬季），用三重食材的洋食",
+        "groupFit": "官網寫不接受預約",
+        "elderFit": "桌席、店內寬敞，但晚上 7 點近滿、週日傍晚要等",
+        "kidsFit": "可帶小孩，有オムレツ、カレー、パフェ；沒有兒童餐"
+      },
+      "confidence": "medium",
+      "assessed": "2026-10-18"
     }
   },
   {
@@ -1077,7 +1242,7 @@
       "instagram": "@isuzu_seigoan"
     },
     "tags": [],
-    "tier": null,
+    "tier": "B",
     "sources": [
       {
         "type": "tabelog",
@@ -1212,6 +1377,45 @@
     "smoking": "全席禁煙",
     "extra": {
       "conflicts": []
+    },
+    "summary": {
+      "text": "夫婦岩表參道上的塩ようかん專門店，用二見「岩戸の塩」，依季節調整鹽量，一條 777 円。伴手禮為主，有 6 席，內用菜單沒有來源。",
+      "pros": [
+        "Google 4.6（144 則）",
+        "二見在地鹽做的伴手禮",
+        "8:30 開門，通年營業"
+      ],
+      "cons": [
+        "個人心得 0 篇，資料只有店家資訊",
+        "不定休，要去的日子先電話",
+        "內用的內容沒有來源，不是用餐的地方"
+      ],
+      "basedOn": [
+        "https://www.mapple.net/spot/24010330/",
+        "https://www.mapple.net/region/a0405010100_g02060500/spot/",
+        "https://tabelog.com/mie/A2403/A240301/24006947/",
+        "https://maps.google.com/?cid=1377430070784442977"
+      ],
+      "generated": "2026-10-18"
+    },
+    "assessment": {
+      "rubric": "restaurant-v1",
+      "scores": {
+        "recommend": 3,
+        "localFlavor": 4,
+        "groupFit": 3,
+        "elderFit": null,
+        "kidsFit": 3
+      },
+      "rationale": {
+        "recommend": "食べログ 3.42（56 則）、Google 4.6（144 則）→ 評論數上限 3；個人心得 0 篇",
+        "localFlavor": "用二見「岩戸の塩」做的塩ようかん",
+        "groupFit": "伴手禮店（6 席），可以分批買",
+        "elderFit": "座位形式沒有來源",
+        "kidsFit": "可帶小孩、嬰兒車可；但只有羊羹"
+      },
+      "confidence": "low",
+      "assessed": "2026-10-18"
     }
   },
   {
@@ -1303,7 +1507,7 @@
       "instagram": "@bontin_cafe_misogi"
     },
     "tags": [],
-    "tier": null,
+    "tier": "B",
     "sources": [
       {
         "type": "tabelog",
@@ -1453,6 +1657,47 @@
         "讀音：神社官網「ボンタンカフェ」、ぐるなび「ボンティンカフェミソギ」",
         "公休：食べログ 列表 週五；食べログ 店家頁 週五（一致）"
       ]
+    },
+    "summary": {
+      "text": "東京日本橋 BonTin cafe 的 2 號店，在二見興玉神社境內，窗外是禊橋和伊勢灣。自家焙煎咖啡、卵サンド、甜點，完全不收現金。",
+      "pros": [
+        "Google 4.7（113 則），參拜途中休息",
+        "看得到禊橋和伊勢灣",
+        "有卵サンド、甜點"
+      ],
+      "cons": [
+        "週五休（2/5、2/12）；2/3 節分祭境內很擠",
+        "不能預約、席數沒寫，15 人一起坐不太可能",
+        "只收電子支付；心得 0 篇"
+      ],
+      "basedOn": [
+        "https://futamiokitamajinja.or.jp/meguru/%e4%bc%91%e6%86%a9%e5%87%a6%ef%bc%88%e3%82%ab%e3%83%95%e3%82%a7%e3%83%bb%e3%81%86%e3%81%a9%e3%82%93%e5%b1%8b%e3%83%bb%e7%be%8e%e8%a1%93%e5%ba%97%ef%bc%89/",
+        "https://futamiokitamajinja.or.jp/event/",
+        "https://www.nap-camp.com/mag/50460",
+        "https://r.gnavi.co.jp/m679spsr0000/",
+        "https://tabelog.com/mie/A2403/A240301/24020912/",
+        "https://maps.google.com/?cid=9022276095891736976"
+      ],
+      "generated": "2026-10-18"
+    },
+    "assessment": {
+      "rubric": "restaurant-v1",
+      "scores": {
+        "recommend": 3,
+        "localFlavor": 1,
+        "groupFit": 1,
+        "elderFit": null,
+        "kidsFit": 4
+      },
+      "rationale": {
+        "recommend": "食べログ 3.41（61 則）、Google 4.7（113 則）→ 評論數上限 3；心得 0 篇",
+        "localFlavor": "自家焙煎咖啡、卵サンド，和在地食材無關（賣點是禊橋、伊勢灣的景觀）",
+        "groupFit": "不接受預約，席數沒寫",
+        "elderFit": "座位形式沒有來源",
+        "kidsFit": "小學生可（「小さなお子様不可」）；有卵サンド、甜點"
+      },
+      "confidence": "low",
+      "assessed": "2026-10-18"
     }
   },
   {
@@ -1569,7 +1814,7 @@
       "instagram": null
     },
     "tags": [],
-    "tier": null,
+    "tier": "B",
     "sources": [
       {
         "type": "tabelog",
@@ -1727,6 +1972,46 @@
         "個室：食べログ 無；HAMONI 有",
         "晚餐開始：伊勢志摩観光ナビ 17:30；食べログ 17:00"
       ]
+    },
+    "summary": {
+      "text": "夫婦岩表參道「夢ギャラリー二見」1F 的中華・飲茶。午餐是從 17 種主菜＋6 種點心選的套餐，晚餐是配紹興酒的套餐，二見浦少數開到 21:00 的店。",
+      "pros": [
+        "Google 4.5（128 則）",
+        "晚上開到 21:00（L.O.），二見浦最晚",
+        "可預約、可帶小孩"
+      ],
+      "cons": [
+        "週二休、每月 2 次週一休（2/2、2/9 休，2/8 可能休）",
+        "席數、價格、心得都沒有來源",
+        "個室有沒有，食べログ和 HAMONI 說法不同"
+      ],
+      "basedOn": [
+        "https://www.iseshima-kanko.jp/gourmet/2794",
+        "https://hamoni.jp/area/mie/ise/futamiura/shops",
+        "https://hamoni.jp/shop/A3lMI3z2htMyuiSvFwWU40v9fJ4b5v6d",
+        "https://tabelog.com/mie/A2403/A240301/24016159/",
+        "https://maps.google.com/?cid=15580380875385241077"
+      ],
+      "generated": "2026-10-18"
+    },
+    "assessment": {
+      "rubric": "restaurant-v1",
+      "scores": {
+        "recommend": 3,
+        "localFlavor": 1,
+        "groupFit": 2,
+        "elderFit": null,
+        "kidsFit": 4
+      },
+      "rationale": {
+        "recommend": "食べログ 3.31（34 則）、Google 4.5（128 則）→ 評論數上限 3；心得 0 篇",
+        "localFlavor": "中華・飲茶，和在地無關",
+        "groupFit": "可預約，但席數沒寫",
+        "elderFit": "座位形式沒有來源",
+        "kidsFit": "可帶小孩（未就學兒也可）；中華熟食"
+      },
+      "confidence": "low",
+      "assessed": "2026-10-18"
     }
   },
   {
@@ -1816,7 +2101,7 @@
       "instagram": null
     },
     "tags": [],
-    "tier": null,
+    "tier": "B",
     "sources": [
       {
         "type": "tabelog",
@@ -1963,6 +2248,46 @@
         "營業時間：食べログ 9:00～16:00；るるぶ・なっぷ 9:00～17:00",
         "HAMONI 的「まるはま」是千葉縣 金谷港 的同名店，沒有採用"
       ]
+    },
+    "summary": {
+      "text": "二見興玉神社門前的食堂，伊勢烏龍、丼飯套餐、海鮮定食，也賣霜淇淋。50 席、有座敷，參拜後就近吃午餐的選項。",
+      "pros": [
+        "神社門前，50 席，停車 20 台",
+        "伊勢烏龍、丼飯，價格平實",
+        "有桌席"
+      ],
+      "cons": [
+        "Google 3.3，評價偏低",
+        "不接受預約；營業時間依季節變動、不定休",
+        "個人心得 0 篇"
+      ],
+      "basedOn": [
+        "https://rurubu.jp/andmore/spot/80024661",
+        "https://www.nap-camp.com/mag/50460",
+        "https://hamoni.jp/area/mie/ise/futamiura/shops",
+        "https://tabelog.com/mie/A2403/A240301/24007067/",
+        "https://maps.google.com/?cid=925383972160598577"
+      ],
+      "generated": "2026-10-18"
+    },
+    "assessment": {
+      "rubric": "restaurant-v1",
+      "scores": {
+        "recommend": 2,
+        "localFlavor": 4,
+        "groupFit": 1,
+        "elderFit": 4,
+        "kidsFit": 3
+      },
+      "rationale": {
+        "recommend": "Google 3.3（275 則）、食べログ 3.29，100 則以上的店裡偏低；個人心得 0 篇",
+        "localFlavor": "伊勢烏龍、海鮮定食",
+        "groupFit": "不接受預約",
+        "elderFit": "有桌席和座敷（50 席）",
+        "kidsFit": "小孩規定沒寫；有伊勢烏龍、丼飯"
+      },
+      "confidence": "low",
+      "assessed": "2026-10-18"
     }
   },
   {
@@ -2049,7 +2374,7 @@
       "instagram": "@withwhite_art"
     },
     "tags": [],
-    "tier": null,
+    "tier": "B",
     "sources": [
       {
         "type": "tabelog",
@@ -2187,6 +2512,45 @@
         "個室：食べログ 列表標「個室有」，和店的實際樣子（美術品店兼外帶）對不上",
         "官網：食べログ HP 欄 withwhite.jp；Google 網站欄 umikaze.store"
       ]
+    },
+    "summary": {
+      "text": "二見興玉神社境內、和 BonTin cafe 同棟的美術品店，本業賣日本畫、緣起物、注連繩，兼賣伊勢茶、甘酒、かえるクッキー（可外帶）。參拜時順路買杯熱甘酒，不是坐下吃飯的地方。",
+      "pros": [
+        "神社境內，參拜途中順路",
+        "青蛙（神使）造型餅乾當伴手禮",
+        "冬天有熱甘酒"
+      ],
+      "cons": [
+        "週五休（2/5、2/12）；2/3 節分祭境內很擠",
+        "價格、座位沒有來源",
+        "心得 0 篇"
+      ],
+      "basedOn": [
+        "https://futamiokitamajinja.or.jp/meguru/%e4%bc%91%e6%86%a9%e5%87%a6%ef%bc%88%e3%82%ab%e3%83%95%e3%82%a7%e3%83%bb%e3%81%86%e3%81%a9%e3%82%93%e5%b1%8b%e3%83%bb%e7%be%8e%e8%a1%93%e5%ba%97%ef%bc%89/",
+        "https://futamiokitamajinja.or.jp/event/",
+        "https://tabelog.com/mie/A2403/A240301/24020860/",
+        "https://maps.google.com/?cid=13356964827959154950"
+      ],
+      "generated": "2026-10-18"
+    },
+    "assessment": {
+      "rubric": "restaurant-v1",
+      "scores": {
+        "recommend": 2,
+        "localFlavor": 2,
+        "groupFit": 3,
+        "elderFit": null,
+        "kidsFit": 3
+      },
+      "rationale": {
+        "recommend": "食べログ 3.21（21 則），Google 4.8 只有 43 則；讀文只有神社官網的店家介紹，沒有推薦",
+        "localFlavor": "伊勢茶、甘酒、かえるクッキー",
+        "groupFit": "外帶飲品・點心，可以分批買",
+        "elderFit": "座位形式沒有來源",
+        "kidsFit": "小孩規定沒寫；有甘酒、餅乾"
+      },
+      "confidence": "low",
+      "assessed": "2026-10-18"
     }
   },
   {
@@ -2236,7 +2600,7 @@
       "instagram": null
     },
     "tags": [],
-    "tier": null,
+    "tier": "B",
     "sources": [
       {
         "type": "tabelog",
@@ -2364,6 +2728,43 @@
       "conflicts": [
         "4travel 把同址登記成民宿「潮騒」；食べログ 是日本料理店。非住客能否用餐沒有明寫（Google 名稱有「お食事処」）"
       ]
+    },
+    "summary": {
+      "text": "二見町江的民宿附設食堂，在シーパラ、二見興玉神社附近。營業時間、菜單完全沒有來源，非住客能不能用餐也沒有明寫，要先打電話。",
+      "pros": [
+        "シーパラ、二見興玉神社步行圈",
+        "可預約、有個室、有停車場"
+      ],
+      "cons": [
+        "營業時間、公休、菜單都沒有來源",
+        "非住客能不能吃沒有明寫",
+        "心得只有 2014 年的 1 篇"
+      ],
+      "basedOn": [
+        "https://4travel.jp/dm_hotel-10048926",
+        "https://tabelog.com/mie/A2403/A240301/24004254/",
+        "https://maps.google.com/?cid=11421815214140141917"
+      ],
+      "generated": "2026-10-18"
+    },
+    "assessment": {
+      "rubric": "restaurant-v1",
+      "scores": {
+        "recommend": 2,
+        "localFlavor": null,
+        "groupFit": 2,
+        "elderFit": null,
+        "kidsFit": null
+      },
+      "rationale": {
+        "recommend": "食べログ 3.2（23 則）、Google 3.8（177 則），唯一的心得是 2014 年的民宿口碑",
+        "localFlavor": "菜單沒有來源",
+        "groupFit": "可預約、有個室，但席數沒寫",
+        "elderFit": "座位形式沒有來源",
+        "kidsFit": "小孩規定、菜單都沒有來源"
+      },
+      "confidence": "low",
+      "assessed": "2026-10-18"
     }
   },
   {
@@ -2476,7 +2877,7 @@
       "instagram": null
     },
     "tags": [],
-    "tier": null,
+    "tier": "B",
     "sources": [
       {
         "type": "tabelog",
@@ -2640,6 +3041,48 @@
       "conflicts": [
         "營業時間：HAMONI 只列週日 12:00～16:00；官網 12:00～14:30／17:00～不定時；食べログ 17:00～20:00"
       ]
+    },
+    "summary": {
+      "text": "創業約 60 年的割烹・仕出し店，伊勢烏龍＋手こね寿司的定食、鰻魚、壽司，宴會可以做伊勢海老、河豚、浦村牡蠣。二見浦晚上有開、能接團體宴會的少數店。",
+      "pros": [
+        "官網寫接團體宴會，2F 有團體用的空間",
+        "晚上開到 20:00 左右，住二見浦的旅客常來",
+        "伊勢烏龍、手こね寿司、鰻魚"
+      ],
+      "cons": [
+        "全席可吸菸",
+        "Google 低分集中在服務態度、份量和照片不符",
+        "不定休（午餐也不定）；15 人能不能事先訂位要電話確認"
+      ],
+      "basedOn": [
+        "http://shofuken.com/syofuken5.html",
+        "http://shofuken.com/syofuken3.html",
+        "https://hamoni.jp/area/mie/ise/shops/eel",
+        "https://hamoni.jp/shop/TSiQuWi3eeJaOEuZOJZ3",
+        "https://tabelog.com/mie/A2403/A240301/24008599/",
+        "https://tabelog.com/mie/A2403/A240301/24008599/dtlrvwlst/",
+        "https://maps.google.com/?cid=13280565219992405870"
+      ],
+      "generated": "2026-10-18"
+    },
+    "assessment": {
+      "rubric": "restaurant-v1",
+      "scores": {
+        "recommend": 2,
+        "localFlavor": 4,
+        "groupFit": 4,
+        "elderFit": 3,
+        "kidsFit": 3
+      },
+      "rationale": {
+        "recommend": "食べログ 3.16、Google 3.9（205 則）；Google 低分集中在服務態度、和照片不符、生魚片 CP 值低（約 2022～2026）",
+        "localFlavor": "伊勢烏龍、手こね寿司 定食，宴會可做伊勢海老、河豚",
+        "groupFit": "官網寫接團體宴會、2F 有團體席；但只訂座位曾被拒，要先問清楚",
+        "elderFit": "1F 有桌席、掘りごたつ，團體用的 2F 電梯不明",
+        "kidsFit": "對小孩親切的評論 1 則，有唐揚、烏龍；全席可吸菸"
+      },
+      "confidence": "medium",
+      "assessed": "2026-10-18"
     }
   },
   {
@@ -2737,7 +3180,7 @@
       "instagram": "@maruru.ca"
     },
     "tags": [],
-    "tier": null,
+    "tier": "B",
     "sources": [
       {
         "type": "tabelog",
@@ -2923,6 +3366,49 @@
         "營業時間：官網 11:00～20:00、不定休；HAMONI 引的投稿 11:00～18:00、週三休（可能是 2023 開幕初期）",
         "所在的やわらの湯 まるや 是女性專用旅館；咖啡店官網、媒體都當一般咖啡店介紹，非住客、男性可以用餐（沒有明寫）"
       ]
+    },
+    "summary": {
+      "text": "2023 年開幕、女性專用溫泉旅館 1F 的咖啡＆餐廳，午餐義大利麵、鬆餅，晚餐有松阪牛、伊勢志摩食材套餐（6,600 円起）。開到 20:00，二見浦晚上能包場的店。",
+      "pros": [
+        "貸切 20～50 人、40 席，15 人全員可以包場",
+        "11:00～20:00 不休息，晚上也能吃",
+        "二見浦站步行 4 分，巴士站在門口"
+      ],
+      "cons": [
+        "一人一杯飲料（點了餐也要），一人 2,500～3,500 円，低分多半是這個",
+        "晚餐時段幼兒不能入店",
+        "不定休、可能因進貨提早打烊"
+      ],
+      "basedOn": [
+        "https://maruru-cafe.com/",
+        "https://futami.biz/maruru/",
+        "https://www.nap-camp.com/mag/50460",
+        "https://hamoni.jp/shop/idAz2lH6yLSnYuf7Fy76",
+        "https://tabelog.com/mie/A2403/A240301/24020274/",
+        "https://tabelog.com/mie/A2403/A240301/24020274/party/",
+        "https://tabelog.com/mie/A2403/A240301/24020274/dtlrvwlst/",
+        "https://maps.google.com/?cid=14730767095157213843"
+      ],
+      "generated": "2026-10-18"
+    },
+    "assessment": {
+      "rubric": "restaurant-v1",
+      "scores": {
+        "recommend": 2,
+        "localFlavor": 2,
+        "groupFit": 5,
+        "elderFit": 4,
+        "kidsFit": 3
+      },
+      "rationale": {
+        "recommend": "食べログ 3.15（20 則）、Google 3.8（73 則）；低分集中在一人一杯飲料的規定、價格偏高（約 2025～2026）",
+        "localFlavor": "義大利麵、鬆餅為主，晚餐有松阪牛、伊勢海老套餐",
+        "groupFit": "貸切 20～50 人、40 席，可預約",
+        "elderFit": "1F，有沙發席、個室；樓梯沒有人提到",
+        "kidsFit": "晚餐 17:00 以後幼兒不能入店（6～10 歲可）；有 pizza、熱狗"
+      },
+      "confidence": "low",
+      "assessed": "2026-10-18"
     }
   },
   {
@@ -3036,7 +3522,7 @@
       "instagram": "@unagi_ukichi"
     },
     "tags": [],
-    "tier": null,
+    "tier": "B",
     "sources": [
       {
         "type": "tabelog",
@@ -3187,6 +3673,47 @@
         "バリアフリー：ホットペッパー「なし」；食べログ店舗情報「車椅子で入店可」（2026-10-18）",
         "營業時間：Google 評論 1 則（約 2026/09）說 9 月起營業到 20:00"
       ]
+    },
+    "summary": {
+      "text": "二見町西 2026-07 開的鰻魚店，うな重、ひつまぶし 3,600 円，價格比伊勢市區便宜、份量多。補二見町西不含晚餐住宿（オレンジガーデン、プラフィーノ）的晚餐。",
+      "pros": [
+        "貸切 20～50 人、38 席，15 人可以包場",
+        "價格比伊勢市區便宜，評論說份量多、店員親切",
+        "專用停車場 9 台"
+      ],
+      "cons": [
+        "週四休（2/4；2/11 要確認）；晚上 L.O. 早",
+        "新店，評論少、還沒有冬天的經驗；口味評價兩極",
+        "不能刷卡；要開車"
+      ],
+      "basedOn": [
+        "https://www.hotpepper.jp/strJ004660490/",
+        "https://www.hotpepper.jp/strJ004660490/report/",
+        "https://www.navitime.co.jp/poi?spot=01125-J004660490",
+        "https://tabelog.com/mie/A2403/A240301/24022715/",
+        "https://tabelog.com/mie/A2403/A240301/24022715/dtlrvwlst/",
+        "https://maps.google.com/?cid=2960238325383394932"
+      ],
+      "generated": "2026-10-18"
+    },
+    "assessment": {
+      "rubric": "restaurant-v1",
+      "scores": {
+        "recommend": 2,
+        "localFlavor": 1,
+        "groupFit": 5,
+        "elderFit": 4,
+        "kidsFit": 4
+      },
+      "rationale": {
+        "recommend": "缺口保底（D②），最多 2；2026-07 才開，Google 3.7 只有 15 則、ホットペッパー 3.9",
+        "localFlavor": "鰻魚，和在地特產無關",
+        "groupFit": "貸切 20～50 人（電話商量），38 席",
+        "elderFit": "桌席為主、小上がり是穿鞋坐的桌位；車椅子可否來源不一致",
+        "kidsFit": "歡迎小孩，評論有家庭、對小孩親切；熟食"
+      },
+      "confidence": "low",
+      "assessed": "2026-10-18"
     }
   },
   {
@@ -3290,7 +3817,7 @@
       "instagram": "@wasuke_hiro"
     },
     "tags": [],
-    "tier": null,
+    "tier": "B",
     "sources": [
       {
         "type": "tabelog",
@@ -3441,6 +3968,49 @@
         "晚上結束：食べログ 20:00；ホットペッパー 21:00（L.O. 20:00）",
         "國定假日：ホットペッパー 休；食べログ 沒寫"
       ]
+    },
+    "summary": {
+      "text": "二見町溝口的大份量中華，招牌「スーパー天炒飯」（天津飯＋炒飯＋大唐揚げ）1,500 円。在地人氣店，開店就客滿；要開車去。",
+      "pros": [
+        "Google 4.1（415 則），在地 IG、YouTube 介紹",
+        "價格便宜、份量極大，可以分著吃",
+        "可電話預約，桌席 36"
+      ],
+      "cons": [
+        "週一休（2/8）；2/11 國定假日可能休",
+        "開店就客滿、停車場滿",
+        "份量太大、味道普通的評論也有；要開車"
+      ],
+      "basedOn": [
+        "https://www.hotpepper.jp/strJ000425355/",
+        "https://www.hotpepper.jp/strJ000425355/report/",
+        "https://hamoni.jp/en/area/mie/ise/shops/chinese",
+        "https://hamoni.jp/en/shop/UhVdAULtgDyjgqPvPjrh",
+        "https://www.navitime.co.jp/poi?spot=01125-J000425355",
+        "https://tabelog.com/mie/A2403/A240301/24003498/",
+        "https://tabelog.com/mie/A2403/A240301/24003498/dtlrvwlst/",
+        "https://maps.google.com/?cid=9188031327011638908"
+      ],
+      "generated": "2026-10-18"
+    },
+    "assessment": {
+      "rubric": "restaurant-v1",
+      "scores": {
+        "recommend": 3,
+        "localFlavor": 1,
+        "groupFit": 3,
+        "elderFit": 3,
+        "kidsFit": 4
+      },
+      "rationale": {
+        "recommend": "食べログ 3.39（105 則）、Google 4.1（415 則），HAMONI 伊勢中華第 2；低分說味道普通、靠份量",
+        "localFlavor": "大份量中華，和在地無關",
+        "groupFit": "36 席、可預約，沒寫一次 15 人（split）",
+        "elderFit": "桌席，但開店就客滿要排隊；無障礙なし",
+        "kidsFit": "可帶小孩，大份量的丼可以分著吃"
+      },
+      "confidence": "medium",
+      "assessed": "2026-10-18"
     }
   },
   {
@@ -3530,7 +4100,7 @@
       "instagram": null
     },
     "tags": [],
-    "tier": null,
+    "tier": "B",
     "sources": [
       {
         "type": "tabelog",
@@ -3658,6 +4228,46 @@
     "smoking": "全席禁煙",
     "extra": {
       "conflicts": []
+    },
+    "summary": {
+      "text": "松下社旁的地產直賣所，名物是現搗麻糬（丸餅 300g 290 円），也有便當、麵包、霜淇淋。補二見外圍週一中午的缺口；能不能坐下吃不確定，當外帶午餐或點心。",
+      "pros": [
+        "2 月無休（冬季 9:00～17:00）",
+        "停車 38 台、大巴 2 台",
+        "現搗麻糬、在地蔬果"
+      ],
+      "cons": [
+        "直賣所，不是餐廳，內用座位沒有來源",
+        "麻糬常賣完",
+        "心得 0 篇"
+      ],
+      "basedOn": [
+        "https://www.mapple.net/spot/24010030/",
+        "https://www.mapple.net/station/287322/spot/",
+        "https://iko-yo.net/facilities/86179/coupon",
+        "https://tabelog.com/mie/A2403/A240301/24011265/",
+        "https://maps.google.com/?cid=12869366109272400239"
+      ],
+      "generated": "2026-10-18"
+    },
+    "assessment": {
+      "rubric": "restaurant-v1",
+      "scores": {
+        "recommend": 2,
+        "localFlavor": 3,
+        "groupFit": 3,
+        "elderFit": null,
+        "kidsFit": 3
+      },
+      "rationale": {
+        "recommend": "缺口保底（D①），最多 2；Google 3.8（560 則），只有媒體店家頁",
+        "localFlavor": "地產地消的直賣所，現搗麻糬、在地魚介、蔬菜",
+        "groupFit": "直賣所，可以分批買外帶",
+        "elderFit": "能不能坐下吃沒有來源；停車場在店前",
+        "kidsFit": "小孩規定沒寫；麻糬、ジェラート"
+      },
+      "confidence": "low",
+      "assessed": "2026-10-18"
     }
   },
   {
@@ -3742,7 +4352,7 @@
       "instagram": null
     },
     "tags": [],
-    "tier": null,
+    "tier": "B",
     "sources": [
       {
         "type": "tabelog",
@@ -3852,6 +4462,44 @@
     "smoking": null,
     "extra": {
       "conflicts": []
+    },
+    "summary": {
+      "text": "二見町溝口的泰式家庭料理・咖哩，11:00～20:00。食べログ 以外幾乎沒有來源，補二見外圍週一中午的缺口（ワスケ 週一休）。",
+      "pros": [
+        "Google 4.3（37 則）",
+        "可預約、食べログ寫可以包場",
+        "週一也可能有開"
+      ],
+      "cons": [
+        "公休沒有來源，有臨時休業的口碑，去之前要打電話",
+        "席數、菜單、心得都沒有",
+        "要開車"
+      ],
+      "basedOn": [
+        "https://tabelog.com/mie/C24203/rstLst/13/",
+        "https://tabelog.com/mie/A2403/A240301/24014460/",
+        "https://maps.google.com/?cid=11371024677351862706"
+      ],
+      "generated": "2026-10-18"
+    },
+    "assessment": {
+      "rubric": "restaurant-v1",
+      "scores": {
+        "recommend": 2,
+        "localFlavor": 1,
+        "groupFit": 3,
+        "elderFit": null,
+        "kidsFit": 3
+      },
+      "rationale": {
+        "recommend": "缺口保底（D①），最多 2；Google 4.3 只有 37 則，食べログ 以外幾乎沒有來源",
+        "localFlavor": "泰式家庭料理、咖哩，和在地無關",
+        "groupFit": "食べログ寫貸切可（人數沒寫）、可預約",
+        "elderFit": "座位形式沒有來源",
+        "kidsFit": "小孩規定沒寫；咖哩等熟食"
+      },
+      "confidence": "low",
+      "assessed": "2026-10-18"
     }
   },
   {
@@ -3936,7 +4584,7 @@
       "instagram": null
     },
     "tags": [],
-    "tier": null,
+    "tier": "B",
     "sources": [
       {
         "type": "tabelog",
@@ -4044,6 +4692,43 @@
       "conflicts": [
         "地址：食べログ 二見町松下 1337-2；Google 二見町松下 227（座標在 蘇民 旁約 70 m）"
       ]
+    },
+    "summary": {
+      "text": "松下的老喫茶店，8:00 開，有早餐、午餐。食べログ 以外完全沒有來源，全席可吸菸。",
+      "pros": [
+        "Google 4.5（44 則）",
+        "8:00 開，可當早餐",
+        "在松下社、蘇民旁"
+      ],
+      "cons": [
+        "全席可吸菸",
+        "公休、菜單、心得都沒有來源",
+        "要開車"
+      ],
+      "basedOn": [
+        "https://tabelog.com/mie/A2403/A240301/24013765/",
+        "https://maps.google.com/?cid=745012510939129391"
+      ],
+      "generated": "2026-10-18"
+    },
+    "assessment": {
+      "rubric": "restaurant-v1",
+      "scores": {
+        "recommend": 2,
+        "localFlavor": 1,
+        "groupFit": 3,
+        "elderFit": null,
+        "kidsFit": 2
+      },
+      "rationale": {
+        "recommend": "缺口保底（D①），最多 2；只有食べログ 3.08（14 則）、Google 4.5（44 則）",
+        "localFlavor": "喫茶店，和在地無關",
+        "groupFit": "食べログ寫貸切可（人數沒寫）、可預約",
+        "elderFit": "座位形式沒有來源",
+        "kidsFit": "小孩規定沒寫；全席可吸菸"
+      },
+      "confidence": "low",
+      "assessed": "2026-10-18"
     }
   },
   {
@@ -4100,7 +4785,7 @@
       "instagram": "@uminochou"
     },
     "tags": [],
-    "tier": null,
+    "tier": "A",
     "sources": [
       {
         "type": "tabelog",
@@ -4271,6 +4956,49 @@
         "停車場：楽天 60 台、観光三重 70 台"
       ],
       "lodgingId": "futami-uminocho"
+    },
+    "summary": {
+      "text": "二見外圍松下的料理旅館「海の蝶」開放非住客的日帰り晚餐，伊勢海老・鮑的上質会席 14,850 円、加松阪牛 19,800 円。桃源郷一帶晚上唯一能吃飯的地方。",
+      "pros": [
+        "楽天餐 4.56（2,737 則），伊勢海老、鮑、松阪牛",
+        "8 名以上電話安排，住宿有大小宴會場",
+        "車椅子で入店可、有電梯、停車 60～70 台"
+      ],
+      "cons": [
+        "每人 14,850 円起，價格高",
+        "口コミ全是住客，日帰り晚餐的時段、2 月有沒有賣都沒有來源",
+        "要開車；接送是住客用"
+      ],
+      "basedOn": [
+        "https://reserve.489ban.net/client/uminochou/0/plan/daytrip",
+        "https://www.uminochou.com/",
+        "https://www.uminochou.com/cuisine.html",
+        "https://www.uminochou.com/tropicana.html",
+        "https://www.kankomie.or.jp/spot/13746",
+        "https://tabelog.com/mie/A2403/A240301/24000262/",
+        "https://tabelog.com/mie/A2403/A240301/24000262/party/",
+        "https://tabelog.com/mie/A2403/A240301/24000262/dtlrvwlst/"
+      ],
+      "generated": "2026-10-18"
+    },
+    "assessment": {
+      "rubric": "restaurant-v1",
+      "scores": {
+        "recommend": 4,
+        "localFlavor": 4,
+        "groupFit": 4,
+        "elderFit": 4,
+        "kidsFit": 4
+      },
+      "rationale": {
+        "recommend": "料理旅館的非住客用餐（F③）看住宿本體：楽天餐 4.56（2,737 則）；口コミ全是住客餐，沒有日帰り的實例",
+        "localFlavor": "伊勢海老、鮑、松阪牛的會席",
+        "groupFit": "8 名以上電話確認空位，住宿有 180 人宴會場；日帰り能不能用宴會場沒寫",
+        "elderFit": "車椅子で入店可、有電梯；座位形式沒有來源",
+        "kidsFit": "可帶小孩、預約系統有兒童餐；評論說會席太花時間、兒童餐上得慢"
+      },
+      "confidence": "medium",
+      "assessed": "2026-10-18"
     }
   }
 ]
