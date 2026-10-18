@@ -13,3 +13,4 @@
 | T8b | 2026-10-18 06:12 | 59e25e0 | 通過（錯誤 0、警告 1551） | 兩區都沒有一棟就能住 15 人的包棟；山田館（可 80 人）因 Google 3.4 排除；ピット 70 歲以上不能住排除；dinnerAccess 留給 T8e；宮町站不在 stations.json；中途撞到用量上限，重置後接續；decisions-pending 11 條 |
 | T8c | 2026-10-18 07:34 | aa789c7 | 通過（錯誤 0、警告 1755） | 總數 112 超過目標 100（接受）；ise-geku 同時提高 A、C 門檻（擴大解釋），20～30 人個室的店因此沒收；B 來源很少；scripts/validate.mjs 改成資料檔未建立時 included 無 pointId 只警告；decisions-pending 22 條 |
 | T8d | 2026-10-18 09:34 | a89523a | 通過（錯誤 0、警告 0） | 6 批完成；心得幾乎 0 篇（T8f confidence 會偏低）；おく文、神宮会館、海の蝶 的非住客用餐要電話確認；不接小孩的店 fit15 判 no；桃源郷附近沒有一般餐廳；validate 加 detailPending（已清空）；👤 指示 T8d 完成後停止，下一步 T8e |
+| T8e | 2026-10-18 | 1cb9cbe | 通過（錯誤 0、警告 0；npm test 70 全過） | 6 批完成；4 支 Chrome 抽取程式實測修正（Base64 擋路徑／cid、低分排序沒套用、店家回覆誤抓）；大個室 13 家（伊勢 108 家）、住宿 3 間補回，§5.7 警告消失；補心得 74 筆（只取 fit15 yes／split 52 家，食べログ、Google 高分但 fit15 其他的 62 家沒讀）；google-reviews `lowest` 評論約 2 則時回傳空（退路寫在 log）；海の蝶 anchors 直線估算未人工確認；kids／seating 用 overwrite 改值的列進「👤 建議先看」；WebSearch 10 次 |
