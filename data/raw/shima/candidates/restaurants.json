@@ -2027,10 +2027,12 @@
       "C"
     ],
     "reason": null,
-    "pointId": null,
+    "pointId": "shima-hamazaki",
     "ratings": {
       "tabelog": 3.18,
-      "tabelogReviews": 24
+      "tabelogReviews": 24,
+      "google": 3.6,
+      "googleReviews": 123
     },
     "links": {
       "tabelog": "https://tabelog.com/mie/A2403/A240303/24017421/"
@@ -2040,8 +2042,7 @@
       "dinner"
     ],
     "mentions": [],
-    "note": "類型：海鮮丼；地址：磯部町穴川1183；定休（食べログ列表）：水曜日；貸切可（食べログ列表）；預算（食べログ列表）：夜 3000～3999／昼 1000～1999；觀光協會「食べる」（海鮮食堂 はま崎）：11:00～14:30（L.O.14:00）、17:00～20:00（L.O.19:30），水休",
-    "detailPending": true
+    "note": "類型：海鮮丼；地址：磯部町穴川1183；定休（食べログ列表）：水曜日；貸切可（食べログ列表）；預算（食べログ列表）：夜 3000～3999／昼 1000～1999；觀光協會「食べる」（海鮮食堂 はま崎）：11:00～14:30（L.O.14:00）、17:00～20:00（L.O.19:30），水休"
   },
   {
     "key": "tabelog-24009133",
@@ -2152,20 +2153,22 @@
       "C"
     ],
     "reason": null,
-    "pointId": null,
+    "pointId": "shima-todai-cafe",
     "ratings": {
       "tabelog": 3.4,
-      "tabelogReviews": 103
+      "tabelogReviews": 103,
+      "google": 4.5,
+      "googleReviews": 392
     },
     "links": {
       "tabelog": "https://tabelog.com/mie/A2403/A240303/24016462/"
     },
     "contexts": [
+      "cafe",
       "snack"
     ],
     "mentions": [],
-    "note": "類型：咖啡・甜點；地址：阿児町安乗794-1 安乗崎灯台園地 休憩舎；貸切可（食べログ列表）；預算（食べログ列表）：夜 -／昼 ～999；安乗埼灯台 園地休憩舎內（景點 shima-anori 那筆的旁邊）；觀光協會「食べる」（きんこ芋工房 上田商店）：10:00～16:00；鵜方站巴士約 40 分＋步行 400 m",
-    "detailPending": true
+    "note": "類型：咖啡・甜點；地址：阿児町安乗794-1 安乗崎灯台園地 休憩舎；貸切可（食べログ列表）；預算（食べログ列表）：夜 -／昼 ～999；安乗埼灯台 園地休憩舎內（景點 shima-anori 那筆的旁邊）；觀光協會「食べる」（きんこ芋工房 上田商店）：10:00～16:00；鵜方站巴士約 40 分＋步行 400 m"
   },
   {
     "key": "tabelog-24002115",
@@ -2180,10 +2183,12 @@
       "C"
     ],
     "reason": null,
-    "pointId": null,
+    "pointId": "shima-marusei",
     "ratings": {
       "tabelog": 3.31,
-      "tabelogReviews": 73
+      "tabelogReviews": 73,
+      "google": 4.3,
+      "googleReviews": 247
     },
     "links": {
       "tabelog": "https://tabelog.com/mie/A2403/A240303/24002115/"
@@ -2201,8 +2206,7 @@
         "retrieved": "2026-10-18"
       }
     ],
-    "note": "類型：和食・割烹；地址：阿児町安乗178-3；貸切可（食べログ列表）；預算（食べログ列表）：夜 5000～5999／昼 4000～4999；觀光協會「食べる」：11:00～15:00（L.O.14:00）、17:00～21:00（L.O.20:00），火休（觀光三重：祝日的話隔天水休）；鵜方站巴士「安乗」約 20 分＋步行 10 分；あのりふぐ 10 月上旬～3 月上旬",
-    "detailPending": true
+    "note": "類型：和食・割烹；地址：阿児町安乗178-3；貸切可（食べログ列表）；預算（食べログ列表）：夜 5000～5999／昼 4000～4999；觀光協會「食べる」：11:00～15:00（L.O.14:00）、17:00～21:00（L.O.20:00），火休（觀光三重：祝日的話隔天水休）；鵜方站巴士「安乗」約 20 分＋步行 10 分；あのりふぐ 10 月上旬～3 月上旬"
   },
   {
     "key": "tabelog-24001174",
@@ -2216,10 +2220,12 @@
       "C"
     ],
     "reason": null,
-    "pointId": null,
+    "pointId": "shima-hisada",
     "ratings": {
       "tabelog": 3.22,
-      "tabelogReviews": 16
+      "tabelogReviews": 16,
+      "google": 4.3,
+      "googleReviews": 95
     },
     "links": {
       "tabelog": "https://tabelog.com/mie/A2403/A240303/24001174/"
@@ -2237,8 +2243,7 @@
         "retrieved": "2026-10-18"
       }
     ],
-    "note": "類型：和食・割烹；地址：阿児町安乗798 料理旅館ひさだ；個室（食べログ列表）：個室有；預算（食べログ列表）：夜 15000～19999／昼 -；料理旅館（楽天 shima-rakuten-180007，T9b not-included）；觀光三重 あのりふぐ特集（2025-11-19）寫了昼食 11:30～12:30 入店、14:30 結束、不定休 → 當作非住客午餐的來源（官網 T9d 確認）",
-    "detailPending": true
+    "note": "類型：和食・割烹；地址：阿児町安乗798 料理旅館ひさだ；個室（食べログ列表）：個室有；預算（食べログ列表）：夜 15000～19999／昼 -；料理旅館（楽天 shima-rakuten-180007，T9b not-included）；觀光三重 あのりふぐ特集（2025-11-19）寫了昼食 11:30～12:30 入店、14:30 結束、不定休 → 當作非住客午餐的來源（官網 T9d 確認）"
   },
   {
     "key": "tabelog-24001186",
@@ -2252,16 +2257,19 @@
       "D1"
     ],
     "reason": null,
-    "pointId": null,
+    "pointId": "shima-marutora",
     "ratings": {
       "tabelog": 3.02,
-      "tabelogReviews": 2
+      "tabelogReviews": 2,
+      "google": 4.5,
+      "googleReviews": 50
     },
     "links": {
       "tabelog": "https://tabelog.com/mie/A2403/A240303/24001186/"
     },
     "contexts": [
-      "lunch"
+      "lunch",
+      "dinner"
     ],
     "mentions": [
       {
@@ -2272,8 +2280,7 @@
         "retrieved": "2026-10-18"
       }
     ],
-    "note": "類型：海鮮丼；地址：阿児町安乗1408-1 料理旅館丸寅；D①（anori 週二 2/2、2/9 午餐 0 家：まるせい 火休，灯台カフェ 是甜點）：料理旅館（楽天 shima-rakuten-108192，T9b not-included），3.02／2；觀光三重 あのりふぐ特集（2025-11-19）寫了昼食 11:30～14:00、不定休 → 當作非住客午餐的來源（官網 T9d 確認）",
-    "detailPending": true
+    "note": "類型：海鮮丼；地址：阿児町安乗1408-1 料理旅館丸寅；D①（anori 週二 2/2、2/9 午餐 0 家：まるせい 火休，灯台カフェ 是甜點）：料理旅館（楽天 shima-rakuten-108192，T9b not-included），3.02／2；觀光三重 あのりふぐ特集（2025-11-19）寫了昼食 11:30～14:00、不定休 → 當作非住客午餐的來源（官網 T9d 確認）"
   },
   {
     "key": "tabelog-24005399",
@@ -2287,21 +2294,21 @@
       "A"
     ],
     "reason": null,
-    "pointId": null,
+    "pointId": "shima-manpuku-itabashi",
     "ratings": {
       "tabelog": 3.37,
-      "tabelogReviews": 120
+      "tabelogReviews": 120,
+      "google": 4,
+      "googleReviews": 431
     },
     "links": {
       "tabelog": "https://tabelog.com/mie/A2403/A240303/24005399/"
     },
     "contexts": [
-      "lunch",
-      "dinner"
+      "lunch"
     ],
     "mentions": [],
-    "note": "類型：定食・食堂；地址：磯部町恵利原240；定休（食べログ列表）：火曜日；預算（食べログ列表）：夜 ～999／昼 1000～1999；地址 恵利原240：照規則推定 isobe（恵利原的平地；1000 番台以上推定是 amanoiwato 的山區），T9d 看座標",
-    "detailPending": true
+    "note": "類型：定食・食堂；地址：磯部町恵利原240；定休（食べログ列表）：火曜日；預算（食べログ列表）：夜 ～999／昼 1000～1999；地址 恵利原240：照規則推定 isobe（恵利原的平地；1000 番台以上推定是 amanoiwato 的山區），T9d 看座標"
   },
   {
     "key": "tabelog-24000557",
@@ -2316,10 +2323,12 @@
       "C"
     ],
     "reason": null,
-    "pointId": null,
+    "pointId": "shima-kawaume",
     "ratings": {
       "tabelog": 3.37,
-      "tabelogReviews": 83
+      "tabelogReviews": 83,
+      "google": 4,
+      "googleReviews": 383
     },
     "links": {
       "tabelog": "https://tabelog.com/mie/A2403/A240303/24000557/"
@@ -2329,8 +2338,7 @@
       "dinner"
     ],
     "mentions": [],
-    "note": "類型：和食・割烹；地址：磯部町迫間3-3；個室（食べログ列表）：個室有(2〜30人、30人以上可)；預算（食べログ列表）：夜 2000～2999／昼 2000～2999；觀光協會「食べる」：11:00～19:15（L.O.）、不定休；近鐵志摩磯部站東口往北 700 m、三重交通 川辺巴士站 150 m；食べログ PR：天の岩戸 車 10 分（amanoiwato 最近的店）；個室 2〜30 人 → 全員午餐的候選",
-    "detailPending": true
+    "note": "類型：和食・割烹；地址：磯部町迫間3-3；個室（食べログ列表）：個室有(2〜30人、30人以上可)；預算（食べログ列表）：夜 2000～2999／昼 2000～2999；觀光協會「食べる」：11:00～19:15（L.O.）、不定休；近鐵志摩磯部站東口往北 700 m、三重交通 川辺巴士站 150 m；食べログ PR：天の岩戸 車 10 分（amanoiwato 最近的店）；個室 2〜30 人 → 全員午餐的候選"
   },
   {
     "key": "tabelog-24022455",
@@ -2378,10 +2386,12 @@
       "F1"
     ],
     "reason": null,
-    "pointId": null,
+    "pointId": "shima-matoya-kaki-terrace",
     "ratings": {
       "tabelog": 3.62,
-      "tabelogReviews": 251
+      "tabelogReviews": 251,
+      "google": 4.3,
+      "googleReviews": 765
     },
     "links": {
       "tabelog": "https://tabelog.com/mie/A2403/A240303/24018818/"
@@ -2398,8 +2408,7 @@
         "retrieved": "2026-10-18"
       }
     ],
-    "note": "類型：牡蠣；地址：磯部町的矢889；定休（食べログ列表）：火曜日；預算（食べログ列表）：夜 -／昼 4000～4999；觀光協會「食べる」（的矢かきテラス（佐藤養殖場））：10:00〜15:00（L.O.14:30），火休（年末年始等臨時休業あり）；鵜方站計程車 15 分；觀光三重 2022：冬季海上棧橋的座位很快訂滿、要電話預約；同址的「佐藤養殖場」（3.04／9）是同一處，不另列",
-    "detailPending": true
+    "note": "類型：牡蠣；地址：磯部町的矢889；定休（食べログ列表）：火曜日；預算（食べログ列表）：夜 -／昼 4000～4999；觀光協會「食べる」（的矢かきテラス（佐藤養殖場））：10:00〜15:00（L.O.14:30），火休（年末年始等臨時休業あり）；鵜方站計程車 15 分；觀光三重 2022：冬季海上棧橋的座位很快訂滿、要電話預約；同址的「佐藤養殖場」（3.04／9）是同一處，不另列"
   },
   {
     "key": "tabelog-24001032",
@@ -2408,16 +2417,19 @@
     },
     "region": "shima-matoya",
     "category": "海鮮、オイスターバー、日本料理",
-    "status": "pending",
+    "status": "included",
     "criteria": [
       "A",
-      "C"
+      "C",
+      "F3"
     ],
-    "reason": "住宿本體（lodging shima-ikadaso-sanjo），符合 A、C（3.54／154，個室、貸切）：觀光三重 spot/22848 只有 9:00～21:00、不定休，沒有非住客的用餐方案（判斷細則 F③），T9d 看官網確認；matoya 週二午餐唯一可能的店",
-    "pointId": null,
+    "reason": "住宿附設（lodging shima-ikadaso-sanjo）。T9d 確認：官網 FAQ「昼食だけの利用は可能」、官網有單獨的御食事予約頁（線上 10 名以下、超過電話），食べログ 完全予約制、最大予約 80 人 → F③ 收錄午餐、晚餐（2026-10-19）",
+    "pointId": "shima-ikadaso-sanjo-dining",
     "ratings": {
       "tabelog": 3.54,
-      "tabelogReviews": 154
+      "tabelogReviews": 154,
+      "google": 4.4,
+      "googleReviews": 696
     },
     "links": {
       "tabelog": "https://tabelog.com/mie/A2403/A240303/24001032/"
@@ -2442,10 +2454,12 @@
       "C"
     ],
     "reason": null,
-    "pointId": null,
+    "pointId": "shima-nakaroku",
     "ratings": {
       "tabelog": 3.39,
-      "tabelogReviews": 125
+      "tabelogReviews": 125,
+      "google": 4.4,
+      "googleReviews": 376
     },
     "links": {
       "tabelog": "https://tabelog.com/mie/A2403/A240303/24000718/"
@@ -2454,8 +2468,7 @@
       "lunch"
     ],
     "mentions": [],
-    "note": "類型：和食・割烹；地址：磯部町上之郷392；個室（食べログ列表）：個室有；預算（食べログ列表）：夜 -／昼 2000～2999；觀光協會「食べる」（うなぎ御料理 旅館 中六）：昼 11:00〜13:00、不定休；近鐵上之郷站步行 3 分（伊雑宮 附近）",
-    "detailPending": true
+    "note": "類型：和食・割烹；地址：磯部町上之郷392；個室（食べログ列表）：個室有；預算（食べログ列表）：夜 -／昼 2000～2999；觀光協會「食べる」（うなぎ御料理 旅館 中六）：昼 11:00〜13:00、不定休；近鐵上之郷站步行 3 分（伊雑宮 附近）"
   },
   {
     "key": "tabelog-24015622",
@@ -2488,21 +2501,25 @@
     },
     "region": "shima-matoya",
     "category": "料理旅館、海鮮",
-    "status": "pending",
+    "status": "included",
     "criteria": [
-      "C"
+      "C",
+      "F3"
     ],
-    "reason": "住宿本體（lodging shima-tachibana），符合 C（3.21／48，個室 30 人以上可）：食べログ列表有午餐價位 1,000～1,999 円，但非住客用餐方案沒有來源（判斷細則 F③），T9d 確認；T9b：官網滿席公告 2/2、2/3 晚餐已滿",
-    "pointId": null,
+    "reason": "住宿附設（lodging shima-tachibana，料理旅館）。T9d 確認：官網每個料理套餐都可以只用餐預約（滿席日公告含午餐），まっぷる 11:30～14:30、17:00～20:00；官網滿席公告 2027-02-02 午餐已滿 → F③ 收錄（2026-10-19）",
+    "pointId": "shima-tachibana-dining",
     "ratings": {
       "tabelog": 3.21,
-      "tabelogReviews": 48
+      "tabelogReviews": 48,
+      "google": 4.2,
+      "googleReviews": 97
     },
     "links": {
       "tabelog": "https://tabelog.com/mie/A2403/A240303/24001171/"
     },
     "contexts": [
-      "lunch"
+      "lunch",
+      "dinner"
     ],
     "mentions": [],
     "note": "類型：和食・割烹；地址：磯部町的矢310；個室（食べログ列表）：個室有(30人以上可)；預算（食べログ列表）：夜 -／昼 1000～1999"
@@ -2514,20 +2531,24 @@
     },
     "region": "shima-matoya",
     "category": "ホテル",
-    "status": "pending",
+    "status": "included",
     "criteria": [
-      "C"
+      "C",
+      "F3"
     ],
-    "reason": "住宿本體（lodging shima-fukujuso，渡鹿野島），符合 C（3.21／36，個室）：非住客用餐沒有來源；觀光協會「食べる」另有「カフェ・レストランかいげつ」（渡鹿野516，8:00～21:00、無休，食べログ沒有），可能是館內的店，T9d 確認",
-    "pointId": null,
+    "reason": "住宿附設（lodging shima-fukujuso）。T9d 確認：官網寫午餐、晚餐的客人可免費日帰り入浴，団体・宴会 表單有「日帰り宴会プラン」「昼食プラン」（宴會場最多 160 名、可安排鵜方站送迎與渡船），るるぶ 有食事處（会席要預約）；價格未公開 → F③ 收錄（以團體昼食為主，2026-10-19）",
+    "pointId": "shima-fukujuso-dining",
     "ratings": {
       "tabelog": 3.21,
-      "tabelogReviews": 36
+      "tabelogReviews": 36,
+      "google": 4.1,
+      "googleReviews": 647
     },
     "links": {
       "tabelog": "https://tabelog.com/mie/A2403/A240303/24009226/"
     },
     "contexts": [
+      "lunch",
       "dinner"
     ],
     "mentions": [],
@@ -2571,17 +2592,20 @@
       "C"
     ],
     "reason": null,
-    "pointId": null,
+    "pointId": "shima-chevron-cafe",
     "ratings": {
       "tabelog": 3.27,
-      "tabelogReviews": 98
+      "tabelogReviews": 98,
+      "google": 4.1,
+      "googleReviews": 313
     },
     "links": {
       "tabelog": "https://tabelog.com/mie/A2403/A240303/24010790/"
     },
     "contexts": [
       "lunch",
-      "dinner"
+      "dinner",
+      "cafe"
     ],
     "mentions": [
       {
@@ -2592,8 +2616,7 @@
         "retrieved": "2026-10-18"
       }
     ],
-    "note": "類型：咖啡・甜點；地址：阿児町国府3517-16；貸切可（食べログ列表）；預算（食べログ列表）：夜 -／昼 1000～1999；觀光三重 2018-08：11:00-21:00、不定休（舊資料，WebSearch 摘要另有「火曜定休」，T9d 確認）；國府的海邊山丘上，住宿 森と海（国府3490）一帶",
-    "detailPending": true
+    "note": "類型：咖啡・甜點；地址：阿児町国府3517-16；貸切可（食べログ列表）；預算（食べログ列表）：夜 -／昼 1000～1999；觀光三重 2018-08：11:00-21:00、不定休（舊資料，WebSearch 摘要另有「火曜定休」，T9d 確認）；國府的海邊山丘上，住宿 森と海（国府3490）一帶"
   },
   {
     "key": "tabelog-24014334",
@@ -2602,11 +2625,11 @@
     },
     "region": "shima-kokufu",
     "category": "ピザ",
-    "status": "included",
+    "status": "excluded",
     "criteria": [
       "A"
     ],
-    "reason": null,
+    "reason": "T9d 確認：Google マップ 標示「閉業」（2026-10-19），食べログ 的官網（business.site）404、WebSearch 找不到其他營業中的來源 → 當作已閉店排除（食べログ 還沒標閉店）",
     "pointId": null,
     "ratings": {
       "tabelog": 3.31,
@@ -2619,8 +2642,7 @@
       "lunch"
     ],
     "mentions": [],
-    "note": "類型：洋食・義式；地址：阿児町国府1-3；定休（食べログ列表）：月曜日、火曜日、金曜日；預算（食べログ列表）：夜 -／昼 1000～1999",
-    "detailPending": true
+    "note": "類型：洋食・義式；地址：阿児町国府1-3；定休（食べログ列表）：月曜日、火曜日、金曜日；預算（食べログ列表）：夜 -／昼 1000～1999"
   },
   {
     "key": "tabelog-24016488",
@@ -2658,10 +2680,12 @@
       "D2"
     ],
     "reason": null,
-    "pointId": null,
+    "pointId": "shima-bali-house",
     "ratings": {
       "tabelog": 3.18,
-      "tabelogReviews": 19
+      "tabelogReviews": 19,
+      "google": 4.7,
+      "googleReviews": 99
     },
     "links": {
       "tabelog": "https://tabelog.com/mie/A2403/A240303/24019767/"
@@ -2679,8 +2703,7 @@
         "retrieved": "2026-10-18"
       }
     ],
-    "note": "類型：其他；地址：阿児町国府3003；定休（食べログ列表）：水曜日；預算（食べログ列表）：夜 -／昼 1000～1999；D②（不含晚餐的住宿 森と海（国府3490-18）附近沒有確定的晚餐店；シェブロン 的晚上營業只有 2018 年的來源）：3.18／19；觀光三重 2026-08-17：昼 11:00～14:00、夜 18:00～20:00，水休；距離 T9e 用座標確認",
-    "detailPending": true
+    "note": "類型：其他；地址：阿児町国府3003；定休（食べログ列表）：水曜日；預算（食べログ列表）：夜 -／昼 1000～1999；D②（不含晚餐的住宿 森と海（国府3490-18）附近沒有確定的晚餐店；シェブロン 的晚上營業只有 2018 年的來源）：3.18／19；觀光三重 2026-08-17：昼 11:00～14:00、夜 18:00～20:00，水休；距離 T9e 用座標確認"
   },
   {
     "key": "tabelog-24008847",
@@ -2728,10 +2751,12 @@
       "C"
     ],
     "reason": null,
-    "pointId": null,
+    "pointId": "shima-sushi-akatsuki",
     "ratings": {
       "tabelog": 3.37,
-      "tabelogReviews": 89
+      "tabelogReviews": 89,
+      "google": 4.5,
+      "googleReviews": 233
     },
     "links": {
       "tabelog": "https://tabelog.com/mie/A2403/A240303/24000879/"
@@ -2741,8 +2766,7 @@
       "dinner"
     ],
     "mentions": [],
-    "note": "類型：壽司；地址：阿児町甲賀1460-2；定休（食べログ列表）：水曜日；貸切可（食べログ列表）；預算（食べログ列表）：夜 10000～14999／昼 3000～3999；觀光協會「食べる」（鮨 暁）：11:30～14:00（L.O.13:30）、17:00～21:00（L.O.20:30），水休；鵜方站車約 10 分",
-    "detailPending": true
+    "note": "類型：壽司；地址：阿児町甲賀1460-2；定休（食べログ列表）：水曜日；貸切可（食べログ列表）；預算（食べログ列表）：夜 10000～14999／昼 3000～3999；觀光協會「食べる」（鮨 暁）：11:30～14:00（L.O.13:30）、17:00～21:00（L.O.20:30），水休；鵜方站車約 10 分"
   },
   {
     "key": "tabelog-24008782",
@@ -2780,10 +2804,12 @@
       "C"
     ],
     "reason": null,
-    "pointId": null,
+    "pointId": "shima-matsumura",
     "ratings": {
       "tabelog": 3.17,
-      "tabelogReviews": 43
+      "tabelogReviews": 43,
+      "google": 4.1,
+      "googleReviews": 145
     },
     "links": {
       "tabelog": "https://tabelog.com/mie/A2403/A240303/24004781/"
@@ -2793,8 +2819,7 @@
       "dinner"
     ],
     "mentions": [],
-    "note": "類型：其他；地址：阿児町甲賀4540-9；個室（食べログ列表）：個室有；預算（食べログ列表）：夜 1000～1999／昼 1000～1999；營業時間沒有觀光協會的資料（T9d 查）；甲賀4540（住宿 ねぼーや 甲賀4578 一帶）",
-    "detailPending": true
+    "note": "類型：其他；地址：阿児町甲賀4540-9；個室（食べログ列表）：個室有；預算（食べログ列表）：夜 1000～1999／昼 1000～1999；營業時間沒有觀光協會的資料（T9d 查）；甲賀4540（住宿 ねぼーや 甲賀4578 一帶）"
   },
   {
     "key": "tabelog-24016065",
@@ -2808,10 +2833,12 @@
       "F1"
     ],
     "reason": null,
-    "pointId": null,
+    "pointId": "shima-hashimoto",
     "ratings": {
       "tabelog": 3.08,
-      "tabelogReviews": 19
+      "tabelogReviews": 19,
+      "google": 4.4,
+      "googleReviews": 105
     },
     "links": {
       "tabelog": "https://tabelog.com/mie/A2403/A240303/24016065/"
@@ -2820,8 +2847,7 @@
       "lunch"
     ],
     "mentions": [],
-    "note": "類型：海鮮丼；地址：磯部町的矢310-29；定休（食べログ列表）：火曜日；個室（食べログ列表）：個室有；預算（食べログ列表）：夜 -／昼 1000～1999；F①（的矢牡蠣的產地，取口コミ數前幾家）：3.08／19，在個室篩選但未達 C 的 3.10",
-    "detailPending": true
+    "note": "類型：海鮮丼；地址：磯部町的矢310-29；定休（食べログ列表）：火曜日；個室（食べログ列表）：個室有；預算（食べログ列表）：夜 -／昼 1000～1999；F①（的矢牡蠣的產地，取口コミ數前幾家）：3.08／19，在個室篩選但未達 C 的 3.10"
   },
   {
     "key": "tabelog-24021073",
@@ -2878,21 +2904,25 @@
     },
     "region": "shima-matoya",
     "category": "海鮮",
-    "status": "pending",
+    "status": "included",
     "criteria": [
-      "D1"
+      "D1",
+      "F3"
     ],
-    "reason": "D①（matoya 週二 2/2、2/9 午餐 0 家：かきテラス、はしもと 都火休）：住宿本體（lodging shima-marusada），3.07／17，食べログ列表有午餐價位 4,000～4,999 円；非住客用餐沒有來源（判斷細則 F③），T9d 確認",
-    "pointId": null,
+    "reason": "住宿附設（lodging shima-marusada）。T9d 確認：官網お食事プラン 有非住客午餐（1 日 3 組 10 名まで、前一天預約、依住客情況有不開的日子；最新公告是 2024-25 季）→ F③ 收錄午餐，15 人不能一起（2026-10-19）",
+    "pointId": "shima-marusada-dining",
     "ratings": {
       "tabelog": 3.07,
-      "tabelogReviews": 17
+      "tabelogReviews": 17,
+      "google": 4.6,
+      "googleReviews": 120
     },
     "links": {
       "tabelog": "https://tabelog.com/mie/A2403/A240303/24001029/"
     },
     "contexts": [
-      "lunch"
+      "lunch",
+      "dinner"
     ],
     "mentions": [],
     "note": "類型：海鮮丼；地址：磯部町的矢934-5 丸定旅館；預算（食べログ列表）：夜 -／昼 4000～4999"
@@ -2909,10 +2939,12 @@
       "F1"
     ],
     "reason": null,
-    "pointId": null,
+    "pointId": "shima-bettei-matoya",
     "ratings": {
       "tabelog": 3.02,
-      "tabelogReviews": 1
+      "tabelogReviews": 1,
+      "google": 3.7,
+      "googleReviews": 3216
     },
     "links": {
       "tabelog": "https://tabelog.com/mie/A2403/A240303/24022578/"
@@ -2921,8 +2953,7 @@
       "dinner"
     ],
     "mentions": [],
-    "note": "類型：牡蠣；地址：磯部町的矢字笠取939-6 グランドメルキュール伊勢志摩リゾ；グランドメルキュール伊勢志摩リゾート＆スパ 內的牡蠣料理店（lodging shima-grand-mercure）；F①（3.02／1，口コミ少）；觀光協會「食べる」：17:00～21:30；住宿附設，非住客用餐 T9d 確認；T9b：飯店 2027-02-01 11:00～02-03 15:00 施設メンテナンス休館",
-    "detailPending": true
+    "note": "類型：牡蠣；地址：磯部町的矢字笠取939-6 グランドメルキュール伊勢志摩リゾ；グランドメルキュール伊勢志摩リゾート＆スパ 內的牡蠣料理店（lodging shima-grand-mercure）；F①（3.02／1，口コミ少）；觀光協會「食べる」：17:00～21:30；住宿附設，非住客用餐 T9d 確認；T9b：飯店 2027-02-01 11:00～02-03 15:00 施設メンテナンス休館"
   },
   {
     "key": "tabelog-24002117",
@@ -2931,11 +2962,11 @@
     },
     "region": "shima-matoya",
     "category": "料理旅館",
-    "status": "pending",
+    "status": "excluded",
     "criteria": [
       "C"
     ],
-    "reason": "住宿本體（lodging shima-haifu，渡鹿野島），符合 C（3.24／50，個室）：非住客用餐沒有來源（判斷細則 F③），T9d 確認",
+    "reason": "住宿本體（lodging shima-haifu，福寿荘別館）。T9d 確認：官網沒有只用餐、午餐的方案，FAQ 只寫住客的早晚餐，日帰り只有到本館 福寿荘 入浴 → 照判斷細則 F③ 不收錄（非住客用餐用本館 shima-fukujuso-dining，2026-10-19）",
     "pointId": null,
     "ratings": {
       "tabelog": 3.24,
