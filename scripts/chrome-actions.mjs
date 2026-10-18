@@ -46,9 +46,11 @@ const batch = batchFile ? JSON.parse(fs.readFileSync(batchFile, 'utf8')) : null;
 const isGoogleReviews = script === 'google-reviews';
 
 // 存進 localStorage 的是「運算式」：IIFE（tabelog-*、google-place）或函式（google-reviews，呼叫時給步驟名稱）
+// 存進 localStorage 時，程式中間整行的註解也拿掉（只影響傳給瀏覽器的字串；T8e 第 3 批，google-reviews 少約 1/4）
+const stripComments = (code) => code.replace(/^[ \t]*\/\/.*\r?\n/gm, '');
 const body = isGoogleReviews
-  ? js.replace(/^await\s+/, '').replace(/\)\('open'\);?.*$/s, ')')
-  : js.replace(/^await\s+/, '').replace(/;\s*$/, '');
+  ? stripComments(js).replace(/^await\s+/, '').replace(/\)\('open'\);?.*$/s, ')')
+  : stripComments(js).replace(/^await\s+/, '').replace(/;\s*$/, '');
 const KEY = `__th_${script}`;
 let stored = flag('stored');
 const store = flag('store');
