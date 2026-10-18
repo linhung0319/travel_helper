@@ -48,7 +48,7 @@
       "googleMaps": "https://maps.google.com/?cid=435405046205010941"
     },
     "tags": [],
-    "tier": null,
+    "tier": "S",
     "nearestStation": {
       "id": "kashikojima",
       "mode": "walk",
@@ -264,8 +264,49 @@
       },
       "dinnerAccessNote": "步行 20 分內的晚餐店 3 家：鉄板焼きレストラン 山吹 4 分、ラ・メール 5 分（直線估算）、和食 浜木綿 5 分（直線估算）（選素泊、朝食付方案時；OSRM，scripts/lodging-dinner-access.mjs，2026-10-19）"
     },
-    "summary": null,
-    "assessment": null
+    "summary": {
+      "text": "賢島的老牌飯店，客室保留村野藤吾的設計、面英虞灣，楽天 4.70、じゃらん 4.7、Google 4.6，三邊都高。晚餐是傳統法式「ラ・メール」和和食「浜木綿」（伊勢海老づくし会席到 2027.2）。賢島站步行 5 分，免費接駁不用預約，第一晚搭 18:50 末班也能在 L.O. 19:30 前吃晚餐。",
+      "pros": [
+        "楽天 4.70（962 則）、じゃらん 4.7（790 則）、Google 4.6，楽天餐 4.76",
+        "賢島站步行 5 分；接駁 18:50 末班接得上 18:40 到站，晚餐 L.O. 19:30",
+        "楽天有「お食事は宴会場でご提供」的方案，2/2、2/3 有 5 間×3 人空房"
+      ],
+      "cons": [
+        "15 人組合一泊二食每人約 44,605 円（2/2），志摩最貴的一群",
+        "和食浜木綿限小學生以上；晚餐有 smart casual 服裝規定",
+        "大浴場只給ベイスイート住客；電梯沒有來源"
+      ],
+      "basedOn": [
+        "https://www.miyakohotels.ne.jp/shima/",
+        "https://www.miyakohotels.ne.jp/shima/stay/",
+        "https://www.miyakohotels.ne.jp/shima/restaurant/lamertheclassic/",
+        "https://www.miyakohotels.ne.jp/shima/restaurant/hamayu/",
+        "https://www.miyakohotels.ne.jp/shima/facilities/",
+        "https://www.miyakohotels.ne.jp/shima/access/bus/",
+        "https://travel.rakuten.co.jp/HOTEL/1150/1150.html",
+        "https://travel.rakuten.co.jp/HOTEL/1150/1150_std.html"
+      ],
+      "generated": "2026-10-19"
+    },
+    "assessment": {
+      "rubric": "lodging-v1",
+      "scores": {
+        "recommend": 5,
+        "meals": 5,
+        "groupFit": 4,
+        "elderFit": 3,
+        "accessEase": 5
+      },
+      "rationale": {
+        "recommend": "楽天 4.70（962 則）、じゃらん 4.7、Google 4.6 → 5 的條件都符合（心得 0 篇，沒有讀到負評）",
+        "meals": "楽天餐 4.76 → 5；法式、和食兩間館內餐廳，素泊時步行 5 分內也有 3 家（都是館內）",
+        "groupFit": "112 室，每間 2～3 人，15 人分 5 間；有宴會場方案、官網有宴會頁，但沒有住宿團體方案",
+        "elderFit": "全部是床、有輪椅對應與輪椅廁所；電梯沒有來源",
+        "accessEase": "賢島站步行 5 分、定時免費接駁 2 分；2/2 第一晚：賢島發 18:50 末班接得上（車的定員沒寫）"
+      },
+      "confidence": "medium",
+      "assessed": "2026-10-19"
+    }
   },
   {
     "id": "shima-provence",
@@ -316,7 +357,7 @@
       "googleMaps": "https://maps.google.com/?cid=1560447232878720288"
     },
     "tags": [],
-    "tier": null,
+    "tier": "S",
     "nearestStation": {
       "id": "shima-shimmei",
       "mode": "walk",
@@ -512,8 +553,49 @@
       },
       "dinnerAccessNote": "步行 20 分內的晚餐店 1 家：パスタ屋 Michelle 19 分（選素泊、朝食付方案時；OSRM，scripts/lodging-dinner-access.mjs，2026-10-19）"
     },
-    "summary": null,
-    "assessment": null
+    "summary": {
+      "text": "志摩神明站步行 1 分的美食型飯店，以「プロヴァンス流創作料理」出名，楽天餐 4.86、じゃらん 4.7（2,248 則）。24 室，房型、電梯都查不到；賢島站接送只到 17:30。",
+      "pros": [
+        "じゃらん 4.7（2,248 則）、楽天 4.64，楽天餐 4.86，料理是住這裡的理由",
+        "志摩神明站步行 1 分；自家源泉的大浴場",
+        "2/2、2/3 楽天有 5 間×3 人空房，一泊二食每人約 19,300 円"
+      ],
+      "cons": [
+        "房型、每間定員、電梯、床都沒有來源",
+        "特急不停志摩神明站；賢島站接送 15:00～17:30",
+        "含晚餐的建議 17:30 前入住，第一晚不適合"
+      ],
+      "basedOn": [
+        "https://www.kashikojima.com/provence/",
+        "https://www.kashikojima.com/provence/meals/",
+        "https://reserve.489ban.net/client/h-provence/0/plan/",
+        "https://travel.rakuten.co.jp/HOTEL/4982/4982.html",
+        "https://travel.rakuten.co.jp/HOTEL/4982/4982_std.html",
+        "https://yado.knt.co.jp/st/S240276/?fgid=a4215",
+        "https://www.jalan.net/yad318402/",
+        "https://maps.google.com/?cid=1560447232878720288"
+      ],
+      "generated": "2026-10-19"
+    },
+    "assessment": {
+      "rubric": "lodging-v1",
+      "scores": {
+        "recommend": 5,
+        "meals": 5,
+        "groupFit": 3,
+        "elderFit": null,
+        "accessEase": 5
+      },
+      "rationale": {
+        "recommend": "主要訂房網じゃらん 4.7（2,248 則）、楽天 4.64、Google 4.2 → 5（心得 0 篇，沒讀到負評）",
+        "meals": "楽天餐 4.86 → 5",
+        "groupFit": "24 室，房型人數沒有來源、沒有團體資訊 → 3",
+        "elderFit": "電梯、床型都沒有來源（只有輪椅出借）",
+        "accessEase": "志摩神明站步行 1 分（普通車）；2/2 第一晚：賢島站接送到 17:30、含晚餐要 17:30 前入住，趕不上"
+      },
+      "confidence": "medium",
+      "assessed": "2026-10-19"
+    }
   },
   {
     "id": "shima-michishio",
@@ -564,7 +646,7 @@
       "googleMaps": "https://maps.google.com/?cid=3807650304058444541"
     },
     "tags": [],
-    "tier": null,
+    "tier": "B",
     "nearestStation": {
       "id": "kashikojima",
       "mode": "walk",
@@ -776,8 +858,49 @@
       },
       "dinnerAccessNote": "步行 20 分內的晚餐店 3 家：和食 浜木綿 4 分（直線估算）、ラ・メール 4 分（直線估算）、鉄板焼きレストラン 山吹 7 分（直線估算）（選素泊、朝食付方案時；OSRM，scripts/lodging-dinner-access.mjs，2026-10-19）"
     },
-    "summary": null,
-    "assessment": null
+    "summary": {
+      "text": "賢島山頂的旅館，客房大窗看英虞灣，晚餐是部屋食的満潮会席，有 120 畳的宴會場。賢島站接送 15～21 時、到站打電話就來，是第一晚最好接的一間；晚餐最晚 19:00 開始，要先聯絡。",
+      "pros": [
+        "賢島站接送 15:00～21:00、到站打電話 2～3 分到，第一晚接得上",
+        "宴會場「瑞光の間」120 畳、有高椅子桌席；2/2、2/3 有 4×4、3×5、2×8 空房",
+        "一泊二食每人約 18,500 円（2/2，15 人組合）；兒童餐 50～70%"
+      ],
+      "cons": [
+        "晚餐最晚 19:00 開始，18:30 以後到要聯絡，第一晚很趕",
+        "大浴場是人工ラジウム温泉，2026/4 起只到 23:00",
+        "楽天 4.30、Google 4.1，評價穩定但不突出；電梯沒有來源"
+      ],
+      "basedOn": [
+        "https://www.michishio.jp/",
+        "https://www.michishio.jp/faq/",
+        "https://www.michishio.jp/room/",
+        "https://www.michishio.jp/cuisine/",
+        "https://www.michishio.jp/banquet/",
+        "https://www.michishio.jp/access/",
+        "https://www.michishio.jp/facilities/",
+        "https://www.michishio.jp/bath/"
+      ],
+      "generated": "2026-10-19"
+    },
+    "assessment": {
+      "rubric": "lodging-v1",
+      "scores": {
+        "recommend": 3,
+        "meals": 3,
+        "groupFit": 4,
+        "elderFit": 3,
+        "accessEase": 5
+      },
+      "rationale": {
+        "recommend": "楽天 4.30（1,241 則）、Google 4.1；照原門檻是 4，志摩依區調整後 4 要主要訂房網 4.5 以上 → 3",
+        "meals": "楽天餐 4.34 → 3（部屋食會席，可加點伊勢海老、鮑）",
+        "groupFit": "44 室、宴會場 120 畳可以一起吃；住宿團體要依預算洽談，沒有明確的團體方案",
+        "elderFit": "露天風呂付特別室有無障礙房、和洋室有洋室；電梯沒有來源，接送點在改札旁階梯下（可商量）",
+        "accessEase": "賢島站步行 5 分，接送 15～21 時隨叫；2/2 第一晚：接得上，但晚餐 19:00 開始要先電話"
+      },
+      "confidence": "medium",
+      "assessed": "2026-10-19"
+    }
   },
   {
     "id": "shima-kashikojima-harbor",
@@ -828,7 +951,7 @@
       "googleMaps": "https://maps.google.com/?cid=1325129138608243424"
     },
     "tags": [],
-    "tier": null,
+    "tier": "A",
     "nearestStation": {
       "id": "kashikojima",
       "mode": "walk",
@@ -961,8 +1084,46 @@
       },
       "dinnerAccessNote": "步行 20 分內的晚餐店 3 家：和食 浜木綿 5 分（直線估算）、ラ・メール 6 分（直線估算）、鉄板焼きレストラン 山吹 8 分（直線估算）（OSRM，scripts/lodging-dinner-access.mjs，2026-10-19）"
     },
-    "summary": null,
-    "assessment": null
+    "summary": {
+      "text": "賢島站步行 3 分的 5 室小飯店，全室看英虞灣，楽天 4.79、じゃらん 4.5。目前不供晚餐，只有老闆挑在地食材的早餐（加購 900 円）。房間少，15 人住不下。",
+      "pros": [
+        "楽天 4.79（387 則）、じゃらん 4.5（739 則）、Google 4.5，評價高",
+        "賢島站步行 3 分，入住到 23:30，第一晚晚到沒問題",
+        "早餐用市場海鮮、在地食材，楽天餐 4.70"
+      ],
+      "cons": [
+        "全 5 室（ツイン、ダブル），15 人住不下，要和賢島其他飯店分住",
+        "不供晚餐；步行圈只有志摩観光ホテル的館內餐廳",
+        "電梯、階梯沒有來源；楽天 2/2、2/3 沒有任何空房"
+      ],
+      "basedOn": [
+        "https://www.kashikojima.net/en/index.html",
+        "https://travel.rakuten.co.jp/HOTEL/6247/6247.html",
+        "https://travel.rakuten.co.jp/HOTEL/6247/6247_std.html",
+        "https://www.jalan.net/yad325195/",
+        "https://maps.google.com/?cid=1325129138608243424"
+      ],
+      "generated": "2026-10-19"
+    },
+    "assessment": {
+      "rubric": "lodging-v1",
+      "scores": {
+        "recommend": 4,
+        "meals": 3,
+        "groupFit": 2,
+        "elderFit": 3,
+        "accessEase": 5
+      },
+      "rationale": {
+        "recommend": "主要訂房網じゃらん 4.5（739 則）、Google 4.5 → 依區調整後的 4；楽天 4.79 但只有 387 則，じゃらん 不到 4.6 → 不到 5",
+        "meals": "只有早餐，dinnerAccess walk（志摩観光ホテル館內 3 家，5～8 分）→ 3",
+        "groupFit": "5 室、每間約 2 人，可能住不下 15 人；nearbyCombos 有みち潮、ベイガーデン 等",
+        "elderFit": "房間是ツイン、ダブル床；電梯沒有來源",
+        "accessEase": "賢島站步行 3 分；2/2 第一晚：入住到 23:30，步行可到"
+      },
+      "confidence": "medium",
+      "assessed": "2026-10-19"
+    }
   },
   {
     "id": "shima-shimahanto",
@@ -1013,7 +1174,7 @@
       "googleMaps": "https://maps.google.com/?cid=9105299783259565138"
     },
     "tags": [],
-    "tier": null,
+    "tier": "B",
     "nearestStation": {
       "id": "kashikojima",
       "mode": "ferry",
@@ -1138,8 +1299,46 @@
         "note": "15 人（全部以大人計）分 N 間同住的組合，有空房的列出；只代表查詢當天楽天上的庫存"
       }
     },
-    "summary": null,
-    "assessment": null
+    "summary": {
+      "text": "越賀的活鮮料理宿，伊勢海老、鮑、舟盛份量大，有天然溫泉。12 室；位在前島半島，離鐵路遠，接送方式不明。",
+      "pros": [
+        "じゃらん 4.2（226 則）、Google 4.2；楽天餐 4.52",
+        "伊勢海老、鮑、舟盛",
+        "有天然溫泉、晚餐可在広間"
+      ],
+      "cons": [
+        "離鐵路遠：賢島搭定期船＋接送或開車，接送地點、時間不明",
+        "房數來源矛盾（12 室／7 室），房型定員沒寫",
+        "楽天 2/2、2/3 沒有空房；電梯、床沒有來源"
+      ],
+      "basedOn": [
+        "https://travel.rakuten.co.jp/HOTEL/7508/7508.html",
+        "https://travel.rakuten.co.jp/HOTEL/7508/7508_std.html",
+        "https://travel.yahoo.co.jp/00908905",
+        "https://www.jalan.net/yad382916/",
+        "https://maps.google.com/?cid=9105299783259565138"
+      ],
+      "generated": "2026-10-19"
+    },
+    "assessment": {
+      "rubric": "lodging-v1",
+      "scores": {
+        "recommend": 3,
+        "meals": 4,
+        "groupFit": 3,
+        "elderFit": null,
+        "accessEase": 2
+      },
+      "rationale": {
+        "recommend": "主要訂房網じゃらん 4.2（226 則）、Google 4.2 → 3",
+        "meals": "楽天餐 4.52 → 4",
+        "groupFit": "12 室、有広間，房型定員沒有來源 → 3",
+        "elderFit": "電梯、床、階梯都沒有來源",
+        "accessEase": "賢島搭定期船或開車約 30 分以上，接送地點、時間不明 → 2；2/2 第一晚：冬季末班船沒查"
+      },
+      "confidence": "medium",
+      "assessed": "2026-10-19"
+    }
   },
   {
     "id": "shima-watakanoso",
@@ -1190,7 +1389,7 @@
       "googleMaps": "https://maps.google.com/?cid=5745118419183234668"
     },
     "tags": [],
-    "tier": null,
+    "tier": "B",
     "nearestStation": {
       "id": "ugata",
       "mode": "bus",
@@ -1410,8 +1609,49 @@
       },
       "dinnerAccessNote": "步行 20 分內沒有晚餐店（直線 1.6 km 內沒有），要搭車（scripts/lodging-dinner-access.mjs，2026-10-19）"
     },
-    "summary": null,
-    "assessment": null
+    "summary": {
+      "text": "渡鹿野島上的 10 室昭和旅館，主打全館可帶寵物，冬季有松阪牛、伊勢海老、ふぐ、的矢牡蠣 13～14 品的方案。沒有車站接送，要巴士 18 分＋渡船。",
+      "pros": [
+        "じゃらん 4.5（165 則）、楽天餐 4.55",
+        "小孩和大人同價；一泊二食每人約 13,200 円（楽天 15 人組合）",
+        "2/2、2/3 楽天有 3 間×5 人空房；有宴会場"
+      ],
+      "cons": [
+        "全館可帶狗貓，過敏的人不適合",
+        "沒有車站接送；夜間渡船、晚到入住要問",
+        "和室布団，電梯沒有來源"
+      ],
+      "basedOn": [
+        "https://www.watakanosou.co.jp/",
+        "https://www.watakanosou.co.jp/plan.html",
+        "https://www.watakanosou.co.jp/introduction.html",
+        "https://www.watakanosou.co.jp/access.html",
+        "https://www.watakanosou.co.jp/faq.html",
+        "https://www.kankomie.or.jp/spot/627",
+        "https://travel.rakuten.co.jp/HOTEL/7622/7622.html",
+        "https://travel.rakuten.co.jp/HOTEL/7622/7622_std.html"
+      ],
+      "generated": "2026-10-19"
+    },
+    "assessment": {
+      "rubric": "lodging-v1",
+      "scores": {
+        "recommend": 3,
+        "meals": 4,
+        "groupFit": 3,
+        "elderFit": 2,
+        "accessEase": 3
+      },
+      "rationale": {
+        "recommend": "主要訂房網じゃらん 4.5 但只有 165 則 → 依區調整後最多 3",
+        "meals": "楽天餐 4.55 → 4；素泊時 dinnerAccess car",
+        "groupFit": "10 室、有宴会場，15 人要包大半，要電話 → 3",
+        "elderFit": "和室布団、電梯沒有來源 → 2",
+        "accessEase": "鵜方站巴士 18 分＋渡船 3 分，沒有接送 → 3；2/2 第一晚：入住最晚 18:00（plan 頁 17 時），要先電話"
+      },
+      "confidence": "medium",
+      "assessed": "2026-10-19"
+    }
   },
   {
     "id": "shima-marusada",
@@ -1462,7 +1702,7 @@
       "googleMaps": "https://maps.google.com/?cid=10463726941960790590"
     },
     "tags": [],
-    "tier": null,
+    "tier": "S",
     "nearestStation": {
       "id": "ugata",
       "mode": "taxi",
@@ -1606,8 +1846,49 @@
         "note": "15 人（全部以大人計）分 N 間同住的組合，有空房的列出；只代表查詢當天楽天上的庫存"
       }
     },
-    "summary": null,
-    "assessment": null
+    "summary": {
+      "text": "的矢灣邊 5 室的牡蠣料理旅館，用佐藤養殖場的清浄的矢かき，招牌是的矢牡蠣フルコース。じゃらん 4.8（407 則）、Google 4.6，評價很高；房間少，15 人要包館。",
+      "pros": [
+        "じゃらん 4.8（407 則）、楽天 4.8、Google 4.6",
+        "的矢牡蠣フルコース、牡蠣雑炊；官網說長輩小孩都能輕鬆住",
+        "回程送到最近車站"
+      ],
+      "cons": [
+        "5 室（別館廁所共用），15 人要包館、要電話確認",
+        "去程接送不明，附近計程車少；最終入住 18:00",
+        "的矢かき進貨有限；不能刷卡；電梯、床沒有來源"
+      ],
+      "basedOn": [
+        "https://www.matoya-marusada.com/",
+        "https://www.matoya-marusada.com/info.php",
+        "https://www.matoya-marusada.com/koutsu.php",
+        "https://www.matoya-marusada.com/kaki.php",
+        "https://travel.rakuten.co.jp/HOTEL/7836/7836.html",
+        "https://travel.rakuten.co.jp/HOTEL/7836/7836_std.html",
+        "https://www.jalan.net/yad318127/",
+        "https://maps.google.com/?cid=10463726941960790590"
+      ],
+      "generated": "2026-10-19"
+    },
+    "assessment": {
+      "rubric": "lodging-v1",
+      "scores": {
+        "recommend": 5,
+        "meals": 3,
+        "groupFit": 3,
+        "elderFit": 2,
+        "accessEase": 3
+      },
+      "rationale": {
+        "recommend": "主要訂房網じゃらん 4.8（407 則）、Google 4.6 → 5（心得 0 篇，沒讀到負評）",
+        "meals": "料理旅館但沒有楽天餐細項、沒有讀到料理的評分 → 3",
+        "groupFit": "5 室（10 畳、9 畳），15 人要包館 → 3",
+        "elderFit": "只寫和室（鋪被），電梯沒有來源 → 2",
+        "accessEase": "鵜方站計程車約 10 分，去程接送不明 → 3；2/2 第一晚：最終入住 18:00，要先商量"
+      },
+      "confidence": "medium",
+      "assessed": "2026-10-19"
+    }
   },
   {
     "id": "shima-tachibana",
@@ -1658,7 +1939,7 @@
       "googleMaps": "https://maps.google.com/?cid=5093322601112102177"
     },
     "tags": [],
-    "tier": null,
+    "tier": "B",
     "nearestStation": {
       "id": "shima-isobe",
       "mode": "shuttle",
@@ -1810,8 +2091,49 @@
         "note": "15 人（全部以大人計）分 N 間同住的組合，有空房的列出；只代表查詢當天楽天上的庫存"
       }
     },
-    "summary": null,
-    "assessment": null
+    "summary": {
+      "text": "自稱三重海鮮料理宿的 16 室旅館，名物磯桶料理、冬季的矢かき、あのりふぐ，楽天餐 4.75。広間可辦 80～100 人宴會。官網公告 2027/2/2、2/3 晚餐已滿席。",
+      "pros": [
+        "楽天餐 4.75、服務 4.69；的矢牡蠣季（11～3 月）",
+        "広間 80～100 名，有舞台、卡拉 OK",
+        "志摩磯部站或鵜方站免費接送 13 分"
+      ],
+      "cons": [
+        "2/2、2/3 晚餐已滿席（官網），第一晚、第二晚不行",
+        "楽天客室 3.88、設備 3.88 偏低；房型、定員沒有來源",
+        "接送要電話預約、擁擠時要等"
+      ],
+      "basedOn": [
+        "https://www.tatibana.com/",
+        "https://tatibana.com/wp/%e6%96%bd%e8%a8%ad%e6%a1%88%e5%86%85/",
+        "https://tatibana.com/wp/access/",
+        "https://tatibana.com/wp/meal/",
+        "https://tatibana.com/wp/news/2024%e5%b9%b4%e6%ba%80%e5%b8%ad%e6%97%a5%e3%81%ae%e3%81%8a%e7%9f%a5%e3%82%89%e3%81%9b/",
+        "https://travel.rakuten.co.jp/HOTEL/9406/9406.html",
+        "https://travel.rakuten.co.jp/HOTEL/9406/9406_std.html",
+        "https://www.jalan.net/yad317255/"
+      ],
+      "generated": "2026-10-19"
+    },
+    "assessment": {
+      "rubric": "lodging-v1",
+      "scores": {
+        "recommend": 3,
+        "meals": 5,
+        "groupFit": 4,
+        "elderFit": null,
+        "accessEase": 3
+      },
+      "rationale": {
+        "recommend": "楽天 4.56（118 則）、じゃらん 4.7（158 則）→ 依區調整後最多 3",
+        "meals": "楽天餐 4.75 → 5（2/2、2/3 晚餐已滿，寫在 cons）",
+        "groupFit": "16 室、広間 80～100 名 → 4",
+        "elderFit": "只有「車椅子で利用可」，電梯、床都沒有來源",
+        "accessEase": "志摩磯部站或鵜方站免費接送約 13 分、要電話預約 → 3；2/2 第一晚：晚餐已滿席，不可行"
+      },
+      "confidence": "medium",
+      "assessed": "2026-10-19"
+    }
   },
   {
     "id": "shima-station-hotel-annex",
@@ -1862,7 +2184,7 @@
       "googleMaps": "https://maps.google.com/?cid=1669856417239245213"
     },
     "tags": [],
-    "tier": null,
+    "tier": "B",
     "nearestStation": {
       "id": "ugata",
       "mode": "walk",
@@ -1989,8 +2311,46 @@
         "note": "15 人（全部以大人計）分 N 間同住的組合，有空房的列出；只代表查詢當天楽天上的庫存"
       }
     },
-    "summary": null,
-    "assessment": null
+    "summary": {
+      "text": "鵜方站步行約 10 分的商務飯店，楽天 3.80、Google 3.1。官網 404、楽天 2027-02 沒有任何空房，營業狀態不明；Google 評論說菸味、污漬、漏水。",
+      "pros": [
+        "鵜方站步行約 10 分，入住到 24:00",
+        "48 室，停車場 60 台",
+        "鵜方站周邊有很多晚餐店"
+      ],
+      "cons": [
+        "楽天 3.80、Google 3.1，近年低分多：菸味、污漬、洗面台漏水、櫃台應對（2024～2026）",
+        "官網 404、楽天 2/2、2/3 沒有空房，2027-02 是否營業不明",
+        "房型、電梯、餐食都沒有來源"
+      ],
+      "basedOn": [
+        "https://isesima.info/sha/",
+        "https://www.kankomie.or.jp/spot/24180",
+        "https://travel.rakuten.co.jp/HOTEL/13587/13587.html",
+        "https://travel.rakuten.co.jp/HOTEL/13587/13587_std.html",
+        "https://maps.google.com/?cid=1669856417239245213"
+      ],
+      "generated": "2026-10-19"
+    },
+    "assessment": {
+      "rubric": "lodging-v1",
+      "scores": {
+        "recommend": 2,
+        "meals": null,
+        "groupFit": 3,
+        "elderFit": 3,
+        "accessEase": 4
+      },
+      "rationale": {
+        "recommend": "楽天 3.80（181 則）評價普通、Google 3.1，心得有清潔、設備的負評 → 2",
+        "meals": "餐食沒有來源、dinnerAccess 是 null → null",
+        "groupFit": "48 室，房型人數沒有來源 → 3",
+        "elderFit": "只知道格安シングル是床；電梯沒有來源 → 3",
+        "accessEase": "鵜方站步行約 10 分（觀光三重 5 分）；2/2 第一晚：步行可到"
+      },
+      "confidence": "medium",
+      "assessed": "2026-10-19"
+    }
   },
   {
     "id": "shima-geiboso",
@@ -2041,7 +2401,7 @@
       "googleMaps": "https://maps.google.com/?cid=17904793561798892697"
     },
     "tags": [],
-    "tier": null,
+    "tier": "B",
     "nearestStation": {
       "id": "kashikojima",
       "mode": "shuttle",
@@ -2267,8 +2627,49 @@
       },
       "dinnerAccessNote": "步行 20 分內的晚餐店 2 家：御食事処 味幸 9 分、網元の店八代 16 分（選素泊、朝食付方案時；OSRM，scripts/lodging-dinner-access.mjs，2026-10-19）"
     },
-    "summary": null,
-    "assessment": null
+    "summary": {
+      "text": "面太平洋的浜島溫泉旅館，展望くじら風呂、貸切展望風呂、岩盤浴；10 人以上有團體方案、6～150 人宴會場。Google 3.7，低分評論說老舊、上菜慢、蟲。賢島站接送 20 分、末班 16:40（或 17:40）。",
+      "pros": [
+        "官網：10 人以上団体プラン、宴會場 6～150 人",
+        "兒童會席（小學生 70%）、幼兒兒童餐；有輪椅用客室",
+        "2/2、2/3 楽天有 15 人組合空房，一泊二食每人約 13,200 円"
+      ],
+      "cons": [
+        "Google 3.7：房間老舊、地板凹陷、上菜慢、ダニ、蟑螂（2021～2026）",
+        "賢島站接送末班 16:40 或 17:40（來源矛盾），第一晚趕不上",
+        "客房多是和室，電梯沒有來源"
+      ],
+      "basedOn": [
+        "https://www.geibouso.co.jp/",
+        "https://www.geibouso.co.jp/kannai.php",
+        "https://www.geibouso.co.jp/room.php",
+        "https://www.geibouso.co.jp/access.php?lid=bus",
+        "https://www.geibouso.co.jp/question.php",
+        "https://www.geibouso.co.jp/ryori_winter.php",
+        "https://travel.rakuten.co.jp/HOTEL/13891/13891.html",
+        "https://travel.rakuten.co.jp/HOTEL/13891/13891_std.html"
+      ],
+      "generated": "2026-10-19"
+    },
+    "assessment": {
+      "rubric": "lodging-v1",
+      "scores": {
+        "recommend": 3,
+        "meals": 3,
+        "groupFit": 5,
+        "elderFit": 3,
+        "accessEase": 3
+      },
+      "rationale": {
+        "recommend": "楽天 4.13（842 則）、じゃらん 3.9、Google 3.7，讀到的評論都是低分 → 3",
+        "meals": "楽天餐 4.30 → 3；心得說上菜慢",
+        "groupFit": "官網有 10 人以上団体プラン＋宴會場 → 5",
+        "elderFit": "有車椅子利用者用客室、海の Suite 有洋室；其他和室，電梯沒有來源 → 3",
+        "accessEase": "賢島站免費接送約 20 分、一天 3～4 班（前一天預約）→ 3；2/2 第一晚：末班趕不上，要問加開"
+      },
+      "confidence": "medium",
+      "assessed": "2026-10-19"
+    }
   },
   {
     "id": "shima-grand-mercure",
@@ -2325,7 +2726,7 @@
       "googleMaps": "https://maps.google.com/?cid=4822371600113264740"
     },
     "tags": [],
-    "tier": null,
+    "tier": "B",
     "nearestStation": {
       "id": "ugata",
       "mode": "shuttle",
@@ -2507,8 +2908,49 @@
       },
       "dinnerAccessNote": "步行 20 分內的晚餐店 1 家：別亭 まとや 2 分（選素泊、朝食付方案時；OSRM，scripts/lodging-dinner-access.mjs，2026-10-19）"
     },
-    "summary": null,
-    "assessment": null
+    "summary": {
+      "text": "的矢灣旁 372 室的大型度假飯店，自助晚餐 3 部制、別亭 まとや，有大浴場露天。2027-02-01 11:00～02-03 15:00 維修休館，2/2 不能住。Google 3.7，負評集中在人太多。",
+      "pros": [
+        "鵜方站免費接駁 33 人座、不用預約，可一次載全員",
+        "房型 5～9 人（36～72㎡），電梯 3 台、有輪椅用客室",
+        "2/3 一泊二食每人約 11,184 円"
+      ],
+      "cons": [
+        "2/1～2/3 休館，2/2 不能住",
+        "Google 3.7：入住排隊、電梯擠、自助餐品質下滑（約 2026）",
+        "接駁末班 17:50；晚餐要入住後掃 QR 搶時段"
+      ],
+      "basedOn": [
+        "https://grand-mercure-iseshima-resortandspa.jp/",
+        "https://grand-mercure-iseshima-resortandspa.jp/news/closing-day-2702/",
+        "https://grand-mercure-iseshima-resortandspa.jp/access/",
+        "https://grand-mercure-iseshima-resortandspa.jp/rooms/",
+        "https://grand-mercure-iseshima-resortandspa.jp/restaurant/",
+        "https://grand-mercure-iseshima-resortandspa.jp/faq/",
+        "https://travel.rakuten.co.jp/HOTEL/13971/13971.html",
+        "https://travel.rakuten.co.jp/HOTEL/13971/13971_std.html"
+      ],
+      "generated": "2026-10-19"
+    },
+    "assessment": {
+      "rubric": "lodging-v1",
+      "scores": {
+        "recommend": 3,
+        "meals": 3,
+        "groupFit": 3,
+        "elderFit": 4,
+        "accessEase": 4
+      },
+      "rationale": {
+        "recommend": "楽天 3.93（4,405 則）、じゃらん 4.1、Google 3.7：評價普通，負評是人多、不是設備清潔 → 3",
+        "meals": "楽天餐 3.98 → 3（自助）",
+        "groupFit": "372 室、房型 5～9 人，團體要寫信洽詢；宴會場沒查到 → 3",
+        "elderFit": "有電梯 3 台、多是床、有輪椅用客室，但館大、電梯擠 → 4",
+        "accessEase": "鵜方站接駁 33 人座、免預約，每小時 1 班、15 分 → 4；2/2 第一晚：休館（2/2 不能住）"
+      },
+      "confidence": "medium",
+      "assessed": "2026-10-19"
+    }
   },
   {
     "id": "shima-bentenso",
@@ -2559,7 +3001,7 @@
       "googleMaps": "https://maps.google.com/?cid=13297500277898887666"
     },
     "tags": [],
-    "tier": null,
+    "tier": "B",
     "nearestStation": {
       "id": "kashikojima",
       "mode": "shuttle",
@@ -2725,8 +3167,48 @@
       },
       "dinnerAccessNote": "步行 20 分內的晚餐店 3 家：鉄板焼きレストラン 山吹 17 分（直線估算）、和食 浜木綿 19 分（直線估算）、ラ・メール 19 分（直線估算）（選素泊、朝食付方案時；OSRM，scripts/lodging-dinner-access.mjs，2026-10-19）"
     },
-    "summary": null,
-    "assessment": null
+    "summary": {
+      "text": "賢島的 15 室和室旅館，晚餐是地魚船盛會席（伊勢海老、鮑、サザエ），可以從旅館直接釣魚；有大広間。賢島站接送 5 分（15 時以後）。",
+      "pros": [
+        "楽天 4.31（184 則）、じゃらん 4.2（298 則），楽天餐 4.47",
+        "15 室、有大広間可以一起吃；部屋食、個室也可以",
+        "素泊每人約 6,300 円（2/2）"
+      ],
+      "cons": [
+        "全部是和室，電梯、床沒有來源；部分房型才有衛浴",
+        "接送結束時間、車的人數沒寫；楽天 2/2、2/3 15 人組合沒有空房",
+        "大浴場是人工溫泉（麦飯石）；不能刷卡"
+      ],
+      "basedOn": [
+        "https://bentensou.com/index.php",
+        "https://www.kankomie.or.jp/spot/514",
+        "https://travel.rakuten.co.jp/HOTEL/14266/14266.html",
+        "https://travel.rakuten.co.jp/HOTEL/14266/14266_std.html",
+        "https://yado.knt.co.jp/st/S240240/",
+        "https://www.jalan.net/yad311292/",
+        "https://maps.google.com/?cid=13297500277898887666"
+      ],
+      "generated": "2026-10-19"
+    },
+    "assessment": {
+      "rubric": "lodging-v1",
+      "scores": {
+        "recommend": 3,
+        "meals": 4,
+        "groupFit": 4,
+        "elderFit": 2,
+        "accessEase": 4
+      },
+      "rationale": {
+        "recommend": "主要訂房網じゃらん 4.2（298 則）、楽天 4.31、Google 4.1 → 3",
+        "meals": "楽天餐 4.47 → 4（地魚船盛會席）",
+        "groupFit": "15 室、有大広間可以一起吃，沒有團體方案 → 4",
+        "elderFit": "全部是和室（只有鋪被），電梯沒有來源 → 2",
+        "accessEase": "賢島站車程 5 分，15 時以後接送（可以照到站時間）；2/2 第一晚：接送結束時間沒寫，要電話確認"
+      },
+      "confidence": "medium",
+      "assessed": "2026-10-19"
+    }
   },
   {
     "id": "shima-hoseien",
@@ -2777,7 +3259,7 @@
       "googleMaps": "https://maps.google.com/?cid=1489525318797124424"
     },
     "tags": [],
-    "tier": null,
+    "tier": "B",
     "nearestStation": {
       "id": "kashikojima",
       "mode": "walk",
@@ -2942,8 +3424,49 @@
         "note": "15 人（全部以大人計）分 N 間同住的組合，有空房的列出；只代表查詢當天楽天上的庫存"
       }
     },
-    "summary": null,
-    "assessment": null
+    "summary": {
+      "text": "賢島最大的溫泉旅館（165 室），全室看英虞灣，有展望大浴場＋庭園露天（天然溫泉）。官網有團體頁：10～20 人小宴會場、最多 360 人大宴會場。賢島站接駁到 18:30，第一晚趕不上，要步行 7 分或計程車。",
+      "pros": [
+        "楽天 4.47（2,641 則）、じゃらん 4.3（2,741 則）、Google 4.3（2,596 則），評論量志摩最多之一",
+        "官網團體頁：10～20 名小宴會場、團體飲み放題；房型定員清楚（4～6 人和室多）",
+        "有ベッド付き和室 32 室；晚餐食事處全桌椅"
+      ],
+      "cons": [
+        "接駁末班 18:30、入住 18:00（以後要聯絡）；晚餐第二部 19:30 要先指定",
+        "大型飯店式旅館，不是包棟；房內有些許高低差",
+        "楽天 2/2、2/3 15 人組合沒有空房（2027-02 方案可能還沒開），價格沒查到"
+      ],
+      "basedOn": [
+        "https://www.hojoen.com/",
+        "https://www.hojoen.com/question/",
+        "https://www.hojoen.com/access/",
+        "https://www.hojoen.com/guestroom/",
+        "https://www.hojoen.com/cuisine/",
+        "https://www.hojoen.com/plangroup/",
+        "https://www.hojoen.com/facilities/",
+        "https://travel.rakuten.co.jp/HOTEL/15716/15716.html"
+      ],
+      "generated": "2026-10-19"
+    },
+    "assessment": {
+      "rubric": "lodging-v1",
+      "scores": {
+        "recommend": 3,
+        "meals": 4,
+        "groupFit": 5,
+        "elderFit": 3,
+        "accessEase": 4
+      },
+      "rationale": {
+        "recommend": "主要訂房網じゃらん 4.3（2,741 則）、楽天 4.47、Google 4.3；照原門檻是 4，依區調整後要 4.5 以上 → 3",
+        "meals": "楽天餐 4.40 → 4（宝生会席：伊勢海老姿造り、蒸し鮑）",
+        "groupFit": "官網有團體頁（小宴會場 10～20 名、大宴會場 360 名、團體飲み放題、團體洽詢窗口）→ 5",
+        "elderFit": "有ベッド付き和室、可借簡易床；房內有高低差（部分可放斜坡）；電梯沒有來源",
+        "accessEase": "賢島站步行 7 分，免費接駁 3 分、免預約（8:40～18:30）；2/2 第一晚：接駁已停，步行 7 分或計程車，入住 18:00 後要聯絡"
+      },
+      "confidence": "medium",
+      "assessed": "2026-10-19"
+    }
   },
   {
     "id": "shima-fukujuso",
@@ -2994,7 +3517,7 @@
       "googleMaps": "https://maps.google.com/?cid=3922457230759835323"
     },
     "tags": [],
-    "tier": null,
+    "tier": "B",
     "nearestStation": {
       "id": "ugata",
       "mode": "shuttle",
@@ -3172,8 +3695,49 @@
         "note": "15 人（全部以大人計）分 N 間同住的組合，有空房的列出；只代表查詢當天楽天上的庫存"
       }
     },
-    "summary": null,
-    "assessment": null
+    "summary": {
+      "text": "渡鹿野島上的 66 室大型溫泉旅館，自家源泉、庭園露天，冬季有的矢かき、ふぐ。官網明寫可以依團體人數安排鵜方站接送巴士和渡船、宴會場最多 160 人。對岸渡船末班 18:00，第一晚要事先商量。",
+      "pros": [
+        "官網：團體可依人數、時間安排鵜方站接送和渡船，宴會場 160 名（桌椅）",
+        "じゃらん 4.4（2,014 則）、楽天 4.27；無障礙和洋室、可載輪椅的渡船",
+        "2/2 楽天各種 15 人組合都有空房，一泊二食每人約 15,800 円"
+      ],
+      "cons": [
+        "離島：接送 14:45／15:45／16:45、渡船末班 18:00、入住 18:00",
+        "電梯沒有來源；和室多是布団",
+        "2/3 楽天沒有空房"
+      ],
+      "basedOn": [
+        "https://www.fukujyuso.co.jp/",
+        "https://www.fukujyuso.co.jp/access/",
+        "https://www.fukujyuso.co.jp/group/",
+        "https://www.fukujyuso.co.jp/dining/",
+        "https://www.fukujyuso.co.jp/rooms/",
+        "https://travel.rakuten.co.jp/HOTEL/15941/15941.html",
+        "https://travel.rakuten.co.jp/HOTEL/15941/15941_std.html",
+        "https://www.jalan.net/yad316648/"
+      ],
+      "generated": "2026-10-19"
+    },
+    "assessment": {
+      "rubric": "lodging-v1",
+      "scores": {
+        "recommend": 3,
+        "meals": 4,
+        "groupFit": 5,
+        "elderFit": 3,
+        "accessEase": 3
+      },
+      "rationale": {
+        "recommend": "主要訂房網じゃらん 4.4（2,014 則）、Google 4.1 → 依區調整後 3",
+        "meals": "楽天餐 4.40 → 4",
+        "groupFit": "官方明寫團體用餐（宴會場 160 名）＋團體接送（巴士、渡船依人數安排）→ 5",
+        "elderFit": "大廳走廊無高低差、有無障礙和洋室（床）；電梯沒有來源 → 3",
+        "accessEase": "鵜方站免費接送一天 3 班（要預約）＋渡船 3 分 → 3；2/2 第一晚：照公開規則趕不上，要電話商量團體安排"
+      },
+      "confidence": "medium",
+      "assessed": "2026-10-19"
+    }
   },
   {
     "id": "shima-quintessa",
@@ -3224,7 +3788,7 @@
       "googleMaps": "https://maps.google.com/?cid=17417283536449565950"
     },
     "tags": [],
-    "tier": null,
+    "tier": "B",
     "nearestStation": {
       "id": "ugata",
       "mode": "walk",
@@ -3422,8 +3986,49 @@
       },
       "dinnerAccessNote": "步行 20 分內的晚餐店 8 家以上（只查最近 8 家）：LA PIZZICA 2 分、天ぷら とばり 9 分、Shimaフレンチ食堂 ノルポル 10 分 等（OSRM，scripts/lodging-dinner-access.mjs，2026-10-19）"
     },
-    "summary": null,
-    "assessment": null
+    "summary": {
+      "text": "鵜方的 150 室飯店，幾乎全是床、有 4 人房和無障礙房。2 月不供晚餐（只有早餐自助），晚餐在鵜方站周邊；鵜方站接送到 19:45，第一晚接得上。",
+      "pros": [
+        "鵜方站免費接送 15:15～19:45（預約），第一晚接得上；步行 12 分",
+        "150 室，4×4 或 3×5 都有空房（2/2、2/3）；有 80～100 人的宴會場",
+        "素泊每人約 4,185 円；步行 20 分內有 8 家以上晚餐店"
+      ],
+      "cons": [
+        "2 月沒有晚餐（和食処 2019 年起只在 GW、年末年始、盂蘭盆營業）",
+        "Google 3.8：牆壁薄、空調不能切換、打掃不夠（2024～2026）",
+        "大浴場不是溫泉；電梯沒有來源"
+      ],
+      "basedOn": [
+        "https://quintessahotels.com/iseshima/",
+        "https://quintessahotels.com/iseshima/faq/",
+        "https://quintessahotels.com/iseshima/stay/",
+        "https://quintessahotels.com/iseshima/access/",
+        "https://quintessahotels.com/iseshima/banquet/",
+        "https://quintessahotels.com/iseshima/restaurant/",
+        "https://travel.rakuten.co.jp/HOTEL/16258/16258.html",
+        "https://travel.rakuten.co.jp/HOTEL/16258/16258_std.html"
+      ],
+      "generated": "2026-10-19"
+    },
+    "assessment": {
+      "rubric": "lodging-v1",
+      "scores": {
+        "recommend": 3,
+        "meals": 3,
+        "groupFit": 4,
+        "elderFit": 3,
+        "accessEase": 4
+      },
+      "rationale": {
+        "recommend": "楽天 4.22（1,715 則）、Google 3.8，心得說隔音差 → 3",
+        "meals": "2 月只有早餐（楽天餐 4.40 是早餐）；dinnerAccess walk、8 家以上 → 3",
+        "groupFit": "150 室、宴會場通年接團體宴會，沒有住宿團體方案 → 4",
+        "elderFit": "幾乎全是床、有ユニバーサル房；電梯沒有來源",
+        "accessEase": "鵜方站步行 12 分、免費接送可預約時段（15:15～19:45）→ 4；2/2 第一晚：接得上（車的人數沒寫）"
+      },
+      "confidence": "medium",
+      "assessed": "2026-10-19"
+    }
   },
   {
     "id": "shima-risoujin-club",
@@ -3474,7 +4079,7 @@
       "googleMaps": "https://maps.google.com/?cid=535107031864105846"
     },
     "tags": [],
-    "tier": null,
+    "tier": "B",
     "nearestStation": {
       "id": "ugata",
       "mode": "shuttle",
@@ -3710,8 +4315,49 @@
       },
       "dinnerAccessNote": "步行 20 分內沒有晚餐店（直線 1.6 km 內沒有），要搭車（scripts/lodging-dinner-access.mjs，2026-10-19）"
     },
-    "summary": null,
-    "assessment": null
+    "summary": {
+      "text": "的矢灣畔的 32 室飯店（舊サンペルラ志摩），晚餐和會席＋飲料全包，小孩是キッズバイキング，有キッズルーム和屋外遊び場。鵜方站接送一天 3 班、末班 16:50。",
+      "pros": [
+        "楽天 4.38（1,393 則）、じゃらん 4.5、Google 4.2；楽天トラベル アワード",
+        "房型最多 7 人（特別和洋室、ハリウッドツイン＋6 畳），有ユニバーサルツイン",
+        "2/2、2/3 楽天有 5×3、4×4、3×5 空房，一泊二食每人約 13,800 円"
+      ],
+      "cons": [
+        "鵜方站接送末班 16:50、入住最晚 18:30，第一晚要計程車 3～4 台",
+        "晚餐 2 部制（17:30／19:30），不一定能選",
+        "附近沒有店，素泊要搭車"
+      ],
+      "basedOn": [
+        "https://resortclub-iseshima.jp/",
+        "https://resortclub-iseshima.jp/room",
+        "https://resortclub-iseshima.jp/dinner",
+        "https://resortclub-iseshima.jp/access",
+        "https://resortclub-iseshima.jp/accommodation-regulations",
+        "https://resortclub-iseshima.jp/facility",
+        "https://resortclub-iseshima.jp/bath",
+        "https://resortclub-iseshima.jp/2025/12/01/1585/"
+      ],
+      "generated": "2026-10-19"
+    },
+    "assessment": {
+      "rubric": "lodging-v1",
+      "scores": {
+        "recommend": 3,
+        "meals": 3,
+        "groupFit": 4,
+        "elderFit": 3,
+        "accessEase": 3
+      },
+      "rationale": {
+        "recommend": "楽天 4.38（1,393 則）、Google 4.2；照原門檻是 4，依區調整後要 4.5 以上 → 3",
+        "meals": "楽天餐 4.37 → 3（和會席＋飲料全包）",
+        "groupFit": "32 室、楽天列「広間」為晚餐場地，沒有團體方案 → 4",
+        "elderFit": "和洋室有床 2＋布団、有ユニバーサルツイン；電梯沒有來源 → 3",
+        "accessEase": "鵜方站免費接送一天 3 班（前一天預約），車程 15 分 → 3；2/2 第一晚：末班 16:50，要計程車，入住 18:30 後要聯絡"
+      },
+      "confidence": "medium",
+      "assessed": "2026-10-19"
+    }
   },
   {
     "id": "shima-miyako-bayside-terrace",
@@ -3762,7 +4408,7 @@
       "googleMaps": "https://maps.google.com/?cid=15504403311963173180"
     },
     "tags": [],
-    "tier": null,
+    "tier": "A",
     "nearestStation": {
       "id": "kashikojima",
       "mode": "shuttle",
@@ -3965,8 +4611,49 @@
       },
       "dinnerAccessNote": "步行 20 分內的晚餐店 1 家：マレナSHIMA フレンチ 2 分（選素泊、朝食付方案時；OSRM，scripts/lodging-dinner-access.mjs，2026-10-19）"
     },
-    "summary": null,
-    "assessment": null
+    "summary": {
+      "text": "近鐵集團的賢島度假飯店，108 室全部是床，有 16 戶 2 層ヴィラ（最多 6 人）。晚餐在館內法式、和食兩間餐廳（伊勢海老、鮑），但 2/2 週二和食休、只有法式。賢島站免費接駁 7 分、末班 18:50。",
+      "pros": [
+        "楽天 4.54（1,126 則）、じゃらん 4.5（1,471 則）、Google 4.2",
+        "全房型是床，ヴィラ最多 6 人；有可包場的宴會場",
+        "賢島站免費接駁、不用預約，末班 18:50 接得上第一晚"
+      ],
+      "cons": [
+        "2/2 週二和食晚餐休，只有法式；平日 L.O. 19:30，第一晚很趕",
+        "ガーデンウィング 2 樓要走樓梯、ヴィラ有屋外通道和樓梯；電梯沒有來源",
+        "楽天 15 人組合只有素泊價（每人約 10,125 円），一泊二食要另外問"
+      ],
+      "basedOn": [
+        "https://www.miyakohotels.ne.jp/bayside-terrace/index.html",
+        "https://www.miyakohotels.ne.jp/bayside-terrace/access/index_bus/",
+        "https://www.miyakohotels.ne.jp/bayside-terrace/stay/",
+        "https://www.miyakohotels.ne.jp/bayside-terrace/restaurant/marenashima_japanese/",
+        "https://www.miyakohotels.ne.jp/bayside-terrace/restaurant/marenashima_french/",
+        "https://www.miyakohotels.ne.jp/bayside-terrace/facilities/bath/",
+        "https://www.miyakohotels.ne.jp/bayside-terrace/banquet/enkai/",
+        "https://travel.rakuten.co.jp/HOTEL/27737/27737.html"
+      ],
+      "generated": "2026-10-19"
+    },
+    "assessment": {
+      "rubric": "lodging-v1",
+      "scores": {
+        "recommend": 4,
+        "meals": 4,
+        "groupFit": 4,
+        "elderFit": 3,
+        "accessEase": 4
+      },
+      "rationale": {
+        "recommend": "主要訂房網じゃらん 4.5（1,471 則）、Google 4.2 → 依區調整後的 4；不到 4.6 → 不到 5",
+        "meals": "楽天餐 4.55 → 4（法式、和食各 9,000～20,000 円的套餐）",
+        "groupFit": "108 室，ヴィラ 6 人、房 2～4 人；地下宴會場可包場（容量沒寫），沒有住宿團體方案",
+        "elderFit": "全部是床；2 樓、ヴィラ要走樓梯（可要求 1 樓），電梯沒有來源",
+        "accessEase": "賢島站免費接駁 7 分、不用預約，每小時約 2 班；2/2 第一晚：18:50 末班只有 10 分餘裕，電車晚點要叫計程車"
+      },
+      "confidence": "medium",
+      "assessed": "2026-10-19"
+    }
   },
   {
     "id": "shima-ichiyo",
@@ -4017,7 +4704,7 @@
       "googleMaps": "https://maps.google.com/?cid=14574803509563322501"
     },
     "tags": [],
-    "tier": null,
+    "tier": "B",
     "nearestStation": {
       "id": "ugata",
       "mode": "bus",
@@ -4205,8 +4892,46 @@
       },
       "dinnerAccessNote": "步行 20 分內沒有晚餐店（直線 1.6 km 內沒有），要搭車（scripts/lodging-dinner-access.mjs，2026-10-19）"
     },
-    "summary": null,
-    "assessment": null
+    "summary": {
+      "text": "御座高台上、海女和漁師經營的 3 室料理民宿，伊勢海老、鮑的活造踊り食い。3 間各 2～5 人，最多剛好 15 人；房間沒有衛浴。",
+      "pros": [
+        "3 室×5 人最多 15 人，可以全包；「団体様にご好評」",
+        "一泊二食每人約 7,700 円（2/2），便宜",
+        "楽天餐 4.50；2/2、2/3 有 3 間×5 人空房"
+      ],
+      "cons": [
+        "6 畳住 5 人很擠，房間沒有衛浴",
+        "楽天房 3.22、設備 3.00 偏低",
+        "離車站遠、沒有車站接送；入住最晚 18:00"
+      ],
+      "basedOn": [
+        "https://www.kankomie.or.jp/spot/24229",
+        "https://travel.rakuten.co.jp/HOTEL/31468/31468.html",
+        "https://travel.rakuten.co.jp/HOTEL/31468/31468_std.html",
+        "https://hotel.travel.rakuten.co.jp/hotelinfo/plan/31468",
+        "https://maps.google.com/?cid=14574803509563322501"
+      ],
+      "generated": "2026-10-19"
+    },
+    "assessment": {
+      "rubric": "lodging-v1",
+      "scores": {
+        "recommend": 3,
+        "meals": 4,
+        "groupFit": 3,
+        "elderFit": 2,
+        "accessEase": 2
+      },
+      "rationale": {
+        "recommend": "楽天 3.94（52 則）、Google 4.2（31 則）→ 3",
+        "meals": "楽天餐 4.50 → 4；素泊時 dinnerAccess car",
+        "groupFit": "3 室剛好 15 人，要包館、要電話確認 → 3",
+        "elderFit": "和室 6 畳、沒有衛浴；電梯沒有來源 → 2",
+        "accessEase": "鵜方站巴士約 50～60 分、沒有車站接送 → 2；2/2 第一晚：入住最晚 18:00，不建議"
+      },
+      "confidence": "low",
+      "assessed": "2026-10-19"
+    }
   },
   {
     "id": "shima-hiougiso",
@@ -4257,7 +4982,7 @@
       "googleMaps": "https://maps.google.com/?cid=3928766524523123695"
     },
     "tags": [],
-    "tier": null,
+    "tier": "B",
     "nearestStation": {
       "id": "ugata",
       "mode": "shuttle",
@@ -4460,8 +5185,47 @@
       },
       "dinnerAccessNote": "步行 20 分內沒有晚餐店（最近：タベルナ・アスール 57 分），要搭車（scripts/lodging-dinner-access.mjs，2026-10-19）"
     },
-    "summary": null,
-    "assessment": null
+    "summary": {
+      "text": "全館檜木風格的旅館，檜木大浴場＋露天、整塊檜木大桌的食事處，海側和室看英虞灣。木造 2 層沒有電梯，1 樓客房只有 2 間。鵜方站接送和入住都只到 18:00，第一晚趕不上。",
+      "pros": [
+        "楽天 4.44（400 則）、Google 4.2，楽天餐 4.49",
+        "21 室、有宴會場；2/2、2/3 楽天各種 15 人組合都有空房",
+        "有 HILL TOP VILLA 獨棟（9 人）、北館無障礙特別室"
+      ],
+      "cons": [
+        "木造 2 層、沒有電梯，1 樓客房只有 2 間；部分和室沒有室內廁所",
+        "鵜方站接送、入住都只到 18:00，第一晚要另外商量",
+        "在賢島西側的半島，附近沒有店（素泊要搭車）"
+      ],
+      "basedOn": [
+        "https://hiogiso.com/",
+        "https://travel.rakuten.co.jp/HOTEL/31698/31698.html",
+        "https://travel.rakuten.co.jp/HOTEL/31698/31698_std.html",
+        "https://yado.knt.co.jp/st/S240220/",
+        "https://www.jalan.net/yad307126/",
+        "https://maps.google.com/?cid=3928766524523123695"
+      ],
+      "generated": "2026-10-19"
+    },
+    "assessment": {
+      "rubric": "lodging-v1",
+      "scores": {
+        "recommend": 3,
+        "meals": 4,
+        "groupFit": 4,
+        "elderFit": 2,
+        "accessEase": 4
+      },
+      "rationale": {
+        "recommend": "楽天 4.44（400 則）、じゃらん 4.2、Google 4.2；照原門檻是 4，依區調整後要 4.5 以上 → 3",
+        "meals": "楽天餐 4.49 → 4（冬季一人鍋的會席）；素泊時 dinnerAccess car",
+        "groupFit": "21 室、有宴會場；只有 10 人以上的取消規定，沒有團體方案 → 4",
+        "elderFit": "確定沒有電梯、要爬一層樓，1 樓只有 2 間（北館無障礙特別室有床、斜坡）→ 2",
+        "accessEase": "鵜方站接送 15:00～18:00（要預約，車程 7～10 分）；2/2 第一晚：接送和入住都到 18:00，趕不上"
+      },
+      "confidence": "medium",
+      "assessed": "2026-10-19"
+    }
   },
   {
     "id": "shima-haifu",
@@ -4512,7 +5276,7 @@
       "googleMaps": "https://maps.google.com/?cid=3996739810988013705"
     },
     "tags": [],
-    "tier": null,
+    "tier": "S",
     "nearestStation": {
       "id": "ugata",
       "mode": "shuttle",
@@ -4733,8 +5497,49 @@
       },
       "dinnerAccessNote": "步行 20 分內沒有晚餐店（直線 1.6 km 內沒有），要搭車（scripts/lodging-dinner-access.mjs，2026-10-19）"
     },
-    "summary": null,
-    "assessment": null
+    "summary": {
+      "text": "渡鹿野島上全室附天然溫泉露天風呂的旅館（福寿荘的姊妹館），創作和洋會席，じゃらん 4.6（1,898 則）、楽天 4.65、Google 4.4。鵜方站接送一天 3 班＋專用船，含晚餐要 18:00 前入住，第一晚趕不上。",
+      "pros": [
+        "じゃらん 4.6（1,898 則）、楽天 4.65、Google 4.4，三邊都高",
+        "全室海景露天風呂；6～12 歲有豪華兒童餐",
+        "餐廳個室優先給團體、親子"
+      ],
+      "cons": [
+        "離島，鵜方站接送 14:45／15:45／16:45（前一天預約）＋專用船到 18:00",
+        "館內有階梯、上下船因潮汐有階梯，客房內不能用輪椅",
+        "大部分房型 2 人，15 人怎麼分房要問；一泊二食每人約 24,600 円"
+      ],
+      "basedOn": [
+        "https://www.hai-fu.jp/",
+        "https://www.hai-fu.jp/room/details.html",
+        "https://www.hai-fu.jp/faq/",
+        "https://www.hai-fu.jp/access/",
+        "https://www.hai-fu.jp/dining/",
+        "https://www.hai-fu.jp/facilities/",
+        "https://travel.rakuten.co.jp/HOTEL/37458/37458.html",
+        "https://travel.rakuten.co.jp/HOTEL/37458/37458_std.html"
+      ],
+      "generated": "2026-10-19"
+    },
+    "assessment": {
+      "rubric": "lodging-v1",
+      "scores": {
+        "recommend": 5,
+        "meals": 4,
+        "groupFit": 3,
+        "elderFit": 2,
+        "accessEase": 3
+      },
+      "rationale": {
+        "recommend": "主要訂房網じゃらん 4.6（1,898 則）、Google 4.4 → 5（心得 0 篇，沒讀到負評）",
+        "meals": "楽天餐 4.63 → 4",
+        "groupFit": "21 室，房型多是 2 人、各房型室數沒寫，沒有宴會場 → 3",
+        "elderFit": "館內有階梯、上下船有階梯，客房內不能用輪椅；電梯沒有來源 → 2",
+        "accessEase": "鵜方站免費接送一天 3 班（前一天預約）＋專用船 3 分 → 3；2/2 第一晚：接送 16:45、含晚餐 18:00 前入住，趕不上"
+      },
+      "confidence": "medium",
+      "assessed": "2026-10-19"
+    }
   },
   {
     "id": "shima-ugata-business-hotel",
@@ -4785,7 +5590,7 @@
       "googleMaps": "https://maps.google.com/?cid=3255433810012442309"
     },
     "tags": [],
-    "tier": null,
+    "tier": "B",
     "nearestStation": {
       "id": "ugata",
       "mode": "walk",
@@ -4907,8 +5712,45 @@
       },
       "dinnerAccessNote": "步行 20 分內的晚餐店 8 家以上（只查最近 8 家）：Shimaフレンチ食堂 ノルポル 1 分、海の食堂 大家族 4 分、伊鈴屋 鵜方駅前店 4 分 等（OSRM，scripts/lodging-dinner-access.mjs，2026-10-19）"
     },
-    "summary": null,
-    "assessment": null
+    "summary": {
+      "text": "鵜方站步行 3 分的 8 室商務旅館，便宜乾淨，不供餐，周邊餐廳多。櫃台在 3 樓、要走樓梯。",
+      "pros": [
+        "鵜方站步行 3 分，周邊步行就有 8 家以上晚餐店",
+        "楽天 4.27（250 則），評價穩定",
+        "第一晚晚到可以入住（到 22:00）"
+      ],
+      "cons": [
+        "櫃台在 3 樓、要走樓梯，電梯沒有來源",
+        "8 室，房型、定員沒寫；楽天 2/2、2/3 沒有空房",
+        "不供餐、沒有禁菸房、門禁 23 點"
+      ],
+      "basedOn": [
+        "https://www.kankomie.or.jp/spot/523",
+        "https://travel.rakuten.co.jp/HOTEL/39912/39912.html",
+        "https://travel.rakuten.co.jp/HOTEL/39912/39912_std.html",
+        "https://maps.google.com/?cid=3255433810012442309"
+      ],
+      "generated": "2026-10-19"
+    },
+    "assessment": {
+      "rubric": "lodging-v1",
+      "scores": {
+        "recommend": 3,
+        "meals": 3,
+        "groupFit": 3,
+        "elderFit": 2,
+        "accessEase": 5
+      },
+      "rationale": {
+        "recommend": "楽天 4.27（250 則）、Google 4.2 → 3",
+        "meals": "不供餐，dinnerAccess walk（ノルポル 1 分等 8 家以上）→ 3",
+        "groupFit": "8 室，房型、定員沒有來源，15 人要佔全館 → 3",
+        "elderFit": "櫃台在 3 樓要走樓梯，電梯沒有來源 → 2",
+        "accessEase": "鵜方站步行 3 分；2/2 第一晚：18:35 到鵜方步行可到，入住到 22:00"
+      },
+      "confidence": "low",
+      "assessed": "2026-10-19"
+    }
   },
   {
     "id": "shima-hamajima-tsubaki",
@@ -4959,7 +5801,7 @@
       "googleMaps": "https://maps.google.com/?cid=4890126790870026207"
     },
     "tags": [],
-    "tier": null,
+    "tier": "B",
     "nearestStation": {
       "id": "kashikojima",
       "mode": "shuttle",
@@ -5112,8 +5954,49 @@
         "note": "15 人（全部以大人計）分 N 間同住的組合，有空房的列出；只代表查詢當天楽天上的庫存"
       }
     },
-    "summary": null,
-    "assessment": null
+    "summary": {
+      "text": "浜島溫泉「美人の湯」的湯元館ニュー浜島 別館，本館 6 樓展望浴場看太平洋；晚餐在半個室的食事處，有伊勢海老溫泉蒸し、鮑陶板焼き。賢島站接送 20 分、末班 17:45。",
+      "pros": [
+        "楽天 4.47（410 則），楽天餐 4.56",
+        "椿有和室ベッドルーム（ツインベッド）；有キッズルーム、兒童餐",
+        "2026 年 2 月沒有休館"
+      ],
+      "cons": [
+        "賢島站接送末班 17:45、入住 18:00，第一晚趕不上",
+        "沒有宴會場的來源，15 人要在食事處分桌",
+        "楽天 2/2、2/3 沒有任何空房，價格沒查到；電梯沒有來源"
+      ],
+      "basedOn": [
+        "https://www.new-hama.co.jp/",
+        "https://www.new-hama.co.jp/guest-room/",
+        "https://www.new-hama.co.jp/meal/",
+        "https://www.new-hama.co.jp/faq/",
+        "https://www.new-hama.co.jp/facilities/",
+        "https://www.new-hama.co.jp/closed-days-in-2026/",
+        "https://travel.rakuten.co.jp/HOTEL/44981/44981.html",
+        "https://travel.rakuten.co.jp/HOTEL/44981/44981_std.html"
+      ],
+      "generated": "2026-10-19"
+    },
+    "assessment": {
+      "rubric": "lodging-v1",
+      "scores": {
+        "recommend": 3,
+        "meals": 4,
+        "groupFit": 3,
+        "elderFit": 3,
+        "accessEase": 3
+      },
+      "rationale": {
+        "recommend": "楽天 4.47（410 則）、Google 4.0；照原門檻是 4，依區調整後要 4.5 以上 → 3",
+        "meals": "楽天餐 4.56 → 4",
+        "groupFit": "33 室（每間 1～5 人），沒有宴會場、團體方案的來源 → 3",
+        "elderFit": "椿有附床和室；電梯沒有來源 → 3",
+        "accessEase": "賢島站免費接送約 20 分、一天 4 班、要預約 → 3；2/2 第一晚：末班 17:45 趕不上"
+      },
+      "confidence": "medium",
+      "assessed": "2026-10-19"
+    }
   },
   {
     "id": "shima-chichukaimura-hotel",
@@ -5164,7 +6047,7 @@
       "googleMaps": "https://maps.google.com/?cid=670699759400185044"
     },
     "tags": [],
-    "tier": null,
+    "tier": "B",
     "nearestStation": {
       "id": "ugata",
       "mode": "shuttle",
@@ -5382,8 +6265,49 @@
       },
       "dinnerAccessNote": "步行 20 分內的晚餐店 2 家：タベルナ・アスール 1 分（直線估算）、リアス バイ ココチャ 3 分（直線估算）（選素泊、朝食付方案時；OSRM，scripts/lodging-dinner-access.mjs，2026-10-19）"
     },
-    "summary": null,
-    "assessment": null
+    "summary": {
+      "text": "英虞灣畔西班牙漁村風的度假村住宿，天然溫泉、米其林合作的 RIAS 套餐和 AZUL 自助。全區石板路、階梯多，官網說不是無障礙。鵜方站接送末班 17:40，第一晚要計程車。",
+      "pros": [
+        "じゃらん 4.6（1,071 則）、楽天 4.47，景色好拍",
+        "晚餐 RIAS 套餐、AZUL 自助，都有兒童價",
+        "2/2、2/3 楽天有 5×3、4×4 空房，一泊二食每人約 20,000 円"
+      ],
+      "cons": [
+        "全區石板路、階梯多，吃飯、泡湯要走室外",
+        "鵜方站接送末班 17:40，過 19:00 到可能吃不到晚餐",
+        "房型 2～3 人，沒有宴會場、團體方案"
+      ],
+      "basedOn": [
+        "https://puebloamigo.jp/hotel/",
+        "https://puebloamigo.jp/qa/",
+        "https://puebloamigo.jp/meal/azul/",
+        "https://riasbykokotxa.jp/dinner",
+        "https://puebloamigo.jp/",
+        "https://travel.rakuten.co.jp/HOTEL/51449/51449.html",
+        "https://travel.rakuten.co.jp/HOTEL/51449/51449_std.html",
+        "https://www.jalan.net/yad342596/"
+      ],
+      "generated": "2026-10-19"
+    },
+    "assessment": {
+      "rubric": "lodging-v1",
+      "scores": {
+        "recommend": 3,
+        "meals": 4,
+        "groupFit": 3,
+        "elderFit": 2,
+        "accessEase": 3
+      },
+      "rationale": {
+        "recommend": "主要訂房網じゃらん 4.6（1,071 則）但 Google 4.0（2,625 則，含日歸）→ 依區調整後 4 要 Google 4.2 → 3",
+        "meals": "楽天餐 4.48 → 4",
+        "groupFit": "53 室、每間 2～3 人（加床到 5），沒有宴會場、團體方案 → 3",
+        "elderFit": "官網明寫非無障礙、階梯多、全區石板路；電梯沒有來源 → 2",
+        "accessEase": "鵜方站免費接送一天 4 班（預約）、車程 15 分 → 3；2/2 第一晚：末班 17:40，要計程車並在 19:00 前電話"
+      },
+      "confidence": "medium",
+      "assessed": "2026-10-19"
+    }
   },
   {
     "id": "shima-ikadaso-sanjo",
@@ -5434,7 +6358,7 @@
       "googleMaps": "https://maps.google.com/?cid=5256037722473781442"
     },
     "tags": [],
-    "tier": null,
+    "tier": "B",
     "nearestStation": {
       "id": "shima-isobe",
       "mode": "shuttle",
@@ -5631,8 +6555,49 @@
       },
       "dinnerAccessNote": "步行 20 分內沒有晚餐店（最近：別亭 まとや 27 分），要搭車（scripts/lodging-dinner-access.mjs，2026-10-19）"
     },
-    "summary": null,
-    "assessment": null
+    "summary": {
+      "text": "的矢灣畔、以的矢かき料理聞名的老字號旅館，冬季（11～3 月）有牡蠣會席。16 室、80 名宴會場，志摩磯部站接送約 10 分（只到 18 時或隨時，來源矛盾）。",
+      "pros": [
+        "じゃらん 4.4（2,000 則）、Google 4.4（696 則），楽天餐 4.61",
+        "冬季的矢牡蠣会席 8,800～16,500 円；兒童餐 炸蝦套餐",
+        "宴會場 80 名、お食事処 50 名；2/2、2/3 楽天有 2 間×8 人空房"
+      ],
+      "cons": [
+        "晚餐 17:30～19:00，第一晚晚到恐怕趕不上",
+        "接送時段來源矛盾（FAQ 到 18 時、首頁隨時）",
+        "每間定員、電梯沒有來源；附近沒有店"
+      ],
+      "basedOn": [
+        "https://ikadasou.jp/",
+        "https://ikadasou.jp/rooms",
+        "https://ikadasou.jp/dine",
+        "https://ikadasou.jp/faq",
+        "https://ikadasou.jp/access",
+        "https://www.hpdsp.net/ikadasou/hw/hwp3100/hww3101.do?yadNo=395984",
+        "https://travel.rakuten.co.jp/HOTEL/67262/67262.html",
+        "https://travel.rakuten.co.jp/HOTEL/67262/67262_std.html"
+      ],
+      "generated": "2026-10-19"
+    },
+    "assessment": {
+      "rubric": "lodging-v1",
+      "scores": {
+        "recommend": 3,
+        "meals": 4,
+        "groupFit": 4,
+        "elderFit": 3,
+        "accessEase": 4
+      },
+      "rationale": {
+        "recommend": "主要訂房網じゃらん 4.4（2,000 則）、Google 4.4；照原門檻是 4，依區調整後要 4.5 以上 → 3",
+        "meals": "楽天餐 4.61 → 4；素泊時 dinnerAccess car",
+        "groupFit": "16 室、宴會場 80 名、10 名以上飲料可商量 → 4",
+        "elderFit": "ツイン房（和室放床）有床、其他和室；電梯沒有來源 → 3",
+        "accessEase": "志摩磯部站免費接送約 10 分、告知到站時間 → 4；2/2 第一晚：接送時段矛盾、晚餐 19:00 開始，要電話"
+      },
+      "confidence": "medium",
+      "assessed": "2026-10-19"
+    }
   },
   {
     "id": "shima-morigen",
@@ -5683,7 +6648,7 @@
       "googleMaps": "https://maps.google.com/?cid=3773687155928136655"
     },
     "tags": [],
-    "tier": null,
+    "tier": "B",
     "nearestStation": {
       "id": "ugata",
       "mode": "bus",
@@ -5838,8 +6803,46 @@
       },
       "dinnerAccessNote": "步行 20 分內沒有晚餐店（直線 1.6 km 內沒有），要搭車（scripts/lodging-dinner-access.mjs，2026-10-19）"
     },
-    "summary": null,
-    "assessment": null
+    "summary": {
+      "text": "御座白浜海岸步行 3 分的 4～5 室民宿，晚餐志摩御膳（伊勢海老、鮑、サザエ姿造り），家庭式款待受好評。房間少、沒有接送。",
+      "pros": [
+        "じゃらん 4.2（163 則）、楽天 4.83、Google 4.6",
+        "晚餐依方案每人 9,350～17,050 円（伊勢海老・鮑・サザエ）",
+        "有夜間可貸切的露天風呂"
+      ],
+      "cons": [
+        "4～5 室，15 人要包館、要電話",
+        "沒有接送、巴士到御座白浜；附近沒有店",
+        "不能刷卡；入住最晚 17:00"
+      ],
+      "basedOn": [
+        "https://www.isesima.net/morigen/",
+        "https://travel.rakuten.co.jp/HOTEL/67388/67388.html",
+        "https://travel.rakuten.co.jp/HOTEL/67388/67388_std.html",
+        "https://www.jalan.net/yad341055/",
+        "https://maps.google.com/?cid=3773687155928136655"
+      ],
+      "generated": "2026-10-19"
+    },
+    "assessment": {
+      "rubric": "lodging-v1",
+      "scores": {
+        "recommend": 3,
+        "meals": 3,
+        "groupFit": 3,
+        "elderFit": 2,
+        "accessEase": 2
+      },
+      "rationale": {
+        "recommend": "主要訂房網じゃらん 4.2（163 則）→ 3",
+        "meals": "沒有楽天餐細項，楽天頁的評價摘要提到刺身、船盛份量多（只有 1 則）→ 3",
+        "groupFit": "4～5 室（和室 14 畳、8 畳），15 人要包館 → 3",
+        "elderFit": "只寫和室（鋪被），電梯沒有來源 → 2",
+        "accessEase": "鵜方站巴士到御座白浜（約 50～60 分）、沒有接送 → 2；2/2 第一晚：18:00 後到要先打電話"
+      },
+      "confidence": "medium",
+      "assessed": "2026-10-19"
+    }
   },
   {
     "id": "shima-neboya",
@@ -5890,7 +6893,7 @@
       "googleMaps": "https://maps.google.com/?cid=1442389308072069358"
     },
     "tags": [],
-    "tier": null,
+    "tier": "S",
     "nearestStation": {
       "id": "ugata",
       "mode": "shuttle",
@@ -6060,8 +7063,49 @@
       },
       "dinnerAccessNote": "步行 20 分內沒有晚餐店（直線 1.6 km 內沒有），要搭車（scripts/lodging-dinner-access.mjs，2026-10-19）"
     },
-    "summary": null,
-    "assessment": null
+    "summary": {
+      "text": "全 9 室的溫泉掛け流し小宿，7 室附溫泉露天、另有 5 個免費貸切溫泉，晚餐是料亭個室的伊勢海老、鮑會席。じゃらん 4.8（1,617 則）、楽天 4.61，評價很高。2 層沒有電梯；鵜方站接送只有 15:30、16:30。",
+      "pros": [
+        "じゃらん 4.8（1,617 則）、楽天 4.61、Google 4.2；楽天餐 4.78",
+        "9 室合計 33 人，15 人可以包大半；有免費派對房、団欒ルーム",
+        "多是床；1 樓 3 間附庭園露天"
+      ],
+      "cons": [
+        "沒有電梯，2 樓要走樓梯；楽天寫非無障礙",
+        "鵜方站接送只有 15:30、16:30；入住最晚 17:00，第一晚不行",
+        "楽天 2/2、2/3 沒有 15 人空房；一泊二食每人約 22,660 円"
+      ],
+      "basedOn": [
+        "https://www.shimabettei.com/",
+        "https://www.shimabettei.com/rooms/",
+        "https://www.shimabettei.com/cuisine/",
+        "https://www.shimabettei.com/plan/",
+        "https://www.shimabettei.com/omotenashi/",
+        "https://travel.rakuten.co.jp/HOTEL/67420/67420.html",
+        "https://travel.rakuten.co.jp/HOTEL/67420/67420_std.html",
+        "https://www.jalan.net/yad342857/"
+      ],
+      "generated": "2026-10-19"
+    },
+    "assessment": {
+      "rubric": "lodging-v1",
+      "scores": {
+        "recommend": 5,
+        "meals": 5,
+        "groupFit": 3,
+        "elderFit": 3,
+        "accessEase": 3
+      },
+      "rationale": {
+        "recommend": "主要訂房網じゃらん 4.8（1,617 則）、Google 4.2 → 5（心得 0 篇，沒讀到負評）",
+        "meals": "楽天餐 4.78 → 5",
+        "groupFit": "9 室（每間 3～4 人，合計 33），15 人要佔一半以上，要電話 → 3",
+        "elderFit": "確定沒有電梯（2 層），但多是床、1 樓 3 間各 4 人 → 3",
+        "accessEase": "鵜方站接送一天 2 班（預約）、車程 15 分 → 3；2/2 第一晚：接送、入住都趕不上"
+      },
+      "confidence": "medium",
+      "assessed": "2026-10-19"
+    }
   },
   {
     "id": "shima-resort-park-tomoyama",
@@ -6112,7 +7156,7 @@
       "googleMaps": "https://maps.google.com/?cid=2637377338850702748"
     },
     "tags": [],
-    "tier": null,
+    "tier": "B",
     "nearestStation": {
       "id": "ugata",
       "mode": "taxi",
@@ -6287,8 +7331,47 @@
       },
       "dinnerAccessNote": "步行 20 分內的晚餐店 1 家：槙之木 19 分（OSRM，scripts/lodging-dinner-access.mjs，2026-10-19）"
     },
-    "summary": null,
-    "assessment": null
+    "summary": {
+      "text": "約 5 萬坪園區內的 18 棟小木屋，2～9 人一棟，主打可帶寵物。已改成素泊，2026-04 起溫泉大浴場停用，賢島站接送也終止。",
+      "pros": [
+        "15 人可分 2～3 棟（每棟 2～9 人），有和室＋雙人床臥室",
+        "素泊每人約 6,930 円（2/2）；2/2、2/3 楽天有空房",
+        "私人海灘、步道；入住到 22:00"
+      ],
+      "cons": [
+        "素泊、溫泉大浴場停用；最近的店步行 19 分",
+        "18 棟中 10 棟可帶寵物",
+        "賢島站接送終止，要計程車 15 分"
+      ],
+      "basedOn": [
+        "https://www.tomoyama.co.jp/",
+        "https://www.tomoyama.co.jp/room/",
+        "https://www.tomoyama.co.jp/reserve/",
+        "https://travel.rakuten.co.jp/HOTEL/67913/67913.html",
+        "https://travel.rakuten.co.jp/HOTEL/67913/67913_std.html",
+        "https://maps.google.com/?cid=2637377338850702748"
+      ],
+      "generated": "2026-10-19"
+    },
+    "assessment": {
+      "rubric": "lodging-v1",
+      "scores": {
+        "recommend": 3,
+        "meals": 3,
+        "groupFit": 3,
+        "elderFit": 3,
+        "accessEase": 3
+      },
+      "rationale": {
+        "recommend": "楽天 4.00（319 則），Google 沒有評分 → 3",
+        "meals": "不供餐，dinnerAccess walk（槙之木 19 分），部分棟有廚房 → 3",
+        "groupFit": "18 棟、每棟 2～9 人，15 人要 2～3 棟 → 3",
+        "elderFit": "每棟有雙人床臥室；階梯沒有來源 → 3",
+        "accessEase": "鵜方站計程車 15 分、接送已終止 → 3；2/2 第一晚：入住到 22:00"
+      },
+      "confidence": "medium",
+      "assessed": "2026-10-19"
+    }
   },
   {
     "id": "shima-aqua-forest",
@@ -6339,7 +7422,7 @@
       "googleMaps": "https://maps.google.com/?cid=2500419946184316378"
     },
     "tags": [],
-    "tier": null,
+    "tier": "B",
     "nearestStation": {
       "id": "kashikojima",
       "mode": "shuttle",
@@ -6562,8 +7645,49 @@
       },
       "dinnerAccessNote": "步行 20 分內的晚餐店 1 家：レストラン はまなぎ 1 分（選素泊、朝食付方案時；OSRM，scripts/lodging-dinner-access.mjs，2026-10-19）"
     },
-    "summary": null,
-    "assessment": null
+    "summary": {
+      "text": "森林裡的 127 室度假飯店，天然溫泉、室內泳池、天文館，晚餐自助或創作和會席。賢島站免費接駁 25 分、不用預約；餐廳不接受訂位，15 人可能要分開坐。",
+      "pros": [
+        "楽天 4.24（3,132 則）、じゃらん 4.3；室內泳池、天文館，小孩有得玩",
+        "房型 3～6 人（和洋室 6、和室 5），有バリアフリールーム",
+        "2/2、2/3 楽天有 15 人組合空房，一泊二食每人約 18,000 円"
+      ],
+      "cons": [
+        "餐廳不接受訂位、先到先入",
+        "賢島站接駁 25 分，平日末班約 17:00（未確認）",
+        "メゾネット、コテージ 有樓梯；電梯沒有來源"
+      ],
+      "basedOn": [
+        "https://www.miyakohotels.ne.jp/aqua-forest/",
+        "https://www.miyakohotels.ne.jp/aqua-forest/stay/",
+        "https://www.miyakohotels.ne.jp/aqua-forest/restaurant/",
+        "https://www.miyakohotels.ne.jp/aqua-forest/faq/",
+        "https://www.miyakohotels.ne.jp/aqua-forest/access/train/",
+        "https://www.miyakohotels.ne.jp/aqua-forest/hotspring/",
+        "https://travel.rakuten.co.jp/HOTEL/67941/67941.html",
+        "https://travel.rakuten.co.jp/HOTEL/67941/67941_std.html"
+      ],
+      "generated": "2026-10-19"
+    },
+    "assessment": {
+      "rubric": "lodging-v1",
+      "scores": {
+        "recommend": 3,
+        "meals": 3,
+        "groupFit": 3,
+        "elderFit": 3,
+        "accessEase": 3
+      },
+      "rationale": {
+        "recommend": "楽天 4.24（3,132 則）、Google 4.0 → 3",
+        "meals": "楽天餐 4.29 → 3",
+        "groupFit": "127 室、房型定員清楚，但餐廳不接受訂位、宴會場沒讀 → 3",
+        "elderFit": "有バリアフリールーム、洋室是床；電梯沒有來源 → 3",
+        "accessEase": "賢島站免費接駁約 25 分、不用預約 → 3；2/2 第一晚：接駁已停，計程車到、晚餐最終入店 19:30"
+      },
+      "confidence": "medium",
+      "assessed": "2026-10-19"
+    }
   },
   {
     "id": "shima-kanko-bay-suites",
@@ -6614,7 +7738,7 @@
       "googleMaps": "https://maps.google.com/?cid=16211176179024320156"
     },
     "tags": [],
-    "tier": null,
+    "tier": "S",
     "nearestStation": {
       "id": "kashikojima",
       "mode": "shuttle",
@@ -6790,8 +7914,49 @@
       },
       "dinnerAccessNote": "步行 20 分內的晚餐店 3 家：ラ・メール 10 分、和食 浜木綿 10 分、鉄板焼きレストラン 山吹 14 分（選素泊、朝食付方案時；OSRM，scripts/lodging-dinner-access.mjs，2026-10-19）"
     },
-    "summary": null,
-    "assessment": null
+    "summary": {
+      "text": "志摩観光ホテル的全スイート館，50 室都在 100㎡ 以上，楽天 4.88、じゃらん 4.9、Google 4.6，志摩評分最高。館內法式「ラ・メール」、和食「浜木綿」，但兩間餐廳都限小學生以上。賢島站個別接送 3 分（前一天告知到站時間）。",
+      "pros": [
+        "楽天 4.88（301 則）、じゃらん 4.9，餐 4.89、房 4.92 都是志摩最高",
+        "全室スイート、有無障礙客房；賢島站個別接送 3 分",
+        "ラ・メール 的鮑ステーキ、伊勢海老クリームスープ是招牌"
+      ],
+      "cons": [
+        "兩間餐廳都限小學生以上，6 歲還沒上小學的孩子不能進餐廳",
+        "每間最多 2～3 人，15 人要 6～8 間；素泊每人約 28,809 円起，價位最高",
+        "楽天 2/2、2/3 15 人組合沒有空房（2027-02 方案可能還沒開）"
+      ],
+      "basedOn": [
+        "https://www.miyakohotels.ne.jp/shima/",
+        "https://www.miyakohotels.ne.jp/shima/stay/",
+        "https://www.miyakohotels.ne.jp/shima/access/bus/",
+        "https://www.miyakohotels.ne.jp/shima/restaurant/lamer/",
+        "https://www.miyakohotels.ne.jp/shima/restaurant/hamayu/",
+        "https://travel.rakuten.co.jp/HOTEL/105964/105964.html",
+        "https://travel.rakuten.co.jp/HOTEL/105964/105964_std.html",
+        "https://www.jalan.net/yad338802/"
+      ],
+      "generated": "2026-10-19"
+    },
+    "assessment": {
+      "rubric": "lodging-v1",
+      "scores": {
+        "recommend": 5,
+        "meals": 5,
+        "groupFit": 3,
+        "elderFit": 3,
+        "accessEase": 4
+      },
+      "rationale": {
+        "recommend": "楽天 4.88（301 則）、じゃらん 4.9、Google 4.6（1,683 則）→ 5",
+        "meals": "楽天餐 4.89 → 5；餐廳限小學生以上寫在 cons（kids 另看）",
+        "groupFit": "50 室、每間 2～3 人，宴會頁（和クラシック共用）沒讀；沒有團體方案、要電話確認",
+        "elderFit": "全部是床、有無障礙客房；電梯沒有來源",
+        "accessEase": "賢島站個別接送 3 分、要前一天告知到站時間（徒歩 10 分）；2/2 第一晚：可以照到站時間接，送迎幾點結束沒寫"
+      },
+      "confidence": "medium",
+      "assessed": "2026-10-19"
+    }
   },
   {
     "id": "shima-therapy-resort",
@@ -6844,7 +8009,7 @@
     "tags": [
       "包棟"
     ],
-    "tier": null,
+    "tier": "B",
     "nearestStation": {
       "id": "ugata",
       "mode": "taxi",
@@ -7006,8 +8171,48 @@
         "note": "15 人（全部以大人計）分 N 間同住的組合，有空房的列出；只代表查詢當天楽天上的庫存"
       }
     },
-    "summary": null,
-    "assessment": null
+    "summary": {
+      "text": "全 5 室的太平洋景小旅館，楽天 4.93、餐 4.96，有管理栄養士監修的控制餐（減鹽、過敏），2 月是伊勢海老和天然安乗ふぐ季節。整館包場最多 10 人。",
+      "pros": [
+        "楽天 4.93（250 則）、じゃらん 4.9，餐 4.96、服務 4.96",
+        "控制餐、過敏對應，對有飲食限制的長輩友善",
+        "2 處溫泉露天免費貸切"
+      ],
+      "cons": [
+        "包場最多 10 人，15 人住不下全員",
+        "沒有接送的來源；入住最晚 17:30",
+        "官網內容可能老舊；楽天 2/2、2/3 沒有空房"
+      ],
+      "basedOn": [
+        "http://therapy-iseshima.com/",
+        "http://therapy-iseshima.com/stay/",
+        "http://therapy-iseshima.com/room/",
+        "https://travel.rakuten.co.jp/HOTEL/109444/109444.html",
+        "https://travel.rakuten.co.jp/HOTEL/109444/109444_std.html",
+        "https://www.jalan.net/yad357494/",
+        "https://maps.google.com/?cid=13934231510455400455"
+      ],
+      "generated": "2026-10-19"
+    },
+    "assessment": {
+      "rubric": "lodging-v1",
+      "scores": {
+        "recommend": 3,
+        "meals": 5,
+        "groupFit": 2,
+        "elderFit": 3,
+        "accessEase": 3
+      },
+      "rationale": {
+        "recommend": "楽天 4.93 但只有 250 則（主要訂房網）→ 依區調整後最多 3",
+        "meals": "楽天餐 4.96 → 5",
+        "groupFit": "貸切方案最多 10 人，剩 5 人要住別處 → 2",
+        "elderFit": "和室或和室＋ツインベッド；電梯沒有來源 → 3",
+        "accessEase": "鵜方站車程約 15 分、接送沒有來源 → 3；2/2 第一晚：入住最晚 17:30，要先商量"
+      },
+      "confidence": "medium",
+      "assessed": "2026-10-19"
+    }
   },
   {
     "id": "shima-business-hotel-fuji",
@@ -7058,7 +8263,7 @@
       "googleMaps": "https://maps.google.com/?cid=1993285495210129812"
     },
     "tags": [],
-    "tier": null,
+    "tier": "B",
     "nearestStation": {
       "id": "ugata",
       "mode": "walk",
@@ -7201,8 +8406,46 @@
       },
       "dinnerAccessNote": "步行 20 分內的晚餐店 8 家以上（只查最近 8 家）：天ぷら とばり 2 分、みやま亭 6 分、Shimaフレンチ食堂 ノルポル 10 分 等（OSRM，scripts/lodging-dinner-access.mjs，2026-10-19）"
     },
-    "summary": null,
-    "assessment": null
+    "summary": {
+      "text": "鵜方站步行 15 分的 22 室商務飯店，全館禁菸、不供餐，附近有超市、家庭餐廳。楽天 3.96、Google 3.6，評價普通。",
+      "pros": [
+        "22 室（ツイン 8 可加床到 3 人），容量約 38 人",
+        "素泊每人約 6,050 円；附近步行有 8 家以上晚餐店",
+        "全館禁菸、停車 40 台（巴士可停）"
+      ],
+      "cons": [
+        "楽天 3.96、Google 3.6，評價普通；舊評論有霉味、菸味",
+        "不供餐、沒有接送；楽天 2/2、2/3 15 人組合沒有空房",
+        "只有單人房、雙床房，全員不能聚在一起"
+      ],
+      "basedOn": [
+        "http://shima-businesshotel-fuji.com/",
+        "https://travel.rakuten.co.jp/HOTEL/128302/128302.html",
+        "https://travel.rakuten.co.jp/HOTEL/128302/128302_std.html",
+        "https://www.jalan.net/yad342770/",
+        "https://maps.google.com/?cid=1993285495210129812"
+      ],
+      "generated": "2026-10-19"
+    },
+    "assessment": {
+      "rubric": "lodging-v1",
+      "scores": {
+        "recommend": 3,
+        "meals": 3,
+        "groupFit": 3,
+        "elderFit": 3,
+        "accessEase": 3
+      },
+      "rationale": {
+        "recommend": "楽天 3.96（313 則）、じゃらん 4.3、Google 3.6；負評多是 2019 年以前 → 3",
+        "meals": "不供餐，dinnerAccess walk（とばり 2 分等）→ 3",
+        "groupFit": "22 室、容量夠；不供餐也沒有一起吃的地方 → 3",
+        "elderFit": "ツイン是床、車椅子可；電梯沒有來源 → 3",
+        "accessEase": "鵜方站步行 15 分、沒有接送 → 3；2/2 第一晚：入住到 24:00"
+      },
+      "confidence": "medium",
+      "assessed": "2026-10-19"
+    }
   },
   {
     "id": "shima-fukushio",
@@ -7253,7 +8496,7 @@
       "googleMaps": "https://maps.google.com/?cid=12959129900314083295"
     },
     "tags": [],
-    "tier": null,
+    "tier": "B",
     "nearestStation": {
       "id": "ugata",
       "mode": "bus",
@@ -7400,8 +8643,44 @@
         "note": "15 人（全部以大人計）分 N 間同住的組合，有空房的列出；只代表查詢當天楽天上的庫存"
       }
     },
-    "summary": null,
-    "assessment": null
+    "summary": {
+      "text": "甲賀的 12 室料理旅館，伊勢海老、鮑、あのりふぐ、安乗漁港當天的牡蠣；晚餐早餐在廣間。資料少（楽天 45 則）。",
+      "pros": [
+        "楽天 4.63（45 則）、Google 4.5",
+        "2/2、2/3 楽天有 4 間×4 人空房，一泊二食每人約 18,700 円",
+        "接送要商量；最晚入住 19:00"
+      ],
+      "cons": [
+        "房型、定員、電梯、床都沒有來源",
+        "找不到官網；停車只有 5 台",
+        "巴士 15 分＋步行 5 分，接送時段沒寫"
+      ],
+      "basedOn": [
+        "https://travel.rakuten.co.jp/HOTEL/128552/128552.html",
+        "https://travel.rakuten.co.jp/HOTEL/128552/128552_std.html",
+        "https://maps.google.com/?cid=12959129900314083295"
+      ],
+      "generated": "2026-10-19"
+    },
+    "assessment": {
+      "rubric": "lodging-v1",
+      "scores": {
+        "recommend": 3,
+        "meals": 3,
+        "groupFit": 3,
+        "elderFit": null,
+        "accessEase": 3
+      },
+      "rationale": {
+        "recommend": "楽天 4.63 但只有 45 則（評論數上限 3）",
+        "meals": "料理旅館但沒有楽天餐細項 → 3",
+        "groupFit": "12 室、有廣間，房型定員沒有來源 → 3",
+        "elderFit": "電梯、床、階梯都沒有來源",
+        "accessEase": "鵜方站巴士 15 分＋步行 5 分、接送要商量 → 3；2/2 第一晚：最晚入住 19:00，要先電話"
+      },
+      "confidence": "low",
+      "assessed": "2026-10-19"
+    }
   },
   {
     "id": "shima-hikobe",
@@ -7452,7 +8731,7 @@
       "googleMaps": "https://maps.google.com/?cid=8157077732137536141"
     },
     "tags": [],
-    "tier": null,
+    "tier": "B",
     "nearestStation": {
       "id": "kashikojima",
       "mode": "taxi",
@@ -7608,8 +8887,45 @@
       },
       "dinnerAccessNote": "步行 20 分內的晚餐店 1 家：京城 鵜方店 19 分（選素泊、朝食付方案時；OSRM，scripts/lodging-dinner-access.mjs，2026-10-19）"
     },
-    "summary": null,
-    "assessment": null
+    "summary": {
+      "text": "賢島站車程 3 分的 13 室民宿，有宴會場，晚餐是在地魚介的大漁焼。19 點以後入住就沒有晚餐，第一晚要先電話。資料少（楽天 37 則），找不到官網。",
+      "pros": [
+        "楽天 4.75 但只有 37 則",
+        "13 室、有宴會場；2/2、2/3 楽天有 3 間×5 人空房，一泊二食每人約 13,500 円",
+        "賢島站車程 3 分"
+      ],
+      "cons": [
+        "19 點以後入住沒有晚餐",
+        "房型、電梯、床都沒有來源；找不到官網、只收現金",
+        "接送只有防疫說明一句，有沒有要問"
+      ],
+      "basedOn": [
+        "https://travel.rakuten.co.jp/HOTEL/134852/134852.html",
+        "https://travel.rakuten.co.jp/HOTEL/134852/134852_std.html",
+        "https://www.jalan.net/yad310171/",
+        "https://maps.google.com/?cid=8157077732137536141"
+      ],
+      "generated": "2026-10-19"
+    },
+    "assessment": {
+      "rubric": "lodging-v1",
+      "scores": {
+        "recommend": 3,
+        "meals": 3,
+        "groupFit": 3,
+        "elderFit": null,
+        "accessEase": 3
+      },
+      "rationale": {
+        "recommend": "楽天 4.75 但只有 37 則（評論數上限 3）",
+        "meals": "沒有楽天餐細項，讀文只有方案名 → 3",
+        "groupFit": "13 室、有宴會場，但每間定員沒有來源 → 3",
+        "elderFit": "電梯、床、階梯都沒有來源",
+        "accessEase": "賢島站車程 3 分（計程車）；接送不明；2/2 第一晚：19 點前到才有晚餐，要先電話"
+      },
+      "confidence": "low",
+      "assessed": "2026-10-19"
+    }
   },
   {
     "id": "shima-oedo-iseshima",
@@ -7660,7 +8976,7 @@
       "googleMaps": "https://maps.google.com/?cid=12781768572398887161"
     },
     "tags": [],
-    "tier": null,
+    "tier": "B",
     "nearestStation": {
       "id": "ugata",
       "mode": "taxi",
@@ -7859,8 +9175,47 @@
       },
       "dinnerAccessNote": "步行 20 分內的晚餐店 2 家：網元の店八代 15 分、御食事処 味幸 15 分（選素泊、朝食付方案時；OSRM，scripts/lodging-dinner-access.mjs，2026-10-19）"
     },
-    "summary": null,
-    "assessment": null
+    "summary": {
+      "text": "英虞灣邊的大江戸温泉物語 Premium，海の幸バイキング、絶景露天風呂。83 室，房型定員沒寫。鵜方站有料接送要預約（舊資料末班 16:40）；最終入住 19:00。",
+      "pros": [
+        "じゃらん 4.3（1,854 則）、楽天 4.15",
+        "有無障礙房、輪椅出借；2/2、2/3 楽天有 15 人組合空房",
+        "一泊二食每人約 12,400 円（2/2）；步行 15 分有 2 家晚餐店"
+      ],
+      "cons": [
+        "Google 3.9；自助餐、沒有個室",
+        "鵜方站計程車 20 分，第一晚貼著最晚入住 19:00",
+        "房型定員、床、電梯都沒有來源"
+      ],
+      "basedOn": [
+        "https://www.ooedoonsen.jp/iseshima/",
+        "https://iseshima.ooedoonsen.jp/access/",
+        "https://travel.rakuten.co.jp/HOTEL/137490/137490.html",
+        "https://travel.rakuten.co.jp/HOTEL/137490/137490_std.html",
+        "https://www.jalan.net/yad321110/",
+        "https://maps.google.com/?cid=12781768572398887161"
+      ],
+      "generated": "2026-10-19"
+    },
+    "assessment": {
+      "rubric": "lodging-v1",
+      "scores": {
+        "recommend": 3,
+        "meals": 3,
+        "groupFit": 3,
+        "elderFit": 3,
+        "accessEase": 3
+      },
+      "rationale": {
+        "recommend": "主要訂房網じゃらん 4.3（1,854 則）、Google 3.9 → 3",
+        "meals": "楽天餐 4.24 → 3（自助）",
+        "groupFit": "83 室，房型定員沒有來源 → 3",
+        "elderFit": "有無障礙房；電梯、床沒有來源 → 3",
+        "accessEase": "鵜方站有料接送（預約）或計程車 20 分 → 3；2/2 第一晚：計程車約 19:00 到，貼著最晚入住"
+      },
+      "confidence": "medium",
+      "assessed": "2026-10-19"
+    }
   },
   {
     "id": "shima-oonami",
@@ -7911,7 +9266,7 @@
       "googleMaps": "https://maps.google.com/?cid=16560943870457082864"
     },
     "tags": [],
-    "tier": null,
+    "tier": "B",
     "nearestStation": {
       "id": "ugata",
       "mode": "shuttle",
@@ -8074,8 +9429,48 @@
         "note": "15 人（全部以大人計）分 N 間同住的組合，有空房的列出；只代表查詢當天楽天上的庫存"
       }
     },
-    "summary": null,
-    "assessment": null
+    "summary": {
+      "text": "安乗漁港旁老闆自己做菜的 5 室小宿，招牌是天然虎河豚あのりふぐ 12～13 道（1～3 月有白子）。一天 3 組限定，15 人很難全員同住。",
+      "pros": [
+        "楽天 4.81（55 則）、Google 4.8（61 則），楽天餐 4.88",
+        "あのりふぐコース 2 月可吃（一泊二食每人約 24,200 円）",
+        "鵜方站或賢島站接送（告知到站時間）"
+      ],
+      "cons": [
+        "5 室、一天 3 組限定",
+        "兒童價、電梯、床都沒有來源",
+        "只接受預約電話"
+      ],
+      "basedOn": [
+        "http://www.ohnami.net/",
+        "http://www.ohnami.net/info.php",
+        "http://www.ohnami.net/ryouri.php",
+        "http://www.ohnami.net/anorifugu.php",
+        "https://travel.rakuten.co.jp/HOTEL/139963/139963.html",
+        "https://travel.rakuten.co.jp/HOTEL/139963/139963_std.html",
+        "https://maps.google.com/?cid=16560943870457082864"
+      ],
+      "generated": "2026-10-19"
+    },
+    "assessment": {
+      "rubric": "lodging-v1",
+      "scores": {
+        "recommend": 3,
+        "meals": 5,
+        "groupFit": 2,
+        "elderFit": null,
+        "accessEase": 3
+      },
+      "rationale": {
+        "recommend": "楽天 4.81 但只有 55 則（評論數上限 3）",
+        "meals": "楽天餐 4.88 → 5",
+        "groupFit": "5 室、一天 3 組限定 → 2",
+        "elderFit": "電梯、床、階梯都沒有來源",
+        "accessEase": "鵜方站或賢島站接送、車程約 12 分 → 3；2/2 第一晚：晚餐 17:00～21:00，要確認最晚開始"
+      },
+      "confidence": "low",
+      "assessed": "2026-10-19"
+    }
   },
   {
     "id": "shima-saichoraku",
@@ -8126,7 +9521,7 @@
       "googleMaps": "https://maps.google.com/?cid=1717074060645530770"
     },
     "tags": [],
-    "tier": null,
+    "tier": "B",
     "nearestStation": {
       "id": "kashikojima",
       "mode": "taxi",
@@ -8291,8 +9686,48 @@
         "note": "15 人（全部以大人計）分 N 間同住的組合，有空房的列出；只代表查詢當天楽天上的庫存"
       }
     },
-    "summary": null,
-    "assessment": null
+    "summary": {
+      "text": "面英虞灣的大型溫泉飯店，2025-12 改裝後以大江戸温泉物語 Premium 重新開幕，晚餐是自助餐＋飲料喝到飽（オールインクルーシブ到 2027-02-28）。楽天 3.83、Google 3.6，評價普通，2026 春有露天風呂突然停用、服務差的負評。",
+      "pros": [
+        "2025-12 改裝：新增展望風呂、和ベッド房、キッズスペース付房",
+        "晚餐自助＋飲料喝到飽，小孩選擇多；2/3 楽天有 15 人組合空房",
+        "賢島站車程 5 分，有接送（要預約）"
+      ],
+      "cons": [
+        "楽天 3.83、じゃらん 3.8、Google 3.6，志摩大型飯店裡最低",
+        "2026 春露天風呂「緊急メンテナンス」入住才告知、櫃台與餐廳服務差（Google 多則）",
+        "最終入住 19:00；接送是否收費來源矛盾；KNT 寫浴場沒有無障礙"
+      ],
+      "basedOn": [
+        "https://travel.watch.impress.co.jp/docs/news/2054863.html",
+        "https://www.ooedoonsen.jp/shima-saichoraku/",
+        "https://travel.rakuten.co.jp/HOTEL/142676/142676.html",
+        "https://travel.rakuten.co.jp/HOTEL/142676/142676_std.html",
+        "https://yado.knt.co.jp/st/S240168/?fgid=a2227",
+        "https://www.jalan.net/yad338676/",
+        "https://maps.google.com/?cid=1717074060645530770"
+      ],
+      "generated": "2026-10-19"
+    },
+    "assessment": {
+      "rubric": "lodging-v1",
+      "scores": {
+        "recommend": 2,
+        "meals": 3,
+        "groupFit": 3,
+        "elderFit": 3,
+        "accessEase": 4
+      },
+      "rationale": {
+        "recommend": "楽天 3.83（1,167 則）、じゃらん 3.8、Google 3.6：評價普通，心得有設備停用、服務差的負評（約 2026）→ 照鳥羽 彩朝楽 打 2",
+        "meals": "楽天餐 3.98 → 3（自助餐）",
+        "groupFit": "100 室，房型定員沒有來源，自助餐廳沒有團體座位的來源 → 3",
+        "elderFit": "有和ベッド房、可輪椅、房內洋式廁所；電梯沒有來源",
+        "accessEase": "賢島站車程 5 分，接送要預約（是否收費矛盾）；2/2 第一晚：最終入住 19:00，勉強趕得上，要先電話"
+      },
+      "confidence": "medium",
+      "assessed": "2026-10-19"
+    }
   },
   {
     "id": "shima-nemu-resort",
@@ -8343,7 +9778,7 @@
       "googleMaps": "https://maps.google.com/?cid=9136303781188342853"
     },
     "tags": [],
-    "tier": null,
+    "tier": "A",
     "nearestStation": {
       "id": "kashikojima",
       "mode": "shuttle",
@@ -8578,8 +10013,49 @@
       },
       "dinnerAccessNote": "步行 20 分內的晚餐店 2 家：タベルナ・アスール 14 分（直線估算）、リアス バイ ココチャ 17 分（直線估算）（選素泊、朝食付方案時；OSRM，scripts/lodging-dinner-access.mjs，2026-10-19）"
     },
-    "summary": null,
-    "assessment": null
+    "summary": {
+      "text": "伊勢志摩國立公園內的大型度假村，2026-04 Villa 新開，有天然溫泉、兒童菜單和室內兒童區；ボールルーム最多 200 人。賢島站接駁要 2 小時前預約。",
+      "pros": [
+        "楽天 4.50（484 則）、じゃらん 4.6、Google 4.2（976 則）",
+        "房型 4～6 人；ボールルーム可辦團體餐會；有ユニバーサル房",
+        "晚餐 L.O. 20:30，晚到也能吃；2/2、2/3 楽天有空房"
+      ],
+      "cons": [
+        "一泊二食每人約 33,671 円（2/2）",
+        "賢島站接駁要 2 小時前預約、20 分；最晚入住 19:00",
+        "園區大、Villa 靠高爾夫球車；電梯、床沒有來源"
+      ],
+      "basedOn": [
+        "https://www.nemuresort.com/",
+        "https://www.nemuresort.com/access/",
+        "https://www.nemuresort.com/guestroom/",
+        "https://www.nemuresort.com/guestroom/hillsvilla/",
+        "https://www.nemuresort.com/guestroom/forestvilla/",
+        "https://www.nemuresort.com/guestroom/superior/",
+        "https://www.nemuresort.com/restaurant/",
+        "https://www.nemuresort.com/nemustyle/babykids/"
+      ],
+      "generated": "2026-10-19"
+    },
+    "assessment": {
+      "rubric": "lodging-v1",
+      "scores": {
+        "recommend": 4,
+        "meals": 4,
+        "groupFit": 4,
+        "elderFit": 3,
+        "accessEase": 3
+      },
+      "rationale": {
+        "recommend": "主要訂房網楽天 4.50（484 則）、Google 4.2 → 依區調整後的 4；不到 4.6 → 不到 5",
+        "meals": "楽天餐 4.47 → 4",
+        "groupFit": "86 室、ボールルーム（分割最多 200 名）可團體餐會，沒有住宿團體方案 → 4",
+        "elderFit": "有ユニバーサル房；園區大、電梯沒有來源 → 3",
+        "accessEase": "賢島站免費接駁約 20 分、預定時刻 2 小時前預約 → 3；2/2 第一晚：可以預約接駁，最晚入住 19:00 很緊"
+      },
+      "confidence": "medium",
+      "assessed": "2026-10-19"
+    }
   },
   {
     "id": "shima-shunka",
@@ -8630,7 +10106,7 @@
       "googleMaps": "https://maps.google.com/?cid=15290732935309405626"
     },
     "tags": [],
-    "tier": null,
+    "tier": "B",
     "nearestStation": {
       "id": "ugata",
       "mode": "bus",
@@ -8821,8 +10297,49 @@
         "note": "15 人（全部以大人計）分 N 間同住的組合，有空房的列出；只代表查詢當天楽天上的庫存"
       }
     },
-    "summary": null,
-    "assessment": null
+    "summary": {
+      "text": "主打帶狗同住的度假飯店（全室可帶寵物），晚餐是餐廳「旬」的松阪牛全餐，和室也放床。另有 4 棟 2 層別邸（最多 8 人）。",
+      "pros": [
+        "楽天 4.47（64 則）、Google 4.4（223 則）；楽天餐 4.56",
+        "和室也有 2 張床、有 1 樓無障礙洋室；可對應長輩餐",
+        "小學生大人價減 4,000 円；2/3 楽天有 15 人組合空房"
+      ],
+      "cons": [
+        "全館可帶狗，過敏、怕狗的人要注意",
+        "有不定休館日，2/2 楽天沒有空房",
+        "接送「依時期、時段可能不行」；晚餐 18:00／18:30 開始"
+      ],
+      "basedOn": [
+        "https://ise-shima.hotel-shunka.jp/",
+        "https://ise-shima.hotel-shunka.jp/faq/",
+        "https://ise-shima.hotel-shunka.jp/room/",
+        "https://ise-shima.hotel-shunka.jp/villa/",
+        "https://ise-shima.hotel-shunka.jp/children/",
+        "https://ise-shima.hotel-shunka.jp/restaurant/",
+        "https://ise-shima.hotel-shunka.jp/access/",
+        "https://ise-shima.hotel-shunka.jp/status/"
+      ],
+      "generated": "2026-10-19"
+    },
+    "assessment": {
+      "rubric": "lodging-v1",
+      "scores": {
+        "recommend": 3,
+        "meals": 4,
+        "groupFit": 3,
+        "elderFit": 3,
+        "accessEase": 3
+      },
+      "rationale": {
+        "recommend": "楽天 4.47 但只有 64 則（評論數上限 3）",
+        "meals": "楽天餐 4.56 → 4",
+        "groupFit": "本館 16 室＋別邸 4 棟，沒有宴會場，餐廳依團體分桌 → 3",
+        "elderFit": "和室也放床、1 樓無障礙房；電梯沒有來源 → 3",
+        "accessEase": "鵜方站巴士＋步行 3 分，接送依時段 → 3；2/2 第一晚：晚餐 18:30 前開始，晚到要問"
+      },
+      "confidence": "low",
+      "assessed": "2026-10-19"
+    }
   },
   {
     "id": "shima-nocturne-no-mori",
@@ -8873,7 +10390,7 @@
       "googleMaps": "https://maps.google.com/?cid=10268265578103643069"
     },
     "tags": [],
-    "tier": null,
+    "tier": "B",
     "nearestStation": {
       "id": "ugata",
       "mode": "taxi",
@@ -9127,8 +10644,49 @@
       },
       "dinnerAccessNote": "步行 20 分內的晚餐店 1 家：パスタ屋 Michelle 15 分（OSRM，scripts/lodging-dinner-access.mjs，2026-10-19）"
     },
-    "summary": null,
-    "assessment": null
+    "summary": {
+      "text": "森林裡的 16 棟 32 室別墅、小木屋（舊フィオーレ志摩），每棟有廚房、客廳，可帶寵物，2026-07 新開サウナ。不供晚餐，靠 BBQ 食材組、刺身盤或外食；寢室都在 2 樓。",
+      "pros": [
+        "楽天 4.39（852 則）、じゃらん 4.6、Google 4.3",
+        "ヴィラ 6 人、コテージ 4 人，15 人分 3 棟；有 BBQ 食材組",
+        "素泊每人約 4,800 円（2/2）；入住到 22:00"
+      ],
+      "cons": [
+        "不供晚餐，最近的店步行 15 分（パスタ屋 Michelle）",
+        "全部房型寢室在 2 樓、要爬樓梯",
+        "可帶寵物（有寵物房）；沒有接送"
+      ],
+      "basedOn": [
+        "https://www.rio-hotels.co.jp/shima/",
+        "https://www.rio-hotels.co.jp/shima/details.html",
+        "https://www.rio-hotels.co.jp/shima/rooms.html",
+        "https://www.rio-hotels.co.jp/shima/dining.html",
+        "https://www.rio-hotels.co.jp/shima/activity.html",
+        "https://www.rio-hotels.co.jp/shima/2026/10/post-10.html",
+        "https://www.rio-hotels.co.jp/shima/2026/07/2026720-open.html",
+        "https://www.rio-hotels.co.jp/shima/2026/10/20261015.html"
+      ],
+      "generated": "2026-10-19"
+    },
+    "assessment": {
+      "rubric": "lodging-v1",
+      "scores": {
+        "recommend": 3,
+        "meals": 3,
+        "groupFit": 3,
+        "elderFit": 2,
+        "accessEase": 3
+      },
+      "rationale": {
+        "recommend": "楽天 4.39（852 則）、Google 4.3；照原門檻是 4，依區調整後要 4.5 以上 → 3",
+        "meals": "不供晚餐（朝食バスケット，楽天餐 3.95）；dinnerAccess walk（Michelle 15 分）、可 BBQ → 3",
+        "groupFit": "32 室分棟，15 人要 3 棟，沒有一起吃的地方 → 3",
+        "elderFit": "全部 1 樓客廳、2 樓寢室，要爬樓梯 → 2",
+        "accessEase": "鵜方站計程車約 10 分、沒有接送 → 3；2/2 第一晚：入住到 22:00 沒問題"
+      },
+      "confidence": "medium",
+      "assessed": "2026-10-19"
+    }
   },
   {
     "id": "shima-hotel-bay-garden",
@@ -9179,7 +10737,7 @@
       "googleMaps": "https://maps.google.com/?cid=10250513279871879338"
     },
     "tags": [],
-    "tier": null,
+    "tier": "B",
     "nearestStation": {
       "id": "kashikojima",
       "mode": "walk",
@@ -9359,8 +10917,49 @@
       },
       "dinnerAccessNote": "步行 20 分內的晚餐店 3 家：和食 浜木綿 4 分（直線估算）、ラ・メール 4 分（直線估算）、鉄板焼きレストラン 山吹 9 分（OSRM，scripts/lodging-dinner-access.mjs，2026-10-19）"
     },
-    "summary": null,
-    "assessment": null
+    "summary": {
+      "text": "賢島站步行 3 分、面英虞灣的平價飯店，有電梯和大浴場。一泊二食、朝食付方案目前休止，只剩素泊（每人約 4,800～5,300 円），晚餐要在外面吃。",
+      "pros": [
+        "賢島站步行 3 分，入住到 23:00，第一晚晚到沒問題",
+        "有電梯，輪椅可到各樓層和大浴場；有附床和室",
+        "素泊每人約 5,300 円（2/2），賢島最便宜"
+      ],
+      "cons": [
+        "一泊二食、朝食付方案休止中，2027-02 會不會恢復要電話問",
+        "客室、脫衣所入口有段差；ツイン房不能陪睡小孩",
+        "楽天 4.02（354 則），設備 3.79，評價普通；2/2、2/3 楽天沒有空房"
+      ],
+      "basedOn": [
+        "https://hotelbaygarden.com/",
+        "https://hotelbaygarden.com/room.html",
+        "https://hotelbaygarden.com/meal.html",
+        "https://hotelbaygarden.com/information.html",
+        "https://hotelbaygarden.com/plan.html",
+        "https://travel.rakuten.co.jp/HOTEL/166181/166181.html",
+        "https://travel.rakuten.co.jp/HOTEL/166181/166181_std.html",
+        "https://www.jalan.net/yad331214/"
+      ],
+      "generated": "2026-10-19"
+    },
+    "assessment": {
+      "rubric": "lodging-v1",
+      "scores": {
+        "recommend": 3,
+        "meals": 3,
+        "groupFit": 3,
+        "elderFit": 4,
+        "accessEase": 5
+      },
+      "rationale": {
+        "recommend": "主要訂房網楽天 4.02（354 則）、じゃらん 4.4、Google 4.3 → 3",
+        "meals": "現在不供餐，dinnerAccess walk（志摩観光ホテル館內 3 家 4～9 分）→ 3",
+        "groupFit": "29 室（每間 2～4 人），容量夠；沒有團體方案、不供餐也沒有一起吃的地方",
+        "elderFit": "有電梯、有床的房間（洋室、和室ベット付き）；客室、脫衣所入口有段差 → 4",
+        "accessEase": "賢島站步行 3 分；2/2 第一晚：入住到 23:00"
+      },
+      "confidence": "medium",
+      "assessed": "2026-10-19"
+    }
   },
   {
     "id": "shima-ichiraku-onsen",
@@ -9413,7 +11012,7 @@
     "tags": [
       "包棟"
     ],
-    "tier": null,
+    "tier": "B",
     "nearestStation": {
       "id": "kashikojima",
       "mode": "taxi",
@@ -9569,8 +11168,49 @@
         "note": "15 人（全部以大人計）分 N 間同住的組合，有空房的列出；只代表查詢當天楽天上的庫存"
       }
     },
-    "summary": null,
-    "assessment": null
+    "summary": {
+      "text": "和具的小型溫泉飯店，可以整館包場（最多 66 人），有 300 人大ホール；晚餐是創作中華＋手作點心（伊勢海老、的矢牡蠣、松阪牛）。官網消息只有 2019 年、部分設施閉鎖，楽天 2/2、2/3 沒有空房，營業狀態要確認。",
+      "pros": [
+        "可以整館包場、大ホール宴會場",
+        "有床的大房（303 VIP 14 人、別館 10 人）",
+        "楽天餐 4.44；鵜方、賢島、和具港有接送（要問）"
+      ],
+      "cons": [
+        "官網只有 2019 年消息，貸切露天等閉鎖中，營業狀態要電話確認",
+        "房數來源矛盾（10～14 室）",
+        "離賢島車程約 25 分；電梯沒有來源"
+      ],
+      "basedOn": [
+        "https://www.ichiraku-hotel.com/",
+        "https://www.ichiraku-hotel.com/room/",
+        "https://www.ichiraku-hotel.com/menu/",
+        "https://www.ichiraku-hotel.com/access/",
+        "https://www.ichiraku-hotel.com/guide/",
+        "https://www.ichiraku-hotel.com/spa/",
+        "https://travel.rakuten.co.jp/HOTEL/172942/172942.html",
+        "https://travel.rakuten.co.jp/HOTEL/172942/172942_std.html"
+      ],
+      "generated": "2026-10-19"
+    },
+    "assessment": {
+      "rubric": "lodging-v1",
+      "scores": {
+        "recommend": 3,
+        "meals": 4,
+        "groupFit": 5,
+        "elderFit": 3,
+        "accessEase": 3
+      },
+      "rationale": {
+        "recommend": "じゃらん 4.6 但只有 144 則 → 依區調整後最多 3",
+        "meals": "楽天餐 4.44 → 4（創作中華）",
+        "groupFit": "官網可整館包場（最多 66 名）→ 5；營業狀態要確認",
+        "elderFit": "303、301、302、別館有床；電梯沒有來源 → 3",
+        "accessEase": "賢島站車程約 25 分，接送要問 → 3；2/2 第一晚：入住到 21:00，接送時間要問"
+      },
+      "confidence": "low",
+      "assessed": "2026-10-19"
+    }
   },
   {
     "id": "shima-shimawaso",
@@ -9621,7 +11261,7 @@
       "googleMaps": "https://maps.google.com/?cid=15461237563294042121"
     },
     "tags": [],
-    "tier": null,
+    "tier": "B",
     "nearestStation": {
       "id": "shima-yokoyama",
       "mode": "walk",
@@ -9799,8 +11439,48 @@
       },
       "dinnerAccessNote": "步行 20 分內的晚餐店 8 家以上（只查最近 8 家）：LA PIZZICA 5 分、天ぷら とばり 7 分、Shimaフレンチ食堂 ノルポル 11 分 等（選素泊、朝食付方案時；OSRM，scripts/lodging-dinner-access.mjs，2026-10-19）"
     },
-    "summary": null,
-    "assessment": null
+    "summary": {
+      "text": "鵜方街區的 6 室和室小旅館，價格便宜（素泊每人約 3,500 円），晚餐在 1 樓大広間。Google 3.6：整棟有菸味、長住工人在大廳抽菸。",
+      "pros": [
+        "6 室最多 26 人，15 人可以包下大半；1 樓大広間一起吃",
+        "素泊每人約 3,500 円；2/2、2/3 楽天有 5×3、4×4 空房",
+        "附近步行有 8 家以上晚餐店"
+      ],
+      "cons": [
+        "Google 3.6：整棟菸味、脫衣所窄、應對差（2024～2026）",
+        "全部和室、廁所共用；電梯沒有來源",
+        "入住最晚 18:00；入口路窄，大型車不能進"
+      ],
+      "basedOn": [
+        "https://shimawaso.com/",
+        "https://shimawaso.com/facilities.html",
+        "https://shimawaso.com/access.html",
+        "https://travel.rakuten.co.jp/HOTEL/176725/176725.html",
+        "https://travel.rakuten.co.jp/HOTEL/176725/176725_std.html",
+        "https://www.jalan.net/yad343552/",
+        "https://maps.google.com/?cid=15461237563294042121"
+      ],
+      "generated": "2026-10-19"
+    },
+    "assessment": {
+      "rubric": "lodging-v1",
+      "scores": {
+        "recommend": 3,
+        "meals": 3,
+        "groupFit": 3,
+        "elderFit": 2,
+        "accessEase": 4
+      },
+      "rationale": {
+        "recommend": "じゃらん 4.4（168 則）、楽天 4.20 但 Google 3.6、心得有菸味 → 3",
+        "meals": "餐點內容沒有來源；素泊時 dinnerAccess walk → 3",
+        "groupFit": "6 室、最多 26 人，15 人要佔大半，要電話確認 → 3",
+        "elderFit": "全部和室、廁所共用，電梯沒有來源 → 2",
+        "accessEase": "志摩横山站步行 7 分（普通車），鵜方站也在步行圈 → 4；2/2 第一晚：入住最晚 18:00，要先聯絡"
+      },
+      "confidence": "medium",
+      "assessed": "2026-10-19"
+    }
   },
   {
     "id": "shima-kabuku-resort",
@@ -9851,7 +11531,7 @@
       "googleMaps": "https://maps.google.com/?cid=3576074641729507689"
     },
     "tags": [],
-    "tier": null,
+    "tier": "B",
     "nearestStation": {
       "id": "ugata",
       "mode": "taxi",
@@ -10031,8 +11711,48 @@
       },
       "dinnerAccessNote": "步行 20 分內沒有晚餐店（直線 1.6 km 內沒有），要搭車（scripts/lodging-dinner-access.mjs，2026-10-19）"
     },
-    "summary": null,
-    "assessment": null
+    "summary": {
+      "text": "志島海邊的豪華露營（グランピング），帳篷和拖車屋共 8 室，晚餐 BBQ。共用淋浴、冬天靠電熱毯，對長輩冬夜偏冷。",
+      "pros": [
+        "走路 1 分到海邊，看星空、日出",
+        "7 人以上算團體；2/2、2/3 楽天有 4×4、3×5 空房",
+        "一泊二食每人約 12,200 円"
+      ],
+      "cons": [
+        "帳篷、共用淋浴，2 月夜裡冷、上廁所要出帳篷",
+        "楽天 3.96（69 則），資料少",
+        "附近沒有店；入住 16:00～19:00"
+      ],
+      "basedOn": [
+        "https://kabuku-co.jp/",
+        "https://kabuku-co.jp/stay/glamping/",
+        "https://kabuku-co.jp/group/",
+        "https://kabuku-co.jp/access/",
+        "https://travel.rakuten.co.jp/HOTEL/177971/177971.html",
+        "https://travel.rakuten.co.jp/HOTEL/177971/177971_std.html",
+        "https://maps.google.com/?cid=3576074641729507689"
+      ],
+      "generated": "2026-10-19"
+    },
+    "assessment": {
+      "rubric": "lodging-v1",
+      "scores": {
+        "recommend": 3,
+        "meals": 3,
+        "groupFit": 3,
+        "elderFit": 2,
+        "accessEase": 3
+      },
+      "rationale": {
+        "recommend": "楽天 3.96 只有 69 則（評論數上限 3）",
+        "meals": "有 BBQ 晚餐方案但沒有餐的分數；素泊時 dinnerAccess car → 3",
+        "groupFit": "8 室，每間定員沒有來源 → 3",
+        "elderFit": "帳篷有床，但共用淋浴、冬天夜裡要出帳篷上廁所 → 2",
+        "accessEase": "鵜方站計程車約 15 分、沒有接送 → 3；2/2 第一晚：最晚入住 19:00，很緊"
+      },
+      "confidence": "low",
+      "assessed": "2026-10-19"
+    }
   },
   {
     "id": "shima-villa-daio",
@@ -10083,7 +11803,7 @@
       "googleMaps": "https://maps.google.com/?cid=420662562356104962"
     },
     "tags": [],
-    "tier": null,
+    "tier": "B",
     "nearestStation": {
       "id": "kashikojima",
       "mode": "taxi",
@@ -10250,8 +11970,45 @@
       },
       "dinnerAccessNote": "步行 20 分內沒有晚餐店（最近：槙之木 27 分），要搭車（scripts/lodging-dinner-access.mjs，2026-10-19）"
     },
-    "summary": null,
-    "assessment": null
+    "summary": {
+      "text": "英虞灣前的 10 室度假飯店，家庭房都在 1 樓；不供早餐、餐廳休止，晚餐只有要預約的 BBQ。沒有接送。",
+      "pros": [
+        "Google 4.5（105 則）；英虞灣就在眼前",
+        "トリプル 5 人、グランデ 7 人，家庭房都在 1 樓",
+        "素泊每人約 4,830 円（2/2）"
+      ],
+      "cons": [
+        "不供早餐，晚餐只有 BBQ（2 小時制、要預約）",
+        "沒有接送（シャトル なし）；門限 21:00",
+        "楽天只有 35 則；附近沒有店"
+      ],
+      "basedOn": [
+        "https://tabist.co.jp/h/B24HVDI/",
+        "https://travel.rakuten.co.jp/HOTEL/178448/178448.html",
+        "https://travel.rakuten.co.jp/HOTEL/178448/178448_std.html",
+        "https://maps.google.com/?cid=420662562356104962"
+      ],
+      "generated": "2026-10-19"
+    },
+    "assessment": {
+      "rubric": "lodging-v1",
+      "scores": {
+        "recommend": 3,
+        "meals": 2,
+        "groupFit": 3,
+        "elderFit": 3,
+        "accessEase": 3
+      },
+      "rationale": {
+        "recommend": "楽天 4.08（35 則）、Google 4.5（105 則）→ 評論數上限 3",
+        "meals": "不供餐、dinnerAccess car，有 BBQ 食材方案（大人 3,850 円）和租借廚房 → 2",
+        "groupFit": "10 室（5 人、7 人房），15 人要佔大半 → 3",
+        "elderFit": "家庭房都在 1 樓；床型沒有來源 → 3",
+        "accessEase": "賢島站計程車約 20 分、沒有接送 → 3；2/2 第一晚：BBQ 要預約、門限 21:00"
+      },
+      "confidence": "low",
+      "assessed": "2026-10-19"
+    }
   },
   {
     "id": "shima-log-anori",
@@ -10304,7 +12061,7 @@
     "tags": [
       "包棟"
     ],
-    "tier": null,
+    "tier": "B",
     "nearestStation": {
       "id": "ugata",
       "mode": "taxi",
@@ -10459,8 +12216,47 @@
       },
       "dinnerAccessNote": "步行 20 分內的晚餐店 2 家：あのりふぐ料理 まるせい 8 分、料理旅館 丸寅 14 分（OSRM，scripts/lodging-dinner-access.mjs，2026-10-19）"
     },
-    "summary": null,
-    "assessment": null
+    "summary": {
+      "text": "安乗的木屋包棟，OCEAN 棟 10 人＋FOREST 棟 6 人，兩棟都有廚房、BBQ 台。無人自助入住；2025/02 的評論說暖氣不夠、很冷，車道坡很陡。",
+      "pros": [
+        "兩棟合計 16 人",
+        "廚房、BBQ 台；步行 8 分有あのりふぐ まるせい",
+        "素泊每人約 6,200～6,660 円"
+      ],
+      "cons": [
+        "兩棟能不能同時包下要確認",
+        "2025/02 暖氣幾乎沒效、水龍頭壞（3 星）；坡很陡",
+        "停車只有 1 台；BBQ 雨天不能用"
+      ],
+      "basedOn": [
+        "https://pastime-inc.com/log",
+        "https://pastime-inc.com/reserve",
+        "https://pastime-inc.com/log-guidebook",
+        "https://travel.rakuten.co.jp/HOTEL/181598/181598.html",
+        "https://travel.rakuten.co.jp/HOTEL/181598/181598_std.html",
+        "https://maps.google.com/?cid=17974993286291856197"
+      ],
+      "generated": "2026-10-19"
+    },
+    "assessment": {
+      "rubric": "lodging-v1",
+      "scores": {
+        "recommend": 3,
+        "meals": 3,
+        "groupFit": 3,
+        "elderFit": null,
+        "accessEase": 3
+      },
+      "rationale": {
+        "recommend": "只有 Google 3.8（4 則）、楽天 4.00（3 則）→ 3",
+        "meals": "不供餐，dinnerAccess walk（まるせい 8 分）→ 3",
+        "groupFit": "包棟要 2 棟一起訂（10＋6）→ 3",
+        "elderFit": "床、階梯、浴室都沒有來源",
+        "accessEase": "鵜方站計程車約 15 分、沒有接送 → 3；2/2 第一晚：自助入住到 23:00"
+      },
+      "confidence": "low",
+      "assessed": "2026-10-19"
+    }
   },
   {
     "id": "shima-villa-ryusei",
@@ -10511,7 +12307,7 @@
       "googleMaps": "https://maps.google.com/?cid=8507857770425951803"
     },
     "tags": [],
-    "tier": null,
+    "tier": "B",
     "nearestStation": {
       "id": "kashikojima",
       "mode": "shuttle",
@@ -10660,8 +12456,49 @@
         "note": "15 人（全部以大人計）分 N 間同住的組合，有空房的列出；只代表查詢當天楽天上的庫存"
       }
     },
-    "summary": null,
-    "assessment": null
+    "summary": {
+      "text": "全 9 室、全室附露天風呂的小型度假別墅，面英虞灣，晚餐是部屋食的會席（伊勢海老、鮑、松阪牛）。賢島站接送要事先告知到站時間。最終入住 17:00，第一晚要先商量。",
+      "pros": [
+        "楽天 4.38（86 則），楽天餐 4.43",
+        "全室露天風呂；小學生、幼兒有兒童餐",
+        "賢島站免費接送 5 分（事先告知到站時間）"
+      ],
+      "cons": [
+        "高級小宿，15 人要包下大半館；小上がり 2 間合計 8 人，全員不能一起吃",
+        "客室內外有段差，スイートヴィラ 是樓中樓",
+        "最終入住 17:00；不是溫泉、沒有大浴場；楽天 2/2、2/3 沒有空房"
+      ],
+      "basedOn": [
+        "https://villa-ryusei.com/",
+        "https://villa-ryusei.com/qa/",
+        "https://villa-ryusei.com/rooms/",
+        "https://villa-ryusei.com/facilities/",
+        "https://villa-ryusei.com/access/",
+        "https://villa-ryusei.com/dish/",
+        "https://travel.rakuten.co.jp/HOTEL/182365/182365.html",
+        "https://travel.rakuten.co.jp/HOTEL/182365/182365_std.html"
+      ],
+      "generated": "2026-10-19"
+    },
+    "assessment": {
+      "rubric": "lodging-v1",
+      "scores": {
+        "recommend": 3,
+        "meals": 4,
+        "groupFit": 3,
+        "elderFit": 2,
+        "accessEase": 4
+      },
+      "rationale": {
+        "recommend": "楽天 4.38 但只有 86 則（評論數上限 3）",
+        "meals": "楽天餐 4.43 → 4",
+        "groupFit": "9 室、團體預約要電話；用餐的小上がり合計 8 人 → 3",
+        "elderFit": "客室內外有段差、メゾネット房內有樓梯；電梯沒有來源 → 2",
+        "accessEase": "賢島站免費接送約 5 分，事先電話告知到站時間 → 4；2/2 第一晚：最終入住 17:00，要先商量"
+      },
+      "confidence": "low",
+      "assessed": "2026-10-19"
+    }
   },
   {
     "id": "shima-yadokari",
@@ -10707,7 +12544,7 @@
     "tags": [
       "包棟"
     ],
-    "tier": null,
+    "tier": "B",
     "nearestStation": {
       "id": "ugata",
       "mode": "taxi",
@@ -10855,8 +12692,46 @@
       },
       "dinnerAccessNote": "步行 20 分內沒有晚餐店（最近：槙之木 81 分），要搭車（scripts/lodging-dinner-access.mjs，2026-10-19）"
     },
-    "summary": null,
-    "assessment": null
+    "summary": {
+      "text": "立神的海景包棟（3 臥室、最多 12 人），姊妹棟「隠れ家」最多 4 人，合計 16 人。不供餐、附近沒有店；要穿過森林小路，夜裡全黑。",
+      "pros": [
+        "兩棟合計最多 16 人",
+        "每間房都是海景（2024）",
+        "入住到 24:00，晚到沒問題"
+      ],
+      "cons": [
+        "不供餐、附近沒有店（最近 81 分步行）",
+        "位置難找、夜裡全黑，小路窄",
+        "床、浴室、廚房數都沒有來源"
+      ],
+      "basedOn": [
+        "https://travel.rakuten.co.jp/HOTEL/183148/183148.html",
+        "https://travel.rakuten.co.jp/HOTEL/183148/183148_std.html",
+        "https://hotel.travel.rakuten.co.jp/hotelinfo/plan/183148",
+        "https://travel.rakuten.co.jp/HOTEL/202779/202779_std.html",
+        "https://maps.google.com/?cid=10446467054877278379"
+      ],
+      "generated": "2026-10-19"
+    },
+    "assessment": {
+      "rubric": "lodging-v1",
+      "scores": {
+        "recommend": 3,
+        "meals": 1,
+        "groupFit": 3,
+        "elderFit": null,
+        "accessEase": 3
+      },
+      "rationale": {
+        "recommend": "只有 Google 4.0（6 則）→ 3",
+        "meals": "不供餐、dinnerAccess car，廚房、食材的來源沒有 → 1",
+        "groupFit": "包棟要 2 棟一起訂（12＋4）→ 3",
+        "elderFit": "電梯、床、浴室、階梯都沒有來源",
+        "accessEase": "鵜方站計程車約 15～20 分、沒有接送 → 3；2/2 第一晚：入住到 24:00，晚餐要先準備"
+      },
+      "confidence": "low",
+      "assessed": "2026-10-19"
+    }
   },
   {
     "id": "shima-umibe",
@@ -10909,7 +12784,7 @@
     "tags": [
       "包棟"
     ],
-    "tier": null,
+    "tier": "B",
     "nearestStation": {
       "id": "ugata",
       "mode": "taxi",
@@ -11070,8 +12945,48 @@
       },
       "dinnerAccessNote": "步行 20 分內沒有晚餐店（直線 1.6 km 內沒有），要搭車（scripts/lodging-dinner-access.mjs，2026-10-19）"
     },
-    "summary": null,
-    "assessment": null
+    "summary": {
+      "text": "大王町船越的海景包棟別墅，最多 14 人，露天風呂、100㎡ 露台、BBQ、暖爐；隔壁 UMIBE Terrace（8 人）一起訂最多 22 人。不供餐、附近沒有店。",
+      "pros": [
+        "Google 4.8（33 則），心得說私人海灘、寬敞、4 家庭住過也夠",
+        "和 Terrace 一起訂可住 15 人；L 字廚房＋BBQ",
+        "自助入住到 23:00"
+      ],
+      "cons": [
+        "15 人要兩棟一起訂",
+        "2 樓樓梯沒有扶手、浴缸邊高（2026）",
+        "不供餐、附近沒有店；12 月以後戶外冷"
+      ],
+      "basedOn": [
+        "https://umibe-iseshima.com/",
+        "https://umibe-iseshima.com/iseshima/",
+        "https://umibe-iseshima.com/terrace/",
+        "https://umibe-iseshima.com/access/",
+        "https://travel.rakuten.co.jp/HOTEL/184799/184799.html",
+        "https://travel.rakuten.co.jp/HOTEL/184799/184799_std.html",
+        "https://maps.google.com/?cid=3943889506979948615"
+      ],
+      "generated": "2026-10-19"
+    },
+    "assessment": {
+      "rubric": "lodging-v1",
+      "scores": {
+        "recommend": 3,
+        "meals": 2,
+        "groupFit": 3,
+        "elderFit": 2,
+        "accessEase": 3
+      },
+      "rationale": {
+        "recommend": "只有 Google 4.8（33 則）→ 最多 3",
+        "meals": "不供餐、dinnerAccess car，有廚房、BBQ 可以自炊 → 2",
+        "groupFit": "最多 14 人，15 人要和 Terrace 兩棟一起訂 → 3",
+        "elderFit": "心得說 2 樓樓梯沒扶手、浴缸邊高；1 樓有 2 間寢室 → 2",
+        "accessEase": "鵜方站計程車約 20 分、沒有接送 → 3；2/2 第一晚：入住到 23:00，晚餐要先買好"
+      },
+      "confidence": "low",
+      "assessed": "2026-10-19"
+    }
   },
   {
     "id": "shima-umilabo",
@@ -11124,7 +13039,7 @@
     "tags": [
       "包棟"
     ],
-    "tier": null,
+    "tier": "B",
     "nearestStation": {
       "id": "kashikojima",
       "mode": "walk",
@@ -11276,8 +13191,46 @@
         "note": "15 人（全部以大人計）分 N 間同住的組合，有空房的列出；只代表查詢當天楽天上的庫存"
       }
     },
-    "summary": null,
-    "assessment": null
+    "summary": {
+      "text": "把英虞灣的舊真珠養殖場改成「只能搭船到」的一日一組包場リトリート，有 SUP、カヤック、桑拿、ピザ釜、BBQ。Google 5.0（75 則），但定員、船班、餐食都讀不到。",
+      "pros": [
+        "Google 5.0（75 則），心得說工作人員搬行李、事前聯絡細心",
+        "一日一組包場，有廚房、BBQ、ピザ釜，體驗多",
+        "賢島站步行約 6 分到集合處（楽天）"
+      ],
+      "cons": [
+        "只能搭船，晚上能不能搭船入住不明；廁所、淋浴在別棟",
+        "定員、臥室、床數都沒有來源（楽天 8 人有空、10 人沒有）",
+        "BBQ、SUP、桑拿要另付費；素泊每人約 27,840～29,000 円"
+      ],
+      "basedOn": [
+        "https://umilabo.co.jp/",
+        "https://umilabo.co.jp/bookinghub/facility",
+        "https://travel.rakuten.co.jp/HOTEL/191038/191038.html",
+        "https://travel.rakuten.co.jp/HOTEL/191038/191038_std.html",
+        "https://maps.google.com/?cid=2270449584742145187"
+      ],
+      "generated": "2026-10-19"
+    },
+    "assessment": {
+      "rubric": "lodging-v1",
+      "scores": {
+        "recommend": 3,
+        "meals": 2,
+        "groupFit": null,
+        "elderFit": 2,
+        "accessEase": 2
+      },
+      "rationale": {
+        "recommend": "只有 Google 5.0（75 則），訂房網沒有評分 → 最多 3",
+        "meals": "不知道有沒有供餐（楽天防疫欄寫部屋食對應）；只能搭船、附近沒有店，有廚房、BBQ 可以自炊 → 2（dinnerAccess null，照 car＋可自炊打）",
+        "groupFit": "定員沒有來源 → null（楽天的空房只代表庫存）",
+        "elderFit": "搭船上下、筏和甲板的水上動線，廁所淋浴在別棟 → 2",
+        "accessEase": "只能搭船，船班、集合處讀不到 → 2；2/2 第一晚：天黑後搭船不明，不建議"
+      },
+      "confidence": "low",
+      "assessed": "2026-10-19"
+    }
   },
   {
     "id": "shima-umibe-terrace",
@@ -11330,7 +13283,7 @@
     "tags": [
       "包棟"
     ],
-    "tier": null,
+    "tier": "B",
     "nearestStation": {
       "id": "ugata",
       "mode": "taxi",
@@ -11485,8 +13438,47 @@
       },
       "dinnerAccessNote": "步行 20 分內沒有晚餐店（直線 1.6 km 內沒有），要搭車（scripts/lodging-dinner-access.mjs，2026-10-19）"
     },
-    "summary": null,
-    "assessment": null
+    "summary": {
+      "text": "UMIBE 隔壁的海景包棟，2 間寢室、4 張雙人床、最多 8 人，露天風呂看太平洋。心得全部 5 星，但不供餐、附近沒有店。",
+      "pros": [
+        "Google 5.0（10 則），設備新、清潔",
+        "和 UMIBE 一起訂最多 22 人",
+        "露天風呂、全套廚房、炭火 BBQ"
+      ],
+      "cons": [
+        "最多 8 人；15 人要和 UMIBE 兩棟",
+        "不供餐、附近沒有店",
+        "進出有彎曲陡坡；雙人床 2 個大人睡偏擠"
+      ],
+      "basedOn": [
+        "https://umibe-iseshima.com/terrace/",
+        "https://umibe-iseshima.com/access/",
+        "https://d-reserve.jp/GSEA004F01600/GSEA004A01?hotelCode=0000002875&rmcd001=RM00015284&pl=PL00041468",
+        "https://travel.rakuten.co.jp/HOTEL/196440/196440.html",
+        "https://travel.rakuten.co.jp/HOTEL/196440/196440_std.html",
+        "https://maps.google.com/?cid=1955403319882222234"
+      ],
+      "generated": "2026-10-19"
+    },
+    "assessment": {
+      "rubric": "lodging-v1",
+      "scores": {
+        "recommend": 3,
+        "meals": 2,
+        "groupFit": 3,
+        "elderFit": 3,
+        "accessEase": 3
+      },
+      "rationale": {
+        "recommend": "只有 Google 5.0（10 則）→ 最多 3",
+        "meals": "不供餐、dinnerAccess car，有廚房、BBQ → 2",
+        "groupFit": "最多 8 人，和 UMIBE 兩棟合住 → 3",
+        "elderFit": "全部是床；樓層、階梯沒有來源 → 3",
+        "accessEase": "鵜方站計程車約 20 分、沒有接送 → 3；2/2 第一晚：入住到 23:00"
+      },
+      "confidence": "low",
+      "assessed": "2026-10-19"
+    }
   },
   {
     "id": "shima-taoya",
@@ -11530,7 +13522,7 @@
       "googleMaps": "https://maps.google.com/?cid=12900116021146004508"
     },
     "tags": [],
-    "tier": null,
+    "tier": "B",
     "nearestStation": {
       "id": "ugata",
       "mode": "taxi",
@@ -11700,8 +13692,47 @@
         "note": "15 人（全部以大人計）分 N 間同住的組合，有空房的列出；只代表查詢當天楽天上的庫存"
       }
     },
-    "summary": null,
-    "assessment": null
+    "summary": {
+      "text": "太平洋海景的全包式（オールインクルーシブ）溫泉飯店，海鮮自助＋酒。93 室，房型讀不到。鵜方站有料接送一天 3 班，第一晚沒有班次。",
+      "pros": [
+        "楽天 4.23（401 則）；天然溫泉、露天、桑拿",
+        "2/2、2/3 楽天有 15 人組合空房",
+        "餐廳到 21:30，晚到也能吃"
+      ],
+      "cons": [
+        "一泊二食每人約 26,100 円（全包）",
+        "鵜方站接送 14:45～16:45、要送迎協力金；第一晚要計程車 20 分",
+        "房型、定員、電梯都沒有來源"
+      ],
+      "basedOn": [
+        "https://www.ooedoonsen.jp/taoya-minamishima/",
+        "https://travel.rakuten.co.jp/HOTEL/196797/196797.html",
+        "https://travel.rakuten.co.jp/HOTEL/196797/196797_std.html",
+        "https://yado.knt.co.jp/st/S240408/",
+        "https://www.jalan.net/yad347515/",
+        "https://maps.google.com/?cid=12900116021146004508"
+      ],
+      "generated": "2026-10-19"
+    },
+    "assessment": {
+      "rubric": "lodging-v1",
+      "scores": {
+        "recommend": 3,
+        "meals": 3,
+        "groupFit": 3,
+        "elderFit": null,
+        "accessEase": 3
+      },
+      "rationale": {
+        "recommend": "楽天 4.23（401 則）、Google 4.0 → 3",
+        "meals": "楽天餐 4.32 → 3（自助）",
+        "groupFit": "93 室，房型定員沒有來源 → 3",
+        "elderFit": "只有輪椅出借，電梯、床沒有來源",
+        "accessEase": "鵜方站有料接送一天 3 班（預約）、車程 20 分 → 3；2/2 第一晚：要計程車，餐廳到 21:30 應趕得上"
+      },
+      "confidence": "medium",
+      "assessed": "2026-10-19"
+    }
   },
   {
     "id": "shima-small-resort",
@@ -11754,7 +13785,7 @@
     "tags": [
       "包棟"
     ],
-    "tier": null,
+    "tier": "B",
     "nearestStation": {
       "id": "kashikojima",
       "mode": "ferry",
@@ -11906,8 +13937,48 @@
       },
       "dinnerAccessNote": "步行 20 分內的晚餐店 1 家：お食事処 ひでちゃん 19 分（OSRM，scripts/lodging-dinner-access.mjs，2026-10-19）"
     },
-    "summary": null,
-    "assessment": null
+    "summary": {
+      "text": "御座的寵物同宿包棟別墅，3 間寢室 5 張雙人床，有劇院投影室、屋頂三溫暖、BBQ；定員 10 人。心得多是 5 星。",
+      "pros": [
+        "Google 4.9（29 則），清掃到位、床墊舒服",
+        "劇院投影室小孩喜歡；BBQ 爐",
+        "步行 19 分有ひでちゃん"
+      ],
+      "cons": [
+        "定員 10 人，15 人住不下",
+        "浴室只有 2 樓 1 間，1 樓浴室廁所禁用",
+        "離賢島車程約 30 分、沒有接送"
+      ],
+      "basedOn": [
+        "https://shippotownhotel.com/smallresortshima/",
+        "https://shippotownhotel.com/smallresortshima/facility/",
+        "https://shippotownhotel.com/smallresortshima/faq/",
+        "https://shippotownhotel.com/smallresortshima/access/",
+        "https://travel.rakuten.co.jp/HOTEL/197802/197802.html",
+        "https://travel.rakuten.co.jp/HOTEL/197802/197802_std.html",
+        "https://maps.google.com/?cid=18045061623048286687"
+      ],
+      "generated": "2026-10-19"
+    },
+    "assessment": {
+      "rubric": "lodging-v1",
+      "scores": {
+        "recommend": 3,
+        "meals": 3,
+        "groupFit": 2,
+        "elderFit": 2,
+        "accessEase": 2
+      },
+      "rationale": {
+        "recommend": "只有 Google 4.9（29 則）→ 最多 3",
+        "meals": "不供餐，dinnerAccess walk（ひでちゃん 19 分），有 BBQ → 3",
+        "groupFit": "定員 10 人，要和別處分住 → 2",
+        "elderFit": "浴室只在 2 樓、玄関有階梯 → 2",
+        "accessEase": "賢島車程約 30 分或定期船 25 分＋計程車、沒有接送 → 2；2/2 第一晚：無人入住，晚到可以"
+      },
+      "confidence": "low",
+      "assessed": "2026-10-19"
+    }
   },
   {
     "id": "shima-mori-to-umi",
@@ -11960,7 +14031,7 @@
     "tags": [
       "包棟"
     ],
-    "tier": null,
+    "tier": "B",
     "nearestStation": {
       "id": "ugata",
       "mode": "taxi",
@@ -12106,8 +14177,47 @@
       },
       "dinnerAccessNote": "步行 20 分內的晚餐店 2 家：BALI HOUSE 14 分、シェブロンカフェ 16 分（OSRM，scripts/lodging-dinner-access.mjs，2026-10-19）"
     },
-    "summary": null,
-    "assessment": null
+    "summary": {
+      "text": "国府的整棟別墅，最多 16 人，有大型瓦斯 BBQ 爐、柴火披薩窯，3 代 11 人、4 個家庭住過的評論不錯；但 2025 年有霉味、不潔的 1 星。浴室、廁所各只有 1 間。",
+      "pros": [
+        "一棟最多 16 人，15 人可以同住",
+        "BBQ 爐、披薩窯、露台；步行 14 分有 BALI HOUSE",
+        "每棟約 60,900 円（2/2，10 人），自助入住、晚到沒問題"
+      ],
+      "cons": [
+        "浴室 1、廁所 1，15 人不夠用",
+        "Google 1 星：霉味、布團不潔、應對差（2025）；廁所異味（2026）",
+        "寢室在 2 樓、有梯子上的ロフトベッド"
+      ],
+      "basedOn": [
+        "https://style-h.com/moritoumi/",
+        "https://style-h.com/moritoumi/layout/",
+        "https://style-h.com/moritoumi/moritoumi_photogallery_2f/",
+        "https://travel.rakuten.co.jp/HOTEL/198954/198954.html",
+        "https://travel.rakuten.co.jp/HOTEL/198954/198954_std.html",
+        "https://maps.google.com/?cid=2801035219297466723"
+      ],
+      "generated": "2026-10-19"
+    },
+    "assessment": {
+      "rubric": "lodging-v1",
+      "scores": {
+        "recommend": 3,
+        "meals": 3,
+        "groupFit": 5,
+        "elderFit": 2,
+        "accessEase": 3
+      },
+      "rationale": {
+        "recommend": "只有 Google 4.5（22 則）→ 最多 3；有霉味的負評",
+        "meals": "不供餐，dinnerAccess walk（BALI HOUSE 14 分），有 BBQ、廚房 → 3",
+        "groupFit": "包棟最多 16 人 → 5（浴室廁所少寫在 cons）",
+        "elderFit": "寢室在 2 樓、ロフトベッド要爬梯；1 樓有和室 → 2",
+        "accessEase": "鵜方站計程車約 15 分、沒有接送 → 3；2/2 第一晚：自助入住，晚到沒問題"
+      },
+      "confidence": "low",
+      "assessed": "2026-10-19"
+    }
   },
   {
     "id": "shima-villa-ise-shima",
@@ -12153,7 +14263,7 @@
     "tags": [
       "包棟"
     ],
-    "tier": null,
+    "tier": "B",
     "nearestStation": {
       "id": "shima-shimmei",
       "mode": "walk",
@@ -12306,8 +14416,46 @@
       },
       "dinnerAccessNote": "步行 20 分內的晚餐店 4 家：Shimaフレンチ食堂 ノルポル 18 分、マレナSHIMA フレンチ 18 分、鉄板焼きレストラン 山吹 18 分 等（OSRM，scripts/lodging-dinner-access.mjs，2026-10-19）"
     },
-    "summary": null,
-    "assessment": null
+    "summary": {
+      "text": "志摩神明站步行 4 分的 3LDK 一棟貸切，最多 8 人，適合一個分組。不供餐；Google 4 則都是 5 星。",
+      "pros": [
+        "志摩神明站步行 4 分；一日一組",
+        "Google 5.0（4 則）：3 間房、2 廁所 2 洗面台，8 人寬敞",
+        "附近步行 18 分內有 4 家晚餐店"
+      ],
+      "cons": [
+        "最多 8 人，15 人住不下",
+        "不供餐，只有微波爐、熱水壺",
+        "最終入住 20:00 和「20 時以後到」方案並存，要確認"
+      ],
+      "basedOn": [
+        "https://travel.rakuten.co.jp/HOTEL/201724/201724.html",
+        "https://travel.rakuten.co.jp/HOTEL/201724/201724_std.html",
+        "https://hotel.travel.rakuten.co.jp/hotelinfo/plan/201724",
+        "https://www.jalan.net/yad362720/",
+        "https://maps.google.com/?cid=6890431814609024026"
+      ],
+      "generated": "2026-10-19"
+    },
+    "assessment": {
+      "rubric": "lodging-v1",
+      "scores": {
+        "recommend": 3,
+        "meals": 3,
+        "groupFit": 2,
+        "elderFit": 3,
+        "accessEase": 5
+      },
+      "rationale": {
+        "recommend": "只有 Google 5.0（4 則），沒有訂房網評分 → 3",
+        "meals": "不供餐，dinnerAccess walk（ノルポル 等 18 分）→ 3",
+        "groupFit": "最多 8 人，要和別處分住 → 2",
+        "elderFit": "洋室 4 張單人床＋和室布團 3 組；電梯、階梯沒有來源 → 3",
+        "accessEase": "志摩神明站步行 4 分（普通車）→ 5；2/2 第一晚：在鵜方換普通車，最終入住 20:00"
+      },
+      "confidence": "low",
+      "assessed": "2026-10-19"
+    }
   },
   {
     "id": "shima-hanataku",
@@ -12344,7 +14492,7 @@
       "googleMaps": "https://maps.google.com/?cid=14344078588759316607"
     },
     "tags": [],
-    "tier": null,
+    "tier": "A",
     "nearestStation": {
       "id": "ugata",
       "mode": "bus",
@@ -12469,8 +14617,48 @@
       "officialPriceNote": "大人 1 人：素泊まり 5,500 円～、朝食付 6,600 円～；小學生為大人價 80%；寵物第 1 隻 1,000 円、第 2 隻 500 円（現地付）（3）",
       "dinnerAccessNote": "步行 20 分內沒有晚餐店（直線 1.6 km 內沒有），要搭車（scripts/lodging-dinner-access.mjs，2026-10-19）"
     },
-    "summary": null,
-    "assessment": null
+    "summary": {
+      "text": "甲賀的 5 室ペンション＆カフェ，夫婦經營，手作早餐、宵夜伊勢うどん和戚風蛋糕評價很好，じゃらん 4.9（475 則）。沒有晚餐，附近也沒有店；有看板犬貓，浴室廁所共用。",
+      "pros": [
+        "じゃらん 4.9（475 則）、Google 4.6，心得說款待用心",
+        "手作早餐、宵夜伊勢うどん＆戚風",
+        "素泊每人約 5,500 円起，小學生 80%"
+      ],
+      "cons": [
+        "沒有晚餐，附近沒有店（要搭車）",
+        "館內有狗貓、可帶寵物；房間有小蟑螂（2026）、共用空間吵（2022）",
+        "5 室、浴室廁所共用；入住時間沒寫"
+      ],
+      "basedOn": [
+        "https://sites.google.com/view/katarai",
+        "https://sites.google.com/view/katarai/客室館内",
+        "https://sites.google.com/view/katarai/料金予約",
+        "https://sites.google.com/view/katarai/アクセス",
+        "https://sites.google.com/view/katarai/おもてなし",
+        "https://www.jalan.net/yad390432/",
+        "https://maps.google.com/?cid=14344078588759316607"
+      ],
+      "generated": "2026-10-19"
+    },
+    "assessment": {
+      "rubric": "lodging-v1",
+      "scores": {
+        "recommend": 4,
+        "meals": 1,
+        "groupFit": 2,
+        "elderFit": 3,
+        "accessEase": 3
+      },
+      "rationale": {
+        "recommend": "主要訂房網じゃらん 4.9（475 則）、Google 4.6，數字是 5；心得有蟑螂、噪音的負評 → 4",
+        "meals": "只有早餐，dinnerAccess car、沒有廚房或食材 → 1",
+        "groupFit": "ツイン 3＋和室 2，和室定員沒寫，可能住不下 15 人 → 2",
+        "elderFit": "ツイン是床；電梯沒有來源、浴室共用 → 3",
+        "accessEase": "鵜方站巴士到「甲賀」步行 2 分（班次沒查）、沒有接送 → 3；2/2 第一晚：入住時間沒寫"
+      },
+      "confidence": "medium",
+      "assessed": "2026-10-19"
+    }
   },
   {
     "id": "shima-ocean-villa-wa",
@@ -12523,7 +14711,7 @@
     "tags": [
       "包棟"
     ],
-    "tier": null,
+    "tier": "B",
     "nearestStation": {
       "id": "ugata",
       "mode": "car",
@@ -12653,7 +14841,46 @@
       "officialPriceNote": "觀光三重：通常期平日 4 人以內 48,000 円／棟、追加 1 人 6,000 円；繁忙期 4 人以內 56,000 円／棟、追加 1 人 7,000 円；價格可能變動。兒童價未寫。官網料金規約連結 aco.co.jp/id/65875.html 404（5）",
       "dinnerAccessNote": "步行 20 分內沒有晚餐店（直線 1.6 km 內沒有），要搭車（scripts/lodging-dinner-access.mjs，2026-10-19）"
     },
-    "summary": null,
-    "assessment": null
+    "summary": {
+      "text": "南張海岸前的平屋一軒家包棟，最多 6 人（觀光三重寫 10 人），可以訂當地海產食材自己 BBQ。Google 3.2，評論說有蟲、清潔差、廚具不夠。",
+      "pros": [
+        "平屋（單層），寢室 3 張床＋客廳沙發床 2",
+        "可訂刺身、貝類、伊勢海老食材",
+        "離海灘步行約 3 分"
+      ],
+      "cons": [
+        "Google 3.2（9 則）：螞蟻、蟑螂、蜈蚣、前一組垃圾沒清（2024～2025）",
+        "最多 6 人，15 人住不下；只能開車",
+        "附近沒有店、離超市遠；廚具只夠 4 人份"
+      ],
+      "basedOn": [
+        "https://iseshimaoceanvillayamato.com/",
+        "https://iseshimaoceanvillayamato.com/facility/",
+        "https://iseshimaoceanvillayamato.com/food/",
+        "https://iseshimaoceanvillayamato.com/access/",
+        "https://www.kankomie.or.jp/spot/23842",
+        "https://maps.google.com/?cid=14254672148458479494"
+      ],
+      "generated": "2026-10-19"
+    },
+    "assessment": {
+      "rubric": "lodging-v1",
+      "scores": {
+        "recommend": 2,
+        "meals": 2,
+        "groupFit": 2,
+        "elderFit": 3,
+        "accessEase": 3
+      },
+      "rationale": {
+        "recommend": "只有 Google 3.2（9 則），心得有清潔、蟲的負評 → 2（資料少又有負評）",
+        "meals": "不供餐、dinnerAccess car，但有 BBQ 和食材配送 → 2",
+        "groupFit": "最多 6 人，要和別處分住 → 2",
+        "elderFit": "單層、有 3 張床＋沙發床；長輩 5 位床不夠 → 3",
+        "accessEase": "鵜方站車程約 20 分、官網請開車、沒有接送 → 3；2/2 第一晚：入住時間沒寫"
+      },
+      "confidence": "low",
+      "assessed": "2026-10-19"
+    }
   }
 ]

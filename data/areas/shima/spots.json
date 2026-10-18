@@ -102,7 +102,7 @@
     "tags": [
       "海邊"
     ],
-    "tier": null,
+    "tier": "B",
     "nearestStation": {
       "id": "kashikojima",
       "mode": "walk",
@@ -232,8 +232,49 @@
       "googleDistanceMeters": 119,
       "coordsNote": "座標：觀光三重詳細頁"
     },
-    "summary": null,
-    "assessment": null
+    "summary": {
+      "text": "賢島站旁出發、仿 16 世紀西班牙帆船的英虞灣遊覽船，一圈約 50 分，看珍珠養殖筏和リアス式海岸。旅程期間（2/1～3/5）大船エスペランサ 休業，改由小型代替船運航。",
+      "pros": [
+        "賢島站步行 2 分上船，觀光三重、觀光協會都有收錄",
+        "15 人以上可團體預約（FAX），15～99 人 9 折、另 1 人免費",
+        "雨天照常運航；まわりゃんせ 可以搭"
+      ],
+      "cons": [
+        "2 月是小型代替船：船名、定員、設備、時刻都沒寫，15 人能不能一班要問",
+        "低分評論說景色單調、語音導覽聽不清楚（約 2025～2026）",
+        "大船的廁所在地下 1 樓只能走樓梯；冬天甲板海風冷"
+      ],
+      "basedOn": [
+        "https://shima-marineleisure.com/espana",
+        "https://shima-marineleisure.com/question",
+        "https://shima-marineleisure.com/wordpress/wp-content/themes/marine/pdf/fare_group.pdf",
+        "https://shima-marineleisure.com/tour",
+        "https://shima-marineleisure.com/espana/access",
+        "https://shima-marineleisure.com/ticket",
+        "https://www.shima-marineleisure.com/",
+        "https://www.kankomie.or.jp/spot/3240"
+      ],
+      "generated": "2026-10-19"
+    },
+    "assessment": {
+      "rubric": "spot-v1",
+      "scores": {
+        "recommend": 3,
+        "winterFit": 2,
+        "elderFit": null,
+        "kidsFit": 3,
+        "accessEase": 5
+      },
+      "rationale": {
+        "recommend": "Google 4.2（217 則），觀光三重、觀光協會都有收錄；志摩依區調整後 4 要 800 則以上 → 3；低分評論說景色單調",
+        "winterFit": "2/1～3/5 大船休業、改小型代替船（定員、設備不明），冬天甲板冷",
+        "elderFit": "大船有陡樓梯、沒有電梯，但 2 月代替船的設備沒有來源",
+        "kidsFit": "kids.friendly medium：2 歲起的家族搭乘、小孩滿意（Google，約 2023）",
+        "accessEase": "賢島站步行約 2 分"
+      },
+      "confidence": "medium",
+      "assessed": "2026-10-19"
+    }
   },
   {
     "id": "shima-kashikojima-yuransen",
@@ -337,7 +378,7 @@
     "tags": [
       "海邊"
     ],
-    "tier": null,
+    "tier": "B",
     "nearestStation": {
       "id": "kashikojima",
       "mode": "walk",
@@ -436,8 +477,47 @@
         "休日：官網不定休（天候）；觀光協會寫週三或週四可能休。"
       ]
     },
-    "summary": null,
-    "assessment": null
+    "summary": {
+      "text": "賢島站前出發的小型遊覽船，在英虞灣的小島、入江之間繞行約 50 分，船長講解賢島的歷史和軼事。定員 70 人，可以包船。",
+      "pros": [
+        "賢島站出口直走約 50 m 上船",
+        "定員 70 人，15 人坐同一艘；可以依希望路線包船",
+        "船長講解有趣、會扶小孩上船（Google 評論，約 2024）"
+      ],
+      "cons": [
+        "不定期運行，人數不夠不開船，要先打電話（Google 評論多則）",
+        "2 月有沒有運航沒明寫；觀光協會說週三或週四可能休",
+        "乘船處的拉客讓人不舒服（2 則，約 2022～2024）；船內廁所、座位沒有來源"
+      ],
+      "basedOn": [
+        "http://kashikojima-boat.jp/",
+        "http://kashikojima-boat.jp/route.html",
+        "http://kashikojima-boat.jp/access.html",
+        "https://www.kanko-shima.com/purpose/2001/",
+        "https://www.asoview.com/channel/activities/kashikojima/offices/1045/courses",
+        "https://maps.google.com/?cid=3489921833568753887"
+      ],
+      "generated": "2026-10-19"
+    },
+    "assessment": {
+      "rubric": "spot-v1",
+      "scores": {
+        "recommend": 3,
+        "winterFit": 2,
+        "elderFit": null,
+        "kidsFit": 3,
+        "accessEase": 5
+      },
+      "rationale": {
+        "recommend": "Google 4.3（311 則），觀光協會有專頁；依區調整後 4 要 800 則以上 → 3",
+        "winterFit": "2 月營業沒明寫（不定期運行、天候休）→ 照「2 月很可能休業但日期未確認」打 2",
+        "elderFit": "乘船的階梯、船內座位、廁所都沒有來源",
+        "kidsFit": "kids.friendly medium：小學生看到真的リアス式海岸（Google，約 2024）",
+        "accessEase": "賢島站步行約 1 分"
+      },
+      "confidence": "medium",
+      "assessed": "2026-10-19"
+    }
   },
   {
     "id": "shima-mazakijima",
@@ -487,7 +567,7 @@
     "tags": [
       "海邊"
     ],
-    "tier": null,
+    "tier": "B",
     "nearestStation": {
       "id": "kashikojima",
       "mode": "ferry",
@@ -597,8 +677,49 @@
         "賢島站到賢島のりば：觀光協會步行約 1 分、觀光三重 2 分。"
       ]
     },
-    "summary": null,
-    "assessment": null
+    "summary": {
+      "text": "英虞灣中央、人口不到 100 人的有人離島，從賢島搭定期船 10 分。可以在漁村巷弄散步、看真珠養殖筏和昔日「日本最富裕的島」留下的大宅；島上沒有觀光設施和商店。",
+      "pros": [
+        "觀光協會主打的英虞灣離島散步；內海、船幾乎不搖",
+        "2 月照通常ダイヤ每天開，船定員 70～80 人，15 人以上可以預約",
+        "船着場旁的海灘可以撿貝殼；まわりゃんせ 可以無限搭定期船"
+      ],
+      "cons": [
+        "島上沒有商店、餐廳，可能連自動販賣機都沒有，飲食要在賢島先買",
+        "定期船約 1 小時 1 班，間崎發 12:50 之後下一班是 15:25",
+        "乘船口窄、有段差，輪椅不能直接上船；島內坡道沒有來源"
+      ],
+      "basedOn": [
+        "https://shima-marineleisure.com/ago",
+        "https://shima-marineleisure.com/wordpress/wp-content/themes/marine/pdf/fare_group.pdf",
+        "https://shima-marineleisure.com/question",
+        "https://www.kanko-shima.com/purpose/18092/",
+        "https://www.kankomie.or.jp/spot/3987",
+        "https://www.iseshima-kanko.jp/downloads/media/24122",
+        "https://www.city.shima.mie.jp/kakuka/seisakusuishin/shisan/8290.html",
+        "https://maps.google.com/?cid=5955420398926235745"
+      ],
+      "generated": "2026-10-19"
+    },
+    "assessment": {
+      "rubric": "spot-v1",
+      "scores": {
+        "recommend": 3,
+        "winterFit": 3,
+        "elderFit": 3,
+        "kidsFit": 3,
+        "accessEase": 3
+      },
+      "rationale": {
+        "recommend": "Google 4.3 但只有 9 則；觀光協會主打 → 照鳥羽「離島評論少最多 3」",
+        "winterFit": "定期船 2 月每天開，戶外散步冬天冷，天候差臨時停航",
+        "elderFit": "乘船口有段差、船上廁所要走階梯；島內道路約 1.5 km，坡道沒有來源",
+        "kidsFit": "kids.friendly medium：撿貝殼、看小生物（Google，約 2022～2024）",
+        "accessEase": "定期船約 1 小時 1 班（10 分），下船即到"
+      },
+      "confidence": "low",
+      "assessed": "2026-10-19"
+    }
   },
   {
     "id": "shima-samiere",
@@ -703,7 +824,7 @@
       "室內",
       "雨天備案"
     ],
-    "tier": null,
+    "tier": "B",
     "nearestStation": {
       "id": "kashikojima",
       "mode": "walk",
@@ -786,8 +907,45 @@
         "階段昇降機：觀光三重寫「2017 年 12 月前預定設置」（舊文）；志摩市官網（2026-06-03 更新）寫已可利用，以官網為準。"
       ]
     },
-    "summary": null,
-    "assessment": null
+    "summary": {
+      "text": "賢島站 2 樓的 2016 年 G7 伊勢志摩峰會紀念館，展示峰會實際用過的圓桌和椅子、各國贈品，免費入館。規模小，適合等電車的空檔。",
+      "pros": [
+        "就在賢島站 2 樓、免費、原則年中無休",
+        "日本的座位可以坐上去拍照；有 G7 首腦等身大看板",
+        "全室內，雨天、冬天都不受影響"
+      ],
+      "cons": [
+        "規模小、很快看完；對峰會沒興趣的小孩會無聊（約 2019）",
+        "沒有電梯、手扶梯，要走一層樓梯（輪椅可用階段昇降機）",
+        "併設カフェ 2026 年初沒營業（Google 評論）"
+      ],
+      "basedOn": [
+        "https://www.city.shima.mie.jp/kakuka/seisakusuishin/sogoseisakuka/iseshimasummit/1496971267933.html",
+        "https://www.kankomie.or.jp/spot/23360",
+        "https://www.kanko-shima.com/purpose/2298/",
+        "https://maps.google.com/?cid=13725898248839106999"
+      ],
+      "generated": "2026-10-19"
+    },
+    "assessment": {
+      "rubric": "spot-v1",
+      "scores": {
+        "recommend": 3,
+        "winterFit": 5,
+        "elderFit": 4,
+        "kidsFit": null,
+        "accessEase": 5
+      },
+      "rationale": {
+        "recommend": "Google 3.9（568 則），規模小、適合等電車 → 順路的好選擇",
+        "winterFit": "全室內、原則年中無休",
+        "elderFit": "一層樓梯、沒有電梯；輪椅可用階段昇降機（志摩市，2026-06）",
+        "kidsFit": "kids.friendly 是 null，照鳥羽規則不打（評論說小孩會無聊）",
+        "accessEase": "在賢島站 2 樓"
+      },
+      "confidence": "medium",
+      "assessed": "2026-10-19"
+    }
   },
   {
     "id": "shima-kaiyuen",
@@ -893,7 +1051,7 @@
       "體驗",
       "親子"
     ],
-    "tier": null,
+    "tier": "B",
     "nearestStation": {
       "id": "shima-shimmei",
       "mode": "walk",
@@ -1012,8 +1170,49 @@
       "coordsNote": "座標：觀光三重詳細頁",
       "raftBbqNote": "觀光協會 1589 的「手ぶらOK 海上バーベキュー」方案是海遊苑的筏上 BBQ：有屋根，12:00～13:00／13:00～14:00 兩梯各約 1 小時，大人（國中以上）3,500 円、小孩（小學以下）2,000 円，可加釣魚（釣竿 1 支 3,500 円），じゃらん預約（原本誤對到いわほ観光汽船）。"
     },
-    "summary": null,
-    "assessment": null
+    "summary": {
+      "text": "英虞灣內平靜海面上的海上釣り堀，主要釣真鯛，釣到的鯛免費做成生魚片或鹽烤；另有海上 BBQ（冬天改陶板燒、涮涮鍋）。",
+      "pros": [
+        "初學者、小孩也釣得到，家族評價高（Google 3 則，約 2024）",
+        "釣到的鯛現場料理當午餐；海上 BBQ 可預約 2～50 人",
+        "釣り堀可以包場（要先電話）"
+      ],
+      "cons": [
+        "電話預約難打通、要提早（Google 3 則）",
+        "1 竿只能在生け簀釣 1 尾，有說明不足的抱怨（2 則）",
+        "2 月釣り堀營業、筏的屋頂與欄杆都沒寫；交通只寫開車"
+      ],
+      "basedOn": [
+        "https://kaiyuuen.com/",
+        "https://kaiyuuen.com/marine-fishing-pond/",
+        "https://kaiyuuen.com/bbq/",
+        "https://kaiyuuen.com/access/",
+        "https://www.kankomie.or.jp/spot/24987",
+        "https://www.kanko-shima.com/purpose/1068/",
+        "https://www.kanko-shima.com/purpose/1589/",
+        "https://maps.google.com/?cid=3673468487638137900"
+      ],
+      "generated": "2026-10-19"
+    },
+    "assessment": {
+      "rubric": "spot-v1",
+      "scores": {
+        "recommend": 3,
+        "winterFit": 2,
+        "elderFit": null,
+        "kidsFit": 5,
+        "accessEase": 4
+      },
+      "rationale": {
+        "recommend": "Google 4.3 但只有 70 則；體驗內容具體，照鳥羽「評論少最多 3」",
+        "winterFit": "觀光協會說冬天改陶板燒，但 2 月釣り堀營業沒明寫 → 2",
+        "elderFit": "筏的欄杆、屋頂、上下筏都沒有來源",
+        "kidsFit": "kids.friendly high：小學生沒經驗也釣到鯛（Google，約 2024）",
+        "accessEase": "志摩神明站步行約 15 分（OSRM；來源只寫開車）"
+      },
+      "confidence": "low",
+      "assessed": "2026-10-19"
+    }
   },
   {
     "id": "shima-entrada",
@@ -1117,7 +1316,7 @@
     "tags": [
       "海邊"
     ],
-    "tier": null,
+    "tier": "B",
     "nearestStation": {
       "id": "kashikojima",
       "mode": "walk",
@@ -1224,8 +1423,48 @@
         "サンセットクルーズ：官網看起來一般人可訂；asoview 寫只限志摩地中海村住宿客。"
       ]
     },
-    "summary": null,
-    "assessment": null
+    "summary": {
+      "text": "賢島站旁的小船業者：往志摩地中海村的海上計程車（單程約 10 分），和賢島一周、夕陽等小型遊船，能進大船去不了的島間水道。",
+      "pros": [
+        "賢島站步行 1 分；海上計程車是去地中海村最快的路線",
+        "小快艇穿梭島間、船長講解真珠養殖（Google 多則，約 2021～2023）",
+        "2 月有サンセットクルーズ（16:40～16:50 出航）"
+      ],
+      "cons": [
+        "小船約 10～12 人一艘，15 人要分 2 艘或 2 班",
+        "賢島一周約 20～25 分，有人覺得不值（約 2026）",
+        "海上計程車只收現金、荒天停航；票價、休日各來源不一致"
+      ],
+      "basedOn": [
+        "https://entrada-kashikojima.com/",
+        "https://entrada-kashikojima.com/marinetaxi/",
+        "https://entrada-kashikojima.com/cruise/",
+        "https://www.kankomie.or.jp/spot/23479",
+        "https://www.kanko-shima.com/purpose/1233/",
+        "https://www.asoview.com/channel/activities/ja/entrada-kashikojima/offices/4163/courses",
+        "https://maps.google.com/?cid=9795020751607286852"
+      ],
+      "generated": "2026-10-19"
+    },
+    "assessment": {
+      "rubric": "spot-v1",
+      "scores": {
+        "recommend": 3,
+        "winterFit": 3,
+        "elderFit": null,
+        "kidsFit": null,
+        "accessEase": 5
+      },
+      "rationale": {
+        "recommend": "Google 4.4 但只有 58 則 → 最多 3",
+        "winterFit": "2 月照常（サンセット 2 月也有），小船在戶外、冬天冷，荒天停航",
+        "elderFit": "マリーナ桟橋上下船，階梯、船內座位沒有來源",
+        "kidsFit": "kids.friendly 是 null，照鳥羽規則不打（有帶小孩參加的評論，約 2024）",
+        "accessEase": "賢島站步行約 1 分"
+      },
+      "confidence": "low",
+      "assessed": "2026-10-19"
+    }
   },
   {
     "id": "shima-sushi-benkei",
@@ -1289,7 +1528,7 @@
     "tags": [
       "體驗"
     ],
-    "tier": null,
+    "tier": "B",
     "nearestStation": {
       "id": "ugata",
       "mode": "walk",
@@ -1373,8 +1612,45 @@
         "體驗時間：觀光協會 Information 12:00～14:00；介紹文、英文頁 12:00～13:30。"
       ]
     },
-    "summary": null,
-    "assessment": null
+    "summary": {
+      "text": "鵜方的壽司店開的握壽司體驗：職人教握法後自己握，和職人握的壽司比著吃，附漁師汁，約 90 分，可以當午餐。",
+      "pros": [
+        "1 組最多 4 人、同場最多 6 組，15 人分 4 組可以同一場",
+        "6 歲以上可以參加，吃自己握的壽司",
+        "觀光協會「体験する」收錄；另有外送手卷到住宿的 Temaki to GO"
+      ],
+      "cons": [
+        "8,800 円／人，兒童價沒寫",
+        "營業日、定休日、2 月營業都沒有來源；沒有心得",
+        "鵜方站步行約 20 分（OSRM），不接送，建議計程車"
+      ],
+      "basedOn": [
+        "https://pirates-of-mie-agowan.xyz/sushi-experience-in-shima/",
+        "https://www.kanko-shima.com/purpose/17387/",
+        "https://www.kanko-shima.com/purpose/20349/",
+        "https://maps.google.com/?cid=18374805642612178895"
+      ],
+      "generated": "2026-10-19"
+    },
+    "assessment": {
+      "rubric": "spot-v1",
+      "scores": {
+        "recommend": 2,
+        "winterFit": 2,
+        "elderFit": null,
+        "kidsFit": 3,
+        "accessEase": 3
+      },
+      "rationale": {
+        "recommend": "Google 3.7、評論極少、沒有心得 → 冷門的打 2",
+        "winterFit": "營業日、2 月營業沒有來源 → 2",
+        "elderFit": "座位、階梯沒有來源",
+        "kidsFit": "kids.friendly medium（6 歲以上可參加）",
+        "accessEase": "鵜方站步行約 20 分（OSRM），或計程車（分鐘數沒有來源，英文頁寫約 5～10 分）"
+      },
+      "confidence": "low",
+      "assessed": "2026-10-19"
+    }
   },
   {
     "id": "shima-yokoyama-observatory",
@@ -1479,7 +1755,7 @@
       "展望",
       "長階梯"
     ],
-    "tier": null,
+    "tier": "S",
     "nearestStation": {
       "id": "ugata",
       "mode": "taxi",
@@ -1620,8 +1896,49 @@
       "googleDistanceMeters": 7,
       "coordsNote": "座標：觀光三重詳細頁"
     },
-    "summary": null,
-    "assessment": null
+    "summary": {
+      "text": "海拔約 140 m 的展望台，俯瞰英虞灣 60 多個小島的リアス式海岸，是志摩的代表景觀（ミシュラン・グリーンガイド 一つ星）。整個旅程都在補修工期內（2026-11-24～2027-03-01），展望台停車場不能通行。",
+      "pros": [
+        "Google 4.4（7,510 則），志摩評論最多；觀光三重、觀光協會、環境省都主打",
+        "免費、年中無休；天空カフェテラス 有休憩所、多功能廁所和咖啡",
+        "冬天空氣清澈，晴天有機會看到富士山（Google 多則）"
+      ],
+      "cons": [
+        "工期中 VC→展望台停車場（P2）車輛和行人都通行止め，迂回步道沒有斜坡；從下方走石段約 15～20 分（評論 349～380 段）",
+        "工期中計程車能開到哪裡沒寫，要問 VC（0599-44-0567）",
+        "夕陽在山的另一側看不到；冬天カフェ 只有少數熱飲"
+      ],
+      "basedOn": [
+        "https://chubu.env.go.jp/nature/yokoyama/index.html",
+        "https://chubu.env.go.jp/nature/yokoyama/access.html",
+        "https://chubu.env.go.jp/nature/yokoyama/tenboudai/index.html",
+        "https://chubu.env.go.jp/nature/yokoyama/faq.html",
+        "https://chubu.env.go.jp/nature/yokoyama/news/article/20260206.html",
+        "https://www.kankomie.or.jp/spot/2307",
+        "https://www.kankomie.or.jp/spot/3256",
+        "https://www.kanko-shima.com/purpose/965/"
+      ],
+      "generated": "2026-10-19"
+    },
+    "assessment": {
+      "rubric": "spot-v1",
+      "scores": {
+        "recommend": 5,
+        "winterFit": 3,
+        "elderFit": 1,
+        "kidsFit": 3,
+        "accessEase": 3
+      },
+      "rationale": {
+        "recommend": "Google 4.4（7,510 則），志摩評論數第一，三個觀光網站都主打 → 這一區的代表",
+        "winterFit": "冬天空氣清澈有加分，但整段旅程在補修工期內（P2 封閉）→ 不加分",
+        "elderFit": "工期中只能從 VC、P1 走石段 15～20 分（評論說 349～380 段、陡而不平）；平常從 P2 有斜坡",
+        "kidsFit": "kids.friendly medium：遊步道、自然觀察",
+        "accessEase": "鵜方站計程車約 8 分（平日 VIEWタクシー 每台 1,000 円）；電車到志摩横山站要再走 35～45 分"
+      },
+      "confidence": "medium",
+      "assessed": "2026-10-19"
+    }
   },
   {
     "id": "shima-izawanomiya",
@@ -1723,7 +2040,7 @@
     "tags": [
       "神社寺院"
     ],
-    "tier": null,
+    "tier": "A",
     "nearestStation": {
       "id": "kaminogo",
       "mode": "walk",
@@ -1829,8 +2146,49 @@
       "googleDistanceMeters": 14,
       "coordsNote": "座標：觀光三重詳細頁"
     },
-    "summary": null,
-    "assessment": null
+    "summary": {
+      "text": "內宮的別宮，祭祀天照大御神的御魂，又稱「志摩一の宮」「遙宮」，在別宮中格式特別高。境內巨木多、人少莊嚴；上之郷站步行 3 分，免費參拜。",
+      "pros": [
+        "Google 4.6（1,676 則），神宮、觀光三重、觀光協會都收錄",
+        "上之郷站步行 3 分；停車場、廁所在手水舎旁",
+        "2/11 有建国記念祭；冬天傍晚前人少、氣氛莊嚴（Google 2 則）"
+      ],
+      "cons": [
+        "授與所（御朱印）神職態度差的評論 3 則（約 2024～2025）",
+        "境內的階梯、步行距離沒有文字來源（地面鋪砂石）",
+        "6/24 御田植式等主要祭典不在旅程內"
+      ],
+      "basedOn": [
+        "https://www.isejingu.or.jp/about/outerbetsugu/",
+        "https://www.isejingu.or.jp/visit/",
+        "https://www.isejingu.or.jp/ritual/annual/",
+        "https://www.isejingu.or.jp/asset/pdf/download/pamphlet_izawa.pdf",
+        "https://www.kankomie.or.jp/spot/22402",
+        "https://www.kankomie.or.jp/spot/2939",
+        "https://www.kanko-shima.com/purpose/810/",
+        "https://maps.google.com/?cid=8710943366694770121"
+      ],
+      "generated": "2026-10-19"
+    },
+    "assessment": {
+      "rubric": "spot-v1",
+      "scores": {
+        "recommend": 4,
+        "winterFit": 3,
+        "elderFit": null,
+        "kidsFit": null,
+        "accessEase": 5
+      },
+      "rationale": {
+        "recommend": "Google 4.6（1,676 則），內宮別宮、志摩一の宮 → 依區調整的 4（4.0 以上、800 則以上、觀光網站介紹）；5 要 5,000 則以上",
+        "winterFit": "戶外神社，2 月 5:00～18:00；2/11 有建国記念祭，冬天沒有其他加分",
+        "elderFit": "境內圖顯示建物集中、停車場和廁所在旁，但階梯、坡道沒有文字來源",
+        "kidsFit": "kids 沒有資料",
+        "accessEase": "近鐵上之郷站步行約 3 分"
+      },
+      "confidence": "medium",
+      "assessed": "2026-10-19"
+    }
   },
   {
     "id": "shima-amanoiwato",
@@ -1887,7 +2245,7 @@
     "tags": [
       "神社寺院"
     ],
-    "tier": null,
+    "tier": "A",
     "nearestStation": {
       "id": "shima-isobe",
       "mode": "taxi",
@@ -1972,8 +2330,45 @@
       "googleDistanceMeters": 31,
       "coordsNote": "座標：觀光三重詳細頁"
     },
-    "summary": null,
-    "assessment": null
+    "summary": {
+      "text": "天照大神隱居的天岩戶傳說地之一，水穴湧出的岩清水入選環境省「名水百選」，旁邊有禊滝、風穴。在神宮林環繞的山中，停車場到水穴步行數百 m。",
+      "pros": [
+        "Google 4.4（983 則），觀光三重、觀光協會都收錄；名水百選",
+        "停車場到水穴不太累，長輩、小孩都走得到",
+        "空氣清新、在參宮古道沿線；自由參觀"
+      ],
+      "cons": [
+        "進停車場的約 2 km 山路窄、會車難，大型車不能進（大型計程車要問）",
+        "有人覺得只是水源、和「天岩戶」的印象落差大（2 則）",
+        "往風穴是高低差大的木階梯；沒有照明、部分手機沒訊號，冬天要早點離開"
+      ],
+      "basedOn": [
+        "https://www.kankomie.or.jp/spot/2222",
+        "https://www.kanko-shima.com/purpose/1990/",
+        "https://www.env.go.jp/water/meisui/H27senkyo/unexp/unexp_4.html",
+        "https://maps.google.com/?cid=1033213541431105846"
+      ],
+      "generated": "2026-10-19"
+    },
+    "assessment": {
+      "rubric": "spot-v1",
+      "scores": {
+        "recommend": 4,
+        "winterFit": 3,
+        "elderFit": 3,
+        "kidsFit": 3,
+        "accessEase": 3
+      },
+      "rationale": {
+        "recommend": "Google 4.4（983 則），觀光三重、觀光協會收錄 → 依區調整的 4；有「印象落差」的評論 2 則，不到代表",
+        "winterFit": "自然景點、推定全天開放（不是會休業的設施）；山中冬天冷、天黑得早，沒有加分",
+        "elderFit": "停車場到水穴數百 m、不太累；往上的風穴是陡木階梯（長輩只到水穴）",
+        "kidsFit": "kids.friendly medium：6 歲小孩走完散策コース 約 1.5 小時",
+        "accessEase": "志摩磯部站計程車約 10 分；巴士「天の岩戸口」下車還要走 15～20 分"
+      },
+      "confidence": "medium",
+      "assessed": "2026-10-19"
+    }
   },
   {
     "id": "shima-matoya-bbq-cruise",
@@ -2038,7 +2433,7 @@
       "海邊",
       "體驗"
     ],
-    "tier": null,
+    "tier": "B",
     "nearestStation": {
       "id": "ugata",
       "mode": "taxi",
@@ -2186,8 +2581,49 @@
       ],
       "googleDistanceMeters": 818
     },
-    "summary": null,
-    "assessment": null
+    "summary": {
+      "text": "大東丸観光 的遊覽船「マナティー1」繞的矢灣、渡鹿野島一圈，邊航行邊在船上烤海鮮（サザエ、アワビ、伊勢エビ），約 1.5 小時；集合地是渡鹿野島對岸的渡船場。",
+      "pros": [
+        "BBQ 定員 36 人，じゃらん 一次可訂 4～20 人，15 人可以一次訂",
+        "船內冷暖房完備、有廁所",
+        "じゃらん 開催期間含 2 月；觀光三重寫全年無休"
+      ],
+      "cons": [
+        "官網 2010 年停更，價格、出航時間是舊資料；Google 沒有評論、沒有心得",
+        "サザエコース 4,400 円起、小孩同價；飲料另計、只收現金",
+        "惡劣天候停航；上下船的階梯、棧橋沒有來源"
+      ],
+      "basedOn": [
+        "http://www.amigo.ne.jp/~daitou/",
+        "http://www.amigo.ne.jp/~daitou/bbq.html",
+        "http://www.amigo.ne.jp/~daitou/yuuran.html",
+        "https://www.kankomie.or.jp/spot/3242",
+        "https://www.kankomie.or.jp/spot/3243",
+        "https://www.kanko-shima.com/purpose/2058/",
+        "https://www.kanko-shima.com/purpose/2066/",
+        "https://www.kanko-shima.com/purpose/2070/"
+      ],
+      "generated": "2026-10-19"
+    },
+    "assessment": {
+      "rubric": "spot-v1",
+      "scores": {
+        "recommend": 2,
+        "winterFit": 4,
+        "elderFit": null,
+        "kidsFit": null,
+        "accessEase": 3
+      },
+      "rationale": {
+        "recommend": "Google 沒有評論、心得 0 篇（じゃらん 4.6 只有 5 件、內文沒讀到）→ 冷門的打 2",
+        "winterFit": "じゃらん 開催期間含 2 月、船內冷暖房完備；受天候影響 → 4",
+        "elderFit": "船內有廁所、2 樓甲板，上下船沒有來源",
+        "kidsFit": "kids 沒有資料（只知道兒童同價）",
+        "accessEase": "鵜方站計程車約 10 分，或往安乗的巴士約 18 分（班次沒查）"
+      },
+      "confidence": "low",
+      "assessed": "2026-10-19"
+    }
   },
   {
     "id": "shima-anorisaki-lighthouse",
@@ -2329,7 +2765,7 @@
       "海邊",
       "親子"
     ],
-    "tier": null,
+    "tier": "A",
     "nearestStation": {
       "id": "ugata",
       "mode": "bus",
@@ -2452,8 +2888,49 @@
       "googleDistanceMeters": 21,
       "coordsNote": "座標：觀光三重詳細頁"
     },
-    "summary": null,
-    "assessment": null
+    "summary": {
+      "text": "全國少見的四角形白色燈塔（國登錄有形文化財），可以登上看的矢灣和太平洋的對比；燈塔前是大片草坪，旁邊有免費的燈塔資料館和咖啡。",
+      "pros": [
+        "Google 4.3（807 則），觀光三重、觀光協會都收錄；「のぼれる灯台」16 座之一",
+        "燈塔前的草坪可以跑、可借遊具；小學生以下免費（Google 多則）",
+        "燈塔高 15 m，評論多說階梯意外地短；冬天晴天有機會看到富士山"
+      ],
+      "cons": [
+        "11～2 月 12:00～13:00 不開放，強風日可能休館",
+        "塔內窄螺旋階梯只容一人，15 人要分批；頂上扶手偏低",
+        "進岬的路窄到只能一車通過，大型計程車要注意；巴士下車還要走約 15 分"
+      ],
+      "basedOn": [
+        "https://www.tokokai.org/tourlight/tourlight08/",
+        "https://www.kankomie.or.jp/spot/2241",
+        "https://www.kankomie.or.jp/spot/3216",
+        "https://www.kanko-shima.com/purpose/2100/",
+        "https://www.kanko-shima.com/purpose/2110/",
+        "https://www.kanko-shima.com/purpose/2366/",
+        "https://www.kankomie.or.jp/spot/1706",
+        "https://www.kankomie.or.jp/spot/4020"
+      ],
+      "generated": "2026-10-19"
+    },
+    "assessment": {
+      "rubric": "spot-v1",
+      "scores": {
+        "recommend": 4,
+        "winterFit": 3,
+        "elderFit": 3,
+        "kidsFit": 5,
+        "accessEase": 3
+      },
+      "rationale": {
+        "recommend": "Google 4.3（807 則），三個觀光網站收錄，可登上的燈塔 → 依區調整的 4",
+        "winterFit": "戶外，2 月照常（中午休 1 小時）；冬天晴天可能看到富士山，但風強、強風日休館",
+        "elderFit": "停車場經草坪到燈塔，塔內窄螺旋階梯（評論多說短）；長輩可以只在草坪、資料館",
+        "kidsFit": "kids.friendly high：草坪、遊具、小學生以下免費",
+        "accessEase": "鵜方站巴士約 20～30 分，「安乗埼灯台口」下車步行約 15 分（班次沒查）"
+      },
+      "confidence": "medium",
+      "assessed": "2026-10-19"
+    }
   },
   {
     "id": "shima-daiozaki-lighthouse",
@@ -2595,7 +3072,7 @@
       "海邊",
       "長階梯"
     ],
-    "tier": null,
+    "tier": "A",
     "nearestStation": {
       "id": "ugata",
       "mode": "bus",
@@ -2711,8 +3188,49 @@
       "googleDistanceMeters": 256,
       "coordsNote": "座標：觀光三重詳細頁"
     },
-    "summary": null,
-    "assessment": null
+    "summary": {
+      "text": "昭和 2 年建、可以登上的白色燈塔，360 度看太平洋（熊野灘、遠州灘交界）；從停車場沿「畫家之町」波切的坡道漁村走上去，途中有八幡さん公園。",
+      "pros": [
+        "Google 4.1（1,762 則），觀光三重、觀光協會都主打，觀光三重有專題報導",
+        "塔頂展望 360 度，冬天晴天空氣清澈看得遠",
+        "燈塔內有參與型的資料展示室；小學生以下免費"
+      ],
+      "cons": [
+        "停車場到燈塔約 10 分，後半是 8～10 度的陡坡＋階梯；塔內窄螺旋階梯、沒有電梯",
+        "11～2 月 12:00～13:00 午休；強風時不能參觀",
+        "停車場收費（約 300 円），沿路土產店平日多半沒開"
+      ],
+      "basedOn": [
+        "https://www.tokokai.org/tourlight/tourlight09/",
+        "https://www.kanko-shima.com/purpose/2094/",
+        "https://www.kanko-shima.com/purpose/2217/",
+        "https://www.kankomie.or.jp/spot/2245",
+        "https://www.kankomie.or.jp/spot/9023",
+        "https://www.kankomie.or.jp/spot/1714",
+        "https://www.kankomie.or.jp/report/1167",
+        "https://maps.google.com/?cid=12495004080390549152"
+      ],
+      "generated": "2026-10-19"
+    },
+    "assessment": {
+      "rubric": "spot-v1",
+      "scores": {
+        "recommend": 4,
+        "winterFit": 3,
+        "elderFit": 2,
+        "kidsFit": 3,
+        "accessEase": 3
+      },
+      "rationale": {
+        "recommend": "Google 4.1（1,762 則），志摩評論數第 3、觀光三重有專題 → 依區調整的 4",
+        "winterFit": "戶外，2 月照常（中午休）；空氣清澈，但塔頂風大偏冷，強風時關",
+        "elderFit": "停車場→燈塔 10 分，後半陡坡、階梯（評論 4 則說吃力），塔內窄螺旋階梯",
+        "kidsFit": "kids.friendly medium：參與型展示、怕高的不適合",
+        "accessEase": "鵜方站巴士約 20 分，「大王埼灯台」下車步行約 10 分（班次沒查）"
+      },
+      "confidence": "medium",
+      "assessed": "2026-10-19"
+    }
   },
   {
     "id": "shima-katsuo-tenpaku",
@@ -2833,7 +3351,7 @@
       "室內",
       "雨天備案"
     ],
-    "tier": null,
+    "tier": "B",
     "nearestStation": {
       "id": "ugata",
       "mode": "bus",
@@ -2942,8 +3460,47 @@
       ],
       "googleDistanceMeters": 2385
     },
-    "summary": null,
-    "assessment": null
+    "summary": {
+      "text": "四代目守著的古式「手火山」柴魚燻製小屋，店主講解柴魚製法、御食國與伊勢神宮的關係，試喝一番高湯、吃土鍋炊的おかかご飯。完全預約制，約 60 分。",
+      "pros": [
+        "Google 4.4（38 則），多則滿分說值得專程（約 2022～2026）",
+        "一梯最多 35 人，15 人可以一梯（5 人以上成行）",
+        "室內體驗，雨天也可以（觀光三重「雨の日もOK」）"
+      ],
+      "cons": [
+        "官網建議 10 歲以上，6～10 歲的小孩低於建議年齡",
+        "小屋內煙多、沒有冷暖氣，衣服會沾味道；有氣喘要先確認",
+        "見學日 5 個工作天前截止、不接當天；週三、週日休（2/3、2/7、2/10）；只收現金"
+      ],
+      "basedOn": [
+        "https://katuobushi.com/?page_id=554",
+        "https://katuobushi.com/?page_id=1598",
+        "https://katuobushi.com/?page_id=68",
+        "https://www.kankomie.or.jp/spot/23250",
+        "https://www.kanko-shima.com/purpose/1221/",
+        "https://maps.google.com/?cid=17035916991571063086"
+      ],
+      "generated": "2026-10-19"
+    },
+    "assessment": {
+      "rubric": "spot-v1",
+      "scores": {
+        "recommend": 3,
+        "winterFit": 4,
+        "elderFit": null,
+        "kidsFit": 2,
+        "accessEase": 3
+      },
+      "rationale": {
+        "recommend": "Google 4.4 但只有 38 則 → 體驗型評論少最多 3",
+        "winterFit": "2 月照常（10～5 月每天 2 梯），室內但沒有暖氣，週三、週日休 → 4",
+        "elderFit": "停車場沿海岸步行 1 分；座位、階梯沒有來源",
+        "kidsFit": "kids.friendly low：官網建議 10 歲以上",
+        "accessEase": "鵜方站巴士約 20 分「大王崎灯台」下車步行約 10 分，或計程車約 20 分"
+      },
+      "confidence": "low",
+      "assessed": "2026-10-19"
+    }
   },
   {
     "id": "shima-daio-gallery",
@@ -3039,7 +3596,7 @@
       "室內",
       "雨天備案"
     ],
-    "tier": null,
+    "tier": "B",
     "nearestStation": {
       "id": "ugata",
       "mode": "bus",
@@ -3130,8 +3687,47 @@
       "googleDistanceMeters": 7,
       "coordsNote": "座標：觀光三重詳細頁"
     },
-    "summary": null,
-    "assessment": null
+    "summary": {
+      "text": "「畫家之町」大王町的市立小美術館，併設在大王支所：3 樓常設波切出身畫家平賀亀祐的記念館，2 樓每月換企畫展，免費。",
+      "pros": [
+        "免費、有停車場；巴士「大王支所前」下車即到",
+        "3 樓有沙發休息區、整面窗看景（Google，2024）",
+        "室內，假日也開（2/11 開館）"
+      ],
+      "cons": [
+        "規模小，觀光網站只是一般條目",
+        "週二、週三休（2/2、2/3、2/9、2/10）",
+        "展示在 2、3 樓，電梯有沒有沒寫；2027-02 的企畫展未公布"
+      ],
+      "basedOn": [
+        "https://www.city.shima.mie.jp/kakuka/gallery/1660788139103.html",
+        "https://www.city.shima.mie.jp/kakuka/gallery/index.html",
+        "https://www.city.shima.mie.jp/kakuka/gallery/6823.html",
+        "https://www.kankomie.or.jp/spot/15609",
+        "https://www.kanko-shima.com/purpose/3898/",
+        "https://maps.google.com/?cid=8810117637913858542"
+      ],
+      "generated": "2026-10-19"
+    },
+    "assessment": {
+      "rubric": "spot-v1",
+      "scores": {
+        "recommend": 3,
+        "winterFit": 4,
+        "elderFit": null,
+        "kidsFit": null,
+        "accessEase": 3
+      },
+      "rationale": {
+        "recommend": "Google 4.5 但只有 24 則；有具體看點（平賀亀祐記念館）→ 照鳥羽 角屋 打 3",
+        "winterFit": "室內，2 月照常，但週二、週三休 → 4",
+        "elderFit": "展示在 2、3 樓，電梯、階梯沒有來源",
+        "kidsFit": "kids 沒有資料",
+        "accessEase": "鵜方站巴士約 25 分「大王支所前」下車即到（班次沒查）"
+      },
+      "confidence": "low",
+      "assessed": "2026-10-19"
+    }
   },
   {
     "id": "shima-tomoyama-park",
@@ -3189,7 +3785,7 @@
       "展望",
       "海邊"
     ],
-    "tier": null,
+    "tier": "B",
     "nearestStation": {
       "id": "ugata",
       "mode": "taxi",
@@ -3353,8 +3949,49 @@
       "googleDistanceMeters": 101,
       "coordsNote": "座標：觀光三重詳細頁（公園）"
     },
-    "summary": null,
-    "assessment": null
+    "summary": {
+      "text": "英虞灣西側的市立公園，主要看點是以夕陽聞名的桐垣展望台：停車場旁就是木棧展望台，1～2 月太陽落在英虞灣正面。園內還有登茂山展望台、草坪廣場、こども広場、キャンプ村。",
+      "pros": [
+        "觀光三重、觀光協會主打的英虞灣夕景名所（桐垣展望台 Google 4.4／134）",
+        "桐垣停車場旁就是木棧台＋長椅、沒有上下坡，長輩也能看",
+        "冬天太陽正好落在英虞灣正面；免費"
+      ],
+      "cons": [
+        "夕陽以外的時段評價普通、比不上横山展望台（4 則）",
+        "2 月日落約 17:20，晚於「16:30～17:00 回到住宿」；桐垣停車場只有約 10 台、展望台沒有廁所",
+        "沒有實用的公車，要計程車或包車（鵜方站約 20～25 分）"
+      ],
+      "basedOn": [
+        "https://www.city.shima.mie.jp/kakuka/tomoyama/4881.html",
+        "https://www.city.shima.mie.jp/kakuka/tomoyama/1454320095311.html",
+        "https://www.city.shima.mie.jp/kakuka/tomoyama/guide/1454320394174.html",
+        "https://www.city.shima.mie.jp/kakuka/tomoyama/guide/1454320393758.html",
+        "https://www.city.shima.mie.jp/kakuka/tomoyama/guide/1454320151657.html",
+        "https://www.city.shima.mie.jp/kakuka/tomoyama/guide/1454320394626.html",
+        "https://www.kankomie.or.jp/spot/25150",
+        "https://www.kankomie.or.jp/spot/2312"
+      ],
+      "generated": "2026-10-19"
+    },
+    "assessment": {
+      "rubric": "spot-v1",
+      "scores": {
+        "recommend": 3,
+        "winterFit": 4,
+        "elderFit": 4,
+        "kidsFit": 3,
+        "accessEase": 1
+      },
+      "rationale": {
+        "recommend": "公園 Google 4.2（258 則，多半在講キャンプ村）、桐垣展望台 4.4（134 則）；觀光網站主打夕陽 → 3",
+        "winterFit": "戶外，但 1～2 月夕陽落在正面，冬天有加分 → 4",
+        "elderFit": "桐垣：停車場旁木棧台、沒有坡、有長椅（Google 4 則）；展望台沒有廁所",
+        "kidsFit": "kids.friendly medium：こども広場、芝生広場",
+        "accessEase": "巴士只到「船越」再走 50 分，實際只能計程車或包車（鵜方站約 20～25 分）"
+      },
+      "confidence": "medium",
+      "assessed": "2026-10-19"
+    }
   },
   {
     "id": "shima-nature-school",
@@ -3452,7 +4089,7 @@
       "體驗",
       "海邊"
     ],
-    "tier": null,
+    "tier": "B",
     "nearestStation": {
       "id": "ugata",
       "mode": "taxi",
@@ -3580,8 +4217,49 @@
       "googleDistanceMeters": 11,
       "coordsNote": "座標：觀光三重詳細頁"
     },
-    "summary": null,
-    "assessment": null
+    "summary": {
+      "text": "ともやま公園內的戶外體驗業者，主打英虞灣シーカヤック（1.5 小時，條件好可以登無人島），另有真珠手環、相框等手作；シーカヤック 全年舉辦。",
+      "pros": [
+        "シーカヤック 定員 2～100 人，15 人可以一起（20 人以上另議）",
+        "3 歲以上可以划，低年級以下可加補助席 3 人一艇",
+        "評論說 1.5 小時剛好、初學者跟得上、教練親切（2 則）"
+      ],
+      "cons": [
+        "冬季海上冷，要自備保暖、防風衣物；強風浪高就中止",
+        "體驗會場沒有廁所、自動販賣機",
+        "只能計程車或租車（鵜方站約 20 分）；評論少（52 則）"
+      ],
+      "basedOn": [
+        "https://shima-nature-school.jp/category/tour/",
+        "https://shima-nature-school.jp/tour/2051/",
+        "https://shima-nature-school.jp/tour/1952/",
+        "https://shima-nature-school.jp/news/2661/",
+        "https://shima-nature-school.jp/tour/2002/",
+        "https://shima-nature-school.jp/tour/1990/",
+        "https://shima-nature-school.jp/abouttour/",
+        "https://shima-nature-school.jp/faq/"
+      ],
+      "generated": "2026-10-19"
+    },
+    "assessment": {
+      "rubric": "spot-v1",
+      "scores": {
+        "recommend": 3,
+        "winterFit": 3,
+        "elderFit": 2,
+        "kidsFit": 3,
+        "accessEase": 1
+      },
+      "rationale": {
+        "recommend": "Google 4.3 但只有 52 則 → 最多 3",
+        "winterFit": "シーカヤック「通年催行」，但 2 月海上冷、受風浪影響 → 3",
+        "elderFit": "要自己划船（能單獨行動就沒有年齡上限），會場沒有廁所 → 2",
+        "kidsFit": "kids.friendly medium（3 歲以上）",
+        "accessEase": "只能計程車或租車，鵜方站約 20 分"
+      },
+      "confidence": "low",
+      "assessed": "2026-10-19"
+    }
   },
   {
     "id": "shima-satoumian",
@@ -3687,7 +4365,7 @@
       "海邊",
       "親子"
     ],
-    "tier": null,
+    "tier": "B",
     "nearestStation": {
       "id": "ugata",
       "mode": "bus",
@@ -3801,8 +4479,48 @@
       "googleDistanceMeters": 5,
       "coordsNote": "座標：觀光三重詳細頁"
     },
-    "summary": null,
-    "assessment": null
+    "summary": {
+      "text": "御座的海女小屋體驗：圍著炭火，海女邊烤海鮮（貝類、干物、イカ，可加伊勢海老）邊聊海女的生活，約 75～90 分；旁邊的海女資料館免費。",
+      "pros": [
+        "Google 4.4（392 則），觀光三重、觀光協會都有方案頁",
+        "海女對小孩親切、送大貝殼（Google 3 則，約 2024～2026）；0 歲起可參加",
+        "巴士「あづり浜」下車即到；伊勢海老 10～4 月可加點"
+      ],
+      "cons": [
+        "沒有冷暖氣，冬天小屋裡冷（2025）；炭火有灰、火星",
+        "2 月營業沒明寫；15 人能不能同一場、座位形式都沒有來源，要電話問",
+        "海女講解有落差、有人覺得商業味重（2 則）；巴士約 60 分"
+      ],
+      "basedOn": [
+        "http://satoumian.com/",
+        "https://www.kankomie.or.jp/spot/22275",
+        "https://www.kanko-shima.com/purpose/1605/",
+        "https://www.kanko-shima.com/purpose/1632/",
+        "https://www.kanko-shima.com/purpose/1635/",
+        "https://www.kanko-shima.com/purpose/2023/",
+        "https://maps.google.com/?cid=12226859927298305404"
+      ],
+      "generated": "2026-10-19"
+    },
+    "assessment": {
+      "rubric": "spot-v1",
+      "scores": {
+        "recommend": 3,
+        "winterFit": 2,
+        "elderFit": null,
+        "kidsFit": 5,
+        "accessEase": 3
+      },
+      "rationale": {
+        "recommend": "Google 4.4（392 則），體驗內容具體；依區調整的 4 要 800 則以上 → 3",
+        "winterFit": "2 月營業沒明寫（觀光三重是 2022～23 年的資料）→ 2；沒有暖氣",
+        "elderFit": "座位、階梯、廁所沒有來源",
+        "kidsFit": "kids.friendly high：0 歲起、海女對小孩親切",
+        "accessEase": "鵜方站巴士約 60 分「あづり浜」下車即到，或計程車約 30 分"
+      },
+      "confidence": "medium",
+      "assessed": "2026-10-19"
+    }
   },
   {
     "id": "shima-shinju-no-sato",
@@ -3905,7 +4623,7 @@
       "室內",
       "雨天備案"
     ],
-    "tier": null,
+    "tier": "B",
     "nearestStation": {
       "id": "ugata",
       "mode": "bus",
@@ -4016,8 +4734,48 @@
         "最終受付：觀光協會 16:00；官網 夏季 16:00、冬季 15:30（採用官網）。"
       ]
     },
-    "summary": null,
-    "assessment": null
+    "summary": {
+      "text": "御座的珍珠養殖業者經營的小工房：自己剖あこや貝取出珍珠，再做成吊飾、項鍊等飾品；室內體驗，只取珍珠約 20～30 分、含飾品 1～1.5 小時。",
+      "pros": [
+        "Google 4.6（99 則），親子評價高：5 歲、7 歲也能玩，有專為小孩講解的人員（6 則）",
+        "室內、雨天可以；團體上限 40 人",
+        "可以到和具港（賢島定期船 25 分）或越賀巴士站接送（要先電話）"
+      ],
+      "cons": [
+        "一次約 10 人，15 人要分 2 梯或等；忙時插隊、流程亂的評論（2025、2026）",
+        "2025-04 起漲價，飾品金具另計（1 人 7,000 円的評論）",
+        "週二休，另有臨時休業（2027-02 未公布）；停車場在急坡下"
+      ],
+      "basedOn": [
+        "http://s-tamachan.net/",
+        "https://s-tamachan.net/%e7%9c%9f%e7%8f%a0%e5%8f%96%e3%82%8a%e5%87%ba%e3%81%97%e4%bd%93%e9%a8%93/",
+        "https://s-tamachan.net/%e3%82%88%e3%81%8f%e3%81%82%e3%82%8b%e8%b3%aa%e5%95%8f/",
+        "https://s-tamachan.net/%e3%82%a2%e3%82%af%e3%82%bb%e3%82%b9%e6%96%b9%e6%b3%95/",
+        "https://s-tamachan.net/%e7%9c%9f%e7%8f%a0%e3%82%a2%e3%82%af%e3%82%bb%e3%82%b5%e3%83%aa%e3%83%bc%e4%bd%9c%e3%82%8a%e4%bd%93%e9%a8%93/",
+        "https://www.kanko-shima.com/purpose/1984/",
+        "https://maps.google.com/?cid=4884511438691815043"
+      ],
+      "generated": "2026-10-19"
+    },
+    "assessment": {
+      "rubric": "spot-v1",
+      "scores": {
+        "recommend": 3,
+        "winterFit": 4,
+        "elderFit": 3,
+        "kidsFit": 5,
+        "accessEase": 3
+      },
+      "rationale": {
+        "recommend": "Google 4.6 但只有 99 則 → 體驗型評論少最多 3",
+        "winterFit": "室內體驗，2 月照常（冬季最終受付 15:30），週二休、臨時休業未公布 → 4",
+        "elderFit": "第 1 停車場在急坡下、到店約 3 分，評論說有上下坡；店內階梯沒有來源",
+        "kidsFit": "kids.friendly high：3 歲起、工作人員協助",
+        "accessEase": "賢島→和具港 定期船 25 分或鵜方站巴士約 50 分，再由店家接送（要先電話）"
+      },
+      "confidence": "low",
+      "assessed": "2026-10-19"
+    }
   },
   {
     "id": "shima-pearl-miki",
@@ -4108,7 +4866,7 @@
       "海邊",
       "親子"
     ],
-    "tier": null,
+    "tier": "B",
     "nearestStation": {
       "id": "ugata",
       "mode": "bus",
@@ -4221,8 +4979,48 @@
       "googleDistanceMeters": 18,
       "coordsNote": "座標：觀光三重詳細頁"
     },
-    "summary": null,
-    "assessment": null
+    "summary": {
+      "text": "御座白浜前的真珠養殖業者，在養殖筏上的小屋自己從阿古屋貝取出珍珠，再回工房做成飾品；取完可以用貝肉餵河豚。完全預約制。",
+      "pros": [
+        "Google 4.6（44 則），不會強迫推銷（3 則）",
+        "小學生以下也講解仔細（3 則）；接待過修學旅行、公司團體",
+        "冬天才吃得到貝柱（約 2022）"
+      ],
+      "cons": [
+        "去養殖筏要走搖晃的細窄棧橋；停車場在坡下",
+        "不接受只取珍珠：取珠 3,000 円＋金具 2,000 円起，1 人約 5,000 円以上",
+        "週三、週四休（2/3、2/4、2/10、2/11）；2 月營業沒明寫；巴士約 60 分＋步行 15 分"
+      ],
+      "basedOn": [
+        "https://isesima.info/pearl-miki/",
+        "https://isesima.info/pearl-miki/accessories/",
+        "https://isesima.info/pearl-miki/info/",
+        "https://isesima.info/pearl-miki/tourism/",
+        "https://www.kanko-shima.com/purpose/1227/",
+        "https://www.kankomie.or.jp/spot/23564",
+        "https://maps.google.com/?cid=965091325535477213"
+      ],
+      "generated": "2026-10-19"
+    },
+    "assessment": {
+      "rubric": "spot-v1",
+      "scores": {
+        "recommend": 3,
+        "winterFit": 2,
+        "elderFit": 2,
+        "kidsFit": 5,
+        "accessEase": 3
+      },
+      "rationale": {
+        "recommend": "Google 4.6 但只有 44 則 → 最多 3",
+        "winterFit": "2 月營業沒明寫 → 2",
+        "elderFit": "去筏要走搖晃的細窄棧橋（官網、評論），停車場在坡下",
+        "kidsFit": "kids.friendly high：小學生以下也講解仔細、餵河豚",
+        "accessEase": "鵜方站巴士約 60 分「御座港」下車步行約 15 分（班次沒查）"
+      },
+      "confidence": "low",
+      "assessed": "2026-10-19"
+    }
   },
   {
     "id": "shima-umihozuki",
@@ -4323,7 +5121,7 @@
       "海邊",
       "親子"
     ],
-    "tier": null,
+    "tier": "B",
     "nearestStation": {
       "id": "ugata",
       "mode": "bus",
@@ -4449,8 +5247,49 @@
       "googleDistanceMeters": 51,
       "coordsNote": "座標：觀光三重詳細頁"
     },
-    "summary": null,
-    "assessment": null
+    "summary": {
+      "text": "浜島的市營海邊體驗設施：アジ釣り（15 分、現炸アジフライ）、てこね寿司作り、ひもの作り，冬季還有伊勢えび釣り；淡季人少不用等。",
+      "pros": [
+        "アジ釣り 有工作人員協助、幾分鐘就釣到（Google 2 則）；免費足湯、溫水淋浴",
+        "てこね寿司 大桶 6～7 人份，1 次預約 20 人以下，15 人可以一起做",
+        "2026-02 有人玩到伊勢えび釣り，冬天不用等"
+      ],
+      "cons": [
+        "冬季的伊勢えび、貝つかみ 官網 2026-10 標「現在休止中」，2027-02 有沒有不確定",
+        "週二休（2/2、2/9）；伊勢えび 每時段 1 組最多 4 人",
+        "巴士「浜島」下車還要走 20 分；部分職員態度強硬（2 則）"
+      ],
+      "basedOn": [
+        "https://www.umihozuki.org/",
+        "https://www.umihozuki.org/fishing.php",
+        "https://www.umihozuki.org/tekone.php",
+        "https://www.umihozuki.org/himono.php",
+        "https://www.umihozuki.org/gakushu.php",
+        "https://www.kankomie.or.jp/spot/11960",
+        "https://www.kanko-shima.com/purpose/973/",
+        "https://www.kanko-shima.com/purpose/1005/"
+      ],
+      "generated": "2026-10-19"
+    },
+    "assessment": {
+      "rubric": "spot-v1",
+      "scores": {
+        "recommend": 3,
+        "winterFit": 3,
+        "elderFit": null,
+        "kidsFit": 5,
+        "accessEase": 2
+      },
+      "rationale": {
+        "recommend": "Google 4.1 只有 85 則 → 最多 3",
+        "winterFit": "アジ釣り 通年、2026-02 有人玩到伊勢えび，但官網標休止中、戶外部分冬天冷 → 3",
+        "elderFit": "階梯、坡道沒有來源（停車場有身障者用）",
+        "kidsFit": "kids.friendly high：アジ釣り、てこね寿司",
+        "accessEase": "鵜方站巴士「浜島」下車還要走 20 分"
+      },
+      "confidence": "low",
+      "assessed": "2026-10-19"
+    }
   },
   {
     "id": "shima-iwaho-bbq-cruise",
@@ -4500,7 +5339,7 @@
     "tags": [
       "海邊"
     ],
-    "tier": null,
+    "tier": "B",
     "nearestStation": {
       "id": "ugata",
       "mode": "bus",
@@ -4580,8 +5419,44 @@
       ],
       "googleDistanceMeters": 1668
     },
-    "summary": null,
-    "assessment": null
+    "summary": {
+      "text": "浜島的小型遊覽船，英虞灣遊覽 60 分＋船上海鮮 BBQ（觀光三重寫有海女實演）。沒有官網，最新的評論約 2022 年，可能已經不營業。",
+      "pros": [
+        "觀光三重收錄，遊覽 1,050 円起",
+        "船上 BBQ 依人數換船、有浪時改成停泊中 BBQ（約 2022）",
+        "船長親切、活赤蝦直接上烤網（約 2016，舊）"
+      ],
+      "cons": [
+        "約 2021 有人去時沒開、店面荒廢，2022 的評論說設施有廢墟感",
+        "沒有官網，觀光三重頁沒有日期、料金可能已變更；營業要先打電話（0599-53-0210）",
+        "定員、出航時刻、乘船處都沒有來源"
+      ],
+      "basedOn": [
+        "https://www.kankomie.or.jp/spot/3239",
+        "https://www.kanko-shima.com/purpose/1589/",
+        "https://maps.google.com/?cid=17215939228099348002"
+      ],
+      "generated": "2026-10-19"
+    },
+    "assessment": {
+      "rubric": "spot-v1",
+      "scores": {
+        "recommend": 1,
+        "winterFit": 2,
+        "elderFit": null,
+        "kidsFit": null,
+        "accessEase": 3
+      },
+      "rationale": {
+        "recommend": "Google 3.5（4 則），近幾年的評論說沒開、有廢墟感，可能已經不營業 →「已經沒什麼可看」的 1",
+        "winterFit": "2 月營業沒明寫（觀光三重只寫年中無休）→ 2",
+        "elderFit": "上下船、船上設施沒有來源",
+        "kidsFit": "kids 沒有資料",
+        "accessEase": "鵜方站巴士約 15 分「浜島中学校前」下車步行 7 分（班次沒查）"
+      },
+      "confidence": "low",
+      "assessed": "2026-10-19"
+    }
   },
   {
     "id": "shima-chichukaimura",
@@ -4704,7 +5579,7 @@
       "體驗",
       "長階梯"
     ],
-    "tier": null,
+    "tier": "B",
     "nearestStation": {
       "id": "ugata",
       "mode": "taxi",
@@ -4856,8 +5731,49 @@
       "googleDistanceMeters": 43,
       "coordsNote": "座標：觀光三重詳細頁"
     },
-    "summary": null,
-    "assessment": null
+    "summary": {
+      "text": "英虞灣畔仿西班牙漁村的度假村，白牆、石板路很好拍；日歸要付入村費、預約，可以散步、工房體驗、吃午餐。日歸能逛的範圍小，比較適合住宿。",
+      "pros": [
+        "景色像南歐、拍照好看；從賢島搭海上計程車上岸的評價好（2023）",
+        "工房「小孩到大人都可以」（モザイクタイル、真珠飾品等）；AZUL 午餐方案 20 人以上可以商量包場",
+        "旅程期間 2/2～2/13 沒有休館日"
+      ],
+      "cons": [
+        "日歸評價低：很多區域限住客、30 分～1 小時逛完、入村 700 円不值（7 則）",
+        "全區石板路、階梯多，官網明寫不是無障礙；日歸區廁所少",
+        "團體日歸要先電話聯絡；接駁巴士住客優先、日歸不能預約"
+      ],
+      "basedOn": [
+        "http://puebloamigo.jp/",
+        "https://puebloamigo.jp/dayuse/",
+        "https://puebloamigo.jp/qa/",
+        "https://puebloamigo.jp/access/",
+        "https://puebloamigo.jp/activity/manomano/",
+        "https://puebloamigo.jp/eigyo/",
+        "https://puebloamigo.jp/meal/azul/",
+        "https://www.kankomie.or.jp/spot/20687"
+      ],
+      "generated": "2026-10-19"
+    },
+    "assessment": {
+      "rubric": "spot-v1",
+      "scores": {
+        "recommend": 3,
+        "winterFit": 3,
+        "elderFit": 2,
+        "kidsFit": 3,
+        "accessEase": 3
+      },
+      "rationale": {
+        "recommend": "Google 4.0（2,625 則）多半是住宿評論，不算景點的人氣；日歸的評論多說可逛範圍小、不值 → 3",
+        "winterFit": "2 月照常（休館日在旅程外），戶外石板路，冬天走室外冷",
+        "elderFit": "全區石板路、階梯多，官網說不是無障礙，評論說年長者不建議（5 則）",
+        "kidsFit": "kids.friendly medium：工房可以，石板路對幼兒危險",
+        "accessEase": "賢島站旁搭 Entrada 海上計程車約 10 分（要預約、約每小時 1 班），或鵜方站計程車約 15 分"
+      },
+      "confidence": "medium",
+      "assessed": "2026-10-19"
+    }
   },
   {
     "id": "shima-green-adventure",
@@ -4955,7 +5871,7 @@
       "親子",
       "體驗"
     ],
-    "tier": null,
+    "tier": "B",
     "nearestStation": {
       "id": "ugata",
       "mode": "shuttle",
@@ -5065,7 +5981,48 @@
         "觀光協會寫 10:00～17:00；官網說以營業カレンダー為準。"
       ]
     },
-    "summary": null,
-    "assessment": null
+    "summary": {
+      "text": "近鉄浜島カンツリー內的戶外草地遊樂園，約 20 種設施，招牌是約 620 m 的滑索ジップダイブ和 15 m 攀岩塔；鵜方站有免費接駁巴士。",
+      "pros": [
+        "小孩的設施多：滑索、攀岩塔、草地遊具",
+        "15 人以上同時入園有團體價（大人 2,970、小人・65 歲以上 1,980 円）",
+        "鵜方站免費接駁約 10 分；園內 2 處急坡有自動カート、可借輪椅"
+      ],
+      "cons": [
+        "ジップダイブ、攀岩塔要身高 125 cm 以上，6～8 歲多半不到",
+        "付費設施要網路預約、當天常約不到，多人難排同一時段（2025、2026）；團體 15 天前截止",
+        "2027-02 的營業カレンダー還沒公布；接駁巴士滿員不能上"
+      ],
+      "basedOn": [
+        "https://golf-resort.kintetsu-re.co.jp/shima-greenadventure/attraction/",
+        "https://golf-resort.kintetsu-re.co.jp/shima-greenadventure/ticket/",
+        "https://golf-resort.kintetsu-re.co.jp/shima-greenadventure/access/",
+        "https://golf-resort.kintetsu-re.co.jp/shima-greenadventure/reservation/",
+        "https://golf-resort.kintetsu-re.co.jp/shima-greenadventure/faq/",
+        "https://golf-resort.kintetsu-re.co.jp/shima-greenadventure/calender/",
+        "https://www.kanko-shima.com/purpose/9656/",
+        "https://maps.google.com/?cid=5214804951239961877"
+      ],
+      "generated": "2026-10-19"
+    },
+    "assessment": {
+      "rubric": "spot-v1",
+      "scores": {
+        "recommend": 3,
+        "winterFit": 2,
+        "elderFit": 3,
+        "kidsFit": 5,
+        "accessEase": 4
+      },
+      "rationale": {
+        "recommend": "Google 4.2（434 則），觀光協會收錄；依區調整的 4 要 800 則以上 → 3；低分集中在預約不到",
+        "winterFit": "營業カレンダー只公布到 2026-10，2 月營業未確認 → 2",
+        "elderFit": "園內以步行為主，2 處急坡有自動カート、可借輪椅、有多目的廁所",
+        "kidsFit": "kids.friendly high（滑索、攀岩限 125 cm 以上）",
+        "accessEase": "鵜方站免費接駁巴士約 10 分（滿員不能上、班次要再確認）"
+      },
+      "confidence": "medium",
+      "assessed": "2026-10-19"
+    }
   }
 ]

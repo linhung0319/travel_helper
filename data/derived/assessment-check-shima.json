@@ -1,0 +1,133 @@
+{
+  "area": "shima",
+  "generated": "2026-10-19",
+  "script": "scripts/assessment-check.mjs",
+  "rules": {
+    "restaurant": {
+      "star5": {
+        "tabelogMin": 3.5,
+        "googleMin": 4
+      },
+      "star4": {
+        "tabelogMin": 3.3,
+        "googleMin": 3.8
+      },
+      "low": {
+        "maxStar": 2,
+        "tabelogHigh": 3.5,
+        "googleHigh": 4.4,
+        "googleReviewsMin": 100
+      },
+      "few": {
+        "minStar": 4,
+        "tabelogReviewsMax": 100,
+        "googleReviewsMax": 300
+      }
+    },
+    "spot": {
+      "star5": {
+        "googleMin": 4.2,
+        "googleReviewsMin": 500
+      },
+      "star4": {
+        "googleMin": 4
+      },
+      "low": {
+        "maxStar": 2,
+        "googleHigh": 4.4,
+        "googleReviewsMin": 200
+      },
+      "few": {
+        "minStar": 4,
+        "googleReviewsMax": 100
+      }
+    },
+    "lodging": {
+      "star5": {
+        "siteMin": 4.5,
+        "googleMin": 4.2
+      },
+      "star4": {
+        "siteMin": 4.2,
+        "googleMin": 3.9
+      },
+      "low": {
+        "maxStar": 2,
+        "siteHigh": 4.5,
+        "googleHigh": 4.3
+      },
+      "few": {
+        "minStar": 4,
+        "siteReviewsMax": 100,
+        "googleReviewsMax": 100
+      }
+    },
+    "common": {
+      "highConfidenceReviewsMin": 300
+    }
+  },
+  "counts": {
+    "spot": {
+      "total": 24,
+      "assessed": 24,
+      "notAssessed": [],
+      "flagged": 0,
+      "byStar": {
+        "1": 1,
+        "2": 2,
+        "3": 16,
+        "4": 4,
+        "5": 1
+      }
+    },
+    "lodging": {
+      "total": 56,
+      "assessed": 56,
+      "notAssessed": [],
+      "flagged": 0,
+      "byStar": {
+        "2": 3,
+        "3": 43,
+        "4": 4,
+        "5": 6
+      }
+    },
+    "restaurant": {
+      "total": 78,
+      "assessed": 78,
+      "notAssessed": [],
+      "flagged": 2,
+      "byStar": {
+        "2": 22,
+        "3": 42,
+        "4": 14
+      }
+    }
+  },
+  "items": [
+    {
+      "type": "restaurant",
+      "id": "shima-miyako-bayside-terrace-dining",
+      "name": "都リゾート 志摩 ベイサイドテラス",
+      "recommend": 4,
+      "tier": "A",
+      "confidence": "medium",
+      "ratings": "食べログ 3.21（33 則）、Google 4.2（1177 則）",
+      "rule": "high-star-low-rating",
+      "message": "4 星但食べログ或 Google 偏低（門檻 3.3／3.8）",
+      "rationale": "料理旅館的非住客用餐（F③）：住宿本體楽天餐 4.55（1,126 則）→ 4（食べログ 3.21 只有 33 則，不給 5）"
+    },
+    {
+      "type": "restaurant",
+      "id": "shima-marusada-dining",
+      "name": "丸定旅館",
+      "recommend": 2,
+      "tier": "B",
+      "confidence": "low",
+      "ratings": "食べログ 3.07（17 則）、Google 4.6（120 則）",
+      "rule": "low-star-high-rating",
+      "message": "2 星但食べログ 3.5 以上或 Google 4.4 以上（100 則以上）",
+      "rationale": "缺口保底（D1）→ 最多 2（Google 4.6 是住宿本體）"
+    }
+  ]
+}
