@@ -9462,11 +9462,12 @@
       "A"
     ],
     "reason": null,
-    "pointId": null,
-    "detailPending": true,
+    "pointId": "ise-tonkatsu-yonjusanban",
     "ratings": {
       "tabelog": 3.55,
-      "tabelogReviews": 114
+      "tabelogReviews": 114,
+      "google": 4.4,
+      "googleReviews": 179
     },
     "links": {
       "tabelog": "https://tabelog.com/mie/A2403/A240301/24019894/"
@@ -9489,17 +9490,19 @@
       "A"
     ],
     "reason": null,
-    "pointId": null,
-    "detailPending": true,
+    "pointId": "ise-knotts-berry",
     "ratings": {
       "tabelog": 3.42,
-      "tabelogReviews": 149
+      "tabelogReviews": 149,
+      "google": 4.2,
+      "googleReviews": 455
     },
     "links": {
       "tabelog": "https://tabelog.com/mie/A2403/A240301/24000167/"
     },
     "contexts": [
-      "lunch"
+      "lunch",
+      "dinner"
     ],
     "note": "類型：洋食・義式；地址：伊勢市黒瀬町859-3；定休（食べログ列表）：木曜日"
   },
@@ -9516,17 +9519,18 @@
       "C"
     ],
     "reason": null,
-    "pointId": null,
-    "detailPending": true,
+    "pointId": "ise-oranger-cafe-wood",
     "ratings": {
       "tabelog": 3.41,
-      "tabelogReviews": 96
+      "tabelogReviews": 96,
+      "google": 4.2,
+      "googleReviews": 247
     },
     "links": {
       "tabelog": "https://tabelog.com/mie/A2403/A240301/24015834/"
     },
     "contexts": [
-      "snack",
+      "lunch",
       "cafe"
     ],
     "note": "類型：咖啡・甜點；地址：伊勢市中村町325-2；定休（食べログ列表）：火曜日；貸切可（食べログ篩選）"
@@ -9544,18 +9548,20 @@
       "C"
     ],
     "reason": null,
-    "pointId": null,
-    "detailPending": true,
+    "pointId": "ise-cuccagna-tre",
     "ratings": {
       "tabelog": 3.38,
-      "tabelogReviews": 85
+      "tabelogReviews": 85,
+      "google": 4.1,
+      "googleReviews": 231
     },
     "links": {
       "tabelog": "https://tabelog.com/mie/A2403/A240301/24013344/"
     },
     "contexts": [
       "lunch",
-      "dinner"
+      "dinner",
+      "cafe"
     ],
     "note": "類型：洋食・義式；地址：伊勢市楠部町字奥乙238-2；定休（食べログ列表）：火曜日；貸切可（食べログ篩選）"
   },
@@ -9571,11 +9577,12 @@
       "A"
     ],
     "reason": null,
-    "pointId": null,
-    "detailPending": true,
+    "pointId": "ise-tsukiyomi-shokudo",
     "ratings": {
       "tabelog": 3.34,
-      "tabelogReviews": 100
+      "tabelogReviews": 100,
+      "google": 4.4,
+      "googleReviews": 388
     },
     "links": {
       "tabelog": "https://tabelog.com/mie/A2403/A240301/24001934/"
@@ -9597,11 +9604,12 @@
       "A"
     ],
     "reason": null,
-    "pointId": null,
-    "detailPending": true,
+    "pointId": "ise-sai-to-pan",
     "ratings": {
       "tabelog": 3.32,
-      "tabelogReviews": 46
+      "tabelogReviews": 46,
+      "google": 4.8,
+      "googleReviews": 116
     },
     "links": {
       "tabelog": "https://tabelog.com/mie/A2403/A240301/24019467/"
@@ -9624,11 +9632,12 @@
       "C"
     ],
     "reason": null,
-    "pointId": null,
-    "detailPending": true,
+    "pointId": "ise-riviera",
     "ratings": {
       "tabelog": 3.3,
-      "tabelogReviews": 72
+      "tabelogReviews": 72,
+      "google": 4,
+      "googleReviews": 419
     },
     "links": {
       "tabelog": "https://tabelog.com/mie/A2403/A240301/24001311/"
@@ -9652,11 +9661,12 @@
       "C"
     ],
     "reason": null,
-    "pointId": null,
-    "detailPending": true,
+    "pointId": "ise-furuichi-tsubogin",
     "ratings": {
       "tabelog": 3.3,
-      "tabelogReviews": 41
+      "tabelogReviews": 41,
+      "google": 4.3,
+      "googleReviews": 112
     },
     "links": {
       "tabelog": "https://tabelog.com/mie/A2403/A240301/24008229/"
@@ -10080,11 +10090,12 @@
       "C"
     ],
     "reason": null,
-    "pointId": null,
-    "detailPending": true,
+    "pointId": "ise-sangen",
     "ratings": {
       "tabelog": 3.76,
-      "tabelogReviews": 54
+      "tabelogReviews": 54,
+      "google": 4.9,
+      "googleReviews": 93
     },
     "links": {
       "tabelog": "https://tabelog.com/mie/A2403/A240301/24017168/"
@@ -10107,18 +10118,18 @@
       "A"
     ],
     "reason": null,
-    "pointId": null,
-    "detailPending": true,
+    "pointId": "ise-sazanami",
     "ratings": {
       "tabelog": 3.67,
-      "tabelogReviews": 318
+      "tabelogReviews": 318,
+      "google": 4.1,
+      "googleReviews": 579
     },
     "links": {
       "tabelog": "https://tabelog.com/mie/A2403/A240301/24001215/"
     },
     "contexts": [
-      "lunch",
-      "dinner"
+      "lunch"
     ],
     "note": "類型：定食・食堂；地址：伊勢市神久3-5-55 ホテルキャッスルイン伊勢１Ｆ；定休（食べログ列表）：月曜日；子地區：ホテルキャッスルイン伊勢（T8b 排除的住宿）1F 的餐廳，餐廳本身另列"
   },
@@ -10135,11 +10146,12 @@
       "C"
     ],
     "reason": null,
-    "pointId": null,
-    "detailPending": true,
+    "pointId": "ise-campagne",
     "ratings": {
       "tabelog": 3.6,
-      "tabelogReviews": 89
+      "tabelogReviews": 89,
+      "google": 4.2,
+      "googleReviews": 233
     },
     "links": {
       "tabelog": "https://tabelog.com/mie/A2403/A240301/24000859/"
@@ -10322,19 +10334,24 @@
     },
     "region": "ise-outskirts",
     "category": "うなぎ",
-    "status": "not-included",
-    "criteria": [],
-    "reason": "A 因數量控制（3.60）取消；C 因數量控制（3.60）取消（個室）",
-    "pointId": null,
+    "status": "included",
+    "criteria": [
+      "D"
+    ],
+    "reason": "D（景點附近的缺口）：菊池パール（ise-kikuchi-pearl，通町）附近沒有收錄的午餐店（最近的 藤屋窓月堂 本館 只有團子・甜點），補這家：約 90 m、個室 10～20 人可預約、Google 4.2／864。原本是 A／C 因數量控制（3.60）取消（T8d 第 5 批，2026-10-18）",
+    "pointId": "ise-sashishio",
     "ratings": {
       "tabelog": 3.44,
-      "tabelogReviews": 219
+      "tabelogReviews": 219,
+      "google": 4.2,
+      "googleReviews": 864
     },
     "links": {
       "tabelog": "https://tabelog.com/mie/A2403/A240301/24001936/"
     },
     "contexts": [
-      "lunch"
+      "lunch",
+      "dinner"
     ],
     "note": "類型：和食・割烹；地址：伊勢市通町193-3；定休（食べログ列表）：火曜日；個室（食べログ列表）：個室有(10〜20人可)；菊池パール（ise-kikuchi-pearl，通町）附近的鰻魚店，個室 10〜20 人"
   },
@@ -11362,13 +11379,17 @@
     },
     "region": "ise-outskirts",
     "category": "日本料理、居酒屋、海鮮",
-    "status": "not-included",
-    "criteria": [],
-    "reason": "C 因數量控制（3.60）取消（個室）",
-    "pointId": null,
+    "status": "included",
+    "criteria": [
+      "D"
+    ],
+    "reason": "D（景點附近的缺口）：伊勢苺園（ise-ichigoen，小俣町元町）附近 3 km 內沒有收錄的店，補這家：約 800 m、個室 2～30 人可預約、有兒童餐、午餐 1,200 円起；同區的 鰻のにしやま（3.37）、うな春（3.30）都不能預約、沒有個室，15 人採草莓那天以能訂位的這家優先。原本是 C 因數量控制（3.60）取消（T8d 第 5 批，2026-10-18）",
+    "pointId": "ise-perception",
     "ratings": {
       "tabelog": 3.16,
-      "tabelogReviews": 41
+      "tabelogReviews": 41,
+      "google": 4.3,
+      "googleReviews": 212
     },
     "links": {
       "tabelog": "https://tabelog.com/mie/A2403/A240301/24006985/"
