@@ -15058,5 +15058,1886 @@
     },
     "smoking": "全席喫煙可（食べログ）",
     "extra": {}
+  },
+  {
+    "id": "shima-amimoto-yashiro",
+    "type": "restaurant",
+    "name": {
+      "ja": "網元の店八代",
+      "kana": "あみもとのみせ やしろ",
+      "zh": "網元之店 八代",
+      "en": null
+    },
+    "area": "shima",
+    "region": "shima-hamajima",
+    "coords": [
+      136.757565,
+      34.296792
+    ],
+    "coordsSource": "google-maps-url",
+    "address": "三重県志摩市浜島町浜島1776-4",
+    "hours": {
+      "mon": [
+        [
+          "11:00",
+          "14:00"
+        ],
+        [
+          "17:00",
+          "20:00"
+        ]
+      ],
+      "tue": [
+        [
+          "11:00",
+          "14:00"
+        ],
+        [
+          "17:00",
+          "20:00"
+        ]
+      ],
+      "wed": [],
+      "thu": [
+        [
+          "11:00",
+          "14:00"
+        ],
+        [
+          "17:00",
+          "20:00"
+        ]
+      ],
+      "fri": [
+        [
+          "11:00",
+          "14:00"
+        ],
+        [
+          "17:00",
+          "20:00"
+        ]
+      ],
+      "sat": [
+        [
+          "11:00",
+          "14:00"
+        ],
+        [
+          "17:00",
+          "20:00"
+        ]
+      ],
+      "sun": [
+        [
+          "11:00",
+          "14:00"
+        ],
+        [
+          "17:00",
+          "20:00"
+        ]
+      ],
+      "holiday": null,
+      "note": "官網、觀光協會：昼 11:00～14:00、夜 17:00～20:00（賣完就結束），水休＋第 1・3 木休（遇祝日營業）、臨時休業あり；食べログ 只寫水休"
+    },
+    "closedNote": "週三、第 1・3 週四（祝日營業）",
+    "febNote": "2/3、2/10（三）、2/4（第 1 木）休；官網每月公告營業預定、臨時休業（2026-10 起含週六的三連休以上暫停午餐菜單，2 月應該碰不到），出發前看官網",
+    "closures": [
+      {
+        "from": "2027-02-04",
+        "to": "2027-02-04",
+        "note": "第 1 週四定休（官網、觀光協會）"
+      }
+    ],
+    "photos": [
+      {
+        "url": "https://cdn.goope.jp/195758/221110202902fetb.jpg",
+        "page": "https://r.goope.jp/shima-yashiro/",
+        "kind": "official",
+        "credit": "網元の店八代",
+        "license": null
+      },
+      {
+        "url": "https://cdn.goope.jp/195758/2211232023556qgr_l.jpg",
+        "page": "https://r.goope.jp/shima-yashiro/",
+        "kind": "official",
+        "credit": "網元の店八代",
+        "license": null
+      }
+    ],
+    "links": {
+      "official": "https://r.goope.jp/shima-yashiro/",
+      "googleMaps": "https://maps.google.com/?cid=17602936993693870940",
+      "tabelog": "https://tabelog.com/mie/A2403/A240303/24001184/",
+      "instagram": "@amimotonomise_yashiro"
+    },
+    "tags": [],
+    "tier": null,
+    "sources": [
+      {
+        "type": "tabelog",
+        "url": "https://tabelog.com/mie/A2403/A240303/24001184/",
+        "retrieved": "2026-10-19",
+        "note": "店舗情報：分數、席數、預約、個室、貸切、營業時間、お子様連れ"
+      },
+      {
+        "type": "google-maps",
+        "url": "https://maps.google.com/?cid=17602936993693870940",
+        "retrieved": "2026-10-19",
+        "note": "星數、評論數、座標、照片"
+      },
+      {
+        "type": "tourism",
+        "url": "https://www.kanko-shima.com/purpose/1143/",
+        "retrieved": "2026-10-19",
+        "note": "觀光協會「食べる」：11:00～14:00、17:00～20:00（賣完為止），水休、第 1・3 木休（祝日營業）"
+      },
+      {
+        "type": "official",
+        "url": "https://r.goope.jp/shima-yashiro/",
+        "retrieved": "2026-10-19",
+        "note": "菜單價格（昼／夜）、營業時間、定休、不能刷卡、停車場"
+      },
+      {
+        "type": "official",
+        "url": "https://r.goope.jp/shima-yashiro/free/kuchikomi",
+        "retrieved": "2026-10-19",
+        "note": "2026-10 起含週六三連休以上暫停午餐菜單"
+      }
+    ],
+    "verified": false,
+    "anchors": [],
+    "contexts": [
+      "lunch",
+      "dinner"
+    ],
+    "access": "car",
+    "cuisine": [
+      "海鮮丼"
+    ],
+    "priceRange": "午 ¥1,500～4,300／晚 ¥2,000～4,300（官網：大漁丼 昼 1,500・夜 2,000，伊勢えび・アワビ 時價）",
+    "price": {
+      "lunch": [
+        1500,
+        4300
+      ],
+      "dinner": [
+        2000,
+        4300
+      ]
+    },
+    "stayMinutes": null,
+    "mustTry": [],
+    "menu": [
+      {
+        "url": "https://tabelog.com/mie/A2403/A240303/24001184/dtlmenu/photo/",
+        "source": "tabelog",
+        "retrieved": "2026-10-19"
+      }
+    ],
+    "ratings": {
+      "tabelog": 3.52,
+      "tabelogReviews": 127,
+      "google": 4.4,
+      "googleReviews": 529,
+      "note": null
+    },
+    "inclusion": [
+      "A",
+      "C"
+    ],
+    "tabelogOwner": false,
+    "googleName": "網元の店 八代",
+    "notes": "浜島的漁師直營海鮮丼店（食べログ 3.52／127、Google 4.4／529），招牌「大漁丼」（午 1,500 円），伊勢えび、アワビ 時價。午晚都營業，週三＋第 1・3 週四休；不能預約、不能刷卡，賣完就結束。hamajima 最有名的店。",
+    "group": {
+      "seats": null,
+      "maxReservation": null,
+      "privateRoom": false,
+      "buyout": "可",
+      "groupMenu": null,
+      "fit15": "unknown",
+      "fitSubgroup": "yes",
+      "source": "食べログ：席數沒寫、貸切可、予約不可 → unknown（不能預約）；座敷、席寬（食べログ）"
+    },
+    "reservation": {
+      "accepted": "no",
+      "methods": [],
+      "phone": "0599-53-0606",
+      "url": null,
+      "language": "日文",
+      "note": "食べログ 予約不可；官網、觀光協會沒有預約資訊；不能刷卡（官網）",
+      "leadDays": null
+    },
+    "seating": [
+      "zashiki",
+      "counter"
+    ],
+    "kids": {
+      "allowed": "yes",
+      "minAge": null,
+      "kidsMenu": true,
+      "note": "官網：お子様大漁丼 1,200 円；食べログ 子供可"
+    },
+    "accessibility": {
+      "barrierFree": null,
+      "note": "浜島漁港附近；停車場有（食べログ、觀光協會）；鵜方站巴士往宿浦 約 20 分「浜島」一帶"
+    },
+    "smoking": "全席禁煙",
+    "extra": {
+      "conflicts": [
+        "食べログ店舗情報的定休只寫水曜；官網・觀光協會是水曜＋第 1・3 木曜（祝日營業）",
+        "食べログ寫予約不可・貸切可・座敷あり，官網、觀光協會沒有這些資訊",
+        "定休：食べログ 只寫水曜 vs 官網・觀光協會 水曜＋第 1・3 木曜"
+      ]
+    }
+  },
+  {
+    "id": "shima-oedo-iseshima-dining",
+    "type": "restaurant",
+    "name": {
+      "ja": "大江戸温泉物語Premium 伊勢志摩",
+      "kana": "おおえどおんせんものがたり ぷれみあむ いせしま",
+      "zh": "大江戶溫泉物語 Premium 伊勢志摩（入浴付晚餐 buffet）",
+      "en": null
+    },
+    "area": "shima",
+    "region": "shima-hamajima",
+    "coords": [
+      136.7545445,
+      34.3010679
+    ],
+    "coordsSource": "google-maps-url",
+    "address": "三重県志摩市浜島町浜島1035",
+    "hours": {
+      "mon": [
+        [
+          "17:00",
+          "18:30"
+        ]
+      ],
+      "tue": [
+        [
+          "17:00",
+          "18:30"
+        ]
+      ],
+      "wed": [
+        [
+          "17:00",
+          "18:30"
+        ]
+      ],
+      "thu": [
+        [
+          "17:00",
+          "18:30"
+        ]
+      ],
+      "fri": [
+        [
+          "17:00",
+          "18:30"
+        ]
+      ],
+      "sat": [
+        [
+          "17:00",
+          "18:30"
+        ]
+      ],
+      "sun": [
+        [
+          "17:00",
+          "18:30"
+        ]
+      ],
+      "holiday": null,
+      "note": "官網「日帰りのご案内」：入浴付ディナーバイキング 食事 17:00～18:30（依住宿人數、當日狀況可能變動）、入浴 15:00～24:00（最終受付 22:00）；食べログ：年中無休"
+    },
+    "closedNote": "無休（食べログ）",
+    "febNote": "2/11（四・祝）適用土日祝或繁忙日價格要看官網的繁忙日表；混雜時可能不接日帰り預約",
+    "closures": [],
+    "photos": [
+      {
+        "url": "https://www.ooedoonsen.jp/ogimage.jpg",
+        "page": "https://www.ooedoonsen.jp/iseshima/day_trip/",
+        "kind": "official",
+        "credit": "大江戸温泉物語Premium 伊勢志摩",
+        "license": null
+      }
+    ],
+    "links": {
+      "official": "https://www.ooedoonsen.jp/iseshima/",
+      "googleMaps": "https://maps.google.com/?cid=12781768572398887161",
+      "tabelog": "https://tabelog.com/mie/A2403/A240303/24011169/",
+      "instagram": null
+    },
+    "tags": [],
+    "tier": null,
+    "sources": [
+      {
+        "type": "tabelog",
+        "url": "https://tabelog.com/mie/A2403/A240303/24011169/",
+        "retrieved": "2026-10-19",
+        "note": "店舗情報：分數、席數、預約、個室、貸切、營業時間、お子様連れ"
+      },
+      {
+        "type": "google-maps",
+        "url": "https://maps.google.com/?cid=12781768572398887161",
+        "retrieved": "2026-10-19",
+        "note": "住宿本體的星數、評論數、座標、照片"
+      },
+      {
+        "type": "official",
+        "url": "https://www.ooedoonsen.jp/iseshima/day_trip/",
+        "retrieved": "2026-10-19",
+        "note": "官網 日帰り：入浴付ディナーバイキング 17:00～18:30、大人 4,200～7,300 円、兒童價、要預約"
+      },
+      {
+        "type": "official",
+        "url": "https://www.ooedoonsen.jp/iseshima/restaurant/",
+        "retrieved": "2026-10-19",
+        "note": "食事頁為程式載入，內文讀不到"
+      },
+      {
+        "type": "tourism",
+        "url": "https://www.kankomie.or.jp/topic/768",
+        "retrieved": "2026-10-19",
+        "note": "2024-06 改裝重開；夕食バイキング以刺身、漁師鍋、あおさかき揚げ等海鮮為主"
+      }
+    ],
+    "verified": false,
+    "anchors": [],
+    "contexts": [
+      "dinner"
+    ],
+    "access": "car",
+    "cuisine": [
+      "和食・割烹",
+      "其他"
+    ],
+    "priceRange": "晚 buffet＋溫泉 大人 平日 ¥4,200／土日祝 ¥5,100／繁忙日 ¥7,300（入湯税另計；官網）",
+    "price": {
+      "lunch": null,
+      "dinner": [
+        4200,
+        7300
+      ]
+    },
+    "stayMinutes": null,
+    "mustTry": [],
+    "menu": [
+      {
+        "url": "https://tabelog.com/mie/A2403/A240303/24011169/dtlmenu/",
+        "source": "tabelog",
+        "retrieved": "2026-10-19"
+      }
+    ],
+    "ratings": {
+      "tabelog": 3.1,
+      "tabelogReviews": 45,
+      "google": 3.9,
+      "googleReviews": 1749,
+      "note": "Google 星數、座標借住宿本體（大江戸温泉物語Premium 伊勢志摩）"
+    },
+    "inclusion": [
+      "C",
+      "F3"
+    ],
+    "tabelogOwner": false,
+    "googleName": "大江戸温泉物語Ｐｒｅｍｉｕｍ　伊勢志摩",
+    "notes": "浜島的大型溫泉飯店（食べログ 3.10／45），官網有非住客的「入浴付ディナーバイキング」（要預約，17:00～18:30 用餐＋溫泉），大人平日 4,200 円、有兒童價，刺身・漁師鍋・あおさかき揚げ。hamajima 晚上少數能用的地方，也是全家一起泡湯＋吃飯的選項。",
+    "group": {
+      "seats": null,
+      "maxReservation": null,
+      "privateRoom": true,
+      "buyout": "不可",
+      "groupMenu": null,
+      "fit15": "unknown",
+      "fitSubgroup": "yes",
+      "source": "食べログ：席數沒寫、個室有、貸切不可；官網日帰り方案要事前預約、混雜時可能拒絕 → unknown（沒寫能不能一次接 15 人）"
+    },
+    "reservation": {
+      "accepted": "yes",
+      "methods": [
+        "web",
+        "phone"
+      ],
+      "phone": "050-3615-3456",
+      "url": "https://www.ooedoonsen.jp/iseshima/day_trip/",
+      "language": "日文",
+      "note": "入浴付ディナーバイキング 要事前予約（官網「日帰りプランを予約する」）；電話 9:00～19:00（觀光三重 2024）",
+      "leadDays": null
+    },
+    "seating": [],
+    "kids": {
+      "allowed": "yes",
+      "minAge": null,
+      "kidsMenu": null,
+      "note": "官網兒童價：小學生 2,940／3,570／5,110 円、幼兒 1,260／1,530／2,190 円、3 歲未滿免費（平日／土日祝／繁忙日）"
+    },
+    "accessibility": {
+      "barrierFree": "館內可輪椅、出借輪椅、無障礙廁所（楽天，見住宿）",
+      "note": "鵜方站車約 20 分；停車場約 100 台；有料送迎巴士（日帰り客可否沒寫）"
+    },
+    "smoking": null,
+    "extra": {
+      "nonGuestDining": "官網「日帰りのご案内」：入浴付ディナーバイキング（要事前予約）（2026-10-19）",
+      "lodgingId": "shima-oedo-iseshima"
+    }
+  },
+  {
+    "id": "shima-miyuki-hamajima",
+    "type": "restaurant",
+    "name": {
+      "ja": "御食事処 味幸",
+      "kana": "おしょくじどころ みこう",
+      "zh": "御食事處 味幸",
+      "en": null
+    },
+    "area": "shima",
+    "region": "shima-hamajima",
+    "coords": [
+      136.7489934,
+      34.2948816
+    ],
+    "coordsSource": "google-maps-url",
+    "address": "三重県志摩市浜島町浜島2798",
+    "hours": {
+      "mon": [
+        [
+          "17:00",
+          "22:00"
+        ]
+      ],
+      "tue": [],
+      "wed": [
+        [
+          "17:00",
+          "22:00"
+        ]
+      ],
+      "thu": [
+        [
+          "17:00",
+          "22:00"
+        ]
+      ],
+      "fri": [
+        [
+          "17:00",
+          "22:00"
+        ]
+      ],
+      "sat": [
+        [
+          "17:00",
+          "22:00"
+        ]
+      ],
+      "sun": [
+        [
+          "17:00",
+          "22:00"
+        ]
+      ],
+      "holiday": [
+        [
+          "17:00",
+          "22:00"
+        ]
+      ],
+      "note": "觀光協會、食べログ：17:00～22:00，火休（祝日營業）；るるぶ：昼 11～14 時（前一天要預約）、夜 17～21 時（L.O. 20:30）"
+    },
+    "closedNote": "週二（祝日營業）",
+    "febNote": "2/2、2/9（二）休；2 月的特別休業沒寫",
+    "closures": [],
+    "photos": [
+      {
+        "url": "https://lh3.googleusercontent.com/grass-cs/AABkmLe7Z-a2GSRNuRMpJNBKad2RFOd3sFjOpOTY7WPeKCMHXeo2Lf5NsLNOSn5mlaaTXJKt_IcG8ZUCU0Ux5d9ENzSG7O68f-9Y25ue6-hxAadkkcQvoJa1oN_38cz1Yc9Xu86xVtlq=w800",
+        "page": "https://maps.google.com/?cid=4902586414114863949",
+        "kind": "google",
+        "credit": "Google マップ",
+        "license": null
+      }
+    ],
+    "links": {
+      "official": null,
+      "googleMaps": "https://maps.google.com/?cid=4902586414114863949",
+      "tabelog": "https://tabelog.com/mie/A2403/A240303/24001105/",
+      "instagram": null
+    },
+    "tags": [],
+    "tier": null,
+    "sources": [
+      {
+        "type": "tabelog",
+        "url": "https://tabelog.com/mie/A2403/A240303/24001105/",
+        "retrieved": "2026-10-19",
+        "note": "店舗情報：分數、席數、預約、個室、貸切、營業時間、お子様連れ"
+      },
+      {
+        "type": "google-maps",
+        "url": "https://maps.google.com/?cid=4902586414114863949",
+        "retrieved": "2026-10-19",
+        "note": "星數、評論數、座標、照片"
+      },
+      {
+        "type": "tourism",
+        "url": "https://www.kanko-shima.com/purpose/1664/",
+        "retrieved": "2026-10-19",
+        "note": "觀光協會「食べる」：17:00～22:00，火休（祝日營業）"
+      },
+      {
+        "type": "media",
+        "url": "https://rurubu.jp/andmore/spot/80025168",
+        "retrieved": "2026-10-19",
+        "note": "午餐要前日預約、晚餐 17～21時、鵜方站巴士 20 分、停車 6 台"
+      },
+      {
+        "type": "media",
+        "url": "https://www.mapple.net/region/a0405010400_g03050400/spot/",
+        "retrieved": "2026-10-19",
+        "note": "WebSearch 摘要的單品價格，未開頁確認"
+      }
+    ],
+    "verified": false,
+    "anchors": [],
+    "contexts": [
+      "dinner"
+    ],
+    "access": "car",
+    "cuisine": [
+      "和食・割烹",
+      "伊勢海老・高級海鮮"
+    ],
+    "priceRange": "單點：アワビ お造り 1,080 円～、お造り盛り合わせ 1,620 円、伊勢エビ料理 2,500 円～（まっぷる，年份不明）",
+    "price": {
+      "lunch": null,
+      "dinner": null
+    },
+    "stayMinutes": null,
+    "mustTry": [],
+    "menu": [
+      {
+        "url": "https://tabelog.com/mie/A2403/A240303/24001105/dtlmenu/",
+        "source": "tabelog",
+        "retrieved": "2026-10-19"
+      }
+    ],
+    "ratings": {
+      "tabelog": 3.03,
+      "tabelogReviews": 8,
+      "google": 4.3,
+      "googleReviews": 75,
+      "note": null
+    },
+    "inclusion": [
+      "D2"
+    ],
+    "tabelogOwner": false,
+    "googleName": "味幸",
+    "notes": "浜島市街的海鮮料理店（食べログ 3.03／8、Google 4.3／75），アワビ、伊勢エビ、お造り 單點，晚上 17:00～22:00、週二休，有 4・6 人個室。hamajima 晚餐的主要選項（OCEAN VILLA 倭 等不含晚餐的住宿附近）；午餐要前一天預約。",
+    "group": {
+      "seats": 24,
+      "maxReservation": null,
+      "privateRoom": true,
+      "buyout": null,
+      "groupMenu": null,
+      "fit15": "split",
+      "fitSubgroup": "yes",
+      "source": "食べログ：24 席、個室 4・6 人、予約可 → split；宴會套餐沒有來源"
+    },
+    "reservation": {
+      "accepted": "yes",
+      "methods": [
+        "phone"
+      ],
+      "phone": "0599-53-2831",
+      "url": null,
+      "language": "日文",
+      "note": "アワビ・マグロ要預約；午餐前一天要預約（るるぶ）",
+      "leadDays": null
+    },
+    "seating": [
+      "counter"
+    ],
+    "kids": {
+      "allowed": "yes",
+      "minAge": null,
+      "kidsMenu": null,
+      "note": "食べログ：子供可；兒童餐沒寫"
+    },
+    "accessibility": {
+      "barrierFree": null,
+      "note": "「浜島」巴士站步行 3～5 分；停車場 6 台（るるぶ）"
+    },
+    "smoking": null,
+    "extra": {
+      "conflicts": [
+        "個室：観光協会「無し」 vs 食べログ店舗情報「有（4人可、6人可）」",
+        "營業時間：観光協会 17:00～22:00 vs るるぶ 11～14時（要予約）・17～21時（LO 20:30）",
+        "個室：觀光協會「無し」 vs 食べログ「有（4人可、6人可）」",
+        "晚上結束：觀光協會・食べログ 22:00 vs るるぶ 21:00（L.O. 20:30）"
+      ]
+    }
+  },
+  {
+    "id": "shima-iso-ryori-yacht",
+    "type": "restaurant",
+    "name": {
+      "ja": "磯料理ヨット",
+      "kana": "いそりょうり よっと",
+      "zh": "磯料理 遊艇",
+      "en": null
+    },
+    "area": "shima",
+    "region": "shima-hamajima",
+    "coords": [
+      136.7551452,
+      34.3035536
+    ],
+    "coordsSource": "google-maps-url",
+    "address": "三重県志摩市浜島町浜島1161-6",
+    "hours": {
+      "mon": [
+        [
+          "11:00",
+          "18:00"
+        ]
+      ],
+      "tue": [],
+      "wed": [
+        [
+          "11:00",
+          "18:00"
+        ]
+      ],
+      "thu": [
+        [
+          "11:00",
+          "18:00"
+        ]
+      ],
+      "fri": [
+        [
+          "11:00",
+          "18:00"
+        ]
+      ],
+      "sat": null,
+      "sun": null,
+      "holiday": null,
+      "lastEntry": "18:00",
+      "note": "觀光協會：平日 11:00～18:00 入店まで（不休息）、日祝・繁忙日 11:00～材料用完為止；食べログ、るるぶ：11:00～材料切れ次第閉店；火休（遇祝日營業）。週六、日、祝的結束時間沒有來源"
+    },
+    "closedNote": "週二（祝日營業）",
+    "febNote": "2/2、2/9（二）休；冬～春限定 パールチャーハン（約 12 月下旬～5 月，觀光協會）2 月吃得到",
+    "closures": [],
+    "photos": [
+      {
+        "url": "https://lh3.googleusercontent.com/grass-cs/AABkmLcUv4JEjfzbVVpNdwNMsWdqtW4N6qdl0SeXwOPi_sDR4sbmUSjiY7viRJp5RMmskg1NlitY9KdTKpwfadFvaUwICpWWQ395uU5g0sNtbpHUNL0ZvalrZO1GPwwGAyC4fapkjN9U6Q=w800",
+        "page": "https://maps.google.com/?cid=14146605133525144632",
+        "kind": "google",
+        "credit": "Google マップ",
+        "license": null
+      }
+    ],
+    "links": {
+      "official": null,
+      "googleMaps": "https://maps.google.com/?cid=14146605133525144632",
+      "tabelog": "https://tabelog.com/mie/A2403/A240303/24001160/",
+      "instagram": "@yotto1969"
+    },
+    "tags": [],
+    "tier": null,
+    "sources": [
+      {
+        "type": "tabelog",
+        "url": "https://tabelog.com/mie/A2403/A240303/24001160/",
+        "retrieved": "2026-10-19",
+        "note": "店舗情報：分數、席數、預約、個室、貸切、營業時間、お子様連れ"
+      },
+      {
+        "type": "google-maps",
+        "url": "https://maps.google.com/?cid=14146605133525144632",
+        "retrieved": "2026-10-19",
+        "note": "星數、評論數、座標、照片"
+      },
+      {
+        "type": "tourism",
+        "url": "https://www.kanko-shima.com/purpose/1834/",
+        "retrieved": "2026-10-19",
+        "note": "觀光協會「食べる」：平日 11:00～18:00 入店、日祝 材料切れまで，火休，22 席，不接受預約"
+      },
+      {
+        "type": "official",
+        "url": "http://isoryouri-yacht.com/",
+        "retrieved": "2026-10-19",
+        "note": "404 Not Found，無法讀取"
+      },
+      {
+        "type": "media",
+        "url": "https://rurubu.jp/andmore/spot/80025138",
+        "retrieved": "2026-10-19",
+        "note": "伊勢エビ定食（残酷焼／お造り＋長寿汁）、營業時間要確認、火休、交通"
+      }
+    ],
+    "verified": false,
+    "anchors": [],
+    "contexts": [
+      "lunch"
+    ],
+    "access": "car",
+    "cuisine": [
+      "伊勢海老・高級海鮮",
+      "定食・食堂"
+    ],
+    "priceRange": "¥1,100～5,000（パールチャーハン 1,100、伊勢海老づくし 約 5,000；觀光協會）",
+    "price": {
+      "lunch": [
+        1100,
+        5000
+      ],
+      "dinner": null
+    },
+    "stayMinutes": null,
+    "mustTry": [],
+    "menu": [
+      {
+        "url": "https://tabelog.com/mie/A2403/A240303/24001160/dtlmenu/photo/",
+        "source": "tabelog",
+        "retrieved": "2026-10-19"
+      }
+    ],
+    "ratings": {
+      "tabelog": 3.22,
+      "tabelogReviews": 65,
+      "google": 4.2,
+      "googleReviews": 298,
+      "note": "Google 的網站欄是 Instagram @yotto1969"
+    },
+    "inclusion": [
+      "D1"
+    ],
+    "tabelogOwner": false,
+    "googleName": null,
+    "notes": "浜島的家庭經營磯料理店（食べログ 3.22／65、Google 4.2／298）：伊勢海老定食（残酷焼 或 お造り）、あっぱっぱ貝、冬～春的パールチャーハン。11:00 開、平日到 18:00 入店，週二休，不能預約；hamajima 週三（2/3、2/10）、2/4 八代 休時的午餐。",
+    "group": {
+      "seats": 15,
+      "maxReservation": null,
+      "privateRoom": false,
+      "buyout": "不可",
+      "groupMenu": null,
+      "fit15": "unknown",
+      "fitSubgroup": "yes",
+      "source": "食べログ：15 席（吧台 5、座敷 2 人桌 1・3～4 人桌 2）、予約不可 → unknown（不能預約）；觀光協會 22 席"
+    },
+    "reservation": {
+      "accepted": "no",
+      "methods": [],
+      "phone": "0599-53-0486",
+      "url": null,
+      "language": "日文",
+      "note": "不接受預約（觀光協會、食べログ）；遠道而來的話先打電話（食べログ 備考）",
+      "leadDays": null
+    },
+    "seating": [
+      "zashiki",
+      "counter"
+    ],
+    "kids": {
+      "allowed": "yes",
+      "minAge": null,
+      "kidsMenu": null,
+      "note": "食べログ：子供可"
+    },
+    "accessibility": {
+      "barrierFree": null,
+      "note": "鵜方站巴士往宿浦 約 20 分「鴻住」下車即到；停車場約 10～15 台"
+    },
+    "smoking": "全席禁煙",
+    "extra": {
+      "conflicts": [
+        "官網 http://isoryouri-yacht.com/ 2026-10-19 回 404",
+        "營業時間：觀光協會 平日 18:00 入店まで；食べログ・るるぶ 材料切れ次第閉店",
+        "席數：觀光協會 22 席；食べログ 15 席",
+        "停車場：觀光協會・るるぶ 約 10 台；食べログ 15 台くらい",
+        "營業時間：觀光協會 平日 18:00 入店まで vs 食べログ・るるぶ 材料切れ次第閉店",
+        "席數：觀光協會 22 vs 食べログ 15",
+        "停車場：觀光協會・るるぶ 約 10 台 vs 食べログ 15 台"
+      ]
+    }
+  },
+  {
+    "id": "shima-nishiguchiya",
+    "type": "restaurant",
+    "name": {
+      "ja": "西口屋",
+      "kana": "にしぐちや",
+      "zh": "西口屋食堂",
+      "en": null
+    },
+    "area": "shima",
+    "region": "shima-hamajima",
+    "coords": [
+      136.7487394,
+      34.295702
+    ],
+    "coordsSource": "google-maps-url",
+    "address": "三重県志摩市浜島町浜島2872-1",
+    "hours": {
+      "mon": [
+        [
+          "11:00",
+          "14:00"
+        ]
+      ],
+      "tue": [
+        [
+          "11:00",
+          "14:00"
+        ]
+      ],
+      "wed": [],
+      "thu": [
+        [
+          "11:00",
+          "14:00"
+        ]
+      ],
+      "fri": [
+        [
+          "11:00",
+          "14:00"
+        ]
+      ],
+      "sat": [
+        [
+          "11:00",
+          "14:00"
+        ]
+      ],
+      "sun": [
+        [
+          "11:00",
+          "14:00"
+        ]
+      ],
+      "holiday": null,
+      "note": "食べログ：11:00～14:00 頃，水休（其他來源沒寫時間）"
+    },
+    "closedNote": "週三",
+    "febNote": "2/3、2/10（三）休；2 月的特別休業沒寫",
+    "closures": [],
+    "photos": [
+      {
+        "url": "https://lh3.googleusercontent.com/grass-cs/AABkmLfEg4SdEae5CmG75wB4PvETOZ6MniWxjHxoAPvhS5KzAw7glK6oQlyTj8IUSlIhdZxuRTvluXN8qxwj0smSk3xJA_sLWwPDfxCE0ViQnIr7wlgQNaYr_IfUUQQVgEMEXAur8ugZZsWwoJlV=w800",
+        "page": "https://maps.google.com/?cid=6719590374349273571",
+        "kind": "google",
+        "credit": "Google マップ",
+        "license": null
+      }
+    ],
+    "links": {
+      "official": null,
+      "googleMaps": "https://maps.google.com/?cid=6719590374349273571",
+      "tabelog": "https://tabelog.com/mie/A2403/A240303/24011240/",
+      "instagram": null
+    },
+    "tags": [],
+    "tier": null,
+    "sources": [
+      {
+        "type": "tabelog",
+        "url": "https://tabelog.com/mie/A2403/A240303/24011240/",
+        "retrieved": "2026-10-19",
+        "note": "店舗情報：分數、席數、預約、個室、貸切、營業時間、お子様連れ"
+      },
+      {
+        "type": "google-maps",
+        "url": "https://maps.google.com/?cid=6719590374349273571",
+        "retrieved": "2026-10-19",
+        "note": "星數、評論數、座標、照片"
+      },
+      {
+        "type": "tourism",
+        "url": "https://www.iseshima-kanko.jp/gourmet/111677",
+        "retrieved": "2026-10-19",
+        "note": "雞骨湯拉麵、叉燒麵、メヒビラーメン；水休、停車 4 台；無營業時間"
+      }
+    ],
+    "verified": false,
+    "anchors": [],
+    "contexts": [
+      "lunch"
+    ],
+    "access": "car",
+    "cuisine": [
+      "其他",
+      "定食・食堂"
+    ],
+    "priceRange": "午 ～¥999（食べログ預算）",
+    "price": {
+      "lunch": null,
+      "dinner": null
+    },
+    "stayMinutes": null,
+    "mustTry": [],
+    "menu": [
+      {
+        "url": "https://tabelog.com/mie/A2403/A240303/24011240/dtlmenu/photo/",
+        "source": "tabelog",
+        "retrieved": "2026-10-19"
+      }
+    ],
+    "ratings": {
+      "tabelog": 3.06,
+      "tabelogReviews": 17,
+      "google": 4.3,
+      "googleReviews": 54,
+      "note": "Google 店名「西口屋食堂」"
+    },
+    "inclusion": [
+      "D1"
+    ],
+    "tabelogOwner": false,
+    "googleName": "西口屋食堂",
+    "notes": "浜島的老派拉麵食堂（食べログ 3.06／17、Google 4.3／54），元祖西口屋ラーメン、チャーシューメン，12 席，午餐 11:00～14:00 頃、週三休。小組（4～6 人）的平價午餐；週三和 八代 同休，補不了週三。",
+    "group": {
+      "seats": 12,
+      "maxReservation": null,
+      "privateRoom": false,
+      "buyout": "不可",
+      "groupMenu": null,
+      "fit15": "no",
+      "fitSubgroup": "yes",
+      "source": "食べログ：12 席（吧台、座敷）→ no"
+    },
+    "reservation": {
+      "accepted": "yes",
+      "methods": [
+        "phone"
+      ],
+      "phone": "0599-53-0574",
+      "url": null,
+      "language": "日文",
+      "note": "食べログ 予約可",
+      "leadDays": null
+    },
+    "seating": [
+      "zashiki",
+      "counter"
+    ],
+    "kids": {
+      "allowed": "yes",
+      "minAge": null,
+      "kidsMenu": null,
+      "note": "食べログ：子供可"
+    },
+    "accessibility": {
+      "barrierFree": null,
+      "note": "店旁停車場 4～5 台"
+    },
+    "smoking": "全席禁煙",
+    "extra": {
+      "conflicts": [
+        "停車場：伊勢志摩観光ナビ 4 台；食べログ 5 台",
+        "營業時間只有食べログ（11:00～14:00頃），其他來源沒寫",
+        "停車場：伊勢志摩観光ナビ 4 台 vs 食べログ 5 台"
+      ]
+    }
+  },
+  {
+    "id": "shima-sakanoue",
+    "type": "restaurant",
+    "name": {
+      "ja": "坂のうえ",
+      "kana": "さかのうえ",
+      "zh": "坂之上（咖啡）",
+      "en": null
+    },
+    "area": "shima",
+    "region": "shima-hamajima",
+    "coords": [
+      136.756134,
+      34.3169711
+    ],
+    "coordsSource": "google-maps-url",
+    "address": "三重県志摩市浜島町桧山路31-26",
+    "hours": {
+      "mon": [],
+      "tue": null,
+      "wed": null,
+      "thu": null,
+      "fri": null,
+      "sat": [
+        [
+          "11:00",
+          "15:00"
+        ]
+      ],
+      "sun": [
+        [
+          "11:00",
+          "15:00"
+        ]
+      ],
+      "holiday": null,
+      "lastEntry": "14:00",
+      "note": "衝突：食べログ「土・日 11:00～15:00、月～金 定休」、晚餐完全予約制（有預約才營業） vs 觀光協會「11:00〜16:30（L.O. ランチ 14:00、カフェ 16:00）、月休」；兩邊都同意的只有週一休、週六日中午營業，週二～五 不確定（要電話）"
+    },
+    "closedNote": "週一（食べログ：週一～五）",
+    "febNote": "平日（2/3、2/4、2/10 等）有沒有營業兩個來源衝突，要電話確認；八代 休的日子不能當作確定的備案",
+    "closures": [],
+    "photos": [
+      {
+        "url": "https://lh3.googleusercontent.com/grass-cs/AABkmLfayopfWa5KGgV4KT-idYXUBjuqyqMErXSZD1iFHtoiuJcTINw0FMJ9AtOoVK2AHab0_Ptnd-FJQQ7ipKUEH0nZNgGGtWXymbU0LYVy-Ja07xp5JwEQ1NzBsHCS2QhPzkQFWZP6=w800",
+        "page": "https://maps.google.com/?cid=9950180800517222758",
+        "kind": "google",
+        "credit": "Google マップ",
+        "license": null
+      }
+    ],
+    "links": {
+      "official": null,
+      "googleMaps": "https://maps.google.com/?cid=9950180800517222758",
+      "tabelog": "https://tabelog.com/mie/A2403/A240303/24013678/",
+      "instagram": "@sakanoue.7"
+    },
+    "tags": [],
+    "tier": null,
+    "sources": [
+      {
+        "type": "tabelog",
+        "url": "https://tabelog.com/mie/A2403/A240303/24013678/",
+        "retrieved": "2026-10-19",
+        "note": "店舗情報：分數、席數、預約、個室、貸切、營業時間、お子様連れ"
+      },
+      {
+        "type": "google-maps",
+        "url": "https://maps.google.com/?cid=9950180800517222758",
+        "retrieved": "2026-10-19",
+        "note": "星數、評論數、座標、照片"
+      },
+      {
+        "type": "tourism",
+        "url": "https://www.kanko-shima.com/purpose/7300/",
+        "retrieved": "2026-10-19",
+        "note": "觀光協會「食べる」：11:00〜16:30（L.O. ランチ 14:00），月休，お子様ランチ"
+      }
+    ],
+    "verified": false,
+    "anchors": [],
+    "contexts": [
+      "lunch",
+      "cafe"
+    ],
+    "access": "car",
+    "cuisine": [
+      "咖啡・甜點",
+      "定食・食堂"
+    ],
+    "priceRange": "午 ¥1,000～2,000／晚（預約制）¥5,000～6,000（食べログ預算）",
+    "price": {
+      "lunch": [
+        1000,
+        2000
+      ],
+      "dinner": [
+        5000,
+        6000
+      ]
+    },
+    "stayMinutes": null,
+    "mustTry": [],
+    "menu": [
+      {
+        "url": "https://tabelog.com/mie/A2403/A240303/24013678/dtlmenu/photo/",
+        "source": "tabelog",
+        "retrieved": "2026-10-19"
+      }
+    ],
+    "ratings": {
+      "tabelog": 3.18,
+      "tabelogReviews": 40,
+      "google": 4.2,
+      "googleReviews": 102,
+      "note": null
+    },
+    "inclusion": [
+      "D1"
+    ],
+    "tabelogOwner": false,
+    "googleName": null,
+    "notes": "浜島 桧山路 坡上的小咖啡店（食べログ 3.18／40、Google 4.2／102），坂のうえランチ（主菜 10 多種選 1）、有兒童午餐，16 席、可包場 20 人以下。營業日兩個來源衝突（食べログ 只有週末），平日要先問。",
+    "group": {
+      "seats": 16,
+      "maxReservation": null,
+      "privateRoom": false,
+      "buyout": "可（20 人以下）",
+      "groupMenu": null,
+      "fit15": "yes",
+      "fitSubgroup": "yes",
+      "source": "食べログ：16 席、貸切可（20 人以下）、予約可 → yes（包場 20 人以下）；團體套餐沒有來源"
+    },
+    "reservation": {
+      "accepted": "yes",
+      "methods": [
+        "phone"
+      ],
+      "phone": "090-5113-8877",
+      "url": null,
+      "language": "日文",
+      "note": "晚餐完全予約制、有預約才營業（食べログ）",
+      "leadDays": null
+    },
+    "seating": [
+      "counter",
+      "terrace"
+    ],
+    "kids": {
+      "allowed": "yes",
+      "minAge": null,
+      "kidsMenu": true,
+      "note": "觀光協會：お子様ランチ；食べログ 子供可"
+    },
+    "accessibility": {
+      "barrierFree": null,
+      "note": "浜島町桧山路（浜島市街北約 2.5 km 的坡上）；停車場有"
+    },
+    "smoking": "全席禁煙",
+    "extra": {
+      "conflicts": [
+        "營業日：観光協会「11：00〜16：30、定休日 月曜日」 vs 食べログ店舗情報「土・日 11:00-15:00、月～金 定休日」",
+        "營業日：觀光協會 11:00〜16:30、月休 vs 食べログ 土日 11:00～15:00、月～金休"
+      ]
+    }
+  },
+  {
+    "id": "shima-rias-by-cococha",
+    "type": "restaurant",
+    "name": {
+      "ja": "リアス バイ ココチャ",
+      "kana": "りあす ばい ここちゃ",
+      "zh": "RIAS by Kokotxa（志摩地中海村 西班牙料理）",
+      "en": null
+    },
+    "area": "shima",
+    "region": "shima-sakko",
+    "coords": [
+      136.8059454,
+      34.3036321
+    ],
+    "coordsSource": "google-maps-url",
+    "address": "三重県志摩市浜島町迫子2619-1",
+    "hours": {
+      "mon": [
+        [
+          "11:30",
+          "14:00"
+        ],
+        [
+          "17:30",
+          "22:00"
+        ]
+      ],
+      "tue": [
+        [
+          "11:30",
+          "14:00"
+        ],
+        [
+          "17:30",
+          "22:00"
+        ]
+      ],
+      "wed": [
+        [
+          "11:30",
+          "14:00"
+        ],
+        [
+          "17:30",
+          "22:00"
+        ]
+      ],
+      "thu": [
+        [
+          "11:30",
+          "14:00"
+        ],
+        [
+          "17:30",
+          "22:00"
+        ]
+      ],
+      "fri": [
+        [
+          "11:30",
+          "14:00"
+        ],
+        [
+          "17:30",
+          "22:00"
+        ]
+      ],
+      "sat": [
+        [
+          "11:30",
+          "14:00"
+        ],
+        [
+          "17:30",
+          "22:00"
+        ]
+      ],
+      "sun": [
+        [
+          "11:30",
+          "14:00"
+        ],
+        [
+          "17:30",
+          "22:00"
+        ]
+      ],
+      "holiday": null,
+      "lastEntry": [
+        "13:00",
+        "20:00"
+      ],
+      "note": "官網：ランチ 11:30～14:00（オーダーストップ 13:00；11:30／12:00／12:30 三梯）、ディナー 17:30～22:00（オーダーストップ 20:00；17:30～19:30 每 30 分一梯）；午餐不定休、每月公告休業日；食べログ 9:00～14:00"
+    },
+    "closedNote": "不定休（午餐，每月公告）；志摩地中海村 休館日",
+    "febNote": "2027-02 的午餐休業日還沒公告（官網 news、IG）；團體包場時一般營業關閉；地中海村 2027/2/17～2/19 休館（旅程後）",
+    "closures": [],
+    "photos": [
+      {
+        "url": "https://lh3.googleusercontent.com/grass-cs/AABkmLef-8Gf1S7z5TnlUD4n-MTWd0quctg40LabWcbf5SBZG8fx9r_R5-M9ARoAO1ULi3HPsOR44h9vp-IbGjUQVX2Zlpz7IaHMZpzhI9C_mmF4AakgqoIXzcQIazCtdJ0No6abcxpqVrHzJVI=w800",
+        "page": "https://maps.google.com/?cid=2173496692691601117",
+        "kind": "google",
+        "credit": "Google マップ",
+        "license": null
+      }
+    ],
+    "links": {
+      "official": "https://riasbykokotxa.jp/",
+      "googleMaps": "https://maps.google.com/?cid=2173496692691601117",
+      "tabelog": "https://tabelog.com/mie/A2403/A240303/24015478/",
+      "instagram": "@riasbykokotxa"
+    },
+    "tags": [],
+    "tier": null,
+    "sources": [
+      {
+        "type": "tabelog",
+        "url": "https://tabelog.com/mie/A2403/A240303/24015478/",
+        "retrieved": "2026-10-19",
+        "note": "店舗情報：分數、席數、預約、個室、貸切、營業時間、お子様連れ"
+      },
+      {
+        "type": "google-maps",
+        "url": "https://maps.google.com/?cid=2173496692691601117",
+        "retrieved": "2026-10-19",
+        "note": "星數、評論數、座標、照片"
+      },
+      {
+        "type": "tourism",
+        "url": "https://www.kanko-shima.com/purpose/1821/",
+        "retrieved": "2026-10-19",
+        "note": "觀光協會「食べる」：Lunch 11:30～14:00（13:00 L.O.）、Dinner 17:30～22:00（20:00 L.O.），志摩地中海村の休館日"
+      },
+      {
+        "type": "official",
+        "url": "https://riasbykokotxa.jp/",
+        "retrieved": "2026-10-19",
+        "note": "Kokotxa 合作、團體需事前聯絡、IG"
+      },
+      {
+        "type": "official",
+        "url": "https://riasbykokotxa.jp/open",
+        "retrieved": "2026-10-19",
+        "note": "午餐晚餐時間、梯次、不定休、1 個月前預約"
+      },
+      {
+        "type": "official",
+        "url": "https://riasbykokotxa.jp/lunch",
+        "retrieved": "2026-10-19",
+        "note": "午餐套餐價格、Niños、12:00 LO、過敏不可對應"
+      },
+      {
+        "type": "official",
+        "url": "https://riasbykokotxa.jp/dinner",
+        "retrieved": "2026-10-19",
+        "note": "晚餐 Pasaia／Donostia、兒童 Niños／Junior"
+      },
+      {
+        "type": "official",
+        "url": "https://riasbykokotxa.jp/reservation",
+        "retrieved": "2026-10-19",
+        "note": "非住客可用午晚餐、入村料、晚餐完全予約、線上預約"
+      },
+      {
+        "type": "official",
+        "url": "https://riasbykokotxa.jp/news/2026092501/",
+        "retrieved": "2026-10-19",
+        "note": "10 月午餐休 10/28・10/29、團體包場時關閉"
+      },
+      {
+        "type": "official",
+        "url": "https://puebloamigo.jp/dayuse/",
+        "retrieved": "2026-10-19",
+        "note": "日歸午餐方案與人數限定"
+      },
+      {
+        "type": "tourism",
+        "url": "https://www.kankomie.or.jp/report/993",
+        "retrieved": "2026-10-19",
+        "note": "2021：日帰りでも利用可、ディナー事前予約のみ、Pasaia 11,000 円（舊）"
+      }
+    ],
+    "verified": false,
+    "anchors": [],
+    "contexts": [
+      "lunch",
+      "dinner"
+    ],
+    "access": "car",
+    "cuisine": [
+      "洋食・義式",
+      "伊勢海老・高級海鮮"
+    ],
+    "priceRange": "午 ¥4,400～12,100／晚 ¥12,100～17,600（官網套餐）＋入村料",
+    "price": {
+      "lunch": [
+        4400,
+        12100
+      ],
+      "dinner": [
+        12100,
+        17600
+      ]
+    },
+    "stayMinutes": null,
+    "mustTry": [],
+    "menu": [
+      {
+        "url": "https://tabelog.com/mie/A2403/A240303/24015478/dtlmenu/photo/",
+        "source": "tabelog",
+        "retrieved": "2026-10-19"
+      }
+    ],
+    "ratings": {
+      "tabelog": 3.6,
+      "tabelogReviews": 90,
+      "google": 4.3,
+      "googleReviews": 166,
+      "note": "Google 店名「RIAS by Kokotxa（志摩地中海村内）」"
+    },
+    "inclusion": [
+      "A",
+      "C",
+      "F3"
+    ],
+    "tabelogOwner": false,
+    "googleName": "RIAS by Kokotxa（志摩地中海村内）",
+    "notes": "志摩地中海村 內的西班牙料理（食べログ 3.60／90、Google 4.3／166），聖塞巴斯提安名店 Kokotxa 監修，伊勢海老ソカラ、鮑、松阪牛的套餐：午 4,400 円起、晚 12,100 円起，有兒童套餐。官網明寫非住客午晚都可以；晚餐完全予約制。sakko 午晚餐的第一候選，但村內石板路、階梯多。",
+    "group": {
+      "seats": null,
+      "maxReservation": null,
+      "privateRoom": true,
+      "buyout": "可",
+      "groupMenu": "團體套餐沒有；團體・觀光巴士要事先聯絡（官網）",
+      "fit15": "unknown",
+      "fitSubgroup": "yes",
+      "source": "食べログ：席數沒寫、個室有、貸切可（人數沒寫）、予約可 → unknown；官網團體要先聯絡"
+    },
+    "reservation": {
+      "accepted": "yes",
+      "methods": [
+        "web",
+        "phone"
+      ],
+      "phone": "0599-52-1336",
+      "url": "https://res-reserve.com/ja/restaurants/riasbykokotxa",
+      "language": "日文",
+      "note": "晚餐完全予約制；午餐沒預約可能吃不到；1 個月前開放；電話是地中海村フロント（9:00～18:00）（官網）",
+      "leadDays": null
+    },
+    "seating": [],
+    "kids": {
+      "allowed": "yes",
+      "minAge": null,
+      "kidsMenu": true,
+      "note": "官網：ニーニョス Niños 2,750 円（小學生以下）、ジュニア Junior 5,500 円（小學生，晚餐）"
+    },
+    "accessibility": {
+      "barrierFree": "非無障礙（志摩地中海村 Q&A）",
+      "note": "志摩地中海村 內：10:00～17:00 進村要付入村料（大人 700／小學生 300 円，用餐客也要），村內石板路、階梯多，官網 Q&A「バリアフリーな施設ではございません」；鵜方站計程車約 15 分、停車場 120 台"
+    },
+    "smoking": "全席禁煙",
+    "extra": {
+      "lodgingId": "shima-chichukaimura-hotel",
+      "nonGuestDining": "官網預約頁：「志摩地中海村のご宿泊者様でなくてもランチ・ディナーともにご利用いただくことができます」（10:00～17:00 入村料）（2026-10-19）",
+      "conflicts": [
+        "ランチ最後點餐：営業時間頁 13:00、觀光協會 13:00LO vs ランチ頁「12:00ラストオーダー」",
+        "食べログ営業時間 9:00～14:00 vs 官網ランチ 11:30～14:00",
+        "Pasaia 觀光三重 2021 11,000 円 vs 官網 12,100 円",
+        "食べログ 個室有・貸切可，官網沒寫",
+        "午餐 L.O.：官網営業時間頁・觀光協會 13:00 vs 官網ランチ頁 12:00",
+        "營業時間：食べログ 9:00～14:00 vs 官網 11:30～14:00",
+        "Pasaia：觀光三重 2021 11,000 円 vs 官網 12,100 円"
+      ]
+    }
+  },
+  {
+    "id": "shima-amanemu-dining",
+    "type": "restaurant",
+    "name": {
+      "ja": "アマネムダイニング",
+      "kana": "あまねむ だいにんぐ",
+      "zh": "安縵伊勢志摩 餐廳（Amanemu Dining）",
+      "en": null
+    },
+    "area": "shima",
+    "region": "shima-sakko",
+    "coords": [
+      136.7969576,
+      34.2925404
+    ],
+    "coordsSource": "google-maps-url",
+    "address": "三重県志摩市浜島町迫子2165",
+    "hours": {
+      "mon": [
+        [
+          "12:30",
+          "13:30"
+        ]
+      ],
+      "tue": [
+        [
+          "12:30",
+          "13:30"
+        ]
+      ],
+      "wed": [
+        [
+          "12:30",
+          "13:30"
+        ]
+      ],
+      "thu": [
+        [
+          "12:30",
+          "13:30"
+        ]
+      ],
+      "fri": [
+        [
+          "12:30",
+          "13:30"
+        ]
+      ],
+      "sat": [
+        [
+          "12:30",
+          "13:30"
+        ]
+      ],
+      "sun": [
+        [
+          "12:30",
+          "13:30"
+        ]
+      ],
+      "holiday": null,
+      "lastEntry": "13:30",
+      "note": "一休レストラン：営業時間 12:30～13:30 最終入店、定休なし（午餐的結束時間沒寫）；晚餐時間官網、一休都沒寫（官網有 ディナー 菜單）"
+    },
+    "closedNote": "無休（一休）",
+    "febNote": "一休 2026-10-19 顯示「現在、予約可能日はございません」；2 月能不能訂要電話（0599-52-5006）",
+    "closures": [],
+    "photos": [
+      {
+        "url": "https://www.aman.com/sites/default/files/styles/full_size_small/public/2021-03/Amanemu_Dining-Hero-1.webp?itok=JfbDUnur",
+        "page": "https://www.aman.com/ja-jp/resorts/amanemu/dining",
+        "kind": "official",
+        "credit": "アマネムダイニング",
+        "license": null
+      }
+    ],
+    "links": {
+      "official": "https://www.aman.com/ja-jp/resorts/amanemu/dining",
+      "googleMaps": "https://maps.google.com/?cid=5138399241800249089",
+      "tabelog": "https://tabelog.com/mie/A2403/A240303/24015181/",
+      "instagram": null
+    },
+    "tags": [],
+    "tier": null,
+    "sources": [
+      {
+        "type": "tabelog",
+        "url": "https://tabelog.com/mie/A2403/A240303/24015181/",
+        "retrieved": "2026-10-19",
+        "note": "店舗情報：分數、席數、預約、個室、貸切、營業時間、お子様連れ"
+      },
+      {
+        "type": "google-maps",
+        "url": "https://maps.google.com/?cid=5138399241800249089",
+        "retrieved": "2026-10-19",
+        "note": "星數、評論數、座標、照片"
+      },
+      {
+        "type": "booking-site",
+        "url": "https://restaurant.ikyu.com/115072/",
+        "retrieved": "2026-10-19",
+        "note": "一休レストラン：12:30～13:30 最終入店、50 席（個室 1）、12 歲以上、服務費 15%、スマートカジュアル；2026-10-19 沒有可訂日期"
+      },
+      {
+        "type": "official",
+        "url": "https://www.aman.com/ja-jp/resorts/amanemu/dining",
+        "retrieved": "2026-10-19",
+        "note": "季節日本料理、ディナーコース、地酒 20 種以上、菜單 PDF、預約電話"
+      },
+      {
+        "type": "official",
+        "url": "https://www.aman.com/ja-jp/resorts/amanemu",
+        "retrieved": "2026-10-19",
+        "note": "全住宿含朝夕食，無非住客用餐記載"
+      },
+      {
+        "type": "official",
+        "url": "https://www.aman.com/ja-jp/resorts/amanemu/exclusives/family-escape",
+        "retrieved": "2026-10-19",
+        "note": "追加住客限 12 歲以上、賢島駅送迎"
+      }
+    ],
+    "verified": false,
+    "anchors": [],
+    "contexts": [
+      "lunch",
+      "dinner"
+    ],
+    "access": "car",
+    "cuisine": [
+      "和食・割烹",
+      "伊勢海老・高級海鮮"
+    ],
+    "priceRange": "一休預算 ¥15,000～20,000／¥20,000～30,000（服務費 15%）；食べログ預算 夜 ¥100,000～",
+    "price": {
+      "lunch": [
+        15000,
+        20000
+      ],
+      "dinner": [
+        20000,
+        30000
+      ]
+    },
+    "stayMinutes": null,
+    "mustTry": [],
+    "menu": [
+      {
+        "url": "https://tabelog.com/mie/A2403/A240303/24015181/dtlmenu/photo/",
+        "source": "tabelog",
+        "retrieved": "2026-10-19"
+      }
+    ],
+    "ratings": {
+      "tabelog": 3.56,
+      "tabelogReviews": 91,
+      "google": 4.5,
+      "googleReviews": 15,
+      "note": "Google 是「アマネムダイニング／アマネム」的地點（住宿本體「アマネム」4.5／461 另一筆）"
+    },
+    "inclusion": [
+      "A",
+      "F3"
+    ],
+    "tabelogOwner": false,
+    "googleName": "アマネムダイニング／アマネム",
+    "notes": "AMANEMU（安縵）館內的日本料理（食べログ 3.56／91、Google 4.5／15）：伊勢志摩海鮮、松阪牛的季節料理，面向英虞湾。一休レストラン 公開預約午餐（12:30～13:30 入店），限 12 歲以上、スマートカジュアル、服務費 15%。只適合大人的小組；2026-10 一休沒有可訂日期。",
+    "group": {
+      "seats": 50,
+      "maxReservation": null,
+      "privateRoom": true,
+      "buyout": "不可",
+      "groupMenu": null,
+      "fit15": "split",
+      "fitSubgroup": "yes",
+      "source": "一休：50 席（個室 1）、予約可 → split；食べログ 個室無・貸切不可（衝突）"
+    },
+    "reservation": {
+      "accepted": "yes",
+      "methods": [
+        "web",
+        "phone"
+      ],
+      "phone": "0599-52-5006",
+      "url": "https://restaurant.ikyu.com/115072/",
+      "language": "日文",
+      "note": "一休：預約時備註交通方式（自用車寫車號）、過敏；前一天 0 時起取消 100%；スマートカジュアル（不穿短褲、涼鞋）",
+      "leadDays": null
+    },
+    "seating": [],
+    "kids": {
+      "allowed": "age-limit",
+      "minAge": 12,
+      "kidsMenu": false,
+      "note": "一休：年齡限制 12 歲以上、沒有兒童餐 → 6～10 歲的小孩不能去"
+    },
+    "accessibility": {
+      "barrierFree": null,
+      "note": "賢島站車約 20 分（一休）；停車場免費"
+    },
+    "smoking": "全面禁煙",
+    "extra": {
+      "nonGuestDining": "一休レストラン 公開店頁（營業時間、預約時註明「アマネムまでの交通手段・自家用車の車番」，2026-10-19 Chrome 讀）；官網沒寫（WebFetch 403，主 session 用 Chrome 確認）",
+      "conflicts": [
+        "個室：一休搜尋摘要 1 室 vs 食べログ 無",
+        "午餐時間：一休搜尋摘要 12:30～13:30 最終入店 vs 食べログ本體頁備考 昼食 11:00-21:00（後者應是客房送餐）",
+        "個室：一休 1 室 vs 食べログ 無",
+        "預算：一休 15,000～30,000 円 vs 食べログ 夜 100,000 円～"
+      ]
+    }
+  },
+  {
+    "id": "shima-taberna-azul",
+    "type": "restaurant",
+    "name": {
+      "ja": "タベルナ・アスール",
+      "kana": "たべるな あすーる",
+      "zh": "Taberna AZUL（志摩地中海村 buffet）",
+      "en": null
+    },
+    "area": "shima",
+    "region": "shima-sakko",
+    "coords": [
+      136.804406,
+      34.3029277
+    ],
+    "coordsSource": "google-maps-url",
+    "address": "三重県志摩市浜島町迫子2619-1",
+    "hours": {
+      "mon": [
+        [
+          "07:30",
+          "10:00"
+        ],
+        [
+          "17:30",
+          "21:00"
+        ]
+      ],
+      "tue": [
+        [
+          "07:30",
+          "10:00"
+        ],
+        [
+          "17:30",
+          "21:00"
+        ]
+      ],
+      "wed": [
+        [
+          "07:30",
+          "10:00"
+        ],
+        [
+          "17:30",
+          "21:00"
+        ]
+      ],
+      "thu": [
+        [
+          "07:30",
+          "10:00"
+        ],
+        [
+          "17:30",
+          "21:00"
+        ]
+      ],
+      "fri": [
+        [
+          "07:30",
+          "10:00"
+        ],
+        [
+          "17:30",
+          "21:00"
+        ]
+      ],
+      "sat": [
+        [
+          "07:30",
+          "10:00"
+        ],
+        [
+          "17:30",
+          "21:00"
+        ]
+      ],
+      "sun": [
+        [
+          "07:30",
+          "10:00"
+        ],
+        [
+          "17:30",
+          "21:00"
+        ]
+      ],
+      "holiday": null,
+      "lastEntry": [
+        "09:30",
+        "20:00"
+      ],
+      "note": "官網：朝食 7:30～10:00（最終入場 9:30）、ディナー 17:30～21:00（最終入場 20:00，有的日子 18:00 開始）；ランチ 12:00～14:00 只在特定日（2026-10 只有 4 個週日，另有團體包場日），要預約"
+    },
+    "closedNote": "午餐只在特定日營業；朝食 不定休",
+    "febNote": "2027-02 的午餐營業日未公告（2026-10 只開週日 → 2/7（日）、2/11（祝）要確認）；晚餐非住客能不能用官網沒寫，要問",
+    "closures": [],
+    "photos": [
+      {
+        "url": "https://lh3.googleusercontent.com/grass-cs/AABkmLf0R2_Q0MZWGVwEWPdQNPd81v4d_JAyBGegMyw3DnjtXALh2wwxegIYNFlhrzIWfEfW4OLcf8NhndsXhVzqpNKeBZ7UJ8EhKcfSTbiQBBKAnerOZFjQ4JspybkefAGceUA6pv_gww=w800",
+        "page": "https://maps.google.com/?cid=6063237647639332055",
+        "kind": "google",
+        "credit": "Google マップ",
+        "license": null
+      }
+    ],
+    "links": {
+      "official": "https://www.puebloamigo.jp/meal/azul/",
+      "googleMaps": "https://maps.google.com/?cid=6063237647639332055",
+      "tabelog": "https://tabelog.com/mie/A2403/A240303/24016781/",
+      "instagram": "@shima_chichuukaimura_azul"
+    },
+    "tags": [],
+    "tier": null,
+    "sources": [
+      {
+        "type": "tabelog",
+        "url": "https://tabelog.com/mie/A2403/A240303/24016781/",
+        "retrieved": "2026-10-19",
+        "note": "店舗情報：分數、席數、預約、個室、貸切、營業時間、お子様連れ"
+      },
+      {
+        "type": "google-maps",
+        "url": "https://maps.google.com/?cid=6063237647639332055",
+        "retrieved": "2026-10-19",
+        "note": "星數、評論數、座標、照片"
+      },
+      {
+        "type": "official",
+        "url": "https://www.puebloamigo.jp/meal/azul/",
+        "retrieved": "2026-10-19",
+        "note": "三餐時間、價格、10 月午餐營業日、預約"
+      },
+      {
+        "type": "official",
+        "url": "https://puebloamigo.jp/dayuse/",
+        "retrieved": "2026-10-19",
+        "note": "AZUL 午餐方案 30 名限定、20 名以上包場"
+      },
+      {
+        "type": "tourism",
+        "url": "https://www.kankomie.or.jp/report/993",
+        "retrieved": "2026-10-19",
+        "note": "2021：日帰り可、午餐土日祝、朝食舊價格"
+      }
+    ],
+    "verified": false,
+    "anchors": [],
+    "contexts": [
+      "lunch",
+      "dinner"
+    ],
+    "access": "car",
+    "cuisine": [
+      "洋食・義式",
+      "其他"
+    ],
+    "priceRange": "午 buffet ¥3,080／晚 buffet ¥6,600（小學生 1,980／3,300 円；官網）＋入村料",
+    "price": {
+      "lunch": [
+        3080,
+        3080
+      ],
+      "dinner": [
+        6600,
+        6600
+      ]
+    },
+    "stayMinutes": null,
+    "mustTry": [],
+    "menu": [
+      {
+        "url": "https://tabelog.com/mie/A2403/A240303/24016781/dtlmenu/photo/",
+        "source": "tabelog",
+        "retrieved": "2026-10-19"
+      }
+    ],
+    "ratings": {
+      "tabelog": 3.33,
+      "tabelogReviews": 49,
+      "google": 4.2,
+      "googleReviews": 83,
+      "note": "Google 店名「タベルナ アスール（志摩地中海村内）」"
+    },
+    "inclusion": [
+      "A",
+      "F3"
+    ],
+    "tabelogOwner": false,
+    "googleName": "タベルナ アスール（志摩地中海村内）",
+    "notes": "志摩地中海村 內的西班牙風 buffet（食べログ 3.33／49、Google 4.2／83），晚餐 buffet 大人 6,600 円、有兒童價，伊勢海老單點 3,300 円。午餐只在特定日（2026-10 只有週日），午餐方案 1 日 30 名、20 名以上可包場——日子對得上的話是 sakko 15 人一起吃午餐的選項。晚餐非住客可否要問。",
+    "group": {
+      "seats": null,
+      "maxReservation": null,
+      "privateRoom": false,
+      "buyout": "20 名以上可包場（午餐，官網）",
+      "groupMenu": "午餐方案 大人 3,080／小學生 1,980／3 歲以上 880 円，1 日 30 名限定、20 名以上可包場；團體要事先聯絡（官網 dayuse）",
+      "fit15": "yes",
+      "fitSubgroup": "yes",
+      "source": "官網：午餐方案 1 日 30 名、20 名以上包場、團體事先聯絡 → yes（只在午餐營業日）；食べログ 貸切不可"
+    },
+    "reservation": {
+      "accepted": "yes",
+      "methods": [
+        "phone"
+      ],
+      "phone": "0599-52-1336",
+      "url": null,
+      "language": "日文",
+      "note": "午晚都要預約；電話 9:00～18:00（官網）",
+      "leadDays": null
+    },
+    "seating": [],
+    "kids": {
+      "allowed": "yes",
+      "minAge": null,
+      "kidsMenu": null,
+      "note": "官網兒童價：晚 小學生 3,300、3 歲以上 2,200 円、未滿 3 歲免費；午 1,980／880 円"
+    },
+    "accessibility": {
+      "barrierFree": "非無障礙（志摩地中海村 Q&A）",
+      "note": "志摩地中海村 內：10:00～17:00 進村要付入村料（大人 700／小學生 300 円，用餐客也要），村內石板路、階梯多，官網 Q&A「バリアフリーな施設ではございません」；鵜方站計程車約 15 分、停車場 120 台"
+    },
+    "smoking": null,
+    "extra": {
+      "lodgingId": "shima-chichukaimura-hotel",
+      "nonGuestDining": "午餐 yes（官網：日帰り入村客也可、日帰り方案有 AZUL 午餐）；晚餐 unknown（官網沒寫）（2026-10-19）",
+      "conflicts": [
+        "午餐營業日：觀光三重 2021「土曜、日曜、祝日等」 vs 官網 2026-10 只有週日",
+        "朝食價格：觀光三重 2021 大人 2,200 円 vs 官網 3,080 円",
+        "午餐開始：食べログ 11:30 vs 官網 12:00",
+        "午餐營業日：觀光三重 2021「土日祝」 vs 官網 2026-10 只有週日",
+        "晚餐結束：食べログ 22:00 vs 官網 21:00"
+      ]
+    }
   }
 ]

@@ -3142,10 +3142,12 @@
       "C"
     ],
     "reason": null,
-    "pointId": null,
+    "pointId": "shima-amimoto-yashiro",
     "ratings": {
       "tabelog": 3.52,
-      "tabelogReviews": 127
+      "tabelogReviews": 127,
+      "google": 4.4,
+      "googleReviews": 529
     },
     "links": {
       "tabelog": "https://tabelog.com/mie/A2403/A240303/24001184/"
@@ -3155,8 +3157,7 @@
       "dinner"
     ],
     "mentions": [],
-    "note": "類型：海鮮丼；地址：浜島町浜島1776-4；定休（食べログ列表）：水曜日；貸切可（食べログ列表）；預算（食べログ列表）：夜 3000～3999／昼 2000～2999；觀光協會「食べる」：11:00～14:00、17:00～20:00（售完為止），水休、第 1・3 木休（祝日營業）→ 旅程中 2/3、2/4、2/10 休",
-    "detailPending": true
+    "note": "類型：海鮮丼；地址：浜島町浜島1776-4；定休（食べログ列表）：水曜日；貸切可（食べログ列表）；預算（食べログ列表）：夜 3000～3999／昼 2000～2999；觀光協會「食べる」：11:00～14:00、17:00～20:00（售完為止），水休、第 1・3 木休（祝日營業）→ 旅程中 2/3、2/4、2/10 休"
   },
   {
     "key": "tabelog-24009839",
@@ -3165,11 +3166,11 @@
     },
     "region": "shima-hamajima",
     "category": "料理旅館、海鮮",
-    "status": "pending",
+    "status": "excluded",
     "criteria": [
       "C"
     ],
-    "reason": "住宿本體（lodging shima-hamajima-tsubaki，湯元館 ニュー浜島），符合 C（個室、貸切；3.22／27）：個室只寫 2 人；非住客用餐沒有來源（判斷細則 F③），T9d 確認",
+    "reason": "住宿本體（lodging shima-hamajima-tsubaki）。T9d 確認：官網 料理頁・FAQ 只有住宿附的晚餐，沒有「日帰り」「お食事のみ」「昼食」「宴会」，溫泉是住客專用 → 照判斷細則 F③ 不收錄（食べログ「完全予約制」的意思列 questions 電話確認，2026-10-19）",
     "pointId": null,
     "ratings": {
       "tabelog": 3.22,
@@ -3191,15 +3192,18 @@
     },
     "region": "shima-hamajima",
     "category": "ホテル",
-    "status": "pending",
+    "status": "included",
     "criteria": [
-      "C"
+      "C",
+      "F3"
     ],
-    "reason": "住宿本體（lodging shima-oedo-iseshima），符合 C（個室；3.10／45）：大型溫泉飯店的ビュッフェ，非住客用餐沒有來源（判斷細則 F③），T9d 確認",
-    "pointId": null,
+    "reason": "住宿本體（lodging shima-oedo-iseshima）。T9d 確認：官網「日帰りのご案内」有非住客的『入浴付ディナーバイキング（要事前予約）』17:00～18:30、大人 4,200 円～ → F③ 收錄，id shima-oedo-iseshima-dining（2026-10-19）",
+    "pointId": "shima-oedo-iseshima-dining",
     "ratings": {
       "tabelog": 3.1,
-      "tabelogReviews": 45
+      "tabelogReviews": 45,
+      "google": 3.9,
+      "googleReviews": 1749
     },
     "links": {
       "tabelog": "https://tabelog.com/mie/A2403/A240303/24011169/"
@@ -3222,10 +3226,12 @@
       "D2"
     ],
     "reason": null,
-    "pointId": null,
+    "pointId": "shima-miyuki-hamajima",
     "ratings": {
       "tabelog": 3.03,
-      "tabelogReviews": 8
+      "tabelogReviews": 8,
+      "google": 4.3,
+      "googleReviews": 75
     },
     "links": {
       "tabelog": "https://tabelog.com/mie/A2403/A240303/24001105/"
@@ -3234,8 +3240,7 @@
       "dinner"
     ],
     "mentions": [],
-    "note": "類型：海鮮丼；地址：浜島町浜島2798；定休（食べログ列表）：火曜日；個室（食べログ列表）：個室有(4〜6人可)；D②（不含晚餐的 OCEAN VILLA 倭（南張1681）附近沒有晚餐的店；南張只有 メロンハウス、SEA HOUSE）：3.03／8，個室 4〜6 人；觀光協會「食べる」：17:00～22:00，火休（祝日營業）；浜島市街，距離 T9e 用座標算",
-    "detailPending": true
+    "note": "類型：海鮮丼；地址：浜島町浜島2798；定休（食べログ列表）：火曜日；個室（食べログ列表）：個室有(4〜6人可)；D②（不含晚餐的 OCEAN VILLA 倭（南張1681）附近沒有晚餐的店；南張只有 メロンハウス、SEA HOUSE）：3.03／8，個室 4〜6 人；觀光協會「食べる」：17:00～22:00，火休（祝日營業）；浜島市街，距離 T9e 用座標算"
   },
   {
     "key": "tabelog-24001160",
@@ -3249,10 +3254,12 @@
       "D1"
     ],
     "reason": null,
-    "pointId": null,
+    "pointId": "shima-iso-ryori-yacht",
     "ratings": {
       "tabelog": 3.22,
-      "tabelogReviews": 65
+      "tabelogReviews": 65,
+      "google": 4.2,
+      "googleReviews": 298
     },
     "links": {
       "tabelog": "https://tabelog.com/mie/A2403/A240303/24001160/"
@@ -3261,8 +3268,7 @@
       "lunch"
     ],
     "mentions": [],
-    "note": "類型：海鮮丼；地址：浜島町浜島1161-6；D①（hamajima 2/3、2/10（週三）、2/4（第 1 木）午餐 0 家：網元の店八代 休）：3.22／65；觀光協會「食べる」：平日 11:00～18:00 入店（無休息）、日祝 11:00～售完，火休（遇祝日營業）",
-    "detailPending": true
+    "note": "類型：海鮮丼；地址：浜島町浜島1161-6；D①（hamajima 2/3、2/10（週三）、2/4（第 1 木）午餐 0 家：網元の店八代 休）：3.22／65；觀光協會「食べる」：平日 11:00～18:00 入店（無休息）、日祝 11:00～售完，火休（遇祝日營業）"
   },
   {
     "key": "tabelog-24022003",
@@ -3300,10 +3306,12 @@
       "D1"
     ],
     "reason": null,
-    "pointId": null,
+    "pointId": "shima-nishiguchiya",
     "ratings": {
       "tabelog": 3.06,
-      "tabelogReviews": 17
+      "tabelogReviews": 17,
+      "google": 4.3,
+      "googleReviews": 54
     },
     "links": {
       "tabelog": "https://tabelog.com/mie/A2403/A240303/24011240/"
@@ -3312,8 +3320,7 @@
       "lunch"
     ],
     "mentions": [],
-    "note": "類型：其他；地址：浜島町浜島2872-1；定休（食べログ列表）：水曜日；預算（食べログ列表）：夜 -／昼 ～999；D①（hamajima 店少，依口コミ數取第 3 家）：3.06／17，ラーメン・食堂・うどん；水休（補不了週三）",
-    "detailPending": true
+    "note": "類型：其他；地址：浜島町浜島2872-1；定休（食べログ列表）：水曜日；預算（食べログ列表）：夜 -／昼 ～999；D①（hamajima 店少，依口コミ數取第 3 家）：3.06／17，ラーメン・食堂・うどん；水休（補不了週三）"
   },
   {
     "key": "tabelog-24013678",
@@ -3327,10 +3334,12 @@
       "D1"
     ],
     "reason": null,
-    "pointId": null,
+    "pointId": "shima-sakanoue",
     "ratings": {
       "tabelog": 3.18,
-      "tabelogReviews": 40
+      "tabelogReviews": 40,
+      "google": 4.2,
+      "googleReviews": 102
     },
     "links": {
       "tabelog": "https://tabelog.com/mie/A2403/A240303/24013678/"
@@ -3340,8 +3349,7 @@
       "cafe"
     ],
     "mentions": [],
-    "note": "類型：咖啡・甜點；地址：浜島町桧山路31-26；定休（食べログ列表）：月曜日、火曜日、水曜日、木曜日、金曜日；預算（食べログ列表）：夜 5000～5999／昼 1000～1999；D①（hamajima 週三、2/4 午餐 0 家）：3.18／40；**定休不一致**：食べログ列表 月～金休、觀光協會「食べる」11:00〜16:30（L.O. ランチ 14:00），月休 → T9d 確認",
-    "detailPending": true
+    "note": "類型：咖啡・甜點；地址：浜島町桧山路31-26；定休（食べログ列表）：月曜日、火曜日、水曜日、木曜日、金曜日；預算（食べログ列表）：夜 5000～5999／昼 1000～1999；D①（hamajima 週三、2/4 午餐 0 家）：3.18／40；**定休不一致**：食べログ列表 月～金休、觀光協會「食べる」11:00〜16:30（L.O. ランチ 14:00），月休 → T9d 確認"
   },
   {
     "key": "tabelog-24020633",
@@ -3699,13 +3707,16 @@
     "status": "included",
     "criteria": [
       "A",
-      "C"
+      "C",
+      "F3"
     ],
     "reason": null,
-    "pointId": null,
+    "pointId": "shima-rias-by-cococha",
     "ratings": {
       "tabelog": 3.6,
-      "tabelogReviews": 90
+      "tabelogReviews": 90,
+      "google": 4.3,
+      "googleReviews": 166
     },
     "links": {
       "tabelog": "https://tabelog.com/mie/A2403/A240303/24015478/"
@@ -3723,8 +3734,7 @@
         "retrieved": "2026-10-18"
       }
     ],
-    "note": "類型：洋食・義式；地址：浜島町迫子2619-1；個室（食べログ列表）：個室有；貸切可（食べログ列表）；預算（食べログ列表）：夜 10000～14999／昼 -；志摩地中海村 內（lodging shima-chichukaimura-hotel）；觀光協會「食べる」：Lunch 11:30～14:00（13:00 L.O.）、Dinner 17:30～22:00（20:00 L.O.），志摩地中海村的休館日休（2/17～2/19，旅程後）；觀光三重 2021-11-20：「日帰りでも利用可」、ディナー 事前予約のみ、營業日看官網",
-    "detailPending": true
+    "note": "類型：洋食・義式；地址：浜島町迫子2619-1；個室（食べログ列表）：個室有；貸切可（食べログ列表）；預算（食べログ列表）：夜 10000～14999／昼 -；志摩地中海村 內（lodging shima-chichukaimura-hotel）；觀光協會「食べる」：Lunch 11:30～14:00（13:00 L.O.）、Dinner 17:30～22:00（20:00 L.O.），志摩地中海村的休館日休（2/17～2/19，旅程後）；觀光三重 2021-11-20：「日帰りでも利用可」、ディナー 事前予約のみ、營業日看官網"
   },
   {
     "key": "tabelog-24008794",
@@ -3733,11 +3743,11 @@
     },
     "region": "shima-sakko",
     "category": "カフェ、ヨーロッパ料理、オーベルジュ",
-    "status": "pending",
+    "status": "excluded",
     "criteria": [
       "C"
     ],
-    "reason": "住宿本體（lodging shima-chichukaimura-hotel），符合 C（個室；3.25／76）：館內餐廳 リアス バイ ココチャ、タベルナ・アスール、カフェ アミーゴ 另列；這筆可能是オーベルジュ的晚餐，T9d 確認非住客用餐",
+    "reason": "住宿本體（lodging shima-chichukaimura-hotel）。T9d 確認：這筆是志摩地中海村的總條目，官網的村內餐飲只有 RIAS by Kokotxa、タベルナ・アスール、カフェ アミーゴ、ペスカドール；食べログ「レストラン 70 席」的時間和 RIAS 相同、「カフェ 20 席」是カフェ アミーゴ → 和收錄的 RIAS、アスール 重複，不另建資料點（非住客可進村，入村料 700 円，2026-10-19）",
     "pointId": null,
     "ratings": {
       "tabelog": 3.25,
@@ -3760,11 +3770,11 @@
     },
     "region": "shima-sakko",
     "category": "日本料理、海鮮",
-    "status": "included",
+    "status": "excluded",
     "criteria": [
       "C"
     ],
-    "reason": null,
+    "reason": "住宿附設（HOTEL NEMU 1F，lodging shima-nemu-resort）。T9d 確認：2026-04 改裝後仍營業（朝・昼・夕），但官網 restaurant・satoumi 頁沒有「宿泊者以外」「お食事のみ」，洋食晚餐寫「全客室」對象，晚餐價格未上 → 照判斷細則 F③ 不收錄（個室 10～20 人是全員晚餐的候選，非住客可否列 questions 電話確認，可以的話 T9g 補回，2026-10-19）",
     "pointId": null,
     "ratings": {
       "tabelog": 3.13,
@@ -3785,8 +3795,7 @@
         "retrieved": "2026-10-18"
       }
     ],
-    "note": "類型：和食・割烹；地址：浜島町迫子2692-3；個室（食べログ列表）：個室有(2〜20人可)；預算（食べログ列表）：夜 10000～14999／昼 -；HOTEL NEMU 內的和食（lodging shima-nemu-resort），住宿附設，非住客用餐 T9d 確認（NEMU 2026-04-18 改裝重開，觀光三重 2022 的介紹可能已經不同）；個室 2〜20 人 → 全員晚餐的候選",
-    "detailPending": true
+    "note": "類型：和食・割烹；地址：浜島町迫子2692-3；個室（食べログ列表）：個室有(2〜20人可)；預算（食べログ列表）：夜 10000～14999／昼 -；HOTEL NEMU 內的和食（lodging shima-nemu-resort），住宿附設，非住客用餐 T9d 確認（NEMU 2026-04-18 改裝重開，觀光三重 2022 的介紹可能已經不同）；個室 2〜20 人 → 全員晚餐的候選"
   },
   {
     "key": "tabelog-24014037",
@@ -3795,11 +3804,11 @@
     },
     "region": "shima-sakko",
     "category": "料理旅館",
-    "status": "pending",
+    "status": "excluded",
     "criteria": [
       "A"
     ],
-    "reason": "住宿本體（AMANEMU，T9b 沒有候選：楽天沒有），符合 A（3.84／78）：館內餐廳 アマネムダイニング 另列；非住客用餐沒有來源（判斷細則 F③），T9d 確認",
+    "reason": "住宿本體（AMANEMU）。T9d 確認：食べログ 備考寫這筆是インルームダイニング（客房送餐），只對住客；館內餐廳另列 アマネムダイニング（收錄）→ 不收錄（2026-10-19）",
     "pointId": null,
     "ratings": {
       "tabelog": 3.84,
@@ -3823,23 +3832,26 @@
     "category": "日本料理",
     "status": "included",
     "criteria": [
-      "A"
+      "A",
+      "F3"
     ],
     "reason": null,
-    "pointId": null,
+    "pointId": "shima-amanemu-dining",
     "ratings": {
       "tabelog": 3.56,
-      "tabelogReviews": 91
+      "tabelogReviews": 91,
+      "google": 4.5,
+      "googleReviews": 15
     },
     "links": {
       "tabelog": "https://tabelog.com/mie/A2403/A240303/24015181/"
     },
     "contexts": [
+      "lunch",
       "dinner"
     ],
     "mentions": [],
-    "note": "類型：和食・割烹；地址：浜島町迫子2165；預算（食べログ列表）：夜 100000～／昼 -；アマネム（AMANEMU）館內的餐廳，住宿附設，非住客用餐 T9d 確認（T9b 沒有アマネム的候選：楽天沒有）；夜 100,000 円～",
-    "detailPending": true
+    "note": "類型：和食・割烹；地址：浜島町迫子2165；預算（食べログ列表）：夜 100000～／昼 -；アマネム（AMANEMU）館內的餐廳，住宿附設，非住客用餐 T9d 確認（T9b 沒有アマネム的候選：楽天沒有）；夜 100,000 円～"
   },
   {
     "key": "tabelog-24016781",
@@ -3850,19 +3862,23 @@
     "category": "ビュッフェ",
     "status": "included",
     "criteria": [
-      "A"
+      "A",
+      "F3"
     ],
     "reason": null,
-    "pointId": null,
+    "pointId": "shima-taberna-azul",
     "ratings": {
       "tabelog": 3.33,
-      "tabelogReviews": 49
+      "tabelogReviews": 49,
+      "google": 4.2,
+      "googleReviews": 83
     },
     "links": {
       "tabelog": "https://tabelog.com/mie/A2403/A240303/24016781/"
     },
     "contexts": [
-      "lunch"
+      "lunch",
+      "dinner"
     ],
     "mentions": [
       {
@@ -3873,8 +3889,7 @@
         "retrieved": "2026-10-18"
       }
     ],
-    "note": "類型：其他；地址：浜島町迫子2619-1；預算（食べログ列表）：夜 -／昼 2000～2999；志摩地中海村 內的ビュッフェ；觀光三重 2021-11-20：朝食 7:30～10:00、ランチ 土日祝 12:00～14:00（平日沒有午餐，T9d 看官網確認現在的營業）",
-    "detailPending": true
+    "note": "類型：其他；地址：浜島町迫子2619-1；預算（食べログ列表）：夜 -／昼 2000～2999；志摩地中海村 內的ビュッフェ；觀光三重 2021-11-20：朝食 7:30～10:00、ランチ 土日祝 12:00～14:00（平日沒有午餐，T9d 看官網確認現在的營業）"
   },
   {
     "key": "tabelog-24013194",
