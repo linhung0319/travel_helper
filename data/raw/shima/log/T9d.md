@@ -38,3 +38,32 @@
 - 第 2 批（ugata 25＋pending 2：プロヴァンス、フィオーレ志摩）照這批的步驟；`t9d-1/judgement-src.mjs`、`notes-to-json.mjs`、`dp-add.mjs` 可以照抄改內容。
 - browser_batch 控制在約 12 個動作；食べログ口コミ頁回傳很長（每頁約 5～8k 字）。
 - 第一晚的晚餐：賢島 沒有平價、確定營業的晚餐店，鵜方站周邊（第 2 批）是重點，要確認 2/2 週二的營業和 19 時以後的 L.O.。
+
+## 第 2 批：shima-ugata 25 家（2026-10-19）
+
+### 結果
+- 收錄 **24 筆**（ugata）：鯛、長太屋、おとや、磯っ子、大家族、まぶしのいちや、伊鈴屋、東山物産、銀鱗、みやぎ野、宮本、京城、うえむら、LA PIZZICA、ノルポル、ろっぽん木、しまかぜ食堂、グリルエドイチ、とばり、みやま亭、わさび、Michelle、shucafe、プロヴァンス（`shima-provence-dining`）。
+- **pending 2**：プロヴァンス 收錄（F3，觀光協會的非住客晚餐）；フィオーレ志摩 排除（官網只剩不定期カフェ）。
+- fit15：yes 13、split 3、unknown 8（README）。照片：官網 9 張（photo-check 200）＋Google 主圖，東山物産 0 張（官網維護中、Google 主圖抓不到）。
+- 第一晚（2/2）晚餐的結論寫在 README「第一晚（2/2 週二）的晚餐」。
+
+### 步驟
+1. `candidates.mjs export --keys … --ids …` → `t9d-2/batch.json`（25 家；住宿附設 `shima-provence-dining`、`shima-nocturne-no-mori-dining`）。
+2. **食べログ（Chrome）**：`tabelog-info --store`，店家頁 25＋コース頁 6（長太屋、LA PIZZICA、ろっぽん木、いちや、ノルポル、プロヴァンス）＝ browser_batch 5 次。沒有 Cloudflare 畫面。
+3. **讀文 subagent 5 個**（背景，`t9d-2/prompt-common.md`：「這一批的重點」是第一晚的晚餐時間、L.O.、週二營業、團體）：5 家 × 5。25 份筆記。官網是 Shift_JIS 的（鯛、おとや、磯っ子 Q&A）WebFetch 會亂碼：B 用 curl＋iconv 讀了磯っ子 Q&A；A 只辨識出部分。
+4. **Google Maps**：`google-place --google --store`，browser_batch 4 次＋截圖點選 1 次（長太屋：列表有「松阪牛肉亭 長太屋」和肉店「松阪牛の長太屋」）。プロヴァンス 搜到地址型地點，用住宿本體（lodgingId）。
+5. `candidates.mjs set`（`cand-status.json`）→ `photo-check` → `build-restaurants draft` → `judgement-src.mjs` → `build --candidates`（先 `--dry-run`）。validate 通過，commit。
+6. **口コミ・評論**（對象 18 家：fit15 yes／split 16＋食べログ 3.40 以上的 東山物産、宮本；Google 4.3／100 以上的都已在內）：tabelog-reviews（最新 20＋關鍵字）browser_batch 9 次、google-reviews（低分順＋第一晚候選的搜尋）9 次，截圖 0、逾時 0（一個 batch 8～14 個動作）。重點寫 `t9d-2/notes/` → `notes-to-json.mjs` → `dossier-merge.mjs`；回填 `patch-r-src.mjs` → `patch-r.json` → `apply-patch.mjs`（先 `--dry-run`）。
+7. 結束：www.google.com、tabelog.com 的 `__th_*` localStorage 都 removeItem（確認 0 筆），關掉分頁。沒有遇到驗證碼、登入、封鎖、對話框。
+
+### 口コミ・評論的讀法
+- 食べログ：最新 20＋「中止」「冬」，再依缺口加詞：kids unknown →「子供」（大家族、LA PIZZICA、伊鈴屋、うえむら、みやぎ野）、seating 空 →「座敷」（磯っ子）、團體 →「団体」「宴会」（鯛、長太屋、うえむら）、定休有衝突 →「火曜」（とばり）、晚上營業 →「夜」（伊鈴屋）、非住客 →「日帰り」（プロヴァンス）。
+- Google：低分順 10 則；第一晚候選加搜尋（鯛「階段」、長太屋・大家族「団体」、プロヴァンス 是住宿本體只搜「ディナー」）。評論少的店低分順包含 3～4 星（みやぎ野 最低 2 星）。
+- 發現：LA PIZZICA 2026/01 移轉（讀文的「神明1506-1」是舊址）；大家族 依預算おまかせ＋兒童 1,000 円；東山物産 只能預約鰻魚；伊鈴屋 晚上有營業；グリルエドイチ 在陡坡上；磯っ子 2F 全座敷；おとや 沒標價、結帳高。
+
+### WebSearch
+- 主 session 0 次；讀文 subagent 9 次（A 1、B 3、C 1、D 1、E 3）。搜尋都有回應（わさび、shucafe、うえむら、いちや 沒找到店家頁），沒有額度用完的跡象。
+
+### 給下一批
+- 第 3 批（isobe＋matoya＋anori＋kokufu 21＋pending 5）照這批的步驟；`t9d-2/judgement-src.mjs`、`patch-r-src.mjs`、`dp-add.mjs` 可以照抄改內容。
+- `google-reviews` 一次跑 3 家的 open＋lowest（12 個動作）沒問題；食べログ口コミ 7 頁一個 batch 也沒逾時。

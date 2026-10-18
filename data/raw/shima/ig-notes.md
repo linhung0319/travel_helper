@@ -20,4 +20,20 @@
 | @mirador_shima | 横山天空カフェテラス ミラドール志摩（`shima-mirador`） | | 食べログ公式アカウント欄 |
 | @hiramatsu_kashikojima | THE HIRAMATSU 賢島（excluded，沒有資料點） | | 官網 |
 
+| **第 2 批：shima-ugata** |  |  |  |
+| @tempra_tobari | 天ぷら とばり（`shima-tobari`） |  | 食べログ公式アカウント欄 |
+| @chodaya_matsusakabeef | 長太屋（`shima-chotaya`） |  | 食べログ公式アカウント欄（另有 X @chodaya_BEEF） |
+| @daikazoku.shima | 海の食堂 大家族（`shima-daikazoku`） |  | 食べログ公式アカウント欄、Google 網站欄 |
+| @otoyasushi_shima | おとや（`shima-otoya`） |  | 官網（讀文） |
+| @isokko_manayan | 磯っ子（`shima-isokko`） |  | 食べログ公式アカウント欄、官網；官網寫臨時休業在 IG 公告 |
+| @mabushinoichiya | まぶしのいちや（`shima-mabushi-ichiya`） |  | 食べログ公式アカウント欄、Google 網站欄 |
+| @norpol_french | ノルポル（`shima-norpol`） |  | 食べログ公式アカウント欄、官網；官網寫臨時休業看 IG |
+| @yakiniku_uemura | 焼肉うえむら（`shima-yakiniku-uemura`） |  | 食べログ公式アカウント欄（另有 FB） |
+| @higasiyama_bussan | 炭火焼うなぎ 東山物産（`shima-higashiyama-bussan`） |  | 食べログ公式アカウント欄（另有 X @Higashi_Bussan） |
+| @petitrestaurant_miyamoto | プティレストラン宮本（`shima-miyamoto`） |  | 食べログ公式アカウント欄、官網 |
+| @iseshima.wasabi | わさび（`shima-wasabi`） |  | Google 網站欄（食べログ、官網都沒有）；營業時間沒有其他來源，T18 看最近貼文 |
+| @6903michelle | パスタ屋 Michelle（`shima-michelle`） |  | 食べログ公式アカウント欄、Google 網站欄 |
+| @auberge_provence | プロヴァンス（`shima-provence-dining`） | 住宿本體 | 食べログ公式アカウント欄 |
+| @fiore.shima | フィオーレ志摩（excluded，沒有資料點；住宿 shima-nocturne-no-mori） | 住宿 | 食べログ公式アカウント欄 |
 - 沒有帳號：はな屋 あじさい、芳カツ亭、近鉄賢島カンツリークラブ レストラン（官網、食べログ 都沒有連結）。
+- 第 2 批沒有帳號：鯛、伊鈴屋、銀鱗、みやぎ野、京城、LA PIZZICA、ろっぽん木、しまかぜ食堂、グリルエドイチ、みやま亭、shucafe（食べログ、官網、Google 都沒有連結）。
