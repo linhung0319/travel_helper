@@ -131,7 +131,8 @@ await (async (step) => {
     const tab = await waitFor(reviewTab);
     if (!tab) fail('找不到「クチコミ」分頁：確認是用 hl=ja 開的店家頁');
     tab.click(); // 分頁用 .click()（送 pointer 事件反而不會切換，おく文 實測）
-    if (!(await waitFor(() => reviewEls().length && sortButton() && (searchButton() || searchInput())))) {
+    // 住宿頁面（伊勢神泉）評論要捲動才載入：等待時沒有評論就把面板捲到底
+    if (!(await waitFor(() => (reviewEls().length || (sortButton() && nudge())) && sortButton() && (searchButton() || searchInput())))) {
       fail('點了クチコミ分頁，但評論或排序、搜尋按鈕沒出現');
     }
     return { step, ok: true, loaded: reviewEls().length };
@@ -146,6 +147,8 @@ await (async (step) => {
       [...document.querySelectorAll('[role="menuitemradio"]')].find((e) => e.textContent.includes(label)),
     );
     if (!item) fail(`排序選單裡找不到「${label}」`);
+    // 選單一出現就點會沒套用（河崎商人館：送 pointer 事件也不行），等選單動畫結束再點
+    await sleep(700);
     const before = firstId();
     press(item);
     await waitForNewList(before);
@@ -159,6 +162,7 @@ await (async (step) => {
         [...document.querySelectorAll('[role="menuitemradio"]')].find((e) => e.textContent.includes(label)),
       );
       if (item2) {
+        await sleep(700);
         press(item2);
         await waitForNewList(again);
         result = await extract();
