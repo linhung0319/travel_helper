@@ -2994,24 +2994,25 @@
     "status": "included",
     "criteria": [
       "D1",
-      "D2"
+      "D2",
+      "F3"
     ],
     "reason": null,
-    "pointId": null,
+    "pointId": "shima-hamanagi",
     "ratings": {
       "tabelog": 3.05,
-      "tabelogReviews": 13
+      "tabelogReviews": 13,
+      "google": 3.7,
+      "googleReviews": 30
     },
     "links": {
       "tabelog": "https://tabelog.com/mie/A2403/A240303/24002114/"
     },
     "contexts": [
-      "lunch",
       "dinner"
     ],
     "mentions": [],
-    "note": "類型：和食・割烹；地址：大王町船越3238-1 都リゾート 奥志摩 アクアフォレスト；個室（食べログ列表）：個室有；都リゾート 奥志摩 アクアフォレスト 館內的餐廳（lodging shima-aqua-forest），住宿附設，非住客用餐 T9d 確認；D①（tomoyama A～C 0 家）＋D②（不含晚餐的 リゾートパーク ともやま、Tabist ヴィラダイオー、UMIBE、UMIBE Terrace 附近沒有晚餐的店）；觀光三重 report/997（2021-11-18）：夕食ビュッフェ 大人 4,840 円、小人 3,390 円、幼兒 2,600 円（住客方案的寫法）",
-    "detailPending": true
+    "note": "類型：和食・割烹；地址：大王町船越3238-1 都リゾート 奥志摩 アクアフォレスト；個室（食べログ列表）：個室有；都リゾート 奥志摩 アクアフォレスト 館內的餐廳（lodging shima-aqua-forest），住宿附設，非住客用餐 T9d 確認；D①（tomoyama A～C 0 家）＋D②（不含晚餐的 リゾートパーク ともやま、Tabist ヴィラダイオー、UMIBE、UMIBE Terrace 附近沒有晚餐的店）；觀光三重 report/997（2021-11-18）：夕食ビュッフェ 大人 4,840 円、小人 3,390 円、幼兒 2,600 円（住客方案的寫法）"
   },
   {
     "key": "tabelog-24011599",
@@ -3049,20 +3050,22 @@
       "D1"
     ],
     "reason": null,
-    "pointId": null,
+    "pointId": "shima-donguri",
     "ratings": {
       "tabelog": 3.03,
-      "tabelogReviews": 3
+      "tabelogReviews": 3,
+      "google": 4.1,
+      "googleReviews": 10
     },
     "links": {
       "tabelog": "https://tabelog.com/mie/A2403/A240303/24018372/"
     },
     "contexts": [
-      "lunch"
+      "lunch",
+      "cafe"
     ],
     "mentions": [],
-    "note": "類型：咖啡・甜點；地址：大王町船越314-35；D①（tomoyama A～C 0 家）：3.03／3，喫茶・食堂；大王町船越314-35（住宿 UMIBE 船越312-5 旁）；營業時間沒有來源（T9d 查）",
-    "detailPending": true
+    "note": "類型：咖啡・甜點；地址：大王町船越314-35；D①（tomoyama A～C 0 家）：3.03／3，喫茶・食堂；大王町船越314-35（住宿 UMIBE 船越312-5 旁）；營業時間沒有來源（T9d 查）"
   },
   {
     "key": "tabelog-24010504",
@@ -3076,10 +3079,12 @@
       "F2"
     ],
     "reason": null,
-    "pointId": null,
+    "pointId": "shima-amagoya-isondo",
     "ratings": {
       "tabelog": 3.07,
-      "tabelogReviews": 13
+      "tabelogReviews": 13,
+      "google": 4.2,
+      "googleReviews": 63
     },
     "links": {
       "tabelog": "https://tabelog.com/mie/A2403/A240303/24010504/"
@@ -3088,8 +3093,7 @@
       "lunch"
     ],
     "mentions": [],
-    "note": "類型：燒肉・肉料理；地址：志摩町御座484；預算（食べログ列表）：夜 -／昼 4000～4999；F②（體驗型用餐：海女小屋體驗）：3.07／13；營業時間、預約方式沒有觀光協會的資料（T9d 查）",
-    "detailPending": true
+    "note": "類型：燒肉・肉料理；地址：志摩町御座484；預算（食べログ列表）：夜 -／昼 4000～4999；F②（體驗型用餐：海女小屋體驗）：3.07／13；營業時間、預約方式沒有觀光協會的資料（T9d 查）"
   },
   {
     "key": "tabelog-24021031",
@@ -3098,11 +3102,11 @@
     },
     "region": "shima-goza",
     "category": "海鮮",
-    "status": "included",
+    "status": "excluded",
     "criteria": [
       "F2"
     ],
-    "reason": null,
+    "reason": "T9d 確認：Google マップ「臨時休業」（2026-10-19）；食べログ 的官網 ama-iseshima.com 已不存在，Google 的官網 amanoniwa.jp（2026-06-26 改版）變成グラスボート伊勢志摩 經營的「船でしか行けない」包場設施（英虞湾クルーズ＋海鮮 BBQ 3～4 小時方案，價格沒寫），觀光三重 2024 的 ランチ 1,500 円當天可 已不適用 → 不當餐廳收錄（可當體驗，T9g 判斷）",
     "pointId": null,
     "ratings": {
       "tabelog": 3.04,
@@ -3123,8 +3127,7 @@
         "retrieved": "2026-10-18"
       }
     ],
-    "note": "類型：海鮮丼；地址：志摩町御座40-2；定休（食べログ列表）：月曜日、火曜日、水曜日、木曜日、金曜日、土曜日、日曜日...；預算（食べログ列表）：夜 -／昼 3000～3999；F②（體驗型用餐：吃伊勢えび、アワビ、聽現役海女說話）：3.04／3；觀光三重 topic/480（2024-03-27）：11:00～15:00 L.O.，完全予約コース 4,980～14,800 円、ランチ 1,500 円（當天 OK）；食べログ列表的定休欄是「月曜日、火曜日、…日曜日...」（截斷，可能是不定休或預約制），T9d 確認",
-    "detailPending": true
+    "note": "類型：海鮮丼；地址：志摩町御座40-2；定休（食べログ列表）：月曜日、火曜日、水曜日、木曜日、金曜日、土曜日、日曜日...；預算（食べログ列表）：夜 -／昼 3000～3999；F②（體驗型用餐：吃伊勢えび、アワビ、聽現役海女說話）：3.04／3；觀光三重 topic/480（2024-03-27）：11:00～15:00 L.O.，完全予約コース 4,980～14,800 円、ランチ 1,500 円（當天 OK）；食べログ列表的定休欄是「月曜日、火曜日、…日曜日...」（截斷，可能是不定休或預約制），T9d 確認"
   },
   {
     "key": "tabelog-24001184",
@@ -3399,11 +3402,11 @@
     },
     "region": "shima-goza",
     "category": "カフェ、洋食、丼",
-    "status": "included",
+    "status": "excluded",
     "criteria": [
       "D1"
     ],
-    "reason": null,
+    "reason": "T9d 確認：Google マップ「臨時休業」（2026-10-19），最新評論（約 2025）寫 2025-08-16 起「設備故障のため休止中」的看板，之後沒有評論、沒有官網 → 當作休業中排除（重開的話 T9g 再補回）",
     "pointId": null,
     "ratings": {
       "tabelog": 3.09,
@@ -3416,8 +3419,7 @@
       "lunch"
     ],
     "mentions": [],
-    "note": "類型：咖啡・甜點；地址：志摩町越賀2249-13；定休（食べログ列表）：水曜日；貸切可（食べログ列表）；預算（食べログ列表）：夜 -／昼 1000～1999；D①（goza A～C 0 家：さとうみ庵 用餐見景點）：3.09／12，在貸切篩選但口コミ未達 C 的 15 則；水休；カフェ・洋食・丼",
-    "detailPending": true
+    "note": "類型：咖啡・甜點；地址：志摩町越賀2249-13；定休（食べログ列表）：水曜日；貸切可（食べログ列表）；預算（食べログ列表）：夜 -／昼 1000～1999；D①（goza A～C 0 家：さとうみ庵 用餐見景點）：3.09／12，在貸切篩選但口コミ未達 C 的 15 則；水休；カフェ・洋食・丼"
   },
   {
     "key": "tabelog-24009723",
@@ -3426,12 +3428,12 @@
     },
     "region": "shima-goza",
     "category": "料理旅館、日本料理",
-    "status": "pending",
+    "status": "excluded",
     "criteria": [
       "D1",
       "D2"
     ],
-    "reason": "D①（goza A～C 0 家）＋D②（不含晚餐的 Small Resort 志摩（越賀759-3）附近的晚餐店）：住宿本體（lodging shima-shimahanto），3.04／8，個室 10〜20 人；非住客用餐沒有來源（判斷細則 F③），T9d 確認",
+    "reason": "住宿本體（lodging shima-shimahanto）。T9d 確認：官網料金只有 1泊2食・朝食付・素泊まり，楽天 9 個方案都是住宿，沒有「お食事のみ」「昼食」「日帰り」→ 照判斷細則 F③ 不收錄（非住客能不能用餐列 questions 電話確認；能的話 T9g 再補回，2026-10-19）",
     "pointId": null,
     "ratings": {
       "tabelog": 3.04,
@@ -3459,10 +3461,12 @@
       "C"
     ],
     "reason": null,
-    "pointId": null,
+    "pointId": "shima-tanaka-ryoriten",
     "ratings": {
       "tabelog": 3.33,
-      "tabelogReviews": 59
+      "tabelogReviews": 59,
+      "google": 4.2,
+      "googleReviews": 190
     },
     "links": {
       "tabelog": "https://tabelog.com/mie/A2403/A240303/24001159/"
@@ -3480,8 +3484,7 @@
         "retrieved": "2026-10-18"
       }
     ],
-    "note": "類型：海鮮丼；地址：大王町波切250-1；定休（食べログ列表）：火曜日；貸切可（食べログ列表）；預算（食べログ列表）：夜 3000～3999／昼 1000～1999；觀光協會「食べる」：11:30～14:00（L.O.13:30）、17:30～21:00（L.O.20:30），火休；觀光三重 2026-09-29 的兜風路線也寫同樣的時間；大王埼灯台 的町歩き途中",
-    "detailPending": true
+    "note": "類型：海鮮丼；地址：大王町波切250-1；定休（食べログ列表）：火曜日；貸切可（食べログ列表）；預算（食べログ列表）：夜 3000～3999／昼 1000～1999；觀光協會「食べる」：11:30～14:00（L.O.13:30）、17:30～21:00（L.O.20:30），火休；觀光三重 2026-09-29 的兜風路線也寫同樣的時間；大王埼灯台 的町歩き途中"
   },
   {
     "key": "tabelog-24007641",
@@ -3490,11 +3493,11 @@
     },
     "region": "shima-daio",
     "category": "海鮮",
-    "status": "included",
+    "status": "excluded",
     "criteria": [
       "C"
     ],
-    "reason": null,
+    "reason": "T9d 確認：Google マップ 標示「閉業」（2026-10-19，面板開頭）；食べログ 還沒標閉店 → 當作已閉店排除",
     "pointId": null,
     "ratings": {
       "tabelog": 3.17,
@@ -3507,8 +3510,7 @@
       "lunch"
     ],
     "mentions": [],
-    "note": "類型：海鮮丼；地址：大王町波切1473-5；定休（食べログ列表）：火曜日；個室（食べログ列表）：個室有；貸切可（食べログ列表）；預算（食べログ列表）：夜 -／昼 3000～3999；營業時間沒有觀光協會的資料（T9d 查）；食べログ列表只有午餐價位",
-    "detailPending": true
+    "note": "類型：海鮮丼；地址：大王町波切1473-5；定休（食べログ列表）：火曜日；個室（食べログ列表）：個室有；貸切可（食べログ列表）；預算（食べログ列表）：夜 -／昼 3000～3999；營業時間沒有觀光協會的資料（T9d 查）；食べログ列表只有午餐價位"
   },
   {
     "key": "tabelog-24018834",
@@ -3546,20 +3548,22 @@
       "D1"
     ],
     "reason": null,
-    "pointId": null,
+    "pointId": "shima-shimaya-daio",
     "ratings": {
       "tabelog": 3.13,
-      "tabelogReviews": 28
+      "tabelogReviews": 28,
+      "google": 4.3,
+      "googleReviews": 125
     },
     "links": {
       "tabelog": "https://tabelog.com/mie/A2403/A240303/24000826/"
     },
     "contexts": [
-      "lunch"
+      "lunch",
+      "dinner"
     ],
     "mentions": [],
-    "note": "類型：和食・割烹；地址：大王町波切234；定休（食べログ列表）：火曜日；預算（食べログ列表）：夜 1000～1999／昼 1000～1999；D①（daio 週二 2/2、2/9 午餐：田中料理店、十次郎 都火休；這家也火休，依口コミ數取前幾家）：3.13／28；觀光協會「食べる」：10:00～17:30（L.O.17:00），火休",
-    "detailPending": true
+    "note": "類型：和食・割烹；地址：大王町波切234；定休（食べログ列表）：火曜日；預算（食べログ列表）：夜 1000～1999／昼 1000～1999；D①（daio 週二 2/2、2/9 午餐：田中料理店、十次郎 都火休；這家也火休，依口コミ數取前幾家）：3.13／28；觀光協會「食べる」：10:00～17:30（L.O.17:00），火休"
   },
   {
     "key": "tabelog-24007621",
@@ -3573,10 +3577,12 @@
       "D1"
     ],
     "reason": null,
-    "pointId": null,
+    "pointId": "shima-cafe-cc",
     "ratings": {
       "tabelog": 3.1,
-      "tabelogReviews": 19
+      "tabelogReviews": 19,
+      "google": 4.2,
+      "googleReviews": 78
     },
     "links": {
       "tabelog": "https://tabelog.com/mie/A2403/A240303/24007621/"
@@ -3586,8 +3592,7 @@
       "cafe"
     ],
     "mentions": [],
-    "note": "類型：咖啡・甜點；地址：大王町波切3179-1；定休（食べログ列表）：月曜日；預算（食べログ列表）：夜 -／昼 ～999；D①（daio 週二 2/2、2/9 午餐 0 家：田中料理店、十次郎、しまや 都火休）：3.10／19（不在個室、貸切篩選，不符合 C）；觀光協會「食べる」：8:00～18:00，月休；カフェ，餐點內容 T9d 確認",
-    "detailPending": true
+    "note": "類型：咖啡・甜點；地址：大王町波切3179-1；定休（食べログ列表）：月曜日；預算（食べログ列表）：夜 -／昼 ～999；D①（daio 週二 2/2、2/9 午餐 0 家：田中料理店、十次郎、しまや 都火休）：3.10／19（不在個室、貸切篩選，不符合 C）；觀光協會「食べる」：8:00～18:00，月休；カフェ，餐點內容 T9d 確認"
   },
   {
     "key": "tabelog-24006889",
@@ -3596,21 +3601,25 @@
     },
     "region": "shima-tomoyama",
     "category": "フレンチ、オーベルジュ",
-    "status": "pending",
+    "status": "included",
     "criteria": [
-      "D1"
+      "D1",
+      "F3"
     ],
-    "reason": "D①（tomoyama A～C 0 家）：住宿本體（ホテル槇之木，楽天 shima-rakuten-15027，T9b not-included），3.03／3，フレンチ・オーベルジュ；館內的「レストラン ビビット」（24000877，3.01／1）是同一處；非住客的午餐、晚餐沒有來源（判斷細則 F③），T9d 確認",
-    "pointId": null,
+    "reason": "住宿附設（ホテル槇之木，住宿候選 shima-rakuten-15027 not-included）。T9d 確認：官網 MENU「ご昼食＆ご夕食のみのご予約も承っております」（ランチ 3,800 円～、ディナー 6,600 円～，完全予約）→ F③ 收錄（2026-10-19）",
+    "pointId": "shima-makinoki",
     "ratings": {
       "tabelog": 3.03,
-      "tabelogReviews": 3
+      "tabelogReviews": 3,
+      "google": 4.5,
+      "googleReviews": 41
     },
     "links": {
       "tabelog": "https://tabelog.com/mie/A2403/A240303/24006889/"
     },
     "contexts": [
-      "lunch"
+      "lunch",
+      "dinner"
     ],
     "mentions": [],
     "note": "類型：洋食・義式；地址：大王町波切ともやま2235-13"
@@ -3624,13 +3633,16 @@
     "category": "海鮮",
     "status": "included",
     "criteria": [
-      "D1"
+      "D1",
+      "F3"
     ],
     "reason": null,
-    "pointId": null,
+    "pointId": "shima-daiman",
     "ratings": {
       "tabelog": null,
-      "tabelogReviews": null
+      "tabelogReviews": null,
+      "google": 3.4,
+      "googleReviews": 9
     },
     "links": {
       "tabelog": "https://tabelog.com/mie/A2403/A240303/24008343/"
@@ -3648,8 +3660,7 @@
         "retrieved": "2026-10-18"
       }
     ],
-    "note": "類型：海鮮丼；地址：大王町波切244；D①（daio 週二 2/2、2/9 午餐 0 家）：大王荘（旅館，大王町波切244，楽天 shima-rakuten-30937，T9b not-included）的お食事処 大万，食べログ沒有分數；觀光協會「食べる」（大王荘 お食事処 大万）：11:30～14:00、18:00～22:00，水休；觀光三重 てこね寿司特集（2025-12-19）：ランチ 11:30～14:00、ディナー 18:00～不定",
-    "detailPending": true
+    "note": "類型：海鮮丼；地址：大王町波切244；D①（daio 週二 2/2、2/9 午餐 0 家）：大王荘（旅館，大王町波切244，楽天 shima-rakuten-30937，T9b not-included）的お食事処 大万，食べログ沒有分數；觀光協會「食べる」（大王荘 お食事処 大万）：11:30～14:00、18:00～22:00，水休；觀光三重 てこね寿司特集（2025-12-19）：ランチ 11:30～14:00、ディナー 18:00～不定"
   },
   {
     "key": "tabelog-24013778",
@@ -3975,10 +3986,12 @@
       "D2"
     ],
     "reason": null,
-    "pointId": null,
+    "pointId": "shima-shosuke",
     "ratings": {
       "tabelog": null,
-      "tabelogReviews": 1
+      "tabelogReviews": 1,
+      "google": 4.2,
+      "googleReviews": 17
     },
     "links": {
       "tabelog": "https://tabelog.com/mie/A2403/A240303/24003661/"
@@ -3987,8 +4000,7 @@
       "dinner"
     ],
     "mentions": [],
-    "note": "類型：居酒屋；地址：阿児町立神2605-2；定休（食べログ列表）：火曜日、木曜日；個室（食べログ列表）：個室有(8人可)；貸切可（食べログ列表）；預算（食べログ列表）：夜 2000～2999／昼 -；D②（やどかり志摩 附近沒有晚餐的店）：食べログ沒有分數（口コミ 1），居酒屋，個室 8 人、貸切可，火木休；營業時間沒有來源（T9d 查）",
-    "detailPending": true
+    "note": "類型：居酒屋；地址：阿児町立神2605-2；定休（食べログ列表）：火曜日、木曜日；個室（食べログ列表）：個室有(8人可)；貸切可（食べログ列表）；預算（食べログ列表）：夜 2000～2999／昼 -；D②（やどかり志摩 附近沒有晚餐的店）：食べログ沒有分數（口コミ 1），居酒屋，個室 8 人、貸切可，火木休；營業時間沒有來源（T9d 查）"
   },
   {
     "key": "tabelog-24015044",
@@ -4026,10 +4038,12 @@
       "D2"
     ],
     "reason": null,
-    "pointId": null,
+    "pointId": "shima-izakaya-kyu",
     "ratings": {
       "tabelog": 3.01,
-      "tabelogReviews": 3
+      "tabelogReviews": 3,
+      "google": 4.7,
+      "googleReviews": 10
     },
     "links": {
       "tabelog": "https://tabelog.com/mie/A2403/A240303/24002704/"
@@ -4038,8 +4052,7 @@
       "dinner"
     ],
     "mentions": [],
-    "note": "類型：和食・割烹；地址：阿児町立神3387-5；D②（不含晚餐的 やどかり志摩（立神1030-4，包棟）附近沒有晚餐的店）：3.01／3，日本料理・居酒屋；營業時間沒有來源（T9d 查），距離 T9e 用座標算",
-    "detailPending": true
+    "note": "類型：和食・割烹；地址：阿児町立神3387-5；D②（不含晚餐的 やどかり志摩（立神1030-4，包棟）附近沒有晚餐的店）：3.01／3，日本料理・居酒屋；營業時間沒有來源（T9d 查），距離 T9e 用座標算"
   },
   {
     "key": "tabelog-24017797",
@@ -4079,17 +4092,20 @@
     "name": {
       "ja": "鮨裕禅"
     },
-    "region": "shima-wagu",
+    "region": "shima-kashikojima",
     "category": "寿司、オーベルジュ",
     "status": "included",
     "criteria": [
-      "C"
+      "C",
+      "F3"
     ],
     "reason": null,
-    "pointId": null,
+    "pointId": "shima-sushi-yuzen",
     "ratings": {
       "tabelog": 3.18,
-      "tabelogReviews": 22
+      "tabelogReviews": 22,
+      "google": 3.7,
+      "googleReviews": 22
     },
     "links": {
       "tabelog": "https://tabelog.com/mie/A2403/A240303/24018498/"
@@ -4099,8 +4115,7 @@
       "dinner"
     ],
     "mentions": [],
-    "note": "類型：壽司；地址：志摩町和具4442；貸切可（食べログ列表）；預算（食べログ列表）：夜 30000～39999／昼 30000～39999；食べログ類別含オーベルジュ（住宿附設），非住客用餐 T9d 確認；昼夜都 30,000 円以上",
-    "detailPending": true
+    "note": "類型：壽司；地址：志摩町和具4442；貸切可（食べログ列表）；預算（食べログ列表）：夜 30000～39999／昼 30000～39999；食べログ類別含オーベルジュ（住宿附設），非住客用餐 T9d 確認；昼夜都 30,000 円以上"
   },
   {
     "key": "tabelog-24009868",
@@ -4138,10 +4153,12 @@
       "F2"
     ],
     "reason": null,
-    "pointId": null,
+    "pointId": "shima-amagoya-hiba-hironohama",
     "ratings": {
       "tabelog": 3.01,
-      "tabelogReviews": 1
+      "tabelogReviews": 1,
+      "google": 4.5,
+      "googleReviews": 42
     },
     "links": {
       "tabelog": "https://tabelog.com/mie/A2403/A240303/24017668/"
@@ -4150,8 +4167,7 @@
       "lunch"
     ],
     "mentions": [],
-    "note": "類型：其他；地址：志摩町和具1641-1；個室（食べログ列表）：個室有(4人可)；貸切可（食べログ列表）；預算（食べログ列表）：夜 2000～2999／昼 2000～2999；F②（體驗型用餐：海女小屋體驗）：3.01／1；觀光協會「食べる」有登錄（營業時間沒寫，T9d 查）",
-    "detailPending": true
+    "note": "類型：其他；地址：志摩町和具1641-1；個室（食べログ列表）：個室有(4人可)；貸切可（食べログ列表）；預算（食べログ列表）：夜 2000～2999／昼 2000～2999；F②（體驗型用餐：海女小屋體驗）：3.01／1；觀光協會「食べる」有登錄（營業時間沒寫，T9d 查）"
   },
   {
     "key": "tabelog-24014579",
@@ -4165,10 +4181,12 @@
       "A"
     ],
     "reason": null,
-    "pointId": null,
+    "pointId": "shima-hidechan",
     "ratings": {
       "tabelog": 3.39,
-      "tabelogReviews": 50
+      "tabelogReviews": 50,
+      "google": 4.5,
+      "googleReviews": 225
     },
     "links": {
       "tabelog": "https://tabelog.com/mie/A2403/A240303/24014579/"
@@ -4178,7 +4196,6 @@
       "dinner"
     ],
     "mentions": [],
-    "note": "類型：海鮮丼；地址：志摩町和具1896-23；定休（食べログ列表）：日曜日；預算（食べログ列表）：夜 1000～1999／昼 1000～1999；營業時間沒有觀光協會的資料（T9d 查）；日休",
-    "detailPending": true
+    "note": "類型：海鮮丼；地址：志摩町和具1896-23；定休（食べログ列表）：日曜日；預算（食べログ列表）：夜 1000～1999／昼 1000～1999；營業時間沒有觀光協會的資料（T9d 查）；日休"
   }
 ]
