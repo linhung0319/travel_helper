@@ -552,9 +552,9 @@
     },
     "region": "ise-geku",
     "category": "hotel",
-    "status": "excluded",
-    "reason": "§5.7：評論 10 則以上的評分來源都低於 3.8（楽天 3.58／3,153 則、Google 3.5／830 則）",
-    "pointId": null,
+    "status": "included",
+    "reason": "T8e 補回：§5.7 的「評論 10 則以上的來源都低於 3.8」不成立（じゃらん 3.8／2,262 則，T7i 補查）→ 評價普通，照常收錄（楽天 3.58／3,153 則、Google 3.5／830 則）",
+    "pointId": "ise-city-hotel",
     "ratings": {
       "rakuten": 3.58,
       "rakutenReviews": 3153,
@@ -575,18 +575,20 @@
     },
     "region": "ise-geku",
     "category": "pension／民泊",
-    "status": "excluded",
-    "reason": "§5.7：評論 10 則以上的評分來源都低於 3.8（楽天 3.6／16 則；Google 沒查）。外宮前的一棟貸し",
-    "pointId": null,
+    "status": "included",
+    "reason": "T8e 補回：§5.7 的「評論 10 則以上的來源都低於 3.8」不成立（じゃらん 4.2／11 則，T7i 補查；Google 3.8／12 則）。外宮前的町家，2 層最多 14 人",
+    "pointId": "ise-geku-bettei-michi",
     "ratings": {
       "rakuten": 3.6,
       "rakutenReviews": 16,
-      "google": null,
-      "googleReviews": null,
+      "google": 3.8,
+      "googleReviews": 12,
       "jalan": 4.2,
       "jalanReviews": 11
     },
-    "links": {},
+    "links": {
+      "googleMaps": "https://maps.google.com/?cid=2205338731910993804"
+    },
     "note": "楽天 192775，2 室，楽天最低 7,000 円；T7i（2026-10-18）：じゃらん 4.2（11 則，yad396262）→ 照 §5.7 不該排除，T8e 補回"
   },
   {
@@ -638,11 +640,11 @@
     "name": {
       "ja": "ホテルキャッスルイン伊勢"
     },
-    "region": "ise-geku",
+    "region": "ise-outskirts",
     "category": "hotel",
-    "status": "excluded",
-    "reason": "§5.7：評論 10 則以上的評分來源都低於 3.8（楽天 3.73／2,934 則、Google 3.5／1,462 則）",
-    "pointId": null,
+    "status": "included",
+    "reason": "T8e 補回：§5.7 的「評論 10 則以上的來源都低於 3.8」不成立（じゃらん 3.9／213 則，T7i 補查）→ 評價普通，照常收錄（楽天 3.73／2,934 則、Google 3.5／1,462 則）。子地區照地址町名（神久）改 ise-outskirts",
+    "pointId": "ise-castle-inn",
     "ratings": {
       "rakuten": 3.73,
       "rakutenReviews": 2934,
@@ -651,7 +653,9 @@
       "jalan": 3.9,
       "jalanReviews": 213
     },
-    "links": {},
+    "links": {
+      "googleMaps": "https://maps.google.com/?cid=35213965512262893"
+    },
     "note": "楽天 1360，217 室，楽天最低 4,704 円；T7i（2026-10-18）：じゃらん 3.9（213 則，yad311771；同名的「キャッスルイン伊勢夫婦岩」是二見那間）→ 照 §5.7 不該排除（評價普通），T8e 補回"
   },
   {

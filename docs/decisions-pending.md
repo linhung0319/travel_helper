@@ -10,6 +10,7 @@
 - （目前沒有）
 
 ### 伊勢、二見（T8g 討論）
+- [ ] T8e：ホテルキャッスルイン伊勢 的子地區照地址（神久）放 ise-outskirts，不是 T8b 候選的 ise-geku——伊勢市駅有送迎，但步行約 16 分，要不要當成外宮・伊勢市站的住宿
 - [ ] T8e：かぐら 的營業時間用食べログ（店舗会員，2025）而不是官網（2016 年的網站），違反「官網優先」——官網過時時要不要改成以較新的來源為準
 
 ### 志摩（T9g 討論）
@@ -195,3 +196,8 @@
 | 2026-10-18 | T8e | 炭火焼肉匠、あぶり焼肉 匠 PART2 的官網照片用集團官網（aburiyaki-takumi.jp）的圖；炭火焼肉匠 不填集團 IG（@aburiyaki_takumi 只填在 PART2，官網列的是伊勢店） | 照片規則「只用官網網域的圖」，集團官網算官網；但圖不一定是這家店 | 換成 Google 主圖（`google.jsonl` 有） |
 | 2026-10-18 | T8e | 炭火焼肉匠 照樣收錄（`fit15: yes`），營業現況列 `questions.md` | 搜尋摘要提到食べログ有口コミ說女將可能無法續營，但集團官網 2026 年仍列這家店；沒有閉店的來源 | 確認歇業就改 `excluded` |
 | 2026-10-18 | T8e | `access`：一升びん 松寿亭 `walk`（伊勢市站約 1.2 km、步行約 15 分）；伊勢大阪屋、味の來々軒、柚子、たまちゃん `car`；かぐら `walk`（五十鈴川站約 500 m） | 步行 20 分以內算 walk（同 T8d）；大阪屋 有團體送迎巴士、來々軒 有巴士＋步行 5 分，但 15 人以車為主 | 改 `access` |
+| 2026-10-18 | T8e | **ホテルキャッスルイン伊勢 的子地區放 `ise-outskirts`**（T8b 候選是 ise-geku） | 地址是神久 3 丁目，`areas.json` 的 ise-outskirts 明列神久；伊勢市駅直線約 1 km（估算步行 16 分），平常靠飯店的免費送迎（前一天預約） | 候選和 `lodging.json` 的 `region` 改回 `ise-geku`，拿掉 `extra.conflicts` 的子地區那條 |
+| 2026-10-18 | T8e | キャッスルイン伊勢 的 15 人最低價**不採用「三重県民限定」「10代・20代限定」方案**（API 的 cheapest 4,704 円是県民限定），用一般方案 4,816 円（素泊）、6,160 円（附早餐）；「大人 2」那筆 5,376 円是県民方案，note 註明 | 旅客是台灣人、有長輩，限定方案訂不到；`party` 指令只回最低價，所以用 `vacant --plans` 過濾 | `prices` 改成 `rakuten-party.json` 的 cheapest |
+| 2026-10-18 | T8e | 外宮前別邸 道：`kind: rental-house`、`wholeRental: false`、`maxGuests: 14`（2F 8 人＋1F 6 人，方案定員相加）；15 人住不下，`nearbyCombos` 放同區直線最近 4 間（伊勢神泉 317 m、コンフォート ERA、三交イン、日の出旅館） | 楽天分層賣、沒寫一棟貸し；兩層都訂就等於整棟，但來源沒明寫，所以 wholeRental 不填 true | `group.wholeRental` 改 true（確認能整棟訂之後） |
+| 2026-10-18 | T8e | 伊勢シティホテル 楽天 2/9、2/10 的 15 人組合都沒有空房：`prices` 改記 2/9「大人 3」「大人 2」1 室的最低價，`rakutenVacancy.available` 兩天都是空陣列；`nearbyCombos` 不填（97 室，房數夠，只是楽天庫存沒開） | 「15 人住不下」指容量不夠；這間是楽天當下的庫存問題，要官網或電話問 | 行程定了用實際日期重查 `party --hotel 740` |
+| 2026-10-18 | T8e | `restaurant-anchors.mjs` 的步行圈：鳥羽照原本的手寫清單，**其他區域照 `areas.json` 的 `needsCar`**（false → 步行圈）；伊勢是 ise-geku、ise-kurata、ise-naiku、ise-obata，二見是 futami-okitama | 原本的步行圈清單只有鳥羽的子地區，伊勢、二見全部會被當成「需搭車」（每家只放最近的 1 個景點、1 間住宿）；needsCar 是 T8a 定子地區時就寫好的同一個意思。拆成 `scripts/lib/anchor-rules.mjs`（附測試），鳥羽重跑結果不變 | 在 `anchor-rules.mjs` 加伊勢、二見的手寫清單 |

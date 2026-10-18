@@ -35,3 +35,21 @@
 - 補心得批次直接用修好的 4 支程式；Google 搜尋結果是列表的店先截圖點選。
 - 這批 10 家還沒讀口コミ、Google 評論（炭火焼肉匠、匠 PART2、能代、ふぐや、一升びん 松寿亭、ひびの、かぐら、來々軒、柚子、たまちゃん），補心得時一起做。
 - 收尾批的 anchors、缺漏檢查要包含這 13 家（`anchors: []`）。
+
+## 第 2 批：補回 §5.7 誤排除的住宿 3 間＋收尾＋補心得的對象清單（2026-10-18）
+
+### 範圍
+- 補回 伊勢シティホテル、ホテルキャッスルイン伊勢、外宮前別邸 道（PLAN「各區注意」T8e）。山田館 維持排除（候選 note 已寫）。
+- 收尾：伊勢、二見的 anchors、缺漏檢查、`dinnerAccess`、地圖檢查。
+- 補心得的對象清單 `data/cache/work/t8e-targets.json`（這一批不讀評論）。
+- 工作目錄 `data/cache/work/t8e-2/`：`rakuten-*.json`、`google.jsonl`、`facts/`、`prompt-common.md`、`lodging-new.mjs`（3 筆資料點本體）、`cand-patch.json`。
+
+### 1. 住宿 3 間
+- 楽天 API：`detail 740 1360 192775`；`party --hotel 740,1360,192775 --dates 2027-02-09,2027-02-10`；`vacant` 2/9 的「1 間 大人 3＋小學生 1」「1 間 大人 2」「1 間 大人 4」；キャッスルイン 再用 `vacant --plans`（5×3，2/9、2/10）找一般方案的最低價（API 的 cheapest 是三重県民限定）；道 另查 2026-11-17 確認有沒有在賣（沒有）。共約 30 次呼叫。
+  - 結果：キャッスルイン 兩天 5×3、4×4 有空房；伊勢シティ 兩天都沒有 15 人組合（2/9 只剩 1 間 3 人）；道 完全沒有方案。
+- Google（Chrome，`chrome-actions.mjs --script google-place --store`，1 次 batch 3 家）：3 家都直接開到地點頁。伊勢シティ 3.5／830、キャッスルイン 3.5／1,462（和 T8b 一樣）、道 **3.8／12**（T8b 沒查）。網站欄給了官網：greens.co.jp/isech/、castleinn.co.jp/ise/（キャッスルイン 的讀文 subagent 沒找到官網，主 session 用 HTTP 確認 200）。
+- じゃらん：`jalan.mjs yad 379992 311771 396262`（3.8／2,262、3.9／213、4.2／11，和 T7i 一樣）；`apply --dry-run` 確認 3 筆的網址、分數都已經在資料檔，沒有另外寫。
+- 讀文 subagent 3 個（一間一個，`prompt-common.md`），WebSearch 各 1 次（共 3）。官網：伊勢シティ 找到、キャッスルイン、道 沒找到。
+- 照片：伊勢シティ 官網 2＋楽天 1、キャッスルイン 官網 1＋楽天 1＋Google 1、道 楽天 1＋Google 1（`photo-check.mjs` 8 張都 OK）。
+- 資料點由主 session 寫（住宿沒有組裝工具，CONVENTIONS「工具」）：`lodging-new.mjs` → 追加到 `lodging.json`（21 → 24）；候選用 `candidates.mjs set` 改 included、pointId、reason（キャッスルイン 的 region 改 ise-outskirts）。validate 的 §5.7 警告 3 條消失。
+- 判斷寫在 decisions-pending（子地區、限定方案、道 的容量、伊勢シティ 的空房）。
