@@ -4175,11 +4175,12 @@
       "A"
     ],
     "reason": null,
-    "pointId": null,
-    "detailPending": true,
+    "pointId": "ise-mukai-sakenomise",
     "ratings": {
       "tabelog": 3.75,
-      "tabelogReviews": 451
+      "tabelogReviews": 451,
+      "google": 4.4,
+      "googleReviews": 382
     },
     "links": {
       "tabelog": "https://tabelog.com/mie/A2403/A240301/24005695/"
@@ -5001,11 +5002,12 @@
       "C"
     ],
     "reason": null,
-    "pointId": null,
-    "detailPending": true,
+    "pointId": "ise-bon-vivant",
     "ratings": {
       "tabelog": 3.71,
-      "tabelogReviews": 155
+      "tabelogReviews": 155,
+      "google": 4.5,
+      "googleReviews": 147
     },
     "links": {
       "tabelog": "https://tabelog.com/mie/A2403/A240301/24000015/"
@@ -5101,11 +5103,12 @@
       "C"
     ],
     "reason": null,
-    "pointId": null,
-    "detailPending": true,
+    "pointId": "ise-tessen",
     "ratings": {
       "tabelog": 3.58,
-      "tabelogReviews": 127
+      "tabelogReviews": 127,
+      "google": 4.3,
+      "googleReviews": 186
     },
     "links": {
       "tabelog": "https://tabelog.com/mie/A2403/A240301/24011258/"
@@ -5138,11 +5141,12 @@
       "C"
     ],
     "reason": null,
-    "pointId": null,
-    "detailPending": true,
+    "pointId": "ise-sakaba-morishita",
     "ratings": {
       "tabelog": 3.57,
-      "tabelogReviews": 231
+      "tabelogReviews": 231,
+      "google": 4.2,
+      "googleReviews": 274
     },
     "links": {
       "tabelog": "https://tabelog.com/mie/A2403/A240301/24015187/"
@@ -5159,14 +5163,13 @@
     },
     "region": "ise-geku",
     "category": "料理旅館、日本料理",
-    "status": "included",
+    "status": "excluded",
     "criteria": [
       "A",
       "C"
     ],
-    "reason": null,
+    "reason": "T8d 確認：食べログ 予約可否欄寫「完全予約制 宿泊者専用レストラン」，官網 food 頁只介紹住客的晚餐・早餐（訂房時選會席），沒有非住客用餐的方案；是住宿 伊勢神泉（ise-shinsen）的館內餐廳，不另收錄（2026-10-18）",
     "pointId": null,
-    "detailPending": true,
     "ratings": {
       "tabelog": 3.56,
       "tabelogReviews": 89
@@ -6183,11 +6186,12 @@
       "C"
     ],
     "reason": null,
-    "pointId": null,
-    "detailPending": true,
+    "pointId": "ise-tsumugu",
     "ratings": {
       "tabelog": 3.54,
-      "tabelogReviews": 23
+      "tabelogReviews": 23,
+      "google": 4.8,
+      "googleReviews": 38
     },
     "links": {
       "tabelog": "https://tabelog.com/mie/A2403/A240301/24020271/"
@@ -6321,11 +6325,12 @@
       "C"
     ],
     "reason": "A 因數量控制（3.50）取消",
-    "pointId": null,
-    "detailPending": true,
+    "pointId": "ise-daiki",
     "ratings": {
       "tabelog": 3.45,
-      "tabelogReviews": 264
+      "tabelogReviews": 264,
+      "google": 4.2,
+      "googleReviews": 940
     },
     "links": {
       "tabelog": "https://tabelog.com/mie/A2403/A240301/24000011/"
@@ -6698,11 +6703,12 @@
       "C"
     ],
     "reason": null,
-    "pointId": null,
-    "detailPending": true,
+    "pointId": "ise-ichigetsuya",
     "ratings": {
       "tabelog": 3.72,
-      "tabelogReviews": 465
+      "tabelogReviews": 465,
+      "google": 4.4,
+      "googleReviews": 894
     },
     "links": {
       "tabelog": "https://tabelog.com/mie/A2403/A240301/24005542/"
@@ -6957,11 +6963,12 @@
       "C"
     ],
     "reason": null,
-    "pointId": null,
-    "detailPending": true,
+    "pointId": "ise-butasute-wakayanagi",
     "ratings": {
       "tabelog": 3.63,
-      "tabelogReviews": 168
+      "tabelogReviews": 168,
+      "google": 4.4,
+      "googleReviews": 231
     },
     "links": {
       "tabelog": "https://tabelog.com/mie/A2403/A240301/24000563/"
@@ -6985,11 +6992,12 @@
       "C"
     ],
     "reason": null,
-    "pointId": null,
-    "detailPending": true,
+    "pointId": "ise-osteria-il-mosto",
     "ratings": {
       "tabelog": 3.63,
-      "tabelogReviews": 115
+      "tabelogReviews": 115,
+      "google": 4.6,
+      "googleReviews": 47
     },
     "links": {
       "tabelog": "https://tabelog.com/mie/A2403/A240301/24019407/"
@@ -7244,17 +7252,17 @@
       "A"
     ],
     "reason": null,
-    "pointId": null,
-    "detailPending": true,
+    "pointId": "ise-osteria-labra",
     "ratings": {
       "tabelog": 3.58,
-      "tabelogReviews": 105
+      "tabelogReviews": 105,
+      "google": 4.1,
+      "googleReviews": 126
     },
     "links": {
       "tabelog": "https://tabelog.com/mie/A2403/A240301/24004391/"
     },
     "contexts": [
-      "lunch",
       "dinner"
     ],
     "note": "類型：洋食・義式；地址：伊勢市吹上1-9-1；定休（食べログ列表）：日曜日"
@@ -7299,11 +7307,12 @@
       "C"
     ],
     "reason": null,
-    "pointId": null,
-    "detailPending": true,
+    "pointId": "ise-machiya-bar",
     "ratings": {
       "tabelog": 3.5,
-      "tabelogReviews": 43
+      "tabelogReviews": 43,
+      "google": 4.2,
+      "googleReviews": 209
     },
     "links": {
       "tabelog": "https://tabelog.com/mie/A2403/A240301/24019089/"
@@ -7809,11 +7818,12 @@
       "C"
     ],
     "reason": null,
-    "pointId": null,
-    "detailPending": true,
+    "pointId": "ise-nikawa",
     "ratings": {
       "tabelog": 3.93,
-      "tabelogReviews": 150
+      "tabelogReviews": 150,
+      "google": 4.5,
+      "googleReviews": 62
     },
     "links": {
       "tabelog": "https://tabelog.com/mie/A2403/A240301/24019007/"
@@ -7835,11 +7845,12 @@
       "A"
     ],
     "reason": null,
-    "pointId": null,
-    "detailPending": true,
+    "pointId": "ise-akiyama",
     "ratings": {
       "tabelog": 3.55,
-      "tabelogReviews": 51
+      "tabelogReviews": 51,
+      "google": 4.6,
+      "googleReviews": 44
     },
     "links": {
       "tabelog": "https://tabelog.com/mie/A2403/A240301/24002450/"
@@ -8214,11 +8225,12 @@
       "A"
     ],
     "reason": null,
-    "pointId": null,
-    "detailPending": true,
+    "pointId": "ise-komada",
     "ratings": {
       "tabelog": 4.6,
-      "tabelogReviews": 192
+      "tabelogReviews": 192,
+      "google": 4.4,
+      "googleReviews": 72
     },
     "links": {
       "tabelog": "https://tabelog.com/mie/A2403/A240301/24012212/"
@@ -8240,11 +8252,12 @@
       "A"
     ],
     "reason": null,
-    "pointId": null,
-    "detailPending": true,
+    "pointId": "ise-toramaru",
     "ratings": {
       "tabelog": 3.67,
-      "tabelogReviews": 439
+      "tabelogReviews": 439,
+      "google": 4.4,
+      "googleReviews": 410
     },
     "links": {
       "tabelog": "https://tabelog.com/mie/A2403/A240301/24000592/"
@@ -8294,11 +8307,12 @@
       "C"
     ],
     "reason": null,
-    "pointId": null,
-    "detailPending": true,
+    "pointId": "ise-yuzu-cucina",
     "ratings": {
       "tabelog": 3.51,
-      "tabelogReviews": 48
+      "tabelogReviews": 48,
+      "google": 4.4,
+      "googleReviews": 102
     },
     "links": {
       "tabelog": "https://tabelog.com/mie/A2403/A240301/24015144/"
@@ -8618,11 +8632,12 @@
       "C"
     ],
     "reason": null,
-    "pointId": null,
-    "detailPending": true,
+    "pointId": "ise-kamimura",
     "ratings": {
       "tabelog": 3.51,
-      "tabelogReviews": 46
+      "tabelogReviews": 46,
+      "google": 4.7,
+      "googleReviews": 148
     },
     "links": {
       "tabelog": "https://tabelog.com/mie/A2403/A240301/24003086/"
@@ -9243,11 +9258,12 @@
       "C"
     ],
     "reason": null,
-    "pointId": null,
-    "detailPending": true,
+    "pointId": "ise-wan-kuroishi",
     "ratings": {
       "tabelog": 3.52,
-      "tabelogReviews": 174
+      "tabelogReviews": 174,
+      "google": 4.6,
+      "googleReviews": 252
     },
     "links": {
       "tabelog": "https://tabelog.com/mie/A2403/A240301/24001188/"
