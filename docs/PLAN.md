@@ -61,11 +61,13 @@
 | T7e | 鳥羽補資料：餐廳（依新納入標準補店、照片、心得） | M | T7b | 3 | 🌐 大量 | ✅ |
 | T7f | 鳥羽補資料：收尾（重算 anchors、缺漏檢查、地圖檢查） | S | T7c、T7d、T7e | 3 | 🌐 少量 | ✅ |
 | T7g | 鳥羽：摘要與評分、校準範例、評分檢查腳本 | M | T7f | 3 | | ✅ |
+| T7h | 鳥羽：重點資料點補心得（口コミ、Google 評論）、重新打分 | S | T7g | 3 | 🌐 大量 | ⬜ |
+| T7i | 小腳本：觀光三重景點列表、じゃらん評分；補鳥羽、伊勢的じゃらん評分 | S | T7 | 3 | | ⬜ |
 | T8a | 伊勢（含二見）：子地區與景點 | M | T7 | 3 | 🌐 大量 | ✅ |
 | T8b | 伊勢（含二見）：住宿 | M | T8a、T7d | 3 | 🌐 大量 | ✅ |
 | T8c | 伊勢（含二見）餐廳：候選名單 | M | T8b | 3 | 🌐 大量 | ✅ |
 | T8d | 伊勢（含二見）餐廳：詳細資料 | L | T8c | 3 | 🌐 大量 | ✅ |
-| T8e | 伊勢（含二見）：收尾（anchors、缺漏檢查、地圖檢查） | S | T8d | 3 | 🌐 少量 | ⬜ |
+| T8e | 伊勢（含二見）：收尾（anchors、缺漏檢查、地圖檢查）、重點資料點補心得 | M | T8d | 3 | 🌐 大量 | ⬜ |
 | T8f | 伊勢（含二見）：摘要與評分 | M | T8e、T7g | 3 | | ⬜ |
 | T9a | 志摩：子地區與景點 | M | T7 | 3 | 🌐 大量 | ⬜ |
 | T9b | 志摩：住宿 | M | T9a、T7d | 3 | 🌐 大量 | ⬜ |
@@ -158,7 +160,7 @@
 | 階段 1 | T1→T1b、T2→T3→T4a→T4b→T4c（同一條 lane 依序）、T5、T6 | **4**（T1b 也可以另開第 5 個；T4b 可以拆成 2 個並行） |
 | 階段 2 | T7（和你一起討論） | **1** |
 | 階段 3 開始 | T7b、T8a 或 T9a（擇一，🌐）、T11、T14 | **4** |
-| 階段 3 中 | 🌐 大量的任務輪流做（T7c、T7d、T7e、T8a～T8d、T9a～T9d、T19，同時只開 1 個）；同時進行不用 Chrome 的 T7g、T8f、T9f、T10、T11/T12、T14 | **3～4** |
+| 階段 3 中 | 🌐 大量的任務輪流做（T7c、T7d、T7e、T7h、T8a～T8e、T9a～T9d、T19，同時只開 1 個）；同時進行不用 Chrome 的 T7g、T7i、T8f、T9f、T10、T11/T12、T14 | **3～4** |
 | 階段 3 後 | T7f→T7g、T8c～T8f、T9c～T9f、T10、T11/T12、T14 | 4～5 |
 | 階段 3 最後 | T13，以及繼續 T11/T12/T14 | 2～3 |
 | 階段 4 | T15（可拆成兩個子任務，見任務說明） | 1～2 |
@@ -169,7 +171,7 @@
 - **同一區的 景點 → 住宿 → 餐廳 要依序**：餐廳要以景點和住宿為搜尋中心，住宿要看景點分布。
 - **不同區域可以並行**：伊勢、志摩、關西機場周邊各自寫自己的檔案，不會互相衝突。唯一共用的是 `areas.json`（T8a、T9a 各自加自己區域的 `regions`），merge 時兩邊都保留。
 - **同一個檔案不要兩個 session 同時寫**：鳥羽的 T7b 會同時改三個檔案，所以要先單獨做；之後 T7c（`spots.json`）、T7d（`lodging.json`）、T7e（`restaurants.json`）各寫一個檔案，可以並行。T7f 重算 anchors 要用 T7c 新增的港口，所以等三個都 merge 後再做。
-- **共用腳本誰先寫**：楽天 API 的查詢腳本由 T7d 寫，T8b、T9b、T19 直接用；評分檢查腳本和校準範例由 T7g 產生，T8f、T9f、T19 的評分部分要等 T7g。
+- **共用腳本誰先寫**：楽天 API 的查詢腳本由 T7d 寫，T8b、T9b、T19 直接用；評分檢查腳本和校準範例由 T7g 產生，T8f、T9f、T19 的評分部分要等 T7g。觀光三重、じゃらん的腳本由 T7i 寫，T9a、T9b、T19 直接用，所以 T7i 要在 T9a 之前做。
 - **Chrome 的操作**：T7c、T7d、T7e、T8a～T8d、T9a～T9d 都要用 Claude in Chrome。官方文件沒有說明多個 Claude Code session 同時用同一個 Chrome 是否支援；Windows 上有具名管道衝突（EADDRINUSE）的已知問題，文件的處理方式是「關掉其他使用 Chrome 的 Claude Code session」；社群回報過多個 session 共用同一個分頁群組。所以：
   - **預設同時只開 1 個用 Chrome 的 session**（§2 任務總覽「Chrome」欄有 🌐 的任務）；其他 session 做不用 Chrome 的工作（T7b、T7g、T8f、T9f、T10、T14，以及讀文 subagent、楽天 API）。
   - **🌐 少量**的任務（收尾的地圖檢查、介面任務看畫面）可以和 🌐 大量的任務同時開，但要用 Chrome 的那一段先暫停，等另一個 session 告一段落再做，或把要看的東西留給 👤 自己在瀏覽器確認。
@@ -216,7 +218,9 @@
 資料任務可以交給一個**指揮 session** 自動依序做完，不用每個任務都等 👤 說 merge（2026-10-18 測試過：subagent 可以用 Chrome、可以再開一層讀文 subagent，依序使用 Chrome 沒有問題）。指令範本在 [docs/prompts/orchestrator.md](prompts/orchestrator.md)。
 
 **範圍與順序**（到 T11 之前為止；已經 ✅ 的跳過）：
-T7c → T7d → T7e → T7f → T7g → T8a → T8b → T8c → T8d → T8e → T8f → T9a → T9b → T9c → T9d → T9e → T9f → T19 → T10
+T7c → T7d → T7e → T7f → T7g → T8a → T8b → T8c → T8d → T7i → T8e → T8f → T7h → T9a → T9b → T9c → T9d → T9e → T9f → T19 → T10
+
+（T7i 改鳥羽、伊勢、二見的 `lodging.json`，要排在 T8e 之前、不和 T8e 同時做；T7h 用 Chrome，排在 T8e 之後。）
 
 **和手動模式不同的規則**：
 - **分支**：每個任務從 master 開自己的分支（不用 worktree，指揮 session 在主目錄工作），做完由指揮 session 驗證後**自動 merge**、再驗證、把 §2 的狀態改成 ✅、刪分支。出問題時只要 revert 那一個 merge。
@@ -233,6 +237,9 @@ T7c → T7d → T7e → T7f → T7g → T8a → T8b → T8c → T8d → T8e → 
   | T8c、T9c | 依子地區分批（每批的候選清單寫進同一個 candidates 檔） |
   | T8d、T9d | 依子地區分批，每批約 20 家 |
   | T7g、T8f、T9f | 景點、住宿、餐廳各一批（同一類型不要拆開，避免評分標準漂移） |
+  | T7h | 補心得一批（Chrome）、重新打分一批 |
+  | T7i | 一批 |
+  | T8e | 收尾一批；補心得依子地區分批，每批約 20 筆（Chrome） |
 - **Chrome**：同一時間只有一個 subagent 用 Chrome。用 Chrome 的 subagent 先呼叫 `tabs_context_mcp(createIfEmpty: true)`（新的 subagent 沒有自己的分頁群組，直接開分頁會失敗），結束時關掉自己開的分頁。
 - 指揮 session 跑的時候，👤 可以另外開不用 Chrome 的 session（T11、T14），照手動模式用 worktree。
 
@@ -422,6 +429,20 @@ T7c → T7d → T7e → T7f → T7g → T8a → T8b → T8c → T8d → T8e → 
 - 每個類型、每個星等挑 1～2 筆當校準範例，寫進 `data/raw/toba/assessment-notes.md`（附理由），T8f、T9f、T19 打分前要讀。
 - 寫評分一致性檢查腳本（推薦度和評分數字明顯矛盾的列出來，輸出到 `data/derived/`），👤 看過列出來的項目。
 
+#### T7h 重點資料點補心得、重新打分 〔S〕（Chrome）
+- 背景：鳥羽餐廳 `confidence` low 57 家、high 0 家，原因是心得只找部落格，沒讀食べログ口コミ和 Google 評論（CONVENTIONS §4「取得方式」「口コミ、Google 評論」，2026-10-18）。
+- **只補重點**：餐廳 `assessment.groupFit` 5 的 12 家，加上 `tier` S、A 的店（重複的算一次，約 20～25 家）；景點、住宿只補 `tier` S、A 而且筆記心得不到 2 篇的。其他 low 的先不補，等行程縮小範圍再看。
+- 照 CONVENTIONS「口コミ、Google 評論」讀，補進 `dossiers/<id>.md`。
+- 補過的資料點照 §5.1 重新寫 `assessment`、`tier`、`summary`（先讀 `assessment-notes.md`，標準不變）；星等或 tier 有變的列在 `data/raw/toba/README.md`。重跑評分檢查腳本。
+- 寫 `data/raw/toba/dossiers/`、`data/areas/toba/` 三個資料檔的 `assessment`、`tier`、`summary`。
+
+#### T7i 小腳本：觀光三重列表、じゃらん評分 〔S〕
+- **觀光三重景點列表**（`scripts/kanko-mie.mjs`）：依市町抓景點列表（名稱、網址、類別），輸出到 `data/derived/kanko-mie-<area>.json`。先看 robots.txt、呼叫間隔至少 1 秒；被擋就停，記在 README，T9a 改人工。
+  - 對伊勢、二見跑一次，和 `candidates/spots.json` 比對，沒在候選裡的列成 `data/derived/kanko-mie-missing-ise.json`（T8a 沒看觀光三重列表，可能漏景點）。**只產生清單，不改候選檔**，要不要補由 T13 決定。
+- **じゃらん評分**（`scripts/jalan.mjs`）：讀住宿頁的總評分和評論數，正確處理編碼（T7d 用 WebFetch 讀到亂碼）。先看 robots.txt 和利用規約，不允許就停、記在 README。
+  - 補鳥羽、伊勢、二見 `lodging.json` 的 `ratings.jalan`、`ratings.jalanReviews`（只填讀得到的，讀不到維持 null），`sources` 加じゃらん頁面。
+- 寫 `scripts/`、`data/derived/`、三區的 `lodging.json`（只動 `ratings`、`sources`）。
+
 ### T8a～T8f 伊勢（含二見）／ T9a～T9f 志摩
 兩區的步驟相同，照 CONVENTIONS §4 的「標準作業流程」（步驟 0～10）、「研究筆記怎麼存」和 §5 的規則。每一步都更新 `data/raw/<area>/README.md` 自己的那一節，過程寫在 `log/<任務 ID>.md`；開工先讀 README，不要整份讀其他 session 的 log。**兩區可以並行；同一區的步驟依序**。每筆從一開始就填新欄位：`region`、`links.googleMaps`、Google 星數與評論數、`photos`、數字的 `price`、`closures`，並且每筆都要有讀文筆記（subagent，`docs/prompts/dossier.md`）。
 
@@ -431,12 +452,16 @@ T7c → T7d → T7e → T7f → T7g → T8a → T8b → T8c → T8d → T8e → 
 | b 住宿 〔M〕 | 流程步驟 4～6：用 T7d 的 `scripts/rakuten.mjs` 依子地區和 2 月日期撈候選，套 §5.7 門檻；包棟、小民宿另外找；每間一個讀文 subagent；Google Maps 用 Chrome | 楽天 API、subagent、Chrome | `lodging.json`、`candidates/lodging.json`、筆記 |
 | c 餐廳候選 〔M〕 | 流程步驟 7：依子地區用食べログ列表、觀光協會、媒體蒐集，套 A～F（同 T4a）；列表文章的推薦重點寫進 `mentions` | Chrome | `candidates/restaurants.json` |
 | d 餐廳詳細 〔M～L〕 | 流程步驟 8：逐家查食べログ、Google Maps（同 T4b），記菜單連結、fit15 是 yes 或 split 的店的團體套餐，同時在背景開讀文 subagent；**可以依子地區拆成 2 個並行 session**，merge 時陣列衝突兩邊都保留 | Chrome、subagent | `restaurants.json`、`ig-notes.md`、筆記 |
-| e 收尾 〔S〕 | anchors（OSRM）、缺漏檢查、地圖檢查（同 T4c、T7f） | 腳本 | `restaurants.json`、筆記 |
+| e 收尾 〔S〕 | anchors（OSRM）、缺漏檢查、地圖檢查（同 T4c、T7f）；T8e 另外補心得（見下方「各區注意」） | 腳本 | `restaurants.json`、筆記 |
 | f 摘要與評分 〔M〕 | 流程步驟 10：先讀 `data/raw/toba/assessment-notes.md`，再只讀資料檔和筆記，照 §5.1 寫 `summary`、`assessment`、`tier`（同 T7g；可以依類型拆 3 個並行） | — | 三個檔案 |
 
 各區注意：
 - **伊勢（T8）**包含兩個區域：`ise`、`futami`（寫 `data/areas/ise/`、`data/areas/futami/`，筆記各自放在 `data/raw/ise/`、`data/raw/futami/`）。おはらい町的店很多，餐廳目標 80～100 家，T8d 建議拆成 2～3 個 session（例如：內宮・おはらい町／外宮・伊勢市站／二見）。旅程期間有 **2/3 節分**（神社活動）、**2/11 國定假日**，記在 `events`。
+  - **T8e 補心得**（2026-10-18 加入）：T8a～T8d 是在「心得改讀口コミ、Google 評論」之前做的，96 份餐廳筆記心得幾乎 0 篇。T8e 在收尾之後、T8f 打分之前，照 CONVENTIONS「口コミ、Google 評論」的對象和做法補進 `dossiers/`（餐廳約 30～50 家，加上心得不到 2 篇的景點、住宿）。T8a 沒看觀光三重列表的部分由 T7i 產生清單，T13 決定要不要補。
 - **志摩（T9）**的店和景點比較分散，很多地方要搭巴士或開車：子地區要標 `needsCar`，餐廳要填 `access`。第一天（2/2）傍晚才會到志摩，T9b 要特別看鵜方、賢島一帶的住宿，T9c 要找第一晚的晚餐。
+  - 志摩比伊勢更鄉下，部落格心得只會更少：從一開始就照 CONVENTIONS 標準作業流程的步驟 3、6、8，由主 session 在 Chrome 讀口コミ、Google 評論補心得；讀文 subagent 以官網和已知網址為主，WebSearch 每個限 2～3 次。
+  - T9a 的景點候選先跑 T7i 的 `scripts/kanko-mie.mjs`（觀光三重列表）當母體；T9b 的じゃらん評分用 `scripts/jalan.mjs`。
+  - 很多景點要搭巴士：T10 盡量在 T9a 完成後就做，T9c、T9d 判斷交通時才有班次可以看。
 
 ### T19 關西機場周邊：2/12 住宿與晚餐 〔S〕
 - 區域 `kix`（子地區：空港島、りんくうタウン），**不蒐集景點**。T7d 的楽天腳本完成後就可以開始，和 T8、T9 並行。
@@ -468,6 +493,7 @@ T7c → T7d → T7e → T7f → T7g → T8a → T8b → T8c → T8d → T8e → 
 
 ### T13 跨區整理與驗證 〔M〕
 - 跨區去除重複；檢查資料點有沒有缺漏（例如某個車站附近沒有餐廳）。
+- 看 T7i 的 `data/derived/kanko-mie-missing-ise.json`（伊勢、二見在觀光三重有、候選裡沒有的景點），決定要不要補；要補的列成清單給 👤，或另開任務補。
 - 統一分級和標籤；列出「資料可信度低、需要人工確認」的清單給 👤 你。
 
 ### T14 行程引擎 〔M〕
@@ -506,7 +532,11 @@ T7c → T7d → T7e → T7f → T7g → T8a → T8b → T8c → T8d → T8e → 
 - 2027 年 1 月下旬：重新確認行程中各點的營業時間、冬季停業、店家 IG 上的臨時公告、近鐵時刻表。
 - 15 人的訂位**不能等到這時候**：住宿、團體用餐、特急座位要在行程大致確定後（建議 12 月）就先訂，這裡只做最後確認。
 - **選定店家的完整菜單**：行程裡的餐廳（約 10～20 家）從 `menu` 的連結、官網、IG 整理菜單重點和價格，給點餐和訂團體套餐用（之前的任務只記招牌菜和連結，見 CONVENTIONS §4「菜單」）。
-- Claude Code 負責列出要確認的清單，並重新抓取網頁資料。IG：只看行程裡選定的店（約 10～20 家），用 Claude in Chrome 在你在場時查看簡介和最近的貼文，或由你手動確認；不做大量瀏覽。
+- Claude Code 負責列出要確認的清單，並重新抓取網頁資料。**能用程式重跑的先用程式**（CONVENTIONS §4「取得方式」的「資料多久過期」）：
+  - 楽天重查實際入住日期的價格和空房（`scripts/rakuten.mjs`）、近鐵和巴士時刻表重抓、照片網址檢查。
+  - **官網有沒有變**：寫一個腳本，把行程中各點 `sources` 裡的官網頁面重抓一次（不存全文），找出提到營業時間、休業、料金的段落，和資料檔的值比對，對不上或抓不到的頁面才交給 Claude 或 👤 看。
+  - Chrome 只用在 Google Maps 的營業狀態、臨時休業（行程中的店，約 10～20 家），以及下面的 IG。
+- IG：只看行程裡選定的店（約 10～20 家），用 Claude in Chrome 在你在場時查看簡介和最近的貼文，或由你手動確認；不做大量瀏覽。
 
 ---
 
