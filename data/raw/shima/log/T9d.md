@@ -129,3 +129,45 @@
 ### 給下一批
 - 第 5 批（hamajima＋sakko 13＋pending 4：ニュー浜島、大江戸温泉 伊勢志摩、アマネム、志摩地中海村）照這批的步驟；`t9d-4/judgement-src.mjs`、`patch-r-src.mjs`、`dp-add.mjs` 可以照抄改內容。
 - Google `closed` 出現時用 JS 讀面板開頭、跑 `newest` 看最新評論日期，再看官網（這批 3 家都是這樣確認的）。
+
+## 第 5 批：shima-hamajima＋sakko 13 家（2026-10-19）
+
+### 結果
+- 收錄 **9 筆**（hamajima 6、sakko 3）：網元の店八代、味幸、磯料理ヨット、西口屋、坂のうえ、大江戸 伊勢志摩（`shima-oedo-iseshima-dining`）、RIAS by Kokotxa、タベルナ・アスール、アマネムダイニング。
+- **pending 4**：大江戸 收錄（F3，官網 入浴付ディナーバイキング）；ニュー浜島（官網只有住宿附晚餐）、志摩地中海村 本體（村的總條目，和 RIAS・カフェ アミーゴ 重複）、アマネム 本體（インルームダイニング）排除。
+- **included → excluded 1**：里海（NEMU，官網沒有非住客用餐）。アマネムダイニング 以一休レストラン的公開預約頁當 F3（主 session 用 Chrome 讀，讀文 subagent 的 WebFetch 403）。
+- fit15：yes 2（坂のうえ、アスール）、split 2（味幸、アマネムダイニング）、no 1（西口屋）、unknown 4（八代、ヨット、RIAS、大江戸）。照片：官網 4 張（photo-check 6 張全部 200）＋Google 主圖。
+
+### 步驟
+1. `candidates.mjs export --keys … --ids …` → `t9d-5/batch.json`（13 家）；排除的 4 家從 batch 拿掉後才 draft（原檔 `batch.all.json`）。
+2. **食べログ（Chrome）**：`tabelog-info --store`，店家頁 13＝browser_batch 3 次（コース頁 0：沒有 party 分頁）。沒有 Cloudflare 畫面。
+3. **讀文 subagent 5 個**（背景，`t9d-5/prompt-common.md`：重點是住宿附設的非住客用餐、hamajima 2/3・2/4・2/10 的營業、sakko 的晚餐）：3＋3＋2＋3＋2 家，13 份筆記。
+4. **Google Maps**：`google-place --google --store`，browser_batch 2 次＋アマネム 列表 JS 點選 1 次（「アマネムダイニング／アマネム」4.5／15、「アマネム」4.5／461）。里海 搜到 NEMU 本體。
+5. 一休レストラン アマネムダイニング 店頁 用 Chrome navigate＋JS 讀文字 3 次（營業時間、席數、年齡限制、預約注意）。
+6. `candidates.mjs set`（`cand-status.json`）→ `photo-check` → `build-restaurants draft` → `judgement-src.mjs` → `build --candidates`（先 `--dry-run`）。validate 第一次 1 個錯誤（西口屋 `price.lunch` 寫 [null, 999]）→ 改 null 重 build。commit。
+7. **口コミ・評論**（`review-targets.mjs shima` → 6 家＋hamajima 週三唯一午餐的 ヨット）：tabelog-reviews browser_batch 3 次（一次 7～9 頁）、google-reviews 3 次（open＋lowest 2～3 家一批；アマネムダイニング 15 則 `extract`＋`lowest` 都跑），截圖 0、逾時 0。重點寫 `t9d-5/notes/` → **新的 `scripts/dossier-merge.mjs`**；回填 `patch-r-src.mjs` → `patch-r.json` → `apply-patch.mjs`（`recordOld: false`，先 `--dry-run`）。アマネムダイニング 的 `contexts` 改只有 lunch（judgement 改後重 build，在 apply-patch 之前）。
+8. 結束：www.google.com、tabelog.com 的 `__th_*` localStorage 都 removeItem（確認 0 筆），關掉分頁。沒有遇到驗證碼、登入、封鎖、對話框。清 google.com 時回傳的主機名被擋成「[BLOCKED: JWT token]」（只是確認用，0 筆已確認）。
+
+### 口コミ・評論的讀法
+- 食べログ：最新 20＋「中止」「冬」，依缺口加「待ち」（八代、ヨット）、「団体」（八代、RIAS）、「平日」（坂のうえ：營業日衝突）、「ランチ」（アスール、アマネム：非住客午餐）、「子供」（アスール、アマネム）、「階段」（RIAS、アスール）；味幸 只有 9 則全讀。
+- Google：低分順 10 則（6 家）；アマネムダイニング 全 15 則。
+- 發現：**坂のうえ 午餐只有週六日**（食べログ店舗情報＋口コミ 3 則，觀光協會「月休」是舊的）→ hamajima 平日的備案少一家；八代 假日等 1～3 小時；ヨット「伊勢海老 已經不做」1 則（要確認）；アマネム 住客帶小孩的口コミ vs 一休 12 歲以上；RIAS 冬季午晚都有營業。
+
+### WebSearch
+- 主 session 0 次；讀文 subagent 9 次（A 2、B 3、C 2、D 0、E 2）。搜尋都有回應（坂のうえ、西口屋、ニュー浜島 沒找到新事實），沒有額度用完的跡象。
+
+## 總結（T9d 完成，2026-10-19）
+
+| 批 | 子地區 | 家數（含 pending） | 收錄 | pending 收錄／排除 | included→excluded | 口コミ・評論 | WebSearch（subagent） |
+|---|---|---|---|---|---|---|---|
+| 1 | kashikojima＋yokoyama | 16（7） | 13 | 4／3 | 0 | 12 | 6 |
+| 2 | ugata | 25（2） | 24 | 1／1 | 0 | 18 | 9 |
+| 3 | isobe＋matoya＋anori＋kokufu | 21（5） | 19 | 4／1 | 1 | 13 | 9 |
+| 4 | daio＋tomoyama＋goza＋wagu＋other | 17（2） | 13 | 1／1 | 3 | 9 | 10 |
+| 5 | hamajima＋sakko | 13（4） | 9 | 1／3 | 1 | 7 | 9 |
+| **合計** | | **92（20）** | **78** | **11／9** | **5** | **59** | **43**（主 session 0） |
+
+- fit15（78 筆）：yes 28、split 18、no 5、unknown 27。`detailPending` 0、validate 錯誤 0・警告 0、npm test 全過。
+- Chrome（各批步驟的合計）：tabelog-info browser_batch 20 次（4＋5＋5＋3＋3）、google-place 17 次（4＋4＋4＋3＋2）＋列表重搜・點選 5 次、口コミ・評論 約 59 次（13＋18＋12＋10＋6）；截圖點選 2 次（第 1、2 批）；驗證碼・登入・封鎖 0。
+- 工具的修改：第 3 批 `google-place.js` 的 closed 判斷（只看面板開頭）；第 5 批 `scripts/dossier-merge.mjs`（＋lib、測試）取代各批複製的 notes-to-json／dossier-merge。CONVENTIONS「口コミ、Google 評論」加了 JWT 誤擋、來源清單格式的「已確認」。
+- 結論在 README「餐廳」的 T9d 各節（全員能吃的店、每天的家數、0 家的日子、第一晚、各區重點、給 T9e・T9f 的提醒）。
