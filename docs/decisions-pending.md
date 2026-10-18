@@ -13,6 +13,7 @@
 - [ ] T8e：ホテルキャッスルイン伊勢 的子地區照地址（神久）放 ise-outskirts，不是 T8b 候選的 ise-geku——伊勢市駅有送迎，但步行約 16 分，要不要當成外宮・伊勢市站的住宿
 - [ ] T8e：かぐら 的營業時間用食べログ（店舗会員，2025）而不是官網（2016 年的網站），違反「官網優先」——官網過時時要不要改成以較新的來源為準
 - [ ] T8e：向井酒の店、虎丸 的 `kids.allowed` 從 unknown 改成 yes（apply-patch 的 overwrite），依據是口コミ明寫「座敷有帶小孩的客人」（2026，2 則）、「有テーブル席、看到帶小孩的家庭」（2024/11，1 則）——超出「回填只填 null」，unknown 要不要當成可以覆寫的空值
+- [ ] T8e：パセプション 的 `seating` 從空陣列 `[]` 改成 `["zashiki", "horigotatsu"]`（apply-patch 的 overwrite，`recordOld: false`），依據是食べログ口コミ頁店舗情報「座敷あり、掘りごたつあり」和 2022/04 口コミ（全席個室、掘りごたつ、可改座敷式）——空陣列不是 null，超出「回填只填 null」；空陣列要不要當成可以填的空值
 
 ### 志摩（T9g 討論）
 - （目前沒有）
@@ -212,3 +213,7 @@
 | 2026-10-18 | T8e | **向井酒の店、虎丸 `kids.allowed` unknown → yes**（`apply-patch.mjs` 的 overwrite，`recordOld: false`）；虎丸 `seating` 只有 counter，口コミ說有テーブル → 不覆寫、寫進 `extra.conflicts` | unknown 是「沒有來源」的佔位值，口コミ明寫有帶小孩的客人（向井 2026 年 2 則、虎丸 2024/11 1 則）；但 CONVENTIONS 的回填規則是「只填 null」，所以列進「👤 建議先看」 | 兩筆的 `kids.allowed` 改回 "unknown"（`restaurants.json`） |
 | 2026-10-18 | T8e | 補心得第 3 批（ise-geku 23 筆）的讀法：Google 低分順程式沒套用時（柚、匠 PART2、一升びん、河崎商人館）用截圖點選或修好程式後重抽；一升びん 另讀了關聯度順 10 則；町家バル 的 Google 漏搜「座敷」（食べログ 0 筆）；若松屋 多搜了「体験」；おく文 的 Google 是住宿本體的評論，只取用餐相關 | 照 CONVENTIONS 的退路；漏搜的詞在食べログ也沒有結果、影響小 | 補搜：町家バル Google「座敷」 |
 | 2026-10-18 | T8e | 食べログ口コミ頁店舗情報寫「全席喫煙可」的 ひびの、ふぐや、匠 PART2（fit15 都是 yes）不改任何欄位，寫進筆記 [缺點] 和 `questions.md` | 吸菸是現況資訊，改正健康増進法後可能已變；資料檔沒有吸菸欄位，留給 T8f 的 cons 和電話確認 | — |
+| 2026-10-18 | T8e | **パセプション `seating` `[]` → `["zashiki", "horigotatsu"]`**（`apply-patch.mjs` 的 overwrite，`recordOld: false`）；`accessibility.barrierFree` 3 家（オランジェ、クッカーニャ・トレ、パセプション）照口コミ頁店舗情報的「バリアフリー」填（set，只填 null） | 空陣列是 T8d 沒有來源時的值，等同 null；但 `apply-patch` 的 set 不把 `[]` 當空值，要 overwrite，所以列進「👤 建議先看」 | `seating` 改回 `[]`（`restaurants.json`） |
+| 2026-10-18 | T8e | 補心得第 4 批（kurata・isuzugaoka・obata 15 筆）的讀法：Google 只搜食べログ 0 筆的詞，但食べログ只有 5 年以上舊口コミ的詞也當 0 筆（パセプション「冬」2010 年、リビエラ「冬」2015 年 → リビエラ 沒補搜，パセプション 有補搜）；かぐら「子供」食べログ有 1 則（2026/05）就沒在 Google 搜；景點「階段」只搜 keywords 有的（倭姬宮 `stairs: 多` 已有值，沒搜） | 照 targets 的 keywords 和 CONVENTIONS「食べログ沒結果才搜 Google」；舊口コミ照「5 年以上不寫」等於沒結果 | 補搜：リビエラ Google「冬」 |
+| 2026-10-18 | T8e | かぐら `kids.allowed` 維持 unknown（「子供」1 則只寫帶小孩比賽遠征順路、沒寫小孩同桌）；神宮徴古館 `kids.friendly` 維持 null（1 則評論說對小孩偏難，是感想不是事實）；とんかつ四十三番 `fit15: yes` 不改（全店 18 席、貸切不可，口コミ都說會排隊，寫進筆記和 questions） | CONVENTIONS「欄位怎麼填」：推斷不採用、口コミ明寫的事實才回填；fit15 是 T8d 依最大予約 18 人的規則值 | — |
+| 2026-10-18 | T8e | かぐら 口コミ頁店舗情報寫「全席喫煙可」（個室內或店外），照第 3 批 ひびの 等的做法不改欄位，寫進筆記 [缺點] 和 `questions.md` | 同第 3 批 | — |

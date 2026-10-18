@@ -137,3 +137,28 @@
 - 直接用修好的 `google-reviews.js`（`--store` 第一次存，之後 `--stored`）；低分順有警告時截圖點「評価の低い順」再跑 `extract`。
 - 食べログ和 Google 可以放同一個 batch（兩個網站的程式都存在各自的 localStorage）。
 - `dossier-merge.mjs` 可以照抄這批的 notes JSON 格式（`data/cache/work/t8e-3/notes/*.json`）。
+
+## 第 4 批：補心得 kurata・isuzugaoka・obata 15 筆（2026-10-18）
+
+### 範圍
+- 對象清單 `data/cache/work/t8e-targets.json` 的 batch 2：餐廳 11（オランジェ カフェウッド、クッカーニャ・トレ、リビエラ、つぼ銀、かぐら、とんかつ四十三番、さし汐、三玄、柚子、たまちゃん、パセプション）、景點 4（月讀宮、倭姬宮、神宮徴古館、松尾觀音寺）。沒有住宿。
+- 工作目錄 `data/cache/work/t8e-4/`：`batch.json`（id、食べログ、Google、關鍵字、現有欄位）、`notes/`（每筆的重點 JSON，格式同第 3 批）、`notes-all.json`、`patch-r.json`、`patch-r2.json`、`q.md`、`d.md`；工作用腳本 `mk.sh`（串 chrome-actions 的輸出）、`up.cjs`（改 notes JSON）、`dossier-merge.mjs`（第 3 批的照抄）、`append-md.mjs`、`mdrep.mjs`（第 2 批的照抄）。
+
+### 步驟
+1. Chrome 1 個分頁（結束關掉；www.google.com、tabelog.com 的 localStorage 都 removeItem 並確認）。`chrome-actions.mjs --store` 第一次存程式，之後 `--stored`。食べログ（最新 20＋關鍵字）和上一家的 Google（低分順 10＋食べログ 0 筆的詞）放同一個 batch，每家約 1.5 次 batch，共 18 次 browser_batch。
+2. 這批食べログ第一頁沒遇到 Cloudflare 重新載入；`google-reviews.js` 的低分順 15 筆都正確套用（沒有警告、不用截圖）。沒有遇到驗證碼、登入、封鎖、對話框。
+3. 狀況：倭姬宮＋徴古館 放同一個 batch（26 個動作）時 browser_batch 逾時、結果沒回來（頁面其實跑完了），改成一個景點一個 batch 重做；さし汐 的 Google 那次擴充功能斷線 1 次，`tabs_context_mcp` 後重跑成功。
+4. 重點寫成 `notes/<id>.json`，`dossier-merge.mjs` 併進 `dossiers/`（「資料量」併入原本的心得數，例如 Retty 8 則、HAMONI 2 則）；回填 `apply-patch.mjs`（先 `--dry-run`）；validate 通過後 commit 6102d6b。
+
+### 結果
+- 15 筆筆記都追加了口コミ／評論。
+- 回填：`accessibility.barrierFree` 3（オランジェ、クッカーニャ・トレ、パセプション）；パセプション `seating` [] → zashiki・horigotatsu（overwrite，「👤 建議先看」）；柚子 seating 的口コミ衝突（2022 年 和室擺桌椅）寫進 `extra.conflicts`。
+- `questions.md` +11。decisions-pending 4 列（1 列進「👤 建議先看」）。
+- 讀法的例外：食べログ只有 5 年以上舊口コミ的詞當 0 筆（パセプション「冬」有補搜 Google，リビエラ「冬」沒補搜）；かぐら「子供」食べログ有 1 則，Google 沒搜。
+
+### WebSearch
+- 0 次（沒有開讀文 subagent）。
+
+### 給下一批（第 5 批：naiku・asama・outskirts 25 筆）
+- 一個 browser_batch 控制在約 20 個動作內（Google 2 家＋搜尋 5 個詞會逾時）。
+- 住宿（第 5 批有 2 間）用住宿版型，程式已支援（第 3 批）。
