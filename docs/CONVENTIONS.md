@@ -328,7 +328,12 @@ travel_helper/
 
 - **同一件事要在三區重複做、而且欄位固定，就寫成 `scripts/` 的腳本**；只做一次或要判斷的，交給 Claude 讀。
 - **Chrome 是最稀缺的資源**（只有一個瀏覽器、只有主 session 用、每家 3～10 次操作），只用在「固定網站但程式會被擋」的地方：食べログ、Google Maps。不要拿 Chrome 找零散資料。
-- **WebSearch 用來找、WebFetch 用來讀**：知道網址就直接 WebFetch，不要再搜尋。WebSearch 額度一個 session 約 200 次，T7e 用完過兩次。
+- **WebSearch 用來找、WebFetch 用來讀**：知道網址就直接 WebFetch，不要再搜尋。
+- **WebSearch 有次數上限**（Claude Code 官方文件，2026-10-18 查）：一個互動 session 預設 200 次，**主 session 和所有 subagent 共用**；用完後約每小時補回 100 次，`/clear` 歸零；上限可以用環境變數 `CLAUDE_CODE_MAX_WEB_SEARCHES_PER_SESSION` 調高，但不能取消。用完時**不會報錯**，只會提示 Claude 用現有資料繼續，所以要靠每個 subagent 限 2～3 次來控制（T7e 沒限制，用完兩次，讀文 subagent 默默只剩 WebFetch）。指揮 session 連續跑多個任務也共用這 200 次。
+- **WebFetch 沒有次數上限，但回傳的是摘要**：網頁轉成 Markdown 後，由另一個小模型照指令摘要，Claude 拿到的不是原文，數字可能被簡化或漏掉（例如平日、週末不同的營業時間只剩一個）。所以：
+  - 讀營業時間、休業、票價、席數這些事實欄位時，WebFetch 的指令要寫「**原文照抄**相關段落」，不要叫它總結（`docs/prompts/dossier.md` 規則 5）。
+  - 要準確比對或重複執行的（T18 的官網比對、じゃらん），用腳本 `fetch` 或 `curl` 讀原始頁面，不用 WebFetch。
+  - 每次最多讀 10 萬字；同一網址 15 分鐘內會用快取；非 UTF-8 頁面（Shift_JIS）會亂碼。
 - **程式讀得到但內容亂碼**多半是編碼問題（例如じゃらん是 Shift_JIS，見下方來源表），用腳本指定編碼解碼，不要直接退到 Chrome。
 
 **資料多久過期**：

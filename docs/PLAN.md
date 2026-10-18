@@ -537,6 +537,8 @@ T7c → T7d → T7e → T7f → T7g → T8a → T8b → T8c → T8d → T7i → 
 - Claude Code 負責列出要確認的清單，並重新抓取網頁資料。**能用程式重跑的先用程式**（CONVENTIONS §4「取得方式」的「資料多久過期」）：
   - 楽天重查實際入住日期的價格和空房（`scripts/rakuten.mjs`）、近鐵和巴士時刻表重抓、照片網址檢查。
   - **官網有沒有變**：寫一個腳本，把行程中各點 `sources` 裡的官網頁面重抓一次（不存全文），找出提到營業時間、休業、料金的段落，和資料檔的值比對，對不上或抓不到的頁面才交給 Claude 或 👤 看。
+    - 腳本用 `fetch` 讀**原始頁面**，不用 WebFetch：WebFetch 回傳的是小模型的摘要，數字可能被簡化（CONVENTIONS §4「取得方式」）。這也順便檢查之前用 WebFetch 讀到的事實欄位有沒有讀錯。
+    - 編碼依頁面的 `charset` 解碼（Shift_JIS、EUC-JP 用 `TextDecoder`，做法同 `scripts/jalan.mjs`）；PDF 用文字抽取；要 JS 才顯示內容的頁面列為「抓不到」，交給人看。
   - Chrome 只用在 Google Maps 的營業狀態、臨時休業（行程中的店，約 10～20 家），以及下面的 IG。
 - IG：只看行程裡選定的店（約 10～20 家），用 Claude in Chrome 在你在場時查看簡介和最近的貼文，或由你手動確認；不做大量瀏覽。
 
