@@ -1,0 +1,2879 @@
+[
+  {
+    "id": "shima-iwajin-kissa",
+    "type": "restaurant",
+    "name": {
+      "ja": "イワジン喫茶室",
+      "kana": "いわじんきっさしつ",
+      "zh": "岩甚珍珠 喫茶室",
+      "en": null
+    },
+    "area": "shima",
+    "region": "shima-kashikojima",
+    "coords": [
+      136.8186966,
+      34.3079041
+    ],
+    "coordsSource": "google-maps-url",
+    "address": "三重県志摩市阿児町神明733-8賢島 イワジン真珠店内併設喫茶室",
+    "hours": {
+      "mon": [
+        [
+          "11:00",
+          "17:00"
+        ]
+      ],
+      "tue": [
+        [
+          "11:00",
+          "17:00"
+        ]
+      ],
+      "wed": [],
+      "thu": [
+        [
+          "11:00",
+          "17:00"
+        ]
+      ],
+      "fri": [
+        [
+          "11:00",
+          "17:00"
+        ]
+      ],
+      "sat": [
+        [
+          "11:00",
+          "17:00"
+        ]
+      ],
+      "sun": [
+        [
+          "11:00",
+          "17:00"
+        ]
+      ],
+      "holiday": null,
+      "lastEntry": "15:00",
+      "note": "官網：餐點 11:00～L.O. 13:30、喫茶 L.O. 15:00；結束時間官網沒寫，17:00 是食べログ（真珠店的時間）。週三休（真珠店同休）"
+    },
+    "closedNote": "週三",
+    "febNote": "2/3、2/10（三）休；季節限定 牡蠣とあおさクリームスパゲティ 1,700 円（期間未寫）",
+    "closures": [],
+    "photos": [
+      {
+        "url": "https://iwajin-pearls.com/wp-content/uploads/2018/08/5635.jpg",
+        "page": "https://iwajin-pearls.com/",
+        "kind": "official",
+        "credit": "イワジン喫茶室",
+        "license": null
+      }
+    ],
+    "links": {
+      "official": "https://iwajin-pearls.com/tearoom/",
+      "googleMaps": "https://maps.google.com/?cid=12179406937901593654",
+      "tabelog": "https://tabelog.com/mie/A2403/A240303/24008581/",
+      "instagram": "@satoru_nu_88"
+    },
+    "tags": [],
+    "tier": null,
+    "sources": [
+      {
+        "type": "tabelog",
+        "url": "https://tabelog.com/mie/A2403/A240303/24008581/",
+        "retrieved": "2026-10-18",
+        "note": "店舗情報：分數、席數、預約、個室、貸切、營業時間、お子様連れ"
+      },
+      {
+        "type": "google-maps",
+        "url": "https://maps.google.com/?cid=12179406937901593654",
+        "retrieved": "2026-10-18",
+        "note": "星數、評論數、座標、照片"
+      },
+      {
+        "type": "official",
+        "url": "https://iwajin-pearls.com/",
+        "retrieved": "2026-10-18",
+        "note": "喫茶室 40 年、2018 年整修、主廚摩納哥修業、志摩食材"
+      },
+      {
+        "type": "official",
+        "url": "https://iwajin-pearls.com/tearoom/",
+        "retrieved": "2026-10-18",
+        "note": "用餐時段、水曜休、座位配置"
+      },
+      {
+        "type": "official",
+        "url": "https://iwajin-pearls.com/lunch/",
+        "retrieved": "2026-10-18",
+        "note": "餐點菜單與價格（網站只列部分）"
+      },
+      {
+        "type": "official",
+        "url": "https://iwajin-pearls.com/pearlstore/",
+        "retrieved": "2026-10-18",
+        "note": "真珠店 10:00～17:00、水曜休、賢島駅徒步 1 分"
+      }
+    ],
+    "verified": false,
+    "anchors": [],
+    "contexts": [
+      "lunch",
+      "cafe"
+    ],
+    "access": "walk",
+    "cuisine": [
+      "咖啡・甜點",
+      "洋食・義式"
+    ],
+    "priceRange": "午 ¥1,200～2,200",
+    "price": {
+      "lunch": [
+        1200,
+        2200
+      ],
+      "dinner": null
+    },
+    "stayMinutes": null,
+    "mustTry": [
+      "イワジン風 ブイヤーベースランチ 2,000 円",
+      "イワジン風 パエリアランチプレート 2,200 円",
+      "志摩産 天然渡り蟹のスパゲティ（時價 1,400～2,000 円）"
+    ],
+    "menu": [
+      {
+        "url": "https://iwajin-pearls.com/lunch/",
+        "source": "official",
+        "retrieved": "2026-10-18"
+      }
+    ],
+    "ratings": {
+      "tabelog": 3.45,
+      "tabelogReviews": 122,
+      "google": 4.3,
+      "googleReviews": 18,
+      "note": null
+    },
+    "inclusion": [
+      "A",
+      "C"
+    ],
+    "tabelogOwner": false,
+    "googleName": null,
+    "notes": "賢島站前 イワジン真珠店內的喫茶室（2018 整修），面庭園；午餐是志摩海鮮的義大利麵、ブイヤーベース、パエリア（L.O. 13:30），之後只有喫茶到 15:00。有 10 人大桌，15 人可坐 10＋4 人桌或包場（20 人以下）。",
+    "group": {
+      "seats": 32,
+      "maxReservation": null,
+      "privateRoom": false,
+      "buyout": "可（20 人以下）",
+      "groupMenu": null,
+      "fit15": "yes",
+      "fitSubgroup": "yes",
+      "source": "官網：10 人桌 1、4 人桌 5、2 人桌 1＋露台（約 32 席）；食べログ：予約可、貸切 20 人以下 → yes（包場或 10＋4 人桌）"
+    },
+    "reservation": {
+      "accepted": "yes",
+      "methods": [
+        "phone"
+      ],
+      "phone": "0599-43-1018",
+      "url": null,
+      "language": "日文",
+      "note": "食べログ：予約可（官網沒寫能否預約）；包場 20 人以下",
+      "leadDays": null
+    },
+    "seating": [
+      "table",
+      "terrace"
+    ],
+    "kids": {
+      "allowed": "yes",
+      "minAge": null,
+      "kidsMenu": null,
+      "note": "食べログ：子供可；兒童餐沒寫"
+    },
+    "accessibility": {
+      "barrierFree": null,
+      "note": "賢島站步行 1 分（約 70 m）；樓層、階梯官網沒寫"
+    },
+    "smoking": "全席禁煙",
+    "extra": {
+      "conflicts": [
+        "營業時間：官網喫茶室 11:00～（食事 L.O.13:30、喫茶 L.O.15:00）vs 食べログ 10:00-17:00 L.O.16:30（後者像真珠店的時間）"
+      ]
+    }
+  },
+  {
+    "id": "shima-hanaya-dining",
+    "type": "restaurant",
+    "name": {
+      "ja": "はな屋",
+      "kana": "はなや あじさい",
+      "zh": "賢島家庭飯店 花屋 和食堂「紫陽花」",
+      "en": null
+    },
+    "area": "shima",
+    "region": "shima-kashikojima",
+    "coords": [
+      136.8194356,
+      34.3074513
+    ],
+    "coordsSource": "google-maps-url",
+    "address": "三重県志摩市阿児町神明737-13",
+    "hours": {
+      "mon": [
+        [
+          "11:30",
+          "14:30"
+        ],
+        [
+          "17:00",
+          "20:00"
+        ]
+      ],
+      "tue": [
+        [
+          "11:30",
+          "14:30"
+        ],
+        [
+          "17:00",
+          "20:00"
+        ]
+      ],
+      "wed": [
+        [
+          "11:30",
+          "14:30"
+        ],
+        [
+          "17:00",
+          "20:00"
+        ]
+      ],
+      "thu": [
+        [
+          "11:30",
+          "14:30"
+        ],
+        [
+          "17:00",
+          "20:00"
+        ]
+      ],
+      "fri": [
+        [
+          "11:30",
+          "14:30"
+        ],
+        [
+          "17:00",
+          "20:00"
+        ]
+      ],
+      "sat": [
+        [
+          "11:30",
+          "14:30"
+        ],
+        [
+          "17:00",
+          "20:00"
+        ]
+      ],
+      "sun": [
+        [
+          "11:30",
+          "14:30"
+        ],
+        [
+          "17:00",
+          "20:00"
+        ]
+      ],
+      "holiday": [
+        [
+          "11:30",
+          "14:30"
+        ],
+        [
+          "17:00",
+          "20:00"
+        ]
+      ],
+      "note": "只有食べログ有時間（晚上「事前確認要」、無休）；官網、觀光三重沒寫營業時間"
+    },
+    "closedNote": "無休（食べログ）",
+    "febNote": "官網沒有營業時間；2/2 晚上能不能吃要電話確認",
+    "closures": [],
+    "photos": [
+      {
+        "url": "https://878hanaya.net/images/1.png",
+        "page": "https://878hanaya.net/",
+        "kind": "official",
+        "credit": "はな屋",
+        "license": null
+      }
+    ],
+    "links": {
+      "official": "https://878hanaya.net/",
+      "googleMaps": "https://maps.google.com/?cid=7211907634722039815",
+      "tabelog": "https://tabelog.com/mie/A2403/A240303/24010611/",
+      "instagram": null
+    },
+    "tags": [],
+    "tier": null,
+    "sources": [
+      {
+        "type": "tabelog",
+        "url": "https://tabelog.com/mie/A2403/A240303/24010611/",
+        "retrieved": "2026-10-18",
+        "note": "店舗情報：分數、席數、預約、個室、貸切、營業時間、お子様連れ"
+      },
+      {
+        "type": "google-maps",
+        "url": "https://maps.google.com/?cid=7211907634722039815",
+        "retrieved": "2026-10-18",
+        "note": "星數、評論數、座標、照片"
+      },
+      {
+        "type": "official",
+        "url": "https://878hanaya.net/cuisine.html",
+        "retrieved": "2026-10-18",
+        "note": "2F 和食堂あじさい歡迎只用餐、日歸客（Shift_JIS，curl 轉碼讀取）"
+      },
+      {
+        "type": "official",
+        "url": "https://878hanaya.net/access.html",
+        "retrieved": "2026-10-18",
+        "note": "賢島駅步行 5 分、遊覧船乘船處旁"
+      },
+      {
+        "type": "tourism",
+        "url": "https://www.kankomie.or.jp/spot/571",
+        "retrieved": "2026-10-18",
+        "note": "賢島駅步行 3 分、停車場 30 台；無營業時間"
+      }
+    ],
+    "verified": false,
+    "anchors": [],
+    "contexts": [
+      "lunch",
+      "dinner"
+    ],
+    "access": "walk",
+    "cuisine": [
+      "和食・割烹"
+    ],
+    "priceRange": null,
+    "price": null,
+    "stayMinutes": null,
+    "mustTry": [],
+    "menu": [
+      {
+        "url": "https://tabelog.com/mie/A2403/A240303/24010611/dtlmenu/photo/",
+        "source": "tabelog",
+        "retrieved": "2026-10-18"
+      }
+    ],
+    "ratings": {
+      "tabelog": 3.22,
+      "tabelogReviews": 52,
+      "google": 4.4,
+      "googleReviews": 156,
+      "note": null
+    },
+    "inclusion": [
+      "C",
+      "F3"
+    ],
+    "tabelogOwner": false,
+    "googleName": "賢島ファミリーホテルはな屋「あじさい」",
+    "notes": "賢島站旁的家庭式飯店 2F 和食堂「あじさい」（Google 4.4／156），官網寫只用餐、日歸客也歡迎。官網是舊站，沒有菜單、價格、營業時間；食べログ 午 11:30～14:30、晚 17:00～20:00（要事前確認）。賢島站周邊少數可能有晚餐的非飯店餐廳，第一晚的候補。",
+    "group": {
+      "seats": null,
+      "maxReservation": null,
+      "privateRoom": false,
+      "buyout": "可",
+      "groupMenu": null,
+      "fit15": "unknown",
+      "fitSubgroup": "unknown",
+      "source": "食べログ：席數沒寫、個室 無、貸切 可、予約可；官網沒寫席數、團體條件 → unknown"
+    },
+    "reservation": {
+      "accepted": "yes",
+      "methods": [
+        "phone"
+      ],
+      "phone": "0599-46-1020",
+      "url": null,
+      "language": "日文",
+      "note": "食べログ：予約可；晚上要事前確認",
+      "leadDays": null
+    },
+    "seating": [],
+    "kids": {
+      "allowed": "unknown",
+      "minAge": null,
+      "kidsMenu": null,
+      "note": "店名是「ファミリーホテル」，兒童相關沒寫"
+    },
+    "accessibility": {
+      "barrierFree": null,
+      "note": "2F 的和食堂，電梯沒寫；賢島站步行 5 分（觀光三重 3 分）、英虞灣遊覽船乘船處旁；停車場（觀光三重 30 台）"
+    },
+    "smoking": "全席禁煙",
+    "extra": {
+      "conflicts": [
+        "賢島駅步行：官網 5 分、觀光三重 3 分",
+        "營業時間只見於食べログ（11:30-14:30、17:00-20:00 事前確認要），官網與觀光三重未記載"
+      ]
+    }
+  },
+  {
+    "id": "shima-hoseien-dining",
+    "type": "restaurant",
+    "name": {
+      "ja": "賢島宝生苑",
+      "kana": "かしこじまほうじょうえん",
+      "zh": "賢島寶生苑 日歸午餐（英虞之海）",
+      "en": null
+    },
+    "area": "shima",
+    "region": "shima-kashikojima",
+    "coords": [
+      136.8216746,
+      34.3054024
+    ],
+    "coordsSource": "google-maps-url",
+    "address": "三重県志摩市阿児町神明718-3",
+    "hours": {
+      "mon": [],
+      "tue": [],
+      "wed": [
+        [
+          "11:30",
+          "13:30"
+        ]
+      ],
+      "thu": [
+        [
+          "11:30",
+          "13:30"
+        ]
+      ],
+      "fri": [
+        [
+          "11:30",
+          "13:30"
+        ]
+      ],
+      "sat": [
+        [
+          "11:30",
+          "13:30"
+        ]
+      ],
+      "sun": [
+        [
+          "11:30",
+          "13:30"
+        ]
+      ],
+      "holiday": [
+        [
+          "11:30",
+          "13:30"
+        ]
+      ],
+      "note": "日帰り昼食プラン（餐廳「英虞のうみ」，燦陽 2F），事前預約制；週一・二休（遇國定假日營業）。非住客晚餐官網沒寫（住客晚餐 17:30／19:30 二部制）"
+    },
+    "closedNote": "午餐 週一、週二（遇國定假日營業）",
+    "febNote": "2/2、2/8、2/9 午餐休；日帰り御膳 是 2026/10～2027/3 的菜單",
+    "closures": [],
+    "photos": [
+      {
+        "url": "https://www.hojoen.com/images/mv_planday.jpg",
+        "page": "https://www.hojoen.com/planday/",
+        "kind": "official",
+        "credit": "賢島宝生苑",
+        "license": null
+      },
+      {
+        "url": "https://www.hojoen.com/images/mv_room.jpg",
+        "page": "https://www.hojoen.com/guestroom/",
+        "kind": "official",
+        "credit": "賢島宝生苑",
+        "license": null
+      }
+    ],
+    "links": {
+      "official": "https://www.hojoen.com/",
+      "googleMaps": "https://maps.google.com/?cid=1489525318797124424",
+      "tabelog": "https://tabelog.com/mie/A2403/A240303/24001751/",
+      "instagram": "@kashikojimahojoen_official"
+    },
+    "tags": [],
+    "tier": null,
+    "sources": [
+      {
+        "type": "tabelog",
+        "url": "https://tabelog.com/mie/A2403/A240303/24001751/",
+        "retrieved": "2026-10-18",
+        "note": "店舗情報：分數、席數、預約、個室、貸切、營業時間、お子様連れ"
+      },
+      {
+        "type": "google-maps",
+        "url": "https://maps.google.com/?cid=1489525318797124424",
+        "retrieved": "2026-10-18",
+        "note": "住宿本體的星數、評論數、座標、照片"
+      },
+      {
+        "type": "official",
+        "url": "https://www.hojoen.com/planday/",
+        "retrieved": "2026-10-18",
+        "note": "日帰り昼食方案、價格、時間、週一二休、預約截止"
+      },
+      {
+        "type": "official",
+        "url": "https://www.hojoen.com/cuisine/",
+        "retrieved": "2026-10-18",
+        "note": "英虞のうみ全席椅子、晚餐二部制、10 名以上宴會席"
+      },
+      {
+        "type": "official",
+        "url": "https://www.hojoen.com/topicslist/detail.php?no=20260921154638",
+        "retrieved": "2026-10-18",
+        "note": "2026/11/1 起單點午餐調價"
+      },
+      {
+        "type": "official",
+        "url": "https://www.hojoen.com/topicslist/detail.php?no=20261017181501",
+        "retrieved": "2026-10-18",
+        "note": "年末年始午餐預約截止"
+      },
+      {
+        "type": "official",
+        "url": "https://www.hojoen.com/plangroup/",
+        "retrieved": "2026-10-18",
+        "note": "宴會場規模、飲み放題價格"
+      },
+      {
+        "type": "tourism",
+        "url": "https://www.kankomie.or.jp/report/1736",
+        "retrieved": "2026-10-18",
+        "note": "日帰り入浴 12:00～17:00 與價格（約 2024 年）"
+      }
+    ],
+    "verified": false,
+    "anchors": [],
+    "contexts": [
+      "lunch"
+    ],
+    "access": "walk",
+    "cuisine": [
+      "和食・割烹",
+      "伊勢海老・高級海鮮"
+    ],
+    "priceRange": "午 ¥2,000～9,900",
+    "price": {
+      "lunch": [
+        2000,
+        9900
+      ],
+      "dinner": null
+    },
+    "stayMinutes": null,
+    "mustTry": [
+      "伊勢海老洗い おもてなし御膳 9,900 円",
+      "松阪牛石焼き御膳 9,900 円",
+      "松阪牛ローストビーフ丼 2,600 円"
+    ],
+    "menu": [
+      {
+        "url": "https://www.hojoen.com/planday/",
+        "source": "official",
+        "retrieved": "2026-10-18"
+      }
+    ],
+    "ratings": {
+      "tabelog": 3.45,
+      "tabelogReviews": 162,
+      "google": 4.3,
+      "googleReviews": 2596,
+      "note": "Google 是住宿本體「賢島宝生苑」的評分"
+    },
+    "inclusion": [
+      "A",
+      "C",
+      "F3"
+    ],
+    "tabelogOwner": false,
+    "googleName": null,
+    "notes": "賢島的大型溫泉旅館（Google 4.3／2,596）對外的午餐方案：英虞灣景觀的餐廳，伊勢海老、松阪牛御膳 7,000～9,900 円，也有 2,000 円左右的單點（海鮮ちらし、ピラフ、咖哩）。要前一天預約，週一・二休；可加日帰り入浴。",
+    "group": {
+      "seats": null,
+      "maxReservation": null,
+      "privateRoom": null,
+      "buyout": null,
+      "groupMenu": null,
+      "fit15": "unknown",
+      "fitSubgroup": "yes",
+      "source": "官網：日帰り昼食的人數上限、團體條件沒寫（宴會場 10～20 名、最多 360 名是住客的晚餐宴會）→ unknown"
+    },
+    "reservation": {
+      "accepted": "yes",
+      "methods": [
+        "phone",
+        "web"
+      ],
+      "phone": "0599-43-3624",
+      "url": "https://www.hojoen.com/planday/",
+      "language": "日文",
+      "note": "午餐事前預約制：網路表單前一天 12:00、電話前一天 18:00 截止，館方回覆才成立（電話 9:00～18:00）",
+      "leadDays": 1
+    },
+    "seating": [
+      "table"
+    ],
+    "kids": {
+      "allowed": "unknown",
+      "minAge": null,
+      "kidsMenu": null,
+      "note": "午餐的兒童價、兒童餐官網沒寫（日帰り入浴 4～11 歲 1,000 円）"
+    },
+    "accessibility": {
+      "barrierFree": null,
+      "note": "英虞のうみ 在燦陽 2F，全席桌椅；輪椅免費出借（住宿官網）；賢島站步行 7 分，免費接駁巴士"
+    },
+    "smoking": "全席禁煙",
+    "extra": {
+      "conflicts": [
+        "食べログ寫夕食 18 時～，官網寫二部制 17:30／19:30"
+      ],
+      "lodgingId": "shima-hoseien"
+    }
+  },
+  {
+    "id": "shima-la-mer",
+    "type": "restaurant",
+    "name": {
+      "ja": "ラ・メール",
+      "kana": "らめーる",
+      "zh": "La Mer（志摩觀光飯店 The Bay Suites 法式）",
+      "en": null
+    },
+    "area": "shima",
+    "region": "shima-kashikojima",
+    "coords": [
+      136.8153101,
+      34.3078006
+    ],
+    "coordsSource": "google-maps-url",
+    "address": "三重県志摩市阿児町神明731 志摩観光ホテル ザ ベイスイート 5Ｆ",
+    "hours": {
+      "mon": [
+        [
+          "11:30",
+          "14:30"
+        ],
+        [
+          "17:30",
+          "21:00"
+        ]
+      ],
+      "tue": [
+        [
+          "11:30",
+          "14:30"
+        ],
+        [
+          "17:30",
+          "21:00"
+        ]
+      ],
+      "wed": [
+        [
+          "11:30",
+          "14:30"
+        ],
+        [
+          "17:30",
+          "21:00"
+        ]
+      ],
+      "thu": [
+        [
+          "11:30",
+          "14:30"
+        ],
+        [
+          "17:30",
+          "21:00"
+        ]
+      ],
+      "fri": [
+        [
+          "11:30",
+          "14:30"
+        ],
+        [
+          "17:30",
+          "21:00"
+        ]
+      ],
+      "sat": [
+        [
+          "11:30",
+          "14:30"
+        ],
+        [
+          "17:30",
+          "21:00"
+        ]
+      ],
+      "sun": [
+        [
+          "11:30",
+          "14:30"
+        ],
+        [
+          "17:30",
+          "21:00"
+        ]
+      ],
+      "holiday": [
+        [
+          "11:30",
+          "14:30"
+        ],
+        [
+          "17:30",
+          "21:00"
+        ]
+      ],
+      "lastEntry": [
+        "13:30",
+        "19:30"
+      ],
+      "note": "晚餐 17:30～21:00（L.O. 19:30），無休。午餐平常只有包場（12:00～12:30 開始）；2027-01-12～16、01-23～03-04 ザ クラシック 改裝期間，這裡加開一般午餐 11:30～14:30（L.O. 13:30）（TableCheck）"
+    },
+    "closedNote": "無休（2027-01-17～22 館內維修休業）",
+    "febNote": "2/2（週二）晚餐有營業（L.O. 19:30）；旅程中因クラシック改裝加開午餐；晚餐 smart casual（不可 T 恤、短褲、海灘拖鞋）",
+    "closures": [
+      {
+        "from": "2027-01-17",
+        "to": "2027-01-22",
+        "note": "ザ ベイスイート 館內維修休業（TableCheck）"
+      }
+    ],
+    "photos": [
+      {
+        "url": "https://www.miyakohotels.ne.jp/datas/cache/images/2022/02/22/1100x770_ea1e9d427fb5664c32c517a73e421e58_d5f8f20fa37e9b035c30700ecf50b6e16591f083.jpg",
+        "page": "https://www.miyakohotels.ne.jp/baysuites/restaurant/lamer/index.html",
+        "kind": "official",
+        "credit": "ラ・メール",
+        "license": null
+      }
+    ],
+    "links": {
+      "official": "https://www.miyakohotels.ne.jp/baysuites/restaurant/lamer/index.html",
+      "googleMaps": "https://maps.google.com/?cid=7608807459504810009",
+      "tabelog": "https://tabelog.com/mie/A2403/A240303/24005111/",
+      "instagram": "@shimakankohotel"
+    },
+    "tags": [],
+    "tier": null,
+    "sources": [
+      {
+        "type": "tabelog",
+        "url": "https://tabelog.com/mie/A2403/A240303/24005111/",
+        "retrieved": "2026-10-18",
+        "note": "店舗情報：分數、席數、預約、個室、貸切、營業時間、お子様連れ（店舗会員）"
+      },
+      {
+        "type": "google-maps",
+        "url": "https://maps.google.com/?cid=7608807459504810009",
+        "retrieved": "2026-10-18",
+        "note": "星數、評論數、座標、照片"
+      },
+      {
+        "type": "official",
+        "url": "https://www.miyakohotels.ne.jp/baysuites/restaurant/lamer/index.html",
+        "retrieved": "2026-10-18",
+        "note": "營業時間、88 席、小学生以上、smart casual、包場午餐 15～40 人"
+      },
+      {
+        "type": "booking-site",
+        "url": "https://www.tablecheck.com/shops/miyakohotels-shima-lamer/reserve",
+        "retrieved": "2026-10-18",
+        "note": "套餐價格、2027-01 休業與期間限定午餐、10 人以上電話"
+      },
+      {
+        "type": "official",
+        "url": "https://www.miyakohotels.ne.jp/shima/banquet/",
+        "retrieved": "2026-10-18",
+        "note": "小宴會場最多 60 人"
+      }
+    ],
+    "verified": false,
+    "anchors": [],
+    "contexts": [
+      "lunch",
+      "dinner"
+    ],
+    "access": "walk",
+    "cuisine": [
+      "洋食・義式",
+      "伊勢海老・高級海鮮"
+    ],
+    "priceRange": "晚 ¥25,000～47,000／包場午餐 ¥22,000～",
+    "price": {
+      "lunch": null,
+      "dinner": [
+        25000,
+        47000
+      ]
+    },
+    "stayMinutes": null,
+    "mustTry": [
+      "鮑ステーキ（套餐內）",
+      "伊勢海老クリームスープ（套餐內）"
+    ],
+    "menu": [
+      {
+        "url": "https://tabelog.com/mie/A2403/A240303/24005111/dtlmenu/photo/",
+        "source": "tabelog",
+        "retrieved": "2026-10-18"
+      }
+    ],
+    "ratings": {
+      "tabelog": 4.04,
+      "tabelogReviews": 267,
+      "google": 4.8,
+      "googleReviews": 102,
+      "note": null
+    },
+    "inclusion": [
+      "A"
+    ],
+    "tabelogOwner": true,
+    "googleName": "フレンチレストラン「ラ・メール」",
+    "notes": "志摩観光ホテル 的頂級法式（食べログ 4.04、Google 4.8），延續「海の幸フランス料理」傳統（鮑ステーキ、伊勢海老クリームスープ）。晚餐 25,000 円起、限小學生以上、smart casual。午餐包場 15～40 人；旅程期間因クラシック改裝加開一般午餐。",
+    "group": {
+      "seats": 88,
+      "maxReservation": null,
+      "privateRoom": false,
+      "buyout": "午餐包場 15～40 人",
+      "groupMenu": "午餐包場 15～40 人、¥22,000～、7 天前電話預約、菜單有限（官網）；晚餐沒有團體方案，網路訂位 10 人以上要打電話",
+      "fit15": "yes",
+      "fitSubgroup": "yes",
+      "source": "官網：88 席（目前減席）、午餐包場 15～40 人 → yes（晚餐 15 人要電話確認）"
+    },
+    "reservation": {
+      "accepted": "yes",
+      "methods": [
+        "phone",
+        "web"
+      ],
+      "phone": "0599-43-1211",
+      "url": "https://www.tablecheck.com/shops/miyakohotels-shima-lamer/reserve",
+      "language": "日文",
+      "note": "電話 9:00～20:00；網路 10 人以上改電話；取消費 當天 100%；過敏對應 5 天前",
+      "leadDays": null
+    },
+    "seating": [],
+    "kids": {
+      "allowed": "age-limit",
+      "minAge": 6,
+      "kidsMenu": null,
+      "note": "官網「小学生以上」、TableCheck「未就学児不可」；兒童餐：食べログ寫有、官網和 TableCheck 沒列（衝突）"
+    },
+    "accessibility": {
+      "barrierFree": null,
+      "note": "志摩観光ホテル ザ ベイスイート 5F；賢島站步行約 10 分，飯店免費接駁車約 2～3 分（同館住宿筆記）；ベイスイート 送迎車要預約；電梯沒寫"
+    },
+    "smoking": "全席禁煙",
+    "extra": {
+      "conflicts": [
+        "兒童餐：食べログ「お子様メニューあり」，官網、TableCheck 未列",
+        "維修期間 2 月午餐場地：TableCheck クラシック頁日文說在ラ・メール，英文說在宴會場",
+        "兒童餐：食べログ「お子様メニューあり」，官網、TableCheck 沒列",
+        "改裝期間的午餐場地：TableCheck 日文說在 ラ・メール，英文說在宴會場"
+      ]
+    }
+  },
+  {
+    "id": "shima-la-mer-classic",
+    "type": "restaurant",
+    "name": {
+      "ja": "ラ・メール ザ クラシック",
+      "kana": "らめーる ざ くらしっく",
+      "zh": "La Mer The Classic（志摩觀光飯店 法式）",
+      "en": null
+    },
+    "area": "shima",
+    "region": "shima-kashikojima",
+    "coords": [
+      136.8167111,
+      34.3101306
+    ],
+    "coordsSource": "google-maps-url",
+    "address": "三重県志摩市阿児町神明731 志摩観光ホテル ザ クラシック 1F",
+    "hours": {
+      "mon": [
+        [
+          "11:30",
+          "14:30"
+        ],
+        [
+          "17:30",
+          "21:00"
+        ]
+      ],
+      "tue": [
+        [
+          "11:30",
+          "14:30"
+        ],
+        [
+          "17:30",
+          "21:00"
+        ]
+      ],
+      "wed": [
+        [
+          "11:30",
+          "14:30"
+        ],
+        [
+          "17:30",
+          "21:00"
+        ]
+      ],
+      "thu": [
+        [
+          "11:30",
+          "14:30"
+        ],
+        [
+          "17:30",
+          "21:00"
+        ]
+      ],
+      "fri": [
+        [
+          "11:30",
+          "14:30"
+        ],
+        [
+          "17:30",
+          "21:00"
+        ]
+      ],
+      "sat": [
+        [
+          "11:30",
+          "14:30"
+        ],
+        [
+          "17:30",
+          "21:00"
+        ]
+      ],
+      "sun": [
+        [
+          "11:30",
+          "14:30"
+        ],
+        [
+          "17:30",
+          "21:00"
+        ]
+      ],
+      "holiday": [
+        [
+          "11:30",
+          "14:30"
+        ],
+        [
+          "17:30",
+          "21:00"
+        ]
+      ],
+      "lastEntry": [
+        "13:30",
+        "19:30"
+      ],
+      "note": "官網：午 11:30～14:30（L.O. 13:30）、晚 17:30～21:00（L.O. 19:30），無休。2027-01-23～03-04 改裝（見 closures）"
+    },
+    "closedNote": "無休（2027-01-12～03-04 改裝、休業）",
+    "febNote": "旅程（2/2～2/13）整段在改裝期間：午餐改到 ラ・メール，晚餐沒有來源 → 當作不能在這裡吃",
+    "closures": [
+      {
+        "from": "2027-01-12",
+        "to": "2027-01-16",
+        "note": "ザ クラシック 改裝（午餐改在 ラ・メール）（TableCheck）"
+      },
+      {
+        "from": "2027-01-17",
+        "to": "2027-01-22",
+        "note": "館內維修休業（TableCheck）"
+      },
+      {
+        "from": "2027-01-23",
+        "to": "2027-03-04",
+        "note": "ザ クラシック 改裝（英文：廚房改修），午餐改在 ベイスイート ラ・メール；晚餐是否照常沒寫，當作休業（TableCheck）"
+      }
+    ],
+    "photos": [
+      {
+        "url": "https://www.miyakohotels.ne.jp/datas/cache/images/2022/02/22/1100x770_ea1e9d427fb5664c32c517a73e421e58_2db967ff4973b4d9bfbae8d343a9406c9eeeee96.jpg",
+        "page": "https://www.miyakohotels.ne.jp/shima-classic/restaurant/lamertheclassic/index.html",
+        "kind": "official",
+        "credit": "ラ・メール ザ クラシック",
+        "license": null
+      }
+    ],
+    "links": {
+      "official": "https://www.miyakohotels.ne.jp/shima-classic/restaurant/lamertheclassic/index.html",
+      "googleMaps": "https://maps.google.com/?cid=18128849706725707634",
+      "tabelog": "https://tabelog.com/mie/A2403/A240303/24000053/",
+      "instagram": "@shimakankohotel"
+    },
+    "tags": [],
+    "tier": null,
+    "sources": [
+      {
+        "type": "tabelog",
+        "url": "https://tabelog.com/mie/A2403/A240303/24000053/",
+        "retrieved": "2026-10-18",
+        "note": "店舗情報：分數、席數、預約、個室、貸切、營業時間、お子様連れ（店舗会員）"
+      },
+      {
+        "type": "google-maps",
+        "url": "https://maps.google.com/?cid=18128849706725707634",
+        "retrieved": "2026-10-18",
+        "note": "星數、評論數、座標、照片"
+      },
+      {
+        "type": "tabelog",
+        "url": "https://tabelog.com/mie/A2403/A240303/24000053/party/",
+        "retrieved": "2026-10-18",
+        "note": "コース一覧：套餐名稱、價格、人數"
+      },
+      {
+        "type": "official",
+        "url": "https://www.miyakohotels.ne.jp/shima-classic/restaurant/lamertheclassic/index.html",
+        "retrieved": "2026-10-18",
+        "note": "營業時間、196 席、價格、smart casual"
+      },
+      {
+        "type": "official",
+        "url": "https://www.miyakohotels.ne.jp/shima/restaurant/lamertheclassic/privateroom/",
+        "retrieved": "2026-10-18",
+        "note": "個室和光 20～40 人與價格"
+      },
+      {
+        "type": "booking-site",
+        "url": "https://www.tablecheck.com/shops/miyakohotels-shima-lamertheclassic/reserve",
+        "retrieved": "2026-10-18",
+        "note": "2027 維修、套餐價格、兒童套餐、13 人以上電話"
+      },
+      {
+        "type": "official",
+        "url": "https://www.miyakohotels.ne.jp/shima/banquet/",
+        "retrieved": "2026-10-18",
+        "note": "大宴會場真珠の間最多 750 人"
+      }
+    ],
+    "verified": false,
+    "anchors": [],
+    "contexts": [
+      "lunch",
+      "dinner"
+    ],
+    "access": "walk",
+    "cuisine": [
+      "洋食・義式",
+      "伊勢海老・高級海鮮"
+    ],
+    "priceRange": "午 ¥10,300～22,000／晚 ¥21,000～47,000",
+    "price": {
+      "lunch": [
+        10300,
+        22000
+      ],
+      "dinner": [
+        21000,
+        47000
+      ]
+    },
+    "stayMinutes": null,
+    "mustTry": [
+      "海の幸カレー（ランチ ビアンヴニュ 10,300 円）",
+      "鮑ステーキ（海の幸ランチ 22,000 円）"
+    ],
+    "menu": [
+      {
+        "url": "https://tabelog.com/mie/A2403/A240303/24000053/party/",
+        "source": "tabelog",
+        "retrieved": "2026-10-18"
+      }
+    ],
+    "ratings": {
+      "tabelog": 4.01,
+      "tabelogReviews": 552,
+      "google": 4.6,
+      "googleReviews": 387,
+      "note": null
+    },
+    "inclusion": [
+      "A"
+    ],
+    "tabelogOwner": true,
+    "googleName": "レストラン「ラ・メール ザ クラシック」",
+    "notes": "志摩観光ホテル ザ クラシック 1F 的傳統法式（食べログ 4.01／552、Google 4.6），海の幸カレー、鮑ステーキ 是名物；可帶未就學兒、有兒童套餐。但 2027-01-23～03-04 改裝，旅程期間午餐移到 ラ・メール。",
+    "group": {
+      "seats": 196,
+      "maxReservation": null,
+      "privateRoom": true,
+      "buyout": "不可",
+      "groupMenu": "個室「和光」20～40 人：午 ¥18,000～、晚 ¥19,800～，電話預約（15 人不到下限）",
+      "fit15": "split",
+      "fitSubgroup": "yes",
+      "source": "食べログ：196 席（目前減席）、可預約；官網個室「和光」20～40 人；網路訂位最多 12 人，13 人以上電話 → split"
+    },
+    "reservation": {
+      "accepted": "yes",
+      "methods": [
+        "phone",
+        "web"
+      ],
+      "phone": "0599-43-1211",
+      "url": "https://www.tablecheck.com/shops/miyakohotels-shima-lamertheclassic/reserve",
+      "language": "日文",
+      "note": "網路：午餐前一天 23:00、晚餐當天 9:00 截止；13 人以上電話；取消費 當天 100%",
+      "leadDays": null
+    },
+    "seating": [],
+    "kids": {
+      "allowed": "yes",
+      "minAge": null,
+      "kidsMenu": true,
+      "note": "未就學兒可；お子様コース A 6,000 円、B 8,300 円（要和大人一起訂）（TableCheck）"
+    },
+    "accessibility": {
+      "barrierFree": null,
+      "note": "志摩観光ホテル ザ クラシック 1F；賢島站步行約 5 分，飯店免費接駁車約 2～3 分（同館住宿筆記）；電梯沒寫"
+    },
+    "smoking": "全席禁煙",
+    "extra": {
+      "conflicts": [
+        "維修期間 01-23～03-04 用餐地點：TableCheck 日文說ベイスイート「ラ・メール」，英文說宴會場",
+        "定休：食べログ 無休，TableCheck 2027-01～03 改裝期間"
+      ]
+    }
+  },
+  {
+    "id": "shima-hamayu",
+    "type": "restaurant",
+    "name": {
+      "ja": "和食 浜木綿",
+      "kana": "はまゆう",
+      "zh": "濱木綿（志摩觀光飯店 和食）",
+      "en": null
+    },
+    "area": "shima",
+    "region": "shima-kashikojima",
+    "coords": [
+      136.8153315,
+      34.3077725
+    ],
+    "coordsSource": "google-maps-url",
+    "address": "三重県志摩市阿児町神明731 志摩観光ホテル ベイスイート 4F",
+    "hours": {
+      "mon": [
+        [
+          "12:00",
+          "14:30"
+        ],
+        [
+          "17:30",
+          "21:00"
+        ]
+      ],
+      "tue": [
+        [
+          "12:00",
+          "14:30"
+        ],
+        [
+          "17:30",
+          "21:00"
+        ]
+      ],
+      "wed": [
+        [
+          "12:00",
+          "14:30"
+        ],
+        [
+          "17:30",
+          "21:00"
+        ]
+      ],
+      "thu": [
+        [
+          "12:00",
+          "14:30"
+        ],
+        [
+          "17:30",
+          "21:00"
+        ]
+      ],
+      "fri": [
+        [
+          "12:00",
+          "14:30"
+        ],
+        [
+          "17:30",
+          "21:00"
+        ]
+      ],
+      "sat": [
+        [
+          "12:00",
+          "14:30"
+        ],
+        [
+          "17:30",
+          "21:00"
+        ]
+      ],
+      "sun": [
+        [
+          "12:00",
+          "14:30"
+        ],
+        [
+          "17:30",
+          "21:00"
+        ]
+      ],
+      "holiday": [
+        [
+          "12:00",
+          "14:30"
+        ],
+        [
+          "17:30",
+          "21:00"
+        ]
+      ],
+      "lastEntry": [
+        "12:30",
+        "19:30"
+      ],
+      "note": "晚 17:30～21:00（L.O. 19:30）；午餐 12:00～12:30 開始、用餐 2 小時，4～30 人、7 天前完全預約制（官網）"
+    },
+    "closedNote": "無休（2027-01-17～22 館內維修休業）",
+    "febNote": "2/2（週二）晚餐有營業；期間限定「伊勢海老づくし会席」37,000 円供應到 2027-02-28",
+    "closures": [
+      {
+        "from": "2027-01-17",
+        "to": "2027-01-22",
+        "note": "ザ ベイスイート 館內維修休業（TableCheck）"
+      }
+    ],
+    "photos": [
+      {
+        "url": "https://www.miyakohotels.ne.jp/datas/cache/images/2022/02/24/1100x770_ea1e9d427fb5664c32c517a73e421e58_96b69c3e277a18df3452871367c6a368b62f1061.jpg",
+        "page": "https://www.miyakohotels.ne.jp/shima/restaurant/hamayu/",
+        "kind": "official",
+        "credit": "和食 浜木綿",
+        "license": null
+      }
+    ],
+    "links": {
+      "official": "https://www.miyakohotels.ne.jp/shima/restaurant/hamayu/",
+      "googleMaps": "https://maps.google.com/?cid=16258554894657295094",
+      "tabelog": "https://tabelog.com/mie/A2403/A240303/24000919/",
+      "instagram": "@shimakankohotel"
+    },
+    "tags": [],
+    "tier": null,
+    "sources": [
+      {
+        "type": "tabelog",
+        "url": "https://tabelog.com/mie/A2403/A240303/24000919/",
+        "retrieved": "2026-10-18",
+        "note": "店舗情報：分數、席數、預約、個室、貸切、營業時間、お子様連れ（店舗会員）"
+      },
+      {
+        "type": "google-maps",
+        "url": "https://maps.google.com/?cid=16258554894657295094",
+        "retrieved": "2026-10-18",
+        "note": "星數、評論數、座標、照片"
+      },
+      {
+        "type": "tabelog",
+        "url": "https://tabelog.com/mie/A2403/A240303/24000919/party/",
+        "retrieved": "2026-10-18",
+        "note": "コース一覧：套餐名稱、價格、人數"
+      },
+      {
+        "type": "official",
+        "url": "https://www.miyakohotels.ne.jp/shima/restaurant/hamayu/",
+        "retrieved": "2026-10-18",
+        "note": "營業時間、67 席、小学生以上、午餐 4～30 人"
+      },
+      {
+        "type": "booking-site",
+        "url": "https://www.tablecheck.com/shops/miyakohotels-shima-hamayu/reserve",
+        "retrieved": "2026-10-18",
+        "note": "會席價格、伊勢海老づくし期間、2027-01 休業"
+      }
+    ],
+    "verified": false,
+    "anchors": [],
+    "contexts": [
+      "lunch",
+      "dinner"
+    ],
+    "access": "walk",
+    "cuisine": [
+      "和食・割烹",
+      "伊勢海老・高級海鮮"
+    ],
+    "priceRange": "午 ¥19,000～／晚 ¥21,000～47,000",
+    "price": {
+      "lunch": [
+        19000,
+        19000
+      ],
+      "dinner": [
+        21000,
+        47000
+      ]
+    },
+    "stayMinutes": null,
+    "mustTry": [],
+    "menu": [
+      {
+        "url": "https://tabelog.com/mie/A2403/A240303/24000919/party/",
+        "source": "tabelog",
+        "retrieved": "2026-10-18"
+      }
+    ],
+    "ratings": {
+      "tabelog": 3.63,
+      "tabelogReviews": 72,
+      "google": 4.5,
+      "googleReviews": 23,
+      "note": null
+    },
+    "inclusion": [
+      "A"
+    ],
+    "tabelogOwner": true,
+    "googleName": "和食「浜木綿」",
+    "notes": "志摩観光ホテル ベイスイート 4F 的和食（食べログ 3.63、Google 4.5／23），伊勢志摩食材的会席 21,000～47,000 円，冬季有伊勢海老づくし会席。午餐 4～30 人包場式、7 天前預約，15 人可一起；限小學生以上。",
+    "group": {
+      "seats": 67,
+      "maxReservation": 30,
+      "privateRoom": false,
+      "buyout": "不可",
+      "groupMenu": "午餐 4～30 人、¥19,000～、7 天前電話預約（官網）；晚餐沒有團體方案，網路 10 人以上要電話，部分会席限 1～8 人",
+      "fit15": "yes",
+      "fitSubgroup": "yes",
+      "source": "官網：67 席、午餐 4～30 人完全預約制 → yes（晚餐 15 人要電話確認）"
+    },
+    "reservation": {
+      "accepted": "yes",
+      "methods": [
+        "phone",
+        "web"
+      ],
+      "phone": "0599-43-1211",
+      "url": "https://www.tablecheck.com/shops/miyakohotels-shima-hamayu/reserve",
+      "language": "日文",
+      "note": "午餐 7 天前電話（TableCheck 寫網路到當天 9:00，衝突）；網路 10 人以上改電話；取消費 當天 100%",
+      "leadDays": 7
+    },
+    "seating": [],
+    "kids": {
+      "allowed": "age-limit",
+      "minAge": 6,
+      "kidsMenu": null,
+      "note": "官網「小学生以上」、TableCheck「未就学児不可」；兒童餐沒寫"
+    },
+    "accessibility": {
+      "barrierFree": null,
+      "note": "志摩観光ホテル ザ ベイスイート 4F；賢島站步行約 10 分，飯店免費接駁車約 2～3 分（同館住宿筆記）；電梯、座位形式沒寫"
+    },
+    "smoking": "全席禁煙",
+    "extra": {
+      "conflicts": [
+        "午餐：官網 7 天前完全預約制，TableCheck 寫午餐網路訂位到當天 9:00",
+        "午餐預約：官網 7 天前完全預約制，TableCheck 網路訂位到當天 9:00"
+      ]
+    }
+  },
+  {
+    "id": "shima-lien",
+    "type": "restaurant",
+    "name": {
+      "ja": "カフェ＆ワインバー リアン",
+      "kana": "りあん",
+      "zh": "Lien 咖啡＆葡萄酒吧（志摩觀光飯店 The Club）",
+      "en": null
+    },
+    "area": "shima",
+    "region": "shima-kashikojima",
+    "coords": [
+      136.8167708,
+      34.3093179
+    ],
+    "coordsSource": "google-maps-url",
+    "address": "三重県志摩市阿児町神明731 志摩観光ホテル ザ・クラシック ザ・クラブ棟",
+    "hours": {
+      "mon": [
+        [
+          "11:30",
+          "17:30"
+        ]
+      ],
+      "tue": [],
+      "wed": [],
+      "thu": [
+        [
+          "11:30",
+          "17:30"
+        ]
+      ],
+      "fri": [
+        [
+          "11:30",
+          "17:30"
+        ]
+      ],
+      "sat": [
+        [
+          "11:30",
+          "17:30"
+        ]
+      ],
+      "sun": [
+        [
+          "11:30",
+          "17:30"
+        ]
+      ],
+      "holiday": null,
+      "lastEntry": "17:00",
+      "note": "官網、觀光三重、食べログ：11:30～17:30（L.O. 17:00），週二・三休；觀光協會的「ディナー 17:30～20:30、バー 20:30～23:00、無休」找不到出處，當舊資料"
+    },
+    "closedNote": "週二、週三",
+    "febNote": "2/2、2/3、2/9、2/10 休；2 月的季節アフタヌーンティー內容未公布（官網目前是秋季）",
+    "closures": [],
+    "photos": [
+      {
+        "url": "https://www.miyakohotels.ne.jp/datas/cache/images/2026/04/06/1100x770_ea1e9d427fb5664c32c517a73e421e58_7bbceeae7b134185dc1a3cd26ba85e7fb8e46f9e.jpg",
+        "page": "https://www.miyakohotels.ne.jp/shima-club/restaurant/cafewinebarlien/index.html",
+        "kind": "official",
+        "credit": "カフェ＆ワインバー リアン",
+        "license": null
+      }
+    ],
+    "links": {
+      "official": "https://www.miyakohotels.ne.jp/shima-club/restaurant/cafewinebarlien/index.html",
+      "googleMaps": "https://maps.google.com/?cid=18221055773129217554",
+      "tabelog": "https://tabelog.com/mie/A2403/A240303/24014858/",
+      "instagram": "@shimakankohotel"
+    },
+    "tags": [],
+    "tier": null,
+    "sources": [
+      {
+        "type": "tabelog",
+        "url": "https://tabelog.com/mie/A2403/A240303/24014858/",
+        "retrieved": "2026-10-18",
+        "note": "店舗情報：分數、席數、預約、個室、貸切、營業時間、お子様連れ（店舗会員）"
+      },
+      {
+        "type": "google-maps",
+        "url": "https://maps.google.com/?cid=18221055773129217554",
+        "retrieved": "2026-10-18",
+        "note": "星數、評論數、座標、照片"
+      },
+      {
+        "type": "official",
+        "url": "https://www.miyakohotels.ne.jp/shima-club/restaurant/cafewinebarlien/index.html",
+        "retrieved": "2026-10-18",
+        "note": "營業時間、火水休、41 席、價位、預約電話"
+      },
+      {
+        "type": "official",
+        "url": "https://www.miyakohotels.ne.jp/shima/restaurant/cafewinebarlien/menu/",
+        "retrieved": "2026-10-18",
+        "note": "菜單：季節アフタヌーンティー、カフェメニュー、季節のパフェ（無價格）"
+      },
+      {
+        "type": "official",
+        "url": "https://www.miyakohotels.ne.jp/shima/restaurant/",
+        "retrieved": "2026-10-18",
+        "note": "ザ クラブ 2F、ランチ・カフェ"
+      },
+      {
+        "type": "tourism",
+        "url": "https://www.kankomie.or.jp/activity/2820",
+        "retrieved": "2026-10-18",
+        "note": "秋のアフタヌーンティー ¥6,800、前日 17:30 前預約、火水休、可網路預約"
+      }
+    ],
+    "verified": false,
+    "anchors": [],
+    "contexts": [
+      "lunch",
+      "cafe"
+    ],
+    "access": "walk",
+    "cuisine": [
+      "咖啡・甜點"
+    ],
+    "priceRange": "¥3,400～6,800",
+    "price": {
+      "lunch": [
+        3400,
+        6800
+      ],
+      "dinner": null
+    },
+    "stayMinutes": null,
+    "mustTry": [
+      "季節のアフタヌーンティー 6,800 円（前一天 17:30 前預約）"
+    ],
+    "menu": [
+      {
+        "url": "https://tabelog.com/mie/A2403/A240303/24014858/dtlmenu/photo/",
+        "source": "tabelog",
+        "retrieved": "2026-10-18"
+      }
+    ],
+    "ratings": {
+      "tabelog": 3.39,
+      "tabelogReviews": 74,
+      "google": 4.7,
+      "googleReviews": 79,
+      "note": null
+    },
+    "inclusion": [
+      "A"
+    ],
+    "tabelogOwner": true,
+    "googleName": "カフェ ＆ ワインバー「リアン」",
+    "notes": "志摩観光ホテル ザ クラブ 2F 的咖啡廳（Google 4.7／79），季節アフタヌーンティー 6,800 円、パフェ；輕食 3,400 円起。只營業到 17:30，週二・三休；非住客可預約（官網沒明寫，觀光三重有公開網路預約）。",
+    "group": {
+      "seats": 41,
+      "maxReservation": null,
+      "privateRoom": false,
+      "buyout": "不可",
+      "groupMenu": null,
+      "fit15": "split",
+      "fitSubgroup": "yes",
+      "source": "食べログ：41 席（目前減席）、可預約、貸切不可；官網沒有團體方案 → split"
+    },
+    "reservation": {
+      "accepted": "yes",
+      "methods": [
+        "phone",
+        "web"
+      ],
+      "phone": "0599-43-1211",
+      "url": "https://www.kankomie.or.jp/activity/2820",
+      "language": "日文",
+      "note": "アフタヌーンティー 前一天 17:30 前預約（觀光三重 可網路預約）；依日期用餐限 2 小時",
+      "leadDays": 1
+    },
+    "seating": [
+      "counter"
+    ],
+    "kids": {
+      "allowed": "unknown",
+      "minAge": null,
+      "kidsMenu": null,
+      "note": "官網、食べログ 沒寫兒童規定"
+    },
+    "accessibility": {
+      "barrierFree": null,
+      "note": "志摩観光ホテル ザ クラブ 2F；賢島站步行約 5 分，飯店免費接駁車約 2～3 分（同館住宿筆記）；電梯沒寫"
+    },
+    "smoking": "全席禁煙",
+    "extra": {
+      "conflicts": [
+        "營業時間：主 session 提到觀光協會寫ディナー 17:30-20:30、バー 20:30-23:00、無休；官網、觀光三重、食べログ都是 11:30～17:30、火水休（這次沒找到觀光協會該頁）",
+        "觀光三重：依日期用餐時間可能限 2 小時",
+        "營業時間：觀光協會「食べる」ディナー 17:30～20:30、バー 20:30～23:00、無休 vs 官網・觀光三重・食べログ 11:30～17:30、火水休"
+      ]
+    }
+  },
+  {
+    "id": "shima-yoshikatsutei",
+    "type": "restaurant",
+    "name": {
+      "ja": "芳カツ亭",
+      "kana": "よしかつてい",
+      "zh": "芳勝亭（炸豬排）",
+      "en": null
+    },
+    "area": "shima",
+    "region": "shima-kashikojima",
+    "coords": [
+      136.8250865,
+      34.3113564
+    ],
+    "coordsSource": "google-maps-url",
+    "address": "三重県志摩市阿児町神明699-15",
+    "hours": {
+      "mon": [
+        [
+          "11:00",
+          "14:30"
+        ]
+      ],
+      "tue": [],
+      "wed": [],
+      "thu": [
+        [
+          "11:00",
+          "14:30"
+        ]
+      ],
+      "fri": [
+        [
+          "11:00",
+          "14:30"
+        ]
+      ],
+      "sat": [
+        [
+          "11:00",
+          "14:30"
+        ]
+      ],
+      "sun": [
+        [
+          "11:00",
+          "14:30"
+        ]
+      ],
+      "holiday": null,
+      "lastEntry": "14:00",
+      "note": "官網：11:00～14:30（L.O. 14:00）；週末、連休等位多時，判斷 L.O. 前排不到會提早停止接客。食べログ 11:00～14:00"
+    },
+    "closedNote": "週二、週三（官網每月公布營業案內）",
+    "febNote": "2/2、2/3、2/9、2/10 休；季節カキフライ定食 1,710 円（鳥羽或廣島產冷凍牡蠣）；官網每月貼營業案內，2027-02 出發前看",
+    "closures": [],
+    "photos": [
+      {
+        "url": "http://yoshikatsu.info/wp/wp-content/uploads/hpb-media/o1.JPG",
+        "page": "http://yoshikatsu.info/?page_id=69",
+        "kind": "official",
+        "credit": "芳カツ亭",
+        "license": null
+      }
+    ],
+    "links": {
+      "official": "http://yoshikatsu.info/",
+      "googleMaps": "https://maps.google.com/?cid=15827637123442704722",
+      "tabelog": "https://tabelog.com/mie/A2403/A240303/24001518/",
+      "instagram": null
+    },
+    "tags": [],
+    "tier": null,
+    "sources": [
+      {
+        "type": "tabelog",
+        "url": "https://tabelog.com/mie/A2403/A240303/24001518/",
+        "retrieved": "2026-10-18",
+        "note": "店舗情報：分數、席數、預約、個室、貸切、營業時間、お子様連れ（店舗会員）"
+      },
+      {
+        "type": "google-maps",
+        "url": "https://maps.google.com/?cid=15827637123442704722",
+        "retrieved": "2026-10-18",
+        "note": "星數、評論數、座標、照片"
+      },
+      {
+        "type": "official",
+        "url": "http://yoshikatsu.info/",
+        "retrieved": "2026-10-18",
+        "note": "營業時間、火水定休、等位時提早停止接客、付款方式；https 憑證過期，只能 http"
+      },
+      {
+        "type": "official",
+        "url": "http://yoshikatsu.info/?page_id=69",
+        "retrieved": "2026-10-18",
+        "note": "8 卓 32 席、全席禁煙、不接受預約"
+      },
+      {
+        "type": "official",
+        "url": "http://yoshikatsu.info/?page_id=8",
+        "retrieved": "2026-10-18",
+        "note": "菜單圖（定食、サービス定食、季節定食價格，含稅）"
+      },
+      {
+        "type": "official",
+        "url": "http://yoshikatsu.info/?page_id=12",
+        "retrieved": "2026-10-18",
+        "note": "賢島站往東約 8 分、停車場 30 台免費"
+      },
+      {
+        "type": "official",
+        "url": "http://yoshikatsu.info/?news=%e3%82%ab%e3%82%ad%e3%83%95%e3%83%a9%e3%82%a4%e3%80%8010%e6%9c%888%e6%97%a5%ef%bc%88%e6%9c%a8%ef%bc%89%e3%82%88%e3%82%8a",
+        "retrieved": "2026-10-18",
+        "note": "カキフライ 2026-10-08 起，鳥羽或廣島產冷凍牡蠣"
+      }
+    ],
+    "verified": false,
+    "anchors": [],
+    "contexts": [
+      "lunch"
+    ],
+    "access": "walk",
+    "cuisine": [
+      "定食・食堂"
+    ],
+    "priceRange": "¥920～2,020",
+    "price": {
+      "lunch": [
+        920,
+        2020
+      ],
+      "dinner": null
+    },
+    "stayMinutes": null,
+    "mustTry": [
+      "ヒレカツ定食（4 枚）1,590 円",
+      "ロースカツ定食 1,540 円",
+      "ジャンボカツ定食 1,810 円"
+    ],
+    "menu": [
+      {
+        "url": "http://yoshikatsu.info/?page_id=8",
+        "source": "official",
+        "retrieved": "2026-10-18"
+      },
+      {
+        "url": "https://tabelog.com/mie/A2403/A240303/24001518/dtlmenu/",
+        "source": "tabelog",
+        "retrieved": "2026-10-18"
+      }
+    ],
+    "ratings": {
+      "tabelog": 3.33,
+      "tabelogReviews": 118,
+      "google": 4.3,
+      "googleReviews": 493,
+      "note": null
+    },
+    "inclusion": [
+      "A"
+    ],
+    "tabelogOwner": true,
+    "googleName": null,
+    "notes": "賢島的炸豬排定食店（食べログ 3.33、Google 4.3／493），ヒレカツ、ロースカツ 定食 1,500 円前後，平日有 1,000 円左右的サービス定食。32 席、不能預約，週末會等位、可能提早停止接客；全員去要分桌、早點到。",
+    "group": {
+      "seats": 32,
+      "maxReservation": null,
+      "privateRoom": false,
+      "buyout": "不可",
+      "groupMenu": null,
+      "fit15": "unknown",
+      "fitSubgroup": "yes",
+      "source": "官網：8 卓 32 席、不接受預約 → unknown（食べログ「1 席」是誤填）"
+    },
+    "reservation": {
+      "accepted": "no",
+      "methods": [],
+      "phone": "0599-43-1367",
+      "url": null,
+      "language": "日文",
+      "note": "不接受預約，客滿就等；忙時不接電話（11:30～13:30 避免來電）",
+      "leadDays": null
+    },
+    "seating": [
+      "table"
+    ],
+    "kids": {
+      "allowed": "yes",
+      "minAge": null,
+      "kidsMenu": false,
+      "note": "沒有兒童餐，有ミニヒレカツ・ミニエビフライ定食；帶小孩接近 L.O. 才到（預料吃不完）會被拒，要早點去（官網）"
+    },
+    "accessibility": {
+      "barrierFree": null,
+      "note": "賢島站沿國道 167 號往東步行約 8 分；停車場 30 台免費（官網；食べログ 13 台）；全桌席"
+    },
+    "smoking": "全席禁煙",
+    "extra": {
+      "conflicts": [
+        "席數：食べログ「1席」vs 官網 8 卓 32 席（食べログ應為誤填）",
+        "停車場：食べログ 13 台 vs 官網 30 台",
+        "營業時間：食べログ 11:00-14:00 vs 官網 11:00～14:30（L.O. 14:00）",
+        "席數：食べログ「1 席」vs 官網 8 卓 32 席",
+        "營業時間：食べログ 11:00～14:00 vs 官網 11:00～14:30（L.O. 14:00）"
+      ]
+    }
+  },
+  {
+    "id": "shima-yamabuki",
+    "type": "restaurant",
+    "name": {
+      "ja": "鉄板焼きレストラン 山吹",
+      "kana": "やまぶき",
+      "zh": "山吹 鐵板燒（志摩觀光飯店 The Club）",
+      "en": null
+    },
+    "area": "shima",
+    "region": "shima-kashikojima",
+    "coords": [
+      136.8166065,
+      34.3092796
+    ],
+    "coordsSource": "google-maps-url",
+    "address": "三重県志摩市阿児町神明731 志摩観光ホテル ザ クラブ",
+    "hours": {
+      "mon": [
+        [
+          "17:30",
+          "21:00"
+        ]
+      ],
+      "tue": [],
+      "wed": [],
+      "thu": [
+        [
+          "17:30",
+          "21:00"
+        ]
+      ],
+      "fri": [
+        [
+          "17:30",
+          "21:00"
+        ]
+      ],
+      "sat": [
+        [
+          "11:30",
+          "13:30"
+        ],
+        [
+          "17:30",
+          "21:00"
+        ]
+      ],
+      "sun": [
+        [
+          "11:30",
+          "13:30"
+        ],
+        [
+          "17:30",
+          "21:00"
+        ]
+      ],
+      "holiday": null,
+      "lastEntry": "19:30",
+      "note": "官網：晚 17:30～21:00（L.O. 19:30），土日祝 二部制（17:30 或 18:00／20:00），用餐 120 分，週二・三休；午餐只有食べログ（土日 11:30～13:30、1 週前完全預約、4 名～），官網沒寫"
+    },
+    "closedNote": "週二、週三",
+    "febNote": "2/2、2/3、2/9、2/10 休；晚餐前一天 20:00 前預約",
+    "closures": [],
+    "photos": [
+      {
+        "url": "https://www.miyakohotels.ne.jp/datas/cache/images/2022/02/24/1100x770_ea1e9d427fb5664c32c517a73e421e58_23a32d95f750f038a14eccb8362ee2d795a9271d.jpg",
+        "page": "https://www.miyakohotels.ne.jp/shima/restaurant/yamabuki/",
+        "kind": "official",
+        "credit": "鉄板焼きレストラン 山吹",
+        "license": null
+      }
+    ],
+    "links": {
+      "official": "https://www.miyakohotels.ne.jp/shima/restaurant/yamabuki/",
+      "googleMaps": "https://maps.google.com/?cid=3176173345431710900",
+      "tabelog": "https://tabelog.com/mie/A2403/A240303/24014903/",
+      "instagram": "@shimakankohotel"
+    },
+    "tags": [],
+    "tier": null,
+    "sources": [
+      {
+        "type": "tabelog",
+        "url": "https://tabelog.com/mie/A2403/A240303/24014903/",
+        "retrieved": "2026-10-18",
+        "note": "店舗情報：分數、席數、預約、個室、貸切、營業時間、お子様連れ（店舗会員）"
+      },
+      {
+        "type": "google-maps",
+        "url": "https://maps.google.com/?cid=3176173345431710900",
+        "retrieved": "2026-10-18",
+        "note": "星數、評論數、座標、照片"
+      },
+      {
+        "type": "official",
+        "url": "https://www.miyakohotels.ne.jp/shima/restaurant/yamabuki/",
+        "retrieved": "2026-10-18",
+        "note": "晚餐時間、火水休、11 席、¥25,000～、前日 20:00 前預約、120 分"
+      },
+      {
+        "type": "official",
+        "url": "https://www.miyakohotels.ne.jp/shima/restaurant/",
+        "retrieved": "2026-10-18",
+        "note": "ザ クラブ 2F、ディナー"
+      },
+      {
+        "type": "booking-site",
+        "url": "https://restaurant.ikyu.com/107970/",
+        "retrieved": "2026-10-18",
+        "note": "403 無法讀取；只從搜尋摘要得知火水休、週末午餐 4 名以上"
+      }
+    ],
+    "verified": false,
+    "anchors": [],
+    "contexts": [
+      "dinner"
+    ],
+    "access": "walk",
+    "cuisine": [
+      "燒肉・肉料理",
+      "伊勢海老・高級海鮮"
+    ],
+    "priceRange": "晚 ¥25,000～",
+    "price": {
+      "lunch": null,
+      "dinner": [
+        25000,
+        30000
+      ]
+    },
+    "stayMinutes": null,
+    "mustTry": [],
+    "menu": [
+      {
+        "url": "https://tabelog.com/mie/A2403/A240303/24014903/dtlmenu/photo/",
+        "source": "tabelog",
+        "retrieved": "2026-10-18"
+      }
+    ],
+    "ratings": {
+      "tabelog": 3.3,
+      "tabelogReviews": 25,
+      "google": 4.9,
+      "googleReviews": 13,
+      "note": null
+    },
+    "inclusion": [
+      "A"
+    ],
+    "tabelogOwner": true,
+    "googleName": "山吹",
+    "notes": "志摩観光ホテル ザ クラブ 的鐵板燒（11 席，Google 4.9／13），松阪牛配鮑或伊勢海老的全套 25,000 円起。只適合大人 4～6 人的小組；週二・三休。",
+    "group": {
+      "seats": 11,
+      "maxReservation": null,
+      "privateRoom": false,
+      "buyout": "不可",
+      "groupMenu": null,
+      "fit15": "no",
+      "fitSubgroup": "yes",
+      "source": "官網、食べログ：11 席 → no"
+    },
+    "reservation": {
+      "accepted": "yes",
+      "methods": [
+        "phone",
+        "web"
+      ],
+      "phone": "0599-43-1211",
+      "url": null,
+      "language": "日文",
+      "note": "晚餐前一天 20:00 前預約（電話或 TableCheck）；取消費 當天 100%",
+      "leadDays": 1
+    },
+    "seating": [
+      "counter"
+    ],
+    "kids": {
+      "allowed": "yes",
+      "minAge": null,
+      "kidsMenu": true,
+      "note": "食べログ：未就學兒、小學生可，有兒童菜單（官網沒寫）"
+    },
+    "accessibility": {
+      "barrierFree": null,
+      "note": "志摩観光ホテル ザ クラブ 2F；賢島站步行約 5 分，飯店免費接駁車約 2～3 分（同館住宿筆記）；鐵板燒吧台，電梯沒寫"
+    },
+    "smoking": "全席禁煙",
+    "extra": {
+      "conflicts": [
+        "公休：官網火・水 vs 食べログ只有水曜",
+        "午餐：食べログ寫土日 11:30-13:30、1 週前完全予約、4 名～；官網只寫晚餐；一休搜尋摘要寫週末 4 名以上（2026/4/1 起臨時營業）",
+        "定休：官網 週二・三 vs 食べログ 週三",
+        "午餐：食べログ 土日 11:30～13:30（4 名～、1 週前）vs 官網沒寫"
+      ]
+    }
+  },
+  {
+    "id": "shima-kashikojima-cc-restaurant",
+    "type": "restaurant",
+    "name": {
+      "ja": "近鉄賢島カンツリｰクラブレストラン",
+      "kana": "きんてつかしこじまかんつりーくらぶ",
+      "zh": "近鐵賢島鄉村俱樂部 餐廳",
+      "en": null
+    },
+    "area": "shima",
+    "region": "shima-kashikojima",
+    "coords": [
+      136.8072357,
+      34.3194809
+    ],
+    "coordsSource": "google-maps-url",
+    "address": "三重県志摩市阿児町鵜方3620-5",
+    "hours": {
+      "mon": null,
+      "tue": null,
+      "wed": null,
+      "thu": null,
+      "fri": null,
+      "sat": null,
+      "sun": null,
+      "holiday": null,
+      "note": "官網、楽天GORA 都沒寫餐廳的營業時間；クラブハウス 7:00 開，有早餐、午餐菜單；晚餐應該沒有"
+    },
+    "closedNote": "球場 不定休（楽天GORA）",
+    "febNote": "2 月的休場日官網沒寫（舊資料：1・2 月每週二休，年份不明）→ 要電話確認",
+    "closures": [],
+    "photos": [
+      {
+        "url": "https://golf-resort.kintetsu-re.co.jp/mie/kashikojima/wp-content/themes/kintetsu-golf_kashikojima/asset/images/restaurant/main.png",
+        "page": "https://golf-resort.kintetsu-re.co.jp/mie/kashikojima/restaurant/",
+        "kind": "official",
+        "credit": "近鉄賢島カンツリｰクラブレストラン",
+        "license": null
+      }
+    ],
+    "links": {
+      "official": "https://golf-resort.kintetsu-re.co.jp/mie/kashikojima/restaurant/",
+      "googleMaps": "https://maps.google.com/?cid=4065925078023968675",
+      "tabelog": "https://tabelog.com/mie/A2403/A240303/24012093/",
+      "instagram": null
+    },
+    "tags": [],
+    "tier": null,
+    "sources": [
+      {
+        "type": "tabelog",
+        "url": "https://tabelog.com/mie/A2403/A240303/24012093/",
+        "retrieved": "2026-10-18",
+        "note": "店舗情報：分數、席數、預約、個室、貸切、營業時間、お子様連れ"
+      },
+      {
+        "type": "google-maps",
+        "url": "https://maps.google.com/?cid=4065925078023968675",
+        "retrieved": "2026-10-18",
+        "note": "星數、評論數、座標、照片"
+      },
+      {
+        "type": "official",
+        "url": "https://golf-resort.kintetsu-re.co.jp/mie/kashikojima/restaurant/",
+        "retrieved": "2026-10-18",
+        "note": "非打球者可用餐、菜單價格、會食套餐與預約期限"
+      },
+      {
+        "type": "official",
+        "url": "https://golf-resort.kintetsu-re.co.jp/mie/kashikojima/access/",
+        "retrieved": "2026-10-18",
+        "note": "送迎巴士預約制；詳細時刻在圖片中未讀"
+      },
+      {
+        "type": "booking-site",
+        "url": "https://booking.gora.golf.rakuten.co.jp/golf_course/guide/240013",
+        "retrieved": "2026-10-18",
+        "note": "不定休、クラブハウス 7:00、鵜方駅計程車 5 分、送迎預約制"
+      }
+    ],
+    "verified": false,
+    "anchors": [],
+    "contexts": [
+      "lunch"
+    ],
+    "access": "car",
+    "cuisine": [
+      "定食・食堂",
+      "洋食・義式"
+    ],
+    "priceRange": "午 ¥1,860～4,060",
+    "price": {
+      "lunch": [
+        1860,
+        4060
+      ],
+      "dinner": null
+    },
+    "stayMinutes": null,
+    "mustTry": [
+      "海の幸カレー 3,960 円",
+      "黒毛和牛溶岩ステーキ 3,960 円",
+      "本まぐろの海鮮こぼれちらし寿司 4,060 円（1 日 8 食、3 天前預約）"
+    ],
+    "menu": [
+      {
+        "url": "https://golf-resort.kintetsu-re.co.jp/mie/kashikojima/restaurant/",
+        "source": "official",
+        "retrieved": "2026-10-18"
+      }
+    ],
+    "ratings": {
+      "tabelog": 3.26,
+      "tabelogReviews": 38,
+      "google": 4.3,
+      "googleReviews": 433,
+      "note": "Google 是高爾夫球場本體「近鉄賢島カンツリークラブ」的評分（多是打球的評論）"
+    },
+    "inclusion": [
+      "C",
+      "F3"
+    ],
+    "tabelogOwner": false,
+    "googleName": "近鉄賢島カンツリークラブ",
+    "notes": "賢島對岸的高爾夫球場餐廳，官網明寫不打球也能只用餐；海の幸カレー、黒毛和牛ステーキ 等 2,000～4,000 円，有團體會食套餐（1 週前）。營業時間、休場日官網沒寫，要電話確認。",
+    "group": {
+      "seats": null,
+      "maxReservation": null,
+      "privateRoom": true,
+      "buyout": "可",
+      "groupMenu": "コンペ會食：軽食コース 1,650 円～、和食コース 1,650 円、賢島コース 3,000 円（每人），原則 1 週前預約（官網）",
+      "fit15": "yes",
+      "fitSubgroup": "yes",
+      "source": "官網：有コンペ（團體）會食套餐；食べログ：個室 有、貸切 可、予約可 → yes"
+    },
+    "reservation": {
+      "accepted": "yes",
+      "methods": [
+        "phone"
+      ],
+      "phone": "0599-43-1082",
+      "url": null,
+      "language": "日文",
+      "note": "會食原則 1 週前；限定ちらし寿司 3 天前（官網）；食べログ的電話是 0599-43-5360",
+      "leadDays": 7
+    },
+    "seating": [],
+    "kids": {
+      "allowed": "unknown",
+      "minAge": null,
+      "kidsMenu": null,
+      "note": "沒寫"
+    },
+    "accessibility": {
+      "barrierFree": null,
+      "note": "最近車站 鵜方站（計程車約 5 分），賢島站約 1.6 km；鵜方站－球場送迎巴士預約制（非打球客能不能搭沒寫）；クラブハウス 1969 年建"
+    },
+    "smoking": null,
+    "extra": {
+      "conflicts": [
+        "休場日：楽天GORA 寫不定休；舊會員權指南（WebSearch 摘要）寫 1・2・7・8・12 月每週二休，年份不明未採用",
+        "休場日：楽天GORA 不定休 vs 舊會員權指南 1・2・7・8・12 月每週二休（年份不明，沒採用）",
+        "電話：官網 0599-43-1082 vs 食べログ 0599-43-5360"
+      ]
+    }
+  },
+  {
+    "id": "shima-miyako-bayside-terrace-dining",
+    "type": "restaurant",
+    "name": {
+      "ja": "都リゾート 志摩 ベイサイドテラス",
+      "kana": "みやこりぞーと しま べいさいどてらす",
+      "zh": "都度假村 志摩 Bayside Terrace 和食・咖啡廳",
+      "en": null
+    },
+    "area": "shima",
+    "region": "shima-kashikojima",
+    "coords": [
+      136.8059673,
+      34.3162869
+    ],
+    "coordsSource": "google-maps-url",
+    "address": "三重県志摩市阿児町鵜方3618-33",
+    "hours": {
+      "mon": [
+        [
+          "11:00",
+          "17:00"
+        ],
+        [
+          "17:30",
+          "22:00"
+        ]
+      ],
+      "tue": [
+        [
+          "11:00",
+          "17:00"
+        ]
+      ],
+      "wed": [
+        [
+          "11:00",
+          "17:00"
+        ],
+        [
+          "17:30",
+          "22:00"
+        ]
+      ],
+      "thu": [
+        [
+          "11:00",
+          "17:00"
+        ],
+        [
+          "17:30",
+          "22:00"
+        ]
+      ],
+      "fri": [
+        [
+          "11:00",
+          "17:00"
+        ],
+        [
+          "17:30",
+          "22:00"
+        ]
+      ],
+      "sat": [
+        [
+          "11:00",
+          "17:00"
+        ],
+        [
+          "17:30",
+          "22:00"
+        ]
+      ],
+      "sun": [
+        [
+          "11:00",
+          "17:00"
+        ],
+        [
+          "17:30",
+          "22:00"
+        ]
+      ],
+      "holiday": [
+        [
+          "11:00",
+          "17:00"
+        ],
+        [
+          "17:30",
+          "22:00"
+        ]
+      ],
+      "lastEntry": [
+        "16:00",
+        "19:30"
+      ],
+      "note": "カフェ 11:00～17:00（フード L.O. 16:00、ドリンク 16:30）無休；和食（マレナSHIMA 日本料理）晚餐 17:30～22:00，L.O. 平日 19:30／土日祝 20:30，週二休；貸切ランチ 15 人以上 11:30～15:00（官網）"
+    },
+    "closedNote": "和食晚餐 週二（カフェ 無休）",
+    "febNote": "2/2（週二）和食晚餐休（法式 マレナSHIMA 有營業）；カフェ 2026/1/25～1/30 曾維護休業（2027 年未寫）",
+    "closures": [],
+    "photos": [
+      {
+        "url": "https://www.miyakohotels.ne.jp/datas/cache/images/2025/01/13/1100x2048_ea1e9d427fb5664c32c517a73e421e58_de5fda44af7be6d3f33950908866376275a38006.jpg",
+        "page": "https://www.miyakohotels.ne.jp/bayside-terrace/stay/spanish_garden/",
+        "kind": "official",
+        "credit": "都リゾート 志摩 ベイサイドテラス",
+        "license": null
+      }
+    ],
+    "links": {
+      "official": "https://www.miyakohotels.ne.jp/bayside-terrace/restaurant/",
+      "googleMaps": "https://maps.google.com/?cid=15504403311963173180",
+      "tabelog": "https://tabelog.com/mie/A2403/A240303/24020023/",
+      "instagram": "@shimabaysideterrace"
+    },
+    "tags": [],
+    "tier": null,
+    "sources": [
+      {
+        "type": "tabelog",
+        "url": "https://tabelog.com/mie/A2403/A240303/24020023/",
+        "retrieved": "2026-10-18",
+        "note": "店舗情報：分數、席數、預約、個室、貸切、營業時間、お子様連れ"
+      },
+      {
+        "type": "google-maps",
+        "url": "https://maps.google.com/?cid=15504403311963173180",
+        "retrieved": "2026-10-18",
+        "note": "住宿本體的星數、評論數、座標、照片"
+      },
+      {
+        "type": "official",
+        "url": "https://www.miyakohotels.ne.jp/bayside-terrace/restaurant/",
+        "retrieved": "2026-10-18",
+        "note": "館內 5 處餐飲一覽、TableCheck 連結、IG"
+      },
+      {
+        "type": "official",
+        "url": "https://www.miyakohotels.ne.jp/bayside-terrace/restaurant/group_lunch/",
+        "retrieved": "2026-10-18",
+        "note": "貸切ランチ 15～50 名、9,000 円～"
+      },
+      {
+        "type": "official",
+        "url": "https://www.miyakohotels.ne.jp/bayside-terrace/restaurant/marenashima_japanese/",
+        "retrieved": "2026-10-18",
+        "note": "和食 34 席、夕食火曜休、コース價格"
+      },
+      {
+        "type": "official",
+        "url": "https://www.miyakohotels.ne.jp/bayside-terrace/restaurant/marenashima_french/",
+        "retrieved": "2026-10-18",
+        "note": "法式 78 席、夕食木曜休"
+      },
+      {
+        "type": "official",
+        "url": "https://www.miyakohotels.ne.jp/bayside-terrace/restaurant/cafe/",
+        "retrieved": "2026-10-18",
+        "note": "咖啡廳 11-17 時、無休、咖哩 2,600 円"
+      },
+      {
+        "type": "booking-site",
+        "url": "https://www.tablecheck.com/shops/bayside-terrace-hdor/reserve",
+        "retrieved": "2026-10-18",
+        "note": "網路訂位最多 10 名、住客選その他"
+      }
+    ],
+    "verified": false,
+    "anchors": [],
+    "contexts": [
+      "lunch",
+      "dinner",
+      "cafe"
+    ],
+    "access": "car",
+    "cuisine": [
+      "和食・割烹",
+      "咖啡・甜點"
+    ],
+    "priceRange": "咖啡廳 ¥1,700～2,600／和食晚 ¥9,000～20,000／貸切午餐 ¥9,000～",
+    "price": {
+      "lunch": [
+        1700,
+        2600
+      ],
+      "dinner": [
+        9000,
+        20000
+      ]
+    },
+    "stayMinutes": null,
+    "mustTry": [
+      "松阪牛ビーフカレー 2,600 円（カフェ）"
+    ],
+    "menu": [
+      {
+        "url": "https://www.miyakohotels.ne.jp/bayside-terrace/restaurant/group_lunch/",
+        "source": "official",
+        "retrieved": "2026-10-18"
+      },
+      {
+        "url": "https://www.miyakohotels.ne.jp/bayside-terrace/restaurant/cafe/",
+        "source": "official",
+        "retrieved": "2026-10-18"
+      }
+    ],
+    "ratings": {
+      "tabelog": 3.21,
+      "tabelogReviews": 33,
+      "google": 4.2,
+      "googleReviews": 1177,
+      "note": "Google 是住宿本體「都リゾート 志摩 ベイサイドテラス」的評分"
+    },
+    "inclusion": [
+      "C",
+      "F3"
+    ],
+    "tabelogOwner": false,
+    "googleName": "都リゾート　志摩　ベイサイドテラス",
+    "notes": "都リゾート 志摩 ベイサイドテラス 館內的和食（晚餐会席 9,000～20,000 円）和咖啡廳（松阪牛咖哩 2,600 円）。**15～50 人的貸切ランチ**（9,000 円起，法式或和食）是賢島一帶少數明寫能接 15 人午餐的方案。法式晚餐另見 マレナSHIMA。",
+    "group": {
+      "seats": 34,
+      "maxReservation": 50,
+      "privateRoom": false,
+      "buyout": "貸切ランチ 15～50 人",
+      "groupMenu": "貸切ランチプラン：15～50 人、11:30～15:00、法式或和食 每人 9,000 円～＋フリードリンク 3,000 円～（含稅服），只接受電話，過敏對應 5 天前；會場 マレナSHIMA 或宴會場アルカンシェル（官網）",
+      "fit15": "yes",
+      "fitSubgroup": "yes",
+      "source": "官網：和食 34 席（ボックスシート）、カフェ 22＋露台 12；貸切ランチ 15～50 人 → yes"
+    },
+    "reservation": {
+      "accepted": "yes",
+      "methods": [
+        "phone",
+        "web"
+      ],
+      "phone": "0599-43-7211",
+      "url": "https://www.tablecheck.com/shops/bayside-terrace-igrek/reserve",
+      "language": "日文",
+      "note": "和食、カフェ、法式都可在 TableCheck 預約（住客選「その他」）；網路最多 10 人，11 人以上電話；貸切ランチ 只接受電話",
+      "leadDays": null
+    },
+    "seating": [
+      "other",
+      "terrace"
+    ],
+    "kids": {
+      "allowed": "unknown",
+      "minAge": null,
+      "kidsMenu": null,
+      "note": "和食只寫子ども和朝食 1,500 円；兒童晚餐套餐在法式（shima-marena-french）"
+    },
+    "accessibility": {
+      "barrierFree": null,
+      "note": "賢島站免費接駁巴士約 7 分（約 1.4 km）；和食是ボックスシート"
+    },
+    "smoking": null,
+    "extra": {
+      "lodgingId": "shima-miyako-bayside-terrace"
+    }
+  },
+  {
+    "id": "shima-mirador",
+    "type": "restaurant",
+    "name": {
+      "ja": "横山展望台 横山天空カフェテラス ミラドール志摩",
+      "kana": "みらどーるしま",
+      "zh": "橫山天空咖啡露台 Mirador 志摩",
+      "en": null
+    },
+    "area": "shima",
+    "region": "shima-yokoyama",
+    "coords": [
+      136.7990071,
+      34.3318644
+    ],
+    "coordsSource": "google-maps-url",
+    "address": "三重県志摩市阿児町鵜方875-20",
+    "hours": {
+      "mon": [
+        [
+          "09:00",
+          "16:30"
+        ]
+      ],
+      "tue": [
+        [
+          "09:00",
+          "16:30"
+        ]
+      ],
+      "wed": [
+        [
+          "09:00",
+          "16:30"
+        ]
+      ],
+      "thu": [
+        [
+          "09:00",
+          "16:30"
+        ]
+      ],
+      "fri": [
+        [
+          "09:00",
+          "16:30"
+        ]
+      ],
+      "sat": [
+        [
+          "09:00",
+          "16:30"
+        ]
+      ],
+      "sun": [
+        [
+          "09:00",
+          "16:30"
+        ]
+      ],
+      "holiday": [
+        [
+          "09:00",
+          "16:30"
+        ]
+      ],
+      "note": "9:00～16:30（環境省、觀光三重）；定休 三方說法不同（年中無休／不定休／荒天日）"
+    },
+    "closedNote": "不定休（荒天時休）",
+    "febNote": "2026-11-24～2027-03-01 展望台停車場（P2）工事：VC→P2 車輛、行人通行止め，要從 VC 旁的迂回步道（石段，沒有斜坡）走約 15 分；カフェ本身沒有休業公告。露天、沒有空調，2 月很冷",
+    "closures": [],
+    "photos": [
+      {
+        "url": "https://chubu.env.go.jp/nature/yokoyama/img/tenboudai/tenboudai_img_01.jpg",
+        "page": "https://chubu.env.go.jp/nature/yokoyama/tenboudai/index.html",
+        "kind": "official",
+        "credit": "横山展望台 横山天空カフェテラス ミラドール志摩",
+        "license": null
+      }
+    ],
+    "links": {
+      "official": "http://chubu.env.go.jp/nature/yokoyama/",
+      "googleMaps": "https://maps.google.com/?cid=3817549000310622317",
+      "tabelog": "https://tabelog.com/mie/A2403/A240303/24015875/",
+      "instagram": "@mirador_shima"
+    },
+    "tags": [],
+    "tier": null,
+    "sources": [
+      {
+        "type": "tabelog",
+        "url": "https://tabelog.com/mie/A2403/A240303/24015875/",
+        "retrieved": "2026-10-18",
+        "note": "店舗情報：分數、席數、預約、個室、貸切、營業時間、お子様連れ"
+      },
+      {
+        "type": "google-maps",
+        "url": "https://maps.google.com/?cid=3817549000310622317",
+        "retrieved": "2026-10-18",
+        "note": "星數、評論數、座標、照片"
+      },
+      {
+        "type": "tourism",
+        "url": "https://chubu.env.go.jp/nature/yokoyama/index.html",
+        "retrieved": "2026-10-18",
+        "note": "カフェコーナー 年中無休 9:00-16:30；新聞一覽沒有 2026-11 工事或カフェ休業的公告"
+      },
+      {
+        "type": "tourism",
+        "url": "https://chubu.env.go.jp/nature/yokoyama/tenboudai/index.html",
+        "retrieved": "2026-10-18",
+        "note": "外帶式カフェ 9:00～16:30、2 樓休憩空間、P2 無障礙廁所與輪椅斜坡"
+      },
+      {
+        "type": "tourism",
+        "url": "https://www.kankomie.or.jp/spot/2307",
+        "retrieved": "2026-10-18",
+        "note": "2026-11-24～2027-03-01 工事、VC→P2 通行止め、迂回步道無斜坡；ミラドール志摩 菜單、9:00～16:30 不定休"
+      },
+      {
+        "type": "tourism",
+        "url": "https://www.kanko-shima.com/purpose/965/",
+        "retrieved": "2026-10-18",
+        "note": "カフェ・ミラドール 由志摩地中海村經營、P2 28 台、定休日 荒天日"
+      },
+      {
+        "type": "tourism",
+        "url": "https://chubu.env.go.jp/nature/yokoyama/news/article/20250205b.html",
+        "retrieved": "2026-10-18",
+        "note": "2025-02 社會實驗：P2 禁止一般車、計程車進入，VC↔P2 付費接駁"
+      }
+    ],
+    "verified": false,
+    "anchors": [],
+    "contexts": [
+      "snack",
+      "cafe"
+    ],
+    "access": "car",
+    "cuisine": [
+      "咖啡・甜點"
+    ],
+    "priceRange": null,
+    "price": null,
+    "stayMinutes": null,
+    "mustTry": [
+      "伊勢志摩食材のベーグル",
+      "ジャーケーキ",
+      "ソフトクリーム"
+    ],
+    "menu": [
+      {
+        "url": "https://tabelog.com/mie/A2403/A240303/24015875/dtlmenu/photo/",
+        "source": "tabelog",
+        "retrieved": "2026-10-18"
+      }
+    ],
+    "ratings": {
+      "tabelog": 3.5,
+      "tabelogReviews": 220,
+      "google": 4,
+      "googleReviews": 646,
+      "note": null
+    },
+    "inclusion": [
+      "A"
+    ],
+    "tabelogOwner": false,
+    "googleName": "横山天空カフェテラス・ミラドール志摩",
+    "notes": "横山展望台（英虞灣全景）上的外帶式咖啡（Google 4.0／646），志摩地中海村經營，貝果、ジャーケーキ、霜淇淋。旅程期間展望台停車場工事，要從下方步道走石段上去約 15 分。",
+    "group": {
+      "seats": null,
+      "maxReservation": null,
+      "privateRoom": false,
+      "buyout": "不可",
+      "groupMenu": null,
+      "fit15": "unknown",
+      "fitSubgroup": "yes",
+      "source": "外帶櫃台、不能預約、戶外 deck → unknown"
+    },
+    "reservation": {
+      "accepted": "no",
+      "methods": [],
+      "phone": "0599-44-0567",
+      "url": null,
+      "language": "日文",
+      "note": "外帶式，不能預約（電話是横山ビジターセンター）",
+      "leadDays": null
+    },
+    "seating": [
+      "terrace"
+    ],
+    "kids": {
+      "allowed": "unknown",
+      "minAge": null,
+      "kidsMenu": null,
+      "note": "沒寫（霜淇淋、戶外 deck）"
+    },
+    "accessibility": {
+      "barrierFree": "平常：P2 有無障礙廁所，木製斜坡可推輪椅到天空カフェテラス（環境省）",
+      "note": "工事期間（～2027-03-01）P2 不能到，從 VC 旁步道（石段陡、不平）走約 15 分，長輩吃力；鵜方站計程車約 10 分；大中型巴士不能停 P2"
+    },
+    "smoking": "全席禁煙",
+    "extra": {
+      "conflicts": [
+        "定休：年中無休（環境省）vs 不定休（觀光三重）vs 荒天日（志摩市観光協会）",
+        "斜坡：環境省寫有輪椅斜坡（平常）vs 觀光三重寫工期中迂回步道沒有斜坡",
+        "定休：環境省 年中無休 vs 觀光三重 不定休 vs 觀光協會 荒天日",
+        "無障礙：平常有木製斜坡 vs 工事期間迂回步道沒有斜坡"
+      ]
+    }
+  },
+  {
+    "id": "shima-marena-french",
+    "type": "restaurant",
+    "name": {
+      "ja": "マレナSHIMA フレンチ",
+      "kana": "まれなしま ふれんち",
+      "zh": "Marena SHIMA 法式（都度假村 志摩 Bayside Terrace）",
+      "en": null
+    },
+    "area": "shima",
+    "region": "shima-kashikojima",
+    "coords": [
+      136.8053426,
+      34.3162657
+    ],
+    "coordsSource": "google-maps-url",
+    "address": "三重県志摩市阿児町鵜方3618-33 都リゾート 志摩 ベイサイドテラス",
+    "hours": {
+      "mon": [
+        [
+          "17:30",
+          "22:00"
+        ]
+      ],
+      "tue": [
+        [
+          "17:30",
+          "22:00"
+        ]
+      ],
+      "wed": [
+        [
+          "17:30",
+          "22:00"
+        ]
+      ],
+      "thu": [],
+      "fri": [
+        [
+          "17:30",
+          "22:00"
+        ]
+      ],
+      "sat": [
+        [
+          "17:30",
+          "22:00"
+        ]
+      ],
+      "sun": [
+        [
+          "17:30",
+          "22:00"
+        ]
+      ],
+      "holiday": null,
+      "lastEntry": "19:30",
+      "note": "官網：晚餐 17:30～22:00，L.O. 平日 19:30／土日祝 20:30，週四休；午餐只接 15 人以上的貸切（見 shima-miyako-bayside-terrace-dining）"
+    },
+    "closedNote": "週四（晚餐）",
+    "febNote": "2/2（週二）有營業（同館和食週二休）；2/4、2/11（四）休",
+    "closures": [],
+    "photos": [
+      {
+        "url": "https://lh3.googleusercontent.com/grass-cs/AABkmLfRnokL4kSNEQT2pMCNWiCeaC0Hdxqh9xjrvi2M2cEuOUAAEDjZi0SCuZJRjmmuRgnc75IrXMtEshKegfu3LLQ0j-th7vQ9D8BVw5xQaZUjYwzkSh2YNabsS4eIsP45mWS5DjgsJJOYINTP=w800",
+        "page": "https://maps.google.com/?cid=14669638145719383267",
+        "kind": "google",
+        "credit": "Google マップ",
+        "license": null
+      }
+    ],
+    "links": {
+      "official": "https://www.miyakohotels.ne.jp/bayside-terrace/restaurant/marenashima_french/",
+      "googleMaps": "https://maps.google.com/?cid=14669638145719383267",
+      "tabelog": "https://tabelog.com/mie/A2403/A240303/24000658/",
+      "instagram": "@shimabaysideterrace"
+    },
+    "tags": [],
+    "tier": null,
+    "sources": [
+      {
+        "type": "tabelog",
+        "url": "https://tabelog.com/mie/A2403/A240303/24000658/",
+        "retrieved": "2026-10-18",
+        "note": "店舗情報：分數、席數、預約、個室、貸切、營業時間、お子様連れ（店舗会員）"
+      },
+      {
+        "type": "google-maps",
+        "url": "https://maps.google.com/?cid=14669638145719383267",
+        "retrieved": "2026-10-18",
+        "note": "星數、評論數、座標、照片"
+      },
+      {
+        "type": "tabelog",
+        "url": "https://tabelog.com/mie/A2403/A240303/24000658/party/",
+        "retrieved": "2026-10-18",
+        "note": "コース一覧：套餐名稱、價格、人數"
+      },
+      {
+        "type": "official",
+        "url": "https://www.miyakohotels.ne.jp/bayside-terrace/restaurant/marenashima_french/",
+        "retrieved": "2026-10-18",
+        "note": "78 席、晚餐時間、週四休、套餐價格"
+      },
+      {
+        "type": "booking-site",
+        "url": "https://www.tablecheck.com/shops/bayside-terrace-hdor/reserve",
+        "retrieved": "2026-10-18",
+        "note": "兒童套餐、網路最多 10 人、住客選その他"
+      },
+      {
+        "type": "official",
+        "url": "https://www.miyakohotels.ne.jp/bayside-terrace/restaurant/group_lunch/",
+        "retrieved": "2026-10-18",
+        "note": "貸切ランチ 15～50 人"
+      }
+    ],
+    "verified": false,
+    "anchors": [],
+    "contexts": [
+      "dinner"
+    ],
+    "access": "car",
+    "cuisine": [
+      "洋食・義式",
+      "伊勢海老・高級海鮮"
+    ],
+    "priceRange": "晚 ¥9,000～20,000",
+    "price": {
+      "lunch": null,
+      "dinner": [
+        9000,
+        20000
+      ]
+    },
+    "stayMinutes": null,
+    "mustTry": [],
+    "menu": [
+      {
+        "url": "https://tabelog.com/mie/A2403/A240303/24000658/party/",
+        "source": "tabelog",
+        "retrieved": "2026-10-18"
+      },
+      {
+        "url": "https://tabelog.com/mie/A2403/A240303/24000658/dtlmenu/",
+        "source": "tabelog",
+        "retrieved": "2026-10-18"
+      }
+    ],
+    "ratings": {
+      "tabelog": 3.4,
+      "tabelogReviews": 111,
+      "google": 3.3,
+      "googleReviews": 4,
+      "note": null
+    },
+    "inclusion": [
+      "A"
+    ],
+    "tabelogOwner": true,
+    "googleName": "マレナSHIMAフレンチ",
+    "notes": "都リゾート 志摩 ベイサイドテラス 1F 的法式（食べログ 3.40），晚餐套餐 9,000／14,000／20,000 円（最高的有鮑、伊勢海老、松阪牛），有兒童套餐。2/2 週二有營業，是第一晚賢島一帶少數價位 1 萬円左右的晚餐。",
+    "group": {
+      "seats": 78,
+      "maxReservation": null,
+      "privateRoom": false,
+      "buyout": "午餐貸切 15～50 人",
+      "groupMenu": "貸切ランチプラン 15～50 人、9,000 円～＋飲料 3,000 円～（官網）；晚餐 11 人以上電話預約",
+      "fit15": "yes",
+      "fitSubgroup": "yes",
+      "source": "官網：78 席、貸切ランチ 15～50 人在這裡；晚餐網路最多 10 人 → yes（晚餐 15 人要電話確認）"
+    },
+    "reservation": {
+      "accepted": "yes",
+      "methods": [
+        "phone",
+        "web"
+      ],
+      "phone": "0599-43-7211",
+      "url": "https://www.tablecheck.com/shops/bayside-terrace-hdor/reserve",
+      "language": "日文",
+      "note": "完全予約制；網路最多 10 人，11 人以上電話；超過預約時間 30 分聯絡不上可能取消",
+      "leadDays": null
+    },
+    "seating": [],
+    "kids": {
+      "allowed": "yes",
+      "minAge": null,
+      "kidsMenu": true,
+      "note": "兒童套餐 A 4,500 円／B 3,300 円（小學生以下）（TableCheck）"
+    },
+    "accessibility": {
+      "barrierFree": null,
+      "note": "1F；賢島站免費接駁巴士約 7 分"
+    },
+    "smoking": "全席禁煙",
+    "extra": {
+      "conflicts": [
+        "席數：官網 78 席，食べログ 66 席",
+        "營業：食べログ寫 17:30-19:30、無休；官網寫週末 L.O. 20:30、週四晚餐休",
+        "席數：官網 78 席 vs 食べログ 66 席",
+        "營業：食べログ 17:30～19:30、無休 vs 官網 週末 L.O. 20:30、週四休"
+      ]
+    }
+  }
+]
