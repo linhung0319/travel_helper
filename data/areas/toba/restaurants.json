@@ -6013,6 +6013,12 @@
         "url": "https://retty.me/theme/100427600/",
         "retrieved": "2026-10-18",
         "note": "Retty 鳥羽午餐人氣第 8、口コミ 21 件；2 樓要走樓梯"
+      },
+      {
+        "type": "tabelog",
+        "url": "https://tabelog.com/mie/A2403/A240302/24000881/dtlrvwlst/",
+        "retrieved": "2026-10-18",
+        "note": "口コミ（最新 20 則＋關鍵字搜尋）：帶小孩的家庭 2 則（2024/11、2025/04）、2F 螺旋樓梯陡；頁尾店舗情報（貸切 20～50 人、1F 吧台 10／2F 桌 16）"
       }
     ],
     "verified": false,
@@ -6124,7 +6130,7 @@
       "table"
     ],
     "kids": {
-      "allowed": "unknown",
+      "allowed": "yes",
       "minAge": null,
       "kidsMenu": null,
       "note": "食べログ「お子様連れ」欄只寫「ランチ現金のみ」"
@@ -8642,6 +8648,12 @@
         "url": "https://tabelog.com/mie/A2403/A240302/24014971/party/",
         "retrieved": "2026-10-18",
         "note": "コース 4 種、2～48 人（2026-09-07 更新）"
+      },
+      {
+        "type": "tabelog",
+        "url": "https://tabelog.com/mie/A2403/A240302/24014971/dtlrvwlst/",
+        "retrieved": "2026-10-18",
+        "note": "口コミ（全 22 則＋關鍵字搜尋）、頁尾店舗情報（出航 12:30、18:30，出航前 15 分集合）"
       }
     ],
     "verified": false,
@@ -8805,6 +8817,10 @@
       },
       "confidence": "low",
       "assessed": "2026-10-18"
+    },
+    "accessibility": {
+      "barrierFree": null,
+      "note": "船內是座敷（脫鞋，有掘りごたつ）；2F 是戶外甲板，要走樓梯（食べログ店舗情報、口コミ 2024/11、Google 約 2025）；碼頭前有付費停車場"
     }
   },
   {
@@ -18051,6 +18067,12 @@
         "url": "https://www.city.toba.mie.jp/material/files/group/37/tobameshi_map_2022_06.pdf",
         "retrieved": "2026-10-18",
         "note": "全室お座敷、望日本庭園，週三公休祝日營業（2022）"
+      },
+      {
+        "type": "tabelog",
+        "url": "https://tabelog.com/mie/A2403/A240302/24000186/dtlrvwlst/",
+        "retrieved": "2026-10-18",
+        "note": "口コミ（最新 20 則＋關鍵字搜尋）、頁尾店舗情報（個室 2～30 人以上、50 人以上包場、69 席）"
       }
     ],
     "verified": false,
@@ -18155,7 +18177,12 @@
     "seating": [
       "zashiki"
     ],
-    "kids": null,
+    "kids": {
+      "allowed": "yes",
+      "minAge": null,
+      "kidsMenu": null,
+      "note": "食べログ口コミ 3 則（2022/08、2023/12、2026/09）帶小孩來吃；全部是個室"
+    },
     "accessibility": {
       "barrierFree": "可坐輪椅入店（食べログ）",
       "note": null
@@ -18379,6 +18406,12 @@
         "url": "https://www.city.toba.mie.jp/material/files/group/37/tobameshi_map_2022_06.pdf",
         "retrieved": "2026-10-18",
         "note": "吧台、桌席、座敷，家族帶小孩安心（2022）"
+      },
+      {
+        "type": "tabelog",
+        "url": "https://tabelog.com/mie/A2403/A240302/24003642/dtlrvwlst/",
+        "retrieved": "2026-10-18",
+        "note": "口コミ（最新 20 則＋關鍵字搜尋）、頁尾店舗情報（35 席、予約不可）"
       }
     ],
     "verified": false,
@@ -18480,7 +18513,8 @@
       "movedFrom": "三重県鳥羽市大明東町2089-54（食べログ）",
       "conflicts": [
         "食べログ（非店舗会員）寫 11:00～14:00（L.O. 13:30）、17:00～21:00（L.O. 20:30）；Google 寫 11:00～13:30、17:00～19:30，採用 Google",
-        "讀文（http://toba-mutsumi.com）：hours＝午餐 11:00～14:00（L.O. 13:30）、晚餐 17:00～20:00（L.O. 19:30）"
+        "讀文（http://toba-mutsumi.com）：hours＝午餐 11:00～14:00（L.O. 13:30）、晚餐 17:00～20:00（L.O. 19:30）",
+        "小孩：資料檔寫可帶小孩、家族也能安心；Google 評論 1 則（約 2025/12）說桌上有給帶小孩客人的注意事項、店長對 3 歲小孩態度強硬"
       ],
       "dossierFacts": [
         "price：丼・定食 2,700～4,500 円；生魚片拼盤 2,200／4,000 円（含稅）（https://toba-mutsumi.com/cuisine.html）",
@@ -18717,6 +18751,12 @@
         "url": "https://www.city.toba.mie.jp/material/files/group/37/tobameshi_map_2022_06.pdf",
         "retrieved": "2026-10-18",
         "note": "大水槽活龍蝦、夏季鮑魚、免費接送巴士、月休 4 次（2022）"
+      },
+      {
+        "type": "tabelog",
+        "url": "https://tabelog.com/mie/A2403/A240302/24000397/dtlrvwlst/",
+        "retrieved": "2026-10-18",
+        "note": "口コミ（最新 20 則＋關鍵字搜尋）、頁尾店舗情報（110 席、予約可、貸切不可）；口コミ：預約時要選菜、要計程車"
       }
     ],
     "verified": false,
@@ -18834,7 +18874,8 @@
         "讀文（https://kagetu.co.jp/information/）：group.seats＝80 席：吧台 15、座敷 28、後方椅子席 40；無包廂記載",
         "讀文（https://kagetu.co.jp/menu2/menutanpinchild/）：kids.kidsMenu＝お子様セット 1,100 円（含稅），國小以下：當日料理、炸蝦、三重生魚片、飯、自製甜點",
         "讀文（https://kagetu.co.jp/information/）：seating＝吧台、座敷、椅子席（奥座敷椅子席）",
-        "讀文（https://www.city.toba.mie.jp/material/files/group/37/tobameshi_map_2022_06.pdf）：closedNote＝不定休（月休 4 次）"
+        "讀文（https://www.city.toba.mie.jp/material/files/group/37/tobameshi_map_2022_06.pdf）：closedNote＝不定休（月休 4 次）",
+        "座位：資料檔是 counter、zashiki；口コミ有「脫鞋上去的榻榻米擺桌子」（2025/12）、「用簾子隔開的桌席」（2024/08）、團體大房間（2018），店內有桌席"
       ],
       "dossierFacts": [
         "group.note：午餐限定菜單全部限量、不接受團體預約（https://kagetu.co.jp/menu2/menulunch/）",
@@ -19037,6 +19078,12 @@
         "url": "https://www.city.toba.mie.jp/material/files/group/37/tobameshi_map_2022_06.pdf",
         "retrieved": "2026-10-18",
         "note": "11:00～15:00・17:00～22:00，週三公休（2022 年）"
+      },
+      {
+        "type": "tabelog",
+        "url": "https://tabelog.com/mie/A2403/A240302/24014306/dtlrvwlst/",
+        "retrieved": "2026-10-18",
+        "note": "口コミ（最新 20 則＋關鍵字搜尋）：6 人桌、榻榻米座敷、帶小孩；頁尾店舗情報"
       }
     ],
     "verified": false,
@@ -19133,8 +19180,16 @@
       "note": null,
       "accepted": "yes"
     },
-    "seating": [],
-    "kids": null,
+    "seating": [
+      "table",
+      "zashiki"
+    ],
+    "kids": {
+      "allowed": "yes",
+      "minAge": null,
+      "kidsMenu": null,
+      "note": "食べログ口コミ 3 則（2025/08～2026/01）帶小孩（含 0 歲）來吃；刺身切得很厚，小孩難咬（2026/05）"
+    },
     "smoking": "全席禁煙",
     "extra": {
       "movedFrom": "三重県鳥羽市鳥羽1丁目4-53（食べログ）",
@@ -19574,6 +19629,18 @@
         "url": "https://www.city.toba.mie.jp/material/files/group/37/tobameshi_map_2022_06.pdf",
         "retrieved": "2026-10-18",
         "note": "11:00～17:00、全年無休（2022 年）"
+      },
+      {
+        "type": "tabelog",
+        "url": "https://tabelog.com/mie/A2403/A240302/24020453/dtlrvwlst/",
+        "retrieved": "2026-10-18",
+        "note": "口コミ（全 15 則）、頁尾店舗情報"
+      },
+      {
+        "type": "official",
+        "url": "https://www.pref.mie.lg.jp/common/content/001236278.pdf",
+        "retrieved": "2026-10-18",
+        "note": "三重縣公表資料：外國產ロブスターを「伊勢海老」と表示（WebSearch 摘要，PDF 原文沒讀）"
       }
     ],
     "verified": false,
@@ -19662,7 +19729,8 @@
         "讀文（http://www.ousho.co.jp/restaurant.html）：closedNote＝全年無休",
         "讀文（http://www.ousho.co.jp/restaurant.html）：group.note＝團體可在水中翼船「王将」船艙或包廂用餐，可只有自己人包場",
         "讀文（http://www.ousho.co.jp/）：seating＝1F、2F 團體大廣間已改成椅子桌席",
-        "讀文（https://tabiiro.jp/gourmet/article/iseshimatoba-kaisen/）：access＝近鐵志摩線加茂站步行約 10 分；第二伊勢道路白木 IC 開車約 3 分"
+        "讀文（https://tabiiro.jp/gourmet/article/iseshimatoba-kaisen/）：access＝近鐵志摩線加茂站步行約 10 分；第二伊勢道路白木 IC 開車約 3 分",
+        "伊勢海老：三重縣公表資料（WebSearch 摘要）寫 鳥羽本店等的食堂菜單把外國產ロブスター標成伊勢海老；Google 評論 3 則（約 2026）也提到"
       ],
       "dossierFacts": [
         "price：平均預算 1,000～1,999 円（https://tabiiro.jp/gourmet/s/313164-toba-ousho/）",
