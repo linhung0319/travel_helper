@@ -2038,5 +2038,107 @@
       }
     ],
     "verified": false
+  },
+  {
+    "id": "obata",
+    "type": "station",
+    "name": {
+      "ja": "小俣",
+      "kana": "おばた",
+      "zh": "小俣",
+      "en": "Obata"
+    },
+    "area": "ise",
+    "coords": [
+      136.6849623,
+      34.5127983
+    ],
+    "coordsSource": "osm",
+    "address": "三重県伊勢市小俣町元町8254-5",
+    "links": {
+      "official": null
+    },
+    "operator": "kintetsu",
+    "stationNumber": "M71",
+    "lines": [
+      "山田線"
+    ],
+    "passCovered": true,
+    "staffed": false,
+    "transfers": [],
+    "coinLockers": "不明（來源沒有寫）",
+    "accessibility": "地上站、相對式 2 面 2 線；入口在兩個月台的宇治山田側，站房在 1 號月台。沒有站內平交道，到另一個月台要走站外東側的平交道（WP）。無人站（宇治山田站管理），沒有自動售票機、自動剪票機。電梯、手扶梯：不明（地上站，月台入口的高低差沒有來源）",
+    "sources": [
+      {
+        "type": "osm",
+        "url": "https://www.openstreetmap.org/node/332395565",
+        "retrieved": "2026-10-18",
+        "note": "座標"
+      },
+      {
+        "type": "wikipedia",
+        "url": "https://ja.wikipedia.org/wiki/%E5%B0%8F%E4%BF%A3%E9%A7%85_(%E4%B8%89%E9%87%8D%E7%9C%8C)",
+        "retrieved": "2026-10-18",
+        "note": "所在地、讀音、站號；駅構造（月台、無人站、月台間怎麼走）"
+      },
+      {
+        "type": "official",
+        "url": "https://www.kintetsu.co.jp/foreign/english/ticket/krp_5day.html",
+        "retrieved": "2026-10-18",
+        "note": "KINTETSU RAIL PASS 5day：近鐵全線可搭乘"
+      }
+    ],
+    "verified": false
+  },
+  {
+    "id": "miyamachi",
+    "type": "station",
+    "name": {
+      "ja": "宮町",
+      "kana": "みやまち",
+      "zh": "宮町",
+      "en": "Miyamachi"
+    },
+    "area": "ise",
+    "coords": [
+      136.6985555,
+      34.4978133
+    ],
+    "coordsSource": "osm",
+    "address": "三重県伊勢市御薗町高向686",
+    "links": {
+      "official": null
+    },
+    "operator": "kintetsu",
+    "stationNumber": "M72",
+    "lines": [
+      "山田線"
+    ],
+    "passCovered": true,
+    "staffed": false,
+    "transfers": [],
+    "coinLockers": "不明（來源沒有寫）",
+    "accessibility": "地上站、相對式 2 面 2 線；東西兩側都有剪票口，月台之間用站內平交道連接（WP）。無人站（宇治山田站管理），有自動售票機、沒有自動剪票機。電梯、手扶梯：不明",
+    "sources": [
+      {
+        "type": "osm",
+        "url": "https://www.openstreetmap.org/node/332395641",
+        "retrieved": "2026-10-18",
+        "note": "座標"
+      },
+      {
+        "type": "wikipedia",
+        "url": "https://ja.wikipedia.org/wiki/%E5%AE%AE%E7%94%BA%E9%A7%85",
+        "retrieved": "2026-10-18",
+        "note": "所在地、讀音、站號；駅構造（月台、無人站、月台間怎麼走）"
+      },
+      {
+        "type": "official",
+        "url": "https://www.kintetsu.co.jp/foreign/english/ticket/krp_5day.html",
+        "retrieved": "2026-10-18",
+        "note": "KINTETSU RAIL PASS 5day：近鐵全線可搭乘"
+      }
+    ],
+    "verified": false
   }
 ]

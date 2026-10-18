@@ -3458,7 +3458,12 @@
       "親子"
     ],
     "tier": null,
-    "nearestStation": null,
+    "nearestStation": {
+      "id": "obata",
+      "mode": "walk",
+      "minutes": 14,
+      "note": "OSRM 步行 1,048 m 約 14 分（係數 1）；觀光協會寫小俣站步行約 8 分"
+    },
     "access": [],
     "admission": null,
     "phone": null,
@@ -3550,7 +3555,7 @@
     ],
     "verified": false,
     "extra": {
-      "accessNote": "近鐵小俣站步行約 8 分（觀光協會）；stations.json 沒有小俣站，所以 nearestStation 留 null",
+      "accessNote": "近鐵小俣站（無人站）步行約 8 分（觀光協會）／OSRM 約 14 分",
       "price": "2,200 円～（ichigogari.info，2026-03）；兒童價、2027 年價格要等じゃらん 12 月開放預約後查。",
       "conflicts": [
         "直賣所營業時間：第 1 批照觀光協會填 10:00～12:00；官網 about、じゃらん、ichigogari.info 寫 10:00～16:00 頃（官網說下午常不在，建議上午來）。",

@@ -142,7 +142,9 @@ function main() {
   const warnings = [];
   const err = (file, msg) => errors.push(`${file}：${msg}`);
   const warn = (file, msg) => warnings.push(`${file}：${msg}`);
-  const today = new Date().toISOString().slice(0, 10);
+  // 用本地日期：toISOString() 是 UTC，台灣早上 8 點前會變成前一天，當天取得的資料被誤報「在未來」（T7c～T8c 的警告都是這個）
+  const now = new Date();
+  const today = `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, '0')}-${String(now.getDate()).padStart(2, '0')}`;
 
   const files = walk(opts.data).sort();
   const points = new Map(); // id → { file, record }

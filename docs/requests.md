@@ -133,10 +133,10 @@
   - §5.3 的料理種類沒有籠統的「海鮮」。鳥羽有 4 家（海鮮 大和、喜久屋、むつみ、王将 鳥羽本店）的舊 `cuisine` 只有「海鮮」，T7b 留原樣（不在固定清單裡）。T7e 查食べログ時可以照實際菜色改成海鮮丼、定食・食堂等；或固定清單加「海鮮（一般）」。另外「炸物」「麵類」對不到清單（T7b 省略了，原文在 git 歷史和 `data/raw/toba/log/T7b.md`）。
   - 順便：`data/areas.json` 的 `toba.extra.regionsNote` 寫「沿用 T4a 的地區劃分（data/raw/toba/restaurants.md）」，這個檔案 T7b 刪了，建議改成 `data/raw/toba/log/T4a.md`。
 - 原因：T14 的衝突檢查要用 L.O. 判斷「到店時間來不來得及」；料理種類用來篩選和設預設停留時間（§5.5）。
-- 狀態：待處理
+- 狀態：已處理（2026-10-18，盤點後）：`hours.lastEntry` 可以是陣列（依序對應各天的時段，沒有的寫 null），鳥羽、伊勢、二見 hours.note 裡寫清楚的 11 家已轉（シーホース 週五時段數不同、天びん屋 本店 週六不同、天海 時間和 L.O. 來源不同、華月 寫法不明確，沒轉）；§5.3 加「籠統的海鮮照實際菜色歸類」，4 家改成固定清單（大和 浜焼き・貝＋牡蠣、喜久屋 和食・割烹、むつみ・王将 海鮮丼＋定食・食堂）；`regionsNote` 改指 `log/T4a.md`
 
 ## [T8a] stations.json：新增近鐵小俣站
 - 要改的檔案：`data/stations.json`（T0／T7 的檔案）
 - 內容：新增近鐵山田線 **小俣**（おばた，Obata）站。座標用 OSM：`[136.6851209, 34.5127509]`（https://www.openstreetmap.org/way/184365192 ，2026-10-18，伊勢市小俣町元町）；`operator: "kintetsu"`、`lines: ["山田線"]`、`passCovered: true`（近鐵 5 日券的範圍內，在明星～宮町之間，請 T0／T7 確認站號、有沒有站員、置物櫃、無障礙）。之後時刻表（T7a 的 `kintetsu-timetable.mjs`）要不要抓這一站，看行程會不會用到。
 - 原因：伊勢苺園（`ise-ichigoen`）在小俣站步行約 8 分（觀光協會），但 `stations.json` 沒有這一站，`nearestStation` 只能留 null，行程引擎算不了交通。加站後 T8 把 `ise-ichigoen` 的 `nearestStation` 改成 `{ "id": "<新 id>", "mode": "walk", "minutes": 8 }`（`extra.accessNote` 已有這句）。
-- 狀態：待處理
+- 狀態：已處理（2026-10-18，盤點後）：新增 `obata`（小俣，M71）和 `miyamachi`（宮町，M72，紅葉軒、おく文 最近的站），座標 OSM、站構造照日文維基（都是無人站）；`areas.json` 的 ise.stations 加上兩站。`ise-ichigoen` 的 nearestStation 改成小俣（OSRM 14 分，觀光協會寫 8 分），紅葉軒、おく文 改成宮町（OSRM 13、11 分）

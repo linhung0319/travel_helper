@@ -216,7 +216,7 @@
       }
     ],
     "extra": {
-      "regionsNote": "regions 沿用 T4a 的地區劃分（data/raw/toba/restaurants.md）；center 是該地區已收錄餐廳座標的平均（T7，2026-10-17）"
+      "regionsNote": "regions 沿用 T4a 的地區劃分（data/raw/toba/log/T4a.md）；center 是該地區已收錄餐廳座標的平均（T7，2026-10-17）"
     }
   },
   {
@@ -326,7 +326,9 @@
       "isuzugawa",
       "asama",
       "jr-iseshi",
-      "jr-isuzugaoka"
+      "jr-isuzugaoka",
+      "obata",
+      "miyamachi"
     ],
     "notes": "最後一站，離大阪、關西機場比較近。bbox 取自 OSM 的伊勢市行政界（含二見町和海域）。",
     "sources": [

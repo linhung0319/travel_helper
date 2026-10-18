@@ -33,11 +33,13 @@
   if (reviews.length && reviews.every((r) => !r.comment)) warnings.push('每則都抓不到 .rvw-item__rvw-comment：選擇器可能失效');
   if (reviews.length && reviews.every((r) => !r.visit)) warnings.push('每則都抓不到 .rvw-item__date：選擇器可能失效');
 
-  // 頁尾的店舗情報（每個口コミ頁都有，第一頁讀一次就好）
+  // 頁尾的店舗情報（每個口コミ頁都有，第一頁讀一次就好）。欄位和 tabelog-info.js 的白名單相同，
+  // 重點店可以只開口コミ頁、不另外開店家首頁（頁尾是不是完整的表，第一次用時確認；不完整就照舊開店家頁）
+  const KEEP = /^(店名|ジャンル|予約可否|予約・お問い合わせ|お問い合わせ|電話番号|住所|営業時間|定休日|予算|席数|最大予約可能人数|個室|貸切|禁煙・喫煙|駐車場|空間・設備|お子様連れ|公式アカウント|備考)/;
   const info = {};
   for (const tr of document.querySelectorAll('.rstinfo-table tr')) {
-    const key = text(tr.querySelector('th'));
-    if (key && /席数|個室|貸切|予約可否|営業時間|定休日/.test(key)) info[key] = text(tr.querySelector('td'))?.slice(0, 200) ?? null;
+    const key = tr.querySelector('th')?.textContent.replace(/\s+/g, '');
+    if (key && KEEP.test(key)) info[key] = text(tr.querySelector('td'))?.replace(/(https?:\/\/[^\s?#]+)[?#]\S*/g, '$1').slice(0, 250) ?? null;
   }
   if (!Object.keys(info).length) warnings.push('找不到 .rstinfo-table 的店舗情報：選擇器可能失效');
 

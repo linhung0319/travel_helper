@@ -240,10 +240,24 @@
                   "$ref": "#/$defs/time"
                 },
                 {
+                  "type": "array",
+                  "items": {
+                    "anyOf": [
+                      {
+                        "$ref": "#/$defs/time"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ]
+                  },
+                  "minItems": 1
+                },
+                {
                   "type": "null"
                 }
               ],
-              "description": "最後入場／最後點餐時間"
+              "description": "最後入場／最後點餐時間。一個時間：所有時段共用；陣列：依序對應各天的時段（例如午、晚各一個 L.O. 寫 [\"14:30\", \"20:00\"]，某個時段沒有寫 null）"
             }
           },
           "additionalProperties": false
