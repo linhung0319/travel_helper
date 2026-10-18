@@ -12,11 +12,12 @@
       "B"
     ],
     "reason": null,
-    "pointId": null,
-    "detailPending": true,
+    "pointId": "ise-akafuku-honten",
     "ratings": {
       "tabelog": 3.59,
-      "tabelogReviews": 5505
+      "tabelogReviews": 5505,
+      "google": 4.4,
+      "googleReviews": 7936
     },
     "links": {
       "tabelog": "https://tabelog.com/mie/A2403/A240301/24000008/"
@@ -106,11 +107,12 @@
       "B"
     ],
     "reason": null,
-    "pointId": null,
-    "detailPending": true,
+    "pointId": "ise-butasute-okage",
     "ratings": {
       "tabelog": 3.49,
-      "tabelogReviews": 2274
+      "tabelogReviews": 2274,
+      "google": 4.1,
+      "googleReviews": 1986
     },
     "links": {
       "tabelog": "https://tabelog.com/mie/A2403/A240301/24000010/"
@@ -221,11 +223,12 @@
       "A"
     ],
     "reason": null,
-    "pointId": null,
-    "detailPending": true,
+    "pointId": "ise-akafuku-naikumae",
     "ratings": {
       "tabelog": 3.48,
-      "tabelogReviews": 1227
+      "tabelogReviews": 1227,
+      "google": 4.2,
+      "googleReviews": 3011
     },
     "links": {
       "tabelog": "https://tabelog.com/mie/A2403/A240301/24002230/"
@@ -247,11 +250,12 @@
       "A"
     ],
     "reason": null,
-    "pointId": null,
-    "detailPending": true,
+    "pointId": "ise-isuzu-chaya-honten",
     "ratings": {
       "tabelog": 3.67,
-      "tabelogReviews": 913
+      "tabelogReviews": 913,
+      "google": 4.4,
+      "googleReviews": 564
     },
     "links": {
       "tabelog": "https://tabelog.com/mie/A2403/A240301/24000873/"
@@ -273,11 +277,12 @@
       "A"
     ],
     "reason": null,
-    "pointId": null,
-    "detailPending": true,
+    "pointId": "ise-isuzugawa-cafe",
     "ratings": {
       "tabelog": 3.63,
-      "tabelogReviews": 883
+      "tabelogReviews": 883,
+      "google": 4.4,
+      "googleReviews": 732
     },
     "links": {
       "tabelog": "https://tabelog.com/mie/A2403/A240301/24001919/"
@@ -300,11 +305,12 @@
       "A"
     ],
     "reason": null,
-    "pointId": null,
-    "detailPending": true,
+    "pointId": "ise-akafuku-bettenpo",
     "ratings": {
       "tabelog": 3.43,
-      "tabelogReviews": 707
+      "tabelogReviews": 707,
+      "google": 4.4,
+      "googleReviews": 182
     },
     "links": {
       "tabelog": "https://tabelog.com/mie/A2403/A240301/24012374/"
@@ -362,11 +368,12 @@
       "A"
     ],
     "reason": null,
-    "pointId": null,
-    "detailPending": true,
+    "pointId": "ise-akafuku-isuzugawa",
     "ratings": {
       "tabelog": 3.43,
-      "tabelogReviews": 654
+      "tabelogReviews": 654,
+      "google": 4.3,
+      "googleReviews": 1693
     },
     "links": {
       "tabelog": "https://tabelog.com/mie/A2403/A240301/24001202/"
@@ -388,11 +395,12 @@
       "A"
     ],
     "reason": null,
-    "pointId": null,
-    "detailPending": true,
+    "pointId": "ise-tofuan-yamanaka",
     "ratings": {
       "tabelog": 3.59,
-      "tabelogReviews": 593
+      "tabelogReviews": 593,
+      "google": 4.2,
+      "googleReviews": 227
     },
     "links": {
       "tabelog": "https://tabelog.com/mie/A2403/A240301/24001620/"
@@ -487,11 +495,12 @@
       "A"
     ],
     "reason": null,
-    "pointId": null,
-    "detailPending": true,
+    "pointId": "ise-dangoya",
     "ratings": {
       "tabelog": 3.49,
-      "tabelogReviews": 548
+      "tabelogReviews": 548,
+      "google": 3.9,
+      "googleReviews": 348
     },
     "links": {
       "tabelog": "https://tabelog.com/mie/A2403/A240301/24007364/"
@@ -565,11 +574,12 @@
       "A"
     ],
     "reason": null,
-    "pointId": null,
-    "detailPending": true,
+    "pointId": "ise-dangoro-chaya",
     "ratings": {
       "tabelog": 3.48,
-      "tabelogReviews": 449
+      "tabelogReviews": 449,
+      "google": 4,
+      "googleReviews": 364
     },
     "links": {
       "tabelog": "https://tabelog.com/mie/A2403/A240301/24002012/"
@@ -710,11 +720,12 @@
       "B"
     ],
     "reason": null,
-    "pointId": null,
-    "detailPending": true,
+    "pointId": "ise-wakamatsuya-okage",
     "ratings": {
       "tabelog": 3.42,
-      "tabelogReviews": 406
+      "tabelogReviews": 406,
+      "google": 4.4,
+      "googleReviews": 193
     },
     "links": {
       "tabelog": "https://tabelog.com/mie/A2403/A240301/24006873/"
@@ -795,11 +806,12 @@
       "A"
     ],
     "reason": null,
-    "pointId": null,
-    "detailPending": true,
+    "pointId": "ise-henbaya-oharai",
     "ratings": {
       "tabelog": 3.45,
-      "tabelogReviews": 388
+      "tabelogReviews": 388,
+      "google": 4.1,
+      "googleReviews": 726
     },
     "links": {
       "tabelog": "https://tabelog.com/mie/A2403/A240301/24010667/"
@@ -830,11 +842,12 @@
       "A"
     ],
     "reason": null,
-    "pointId": null,
-    "detailPending": true,
+    "pointId": "ise-shoseiko",
     "ratings": {
       "tabelog": 3.46,
-      "tabelogReviews": 368
+      "tabelogReviews": 368,
+      "google": 3.6,
+      "googleReviews": 400
     },
     "links": {
       "tabelog": "https://tabelog.com/mie/A2403/A240301/24007113/"
@@ -865,11 +878,12 @@
       "A"
     ],
     "reason": null,
-    "pointId": null,
-    "detailPending": true,
+    "pointId": "ise-oiseya-honpo",
     "ratings": {
       "tabelog": 3.47,
-      "tabelogReviews": 366
+      "tabelogReviews": 366,
+      "google": 3.9,
+      "googleReviews": 252
     },
     "links": {
       "tabelog": "https://tabelog.com/mie/A2403/A240301/24007363/"
@@ -891,11 +905,12 @@
       "A"
     ],
     "reason": null,
-    "pointId": null,
-    "detailPending": true,
+    "pointId": "ise-imonne",
     "ratings": {
       "tabelog": 3.53,
-      "tabelogReviews": 339
+      "tabelogReviews": 339,
+      "google": 4.4,
+      "googleReviews": 256
     },
     "links": {
       "tabelog": "https://tabelog.com/mie/A2403/A240301/24020206/"
@@ -927,11 +942,12 @@
       "B"
     ],
     "reason": null,
-    "pointId": null,
-    "detailPending": true,
+    "pointId": "ise-snoopy-chaya",
     "ratings": {
       "tabelog": 3.48,
-      "tabelogReviews": 330
+      "tabelogReviews": 330,
+      "google": 4.2,
+      "googleReviews": 1202
     },
     "links": {
       "tabelog": "https://tabelog.com/mie/A2403/A240301/24013674/"
@@ -977,11 +993,12 @@
       "C"
     ],
     "reason": null,
-    "pointId": null,
-    "detailPending": true,
+    "pointId": "ise-iwatoya-honten",
     "ratings": {
       "tabelog": 3.49,
-      "tabelogReviews": 309
+      "tabelogReviews": 309,
+      "google": 3.7,
+      "googleReviews": 940
     },
     "links": {
       "tabelog": "https://tabelog.com/mie/A2403/A240301/24001460/"
@@ -9253,11 +9270,12 @@
       "A"
     ],
     "reason": null,
-    "pointId": null,
-    "detailPending": true,
+    "pointId": "ise-fujiya-sogetsudo-honkan",
     "ratings": {
       "tabelog": 3.34,
-      "tabelogReviews": 44
+      "tabelogReviews": 44,
+      "google": 3.9,
+      "googleReviews": 100
     },
     "links": {
       "tabelog": "https://tabelog.com/mie/A2403/A240301/24001173/"
@@ -9279,11 +9297,12 @@
       "D1"
     ],
     "reason": null,
-    "pointId": null,
-    "detailPending": true,
+    "pointId": "ise-asama-chaya",
     "ratings": {
       "tabelog": 3.27,
-      "tabelogReviews": 67
+      "tabelogReviews": 67,
+      "google": 3.9,
+      "googleReviews": 79
     },
     "links": {
       "tabelog": "https://tabelog.com/mie/A2403/A240301/24010680/"
@@ -9305,11 +9324,12 @@
       "D1"
     ],
     "reason": null,
-    "pointId": null,
-    "detailPending": true,
+    "pointId": "ise-hakutakatei",
     "ratings": {
       "tabelog": 3.16,
-      "tabelogReviews": 63
+      "tabelogReviews": 63,
+      "google": 2.2,
+      "googleReviews": 13
     },
     "links": {
       "tabelog": "https://tabelog.com/mie/A2403/A240301/24013072/"
@@ -9326,16 +9346,17 @@
     },
     "region": "ise-asama",
     "category": "その他",
-    "status": "included",
+    "status": "excluded",
     "criteria": [
       "D1"
     ],
-    "reason": null,
+    "reason": "T8d 確認：用餐的部分就是 2F 的食事處 はくたか亭（ise-hakutakatei，已收錄、同址同電話），1F 是海產・伴手禮賣場（只做物販）；同一處不重複收錄（2026-10-18）",
     "pointId": null,
-    "detailPending": true,
     "ratings": {
       "tabelog": 3.08,
-      "tabelogReviews": 34
+      "tabelogReviews": 34,
+      "google": 2.6,
+      "googleReviews": 66
     },
     "links": {
       "tabelog": "https://tabelog.com/mie/A2403/A240301/24015713/"

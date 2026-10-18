@@ -5567,5 +5567,4442 @@
         "食べログ地址寫「152 ４階」，官網沒寫昼食在幾樓"
       ]
     }
+  },
+  {
+    "id": "ise-akafuku-honten",
+    "type": "restaurant",
+    "name": {
+      "ja": "赤福 本店",
+      "kana": "あかふく ほんてん",
+      "zh": "赤福 本店（赤福餅）",
+      "en": null
+    },
+    "area": "ise",
+    "region": "ise-naiku",
+    "coords": [
+      136.7235667,
+      34.4626629
+    ],
+    "coordsSource": "google-maps-url",
+    "address": "三重県伊勢市宇治中之切町26 おかげ横丁",
+    "hours": {
+      "mon": [
+        [
+          "05:00",
+          "17:00"
+        ]
+      ],
+      "tue": [
+        [
+          "05:00",
+          "17:00"
+        ]
+      ],
+      "wed": [
+        [
+          "05:00",
+          "17:00"
+        ]
+      ],
+      "thu": [
+        [
+          "05:00",
+          "17:00"
+        ]
+      ],
+      "fri": [
+        [
+          "05:00",
+          "17:00"
+        ]
+      ],
+      "sat": [
+        [
+          "05:00",
+          "17:00"
+        ]
+      ],
+      "sun": [
+        [
+          "05:00",
+          "17:00"
+        ]
+      ],
+      "holiday": [
+        [
+          "05:00",
+          "17:00"
+        ]
+      ],
+      "note": "繁忙期營業時間會變（官網、食べログ）"
+    },
+    "closedNote": "無休",
+    "febNote": "朔日餅（每月 1 日）2 月是立春大吉餅，但 2/1 在旅程前；冬季的赤福ぜんざい 在對面的本店別店舗吃（本店內用只有赤福餅）",
+    "closures": [],
+    "photos": [
+      {
+        "url": "https://www.akafuku.co.jp/wp/wp-content/uploads/2019/03/本店外観2Ｍ-1-min.jpg",
+        "page": "https://www.akafuku.co.jp/store/2992/",
+        "kind": "official",
+        "credit": "赤福 本店",
+        "license": null
+      },
+      {
+        "url": "https://www.akafuku.co.jp/wp/wp-content/uploads/2020/02/bon_img01_new.jpg",
+        "page": "https://www.akafuku.co.jp/product/bon/",
+        "kind": "official",
+        "credit": "赤福 本店",
+        "license": null
+      }
+    ],
+    "links": {
+      "official": "https://www.akafuku.co.jp/store/2992/",
+      "googleMaps": "https://maps.google.com/?cid=3263105985025266809",
+      "tabelog": "https://tabelog.com/mie/A2403/A240301/24000008/",
+      "instagram": "@akafuku.official"
+    },
+    "tags": [],
+    "tier": null,
+    "sources": [
+      {
+        "type": "tabelog",
+        "url": "https://tabelog.com/mie/A2403/A240301/24000008/",
+        "retrieved": "2026-10-18",
+        "note": "店舗情報：分數、席數、預約、營業時間、お子様連れ"
+      },
+      {
+        "type": "google-maps",
+        "url": "https://maps.google.com/?cid=3263105985025266809",
+        "retrieved": "2026-10-18",
+        "note": "星數、評論數、座標、照片"
+      },
+      {
+        "type": "official",
+        "url": "https://www.akafuku.co.jp/store/2992/",
+        "retrieved": "2026-10-18",
+        "note": "営業 5:00～17:00 無休、店内は赤福餅のみ、明治10年の建物、市営浦田P徒歩5分"
+      },
+      {
+        "type": "official",
+        "url": "https://www.akafuku.co.jp/product/bon/",
+        "retrieved": "2026-10-18",
+        "note": "盆 2個・ほうじ茶付 400円"
+      },
+      {
+        "type": "official",
+        "url": "https://www.akafuku.co.jp/buy/",
+        "retrieved": "2026-10-18",
+        "note": "朔日餅の購入方法（前日17時から整理券、4:45販売開始）"
+      },
+      {
+        "type": "tourism",
+        "url": "https://www.kankomie.or.jp/report/1305",
+        "retrieved": "2026-10-18",
+        "note": "2022年、盆250円、座敷から五十鈴川を望む"
+      },
+      {
+        "type": "blog-zh",
+        "url": "https://livejapan.com/zh-tw/in-kansai/in-pref-mie/in-ise_toba_shima/article-a2000174/",
+        "retrieved": "2026-10-18",
+        "note": "2020年情報、2個210円、1877年の建物、三宝荒神の竈"
+      },
+      {
+        "type": "blog-ja",
+        "url": "https://banzokubiology.com/?p=10292",
+        "retrieved": "2026-10-18",
+        "note": "混雑の目安、座敷と縁台席（根拠不明のまとめ記事）"
+      },
+      {
+        "type": "other",
+        "url": "https://www.pricey.jp/web/articles/2513",
+        "retrieved": "2026-10-18",
+        "note": "2023-10価格改定後、折箱8個入900円"
+      }
+    ],
+    "verified": false,
+    "anchors": [],
+    "contexts": [
+      "snack"
+    ],
+    "access": "walk",
+    "cuisine": [
+      "咖啡・甜點"
+    ],
+    "priceRange": "¥400（盆 2 個＋茶）",
+    "price": {
+      "lunch": [
+        400,
+        1000
+      ],
+      "dinner": null
+    },
+    "stayMinutes": null,
+    "mustTry": [
+      "赤福餅 盆（2 個・ほうじ茶付）400 円",
+      "赤福 折箱 8 個入 900 円（伴手禮）"
+    ],
+    "menu": [
+      {
+        "url": "https://tabelog.com/mie/A2403/A240301/24000008/dtlmenu/",
+        "source": "tabelog",
+        "retrieved": "2026-10-18"
+      }
+    ],
+    "ratings": {
+      "tabelog": 3.59,
+      "tabelogReviews": 5505,
+      "google": 4.4,
+      "googleReviews": 7936,
+      "note": null
+    },
+    "tabelogOwner": false,
+    "googleName": null,
+    "notes": "1707 年創業的赤福總本店，早上 5:00 開。內用只有赤福餅（盆：2 個＋ほうじ茶）。尖峰平日排 10～30 分、週末 30 分～1 小時，清晨和 16:00 以後較空（部落格）。",
+    "group": {
+      "seats": null,
+      "maxReservation": null,
+      "privateRoom": false,
+      "buyout": "不可",
+      "groupMenu": null,
+      "fit15": "unknown",
+      "fitSubgroup": "yes",
+      "source": "食べログ：予約不可、個室無、貸切不可，席数欄只寫「小上がり座敷席」；15 人可以分批進去"
+    },
+    "reservation": {
+      "accepted": "no",
+      "methods": [],
+      "phone": "0596-22-7000",
+      "url": null,
+      "language": "日文",
+      "note": "不能預約（食べログ）；電話是赤福總合案內（官網）",
+      "leadDays": null
+    },
+    "seating": [
+      "zashiki",
+      "other"
+    ],
+    "kids": {
+      "allowed": "yes",
+      "minAge": null,
+      "kidsMenu": null,
+      "note": "子供可（乳兒、學齡前、小學生）、可推嬰兒車（食べログ）；食べログ 寫「お子様メニューあり」，但本店內用只有赤福餅"
+    },
+    "accessibility": {
+      "barrierFree": null,
+      "note": "內用是面向五十鈴川的座敷（要脫鞋），另有縁台（長椅）席；無障礙沒有來源"
+    },
+    "smoking": "全席禁煙",
+    "extra": {
+      "inclusion": "AB",
+      "conflicts": [
+        "盆的價格：官網現行 400 円；觀光三重（2022）250 円；LIVE JAPAN（2020）210 円"
+      ]
+    }
+  },
+  {
+    "id": "ise-akafuku-bettenpo",
+    "type": "restaurant",
+    "name": {
+      "ja": "赤福 本店別店舗",
+      "kana": "あかふく ほんてんべつてんぽ",
+      "zh": "赤福 本店別店舖（赤福善哉）",
+      "en": null
+    },
+    "area": "ise",
+    "region": "ise-naiku",
+    "coords": [
+      136.7233076,
+      34.4626451
+    ],
+    "coordsSource": "google-maps-url",
+    "address": "三重県伊勢市宇治中之切町26",
+    "hours": {
+      "mon": [
+        [
+          "09:00",
+          "17:00"
+        ]
+      ],
+      "tue": [
+        [
+          "09:00",
+          "17:00"
+        ]
+      ],
+      "wed": [
+        [
+          "09:00",
+          "17:00"
+        ]
+      ],
+      "thu": [
+        [
+          "09:00",
+          "17:00"
+        ]
+      ],
+      "fri": [
+        [
+          "09:00",
+          "17:00"
+        ]
+      ],
+      "sat": [
+        [
+          "09:00",
+          "17:00"
+        ]
+      ],
+      "sun": [
+        [
+          "09:00",
+          "17:00"
+        ]
+      ],
+      "holiday": [
+        [
+          "09:00",
+          "17:00"
+        ]
+      ],
+      "note": "繁忙期營業時間會變（官網）"
+    },
+    "closedNote": "依活動日程（官網）；觀光三重寫ぜんざい期間中無休",
+    "febNote": "冬季的赤福ぜんざい 2026-10-17 開賣、結束日未定（2 月應該還在賣）；夏季是赤福氷（4/18～10/12）",
+    "closures": [],
+    "photos": [
+      {
+        "url": "https://www.akafuku.co.jp/wp/wp-content/uploads/2021/04/別店氷2.jpg",
+        "page": "https://www.akafuku.co.jp/store/5139/",
+        "kind": "official",
+        "credit": "赤福 本店別店舗",
+        "license": null
+      }
+    ],
+    "links": {
+      "official": "https://www.akafuku.co.jp/store/5139/",
+      "googleMaps": "https://maps.google.com/?cid=5193893048219291768",
+      "tabelog": "https://tabelog.com/mie/A2403/A240301/24012374/",
+      "instagram": "@akafuku.official"
+    },
+    "tags": [],
+    "tier": null,
+    "sources": [
+      {
+        "type": "tabelog",
+        "url": "https://tabelog.com/mie/A2403/A240301/24012374/",
+        "retrieved": "2026-10-18",
+        "note": "店舗情報：分數、席數、預約、營業時間、お子様連れ"
+      },
+      {
+        "type": "google-maps",
+        "url": "https://maps.google.com/?cid=5193893048219291768",
+        "retrieved": "2026-10-18",
+        "note": "星數、評論數、座標、照片"
+      },
+      {
+        "type": "official",
+        "url": "https://www.akafuku.co.jp/store/5139/",
+        "retrieved": "2026-10-18",
+        "note": "本店向かい、イートインのみ、9:00～17:00、赤福餅・赤福氷・赤福ぜんざい"
+      },
+      {
+        "type": "official",
+        "url": "https://www.akafuku.co.jp/store/area/%e4%bc%8a%e5%8b%a2%e5%b8%82/",
+        "retrieved": "2026-10-18",
+        "note": "伊勢市内店舗一覧、ぜんざい2026-10-17開始"
+      },
+      {
+        "type": "official",
+        "url": "https://www.akafuku.co.jp/product/zenzai/",
+        "retrieved": "2026-10-18",
+        "note": "店内ぜんざい800円、冬期限定"
+      },
+      {
+        "type": "tourism",
+        "url": "https://www.kankomie.or.jp/spot/23386",
+        "retrieved": "2026-10-18",
+        "note": "ぜんざい530円（旧価格の可能性）、期間中無休"
+      },
+      {
+        "type": "other",
+        "url": "https://co-trip.jp/article/597699",
+        "retrieved": "2026-10-18",
+        "note": "検索要約のみ（403）、別店舗ぜんざい600円"
+      }
+    ],
+    "verified": false,
+    "anchors": [],
+    "contexts": [
+      "snack"
+    ],
+    "access": "walk",
+    "cuisine": [
+      "咖啡・甜點"
+    ],
+    "priceRange": "¥800（ぜんざい）",
+    "price": {
+      "lunch": [
+        800,
+        800
+      ],
+      "dinner": null
+    },
+    "stayMinutes": null,
+    "mustTry": [
+      "赤福ぜんざい 800 円（冬季限定，附焼餅・塩ふき昆布）"
+    ],
+    "menu": [
+      {
+        "url": "https://tabelog.com/mie/A2403/A240301/24012374/dtlmenu/photo/",
+        "source": "tabelog",
+        "retrieved": "2026-10-18"
+      }
+    ],
+    "ratings": {
+      "tabelog": 3.43,
+      "tabelogReviews": 707,
+      "google": 4.4,
+      "googleReviews": 182,
+      "note": null
+    },
+    "tabelogOwner": false,
+    "googleName": null,
+    "notes": "赤福本店對面的季節店：冬季賣赤福ぜんざい（附焼餅、塩昆布），夏季賣赤福氷。只能內用。",
+    "group": {
+      "seats": null,
+      "maxReservation": null,
+      "privateRoom": false,
+      "buyout": "不可",
+      "groupMenu": null,
+      "fit15": "unknown",
+      "fitSubgroup": "yes",
+      "source": "食べログ：予約不可、個室無、貸切不可；席數沒有來源"
+    },
+    "reservation": {
+      "accepted": "no",
+      "methods": [],
+      "phone": "0596-22-7000",
+      "url": null,
+      "language": "日文",
+      "note": "不能預約（食べログ）",
+      "leadDays": null
+    },
+    "seating": [],
+    "kids": {
+      "allowed": "unknown",
+      "minAge": null,
+      "kidsMenu": null,
+      "note": null
+    },
+    "accessibility": {
+      "barrierFree": null,
+      "note": "座位形式、席數沒有來源"
+    },
+    "smoking": "全席禁煙",
+    "extra": {
+      "inclusion": "A",
+      "conflicts": [
+        "ぜんざい價格：官網現行 800 円；觀光三重 530 円、co-trip 600 円（日期不明）",
+        "公休：官網「依活動日程」vs 觀光三重「期間中無休」",
+        "能不能吃赤福餅：官網的品項有寫、co-trip 說只有ぜんざい"
+      ]
+    }
+  },
+  {
+    "id": "ise-akafuku-naikumae",
+    "type": "restaurant",
+    "name": {
+      "ja": "赤福 内宮前支店",
+      "kana": "あかふく ないくうまえしてん",
+      "zh": "赤福 內宮前支店",
+      "en": null
+    },
+    "area": "ise",
+    "region": "ise-naiku",
+    "coords": [
+      136.723094,
+      34.4595733
+    ],
+    "coordsSource": "google-maps-url",
+    "address": "三重県伊勢市宇治今在家町7",
+    "hours": {
+      "mon": [
+        [
+          "09:00",
+          "17:00"
+        ]
+      ],
+      "tue": [
+        [
+          "09:00",
+          "17:00"
+        ]
+      ],
+      "wed": [
+        [
+          "09:00",
+          "17:00"
+        ]
+      ],
+      "thu": [
+        [
+          "09:00",
+          "17:00"
+        ]
+      ],
+      "fri": [
+        [
+          "09:00",
+          "17:00"
+        ]
+      ],
+      "sat": [
+        [
+          "09:00",
+          "17:00"
+        ]
+      ],
+      "sun": [
+        [
+          "09:00",
+          "17:00"
+        ]
+      ],
+      "holiday": [
+        [
+          "09:00",
+          "17:00"
+        ]
+      ],
+      "note": "繁忙期營業時間會變（官網、食べログ）"
+    },
+    "closedNote": "無休",
+    "febNote": "冬季賣赤福ぜんざい（2026-10-17 起、結束日未定）",
+    "closures": [],
+    "photos": [
+      {
+        "url": "https://www.akafuku.co.jp/wp/wp-content/uploads/2021/05/内宮1.jpg",
+        "page": "https://www.akafuku.co.jp/store/5386/",
+        "kind": "official",
+        "credit": "赤福 内宮前支店",
+        "license": null
+      }
+    ],
+    "links": {
+      "official": "https://www.akafuku.co.jp/store/5386/",
+      "googleMaps": "https://maps.google.com/?cid=2388257586489638975",
+      "tabelog": "https://tabelog.com/mie/A2403/A240301/24002230/",
+      "instagram": "@akafuku.official"
+    },
+    "tags": [],
+    "tier": null,
+    "sources": [
+      {
+        "type": "tabelog",
+        "url": "https://tabelog.com/mie/A2403/A240301/24002230/",
+        "retrieved": "2026-10-18",
+        "note": "店舗情報：分數、席數、預約、營業時間、お子様連れ"
+      },
+      {
+        "type": "google-maps",
+        "url": "https://maps.google.com/?cid=2388257586489638975",
+        "retrieved": "2026-10-18",
+        "note": "星數、評論數、座標、照片"
+      },
+      {
+        "type": "official",
+        "url": "https://www.akafuku.co.jp/store/5386/",
+        "retrieved": "2026-10-18",
+        "note": "内宮に最も近い直営店、9:00～17:00 無休、イートインと土産、バス「内宮前」"
+      },
+      {
+        "type": "official",
+        "url": "https://www.akafuku.co.jp/product/bon/",
+        "retrieved": "2026-10-18",
+        "note": "盆 2個・ほうじ茶付 400円"
+      },
+      {
+        "type": "official",
+        "url": "https://www.akafuku.co.jp/product/zenzai/",
+        "retrieved": "2026-10-18",
+        "note": "店内ぜんざい800円"
+      },
+      {
+        "type": "other",
+        "url": "https://4travel.jp/dm_shisetsu/11076156",
+        "retrieved": "2026-10-18",
+        "note": "3.68（114件）、前払い制、店奥イートイン＋屋外席、本店より空く"
+      }
+    ],
+    "verified": false,
+    "anchors": [],
+    "contexts": [
+      "snack"
+    ],
+    "access": "walk",
+    "cuisine": [
+      "咖啡・甜點"
+    ],
+    "priceRange": "¥400～800",
+    "price": {
+      "lunch": [
+        400,
+        800
+      ],
+      "dinner": null
+    },
+    "stayMinutes": null,
+    "mustTry": [
+      "赤福餅 盆（2 個・お茶付）400 円",
+      "赤福ぜんざい 800 円（冬季限定）"
+    ],
+    "menu": [
+      {
+        "url": "https://tabelog.com/mie/A2403/A240301/24002230/dtlmenu/",
+        "source": "tabelog",
+        "retrieved": "2026-10-18"
+      }
+    ],
+    "ratings": {
+      "tabelog": 3.48,
+      "tabelogReviews": 1227,
+      "google": 4.2,
+      "googleReviews": 3011,
+      "note": null
+    },
+    "tabelogOwner": false,
+    "googleName": null,
+    "notes": "離內宮宇治橋最近的赤福，比本店空（口コミ）；年末會排長隊。",
+    "group": {
+      "seats": null,
+      "maxReservation": null,
+      "privateRoom": false,
+      "buyout": "不可",
+      "groupMenu": null,
+      "fit15": "unknown",
+      "fitSubgroup": "yes",
+      "source": "食べログ：予約不可、個室無、貸切不可；席數沒有來源"
+    },
+    "reservation": {
+      "accepted": "no",
+      "methods": [],
+      "phone": "0596-22-7000",
+      "url": null,
+      "language": "日文",
+      "note": "不能預約（食べログ）",
+      "leadDays": null
+    },
+    "seating": [
+      "other"
+    ],
+    "kids": {
+      "allowed": "yes",
+      "minAge": null,
+      "kidsMenu": null,
+      "note": "子供可（食べログ）"
+    },
+    "accessibility": {
+      "barrierFree": null,
+      "note": "先在櫃台付錢再自己找位子；店後有內用區、另有室外座位（2021 年口コミ）"
+    },
+    "smoking": "全席禁煙",
+    "extra": {
+      "inclusion": "A",
+      "conflicts": [
+        "價格：4travel 舊口コミ（2019～2021）2 個 210 円；官網現行 400 円"
+      ]
+    }
+  },
+  {
+    "id": "ise-akafuku-isuzugawa",
+    "type": "restaurant",
+    "name": {
+      "ja": "赤福 五十鈴川店",
+      "kana": "あかふく いすずがわてん",
+      "zh": "赤福 五十鈴川店",
+      "en": null
+    },
+    "area": "ise",
+    "region": "ise-naiku",
+    "coords": [
+      136.7238437,
+      34.4656759
+    ],
+    "coordsSource": "google-maps-url",
+    "address": "三重県伊勢市宇治浦田1-11-5",
+    "hours": {
+      "mon": [
+        [
+          "09:00",
+          "17:00"
+        ]
+      ],
+      "tue": [
+        [
+          "09:00",
+          "17:00"
+        ]
+      ],
+      "wed": [
+        [
+          "09:00",
+          "17:00"
+        ]
+      ],
+      "thu": [
+        [
+          "09:00",
+          "17:00"
+        ]
+      ],
+      "fri": [
+        [
+          "09:00",
+          "17:00"
+        ]
+      ],
+      "sat": [
+        [
+          "09:00",
+          "17:00"
+        ]
+      ],
+      "sun": [
+        [
+          "09:00",
+          "17:00"
+        ]
+      ],
+      "holiday": [
+        [
+          "09:00",
+          "17:00"
+        ]
+      ],
+      "note": "平日內用 10:00 起；繁忙期營業時間會變（官網）"
+    },
+    "closedNote": "無休",
+    "febNote": "冬季賣赤福ぜんざい（2026-10-17 起、結束日未定）；赤福氷到 10/13",
+    "closures": [],
+    "photos": [
+      {
+        "url": "https://www.akafuku.co.jp/wp/wp-content/uploads/2019/03/五十鈴川店.jpg",
+        "page": "https://www.akafuku.co.jp/store/5387/",
+        "kind": "official",
+        "credit": "赤福 五十鈴川店",
+        "license": null
+      }
+    ],
+    "links": {
+      "official": "https://www.akafuku.co.jp/store/5387/",
+      "googleMaps": "https://maps.google.com/?cid=11446180978623180237",
+      "tabelog": "https://tabelog.com/mie/A2403/A240301/24001202/",
+      "instagram": "@akafuku.official"
+    },
+    "tags": [],
+    "tier": null,
+    "sources": [
+      {
+        "type": "tabelog",
+        "url": "https://tabelog.com/mie/A2403/A240301/24001202/",
+        "retrieved": "2026-10-18",
+        "note": "店舗情報：分數、席數、預約、營業時間、お子様連れ"
+      },
+      {
+        "type": "google-maps",
+        "url": "https://maps.google.com/?cid=11446180978623180237",
+        "retrieved": "2026-10-18",
+        "note": "星數、評論數、座標、照片"
+      },
+      {
+        "type": "official",
+        "url": "https://www.akafuku.co.jp/store/5387/",
+        "retrieved": "2026-10-18",
+        "note": "營業時間、無休、內用菜單（赤福餅、赤福氷、ぜんざい、抹茶）、交通（浦田駐車場隣）"
+      },
+      {
+        "type": "official",
+        "url": "https://www.akafuku.co.jp/store/area/%e4%bc%8a%e5%8b%a2%e5%b8%82/",
+        "retrieved": "2026-10-18",
+        "note": "伊勢市各店營業時間一覽"
+      },
+      {
+        "type": "official",
+        "url": "https://www.akafuku.co.jp/store/products/meshiagari/%e8%b5%a4%e7%a6%8f%e3%81%9c%e3%82%93%e3%81%96%e3%81%84/",
+        "retrieved": "2026-10-18",
+        "note": "赤福ぜんざい 2026-10-17 開始，五十鈴川店有供應"
+      },
+      {
+        "type": "other",
+        "url": "https://4travel.jp/dm_shisetsu/11075145",
+        "retrieved": "2026-10-18",
+        "note": "3.40（45 則），口コミ多為 2021 以前；椅子席・小上がり・河景席"
+      },
+      {
+        "type": "blog-ja",
+        "url": "https://blogtag.ameba.jp/detail/%E8%B5%A4%E7%A6%8F",
+        "retrieved": "2026-10-18",
+        "note": "WebSearch 摘要：店不太排隊；日曜夕方駐車場待ち（未讀原文）"
+      }
+    ],
+    "verified": false,
+    "anchors": [],
+    "contexts": [
+      "snack"
+    ],
+    "access": "walk",
+    "cuisine": [
+      "咖啡・甜點"
+    ],
+    "priceRange": "¥400～800",
+    "price": {
+      "lunch": [
+        400,
+        800
+      ],
+      "dinner": null
+    },
+    "stayMinutes": null,
+    "mustTry": [
+      "赤福餅（內用，附茶）",
+      "赤福ぜんざい（冬季）"
+    ],
+    "menu": [
+      {
+        "url": "https://tabelog.com/mie/A2403/A240301/24001202/dtlmenu/",
+        "source": "tabelog",
+        "retrieved": "2026-10-18"
+      }
+    ],
+    "ratings": {
+      "tabelog": 3.43,
+      "tabelogReviews": 655,
+      "google": 4.3,
+      "googleReviews": 1693,
+      "note": null
+    },
+    "tabelogOwner": false,
+    "googleName": null,
+    "notes": "おはらい町北端、市營浦田停車場旁的赤福，比本店好進（口コミ）。有椅子席，長輩比較方便。",
+    "group": {
+      "seats": null,
+      "maxReservation": null,
+      "privateRoom": false,
+      "buyout": "不可",
+      "groupMenu": null,
+      "fit15": "unknown",
+      "fitSubgroup": "yes",
+      "source": "食べログ：予約不可、個室無、貸切不可，席数欄只寫「縁台、テーブル席、小上がり席」"
+    },
+    "reservation": {
+      "accepted": "no",
+      "methods": [],
+      "phone": "0596-22-7000",
+      "url": null,
+      "language": "日文",
+      "note": "不能預約（食べログ）",
+      "leadDays": null
+    },
+    "seating": [
+      "table",
+      "zashiki",
+      "other"
+    ],
+    "kids": {
+      "allowed": "yes",
+      "minAge": null,
+      "kidsMenu": null,
+      "note": "子供可（乳兒、學齡前、小學生）、可推嬰兒車（食べログ）；有赤太郎的拍照看板（口コミ）"
+    },
+    "accessibility": {
+      "barrierFree": null,
+      "note": "有椅子席（テーブル）、小上がり、縁台；在市營浦田停車場旁"
+    },
+    "smoking": "全席禁煙",
+    "extra": {
+      "inclusion": "A",
+      "conflicts": [
+        "營業時間：官網 9:00～17:00（平日喫茶 10:00～）；食べログ 9:00～17:30；4travel 2025-01 口コミ說早上 8 點有開",
+        "位置：4travel 寫在本店對面，官網地址是宇治浦田 1-11-5（浦田停車場旁）"
+      ]
+    }
+  },
+  {
+    "id": "ise-isuzu-chaya-honten",
+    "type": "restaurant",
+    "name": {
+      "ja": "五十鈴茶屋 本店",
+      "kana": "いすずちゃや ほんてん",
+      "zh": "五十鈴茶屋 本店（和菓子・抹茶）",
+      "en": null
+    },
+    "area": "ise",
+    "region": "ise-naiku",
+    "coords": [
+      136.7235071,
+      34.4628261
+    ],
+    "coordsSource": "google-maps-url",
+    "address": "三重県伊勢市宇治中之切町30",
+    "hours": {
+      "mon": [
+        [
+          "09:00",
+          "17:00"
+        ]
+      ],
+      "tue": [
+        [
+          "09:00",
+          "17:00"
+        ]
+      ],
+      "wed": [
+        [
+          "09:00",
+          "17:00"
+        ]
+      ],
+      "thu": [
+        [
+          "09:00",
+          "17:00"
+        ]
+      ],
+      "fri": [
+        [
+          "09:00",
+          "17:00"
+        ]
+      ],
+      "sat": [
+        [
+          "09:00",
+          "17:00"
+        ]
+      ],
+      "sun": [
+        [
+          "09:00",
+          "17:00"
+        ]
+      ],
+      "holiday": [
+        [
+          "09:00",
+          "17:00"
+        ]
+      ],
+      "note": "喫茶 9:30～16:30（官網、食べログ）"
+    },
+    "closedNote": "無休",
+    "febNote": "冬季（12 月～3 月下旬）有黒豆粟ぜんざい 1,000 円（只限內用）；節気菓子每個二十四節氣換",
+    "closures": [],
+    "photos": [
+      {
+        "url": "https://www.isuzuchaya.com/tenpo/images/photo-honten-1.jpg",
+        "page": "https://www.isuzuchaya.com/tenpo/index.html",
+        "kind": "official",
+        "credit": "五十鈴茶屋 本店",
+        "license": null
+      },
+      {
+        "url": "https://www.isuzuchaya.com/kissa/images/photo-kissa1.jpg",
+        "page": "https://www.isuzuchaya.com/kissa/index.html",
+        "kind": "official",
+        "credit": "五十鈴茶屋 本店",
+        "license": null
+      }
+    ],
+    "links": {
+      "official": "https://www.isuzuchaya.com/tenpo/index.html",
+      "googleMaps": "https://maps.google.com/?cid=15519104063866475317",
+      "tabelog": "https://tabelog.com/mie/A2403/A240301/24000873/",
+      "instagram": "@isuzuchaya.official"
+    },
+    "tags": [],
+    "tier": null,
+    "sources": [
+      {
+        "type": "tabelog",
+        "url": "https://tabelog.com/mie/A2403/A240301/24000873/",
+        "retrieved": "2026-10-18",
+        "note": "店舗情報：分數、席數、預約、營業時間、お子様連れ"
+      },
+      {
+        "type": "google-maps",
+        "url": "https://maps.google.com/?cid=15519104063866475317",
+        "retrieved": "2026-10-18",
+        "note": "星數、評論數、座標、照片"
+      },
+      {
+        "type": "official",
+        "url": "https://www.isuzuchaya.com/tenpo/index.html",
+        "retrieved": "2026-10-18",
+        "note": "本店住所・營業時間・無休"
+      },
+      {
+        "type": "official",
+        "url": "https://www.isuzuchaya.com/kissa/index.html",
+        "retrieved": "2026-10-18",
+        "note": "喫茶菜單價格、季節甜點期間、座敷から枯山水"
+      },
+      {
+        "type": "official",
+        "url": "https://www.isuzuchaya.com/",
+        "retrieved": "2026-10-18",
+        "note": "Instagram 連結、おかげ犬サブレ等"
+      },
+      {
+        "type": "tourism",
+        "url": "https://www.kankomie.or.jp/spot/23353",
+        "retrieved": "2026-10-18",
+        "note": "座敷＋吹き抜けテーブル席、無停車場、8:00～17:00（與官網不同）"
+      },
+      {
+        "type": "other",
+        "url": "https://retty.me/restaurant/100000035642/",
+        "retrieved": "2026-10-18",
+        "note": "25 席、全席禁煙、2026 年口コミ：不擠、庭園景色"
+      }
+    ],
+    "verified": false,
+    "anchors": [],
+    "contexts": [
+      "snack",
+      "cafe"
+    ],
+    "access": "walk",
+    "cuisine": [
+      "咖啡・甜點"
+    ],
+    "priceRange": "¥1,000～1,200",
+    "price": {
+      "lunch": [
+        1000,
+        1200
+      ],
+      "dinner": null
+    },
+    "stayMinutes": null,
+    "mustTry": [
+      "節気菓子と抹茶セット 1,000 円",
+      "赤福と抹茶セット 1,000 円",
+      "黒豆粟ぜんざい 1,000 円（冬季）"
+    ],
+    "menu": [
+      {
+        "url": "https://www.isuzuchaya.com/kissa/index.html",
+        "source": "official",
+        "retrieved": "2026-10-18"
+      },
+      {
+        "url": "https://tabelog.com/mie/A2403/A240301/24000873/dtlmenu/photo/",
+        "source": "tabelog",
+        "retrieved": "2026-10-18"
+      }
+    ],
+    "ratings": {
+      "tabelog": 3.67,
+      "tabelogReviews": 913,
+      "google": 4.4,
+      "googleReviews": 564,
+      "note": null
+    },
+    "tabelogOwner": false,
+    "googleName": "五十鈴茶屋",
+    "notes": "赤福集團的和菓子・喫茶店，在赤福本店旁。比赤福本店好進（口コミ），季節菓子午後可能賣完。",
+    "group": {
+      "seats": 25,
+      "maxReservation": null,
+      "privateRoom": false,
+      "buyout": "不可",
+      "groupMenu": null,
+      "fit15": "unknown",
+      "fitSubgroup": "yes",
+      "source": "Retty：25 席；食べログ：予約不可、個室無、貸切不可"
+    },
+    "reservation": {
+      "accepted": "no",
+      "methods": [],
+      "phone": "0596-22-7000",
+      "url": null,
+      "language": "日文",
+      "note": "不能預約（食べログ）",
+      "leadDays": null
+    },
+    "seating": [
+      "zashiki",
+      "table"
+    ],
+    "kids": {
+      "allowed": "unknown",
+      "minAge": null,
+      "kidsMenu": null,
+      "note": null
+    },
+    "accessibility": {
+      "barrierFree": null,
+      "note": "有座敷（看枯山水庭園）和挑高的桌椅席（觀光三重）"
+    },
+    "smoking": "全席禁煙",
+    "extra": {
+      "inclusion": "A",
+      "conflicts": [
+        "營業時間：官網 9:00～17:00（喫茶 9:30～16:30）；觀光三重 8:00～17:00；Retty 9:00～16:30",
+        "電話：官網 0596-22-7000；觀光三重、Retty 0596-22-3012",
+        "有沒有吧台：Retty 店舗頁沒有、主題頁有"
+      ]
+    }
+  },
+  {
+    "id": "ise-isuzugawa-cafe",
+    "type": "restaurant",
+    "name": {
+      "ja": "五十鈴川カフェ",
+      "kana": "いすずがわかふぇ",
+      "zh": "五十鈴川咖啡（河畔咖啡館）",
+      "en": null
+    },
+    "area": "ise",
+    "region": "ise-naiku",
+    "coords": [
+      136.7236717,
+      34.4618861
+    ],
+    "coordsSource": "google-maps-url",
+    "address": "三重県伊勢市宇治中之切町12 おかげ横丁内",
+    "hours": {
+      "mon": [
+        [
+          "09:30",
+          "17:00"
+        ]
+      ],
+      "tue": [
+        [
+          "09:30",
+          "17:00"
+        ]
+      ],
+      "wed": [
+        [
+          "09:30",
+          "17:00"
+        ]
+      ],
+      "thu": [
+        [
+          "09:30",
+          "17:00"
+        ]
+      ],
+      "fri": [
+        [
+          "09:30",
+          "17:00"
+        ]
+      ],
+      "sat": [
+        [
+          "09:30",
+          "17:30"
+        ]
+      ],
+      "sun": [
+        [
+          "09:30",
+          "17:30"
+        ]
+      ],
+      "holiday": [
+        [
+          "09:30",
+          "17:30"
+        ]
+      ],
+      "lastEntry": "16:30",
+      "note": "L.O. 收店前 30 分；おかげ横丁 2 月：9:30～17:00、土日祝到 17:30（おかげ横丁官網）"
+    },
+    "closedNote": "無休",
+    "febNote": "雪見冷やしぜんざい 是夏季限定；おかげ横丁 2 月：9:30～17:00、土日祝到 17:30（おかげ横丁官網）",
+    "closures": [],
+    "photos": [
+      {
+        "url": "https://okageyokocho.com/main/wp-content/uploads/2021/08/064_10.03-scaled.jpg",
+        "page": "https://okageyokocho.com/tenpo/isuzu_cafe/",
+        "kind": "official",
+        "credit": "五十鈴川カフェ",
+        "license": null
+      },
+      {
+        "url": "https://okageyokocho.com/main/wp-content/uploads/2021/08/五十鈴川カフェ店内.jpg",
+        "page": "https://okageyokocho.com/tenpo/isuzu_cafe/",
+        "kind": "official",
+        "credit": "五十鈴川カフェ",
+        "license": null
+      }
+    ],
+    "links": {
+      "official": "https://okageyokocho.com/main/tenpo/isuzu_cafe/",
+      "googleMaps": "https://maps.google.com/?cid=11728754586995873922",
+      "tabelog": "https://tabelog.com/mie/A2403/A240301/24001919/",
+      "instagram": null
+    },
+    "tags": [],
+    "tier": null,
+    "sources": [
+      {
+        "type": "tabelog",
+        "url": "https://tabelog.com/mie/A2403/A240301/24001919/",
+        "retrieved": "2026-10-18",
+        "note": "店舗情報：分數、席數、預約、營業時間、お子様連れ"
+      },
+      {
+        "type": "google-maps",
+        "url": "https://maps.google.com/?cid=11728754586995873922",
+        "retrieved": "2026-10-18",
+        "note": "星數、評論數、座標、照片"
+      },
+      {
+        "type": "official",
+        "url": "https://okageyokocho.com/tenpo/isuzu_cafe/",
+        "retrieved": "2026-10-18",
+        "note": "營業時間、菜單價格、ネルドリップ、電話、照片"
+      },
+      {
+        "type": "official",
+        "url": "https://okageyokocho.com/about/",
+        "retrieved": "2026-10-18",
+        "note": "おかげ横丁 月別營業時間（2 月 9:30～17:00、土日祝 17:30）"
+      },
+      {
+        "type": "tourism",
+        "url": "https://www.kankomie.or.jp/spot/23350",
+        "retrieved": "2026-10-18",
+        "note": "無休、無停車場、起司蛋糕・蛋糕捲、交通"
+      },
+      {
+        "type": "other",
+        "url": "https://retty.me/restaurant/100000034278/",
+        "retrieved": "2026-10-18",
+        "note": "30 席、吧台、全面禁菸、2026 年口コミ 3 則（等候狀況）"
+      }
+    ],
+    "verified": false,
+    "anchors": [],
+    "contexts": [
+      "cafe",
+      "snack"
+    ],
+    "access": "walk",
+    "cuisine": [
+      "咖啡・甜點"
+    ],
+    "priceRange": "¥350～1,000",
+    "price": {
+      "lunch": [
+        350,
+        1000
+      ],
+      "dinner": null
+    },
+    "stayMinutes": null,
+    "mustTry": [
+      "カフェゼリーオーレ 720 円",
+      "くるり 350 円",
+      "ネルドリップコーヒー"
+    ],
+    "menu": [
+      {
+        "url": "https://okageyokocho.com/main/tenpo/isuzu_cafe/",
+        "source": "official",
+        "retrieved": "2026-10-18"
+      },
+      {
+        "url": "https://tabelog.com/mie/A2403/A240301/24001919/dtlmenu/",
+        "source": "tabelog",
+        "retrieved": "2026-10-18"
+      }
+    ],
+    "ratings": {
+      "tabelog": 3.63,
+      "tabelogReviews": 883,
+      "google": 4.4,
+      "googleReviews": 732,
+      "note": null
+    },
+    "tabelogOwner": false,
+    "googleName": null,
+    "notes": "おかげ横丁裡面河的咖啡館，ネルドリップ咖啡。週末約 5 人排隊、很快有位（Retty 2026）。",
+    "group": {
+      "seats": 27,
+      "maxReservation": null,
+      "privateRoom": false,
+      "buyout": "不可",
+      "groupMenu": null,
+      "fit15": "unknown",
+      "fitSubgroup": "yes",
+      "source": "食べログ：27 席、予約不可、個室無、貸切不可（Retty 寫 30 席）"
+    },
+    "reservation": {
+      "accepted": "no",
+      "methods": [],
+      "phone": "0596-23-9002",
+      "url": null,
+      "language": "日文",
+      "note": "不能預約（食べログ）",
+      "leadDays": null
+    },
+    "seating": [
+      "counter",
+      "table"
+    ],
+    "kids": {
+      "allowed": "yes",
+      "minAge": null,
+      "kidsMenu": null,
+      "note": "子供可（食べログ）"
+    },
+    "accessibility": {
+      "barrierFree": null,
+      "note": "每個位子都看得到五十鈴川，有面河的吧台（Retty、觀光三重）"
+    },
+    "smoking": "全席禁煙（渡り廊下過去的房間可吸菸）",
+    "extra": {
+      "inclusion": "A",
+      "conflicts": [
+        "營業時間：官網、觀光三重 9:30～17:00（L.O. 16:30）；Retty 9:00～17:30",
+        "席數：食べログ 27、Retty 30"
+      ]
+    }
+  },
+  {
+    "id": "ise-butasute-okage",
+    "type": "restaurant",
+    "name": {
+      "ja": "おかげ横丁 豚捨",
+      "kana": "ぶたすて おかげよこちょう",
+      "zh": "豚捨 托福橫丁店（伊勢牛可樂餅・牛丼）",
+      "en": null
+    },
+    "area": "ise",
+    "region": "ise-naiku",
+    "coords": [
+      136.7229009,
+      34.4620693
+    ],
+    "coordsSource": "google-maps-url",
+    "address": "三重県伊勢市宇治中之切町52 おかげ横丁",
+    "hours": {
+      "mon": [
+        [
+          "09:30",
+          "17:00"
+        ]
+      ],
+      "tue": [
+        [
+          "09:30",
+          "17:00"
+        ]
+      ],
+      "wed": [
+        [
+          "09:30",
+          "17:00"
+        ]
+      ],
+      "thu": [
+        [
+          "09:30",
+          "17:00"
+        ]
+      ],
+      "fri": [
+        [
+          "09:30",
+          "17:00"
+        ]
+      ],
+      "sat": [
+        [
+          "09:30",
+          "17:30"
+        ]
+      ],
+      "sun": [
+        [
+          "09:30",
+          "17:30"
+        ]
+      ],
+      "holiday": [
+        [
+          "09:30",
+          "17:30"
+        ]
+      ],
+      "note": "1～2 月的時間（食べログ）；內用 11:00 起，L.O. 收店前 30 分；外帶可樂餅 9:30 起"
+    },
+    "closedNote": "無休",
+    "febNote": "食べログ：1 月、2 月 9:30～17:00，2 月土日祝到 17:30；內用 11:00 起",
+    "closures": [],
+    "photos": [
+      {
+        "url": "https://www.butasute.co.jp/contents/wp-content/themes/butasute/img/butasuteokage_kodawari3.jpg",
+        "page": "https://www.butasute.co.jp/butasute-okage/",
+        "kind": "official",
+        "credit": "おかげ横丁 豚捨",
+        "license": null
+      },
+      {
+        "url": "https://okageyokocho.com/main/wp-content/uploads/2021/08/コロッケ.jpg",
+        "page": "https://okageyokocho.com/main/tenpo/butasute/",
+        "kind": "official",
+        "credit": "おかげ横丁 豚捨",
+        "license": null
+      }
+    ],
+    "links": {
+      "official": "https://www.butasute.co.jp/butasute-okage/",
+      "googleMaps": "https://maps.google.com/?cid=18422541180732194851",
+      "tabelog": "https://tabelog.com/mie/A2403/A240301/24000010/",
+      "instagram": "@okage.butasute.official"
+    },
+    "tags": [],
+    "tier": null,
+    "sources": [
+      {
+        "type": "tabelog",
+        "url": "https://tabelog.com/mie/A2403/A240301/24000010/",
+        "retrieved": "2026-10-18",
+        "note": "店舗情報：分數、席數、預約、營業時間、お子様連れ"
+      },
+      {
+        "type": "google-maps",
+        "url": "https://maps.google.com/?cid=18422541180732194851",
+        "retrieved": "2026-10-18",
+        "note": "星數、評論數、座標、照片"
+      },
+      {
+        "type": "official",
+        "url": "https://www.butasute.co.jp/butasute-okage/",
+        "retrieved": "2026-10-18",
+        "note": "席數、菜單價格、營業時間、電話"
+      },
+      {
+        "type": "official",
+        "url": "https://okageyokocho.com/main/tenpo/butasute/",
+        "retrieved": "2026-10-18",
+        "note": "營業時間 L.O.、あみ焼 前日預約、IG"
+      },
+      {
+        "type": "official",
+        "url": "https://www.butasute.co.jp/2025/12/30/3840/",
+        "retrieved": "2026-10-18",
+        "note": "年末年始營業時間，1/6 起一般時間"
+      },
+      {
+        "type": "official",
+        "url": "https://www.butasute.co.jp/2022/03/18/73/",
+        "retrieved": "2026-10-18",
+        "note": "預約一律電話"
+      },
+      {
+        "type": "media",
+        "url": "https://www.mapple.net/article/31320/",
+        "retrieved": "2026-10-18",
+        "note": "牛丼 1,380 円、可樂餅排隊"
+      },
+      {
+        "type": "media",
+        "url": "https://rurubu.jp/andmore/article/18853",
+        "retrieved": "2026-10-18",
+        "note": "牛丼(上)、可樂餅 120 円（2023）"
+      },
+      {
+        "type": "tourism",
+        "url": "https://www.kankomie.or.jp/report/1305",
+        "retrieved": "2026-10-18",
+        "note": "可樂餅 120 円、營業時間（2022）"
+      },
+      {
+        "type": "blog-zh",
+        "url": "https://livejapan.com/zh-tw/in-kansai/in-pref-mie/in-ise_toba_shima/article-a2000174/",
+        "retrieved": "2026-10-18",
+        "note": "約 150 席、午餐尖峰客滿（2021，舊）"
+      },
+      {
+        "type": "media",
+        "url": "https://aumo.jp/articles/2346256",
+        "retrieved": "2026-10-18",
+        "note": "屈指的行列（2026-06，聯盟廣告）"
+      },
+      {
+        "type": "media",
+        "url": "https://www.nta.co.jp/media/tripa/articles/rysdj",
+        "retrieved": "2026-10-18",
+        "note": "可樂餅自己淋醬（2024-10）"
+      },
+      {
+        "type": "tourism",
+        "url": "https://www.kankomie.or.jp/topic/810",
+        "retrieved": "2026-10-18",
+        "note": "觀光三重「伊勢神宮おかげ横丁やおはらい町の食べ歩き絶品グルメ18選」介紹（2024-12-13）：可樂餅（食べ歩き）"
+      }
+    ],
+    "verified": false,
+    "anchors": [],
+    "contexts": [
+      "lunch",
+      "snack"
+    ],
+    "access": "walk",
+    "cuisine": [
+      "燒肉・肉料理",
+      "其他"
+    ],
+    "priceRange": "¥150（可樂餅）～3,800",
+    "price": {
+      "lunch": [
+        150,
+        3800
+      ],
+      "dinner": null
+    },
+    "stayMinutes": null,
+    "mustTry": [
+      "豚捨コロッケ 150 円",
+      "牛丼 1,500 円～（特上 3,300 円）",
+      "捨吉鍋（牛鍋）3,800 円"
+    ],
+    "menu": [
+      {
+        "url": "https://www.butasute.co.jp/butasute-okage/",
+        "source": "official",
+        "retrieved": "2026-10-18"
+      },
+      {
+        "url": "https://tabelog.com/mie/A2403/A240301/24000010/dtlmenu/",
+        "source": "tabelog",
+        "retrieved": "2026-10-18"
+      }
+    ],
+    "ratings": {
+      "tabelog": 3.49,
+      "tabelogReviews": 2274,
+      "google": 4.1,
+      "googleReviews": 1986,
+      "note": null
+    },
+    "tabelogOwner": false,
+    "googleName": null,
+    "notes": "明治創業的伊勢牛老店。店頭外帶的コロッケ 常排長隊，內用是牛丼、牛鍋。席多又能電話預約，是おかげ横丁裡少數能讓 15 人坐下吃午餐的店（要分桌）。",
+    "group": {
+      "seats": 134,
+      "maxReservation": null,
+      "privateRoom": null,
+      "buyout": "不可",
+      "fit15": "split",
+      "fitSubgroup": "yes",
+      "groupMenu": "座敷料理 すき焼き・あみ焼き 每人 10,000 円（前一天電話預約）；一般團體套餐沒有來源",
+      "source": "官網：1F テーブル 12＋座敷 36、2F 座敷 40＋テーブル 46（共 134 席）；食べログ：86 席、予約可、個室無、貸切不可。沒寫能不能一次接 15 人"
+    },
+    "reservation": {
+      "accepted": "yes",
+      "methods": [
+        "phone"
+      ],
+      "phone": "0596-23-8803",
+      "url": null,
+      "language": "日文",
+      "note": "預約一律電話（網路預約暫停，官網）；販賣 0596-23-8802",
+      "leadDays": null
+    },
+    "seating": [
+      "table",
+      "zashiki"
+    ],
+    "kids": {
+      "allowed": "yes",
+      "minAge": null,
+      "kidsMenu": null,
+      "note": "子供可（食べログ）"
+    },
+    "accessibility": {
+      "barrierFree": null,
+      "note": "1F、2F 都有桌椅席和座敷；電梯沒寫（官網）"
+    },
+    "smoking": "全席禁煙（おかげ横丁內有吸菸處）",
+    "extra": {
+      "inclusion": "AB",
+      "conflicts": [
+        "營業時間：豚捨官網 物販 9:00～17:30、食事 11:00～17:30；おかげ横丁官網 9:30～17:00（飲食 11:00～、L.O. 16:30）；食べログ 平日 9:30～17:30、土日 9:30～18:00（1～2 月另寫 9:30～17:00）",
+        "席數：官網 134；食べログ 86；LIVE JAPAN（2021）約 150",
+        "個室：官網圖說有 2F 個室 1 室；食べログ 個室無",
+        "牛丼價格：1,000（2020）→ 1,500 円（官網現行）"
+      ]
+    }
+  },
+  {
+    "id": "ise-tofuan-yamanaka",
+    "type": "restaurant",
+    "name": {
+      "ja": "豆腐庵山中",
+      "kana": "とうふあんやまなか",
+      "zh": "豆腐庵山中（豆渣甜甜圈）",
+      "en": null
+    },
+    "area": "ise",
+    "region": "ise-naiku",
+    "coords": [
+      136.723293,
+      34.461304
+    ],
+    "coordsSource": "google-maps-url",
+    "address": "三重県伊勢市宇治中之切町95",
+    "hours": {
+      "mon": [
+        [
+          "10:00",
+          "16:00"
+        ]
+      ],
+      "tue": [
+        [
+          "10:00",
+          "16:00"
+        ]
+      ],
+      "wed": [
+        [
+          "10:00",
+          "16:00"
+        ]
+      ],
+      "thu": [],
+      "fri": [
+        [
+          "10:00",
+          "16:00"
+        ]
+      ],
+      "sat": [
+        [
+          "10:00",
+          "16:00"
+        ]
+      ],
+      "sun": [
+        [
+          "10:00",
+          "16:00"
+        ]
+      ],
+      "holiday": [
+        [
+          "10:00",
+          "16:00"
+        ]
+      ],
+      "note": "週四公休，但週四遇朔日（每月 1 日）、國定假日、連假時營業；每月 1 日提早開（食べログ、官網）"
+    },
+    "closedNote": "週四（遇國定假日營業）",
+    "febNote": "2/4（四）公休；2/11（四・國定假日）照規則營業",
+    "closures": [],
+    "photos": [
+      {
+        "url": "https://lh3.googleusercontent.com/grass-cs/AABkmLdq4PVkFRJYDlXjRxUrIGpldVLxjnx1UmSqRUsxLOqn5mfDIkyiM-LjBCF9GZn2OcfLatWGIin0Z7oYn_YF0B1EuRvT3Ru0aEjKeCH8l8htR-lz-zo_F3dbTh8BRiVdNrdjrObEpRVn_qOp=w800",
+        "page": "https://maps.google.com/?cid=3388597785622994961",
+        "kind": "google",
+        "credit": "Google マップ",
+        "license": null
+      }
+    ],
+    "links": {
+      "official": "http://tofu-an-yamanaka.jp/",
+      "googleMaps": "https://maps.google.com/?cid=3388597785622994961",
+      "tabelog": "https://tabelog.com/mie/A2403/A240301/24001620/",
+      "instagram": "@tofuanyamanaka"
+    },
+    "tags": [],
+    "tier": null,
+    "sources": [
+      {
+        "type": "tabelog",
+        "url": "https://tabelog.com/mie/A2403/A240301/24001620/",
+        "retrieved": "2026-10-18",
+        "note": "店舗情報：分數、席數、預約、營業時間、お子様連れ"
+      },
+      {
+        "type": "google-maps",
+        "url": "https://maps.google.com/?cid=3388597785622994961",
+        "retrieved": "2026-10-18",
+        "note": "星數、評論數、座標、照片"
+      },
+      {
+        "type": "official",
+        "url": "http://tofu-an-yamanaka.jp/",
+        "retrieved": "2026-10-18",
+        "note": "10-16時、木曜休、朔日早朝營業、商品一覽、IG 連結"
+      },
+      {
+        "type": "tourism",
+        "url": "https://www.kankomie.or.jp/spot/22336",
+        "retrieved": "2026-10-18",
+        "note": "地址、電話、10-16時、木曜休"
+      },
+      {
+        "type": "tourism",
+        "url": "https://www.kankomie.or.jp/report/1606",
+        "retrieved": "2026-10-18",
+        "note": "2024-01 食べ歩きスイーツ10選，うの花どーなつ、おとうふソフト"
+      },
+      {
+        "type": "tourism",
+        "url": "https://www.kankomie.or.jp/season/article/135",
+        "retrieved": "2026-10-18",
+        "note": "2024-12 おはらい町特集，用五十鈴川水與天然にがり"
+      },
+      {
+        "type": "media",
+        "url": "https://news.mynavi.jp/article/20170323-ise/",
+        "retrieved": "2026-10-18",
+        "note": "2017 舊資料，甜甜圈 100円、店內現炸"
+      },
+      {
+        "type": "media",
+        "url": "https://www.gltjp.com/ja/article/item/21206/",
+        "retrieved": "2026-10-18",
+        "note": "2026-02 更新，介紹甜甜圈、豆腐霜淇淋、豆乳；おはらい町 11 時過後至 14:30 最擠"
+      }
+    ],
+    "verified": false,
+    "anchors": [],
+    "contexts": [
+      "snack"
+    ],
+    "access": "walk",
+    "cuisine": [
+      "咖啡・甜點"
+    ],
+    "priceRange": "¥100～（2017 年價格）",
+    "price": {
+      "lunch": [
+        100,
+        120
+      ],
+      "dinner": null
+    },
+    "stayMinutes": null,
+    "mustTry": [
+      "うの花どーなつ（2017 年 100 円）",
+      "おとうふソフト（價格不明）",
+      "うの花あんどーなつ"
+    ],
+    "menu": [
+      {
+        "url": "https://tabelog.com/mie/A2403/A240301/24001620/dtlmenu/photo/",
+        "source": "tabelog",
+        "retrieved": "2026-10-18"
+      }
+    ],
+    "ratings": {
+      "tabelog": 3.59,
+      "tabelogReviews": 593,
+      "google": 4.2,
+      "googleReviews": 227,
+      "note": null
+    },
+    "tabelogOwner": false,
+    "googleName": null,
+    "notes": "おはらい町的豆腐店，外帶うの花（豆渣）甜甜圈、豆腐霜淇淋。現在的價格沒有來源（2017 年 100 円）。",
+    "group": {
+      "seats": null,
+      "maxReservation": null,
+      "privateRoom": false,
+      "buyout": "不可",
+      "groupMenu": null,
+      "fit15": "unknown",
+      "fitSubgroup": "unknown",
+      "source": "食べログ：予約不可，席数欄只寫「店內與店外有長椅」；外帶為主"
+    },
+    "reservation": {
+      "accepted": "no",
+      "methods": [],
+      "phone": "0596-23-5558",
+      "url": null,
+      "language": "日文",
+      "note": "外帶店，不能預約（食べログ）",
+      "leadDays": null
+    },
+    "seating": [
+      "other"
+    ],
+    "kids": {
+      "allowed": "yes",
+      "minAge": null,
+      "kidsMenu": null,
+      "note": "子供可（小學生）（食べログ）；甜甜圈、豆腐霜淇淋可以邊走邊吃"
+    },
+    "accessibility": {
+      "barrierFree": null,
+      "note": "只有店內、店外的長椅"
+    },
+    "smoking": "全席禁煙",
+    "extra": {
+      "inclusion": "A",
+      "conflicts": []
+    }
+  },
+  {
+    "id": "ise-dangoya",
+    "type": "restaurant",
+    "name": {
+      "ja": "だんご屋",
+      "kana": "だんごや",
+      "zh": "糰子屋（托福橫丁）",
+      "en": null
+    },
+    "area": "ise",
+    "region": "ise-naiku",
+    "coords": [
+      136.7235471,
+      34.46202
+    ],
+    "coordsSource": "google-maps-url",
+    "address": "三重県伊勢市宇治中之切町12 おかげ横丁",
+    "hours": {
+      "mon": [
+        [
+          "09:30",
+          "17:00"
+        ]
+      ],
+      "tue": [
+        [
+          "09:30",
+          "17:00"
+        ]
+      ],
+      "wed": [
+        [
+          "09:30",
+          "17:00"
+        ]
+      ],
+      "thu": [
+        [
+          "09:30",
+          "17:00"
+        ]
+      ],
+      "fri": [
+        [
+          "09:30",
+          "17:00"
+        ]
+      ],
+      "sat": [
+        [
+          "09:30",
+          "17:30"
+        ]
+      ],
+      "sun": [
+        [
+          "09:30",
+          "17:30"
+        ]
+      ],
+      "holiday": [
+        [
+          "09:30",
+          "17:30"
+        ]
+      ],
+      "note": "L.O. 16:30（官網）；おかげ横丁 2 月：9:30～17:00、土日祝到 17:30（おかげ横丁官網）"
+    },
+    "closedNote": "無休",
+    "febNote": "おかげ横丁 2 月：9:30～17:00、土日祝到 17:30（おかげ横丁官網）；每月 1 日朔日朝市早上提早開",
+    "closures": [],
+    "photos": [
+      {
+        "url": "https://okageyokocho.com/main/wp-content/uploads/2021/08/004_5.16.jpg",
+        "page": "https://okageyokocho.com/tenpo/dango/",
+        "kind": "official",
+        "credit": "だんご屋",
+        "license": null
+      }
+    ],
+    "links": {
+      "official": "https://okageyokocho.com/main/tenpo/dango/",
+      "googleMaps": "https://maps.google.com/?cid=4128871039381960928",
+      "tabelog": "https://tabelog.com/mie/A2403/A240301/24007364/",
+      "instagram": null
+    },
+    "tags": [],
+    "tier": null,
+    "sources": [
+      {
+        "type": "tabelog",
+        "url": "https://tabelog.com/mie/A2403/A240301/24007364/",
+        "retrieved": "2026-10-18",
+        "note": "店舗情報：分數、席數、預約、營業時間、お子様連れ"
+      },
+      {
+        "type": "google-maps",
+        "url": "https://maps.google.com/?cid=4128871039381960928",
+        "retrieved": "2026-10-18",
+        "note": "星數、評論數、座標、照片"
+      },
+      {
+        "type": "official",
+        "url": "https://okageyokocho.com/tenpo/dango/",
+        "retrieved": "2026-10-18",
+        "note": "菜單價格、9:30-17:00 LO16:30、地址電話"
+      },
+      {
+        "type": "official",
+        "url": "https://okageyokocho.com/about/",
+        "retrieved": "2026-10-18",
+        "note": "おかげ横丁月別營業時間，2月 9:30-17:00（土日祝 17:30）"
+      },
+      {
+        "type": "tourism",
+        "url": "https://www.kankomie.or.jp/spot/23351.html",
+        "retrieved": "2026-10-18",
+        "note": "無休、店內有休憩空間"
+      },
+      {
+        "type": "tourism",
+        "url": "https://www.kankomie.or.jp/report/1305",
+        "retrieved": "2026-10-18",
+        "note": "2022-11 食べ歩き記事，黑蜜糰子 130円（舊價）"
+      },
+      {
+        "type": "tourism",
+        "url": "https://www.kankomie.or.jp/topic/810",
+        "retrieved": "2026-10-18",
+        "note": "2024-12 18選，列為推薦之一"
+      },
+      {
+        "type": "media",
+        "url": "https://www.daily.co.jp/leisure/kansai/2026/07/15/0020594463.shtml",
+        "retrieved": "2026-10-18",
+        "note": "2026-07 阪神梅田催事，みたらし200円・黒蜜250円，在地喜愛"
+      }
+    ],
+    "verified": false,
+    "anchors": [],
+    "contexts": [
+      "snack"
+    ],
+    "access": "walk",
+    "cuisine": [
+      "咖啡・甜點"
+    ],
+    "priceRange": "¥200～250（1 串）",
+    "price": {
+      "lunch": [
+        200,
+        250
+      ],
+      "dinner": null
+    },
+    "stayMinutes": null,
+    "mustTry": [
+      "黒糖みつ団子 250 円",
+      "みたらし団子 200 円",
+      "三色団子 230 円"
+    ],
+    "menu": [
+      {
+        "url": "https://okageyokocho.com/main/tenpo/dango/",
+        "source": "official",
+        "retrieved": "2026-10-18"
+      },
+      {
+        "url": "https://tabelog.com/mie/A2403/A240301/24007364/dtlmenu/",
+        "source": "tabelog",
+        "retrieved": "2026-10-18"
+      }
+    ],
+    "ratings": {
+      "tabelog": 3.49,
+      "tabelogReviews": 548,
+      "google": 3.9,
+      "googleReviews": 348,
+      "note": null
+    },
+    "tabelogOwner": false,
+    "googleName": "だんご屋 おはらい町",
+    "notes": "おかげ横丁的現烤糰子店，外帶為主。",
+    "group": {
+      "seats": 4,
+      "maxReservation": null,
+      "privateRoom": false,
+      "buyout": "不可",
+      "groupMenu": null,
+      "fit15": "no",
+      "fitSubgroup": "unknown",
+      "source": "食べログ：4 席、予約不可；外帶為主"
+    },
+    "reservation": {
+      "accepted": "no",
+      "methods": [],
+      "phone": "0596-23-8732",
+      "url": null,
+      "language": "日文",
+      "note": "外帶店，不能預約（食べログ）",
+      "leadDays": null
+    },
+    "seating": [
+      "other"
+    ],
+    "kids": {
+      "allowed": "yes",
+      "minAge": null,
+      "kidsMenu": null,
+      "note": "子供可（食べログ）"
+    },
+    "accessibility": {
+      "barrierFree": null,
+      "note": "店內有休憩空間（觀光三重），座位形式不明"
+    },
+    "smoking": "全席禁煙",
+    "extra": {
+      "inclusion": "A",
+      "conflicts": [
+        "黒糖みつ団子 價格：觀光三重（2022）130 円；官網現行 250 円",
+        "營業時間：觀光三重 9:30～17:30；官網 9:30～17:00（季節變動）"
+      ]
+    }
+  },
+  {
+    "id": "ise-dangoro-chaya",
+    "type": "restaurant",
+    "name": {
+      "ja": "団五郎茶屋",
+      "kana": "だんごろうちゃや",
+      "zh": "團五郎茶屋（托福橫丁的甜點・輕食）",
+      "en": null
+    },
+    "area": "ise",
+    "region": "ise-naiku",
+    "coords": [
+      136.722707,
+      34.462226
+    ],
+    "coordsSource": "google-maps-url",
+    "address": "三重県伊勢市宇治中之切町52 おかげ横丁",
+    "hours": {
+      "mon": [
+        [
+          "10:00",
+          "17:00"
+        ]
+      ],
+      "tue": [
+        [
+          "10:00",
+          "17:00"
+        ]
+      ],
+      "wed": [
+        [
+          "10:00",
+          "17:00"
+        ]
+      ],
+      "thu": [
+        [
+          "10:00",
+          "17:00"
+        ]
+      ],
+      "fri": [
+        [
+          "10:00",
+          "17:00"
+        ]
+      ],
+      "sat": [
+        [
+          "10:00",
+          "17:30"
+        ]
+      ],
+      "sun": [
+        [
+          "10:00",
+          "17:30"
+        ]
+      ],
+      "holiday": [
+        [
+          "10:00",
+          "17:30"
+        ]
+      ],
+      "lastEntry": "16:30",
+      "note": "L.O. 16:30（おかげ横丁官網）；季節變動"
+    },
+    "closedNote": "無休",
+    "febNote": "冬季限定 赤福ぜんざい 800 円（只限內用，約 10 月下旬～3 月下旬：搜尋摘要，原頁沒確認）；冬天戶外縁台很冷（2017 口コミ）",
+    "closures": [],
+    "photos": [
+      {
+        "url": "https://okageyokocho.com/main/wp-content/uploads/2022/04/dangoro.jpg",
+        "page": "https://okageyokocho.com/main/tenpo/dangoro/",
+        "kind": "official",
+        "credit": "団五郎茶屋",
+        "license": null
+      },
+      {
+        "url": "https://okageyokocho.com/main/wp-content/uploads/2022/04/24.10赤福ぜんざい-02.jpg",
+        "page": "https://okageyokocho.com/main/tenpo/dangoro/",
+        "kind": "official",
+        "credit": "団五郎茶屋",
+        "license": null
+      }
+    ],
+    "links": {
+      "official": "https://okageyokocho.com/main/tenpo/dangoro/",
+      "googleMaps": "https://maps.google.com/?cid=104911561224885386",
+      "tabelog": "https://tabelog.com/mie/A2403/A240301/24002012/",
+      "instagram": "@okage.dangorochaya.official"
+    },
+    "tags": [],
+    "tier": null,
+    "sources": [
+      {
+        "type": "tabelog",
+        "url": "https://tabelog.com/mie/A2403/A240301/24002012/",
+        "retrieved": "2026-10-18",
+        "note": "店舗情報：分數、席數、預約、營業時間、お子様連れ"
+      },
+      {
+        "type": "google-maps",
+        "url": "https://maps.google.com/?cid=104911561224885386",
+        "retrieved": "2026-10-18",
+        "note": "星數、評論數、座標、照片"
+      },
+      {
+        "type": "official",
+        "url": "https://okageyokocho.com/main/tenpo/dangoro/",
+        "retrieved": "2026-10-18",
+        "note": "菜單價格、營業時間、IG、照片、可帶便當"
+      },
+      {
+        "type": "media",
+        "url": "https://www.mapple.net/article/31320/",
+        "retrieved": "2026-10-18",
+        "note": "戸隠そば、冬季赤福ぜんざい、有座敷"
+      },
+      {
+        "type": "other",
+        "url": "https://4travel.jp/dm_shisetsu/11075943",
+        "retrieved": "2026-10-18",
+        "note": "口コミ 30 則：自助式、座敷、家庭友善、冬天縁台冷"
+      },
+      {
+        "type": "other",
+        "url": "https://www.ekiten.jp/m1341859/",
+        "retrieved": "2026-10-18",
+        "note": "2026-08 口コミ：座敷要把鞋裝袋帶到座位"
+      },
+      {
+        "type": "tourism",
+        "url": "https://www.kankomie.or.jp/topic/815",
+        "retrieved": "2026-10-18",
+        "note": "赤福ぜんざい 冬季限定、無休（2024-12）"
+      }
+    ],
+    "verified": false,
+    "anchors": [],
+    "contexts": [
+      "snack",
+      "lunch"
+    ],
+    "access": "walk",
+    "cuisine": [
+      "咖啡・甜點",
+      "其他"
+    ],
+    "priceRange": "¥500～2,000",
+    "price": {
+      "lunch": [
+        500,
+        2000
+      ],
+      "dinner": null
+    },
+    "stayMinutes": null,
+    "mustTry": [
+      "赤福ぜんざい 800 円（冬季限定）",
+      "松阪牛 牛串 900 円",
+      "豚汁 500 円"
+    ],
+    "menu": [
+      {
+        "url": "https://okageyokocho.com/main/tenpo/dangoro/",
+        "source": "official",
+        "retrieved": "2026-10-18"
+      },
+      {
+        "url": "https://tabelog.com/mie/A2403/A240301/24002012/dtlmenu/",
+        "source": "tabelog",
+        "retrieved": "2026-10-18"
+      }
+    ],
+    "ratings": {
+      "tabelog": 3.48,
+      "tabelogReviews": 449,
+      "google": 4,
+      "googleReviews": 364,
+      "note": null
+    },
+    "tabelogOwner": false,
+    "googleName": null,
+    "notes": "おかげ横丁中央的自助式茶屋，賣牛串、豚汁、おにぎり、冬季赤福ぜんざい，座位多。",
+    "group": {
+      "seats": 48,
+      "maxReservation": null,
+      "privateRoom": false,
+      "buyout": "不可",
+      "groupMenu": null,
+      "fit15": "unknown",
+      "fitSubgroup": "yes",
+      "source": "食べログ：48 席、予約不可、個室無、貸切不可（不能預約，席數 20 以上也不算 split）"
+    },
+    "reservation": {
+      "accepted": "no",
+      "methods": [],
+      "phone": null,
+      "url": null,
+      "language": "日文",
+      "note": "不能預約（食べログ）",
+      "leadDays": null
+    },
+    "seating": [
+      "zashiki",
+      "table",
+      "terrace"
+    ],
+    "kids": {
+      "allowed": "yes",
+      "minAge": null,
+      "kidsMenu": null,
+      "note": "子供可（食べログ）；座敷適合帶小孩，不定期有紙芝居（4travel 口コミ）"
+    },
+    "accessibility": {
+      "barrierFree": null,
+      "note": "自助式；座敷要脫鞋、鞋子裝袋帶到座位，另有椅子席、露台式座位（口コミ）"
+    },
+    "smoking": "全席禁煙（おかげ横丁內有吸菸處）",
+    "extra": {
+      "inclusion": "A",
+      "conflicts": [
+        "營業時間：おかげ横丁官網 10:00～17:00（L.O. 16:30）；まっぷる 10:00～16:30",
+        "牛串：官網 900 円；まっぷる（2025）、4travel（2022）750 円"
+      ]
+    }
+  },
+  {
+    "id": "ise-wakamatsuya-okage",
+    "type": "restaurant",
+    "name": {
+      "ja": "若松屋",
+      "kana": "わかまつや",
+      "zh": "若松屋 托福橫丁店（現炸魚板）",
+      "en": null
+    },
+    "area": "ise",
+    "region": "ise-naiku",
+    "coords": [
+      136.7228863,
+      34.4625768
+    ],
+    "coordsSource": "google-maps-url",
+    "address": "三重県伊勢市宇治中之切町52 おかげ横丁",
+    "hours": {
+      "mon": [
+        [
+          "09:30",
+          "17:00"
+        ]
+      ],
+      "tue": [
+        [
+          "09:30",
+          "17:00"
+        ]
+      ],
+      "wed": [
+        [
+          "09:30",
+          "17:00"
+        ]
+      ],
+      "thu": [
+        [
+          "09:30",
+          "17:00"
+        ]
+      ],
+      "fri": [
+        [
+          "09:30",
+          "17:00"
+        ]
+      ],
+      "sat": [
+        [
+          "09:30",
+          "17:00"
+        ]
+      ],
+      "sun": [
+        [
+          "09:30",
+          "17:00"
+        ]
+      ],
+      "holiday": [
+        [
+          "09:30",
+          "17:00"
+        ]
+      ],
+      "note": "季節變動（食べログ、官網）"
+    },
+    "closedNote": "無休",
+    "febNote": null,
+    "closures": [],
+    "photos": [
+      {
+        "url": "https://okageyokocho.com/main/wp-content/uploads/2021/08/056_10.03-scaled.jpg",
+        "page": "https://okageyokocho.com/main/tenpo/wakamatsuya/",
+        "kind": "official",
+        "credit": "若松屋",
+        "license": null
+      },
+      {
+        "url": "https://okageyokocho.com/main/wp-content/uploads/2021/08/ひりょうずイメージ.jpg",
+        "page": "https://okageyokocho.com/main/tenpo/wakamatsuya/",
+        "kind": "official",
+        "credit": "若松屋",
+        "license": null
+      }
+    ],
+    "links": {
+      "official": "https://okageyokocho.com/main/tenpo/wakamatsuya/",
+      "googleMaps": "https://maps.google.com/?cid=2750609865612451124",
+      "tabelog": "https://tabelog.com/mie/A2403/A240301/24006873/",
+      "instagram": "@okage.wakamatsuya.official"
+    },
+    "tags": [],
+    "tier": null,
+    "sources": [
+      {
+        "type": "tabelog",
+        "url": "https://tabelog.com/mie/A2403/A240301/24006873/",
+        "retrieved": "2026-10-18",
+        "note": "店舗情報：分數、席數、預約、營業時間、お子様連れ"
+      },
+      {
+        "type": "google-maps",
+        "url": "https://maps.google.com/?cid=2750609865612451124",
+        "retrieved": "2026-10-18",
+        "note": "星數、評論數、座標、照片"
+      },
+      {
+        "type": "official",
+        "url": "https://okageyokocho.com/main/tenpo/wakamatsuya/",
+        "retrieved": "2026-10-18",
+        "note": "現行菜單價格、營業時間、IG、照片"
+      },
+      {
+        "type": "media",
+        "url": "https://rurubu.jp/andmore/article/18853",
+        "retrieved": "2026-10-18",
+        "note": "ひりょうず 400 円、店內有桌席（2023）"
+      },
+      {
+        "type": "tourism",
+        "url": "https://www.kankomie.or.jp/report/1305",
+        "retrieved": "2026-10-18",
+        "note": "ひりょうず 9 種配料 400 円（2022）"
+      },
+      {
+        "type": "tourism",
+        "url": "https://www.kankomie.or.jp/topic/810",
+        "retrieved": "2026-10-18",
+        "note": "ひりょうず、起司棒（2024-12）"
+      },
+      {
+        "type": "tourism",
+        "url": "https://www.kankomie.or.jp/spot/10082.html",
+        "retrieved": "2026-10-18",
+        "note": "營業時間、無休、電話"
+      },
+      {
+        "type": "media",
+        "url": "https://www.nta.co.jp/media/tripa/articles/rysdj",
+        "retrieved": "2026-10-18",
+        "note": "ひりょうず 配料、交通（2024-10）"
+      },
+      {
+        "type": "other",
+        "url": "https://www.gltjp.com/ja/directory/item/14832/",
+        "retrieved": "2026-10-18",
+        "note": "有內用座位、平均 1,000 円（2025-08）"
+      }
+    ],
+    "verified": false,
+    "anchors": [],
+    "contexts": [
+      "snack"
+    ],
+    "access": "walk",
+    "cuisine": [
+      "其他"
+    ],
+    "priceRange": "¥450～1,000",
+    "price": {
+      "lunch": [
+        450,
+        1000
+      ],
+      "dinner": null
+    },
+    "stayMinutes": null,
+    "mustTry": [
+      "伊勢ひりょうず 450 円",
+      "チーズ棒 450 円",
+      "焼板 648 円（伴手禮）"
+    ],
+    "menu": [
+      {
+        "url": "https://okageyokocho.com/main/tenpo/wakamatsuya/",
+        "source": "official",
+        "retrieved": "2026-10-18"
+      },
+      {
+        "url": "https://tabelog.com/mie/A2403/A240301/24006873/dtlmenu/",
+        "source": "tabelog",
+        "retrieved": "2026-10-18"
+      }
+    ],
+    "ratings": {
+      "tabelog": 3.42,
+      "tabelogReviews": 406,
+      "google": 4.4,
+      "googleReviews": 193,
+      "note": null
+    },
+    "tabelogOwner": false,
+    "googleName": "おかげ横丁 若松屋",
+    "notes": "1905 年創業的伊勢魚板（かまぼこ）老店在おかげ横丁的現炸店，外帶為主。",
+    "group": {
+      "seats": 10,
+      "maxReservation": null,
+      "privateRoom": false,
+      "buyout": "不可",
+      "groupMenu": null,
+      "fit15": "no",
+      "fitSubgroup": "yes",
+      "source": "食べログ：10 席、予約不可"
+    },
+    "reservation": {
+      "accepted": "no",
+      "methods": [],
+      "phone": null,
+      "url": null,
+      "language": "日文",
+      "note": "不能預約（食べログ）",
+      "leadDays": null
+    },
+    "seating": [
+      "table"
+    ],
+    "kids": {
+      "allowed": "yes",
+      "minAge": null,
+      "kidsMenu": null,
+      "note": "子供可（小學生）（食べログ）"
+    },
+    "accessibility": {
+      "barrierFree": null,
+      "note": "店內有桌席可以坐著吃（るるぶ）"
+    },
+    "smoking": "全席禁煙（おかげ横丁內有吸菸處）",
+    "extra": {
+      "inclusion": "AB",
+      "conflicts": [
+        "伊勢ひりょうず：官網 450 円；るるぶ（2023）、觀光三重（2022）400 円"
+      ]
+    }
+  },
+  {
+    "id": "ise-henbaya-oharai",
+    "type": "restaurant",
+    "name": {
+      "ja": "へんばや商店 おはらい町店",
+      "kana": "へんばやしょうてん おはらいまちてん",
+      "zh": "へんばや商店 托福町店（へんば餅）",
+      "en": null
+    },
+    "area": "ise",
+    "region": "ise-naiku",
+    "coords": [
+      136.7229816,
+      34.4643749
+    ],
+    "coordsSource": "google-maps-url",
+    "address": "三重県伊勢市宇治浦田1-149-1",
+    "hours": {
+      "mon": [],
+      "tue": [
+        [
+          "09:00",
+          "17:00"
+        ]
+      ],
+      "wed": [
+        [
+          "09:00",
+          "17:00"
+        ]
+      ],
+      "thu": [
+        [
+          "09:00",
+          "17:00"
+        ]
+      ],
+      "fri": [
+        [
+          "09:00",
+          "17:00"
+        ]
+      ],
+      "sat": [
+        [
+          "09:00",
+          "17:00"
+        ]
+      ],
+      "sun": [
+        [
+          "09:00",
+          "17:00"
+        ]
+      ],
+      "holiday": [
+        [
+          "09:00",
+          "17:00"
+        ]
+      ],
+      "note": "週一公休（遇國定假日改隔天休）；內用 9:00～16:00（官網）；賣完就關（食べログ）"
+    },
+    "closedNote": "週一（遇國定假日改隔天）；官網每月公布營業日曆",
+    "febNote": "2/8（一）公休；2027-02 的營業日曆出發前要看官網",
+    "closures": [],
+    "photos": [
+      {
+        "url": "https://henbaya.jp/wp-content/uploads/2022/08/oharai02_title.jpg",
+        "page": "https://henbaya.jp/",
+        "kind": "official",
+        "credit": "へんばや商店 おはらい町店",
+        "license": null
+      }
+    ],
+    "links": {
+      "official": "https://henbaya.jp/access/oharai_access/",
+      "googleMaps": "https://maps.google.com/?cid=12370599669029172525",
+      "tabelog": "https://tabelog.com/mie/A2403/A240301/24010667/",
+      "instagram": null
+    },
+    "tags": [],
+    "tier": null,
+    "sources": [
+      {
+        "type": "tabelog",
+        "url": "https://tabelog.com/mie/A2403/A240301/24010667/",
+        "retrieved": "2026-10-18",
+        "note": "店舗情報：分數、席數、預約、營業時間、お子様連れ"
+      },
+      {
+        "type": "google-maps",
+        "url": "https://maps.google.com/?cid=12370599669029172525",
+        "retrieved": "2026-10-18",
+        "note": "星數、評論數、座標、照片"
+      },
+      {
+        "type": "tourism",
+        "url": "https://www.kankomie.or.jp/season/article/135",
+        "retrieved": "2026-10-18",
+        "note": "當天清晨做的へんば餅上架"
+      },
+      {
+        "type": "tourism",
+        "url": "https://www.kankomie.or.jp/spot/22338",
+        "retrieved": "2026-10-18",
+        "note": "營業 9-17、內用 9-16、週一休、小座敷內用"
+      },
+      {
+        "type": "official",
+        "url": "https://henbaya.jp/",
+        "retrieved": "2026-10-18",
+        "note": "お休み処 おはらい町店 改裝、2 階茶屋席、營業日曆、價格改定公告"
+      },
+      {
+        "type": "official",
+        "url": "https://henbaya.jp/access/oharai_access/",
+        "retrieved": "2026-10-18",
+        "note": "地址、電話 0596-25-0150、營業時間"
+      },
+      {
+        "type": "media",
+        "url": "https://macaro-ni.jp/177644",
+        "retrieved": "2026-10-18",
+        "note": "2026-09 更新，營業 9-17、內用 9-16"
+      }
+    ],
+    "verified": false,
+    "anchors": [],
+    "contexts": [
+      "snack"
+    ],
+    "access": "walk",
+    "cuisine": [
+      "咖啡・甜點"
+    ],
+    "priceRange": null,
+    "price": {
+      "lunch": null,
+      "dinner": null
+    },
+    "stayMinutes": null,
+    "mustTry": [
+      "へんば餅（價格沒有取得）"
+    ],
+    "menu": [
+      {
+        "url": "https://tabelog.com/mie/A2403/A240301/24010667/dtlmenu/photo/",
+        "source": "tabelog",
+        "retrieved": "2026-10-18"
+      }
+    ],
+    "ratings": {
+      "tabelog": 3.45,
+      "tabelogReviews": 388,
+      "google": 4.1,
+      "googleReviews": 726,
+      "note": null
+    },
+    "tabelogOwner": false,
+    "googleName": null,
+    "notes": "創業 250 年以上的へんば餅老店（本店在小俣）在おはらい町北端的分店。",
+    "group": {
+      "seats": null,
+      "maxReservation": null,
+      "privateRoom": false,
+      "buyout": "不可",
+      "groupMenu": null,
+      "fit15": "unknown",
+      "fitSubgroup": "unknown",
+      "source": "食べログ：予約可、個室無、貸切不可；席數沒有來源"
+    },
+    "reservation": {
+      "accepted": "unknown",
+      "methods": [
+        "phone"
+      ],
+      "phone": "0596-25-0150",
+      "url": null,
+      "language": "日文",
+      "note": "食べログ 寫予約可（可能是商品預訂），內用能不能預約沒有來源",
+      "leadDays": null
+    },
+    "seating": [
+      "zashiki"
+    ],
+    "kids": {
+      "allowed": "unknown",
+      "minAge": null,
+      "kidsMenu": null,
+      "note": null
+    },
+    "accessibility": {
+      "barrierFree": null,
+      "note": "內用是土間旁的小座敷（觀光三重）；官網另提到 2 樓茶屋席，樓梯、電梯沒寫"
+    },
+    "smoking": "全席禁煙",
+    "extra": {
+      "inclusion": "A",
+      "conflicts": [
+        "內用位置：觀光三重寫小座敷；官網寫 2 階の茶屋席（可能兩者都有）",
+        "內用時間：官網 9:00～16:00；食べログ 9:00～16:30"
+      ]
+    }
+  },
+  {
+    "id": "ise-shoseiko",
+    "type": "restaurant",
+    "name": {
+      "ja": "横丁そば 小西湖",
+      "kana": "よこちょうそば しょうせいこ",
+      "zh": "橫丁拉麵 小西湖",
+      "en": null
+    },
+    "area": "ise",
+    "region": "ise-naiku",
+    "coords": [
+      136.7229671,
+      34.4626259
+    ],
+    "coordsSource": "google-maps-url",
+    "address": "三重県伊勢市宇治中之切町52 おかげ横丁",
+    "hours": {
+      "mon": [
+        [
+          "10:00",
+          "17:00"
+        ]
+      ],
+      "tue": [
+        [
+          "10:00",
+          "17:00"
+        ]
+      ],
+      "wed": [
+        [
+          "10:00",
+          "17:00"
+        ]
+      ],
+      "thu": [
+        [
+          "10:00",
+          "17:00"
+        ]
+      ],
+      "fri": [
+        [
+          "10:00",
+          "17:00"
+        ]
+      ],
+      "sat": [
+        [
+          "10:00",
+          "17:30"
+        ]
+      ],
+      "sun": [
+        [
+          "10:00",
+          "17:30"
+        ]
+      ],
+      "holiday": [
+        [
+          "10:00",
+          "17:30"
+        ]
+      ],
+      "lastEntry": "16:30",
+      "note": "L.O. 16:30（官網）；季節變動；國定假日照 おかげ横丁 2 月：9:30～17:00、土日祝到 17:30（おかげ横丁官網）"
+    },
+    "closedNote": "無休",
+    "febNote": "おかげ横丁 2 月：9:30～17:00、土日祝到 17:30（おかげ横丁官網）",
+    "closures": [],
+    "photos": [
+      {
+        "url": "https://okageyokocho.com/main/wp-content/uploads/2021/08/4Z5A0968.jpg",
+        "page": "https://okageyokocho.com/tenpo/shoseiko/",
+        "kind": "official",
+        "credit": "横丁そば 小西湖",
+        "license": null
+      },
+      {
+        "url": "https://okageyokocho.com/main/wp-content/uploads/2021/08/横丁そば満開-scaled.jpg",
+        "page": "https://okageyokocho.com/tenpo/shoseiko/",
+        "kind": "official",
+        "credit": "横丁そば 小西湖",
+        "license": null
+      }
+    ],
+    "links": {
+      "official": "https://okageyokocho.com/main/tenpo/shoseiko/",
+      "googleMaps": "https://maps.google.com/?cid=8627036161199205642",
+      "tabelog": "https://tabelog.com/mie/A2403/A240301/24007113/",
+      "instagram": null
+    },
+    "tags": [],
+    "tier": null,
+    "sources": [
+      {
+        "type": "tabelog",
+        "url": "https://tabelog.com/mie/A2403/A240301/24007113/",
+        "retrieved": "2026-10-18",
+        "note": "店舗情報：分數、席數、預約、營業時間、お子様連れ（店舗会員）"
+      },
+      {
+        "type": "google-maps",
+        "url": "https://maps.google.com/?cid=8627036161199205642",
+        "retrieved": "2026-10-18",
+        "note": "星數、評論數、座標、照片"
+      },
+      {
+        "type": "official",
+        "url": "https://okageyokocho.com/tenpo/shoseiko/",
+        "retrieved": "2026-10-18",
+        "note": "おかげ横丁官方店舗頁：菜單價格、營業時間"
+      },
+      {
+        "type": "tourism",
+        "url": "https://www.kankomie.or.jp/spot/19396",
+        "retrieved": "2026-10-18",
+        "note": "松阪牛骨 100% 雙湯、高加水麵、一週製作的叉燒；無休、電話"
+      },
+      {
+        "type": "media",
+        "url": "https://www.mapple.net/article/31320/",
+        "retrieved": "2026-10-18",
+        "note": "おかげ横丁午餐特輯，茶屋風外觀；價格與官網不一致"
+      }
+    ],
+    "verified": false,
+    "anchors": [],
+    "contexts": [
+      "lunch",
+      "snack"
+    ],
+    "access": "walk",
+    "cuisine": [
+      "其他"
+    ],
+    "priceRange": "¥1,400～2,200",
+    "price": {
+      "lunch": [
+        1400,
+        2200
+      ],
+      "dinner": null
+    },
+    "stayMinutes": null,
+    "mustTry": [
+      "焼豚満開横丁そば 2,200 円",
+      "横丁そば 1,400 円"
+    ],
+    "menu": [
+      {
+        "url": "https://okageyokocho.com/main/tenpo/shoseiko/",
+        "source": "official",
+        "retrieved": "2026-10-18"
+      },
+      {
+        "url": "https://tabelog.com/mie/A2403/A240301/24007113/dtlmenu/",
+        "source": "tabelog",
+        "retrieved": "2026-10-18"
+      }
+    ],
+    "ratings": {
+      "tabelog": 3.46,
+      "tabelogReviews": 368,
+      "google": 3.6,
+      "googleReviews": 400,
+      "note": null
+    },
+    "tabelogOwner": true,
+    "googleName": "横丁そば小西湖",
+    "notes": "おかげ横丁裡的中華そば店，松阪牛骨＋和風だし的雙湯。",
+    "group": {
+      "seats": 14,
+      "maxReservation": null,
+      "privateRoom": false,
+      "buyout": "不可",
+      "groupMenu": null,
+      "fit15": "no",
+      "fitSubgroup": "yes",
+      "source": "食べログ（店舗会員）：14 席、予約不可"
+    },
+    "reservation": {
+      "accepted": "no",
+      "methods": [],
+      "phone": "0596-23-8837",
+      "url": null,
+      "language": "日文",
+      "note": "不能預約（食べログ）",
+      "leadDays": null
+    },
+    "seating": [],
+    "kids": {
+      "allowed": "yes",
+      "minAge": null,
+      "kidsMenu": null,
+      "note": "子供可（食べログ）"
+    },
+    "accessibility": {
+      "barrierFree": null,
+      "note": "座位形式沒有來源"
+    },
+    "smoking": "全席禁煙（おかげ横丁內有吸菸處）",
+    "extra": {
+      "inclusion": "A",
+      "conflicts": [
+        "焼豚満開横丁そば：官網 2,200 円；まっぷる 價格欄 1,600 円、內文 2,000 円"
+      ]
+    }
+  },
+  {
+    "id": "ise-oiseya-honpo",
+    "type": "restaurant",
+    "name": {
+      "ja": "お伊勢屋本舗",
+      "kana": "おいせやほんぽ",
+      "zh": "御伊勢屋本舖（松阪牛串）",
+      "en": null
+    },
+    "area": "ise",
+    "region": "ise-naiku",
+    "coords": [
+      136.7232884,
+      34.4616608
+    ],
+    "coordsSource": "google-maps-url",
+    "address": "三重県伊勢市宇治中之切町94-7",
+    "hours": {
+      "mon": [
+        [
+          "10:00",
+          "16:00"
+        ]
+      ],
+      "tue": [
+        [
+          "10:00",
+          "16:00"
+        ]
+      ],
+      "wed": [
+        [
+          "10:00",
+          "16:00"
+        ]
+      ],
+      "thu": [
+        [
+          "10:00",
+          "16:00"
+        ]
+      ],
+      "fri": [
+        [
+          "10:00",
+          "16:00"
+        ]
+      ],
+      "sat": [
+        [
+          "10:00",
+          "16:00"
+        ]
+      ],
+      "sun": [
+        [
+          "10:00",
+          "16:00"
+        ]
+      ],
+      "holiday": [
+        [
+          "10:00",
+          "16:00"
+        ]
+      ],
+      "note": "食べログ；まっぷる 寫 10:00～17:00（繁忙期 9:00～18:00）"
+    },
+    "closedNote": "不定休（まっぷる）",
+    "febNote": null,
+    "closures": [],
+    "photos": [
+      {
+        "url": "https://lh3.googleusercontent.com/grass-cs/AABkmLcf-D3_9Y3cR-R7p14DvLTkQyC5pQoSD_JPgRd01c8Y44O4j0tfmk_sVig3SG7kNcYqxUCFpH32iSvJlAbRUzc_1A1YdxKZDsg0zWx-G2xIV6p5Mflpld9f_RZbKdyhkek3BNtNovKBz2pW=w800",
+        "page": "https://maps.google.com/?cid=4716303087108614525",
+        "kind": "google",
+        "credit": "Google マップ",
+        "license": null
+      }
+    ],
+    "links": {
+      "official": "https://oiseyahonpo.jp/",
+      "googleMaps": "https://maps.google.com/?cid=4716303087108614525",
+      "tabelog": "https://tabelog.com/mie/A2403/A240301/24007363/",
+      "instagram": "@oiseyahonpo"
+    },
+    "tags": [],
+    "tier": null,
+    "sources": [
+      {
+        "type": "tabelog",
+        "url": "https://tabelog.com/mie/A2403/A240301/24007363/",
+        "retrieved": "2026-10-18",
+        "note": "店舗情報：分數、席數、預約、營業時間、お子様連れ"
+      },
+      {
+        "type": "google-maps",
+        "url": "https://maps.google.com/?cid=4716303087108614525",
+        "retrieved": "2026-10-18",
+        "note": "星數、評論數、座標、照片"
+      },
+      {
+        "type": "media",
+        "url": "https://www.mapple.net/spot/24011223/",
+        "retrieved": "2026-10-18",
+        "note": "松阪牛串 900円、福まん、コロッケ；10-17時、不定休、電話"
+      },
+      {
+        "type": "media",
+        "url": "https://www.mapple.net/region/a0405010101_g02061000/spot/",
+        "retrieved": "2026-10-18",
+        "note": "まっぷる 一覽，同內容"
+      }
+    ],
+    "verified": false,
+    "anchors": [],
+    "contexts": [
+      "snack"
+    ],
+    "access": "walk",
+    "cuisine": [
+      "燒肉・肉料理",
+      "其他"
+    ],
+    "priceRange": "¥900（牛串）",
+    "price": {
+      "lunch": [
+        900,
+        900
+      ],
+      "dinner": null
+    },
+    "stayMinutes": null,
+    "mustTry": [
+      "松阪牛 牛串 900 円",
+      "福まん（しぐれ煮入り）",
+      "松阪牛 100% コロッケ"
+    ],
+    "menu": [
+      {
+        "url": "https://tabelog.com/mie/A2403/A240301/24007363/dtlmenu/photo/",
+        "source": "tabelog",
+        "retrieved": "2026-10-18"
+      }
+    ],
+    "ratings": {
+      "tabelog": 3.47,
+      "tabelogReviews": 366,
+      "google": 3.9,
+      "googleReviews": 252,
+      "note": null
+    },
+    "tabelogOwner": false,
+    "googleName": null,
+    "notes": "おはらい町的食べ歩き店：松阪牛串、福まん（肉包）、可樂餅、義式冰淇淋。資料很少（只有まっぷる）。",
+    "group": {
+      "seats": null,
+      "maxReservation": null,
+      "privateRoom": false,
+      "buyout": "不可",
+      "groupMenu": null,
+      "fit15": "unknown",
+      "fitSubgroup": "unknown",
+      "source": "食べログ：予約不可、個室無、貸切不可；外帶為主，席數沒有來源"
+    },
+    "reservation": {
+      "accepted": "no",
+      "methods": [],
+      "phone": "0596-22-7193",
+      "url": null,
+      "language": "日文",
+      "note": "外帶店，不能預約（食べログ）",
+      "leadDays": null
+    },
+    "seating": [],
+    "kids": {
+      "allowed": "unknown",
+      "minAge": null,
+      "kidsMenu": null,
+      "note": null
+    },
+    "accessibility": {
+      "barrierFree": null,
+      "note": "外帶小吃；內用座位沒有來源"
+    },
+    "smoking": "全席禁煙",
+    "extra": {
+      "inclusion": "A",
+      "conflicts": [
+        "營業時間：食べログ 10:00～16:00；まっぷる 10:00～17:00（繁忙期 9:00～18:00）"
+      ]
+    }
+  },
+  {
+    "id": "ise-imonne",
+    "type": "restaurant",
+    "name": {
+      "ja": "いもんね 伊勢内宮前本店",
+      "kana": "いもんね",
+      "zh": "いもんね 伊勢內宮前本店（地瓜義式冰淇淋）",
+      "en": null
+    },
+    "area": "ise",
+    "region": "ise-naiku",
+    "coords": [
+      136.7226501,
+      34.4600446
+    ],
+    "coordsSource": "google-maps-url",
+    "address": "三重県伊勢市宇治今在家町54",
+    "hours": {
+      "mon": [
+        [
+          "10:30",
+          "17:00"
+        ]
+      ],
+      "tue": [
+        [
+          "10:30",
+          "17:00"
+        ]
+      ],
+      "wed": [
+        [
+          "10:30",
+          "17:00"
+        ]
+      ],
+      "thu": [
+        [
+          "10:30",
+          "17:00"
+        ]
+      ],
+      "fri": [
+        [
+          "10:30",
+          "17:00"
+        ]
+      ],
+      "sat": [
+        [
+          "10:00",
+          "17:00"
+        ]
+      ],
+      "sun": [
+        [
+          "10:00",
+          "17:00"
+        ]
+      ],
+      "holiday": [
+        [
+          "10:00",
+          "17:00"
+        ]
+      ],
+      "lastEntry": "16:30",
+      "note": "L.O. 16:30；有臨時休業（食べログ）"
+    },
+    "closedNote": "無休（有臨時休業）",
+    "febNote": "室內有暖氣（Time Out）",
+    "closures": [],
+    "photos": [
+      {
+        "url": "https://imonne.jp/assets/stores/ise-naiku.webp",
+        "page": "https://imonne.jp/",
+        "kind": "official",
+        "credit": "いもんね 伊勢内宮前本店",
+        "license": null
+      }
+    ],
+    "links": {
+      "official": "https://imonne.jp/",
+      "googleMaps": "https://maps.google.com/?cid=3565188206353160719",
+      "tabelog": "https://tabelog.com/mie/A2403/A240301/24020206/",
+      "instagram": "@imonne_gram"
+    },
+    "tags": [],
+    "tier": null,
+    "sources": [
+      {
+        "type": "tabelog",
+        "url": "https://tabelog.com/mie/A2403/A240301/24020206/",
+        "retrieved": "2026-10-18",
+        "note": "店舗情報：分數、席數、預約、營業時間、お子様連れ"
+      },
+      {
+        "type": "google-maps",
+        "url": "https://maps.google.com/?cid=3565188206353160719",
+        "retrieved": "2026-10-18",
+        "note": "星數、評論數、座標、照片"
+      },
+      {
+        "type": "tourism",
+        "url": "https://www.kankomie.or.jp/report/1606",
+        "retrieved": "2026-10-18",
+        "note": "ジェラ餅、營業時間、年中無休"
+      },
+      {
+        "type": "official",
+        "url": "https://imonne.jp/",
+        "retrieved": "2026-10-18",
+        "note": "菜單品項、伊勢店限定ほし芋プレミアム、IG 連結"
+      },
+      {
+        "type": "media",
+        "url": "https://www.timeout.jp/tokyo/ja/レストラン/imonne-gram",
+        "retrieved": "2026-10-18",
+        "note": "2023-09，室內寬敞冷暖氣、露台可帶狗"
+      },
+      {
+        "type": "tourism",
+        "url": "https://www.kankomie.or.jp/topic/409",
+        "retrieved": "2026-10-18",
+        "note": "2023-12，當場包ジェラ餅、干芋農家姊妹店"
+      }
+    ],
+    "verified": false,
+    "anchors": [],
+    "contexts": [
+      "snack",
+      "cafe"
+    ],
+    "access": "walk",
+    "cuisine": [
+      "咖啡・甜點"
+    ],
+    "priceRange": null,
+    "price": {
+      "lunch": null,
+      "dinner": null
+    },
+    "stayMinutes": null,
+    "mustTry": [
+      "ジェラ餅（一段・二段）",
+      "ジェラ餅ぜんざい",
+      "ほし芋プレミアム（伊勢店限定）"
+    ],
+    "menu": [
+      {
+        "url": "https://tabelog.com/mie/A2403/A240301/24020206/dtlmenu/photo/",
+        "source": "tabelog",
+        "retrieved": "2026-10-18"
+      }
+    ],
+    "ratings": {
+      "tabelog": 3.53,
+      "tabelogReviews": 339,
+      "google": 4.4,
+      "googleReviews": 256,
+      "note": null
+    },
+    "tabelogOwner": false,
+    "googleName": "いもんね伊勢内宮前本店",
+    "notes": "地瓜甜點店，招牌是地瓜義式冰淇淋夾麻糬的ジェラ餅。價格沒有來源。",
+    "group": {
+      "seats": null,
+      "maxReservation": null,
+      "privateRoom": false,
+      "buyout": "不可",
+      "groupMenu": null,
+      "fit15": "unknown",
+      "fitSubgroup": "yes",
+      "source": "食べログ：予約不可、個室無、貸切不可；席數沒有來源，室內內用空間寬敞（Time Out）"
+    },
+    "reservation": {
+      "accepted": "no",
+      "methods": [],
+      "phone": null,
+      "url": null,
+      "language": "日文",
+      "note": "不能預約（食べログ）",
+      "leadDays": null
+    },
+    "seating": [
+      "table",
+      "terrace"
+    ],
+    "kids": {
+      "allowed": "unknown",
+      "minAge": null,
+      "kidsMenu": null,
+      "note": null
+    },
+    "accessibility": {
+      "barrierFree": null,
+      "note": "冷暖氣的寬敞室內內用空間＋戶外露台（Time Out 2023）"
+    },
+    "smoking": "全席禁煙",
+    "extra": {
+      "inclusion": "A",
+      "conflicts": []
+    }
+  },
+  {
+    "id": "ise-snoopy-chaya",
+    "type": "restaurant",
+    "name": {
+      "ja": "SNOOPY茶屋 伊勢店",
+      "kana": "すぬーぴーちゃや いせてん",
+      "zh": "SNOOPY 茶屋 伊勢店（SNOOPY Village 伊勢）",
+      "en": null
+    },
+    "area": "ise",
+    "region": "ise-naiku",
+    "coords": [
+      136.7235567,
+      34.4604679
+    ],
+    "coordsSource": "google-maps-url",
+    "address": "三重県伊勢市宇治今在家町64",
+    "hours": {
+      "mon": [
+        [
+          "09:00",
+          "17:00"
+        ]
+      ],
+      "tue": [
+        [
+          "09:00",
+          "17:00"
+        ]
+      ],
+      "wed": [
+        [
+          "09:00",
+          "17:00"
+        ]
+      ],
+      "thu": [
+        [
+          "09:00",
+          "17:00"
+        ]
+      ],
+      "fri": [
+        [
+          "09:00",
+          "17:00"
+        ]
+      ],
+      "sat": [
+        [
+          "09:00",
+          "17:00"
+        ]
+      ],
+      "sun": [
+        [
+          "09:00",
+          "17:00"
+        ]
+      ],
+      "holiday": [
+        [
+          "09:00",
+          "17:00"
+        ]
+      ],
+      "note": "商店 9:00～17:00、外帶 9:00～16:30（官網）；食べログ（店舗会員）寫餐廳 10:00～16:00"
+    },
+    "closedNote": "無休",
+    "febNote": "冬季限定 スヌーピーやき「きな粉あん」12/1 起（官網）",
+    "closures": [],
+    "photos": [
+      {
+        "url": "https://u5xsyq54.user.webaccel.jp/wp-content/uploads/2024/03/ise.jpeg",
+        "page": "https://www.snoopychaya.jp/",
+        "kind": "official",
+        "credit": "SNOOPY茶屋 伊勢店",
+        "license": null
+      }
+    ],
+    "links": {
+      "official": "https://www.snoopychaya.jp/",
+      "googleMaps": "https://maps.google.com/?cid=15849565610393611905",
+      "tabelog": "https://tabelog.com/mie/A2403/A240301/24013674/",
+      "instagram": "@snoopychaya_japan"
+    },
+    "tags": [],
+    "tier": null,
+    "sources": [
+      {
+        "type": "tabelog",
+        "url": "https://tabelog.com/mie/A2403/A240301/24013674/",
+        "retrieved": "2026-10-18",
+        "note": "店舗情報：分數、席數、預約、營業時間、お子様連れ（店舗会員）"
+      },
+      {
+        "type": "google-maps",
+        "url": "https://maps.google.com/?cid=15849565610393611905",
+        "retrieved": "2026-10-18",
+        "note": "星數、評論數、座標、照片"
+      },
+      {
+        "type": "tourism",
+        "url": "https://www.kankomie.or.jp/season/article/135",
+        "retrieved": "2026-10-18",
+        "note": "SNOOPY茶屋 伊勢 擴建改裝為 SNOOPY Village 伊勢"
+      },
+      {
+        "type": "tourism",
+        "url": "https://www.kankomie.or.jp/report/1606",
+        "retrieved": "2026-10-18",
+        "note": "an・co・an：スヌーピーやき、抹茶ラテ、パフェ；9-17 年中無休"
+      },
+      {
+        "type": "blog-zh",
+        "url": "https://www.hk01.com/旅遊/332609/伊勢神宮-拜訪日本人一生必訪的心靈故鄉-特色托福橫丁商店街",
+        "retrieved": "2026-10-18",
+        "note": "推薦史努比迷，有伊勢限定商品"
+      },
+      {
+        "type": "tourism",
+        "url": "https://www.kankomie.or.jp/spot/23347",
+        "retrieved": "2026-10-18",
+        "note": "2023-12-22 改裝、構成店舗、電話"
+      },
+      {
+        "type": "official",
+        "url": "https://www.snoopychaya.jp/",
+        "retrieved": "2026-10-18",
+        "note": "營業時間、冬季限定 きな粉あん、伊勢店限定抹茶霜淇淋"
+      },
+      {
+        "type": "tourism",
+        "url": "https://www.kankomie.or.jp/topic/417",
+        "retrieved": "2026-10-18",
+        "note": "2023-12，取消內用只剩外帶、價格"
+      },
+      {
+        "type": "media",
+        "url": "https://www.walkerplus.com/article/1170908/",
+        "retrieved": "2026-10-18",
+        "note": "2023-12，スヌーピーやき 外帶 350／內用 356 円"
+      },
+      {
+        "type": "media",
+        "url": "https://www.walkerplus.com/spot/ar0624s486098/",
+        "retrieved": "2026-10-18",
+        "note": "2026-04 時點，營業時間、年中無休"
+      }
+    ],
+    "verified": false,
+    "anchors": [],
+    "contexts": [
+      "snack",
+      "cafe"
+    ],
+    "access": "walk",
+    "cuisine": [
+      "咖啡・甜點"
+    ],
+    "priceRange": "¥350～1,270",
+    "price": {
+      "lunch": [
+        350,
+        1270
+      ],
+      "dinner": null
+    },
+    "stayMinutes": null,
+    "mustTry": [
+      "スヌーピーやき 350 円",
+      "宇治抹茶ラテ 540 円",
+      "スヌーピーあずき尽くしパフェ 1,270 円"
+    ],
+    "menu": [
+      {
+        "url": "https://tabelog.com/mie/A2403/A240301/24013674/dtlmenu/",
+        "source": "tabelog",
+        "retrieved": "2026-10-18"
+      }
+    ],
+    "ratings": {
+      "tabelog": 3.48,
+      "tabelogReviews": 330,
+      "google": 4.2,
+      "googleReviews": 1202,
+      "note": null
+    },
+    "tabelogOwner": true,
+    "googleName": "SNOOPY Village 伊勢店",
+    "notes": "2023-12-22 改裝成 SNOOPY Village 伊勢（Google 名稱也改了），賣 SNOOPY 造型的鯛魚燒型點心、抹茶飲料和周邊商品。",
+    "group": {
+      "seats": 52,
+      "maxReservation": null,
+      "privateRoom": false,
+      "buyout": "不可",
+      "groupMenu": null,
+      "fit15": "unknown",
+      "fitSubgroup": "unknown",
+      "source": "食べログ（店舗会員）：52 席、予約不可（店頭候位板依序入店）；但觀光三重說 2023-12 改裝後取消內用，衝突"
+    },
+    "reservation": {
+      "accepted": "no",
+      "methods": [],
+      "phone": null,
+      "url": null,
+      "language": "日文",
+      "note": "不能預約；食べログ 寫店頭候位板記名、依序入店、不能指定時間",
+      "leadDays": null
+    },
+    "seating": [],
+    "kids": {
+      "allowed": "unknown",
+      "minAge": null,
+      "kidsMenu": null,
+      "note": "SNOOPY 主題，小孩應該會喜歡（沒有來源寫兒童相關資訊）"
+    },
+    "accessibility": {
+      "barrierFree": null,
+      "note": "現在有沒有內用座位有衝突"
+    },
+    "smoking": "全席禁煙",
+    "extra": {
+      "inclusion": "AB",
+      "conflicts": [
+        "內用：觀光三重 topic/417 說改裝後取消內用、只剩外帶；同文照片說明和 Walkerplus 列「イートイン 356 円」；食べログ（店舗会員）仍寫餐廳 52 席",
+        "官網 2026-07 有「伊勢店 伊勢うどん 商品不良」公告，伊勢烏龍是不是伴手禮商品不明"
+      ]
+    }
+  },
+  {
+    "id": "ise-iwatoya-honten",
+    "type": "restaurant",
+    "name": {
+      "ja": "伊勢神宮内宮前 岩戸屋 本店",
+      "kana": "いわとや ほんてん",
+      "zh": "岩戶屋 本店（內宮前・岩戶餅）",
+      "en": null
+    },
+    "area": "ise",
+    "region": "ise-naiku",
+    "coords": [
+      136.7230706,
+      34.4599608
+    ],
+    "coordsSource": "google-maps-url",
+    "address": "三重県伊勢市宇治今在家町58",
+    "hours": {
+      "mon": [
+        [
+          "08:30",
+          "10:00"
+        ],
+        [
+          "10:30",
+          "15:30"
+        ]
+      ],
+      "tue": [
+        [
+          "08:30",
+          "10:00"
+        ],
+        [
+          "10:30",
+          "15:30"
+        ]
+      ],
+      "wed": [
+        [
+          "08:30",
+          "10:00"
+        ],
+        [
+          "10:30",
+          "15:30"
+        ]
+      ],
+      "thu": [
+        [
+          "08:30",
+          "10:00"
+        ],
+        [
+          "10:30",
+          "15:30"
+        ]
+      ],
+      "fri": [
+        [
+          "08:30",
+          "10:00"
+        ],
+        [
+          "10:30",
+          "15:30"
+        ]
+      ],
+      "sat": [
+        [
+          "08:00",
+          "10:00"
+        ],
+        [
+          "10:30",
+          "15:30"
+        ]
+      ],
+      "sun": [
+        [
+          "08:00",
+          "10:00"
+        ],
+        [
+          "10:30",
+          "15:30"
+        ]
+      ],
+      "holiday": [
+        [
+          "08:00",
+          "10:00"
+        ],
+        [
+          "10:30",
+          "15:30"
+        ]
+      ],
+      "lastEntry": "15:00",
+      "note": "食堂：早餐 平日 8:30／土日祝 8:00～10:00（L.O. 9:50）、午餐 10:30～15:30（L.O. 15:00）；本店・物產店 9:00～17:00（官網、食べログ）"
+    },
+    "closedNote": "無休",
+    "febNote": "冬季限定：芋岩戸餅（12～2 月）、伊勢内宮前醤油餅（1～2 月）、冬季限定ぜんざい（官網）",
+    "closures": [],
+    "photos": [
+      {
+        "url": "https://www.iwatoya.co.jp/cms/wp-content/themes/iwatoya/img/slide01.jpg",
+        "page": "https://www.iwatoya.co.jp/",
+        "kind": "official",
+        "credit": "伊勢神宮内宮前 岩戸屋 本店",
+        "license": null
+      },
+      {
+        "url": "https://www.iwatoya.co.jp/cms/wp-content/themes/iwatoya/img/slide02.jpg",
+        "page": "https://www.iwatoya.co.jp/",
+        "kind": "official",
+        "credit": "伊勢神宮内宮前 岩戸屋 本店",
+        "license": null
+      }
+    ],
+    "links": {
+      "official": "https://www.iwatoya.co.jp/",
+      "googleMaps": "https://maps.google.com/?cid=8626669228314147444",
+      "tabelog": "https://tabelog.com/mie/A2403/A240301/24001460/",
+      "instagram": "@iwatoya"
+    },
+    "tags": [],
+    "tier": null,
+    "sources": [
+      {
+        "type": "tabelog",
+        "url": "https://tabelog.com/mie/A2403/A240301/24001460/",
+        "retrieved": "2026-10-18",
+        "note": "店舗情報：分數、席數、預約、營業時間、お子様連れ"
+      },
+      {
+        "type": "google-maps",
+        "url": "https://maps.google.com/?cid=8626669228314147444",
+        "retrieved": "2026-10-18",
+        "note": "星數、評論數、座標、照片"
+      },
+      {
+        "type": "official",
+        "url": "https://www.iwatoya.co.jp/",
+        "retrieved": "2026-10-18",
+        "note": "營業時間、年中無休、IG、2026 漲價公告"
+      },
+      {
+        "type": "official",
+        "url": "https://www.iwatoya.co.jp/restaurant/",
+        "retrieved": "2026-10-18",
+        "note": "参宮亭五十鈴食堂菜單、喫茶甜點、兒童餐"
+      },
+      {
+        "type": "official",
+        "url": "https://www.iwatoya.co.jp/group/",
+        "retrieved": "2026-10-18",
+        "note": "團體餐價格、預約、取消費、收費個室"
+      },
+      {
+        "type": "official",
+        "url": "https://www.iwatoya.co.jp/shop/floormap/",
+        "retrieved": "2026-10-18",
+        "note": "2 樓團體食堂席數"
+      },
+      {
+        "type": "official",
+        "url": "https://www.iwatoya.co.jp/product/",
+        "retrieved": "2026-10-18",
+        "note": "商品保存期限、季節限定"
+      },
+      {
+        "type": "tourism",
+        "url": "https://www.kankomie.or.jp/season/article/135",
+        "retrieved": "2026-10-18",
+        "note": "離內宮最近的土產店，1 樓食堂、2 樓團體專用"
+      },
+      {
+        "type": "tourism",
+        "url": "https://www.kankomie.or.jp/spot/270",
+        "retrieved": "2026-10-18",
+        "note": "9:00～17:00 年中無休、無停車場、適合團體"
+      },
+      {
+        "type": "booking-site",
+        "url": "https://retty.me/restaurant/100001484917/",
+        "retrieved": "2026-10-18",
+        "note": "岩戸餅價格、短評 5 則（最新 2026-01）"
+      },
+      {
+        "type": "media",
+        "url": "https://intojapanwaraku.com/rock/gourmet-rock/7105/",
+        "retrieved": "2026-10-18",
+        "note": "2019 年岩戸餅介紹（舊資料）"
+      }
+    ],
+    "verified": false,
+    "anchors": [],
+    "contexts": [
+      "snack",
+      "lunch"
+    ],
+    "access": "walk",
+    "cuisine": [
+      "咖啡・甜點",
+      "定食・食堂"
+    ],
+    "priceRange": "¥500～2,000（團體餐 2,650～4,500）",
+    "price": {
+      "lunch": [
+        500,
+        2000
+      ],
+      "dinner": null
+    },
+    "stayMinutes": null,
+    "mustTry": [
+      "岩戸餅 2 個 380 円～",
+      "岩戸餅三種食べ比べセット 500 円",
+      "岩戸屋白石ぜんざい 800 円"
+    ],
+    "menu": [
+      {
+        "url": "https://www.iwatoya.co.jp/restaurant/",
+        "source": "official",
+        "retrieved": "2026-10-18"
+      },
+      {
+        "url": "https://www.iwatoya.co.jp/group/",
+        "source": "official",
+        "retrieved": "2026-10-18"
+      },
+      {
+        "url": "https://tabelog.com/mie/A2403/A240301/24001460/dtlmenu/",
+        "source": "tabelog",
+        "retrieved": "2026-10-18"
+      }
+    ],
+    "ratings": {
+      "tabelog": 3.49,
+      "tabelogReviews": 309,
+      "google": 3.7,
+      "googleReviews": 940,
+      "note": null
+    },
+    "tabelogOwner": false,
+    "googleName": null,
+    "notes": "內宮宇治橋前的和菓子・土產大店，招牌岩戸餅；樓上是團體食堂（和 ise-sanguutei-isuzu 参宮亭五十鈴食堂 同一家公司，食べログ 分頁）。內宮前少數能預約 15 人團體餐的地方。",
+    "group": {
+      "seats": 200,
+      "maxReservation": null,
+      "privateRoom": true,
+      "buyout": "不可",
+      "fit15": "yes",
+      "fitSubgroup": "yes",
+      "groupMenu": "團體餐 郷 2,650 円～祈 4,500 円（7 天前預約；3 天前起取消費 40～100%）（官網，2026-01 起漲價後）",
+      "source": "官網：2F 團體食堂 松竹梅 308 席、なでしこ・ひまわり 234 席、小個室 8 席，團體餐 7 天前預約；食べログ：200 席、個室有（10～20 人）、予約不可（個人）、貸切不可"
+    },
+    "reservation": {
+      "accepted": "groups-only",
+      "methods": [
+        "phone",
+        "web"
+      ],
+      "phone": "0596-23-3188",
+      "url": "https://www.iwatoya.co.jp/contact/",
+      "language": "日文",
+      "note": "團體：官網表單或電話，7 天前；個人不能預約（食べログ）",
+      "leadDays": 7
+    },
+    "seating": [],
+    "kids": {
+      "allowed": "yes",
+      "minAge": null,
+      "kidsMenu": true,
+      "note": "子供可（乳兒、學齡前、小學生）、可推嬰兒車；お子様ランチ（食べログ 1,200 円、官網 1,500 円）"
+    },
+    "accessibility": {
+      "barrierFree": null,
+      "note": "1F 土產＋一般食堂，2F 團體食堂（觀光三重）；電梯、樓梯沒寫"
+    },
+    "smoking": "全席禁煙",
+    "extra": {
+      "inclusion": "AC",
+      "conflicts": [
+        "營業時間：官網・觀光三重 9:00～17:00；Retty 平日 9:30～16:40；和樂web（2019）8:30～17:25",
+        "個室：官網有收費小個室；Retty 寫無個室；食べログ 個室 10～20 人",
+        "席數：食べログ 200；官網 2F 團體食堂 542 席；Retty 100",
+        "お子様ランチ：食べログ 1,200 円、官網 1,500 円"
+      ]
+    }
+  },
+  {
+    "id": "ise-fujiya-sogetsudo-honkan",
+    "type": "restaurant",
+    "name": {
+      "ja": "藤屋窓月堂 本館",
+      "kana": "ふじやそうげつどう ほんかん",
+      "zh": "藤屋窗月堂 本館（和菓子）",
+      "en": null
+    },
+    "area": "ise",
+    "region": "ise-asama",
+    "coords": [
+      136.7426252,
+      34.4929925
+    ],
+    "coordsSource": "google-maps-url",
+    "address": "三重県伊勢市鹿海町1650-2",
+    "hours": {
+      "mon": [
+        [
+          "08:30",
+          "17:30"
+        ]
+      ],
+      "tue": [
+        [
+          "08:30",
+          "17:30"
+        ]
+      ],
+      "wed": [
+        [
+          "08:30",
+          "17:30"
+        ]
+      ],
+      "thu": [
+        [
+          "08:30",
+          "17:30"
+        ]
+      ],
+      "fri": [
+        [
+          "08:30",
+          "17:30"
+        ]
+      ],
+      "sat": [
+        [
+          "08:30",
+          "17:30"
+        ]
+      ],
+      "sun": [
+        [
+          "08:30",
+          "17:30"
+        ]
+      ],
+      "holiday": [
+        [
+          "08:30",
+          "17:30"
+        ]
+      ],
+      "note": "喫茶 11:00～15:00（L.O.）、現烤糰子 11:00～16:00（官網）；食べログ 寫 9:00～18:00"
+    },
+    "closedNote": "無休",
+    "febNote": "官網有秋冬春菜單（圖片，內容沒讀到）",
+    "closures": [],
+    "photos": [
+      {
+        "url": "https://fujiyasogetsudo.com/wp-content/uploads/2025/02/300109639_747106823038339_7613943485669838577_n.jpg",
+        "page": "https://fujiyasogetsudo.com/%e6%9c%ac%e9%a4%a8-2/",
+        "kind": "official",
+        "credit": "藤屋窓月堂 本館",
+        "license": null
+      }
+    ],
+    "links": {
+      "official": "https://fujiyasogetsudo.com/%e6%9c%ac%e9%a4%a8-2/",
+      "googleMaps": "https://maps.google.com/?cid=3946929901578107182",
+      "tabelog": "https://tabelog.com/mie/A2403/A240301/24001173/",
+      "instagram": "@fujiyasogetsudo_vi"
+    },
+    "tags": [],
+    "tier": null,
+    "sources": [
+      {
+        "type": "tabelog",
+        "url": "https://tabelog.com/mie/A2403/A240301/24001173/",
+        "retrieved": "2026-10-18",
+        "note": "店舗情報：分數、席數、預約、營業時間、お子様連れ"
+      },
+      {
+        "type": "google-maps",
+        "url": "https://maps.google.com/?cid=3946929901578107182",
+        "retrieved": "2026-10-18",
+        "note": "星數、評論數、座標、照片"
+      },
+      {
+        "type": "official",
+        "url": "https://fujiyasogetsudo.com/%e6%9c%ac%e9%a4%a8-2/",
+        "retrieved": "2026-10-18",
+        "note": "本館地址、營業時間、喫茶時間、イートイン"
+      },
+      {
+        "type": "official",
+        "url": "https://fujiyasogetsudo.com/",
+        "retrieved": "2026-10-18",
+        "note": "本館團子價格、喫茶菜單、IG"
+      },
+      {
+        "type": "official",
+        "url": "https://fujiyasogetsudo.com/access/",
+        "retrieved": "2026-10-18",
+        "note": "3 家直營店營業時間、年中無休"
+      },
+      {
+        "type": "media",
+        "url": "https://www.timeout.jp/tokyo/ja/ショッピング/fujiyasogetsudo-honten",
+        "retrieved": "2026-10-18",
+        "note": "2023 年本店介紹：1868 創業、利休饅頭 120 円起"
+      }
+    ],
+    "verified": false,
+    "anchors": [],
+    "contexts": [
+      "snack"
+    ],
+    "access": "car",
+    "cuisine": [
+      "咖啡・甜點"
+    ],
+    "priceRange": "¥350～750",
+    "price": {
+      "lunch": [
+        350,
+        750
+      ],
+      "dinner": null
+    },
+    "stayMinutes": null,
+    "mustTry": [
+      "焼きたて団子 2 本セット（煎茶付）350 円",
+      "みたらし団子 5 本入り 750 円",
+      "利休饅頭 120 円～"
+    ],
+    "menu": [
+      {
+        "url": "https://fujiyasogetsudo.com/%e6%9c%ac%e9%a4%a8-2/",
+        "source": "official",
+        "retrieved": "2026-10-18"
+      },
+      {
+        "url": "https://tabelog.com/mie/A2403/A240301/24001173/dtlmenu/photo/",
+        "source": "tabelog",
+        "retrieved": "2026-10-18"
+      }
+    ],
+    "ratings": {
+      "tabelog": 3.34,
+      "tabelogReviews": 44,
+      "google": 3.9,
+      "googleReviews": 100,
+      "note": null
+    },
+    "tabelogOwner": false,
+    "googleName": null,
+    "notes": "明治創業的和菓子店（おはらい町另有本店），本館在五十鈴川東岸、國道 23 號旁，要開車或搭計程車。",
+    "group": {
+      "seats": null,
+      "maxReservation": null,
+      "privateRoom": false,
+      "buyout": "不可",
+      "groupMenu": null,
+      "fit15": "unknown",
+      "fitSubgroup": "unknown",
+      "source": "食べログ：予約可、個室無、貸切不可；席數沒有來源"
+    },
+    "reservation": {
+      "accepted": "unknown",
+      "methods": [
+        "phone"
+      ],
+      "phone": "0596-25-1250",
+      "url": null,
+      "language": "日文",
+      "note": "食べログ 寫予約可（可能是商品預訂），內用能不能預約沒有來源",
+      "leadDays": null
+    },
+    "seating": [
+      "other"
+    ],
+    "kids": {
+      "allowed": "unknown",
+      "minAge": null,
+      "kidsMenu": null,
+      "note": null
+    },
+    "accessibility": {
+      "barrierFree": null,
+      "note": "有イートインスペース（官網），形式不明；有停車場（食べログ）"
+    },
+    "smoking": "全席禁煙",
+    "extra": {
+      "inclusion": "A",
+      "conflicts": [
+        "營業時間：官網 8:30～17:30；食べログ 9:00～18:00",
+        "地址：食べログ 鹿海町 1650-2；Google 鹿海町 1655-1"
+      ]
+    }
+  },
+  {
+    "id": "ise-asama-chaya",
+    "type": "restaurant",
+    "name": {
+      "ja": "朝熊茶屋",
+      "kana": "あさまちゃや",
+      "zh": "朝熊茶屋（朝熊山頂的烏龍麵・輕食）",
+      "en": null
+    },
+    "area": "ise",
+    "region": "ise-asama",
+    "coords": [
+      136.7911757,
+      34.4597757
+    ],
+    "coordsSource": "google-maps-url",
+    "address": "三重県伊勢市朝熊町185-3 伊勢志摩スカイライン朝熊山頂売店内",
+    "hours": {
+      "mon": [
+        [
+          "09:00",
+          "17:00"
+        ]
+      ],
+      "tue": [
+        [
+          "09:00",
+          "17:00"
+        ]
+      ],
+      "wed": [
+        [
+          "09:00",
+          "17:00"
+        ]
+      ],
+      "thu": [
+        [
+          "09:00",
+          "17:00"
+        ]
+      ],
+      "fri": [
+        [
+          "09:00",
+          "17:00"
+        ]
+      ],
+      "sat": [
+        [
+          "09:00",
+          "17:00"
+        ]
+      ],
+      "sun": [
+        [
+          "09:00",
+          "17:00"
+        ]
+      ],
+      "holiday": [
+        [
+          "09:00",
+          "17:00"
+        ]
+      ],
+      "lastEntry": "16:00",
+      "note": "用餐到 16:00（食べログ）；冬季時間沒有另外公布"
+    },
+    "closedNote": "年中無休（山頂売店，觀光三重）",
+    "febNote": "冬季時間沒有來源（從「年中無休」推 2 月平日營業）；伊勢志摩スカイライン 1～7 月 7:00～19:00，通行費普通車 1,270 円、マイクロバス 3,210 円；積雪封路的規定沒有來源",
+    "closures": [],
+    "photos": [
+      {
+        "url": "https://lh3.googleusercontent.com/grass-cs/AABkmLfIBwWZZ24UY_XTqNhgo9W50Fj1SVJel5Ucqz3FUFyRIFfEpJdWc6W5Ggl86meUAXlD-s7WUBB8RCxC8Ii5e8rfJcKmHM2yERFSAQZE1YJHdmltbzWExPdkwY78qDjLT8dlbo0n=w800",
+        "page": "https://maps.google.com/?cid=7938471402358686048",
+        "kind": "google",
+        "credit": "Google マップ",
+        "license": null
+      }
+    ],
+    "links": {
+      "official": "https://www.iseshimaskyline.com/itemview/template1_6_211.html",
+      "googleMaps": "https://maps.google.com/?cid=7938471402358686048",
+      "tabelog": "https://tabelog.com/mie/A2403/A240301/24010680/",
+      "instagram": null
+    },
+    "tags": [],
+    "tier": null,
+    "sources": [
+      {
+        "type": "tabelog",
+        "url": "https://tabelog.com/mie/A2403/A240301/24010680/",
+        "retrieved": "2026-10-18",
+        "note": "店舗情報：分數、席數、預約、營業時間、お子様連れ"
+      },
+      {
+        "type": "google-maps",
+        "url": "https://maps.google.com/?cid=7938471402358686048",
+        "retrieved": "2026-10-18",
+        "note": "星數、評論數、座標、照片"
+      },
+      {
+        "type": "official",
+        "url": "https://www.iseshimaskyline.com/sanchou.html?page_id=c6552cc41af6fdf4042506d0a49eadb3",
+        "retrieved": "2026-10-18",
+        "note": "官網茶屋頁，只讀到『山頂でしか出会えない名物 志摩うどん』"
+      },
+      {
+        "type": "official",
+        "url": "https://www.iseshimaskyline.com/business.html",
+        "retrieved": "2026-10-18",
+        "note": "スカイライン 1～7月 7:00～19:00、普通車 1,270 円、マイクロバス 3,210 円"
+      },
+      {
+        "type": "tourism",
+        "url": "https://www.kankomie.or.jp/spot/2309",
+        "retrieved": "2026-10-18",
+        "note": "9:00～17:00、無休、免費停車 100 台、0596-22-1248"
+      },
+      {
+        "type": "tourism",
+        "url": "https://www.kankomie.or.jp/report/285",
+        "retrieved": "2026-10-18",
+        "note": "2025-03 特集：約 15 席、志摩うどん內容、天空ソフト 400 円"
+      }
+    ],
+    "verified": false,
+    "anchors": [],
+    "contexts": [
+      "lunch",
+      "snack"
+    ],
+    "access": "car",
+    "cuisine": [
+      "烏龍麵・蕎麥"
+    ],
+    "priceRange": "輕食（天空ソフト 400 円）",
+    "price": {
+      "lunch": null,
+      "dinner": null
+    },
+    "stayMinutes": null,
+    "mustTry": [
+      "志摩うどん（あおさ・ちくわ磯辺揚げ）",
+      "天空ソフトクリーム 400 円",
+      "中華そば、カレーライス"
+    ],
+    "menu": [
+      {
+        "url": "https://tabelog.com/mie/A2403/A240301/24010680/dtlmenu/photo/",
+        "source": "tabelog",
+        "retrieved": "2026-10-18"
+      }
+    ],
+    "ratings": {
+      "tabelog": 3.27,
+      "tabelogReviews": 67,
+      "google": 3.9,
+      "googleReviews": 79,
+      "note": null
+    },
+    "tabelogOwner": false,
+    "googleName": "お食事処朝熊茶屋",
+    "notes": "伊勢志摩スカイライン 朝熊山頂売店裡的食堂（朝熊山頂展望台 ise-asama-summit 旁），志摩うどん、中華そば、咖哩等輕食；要開車走收費的スカイライン。",
+    "group": {
+      "seats": 15,
+      "maxReservation": null,
+      "privateRoom": false,
+      "buyout": "不可",
+      "groupMenu": null,
+      "fit15": "unknown",
+      "fitSubgroup": "yes",
+      "source": "觀光三重：約 15 席；食べログ：予約不可、貸切不可。剛好 15 席、和其他客人共用，15 人一次坐不太可能"
+    },
+    "reservation": {
+      "accepted": "no",
+      "methods": [],
+      "phone": "0596-22-1248",
+      "url": null,
+      "language": "日文",
+      "note": "不能預約（食べログ）；電話是山頂売店",
+      "leadDays": null
+    },
+    "seating": [],
+    "kids": {
+      "allowed": "unknown",
+      "minAge": null,
+      "kidsMenu": null,
+      "note": null
+    },
+    "accessibility": {
+      "barrierFree": null,
+      "note": "在朝熊山頂売店內，山頂停車場旁；座位形式沒有來源"
+    },
+    "smoking": "全席禁煙",
+    "extra": {
+      "inclusion": "D1",
+      "conflicts": [
+        "官網的茶屋頁讀不到內容，營業時間只來自觀光三重、食べログ"
+      ]
+    }
+  },
+  {
+    "id": "ise-hakutakatei",
+    "type": "restaurant",
+    "name": {
+      "ja": "はくたか亭",
+      "kana": "はくたかてい",
+      "zh": "白鷹亭（伊勢志摩中央市場 2 樓的海鮮丼）",
+      "en": null
+    },
+    "area": "ise",
+    "region": "ise-asama",
+    "coords": [
+      136.8146452,
+      34.4849318
+    ],
+    "coordsSource": "google-maps-url",
+    "address": "三重県伊勢市朝熊町1-11 伊勢志摩 中央市場 ザ・朝市 2F",
+    "hours": {
+      "mon": [
+        [
+          "11:00",
+          "17:00"
+        ]
+      ],
+      "tue": [
+        [
+          "11:00",
+          "17:00"
+        ]
+      ],
+      "wed": [
+        [
+          "11:00",
+          "17:00"
+        ]
+      ],
+      "thu": [
+        [
+          "11:00",
+          "17:00"
+        ]
+      ],
+      "fri": [
+        [
+          "11:00",
+          "17:00"
+        ]
+      ],
+      "sat": [
+        [
+          "11:00",
+          "17:00"
+        ]
+      ],
+      "sun": [
+        [
+          "11:00",
+          "17:00"
+        ]
+      ],
+      "holiday": [
+        [
+          "11:00",
+          "17:00"
+        ]
+      ],
+      "note": "食べログ、Retty；市場整體 8:00～17:00（觀光三重）"
+    },
+    "closedNote": "無休（Retty；觀光三重 寫市場定休日なし）",
+    "febNote": "產季有牡蠣吃到飽（觀光三重，期間、價格沒寫）",
+    "closures": [],
+    "photos": [
+      {
+        "url": "https://lh3.googleusercontent.com/grass-cs/AABkmLfotdn14ydKpjcg1MZus4wASUtkkiMvpMIMLJ8Y9b-dtB0ZNuZEi51IY4KZjqzefX80ZYjGnxzRBPfcPD9O9z1gOSbbYnDBYrPUf8qbyMH8zeZHd9q2SuNIDAJbYh-PzZ1ZBOLSmg=w800",
+        "page": "https://maps.google.com/?cid=3347335254744029345",
+        "kind": "google",
+        "credit": "Google マップ",
+        "license": null
+      }
+    ],
+    "links": {
+      "official": "http://www.the-asaichi.co.jp/",
+      "googleMaps": "https://maps.google.com/?cid=3347335254744029345",
+      "tabelog": "https://tabelog.com/mie/A2403/A240301/24013072/",
+      "instagram": null
+    },
+    "tags": [],
+    "tier": null,
+    "sources": [
+      {
+        "type": "tabelog",
+        "url": "https://tabelog.com/mie/A2403/A240301/24013072/",
+        "retrieved": "2026-10-18",
+        "note": "店舗情報：分數、席數、預約、營業時間、お子様連れ"
+      },
+      {
+        "type": "google-maps",
+        "url": "https://maps.google.com/?cid=3347335254744029345",
+        "retrieved": "2026-10-18",
+        "note": "星數、評論數、座標、照片"
+      },
+      {
+        "type": "booking-site",
+        "url": "https://retty.me/restaurant/100001304755/",
+        "retrieved": "2026-10-18",
+        "note": "120 席、座敷、先付款、無休、丼 1,100 円"
+      },
+      {
+        "type": "tourism",
+        "url": "https://www.kankomie.or.jp/spot/24808",
+        "retrieved": "2026-10-18",
+        "note": "2 樓食事處最多 120 人團體、牡蠣吃到飽、8:00～17:00、定休日なし"
+      },
+      {
+        "type": "other",
+        "url": "https://hamoni.jp/en/area/mie/toba/ikenoura/shops",
+        "retrieved": "2026-10-18",
+        "note": "食事處稱漁師村，炸牡蠣丼 15 個"
+      }
+    ],
+    "verified": false,
+    "anchors": [],
+    "contexts": [
+      "lunch"
+    ],
+    "access": "car",
+    "cuisine": [
+      "海鮮丼",
+      "牡蠣"
+    ],
+    "priceRange": "¥1,100～3,000",
+    "price": {
+      "lunch": [
+        1100,
+        3000
+      ],
+      "dinner": null
+    },
+    "stayMinutes": null,
+    "mustTry": [
+      "カキフライ丼 1,100 円",
+      "まぐろ丼 1,100 円",
+      "漁師丼（當日漁獲，價格不明）"
+    ],
+    "menu": [
+      {
+        "url": "https://tabelog.com/mie/A2403/A240301/24013072/dtlmenu/photo/",
+        "source": "tabelog",
+        "retrieved": "2026-10-18"
+      }
+    ],
+    "ratings": {
+      "tabelog": 3.16,
+      "tabelogReviews": 63,
+      "google": 2.2,
+      "googleReviews": 13,
+      "note": "Google 評論只有 13 則、分數低（2.2）"
+    },
+    "tabelogOwner": false,
+    "googleName": "お食事処はくたか亭",
+    "notes": "朝熊 IC 附近、伊勢志摩中央市場 ザ・朝市 2 樓的食事處，先付款自助式、不收信用卡。Google 評價很低（2.2，13 則），但這一帶（朝熊）中午幾乎沒有能坐下吃飯的店（D①），而且能接 120 人團體。要開車。",
+    "group": {
+      "seats": 120,
+      "maxReservation": 120,
+      "privateRoom": false,
+      "buyout": "可",
+      "fit15": "yes",
+      "fitSubgroup": "yes",
+      "groupMenu": null,
+      "source": "觀光三重：團體最多 120 名；Retty：120 席、無個室；食べログ：貸切可、予約不可（個人）。團體套餐沒有來源"
+    },
+    "reservation": {
+      "accepted": "groups-only",
+      "methods": [
+        "phone"
+      ],
+      "phone": "0599-26-3111",
+      "url": null,
+      "language": "日文",
+      "note": "觀光三重寫可接團體（電話）；食べログ 寫予約不可（個人）",
+      "leadDays": null
+    },
+    "seating": [
+      "zashiki"
+    ],
+    "kids": {
+      "allowed": "unknown",
+      "minAge": null,
+      "kidsMenu": null,
+      "note": null
+    },
+    "accessibility": {
+      "barrierFree": null,
+      "note": "市場 2 樓、脫鞋的座敷（Retty 口コミ）；電梯沒有來源，長輩要坐地板"
+    },
+    "smoking": "全席禁煙（Retty）",
+    "extra": {
+      "inclusion": "D1",
+      "conflicts": [
+        "營業時間：Retty・食べログ 11:00～17:00；觀光三重 市場 8:00～17:00",
+        "吸菸：食べログ 全席喫煙可（舊資料）；Retty 全席禁煙",
+        "HAMONI 把市場裡的食事處叫「漁師村」，和はくたか亭的關係不明",
+        "カキフライ丼 的牡蠣數：Retty（2026-06）9 個、HAMONI 15 個"
+      ]
+    }
   }
 ]
