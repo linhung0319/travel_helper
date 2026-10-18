@@ -240,20 +240,23 @@
       "C"
     ],
     "reason": null,
-    "pointId": null,
+    "pointId": "shima-michelle",
     "ratings": {
       "tabelog": 3.28,
-      "tabelogReviews": 64
+      "tabelogReviews": 64,
+      "google": 4.3,
+      "googleReviews": 176
     },
     "links": {
       "tabelog": "https://tabelog.com/mie/A2403/A240303/24012463/"
     },
     "contexts": [
-      "lunch"
+      "lunch",
+      "dinner",
+      "cafe"
     ],
     "mentions": [],
-    "note": "類型：洋食・義式；地址：阿児町神明2180-6；定休（食べログ列表）：金曜日；貸切可（食べログ列表）；預算（食べログ列表）：夜 -／昼 1000～1999；地址 神明2180-6（志摩神明站一帶？子地區照地址推定 ugata，T9d 看座標）",
-    "detailPending": true
+    "note": "類型：洋食・義式；地址：阿児町神明2180-6；定休（食べログ列表）：金曜日；貸切可（食べログ列表）；預算（食べログ列表）：夜 -／昼 1000～1999；地址 神明2180-6（志摩神明站一帶？子地區照地址推定 ugata，T9d 看座標）"
   },
   {
     "key": "tabelog-24011598",
@@ -344,11 +347,11 @@
     },
     "region": "shima-ugata",
     "category": "オーベルジュ、カフェ、洋食",
-    "status": "pending",
+    "status": "excluded",
     "criteria": [
       "C"
     ],
-    "reason": "住宿本體（lodging shima-nocturne-no-mori，舊名フィオーレ志摩，神明1916-60），符合 C（貸切；3.17／20）：T9b 現在的方案不含晚餐，餐廳可能已經不營業；T9d 確認",
+    "reason": "住宿本體（lodging shima-nocturne-no-mori，舊名フィオーレ志摩）。T9d 確認：官網現在沒有ランチ、ディナー，只有不定期營業的テラスカフェ（輕食、飲料）；食べログ的カフェ＆ランチ、ディナー（4 日前預約）、貸切 20～50 人是改名前的舊資料 → 照判斷細則 F③ 不收錄（2026-10-19）",
     "pointId": null,
     "ratings": {
       "tabelog": 3.17,
@@ -376,21 +379,22 @@
       "C"
     ],
     "reason": null,
-    "pointId": null,
+    "pointId": "shima-shucafe",
     "ratings": {
       "tabelog": 3.16,
-      "tabelogReviews": 36
+      "tabelogReviews": 36,
+      "google": 4.2,
+      "googleReviews": 109
     },
     "links": {
       "tabelog": "https://tabelog.com/mie/A2403/A240303/24005869/"
     },
     "contexts": [
-      "snack",
+      "lunch",
       "cafe"
     ],
     "mentions": [],
-    "note": "類型：咖啡・甜點；地址：阿児町神明1074-20；定休（食べログ列表）：火曜日；貸切可（食べログ列表）；預算（食べログ列表）：夜 -／昼 1000～1999",
-    "detailPending": true
+    "note": "類型：咖啡・甜點；地址：阿児町神明1074-20；定休（食べログ列表）：火曜日；貸切可（食べログ列表）；預算（食べログ列表）：夜 -／昼 1000～1999"
   },
   {
     "key": "tabelog-24021124",
@@ -548,21 +552,23 @@
     },
     "region": "shima-ugata",
     "category": "オーベルジュ、日本料理、創作料理",
-    "status": "pending",
+    "status": "included",
     "criteria": [
-      "A"
+      "A",
+      "F3"
     ],
-    "reason": "住宿本體（lodging shima-provence），符合 A（3.50／73）：觀光協會「食べる」列了 17:30～21:00、無休（F③ 的候選，志摩神明站附近晚上少數的店），官網的非住客用餐方案 T9d 確認",
-    "pointId": null,
+    "reason": "住宿附設（lodging shima-provence，美食の隠れ家プロヴァンス）。T9d 確認：觀光協會「食べる」列了ディナー 17:30～21:00、無休、おまかせコース 15,400 円、當天 15:00 前預約（晚餐客人免費日歸入浴）→ F③ 收錄晚餐；午餐對外沒有來源（2026-10-19）",
+    "pointId": "shima-provence-dining",
     "ratings": {
       "tabelog": 3.5,
-      "tabelogReviews": 73
+      "tabelogReviews": 73,
+      "google": 4.2,
+      "googleReviews": 398
     },
     "links": {
       "tabelog": "https://tabelog.com/mie/A2403/A240303/24011469/"
     },
     "contexts": [
-      "lunch",
       "dinner"
     ],
     "mentions": [],
@@ -782,10 +788,12 @@
       "C"
     ],
     "reason": null,
-    "pointId": null,
+    "pointId": "shima-tobari",
     "ratings": {
       "tabelog": 3.74,
-      "tabelogReviews": 99
+      "tabelogReviews": 99,
+      "google": 4.3,
+      "googleReviews": 119
     },
     "links": {
       "tabelog": "https://tabelog.com/mie/A2403/A240303/24016491/"
@@ -795,8 +803,7 @@
       "dinner"
     ],
     "mentions": [],
-    "note": "類型：和食・割烹；地址：阿児町鵜方1091-1；定休（食べログ列表）：火曜日；貸切可（食べログ列表）；預算（食べログ列表）：夜 20000～29999／昼 15000～19999",
-    "detailPending": true
+    "note": "類型：和食・割烹；地址：阿児町鵜方1091-1；定休（食べログ列表）：火曜日；貸切可（食べログ列表）；預算（食べログ列表）：夜 20000～29999／昼 15000～19999"
   },
   {
     "key": "tabelog-24000565",
@@ -811,10 +818,12 @@
       "C"
     ],
     "reason": null,
-    "pointId": null,
+    "pointId": "shima-tai",
     "ratings": {
       "tabelog": 3.56,
-      "tabelogReviews": 220
+      "tabelogReviews": 220,
+      "google": 4.1,
+      "googleReviews": 328
     },
     "links": {
       "tabelog": "https://tabelog.com/mie/A2403/A240303/24000565/"
@@ -824,8 +833,7 @@
       "dinner"
     ],
     "mentions": [],
-    "note": "類型：和食・割烹；地址：阿児町鵜方2037-1；定休（食べログ列表）：月曜日；個室（食べログ列表）：個室有(2〜30人可)；貸切可（食べログ列表）；預算（食べログ列表）：夜 5000～5999／昼 1000～1999；觀光協會「食べる」：11:00～14:00、16:30～21:30，月休；鵜方站步行 3 分（まっぷる店家頁）；第一晚（2/2 週二）有營業、30 人個室 → 全員晚餐的第一候選",
-    "detailPending": true
+    "note": "類型：和食・割烹；地址：阿児町鵜方2037-1；定休（食べログ列表）：月曜日；個室（食べログ列表）：個室有(2〜30人可)；貸切可（食べログ列表）；預算（食べログ列表）：夜 5000～5999／昼 1000～1999；觀光協會「食べる」：11:00～14:00、16:30～21:30，月休；鵜方站步行 3 分（まっぷる店家頁）；第一晚（2/2 週二）有營業、30 人個室 → 全員晚餐的第一候選"
   },
   {
     "key": "tabelog-24000435",
@@ -840,10 +848,12 @@
       "C"
     ],
     "reason": null,
-    "pointId": null,
+    "pointId": "shima-chotaya",
     "ratings": {
       "tabelog": 3.51,
-      "tabelogReviews": 284
+      "tabelogReviews": 284,
+      "google": 4.2,
+      "googleReviews": 733
     },
     "links": {
       "tabelog": "https://tabelog.com/mie/A2403/A240303/24000435/"
@@ -853,8 +863,7 @@
       "dinner"
     ],
     "mentions": [],
-    "note": "類型：燒肉・肉料理；地址：阿児町鵜方2418；個室（食べログ列表）：個室有(4〜8人可)；貸切可（食べログ列表）；預算（食べログ列表）：夜 3000～3999／昼 1000～1999；觀光協會「食べる」：11:00～14:00、16:30～21:00，木休（食べログ列表沒寫）；鵜方站 5 分（食べログ PR）",
-    "detailPending": true
+    "note": "類型：燒肉・肉料理；地址：阿児町鵜方2418；個室（食べログ列表）：個室有(4〜8人可)；貸切可（食べログ列表）；預算（食べログ列表）：夜 3000～3999／昼 1000～1999；觀光協會「食べる」：11:00～14:00、16:30～21:00，木休（食べログ列表沒寫）；鵜方站 5 分（食べログ PR）"
   },
   {
     "key": "tabelog-24013198",
@@ -869,10 +878,12 @@
       "C"
     ],
     "reason": null,
-    "pointId": null,
+    "pointId": "shima-daikazoku",
     "ratings": {
       "tabelog": 3.43,
-      "tabelogReviews": 103
+      "tabelogReviews": 103,
+      "google": 4.4,
+      "googleReviews": 201
     },
     "links": {
       "tabelog": "https://tabelog.com/mie/A2403/A240303/24013198/"
@@ -882,8 +893,7 @@
       "dinner"
     ],
     "mentions": [],
-    "note": "類型：海鮮丼；地址：阿児町鵜方4057-1 うがたファミリープラザ １Ｆ；定休（食べログ列表）：水曜日；貸切可（食べログ列表）；預算（食べログ列表）：夜 4000～4999／昼 1000～1999",
-    "detailPending": true
+    "note": "類型：海鮮丼；地址：阿児町鵜方4057-1 うがたファミリープラザ １Ｆ；定休（食べログ列表）：水曜日；貸切可（食べログ列表）；預算（食べログ列表）：夜 4000～4999／昼 1000～1999"
   },
   {
     "key": "tabelog-24001034",
@@ -897,10 +907,12 @@
       "C"
     ],
     "reason": null,
-    "pointId": null,
+    "pointId": "shima-otoya",
     "ratings": {
       "tabelog": 3.35,
-      "tabelogReviews": 91
+      "tabelogReviews": 91,
+      "google": 3.7,
+      "googleReviews": 180
     },
     "links": {
       "tabelog": "https://tabelog.com/mie/A2403/A240303/24001034/"
@@ -910,8 +922,7 @@
       "dinner"
     ],
     "mentions": [],
-    "note": "類型：壽司；地址：阿児町鵜方1692；定休（食べログ列表）：火曜日、水曜日；個室（食べログ列表）：個室有(4人、10〜20人可)；貸切可（食べログ列表）；預算（食べログ列表）：夜 1000～1999／昼 1000～1999；觀光協會「食べる」：11:00～13:30、17:00～21:00（L.O.20:30），火、水休 → 2/2、2/3、2/9、2/10 不能去",
-    "detailPending": true
+    "note": "類型：壽司；地址：阿児町鵜方1692；定休（食べログ列表）：火曜日、水曜日；個室（食べログ列表）：個室有(4人、10〜20人可)；貸切可（食べログ列表）；預算（食べログ列表）：夜 1000～1999／昼 1000～1999；觀光協會「食べる」：11:00～13:30、17:00～21:00（L.O.20:30），火、水休 → 2/2、2/3、2/9、2/10 不能去"
   },
   {
     "key": "tabelog-24008717",
@@ -925,10 +936,12 @@
       "C"
     ],
     "reason": null,
-    "pointId": null,
+    "pointId": "shima-miyamatei",
     "ratings": {
       "tabelog": 3.34,
-      "tabelogReviews": 99
+      "tabelogReviews": 99,
+      "google": 4,
+      "googleReviews": 362
     },
     "links": {
       "tabelog": "https://tabelog.com/mie/A2403/A240303/24008717/"
@@ -938,8 +951,7 @@
       "dinner"
     ],
     "mentions": [],
-    "note": "類型：海鮮丼；地址：阿児町鵜方4990；定休（食べログ列表）：水曜日；個室（食べログ列表）：個室有；貸切可（食べログ列表）；預算（食べログ列表）：夜 2000～2999／昼 2000～2999；觀光協會「食べる」：11:00～13:30、17:00～20:00（L.O.19:30），水休",
-    "detailPending": true
+    "note": "類型：海鮮丼；地址：阿児町鵜方4990；定休（食べログ列表）：水曜日；個室（食べログ列表）：個室有；貸切可（食べログ列表）；預算（食べログ列表）：夜 2000～2999／昼 2000～2999；觀光協會「食べる」：11:00～13:30、17:00～20:00（L.O.19:30），水休"
   },
   {
     "key": "tabelog-24001504",
@@ -953,10 +965,12 @@
       "C"
     ],
     "reason": null,
-    "pointId": null,
+    "pointId": "shima-isokko",
     "ratings": {
       "tabelog": 3.3,
-      "tabelogReviews": 83
+      "tabelogReviews": 83,
+      "google": 3.9,
+      "googleReviews": 337
     },
     "links": {
       "tabelog": "https://tabelog.com/mie/A2403/A240303/24001504/"
@@ -966,8 +980,7 @@
       "dinner"
     ],
     "mentions": [],
-    "note": "類型：居酒屋；地址：阿児町鵜方1998-12；定休（食べログ列表）：月曜日；個室（食べログ列表）：個室有；貸切可（食べログ列表）；預算（食べログ列表）：夜 2000～2999／昼 1000～1999；觀光協會「食べる」：11:00～14:00、16:30～22:00，月休",
-    "detailPending": true
+    "note": "類型：居酒屋；地址：阿児町鵜方1998-12；定休（食べログ列表）：月曜日；個室（食べログ列表）：個室有；貸切可（食べログ列表）；預算（食べログ列表）：夜 2000～2999／昼 1000～1999；觀光協會「食べる」：11:00～14:00、16:30～22:00，月休"
   },
   {
     "key": "tabelog-24000625",
@@ -981,21 +994,21 @@
       "C"
     ],
     "reason": null,
-    "pointId": null,
+    "pointId": "shima-grill-edoichi",
     "ratings": {
       "tabelog": 3.28,
-      "tabelogReviews": 59
+      "tabelogReviews": 59,
+      "google": 4.3,
+      "googleReviews": 188
     },
     "links": {
       "tabelog": "https://tabelog.com/mie/A2403/A240303/24000625/"
     },
     "contexts": [
-      "lunch",
-      "dinner"
+      "lunch"
     ],
     "mentions": [],
-    "note": "類型：洋食・義式；地址：阿児町鵜方1089；定休（食べログ列表）：木曜日、日曜日；貸切可（食べログ列表）；預算（食べログ列表）：夜 1000～1999／昼 ～999；觀光協會「食べる」：11:00～19:00（L.O.18:30），木、日休",
-    "detailPending": true
+    "note": "類型：洋食・義式；地址：阿児町鵜方1089；定休（食べログ列表）：木曜日、日曜日；貸切可（食べログ列表）；預算（食べログ列表）：夜 1000～1999／昼 ～999；觀光協會「食べる」：11:00～19:00（L.O.18:30），木、日休"
   },
   {
     "key": "tabelog-24012093",
@@ -1069,10 +1082,12 @@
       "C"
     ],
     "reason": null,
-    "pointId": null,
+    "pointId": "shima-la-pizzica",
     "ratings": {
       "tabelog": 3.2,
-      "tabelogReviews": 16
+      "tabelogReviews": 16,
+      "google": 4.3,
+      "googleReviews": 186
     },
     "links": {
       "tabelog": "https://tabelog.com/mie/A2403/A240303/24022283/"
@@ -1082,8 +1097,7 @@
       "dinner"
     ],
     "mentions": [],
-    "note": "類型：洋食・義式；地址：阿児町鵜方1224-3；定休（食べログ列表）：木曜日；貸切可（食べログ列表）；預算（食べログ列表）：夜 3000～3999／昼 1000～1999；觀光協會「食べる」：11:00～14:00（L.O.）、17:00～21:00（L.O.），定休沒寫（食べログ列表：木休）",
-    "detailPending": true
+    "note": "類型：洋食・義式；地址：阿児町鵜方1224-3；定休（食べログ列表）：木曜日；貸切可（食べログ列表）；預算（食べログ列表）：夜 3000～3999／昼 1000～1999；觀光協會「食べる」：11:00～14:00（L.O.）、17:00～21:00（L.O.），定休沒寫（食べログ列表：木休）"
   },
   {
     "key": "tabelog-24020292",
@@ -1097,10 +1111,12 @@
       "C"
     ],
     "reason": null,
-    "pointId": null,
+    "pointId": "shima-mabushi-ichiya",
     "ratings": {
       "tabelog": 3.18,
-      "tabelogReviews": 38
+      "tabelogReviews": 38,
+      "google": 4.4,
+      "googleReviews": 174
     },
     "links": {
       "tabelog": "https://tabelog.com/mie/A2403/A240303/24020292/"
@@ -1110,8 +1126,7 @@
       "dinner"
     ],
     "mentions": [],
-    "note": "類型：和食・割烹；地址：阿児町鵜方4057-1；個室（食べログ列表）：個室有(4〜6人可)；貸切可（食べログ列表）；預算（食べログ列表）：夜 4000～4999／昼 2000～2999",
-    "detailPending": true
+    "note": "類型：和食・割烹；地址：阿児町鵜方4057-1；個室（食べログ列表）：個室有(4〜6人可)；貸切可（食べログ列表）；預算（食べログ列表）：夜 4000～4999／昼 2000～2999"
   },
   {
     "key": "tabelog-24016233",
@@ -1125,10 +1140,12 @@
       "C"
     ],
     "reason": null,
-    "pointId": null,
+    "pointId": "shima-norpol",
     "ratings": {
       "tabelog": 3.18,
-      "tabelogReviews": 21
+      "tabelogReviews": 21,
+      "google": 4.1,
+      "googleReviews": 70
     },
     "links": {
       "tabelog": "https://tabelog.com/mie/A2403/A240303/24016233/"
@@ -1138,8 +1155,7 @@
       "dinner"
     ],
     "mentions": [],
-    "note": "類型：洋食・義式；地址：阿児町鵜方4045-1 ニューチャムビル 1F；定休（食べログ列表）：火曜日；貸切可（食べログ列表）；預算（食べログ列表）：夜 6000～7999／昼 3000～3999",
-    "detailPending": true
+    "note": "類型：洋食・義式；地址：阿児町鵜方4045-1 ニューチャムビル 1F；定休（食べログ列表）：火曜日；貸切可（食べログ列表）；預算（食べログ列表）：夜 6000～7999／昼 3000～3999"
   },
   {
     "key": "tabelog-24005459",
@@ -1153,10 +1169,12 @@
       "C"
     ],
     "reason": null,
-    "pointId": null,
+    "pointId": "shima-roppongi",
     "ratings": {
       "tabelog": 3.15,
-      "tabelogReviews": 19
+      "tabelogReviews": 19,
+      "google": 3.9,
+      "googleReviews": 112
     },
     "links": {
       "tabelog": "https://tabelog.com/mie/A2403/A240303/24005459/"
@@ -1166,8 +1184,7 @@
       "dinner"
     ],
     "mentions": [],
-    "note": "類型：居酒屋；地址：阿児町鵜方2992-5；定休（食べログ列表）：日曜日；貸切可（食べログ列表）；預算（食べログ列表）：夜 2000～2999／昼 ～999",
-    "detailPending": true
+    "note": "類型：居酒屋；地址：阿児町鵜方2992-5；定休（食べログ列表）：日曜日；貸切可（食べログ列表）；預算（食べログ列表）：夜 2000～2999／昼 ～999"
   },
   {
     "key": "tabelog-24015009",
@@ -1181,10 +1198,12 @@
       "C"
     ],
     "reason": null,
-    "pointId": null,
+    "pointId": "shima-isuzuya-ugata",
     "ratings": {
       "tabelog": 3.13,
-      "tabelogReviews": 39
+      "tabelogReviews": 39,
+      "google": 4,
+      "googleReviews": 98
     },
     "links": {
       "tabelog": "https://tabelog.com/mie/A2403/A240303/24015009/"
@@ -1194,8 +1213,7 @@
       "dinner"
     ],
     "mentions": [],
-    "note": "類型：居酒屋；地址：阿児町鵜方4057-1；定休（食べログ列表）：火曜日；貸切可（食べログ列表）；預算（食べログ列表）：夜 1000～1999／昼 ～999；鵜方站前；觀光協會「食べる」：11:00～18:00、不定休（食べログ列表：火休）→ 晚餐不一定",
-    "detailPending": true
+    "note": "類型：居酒屋；地址：阿児町鵜方4057-1；定休（食べログ列表）：火曜日；貸切可（食べログ列表）；預算（食べログ列表）：夜 1000～1999／昼 ～999；鵜方站前；觀光協會「食べる」：11:00～18:00、不定休（食べログ列表：火休）→ 晚餐不一定"
   },
   {
     "key": "tabelog-24004673",
@@ -1209,10 +1227,12 @@
       "C"
     ],
     "reason": null,
-    "pointId": null,
+    "pointId": "shima-ginrin",
     "ratings": {
       "tabelog": 3.12,
-      "tabelogReviews": 24
+      "tabelogReviews": 24,
+      "google": 3.8,
+      "googleReviews": 87
     },
     "links": {
       "tabelog": "https://tabelog.com/mie/A2403/A240303/24004673/"
@@ -1222,8 +1242,7 @@
       "dinner"
     ],
     "mentions": [],
-    "note": "類型：和食・割烹；地址：阿児町鵜方3112-1；貸切可（食べログ列表）；預算（食べログ列表）：夜 -／昼 1000～1999；觀光協會「食べる」：月～土 11:00～14:00、17:00～23:00，日祝 17:00～23:00，定休 無し",
-    "detailPending": true
+    "note": "類型：和食・割烹；地址：阿児町鵜方3112-1；貸切可（食べログ列表）；預算（食べログ列表）：夜 -／昼 1000～1999；觀光協會「食べる」：月～土 11:00～14:00、17:00～23:00，日祝 17:00～23:00，定休 無し"
   },
   {
     "key": "tabelog-24009869",
@@ -1336,10 +1355,12 @@
       "C"
     ],
     "reason": null,
-    "pointId": null,
+    "pointId": "shima-wasabi",
     "ratings": {
       "tabelog": 3.32,
-      "tabelogReviews": 50
+      "tabelogReviews": 50,
+      "google": 4,
+      "googleReviews": 204
     },
     "links": {
       "tabelog": "https://tabelog.com/mie/A2403/A240303/24006261/"
@@ -1348,8 +1369,7 @@
       "lunch"
     ],
     "mentions": [],
-    "note": "類型：其他；地址：阿児町鵜方3460；個室（食べログ列表）：個室有",
-    "detailPending": true
+    "note": "類型：其他；地址：阿児町鵜方3460；個室（食べログ列表）：個室有"
   },
   {
     "key": "tabelog-24006560",
@@ -1363,10 +1383,12 @@
       "C"
     ],
     "reason": null,
-    "pointId": null,
+    "pointId": "shima-yakiniku-uemura",
     "ratings": {
       "tabelog": 3.19,
-      "tabelogReviews": 51
+      "tabelogReviews": 51,
+      "google": 4.1,
+      "googleReviews": 234
     },
     "links": {
       "tabelog": "https://tabelog.com/mie/A2403/A240303/24006560/"
@@ -1376,8 +1398,7 @@
       "dinner"
     ],
     "mentions": [],
-    "note": "類型：燒肉・肉料理；地址：阿児町鵜方2884-20；定休（食べログ列表）：水曜日；個室（食べログ列表）：個室有(2〜20人可)；預算（食べログ列表）：夜 2000～2999／昼 1000～1999；營業時間沒有觀光協會的資料（T9d 查）",
-    "detailPending": true
+    "note": "類型：燒肉・肉料理；地址：阿児町鵜方2884-20；定休（食べログ列表）：水曜日；個室（食べログ列表）：個室有(2〜20人可)；預算（食べログ列表）：夜 2000～2999／昼 1000～1999；營業時間沒有觀光協會的資料（T9d 查）"
   },
   {
     "key": "tabelog-24000337",
@@ -1391,10 +1412,12 @@
       "C"
     ],
     "reason": null,
-    "pointId": null,
+    "pointId": "shima-miyagino",
     "ratings": {
       "tabelog": 3.15,
-      "tabelogReviews": 21
+      "tabelogReviews": 21,
+      "google": 4.4,
+      "googleReviews": 90
     },
     "links": {
       "tabelog": "https://tabelog.com/mie/A2403/A240303/24000337/"
@@ -1404,8 +1427,7 @@
       "dinner"
     ],
     "mentions": [],
-    "note": "類型：和食・割烹；地址：阿児町鵜方3127-2 ボナール館内；定休（食べログ列表）：水曜日；個室（食べログ列表）：個室有；預算（食べログ列表）：夜 -／昼 1000～1999；ボナール館內；觀光協會「食べる」：11:00～14:00、17:30～21:30，水休",
-    "detailPending": true
+    "note": "類型：和食・割烹；地址：阿児町鵜方3127-2 ボナール館内；定休（食べログ列表）：水曜日；個室（食べログ列表）：個室有；預算（食べログ列表）：夜 -／昼 1000～1999；ボナール館內；觀光協會「食べる」：11:00～14:00、17:30～21:30，水休"
   },
   {
     "key": "tabelog-24022014",
@@ -1419,20 +1441,22 @@
       "C"
     ],
     "reason": null,
-    "pointId": null,
+    "pointId": "shima-shimakaze-shokudo",
     "ratings": {
       "tabelog": 3.14,
-      "tabelogReviews": 16
+      "tabelogReviews": 16,
+      "google": 3.9,
+      "googleReviews": 30
     },
     "links": {
       "tabelog": "https://tabelog.com/mie/A2403/A240303/24022014/"
     },
     "contexts": [
-      "lunch"
+      "lunch",
+      "dinner"
     ],
     "mentions": [],
-    "note": "類型：定食・食堂；地址：阿児町鵜方字金谷3016-26；個室（食べログ列表）：個室有；預算（食べログ列表）：夜 -／昼 1000～1999",
-    "detailPending": true
+    "note": "類型：定食・食堂；地址：阿児町鵜方字金谷3016-26；個室（食べログ列表）：個室有；預算（食べログ列表）：夜 -／昼 1000～1999"
   },
   {
     "key": "tabelog-24010853",
@@ -1446,10 +1470,12 @@
       "C"
     ],
     "reason": null,
-    "pointId": null,
+    "pointId": "shima-keijo-ugata",
     "ratings": {
       "tabelog": 3.13,
-      "tabelogReviews": 22
+      "tabelogReviews": 22,
+      "google": 4,
+      "googleReviews": 177
     },
     "links": {
       "tabelog": "https://tabelog.com/mie/A2403/A240303/24010853/"
@@ -1458,8 +1484,7 @@
       "dinner"
     ],
     "mentions": [],
-    "note": "類型：燒肉・肉料理；地址：阿児町鵜方3227-3；定休（食べログ列表）：火曜日；個室（食べログ列表）：個室有；預算（食べログ列表）：夜 4000～4999／昼 -；觀光協會「食べる」：16:00～24:00（L.O.23:00）（食べログ列表：火休）",
-    "detailPending": true
+    "note": "類型：燒肉・肉料理；地址：阿児町鵜方3227-3；定休（食べログ列表）：火曜日；個室（食べログ列表）：個室有；預算（食べログ列表）：夜 4000～4999／昼 -；觀光協會「食べる」：16:00～24:00（L.O.23:00）（食べログ列表：火休）"
   },
   {
     "key": "tabelog-24006418",
@@ -1473,21 +1498,21 @@
       "A"
     ],
     "reason": null,
-    "pointId": null,
+    "pointId": "shima-higashiyama-bussan",
     "ratings": {
       "tabelog": 3.74,
-      "tabelogReviews": 931
+      "tabelogReviews": 931,
+      "google": 4.5,
+      "googleReviews": 1767
     },
     "links": {
       "tabelog": "https://tabelog.com/mie/A2403/A240303/24006418/"
     },
     "contexts": [
-      "lunch",
-      "dinner"
+      "lunch"
     ],
     "mentions": [],
-    "note": "類型：和食・割烹；地址：阿児町鵜方4032；定休（食べログ列表）：火曜日；預算（食べログ列表）：夜 3000～3999／昼 2000～2999；觀光協會「食べる」：10:00～19:00 頃（L.O.18:00、賣完就打烊），火休（臨時休業あり）；鵜方站步行約 3 分（觀光協會的距離）",
-    "detailPending": true
+    "note": "類型：和食・割烹；地址：阿児町鵜方4032；定休（食べログ列表）：火曜日；預算（食べログ列表）：夜 3000～3999／昼 2000～2999；觀光協會「食べる」：10:00～19:00 頃（L.O.18:00、賣完就打烊），火休（臨時休業あり）；鵜方站步行約 3 分（觀光協會的距離）"
   },
   {
     "key": "tabelog-24000188",
@@ -1501,10 +1526,12 @@
       "A"
     ],
     "reason": null,
-    "pointId": null,
+    "pointId": "shima-miyamoto",
     "ratings": {
       "tabelog": 3.51,
-      "tabelogReviews": 173
+      "tabelogReviews": 173,
+      "google": 4.2,
+      "googleReviews": 292
     },
     "links": {
       "tabelog": "https://tabelog.com/mie/A2403/A240303/24000188/"
@@ -1514,8 +1541,7 @@
       "dinner"
     ],
     "mentions": [],
-    "note": "類型：洋食・義式；地址：阿児町鵜方3127-2；定休（食べログ列表）：月曜日、火曜日；預算（食べログ列表）：夜 2000～2999／昼 1000～1999",
-    "detailPending": true
+    "note": "類型：洋食・義式；地址：阿児町鵜方3127-2；定休（食べログ列表）：月曜日、火曜日；預算（食べログ列表）：夜 2000～2999／昼 1000～1999"
   },
   {
     "key": "tabelog-24015875",
