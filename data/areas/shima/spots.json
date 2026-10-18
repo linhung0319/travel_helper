@@ -994,6 +994,12 @@
         "url": "https://maps.google.com/?cid=3673468487638137900",
         "retrieved": "2026-10-18",
         "note": "星數、評論數、座標、照片（Google 名稱：賢島フィシングパーク海遊苑）"
+      },
+      {
+        "type": "tourism",
+        "url": "https://www.kanko-shima.com/purpose/1589/",
+        "retrieved": "2026-10-18",
+        "note": "海遊苑 筏上 BBQ 方案（料金、時段）"
       }
     ],
     "verified": false,
@@ -1003,7 +1009,8 @@
         "餐點價格：官網首頁寫昼食 1,000 円～、夕食 3,000 円～；觀光協會寫 BBQ 3,500 円、陶板焼 2,500 円（可能是不同方案）。"
       ],
       "googleDistanceMeters": 0,
-      "coordsNote": "座標：觀光三重詳細頁"
+      "coordsNote": "座標：觀光三重詳細頁",
+      "raftBbqNote": "觀光協會 1589 的「手ぶらOK 海上バーベキュー」方案是海遊苑的筏上 BBQ：有屋根，12:00～13:00／13:00～14:00 兩梯各約 1 小時，大人（國中以上）3,500 円、小孩（小學以下）2,000 円，可加釣魚（釣竿 1 支 3,500 円），じゃらん預約（原本誤對到いわほ観光汽船）。"
     },
     "summary": null,
     "assessment": null
