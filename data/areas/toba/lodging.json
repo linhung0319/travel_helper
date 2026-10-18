@@ -298,7 +298,7 @@
       {
         "type": "booking-site",
         "url": "https://www.jalan.net/yad322346/",
-        "retrieved": "2026-10-17",
+        "retrieved": "2026-10-18",
         "note": "じゃらん評分、接送時間、無障礙表"
       },
       {
@@ -653,7 +653,7 @@
       {
         "type": "booking-site",
         "url": "https://www.jalan.net/yad322707/",
-        "retrieved": "2026-10-17",
+        "retrieved": "2026-10-18",
         "note": "じゃらん評分、接駁車"
       },
       {
@@ -960,7 +960,7 @@
       {
         "type": "booking-site",
         "url": "https://www.jalan.net/yad333866/",
-        "retrieved": "2026-10-17",
+        "retrieved": "2026-10-18",
         "note": "じゃらん評分、接駁車"
       },
       {
@@ -1332,7 +1332,7 @@
       {
         "type": "booking-site",
         "url": "https://www.jalan.net/yad316165/",
-        "retrieved": "2026-10-17",
+        "retrieved": "2026-10-18",
         "note": "じゃらん評分、接駁時刻"
       },
       {
@@ -1668,7 +1668,7 @@
       {
         "type": "booking-site",
         "url": "https://www.jalan.net/yad330758/",
-        "retrieved": "2026-10-17",
+        "retrieved": "2026-10-18",
         "note": "じゃらん評分、接駁時刻"
       },
       {
@@ -2053,7 +2053,7 @@
       {
         "type": "booking-site",
         "url": "https://www.jalan.net/yad318663/",
-        "retrieved": "2026-10-17",
+        "retrieved": "2026-10-18",
         "note": "じゃらん評分、無障礙表"
       },
       {
@@ -2418,7 +2418,7 @@
       {
         "type": "booking-site",
         "url": "https://www.jalan.net/yad327192/",
-        "retrieved": "2026-10-17",
+        "retrieved": "2026-10-18",
         "note": "じゃらん評分、接駁"
       },
       {
@@ -2748,7 +2748,7 @@
       {
         "type": "booking-site",
         "url": "https://www.jalan.net/yad393660/",
-        "retrieved": "2026-10-17",
+        "retrieved": "2026-10-18",
         "note": "じゃらん評分、接送"
       },
       {
@@ -3030,7 +3030,7 @@
       "rakuten": 3.83,
       "rakutenReviews": 1239,
       "jalan": 4,
-      "jalanReviews": 1655,
+      "jalanReviews": 1656,
       "booking": null,
       "google": 3.6,
       "googleReviews": 1669,
@@ -3091,7 +3091,7 @@
       {
         "type": "booking-site",
         "url": "https://www.jalan.net/yad335278/",
-        "retrieved": "2026-10-17",
+        "retrieved": "2026-10-18",
         "note": "じゃらん評分、接駁收費預約制、卡拉 OK 兒童價"
       },
       {
@@ -3380,7 +3380,7 @@
       "rakuten": 4.09,
       "rakutenReviews": 2739,
       "jalan": 4.2,
-      "jalanReviews": 3263,
+      "jalanReviews": 3264,
       "booking": null,
       "google": 4,
       "googleReviews": 1277,
@@ -3447,7 +3447,7 @@
       {
         "type": "booking-site",
         "url": "https://www.jalan.net/yad338206/",
-        "retrieved": "2026-10-17",
+        "retrieved": "2026-10-18",
         "note": "じゃらん評分、接駁"
       },
       {
@@ -3800,7 +3800,7 @@
       {
         "type": "booking-site",
         "url": "https://www.jalan.net/yad370149/",
-        "retrieved": "2026-10-17",
+        "retrieved": "2026-10-18",
         "note": "じゃらん評分、接送時段"
       },
       {
@@ -4167,7 +4167,7 @@
       {
         "type": "booking-site",
         "url": "https://www.jalan.net/yad305931/",
-        "retrieved": "2026-10-17",
+        "retrieved": "2026-10-18",
         "note": "じゃらん評分、接送"
       },
       {
@@ -4454,7 +4454,7 @@
     },
     "ratings": {
       "rakuten": 4.39,
-      "jalan": null,
+      "jalan": 4.3,
       "booking": null,
       "google": 4.3,
       "googleReviews": 773,
@@ -4465,7 +4465,8 @@
       "rakutenRoom": 4.32,
       "rakutenEquipment": 4.19,
       "rakutenBath": 4.2,
-      "rakutenMeal": 4.55
+      "rakutenMeal": 4.55,
+      "jalanReviews": 33
     },
     "accessibility": {
       "elevator": true,
@@ -4554,6 +4555,12 @@
         "url": "https://4travel.jp/dm_hotel-10048781",
         "retrieved": "2026-10-18",
         "note": "4travel 3.27（18 件，多為 2013～2018）；食事 4.09 最高、客室 2.93 最低"
+      },
+      {
+        "type": "booking-site",
+        "url": "https://www.jalan.net/yad333318/",
+        "retrieved": "2026-10-18",
+        "note": "じゃらん クチコミ総合、評論數（scripts/jalan.mjs）"
       }
     ],
     "extra": {
@@ -4923,6 +4930,12 @@
         "url": "https://news.allabout.co.jp/articles/o/117182/",
         "retrieved": "2026-10-18",
         "note": "2026-05 媒體介紹（含分潤連結）"
+      },
+      {
+        "type": "booking-site",
+        "url": "https://www.jalan.net/yad322275/",
+        "retrieved": "2026-10-18",
+        "note": "じゃらん クチコミ総合、評論數（scripts/jalan.mjs）"
       }
     ],
     "extra": {
@@ -5845,7 +5858,7 @@
       {
         "type": "booking-site",
         "url": "https://www.jalan.net/yad326179/",
-        "retrieved": "2026-10-17",
+        "retrieved": "2026-10-18",
         "note": "座標（地圖中心點）、じゃらん評分、石神さん步行 6 分"
       },
       {
@@ -6110,7 +6123,7 @@
     },
     "ratings": {
       "rakuten": 4.94,
-      "jalan": null,
+      "jalan": 4.8,
       "booking": null,
       "google": 4.7,
       "googleReviews": 90,
@@ -6119,7 +6132,8 @@
       "rakutenService": 4.94,
       "rakutenLocation": 4,
       "rakutenRoom": 4.25,
-      "rakutenMeal": 5
+      "rakutenMeal": 5,
+      "jalanReviews": 433
     },
     "accessibility": {
       "elevator": null,
@@ -6158,7 +6172,7 @@
       {
         "type": "booking-site",
         "url": "https://www.jalan.net/yad336963/",
-        "retrieved": "2026-10-17",
+        "retrieved": "2026-10-18",
         "note": "全 10 室、松尾站車程 15 分、獎項（搜尋摘要）"
       },
       {
@@ -7087,7 +7101,7 @@
     },
     "ratings": {
       "rakuten": 4.63,
-      "jalan": null,
+      "jalan": 4.8,
       "booking": null,
       "google": 4.5,
       "googleReviews": 984,
@@ -7098,7 +7112,8 @@
       "rakutenRoom": 4.6,
       "rakutenEquipment": 4.56,
       "rakutenBath": 4.69,
-      "rakutenMeal": 4.68
+      "rakutenMeal": 4.68,
+      "jalanReviews": 2077
     },
     "accessibility": {
       "elevator": true,
@@ -7189,6 +7204,12 @@
         "url": "https://www.cocolocala.jp/hotels/16854",
         "retrieved": "2026-10-18",
         "note": "2026 冬心得稱讚牡蠣會席；列有電梯、行李寄放"
+      },
+      {
+        "type": "booking-site",
+        "url": "https://www.jalan.net/yad326601/",
+        "retrieved": "2026-10-18",
+        "note": "じゃらん クチコミ総合、評論數（scripts/jalan.mjs）"
       }
     ],
     "extra": {
@@ -7422,7 +7443,8 @@
       "rakutenRoom": 4.47,
       "rakutenEquipment": 4.53,
       "rakutenBath": 4.79,
-      "rakutenMeal": 4.89
+      "rakutenMeal": 4.89,
+      "jalanReviews": 520
     },
     "accessibility": {
       "elevator": true,
@@ -7461,7 +7483,7 @@
       {
         "type": "booking-site",
         "url": "https://www.jalan.net/yad311200/",
-        "retrieved": "2026-10-17",
+        "retrieved": "2026-10-18",
         "note": "座標（地圖中心點）、じゃらん 4.8（520 則）"
       },
       {
@@ -8045,7 +8067,7 @@
     },
     "ratings": {
       "rakuten": 4.54,
-      "jalan": 4.6,
+      "jalan": 4.7,
       "booking": null,
       "google": 4.4,
       "googleReviews": 127,
@@ -8056,7 +8078,8 @@
       "rakutenRoom": 4.41,
       "rakutenEquipment": 4.13,
       "rakutenBath": 4.14,
-      "rakutenMeal": 4.8
+      "rakutenMeal": 4.8,
+      "jalanReviews": 492
     },
     "accessibility": {
       "elevator": null,
@@ -8103,7 +8126,7 @@
       {
         "type": "booking-site",
         "url": "https://www.jalan.net/yad339966/",
-        "retrieved": "2026-10-17",
+        "retrieved": "2026-10-18",
         "note": "座標（地圖中心點）、じゃらん名稱「炭火焼きの宿 銀鱗」、評分（搜尋摘要）"
       },
       {
@@ -8156,7 +8179,8 @@
       "conflicts": [
         "鳥羽站車程：楽天 15 分、じゃらん 25 分",
         "座標：觀光三重與じゃらん地圖中心相差約 70 m",
-        "鳥羽站車程：官網、KNT 約 15 分；じゃらん約 25 分。"
+        "鳥羽站車程：官網、KNT 約 15 分；じゃらん約 25 分。",
+        "じゃらん評分：舊值 4.6／? 則，2026-10-18 旅館頁 4.7／492 則（scripts/jalan.mjs，以旅館頁為準）"
       ],
       "checkInNote": "15:00（最晚 24:00）",
       "rakutenVacancy": {
@@ -9018,7 +9042,8 @@
       "google": 4.2,
       "googleReviews": 102,
       "note": "T7d（2026-10-18）：楽天 4.29（127 則，API）、じゃらん 4.5、Google 4.2（102 則），5 分制。先前的紀錄：楽天 4.29（127 則）、じゃらん 4.5（554 則），2026-10-17。",
-      "rakutenReviews": 127
+      "rakutenReviews": 127,
+      "jalanReviews": 554
     },
     "accessibility": {
       "elevator": true,
@@ -9079,7 +9104,7 @@
       {
         "type": "booking-site",
         "url": "https://www.jalan.net/yad359721/",
-        "retrieved": "2026-10-17",
+        "retrieved": "2026-10-18",
         "note": "じゃらん 4.5（554 則）、小巴接送、和具港步行約 5 分"
       },
       {
@@ -9378,7 +9403,8 @@
       "rakutenRoom": 4.62,
       "rakutenEquipment": 4.15,
       "rakutenBath": 4.3,
-      "rakutenMeal": 4.56
+      "rakutenMeal": 4.56,
+      "jalanReviews": 291
     },
     "accessibility": {
       "elevator": null,
@@ -9443,7 +9469,7 @@
       {
         "type": "booking-site",
         "url": "https://www.jalan.net/yad323054/",
-        "retrieved": "2026-10-17",
+        "retrieved": "2026-10-18",
         "note": "じゃらん 4.4（291 則）、和室 12、8 名大房、答志港步行 5 分"
       },
       {
@@ -10878,7 +10904,8 @@
       "google": 4.3,
       "googleReviews": 47,
       "note": "T7d（2026-10-18）：楽天 4.67（76 則，API）、じゃらん 4.4、Google 4.3（47 則），5 分制。先前的紀錄：楽天 4.67（76 件）、じゃらん 4.4（205 件），2026-10-17 取得",
-      "rakutenReviews": 76
+      "rakutenReviews": 76,
+      "jalanReviews": 205
     },
     "accessibility": {
       "elevator": false,
@@ -10938,7 +10965,7 @@
       {
         "type": "booking-site",
         "url": "https://www.jalan.net/yad359459/",
-        "retrieved": "2026-10-17",
+        "retrieved": "2026-10-18",
         "note": "じゃらん：評分 4.4（205 件）"
       },
       {

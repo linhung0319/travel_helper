@@ -119,8 +119,8 @@
     "ratings": {
       "rakuten": 4.31,
       "rakutenReviews": 2409,
-      "jalan": null,
-      "jalanReviews": null,
+      "jalan": 4.3,
+      "jalanReviews": 1369,
       "booking": null,
       "google": 4,
       "googleReviews": 1384,
@@ -219,6 +219,12 @@
         "url": "https://review.travel.rakuten.co.jp/hotel/voice/158426/",
         "retrieved": "2026-10-18",
         "note": "楽天 4.31，大浴場擁擠是主要負評，家庭住別館評價好"
+      },
+      {
+        "type": "booking-site",
+        "url": "https://www.jalan.net/yad358024/",
+        "retrieved": "2026-10-18",
+        "note": "じゃらん クチコミ総合、評論數（scripts/jalan.mjs）"
       }
     ],
     "verified": false,
@@ -375,8 +381,8 @@
     "ratings": {
       "rakuten": 4.54,
       "rakutenReviews": 1446,
-      "jalan": null,
-      "jalanReviews": null,
+      "jalan": 4.5,
+      "jalanReviews": 1536,
       "booking": null,
       "google": 4.4,
       "googleReviews": 960,
@@ -456,6 +462,12 @@
         "url": "https://www.gltjp.com/ja/directory/item/19148/",
         "retrieved": "2026-10-18",
         "note": "全室露天風呂、大浴場設備"
+      },
+      {
+        "type": "booking-site",
+        "url": "https://www.jalan.net/yad326003/",
+        "retrieved": "2026-10-18",
+        "note": "じゃらん クチコミ総合、評論數（scripts/jalan.mjs）"
       }
     ],
     "verified": false,
@@ -629,8 +641,8 @@
     "ratings": {
       "rakuten": 4.39,
       "rakutenReviews": 1980,
-      "jalan": null,
-      "jalanReviews": null,
+      "jalan": 4.5,
+      "jalanReviews": 1257,
       "booking": null,
       "google": 4.2,
       "googleReviews": 1211,
@@ -698,6 +710,12 @@
         "url": "https://hotel.travel.rakuten.co.jp/hotelinfo/plan/166509/",
         "retrieved": "2026-10-18",
         "note": "房型與定員（最多 4 人）、朝食付價格"
+      },
+      {
+        "type": "booking-site",
+        "url": "https://www.jalan.net/yad397897/",
+        "retrieved": "2026-10-18",
+        "note": "じゃらん クチコミ総合、評論數（scripts/jalan.mjs）"
       }
     ],
     "verified": false,
@@ -851,8 +869,8 @@
     "ratings": {
       "rakuten": 4.33,
       "rakutenReviews": 2326,
-      "jalan": null,
-      "jalanReviews": null,
+      "jalan": 4.4,
+      "jalanReviews": 1320,
       "booking": null,
       "google": 4,
       "googleReviews": 972,
@@ -927,6 +945,12 @@
         "url": "https://www.pearlpier.com/room/",
         "retrieved": "2026-10-18",
         "note": "房型定員：コネクティング 4 人為最大、全為床"
+      },
+      {
+        "type": "booking-site",
+        "url": "https://www.jalan.net/yad319749/",
+        "retrieved": "2026-10-18",
+        "note": "じゃらん クチコミ総合、評論數（scripts/jalan.mjs）"
       }
     ],
     "verified": false,
@@ -1096,8 +1120,8 @@
     "ratings": {
       "rakuten": 4.12,
       "rakutenReviews": 525,
-      "jalan": null,
-      "jalanReviews": null,
+      "jalan": 4.1,
+      "jalanReviews": 97,
       "booking": null,
       "google": 4,
       "googleReviews": 556,
@@ -1165,6 +1189,12 @@
         "url": "https://hotel.travel.rakuten.co.jp/hotelinfo/plan/184219/",
         "retrieved": "2026-10-18",
         "note": "房型最多 3 人、含早價格"
+      },
+      {
+        "type": "booking-site",
+        "url": "https://www.jalan.net/yad380438/",
+        "retrieved": "2026-10-18",
+        "note": "じゃらん クチコミ総合、評論數（scripts/jalan.mjs）"
       }
     ],
     "verified": false,
@@ -1353,8 +1383,8 @@
     "ratings": {
       "rakuten": 4.54,
       "rakutenReviews": 404,
-      "jalan": null,
-      "jalanReviews": null,
+      "jalan": 4.4,
+      "jalanReviews": 565,
       "booking": null,
       "google": 4.5,
       "googleReviews": 235,
@@ -1428,6 +1458,12 @@
         "url": "https://www.kankomie.or.jp/spot/592",
         "retrieved": "2026-10-18",
         "note": "電話、停車 12 台、寫朝夕房內用餐（與楽天衝突）"
+      },
+      {
+        "type": "booking-site",
+        "url": "https://www.jalan.net/yad311581/",
+        "retrieved": "2026-10-18",
+        "note": "じゃらん クチコミ総合、評論數（scripts/jalan.mjs）"
       }
     ],
     "verified": false,
@@ -1594,8 +1630,8 @@
     "ratings": {
       "rakuten": 4.25,
       "rakutenReviews": 386,
-      "jalan": null,
-      "jalanReviews": null,
+      "jalan": 4.4,
+      "jalanReviews": 86,
       "booking": null,
       "google": 4.2,
       "googleReviews": 338,
@@ -1668,6 +1704,12 @@
         "url": "https://www.kankomie.or.jp/spot/24710",
         "retrieved": "2026-10-18",
         "note": "全室廚房、外宮步行 5 分"
+      },
+      {
+        "type": "booking-site",
+        "url": "https://www.jalan.net/yad326440/",
+        "retrieved": "2026-10-18",
+        "note": "じゃらん クチコミ総合、評論數（scripts/jalan.mjs）"
       }
     ],
     "verified": false,
@@ -1837,8 +1879,8 @@
     "ratings": {
       "rakuten": 3.89,
       "rakutenReviews": 1115,
-      "jalan": null,
-      "jalanReviews": null,
+      "jalan": 3.7,
+      "jalanReviews": 297,
       "booking": null,
       "google": 3.5,
       "googleReviews": 359,
@@ -1912,6 +1954,12 @@
         "url": "https://en-hotel.com/ise/",
         "retrieved": "2026-10-18",
         "note": "2023-03 改名開幕、館前借自行車"
+      },
+      {
+        "type": "booking-site",
+        "url": "https://www.jalan.net/yad393128/",
+        "retrieved": "2026-10-18",
+        "note": "じゃらん クチコミ総合、評論數（scripts/jalan.mjs）"
       }
     ],
     "verified": false,
@@ -2573,8 +2621,8 @@
     "ratings": {
       "rakuten": 4.71,
       "rakutenReviews": 14,
-      "jalan": null,
-      "jalanReviews": null,
+      "jalan": 4.7,
+      "jalanReviews": 10,
       "booking": null,
       "google": 4.9,
       "googleReviews": 162,
@@ -2648,6 +2696,12 @@
         "url": "https://www.travelvoice.jp/20250219-157205",
         "retrieved": "2026-10-18",
         "note": "2025-04-25 開業、6 棟 8 室、バリューマネジメント營運"
+      },
+      {
+        "type": "booking-site",
+        "url": "https://www.jalan.net/yad377473/",
+        "retrieved": "2026-10-18",
+        "note": "じゃらん クチコミ総合、評論數（scripts/jalan.mjs）"
       }
     ],
     "verified": false,
@@ -3619,8 +3673,8 @@
     "ratings": {
       "rakuten": null,
       "rakutenReviews": null,
-      "jalan": null,
-      "jalanReviews": null,
+      "jalan": 4.6,
+      "jalanReviews": 174,
       "booking": null,
       "google": 4.5,
       "googleReviews": 199,
@@ -3678,6 +3732,12 @@
         "url": "https://allabout.co.jp/gm/gc/75549/",
         "retrieved": "2026-10-18",
         "note": "2003 年舊文；木造 6 層懸崖造"
+      },
+      {
+        "type": "booking-site",
+        "url": "https://www.jalan.net/yad358966/",
+        "retrieved": "2026-10-18",
+        "note": "じゃらん クチコミ総合、評論數（scripts/jalan.mjs）"
       }
     ],
     "verified": false,
@@ -3850,8 +3910,8 @@
     "ratings": {
       "rakuten": 4.01,
       "rakutenReviews": 777,
-      "jalan": null,
-      "jalanReviews": null,
+      "jalan": 4,
+      "jalanReviews": 153,
       "booking": null,
       "google": 3.6,
       "googleReviews": 512,
@@ -3926,6 +3986,12 @@
         "url": "https://review.travel.rakuten.co.jp/hotel/voice/181078/",
         "retrieved": "2026-10-18",
         "note": "楽天 4.01／779 則；早餐好評、建築老舊、女性無大浴場、附近餐廳意見分歧"
+      },
+      {
+        "type": "booking-site",
+        "url": "https://www.jalan.net/yad326054/",
+        "retrieved": "2026-10-18",
+        "note": "じゃらん クチコミ総合、評論數（scripts/jalan.mjs）"
       }
     ],
     "verified": false,
@@ -4088,8 +4154,8 @@
     "ratings": {
       "rakuten": 4.66,
       "rakutenReviews": 1290,
-      "jalan": null,
-      "jalanReviews": null,
+      "jalan": 4.6,
+      "jalanReviews": 1819,
       "booking": null,
       "google": 4.2,
       "googleReviews": 1272,
@@ -4181,6 +4247,12 @@
         "url": "https://hotel.travel.rakuten.co.jp/hotelinfo/plan/142809",
         "retrieved": "2026-10-18",
         "note": "方案價格、各房型定員"
+      },
+      {
+        "type": "booking-site",
+        "url": "https://www.jalan.net/yad348644/",
+        "retrieved": "2026-10-18",
+        "note": "じゃらん クチコミ総合、評論數（scripts/jalan.mjs）"
       }
     ],
     "verified": false,
@@ -4336,8 +4408,8 @@
     "ratings": {
       "rakuten": 4.68,
       "rakutenReviews": 578,
-      "jalan": null,
-      "jalanReviews": null,
+      "jalan": 4.6,
+      "jalanReviews": 2428,
       "booking": null,
       "google": 4.2,
       "googleReviews": 1278,
@@ -4436,6 +4508,12 @@
         "url": "https://4travel.jp/dm_hotel-10037575",
         "retrieved": "2026-10-18",
         "note": "3.84（87 則），設備不新、西館無衛浴、無障礙分數低"
+      },
+      {
+        "type": "booking-site",
+        "url": "https://www.jalan.net/yad328192/",
+        "retrieved": "2026-10-18",
+        "note": "じゃらん クチコミ総合、評論數（scripts/jalan.mjs）"
       }
     ],
     "verified": false,

@@ -1,0 +1,331 @@
+{
+ "source": "https://www.jalan.net/240000/LRG_241300/",
+ "retrieved": "2026-10-18",
+ "count": 54,
+ "hotels": [
+  {
+   "yadNo": 383983,
+   "name": "MFR伊勢志摩",
+   "rating": null,
+   "reviews": null
+  },
+  {
+   "yadNo": 322275,
+   "name": "リゾートヒルズ豊浜 蒼空の風 ～ＳＯＲＡ ｎｏ ＫＡＺＥ～",
+   "rating": 4.6,
+   "reviews": 1810
+  },
+  {
+   "yadNo": 340987,
+   "name": "絶景海風癒し庵 新八屋",
+   "rating": 4.3,
+   "reviews": 621
+  },
+  {
+   "yadNo": 332465,
+   "name": "伊勢志摩 潮騒の宿 うえ久",
+   "rating": 4.8,
+   "reviews": 1054
+  },
+  {
+   "yadNo": 373049,
+   "name": "和造りの料理と湯の宿 かず美",
+   "rating": 3.7,
+   "reviews": 559
+  },
+  {
+   "yadNo": 326601,
+   "name": "鳥羽本浦温泉 サン浦島悠季の里",
+   "rating": 4.8,
+   "reviews": 2077
+  },
+  {
+   "yadNo": 319697,
+   "name": "伊勢志摩 情景の宿 あづま",
+   "rating": 4.1,
+   "reviews": 1313
+  },
+  {
+   "yadNo": 337295,
+   "name": "石鏡第一ホテル 神具良（かぐら）",
+   "rating": 4.1,
+   "reviews": 1219
+  },
+  {
+   "yadNo": 333318,
+   "name": "味の宿みち潮",
+   "rating": 4.3,
+   "reviews": 33
+  },
+  {
+   "yadNo": 320234,
+   "name": "花の小宿 重兵衛",
+   "rating": 4.8,
+   "reviews": 367
+  },
+  {
+   "yadNo": 364168,
+   "name": "TAOYA志摩",
+   "rating": 4.4,
+   "reviews": 291
+  },
+  {
+   "yadNo": 309601,
+   "name": "味覚の宿 幸洋荘",
+   "rating": 4.5,
+   "reviews": 174
+  },
+  {
+   "yadNo": 344308,
+   "name": "旅館 大田家 Healing Stay",
+   "rating": 4.3,
+   "reviews": 369
+  },
+  {
+   "yadNo": 333284,
+   "name": "はなしんすい-芭新萃-",
+   "rating": 4.7,
+   "reviews": 979
+  },
+  {
+   "yadNo": 339966,
+   "name": "炭火焼きの宿 銀鱗(ぎんりん) ～伊勢志摩 牡蠣の国「浦村」～",
+   "rating": 4.7,
+   "reviews": 492
+  },
+  {
+   "yadNo": 323572,
+   "name": "味の宿 花椿",
+   "rating": 4.7,
+   "reviews": 835
+  },
+  {
+   "yadNo": 317864,
+   "name": "浜辺のお宿 相差パシフィックホテル",
+   "rating": 4.1,
+   "reviews": 1149
+  },
+  {
+   "yadNo": 315768,
+   "name": "味な湯の宿 別館 すずき",
+   "rating": 5,
+   "reviews": 892
+  },
+  {
+   "yadNo": 367782,
+   "name": "漁師料理と温泉の宿 浜栄",
+   "rating": 4.7,
+   "reviews": 1505
+  },
+  {
+   "yadNo": 375775,
+   "name": "石鏡温泉の宿 ホテルいじか荘",
+   "rating": 4.7,
+   "reviews": 138
+  },
+  {
+   "yadNo": 344304,
+   "name": "志摩ビーチホテル",
+   "rating": 4.4,
+   "reviews": 1248
+  },
+  {
+   "yadNo": 347379,
+   "name": "伊勢志摩TEPPANオーベルジュ CaroCaro鳥羽浦別邸（旧：あじ蔵）",
+   "rating": 4.5,
+   "reviews": 554
+  },
+  {
+   "yadNo": 303654,
+   "name": "星海幽月 夢遊華",
+   "rating": 4.9,
+   "reviews": 562
+  },
+  {
+   "yadNo": 317813,
+   "name": "料理旅館 伝洋",
+   "rating": 4.9,
+   "reviews": 1513
+  },
+  {
+   "yadNo": 383955,
+   "name": "たらふく食べて懐に優しい宿 丸善",
+   "rating": 4.9,
+   "reviews": 531
+  },
+  {
+   "yadNo": 387264,
+   "name": "老舗のくつろぎ 潮美館",
+   "rating": 5,
+   "reviews": 119
+  },
+  {
+   "yadNo": 314703,
+   "name": "魚の栖（すみか） 丸仙（まるせん）",
+   "rating": 4.5,
+   "reviews": 274
+  },
+  {
+   "yadNo": 317490,
+   "name": "四季の味舞台 かんえい",
+   "rating": 4.9,
+   "reviews": 510
+  },
+  {
+   "yadNo": 323652,
+   "name": "名物磯舟料理 おくのせこ",
+   "rating": 4.8,
+   "reviews": 463
+  },
+  {
+   "yadNo": 336963,
+   "name": "割烹の宿 香潮",
+   "rating": 4.8,
+   "reviews": 433
+  },
+  {
+   "yadNo": 306676,
+   "name": "海女の宿 ひょうすけ",
+   "rating": 4,
+   "reviews": 282
+  },
+  {
+   "yadNo": 346923,
+   "name": "あったか民宿 さわ栄",
+   "rating": 3.8,
+   "reviews": 269
+  },
+  {
+   "yadNo": 326179,
+   "name": "海幸の宿 なかよし",
+   "rating": 4.5,
+   "reviews": 182
+  },
+  {
+   "yadNo": 316471,
+   "name": "あそび心の宿のいち",
+   "rating": 4.7,
+   "reviews": 199
+  },
+  {
+   "yadNo": 311200,
+   "name": "海辺の温泉宿 まるさん",
+   "rating": 4.8,
+   "reviews": 520
+  },
+  {
+   "yadNo": 307076,
+   "name": "新鮮味覚の宿 民宿 兵次屋",
+   "rating": 5,
+   "reviews": 232
+  },
+  {
+   "yadNo": 320175,
+   "name": "海辺の宿 うえじ",
+   "rating": 4,
+   "reviews": 138
+  },
+  {
+   "yadNo": 340529,
+   "name": "網元 浜伝",
+   "rating": 3.9,
+   "reviews": 62
+  },
+  {
+   "yadNo": 366844,
+   "name": "海女と漁師の相差町 民宿旅館 山川",
+   "rating": 4,
+   "reviews": 61
+  },
+  {
+   "yadNo": 339864,
+   "name": "食彩の湯宿 冨久家",
+   "rating": null,
+   "reviews": null
+  },
+  {
+   "yadNo": 317293,
+   "name": "あわびと伊勢エビのお宿 たまや",
+   "rating": null,
+   "reviews": null
+  },
+  {
+   "yadNo": 338062,
+   "name": "あみ源",
+   "rating": null,
+   "reviews": null
+  },
+  {
+   "yadNo": 316632,
+   "name": "漁師の宿 まさみや",
+   "rating": null,
+   "reviews": null
+  },
+  {
+   "yadNo": 306018,
+   "name": "民宿旅館丸万",
+   "rating": null,
+   "reviews": null
+  },
+  {
+   "yadNo": 319376,
+   "name": "御宿 瀬乃崎",
+   "rating": null,
+   "reviews": null
+  },
+  {
+   "yadNo": 303558,
+   "name": "こどもがたのしい宿 日乃出旅館",
+   "rating": 4.6,
+   "reviews": 162
+  },
+  {
+   "yadNo": 317528,
+   "name": "料理自慢の民宿 伊平屋荘",
+   "rating": null,
+   "reviews": null
+  },
+  {
+   "yadNo": 362576,
+   "name": "料理民宿 海女の郷",
+   "rating": null,
+   "reviews": null
+  },
+  {
+   "yadNo": 362824,
+   "name": "旅館まつや",
+   "rating": null,
+   "reviews": null
+  },
+  {
+   "yadNo": 380340,
+   "name": "料理旅館 片浜荘",
+   "rating": null,
+   "reviews": null
+  },
+  {
+   "yadNo": 310677,
+   "name": "小さなお宿 長岡",
+   "rating": null,
+   "reviews": null
+  },
+  {
+   "yadNo": 311770,
+   "name": "民宿 かしま",
+   "rating": null,
+   "reviews": null
+  },
+  {
+   "yadNo": 380780,
+   "name": "網元 魚勘",
+   "rating": null,
+   "reviews": null
+  },
+  {
+   "yadNo": 388851,
+   "name": "秀丸花ごころ～絶景に心をゆだね海の恵みを食す宿～",
+   "rating": null,
+   "reviews": null
+  }
+ ]
+}

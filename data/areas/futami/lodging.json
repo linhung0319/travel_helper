@@ -133,8 +133,8 @@
     "ratings": {
       "rakuten": 4.08,
       "rakutenReviews": 1231,
-      "jalan": null,
-      "jalanReviews": null,
+      "jalan": 4,
+      "jalanReviews": 1490,
       "booking": null,
       "google": 4.1,
       "googleReviews": 313,
@@ -207,6 +207,12 @@
         "url": "https://yado.knt.co.jp/st/S240045/",
         "retrieved": "2026-10-18",
         "note": "二見浦站步行 13 分、夫婦岩步行 5 分、接送 14-19 時、大浴場 30 人"
+      },
+      {
+        "type": "booking-site",
+        "url": "https://www.jalan.net/yad325339/",
+        "retrieved": "2026-10-18",
+        "note": "じゃらん クチコミ総合、評論數（scripts/jalan.mjs）"
       }
     ],
     "verified": false,
@@ -332,8 +338,8 @@
     "ratings": {
       "rakuten": 4.64,
       "rakutenReviews": 951,
-      "jalan": null,
-      "jalanReviews": null,
+      "jalan": 4.8,
+      "jalanReviews": 1634,
       "booking": null,
       "google": 4.5,
       "googleReviews": 264,
@@ -419,6 +425,12 @@
         "url": "https://www.oishiya.co.jp/access/",
         "retrieved": "2026-10-18",
         "note": "JR 二見浦駅接送約 5 分"
+      },
+      {
+        "type": "booking-site",
+        "url": "https://www.jalan.net/yad329225/",
+        "retrieved": "2026-10-18",
+        "note": "じゃらん クチコミ総合、評論數（scripts/jalan.mjs）"
       }
     ],
     "verified": false,
@@ -559,8 +571,8 @@
     "ratings": {
       "rakuten": 3.93,
       "rakutenReviews": 2302,
-      "jalan": 3.9,
-      "jalanReviews": 3924,
+      "jalan": 4,
+      "jalanReviews": 3950,
       "booking": null,
       "google": 3.9,
       "googleReviews": 1507,
@@ -650,7 +662,8 @@
       "conflicts": [
         "接送班次：KNT 15:00/16:00/17:00 只接不送；Yahoo 摘要朝 3 夕 3；トラベルコ摘要 伊勢市站發 15:20/16:20/17:20/18:30、飯店發 7:45/9:00/10:00",
         "大浴場時間：楽天 入住～翌 9:30；旅色 15:00～翌 10:00；KNT 16:00～翌 10:00",
-        "じゃらん 分數只來自搜尋摘要，未直接讀頁"
+        "じゃらん 分數只來自搜尋摘要，未直接讀頁",
+        "じゃらん評分：舊值 3.9／3924 則，2026-10-18 旅館頁 4／3950 則（scripts/jalan.mjs，以旅館頁為準）"
       ],
       "rakutenHotelNo": 40176,
       "rakutenVacancy": {
@@ -1729,8 +1742,8 @@
     "ratings": {
       "rakuten": 4.53,
       "rakutenReviews": 127,
-      "jalan": null,
-      "jalanReviews": null,
+      "jalan": 4.7,
+      "jalanReviews": 710,
       "booking": null,
       "google": 4.2,
       "googleReviews": 125,
@@ -1798,6 +1811,12 @@
         "url": "https://review.travel.rakuten.co.jp/hotel/voice/15478/",
         "retrieved": "2026-10-18",
         "note": "4.53（127 則）、晚餐 4.92；只有樓梯、大浴場 4～5 人、建築老舊"
+      },
+      {
+        "type": "booking-site",
+        "url": "https://www.jalan.net/yad394480/",
+        "retrieved": "2026-10-18",
+        "note": "じゃらん クチコミ総合、評論數（scripts/jalan.mjs）"
       }
     ],
     "verified": false,
@@ -2410,8 +2429,8 @@
     "ratings": {
       "rakuten": 3.69,
       "rakutenReviews": 17,
-      "jalan": null,
-      "jalanReviews": null,
+      "jalan": 4.5,
+      "jalanReviews": 19,
       "booking": null,
       "google": 4.1,
       "googleReviews": 25,
@@ -2472,6 +2491,12 @@
         "url": "https://hotel.travel.rakuten.co.jp/hotelinfo/plan/180248",
         "retrieved": "2026-10-18",
         "note": "只有素泊，每人約 6,400 円起；不能加餐、無接送"
+      },
+      {
+        "type": "booking-site",
+        "url": "https://www.jalan.net/yad319128/",
+        "retrieved": "2026-10-18",
+        "note": "じゃらん クチコミ総合、評論數（scripts/jalan.mjs）"
       }
     ],
     "verified": false,
@@ -2898,8 +2923,8 @@
     "ratings": {
       "rakuten": 4.47,
       "rakutenReviews": 2737,
-      "jalan": null,
-      "jalanReviews": null,
+      "jalan": 4.5,
+      "jalanReviews": 1163,
       "booking": null,
       "google": 4.2,
       "googleReviews": 703,
@@ -3003,6 +3028,12 @@
         "url": "https://www.kankomie.or.jp/spot/13746",
         "retrieved": "2026-10-18",
         "note": "鳥羽站送迎要預約，車約 8 分"
+      },
+      {
+        "type": "booking-site",
+        "url": "https://www.jalan.net/yad391565/",
+        "retrieved": "2026-10-18",
+        "note": "じゃらん クチコミ総合、評論數（scripts/jalan.mjs）"
       }
     ],
     "verified": false,
@@ -3667,8 +3698,8 @@
     "ratings": {
       "rakuten": null,
       "rakutenReviews": 1,
-      "jalan": null,
-      "jalanReviews": null,
+      "jalan": 3.5,
+      "jalanReviews": 7,
       "booking": null,
       "google": 4.5,
       "googleReviews": 6,
