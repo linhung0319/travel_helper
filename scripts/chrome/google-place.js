@@ -8,6 +8,15 @@
 // 用 find 點對的那筆、或加分店名、地址重搜，再跑一次。
 // 只讀目前頁面的 DOM，不點任何東西、不 fetch 其他頁面；網址只回傳解析後的值（完整網址會被 Claude in Chrome 擋下）。
 await (async () => {
+  // <closedStatus> 營業狀態只看地點面板開頭（「概要」分頁之前：店名、星數、類別、狀態那幾行）。
+  // T9d 第 3 批：整個面板都比對時，店家貼文「臨時休業のご案内」、訪問者的「臨時休業でした」都會中（5 家誤判 4 家）
+  const closedStatus = (mainText) => {
+    const head = mainText.split(/\n\s*概要\s*\n/)[0];
+    if (/閉業/.test(head)) return 'permanently-closed';
+    if (/^\s*臨時休業\s*$/m.test(head)) return 'temporarily-closed';
+    return null;
+  };
+  // </closedStatus>
   const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
   // 網址要從 /search/ 變成 /place/ 才有 !1s（cid）和 !3d!4d（座標）；列表頁一直是 /search/
   for (let t = 0; t < 10000 && !location.href.includes('/place/') && !document.querySelector('div[role="feed"]'); t += 250) await sleep(250);
@@ -65,7 +74,7 @@ await (async () => {
     website: web ? new URL(web).hostname + new URL(web).pathname : null,
     // 主圖：尾端的尺寸參數改成寬 800
     img: img && img.includes('=w') ? img.split('=w')[0] + '=w800' : img,
-    closed: /閉業|臨時休業/.test(text(document.querySelector('[role="main"]')) ?? '') ? 'closed-or-temporary' : null,
+    closed: closedStatus(document.querySelector('[role="main"]')?.innerText ?? ''),
     warnings,
   };
   if (!cid) warnings.push('網址裡沒有 !1s0x…:0x…，算不出 cid');
