@@ -6,12 +6,18 @@
 //
 // 只讀目前頁面的 DOM，不點任何東西、不 fetch 其他頁面。
 // 抓不到東西時回傳 warnings（不要當成沒有評論）：改用 get_page_text，並修正這裡的選擇器。
-(() => {
+// path 只回傳店家 ID 之後的部分：完整網址會被 Claude in Chrome 當成 Base64 擋下（T8e 實測）。
+// Cloudflare 的「請稍候…」畫面程式自己等最多 10 秒（T8e 實測）；開頭的 await 不能拿掉。
+await (async () => {
+  const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
+  const challenge = () => /Just a moment|請稍候|请稍候|しばらくお待ち|安全驗證|セキュリティ/.test(document.title) || !document.querySelector(".rstinfo-table, .rvw-item, .c-page-count");
+  for (let t = 0; t < 10000 && challenge(); t += 250) await sleep(250);
+  const path = location.pathname.replace(/^\/[a-z]+\/A\d+\/A\d+\/(A\d+\/)?/, "");
   const text = (el) => el?.textContent.replace(/\s+/g, ' ').trim() || null;
   const warnings = [];
 
-  if (/Just a moment|安全驗證|セキュリティ/.test(document.title) || !location.hostname.endsWith('tabelog.com')) {
-    return { url: location.href, warnings: ['不是食べログ口コミ頁（可能是 Cloudflare 驗證畫面）：等 5 秒再跑；不會自己消失就停下來'] };
+  if (challenge() || !location.hostname.endsWith('tabelog.com')) {
+    return { path, warnings: ['不是食べログ口コミ頁（Cloudflare 驗證畫面等了 10 秒還在，或頁面不對）：停下來，不要繞過'] };
   }
 
   const keyword = new URLSearchParams(location.search).get('sw');
@@ -37,11 +43,12 @@
   // 重點店可以只開口コミ頁、不另外開店家首頁（頁尾是不是完整的表，第一次用時確認；不完整就照舊開店家頁）
   const KEEP = /^(店名|ジャンル|予約可否|予約・お問い合わせ|お問い合わせ|電話番号|住所|営業時間|定休日|予算|席数|最大予約可能人数|個室|貸切|禁煙・喫煙|駐車場|空間・設備|お子様連れ|公式アカウント|備考)/;
   const info = {};
-  for (const tr of document.querySelectorAll('.rstinfo-table tr')) {
+  // ?sw= 的頁面不重複回傳（T8e：省 token）
+  for (const tr of keyword ? [] : document.querySelectorAll('.rstinfo-table tr')) {
     const key = tr.querySelector('th')?.textContent.replace(/\s+/g, '');
     if (key && KEEP.test(key)) info[key] = text(tr.querySelector('td'))?.replace(/(https?:\/\/[^\s?#]+)[?#]\S*/g, '$1').slice(0, 250) ?? null;
   }
-  if (!Object.keys(info).length) warnings.push('找不到 .rstinfo-table 的店舗情報：選擇器可能失效');
+  if (!keyword && !Object.keys(info).length) warnings.push('找不到 .rstinfo-table 的店舗情報：選擇器可能失效');
 
-  return { url: location.href, keyword, count, reviews, info, warnings };
+  return { path, keyword, count, reviews, info, warnings };
 })();

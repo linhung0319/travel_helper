@@ -103,3 +103,87 @@ describe('其他欄位', () => {
     assert.equal(p.phone, '050-5872-1234');
   });
 });
+
+// T8e 第 1 批：scripts/chrome/tabelog-info.js 在實際頁面抽到的 rows（2026-10-18，data/cache/work/t8e-1/tabelog.jsonl 節錄）
+describe('實際頁面的 rows（T8e）', () => {
+  test('桂 外宮：個室 30 人以上、貸切 20～50 → yes；座位、預約電話', () => {
+    const p = parseTabelog(info({
+      予約可否: '予約可',
+      '予約・お問い合わせ': '050-5890-2301',
+      電話番号: '0596-28-3001',
+      席数: '46席 （カウンター12席 お座敷34席）',
+      個室: '有 （2人可、4人可、6人可、8人可、10～20人可、20～30人可、30人以上可）',
+      貸切: '可 （20人～50人可）',
+      '空間・設備': 'オシャレな空間、落ち着いた空間、席が広い、カウンター席あり、座敷あり、掘りごたつあり',
+      お子様連れ: '子供可',
+      予算: '￥4,000～￥4,999 ￥1,000～￥1,999',
+      '予算（口コミ集計）': '￥2,000～￥2,999 利用金額分布を見る',
+    }));
+    assert.equal(p.group.seats, 46);
+    assert.equal(p.group.privateRoomMax, 30);
+    assert.equal(p.group.fit15, 'yes');
+    assert.deepEqual(p.seating, ['zashiki', 'horigotatsu', 'counter']);
+    assert.equal(p.kids.allowed, 'yes');
+    assert.equal(p.phone, '050-5890-2301');
+    assert.equal(p.budget, '￥4,000～￥4,999 ￥1,000～￥1,999');
+  });
+  test('居酒屋 ふぐや：沒有「予算」只有「予算（口コミ集計）」→ budget 是 null；貸切「可」沒有人數', () => {
+    const p = parseTabelog(info({
+      予約可否: '予約可',
+      '予算（口コミ集計）': '￥5,000～￥5,999 利用金額分布を見る',
+      席数: '60席',
+      個室: '有 （10～20人可）',
+      貸切: '可',
+      '禁煙・喫煙': '全席喫煙可',
+    }));
+    assert.equal(p.budget, null);
+    assert.equal(p.group.buyout, '可');
+    assert.equal(p.group.privateRoomMax, 20);
+    assert.equal(p.group.fit15, 'yes');
+    assert.equal(p.smoking, '全席喫煙可');
+  });
+  test('たまちゃん：「有 （30人以上可） 最大48人収容可」、貸切不可、バリアフリー', () => {
+    const p = parseTabelog(info({
+      予約可否: '予約可',
+      席数: '96席',
+      個室: '有 （30人以上可） 最大48人収容可',
+      貸切: '不可',
+      '空間・設備': 'オシャレな空間、落ち着いた空間、座敷あり、掘りごたつあり、バリアフリー',
+      お子様連れ: '子供可（乳児可、未就学児可、小学生可）',
+      公式アカウント: 'https://www.facebook.com/yakinikutamachan/ https://x.com/maybach7650 https://www.instagram.com/yakiniku_tamachan/',
+    }));
+    assert.equal(p.group.privateRoomMax, 48);
+    assert.equal(p.group.buyout, '不可');
+    assert.equal(p.group.fit15, 'yes');
+    assert.equal(p.barrierFree, 'バリアフリー');
+    assert.equal(p.instagram, '@yakiniku_tamachan');
+  });
+  test('やきとり能代：最大予約「着席時 44人」、席數有明細', () => {
+    const p = parseTabelog(info({
+      予約可否: '予約可 紙たばこ・電子たばこ共に店舗内喫煙不可となります。',
+      席数: '50席 （カウンター10席/ ２名様テーブル3 /４名様（最大6名様）テーブル2 /７名様（最大8名様）個室3）',
+      最大予約可能人数: '着席時 44人',
+      個室: '有 （4人可、6人可、8人可、10～20人可、20～30人可） ～8名席、～11名席、～15名席',
+      貸切: '不可',
+      お子様連れ: '子供可（乳児可、未就学児可、小学生可）、ベビーカー入店可 お子様連れ歓迎',
+    }));
+    assert.equal(p.group.seats, 50);
+    assert.equal(p.group.maxReservation, 44);
+    assert.equal(p.group.fit15, 'yes');
+    assert.equal(p.reservation.accepted, 'yes');
+  });
+  test('柚子：席數 21（明細裡的數字不算）、備考寫宴會 25 名 → 提醒', () => {
+    const p = parseTabelog(info({
+      予約可否: '予約可 アレルギーなどございましたら事前にお申し付けください。',
+      席数: '21席 （カウンター5席、2名様用個室1室。4名様用個室2室。6名個室1室。）',
+      個室: '有 （2人可、4人可、6人可、8人可、10～20人可） 最大20名様までの個室ご用意できます。',
+      貸切: '可 （20人以下可）',
+      備考: '※昼はミニ懐石￥3500以上のコース料理のみ要予約 ※夜は￥10000コースのみ要予約 ※宴会は25名まで可能 ※仕出し弁当あり',
+      お子様連れ: '子供可（乳児可、未就学児可、小学生可）、お子様メニューあり、ベビーカー入店可 お子様メニューは要予約。',
+    }));
+    assert.equal(p.group.seats, 21);
+    assert.equal(p.group.fit15, 'yes');
+    assert.equal(p.kids.kidsMenu, true);
+    assert.ok(p.warnings.some((w) => w.includes('備考')));
+  });
+});

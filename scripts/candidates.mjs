@@ -5,7 +5,9 @@
 //   node scripts/candidates.mjs list <area> <kind> [--status included] [--region ise-geku] [--criteria C]
 //        [--pending] [--keys k1,k2] [--fields key,name,status,ratings]
 //       一筆一行印出（預設欄位：key、name、region、status、criteria、ratings、pointId）
-//   node scripts/candidates.mjs export <area> <kind> --keys k1,k2 [--out <工作目錄>/batch.json]
+//   node scripts/candidates.mjs export <area> <kind> --keys k1,k2 [--ids k1=id1,k2=id2] [--out <工作目錄>/batch.json]
+//       --ids：還沒有 pointId 的候選，指定資料點 id 當 batch 的 key（讀文的 facts、筆記、judgement 都用這個 id；
+//       pointId 要等資料點建立後由 build-restaurants.mjs --candidates 填，先填會讓 validate 報錯）
 //       匯出讀文 subagent、chrome-actions.mjs、build-restaurants.mjs 用的 batch.json
 //       （key、candKey、name、region、category、criteria、ratings、tabelog、contexts、note、mentions）
 //   node scripts/candidates.mjs set <area> <kind> <patch.json> [--dry-run]
@@ -57,10 +59,16 @@ if (cmd === 'list') {
     console.error(`找不到這些 key：${missing.join(', ')}`);
     process.exit(1);
   }
+  const ids = Object.fromEntries((opt('ids') ?? '').split(',').filter(Boolean).map((s) => s.split('=').map((x) => x.trim())));
+  const badIds = Object.keys(ids).filter((k) => !keysOpt.includes(k));
+  if (badIds.length) {
+    console.error(`--ids 裡有不在 --keys 的 key：${badIds.join(', ')}`);
+    process.exit(1);
+  }
   const batch = keysOpt.map((k) => {
     const c = byKey.get(k);
     return {
-      key: c.pointId ?? c.key,
+      key: c.pointId ?? ids[k] ?? c.key,
       candKey: c.key,
       name: c.name?.ja,
       region: c.region ?? null,

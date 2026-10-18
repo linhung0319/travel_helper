@@ -2679,10 +2679,10 @@
     "group": null,
     "accessibility": {
       "walkInsideMinutes": null,
-      "stairs": null,
+      "stairs": "無",
       "slope": null,
       "restAreas": true,
-      "toilets": null,
+      "toilets": true,
       "barrierFree": null,
       "note": "本居宣長歌碑旁有「参拝休憩所」（官網境內介紹）。境內範圍小；雨天地面易滑（jeepe）。階梯、廁所、無障礙沒有來源。"
     },
@@ -2765,7 +2765,10 @@
     ],
     "verified": false,
     "extra": {
-      "parking": "停車位有限，官網請盡量搭大眾交通；入場 30 分內免費"
+      "parking": "停車位有限，官網請盡量搭大眾交通；入場 30 分內免費",
+      "conflicts": [
+        "accessibility.stairs：Google 評論 1 則（約 2021）說「階段が長い」，另 2 則（約 2022、2025）說沒有樓梯，採用後者"
+      ]
     }
   },
   {
@@ -3304,10 +3307,10 @@
     "group": null,
     "accessibility": {
       "walkInsideMinutes": null,
-      "stairs": null,
+      "stairs": "少",
       "slope": null,
       "restAreas": true,
-      "toilets": null,
+      "toilets": true,
       "barrierFree": null,
       "note": "山頂廣場有足湯；「さんぽ道」通往「伊勢湾が全部見える丘」，途中有長椅和吊床。舊的朝熊山レストハウス已拆，原址是山頂廣場，可以坐著看 360° 景；山頂的餐飲是「朝熊山頂売店」和「朝熊茶屋」（名物志摩うどん，2017 年 600 円）。停車場到足湯的距離、廁所、足湯冬天有沒有開沒有來源。"
     },

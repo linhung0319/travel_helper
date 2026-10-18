@@ -139,7 +139,38 @@
       }
     ],
     "verified": false,
-    "anchors": [],
+    "anchors": [
+      {
+        "id": "isuzugawa",
+        "walkMinutes": 27,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-oharaimachi",
+        "walkMinutes": 1,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-okage-yashiki",
+        "walkMinutes": 2,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-naiku",
+        "walkMinutes": 7,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-jingu-kaikan",
+        "walkMinutes": 3,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-yadoya-isuzu",
+        "walkMinutes": 5,
+        "walkSource": "osrm"
+      }
+    ],
     "contexts": [
       "lunch"
     ],
@@ -351,7 +382,38 @@
       }
     ],
     "verified": false,
-    "anchors": [],
+    "anchors": [
+      {
+        "id": "isuzugawa",
+        "walkMinutes": 30,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-naiku",
+        "walkMinutes": 3,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-oharaimachi",
+        "walkMinutes": 5,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-okage-yashiki",
+        "walkMinutes": 6,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-jingu-kaikan",
+        "walkMinutes": 7,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-yadoya-isuzu",
+        "walkMinutes": 8,
+        "walkSource": "osrm"
+      }
+    ],
     "contexts": [
       "lunch"
     ],
@@ -561,7 +623,38 @@
       }
     ],
     "verified": false,
-    "anchors": [],
+    "anchors": [
+      {
+        "id": "isuzugawa",
+        "walkMinutes": 29,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-oharaimachi",
+        "walkMinutes": 3,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-okage-yashiki",
+        "walkMinutes": 4,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-naiku",
+        "walkMinutes": 4,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-jingu-kaikan",
+        "walkMinutes": 6,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-yadoya-isuzu",
+        "walkMinutes": 7,
+        "walkSource": "osrm"
+      }
+    ],
     "contexts": [
       "lunch"
     ],
@@ -777,7 +870,38 @@
       }
     ],
     "verified": false,
-    "anchors": [],
+    "anchors": [
+      {
+        "id": "isuzugawa",
+        "walkMinutes": 27,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-oharaimachi",
+        "walkMinutes": 1,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-okage-yashiki",
+        "walkMinutes": 2,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-naiku",
+        "walkMinutes": 8,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-jingu-kaikan",
+        "walkMinutes": 2,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-yadoya-isuzu",
+        "walkMinutes": 4,
+        "walkSource": "osrm"
+      }
+    ],
     "contexts": [
       "snack"
     ],
@@ -996,7 +1120,38 @@
       }
     ],
     "verified": false,
-    "anchors": [],
+    "anchors": [
+      {
+        "id": "isuzugawa",
+        "walkMinutes": 28,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-oharaimachi",
+        "walkMinutes": 2,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-okage-yashiki",
+        "walkMinutes": 3,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-naiku",
+        "walkMinutes": 6,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-jingu-kaikan",
+        "walkMinutes": 4,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-yadoya-isuzu",
+        "walkMinutes": 6,
+        "walkSource": "osrm"
+      }
+    ],
     "contexts": [
       "lunch"
     ],
@@ -1192,7 +1347,38 @@
       }
     ],
     "verified": false,
-    "anchors": [],
+    "anchors": [
+      {
+        "id": "isuzugawa",
+        "walkMinutes": 28,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-oharaimachi",
+        "walkMinutes": 2,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-okage-yashiki",
+        "walkMinutes": 4,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-naiku",
+        "walkMinutes": 5,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-jingu-kaikan",
+        "walkMinutes": 5,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-yadoya-isuzu",
+        "walkMinutes": 6,
+        "walkSource": "osrm"
+      }
+    ],
     "contexts": [
       "lunch"
     ],
@@ -1382,7 +1568,38 @@
       }
     ],
     "verified": false,
-    "anchors": [],
+    "anchors": [
+      {
+        "id": "isuzugawa",
+        "walkMinutes": 24,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-okage-yashiki",
+        "walkMinutes": 4,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-oharaimachi",
+        "walkMinutes": 4,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-sarutahiko-jinja",
+        "walkMinutes": 7,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-yadoya-isuzu",
+        "walkMinutes": 2,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-okage-mairi-shukuba",
+        "walkMinutes": 3,
+        "walkSource": "osrm"
+      }
+    ],
     "contexts": [
       "snack"
     ],
@@ -1623,7 +1840,38 @@
       }
     ],
     "verified": false,
-    "anchors": [],
+    "anchors": [
+      {
+        "id": "isuzugawa",
+        "walkMinutes": 27,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-oharaimachi",
+        "walkMinutes": 2,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-okage-yashiki",
+        "walkMinutes": 3,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-naiku",
+        "walkMinutes": 6,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-jingu-kaikan",
+        "walkMinutes": 4,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-yadoya-isuzu",
+        "walkMinutes": 5,
+        "walkSource": "osrm"
+      }
+    ],
     "contexts": [
       "lunch"
     ],
@@ -1857,7 +2105,38 @@
       }
     ],
     "verified": false,
-    "anchors": [],
+    "anchors": [
+      {
+        "id": "isuzugawa",
+        "walkMinutes": 30,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-naiku",
+        "walkMinutes": 3,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-oharaimachi",
+        "walkMinutes": 4,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-okage-yashiki",
+        "walkMinutes": 6,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-jingu-kaikan",
+        "walkMinutes": 7,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-yadoya-isuzu",
+        "walkMinutes": 8,
+        "walkSource": "osrm"
+      }
+    ],
     "contexts": [
       "lunch"
     ],
@@ -2063,7 +2342,38 @@
       }
     ],
     "verified": false,
-    "anchors": [],
+    "anchors": [
+      {
+        "id": "isuzugawa",
+        "walkMinutes": 27,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-oharaimachi",
+        "walkMinutes": 1,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-okage-yashiki",
+        "walkMinutes": 2,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-naiku",
+        "walkMinutes": 7,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-jingu-kaikan",
+        "walkMinutes": 3,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-yadoya-isuzu",
+        "walkMinutes": 5,
+        "walkSource": "osrm"
+      }
+    ],
     "contexts": [
       "lunch"
     ],
@@ -2266,10 +2576,47 @@
         "url": "https://www.kankomie.or.jp/topic/810",
         "retrieved": "2026-10-18",
         "note": "食べ歩き 18 選列出カキフライ串（2024-12-13）"
+      },
+      {
+        "type": "tabelog",
+        "url": "https://tabelog.com/mie/A2403/A240301/24001784/dtlrvwlst/",
+        "retrieved": "2026-10-18",
+        "note": "口コミ（最新 20 則＋關鍵字搜尋）、頁尾店舗情報"
       }
     ],
     "verified": false,
-    "anchors": [],
+    "anchors": [
+      {
+        "id": "isuzugawa",
+        "walkMinutes": 29,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-oharaimachi",
+        "walkMinutes": 3,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-okage-yashiki",
+        "walkMinutes": 4,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-naiku",
+        "walkMinutes": 5,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-jingu-kaikan",
+        "walkMinutes": 6,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-yadoya-isuzu",
+        "walkMinutes": 7,
+        "walkSource": "osrm"
+      }
+    ],
     "contexts": [
       "lunch"
     ],
@@ -2338,18 +2685,26 @@
       "note": "食べログ寫予約可；官網沒寫",
       "leadDays": null
     },
-    "seating": [],
+    "seating": [
+      "table",
+      "zashiki",
+      "horigotatsu"
+    ],
     "kids": {
       "allowed": "yes",
       "minAge": null,
       "kidsMenu": null,
       "note": null
     },
-    "accessibility": null,
+    "accessibility": {
+      "barrierFree": null,
+      "note": "店內在店頭テイクアウト區的後面；1F テーブル席，2F 要走樓梯、脫鞋（座敷上擺テーブル或掘りごたつ）；腳不好的長輩在 2F テーブル席用餐過（口コミ、Google 評論 2024～2026）"
+    },
     "smoking": "全席禁煙（おかげ横丁內有吸菸處）",
     "extra": {
       "conflicts": [
-        "營業時間：官網 11:00～17:00；食べログ 週末到 17:30"
+        "營業時間：官網 11:00～17:00；食べログ 週末到 17:30",
+        "seating：原本 []，改用 [\"table\",\"zashiki\",\"horigotatsu\"]（食べログ口コミ（2024～2026：1F テーブル、2F 座敷上擺テーブル／掘りごたつ）、Google 評論（約 2024））"
       ]
     }
   },
@@ -2495,7 +2850,33 @@
       }
     ],
     "verified": false,
-    "anchors": [],
+    "anchors": [
+      {
+        "id": "ise-naiku",
+        "walkMinutes": 3,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-oharaimachi",
+        "walkMinutes": 6,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-okage-yashiki",
+        "walkMinutes": 7,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-jingu-kaikan",
+        "walkMinutes": 8,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-yadoya-isuzu",
+        "walkMinutes": 9,
+        "walkSource": "osrm"
+      }
+    ],
     "contexts": [
       "lunch"
     ],
@@ -2707,10 +3088,47 @@
         "url": "https://www.nap-camp.com/mag/47060",
         "retrieved": "2026-10-18",
         "note": "手こね寿司、伊勢烏龍、燈籠與榻榻米的空間（2026-10-01 更新）"
+      },
+      {
+        "type": "tabelog",
+        "url": "https://tabelog.com/mie/A2403/A240301/24001876/dtlrvwlst/",
+        "retrieved": "2026-10-18",
+        "note": "口コミ（最新 20 則＋關鍵字搜尋）、頁尾店舗情報"
       }
     ],
     "verified": false,
-    "anchors": [],
+    "anchors": [
+      {
+        "id": "isuzugawa",
+        "walkMinutes": 30,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-naiku",
+        "walkMinutes": 3,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-oharaimachi",
+        "walkMinutes": 5,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-okage-yashiki",
+        "walkMinutes": 6,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-jingu-kaikan",
+        "walkMinutes": 7,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-yadoya-isuzu",
+        "walkMinutes": 8,
+        "walkSource": "osrm"
+      }
+    ],
     "contexts": [
       "lunch"
     ],
@@ -2791,7 +3209,10 @@
       "kidsMenu": true,
       "note": "有兒童餐、尿布台，可推嬰兒車（食べログ）"
     },
-    "accessibility": null,
+    "accessibility": {
+      "barrierFree": null,
+      "note": "2025 年改裝，店內寬；テーブル約 27 卓＋座敷約 10 卓可選、嬰兒車可進（口コミ 2024～2026）；樓梯、2F 沒有人提到"
+    },
     "smoking": "全席禁煙",
     "extra": {
       "conflicts": [
@@ -2925,10 +3346,47 @@
         "url": "https://retty.me/restaurant/100000064431/",
         "retrieved": "2026-10-18",
         "note": "128 席、無包廂；口コミ 5 件（2023-12～2026-09），等待時間"
+      },
+      {
+        "type": "tabelog",
+        "url": "https://tabelog.com/mie/A2403/A240301/24000224/dtlrvwlst/",
+        "retrieved": "2026-10-18",
+        "note": "口コミ（最新 20 則＋關鍵字搜尋）、頁尾店舗情報"
       }
     ],
     "verified": false,
-    "anchors": [],
+    "anchors": [
+      {
+        "id": "isuzugawa",
+        "walkMinutes": 28,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-oharaimachi",
+        "walkMinutes": 1,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-okage-yashiki",
+        "walkMinutes": 2,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-naiku",
+        "walkMinutes": 6,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-jingu-kaikan",
+        "walkMinutes": 4,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-yadoya-isuzu",
+        "walkMinutes": 6,
+        "walkSource": "osrm"
+      }
+    ],
     "contexts": [
       "lunch"
     ],
@@ -3007,12 +3465,16 @@
       "kidsMenu": true,
       "note": "有兒童餐，可推嬰兒車（食べログ）"
     },
-    "accessibility": null,
+    "accessibility": {
+      "barrierFree": null,
+      "note": "1F カウンター＋小上がり座敷，2F 寬敞的テーブル／座敷席，2025 年起 2F 不用脫鞋（口コミ 2023～2026）；樓梯、電梯沒有人提到"
+    },
     "smoking": "全席禁煙（おかげ横丁內有吸菸處）",
     "extra": {
       "conflicts": [
         "席數：食べログ 63、Retty 128",
-        "營業時間：官網 平日 11:00～17:00；食べログ 平日到 16:30；まっぷる 11:00～16:30"
+        "營業時間：官網 平日 11:00～17:00；食べログ 平日到 16:30；まっぷる 11:00～16:30",
+        "seating：資料檔只有 counter；食べログ口コミ（2023～2026）說 1F カウンター＋小上がり座敷、2F テーブル／座敷（店舗情報「座敷あり」）"
       ]
     }
   },
@@ -3156,7 +3618,38 @@
       }
     ],
     "verified": false,
-    "anchors": [],
+    "anchors": [
+      {
+        "id": "isuzugawa",
+        "walkMinutes": 23,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-okage-yashiki",
+        "walkMinutes": 6,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-sarutahiko-jinja",
+        "walkMinutes": 6,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-oharaimachi",
+        "walkMinutes": 6,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-okage-mairi-shukuba",
+        "walkMinutes": 2,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-yadoya-isuzu",
+        "walkMinutes": 3,
+        "walkSource": "osrm"
+      }
+    ],
     "contexts": [
       "lunch",
       "dinner"
@@ -3360,7 +3853,38 @@
       }
     ],
     "verified": false,
-    "anchors": [],
+    "anchors": [
+      {
+        "id": "isuzugawa",
+        "walkMinutes": 23,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-sarutahiko-jinja",
+        "walkMinutes": 6,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-okage-yashiki",
+        "walkMinutes": 6,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-oharaimachi",
+        "walkMinutes": 6,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-okage-mairi-shukuba",
+        "walkMinutes": 2,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-yadoya-isuzu",
+        "walkMinutes": 3,
+        "walkSource": "osrm"
+      }
+    ],
     "contexts": [
       "lunch"
     ],
@@ -3575,10 +4099,47 @@
         "url": "https://4travel.jp/dm_shisetsu/11075009",
         "retrieved": "2026-10-18",
         "note": "21 則口コミ 2011～2021，座敷河景、份量多"
+      },
+      {
+        "type": "tabelog",
+        "url": "https://tabelog.com/mie/A2403/A240301/24001062/dtlrvwlst/",
+        "retrieved": "2026-10-18",
+        "note": "口コミ（最新 20 則＋關鍵字搜尋）、頁尾店舗情報"
       }
     ],
     "verified": false,
-    "anchors": [],
+    "anchors": [
+      {
+        "id": "isuzugawa",
+        "walkMinutes": 23,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-okage-yashiki",
+        "walkMinutes": 5,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-oharaimachi",
+        "walkMinutes": 5,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-sarutahiko-jinja",
+        "walkMinutes": 9,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-yadoya-isuzu",
+        "walkMinutes": 1,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-okage-mairi-shukuba",
+        "walkMinutes": 4,
+        "walkSource": "osrm"
+      }
+    ],
     "contexts": [
       "lunch"
     ],
@@ -3660,14 +4221,15 @@
       "note": "有兒童餐，可推嬰兒車（食べログ）"
     },
     "accessibility": {
-      "barrierFree": null,
+      "barrierFree": "車椅子で入店可（食べログ）",
       "note": "座位以座敷為主（34／57），看得到五十鈴川的座敷在 2 樓，電梯不明"
     },
     "smoking": "全席禁煙（店外有吸菸處）",
     "extra": {
       "conflicts": [
         "營業時間：官網 11:00～17:00；食べログ 11:00～15:00；LIVE JAPAN（2020）有晚餐，現在官網沒有",
-        "とうふや膳 價格：官網 2,000 円、Walker（2025）1,950 円、LIVE JAPAN（2020）1,900 円"
+        "とうふや膳 價格：官網 2,000 円、Walker（2025）1,950 円、LIVE JAPAN（2020）1,900 円",
+        "營業時間：官網 11:00～17:00（L.O. 16:30），食べログ店舗情報 11:00～15:00（季節により異なる，2026-10-18）"
       ]
     }
   },
@@ -3796,10 +4358,47 @@
         "url": "https://4travel.jp/dm_shisetsu/11081998",
         "retrieved": "2026-10-18",
         "note": "7 則口コミ 2014～2019（舊），安靜、2 樓河景"
+      },
+      {
+        "type": "tabelog",
+        "url": "https://tabelog.com/mie/A2403/A240301/24008115/dtlrvwlst/",
+        "retrieved": "2026-10-18",
+        "note": "口コミ（最新 20 則＋關鍵字搜尋）、頁尾店舗情報"
       }
     ],
     "verified": false,
-    "anchors": [],
+    "anchors": [
+      {
+        "id": "isuzugawa",
+        "walkMinutes": 22,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-sarutahiko-jinja",
+        "walkMinutes": 8,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-okage-yashiki",
+        "walkMinutes": 9,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-oharaimachi",
+        "walkMinutes": 9,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-okage-mairi-shukuba",
+        "walkMinutes": 3,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-yadoya-isuzu",
+        "walkMinutes": 4,
+        "walkSource": "osrm"
+      }
+    ],
     "contexts": [
       "lunch"
     ],
@@ -3870,7 +4469,11 @@
       "note": "網路、電話、LINE（官網）",
       "leadDays": null
     },
-    "seating": [],
+    "seating": [
+      "table",
+      "zashiki",
+      "terrace"
+    ],
     "kids": {
       "allowed": "yes",
       "minAge": null,
@@ -4023,10 +4626,47 @@
         "url": "https://4travel.jp/dm_shisetsu/11364974",
         "retrieved": "2026-10-18",
         "note": "二光堂 3.32（15 則，2014～2021）；人潮多、有桌位和座敷"
+      },
+      {
+        "type": "tabelog",
+        "url": "https://tabelog.com/mie/A2403/A240301/24000585/dtlrvwlst/",
+        "retrieved": "2026-10-18",
+        "note": "口コミ（最新 20 則＋關鍵字搜尋）、頁尾店舗情報"
       }
     ],
     "verified": false,
-    "anchors": [],
+    "anchors": [
+      {
+        "id": "isuzugawa",
+        "walkMinutes": 30,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-naiku",
+        "walkMinutes": 3,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-oharaimachi",
+        "walkMinutes": 5,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-okage-yashiki",
+        "walkMinutes": 6,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-jingu-kaikan",
+        "walkMinutes": 7,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-yadoya-isuzu",
+        "walkMinutes": 9,
+        "walkSource": "osrm"
+      }
+    ],
     "contexts": [
       "lunch"
     ],
@@ -4106,7 +4746,10 @@
       "kidsMenu": true,
       "note": "兒童餐 お子様ステーキ丼 900 円（官網菜單）；兒童椅（沒有安全帶）數量有限，座敷沒有兒童椅（食べログ）"
     },
-    "accessibility": null,
+    "accessibility": {
+      "barrierFree": null,
+      "note": "店內有小上がり座敷（要脫鞋）和テーブル席；QR code 點餐（口コミ 2024～2026）；樓梯沒有人提到"
+    },
     "smoking": "全面禁煙",
     "extra": {
       "conflicts": [
@@ -4274,7 +4917,38 @@
       }
     ],
     "verified": false,
-    "anchors": [],
+    "anchors": [
+      {
+        "id": "isuzugawa",
+        "walkMinutes": 29,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-oharaimachi",
+        "walkMinutes": 4,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-naiku",
+        "walkMinutes": 4,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-okage-yashiki",
+        "walkMinutes": 5,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-jingu-kaikan",
+        "walkMinutes": 6,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-yadoya-isuzu",
+        "walkMinutes": 7,
+        "walkSource": "osrm"
+      }
+    ],
     "contexts": [
       "lunch"
     ],
@@ -4490,10 +5164,47 @@
         "url": "https://www.mapple.net/region/a0405010101_g03000000_s-situation=senior/spot/",
         "retrieved": "2026-10-18",
         "note": "列入內宮周邊シニア向け清單"
+      },
+      {
+        "type": "tabelog",
+        "url": "https://tabelog.com/mie/A2403/A240301/24000535/dtlrvwlst/",
+        "retrieved": "2026-10-18",
+        "note": "口コミ（最新 20 則＋關鍵字搜尋）、頁尾店舗情報"
       }
     ],
     "verified": false,
-    "anchors": [],
+    "anchors": [
+      {
+        "id": "isuzugawa",
+        "walkMinutes": 30,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-naiku",
+        "walkMinutes": 3,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-oharaimachi",
+        "walkMinutes": 5,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-okage-yashiki",
+        "walkMinutes": 6,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-jingu-kaikan",
+        "walkMinutes": 7,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-yadoya-isuzu",
+        "walkMinutes": 8,
+        "walkSource": "osrm"
+      }
+    ],
     "contexts": [
       "lunch"
     ],
@@ -4570,7 +5281,7 @@
       "note": "乳兒、學齡前、小學生都可以；中學生以上每人至少點一份（食べログ）"
     },
     "accessibility": {
-      "barrierFree": null,
+      "barrierFree": "車椅子で入店可（食べログ）",
       "note": "列入まっぷる內宮周邊「シニア向け」清單"
     },
     "smoking": "全席禁煙",
@@ -4709,7 +5420,33 @@
       }
     ],
     "verified": false,
-    "anchors": [],
+    "anchors": [
+      {
+        "id": "ise-naiku",
+        "walkMinutes": 4,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-oharaimachi",
+        "walkMinutes": 8,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-okage-yashiki",
+        "walkMinutes": 9,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-jingu-kaikan",
+        "walkMinutes": 10,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-yadoya-isuzu",
+        "walkMinutes": 11,
+        "walkSource": "osrm"
+      }
+    ],
     "contexts": [
       "lunch"
     ],
@@ -4910,10 +5647,52 @@
         "url": "https://www.mapple.net/spot/24011828/",
         "retrieved": "2026-10-18",
         "note": "基本資料、電話 080-2624-5730"
+      },
+      {
+        "type": "tabelog",
+        "url": "https://tabelog.com/mie/A2403/A240301/24021537/dtlrvwlst/",
+        "retrieved": "2026-10-18",
+        "note": "口コミ（全 21 則＋關鍵字搜尋）、頁尾店舗情報"
       }
     ],
     "verified": false,
-    "anchors": [],
+    "anchors": [
+      {
+        "id": "isuzugawa",
+        "walkMinutes": 28,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-oharaimachi",
+        "walkMinutes": 2,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-okage-yashiki",
+        "walkMinutes": 3,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-naiku",
+        "walkMinutes": 6,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-jingu-kaikan",
+        "walkMinutes": 4,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-yadoya-isuzu",
+        "walkMinutes": 6,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-okage-mairi-shukuba",
+        "walkMinutes": 7,
+        "walkSource": "osrm"
+      }
+    ],
     "contexts": [
       "lunch",
       "dinner"
@@ -5007,7 +5786,8 @@
     "smoking": "全席禁煙",
     "extra": {
       "conflicts": [
-        "貸切：食べログ 可；ホットペッパー 本文可、項目欄不可"
+        "貸切：食べログ 可；ホットペッパー 本文可、項目欄不可",
+        "accessibility：ホットペッパー寫バリアフリーあり，食べログ口コミ（2025/03、2026/03）說店在 2F，電梯不明"
       ]
     }
   },
@@ -5143,10 +5923,47 @@
         "url": "https://www.hotpepper.jp/strJ000873265/",
         "retrieved": "2026-10-18",
         "note": "志摩本店（不是這家）單品價格參考"
+      },
+      {
+        "type": "tabelog",
+        "url": "https://tabelog.com/mie/A2403/A240301/24017587/dtlrvwlst/",
+        "retrieved": "2026-10-18",
+        "note": "口コミ（最新 20 則＋關鍵字搜尋）、頁尾店舗情報"
       }
     ],
     "verified": false,
-    "anchors": [],
+    "anchors": [
+      {
+        "id": "isuzugawa",
+        "walkMinutes": 27,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-okage-yashiki",
+        "walkMinutes": 2,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-oharaimachi",
+        "walkMinutes": 2,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-naiku",
+        "walkMinutes": 8,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-jingu-kaikan",
+        "walkMinutes": 2,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-yadoya-isuzu",
+        "walkMinutes": 4,
+        "walkSource": "osrm"
+      }
+    ],
     "contexts": [
       "lunch"
     ],
@@ -5222,7 +6039,7 @@
       "table"
     ],
     "kids": {
-      "allowed": "unknown",
+      "allowed": "yes",
       "minAge": null,
       "kidsMenu": null,
       "note": null
@@ -5234,7 +6051,8 @@
     "smoking": "全席禁煙",
     "extra": {
       "conflicts": [
-        "營業時間：官網 11:00～17:00；食べログ 週末到 17:30"
+        "營業時間：官網 11:00～17:00；食べログ 週末到 17:30",
+        "kids.allowed：原本 unknown，改用 yes（食べログ口コミ（2023/04、2024/02 帶小孩，被安排座敷個室、對小孩親切））"
       ]
     }
   },
@@ -5376,10 +6194,47 @@
         "url": "https://okageyokocho.com/main/about/",
         "retrieved": "2026-10-18",
         "note": "おかげ横丁各月營業時間，2 月 9:30～17:00"
+      },
+      {
+        "type": "tabelog",
+        "url": "https://tabelog.com/mie/A2403/A240301/24004385/dtlrvwlst/",
+        "retrieved": "2026-10-18",
+        "note": "口コミ（最新 20 則＋關鍵字搜尋）、頁尾店舗情報"
       }
     ],
     "verified": false,
-    "anchors": [],
+    "anchors": [
+      {
+        "id": "isuzugawa",
+        "walkMinutes": 28,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-oharaimachi",
+        "walkMinutes": 1,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-okage-yashiki",
+        "walkMinutes": 1,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-naiku",
+        "walkMinutes": 7,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-jingu-kaikan",
+        "walkMinutes": 3,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-yadoya-isuzu",
+        "walkMinutes": 6,
+        "walkSource": "osrm"
+      }
+    ],
     "contexts": [
       "lunch"
     ],
@@ -5448,14 +6303,20 @@
       "note": null,
       "leadDays": null
     },
-    "seating": [],
+    "seating": [
+      "table",
+      "counter"
+    ],
     "kids": {
       "allowed": "yes",
       "minAge": null,
       "kidsMenu": null,
       "note": "沒有兒童餐資料；有蛋包飯、漢堡排、咖哩、炸蝦（官網）"
     },
-    "accessibility": null,
+    "accessibility": {
+      "barrierFree": null,
+      "note": "店在洋館（森翁館）2F，1F 是飾品店，要走入口旁的樓梯（口コミ 2022～2025 多則）；電梯沒有人提到"
+    },
     "smoking": "全席禁煙（おかげ横丁內有吸菸處）",
     "extra": {
       "conflicts": [
@@ -5547,7 +6408,38 @@
       }
     ],
     "verified": false,
-    "anchors": [],
+    "anchors": [
+      {
+        "id": "isuzugawa",
+        "walkMinutes": 28,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-okage-yashiki",
+        "walkMinutes": 2,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-oharaimachi",
+        "walkMinutes": 3,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-naiku",
+        "walkMinutes": 9,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-jingu-kaikan",
+        "walkMinutes": 1,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-yadoya-isuzu",
+        "walkMinutes": 6,
+        "walkSource": "osrm"
+      }
+    ],
     "contexts": [
       "lunch"
     ],
@@ -5782,7 +6674,38 @@
       }
     ],
     "verified": false,
-    "anchors": [],
+    "anchors": [
+      {
+        "id": "isuzugawa",
+        "walkMinutes": 27,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-oharaimachi",
+        "walkMinutes": 1,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-okage-yashiki",
+        "walkMinutes": 3,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-naiku",
+        "walkMinutes": 7,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-jingu-kaikan",
+        "walkMinutes": 4,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-yadoya-isuzu",
+        "walkMinutes": 5,
+        "walkSource": "osrm"
+      }
+    ],
     "contexts": [
       "snack"
     ],
@@ -5997,7 +6920,38 @@
       }
     ],
     "verified": false,
-    "anchors": [],
+    "anchors": [
+      {
+        "id": "isuzugawa",
+        "walkMinutes": 27,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-oharaimachi",
+        "walkMinutes": 1,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-okage-yashiki",
+        "walkMinutes": 3,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-naiku",
+        "walkMinutes": 7,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-jingu-kaikan",
+        "walkMinutes": 4,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-yadoya-isuzu",
+        "walkMinutes": 5,
+        "walkSource": "osrm"
+      }
+    ],
     "contexts": [
       "snack"
     ],
@@ -6203,7 +7157,33 @@
       }
     ],
     "verified": false,
-    "anchors": [],
+    "anchors": [
+      {
+        "id": "ise-naiku",
+        "walkMinutes": 2,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-oharaimachi",
+        "walkMinutes": 6,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-okage-yashiki",
+        "walkMinutes": 7,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-jingu-kaikan",
+        "walkMinutes": 8,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-yadoya-isuzu",
+        "walkMinutes": 9,
+        "walkSource": "osrm"
+      }
+    ],
     "contexts": [
       "snack"
     ],
@@ -6416,7 +7396,38 @@
       }
     ],
     "verified": false,
-    "anchors": [],
+    "anchors": [
+      {
+        "id": "isuzugawa",
+        "walkMinutes": 21,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-sarutahiko-jinja",
+        "walkMinutes": 7,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-oharaimachi",
+        "walkMinutes": 8,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-okage-yashiki",
+        "walkMinutes": 9,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-okage-mairi-shukuba",
+        "walkMinutes": 3,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-yadoya-isuzu",
+        "walkMinutes": 4,
+        "walkSource": "osrm"
+      }
+    ],
     "contexts": [
       "snack"
     ],
@@ -6639,7 +7650,38 @@
       }
     ],
     "verified": false,
-    "anchors": [],
+    "anchors": [
+      {
+        "id": "isuzugawa",
+        "walkMinutes": 27,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-oharaimachi",
+        "walkMinutes": 2,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-okage-yashiki",
+        "walkMinutes": 3,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-naiku",
+        "walkMinutes": 7,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-jingu-kaikan",
+        "walkMinutes": 4,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-yadoya-isuzu",
+        "walkMinutes": 4,
+        "walkSource": "osrm"
+      }
+    ],
     "contexts": [
       "snack",
       "cafe"
@@ -6864,7 +7906,38 @@
       }
     ],
     "verified": false,
-    "anchors": [],
+    "anchors": [
+      {
+        "id": "isuzugawa",
+        "walkMinutes": 27,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-oharaimachi",
+        "walkMinutes": 2,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-okage-yashiki",
+        "walkMinutes": 4,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-naiku",
+        "walkMinutes": 6,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-jingu-kaikan",
+        "walkMinutes": 5,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-yadoya-isuzu",
+        "walkMinutes": 6,
+        "walkSource": "osrm"
+      }
+    ],
     "contexts": [
       "cafe",
       "snack"
@@ -7126,10 +8199,47 @@
         "url": "https://www.kankomie.or.jp/topic/810",
         "retrieved": "2026-10-18",
         "note": "觀光三重「伊勢神宮おかげ横丁やおはらい町の食べ歩き絶品グルメ18選」介紹（2024-12-13）：可樂餅（食べ歩き）"
+      },
+      {
+        "type": "tabelog",
+        "url": "https://tabelog.com/mie/A2403/A240301/24000010/dtlrvwlst/",
+        "retrieved": "2026-10-18",
+        "note": "口コミ（最新 20 則＋關鍵字搜尋）、頁尾店舗情報"
       }
     ],
     "verified": false,
-    "anchors": [],
+    "anchors": [
+      {
+        "id": "isuzugawa",
+        "walkMinutes": 28,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-oharaimachi",
+        "walkMinutes": 1,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-okage-yashiki",
+        "walkMinutes": 2,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-naiku",
+        "walkMinutes": 6,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-jingu-kaikan",
+        "walkMinutes": 4,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-yadoya-isuzu",
+        "walkMinutes": 6,
+        "walkSource": "osrm"
+      }
+    ],
     "contexts": [
       "lunch",
       "snack"
@@ -7211,7 +8321,7 @@
       "note": "子供可（食べログ）"
     },
     "accessibility": {
-      "barrierFree": null,
+      "barrierFree": "バリアフリー（食べログ）；店頭到店內沒有段差、1F 通路寬（口コミ 2024/09）",
       "note": "1F、2F 都有桌椅席和座敷；電梯沒寫（官網）"
     },
     "smoking": "全席禁煙（おかげ横丁內有吸菸處）",
@@ -7358,7 +8468,38 @@
       }
     ],
     "verified": false,
-    "anchors": [],
+    "anchors": [
+      {
+        "id": "isuzugawa",
+        "walkMinutes": 29,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-oharaimachi",
+        "walkMinutes": 3,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-okage-yashiki",
+        "walkMinutes": 4,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-naiku",
+        "walkMinutes": 5,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-jingu-kaikan",
+        "walkMinutes": 6,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-yadoya-isuzu",
+        "walkMinutes": 7,
+        "walkSource": "osrm"
+      }
+    ],
     "contexts": [
       "snack"
     ],
@@ -7576,7 +8717,38 @@
       }
     ],
     "verified": false,
-    "anchors": [],
+    "anchors": [
+      {
+        "id": "isuzugawa",
+        "walkMinutes": 27,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-oharaimachi",
+        "walkMinutes": 2,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-okage-yashiki",
+        "walkMinutes": 3,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-naiku",
+        "walkMinutes": 6,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-jingu-kaikan",
+        "walkMinutes": 5,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-yadoya-isuzu",
+        "walkMinutes": 5,
+        "walkSource": "osrm"
+      }
+    ],
     "contexts": [
       "snack"
     ],
@@ -7804,7 +8976,38 @@
       }
     ],
     "verified": false,
-    "anchors": [],
+    "anchors": [
+      {
+        "id": "isuzugawa",
+        "walkMinutes": 28,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-oharaimachi",
+        "walkMinutes": 1,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-okage-yashiki",
+        "walkMinutes": 2,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-naiku",
+        "walkMinutes": 7,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-jingu-kaikan",
+        "walkMinutes": 3,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-yadoya-isuzu",
+        "walkMinutes": 6,
+        "walkSource": "osrm"
+      }
+    ],
     "contexts": [
       "snack",
       "lunch"
@@ -8047,7 +9250,38 @@
       }
     ],
     "verified": false,
-    "anchors": [],
+    "anchors": [
+      {
+        "id": "isuzugawa",
+        "walkMinutes": 27,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-oharaimachi",
+        "walkMinutes": 1,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-okage-yashiki",
+        "walkMinutes": 2,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-naiku",
+        "walkMinutes": 7,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-jingu-kaikan",
+        "walkMinutes": 3,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-yadoya-isuzu",
+        "walkMinutes": 5,
+        "walkSource": "osrm"
+      }
+    ],
     "contexts": [
       "snack"
     ],
@@ -8262,7 +9496,38 @@
       }
     ],
     "verified": false,
-    "anchors": [],
+    "anchors": [
+      {
+        "id": "isuzugawa",
+        "walkMinutes": 24,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-okage-yashiki",
+        "walkMinutes": 4,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-oharaimachi",
+        "walkMinutes": 4,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-sarutahiko-jinja",
+        "walkMinutes": 7,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-yadoya-isuzu",
+        "walkMinutes": 2,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-okage-mairi-shukuba",
+        "walkMinutes": 4,
+        "walkSource": "osrm"
+      }
+    ],
     "contexts": [
       "snack"
     ],
@@ -8470,7 +9735,38 @@
       }
     ],
     "verified": false,
-    "anchors": [],
+    "anchors": [
+      {
+        "id": "isuzugawa",
+        "walkMinutes": 27,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-oharaimachi",
+        "walkMinutes": 1,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-okage-yashiki",
+        "walkMinutes": 2,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-naiku",
+        "walkMinutes": 7,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-jingu-kaikan",
+        "walkMinutes": 3,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-yadoya-isuzu",
+        "walkMinutes": 5,
+        "walkSource": "osrm"
+      }
+    ],
     "contexts": [
       "lunch",
       "snack"
@@ -8669,7 +9965,38 @@
       }
     ],
     "verified": false,
-    "anchors": [],
+    "anchors": [
+      {
+        "id": "isuzugawa",
+        "walkMinutes": 28,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-oharaimachi",
+        "walkMinutes": 3,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-okage-yashiki",
+        "walkMinutes": 4,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-naiku",
+        "walkMinutes": 5,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-jingu-kaikan",
+        "walkMinutes": 5,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-yadoya-isuzu",
+        "walkMinutes": 6,
+        "walkSource": "osrm"
+      }
+    ],
     "contexts": [
       "snack"
     ],
@@ -8877,7 +10204,33 @@
       }
     ],
     "verified": false,
-    "anchors": [],
+    "anchors": [
+      {
+        "id": "ise-naiku",
+        "walkMinutes": 3,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-oharaimachi",
+        "walkMinutes": 6,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-okage-yashiki",
+        "walkMinutes": 7,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-jingu-kaikan",
+        "walkMinutes": 8,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-yadoya-isuzu",
+        "walkMinutes": 9,
+        "walkSource": "osrm"
+      }
+    ],
     "contexts": [
       "snack",
       "cafe"
@@ -9106,7 +10459,38 @@
       }
     ],
     "verified": false,
-    "anchors": [],
+    "anchors": [
+      {
+        "id": "isuzugawa",
+        "walkMinutes": 30,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-naiku",
+        "walkMinutes": 4,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-oharaimachi",
+        "walkMinutes": 5,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-okage-yashiki",
+        "walkMinutes": 6,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-jingu-kaikan",
+        "walkMinutes": 7,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-yadoya-isuzu",
+        "walkMinutes": 8,
+        "walkSource": "osrm"
+      }
+    ],
     "contexts": [
       "snack",
       "cafe"
@@ -9382,10 +10766,47 @@
         "url": "https://intojapanwaraku.com/rock/gourmet-rock/7105/",
         "retrieved": "2026-10-18",
         "note": "2019 年岩戸餅介紹（舊資料）"
+      },
+      {
+        "type": "tabelog",
+        "url": "https://tabelog.com/mie/A2403/A240301/24001460/dtlrvwlst/",
+        "retrieved": "2026-10-18",
+        "note": "口コミ（最新 20 則＋關鍵字搜尋）、頁尾店舗情報"
       }
     ],
     "verified": false,
-    "anchors": [],
+    "anchors": [
+      {
+        "id": "isuzugawa",
+        "walkMinutes": 30,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-naiku",
+        "walkMinutes": 3,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-oharaimachi",
+        "walkMinutes": 5,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-okage-yashiki",
+        "walkMinutes": 6,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-jingu-kaikan",
+        "walkMinutes": 7,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-yadoya-isuzu",
+        "walkMinutes": 8,
+        "walkSource": "osrm"
+      }
+    ],
     "contexts": [
       "snack",
       "lunch"
@@ -9470,7 +10891,7 @@
       "note": "子供可（乳兒、學齡前、小學生）、可推嬰兒車；お子様ランチ（食べログ 1,200 円、官網 1,500 円）"
     },
     "accessibility": {
-      "barrierFree": null,
+      "barrierFree": "バリアフリー、車椅子で入店可（食べログ）",
       "note": "1F 土產＋一般食堂，2F 團體食堂（觀光三重）；電梯、樓梯沒寫"
     },
     "smoking": "全席禁煙",
@@ -9610,7 +11031,23 @@
       }
     ],
     "verified": false,
-    "anchors": [],
+    "anchors": [
+      {
+        "id": "jr-isuzugaoka",
+        "walkMinutes": 12,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-kikuchi-pearl",
+        "walkMinutes": 14,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-area-one",
+        "walkMinutes": 5,
+        "walkSource": "osrm"
+      }
+    ],
     "contexts": [
       "snack"
     ],
@@ -9827,7 +11264,18 @@
       }
     ],
     "verified": false,
-    "anchors": [],
+    "anchors": [
+      {
+        "id": "ise-asama-summit",
+        "walkMinutes": 3,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-area-one",
+        "walkMinutes": 102,
+        "walkSource": "osrm"
+      }
+    ],
     "contexts": [
       "lunch",
       "snack"
@@ -10008,10 +11456,82 @@
         "url": "https://www.nap-camp.com/mag/57168",
         "retrieved": "2026-10-18",
         "note": "伊勢居酒屋特集，刺身與さめのたれ，建議預約"
+      },
+      {
+        "type": "tabelog",
+        "url": "https://tabelog.com/mie/A2403/A240301/24005695/dtlrvwlst/",
+        "retrieved": "2026-10-18",
+        "note": "口コミ（最新 20 則＋關鍵字搜尋）、頁尾店舗情報"
       }
     ],
     "verified": false,
-    "anchors": [],
+    "anchors": [
+      {
+        "id": "iseshi",
+        "walkMinutes": 5,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-wakamatsuya-kamaboko",
+        "walkMinutes": 8,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-geku-sando",
+        "walkMinutes": 8,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-tsukiyomi-no-miya-geku",
+        "walkMinutes": 11,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-oyado-ichi",
+        "walkMinutes": 3,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-sanco-inn",
+        "walkMinutes": 6,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-comfort-era",
+        "walkMinutes": 8,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-toyoko-inn",
+        "walkMinutes": 9,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-hinode-ryokan",
+        "walkMinutes": 8,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-fav",
+        "walkMinutes": 8,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-nipponia-kawasaki",
+        "walkMinutes": 8,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-wasoan",
+        "walkMinutes": 16,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-geku-bettei-michi",
+        "walkMinutes": 11,
+        "walkSource": "osrm"
+      }
+    ],
     "contexts": [
       "dinner"
     ],
@@ -10080,13 +11600,13 @@
       "table"
     ],
     "kids": {
-      "allowed": "unknown",
+      "allowed": "yes",
       "minAge": null,
       "kidsMenu": null,
       "note": "食べログ 沒有お子様連れ欄"
     },
     "accessibility": {
-      "barrierFree": null,
+      "barrierFree": "バリアフリー、車椅子で入店可（食べログ）",
       "note": "座位以座敷（24 席）為主，テーブル只有 8 席；15 人多半要坐座敷（沒有來源說明怎麼配席）"
     },
     "smoking": "全席禁煙（店外有長椅和菸灰缸）",
@@ -10203,7 +11723,78 @@
       }
     ],
     "verified": false,
-    "anchors": [],
+    "anchors": [
+      {
+        "id": "jr-iseshi",
+        "walkMinutes": 3,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-geku-sando",
+        "walkMinutes": 3,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-tsukiyomi-no-miya-geku",
+        "walkMinutes": 6,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-sengukan",
+        "walkMinutes": 8,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-shinsen",
+        "walkMinutes": 2,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-sanco-inn",
+        "walkMinutes": 2,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-comfort-era",
+        "walkMinutes": 3,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-toyoko-inn",
+        "walkMinutes": 14,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-hinode-ryokan",
+        "walkMinutes": 4,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-fav",
+        "walkMinutes": 6,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-nipponia-kawasaki",
+        "walkMinutes": 14,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-oyado-ichi",
+        "walkMinutes": 5,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-wasoan",
+        "walkMinutes": 10,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-geku-bettei-michi",
+        "walkMinutes": 6,
+        "walkSource": "osrm"
+      }
+    ],
     "contexts": [
       "dinner"
     ],
@@ -10407,7 +11998,63 @@
       }
     ],
     "verified": false,
-    "anchors": [],
+    "anchors": [
+      {
+        "id": "miyamachi",
+        "walkMinutes": 7,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-tsukiyomi-no-miya-geku",
+        "walkMinutes": 11,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-todaya-ryoan",
+        "walkMinutes": 4,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-toyoko-inn",
+        "walkMinutes": 5,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-sanco-inn",
+        "walkMinutes": 13,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-comfort-era",
+        "walkMinutes": 15,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-hinode-ryokan",
+        "walkMinutes": 16,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-fav",
+        "walkMinutes": 9,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-nipponia-kawasaki",
+        "walkMinutes": 19,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-oyado-ichi",
+        "walkMinutes": 11,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-geku-bettei-michi",
+        "walkMinutes": 15,
+        "walkSource": "osrm"
+      }
+    ],
     "contexts": [
       "dinner"
     ],
@@ -10604,7 +12251,73 @@
       }
     ],
     "verified": false,
-    "anchors": [],
+    "anchors": [
+      {
+        "id": "jr-iseshi",
+        "walkMinutes": 4,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-geku-sando",
+        "walkMinutes": 3,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-sengukan",
+        "walkMinutes": 6,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-tsukiyomi-no-miya-geku",
+        "walkMinutes": 8,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-comfort-era",
+        "walkMinutes": 2,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-hinode-ryokan",
+        "walkMinutes": 3,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-sanco-inn",
+        "walkMinutes": 5,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-toyoko-inn",
+        "walkMinutes": 16,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-fav",
+        "walkMinutes": 9,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-nipponia-kawasaki",
+        "walkMinutes": 15,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-oyado-ichi",
+        "walkMinutes": 8,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-wasoan",
+        "walkMinutes": 7,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-geku-bettei-michi",
+        "walkMinutes": 7,
+        "walkSource": "osrm"
+      }
+    ],
     "contexts": [
       "dinner"
     ],
@@ -10783,7 +12496,78 @@
       }
     ],
     "verified": false,
-    "anchors": [],
+    "anchors": [
+      {
+        "id": "iseshi",
+        "walkMinutes": 8,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-tsukiyomi-no-miya-geku",
+        "walkMinutes": 6,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-geku-sando",
+        "walkMinutes": 10,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-wakamatsuya-kamaboko",
+        "walkMinutes": 12,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-fav",
+        "walkMinutes": 4,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-todaya-ryoan",
+        "walkMinutes": 5,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-sanco-inn",
+        "walkMinutes": 8,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-comfort-era",
+        "walkMinutes": 10,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-toyoko-inn",
+        "walkMinutes": 6,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-hinode-ryokan",
+        "walkMinutes": 10,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-nipponia-kawasaki",
+        "walkMinutes": 12,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-oyado-ichi",
+        "walkMinutes": 5,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-wasoan",
+        "walkMinutes": 16,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-geku-bettei-michi",
+        "walkMinutes": 11,
+        "walkSource": "osrm"
+      }
+    ],
     "contexts": [
       "dinner"
     ],
@@ -10976,7 +12760,73 @@
       }
     ],
     "verified": false,
-    "anchors": [],
+    "anchors": [
+      {
+        "id": "iseshi",
+        "walkMinutes": 9,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-tsukiyomi-no-miya-geku",
+        "walkMinutes": 7,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-wakamatsuya-kamaboko",
+        "walkMinutes": 11,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-geku-sando",
+        "walkMinutes": 12,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-fav",
+        "walkMinutes": 5,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-toyoko-inn",
+        "walkMinutes": 6,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-sanco-inn",
+        "walkMinutes": 9,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-comfort-era",
+        "walkMinutes": 11,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-hinode-ryokan",
+        "walkMinutes": 11,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-nipponia-kawasaki",
+        "walkMinutes": 12,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-oyado-ichi",
+        "walkMinutes": 7,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-wasoan",
+        "walkMinutes": 17,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-geku-bettei-michi",
+        "walkMinutes": 12,
+        "walkSource": "osrm"
+      }
+    ],
     "contexts": [
       "dinner"
     ],
@@ -11166,7 +13016,73 @@
       }
     ],
     "verified": false,
-    "anchors": [],
+    "anchors": [
+      {
+        "id": "iseshi",
+        "walkMinutes": 10,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-wakamatsuya-kamaboko",
+        "walkMinutes": 5,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-kawasaki",
+        "walkMinutes": 5,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-nipponia-kawasaki",
+        "walkMinutes": 1,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-hoshidekan",
+        "walkMinutes": 2,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-sanco-inn",
+        "walkMinutes": 14,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-comfort-era",
+        "walkMinutes": 14,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-toyoko-inn",
+        "walkMinutes": 17,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-hinode-ryokan",
+        "walkMinutes": 13,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-fav",
+        "walkMinutes": 16,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-oyado-ichi",
+        "walkMinutes": 11,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-wasoan",
+        "walkMinutes": 16,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-geku-bettei-michi",
+        "walkMinutes": 20,
+        "walkSource": "osrm"
+      }
+    ],
     "contexts": [
       "dinner"
     ],
@@ -11356,10 +13272,87 @@
         "url": "https://retty.me/restaurant/100000051363/",
         "retrieved": "2026-10-18",
         "note": "35 席無包廂、5,000 日圓以下、不收卡，口コミ到 2026-09"
+      },
+      {
+        "type": "tabelog",
+        "url": "https://tabelog.com/mie/A2403/A240301/24000592/dtlrvwlst/",
+        "retrieved": "2026-10-18",
+        "note": "口コミ（最新 20 則＋關鍵字搜尋）、頁尾店舗情報"
       }
     ],
     "verified": false,
-    "anchors": [],
+    "anchors": [
+      {
+        "id": "iseshi",
+        "walkMinutes": 9,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-wakamatsuya-kamaboko",
+        "walkMinutes": 5,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-kawasaki",
+        "walkMinutes": 6,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-geku-sando",
+        "walkMinutes": 15,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-nipponia-kawasaki",
+        "walkMinutes": 2,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-hoshidekan",
+        "walkMinutes": 3,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-sanco-inn",
+        "walkMinutes": 15,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-comfort-era",
+        "walkMinutes": 13,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-toyoko-inn",
+        "walkMinutes": 18,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-hinode-ryokan",
+        "walkMinutes": 12,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-fav",
+        "walkMinutes": 17,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-oyado-ichi",
+        "walkMinutes": 11,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-wasoan",
+        "walkMinutes": 15,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-geku-bettei-michi",
+        "walkMinutes": 20,
+        "walkSource": "osrm"
+      }
+    ],
     "contexts": [
       "dinner"
     ],
@@ -11426,7 +13419,7 @@
       "counter"
     ],
     "kids": {
-      "allowed": "unknown",
+      "allowed": "yes",
       "minAge": null,
       "kidsMenu": null,
       "note": null
@@ -11440,7 +13433,8 @@
       "conflicts": [
         "營業時間：17:00～賣完為止（食べログ、Time Out）；17:00～22:00（和樂web 2019）",
         "公休：不定休（食べログ、Time Out）；週二（和樂web、Retty）",
-        "席數：食べログ 36；Retty 35"
+        "席數：食べログ 36；Retty 35",
+        "seating：現值 [\"counter\"]；另一個來源 [\"counter\",\"table\"]（食べログ口コミ（2024/11，1 則））"
       ]
     }
   },
@@ -11592,7 +13586,73 @@
       }
     ],
     "verified": false,
-    "anchors": [],
+    "anchors": [
+      {
+        "id": "jr-iseshi",
+        "walkMinutes": 6,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-sengukan",
+        "walkMinutes": 4,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-geku-sando",
+        "walkMinutes": 4,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-geku",
+        "walkMinutes": 9,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-geku-bettei-michi",
+        "walkMinutes": 4,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-comfort-era",
+        "walkMinutes": 6,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-sanco-inn",
+        "walkMinutes": 7,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-toyoko-inn",
+        "walkMinutes": 18,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-hinode-ryokan",
+        "walkMinutes": 7,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-fav",
+        "walkMinutes": 11,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-nipponia-kawasaki",
+        "walkMinutes": 18,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-oyado-ichi",
+        "walkMinutes": 10,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-wasoan",
+        "walkMinutes": 6,
+        "walkSource": "osrm"
+      }
+    ],
     "contexts": [
       "lunch",
       "dinner"
@@ -11825,10 +13885,87 @@
         "url": "https://co-trip.jp/post/141239",
         "retrieved": "2026-10-18",
         "note": "2017 投稿，只看到搜尋摘要（403）：松阪牛套餐好評、フレンチトースト"
+      },
+      {
+        "type": "tabelog",
+        "url": "https://tabelog.com/mie/A2403/A240301/24011258/dtlrvwlst/",
+        "retrieved": "2026-10-18",
+        "note": "口コミ（最新 20 則＋關鍵字搜尋）、頁尾店舗情報"
       }
     ],
     "verified": false,
-    "anchors": [],
+    "anchors": [
+      {
+        "id": "jr-iseshi",
+        "walkMinutes": 3,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-geku-sando",
+        "walkMinutes": 1,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-sengukan",
+        "walkMinutes": 6,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-tsukiyomi-no-miya-geku",
+        "walkMinutes": 7,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-shinsen",
+        "walkMinutes": 2,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-comfort-era",
+        "walkMinutes": 2,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-sanco-inn",
+        "walkMinutes": 4,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-toyoko-inn",
+        "walkMinutes": 15,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-hinode-ryokan",
+        "walkMinutes": 4,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-fav",
+        "walkMinutes": 7,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-nipponia-kawasaki",
+        "walkMinutes": 15,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-oyado-ichi",
+        "walkMinutes": 6,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-wasoan",
+        "walkMinutes": 8,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-geku-bettei-michi",
+        "walkMinutes": 6,
+        "walkSource": "osrm"
+      }
+    ],
     "contexts": [
       "lunch",
       "dinner"
@@ -11906,7 +14043,7 @@
       "note": "子供可（食べログ）"
     },
     "accessibility": {
-      "barrierFree": null,
+      "barrierFree": "車椅子で入店可（食べログ）",
       "note": "浦田ビル 1F"
     },
     "smoking": "全席禁煙",
@@ -11997,7 +14134,78 @@
       }
     ],
     "verified": false,
-    "anchors": [],
+    "anchors": [
+      {
+        "id": "ujiyamada",
+        "walkMinutes": 4,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-geku-sando",
+        "walkMinutes": 9,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-sengukan",
+        "walkMinutes": 13,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-wakamatsuya-kamaboko",
+        "walkMinutes": 13,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-city-hotel",
+        "walkMinutes": 6,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-pearlpier",
+        "walkMinutes": 7,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-sanco-inn",
+        "walkMinutes": 10,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-comfort-era",
+        "walkMinutes": 8,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-hinode-ryokan",
+        "walkMinutes": 7,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-fav",
+        "walkMinutes": 15,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-nipponia-kawasaki",
+        "walkMinutes": 10,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-oyado-ichi",
+        "walkMinutes": 12,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-wasoan",
+        "walkMinutes": 8,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-geku-bettei-michi",
+        "walkMinutes": 13,
+        "walkSource": "osrm"
+      }
+    ],
     "contexts": [
       "lunch",
       "dinner"
@@ -12233,10 +14441,92 @@
         "url": "https://aumo.jp/articles/37016",
         "retrieved": "2026-10-18",
         "note": "推てこね寿司，個室適合帶小孩；營業時間與官網不同"
+      },
+      {
+        "type": "tabelog",
+        "url": "https://tabelog.com/mie/A2403/A240301/24000011/dtlrvwlst/",
+        "retrieved": "2026-10-18",
+        "note": "口コミ（最新 20 則＋關鍵字搜尋）、頁尾店舗情報"
       }
     ],
     "verified": false,
-    "anchors": [],
+    "anchors": [
+      {
+        "id": "ujiyamada",
+        "walkMinutes": 3,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-geku-sando",
+        "walkMinutes": 7,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-sengukan",
+        "walkMinutes": 12,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-wakamatsuya-kamaboko",
+        "walkMinutes": 12,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-city-hotel",
+        "walkMinutes": 4,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-pearlpier",
+        "walkMinutes": 5,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-sanco-inn",
+        "walkMinutes": 9,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-comfort-era",
+        "walkMinutes": 6,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-toyoko-inn",
+        "walkMinutes": 20,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-hinode-ryokan",
+        "walkMinutes": 5,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-fav",
+        "walkMinutes": 13,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-nipponia-kawasaki",
+        "walkMinutes": 11,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-oyado-ichi",
+        "walkMinutes": 10,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-wasoan",
+        "walkMinutes": 7,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-geku-bettei-michi",
+        "walkMinutes": 12,
+        "walkSource": "osrm"
+      }
+    ],
     "contexts": [
       "lunch",
       "dinner"
@@ -12322,7 +14612,7 @@
       "note": "お子様にぎり 1,100 円、お子様弁当 1,320 円；兒童椅、嬰兒車可（食べログ、ぐるなび）"
     },
     "accessibility": {
-      "barrierFree": null,
+      "barrierFree": "バリアフリー、車椅子で入店可；1 階テーブル席は車いすのまま食事可（食べログ）",
       "note": "多目的廁所；1F 桌席可以坐輪椅用餐（食べログ）；2 樓電梯沒有來源；停車場 40 台、大巴可"
     },
     "smoking": "全席禁煙（有吸菸室）",
@@ -12449,10 +14739,72 @@
         "url": "https://retty.me/restaurant/100000784446/",
         "retrieved": "2026-10-18",
         "note": "外宮前店（別店）：60 席、無個室，對照用"
+      },
+      {
+        "type": "tabelog",
+        "url": "https://tabelog.com/mie/A2403/A240301/24000563/dtlrvwlst/",
+        "retrieved": "2026-10-18",
+        "note": "口コミ（最新 20 則＋關鍵字搜尋）、頁尾店舗情報"
       }
     ],
     "verified": false,
-    "anchors": [],
+    "anchors": [
+      {
+        "id": "miyamachi",
+        "walkMinutes": 7,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-tsukiyomi-no-miya-geku",
+        "walkMinutes": 12,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-toyoko-inn",
+        "walkMinutes": 2,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-todaya-ryoan",
+        "walkMinutes": 5,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-sanco-inn",
+        "walkMinutes": 14,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-comfort-era",
+        "walkMinutes": 16,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-hinode-ryokan",
+        "walkMinutes": 16,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-fav",
+        "walkMinutes": 10,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-nipponia-kawasaki",
+        "walkMinutes": 18,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-oyado-ichi",
+        "walkMinutes": 12,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-geku-bettei-michi",
+        "walkMinutes": 16,
+        "walkSource": "osrm"
+      }
+    ],
     "contexts": [
       "lunch",
       "dinner"
@@ -12537,7 +14889,7 @@
       "note": "子供可（乳兒、學齡前、小學生），請安靜（食べログ）；兒童餐沒有來源"
     },
     "accessibility": {
-      "barrierFree": null,
+      "barrierFree": "バリアフリー（食べログ）",
       "note": "洋式桌席個室 2 間是無障礙（官網）；停車場 20 台、大巴 3 台"
     },
     "smoking": "全席禁煙（屋外有吸菸處）",
@@ -12699,7 +15051,78 @@
       }
     ],
     "verified": false,
-    "anchors": [],
+    "anchors": [
+      {
+        "id": "miyamachi",
+        "walkMinutes": 9,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-tsukiyomi-no-miya-geku",
+        "walkMinutes": 9,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-geku-sando",
+        "walkMinutes": 14,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-geku",
+        "walkMinutes": 15,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-toyoko-inn",
+        "walkMinutes": 2,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-todaya-ryoan",
+        "walkMinutes": 4,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-sanco-inn",
+        "walkMinutes": 11,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-comfort-era",
+        "walkMinutes": 14,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-hinode-ryokan",
+        "walkMinutes": 14,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-fav",
+        "walkMinutes": 7,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-nipponia-kawasaki",
+        "walkMinutes": 17,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-oyado-ichi",
+        "walkMinutes": 9,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-wasoan",
+        "walkMinutes": 20,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-geku-bettei-michi",
+        "walkMinutes": 13,
+        "walkSource": "osrm"
+      }
+    ],
     "contexts": [
       "lunch",
       "dinner"
@@ -12918,7 +15341,73 @@
       }
     ],
     "verified": false,
-    "anchors": [],
+    "anchors": [
+      {
+        "id": "jr-iseshi",
+        "walkMinutes": 5,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-geku-sando",
+        "walkMinutes": 5,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-sengukan",
+        "walkMinutes": 9,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-tsukiyomi-no-miya-geku",
+        "walkMinutes": 10,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-hinode-ryokan",
+        "walkMinutes": 3,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-comfort-era",
+        "walkMinutes": 4,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-sanco-inn",
+        "walkMinutes": 6,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-toyoko-inn",
+        "walkMinutes": 17,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-fav",
+        "walkMinutes": 11,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-nipponia-kawasaki",
+        "walkMinutes": 12,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-oyado-ichi",
+        "walkMinutes": 8,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-wasoan",
+        "walkMinutes": 5,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-geku-bettei-michi",
+        "walkMinutes": 9,
+        "walkSource": "osrm"
+      }
+    ],
     "contexts": [
       "dinner"
     ],
@@ -13144,7 +15633,78 @@
       }
     ],
     "verified": false,
-    "anchors": [],
+    "anchors": [
+      {
+        "id": "iseshi",
+        "walkMinutes": 10,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-wakamatsuya-kamaboko",
+        "walkMinutes": 7,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-kawasaki",
+        "walkMinutes": 7,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-geku-sando",
+        "walkMinutes": 15,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-nipponia-kawasaki",
+        "walkMinutes": 3,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-hoshidekan",
+        "walkMinutes": 5,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-sanco-inn",
+        "walkMinutes": 15,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-comfort-era",
+        "walkMinutes": 13,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-toyoko-inn",
+        "walkMinutes": 18,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-hinode-ryokan",
+        "walkMinutes": 12,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-fav",
+        "walkMinutes": 17,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-oyado-ichi",
+        "walkMinutes": 11,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-wasoan",
+        "walkMinutes": 15,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-geku-bettei-michi",
+        "walkMinutes": 19,
+        "walkSource": "osrm"
+      }
+    ],
     "contexts": [
       "lunch",
       "dinner"
@@ -13381,7 +15941,78 @@
       }
     ],
     "verified": false,
-    "anchors": [],
+    "anchors": [
+      {
+        "id": "jr-iseshi",
+        "walkMinutes": 14,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-geku",
+        "walkMinutes": 10,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-tsukiyomi-no-miya-geku",
+        "walkMinutes": 10,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-sengukan",
+        "walkMinutes": 12,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-momijiken",
+        "walkMinutes": 5,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-okubun",
+        "walkMinutes": 6,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-sanco-inn",
+        "walkMinutes": 13,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-comfort-era",
+        "walkMinutes": 14,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-toyoko-inn",
+        "walkMinutes": 10,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-hinode-ryokan",
+        "walkMinutes": 15,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-fav",
+        "walkMinutes": 8,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-oyado-ichi",
+        "walkMinutes": 15,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-wasoan",
+        "walkMinutes": 17,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-geku-bettei-michi",
+        "walkMinutes": 8,
+        "walkSource": "osrm"
+      }
+    ],
     "contexts": [
       "lunch",
       "dinner"
@@ -13658,7 +16289,48 @@
       }
     ],
     "verified": false,
-    "anchors": [],
+    "anchors": [
+      {
+        "id": "ujiyamada",
+        "walkMinutes": 13,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-yamatohime-no-miya",
+        "walkMinutes": 15,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-jingu-museum",
+        "walkMinutes": 15,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-asakichi",
+        "walkMinutes": 12,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-wasoan",
+        "walkMinutes": 14,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-comfort-era",
+        "walkMinutes": 19,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-hinode-ryokan",
+        "walkMinutes": 18,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-nipponia-kawasaki",
+        "walkMinutes": 20,
+        "walkSource": "osrm"
+      }
+    ],
     "contexts": [
       "lunch",
       "dinner"
@@ -13772,7 +16444,8 @@
       "conflicts": [
         "營業時間：官網 晚 21:30 閉（L.O. 20:45）；食べログ 21:00（L.O. 20:30）",
         "預算：食べログ 晚 3,000～3,999（口コミ）；GLT 12,000 円～；官網套餐 8,800 円起",
-        "預約：官網 只接電話；食べログ 有網路預約"
+        "預約：官網 只接電話；食べログ 有網路預約",
+        "kids：Google 1 星（約 2024）帶 2 歲小孩想坐カウンター被拒（店家說小孩不行），和官網「歡迎小孩、5 歲以上要點餐」不一致；帶小孩要預約個室並先講（T8e 第 3 批）"
       ]
     }
   },
@@ -13933,7 +16606,78 @@
       }
     ],
     "verified": false,
-    "anchors": [],
+    "anchors": [
+      {
+        "id": "miyamachi",
+        "walkMinutes": 11,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-tsukiyomi-no-miya-geku",
+        "walkMinutes": 9,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-geku-sando",
+        "walkMinutes": 13,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-geku",
+        "walkMinutes": 14,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-okubun",
+        "walkMinutes": 1,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-momijiken",
+        "walkMinutes": 5,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-sanco-inn",
+        "walkMinutes": 12,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-comfort-era",
+        "walkMinutes": 13,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-toyoko-inn",
+        "walkMinutes": 9,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-hinode-ryokan",
+        "walkMinutes": 14,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-fav",
+        "walkMinutes": 7,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-oyado-ichi",
+        "walkMinutes": 14,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-wasoan",
+        "walkMinutes": 20,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-geku-bettei-michi",
+        "walkMinutes": 12,
+        "walkSource": "osrm"
+      }
+    ],
     "contexts": [
       "lunch",
       "dinner"
@@ -14144,7 +16888,38 @@
       }
     ],
     "verified": false,
-    "anchors": [],
+    "anchors": [
+      {
+        "id": "jr-iseshi",
+        "walkMinutes": 9,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-geku",
+        "walkMinutes": 5,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-geku-sando",
+        "walkMinutes": 6,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-sengukan",
+        "walkMinutes": 6,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-geku-bettei-michi",
+        "walkMinutes": 2,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-shinsen",
+        "walkMinutes": 7,
+        "walkSource": "osrm"
+      }
+    ],
     "contexts": [
       "lunch"
     ],
@@ -14343,7 +17118,38 @@
       }
     ],
     "verified": false,
-    "anchors": [],
+    "anchors": [
+      {
+        "id": "jr-iseshi",
+        "walkMinutes": 7,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-geku",
+        "walkMinutes": 5,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-tsukiyomi-no-miya-geku",
+        "walkMinutes": 6,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-geku-sando",
+        "walkMinutes": 7,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-geku-bettei-michi",
+        "walkMinutes": 3,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-shinsen",
+        "walkMinutes": 6,
+        "walkSource": "osrm"
+      }
+    ],
     "contexts": [
       "lunch"
     ],
@@ -14574,10 +17380,82 @@
         "url": "https://www.hotpepper.jp/strJ000108045/",
         "retrieved": "2026-10-18",
         "note": "44 席、座敷、無個室、不可包場、可帶小孩"
+      },
+      {
+        "type": "tabelog",
+        "url": "https://tabelog.com/mie/A2403/A240301/24000012/dtlrvwlst/",
+        "retrieved": "2026-10-18",
+        "note": "口コミ（最新 20 則＋關鍵字搜尋）、頁尾店舗情報"
       }
     ],
     "verified": false,
-    "anchors": [],
+    "anchors": [
+      {
+        "id": "iseshi",
+        "walkMinutes": 5,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-geku-sando",
+        "walkMinutes": 8,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-wakamatsuya-kamaboko",
+        "walkMinutes": 9,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-tsukiyomi-no-miya-geku",
+        "walkMinutes": 11,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-oyado-ichi",
+        "walkMinutes": 3,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-sanco-inn",
+        "walkMinutes": 6,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-comfort-era",
+        "walkMinutes": 8,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-toyoko-inn",
+        "walkMinutes": 9,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-hinode-ryokan",
+        "walkMinutes": 8,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-fav",
+        "walkMinutes": 8,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-nipponia-kawasaki",
+        "walkMinutes": 9,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-wasoan",
+        "walkMinutes": 16,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-geku-bettei-michi",
+        "walkMinutes": 11,
+        "walkSource": "osrm"
+      }
+    ],
     "contexts": [
       "lunch",
       "dinner"
@@ -14650,7 +17528,7 @@
     "kids": {
       "allowed": "yes",
       "minAge": null,
-      "kidsMenu": null,
+      "kidsMenu": true,
       "note": "子供可（乳兒、學齡前、小學生）（食べログ）"
     },
     "accessibility": {
@@ -14782,7 +17660,38 @@
       }
     ],
     "verified": false,
-    "anchors": [],
+    "anchors": [
+      {
+        "id": "ujiyamada",
+        "walkMinutes": 4,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-geku-sando",
+        "walkMinutes": 9,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-sengukan",
+        "walkMinutes": 10,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-geku",
+        "walkMinutes": 14,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-wasoan",
+        "walkMinutes": 3,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-hinode-ryokan",
+        "walkMinutes": 7,
+        "walkSource": "osrm"
+      }
+    ],
     "contexts": [
       "lunch"
     ],
@@ -15007,7 +17916,63 @@
       }
     ],
     "verified": false,
-    "anchors": [],
+    "anchors": [
+      {
+        "id": "miyamachi",
+        "walkMinutes": 9,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-tsukiyomi-no-miya-geku",
+        "walkMinutes": 12,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-okubun",
+        "walkMinutes": 4,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-momijiken",
+        "walkMinutes": 5,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-sanco-inn",
+        "walkMinutes": 16,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-comfort-era",
+        "walkMinutes": 17,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-toyoko-inn",
+        "walkMinutes": 9,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-hinode-ryokan",
+        "walkMinutes": 18,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-fav",
+        "walkMinutes": 10,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-oyado-ichi",
+        "walkMinutes": 15,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-geku-bettei-michi",
+        "walkMinutes": 15,
+        "walkSource": "osrm"
+      }
+    ],
     "contexts": [
       "dinner",
       "snack"
@@ -15211,7 +18176,38 @@
       }
     ],
     "verified": false,
-    "anchors": [],
+    "anchors": [
+      {
+        "id": "iseshi",
+        "walkMinutes": 1,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-geku-sando",
+        "walkMinutes": 9,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-wakamatsuya-kamaboko",
+        "walkMinutes": 9,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-tsukiyomi-no-miya-geku",
+        "walkMinutes": 12,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-oyado-ichi",
+        "walkMinutes": 3,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-pearlpier",
+        "walkMinutes": 4,
+        "walkSource": "osrm"
+      }
+    ],
     "contexts": [
       "lunch"
     ],
@@ -15436,7 +18432,73 @@
       }
     ],
     "verified": false,
-    "anchors": [],
+    "anchors": [
+      {
+        "id": "jr-iseshi",
+        "walkMinutes": 6,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-tsukiyomi-no-miya-geku",
+        "walkMinutes": 3,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-geku-sando",
+        "walkMinutes": 6,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-geku",
+        "walkMinutes": 7,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-fav",
+        "walkMinutes": 4,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-geku-bettei-michi",
+        "walkMinutes": 5,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-sanco-inn",
+        "walkMinutes": 6,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-comfort-era",
+        "walkMinutes": 6,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-toyoko-inn",
+        "walkMinutes": 11,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-hinode-ryokan",
+        "walkMinutes": 7,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-nipponia-kawasaki",
+        "walkMinutes": 17,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-oyado-ichi",
+        "walkMinutes": 8,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-wasoan",
+        "walkMinutes": 13,
+        "walkSource": "osrm"
+      }
+    ],
     "contexts": [
       "lunch",
       "dinner"
@@ -15663,7 +18725,73 @@
       }
     ],
     "verified": false,
-    "anchors": [],
+    "anchors": [
+      {
+        "id": "jr-iseshi",
+        "walkMinutes": 5,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-geku-sando",
+        "walkMinutes": 3,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-sengukan",
+        "walkMinutes": 4,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-geku",
+        "walkMinutes": 8,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-geku-bettei-michi",
+        "walkMinutes": 3,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-comfort-era",
+        "walkMinutes": 5,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-sanco-inn",
+        "walkMinutes": 6,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-toyoko-inn",
+        "walkMinutes": 17,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-hinode-ryokan",
+        "walkMinutes": 6,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-fav",
+        "walkMinutes": 10,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-nipponia-kawasaki",
+        "walkMinutes": 18,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-oyado-ichi",
+        "walkMinutes": 9,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-wasoan",
+        "walkMinutes": 7,
+        "walkSource": "osrm"
+      }
+    ],
     "contexts": [
       "lunch",
       "dinner",
@@ -15886,7 +19014,38 @@
       }
     ],
     "verified": false,
-    "anchors": [],
+    "anchors": [
+      {
+        "id": "jr-iseshi",
+        "walkMinutes": 7,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-sengukan",
+        "walkMinutes": 4,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-geku-sando",
+        "walkMinutes": 4,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-geku",
+        "walkMinutes": 8,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-geku-bettei-michi",
+        "walkMinutes": 3,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-comfort-era",
+        "walkMinutes": 6,
+        "walkSource": "osrm"
+      }
+    ],
     "contexts": [
       "cafe",
       "snack"
@@ -16129,7 +19288,38 @@
       }
     ],
     "verified": false,
-    "anchors": [],
+    "anchors": [
+      {
+        "id": "jr-iseshi",
+        "walkMinutes": 6,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-sengukan",
+        "walkMinutes": 3,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-geku-sando",
+        "walkMinutes": 3,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-geku",
+        "walkMinutes": 8,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-geku-bettei-michi",
+        "walkMinutes": 3,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-comfort-era",
+        "walkMinutes": 5,
+        "walkSource": "osrm"
+      }
+    ],
     "contexts": [
       "lunch",
       "cafe"
@@ -16350,7 +19540,38 @@
       }
     ],
     "verified": false,
-    "anchors": [],
+    "anchors": [
+      {
+        "id": "jr-iseshi",
+        "walkMinutes": 2,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-geku-sando",
+        "walkMinutes": 2,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-tsukiyomi-no-miya-geku",
+        "walkMinutes": 7,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-sengukan",
+        "walkMinutes": 7,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-shinsen",
+        "walkMinutes": 2,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-comfort-era",
+        "walkMinutes": 2,
+        "walkSource": "osrm"
+      }
+    ],
     "contexts": [
       "cafe",
       "snack"
@@ -16572,7 +19793,38 @@
       }
     ],
     "verified": false,
-    "anchors": [],
+    "anchors": [
+      {
+        "id": "jr-iseshi",
+        "walkMinutes": 5,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-geku-sando",
+        "walkMinutes": 3,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-sengukan",
+        "walkMinutes": 3,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-geku",
+        "walkMinutes": 8,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-geku-bettei-michi",
+        "walkMinutes": 3,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-comfort-era",
+        "walkMinutes": 5,
+        "walkSource": "osrm"
+      }
+    ],
     "contexts": [
       "snack"
     ],
@@ -16770,7 +20022,38 @@
       }
     ],
     "verified": false,
-    "anchors": [],
+    "anchors": [
+      {
+        "id": "ujiyamada",
+        "walkMinutes": 4,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-geku-sando",
+        "walkMinutes": 9,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-sengukan",
+        "walkMinutes": 10,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-geku",
+        "walkMinutes": 14,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-wasoan",
+        "walkMinutes": 3,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-hinode-ryokan",
+        "walkMinutes": 7,
+        "walkSource": "osrm"
+      }
+    ],
     "contexts": [
       "lunch",
       "cafe"
@@ -16977,7 +20260,38 @@
       }
     ],
     "verified": false,
-    "anchors": [],
+    "anchors": [
+      {
+        "id": "jr-iseshi",
+        "walkMinutes": 6,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-geku-sando",
+        "walkMinutes": 4,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-sengukan",
+        "walkMinutes": 4,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-geku",
+        "walkMinutes": 9,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-geku-bettei-michi",
+        "walkMinutes": 4,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-comfort-era",
+        "walkMinutes": 5,
+        "walkSource": "osrm"
+      }
+    ],
     "contexts": [
       "cafe",
       "snack"
@@ -17167,7 +20481,38 @@
       }
     ],
     "verified": false,
-    "anchors": [],
+    "anchors": [
+      {
+        "id": "jr-iseshi",
+        "walkMinutes": 4,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-geku-sando",
+        "walkMinutes": 2,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-sengukan",
+        "walkMinutes": 5,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-tsukiyomi-no-miya-geku",
+        "walkMinutes": 9,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-comfort-era",
+        "walkMinutes": 4,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-shinsen",
+        "walkMinutes": 4,
+        "walkSource": "osrm"
+      }
+    ],
     "contexts": [
       "cafe",
       "lunch"
@@ -17349,7 +20694,73 @@
       }
     ],
     "verified": false,
-    "anchors": [],
+    "anchors": [
+      {
+        "id": "jr-iseshi",
+        "walkMinutes": 5,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-geku-sando",
+        "walkMinutes": 4,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-sengukan",
+        "walkMinutes": 9,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-tsukiyomi-no-miya-geku",
+        "walkMinutes": 10,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-hinode-ryokan",
+        "walkMinutes": 3,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-comfort-era",
+        "walkMinutes": 3,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-sanco-inn",
+        "walkMinutes": 6,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-toyoko-inn",
+        "walkMinutes": 17,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-fav",
+        "walkMinutes": 10,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-nipponia-kawasaki",
+        "walkMinutes": 13,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-oyado-ichi",
+        "walkMinutes": 9,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-wasoan",
+        "walkMinutes": 5,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-geku-bettei-michi",
+        "walkMinutes": 9,
+        "walkSource": "osrm"
+      }
+    ],
     "contexts": [
       "dinner"
     ],
@@ -17559,7 +20970,68 @@
       }
     ],
     "verified": false,
-    "anchors": [],
+    "anchors": [
+      {
+        "id": "iseshi",
+        "walkMinutes": 11,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-wakamatsuya-kamaboko",
+        "walkMinutes": 4,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-kawasaki",
+        "walkMinutes": 4,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-nipponia-kawasaki",
+        "walkMinutes": 2,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-hoshidekan",
+        "walkMinutes": 3,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-sanco-inn",
+        "walkMinutes": 15,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-comfort-era",
+        "walkMinutes": 15,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-toyoko-inn",
+        "walkMinutes": 18,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-hinode-ryokan",
+        "walkMinutes": 14,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-fav",
+        "walkMinutes": 17,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-oyado-ichi",
+        "walkMinutes": 12,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-wasoan",
+        "walkMinutes": 17,
+        "walkSource": "osrm"
+      }
+    ],
     "contexts": [
       "lunch",
       "dinner"
@@ -17769,7 +21241,68 @@
       }
     ],
     "verified": false,
-    "anchors": [],
+    "anchors": [
+      {
+        "id": "iseshi",
+        "walkMinutes": 12,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-kawasaki",
+        "walkMinutes": 3,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-wakamatsuya-kamaboko",
+        "walkMinutes": 5,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-nipponia-kawasaki",
+        "walkMinutes": 3,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-hoshidekan",
+        "walkMinutes": 4,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-sanco-inn",
+        "walkMinutes": 16,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-comfort-era",
+        "walkMinutes": 16,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-toyoko-inn",
+        "walkMinutes": 19,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-hinode-ryokan",
+        "walkMinutes": 15,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-fav",
+        "walkMinutes": 18,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-oyado-ichi",
+        "walkMinutes": 13,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-wasoan",
+        "walkMinutes": 18,
+        "walkSource": "osrm"
+      }
+    ],
     "contexts": [
       "dinner",
       "lunch"
@@ -18020,7 +21553,23 @@
       }
     ],
     "verified": false,
-    "anchors": [],
+    "anchors": [
+      {
+        "id": "jr-isuzugaoka",
+        "walkMinutes": 13,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-matsuo-kannonji",
+        "walkMinutes": 10,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-area-one",
+        "walkMinutes": 10,
+        "walkSource": "osrm"
+      }
+    ],
     "contexts": [
       "lunch",
       "dinner"
@@ -18246,7 +21795,23 @@
       }
     ],
     "verified": false,
-    "anchors": [],
+    "anchors": [
+      {
+        "id": "jr-isuzugaoka",
+        "walkMinutes": 13,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-matsuo-kannonji",
+        "walkMinutes": 9,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-area-one",
+        "walkMinutes": 11,
+        "walkSource": "osrm"
+      }
+    ],
     "contexts": [
       "lunch",
       "dinner"
@@ -18452,10 +22017,27 @@
         "url": "https://co-trip.jp/post/730165",
         "retrieved": "2026-10-18",
         "note": "2026-05 使用者投稿（WebSearch 摘要，WebFetch 403）：季節塔 620 円、電話"
+      },
+      {
+        "type": "tabelog",
+        "url": "https://tabelog.com/mie/A2403/A240301/24015834/dtlrvwlst/",
+        "retrieved": "2026-10-18",
+        "note": "口コミ（最新 20 則＋關鍵字搜尋）、頁尾店舗情報"
       }
     ],
     "verified": false,
-    "anchors": [],
+    "anchors": [
+      {
+        "id": "isuzugawa",
+        "walkMinutes": 2,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-tsukiyomi-no-miya",
+        "walkMinutes": 10,
+        "walkSource": "osrm"
+      }
+    ],
     "contexts": [
       "lunch",
       "cafe"
@@ -18542,7 +22124,7 @@
       "note": "キッズスープセット 500 円、甘口カレー・ハヤシ；有幼兒椅、嬰兒車可（官網、食べログ）"
     },
     "accessibility": {
-      "barrierFree": null,
+      "barrierFree": "バリアフリー、車椅子で入店可（食べログ）",
       "note": "結婚會場 ザ・オランジェガーデン五十鈴川 附設；近鐵五十鈴川站出站即到；停車場 80 台（まっぷる，和會場共用）"
     },
     "smoking": "全席禁煙（露台一部分可）",
@@ -18677,10 +22259,37 @@
         "url": "https://retty.me/restaurant/100001240317/",
         "retrieved": "2026-10-18",
         "note": "50 席無包廂、禁菸、五十鈴川站步行 4 分、8 則短評（2015～2022），推薦度 88%"
+      },
+      {
+        "type": "tabelog",
+        "url": "https://tabelog.com/mie/A2403/A240301/24013344/dtlrvwlst/",
+        "retrieved": "2026-10-18",
+        "note": "口コミ（最新 20 則＋關鍵字搜尋）、頁尾店舗情報"
       }
     ],
     "verified": false,
-    "anchors": [],
+    "anchors": [
+      {
+        "id": "isuzugawa",
+        "walkMinutes": 7,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-tsukiyomi-no-miya",
+        "walkMinutes": 14,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-yamatohime-no-miya",
+        "walkMinutes": 14,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-jingu-museum",
+        "walkMinutes": 15,
+        "walkSource": "osrm"
+      }
+    ],
     "contexts": [
       "lunch",
       "dinner",
@@ -18761,7 +22370,7 @@
       "note": "子供可（食べログ）；兒童餐沒有來源"
     },
     "accessibility": {
-      "barrierFree": null,
+      "barrierFree": "バリアフリー（食べログ）",
       "note": "近鐵五十鈴川站步行約 4 分（Retty）；停車場 店旁 10 台＋店後 5 台（食べログ）"
     },
     "smoking": "分煙（吧台、露台可吸菸）",
@@ -18874,7 +22483,28 @@
       }
     ],
     "verified": false,
-    "anchors": [],
+    "anchors": [
+      {
+        "id": "isuzugawa",
+        "walkMinutes": 16,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-tsukiyomi-no-miya",
+        "walkMinutes": 11,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-okage-mairi-shukuba",
+        "walkMinutes": 14,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-yadoya-isuzu",
+        "walkMinutes": 14,
+        "walkSource": "osrm"
+      }
+    ],
     "contexts": [
       "lunch"
     ],
@@ -19047,7 +22677,23 @@
       }
     ],
     "verified": false,
-    "anchors": [],
+    "anchors": [
+      {
+        "id": "isuzugawa",
+        "walkMinutes": 10,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-yamatohime-no-miya",
+        "walkMinutes": 8,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-jingu-museum",
+        "walkMinutes": 8,
+        "walkSource": "osrm"
+      }
+    ],
     "contexts": [
       "snack"
     ],
@@ -19242,7 +22888,23 @@
       }
     ],
     "verified": false,
-    "anchors": [],
+    "anchors": [
+      {
+        "id": "isuzugawa",
+        "walkMinutes": 15,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-yamatohime-no-miya",
+        "walkMinutes": 13,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-jingu-museum",
+        "walkMinutes": 14,
+        "walkSource": "osrm"
+      }
+    ],
     "contexts": [
       "lunch",
       "dinner"
@@ -19475,7 +23137,28 @@
       }
     ],
     "verified": false,
-    "anchors": [],
+    "anchors": [
+      {
+        "id": "isuzugawa",
+        "walkMinutes": 15,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-yamatohime-no-miya",
+        "walkMinutes": 15,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-asakichi",
+        "walkMinutes": 7,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-wasoan",
+        "walkMinutes": 19,
+        "walkSource": "osrm"
+      }
+    ],
     "contexts": [
       "dinner"
     ],
@@ -19707,7 +23390,23 @@
       }
     ],
     "verified": false,
-    "anchors": [],
+    "anchors": [
+      {
+        "id": "miyamachi",
+        "walkMinutes": 27,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-wakamatsuya-kamaboko",
+        "walkMinutes": 34,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-toyoko-inn",
+        "walkMinutes": 28,
+        "walkSource": "osrm"
+      }
+    ],
     "contexts": [
       "lunch",
       "dinner"
@@ -19926,7 +23625,23 @@
       }
     ],
     "verified": false,
-    "anchors": [],
+    "anchors": [
+      {
+        "id": "iseshi",
+        "walkMinutes": 17,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-kawasaki",
+        "walkMinutes": 9,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-castle-inn",
+        "walkMinutes": 6,
+        "walkSource": "osrm"
+      }
+    ],
     "contexts": [
       "lunch"
     ],
@@ -20168,7 +23883,28 @@
       }
     ],
     "verified": false,
-    "anchors": [],
+    "anchors": [
+      {
+        "id": "isuzugawa",
+        "walkMinutes": 28,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-sarutahiko-jinja",
+        "walkMinutes": 14,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-asakichi",
+        "walkMinutes": 16,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-okage-mairi-shukuba",
+        "walkMinutes": 18,
+        "walkSource": "osrm"
+      }
+    ],
     "contexts": [
       "lunch",
       "dinner"
@@ -20433,7 +24169,23 @@
       }
     ],
     "verified": false,
-    "anchors": [],
+    "anchors": [
+      {
+        "id": "jr-isuzugaoka",
+        "walkMinutes": 7,
+        "walkSource": "estimate"
+      },
+      {
+        "id": "ise-kikuchi-pearl",
+        "walkMinutes": 24,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-area-one",
+        "walkMinutes": 8,
+        "walkSource": "estimate"
+      }
+    ],
     "contexts": [
       "lunch",
       "dinner"
@@ -20685,10 +24437,27 @@
         "url": "https://www.perception1993.com/access.html",
         "retrieved": "2026-10-18",
         "note": "小俣站步行 5 分、第 3 停車場、免費接送條件"
+      },
+      {
+        "type": "tabelog",
+        "url": "https://tabelog.com/mie/A2403/A240301/24006985/dtlrvwlst/",
+        "retrieved": "2026-10-18",
+        "note": "口コミ（最新 20 則＋關鍵字搜尋）、頁尾店舗情報"
       }
     ],
     "verified": false,
-    "anchors": [],
+    "anchors": [
+      {
+        "id": "obata",
+        "walkMinutes": 5,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-ichigoen",
+        "walkMinutes": 13,
+        "walkSource": "osrm"
+      }
+    ],
     "contexts": [
       "lunch",
       "dinner"
@@ -20777,7 +24546,10 @@
       "note": "官網表單、電話；套餐前一天前預約",
       "leadDays": null
     },
-    "seating": [],
+    "seating": [
+      "zashiki",
+      "horigotatsu"
+    ],
     "kids": {
       "allowed": "yes",
       "minAge": null,
@@ -20785,13 +24557,3527 @@
       "note": "子供可、有お子様メニュー（食べログ）"
     },
     "accessibility": {
-      "barrierFree": null,
+      "barrierFree": "バリアフリー（食べログ）",
       "note": "コンフィアンス 1F；近鐵小俣站步行約 5 分；專用停車場，中大型巴士可停（要預約）；晚餐 4 人以上免費接送（官網）；伊勢苺園（`ise-ichigoen`）約 800 m"
     },
     "smoking": "全席禁煙",
     "extra": {
       "conflicts": [
         "座位形式（桌椅或座敷）沒有來源"
+      ]
+    }
+  },
+  {
+    "id": "ise-fuguya",
+    "type": "restaurant",
+    "name": {
+      "ja": "居酒屋 ふぐや",
+      "kana": "ふぐや",
+      "zh": "河豚居酒屋 ふぐや",
+      "en": null
+    },
+    "area": "ise",
+    "region": "ise-geku",
+    "coords": [
+      136.7069042,
+      34.496046
+    ],
+    "coordsSource": "google-maps-url",
+    "address": "三重県伊勢市一之木3-7-11",
+    "hours": {
+      "mon": [
+        [
+          "15:00",
+          "22:00"
+        ]
+      ],
+      "tue": [
+        [
+          "15:00",
+          "22:00"
+        ]
+      ],
+      "wed": [
+        [
+          "15:00",
+          "22:00"
+        ]
+      ],
+      "thu": [],
+      "fri": [
+        [
+          "15:00",
+          "22:00"
+        ]
+      ],
+      "sat": [
+        [
+          "15:00",
+          "22:00"
+        ]
+      ],
+      "sun": [
+        [
+          "15:00",
+          "22:00"
+        ]
+      ],
+      "holiday": null,
+      "lastEntry": "21:30",
+      "note": "官網 15:00～22:00（L.O. 21:30），週四休；食べログ（非店舗会員）另有午餐 12:00～13:30（只限預約）、晚到 22:30。國定假日沒有來源"
+    },
+    "closedNote": "週四",
+    "febNote": "2/4、2/11（四）休；2 月是河豚季（官網）",
+    "closures": [],
+    "photos": [
+      {
+        "url": "http://www.isefuguya.jp/img/shop_tenpoimage_v2_a.jpg",
+        "page": "http://www.isefuguya.jp/shop/",
+        "kind": "official",
+        "credit": "居酒屋 ふぐや",
+        "license": null
+      },
+      {
+        "url": "http://www.isefuguya.jp/img/about_zashiki.jpg",
+        "page": "http://www.isefuguya.jp/about/",
+        "kind": "official",
+        "credit": "居酒屋 ふぐや",
+        "license": null
+      }
+    ],
+    "links": {
+      "official": "http://www.isefuguya.jp/",
+      "googleMaps": "https://maps.google.com/?cid=10202392383528997761",
+      "tabelog": "https://tabelog.com/mie/A2403/A240301/24000389/",
+      "instagram": null
+    },
+    "tags": [],
+    "tier": null,
+    "sources": [
+      {
+        "type": "tabelog",
+        "url": "https://tabelog.com/mie/A2403/A240301/24000389/",
+        "retrieved": "2026-10-18",
+        "note": "店舗情報：分數、席數、預約、個室、貸切、營業時間、お子様連れ"
+      },
+      {
+        "type": "google-maps",
+        "url": "https://maps.google.com/?cid=10202392383528997761",
+        "retrieved": "2026-10-18",
+        "note": "星數、評論數、座標、照片"
+      },
+      {
+        "type": "official",
+        "url": "http://www.isefuguya.jp/",
+        "retrieved": "2026-10-18",
+        "note": "首頁：創業90年以上、營業時間、新聞（最新 2025/03）"
+      },
+      {
+        "type": "official",
+        "url": "http://www.isefuguya.jp/about/",
+        "retrieved": "2026-10-18",
+        "note": "70席：カウンター8、テーブル・掘りごたつ30、お座敷個室3部屋（最大32席大広間）"
+      },
+      {
+        "type": "official",
+        "url": "http://www.isefuguya.jp/menu/",
+        "retrieved": "2026-10-18",
+        "note": "ふぐ料理一覧、コース準備中、伊勢海老姿焼き、ヒレ酒"
+      },
+      {
+        "type": "official",
+        "url": "http://www.isefuguya.jp/shop/",
+        "retrieved": "2026-10-18",
+        "note": "店舗情報：個室最大32席要予約、全席喫煙不可、駐車場30台"
+      }
+    ],
+    "verified": false,
+    "anchors": [
+      {
+        "id": "iseshi",
+        "walkMinutes": 10,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-tsukiyomi-no-miya-geku",
+        "walkMinutes": 8,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-wakamatsuya-kamaboko",
+        "walkMinutes": 10,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-geku-sando",
+        "walkMinutes": 12,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-toyoko-inn",
+        "walkMinutes": 6,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-oyado-ichi",
+        "walkMinutes": 7,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-sanco-inn",
+        "walkMinutes": 10,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-comfort-era",
+        "walkMinutes": 11,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-hinode-ryokan",
+        "walkMinutes": 12,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-fav",
+        "walkMinutes": 6,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-nipponia-kawasaki",
+        "walkMinutes": 12,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-wasoan",
+        "walkMinutes": 18,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-geku-bettei-michi",
+        "walkMinutes": 13,
+        "walkSource": "osrm"
+      }
+    ],
+    "contexts": [
+      "dinner"
+    ],
+    "access": "walk",
+    "cuisine": [
+      "和食・割烹",
+      "居酒屋"
+    ],
+    "priceRange": "晚 ¥5,000～6,000（口コミ集計）",
+    "price": {
+      "lunch": null,
+      "dinner": [
+        5000,
+        6000
+      ]
+    },
+    "stayMinutes": null,
+    "mustTry": [
+      "ふぐ鍋（てっちり）",
+      "ふぐ刺身（てっさ）",
+      "伊勢海老姿焼き"
+    ],
+    "menu": [
+      {
+        "url": "https://tabelog.com/mie/A2403/A240301/24000389/dtlmenu/",
+        "source": "tabelog",
+        "retrieved": "2026-10-18"
+      }
+    ],
+    "ratings": {
+      "tabelog": 3.24,
+      "tabelogReviews": 47,
+      "google": 4.2,
+      "googleReviews": 153,
+      "note": null
+    },
+    "inclusion": [
+      "C"
+    ],
+    "tabelogOwner": false,
+    "googleName": "ふぐや",
+    "notes": "一之木的河豚料理居酒屋（Google 4.2／153 則），2 月正是河豚季（てっちり、てっさ），座敷個室打通最多 32 席、另有テーブル・掘りごたつ 30 席、停車場 30 台；套餐價格官網「準備中」要電話問。週四休（2/4、2/11）。",
+    "group": {
+      "seats": 60,
+      "maxReservation": null,
+      "privateRoom": true,
+      "buyout": "可",
+      "groupMenu": "官網「コース料理 ※現在準備中」，沒有價格；宴會可（官網）",
+      "fit15": "yes",
+      "fitSubgroup": "yes",
+      "source": "食べログ：60 席、個室 10～20 人、貸切可、可預約；官網 座敷個室 3 間，宴會時打通成最多 32 席 → yes"
+    },
+    "reservation": {
+      "accepted": "yes",
+      "methods": [
+        "phone"
+      ],
+      "phone": "0596-25-8719",
+      "url": null,
+      "language": "日文",
+      "note": "預約時可指定座位（官網）",
+      "leadDays": null
+    },
+    "seating": [
+      "table",
+      "horigotatsu",
+      "zashiki",
+      "counter"
+    ],
+    "kids": {
+      "allowed": "yes",
+      "minAge": null,
+      "kidsMenu": null,
+      "note": "官網寫歡迎家族；兒童餐沒寫"
+    },
+    "accessibility": {
+      "barrierFree": null,
+      "note": "伊勢市站步行 10～15 分；停車場 3 處 30 台（官網）；テーブル・掘りごたつ 30 席、座敷 32 席（官網）"
+    },
+    "smoking": "全席禁煙",
+    "extra": {
+      "conflicts": [
+        "席數：官網 70 席、食べログ 60 席",
+        "個室：官網 座敷最多 32 席、食べログ 10～20 人",
+        "吸菸：官網 全席禁菸、食べログ 全席喫煙可",
+        "營業時間：官網 只有 15:00～22:00、食べログ 另有午餐（只限預約）"
+      ]
+    }
+  },
+  {
+    "id": "ise-isshobin-shojutei",
+    "type": "restaurant",
+    "name": {
+      "ja": "一升びん 松寿亭",
+      "kana": "いっしょうびん しょうじゅてい",
+      "zh": "一升瓶 松壽亭（松阪牛燒肉）",
+      "en": null
+    },
+    "area": "ise",
+    "region": "ise-geku",
+    "coords": [
+      136.7075999,
+      34.502812
+    ],
+    "coordsSource": "google-maps-url",
+    "address": "三重県伊勢市一之木5-13-20",
+    "hours": {
+      "mon": [
+        [
+          "16:30",
+          "21:00"
+        ]
+      ],
+      "tue": [],
+      "wed": [
+        [
+          "16:30",
+          "21:00"
+        ]
+      ],
+      "thu": [
+        [
+          "16:30",
+          "21:00"
+        ]
+      ],
+      "fri": [
+        [
+          "16:30",
+          "21:00"
+        ]
+      ],
+      "sat": [
+        [
+          "11:30",
+          "14:30"
+        ],
+        [
+          "16:30",
+          "21:00"
+        ]
+      ],
+      "sun": [
+        [
+          "11:30",
+          "14:30"
+        ],
+        [
+          "16:30",
+          "21:00"
+        ]
+      ],
+      "holiday": [
+        [
+          "11:30",
+          "14:30"
+        ],
+        [
+          "16:30",
+          "21:00"
+        ]
+      ],
+      "lastEntry": [
+        "14:00",
+        "20:30"
+      ],
+      "note": "官網、食べログ（店舗会員）：平日只有晚上，土日祝 中午休息後再開；L.O. 午 14:00、晚 20:30。週二休（遇國定假日隔天休）"
+    },
+    "closedNote": "週二（遇國定假日改隔天）",
+    "febNote": "2/2、2/9（二）休；平日只有晚上；官網首頁有臨時休業公告，出發前再看",
+    "closures": [],
+    "photos": [
+      {
+        "url": "https://lh3.googleusercontent.com/grass-cs/AABkmLez04vH4128NA55EJ6YOET3tpz177SMhVHntJ60tr5hxOe41DurFyXpUuaF4j8ItEv7v_2tDfgfPp2MMe2QEhca2mEseZzp-tcpHU9gZ301ZutzBOb9q-FsugmjmruY4ld3JkJfQq48q3w=w800",
+        "page": "https://maps.google.com/?cid=8903157561565798207",
+        "kind": "google",
+        "credit": "Google マップ",
+        "license": null
+      }
+    ],
+    "links": {
+      "official": "https://www.isshobin.com/store/1856/",
+      "googleMaps": "https://maps.google.com/?cid=8903157561565798207",
+      "tabelog": "https://tabelog.com/mie/A2403/A240301/24000431/",
+      "instagram": "@isshobin"
+    },
+    "tags": [],
+    "tier": null,
+    "sources": [
+      {
+        "type": "tabelog",
+        "url": "https://tabelog.com/mie/A2403/A240301/24000431/",
+        "retrieved": "2026-10-18",
+        "note": "店舗情報：分數、席數、預約、個室、貸切、營業時間、お子様連れ（店舗会員）"
+      },
+      {
+        "type": "google-maps",
+        "url": "https://maps.google.com/?cid=8903157561565798207",
+        "retrieved": "2026-10-18",
+        "note": "星數、評論數、座標、照片"
+      },
+      {
+        "type": "official",
+        "url": "https://www.isshobin.com/store/1856/",
+        "retrieved": "2026-10-18",
+        "note": "伊勢松寿亭店舗頁：營業時間、火曜休、停車 20 台、セット價格"
+      },
+      {
+        "type": "official",
+        "url": "https://www.isshobin.com/",
+        "retrieved": "2026-10-18",
+        "note": "店舗清單、伊勢松寿亭臨時休業公告"
+      },
+      {
+        "type": "booking-site",
+        "url": "https://r.gnavi.co.jp/n131500/",
+        "retrieved": "2026-10-18",
+        "note": "80 席、座敷個室 6～30 名、宴會最多 55 名、座敷・掘りごたつ、停車 50 台"
+      },
+      {
+        "type": "official",
+        "url": "https://www.isshobin.com/shopguide/2011/12/post-29.php",
+        "retrieved": "2026-10-18",
+        "note": "這是松阪本店頁，不是松寿亭，不採用"
+      }
+    ],
+    "verified": false,
+    "anchors": [
+      {
+        "id": "miyamachi",
+        "walkMinutes": 16,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-wakamatsuya-kamaboko",
+        "walkMinutes": 17,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-toyoko-inn",
+        "walkMinutes": 14,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-sanco-inn",
+        "walkMinutes": 20,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-fav",
+        "walkMinutes": 16,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-nipponia-kawasaki",
+        "walkMinutes": 20,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-oyado-ichi",
+        "walkMinutes": 17,
+        "walkSource": "osrm"
+      }
+    ],
+    "contexts": [
+      "lunch",
+      "dinner"
+    ],
+    "access": "walk",
+    "cuisine": [
+      "燒肉・肉料理"
+    ],
+    "priceRange": "¥4,200～6,600（セット）",
+    "price": {
+      "lunch": [
+        4180,
+        6600
+      ],
+      "dinner": [
+        4180,
+        6600
+      ]
+    },
+    "stayMinutes": null,
+    "mustTry": [
+      "松阪牛特撰（A5）セット 6,600 円～",
+      "松阪牛（A4）セット 5,500 円",
+      "家族セット 4,180 円"
+    ],
+    "menu": [
+      {
+        "url": "https://tabelog.com/mie/A2403/A240301/24000431/dtlmenu/",
+        "source": "tabelog",
+        "retrieved": "2026-10-18"
+      }
+    ],
+    "ratings": {
+      "tabelog": 3.21,
+      "tabelogReviews": 165,
+      "google": 4,
+      "googleReviews": 428,
+      "note": null
+    },
+    "inclusion": [
+      "C"
+    ],
+    "tabelogOwner": true,
+    "googleName": null,
+    "notes": "松阪牛燒肉老字號 一升びん 的伊勢店（Google 4.0／428 則），座敷・掘りごたつ個室 6～30 人、100 席、全面禁菸，家族セット 4,180 円起；平日只有晚上，週二休。",
+    "group": {
+      "seats": 100,
+      "maxReservation": null,
+      "privateRoom": true,
+      "buyout": "可 （50人以上可）",
+      "groupMenu": null,
+      "fit15": "yes",
+      "fitSubgroup": "yes",
+      "source": "食べログ（店舗会員）：100 席、個室 6～30 人、貸切 50 人以上、可預約；ぐるなび 座敷個室 6～30 人、宴會最多 55 名 → yes"
+    },
+    "reservation": {
+      "accepted": "yes",
+      "methods": [
+        "phone"
+      ],
+      "phone": "0596-27-8929",
+      "url": null,
+      "language": "日文",
+      "note": "官網沒有網路訂位；食べログ的予約番號 050-5590-7157",
+      "leadDays": null
+    },
+    "seating": [
+      "zashiki",
+      "horigotatsu"
+    ],
+    "kids": {
+      "allowed": "yes",
+      "minAge": null,
+      "kidsMenu": null,
+      "note": "食べログ：子供可；官網有家族セット 4,180 円"
+    },
+    "accessibility": {
+      "barrierFree": null,
+      "note": "伊勢市站約 1.2 km（步行約 15 分、車 5 分）、宮町站 1 km；停車場 20 台（官網，ぐるなび 寫 50）"
+    },
+    "smoking": "全席禁煙",
+    "extra": {
+      "conflicts": [
+        "席數：ぐるなび 80 席、食べログ 100 席",
+        "停車場：官網 20 台、ぐるなび 50 台",
+        "週末午餐：官網 L.O. 14:00、ぐるなび 營業到 14:30"
+      ]
+    }
+  },
+  {
+    "id": "ise-kagura",
+    "type": "restaurant",
+    "name": {
+      "ja": "かぐら",
+      "kana": "かぐら",
+      "zh": "松阪牛壽喜燒 かぐら",
+      "en": null
+    },
+    "area": "ise",
+    "region": "ise-kurata",
+    "coords": [
+      136.7291153,
+      34.4723216
+    ],
+    "coordsSource": "google-maps-url",
+    "address": "三重県伊勢市中村町815-1",
+    "hours": {
+      "mon": [
+        [
+          "11:30",
+          "15:00"
+        ],
+        [
+          "17:00",
+          "20:00"
+        ]
+      ],
+      "tue": [
+        [
+          "11:30",
+          "15:00"
+        ],
+        [
+          "17:00",
+          "20:00"
+        ]
+      ],
+      "wed": [
+        [
+          "11:30",
+          "15:00"
+        ],
+        [
+          "17:00",
+          "20:00"
+        ]
+      ],
+      "thu": [
+        [
+          "11:30",
+          "15:00"
+        ],
+        [
+          "17:00",
+          "20:00"
+        ]
+      ],
+      "fri": [
+        [
+          "11:30",
+          "15:00"
+        ],
+        [
+          "17:00",
+          "20:00"
+        ]
+      ],
+      "sat": [
+        [
+          "11:30",
+          "15:00"
+        ],
+        [
+          "17:00",
+          "20:00"
+        ]
+      ],
+      "sun": [
+        [
+          "11:30",
+          "15:00"
+        ],
+        [
+          "17:00",
+          "20:00"
+        ]
+      ],
+      "holiday": [
+        [
+          "11:30",
+          "15:00"
+        ],
+        [
+          "17:00",
+          "20:00"
+        ]
+      ],
+      "note": "食べログ（店舗会員，コース頁 2025-10 更新）；不定休（每月臨時休 1 次）。官網（2016 年的網站）寫 11:30～21:00 連續營業（L.O. 20:00）"
+    },
+    "closedNote": "不定休（每月 1 次）",
+    "febNote": "不定休，要事先問",
+    "closures": [],
+    "photos": [
+      {
+        "url": "http://www.kagura-ise.com/img/common/bkimg1.jpg",
+        "page": "http://www.kagura-ise.com/index.html",
+        "kind": "official",
+        "credit": "かぐら",
+        "license": null
+      },
+      {
+        "url": "http://www.kagura-ise.com/img/leaf/guide/img1.jpg",
+        "page": "http://www.kagura-ise.com/guide.html",
+        "kind": "official",
+        "credit": "かぐら",
+        "license": null
+      }
+    ],
+    "links": {
+      "official": "http://www.kagura-ise.com/index.html",
+      "googleMaps": "https://maps.google.com/?cid=8439955281592690512",
+      "tabelog": "https://tabelog.com/mie/A2403/A240301/24001258/",
+      "instagram": null
+    },
+    "tags": [],
+    "tier": null,
+    "sources": [
+      {
+        "type": "tabelog",
+        "url": "https://tabelog.com/mie/A2403/A240301/24001258/",
+        "retrieved": "2026-10-18",
+        "note": "店舗情報：分數、席數、預約、個室、貸切、營業時間、お子様連れ（店舗会員）"
+      },
+      {
+        "type": "google-maps",
+        "url": "https://maps.google.com/?cid=8439955281592690512",
+        "retrieved": "2026-10-18",
+        "note": "星數、評論數、座標、照片"
+      },
+      {
+        "type": "tabelog",
+        "url": "https://tabelog.com/mie/A2403/A240301/24001258/party/",
+        "retrieved": "2026-10-18",
+        "note": "コース一覧：套餐名稱、價格、人數"
+      },
+      {
+        "type": "official",
+        "url": "http://www.kagura-ise.com/index.html",
+        "retrieved": "2026-10-18",
+        "note": "首頁：營業時間、電話；最新消息只有 2016 年，HTTPS 憑證不符只能用 http"
+      },
+      {
+        "type": "official",
+        "url": "http://www.kagura-ise.com/goodfor.html",
+        "retrieved": "2026-10-18",
+        "note": "整頭買松阪牛、手工炭、味噌山葵沾醬"
+      },
+      {
+        "type": "official",
+        "url": "http://www.kagura-ise.com/guide.html",
+        "retrieved": "2026-10-18",
+        "note": "全室完全個室、座敷房・桌椅房・大部屋（要預約）、接受宴會"
+      },
+      {
+        "type": "official",
+        "url": "http://www.kagura-ise.com/menu.html",
+        "retrieved": "2026-10-18",
+        "note": "すき焼き・あみ焼き・岩盤焼き・しゃぶしゃぶ 價格、季節海鮮燒"
+      },
+      {
+        "type": "official",
+        "url": "http://www.kagura-ise.com/access.html",
+        "retrieved": "2026-10-18",
+        "note": "各站搭計程車所需時間"
+      }
+    ],
+    "verified": false,
+    "anchors": [
+      {
+        "id": "isuzugawa",
+        "walkMinutes": 12,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-tsukiyomi-no-miya",
+        "walkMinutes": 3,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-yadoya-isuzu",
+        "walkMinutes": 20,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-okage-mairi-shukuba",
+        "walkMinutes": 19,
+        "walkSource": "osrm"
+      }
+    ],
+    "contexts": [
+      "lunch",
+      "dinner"
+    ],
+    "access": "walk",
+    "cuisine": [
+      "燒肉・肉料理"
+    ],
+    "priceRange": "¥6,000～9,400（松阪牛セット）",
+    "price": {
+      "lunch": [
+        6050,
+        9350
+      ],
+      "dinner": [
+        6050,
+        9350
+      ]
+    },
+    "stayMinutes": null,
+    "mustTry": [
+      "松阪牛すき焼き 6,050 円・（上）7,920 円",
+      "松阪牛あみ焼き ロース 6,050 円・ヒレ 9,350 円"
+    ],
+    "menu": [
+      {
+        "url": "http://www.kagura-ise.com/menu.html",
+        "source": "official",
+        "retrieved": "2026-10-18"
+      },
+      {
+        "url": "https://tabelog.com/mie/A2403/A240301/24001258/party/",
+        "source": "tabelog",
+        "retrieved": "2026-10-18"
+      },
+      {
+        "url": "https://tabelog.com/mie/A2403/A240301/24001258/dtlmenu/",
+        "source": "tabelog",
+        "retrieved": "2026-10-18"
+      },
+      {
+        "url": "https://tabelog.com/mie/A2403/A240301/24001258/dtlmenu/lunch/",
+        "source": "tabelog",
+        "retrieved": "2026-10-18"
+      }
+    ],
+    "ratings": {
+      "tabelog": 3.29,
+      "tabelogReviews": 68,
+      "google": 4.3,
+      "googleReviews": 142,
+      "note": null
+    },
+    "inclusion": [
+      "C"
+    ],
+    "tabelogOwner": true,
+    "googleName": null,
+    "notes": "月讀宮附近的松阪牛壽喜燒・あみ焼き 專門店（Google 4.3／142 則），全室完全個室（有桌椅房），最大預約 25 人、可停大型巴士；套餐 6,050 円起。不定休，個室內可吸菸。",
+    "group": {
+      "seats": 50,
+      "maxReservation": 25,
+      "privateRoom": true,
+      "buyout": "可 （20人～50人可）",
+      "groupMenu": "松阪牛 すき焼き・あみ焼き・岩盤焼き 7 品 6,050～9,350 円（含稅，2～24 名，11:30～20:00；食べログ コース 2025-10）；しゃぶしゃぶ前一天前預約（官網）",
+      "fit15": "yes",
+      "fitSubgroup": "yes",
+      "source": "食べログ（店舗会員）：50 席（テーブル 10 台×5 名）、最大予約 25 人、個室 2～20 人（全 6 室）、貸切 20～50 人、可預約 → yes"
+    },
+    "reservation": {
+      "accepted": "yes",
+      "methods": [
+        "phone"
+      ],
+      "phone": "0596-29-1677",
+      "url": null,
+      "language": "日文",
+      "note": "房間數有限，建議早點訂（食べログ）；食べログ的予約番號 050-5869-9437",
+      "leadDays": null
+    },
+    "seating": [
+      "table",
+      "zashiki"
+    ],
+    "kids": {
+      "allowed": "unknown",
+      "minAge": null,
+      "kidsMenu": null,
+      "note": "沒有來源"
+    },
+    "accessibility": {
+      "barrierFree": null,
+      "note": "五十鈴川站約 500 m（步行約 7 分）；停車場 8 台，大型巴士 1 台可；全室完全個室（座敷房、桌椅房、大部屋）"
+    },
+    "smoking": "全席喫煙可",
+    "extra": {
+      "conflicts": [
+        "營業時間：官網（2016 年）11:30～21:00 連續營業（L.O. 20:00）；食べログ 11:30～15:00、17:00～20:00、不定休"
+      ]
+    }
+  },
+  {
+    "id": "ise-ajino-rairaiken",
+    "type": "restaurant",
+    "name": {
+      "ja": "味の來々軒",
+      "kana": "あじの らいらいけん",
+      "zh": "味之來來軒（四川中華）",
+      "en": null
+    },
+    "area": "ise",
+    "region": "ise-outskirts",
+    "coords": [
+      136.680558,
+      34.4926886
+    ],
+    "coordsSource": "google-maps-url",
+    "address": "三重県伊勢市川端町231-1",
+    "hours": {
+      "mon": [
+        [
+          "11:00",
+          "14:30"
+        ],
+        [
+          "17:30",
+          "21:00"
+        ]
+      ],
+      "tue": [
+        [
+          "11:00",
+          "14:30"
+        ],
+        [
+          "17:30",
+          "21:00"
+        ]
+      ],
+      "wed": [],
+      "thu": [
+        [
+          "11:00",
+          "14:30"
+        ],
+        [
+          "17:30",
+          "21:00"
+        ]
+      ],
+      "fri": [
+        [
+          "11:00",
+          "14:30"
+        ],
+        [
+          "17:30",
+          "21:00"
+        ]
+      ],
+      "sat": [
+        [
+          "11:00",
+          "14:30"
+        ],
+        [
+          "17:30",
+          "21:00"
+        ]
+      ],
+      "sun": [
+        [
+          "11:00",
+          "14:30"
+        ],
+        [
+          "17:30",
+          "21:00"
+        ]
+      ],
+      "holiday": [
+        [
+          "11:00",
+          "14:30"
+        ],
+        [
+          "17:30",
+          "21:00"
+        ]
+      ],
+      "note": "食べログ（店舗会員）；週三休，年初只休 1/1"
+    },
+    "closedNote": "週三",
+    "febNote": "2/3、2/10（三）休",
+    "closures": [],
+    "photos": [
+      {
+        "url": "https://lh3.googleusercontent.com/grass-cs/AABkmLdY8AcKTyn1i9_oXmijLAXzRv7CqDIrxCSpYzBBmCIUFjZj9v89Zx1sc2h7liIDMf6j8iQQuQQSzebzPUHJGc3saG12HYgCZ2E95G1188uuMq3_H8xQ3sS9fEW5FmKtmANf3-JQ6g=w800",
+        "page": "https://maps.google.com/?cid=7644862970108472856",
+        "kind": "google",
+        "credit": "Google マップ",
+        "license": null
+      }
+    ],
+    "links": {
+      "official": null,
+      "googleMaps": "https://maps.google.com/?cid=7644862970108472856",
+      "tabelog": "https://tabelog.com/mie/A2403/A240301/24001481/",
+      "instagram": "@rairaiken_ise"
+    },
+    "tags": [],
+    "tier": null,
+    "sources": [
+      {
+        "type": "tabelog",
+        "url": "https://tabelog.com/mie/A2403/A240301/24001481/",
+        "retrieved": "2026-10-18",
+        "note": "店舗情報：分數、席數、預約、個室、貸切、營業時間、お子様連れ（店舗会員）"
+      },
+      {
+        "type": "google-maps",
+        "url": "https://maps.google.com/?cid=7644862970108472856",
+        "retrieved": "2026-10-18",
+        "note": "星數、評論數、座標、照片"
+      },
+      {
+        "type": "tabelog",
+        "url": "https://tabelog.com/mie/A2403/A240301/24001481/party/",
+        "retrieved": "2026-10-18",
+        "note": "コース一覧：套餐名稱、價格、人數"
+      },
+      {
+        "type": "tabelog",
+        "url": "https://tabelog.com/mie/A2403/A240301/24001481/dtlrvwlst/",
+        "retrieved": "2026-10-18",
+        "note": "口コミ（最新 20 則＋關鍵字搜尋）、頁尾店舗情報"
+      }
+    ],
+    "verified": false,
+    "anchors": [
+      {
+        "id": "miyamachi",
+        "walkMinutes": 30,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-momijiken",
+        "walkMinutes": 25,
+        "walkSource": "osrm"
+      }
+    ],
+    "contexts": [
+      "lunch",
+      "dinner"
+    ],
+    "access": "car",
+    "cuisine": [
+      "其他"
+    ],
+    "priceRange": "¥1,000～2,000",
+    "price": {
+      "lunch": [
+        1000,
+        2000
+      ],
+      "dinner": [
+        1000,
+        2000
+      ]
+    },
+    "stayMinutes": null,
+    "mustTry": [
+      "五目おこげ",
+      "エビチリ",
+      "陳麻婆豆腐"
+    ],
+    "menu": [
+      {
+        "url": "https://tabelog.com/mie/A2403/A240301/24001481/party/",
+        "source": "tabelog",
+        "retrieved": "2026-10-18"
+      },
+      {
+        "url": "https://tabelog.com/mie/A2403/A240301/24001481/dtlmenu/",
+        "source": "tabelog",
+        "retrieved": "2026-10-18"
+      },
+      {
+        "url": "https://tabelog.com/mie/A2403/A240301/24001481/dtlmenu/lunch/",
+        "source": "tabelog",
+        "retrieved": "2026-10-18"
+      }
+    ],
+    "ratings": {
+      "tabelog": 3.34,
+      "tabelogReviews": 49,
+      "google": 4.1,
+      "googleReviews": 263,
+      "note": null
+    },
+    "inclusion": [
+      "C"
+    ],
+    "tabelogOwner": true,
+    "googleName": "來々軒（らいらいけん）",
+    "notes": "宮川旁川端町的四川・中華（陳健一 系的師承，Google 4.1／263 則），1,000～2,000 円就吃得飽，個室 30 人以上、停車場 30 台；離伊勢市站要搭巴士或計程車。全席可吸菸。",
+    "group": {
+      "seats": 50,
+      "maxReservation": null,
+      "privateRoom": true,
+      "buyout": "可 （20人～50人可、50人以上可）",
+      "groupMenu": "ハーフ＆ハーフ 套餐 5～7 品 1,700～2,000 円（稅外；食べログ コース 2020-07，舊）",
+      "fit15": "yes",
+      "fitSubgroup": "yes",
+      "source": "食べログ（店舗会員）：50 席、個室 30 人以上、貸切 20～50 人以上、可預約 → yes；席數明細只有吧台和桌，個室是哪間要問"
+    },
+    "reservation": {
+      "accepted": "yes",
+      "methods": [
+        "phone"
+      ],
+      "phone": "0596-22-2788",
+      "url": null,
+      "language": "日文",
+      "note": null,
+      "leadDays": null
+    },
+    "seating": [
+      "table",
+      "zashiki",
+      "horigotatsu",
+      "counter"
+    ],
+    "kids": {
+      "allowed": "yes",
+      "minAge": null,
+      "kidsMenu": true,
+      "note": "沒有來源"
+    },
+    "accessibility": {
+      "barrierFree": "バリアフリー",
+      "note": "伊勢市站搭三重交通巴士約 10 分「川端口」下車步行 5 分，或車；停車場 30 台"
+    },
+    "smoking": "全席喫煙可",
+    "extra": {
+      "conflicts": [
+        "個室：食べログ 個室 30 人以上，但席數明細（50 席）只有吧台、4 人桌、6 人圓桌"
+      ]
+    }
+  },
+  {
+    "id": "ise-yuzu-misono",
+    "type": "restaurant",
+    "name": {
+      "ja": "柚子",
+      "kana": "ゆず",
+      "zh": "新割烹 柚子（御薗）",
+      "en": null
+    },
+    "area": "ise",
+    "region": "ise-obata",
+    "coords": [
+      136.710478,
+      34.5061191
+    ],
+    "coordsSource": "google-maps-url",
+    "address": "三重県伊勢市御薗町長屋1983-1",
+    "hours": {
+      "mon": [
+        [
+          "11:30",
+          "14:30"
+        ],
+        [
+          "18:00",
+          "21:30"
+        ]
+      ],
+      "tue": [],
+      "wed": [
+        [
+          "11:30",
+          "14:30"
+        ],
+        [
+          "18:00",
+          "21:30"
+        ]
+      ],
+      "thu": [
+        [
+          "11:30",
+          "14:30"
+        ],
+        [
+          "18:00",
+          "21:30"
+        ]
+      ],
+      "fri": [
+        [
+          "11:30",
+          "14:30"
+        ],
+        [
+          "18:00",
+          "21:30"
+        ]
+      ],
+      "sat": [
+        [
+          "11:30",
+          "14:30"
+        ],
+        [
+          "18:00",
+          "21:30"
+        ]
+      ],
+      "sun": [
+        [
+          "11:30",
+          "14:30"
+        ],
+        [
+          "18:00",
+          "21:30"
+        ]
+      ],
+      "holiday": null,
+      "note": "官網：完全預約制（半天前）；週二休＋不定休（官網 お料理頁 寫週一、週二休）；食べログ 晚 L.O. 19:30。國定假日沒有來源"
+    },
+    "closedNote": "週二（另有不定休；官網另一頁寫週一、週二）",
+    "febNote": "2/2、2/9（二）休；週一可能也休（官網兩頁不一致）；季節限定 牡蠣づくしコース（官網）",
+    "closures": [],
+    "photos": [
+      {
+        "url": "https://yuzu-ise.com/images/top_image_01.jpg",
+        "page": "https://yuzu-ise.com/",
+        "kind": "official",
+        "credit": "柚子",
+        "license": null
+      },
+      {
+        "url": "https://yuzu-ise.com/images/top_image_02.jpg",
+        "page": "https://yuzu-ise.com/",
+        "kind": "official",
+        "credit": "柚子",
+        "license": null
+      }
+    ],
+    "links": {
+      "official": "https://yuzu-ise.com/",
+      "googleMaps": "https://maps.google.com/?cid=1348720571018588161",
+      "tabelog": "https://tabelog.com/mie/A2403/A240301/24003146/",
+      "instagram": "@yuzu1783"
+    },
+    "tags": [],
+    "tier": null,
+    "sources": [
+      {
+        "type": "tabelog",
+        "url": "https://tabelog.com/mie/A2403/A240301/24003146/",
+        "retrieved": "2026-10-18",
+        "note": "店舗情報：分數、席數、預約、個室、貸切、營業時間、お子様連れ（店舗会員）"
+      },
+      {
+        "type": "google-maps",
+        "url": "https://maps.google.com/?cid=1348720571018588161",
+        "retrieved": "2026-10-18",
+        "note": "星數、評論數、座標、照片"
+      },
+      {
+        "type": "tabelog",
+        "url": "https://tabelog.com/mie/A2403/A240301/24003146/party/",
+        "retrieved": "2026-10-18",
+        "note": "コース一覧：套餐名稱、價格、人數"
+      },
+      {
+        "type": "official",
+        "url": "https://yuzu-ise.com/",
+        "retrieved": "2026-10-18",
+        "note": "營業時間、定休火曜＋不定休、完全予約制、電話"
+      },
+      {
+        "type": "official",
+        "url": "https://yuzu-ise.com/cuisine/",
+        "retrieved": "2026-10-18",
+        "note": "夜おまかせ 5,500～30,000 円、季節特別コース 13,000 円～"
+      },
+      {
+        "type": "official",
+        "url": "https://yuzu-ise.com/lunch/",
+        "retrieved": "2026-10-18",
+        "note": "昼膳 雪 2,750 円、月 3,300 円，4,400～15,000 円"
+      },
+      {
+        "type": "official",
+        "url": "https://yuzu-ise.com/celebration/",
+        "retrieved": "2026-10-18",
+        "note": "祝宴方案 4,400～5,500 円、お子様ワンプレート 1,000 円～"
+      },
+      {
+        "type": "official",
+        "url": "https://yuzu-ise.com/about-yuzu/",
+        "retrieved": "2026-10-18",
+        "note": "カウンター 5、個室 5 室、宴会最大 20 名、伊勢市駅車 10 分"
+      },
+      {
+        "type": "official",
+        "url": "https://yuzu-ise.com/information/",
+        "retrieved": "2026-10-18",
+        "note": "お知らせ：伊勢海老解禁、團體巴士來店、臨時營業公告"
+      },
+      {
+        "type": "tabelog",
+        "url": "https://tabelog.com/mie/A2403/A240301/24003146/dtlrvwlst/",
+        "retrieved": "2026-10-18",
+        "note": "口コミ（最新 20 則＋關鍵字搜尋）、頁尾店舗情報"
+      }
+    ],
+    "verified": false,
+    "anchors": [
+      {
+        "id": "miyamachi",
+        "walkMinutes": 21,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-wakamatsuya-kamaboko",
+        "walkMinutes": 21,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-toyoko-inn",
+        "walkMinutes": 20,
+        "walkSource": "osrm"
+      }
+    ],
+    "contexts": [
+      "lunch",
+      "dinner"
+    ],
+    "access": "car",
+    "cuisine": [
+      "和食・割烹"
+    ],
+    "priceRange": "午 ¥2,750～／晚 ¥5,500～30,000（套餐）",
+    "price": {
+      "lunch": [
+        2750,
+        3300
+      ],
+      "dinner": [
+        5500,
+        13000
+      ]
+    },
+    "stayMinutes": null,
+    "mustTry": [
+      "おまかせ料理（夜）5,500 円～",
+      "昼膳「雪」2,750 円",
+      "伊勢海老コース 13,000 円～時価"
+    ],
+    "menu": [
+      {
+        "url": "https://tabelog.com/mie/A2403/A240301/24003146/party/",
+        "source": "tabelog",
+        "retrieved": "2026-10-18"
+      },
+      {
+        "url": "https://tabelog.com/mie/A2403/A240301/24003146/dtlmenu/",
+        "source": "tabelog",
+        "retrieved": "2026-10-18"
+      },
+      {
+        "url": "https://tabelog.com/mie/A2403/A240301/24003146/dtlmenu/lunch/",
+        "source": "tabelog",
+        "retrieved": "2026-10-18"
+      }
+    ],
+    "ratings": {
+      "tabelog": 3.26,
+      "tabelogReviews": 32,
+      "google": 4.5,
+      "googleReviews": 92,
+      "note": null
+    },
+    "inclusion": [
+      "C"
+    ],
+    "tabelogOwner": true,
+    "googleName": "新割烹 柚子",
+    "notes": "御薗町的完全預約制割烹（Google 4.5／92 則，Google 名「新割烹 柚子」），宴會最多 20～25 人、兒童一盤餐 1,000 円，晚上おまかせ 5,500 円起可依預算調整；要搭車。",
+    "group": {
+      "seats": 21,
+      "maxReservation": null,
+      "privateRoom": true,
+      "buyout": "可 （20人以下可）",
+      "groupMenu": "晚 おまかせ料理 5,500～30,000 円（含稅，依預算調整）；伊勢海老、松阪牛、牡蠣づくし 等季節コース 13,000 円～（官網）；食べログ 備考 宴會 25 名、官網 20 名",
+      "fit15": "yes",
+      "fitSubgroup": "yes",
+      "source": "食べログ（店舗会員）：21 席、個室 2～20 人（最多 20 名）、貸切 20 人以下、備考 宴會 25 名；官網 宴會最多 20 名 → yes"
+    },
+    "reservation": {
+      "accepted": "yes",
+      "methods": [
+        "phone"
+      ],
+      "phone": "0120-551-754",
+      "url": null,
+      "language": "日文",
+      "note": "完全預約制，半天前（官網）；食べログ 的電話 0596-27-1754、網路預約停止",
+      "leadDays": null
+    },
+    "seating": [
+      "zashiki",
+      "counter"
+    ],
+    "kids": {
+      "allowed": "yes",
+      "minAge": null,
+      "kidsMenu": true,
+      "note": "食べログ：子供可、お子様メニューあり（要預約）；官網 兒童一盤餐 1,000 円起"
+    },
+    "accessibility": {
+      "barrierFree": null,
+      "note": "伊勢市站車約 10 分（計程車約 1,000 円）；停車場 15 台（食べログ）"
+    },
+    "smoking": "全席禁煙",
+    "extra": {
+      "conflicts": [
+        "定休：官網首頁 週二＋不定休；お料理頁 週一、週二",
+        "宴會上限：官網 20 名、食べログ 備考 25 名",
+        "個室：官網 最大 5 名的個室；食べログ 10～20 人可",
+        "電話：官網 0120-551-754、食べログ 0596-27-1754",
+        "seating：資料檔是 zashiki，食べログ口コミ（2022/01，1 則）寫個室是和室擺桌椅、沒有座敷；4 年前，要再確認"
+      ]
+    }
+  },
+  {
+    "id": "ise-hibino",
+    "type": "restaurant",
+    "name": {
+      "ja": "ひびの",
+      "kana": "ひびの",
+      "zh": "四季彩料理 ひびの",
+      "en": null
+    },
+    "area": "ise",
+    "region": "ise-geku",
+    "coords": [
+      136.7141196,
+      34.4811923
+    ],
+    "coordsSource": "google-maps-url",
+    "address": "三重県伊勢市岡本2-9-43",
+    "hours": {
+      "mon": [],
+      "tue": [
+        [
+          "11:30",
+          "14:00"
+        ],
+        [
+          "17:30",
+          "22:00"
+        ]
+      ],
+      "wed": [
+        [
+          "11:30",
+          "14:00"
+        ],
+        [
+          "17:30",
+          "22:00"
+        ]
+      ],
+      "thu": [
+        [
+          "11:30",
+          "14:00"
+        ],
+        [
+          "17:30",
+          "22:00"
+        ]
+      ],
+      "fri": [
+        [
+          "11:30",
+          "14:00"
+        ],
+        [
+          "17:30",
+          "22:00"
+        ]
+      ],
+      "sat": [
+        [
+          "11:30",
+          "14:00"
+        ],
+        [
+          "17:30",
+          "22:00"
+        ]
+      ],
+      "sun": [
+        [
+          "11:30",
+          "14:00"
+        ],
+        [
+          "17:30",
+          "22:00"
+        ]
+      ],
+      "holiday": null,
+      "lastEntry": "21:30",
+      "note": "食べログ（非店舗会員）：晚 L.O. 21:30；週一休；國定假日沒有來源"
+    },
+    "closedNote": "週一",
+    "febNote": "2/8（一）休",
+    "closures": [],
+    "photos": [
+      {
+        "url": "https://lh3.googleusercontent.com/grass-cs/AABkmLdBmNtYyvzaibbC-tB-qgan11_nEEnZd_8DZp30O6g-E_6F_7CnEgiiZxsatk3Fdc56jrtOnYVSwI2Niu6AVe1CpT1sVNRzgiEH27VYlJEWt_gfLrGkmAGcDmShYv1kYkMUOn_Nwl3X_I8=w800",
+        "page": "https://maps.google.com/?cid=1906894978966982404",
+        "kind": "google",
+        "credit": "Google マップ",
+        "license": null
+      }
+    ],
+    "links": {
+      "official": null,
+      "googleMaps": "https://maps.google.com/?cid=1906894978966982404",
+      "tabelog": "https://tabelog.com/mie/A2403/A240301/24005086/",
+      "instagram": "@shikisairyouri_hibino"
+    },
+    "tags": [],
+    "tier": null,
+    "sources": [
+      {
+        "type": "tabelog",
+        "url": "https://tabelog.com/mie/A2403/A240301/24005086/",
+        "retrieved": "2026-10-18",
+        "note": "店舗情報：分數、席數、預約、個室、貸切、營業時間、お子様連れ"
+      },
+      {
+        "type": "google-maps",
+        "url": "https://maps.google.com/?cid=1906894978966982404",
+        "retrieved": "2026-10-18",
+        "note": "星數、評論數、座標、照片"
+      }
+    ],
+    "verified": false,
+    "anchors": [
+      {
+        "id": "ujiyamada",
+        "walkMinutes": 15,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-sengukan",
+        "walkMinutes": 18,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-wasoan",
+        "walkMinutes": 13,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-asakichi",
+        "walkMinutes": 15,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-comfort-era",
+        "walkMinutes": 20,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-hinode-ryokan",
+        "walkMinutes": 19,
+        "walkSource": "osrm"
+      }
+    ],
+    "contexts": [
+      "lunch",
+      "dinner"
+    ],
+    "access": "walk",
+    "cuisine": [
+      "和食・割烹"
+    ],
+    "priceRange": "¥2,000～3,000（口コミ集計）",
+    "price": null,
+    "stayMinutes": null,
+    "mustTry": [],
+    "menu": [
+      {
+        "url": "https://tabelog.com/mie/A2403/A240301/24005086/dtlmenu/photo/",
+        "source": "tabelog",
+        "retrieved": "2026-10-18"
+      }
+    ],
+    "ratings": {
+      "tabelog": 3.3,
+      "tabelogReviews": 26,
+      "google": 4.3,
+      "googleReviews": 56,
+      "note": null
+    },
+    "inclusion": [
+      "C"
+    ],
+    "tabelogOwner": false,
+    "googleName": null,
+    "notes": "岡本町（宇治山田站南邊）的日本料理（Google 4.3／56 則），個室 10～20 人、貸切可；沒有官網，只有食べログ 和 IG，菜色、套餐、座位細節都要電話問。全席可吸菸。",
+    "group": {
+      "seats": 30,
+      "maxReservation": null,
+      "privateRoom": true,
+      "buyout": "可 （20人～50人可）",
+      "groupMenu": null,
+      "fit15": "yes",
+      "fitSubgroup": "yes",
+      "source": "食べログ：30 席、個室 10～20 人、貸切 20～50 人、可預約 → yes"
+    },
+    "reservation": {
+      "accepted": "yes",
+      "methods": [
+        "phone"
+      ],
+      "phone": "0596-27-0911",
+      "url": null,
+      "language": "日文",
+      "note": null,
+      "leadDays": null
+    },
+    "seating": [
+      "zashiki",
+      "counter"
+    ],
+    "kids": {
+      "allowed": "unknown",
+      "minAge": null,
+      "kidsMenu": null,
+      "note": "沒有來源"
+    },
+    "accessibility": {
+      "barrierFree": null,
+      "note": "宇治山田站約 800 m（步行約 10 分）；停車場 10～15 台"
+    },
+    "smoking": "全席喫煙可",
+    "extra": {}
+  },
+  {
+    "id": "ise-yakitori-noshiro",
+    "type": "restaurant",
+    "name": {
+      "ja": "やきとり能代",
+      "kana": "やきとり のしろ",
+      "zh": "烤雞串 能代",
+      "en": null
+    },
+    "area": "ise",
+    "region": "ise-geku",
+    "coords": [
+      136.7046761,
+      34.4960038
+    ],
+    "coordsSource": "google-maps-url",
+    "address": "三重県伊勢市一之木2-12-11",
+    "hours": {
+      "mon": [
+        [
+          "17:00",
+          "23:00"
+        ]
+      ],
+      "tue": [
+        [
+          "17:00",
+          "23:00"
+        ]
+      ],
+      "wed": [],
+      "thu": [
+        [
+          "17:00",
+          "23:00"
+        ]
+      ],
+      "fri": [
+        [
+          "17:00",
+          "23:00"
+        ]
+      ],
+      "sat": [
+        [
+          "17:00",
+          "23:00"
+        ]
+      ],
+      "sun": [
+        [
+          "17:00",
+          "23:00"
+        ]
+      ],
+      "holiday": [
+        [
+          "17:00",
+          "23:00"
+        ]
+      ],
+      "lastEntry": "22:00",
+      "note": "食べログ（店舗会員）：L.O. 料理 22:00、飲料 22:30；週三休，祝日營業"
+    },
+    "closedNote": "週三",
+    "febNote": "2/3、2/10（三）休；只有晚上",
+    "closures": [],
+    "photos": [
+      {
+        "url": "https://lh3.googleusercontent.com/grass-cs/AABkmLccrGnYKOcb4szS7PIHCHIMzxfjmE0YRlxHXkeKxNrb4HC08x9-OMbvPL_hr_3ro1a1G3NpgaDzH-P9nOysK02wwRRZKoBvIm5daGcK9_1zT4UM_htizqWCz8kncYq0AEBCOnj-=w800",
+        "page": "https://maps.google.com/?cid=4283279088738621540",
+        "kind": "google",
+        "credit": "Google マップ",
+        "license": null
+      }
+    ],
+    "links": {
+      "official": null,
+      "googleMaps": "https://maps.google.com/?cid=4283279088738621540",
+      "tabelog": "https://tabelog.com/mie/A2403/A240301/24006701/",
+      "instagram": "@y.noshiro"
+    },
+    "tags": [],
+    "tier": null,
+    "sources": [
+      {
+        "type": "tabelog",
+        "url": "https://tabelog.com/mie/A2403/A240301/24006701/",
+        "retrieved": "2026-10-18",
+        "note": "店舗情報：分數、席數、預約、個室、貸切、營業時間、お子様連れ（店舗会員）"
+      },
+      {
+        "type": "google-maps",
+        "url": "https://maps.google.com/?cid=4283279088738621540",
+        "retrieved": "2026-10-18",
+        "note": "星數、評論數、座標、照片"
+      },
+      {
+        "type": "media",
+        "url": "https://www.timeout.jp/tokyo/ja/%E3%83%AC%E3%82%B9%E3%83%88%E3%83%A9%E3%83%B3/yakitori-noshiro",
+        "retrieved": "2026-10-18",
+        "note": "Time Out 2023-01-19：5 室個室座敷、串焼き盛り合わせ 1,180円、水曜休"
+      }
+    ],
+    "verified": false,
+    "anchors": [
+      {
+        "id": "miyamachi",
+        "walkMinutes": 10,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-tsukiyomi-no-miya-geku",
+        "walkMinutes": 9,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-geku-sando",
+        "walkMinutes": 13,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-wakamatsuya-kamaboko",
+        "walkMinutes": 13,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-toyoko-inn",
+        "walkMinutes": 3,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-todaya-ryoan",
+        "walkMinutes": 4,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-sanco-inn",
+        "walkMinutes": 11,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-comfort-era",
+        "walkMinutes": 13,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-hinode-ryokan",
+        "walkMinutes": 13,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-fav",
+        "walkMinutes": 7,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-nipponia-kawasaki",
+        "walkMinutes": 14,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-oyado-ichi",
+        "walkMinutes": 9,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-wasoan",
+        "walkMinutes": 20,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-geku-bettei-michi",
+        "walkMinutes": 13,
+        "walkSource": "osrm"
+      }
+    ],
+    "contexts": [
+      "dinner"
+    ],
+    "access": "walk",
+    "cuisine": [
+      "居酒屋",
+      "燒肉・肉料理"
+    ],
+    "priceRange": "晚 ¥3,000～5,000",
+    "price": {
+      "lunch": null,
+      "dinner": [
+        3000,
+        5000
+      ]
+    },
+    "stayMinutes": null,
+    "mustTry": [
+      "串焼き盛り合わせ（6本）1,180円（税込）"
+    ],
+    "menu": [
+      {
+        "url": "https://tabelog.com/mie/A2403/A240301/24006701/dtlmenu/",
+        "source": "tabelog",
+        "retrieved": "2026-10-18"
+      }
+    ],
+    "ratings": {
+      "tabelog": 3.28,
+      "tabelogReviews": 60,
+      "google": 4.1,
+      "googleReviews": 182,
+      "note": null
+    },
+    "inclusion": [
+      "C"
+    ],
+    "tabelogOwner": true,
+    "googleName": "能代",
+    "notes": "伊勢市站步行 7 分的烤雞串居酒屋（Google 4.1／182 則），座敷個室、最大預約 44 人、歡迎帶小孩、全面禁菸；只有晚上，週三休。",
+    "group": {
+      "seats": 50,
+      "maxReservation": 44,
+      "privateRoom": true,
+      "buyout": "不可",
+      "groupMenu": null,
+      "fit15": "yes",
+      "fitSubgroup": "yes",
+      "source": "食べログ（店舗会員）：50 席、最大予約 44 人、個室 4～30 人（～8・11・15 名席）、貸切不可、可預約 → yes；席數明細的個室最大 8 名，15 人能不能同一室要問"
+    },
+    "reservation": {
+      "accepted": "yes",
+      "methods": [
+        "phone"
+      ],
+      "phone": "0596-22-3804",
+      "url": null,
+      "language": "日文",
+      "note": "食べログ的予約番號 050-5595-0953",
+      "leadDays": null
+    },
+    "seating": [
+      "table",
+      "zashiki",
+      "horigotatsu",
+      "counter"
+    ],
+    "kids": {
+      "allowed": "yes",
+      "minAge": null,
+      "kidsMenu": null,
+      "note": "食べログ：子供可（乳兒到小學生）、ベビーカー可、お子様連れ歓迎"
+    },
+    "accessibility": {
+      "barrierFree": "車椅子で入店可",
+      "note": "伊勢市站步行 7 分；停車場 8 台"
+    },
+    "smoking": "全席禁煙",
+    "extra": {
+      "conflicts": [
+        "個室容量：食べログ 席數明細只到 8 名個室×3，個室欄卻寫 ～15 名席、20～30 人可"
+      ]
+    }
+  },
+  {
+    "id": "ise-osakaya",
+    "type": "restaurant",
+    "name": {
+      "ja": "伊勢大阪屋",
+      "kana": "いせ おおさかや",
+      "zh": "伊勢大阪屋（大炸蝦・伊勢龍蝦）",
+      "en": null
+    },
+    "area": "ise",
+    "region": "ise-outskirts",
+    "coords": [
+      136.6622957,
+      34.499662
+    ],
+    "coordsSource": "google-maps-url",
+    "address": "三重県伊勢市上地町2582-1",
+    "hours": {
+      "mon": [
+        [
+          "10:30",
+          "20:30"
+        ]
+      ],
+      "tue": [
+        [
+          "10:30",
+          "20:30"
+        ]
+      ],
+      "wed": [
+        [
+          "10:30",
+          "20:30"
+        ]
+      ],
+      "thu": [
+        [
+          "10:30",
+          "20:30"
+        ]
+      ],
+      "fri": [
+        [
+          "10:30",
+          "20:30"
+        ]
+      ],
+      "sat": [
+        [
+          "10:30",
+          "20:30"
+        ]
+      ],
+      "sun": [
+        [
+          "10:30",
+          "20:30"
+        ]
+      ],
+      "holiday": [
+        [
+          "10:30",
+          "20:30"
+        ]
+      ],
+      "lastEntry": "20:00",
+      "note": "官網、食べログ（店舗会員）：L.O. 20:00；14:00～17:00 少人數營業；特別預約以外常提早打烊；不定休"
+    },
+    "closedNote": "不定休",
+    "febNote": "不定休，要事先問；冬季店內和個室偏冷的口コミ（Google 約 2025/12）",
+    "closures": [],
+    "photos": [
+      {
+        "url": "https://iseoosakaya.com/img/mise.jpg",
+        "page": "https://iseoosakaya.com/",
+        "kind": "official",
+        "credit": "伊勢大阪屋",
+        "license": null
+      }
+    ],
+    "links": {
+      "official": "https://iseoosakaya.com/",
+      "googleMaps": "https://maps.google.com/?cid=12753943199181314729",
+      "tabelog": "https://tabelog.com/mie/A2403/A240301/24007622/",
+      "instagram": "@oosakayaise"
+    },
+    "tags": [],
+    "tier": null,
+    "sources": [
+      {
+        "type": "tabelog",
+        "url": "https://tabelog.com/mie/A2403/A240301/24007622/",
+        "retrieved": "2026-10-18",
+        "note": "店舗情報：分數、席數、預約、個室、貸切、營業時間、お子様連れ（店舗会員）"
+      },
+      {
+        "type": "google-maps",
+        "url": "https://maps.google.com/?cid=12753943199181314729",
+        "retrieved": "2026-10-18",
+        "note": "星數、評論數、座標、照片"
+      },
+      {
+        "type": "tabelog",
+        "url": "https://tabelog.com/mie/A2403/A240301/24007622/party/",
+        "retrieved": "2026-10-18",
+        "note": "コース一覧：套餐名稱、價格、人數"
+      },
+      {
+        "type": "tabelog",
+        "url": "https://tabelog.com/mie/A2403/A240301/24007622/dtlrvwlst/",
+        "retrieved": "2026-10-18",
+        "note": "口コミ（最新 20 則、搜尋「座敷」「冬」；2026-10-18 讀）"
+      },
+      {
+        "type": "official",
+        "url": "https://iseoosakaya.com/",
+        "retrieved": "2026-10-18",
+        "note": "營業時間、華コース、伊勢海老價格、團體 100 名、送迎、停車場、取消規定"
+      },
+      {
+        "type": "official",
+        "url": "https://iseoosakaya.com/html/omise.html",
+        "retrieved": "2026-10-18",
+        "note": "テーブル・お座敷 100～120 人，團體送迎巴士，週末混雜"
+      },
+      {
+        "type": "official",
+        "url": "https://iseoosakaya.com/html/map.html",
+        "retrieved": "2026-10-18",
+        "note": "交通：宮川駅車2分、伊勢市駅計程車10分"
+      }
+    ],
+    "verified": false,
+    "anchors": [
+      {
+        "id": "ise-ichigoen",
+        "walkMinutes": 32,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-momijiken",
+        "walkMinutes": 52,
+        "walkSource": "osrm"
+      }
+    ],
+    "contexts": [
+      "lunch",
+      "dinner"
+    ],
+    "access": "car",
+    "cuisine": [
+      "伊勢海老・高級海鮮",
+      "定食・食堂"
+    ],
+    "priceRange": "午 ¥2,300～4,000（定食）／宴會 ¥4,400～19,800",
+    "price": {
+      "lunch": [
+        2255,
+        3960
+      ],
+      "dinner": [
+        4400,
+        19800
+      ]
+    },
+    "stayMinutes": null,
+    "mustTry": [
+      "大海老フライ定食（大 2 枚 2,255 円、特大 3,960 円、超特大 5,060 円）",
+      "伊勢海老のお造り（中 6,050 円～）",
+      "華コース 11,000 円（伊勢海老・鮑・松阪牛）"
+    ],
+    "menu": [
+      {
+        "url": "https://tabelog.com/mie/A2403/A240301/24007622/party/",
+        "source": "tabelog",
+        "retrieved": "2026-10-18"
+      },
+      {
+        "url": "https://tabelog.com/mie/A2403/A240301/24007622/dtlmenu/",
+        "source": "tabelog",
+        "retrieved": "2026-10-18"
+      },
+      {
+        "url": "https://tabelog.com/mie/A2403/A240301/24007622/dtlmenu/lunch/",
+        "source": "tabelog",
+        "retrieved": "2026-10-18"
+      }
+    ],
+    "ratings": {
+      "tabelog": 3.28,
+      "tabelogReviews": 103,
+      "google": 3.6,
+      "googleReviews": 333,
+      "note": null
+    },
+    "inclusion": [
+      "C"
+    ],
+    "tabelogOwner": true,
+    "googleName": "大阪屋",
+    "notes": "上地町的大炸蝦、伊勢海老老店（食べログ 3.28／103、Google 3.6／333），100 席、最多 100 人、有團體送迎巴士和 4,400 円起的宴會套餐，15 人全員用餐的條件最齊。但 Google 評價普通：低分集中在服務冷淡、價格高；宴會在 2 樓（陡樓梯），兒童餐要事先訂。要搭車。",
+    "group": {
+      "seats": 100,
+      "maxReservation": 100,
+      "privateRoom": true,
+      "buyout": "可 （20人以下可、20人～50人可、50人以上可）",
+      "groupMenu": "梅 4,400・5,500／竹 6,600／松 8,800／華 11,000（9 品，伊勢海老・鮑・松阪牛 A5）／伊勢えび 13,200／伊勢(寿) 16,500・(極) 19,800 円（含稅，1～99 名，予約優先）；3 天內減人或取消收全額；可加飲み放題（官網、食べログ コース 2026-04）",
+      "fit15": "yes",
+      "fitSubgroup": "yes",
+      "source": "食べログ（店舗会員）：100 席、最大予約 100 人、個室 10～30 人以上、貸切可、可預約；官網 團體最多 100～120 名 → yes"
+    },
+    "reservation": {
+      "accepted": "yes",
+      "methods": [
+        "phone",
+        "web"
+      ],
+      "phone": "0596-27-3315",
+      "url": "https://tabelog.com/mie/A2403/A240301/24007622/",
+      "language": "日文",
+      "note": "官網的予約專用電話；食べログ網路預約限稅外 8,000 円以上、現金、不能指定座位；伊勢海老（大）以上前一天前預約；團體送迎巴士要預約",
+      "leadDays": null
+    },
+    "seating": [
+      "zashiki",
+      "horigotatsu",
+      "table"
+    ],
+    "kids": {
+      "allowed": "yes",
+      "minAge": null,
+      "kidsMenu": true,
+      "note": "食べログ：子供可、お子様メニューあり；但兒童餐要事先預約，訂位時說了小孩人數也沒被提醒、到店沒有兒童餐的低分評論 2 則（Google，約 2023、2024）→ 訂位時要明講"
+    },
+    "accessibility": {
+      "barrierFree": "車椅子で入店可",
+      "note": "宴會在 2 樓、樓梯很陡（食べログ口コミ 2025/11）；1 樓有座敷（一般、掘りごたつ）和有隔板的テーブル席（口コミ 2023/04）；JR 宮川站車 2 分、伊勢市站計程車約 10 分；停車場 30 台、觀光巴士可、團體送迎巴士（要預約）"
+    },
+    "smoking": "全席禁煙",
+    "extra": {
+      "conflicts": [
+        "團體收容：官網首頁 100 名、お店紹介 100～120 人",
+        "座位：食べログ 100 席（座敷）；官網 テーブル、お座敷",
+        "付款：食べログ 網路預約限現金；官網 PayPay 可"
+      ]
+    }
+  },
+  {
+    "id": "ise-katsura-geku",
+    "type": "restaurant",
+    "name": {
+      "ja": "桂 外宮",
+      "kana": "かつら げくう",
+      "zh": "割烹壽司 桂（外宮參道）",
+      "en": null
+    },
+    "area": "ise",
+    "region": "ise-geku",
+    "coords": [
+      136.709137,
+      34.490338
+    ],
+    "coordsSource": "google-maps-url",
+    "address": "三重県伊勢市本町17-16",
+    "hours": {
+      "mon": [
+        [
+          "11:00",
+          "15:00"
+        ],
+        [
+          "16:30",
+          "21:30"
+        ]
+      ],
+      "tue": [
+        [
+          "11:00",
+          "15:00"
+        ],
+        [
+          "16:30",
+          "21:30"
+        ]
+      ],
+      "wed": [],
+      "thu": [
+        [
+          "11:00",
+          "15:00"
+        ],
+        [
+          "16:30",
+          "21:30"
+        ]
+      ],
+      "fri": [
+        [
+          "11:00",
+          "15:00"
+        ],
+        [
+          "16:30",
+          "21:30"
+        ]
+      ],
+      "sat": [
+        [
+          "11:00",
+          "15:00"
+        ],
+        [
+          "16:30",
+          "21:30"
+        ]
+      ],
+      "sun": [
+        [
+          "11:00",
+          "15:00"
+        ],
+        [
+          "16:30",
+          "21:30"
+        ]
+      ],
+      "holiday": [
+        [
+          "11:00",
+          "15:00"
+        ],
+        [
+          "16:30",
+          "21:30"
+        ]
+      ],
+      "lastEntry": [
+        "14:30",
+        "21:00"
+      ],
+      "note": "官網：L.O. 午 14:30、晚 21:00，有時 21:00 關（L.O. 20:30）；週三休、另有不定休。國定假日沿用平日時段（官網沒分）"
+    },
+    "closedNote": "週三（另有不定休）",
+    "febNote": "2/3、2/10（三）休；冬季限定カキフライ定食（食べログ口コミ 2025/11）",
+    "closures": [],
+    "photos": [
+      {
+        "url": "http://www.ise-katsura.co.jp/shared/img/index/sec1_img.jpg",
+        "page": "http://www.ise-katsura.co.jp/",
+        "kind": "official",
+        "credit": "桂 外宮",
+        "license": null
+      },
+      {
+        "url": "http://www.ise-katsura.co.jp/shared/img/party/sec1_img1.jpg",
+        "page": "http://www.ise-katsura.co.jp/party.html",
+        "kind": "official",
+        "credit": "桂 外宮",
+        "license": null
+      }
+    ],
+    "links": {
+      "official": "http://www.ise-katsura.co.jp/",
+      "googleMaps": "https://maps.google.com/?cid=13907594700264884222",
+      "tabelog": "https://tabelog.com/mie/A2403/A240301/24012311/",
+      "instagram": null
+    },
+    "tags": [],
+    "tier": null,
+    "sources": [
+      {
+        "type": "tabelog",
+        "url": "https://tabelog.com/mie/A2403/A240301/24012311/",
+        "retrieved": "2026-10-18",
+        "note": "店舗情報：分數、席數、預約、個室、貸切、營業時間、お子様連れ（店舗会員）"
+      },
+      {
+        "type": "google-maps",
+        "url": "https://maps.google.com/?cid=13907594700264884222",
+        "retrieved": "2026-10-18",
+        "note": "星數、評論數、座標、照片"
+      },
+      {
+        "type": "tabelog",
+        "url": "https://tabelog.com/mie/A2403/A240301/24012311/party/",
+        "retrieved": "2026-10-18",
+        "note": "コース一覧：套餐名稱、價格、人數"
+      },
+      {
+        "type": "tabelog",
+        "url": "https://tabelog.com/mie/A2403/A240301/24012311/dtlrvwlst/",
+        "retrieved": "2026-10-18",
+        "note": "口コミ（最新 20 則、搜尋「中止」「冬」「子供」；2026-10-18 讀）"
+      },
+      {
+        "type": "official",
+        "url": "http://www.ise-katsura.co.jp/",
+        "retrieved": "2026-10-18",
+        "note": "營業時間、定休、お子様御膳、交通"
+      },
+      {
+        "type": "official",
+        "url": "http://www.ise-katsura.co.jp/party.html",
+        "retrieved": "2026-10-18",
+        "note": "コース價格、前日預約、最大 40 名、可隔間座敷"
+      },
+      {
+        "type": "official",
+        "url": "http://www.ise-katsura.co.jp/access.html",
+        "retrieved": "2026-10-18",
+        "note": "店舗情報、掘りごたつ和室、集團店"
+      },
+      {
+        "type": "official",
+        "url": "http://www.ise-katsura.co.jp/lunch.html",
+        "retrieved": "2026-10-18",
+        "note": "午餐御膳價格"
+      }
+    ],
+    "verified": false,
+    "anchors": [
+      {
+        "id": "jr-iseshi",
+        "walkMinutes": 2,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-geku-sando",
+        "walkMinutes": 2,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-tsukiyomi-no-miya-geku",
+        "walkMinutes": 7,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-sengukan",
+        "walkMinutes": 7,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-shinsen",
+        "walkMinutes": 2,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-comfort-era",
+        "walkMinutes": 2,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-sanco-inn",
+        "walkMinutes": 3,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-toyoko-inn",
+        "walkMinutes": 14,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-hinode-ryokan",
+        "walkMinutes": 3,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-fav",
+        "walkMinutes": 8,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-nipponia-kawasaki",
+        "walkMinutes": 15,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-oyado-ichi",
+        "walkMinutes": 6,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-wasoan",
+        "walkMinutes": 9,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-geku-bettei-michi",
+        "walkMinutes": 7,
+        "walkSource": "osrm"
+      }
+    ],
+    "contexts": [
+      "lunch",
+      "dinner"
+    ],
+    "access": "walk",
+    "cuisine": [
+      "和食・割烹",
+      "壽司"
+    ],
+    "priceRange": "午 ¥2,000～2,800／晚 ¥5,500～13,200（套餐）",
+    "price": {
+      "lunch": [
+        2080,
+        2740
+      ],
+      "dinner": [
+        5500,
+        13200
+      ]
+    },
+    "stayMinutes": null,
+    "mustTry": [
+      "桂風手こね寿司 2,190 円（伊勢うどんセットも多い）",
+      "伊勢名物づくし「桂御膳」2,600 円",
+      "特選伊勢海老御膳 7,800 円（口コミ）"
+    ],
+    "menu": [
+      {
+        "url": "http://www.ise-katsura.co.jp/party.html",
+        "source": "official",
+        "retrieved": "2026-10-18"
+      },
+      {
+        "url": "https://tabelog.com/mie/A2403/A240301/24012311/party/",
+        "source": "tabelog",
+        "retrieved": "2026-10-18"
+      },
+      {
+        "url": "https://tabelog.com/mie/A2403/A240301/24012311/dtlmenu/",
+        "source": "tabelog",
+        "retrieved": "2026-10-18"
+      },
+      {
+        "url": "https://tabelog.com/mie/A2403/A240301/24012311/dtlmenu/lunch/",
+        "source": "tabelog",
+        "retrieved": "2026-10-18"
+      }
+    ],
+    "ratings": {
+      "tabelog": 3.39,
+      "tabelogReviews": 178,
+      "google": 4,
+      "googleReviews": 664,
+      "note": null
+    },
+    "inclusion": [
+      "C"
+    ],
+    "tabelogOwner": true,
+    "googleName": "割烹寿司 桂 外宮",
+    "notes": "伊勢市站前、外宮參道入口的割烹壽司（Google 4.0／664 則），手こね寿司、伊勢うどん、松阪牛、伊勢海老一次吃到；宴會最多 40 人、掘りごたつ座敷可隔間，套餐 5,500 円起要前一天訂。門口另有同名的伊勢うどん 櫃台（自助），Google 評論混在一起；低分多是服務和價格（觀光地價格）。",
+    "group": {
+      "seats": 46,
+      "maxReservation": null,
+      "privateRoom": true,
+      "buyout": "可 （20人～50人可）",
+      "groupMenu": "5,500 円コース、すきやきコース 7,500 円、伊勢海老・松坂牛コース 11,000／13,200 円（含稅），1 人起可點、前一天前預約；宴會最多 40 名（官網 party）",
+      "fit15": "yes",
+      "fitSubgroup": "yes",
+      "source": "食べログ（店舗会員）：46 席（カウンター 12、お座敷 34）、個室 2～30 人以上、貸切 20～50 人、可預約；官網 宴會最多 40 名、座敷可隔間 → yes"
+    },
+    "reservation": {
+      "accepted": "yes",
+      "methods": [
+        "phone"
+      ],
+      "phone": "0596-28-3001",
+      "url": null,
+      "language": "日文",
+      "note": "コース前一天前預約（官網）；食べログ的予約番號 050-5890-2301。平日 11:00 開店時席位已被預約占滿的口コミ（Google 約 2026），團體一定要先訂",
+      "leadDays": 1
+    },
+    "seating": [
+      "zashiki",
+      "horigotatsu",
+      "counter"
+    ],
+    "kids": {
+      "allowed": "yes",
+      "minAge": null,
+      "kidsMenu": true,
+      "note": "官網有「お子様御膳」（價格沒寫清楚）；食べログ：子供可。2025/01 帶小孩用餐，店家主動準備兒童餐具（Google 評論 1 則）"
+    },
+    "accessibility": {
+      "barrierFree": null,
+      "note": "伊勢市站步行 1 分（外宮參道入口）；沒有停車場（附近投幣式）；座敷是掘りごたつ"
+    },
+    "smoking": "分煙",
+    "extra": {
+      "conflicts": [
+        "營業時間：官網 16:30～21:30（L.O. 21:00）、週末也分午晚；食べログ 平日晚到 22:00、土日祝 11:00～22:00 通し",
+        "團體上限：官網 40 名；食べログ 個室 30 人以上、貸切 20～50 人",
+        "Google 的「割烹寿司 桂 外宮」評論混有門口伊勢うどん 櫃台（イートイン、自助）的評論"
+      ]
+    }
+  },
+  {
+    "id": "ise-aburi-takumi-part2",
+    "type": "restaurant",
+    "name": {
+      "ja": "あぶり焼肉 匠 PART2 伊勢店",
+      "kana": "あぶりやきにく たくみ ぱーとつー",
+      "zh": "松阪牛炙燒燒肉 匠（伊勢店）",
+      "en": null
+    },
+    "area": "ise",
+    "region": "ise-geku",
+    "coords": [
+      136.7066167,
+      34.4966797
+    ],
+    "coordsSource": "google-maps-url",
+    "address": "三重県伊勢市一之木3-10-11",
+    "hours": {
+      "mon": [],
+      "tue": [
+        [
+          "17:30",
+          "22:00"
+        ]
+      ],
+      "wed": [
+        [
+          "17:30",
+          "22:00"
+        ]
+      ],
+      "thu": [
+        [
+          "17:30",
+          "22:00"
+        ]
+      ],
+      "fri": [
+        [
+          "17:30",
+          "22:00"
+        ]
+      ],
+      "sat": [
+        [
+          "17:30",
+          "22:00"
+        ]
+      ],
+      "sun": [
+        [
+          "17:30",
+          "22:00"
+        ]
+      ],
+      "holiday": [
+        [
+          "17:30",
+          "22:00"
+        ]
+      ],
+      "lastEntry": "21:30",
+      "note": "官網 17:30～22:00（L.O. 21:30），週一休、12/31・1/1 休；食べログ 有午餐 12:00～14:30、晚 17:00～22:00，只寫 12/31・1/1 休"
+    },
+    "closedNote": "週一（官網；食べログ 寫無休）",
+    "febNote": "2/8（一）休（官網）",
+    "closures": [],
+    "photos": [
+      {
+        "url": "https://aburiyaki-takumi.jp/wp-content/uploads/2026/02/submain2.webp",
+        "page": "https://aburiyaki-takumi.jp/access/",
+        "kind": "official",
+        "credit": "あぶり焼肉 匠 PART2 伊勢店",
+        "license": null
+      }
+    ],
+    "links": {
+      "official": "https://aburiyaki-takumi.jp/",
+      "googleMaps": "https://maps.google.com/?cid=7328894118840033805",
+      "tabelog": "https://tabelog.com/mie/A2403/A240301/24012782/",
+      "instagram": "@aburiyaki_takumi"
+    },
+    "tags": [],
+    "tier": null,
+    "sources": [
+      {
+        "type": "tabelog",
+        "url": "https://tabelog.com/mie/A2403/A240301/24012782/",
+        "retrieved": "2026-10-18",
+        "note": "店舗情報：分數、席數、預約、個室、貸切、營業時間、お子様連れ（店舗会員）"
+      },
+      {
+        "type": "google-maps",
+        "url": "https://maps.google.com/?cid=7328894118840033805",
+        "retrieved": "2026-10-18",
+        "note": "星數、評論數、座標、照片"
+      },
+      {
+        "type": "tabelog",
+        "url": "https://tabelog.com/mie/A2403/A240301/24012782/party/",
+        "retrieved": "2026-10-18",
+        "note": "コース一覧：套餐名稱、價格、人數"
+      },
+      {
+        "type": "official",
+        "url": "https://aburiyaki-takumi.jp/",
+        "retrieved": "2026-10-18",
+        "note": "官網首頁：17:30～22:00、月曜休、Instagram 連結"
+      },
+      {
+        "type": "official",
+        "url": "https://aburiyaki-takumi.jp/access/",
+        "retrieved": "2026-10-18",
+        "note": "伊勢店地址、營業時間、駐車場あり；另列炭火焼肉 匠（宮後）"
+      },
+      {
+        "type": "official",
+        "url": "https://aburiyaki-takumi.jp/aburimenu/",
+        "retrieved": "2026-10-18",
+        "note": "半個室座敷・テーブル、ドリンクバー；菜單只有圖片"
+      }
+    ],
+    "verified": false,
+    "anchors": [
+      {
+        "id": "iseshi",
+        "walkMinutes": 11,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-tsukiyomi-no-miya-geku",
+        "walkMinutes": 9,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-wakamatsuya-kamaboko",
+        "walkMinutes": 9,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-geku-sando",
+        "walkMinutes": 13,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-toyoko-inn",
+        "walkMinutes": 6,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-fav",
+        "walkMinutes": 7,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-sanco-inn",
+        "walkMinutes": 11,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-comfort-era",
+        "walkMinutes": 13,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-hinode-ryokan",
+        "walkMinutes": 13,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-nipponia-kawasaki",
+        "walkMinutes": 12,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-oyado-ichi",
+        "walkMinutes": 9,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-wasoan",
+        "walkMinutes": 20,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-geku-bettei-michi",
+        "walkMinutes": 14,
+        "walkSource": "osrm"
+      }
+    ],
+    "contexts": [
+      "dinner"
+    ],
+    "access": "walk",
+    "cuisine": [
+      "燒肉・肉料理"
+    ],
+    "priceRange": "晚 ¥3,000～4,000（口コミ集計 ¥8,000～10,000）",
+    "price": {
+      "lunch": null,
+      "dinner": [
+        3000,
+        4000
+      ]
+    },
+    "stayMinutes": null,
+    "mustTry": [],
+    "menu": [
+      {
+        "url": "https://tabelog.com/mie/A2403/A240301/24012782/party/",
+        "source": "tabelog",
+        "retrieved": "2026-10-18"
+      },
+      {
+        "url": "https://tabelog.com/mie/A2403/A240301/24012782/dtlmenu/",
+        "source": "tabelog",
+        "retrieved": "2026-10-18"
+      }
+    ],
+    "ratings": {
+      "tabelog": 3.34,
+      "tabelogReviews": 97,
+      "google": 3.3,
+      "googleReviews": 224,
+      "note": null
+    },
+    "inclusion": [
+      "C"
+    ],
+    "tabelogOwner": true,
+    "googleName": "松阪牛あぶり焼肉 匠",
+    "notes": "一之木的松阪牛炙燒燒肉（大西食品 集團），60 席全是半個室（テーブル、座敷），貸切 20～50 人、有停車場；Google 3.3／224 則偏低。官網只寫晚上、週一休，和食べログ（有午餐、無休）不同。",
+    "group": {
+      "seats": 60,
+      "maxReservation": null,
+      "privateRoom": true,
+      "buyout": "可 （20人～50人可）",
+      "groupMenu": "コース 3,000／4,000／5,000 円（稅外，4～7 品），前一天前預約（食べログ コース 2019-05，舊）；貸切依預算商量（食べログ 備考）",
+      "fit15": "yes",
+      "fitSubgroup": "yes",
+      "source": "食べログ（店舗会員）：60 席（テーブル半個室 35、座敷半個室 25）、個室 2～20 人（全部半個室）、貸切 20～50 人、可預約 → yes"
+    },
+    "reservation": {
+      "accepted": "yes",
+      "methods": [
+        "phone"
+      ],
+      "phone": "0596-22-2989",
+      "url": null,
+      "language": "日文",
+      "note": "コース前一天前預約",
+      "leadDays": 1
+    },
+    "seating": [
+      "table",
+      "zashiki",
+      "sofa"
+    ],
+    "kids": {
+      "allowed": "unknown",
+      "minAge": null,
+      "kidsMenu": null,
+      "note": "官網「ファミリーでも気兼ねなく」、有ソフトドリンクバー；兒童餐沒寫"
+    },
+    "accessibility": {
+      "barrierFree": "車椅子で入店可",
+      "note": "伊勢市站步行 10 分；停車場 20 台"
+    },
+    "smoking": "全席喫煙可",
+    "extra": {
+      "conflicts": [
+        "營業時間：官網 只有晚上 17:30～22:00；食べログ 午 12:00～14:30、晚 17:00～22:00",
+        "定休：官網 週一；食べログ 只寫 12/31・1/1",
+        "店名：食べログ「あぶり焼肉 匠 PART2 伊勢店」、官網「松阪牛 あぶり焼肉 匠 伊勢店」（同地址）"
+      ]
+    }
+  },
+  {
+    "id": "ise-sumibi-yakiniku-takumi",
+    "type": "restaurant",
+    "name": {
+      "ja": "炭火焼肉匠",
+      "kana": "すみびやきにく たくみ",
+      "zh": "炭火燒肉 匠（伊勢市站前）",
+      "en": null
+    },
+    "area": "ise",
+    "region": "ise-geku",
+    "coords": [
+      136.7076458,
+      34.4912022
+    ],
+    "coordsSource": "google-maps-url",
+    "address": "三重県伊勢市宮後1-7-7 あさをビル 1F",
+    "hours": {
+      "mon": [
+        [
+          "17:00",
+          "22:00"
+        ]
+      ],
+      "tue": [
+        [
+          "17:00",
+          "22:00"
+        ]
+      ],
+      "wed": [],
+      "thu": [
+        [
+          "17:00",
+          "22:00"
+        ]
+      ],
+      "fri": [
+        [
+          "17:00",
+          "22:00"
+        ]
+      ],
+      "sat": [
+        [
+          "17:00",
+          "22:00"
+        ]
+      ],
+      "sun": [
+        [
+          "17:00",
+          "22:00"
+        ]
+      ],
+      "holiday": [
+        [
+          "17:00",
+          "22:00"
+        ]
+      ],
+      "note": "集團官網 17:00～22:00；週三休＋第 3 週四休（官網）。食べログ 平日到 22:30（L.O. 22:00）、第 2・3 週四也休"
+    },
+    "closedNote": "週三、第 3 週四（食べログ：第 2、3 週四）",
+    "febNote": "2/3、2/10（三）休；食べログ 說第 2 週四也休 → 2/11（四・國定假日）可能休，要問",
+    "closures": [],
+    "photos": [
+      {
+        "url": "https://aburiyaki-takumi.jp/wp-content/uploads/2026/02/niku2.webp",
+        "page": "https://aburiyaki-takumi.jp/",
+        "kind": "official",
+        "credit": "炭火焼肉匠",
+        "license": null
+      }
+    ],
+    "links": {
+      "official": "https://aburiyaki-takumi.jp/",
+      "googleMaps": "https://maps.google.com/?cid=9923388689401507434",
+      "tabelog": "https://tabelog.com/mie/A2403/A240301/24015298/",
+      "instagram": null
+    },
+    "tags": [],
+    "tier": null,
+    "sources": [
+      {
+        "type": "tabelog",
+        "url": "https://tabelog.com/mie/A2403/A240301/24015298/",
+        "retrieved": "2026-10-18",
+        "note": "店舗情報：分數、席數、預約、個室、貸切、營業時間、お子様連れ（店舗会員）"
+      },
+      {
+        "type": "google-maps",
+        "url": "https://maps.google.com/?cid=9923388689401507434",
+        "retrieved": "2026-10-18",
+        "note": "星數、評論數、座標、照片"
+      },
+      {
+        "type": "official",
+        "url": "https://aburiyaki-takumi.jp/access/",
+        "retrieved": "2026-10-18",
+        "note": "集團各店資訊，含松阪牛 炭火焼肉 匠（宮後）的住址、電話、時間、定休"
+      },
+      {
+        "type": "official",
+        "url": "https://aburiyaki-takumi.jp/",
+        "retrieved": "2026-10-18",
+        "note": "集團官網，IG 帳號，未有此店宴會資訊"
+      },
+      {
+        "type": "official",
+        "url": "https://aburiyaki-takumi.jp/sumibimenu/",
+        "retrieved": "2026-10-18",
+        "note": "炭火焼肉 匠 選單頁，實際未列菜單"
+      }
+    ],
+    "verified": false,
+    "anchors": [
+      {
+        "id": "jr-iseshi",
+        "walkMinutes": 4,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-geku-sando",
+        "walkMinutes": 4,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-tsukiyomi-no-miya-geku",
+        "walkMinutes": 5,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-sengukan",
+        "walkMinutes": 9,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-sanco-inn",
+        "walkMinutes": 3,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-shinsen",
+        "walkMinutes": 3,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-comfort-era",
+        "walkMinutes": 4,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-toyoko-inn",
+        "walkMinutes": 12,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-hinode-ryokan",
+        "walkMinutes": 5,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-fav",
+        "walkMinutes": 5,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-nipponia-kawasaki",
+        "walkMinutes": 14,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-oyado-ichi",
+        "walkMinutes": 5,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-wasoan",
+        "walkMinutes": 10,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-geku-bettei-michi",
+        "walkMinutes": 6,
+        "walkSource": "osrm"
+      }
+    ],
+    "contexts": [
+      "dinner"
+    ],
+    "access": "walk",
+    "cuisine": [
+      "燒肉・肉料理"
+    ],
+    "priceRange": "晚 ¥3,000～4,000",
+    "price": {
+      "lunch": null,
+      "dinner": [
+        3000,
+        4000
+      ]
+    },
+    "stayMinutes": null,
+    "mustTry": [],
+    "menu": [
+      {
+        "url": "https://tabelog.com/mie/A2403/A240301/24015298/dtlmenu/",
+        "source": "tabelog",
+        "retrieved": "2026-10-18"
+      }
+    ],
+    "ratings": {
+      "tabelog": 3.28,
+      "tabelogReviews": 73,
+      "google": 3.9,
+      "googleReviews": 90,
+      "note": null
+    },
+    "inclusion": [
+      "C"
+    ],
+    "tabelogOwner": true,
+    "googleName": "匠",
+    "notes": "伊勢市站步行 3 分的松阪牛燒肉（舊名 にく家 たくみ，大西食品 集團，和 あぶり焼肉 匠 同系），最大預約 24 人、半個室；只有晚上。官網沒有菜單、套餐，營業現況（搜尋摘要提到女將可能無法續營）要電話確認。",
+    "group": {
+      "seats": 35,
+      "maxReservation": 24,
+      "privateRoom": true,
+      "buyout": "可 （20人以下可）",
+      "groupMenu": null,
+      "fit15": "yes",
+      "fitSubgroup": "yes",
+      "source": "食べログ（店舗会員）：35 席（テーブル 4 名×5 卓、カウンター 4）、最大予約 24 人、個室 2～30 人（半個室）、貸切 20 人以下、可預約 → yes"
+    },
+    "reservation": {
+      "accepted": "yes",
+      "methods": [
+        "phone"
+      ],
+      "phone": "0596-26-2929",
+      "url": null,
+      "language": "日文",
+      "note": "食べログ的予約番號 050-5596-4379",
+      "leadDays": null
+    },
+    "seating": [
+      "table",
+      "counter"
+    ],
+    "kids": {
+      "allowed": "yes",
+      "minAge": null,
+      "kidsMenu": null,
+      "note": "食べログ：子供可（乳兒到小學生）"
+    },
+    "accessibility": {
+      "barrierFree": null,
+      "note": "伊勢市站步行 3 分、1F；附近投幣式停車場"
+    },
+    "smoking": "全席禁煙",
+    "extra": {
+      "conflicts": [
+        "定休：集團官網 週三＋第 3 週四；食べログ 週三＋第 2、3 週四",
+        "營業時間：官網 17:00～22:00；食べログ 17:00～22:30（L.O. 22:00）"
+      ]
+    }
+  },
+  {
+    "id": "ise-tamachan",
+    "type": "restaurant",
+    "name": {
+      "ja": "和牛石アミ焼肉 たまちゃん",
+      "kana": "たまちゃん",
+      "zh": "和牛石網燒肉 たまちゃん",
+      "en": null
+    },
+    "area": "ise",
+    "region": "ise-obata",
+    "coords": [
+      136.6500733,
+      34.5096538
+    ],
+    "coordsSource": "google-maps-url",
+    "address": "三重県伊勢市小俣町湯田185-17",
+    "hours": {
+      "mon": [],
+      "tue": [
+        [
+          "17:00",
+          "22:30"
+        ]
+      ],
+      "wed": [
+        [
+          "17:00",
+          "22:30"
+        ]
+      ],
+      "thu": [
+        [
+          "17:00",
+          "22:30"
+        ]
+      ],
+      "fri": [
+        [
+          "17:00",
+          "22:30"
+        ]
+      ],
+      "sat": [
+        [
+          "11:00",
+          "14:30"
+        ],
+        [
+          "17:00",
+          "22:30"
+        ]
+      ],
+      "sun": [
+        [
+          "11:00",
+          "14:30"
+        ],
+        [
+          "17:00",
+          "22:30"
+        ]
+      ],
+      "holiday": [
+        [
+          "11:00",
+          "14:30"
+        ]
+      ],
+      "lastEntry": [
+        "14:00",
+        "22:00"
+      ],
+      "note": "食べログ（非店舗会員）：週一休（遇國定假日隔天休）；國定假日只有午餐（食べログ 的寫法）"
+    },
+    "closedNote": "週一（遇國定假日改隔天）",
+    "febNote": "2/8（一）休；平日只有晚上；2/11（國定假日）只有午餐（食べログ）",
+    "closures": [],
+    "photos": [
+      {
+        "url": "https://lh3.googleusercontent.com/grass-cs/AABkmLdAOiltDXcMEeXRpkcXgoBKyGOOJity9euE-n2mkLtH4_D6inXctsbkFV0q55lKO3-SAK4XRVQVW7vboYQ-L6fTdRRolnCAa2Am5PbYVoh_ocIOamYV-mrlkolaMMFDeGDx-_xvFQ=w800",
+        "page": "https://maps.google.com/?cid=1789585390699334674",
+        "kind": "google",
+        "credit": "Google マップ",
+        "license": null
+      }
+    ],
+    "links": {
+      "official": "http://www.yakiniku-tamachan.jp/",
+      "googleMaps": "https://maps.google.com/?cid=1789585390699334674",
+      "tabelog": "https://tabelog.com/mie/A2403/A240301/24015615/",
+      "instagram": "@yakiniku_tamachan"
+    },
+    "tags": [],
+    "tier": null,
+    "sources": [
+      {
+        "type": "tabelog",
+        "url": "https://tabelog.com/mie/A2403/A240301/24015615/",
+        "retrieved": "2026-10-18",
+        "note": "店舗情報：分數、席數、預約、個室、貸切、營業時間、お子様連れ"
+      },
+      {
+        "type": "google-maps",
+        "url": "https://maps.google.com/?cid=1789585390699334674",
+        "retrieved": "2026-10-18",
+        "note": "星數、評論數、座標、照片"
+      },
+      {
+        "type": "official",
+        "url": "http://www.yakiniku-tamachan.jp/",
+        "retrieved": "2026-10-18",
+        "note": "WebFetch 回 403，未讀到內容"
+      },
+      {
+        "type": "other",
+        "url": "https://www.byfood.com/ja/restaurant/wagyu-ishi-ami-yakiniku-tamachan-11714",
+        "retrieved": "2026-10-18",
+        "note": "WebFetch 403；只有搜尋摘要：小俣町湯田、個室ブース、牛タン、ハラミステーキ"
+      }
+    ],
+    "verified": false,
+    "anchors": [
+      {
+        "id": "ise-ichigoen",
+        "walkMinutes": 40,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-momijiken",
+        "walkMinutes": 72,
+        "walkSource": "osrm"
+      }
+    ],
+    "contexts": [
+      "lunch",
+      "dinner"
+    ],
+    "access": "car",
+    "cuisine": [
+      "燒肉・肉料理"
+    ],
+    "priceRange": "¥4,000～5,000",
+    "price": {
+      "lunch": [
+        4000,
+        5000
+      ],
+      "dinner": [
+        4000,
+        5000
+      ]
+    },
+    "stayMinutes": null,
+    "mustTry": [],
+    "menu": [
+      {
+        "url": "https://tabelog.com/mie/A2403/A240301/24015615/dtlmenu/photo/",
+        "source": "tabelog",
+        "retrieved": "2026-10-18"
+      }
+    ],
+    "ratings": {
+      "tabelog": 3.19,
+      "tabelogReviews": 26,
+      "google": 4.1,
+      "googleReviews": 83,
+      "note": null
+    },
+    "inclusion": [
+      "C"
+    ],
+    "tabelogOwner": false,
+    "googleName": null,
+    "notes": "小俣町的和牛石網燒肉（Google 4.1／83 則），96 席、個室最多 48 人、無障礙、全面禁菸、停車場 20 台以上；要搭車。官網讀不到（403），套餐、菜單要看食べログ 或電話問。",
+    "group": {
+      "seats": 96,
+      "maxReservation": null,
+      "privateRoom": true,
+      "buyout": "不可",
+      "groupMenu": null,
+      "fit15": "yes",
+      "fitSubgroup": "yes",
+      "source": "食べログ：96 席、個室 30 人以上（最多 48 人）、貸切不可、可預約 → yes"
+    },
+    "reservation": {
+      "accepted": "yes",
+      "methods": [
+        "phone"
+      ],
+      "phone": "0596-63-9757",
+      "url": null,
+      "language": "日文",
+      "note": null,
+      "leadDays": null
+    },
+    "seating": [
+      "zashiki",
+      "horigotatsu"
+    ],
+    "kids": {
+      "allowed": "yes",
+      "minAge": null,
+      "kidsMenu": null,
+      "note": "食べログ：子供可（乳兒到小學生）"
+    },
+    "accessibility": {
+      "barrierFree": "バリアフリー",
+      "note": "伊勢市站、外宮車約 10 分（明野站 2.1 km）；停車場 20 台以上"
+    },
+    "smoking": "全席禁煙",
+    "extra": {}
+  },
+  {
+    "id": "ise-mansenya-hanare",
+    "type": "restaurant",
+    "name": {
+      "ja": "満船屋 HANARE",
+      "kana": "まんせんや はなれ",
+      "zh": "滿船屋 HANARE（個室海鮮居酒屋）",
+      "en": null
+    },
+    "area": "ise",
+    "region": "ise-geku",
+    "coords": [
+      136.7081914,
+      34.4912984
+    ],
+    "coordsSource": "google-maps-url",
+    "address": "三重県伊勢市宮後1-7-39 サウスアイランドビル 1F",
+    "hours": {
+      "mon": [
+        [
+          "17:00",
+          "23:00"
+        ]
+      ],
+      "tue": [],
+      "wed": [
+        [
+          "17:00",
+          "23:00"
+        ]
+      ],
+      "thu": [
+        [
+          "17:00",
+          "23:00"
+        ]
+      ],
+      "fri": [
+        [
+          "17:00",
+          "23:00"
+        ]
+      ],
+      "sat": [
+        [
+          "17:00",
+          "23:00"
+        ]
+      ],
+      "sun": [
+        [
+          "17:00",
+          "23:00"
+        ]
+      ],
+      "holiday": [
+        [
+          "17:00",
+          "23:00"
+        ]
+      ],
+      "lastEntry": "22:30",
+      "note": "官網 17:00～23:00（L.O. 22:30）；食べログ 到 24:00。週二休，12/31～1/2 休（食べログ）"
+    },
+    "closedNote": "週二",
+    "febNote": "2/2、2/9（二）休；只有晚上",
+    "closures": [],
+    "photos": [
+      {
+        "url": "https://mansenya.com/wp-content/themes/mansenya/img/top/top_hanare_img.webp",
+        "page": "https://mansenya.com/",
+        "kind": "official",
+        "credit": "満船屋 HANARE",
+        "license": null
+      }
+    ],
+    "links": {
+      "official": "https://mansenya.com/",
+      "googleMaps": "https://maps.google.com/?cid=5397101569614278997",
+      "tabelog": "https://tabelog.com/mie/A2403/A240301/24019438/",
+      "instagram": "@mansenya_hanare"
+    },
+    "tags": [],
+    "tier": null,
+    "sources": [
+      {
+        "type": "tabelog",
+        "url": "https://tabelog.com/mie/A2403/A240301/24019438/",
+        "retrieved": "2026-10-18",
+        "note": "店舗情報：分數、席數、預約、個室、貸切、營業時間、お子様連れ（店舗会員）"
+      },
+      {
+        "type": "google-maps",
+        "url": "https://maps.google.com/?cid=5397101569614278997",
+        "retrieved": "2026-10-18",
+        "note": "星數、評論數、座標、照片"
+      },
+      {
+        "type": "tabelog",
+        "url": "https://tabelog.com/mie/A2403/A240301/24019438/party/",
+        "retrieved": "2026-10-18",
+        "note": "コース一覧：套餐名稱、價格、人數"
+      },
+      {
+        "type": "tabelog",
+        "url": "https://tabelog.com/mie/A2403/A240301/24019438/dtlrvwlst/",
+        "retrieved": "2026-10-18",
+        "note": "口コミ（最新 20 則、搜尋「子供」；2026-10-18 讀）"
+      },
+      {
+        "type": "official",
+        "url": "https://mansenya.com/",
+        "retrieved": "2026-10-18",
+        "note": "HANARE 全個室、營業時間、定休火曜、住址"
+      },
+      {
+        "type": "official",
+        "url": "https://mansenya.com/hanare/",
+        "retrieved": "2026-10-18",
+        "note": "HANARE 專頁仍為準備中"
+      },
+      {
+        "type": "official",
+        "url": "https://mansenya.com/wp-content/themes/mansenya/pdf/banquet_course.pdf",
+        "retrieved": "2026-10-18",
+        "note": "満船屋宴會套餐價格與內容（3 名起、事前預約）"
+      }
+    ],
+    "verified": false,
+    "anchors": [
+      {
+        "id": "jr-iseshi",
+        "walkMinutes": 3,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-geku-sando",
+        "walkMinutes": 4,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-tsukiyomi-no-miya-geku",
+        "walkMinutes": 6,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-sengukan",
+        "walkMinutes": 9,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-sanco-inn",
+        "walkMinutes": 2,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-shinsen",
+        "walkMinutes": 2,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-comfort-era",
+        "walkMinutes": 4,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-toyoko-inn",
+        "walkMinutes": 12,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-hinode-ryokan",
+        "walkMinutes": 4,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-fav",
+        "walkMinutes": 6,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-nipponia-kawasaki",
+        "walkMinutes": 14,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-oyado-ichi",
+        "walkMinutes": 5,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-wasoan",
+        "walkMinutes": 10,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-geku-bettei-michi",
+        "walkMinutes": 7,
+        "walkSource": "osrm"
+      }
+    ],
+    "contexts": [
+      "dinner"
+    ],
+    "access": "walk",
+    "cuisine": [
+      "居酒屋",
+      "浜焼き・貝"
+    ],
+    "priceRange": "晚 ¥4,000～5,000（宴會コース ¥3,500～11,000）",
+    "price": {
+      "lunch": null,
+      "dinner": [
+        3500,
+        11000
+      ]
+    },
+    "stayMinutes": null,
+    "mustTry": [
+      "浜焼（アッパ・さざえ・大あさり・牡蠣）",
+      "伊勢海老の半身焼き／お造り（9,000円コース等）",
+      "松阪牛巻き寿司"
+    ],
+    "menu": [
+      {
+        "url": "https://tabelog.com/mie/A2403/A240301/24019438/party/",
+        "source": "tabelog",
+        "retrieved": "2026-10-18"
+      },
+      {
+        "url": "https://tabelog.com/mie/A2403/A240301/24019438/dtlmenu/",
+        "source": "tabelog",
+        "retrieved": "2026-10-18"
+      }
+    ],
+    "ratings": {
+      "tabelog": 3.25,
+      "tabelogReviews": 42,
+      "google": 4.2,
+      "googleReviews": 138,
+      "note": null
+    },
+    "inclusion": [
+      "C"
+    ],
+    "tabelogOwner": true,
+    "googleName": "満船屋HANARE",
+    "notes": "伊勢市站前的全個室海鮮居酒屋（満船屋 的離館），浜焼き在桌上自己烤，宴會コース 3,500 円起（3～40 名）。食べログ 3.25、Google 4.2，但 Google 低分集中在服務、衛生、海鮮鮮度（1 星 10 則，約 2024～2026）；全席可吸菸，隔壁個室的菸味有口コミ抱怨。只有晚上，週二休。",
+    "group": {
+      "seats": 30,
+      "maxReservation": null,
+      "privateRoom": true,
+      "buyout": "可 （20人～50人可）",
+      "groupMenu": "宴会コース（3～40 名、事前預約）：食事のみ 3,500／6,000／9,000 円、飲み放題付き 5,000／8,000／11,000 円；通常コース 2,980／3,980／7,980 円（食べログ コース 2025-01、官網 満船屋共通 PDF）",
+      "fit15": "yes",
+      "fitSubgroup": "yes",
+      "source": "食べログ（店舗会員）：30 席、個室 4～20 人、貸切 20～50 人、可預約；コース 3～40 名 → yes"
+    },
+    "reservation": {
+      "accepted": "yes",
+      "methods": [
+        "phone",
+        "web"
+      ],
+      "phone": "0596-20-8100",
+      "url": "https://tabelog.com/mie/A2403/A240301/24019438/",
+      "language": "日文",
+      "note": "官網的預約連結導向食べログ；伊勢市站前晚上店少，口コミ多則說客滿被拒，要預約",
+      "leadDays": null
+    },
+    "seating": [
+      "horigotatsu"
+    ],
+    "kids": {
+      "allowed": "yes",
+      "minAge": null,
+      "kidsMenu": null,
+      "note": "食べログ沒寫；Google 評論 1 則（約 2023）家族帶小孩來，桌上爐子自己烤海鮮小孩喜歡"
+    },
+    "accessibility": {
+      "barrierFree": null,
+      "note": "伊勢市站步行 3 分、1F；沒有停車場；全是個室（掘りごたつ）"
+    },
+    "smoking": "全席喫煙可",
+    "extra": {
+      "conflicts": [
+        "營業時間：官網 17:00～23:00（L.O. 22:30）；食べログ 17:00～24:00",
+        "宴會 PDF 是満船屋共通的，沒寫 HANARE 能不能用（食べログ HANARE 的コース頁有同樣的價格）"
       ]
     }
   }

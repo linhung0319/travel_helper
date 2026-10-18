@@ -25,7 +25,10 @@ await (async () => {
 
   let cid = null;
   const hex = u.match(/!1s0x[0-9a-f]+:(0x[0-9a-f]+)/i)?.[1];
-  if (hex) cid = BigInt(hex).toString();
+  // cid 每 4 位加空格：純數字的長字串有時會被 Claude in Chrome 當成 Base64 擋下（T8e 實測，3 家中 1 家）；讀的程式要去掉空格
+  // cid 每 4 位加空格：純數字的長字串有時會被 Claude in Chrome 當成 Base64 擋下（T8e 實測，3 家中 1 家）；
+  // build-restaurants.mjs 讀的時候會去掉空格
+  if (hex) cid = BigInt(hex).toString().replace(/(\d{4})(?=\d)/g, '$1 ');
   const lat = Number(u.match(/!3d(-?[\d.]+)/)?.[1]) || null;
   const lng = Number(u.match(/!4d(-?[\d.]+)/)?.[1]) || null;
 
@@ -49,14 +52,16 @@ await (async () => {
   const web = document.querySelector('a[data-item-id="authority"]')?.href ?? null;
   const img = document.querySelector('button[aria-label^="写真"] img')?.src ?? null;
   const out = {
-    name: text(document.querySelector('h1')),
+    // 從列表點進去時，第一個 h1 是列表的「スポンサー」標題（T8e 實測）：先用地點面板 [role="main"] 的 aria-label
+    name: document.querySelector('[role="main"][aria-label]')?.getAttribute('aria-label') || text(document.querySelector('h1')),
     rating,
     reviews,
     cid,
     lat,
     lng,
     address: text(document.querySelector('button[data-item-id="address"]'))?.replace(/^\W+/, '') ?? null,
-    phone: text(document.querySelector('button[data-item-id^="phone"]'))?.replace(/^\W+/, '') ?? null,
+    // 「+81 596-…」的國碼換回 0（T8e 實測：瀏覽器地區不是日本時這樣顯示，開頭的 + 被 \W 拿掉）
+    phone: text(document.querySelector('button[data-item-id^="phone"]'))?.replace(/^\W+/, '').replace(/^81\s?/, '0') ?? null,
     website: web ? new URL(web).hostname + new URL(web).pathname : null,
     // 主圖：尾端的尺寸參數改成寬 800
     img: img && img.includes('=w') ? img.split('=w')[0] + '=w800' : img,

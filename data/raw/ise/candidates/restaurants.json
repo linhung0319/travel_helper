@@ -4440,19 +4440,22 @@
     },
     "region": "ise-geku",
     "category": "居酒屋、バル、焼肉",
-    "status": "not-included",
-    "criteria": [],
-    "reason": "C 因數量控制（3.40）取消（個室、貸切）",
-    "pointId": null,
+    "status": "included",
+    "criteria": [
+      "C"
+    ],
+    "reason": "C 補回（T8e，2026-10-18 數量控制改規則：能坐 15 人的店不受數量控制，照原門檻 3.10 收錄）：食べログ列表 個室有(2〜30人可)。原本：C 因數量控制（3.40）取消（個室、貸切）",
+    "pointId": "ise-sumibi-yakiniku-takumi",
     "ratings": {
       "tabelog": 3.28,
-      "tabelogReviews": 74
+      "tabelogReviews": 74,
+      "google": 3.9,
+      "googleReviews": 90
     },
     "links": {
       "tabelog": "https://tabelog.com/mie/A2403/A240301/24015298/"
     },
     "contexts": [
-      "lunch",
       "dinner"
     ],
     "note": "類型：居酒屋；地址：伊勢市宮後1-7-7 あさをビル 1F；個室（食べログ列表）：個室有(2〜30人可)；定休（食べログ列表）：水曜日"
@@ -4464,13 +4467,17 @@
     },
     "region": "ise-geku",
     "category": "居酒屋、海鮮",
-    "status": "not-included",
-    "criteria": [],
-    "reason": "C 因數量控制（3.40）取消（個室、貸切）",
-    "pointId": null,
+    "status": "included",
+    "criteria": [
+      "C"
+    ],
+    "reason": "C 補回（T8e，2026-10-18 數量控制改規則：能坐 15 人的店不受數量控制，照原門檻 3.10 收錄）：食べログ列表 完全個室有(4〜20人可)。原本：C 因數量控制（3.40）取消（個室、貸切）",
+    "pointId": "ise-mansenya-hanare",
     "ratings": {
       "tabelog": 3.25,
-      "tabelogReviews": 42
+      "tabelogReviews": 42,
+      "google": 4.2,
+      "googleReviews": 138
     },
     "links": {
       "tabelog": "https://tabelog.com/mie/A2403/A240301/24019438/"
@@ -5437,13 +5444,17 @@
     },
     "region": "ise-geku",
     "category": "日本料理、創作料理、寿司",
-    "status": "not-included",
-    "criteria": [],
-    "reason": "A 因數量控制（3.50）取消；C 因數量控制（3.40）取消（個室、貸切）",
-    "pointId": null,
+    "status": "included",
+    "criteria": [
+      "C"
+    ],
+    "reason": "C 補回（T8e，2026-10-18 數量控制改規則：能坐 15 人的店不受數量控制，照原門檻 3.10 收錄）：食べログ列表 個室有(2〜30人、30人以上可)。原本：A 因數量控制（3.50）取消；C 因數量控制（3.40）取消（個室、貸切）",
+    "pointId": "ise-katsura-geku",
     "ratings": {
       "tabelog": 3.39,
-      "tabelogReviews": 178
+      "tabelogReviews": 178,
+      "google": 4,
+      "googleReviews": 664
     },
     "links": {
       "tabelog": "https://tabelog.com/mie/A2403/A240301/24012311/"
@@ -7952,19 +7963,22 @@
     },
     "region": "ise-geku",
     "category": "焼肉、ホルモン、居酒屋",
-    "status": "not-included",
-    "criteria": [],
-    "reason": "A 因數量控制（3.50）取消；C 因數量控制（3.40）取消（個室、貸切）",
-    "pointId": null,
+    "status": "included",
+    "criteria": [
+      "C"
+    ],
+    "reason": "C 補回（T8e，2026-10-18 數量控制改規則：能坐 15 人的店不受數量控制，照原門檻 3.10 收錄）：食べログ列表 個室有(2〜20人可)。原本：A 因數量控制（3.50）取消；C 因數量控制（3.40）取消（個室、貸切）",
+    "pointId": "ise-aburi-takumi-part2",
     "ratings": {
       "tabelog": 3.34,
-      "tabelogReviews": 96
+      "tabelogReviews": 96,
+      "google": 3.3,
+      "googleReviews": 224
     },
     "links": {
       "tabelog": "https://tabelog.com/mie/A2403/A240301/24012782/"
     },
     "contexts": [
-      "lunch",
       "dinner"
     ],
     "note": "類型：燒肉・肉料理；地址：伊勢市一之木3-10-11；個室（食べログ列表）：個室有(2〜20人可)"
@@ -7976,13 +7990,17 @@
     },
     "region": "ise-geku",
     "category": "焼き鳥、居酒屋、鳥料理",
-    "status": "not-included",
-    "criteria": [],
-    "reason": "C 因數量控制（3.40）取消（個室）",
-    "pointId": null,
+    "status": "included",
+    "criteria": [
+      "C"
+    ],
+    "reason": "C 補回（T8e，2026-10-18 數量控制改規則：能坐 15 人的店不受數量控制，照原門檻 3.10 收錄）：食べログ列表 完全個室有(4〜30人可)。原本：C 因數量控制（3.40）取消（個室）",
+    "pointId": "ise-yakitori-noshiro",
     "ratings": {
       "tabelog": 3.28,
-      "tabelogReviews": 60
+      "tabelogReviews": 60,
+      "google": 4.1,
+      "googleReviews": 182
     },
     "links": {
       "tabelog": "https://tabelog.com/mie/A2403/A240301/24006701/"
@@ -8047,13 +8065,17 @@
     },
     "region": "ise-geku",
     "category": "ふぐ、居酒屋",
-    "status": "not-included",
-    "criteria": [],
-    "reason": "C 因數量控制（3.40）取消（個室、貸切）",
-    "pointId": null,
+    "status": "included",
+    "criteria": [
+      "C"
+    ],
+    "reason": "C 補回（T8e，2026-10-18 數量控制改規則：能坐 15 人的店不受數量控制，照原門檻 3.10 收錄）：食べログ列表 個室有(10〜20人可)。原本：C 因數量控制（3.40）取消（個室、貸切）",
+    "pointId": "ise-fuguya",
     "ratings": {
       "tabelog": 3.24,
-      "tabelogReviews": 47
+      "tabelogReviews": 47,
+      "google": 4.2,
+      "googleReviews": 153
     },
     "links": {
       "tabelog": "https://tabelog.com/mie/A2403/A240301/24000389/"
@@ -8070,13 +8092,17 @@
     },
     "region": "ise-geku",
     "category": "焼肉、ホルモン",
-    "status": "not-included",
-    "criteria": [],
-    "reason": "C 因數量控制（3.40）取消（個室、貸切）",
-    "pointId": null,
+    "status": "included",
+    "criteria": [
+      "C"
+    ],
+    "reason": "C 補回（T8e，2026-10-18 數量控制改規則：能坐 15 人的店不受數量控制，照原門檻 3.10 收錄）：食べログ列表 個室有(6〜30人可)。原本：C 因數量控制（3.40）取消（個室、貸切）",
+    "pointId": "ise-isshobin-shojutei",
     "ratings": {
       "tabelog": 3.21,
-      "tabelogReviews": 165
+      "tabelogReviews": 165,
+      "google": 4,
+      "googleReviews": 428
     },
     "links": {
       "tabelog": "https://tabelog.com/mie/A2403/A240301/24000431/"
@@ -9124,19 +9150,24 @@
     },
     "region": "ise-geku",
     "category": "日本料理",
-    "status": "not-included",
-    "criteria": [],
-    "reason": "A 因數量控制（3.50）取消；C 因數量控制（3.40）取消（個室、貸切）",
-    "pointId": null,
+    "status": "included",
+    "criteria": [
+      "C"
+    ],
+    "reason": "C 補回（T8e，2026-10-18 數量控制改規則：能坐 15 人的店不受數量控制，照原門檻 3.10 收錄）：食べログ列表 個室有(10〜20人可)。原本：A 因數量控制（3.50）取消；C 因數量控制（3.40）取消（個室、貸切）",
+    "pointId": "ise-hibino",
     "ratings": {
       "tabelog": 3.3,
-      "tabelogReviews": 26
+      "tabelogReviews": 26,
+      "google": 4.3,
+      "googleReviews": 56
     },
     "links": {
       "tabelog": "https://tabelog.com/mie/A2403/A240301/24005086/"
     },
     "contexts": [
-      "lunch"
+      "lunch",
+      "dinner"
     ],
     "note": "類型：和食・割烹；地址：伊勢市岡本2-9-43；個室（食べログ列表）：個室有(10〜20人可)；定休（食べログ列表）：月曜日"
   },
@@ -9730,13 +9761,17 @@
     },
     "region": "ise-kurata",
     "category": "すき焼き、焼肉、しゃぶしゃぶ",
-    "status": "not-included",
-    "criteria": [],
-    "reason": "C 因數量控制（3.30）取消（個室／貸切）",
-    "pointId": null,
+    "status": "included",
+    "criteria": [
+      "C"
+    ],
+    "reason": "C 補回（T8e，2026-10-18 數量控制改規則：能坐 15 人的店不受數量控制，照原門檻 3.10 收錄）：食べログ列表 完全個室有(2〜20人可)。原本：C 因數量控制（3.30）取消（個室／貸切）",
+    "pointId": "ise-kagura",
     "ratings": {
       "tabelog": 3.29,
-      "tabelogReviews": 68
+      "tabelogReviews": 68,
+      "google": 4.3,
+      "googleReviews": 142
     },
     "links": {
       "tabelog": "https://tabelog.com/mie/A2403/A240301/24001258/"
@@ -10647,13 +10682,17 @@
     },
     "region": "ise-outskirts",
     "category": "四川料理、中華料理、居酒屋",
-    "status": "not-included",
-    "criteria": [],
-    "reason": "A 因數量控制（3.60）取消；C 因數量控制（3.60）取消（個室／貸切）",
-    "pointId": null,
+    "status": "included",
+    "criteria": [
+      "C"
+    ],
+    "reason": "C 補回（T8e，2026-10-18 數量控制改規則：能坐 15 人的店不受數量控制，照原門檻 3.10 收錄）：食べログ列表 個室有(30人以上可)。原本：A 因數量控制（3.60）取消；C 因數量控制（3.60）取消（個室／貸切）",
+    "pointId": "ise-ajino-rairaiken",
     "ratings": {
       "tabelog": 3.34,
-      "tabelogReviews": 49
+      "tabelogReviews": 49,
+      "google": 4.1,
+      "googleReviews": 263
     },
     "links": {
       "tabelog": "https://tabelog.com/mie/A2403/A240301/24001481/"
@@ -10978,13 +11017,17 @@
     },
     "region": "ise-outskirts",
     "category": "海鮮、日本料理、寿司",
-    "status": "not-included",
-    "criteria": [],
-    "reason": "C 因數量控制（3.60）取消（個室／貸切）",
-    "pointId": null,
+    "status": "included",
+    "criteria": [
+      "C"
+    ],
+    "reason": "C 補回（T8e，2026-10-18 數量控制改規則：能坐 15 人的店不受數量控制，照原門檻 3.10 收錄）：食べログ列表 完全個室有(10〜30人、30人以上可)。原本：C 因數量控制（3.60）取消（個室／貸切）",
+    "pointId": "ise-osakaya",
     "ratings": {
       "tabelog": 3.28,
-      "tabelogReviews": 103
+      "tabelogReviews": 103,
+      "google": 3.6,
+      "googleReviews": 333
     },
     "links": {
       "tabelog": "https://tabelog.com/mie/A2403/A240301/24007622/"
@@ -11048,13 +11091,17 @@
     },
     "region": "ise-obata",
     "category": "日本料理",
-    "status": "not-included",
-    "criteria": [],
-    "reason": "C 因數量控制（3.60）取消（個室／貸切）",
-    "pointId": null,
+    "status": "included",
+    "criteria": [
+      "C"
+    ],
+    "reason": "C 補回（T8e，2026-10-18 數量控制改規則：能坐 15 人的店不受數量控制，照原門檻 3.10 收錄）：食べログ列表 完全個室有(2〜20人可)。原本：C 因數量控制（3.60）取消（個室／貸切）",
+    "pointId": "ise-yuzu-misono",
     "ratings": {
       "tabelog": 3.26,
-      "tabelogReviews": 32
+      "tabelogReviews": 32,
+      "google": 4.5,
+      "googleReviews": 92
     },
     "links": {
       "tabelog": "https://tabelog.com/mie/A2403/A240301/24003146/"
@@ -11285,13 +11332,17 @@
     },
     "region": "ise-obata",
     "category": "焼肉",
-    "status": "not-included",
-    "criteria": [],
-    "reason": "C 因數量控制（3.60）取消（個室）",
-    "pointId": null,
+    "status": "included",
+    "criteria": [
+      "C"
+    ],
+    "reason": "C 補回（T8e，2026-10-18 數量控制改規則：能坐 15 人的店不受數量控制，照原門檻 3.10 收錄）：食べログ列表 個室有(30人以上可)。原本：C 因數量控制（3.60）取消（個室）",
+    "pointId": "ise-tamachan",
     "ratings": {
       "tabelog": 3.19,
-      "tabelogReviews": 26
+      "tabelogReviews": 26,
+      "google": 4.1,
+      "googleReviews": 83
     },
     "links": {
       "tabelog": "https://tabelog.com/mie/A2403/A240301/24015615/"

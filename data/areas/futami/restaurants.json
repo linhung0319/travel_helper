@@ -134,7 +134,38 @@
       }
     ],
     "verified": false,
-    "anchors": [],
+    "anchors": [
+      {
+        "id": "jr-futaminoura",
+        "walkMinutes": 13,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "futami-omotesando",
+        "walkMinutes": 1,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "futami-okitama-jinja",
+        "walkMinutes": 8,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "futami-sea-paradise",
+        "walkMinutes": 13,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "futami-nisshokan",
+        "walkMinutes": 2,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "futami-hamachiyokan",
+        "walkMinutes": 2,
+        "walkSource": "osrm"
+      }
+    ],
     "contexts": [
       "snack",
       "cafe"
@@ -344,7 +375,28 @@
       }
     ],
     "verified": false,
-    "anchors": [],
+    "anchors": [
+      {
+        "id": "jr-futaminoura",
+        "walkMinutes": 4,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "futami-omotesando",
+        "walkMinutes": 11,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "futami-yamato",
+        "walkMinutes": 2,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "futami-asahikan",
+        "walkMinutes": 5,
+        "walkSource": "osrm"
+      }
+    ],
     "contexts": [
       "snack"
     ],
@@ -541,7 +593,28 @@
       }
     ],
     "verified": false,
-    "anchors": [],
+    "anchors": [
+      {
+        "id": "jr-futaminoura",
+        "walkMinutes": 5,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "futami-omotesando",
+        "walkMinutes": 13,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "futami-yamato",
+        "walkMinutes": 3,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "futami-asahikan",
+        "walkMinutes": 6,
+        "walkSource": "osrm"
+      }
+    ],
     "contexts": [
       "snack"
     ],
@@ -791,7 +864,43 @@
       }
     ],
     "verified": false,
-    "anchors": [],
+    "anchors": [
+      {
+        "id": "jr-futaminoura",
+        "walkMinutes": 3,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "futami-omotesando",
+        "walkMinutes": 12,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "futami-yamato",
+        "walkMinutes": 1,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "futami-asahikan",
+        "walkMinutes": 6,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "futami-iwatokan",
+        "walkMinutes": 14,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "futami-iroha",
+        "walkMinutes": 8,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "futami-pokapokamura",
+        "walkMinutes": 14,
+        "walkSource": "osrm"
+      }
+    ],
     "contexts": [
       "lunch",
       "dinner"
@@ -996,7 +1105,38 @@
       }
     ],
     "verified": false,
-    "anchors": [],
+    "anchors": [
+      {
+        "id": "jr-futaminoura",
+        "walkMinutes": 11,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "futami-omotesando",
+        "walkMinutes": 3,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "futami-okitama-jinja",
+        "walkMinutes": 10,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "futami-sea-paradise",
+        "walkMinutes": 15,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "futami-hamachiyokan",
+        "walkMinutes": 2,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "futami-castle-inn",
+        "walkMinutes": 2,
+        "walkSource": "osrm"
+      }
+    ],
     "contexts": [
       "snack"
     ],
@@ -1203,7 +1343,38 @@
       }
     ],
     "verified": false,
-    "anchors": [],
+    "anchors": [
+      {
+        "id": "jr-futaminoura",
+        "walkMinutes": 21,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "futami-okitama-jinja",
+        "walkMinutes": 1,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "futami-sea-paradise",
+        "walkMinutes": 6,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "futami-omotesando",
+        "walkMinutes": 7,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "futami-oishiya",
+        "walkMinutes": 5,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "futami-iwatokan",
+        "walkMinutes": 6,
+        "walkSource": "osrm"
+      }
+    ],
     "contexts": [
       "cafe",
       "snack"
@@ -1432,7 +1603,48 @@
       }
     ],
     "verified": false,
-    "anchors": [],
+    "anchors": [
+      {
+        "id": "jr-futaminoura",
+        "walkMinutes": 10,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "futami-omotesando",
+        "walkMinutes": 5,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "futami-okitama-jinja",
+        "walkMinutes": 12,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "futami-kyukaen",
+        "walkMinutes": 3,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "futami-castle-inn",
+        "walkMinutes": 3,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "futami-iwatokan",
+        "walkMinutes": 6,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "futami-iroha",
+        "walkMinutes": 3,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "futami-pokapokamura",
+        "walkMinutes": 15,
+        "walkSource": "osrm"
+      }
+    ],
     "contexts": [
       "lunch",
       "dinner"
@@ -1638,7 +1850,38 @@
       }
     ],
     "verified": false,
-    "anchors": [],
+    "anchors": [
+      {
+        "id": "jr-futaminoura",
+        "walkMinutes": 16,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "futami-omotesando",
+        "walkMinutes": 3,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "futami-okitama-jinja",
+        "walkMinutes": 5,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "futami-sea-paradise",
+        "walkMinutes": 10,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "futami-oishiya",
+        "walkMinutes": 1,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "futami-iwatokan",
+        "walkMinutes": 2,
+        "walkSource": "osrm"
+      }
+    ],
     "contexts": [
       "lunch"
     ],
@@ -1834,7 +2077,38 @@
       }
     ],
     "verified": false,
-    "anchors": [],
+    "anchors": [
+      {
+        "id": "jr-futaminoura",
+        "walkMinutes": 21,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "futami-okitama-jinja",
+        "walkMinutes": 1,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "futami-sea-paradise",
+        "walkMinutes": 6,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "futami-omotesando",
+        "walkMinutes": 7,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "futami-oishiya",
+        "walkMinutes": 6,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "futami-iwatokan",
+        "walkMinutes": 6,
+        "walkSource": "osrm"
+      }
+    ],
     "contexts": [
       "snack",
       "cafe"
@@ -1984,7 +2258,38 @@
       }
     ],
     "verified": false,
-    "anchors": [],
+    "anchors": [
+      {
+        "id": "jr-futaminoura",
+        "walkMinutes": 21,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "futami-okitama-jinja",
+        "walkMinutes": 3,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "futami-sea-paradise",
+        "walkMinutes": 5,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "futami-omotesando",
+        "walkMinutes": 9,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "futami-kaiyoro",
+        "walkMinutes": 7,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "futami-oishiya",
+        "walkMinutes": 9,
+        "walkSource": "osrm"
+      }
+    ],
     "contexts": [
       "lunch"
     ],
@@ -2208,10 +2513,47 @@
         "url": "https://hamoni.jp/shop/TSiQuWi3eeJaOEuZOJZ3",
         "retrieved": "2026-10-18",
         "note": "30 席、個室・座敷・掘りごたつ、喫煙可、駐車場あり；無口コミ"
+      },
+      {
+        "type": "tabelog",
+        "url": "https://tabelog.com/mie/A2403/A240301/24008599/dtlrvwlst/",
+        "retrieved": "2026-10-18",
+        "note": "口コミ（最新 20 則＋關鍵字搜尋）、頁尾店舗情報"
       }
     ],
     "verified": false,
-    "anchors": [],
+    "anchors": [
+      {
+        "id": "jr-futaminoura",
+        "walkMinutes": 7,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "futami-omotesando",
+        "walkMinutes": 8,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "futami-asahikan",
+        "walkMinutes": 2,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "futami-iroha",
+        "walkMinutes": 4,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "futami-iwatokan",
+        "walkMinutes": 10,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "futami-pokapokamura",
+        "walkMinutes": 11,
+        "walkSource": "osrm"
+      }
+    ],
     "contexts": [
       "lunch",
       "dinner"
@@ -2438,10 +2780,52 @@
         "url": "https://www.nap-camp.com/mag/50460",
         "retrieved": "2026-10-18",
         "note": "11:00～20:00 不定休，輕食到プレートランチ"
+      },
+      {
+        "type": "tabelog",
+        "url": "https://tabelog.com/mie/A2403/A240301/24020274/dtlrvwlst/",
+        "retrieved": "2026-10-18",
+        "note": "口コミ（最新 20 則＋關鍵字搜尋）、頁尾店舗情報"
       }
     ],
     "verified": false,
-    "anchors": [],
+    "anchors": [
+      {
+        "id": "jr-futaminoura",
+        "walkMinutes": 5,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "futami-omotesando",
+        "walkMinutes": 10,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "futami-asahikan",
+        "walkMinutes": 4,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "futami-yamato",
+        "walkMinutes": 4,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "futami-iwatokan",
+        "walkMinutes": 12,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "futami-iroha",
+        "walkMinutes": 6,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "futami-pokapokamura",
+        "walkMinutes": 12,
+        "walkSource": "osrm"
+      }
+    ],
     "contexts": [
       "lunch",
       "dinner",
@@ -2683,10 +3067,37 @@
         "url": "https://www.navitime.co.jp/poi?spot=01125-J004660490",
         "retrieved": "2026-10-18",
         "note": "「コスパ最強の鰻ランチ」、伊勢市站開車約 10 分"
+      },
+      {
+        "type": "tabelog",
+        "url": "https://tabelog.com/mie/A2403/A240301/24022715/dtlrvwlst/",
+        "retrieved": "2026-10-18",
+        "note": "口コミ（全 16 則＋關鍵字搜尋）、頁尾店舗情報（車椅子で入店可）"
       }
     ],
     "verified": false,
-    "anchors": [],
+    "anchors": [
+      {
+        "id": "jr-futaminoura",
+        "walkMinutes": 30,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "futami-omotesando",
+        "walkMinutes": 41,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "futami-plafino",
+        "walkMinutes": 17,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "futami-orange-garden",
+        "walkMinutes": 20,
+        "walkSource": "osrm"
+      }
+    ],
     "contexts": [
       "lunch",
       "dinner"
@@ -2772,7 +3183,9 @@
     "extra": {
       "conflicts": [
         "營業時間：食べログ 11:00～19:00 通し（L.O. 18:30）；ホットペッパー 午晚分開、晚到 20:00",
-        "吧台：ホットペッパー 座位表寫沒有吧台，照片說明寫有大吧台；食べログ 吧台 14 席"
+        "吧台：ホットペッパー 座位表寫沒有吧台，照片說明寫有大吧台；食べログ 吧台 14 席",
+        "バリアフリー：ホットペッパー「なし」；食べログ店舗情報「車椅子で入店可」（2026-10-18）",
+        "營業時間：Google 評論 1 則（約 2026/09）說 9 月起營業到 20:00"
       ]
     }
   },
@@ -2920,10 +3333,27 @@
         "url": "https://www.navitime.co.jp/poi?spot=01125-J000425355",
         "retrieved": "2026-10-18",
         "note": "營業時間、週一・祝日休、五十鈴ヶ丘站步行 23 分"
+      },
+      {
+        "type": "tabelog",
+        "url": "https://tabelog.com/mie/A2403/A240301/24003498/dtlrvwlst/",
+        "retrieved": "2026-10-18",
+        "note": "口コミ（最新 20 則＋關鍵字搜尋）、頁尾店舗情報"
       }
     ],
     "verified": false,
-    "anchors": [],
+    "anchors": [
+      {
+        "id": "jr-futaminoura",
+        "walkMinutes": 28,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "futami-plafino",
+        "walkMinutes": 19,
+        "walkSource": "osrm"
+      }
+    ],
     "contexts": [
       "lunch",
       "dinner"
@@ -3134,7 +3564,23 @@
       }
     ],
     "verified": false,
-    "anchors": [],
+    "anchors": [
+      {
+        "id": "jr-matsushita",
+        "walkMinutes": 8,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "futami-matsushita-yashiro",
+        "walkMinutes": 2,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "futami-yusura",
+        "walkMinutes": 5,
+        "walkSource": "osrm"
+      }
+    ],
     "contexts": [
       "lunch",
       "snack"
@@ -3318,7 +3764,18 @@
       }
     ],
     "verified": false,
-    "anchors": [],
+    "anchors": [
+      {
+        "id": "jr-isuzugaoka",
+        "walkMinutes": 24,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "futami-plafino",
+        "walkMinutes": 24,
+        "walkSource": "osrm"
+      }
+    ],
     "contexts": [
       "lunch",
       "dinner"
@@ -3495,7 +3952,23 @@
       }
     ],
     "verified": false,
-    "anchors": [],
+    "anchors": [
+      {
+        "id": "jr-matsushita",
+        "walkMinutes": 8,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "futami-matsushita-yashiro",
+        "walkMinutes": 3,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "futami-yusura",
+        "walkMinutes": 6,
+        "walkSource": "osrm"
+      }
+    ],
     "contexts": [
       "lunch",
       "cafe"
@@ -3676,10 +4149,37 @@
         "url": "https://www.kankomie.or.jp/spot/13746",
         "retrieved": "2026-10-18",
         "note": "電話、交通、停車 70 台；無日帰り資訊"
+      },
+      {
+        "type": "tabelog",
+        "url": "https://tabelog.com/mie/A2403/A240301/24000262/dtlrvwlst/",
+        "retrieved": "2026-10-18",
+        "note": "口コミ（最新 20 則＋關鍵字搜尋）、頁尾店舗情報（車椅子で入店可、子供可、席數 29）"
       }
     ],
     "verified": false,
-    "anchors": [],
+    "anchors": [
+      {
+        "id": "jr-matsushita",
+        "walkMinutes": 22,
+        "walkSource": "estimate"
+      },
+      {
+        "id": "futami-matsushita-yashiro",
+        "walkMinutes": 28,
+        "walkSource": "estimate"
+      },
+      {
+        "id": "futami-uminocho",
+        "walkMinutes": 2,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "futami-togenkyo",
+        "walkMinutes": 11,
+        "walkSource": "estimate"
+      }
+    ],
     "contexts": [
       "dinner"
     ],
@@ -3761,7 +4261,7 @@
       "note": "食べログ 子供可；預約系統有 1 歲～未滿 12 歲的兒童區分（大人同料理減量／お子様料理），日帰り是否相同沒有確認"
     },
     "accessibility": {
-      "barrierFree": null,
+      "barrierFree": "車椅子で入店可（食べログ）",
       "note": "有電梯、可借輪椅（住宿筆記）；停車場 60～70 台；近鐵鳥羽站開車約 8 分、伊勢 IC 約 10 分；送迎是住客用，日帰り能不能接送沒有來源"
     },
     "smoking": "全席禁煙（有吸菸處）",

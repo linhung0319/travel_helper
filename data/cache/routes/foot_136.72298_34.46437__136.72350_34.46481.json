@@ -1,0 +1,33 @@
+{
+  "key": "foot_136.72298_34.46437__136.72350_34.46481",
+  "profile": "foot",
+  "source": "osrm",
+  "from": [136.72298, 34.46437],
+  "to": [136.7235, 34.46481],
+  "distanceMeters": 121.8,
+  "snapMeters": [17.5, 5.7],
+  "osrmDurationSeconds": 97.6,
+  "geometry": {
+    "type": "LineString",
+    "coordinates": [
+      [136.722799, 34.46432],
+      [136.722692, 34.464581],
+      [136.722965, 34.46467],
+      [136.722997, 34.464671],
+      [136.723387, 34.46478],
+      [136.723392, 34.46482],
+      [136.723409, 34.464882],
+      [136.723436, 34.464892],
+      [136.723527, 34.464856]
+    ]
+  },
+  "retrieved": "2026-10-18",
+  "sources": [
+    {
+      "type": "osm",
+      "url": "https://routing.openstreetmap.de/routed-foot/route/v1/driving/136.72298,34.46437;136.7235,34.46481?overview=full&geometries=geojson&steps=false",
+      "retrieved": "2026-10-18",
+      "note": "OSRM foot profile（FOSSGIS routing.openstreetmap.de）；路網資料 © OpenStreetMap contributors"
+    }
+  ]
+}

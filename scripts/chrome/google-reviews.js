@@ -29,7 +29,12 @@ await (async (step) => {
 
   const reviewTab = () =>
     [...document.querySelectorAll('button[role="tab"]')].find((b) => b.textContent.includes('クチコミ'));
-  const sortButton = () => document.querySelector('button[aria-label="クチコミの並べ替え"]');
+  // 住宿（旅館、飯店）的頁面版型不同（T8e 第 3 批，おく文）：排序是 aria-haspopup 的按鈕、aria-label 是目前的排序名稱；
+  // 搜尋框一直開著（沒有「クチコミを検索」按鈕）；星數是「4/5」文字、日期後面接「（Google）」等來源
+  const SORT_LABEL = /^(関連性の高い順|新しい順|評価の高い順|評価の低い順)$/;
+  const sortButton = () =>
+    document.querySelector('button[aria-label="クチコミの並べ替え"]') ||
+    [...document.querySelectorAll('[role="main"] button[aria-haspopup="true"]')].find((b) => SORT_LABEL.test(b.getAttribute('aria-label') ?? ''));
   const searchButton = () => document.querySelector('button[aria-label="クチコミを検索"]');
   // 評論搜尋框收起來時寬度是 0（但 offsetParent 不是 null），所以要看寬度
   const searchInput = () =>
@@ -40,16 +45,60 @@ await (async (step) => {
       (d) => !seen.has(d.dataset.reviewId) && seen.add(d.dataset.reviewId),
     );
   };
+  // 「評価の低い順」等選單項目：只用 .click() 有時沒有套用（T8e 第 3 批，柚 クッチーナ、匠 PART2、一升びん；
+  // 網址變成 /place//@25.10…,121.52… 的那種頁面）。改送完整的 pointer／mouse 事件，實測可以套用
+  const press = (el) => {
+    const r = el.getBoundingClientRect();
+    const o = { bubbles: true, cancelable: true, view: window, clientX: r.x + r.width / 2, clientY: r.y + r.height / 2 };
+    for (const t of ['pointerdown', 'mousedown', 'pointerup', 'mouseup', 'click']) {
+      el.dispatchEvent(new (t.startsWith('pointer') ? PointerEvent : MouseEvent)(t, o));
+    }
+  };
   const firstId = () => reviewEls()[0]?.dataset.reviewId ?? null;
   const noResult = () => /に言及しているクチコミはありません/.test(document.body.innerText);
   const loading = () => /読み込んでいます/.test(document.body.innerText);
   // 換排序或搜尋後，等清單換掉：第一則不一樣了、或出現「沒有結果」；第一則剛好一樣時等到逾時（8 秒）再抽
+  // 評論清單是捲到才載入：換排序、搜尋後清單會清空，視窗不高時一則都不會出現（T8e 實測，桂 外宮）。
+  // 所以等待時把評論面板（排序按鈕往上第一個可捲動的容器）捲到底；只捲動，不點東西
+  const scroller = () => {
+    let el = sortButton();
+    while (el && !(el.scrollHeight > el.clientHeight + 50 && /auto|scroll/.test(getComputedStyle(el).overflowY))) el = el.parentElement;
+    return el;
+  };
+  const nudge = () => {
+    const el = scroller();
+    if (el) el.scrollTop = el.scrollHeight;
+  };
+  // 兩段：先不捲動，等舊清單換掉（實測約 2.5 秒後清空；太早捲會載入更多「舊排序」的評論，抽到的是舊清單）；
+  // 清空後才捲到底，讓新清單載入
+  // <starsAscending>（scripts/test/google-reviews.test.ts 會抽出這段測試）
+  const starsAscending = (labels) => {
+    const n = labels.map((s) => Number(String(s ?? '').match(/(\d)\s*つ星/)?.[1])).filter((x) => x > 0);
+    return n.every((x, i) => i === 0 || x >= n[i - 1]);
+  };
+  // </starsAscending>
+  // <reviewBody>（scripts/test/google-reviews.test.ts 會抽出這段測試）
+  // 評論本人的內文：第一個 .wiI7pd，跳過店家回覆（「オーナーからの返信」後面的也是 .wiI7pd；沒有內文的評論原本會抓到回覆，T8e 第 6 批 日章館）
+  const reviewBody = (els) => els.find((w) => !/オーナーからの返信/.test(w.previousElementSibling?.textContent ?? '')) ?? null;
+  // </reviewBody>
   const waitForNewList = async (before) => {
-    await waitFor(() => !loading() && (noResult() || (firstId() && firstId() !== before)));
+    await waitFor(() => noResult() || firstId() !== before);
+    await waitFor(() => {
+      if (!firstId() && !noResult()) nudge();
+      return !loading() && (noResult() || firstId());
+    });
     await sleep(500);
   };
 
   const extract = async () => {
+    // 不到 LIMIT 則時再捲幾次，讓後面的評論載入（評論總數少於 LIMIT 時就停）
+    for (let i = 0, n = -1; i < 4 && reviewEls().length < LIMIT && reviewEls().length !== n; i++) {
+      n = reviewEls().length;
+      nudge();
+      await sleep(1200);
+    }
+    const sc = scroller();
+    if (sc) sc.scrollTop = 0;
     // 「もっと見る」全部展開（只點評論裡面的）
     for (const b of document.querySelectorAll('div[data-review-id] button[aria-expanded="false"]')) {
       if (b.textContent.includes('もっと見る')) b.click();
@@ -59,17 +108,19 @@ await (async (step) => {
       .slice(0, LIMIT)
       .map((d) => {
         const star = d.querySelector('[role="img"][aria-label*="つ星"]');
+        // 住宿版型：「4/5」的 span，下一個兄弟是「6 か月前（Google）」
+        const frac = star ? null : [...d.querySelectorAll('span')].find((e) => /^\d\/5$/.test(e.textContent.trim()));
         const buttons = [...d.querySelectorAll('button')].map((b) => b.textContent.trim());
         return {
-          stars: star?.getAttribute('aria-label') ?? null,
-          date: text(star?.nextElementSibling),
+          stars: star?.getAttribute('aria-label') ?? (frac ? `${frac.textContent.trim()[0]} つ星` : null),
+          date: text((star ?? frac)?.nextElementSibling),
           // 外文評論：預設是原文，旁邊有「翻訳を見る」；顯示的是翻譯時會有「原文を表示」
           lang: buttons.some((s) => s.includes('原文を表示'))
             ? 'translated'
             : buttons.some((s) => s.includes('翻訳を見る'))
               ? 'original-foreign'
               : 'ja-or-unknown',
-          text: text(d.querySelector('.wiI7pd'))?.slice(0, 600) ?? null,
+          text: text(reviewBody([...d.querySelectorAll('.wiI7pd')]))?.slice(0, 600) ?? null,
         };
       });
     const warnings = [];
@@ -83,8 +134,9 @@ await (async (step) => {
   if (step === 'open') {
     const tab = await waitFor(reviewTab);
     if (!tab) fail('找不到「クチコミ」分頁：確認是用 hl=ja 開的店家頁');
-    tab.click();
-    if (!(await waitFor(() => reviewEls().length && sortButton() && searchButton()))) {
+    tab.click(); // 分頁用 .click()（送 pointer 事件反而不會切換，おく文 實測）
+    // 住宿頁面（伊勢神泉）評論要捲動才載入：等待時沒有評論就把面板捲到底
+    if (!(await waitFor(() => (reviewEls().length || (sortButton() && nudge())) && sortButton() && (searchButton() || searchInput())))) {
       fail('點了クチコミ分頁，但評論或排序、搜尋按鈕沒出現');
     }
     return { step, ok: true, loaded: reviewEls().length };
@@ -93,16 +145,37 @@ await (async (step) => {
   if (step === 'lowest' || step === 'newest') {
     const btn = await waitFor(sortButton);
     if (!btn) fail('找不到「クチコミの並べ替え」：先跑 open');
-    btn.click();
+    press(btn);
     const label = step === 'lowest' ? '評価の低い順' : '新しい順';
     const item = await waitFor(() =>
       [...document.querySelectorAll('[role="menuitemradio"]')].find((e) => e.textContent.includes(label)),
     );
     if (!item) fail(`排序選單裡找不到「${label}」`);
+    // 選單一出現就點會沒套用（河崎商人館：送 pointer 事件也不行），等選單動畫結束再點
+    await sleep(700);
     const before = firstId();
-    item.click();
+    press(item);
     await waitForNewList(before);
-    return extract();
+    let result = await extract();
+    // T8e 第 3 批（柚 クッチーナ）：點了「評価の低い順」卻沒有套用，回傳的是關聯度順、也沒有警告。
+    // 低分順時檢查星數是不是由低到高，不是就重點一次；還是不對就加警告（改用截圖點選）
+    if (step === 'lowest' && !starsAscending(result.reviews.map((r) => r.stars))) {
+      const again = firstId();
+      press(btn);
+      const item2 = await waitFor(() =>
+        [...document.querySelectorAll('[role="menuitemradio"]')].find((e) => e.textContent.includes(label)),
+      );
+      if (item2) {
+        await sleep(700);
+        press(item2);
+        await waitForNewList(again);
+        result = await extract();
+      }
+      if (!starsAscending(result.reviews.map((r) => r.stars))) {
+        result.warnings.push('星數不是由低到高：「評価の低い順」可能沒有套用，改用截圖點選排序，再跑 extract');
+      } else result.retried = true;
+    }
+    return result;
   }
 
   if (step === 'search') {
@@ -111,7 +184,12 @@ await (async (step) => {
       const btn = await waitFor(searchButton);
       if (!btn) fail('找不到「クチコミを検索」：先跑 open');
       btn.click();
-      input = await waitFor(searchInput);
+      input = await waitFor(searchInput, 4000);
+      // T8e 第 3 批（かみむら）：open 之後馬上 search，第一次點擊沒有打開輸入框；再點一次就好
+      if (!input) {
+        btn.click();
+        input = await waitFor(searchInput);
+      }
     }
     if (!input) fail('點了搜尋，但輸入框沒打開');
     input.focus();

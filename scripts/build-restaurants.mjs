@@ -52,7 +52,8 @@ const byKey = (rows) => {
   return m;
 };
 const tabelog = byKey(readJsonl(p('tabelog.jsonl')));
-const google = byKey(readJsonl(p('google.jsonl')));
+// google-place.js 的 cid 每 4 位有空格（避免被 Claude in Chrome 當成 Base64 擋下），這裡去掉
+const google = byKey(readJsonl(p('google.jsonl')).map((g) => (g.cid ? { ...g, cid: String(g.cid).replace(/\s/g, '') } : g)));
 const factsOf = (key) => (fs.existsSync(p(`facts/${key}.json`)) ? JSON.parse(fs.readFileSync(p(`facts/${key}.json`), 'utf8')) : {});
 const storePage = (key) => (tabelog.get(key) ?? []).find((t) => !String(t.path ?? '').includes('/party/'));
 const lastGoogle = (key) => (google.get(key) ?? []).filter((g) => g.cid).at(-1);
