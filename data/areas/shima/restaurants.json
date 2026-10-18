@@ -114,6 +114,12 @@
         "url": "https://iwajin-pearls.com/pearlstore/",
         "retrieved": "2026-10-18",
         "note": "真珠店 10:00～17:00、水曜休、賢島駅徒步 1 分"
+      },
+      {
+        "type": "tabelog",
+        "url": "https://tabelog.com/mie/A2403/A240303/24008581/dtlrvwlst/",
+        "retrieved": "2026-10-18",
+        "note": "食べログ口コミ（最新 20 則、搜尋「中止」0 則「冬」2 則；2026-10-18 讀）"
       }
     ],
     "verified": false,
@@ -354,6 +360,12 @@
         "url": "https://www.kankomie.or.jp/spot/571",
         "retrieved": "2026-10-18",
         "note": "賢島駅步行 3 分、停車場 30 台；無營業時間"
+      },
+      {
+        "type": "tabelog",
+        "url": "https://tabelog.com/mie/A2403/A240303/24010611/dtlrvwlst/",
+        "retrieved": "2026-10-18",
+        "note": "食べログ口コミ（最新 20 則、搜尋「中止」0 則「子供」2 則「団体」1 則；2026-10-18 讀）"
       }
     ],
     "verified": false,
@@ -412,12 +424,15 @@
       "note": "食べログ：予約可；晚上要事前確認",
       "leadDays": null
     },
-    "seating": [],
+    "seating": [
+      "zashiki",
+      "table"
+    ],
     "kids": {
-      "allowed": "unknown",
+      "allowed": "yes",
       "minAge": null,
       "kidsMenu": null,
-      "note": "店名是「ファミリーホテル」，兒童相關沒寫"
+      "note": "食べログ口コミ：怕蝦的小孩也喜歡伊勢海老味噌汁（2026/05）；座敷方便帶小孩（2019/12，舊）；兒童餐沒寫"
     },
     "accessibility": {
       "barrierFree": null,
@@ -427,7 +442,10 @@
     "extra": {
       "conflicts": [
         "賢島駅步行：官網 5 分、觀光三重 3 分",
-        "營業時間只見於食べログ（11:30-14:30、17:00-20:00 事前確認要），官網與觀光三重未記載"
+        "營業時間只見於食べログ（11:30-14:30、17:00-20:00 事前確認要），官網與觀光三重未記載",
+        "seating：原本 []，改用 [\"zashiki\",\"table\"]（食べログ口コミ、Google 評論（2026-10-18））",
+        "kids.allowed：原本 unknown，改用 yes（食べログ口コミ、Google 評論（2026-10-18））",
+        "座位：食べログ口コミ 多則寫 2F 脫鞋座敷（4 卓）＋桌席（3 卓）＋小個室（2023/06、2026/06）；官網、食べログ店舗情報沒寫"
       ]
     }
   },
@@ -564,6 +582,12 @@
         "url": "https://www.kankomie.or.jp/report/1736",
         "retrieved": "2026-10-18",
         "note": "日帰り入浴 12:00～17:00 與價格（約 2024 年）"
+      },
+      {
+        "type": "tabelog",
+        "url": "https://tabelog.com/mie/A2403/A240303/24001751/dtlrvwlst/",
+        "retrieved": "2026-10-18",
+        "note": "食べログ口コミ（住宿本體頁，最新 20 則多是住客的晚餐・朝食，沒讀；只搜尋「ランチ」7 則「昼食」3 則；2026-10-18 讀）"
       }
     ],
     "verified": false,
@@ -815,6 +839,12 @@
         "url": "https://www.miyakohotels.ne.jp/shima/banquet/",
         "retrieved": "2026-10-18",
         "note": "小宴會場最多 60 人"
+      },
+      {
+        "type": "tabelog",
+        "url": "https://tabelog.com/mie/A2403/A240303/24005111/dtlrvwlst/",
+        "retrieved": "2026-10-18",
+        "note": "食べログ口コミ（最新 20 則、搜尋「中止」1 則「冬」1 則；2026-10-18 讀）"
       }
     ],
     "verified": false,
@@ -1086,6 +1116,12 @@
         "url": "https://www.miyakohotels.ne.jp/shima/banquet/",
         "retrieved": "2026-10-18",
         "note": "大宴會場真珠の間最多 750 人"
+      },
+      {
+        "type": "tabelog",
+        "url": "https://tabelog.com/mie/A2403/A240303/24000053/dtlrvwlst/",
+        "retrieved": "2026-10-18",
+        "note": "食べログ口コミ（最新 20 則、搜尋「中止」0 則「冬」1 則；2026-10-18 讀）"
       }
     ],
     "verified": false,
@@ -1336,6 +1372,12 @@
         "url": "https://www.tablecheck.com/shops/miyakohotels-shima-hamayu/reserve",
         "retrieved": "2026-10-18",
         "note": "會席價格、伊勢海老づくし期間、2027-01 休業"
+      },
+      {
+        "type": "tabelog",
+        "url": "https://tabelog.com/mie/A2403/A240303/24000919/dtlrvwlst/",
+        "retrieved": "2026-10-18",
+        "note": "食べログ口コミ（最新 20 則、搜尋「中止」「冬」「座敷」都 0 則；2026-10-18 讀）"
       }
     ],
     "verified": false,
@@ -1533,6 +1575,12 @@
         "url": "https://www.kankomie.or.jp/activity/2820",
         "retrieved": "2026-10-18",
         "note": "秋のアフタヌーンティー ¥6,800、前日 17:30 前預約、火水休、可網路預約"
+      },
+      {
+        "type": "tabelog",
+        "url": "https://tabelog.com/mie/A2403/A240303/24014858/dtlrvwlst/",
+        "retrieved": "2026-10-18",
+        "note": "食べログ口コミ（最新 20 則、搜尋「中止」0 則「冬」1 則「子供」0 則；2026-10-18 讀）"
       }
     ],
     "verified": false,
@@ -1737,6 +1785,12 @@
         "url": "http://yoshikatsu.info/?news=%e3%82%ab%e3%82%ad%e3%83%95%e3%83%a9%e3%82%a4%e3%80%8010%e6%9c%888%e6%97%a5%ef%bc%88%e6%9c%a8%ef%bc%89%e3%82%88%e3%82%8a",
         "retrieved": "2026-10-18",
         "note": "カキフライ 2026-10-08 起，鳥羽或廣島產冷凍牡蠣"
+      },
+      {
+        "type": "tabelog",
+        "url": "https://tabelog.com/mie/A2403/A240303/24001518/dtlrvwlst/",
+        "retrieved": "2026-10-18",
+        "note": "食べログ口コミ（最新 20 則、搜尋「中止」0 則「冬」1 則（2015）「団体」0 則；2026-10-18 讀）"
       }
     ],
     "verified": false,
@@ -1758,9 +1812,9 @@
     },
     "stayMinutes": null,
     "mustTry": [
+      "エビフライ定食（大隻，口コミ多則推薦）",
       "ヒレカツ定食（4 枚）1,590 円",
-      "ロースカツ定食 1,540 円",
-      "ジャンボカツ定食 1,810 円"
+      "ロースカツ定食 1,540 円（可選味噌だれ）"
     ],
     "menu": [
       {
@@ -1826,7 +1880,9 @@
         "停車場：食べログ 13 台 vs 官網 30 台",
         "營業時間：食べログ 11:00-14:00 vs 官網 11:00～14:30（L.O. 14:00）",
         "席數：食べログ「1 席」vs 官網 8 卓 32 席",
-        "營業時間：食べログ 11:00～14:00 vs 官網 11:00～14:30（L.O. 14:00）"
+        "營業時間：食べログ 11:00～14:00 vs 官網 11:00～14:30（L.O. 14:00）",
+        "mustTry：原本 [\"ヒレカツ定食（4 枚）1,590 円\",\"ロースカツ定食 1,540 円\",\"ジャンボカツ定食 1,810 円\"]，改用 [\"エビフライ定食（大隻，口コミ多則推薦）\",\"ヒレカツ定食（4 枚）1,590 円\",\"ロースカツ定食 1,540 円（可選味噌だれ）\"]（食べログ口コミ、Google 評論（2026-10-18））",
+        "座位：官網 8 卓 32 席（桌席）vs 食べログ口コミ「座敷 2 席」（2026/08，1 則）"
       ]
     }
   },
@@ -2107,6 +2163,12 @@
         "url": "https://booking.gora.golf.rakuten.co.jp/golf_course/guide/240013",
         "retrieved": "2026-10-18",
         "note": "不定休、クラブハウス 7:00、鵜方駅計程車 5 分、送迎預約制"
+      },
+      {
+        "type": "tabelog",
+        "url": "https://tabelog.com/mie/A2403/A240303/24012093/dtlrvwlst/",
+        "retrieved": "2026-10-18",
+        "note": "食べログ口コミ（最新 20 則、搜尋「冬」「子供」都 0 則；「中止」沒搜；2026-10-18 讀）"
       }
     ],
     "verified": false,
@@ -2363,6 +2425,12 @@
         "url": "https://www.tablecheck.com/shops/bayside-terrace-hdor/reserve",
         "retrieved": "2026-10-18",
         "note": "網路訂位最多 10 名、住客選その他"
+      },
+      {
+        "type": "tabelog",
+        "url": "https://tabelog.com/mie/A2403/A240303/24020023/dtlrvwlst/",
+        "retrieved": "2026-10-18",
+        "note": "食べログ口コミ（住宿本體頁，最新 20 則、搜尋「子供」2 則；「中止」「冬」沒搜；2026-10-18 讀）"
       }
     ],
     "verified": false,
@@ -2589,6 +2657,12 @@
         "url": "https://chubu.env.go.jp/nature/yokoyama/news/article/20250205b.html",
         "retrieved": "2026-10-18",
         "note": "2025-02 社會實驗：P2 禁止一般車、計程車進入，VC↔P2 付費接駁"
+      },
+      {
+        "type": "tabelog",
+        "url": "https://tabelog.com/mie/A2403/A240303/24015875/dtlrvwlst/",
+        "retrieved": "2026-10-18",
+        "note": "食べログ口コミ（最新 20 則、搜尋「中止」0 則「冬」2 則（2018、2019）「階段」21 則；2026-10-18 讀）"
       }
     ],
     "verified": false,
@@ -2605,9 +2679,9 @@
     "price": null,
     "stayMinutes": null,
     "mustTry": [
-      "伊勢志摩食材のベーグル",
-      "ジャーケーキ",
-      "ソフトクリーム"
+      "志摩半島産しそソーダ 500 円",
+      "あおさドーナツ",
+      "ソフトクリーム 500 円（季節口味）"
     ],
     "menu": [
       {
@@ -2667,7 +2741,9 @@
         "定休：年中無休（環境省）vs 不定休（觀光三重）vs 荒天日（志摩市観光協会）",
         "斜坡：環境省寫有輪椅斜坡（平常）vs 觀光三重寫工期中迂回步道沒有斜坡",
         "定休：環境省 年中無休 vs 觀光三重 不定休 vs 觀光協會 荒天日",
-        "無障礙：平常有木製斜坡 vs 工事期間迂回步道沒有斜坡"
+        "無障礙：平常有木製斜坡 vs 工事期間迂回步道沒有斜坡",
+        "mustTry：原本 [\"伊勢志摩食材のベーグル\",\"ジャーケーキ\",\"ソフトクリーム\"]，改用 [\"志摩半島産しそソーダ 500 円\",\"あおさドーナツ\",\"ソフトクリーム 500 円（季節口味）\"]（食べログ口コミ、Google 評論（2026-10-18））",
+        "付款：食べログ口コミ 只收現金（2026/05）"
       ]
     }
   },
@@ -2786,6 +2862,12 @@
         "url": "https://www.miyakohotels.ne.jp/bayside-terrace/restaurant/group_lunch/",
         "retrieved": "2026-10-18",
         "note": "貸切ランチ 15～50 人"
+      },
+      {
+        "type": "tabelog",
+        "url": "https://tabelog.com/mie/A2403/A240303/24000658/dtlrvwlst/",
+        "retrieved": "2026-10-18",
+        "note": "食べログ口コミ（最新 20 則、搜尋「中止」0 則「冬」1 則（2010，不採用）；2026-10-18 讀）"
       }
     ],
     "verified": false,

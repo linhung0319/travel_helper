@@ -46,3 +46,19 @@
 - [ ] shima-fukujuso、shima-haifu、shima-watakanoso：渡鹿野島 18:00 以後的渡船、鵜方站接送能不能加開（第一晚以外也要注意 16:45 是最後一班）
 - [ ] shima-neboya、shima-therapy-resort、shima-marusada、shima-shimawaso：最晚入住 17:00～18:00，晚到的處理
 - [ ] 楽天 2027-02 方案還沒開的住宿（shima-hoseien、shima-kanko-bay-suites、shima-marusada、shima-shimahanto、shima-hamajima-tsubaki、shima-villa-ryusei 等 2/2、2/3 所有人數都沒空房）：行程定了以後用 `scripts/rakuten.mjs party` 重查
+
+## 餐廳（T9d）
+
+- [ ] shima-la-mer、shima-la-mer-classic、shima-hamayu、shima-lien、shima-yamabuki（志摩観光ホテル 0599-43-1211）、shima-marena-french（都リゾート 0599-43-7211）：**非住客能不能預約**（官網沒寫住客限定、TableCheck 公開預約，但沒有明寫）
+- [ ] shima-la-mer-classic：2027-01-23～03-04 改裝期間**晚餐**照不照常（TableCheck 只寫午餐移到 ラ・メール；英文說午餐在宴會場，衝突）
+- [ ] shima-la-mer、shima-hamayu：晚餐 15 人能不能同一時段一起坐（午餐有包場 15～40 人、4～30 人方案）；2/2 第一晚 18:40 到賢島，19:30 L.O. 前能不能入座、ベイスイート 送迎車
+- [ ] shima-hiramatsu-kashikojima（excluded）：非住客能不能預約晚餐（0599-65-7001）；能的話改 included
+- [ ] shima-hanaya-dining：營業時間（官網沒寫，食べログ 午 11:30～14:30、晚 17:00～20:00 要事前確認）、**2/2（週二）晚上**能不能吃、15 人座敷能不能一起（0599-46-1020）
+- [ ] shima-hoseien-dining：日帰り昼食 15 人能不能同一時段、兒童價（0599-43-3624）；非住客晚餐有沒有方案
+- [ ] shima-kashikojima-cc-restaurant：餐廳營業時間、2027-02 的休場日（舊資料 1・2 月每週二休）、不打球的人能不能搭鵜方站送迎巴士（0599-43-1082）
+- [ ] shima-marena-french：晚餐 15 人（網路最多 10 人）能不能一起；2/11（週四、祝日）晚餐休不休
+- [ ] shima-mirador：工事期間（～2027-03-01）カフェ有沒有營業、計程車能不能到 P2（同 shima-yokoyama-observatory）；只收現金（口コミ 2026/05）
+- [ ] shima-yoshikatsutei：2027-02 的營業案內（官網每月公布）；15 人要全員到齊才帶位、能不能分桌同時入座
+- [ ] shima-lien：觀光協會寫的晚餐 17:30～20:30、バー 20:30～23:00、無休 是不是舊資料（官網只到 17:30、火水休）
+- [ ] shima-yamabuki：土日午餐（食べログ：1 週前、4 名～）現在還有沒有（官網沒寫）
+- [ ] shima-iwajin-kissa：能不能預約、包場（20 人以下）的條件（0599-43-1018）

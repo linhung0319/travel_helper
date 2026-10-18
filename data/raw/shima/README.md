@@ -1,6 +1,6 @@
 # 志摩：研究筆記 README
 
-> 開工先讀這份。最後更新：2026-10-18（T9a 完成：景點資料點 24 筆；T9b 完成：住宿 56 筆；T9c 完成：餐廳候選 150 筆，收錄預定 72、pending 20）。這份是**現況**，各任務更新自己的那一節（覆寫，不是追加）；過程紀錄在 `log/`，需要時才讀。
+> 開工先讀這份。最後更新：2026-10-18（T9a 完成：景點資料點 24 筆；T9b 完成：住宿 56 筆；T9c 完成：餐廳候選 150 筆，收錄預定 72、pending 20；T9d 第 1 批：餐廳 13 筆）。這份是**現況**，各任務更新自己的那一節（覆寫，不是追加）；過程紀錄在 `log/`，需要時才讀。
 
 ## 檔案地圖
 
@@ -21,10 +21,14 @@
 | `data/cache/work/t9c-2/` | T9c 第 2 批的工作檔（格式同第 1 批；`rules.json` 多了 `onlyRegions`，`lists/isobekw-rt-1.txt` 是「磯部町」關鍵字搜尋） |
 | `data/cache/work/t9c-3/` | T9c 第 3 批的工作檔（格式同第 2 批）；`kw/ago-keywords.txt`（阿児町、大王町 等關鍵字搜尋的比對）、`qc-patch.json`（數量控制寫回的 7 筆）、`t9c-1-rules.before.json`（加 thresholds 前的第 1 批 rules） |
 | `data/cache/work/t9d-plan.json` | T9d 的分批：`[{batch, regions, count, pending, keys}]`（included＋pending 92 家，5 批） |
+| `data/areas/shima/restaurants.json` | 餐廳資料點（T9d 逐批寫入；第 1 批 13 筆） |
+| `data/cache/work/t9d-1/` | T9d 第 1 批的工作檔（見「餐廳」的 T9d 一節） |
+| `ig-notes.md` | 餐廳的 IG 帳號（T9d，沒有打開 IG） |
 | `questions.md` | 要打電話、人工確認的事 |
 | `log/T9a.md` | T9a 的過程紀錄 |
 | `log/T9b.md` | T9b 的過程紀錄（楽天查詢、Chrome、讀文、WebSearch 次數） |
 | `log/T9c.md` | T9c 的過程紀錄（看過的食べログ列表網址、媒體、WebSearch 次數） |
+| `log/T9d.md` | T9d 的過程紀錄（各批的 Chrome 操作、讀文、口コミ、WebSearch 次數） |
 
 `data/areas/shima/spots.json`：景點 24 筆；`data/areas/shima/lodging.json`：住宿 56 筆。讀文筆記在 `dossiers/`（景點 25 份，含排除的 Rays Farm；住宿 60 份，含排除的 SHIMA BOAT HOUSE、ばさら邸、the circle 和 pending 的 B&B フォレスト）。
 
@@ -156,6 +160,17 @@
 - **T9f**：groupFit 要分「楽天有 15 人空房」和「只是容量夠」（ねぼーや、一楽、志摩和荘、民宿一葉、森と海）；Kabuku（露營）、地中海村（非無障礙）的 elderFit；大型飯店的 Google 偏低要看評論重點。
 
 ## 餐廳
+
+### 詳細資料（T9d，第 1 批完成：kashikojima＋yokoyama 13 筆）
+- **資料檔** `data/areas/shima/restaurants.json`（T9d 新建）：13 筆，`anchors: []`、`tier: null`（anchors、缺漏留給 T9e；summary／assessment 留給 T9f）。工作檔 `data/cache/work/t9d-1/`（`batch.json`、`tabelog.jsonl`、`google.jsonl`、`facts/`、`photos.json`、`judgement-src.mjs`→`judgement.json`、`notes/`（口コミ・評論重點）、`patch-r*.json`、`cand-*.json`、`dp-add.mjs`）。過程見 `log/T9d.md`。
+- **pending 7 → 收錄 4、排除 3**：はな屋 和食堂あじさい（`shima-hanaya-dining`，官網「お食事のみ大歓迎」）、賢島宝生苑 日帰り昼食（`shima-hoseien-dining`，只有午餐，週一・二休）、近鉄賢島カンツリークラブ レストラン（`shima-kashikojima-cc-restaurant`，不打球也可，營業時間不明）、都リゾート ベイサイドテラス 和食・カフェ（`shima-miyako-bayside-terrace-dining`，**貸切ランチ 15～50 人**）；排除 志摩観光ホテル・ベイスイート 的總頁（和館內餐廳重複）、THE HIRAMATSU（非住客沒來源）。
+- **fit15**：yes 6（ラ・メール 午餐包場 15～40、浜木綿 午餐 4～30、マレナ／ベイサイドテラス 貸切ランチ 15～50、賢島カンツリー コンペ會食、イワジン喫茶室 貸切 20 以下）、split 2（クラシック、リアン）、no 1（山吹 11 席）、unknown 4（はな屋、宝生苑、芳カツ亭（不能預約）、ミラドール（外帶））。**晚餐 15 人一起的明確來源 0 家**——飯店的團體方案都是午餐。
+- **第一晚（2/2 週二）賢島站一帶**：營業的只有 ラ・メール（晚 25,000 円起、限小學生以上、L.O. 19:30）、浜木綿（21,000 円起、限小學生以上）、マレナSHIMA（9,000 円起、有兒童套餐、接駁巴士 7 分）、はな屋 あじさい（食べログ 17:00～20:00「要事前確認」，口コミ全是午餐，要電話）。リアン、山吹、芳カツ亭、宝生苑 午餐 週二休；ベイサイドテラス 和食 週二晚休。**→ 第一晚還是鵜方站（鯛、長太屋 等）比較實際**，賢島的晚餐是高價飯店或未確認。
+- **重要風險**：ラ・メール ザ クラシック **2027-01-23～03-04 改裝**（`closures`，午餐移到 ラ・メール，晚餐沒寫），旅程中當作不能用；志摩観光ホテル 系、マレナ 的非住客用餐是「推定可」（TableCheck 公開預約、沒寫住客限定），列 questions。ミラドール 工事期間要從 VC 走石段 15～20 分（口コミ多則「很累」）、只收現金。
+- **長輩、小孩**：ラ・メール、浜木綿 限小學生以上（6～10 歲可）；クラシック 有兒童套餐 6,000／8,300 円、マレナ 4,500／3,300 円。はな屋 2F 脫鞋座敷＋桌席；芳カツ亭 全桌席但要排隊（開店前就 6 組）、全員到齊才帶位。
+- **口コミ・評論**：12 家讀了（山吹 除外；共約 360 則），筆記都加進 `dossiers/`；回填 はな屋 seating・kids、芳カツ亭・ミラドール mustTry（apply-patch overwrite，見 decisions-pending）。
+- IG 帳號 `ig-notes.md`（新建）；questions 加 13 條（「餐廳（T9d）」）。
+- **給後續批次**：候選 included 都加了 `detailPending: true`（restaurants.json 建立後 validate 才不報錯，build --candidates 會拿掉）。做法照 `log/T9d.md` 第 1 批；一個 browser_batch 超過約 16 個動作（食べログ 口コミ 9 頁）會逾時。
 
 ### 現況（T9c 完成：候選 150 筆，收錄預定 72、pending 20）
 - **母體**：食べログ町名列表（評分排序）志摩市 27 個町名頁全部看過（阿児町 7、磯部町 7、志摩町 5、大王町 3、浜島町 5；鵜方 161 家只看到 3.06），3.10 以上而且 15 則以上的店再看個室（含半個室）、貸切可篩選；沒有町名頁的大字用關鍵字搜尋補（「磯部町」找到 お食事処 祭；「阿児町<大字>」只多 ESSE（3.02，沒記）；「大王町」0；**「志摩町」「浜島町」關鍵字只比對店名，不能用**）。3.10 未満的店不記，例外是 D、F 的 override。觀光三重的特集、報導＋觀光協會「食べる」（會員名錄，不算 B，只用營業時間）；Google 沒查（同 T8c）。看過的網址、WebSearch 次數見 `log/T9c.md`。

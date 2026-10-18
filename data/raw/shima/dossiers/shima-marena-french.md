@@ -6,6 +6,8 @@
   2. [booking-site] TableCheck（bayside-terrace-hdor）https://www.tablecheck.com/shops/bayside-terrace-hdor/reserve
   3. [official] 貸切ランチプラン https://www.miyakohotels.ne.jp/bayside-terrace/restaurant/group_lunch/
   4. [official] 舊網址 https://www.miyakohotels.ne.jp/bayside-terrace/restaurant/list/hdor/dinner2.html （HTTP 500，未採用）
+  5. [tabelog] 食べログ口コミ（最新 20 則、搜尋「中止」0 則「冬」1 則（2010，不採用）；2026-10-18 讀）https://tabelog.com/mie/A2403/A240303/24000658/dtlrvwlst/
+  6. [google-maps] Google 評論（全部 4 則：open 後 extract 0 則、lowest 4 則；2026-10-18 讀）https://maps.google.com/?cid=14669638145719383267
 
 ## 重點
 - [推薦] 都リゾート 志摩 ベイサイドテラス 1F 的主餐廳，78 席，全席禁煙（1）
@@ -18,6 +20,11 @@
 - [交通] 賢島站免費接駁約 7 分（見同館住宿筆記 shima-miyako-bayside-terrace）
 - [價格] 晚餐每人 9,000～20,000 円；朝食 4,000 円、兒童朝食 1,500 円（1）
 - [其他] 預約時間過 30 分鐘聯絡不上可能取消；菜單隨季節換（2026/9/11～12/10 的範例）（2）
+- [推薦] 食べログ 2024～2026 晚餐 3.0～4.2：英虞灣景觀、服務親切（2026/04）、魚料理細緻（2026/09）；很多則是住客的晚餐（一泊二食）和洋式朝食（評價好）（5、6）
+- [缺點] 味道「普通」「價格偏高」多則（3.0～3.6，2025/02、2025/11、2026/06）；Google 2026/09 兩則：人氣コース＋ペアリング 料理和服務都差（1 星，4 人同行）、「像家庭餐廳的法式」（3 星）（5、6）
+- [小孩] 暑假帶小學生用餐，周圍也有小孩、較吵（3.0，2024/08，1 則）（5、6）
+- [冬季] 2025/02 寒波時來訪照常營業（4.0，1 則）（5、6）
+- [其他] 晚上沒車的人多半只能在館內吃（2025/02）；舊名 アッシュドール（hd'or）（5、6）
 
 ## 衝突、待確認
 - 衝突：席數官網 78 席 vs 食べログ 66 席
@@ -26,4 +33,4 @@
 - 2 月是否有特別休業、服裝規定沒寫
 
 ## 資料量
-- 心得 0 篇（只有官網、TableCheck）；部落格心得：未查（深入調查）
+- 心得 24 則（食べログ口コミ 20、Google 評論 4）；部落格心得：未查（深入調查）
