@@ -40,7 +40,7 @@
       "googleMaps": "https://maps.google.com/?cid=13132639933777178043"
     },
     "tags": [],
-    "tier": null,
+    "tier": "B",
     "nearestStation": {
       "id": "iseshi",
       "mode": "walk",
@@ -264,6 +264,49 @@
         "note": "15 人（全部以大人計）分 N 間同住的組合，有空房的列出；只代表查詢當天楽天上的庫存"
       },
       "dinnerAccessNote": "步行 20 分內的晚餐店 8 家以上（只查最近 8 家）：満船屋 HANARE 2 分、酒場 森下 2 分、炭火焼肉匠 3 分 等（OSRM，scripts/lodging-dinner-access.mjs，2026-10-18）"
+    },
+    "summary": {
+      "text": "伊勢市站南口步行 2 分的連鎖商務飯店，本館是 1～2 人房，2023 年開的別館 Grande 有 4～6 人的雙床房，15 人可以分 3～4 間住。有人工溫泉大浴場，自助早餐評價好；不供晚餐，車站周邊步行就有很多店。",
+      "pros": [
+        "楽天 4.31（2,409 則）、じゃらん 4.3，負評少",
+        "別館 4～6 人房多，2/9、2/10 楽天 15 人組合都有空房",
+        "伊勢市站步行 2 分，附近晚餐店 8 家以上"
+      ],
+      "cons": [
+        "2027 年 2 月本館早餐餐廳改修，早餐安排未定",
+        "電梯官網、楽天都沒寫；本館櫃檯在 2 樓",
+        "大浴場尖峰擁擠，別館住客能不能用本館大浴場沒寫"
+      ],
+      "basedOn": [
+        "https://www.sanco-inn.co.jp/ise/",
+        "https://www.sanco-inn.co.jp/ise/rooms/",
+        "https://www.sanco-inn.co.jp/ise/bath/",
+        "https://www.sanco-inn.co.jp/ise/breakfast/",
+        "https://www.sanco-inn.co.jp/ise-annex/rooms/",
+        "https://www.sanco-inn.co.jp/ise-annex/facilities/",
+        "https://www.sanco-inn.co.jp/ise_area/",
+        "https://travel.rakuten.co.jp/HOTEL/158426/158426.html"
+      ],
+      "generated": "2026-10-18"
+    },
+    "assessment": {
+      "rubric": "lodging-v1",
+      "scores": {
+        "recommend": 3,
+        "meals": 3,
+        "groupFit": 4,
+        "elderFit": 3,
+        "accessEase": 5
+      },
+      "rationale": {
+        "recommend": "楽天 4.31（2,409 則）、Google 4.0；照原門檻是 4，伊勢依區調整後 4 要楽天 4.5 以上 → 3",
+        "meals": "只有早餐（楽天餐 4.27）；晚餐在外，步行 2～3 分就有 8 家以上",
+        "groupFit": "165 室，別館 4～6 人房可以分 3～4 間同館住；沒有團體方案，晚餐在外不需要宴會場",
+        "elderFit": "全部是床，有ユニバーサル房；電梯沒有來源（別館在 9 樓）",
+        "accessEase": "伊勢市站步行 2 分（別館 3 分）"
+      },
+      "confidence": "medium",
+      "assessed": "2026-10-18"
     }
   },
   {
@@ -314,7 +357,7 @@
       "googleMaps": "https://maps.google.com/?cid=1320609226001635846"
     },
     "tags": [],
-    "tier": null,
+    "tier": "A",
     "nearestStation": {
       "id": "iseshi",
       "mode": "walk",
@@ -507,6 +550,49 @@
         "note": "15 人（全部以大人計）分 N 間同住的組合，有空房的列出；只代表查詢當天楽天上的庫存"
       },
       "dinnerAccessNote": "步行 20 分內的晚餐店 8 家以上（只查最近 8 家）：酒場 森下 2 分、桂 外宮 2 分、鉄饌 2 分 等（選素泊、朝食付方案時；OSRM，scripts/lodging-dinner-access.mjs，2026-10-18）"
+    },
+    "summary": {
+      "text": "伊勢市站外宮口步行 1 分的溫泉旅館，全室有床和信樂燒露天風呂，晚餐是伊勢海老、鮑、松阪牛的會席。楽天 4.54、じゃらん 4.5，但 Google 近 1～2 年有多則晚餐服務變差的評論。",
+      "pros": [
+        "楽天 4.54（1,446 則）、じゃらん 4.5（1,536 則）、Google 4.4",
+        "有電梯、全房型有床、餐廳全是桌椅，可借輪椅",
+        "伊勢市站步行 1 分，外宮步行約 5 分"
+      ],
+      "cons": [
+        "Google 約 2025～2026 多則：晚餐上菜慢、送錯菜、晚餐時段被改",
+        "沒有宴會場，餐廳以 2～5 人桌為主，15 人一起吃要先問",
+        "和室房有窄、舊的意見；站前晚上有機車噪音"
+      ],
+      "basedOn": [
+        "https://www.iseshinsen.jp/room/",
+        "https://www.iseshinsen.jp/faq/",
+        "https://www.kankomie.or.jp/spot/23587",
+        "https://www.gltjp.com/ja/directory/item/19148/",
+        "https://travel.rakuten.co.jp/HOTEL/142619/142619.html",
+        "https://travel.rakuten.co.jp/HOTEL/142619/142619_std.html",
+        "https://www.jalan.net/yad326003/",
+        "https://maps.google.com/?cid=1320609226001635846"
+      ],
+      "generated": "2026-10-18"
+    },
+    "assessment": {
+      "rubric": "lodging-v1",
+      "scores": {
+        "recommend": 4,
+        "meals": 3,
+        "groupFit": 4,
+        "elderFit": 5,
+        "accessEase": 5
+      },
+      "rationale": {
+        "recommend": "じゃらん 4.5（1,536 則）、楽天 4.54、Google 4.4（960 則）；近年晚餐服務的負評集中在 Google 低分，整體分數仍高，不調",
+        "meals": "楽天餐 4.68 照規則是 4，但 Google 約 2025～2026 有 4 則以上晚餐服務下降（上菜慢、送錯、時段被改）→ 降一級",
+        "groupFit": "45 室、和洋室 4 人、スイート 5 人，15 人分 4～5 間；有 15 人以上團體的取消規定，但沒有宴會場",
+        "elderFit": "有電梯（Google 2 則）、全房型有床、可借輪椅和洗澡椅、餐廳無座敷",
+        "accessEase": "伊勢市站步行 1 分"
+      },
+      "confidence": "high",
+      "assessed": "2026-10-18"
     }
   },
   {
@@ -550,7 +636,7 @@
       "googleMaps": "https://maps.google.com/?cid=9105342435517923091"
     },
     "tags": [],
-    "tier": null,
+    "tier": "B",
     "nearestStation": {
       "id": "iseshi",
       "mode": "walk",
@@ -750,6 +836,47 @@
         "note": "15 人（全部以大人計）分 N 間同住的組合，有空房的列出；只代表查詢當天楽天上的庫存"
       },
       "dinnerAccessNote": "步行 20 分內的晚餐店 8 家以上（只查最近 8 家）：洋風ダイニングバー 町家バル 2 分、桂 外宮 2 分、鉄饌 2 分 等（OSRM，scripts/lodging-dinner-access.mjs，2026-10-18）"
+    },
+    "summary": {
+      "text": "伊勢市站南口步行 3 分的商務飯店，全部是西式床，最大房型可以加床到 4 人。櫃檯親切、房間乾淨的評價多，大廳有免費飲料；沒有大浴場，早餐自助尖峰擁擠。",
+      "pros": [
+        "楽天 4.39（1,980 則）、じゃらん 4.5、Google 4.2",
+        "小學 6 年級以下添い寝免住宿費",
+        "伊勢市站步行 3 分，隔壁伊勢市場小巷有晚餐店"
+      ],
+      "cons": [
+        "沒有大浴場，只有房內浴室",
+        "電梯、無障礙房頁面沒寫",
+        "早餐尖峰場地小、菜會缺"
+      ],
+      "basedOn": [
+        "https://travel.rakuten.co.jp/HOTEL/166509/166509.html",
+        "https://travel.rakuten.co.jp/HOTEL/166509/166509_std.html",
+        "https://review.travel.rakuten.co.jp/hotel/voice/166509/",
+        "https://hotel.travel.rakuten.co.jp/hotelinfo/plan/166509/",
+        "https://www.jalan.net/yad397897/",
+        "https://maps.google.com/?cid=9105342435517923091"
+      ],
+      "generated": "2026-10-18"
+    },
+    "assessment": {
+      "rubric": "lodging-v1",
+      "scores": {
+        "recommend": 3,
+        "meals": 3,
+        "groupFit": 4,
+        "elderFit": 3,
+        "accessEase": 5
+      },
+      "rationale": {
+        "recommend": "楽天 4.39（1,980 則）、Google 4.2；照原門檻是 4，伊勢依區調整後 4 要 4.5 以上 → 3",
+        "meals": "只有早餐（楽天餐 4.34）；晚餐在外，步行 2 分有 8 家以上",
+        "groupFit": "153 室，ツイン 1～4 人，15 人分 4～6 間；2/9 楽天 4×4 有空房",
+        "elderFit": "全為西式床；電梯沒有來源",
+        "accessEase": "伊勢市站步行約 3 分"
+      },
+      "confidence": "medium",
+      "assessed": "2026-10-18"
     }
   },
   {
@@ -800,7 +927,7 @@
       "googleMaps": "https://maps.google.com/?cid=9516679011560871532"
     },
     "tags": [],
-    "tier": null,
+    "tier": "B",
     "nearestStation": {
       "id": "iseshi",
       "mode": "walk",
@@ -988,6 +1115,48 @@
         "note": "15 人（全部以大人計）分 N 間同住的組合，有空房的列出；只代表查詢當天楽天上的庫存"
       },
       "dinnerAccessNote": "步行 20 分內的晚餐店 8 家以上（只查最近 8 家）：オステリアラブラ 5 分、大喜 5 分、貫 6 分 等（選素泊、朝食付方案時；OSRM，scripts/lodging-dinner-access.mjs，2026-10-18）"
+    },
+    "summary": {
+      "text": "近鐵伊勢市站步行 2 分的老牌飯店，全室西式床，有大浴場和桑拿，晚餐是三重食材的會席。楽天トラベルアワード 2024、2025 得獎，家族客多，晚餐、早餐分數高；建築不新但翻修過。",
+      "pros": [
+        "楽天 4.33（2,326 則），晚餐 4.83、早餐 4.61",
+        "宴會室打通最多 30 人，可以全員一起吃飯",
+        "有無障礙房、館內輪椅可行，伊勢市站步行 2 分"
+      ],
+      "cons": [
+        "建物「不是最新」，女湯置物櫃尖峰要等",
+        "最大房型 4 人，15 人要分 5～6 間",
+        "電梯、兒童收費沒有正式寫出"
+      ],
+      "basedOn": [
+        "https://www.pearlpier.com/",
+        "https://www.pearlpier.com/room/",
+        "https://travel.rakuten.co.jp/HOTEL/1232/1232.html",
+        "https://travel.rakuten.co.jp/HOTEL/1232/1232_std.html",
+        "https://travel.rakuten.co.jp/HOTEL/1232/review.html",
+        "https://www.jalan.net/yad319749/",
+        "https://maps.google.com/?cid=9516679011560871532"
+      ],
+      "generated": "2026-10-18"
+    },
+    "assessment": {
+      "rubric": "lodging-v1",
+      "scores": {
+        "recommend": 3,
+        "meals": 4,
+        "groupFit": 4,
+        "elderFit": 4,
+        "accessEase": 5
+      },
+      "rationale": {
+        "recommend": "楽天 4.33（2,326 則）、じゃらん 4.4、Google 4.0；照原門檻是 4，伊勢依區調整後 → 3",
+        "meals": "楽天餐 4.63，口コミ頁晚餐 4.83、早餐 4.61",
+        "groupFit": "100 室，15 人分 5～6 間；宴會・會議室打通最多 30 人可以聚餐；2/9、2/10 楽天 5×3 有空房",
+        "elderFit": "全室床、有バリアフリールーム、館內輪椅可；電梯只有官網「各樓層電梯前有飲水機」的間接說法",
+        "accessEase": "近鐵伊勢市站步行 2 分"
+      },
+      "confidence": "medium",
+      "assessed": "2026-10-18"
     }
   },
   {
@@ -1031,7 +1200,7 @@
       "googleMaps": "https://maps.google.com/?cid=8954045600785852833"
     },
     "tags": [],
-    "tier": null,
+    "tier": "B",
     "nearestStation": {
       "id": "iseshi",
       "mode": "walk",
@@ -1233,6 +1402,47 @@
         "note": "15 人（全部以大人計）分 N 間同住的組合，有空房的列出；只代表查詢當天楽天上的庫存"
       },
       "dinnerAccessNote": "步行 20 分內的晚餐店 8 家以上（只查最近 8 家）：Osteria il Mosto 2 分、豚捨 若柳 2 分、やきとり能代 3 分 等（OSRM，scripts/lodging-dinner-access.mjs，2026-10-18）"
+    },
+    "summary": {
+      "text": "伊勢市站步行約 12 分的東橫 INN，JR 側改札口有免費接駁巴士。房間乾淨、員工和司機親切；最大房只住 3 人，沒有大浴場，附免費早餐。",
+      "pros": [
+        "楽天 4.12（525 則），房間、清潔 4.2 上下",
+        "有電梯、全為西式床；小學生以下添い寝免費",
+        "價格便宜（附早餐每人約 4,500 円）"
+      ],
+      "cons": [
+        "離車站步行 12 分，要靠接駁巴士（載客數不明，尖峰可能坐滿）",
+        "沒有 4 人房、不能加床，15 人要 5～6 間",
+        "沒有大浴場，早餐尖峰擁擠"
+      ],
+      "basedOn": [
+        "https://travel.rakuten.co.jp/HOTEL/184219/184219.html",
+        "https://travel.rakuten.co.jp/HOTEL/184219/184219_std.html",
+        "https://review.travel.rakuten.co.jp/hotel/voice/184219/",
+        "https://hotel.travel.rakuten.co.jp/hotelinfo/plan/184219/",
+        "https://www.jalan.net/yad380438/",
+        "https://maps.google.com/?cid=8954045600785852833"
+      ],
+      "generated": "2026-10-18"
+    },
+    "assessment": {
+      "rubric": "lodging-v1",
+      "scores": {
+        "recommend": 3,
+        "meals": 3,
+        "groupFit": 4,
+        "elderFit": 5,
+        "accessEase": 4
+      },
+      "rationale": {
+        "recommend": "楽天 4.12（525 則）、Google 4.0，評價穩定但不突出",
+        "meals": "附免費早餐（楽天餐 4.01）；晚餐在外，步行 2～3 分有 8 家以上",
+        "groupFit": "147 室，3 人房 × 5 間可以同館；2/9、2/10 楽天 5×3 有空房",
+        "elderFit": "有電梯（房卡感應）、全為西式床",
+        "accessEase": "伊勢市站步行約 12 分；免費接駁巴士約 20 分一班、不用預約（心得）"
+      },
+      "confidence": "medium",
+      "assessed": "2026-10-18"
     }
   },
   {
@@ -1276,7 +1486,7 @@
       "googleMaps": "https://maps.google.com/?cid=7375533064905331946"
     },
     "tags": [],
-    "tier": null,
+    "tier": "B",
     "nearestStation": {
       "id": "iseshi",
       "mode": "walk",
@@ -1501,6 +1711,48 @@
         "note": "15 人（全部以大人計）分 N 間同住的組合，有空房的列出；只代表查詢當天楽天上的庫存"
       },
       "dinnerAccessNote": "步行 20 分內的晚餐店 8 家以上（只查最近 8 家）：桂 外宮 3 分、貫 3 分、オステリアラブラ 3 分 等（OSRM，scripts/lodging-dinner-access.mjs，2026-10-18）"
+    },
+    "summary": {
+      "text": "伊勢市站步行 2 分的昭和初期木造旅館，女將手作的和式早餐、懷舊感和打掃乾淨很受好評。全 10 室，多數房間廁所、洗臉台在走廊共用，沒有電梯；不供晚餐。",
+      "pros": [
+        "楽天 4.54（404 則）、じゃらん 4.4（565 則）、Google 4.5",
+        "女將手作早餐，可以配合長輩、過敏調整",
+        "伊勢市站步行 2 分，附近晚餐店多"
+      ],
+      "cons": [
+        "沒有電梯，部分客房要爬約 13 階樓梯（有扶手）",
+        "多數房間廁所共用、拉門隔間隔音差",
+        "浴場很小，男女各只能 3～4 人"
+      ],
+      "basedOn": [
+        "https://www.kankomie.or.jp/spot/592",
+        "https://travel.rakuten.co.jp/HOTEL/56193/56193.html",
+        "https://travel.rakuten.co.jp/HOTEL/56193/56193_std.html",
+        "https://hotel.travel.rakuten.co.jp/hotelinfo/plan/56193",
+        "https://travel.rakuten.co.jp/HOTEL/56193/review.html",
+        "https://www.jalan.net/yad311581/",
+        "https://maps.google.com/?cid=7375533064905331946"
+      ],
+      "generated": "2026-10-18"
+    },
+    "assessment": {
+      "rubric": "lodging-v1",
+      "scores": {
+        "recommend": 3,
+        "meals": 3,
+        "groupFit": 3,
+        "elderFit": 2,
+        "accessEase": 5
+      },
+      "rationale": {
+        "recommend": "じゃらん 4.4（565 則）是評論較多的那個、楽天 4.54、Google 4.5；伊勢依區調整後 4 要 4.5 以上 → 3",
+        "meals": "只有早餐（楽天餐 4.52，女將手作）；晚餐在外，步行 3 分有店",
+        "groupFit": "全 10 室，各房型間數不明，15 人要包下大部分，要電話問",
+        "elderFit": "確定沒有電梯、和室鋪被、多數房間廁所共用；有一間給長者的特別室",
+        "accessEase": "伊勢市站步行約 2 分"
+      },
+      "confidence": "medium",
+      "assessed": "2026-10-18"
     }
   },
   {
@@ -1551,7 +1803,7 @@
       "googleMaps": "https://maps.google.com/?cid=13353400713495993155"
     },
     "tags": [],
-    "tier": null,
+    "tier": "B",
     "nearestStation": {
       "id": "iseshi",
       "mode": "walk",
@@ -1751,6 +2003,48 @@
         "note": "15 人（全部以大人計）分 N 間同住的組合，有空房的列出；只代表查詢當天楽天上的庫存"
       },
       "dinnerAccessNote": "步行 20 分內的晚餐店 8 家以上（只查最近 8 家）：蔵deらーめん 4 分、あきやま 5 分、炭火焼肉匠 5 分 等（OSRM，scripts/lodging-dinner-access.mjs，2026-10-18）"
+    },
+    "summary": {
+      "text": "伊勢市站外宮側步行 7 分的公寓式飯店，36 室都有簡易廚房，4 人房多，家族客評價好（新、乾淨、浴廁分開）。早餐是大廳旁咖啡店的盤餐，夜間櫃檯無人。",
+      "pros": [
+        "全室簡易廚房＋微波爐，4 人房多，15 人約 4 間",
+        "2/9、2/10 楽天 4×4、5×3 都有空房",
+        "土禁（脫鞋）房，小孩好活動"
+      ],
+      "cons": [
+        "夜間櫃檯無人，外走廊",
+        "部分房型是雙層床，電梯沒有來源",
+        "沒有大浴場、樓上腳步聲的意見"
+      ],
+      "basedOn": [
+        "https://www.kankomie.or.jp/spot/24710",
+        "https://travel.rakuten.co.jp/HOTEL/183396/183396.html",
+        "https://travel.rakuten.co.jp/HOTEL/183396/183396_std.html",
+        "https://travel.rakuten.co.jp/HOTEL/183396/review.html",
+        "https://yado.knt.co.jp/st/S240379/",
+        "https://www.jalan.net/yad326440/",
+        "https://maps.google.com/?cid=13353400713495993155"
+      ],
+      "generated": "2026-10-18"
+    },
+    "assessment": {
+      "rubric": "lodging-v1",
+      "scores": {
+        "recommend": 3,
+        "meals": 3,
+        "groupFit": 4,
+        "elderFit": 3,
+        "accessEase": 4
+      },
+      "rationale": {
+        "recommend": "楽天 4.25（386 則）、Google 4.2，評價穩定",
+        "meals": "只有咖啡店早餐（楽天餐 4.41）；晚餐在外，步行 4～5 分有 8 家以上",
+        "groupFit": "36 室，4 人房 4 間可以住 15 人；2/9、2/10 楽天 4×4 有空房",
+        "elderFit": "床為主（部分雙層床、床＋鋪被）；電梯沒有來源",
+        "accessEase": "伊勢市站步行約 7 分，沒有接送"
+      },
+      "confidence": "medium",
+      "assessed": "2026-10-18"
     }
   },
   {
@@ -1794,7 +2088,7 @@
       "googleMaps": "https://maps.google.com/?cid=4244877151196628979"
     },
     "tags": [],
-    "tier": null,
+    "tier": "B",
     "nearestStation": {
       "id": "iseshi",
       "mode": "walk",
@@ -2001,6 +2295,48 @@
         "note": "15 人（全部以大人計）分 N 間同住的組合，有空房的列出；只代表查詢當天楽天上的庫存"
       },
       "dinnerAccessNote": "步行 20 分內的晚餐店 8 家以上（只查最近 8 家）：オステリアラブラ 6 分、大喜 6 分、貫 7 分 等（選素泊、朝食付方案時；OSRM，scripts/lodging-dinner-access.mjs，2026-10-18）"
+    },
+    "summary": {
+      "text": "伊勢市站步行 4 分的商務飯店（2023 年改名），2023 年起館內餐廳有晚餐定食。員工親切，但浴室發霉、排水不乾淨等清潔和老舊的抱怨多，楽天 3.89、Google 3.5 是伊勢市站周邊偏低的。",
+      "pros": [
+        "伊勢市站步行 4 分，價格便宜",
+        "館內有晚餐（定食 2,500 円起），楽天晚餐 4.26",
+        "2/9、2/10 楽天 5×3 有空房"
+      ],
+      "cons": [
+        "浴室磁磚發黑、發霉、排水口髒的抱怨多（楽天浴室 3.61）",
+        "沒有大浴場、沒有 4 人房",
+        "0:00～6:00 入口關閉"
+      ],
+      "basedOn": [
+        "https://en-hotel.com/ise/",
+        "https://travel.rakuten.co.jp/HOTEL/184858/184858.html",
+        "https://travel.rakuten.co.jp/HOTEL/184858/184858_std.html",
+        "https://review.travel.rakuten.co.jp/hotel/voice/184858/",
+        "https://hotel.travel.rakuten.co.jp/hotelinfo/plan/184858/",
+        "https://www.jalan.net/yad393128/",
+        "https://maps.google.com/?cid=4244877151196628979"
+      ],
+      "generated": "2026-10-18"
+    },
+    "assessment": {
+      "rubric": "lodging-v1",
+      "scores": {
+        "recommend": 2,
+        "meals": 3,
+        "groupFit": 4,
+        "elderFit": 3,
+        "accessEase": 5
+      },
+      "rationale": {
+        "recommend": "楽天 3.89、じゃらん 3.7、Google 3.5，§5.7 的評價普通；心得有浴室發霉、清潔不足的負評",
+        "meals": "楽天餐 4.11，館內有晚餐定食；素泊時步行 6 分有店",
+        "groupFit": "143 室，3 人房 × 5 間；2/9、2/10 楽天 5×3 有空房",
+        "elderFit": "全為西式床；電梯沒有來源",
+        "accessEase": "伊勢市站步行約 4 分"
+      },
+      "confidence": "medium",
+      "assessed": "2026-10-18"
     }
   },
   {
@@ -2051,7 +2387,7 @@
       "googleMaps": "https://maps.google.com/?cid=17320665345915300173"
     },
     "tags": [],
-    "tier": null,
+    "tier": "S",
     "nearestStation": {
       "id": "miyamachi",
       "mode": "walk",
@@ -2245,6 +2581,49 @@
         "note": "15 人（全部以大人計）分 N 間同住的組合，有空房的列出；只代表查詢當天楽天上的庫存"
       },
       "dinnerAccessNote": "步行 20 分內的晚餐店 8 家以上（只查最近 8 家）：ぎょうざの美鈴 5 分、懐石 かみむら 5 分、一月家 8 分 等（選素泊、朝食付方案時；OSRM，scripts/lodging-dinner-access.mjs，2026-10-18）"
+    },
+    "summary": {
+      "text": "明治 30 年創業、約 130 年的老舖旅館，只有 8 間和室，女將、大女將穿和服送客的款待和份量大的晚餐（伊勢うどん、さめのたれ、てごね寿司）是招牌。建築老但乾淨，浴池小要輪流。",
+      "pros": [
+        "じゃらん 4.6（530 則）、楽天 4.62、Google 4.5，楽天晚餐 4.76",
+        "晚餐有伊勢鄉土料理，份量大",
+        "心得一致稱讚款待、老但乾淨"
+      ],
+      "cons": [
+        "只有 8 室（每室 1～3 人），15 人要包下 5～6 室",
+        "電梯、樓梯、床都沒有來源，約 130 年的建築",
+        "近鐵宮町站（無人站）步行約 13 分，伊勢市站 15～18 分"
+      ],
+      "basedOn": [
+        "http://www.kouyouken.com/",
+        "https://www.kankomie.or.jp/spot/622",
+        "https://travel.rakuten.co.jp/HOTEL/19502/19502.html",
+        "https://travel.rakuten.co.jp/HOTEL/19502/19502_std.html",
+        "https://hotel.travel.rakuten.co.jp/hotelinfo/plan/19502",
+        "https://review.travel.rakuten.co.jp/hotel/voice/19502/",
+        "https://www.jalan.net/yad323334/",
+        "https://maps.google.com/?cid=17320665345915300173"
+      ],
+      "generated": "2026-10-18"
+    },
+    "assessment": {
+      "rubric": "lodging-v1",
+      "scores": {
+        "recommend": 5,
+        "meals": 5,
+        "groupFit": 3,
+        "elderFit": 2,
+        "accessEase": 3
+      },
+      "rationale": {
+        "recommend": "じゃらん 4.6（530 則）、楽天 4.62（324 則）、Google 4.5；負評只有老舊、浴池小、位置",
+        "meals": "楽天餐 4.72，晚餐 4.76，心得稱讚份量和鄉土料理",
+        "groupFit": "8 室、每室 1～3 人，15 人要佔 5～6 室，能不能包下要電話問",
+        "elderFit": "電梯、床沒有來源，和室應是鋪被；老建築",
+        "accessEase": "近鐵宮町站步行約 13 分、伊勢市站計程車 5 分，沒有接送"
+      },
+      "confidence": "medium",
+      "assessed": "2026-10-18"
     }
   },
   {
@@ -2288,7 +2667,7 @@
       "googleMaps": "https://maps.google.com/?cid=15926123671796940193"
     },
     "tags": [],
-    "tier": null,
+    "tier": "B",
     "nearestStation": {
       "id": "iseshi",
       "mode": "walk",
@@ -2484,6 +2863,48 @@
         "note": "15 人（全部以大人計）分 N 間同住的組合，有空房的列出；只代表查詢當天楽天上的庫存"
       },
       "dinnerAccessNote": "步行 20 分內的晚餐店 8 家以上（只查最近 8 家）：こま田 2 分、虎丸 3 分、牡蠣の朋 3 分 等（選素泊、朝食付方案時；OSRM，scripts/lodging-dinner-access.mjs，2026-10-18）"
+    },
+    "summary": {
+      "text": "河崎附近的國登錄有形文化財木造旅館，2014 年起改成夫婦經營的和風 B&B，有大正～昭和氛圍和水琴窟中庭。10 室全在 2 樓，房內沒有衛浴，不供晚餐；冬季每週有 1～2 天休館。",
+      "pros": [
+        "楽天 4.46（314 則）、Google 4.5",
+        "登錄有形文化財建築，員工說明細心",
+        "素泊每人約 6,000 円，附近河崎有晚餐店"
+      ],
+      "cons": [
+        "客室全在 2 樓、要爬樓梯，廁所、洗手台共用",
+        "冬季每週約 1～2 天休館，2027-02 休館日未公告",
+        "房間由宿方分配，全館最多幾人不明"
+      ],
+      "basedOn": [
+        "https://www.hoshidekan.jp/",
+        "https://www.pref.mie.lg.jp/common/content/000968175.pdf",
+        "https://travel.rakuten.co.jp/HOTEL/30971/30971.html",
+        "https://travel.rakuten.co.jp/HOTEL/30971/30971_std.html",
+        "https://hotel.travel.rakuten.co.jp/hotelinfo/plan/30971",
+        "https://www.jalan.net/yad388580/",
+        "https://maps.google.com/?cid=15926123671796940193"
+      ],
+      "generated": "2026-10-18"
+    },
+    "assessment": {
+      "rubric": "lodging-v1",
+      "scores": {
+        "recommend": 3,
+        "meals": 3,
+        "groupFit": 3,
+        "elderFit": 2,
+        "accessEase": 4
+      },
+      "rationale": {
+        "recommend": "楽天 4.46（314 則）、Google 4.5；伊勢依區調整後 4 要 4.5 以上 → 3",
+        "meals": "只有早餐；晚餐在外，步行 2～3 分有 8 家以上",
+        "groupFit": "10 室全和室，全館人數和包棟沒寫，要電話確認",
+        "elderFit": "客室全在 2 樓要爬樓梯、鋪被、廁所共用；電梯沒有來源",
+        "accessEase": "近鐵伊勢市站往北步行約 7 分，沒有接送"
+      },
+      "confidence": "medium",
+      "assessed": "2026-10-18"
     }
   },
   {
@@ -2534,7 +2955,7 @@
       "googleMaps": "https://maps.google.com/?cid=11205755571838556776"
     },
     "tags": [],
-    "tier": null,
+    "tier": "B",
     "nearestStation": {
       "id": "iseshi",
       "mode": "walk",
@@ -2741,6 +3162,49 @@
         "note": "15 人（全部以大人計）分 N 間同住的組合，有空房的列出；只代表查詢當天楽天上的庫存"
       },
       "dinnerAccessNote": "步行 20 分內的晚餐店 8 家以上（只查最近 8 家）：こま田 1 分、虎丸 2 分、牡蠣の朋 2 分 等（OSRM，scripts/lodging-dinner-access.mjs，2026-10-18）"
+    },
+    "summary": {
+      "text": "2025 年開業、河崎商人町古民家改裝的分散型飯店，8 室分在 5～6 棟，每室是整棟或整間貸切、全部是床。早餐是神饌發想的和定食，不供晚餐；評論還很少。",
+      "pros": [
+        "Google 4.9（162 則）、楽天 4.71，員工細心",
+        "8 室合計 27～28 人，有 10 人以上團體表單",
+        "早餐空間可包場（最多 30 人），附近河崎有晚餐店"
+      ],
+      "cons": [
+        "楽天、じゃらん評論各只有 10～14 則",
+        "多數房要爬樓梯或閣樓，各房之間要在街上走 30 秒～4 分",
+        "每人約 28,000 円起，價格高"
+      ],
+      "basedOn": [
+        "https://www.kazenoheritage.jp/hotels/ise-kawasaki/rooms/",
+        "https://www.kazenoheritage.jp/hotels/ise-kawasaki/group/",
+        "https://www.kazenoheritage.jp/hotels/ise-kawasaki/dining",
+        "https://www.travelvoice.jp/20250219-157205",
+        "https://travel.rakuten.co.jp/HOTEL/196826/196826.html",
+        "https://travel.rakuten.co.jp/HOTEL/196826/196826_std.html",
+        "https://hotel.travel.rakuten.co.jp/hotelinfo/plan/196826",
+        "https://www.jalan.net/yad377473/"
+      ],
+      "generated": "2026-10-18"
+    },
+    "assessment": {
+      "rubric": "lodging-v1",
+      "scores": {
+        "recommend": 3,
+        "meals": 3,
+        "groupFit": 4,
+        "elderFit": 3,
+        "accessEase": 4
+      },
+      "rationale": {
+        "recommend": "Google 4.9（162 則）、楽天 4.71 但只有 14 則 → 評論數上限 3",
+        "meals": "只有早餐（神饌和定食）；晚餐在外，步行 1～2 分有 8 家以上",
+        "groupFit": "8 室分散 5～6 棟、合計 27 人，15 人分 4～5 室；有 10 人以上團體頁，能不能全包沒寫",
+        "elderFit": "全部是床，但多數房在 2 樓或閣樓；KAMIJI 401 是平屋只住 2 人；電梯沒有來源",
+        "accessEase": "伊勢市站北口步行約 10 分，沒有接送"
+      },
+      "confidence": "low",
+      "assessed": "2026-10-18"
     }
   },
   {
@@ -2791,7 +3255,7 @@
       "googleMaps": "https://maps.google.com/?cid=7072040251221998084"
     },
     "tags": [],
-    "tier": null,
+    "tier": "B",
     "nearestStation": {
       "id": "miyamachi",
       "mode": "walk",
@@ -2991,6 +3455,48 @@
         "note": "15 人（全部以大人計）分 N 間同住的組合，有空房的列出；只代表查詢當天楽天上的庫存"
       },
       "dinnerAccessNote": "步行 20 分內的晚餐店 8 家以上（只查最近 8 家）：ぎょうざの美鈴 4 分、一月家 5 分、懐石 かみむら 6 分 等（選素泊、朝食付方案時；OSRM，scripts/lodging-dinner-access.mjs，2026-10-18）"
+    },
+    "summary": {
+      "text": "鰻魚店起家、約 130 年的料理旅館，うな重、伊勢海老、さめのたれ的膳評價好。昭和初期的老建築，浴室小、無障礙評分低；楽天分數不公開，最新心得是 2023 年。",
+      "pros": [
+        "料理評價高（4travel 餐食 4.25），うな重泊方案",
+        "楽天 92 則分布多是 4～5 分",
+        "食事處 40 席，價格中等（一泊二食約 14,000～16,500 円）"
+      ],
+      "cons": [
+        "Google 3.9（58 則），楽天平均不公開",
+        "昭和初期老建築，浴室小，4travel 無障礙 2.00",
+        "心得最新 2023-06，近況不明"
+      ],
+      "basedOn": [
+        "https://r.gnavi.co.jp/s7kh6m8d0000/",
+        "https://travel.rakuten.co.jp/HOTEL/38483/38483.html",
+        "https://travel.rakuten.co.jp/HOTEL/38483/38483_std.html",
+        "https://hotel.travel.rakuten.co.jp/hotelinfo/plan/38483",
+        "https://review.travel.rakuten.co.jp/hotel/voice/38483/",
+        "https://4travel.jp/dm_hotel-10037579",
+        "https://maps.google.com/?cid=7072040251221998084"
+      ],
+      "generated": "2026-10-18"
+    },
+    "assessment": {
+      "rubric": "lodging-v1",
+      "scores": {
+        "recommend": 3,
+        "meals": 4,
+        "groupFit": 3,
+        "elderFit": 2,
+        "accessEase": 3
+      },
+      "rationale": {
+        "recommend": "楽天平均不公開（92 則多是 4～5 分）、Google 3.9（58 則），資料少 → 3",
+        "meals": "沒有楽天細項；4travel 餐食 4.25，心得稱讚うな重、牡蠣フライ",
+        "groupFit": "10 室、每室 1～4 人，15 人要包下大部分，要電話問",
+        "elderFit": "老建築、和室應是鋪被，電梯沒有來源；4travel 無障礙 2.00",
+        "accessEase": "近鐵宮町站步行約 11 分；2022 年心得說有接送到車站，現況要確認"
+      },
+      "confidence": "low",
+      "assessed": "2026-10-18"
     }
   },
   {
@@ -3041,7 +3547,7 @@
       "googleMaps": "https://maps.google.com/?cid=14560981749051810275"
     },
     "tags": [],
-    "tier": null,
+    "tier": "B",
     "nearestStation": {
       "id": "iseshi",
       "mode": "walk",
@@ -3197,6 +3703,47 @@
         },
         "note": "15 人（全部以大人計）分 N 間同住的組合，有空房的列出；只代表查詢當天楽天上的庫存"
       }
+    },
+    "summary": {
+      "text": "江戶時代起家的料亭兼旅館，數寄屋造建築和日本庭園，懷石料理評價一貫好，女將會教參拜神宮的禮法。浴室小、一次一人，心得多是 2013 年以前；Google 3.6、價格每人約 3 萬円起。",
+      "pros": [
+        "懷石料理評價一貫好，楽天曾有河豚會席",
+        "數寄屋造、日本庭園，有宴會場",
+        "伊勢市站步行 7 分"
+      ],
+      "cons": [
+        "Google 3.6（70 則），楽天平均不公開",
+        "浴室小、一次一人，沒有大浴場；早年有異味的意見",
+        "和室鋪被、電梯沒有來源；一泊二食每人約 29,000～37,000 円"
+      ],
+      "basedOn": [
+        "https://travel.rakuten.co.jp/HOTEL/5668/5668.html",
+        "https://travel.rakuten.co.jp/HOTEL/5668/5668_std.html",
+        "https://hotel.travel.rakuten.co.jp/hotelinfo/plan/5668",
+        "https://review.travel.rakuten.co.jp/hotel/voice/5668/",
+        "https://yado.knt.co.jp/st/S240237/",
+        "https://maps.google.com/?cid=14560981749051810275"
+      ],
+      "generated": "2026-10-18"
+    },
+    "assessment": {
+      "rubric": "lodging-v1",
+      "scores": {
+        "recommend": 2,
+        "meals": 4,
+        "groupFit": 3,
+        "elderFit": 2,
+        "accessEase": 4
+      },
+      "rationale": {
+        "recommend": "Google 3.6（70 則）低於 §5.7 的 3.8，楽天不公開（19 則）；心得多是 2013 年以前，近況資料少",
+        "meals": "沒有楽天細項；心得一貫稱讚懷石，但多是舊文",
+        "groupFit": "10 室，楽天只列 2 種 1～5 人和室；有宴會場，15 人要 3～4 間，其他房型不明，要電話確認",
+        "elderFit": "全為和室鋪被、浴室小，電梯沒有來源",
+        "accessEase": "近鐵伊勢市站步行約 7 分"
+      },
+      "confidence": "low",
+      "assessed": "2026-10-18"
     }
   },
   {
@@ -3240,7 +3787,7 @@
       "googleMaps": "https://www.google.com/maps/search/?api=1&query=34.4928183,136.7085633"
     },
     "tags": [],
-    "tier": null,
+    "tier": "B",
     "nearestStation": {
       "id": "iseshi",
       "mode": "walk",
@@ -3378,6 +3925,44 @@
       },
       "googleMapsNote": "Google 地圖搜尋不到這間（2026-10-18），links.googleMaps 用座標搜尋連結",
       "dinnerAccessNote": "步行 20 分內的晚餐店 8 家以上（只查最近 8 家）：伊勢うどんのまめや 3 分、向井酒の店 3 分、満船屋 HANARE 5 分 等（OSRM，scripts/lodging-dinner-access.mjs，2026-10-18）"
+    },
+    "summary": {
+      "text": "伊勢市站步行約 1 分的一棟包租民宿（158 m²），最多 10 人，有廚房、洗衣機、烘乾機。只有 1 則評論、Google 找不到，15 人住不下，可以當 4～10 人小組的住處。",
+      "pros": [
+        "伊勢市站步行約 1 分，附近晚餐店多",
+        "整棟包租，有廚房、洗衣機、烘乾機",
+        "1 樓有 2 間有床的臥室"
+      ],
+      "cons": [
+        "最多 10 人，15 人住不下",
+        "評論只有 1 則，Google 地圖找不到",
+        "2 樓是布團，樓梯細節不明；浴室只有 1 間"
+      ],
+      "basedOn": [
+        "https://travel.rakuten.co.jp/HOTEL/193960/193960.html",
+        "https://travel.rakuten.co.jp/HOTEL/193960/193960_std.html",
+        "https://hotel.travel.rakuten.co.jp/hotelinfo/plan/193960"
+      ],
+      "generated": "2026-10-18"
+    },
+    "assessment": {
+      "rubric": "lodging-v1",
+      "scores": {
+        "recommend": 3,
+        "meals": 3,
+        "groupFit": 2,
+        "elderFit": 3,
+        "accessEase": 5
+      },
+      "rationale": {
+        "recommend": "無評分（楽天 1 則、Google 沒有），§5.7 不排除；沒有好評也沒有負評的資料",
+        "meals": "不含餐，有廚房；步行 3～5 分有 8 家以上晚餐店",
+        "groupFit": "一棟最多 10 人，15 人要和附近的飯店分住",
+        "elderFit": "1 樓 2 間臥室有床 3 張（雙人 1、單人 2），其他人睡 2 樓布團；樓梯細節沒有來源",
+        "accessEase": "伊勢市站步行約 1 分"
+      },
+      "confidence": "low",
+      "assessed": "2026-10-18"
     }
   },
   {
@@ -3421,7 +4006,7 @@
       "googleMaps": "https://maps.google.com/?cid=10237502575733505714"
     },
     "tags": [],
-    "tier": null,
+    "tier": "B",
     "nearestStation": {
       "id": "ujiyamada",
       "mode": "walk",
@@ -3597,6 +4182,47 @@
         "note": "15 人（全部以大人計）分 N 間同住的組合，有空房的列出；只代表查詢當天楽天上的庫存"
       },
       "dinnerAccessNote": "步行 20 分內的晚餐店 8 家以上（只查最近 8 家）：貫 5 分、オステリアラブラ 5 分、ボン・ヴィヴァン 6 分 等（OSRM，scripts/lodging-dinner-access.mjs，2026-10-18）"
+    },
+    "summary": {
+      "text": "近鐵宇治山田站步行 5 分、外宮步行 5 分的小旅館，只有 2 間房（3F 和室 5 人、2F 洋室 4 人），兩間都訂就是整館約 9 人。乾淨安靜、女將會推薦伊勢美食；只收現金、不供餐。",
+      "pros": [
+        "楽天 4.72（116 則）、Google 4.9",
+        "每層一間、衛浴獨立，等於包棟",
+        "宇治山田站、外宮都步行 5 分"
+      ],
+      "cons": [
+        "最多約 9 人，15 人住不下",
+        "客房在 2F、3F，要爬樓梯，電梯沒有來源",
+        "只收現金；check-in 17:30～21:00、check-out 9:00"
+      ],
+      "basedOn": [
+        "https://www.kankomie.or.jp/spot/24602",
+        "https://travel.rakuten.co.jp/HOTEL/172712/172712.html",
+        "https://travel.rakuten.co.jp/HOTEL/172712/172712_std.html",
+        "https://hotel.travel.rakuten.co.jp/hotelinfo/plan/172712",
+        "https://4travel.jp/dm_hotel-11774859",
+        "https://maps.google.com/?cid=10237502575733505714"
+      ],
+      "generated": "2026-10-18"
+    },
+    "assessment": {
+      "rubric": "lodging-v1",
+      "scores": {
+        "recommend": 3,
+        "meals": 3,
+        "groupFit": 2,
+        "elderFit": 2,
+        "accessEase": 5
+      },
+      "rationale": {
+        "recommend": "楽天 4.72 但只有 116 則；伊勢依區調整後 4 要 300 則以上 → 3",
+        "meals": "不供餐；步行 5～6 分有 8 家以上晚餐店",
+        "groupFit": "2 室最多約 9 人，15 人要和附近分住",
+        "elderFit": "客房在 2F、3F 要爬樓梯，3F 和室應是鋪被；電梯沒有來源",
+        "accessEase": "近鐵宇治山田站步行約 5 分"
+      },
+      "confidence": "low",
+      "assessed": "2026-10-18"
     }
   },
   {
@@ -3633,7 +4259,7 @@
       "googleMaps": "https://maps.google.com/?cid=3024080929685128171"
     },
     "tags": [],
-    "tier": null,
+    "tier": "B",
     "nearestStation": {
       "id": "isuzugawa",
       "mode": "walk",
@@ -3762,6 +4388,48 @@
         "價格 12,960 円起 vs 15,000 円起",
         "營業狀況：最新心得 2024-10，舊官方頁 ise-kanko.jp 已 404，要電話確認是否仍營業"
       ]
+    },
+    "summary": {
+      "text": "古市舊遊郭唯一現存的旅館，江戶時代創業約 200 年，沿石階斜坡建的懸崖造木造 6 層樓，建築本身就是看點。一泊二食、家庭氛圍；老朽化後可住的房間只剩約 6 間，館內階梯多、冬天有隙間風。",
+      "pros": [
+        "じゃらん 4.6（174 則）、Google 4.5（199 則）",
+        "懸崖造 6 層木造建築，伊勢少見",
+        "一泊二食每人約 13,000～15,000 円"
+      ],
+      "cons": [
+        "館內階梯、高低差多，心得說不適合腳不好的人",
+        "老舊、冬天有隙間風；2024 年心得說可住房間只剩 6 間",
+        "沒有官網、楽天，只能電話預約；2025 年以後沒有心得，要確認是否營業"
+      ],
+      "basedOn": [
+        "https://www.kankomie.or.jp/spot/617",
+        "https://www.mapple.net/article/32476/",
+        "https://www.mapple.net/spot/24000634/",
+        "https://allabout.co.jp/gm/gc/75549/",
+        "https://4travel.jp/dm_hotel-10058529",
+        "https://www.jalan.net/yad358966/",
+        "https://maps.google.com/?cid=3024080929685128171"
+      ],
+      "generated": "2026-10-18"
+    },
+    "assessment": {
+      "rubric": "lodging-v1",
+      "scores": {
+        "recommend": 3,
+        "meals": 3,
+        "groupFit": 3,
+        "elderFit": 2,
+        "accessEase": 3
+      },
+      "rationale": {
+        "recommend": "じゃらん 4.6、Google 4.5，但評論都不到 200 則、4travel 3.27（差 1 分以上）→ 3",
+        "meals": "一泊二食，沒有楽天細項；4travel 食事 3.50",
+        "groupFit": "房數只有 2024 年心得的「可住 6 間」，每房人數不明，15 人要電話確認",
+        "elderFit": "沿石階建造、館內階梯多，4travel バリアフリー 2.00；電梯沒有來源（沒有確定沒有，所以不打 1）",
+        "accessEase": "近鐵五十鈴川站步行約 15 分，或伊勢市站搭巴士約 10 分"
+      },
+      "confidence": "low",
+      "assessed": "2026-10-18"
     }
   },
   {
@@ -3805,7 +4473,7 @@
       "googleMaps": "https://maps.google.com/?cid=2634670890243818769"
     },
     "tags": [],
-    "tier": null,
+    "tier": "B",
     "nearestStation": {
       "id": "jr-isuzugaoka",
       "mode": "walk",
@@ -4037,6 +4705,48 @@
         "note": "15 人（全部以大人計）分 N 間同住的組合，有空房的列出；只代表查詢當天楽天上的庫存"
       },
       "dinnerAccessNote": "步行 20 分內的晚餐店 3 家：さし汐 8 分（直線估算）、とんかつ 四十三番 伊勢店 10 分、Knott's Berry 11 分（OSRM，scripts/lodging-dinner-access.mjs，2026-10-18）"
+    },
+    "summary": {
+      "text": "JR 五十鈴ヶ丘站旁的商務飯店，價格便宜，早餐（伊勢うどん、咖哩）和櫃檯評價好。建築老舊但打掃乾淨；大浴場只限男性，唯一的 15 畳和室在電梯到不了的 7 樓。",
+      "pros": [
+        "價格便宜（附早餐每人約 4,800 円起）",
+        "楽天早餐 4.29、服務 4.17，免費洗衣機",
+        "有電梯、多數房型是床"
+      ],
+      "cons": [
+        "Google 3.6（512 則），老舊、部分房間小",
+        "大浴場只限男性",
+        "JR 約 1 小時 1 班、不能用近鐵券；伊勢市站車程 10 分"
+      ],
+      "basedOn": [
+        "https://reserve.489ban.net/client/areaone-ise/0/detail/1164788",
+        "https://www.hotel-areaone.com/ise/",
+        "https://travel.rakuten.co.jp/HOTEL/181078/181078.html",
+        "https://travel.rakuten.co.jp/HOTEL/181078/181078_std.html",
+        "https://review.travel.rakuten.co.jp/hotel/voice/181078/",
+        "https://www.jalan.net/yad326054/",
+        "https://maps.google.com/?cid=2634670890243818769"
+      ],
+      "generated": "2026-10-18"
+    },
+    "assessment": {
+      "rubric": "lodging-v1",
+      "scores": {
+        "recommend": 3,
+        "meals": 3,
+        "groupFit": 4,
+        "elderFit": 4,
+        "accessEase": 3
+      },
+      "rationale": {
+        "recommend": "楽天 4.01（777 則）、Google 3.6；心得說老舊但乾淨",
+        "meals": "只有早餐（楽天餐 4.29）；步行 8～11 分只有 3 家晚餐店",
+        "groupFit": "74 室，有 7 人和室 1 間和 3 人房，15 人可以分 3～5 間；沒有團體方案",
+        "elderFit": "有電梯、多數房是床；15 畳和室在 7 樓，電梯只到 6 樓",
+        "accessEase": "JR 五十鈴ヶ丘站步行 3 分，但 JR 約 1 小時 1 班（不能用近鐵券）；伊勢市站車程約 10 分"
+      },
+      "confidence": "medium",
+      "assessed": "2026-10-18"
     }
   },
   {
@@ -4093,7 +4803,7 @@
       "googleMaps": "https://maps.google.com/?cid=5571358783118802236"
     },
     "tags": [],
-    "tier": null,
+    "tier": "S",
     "nearestStation": {
       "id": "isuzugawa",
       "mode": "shuttle",
@@ -4299,6 +5009,49 @@
         "note": "15 人（全部以大人計）分 N 間同住的組合，有空房的列出；只代表查詢當天楽天上的庫存"
       },
       "dinnerAccessNote": "步行 20 分內的晚餐店 1 家：焼肉すだく 伊勢神宮おはらい町店 12 分（選素泊、朝食付方案時；OSRM，scripts/lodging-dinner-access.mjs，2026-10-18）"
+    },
+    "summary": {
+      "text": "內宮步行約 15 分的溫泉旅館，2026 年 4 月全館改裝重新開幕，58 室全部附露天風呂、榻榻米上放床。楽天 4.66、じゃらん 4.6，料理（伊勢海老、松阪牛會席）和溫泉都是高分。",
+      "pros": [
+        "じゃらん 4.6（1,819 則）、楽天 4.66、Google 4.2",
+        "楽天晚餐 4.72、溫泉 4.74；2 月有伊勢海老刺身方案",
+        "全室有床，館內可以坐輪椅移動，有無障礙房"
+      ],
+      "cons": [
+        "沒有 5 人房，最大和洋室 4 人",
+        "接送只到近鐵五十鈴川站、每小時 1 班要預約",
+        "周邊晚上店少，便利商店步行約 20 分；每人 3.5 萬円起"
+      ],
+      "basedOn": [
+        "https://dormy-hotels.com/resort/hotels/ikyu/",
+        "https://dormy-hotels.com/resort/hotels/ikyu/rooms/",
+        "https://dormy-hotels.com/resort/hotels/ikyu/faq/",
+        "https://dormy-hotels.com/resort/hotels/ikyu/access/",
+        "https://travel.rakuten.co.jp/HOTEL/142809/142809.html",
+        "https://travel.rakuten.co.jp/HOTEL/142809/142809_std.html",
+        "https://review.travel.rakuten.co.jp/hotel/voice/142809/",
+        "https://hotel.travel.rakuten.co.jp/hotelinfo/plan/142809"
+      ],
+      "generated": "2026-10-18"
+    },
+    "assessment": {
+      "rubric": "lodging-v1",
+      "scores": {
+        "recommend": 5,
+        "meals": 5,
+        "groupFit": 4,
+        "elderFit": 4,
+        "accessEase": 3
+      },
+      "rationale": {
+        "recommend": "じゃらん 4.6（1,819 則）、楽天 4.66（1,290 則）、Google 4.2（1,272 則）；改裝後心得的缺點只有其他客人吵、份量",
+        "meals": "楽天餐 4.72，伊勢海老、松阪牛會席",
+        "groupFit": "58 室，和洋室 4 人 × 3＋3 人房可以住 15 人；15 人以上取消規定另計，沒有團體方案",
+        "elderFit": "全室榻榻米上的床、館內可坐輪椅、無障礙房 1 間；電梯沒有直接來源",
+        "accessEase": "近鐵五十鈴川站免費接送，14:45～17:45 每小時 1 班，要預約，約 10 分"
+      },
+      "confidence": "medium",
+      "assessed": "2026-10-18"
     }
   },
   {
@@ -4342,7 +5095,7 @@
       "googleMaps": "https://maps.google.com/?cid=8303533656005788219"
     },
     "tags": [],
-    "tier": null,
+    "tier": "S",
     "nearestStation": {
       "id": "ujiyamada",
       "mode": "bus",
@@ -4564,6 +5317,49 @@
         "note": "15 人（全部以大人計）分 N 間同住的組合，有空房的列出；只代表查詢當天楽天上的庫存"
       },
       "dinnerAccessNote": "步行 20 分內的晚餐店 1 家：焼肉すだく 伊勢神宮おはらい町店 4 分（選素泊、朝食付方案時；OSRM，scripts/lodging-dinner-access.mjs，2026-10-18）"
+    },
+    "summary": {
+      "text": "內宮宇治橋步行 5 分的住宿設施，住客可以參加每天早上 6:30 職員帶領的內宮早朝參拜。和室為主、有 8 人的 21 畳房，有兒童餐和兒童價；設備不新，西館和室沒有衛浴。",
+      "pros": [
+        "じゃらん 4.6（2,428 則）、楽天 4.68、Google 4.2",
+        "早朝參拜（免費，10 人以上要先問）；有宴會場",
+        "21 畳 8 人房，4 歲～小學生有兒童價和兒童餐"
+      ],
+      "cons": [
+        "設備不新，4travel 房間 3.66、浴場 3.57、無障礙 3.29",
+        "客室在 2、3 樓，電梯沒有來源；有床的房少",
+        "傍晚以後周邊店多關、巴士少；神宮祭典時可能訂不到"
+      ],
+      "basedOn": [
+        "https://www.jingukaikan.jp/kaikan/shukuhaku/index.html",
+        "https://www.jingukaikan.jp/kaikan/shukuhaku/ryoukin.html",
+        "https://www.jingukaikan.jp/kaikan/inquiry/index.html",
+        "https://www.jingukaikan.jp/kaikan/sanpai/index.html",
+        "https://www.jingukaikan.jp/kaikan/ryouri/index.html",
+        "https://www.jingukaikan.jp/kaikan/kannai/daiyokujo.html",
+        "https://travel.rakuten.co.jp/HOTEL/140958/140958.html",
+        "https://travel.rakuten.co.jp/HOTEL/140958/140958_std.html"
+      ],
+      "generated": "2026-10-18"
+    },
+    "assessment": {
+      "rubric": "lodging-v1",
+      "scores": {
+        "recommend": 5,
+        "meals": 5,
+        "groupFit": 4,
+        "elderFit": 3,
+        "accessEase": 3
+      },
+      "rationale": {
+        "recommend": "じゃらん 4.6（2,428 則）、楽天 4.68、Google 4.2（1,278 則）；4travel 3.84 差評 0，負評只有設備不新",
+        "meals": "楽天餐 4.70，會席三選（伊勢海老具足煮、お造り）",
+        "groupFit": "65 室，21 畳 8 人＋12 畳 5 人＋洋室 2 人可以同館；有 15 人以上的取消條款和宴會場，沒有團體方案",
+        "elderFit": "本館和室多鋪被、洋室和部分西館房有床；客室在 2、3 樓，電梯沒有來源；可借輪椅",
+        "accessEase": "宇治山田站搭巴士約 15 分，「神宮会館前」站在門口；沒有接送"
+      },
+      "confidence": "medium",
+      "assessed": "2026-10-18"
     }
   },
   {
@@ -4614,7 +5410,7 @@
       "googleMaps": "https://maps.google.com/?cid=5845092566921505709"
     },
     "tags": [],
-    "tier": null,
+    "tier": "B",
     "nearestStation": {
       "id": "isuzugawa",
       "mode": "walk",
@@ -4787,6 +5583,46 @@
         "note": "15 人（全部以大人計）分 N 間同住的組合，有空房的列出；只代表查詢當天楽天上的庫存"
       },
       "dinnerAccessNote": "步行 20 分內的晚餐店 2 家：焼肉すだく 伊勢神宮おはらい町店 6 分、かぐら 20 分（OSRM，scripts/lodging-dinner-access.mjs，2026-10-18）"
+    },
+    "summary": {
+      "text": "內宮宇治橋步行 8 分、只賣包棟的小宿（最多 7 人），主人是神社検定 1 級的導遊，外宮傍晚、內宮清晨的導覽評價很高。寢室在 2F、廁所浴室在 1F，樓梯陡；不供餐。",
+      "pros": [
+        "楽天 5.00（210 則）、Google 4.8",
+        "主人的外宮・內宮・猿田彦導覽多則好評（2022～2026）",
+        "包棟有 0 歲到 70 多歲 9 人住得開心的評論"
+      ],
+      "cons": [
+        "寢室在 2F、廁所在 1F，樓梯陡（Google 4 則，約 2022～2026）",
+        "最多 7 人，15 人住不下",
+        "車開不到門口，巴士站走小路約 200 m；附近晚上店少"
+      ],
+      "basedOn": [
+        "https://travel.rakuten.co.jp/HOTEL/147038/147038.html",
+        "https://travel.rakuten.co.jp/HOTEL/147038/147038_std.html",
+        "https://hotel.travel.rakuten.co.jp/hotelinfo/plan/147038",
+        "https://travel.rakuten.co.jp/HOTEL/147038/CUSTOM/147038150126171443.html",
+        "https://maps.google.com/?cid=5845092566921505709"
+      ],
+      "generated": "2026-10-18"
+    },
+    "assessment": {
+      "rubric": "lodging-v1",
+      "scores": {
+        "recommend": 3,
+        "meals": 3,
+        "groupFit": 2,
+        "elderFit": 2,
+        "accessEase": 3
+      },
+      "rationale": {
+        "recommend": "楽天 5.00、Google 4.8，但楽天只有 210 則；伊勢依區調整後 4 要 300 則以上 → 3",
+        "meals": "不供餐；步行 6 分只有 焼肉すだく，宿方建議到外宮附近吃",
+        "groupFit": "包棟最多 7 人，15 人要和附近（おかげ参り宿場、神宮会館）分住",
+        "elderFit": "寢室在 2F、廁所浴室在 1F，樓梯陡，多則評論說膝蓋不好的長輩辛苦；電梯沒有來源",
+        "accessEase": "伊勢市站搭巴士到「浦田町」再走小路約 200 m；五十鈴川站步行約 20 分"
+      },
+      "confidence": "medium",
+      "assessed": "2026-10-18"
     }
   },
   {
@@ -4837,7 +5673,7 @@
       "googleMaps": "https://maps.google.com/?cid=13059494982787400317"
     },
     "tags": [],
-    "tier": null,
+    "tier": "B",
     "nearestStation": {
       "id": "isuzugawa",
       "mode": "walk",
@@ -5022,6 +5858,46 @@
         "note": "15 人（全部以大人計）分 N 間同住的組合，有空房的列出；只代表查詢當天楽天上的庫存"
       },
       "dinnerAccessNote": "步行 20 分內的晚餐店 3 家：焼肉すだく 伊勢神宮おはらい町店 7 分、カンパーニュ 18 分、かぐら 19 分（OSRM，scripts/lodging-dinner-access.mjs，2026-10-18）"
+    },
+    "summary": {
+      "text": "おはらい町旁的古民家素泊民宿，分成「おはらい町通り荘」4 間個室（合計 12 人、衛浴共用）和「宇治浦田荘」包棟（6 人），兩棟相距約 20 m，全訂理論上 18 人。評論很少，管理人親切、會介紹晚上的店。",
+      "pros": [
+        "兩棟合計 18 人，15 人有機會住在一起",
+        "內宮宇治橋步行約 10 分、おかげ横丁約 5 分",
+        "1F 有客廳、廚房、洗衣機，每層有廁所"
+      ],
+      "cons": [
+        "評論只有楽天 4 則、Google 2 則",
+        "浴室共用要輪流，部分老舊",
+        "附近 17 點後店幾乎都關，晚上只有 焼肉すだく 步行 7 分"
+      ],
+      "basedOn": [
+        "https://travel.rakuten.co.jp/HOTEL/201681/201681.html",
+        "https://travel.rakuten.co.jp/HOTEL/201681/201681_std.html",
+        "https://hotel.travel.rakuten.co.jp/hotelinfo/plan/201681",
+        "https://www.jalan.net/yad386316/",
+        "https://maps.google.com/?cid=13059494982787400317"
+      ],
+      "generated": "2026-10-18"
+    },
+    "assessment": {
+      "rubric": "lodging-v1",
+      "scores": {
+        "recommend": 3,
+        "meals": 3,
+        "groupFit": 3,
+        "elderFit": 3,
+        "accessEase": 3
+      },
+      "rationale": {
+        "recommend": "楽天 4.75 只有 4 則、Google 2 則，資料太少 → 3",
+        "meals": "不含餐，有廚房；步行 7 分有 焼肉すだく，18～19 分有 2 家",
+        "groupFit": "兩棟（相距約 20 m）全訂 18 人，要同時訂 2 處、電話確認",
+        "elderFit": "1F 有洋室（3 人）和廁所，2F 房要爬樓梯；浴室共用；電梯沒有來源",
+        "accessEase": "五十鈴川站步行約 24 分，或搭巴士 2 站「猿田彦神社前」"
+      },
+      "confidence": "low",
+      "assessed": "2026-10-18"
     }
   },
   {
@@ -5032,7 +5908,7 @@
     "closedNote": null,
     "closures": [],
     "tags": [],
-    "tier": null,
+    "tier": "B",
     "dinnerAccess": "walk",
     "verified": false,
     "name": {
@@ -5259,6 +6135,49 @@
         "note": "15 人（全部以大人計）分 N 間同住的組合都沒有空房；2/9 只查到 1 間 3 人、1 間 2 人有空（2026-10-18 楽天庫存）"
       },
       "dinnerAccessNote": "步行 20 分內的晚餐店 8 家以上（只查最近 8 家）：オステリアラブラ 4 分、大喜 4 分、貫 5 分 等（選素泊、朝食付方案時；OSRM，scripts/lodging-dinner-access.mjs，2026-10-18）"
+    },
+    "summary": {
+      "text": "近鐵伊勢市站步行 3 分的グリーンズ系列商務飯店，1 樓有松阪牛牛排店，2026 年 9 月改版的早餐評價好。楽天 3.58、Google 3.5，浴室、設備老舊的分數低；2/9、2/10 楽天 15 人組合都沒有空房。",
+      "pros": [
+        "伊勢市站步行 3 分，價格便宜",
+        "有松阪牛牛排 2 食付方案，早餐 2026 年改版好評",
+        "小學 6 年級以下添い寝免費"
+      ],
+      "cons": [
+        "楽天浴室 3.18、設備 3.29，浴室排水差、有霉",
+        "空調不能自己調溫，附近便利商店少",
+        "2/9、2/10 楽天 15 人組合都沒空房，團體要電話問"
+      ],
+      "basedOn": [
+        "https://www.greens.co.jp/isech/",
+        "https://www.greens.co.jp/isech/rooms/",
+        "https://www.greens.co.jp/isech/faq/",
+        "https://travel.rakuten.co.jp/HOTEL/740/740.html",
+        "https://travel.rakuten.co.jp/HOTEL/740/740_std.html",
+        "https://hotel.travel.rakuten.co.jp/hotelinfo/plan/740/",
+        "https://review.travel.rakuten.co.jp/hotel/voice/740/",
+        "https://www.jalan.net/yad379992/"
+      ],
+      "generated": "2026-10-18"
+    },
+    "assessment": {
+      "rubric": "lodging-v1",
+      "scores": {
+        "recommend": 2,
+        "meals": 3,
+        "groupFit": 4,
+        "elderFit": 3,
+        "accessEase": 5
+      },
+      "rationale": {
+        "recommend": "楽天 3.58（3,153 則）、じゃらん 3.8、Google 3.5，§5.7 評價普通；浴室、設備的負評多",
+        "meals": "楽天餐 3.85，有松阪牛牛排 2 食方案；素泊時步行 4 分有店",
+        "groupFit": "97 室，15 人分 5～6 間；官網 FAQ 有團體住宿（條件沒寫）",
+        "elderFit": "全為西式床；電梯沒有來源",
+        "accessEase": "近鐵伊勢市站步行約 3 分"
+      },
+      "confidence": "medium",
+      "assessed": "2026-10-18"
     }
   },
   {
@@ -5269,7 +6188,7 @@
     "closedNote": null,
     "closures": [],
     "tags": [],
-    "tier": null,
+    "tier": "B",
     "dinnerAccess": "walk",
     "verified": false,
     "name": {
@@ -5514,6 +6433,49 @@
         "note": "15 人（全部以大人計）分 N 間同住的組合，有空房的列出；只代表查詢當天楽天上的庫存"
       },
       "dinnerAccessNote": "步行 20 分內的晚餐店 8 家以上（只查最近 8 家）：いおり 8 分、牡蠣の朋 9 分、こま田 10 分 等（選素泊、朝食付方案時；OSRM，scripts/lodging-dinner-access.mjs，2026-10-18）"
+    },
+    "summary": {
+      "text": "伊勢市站東約 1.5 km 的 217 室大型飯店，12 樓有展望大浴場（內湯＋露天），伊勢市站有免費接送（前一天預約）。全為西式床，房多容易一起訂；但館內老舊、禁菸房有菸味的意見多，沒有晚餐方案。",
+      "pros": [
+        "217 室，2/9、2/10 楽天 5×3、4×4 都有空房",
+        "12 樓大浴場景觀好評",
+        "價格便宜（素泊每人約 4,800 円）"
+      ],
+      "cons": [
+        "楽天 3.73、Google 3.5，內裝舊、沙發破、菸味",
+        "接送一天只有早晚各 3 班要預約，車大小不明",
+        "沒有晚餐方案，晚上走路回飯店路燈少"
+      ],
+      "basedOn": [
+        "https://www.castleinn.co.jp/ise/",
+        "https://travel.rakuten.co.jp/HOTEL/1360/1360.html",
+        "https://travel.rakuten.co.jp/HOTEL/1360/1360_std.html",
+        "https://hotel.travel.rakuten.co.jp/hotelinfo/plan/1360/",
+        "https://review.travel.rakuten.co.jp/hotel/voice/1360/",
+        "https://yado.knt.co.jp/st/S240353/",
+        "https://www.jalan.net/yad311771/",
+        "https://maps.google.com/?cid=35213965512262893"
+      ],
+      "generated": "2026-10-18"
+    },
+    "assessment": {
+      "rubric": "lodging-v1",
+      "scores": {
+        "recommend": 2,
+        "meals": 3,
+        "groupFit": 4,
+        "elderFit": 3,
+        "accessEase": 3
+      },
+      "rationale": {
+        "recommend": "楽天 3.73（2,934 則）、じゃらん 3.9、Google 3.5，§5.7 評價普通；心得有老舊、菸味、大浴場擁擠",
+        "meals": "沒有晚餐方案（楽天餐 3.48 是早餐）；步行 8～10 分有 8 家以上晚餐店",
+        "groupFit": "217 室、最大 4 人房，15 人同館可以；沒有團體方案",
+        "elderFit": "全為西式床、浴室是淋浴間；電梯沒有來源，無障礙說法互相矛盾",
+        "accessEase": "伊勢市站免費接送，車程 6～10 分，前一天預約、早晚各約 3 班"
+      },
+      "confidence": "medium",
+      "assessed": "2026-10-18"
     }
   },
   {
@@ -5524,7 +6486,7 @@
     "closedNote": null,
     "closures": [],
     "tags": [],
-    "tier": null,
+    "tier": "B",
     "dinnerAccess": "walk",
     "verified": false,
     "name": {
@@ -5716,6 +6678,47 @@
         "note": "15 人組合都沒有空房（最多 14 人）；2026-11-17 1 間 2 人也查不到，2027-02 方案可能還沒開（2026-10-18 楽天庫存）"
       },
       "dinnerAccessNote": "步行 20 分內的晚餐店 8 家以上（只查最近 8 家）：豚捨 外宮前店 3 分、ボン・ヴィヴァン 4 分、蔵deらーめん 5 分 等（OSRM，scripts/lodging-dinner-access.mjs，2026-10-18）"
+    },
+    "summary": {
+      "text": "外宮步行 3 分的兩層町家（2024 年開業），2F 和室 8 人、1F 洋室 6 人分開賣，兩層都訂最多 14 人。無人入住、素泊；樓梯陡、2 樓腳步聲會傳到 1 樓，評論只有 10 多則。",
+      "pros": [
+        "外宮步行 3 分、伊勢市站 8 分，附近晚餐店多",
+        "房間寬敞，2F 有檜風呂",
+        "兩層合計 14 人，接近全員"
+      ],
+      "cons": [
+        "最多 14 人，15 人差 1 人",
+        "樓梯陡、1F 洋室沒有窗、2 樓腳步聲傳到 1 樓",
+        "楽天 3.6（16 則）有 1～2 分的評論；2027-02 方案還沒開"
+      ],
+      "basedOn": [
+        "https://travel.rakuten.co.jp/HOTEL/192775/192775.html",
+        "https://travel.rakuten.co.jp/HOTEL/192775/192775_std.html",
+        "https://hotel.travel.rakuten.co.jp/hotelinfo/plan/192775/",
+        "https://review.travel.rakuten.co.jp/hotel/voice/192775/",
+        "https://www.jalan.net/yad396262/",
+        "https://maps.google.com/?cid=2205338731910993804"
+      ],
+      "generated": "2026-10-18"
+    },
+    "assessment": {
+      "rubric": "lodging-v1",
+      "scores": {
+        "recommend": 2,
+        "meals": 3,
+        "groupFit": 2,
+        "elderFit": 3,
+        "accessEase": 4
+      },
+      "rationale": {
+        "recommend": "楽天 3.6（16 則）、じゃらん 4.2（11 則）、Google 3.8（12 則），評論少又有 1～2 分（腳步聲、門鎖、無窗）",
+        "meals": "不供餐；步行 3～5 分有 8 家以上晚餐店",
+        "groupFit": "兩層合計最多 14 人，15 人要 1 人住附近",
+        "elderFit": "1F、2F 都有雙人床；樓梯陡（心得），電梯沒有來源",
+        "accessEase": "伊勢市站步行約 8 分，沒有接送"
+      },
+      "confidence": "low",
+      "assessed": "2026-10-18"
     }
   }
 ]

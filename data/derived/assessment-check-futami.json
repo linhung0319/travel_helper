@@ -77,6 +77,44 @@
         "4": 1,
         "5": 1
       }
+    },
+    "lodging": {
+      "total": 17,
+      "assessed": 17,
+      "notAssessed": [],
+      "flagged": 0,
+      "byStar": {
+        "2": 4,
+        "3": 10,
+        "4": 1,
+        "5": 2
+      }
+    },
+    "restaurant": {
+      "total": 18,
+      "assessed": 0,
+      "notAssessed": [
+        "futami-ofukumochi-honke",
+        "futami-asahiya-sakamoto-manju",
+        "futami-wan-honten",
+        "futami-ogiya",
+        "futami-isuzu-seigoan",
+        "futami-bontin-cafe-misogi",
+        "futami-le-chinois-kashiori",
+        "futami-maruhama",
+        "futami-umikaze-bijutsuten",
+        "futami-shiosai",
+        "futami-shofuken",
+        "futami-maruru-cafe",
+        "futami-ukichi",
+        "futami-wasuke",
+        "futami-minwa-no-eki-somin",
+        "futami-maiya",
+        "futami-pine",
+        "futami-uminocho-dining"
+      ],
+      "flagged": 0,
+      "byStar": {}
     }
   },
   "items": []

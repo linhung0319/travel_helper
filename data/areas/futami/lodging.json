@@ -40,7 +40,7 @@
       "googleMaps": "https://maps.google.com/?cid=6915761481779294940"
     },
     "tags": [],
-    "tier": null,
+    "tier": "B",
     "nearestStation": {
       "id": "jr-futaminoura",
       "mode": "walk",
@@ -251,6 +251,48 @@
         "note": "15 人（全部以大人計）分 N 間同住的組合，有空房的列出；只代表查詢當天楽天上的庫存"
       },
       "dinnerAccessNote": "步行 20 分內的晚餐店 4 家：ル・シノワ 花栞 3 分、松風軒 7 分、maruru cafe 9 分 等（選素泊、朝食付方案時；OSRM，scripts/lodging-dinner-access.mjs，2026-10-18）"
+    },
+    "summary": {
+      "text": "夫婦岩步行約 5 分的旅館，大廳播爵士樂，晚餐有伊勢海老姿造り、鮑踊り焼き，冬天有牡蠣、河豚鍋的五大味覚方案。和室 2～6 人、有宴會場；3 層樓沒有電梯，建物老舊、隔音差。",
+      "pros": [
+        "じゃらん 4.0（1,490 則）、楽天 4.08（1,231 則），晚餐 4.36",
+        "和室最大 6 人、有宴會場，2/9、2/10 楽天 15 人組合都有空房",
+        "JR 二見浦站有接送（14:00～19:00）"
+      ],
+      "cons": [
+        "3 層樓沒有電梯、全部和室鋪被",
+        "老舊、隔音差，浴場 3.69 偏低；2026-08 有貸切風呂發霉的意見",
+        "只有 JR 二見浦站（不能用近鐵 5 日券）"
+      ],
+      "basedOn": [
+        "https://travel.rakuten.co.jp/HOTEL/7563/7563.html",
+        "https://travel.rakuten.co.jp/HOTEL/7563/7563_std.html",
+        "https://hotel.travel.rakuten.co.jp/hotelinfo/plan/7563",
+        "https://review.travel.rakuten.co.jp/hotel/voice/7563/",
+        "https://yado.knt.co.jp/st/S240045/",
+        "https://www.jalan.net/yad325339/",
+        "https://maps.google.com/?cid=6915761481779294940"
+      ],
+      "generated": "2026-10-18"
+    },
+    "assessment": {
+      "rubric": "lodging-v1",
+      "scores": {
+        "recommend": 3,
+        "meals": 3,
+        "groupFit": 4,
+        "elderFit": 2,
+        "accessEase": 4
+      },
+      "rationale": {
+        "recommend": "じゃらん 4.0（1,490 則）、楽天 4.08、Google 4.1，評價普通、心得說老舊",
+        "meals": "楽天餐 4.36，心得常誇晚餐（伊勢海老、鮑、松阪牛）",
+        "groupFit": "20 室（KNT 26 室）、和室 2～6 人、有宴會場；沒有團體方案",
+        "elderFit": "確定沒有電梯（3 層樓）、全部鋪被；可以事先要求低樓層，館內有扶手",
+        "accessEase": "JR 二見浦站步行約 13 分，有接送巴士（車程約 3 分）；JR 不能用近鐵券"
+      },
+      "confidence": "medium",
+      "assessed": "2026-10-18"
     }
   },
   {
@@ -301,7 +343,7 @@
       "googleMaps": "https://maps.google.com/?cid=15348681165651807623"
     },
     "tags": [],
-    "tier": null,
+    "tier": "S",
     "nearestStation": {
       "id": "jr-futaminoura",
       "mode": "shuttle",
@@ -461,6 +503,49 @@
         },
         "note": "15 人（全部以大人計）分 N 間同住的組合，有空房的列出；只代表查詢當天楽天上的庫存"
       }
+    },
+    "summary": {
+      "text": "夫婦岩前步行 3 分的旅館，全館翻修、號稱無段差，有床的海景和洋室多，楽天 4.64、じゃらん 4.8 是二見最高。2 月有天然河豚會席、伊勢海老；但官網寫因用餐場地限制，團體最多 10 人。",
+      "pros": [
+        "じゃらん 4.8（1,634 則）、楽天 4.64、Google 4.5；楽天晚餐 4.75",
+        "有床的和洋室多、無段差、シルバースター登録、有無障礙房",
+        "JR 二見浦站、表參道巴士站打電話就來接"
+      ],
+      "cons": [
+        "官網 FAQ：沒有團體方案、用餐場地最多 10 人，15 人要分住",
+        "小孩只能住 2F 和室（鋪被）",
+        "電梯只有搜尋摘要提到，沒有直接來源"
+      ],
+      "basedOn": [
+        "https://www.oishiya.co.jp/room/",
+        "https://www.oishiya.co.jp/faq/",
+        "https://www.oishiya.co.jp/meal/",
+        "https://www.oishiya.co.jp/facilities/",
+        "https://www.oishiya.co.jp/access/",
+        "https://travel.rakuten.co.jp/HOTEL/5838/5838.html",
+        "https://travel.rakuten.co.jp/HOTEL/5838/5838_std.html",
+        "https://review.travel.rakuten.co.jp/hotel/voice/5838/"
+      ],
+      "generated": "2026-10-18"
+    },
+    "assessment": {
+      "rubric": "lodging-v1",
+      "scores": {
+        "recommend": 5,
+        "meals": 5,
+        "groupFit": 2,
+        "elderFit": 4,
+        "accessEase": 4
+      },
+      "rationale": {
+        "recommend": "じゃらん 4.8（1,634 則）、楽天 4.64（951 則）、Google 4.5；負評只有晚餐量太多、浴場不大",
+        "meals": "楽天餐 4.75（晚餐 4.69、早餐 4.73），2 月有天然河豚、伊勢海老",
+        "groupFit": "官網 FAQ 寫用餐場地限制、最多 10 人，15 人要和附近（岩戸館、海洋楼等）分住",
+        "elderFit": "有床的和洋室多、全館無段差、無障礙房 1 間；電梯沒有直接來源（6 層樓）",
+        "accessEase": "JR 二見浦站免費接送（到站打電話），車程約 5 分；JR 不能用近鐵券"
+      },
+      "confidence": "medium",
+      "assessed": "2026-10-18"
     }
   },
   {
@@ -504,7 +589,7 @@
       "googleMaps": "https://maps.google.com/?cid=14060385235708643334"
     },
     "tags": [],
-    "tier": null,
+    "tier": "B",
     "nearestStation": {
       "id": "jr-futaminoura",
       "mode": "walk",
@@ -694,6 +779,48 @@
         "note": "15 人（全部以大人計）分 N 間同住的組合，有空房的列出；只代表查詢當天楽天上的庫存"
       },
       "dinnerAccessNote": "步行 20 分內的晚餐店 4 家：ル・シノワ 花栞 3 分、松風軒 6 分、maruru cafe 7 分 等（選素泊、朝食付方案時；OSRM，scripts/lodging-dinner-access.mjs，2026-10-18）"
+    },
+    "summary": {
+      "text": "二見浦的 92 室大型飯店，全部是床，有可住 5 人的 4 ベッドルーム，伊勢市站有免費接送（前一天預約）。評價普通（楽天 3.93、Google 3.9），大浴場常客滿，有備品、清掃不足的意見。",
+      "pros": [
+        "4 ベッドルーム 5 人 × 3 間就能住 15 人，2/9、2/10 楽天都有空房",
+        "有電梯、全部是床，有無障礙廁所",
+        "價格便宜（素泊每人約 4,200 円起）"
+      ],
+      "cons": [
+        "楽天 3.93、じゃらん 4.0、Google 3.9，§5.7 評價普通",
+        "大浴場洗い場少常客滿，備品清掃不足、隔音差",
+        "電梯只有 1 台，滿房要等；接送班次說法不一"
+      ],
+      "basedOn": [
+        "https://tabiiro.jp/yado/s/103637-ise-castleinn-meotoiwa/",
+        "https://travel.rakuten.co.jp/HOTEL/40176/40176.html",
+        "https://travel.rakuten.co.jp/HOTEL/40176/40176_std.html",
+        "https://review.travel.rakuten.co.jp/hotel/voice/40176/",
+        "https://yado.knt.co.jp/st/S240352/",
+        "https://www.jalan.net/yad379555/",
+        "https://maps.google.com/?cid=14060385235708643334"
+      ],
+      "generated": "2026-10-18"
+    },
+    "assessment": {
+      "rubric": "lodging-v1",
+      "scores": {
+        "recommend": 3,
+        "meals": 3,
+        "groupFit": 4,
+        "elderFit": 4,
+        "accessEase": 4
+      },
+      "rationale": {
+        "recommend": "じゃらん 4.0（3,950 則）、楽天 3.93、Google 3.9，評價普通；清潔的負評是個別的（備品、頭髮），沒有發霉、損壞",
+        "meals": "楽天餐 4.05，松阪牛すき焼き、もつ鍋好評",
+        "groupFit": "92 室，4 ベッドルーム（最多 5 人）3 間可以住 15 人",
+        "elderFit": "有電梯但只有 1 台、全部是床；ユニットバス有段差",
+        "accessEase": "JR 二見浦站步行約 10 分；伊勢市站免費接送約 17 分，前一天預約"
+      },
+      "confidence": "medium",
+      "assessed": "2026-10-18"
     }
   },
   {
@@ -744,7 +871,7 @@
       "googleMaps": "https://maps.google.com/?cid=12046749781333364874"
     },
     "tags": [],
-    "tier": null,
+    "tier": "B",
     "nearestStation": {
       "id": "jr-futaminoura",
       "mode": "walk",
@@ -927,6 +1054,48 @@
         "note": "15 人（全部以大人計）分 N 間同住的組合，有空房的列出；只代表查詢當天楽天上的庫存"
       },
       "dinnerAccessNote": "步行 20 分內的晚餐店 4 家：ル・シノワ 花栞 6 分、松風軒 10 分、maruru cafe 12 分 等（OSRM，scripts/lodging-dinner-access.mjs，2026-10-18）"
+    },
+    "summary": {
+      "text": "夫婦岩步行 3 分的旅館，只供早餐（豆乳花、あおさうどん），大浴場用自家製的「岩戸の塩」。22 間和室每間 4 人、有大広間；但建物很舊，楽天客室 3.72、設備 3.5，2026 年有房間沒熱水、Wi-Fi 不通的評論。",
+      "pros": [
+        "夫婦岩步行 3 分",
+        "和室 10 畳每間 4 人，4 間就能住 15 人；有大広間",
+        "可用輪椅、有無障礙廁所、浴槽有扶手"
+      ],
+      "cons": [
+        "建物老舊：楽天客室 3.72、設備 3.5，2026/08 沒熱水、Wi-Fi 不通",
+        "不供晚餐，不能刷卡",
+        "JR 二見浦站步行 15 分、沒有接送，計程車嫌近不載"
+      ],
+      "basedOn": [
+        "https://www.iwatokan.com/stay/",
+        "https://www.iwatokan.com/info/",
+        "https://travel.rakuten.co.jp/HOTEL/38655/38655.html",
+        "https://travel.rakuten.co.jp/HOTEL/38655/38655_std.html",
+        "https://hotel.travel.rakuten.co.jp/hotelinfo/plan/38655",
+        "https://maps.google.com/?cid=12046749781333364874",
+        "https://ameblo.jp/sealamer/entry-12965631663.html"
+      ],
+      "generated": "2026-10-18"
+    },
+    "assessment": {
+      "rubric": "lodging-v1",
+      "scores": {
+        "recommend": 2,
+        "meals": 3,
+        "groupFit": 4,
+        "elderFit": 3,
+        "accessEase": 3
+      },
+      "rationale": {
+        "recommend": "楽天 4.1（331 則）、Google 4.1 照數字是 3，但楽天客室 3.72、設備 3.5 偏低，Google 約 2026/08 說沒熱水、需要整修 → 老舊不只是外觀，往下調一級",
+        "meals": "只有早餐（楽天餐 4.53 是早餐）；晚餐在外，步行 6～12 分有 4 家",
+        "groupFit": "22 室、每間 1～4 人，有大広間；沒有團體方案",
+        "elderFit": "和室、床沒有寫；可用輪椅、無障礙廁所、浴槽扶手；電梯沒有來源",
+        "accessEase": "JR 二見浦站步行約 15 分，沒有接送；CANばす 夫婦岩東口在附近"
+      },
+      "confidence": "medium",
+      "assessed": "2026-10-18"
     }
   },
   {
@@ -970,7 +1139,7 @@
       "googleMaps": "https://maps.google.com/?cid=12169102107927815369"
     },
     "tags": [],
-    "tier": null,
+    "tier": "B",
     "nearestStation": {
       "id": "jr-futaminoura",
       "mode": "walk",
@@ -1159,6 +1328,47 @@
         "note": "15 人（全部以大人計）分 N 間同住的組合，有空房的列出；只代表查詢當天楽天上的庫存"
       },
       "dinnerAccessNote": "步行 20 分內的晚餐店 4 家：ル・シノワ 花栞 4 分、松風軒 7 分、maruru cafe 9 分 等（選素泊、朝食付方案時；OSRM，scripts/lodging-dinner-access.mjs，2026-10-18）"
+    },
+    "summary": {
+      "text": "二見浦旅館街的小旅館，只有 6 間海景和室，活伊勢海老可以選活造り、鬼殻焼き、具足煮。近一年評論多是 4～5 星（乾淨、料理、女將親切）；沒有電梯，客房在 2、3 樓。",
+      "pros": [
+        "近一年 Google 多是好評：老旅館但乾淨、料理好吃",
+        "活伊勢海老 8 月到 4 月都有，2 月吃得到",
+        "免費接送不用預約（到站打電話，15:00～21:00）"
+      ],
+      "cons": [
+        "只有 6 室，15 人要包下大部分",
+        "沒有電梯、客房在 2、3 樓，房內沒有浴室",
+        "浴場水溫水壓弱，只到 22:00"
+      ],
+      "basedOn": [
+        "https://tabiiro.jp/yado/s/103643-ise-nisshokan/",
+        "https://www.mapple.net/region/a0405010102_g05000000/spot/",
+        "https://travel.rakuten.co.jp/HOTEL/7676/7676.html",
+        "https://travel.rakuten.co.jp/HOTEL/7676/7676_std.html",
+        "https://hotel.travel.rakuten.co.jp/hotelinfo/plan/7676",
+        "https://maps.google.com/?cid=12169102107927815369"
+      ],
+      "generated": "2026-10-18"
+    },
+    "assessment": {
+      "rubric": "lodging-v1",
+      "scores": {
+        "recommend": 3,
+        "meals": 4,
+        "groupFit": 3,
+        "elderFit": 2,
+        "accessEase": 4
+      },
+      "rationale": {
+        "recommend": "楽天 4.2（307 則）、Google 4.1（92 則），評價穩定",
+        "meals": "楽天餐 4.41，活伊勢海老三種做法；有加點伊勢海老偏小的意見",
+        "groupFit": "6 室、每間 1～4 人，15 人要包下大部分，要先問",
+        "elderFit": "確定沒有電梯、客房在 2、3 樓、和室；可以要求低樓層，22 點後可免費包大浴場",
+        "accessEase": "JR 二見浦站步行約 12 分，免費接送不用預約；JR 不能用近鐵券"
+      },
+      "confidence": "medium",
+      "assessed": "2026-10-18"
     }
   },
   {
@@ -1209,7 +1419,7 @@
       "googleMaps": "https://maps.google.com/?cid=8941726351327199216"
     },
     "tags": [],
-    "tier": null,
+    "tier": "B",
     "nearestStation": {
       "id": "jr-futaminoura",
       "mode": "walk",
@@ -1381,6 +1591,46 @@
         "note": "15 人（全部以大人計）分 N 間同住的組合，有空房的列出；只代表查詢當天楽天上的庫存"
       },
       "dinnerAccessNote": "步行 20 分內的晚餐店 4 家：ル・シノワ 花栞 3 分、松風軒 4 分、maruru cafe 6 分 等（選素泊、朝食付方案時；OSRM，scripts/lodging-dinner-access.mjs，2026-10-18）"
+    },
+    "summary": {
+      "text": "夫婦岩附近只有 10 間海景和室的小旅館，晚餐四季御膳份量足，2 月可以加點伊勢海老。員工親切、近期評價好；但建物老舊、沒有電梯（官方提醒腳不方便的人），評論只有 61 則。",
+      "pros": [
+        "楽天 4.50，近 10 則晚餐、早餐都是 4.8",
+        "2 月可以加點伊勢海老（住宿前 2 天電話）",
+        "JR 二見浦站步行 10 分，有接送巴士"
+      ],
+      "cons": [
+        "楽天只有 61 則、Google 3.9",
+        "沒有電梯，全館樓梯，官方提醒腳不方便的人",
+        "每間只住 2～3 人，15 人要 5～6 間；不收信用卡"
+      ],
+      "basedOn": [
+        "https://travel.rakuten.co.jp/HOTEL/139993/139993.html",
+        "https://travel.rakuten.co.jp/HOTEL/139993/139993_std.html",
+        "https://hotel.travel.rakuten.co.jp/hotelinfo/plan/139993",
+        "https://review.travel.rakuten.co.jp/hotel/voice/139993/",
+        "https://maps.google.com/?cid=8941726351327199216"
+      ],
+      "generated": "2026-10-18"
+    },
+    "assessment": {
+      "rubric": "lodging-v1",
+      "scores": {
+        "recommend": 3,
+        "meals": 4,
+        "groupFit": 3,
+        "elderFit": 2,
+        "accessEase": 4
+      },
+      "rationale": {
+        "recommend": "楽天 4.50 但只有 61 則、Google 3.9（43 則）→ 評論數上限 3",
+        "meals": "沒有楽天細項；近 10 則口コミ晚餐 4.8，稱讚份量",
+        "groupFit": "10 室、每間 2～3 人，15 人要 5～6 間；晚餐可選個室或廣間，包館要電話問",
+        "elderFit": "確定沒有電梯、全館樓梯（官方提醒），和室床型沒寫",
+        "accessEase": "JR 二見浦站步行約 10 分，有接送巴士（班次沒寫）；JR 不能用近鐵券"
+      },
+      "confidence": "low",
+      "assessed": "2026-10-18"
     }
   },
   {
@@ -1431,7 +1681,7 @@
       "googleMaps": "https://maps.google.com/?cid=14717317136452546914"
     },
     "tags": [],
-    "tier": null,
+    "tier": "B",
     "nearestStation": {
       "id": "jr-futaminoura",
       "mode": "walk",
@@ -1602,6 +1852,47 @@
         "note": "15 人（全部以大人計）分 N 間同住的組合，有空房的列出；只代表查詢當天楽天上的庫存"
       },
       "dinnerAccessNote": "步行 20 分內的晚餐店 4 家：ル・シノワ 花栞 6 分、松風軒 10 分、maruru cafe 12 分 等（選素泊、朝食付方案時；OSRM，scripts/lodging-dinner-access.mjs，2026-10-18）"
+    },
+    "summary": {
+      "text": "夫婦岩步行 3～5 分、43 室的海鮮割烹旅館，是二見旅館街房數較多的。海景房景觀好、整理乾淨；晚餐調味偏重偏油、廁所是舊式，評論只有 58 則。",
+      "pros": [
+        "43 室，15 人同館 4～5 間應該可以",
+        "海景和室、立地 4.71，可以看夫婦岩日出",
+        "接送要預約（15:00～19:00）"
+      ],
+      "cons": [
+        "楽天只有 58 則、Google 3.9",
+        "晚餐評 4.00、調味偏重；部分房間窄、舊式廁所",
+        "電梯、大浴場、宴會場都沒有來源"
+      ],
+      "basedOn": [
+        "https://icotto.jp/hotels/9685",
+        "https://travel.rakuten.co.jp/HOTEL/7723/7723.html",
+        "https://travel.rakuten.co.jp/HOTEL/7723/7723_std.html",
+        "https://hotel.travel.rakuten.co.jp/hotelinfo/plan/7723",
+        "https://review.travel.rakuten.co.jp/hotel/voice/7723/",
+        "https://maps.google.com/?cid=14717317136452546914"
+      ],
+      "generated": "2026-10-18"
+    },
+    "assessment": {
+      "rubric": "lodging-v1",
+      "scores": {
+        "recommend": 3,
+        "meals": 3,
+        "groupFit": 4,
+        "elderFit": 2,
+        "accessEase": 4
+      },
+      "rationale": {
+        "recommend": "楽天 4.0（58 則）、Google 3.9（92 則），評論少、評價普通",
+        "meals": "沒有楽天細項；口コミ晚餐 4.00，評論說調味偏重偏油",
+        "groupFit": "43 室、海景和室 2～4 人，15 人同館可以；宴會場、團體方案沒寫",
+        "elderFit": "和室床型沒寫、電梯沒有來源",
+        "accessEase": "JR 二見浦站步行約 13 分，接送要預約；JR 不能用近鐵券"
+      },
+      "confidence": "low",
+      "assessed": "2026-10-18"
     }
   },
   {
@@ -1652,7 +1943,7 @@
       "googleMaps": "https://maps.google.com/?cid=5674074088714481344"
     },
     "tags": [],
-    "tier": null,
+    "tier": "S",
     "nearestStation": {
       "id": "jr-futaminoura",
       "mode": "walk",
@@ -1853,6 +2144,47 @@
         "note": "15 人（全部以大人計）分 N 間同住的組合，有空房的列出；只代表查詢當天楽天上的庫存"
       },
       "dinnerAccessNote": "步行 20 分內的晚餐店 4 家：家庭料理 扇屋 1 分、maruru cafe 4 分、松風軒 5 分 等（選素泊、朝食付方案時；OSRM，scripts/lodging-dinner-access.mjs，2026-10-18）"
+    },
+    "summary": {
+      "text": "JR 二見浦站前的民宿，老闆夫婦很熱心（接送、幫忙排行程），手作海鮮料理（伊勢海老舟盛り）份量足、CP 值高，楽天晚餐 4.92。13 間 6 畳和室、有宴會場；建築老舊、只有樓梯，可以帶寵物。",
+      "pros": [
+        "じゃらん 4.7（710 則）、楽天 4.53、Google 4.2，楽天晚餐 4.92",
+        "伊勢海老舟盛り方案每人約 14,000 円，CP 值高",
+        "JR 二見浦站步行 1～5 分，有接送巴士"
+      ],
+      "cons": [
+        "只有樓梯（2026-09 心得），和室鋪被",
+        "13 室每間只住 2～3 人，15 人要 6～7 間",
+        "建築老舊；寵物友善（可能有狗同住）"
+      ],
+      "basedOn": [
+        "https://travel.rakuten.co.jp/HOTEL/15478/15478.html",
+        "https://travel.rakuten.co.jp/HOTEL/15478/15478_std.html",
+        "https://hotel.travel.rakuten.co.jp/hotelinfo/plan/15478",
+        "https://review.travel.rakuten.co.jp/hotel/voice/15478/",
+        "https://www.jalan.net/yad394480/",
+        "https://maps.google.com/?cid=5674074088714481344"
+      ],
+      "generated": "2026-10-18"
+    },
+    "assessment": {
+      "rubric": "lodging-v1",
+      "scores": {
+        "recommend": 5,
+        "meals": 5,
+        "groupFit": 3,
+        "elderFit": 2,
+        "accessEase": 5
+      },
+      "rationale": {
+        "recommend": "じゃらん 4.7（710 則）、楽天 4.53、Google 4.2；負評只有老舊、少數設備 3 分",
+        "meals": "楽天餐 4.88（晚餐 4.92、早餐 4.80），伊勢海老舟盛り",
+        "groupFit": "13 室、每間 2～3 人，15 人要 6～7 間；有宴會場，包館要電話問",
+        "elderFit": "只有樓梯（心得）、電梯官方沒寫、和室",
+        "accessEase": "JR 二見浦站步行 1～5 分；JR 不能用近鐵券"
+      },
+      "confidence": "medium",
+      "assessed": "2026-10-18"
     }
   },
   {
@@ -1896,7 +2228,7 @@
       "googleMaps": "https://maps.google.com/?cid=13253907407936778172"
     },
     "tags": [],
-    "tier": null,
+    "tier": "B",
     "nearestStation": {
       "id": "jr-futaminoura",
       "mode": "taxi",
@@ -2046,6 +2378,46 @@
         },
         "note": "15 人（全部以大人計）分 N 間同住的組合，有空房的列出；只代表查詢當天楽天上的庫存"
       }
+    },
+    "summary": {
+      "text": "老闆兼營魚批發的海邊民宿，伊勢海老刺身、鮑、車海老的晚餐份量大，一泊二食每人約 10,000 円。7 間和室，浴室、廁所共用；心得說老闆年長、一天只收約 2 組。",
+      "pros": [
+        "晚餐海鮮份量大、CP 值極高（心得多 4～5 星）",
+        "一泊二食每人約 10,000 円",
+        "步行可到夫婦岩、海邊"
+      ],
+      "cons": [
+        "楽天分數不公開、Google 只有 28 則；最新心得 2024-07",
+        "浴室、廁所共用，牆薄",
+        "一天約只收 2 組（心得），沒有接送、沒車不方便"
+      ],
+      "basedOn": [
+        "https://travel.rakuten.co.jp/HOTEL/50638/50638.html",
+        "https://travel.rakuten.co.jp/HOTEL/50638/50638_std.html",
+        "https://hotel.travel.rakuten.co.jp/hotelinfo/plan/50638",
+        "https://review.travel.rakuten.co.jp/hotel/voice/50638/",
+        "https://maps.google.com/?cid=13253907407936778172"
+      ],
+      "generated": "2026-10-18"
+    },
+    "assessment": {
+      "rubric": "lodging-v1",
+      "scores": {
+        "recommend": 3,
+        "meals": 4,
+        "groupFit": 3,
+        "elderFit": 2,
+        "accessEase": 3
+      },
+      "rationale": {
+        "recommend": "楽天平均不公開（186 則多是 4～5 星）、Google 4.4 只有 28 則 → 3",
+        "meals": "沒有楽天細項；心得一致稱讚海鮮晚餐份量、CP 值",
+        "groupFit": "7 室、每間 2～4 人；心得說一天只收約 2 組，15 人要電話問",
+        "elderFit": "和室鋪被、浴廁共用，電梯沒有來源",
+        "accessEase": "JR 二見浦站車程約 3 分，沒有接送；JR 不能用近鐵券"
+      },
+      "confidence": "low",
+      "assessed": "2026-10-18"
     }
   },
   {
@@ -2089,7 +2461,7 @@
       "googleMaps": "https://maps.google.com/?cid=7140215160346751373"
     },
     "tags": [],
-    "tier": null,
+    "tier": "B",
     "nearestStation": {
       "id": "jr-futaminoura",
       "mode": "walk",
@@ -2288,6 +2660,46 @@
         },
         "note": "15 人（全部以大人計）分 N 間同住的組合，有空房的列出；只代表查詢當天楽天上的庫存"
       }
+    },
+    "summary": {
+      "text": "昭和天皇、溥儀住過的老旅館，34 間和室，晚餐是約 50 種的和洋中自助餐。可帶輪椅、有扶手和高齡者料理；但楽天總評顯示 2.0（和星級分布不合）、最新心得是 2022 年，建築老舊。",
+      "pros": [
+        "34 室、有宴會場，2/9、2/10 楽天 4×4、5×3 都有空房",
+        "晚餐自助約 50 種，有松阪牛方案",
+        "可帶輪椅、客房有扶手、可提供高齡者料理"
+      ],
+      "cons": [
+        "楽天總評顯示 2.0（星級分布多是 4～5 星，疑似顯示錯誤），Google 3.9",
+        "最新心得 2022-11，近況不明",
+        "建築老舊、隔音差、全部和室鋪被"
+      ],
+      "basedOn": [
+        "https://travel.rakuten.co.jp/HOTEL/67334/67334.html",
+        "https://travel.rakuten.co.jp/HOTEL/67334/67334_std.html",
+        "https://review.travel.rakuten.co.jp/hotel/voice/67334/",
+        "https://hotel.travel.rakuten.co.jp/hotelinfo/plan/67334",
+        "https://maps.google.com/?cid=7140215160346751373"
+      ],
+      "generated": "2026-10-18"
+    },
+    "assessment": {
+      "rubric": "lodging-v1",
+      "scores": {
+        "recommend": 3,
+        "meals": 3,
+        "groupFit": 4,
+        "elderFit": 3,
+        "accessEase": 4
+      },
+      "rationale": {
+        "recommend": "楽天 API 2.0 和星級分布（5 星 140、4 星 125，換算約 4.1）不合，照 Google 3.9（149 則）和分布 → 3",
+        "meals": "楽天細項不可信（2.0）；自助晚餐約 50 種，心得說料理豐盛，資料舊",
+        "groupFit": "34 室、10 畳 2～4 人和 37 畳房，有宴會場；2/9、2/10 楽天 15 人組合有空房",
+        "elderFit": "全部和室鋪被、電梯沒有來源；可帶輪椅、客房扶手、大浴場扶手、高齡者料理",
+        "accessEase": "JR 二見浦站步行約 7 分；JR 不能用近鐵券"
+      },
+      "confidence": "low",
+      "assessed": "2026-10-18"
     }
   },
   {
@@ -2331,7 +2743,7 @@
       "googleMaps": "https://maps.google.com/?cid=11342866978358193585"
     },
     "tags": [],
-    "tier": null,
+    "tier": "B",
     "nearestStation": {
       "id": "jr-futaminoura",
       "mode": "walk",
@@ -2542,6 +2954,47 @@
         "note": "15 人（全部以大人計）分 N 間同住的組合，有空房的列出；只代表查詢當天楽天上的庫存"
       },
       "dinnerAccessNote": "步行 20 分內的晚餐店 4 家：ル・シノワ 花栞 3 分、松風軒 4 分、maruru cafe 6 分 等（OSRM，scripts/lodging-dinner-access.mjs，2026-10-18）"
+    },
+    "summary": {
+      "text": "二見浦海邊的素泊旅館（麻野館別館），15 間禁煙和室，走到夫婦岩和車站都方便，24 小時浴場。設備老舊，2026-08 有吹風機壞、浴室天花板發霉的評論；不供餐，多數房間浴廁共用。",
+      "pros": [
+        "夫婦岩步行約 5 分、JR 二見浦站 8 分",
+        "15 室、最大 5 人房，2/9、2/10 楽天 15 人組合都有空房",
+        "24 小時可用的浴場"
+      ],
+      "cons": [
+        "楽天 3.69（17 則），設備 3.45、房間 3.42",
+        "2026-08：浴室天花板發霉、吹風機壞、沒有 Wi-Fi",
+        "不供餐、多數房間浴廁共用、不收信用卡"
+      ],
+      "basedOn": [
+        "https://travel.rakuten.co.jp/HOTEL/180248/180248.html",
+        "https://travel.rakuten.co.jp/HOTEL/180248/180248_std.html",
+        "https://review.travel.rakuten.co.jp/hotel/voice/180248/",
+        "https://hotel.travel.rakuten.co.jp/hotelinfo/plan/180248",
+        "https://www.jalan.net/yad319128/",
+        "https://maps.google.com/?cid=11342866978358193585"
+      ],
+      "generated": "2026-10-18"
+    },
+    "assessment": {
+      "rubric": "lodging-v1",
+      "scores": {
+        "recommend": 2,
+        "meals": 3,
+        "groupFit": 4,
+        "elderFit": 2,
+        "accessEase": 4
+      },
+      "rationale": {
+        "recommend": "楽天 3.69、じゃらん 4.5、Google 4.1 都不到 30 則，最新心得有發霉、設備壞的負評",
+        "meals": "不供餐；步行 3～6 分有 4 家晚餐店",
+        "groupFit": "15 室、1～5 人房，15 人同館可以；2 室以上取消規定另計",
+        "elderFit": "和室鋪被、多數房間浴廁共用，電梯沒有來源",
+        "accessEase": "JR 二見浦站步行約 8 分，沒有接送；JR 不能用近鐵券"
+      },
+      "confidence": "low",
+      "assessed": "2026-10-18"
     }
   },
   {
@@ -2585,7 +3038,7 @@
       "googleMaps": "https://maps.google.com/?cid=16790299573162377964"
     },
     "tags": [],
-    "tier": null,
+    "tier": "B",
     "nearestStation": {
       "id": "jr-futaminoura",
       "mode": "walk",
@@ -2779,6 +3232,46 @@
         "note": "15 人（全部以大人計）分 N 間同住的組合，有空房的列出；只代表查詢當天楽天上的庫存"
       },
       "dinnerAccessNote": "步行 20 分內的晚餐店 4 家：松風軒 11 分、maruru cafe 12 分、家庭料理 扇屋 14 分 等（OSRM，scripts/lodging-dinner-access.mjs，2026-10-18）"
+    },
+    "summary": {
+      "text": "像合宿所的簡樸素泊住宿，10 畳＋縁側的大房可住 6 人，價格很便宜。浴室男女分時段、房內沒有衛浴；2025-12、2026-06 有熱水不足、很冷的評論，不提供浴衣和備品。",
+      "pros": [
+        "價格很便宜（素泊每人約 3,700～4,900 円）",
+        "10 畳房最多 6 人，2/9、2/10 楽天 15 人組合有空房",
+        "被子蓬鬆好睡"
+      ],
+      "cons": [
+        "楽天 3.25（93 則），浴室 2.92、設備 3.07",
+        "冬天熱水不足、很冷（2025-12），浴室男女分時段",
+        "房內沒有衛浴、不提供備品，附近餐廳少"
+      ],
+      "basedOn": [
+        "https://travel.rakuten.co.jp/HOTEL/146856/146856.html",
+        "https://travel.rakuten.co.jp/HOTEL/146856/146856_std.html",
+        "https://review.travel.rakuten.co.jp/hotel/voice/146856/",
+        "https://hotel.travel.rakuten.co.jp/hotelinfo/plan/146856",
+        "https://maps.google.com/?cid=16790299573162377964"
+      ],
+      "generated": "2026-10-18"
+    },
+    "assessment": {
+      "rubric": "lodging-v1",
+      "scores": {
+        "recommend": 2,
+        "meals": 3,
+        "groupFit": 4,
+        "elderFit": 2,
+        "accessEase": 3
+      },
+      "rationale": {
+        "recommend": "楽天 3.25（93 則）低於 §5.7 的 3.8，靠 Google 4.1 收錄；心得有冬天沒熱水、老舊的負評",
+        "meals": "不供餐，只有微波爐；步行 11～15 分有 4 家晚餐店",
+        "groupFit": "12 室、10 畳房 2～6 人，15 人同館可以；包棟、團體方案沒寫",
+        "elderFit": "和室鋪被、浴廁共用，冬天熱水不穩；電梯沒有來源",
+        "accessEase": "JR 二見浦站步行約 15 分，沒有接送；JR 不能用近鐵券"
+      },
+      "confidence": "low",
+      "assessed": "2026-10-18"
     }
   },
   {
@@ -2822,7 +3315,7 @@
       "googleMaps": "https://maps.google.com/?cid=5909140712947163409"
     },
     "tags": [],
-    "tier": null,
+    "tier": "A",
     "nearestStation": {
       "id": "toba",
       "mode": "shuttle",
@@ -3081,6 +3574,49 @@
         "note": "15 人（全部以大人計）分 N 間同住的組合，有空房的列出；只代表查詢當天楽天上的庫存"
       },
       "dinnerAccessNote": "步行 20 分內沒有晚餐店（直線 1.6 km 內沒有），要搭車（scripts/lodging-dinner-access.mjs，2026-10-18）"
+    },
+    "summary": {
+      "text": "二見松下海邊的 57 室溫泉旅館，近鐵鳥羽站有免費接送，晚餐的季節海鮮會席（冬季牡蠣）評價高，泡湯後有免費伊勢烏龍麵、冰淇淋。有電梯、大宴會場；建物老舊，選素泊的話附近沒有店。",
+      "pros": [
+        "楽天 4.47（2,737 則）、じゃらん 4.5、Google 4.2，楽天晚餐 4.63",
+        "57 室、大宴會場 180 人，2/9、2/10 楽天 15 人組合都有空房",
+        "近鐵鳥羽站免費接送（要預約），可以用近鐵券"
+      ],
+      "cons": [
+        "建物老舊、大廳有霉味的意見；4travel 3.38",
+        "大浴場在地下 GF，鳥羽站乘車處要下樓梯",
+        "選素泊時步行 20 分內沒有晚餐店"
+      ],
+      "basedOn": [
+        "https://www.uminochou.com/facilities.html",
+        "https://www.uminochou.com/guestroom.html",
+        "https://www.uminochou.com/cuisine.html",
+        "https://www.uminochou.com/access.html",
+        "https://www.kankomie.or.jp/spot/13746",
+        "https://travel.rakuten.co.jp/HOTEL/40332/40332.html",
+        "https://travel.rakuten.co.jp/HOTEL/40332/40332_std.html",
+        "https://review.travel.rakuten.co.jp/hotel/voice/40332/"
+      ],
+      "generated": "2026-10-18"
+    },
+    "assessment": {
+      "rubric": "lodging-v1",
+      "scores": {
+        "recommend": 4,
+        "meals": 4,
+        "groupFit": 4,
+        "elderFit": 4,
+        "accessEase": 4
+      },
+      "rationale": {
+        "recommend": "楽天 4.47（2,737 則）、じゃらん 4.5、Google 4.2（703 則）；4travel 3.38（28 則）差約 1 分，但三個大量評分一致 → 不調",
+        "meals": "楽天餐 4.56，冬季牡蠣會席；素泊時附近沒有店，要在館內吃",
+        "groupFit": "57 室、2～5 人房，大宴會場 180 人、個室約 10 人；沒有團體方案",
+        "elderFit": "有電梯、洋室和和洋室有床、可借輪椅；大浴場在地下，KNT 寫浴室非無障礙",
+        "accessEase": "近鐵鳥羽站免費接送約 10 分，14:30～18:00 每 30 分～1 小時，要預約"
+      },
+      "confidence": "medium",
+      "assessed": "2026-10-18"
     }
   },
   {
@@ -3130,7 +3666,7 @@
       "googleMaps": "https://maps.google.com/?cid=2356653672564801568"
     },
     "tags": [],
-    "tier": null,
+    "tier": "B",
     "nearestStation": {
       "id": "jr-futaminoura",
       "mode": "shuttle",
@@ -3334,6 +3870,49 @@
         },
         "note": "15 人（全部以大人計）分 N 間同住的組合，有空房的列出；只代表查詢當天楽天上的庫存"
       }
+    },
+    "summary": {
+      "text": "一日限 5 組的獨棟 villa 旅館，每棟有榊原溫泉源泉的客房露天風呂，早晚餐在個室吃伊勢海老、黒毛和牛會席。評論幾乎全是好評，但只有 27 則；每人約 4.8 萬円起，2/1、2/2 維護休館。",
+      "pros": [
+        "楽天 4.80、Google 4.7，客室、服務、溫泉、清潔都 5.00",
+        "每棟露天風呂，早晚餐都在個室",
+        "JR 二見浦站或近鐵鳥羽站免費接送"
+      ],
+      "cons": [
+        "楽天只有 27 則",
+        "15 人要包下全部 5 棟（最多約 18 人），沒有團體方案",
+        "每人約 47,850 円起；2027-02-01、02-02 維護休館"
+      ],
+      "basedOn": [
+        "https://yusura-ise.com/",
+        "https://yusura-ise.com/news/%ef%bc%9c2027%e5%b9%b42%e6%9c%88%ef%bc%9e%e3%83%a1%e3%83%b3%e3%83%86%e3%83%8a%e3%83%b3%e3%82%b9%e4%bc%91%e9%a4%a8%e6%97%a5%e3%81%ae%e3%81%94%e6%a1%88%e5%86%85/",
+        "https://www.kankomie.or.jp/report/767",
+        "https://travel.rakuten.co.jp/HOTEL/166951/166951.html",
+        "https://travel.rakuten.co.jp/HOTEL/166951/166951_std.html",
+        "https://review.travel.rakuten.co.jp/hotel/voice/166951/",
+        "https://www.knt.co.jp/highclass/yado/planlist/S240375/",
+        "https://maps.google.com/?cid=2356653672564801568"
+      ],
+      "generated": "2026-10-18"
+    },
+    "assessment": {
+      "rubric": "lodging-v1",
+      "scores": {
+        "recommend": 3,
+        "meals": 4,
+        "groupFit": 3,
+        "elderFit": 3,
+        "accessEase": 4
+      },
+      "rationale": {
+        "recommend": "楽天 4.80 但只有 27 則、Google 4.7（91 則）→ 評論數上限 3",
+        "meals": "沒有楽天餐的細項；口コミ晚餐 4.60，伊勢海老、黒毛和牛會席",
+        "groupFit": "5 棟合計約 18 人，15 人要全包，要電話洽詢",
+        "elderFit": "ツインベッド的和洋室；villa 內階梯、電梯沒有來源（さくら 是挑高空間）",
+        "accessEase": "JR 二見浦站、近鐵鳥羽站免費接送，車程約 10 分，可以告知到站時間"
+      },
+      "confidence": "low",
+      "assessed": "2026-10-18"
     }
   },
   {
@@ -3377,7 +3956,7 @@
       "googleMaps": "https://maps.google.com/?cid=16612280592546847093"
     },
     "tags": [],
-    "tier": null,
+    "tier": "B",
     "nearestStation": {
       "id": "jr-futaminoura",
       "mode": "taxi",
@@ -3598,6 +4177,47 @@
         "note": "15 人（全部以大人計）分 N 間同住的組合，有空房的列出；只代表查詢當天楽天上的庫存"
       },
       "dinnerAccessNote": "步行 20 分內的晚餐店 2 家：う吉 17 分、中華飯店 ワスケ 19 分（選素泊、朝食付方案時；OSRM，scripts/lodging-dinner-access.mjs，2026-10-18）"
+    },
+    "summary": {
+      "text": "二見町西的 17 棟同型 2 層 villa，每棟最多 6 人、有廚房和露天風呂，15 人可以分 3 棟。早餐的しゃぶしゃぶ評分高；但心得有按摩浴缸壞、生鏽、蟲、冬天露天太冷的意見，寢室都在 2 樓。",
+      "pros": [
+        "17 棟同型 villa，3 棟就能住 15 人，2/9、2/10 楽天都有空房",
+        "每棟有廚房、露天風呂，可以自炊、BBQ",
+        "Google 4.3（130 則）"
+      ],
+      "cons": [
+        "楽天 4.0 只有 20 則、Travelist 3.5（施設狀態 2.9）",
+        "寢室在 2 樓要走樓梯，楽天明寫非無障礙",
+        "JR 二見浦站車程 5 分、接送可能沒有；晚餐店步行 17～19 分"
+      ],
+      "basedOn": [
+        "https://travel.rakuten.co.jp/HOTEL/188489/188489.html",
+        "https://travel.rakuten.co.jp/HOTEL/188489/188489_std.html",
+        "https://hotel.travel.rakuten.co.jp/hotelinfo/plan/188489",
+        "https://review.travel.rakuten.co.jp/hotel/voice/188489/",
+        "https://travelist.jp/hotel/detail/7056306/",
+        "https://maps.google.com/?cid=16612280592546847093"
+      ],
+      "generated": "2026-10-18"
+    },
+    "assessment": {
+      "rubric": "lodging-v1",
+      "scores": {
+        "recommend": 2,
+        "meals": 3,
+        "groupFit": 4,
+        "elderFit": 2,
+        "accessEase": 3
+      },
+      "rationale": {
+        "recommend": "楽天 4.0（20 則）、Google 4.3、Travelist 3.5，評論少又有設備故障、清潔的負評",
+        "meals": "只有早餐方案（しゃぶしゃぶ 5.00）；晚餐自炊或步行 17～19 分的 2 家",
+        "groupFit": "17 棟每棟 6 人，15 人分 3 棟同一處；沒有團體方案",
+        "elderFit": "寢室在 2 樓要爬樓梯，楽天明寫非無障礙",
+        "accessEase": "JR 二見浦站車程約 5 分，接送可能沒有（待確認）；JR 不能用近鐵券"
+      },
+      "confidence": "low",
+      "assessed": "2026-10-18"
     }
   },
   {
@@ -3641,7 +4261,7 @@
       "googleMaps": "https://maps.google.com/?cid=9581078598415596588"
     },
     "tags": [],
-    "tier": null,
+    "tier": "B",
     "nearestStation": {
       "id": "ikenoura",
       "mode": "walk",
@@ -3801,6 +4421,46 @@
         "note": "15 人（全部以大人計）分 N 間同住的組合，有空房的列出；只代表查詢當天楽天上的庫存"
       },
       "dinnerAccessNote": "步行 20 分內沒有一般晚餐店（直線 1.6 km 內沒有），要搭車到二見浦（花栞、扇屋 直線 3.5 km 以上）或鳥羽；步行約 11 分（直線估算，OSRM 吸附 779 m）的 旅荘 海の蝶 有日帰り会席（14,850 円起、要預約），照規則住宿附設的 -dining 不算（scripts/lodging-dinner-access.mjs，2026-10-18）"
+    },
+    "summary": {
+      "text": "近鐵池の浦站步行 4 分的 2 層包棟別墅（150 m²），最多 9 人，有廚房和 BBQ 庭院。評論只有幾則，浴室只有淋浴、沒有浴缸；附近沒有晚餐店。",
+      "pros": [
+        "近鐵池の浦站步行約 4 分（可以用近鐵券）",
+        "整棟包租，有廚房、BBQ 庭院，小孩玩得開心（2023）",
+        "價格便宜（每人約 8,100 円）"
+      ],
+      "cons": [
+        "最多 9 人，15 人住不下",
+        "評論只有楽天 1 則、Google 6 則",
+        "沒有浴缸；步行 20 分內沒有晚餐店"
+      ],
+      "basedOn": [
+        "https://travel.rakuten.co.jp/HOTEL/185547/185547.html",
+        "https://travel.rakuten.co.jp/HOTEL/185547/185547_std.html",
+        "https://hotel.travel.rakuten.co.jp/hotelinfo/plan/185547",
+        "https://www.jalan.net/yad354810/",
+        "https://maps.google.com/?cid=9581078598415596588"
+      ],
+      "generated": "2026-10-18"
+    },
+    "assessment": {
+      "rubric": "lodging-v1",
+      "scores": {
+        "recommend": 3,
+        "meals": 2,
+        "groupFit": 2,
+        "elderFit": 2,
+        "accessEase": 5
+      },
+      "rationale": {
+        "recommend": "Google 4.5 只有 6 則、楽天 1 則、じゃらん 3.5（7 則），資料太少 → 3",
+        "meals": "不含餐，附近沒有晚餐店；有廚房、BBQ 庭院可以自炊",
+        "groupFit": "一棟最多 9 人，15 人要和附近（海の蝶）分住",
+        "elderFit": "2 層樓，鋪被 8 組＋雙人床 1 張，樓梯和寢室樓層沒有來源",
+        "accessEase": "近鐵池の浦站步行約 4 分"
+      },
+      "confidence": "low",
+      "assessed": "2026-10-18"
     }
   },
   {
@@ -3844,7 +4504,7 @@
       "googleMaps": "https://maps.google.com/?cid=1662670256767147235"
     },
     "tags": [],
-    "tier": null,
+    "tier": "B",
     "nearestStation": {
       "id": "jr-futaminoura",
       "mode": "taxi",
@@ -3998,6 +4658,47 @@
         "note": "15 人（全部以大人計）分 N 間同住的組合，有空房的列出；只代表查詢當天楽天上的庫存"
       },
       "dinnerAccessNote": "步行 20 分內的晚餐店 1 家：う吉 20 分（OSRM，scripts/lodging-dinner-access.mjs，2026-10-18）"
+    },
+    "summary": {
+      "text": "2023 年新建的包棟民泊（92 m²），最多 8 人，無段差地板、無障礙廁所、浴室扶手，是二見最適合長輩的包棟。不供餐、有全套廚房；評論只有 2 則，要開車，步行能到的晚餐店只有 1 家。",
+      "pros": [
+        "無段差、斜坡、無障礙廁所、浴室扶手，床 6 張",
+        "2023 年新建、全套廚房和洗衣機",
+        "有 3 個家庭 7 人住得開心的評論（2026/03）"
+      ],
+      "cons": [
+        "最多 8 人，15 人住不下",
+        "評論只有 Google 2 則",
+        "JR 二見浦站車程 7 分，步行 20 分只有 う吉（週四休、2026 年新店）"
+      ],
+      "basedOn": [
+        "https://tabiiro.jp/plan/2565/",
+        "https://travel.rakuten.co.jp/HOTEL/193993/193993.html",
+        "https://travel.rakuten.co.jp/HOTEL/193993/193993_std.html",
+        "https://hotel.travel.rakuten.co.jp/hotelinfo/plan/193993",
+        "https://review.travel.rakuten.co.jp/hotel/voice/193993/",
+        "https://maps.google.com/?cid=1662670256767147235"
+      ],
+      "generated": "2026-10-18"
+    },
+    "assessment": {
+      "rubric": "lodging-v1",
+      "scores": {
+        "recommend": 3,
+        "meals": 3,
+        "groupFit": 2,
+        "elderFit": 4,
+        "accessEase": 3
+      },
+      "rationale": {
+        "recommend": "Google 5.0 只有 2 則、楽天沒有評論，資料太少 → 3",
+        "meals": "不供餐，有全套廚房；步行 20 分只有 う吉 1 家（週四休）",
+        "groupFit": "一棟最多 8 人，15 人要和附近（プラフィーノ）分住",
+        "elderFit": "無段差地板、斜坡、無障礙廁所、浴室扶手、床 6 張；是不是平房沒寫",
+        "accessEase": "JR 二見浦站車程約 7 分，沒有接送；JR 不能用近鐵券"
+      },
+      "confidence": "low",
+      "assessed": "2026-10-18"
     }
   }
 ]

@@ -3,5 +3,7 @@
 `node scripts/assessment-check.mjs` 產生，不要手改。列出來的不一定是錯的，人工確認 `rationale.recommend` 的理由；處理寫在 `docs/decisions-pending.md`。
 
 - 景點：4 筆，評分 4（2 星 2、4 星 1、5 星 1），列出 0 筆
+- 住宿：17 筆，評分 17（2 星 4、3 星 10、4 星 1、5 星 2），列出 0 筆
+- 餐廳：18 筆，評分 0（—），列出 0 筆；沒有 assessment 18 筆
 
 沒有列出的項目。
