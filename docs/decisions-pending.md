@@ -12,7 +12,8 @@
 - [x] fit15 的邊界、Google 多筆取捨、300 m 座標、tags 規則、dinnerAccess、住宿附設餐廳（F③）、バー類排除：已升格成 CONVENTIONS §4「判斷細則」。
 
 還沒有 👤 確認的：
-- [ ] **伊勢、二見的子地區劃分**（T8a）：所有搜尋、缺漏檢查、數量控制都以它為單位，之後改很貴。
+- [x] **伊勢、二見的子地區劃分**（T8a）：2026-10-18 👤 確認，伊勢改成 7 個（新增 ise-isuzugaoka、ise-obata，asama 只留山頂，outskirts 改成零散的其他地方）；二見不變，只修正二見町西的說明（最後一列）。
+- [ ] **拆出來的子地區要不要照原門檻重篩**：小俣・御薗（ise-obata）、五十鈴ケ丘（ise-isuzugaoka）原本屬於 ise-outskirts、ise-kurata，沿用了當時「店多」的 A／C 3.60、C 3.30。拆開後是店少的子地區，照原門檻 A 3.30、C 3.10 會多收 ise-obata 24 家、ise-isuzugaoka 4 家（其中 柚子、たまちゃん 是大個室店，T8e 已經要補）。
 - [ ] **評分的數字門檻**（T7g：景點、住宿、餐廳 `recommend` 的分界、評論數上限、D 保底最多 2 分）：決定各區 S／A／B 的分布，T8f、T9f 會照抄。
 - [ ] **山田館 排除**（T8b）：官網最多 80 人、有宴會場，是少數能讓 15 人同住的旅館，只因 Google 3.4（50 則）被排除；じゃらん等沒查（T7i 的腳本可以補查）。
 - [ ] **非住客能不能用餐沒明寫、但收錄了**：神宮会館 團體昼食、おく文、海の蝶 日帰り（T8d）、潮騒（T8d）；**標 pending 沒收**：伝洋、花椿（相差晚上唯一的選項，T7e）、ユスラ（T8d）。都要電話確認，見各區 `questions.md`。
@@ -172,3 +173,4 @@
 | 2026-10-18 | T8d | `contexts` 修正：マイヤー 加 dinner（食べログ 11:00～20:00；候選只有 lunch）；民話の駅 蘇民 加 snack（麻糬・霜淇淋）；御福餅 加 cafe（甘味処 可坐）；maruru cafe 改 lunch＋dinner＋cafe（11:00～20:00、晚餐コース）；松風軒 加 lunch（官網 12:00～14:30）；海の蝶 只有 dinner（日帰り夕食） | 照第 1 批「依實際營業時間・菜色修正 contexts」 | 改各筆 `contexts` |
 | 2026-10-18 | T8d（指揮 session） | candidate schema 加 `detailPending`（boolean），`scripts/validate.mjs` 對標了它的 included 候選沒有 pointId 只警告；T8d 開始前伊勢 95、二見 17 筆先標 true，各批查完拿掉，T8d 結束時已全部清空 | T8d 第 1 批建立 restaurants.json 後，其他批次還沒查的 included 候選會讓驗證失敗；T8c 的「資料檔還沒建立只警告」不夠用 | revert commit 8527643（schema 與 validate.mjs 的 detailPending 段落）；T9d 若要分批也可沿用 |
 | 2026-10-18 | 👤（盤點後決定） | **改回**：T8d「明寫不接小孩 → `fit15: no`」改成 fit15 只看容量（町家バル、懐石 かみむら 改回 yes，`group.source` 註明有小孩的全員用餐不能選）；T8c「ise-geku 等提高 C 門檻」保留，但能坐 15 人（列表個室或貸切 ≥15 人）的店不受數量控制，13 家由 T8e 補回 | 容量和小孩規定混在一起會看不出「坐得下但不能帶小孩」；數量控制刷掉的正好是全員用餐需要的大個室店。規則寫進 CONVENTIONS §4「團體（15 人）」「餐廳候選納入標準」 | 照 git 歷史改回 CONVENTIONS 的兩段，兩家的 fit15 改回 no |
+| 2026-10-18 | 👤（盤點後確認） | **伊勢子地區改成 7 個**：新增 `ise-isuzugaoka`（五十鈴ケ丘・伊勢 IC：黒瀬町、鹿海町、通町，needsCar）、`ise-obata`（小俣・御薗）；`ise-asama` 只留山頂（はくたか亭 等朝熊 IC 一帶移到 ise-outskirts）；`ise-outskirts` 改成零散的其他地方。資料點 10 筆、候選 42 筆照地址町名搬，center 改成收錄點的平均。二見只改說明：二見町西離二見浦站 2 km 以上的一帶歸 futami-outskirts（和 T8b、T8c 的實際分法一致）。朝熊山頂的午餐只有 朝熊茶屋，不另外補，列 questions | 五十鈴ケ丘一帶互相 1 km 內卻拆在 3 個子地區，菊池パール 附近的店因此看不到；ise-asama 的 D① 補到山腳的店，上山那天用不到；ise-outskirts 東西兩群相距 6 km。缺漏檢查和數量控制都以子地區為單位 | 照 git 歷史還原 `areas.json` 的 ise.regions，用 `data/cache/work/ise-regions/` 的 patch 反向改 region |

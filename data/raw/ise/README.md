@@ -1,6 +1,6 @@
 # 伊勢：研究筆記 README
 
-> 開工先讀這份。最後更新：2026-10-18（T8c 完成：餐廳候選 437 筆，收錄預定 95；T8d 伊勢完成，餐廳 96 筆）。這份是**現況**，各任務更新自己的那一節（覆寫，不是追加）；過程紀錄在 `log/`，需要時才讀。二見（`futami`）的筆記在 `data/raw/futami/`，兩區一起規劃（T8）。
+> 開工先讀這份。最後更新：2026-10-18（子地區改成 7 個；T8c 完成：餐廳候選 437 筆，收錄預定 95；T8d 伊勢完成，餐廳 96 筆）。這份是**現況**，各任務更新自己的那一節（覆寫，不是追加）；過程紀錄在 `log/`，需要時才讀。二見（`futami`）的筆記在 `data/raw/futami/`，兩區一起規劃（T8）。
 
 ## 檔案地圖
 
@@ -20,15 +20,20 @@
 | `log/T8d.md` | T8d 的過程紀錄（分 6 批）：讀文分組、食べログ／Google 的讀法、合併腳本、fit15 判斷 |
 | `log/T8c.md` | T8c 的過程紀錄（伊勢、二見共用，分 3 批）：食べログ町名列表的網址、篩選、納入判斷細則、數量預估 |
 
-子地區（`areas.json` 的 `ise.regions`）：`ise-geku` 外宮・伊勢市站周邊（含河崎）、`ise-kurata` 倉田山・五十鈴川站周邊、`ise-naiku` 內宮・おはらい町、`ise-asama` 朝熊山（needsCar）、`ise-outskirts` 伊勢市區外圍（小俣、御薗、通町等，needsCar）。劃分依據：伊勢市觀光協會的エリア（內宮、外宮、倉田山、朝熊、河崎、小俣、御薗）合併，理由在 `docs/decisions-pending.md`。
+子地區（`areas.json` 的 `ise.regions`，2026-10-18 👤 確認後改成 7 個）：`ise-geku` 外宮・伊勢市站周邊（含河崎）、`ise-kurata` 倉田山・五十鈴川站周邊、`ise-naiku` 內宮・おはらい町、`ise-isuzugaoka` 五十鈴ケ丘・伊勢 IC（黒瀬町、鹿海町、通町；needsCar）、`ise-obata` 小俣・御薗（近鐵小俣站、宮町站）、`ise-asama` 朝熊山頂（needsCar）、`ise-outskirts` 其他零散的外圍（神久、勢田町、朝熊 IC 等；needsCar）。
+- 原本是 5 個（T8a 依觀光協會的エリア合併）。盤點時發現 JR 五十鈴ケ丘站一帶（菊池パール、四十三番、藤屋窓月堂 本館 互相 1 km 內）被拆在 kurata、asama、outskirts 三個子地區，ise-asama 混了離山頂 3.7～5.9 km 的山腳店，ise-outskirts 是相距 6 km 的小俣、通町兩群，所以拆成現在的 7 個。搬了資料點 10 筆、候選 42 筆（依地址町名；景點、住宿沒收錄的候選沒有地址的留在原處）。
+- **下面 T8b～T8d 各節是當時的紀錄，用的是舊的子地區名稱**（例如「ise-outskirts 的 さし汐」現在是 ise-isuzugaoka）。數量控制的門檻是照舊子地區訂的，新子地區要不要重篩見 `docs/decisions-pending.md`。
+- **朝熊山頂的午餐**：只有 朝熊茶屋（2 月平日營業是推定，`questions.md` 有列）；山腳的 はくたか亭 在朝熊 IC 的鳥羽側，上山那天用不到。去朝熊山那天，午餐在山下吃或自備。
 
 | 子地區 | 景點 | 住宿 | 餐廳 |
 |---|---|---|---|
 | ise-geku | 6 | 15 | 37 |
-| ise-kurata | 4 | 2 | 8 |
+| ise-kurata | 4 | 1 | 6 |
 | ise-naiku | 4 | 4 | 43 |
-| ise-asama | 2 | 0 | 3 |
-| ise-outskirts | 2 | 0 | 5（含 D 2） |
+| ise-isuzugaoka | 1 | 1 | 4 |
+| ise-obata | 1 | 0 | 2 |
+| ise-asama | 2 | 0 | 1 |
+| ise-outskirts | 0 | 0 | 3 |
 
 ## 景點（18 筆）
 

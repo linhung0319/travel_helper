@@ -805,7 +805,7 @@
     "name": {
       "ja": "伊勢苺園（いちご狩り）"
     },
-    "region": "ise-outskirts",
+    "region": "ise-obata",
     "category": "體驗",
     "status": "included",
     "reason": null,
@@ -825,7 +825,7 @@
     "name": {
       "ja": "菊池パール｜真珠の珠出し体験"
     },
-    "region": "ise-outskirts",
+    "region": "ise-isuzugaoka",
     "category": "體驗",
     "status": "included",
     "reason": null,
@@ -926,7 +926,7 @@
     "name": {
       "ja": "田んぼアートinおばた"
     },
-    "region": "ise-outskirts",
+    "region": "ise-obata",
     "category": "田園藝術",
     "status": "excluded",
     "reason": "夏季的稻田藝術，2 月沒有",

@@ -9301,7 +9301,7 @@
     "name": {
       "ja": "藤屋窓月堂 本館"
     },
-    "region": "ise-asama",
+    "region": "ise-isuzugaoka",
     "category": "和菓子、甘味処、かき氷",
     "status": "included",
     "criteria": [
@@ -9321,7 +9321,7 @@
     "contexts": [
       "snack"
     ],
-    "note": "類型：咖啡・甜點；地址：伊勢市鹿海町1650-2；子地區：鹿海町（五十鈴川東岸、朝熊山麓）歸 ise-asama"
+    "note": "類型：咖啡・甜點；地址：伊勢市鹿海町1650-2；子地區：鹿海町（五十鈴川東岸、朝熊山麓）歸 ise-asama（2026-10-18 改歸 ise-isuzugaoka）"
   },
   {
     "key": "ise-asama-chaya",
@@ -9355,7 +9355,7 @@
     "name": {
       "ja": "はくたか亭"
     },
-    "region": "ise-asama",
+    "region": "ise-outskirts",
     "category": "海鮮丼、海鮮",
     "status": "included",
     "criteria": [
@@ -9375,14 +9375,14 @@
     "contexts": [
       "lunch"
     ],
-    "note": "類型：海鮮丼；地址：伊勢市朝熊町1-11；補的缺口：朝熊山 午餐缺口 D①（朝熊町1-11，伊勢二見鳥羽ライン 朝熊IC 附近的伊勢志摩中央市場，不在山上，要開車）；子地區：朝熊町1-11 是朝熊 IC 附近（伊勢志摩中央市場），歸 ise-asama 但不在山上"
+    "note": "類型：海鮮丼；地址：伊勢市朝熊町1-11；補的缺口：朝熊山 午餐缺口 D①（朝熊町1-11，伊勢二見鳥羽ライン 朝熊IC 附近的伊勢志摩中央市場，不在山上，要開車）；子地區：朝熊町1-11 是朝熊 IC 附近（伊勢志摩中央市場），歸 ise-asama（2026-10-18 改歸 ise-outskirts） 但不在山上"
   },
   {
     "key": "ise-the-asaichi",
     "name": {
       "ja": "伊勢志摩 中央市場 ザ・朝市"
     },
-    "region": "ise-asama",
+    "region": "ise-outskirts",
     "category": "その他",
     "status": "excluded",
     "criteria": [
@@ -9402,14 +9402,14 @@
     "contexts": [
       "lunch"
     ],
-    "note": "類型：其他；地址：伊勢市朝熊町1-11；補的缺口：朝熊山 午餐缺口 D①（和はくたか亭同址的市場，要開車）；子地區：朝熊町1-11（朝熊 IC 附近），歸 ise-asama 但不在山上"
+    "note": "類型：其他；地址：伊勢市朝熊町1-11；補的缺口：朝熊山 午餐缺口 D①（和はくたか亭同址的市場，要開車）；子地區：朝熊町1-11（朝熊 IC 附近），歸 ise-asama（2026-10-18 改歸 ise-outskirts） 但不在山上"
   },
   {
     "key": "tabelog-24009464",
     "name": {
       "ja": "ブランカ シェルレーヌ工房"
     },
-    "region": "ise-asama",
+    "region": "ise-outskirts",
     "category": "洋菓子",
     "status": "not-included",
     "criteria": [],
@@ -9455,7 +9455,7 @@
     "name": {
       "ja": "とんかつ 四十三番 伊勢店"
     },
-    "region": "ise-kurata",
+    "region": "ise-isuzugaoka",
     "category": "とんかつ",
     "status": "included",
     "criteria": [
@@ -9476,14 +9476,14 @@
       "lunch",
       "dinner"
     ],
-    "note": "類型：其他；地址：伊勢市黒瀬町562-23；子地區：黑瀬町（五十鈴川站北、伊勢 IC 附近）歸 ise-kurata（同 T8b 的エリアワン伊勢インター）"
+    "note": "類型：其他；地址：伊勢市黒瀬町562-23；子地區：黑瀬町（五十鈴川站北、伊勢 IC 附近）歸 ise-kurata（2026-10-18 改歸 ise-isuzugaoka）（同 T8b 的エリアワン伊勢インター）"
   },
   {
     "key": "ise-knotts-berry",
     "name": {
       "ja": "Knott's Berry"
     },
-    "region": "ise-kurata",
+    "region": "ise-isuzugaoka",
     "category": "ハンバーグ",
     "status": "included",
     "criteria": [
@@ -9824,7 +9824,7 @@
     "name": {
       "ja": "アリーラック"
     },
-    "region": "ise-kurata",
+    "region": "ise-isuzugaoka",
     "category": "カフェ、ピザ、洋菓子",
     "status": "not-included",
     "criteria": [],
@@ -9871,7 +9871,7 @@
     "name": {
       "ja": "うどん食堂つばめや"
     },
-    "region": "ise-kurata",
+    "region": "ise-isuzugaoka",
     "category": "うどん",
     "status": "not-included",
     "criteria": [],
@@ -9894,7 +9894,7 @@
     "name": {
       "ja": "力也"
     },
-    "region": "ise-kurata",
+    "region": "ise-isuzugaoka",
     "category": "すき焼き、しゃぶしゃぶ",
     "status": "not-included",
     "criteria": [],
@@ -9941,7 +9941,7 @@
     "name": {
       "ja": "焼き鳥ハウス 泉竹林"
     },
-    "region": "ise-kurata",
+    "region": "ise-isuzugaoka",
     "category": "焼き鳥",
     "status": "not-included",
     "criteria": [],
@@ -10082,7 +10082,7 @@
     "name": {
       "ja": "伊勢 三玄"
     },
-    "region": "ise-outskirts",
+    "region": "ise-obata",
     "category": "日本料理、海鮮",
     "status": "included",
     "criteria": [
@@ -10191,7 +10191,7 @@
     "name": {
       "ja": "エース バーガー カフェ"
     },
-    "region": "ise-outskirts",
+    "region": "ise-obata",
     "category": "ハンバーガー、アメリカ料理、パンケーキ",
     "status": "not-included",
     "criteria": [],
@@ -10214,7 +10214,7 @@
     "name": {
       "ja": "炭火焼うなぎ 南家"
     },
-    "region": "ise-outskirts",
+    "region": "ise-obata",
     "category": "うなぎ",
     "status": "not-included",
     "criteria": [],
@@ -10238,7 +10238,7 @@
     "name": {
       "ja": "コクリコ ルージュ"
     },
-    "region": "ise-outskirts",
+    "region": "ise-obata",
     "category": "パン、サンドイッチ",
     "status": "not-included",
     "criteria": [],
@@ -10332,7 +10332,7 @@
     "name": {
       "ja": "さし汐"
     },
-    "region": "ise-outskirts",
+    "region": "ise-isuzugaoka",
     "category": "うなぎ",
     "status": "included",
     "criteria": [
@@ -10360,7 +10360,7 @@
     "name": {
       "ja": "あんぱん 伊勢店"
     },
-    "region": "ise-outskirts",
+    "region": "ise-obata",
     "category": "パン、サンドイッチ",
     "status": "not-included",
     "criteria": [],
@@ -10431,7 +10431,7 @@
     "name": {
       "ja": "obataN"
     },
-    "region": "ise-outskirts",
+    "region": "ise-obata",
     "category": "カフェ、イタリアン",
     "status": "not-included",
     "criteria": [],
@@ -10455,7 +10455,7 @@
     "name": {
       "ja": "黒潮ダイニング 花"
     },
-    "region": "ise-outskirts",
+    "region": "ise-obata",
     "category": "海鮮、海鮮丼、寿司",
     "status": "not-included",
     "criteria": [],
@@ -10526,7 +10526,7 @@
     "name": {
       "ja": "鰻のにしやま"
     },
-    "region": "ise-outskirts",
+    "region": "ise-obata",
     "category": "うなぎ",
     "status": "not-included",
     "criteria": [],
@@ -10550,7 +10550,7 @@
     "name": {
       "ja": "へんばや商店 本店"
     },
-    "region": "ise-outskirts",
+    "region": "ise-obata",
     "category": "和菓子",
     "status": "not-included",
     "criteria": [],
@@ -10621,7 +10621,7 @@
     "name": {
       "ja": "アポロン"
     },
-    "region": "ise-outskirts",
+    "region": "ise-obata",
     "category": "ケーキ、カフェ",
     "status": "not-included",
     "criteria": [],
@@ -10717,7 +10717,7 @@
     "name": {
       "ja": "とんかつ トンテキ えにし"
     },
-    "region": "ise-outskirts",
+    "region": "ise-obata",
     "category": "とんかつ",
     "status": "not-included",
     "criteria": [],
@@ -10741,7 +10741,7 @@
     "name": {
       "ja": "菓子工房 ササンボン"
     },
-    "region": "ise-outskirts",
+    "region": "ise-obata",
     "category": "ケーキ",
     "status": "not-included",
     "criteria": [],
@@ -10810,7 +10810,7 @@
     "name": {
       "ja": "ピッツェリア&カフェ オルソ"
     },
-    "region": "ise-outskirts",
+    "region": "ise-obata",
     "category": "ピザ、カフェ、イタリアン",
     "status": "not-included",
     "criteria": [],
@@ -10882,7 +10882,7 @@
     "name": {
       "ja": "中華食堂スマロ"
     },
-    "region": "ise-outskirts",
+    "region": "ise-obata",
     "category": "中華料理",
     "status": "not-included",
     "criteria": [],
@@ -10906,7 +10906,7 @@
     "name": {
       "ja": "うな春"
     },
-    "region": "ise-outskirts",
+    "region": "ise-obata",
     "category": "うなぎ",
     "status": "not-included",
     "criteria": [],
@@ -10929,7 +10929,7 @@
     "name": {
       "ja": "めし処 こさく"
     },
-    "region": "ise-outskirts",
+    "region": "ise-obata",
     "category": "食堂、とんかつ",
     "status": "not-included",
     "criteria": [],
@@ -10953,7 +10953,7 @@
     "name": {
       "ja": "Déshan Restaurant & Café"
     },
-    "region": "ise-outskirts",
+    "region": "ise-obata",
     "category": "スリランカ料理",
     "status": "not-included",
     "criteria": [],
@@ -11023,7 +11023,7 @@
     "name": {
       "ja": "倉野屋"
     },
-    "region": "ise-outskirts",
+    "region": "ise-obata",
     "category": "食堂",
     "status": "not-included",
     "criteria": [],
@@ -11046,7 +11046,7 @@
     "name": {
       "ja": "柚子"
     },
-    "region": "ise-outskirts",
+    "region": "ise-obata",
     "category": "日本料理",
     "status": "not-included",
     "criteria": [],
@@ -11093,7 +11093,7 @@
     "name": {
       "ja": "銀次郎"
     },
-    "region": "ise-outskirts",
+    "region": "ise-obata",
     "category": "フレンチ",
     "status": "not-included",
     "criteria": [],
@@ -11141,7 +11141,7 @@
     "name": {
       "ja": "牛元"
     },
-    "region": "ise-outskirts",
+    "region": "ise-obata",
     "category": "焼肉",
     "status": "not-included",
     "criteria": [],
@@ -11189,7 +11189,7 @@
     "name": {
       "ja": "鰻の千代幸"
     },
-    "region": "ise-outskirts",
+    "region": "ise-obata",
     "category": "うなぎ",
     "status": "not-included",
     "criteria": [],
@@ -11236,7 +11236,7 @@
     "name": {
       "ja": "網元"
     },
-    "region": "ise-outskirts",
+    "region": "ise-obata",
     "category": "日本料理、寿司",
     "status": "not-included",
     "criteria": [],
@@ -11283,7 +11283,7 @@
     "name": {
       "ja": "和牛石アミ焼肉 たまちゃん"
     },
-    "region": "ise-outskirts",
+    "region": "ise-obata",
     "category": "焼肉",
     "status": "not-included",
     "criteria": [],
@@ -11353,7 +11353,7 @@
     "name": {
       "ja": "イベリコ豚専門店 旨家どんぐり"
     },
-    "region": "ise-outskirts",
+    "region": "ise-obata",
     "category": "居酒屋、焼き鳥、しゃぶしゃぶ",
     "status": "not-included",
     "criteria": [],
@@ -11377,7 +11377,7 @@
     "name": {
       "ja": "パセプション"
     },
-    "region": "ise-outskirts",
+    "region": "ise-obata",
     "category": "日本料理、居酒屋、海鮮",
     "status": "included",
     "criteria": [
@@ -11405,7 +11405,7 @@
     "name": {
       "ja": "さち丸"
     },
-    "region": "ise-outskirts",
+    "region": "ise-obata",
     "category": "天ぷら",
     "status": "not-included",
     "criteria": [],

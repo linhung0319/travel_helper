@@ -9392,7 +9392,7 @@
       "en": null
     },
     "area": "ise",
-    "region": "ise-asama",
+    "region": "ise-isuzugaoka",
     "coords": [
       136.7426252,
       34.4929925
@@ -9809,7 +9809,7 @@
       "en": null
     },
     "area": "ise",
-    "region": "ise-asama",
+    "region": "ise-outskirts",
     "coords": [
       136.8146452,
       34.4849318
@@ -17879,7 +17879,7 @@
       "en": null
     },
     "area": "ise",
-    "region": "ise-kurata",
+    "region": "ise-isuzugaoka",
     "coords": [
       136.7354338,
       34.4929818
@@ -18128,7 +18128,7 @@
       "en": null
     },
     "area": "ise",
-    "region": "ise-kurata",
+    "region": "ise-isuzugaoka",
     "coords": [
       136.7357097,
       34.4924853
@@ -19570,7 +19570,7 @@
       "en": null
     },
     "area": "ise",
-    "region": "ise-outskirts",
+    "region": "ise-obata",
     "coords": [
       136.704944,
       34.511052
@@ -20266,7 +20266,7 @@
       "en": null
     },
     "area": "ise",
-    "region": "ise-outskirts",
+    "region": "ise-isuzugaoka",
     "coords": [
       136.7414818,
       34.4992555
@@ -20516,7 +20516,7 @@
       "en": null
     },
     "area": "ise",
-    "region": "ise-outskirts",
+    "region": "ise-obata",
     "coords": [
       136.6856107,
       34.5148757
