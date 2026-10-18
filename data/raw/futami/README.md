@@ -1,6 +1,6 @@
 # 二見：研究筆記 README
 
-> 開工先讀這份。最後更新：2026-10-18（T8d 完成：餐廳 18 筆）。這份是**現況**，各任務更新自己的那一節（覆寫，不是追加）。二見和伊勢一起規劃（T8），過程紀錄寫在 `data/raw/ise/log/`（`log/T8a.md`、`log/T8b.md` 只放指向；`log/T8c.md`、`log/T8d.md` 寫二見的部分，共同方法在伊勢的 `log/T8c.md`、`log/T8d.md`）。
+> 開工先讀這份。最後更新：2026-10-18（T8d 完成：餐廳 18 筆；T8e 收尾：anchors、dinnerAccess、補心得的對象）。這份是**現況**，各任務更新自己的那一節（覆寫，不是追加）。二見和伊勢一起規劃（T8），過程紀錄寫在 `data/raw/ise/log/`（`log/T8a.md`、`log/T8b.md` 只放指向；`log/T8c.md`、`log/T8d.md` 寫二見的部分，共同方法在伊勢的 `log/T8c.md`、`log/T8d.md`）。
 
 ## 檔案地圖
 
@@ -8,13 +8,14 @@
 |---|---|
 | `data/areas/futami/spots.json` | 景點 4 筆（T8a：基本欄位、Google、照片、讀文回填；`summary`／`assessment` 待 T8f） |
 | `data/areas/futami/lodging.json` | 住宿 17 筆（T8b：楽天 API、Google、照片、讀文回填；`summary`／`assessment` 待 T8f） |
-| `data/areas/futami/restaurants.json` | 餐廳 18 筆（T8d：食べログ、Google、照片、讀文；`summary`／`assessment`／`tier` 待 T8f，`anchors` 待 T8e） |
+| `data/areas/futami/restaurants.json` | 餐廳 18 筆（T8d：食べログ、Google、照片、讀文；`summary`／`assessment`／`tier` 待 T8f，`anchors` T8e 算好） |
 | `dossiers/<id>.md` | 讀文筆記（景點 4 份 T8a；住宿 17 份 T8b；餐廳 19 份 T8d，含不收的 `futami-yusura-dining`） |
 | `candidates/spots.json` | 景點候選 19 筆（已收錄 4、沒收錄 12、排除 3）。用程式過濾，不要整份讀 |
 | `candidates/lodging.json` | 住宿候選 23 筆（已收錄 17、排除 4、沒收錄 2） |
 | `candidates/restaurants.json` | 餐廳候選 47 筆（收錄 18、排除 2、未納入 27）。用程式過濾 |
 | `log/T8c.md` | T8c 二見的過程紀錄（町名列表、篩選、D①／D② 怎麼補） |
 | `log/T8d.md` | T8d 第 6 批（二見）的過程紀錄 |
+| `data/raw/ise/log/T8e.md` | T8e（伊勢、二見共用）：第 2 批的收尾、補心得的對象 |
 | `ig-notes.md` | 餐廳 IG 帳號（沒打開 IG，T18 才看） |
 | `questions.md` | 要打電話、人工確認的事 |
 
@@ -62,7 +63,7 @@
 
 ### 現況（T8b 完成）
 - futami-okitama 12（夫婦岩表參道旅館街、二見浦站周邊）、futami-outskirts 5（松下的海の蝶、ゆすら、池の浦站旁的桃源郷；二見町西的プラフィーノ、オレンジガーデン）。`kind`：旅館 10、飯店 1、民宿 2、包棟 3、其他 1（ぽかぽか村）。`meals`：方案不同 8、一泊二食 4、附早餐 1、不含餐 4。照片 39 張。
-- 母體：楽天 SimpleHotelSearch 二見 23 間（沒有找到楽天以外的包棟）。17 筆都有 `links.googleMaps`、Google 星數與評論數、照片、讀文筆記、楽天 API 2027-02-09／02-10 的報價和 `extra.rakutenVacancy`。`dinnerAccess` 全部 null（等 T8c）。
+- 母體：楽天 SimpleHotelSearch 二見 23 間（沒有找到楽天以外的包棟）。17 筆都有 `links.googleMaps`、Google 星數與評論數、照片、讀文筆記、楽天 API 2027-02-09／02-10 的報價和 `extra.rakutenVacancy`。`dinnerAccess` T8e 補上（見餐廳的「T8e 收尾」）。
 - **15 人能一次在楽天訂到**（兩天都有）：浜千代館、キャッスルイン夫婦岩、海の蝶、朝日館、いろは（素泊）、ぽかぽか村（素泊）、プラフィーノ（villa 3 棟）。大石屋 官網寫用餐場地最多 10 人、沒有團體方案。
 - **包棟**：桃源郷（最多 9 人，池の浦站 4 分）、オレンジガーデン（2023 新建、無障礙：無段差、斜坡、無障礙廁所、浴室扶手，最多 8 人，要開車）、プラフィーノ（每棟 6 人，寢室在 2 樓）、ゆすら（5 棟 villa 全包約 18 人，一泊二食每人 47,850 円起）。**沒有一棟就能住 15 人的**。
 - 評分：大石屋 楽天 4.64、ヤマト 4.53（晚餐 4.88）、海の蝶 4.47（2,737 則）最好。評價普通：キャッスルイン夫婦岩（3.93／Google 3.9）、海洋楼・吸霞園（Google 3.9）、いろは（楽天 3.69／Google 4.1）、ぽかぽか村（楽天 3.25／Google 4.1，老舊、像合宿所）、朝日館（楽天 API 2.0 但分布多是 4～5 星，衝突；Google 3.9）。
@@ -99,7 +100,13 @@
 - 心得幾乎 0 篇（パイン 只有食べログ、マイヤー 只有搜尋摘要、花栞・松風軒 只有 HAMONI），T8f 的 `confidence` 多半 low。
 - 營業時間沒有來源：潮騒（全部）、マイヤー・パイン（公休）、松風軒（午餐「不定」）。questions.md 列了電話確認。
 
-### 給 T8e 的建議
+### T8e 收尾（2026-10-18，過程在 `data/raw/ise/log/T8e.md` 第 2 批）
+- **anchors**：18 家、90 筆（OSRM 87、直線估算 3）。futami-okitama 是步行圈（`needsCar: false`），futami-outskirts 只放最近的車站、景點、住宿。估算的 3 段都是 **海の蝶**（`futami-uminocho-dining`，座標借住宿本體）：OSRM 吸附 779 m，到松下站 22 分、松下社 28 分、桃源郷 11 分用直線估算；原因沒查（可能是 OSM 沒有飯店內的路）。
+- **住宿 `dinnerAccess`**（`scripts/lodging-dinner-access.mjs`，晚餐店從二見＋伊勢一起找）：13 間中 11 間 walk（二見浦旅館街 3～15 分：花栞、松風軒、maruru、扇屋；ぽかぽか村 11～15 分；プラフィーノ う吉 17 分・ワスケ 19 分；**オレンジガーデン 只有 う吉 20 分（週四休）**）。**海の蝶 car**（選素泊時附近沒有店）、**桃源郷 car**（只有海の蝶 日帰り会席，住宿附設的不算，note 寫明）。
+- **缺漏檢查**：午餐 futami-okitama 每天 4～6 家、futami-outskirts 3～4 家；fit15 yes okitama 3（松風軒、maruru、う吉）、outskirts 1（海の蝶）。營業時間全部不明：潮騒。
+- **補心得的對象**（`data/cache/work/t8e-targets.json` 第 4 批，11 筆）：餐廳 5（松風軒、maruru、う吉、ワスケ、海の蝶）、景點 2（二見表參道、松下社）、住宿 4（岩戸館、日章館、桃源郷、オレンジガーデン）。
+
+### 給 T8e 的建議（T8d 寫的，已在上面處理）
 - `dinnerAccess`（住宿步行 20 分內有沒有晚餐）：
   - **桃源郷**：步行圈只有海の蝶（日帰り会席，價高、要預約、時段沒有來源）；一般晚餐要開車到二見浦（約 5 分）或鳥羽，T8e 標 `dinnerAccess` 時寫明。
   - **オレンジガーデン、プラフィーノ**（二見町西・外圍，不含晚餐）：最近的 う吉 約 1.1～1.3 km（L.O. 18:30、週四休）、ワスケ 約 1.3 km（週一休），用 OSRM 確認步行時間；2/4（四）う吉 休，只剩 ワスケ。

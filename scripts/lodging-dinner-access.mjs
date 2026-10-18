@@ -94,7 +94,7 @@ for (const l of lodging) {
   const access = ok.length ? 'walk' : 'car';
   const fmt = (w) => `${w.r.name.ja} ${w.minutes} 分${w.source === 'osrm' ? '' : '（直線估算）'}`;
   const note = ok.length
-    ? `步行 ${WALK_MAX} 分內的晚餐店 ${ok.length} 家：${ok.slice(0, 3).map(fmt).join('、')}${ok.length > 3 ? ' 等' : ''}（${l.meals === 'varies' ? '選素泊、朝食付方案時；' : ''}OSRM，scripts/lodging-dinner-access.mjs，${today}）`
+    ? `步行 ${WALK_MAX} 分內的晚餐店 ${ok.length}${ok.length === CANDIDATES ? ' 家以上（只查最近 ' + CANDIDATES + ' 家）' : ' 家'}：${ok.slice(0, 3).map(fmt).join('、')}${ok.length > 3 ? ' 等' : ''}（${l.meals === 'varies' ? '選素泊、朝食付方案時；' : ''}OSRM，scripts/lodging-dinner-access.mjs，${today}）`
     : `步行 ${WALK_MAX} 分內沒有晚餐店${walks[0] ? `（最近：${fmt(walks[0])}）` : `（直線 ${MAX_STRAIGHT / 1000} km 內沒有）`}，要搭車（scripts/lodging-dinner-access.mjs，${today}）`;
   console.log(`${access === 'walk' ? '○' : '×'} ${l.id}［${l.meals}］ ${access}：${note}`);
   l.dinnerAccess = access;

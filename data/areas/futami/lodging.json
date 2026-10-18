@@ -116,7 +116,7 @@
     "checkIn": "15:00",
     "checkOut": "10:00",
     "rakutenHotelNo": 7563,
-    "dinnerAccess": null,
+    "dinnerAccess": "walk",
     "group": {
       "totalRooms": 20,
       "roomTypes": [
@@ -249,7 +249,8 @@
           ]
         },
         "note": "15 人（全部以大人計）分 N 間同住的組合，有空房的列出；只代表查詢當天楽天上的庫存"
-      }
+      },
+      "dinnerAccessNote": "步行 20 分內的晚餐店 4 家：ル・シノワ 花栞 3 分、松風軒 7 分、maruru cafe 9 分 等（選素泊、朝食付方案時；OSRM，scripts/lodging-dinner-access.mjs，2026-10-18）"
     }
   },
   {
@@ -555,7 +556,7 @@
     "checkIn": "15:00",
     "checkOut": "10:00",
     "rakutenHotelNo": 40176,
-    "dinnerAccess": null,
+    "dinnerAccess": "walk",
     "group": {
       "totalRooms": 92,
       "roomTypes": [
@@ -691,7 +692,8 @@
           ]
         },
         "note": "15 人（全部以大人計）分 N 間同住的組合，有空房的列出；只代表查詢當天楽天上的庫存"
-      }
+      },
+      "dinnerAccessNote": "步行 20 分內的晚餐店 4 家：ル・シノワ 花栞 3 分、松風軒 6 分、maruru cafe 7 分 等（選素泊、朝食付方案時；OSRM，scripts/lodging-dinner-access.mjs，2026-10-18）"
     }
   },
   {
@@ -794,7 +796,7 @@
     "checkIn": "15:00",
     "checkOut": "10:00",
     "rakutenHotelNo": 38655,
-    "dinnerAccess": null,
+    "dinnerAccess": "walk",
     "group": {
       "totalRooms": 22,
       "roomTypes": [
@@ -923,7 +925,8 @@
           "2027-02-10": []
         },
         "note": "15 人（全部以大人計）分 N 間同住的組合，有空房的列出；只代表查詢當天楽天上的庫存"
-      }
+      },
+      "dinnerAccessNote": "步行 20 分內的晚餐店 4 家：ル・シノワ 花栞 6 分、松風軒 10 分、maruru cafe 12 分 等（OSRM，scripts/lodging-dinner-access.mjs，2026-10-18）"
     }
   },
   {
@@ -1031,7 +1034,7 @@
     "checkIn": "15:00",
     "checkOut": "10:00",
     "rakutenHotelNo": 7676,
-    "dinnerAccess": null,
+    "dinnerAccess": "walk",
     "group": {
       "totalRooms": 6,
       "roomTypes": [
@@ -1154,7 +1157,8 @@
           "2027-02-10": []
         },
         "note": "15 人（全部以大人計）分 N 間同住的組合，有空房的列出；只代表查詢當天楽天上的庫存"
-      }
+      },
+      "dinnerAccessNote": "步行 20 分內的晚餐店 4 家：ル・シノワ 花栞 4 分、松風軒 7 分、maruru cafe 9 分 等（選素泊、朝食付方案時；OSRM，scripts/lodging-dinner-access.mjs，2026-10-18）"
     }
   },
   {
@@ -1269,7 +1273,7 @@
     "checkIn": "15:00",
     "checkOut": "10:00",
     "rakutenHotelNo": 139993,
-    "dinnerAccess": null,
+    "dinnerAccess": "walk",
     "group": {
       "totalRooms": 10,
       "roomTypes": [
@@ -1375,7 +1379,8 @@
           "2027-02-10": []
         },
         "note": "15 人（全部以大人計）分 N 間同住的組合，有空房的列出；只代表查詢當天楽天上的庫存"
-      }
+      },
+      "dinnerAccessNote": "步行 20 分內的晚餐店 4 家：ル・シノワ 花栞 3 分、松風軒 4 分、maruru cafe 6 分 等（選素泊、朝食付方案時；OSRM，scripts/lodging-dinner-access.mjs，2026-10-18）"
     }
   },
   {
@@ -1478,7 +1483,7 @@
     "checkIn": "15:00",
     "checkOut": "10:00",
     "rakutenHotelNo": 7723,
-    "dinnerAccess": null,
+    "dinnerAccess": "walk",
     "group": {
       "totalRooms": 43,
       "roomTypes": [
@@ -1595,7 +1600,8 @@
           "2027-02-10": []
         },
         "note": "15 人（全部以大人計）分 N 間同住的組合，有空房的列出；只代表查詢當天楽天上的庫存"
-      }
+      },
+      "dinnerAccessNote": "步行 20 分內的晚餐店 4 家：ル・シノワ 花栞 6 分、松風軒 10 分、maruru cafe 12 分 等（選素泊、朝食付方案時；OSRM，scripts/lodging-dinner-access.mjs，2026-10-18）"
     }
   },
   {
@@ -1722,7 +1728,7 @@
     "checkIn": "15:00",
     "checkOut": "10:00",
     "rakutenHotelNo": 15478,
-    "dinnerAccess": null,
+    "dinnerAccess": "walk",
     "group": {
       "totalRooms": 13,
       "roomTypes": [
@@ -1845,7 +1851,8 @@
           "2027-02-10": []
         },
         "note": "15 人（全部以大人計）分 N 間同住的組合，有空房的列出；只代表查詢當天楽天上的庫存"
-      }
+      },
+      "dinnerAccessNote": "步行 20 分內的晚餐店 4 家：家庭料理 扇屋 1 分、maruru cafe 4 分、松風軒 5 分 等（選素泊、朝食付方案時；OSRM，scripts/lodging-dinner-access.mjs，2026-10-18）"
     }
   },
   {
@@ -2412,7 +2419,7 @@
     "checkIn": "16:00",
     "checkOut": "10:00",
     "rakutenHotelNo": 180248,
-    "dinnerAccess": null,
+    "dinnerAccess": "walk",
     "group": {
       "totalRooms": 15,
       "roomTypes": [
@@ -2533,7 +2540,8 @@
           ]
         },
         "note": "15 人（全部以大人計）分 N 間同住的組合，有空房的列出；只代表查詢當天楽天上的庫存"
-      }
+      },
+      "dinnerAccessNote": "步行 20 分內的晚餐店 4 家：ル・シノワ 花栞 3 分、松風軒 4 分、maruru cafe 6 分 等（OSRM，scripts/lodging-dinner-access.mjs，2026-10-18）"
     }
   },
   {
@@ -2653,7 +2661,7 @@
     "checkIn": "16:00",
     "checkOut": "10:00",
     "rakutenHotelNo": 146856,
-    "dinnerAccess": null,
+    "dinnerAccess": "walk",
     "group": {
       "totalRooms": 12,
       "roomTypes": [
@@ -2769,7 +2777,8 @@
           ]
         },
         "note": "15 人（全部以大人計）分 N 間同住的組合，有空房的列出；只代表查詢當天楽天上的庫存"
-      }
+      },
+      "dinnerAccessNote": "步行 20 分內的晚餐店 4 家：松風軒 11 分、maruru cafe 12 分、家庭料理 扇屋 14 分 等（OSRM，scripts/lodging-dinner-access.mjs，2026-10-18）"
     }
   },
   {
@@ -2901,7 +2910,7 @@
     "checkIn": "15:00",
     "checkOut": "10:00",
     "rakutenHotelNo": 40332,
-    "dinnerAccess": null,
+    "dinnerAccess": "car",
     "group": {
       "totalRooms": 57,
       "roomTypes": [
@@ -3070,7 +3079,8 @@
           ]
         },
         "note": "15 人（全部以大人計）分 N 間同住的組合，有空房的列出；只代表查詢當天楽天上的庫存"
-      }
+      },
+      "dinnerAccessNote": "步行 20 分內沒有晚餐店（直線 1.6 km 內沒有），要搭車（scripts/lodging-dinner-access.mjs，2026-10-18）"
     }
   },
   {
@@ -3467,7 +3477,7 @@
     "checkIn": "15:00",
     "checkOut": "10:00",
     "rakutenHotelNo": 188489,
-    "dinnerAccess": null,
+    "dinnerAccess": "walk",
     "group": {
       "totalRooms": 17,
       "roomTypes": [
@@ -3586,7 +3596,8 @@
           ]
         },
         "note": "15 人（全部以大人計）分 N 間同住的組合，有空房的列出；只代表查詢當天楽天上的庫存"
-      }
+      },
+      "dinnerAccessNote": "步行 20 分內的晚餐店 2 家：う吉 17 分、中華飯店 ワスケ 19 分（選素泊、朝食付方案時；OSRM，scripts/lodging-dinner-access.mjs，2026-10-18）"
     }
   },
   {
@@ -3682,7 +3693,7 @@
     "checkIn": "15:00",
     "checkOut": "11:00",
     "rakutenHotelNo": 185547,
-    "dinnerAccess": null,
+    "dinnerAccess": "car",
     "group": {
       "totalRooms": 1,
       "roomTypes": [
@@ -3788,7 +3799,8 @@
           "2027-02-10": []
         },
         "note": "15 人（全部以大人計）分 N 間同住的組合，有空房的列出；只代表查詢當天楽天上的庫存"
-      }
+      },
+      "dinnerAccessNote": "步行 20 分內沒有一般晚餐店（直線 1.6 km 內沒有），要搭車到二見浦（花栞、扇屋 直線 3.5 km 以上）或鳥羽；步行約 11 分（直線估算，OSRM 吸附 779 m）的 旅荘 海の蝶 有日帰り会席（14,850 円起、要預約），照規則住宿附設的 -dining 不算（scripts/lodging-dinner-access.mjs，2026-10-18）"
     }
   },
   {
@@ -3872,7 +3884,7 @@
     "checkIn": "16:00",
     "checkOut": "10:00",
     "rakutenHotelNo": 193993,
-    "dinnerAccess": null,
+    "dinnerAccess": "walk",
     "group": {
       "totalRooms": 1,
       "roomTypes": [
@@ -3984,7 +3996,8 @@
           "2027-02-10": []
         },
         "note": "15 人（全部以大人計）分 N 間同住的組合，有空房的列出；只代表查詢當天楽天上的庫存"
-      }
+      },
+      "dinnerAccessNote": "步行 20 分內的晚餐店 1 家：う吉 20 分（OSRM，scripts/lodging-dinner-access.mjs，2026-10-18）"
     }
   }
 ]

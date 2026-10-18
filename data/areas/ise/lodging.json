@@ -104,7 +104,7 @@
     "checkIn": "15:00",
     "checkOut": "10:00",
     "rakutenHotelNo": 158426,
-    "dinnerAccess": null,
+    "dinnerAccess": "walk",
     "group": {
       "totalRooms": 165,
       "roomTypes": [
@@ -262,7 +262,8 @@
           ]
         },
         "note": "15 人（全部以大人計）分 N 間同住的組合，有空房的列出；只代表查詢當天楽天上的庫存"
-      }
+      },
+      "dinnerAccessNote": "步行 20 分內的晚餐店 8 家以上（只查最近 8 家）：満船屋 HANARE 2 分、酒場 森下 2 分、炭火焼肉匠 3 分 等（OSRM，scripts/lodging-dinner-access.mjs，2026-10-18）"
     }
   },
   {
@@ -365,7 +366,7 @@
     "checkIn": "15:00",
     "checkOut": "11:00",
     "rakutenHotelNo": 142619,
-    "dinnerAccess": null,
+    "dinnerAccess": "walk",
     "group": {
       "totalRooms": 45,
       "roomTypes": [
@@ -504,7 +505,8 @@
           ]
         },
         "note": "15 人（全部以大人計）分 N 間同住的組合，有空房的列出；只代表查詢當天楽天上的庫存"
-      }
+      },
+      "dinnerAccessNote": "步行 20 分內的晚餐店 8 家以上（只查最近 8 家）：酒場 森下 2 分、桂 外宮 2 分、鉄饌 2 分 等（選素泊、朝食付方案時；OSRM，scripts/lodging-dinner-access.mjs，2026-10-18）"
     }
   },
   {
@@ -624,7 +626,7 @@
     "checkIn": "15:00",
     "checkOut": "10:00",
     "rakutenHotelNo": 166509,
-    "dinnerAccess": null,
+    "dinnerAccess": "walk",
     "group": {
       "totalRooms": 153,
       "roomTypes": [
@@ -746,7 +748,8 @@
           "2027-02-10": []
         },
         "note": "15 人（全部以大人計）分 N 間同住的組合，有空房的列出；只代表查詢當天楽天上的庫存"
-      }
+      },
+      "dinnerAccessNote": "步行 20 分內的晚餐店 8 家以上（只查最近 8 家）：洋風ダイニングバー 町家バル 2 分、桂 外宮 2 分、鉄饌 2 分 等（OSRM，scripts/lodging-dinner-access.mjs，2026-10-18）"
     }
   },
   {
@@ -849,7 +852,7 @@
     "checkIn": "15:00",
     "checkOut": "10:00",
     "rakutenHotelNo": 1232,
-    "dinnerAccess": null,
+    "dinnerAccess": "walk",
     "group": {
       "totalRooms": 100,
       "roomTypes": [
@@ -983,7 +986,8 @@
           ]
         },
         "note": "15 人（全部以大人計）分 N 間同住的組合，有空房的列出；只代表查詢當天楽天上的庫存"
-      }
+      },
+      "dinnerAccessNote": "步行 20 分內的晚餐店 8 家以上（只查最近 8 家）：オステリアラブラ 5 分、大喜 5 分、貫 6 分 等（選素泊、朝食付方案時；OSRM，scripts/lodging-dinner-access.mjs，2026-10-18）"
     }
   },
   {
@@ -1103,7 +1107,7 @@
     "checkIn": "15:00",
     "checkOut": "10:00",
     "rakutenHotelNo": 184219,
-    "dinnerAccess": null,
+    "dinnerAccess": "walk",
     "group": {
       "totalRooms": 147,
       "roomTypes": [
@@ -1227,7 +1231,8 @@
           ]
         },
         "note": "15 人（全部以大人計）分 N 間同住的組合，有空房的列出；只代表查詢當天楽天上的庫存"
-      }
+      },
+      "dinnerAccessNote": "步行 20 分內的晚餐店 8 家以上（只查最近 8 家）：Osteria il Mosto 2 分、豚捨 若柳 2 分、やきとり能代 3 分 等（OSRM，scripts/lodging-dinner-access.mjs，2026-10-18）"
     }
   },
   {
@@ -1359,7 +1364,7 @@
     "checkIn": "15:00",
     "checkOut": "10:00",
     "rakutenHotelNo": 56193,
-    "dinnerAccess": null,
+    "dinnerAccess": "walk",
     "group": {
       "totalRooms": 10,
       "roomTypes": [
@@ -1494,7 +1499,8 @@
           "2027-02-10": []
         },
         "note": "15 人（全部以大人計）分 N 間同住的組合，有空房的列出；只代表查詢當天楽天上的庫存"
-      }
+      },
+      "dinnerAccessNote": "步行 20 分內的晚餐店 8 家以上（只查最近 8 家）：桂 外宮 3 分、貫 3 分、オステリアラブラ 3 分 等（OSRM，scripts/lodging-dinner-access.mjs，2026-10-18）"
     }
   },
   {
@@ -1609,7 +1615,7 @@
     "checkIn": "15:00",
     "checkOut": "10:00",
     "rakutenHotelNo": 183396,
-    "dinnerAccess": null,
+    "dinnerAccess": "walk",
     "group": {
       "totalRooms": 36,
       "roomTypes": [
@@ -1743,7 +1749,8 @@
           ]
         },
         "note": "15 人（全部以大人計）分 N 間同住的組合，有空房的列出；只代表查詢當天楽天上的庫存"
-      }
+      },
+      "dinnerAccessNote": "步行 20 分內的晚餐店 8 家以上（只查最近 8 家）：蔵deらーめん 4 分、あきやま 5 分、炭火焼肉匠 5 分 等（OSRM，scripts/lodging-dinner-access.mjs，2026-10-18）"
     }
   },
   {
@@ -1863,7 +1870,7 @@
     "checkIn": "15:00",
     "checkOut": "10:00",
     "rakutenHotelNo": 184858,
-    "dinnerAccess": null,
+    "dinnerAccess": "walk",
     "group": {
       "totalRooms": 143,
       "roomTypes": [
@@ -1992,7 +1999,8 @@
           ]
         },
         "note": "15 人（全部以大人計）分 N 間同住的組合，有空房的列出；只代表查詢當天楽天上的庫存"
-      }
+      },
+      "dinnerAccessNote": "步行 20 分內的晚餐店 8 家以上（只查最近 8 家）：オステリアラブラ 6 分、大喜 6 分、貫 7 分 等（選素泊、朝食付方案時；OSRM，scripts/lodging-dinner-access.mjs，2026-10-18）"
     }
   },
   {
@@ -2107,7 +2115,7 @@
     "checkIn": "16:00",
     "checkOut": "10:00",
     "rakutenHotelNo": 19502,
-    "dinnerAccess": null,
+    "dinnerAccess": "walk",
     "group": {
       "totalRooms": 8,
       "roomTypes": [
@@ -2235,7 +2243,8 @@
           "2027-02-10": []
         },
         "note": "15 人（全部以大人計）分 N 間同住的組合，有空房的列出；只代表查詢當天楽天上的庫存"
-      }
+      },
+      "dinnerAccessNote": "步行 20 分內的晚餐店 8 家以上（只查最近 8 家）：ぎょうざの美鈴 5 分、懐石 かみむら 5 分、一月家 8 分 等（選素泊、朝食付方案時；OSRM，scripts/lodging-dinner-access.mjs，2026-10-18）"
     }
   },
   {
@@ -2343,7 +2352,7 @@
     "checkIn": "16:00",
     "checkOut": "10:00",
     "rakutenHotelNo": 30971,
-    "dinnerAccess": null,
+    "dinnerAccess": "walk",
     "group": {
       "totalRooms": 10,
       "roomTypes": [
@@ -2473,7 +2482,8 @@
           "2027-02-10": []
         },
         "note": "15 人（全部以大人計）分 N 間同住的組合，有空房的列出；只代表查詢當天楽天上的庫存"
-      }
+      },
+      "dinnerAccessNote": "步行 20 分內的晚餐店 8 家以上（只查最近 8 家）：こま田 2 分、虎丸 3 分、牡蠣の朋 3 分 等（選素泊、朝食付方案時；OSRM，scripts/lodging-dinner-access.mjs，2026-10-18）"
     }
   },
   {
@@ -2600,7 +2610,7 @@
     "checkIn": "15:00",
     "checkOut": "11:00",
     "rakutenHotelNo": 196826,
-    "dinnerAccess": null,
+    "dinnerAccess": "walk",
     "group": {
       "totalRooms": 8,
       "roomTypes": [
@@ -2729,7 +2739,8 @@
           "2027-02-10": []
         },
         "note": "15 人（全部以大人計）分 N 間同住的組合，有空房的列出；只代表查詢當天楽天上的庫存"
-      }
+      },
+      "dinnerAccessNote": "步行 20 分內的晚餐店 8 家以上（只查最近 8 家）：こま田 1 分、虎丸 2 分、牡蠣の朋 2 分 等（OSRM，scripts/lodging-dinner-access.mjs，2026-10-18）"
     }
   },
   {
@@ -2856,7 +2867,7 @@
     "checkIn": "16:00",
     "checkOut": "10:00",
     "rakutenHotelNo": 38483,
-    "dinnerAccess": null,
+    "dinnerAccess": "walk",
     "group": {
       "totalRooms": 10,
       "roomTypes": [
@@ -2978,7 +2989,8 @@
           "2027-02-10": []
         },
         "note": "15 人（全部以大人計）分 N 間同住的組合，有空房的列出；只代表查詢當天楽天上的庫存"
-      }
+      },
+      "dinnerAccessNote": "步行 20 分內的晚餐店 8 家以上（只查最近 8 家）：ぎょうざの美鈴 4 分、一月家 5 分、懐石 かみむら 6 分 等（選素泊、朝食付方案時；OSRM，scripts/lodging-dinner-access.mjs，2026-10-18）"
     }
   },
   {
@@ -3268,7 +3280,7 @@
     "checkIn": "15:00",
     "checkOut": "11:00",
     "rakutenHotelNo": 193960,
-    "dinnerAccess": null,
+    "dinnerAccess": "walk",
     "group": {
       "totalRooms": 1,
       "roomTypes": [
@@ -3364,7 +3376,8 @@
         },
         "note": "15 人（全部以大人計）分 N 間同住的組合，有空房的列出；只代表查詢當天楽天上的庫存"
       },
-      "googleMapsNote": "Google 地圖搜尋不到這間（2026-10-18），links.googleMaps 用座標搜尋連結"
+      "googleMapsNote": "Google 地圖搜尋不到這間（2026-10-18），links.googleMaps 用座標搜尋連結",
+      "dinnerAccessNote": "步行 20 分內的晚餐店 8 家以上（只查最近 8 家）：伊勢うどんのまめや 3 分、向井酒の店 3 分、満船屋 HANARE 5 分 等（OSRM，scripts/lodging-dinner-access.mjs，2026-10-18）"
     }
   },
   {
@@ -3460,7 +3473,7 @@
     "checkIn": "17:30",
     "checkOut": "09:00",
     "rakutenHotelNo": 172712,
-    "dinnerAccess": null,
+    "dinnerAccess": "walk",
     "group": {
       "totalRooms": 2,
       "roomTypes": [
@@ -3582,7 +3595,8 @@
           "2027-02-10": []
         },
         "note": "15 人（全部以大人計）分 N 間同住的組合，有空房的列出；只代表查詢當天楽天上的庫存"
-      }
+      },
+      "dinnerAccessNote": "步行 20 分內的晚餐店 8 家以上（只查最近 8 家）：貫 5 分、オステリアラブラ 5 分、ボン・ヴィヴァン 6 分 等（OSRM，scripts/lodging-dinner-access.mjs，2026-10-18）"
     }
   },
   {
@@ -3891,7 +3905,7 @@
     "checkIn": "15:00",
     "checkOut": "10:00",
     "rakutenHotelNo": 181078,
-    "dinnerAccess": null,
+    "dinnerAccess": "walk",
     "group": {
       "totalRooms": 74,
       "roomTypes": [
@@ -4021,7 +4035,8 @@
           "2027-02-10": []
         },
         "note": "15 人（全部以大人計）分 N 間同住的組合，有空房的列出；只代表查詢當天楽天上的庫存"
-      }
+      },
+      "dinnerAccessNote": "步行 20 分內的晚餐店 3 家：さし汐 8 分（直線估算）、とんかつ 四十三番 伊勢店 10 分、Knott's Berry 11 分（OSRM，scripts/lodging-dinner-access.mjs，2026-10-18）"
     }
   },
   {
@@ -4130,7 +4145,7 @@
     "checkIn": "15:00",
     "checkOut": "11:00",
     "rakutenHotelNo": 142809,
-    "dinnerAccess": null,
+    "dinnerAccess": "walk",
     "group": {
       "totalRooms": 58,
       "roomTypes": [
@@ -4282,7 +4297,8 @@
           "2027-02-10": []
         },
         "note": "15 人（全部以大人計）分 N 間同住的組合，有空房的列出；只代表查詢當天楽天上的庫存"
-      }
+      },
+      "dinnerAccessNote": "步行 20 分內的晚餐店 1 家：焼肉すだく 伊勢神宮おはらい町店 12 分（選素泊、朝食付方案時；OSRM，scripts/lodging-dinner-access.mjs，2026-10-18）"
     }
   },
   {
@@ -4390,7 +4406,7 @@
     "checkIn": "15:00",
     "checkOut": "10:00",
     "rakutenHotelNo": 140958,
-    "dinnerAccess": null,
+    "dinnerAccess": "walk",
     "group": {
       "totalRooms": 65,
       "roomTypes": [
@@ -4546,7 +4562,8 @@
           ]
         },
         "note": "15 人（全部以大人計）分 N 間同住的組合，有空房的列出；只代表查詢當天楽天上的庫存"
-      }
+      },
+      "dinnerAccessNote": "步行 20 分內的晚餐店 1 家：焼肉すだく 伊勢神宮おはらい町店 4 分（選素泊、朝食付方案時；OSRM，scripts/lodging-dinner-access.mjs，2026-10-18）"
     }
   },
   {
@@ -4661,7 +4678,7 @@
     "checkIn": "17:30",
     "checkOut": "10:00",
     "rakutenHotelNo": 147038,
-    "dinnerAccess": null,
+    "dinnerAccess": "walk",
     "group": {
       "totalRooms": 4,
       "roomTypes": [
@@ -4768,7 +4785,8 @@
           "2027-02-10": []
         },
         "note": "15 人（全部以大人計）分 N 間同住的組合，有空房的列出；只代表查詢當天楽天上的庫存"
-      }
+      },
+      "dinnerAccessNote": "步行 20 分內的晚餐店 2 家：焼肉すだく 伊勢神宮おはらい町店 6 分、かぐら 20 分（OSRM，scripts/lodging-dinner-access.mjs，2026-10-18）"
     }
   },
   {
@@ -4895,7 +4913,7 @@
     "checkIn": "15:00",
     "checkOut": "10:00",
     "rakutenHotelNo": 201681,
-    "dinnerAccess": null,
+    "dinnerAccess": "walk",
     "group": {
       "totalRooms": 5,
       "roomTypes": [
@@ -5002,7 +5020,8 @@
           "2027-02-10": []
         },
         "note": "15 人（全部以大人計）分 N 間同住的組合，有空房的列出；只代表查詢當天楽天上的庫存"
-      }
+      },
+      "dinnerAccessNote": "步行 20 分內的晚餐店 3 家：焼肉すだく 伊勢神宮おはらい町店 7 分、カンパーニュ 18 分、かぐら 19 分（OSRM，scripts/lodging-dinner-access.mjs，2026-10-18）"
     }
   },
   {
@@ -5014,7 +5033,7 @@
     "closures": [],
     "tags": [],
     "tier": null,
-    "dinnerAccess": null,
+    "dinnerAccess": "walk",
     "verified": false,
     "name": {
       "ja": "伊勢シティホテル",
@@ -5238,7 +5257,8 @@
           "2027-02-10": []
         },
         "note": "15 人（全部以大人計）分 N 間同住的組合都沒有空房；2/9 只查到 1 間 3 人、1 間 2 人有空（2026-10-18 楽天庫存）"
-      }
+      },
+      "dinnerAccessNote": "步行 20 分內的晚餐店 8 家以上（只查最近 8 家）：オステリアラブラ 4 分、大喜 4 分、貫 5 分 等（選素泊、朝食付方案時；OSRM，scripts/lodging-dinner-access.mjs，2026-10-18）"
     }
   },
   {
@@ -5250,7 +5270,7 @@
     "closures": [],
     "tags": [],
     "tier": null,
-    "dinnerAccess": null,
+    "dinnerAccess": "walk",
     "verified": false,
     "name": {
       "ja": "ホテルキャッスルイン伊勢",
@@ -5492,7 +5512,8 @@
           ]
         },
         "note": "15 人（全部以大人計）分 N 間同住的組合，有空房的列出；只代表查詢當天楽天上的庫存"
-      }
+      },
+      "dinnerAccessNote": "步行 20 分內的晚餐店 8 家以上（只查最近 8 家）：いおり 8 分、牡蠣の朋 9 分、こま田 10 分 等（選素泊、朝食付方案時；OSRM，scripts/lodging-dinner-access.mjs，2026-10-18）"
     }
   },
   {
@@ -5504,7 +5525,7 @@
     "closures": [],
     "tags": [],
     "tier": null,
-    "dinnerAccess": null,
+    "dinnerAccess": "walk",
     "verified": false,
     "name": {
       "ja": "外宮前別邸 道",
@@ -5693,7 +5714,8 @@
           "2027-02-10": []
         },
         "note": "15 人組合都沒有空房（最多 14 人）；2026-11-17 1 間 2 人也查不到，2027-02 方案可能還沒開（2026-10-18 楽天庫存）"
-      }
+      },
+      "dinnerAccessNote": "步行 20 分內的晚餐店 8 家以上（只查最近 8 家）：豚捨 外宮前店 3 分、ボン・ヴィヴァン 4 分、蔵deらーめん 5 分 等（OSRM，scripts/lodging-dinner-access.mjs，2026-10-18）"
     }
   }
 ]
