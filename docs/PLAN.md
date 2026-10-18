@@ -468,7 +468,7 @@ T7c → T7d → T7e → T7f → T7g → T8a → T8b → T8c → T8d → T7i → 
 | c 餐廳候選 〔M〕 | 流程步驟 7：依子地區用食べログ列表、觀光協會、媒體蒐集，套 A～F（同 T4a）；列表文章的推薦重點寫進 `mentions` | Chrome | `candidates/restaurants.json` |
 | d 餐廳詳細 〔M～L〕 | 流程步驟 8：逐家查食べログ、Google Maps（同 T4b），記菜單連結、fit15 是 yes 或 split 的店的團體套餐，同時在背景開讀文 subagent；用 CONVENTIONS §4「工具」的 `candidates.mjs export` → `chrome-actions.mjs` → `build-restaurants.mjs draft／build`，不要在 scratchpad 重寫腳本；**可以依子地區拆成 2 個並行 session**，merge 時陣列衝突兩邊都保留 | Chrome、subagent | `restaurants.json`、`ig-notes.md`、筆記 |
 | e 收尾 〔S〕 | anchors（OSRM）、缺漏檢查、地圖檢查（同 T4c、T7f）；T8e 另外補心得（見下方「各區注意」） | 腳本 | `restaurants.json`、筆記 |
-| f 摘要與評分 〔M〕 | 流程步驟 10：先讀 `data/raw/toba/assessment-notes.md`，再只讀資料檔和筆記，照 §5.1 寫 `summary`、`assessment`、`tier`（同 T7g；可以依類型拆 3 個並行） | — | 三個檔案 |
+| f 摘要與評分 〔M〕 | 流程步驟 10：先讀 `data/raw/toba/assessment-notes.md`，**先試算這一區 A 以上的比例，超過約 25% 照「依區調整」換門檻（伊勢的餐廳要換，試算見 assessment-notes）**，再只讀資料檔和筆記，照 §5.1 寫 `summary`、`assessment`、`tier`（同 T7g；可以依類型拆 3 個並行） | — | 三個檔案 |
 | g 深入調查 〔S〕 | 流程步驟 11（同 T7j）：f 完成後**另開新 session**（不在指揮 session 裡跑），挑前幾名找部落格、中文心得，重寫有新資訊那幾筆的評分；伊勢、二見各自算 25 筆上限；行程定了以後做第二輪 | WebSearch、subagent | 筆記、三個檔案的 `summary`／`assessment`／`tier` |
 
 各區注意：
