@@ -54,6 +54,7 @@ test('併進 dossier：新來源接在編號後面、各自引用、保留 CRLF'
 test('來源清單的寫法：## 來源、沒縮排、1) 都可以；續行不算結束', () => {
   const a = ['## 來源', '', '1. 官網', '   （補充說明）', '2) 觀光協會', '', '## 重點'];
   assert.deepEqual(findSourceList(a), { last: 4, maxN: 2 });
+  assert.deepEqual(findSourceList(['- 來源：', '  （官網讀取失敗）', '  1. 官網', '## 重點']), { last: 2, maxN: 1 });
   assert.throws(() => findSourceList(['# x', '## 重點']), /找不到來源清單/);
   assert.throws(() => parseNote('- [推薦] 沒有來源'), /來源行/);
 });

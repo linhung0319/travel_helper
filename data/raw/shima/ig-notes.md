@@ -45,7 +45,13 @@
 | @bettei_matoya | 別亭 まとや（`shima-bettei-matoya`） | Grand Mercure 館內 | 食べログ公式アカウント欄；官網沒有連結 |
 | @sushi_yutaka_zen | 鮨裕禅（`shima-sushi-yuzen`） | 間崎島 MOKU ISESHIMA 館內 | 食べログ公式アカウント欄（官網的帳號是 @moku_iseshima，讀文） |
 | @isodo_gozashiragama | 海女小屋体験 磯人（`shima-amagoya-isondo`） |  | Google 網站欄；官網讀不到，營業、預約 T18 看最近貼文 |
+| @amimotonomise_yashiro | 網元の店八代（`shima-amimoto-yashiro`） |  | 食べログ公式アカウント欄、官網（讀文）；官網每月公告營業預定 |
+| @sakanoue.7 | 坂のうえ（`shima-sakanoue`） |  | 食べログ公式アカウント欄、Google 網站欄；營業日（只有週末）T18 看最近貼文 |
+| @yotto1969 | 磯料理ヨット（`shima-iso-ryori-yacht`） |  | Google 網站欄（官網 404）；同一家的根據只有 Google，T18 確認 |
+| @riasbykokotxa | RIAS by Kokotxa（`shima-rias-by-cococha`） | 志摩地中海村 館內 | 官網（讀文）；午餐休業日每月在官網・IG 公告 |
+| @shima_chichuukaimura_azul | タベルナ・アスール（`shima-taberna-azul`） | 志摩地中海村 館內 | 食べログ公式アカウント欄；村的帳號 @shima_chichuukaimura_official（食べログ、官網）另記 |
 - 沒有帳號：はな屋 あじさい、芳カツ亭、近鉄賢島カンツリークラブ レストラン（官網、食べログ 都沒有連結）。
 - 第 2 批沒有帳號：鯛、伊鈴屋、銀鱗、みやぎ野、京城、LA PIZZICA、ろっぽん木、しまかぜ食堂、グリルエドイチ、みやま亭、shucafe（食べログ、官網、Google 都沒有連結）。
 - 第 3 批沒有帳號：はま崎、まるせい、ひさだ、丸寅、まんぷく食堂 板橋、中六、橘、シェブロンカフェ、鮨暁、まつむら、はしもと、丸定旅館（食べログ、官網、Google 都沒有連結）。
 - 第 4 批沒有帳號：田中料理店、しまや、Cafe.C.C（Google 評論說菜單在 IG 公布，但帳號沒有來源）、大万、はまなぎ（住宿 アクアフォレスト 的帳號見 lodging）、どんぐり、槙之木、火場 広の浜、ひでちゃん、庄助、きゅう。排除的 縁 有 @cloud1dining_enishi（食べログ公式アカウント欄），海女の庭 有 @ama.iseshima（官網），沒有記進表。
+- 第 5 批沒有帳號：味幸、西口屋、大江戸温泉物語 伊勢志摩（住宿的帳號見 lodging）。アマネムダイニング 的食べログ欄是集團的 @aman（不是這家店），沒有填。

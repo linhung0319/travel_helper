@@ -51,7 +51,7 @@ export function findSourceList(lines) {
       maxN = Math.max(maxN, Number(m[1]));
       continue;
     }
-    if (lines[i].trim() === '' && last < 0) continue; // 標題和第一項之間的空行
+    if (last < 0 && (lines[i].trim() === '' || /^\s+\S/.test(lines[i]))) continue; // 標題和第一項之間的空行、說明（例如「官網讀不到」，T9d 第 4 批 磯人）
     if (/^\s{2,}\S/.test(lines[i]) && last >= 0) continue; // 上一項的續行
     break;
   }

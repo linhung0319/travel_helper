@@ -90,6 +90,13 @@
 - [ ] T9d 第 4 批：**fit15 的判斷**：海女小屋 火場 広の浜 yes（食べログ 最大予約 着席 40 人；官網包場桌椅最多 24 人）；split——田中料理店（20 席、貸切可）、しまや（30 席）、Cafe.C.C（27 席）、大万（觀光協會 25 席）、槙之木（35 席、完全予約）、ひでちゃん（伊勢志摩観光ナビ 収容 20 名）、庄助（20 席、個室 8、貸切可）；no——鮨裕禅（8 名同時スタート）、居酒屋きゅう（食べログ「3 席」照原文，可能誤植）；unknown——はまなぎ、どんぐり、磯人（席數沒寫）
 - [ ] T9d 第 4 批：**goza・daio 的結論**（README）：goza 午餐只剩 **磯人**（完全予約、天候不定休；景點 さとうみ庵 另計），晚餐 0 家；daio 週二（2/2、2/9）午餐 Cafe.C.C、大万（觀光協會 水休、要電話），晚餐只有大万；週三晚餐只有田中料理店（大万 水休）。wagu 有 ひでちゃん（午晚、日休）、火場（午餐、2 天前預約）
 - [ ] T9d 第 4 批：**overwrite（同第 1～3 批）**：mustTry 7 家改用口コミ的 [招牌]；febNote 3 家（Cafe.C.C、火場、磯人）、reservation.note 3 家（田中、ひでちゃん、庄助）、槙之木 accessibility.note 加口コミ（`recordOld: false`）
+- [ ] T9d 第 5 批：**pending 4 家的結論**——**大江戸温泉物語Premium 伊勢志摩 以 F③ 收錄**（官網「日帰りのご案内」有非住客的「入浴付ディナーバイキング（要事前予約）」17:00～18:30、大人 4,200 円～，id `shima-oedo-iseshima-dining`）；**湯元館 ニュー浜島 excluded**（官網只有住宿附的晚餐、溫泉住客專用）；**志摩地中海村 本體 excluded**（村的總條目：「レストラン 70 席」＝RIAS、「カフェ 20 席」＝カフェ アミーゴ，和收錄的 RIAS、アスール 重複）；**アマネム 本體 excluded**（食べログ 備考：インルームダイニング，只對住客）
+- [ ] T9d 第 5 批：**里海（NEMU RESORT）included → excluded**：2026-04 改裝後仍營業，但官網 restaurant・satoumi 頁沒有「宿泊者以外」「お食事のみ」，洋食晚餐寫「全客室」對象、晚餐價格未上 → 判斷細則 F③ 不成立（同第 1 批 THE HIRAMATSU）。**它是 sakko 唯一寫明個室 10～20 人的店**（食べログ），非住客可以的話是全員晚餐的候選 → questions 電話問，T9g 決定要不要補回
+- [ ] T9d 第 5 批：**アマネムダイニング 以 F③ 收錄（擴大解釋）**：官網沒寫非住客；讀文 subagent 的 WebFetch 一休レストラン 403，**主 session 用 Chrome 讀了一休店頁**（公開預約頁、12:30～13:30 最終入店、50 席・個室 1、預約時要寫「アマネムまでの交通手段・自用車車號」→ 當作有外部客的用餐方案）。但 2026-10-19「現在、予約可能日はございません」、**一休 12 歲以上**（口コミ有住客帶小孩，衝突）；晚餐對非住客沒有來源 → `contexts` 只放 lunch，fit15 split（50 席）
+- [ ] T9d 第 5 批：**坂のうえ `hours` 改成只有週六日（overwrite）**：食べログ店舗情報「土・日 11:00～15:00、月～金 定休」＋口コミ 3 則（2023/04、2023/08、Google 約 2024「午餐只有週六日」）一致，觀光協會「11:00〜16:30、月休」當舊資料 → **hamajima 2/3、2/4、2/10 的備案從 3 家變 2 家**（ヨット、西口屋 2/4）。fit15 yes 的根據是食べログ「貸切可（20 人以下）」（16 席，同第 2 批 Michelle 的判法），但口コミ多則出菜 40 分～2 小時
+- [ ] T9d 第 5 批：**タベルナ・アスール fit15 yes**（官網：午餐方案 1 日 30 名限定、20 名以上可包場、團體事先聯絡），**只在午餐營業日**（2026-10 只有週日）；晚餐 buffet 非住客可否官網沒寫，`contexts` 仍放 dinner（febNote 註明要問）。**RIAS by Kokotxa fit15 unknown**（席數沒寫；食べログ 個室有・貸切可，官網只寫團體要先聯絡）
+- [ ] T9d 第 5 批：**hamajima・sakko 的結論**（README）：hamajima 2/3、2/10（三）午餐只有 **磯料理ヨット**（不能預約、15 席）、2/4（四）ヨット＋西口屋（12 席）——**15 人一起的午餐 3 天都沒有**；晚餐 八代（水・第 1 木 休）、味幸（火休）、大江戸 buffet（每天）。sakko：RIAS（午晚、完全予約）、アスール（午餐特定日、晚餐非住客待確認）、アマネムダイニング（只有大人的午餐）；里海 排除後 sakko 沒有確定能坐 15 人的晚餐
+- [ ] T9d 第 5 批：**overwrite（同第 1～4 批）**：mustTry 6 家改用口コミ的 [招牌]；坂のうえ hours・closedNote・febNote；reservation.note 3 家（八代、坂のうえ、ヨット）、八代 accessibility.note、ヨット kids.note 加口コミ（`recordOld: false`）
 
 ### 2026-10-18 盤點（已處理）
 
@@ -464,3 +471,17 @@
 | 2026-10-19 | T9d | 第 4 批：槙之木、火場、庄助 的食べログ口コミ（2009～2020）都超過 5 年不採用 | CONVENTIONS「5 年以上的不寫」 | — |
 | 2026-10-19 | T9d | 第 4 批：tabelog-info 抽到的 Cafe.C.C 店名被 Claude in Chrome 擋成「[BLOCKED: JWT token]」，tabelog.jsonl 手改 | 店名「Cafe.C.C」被誤判；其他欄位正常 | — |
 | 2026-10-19 | T9d | 第 4 批：磯人 的讀文筆記把「官網讀取失敗」寫在來源清單第一行，`dossier-merge.mjs` 找不到編號，手動移到第 1 項後面 | 工作用腳本只認「  N. 」開頭的連續行 | — |
+| 2026-10-19 | T9d | 第 5 批：大江戸 included（F3）；ニュー浜島、地中海村 本體、アマネム 本體 excluded（見「👤 建議先看」） | 官網日帰りディナーバイキング；其他 3 家沒有非住客方案或和收錄的店重複 | `candidates.mjs set` 改回 pending，restaurants.json 刪 `shima-oedo-iseshima-dining` |
+| 2026-10-19 | T9d | 第 5 批：里海 excluded（見「👤 建議先看」） | 判斷細則 F③：官網沒有非住客用餐 | `candidates.mjs set` 改 included，照 `t9d-5/batch.all.json` 補建資料點（tabelog.jsonl、google.jsonl、facts 都有；Google 借 NEMU 本體，`lodgingId: shima-nemu-resort`） |
+| 2026-10-19 | T9d | 第 5 批：アマネムダイニング included（F3，一休）、contexts 只有 lunch（見「👤 建議先看」） | 一休レストラン的公開預約頁 | 改 excluded 或 contexts 加 dinner |
+| 2026-10-19 | T9d | 第 5 批：坂のうえ hours 週末限定（見「👤 建議先看」） | 食べログ店舗情報＋口コミ 3 則 vs 觀光協會 | `hours` 改回草稿（週二～五 null） |
+| 2026-10-19 | T9d | 第 5 批：id——`shima-amimoto-yashiro`、`shima-miyuki-hamajima`、`shima-iso-ryori-yacht`、`shima-nishiguchiya`、`shima-sakanoue`、`shima-rias-by-cococha`、`shima-taberna-azul`、`shima-amanemu-dining`、`shima-oedo-iseshima-dining` | 住宿資料點附設的用 `<住宿 id>-dining`；RIAS、アスール 有自己的店名，用自己的 id＋`extra.lodgingId: shima-chichukaimura-hotel`（Google 有獨立地點，不借住宿）；AMANEMU 不是住宿資料點，沒有 lodgingId | — |
+| 2026-10-19 | T9d | 第 5 批：大江戸 用 judgement 的 `lodgingId`（Google、座標、照片借住宿本體） | 食べログ這筆就是住宿本體；Google 沒有獨立的餐廳地點 | — |
+| 2026-10-19 | T9d | 第 5 批：網元の店八代 `closures` 2027-02-04（第 1 木） | 官網・觀光協會：水休＋第 1・3 木（祝日營業）；第 3 木 2/18 在旅程外 | 刪掉 closure |
+| 2026-10-19 | T9d | 第 5 批：磯料理ヨット `official` null、`ig` @yotto1969（Google 網站欄） | 官網 404；IG 只有 Google 的根據（ig-notes） | `official` 改回 http://isoryouri-yacht.com/、`ig` null |
+| 2026-10-19 | T9d | 第 5 批：ヨット `hours` 平日 11:00～18:00、週六日祝 null | 觀光協會：平日 18:00 入店まで、日祝 材料切れまで；週六算不算「繁忙日」不明，照「結束時間沒有來源那天填 null」 | — |
+| 2026-10-19 | T9d | 第 5 批：西口屋 `price` null | 只有食べログ預算「昼 ～999」，沒有下限；schema 不收 null 的區間端點 | — |
+| 2026-10-19 | T9d | 第 5 批：味幸 `contexts` 只有 dinner | るるぶ 寫午餐 11～14 時要前一天預約，其他來源只有 17～22 時 | 加 lunch |
+| 2026-10-19 | T9d | 第 5 批：`access` 全部 car | hamajima、sakko 都 needsCar；味幸 浜島巴士站 3～5 分、ヨット 鴻住 巴士站即到，但巴士班次少，同第 3、4 批 | 改 walk |
+| 2026-10-19 | T9d | 第 5 批：口コミ・評論的對象 7 家（`review-targets.mjs` 6 家＋hamajima 週三・2/4 的午餐 ヨット）；大江戸、西口屋 沒讀 | ヨット 是 2/3、2/10 唯一的午餐；大江戸 是住宿本體的 buffet（住宿筆記有心得）、西口屋 fit15 no 而且 Google 4.3／54 不到 100 則 | — |
+| 2026-10-19 | T9d | 第 5 批：讀文 subagent 寫的 dossiers 有 2 份超過 40 行（RIAS 49、ヨット 41），主 session 合併重複的重點後改成 40 行 | CONVENTIONS「40 行以內」 | — |

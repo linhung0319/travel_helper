@@ -423,6 +423,9 @@ T7、T8 的心得幾乎是 0：鄉下小店本來就沒有個人部落格，而�
   - **評論少於 10 則時，`open` 之後該跑哪一步不固定，兩種情況都遇過**：T8e 的オレンジガーデン（2 則）`lowest` 回傳空清單、改跑 `extract` 才有；T9a 的間崎島（9 則）相反，`open` 後直接 `extract` 抽到 0 則、改跑 `lowest` 才有；いわほ観光汽船（4 則）兩步都抽得到。做法：評論少的地點 batch 裡 `open` 後**`extract`、`lowest` 都排**，取有結果的那一個（兩個都 0 則才算沒有評論）。
   - `?cid=` 網址會轉到 `www.google.com/maps/place/…`，batch 第一個 JS 有時會因「換網域」失敗：`chrome-actions.mjs` 加 `--wait 2`（navigate 後等 2 秒）就穩定，第 3 批 12 筆都沒再失敗。
   - `lowest` 偶爾回傳「星數不是由低到高」的警告（かつおの天ぱく，38 則、幾乎都是 5 星）：評論少、低分少的地點照樣用（筆記寫「關聯度順」），不用重試。
+- **已確認**（2026-10-19 T9d 志摩餐廳 5 批）：
+  - Claude in Chrome 會把回傳裡**像 JWT 的字串**換成「[BLOCKED: JWT token]」：第 4 批的店名「Cafe.C.C」、第 5 批 `location.hostname` 的「www.google.com」都被擋過（判斷是啟發式的，和 Base64 那條一樣）。被擋的欄位在 jsonl 裡照頁面手改，其他欄位照常用；只是確認用的回傳（例如清 localStorage 後的主機名）可以不管。
+  - 讀文 subagent 的筆記來源清單偶爾不是「  1. 」的連續項目（第 4 批 磯人 把「官網讀取失敗」寫在第一項前面）：`scripts/dossier-merge.mjs` 接受「- 來源：」或「## 來源」、縮排不拘的「1. 」「1) 」、項目前的說明行和項目的續行；還是找不到時那一家報錯、其他家照做，手改筆記後重跑（已經併過的會跳過）。
 - **讀的時候注意**：
   - Google 的主題標籤是系統自動產生的，多半是菜名（例如カキフライ 36），可以當 `[招牌]` 的參考，不會有「子供」「団体」這類標籤。
   - Google 預設顯示原文，外文評論旁邊才有翻譯開關，不用另外切換。
@@ -605,6 +608,7 @@ T7c～T8d 每一批都在 session 的 scratchpad 重寫同樣的抽取程式、�
 | `scripts/kanko-mie.mjs` | 觀光三重的景點列表（名稱、網址、類別、住所、座標）：`fetch` 抓列表，`missing` 和候選比對、列出可能漏掉的景點（T9a 當景點候選的母體） |
 | `scripts/jalan.mjs` | じゃらん的住宿評分：`list` 地區列表、`yad` 單一旅館、`apply` 寫進 `lodging.json` 的 `ratings.jalan`、`jalanReviews` 和 `sources`（分數變了舊值寫 `extra.conflicts`） |
 | `scripts/apply-patch.mjs` | 回填既有資料點（讀文 facts、口コミ、官網）：只填 null，不同就寫進 `extra.conflicts`；確定要換的用 `overwrite` |
+| `scripts/dossier-merge.mjs` | 口コミ、Google 評論的重點併進讀文筆記：`node scripts/dossier-merge.mjs <area> <工作目錄>/notes [--dry-run]`；`notes/<id>.md` 的格式見 `scripts/lib/dossier-merge.mjs` 開頭（T9d 第 5 批，取代每批複製的 notes-to-json.mjs＋dossier-merge.mjs） |
 
 - **工作目錄**：一批一個 `data/cache/work/<任務>-<批>/`（例如 `t9d-1`），不進 git，但 session 結束後還在，下一個 session 可以接著用。放 `batch.json`、`tabelog.jsonl`、`google.jsonl`（Chrome 回傳的 JSON 一家一行，前面加 `"key"`）、`facts/`、`photos.json`、`judgement.json`、讀文用的 `prompt-common.md`。
 - **Claude 只做判斷**：`judgement.json` 裡的 `hours`、`contexts`、`cuisine`、`price`、`access`、`notes`、`febNote`，以及確認草稿的 `group`、`reservation`、`kids`、`seating`。食べログ字樣的轉換、來源和菜單連結的合併、照片的取捨、候選清單的更新都由工具做。
