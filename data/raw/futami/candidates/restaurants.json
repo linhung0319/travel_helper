@@ -11,17 +11,19 @@
       "A"
     ],
     "reason": null,
-    "pointId": null,
-    "detailPending": true,
+    "pointId": "futami-ofukumochi-honke",
     "ratings": {
       "tabelog": 3.49,
-      "tabelogReviews": 203
+      "tabelogReviews": 203,
+      "google": 4.2,
+      "googleReviews": 604
     },
     "links": {
       "tabelog": "https://tabelog.com/mie/A2403/A240301/24020823/"
     },
     "contexts": [
-      "snack"
+      "snack",
+      "cafe"
     ],
     "note": "類型：咖啡・甜點；地址：伊勢市二見町茶屋568-1"
   },
@@ -37,18 +39,18 @@
       "A"
     ],
     "reason": null,
-    "pointId": null,
-    "detailPending": true,
+    "pointId": "futami-asahiya-sakamoto-manju",
     "ratings": {
       "tabelog": 3.45,
-      "tabelogReviews": 100
+      "tabelogReviews": 100,
+      "google": 4.6,
+      "googleReviews": 175
     },
     "links": {
       "tabelog": "https://tabelog.com/mie/A2403/A240301/24006852/"
     },
     "contexts": [
-      "snack",
-      "cafe"
+      "snack"
     ],
     "note": "類型：咖啡・甜點；地址：伊勢市二見町茶屋107-6"
   },
@@ -64,11 +66,12 @@
       "A"
     ],
     "reason": null,
-    "pointId": null,
-    "detailPending": true,
+    "pointId": "futami-wan-honten",
     "ratings": {
       "tabelog": 3.44,
-      "tabelogReviews": 133
+      "tabelogReviews": 133,
+      "google": 4.4,
+      "googleReviews": 229
     },
     "links": {
       "tabelog": "https://tabelog.com/mie/A2403/A240301/24007882/"
@@ -90,11 +93,12 @@
       "A"
     ],
     "reason": null,
-    "pointId": null,
-    "detailPending": true,
+    "pointId": "futami-ogiya",
     "ratings": {
       "tabelog": 3.43,
-      "tabelogReviews": 188
+      "tabelogReviews": 188,
+      "google": 4.1,
+      "googleReviews": 570
     },
     "links": {
       "tabelog": "https://tabelog.com/mie/A2403/A240301/24001121/"
@@ -117,11 +121,12 @@
       "A"
     ],
     "reason": null,
-    "pointId": null,
-    "detailPending": true,
+    "pointId": "futami-isuzu-seigoan",
     "ratings": {
       "tabelog": 3.42,
-      "tabelogReviews": 56
+      "tabelogReviews": 56,
+      "google": 4.6,
+      "googleReviews": 144
     },
     "links": {
       "tabelog": "https://tabelog.com/mie/A2403/A240301/24006947/"
@@ -143,18 +148,19 @@
       "A"
     ],
     "reason": null,
-    "pointId": null,
-    "detailPending": true,
+    "pointId": "futami-bontin-cafe-misogi",
     "ratings": {
       "tabelog": 3.41,
-      "tabelogReviews": 61
+      "tabelogReviews": 61,
+      "google": 4.7,
+      "googleReviews": 113
     },
     "links": {
       "tabelog": "https://tabelog.com/mie/A2403/A240301/24020912/"
     },
     "contexts": [
-      "snack",
-      "cafe"
+      "cafe",
+      "snack"
     ],
     "note": "類型：咖啡・甜點；地址：伊勢市二見町江575-2 二見興玉神社；定休（食べログ列表）：金曜日；二見興玉神社 境內"
   },
@@ -170,11 +176,12 @@
       "A"
     ],
     "reason": null,
-    "pointId": null,
-    "detailPending": true,
+    "pointId": "futami-le-chinois-kashiori",
     "ratings": {
       "tabelog": 3.31,
-      "tabelogReviews": 34
+      "tabelogReviews": 34,
+      "google": 4.5,
+      "googleReviews": 128
     },
     "links": {
       "tabelog": "https://tabelog.com/mie/A2403/A240301/24016159/"
@@ -197,11 +204,12 @@
       "C"
     ],
     "reason": null,
-    "pointId": null,
-    "detailPending": true,
+    "pointId": "futami-maruhama",
     "ratings": {
       "tabelog": 3.29,
-      "tabelogReviews": 128
+      "tabelogReviews": 128,
+      "google": 3.3,
+      "googleReviews": 275
     },
     "links": {
       "tabelog": "https://tabelog.com/mie/A2403/A240301/24007067/"
@@ -223,11 +231,12 @@
       "C"
     ],
     "reason": null,
-    "pointId": null,
-    "detailPending": true,
+    "pointId": "futami-umikaze-bijutsuten",
     "ratings": {
       "tabelog": 3.21,
-      "tabelogReviews": 21
+      "tabelogReviews": 21,
+      "google": 4.8,
+      "googleReviews": 43
     },
     "links": {
       "tabelog": "https://tabelog.com/mie/A2403/A240301/24020860/"
@@ -250,11 +259,12 @@
       "C"
     ],
     "reason": null,
-    "pointId": null,
-    "detailPending": true,
+    "pointId": "futami-shiosai",
     "ratings": {
       "tabelog": 3.2,
-      "tabelogReviews": 23
+      "tabelogReviews": 23,
+      "google": 3.8,
+      "googleReviews": 177
     },
     "links": {
       "tabelog": "https://tabelog.com/mie/A2403/A240301/24004254/"
@@ -276,16 +286,18 @@
       "C"
     ],
     "reason": null,
-    "pointId": null,
-    "detailPending": true,
+    "pointId": "futami-shofuken",
     "ratings": {
       "tabelog": 3.16,
-      "tabelogReviews": 39
+      "tabelogReviews": 39,
+      "google": 3.9,
+      "googleReviews": 205
     },
     "links": {
       "tabelog": "https://tabelog.com/mie/A2403/A240301/24008599/"
     },
     "contexts": [
+      "lunch",
       "dinner"
     ],
     "note": "類型：和食・割烹；地址：伊勢市二見町茶屋249；個室（食べログ列表）：個室有(8人可)"
@@ -302,17 +314,19 @@
       "C"
     ],
     "reason": null,
-    "pointId": null,
-    "detailPending": true,
+    "pointId": "futami-maruru-cafe",
     "ratings": {
       "tabelog": 3.15,
-      "tabelogReviews": 20
+      "tabelogReviews": 20,
+      "google": 3.8,
+      "googleReviews": 73
     },
     "links": {
       "tabelog": "https://tabelog.com/mie/A2403/A240301/24020274/"
     },
     "contexts": [
-      "snack",
+      "lunch",
+      "dinner",
       "cafe"
     ],
     "note": "類型：咖啡・甜點；地址：伊勢市二見町茶屋277-2 やわらの湯まるや 1F；個室（食べログ列表）：個室有(8人可)；貸切可（食べログ篩選）"
@@ -329,11 +343,12 @@
       "D2"
     ],
     "reason": null,
-    "pointId": null,
-    "detailPending": true,
+    "pointId": "futami-ukichi",
     "ratings": {
       "tabelog": 3.09,
-      "tabelogReviews": 14
+      "tabelogReviews": 14,
+      "google": 3.7,
+      "googleReviews": 15
     },
     "links": {
       "tabelog": "https://tabelog.com/mie/A2403/A240301/24022715/"
@@ -351,9 +366,9 @@
     },
     "region": "futami-okitama",
     "category": "旅館・民宿",
-    "status": "pending",
+    "status": "excluded",
     "criteria": [],
-    "reason": "住宿本體（lodging futami-oishiya，旅館）；食べログ 3.18／24 則、在二見町茶屋的個室篩選裡，符合 C；非住客能不能用餐沒有來源，T8d 先確認",
+    "reason": "excluded（T8d 第 6 批，2026-10-18）：非住客不能用餐的判斷——官網料理頁、FAQ 只有住宿方案（晚餐・早餐在会席処「贄」，團體用餐最多 10 人），食べログ 予約不可、營業時間空白，沒有任何非住客用餐的來源（同第 1 批 伊久）",
     "pointId": null,
     "ratings": {
       "tabelog": 3.18,
@@ -890,11 +905,12 @@
       "A"
     ],
     "reason": null,
-    "pointId": null,
-    "detailPending": true,
+    "pointId": "futami-wasuke",
     "ratings": {
       "tabelog": 3.39,
-      "tabelogReviews": 105
+      "tabelogReviews": 105,
+      "google": 4.1,
+      "googleReviews": 415
     },
     "links": {
       "tabelog": "https://tabelog.com/mie/A2403/A240301/24003498/"
@@ -917,17 +933,19 @@
       "D1"
     ],
     "reason": null,
-    "pointId": null,
-    "detailPending": true,
+    "pointId": "futami-minwa-no-eki-somin",
     "ratings": {
       "tabelog": 3.17,
-      "tabelogReviews": 21
+      "tabelogReviews": 21,
+      "google": 3.8,
+      "googleReviews": 560
     },
     "links": {
       "tabelog": "https://tabelog.com/mie/A2403/A240301/24011265/"
     },
     "contexts": [
-      "lunch"
+      "lunch",
+      "snack"
     ],
     "note": "類型：咖啡・甜點；地址：伊勢市二見町松下1335；補的缺口：二見外圍（futami-outskirts）唯一的 A 是ワスケ（月曜休），2/8（一）中午 0 家：D① 取口コミ數多的可以吃午餐的店；松下社旁的直賣所（パン、弁当）；松下社（futami-matsushita-yashiro）旁，T8a 建議和景點一起考慮"
   },
@@ -943,17 +961,19 @@
       "D1"
     ],
     "reason": null,
-    "pointId": null,
-    "detailPending": true,
+    "pointId": "futami-maiya",
     "ratings": {
       "tabelog": 3.17,
-      "tabelogReviews": 16
+      "tabelogReviews": 16,
+      "google": 4.3,
+      "googleReviews": 37
     },
     "links": {
       "tabelog": "https://tabelog.com/mie/A2403/A240301/24014460/"
     },
     "contexts": [
-      "lunch"
+      "lunch",
+      "dinner"
     ],
     "note": "類型：其他；地址：伊勢市二見町溝口230-51；補的缺口：二見外圍 月曜中午缺口 D①（溝口，タイ料理午餐）"
   },
@@ -969,11 +989,12 @@
       "D1"
     ],
     "reason": null,
-    "pointId": null,
-    "detailPending": true,
+    "pointId": "futami-pine",
     "ratings": {
       "tabelog": 3.08,
-      "tabelogReviews": 14
+      "tabelogReviews": 14,
+      "google": 4.5,
+      "googleReviews": 44
     },
     "links": {
       "tabelog": "https://tabelog.com/mie/A2403/A240301/24013765/"
@@ -991,13 +1012,17 @@
     },
     "region": "futami-outskirts",
     "category": "料理旅館、日本料理",
-    "status": "pending",
-    "criteria": [],
-    "reason": "住宿本體（lodging futami-uminocho，料理旅館）；食べログ 3.35／83 則符合 A，接受非住客用餐的話以 A／F③ 納入（食べログ有網路預約的コース，但心得多是住客）。二見外圍晚上沒有其他店，T8d 先確認",
-    "pointId": null,
+    "status": "included",
+    "criteria": [
+      "A"
+    ],
+    "reason": "住宿本體（lodging futami-uminocho）；官網首頁「日帰り夕食」、489ban 日帰りプラン（上質会席 14,850 円～、プレミアム会席 19,800 円～）→ 非住客可以吃晚餐，以 A（3.35／83）／F③ 收錄（T8d 第 6 批，2026-10-18）",
+    "pointId": "futami-uminocho-dining",
     "ratings": {
       "tabelog": 3.35,
-      "tabelogReviews": 83
+      "tabelogReviews": 83,
+      "google": 4.2,
+      "googleReviews": 703
     },
     "links": {
       "tabelog": "https://tabelog.com/mie/A2403/A240301/24000262/"
@@ -1014,9 +1039,9 @@
     },
     "region": "futami-outskirts",
     "category": "日本料理、オーベルジュ",
-    "status": "pending",
+    "status": "excluded",
     "criteria": [],
-    "reason": "住宿本體（lodging futami-yusura，1 日 5 組的オーベルジュ）；3.23／14 則不符合 A、C（口コミ不到 15），食べログ列表有午餐價位（6,000～7,999 円），接受非住客用餐的話以 F③ 納入；二見外圍晚上沒有店。T8d 先確認",
+    "reason": "excluded（T8d 第 6 批，2026-10-18）：非住客用餐無法確認——官網（首頁、/stay/、news）、観光三重 都只有住宿方案，預約系統的日帰りプラン頁顯示錯誤；只有食べログ 寫午餐 11:30～14:30・晚餐 18:00～22:00（2 日前預約）、コース 是 2018 年的舊資料。電話確認可以的話改 included（F③）",
     "pointId": null,
     "ratings": {
       "tabelog": 3.23,
