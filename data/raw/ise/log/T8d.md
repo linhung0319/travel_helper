@@ -158,3 +158,7 @@
 ### 給第 6 批（二見）
 - 伊勢的 `detailPending` 全部處理完。第 6 批照同樣做法；二見的待確認 3 家（海の蝶、大石屋、ユスラ）先確認非住客能否用餐。
 - 菊池パール（通町）離二見不遠，二見的店不用再為它補 D。
+
+## 第 6 批：二見 17＋待確認 3（2026-10-18）
+
+- 過程紀錄寫在 [`data/raw/futami/log/T8d.md`](../../futami/log/T8d.md)。收錄 18 筆（`data/areas/futami/restaurants.json`），海の蝶 收錄、大石屋・ユスラ excluded。伊勢＋二見的 T8d 全部完成（合計 114 筆），候選都沒有 `detailPending` 了。
