@@ -232,7 +232,7 @@ T7c → T7d → T7e → T7f → T7g → T8a → T8b → T8c → T8d → T7i → 
 - **不問問題**：任務卡裡要 👤 決定的地方（T8a、T9a 的子地區確認、T7g 評分檢查列出的項目、fit15 的疑問、納入標準的邊界等）照規則自己決定，寫進 `docs/decisions-pending.md`（日期、任務、決定、理由、怎麼改回）。**會改變收錄或排除、`fit15`／`groupFit`、子地區、評分門檻，或擴大解釋、違反 CONVENTIONS 規則的決定**，另外加到 decisions-pending 開頭「👤 建議先看」該區的清單（一行：任務、決定、為什麼要看）；邊界判斷只寫表格。這些要討論的決定，集中在該區的 g 任務（T7j、T8g、T9g）和 👤 一起看，不在自動流程中停下來問。
 - **只有這些情況才停**：驗證修 2 次還不過、merge 衝突、前置任務失敗、整個任務因為 API 或 Chrome 連續失敗而做不下去。網站要求驗證碼、登入或封鎖時**不繞過**：那一部分跳過、記錄，繼續做其他部分。
 - **紀錄**：每個任務結束在 `docs/auto-run-log.md` 加一行（任務、時間、merge commit、驗證、跳過或要 👤 看的事）。中斷後重開指揮 session，從這份紀錄接著做。
-- **定期換 session（WebSearch 額度）**：一個 session 的 WebSearch 是 200 次，指揮 session 和所有 subagent 共用，用完**不會報錯**（subagent 會默默只剩 WebFetch，T7e 發生過）。所以每個任務 subagent 回報 WebSearch 用了幾次，寫在 auto-run-log 那一行的最後一欄（「WebSearch N 次」）；**累計超過約 120 次、或已經做完 3 個任務**，就在 auto-run-log 寫「換 session（累計 N 次）」後停下來，請 👤 開新的指揮 session、貼同一個 prompt 接著做（`/clear` 也會歸零）。
+- **定期換 session（WebSearch 額度）**：一個 session 的 WebSearch 是 200 次，指揮 session 和所有 subagent 共用，用完**不會報錯**（subagent 會默默只剩 WebFetch，T7e 發生過）。所以每個任務 subagent 回報 WebSearch 用了幾次，寫在 auto-run-log 那一行的最後一欄（「WebSearch N 次」）；**累計超過約 120 次**，或任務回報搜尋沒有結果、看起來像額度用完，就在 auto-run-log 寫「換 session（累計 N 次）」後停下來（不因為做了幾個任務就停：context 變長時 Claude Code 會自動壓縮），請 👤 開新的指揮 session、貼同一個 prompt 接著做（`/clear` 也會歸零）。
 - **分批**：一個 subagent 的 context 有限，大任務分成幾批，一批一個 subagent，依序做：
   | 任務 | 一批的範圍 |
   |---|---|

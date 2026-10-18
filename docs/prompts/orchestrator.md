@@ -8,7 +8,7 @@
 
 開始前先讀：CLAUDE.md、docs/PLAN.md（§2 任務總覽、§3「自動依序執行」、要做的任務卡）、docs/auto-run-log.md（如果有，從上次停下的地方接著做）。docs/CONVENTIONS.md 不用整份讀，任務 subagent 自己會讀。
 
-**執行範圍**：{起點，例如 T7c} 到 T10，順序照 §3「自動依序執行」的清單；已經是 ✅ 的跳過。
+**執行範圍**：{起點，例如 T7c} 到 {終點，例如 T10}，順序照 §3「自動依序執行」的清單；已經是 ✅ 的跳過。
 
 每個任務的流程：
 1. 確認前置任務都是 ✅、`git status` 是乾淨的，從 master 開分支（任務 ID 小寫，例如 `t7c`）。不用 worktree。
@@ -21,7 +21,7 @@
 3. subagent 回報後（等完成通知），自己檢查：`git log`、`scripts/validate`。沒通過就請 subagent（或新開一個）修，最多 2 次。
 4. 通過後：`git checkout master`、`git merge --no-ff <分支> -m "Merge branch '<分支>'：<一句話>"`、再跑一次 `scripts/validate`、把 PLAN.md §2 該任務改成 ✅ 並 commit、`git branch -d <分支>`。
 5. 在 docs/auto-run-log.md 加一行並 commit：`| 任務 | 完成時間 | merge commit | 驗證 | 跳過或要 👤 看的事 |`，最後一欄寫上「WebSearch N 次」。
-6. 算這個 session 的 WebSearch 累計（自己用的＋各任務回報的）。**累計超過約 120 次、或這個 session 已經做完 3 個任務**，就在 auto-run-log 加一行「換 session（累計 N 次）」並 commit，然後停下來，請我開新的指揮 session 貼同一個 prompt（額度是每個 session 200 次，用完不會報錯）。
+6. 算這個 session 的 WebSearch 累計（自己用的＋各任務回報的）。**累計超過約 120 次**，或任務回報 WebSearch 沒有結果、看起來像額度用完，就在 auto-run-log 加一行「換 session（累計 N 次）」並 commit，然後停下來，請我開新的指揮 session 貼同一個 prompt（額度是每個 session 200 次，用完不會報錯）。
 
 **只有這些情況才停下來**（停的時候在 auto-run-log.md 寫明原因和下一步）：
 - 驗證修 2 次還不過；merge 衝突。
