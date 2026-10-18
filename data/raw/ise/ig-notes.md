@@ -55,3 +55,14 @@
 | @osterialabbra | オステリアラブラ（`ise-osteria-labra`） | | 食べログ公式アカウント欄 |
 | @yuzu_cucina_naturale | 柚 クッチーナナチュラーレ（`ise-yuzu-cucina`） | | 食べログ公式アカウント欄、官網 |
 | @yamatoan_kuroishi | 倭庵 黒石（`ise-wan-kuroishi`） | | 官網 |
+| **第 4 批：ise-geku 其餘＋おく文** | | | |
+| @ise.unagi.kitaya | うなぎ料理 喜多や（`ise-kitaya-unagi`） | | 食べログ公式アカウント欄 |
+| @oriori2_ise | おりおり2（`ise-oriori2`） | | 食べログ公式アカウント欄（每月營業日曆在 IG 公布，T18 要看） |
+| @iseudon_chitose | ちとせ（`ise-chitose`） | | 食べログ公式アカウント欄 |
+| @butasute_official | 豚捨 外宮前店（`ise-butasute-geku`） | 多店（公司，和若柳共用） | 第 3 批 若柳 的食べログ公式アカウント欄；外宮前店 的欄位讀取被截斷，沿用公司帳號 |
+| @dandelion_chocolate_ise | ダンデライオン・チョコレート 伊勢外宮店（`ise-dandelion-chocolate-geku`） | | 食べログ公式アカウント欄（臨時休業在 IG 公布） |
+| @asoranochaya.official | あそらの茶屋（`ise-asora-no-chaya`） | | 食べログ公式アカウント欄、官網 |
+| @isesandoterrace_official | 参道テラス（`ise-sando-terrace`） | | 食べログ公式アカウント欄、官網 |
+| @yamamura_milk | 山村みるくがっこう 外宮前店（`ise-yamamura-milk-geku`） | 多店（公司） | 食べログ公式アカウント欄、官網 |
+| @mori_spaghtti1970 | 喫茶 モリ（`ise-mori-kissa`） | | 食べログ公式アカウント欄（HAMONI 也列同帳號） |
+| @kinoshitachaen_geku | 木下茶園 外宮前店（`ise-kinoshita-chaen-geku`） | | 食べログ公式アカウント欄、官網（可 IG 私訊預約） |
