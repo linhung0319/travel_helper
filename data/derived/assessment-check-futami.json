@@ -92,29 +92,14 @@
     },
     "restaurant": {
       "total": 18,
-      "assessed": 0,
-      "notAssessed": [
-        "futami-ofukumochi-honke",
-        "futami-asahiya-sakamoto-manju",
-        "futami-wan-honten",
-        "futami-ogiya",
-        "futami-isuzu-seigoan",
-        "futami-bontin-cafe-misogi",
-        "futami-le-chinois-kashiori",
-        "futami-maruhama",
-        "futami-umikaze-bijutsuten",
-        "futami-shiosai",
-        "futami-shofuken",
-        "futami-maruru-cafe",
-        "futami-ukichi",
-        "futami-wasuke",
-        "futami-minwa-no-eki-somin",
-        "futami-maiya",
-        "futami-pine",
-        "futami-uminocho-dining"
-      ],
+      "assessed": 18,
+      "notAssessed": [],
       "flagged": 0,
-      "byStar": {}
+      "byStar": {
+        "2": 9,
+        "3": 6,
+        "4": 3
+      }
     }
   },
   "items": []

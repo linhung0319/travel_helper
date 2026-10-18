@@ -1,21 +1,21 @@
 # 二見：研究筆記 README
 
-> 開工先讀這份。最後更新：2026-10-18（T8d 完成：餐廳 18 筆；T8e 收尾：anchors、dinnerAccess；T8e 第 6 批 補心得 11 筆；T8f 第 1 批 景點評分）。這份是**現況**，各任務更新自己的那一節（覆寫，不是追加）。二見和伊勢一起規劃（T8），過程紀錄寫在 `data/raw/ise/log/`（`log/T8a.md`、`log/T8b.md` 只放指向；`log/T8c.md`、`log/T8d.md` 寫二見的部分，共同方法在伊勢的 `log/T8c.md`、`log/T8d.md`）。
+> 開工先讀這份。最後更新：2026-10-18（T8d 完成：餐廳 18 筆；T8e 收尾：anchors、dinnerAccess；T8e 第 6 批 補心得 11 筆；T8f 完成：景點、住宿、餐廳的摘要與評分）。這份是**現況**，各任務更新自己的那一節（覆寫，不是追加）。二見和伊勢一起規劃（T8），過程紀錄寫在 `data/raw/ise/log/`（`log/T8a.md`、`log/T8b.md` 只放指向；`log/T8c.md`、`log/T8d.md` 寫二見的部分，共同方法在伊勢的 `log/T8c.md`、`log/T8d.md`）。
 
 ## 檔案地圖
 
 | 檔案 | 內容 |
 |---|---|
 | `data/areas/futami/spots.json` | 景點 4 筆（T8a：基本欄位、Google、照片、讀文回填；T8f 第 1 批寫了 `summary`／`assessment`／`tier`） |
-| `data/areas/futami/lodging.json` | 住宿 17 筆（T8b：楽天 API、Google、照片、讀文回填；`summary`／`assessment` 待 T8f） |
-| `data/areas/futami/restaurants.json` | 餐廳 18 筆（T8d：食べログ、Google、照片、讀文；`summary`／`assessment`／`tier` 待 T8f，`anchors` T8e 算好） |
+| `data/areas/futami/lodging.json` | 住宿 17 筆（T8b：楽天 API、Google、照片、讀文回填；T8f 第 2 批寫了 `summary`／`assessment`／`tier`） |
+| `data/areas/futami/restaurants.json` | 餐廳 18 筆（T8d：食べログ、Google、照片、讀文；`anchors` T8e 算好；T8f 第 3 批寫了 `summary`／`assessment`／`tier`） |
 | `dossiers/<id>.md` | 讀文筆記（景點 4 份 T8a；住宿 17 份 T8b；餐廳 19 份 T8d，含不收的 `futami-yusura-dining`；T8e 第 6 批 11 份追加食べログ口コミ、Google 評論） |
 | `candidates/spots.json` | 景點候選 19 筆（已收錄 4、沒收錄 12、排除 3）。用程式過濾，不要整份讀 |
 | `candidates/lodging.json` | 住宿候選 23 筆（已收錄 17、排除 4、沒收錄 2） |
 | `candidates/restaurants.json` | 餐廳候選 47 筆（收錄 18、排除 2、未納入 27）。用程式過濾 |
 | `log/T8c.md` | T8c 二見的過程紀錄（町名列表、篩選、D①／D② 怎麼補） |
 | `log/T8d.md` | T8d 第 6 批（二見）的過程紀錄 |
-| `data/raw/ise/log/T8f.md` | T8f（伊勢、二見共用）：第 1 批 景點評分 |
+| `data/raw/ise/log/T8f.md` | T8f（伊勢、二見共用）：第 1～3 批 景點、住宿、餐廳評分；總結 |
 | `data/raw/ise/log/T8e.md` | T8e（伊勢、二見共用）：第 2 批的收尾、補心得的對象；第 6 批 二見的補心得；總結 |
 | `ig-notes.md` | 餐廳 IG 帳號（沒打開 IG，T18 才看） |
 | `questions.md` | 要打電話、人工確認的事 |
@@ -94,6 +94,14 @@
 - T8f：朝日館 的楽天 2.0 是 API 值，和頁面星級分布衝突，評分時參考 Google 和筆記。
 
 ## 餐廳（18 筆）
+### 評分（T8f 第 3 批，2026-10-18，`restaurant-v1`）
+- 照原門檻（食べログ 3.45 以上、100 則以上＋ Google 4.0 以上）試算 2／18＝11%，加上料理旅館的非住客用餐（F③）海の蝶 → **3／18＝17%**，不調整（伊勢的餐廳有調整，見 `data/raw/toba/assessment-notes.md`「依區調整」）。
+- 分布：**S 0**、**A 3**（御福餅本家：食べログ 3.49／203、Google 4.2／604；旭家 酒素饅頭：3.45／100、4.6／175；海の蝶 日帰り夕食：楽天餐 4.56／2,737，口コミ全是住客餐）、3 星 6、2 星 9、1 星 0。
+- 2 星：まるはま（Google 3.3）、松風軒（3.9＋服務負評）、maruru cafe（3.8＋一人一杯飲料的負評）、潮騒・海風美術店（食べログ 3.3 未満、沒有介紹）、缺口保底（D）的 う吉・蘇民・マイヤー・パイン。二見 Google 4.0 以上又有 100 則以上評論的店很少，B 多。
+- **全員 15 人能吃的 `groupFit` 5：maruru cafe（貸切 20～50 人，晚餐時段幼兒不行、6～10 歲可）、う吉（貸切 20～50 人，2026-07 新店、週四休）**，都在 futami-okitama（う吉 要開車）。松風軒、海の蝶 是 4（要電話問能不能事先訂、日帰り能不能用宴會場）；ワスケ 3（split）。
+- `kidsFit` 全席可吸菸扣一級（松風軒、パイン）；`elderFit` null 9（座位形式沒有來源的甜點店、小店）。`confidence`：high 0、medium 5、low 13。
+- 評分檢查（`scripts/assessment-check.mjs futami`）餐廳列出 0 項。
+
 
 ### 現況（T8d 完成）
 - 收錄 18 筆（`data/areas/futami/restaurants.json`）：futami-okitama 13（御福餅、旭家、ウァン、扇屋、勢語庵、BonTin cafe 禊、ル・シノワ 花栞、まるはま、海風美術店、潮騒、松風軒、maruru cafe、う吉）、futami-outskirts 5（ワスケ、民話の駅 蘇民、マイヤー、パイン、旅荘 海の蝶 `futami-uminocho-dining`）。過程見 `log/T8d.md`。
