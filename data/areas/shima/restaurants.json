@@ -77,7 +77,7 @@
       "instagram": "@satoru_nu_88"
     },
     "tags": [],
-    "tier": null,
+    "tier": "A",
     "sources": [
       {
         "type": "tabelog",
@@ -239,6 +239,48 @@
       "conflicts": [
         "營業時間：官網喫茶室 11:00～（食事 L.O.13:30、喫茶 L.O.15:00）vs 食べログ 10:00-17:00 L.O.16:30（後者像真珠店的時間）"
       ]
+    },
+    "summary": {
+      "text": "賢島站前 イワジン真珠店附設、有 40 年的喫茶室（2018 整修），午餐是用あこや貝柱、あおさ、渡り蟹 的義大利麵和ブイヤーベース、パエリア，食べログ口コミ多說「超出預期」。中央有 10 人大桌，15 人可坐大桌＋4 人桌或包場（20 人以下）。",
+      "pros": [
+        "食べログ 3.45（122 則），イワジン風ブイヤーベース（志摩グルメ大賞）多則推薦",
+        "賢島站步行 1 分，全部桌椅；可預約、可包場 20 人以下",
+        "午餐 1,200～2,200 円，賢島一帶平價的午餐"
+      ],
+      "cons": [
+        "週三休（2/3、2/10）；餐點 L.O. 13:30，之後只有喫茶",
+        "中午很快客滿、招牌午餐下午可能賣完",
+        "Google 只有 18 則；兒童餐沒寫"
+      ],
+      "basedOn": [
+        "https://iwajin-pearls.com/",
+        "https://iwajin-pearls.com/tearoom/",
+        "https://iwajin-pearls.com/lunch/",
+        "https://iwajin-pearls.com/pearlstore/",
+        "https://tabelog.com/mie/A2403/A240303/24008581/",
+        "https://tabelog.com/mie/A2403/A240303/24008581/dtlrvwlst/",
+        "https://maps.google.com/?cid=12179406937901593654"
+      ],
+      "generated": "2026-10-19"
+    },
+    "assessment": {
+      "rubric": "restaurant-v1",
+      "scores": {
+        "recommend": 4,
+        "localFlavor": 2,
+        "groupFit": 4,
+        "elderFit": 4,
+        "kidsFit": 4
+      },
+      "rationale": {
+        "recommend": "食べログ 3.45（122 則）＋ Google 4.3 → 第 1 條 4；口コミ（2025～2026）多在 3.5 以上，負評只有送錯餐 1 則",
+        "localFlavor": "義式、西式，但用あこや貝柱、あおさ、渡り蟹 等志摩食材 → 2",
+        "groupFit": "fit15 yes：10 人桌＋4 人桌、包場 20 人以下（不是 15 人以上的團體席）→ 4",
+        "elderFit": "全部桌椅、賢島站步行 1 分；樓層、階梯沒有來源 → 4",
+        "kidsFit": "子供可、義大利麵、咖哩等熟食（兒童餐沒寫）→ 4"
+      },
+      "confidence": "low",
+      "assessed": "2026-10-19"
     }
   },
   {
@@ -360,7 +402,7 @@
       "instagram": null
     },
     "tags": [],
-    "tier": null,
+    "tier": "B",
     "sources": [
       {
         "type": "tabelog",
@@ -514,6 +556,47 @@
         "kids.allowed：原本 unknown，改用 yes（食べログ口コミ、Google 評論（2026-10-18））",
         "座位：食べログ口コミ 多則寫 2F 脫鞋座敷（4 卓）＋桌席（3 卓）＋小個室（2023/06、2026/06）；官網、食べログ店舗情報沒寫"
       ]
+    },
+    "summary": {
+      "text": "賢島站旁家庭式飯店 2F 的和食堂「あじさい」，日歸客也能只用餐：當天的刺身、煮魚、てこね寿司（1,540 円）、海鮮丼、伊勢海老。家族經營、接客溫暖；官網沒有營業時間、菜單，晚餐（17:00～20:00）要事前確認，可能是賢島少數的平價晚餐。",
+      "pros": [
+        "Google 4.4（156 則），口コミ說家族經營、親切",
+        "てこね寿司 1,540 円、海鮮丼 2,200 円，賢島站步行 3～5 分",
+        "有團體也坐得下的大座敷（口コミ）、可包場"
+      ],
+      "cons": [
+        "官網沒有營業時間、菜單、價格；晚餐沒有任何評論提到，2/2 晚上要電話確認",
+        "食堂在 2F、電梯沒寫，大多是座敷（桌席 3 卓）",
+        "Google 有觀光地價格、上菜慢、白飯不好吃的負評"
+      ],
+      "basedOn": [
+        "https://878hanaya.net/cuisine.html",
+        "https://878hanaya.net/access.html",
+        "https://www.kankomie.or.jp/spot/571",
+        "https://tabelog.com/mie/A2403/A240303/24010611/",
+        "https://tabelog.com/mie/A2403/A240303/24010611/dtlrvwlst/",
+        "https://maps.google.com/?cid=7211907634722039815"
+      ],
+      "generated": "2026-10-19"
+    },
+    "assessment": {
+      "rubric": "restaurant-v1",
+      "scores": {
+        "recommend": 3,
+        "localFlavor": 4,
+        "groupFit": 3,
+        "elderFit": 3,
+        "kidsFit": 4
+      },
+      "rationale": {
+        "recommend": "食べログ 3.22（52 則）、Google 4.4（156 則）→ 評論數上限 3（觀光三重有介紹，不是 2）",
+        "localFlavor": "當天的刺身、てこね寿司、伊勢海老 → 4",
+        "groupFit": "fit15 unknown，但食べログ 貸切可、口コミ說有大座敷 → 3",
+        "elderFit": "2F，座敷 4 卓＋桌席 3 卓；電梯沒寫 → 有桌席 4 降一級 3",
+        "kidsFit": "可帶小孩、有煮魚・焼き魚等熟食；口コミ說小孩也喜歡伊勢海老味噌汁 → 4"
+      },
+      "confidence": "medium",
+      "assessed": "2026-10-19"
     }
   },
   {
@@ -600,7 +683,7 @@
       "instagram": "@kashikojimahojoen_official"
     },
     "tags": [],
-    "tier": null,
+    "tier": "A",
     "sources": [
       {
         "type": "tabelog",
@@ -775,6 +858,49 @@
         "食べログ寫夕食 18 時～，官網寫二部制 17:30／19:30"
       ],
       "lodgingId": "shima-hoseien"
+    },
+    "summary": {
+      "text": "賢島的大型溫泉旅館 宝生苑 對外的「日帰り昼食」：燦陽 2F 的「英虞のうみ」看英虞灣，伊勢海老洗い、松阪牛石焼き御膳 9,900 円、刺身定食 7,000 円，也有 2,000 円的海鮮ちらし、ピラフ；可加購溫泉。要前一天預約，週一・二休。",
+      "pros": [
+        "食べログ 3.45（162 則），口コミ說景觀好、份量多、加溫泉划算",
+        "全部桌椅；賢島站免費接駁巴士",
+        "單點 2,000～2,600 円，也有高價的伊勢海老御膳"
+      ],
+      "cons": [
+        "週一・二休（2/2、2/8、2/9）；前一天 12:00（網路）／18:00（電話）前預約",
+        "午餐上菜慢，吃完趕不上溫泉或電車的負評",
+        "午餐的人數上限、兒童餐都沒寫；15 人要電話問"
+      ],
+      "basedOn": [
+        "https://www.hojoen.com/planday/",
+        "https://www.hojoen.com/cuisine/",
+        "https://www.hojoen.com/topicslist/detail.php?no=20260921154638",
+        "https://www.hojoen.com/topicslist/detail.php?no=20261017181501",
+        "https://www.hojoen.com/plangroup/",
+        "https://www.kankomie.or.jp/report/1736",
+        "https://tabelog.com/mie/A2403/A240303/24001751/",
+        "https://tabelog.com/mie/A2403/A240303/24001751/dtlrvwlst/"
+      ],
+      "generated": "2026-10-19"
+    },
+    "assessment": {
+      "rubric": "restaurant-v1",
+      "scores": {
+        "recommend": 4,
+        "localFlavor": 4,
+        "groupFit": 3,
+        "elderFit": 4,
+        "kidsFit": 3
+      },
+      "rationale": {
+        "recommend": "食べログ 3.45（162 則）＋ Google 4.3（住宿本體）→ 第 1 條 4",
+        "localFlavor": "招牌是伊勢海老洗い御膳 → 4",
+        "groupFit": "fit15 unknown；館內有宴會場（住客用），以前有團體午餐（舊）→ 3",
+        "elderFit": "英虞のうみ 全席桌椅、可借輪椅，在 2F（大型旅館）→ 4",
+        "kidsFit": "小孩規定、兒童餐沒寫；有ピラフ、咖哩等熟食 → 3"
+      },
+      "confidence": "medium",
+      "assessed": "2026-10-19"
     }
   },
   {
@@ -906,7 +1032,7 @@
       "instagram": "@shimakankohotel"
     },
     "tags": [],
-    "tier": null,
+    "tier": "A",
     "sources": [
       {
         "type": "tabelog",
@@ -1066,6 +1192,47 @@
         "兒童餐：食べログ「お子様メニューあり」，官網、TableCheck 沒列",
         "改裝期間的午餐場地：TableCheck 日文說在 ラ・メール，英文說在宴會場"
       ]
+    },
+    "summary": {
+      "text": "志摩観光ホテル ベイスイート 5F 的頂級法式，延續「海の幸フランス料理」的傳統（鮑ステーキ、伊勢海老クリームスープ），食べログ 4.04 是志摩最高。晚餐 25,000 円起、smart casual；午餐平常只接 15～40 人包場，旅程期間因クラシック改裝加開一般午餐。限小學生以上。",
+      "pros": [
+        "食べログ 4.04（267 則）、Google 4.8，口コミ（2026）多在 4.0～5.0",
+        "午餐包場 15～40 人（7 天前電話），2/2 晚餐有營業（L.O. 19:30）",
+        "旅程期間（1/23～3/4）有一般午餐 10,300 円～"
+      ],
+      "cons": [
+        "限小學生以上（未就學兒不可），6 歲還沒上小學的孩子不能進",
+        "晚餐 25,000～48,000 円，志摩最貴的一群；當天取消 100%",
+        "Google 有魚過熟、醬汁單調、服務人員擋視線的負評"
+      ],
+      "basedOn": [
+        "https://www.miyakohotels.ne.jp/baysuites/restaurant/lamer/index.html",
+        "https://www.miyakohotels.ne.jp/shima/banquet/",
+        "https://www.tablecheck.com/shops/miyakohotels-shima-lamer/reserve",
+        "https://tabelog.com/mie/A2403/A240303/24005111/",
+        "https://tabelog.com/mie/A2403/A240303/24005111/dtlrvwlst/",
+        "https://maps.google.com/?cid=7608807459504810009"
+      ],
+      "generated": "2026-10-19"
+    },
+    "assessment": {
+      "rubric": "restaurant-v1",
+      "scores": {
+        "recommend": 4,
+        "localFlavor": 2,
+        "groupFit": 5,
+        "elderFit": 4,
+        "kidsFit": 3
+      },
+      "rationale": {
+        "recommend": "食べログ 4.04（267 則）＋ Google 4.8 → 第 1 條 4；5 要食べログ 300 則、Google 500 則以上，兩個都不到",
+        "localFlavor": "招牌是伊勢海老、鮑，但是法式（鳥羽「洋食但用了在地食材 → 2」）→ 2",
+        "groupFit": "官網：午餐包場 15～40 人 → 5（晚餐 15 人要電話確認）",
+        "elderFit": "口コミ說窗邊桌位優先給 3 人以上（桌席）；5F、電梯沒寫 → 4",
+        "kidsFit": "小學生以上（只擋到未就學兒），兒童餐沒寫 → 3"
+      },
+      "confidence": "medium",
+      "assessed": "2026-10-19"
     }
   },
   {
@@ -1207,7 +1374,7 @@
       "instagram": "@shimakankohotel"
     },
     "tags": [],
-    "tier": null,
+    "tier": "A",
     "sources": [
       {
         "type": "tabelog",
@@ -1390,6 +1557,49 @@
         "維修期間 01-23～03-04 用餐地點：TableCheck 日文說ベイスイート「ラ・メール」，英文說宴會場",
         "定休：食べログ 無休，TableCheck 2027-01～03 改裝期間"
       ]
+    },
+    "summary": {
+      "text": "志摩観光ホテル ザ クラシック 1F 的傳統法式（食べログ 4.01／552），「海の幸カレー」、鮑ステーキ 是名物，可帶未就學兒、有兒童套餐。但 2027-01-23～03-04 改裝，整段旅程都不能在這裡吃（午餐移到 ラ・メール，晚餐沒有來源）。",
+      "pros": [
+        "食べログ 4.01（552 則）、Google 4.6（387 則），口コミ說海の幸カレー是「究極的歐風咖哩」",
+        "可帶未就學兒；お子様コース 6,000／8,300 円",
+        "個室「和光」20～40 人"
+      ],
+      "cons": [
+        "2027-01-23～03-04 改裝，旅程 2/2～2/13 都在期間內 → 當作不能吃",
+        "午餐 10,300 円～、晚餐 21,000 円～",
+        "最便宜的套餐被催、忙時叫不到服務人員的負評"
+      ],
+      "basedOn": [
+        "https://www.miyakohotels.ne.jp/shima-classic/restaurant/lamertheclassic/index.html",
+        "https://www.miyakohotels.ne.jp/shima/restaurant/lamertheclassic/privateroom/",
+        "https://www.miyakohotels.ne.jp/shima/banquet/",
+        "https://www.tablecheck.com/shops/miyakohotels-shima-lamertheclassic/reserve",
+        "https://tabelog.com/mie/A2403/A240303/24000053/",
+        "https://tabelog.com/mie/A2403/A240303/24000053/party/",
+        "https://tabelog.com/mie/A2403/A240303/24000053/dtlrvwlst/",
+        "https://maps.google.com/?cid=18128849706725707634"
+      ],
+      "generated": "2026-10-19"
+    },
+    "assessment": {
+      "rubric": "restaurant-v1",
+      "scores": {
+        "recommend": 4,
+        "localFlavor": 2,
+        "groupFit": 3,
+        "elderFit": null,
+        "kidsFit": 5
+      },
+      "rationale": {
+        "recommend": "食べログ 4.01（552 則）＋ Google 4.6 → 第 1 條 4；Google 387 則不到 5 的 500 則。改裝休業不扣推薦度（推薦度只看地點本身，同住宿 Grand Mercure 休館），寫在 summary、cons",
+        "localFlavor": "招牌是伊勢海老、鮑、海の幸カレー，但是法式 → 2（同 ラ・メール）",
+        "groupFit": "fit15 split：196 席、網路最多 12 人，個室 20 人起 → 3",
+        "elderFit": "1F；座位形式、電梯沒有來源",
+        "kidsFit": "未就學兒可、お子様コース（漢堡排、炸蝦）→ 5"
+      },
+      "confidence": "medium",
+      "assessed": "2026-10-19"
     }
   },
   {
@@ -1521,7 +1731,7 @@
       "instagram": "@shimakankohotel"
     },
     "tags": [],
-    "tier": null,
+    "tier": "B",
     "sources": [
       {
         "type": "tabelog",
@@ -1679,6 +1889,47 @@
         "午餐：官網 7 天前完全預約制，TableCheck 寫午餐網路訂位到當天 9:00",
         "午餐預約：官網 7 天前完全預約制，TableCheck 網路訂位到當天 9:00"
       ]
+    },
+    "summary": {
+      "text": "志摩観光ホテル ベイスイート 4F 的和食，伊勢志摩食材的会席 21,000～47,000 円，到 2027-02-28 有「伊勢海老づくし会席」37,000 円。午餐 4～30 人完全預約制（7 天前），15 人可以一起；限小學生以上。",
+      "pros": [
+        "午餐 4～30 人、7 天前電話預約，15 人可一起",
+        "Google 評論說伊勢海老の洗い、地魚刺身、焼き伊勢海老好吃，晚餐也能單點",
+        "2/2 晚餐有營業"
+      ],
+      "cons": [
+        "限小學生以上（未就學兒不可）",
+        "午餐 19,000 円～、晚餐 21,000 円～",
+        "評論少（食べログ 72、Google 23）；有偏清淡、份量少、服務的負評"
+      ],
+      "basedOn": [
+        "https://www.miyakohotels.ne.jp/shima/restaurant/hamayu/",
+        "https://www.tablecheck.com/shops/miyakohotels-shima-hamayu/reserve",
+        "https://tabelog.com/mie/A2403/A240303/24000919/",
+        "https://tabelog.com/mie/A2403/A240303/24000919/party/",
+        "https://tabelog.com/mie/A2403/A240303/24000919/dtlrvwlst/",
+        "https://maps.google.com/?cid=16258554894657295094"
+      ],
+      "generated": "2026-10-19"
+    },
+    "assessment": {
+      "rubric": "restaurant-v1",
+      "scores": {
+        "recommend": 3,
+        "localFlavor": 4,
+        "groupFit": 5,
+        "elderFit": null,
+        "kidsFit": 3
+      },
+      "rationale": {
+        "recommend": "食べログ 3.63（72 則）、Google 4.5（23 則）→ 評論數上限 3",
+        "localFlavor": "伊勢海老づくし会席、地魚 → 4",
+        "groupFit": "官網：午餐 4～30 人完全預約制 → 5",
+        "elderFit": "4F，座位形式（椅子／座敷）沒有來源",
+        "kidsFit": "小學生以上（只擋到未就學兒）、会席生食多 → 3"
+      },
+      "confidence": "low",
+      "assessed": "2026-10-19"
     }
   },
   {
@@ -1754,7 +2005,7 @@
       "instagram": "@shimakankohotel"
     },
     "tags": [],
-    "tier": null,
+    "tier": "B",
     "sources": [
       {
         "type": "tabelog",
@@ -1914,6 +2165,48 @@
         "觀光三重：依日期用餐時間可能限 2 小時",
         "營業時間：觀光協會「食べる」ディナー 17:30～20:30、バー 20:30～23:00、無休 vs 官網・觀光三重・食べログ 11:30～17:30、火水休"
       ]
+    },
+    "summary": {
+      "text": "志摩観光ホテル ザ クラブ 2F 面庭園的咖啡廳，季節アフタヌーンティー 6,800 円（前一天預約）、パフェ、松阪牛ホットサンド；只營業到 17:30，週二・三休。",
+      "pros": [
+        "Google 4.7（79 則），アフタヌーンティー、パフェ 多則好評",
+        "山小屋風空間、面庭園的露台",
+        "非住客也能網路預約"
+      ],
+      "cons": [
+        "週二・三休（2/2、2/3、2/9、2/10）",
+        "2F、電梯沒寫；從賢島站走過去有點辛苦（口コミ）",
+        "餐點 3,400 円～；服務、紅茶溫的負評（舊）"
+      ],
+      "basedOn": [
+        "https://www.miyakohotels.ne.jp/shima-club/restaurant/cafewinebarlien/index.html",
+        "https://www.miyakohotels.ne.jp/shima/restaurant/cafewinebarlien/menu/",
+        "https://www.miyakohotels.ne.jp/shima/restaurant/",
+        "https://www.kankomie.or.jp/activity/2820",
+        "https://tabelog.com/mie/A2403/A240303/24014858/",
+        "https://tabelog.com/mie/A2403/A240303/24014858/dtlrvwlst/",
+        "https://maps.google.com/?cid=18221055773129217554"
+      ],
+      "generated": "2026-10-19"
+    },
+    "assessment": {
+      "rubric": "restaurant-v1",
+      "scores": {
+        "recommend": 3,
+        "localFlavor": 1,
+        "groupFit": 3,
+        "elderFit": 2,
+        "kidsFit": 3
+      },
+      "rationale": {
+        "recommend": "食べログ 3.39（74 則）、Google 4.7（79 則）→ 評論數上限 3",
+        "localFlavor": "咖啡、甜點，和在地無關 → 1",
+        "groupFit": "fit15 split：41 席、貸切不可 → 3",
+        "elderFit": "座位資料只有吧台、在 2F 電梯沒寫 → 3 降一級 2",
+        "kidsFit": "小孩規定沒寫；有ホットサンド、漢堡等熟食 → 3"
+      },
+      "confidence": "medium",
+      "assessed": "2026-10-19"
     }
   },
   {
@@ -1989,7 +2282,7 @@
       "instagram": null
     },
     "tags": [],
-    "tier": null,
+    "tier": "B",
     "sources": [
       {
         "type": "tabelog",
@@ -2162,6 +2455,49 @@
         "mustTry：原本 [\"ヒレカツ定食（4 枚）1,590 円\",\"ロースカツ定食 1,540 円\",\"ジャンボカツ定食 1,810 円\"]，改用 [\"エビフライ定食（大隻，口コミ多則推薦）\",\"ヒレカツ定食（4 枚）1,590 円\",\"ロースカツ定食 1,540 円（可選味噌だれ）\"]（食べログ口コミ、Google 評論（2026-10-18））",
         "座位：官網 8 卓 32 席（桌席）vs 食べログ口コミ「座敷 2 席」（2026/08，1 則）"
       ]
+    },
+    "summary": {
+      "text": "賢島附近的炸豬排定食店（Google 4.3／493），ヒレカツ、ロースカツ 定食 1,500 円前後、大隻エビフライ 是「7 成客人點」的招牌，平日有 1,000 円左右的サービス定食。32 席、不能預約，週末要排隊。",
+      "pros": [
+        "Google 4.3（493 則），在地人氣、炸得不油膩",
+        "1,000～1,800 円，有ミニ定食（小孩、長輩）",
+        "停車場 30 台、全桌席"
+      ],
+      "cons": [
+        "不能預約、客滿就等（平日也等 20 分），週末可能提早停止接客",
+        "週二・三休（2/2、2/3、2/9、2/10）",
+        "冬季カキフライ是冷凍牡蠣；接客態度、急著翻桌的負評"
+      ],
+      "basedOn": [
+        "http://yoshikatsu.info/",
+        "http://yoshikatsu.info/?page_id=69",
+        "http://yoshikatsu.info/?page_id=8",
+        "http://yoshikatsu.info/?page_id=12",
+        "http://yoshikatsu.info/?news=%e3%82%ab%e3%82%ad%e3%83%95%e3%83%a9%e3%82%a4%e3%80%8010%e6%9c%888%e6%97%a5%ef%bc%88%e6%9c%a8%ef%bc%89%e3%82%88%e3%82%8a",
+        "https://tabelog.com/mie/A2403/A240303/24001518/",
+        "https://tabelog.com/mie/A2403/A240303/24001518/dtlrvwlst/",
+        "https://maps.google.com/?cid=15827637123442704722"
+      ],
+      "generated": "2026-10-19"
+    },
+    "assessment": {
+      "rubric": "restaurant-v1",
+      "scores": {
+        "recommend": 3,
+        "localFlavor": 1,
+        "groupFit": 1,
+        "elderFit": 3,
+        "kidsFit": 4
+      },
+      "rationale": {
+        "recommend": "食べログ 3.33 不到 3.45；Google 4.3 但只有官網、沒有觀光或媒體介紹（第 2 條要 2 種來源）→ 3",
+        "localFlavor": "炸豬排、炸蝦，和在地無關 → 1",
+        "groupFit": "不接受預約 → 1",
+        "elderFit": "全桌席，但要排隊 → 4 降一級 3",
+        "kidsFit": "可帶小孩、有ミニヒレカツ・ミニエビフライ定食；有 2 席座敷 → 4"
+      },
+      "confidence": "medium",
+      "assessed": "2026-10-19"
     }
   },
   {
@@ -2245,7 +2581,7 @@
       "instagram": "@shimakankohotel"
     },
     "tags": [],
-    "tier": null,
+    "tier": "B",
     "sources": [
       {
         "type": "tabelog",
@@ -2402,6 +2738,46 @@
         "定休：官網 週二・三 vs 食べログ 週三",
         "午餐：食べログ 土日 11:30～13:30（4 名～、1 週前）vs 官網沒寫"
       ]
+    },
+    "summary": {
+      "text": "志摩観光ホテル ザ クラブ 的鐵板燒（11 席），松阪牛配鮑或伊勢海老的全套 25,000 円起。只適合大人 4～6 人的小組，週二・三休、前一天 20:00 前預約。",
+      "pros": [
+        "松阪牛＋鮑或伊勢海老 的鐵板燒全套",
+        "食べログ：未就學兒、小學生可，有兒童菜單",
+        "賢島站飯店接駁 2 分"
+      ],
+      "cons": [
+        "只有 11 席，15 人不能一起",
+        "週二・三休（2/2、2/3、2/9、2/10）；用餐限 120 分",
+        "25,000 円起；心得 0 篇"
+      ],
+      "basedOn": [
+        "https://www.miyakohotels.ne.jp/shima/restaurant/yamabuki/",
+        "https://www.miyakohotels.ne.jp/shima/restaurant/",
+        "https://restaurant.ikyu.com/107970/",
+        "https://tabelog.com/mie/A2403/A240303/24014903/",
+        "https://maps.google.com/?cid=3176173345431710900"
+      ],
+      "generated": "2026-10-19"
+    },
+    "assessment": {
+      "rubric": "restaurant-v1",
+      "scores": {
+        "recommend": 3,
+        "localFlavor": 3,
+        "groupFit": 1,
+        "elderFit": 2,
+        "kidsFit": 5
+      },
+      "rationale": {
+        "recommend": "食べログ 3.30（25 則）、Google 4.9（13 則）→ 評論數上限 3；心得 0 篇",
+        "localFlavor": "松阪牛、鮑、伊勢海老 的鐵板燒（松阪牛算 3）→ 3",
+        "groupFit": "fit15 no：11 席 → 1",
+        "elderFit": "鐵板燒吧台，ザ クラブ 2F 電梯沒寫 → 3 降一級 2",
+        "kidsFit": "食べログ：小孩可、有兒童菜單 → 5"
+      },
+      "confidence": "low",
+      "assessed": "2026-10-19"
     }
   },
   {
@@ -2451,7 +2827,7 @@
       "instagram": null
     },
     "tags": [],
-    "tier": null,
+    "tier": "B",
     "sources": [
       {
         "type": "tabelog",
@@ -2595,6 +2971,47 @@
         "休場日：楽天GORA 不定休 vs 舊會員權指南 1・2・7・8・12 月每週二休（年份不明，沒採用）",
         "電話：官網 0599-43-1082 vs 食べログ 0599-43-5360"
       ]
+    },
+    "summary": {
+      "text": "賢島對岸的高爾夫球場餐廳，官網寫不打球也能只用餐：海の幸カレー、黒毛和牛溶岩ステーキ 3,960 円、伊勢まだいづくし御膳 2,860 円。有團體會食套餐（1 週前）、個室、可包場；營業時間、2 月休場日官網沒寫，要電話確認。",
+      "pros": [
+        "官網寫不打球也能用餐；有團體會食套餐、個室、可包場",
+        "食べログ口コミ說「高爾夫球場餐廳裡水準高」",
+        "午餐 1,860～4,060 円"
+      ],
+      "cons": [
+        "營業時間、休場日沒寫（舊資料 1・2 月每週二休）",
+        "口コミ全是打球客，沒有只用餐的例子",
+        "鵜方站計程車 5 分，沒有步行可到的車站"
+      ],
+      "basedOn": [
+        "https://golf-resort.kintetsu-re.co.jp/mie/kashikojima/restaurant/",
+        "https://golf-resort.kintetsu-re.co.jp/mie/kashikojima/access/",
+        "https://booking.gora.golf.rakuten.co.jp/golf_course/guide/240013",
+        "https://tabelog.com/mie/A2403/A240303/24012093/",
+        "https://tabelog.com/mie/A2403/A240303/24012093/dtlrvwlst/",
+        "https://maps.google.com/?cid=4065925078023968675"
+      ],
+      "generated": "2026-10-19"
+    },
+    "assessment": {
+      "rubric": "restaurant-v1",
+      "scores": {
+        "recommend": 3,
+        "localFlavor": 3,
+        "groupFit": 5,
+        "elderFit": null,
+        "kidsFit": 3
+      },
+      "rationale": {
+        "recommend": "食べログ 3.26（38 則）、Google 4.3（433 則，球場本體）→ 第 1、2 條都不符合 → 3",
+        "localFlavor": "伊勢まだい御膳、伊勢うどん＋手こね寿司、海の幸カレー：在地海鮮的一般料理 → 3",
+        "groupFit": "fit15 yes：官網有コンペ會食套餐、食べログ 個室・貸切可 → 5",
+        "elderFit": "樓層、座位、電梯沒有來源",
+        "kidsFit": "小孩規定沒寫；有咖哩、漢堡排等熟食 → 3"
+      },
+      "confidence": "medium",
+      "assessed": "2026-10-19"
     }
   },
   {
@@ -2716,7 +3133,7 @@
       "instagram": "@shimabaysideterrace"
     },
     "tags": [],
-    "tier": null,
+    "tier": "A",
     "sources": [
       {
         "type": "tabelog",
@@ -2891,6 +3308,49 @@
     "smoking": null,
     "extra": {
       "lodgingId": "shima-miyako-bayside-terrace"
+    },
+    "summary": {
+      "text": "都リゾート 志摩 ベイサイドテラス 館內的和食（晚餐会席 9,000～20,000 円）和咖啡廳（松阪牛咖哩 2,600 円）。15～50 人的「貸切ランチ」（9,000 円起，法式或和食）是賢島一帶少數明寫能接 15 人午餐的方案。",
+      "pros": [
+        "貸切ランチ 15～50 人（電話預約），和食是ボックスシート",
+        "住宿本體楽天餐 4.55（1,126 則），和食会席手工細的好評",
+        "白天咖啡廳有景觀、人少"
+      ],
+      "cons": [
+        "和食晚餐週二休（2/2）；平常午餐只接 15 人以上預約",
+        "晚餐份量偏少、飲料貴的負評",
+        "賢島站要搭免費接駁約 7 分"
+      ],
+      "basedOn": [
+        "https://www.miyakohotels.ne.jp/bayside-terrace/restaurant/",
+        "https://www.miyakohotels.ne.jp/bayside-terrace/restaurant/group_lunch/",
+        "https://www.miyakohotels.ne.jp/bayside-terrace/restaurant/marenashima_japanese/",
+        "https://www.miyakohotels.ne.jp/bayside-terrace/restaurant/marenashima_french/",
+        "https://www.miyakohotels.ne.jp/bayside-terrace/restaurant/cafe/",
+        "https://www.tablecheck.com/shops/bayside-terrace-hdor/reserve",
+        "https://tabelog.com/mie/A2403/A240303/24020023/",
+        "https://tabelog.com/mie/A2403/A240303/24020023/dtlrvwlst/"
+      ],
+      "generated": "2026-10-19"
+    },
+    "assessment": {
+      "rubric": "restaurant-v1",
+      "scores": {
+        "recommend": 4,
+        "localFlavor": 3,
+        "groupFit": 5,
+        "elderFit": 4,
+        "kidsFit": 3
+      },
+      "rationale": {
+        "recommend": "料理旅館的非住客用餐（F③）：住宿本體楽天餐 4.55（1,126 則）→ 4（食べログ 3.21 只有 33 則，不給 5）",
+        "localFlavor": "和食会席用在地海鮮，咖啡廳是咖哩、ドリア → 3",
+        "groupFit": "官網：貸切ランチ 15～50 人 → 5",
+        "elderFit": "和食是ボックスシート（椅子）；1F → 4",
+        "kidsFit": "小孩規定沒寫（有兒童早餐）；咖哩、ドリア 等熟食；口コミ說小孩嫌套餐上菜慢 → 3"
+      },
+      "confidence": "medium",
+      "assessed": "2026-10-19"
     }
   },
   {
@@ -2980,7 +3440,7 @@
       "instagram": "@mirador_shima"
     },
     "tags": [],
-    "tier": null,
+    "tier": "A",
     "sources": [
       {
         "type": "tabelog",
@@ -3122,6 +3582,49 @@
         "mustTry：原本 [\"伊勢志摩食材のベーグル\",\"ジャーケーキ\",\"ソフトクリーム\"]，改用 [\"志摩半島産しそソーダ 500 円\",\"あおさドーナツ\",\"ソフトクリーム 500 円（季節口味）\"]（食べログ口コミ、Google 評論（2026-10-18））",
         "付款：食べログ口コミ 只收現金（2026/05）"
       ]
+    },
+    "summary": {
+      "text": "横山展望台（英虞灣全景）上的外帶式咖啡，志摩地中海村經營：志摩半島しそソーダ、あおさドーナツ、霜淇淋 500 円左右。口コミ幾乎都是為了景色。旅程期間展望台停車場工事，要從下方走石段上去 15～20 分。",
+      "pros": [
+        "食べログ 3.50（220 則）、Google 4.0（646 則）",
+        "英虞灣全景的天空カフェテラス，しそソーダ、あおさドーナツ 多則推薦",
+        "環境省、觀光三重、觀光協會都有介紹"
+      ],
+      "cons": [
+        "2026-11-24～2027-03-01 停車場工事：從 VC 走石段 15～20 分，長輩很吃力",
+        "外帶、只收現金；露天沒有空調，2 月很冷",
+        "Google 低分多是店員態度差"
+      ],
+      "basedOn": [
+        "https://chubu.env.go.jp/nature/yokoyama/index.html",
+        "https://chubu.env.go.jp/nature/yokoyama/tenboudai/index.html",
+        "https://www.kankomie.or.jp/spot/2307",
+        "https://www.kanko-shima.com/purpose/965/",
+        "https://chubu.env.go.jp/nature/yokoyama/news/article/20250205b.html",
+        "https://tabelog.com/mie/A2403/A240303/24015875/",
+        "https://tabelog.com/mie/A2403/A240303/24015875/dtlrvwlst/",
+        "https://maps.google.com/?cid=3817549000310622317"
+      ],
+      "generated": "2026-10-19"
+    },
+    "assessment": {
+      "rubric": "restaurant-v1",
+      "scores": {
+        "recommend": 4,
+        "localFlavor": 2,
+        "groupFit": 3,
+        "elderFit": 1,
+        "kidsFit": 3
+      },
+      "rationale": {
+        "recommend": "食べログ 3.50（220 則）＋ Google 4.0 → 第 1 條 4；口コミ說是為了景色、點心是附加，照數字不調",
+        "localFlavor": "外帶咖啡，但有しそソーダ、あおさドーナツ 等志摩食材 → 2",
+        "groupFit": "外帶櫃台、不能預約，可以分批買（鳥羽外帶店的例外）→ 3",
+        "elderFit": "工事期間只能從 VC 走石段約 700 m、高低差 80 m（口コミ「很累」）→ 1",
+        "kidsFit": "小孩規定沒寫；霜淇淋、甜甜圈 → 3"
+      },
+      "confidence": "medium",
+      "assessed": "2026-10-19"
     }
   },
   {
@@ -3202,7 +3705,7 @@
       "instagram": "@shimabaysideterrace"
     },
     "tags": [],
-    "tier": null,
+    "tier": "B",
     "sources": [
       {
         "type": "tabelog",
@@ -3359,6 +3862,48 @@
         "席數：官網 78 席 vs 食べログ 66 席",
         "營業：食べログ 17:30～19:30、無休 vs 官網 週末 L.O. 20:30、週四休"
       ]
+    },
+    "summary": {
+      "text": "都リゾート 志摩 ベイサイドテラス 1F 的法式，晚餐套餐 9,000／14,000／20,000 円（最高的有鮑、伊勢海老、松阪牛），有兒童套餐（小學生以下 3,300～4,500 円）。2/2 週二有營業，是第一晚賢島一帶價位 1 萬円左右的晚餐；15～50 人的貸切ランチ也在這裡。",
+      "pros": [
+        "78 席、貸切ランチ 15～50 人；2/2 週二晚餐有營業",
+        "兒童套餐 A 4,500／B 3,300 円",
+        "口コミ說英虞灣景觀、服務親切"
+      ],
+      "cons": [
+        "味道「普通」、價格偏高的口コミ多則；Google 2026 兩則低分",
+        "週四晚餐休（2/4、2/11）；完全予約制",
+        "賢島站要搭免費接駁約 7 分"
+      ],
+      "basedOn": [
+        "https://www.miyakohotels.ne.jp/bayside-terrace/restaurant/marenashima_french/",
+        "https://www.miyakohotels.ne.jp/bayside-terrace/restaurant/group_lunch/",
+        "https://www.tablecheck.com/shops/bayside-terrace-hdor/reserve",
+        "https://tabelog.com/mie/A2403/A240303/24000658/",
+        "https://tabelog.com/mie/A2403/A240303/24000658/party/",
+        "https://tabelog.com/mie/A2403/A240303/24000658/dtlrvwlst/",
+        "https://maps.google.com/?cid=14669638145719383267"
+      ],
+      "generated": "2026-10-19"
+    },
+    "assessment": {
+      "rubric": "restaurant-v1",
+      "scores": {
+        "recommend": 3,
+        "localFlavor": 2,
+        "groupFit": 5,
+        "elderFit": null,
+        "kidsFit": 5
+      },
+      "rationale": {
+        "recommend": "食べログ 3.40（111 則）不到 3.45；Google 3.3 只有 4 則 → 3，口コミ普通",
+        "localFlavor": "法式，用伊勢海老、鮑、松阪牛 → 2",
+        "groupFit": "官網：貸切ランチ 15～50 人在這裡 → 5（晚餐 11 人以上電話）",
+        "elderFit": "1F；座位形式沒有來源",
+        "kidsFit": "兒童套餐（小學生以下）→ 5"
+      },
+      "confidence": "low",
+      "assessed": "2026-10-19"
     }
   },
   {
@@ -3442,7 +3987,7 @@
       "instagram": "@6903michelle"
     },
     "tags": [],
-    "tier": null,
+    "tier": "B",
     "sources": [
       {
         "type": "tabelog",
@@ -3583,6 +4128,45 @@
         "定休：官網 週五＋第 4 週四 vs 食べログ 只寫週五",
         "mustTry：原本 []，改用 [\"ポルチーニクリームパスタ\",\"ふわとろ卵の自家製ボロネーゼ 1,380 円\"]（食べログ口コミ、Google 評論（2026-10-19））"
       ]
+    },
+    "summary": {
+      "text": "志摩神明的手打生義大利麵咖啡店（三重縣產小麥），ポルチーニクリーム、自家製ボロネーゼ 1,380 円前後，店內滿是植物。店主一人經營，18 席可包場（20 人以下），但比較適合小組午餐；晚上預約制。",
+      "pros": [
+        "食べログ口コミ（2023～2026）多在 3.5～5.0，手打ち生パスタ好評",
+        "18 席、可包場；吧台、桌、沙發席",
+        "乳兒、未就學兒、小學生可，可推嬰兒車"
+      ],
+      "cons": [
+        "店主一人經營，出菜很慢（等 30 分～1 小時）的負評多",
+        "週五、第 4 週四休（2/5、2/12）；電話預約只收 12:00 前入店",
+        "鵜方站開車 7 分（志摩神明站約 1.2 km）"
+      ],
+      "basedOn": [
+        "http://michelle.crayonsite.net/",
+        "https://tabelog.com/mie/A2403/A240303/24012463/",
+        "https://tabelog.com/mie/A2403/A240303/24012463/dtlrvwlst/",
+        "https://maps.google.com/?cid=17103462848232431329"
+      ],
+      "generated": "2026-10-19"
+    },
+    "assessment": {
+      "rubric": "restaurant-v1",
+      "scores": {
+        "recommend": 3,
+        "localFlavor": 1,
+        "groupFit": 4,
+        "elderFit": 4,
+        "kidsFit": 4
+      },
+      "rationale": {
+        "recommend": "食べログ 3.28（64 則）、Google 4.3（176 則）→ 評論數上限 3",
+        "localFlavor": "義大利麵、甜點；小麥是三重縣產，但不是伊勢志摩特產 → 1",
+        "groupFit": "fit15 yes 的根據是包場 20 人以下，店主一人經營 → 4",
+        "elderFit": "吧台、桌、沙發席 → 4（週末會排隊，預約可避開）",
+        "kidsFit": "小孩可、義大利麵等熟食 → 4"
+      },
+      "confidence": "medium",
+      "assessed": "2026-10-19"
     }
   },
   {
@@ -3668,7 +4252,7 @@
       "instagram": null
     },
     "tags": [],
-    "tier": null,
+    "tier": "B",
     "sources": [
       {
         "type": "tabelog",
@@ -3775,7 +4359,44 @@
       "note": "志摩神明站約 560 m；停車場 15 台"
     },
     "smoking": "分煙（露台可吸菸）",
-    "extra": {}
+    "extra": {},
+    "summary": {
+      "text": "志摩神明站約 560 m 的咖啡館，午餐、咖啡，露台可帶寵物。官網已關閉，只有食べログ的資料（席數、菜單都不明）。",
+      "pros": [
+        "食べログ：子供可、可包場、可預約",
+        "停車場 15 台",
+        "Google 4.2（109 則）"
+      ],
+      "cons": [
+        "官網關閉，菜單、價格、席數都沒有來源；心得 0 篇",
+        "週二、第 2 週三休（2/2、2/9、2/10）",
+        "露台可吸菸（分煙）"
+      ],
+      "basedOn": [
+        "https://tabelog.com/mie/A2403/A240303/24005869/",
+        "https://maps.google.com/?cid=9857313204977035518"
+      ],
+      "generated": "2026-10-19"
+    },
+    "assessment": {
+      "rubric": "restaurant-v1",
+      "scores": {
+        "recommend": 2,
+        "localFlavor": null,
+        "groupFit": 3,
+        "elderFit": 3,
+        "kidsFit": 3
+      },
+      "rationale": {
+        "recommend": "食べログ 3.16（36 則）未満 3.3，讀文沒有任何介紹（只有食べログ）→ 2",
+        "localFlavor": "菜單沒有來源",
+        "groupFit": "fit15 unknown，但食べログ寫可包場 → 3",
+        "elderFit": "座位資料只有吧台、露台 → 3",
+        "kidsFit": "食べログ子供可，菜單不明 → 3"
+      },
+      "confidence": "low",
+      "assessed": "2026-10-19"
+    }
   },
   {
     "id": "shima-provence-dining",
@@ -3864,7 +4485,7 @@
       "instagram": "@auberge_provence"
     },
     "tags": [],
-    "tier": null,
+    "tier": "B",
     "sources": [
       {
         "type": "tabelog",
@@ -4017,6 +4638,48 @@
         "コース價格：食べログ 14,800 円（2026/06）vs 觀光協會 15,400 円"
       ],
       "lodgingId": "shima-provence"
+    },
+    "summary": {
+      "text": "志摩神明站前的料理旅館 プロヴァンス（じゃらん 4.7）對外的晚餐：1F「賢亭」的料理長おまかせコース 15,400 円，伊勢海老（フリット、ビスク、にぎり）、鮑、美熊野牛、地魚的創作料理，晚餐客人可免費泡日歸溫泉。晚餐 17:30～21:00、無休、當天 15:00 前預約。",
+      "pros": [
+        "住宿本體楽天餐 4.86；食べログ口コミ多在 3.8～5.0、份量多",
+        "2/2 週二有營業；志摩神明站步行 1 分",
+        "有兒童餐、兒童椅（食べログ）"
+      ],
+      "cons": [
+        "30 席（食べログ 18 席）、無個室，15 人一次要電話確認",
+        "非住客晚餐的來源只有觀光協會，官網沒寫；午餐對外沒有來源",
+        "15,400 円／人；特急不停志摩神明站（鵜方轉普通車 1 站）"
+      ],
+      "basedOn": [
+        "http://www.kashikojima.com/provence/index.html",
+        "https://www.kashikojima.com/provence/meals/",
+        "https://www.kanko-shima.com/purpose/1715/",
+        "https://tabelog.com/mie/A2403/A240303/24011469/",
+        "https://tabelog.com/mie/A2403/A240303/24011469/party/",
+        "https://tabelog.com/mie/A2403/A240303/24011469/dtlrvwlst/",
+        "https://maps.google.com/?cid=1560447232878720288"
+      ],
+      "generated": "2026-10-19"
+    },
+    "assessment": {
+      "rubric": "restaurant-v1",
+      "scores": {
+        "recommend": 3,
+        "localFlavor": 4,
+        "groupFit": 3,
+        "elderFit": null,
+        "kidsFit": 5
+      },
+      "rationale": {
+        "recommend": "食べログ 3.50 只有 73 則（第 1 條要 100 則）；F③ 看住宿本體楽天餐 4.86，但楽天 726 則不到 1,000 → 3",
+        "localFlavor": "伊勢海老、鮑、地魚的創作料理 → 4",
+        "groupFit": "fit15 split：30 席（或 18 席）、無個室 → 3",
+        "elderFit": "座位形式沒有來源",
+        "kidsFit": "食べログ：子供可、有兒童餐和兒童椅 → 5"
+      },
+      "confidence": "medium",
+      "assessed": "2026-10-19"
     }
   },
   {
@@ -4133,7 +4796,7 @@
       "instagram": "@tempra_tobari"
     },
     "tags": [],
-    "tier": null,
+    "tier": "B",
     "sources": [
       {
         "type": "tabelog",
@@ -4300,6 +4963,47 @@
         "mustTry：原本 [\"天丼（ランチ限定，タレ／塩）\"]，改用 [\"車海老の天ぷら（コース內）\",\"あおさ（雲丹）の天ぷら（コース內）\",\"あたご丼／穴子丼（ランチコースの〆）\"]（食べログ口コミ、Google 評論（2026-10-19））",
         "席數：食べログ口コミ L 字吧台 6＋4 人桌 3（2026/03）vs 食べログ 25 席"
       ]
+    },
+    "summary": {
+      "text": "天婦羅百名店（食べログ 3.74，志摩餐廳最高分之一），用志摩食材的おまかせ天婦羅コース 13,200～33,000 円：車海老、あおさ雲丹、鮑、伊勢海老；午餐コース 5,500 円 CP 值極高。L 字吧台 6 席＋4 人桌 3 張，完全預約制，10 人以上可依預算包場。",
+      "pros": [
+        "食べログ 3.74（99 則），口コミ說衣輕、不油膩，午餐 5,500 円很划算",
+        "官網：10 人以上可依預算包場",
+        "有兒童套餐、有椅子席"
+      ],
+      "cons": [
+        "完全預約制、取消費 3 天前 50%、2 天前起 100%；平日晚也常滿",
+        "食べログ寫週二休、官網寫不定休 → 2/2 要電話確認",
+        "另收服務費 10%；「米其林主廚」宣傳不實的負評"
+      ],
+      "basedOn": [
+        "https://www.tempratobari.com/",
+        "https://www.tempratobari.com/contact",
+        "https://www.kanko-shima.com/purpose/658/",
+        "https://tabelog.com/mie/A2403/A240303/24016491/",
+        "https://tabelog.com/mie/A2403/A240303/24016491/dtlrvwlst/",
+        "https://maps.google.com/?cid=1333299723456305451"
+      ],
+      "generated": "2026-10-19"
+    },
+    "assessment": {
+      "rubric": "restaurant-v1",
+      "scores": {
+        "recommend": 3,
+        "localFlavor": 3,
+        "groupFit": 5,
+        "elderFit": 4,
+        "kidsFit": 5
+      },
+      "rationale": {
+        "recommend": "食べログ 3.74 但口コミ 99 則、Google 119 則 → 評論數上限 3（差 1 則）",
+        "localFlavor": "用志摩海鮮的天婦羅（一般和食）→ 3",
+        "groupFit": "官網：10 人以上可依預算包場 → 5",
+        "elderFit": "L 字吧台＋4 人桌 3 張 → 4",
+        "kidsFit": "有兒童套餐、椅子席（口コミ「子連れ◎」）→ 5"
+      },
+      "confidence": "medium",
+      "assessed": "2026-10-19"
     }
   },
   {
@@ -4403,7 +5107,7 @@
       "instagram": null
     },
     "tags": [],
-    "tier": null,
+    "tier": "A",
     "sources": [
       {
         "type": "tabelog",
@@ -4565,6 +5269,47 @@
         "seating：原本 [\"zashiki\",\"counter\"]，改用 [\"zashiki\",\"horigotatsu\",\"counter\"]（食べログ口コミ、Google 評論（2026-10-19））",
         "mustTry：原本 []，改用 [\"鯛茶漬けセット（附生魚片）約 2,500～2,750 円\",\"造り御膳 2,700 円\"]（食べログ口コミ、Google 評論（2026-10-19））"
       ]
+    },
+    "summary": {
+      "text": "鵜方站北口步行 3 分的日本料理店，店構像料亭；鯛茶漬けセット 2,500 円前後、造り御膳、鮑定食，食べログ口コミ說 CP 值高。包廂 2 人到 20～30 人都有，是鵜方站一帶唯一明寫 30 人包廂的店，第一晚（2/2）15 人的第一候選（但每月一次週二休）。",
+      "pros": [
+        "食べログ 3.56（220 則），鯛茶漬け、造り御膳 好評",
+        "個室 2～30 人、貸切 50 人以上，鵜方站 3 分",
+        "午餐預約就滿席，晚上也接團體、宴會"
+      ],
+      "cons": [
+        "每月一次週二休、哪週不明 → 2/2 要電話確認；L.O. 沒寫",
+        "Google 低分順 10 則都是 1 星：接客冷淡、伊勢海老・鮑價格不透明",
+        "宴會座敷在 2F，個室是掘りごたつ"
+      ],
+      "basedOn": [
+        "http://shima-tai.com/index.html",
+        "http://shima-tai.com/html/menu.html",
+        "https://www.kanko-shima.com/purpose/1741/",
+        "https://tabelog.com/mie/A2403/A240303/24000565/",
+        "https://tabelog.com/mie/A2403/A240303/24000565/dtlrvwlst/",
+        "https://maps.google.com/?cid=12841812623179404428"
+      ],
+      "generated": "2026-10-19"
+    },
+    "assessment": {
+      "rubric": "restaurant-v1",
+      "scores": {
+        "recommend": 4,
+        "localFlavor": 4,
+        "groupFit": 5,
+        "elderFit": 3,
+        "kidsFit": 4
+      },
+      "rationale": {
+        "recommend": "食べログ 3.56（220 則）＋ Google 4.1 → 第 1 條 4；Google 低分順的負評是挑出來的 10 則，照數字",
+        "localFlavor": "鯛茶漬け、造り，招牌有鮑定食 → 4",
+        "groupFit": "食べログ：個室最多 20～30 人、貸切 50 人以上 → 5",
+        "elderFit": "個室是掘りごたつ、2F 宴會座敷（電梯沒寫）→ 3",
+        "kidsFit": "子供可、有炸物等熟食 → 4"
+      },
+      "confidence": "medium",
+      "assessed": "2026-10-19"
     }
   },
   {
@@ -4679,7 +5424,7 @@
       "instagram": "@chodaya_matsusakabeef"
     },
     "tags": [],
-    "tier": null,
+    "tier": "A",
     "sources": [
       {
         "type": "tabelog",
@@ -4850,6 +5595,48 @@
         "mustTry：原本 []，改用 [\"松阪牛焼肉定食（上）約 2,000 円\",\"松阪牛肉鍋定食 1,650 円\"]（食べログ口コミ、Google 評論（2026-10-19））",
         "席位時間：Google 口コミ（約 2018）1 小時 20 分制；沒預約晚上只能坐到 18:25（約 2026）"
       ]
+    },
+    "summary": {
+      "text": "自家牧場的松阪牛燒肉、牛排、壽喜燒，鵜方站步行 5～8 分。午餐的松阪牛焼肉定食 1,000～2,000 円台 CP 值極高（多則）；晚上有盛り合わせ、長右衛門 4,620 円。100 席、個室 4～8 人；第一晚（2/2 週二）有營業（L.O. 20:00）。",
+      "pros": [
+        "食べログ 3.51（284 則）、Google 4.2（733 則），鵜方評論最多的一群",
+        "午餐焼肉定食平價；2/2 晚上有營業",
+        "100 席、個室 4～8 人，可預約"
+      ],
+      "cons": [
+        "全部座敷；15 人不到包場下限（50 人），要分 2～3 間個室或大廳",
+        "週四休（2/4、2/11）；晚上沒預約只能坐 1 小時",
+        "Google 低分順：午餐肉硬、接客冷淡"
+      ],
+      "basedOn": [
+        "http://www.chodaya.jp/",
+        "http://www.chodaya.jp/menu6.html",
+        "https://www.kanko-shima.com/purpose/1323/",
+        "https://tabelog.com/mie/A2403/A240303/24000435/",
+        "https://tabelog.com/mie/A2403/A240303/24000435/party/",
+        "https://tabelog.com/mie/A2403/A240303/24000435/dtlrvwlst/",
+        "https://maps.google.com/?cid=17065065015197939931"
+      ],
+      "generated": "2026-10-19"
+    },
+    "assessment": {
+      "rubric": "restaurant-v1",
+      "scores": {
+        "recommend": 4,
+        "localFlavor": 3,
+        "groupFit": 4,
+        "elderFit": 2,
+        "kidsFit": 4
+      },
+      "rationale": {
+        "recommend": "食べログ 3.51（284 則）＋ Google 4.2 → 第 1 條 4（5 要食べログ 3.6）",
+        "localFlavor": "松阪牛（算 3）→ 3",
+        "groupFit": "fit15 yes 但根據是 100 席，個室最多 8 人、包場 50 人以上 → 4",
+        "elderFit": "只有座敷 → 2",
+        "kidsFit": "子供可、燒肉熟食 → 4"
+      },
+      "confidence": "high",
+      "assessed": "2026-10-19"
     }
   },
   {
@@ -4959,7 +5746,7 @@
       "instagram": "@daikazoku.shima"
     },
     "tags": [],
-    "tier": null,
+    "tier": "B",
     "sources": [
       {
         "type": "tabelog",
@@ -5108,6 +5895,45 @@
         "kids：原本 {\"allowed\":\"unknown\",\"minAge\":null,\"kidsMenu\":null,\"note\":\"食べログ、官網都沒寫\"}，改用 {\"allowed\":\"yes\",\"minAge\":null,\"kidsMenu\":true,\"note\":\"食べログ口コミ：兒童おまかせ 1,000 円（エビフライ、カキフライ、ご飯、味噌汁）（2025/05、08）\"}（食べログ口コミ、Google 評論（2026-10-19））",
         "mustTry：原本 []，改用 [\"エビフライ（おまかせ內）\",\"わかめしゃぶしゃぶ（突き出し）\"]（食べログ口コミ、Google 評論（2026-10-19））"
       ]
+    },
+    "summary": {
+      "text": "鵜方站前 50 m 的海鮮食堂，沒有菜單、照每人預算おまかせ（午餐 1,500 円起、晚餐 2,000～5,000 円）：地魚刺身、蒸し牡蠣、わかめしゃぶしゃぶ、エビフライ。有兒童おまかせ 1,000 円；營業到 23:00，第一晚（2/2）分組時站前最近的選項。",
+      "pros": [
+        "食べログ 3.43、Google 4.4（201 則），口コミ說 CP 值高",
+        "兒童おまかせ 1,000 円（エビフライ、カキフライ）",
+        "鵜方站 1 分、2/2 有營業、有 6～8 人大桌"
+      ],
+      "cons": [
+        "30 席、無個室，15 人要分桌或包場",
+        "晚餐當天常客滿，要先預約、先講預算",
+        "Google 低分：份量或品質不值、出菜慢"
+      ],
+      "basedOn": [
+        "https://retty.me/restaurant/100001252286/",
+        "https://tabelog.com/mie/A2403/A240303/24013198/",
+        "https://tabelog.com/mie/A2403/A240303/24013198/dtlrvwlst/",
+        "https://maps.google.com/?cid=17461622138978014804"
+      ],
+      "generated": "2026-10-19"
+    },
+    "assessment": {
+      "rubric": "restaurant-v1",
+      "scores": {
+        "recommend": 3,
+        "localFlavor": 4,
+        "groupFit": 3,
+        "elderFit": 4,
+        "kidsFit": 5
+      },
+      "rationale": {
+        "recommend": "食べログ 3.43 不到 3.45；Google 4.4 但 201 則不到 300 → 3",
+        "localFlavor": "地魚刺身、蒸し牡蠣、伊勢海老味噌汁 → 4",
+        "groupFit": "fit15 split：30 席、可包場 → 3",
+        "elderFit": "座敷＋吧台，口コミ有 4 人桌和 6～8 人大桌 → 4",
+        "kidsFit": "兒童おまかせ 1,000 円 → 5"
+      },
+      "confidence": "medium",
+      "assessed": "2026-10-19"
     }
   },
   {
@@ -5206,7 +6032,7 @@
       "instagram": "@otoyasushi_shima"
     },
     "tags": [],
-    "tier": null,
+    "tier": "B",
     "sources": [
       {
         "type": "tabelog",
@@ -5367,6 +6193,47 @@
         "席數：觀光協會 34 vs 食べログ 28",
         "mustTry：原本 []，改用 [\"海鮮丼\",\"天ぷら・おとや定食 2,200 円\",\"焼カキ（的矢カキ）1,300 円\"]（食べログ口コミ、Google 評論（2026-10-19））"
       ]
+    },
+    "summary": {
+      "text": "明治 41 年創業的壽司店，鵜方站北口 3 分，海鮮丼、天ぷら・おとや定食、的矢カキ 的焼カキ。有 10～20 人的包廂。但 Google 多則說壽司刺身沒標價、結帳很高、店主態度差；週二・三休，第一晚不能用。",
+      "pros": [
+        "個室 10～20 人，鵜方站 3 分",
+        "海鮮丼、おとや定食 2,200 円、焼カキ 1,300 円",
+        "老舖、地元客多"
+      ],
+      "cons": [
+        "Google 3.7：壽司、刺身沒標價、結帳很高，店主態度、常客優先（多則）",
+        "週二・三休（2/2、2/3、2/9、2/10）",
+        "座敷＋吧台；預約只接電話"
+      ],
+      "basedOn": [
+        "http://otoya100.sakura.ne.jp/",
+        "http://otoya100.sakura.ne.jp/facilities.html",
+        "https://www.kanko-shima.com/purpose/1687/",
+        "https://tabelog.com/mie/A2403/A240303/24001034/",
+        "https://tabelog.com/mie/A2403/A240303/24001034/dtlrvwlst/",
+        "https://maps.google.com/?cid=15543796772665210234"
+      ],
+      "generated": "2026-10-19"
+    },
+    "assessment": {
+      "rubric": "restaurant-v1",
+      "scores": {
+        "recommend": 2,
+        "localFlavor": 3,
+        "groupFit": 5,
+        "elderFit": 3,
+        "kidsFit": 3
+      },
+      "rationale": {
+        "recommend": "食べログ 3.35（91 則）、Google 3.7（180 則）而且心得有性價比、接客的負評 → 2",
+        "localFlavor": "壽司、海鮮丼（一般和食），焼カキ 是副菜 → 3",
+        "groupFit": "食べログ：個室 10～20 人、可預約 → 5",
+        "elderFit": "座敷＋吧台、沒有桌席 → 3",
+        "kidsFit": "子供可，但壽司生食為主（有天ぷら）→ 3"
+      },
+      "confidence": "medium",
+      "assessed": "2026-10-19"
     }
   },
   {
@@ -5474,7 +6341,7 @@
       "instagram": null
     },
     "tags": [],
-    "tier": null,
+    "tier": "B",
     "sources": [
       {
         "type": "tabelog",
@@ -5623,6 +6490,45 @@
         "晚餐：觀光協會 ～20:00（L.O. 19:30）vs まっぷる・食べログ ～21:00",
         "最近車站：觀光協會 鵜方站 10 分 vs まっぷる 志摩横山站 15 分"
       ]
+    },
+    "summary": {
+      "text": "鵜方站步行約 10 分的海鮮料理店，みやま御膳 2,250 円（主菜選カキフライ、地魚フライ等）、海鮮丼、かつおてこね寿司 1,550 円，也有爐端燒。有座敷、小上がり、包廂，まっぷる 說適合大人數。",
+      "pros": [
+        "Google 4.0（362 則），觀光協會、まっぷる 介紹",
+        "かつおてこね寿司 1,550 円等，價格平實",
+        "2/2 週二有營業（L.O. 19:30）、有包廂"
+      ],
+      "cons": [
+        "心得 0 篇（只有觀光協會、まっぷる）",
+        "座敷、小上がり為主",
+        "週三休（2/3、2/10）；團體條件沒寫"
+      ],
+      "basedOn": [
+        "https://www.kanko-shima.com/purpose/1685/",
+        "https://www.mapple.net/region/a0405010400_g03050400/spot/",
+        "https://tabelog.com/mie/A2403/A240303/24008717/",
+        "https://maps.google.com/?cid=8369304828939172222"
+      ],
+      "generated": "2026-10-19"
+    },
+    "assessment": {
+      "rubric": "restaurant-v1",
+      "scores": {
+        "recommend": 3,
+        "localFlavor": 4,
+        "groupFit": 3,
+        "elderFit": 3,
+        "kidsFit": 3
+      },
+      "rationale": {
+        "recommend": "食べログ 3.34（99 則）、Google 4.0（362 則）→ 3",
+        "localFlavor": "かつおてこね寿司 → 4",
+        "groupFit": "fit15 unknown，但有包廂、可包場，まっぷる 說適合大人數 → 3",
+        "elderFit": "座敷、小上がり＋吧台，沒有桌席 → 3",
+        "kidsFit": "小孩規定沒寫；有カキフライ、地魚フライ等熟食 → 3"
+      },
+      "confidence": "low",
+      "assessed": "2026-10-19"
     }
   },
   {
@@ -5726,7 +6632,7 @@
       "instagram": "@isokko_manayan"
     },
     "tags": [],
-    "tier": null,
+    "tier": "B",
     "sources": [
       {
         "type": "tabelog",
@@ -5898,6 +6804,48 @@
         "seating：原本 []，改用 [\"zashiki\",\"counter\"]（食べログ口コミ、Google 評論（2026-10-19））",
         "座位：食べログ口コミ 1F 吧台＋4 人座敷數間、2F 和室全座敷（2021/05、2026/03）"
       ]
+    },
+    "summary": {
+      "text": "鵜方站一帶的海鮮食堂，海鮮まかない丼セット 1,980 円、手こね寿司＋エビフライ、活伊勢海老刺，地魚新鮮。一般客不能預約、來店順、賣完就打烊；團體可以前一天前電話事前點餐預約。1F 吧台＋小座敷、2F 全座敷。",
+      "pros": [
+        "官網：團體前一天前事前點餐可預約；55 席＋個室",
+        "手こね寿司、まかない丼、伊勢海老御膳，晚上也有營業",
+        "2/2 週二有營業"
+      ],
+      "cons": [
+        "店主態度高壓、出菜 30～60 分的負評多",
+        "店規「吵鬧的小孩不收」，排隊或團體時段可能拒絕帶小孩",
+        "2F 全座敷，人多時常被帶到 2F；常提早打烊"
+      ],
+      "basedOn": [
+        "https://www.isokko.jp/",
+        "https://www.isokko.jp/qa/topics.cgi",
+        "https://www.isokko.jp/menu.php",
+        "https://www.kanko-shima.com/purpose/1843/",
+        "https://tabelog.com/mie/A2403/A240303/24001504/",
+        "https://tabelog.com/mie/A2403/A240303/24001504/dtlrvwlst/",
+        "https://maps.google.com/?cid=7229408023965535880"
+      ],
+      "generated": "2026-10-19"
+    },
+    "assessment": {
+      "rubric": "restaurant-v1",
+      "scores": {
+        "recommend": 3,
+        "localFlavor": 4,
+        "groupFit": 5,
+        "elderFit": 2,
+        "kidsFit": 3
+      },
+      "rationale": {
+        "recommend": "食べログ 3.30（83 則）、Google 3.9（337 則）→ 3",
+        "localFlavor": "手こね寿司、伊勢海老御膳 → 4",
+        "groupFit": "官網 Q&A：團體前一天前事前點餐可預約、55 席 → 5",
+        "elderFit": "1F 吧台＋座敷、2F 全座敷（團體多在 2F）→ 2",
+        "kidsFit": "有エビフライ等熟食，但店規不收吵鬧的小孩、可能拒絕 → 3"
+      },
+      "confidence": "medium",
+      "assessed": "2026-10-19"
     }
   },
   {
@@ -5973,7 +6921,7 @@
       "instagram": null
     },
     "tags": [],
-    "tier": null,
+    "tier": "B",
     "sources": [
       {
         "type": "tabelog",
@@ -6127,6 +7075,48 @@
       "conflicts": [
         "郵遞區號：官網 Access 頁同時寫 517-0501 與 517-0517"
       ]
+    },
+    "summary": {
+      "text": "昭和 24 年創業的老洋食，パールコロッケ（加阿古屋貝貝柱的奶油可樂餅）、タンシチュー、カツサンド，家庭的溫和味道。15 席小店，包場剛好 15 人；營業到 19:00，只適合午餐。店在住宅區的陡坡上。",
+      "pros": [
+        "パールコロッケ（志摩特色）、タンシチュー 多則好評",
+        "15 席、包場 20 人以下；桌 5 卓＋露台",
+        "大人小孩都喜歡的洋食"
+      ],
+      "cons": [
+        "週四、日休（2/4、2/7、2/11）；L.O. 18:30，第一晚趕不上",
+        "從路邊看板要爬陡坡（多則）",
+        "出菜慢、臨時休的負評"
+      ],
+      "basedOn": [
+        "https://grill-edoichi.com/",
+        "https://grill-edoichi.com/?page_id=177",
+        "https://grill-edoichi.com/?page_id=151",
+        "https://www.kanko-shima.com/purpose/1783/",
+        "https://tabelog.com/mie/A2403/A240303/24000625/",
+        "https://tabelog.com/mie/A2403/A240303/24000625/dtlrvwlst/",
+        "https://maps.google.com/?cid=9632480280476202814"
+      ],
+      "generated": "2026-10-19"
+    },
+    "assessment": {
+      "rubric": "restaurant-v1",
+      "scores": {
+        "recommend": 3,
+        "localFlavor": 2,
+        "groupFit": 4,
+        "elderFit": 3,
+        "kidsFit": 4
+      },
+      "rationale": {
+        "recommend": "食べログ 3.28（59 則）、Google 4.3（188 則）→ 評論數上限 3",
+        "localFlavor": "洋食，但パールコロッケ 用阿古屋貝柱 → 2",
+        "groupFit": "fit15 yes 但要包場才坐得下（15 席）→ 4",
+        "elderFit": "桌席，但店前是陡坡（口コミ多則）→ 3",
+        "kidsFit": "子供可、漢堡排、可樂餅（沒有兒童餐）→ 4"
+      },
+      "confidence": "medium",
+      "assessed": "2026-10-19"
     }
   },
   {
@@ -6243,7 +7233,7 @@
       "instagram": null
     },
     "tags": [],
-    "tier": null,
+    "tier": "B",
     "sources": [
       {
         "type": "tabelog",
@@ -6409,6 +7399,48 @@
         "mustTry：原本 [\"あおさ海苔と魚介のチーズピザ 1,980円\"]，改用 [\"あおさ海苔のピザ\",\"マルゲリータ\"]（食べログ口コミ、Google 評論（2026-10-19））",
         "2026/01 從 阿児町神明1506-1 移到 鵜方1224-3（食べログ）；Google 2026 年前的評論是舊店"
       ]
+    },
+    "summary": {
+      "text": "志摩横山站旁的義式（2026/01 搬到現址、店面變大），窯烤披薩、あおさ海苔と魚介のチーズピザ 1,980 円、蛤とあおさのボンゴレ，店主是侍酒師。60 席全桌席、最大予約 60 人、晚餐 L.O. 21:00，第一晚（2/2 週二）15 人的候選（離鵜方站約 1 km）。",
+      "pros": [
+        "60 席全桌席、最大予約 60 人，2/2 晚上有營業（L.O. 21:00）",
+        "あおさ披薩、マルゲリータ 多則好評，有適合小孩的披薩",
+        "停車場 20 台"
+      ],
+      "cons": [
+        "出菜很慢（等 40 分～1 小時以上，多則）",
+        "週四休（2/4、2/11）",
+        "鵜方站步行 13～14 分（長輩搭計程車約 3 分）；食べログ 只有 16 則"
+      ],
+      "basedOn": [
+        "https://www.la-pizzica.com/",
+        "https://www.kanko-shima.com/purpose/19449/",
+        "https://tabiiro.jp/gourmet/s/316026-shima-la-pizzica/",
+        "https://tabelog.com/mie/A2403/A240303/24022283/",
+        "https://tabelog.com/mie/A2403/A240303/24022283/party/",
+        "https://tabelog.com/mie/A2403/A240303/24022283/dtlrvwlst/",
+        "https://maps.google.com/?cid=7196286487353284777"
+      ],
+      "generated": "2026-10-19"
+    },
+    "assessment": {
+      "rubric": "restaurant-v1",
+      "scores": {
+        "recommend": 3,
+        "localFlavor": 2,
+        "groupFit": 5,
+        "elderFit": 4,
+        "kidsFit": 4
+      },
+      "rationale": {
+        "recommend": "食べログ 3.20（16 則）、Google 4.3（186 則）→ 評論數上限 3",
+        "localFlavor": "義式，但用あおさ等在地食材 → 2",
+        "groupFit": "食べログ（店舗会員）：最大予約 60 人 → 5",
+        "elderFit": "全部桌席（15 卓）→ 4",
+        "kidsFit": "觀光協會：可帶小孩、有適合小孩的披薩 → 4"
+      },
+      "confidence": "medium",
+      "assessed": "2026-10-19"
     }
   },
   {
@@ -6494,7 +7526,7 @@
       "instagram": "@mabushinoichiya"
     },
     "tags": [],
-    "tier": null,
+    "tier": "B",
     "sources": [
       {
         "type": "tabelog",
@@ -6653,6 +7685,45 @@
         "mustTry：原本 []，改用 [\"伊勢どりまぶし\",\"鰻ひつまぶし（上）\",\"松阪牛まぶし\"]（食べログ口コミ、Google 評論（2026-10-19））",
         "席數：食べログ口コミ 吧台約 5＋桌 2 張（2024/12）vs 食べログ 18 席"
       ]
+    },
+    "summary": {
+      "text": "鵜方站 1 分的ひつまぶし店：鰻、松阪牛、伊勢どり 三種まぶし（皮脆肉軟、藥味多），等飯店接送時順路。店很小（吧台約 5 席＋桌 2 張），コース 4～16 名、可包場。",
+      "pros": [
+        "Google 4.4（174 則），三種ひつまぶし好評",
+        "鵜方站 1 分，2/2 有營業（L.O. 19:30）",
+        "乳兒、未就學兒、小學生可"
+      ],
+      "cons": [
+        "女店員態度差的負評多則（2025～2026）",
+        "店小，週末要等位；15 人要包場",
+        "週三休（2/3、2/10）"
+      ],
+      "basedOn": [
+        "https://tabelog.com/mie/A2403/A240303/24020292/",
+        "https://tabelog.com/mie/A2403/A240303/24020292/party/",
+        "https://tabelog.com/mie/A2403/A240303/24020292/dtlrvwlst/",
+        "https://maps.google.com/?cid=15271833112006851021"
+      ],
+      "generated": "2026-10-19"
+    },
+    "assessment": {
+      "rubric": "restaurant-v1",
+      "scores": {
+        "recommend": 3,
+        "localFlavor": 3,
+        "groupFit": 4,
+        "elderFit": 4,
+        "kidsFit": 4
+      },
+      "rationale": {
+        "recommend": "食べログ 3.18（38 則）、Google 4.4（174 則）→ 評論數上限 3",
+        "localFlavor": "鰻（1），但有松阪牛、伊勢どり（三重食材）→ 3",
+        "groupFit": "fit15 yes 但店小、要包場或コース 16 人 → 4",
+        "elderFit": "座敷、桌、吧台 → 4",
+        "kidsFit": "小孩可、熟食（ひつまぶし）→ 4"
+      },
+      "confidence": "medium",
+      "assessed": "2026-10-19"
     }
   },
   {
@@ -6778,7 +7849,7 @@
       "instagram": "@norpol_french"
     },
     "tags": [],
-    "tier": null,
+    "tier": "B",
     "sources": [
       {
         "type": "tabelog",
@@ -6946,6 +8017,48 @@
         "月曜休：官網註明 12 月除外，食べログ沒寫",
         "地址：官網「鵜方ビジネスホテル 1F」vs 食べログ「ニューチャムビル 1F」"
       ]
+    },
+    "summary": {
+      "text": "鵜方站步行 5 分的小法式食堂，主廚曾任大使館公邸料理人、志摩観光ホテル，午餐コース 2,000～3,300 円、晚餐 4,620／6,820 円的平價カジュアルフレンチ。18 席、20 人以下可包場；週二休，第一晚不能用。",
+      "pros": [
+        "食べログ口コミ多在 3.5～5.0，前菜、魚料理細緻",
+        "18 席、包場 20 人以下；吧台 3 席＋桌 6 卓",
+        "帶小孩、過敏對應親切，有小孩可吃的パスタ"
+      ],
+      "cons": [
+        "週二休（2/2、2/9），第 2・4 週一休（2/8）",
+        "評論少（食べログ 21、Google 70）；食材和價格比不值的負評",
+        "在大樓 1F、不好找"
+      ],
+      "basedOn": [
+        "https://shima-frenchrestaurant-norpol.com/",
+        "https://shima-frenchrestaurant-norpol.com/menu/dinner/",
+        "https://shima-frenchrestaurant-norpol.com/contact-access/",
+        "https://tabelog.com/mie/A2403/A240303/24016233/",
+        "https://tabelog.com/mie/A2403/A240303/24016233/party/",
+        "https://tabelog.com/mie/A2403/A240303/24016233/dtlrvwlst/",
+        "https://maps.google.com/?cid=4254599579821306314"
+      ],
+      "generated": "2026-10-19"
+    },
+    "assessment": {
+      "rubric": "restaurant-v1",
+      "scores": {
+        "recommend": 3,
+        "localFlavor": 1,
+        "groupFit": 4,
+        "elderFit": 4,
+        "kidsFit": 4
+      },
+      "rationale": {
+        "recommend": "食べログ 3.18（21 則）、Google 4.1（70 則）→ 評論數上限 3",
+        "localFlavor": "法式，菜單沒有標明在地食材 → 1",
+        "groupFit": "fit15 yes 但要包場才坐得下（18 席）→ 4",
+        "elderFit": "吧台＋桌 6 卓（口コミ）→ 4",
+        "kidsFit": "子供可、有小孩可吃的パスタ（兒童餐沒寫）→ 4"
+      },
+      "confidence": "low",
+      "assessed": "2026-10-19"
     }
   },
   {
@@ -7050,7 +8163,7 @@
       "instagram": null
     },
     "tags": [],
-    "tier": null,
+    "tier": "B",
     "sources": [
       {
         "type": "tabelog",
@@ -7195,6 +8308,47 @@
         "包場：官網 20～40 名 vs 食べログ 20～50 人",
         "打烊：官網 24:00 vs 食べログ 01:30"
       ]
+    },
+    "summary": {
+      "text": "鵜方的老牌居酒屋，鮮魚刺身、ぶり塩焼き，午餐日替定食 924～990 円。40 席，20～40 人可包場，宴會おまかせセット 2,750 円（8 人起）、飲み放題 5,500 円（平日 10 人起）；週二晚上營業到深夜，第一晚 15 人的候選之一。",
+      "pros": [
+        "官網：40 席、包場 20～40 人、宴會套餐 8～10 人起",
+        "2/2 週二晚上有營業",
+        "午餐定食 1,000 円以下，CP 值高"
+      ],
+      "cons": [
+        "Google 3.9：店主・店員無愛想、刺身不新鮮、冷凍炸物的負評",
+        "座敷＋吧台、無個室",
+        "鵜方站約 900 m（長輩搭計程車 3 分）；週日休"
+      ],
+      "basedOn": [
+        "http://roppongi-shima.com/",
+        "http://roppongi-shima.com/course.html",
+        "https://tabelog.com/mie/A2403/A240303/24005459/",
+        "https://tabelog.com/mie/A2403/A240303/24005459/party/",
+        "https://tabelog.com/mie/A2403/A240303/24005459/dtlrvwlst/",
+        "https://maps.google.com/?cid=18420540658307184290"
+      ],
+      "generated": "2026-10-19"
+    },
+    "assessment": {
+      "rubric": "restaurant-v1",
+      "scores": {
+        "recommend": 3,
+        "localFlavor": 3,
+        "groupFit": 5,
+        "elderFit": 3,
+        "kidsFit": 4
+      },
+      "rationale": {
+        "recommend": "食べログ 3.15（19 則）、Google 3.9（112 則）→ 評論數上限 3",
+        "localFlavor": "居酒屋的鮮魚刺身、塩焼き → 3",
+        "groupFit": "官網：包場 20～40 人、宴會套餐 → 5",
+        "elderFit": "座敷＋吧台，沒有桌席 → 3",
+        "kidsFit": "子供可、有烤魚等熟食 → 4"
+      },
+      "confidence": "low",
+      "assessed": "2026-10-19"
     }
   },
   {
@@ -7280,7 +8434,7 @@
       "instagram": null
     },
     "tags": [],
-    "tier": null,
+    "tier": "B",
     "sources": [
       {
         "type": "tabelog",
@@ -7447,6 +8601,46 @@
         "mustTry：原本 [\"伊勢うどんめかぶ入り 500 円（稅別）\"]，改用 [\"伊勢志摩からあげ（定食）\",\"伊勢うどん（めかぶ入り）\",\"岩牡蠣 1 個 1,210 円（季節）\"]（食べログ口コミ、Google 評論（2026-10-19））",
         "晚上營業：食べログ口コミ 2026/05～08 晚上 17:00 後都有營業（觀光協會「11:00～18:00」應是舊資料）"
       ]
+    },
+    "summary": {
+      "text": "鵜方站南口前的伊勢烏龍麵兼居酒屋，伊勢うどん（めかぶ入り）、てこね寿司チャーハン、伊勢志摩からあげ、季節岩牡蠣；中午到晚上不休息，等特急時方便。32 席，20～50 人可包場。",
+      "pros": [
+        "伊勢うどん、てこね寿司チャーハン 等在地菜色",
+        "鵜方站 1 分、通し営業；有座敷和椅子席",
+        "有兒童餐具，座敷帶小孩方便"
+      ],
+      "cons": [
+        "營業時間來源矛盾（食べログ 週二休、到 21:00；觀光協會 到 18:00）",
+        "上菜要催、漏單、海鮮鮮度普通的負評",
+        "包場 20 人起，15 人要問"
+      ],
+      "basedOn": [
+        "https://www.kanko-shima.com/purpose/1668/",
+        "https://hamoni.jp/shop/kNsc0dpOHo0bc6btMWuIYUxS9MRxYJy9",
+        "https://tabelog.com/mie/A2403/A240303/24015009/",
+        "https://tabelog.com/mie/A2403/A240303/24015009/dtlrvwlst/",
+        "https://maps.google.com/?cid=8784866892322154940"
+      ],
+      "generated": "2026-10-19"
+    },
+    "assessment": {
+      "rubric": "restaurant-v1",
+      "scores": {
+        "recommend": 3,
+        "localFlavor": 4,
+        "groupFit": 4,
+        "elderFit": 4,
+        "kidsFit": 4
+      },
+      "rationale": {
+        "recommend": "食べログ 3.13（39 則）、Google 4.0（98 則）→ 評論數上限 3",
+        "localFlavor": "伊勢うどん、てこね寿司チャーハン → 4",
+        "groupFit": "fit15 yes 的根據是包場（20～50 人），15 人不到包場下限 → 4",
+        "elderFit": "有座敷和椅子席（口コミ）→ 4",
+        "kidsFit": "有兒童餐具，烏龍麵、唐揚げ 等熟食 → 4"
+      },
+      "confidence": "low",
+      "assessed": "2026-10-19"
     }
   },
   {
@@ -7564,7 +8758,7 @@
       "instagram": null
     },
     "tags": [],
-    "tier": null,
+    "tier": "B",
     "sources": [
       {
         "type": "tabelog",
@@ -7704,6 +8898,45 @@
         "個室：觀光協會 有 vs 食べログ 無",
         "觀光協會連結的官網 ginrin.co.jp 是鳥羽 浦村的「料理の宿 銀鱗」，不是這家"
       ]
+    },
+    "summary": {
+      "text": "鵜方站步行 10 分的日本料理、壽司，主打在地魚料理的おまかせコース（9 品），晚上營業到 23:00、幾乎無休。席數來源矛盾（16 或 30）；食べログ寫全席可吸菸。",
+      "pros": [
+        "晚上營業到 23:00，2/2 週二有營業",
+        "觀光協會：在地食材的魚料理、肉料理",
+        "可預約"
+      ],
+      "cons": [
+        "食べログ 3.12、Google 3.8，心得 0 篇",
+        "食べログ寫全席可吸菸",
+        "席數、個室的來源互相矛盾；價格沒寫"
+      ],
+      "basedOn": [
+        "https://www.kanko-shima.com/purpose/1876/",
+        "https://www.ginrin.co.jp/acc.html",
+        "https://tabelog.com/mie/A2403/A240303/24004673/",
+        "https://maps.google.com/?cid=2675961179343257665"
+      ],
+      "generated": "2026-10-19"
+    },
+    "assessment": {
+      "rubric": "restaurant-v1",
+      "scores": {
+        "recommend": 2,
+        "localFlavor": 3,
+        "groupFit": 2,
+        "elderFit": 4,
+        "kidsFit": null
+      },
+      "rationale": {
+        "recommend": "食べログ 3.12 未満 3.3 而且 Google 3.8 未満 4.0 → 2",
+        "localFlavor": "在地魚的おまかせ（一般和食）→ 3",
+        "groupFit": "fit15 unknown：可預約，席數 16 或 30 → 2",
+        "elderFit": "桌 4 卓＋吧台（食べログ）→ 4",
+        "kidsFit": "小孩規定、菜色（熟食）都沒有來源"
+      },
+      "confidence": "low",
+      "assessed": "2026-10-19"
     }
   },
   {
@@ -7743,7 +8976,7 @@
       "instagram": null
     },
     "tags": [],
-    "tier": null,
+    "tier": "B",
     "sources": [
       {
         "type": "tabelog",
@@ -7845,7 +9078,44 @@
       "note": "志摩横山站約 690 m、鵜方站約 1 km；有停車場"
     },
     "smoking": "全席禁煙",
-    "extra": {}
+    "extra": {},
+    "summary": {
+      "text": "鵜方的炸豬排、炸物店（Google 4.0／204）。營業時間、定休、菜單、價格都沒有來源（只有食べログ店舗情報），先當午餐店，要電話確認。",
+      "pros": [
+        "Google 4.0（204 則）",
+        "可預約、有個室",
+        "有停車場"
+      ],
+      "cons": [
+        "營業時間、定休、菜單都沒有來源",
+        "心得 0 篇",
+        "不可包場；志摩横山站約 690 m"
+      ],
+      "basedOn": [
+        "https://tabelog.com/mie/A2403/A240303/24006261/",
+        "https://maps.google.com/?cid=11466120071957926934"
+      ],
+      "generated": "2026-10-19"
+    },
+    "assessment": {
+      "rubric": "restaurant-v1",
+      "scores": {
+        "recommend": 3,
+        "localFlavor": 1,
+        "groupFit": 2,
+        "elderFit": null,
+        "kidsFit": 3
+      },
+      "rationale": {
+        "recommend": "食べログ 3.32（50 則）、Google 4.0（204 則）→ 評論數上限 3；讀文只有食べログ",
+        "localFlavor": "炸豬排、炸物 → 1",
+        "groupFit": "fit15 unknown：可預約、有個室（人數不明）、不可包場 → 2",
+        "elderFit": "座位形式沒有來源",
+        "kidsFit": "小孩規定沒寫；炸物熟食 → 3"
+      },
+      "confidence": "low",
+      "assessed": "2026-10-19"
+    }
   },
   {
     "id": "shima-yakiniku-uemura",
@@ -7948,7 +9218,7 @@
       "instagram": "@yakiniku_uemura"
     },
     "tags": [],
-    "tier": null,
+    "tier": "B",
     "sources": [
       {
         "type": "tabelog",
@@ -8064,6 +9334,44 @@
         "kids.note：原本 食べログ、官網都沒寫，改用 食べログ口コミ：小孩點ビビンバセット（可去辣）、可借剪刀剪肉（2013～2023，4 則）（食べログ口コミ、Google 評論（2026-10-19））",
         "seating：原本 []，改用 [\"zashiki\"]（食べログ口コミ、Google 評論（2026-10-19））"
       ]
+    },
+    "summary": {
+      "text": "國道 167 號旁的燒肉店，松阪牛、山形牛的七輪炭火燒肉，午餐ロース定食 1,700 円～、松阪牛ロース定食 3,000 円以下 CP 值高。座敷個室 2～20 人；離車站遠，要開車或計程車。",
+      "pros": [
+        "食べログ：個室 2～20 人，15 人可一間",
+        "午餐定食 CP 值高、有 25 年的常客",
+        "小孩可點ビビンバ（去辣）、借剪刀剪肉"
+      ],
+      "cons": [
+        "資料只有食べログ（沒有官網、觀光協會）",
+        "全座敷",
+        "志摩神明站約 1.6 km；漲價、臨時休業的負評"
+      ],
+      "basedOn": [
+        "https://tabelog.com/mie/A2403/A240303/24006560/",
+        "https://tabelog.com/mie/A2403/A240303/24006560/dtlrvwlst/",
+        "https://maps.google.com/?cid=8672614249510734277"
+      ],
+      "generated": "2026-10-19"
+    },
+    "assessment": {
+      "rubric": "restaurant-v1",
+      "scores": {
+        "recommend": 3,
+        "localFlavor": 3,
+        "groupFit": 5,
+        "elderFit": 2,
+        "kidsFit": 4
+      },
+      "rationale": {
+        "recommend": "食べログ 3.19（51 則）、Google 4.1（234 則）→ 評論數上限 3",
+        "localFlavor": "松阪牛燒肉 → 3",
+        "groupFit": "食べログ：個室 10～20 人、可預約 → 5",
+        "elderFit": "座敷的個室 → 2",
+        "kidsFit": "可帶小孩、燒肉熟食、ビビンバ → 4"
+      },
+      "confidence": "medium",
+      "assessed": "2026-10-19"
     }
   },
   {
@@ -8167,7 +9475,7 @@
       "instagram": null
     },
     "tags": [],
-    "tier": null,
+    "tier": "B",
     "sources": [
       {
         "type": "tabelog",
@@ -8302,6 +9610,45 @@
         "步行：觀光協會 12 分 vs 食べログ 約 20 分",
         "mustTry：原本 []，改用 [\"週替わりお楽しみランチ\",\"海鮮丼（掛け丼、とろろ）2,000 円\"]（食べログ口コミ、Google 評論（2026-10-19））"
       ]
+    },
+    "summary": {
+      "text": "鵜方站南邊 ボナール館內的和食處，曾任志摩観光ホテル 和食調理長的店：週替わりランチ 1,260～2,000 円、海鮮掛け丼、ミニ懐石；晚上有ふぐ、伊勢海老。掘りごたつ、包廂，30 席；食べログ寫全席可吸菸。",
+      "pros": [
+        "食べログ口コミ多在 3.5～5.0，午餐細緻、CP 值高",
+        "掘りごたつ、包廂；2/2 週二有營業",
+        "Google 低分順最低 2 星，批評只有份量少"
+      ],
+      "cons": [
+        "食べログ寫全席可吸菸",
+        "評論少（食べログ 21、Google 90），口コミ多是舊的",
+        "鵜方站步行 12～20 分；週三休"
+      ],
+      "basedOn": [
+        "https://www.kanko-shima.com/purpose/1683/",
+        "https://tabelog.com/mie/A2403/A240303/24000337/",
+        "https://tabelog.com/mie/A2403/A240303/24000337/dtlrvwlst/",
+        "https://maps.google.com/?cid=8496561524645933476"
+      ],
+      "generated": "2026-10-19"
+    },
+    "assessment": {
+      "rubric": "restaurant-v1",
+      "scores": {
+        "recommend": 3,
+        "localFlavor": 3,
+        "groupFit": 3,
+        "elderFit": 3,
+        "kidsFit": 3
+      },
+      "rationale": {
+        "recommend": "食べログ 3.15（21 則）、Google 4.4（90 則）→ 評論數上限 3",
+        "localFlavor": "海鮮丼、懐石，用在地海鮮的一般和食 → 3",
+        "groupFit": "fit15 split：30 席、有個室 → 3",
+        "elderFit": "吧台＋座敷、掘りごたつ → 3",
+        "kidsFit": "小孩規定沒寫；有天ぷら等熟食 → 3"
+      },
+      "confidence": "low",
+      "assessed": "2026-10-19"
     }
   },
   {
@@ -8391,7 +9738,7 @@
       "instagram": null
     },
     "tags": [],
-    "tier": null,
+    "tier": "B",
     "sources": [
       {
         "type": "tabelog",
@@ -8504,7 +9851,45 @@
       "note": "鵜方站約 1.1 km（步行約 15 分）；共用停車場 30 台以上"
     },
     "smoking": null,
-    "extra": {}
+    "extra": {},
+    "summary": {
+      "text": "2025 年 9 月開幕的連鎖定食店（ダイムグループ），11:00～21:00。資料少：席數、定休、菜單文字都沒有來源。",
+      "pros": [
+        "11:00～21:00，晚上也有營業",
+        "共用停車場 30 台以上",
+        "有個室（食べログ）"
+      ],
+      "cons": [
+        "食べログ 3.14、Google 3.9，評論很少、心得 0 篇",
+        "定休、席數、預約都沒寫",
+        "鵜方站約 1.1 km"
+      ],
+      "basedOn": [
+        "https://dime-group.jp/shimakaze_shokudo/",
+        "https://tabelog.com/mie/A2403/A240303/24022014/",
+        "https://maps.google.com/?cid=7446584523250699700"
+      ],
+      "generated": "2026-10-19"
+    },
+    "assessment": {
+      "rubric": "restaurant-v1",
+      "scores": {
+        "recommend": 2,
+        "localFlavor": null,
+        "groupFit": null,
+        "elderFit": null,
+        "kidsFit": null
+      },
+      "rationale": {
+        "recommend": "食べログ 3.14 未満 3.3 而且 Google 3.9 未満 4.0 → 2",
+        "localFlavor": "菜單只有圖片，沒有來源",
+        "groupFit": "席數、能不能預約都沒有來源",
+        "elderFit": "座位形式沒有來源",
+        "kidsFit": "小孩規定、菜色都沒有來源"
+      },
+      "confidence": "low",
+      "assessed": "2026-10-19"
+    }
   },
   {
     "id": "shima-keijo-ugata",
@@ -8583,7 +9968,7 @@
       "instagram": null
     },
     "tags": [],
-    "tier": null,
+    "tier": "B",
     "sources": [
       {
         "type": "tabelog",
@@ -8703,6 +10088,44 @@
         "營業：觀光協會 16:00～24:00（L.O. 23:00）vs 食べログ 16:00～22:00",
         "定休：食べログ 週二 vs 觀光協會 沒寫"
       ]
+    },
+    "summary": {
+      "text": "鵜方站約 575 m 的燒肉店，觀光協會說在地人熟悉、菜單多、適合各年齡層。只有晚上（16:00～），定休來源不一致（週二休只有食べログ寫）。",
+      "pros": [
+        "Google 4.0（177 則）",
+        "觀光協會：菜單多、各年齡層都適合",
+        "有個室、可預約"
+      ],
+      "cons": [
+        "食べログ寫週二休 → 2/2、2/9 可能不能用",
+        "心得 0 篇；席數、價格沒寫",
+        "不可包場"
+      ],
+      "basedOn": [
+        "https://www.kanko-shima.com/purpose/5772/",
+        "https://tabelog.com/mie/A2403/A240303/24010853/",
+        "https://maps.google.com/?cid=7796040394836651743"
+      ],
+      "generated": "2026-10-19"
+    },
+    "assessment": {
+      "rubric": "restaurant-v1",
+      "scores": {
+        "recommend": 3,
+        "localFlavor": 1,
+        "groupFit": 2,
+        "elderFit": null,
+        "kidsFit": 4
+      },
+      "rationale": {
+        "recommend": "食べログ 3.13（22 則）、Google 4.0（177 則）→ 評論數上限 3（觀光協會有介紹，不是 2）",
+        "localFlavor": "一般燒肉，沒有松阪牛等的來源 → 1",
+        "groupFit": "fit15 unknown：有個室（人數不明）、不可包場 → 2",
+        "elderFit": "座位形式沒有來源",
+        "kidsFit": "觀光協會：各年齡層都適合；燒肉熟食 → 4"
+      },
+      "confidence": "low",
+      "assessed": "2026-10-19"
     }
   },
   {
@@ -8775,7 +10198,7 @@
       "instagram": "@higasiyama_bussan"
     },
     "tags": [],
-    "tier": null,
+    "tier": "A",
     "sources": [
       {
         "type": "tabelog",
@@ -8917,6 +10340,46 @@
         "營業：觀光協會 ～19:00 頃（L.O. 18:00）vs 食べログ ～18:00",
         "mustTry：原本 []，改用 [\"上重 3,900 円（附ミニうざく・う巻き）\",\"肝焼き 700 円\"]（食べログ口コミ、Google 評論（2026-10-19））"
       ]
+    },
+    "summary": {
+      "text": "鵜方站南口的炭火烤鰻魚，うなぎ百名店（食べログ 3.74／931、Google 4.5／1,767，志摩評論最多的店）：外皮脆、肉鬆軟，上重 3,900 円附うざく、う巻き。座位不能預約，只能電話預留鰻魚、到店再等；週二休、賣完就打烊。",
+      "pros": [
+        "食べログ 3.74（931 則）、Google 4.5（1,767 則），口コミ多在 4.0～5.0",
+        "可電話預留鰻魚（熱門日 1 週～1 個月前），也能外帶",
+        "子供可、有兒童椅"
+      ],
+      "cons": [
+        "座位不能預約：預留了鰻魚還常等 1～2 小時，沒預留可能吃不到",
+        "週二休（2/2、2/9）、只收現金；L.O. 18:00",
+        "全座敷"
+      ],
+      "basedOn": [
+        "https://higashiyamabussan.gorp.jp/",
+        "https://www.kanko-shima.com/purpose/1752/",
+        "https://tabelog.com/mie/A2403/A240303/24006418/",
+        "https://tabelog.com/mie/A2403/A240303/24006418/dtlrvwlst/",
+        "https://maps.google.com/?cid=18388069724135556055"
+      ],
+      "generated": "2026-10-19"
+    },
+    "assessment": {
+      "rubric": "restaurant-v1",
+      "scores": {
+        "recommend": 4,
+        "localFlavor": 1,
+        "groupFit": 1,
+        "elderFit": 1,
+        "kidsFit": 4
+      },
+      "rationale": {
+        "recommend": "食べログ 3.74（931 則）＋ Google 4.5 → 第 1 條 4；介紹只有觀光協會 1 種，不到 5 的 3 種",
+        "localFlavor": "鰻魚，和在地無關 → 1",
+        "groupFit": "座位不能預約 → 1",
+        "elderFit": "全座敷，而且要等 1～2 小時 → 2 降一級 1",
+        "kidsFit": "子供可、有兒童椅、鰻魚是熟食 → 4"
+      },
+      "confidence": "high",
+      "assessed": "2026-10-19"
     }
   },
   {
@@ -9024,7 +10487,7 @@
       "instagram": "@petitrestaurant_miyamoto"
     },
     "tags": [],
-    "tier": null,
+    "tier": "A",
     "sources": [
       {
         "type": "tabelog",
@@ -9170,6 +10633,47 @@
       "conflicts": [
         "mustTry：原本 [\"志摩産鮑ステーキ 15,000 円\",\"ビーフシチュー 4,800 円\"]，改用 [\"海老フライカレー 1,650 円\",\"海鮮グルメカレー 2,800 円\"]（食べログ口コミ、Google 評論（2026-10-19））"
       ]
+    },
+    "summary": {
+      "text": "鵜方 ボナール館 1F 的老牌洋食，主廚曾在志摩観光ホテル 修業：海老フライカレー 1,650 円、海鮮グルメカレー 2,800 円、志摩産鮑ステーキ 15,000 円、あわびフルコース 19,800 円。有お子様セット 1,000 円；週一、二休，第一晚不能用。",
+      "pros": [
+        "食べログ 3.51（173 則）、Google 4.2，海鮮カレー 像飯店的味道（多則）",
+        "お子様セット 1,000 円（漢堡排、炸蝦）",
+        "桌 6～7 張＋吧台"
+      ],
+      "cons": [
+        "週一・二休（2/2、2/8、2/9），2026/11 也有不定期加休",
+        "出菜很慢、漏單的負評多",
+        "週日開店前就排隊；コース 平日限定、前一天前預約"
+      ],
+      "basedOn": [
+        "https://r-miyamoto.sakura.ne.jp/",
+        "https://r-miyamoto.sakura.ne.jp/menu.php",
+        "https://r-miyamoto.sakura.ne.jp/news_detail.php?no=20261006172624",
+        "https://tabelog.com/mie/A2403/A240303/24000188/",
+        "https://tabelog.com/mie/A2403/A240303/24000188/dtlrvwlst/",
+        "https://maps.google.com/?cid=4729466058156553414"
+      ],
+      "generated": "2026-10-19"
+    },
+    "assessment": {
+      "rubric": "restaurant-v1",
+      "scores": {
+        "recommend": 4,
+        "localFlavor": 2,
+        "groupFit": 2,
+        "elderFit": 4,
+        "kidsFit": 5
+      },
+      "rationale": {
+        "recommend": "食べログ 3.51（173 則）＋ Google 4.2 → 第 1 條 4",
+        "localFlavor": "洋食，但有志摩産鮑ステーキ、伊勢海老コース → 2",
+        "groupFit": "fit15 unknown：可預約，桌 6～7 張、不可包場 → 2",
+        "elderFit": "桌席＋吧台（口コミ）→ 4",
+        "kidsFit": "官網有お子様セット → 5"
+      },
+      "confidence": "medium",
+      "assessed": "2026-10-19"
     }
   },
   {
@@ -9273,7 +10777,7 @@
       "instagram": null
     },
     "tags": [],
-    "tier": null,
+    "tier": "B",
     "sources": [
       {
         "type": "tabelog",
@@ -9426,6 +10930,48 @@
         "吸菸：食べログ 全席禁煙 vs Google 評論（約 2026）桌上有菸灰缸、店內菸味重",
         "晚上：Google 評論（約 2026）20 時就鎖門（食べログ 21:00）"
       ]
+    },
+    "summary": {
+      "text": "磯部町穴川、國道 167 號旁的海鮮食堂，海鮮丼 1,800 円、はま﨑定食、刺身定食，也有とんかつ、エビフライ。吧台 7、4～6 人桌 4 張、6 人座敷 2 間（約 35 席）；晚上有營業，週三休，要開車。",
+      "pros": [
+        "海鮮新鮮、份量多（2023～2026 多則）",
+        "有桌席和座敷，有不吃生魚的選項",
+        "晚上有營業"
+      ],
+      "cons": [
+        "Google 3.6：老闆不親切、店內菸味、不太乾淨的負評（近 1 年多則）",
+        "週三休（2/3、2/10）；晚上 20 時就鎖門、預約後臨時休的口コミ",
+        "停車 5 台，彎道上容易錯過"
+      ],
+      "basedOn": [
+        "https://ise-shima-hamazaki.com/",
+        "https://ise-shima-hamazaki.com/about/",
+        "https://ise-shima-hamazaki.com/menu/",
+        "https://www.kanko-shima.com/purpose/1793/",
+        "https://tabelog.com/mie/A2403/A240303/24017421/",
+        "https://tabelog.com/mie/A2403/A240303/24017421/dtlrvwlst/",
+        "https://maps.google.com/?cid=17434594349112199668"
+      ],
+      "generated": "2026-10-19"
+    },
+    "assessment": {
+      "rubric": "restaurant-v1",
+      "scores": {
+        "recommend": 2,
+        "localFlavor": 3,
+        "groupFit": 3,
+        "elderFit": 4,
+        "kidsFit": 4
+      },
+      "rationale": {
+        "recommend": "食べログ 3.18（24 則）、Google 3.6（123 則）而且心得有接客、清潔的負評 → 2",
+        "localFlavor": "海鮮丼、刺身定食 → 3",
+        "groupFit": "fit15 split：約 35 席、可包場（人數沒寫）→ 3",
+        "elderFit": "有 4～6 人桌 → 4",
+        "kidsFit": "子供可（小學生可）、有とんかつ、エビフライ 等熟食 → 4"
+      },
+      "confidence": "low",
+      "assessed": "2026-10-19"
     }
   },
   {
@@ -9515,7 +11061,7 @@
       "instagram": "@kinkoimo_shop_ueda"
     },
     "tags": [],
-    "tier": null,
+    "tier": "B",
     "sources": [
       {
         "type": "tabelog",
@@ -9650,6 +11196,47 @@
         "電話：觀光協會・Google 0599-77-3267 vs 食べログ 0599-47-3517",
         "mustTry：原本 []，改用 [\"プレミアムパフェ 1,200～1,350 円\",\"芋蜜がけソフト 680 円\"]（食べログ口コミ、Google 評論（2026-10-19））"
       ]
+    },
+    "summary": {
+      "text": "安乗埼燈塔園地休憩舍裡的番薯甜點咖啡，用志摩名產「きんこ芋」（蒸曬番薯）做的聖代、布丁、霜淇淋；正餐只有一道番薯飯咖哩。看燈塔和海的玻璃窗景，適合當看燈塔時的點心站。",
+      "pros": [
+        "Google 4.5（392 則），きんこ芋パフェ 多則好評",
+        "年中無休，2026 冬季也有營業；可包場 20 人以下",
+        "外面有草坪廣場，小孩可以玩"
+      ],
+      "cons": [
+        "正餐只有咖哩 1 種，不能當全員的午餐",
+        "鵜方站巴士約 40 分＋步行 400 m（計程車約 4,000 円）",
+        "到停車場的路窄、有坡；套餐偏貴"
+      ],
+      "basedOn": [
+        "https://uedashoten.jp/",
+        "https://uedashoten.jp/カフェメニュー.html",
+        "https://www.kanko-shima.com/purpose/1308/",
+        "https://tabelog.com/mie/A2403/A240303/24016462/",
+        "https://tabelog.com/mie/A2403/A240303/24016462/dtlrvwlst/",
+        "https://maps.google.com/?cid=9722853393265016956"
+      ],
+      "generated": "2026-10-19"
+    },
+    "assessment": {
+      "rubric": "restaurant-v1",
+      "scores": {
+        "recommend": 3,
+        "localFlavor": 4,
+        "groupFit": 4,
+        "elderFit": null,
+        "kidsFit": 4
+      },
+      "rationale": {
+        "recommend": "食べログ 3.40 不到 3.45；Google 4.5（392 則），但介紹只有觀光協會 1 種（第 2 條要 2 種）→ 3",
+        "localFlavor": "志摩名產きんこ芋的甜點 → 4",
+        "groupFit": "fit15 yes 但根據是包場 20 人以下、席數沒寫（輕食）→ 4",
+        "elderFit": "座位形式沒有來源（食べログ寫バリアフリー，沒有用來代替座位形式）",
+        "kidsFit": "子供可、甜點霜淇淋、外面有草坪 → 4"
+      },
+      "confidence": "medium",
+      "assessed": "2026-10-19"
     }
   },
   {
@@ -9766,7 +11353,7 @@
       "instagram": null
     },
     "tags": [],
-    "tier": null,
+    "tier": "B",
     "sources": [
       {
         "type": "tabelog",
@@ -9932,6 +11519,49 @@
         "停車場：觀光三重 7＋15 台 vs 食べログ 20 台",
         "mustTry：原本 []，改用 [\"あのりふぐコース 5,500～6,600 円\",\"あのりふぐフルコース 12,100 円\"]（食べログ口コミ、Google 評論（2026-10-19））"
       ]
+    },
+    "summary": {
+      "text": "安乗的あのりふぐ（天然虎河豚）問屋直營料理店，只在 10～3 月營業：あのりふぐコース 5,500 円（てっさ、唐揚げ、てっちり、雑炊）、フルコース 11,000～12,100 円、御膳 3,300 円，口コミ說「在都市要貴一倍」。完全預約制、58 席座敷，官網寫可辦 18 名宴會 → 全員一起的候選。週二休。",
+      "pros": [
+        "あのりふぐ コース CP 值高，回頭客多（口コミ 2023～2026）",
+        "官網：一次可辦 18 名宴會、貸切 20～50 人；2 月在營業期",
+        "親族 10 人、公司旅行、旅行團的實例"
+      ],
+      "cons": [
+        "週二休（2/2、2/9）；2～3 月是旺季、要早訂；當天取消收全額",
+        "全座敷；熱門時座敷要等前一組換桌",
+        "鵜方站計程車約 15 分（巴士約 1.5 小時 1 班）"
+      ],
+      "basedOn": [
+        "http://anorifugu.com/marusei/",
+        "http://anorifugu.com/marusei/menu.html",
+        "https://www.kankomie.or.jp/season/article/189",
+        "https://www.kanko-shima.com/purpose/1826/",
+        "https://tabelog.com/mie/A2403/A240303/24002115/",
+        "https://tabelog.com/mie/A2403/A240303/24002115/party/",
+        "https://tabelog.com/mie/A2403/A240303/24002115/dtlrvwlst/",
+        "https://maps.google.com/?cid=3268255678231578888"
+      ],
+      "generated": "2026-10-19"
+    },
+    "assessment": {
+      "rubric": "restaurant-v1",
+      "scores": {
+        "recommend": 3,
+        "localFlavor": 4,
+        "groupFit": 5,
+        "elderFit": 2,
+        "kidsFit": 3
+      },
+      "rationale": {
+        "recommend": "食べログ 3.31（73 則）、Google 4.3（247 則）→ 評論數上限 3",
+        "localFlavor": "あのりふぐ（安乗的天然虎河豚）是志摩特產 → 4",
+        "groupFit": "官網：一次 18 名宴會、食べログ 貸切 20～50 人、完全予約制 → 5",
+        "elderFit": "只有座敷 → 2",
+        "kidsFit": "小孩規定沒寫；唐揚げ、てっちり 等熟食 → 3"
+      },
+      "confidence": "medium",
+      "assessed": "2026-10-19"
     }
   },
   {
@@ -10057,7 +11687,7 @@
       "instagram": null
     },
     "tags": [],
-    "tier": null,
+    "tier": "B",
     "sources": [
       {
         "type": "tabelog",
@@ -10196,6 +11826,48 @@
         "營業時間：食べログ 11:30～13:00 vs 官網入店 11:30～12:30・14:30 終了",
         "送迎：官網限官網訂房住客 vs 觀光三重只寫鵜方站免費送迎"
       ]
+    },
+    "summary": {
+      "text": "安乗埼燈塔旁、河豚仲買人經營的料理旅館，官網有「日帰り昼食・夕食」：非住客也能在個室吃あのりふぐ（天然虎河豚）コース，約 12,000 円起（稅別、2 名起、3 天前預約）。不定休，15 人能不能同時要電話問。",
+      "pros": [
+        "非住客可在個室吃天然あのりふぐ コース（10 月初～3 月底）",
+        "安乗埼燈塔前約 100 m",
+        "觀光三重的河豚特集有介紹"
+      ],
+      "cons": [
+        "心得 0 篇；評論少（食べログ 16、Google 95）",
+        "不定休、只收現金或 PayPay；取消費 2 天前 30% 起",
+        "鵜方站接送只限住客；15 人同時用餐沒寫"
+      ],
+      "basedOn": [
+        "http://www.hisada.ne.jp/",
+        "http://www.hisada.ne.jp/hisda.html",
+        "http://www.hisada.ne.jp/anorihugu.html",
+        "http://www.hisada.ne.jp/goto.html",
+        "https://www.kankomie.or.jp/season/article/189",
+        "https://tabelog.com/mie/A2403/A240303/24001174/",
+        "https://maps.google.com/?cid=13017444699016054281"
+      ],
+      "generated": "2026-10-19"
+    },
+    "assessment": {
+      "rubric": "restaurant-v1",
+      "scores": {
+        "recommend": 3,
+        "localFlavor": 4,
+        "groupFit": 2,
+        "elderFit": null,
+        "kidsFit": 3
+      },
+      "rationale": {
+        "recommend": "食べログ 3.22（16 則）、Google 4.3（95 則）→ 評論數上限 3",
+        "localFlavor": "あのりふぐ、伊勢海老、鮑 → 4",
+        "groupFit": "fit15 unknown：各自的個室、2 名起，團體上限沒寫 → 2",
+        "elderFit": "個室用餐，座敷或椅子沒寫",
+        "kidsFit": "住宿有小人コース，日帰り的兒童餐沒寫；河豚料理有熟食 → 3"
+      },
+      "confidence": "low",
+      "assessed": "2026-10-19"
     }
   },
   {
@@ -10317,7 +11989,7 @@
       "instagram": null
     },
     "tags": [],
-    "tier": null,
+    "tier": "B",
     "sources": [
       {
         "type": "tabelog",
@@ -10472,6 +12144,49 @@
         "伊勢えびコース期間：官網トップ 10～5 月 vs 河豚頁連結 10～4 月",
         "午餐時間：食べログ 11:30～12:30 vs 官網、觀光三重 11:30～14:00"
       ]
+    },
+    "summary": {
+      "text": "安乗的料理旅館，官網明寫「お食事のみ」：あのりふぐコース 14,000 円起（稅別）、大人 2 名起、4 天前預約，河豚熟成 3 天再料理。不定休、只收現金；安乗週二（まるせい 休）午餐的候補（缺口保底），要電話確認。",
+      "pros": [
+        "官網明寫非住客可用餐（午 11:30～14:00、晚 17:30～）",
+        "料理人親自在漁港挑あのりふぐ",
+        "Google 4.5（50 則）"
+      ],
+      "cons": [
+        "大人 2 名起、4 天前預約（河豚コース用 mail，回覆 1～3 天）",
+        "心得 0 篇、只收現金、不定休",
+        "全和室；用餐席數沒寫"
+      ],
+      "basedOn": [
+        "https://marutora.net/",
+        "https://marutora.net/ryouri-hugu.html",
+        "https://marutora.net/reserve.html",
+        "https://marutora.net/sisetsuannai.html",
+        "https://marutora.net/access.html",
+        "https://www.kankomie.or.jp/season/article/189",
+        "https://tabelog.com/mie/A2403/A240303/24001186/",
+        "https://maps.google.com/?cid=4534263208259675815"
+      ],
+      "generated": "2026-10-19"
+    },
+    "assessment": {
+      "rubric": "restaurant-v1",
+      "scores": {
+        "recommend": 2,
+        "localFlavor": 4,
+        "groupFit": 2,
+        "elderFit": null,
+        "kidsFit": null
+      },
+      "rationale": {
+        "recommend": "缺口保底（D1）→ 最多 2（Google 4.5 但只有 50 則、心得 0）",
+        "localFlavor": "あのりふぐ、伊勢海老 → 4",
+        "groupFit": "fit15 unknown：大人 2 名起、旅館定員約 30 名，用餐席數沒寫 → 2",
+        "elderFit": "全和室（可能是座敷，沒有確認）",
+        "kidsFit": "小孩規定、兒童餐都沒有來源"
+      },
+      "confidence": "low",
+      "assessed": "2026-10-19"
     }
   },
   {
@@ -10562,7 +12277,7 @@
       "instagram": null
     },
     "tags": [],
-    "tier": null,
+    "tier": "B",
     "sources": [
       {
         "type": "tabelog",
@@ -10669,6 +12384,44 @@
         "營業時間：觀光ナビ 10:00～19:00；食べログ店舗情報 平日 10:00～15:00、週末假日 10:00～19:00",
         "定休日：觀光ナビ 週二＋第 1・3 週三；食べログ只寫週二"
       ]
+    },
+    "summary": {
+      "text": "伊勢道路旁、恵利原的大眾食堂，菜單豐富，有刺身定食等；不能預約，平日只開到 15:00。週二、第 1・3 週三休。到天の岩戸、伊雑宮途中的午餐（要開車）。",
+      "pros": [
+        "食べログ 3.37（120 則）、Google 4.0（431 則）",
+        "伊勢志摩観光ナビ 有介紹；有停車場、廁所",
+        "伊雑宮、天の岩戸 途中"
+      ],
+      "cons": [
+        "不能預約，席數沒寫",
+        "週二、第 1・3 週三休（2/2、2/3、2/9）",
+        "心得 0 篇；菜單、價格、座位都沒有來源"
+      ],
+      "basedOn": [
+        "https://www.iseshima-kanko.jp/gourmet/1679",
+        "https://tabelog.com/mie/A2403/A240303/24005399/",
+        "https://maps.google.com/?cid=4647007775717650048"
+      ],
+      "generated": "2026-10-19"
+    },
+    "assessment": {
+      "rubric": "restaurant-v1",
+      "scores": {
+        "recommend": 3,
+        "localFlavor": 3,
+        "groupFit": 1,
+        "elderFit": null,
+        "kidsFit": null
+      },
+      "rationale": {
+        "recommend": "食べログ 3.37 不到 3.45、Google 4.0 → 3",
+        "localFlavor": "刺身定食等一般食堂 → 3",
+        "groupFit": "不接受預約 → 1",
+        "elderFit": "座位形式沒有來源",
+        "kidsFit": "小孩規定、菜單細項都沒有來源"
+      },
+      "confidence": "low",
+      "assessed": "2026-10-19"
     }
   },
   {
@@ -10759,7 +12512,7 @@
       "instagram": "@kawaume_unagi"
     },
     "tags": [],
-    "tier": null,
+    "tier": "B",
     "sources": [
       {
         "type": "tabelog",
@@ -10919,6 +12672,49 @@
         "停車場：官網 15 台，觀光協會、食べログ 20 台",
         "mustTry：原本 []，改用 [\"川うめ丼（お得セット／A／B）\",\"うな重 特上（5,000 円以下）\"]（食べログ口コミ、Google 評論（2026-10-19））"
       ]
+    },
+    "summary": {
+      "text": "天保元年（1830）創業的鰻魚・鄉土料理老店，志摩磯部站步行 10 分：川うめ丼、うな重 1,880 円起，冬季有的矢かき御膳 4,100 円。50 席、個室 2～30 人、宴會最大 40 人，10 人以上可商量マイクロバス接送；有お子様うな重 950 円。磯部一帶全員午餐的第一候選，也是天の岩戸最近的店。",
+      "pros": [
+        "個室 2～30 人、宴會最大 40 人、10 人以上可商量接送",
+        "お子様うな重 950 円，口コミ說帶小孩受歡迎",
+        "通し營業、出菜快；冬季的矢かき（12 月起）"
+      ],
+      "cons": [
+        "舊旅館建築、要脫鞋，座敷為主（椅子席沒有來源）",
+        "Google 低分順：鰻魚像橡膠、量少、價格偏高",
+        "不定休（看官網行事曆）；18 時以後入店要先聯絡"
+      ],
+      "basedOn": [
+        "http://www.kawaume.com/",
+        "http://www.kawaume.com/tableware/setmenu.html",
+        "http://www.kawaume.com/tableware/donburimenu.html",
+        "https://www.kanko-shima.com/purpose/1801/",
+        "https://tabelog.com/mie/A2403/A240303/24000557/",
+        "https://tabelog.com/mie/A2403/A240303/24000557/party/",
+        "https://tabelog.com/mie/A2403/A240303/24000557/dtlrvwlst/",
+        "https://maps.google.com/?cid=17570581391559481937"
+      ],
+      "generated": "2026-10-19"
+    },
+    "assessment": {
+      "rubric": "restaurant-v1",
+      "scores": {
+        "recommend": 3,
+        "localFlavor": 3,
+        "groupFit": 5,
+        "elderFit": 2,
+        "kidsFit": 5
+      },
+      "rationale": {
+        "recommend": "食べログ 3.37（83 則）、Google 4.0（383 則）→ 3",
+        "localFlavor": "招牌是鰻魚（1），冬季有的矢かき御膳（4）→ 3",
+        "groupFit": "食べログ：個室 2～30 人、宴會最大 40 人；官網 10 人以上可接送 → 5",
+        "elderFit": "座敷為主、椅子席沒有來源 → 2",
+        "kidsFit": "官網：お子様連れ OK、お子様うな重 950 円 → 5"
+      },
+      "confidence": "medium",
+      "assessed": "2026-10-19"
     }
   },
   {
@@ -11004,7 +12800,7 @@
       "instagram": "@seijyoumatoyakaki"
     },
     "tags": [],
-    "tier": null,
+    "tier": "A",
     "sources": [
       {
         "type": "tabelog",
@@ -11150,6 +12946,48 @@
         "最大予約：食べログ 6 人 vs 官網約 118 席",
         "座位：食べログ口コミ 室內・テラス・海上の筏席 3 種（多則）"
       ]
+    },
+    "summary": {
+      "text": "「的矢かき」商標持有者 佐藤養殖場直營的牡蠣食堂，1F・2F・海上棧橋（養殖筏旁）約 118 席全海景：牡蠣づくし定食 4,300 円、カキフライ、的矢シングルオイスター 1,100 円。但 2026/01～02 多則遇到「生牡蠣提供中止」（ノロ對策），2027 年 2 月也可能只有加熱牡蠣。週二休。",
+      "pros": [
+        "食べログ 3.62（251 則）、Google 4.3（765 則），觀光三重、觀光協會都有介紹",
+        "海上筏席看養殖筏吃牡蠣；1F 有輪椅席 8 席、無障礙廁所",
+        "有炸蝦、唐揚げ 等不吃牡蠣的餐"
+      ],
+      "cons": [
+        "2 月可能沒有生牡蠣（2026/01～02 多則停供，改加熱）",
+        "週二休（2/2、2/9）；網路一次最多 6 人，15 人要電話",
+        "熱門、沒預約要等 30 分以上；吃完腹痛、漏單、加熱牡蠣小的負評"
+      ],
+      "basedOn": [
+        "https://seijyoumatoyakaki.com/matoyakakiterrace/",
+        "https://www.kankomie.or.jp/report/1295",
+        "https://www.kanko-shima.com/purpose/1135/",
+        "https://tabelog.com/mie/A2403/A240303/24018818/",
+        "https://tabelog.com/mie/A2403/A240303/24018818/party/",
+        "https://tabelog.com/mie/A2403/A240303/24018818/dtlrvwlst/",
+        "https://maps.google.com/?cid=7070301200354678047"
+      ],
+      "generated": "2026-10-19"
+    },
+    "assessment": {
+      "rubric": "restaurant-v1",
+      "scores": {
+        "recommend": 4,
+        "localFlavor": 5,
+        "groupFit": 3,
+        "elderFit": 4,
+        "kidsFit": 4
+      },
+      "rationale": {
+        "recommend": "食べログ 3.62（251 則）＋ Google 4.3 → 第 1、2 條 4；5 要食べログ 300 則以上",
+        "localFlavor": "養殖場直營、海上筏席吃的矢牡蠣，用餐本身是在地體驗 → 5",
+        "groupFit": "fit15 split：約 118 席，但網路最多 6 人、團體要電話問 → 3",
+        "elderFit": "入口坡道、1F 輪椅席、無障礙廁所、桌席；熱門要等、筏席會搖 → 4",
+        "kidsFit": "子供可（乳兒～小學生），有炸蝦、唐揚げ 定食 → 4"
+      },
+      "confidence": "high",
+      "assessed": "2026-10-19"
     }
   },
   {
@@ -11280,7 +13118,7 @@
       "instagram": "@ikadaso"
     },
     "tags": [],
-    "tier": null,
+    "tier": "A",
     "sources": [
       {
         "type": "tabelog",
@@ -11451,6 +13289,49 @@
         "座位：食べログ（店舗会員）お座敷 vs 口コミ（2026/08）和室的テーブル席"
       ],
       "lodgingId": "shima-ikadaso-sanjo"
+    },
+    "summary": {
+      "text": "的矢湾的牡蠣料理旅館 いかだ荘 山上 對外的午餐、晚餐（官網 FAQ「昼食だけの利用は可能」）：いかだ御膳 4,400 円（生・焼・フライ・牡蠣飯）、冬季的矢牡蠣会席 8,800～16,500 円；兒童餐 海老フライセット 2,750 円。最大予約 80 人、可包場，冬季只休週四，是的矢湾週二午餐唯一確定營業的店。",
+      "pros": [
+        "食べログ 3.54（154 則）、Google 4.4，口コミ說牡蠣大顆新鮮",
+        "最大予約 80 人、宴會場 80 名；用餐客可免費泡大浴場",
+        "兒童餐 2,750 円、帶小孩安排個室"
+      ],
+      "cons": [
+        "2 月可能沒有生牡蠣（2026/02 多則停供，改焼き・フライ）",
+        "完全予約制，取消費 7 天前起 50%；週四休（2/4、2/11）",
+        "在山上、路陡窄；志摩磯部站接送午餐只有 11:20 一班"
+      ],
+      "basedOn": [
+        "https://ikadasou.jp/dine",
+        "https://ikadasou.jp/faq",
+        "https://reserve.ikadasou.com/list.php",
+        "https://ikadasou.jp/access",
+        "https://ikadasou.jp/2026/07/14/2026%e5%b9%b48%e6%9c%88%e3%80%80%e4%bc%91%e9%a4%a8%e6%97%a5%e3%81%ae%e3%81%94%e6%a1%88%e5%86%85/",
+        "https://tabelog.com/mie/A2403/A240303/24001032/",
+        "https://tabelog.com/mie/A2403/A240303/24001032/party/",
+        "https://tabelog.com/mie/A2403/A240303/24001032/dtlrvwlst/"
+      ],
+      "generated": "2026-10-19"
+    },
+    "assessment": {
+      "rubric": "restaurant-v1",
+      "scores": {
+        "recommend": 4,
+        "localFlavor": 4,
+        "groupFit": 5,
+        "elderFit": 4,
+        "kidsFit": 5
+      },
+      "rationale": {
+        "recommend": "食べログ 3.54（154 則）＋ Google 4.4（住宿本體）→ 第 1 條 4",
+        "localFlavor": "的矢牡蠣会席、いかだ御膳 → 4",
+        "groupFit": "食べログ（店舗会員）：最大予約 80 人、貸切可 → 5",
+        "elderFit": "一樓的食事處，座敷＋和室桌席（口コミ）→ 4",
+        "kidsFit": "兒童餐 海老フライセット、不吃牡蠣可換菜 → 5"
+      },
+      "confidence": "medium",
+      "assessed": "2026-10-19"
     }
   },
   {
@@ -11535,7 +13416,7 @@
       "instagram": null
     },
     "tags": [],
-    "tier": null,
+    "tier": "A",
     "sources": [
       {
         "type": "tabelog",
@@ -11660,6 +13541,46 @@
         "mustTry：原本 []，改用 [\"うなぎ丼（3～5 切れ、肝吸い付き）5 切れ 3,270 円\"]（食べログ口コミ、Google 評論（2026-10-19））",
         "kids：原本 {\"allowed\":\"unknown\",\"minAge\":null,\"kidsMenu\":null,\"note\":\"食べログ、官網都沒寫\"}，改用 {\"allowed\":\"yes\",\"minAge\":null,\"kidsMenu\":null,\"note\":\"食べログ口コミ：2F 廣大和室可以慢慢吃，適合帶小孩（2025/06，1 則）；兒童餐沒寫\"}（食べログ口コミ、Google 評論（2026-10-19））"
       ]
+    },
+    "summary": {
+      "text": "上之郷站前、伊雑宮鳥居前的鰻魚老店，店舖是昭和 4 年的木造旅館（登錄有形文化財）：うなぎ丼 3～5 切れ（5 切れ 3,270 円）、炭火焦香、價格便宜。只開 11:00～13:00、不能預約、全座敷，開店前就排隊；參拜伊雑宮時的午餐，15 人一起難安排。",
+      "pros": [
+        "食べログ 3.39、Google 4.4（376 則），觀光協會、るるぶ 介紹",
+        "登錄有形文化財的旅館建築，冬天 2 樓座敷日照溫暖",
+        "上之郷站步行 3 分"
+      ],
+      "cons": [
+        "只開 11:00～13:00、不能預約，平日也等 15～50 分；常賣完",
+        "全座敷、多半帶到 2 樓",
+        "Google 低分順：鰻魚像橡膠、店員不親切"
+      ],
+      "basedOn": [
+        "https://www.kanko-shima.com/purpose/1313/",
+        "https://rurubu.jp/andmore/spot/80025094",
+        "https://tabelog.com/mie/A2403/A240303/24000718/",
+        "https://tabelog.com/mie/A2403/A240303/24000718/dtlrvwlst/",
+        "https://maps.google.com/?cid=298914775954048078"
+      ],
+      "generated": "2026-10-19"
+    },
+    "assessment": {
+      "rubric": "restaurant-v1",
+      "scores": {
+        "recommend": 4,
+        "localFlavor": 1,
+        "groupFit": 1,
+        "elderFit": 1,
+        "kidsFit": 4
+      },
+      "rationale": {
+        "recommend": "食べログ 3.39（≥3.3）＋ Google 4.4（376 則）＋觀光協會・るるぶ 2 種 → 第 2 條 4",
+        "localFlavor": "鰻魚，和在地無關 → 1",
+        "groupFit": "不接受預約 → 1",
+        "elderFit": "全座敷、多在 2 樓，還要排隊 → 1",
+        "kidsFit": "子供可、2 樓廣大和室適合帶小孩，鰻魚是熟食 → 4"
+      },
+      "confidence": "medium",
+      "assessed": "2026-10-19"
     }
   },
   {
@@ -11788,7 +13709,7 @@
       "instagram": null
     },
     "tags": [],
-    "tier": null,
+    "tier": "B",
     "sources": [
       {
         "type": "tabelog",
@@ -11946,6 +13867,49 @@
         "mustTry：原本 []，改用 [\"的矢牡蠣ランチ 3,950 円\",\"牡蠣づくしコース\"]（食べログ口コミ、Google 評論（2026-10-19））"
       ],
       "lodgingId": "shima-tachibana"
+    },
+    "summary": {
+      "text": "的矢湾的料理旅館 橘，非住客可預約午餐、晚餐：冬季的矢かきランチ 3,960 円（殼付 6 個＋炸牡蠣＋かきご飯）、的矢かき御膳 2,750 円、套餐 7,500 円起，也有あのりふぐ。広間 80～100 名；6,000 円以上的套餐有志摩磯部・鵜方站免費小巴。官網公告 2027/2/2 午餐已客滿，2/9 還有。",
+      "pros": [
+        "広間 80～100 名、個室 30 人以上",
+        "冬季的矢かき料理，口コミ說量很多、女將親切",
+        "6,000 円以上套餐有車站免費小巴"
+      ],
+      "cons": [
+        "2027/2 滿席：2/1～2/5、2/7、2/8、2/13 午餐，2/1～2/3、2/8～2/10 晚餐（2026-09 公告）",
+        "食べログ寫全席可吸菸；座敷為主",
+        "評論少（食べログ 48、Google 97）"
+      ],
+      "basedOn": [
+        "https://tatibana.com/wp/meal/",
+        "https://tatibana.com/wp/news/2024%e5%b9%b4%e6%ba%80%e5%b8%ad%e6%97%a5%e3%81%ae%e3%81%8a%e7%9f%a5%e3%82%89%e3%81%9b/",
+        "https://tatibana.com/wp/access/",
+        "https://tatibana.com/wp/%e6%96%bd%e8%a8%ad%e6%a1%88%e5%86%85/",
+        "https://tatibana.com/wp/plan/%e3%81%8b%e3%81%8d%e6%96%99%e7%90%86%e3%81%ab%e3%81%a4%e3%81%84%e3%81%a6%e3%81%ae%e5%a4%a7%e4%ba%8b%e3%81%aa%e3%81%8a%e7%9f%a5%e3%82%89%e3%81%9b/",
+        "https://www.mapple.net/spot/24010334/",
+        "https://tabelog.com/mie/A2403/A240303/24001171/",
+        "https://tabelog.com/mie/A2403/A240303/24001171/dtlrvwlst/"
+      ],
+      "generated": "2026-10-19"
+    },
+    "assessment": {
+      "rubric": "restaurant-v1",
+      "scores": {
+        "recommend": 3,
+        "localFlavor": 4,
+        "groupFit": 5,
+        "elderFit": 2,
+        "kidsFit": 3
+      },
+      "rationale": {
+        "recommend": "食べログ 3.21（48 則）、Google 4.2（97 則）→ 評論數上限 3",
+        "localFlavor": "的矢かき料理、あのりふぐ → 4",
+        "groupFit": "官網：広間 80～100 名；食べログ 個室 30 人以上 → 5",
+        "elderFit": "座敷（冬季座位沒寫）→ 2",
+        "kidsFit": "小孩規定沒寫；焼き牡蠣、カキフライ 等熟食 → 3"
+      },
+      "confidence": "low",
+      "assessed": "2026-10-19"
     }
   },
   {
@@ -11995,7 +13959,7 @@
       "instagram": "@kazamachinoyu_fukujyuso"
     },
     "tags": [],
-    "tier": null,
+    "tier": "B",
     "sources": [
       {
         "type": "tabelog",
@@ -12144,6 +14108,49 @@
         "島上「カフェ・レストランかいげつ」（觀光協會：渡鹿野 516、0599-57-2346）和福寿荘（517、0599-57-2910）地址電話不同，官網也沒提到，不當作館內設施"
       ],
       "lodgingId": "shima-fukujuso"
+    },
+    "summary": {
+      "text": "渡鹿野島的溫泉旅館 福寿荘：午餐、晚餐的客人可免費日歸入浴，團體表單有「日帰り宴会プラン」「昼食プラン」（宴會場最多 160 名、桌椅），可安排鵜方站接送和渡船。伊勢海老、黒鮑、的矢かき、あのりふぐ；價格和個人只用餐的條件沒公開，要電話問。",
+      "pros": [
+        "宴會場最多 160 名（桌椅）、可安排鵜方站接送與渡船",
+        "個室有和室和桌席，「車椅子の客も安心」",
+        "冬季別注 的矢がき、ふぐ"
+      ],
+      "cons": [
+        "價格、時段沒公開；非住客午餐的口コミ只有 1 則（2019）",
+        "電話接待冷淡、渡船費另付的負評（2024）",
+        "渡鹿野島：巴士約 20 分＋渡船 3 分"
+      ],
+      "basedOn": [
+        "https://www.fukujyuso.co.jp/dining/",
+        "https://www.fukujyuso.co.jp/group/",
+        "https://www.fukujyuso.co.jp/",
+        "https://www.kanko-shima.com/purpose/1749/",
+        "https://www.kankomie.or.jp/report/430",
+        "https://rurubu.jp/andmore/spot/80025078",
+        "https://tabelog.com/mie/A2403/A240303/24009226/",
+        "https://tabelog.com/mie/A2403/A240303/24009226/dtlrvwlst/"
+      ],
+      "generated": "2026-10-19"
+    },
+    "assessment": {
+      "rubric": "restaurant-v1",
+      "scores": {
+        "recommend": 3,
+        "localFlavor": 4,
+        "groupFit": 5,
+        "elderFit": 4,
+        "kidsFit": 3
+      },
+      "rationale": {
+        "recommend": "食べログ 3.21（36 則）、Google 4.1（住宿本體）；F③ 住宿本體楽天餐 4.4 不到 4.5 → 3",
+        "localFlavor": "伊勢海老、黒鮑、的矢かき、あのりふぐ → 4",
+        "groupFit": "官網：團體的日帰り宴会・昼食プラン、宴會場 160 名、團體接送和渡船 → 5",
+        "elderFit": "和室和桌席的個室、宴會桌椅、可輪椅 → 4",
+        "kidsFit": "兒童餐沒寫；松阪牛鍋、手こね寿司 等熟食 → 3"
+      },
+      "confidence": "medium",
+      "assessed": "2026-10-19"
     }
   },
   {
@@ -12228,7 +14235,7 @@
       "instagram": null
     },
     "tags": [],
-    "tier": null,
+    "tier": "B",
     "sources": [
       {
         "type": "tabelog",
@@ -12354,6 +14361,46 @@
       "conflicts": [
         "第 2 批摘要提到「火曜定休」，這次在官網、觀光三重、WebSearch 都找不到來源；已知來源都寫不定休"
       ]
+    },
+    "summary": {
+      "text": "国府白浜海邊山丘上、古董家具的美式咖啡餐廳（神戶 SHEVRON 的據點），牛肉燉飯、ロコモコ、鬆餅；不能預約。營業時間只有 2018 年的資料，官網多年沒更新（部落格最後 2019），現況要電話確認。",
+      "pros": [
+        "Google 4.1（313 則）",
+        "海邊山丘、古董家具的空間",
+        "有停車場"
+      ],
+      "cons": [
+        "現在的營業狀態沒有來源（官網 2011、部落格 2019 後沒更新）",
+        "不能預約、席數沒寫",
+        "要開車"
+      ],
+      "basedOn": [
+        "http://shevronmart.com/ise/",
+        "http://shevronmart.com/blog-sub/index.html",
+        "https://www.kankomie.or.jp/report/355",
+        "https://tabelog.com/mie/A2403/A240303/24010790/",
+        "https://maps.google.com/?cid=8958056534514129820"
+      ],
+      "generated": "2026-10-19"
+    },
+    "assessment": {
+      "rubric": "restaurant-v1",
+      "scores": {
+        "recommend": 3,
+        "localFlavor": 1,
+        "groupFit": 1,
+        "elderFit": null,
+        "kidsFit": 3
+      },
+      "rationale": {
+        "recommend": "食べログ 3.27（98 則）、Google 4.1（313 則），觀光三重 2018 有介紹 → 3（營業現況要確認）",
+        "localFlavor": "美式咖啡、洋食 → 1",
+        "groupFit": "不接受預約 → 1",
+        "elderFit": "樓層、座位形式沒有來源",
+        "kidsFit": "小孩規定沒寫；ロコモコ、鬆餅 等熟食 → 3"
+      },
+      "confidence": "low",
+      "assessed": "2026-10-19"
     }
   },
   {
@@ -12457,7 +14504,7 @@
       "instagram": "@balihousekou"
     },
     "tags": [],
-    "tier": null,
+    "tier": "B",
     "sources": [
       {
         "type": "tabelog",
@@ -12562,7 +14609,45 @@
       "note": "国府神社旁 2 間的古民家（觀光三重）；要開車；有停車場"
     },
     "smoking": null,
-    "extra": {}
+    "extra": {},
+    "summary": {
+      "text": "国府神社旁古民家的印尼料理店，印尼人和日本人夫妻經營；午晚都營業（晚 18:00～20:00）、週三休。附近包棟 森と海 的晚餐候選（缺口保底）。",
+      "pros": [
+        "Google 4.7（99 則）",
+        "午晚都營業，国府一帶少數晚上有開的店",
+        "可預約"
+      ],
+      "cons": [
+        "菜單、價格、席數都沒有來源；心得 0 篇",
+        "週三休（2/3、2/10）；晚上 20:00 結束",
+        "古民家，座位、高低差沒寫；要開車"
+      ],
+      "basedOn": [
+        "https://www.kankomie.or.jp/topic/1303",
+        "https://tabelog.com/mie/A2403/A240303/24019767/",
+        "https://maps.google.com/?cid=11732541658686407094"
+      ],
+      "generated": "2026-10-19"
+    },
+    "assessment": {
+      "rubric": "restaurant-v1",
+      "scores": {
+        "recommend": 2,
+        "localFlavor": 1,
+        "groupFit": 2,
+        "elderFit": null,
+        "kidsFit": null
+      },
+      "rationale": {
+        "recommend": "缺口保底（D2）→ 最多 2",
+        "localFlavor": "印尼料理，和在地無關 → 1",
+        "groupFit": "fit15 unknown：可預約、席數沒寫 → 2",
+        "elderFit": "座位形式沒有來源（古民家）",
+        "kidsFit": "小孩規定、菜單都沒有來源"
+      },
+      "confidence": "low",
+      "assessed": "2026-10-19"
+    }
   },
   {
     "id": "shima-sushi-akatsuki",
@@ -12669,7 +14754,7 @@
       "instagram": null
     },
     "tags": [],
-    "tier": null,
+    "tier": "B",
     "sources": [
       {
         "type": "tabelog",
@@ -12798,6 +14883,45 @@
         "午餐開始時間：觀光協會 11:30 vs 食べログ 11:00",
         "mustTry：原本 []，改用 [\"ぜいたくランチセット 5,500 円\",\"特上ちらし\",\"トロ鉄火巻き\"]（食べログ口コミ、Google 評論（2026-10-19））"
       ]
+    },
+    "summary": {
+      "text": "甲賀的壽司店，一年四季進伊勢志摩當季的魚：特上にぎり、特上ちらし、ぜいたくランチセット 5,500 円，大將健談親切。25 席（座敷 3 卓、桌 2 卓、吧台），午餐也要前一天預約；週三休，食べログ寫全席可吸菸。",
+      "pros": [
+        "Google 4.5（233 則），地魚新鮮、大將親切",
+        "座敷、桌、吧台都有；可包場",
+        "週二有營業"
+      ],
+      "cons": [
+        "熱門、常「本日満席」，要前一天預約",
+        "食べログ寫全席可吸菸；店內不大",
+        "鵜方站車約 10 分；週三休（2/3、2/10）"
+      ],
+      "basedOn": [
+        "https://www.kanko-shima.com/purpose/1754/",
+        "https://tabelog.com/mie/A2403/A240303/24000879/",
+        "https://tabelog.com/mie/A2403/A240303/24000879/dtlrvwlst/",
+        "https://maps.google.com/?cid=5977291011187023163"
+      ],
+      "generated": "2026-10-19"
+    },
+    "assessment": {
+      "rubric": "restaurant-v1",
+      "scores": {
+        "recommend": 3,
+        "localFlavor": 3,
+        "groupFit": 3,
+        "elderFit": 4,
+        "kidsFit": null
+      },
+      "rationale": {
+        "recommend": "食べログ 3.37（89 則）、Google 4.5（233 則）→ 評論數上限 3",
+        "localFlavor": "伊勢志摩當季魚的壽司（一般和食）→ 3",
+        "groupFit": "fit15 split：25 席、可包場（人數沒寫）→ 3",
+        "elderFit": "座敷 3 卓、桌 2 卓、吧台 → 4",
+        "kidsFit": "小孩規定沒寫，菜單是壽司（熟食沒有來源）"
+      },
+      "confidence": "medium",
+      "assessed": "2026-10-19"
     }
   },
   {
@@ -12910,7 +15034,7 @@
       "instagram": null
     },
     "tags": [],
-    "tier": null,
+    "tier": "B",
     "sources": [
       {
         "type": "tabelog",
@@ -13036,6 +15160,45 @@
         "食べログ備考連到的伊勢志摩観光ナビ gourmet/1197 是鳥羽市大明東町20-4 的肉料理專門店まつむら（TEL 0599-25-2515），地址、電話都和本店（甲賀4540-9、0599-45-2174）不同，不採用",
         "食べログ備考的伊勢志摩観光ナビ gourmet/1197 是鳥羽市的同名肉料理店（地址、電話不同），不採用"
       ]
+    },
+    "summary": {
+      "text": "甲賀、國道 260 號旁的昭和レトロ老字號洋食店，夫婦經營：パールポークのトンテキ定食 1,700 円、サービスステーキ、漢堡排，冬季有的矢產カキフライ。40 席、有個室和座敷，午晚營業；定休沒有來源。",
+      "pros": [
+        "40 席、個室、可預約，口コミ說少人數或團體都方便",
+        "店內明亮清潔；冬季的矢カキフライ",
+        "午晚都營業"
+      ],
+      "cons": [
+        "牛排、トンテキ 太硬、像便宜進口肉的負評多則",
+        "定休沒有來源（食べログ 備考的網址是鳥羽的同名店）",
+        "鵜方站車 5 分"
+      ],
+      "basedOn": [
+        "https://www.iseshima-kanko.jp/gourmet/1197",
+        "https://tabelog.com/mie/A2403/A240303/24004781/",
+        "https://tabelog.com/mie/A2403/A240303/24004781/dtlrvwlst/",
+        "https://maps.google.com/?cid=6051476086085834504"
+      ],
+      "generated": "2026-10-19"
+    },
+    "assessment": {
+      "rubric": "restaurant-v1",
+      "scores": {
+        "recommend": 3,
+        "localFlavor": 2,
+        "groupFit": 3,
+        "elderFit": 3,
+        "kidsFit": 3
+      },
+      "rationale": {
+        "recommend": "食べログ 3.17（43 則）、Google 4.1（145 則）→ 評論數上限 3",
+        "localFlavor": "洋食，但用パールポーク、冬季的矢牡蠣 → 2",
+        "groupFit": "fit15 split：40 席、有個室 → 3",
+        "elderFit": "座敷＋吧台，沒有桌席的來源 → 3",
+        "kidsFit": "小孩規定沒寫；漢堡排、トンテキ 等熟食 → 3"
+      },
+      "confidence": "medium",
+      "assessed": "2026-10-19"
     }
   },
   {
@@ -13115,7 +15278,7 @@
       "instagram": null
     },
     "tags": [],
-    "tier": null,
+    "tier": "B",
     "sources": [
       {
         "type": "tabelog",
@@ -13225,7 +15388,45 @@
       "note": "的矢；鵜方站車約 15 分；有停車場"
     },
     "smoking": null,
-    "extra": {}
+    "extra": {},
+    "summary": {
+      "text": "的矢的牡蠣料理小店（舊店名 藤矢），完全預約、時段制，一間和室約 4 桌：生牡蠣、焼き牡蠣、カキフライ定食 1,800 円，像在親戚家被招待。只在牡蠣季營業；Google 現在標「臨時休業」（應是季節外），週二休，要電話確認。",
+      "pros": [
+        "Google 4.4（105 則），的矢牡蠣（生・焼・フライ・牡蠣飯）",
+        "完全預約制、時段制，不用排隊",
+        "窗外景色好"
+      ],
+      "cons": [
+        "週二休（2/2、2/9）；Google 標臨時休業，2 月營業要電話確認",
+        "一間和室 4 桌（座敷 3＋椅子 1），房間小；腳痛的長輩要求桌席沒被安排（1 則）",
+        "牡蠣偏小、接客偏熟客、吃完腹瀉的負評"
+      ],
+      "basedOn": [
+        "https://tabelog.com/mie/A2403/A240303/24016065/",
+        "https://tabelog.com/mie/A2403/A240303/24016065/dtlrvwlst/",
+        "https://maps.google.com/?cid=14160972474740033349"
+      ],
+      "generated": "2026-10-19"
+    },
+    "assessment": {
+      "rubric": "restaurant-v1",
+      "scores": {
+        "recommend": 3,
+        "localFlavor": 4,
+        "groupFit": 2,
+        "elderFit": 2,
+        "kidsFit": 3
+      },
+      "rationale": {
+        "recommend": "食べログ 3.08（19 則）、Google 4.4（105 則）→ 評論數上限 3",
+        "localFlavor": "的矢牡蠣專門 → 4",
+        "groupFit": "fit15 unknown：完全予約制、一間和室約 4 桌 → 2",
+        "elderFit": "座敷 3 桌＋椅子 1 桌，要求桌席不一定排得到 → 2",
+        "kidsFit": "小孩規定沒寫；焼き牡蠣、カキフライ 熟食 → 3"
+      },
+      "confidence": "low",
+      "assessed": "2026-10-19"
+    }
   },
   {
     "id": "shima-marusada-dining",
@@ -13348,7 +15549,7 @@
       "instagram": null
     },
     "tags": [],
-    "tier": null,
+    "tier": "B",
     "sources": [
       {
         "type": "tabelog",
@@ -13491,6 +15692,47 @@
         "晚餐：官網 19:00～20:30 vs 食べログ 17:30～19:00；食べログ コース（的矢カキ ミニコース 3,675 円）是 2016 年的"
       ],
       "lodgingId": "shima-marusada"
+    },
+    "summary": {
+      "text": "的矢湾的牡蠣旅館 丸定，官網有非住客的牡蠣午餐：的矢かきフライセット 2,420 円＋生・焼牡蠣、グラタン 加點（各 990 円），只在牡蠣季、1 天 3 組 10 名、前一天預約。夫婦經營、女將親切；小組（4～6 人）的的矢牡蠣午餐候補，15 人不行（缺口保底）。",
+      "pros": [
+        "官網有非住客午餐（12:00～13:30），的矢かき 生・焼・フライ",
+        "女將親切（多則）；不吃牡蠣可換螃蟹、烤魚、天婦羅",
+        "停車場 30 台"
+      ],
+      "cons": [
+        "1 天 3 組 10 名、前一天預約，15 人不行",
+        "2026-27 季的午餐還沒公告；海域出貨停止時沒有生牡蠣",
+        "下去的山路窄到不能會車；不能刷卡"
+      ],
+      "basedOn": [
+        "https://www.matoya-marusada.com/lunch.php",
+        "https://www.matoya-marusada.com/",
+        "https://tabelog.com/mie/A2403/A240303/24001029/",
+        "https://tabelog.com/mie/A2403/A240303/24001029/party/",
+        "https://tabelog.com/mie/A2403/A240303/24001029/dtlrvwlst/",
+        "https://maps.google.com/?cid=10463726941960790590"
+      ],
+      "generated": "2026-10-19"
+    },
+    "assessment": {
+      "rubric": "restaurant-v1",
+      "scores": {
+        "recommend": 2,
+        "localFlavor": 4,
+        "groupFit": 1,
+        "elderFit": null,
+        "kidsFit": 3
+      },
+      "rationale": {
+        "recommend": "缺口保底（D1）→ 最多 2（Google 4.6 是住宿本體）",
+        "localFlavor": "的矢かき料理 → 4",
+        "groupFit": "fit15 no：午餐 1 天 3 組 10 名 → 1",
+        "elderFit": "座位形式沒有來源",
+        "kidsFit": "小孩規定沒寫；カキフライ、可換天婦羅等熟食 → 3"
+      },
+      "confidence": "low",
+      "assessed": "2026-10-19"
     }
   },
   {
@@ -13587,7 +15829,7 @@
       "instagram": "@bettei_matoya"
     },
     "tags": [],
-    "tier": null,
+    "tier": "B",
     "sources": [
       {
         "type": "tabelog",
@@ -13723,6 +15965,47 @@
         "兒童餐：官網 4,840 vs 觀光三重 4,860 円"
       ],
       "lodgingId": "shima-grand-mercure"
+    },
+    "summary": {
+      "text": "Grand Mercure 伊勢志摩 館內 2026 年 4 月開幕的的矢牡蠣會席，和佐藤養殖場合作、炭火為主：會席 18,150 円（生・烤・炸牡蠣、伊勢海老原始焼、伊賀牛、てこねずし），有兒童餐 4,840 円；官網明寫只用餐可（前一天 18:00 前）。飯店 2/1～2/3 休館，第一晚不能用。",
+      "pros": [
+        "官網、觀光協會、觀光三重 都寫非住客可用",
+        "和佐藤養殖場合作的牡蠣會席，生產者介紹食材",
+        "お子さまメニュー 4,840 円（漢堡排、蛋包飯、炸蝦）"
+      ],
+      "cons": [
+        "飯店 2/1 11:00～2/3 15:00 休館 → 2/2 不能用",
+        "席數、個室、團體都沒寫；心得 0 篇",
+        "鵜方站計程車約 15 分，非住客沒有接送；前一天 18:00 後取消 100%"
+      ],
+      "basedOn": [
+        "https://grand-mercure-iseshima-resortandspa.jp/restaurant/matoya/",
+        "https://grand-mercure-iseshima-resortandspa.jp/news/closing-day-2702/",
+        "https://www.kankomie.or.jp/topic/1192",
+        "https://www.kanko-shima.com/purpose/18155/",
+        "https://tabelog.com/mie/A2403/A240303/24022578/",
+        "https://maps.google.com/?cid=4822371600113264740"
+      ],
+      "generated": "2026-10-19"
+    },
+    "assessment": {
+      "rubric": "restaurant-v1",
+      "scores": {
+        "recommend": 3,
+        "localFlavor": 4,
+        "groupFit": 2,
+        "elderFit": null,
+        "kidsFit": 5
+      },
+      "rationale": {
+        "recommend": "食べログ 3.02（1 則）、Google 3.7 是飯店本體；F③ 住宿楽天餐 3.98 → 3（2026 開幕，心得 0）",
+        "localFlavor": "的矢牡蠣、伊勢海老的會席 → 4",
+        "groupFit": "fit15 unknown：可預約，席數沒寫 → 2",
+        "elderFit": "和式空間（榻榻米、障子），座位是椅子還是座敷沒寫",
+        "kidsFit": "官網有兒童餐 → 5"
+      },
+      "confidence": "low",
+      "assessed": "2026-10-19"
     }
   },
   {
@@ -13826,7 +16109,7 @@
       "instagram": null
     },
     "tags": [],
-    "tier": null,
+    "tier": "B",
     "sources": [
       {
         "type": "tabelog",
@@ -13954,7 +16237,47 @@
       "note": "波切漁港旁；停車在斜對面的「志摩市絵かきの町交流広場」（觀光三重）；鵜方站巴士到「波切」約 20～25 分"
     },
     "smoking": "全席禁煙",
-    "extra": {}
+    "extra": {},
+    "summary": {
+      "text": "大王町波切的漁師町食堂兼居酒屋，名物かつお茶漬け（吃到一半送熱高湯）、造りセット 2,100 円、天ぷら定食 2,200 円，吧台擺著當天地魚和おばんざい。午晚都營業、週二休；大王埼灯台町歩き的午餐點，也是 daio 週三晚上唯一確定的晚餐店。",
+      "pros": [
+        "口コミ多在 3.4～5.0：魚新鮮、刺身量多、CP 值高",
+        "觀光協會、觀光三重（2026）都有介紹",
+        "午晚都營業；20 席可包場"
+      ],
+      "cons": [
+        "中午開店不久就滿席，要預約",
+        "週二休（2/2、2/9）",
+        "晚上常客喝酒很吵；觀光地價格的負評"
+      ],
+      "basedOn": [
+        "https://www.kanko-shima.com/purpose/1838/",
+        "https://www.kankomie.or.jp/report/2225",
+        "https://tabelog.com/mie/A2403/A240303/24001159/",
+        "https://tabelog.com/mie/A2403/A240303/24001159/dtlrvwlst/",
+        "https://maps.google.com/?cid=8640657265415180830"
+      ],
+      "generated": "2026-10-19"
+    },
+    "assessment": {
+      "rubric": "restaurant-v1",
+      "scores": {
+        "recommend": 3,
+        "localFlavor": 4,
+        "groupFit": 3,
+        "elderFit": 4,
+        "kidsFit": 4
+      },
+      "rationale": {
+        "recommend": "食べログ 3.33（59 則）、Google 4.2（190 則）→ 評論數上限 3",
+        "localFlavor": "かつお茶漬け、漁港旁的漁師町食堂 → 4",
+        "groupFit": "fit15 split：20 席、可包場（15 人約佔全店）→ 3",
+        "elderFit": "吧台、桌席、小上がり座敷（口コミ）→ 4",
+        "kidsFit": "子供可、有天ぷら等熟食 → 4"
+      },
+      "confidence": "medium",
+      "assessed": "2026-10-19"
+    }
   },
   {
     "id": "shima-shimaya-daio",
@@ -14033,7 +16356,7 @@
       "instagram": null
     },
     "tags": [],
-    "tier": null,
+    "tier": "B",
     "sources": [
       {
         "type": "tabelog",
@@ -14169,6 +16492,46 @@
         "營業時間：官網・食べログ 10:00～19:00 vs 觀光協會 10:00～17:30（L.O.17:00）",
         "席數：食べログ 30 vs 觀光協會 24"
       ]
+    },
+    "summary": {
+      "text": "波切創業 75 年的鰻魚・壽司店，三姊妹守著先代醬汁、錢湯改建的店舖：鰻ご飯 1,500 円、鰻丼 2,000～3,300 円、海鮮丼、てこね寿司 1,200 円（要預約）。桌席、座敷、吧台約 30 席，10:00～19:00，週二休（缺口保底）。",
+      "pros": [
+        "點餐後才炭火烤、價格便宜（口コミ 2023～2026）",
+        "4 人桌 3 張＋座敷 3 張＋吧台",
+        "錢湯改建、大王埼灯台 磁磚牆的老店"
+      ],
+      "cons": [
+        "週二休（2/2、2/9）；備料用完提早打烊",
+        "在漁港旁窄巷、不好找；停車 5～8 台",
+        "鰻魚份量少、偏鹹的負評"
+      ],
+      "basedOn": [
+        "https://isesima.info/shimaya/",
+        "https://www.kanko-shima.com/purpose/1862/",
+        "https://tabelog.com/mie/A2403/A240303/24000826/",
+        "https://tabelog.com/mie/A2403/A240303/24000826/dtlrvwlst/",
+        "https://maps.google.com/?cid=17499502969372911667"
+      ],
+      "generated": "2026-10-19"
+    },
+    "assessment": {
+      "rubric": "restaurant-v1",
+      "scores": {
+        "recommend": 2,
+        "localFlavor": 3,
+        "groupFit": 3,
+        "elderFit": 4,
+        "kidsFit": 3
+      },
+      "rationale": {
+        "recommend": "缺口保底（D1）→ 最多 2",
+        "localFlavor": "鰻魚（1）＋海鮮丼、てこね寿司（4）→ 3",
+        "groupFit": "fit15 split：約 30 席、無包廂 → 3",
+        "elderFit": "有 4 人桌 3 張 → 4",
+        "kidsFit": "小孩規定沒寫；鰻ご飯 份量小、熟食 → 3"
+      },
+      "confidence": "medium",
+      "assessed": "2026-10-19"
     }
   },
   {
@@ -14248,7 +16611,7 @@
       "instagram": null
     },
     "tags": [],
-    "tier": null,
+    "tier": "B",
     "sources": [
       {
         "type": "tabelog",
@@ -14375,6 +16738,46 @@
         "席數：食べログ 27 vs 觀光協會 28",
         "週日營業：觀光協會・食べログ 8:00～18:00 vs Google 評論（約 2022）週日 11 時打烊 vs 食べログ口コミ（2023/03）週日到 23:00"
       ]
+    },
+    "summary": {
+      "text": "波切的家庭式咖啡店，法蘭絨手沖咖啡、手作甜點，午餐 4 選 1 的盤餐 900 円起（附飲料）；有兒童區、お子様ランチ。8:00～18:00、週一休——daio 週二（2/2、2/9）少數能吃午餐的店（缺口保底）。食べログ 寫全席可吸菸。",
+      "pros": [
+        "兒童區、お子様ランチ、兒童椅，可推嬰兒車",
+        "午餐 900～1,200 円",
+        "週二有營業（週一休）"
+      ],
+      "cons": [
+        "食べログ寫全席可吸菸（口コミ：沒有分煙）",
+        "2023 以後的心得少；週日可能 11 時就打烊（要確認）",
+        "官網網域已過期；店員和常客大聲聊天"
+      ],
+      "basedOn": [
+        "https://www.kanko-shima.com/purpose/1724/",
+        "http://www.cafecc.jp/",
+        "https://tabelog.com/mie/A2403/A240303/24007621/",
+        "https://tabelog.com/mie/A2403/A240303/24007621/dtlrvwlst/",
+        "https://maps.google.com/?cid=6822737283666007805"
+      ],
+      "generated": "2026-10-19"
+    },
+    "assessment": {
+      "rubric": "restaurant-v1",
+      "scores": {
+        "recommend": 2,
+        "localFlavor": 1,
+        "groupFit": 3,
+        "elderFit": 4,
+        "kidsFit": 5
+      },
+      "rationale": {
+        "recommend": "缺口保底（D1）→ 最多 2",
+        "localFlavor": "咖啡、義大利麵等，和在地無關 → 1",
+        "groupFit": "fit15 split：27～28 席 → 3",
+        "elderFit": "吧台 4＋桌 23 席（口コミ 2015）→ 4",
+        "kidsFit": "有兒童區、お子様ランチ → 5"
+      },
+      "confidence": "low",
+      "assessed": "2026-10-19"
     }
   },
   {
@@ -14478,7 +16881,7 @@
       "instagram": null
     },
     "tags": [],
-    "tier": null,
+    "tier": "B",
     "sources": [
       {
         "type": "tabelog",
@@ -14608,6 +17011,46 @@
         "電話：觀光協會 0599-72-1234 vs 食べログ 0599-72-1000",
         "波切御膳：官網（舊頁）2,300 vs 觀光協會 2,100 円"
       ]
+    },
+    "summary": {
+      "text": "大王埼的民宿 大王荘 附設的食堂，官網明寫「昼食だけでも可能」：漁師ずし（てこね寿司）900 円、波切御膳 2,100～2,300 円、かつを茶漬け、伊勢うどん；晚上是居酒屋菜單。週三休——daio 週二午餐、晚餐的少數選項（缺口保底），魚賣完就結束，要預約。",
+      "pros": [
+        "漁師ずし 900 円起，觀光三重 てこね寿司特集有介紹",
+        "女將親切（口コミ）",
+        "午晚都營業、週二有開"
+      ],
+      "cons": [
+        "評論很少（Google 3.4／9），有店內暗、不乾淨的 1 星",
+        "25 席、無個室；魚賣完就結束",
+        "週三休（2/3、2/10）"
+      ],
+      "basedOn": [
+        "http://www.shima.mctv.ne.jp/~daiohso/osyokuji.html",
+        "https://www.kanko-shima.com/purpose/1866/",
+        "https://www.kankomie.or.jp/season/article/178",
+        "https://tabelog.com/mie/A2403/A240303/24008343/",
+        "https://maps.google.com/?cid=16863698758601899405"
+      ],
+      "generated": "2026-10-19"
+    },
+    "assessment": {
+      "rubric": "restaurant-v1",
+      "scores": {
+        "recommend": 2,
+        "localFlavor": 4,
+        "groupFit": 3,
+        "elderFit": null,
+        "kidsFit": 3
+      },
+      "rationale": {
+        "recommend": "缺口保底（D1），Google 3.4 但只有 9 則、有觀光三重介紹和正面口コミ → 2（不是 1）",
+        "localFlavor": "漁師ずし、かつを茶漬け、伊勢うどん → 4",
+        "groupFit": "fit15 split：25 席、無個室 → 3",
+        "elderFit": "座位形式沒有來源",
+        "kidsFit": "小孩規定沒寫；有唐揚げ、エビフライ 等熟食 → 3"
+      },
+      "confidence": "low",
+      "assessed": "2026-10-19"
     }
   },
   {
@@ -14721,7 +17164,7 @@
       "instagram": null
     },
     "tags": [],
-    "tier": null,
+    "tier": "B",
     "sources": [
       {
         "type": "tabelog",
@@ -14848,6 +17291,46 @@
         "營業時間：官網 朝 7:00～9:30、夕 17:30～20:30 vs 食べログ 07:00～10:00、17:00～21:00",
         "價格：官網 7,200 円 vs 觀光三重（2021）4,840 円"
       ]
+    },
+    "summary": {
+      "text": "都リゾート 奥志摩 アクアフォレスト 館內的 buffet 餐廳，晚餐 buffet 大人 7,200 円（伊勢志摩海鮮、てこね寿司、伊勢うどん），小學生、幼兒有兒童價；另有会席（3 天前）。沒有午餐；非住客依混雜狀況可能不接，要先問。登茂山一帶不含晚餐的住宿最近的晚餐（缺口保底）。",
+      "pros": [
+        "buffet 有兒童價、兒童椅，小孩到長輩都適合",
+        "伊勢志摩海鮮、てこね寿司、伊勢うどん",
+        "約 200 席"
+      ],
+      "cons": [
+        "非住客依混雜狀況可能不接；buffet 不接受預約，團體可能分開坐",
+        "沒有午餐；心得 0 篇",
+        "非住客沒有接送（鵜方站計程車約 20 分）"
+      ],
+      "basedOn": [
+        "https://www.miyakohotels.ne.jp/aqua-forest/faq/",
+        "https://www.miyakohotels.ne.jp/aqua-forest/restaurant/hamanagi/",
+        "https://www.kankomie.or.jp/report/997",
+        "https://tabelog.com/mie/A2403/A240303/24002114/",
+        "https://maps.google.com/?cid=8077523082059851325"
+      ],
+      "generated": "2026-10-19"
+    },
+    "assessment": {
+      "rubric": "restaurant-v1",
+      "scores": {
+        "recommend": 2,
+        "localFlavor": 3,
+        "groupFit": 2,
+        "elderFit": null,
+        "kidsFit": 5
+      },
+      "rationale": {
+        "recommend": "缺口保底（D）→ 最多 2；Google 3.7（30 則）但觀光三重有介紹 → 2",
+        "localFlavor": "buffet 有伊勢志摩海鮮、てこね寿司、伊勢うどん（一般）→ 3",
+        "groupFit": "buffet 不接受預約、團體可能分開坐；会席 3 天前可預約但人數沒寫 → 2",
+        "elderFit": "3F，自己取餐，座位形式沒有來源",
+        "kidsFit": "兒童價（小學生 4,500、幼兒 2,500 円）、兒童椅 → 5"
+      },
+      "confidence": "low",
+      "assessed": "2026-10-19"
     }
   },
   {
@@ -14932,7 +17415,7 @@
       "instagram": null
     },
     "tags": [],
-    "tier": null,
+    "tier": "B",
     "sources": [
       {
         "type": "tabelog",
@@ -15031,7 +17514,44 @@
       "note": "大王町船越（UMIBE 旁）；停車 5～6 台（食べログ）"
     },
     "smoking": null,
-    "extra": {}
+    "extra": {},
+    "summary": {
+      "text": "登茂山 船越的喫茶・食堂，食べログ 只有營業時間 10:00～18:00 和「有吧台席」；餐點、定休、能不能預約都沒有來源。tomoyama 的缺口保底，只適合少人數。",
+      "pros": [
+        "大王町船越，UMIBE 旁",
+        "停車 5～6 台",
+        "Google 4.1（10 則）"
+      ],
+      "cons": [
+        "除了食べログ以外沒有任何事實來源",
+        "有沒有正餐、定休都沒確認，要電話",
+        "席數不明，15 人大概坐不下"
+      ],
+      "basedOn": [
+        "https://tabelog.com/mie/A2403/A240303/24018372/",
+        "https://maps.google.com/?cid=14365889335690914198"
+      ],
+      "generated": "2026-10-19"
+    },
+    "assessment": {
+      "rubric": "restaurant-v1",
+      "scores": {
+        "recommend": 2,
+        "localFlavor": null,
+        "groupFit": null,
+        "elderFit": 3,
+        "kidsFit": null
+      },
+      "rationale": {
+        "recommend": "缺口保底（D1）→ 最多 2",
+        "localFlavor": "菜單沒有來源",
+        "groupFit": "席數、能不能預約都沒有來源",
+        "elderFit": "座位資料只有吧台 → 3",
+        "kidsFit": "小孩規定、菜單都沒有來源"
+      },
+      "confidence": "low",
+      "assessed": "2026-10-19"
+    }
   },
   {
     "id": "shima-makinoki",
@@ -15143,7 +17663,7 @@
       "instagram": null
     },
     "tags": [],
-    "tier": null,
+    "tier": "B",
     "sources": [
       {
         "type": "tabelog",
@@ -15272,6 +17792,46 @@
         "營業時間：官網 11:30～14:00、17:30～20:30 vs 食べログ 12:00～14:00、17:00～20:00",
         "接送：食べログ「送迎は要予約」vs 官網「賢島駅送迎は現在行っておりません」"
       ]
+    },
+    "summary": {
+      "text": "ともやま的小飯店 ホテル槇之木 的オーベルジュ式餐廳，官網寫可以只預約午餐、晚餐：午餐コース 3,800 円起、晚餐・海鮮 BBQ 6,600～15,000 円，伊勢海老、鮑的和洋折衷法式。完全預約、取消費 14 天前起算；賢島站接送停止，要計程車（約 18 分）。",
+      "pros": [
+        "官網寫非住客可預約午晚餐",
+        "Google 心得說每道都用心、出菜節奏好",
+        "子供可；有シーフードカレー、グラタン"
+      ],
+      "cons": [
+        "完全預約制，取消費 14 天前 10% 起、當天 100%",
+        "最後一段路很窄，大型計程車可能進不去",
+        "評論很少（Google 41 則是飯店本體）；缺口保底"
+      ],
+      "basedOn": [
+        "https://www.makinoki.jp/index.html",
+        "https://www.makinoki.jp/menu.html",
+        "https://www.makinoki.jp/access.html",
+        "https://tabelog.com/mie/A2403/A240303/24006889/",
+        "https://maps.google.com/?cid=8583490104720383879"
+      ],
+      "generated": "2026-10-19"
+    },
+    "assessment": {
+      "rubric": "restaurant-v1",
+      "scores": {
+        "recommend": 2,
+        "localFlavor": 2,
+        "groupFit": 3,
+        "elderFit": null,
+        "kidsFit": 4
+      },
+      "rationale": {
+        "recommend": "缺口保底（D1）→ 最多 2",
+        "localFlavor": "和洋折衷法式，用伊勢海老、鮑 → 2",
+        "groupFit": "fit15 split：35 席、完全予約制，官網說依預算人數商量 → 3",
+        "elderFit": "樓層、座位形式沒有來源",
+        "kidsFit": "子供可；シーフードカレー、グラタン 等熟食 → 4"
+      },
+      "confidence": "low",
+      "assessed": "2026-10-19"
     }
   },
   {
@@ -15356,7 +17916,7 @@
       "instagram": null
     },
     "tags": [],
-    "tier": null,
+    "tier": "B",
     "sources": [
       {
         "type": "tabelog",
@@ -15454,7 +18014,44 @@
       "note": "御座白浜 海水浴場旁；停車場 300 台（7～8 月以外免費）；座位形式沒有來源"
     },
     "smoking": "全席喫煙可（食べログ）",
-    "extra": {}
+    "extra": {},
+    "summary": {
+      "text": "御座白浜 的海女小屋體驗，海女現烤海鮮（アワビとアオサ天の天丼 1,500 円、ソフトシェル伊勢エビ、サザエ），完全預約、天候不定休。官網讀不到，價格（食べログ 4,000～5,000 円）、人數、2 月室內與否都要電話問；goza 唯一確定的午餐店。",
+      "pros": [
+        "海女小屋的現烤海鮮，近 1 年 Google 多是 5 星",
+        "可包場；御座白浜 停車場 300 台",
+        "海況差時店家會先保留食材"
+      ],
+      "cons": [
+        "官網讀不到，價格、人數、座位都沒有來源",
+        "天候不定休；2 月室內或戶外不明",
+        "食べログ 寫全席可吸菸"
+      ],
+      "basedOn": [
+        "https://tabelog.com/mie/A2403/A240303/24010504/",
+        "https://maps.google.com/?cid=725582879403766310"
+      ],
+      "generated": "2026-10-19"
+    },
+    "assessment": {
+      "rubric": "restaurant-v1",
+      "scores": {
+        "recommend": 3,
+        "localFlavor": 5,
+        "groupFit": 3,
+        "elderFit": null,
+        "kidsFit": 3
+      },
+      "rationale": {
+        "recommend": "食べログ 3.07（13 則）、Google 4.2（63 則）→ 評論數上限 3（體驗型第 3 條要 Google 4.5、300 則）",
+        "localFlavor": "海女小屋，用餐本身是在地體驗 → 5",
+        "groupFit": "fit15 unknown，但食べログ 貸切可 → 3",
+        "elderFit": "座位形式沒有來源",
+        "kidsFit": "小孩規定沒寫；有天丼、烤貝等熟食 → 3"
+      },
+      "confidence": "low",
+      "assessed": "2026-10-19"
+    }
   },
   {
     "id": "shima-sushi-yuzen",
@@ -15493,7 +18090,7 @@
       "instagram": "@sushi_yutaka_zen"
     },
     "tags": [],
-    "tier": null,
+    "tier": "B",
     "sources": [
       {
         "type": "tabelog",
@@ -15632,6 +18229,48 @@
         "席數：食べログ カウンター 6 席・貸切 20 人以下 vs 官網 8 名同時スタート・シェフズ・テーブル 10 名",
         "子地區：地址是志摩町和具，但在間崎島（只能從賢島港搭船）→ 照交通歸 kashikojima"
       ]
+    },
+    "summary": {
+      "text": "英虞湾的離島 間崎島、1 日 1 組オーベルジュ MOKU ISESHIMA 的壽司店，從茅ヶ崎「鮨裕」來的親方只用英虞湾當天的魚，賢島港搭接駁船上島。官網寫可以只用餐（8 名同時開始），但食べログ 寫會員制；昼夜 30,000 円以上，只適合 4～6 人的高價分組。",
+      "pros": [
+        "英虞湾當天的魚、從漁師料理發想的料理",
+        "官網 FAQ 寫可以只用餐（omakase.in 預約）",
+        "賢島港搭接駁船，離島的氣氛"
+      ],
+      "cons": [
+        "吧台 6 席、只用餐 8 名，15 人不能一起",
+        "食べログ 寫會員制，和官網矛盾；價格、營業日不明",
+        "不是無障礙、要搭船"
+      ],
+      "basedOn": [
+        "https://moku-iseshima.com/faq/",
+        "https://moku-iseshima.com/sushi-yutaka-zen/",
+        "https://moku-iseshima.com/",
+        "https://moku-iseshima.com/reservation/",
+        "https://tabelog.com/mie/A2403/A240303/24018498/",
+        "https://tabelog.com/mie/A2403/A240303/24018498/party/",
+        "https://maps.google.com/?cid=736889596316476451"
+      ],
+      "generated": "2026-10-19"
+    },
+    "assessment": {
+      "rubric": "restaurant-v1",
+      "scores": {
+        "recommend": 2,
+        "localFlavor": 3,
+        "groupFit": 1,
+        "elderFit": 2,
+        "kidsFit": null
+      },
+      "rationale": {
+        "recommend": "食べログ 3.18 未満 3.3 而且 Google 3.7 未満 4.0 → 2（評論都很少，心得 0）",
+        "localFlavor": "英虞湾當天的魚的壽司（一般和食）→ 3",
+        "groupFit": "fit15 no：吧台 6 席、只用餐 8 名 → 1",
+        "elderFit": "只有吧台（3），官網說不是無障礙、要搭船上島 → 2",
+        "kidsFit": "用餐的年齡限制沒寫，菜單是壽司（熟食沒有來源）"
+      },
+      "confidence": "low",
+      "assessed": "2026-10-19"
     }
   },
   {
@@ -15716,7 +18355,7 @@
       "instagram": null
     },
     "tags": [],
-    "tier": null,
+    "tier": "B",
     "sources": [
       {
         "type": "tabelog",
@@ -15851,6 +18490,47 @@
         "營業時間：官網 AM10:00～PM22:00／AM10:00～PM17:00 vs 食べログ 10:00～15:00",
         "人數：官網 桌椅最多 24 人 vs 食べログ 着席 40 人"
       ]
+    },
+    "summary": {
+      "text": "和具 広の浜、面太平洋的海女小屋：海女在眼前炭火烤栄螺、貝、魚，附手こね寿司的「広の浜御膳」3 人以上每人 4,000 円，可加伊勢海老・鮑（7,500 円～）。30 畳的室內小屋可包場、桌椅最多 24 人，15 人能一起坐椅子；2 天前電話預約。",
+      "pros": [
+        "海女小屋的炭火現烤，Google 4.5，海女親切、太平洋景觀",
+        "30 畳室內小屋包場、桌椅最多 24 人，有輪椅廁所",
+        "2026/01 平日有營業（前一天電話預約）"
+      ],
+      "cons": [
+        "評論很少（Google 42 則、食べログ 1 則）",
+        "冬季營業的官方來源沒有，要電話確認；只接電話",
+        "食べログ寫全席可吸菸；沒有兒童價"
+      ],
+      "basedOn": [
+        "https://www.hironohama.com/blank-1",
+        "https://www.hironohama.com/",
+        "https://www.hironohama.com/menu",
+        "https://www.kanko-shima.com/purpose/1855/",
+        "https://tabelog.com/mie/A2403/A240303/24017668/",
+        "https://maps.google.com/?cid=2048527154141132502"
+      ],
+      "generated": "2026-10-19"
+    },
+    "assessment": {
+      "rubric": "restaurant-v1",
+      "scores": {
+        "recommend": 3,
+        "localFlavor": 5,
+        "groupFit": 5,
+        "elderFit": 4,
+        "kidsFit": 3
+      },
+      "rationale": {
+        "recommend": "食べログ 3.01（1 則）、Google 4.5（42 則）→ 評論數上限 3（體驗型第 3 條要 300 則）",
+        "localFlavor": "海女小屋，用餐本身是在地體驗 → 5",
+        "groupFit": "官網：小屋包場、桌椅最多 24 人；食べログ 最大予約 40 人 → 5",
+        "elderFit": "有桌椅、輪椅對應廁所 → 4",
+        "kidsFit": "小孩規定、兒童價沒寫；烤貝、烤魚 熟食 → 3"
+      },
+      "confidence": "low",
+      "assessed": "2026-10-19"
     }
   },
   {
@@ -15955,7 +18635,7 @@
       "instagram": null
     },
     "tags": [],
-    "tier": null,
+    "tier": "B",
     "sources": [
       {
         "type": "tabelog",
@@ -16077,7 +18757,46 @@
       "note": "三重交通「和具」巴士站步行數分；停車 5～6 台（伊勢志摩観光ナビ）"
     },
     "smoking": null,
-    "extra": {}
+    "extra": {},
+    "summary": {
+      "text": "和具漁港旁的海鮮食堂兼居酒屋，おまかせ地魚刺身定食 1,760～1,890 円（量多又新鮮，十幾則推薦）、カツオ 手こね寿司定食、20cm 有頭エビフライ；午晚營業到 23:00、週日休，約 20 名。前島半島少數晚上營業的店，刺身定食每天限量，中午要先點餐預約。",
+      "pros": [
+        "Google 4.5（225 則），刺身量多、CP 值極高（多則）",
+        "午晚都營業；中午 12 時前可點餐預約",
+        "伊勢志摩観光ナビ 介紹"
+      ],
+      "cons": [
+        "刺身定食每天限量 10～15 份，開店就賣完",
+        "約 20 名、平日也常滿席；15 人要包場",
+        "週日休（2/7）；停車 5～6 台"
+      ],
+      "basedOn": [
+        "https://www.iseshima-kanko.jp/gourmet/2507",
+        "https://tabelog.com/mie/A2403/A240303/24014579/",
+        "https://tabelog.com/mie/A2403/A240303/24014579/dtlrvwlst/",
+        "https://maps.google.com/?cid=8286499874347546308"
+      ],
+      "generated": "2026-10-19"
+    },
+    "assessment": {
+      "rubric": "restaurant-v1",
+      "scores": {
+        "recommend": 3,
+        "localFlavor": 4,
+        "groupFit": 3,
+        "elderFit": 3,
+        "kidsFit": 3
+      },
+      "rationale": {
+        "recommend": "食べログ 3.39（50 則）、Google 4.5（225 則）→ 評論數上限 3",
+        "localFlavor": "漁港旁的地魚食堂、カツオ 手こね寿司 → 4",
+        "groupFit": "fit15 split：收容 20 名、可預約 → 3",
+        "elderFit": "座位資料只有吧台 → 3",
+        "kidsFit": "小孩規定沒寫；エビフライ、アジフライ 等熟食 → 3"
+      },
+      "confidence": "medium",
+      "assessed": "2026-10-19"
+    }
   },
   {
     "id": "shima-shosuke",
@@ -16151,7 +18870,7 @@
       "instagram": null
     },
     "tags": [],
-    "tier": null,
+    "tier": "B",
     "sources": [
       {
         "type": "tabelog",
@@ -16258,7 +18977,45 @@
       "note": "阿児町立神；鵜方站往立神的巴士「立神」下車步行 10 分（食べログ）；有停車場"
     },
     "smoking": null,
-    "extra": {}
+    "extra": {},
+    "summary": {
+      "text": "立神的居酒屋，17:00～24:00、週二四休，吧台 8＋桌＋8 人個室約 20 席；Google 心得說鄉下居酒屋但料理細心、CP 值高。包棟 やどかり志摩 附近的晚餐選項（缺口保底）。",
+      "pros": [
+        "吧台＋桌＋8 人個室、可包場",
+        "Google 4.2；料理細心、CP 值高（1 則）",
+        "有停車場"
+      ],
+      "cons": [
+        "週二・四休（2/2、2/4、2/9、2/11）",
+        "只收現金；近 5 年評論只有 3 則",
+        "菜單、價格沒有來源"
+      ],
+      "basedOn": [
+        "https://hitosara.com/0031525569/",
+        "https://tabelog.com/mie/A2403/A240303/24003661/",
+        "https://maps.google.com/?cid=15510670284552233006"
+      ],
+      "generated": "2026-10-19"
+    },
+    "assessment": {
+      "rubric": "restaurant-v1",
+      "scores": {
+        "recommend": 2,
+        "localFlavor": null,
+        "groupFit": 3,
+        "elderFit": 4,
+        "kidsFit": null
+      },
+      "rationale": {
+        "recommend": "缺口保底（D2）→ 最多 2",
+        "localFlavor": "菜單沒有來源",
+        "groupFit": "fit15 split：約 20 席、貸切可（疫情減席要問）→ 3",
+        "elderFit": "吧台＋桌 → 4",
+        "kidsFit": "小孩規定、菜單都沒有來源"
+      },
+      "confidence": "low",
+      "assessed": "2026-10-19"
+    }
   },
   {
     "id": "shima-izakaya-kyu",
@@ -16297,7 +19054,7 @@
       "instagram": null
     },
     "tags": [],
-    "tier": null,
+    "tier": "B",
     "sources": [
       {
         "type": "tabelog",
@@ -16396,7 +19153,44 @@
       "note": "阿児町立神；店前停車"
     },
     "smoking": "全席喫煙可（食べログ）",
-    "extra": {}
+    "extra": {},
+    "summary": {
+      "text": "立神的小居酒屋，營業時間、定休都沒有任何來源，食べログ 席數寫 3 席（可疑）、全席可吸菸。やどかり志摩 附近的晚餐備案（缺口保底），要電話確認還有沒有營業。",
+      "pros": [
+        "Google 4.7（10 則）",
+        "有座敷、吧台",
+        "店前停車"
+      ],
+      "cons": [
+        "營業時間、定休、是否還在營業都沒有來源",
+        "食べログ 寫全席可吸菸",
+        "席數 3 席（可疑）"
+      ],
+      "basedOn": [
+        "https://tabelog.com/mie/A2403/A240303/24002704/",
+        "https://maps.google.com/?cid=15039598855049538636"
+      ],
+      "generated": "2026-10-19"
+    },
+    "assessment": {
+      "rubric": "restaurant-v1",
+      "scores": {
+        "recommend": 2,
+        "localFlavor": null,
+        "groupFit": 1,
+        "elderFit": 3,
+        "kidsFit": null
+      },
+      "rationale": {
+        "recommend": "缺口保底（D2）→ 最多 2",
+        "localFlavor": "菜單沒有來源",
+        "groupFit": "fit15 no（食べログ 3 席，照原文）→ 1",
+        "elderFit": "座敷＋吧台 → 3",
+        "kidsFit": "小孩規定、菜單都沒有來源"
+      },
+      "confidence": "low",
+      "assessed": "2026-10-19"
+    }
   },
   {
     "id": "shima-amimoto-yashiro",
@@ -16512,7 +19306,7 @@
       "instagram": "@amimotonomise_yashiro"
     },
     "tags": [],
-    "tier": null,
+    "tier": "A",
     "sources": [
       {
         "type": "tabelog",
@@ -16650,6 +19444,47 @@
         "食べログ寫予約不可・貸切可・座敷あり，官網、觀光協會沒有這些資訊",
         "定休：食べログ 只寫水曜 vs 官網・觀光協會 水曜＋第 1・3 木曜"
       ]
+    },
+    "summary": {
+      "text": "浜島的網元（定置網漁家）直營海鮮丼店，自家定置網的魚貝：大漁丼 午 1,500 円、特上 2,600 円，刺身切得很厚、份量多，電視播出後成名店；有お子様大漁丼 1,200 円、海老フライ御膳。不能預約、叫號制，平日也常等 30～100 分；週三＋第 1・3 週四休。",
+      "pros": [
+        "食べログ 3.52（127 則）、Google 4.4（529 則），hamajima 最有名的店",
+        "網元直營、CP 值高；午晚都營業",
+        "お子様大漁丼、海老フライ御膳、トンカツ・唐揚げ 定食"
+      ],
+      "cons": [
+        "不能預約、叫號制，平日 30～100 分、連休 2～3 小時（在車上等）",
+        "週三＋第 1・3 週四休（2/3、2/4、2/10）；不能刷卡、會賣完",
+        "主要是座敷（1F 吧台＋座敷桌 2、2F 座敷）；店前路窄、停車約 10 台"
+      ],
+      "basedOn": [
+        "https://r.goope.jp/shima-yashiro/",
+        "https://r.goope.jp/shima-yashiro/free/kuchikomi",
+        "https://www.kanko-shima.com/purpose/1143/",
+        "https://tabelog.com/mie/A2403/A240303/24001184/",
+        "https://tabelog.com/mie/A2403/A240303/24001184/dtlrvwlst/",
+        "https://maps.google.com/?cid=17602936993693870940"
+      ],
+      "generated": "2026-10-19"
+    },
+    "assessment": {
+      "rubric": "restaurant-v1",
+      "scores": {
+        "recommend": 4,
+        "localFlavor": 4,
+        "groupFit": 1,
+        "elderFit": 1,
+        "kidsFit": 5
+      },
+      "rationale": {
+        "recommend": "食べログ 3.52（127 則）＋ Google 4.4 → 第 1 條 4；負評（刺身太厚、不新鮮 2 則）不多",
+        "localFlavor": "網元直營、自家定置網的漁獲 → 4",
+        "groupFit": "不接受預約 → 1",
+        "elderFit": "主要是座敷，還要等 30～100 分 → 2 降一級 1",
+        "kidsFit": "官網有お子様大漁丼、海老フライ御膳 → 5"
+      },
+      "confidence": "medium",
+      "assessed": "2026-10-19"
     }
   },
   {
@@ -16734,7 +19569,7 @@
       "instagram": null
     },
     "tags": [],
-    "tier": null,
+    "tier": "B",
     "sources": [
       {
         "type": "tabelog",
@@ -16856,6 +19691,46 @@
     "extra": {
       "nonGuestDining": "官網「日帰りのご案内」：入浴付ディナーバイキング（要事前予約）（2026-10-19）",
       "lodgingId": "shima-oedo-iseshima"
+    },
+    "summary": {
+      "text": "浜島的大型溫泉飯店 大江戸温泉物語Premium 伊勢志摩，官網有非住客的「入浴付ディナーバイキング」（17:00～18:30 用餐＋溫泉、要預約）：大人平日 4,200 円、有小學生・幼兒價，刺身、漁師鍋、あおさかき揚げ 為主的和洋中。hamajima 晚上少數能用的地方，也是全家泡湯＋吃飯的選項。",
+      "pros": [
+        "入浴付ディナーバイキング 大人平日 4,200 円，小學生 2,940、幼兒 1,260 円起",
+        "館內可輪椅、有無障礙廁所（住宿）",
+        "hamajima 晚上少數的選項"
+      ],
+      "cons": [
+        "用餐 17:00～18:30，時間短；混雜時可能拒絕日帰り預約",
+        "自助餐，在地特色普通；心得 0 篇",
+        "鵜方站車約 20 分；日帰り客能不能搭送迎巴士沒寫"
+      ],
+      "basedOn": [
+        "https://www.ooedoonsen.jp/iseshima/day_trip/",
+        "https://www.ooedoonsen.jp/iseshima/restaurant/",
+        "https://www.kankomie.or.jp/topic/768",
+        "https://tabelog.com/mie/A2403/A240303/24011169/",
+        "https://maps.google.com/?cid=12781768572398887161"
+      ],
+      "generated": "2026-10-19"
+    },
+    "assessment": {
+      "rubric": "restaurant-v1",
+      "scores": {
+        "recommend": 2,
+        "localFlavor": 3,
+        "groupFit": 2,
+        "elderFit": null,
+        "kidsFit": 5
+      },
+      "rationale": {
+        "recommend": "食べログ 3.10（45 則）未満 3.3、Google 3.9（住宿本體）未満 4.0 → 2；F③ 住宿楽天餐 4.24 不到 4.5",
+        "localFlavor": "刺身、漁師鍋、あおさかき揚げ 的 buffet → 3",
+        "groupFit": "fit15 unknown：要預約、混雜時可能拒絕，團體條件沒寫 → 2",
+        "elderFit": "館內可輪椅，但座位形式沒有來源（自助餐要自己取）",
+        "kidsFit": "有小學生・幼兒價、3 歲未滿免費 → 5"
+      },
+      "confidence": "low",
+      "assessed": "2026-10-19"
     }
   },
   {
@@ -16940,7 +19815,7 @@
       "instagram": null
     },
     "tags": [],
-    "tier": null,
+    "tier": "B",
     "sources": [
       {
         "type": "tabelog",
@@ -17069,6 +19944,47 @@
         "個室：觀光協會「無し」 vs 食べログ「有（4人可、6人可）」",
         "晚上結束：觀光協會・食べログ 22:00 vs るるぶ 21:00（L.O. 20:30）"
       ]
+    },
+    "summary": {
+      "text": "浜島市街的家庭式海鮮料理店，當天在地漁獲的アワビ（お造り 1,080 円～、バター焼き）、伊勢エビ料理、お造り盛り合わせ、烤魚・煮魚，在地常客多、CP 值好。晚上 17:00～、週二休，有 4・6 人個室；hamajima 晚餐的主要選項（缺口保底）。",
+      "pros": [
+        "アワビ、伊勢エビ、地魚的單點，價格實惠",
+        "晚上營業；有 4・6 人個室",
+        "店員親切（2024、2026）"
+      ],
+      "cons": [
+        "週二休（2/2、2/9）；午餐要前一天預約",
+        "吸菸的客人多（約 2025）；對生客態度普通",
+        "評論很少（食べログ 8、Google 75）"
+      ],
+      "basedOn": [
+        "https://www.kanko-shima.com/purpose/1664/",
+        "https://rurubu.jp/andmore/spot/80025168",
+        "https://www.mapple.net/region/a0405010400_g03050400/spot/",
+        "https://tabelog.com/mie/A2403/A240303/24001105/",
+        "https://tabelog.com/mie/A2403/A240303/24001105/dtlrvwlst/",
+        "https://maps.google.com/?cid=4902586414114863949"
+      ],
+      "generated": "2026-10-19"
+    },
+    "assessment": {
+      "rubric": "restaurant-v1",
+      "scores": {
+        "recommend": 2,
+        "localFlavor": 4,
+        "groupFit": 3,
+        "elderFit": 3,
+        "kidsFit": 4
+      },
+      "rationale": {
+        "recommend": "缺口保底（D2）→ 最多 2",
+        "localFlavor": "アワビ、伊勢エビ 料理 → 4",
+        "groupFit": "fit15 split：24 席、個室 4・6 人 → 3",
+        "elderFit": "座位資料只有吧台（個室形式沒寫）→ 3",
+        "kidsFit": "子供可；烤魚、煮魚、炸物 熟食 → 4"
+      },
+      "confidence": "low",
+      "assessed": "2026-10-19"
     }
   },
   {
@@ -17139,7 +20055,7 @@
       "instagram": "@yotto1969"
     },
     "tags": [],
-    "tier": null,
+    "tier": "B",
     "sources": [
       {
         "type": "tabelog",
@@ -17278,6 +20194,47 @@
         "停車場：觀光協會・るるぶ 約 10 台 vs 食べログ 15 台",
         "伊勢海老：觀光協會 伊勢海老づくし 約 5,000 円 vs Google 評論（約 2024，1 則）「伊勢海老 已經不做」"
       ]
+    },
+    "summary": {
+      "text": "浜島 鴻住 的家庭經營磯料理店：伊勢エビ定食（活烤「残酷焼」或刺身＋長寿汁）、ヨット定食 1,800 円、點餐後才烤的あっぱっぱ貝，冬～春有真珠貝柱的パールチャーハン 1,100 円。平日 11:00～18:00 入店、週二休，不能預約；hamajima 週三（2/3、2/10）唯一的午餐（缺口保底）。",
+      "pros": [
+        "パールチャーハン（2 月吃得到）、あっぱっぱ貝、伊勢エビ定食",
+        "平日中午到傍晚不休息；鴻住 巴士站下車即到",
+        "帶小孩被安排到小座敷、有兒童椅（2026/01）"
+      ],
+      "cons": [
+        "不能預約、15 席；週末等 30 分～1 小時，等候中賣完就打烊",
+        "週二休（2/2、2/9）",
+        "接客差、伊勢海老可能沒有的口コミ"
+      ],
+      "basedOn": [
+        "http://isoryouri-yacht.com/",
+        "https://www.kanko-shima.com/purpose/1834/",
+        "https://rurubu.jp/andmore/spot/80025138",
+        "https://tabelog.com/mie/A2403/A240303/24001160/",
+        "https://tabelog.com/mie/A2403/A240303/24001160/dtlrvwlst/",
+        "https://maps.google.com/?cid=14146605133525144632"
+      ],
+      "generated": "2026-10-19"
+    },
+    "assessment": {
+      "rubric": "restaurant-v1",
+      "scores": {
+        "recommend": 2,
+        "localFlavor": 4,
+        "groupFit": 1,
+        "elderFit": 2,
+        "kidsFit": 4
+      },
+      "rationale": {
+        "recommend": "缺口保底（D1）→ 最多 2",
+        "localFlavor": "伊勢エビ定食、パールチャーハン（真珠貝柱）、あっぱっぱ貝 → 4",
+        "groupFit": "不接受預約 → 1",
+        "elderFit": "座敷＋吧台，要等位 → 3 降一級 2",
+        "kidsFit": "子供可、有兒童椅，パールチャーハン 等熟食 → 4"
+      },
+      "confidence": "medium",
+      "assessed": "2026-10-19"
     }
   },
   {
@@ -17357,7 +20314,7 @@
       "instagram": null
     },
     "tags": [],
-    "tier": null,
+    "tier": "B",
     "sources": [
       {
         "type": "tabelog",
@@ -17468,6 +20425,44 @@
         "營業時間只有食べログ（11:00～14:00頃），其他來源沒寫",
         "停車場：伊勢志摩観光ナビ 4 台 vs 食べログ 5 台"
       ]
+    },
+    "summary": {
+      "text": "浜島的老派拉麵食堂，清晨開始熬的雞骨湯頭「元祖西口屋ラーメン」、チャーシューメン、加めかぶ的メヒビラーメン；12 席，午餐 11:00～14:00 頃、週三休（缺口保底）。小組（4～6 人）的平價午餐。",
+      "pros": [
+        "口味溫和的雞骨拉麵，伊勢志摩観光ナビ 介紹",
+        "平價（食べログ預算 ～999 円）",
+        "子供可、可預約"
+      ],
+      "cons": [
+        "12 席（吧台、座敷），15 人不行",
+        "週三休（2/3、2/10），補不了 八代 的週三",
+        "心得 0 篇；營業時間、價格沒寫"
+      ],
+      "basedOn": [
+        "https://www.iseshima-kanko.jp/gourmet/111677",
+        "https://tabelog.com/mie/A2403/A240303/24011240/",
+        "https://maps.google.com/?cid=6719590374349273571"
+      ],
+      "generated": "2026-10-19"
+    },
+    "assessment": {
+      "rubric": "restaurant-v1",
+      "scores": {
+        "recommend": 2,
+        "localFlavor": 2,
+        "groupFit": 1,
+        "elderFit": 3,
+        "kidsFit": 4
+      },
+      "rationale": {
+        "recommend": "缺口保底（D1）→ 最多 2",
+        "localFlavor": "拉麵，但有めかぶ（在地海藻）的メヒビラーメン → 2",
+        "groupFit": "fit15 no：12 席 → 1",
+        "elderFit": "吧台＋座敷 → 3",
+        "kidsFit": "子供可、拉麵熟食、口味溫和 → 4"
+      },
+      "confidence": "low",
+      "assessed": "2026-10-19"
     }
   },
   {
@@ -17528,7 +20523,7 @@
       "instagram": "@sakanoue.7"
     },
     "tags": [],
-    "tier": null,
+    "tier": "B",
     "sources": [
       {
         "type": "tabelog",
@@ -17656,6 +20651,45 @@
         "營業日：觀光協會 11:00〜16:30、月休 vs 食べログ 土日 11:00～15:00、月～金休",
         "營業日：觀光協會 11:00〜16:30、月休 vs 食べログ店舗情報・口コミ 3 則 土日のみ（採用後者）"
       ]
+    },
+    "summary": {
+      "text": "浜島 桧山路 坡上的小咖啡店，坂のうえランチ 1,485 円（主菜 10 多種選 1，擺盤像繪本），有お子様ランチ。16 席、可包場 20 人以下，但午餐現在只有週六日（2/6、2/7、2/13），出菜非常慢（40 分～2 小時）（缺口保底）。",
+      "pros": [
+        "お子様ランチ；擺盤漂亮的午餐套餐",
+        "16 席、包場 20 人以下 → 週末 15 人一起的選項",
+        "まぼろしのぷりん 等甜點"
+      ],
+      "cons": [
+        "午餐只有週六日（平日是外帶便當）",
+        "出菜非常慢，有預約仍在外面等近 1 小時",
+        "坡道窄、彎，停車 3～4 台"
+      ],
+      "basedOn": [
+        "https://www.kanko-shima.com/purpose/7300/",
+        "https://tabelog.com/mie/A2403/A240303/24013678/",
+        "https://tabelog.com/mie/A2403/A240303/24013678/dtlrvwlst/",
+        "https://maps.google.com/?cid=9950180800517222758"
+      ],
+      "generated": "2026-10-19"
+    },
+    "assessment": {
+      "rubric": "restaurant-v1",
+      "scores": {
+        "recommend": 2,
+        "localFlavor": 1,
+        "groupFit": 4,
+        "elderFit": 3,
+        "kidsFit": 5
+      },
+      "rationale": {
+        "recommend": "缺口保底（D1）→ 最多 2",
+        "localFlavor": "咖啡店的西式盤餐 → 1",
+        "groupFit": "fit15 yes 但根據是包場 20 人以下、只有週末、出菜慢 → 4",
+        "elderFit": "座位資料只有吧台、露台 → 3",
+        "kidsFit": "觀光協會：お子様ランチ → 5"
+      },
+      "confidence": "low",
+      "assessed": "2026-10-19"
     }
   },
   {
@@ -17772,7 +20806,7 @@
       "instagram": "@riasbykokotxa"
     },
     "tags": [],
-    "tier": null,
+    "tier": "B",
     "sources": [
       {
         "type": "tabelog",
@@ -17953,6 +20987,49 @@
         "營業時間：食べログ 9:00～14:00 vs 官網 11:30～14:00",
         "Pasaia：觀光三重 2021 11,000 円 vs 官網 12,100 円"
       ]
+    },
+    "summary": {
+      "text": "志摩地中海村 內、聖塞巴斯提安米其林一星 Kokotxa 監修的西班牙料理（食べログ 百名店 3.60）：伊勢海老のソカラ、鮑、松阪牛的套餐，午 4,400 円起、晚 12,100 円起，有兒童套餐 Niños 2,750 円。非住客午晚都可以（晚餐完全予約制）；但村內石板路、階梯多，白天進村要付入村料。",
+      "pros": [
+        "食べログ 3.60，口コミ（2025～2026）多在 4.0～5.0，英虞湾夕陽",
+        "兒童套餐 Niños（小學生以下）、Junior",
+        "有個室、可包場；7 人預約午餐可各選套餐"
+      ],
+      "cons": [
+        "村內石板路、階梯多，官網說非無障礙",
+        "白天進村要付入村料（大人 700 円）；午餐不定休、2 月休業日未公告",
+        "味道清淡、份量少的口コミ；15 人一桌、包場人數沒寫"
+      ],
+      "basedOn": [
+        "https://riasbykokotxa.jp/",
+        "https://riasbykokotxa.jp/open",
+        "https://riasbykokotxa.jp/lunch",
+        "https://riasbykokotxa.jp/dinner",
+        "https://riasbykokotxa.jp/reservation",
+        "https://riasbykokotxa.jp/news/2026092501/",
+        "https://puebloamigo.jp/dayuse/",
+        "https://www.kanko-shima.com/purpose/1821/"
+      ],
+      "generated": "2026-10-19"
+    },
+    "assessment": {
+      "rubric": "restaurant-v1",
+      "scores": {
+        "recommend": 3,
+        "localFlavor": 2,
+        "groupFit": 3,
+        "elderFit": 2,
+        "kidsFit": 5
+      },
+      "rationale": {
+        "recommend": "食べログ 3.60（90 則）、Google 4.3（166 則）→ 評論數上限 3",
+        "localFlavor": "西班牙料理，用伊勢海老、鮑、松阪牛 → 2",
+        "groupFit": "fit15 unknown，但食べログ 個室有、貸切可 → 3",
+        "elderFit": "座位形式沒有來源，但村內石板路、階梯多、非無障礙 → 2",
+        "kidsFit": "兒童套餐 Niños、Junior → 5"
+      },
+      "confidence": "medium",
+      "assessed": "2026-10-19"
     }
   },
   {
@@ -18038,7 +21115,7 @@
       "instagram": null
     },
     "tags": [],
-    "tier": null,
+    "tier": "B",
     "sources": [
       {
         "type": "tabelog",
@@ -18184,6 +21261,48 @@
         "預算：一休 15,000～30,000 円 vs 食べログ 夜 100,000 円～",
         "小孩：一休「12 歲以上」 vs 口コミ 住客帶嬰兒・小學生用餐、有子供用コース（2022～2026，4 則）——一休的限制可能只對外部預約"
       ]
+    },
+    "summary": {
+      "text": "AMANEMU（安縵）館內面英虞湾的日本料理，伊勢志摩海鮮、松阪牛的季節料理，口コミ說服務細心。一休 公開預約午餐（12:30～13:30 入店），限 12 歲以上、smart casual、服務費 15%；2026-10 沒有可訂日期。晚餐對非住客開不開放沒有來源。只適合大人的小組。",
+      "pros": [
+        "英虞湾景觀、天井高的木造餐廳，伊勢海老と河豚の煮凝り、松阪牛フィレ 好評",
+        "一休 公開預約午餐，50 席",
+        "三重地酒 20 種以上"
+      ],
+      "cons": [
+        "一休：12 歲以上，6～10 歲的小孩不能去",
+        "2026-10 一休沒有可訂日期；價格高（服務費 15%）",
+        "口コミ幾乎都是住客；賢島站車約 20 分"
+      ],
+      "basedOn": [
+        "https://www.aman.com/ja-jp/resorts/amanemu/dining",
+        "https://www.aman.com/ja-jp/resorts/amanemu",
+        "https://www.aman.com/ja-jp/resorts/amanemu/exclusives/family-escape",
+        "https://restaurant.ikyu.com/115072/",
+        "https://tabelog.com/mie/A2403/A240303/24015181/",
+        "https://tabelog.com/mie/A2403/A240303/24015181/dtlrvwlst/",
+        "https://maps.google.com/?cid=5138399241800249089"
+      ],
+      "generated": "2026-10-19"
+    },
+    "assessment": {
+      "rubric": "restaurant-v1",
+      "scores": {
+        "recommend": 3,
+        "localFlavor": 3,
+        "groupFit": 3,
+        "elderFit": null,
+        "kidsFit": 1
+      },
+      "rationale": {
+        "recommend": "食べログ 3.56（91 則）、Google 4.5（15 則）→ 評論數上限 3",
+        "localFlavor": "伊勢志摩海鮮、松阪牛的季節日本料理 → 3",
+        "groupFit": "fit15 split：50 席（個室 1）、可預約 → 3",
+        "elderFit": "座位形式沒有來源",
+        "kidsFit": "一休：12 歲以上、沒有兒童餐（住客的口コミ有兒童套餐，衝突）→ 1"
+      },
+      "confidence": "low",
+      "assessed": "2026-10-19"
     }
   },
   {
@@ -18300,7 +21419,7 @@
       "instagram": "@shima_chichuukaimura_azul"
     },
     "tags": [],
-    "tier": null,
+    "tier": "B",
     "sources": [
       {
         "type": "tabelog",
@@ -18440,6 +21559,47 @@
         "午餐營業日：觀光三重 2021「土日祝」 vs 官網 2026-10 只有週日",
         "晚餐結束：食べログ 22:00 vs 官網 21:00"
       ]
+    },
+    "summary": {
+      "text": "志摩地中海村 內的西班牙風 buffet「伊勢志摩ビュッフェ」，晚餐大人 6,600 円、午餐 3,080 円，有兒童價，伊勢海老單點 3,300 円。午餐只在特定日（2026-10 只有週日），午餐方案 1 日 30 名、20 名以上可包場——日子對得上的話是 sakko 15 人一起吃午餐的選項。晚餐非住客可否要問。",
+      "pros": [
+        "午餐方案 1 日 30 名、20 名以上可包場",
+        "兒童價（小學生、3 歲以上、未滿 3 歲免費）",
+        "晚餐 buffet 甜點水準高、三重鄉土菜多（口コミ）"
+      ],
+      "cons": [
+        "午餐只在特定日（2027-02 未公告）；晚餐非住客可否沒寫",
+        "村內石板路、階梯多，非無障礙；白天要付入村料",
+        "味道普通、偏貴、員工沒精神的口コミ"
+      ],
+      "basedOn": [
+        "https://www.puebloamigo.jp/meal/azul/",
+        "https://puebloamigo.jp/dayuse/",
+        "https://www.kankomie.or.jp/report/993",
+        "https://tabelog.com/mie/A2403/A240303/24016781/",
+        "https://tabelog.com/mie/A2403/A240303/24016781/dtlrvwlst/",
+        "https://maps.google.com/?cid=6063237647639332055"
+      ],
+      "generated": "2026-10-19"
+    },
+    "assessment": {
+      "rubric": "restaurant-v1",
+      "scores": {
+        "recommend": 3,
+        "localFlavor": 3,
+        "groupFit": 4,
+        "elderFit": 2,
+        "kidsFit": 5
+      },
+      "rationale": {
+        "recommend": "食べログ 3.33（49 則）、Google 4.2（83 則）→ 評論數上限 3",
+        "localFlavor": "伊勢志摩食材的 buffet（伊勢うどん、てこね寿司）→ 3",
+        "groupFit": "fit15 yes，但只在午餐營業日、根據是 1 日 30 名的午餐方案 → 4",
+        "elderFit": "村內石板路、階梯多，buffet 要自己取菜 → 2",
+        "kidsFit": "兒童價、buffet 對小孩友善 → 5"
+      },
+      "confidence": "low",
+      "assessed": "2026-10-19"
     }
   }
 ]
