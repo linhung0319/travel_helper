@@ -21914,6 +21914,12 @@
         "url": "https://co-trip.jp/post/730165",
         "retrieved": "2026-10-18",
         "note": "2026-05 使用者投稿（WebSearch 摘要，WebFetch 403）：季節塔 620 円、電話"
+      },
+      {
+        "type": "tabelog",
+        "url": "https://tabelog.com/mie/A2403/A240301/24015834/dtlrvwlst/",
+        "retrieved": "2026-10-18",
+        "note": "口コミ（最新 20 則＋關鍵字搜尋）、頁尾店舗情報"
       }
     ],
     "verified": false,
@@ -22015,7 +22021,7 @@
       "note": "キッズスープセット 500 円、甘口カレー・ハヤシ；有幼兒椅、嬰兒車可（官網、食べログ）"
     },
     "accessibility": {
-      "barrierFree": null,
+      "barrierFree": "バリアフリー、車椅子で入店可（食べログ）",
       "note": "結婚會場 ザ・オランジェガーデン五十鈴川 附設；近鐵五十鈴川站出站即到；停車場 80 台（まっぷる，和會場共用）"
     },
     "smoking": "全席禁煙（露台一部分可）",
@@ -22150,6 +22156,12 @@
         "url": "https://retty.me/restaurant/100001240317/",
         "retrieved": "2026-10-18",
         "note": "50 席無包廂、禁菸、五十鈴川站步行 4 分、8 則短評（2015～2022），推薦度 88%"
+      },
+      {
+        "type": "tabelog",
+        "url": "https://tabelog.com/mie/A2403/A240301/24013344/dtlrvwlst/",
+        "retrieved": "2026-10-18",
+        "note": "口コミ（最新 20 則＋關鍵字搜尋）、頁尾店舗情報"
       }
     ],
     "verified": false,
@@ -22255,7 +22267,7 @@
       "note": "子供可（食べログ）；兒童餐沒有來源"
     },
     "accessibility": {
-      "barrierFree": null,
+      "barrierFree": "バリアフリー（食べログ）",
       "note": "近鐵五十鈴川站步行約 4 分（Retty）；停車場 店旁 10 台＋店後 5 台（食べログ）"
     },
     "smoking": "分煙（吧台、露台可吸菸）",
@@ -24322,6 +24334,12 @@
         "url": "https://www.perception1993.com/access.html",
         "retrieved": "2026-10-18",
         "note": "小俣站步行 5 分、第 3 停車場、免費接送條件"
+      },
+      {
+        "type": "tabelog",
+        "url": "https://tabelog.com/mie/A2403/A240301/24006985/dtlrvwlst/",
+        "retrieved": "2026-10-18",
+        "note": "口コミ（最新 20 則＋關鍵字搜尋）、頁尾店舗情報"
       }
     ],
     "verified": false,
@@ -24425,7 +24443,10 @@
       "note": "官網表單、電話；套餐前一天前預約",
       "leadDays": null
     },
-    "seating": [],
+    "seating": [
+      "zashiki",
+      "horigotatsu"
+    ],
     "kids": {
       "allowed": "yes",
       "minAge": null,
@@ -24433,7 +24454,7 @@
       "note": "子供可、有お子様メニュー（食べログ）"
     },
     "accessibility": {
-      "barrierFree": null,
+      "barrierFree": "バリアフリー（食べログ）",
       "note": "コンフィアンス 1F；近鐵小俣站步行約 5 分；專用停車場，中大型巴士可停（要預約）；晚餐 4 人以上免費接送（官網）；伊勢苺園（`ise-ichigoen`）約 800 m"
     },
     "smoking": "全席禁煙",
@@ -25695,6 +25716,12 @@
         "url": "https://yuzu-ise.com/information/",
         "retrieved": "2026-10-18",
         "note": "お知らせ：伊勢海老解禁、團體巴士來店、臨時營業公告"
+      },
+      {
+        "type": "tabelog",
+        "url": "https://tabelog.com/mie/A2403/A240301/24003146/dtlrvwlst/",
+        "retrieved": "2026-10-18",
+        "note": "口コミ（最新 20 則＋關鍵字搜尋）、頁尾店舗情報"
       }
     ],
     "verified": false,
@@ -25811,7 +25838,8 @@
         "定休：官網首頁 週二＋不定休；お料理頁 週一、週二",
         "宴會上限：官網 20 名、食べログ 備考 25 名",
         "個室：官網 最大 5 名的個室；食べログ 10～20 人可",
-        "電話：官網 0120-551-754、食べログ 0596-27-1754"
+        "電話：官網 0120-551-754、食べログ 0596-27-1754",
+        "seating：資料檔是 zashiki，食べログ口コミ（2022/01，1 則）寫個室是和室擺桌椅、沒有座敷；4 年前，要再確認"
       ]
     }
   },
