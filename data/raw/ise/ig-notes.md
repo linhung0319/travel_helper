@@ -41,3 +41,17 @@
 | @iwatoya | 岩戸屋 本店（`ise-iwatoya-honten`） | 設施（和参宮亭五十鈴食堂共用） | 食べログ公式アカウント欄 |
 | @fujiyasogetsudo_vi | 藤屋窓月堂 本館（`ise-fujiya-sogetsudo-honkan`） | | 食べログ公式アカウント欄 |
 | @oiseyahonpo | お伊勢屋本舗（`ise-oiseya-honpo`） | | 食べログ公式アカウント欄 |
+| **第 3 批：ise-geku 晚餐** | | | |
+| @mukai.sakenomise | 向井酒の店（`ise-mukai-sakenomise`） | | 食べログ公式アカウント欄、Google 網站欄 |
+| @sakaguramorishita | 酒場 森下（`ise-sakaba-morishita`） | 可能和別館共用 | 食べログ公式アカウント欄 |
+| @machiyabar | 洋風ダイニングバー 町家バル（`ise-machiya-bar`） | | 食べログ公式アカウント欄、HAMONI |
+| @yakitori_nikawa_ise | 焼鳥 にかわ（`ise-nikawa`） | | 食べログ公式アカウント欄、Time Out |
+| @bonvivant_ise | ボン・ヴィヴァン（`ise-bon-vivant`） | | 食べログ公式アカウント欄 |
+| @isegeku_tessen | 鉄饌（`ise-tessen`） | | 食べログ公式アカウント欄 |
+| @ise_tsumugu | つむぐ（`ise-tsumugu`） | | 食べログ公式アカウント欄（食べログ 說也可以 IG 私訊預約） |
+| @kappou_daiki | 大喜（`ise-daiki`） | | 食べログ公式アカウント欄 |
+| @butasute_official | 豚捨 若柳（`ise-butasute-wakayanagi`） | 多店（公司） | 食べログ公式アカウント欄 |
+| @osteria_ilmosto | Osteria il Mosto（`ise-osteria-il-mosto`） | | 食べログ公式アカウント欄 |
+| @osterialabbra | オステリアラブラ（`ise-osteria-labra`） | | 食べログ公式アカウント欄 |
+| @yuzu_cucina_naturale | 柚 クッチーナナチュラーレ（`ise-yuzu-cucina`） | | 食べログ公式アカウント欄、官網 |
+| @yamatoan_kuroishi | 倭庵 黒石（`ise-wan-kuroishi`） | | 官網 |
