@@ -9,13 +9,15 @@
 //   旅程日數：旅程每天對到星期幾（國定假日用 holiday，沒有就用星期幾），算有營業的天數；那天 null 算不明。
 //   住宿附近的晚餐：anchors 裡有該住宿的晚餐店（restaurant-anchors.mjs 只在 20 分內才加），
 //     加上直線最近的 3 家晚餐店（標成「需搭車」與否看步行時間）。
-//   每天中午的家數：旅程每一天中午（11:30～13:30）有營業的店數，1 家以下用粗體標出。
+//   每天中午、晚上的家數：旅程每一天中午（11:30～13:30）、晚上（18:00～19:00）有營業的店數，1 家以下用粗體標出。
+//   closures（臨時休業、改裝）涵蓋的日子算休（T9e 加，用 trip-hours.mjs 的 slotsOn）。
+//   地區：餐廳的 region，加上 areas.json 裡這個區域沒有任何餐廳的子地區（T9e 加，才看得到 0 家的子地區）。
 //   地區看 region（T7b 之前的資料是 extra.region）。
 
 import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { tripDays, tripCount as tripCountOn, isLunch as isLunchOn, isDinner as isDinnerOn, overlaps } from './lib/trip-hours.mjs';
+import { tripDays, tripCount as tripCountOn, isLunch as isLunchOn, isDinner as isDinnerOn, overlaps, slotsOn } from './lib/trip-hours.mjs';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const args = process.argv.slice(2);
@@ -49,7 +51,8 @@ const hav = (p, q) => {
   return 2 * R * Math.asin(Math.sqrt(h));
 };
 
-const regions = [...new Set(restaurants.map((r) => r.region ?? r.extra?.region ?? '（無）'))];
+const areaRegions = (read('data/areas.json').find((a) => a.id === area)?.regions ?? []).map((r) => r.id);
+const regions = [...new Set([...restaurants.map((r) => r.region ?? r.extra?.region ?? '（無）'), ...areaRegions])];
 const out = [];
 out.push(`旅程 ${from}～${to}（${tripDaysList.length} 天；國定假日 ${[...holidays].join('、')}）`);
 
@@ -59,17 +62,19 @@ for (const reg of regions) {
   out.push(`| ${reg} | ${list.length} | ${list.map((r) => `${r.name.ja}（${fmtCount(tripCount(r, '11:30', '13:30'))}）`).join('、') || '**無**'} |`);
 }
 
-out.push('', '#### 各地區每天中午有營業的家數（hours 為 null 的不算）', '', `| 地區 | ${tripDaysList.map((d) => `${d.iso.slice(5)} ${d.holiday ? 'hol' : d.dow}`).join(' | ')} |`, `|---|${tripDaysList.map(() => '---').join('|')}|`);
-for (const reg of regions) {
-  const list = restaurants.filter((r) => (r.region ?? r.extra?.region ?? '（無）') === reg && (r.contexts ?? []).includes('lunch') && r.hours);
-  const cells = tripDaysList.map((d) => {
-    const n = list.filter((r) => {
-      const slots = d.holiday && r.hours.holiday != null ? r.hours.holiday : r.hours[d.dow];
-      return slots && overlaps(slots, '11:30', '13:30');
-    }).length;
-    return n <= 1 ? `**${n}**` : String(n);
-  });
-  out.push(`| ${reg} | ${cells.join(' | ')} |`);
+for (const [label, ctx, a, b] of [['中午', 'lunch', '11:30', '13:30'], ['晚上', 'dinner', '18:00', '19:00']]) {
+  out.push('', `#### 各地區每天${label}有營業的家數（hours 為 null 的不算；closures 算休）`, '', `| 地區 | ${tripDaysList.map((d) => `${d.iso.slice(5)} ${d.holiday ? 'hol' : d.dow}`).join(' | ')} |`, `|---|${tripDaysList.map(() => '---').join('|')}|`);
+  for (const reg of regions) {
+    const list = restaurants.filter((r) => (r.region ?? r.extra?.region ?? '（無）') === reg && (r.contexts ?? []).includes(ctx) && r.hours);
+    const cells = tripDaysList.map((d) => {
+      const n = list.filter((r) => {
+        const slots = slotsOn(r, d);
+        return slots && overlaps(slots, a, b);
+      }).length;
+      return n <= 1 ? `**${n}**` : String(n);
+    });
+    out.push(`| ${reg} | ${cells.join(' | ')} |`);
+  }
 }
 
 out.push('', '#### 不含晚餐的住宿附近的晚餐', '', '| 住宿 | anchors 有這間住宿的晚餐店（步行） | 直線最近的晚餐店 |', '|---|---|---|');

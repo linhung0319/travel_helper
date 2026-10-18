@@ -123,7 +123,38 @@
       }
     ],
     "verified": false,
-    "anchors": [],
+    "anchors": [
+      {
+        "id": "kashikojima",
+        "walkMinutes": 3,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "shima-espana-cruise",
+        "walkMinutes": 1,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "shima-kashikojima-yuransen",
+        "walkMinutes": 2,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "shima-samiere",
+        "walkMinutes": 2,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "shima-hotel-bay-garden",
+        "walkMinutes": 2,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "shima-michishio",
+        "walkMinutes": 5,
+        "walkSource": "estimate"
+      }
+    ],
     "contexts": [
       "lunch",
       "cafe"
@@ -369,7 +400,43 @@
       }
     ],
     "verified": false,
-    "anchors": [],
+    "anchors": [
+      {
+        "id": "kashikojima",
+        "walkMinutes": 4,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "shima-kashikojima-yuransen",
+        "walkMinutes": 1,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "shima-entrada",
+        "walkMinutes": 2,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "shima-espana-cruise",
+        "walkMinutes": 2,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "shima-michishio",
+        "walkMinutes": 6,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "shima-hotel-bay-garden",
+        "walkMinutes": 7,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "shima-kashikojima-harbor",
+        "walkMinutes": 6,
+        "walkSource": "osrm"
+      }
+    ],
     "contexts": [
       "lunch",
       "dinner"
@@ -591,7 +658,38 @@
       }
     ],
     "verified": false,
-    "anchors": [],
+    "anchors": [
+      {
+        "id": "kashikojima",
+        "walkMinutes": 7,
+        "walkSource": "estimate"
+      },
+      {
+        "id": "shima-kashikojima-yuransen",
+        "walkMinutes": 8,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "shima-espana-cruise",
+        "walkMinutes": 8,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "shima-samiere",
+        "walkMinutes": 8,
+        "walkSource": "estimate"
+      },
+      {
+        "id": "shima-hoseien",
+        "walkMinutes": 3,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "shima-kashikojima-harbor",
+        "walkMinutes": 13,
+        "walkSource": "osrm"
+      }
+    ],
     "contexts": [
       "lunch"
     ],
@@ -848,7 +946,43 @@
       }
     ],
     "verified": false,
-    "anchors": [],
+    "anchors": [
+      {
+        "id": "kashikojima",
+        "walkMinutes": 6,
+        "walkSource": "estimate"
+      },
+      {
+        "id": "shima-espana-cruise",
+        "walkMinutes": 5,
+        "walkSource": "estimate"
+      },
+      {
+        "id": "shima-samiere",
+        "walkMinutes": 5,
+        "walkSource": "estimate"
+      },
+      {
+        "id": "shima-entrada",
+        "walkMinutes": 6,
+        "walkSource": "estimate"
+      },
+      {
+        "id": "shima-hotel-bay-garden",
+        "walkMinutes": 4,
+        "walkSource": "estimate"
+      },
+      {
+        "id": "shima-michishio",
+        "walkMinutes": 4,
+        "walkSource": "estimate"
+      },
+      {
+        "id": "shima-kashikojima-harbor",
+        "walkMinutes": 6,
+        "walkSource": "estimate"
+      }
+    ],
     "contexts": [
       "lunch",
       "dinner"
@@ -1125,7 +1259,53 @@
       }
     ],
     "verified": false,
-    "anchors": [],
+    "anchors": [
+      {
+        "id": "kashikojima",
+        "walkMinutes": 6,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "shima-samiere",
+        "walkMinutes": 7,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "shima-espana-cruise",
+        "walkMinutes": 9,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "shima-kashikojima-yuransen",
+        "walkMinutes": 9,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "shima-kanko-classic",
+        "walkMinutes": 3,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "shima-kanko-bay-suites",
+        "walkMinutes": 5,
+        "walkSource": "estimate"
+      },
+      {
+        "id": "shima-kashikojima-harbor",
+        "walkMinutes": 9,
+        "walkSource": "estimate"
+      },
+      {
+        "id": "shima-hotel-bay-garden",
+        "walkMinutes": 9,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "shima-villa-ise-shima",
+        "walkMinutes": 17,
+        "walkSource": "osrm"
+      }
+    ],
     "contexts": [
       "lunch",
       "dinner"
@@ -1381,7 +1561,43 @@
       }
     ],
     "verified": false,
-    "anchors": [],
+    "anchors": [
+      {
+        "id": "kashikojima",
+        "walkMinutes": 6,
+        "walkSource": "estimate"
+      },
+      {
+        "id": "shima-espana-cruise",
+        "walkMinutes": 5,
+        "walkSource": "estimate"
+      },
+      {
+        "id": "shima-samiere",
+        "walkMinutes": 5,
+        "walkSource": "estimate"
+      },
+      {
+        "id": "shima-entrada",
+        "walkMinutes": 6,
+        "walkSource": "estimate"
+      },
+      {
+        "id": "shima-hotel-bay-garden",
+        "walkMinutes": 4,
+        "walkSource": "estimate"
+      },
+      {
+        "id": "shima-michishio",
+        "walkMinutes": 4,
+        "walkSource": "estimate"
+      },
+      {
+        "id": "shima-kashikojima-harbor",
+        "walkMinutes": 5,
+        "walkSource": "estimate"
+      }
+    ],
     "contexts": [
       "lunch",
       "dinner"
@@ -1584,7 +1800,38 @@
       }
     ],
     "verified": false,
-    "anchors": [],
+    "anchors": [
+      {
+        "id": "kashikojima",
+        "walkMinutes": 6,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "shima-samiere",
+        "walkMinutes": 7,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "shima-espana-cruise",
+        "walkMinutes": 9,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "shima-kashikojima-yuransen",
+        "walkMinutes": 9,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "shima-kanko-classic",
+        "walkMinutes": 4,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "shima-hotel-bay-garden",
+        "walkMinutes": 9,
+        "walkSource": "osrm"
+      }
+    ],
     "contexts": [
       "lunch",
       "cafe"
@@ -1794,7 +2041,38 @@
       }
     ],
     "verified": false,
-    "anchors": [],
+    "anchors": [
+      {
+        "id": "kashikojima",
+        "walkMinutes": 11,
+        "walkSource": "estimate"
+      },
+      {
+        "id": "shima-samiere",
+        "walkMinutes": 11,
+        "walkSource": "estimate"
+      },
+      {
+        "id": "shima-kashikojima-yuransen",
+        "walkMinutes": 12,
+        "walkSource": "estimate"
+      },
+      {
+        "id": "shima-espana-cruise",
+        "walkMinutes": 12,
+        "walkSource": "estimate"
+      },
+      {
+        "id": "shima-saichoraku",
+        "walkMinutes": 6,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "shima-hikobe",
+        "walkMinutes": 10,
+        "walkSource": "estimate"
+      }
+    ],
     "contexts": [
       "lunch"
     ],
@@ -2001,7 +2279,48 @@
       }
     ],
     "verified": false,
-    "anchors": [],
+    "anchors": [
+      {
+        "id": "kashikojima",
+        "walkMinutes": 7,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "shima-samiere",
+        "walkMinutes": 7,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "shima-espana-cruise",
+        "walkMinutes": 9,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "shima-kashikojima-yuransen",
+        "walkMinutes": 9,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "shima-kanko-classic",
+        "walkMinutes": 4,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "shima-hotel-bay-garden",
+        "walkMinutes": 9,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "shima-kashikojima-harbor",
+        "walkMinutes": 8,
+        "walkSource": "estimate"
+      },
+      {
+        "id": "shima-villa-ise-shima",
+        "walkMinutes": 18,
+        "walkSource": "osrm"
+      }
+    ],
     "contexts": [
       "dinner"
     ],
@@ -2172,7 +2491,28 @@
       }
     ],
     "verified": false,
-    "anchors": [],
+    "anchors": [
+      {
+        "id": "kashikojima",
+        "walkMinutes": 30,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "shima-samiere",
+        "walkMinutes": 30,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "shima-miyako-bayside-terrace",
+        "walkMinutes": 7,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "shima-villa-ryusei",
+        "walkMinutes": 8,
+        "walkSource": "osrm"
+      }
+    ],
     "contexts": [
       "lunch"
     ],
@@ -2434,7 +2774,33 @@
       }
     ],
     "verified": false,
-    "anchors": [],
+    "anchors": [
+      {
+        "id": "kashikojima",
+        "walkMinutes": 27,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "shima-samiere",
+        "walkMinutes": 28,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "shima-miyako-bayside-terrace",
+        "walkMinutes": 1,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "shima-villa-ryusei",
+        "walkMinutes": 6,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "shima-villa-ise-shima",
+        "walkMinutes": 17,
+        "walkSource": "osrm"
+      }
+    ],
     "contexts": [
       "lunch",
       "dinner",
@@ -2666,7 +3032,18 @@
       }
     ],
     "verified": false,
-    "anchors": [],
+    "anchors": [
+      {
+        "id": "shima-yokoyama-observatory",
+        "walkMinutes": 1,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "shima-shimawaso",
+        "walkMinutes": 32,
+        "walkSource": "osrm"
+      }
+    ],
     "contexts": [
       "snack",
       "cafe"
@@ -2871,7 +3248,33 @@
       }
     ],
     "verified": false,
-    "anchors": [],
+    "anchors": [
+      {
+        "id": "kashikojima",
+        "walkMinutes": 29,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "shima-samiere",
+        "walkMinutes": 29,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "shima-miyako-bayside-terrace",
+        "walkMinutes": 2,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "shima-villa-ryusei",
+        "walkMinutes": 7,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "shima-villa-ise-shima",
+        "walkMinutes": 18,
+        "walkSource": "osrm"
+      }
+    ],
     "contexts": [
       "dinner"
     ],
@@ -3067,7 +3470,23 @@
       }
     ],
     "verified": false,
-    "anchors": [],
+    "anchors": [
+      {
+        "id": "shima-shimmei",
+        "walkMinutes": 20,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "shima-kaiyuen",
+        "walkMinutes": 25,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "shima-nocturne-no-mori",
+        "walkMinutes": 15,
+        "walkSource": "osrm"
+      }
+    ],
     "contexts": [
       "lunch",
       "dinner",
@@ -3265,7 +3684,23 @@
       }
     ],
     "verified": false,
-    "anchors": [],
+    "anchors": [
+      {
+        "id": "shima-shimmei",
+        "walkMinutes": 10,
+        "walkSource": "estimate"
+      },
+      {
+        "id": "shima-sushi-benkei",
+        "walkMinutes": 18,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "shima-hikobe",
+        "walkMinutes": 16,
+        "walkSource": "osrm"
+      }
+    ],
     "contexts": [
       "lunch",
       "cafe"
@@ -3475,7 +3910,28 @@
       }
     ],
     "verified": false,
-    "anchors": [],
+    "anchors": [
+      {
+        "id": "shima-shimmei",
+        "walkMinutes": 2,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "shima-kaiyuen",
+        "walkMinutes": 14,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "shima-provence",
+        "walkMinutes": 1,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "shima-hikobe",
+        "walkMinutes": 10,
+        "walkSource": "osrm"
+      }
+    ],
     "contexts": [
       "dinner"
     ],
@@ -3717,7 +4173,38 @@
       }
     ],
     "verified": false,
-    "anchors": [],
+    "anchors": [
+      {
+        "id": "shima-yokoyama",
+        "walkMinutes": 13,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "shima-sushi-benkei",
+        "walkMinutes": 33,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "shima-business-hotel-fuji",
+        "walkMinutes": 2,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "shima-station-hotel-annex",
+        "walkMinutes": 7,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "shima-quintessa",
+        "walkMinutes": 9,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "shima-ugata-business-hotel",
+        "walkMinutes": 11,
+        "walkSource": "osrm"
+      }
+    ],
     "contexts": [
       "lunch",
       "dinner"
@@ -3956,7 +4443,38 @@
       }
     ],
     "verified": false,
-    "anchors": [],
+    "anchors": [
+      {
+        "id": "ugata",
+        "walkMinutes": 3,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "shima-sushi-benkei",
+        "walkMinutes": 18,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "shima-ugata-business-hotel",
+        "walkMinutes": 7,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "shima-station-hotel-annex",
+        "walkMinutes": 11,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "shima-quintessa",
+        "walkMinutes": 14,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "shima-business-hotel-fuji",
+        "walkMinutes": 17,
+        "walkSource": "osrm"
+      }
+    ],
     "contexts": [
       "lunch",
       "dinner"
@@ -4207,7 +4725,23 @@
       }
     ],
     "verified": false,
-    "anchors": [],
+    "anchors": [
+      {
+        "id": "ugata",
+        "walkMinutes": 10,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "shima-sushi-benkei",
+        "walkMinutes": 12,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "shima-ugata-business-hotel",
+        "walkMinutes": 12,
+        "walkSource": "osrm"
+      }
+    ],
     "contexts": [
       "lunch",
       "dinner"
@@ -4453,7 +4987,38 @@
       }
     ],
     "verified": false,
-    "anchors": [],
+    "anchors": [
+      {
+        "id": "ugata",
+        "walkMinutes": 5,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "shima-sushi-benkei",
+        "walkMinutes": 20,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "shima-ugata-business-hotel",
+        "walkMinutes": 4,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "shima-station-hotel-annex",
+        "walkMinutes": 11,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "shima-quintessa",
+        "walkMinutes": 14,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "shima-business-hotel-fuji",
+        "walkMinutes": 14,
+        "walkSource": "osrm"
+      }
+    ],
     "contexts": [
       "lunch",
       "dinner"
@@ -4681,7 +5246,38 @@
       }
     ],
     "verified": false,
-    "anchors": [],
+    "anchors": [
+      {
+        "id": "ugata",
+        "walkMinutes": 3,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "shima-sushi-benkei",
+        "walkMinutes": 22,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "shima-ugata-business-hotel",
+        "walkMinutes": 4,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "shima-station-hotel-annex",
+        "walkMinutes": 8,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "shima-quintessa",
+        "walkMinutes": 11,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "shima-business-hotel-fuji",
+        "walkMinutes": 13,
+        "walkSource": "osrm"
+      }
+    ],
     "contexts": [
       "lunch",
       "dinner"
@@ -4906,7 +5502,38 @@
       }
     ],
     "verified": false,
-    "anchors": [],
+    "anchors": [
+      {
+        "id": "ugata",
+        "walkMinutes": 15,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "shima-sushi-benkei",
+        "walkMinutes": 31,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "shima-business-hotel-fuji",
+        "walkMinutes": 6,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "shima-station-hotel-annex",
+        "walkMinutes": 10,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "shima-quintessa",
+        "walkMinutes": 13,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "shima-ugata-business-hotel",
+        "walkMinutes": 10,
+        "walkSource": "osrm"
+      }
+    ],
     "contexts": [
       "lunch",
       "dinner"
@@ -5145,7 +5772,38 @@
       }
     ],
     "verified": false,
-    "anchors": [],
+    "anchors": [
+      {
+        "id": "ugata",
+        "walkMinutes": 3,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "shima-sushi-benkei",
+        "walkMinutes": 18,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "shima-ugata-business-hotel",
+        "walkMinutes": 6,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "shima-station-hotel-annex",
+        "walkMinutes": 11,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "shima-quintessa",
+        "walkMinutes": 14,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "shima-business-hotel-fuji",
+        "walkMinutes": 16,
+        "walkSource": "osrm"
+      }
+    ],
     "contexts": [
       "lunch",
       "dinner"
@@ -5361,7 +6019,28 @@
       }
     ],
     "verified": false,
-    "anchors": [],
+    "anchors": [
+      {
+        "id": "shima-yokoyama",
+        "walkMinutes": 13,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "shima-sushi-benkei",
+        "walkMinutes": 34,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "shima-business-hotel-fuji",
+        "walkMinutes": 3,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "shima-station-hotel-annex",
+        "walkMinutes": 7,
+        "walkSource": "osrm"
+      }
+    ],
     "contexts": [
       "lunch"
     ],
@@ -5610,7 +6289,38 @@
       }
     ],
     "verified": false,
-    "anchors": [],
+    "anchors": [
+      {
+        "id": "shima-yokoyama",
+        "walkMinutes": 6,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "shima-sushi-benkei",
+        "walkMinutes": 32,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "shima-quintessa",
+        "walkMinutes": 2,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "shima-shimawaso",
+        "walkMinutes": 5,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "shima-ugata-business-hotel",
+        "walkMinutes": 11,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "shima-business-hotel-fuji",
+        "walkMinutes": 11,
+        "walkSource": "osrm"
+      }
+    ],
     "contexts": [
       "lunch",
       "dinner"
@@ -5812,7 +6522,43 @@
       }
     ],
     "verified": false,
-    "anchors": [],
+    "anchors": [
+      {
+        "id": "ugata",
+        "walkMinutes": 5,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "shima-sushi-benkei",
+        "walkMinutes": 19,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "shima-ugata-business-hotel",
+        "walkMinutes": 4,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "shima-station-hotel-annex",
+        "walkMinutes": 11,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "shima-quintessa",
+        "walkMinutes": 14,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "shima-business-hotel-fuji",
+        "walkMinutes": 14,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "shima-villa-ise-shima",
+        "walkMinutes": 20,
+        "walkSource": "osrm"
+      }
+    ],
     "contexts": [
       "lunch",
       "dinner"
@@ -6078,7 +6824,43 @@
       }
     ],
     "verified": false,
-    "anchors": [],
+    "anchors": [
+      {
+        "id": "ugata",
+        "walkMinutes": 6,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "shima-sushi-benkei",
+        "walkMinutes": 21,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "shima-ugata-business-hotel",
+        "walkMinutes": 1,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "shima-station-hotel-annex",
+        "walkMinutes": 7,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "shima-quintessa",
+        "walkMinutes": 10,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "shima-business-hotel-fuji",
+        "walkMinutes": 10,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "shima-villa-ise-shima",
+        "walkMinutes": 18,
+        "walkSource": "osrm"
+      }
+    ],
     "contexts": [
       "lunch",
       "dinner"
@@ -6308,7 +7090,18 @@
       }
     ],
     "verified": false,
-    "anchors": [],
+    "anchors": [
+      {
+        "id": "ugata",
+        "walkMinutes": 23,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "shima-sushi-benkei",
+        "walkMinutes": 7,
+        "walkSource": "osrm"
+      }
+    ],
     "contexts": [
       "lunch",
       "dinner"
@@ -6521,7 +7314,43 @@
       }
     ],
     "verified": false,
-    "anchors": [],
+    "anchors": [
+      {
+        "id": "ugata",
+        "walkMinutes": 5,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "shima-sushi-benkei",
+        "walkMinutes": 19,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "shima-ugata-business-hotel",
+        "walkMinutes": 4,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "shima-station-hotel-annex",
+        "walkMinutes": 11,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "shima-quintessa",
+        "walkMinutes": 13,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "shima-business-hotel-fuji",
+        "walkMinutes": 14,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "shima-villa-ise-shima",
+        "walkMinutes": 20,
+        "walkSource": "osrm"
+      }
+    ],
     "contexts": [
       "lunch",
       "dinner"
@@ -6763,7 +7592,33 @@
       }
     ],
     "verified": false,
-    "anchors": [],
+    "anchors": [
+      {
+        "id": "ugata",
+        "walkMinutes": 8,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "shima-sushi-benkei",
+        "walkMinutes": 15,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "shima-ugata-business-hotel",
+        "walkMinutes": 9,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "shima-quintessa",
+        "walkMinutes": 18,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "shima-business-hotel-fuji",
+        "walkMinutes": 19,
+        "walkSource": "osrm"
+      }
+    ],
     "contexts": [
       "lunch",
       "dinner"
@@ -6904,7 +7759,28 @@
       }
     ],
     "verified": false,
-    "anchors": [],
+    "anchors": [
+      {
+        "id": "ugata",
+        "walkMinutes": 13,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "shima-sushi-benkei",
+        "walkMinutes": 30,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "shima-business-hotel-fuji",
+        "walkMinutes": 7,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "shima-station-hotel-annex",
+        "walkMinutes": 8,
+        "walkSource": "osrm"
+      }
+    ],
     "contexts": [
       "lunch"
     ],
@@ -7094,7 +7970,18 @@
       }
     ],
     "verified": false,
-    "anchors": [],
+    "anchors": [
+      {
+        "id": "ugata",
+        "walkMinutes": 29,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "shima-sushi-benkei",
+        "walkMinutes": 10,
+        "walkSource": "osrm"
+      }
+    ],
     "contexts": [
       "lunch",
       "dinner"
@@ -7308,7 +8195,28 @@
       }
     ],
     "verified": false,
-    "anchors": [],
+    "anchors": [
+      {
+        "id": "ugata",
+        "walkMinutes": 10,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "shima-sushi-benkei",
+        "walkMinutes": 17,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "shima-ugata-business-hotel",
+        "walkMinutes": 11,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "shima-quintessa",
+        "walkMinutes": 20,
+        "walkSource": "osrm"
+      }
+    ],
     "contexts": [
       "lunch",
       "dinner"
@@ -7505,7 +8413,23 @@
       }
     ],
     "verified": false,
-    "anchors": [],
+    "anchors": [
+      {
+        "id": "ugata",
+        "walkMinutes": 18,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "shima-sushi-benkei",
+        "walkMinutes": 4,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "shima-ugata-business-hotel",
+        "walkMinutes": 20,
+        "walkSource": "osrm"
+      }
+    ],
     "contexts": [
       "lunch",
       "dinner"
@@ -7681,7 +8605,28 @@
       }
     ],
     "verified": false,
-    "anchors": [],
+    "anchors": [
+      {
+        "id": "ugata",
+        "walkMinutes": 18,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "shima-sushi-benkei",
+        "walkMinutes": 24,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "shima-ugata-business-hotel",
+        "walkMinutes": 17,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "shima-villa-ise-shima",
+        "walkMinutes": 20,
+        "walkSource": "osrm"
+      }
+    ],
     "contexts": [
       "dinner"
     ],
@@ -7864,7 +8809,28 @@
       }
     ],
     "verified": false,
-    "anchors": [],
+    "anchors": [
+      {
+        "id": "ugata",
+        "walkMinutes": 4,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "shima-sushi-benkei",
+        "walkMinutes": 21,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "shima-ugata-business-hotel",
+        "walkMinutes": 2,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "shima-station-hotel-annex",
+        "walkMinutes": 8,
+        "walkSource": "osrm"
+      }
+    ],
     "contexts": [
       "lunch"
     ],
@@ -8098,7 +9064,23 @@
       }
     ],
     "verified": false,
-    "anchors": [],
+    "anchors": [
+      {
+        "id": "ugata",
+        "walkMinutes": 11,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "shima-sushi-benkei",
+        "walkMinutes": 16,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "shima-ugata-business-hotel",
+        "walkMinutes": 11,
+        "walkSource": "osrm"
+      }
+    ],
     "contexts": [
       "lunch",
       "dinner"
@@ -8337,7 +9319,23 @@
       }
     ],
     "verified": false,
-    "anchors": [],
+    "anchors": [
+      {
+        "id": "shima-yokoyama",
+        "walkMinutes": 21,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "shima-yokoyama-observatory",
+        "walkMinutes": 45,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "shima-shimawaso",
+        "walkMinutes": 21,
+        "walkSource": "osrm"
+      }
+    ],
     "contexts": [
       "lunch",
       "dinner"
@@ -8557,7 +9555,18 @@
       }
     ],
     "verified": false,
-    "anchors": [],
+    "anchors": [
+      {
+        "id": "shima-anorisaki-lighthouse",
+        "walkMinutes": 3,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "shima-therapy-resort",
+        "walkMinutes": 7,
+        "walkSource": "osrm"
+      }
+    ],
     "contexts": [
       "cafe",
       "snack"
@@ -8809,7 +9818,18 @@
       }
     ],
     "verified": false,
-    "anchors": [],
+    "anchors": [
+      {
+        "id": "shima-anorisaki-lighthouse",
+        "walkMinutes": 24,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "shima-log-anori",
+        "walkMinutes": 8,
+        "walkSource": "osrm"
+      }
+    ],
     "contexts": [
       "lunch",
       "dinner"
@@ -9083,7 +10103,18 @@
       }
     ],
     "verified": false,
-    "anchors": [],
+    "anchors": [
+      {
+        "id": "shima-anorisaki-lighthouse",
+        "walkMinutes": 5,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "shima-therapy-resort",
+        "walkMinutes": 3,
+        "walkSource": "osrm"
+      }
+    ],
     "contexts": [
       "lunch",
       "dinner"
@@ -9338,7 +10369,23 @@
       }
     ],
     "verified": false,
-    "anchors": [],
+    "anchors": [
+      {
+        "id": "shima-matoya-bbq-cruise",
+        "walkMinutes": 23,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "shima-oonami",
+        "walkMinutes": 5,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "shima-log-anori",
+        "walkMinutes": 14,
+        "walkSource": "osrm"
+      }
+    ],
     "contexts": [
       "lunch",
       "dinner"
@@ -9537,7 +10584,18 @@
       }
     ],
     "verified": false,
-    "anchors": [],
+    "anchors": [
+      {
+        "id": "shima-izawanomiya",
+        "walkMinutes": 33,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "shima-grand-mercure",
+        "walkMinutes": 109,
+        "walkSource": "osrm"
+      }
+    ],
     "contexts": [
       "lunch"
     ],
@@ -9753,7 +10811,18 @@
       }
     ],
     "verified": false,
-    "anchors": [],
+    "anchors": [
+      {
+        "id": "shima-isobe",
+        "walkMinutes": 9,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "shima-izawanomiya",
+        "walkMinutes": 13,
+        "walkSource": "osrm"
+      }
+    ],
     "contexts": [
       "lunch",
       "dinner"
@@ -9981,7 +11050,18 @@
       }
     ],
     "verified": false,
-    "anchors": [],
+    "anchors": [
+      {
+        "id": "shima-matoya-bbq-cruise",
+        "walkMinutes": 135,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "shima-ikadaso-sanjo",
+        "walkMinutes": 5,
+        "walkSource": "osrm"
+      }
+    ],
     "contexts": [
       "lunch"
     ],
@@ -10258,7 +11338,18 @@
       }
     ],
     "verified": false,
-    "anchors": [],
+    "anchors": [
+      {
+        "id": "shima-anorisaki-lighthouse",
+        "walkMinutes": 70,
+        "walkSource": "estimate"
+      },
+      {
+        "id": "shima-ikadaso-sanjo",
+        "walkMinutes": 1,
+        "walkSource": "osrm"
+      }
+    ],
     "contexts": [
       "lunch",
       "dinner"
@@ -10478,7 +11569,18 @@
       }
     ],
     "verified": false,
-    "anchors": [],
+    "anchors": [
+      {
+        "id": "kaminogo",
+        "walkMinutes": 4,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "shima-izawanomiya",
+        "walkMinutes": 3,
+        "walkSource": "osrm"
+      }
+    ],
     "contexts": [
       "lunch"
     ],
@@ -10744,7 +11846,18 @@
       }
     ],
     "verified": false,
-    "anchors": [],
+    "anchors": [
+      {
+        "id": "shima-anorisaki-lighthouse",
+        "walkMinutes": 58,
+        "walkSource": "estimate"
+      },
+      {
+        "id": "shima-tachibana",
+        "walkMinutes": 1,
+        "walkSource": "osrm"
+      }
+    ],
     "contexts": [
       "lunch",
       "dinner"
@@ -10940,7 +12053,13 @@
       }
     ],
     "verified": false,
-    "anchors": [],
+    "anchors": [
+      {
+        "id": "shima-fukujuso",
+        "walkMinutes": 1,
+        "walkSource": "osrm"
+      }
+    ],
     "contexts": [
       "lunch",
       "dinner"
@@ -11143,7 +12262,23 @@
       }
     ],
     "verified": false,
-    "anchors": [],
+    "anchors": [
+      {
+        "id": "shima-matoya-bbq-cruise",
+        "walkMinutes": 18,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "shima-fukushio",
+        "walkMinutes": 11,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "shima-mori-to-umi",
+        "walkMinutes": 16,
+        "walkSource": "osrm"
+      }
+    ],
     "contexts": [
       "lunch",
       "dinner",
@@ -11344,7 +12479,18 @@
       }
     ],
     "verified": false,
-    "anchors": [],
+    "anchors": [
+      {
+        "id": "shima-matoya-bbq-cruise",
+        "walkMinutes": 27,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "shima-mori-to-umi",
+        "walkMinutes": 14,
+        "walkSource": "osrm"
+      }
+    ],
     "contexts": [
       "lunch",
       "dinner"
@@ -11551,7 +12697,18 @@
       }
     ],
     "verified": false,
-    "anchors": [],
+    "anchors": [
+      {
+        "id": "shima-sushi-benkei",
+        "walkMinutes": 49,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "shima-shunka",
+        "walkMinutes": 34,
+        "walkSource": "osrm"
+      }
+    ],
     "contexts": [
       "lunch",
       "dinner"
@@ -11781,7 +12938,18 @@
       }
     ],
     "verified": false,
-    "anchors": [],
+    "anchors": [
+      {
+        "id": "shima-sushi-benkei",
+        "walkMinutes": 50,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "shima-shunka",
+        "walkMinutes": 35,
+        "walkSource": "osrm"
+      }
+    ],
     "contexts": [
       "lunch",
       "dinner"
@@ -11969,7 +13137,18 @@
       }
     ],
     "verified": false,
-    "anchors": [],
+    "anchors": [
+      {
+        "id": "shima-anorisaki-lighthouse",
+        "walkMinutes": 58,
+        "walkSource": "estimate"
+      },
+      {
+        "id": "shima-tachibana",
+        "walkMinutes": 1,
+        "walkSource": "osrm"
+      }
+    ],
     "contexts": [
       "lunch"
     ],
@@ -12209,7 +13388,18 @@
       }
     ],
     "verified": false,
-    "anchors": [],
+    "anchors": [
+      {
+        "id": "shima-izawanomiya",
+        "walkMinutes": 82,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "shima-marusada",
+        "walkMinutes": 1,
+        "walkSource": "osrm"
+      }
+    ],
     "contexts": [
       "lunch",
       "dinner"
@@ -12437,7 +13627,18 @@
       }
     ],
     "verified": false,
-    "anchors": [],
+    "anchors": [
+      {
+        "id": "shima-izawanomiya",
+        "walkMinutes": 79,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "shima-grand-mercure",
+        "walkMinutes": 2,
+        "walkSource": "osrm"
+      }
+    ],
     "contexts": [
       "dinner"
     ],
@@ -12659,7 +13860,18 @@
       }
     ],
     "verified": false,
-    "anchors": [],
+    "anchors": [
+      {
+        "id": "shima-katsuo-tenpaku",
+        "walkMinutes": 5,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "shima-villa-daio",
+        "walkMinutes": 49,
+        "walkSource": "osrm"
+      }
+    ],
     "contexts": [
       "lunch",
       "dinner"
@@ -12855,7 +14067,18 @@
       }
     ],
     "verified": false,
-    "anchors": [],
+    "anchors": [
+      {
+        "id": "shima-katsuo-tenpaku",
+        "walkMinutes": 5,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "shima-villa-daio",
+        "walkMinutes": 50,
+        "walkSource": "osrm"
+      }
+    ],
     "contexts": [
       "lunch",
       "dinner"
@@ -13059,7 +14282,18 @@
       }
     ],
     "verified": false,
-    "anchors": [],
+    "anchors": [
+      {
+        "id": "shima-daio-gallery",
+        "walkMinutes": 9,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "shima-villa-daio",
+        "walkMinutes": 40,
+        "walkSource": "osrm"
+      }
+    ],
     "contexts": [
       "lunch",
       "cafe"
@@ -13278,7 +14512,18 @@
       }
     ],
     "verified": false,
-    "anchors": [],
+    "anchors": [
+      {
+        "id": "shima-katsuo-tenpaku",
+        "walkMinutes": 5,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "shima-villa-daio",
+        "walkMinutes": 50,
+        "walkSource": "osrm"
+      }
+    ],
     "contexts": [
       "lunch",
       "dinner"
@@ -13510,7 +14755,18 @@
       }
     ],
     "verified": false,
-    "anchors": [],
+    "anchors": [
+      {
+        "id": "shima-nature-school",
+        "walkMinutes": 17,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "shima-aqua-forest",
+        "walkMinutes": 1,
+        "walkSource": "osrm"
+      }
+    ],
     "contexts": [
       "dinner"
     ],
@@ -13692,7 +14948,18 @@
       }
     ],
     "verified": false,
-    "anchors": [],
+    "anchors": [
+      {
+        "id": "shima-daio-gallery",
+        "walkMinutes": 59,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "shima-umibe-terrace",
+        "walkMinutes": 3,
+        "walkSource": "osrm"
+      }
+    ],
     "contexts": [
       "lunch",
       "cafe"
@@ -13910,7 +15177,18 @@
       }
     ],
     "verified": false,
-    "anchors": [],
+    "anchors": [
+      {
+        "id": "shima-nature-school",
+        "walkMinutes": 20,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "shima-resort-park-tomoyama",
+        "walkMinutes": 19,
+        "walkSource": "osrm"
+      }
+    ],
     "contexts": [
       "lunch",
       "dinner"
@@ -14094,7 +15372,18 @@
       }
     ],
     "verified": false,
-    "anchors": [],
+    "anchors": [
+      {
+        "id": "shima-pearl-miki",
+        "walkMinutes": 19,
+        "walkSource": "estimate"
+      },
+      {
+        "id": "shima-morigen",
+        "walkMinutes": 4,
+        "walkSource": "osrm"
+      }
+    ],
     "contexts": [
       "lunch"
     ],
@@ -14250,7 +15539,13 @@
       }
     ],
     "verified": false,
-    "anchors": [],
+    "anchors": [
+      {
+        "id": "shima-mazakijima",
+        "walkMinutes": 5,
+        "walkSource": "osrm"
+      }
+    ],
     "contexts": [
       "lunch",
       "dinner"
@@ -14461,7 +15756,18 @@
       }
     ],
     "verified": false,
-    "anchors": [],
+    "anchors": [
+      {
+        "id": "shima-satoumian",
+        "walkMinutes": 49,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "shima-small-resort",
+        "walkMinutes": 32,
+        "walkSource": "osrm"
+      }
+    ],
     "contexts": [
       "lunch"
     ],
@@ -14677,7 +15983,18 @@
       }
     ],
     "verified": false,
-    "anchors": [],
+    "anchors": [
+      {
+        "id": "shima-satoumian",
+        "walkMinutes": 37,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "shima-small-resort",
+        "walkMinutes": 19,
+        "walkSource": "osrm"
+      }
+    ],
     "contexts": [
       "lunch",
       "dinner"
@@ -14856,7 +16173,18 @@
       }
     ],
     "verified": false,
-    "anchors": [],
+    "anchors": [
+      {
+        "id": "shima-tomoyama-park",
+        "walkMinutes": 92,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "shima-yadokari",
+        "walkMinutes": 29,
+        "walkSource": "osrm"
+      }
+    ],
     "contexts": [
       "dinner"
     ],
@@ -14985,7 +16313,18 @@
       }
     ],
     "verified": false,
-    "anchors": [],
+    "anchors": [
+      {
+        "id": "shima-nature-school",
+        "walkMinutes": 93,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "shima-yadokari",
+        "walkMinutes": 31,
+        "walkSource": "osrm"
+      }
+    ],
     "contexts": [
       "dinner"
     ],
@@ -15213,7 +16552,18 @@
       }
     ],
     "verified": false,
-    "anchors": [],
+    "anchors": [
+      {
+        "id": "shima-umihozuki",
+        "walkMinutes": 8,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "shima-oedo-iseshima",
+        "walkMinutes": 15,
+        "walkSource": "osrm"
+      }
+    ],
     "contexts": [
       "lunch",
       "dinner"
@@ -15418,7 +16768,18 @@
       }
     ],
     "verified": false,
-    "anchors": [],
+    "anchors": [
+      {
+        "id": "shima-iwaho-bbq-cruise",
+        "walkMinutes": 8,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "shima-oedo-iseshima",
+        "walkMinutes": 1,
+        "walkSource": "osrm"
+      }
+    ],
     "contexts": [
       "dinner"
     ],
@@ -15619,7 +16980,18 @@
       }
     ],
     "verified": false,
-    "anchors": [],
+    "anchors": [
+      {
+        "id": "shima-iwaho-bbq-cruise",
+        "walkMinutes": 8,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "shima-hamajima-tsubaki",
+        "walkMinutes": 7,
+        "walkSource": "osrm"
+      }
+    ],
     "contexts": [
       "dinner"
     ],
@@ -15807,7 +17179,18 @@
       }
     ],
     "verified": false,
-    "anchors": [],
+    "anchors": [
+      {
+        "id": "shima-iwaho-bbq-cruise",
+        "walkMinutes": 14,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "shima-oedo-iseshima",
+        "walkMinutes": 10,
+        "walkSource": "osrm"
+      }
+    ],
     "contexts": [
       "lunch"
     ],
@@ -15996,7 +17379,18 @@
       }
     ],
     "verified": false,
-    "anchors": [],
+    "anchors": [
+      {
+        "id": "shima-iwaho-bbq-cruise",
+        "walkMinutes": 8,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "shima-hamajima-tsubaki",
+        "walkMinutes": 6,
+        "walkSource": "osrm"
+      }
+    ],
     "contexts": [
       "lunch"
     ],
@@ -16162,7 +17556,18 @@
       }
     ],
     "verified": false,
-    "anchors": [],
+    "anchors": [
+      {
+        "id": "shima-iwaho-bbq-cruise",
+        "walkMinutes": 38,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "shima-oedo-iseshima",
+        "walkMinutes": 34,
+        "walkSource": "osrm"
+      }
+    ],
     "contexts": [
       "lunch",
       "cafe"
@@ -16443,7 +17848,18 @@
       }
     ],
     "verified": false,
-    "anchors": [],
+    "anchors": [
+      {
+        "id": "shima-chichukaimura",
+        "walkMinutes": 3,
+        "walkSource": "estimate"
+      },
+      {
+        "id": "shima-chichukaimura-hotel",
+        "walkMinutes": 3,
+        "walkSource": "estimate"
+      }
+    ],
     "contexts": [
       "lunch",
       "dinner"
@@ -16668,7 +18084,18 @@
       }
     ],
     "verified": false,
-    "anchors": [],
+    "anchors": [
+      {
+        "id": "shima-chichukaimura",
+        "walkMinutes": 22,
+        "walkSource": "estimate"
+      },
+      {
+        "id": "shima-nemu-resort",
+        "walkMinutes": 15,
+        "walkSource": "osrm"
+      }
+    ],
     "contexts": [
       "lunch"
     ],
@@ -16913,7 +18340,18 @@
       }
     ],
     "verified": false,
-    "anchors": [],
+    "anchors": [
+      {
+        "id": "shima-chichukaimura",
+        "walkMinutes": 1,
+        "walkSource": "estimate"
+      },
+      {
+        "id": "shima-chichukaimura-hotel",
+        "walkMinutes": 1,
+        "walkSource": "estimate"
+      }
+    ],
     "contexts": [
       "lunch",
       "dinner"

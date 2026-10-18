@@ -32,6 +32,8 @@ if (!process.features.typescript) {
 const geo = await import(pathToFileURL(path.join(ROOT, 'web/src/lib/geo/index.ts')).href);
 const { fileRouteCache } = await import('./lib/route-cache.mjs');
 const { readJson, writeJson } = await import('./lib/json-file.mjs');
+// 確認過的組合（anchor-rules.mjs 的 pairRule，key 是「餐廳>住宿」）：'osrm' 真的要繞（隔著海灣）照 OSRM；'skip' 離島沒有步行路線（T9e）
+const { pairRule } = await import('./lib/anchor-rules.mjs');
 
 const WALK_MAX = 20;
 const MAX_STRAIGHT = WALK_MAX * 80; // 1.6 km：OSRM 不會比直線短
@@ -51,7 +53,8 @@ const overwrite = args.includes('--overwrite');
 const offline = args.includes('--offline');
 const restAreas = opt('restaurants', area).split(',');
 const days = tripDays(opt('from', '2027-02-02'), opt('to', '2027-02-13'), opt('holidays', '2027-02-11').split(','));
-const today = new Date().toISOString().slice(0, 10);
+// 本地日期（toISOString 是 UTC，日本上午 9 點前會變成前一天；T9e 修）
+const today = new Date().toLocaleDateString('sv-SE');
 
 const lodgingFile = path.join(ROOT, `data/areas/${area}/lodging.json`);
 const { data: lodging, eol } = readJson(lodgingFile);
@@ -73,12 +76,15 @@ const client = geo.createRouteClient({
 
 async function walk(from, to) {
   const r = await client.walkRoute(from.coords, to.coords, { offline });
-  const bad =
-    r.source !== 'osrm' ||
-    Math.max(...r.snapMeters) > SNAP_MAX ||
-    (r.straightMeters >= 300 && r.meters / r.straightMeters > DETOUR_MAX);
+  const issues = [];
+  if (r.source !== 'osrm') issues.push(r.error ?? 'OSRM 沒有結果');
+  else {
+    if (Math.max(...r.snapMeters) > SNAP_MAX) issues.push(`吸附 ${r.snapMeters.map((v) => Math.round(v)).join('/')} m`);
+    if (r.straightMeters >= 300 && r.meters / r.straightMeters > DETOUR_MAX) issues.push(`繞路 ${(r.meters / r.straightMeters).toFixed(1)} 倍（路線 ${Math.round(r.meters)} m）`);
+  }
+  const bad = issues.length > 0 && !(r.source === 'osrm' && pairRule(to.id, from.id, { from: to.region, to: from.region }) === 'osrm');
   const est = geo.estimateWalk(from.coords, to.coords);
-  return { r: to, minutes: geo.displayMinutes(bad ? est.minutes : r.minutes), source: bad ? 'estimate' : 'osrm' };
+  return { r: to, minutes: geo.displayMinutes(bad ? est.minutes : r.minutes), source: bad ? 'estimate' : 'osrm', issues };
 }
 
 let changed = 0;
@@ -90,7 +96,7 @@ for (const l of lodging) {
   }
   const near = dinners
     .map((r) => ({ r, d: geo.haversineMeters(l.coords, r.coords) }))
-    .filter((x) => x.d <= MAX_STRAIGHT)
+    .filter((x) => x.d <= MAX_STRAIGHT && pairRule(x.r.id, l.id) !== 'skip')
     .sort((a, b) => a.d - b.d)
     .slice(0, CANDIDATES);
   const walks = [];
@@ -103,6 +109,8 @@ for (const l of lodging) {
     ? `步行 ${WALK_MAX} 分內的晚餐店 ${ok.length}${ok.length === CANDIDATES ? ' 家以上（只查最近 ' + CANDIDATES + ' 家）' : ' 家'}：${ok.slice(0, 3).map(fmt).join('、')}${ok.length > 3 ? ' 等' : ''}（${l.meals === 'varies' ? '選素泊、朝食付方案時；' : ''}OSRM，scripts/lodging-dinner-access.mjs，${today}）`
     : `步行 ${WALK_MAX} 分內沒有晚餐店${walks[0] ? `（最近：${fmt(walks[0])}）` : `（直線 ${MAX_STRAIGHT / 1000} km 內沒有）`}，要搭車（scripts/lodging-dinner-access.mjs，${today}）`;
   console.log(`${access === 'walk' ? '○' : '×'} ${l.id}［${l.meals}］ ${access}：${note}`);
+  // 直線估算的原因（只印，不寫進資料）：繞路的要人工確認是不是真的隔著海灣，是的話加進 anchor-rules.mjs 的 REAL_DETOURS
+  for (const w of walks) if (w.issues.length) console.log(`    ${w.source === 'osrm' ? '照 OSRM' : '估算'} ${w.r.id} ${w.minutes} 分：${w.issues.join('；')}`);
   l.dinnerAccess = access;
   l.extra = { ...(l.extra ?? {}), dinnerAccessNote: note };
   changed++;
