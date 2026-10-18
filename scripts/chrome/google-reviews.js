@@ -77,6 +77,10 @@ await (async (step) => {
     return n.every((x, i) => i === 0 || x >= n[i - 1]);
   };
   // </starsAscending>
+  // <reviewBody>（scripts/test/google-reviews.test.ts 會抽出這段測試）
+  // 評論本人的內文：第一個 .wiI7pd，跳過店家回覆（「オーナーからの返信」後面的也是 .wiI7pd；沒有內文的評論原本會抓到回覆，T8e 第 6 批 日章館）
+  const reviewBody = (els) => els.find((w) => !/オーナーからの返信/.test(w.previousElementSibling?.textContent ?? '')) ?? null;
+  // </reviewBody>
   const waitForNewList = async (before) => {
     await waitFor(() => noResult() || firstId() !== before);
     await waitFor(() => {
@@ -116,7 +120,7 @@ await (async (step) => {
             : buttons.some((s) => s.includes('翻訳を見る'))
               ? 'original-foreign'
               : 'ja-or-unknown',
-          text: text(d.querySelector('.wiI7pd'))?.slice(0, 600) ?? null,
+          text: text(reviewBody([...d.querySelectorAll('.wiI7pd')]))?.slice(0, 600) ?? null,
         };
       });
     const warnings = [];

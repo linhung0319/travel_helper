@@ -15,3 +15,16 @@ test('低分順的檢查：星數由低到高才算有套用', () => {
   assert.equal(starsAscending(['2 つ星', null, '3 つ星']), true);
   assert.equal(starsAscending([]), true);
 });
+
+const body2 = src.match(/\/\/ <reviewBody>[^\n]*\n([\s\S]*?)\/\/ <\/reviewBody>/)?.[1];
+type El = { textContent: string; previousElementSibling: { textContent: string } | null };
+const reviewBody = new Function(`${body2}\nreturn reviewBody;`)() as (els: El[]) => El | null;
+
+test('評論內文：跳過店家回覆（T8e 第 6 批 日章館）', () => {
+  const own: El = { textContent: '料理が美味しかった', previousElementSibling: null };
+  const reply: El = { textContent: '口コミをいただき…', previousElementSibling: { textContent: ' オーナーからの返信 1 週間前' } };
+  assert.equal(reviewBody([own, reply]), own);
+  // 沒有內文、只有店家回覆的評論 → null（不要把回覆當成評論）
+  assert.equal(reviewBody([reply]), null);
+  assert.equal(reviewBody([]), null);
+});
