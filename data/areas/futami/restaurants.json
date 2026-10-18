@@ -2513,6 +2513,12 @@
         "url": "https://hamoni.jp/shop/TSiQuWi3eeJaOEuZOJZ3",
         "retrieved": "2026-10-18",
         "note": "30 席、個室・座敷・掘りごたつ、喫煙可、駐車場あり；無口コミ"
+      },
+      {
+        "type": "tabelog",
+        "url": "https://tabelog.com/mie/A2403/A240301/24008599/dtlrvwlst/",
+        "retrieved": "2026-10-18",
+        "note": "口コミ（最新 20 則＋關鍵字搜尋）、頁尾店舗情報"
       }
     ],
     "verified": false,
@@ -2774,6 +2780,12 @@
         "url": "https://www.nap-camp.com/mag/50460",
         "retrieved": "2026-10-18",
         "note": "11:00～20:00 不定休，輕食到プレートランチ"
+      },
+      {
+        "type": "tabelog",
+        "url": "https://tabelog.com/mie/A2403/A240301/24020274/dtlrvwlst/",
+        "retrieved": "2026-10-18",
+        "note": "口コミ（最新 20 則＋關鍵字搜尋）、頁尾店舗情報"
       }
     ],
     "verified": false,
@@ -3055,6 +3067,12 @@
         "url": "https://www.navitime.co.jp/poi?spot=01125-J004660490",
         "retrieved": "2026-10-18",
         "note": "「コスパ最強の鰻ランチ」、伊勢市站開車約 10 分"
+      },
+      {
+        "type": "tabelog",
+        "url": "https://tabelog.com/mie/A2403/A240301/24022715/dtlrvwlst/",
+        "retrieved": "2026-10-18",
+        "note": "口コミ（全 16 則＋關鍵字搜尋）、頁尾店舗情報（車椅子で入店可）"
       }
     ],
     "verified": false,
@@ -3165,7 +3183,9 @@
     "extra": {
       "conflicts": [
         "營業時間：食べログ 11:00～19:00 通し（L.O. 18:30）；ホットペッパー 午晚分開、晚到 20:00",
-        "吧台：ホットペッパー 座位表寫沒有吧台，照片說明寫有大吧台；食べログ 吧台 14 席"
+        "吧台：ホットペッパー 座位表寫沒有吧台，照片說明寫有大吧台；食べログ 吧台 14 席",
+        "バリアフリー：ホットペッパー「なし」；食べログ店舗情報「車椅子で入店可」（2026-10-18）",
+        "營業時間：Google 評論 1 則（約 2026/09）說 9 月起營業到 20:00"
       ]
     }
   },
@@ -3313,6 +3333,12 @@
         "url": "https://www.navitime.co.jp/poi?spot=01125-J000425355",
         "retrieved": "2026-10-18",
         "note": "營業時間、週一・祝日休、五十鈴ヶ丘站步行 23 分"
+      },
+      {
+        "type": "tabelog",
+        "url": "https://tabelog.com/mie/A2403/A240301/24003498/dtlrvwlst/",
+        "retrieved": "2026-10-18",
+        "note": "口コミ（最新 20 則＋關鍵字搜尋）、頁尾店舗情報"
       }
     ],
     "verified": false,
@@ -4123,6 +4149,12 @@
         "url": "https://www.kankomie.or.jp/spot/13746",
         "retrieved": "2026-10-18",
         "note": "電話、交通、停車 70 台；無日帰り資訊"
+      },
+      {
+        "type": "tabelog",
+        "url": "https://tabelog.com/mie/A2403/A240301/24000262/dtlrvwlst/",
+        "retrieved": "2026-10-18",
+        "note": "口コミ（最新 20 則＋關鍵字搜尋）、頁尾店舗情報（車椅子で入店可、子供可、席數 29）"
       }
     ],
     "verified": false,
@@ -4229,7 +4261,7 @@
       "note": "食べログ 子供可；預約系統有 1 歲～未滿 12 歲的兒童區分（大人同料理減量／お子様料理），日帰り是否相同沒有確認"
     },
     "accessibility": {
-      "barrierFree": null,
+      "barrierFree": "車椅子で入店可（食べログ）",
       "note": "有電梯、可借輪椅（住宿筆記）；停車場 60～70 台；近鐵鳥羽站開車約 8 分、伊勢 IC 約 10 分；送迎是住客用，日帰り能不能接送沒有來源"
     },
     "smoking": "全席禁煙（有吸菸處）",

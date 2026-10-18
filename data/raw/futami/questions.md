@@ -23,3 +23,8 @@
 - [ ] futami-le-chinois-kashiori（花栞）：每月休的 2 個週一是哪兩天、席數（0596-43-2588）（T8d）
 - [ ] futami-wasuke（ワスケ）：2/11（國定假日）有沒有開（ホットペッパー 寫祝日休）（0596-42-1257）（T8d）
 - [ ] futami-maiya、futami-pine：公休、席數（食べログ 以外沒有來源）；futami-minwa-no-eki-somin：有沒有內用座位（T8d）
+- [ ] futami-shofuken（松風軒）：15 人能不能事先訂位（Google 約 2026/03 有人打電話只訂座位被回答「照到店順序」）、2F 團體席能坐幾人（0596-43-2134）（T8e）
+- [ ] futami-ukichi（う吉）：營業時間是午晚分開還是通し、晚上到 19:00 或 20:00（Google 評論說 9 月起到 20:00）；輪椅能不能進（食べログ 可、ホットペッパー なし）（0596-72-8094）（T8e）
+- [ ] futami-maruru-cafe（maruru cafe）：15 人包場時「一人一杯飲料」的規定怎麼算、有沒有團體套餐（Google 低分多則抱怨這個規定）（0596-43-0900）（T8e）
+- [ ] futami-uminocho-dining（海の蝶）：非住客日帰り晚餐現在有沒有在賣（食べログ、Google 的評論全是住客）（0596-44-1050）（T8e）
+- [ ] futami-iwatokan（岩戸館）：館內有沒有電梯；熱水、Wi-Fi 的問題（Google 約 2026/08 1 星）有沒有改善（T8e）
