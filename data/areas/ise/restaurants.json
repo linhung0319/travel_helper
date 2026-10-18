@@ -2576,6 +2576,12 @@
         "url": "https://www.kankomie.or.jp/topic/810",
         "retrieved": "2026-10-18",
         "note": "食べ歩き 18 選列出カキフライ串（2024-12-13）"
+      },
+      {
+        "type": "tabelog",
+        "url": "https://tabelog.com/mie/A2403/A240301/24001784/dtlrvwlst/",
+        "retrieved": "2026-10-18",
+        "note": "口コミ（最新 20 則＋關鍵字搜尋）、頁尾店舗情報"
       }
     ],
     "verified": false,
@@ -2679,18 +2685,26 @@
       "note": "食べログ寫予約可；官網沒寫",
       "leadDays": null
     },
-    "seating": [],
+    "seating": [
+      "table",
+      "zashiki",
+      "horigotatsu"
+    ],
     "kids": {
       "allowed": "yes",
       "minAge": null,
       "kidsMenu": null,
       "note": null
     },
-    "accessibility": null,
+    "accessibility": {
+      "barrierFree": null,
+      "note": "店內在店頭テイクアウト區的後面；1F テーブル席，2F 要走樓梯、脫鞋（座敷上擺テーブル或掘りごたつ）；腳不好的長輩在 2F テーブル席用餐過（口コミ、Google 評論 2024～2026）"
+    },
     "smoking": "全席禁煙（おかげ横丁內有吸菸處）",
     "extra": {
       "conflicts": [
-        "營業時間：官網 11:00～17:00；食べログ 週末到 17:30"
+        "營業時間：官網 11:00～17:00；食べログ 週末到 17:30",
+        "seating：原本 []，改用 [\"table\",\"zashiki\",\"horigotatsu\"]（食べログ口コミ（2024～2026：1F テーブル、2F 座敷上擺テーブル／掘りごたつ）、Google 評論（約 2024））"
       ]
     }
   },
@@ -3074,6 +3088,12 @@
         "url": "https://www.nap-camp.com/mag/47060",
         "retrieved": "2026-10-18",
         "note": "手こね寿司、伊勢烏龍、燈籠與榻榻米的空間（2026-10-01 更新）"
+      },
+      {
+        "type": "tabelog",
+        "url": "https://tabelog.com/mie/A2403/A240301/24001876/dtlrvwlst/",
+        "retrieved": "2026-10-18",
+        "note": "口コミ（最新 20 則＋關鍵字搜尋）、頁尾店舗情報"
       }
     ],
     "verified": false,
@@ -3189,7 +3209,10 @@
       "kidsMenu": true,
       "note": "有兒童餐、尿布台，可推嬰兒車（食べログ）"
     },
-    "accessibility": null,
+    "accessibility": {
+      "barrierFree": null,
+      "note": "2025 年改裝，店內寬；テーブル約 27 卓＋座敷約 10 卓可選、嬰兒車可進（口コミ 2024～2026）；樓梯、2F 沒有人提到"
+    },
     "smoking": "全席禁煙",
     "extra": {
       "conflicts": [
@@ -3323,6 +3346,12 @@
         "url": "https://retty.me/restaurant/100000064431/",
         "retrieved": "2026-10-18",
         "note": "128 席、無包廂；口コミ 5 件（2023-12～2026-09），等待時間"
+      },
+      {
+        "type": "tabelog",
+        "url": "https://tabelog.com/mie/A2403/A240301/24000224/dtlrvwlst/",
+        "retrieved": "2026-10-18",
+        "note": "口コミ（最新 20 則＋關鍵字搜尋）、頁尾店舗情報"
       }
     ],
     "verified": false,
@@ -3436,12 +3465,16 @@
       "kidsMenu": true,
       "note": "有兒童餐，可推嬰兒車（食べログ）"
     },
-    "accessibility": null,
+    "accessibility": {
+      "barrierFree": null,
+      "note": "1F カウンター＋小上がり座敷，2F 寬敞的テーブル／座敷席，2025 年起 2F 不用脫鞋（口コミ 2023～2026）；樓梯、電梯沒有人提到"
+    },
     "smoking": "全席禁煙（おかげ横丁內有吸菸處）",
     "extra": {
       "conflicts": [
         "席數：食べログ 63、Retty 128",
-        "營業時間：官網 平日 11:00～17:00；食べログ 平日到 16:30；まっぷる 11:00～16:30"
+        "營業時間：官網 平日 11:00～17:00；食べログ 平日到 16:30；まっぷる 11:00～16:30",
+        "seating：資料檔只有 counter；食べログ口コミ（2023～2026）說 1F カウンター＋小上がり座敷、2F テーブル／座敷（店舗情報「座敷あり」）"
       ]
     }
   },
@@ -4066,6 +4099,12 @@
         "url": "https://4travel.jp/dm_shisetsu/11075009",
         "retrieved": "2026-10-18",
         "note": "21 則口コミ 2011～2021，座敷河景、份量多"
+      },
+      {
+        "type": "tabelog",
+        "url": "https://tabelog.com/mie/A2403/A240301/24001062/dtlrvwlst/",
+        "retrieved": "2026-10-18",
+        "note": "口コミ（最新 20 則＋關鍵字搜尋）、頁尾店舗情報"
       }
     ],
     "verified": false,
@@ -4182,14 +4221,15 @@
       "note": "有兒童餐，可推嬰兒車（食べログ）"
     },
     "accessibility": {
-      "barrierFree": null,
+      "barrierFree": "車椅子で入店可（食べログ）",
       "note": "座位以座敷為主（34／57），看得到五十鈴川的座敷在 2 樓，電梯不明"
     },
     "smoking": "全席禁煙（店外有吸菸處）",
     "extra": {
       "conflicts": [
         "營業時間：官網 11:00～17:00；食べログ 11:00～15:00；LIVE JAPAN（2020）有晚餐，現在官網沒有",
-        "とうふや膳 價格：官網 2,000 円、Walker（2025）1,950 円、LIVE JAPAN（2020）1,900 円"
+        "とうふや膳 價格：官網 2,000 円、Walker（2025）1,950 円、LIVE JAPAN（2020）1,900 円",
+        "營業時間：官網 11:00～17:00（L.O. 16:30），食べログ店舗情報 11:00～15:00（季節により異なる，2026-10-18）"
       ]
     }
   },
@@ -4576,6 +4616,12 @@
         "url": "https://4travel.jp/dm_shisetsu/11364974",
         "retrieved": "2026-10-18",
         "note": "二光堂 3.32（15 則，2014～2021）；人潮多、有桌位和座敷"
+      },
+      {
+        "type": "tabelog",
+        "url": "https://tabelog.com/mie/A2403/A240301/24000585/dtlrvwlst/",
+        "retrieved": "2026-10-18",
+        "note": "口コミ（最新 20 則＋關鍵字搜尋）、頁尾店舗情報"
       }
     ],
     "verified": false,
@@ -4690,7 +4736,10 @@
       "kidsMenu": true,
       "note": "兒童餐 お子様ステーキ丼 900 円（官網菜單）；兒童椅（沒有安全帶）數量有限，座敷沒有兒童椅（食べログ）"
     },
-    "accessibility": null,
+    "accessibility": {
+      "barrierFree": null,
+      "note": "店內有小上がり座敷（要脫鞋）和テーブル席；QR code 點餐（口コミ 2024～2026）；樓梯沒有人提到"
+    },
     "smoking": "全面禁煙",
     "extra": {
       "conflicts": [
@@ -5851,6 +5900,12 @@
         "url": "https://www.hotpepper.jp/strJ000873265/",
         "retrieved": "2026-10-18",
         "note": "志摩本店（不是這家）單品價格參考"
+      },
+      {
+        "type": "tabelog",
+        "url": "https://tabelog.com/mie/A2403/A240301/24017587/dtlrvwlst/",
+        "retrieved": "2026-10-18",
+        "note": "口コミ（最新 20 則＋關鍵字搜尋）、頁尾店舗情報"
       }
     ],
     "verified": false,
@@ -5961,7 +6016,7 @@
       "table"
     ],
     "kids": {
-      "allowed": "unknown",
+      "allowed": "yes",
       "minAge": null,
       "kidsMenu": null,
       "note": null
@@ -5973,7 +6028,8 @@
     "smoking": "全席禁煙",
     "extra": {
       "conflicts": [
-        "營業時間：官網 11:00～17:00；食べログ 週末到 17:30"
+        "營業時間：官網 11:00～17:00；食べログ 週末到 17:30",
+        "kids.allowed：原本 unknown，改用 yes（食べログ口コミ（2023/04、2024/02 帶小孩，被安排座敷個室、對小孩親切））"
       ]
     }
   },
@@ -8108,6 +8164,12 @@
         "url": "https://www.kankomie.or.jp/topic/810",
         "retrieved": "2026-10-18",
         "note": "觀光三重「伊勢神宮おかげ横丁やおはらい町の食べ歩き絶品グルメ18選」介紹（2024-12-13）：可樂餅（食べ歩き）"
+      },
+      {
+        "type": "tabelog",
+        "url": "https://tabelog.com/mie/A2403/A240301/24000010/dtlrvwlst/",
+        "retrieved": "2026-10-18",
+        "note": "口コミ（最新 20 則＋關鍵字搜尋）、頁尾店舗情報"
       }
     ],
     "verified": false,
@@ -8224,7 +8286,7 @@
       "note": "子供可（食べログ）"
     },
     "accessibility": {
-      "barrierFree": null,
+      "barrierFree": "バリアフリー（食べログ）；店頭到店內沒有段差、1F 通路寬（口コミ 2024/09）",
       "note": "1F、2F 都有桌椅席和座敷；電梯沒寫（官網）"
     },
     "smoking": "全席禁煙（おかげ横丁內有吸菸處）",
@@ -10669,6 +10731,12 @@
         "url": "https://intojapanwaraku.com/rock/gourmet-rock/7105/",
         "retrieved": "2026-10-18",
         "note": "2019 年岩戸餅介紹（舊資料）"
+      },
+      {
+        "type": "tabelog",
+        "url": "https://tabelog.com/mie/A2403/A240301/24001460/dtlrvwlst/",
+        "retrieved": "2026-10-18",
+        "note": "口コミ（最新 20 則＋關鍵字搜尋）、頁尾店舗情報"
       }
     ],
     "verified": false,
@@ -10788,7 +10856,7 @@
       "note": "子供可（乳兒、學齡前、小學生）、可推嬰兒車；お子様ランチ（食べログ 1,200 円、官網 1,500 円）"
     },
     "accessibility": {
-      "barrierFree": null,
+      "barrierFree": "バリアフリー、車椅子で入店可（食べログ）",
       "note": "1F 土產＋一般食堂，2F 團體食堂（觀光三重）；電梯、樓梯沒寫"
     },
     "smoking": "全席禁煙",
