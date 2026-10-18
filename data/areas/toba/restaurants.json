@@ -9944,6 +9944,12 @@
         "note": "星數、評論數、營業時間、座標",
         "type": "google-maps",
         "url": "https://maps.google.com/?cid=2494655045275521484"
+      },
+      {
+        "type": "tabelog",
+        "url": "https://tabelog.com/mie/A2403/A240302/24001489/dtlrvwlst/",
+        "retrieved": "2026-10-18",
+        "note": "口コミ（全 23 則）、頁尾店舗情報（39 席、貸切 20～50 人）"
       }
     ],
     "verified": false,
@@ -10079,6 +10085,10 @@
       },
       "confidence": "low",
       "assessed": "2026-10-18"
+    },
+    "accessibility": {
+      "barrierFree": null,
+      "note": "店在 2 樓（1 樓是停車場），要走外樓梯上去（食べログ口コミ 2025/10、Google 評論 約 2026/09）"
     }
   },
   {
@@ -11232,6 +11242,12 @@
         "url": "https://www.walkerplus.com/article/1011117/",
         "retrieved": "2026-10-18",
         "note": "2020-11 舊文：要預約、1 人可訂、90 分鐘、佃煮・煮味噌・南蠻漬"
+      },
+      {
+        "type": "tabelog",
+        "url": "https://tabelog.com/mie/A2403/A240302/24007522/dtlrvwlst/",
+        "retrieved": "2026-10-18",
+        "note": "口コミ（最新 20 則＋關鍵字搜尋）、頁尾店舗情報（完全予約制、預約專用電話 090-5000-6784）；大人 4,000 円（2025/11～2026/03）"
       }
     ],
     "verified": false,
@@ -13127,6 +13143,12 @@
         "url": "https://www.city.toba.mie.jp/material/files/group/37/tobameshi_map_2022_06.pdf",
         "retrieved": "2026-10-18",
         "note": "10:00～17:00、週四公休（遇國定假日照常營業）、電話 0599-32-5999；冬天烤牡蠣吃到飽、夏天岩牡蠣，可帶寵物"
+      },
+      {
+        "type": "tabelog",
+        "url": "https://tabelog.com/mie/A2403/A240302/24010565/dtlrvwlst/",
+        "retrieved": "2026-10-18",
+        "note": "口コミ（最新 20 則＋關鍵字搜尋）、頁尾店舗情報（約 30 席、予約可、貸切不可、10:00～15:30、水木休）"
       }
     ],
     "verified": false,
@@ -16014,6 +16036,12 @@
         "url": "https://4travel.jp/dm_hotel-10219325",
         "retrieved": "2026-10-18",
         "note": "店員推薦お造り定食最划算、白飯免費加一碗；座位偏少"
+      },
+      {
+        "type": "tabelog",
+        "url": "https://tabelog.com/mie/A2403/A240302/24000942/dtlrvwlst/",
+        "retrieved": "2026-10-18",
+        "note": "口コミ（最新 20 則＋關鍵字搜尋）：吧台（掘りごたつ）、座敷桌、入口桌席、台階、廁所在外"
       }
     ],
     "verified": false,
@@ -16092,8 +16120,18 @@
       "note": "不能預約、只收現金",
       "accepted": "no"
     },
-    "seating": [],
-    "kids": null,
+    "seating": [
+      "counter",
+      "table",
+      "zashiki",
+      "horigotatsu"
+    ],
+    "kids": {
+      "allowed": "yes",
+      "minAge": null,
+      "kidsMenu": null,
+      "note": "食べログ口コミ 2025/02 帶小孩來吃"
+    },
     "smoking": "全席禁煙",
     "extra": {
       "conflicts": [
@@ -16147,6 +16185,10 @@
       },
       "confidence": "medium",
       "assessed": "2026-10-18"
+    },
+    "accessibility": {
+      "barrierFree": null,
+      "note": "進門要脫鞋、上一段較高的台階（食べログ 2026/06、2024/10）；吧台是掘りごたつ式；廁所在店外、男女共用（食べログ 2024/10、Google 約 2025）"
     }
   },
   {
@@ -17032,6 +17074,12 @@
         "note": "星數、評論數、營業時間、座標",
         "type": "google-maps",
         "url": "https://maps.google.com/?cid=4287281993086933971"
+      },
+      {
+        "type": "tabelog",
+        "url": "https://tabelog.com/mie/A2403/A240302/24008067/dtlrvwlst/",
+        "retrieved": "2026-10-18",
+        "note": "口コミ（最新 20 則，2026/08 還在營業）、頁尾店舗情報（30 席、個室 8 人、貸切 20 人以下、14 名以上團體折扣、中午要事先聯絡）"
       }
     ],
     "verified": false,
@@ -20190,6 +20238,12 @@
         "url": "https://www.jalan.net/yad314703/",
         "retrieved": "2026-10-18",
         "note": "じゃらん「魚の栖 丸仙」（頁面亂碼，分數沒採用）"
+      },
+      {
+        "type": "tabelog",
+        "url": "https://tabelog.com/mie/A2403/A240302/24009949/dtlrvwlst/",
+        "retrieved": "2026-10-18",
+        "note": "口コミ（全 7 則）、頁尾店舗情報（30 席：かまど 14、座敷 12；完全予約制；貸切 20～50 人；海女小屋內可吸菸）"
       }
     ],
     "verified": false,
@@ -20471,6 +20525,12 @@
         "url": "https://aumo.jp/articles/26769",
         "retrieved": "2026-10-18",
         "note": "2025-08：水～日 17:00～21:00、火休、牡蠣料理"
+      },
+      {
+        "type": "tabelog",
+        "url": "https://tabelog.com/mie/A2403/A240302/24000352/dtlrvwlst/",
+        "retrieved": "2026-10-18",
+        "note": "口コミ（最新 20 則＋關鍵字搜尋）、頁尾店舗情報（20 席、最大予約 20 人、晚餐中學生未滿不可、完全予約制）；近年口コミ全是住客"
       }
     ],
     "verified": false,
@@ -21494,6 +21554,12 @@
         "url": "https://maps.google.com/?cid=10961817507857237206",
         "retrieved": "2026-10-18",
         "note": "星數、評論數、座標（同住宿 toba-osatsu-michishio）"
+      },
+      {
+        "type": "tabelog",
+        "url": "https://tabelog.com/mie/A2403/A240302/24009973/dtlrvwlst/",
+        "retrieved": "2026-10-18",
+        "note": "頁尾店舗情報：完全予約制（前日 15:00 截止）、個室 2～30 人以上、最大 120 名、120 席（宴會場 4 室）、貸切 80 名起、お子様ランチ 4,400 円；口コミ（最新 20 則＋關鍵字搜尋）"
       }
     ],
     "verified": false,
@@ -21566,14 +21632,14 @@
     "googleName": null,
     "notes": "相差的料理旅館「味の宿 みち潮」的非住客晚餐（日帰り夕食），住宿本體是 lodging `toba-osatsu-michishio`。相差晚上幾乎沒有店，可以補畔蛸「東の窓」的晚餐（F③）。日帰り沒有接送。",
     "group": {
-      "seats": null,
-      "maxReservation": null,
+      "seats": 120,
+      "maxReservation": 120,
       "privateRoom": true,
-      "buyout": null,
+      "buyout": "可（80 人起，食べログ店舗情報）",
       "groupMenu": null,
       "source": "楽天：每筆 2～6 人、個室の食事処；官網：漁火庵（掘りごたつ）、しおじ亭（桌椅）、大広間（桌椅）",
       "note": "住宿頁有大広間 120 疊、中広間 60 疊，但沒寫非住客能不能用；15 人要電話問或分 3 筆訂",
-      "fit15": "unknown",
+      "fit15": "yes",
       "fitSubgroup": "yes"
     },
     "reservation": {
@@ -22043,6 +22109,12 @@
         "url": "https://maps.google.com/?cid=10853908049603136495",
         "retrieved": "2026-10-18",
         "note": "星數、評論數、座標（同住宿 toba-motoura-sun-urashima）"
+      },
+      {
+        "type": "tabelog",
+        "url": "https://tabelog.com/mie/A2403/A240302/24002026/dtlrvwlst/",
+        "retrieved": "2026-10-18",
+        "note": "口コミ（最新 20 則＋關鍵字搜尋）：幾乎都是住客的餐；頁尾店舗情報（個室有、予約可）"
       }
     ],
     "verified": false,

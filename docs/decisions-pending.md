@@ -11,6 +11,8 @@
 - [ ] T7h 第 1 批：七越茶屋 `fit15` 維持 unknown，雖然 Google 1 則（約 2025）週末 16 人（4 家庭）沒預約入店——要不要因為「現場能進 16 人」改成 split
 - [ ] T7h 第 1 批：クッカーニャ `kids.allowed` unknown → yes、みなと食堂 `seating` `[]` → table／zashiki（overwrite）——同 T8e
 - [ ] T7h 第 1 批：王将 鳥羽本店 的食堂菜單有把外國產ロブスター標成伊勢海老的公表資料（三重縣，2021～2025）——下一批打分時要不要直接降 recommend、要不要排除
+- [ ] T7h 第 1 批：みち潮 日帰り夕食 `fit15` unknown → yes（食べログ店舗情報 個室最大 120 名、完全予約制；但沒寫非住客能不能用宴會場）、西村食堂 `seating` `[]` → 確定值（overwrite）
+- [ ] T7h 第 1 批：CaroCaro 近 3 年口コミ全是住客、非住客用餐的根據只剩 2017 年的口コミ——要不要改 pending（F③ 的判斷細則：只有舊口コミ的不算）
 
 ### 伊勢、二見（T8g 討論）
 - [ ] T8e：ホテルキャッスルイン伊勢 的子地區照地址（神久）放 ise-outskirts，不是 T8b 候選的 ise-geku——伊勢市駅有送迎，但步行約 16 分，要不要當成外宮・伊勢市站的住宿
@@ -279,3 +281,7 @@
 | 2026-10-18 | T7h | **クッカーニャ `kids.allowed` unknown → yes**（overwrite，`recordOld: false`）；**みなと食堂 `seating` `[]` → `["table","zashiki"]`**（overwrite）；肉料理まつむら、みなと食堂 `kids` null → `allowed: yes`、屋形船 おきた `accessibility` null → note（set） | クッカーニャ：食べログ 2024/11、2025/04 帶小孩的家庭；みなと食堂：食べログ 2026/03 6 人桌、2025/11 榻榻米座敷（2017 的吧台不採用）。同 T8e，unknown／空陣列的覆寫列進「👤 建議先看」 | 改回 "unknown"、`[]`、null（`restaurants.json`） |
 | 2026-10-18 | T7h | **王将 鳥羽本店：三重縣公表資料寫食堂菜單把外國產ロブスター標成「伊勢海老」**（伊勢店、松阪店賣場 2021/12～2025/09）。只寫進筆記、`extra.conflicts`、`questions.md`，收錄不變；WebSearch 1 次（只讀到摘要，PDF 原文沒讀） | Google 1 星 3 則（約 2026）提到新聞，用 1 次 WebSearch 找事實來源（三重縣 PDF）。會影響推薦度，但排除不排除不是補心得的範圍，列進「👤 建議先看」 | 刪掉筆記那一條和 conflicts |
 | 2026-10-18 | T7h | 華月 `seating` 不改（維持 counter、zashiki），口コミ的「榻榻米上擺桌子」「簾子隔開的桌席」寫進 conflicts；ミネルヴァ（甜點店）、王将（食べログ只有 15 則、全讀）少搜幾個關鍵字；屋形船 おきた 多搜「酔」（暈船） | 華月 的口コミ寫法分不出是桌席還是座敷；甜點店和評論少的店照關鍵字搜尋沒有意義 | — |
+| 2026-10-18 | T7h | **みち潮 日帰り夕食 `group.fit15` unknown → yes**（overwrite，`recordOld: false`），`group.seats` 120、`maxReservation` 120、`buyout`「80 人起」（set） | 食べログ店舗情報（2026-10-18）：完全予約制、個室 2～30 人以上、最大 120 名 → 照 fit15 規則（可預約＋個室 ≥15）是 yes。但店舗情報是旅館整體的，非住客日帰り夕食能不能用宴會場沒寫，列進「👤 建議先看」 | `fit15` 改回 unknown、三個 set 改回 null |
+| 2026-10-18 | T7h | **西村食堂 `seating` `[]` → `["counter","table","zashiki","horigotatsu"]`**（overwrite）；`kids` null → yes、`accessibility` null → note（脫鞋、高台階、廁所在外）（set）；オレンジ `accessibility` null → note（2F 外樓梯）（set） | 西村：食べログ多則（2023～2026）寫吧台（掘りごたつ）、座敷桌、入口桌席；2025/02 帶小孩；オレンジ：食べログ 2025/10、Google 約 2026 | 改回 `[]`、null |
+| 2026-10-18 | T7h | CaroCaro：現在是全 6 室、中學生以上的オーベルジュ，近 3 年口コミ全是住客、非住客用餐只有 2017 的口コミ；收錄（F③ 非住客用餐）不改，只寫筆記和 questions | 收錄或排除不是補心得的範圍；「非住客能不能用餐」要電話問。列進「👤 建議先看」 | — |
+| 2026-10-18 | T7h | 營業狀況不明的 2 家確認還在營業：オレンジ（食べログ 2026/03、Google 約 2026/09）、大春（食べログ 2026/08、2026/05）；只寫筆記，`questions.md` 的原條目沒改 | 口コミ是近期的事實來源 | — |
