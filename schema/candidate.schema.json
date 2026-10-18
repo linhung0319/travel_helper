@@ -29,6 +29,10 @@
         "description": "納入後在 data/areas/ 裡的 ID",
         "anyOf": [{ "$ref": "common.schema.json#/$defs/id" }, { "type": "null" }]
       },
+      "detailPending": {
+        "description": "詳細資料任務（例如 T8d）分批進行中、還沒建立資料點；有 pointId 後拿掉，收尾任務要清空",
+        "type": "boolean"
+      },
       "ratings": {
         "type": "object",
         "properties": {

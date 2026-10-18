@@ -1,0 +1,3736 @@
+[
+  {
+    "id": "futami-ofukumochi-honke",
+    "type": "restaurant",
+    "name": {
+      "ja": "御福餅 本家",
+      "kana": "おふくもちほんけ",
+      "zh": "御福餅本家（二見 甘味處）",
+      "en": null
+    },
+    "area": "futami",
+    "region": "futami-okitama",
+    "coords": [
+      136.7838705,
+      34.5081733
+    ],
+    "coordsSource": "google-maps-url",
+    "address": "三重県伊勢市二見町茶屋568-1",
+    "hours": {
+      "mon": [
+        [
+          "09:00",
+          "17:00"
+        ]
+      ],
+      "tue": [
+        [
+          "09:00",
+          "17:00"
+        ]
+      ],
+      "wed": [
+        [
+          "09:00",
+          "17:00"
+        ]
+      ],
+      "thu": [
+        [
+          "09:00",
+          "17:00"
+        ]
+      ],
+      "fri": [
+        [
+          "09:00",
+          "17:00"
+        ]
+      ],
+      "sat": [
+        [
+          "09:00",
+          "17:00"
+        ]
+      ],
+      "sun": [
+        [
+          "09:00",
+          "17:00"
+        ]
+      ],
+      "holiday": [
+        [
+          "09:00",
+          "17:00"
+        ]
+      ],
+      "lastEntry": "16:30",
+      "note": "L.O. 16:30（官網、食べログ）；2024-04 起在新社屋（茶屋 568-1）的「お福餅 甘味処」營業"
+    },
+    "closedNote": "年中無休（官網）",
+    "febNote": "年中無休，2/3 節分、2/4、2/11 照常營業的機率高（官網沒有寫特別休業）",
+    "closures": [],
+    "photos": [
+      {
+        "url": "https://ofukumochi.com/ofuku-wp/wp-content/uploads/2024/03/020__3752-1024x682.jpg",
+        "page": "https://ofukumochi.com/shops/",
+        "kind": "official",
+        "credit": "御福餅 本家",
+        "license": null
+      },
+      {
+        "url": "https://lh3.googleusercontent.com/grass-cs/AABkmLdg1L-1xlU9rOr3SBiK9nNrkhPBmUa78vaMoaAAwbFDKlkHs1ON9hof99F5BtXr3VRtBCcKJ2H8MgFBkcFtscAmW3mkFIxQXef1SgQly9oBb-HwUPDsRG7r1du12Lc03pf6ja0A=w800",
+        "page": "https://maps.google.com/?cid=14463137259893633306",
+        "kind": "google",
+        "credit": "Google マップ",
+        "license": null
+      }
+    ],
+    "links": {
+      "official": "https://ofukumochi.com/shops/futami/",
+      "googleMaps": "https://maps.google.com/?cid=14463137259893633306",
+      "tabelog": "https://tabelog.com/mie/A2403/A240301/24020823/",
+      "instagram": "@ofukumochi_"
+    },
+    "tags": [],
+    "tier": null,
+    "sources": [
+      {
+        "type": "tabelog",
+        "url": "https://tabelog.com/mie/A2403/A240301/24020823/",
+        "retrieved": "2026-10-18",
+        "note": "店舗情報：分數、席數、預約、個室、貸切、營業時間、お子様連れ"
+      },
+      {
+        "type": "google-maps",
+        "url": "https://maps.google.com/?cid=14463137259893633306",
+        "retrieved": "2026-10-18",
+        "note": "星數、評論數、座標、照片"
+      },
+      {
+        "type": "official",
+        "url": "https://ofukumochi.com/shops/futami/",
+        "retrieved": "2026-10-18",
+        "note": "甘味処：9:00～17:00 L.O.16:30、年中無休、停車 12 台、吧台席、無個室、多目的廁所、無電梯、菜單價格"
+      },
+      {
+        "type": "official",
+        "url": "https://ofukumochi.com/%e6%96%b0%e7%a4%be%e5%b1%8b%e3%80%80%e5%be%a1%e7%a6%8f%e9%a4%85%e6%9c%ac%e5%ae%b6%e3%80%80%e6%9c%ac%e5%ba%97%e3%80%80%e3%82%a2%e3%82%af%e3%82%bb%e3%82%b9%e3%80%80%e3%81%94%e6%a1%88%e5%86%85/",
+        "retrieved": "2026-10-18",
+        "note": "2024-04-15 新社屋本店交通改變公告"
+      },
+      {
+        "type": "media",
+        "url": "https://www.mapple.net/spot/24011350/",
+        "retrieved": "2026-10-18",
+        "note": "1738 年創業、無休、停車場有、二見浦站步行 12 分、電話"
+      },
+      {
+        "type": "other",
+        "url": "https://4travel.jp/dm_shisetsu/11075379",
+        "retrieved": "2026-10-18",
+        "note": "舊二見本店口碑 18 則（2014～2023），標示舊店已關閉；口味比赤福清爽"
+      }
+    ],
+    "verified": false,
+    "anchors": [],
+    "contexts": [
+      "snack",
+      "cafe"
+    ],
+    "access": "walk",
+    "cuisine": [
+      "咖啡・甜點"
+    ],
+    "priceRange": "¥700～1,000",
+    "price": {
+      "lunch": [
+        700,
+        999
+      ],
+      "dinner": null
+    },
+    "stayMinutes": null,
+    "mustTry": [
+      "おすすめ3種盛り（お抹茶付き）900 円",
+      "お福あんみつ（ほうじ茶付き）980 円",
+      "お福アイスマック 165 円"
+    ],
+    "menu": [
+      {
+        "url": "https://ofukumochi.com/shops/futami/",
+        "source": "official",
+        "retrieved": "2026-10-18"
+      }
+    ],
+    "ratings": {
+      "tabelog": 3.49,
+      "tabelogReviews": 203,
+      "google": 4.2,
+      "googleReviews": 604,
+      "note": null
+    },
+    "tabelogOwner": false,
+    "googleName": "株式会社御福餅本家",
+    "notes": "伊勢名物「御福餅」的本家，甘味處可以坐下來吃 3 種盛り（附抹茶）、あんみつ。二見興玉神社 參拜後的點心。外帶伴手禮也在這裡買。",
+    "group": {
+      "seats": null,
+      "maxReservation": null,
+      "privateRoom": false,
+      "buyout": "不可",
+      "groupMenu": null,
+      "fit15": "unknown",
+      "fitSubgroup": "unknown",
+      "source": "食べログ：予約不可、席數只寫「カウンター席有り」、個室無、貸切不可 → unknown（第 2 批規則②：席數沒有來源）"
+    },
+    "reservation": {
+      "accepted": "no",
+      "methods": [],
+      "phone": null,
+      "url": null,
+      "language": "日文",
+      "note": "食べログ：予約不可",
+      "leadDays": null
+    },
+    "seating": [
+      "counter"
+    ],
+    "kids": {
+      "allowed": "unknown",
+      "minAge": null,
+      "kidsMenu": null,
+      "note": null
+    },
+    "accessibility": {
+      "barrierFree": "有多目的廁所、沒有電梯（官網）",
+      "note": "普通車停車場 12 台（官網）；JR 二見浦站步行約 12 分（まっぷる）；夫婦岩表參道上，二見興玉神社 約 400 m"
+    },
+    "smoking": "全席禁煙",
+    "extra": {
+      "inclusion": "A",
+      "conflicts": [
+        "3種盛り：官網 900 円；まっぷる 880 円",
+        "4travel 寫「二見本店閉鎖」是舊址（茶屋 197-1），它的口碑是舊店的（2014～2023）；現在是新社屋（茶屋 568-1，2024-04 起）"
+      ]
+    }
+  },
+  {
+    "id": "futami-asahiya-sakamoto-manju",
+    "type": "restaurant",
+    "name": {
+      "ja": "旭家 酒素饅頭製造本舗",
+      "kana": "あさひや さかもとまんじゅうせいぞうほんぽ",
+      "zh": "旭家 酒素饅頭（二見 老舖酒饅頭）",
+      "en": null
+    },
+    "area": "futami",
+    "region": "futami-okitama",
+    "coords": [
+      136.7772367,
+      34.5057168
+    ],
+    "coordsSource": "google-maps-url",
+    "address": "三重県伊勢市二見町茶屋107-6",
+    "hours": {
+      "mon": [
+        [
+          "08:00",
+          "19:00"
+        ]
+      ],
+      "tue": [
+        [
+          "08:00",
+          "19:00"
+        ]
+      ],
+      "wed": [
+        [
+          "08:00",
+          "19:00"
+        ]
+      ],
+      "thu": [
+        [
+          "08:00",
+          "19:00"
+        ]
+      ],
+      "fri": [
+        [
+          "08:00",
+          "19:00"
+        ]
+      ],
+      "sat": [
+        [
+          "08:00",
+          "19:00"
+        ]
+      ],
+      "sun": [
+        [
+          "08:00",
+          "19:00"
+        ]
+      ],
+      "holiday": [
+        [
+          "08:00",
+          "19:00"
+        ]
+      ],
+      "note": "賣完就打烊（食べログ 店舗会員、観光三重）"
+    },
+    "closedNote": "不定休（月 1 次左右；食べログ、るるぶ）",
+    "febNote": "不定休，2/3、2/4、2/11 要電話確認；賣完提早關",
+    "closures": [],
+    "photos": [
+      {
+        "url": "https://lh3.googleusercontent.com/grass-cs/AABkmLd5S9-YqMqrPL9gBhQuFnQeUf0cqFoquf1ZeQ40tahODjch8Z9FsTuu1se3fO-K58PQkI4ZnWRI1Dvo1tc_CJHNm2qMgPPyThxSTkJ3Tqn-pA_mBwvDVnpKTEVTnK_lUbp8GWPx=w800",
+        "page": "https://maps.google.com/?cid=16967573432617653115",
+        "kind": "google",
+        "credit": "Google マップ",
+        "license": null
+      }
+    ],
+    "links": {
+      "official": null,
+      "googleMaps": "https://maps.google.com/?cid=16967573432617653115",
+      "tabelog": "https://tabelog.com/mie/A2403/A240301/24006852/",
+      "instagram": "@asahiya1913"
+    },
+    "tags": [],
+    "tier": null,
+    "sources": [
+      {
+        "type": "tabelog",
+        "url": "https://tabelog.com/mie/A2403/A240301/24006852/",
+        "retrieved": "2026-10-18",
+        "note": "店舗情報：分數、席數、預約、個室、貸切、營業時間、お子様連れ（店舗会員）"
+      },
+      {
+        "type": "google-maps",
+        "url": "https://maps.google.com/?cid=16967573432617653115",
+        "retrieved": "2026-10-18",
+        "note": "星數、評論數、座標、照片"
+      },
+      {
+        "type": "tourism",
+        "url": "https://www.kankomie.or.jp/spot/24471",
+        "retrieved": "2026-10-18",
+        "note": "8:00～19:00 售完即止、不定休、電話"
+      },
+      {
+        "type": "media",
+        "url": "https://rurubu.jp/andmore/spot/80024656",
+        "retrieved": "2026-10-18",
+        "note": "1913 年創業、1 個 100 円、月1回不定休、停車場有、售完提早關"
+      },
+      {
+        "type": "media",
+        "url": "https://www.mapple.net/spot/24001158/",
+        "retrieved": "2026-10-18",
+        "note": "只賣酒素饅頭、工房在賣場旁、停車 10 台、二見浦站步行 3 分"
+      },
+      {
+        "type": "other",
+        "url": "https://4travel.jp/dm_shisetsu/11080748",
+        "retrieved": "2026-10-18",
+        "note": "口碑 2014～2023：剛做好溫熱好吃、可單買、店前有椅子、PayPay"
+      }
+    ],
+    "verified": false,
+    "anchors": [],
+    "contexts": [
+      "snack"
+    ],
+    "access": "walk",
+    "cuisine": [
+      "咖啡・甜點"
+    ],
+    "priceRange": "～¥1,000",
+    "price": {
+      "lunch": [
+        100,
+        999
+      ],
+      "dinner": null
+    },
+    "stayMinutes": null,
+    "mustTry": [
+      "酒素まんじゅう 1 個 100 円"
+    ],
+    "menu": [
+      {
+        "url": "https://tabelog.com/mie/A2403/A240301/24006852/dtlmenu/photo/",
+        "source": "tabelog",
+        "retrieved": "2026-10-18"
+      }
+    ],
+    "ratings": {
+      "tabelog": 3.45,
+      "tabelogReviews": 100,
+      "google": 4.6,
+      "googleReviews": 175,
+      "note": null
+    },
+    "tabelogOwner": true,
+    "googleName": null,
+    "notes": "1913 年創業的酒素饅頭老舖，一個 100 円、現蒸，賣完就關。外帶為主，店前有椅子（2014 年心得）。二見浦站一出來就到，可以當散步點心。",
+    "group": {
+      "seats": 10,
+      "maxReservation": null,
+      "privateRoom": false,
+      "buyout": "不可",
+      "groupMenu": null,
+      "fit15": "no",
+      "fitSubgroup": "yes",
+      "source": "食べログ（店舗会員）：10 席、予約可（應是訂饅頭）、個室無、貸切不可 → no（不到 15）；基本上是外帶的饅頭店"
+    },
+    "reservation": {
+      "accepted": "yes",
+      "methods": [
+        "phone"
+      ],
+      "phone": "0596-43-2226",
+      "url": null,
+      "language": "日文",
+      "note": "食べログ：予約可（實際上多半是預訂饅頭）",
+      "leadDays": null
+    },
+    "seating": [],
+    "kids": {
+      "allowed": "unknown",
+      "minAge": null,
+      "kidsMenu": null,
+      "note": null
+    },
+    "accessibility": {
+      "barrierFree": null,
+      "note": "停車場 10 台（まっぷる）；JR 二見浦站步行約 3 分"
+    },
+    "smoking": "全席禁煙",
+    "extra": {
+      "inclusion": "A",
+      "conflicts": [
+        "公休：不定休（観光三重・まっぷる）vs 月 1 次不定休（るるぶ）",
+        "價格：82 円（2015）、90 円（2020～21 口碑）、100 円（るるぶ・まっぷる）",
+        "席數：食べログ 10 席；讀文來源說外帶店"
+      ]
+    }
+  },
+  {
+    "id": "futami-wan-honten",
+    "type": "restaurant",
+    "name": {
+      "ja": "ウァン 本店",
+      "kana": "わん ほんてん",
+      "zh": "豚まん ウァン 本店（肉包外帶）",
+      "en": null
+    },
+    "area": "futami",
+    "region": "futami-okitama",
+    "coords": [
+      136.7765386,
+      34.5050813
+    ],
+    "coordsSource": "google-maps-url",
+    "address": "三重県伊勢市二見町茶屋53-3",
+    "hours": {
+      "mon": [
+        [
+          "09:00",
+          "17:00"
+        ]
+      ],
+      "tue": [
+        [
+          "09:00",
+          "17:00"
+        ]
+      ],
+      "wed": [],
+      "thu": [
+        [
+          "09:00",
+          "17:00"
+        ]
+      ],
+      "fri": [
+        [
+          "09:00",
+          "17:00"
+        ]
+      ],
+      "sat": [
+        [
+          "09:00",
+          "17:30"
+        ]
+      ],
+      "sun": [
+        [
+          "09:00",
+          "17:30"
+        ]
+      ],
+      "holiday": [
+        [
+          "09:00",
+          "17:30"
+        ]
+      ],
+      "note": "傍晚常賣完（4travel）；週三休（食べログ）"
+    },
+    "closedNote": "週三（食べログ）",
+    "febNote": "2/3、2/10（三）休；2/11 國定假日照食べログ 9:00～17:30",
+    "closures": [],
+    "photos": [
+      {
+        "url": "https://lh3.googleusercontent.com/grass-cs/AABkmLdrvjSj_uNTFDtXmxOuQiNoU40GEOPgEmBtkwTI9GT8SdFbzjIrVGOa3L5ynq9a0jcs7UOeGVbUnTLLclcIygV24iS-6LeQ2DI8zB4o6YPAJG6c2NQMPcs06XT9r1W-rINohXynZeW8F2E=w800",
+        "page": "https://maps.google.com/?cid=2200526588735721246",
+        "kind": "google",
+        "credit": "Google マップ",
+        "license": null
+      }
+    ],
+    "links": {
+      "official": "https://www.marutenn.co.jp/wan/",
+      "googleMaps": "https://maps.google.com/?cid=2200526588735721246",
+      "tabelog": "https://tabelog.com/mie/A2403/A240301/24007882/",
+      "instagram": "@wan_butaman"
+    },
+    "tags": [],
+    "tier": null,
+    "sources": [
+      {
+        "type": "tabelog",
+        "url": "https://tabelog.com/mie/A2403/A240301/24007882/",
+        "retrieved": "2026-10-18",
+        "note": "店舗情報：分數、席數、預約、個室、貸切、營業時間、お子様連れ"
+      },
+      {
+        "type": "google-maps",
+        "url": "https://maps.google.com/?cid=2200526588735721246",
+        "retrieved": "2026-10-18",
+        "note": "星數、評論數、座標、照片"
+      },
+      {
+        "type": "booking-site",
+        "url": "https://4travel.jp/dm_shisetsu/11081768",
+        "retrieved": "2026-10-18",
+        "note": "22 則心得，外帶專門、豚まん漲到 250 円、傍晚賣完"
+      },
+      {
+        "type": "other",
+        "url": "https://hamoni.jp/shop/n7RsWEUSUOUi8nyly966UMf8m8HvcSOI",
+        "retrieved": "2026-10-18",
+        "note": "週日 9:00～17:30、外帶專門、IG @wan_butaman、地址寫 茶屋100-1"
+      },
+      {
+        "type": "other",
+        "url": "https://hamoni.jp/area/mie/ise/futamiura/shops",
+        "retrieved": "2026-10-18",
+        "note": "二見浦店家列表，標示現在テイクアウト専用"
+      }
+    ],
+    "verified": false,
+    "anchors": [],
+    "contexts": [
+      "snack"
+    ],
+    "access": "walk",
+    "cuisine": [
+      "其他"
+    ],
+    "priceRange": "～¥1,000",
+    "price": {
+      "lunch": [
+        250,
+        999
+      ],
+      "dinner": null
+    },
+    "stayMinutes": null,
+    "mustTry": [
+      "豚まん 250 円（2024）",
+      "栗入りあんまん",
+      "タコ棒・チーズ棒 約 360～400 円（2022）"
+    ],
+    "menu": [
+      {
+        "url": "https://tabelog.com/mie/A2403/A240301/24007882/dtlmenu/photo/",
+        "source": "tabelog",
+        "retrieved": "2026-10-18"
+      }
+    ],
+    "ratings": {
+      "tabelog": 3.44,
+      "tabelogReviews": 133,
+      "google": 4.4,
+      "googleReviews": 229,
+      "note": null
+    },
+    "tabelogOwner": false,
+    "googleName": "豚まん ウァン 本店",
+    "notes": "二見的豚まん名店（Google 名稱「豚まん ウァン 本店」），一個 250 円；也有栗あんまん、炸物棒。只能外帶，邊走邊吃。",
+    "group": {
+      "seats": 0,
+      "maxReservation": null,
+      "privateRoom": false,
+      "buyout": "不可",
+      "groupMenu": null,
+      "fit15": "no",
+      "fitSubgroup": "no",
+      "source": "外帶專門、沒有內用（4travel 2014～2024 心得、HAMONI「現在テイクアウト専用」）→ no／no（同第 4 批 山村みるく 外宮前店）；食べログ 予約可 是預訂外帶"
+    },
+    "reservation": {
+      "accepted": "yes",
+      "methods": [
+        "phone"
+      ],
+      "phone": "0596-43-0101",
+      "url": null,
+      "language": "日文",
+      "note": "食べログ：予約可（外帶預訂）",
+      "leadDays": null
+    },
+    "seating": [],
+    "kids": {
+      "allowed": "yes",
+      "minAge": null,
+      "kidsMenu": null,
+      "note": "外帶店；2020 心得說小孩很喜歡"
+    },
+    "accessibility": {
+      "barrierFree": null,
+      "note": "外帶，不用進店坐；停車場 6 台（食べログ）；JR 二見浦站步行約 3 分"
+    },
+    "smoking": null,
+    "extra": {
+      "inclusion": "A",
+      "conflicts": [
+        "地址：食べログ・4travel 茶屋 53-3；HAMONI 茶屋 100-1",
+        "以前可以搭電梯到頂樓內用（IG 心得），現在外帶專門"
+      ]
+    }
+  },
+  {
+    "id": "futami-ogiya",
+    "type": "restaurant",
+    "name": {
+      "ja": "家庭料理 扇屋",
+      "kana": "かていりょうり おうぎや",
+      "zh": "家庭料理 扇屋（二見浦站前 定食・洋食）",
+      "en": null
+    },
+    "area": "futami",
+    "region": "futami-okitama",
+    "coords": [
+      136.7769444,
+      34.5047222
+    ],
+    "coordsSource": "google-maps-url",
+    "address": "三重県伊勢市二見町茶屋6-1",
+    "hours": {
+      "mon": [
+        [
+          "11:00",
+          "14:00"
+        ],
+        [
+          "17:00",
+          "19:30"
+        ]
+      ],
+      "tue": [
+        [
+          "11:00",
+          "14:00"
+        ],
+        [
+          "17:00",
+          "19:30"
+        ]
+      ],
+      "wed": [
+        [
+          "11:00",
+          "14:00"
+        ]
+      ],
+      "thu": [],
+      "fri": [
+        [
+          "11:00",
+          "14:00"
+        ],
+        [
+          "17:00",
+          "19:30"
+        ]
+      ],
+      "sat": [
+        [
+          "11:00",
+          "14:00"
+        ],
+        [
+          "17:00",
+          "19:30"
+        ]
+      ],
+      "sun": [
+        [
+          "11:00",
+          "14:00"
+        ],
+        [
+          "17:00",
+          "19:30"
+        ]
+      ],
+      "holiday": null,
+      "note": "官網：午 11:00～14:00（NEWS 寫 14:15）、晚 17:00～19:30；週三只有午餐；視狀況提早關；食べログ 晚上到 19:00"
+    },
+    "closedNote": "週四；年末年始、盂蘭盆、連假營業時間可能不規則（官網）",
+    "febNote": "2/3、2/10（三）只有午餐；2/4（四）休；2/11（四・國定假日）沒有來源，可能休；冬季限定 浦村かきフライ定食",
+    "closures": [],
+    "photos": [
+      {
+        "url": "https://ougiyafutami.com/wp/wp-content/themes/ougiyafutami/img/home-about.jpg",
+        "page": "https://ougiyafutami.com/",
+        "kind": "official",
+        "credit": "家庭料理 扇屋",
+        "license": null
+      },
+      {
+        "url": "https://ougiyafutami.com/wp/wp-content/themes/ougiyafutami/img/home-menus.jpg",
+        "page": "https://ougiyafutami.com/",
+        "kind": "official",
+        "credit": "家庭料理 扇屋",
+        "license": null
+      }
+    ],
+    "links": {
+      "official": "https://ougiyafutami.com/",
+      "googleMaps": "https://maps.google.com/?cid=13365703736514438312",
+      "tabelog": "https://tabelog.com/mie/A2403/A240301/24001121/",
+      "instagram": "@oogiyaise"
+    },
+    "tags": [],
+    "tier": null,
+    "sources": [
+      {
+        "type": "tabelog",
+        "url": "https://tabelog.com/mie/A2403/A240301/24001121/",
+        "retrieved": "2026-10-18",
+        "note": "店舗情報：分數、席數、預約、個室、貸切、營業時間、お子様連れ（店舗会員）"
+      },
+      {
+        "type": "google-maps",
+        "url": "https://maps.google.com/?cid=13365703736514438312",
+        "retrieved": "2026-10-18",
+        "note": "星數、評論數、座標、照片"
+      },
+      {
+        "type": "official",
+        "url": "https://ougiyafutami.com/",
+        "retrieved": "2026-10-18",
+        "note": "營業時間、週四休、週三只午餐、外帶電話訂、IG oogiyaise"
+      },
+      {
+        "type": "official",
+        "url": "https://ougiyafutami.com/menus",
+        "retrieved": "2026-10-18",
+        "note": "現行菜單與稅込價格，浦村かき 冬季限定"
+      },
+      {
+        "type": "official",
+        "url": "https://ougiyafutami.com/about",
+        "retrieved": "2026-10-18",
+        "note": "不接受預約、只收現金、停車 3＋約 10 台、站步行 1 分"
+      },
+      {
+        "type": "booking-site",
+        "url": "https://4travel.jp/dm_shisetsu/11075068",
+        "retrieved": "2026-10-18",
+        "note": "13 則心得（2013～2021），牡蠣フライ、松阪牛ハンバーグ 好評，份量偏少"
+      },
+      {
+        "type": "media",
+        "url": "https://rurubu.jp/andmore/spot/80024566",
+        "retrieved": "2026-10-18",
+        "note": "築百年木造旅館古材的民藝風店，11～19 時，停車 30 台（可能是舊資料）"
+      },
+      {
+        "type": "media",
+        "url": "https://www.mapple.net/spot/24000224/",
+        "retrieved": "2026-10-18",
+        "note": "11:00～14:30、17:00～20:00，木曜休，ハンバーグ定食 1,450 円～"
+      },
+      {
+        "type": "media",
+        "url": "https://www.nap-camp.com/mag/50460",
+        "retrieved": "2026-10-18",
+        "note": "二見午餐 8 選，時間與官網一致"
+      },
+      {
+        "type": "other",
+        "url": "https://hamoni.jp/shop/amztrMyf0MvNdi7TzN90",
+        "retrieved": "2026-10-18",
+        "note": "60 席、テーブル・個室・貸切、子連れ可（非官方）"
+      }
+    ],
+    "verified": false,
+    "anchors": [],
+    "contexts": [
+      "lunch",
+      "dinner"
+    ],
+    "access": "walk",
+    "cuisine": [
+      "洋食・義式",
+      "定食・食堂"
+    ],
+    "priceRange": "¥1,300～2,100",
+    "price": {
+      "lunch": [
+        1300,
+        2100
+      ],
+      "dinner": [
+        1300,
+        2100
+      ]
+    },
+    "stayMinutes": null,
+    "mustTry": [
+      "浦村かきフライ定食 1,750 円（冬季限定）",
+      "松阪牛ハンバーグ定食 デミグラスソース 1,700 円",
+      "松阪牛ゴロゴロハンバーグ定食 2,100 円"
+    ],
+    "menu": [
+      {
+        "url": "https://ougiyafutami.com/menus",
+        "source": "official",
+        "retrieved": "2026-10-18"
+      },
+      {
+        "url": "https://tabelog.com/mie/A2403/A240301/24001121/dtlmenu/",
+        "source": "tabelog",
+        "retrieved": "2026-10-18"
+      }
+    ],
+    "ratings": {
+      "tabelog": 3.43,
+      "tabelogReviews": 188,
+      "google": 4.1,
+      "googleReviews": 570,
+      "note": null
+    },
+    "tabelogOwner": true,
+    "googleName": "扇屋",
+    "notes": "二見浦站前的古民家定食店，松阪牛漢堡排、炸蝦；冬季有浦村牡蠣定食。二見浦一帶少數晚上開的店，但 19:30 就收、週四休、不能訂位，15 人要分批或早點去。",
+    "group": {
+      "seats": 60,
+      "maxReservation": null,
+      "privateRoom": false,
+      "buyout": "不可",
+      "groupMenu": null,
+      "fit15": "unknown",
+      "fitSubgroup": "unknown",
+      "source": "官網「ご予約は承っておりません」；食べログ（店舗会員）60 席、予約不可、個室無、貸切不可 → unknown（第 2 批規則①：席數 20 以上但不能預約）"
+    },
+    "reservation": {
+      "accepted": "no",
+      "methods": [],
+      "phone": "0596-43-3890",
+      "url": null,
+      "language": "日文",
+      "note": "官網：不接受預約；外帶可以電話訂（午 10:00～13:00 訂、晚 16:00～18:00 訂）；只收現金",
+      "leadDays": null
+    },
+    "seating": [
+      "table"
+    ],
+    "kids": {
+      "allowed": "yes",
+      "minAge": null,
+      "kidsMenu": false,
+      "note": "子供可（食べログ）；沒有兒童餐，有オムレツ、カレー、パフェ（官網菜單）"
+    },
+    "accessibility": {
+      "barrierFree": null,
+      "note": "古民家改裝，店內寬敞（4travel）；JR 二見浦站步行 1 分；停車 店前 3 台＋站側約 10 台（官網）"
+    },
+    "smoking": "全席禁煙（店外有吸菸區）",
+    "extra": {
+      "inclusion": "A",
+      "conflicts": [
+        "營業時間：官網 11:00～14:00/14:15、17:00～19:30；まっぷる 11:00～14:30、17:00～20:00；るるぶ 11～19 時；食べログ 17:00～19:00",
+        "預約：官網 不接受；HAMONI 有個室・貸切（採官網、食べログ）",
+        "IG：官網 @oogiyaise；HAMONI @ohgiya_info",
+        "停車：るるぶ 30 台；官網 店前 3＋約 10 台",
+        "伊勢えびフライ定食：るるぶ 3,600、まっぷる 3,300 円；官網現行菜單沒有，只有大えびフライ定食 2,100 円"
+      ]
+    }
+  },
+  {
+    "id": "futami-isuzu-seigoan",
+    "type": "restaurant",
+    "name": {
+      "ja": "五十鈴勢語庵",
+      "kana": "いすずせいごあん",
+      "zh": "五十鈴勢語庵（鹽羊羹）",
+      "en": null
+    },
+    "area": "futami",
+    "region": "futami-okitama",
+    "coords": [
+      136.7822735,
+      34.5076943
+    ],
+    "coordsSource": "google-maps-url",
+    "address": "三重県伊勢市二見町茶屋569-35",
+    "hours": {
+      "mon": [
+        [
+          "08:30",
+          "18:00"
+        ]
+      ],
+      "tue": [
+        [
+          "08:30",
+          "18:00"
+        ]
+      ],
+      "wed": [
+        [
+          "08:30",
+          "18:00"
+        ]
+      ],
+      "thu": [
+        [
+          "08:30",
+          "18:00"
+        ]
+      ],
+      "fri": [
+        [
+          "08:30",
+          "18:00"
+        ]
+      ],
+      "sat": [
+        [
+          "08:30",
+          "17:00"
+        ]
+      ],
+      "sun": [
+        [
+          "08:30",
+          "18:00"
+        ]
+      ],
+      "holiday": null,
+      "note": "食べログ：週六到 17:00；まっぷる 8:30～18:00（通年）"
+    },
+    "closedNote": "不定休（食べログ、まっぷる）",
+    "febNote": "不定休，要去的日子先電話確認",
+    "closures": [],
+    "photos": [
+      {
+        "url": "https://lh3.googleusercontent.com/grass-cs/AABkmLea1UPMlC7JiaWE3tfwT2WQSC4oytGQ-uONHy3RJP767RsHI74gHjinpzQBAe95U6_SLxMsKqzRR0_5l9RtkK28gqpd-4U3vUrsgZInMbNPoXyrsV0vFOm8_5_bNuqkSKuGpHylO5l0GBci=w800",
+        "page": "https://maps.google.com/?cid=1377430070784442977",
+        "kind": "google",
+        "credit": "Google マップ",
+        "license": null
+      }
+    ],
+    "links": {
+      "official": "https://isuzu-seigoan.com/",
+      "googleMaps": "https://maps.google.com/?cid=1377430070784442977",
+      "tabelog": "https://tabelog.com/mie/A2403/A240301/24006947/",
+      "instagram": "@isuzu_seigoan"
+    },
+    "tags": [],
+    "tier": null,
+    "sources": [
+      {
+        "type": "tabelog",
+        "url": "https://tabelog.com/mie/A2403/A240301/24006947/",
+        "retrieved": "2026-10-18",
+        "note": "店舗情報：分數、席數、預約、個室、貸切、營業時間、お子様連れ"
+      },
+      {
+        "type": "google-maps",
+        "url": "https://maps.google.com/?cid=1377430070784442977",
+        "retrieved": "2026-10-18",
+        "note": "星數、評論數、座標、照片"
+      },
+      {
+        "type": "media",
+        "url": "https://www.mapple.net/spot/24010330/",
+        "retrieved": "2026-10-18",
+        "note": "岩戸の塩 塩ようかん 777 円、8:30～18:00、不定休、停車 3 台、電話"
+      },
+      {
+        "type": "media",
+        "url": "https://www.mapple.net/region/a0405010100_g02060500/spot/",
+        "retrieved": "2026-10-18",
+        "note": "二見浦和菓子一覽，通年營業、二見浦站步行 10 分"
+      }
+    ],
+    "verified": false,
+    "anchors": [],
+    "contexts": [
+      "snack"
+    ],
+    "access": "walk",
+    "cuisine": [
+      "咖啡・甜點"
+    ],
+    "priceRange": "～¥1,000",
+    "price": {
+      "lunch": [
+        777,
+        999
+      ],
+      "dinner": null
+    },
+    "stayMinutes": null,
+    "mustTry": [
+      "塩ようかん 777 円（1 本）",
+      "塩ようかん 竹皮包 777 円（250g）"
+    ],
+    "menu": [
+      {
+        "url": "https://tabelog.com/mie/A2403/A240301/24006947/dtlmenu/",
+        "source": "tabelog",
+        "retrieved": "2026-10-18"
+      }
+    ],
+    "ratings": {
+      "tabelog": 3.42,
+      "tabelogReviews": 56,
+      "google": 4.6,
+      "googleReviews": 144,
+      "note": null
+    },
+    "tabelogOwner": false,
+    "googleName": null,
+    "notes": "用二見「岩戸の塩」做的塩ようかん專門店，伴手禮為主（一條 777 円）。有 6 席，內用菜單沒有來源。",
+    "group": {
+      "seats": 6,
+      "maxReservation": null,
+      "privateRoom": false,
+      "buyout": "不可",
+      "groupMenu": null,
+      "fit15": "no",
+      "fitSubgroup": "yes",
+      "source": "食べログ：6 席、予約可、個室無、貸切不可 → no（不到 15）；伴手禮店，內用的內容沒有來源"
+    },
+    "reservation": {
+      "accepted": "yes",
+      "methods": [
+        "phone"
+      ],
+      "phone": "0596-42-1212",
+      "url": null,
+      "language": "日文",
+      "note": "食べログ：予約可（多半是預訂羊羹）",
+      "leadDays": null
+    },
+    "seating": [],
+    "kids": {
+      "allowed": "yes",
+      "minAge": null,
+      "kidsMenu": null,
+      "note": "子供可（乳兒・未就學・小學生）、嬰兒車可（食べログ）"
+    },
+    "accessibility": {
+      "barrierFree": null,
+      "note": "停車場 3 台（まっぷる）；JR 二見浦站步行約 10 分；夫婦岩表參道上"
+    },
+    "smoking": "全席禁煙",
+    "extra": {
+      "inclusion": "A",
+      "conflicts": []
+    }
+  },
+  {
+    "id": "futami-bontin-cafe-misogi",
+    "type": "restaurant",
+    "name": {
+      "ja": "BonTin cafe 禊",
+      "kana": "ぼんたんかふぇ みそぎ",
+      "zh": "BonTin cafe 禊（二見興玉神社 境內咖啡）",
+      "en": null
+    },
+    "area": "futami",
+    "region": "futami-okitama",
+    "coords": [
+      136.7885986,
+      34.5087401
+    ],
+    "coordsSource": "google-maps-url",
+    "address": "三重県伊勢市二見町江575-2 二見興玉神社境内",
+    "hours": {
+      "mon": [
+        [
+          "09:00",
+          "17:00"
+        ]
+      ],
+      "tue": [
+        [
+          "09:00",
+          "17:00"
+        ]
+      ],
+      "wed": [
+        [
+          "09:00",
+          "17:00"
+        ]
+      ],
+      "thu": [
+        [
+          "09:00",
+          "17:00"
+        ]
+      ],
+      "fri": [],
+      "sat": [
+        [
+          "09:00",
+          "17:00"
+        ]
+      ],
+      "sun": [
+        [
+          "09:00",
+          "17:00"
+        ]
+      ],
+      "holiday": [
+        [
+          "09:00",
+          "17:00"
+        ]
+      ],
+      "note": "神社官網、食べログ：9:00～17:00、週五休；完全無現金（食べログ）"
+    },
+    "closedNote": "週五（神社官網、食べログ）",
+    "febNote": "2/5、2/12（五）休；2/3 節分 14:00 神社有節分祭（撒福豆），境內很擠，店家當天營業有沒有調整沒有來源",
+    "closures": [],
+    "photos": [
+      {
+        "url": "https://futamiokitamajinja.or.jp/wp-content/uploads/2024/12/E01_kyuukei3.jpg",
+        "page": "https://futamiokitamajinja.or.jp/meguru/%e4%bc%91%e6%86%a9%e5%87%a6%ef%bc%88%e3%82%ab%e3%83%95%e3%82%a7%e3%83%bb%e3%81%86%e3%81%a9%e3%82%93%e5%b1%8b%e3%83%bb%e7%be%8e%e8%a1%93%e5%ba%97%ef%bc%89/",
+        "kind": "official",
+        "credit": "BonTin cafe 禊",
+        "license": null
+      },
+      {
+        "url": "https://futamiokitamajinja.or.jp/wp-content/uploads/2020/03/E01_kyuukei4.jpg",
+        "page": "https://futamiokitamajinja.or.jp/meguru/%e4%bc%91%e6%86%a9%e5%87%a6%ef%bc%88%e3%82%ab%e3%83%95%e3%82%a7%e3%83%bb%e3%81%86%e3%81%a9%e3%82%93%e5%b1%8b%e3%83%bb%e7%be%8e%e8%a1%93%e5%ba%97%ef%bc%89/",
+        "kind": "official",
+        "credit": "BonTin cafe 禊",
+        "license": null
+      }
+    ],
+    "links": {
+      "official": "https://futamiokitamajinja.or.jp/meguru/%e4%bc%91%e6%86%a9%e5%87%a6/",
+      "googleMaps": "https://maps.google.com/?cid=9022276095891736976",
+      "tabelog": "https://tabelog.com/mie/A2403/A240301/24020912/",
+      "instagram": "@bontin_cafe_misogi"
+    },
+    "tags": [],
+    "tier": null,
+    "sources": [
+      {
+        "type": "tabelog",
+        "url": "https://tabelog.com/mie/A2403/A240301/24020912/",
+        "retrieved": "2026-10-18",
+        "note": "店舗情報：分數、席數、預約、個室、貸切、營業時間、お子様連れ"
+      },
+      {
+        "type": "google-maps",
+        "url": "https://maps.google.com/?cid=9022276095891736976",
+        "retrieved": "2026-10-18",
+        "note": "星數、評論數、座標、照片"
+      },
+      {
+        "type": "official",
+        "url": "https://futamiokitamajinja.or.jp/meguru/%e4%bc%91%e6%86%a9%e5%87%a6%ef%bc%88%e3%82%ab%e3%83%95%e3%82%a7%e3%83%bb%e3%81%86%e3%81%a9%e3%82%93%e5%b1%8b%e3%83%bb%e7%be%8e%e8%a1%93%e5%ba%97%ef%bc%89/",
+        "retrieved": "2026-10-18",
+        "note": "神社官網休憩處頁：BonTin Cafe 禊 9:00～17:00 週五休，日本橋本店二號店，自家焙煎咖啡、卵サンド"
+      },
+      {
+        "type": "media",
+        "url": "https://www.nap-camp.com/mag/50460",
+        "retrieved": "2026-10-18",
+        "note": "9:00～17:00 週五休，三明治甜點等輕食"
+      },
+      {
+        "type": "other",
+        "url": "https://r.gnavi.co.jp/m679spsr0000/",
+        "retrieved": "2026-10-18",
+        "note": "電話 0596-63-5936，二見浦站步行 14 分；無營業時間"
+      },
+      {
+        "type": "official",
+        "url": "https://futamiokitamajinja.or.jp/event/",
+        "retrieved": "2026-10-18",
+        "note": "2/3 14:00 節分祭"
+      }
+    ],
+    "verified": false,
+    "anchors": [],
+    "contexts": [
+      "cafe",
+      "snack"
+    ],
+    "access": "walk",
+    "cuisine": [
+      "咖啡・甜點"
+    ],
+    "priceRange": "¥1,000～2,000",
+    "price": {
+      "lunch": [
+        1000,
+        1999
+      ],
+      "dinner": null
+    },
+    "stayMinutes": null,
+    "mustTry": [
+      "自家焙煎コーヒー",
+      "卵サンド",
+      "スイーツ"
+    ],
+    "menu": [
+      {
+        "url": "https://tabelog.com/mie/A2403/A240301/24020912/dtlmenu/photo/",
+        "source": "tabelog",
+        "retrieved": "2026-10-18"
+      }
+    ],
+    "ratings": {
+      "tabelog": 3.41,
+      "tabelogReviews": 61,
+      "google": 4.7,
+      "googleReviews": 113,
+      "note": null
+    },
+    "tabelogOwner": false,
+    "googleName": "BonTin cafe 禊 (ボンタンカフェみそぎ)",
+    "notes": "東京日本橋 BonTin cafe 的 2 號店，在二見興玉神社境內，看得到禊橋和伊勢灣。自家焙煎咖啡、卵サンド、甜點。只收電子支付（不收現金）。",
+    "group": {
+      "seats": null,
+      "maxReservation": null,
+      "privateRoom": false,
+      "buyout": "不可",
+      "groupMenu": null,
+      "fit15": "unknown",
+      "fitSubgroup": "unknown",
+      "source": "食べログ：予約不可、席數沒寫、個室無、貸切不可 → unknown（第 2 批規則②）"
+    },
+    "reservation": {
+      "accepted": "no",
+      "methods": [],
+      "phone": null,
+      "url": null,
+      "language": "日文",
+      "note": "食べログ：予約不可",
+      "leadDays": null
+    },
+    "seating": [],
+    "kids": {
+      "allowed": "yes",
+      "minAge": null,
+      "kidsMenu": null,
+      "note": "未就學・小學生可；「小さなお子様不可」、嬰兒車不可（食べログ）"
+    },
+    "accessibility": {
+      "barrierFree": null,
+      "note": "二見興玉神社 境內休憩處（禊橋之後、往龍宮社途中，神社官網）；神社沒有專用停車場，用二見的公共停車場；JR 二見浦站步行約 14 分（ぐるなび）"
+    },
+    "smoking": "全席禁煙",
+    "extra": {
+      "inclusion": "A",
+      "conflicts": [
+        "讀音：神社官網「ボンタンカフェ」、ぐるなび「ボンティンカフェミソギ」",
+        "公休：食べログ 列表 週五；食べログ 店家頁 週五（一致）"
+      ]
+    }
+  },
+  {
+    "id": "futami-le-chinois-kashiori",
+    "type": "restaurant",
+    "name": {
+      "ja": "ル・シノワ 花栞",
+      "kana": "る しのわ かしおり",
+      "zh": "Le Chinois 花栞（中華・飲茶）",
+      "en": null
+    },
+    "area": "futami",
+    "region": "futami-okitama",
+    "coords": [
+      136.7810325,
+      34.5075129
+    ],
+    "coordsSource": "google-maps-url",
+    "address": "三重県伊勢市二見町茶屋516-5 夢ギャラリー二見 1F 奥",
+    "hours": {
+      "mon": [
+        [
+          "11:30",
+          "14:00"
+        ],
+        [
+          "17:30",
+          "21:00"
+        ]
+      ],
+      "tue": [],
+      "wed": [
+        [
+          "11:30",
+          "14:00"
+        ],
+        [
+          "17:30",
+          "21:00"
+        ]
+      ],
+      "thu": [
+        [
+          "11:30",
+          "14:00"
+        ],
+        [
+          "17:30",
+          "21:00"
+        ]
+      ],
+      "fri": [
+        [
+          "11:30",
+          "14:00"
+        ],
+        [
+          "17:30",
+          "21:00"
+        ]
+      ],
+      "sat": [
+        [
+          "11:30",
+          "14:00"
+        ],
+        [
+          "17:30",
+          "21:00"
+        ]
+      ],
+      "sun": [
+        [
+          "11:30",
+          "14:00"
+        ],
+        [
+          "17:30",
+          "21:00"
+        ]
+      ],
+      "holiday": [
+        [
+          "11:30",
+          "14:00"
+        ],
+        [
+          "17:30",
+          "21:00"
+        ]
+      ],
+      "note": "伊勢志摩観光ナビ：午 11:30～14:00（最後入店）、晚 17:30～21:00（L.O.）；週二＋每月 2 次週一休，遇國定假日營業；食べログ 晚 17:00～21:00"
+    },
+    "closedNote": "週二、每月 2 次週一（伊勢志摩観光ナビ；哪兩次沒寫），遇國定假日營業",
+    "febNote": "2/2、2/9（二）休；2/8（一）可能休；2/4、2/11（四）營業",
+    "closures": [],
+    "photos": [
+      {
+        "url": "https://lh3.googleusercontent.com/grass-cs/AABkmLe3dL744nLeb-xqd_2HeFQrOK8PUl4pET6Zdw9lVbJKBWEEVNHcfpgAgZhlgnkUjKsRM9PNn8vDRmj5ZRtt9hUImjcbsqhDrbvyvfVW0x5WM0_q5dDY9QOLq3hWka9Bs5na25xQ=w800",
+        "page": "https://maps.google.com/?cid=15580380875385241077",
+        "kind": "google",
+        "credit": "Google マップ",
+        "license": null
+      }
+    ],
+    "links": {
+      "official": null,
+      "googleMaps": "https://maps.google.com/?cid=15580380875385241077",
+      "tabelog": "https://tabelog.com/mie/A2403/A240301/24016159/",
+      "instagram": null
+    },
+    "tags": [],
+    "tier": null,
+    "sources": [
+      {
+        "type": "tabelog",
+        "url": "https://tabelog.com/mie/A2403/A240301/24016159/",
+        "retrieved": "2026-10-18",
+        "note": "店舗情報：分數、席數、預約、個室、貸切、營業時間、お子様連れ"
+      },
+      {
+        "type": "google-maps",
+        "url": "https://maps.google.com/?cid=15580380875385241077",
+        "retrieved": "2026-10-18",
+        "note": "星數、評論數、座標、照片"
+      },
+      {
+        "type": "tourism",
+        "url": "https://www.iseshima-kanko.jp/gourmet/2794",
+        "retrieved": "2026-10-18",
+        "note": "伊勢志摩観光ナビ：午 11:30～14:00、晚 17:30～21:00、週二＋月 2 次週一休、午餐套餐的選法、停車場"
+      },
+      {
+        "type": "other",
+        "url": "https://hamoni.jp/area/mie/ise/futamiura/shops",
+        "retrieved": "2026-10-18",
+        "note": "二見浦店家列表，只有地址"
+      },
+      {
+        "type": "other",
+        "url": "https://hamoni.jp/shop/A3lMI3z2htMyuiSvFwWU40v9fJ4b5v6d",
+        "retrieved": "2026-10-18",
+        "note": "個室あり、全席禁煙、電話、可刷卡；無口コミ、無營業時間"
+      }
+    ],
+    "verified": false,
+    "anchors": [],
+    "contexts": [
+      "lunch",
+      "dinner"
+    ],
+    "access": "walk",
+    "cuisine": [
+      "其他"
+    ],
+    "priceRange": "午 ¥1,000～2,000／晚 ¥3,000～4,000",
+    "price": {
+      "lunch": [
+        1000,
+        1999
+      ],
+      "dinner": [
+        3000,
+        3999
+      ]
+    },
+    "stayMinutes": null,
+    "mustTry": [
+      "ランチセット（主菜 17 種＋點心 6 種から選択）",
+      "ディナーコース（紹興酒付き）"
+    ],
+    "menu": [
+      {
+        "url": "https://tabelog.com/mie/A2403/A240301/24016159/dtlmenu/photo/",
+        "source": "tabelog",
+        "retrieved": "2026-10-18"
+      }
+    ],
+    "ratings": {
+      "tabelog": 3.31,
+      "tabelogReviews": 34,
+      "google": 4.5,
+      "googleReviews": 128,
+      "note": null
+    },
+    "tabelogOwner": false,
+    "googleName": null,
+    "notes": "夫婦岩表參道的中華・飲茶（Google 4.5／128 則）。午餐從 17 種主菜＋6 種點心選的套餐；晚餐是配紹興酒的套餐。二見浦少數開到 21:00 的店。",
+    "group": {
+      "seats": null,
+      "maxReservation": null,
+      "privateRoom": false,
+      "buyout": null,
+      "groupMenu": null,
+      "fit15": "unknown",
+      "fitSubgroup": "yes",
+      "source": "食べログ：予約可、個室無、席數沒寫 → unknown（split 要 20 席以上）；HAMONI 說有個室（衝突）"
+    },
+    "reservation": {
+      "accepted": "yes",
+      "methods": [
+        "phone"
+      ],
+      "phone": "0596-43-2588",
+      "url": null,
+      "language": "日文",
+      "note": "食べログ：予約可",
+      "leadDays": null
+    },
+    "seating": [],
+    "kids": {
+      "allowed": "yes",
+      "minAge": null,
+      "kidsMenu": null,
+      "note": "子供可（未就學兒可；食べログ）"
+    },
+    "accessibility": {
+      "barrierFree": null,
+      "note": "夢ギャラリー二見 1F 裡面（食べログ）；有停車場（伊勢志摩観光ナビ）"
+    },
+    "smoking": "全席禁煙",
+    "extra": {
+      "inclusion": "A",
+      "conflicts": [
+        "個室：食べログ 無；HAMONI 有",
+        "晚餐開始：伊勢志摩観光ナビ 17:30；食べログ 17:00"
+      ]
+    }
+  },
+  {
+    "id": "futami-maruhama",
+    "type": "restaurant",
+    "name": {
+      "ja": "まるはま",
+      "kana": "まるはま",
+      "zh": "まるはま（二見興玉神社門前 伊勢烏龍・定食）",
+      "en": null
+    },
+    "area": "futami",
+    "region": "futami-okitama",
+    "coords": [
+      136.7863443,
+      34.5083364
+    ],
+    "coordsSource": "google-maps-url",
+    "address": "三重県伊勢市二見町茶屋569-14",
+    "hours": {
+      "mon": [
+        [
+          "09:00",
+          "16:00"
+        ]
+      ],
+      "tue": [
+        [
+          "09:00",
+          "16:00"
+        ]
+      ],
+      "wed": [
+        [
+          "09:00",
+          "16:00"
+        ]
+      ],
+      "thu": [
+        [
+          "09:00",
+          "16:00"
+        ]
+      ],
+      "fri": [
+        [
+          "09:00",
+          "16:00"
+        ]
+      ],
+      "sat": [
+        [
+          "09:00",
+          "16:00"
+        ]
+      ],
+      "sun": [
+        [
+          "09:00",
+          "16:00"
+        ]
+      ],
+      "holiday": [
+        [
+          "09:00",
+          "16:00"
+        ]
+      ],
+      "note": "食べログ 9:00～16:00；るるぶ・なっぷ 9:00～17:00（依季節變動）"
+    },
+    "closedNote": "不定休（るるぶ）",
+    "febNote": "營業時間依季節變動（冬季細節沒有來源）；不定休",
+    "closures": [],
+    "photos": [
+      {
+        "url": "https://lh3.googleusercontent.com/grass-cs/AABkmLdtmS7unNuzsggFc8VngzYyIwH0qd88iy5vwBQqheVBW6K9hDtEpCZ3KiwsCfYUs9G8o0VWyo8cMdWATu2yzExG_PIdnInUouD_dXB4p02xeJnYCKwNFfoK2XYMej1soyxz8Ty07w=w800",
+        "page": "https://maps.google.com/?cid=925383972160598577",
+        "kind": "google",
+        "credit": "Google マップ",
+        "license": null
+      }
+    ],
+    "links": {
+      "official": "https://futamimaruhama.wixsite.com/my-site",
+      "googleMaps": "https://maps.google.com/?cid=925383972160598577",
+      "tabelog": "https://tabelog.com/mie/A2403/A240301/24007067/",
+      "instagram": null
+    },
+    "tags": [],
+    "tier": null,
+    "sources": [
+      {
+        "type": "tabelog",
+        "url": "https://tabelog.com/mie/A2403/A240301/24007067/",
+        "retrieved": "2026-10-18",
+        "note": "店舗情報：分數、席數、預約、個室、貸切、營業時間、お子様連れ"
+      },
+      {
+        "type": "google-maps",
+        "url": "https://maps.google.com/?cid=925383972160598577",
+        "retrieved": "2026-10-18",
+        "note": "星數、評論數、座標、照片"
+      },
+      {
+        "type": "media",
+        "url": "https://rurubu.jp/andmore/spot/80024661",
+        "retrieved": "2026-10-18",
+        "note": "門前伊勢烏龍麵店，9～17 時，不定休，停車 20 台"
+      },
+      {
+        "type": "media",
+        "url": "https://www.nap-camp.com/mag/50460",
+        "retrieved": "2026-10-18",
+        "note": "二見午餐 8 選，烏龍麵、丼飯、海鮮定食，便宜、常客多"
+      },
+      {
+        "type": "other",
+        "url": "https://hamoni.jp/area/mie/ise/futamiura/shops",
+        "retrieved": "2026-10-18",
+        "note": "寫テラス席あり，但內容混到千葉同名店"
+      }
+    ],
+    "verified": false,
+    "anchors": [],
+    "contexts": [
+      "lunch"
+    ],
+    "access": "walk",
+    "cuisine": [
+      "烏龍麵・蕎麥",
+      "定食・食堂"
+    ],
+    "priceRange": "¥1,000～2,000",
+    "price": {
+      "lunch": [
+        1000,
+        1999
+      ],
+      "dinner": null
+    },
+    "stayMinutes": null,
+    "mustTry": [
+      "伊勢うどん",
+      "丼物セット",
+      "海鮮定食・刺身定食"
+    ],
+    "menu": [
+      {
+        "url": "https://tabelog.com/mie/A2403/A240301/24007067/dtlmenu/photo/",
+        "source": "tabelog",
+        "retrieved": "2026-10-18"
+      }
+    ],
+    "ratings": {
+      "tabelog": 3.29,
+      "tabelogReviews": 128,
+      "google": 3.3,
+      "googleReviews": 275,
+      "note": null
+    },
+    "tabelogOwner": false,
+    "googleName": "まるはま 伊勢店",
+    "notes": "二見興玉神社 門前的食堂（Google 名稱「まるはま 伊勢店」，3.3／275 則，評價偏低），伊勢烏龍、丼飯套餐、海鮮定食、霜淇淋。座位多、有座敷，參拜後就近吃午餐的選項。",
+    "group": {
+      "seats": 50,
+      "maxReservation": null,
+      "privateRoom": true,
+      "buyout": "不可",
+      "groupMenu": null,
+      "fit15": "unknown",
+      "fitSubgroup": "unknown",
+      "source": "食べログ：50 席（桌 30、座敷 20）、個室有、予約不可、貸切不可 → unknown（第 1 批規則①：席數夠但不能預約）"
+    },
+    "reservation": {
+      "accepted": "no",
+      "methods": [],
+      "phone": "0596-43-2018",
+      "url": null,
+      "language": "日文",
+      "note": "食べログ：予約不可；電話來自るるぶ",
+      "leadDays": null
+    },
+    "seating": [
+      "table",
+      "zashiki"
+    ],
+    "kids": {
+      "allowed": "unknown",
+      "minAge": null,
+      "kidsMenu": null,
+      "note": null
+    },
+    "accessibility": {
+      "barrierFree": null,
+      "note": "二見興玉神社 門前；停車場 20 台（食べログ、るるぶ）；JR 二見浦站步行約 13 分"
+    },
+    "smoking": "全席禁煙",
+    "extra": {
+      "inclusion": "C",
+      "conflicts": [
+        "營業時間：食べログ 9:00～16:00；るるぶ・なっぷ 9:00～17:00",
+        "HAMONI 的「まるはま」是千葉縣 金谷港 的同名店，沒有採用"
+      ]
+    }
+  },
+  {
+    "id": "futami-umikaze-bijutsuten",
+    "type": "restaurant",
+    "name": {
+      "ja": "海風美術店",
+      "kana": "うみかぜびじゅつてん",
+      "zh": "海風美術店（二見興玉神社 境內 美術品店・外帶飲品）",
+      "en": null
+    },
+    "area": "futami",
+    "region": "futami-okitama",
+    "coords": [
+      136.788626,
+      34.5085813
+    ],
+    "coordsSource": "google-maps-url",
+    "address": "三重県伊勢市二見町江575-2 二見興玉神社境内地内",
+    "hours": {
+      "mon": [
+        [
+          "09:00",
+          "17:00"
+        ]
+      ],
+      "tue": [
+        [
+          "09:00",
+          "15:00"
+        ]
+      ],
+      "wed": [
+        [
+          "09:00",
+          "17:00"
+        ]
+      ],
+      "thu": [
+        [
+          "09:00",
+          "17:00"
+        ]
+      ],
+      "fri": [],
+      "sat": [
+        [
+          "09:00",
+          "17:00"
+        ]
+      ],
+      "sun": [
+        [
+          "09:00",
+          "17:00"
+        ]
+      ],
+      "holiday": null,
+      "note": "食べログ：週二 9:00～15:00；神社官網 9:00～17:00、週五休"
+    },
+    "closedNote": "週五（神社官網、食べログ）",
+    "febNote": "2/5、2/12（五）休；2/3 節分 14:00 神社節分祭，境內很擠",
+    "closures": [],
+    "photos": [
+      {
+        "url": "https://futamiokitamajinja.or.jp/wp-content/uploads/2020/03/E01_kyuukei2.jpg",
+        "page": "https://futamiokitamajinja.or.jp/meguru/%e4%bc%91%e6%86%a9%e5%87%a6%ef%bc%88%e3%82%ab%e3%83%95%e3%82%a7%e3%83%bb%e3%81%86%e3%81%a9%e3%82%93%e5%b1%8b%e3%83%bb%e7%be%8e%e8%a1%93%e5%ba%97%ef%bc%89/",
+        "kind": "official",
+        "credit": "海風美術店",
+        "license": null
+      },
+      {
+        "url": "https://lh3.googleusercontent.com/grass-cs/AABkmLf5wgzE08xg0OQv1DUEpLY1EERPDYPG13r9fTQaikjDOv_EI7IIxMZAayu6dYr_8ZUwixd4gmKieKcio8yhMILrs2ckjwLOknxJ5X8mM_jfvcCCfac-g4Aa_CtmimcYPY-0xztkKTr5FL3f=w800",
+        "page": "https://maps.google.com/?cid=13356964827959154950",
+        "kind": "google",
+        "credit": "Google マップ",
+        "license": null
+      }
+    ],
+    "links": {
+      "official": "https://futamiokitamajinja.or.jp/meguru/%e4%bc%91%e6%86%a9%e5%87%a6/",
+      "googleMaps": "https://maps.google.com/?cid=13356964827959154950",
+      "tabelog": "https://tabelog.com/mie/A2403/A240301/24020860/",
+      "instagram": "@withwhite_art"
+    },
+    "tags": [],
+    "tier": null,
+    "sources": [
+      {
+        "type": "tabelog",
+        "url": "https://tabelog.com/mie/A2403/A240301/24020860/",
+        "retrieved": "2026-10-18",
+        "note": "店舗情報：分數、席數、預約、個室、貸切、營業時間、お子様連れ"
+      },
+      {
+        "type": "google-maps",
+        "url": "https://maps.google.com/?cid=13356964827959154950",
+        "retrieved": "2026-10-18",
+        "note": "星數、評論數、座標、照片"
+      },
+      {
+        "type": "official",
+        "url": "https://futamiokitamajinja.or.jp/meguru/%e4%bc%91%e6%86%a9%e5%87%a6%ef%bc%88%e3%82%ab%e3%83%95%e3%82%a7%e3%83%bb%e3%81%86%e3%81%a9%e3%82%93%e5%b1%8b%e3%83%bb%e7%be%8e%e8%a1%93%e5%ba%97%ef%bc%89/",
+        "retrieved": "2026-10-18",
+        "note": "神社官網休憩處頁：海風美術店 9:00～17:00 週五休；日本畫、緣起物、注連繩、神棚；伊勢茶、甘酒、甘味、かえるクッキー、ラテ，可外帶"
+      },
+      {
+        "type": "official",
+        "url": "https://futamiokitamajinja.or.jp/event/",
+        "retrieved": "2026-10-18",
+        "note": "2/3 14:00 節分祭"
+      }
+    ],
+    "verified": false,
+    "anchors": [],
+    "contexts": [
+      "snack",
+      "cafe"
+    ],
+    "access": "walk",
+    "cuisine": [
+      "咖啡・甜點"
+    ],
+    "priceRange": "～¥1,000",
+    "price": {
+      "lunch": [
+        300,
+        999
+      ],
+      "dinner": null
+    },
+    "stayMinutes": null,
+    "mustTry": [
+      "伊勢茶",
+      "甘酒",
+      "かえるクッキー"
+    ],
+    "menu": [
+      {
+        "url": "https://tabelog.com/mie/A2403/A240301/24020860/dtlmenu/photo/",
+        "source": "tabelog",
+        "retrieved": "2026-10-18"
+      }
+    ],
+    "ratings": {
+      "tabelog": 3.21,
+      "tabelogReviews": 21,
+      "google": 4.8,
+      "googleReviews": 43,
+      "note": null
+    },
+    "tabelogOwner": false,
+    "googleName": null,
+    "notes": "神社境內的日本畫・緣起物・しめ縄 的店，兼賣伊勢茶、甘酒、かえるクッキー、拿鐵（可外帶）。參拜時順路買點心，不是坐下吃飯的地方。",
+    "group": {
+      "seats": null,
+      "maxReservation": null,
+      "privateRoom": false,
+      "buyout": "不可",
+      "groupMenu": null,
+      "fit15": "unknown",
+      "fitSubgroup": "unknown",
+      "source": "食べログ：予約不可、席數沒寫、貸切不可 → unknown（第 2 批規則②）；神社官網的介紹是美術品店兼外帶飲品"
+    },
+    "reservation": {
+      "accepted": "no",
+      "methods": [],
+      "phone": null,
+      "url": null,
+      "language": "日文",
+      "note": "食べログ：予約不可",
+      "leadDays": null
+    },
+    "seating": [],
+    "kids": {
+      "allowed": "unknown",
+      "minAge": null,
+      "kidsMenu": null,
+      "note": null
+    },
+    "accessibility": {
+      "barrierFree": null,
+      "note": "二見興玉神社 境內休憩處（和 BonTin cafe 禊 同棟）；沒有停車場（食べログ）"
+    },
+    "smoking": null,
+    "extra": {
+      "inclusion": "C",
+      "conflicts": [
+        "個室：食べログ 列表標「個室有」，和店的實際樣子（美術品店兼外帶）對不上",
+        "官網：食べログ HP 欄 withwhite.jp；Google 網站欄 umikaze.store"
+      ]
+    }
+  },
+  {
+    "id": "futami-shiosai",
+    "type": "restaurant",
+    "name": {
+      "ja": "潮騒",
+      "kana": "しおさい",
+      "zh": "民宿 お食事処 潮騒（民宿附設食堂）",
+      "en": null
+    },
+    "area": "futami",
+    "region": "futami-okitama",
+    "coords": [
+      136.789904,
+      34.507136
+    ],
+    "coordsSource": "google-maps-url",
+    "address": "三重県伊勢市二見町江580-10",
+    "hours": {
+      "mon": null,
+      "tue": null,
+      "wed": null,
+      "thu": null,
+      "fri": null,
+      "sat": null,
+      "sun": null,
+      "holiday": null,
+      "note": "營業時間沒有來源（食べログ 空白、官網 isesima.net/shiosai/ 404、讀文沒找到）"
+    },
+    "closedNote": null,
+    "febNote": "營業時間、公休都沒有來源，要電話確認",
+    "closures": [],
+    "photos": [
+      {
+        "url": "https://lh3.googleusercontent.com/grass-cs/AABkmLdKbgHLBHPqPxIXSANRkdEpqpyZ6K-wkbpyjiu5iQz0SaNw0OhzKZ9eSwcem3lg2t0eaY6jG13Y5ZXWLp6Z5oO3slKzTallyX8vplUu-MDWLc381wWHLfE1GCVVp6afIo7zRCfcYw=w800",
+        "page": "https://maps.google.com/?cid=11421815214140141917",
+        "kind": "google",
+        "credit": "Google マップ",
+        "license": null
+      }
+    ],
+    "links": {
+      "official": null,
+      "googleMaps": "https://maps.google.com/?cid=11421815214140141917",
+      "tabelog": "https://tabelog.com/mie/A2403/A240301/24004254/",
+      "instagram": null
+    },
+    "tags": [],
+    "tier": null,
+    "sources": [
+      {
+        "type": "tabelog",
+        "url": "https://tabelog.com/mie/A2403/A240301/24004254/",
+        "retrieved": "2026-10-18",
+        "note": "店舗情報：分數、席數、預約、個室、貸切、營業時間、お子様連れ"
+      },
+      {
+        "type": "google-maps",
+        "url": "https://maps.google.com/?cid=11421815214140141917",
+        "retrieved": "2026-10-18",
+        "note": "星數、評論數、座標、照片"
+      },
+      {
+        "type": "booking-site",
+        "url": "https://4travel.jp/dm_hotel-10048926",
+        "retrieved": "2026-10-18",
+        "note": "民宿 潮騒，食事評價 4.50，2014-01 口コミ說份量多（舊資料）"
+      }
+    ],
+    "verified": false,
+    "anchors": [],
+    "contexts": [
+      "lunch"
+    ],
+    "access": "walk",
+    "cuisine": [
+      "和食・割烹"
+    ],
+    "priceRange": "¥1,000～2,000",
+    "price": {
+      "lunch": [
+        1000,
+        1999
+      ],
+      "dinner": null
+    },
+    "stayMinutes": null,
+    "mustTry": [],
+    "menu": [
+      {
+        "url": "https://tabelog.com/mie/A2403/A240301/24004254/dtlmenu/photo/",
+        "source": "tabelog",
+        "retrieved": "2026-10-18"
+      }
+    ],
+    "ratings": {
+      "tabelog": 3.2,
+      "tabelogReviews": 23,
+      "google": 3.8,
+      "googleReviews": 177,
+      "note": null
+    },
+    "tabelogOwner": false,
+    "googleName": "民宿 お食事処 潮騒",
+    "notes": "二見町江的民宿兼食堂（Google 名稱「民宿 お食事処 潮騒」，3.8／177 則）。Google 名稱有「お食事処」，判斷一般客也能用餐；營業時間、菜單完全沒有來源（4travel 只有 2014 年的住宿口碑）。",
+    "group": {
+      "seats": null,
+      "maxReservation": null,
+      "privateRoom": true,
+      "buyout": null,
+      "groupMenu": null,
+      "fit15": "unknown",
+      "fitSubgroup": "unknown",
+      "source": "食べログ：予約可、個室有、席數沒寫 → unknown"
+    },
+    "reservation": {
+      "accepted": "yes",
+      "methods": [
+        "phone"
+      ],
+      "phone": "0596-43-2172",
+      "url": null,
+      "language": "日文",
+      "note": "食べログ：予約可",
+      "leadDays": null
+    },
+    "seating": [],
+    "kids": {
+      "allowed": "unknown",
+      "minAge": null,
+      "kidsMenu": null,
+      "note": null
+    },
+    "accessibility": {
+      "barrierFree": null,
+      "note": "有停車場（食べログ）；シーパラ・二見興玉神社 附近（二見町江）"
+    },
+    "smoking": null,
+    "extra": {
+      "inclusion": "C",
+      "conflicts": [
+        "4travel 把同址登記成民宿「潮騒」；食べログ 是日本料理店。非住客能否用餐沒有明寫（Google 名稱有「お食事処」）"
+      ]
+    }
+  },
+  {
+    "id": "futami-shofuken",
+    "type": "restaurant",
+    "name": {
+      "ja": "松風軒",
+      "kana": "しょうふうけん",
+      "zh": "松風軒（割烹・鰻魚・宴會）",
+      "en": null
+    },
+    "area": "futami",
+    "region": "futami-okitama",
+    "coords": [
+      136.7780855,
+      34.5074012
+    ],
+    "coordsSource": "google-maps-url",
+    "address": "三重県伊勢市二見町茶屋249",
+    "hours": {
+      "mon": [
+        [
+          "12:00",
+          "14:30"
+        ],
+        [
+          "17:00",
+          "20:00"
+        ]
+      ],
+      "tue": [
+        [
+          "12:00",
+          "14:30"
+        ],
+        [
+          "17:00",
+          "20:00"
+        ]
+      ],
+      "wed": [
+        [
+          "12:00",
+          "14:30"
+        ],
+        [
+          "17:00",
+          "20:00"
+        ]
+      ],
+      "thu": [
+        [
+          "12:00",
+          "14:30"
+        ],
+        [
+          "17:00",
+          "20:00"
+        ]
+      ],
+      "fri": [
+        [
+          "12:00",
+          "14:30"
+        ],
+        [
+          "17:00",
+          "20:00"
+        ]
+      ],
+      "sat": [
+        [
+          "12:00",
+          "14:30"
+        ],
+        [
+          "17:00",
+          "20:00"
+        ]
+      ],
+      "sun": [
+        [
+          "12:00",
+          "14:30"
+        ],
+        [
+          "17:00",
+          "20:00"
+        ]
+      ],
+      "holiday": null,
+      "note": "官網：12:00～14:30／17:00～不定時（晚上結束時間不固定）；食べログ：12:00～（午餐不定）、17:00～20:00"
+    },
+    "closedNote": "不定休（官網、食べログ）",
+    "febNote": "不定休，午餐也「不定」：要去的日子先電話；冬季宴會有 安乗とらふぐ鍋、浦村カキ（官網）",
+    "closures": [],
+    "photos": [
+      {
+        "url": "https://lh3.googleusercontent.com/grass-cs/AABkmLdR_jgM_9doz8DUAQULwCF_F96H0W4UfMCihsji92zQbSZCC1QDcoqY7RC7KnTijq1C551LmNNbb7ZWVGrx9gCnDlbdbIsNmmGwzdZnA5BSBnURj7ZKnYOHW2FlNwL0QwULpMFDMg=w800",
+        "page": "https://maps.google.com/?cid=13280565219992405870",
+        "kind": "google",
+        "credit": "Google マップ",
+        "license": null
+      }
+    ],
+    "links": {
+      "official": "http://shofuken.com/",
+      "googleMaps": "https://maps.google.com/?cid=13280565219992405870",
+      "tabelog": "https://tabelog.com/mie/A2403/A240301/24008599/",
+      "instagram": null
+    },
+    "tags": [],
+    "tier": null,
+    "sources": [
+      {
+        "type": "tabelog",
+        "url": "https://tabelog.com/mie/A2403/A240301/24008599/",
+        "retrieved": "2026-10-18",
+        "note": "店舗情報：分數、席數、預約、個室、貸切、營業時間、お子様連れ"
+      },
+      {
+        "type": "google-maps",
+        "url": "https://maps.google.com/?cid=13280565219992405870",
+        "retrieved": "2026-10-18",
+        "note": "星數、評論數、座標、照片"
+      },
+      {
+        "type": "official",
+        "url": "http://shofuken.com/syofuken5.html",
+        "retrieved": "2026-10-18",
+        "note": "官網基本情報：營業 12:00～14:30／17:00～不定時、不定休、個室 8 人、全面喫煙可、座敷"
+      },
+      {
+        "type": "official",
+        "url": "http://shofuken.com/syofuken3.html",
+        "retrieved": "2026-10-18",
+        "note": "官網宴會頁：依預算承接、冬季河豚鍋・牡蠣、伊勢海老舟盛要預約"
+      },
+      {
+        "type": "other",
+        "url": "https://hamoni.jp/area/mie/ise/shops/eel",
+        "retrieved": "2026-10-18",
+        "note": "伊勢市うなぎ排行第 12 名"
+      },
+      {
+        "type": "other",
+        "url": "https://hamoni.jp/shop/TSiQuWi3eeJaOEuZOJZ3",
+        "retrieved": "2026-10-18",
+        "note": "30 席、個室・座敷・掘りごたつ、喫煙可、駐車場あり；無口コミ"
+      }
+    ],
+    "verified": false,
+    "anchors": [],
+    "contexts": [
+      "lunch",
+      "dinner"
+    ],
+    "access": "walk",
+    "cuisine": [
+      "和食・割烹"
+    ],
+    "priceRange": "午 ¥1,000～2,000／晚 ¥2,000～3,000",
+    "price": {
+      "lunch": [
+        1000,
+        1999
+      ],
+      "dinner": [
+        2000,
+        2999
+      ]
+    },
+    "stayMinutes": null,
+    "mustTry": [
+      "伊勢路定食",
+      "ジャンボエビフライ定食",
+      "おかげ会席"
+    ],
+    "menu": [
+      {
+        "url": "http://shofuken.com/syofuken2.html",
+        "source": "official",
+        "retrieved": "2026-10-18"
+      }
+    ],
+    "ratings": {
+      "tabelog": 3.16,
+      "tabelogReviews": 39,
+      "google": 3.9,
+      "googleReviews": 205,
+      "note": null
+    },
+    "tabelogOwner": false,
+    "googleName": null,
+    "notes": "創業約 60 年的割烹・仕出し（外送便當）店（Google 3.9／205 則），伊勢路定食、炸大蝦定食、鰻魚、壽司，宴會可以做伊勢海老・河豚。二見浦能接團體宴會的少數店，但全面可吸菸。",
+    "group": {
+      "seats": 30,
+      "maxReservation": null,
+      "privateRoom": true,
+      "buyout": null,
+      "groupMenu": "宴會依預算訂做（冬季 安乗とらふぐ鍋、鳥羽浦村カキ；伊勢海老・鯛の舟盛り 要預約）；團體便當 松風かご膳・日の出かご膳・おかげ会席 等，價格依預算（官網，價格未列）",
+      "fit15": "yes",
+      "fitSubgroup": "yes",
+      "source": "官網：店內有觀光客用餐和冠婚葬祭的宴會空間、宴會依預算承接、接團體（第 1 批規則③：明寫接團體）；食べログ 30 席、個室 8 人、予約可"
+    },
+    "reservation": {
+      "accepted": "yes",
+      "methods": [
+        "phone"
+      ],
+      "phone": "0596-43-2134",
+      "url": null,
+      "language": "日文",
+      "note": "電話（官網、食べログ）；宴會・團體依預算商量",
+      "leadDays": null
+    },
+    "seating": [
+      "table",
+      "zashiki",
+      "horigotatsu"
+    ],
+    "kids": {
+      "allowed": "unknown",
+      "minAge": null,
+      "kidsMenu": null,
+      "note": "全面可吸菸（官網、食べログ），帶小孩要注意"
+    },
+    "accessibility": {
+      "barrierFree": null,
+      "note": "JR 二見浦站約 400 m、夫婦岩步行約 5 分（官網）；店前停車 5 台（食べログ）"
+    },
+    "smoking": "全席喫煙可（官網「全面喫煙可」）",
+    "extra": {
+      "inclusion": "C",
+      "conflicts": [
+        "營業時間：HAMONI 只列週日 12:00～16:00；官網 12:00～14:30／17:00～不定時；食べログ 17:00～20:00"
+      ]
+    }
+  },
+  {
+    "id": "futami-maruru-cafe",
+    "type": "restaurant",
+    "name": {
+      "ja": "maruru cafe",
+      "kana": "まるる かふぇ",
+      "zh": "maruru cafe（咖啡＆晚餐）",
+      "en": null
+    },
+    "area": "futami",
+    "region": "futami-okitama",
+    "coords": [
+      136.7777663,
+      34.5064902
+    ],
+    "coordsSource": "google-maps-url",
+    "address": "三重県伊勢市二見町茶屋277-2 やわらの湯まるや 1F",
+    "hours": {
+      "mon": [
+        [
+          "11:00",
+          "20:00"
+        ]
+      ],
+      "tue": [
+        [
+          "11:00",
+          "20:00"
+        ]
+      ],
+      "wed": [
+        [
+          "11:00",
+          "20:00"
+        ]
+      ],
+      "thu": [
+        [
+          "11:00",
+          "20:00"
+        ]
+      ],
+      "fri": [
+        [
+          "11:00",
+          "20:00"
+        ]
+      ],
+      "sat": [
+        [
+          "11:00",
+          "20:00"
+        ]
+      ],
+      "sun": [
+        [
+          "11:00",
+          "20:00"
+        ]
+      ],
+      "holiday": [
+        [
+          "11:00",
+          "20:00"
+        ]
+      ],
+      "lastEntry": "19:30",
+      "note": "L.O. 19:30；Cafe&Lunch 11:00～17:00、Dinner 17:00～20:00；可能因進貨提早打烊（官網、食べログ 店舗会員）"
+    },
+    "closedNote": "不定休（官網、食べログ）",
+    "febNote": "不定休，要去的日子先確認",
+    "closures": [],
+    "photos": [
+      {
+        "url": "https://maruru-cafe.com/wp-content/uploads/top_full_bg.jpg",
+        "page": "https://maruru-cafe.com/",
+        "kind": "official",
+        "credit": "maruru cafe",
+        "license": null
+      },
+      {
+        "url": "https://lh3.googleusercontent.com/grass-cs/AABkmLcTION6fzvsW9Y5YHzmhU_vB9PZdOGBAO4diskIlIfwYoNVZX-1j3mnyoxPrG1t9z3EBL-UmNjkxdE51V0NkAViZFRL5AV_TdDciOHo_WcMwhcOqMFynxqXvAZtWt_pgB2QKowa7BZus0Qa=w800",
+        "page": "https://maps.google.com/?cid=14730767095157213843",
+        "kind": "google",
+        "credit": "Google マップ",
+        "license": null
+      }
+    ],
+    "links": {
+      "official": "https://maruru-cafe.com/",
+      "googleMaps": "https://maps.google.com/?cid=14730767095157213843",
+      "tabelog": "https://tabelog.com/mie/A2403/A240301/24020274/",
+      "instagram": "@maruru.ca"
+    },
+    "tags": [],
+    "tier": null,
+    "sources": [
+      {
+        "type": "tabelog",
+        "url": "https://tabelog.com/mie/A2403/A240301/24020274/",
+        "retrieved": "2026-10-18",
+        "note": "店舗情報：分數、席數、預約、個室、貸切、營業時間、お子様連れ（店舗会員）"
+      },
+      {
+        "type": "google-maps",
+        "url": "https://maps.google.com/?cid=14730767095157213843",
+        "retrieved": "2026-10-18",
+        "note": "星數、評論數、座標、照片"
+      },
+      {
+        "type": "tabelog",
+        "url": "https://tabelog.com/mie/A2403/A240301/24020274/party/",
+        "retrieved": "2026-10-18",
+        "note": "コース一覧：套餐名稱、價格、人數"
+      },
+      {
+        "type": "official",
+        "url": "https://maruru-cafe.com/",
+        "retrieved": "2026-10-18",
+        "note": "營業時間、不定休、預約方式、免費停車場、伊勢海老・松阪牛晚餐"
+      },
+      {
+        "type": "official",
+        "url": "https://futami.biz/maruru/",
+        "retrieved": "2026-10-18",
+        "note": "旅館官網：1F 咖啡，パスタランチ、松阪牛伊勢海老晚餐套餐，可外帶，車站步行 4 分"
+      },
+      {
+        "type": "other",
+        "url": "https://hamoni.jp/shop/idAz2lH6yLSnYuf7Fy76",
+        "retrieved": "2026-10-18",
+        "note": "40 席、個室、全席禁菸、maruru定食與スイーツセット推薦、ワッフル 7 種"
+      },
+      {
+        "type": "media",
+        "url": "https://www.nap-camp.com/mag/50460",
+        "retrieved": "2026-10-18",
+        "note": "11:00～20:00 不定休，輕食到プレートランチ"
+      }
+    ],
+    "verified": false,
+    "anchors": [],
+    "contexts": [
+      "lunch",
+      "dinner",
+      "cafe"
+    ],
+    "access": "walk",
+    "cuisine": [
+      "咖啡・甜點",
+      "洋食・義式"
+    ],
+    "priceRange": "午 ¥1,000～2,000／晚 ¥2,000～11,000",
+    "price": {
+      "lunch": [
+        1000,
+        1999
+      ],
+      "dinner": [
+        2000,
+        11000
+      ]
+    },
+    "stayMinutes": null,
+    "mustTry": [
+      "maruru定食",
+      "選べるパスタセット 1,870 円",
+      "松阪牛と伊勢志摩食材のコース 6,600 円"
+    ],
+    "menu": [
+      {
+        "url": "https://tabelog.com/mie/A2403/A240301/24020274/party/",
+        "source": "tabelog",
+        "retrieved": "2026-10-18"
+      },
+      {
+        "url": "https://tabelog.com/mie/A2403/A240301/24020274/dtlmenu/",
+        "source": "tabelog",
+        "retrieved": "2026-10-18"
+      },
+      {
+        "url": "https://tabelog.com/mie/A2403/A240301/24020274/dtlmenu/lunch/",
+        "source": "tabelog",
+        "retrieved": "2026-10-18"
+      }
+    ],
+    "ratings": {
+      "tabelog": 3.15,
+      "tabelogReviews": 20,
+      "google": 3.8,
+      "googleReviews": 73,
+      "note": null
+    },
+    "tabelogOwner": true,
+    "googleName": "maruru cafe（カフェ＆ダイニング）伊勢・夫婦岩",
+    "notes": "夫婦岩表參道的咖啡＆餐廳（Google 名稱「maruru cafe（カフェ＆ダイニング）伊勢・夫婦岩」，3.8／73 則），午餐定食・義大利麵・鬆餅，晚餐有松阪牛、伊勢海老。開到 20:00 不休息，二見浦晚上能訂位、能包場的少數店。",
+    "group": {
+      "seats": 40,
+      "maxReservation": null,
+      "privateRoom": true,
+      "buyout": "可（20～50 人）",
+      "groupMenu": "ランチ 1 品（ワッフルプレート、パスタセット、バケットサンド）各 1,870 円；ディナー パスタコース 5 品 3,300、松阪牛と伊勢志摩食材 6 品 6,600、松阪牛ステーキ 6 品 11,000 円（食べログ コース 2025-11，網路 2～8 名，更多人要問）",
+      "fit15": "yes",
+      "fitSubgroup": "yes",
+      "source": "食べログ（店舗会員）：40 席、個室 8 人・半個室、貸切可 20～50 人、可預約 → yes（同第 3 批 酒場 森下）；晚餐 17:00 以後幼兒不能入店（6～10 歲的小孩沒問題）"
+    },
+    "reservation": {
+      "accepted": "yes",
+      "methods": [
+        "phone",
+        "web",
+        "other"
+      ],
+      "phone": "0596-43-0900",
+      "url": null,
+      "language": "日文",
+      "note": "電話、Google、官方 LINE 預約（官網）；內用每人 1 杯飲料",
+      "leadDays": null
+    },
+    "seating": [],
+    "kids": {
+      "allowed": "age-limit",
+      "minAge": null,
+      "kidsMenu": null,
+      "note": "晚餐（17:00～）幼兒不能入店（食べログ）；午餐沒有限制"
+    },
+    "accessibility": {
+      "barrierFree": null,
+      "note": "やわらの湯 まるや 1F；JR 二見浦站步行 4 分、「二見浦表参道」巴士站在門口；停車用前面的二見総合駐車場（免費）"
+    },
+    "smoking": "全席禁煙（腹地內有吸菸區）",
+    "extra": {
+      "inclusion": "C",
+      "conflicts": [
+        "營業時間：官網 11:00～20:00、不定休；HAMONI 引的投稿 11:00～18:00、週三休（可能是 2023 開幕初期）",
+        "所在的やわらの湯 まるや 是女性專用旅館；咖啡店官網、媒體都當一般咖啡店介紹，非住客、男性可以用餐（沒有明寫）"
+      ]
+    }
+  },
+  {
+    "id": "futami-ukichi",
+    "type": "restaurant",
+    "name": {
+      "ja": "う吉",
+      "kana": "うきち",
+      "zh": "う吉（鰻魚）",
+      "en": null
+    },
+    "area": "futami",
+    "region": "futami-okitama",
+    "coords": [
+      136.7587137,
+      34.5058209
+    ],
+    "coordsSource": "google-maps-url",
+    "address": "三重県伊勢市二見町西28-1",
+    "hours": {
+      "mon": [
+        [
+          "11:00",
+          "14:30"
+        ],
+        [
+          "17:00",
+          "19:00"
+        ]
+      ],
+      "tue": [
+        [
+          "11:00",
+          "14:30"
+        ],
+        [
+          "17:00",
+          "19:00"
+        ]
+      ],
+      "wed": [
+        [
+          "11:00",
+          "14:30"
+        ],
+        [
+          "17:00",
+          "19:00"
+        ]
+      ],
+      "thu": [],
+      "fri": [
+        [
+          "11:00",
+          "14:30"
+        ],
+        [
+          "17:00",
+          "19:00"
+        ]
+      ],
+      "sat": [
+        [
+          "11:00",
+          "14:30"
+        ],
+        [
+          "17:00",
+          "19:00"
+        ]
+      ],
+      "sun": [
+        [
+          "11:00",
+          "14:30"
+        ],
+        [
+          "17:00",
+          "19:00"
+        ]
+      ],
+      "holiday": [
+        [
+          "11:00",
+          "14:30"
+        ],
+        [
+          "17:00",
+          "19:00"
+        ]
+      ],
+      "lastEntry": "18:30",
+      "note": "食べログ（店舗会員）：11:00～19:00（L.O. 18:30）、週四休，國定假日營業；ホットペッパー：11:00～14:30（L.O. 14:00）、17:00～20:00（L.O. 19:30）"
+    },
+    "closedNote": "週四（食べログ、ホットペッパー）；食べログ 營業日列了「祝日」",
+    "febNote": "2/4（四）休；2/11（四・國定假日）照食べログ 營業，要確認",
+    "closures": [],
+    "photos": [
+      {
+        "url": "https://lh3.googleusercontent.com/grass-cs/AABkmLd3Y9LtnLFOQAhP5Ec0ArouhCtVX4CcoVHujfi-gnZoqMnBCQDk1IuRYTdOCaBbN5oC8Lq8UbD_isniEaDuuHIsLt4DNps4eYZCOPQTv8ZF5ZUSmMr0nMVtM4CH--SKNg-l1hAxBU8w5e8=w800",
+        "page": "https://maps.google.com/?cid=2960238325383394932",
+        "kind": "google",
+        "credit": "Google マップ",
+        "license": null
+      }
+    ],
+    "links": {
+      "official": null,
+      "googleMaps": "https://maps.google.com/?cid=2960238325383394932",
+      "tabelog": "https://tabelog.com/mie/A2403/A240301/24022715/",
+      "instagram": "@unagi_ukichi"
+    },
+    "tags": [],
+    "tier": null,
+    "sources": [
+      {
+        "type": "tabelog",
+        "url": "https://tabelog.com/mie/A2403/A240301/24022715/",
+        "retrieved": "2026-10-18",
+        "note": "店舗情報：分數、席數、預約、個室、貸切、營業時間、お子様連れ（店舗会員）"
+      },
+      {
+        "type": "google-maps",
+        "url": "https://maps.google.com/?cid=2960238325383394932",
+        "retrieved": "2026-10-18",
+        "note": "星數、評論數、座標、照片"
+      },
+      {
+        "type": "booking-site",
+        "url": "https://www.hotpepper.jp/strJ004660490/",
+        "retrieved": "2026-10-18",
+        "note": "營業時間、週四休、38 席、無個室、兒童歡迎、全席禁煙、鰻魚價格（最終更新 2026-09-15）"
+      },
+      {
+        "type": "booking-site",
+        "url": "https://www.hotpepper.jp/strJ004660490/report/",
+        "retrieved": "2026-10-18",
+        "note": "口コミ 12 篇平均 3.9，稱讚鰻魚肥厚、份量多、CP 值高，多篇是家庭來店"
+      },
+      {
+        "type": "other",
+        "url": "https://www.navitime.co.jp/poi?spot=01125-J004660490",
+        "retrieved": "2026-10-18",
+        "note": "「コスパ最強の鰻ランチ」、伊勢市站開車約 10 分"
+      }
+    ],
+    "verified": false,
+    "anchors": [],
+    "contexts": [
+      "lunch",
+      "dinner"
+    ],
+    "access": "car",
+    "cuisine": [
+      "和食・割烹"
+    ],
+    "priceRange": "¥2,000～4,000",
+    "price": {
+      "lunch": [
+        2000,
+        3999
+      ],
+      "dinner": [
+        2000,
+        3999
+      ]
+    },
+    "stayMinutes": null,
+    "mustTry": [
+      "蒲焼（1尾）3,100 円",
+      "白焼（1尾）3,100 円",
+      "ひつまぶし 3,600 円"
+    ],
+    "menu": [
+      {
+        "url": "https://tabelog.com/mie/A2403/A240301/24022715/dtlmenu/photo/",
+        "source": "tabelog",
+        "retrieved": "2026-10-18"
+      }
+    ],
+    "ratings": {
+      "tabelog": 3.09,
+      "tabelogReviews": 14,
+      "google": 3.7,
+      "googleReviews": 15,
+      "note": null
+    },
+    "tabelogOwner": true,
+    "googleName": null,
+    "notes": "二見町西的鰻魚店（2023 年開，Google 3.7／15 則，ホットペッパー 口碑 3.9），肉厚份量多、CP 值高。D② 補二見町西的不含晚餐住宿（オレンジガーデン、プラフィーノ）的晚餐，但 L.O. 18:30～19:30 很早。",
+    "group": {
+      "seats": 38,
+      "maxReservation": 14,
+      "privateRoom": false,
+      "buyout": "可（20～50 人）",
+      "groupMenu": null,
+      "fit15": "yes",
+      "fitSubgroup": "yes",
+      "source": "食べログ（店舗会員）：38 席（吧台 14、桌 24）、最大予約 著席 14 人、貸切可 20～50 人（電話商量）→ yes（同 酒場 森下 貸切 20～50）；網路一般預約只到 14 人，15 人要電話談包場；ホットペッパー 宴會最多 38 人"
+    },
+    "reservation": {
+      "accepted": "yes",
+      "methods": [
+        "phone",
+        "web"
+      ],
+      "phone": "0596-72-8094",
+      "url": "https://www.hotpepper.jp/strJ004660490/",
+      "language": "日文",
+      "note": "食べログ、ホットペッパー 網路預約；包場電話商量；遲到要打電話",
+      "leadDays": null
+    },
+    "seating": [
+      "counter",
+      "table"
+    ],
+    "kids": {
+      "allowed": "yes",
+      "minAge": null,
+      "kidsMenu": null,
+      "note": "お子様連れ歓迎、口碑多篇家庭來店（ホットペッパー）"
+    },
+    "accessibility": {
+      "barrierFree": "なし，但腳不方便的人可以坐桌位（ホットペッパー）",
+      "note": "專用停車場 9 台＋共用（食べログ）；伊勢市站開車約 10 分；JR 二見浦站約 1.8 km"
+    },
+    "smoking": "全席禁煙（店外有吸菸區）",
+    "extra": {
+      "inclusion": "D2",
+      "conflicts": [
+        "營業時間：食べログ 11:00～19:00 通し（L.O. 18:30）；ホットペッパー 午晚分開、晚到 20:00",
+        "吧台：ホットペッパー 座位表寫沒有吧台，照片說明寫有大吧台；食べログ 吧台 14 席"
+      ]
+    }
+  },
+  {
+    "id": "futami-wasuke",
+    "type": "restaurant",
+    "name": {
+      "ja": "中華飯店 ワスケ",
+      "kana": "ちゅうかはんてん わすけ",
+      "zh": "中華飯店 Wasuke（大份量中華）",
+      "en": null
+    },
+    "area": "futami",
+    "region": "futami-outskirts",
+    "coords": [
+      136.756155,
+      34.5048416
+    ],
+    "coordsSource": "google-maps-url",
+    "address": "三重県伊勢市二見町溝口225-5",
+    "hours": {
+      "mon": [],
+      "tue": [
+        [
+          "11:30",
+          "14:00"
+        ],
+        [
+          "17:00",
+          "20:00"
+        ]
+      ],
+      "wed": [
+        [
+          "11:30",
+          "14:00"
+        ],
+        [
+          "17:00",
+          "20:00"
+        ]
+      ],
+      "thu": [
+        [
+          "11:30",
+          "14:00"
+        ],
+        [
+          "17:00",
+          "20:00"
+        ]
+      ],
+      "fri": [
+        [
+          "11:30",
+          "14:00"
+        ],
+        [
+          "17:00",
+          "20:00"
+        ]
+      ],
+      "sat": [
+        [
+          "11:30",
+          "14:00"
+        ],
+        [
+          "17:00",
+          "20:00"
+        ]
+      ],
+      "sun": [
+        [
+          "11:30",
+          "14:00"
+        ],
+        [
+          "17:00",
+          "20:00"
+        ]
+      ],
+      "holiday": null,
+      "note": "食べログ：11:30～14:00、17:00～20:00、週一休；ホットペッパー：晚到 21:00（L.O. 20:00）、週一・國定假日休"
+    },
+    "closedNote": "週一（食べログ）；ホットペッパー 另寫國定假日休",
+    "febNote": "2/8（一）休；2/11（四・國定假日）照ホットペッパー 可能休；人氣店要排隊",
+    "closures": [],
+    "photos": [
+      {
+        "url": "https://lh3.googleusercontent.com/grass-cs/AABkmLeDxztrT4HS0R84xAmge5zuHrtCPwPsVebpvkZ_SjCpQYf8ccA5PwhiM_IxxKMTqR2sGDsqE5SjFdQnYVTgznT6Ys2N6KJW6xciB62TmDDMFbC607oKfrNflhHGv9vrrzwLP42zx-pV9sZr=w800",
+        "page": "https://maps.google.com/?cid=9188031327011638908",
+        "kind": "google",
+        "credit": "Google マップ",
+        "license": null
+      }
+    ],
+    "links": {
+      "official": "http://wasuke-futami.sakura.ne.jp/",
+      "googleMaps": "https://maps.google.com/?cid=9188031327011638908",
+      "tabelog": "https://tabelog.com/mie/A2403/A240301/24003498/",
+      "instagram": "@wasuke_hiro"
+    },
+    "tags": [],
+    "tier": null,
+    "sources": [
+      {
+        "type": "tabelog",
+        "url": "https://tabelog.com/mie/A2403/A240301/24003498/",
+        "retrieved": "2026-10-18",
+        "note": "店舗情報：分數、席數、預約、個室、貸切、營業時間、お子様連れ"
+      },
+      {
+        "type": "google-maps",
+        "url": "https://maps.google.com/?cid=9188031327011638908",
+        "retrieved": "2026-10-18",
+        "note": "星數、評論數、座標、照片"
+      },
+      {
+        "type": "booking-site",
+        "url": "https://www.hotpepper.jp/strJ000425355/",
+        "retrieved": "2026-10-18",
+        "note": "36 席、無個室、宴會最大 34 人、週一・祝日休、兒童 OK（店舗資料 2020-01 更新，偏舊）"
+      },
+      {
+        "type": "booking-site",
+        "url": "https://www.hotpepper.jp/strJ000425355/report/",
+        "retrieved": "2026-10-18",
+        "note": "口コミ 7 篇，全是 2014 年，稱讚餃子、春捲、拉麵（太舊）"
+      },
+      {
+        "type": "other",
+        "url": "https://hamoni.jp/en/area/mie/ise/shops/chinese",
+        "retrieved": "2026-10-18",
+        "note": "伊勢中華排名第 2，招牌天炒飯、スーパー系附 3 個唐揚，人氣店要排隊"
+      },
+      {
+        "type": "other",
+        "url": "https://hamoni.jp/en/shop/UhVdAULtgDyjgqPvPjrh",
+        "retrieved": "2026-10-18",
+        "note": "電話、36 席、2025～2026 年 IG／YouTube 介紹、スーパー天炒飯 1,500 円"
+      },
+      {
+        "type": "other",
+        "url": "https://www.navitime.co.jp/poi?spot=01125-J000425355",
+        "retrieved": "2026-10-18",
+        "note": "營業時間、週一・祝日休、五十鈴ヶ丘站步行 23 分"
+      }
+    ],
+    "verified": false,
+    "anchors": [],
+    "contexts": [
+      "lunch",
+      "dinner"
+    ],
+    "access": "car",
+    "cuisine": [
+      "其他"
+    ],
+    "priceRange": "¥1,000～2,000",
+    "price": {
+      "lunch": [
+        1000,
+        1999
+      ],
+      "dinner": [
+        1000,
+        1999
+      ]
+    },
+    "stayMinutes": null,
+    "mustTry": [
+      "スーパー天炒飯（天津飯＋炒飯）1,500 円",
+      "スーパーチャーシュー丼 1,600 円",
+      "餃子"
+    ],
+    "menu": [
+      {
+        "url": "https://tabelog.com/mie/A2403/A240301/24003498/dtlmenu/photo/",
+        "source": "tabelog",
+        "retrieved": "2026-10-18"
+      }
+    ],
+    "ratings": {
+      "tabelog": 3.39,
+      "tabelogReviews": 105,
+      "google": 4.1,
+      "googleReviews": 415,
+      "note": null
+    },
+    "tabelogOwner": false,
+    "googleName": null,
+    "notes": "二見町溝口的大份量中華（Google 4.1／415 則），HAMONI 伊勢中華排第 2。招牌是天津飯＋炒飯的「スーパー天炒飯」。開車去；人氣店，可以先打電話訂。",
+    "group": {
+      "seats": 36,
+      "maxReservation": null,
+      "privateRoom": false,
+      "buyout": "不可",
+      "groupMenu": null,
+      "fit15": "split",
+      "fitSubgroup": "yes",
+      "source": "食べログ：36 席、予約可、個室無、貸切不可 → split（第 1 批規則④：席數 20 以上可預約，沒寫一次 15 人）；ホットペッパー 宴會最多 34 人（2020 舊資料）"
+    },
+    "reservation": {
+      "accepted": "yes",
+      "methods": [
+        "phone"
+      ],
+      "phone": "0596-42-1257",
+      "url": null,
+      "language": "日文",
+      "note": "電話（食べログ）；ホットペッパー 網路預約目前不受理",
+      "leadDays": null
+    },
+    "seating": [
+      "table"
+    ],
+    "kids": {
+      "allowed": "yes",
+      "minAge": null,
+      "kidsMenu": null,
+      "note": "お子様連れ OK（ホットペッパー）"
+    },
+    "accessibility": {
+      "barrierFree": "なし（ホットペッパー）",
+      "note": "有停車場（台數沒有來源）；JR 二見浦站搭巴士約 5 分「汐合」下車步行 5 分；二見 JCT 附近、國道 42 號沿線"
+    },
+    "smoking": "全席禁煙（食べログ）",
+    "extra": {
+      "inclusion": "A",
+      "conflicts": [
+        "個室：ホットペッパー 無；HAMONI 有包場用個室",
+        "吸菸：ホットペッパー（2020）全席喫煙可；食べログ・HAMONI 禁煙",
+        "晚上結束：食べログ 20:00；ホットペッパー 21:00（L.O. 20:00）",
+        "國定假日：ホットペッパー 休；食べログ 沒寫"
+      ]
+    }
+  },
+  {
+    "id": "futami-minwa-no-eki-somin",
+    "type": "restaurant",
+    "name": {
+      "ja": "民話の駅 蘇民",
+      "kana": "みんわのえき そみん",
+      "zh": "民話の駅 蘇民（松下社旁 直賣所・現搗麻糬）",
+      "en": null
+    },
+    "area": "futami",
+    "region": "futami-outskirts",
+    "coords": [
+      136.7972056,
+      34.5002569
+    ],
+    "coordsSource": "google-maps-url",
+    "address": "三重県伊勢市二見町松下1335",
+    "hours": {
+      "mon": [
+        [
+          "09:00",
+          "17:00"
+        ]
+      ],
+      "tue": [
+        [
+          "09:00",
+          "17:00"
+        ]
+      ],
+      "wed": [
+        [
+          "09:00",
+          "17:00"
+        ]
+      ],
+      "thu": [
+        [
+          "09:00",
+          "17:00"
+        ]
+      ],
+      "fri": [
+        [
+          "09:00",
+          "17:00"
+        ]
+      ],
+      "sat": [
+        [
+          "09:00",
+          "17:00"
+        ]
+      ],
+      "sun": [
+        [
+          "09:00",
+          "17:00"
+        ]
+      ],
+      "holiday": [
+        [
+          "09:00",
+          "17:00"
+        ]
+      ],
+      "note": "11 月～3 月 9:00～17:00（4～10 月到 18:00；食べログ、まっぷる）"
+    },
+    "closedNote": "無休（1/1～3、8/14～15 休；まっぷる）",
+    "febNote": "2 月是冬季時間 9:00～17:00，沒有休業",
+    "closures": [],
+    "photos": [
+      {
+        "url": "https://lh3.googleusercontent.com/grass-cs/AABkmLdssI_fWJMTyLQ04jmYuiDTJ2ZLPv_8KG0YoFFB5fJmeh3SiSIHT4hnoimcoALZ6_36o33iTLAekA9e4KypJ4iII30RJNDvta5kxYfVTq6vIAvvlLwTC3pevsbPejwYofeV-PQj-g=w800",
+        "page": "https://maps.google.com/?cid=12869366109272400239",
+        "kind": "google",
+        "credit": "Google マップ",
+        "license": null
+      }
+    ],
+    "links": {
+      "official": "http://www.futami-somin.com/index.htm",
+      "googleMaps": "https://maps.google.com/?cid=12869366109272400239",
+      "tabelog": "https://tabelog.com/mie/A2403/A240301/24011265/",
+      "instagram": null
+    },
+    "tags": [],
+    "tier": null,
+    "sources": [
+      {
+        "type": "tabelog",
+        "url": "https://tabelog.com/mie/A2403/A240301/24011265/",
+        "retrieved": "2026-10-18",
+        "note": "店舗情報：分數、席數、預約、個室、貸切、營業時間、お子様連れ"
+      },
+      {
+        "type": "google-maps",
+        "url": "https://maps.google.com/?cid=12869366109272400239",
+        "retrieved": "2026-10-18",
+        "note": "星數、評論數、座標、照片"
+      },
+      {
+        "type": "media",
+        "url": "https://www.mapple.net/spot/24010030/",
+        "retrieved": "2026-10-18",
+        "note": "物產館：營業時間、休業日、停車 38 台、麻糬價格；取材日不明"
+      },
+      {
+        "type": "media",
+        "url": "https://www.mapple.net/station/287322/spot/",
+        "retrieved": "2026-10-18",
+        "note": "松下站周邊一覽，名物つきたて餅は売り切れ御免"
+      },
+      {
+        "type": "other",
+        "url": "https://iko-yo.net/facilities/86179/coupon",
+        "retrieved": "2026-10-18",
+        "note": "搜尋摘要：地產地消、無農藥蔬菜、鮮魚、名物つきたて餅；口コミ募集中（WebFetch 403）"
+      }
+    ],
+    "verified": false,
+    "anchors": [],
+    "contexts": [
+      "lunch",
+      "snack"
+    ],
+    "access": "car",
+    "cuisine": [
+      "咖啡・甜點"
+    ],
+    "priceRange": "¥300～2,000",
+    "price": {
+      "lunch": [
+        290,
+        1999
+      ],
+      "dinner": null
+    },
+    "stayMinutes": null,
+    "mustTry": [
+      "つきたて餅（丸餅 300g 290 円）",
+      "よもぎあん餅（5 個入）610 円",
+      "あん餅（5 個入）550 円"
+    ],
+    "menu": [
+      {
+        "url": "https://tabelog.com/mie/A2403/A240301/24011265/dtlmenu/photo/",
+        "source": "tabelog",
+        "retrieved": "2026-10-18"
+      }
+    ],
+    "ratings": {
+      "tabelog": 3.17,
+      "tabelogReviews": 21,
+      "google": 3.8,
+      "googleReviews": 560,
+      "note": null
+    },
+    "tabelogOwner": false,
+    "googleName": null,
+    "notes": "松下社旁的地產直賣所（Google 3.8／560 則），名物是現搗麻糬、便當、麵包、霜淇淋。D① 補二見外圍週一中午的缺口；能不能坐下吃不確定，當外帶午餐或點心。",
+    "group": {
+      "seats": null,
+      "maxReservation": null,
+      "privateRoom": false,
+      "buyout": "不可",
+      "groupMenu": null,
+      "fit15": "unknown",
+      "fitSubgroup": "unknown",
+      "source": "食べログ：個室無、貸切不可，席數、預約都沒寫 → unknown；內用座位有沒有沒有來源（直賣所，可能只能外帶）"
+    },
+    "reservation": {
+      "accepted": "unknown",
+      "methods": [
+        "phone"
+      ],
+      "phone": "0596-44-1000",
+      "url": null,
+      "language": "日文",
+      "note": "食べログ 予約欄空白",
+      "leadDays": null
+    },
+    "seating": [],
+    "kids": {
+      "allowed": "unknown",
+      "minAge": null,
+      "kidsMenu": null,
+      "note": null
+    },
+    "accessibility": {
+      "barrierFree": null,
+      "note": "停車場 38 台（大型巴士 2 台；まっぷる）；JR 參宮線 松下站步行約 7 分；松下社（`futami-matsushita-yashiro`）旁"
+    },
+    "smoking": "全席禁煙",
+    "extra": {
+      "inclusion": "D1",
+      "conflicts": []
+    }
+  },
+  {
+    "id": "futami-maiya",
+    "type": "restaurant",
+    "name": {
+      "ja": "タイ家庭料理 マイヤー",
+      "kana": "まいやー",
+      "zh": "泰式家庭料理 Maiya",
+      "en": null
+    },
+    "area": "futami",
+    "region": "futami-outskirts",
+    "coords": [
+      136.7544624,
+      34.5017044
+    ],
+    "coordsSource": "google-maps-url",
+    "address": "三重県伊勢市二見町溝口230-51",
+    "hours": {
+      "mon": [
+        [
+          "11:00",
+          "20:00"
+        ]
+      ],
+      "tue": [
+        [
+          "11:00",
+          "20:00"
+        ]
+      ],
+      "wed": [
+        [
+          "11:00",
+          "20:00"
+        ]
+      ],
+      "thu": [
+        [
+          "11:00",
+          "20:00"
+        ]
+      ],
+      "fri": [
+        [
+          "11:00",
+          "20:00"
+        ]
+      ],
+      "sat": [
+        [
+          "11:00",
+          "20:00"
+        ]
+      ],
+      "sun": [
+        [
+          "11:00",
+          "20:00"
+        ]
+      ],
+      "holiday": null,
+      "note": "食べログ：11:00～20:00（公休沒寫）；有臨時休業的口碑（讀文摘要）"
+    },
+    "closedNote": null,
+    "febNote": "公休沒有來源；有臨時休業的口碑，去之前打電話",
+    "closures": [],
+    "photos": [
+      {
+        "url": "https://lh3.googleusercontent.com/grass-cs/AABkmLddPTlxvv6edMrN5PH_hZU6ZqNGhkvQ-nCFwAAxIj4UnkVMnafFVLo-c7mtiHtEXXQSFbTRzatF9zlt4CDsGAcYjt6go3-OEa3HmOtECTA7l-iW4L5lTW_-SDIlCAx99oLNh5k9=w800",
+        "page": "https://maps.google.com/?cid=11371024677351862706",
+        "kind": "google",
+        "credit": "Google マップ",
+        "license": null
+      }
+    ],
+    "links": {
+      "official": null,
+      "googleMaps": "https://maps.google.com/?cid=11371024677351862706",
+      "tabelog": "https://tabelog.com/mie/A2403/A240301/24014460/",
+      "instagram": null
+    },
+    "tags": [],
+    "tier": null,
+    "sources": [
+      {
+        "type": "tabelog",
+        "url": "https://tabelog.com/mie/A2403/A240301/24014460/",
+        "retrieved": "2026-10-18",
+        "note": "店舗情報：分數、席數、預約、個室、貸切、營業時間、お子様連れ"
+      },
+      {
+        "type": "google-maps",
+        "url": "https://maps.google.com/?cid=11371024677351862706",
+        "retrieved": "2026-10-18",
+        "note": "星數、評論數、座標、照片"
+      },
+      {
+        "type": "other",
+        "url": "https://tabelog.com/mie/C24203/rstLst/13/",
+        "retrieved": "2026-10-18",
+        "note": "WebSearch 摘要：地址 二見町溝口 230-51、晚上 1,000～1,999 円、有口コミ說中午遇到臨時休業（沒有直接讀食べログ）"
+      }
+    ],
+    "verified": false,
+    "anchors": [],
+    "contexts": [
+      "lunch",
+      "dinner"
+    ],
+    "access": "car",
+    "cuisine": [
+      "其他"
+    ],
+    "priceRange": "¥1,000～2,000",
+    "price": {
+      "lunch": [
+        1000,
+        1999
+      ],
+      "dinner": [
+        1000,
+        1999
+      ]
+    },
+    "stayMinutes": null,
+    "mustTry": [],
+    "menu": [
+      {
+        "url": "https://tabelog.com/mie/A2403/A240301/24014460/dtlmenu/photo/",
+        "source": "tabelog",
+        "retrieved": "2026-10-18"
+      }
+    ],
+    "ratings": {
+      "tabelog": 3.17,
+      "tabelogReviews": 16,
+      "google": 4.3,
+      "googleReviews": 37,
+      "note": null
+    },
+    "tabelogOwner": false,
+    "googleName": null,
+    "notes": "二見町溝口的泰式家庭料理・咖哩（Google 4.3／37 則）。食べログ 以外幾乎沒有來源；D① 補二見外圍週一中午的缺口（ワスケ 週一休）。",
+    "group": {
+      "seats": null,
+      "maxReservation": null,
+      "privateRoom": false,
+      "buyout": "可",
+      "groupMenu": null,
+      "fit15": "unknown",
+      "fitSubgroup": "unknown",
+      "source": "食べログ：予約可、個室無、貸切可（人數沒寫），席數沒寫 → unknown"
+    },
+    "reservation": {
+      "accepted": "yes",
+      "methods": [
+        "phone"
+      ],
+      "phone": "090-7045-5885",
+      "url": null,
+      "language": "日文",
+      "note": "食べログ：予約可",
+      "leadDays": null
+    },
+    "seating": [],
+    "kids": {
+      "allowed": "unknown",
+      "minAge": null,
+      "kidsMenu": null,
+      "note": null
+    },
+    "accessibility": {
+      "barrierFree": null,
+      "note": "有停車場（食べログ）；二見町溝口，開車"
+    },
+    "smoking": null,
+    "extra": {
+      "inclusion": "D1",
+      "conflicts": []
+    }
+  },
+  {
+    "id": "futami-pine",
+    "type": "restaurant",
+    "name": {
+      "ja": "パイン",
+      "kana": "ぱいん",
+      "zh": "喫茶 パイン（國道 42 號旁）",
+      "en": null
+    },
+    "area": "futami",
+    "region": "futami-outskirts",
+    "coords": [
+      136.7967371,
+      34.4998873
+    ],
+    "coordsSource": "google-maps-url",
+    "address": "三重県伊勢市二見町松下1337-2",
+    "hours": {
+      "mon": [
+        [
+          "08:00",
+          "18:00"
+        ]
+      ],
+      "tue": [
+        [
+          "08:00",
+          "18:00"
+        ]
+      ],
+      "wed": [
+        [
+          "08:00",
+          "18:00"
+        ]
+      ],
+      "thu": [
+        [
+          "08:00",
+          "18:00"
+        ]
+      ],
+      "fri": [
+        [
+          "08:00",
+          "18:00"
+        ]
+      ],
+      "sat": [
+        [
+          "08:00",
+          "18:00"
+        ]
+      ],
+      "sun": [
+        [
+          "08:00",
+          "18:00"
+        ]
+      ],
+      "holiday": null,
+      "note": "食べログ：8:00～18:00（公休沒寫）"
+    },
+    "closedNote": null,
+    "febNote": "公休沒有來源，去之前打電話",
+    "closures": [],
+    "photos": [
+      {
+        "url": "https://lh3.googleusercontent.com/grass-cs/AABkmLfHcZhHv3zCxsGs4Ux4FLRknaVV58Xbr7mvJCS4p-ptelFfORqbMqUXiuQs9Bk878ZH02CHKoisYNdvRotXknOj540Ynl1UokPI3Tn-7QLBuz2ANlTkCDiP9WuE0IXz1ssf74dtxHYJAkIg=w800",
+        "page": "https://maps.google.com/?cid=745012510939129391",
+        "kind": "google",
+        "credit": "Google マップ",
+        "license": null
+      }
+    ],
+    "links": {
+      "official": null,
+      "googleMaps": "https://maps.google.com/?cid=745012510939129391",
+      "tabelog": "https://tabelog.com/mie/A2403/A240301/24013765/",
+      "instagram": null
+    },
+    "tags": [],
+    "tier": null,
+    "sources": [
+      {
+        "type": "tabelog",
+        "url": "https://tabelog.com/mie/A2403/A240301/24013765/",
+        "retrieved": "2026-10-18",
+        "note": "店舗情報：分數、席數、預約、個室、貸切、營業時間、お子様連れ"
+      },
+      {
+        "type": "google-maps",
+        "url": "https://maps.google.com/?cid=745012510939129391",
+        "retrieved": "2026-10-18",
+        "note": "星數、評論數、座標、照片"
+      }
+    ],
+    "verified": false,
+    "anchors": [],
+    "contexts": [
+      "lunch",
+      "cafe"
+    ],
+    "access": "car",
+    "cuisine": [
+      "咖啡・甜點"
+    ],
+    "priceRange": "～¥1,000",
+    "price": {
+      "lunch": [
+        500,
+        999
+      ],
+      "dinner": null
+    },
+    "stayMinutes": null,
+    "mustTry": [],
+    "menu": [
+      {
+        "url": "https://tabelog.com/mie/A2403/A240301/24013765/dtlmenu/photo/",
+        "source": "tabelog",
+        "retrieved": "2026-10-18"
+      }
+    ],
+    "ratings": {
+      "tabelog": 3.08,
+      "tabelogReviews": 14,
+      "google": 4.5,
+      "googleReviews": 44,
+      "note": null
+    },
+    "tabelogOwner": false,
+    "googleName": null,
+    "notes": "松下的老喫茶店（Google 4.5／44 則），8:00 開，有早餐・午餐。食べログ 以外完全沒有來源；全席可吸菸，帶小孩、長輩不太適合。",
+    "group": {
+      "seats": null,
+      "maxReservation": null,
+      "privateRoom": false,
+      "buyout": "可",
+      "groupMenu": null,
+      "fit15": "unknown",
+      "fitSubgroup": "unknown",
+      "source": "食べログ：予約可、個室無、貸切可（人數沒寫），席數沒寫 → unknown"
+    },
+    "reservation": {
+      "accepted": "yes",
+      "methods": [
+        "phone"
+      ],
+      "phone": "0596-43-4516",
+      "url": null,
+      "language": "日文",
+      "note": "食べログ：予約可",
+      "leadDays": null
+    },
+    "seating": [],
+    "kids": {
+      "allowed": "unknown",
+      "minAge": null,
+      "kidsMenu": null,
+      "note": "全席可吸菸（食べログ）"
+    },
+    "accessibility": {
+      "barrierFree": null,
+      "note": "店前停車數台（食べログ）；松下社・民話の駅 蘇民 附近"
+    },
+    "smoking": "全席喫煙可（食べログ）",
+    "extra": {
+      "inclusion": "D1",
+      "conflicts": [
+        "地址：食べログ 二見町松下 1337-2；Google 二見町松下 227（座標在 蘇民 旁約 70 m）"
+      ]
+    }
+  },
+  {
+    "id": "futami-uminocho-dining",
+    "type": "restaurant",
+    "name": {
+      "ja": "旅荘 海の蝶",
+      "kana": "りょそう うみのちょう",
+      "zh": "旅莊 海之蝶（日歸晚餐・會席，非住客用餐）",
+      "en": null
+    },
+    "area": "futami",
+    "region": "futami-outskirts",
+    "coords": [
+      136.814157,
+      34.495194
+    ],
+    "coordsSource": "google-maps-url",
+    "address": "三重県伊勢市二見町松下1693-1",
+    "hours": {
+      "mon": null,
+      "tue": null,
+      "wed": null,
+      "thu": null,
+      "fri": null,
+      "sat": null,
+      "sun": null,
+      "holiday": null,
+      "note": "日帰りディナー（非住客晚餐）的時段沒有來源（489ban 方案頁沒寫）；住客晚餐在食事処"
+    },
+    "closedNote": "施設點檢有時休館（食べログ）",
+    "febNote": "2 月的休館日沒有來源；冬季料理以牡蠣為主（官網料理頁）",
+    "closures": [],
+    "photos": [
+      {
+        "url": "https://www.uminochou.com/images/img_mv_home_01.jpg",
+        "page": "https://www.uminochou.com/",
+        "kind": "official",
+        "credit": "旅荘 海の蝶",
+        "license": null
+      },
+      {
+        "url": "https://lh3.googleusercontent.com/grass-cs/AABkmLcRg12AJJtJP9c9hBTlXvMQX6y2cqzaCmKPm_td1B-1dQsqifv6guBln38lmxiETMMy0J0MxV-PRFHDWKHe0576v0JJSXa0f2jP1Mt0p3SjwU7RrX7YQNZAtgSABIks8F1IfRGByAtqJZo=w408-h272-k-no",
+        "page": "https://maps.google.com/?cid=5909140712947163409",
+        "kind": "google",
+        "credit": "Google マップ",
+        "license": null
+      }
+    ],
+    "links": {
+      "official": "https://www.uminochou.com/",
+      "googleMaps": "https://maps.google.com/?cid=5909140712947163409",
+      "tabelog": "https://tabelog.com/mie/A2403/A240301/24000262/",
+      "instagram": "@uminochou"
+    },
+    "tags": [],
+    "tier": null,
+    "sources": [
+      {
+        "type": "tabelog",
+        "url": "https://tabelog.com/mie/A2403/A240301/24000262/",
+        "retrieved": "2026-10-18",
+        "note": "店舗情報：分數、席數、預約、個室、貸切、營業時間、お子様連れ（店舗会員）"
+      },
+      {
+        "type": "google-maps",
+        "url": "https://maps.google.com/?cid=5909140712947163409",
+        "retrieved": "2026-10-18",
+        "note": "住宿本體的星數、評論數、座標、照片（T8b）"
+      },
+      {
+        "type": "tabelog",
+        "url": "https://tabelog.com/mie/A2403/A240301/24000262/party/",
+        "retrieved": "2026-10-18",
+        "note": "コース一覧：套餐名稱、價格、人數"
+      },
+      {
+        "type": "official",
+        "url": "https://reserve.489ban.net/client/uminochou/0/plan/daytrip",
+        "retrieved": "2026-10-18",
+        "note": "日帰りプラン 2 件：上質会席 14,850 円～、プレミアム会席 19,800 円～（夕食付），8 名以上電話確認"
+      },
+      {
+        "type": "official",
+        "url": "https://www.uminochou.com/",
+        "retrieved": "2026-10-18",
+        "note": "首頁公告日帰り夕食開始、日帰りディナー選單、IG 連結、og:image"
+      },
+      {
+        "type": "official",
+        "url": "https://www.uminochou.com/cuisine.html",
+        "retrieved": "2026-10-18",
+        "note": "食事処用餐、別注料理價格"
+      },
+      {
+        "type": "official",
+        "url": "https://www.uminochou.com/tropicana.html",
+        "retrieved": "2026-10-18",
+        "note": "海灘 BBQ 9:00～22:00，和牛 12,100円～，兒童半份半價，3 天前電話；非住客可否不明"
+      },
+      {
+        "type": "tourism",
+        "url": "https://www.kankomie.or.jp/spot/13746",
+        "retrieved": "2026-10-18",
+        "note": "電話、交通、停車 70 台；無日帰り資訊"
+      }
+    ],
+    "verified": false,
+    "anchors": [],
+    "contexts": [
+      "dinner"
+    ],
+    "access": "car",
+    "cuisine": [
+      "和食・割烹"
+    ],
+    "priceRange": "¥14,850～19,800",
+    "price": {
+      "lunch": null,
+      "dinner": [
+        11550,
+        19800
+      ]
+    },
+    "stayMinutes": null,
+    "mustTry": [
+      "上質会席（伊勢海老・鮑）14,850 円",
+      "プレミアム会席（伊勢海老・鮑・松阪牛）19,800 円",
+      "伊勢海老 鬼殻焼 300g 9,500 円（別注・要預約）"
+    ],
+    "menu": [
+      {
+        "url": "https://reserve.489ban.net/client/uminochou/0/plan/daytrip",
+        "source": "official",
+        "retrieved": "2026-10-18"
+      },
+      {
+        "url": "https://www.uminochou.com/cuisine.html",
+        "source": "official",
+        "retrieved": "2026-10-18"
+      },
+      {
+        "url": "https://tabelog.com/mie/A2403/A240301/24000262/party/",
+        "source": "tabelog",
+        "retrieved": "2026-10-18"
+      }
+    ],
+    "ratings": {
+      "tabelog": 3.35,
+      "tabelogReviews": 83,
+      "google": 4.2,
+      "googleReviews": 703,
+      "note": "Google 星數・評論數・座標借住宿本體（futami-uminocho）"
+    },
+    "tabelogOwner": true,
+    "googleName": null,
+    "notes": "二見外圍松下的料理旅館（住宿 `futami-uminocho`），官網公告「日帰り夕食」開始，非住客可以吃會席晚餐（14,850 円起，伊勢海老・鮑・松阪牛）。桃源郷（`futami-togenkyo`，約 700 m）一帶晚上唯一能吃飯的地方。",
+    "group": {
+      "seats": 29,
+      "maxReservation": null,
+      "privateRoom": true,
+      "buyout": "不可",
+      "groupMenu": "日帰りディナー：上質会席（伊勢海老・鮑）14,850 円、プレミアム会席（伊勢海老・鮑・松阪牛）19,800 円（489ban 日帰りプラン，大人 1 名）；食べログ コース（2026-07）參宮会席 11,550／上質会席 14,850／プレミアム会席 19,250 円；8 名以上的團體電話確認空位",
+      "fit15": "yes",
+      "fitSubgroup": "yes",
+      "source": "489ban 日帰りプラン「8名以上のグループ様は空席状況をお電話にて」→ 接團體；住宿有大宴會場「雅」180 人、中小宴會場 2 室、食事処 個室（住宿筆記）；食べログ 29 席、個室有、予約可 → yes"
+    },
+    "reservation": {
+      "accepted": "yes",
+      "methods": [
+        "phone",
+        "web"
+      ],
+      "phone": "0596-44-1050",
+      "url": "https://reserve.489ban.net/client/uminochou/0/plan/daytrip",
+      "language": "日文",
+      "note": "日帰りディナー 網路預約（489ban）或電話；8 名以上電話確認；過敏要 7 天前說",
+      "leadDays": null
+    },
+    "seating": [],
+    "kids": {
+      "allowed": "yes",
+      "minAge": null,
+      "kidsMenu": null,
+      "note": "食べログ 子供可；預約系統有 1 歲～未滿 12 歲的兒童區分（大人同料理減量／お子様料理），日帰り是否相同沒有確認"
+    },
+    "accessibility": {
+      "barrierFree": null,
+      "note": "有電梯、可借輪椅（住宿筆記）；停車場 60～70 台；近鐵鳥羽站開車約 8 分、伊勢 IC 約 10 分；送迎是住客用，日帰り能不能接送沒有來源"
+    },
+    "smoking": "全席禁煙（有吸菸處）",
+    "extra": {
+      "inclusion": "A",
+      "conflicts": [
+        "プレミアム会席：489ban 日帰り 19,800 円；食べログ コース 19,250 円",
+        "停車場：楽天 60 台、観光三重 70 台"
+      ],
+      "lodgingId": "futami-uminocho"
+    }
+  }
+]
