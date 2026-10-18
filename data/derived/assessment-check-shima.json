@@ -1,0 +1,85 @@
+{
+  "area": "shima",
+  "generated": "2026-10-19",
+  "script": "scripts/assessment-check.mjs",
+  "rules": {
+    "restaurant": {
+      "star5": {
+        "tabelogMin": 3.5,
+        "googleMin": 4
+      },
+      "star4": {
+        "tabelogMin": 3.3,
+        "googleMin": 3.8
+      },
+      "low": {
+        "maxStar": 2,
+        "tabelogHigh": 3.5,
+        "googleHigh": 4.4,
+        "googleReviewsMin": 100
+      },
+      "few": {
+        "minStar": 4,
+        "tabelogReviewsMax": 100,
+        "googleReviewsMax": 300
+      }
+    },
+    "spot": {
+      "star5": {
+        "googleMin": 4.2,
+        "googleReviewsMin": 500
+      },
+      "star4": {
+        "googleMin": 4
+      },
+      "low": {
+        "maxStar": 2,
+        "googleHigh": 4.4,
+        "googleReviewsMin": 200
+      },
+      "few": {
+        "minStar": 4,
+        "googleReviewsMax": 100
+      }
+    },
+    "lodging": {
+      "star5": {
+        "siteMin": 4.5,
+        "googleMin": 4.2
+      },
+      "star4": {
+        "siteMin": 4.2,
+        "googleMin": 3.9
+      },
+      "low": {
+        "maxStar": 2,
+        "siteHigh": 4.5,
+        "googleHigh": 4.3
+      },
+      "few": {
+        "minStar": 4,
+        "siteReviewsMax": 100,
+        "googleReviewsMax": 100
+      }
+    },
+    "common": {
+      "highConfidenceReviewsMin": 300
+    }
+  },
+  "counts": {
+    "spot": {
+      "total": 24,
+      "assessed": 24,
+      "notAssessed": [],
+      "flagged": 0,
+      "byStar": {
+        "1": 1,
+        "2": 2,
+        "3": 16,
+        "4": 4,
+        "5": 1
+      }
+    }
+  },
+  "items": []
+}

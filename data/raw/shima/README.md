@@ -1,6 +1,6 @@
 # 志摩：研究筆記 README
 
-> 開工先讀這份。最後更新：2026-10-19（T9a 完成：景點資料點 24 筆；T9b 完成：住宿 56 筆；T9c 完成：餐廳候選 150 筆；T9d 完成：餐廳 78 筆；T9e 完成：anchors、住宿 dinnerAccess、缺漏檢查、地圖檢查）。這份是**現況**，各任務更新自己的那一節（覆寫，不是追加）；過程紀錄和搬走的舊段落在 `log/`，需要時才讀。
+> 開工先讀這份。最後更新：2026-10-19（T9a 完成：景點資料點 24 筆；T9b 完成：住宿 56 筆；T9c 完成：餐廳候選 150 筆；T9d 完成：餐廳 78 筆；T9e 完成：anchors、住宿 dinnerAccess、缺漏檢查、地圖檢查；T9f 第 1 批：景點評分）。這份是**現況**，各任務更新自己的那一節（覆寫，不是追加）；過程紀錄和搬走的舊段落在 `log/`，需要時才讀。
 
 ## 檔案地圖
 
@@ -11,10 +11,10 @@
 | `candidates/restaurants.json` | 餐廳候選 150 筆（T9c 三批寫同一個檔；T9d 之後 included 78、excluded 27、not-included 45、pending 0）。key 是 `tabelog-<店家 ID>`、`pointId` 還是 null（T9d 用 `candidates.mjs export --ids` 指定 id）。用 `scripts/candidates.mjs list shima restaurants` 過濾 |
 | `data/areas/shima/restaurants.json` | 餐廳資料點 78 筆（T9d 完成；第 1 批 13 筆、第 2 批 24 筆、第 3 批 19 筆、第 4 批 13 筆、第 5 批 9 筆） |
 | `data/derived/kanko-mie-shima.json`、`kanko-shima.json`、`kanko-shima-eat.json` | 觀光三重「見る・遊ぶ」志摩市 118 筆、志摩市観光協会「観る・遊ぶ」「体験する」141 筆、同「食べる」80 筆（會員名錄，不算 B 的推薦，只當營業時間的參考）。`scripts/kanko-mie.mjs`、`scripts/kanko-shima.mjs` 抓的 |
-| `data/cache/work/` 的 `t9a-1`～`t9e-1`、`t9a-plan.json`、`t9d-plan.json` | 各批的工作檔（不進 git）：判斷的全部紀錄是各批的 `judgement-src.mjs`、`rules.json`（T9c）、`patch-*.json`。每個目錄放什麼見 `log/T9e.md`「從 README 搬來的舊段落」的舊檔案地圖 |
+| `data/cache/work/` 的 `t9a-1`～`t9e-1`、`t9f-1`、`t9a-plan.json`、`t9d-plan.json` | 各批的工作檔（不進 git）：判斷的全部紀錄是各批的 `judgement-src.mjs`、`rules.json`（T9c）、`patch-*.json`。每個目錄放什麼見 `log/T9e.md`「從 README 搬來的舊段落」的舊檔案地圖 |
 | `ig-notes.md` | 餐廳的 IG 帳號（T9d，沒有打開 IG） |
 | `questions.md` | 要打電話、人工確認的事 |
-| `log/T9a.md`～`log/T9e.md` | 各任務的過程紀錄（Chrome、讀文、WebSearch 次數）；`log/T9e.md` 另外收了 T9e 從 README 搬走的舊段落（給 T9b～T9e 的提醒、T9c 候選階段的現況） |
+| `log/T9a.md`～`log/T9f.md` | 各任務的過程紀錄（Chrome、讀文、WebSearch 次數）；`log/T9e.md` 另外收了 T9e 從 README 搬走的舊段落（給 T9b～T9e 的提醒、T9c 候選階段的現況） |
 
 `data/areas/shima/spots.json`：景點 24 筆；`data/areas/shima/lodging.json`：住宿 56 筆。讀文筆記在 `dossiers/`（景點 25 份，含排除的 Rays Farm；住宿 60 份，含排除的 SHIMA BOAT HOUSE、ばさら邸、the circle 和 pending 的 B&B フォレスト）。
 
@@ -50,7 +50,7 @@
 
 ### 現況（T9a 完成：資料點 24 筆）
 - **母體、納入標準**：觀光三重 118＋觀光協會 141 → 候選 110 筆（收錄的標準照 CONVENTIONS「團體（15 人）」、伊勢 T8a）。收錄預定 25 筆，Rays Farm 第 2 批改排除 → **included 24、not-included 60、excluded 26**。
-- **`spots.json` 24 筆**：每筆有 `links.googleMaps`（cid）、Google 星數（的矢湾 BBQ 沒有評論）、照片 1～3 張（全部 photo-check 200）、讀文筆記＋Google 評論心得（すし べんけい、的矢湾 沒有評論）。summary／assessment 留給 T9f。
+- **`spots.json` 24 筆**：每筆有 `links.googleMaps`（cid）、Google 星數（的矢湾 BBQ 沒有評論）、照片 1～3 張（全部 photo-check 200）、讀文筆記＋Google 評論心得（すし べんけい、的矢湾 沒有評論）。summary／assessment／tier 見下面「評分」。
 
 | 子地區 | 筆數 | 景點（Google 星數／評論數） |
 |---|---|---|
@@ -92,7 +92,18 @@
 - 觀光三重的 `kanko-mie.mjs missing shima` 用名稱比對，合成一筆的候選會被列成「可能是同一個」；兩份列表的每一筆都已經用 id 對過，不用再補。
 - 沒有看旅遊書、媒體的「志摩必去」文章（蒐集階段不找），可能漏掉列表外的小店型體驗（例如賢島的真珠店）。T13 或 T9g 再看。
 - Google 列表上另有「大王埼灯台ミュージアム」4.3／21（燈塔同一張票，併在大王埼灯台）。
-- summary／assessment 留給 T9f；部落格心得留給 T9g。
+- 部落格心得留給 T9g。
+
+### 評分（T9f 第 1 批完成，`spot-v1`，24 筆）
+過程見 `log/T9f.md`；門檻見 `data/raw/toba/assessment-notes.md`「依區調整」的志摩景點一句。
+- **門檻依區調整**：照鳥羽範例 A 以上 10／24＝42% → 改成「5＝Google 4.4 以上、5,000 則以上＋代表；4＝Google 4.0 以上、800 則以上＋觀光網站介紹；其他最多 3」，結果 5／24＝21%（👤 建議先看）。
+- **分布**：S 1、A 4、3 星 16、2 星 2、1 星 1；`confidence` high 0、medium 12、low 12（心得只有 Google 評論 1 種）。
+  - **S**：横山展望台（4.4／7,510；旅程期間在工期中，`elderFit` 1）。
+  - **A**：伊雑宮（4.6／1,676）、天の岩戸（4.4／983）、安乗埼灯台（4.3／807）、大王埼灯台（4.1／1,762）。
+  - 2 星：すし べんけい（3.7、沒有心得）、的矢湾 船上 BBQ（沒有 Google 評論）；1 星：いわほ観光汽船（可能已經不營業）。
+  - 鳥羽門檻下會是 A、這裡是 3 的：さとうみ庵、遊覧船組合、ともやま公園、グリーンアドベンチャー、エスパーニャクルーズ。志摩地中海村 的評論多是住宿，日歸評價低 → 3。
+- **適合度的重點**：`winterFit` 2 月營業沒明寫的 7 筆打 2（エスパーニャ 是代替船也 2）；`accessEase` 1 的是只能計程車的 ともやま公園、志摩自然学校（横山 計程車 8 分打 3）；`elderFit` null 12 筆（景點內的階梯沒有來源）、`kidsFit` null 6 筆（`kids.friendly` null，沒套用伊勢 T8f 的新規則）。
+- **評分檢查**（`assessment-check.mjs shima --types spot`）：列出 0 項。
 
 ## 住宿
 
