@@ -30,7 +30,8 @@ export function parseLines(raw) {
     }
   }
   for (const p of pages) {
-    if (p.from != null && p.to - p.from + 1 !== p.shops.length) {
+    // 0 件（「0-0/0」）是正常的空結果
+    if (p.from != null && p.total !== 0 && p.to - p.from + 1 !== p.shops.length) {
       warnings.push(`${p.title} ${p.from}-${p.to}：件數 ${p.to - p.from + 1}，讀到 ${p.shops.length} 家`);
     }
   }

@@ -76,6 +76,7 @@ test('build：合併篩選、子地區、override、3.10 未満不記', () => {
     regions: [{ re: '阿児町神明7', region: 'kashiko' }, { re: '阿児町鵜方', region: 'ugata' }],
     thresholds: { ugata: { cScore: 3.3 } },
     overrides: { '5': { status: 'pending', reason: '住宿附設' } },
+    regionDefaults: { kashiko: { status: 'excluded', reason: '休園' }, ugata: { note: '共用' } },
   });
   const by = Object.fromEntries(out.map((c) => [c.key, c]));
   assert.equal(by['tabelog-4'], undefined);
@@ -83,7 +84,8 @@ test('build：合併篩選、子地區、override、3.10 未満不記', () => {
   assert.match(by['tabelog-1'].note, /個室（食べログ列表）：個室有\(2〜30人可\)/);
   assert.deepEqual(by['tabelog-2'].criteria, ['C']); // 20 人個室：C 照 3.10
   assert.equal(by['tabelog-3'].status, 'excluded');
-  assert.equal(by['tabelog-5'].status, 'pending');
+  assert.equal(by['tabelog-5'].status, 'pending'); // 店家 override 優先於 regionDefaults
+  assert.match(by['tabelog-2'].note, /共用/);
   assert.equal(by['tabelog-5'].region, 'kashiko');
   assert.equal(by['tabelog-1'].links.tabelog, 'https://tabelog.com/mie/A2403/A240303/1/');
 });

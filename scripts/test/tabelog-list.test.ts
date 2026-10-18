@@ -100,3 +100,9 @@ test('parseLines：沒讀到 #END、件數不合 → complete false、warnings',
   assert.equal(r.complete, false);
   assert.equal(r.warnings.length, 1);
 });
+
+test('parseLines：0 件的篩選結果不是錯誤', () => {
+  const r = parseLines('[1/1]#P|【個室あり】志摩市磯部町坂崎|0-0/0|10\n#END\n');
+  assert.deepEqual(r.warnings, []);
+  assert.equal(r.pages[0].shops.length, 0);
+});

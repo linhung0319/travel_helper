@@ -1,0 +1,1947 @@
+[
+  {
+    "key": "tabelog-24001089",
+    "name": {
+      "ja": "カフェ＆スペイン料理 ヒラソル"
+    },
+    "region": "shima-spain",
+    "category": "スペイン料理、カフェ",
+    "status": "excluded",
+    "criteria": [
+      "C"
+    ],
+    "reason": "旅程期間大多不營業：志摩スペイン村 パルケエスパーニャ 2027-01-12～02-12 休園、ホテル志摩スペイン村 2027-01-11～02-11 休館（官網營業カレンダー https://www.parque-net.com/calendar/index.html ，2026-10-18 取得）；旅程 2/2～2/12 只剩 2/12 開",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.27,
+      "tabelogReviews": 63
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240303/24001089/"
+    },
+    "contexts": [
+      "dinner"
+    ],
+    "mentions": [],
+    "note": "類型：洋食・義式；地址：磯部町坂崎 ホテル志摩スペイン村；貸切可（食べログ列表）；預算（食べログ列表）：夜 6000～7999／昼 -；スペイン村（パーク或ホテル）內"
+  },
+  {
+    "key": "tabelog-24013266",
+    "name": {
+      "ja": "アルハンブラ"
+    },
+    "region": "shima-spain",
+    "category": "スペイン料理",
+    "status": "excluded",
+    "criteria": [
+      "A"
+    ],
+    "reason": "旅程期間大多不營業：志摩スペイン村 パルケエスパーニャ 2027-01-12～02-12 休園、ホテル志摩スペイン村 2027-01-11～02-11 休館（官網營業カレンダー https://www.parque-net.com/calendar/index.html ，2026-10-18 取得）；旅程 2/2～2/12 只剩 2/12 開",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.41,
+      "tabelogReviews": 112
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240303/24013266/"
+    },
+    "contexts": [
+      "lunch"
+    ],
+    "mentions": [],
+    "note": "類型：洋食・義式；地址：磯部町坂崎952-4 志摩スペイン村；スペイン村（パーク或ホテル）內"
+  },
+  {
+    "key": "tabelog-24010521",
+    "name": {
+      "ja": "チィコチィコ"
+    },
+    "region": "shima-spain",
+    "category": "カフェ、パンケーキ",
+    "status": "excluded",
+    "criteria": [],
+    "reason": "旅程期間大多不營業：志摩スペイン村 パルケエスパーニャ 2027-01-12～02-12 休園、ホテル志摩スペイン村 2027-01-11～02-11 休館（官網營業カレンダー https://www.parque-net.com/calendar/index.html ，2026-10-18 取得）；旅程 2/2～2/12 只剩 2/12 開",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.27,
+      "tabelogReviews": 38
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240303/24010521/"
+    },
+    "contexts": [
+      "snack",
+      "cafe"
+    ],
+    "mentions": [],
+    "note": "類型：咖啡・甜點；地址：磯部町坂崎 志摩スペイン村 パルケエスパーニャ内；スペイン村（パーク或ホテル）內"
+  },
+  {
+    "key": "tabelog-24020793",
+    "name": {
+      "ja": "チュレリア"
+    },
+    "region": "shima-spain",
+    "category": "カフェ",
+    "status": "excluded",
+    "criteria": [],
+    "reason": "旅程期間大多不營業：志摩スペイン村 パルケエスパーニャ 2027-01-12～02-12 休園、ホテル志摩スペイン村 2027-01-11～02-11 休館（官網營業カレンダー https://www.parque-net.com/calendar/index.html ，2026-10-18 取得）；旅程 2/2～2/12 只剩 2/12 開",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.24,
+      "tabelogReviews": 40
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240303/24020793/"
+    },
+    "contexts": [
+      "snack",
+      "cafe"
+    ],
+    "mentions": [],
+    "note": "類型：咖啡・甜點；地址：磯部町坂崎 志摩スペイン村；スペイン村（パーク或ホテル）內"
+  },
+  {
+    "key": "tabelog-24011020",
+    "name": {
+      "ja": "ホテル志摩スペイン村"
+    },
+    "region": "shima-spain",
+    "category": "ホテル",
+    "status": "excluded",
+    "criteria": [],
+    "reason": "旅程期間大多不營業：志摩スペイン村 パルケエスパーニャ 2027-01-12～02-12 休園、ホテル志摩スペイン村 2027-01-11～02-11 休館（官網營業カレンダー https://www.parque-net.com/calendar/index.html ，2026-10-18 取得）；旅程 2/2～2/12 只剩 2/12 開",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.2,
+      "tabelogReviews": 45
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240303/24011020/"
+    },
+    "contexts": [
+      "dinner"
+    ],
+    "mentions": [],
+    "note": "類型：其他；地址：磯部町坂崎952-22 ホテル志摩スペイン村；預算（食べログ列表）：夜 15000～19999／昼 -；スペイン村（パーク或ホテル）內"
+  },
+  {
+    "key": "tabelog-24009569",
+    "name": {
+      "ja": "ピザ ラ ロハ"
+    },
+    "region": "shima-spain",
+    "category": "ピザ",
+    "status": "excluded",
+    "criteria": [],
+    "reason": "旅程期間大多不營業：志摩スペイン村 パルケエスパーニャ 2027-01-12～02-12 休園、ホテル志摩スペイン村 2027-01-11～02-11 休館（官網營業カレンダー https://www.parque-net.com/calendar/index.html ，2026-10-18 取得）；旅程 2/2～2/12 只剩 2/12 開",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.2,
+      "tabelogReviews": 41
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240303/24009569/"
+    },
+    "contexts": [
+      "lunch"
+    ],
+    "mentions": [],
+    "note": "類型：洋食・義式；地址：磯部町坂崎 志摩スペイン村内；スペイン村（パーク或ホテル）內"
+  },
+  {
+    "key": "tabelog-24015043",
+    "name": {
+      "ja": "カフェ ミ カサ"
+    },
+    "region": "shima-spain",
+    "category": "カフェ",
+    "status": "excluded",
+    "criteria": [],
+    "reason": "旅程期間大多不營業：志摩スペイン村 パルケエスパーニャ 2027-01-12～02-12 休園、ホテル志摩スペイン村 2027-01-11～02-11 休館（官網營業カレンダー https://www.parque-net.com/calendar/index.html ，2026-10-18 取得）；旅程 2/2～2/12 只剩 2/12 開",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.17,
+      "tabelogReviews": 35
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240303/24015043/"
+    },
+    "contexts": [
+      "snack",
+      "cafe"
+    ],
+    "mentions": [],
+    "note": "類型：咖啡・甜點；地址：磯部町坂崎 志摩スペイン村 マヨール広場；スペイン村（パーク或ホテル）內"
+  },
+  {
+    "key": "tabelog-24001214",
+    "name": {
+      "ja": "的矢"
+    },
+    "region": "shima-spain",
+    "category": "寿司、麺類",
+    "status": "excluded",
+    "criteria": [],
+    "reason": "旅程期間大多不營業：志摩スペイン村 パルケエスパーニャ 2027-01-12～02-12 休園、ホテル志摩スペイン村 2027-01-11～02-11 休館（官網營業カレンダー https://www.parque-net.com/calendar/index.html ，2026-10-18 取得）；旅程 2/2～2/12 只剩 2/12 開",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.15,
+      "tabelogReviews": 39
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240303/24001214/"
+    },
+    "contexts": [
+      "dinner"
+    ],
+    "mentions": [],
+    "note": "類型：壽司；地址：磯部町坂崎 伊勢志摩近鉄リゾート 志摩スペイン村内；預算（食べログ列表）：夜 1000～1999／昼 -；スペイン村（パーク或ホテル）內"
+  },
+  {
+    "key": "tabelog-24008581",
+    "name": {
+      "ja": "イワジン喫茶室"
+    },
+    "region": "shima-kashikojima",
+    "category": "喫茶店、パスタ、洋食",
+    "status": "included",
+    "criteria": [
+      "A",
+      "C"
+    ],
+    "reason": null,
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.45,
+      "tabelogReviews": 122
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240303/24008581/"
+    },
+    "contexts": [
+      "snack",
+      "cafe"
+    ],
+    "mentions": [],
+    "note": "類型：咖啡・甜點；地址：阿児町神明733-8賢島 イワジン真珠店内併設喫茶室；定休（食べログ列表）：水曜日；貸切可（食べログ列表）；預算（食べログ列表）：夜 -／昼 1000～1999；イワジン真珠店 內的喫茶室；觀光協會「食べる」：11:00～16:00，水休＋真珠店休日"
+  },
+  {
+    "key": "tabelog-24012463",
+    "name": {
+      "ja": "パスタ屋 Michelle"
+    },
+    "region": "shima-ugata",
+    "category": "イタリアン、カフェ、パスタ",
+    "status": "included",
+    "criteria": [
+      "C"
+    ],
+    "reason": null,
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.28,
+      "tabelogReviews": 64
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240303/24012463/"
+    },
+    "contexts": [
+      "lunch"
+    ],
+    "mentions": [],
+    "note": "類型：洋食・義式；地址：阿児町神明2180-6；定休（食べログ列表）：金曜日；貸切可（食べログ列表）；預算（食べログ列表）：夜 -／昼 1000～1999；地址 神明2180-6（志摩神明站一帶？子地區照地址推定 ugata，T9d 看座標）"
+  },
+  {
+    "key": "tabelog-24011598",
+    "name": {
+      "ja": "志摩観光ホテル"
+    },
+    "region": "shima-kashikojima",
+    "category": "ホテル",
+    "status": "pending",
+    "criteria": [
+      "C"
+    ],
+    "reason": "住宿本體（lodging shima-kanko-classic），符合 C（個室、貸切；3.25／106）：館內餐廳另列（ラ・メール ザ クラシック、山吹、リアン）；這筆可能是宴會場・團體用餐，T9d 看官網確認非住客的宴會、團體方案",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.25,
+      "tabelogReviews": 106
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240303/24011598/"
+    },
+    "contexts": [
+      "dinner"
+    ],
+    "mentions": [],
+    "note": "類型：其他；地址：阿児町神明731；個室（食べログ列表）：個室有；貸切可（食べログ列表）；預算（食べログ列表）：夜 20000～29999／昼 -"
+  },
+  {
+    "key": "tabelog-24008818",
+    "name": {
+      "ja": "志摩観光ホテル ベイスイート"
+    },
+    "region": "shima-kashikojima",
+    "category": "ホテル",
+    "status": "pending",
+    "criteria": [
+      "C"
+    ],
+    "reason": "住宿本體（lodging shima-kanko-bay-suites），符合 C（個室、貸切；3.25／103）：館內餐廳另列（ラ・メール、浜木綿）；T9d 確認非住客的團體用餐",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.25,
+      "tabelogReviews": 103
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240303/24008818/"
+    },
+    "contexts": [
+      "dinner"
+    ],
+    "mentions": [],
+    "note": "類型：其他；地址：阿児町神明731；個室（食べログ列表）：個室有；貸切可（食べログ列表）；預算（食べログ列表）：夜 50000～59999／昼 -"
+  },
+  {
+    "key": "tabelog-24010611",
+    "name": {
+      "ja": "はな屋"
+    },
+    "region": "shima-kashikojima",
+    "category": "ホテル",
+    "status": "pending",
+    "criteria": [
+      "C"
+    ],
+    "reason": "住宿本體（賢島ファミリーホテル はな屋，T9b 候選 not-included），符合 C（貸切；3.22／52）：觀光協會「食べる」列了昼食 11:30～14:00、夜「お問い合わせください」、不定休；官網的非住客用餐 T9d 確認（判斷細則 F③）",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.22,
+      "tabelogReviews": 52
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240303/24010611/"
+    },
+    "contexts": [
+      "lunch"
+    ],
+    "mentions": [],
+    "note": "類型：其他；地址：阿児町神明737-13；貸切可（食べログ列表）"
+  },
+  {
+    "key": "tabelog-24013985",
+    "name": {
+      "ja": "フィオーレ志摩"
+    },
+    "region": "shima-ugata",
+    "category": "オーベルジュ、カフェ、洋食",
+    "status": "pending",
+    "criteria": [
+      "C"
+    ],
+    "reason": "住宿本體（lodging shima-nocturne-no-mori，舊名フィオーレ志摩，神明1916-60），符合 C（貸切；3.17／20）：T9b 現在的方案不含晚餐，餐廳可能已經不營業；T9d 確認",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.17,
+      "tabelogReviews": 20
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240303/24013985/"
+    },
+    "contexts": [
+      "lunch",
+      "dinner"
+    ],
+    "mentions": [],
+    "note": "類型：和食・割烹；地址：阿児町神明1916-60；貸切可（食べログ列表）；預算（食べログ列表）：夜 3000～3999／昼 1000～1999"
+  },
+  {
+    "key": "tabelog-24005869",
+    "name": {
+      "ja": "ｓｈｕｃａｆｅ’"
+    },
+    "region": "shima-ugata",
+    "category": "カフェ",
+    "status": "included",
+    "criteria": [
+      "C"
+    ],
+    "reason": null,
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.16,
+      "tabelogReviews": 36
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240303/24005869/"
+    },
+    "contexts": [
+      "snack",
+      "cafe"
+    ],
+    "mentions": [],
+    "note": "類型：咖啡・甜點；地址：阿児町神明1074-20；定休（食べログ列表）：火曜日；貸切可（食べログ列表）；預算（食べログ列表）：夜 -／昼 1000～1999"
+  },
+  {
+    "key": "tabelog-24021124",
+    "name": {
+      "ja": "さざ波食堂"
+    },
+    "region": "shima-kashikojima",
+    "category": "食堂",
+    "status": "not-included",
+    "criteria": [],
+    "reason": "未符合 A～F",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.08,
+      "tabelogReviews": 16
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240303/24021124/"
+    },
+    "contexts": [
+      "lunch"
+    ],
+    "mentions": [],
+    "note": "類型：定食・食堂；地址：阿児町神明752；貸切可（食べログ列表）；賢島港旁；在貸切篩選裡但 3.08（C 要 3.10）"
+  },
+  {
+    "key": "tabelog-24001751",
+    "name": {
+      "ja": "賢島宝生苑"
+    },
+    "region": "shima-kashikojima",
+    "category": "料理旅館",
+    "status": "pending",
+    "criteria": [
+      "A",
+      "C"
+    ],
+    "reason": "住宿本體（lodging shima-hoseien），符合 A、C（個室）：觀光協會「食べる」列了昼食 11:30～13:30（月、火休，祝日除く），但官網的非住客用餐方案還沒看（判斷細則 F③），T9d 確認",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.45,
+      "tabelogReviews": 162
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240303/24001751/"
+    },
+    "contexts": [
+      "dinner"
+    ],
+    "mentions": [
+      {
+        "type": "tourism",
+        "url": "https://www.kankomie.or.jp/report/1736",
+        "title": "觀光三重「「賢島宝生苑」がリニューアル！松阪牛・伊勢海老・鮑の三重グルメを堪能できる和会席など魅力を一挙公開！」（日期沒寫）",
+        "highlight": "和会席（伊勢海老、松阪牛、鮑）、松阪牛しゃぶしゃぶ（但記事寫的是住宿的部屋食）",
+        "retrieved": "2026-10-18"
+      }
+    ],
+    "note": "類型：和食・割烹；地址：阿児町神明718-3；個室（食べログ列表）：個室有；預算（食べログ列表）：夜 10000～14999／昼 -"
+  },
+  {
+    "key": "tabelog-24005111",
+    "name": {
+      "ja": "ラ・メール"
+    },
+    "region": "shima-kashikojima",
+    "category": "フレンチ",
+    "status": "included",
+    "criteria": [
+      "A"
+    ],
+    "reason": null,
+    "pointId": null,
+    "ratings": {
+      "tabelog": 4.04,
+      "tabelogReviews": 267
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240303/24005111/"
+    },
+    "contexts": [
+      "dinner"
+    ],
+    "mentions": [],
+    "note": "類型：洋食・義式；地址：阿児町神明731 志摩観光ホテル ザ ベイスイート 5Ｆ；預算（食べログ列表）：夜 20000～29999／昼 -；志摩観光ホテル ザ ベイスイート 5F；住宿附設（lodging shima-kanko-bay-suites），非住客用餐 T9d 看官網確認；觀光協會「食べる」：ディナー 17:30～20:30（L.O.）、定休 無し；T9b：志摩観光ホテル的餐廳限小學生以上"
+  },
+  {
+    "key": "tabelog-24000053",
+    "name": {
+      "ja": "ラ・メール ザ クラシック"
+    },
+    "region": "shima-kashikojima",
+    "category": "フレンチ",
+    "status": "included",
+    "criteria": [
+      "A"
+    ],
+    "reason": null,
+    "pointId": null,
+    "ratings": {
+      "tabelog": 4.01,
+      "tabelogReviews": 552
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240303/24000053/"
+    },
+    "contexts": [
+      "lunch",
+      "dinner"
+    ],
+    "mentions": [],
+    "note": "類型：洋食・義式；地址：阿児町神明731 志摩観光ホテル ザ クラシック 1F；預算（食べログ列表）：夜 20000～29999／昼 10000～14999；志摩観光ホテル ザ クラシック 1F；住宿附設（lodging shima-kanko-classic），非住客用餐 T9d 確認；T9b：晚餐 L.O. 19:30、限小學生以上"
+  },
+  {
+    "key": "tabelog-24000919",
+    "name": {
+      "ja": "和食 浜木綿"
+    },
+    "region": "shima-kashikojima",
+    "category": "日本料理、海鮮",
+    "status": "included",
+    "criteria": [
+      "A"
+    ],
+    "reason": null,
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.63,
+      "tabelogReviews": 72
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240303/24000919/"
+    },
+    "contexts": [
+      "dinner"
+    ],
+    "mentions": [],
+    "note": "類型：和食・割烹；地址：阿児町神明731 志摩観光ホテル ベイスイート 4F；預算（食べログ列表）：夜 20000～29999／昼 -；志摩観光ホテル ザ ベイスイート 4F；住宿附設，非住客用餐 T9d 確認；觀光協會「食べる」：ディナー 17:30～20:30（L.O.）；T9b：和食 浜木綿 限小學生以上"
+  },
+  {
+    "key": "tabelog-24011469",
+    "name": {
+      "ja": "プロヴァンス"
+    },
+    "region": "shima-ugata",
+    "category": "オーベルジュ、日本料理、創作料理",
+    "status": "pending",
+    "criteria": [
+      "A"
+    ],
+    "reason": "住宿本體（lodging shima-provence），符合 A（3.50／73）：觀光協會「食べる」列了 17:30～21:00、無休（F③ 的候選，志摩神明站附近晚上少數的店），官網的非住客用餐方案 T9d 確認",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.5,
+      "tabelogReviews": 73
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240303/24011469/"
+    },
+    "contexts": [
+      "lunch",
+      "dinner"
+    ],
+    "mentions": [],
+    "note": "類型：和食・割烹；地址：阿児町神明660；預算（食べログ列表）：夜 8000～9999／昼 2000～2999"
+  },
+  {
+    "key": "tabelog-24014858",
+    "name": {
+      "ja": "カフェ＆ワインバー リアン"
+    },
+    "region": "shima-kashikojima",
+    "category": "カフェ、ワインバー、ケーキ",
+    "status": "included",
+    "criteria": [
+      "A"
+    ],
+    "reason": null,
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.39,
+      "tabelogReviews": 74
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240303/24014858/"
+    },
+    "contexts": [
+      "lunch",
+      "dinner",
+      "cafe"
+    ],
+    "mentions": [],
+    "note": "類型：咖啡・甜點；地址：阿児町神明731 志摩観光ホテル ザ・クラシック ザ・クラブ；定休（食べログ列表）：火曜日、水曜日；預算（食べログ列表）：夜 5000～5999／昼 2000～2999；志摩観光ホテル ザ クラブ 內的カフェ＆ワインバー（類別第一項是カフェ，不算酒吧）；觀光協會「食べる」：カフェ 11:30～17:30、ディナー 17:30～20:30、バー 20:30～23:00，定休「無し」（和食べログ列表的火、水休不同，T9d 確認）"
+  },
+  {
+    "key": "tabelog-24001518",
+    "name": {
+      "ja": "芳カツ亭"
+    },
+    "region": "shima-kashikojima",
+    "category": "とんかつ、コロッケ、ハンバーグ",
+    "status": "included",
+    "criteria": [
+      "A"
+    ],
+    "reason": null,
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.33,
+      "tabelogReviews": 118
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240303/24001518/"
+    },
+    "contexts": [
+      "lunch"
+    ],
+    "mentions": [],
+    "note": "類型：其他；地址：阿児町神明699-15；定休（食べログ列表）：火曜日、水曜日；預算（食べログ列表）：夜 -／昼 1000～1999；觀光協會「食べる」：11:00～14:30（L.O.14:00），火、水休"
+  },
+  {
+    "key": "tabelog-24014903",
+    "name": {
+      "ja": "鉄板焼きレストラン 山吹"
+    },
+    "region": "shima-kashikojima",
+    "category": "鉄板焼き、ステーキ、海鮮",
+    "status": "included",
+    "criteria": [
+      "A"
+    ],
+    "reason": null,
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.3,
+      "tabelogReviews": 25
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240303/24014903/"
+    },
+    "contexts": [
+      "lunch",
+      "dinner"
+    ],
+    "mentions": [],
+    "note": "類型：燒肉・肉料理；地址：阿児町神明731 志摩観光ホテル ザ クラブ；定休（食べログ列表）：水曜日；預算（食べログ列表）：夜 20000～29999／昼 15000～19999；志摩観光ホテル ザ クラブ 內；觀光協會「食べる」：17:30～20:30（L.O.）、定休 無し（食べログ列表：水休）"
+  },
+  {
+    "key": "tabelog-24015412",
+    "name": {
+      "ja": "カフェサミエール"
+    },
+    "region": "shima-kashikojima",
+    "category": "カフェ",
+    "status": "not-included",
+    "criteria": [],
+    "reason": "未符合 A～F",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.26,
+      "tabelogReviews": 49
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240303/24015412/"
+    },
+    "contexts": [
+      "snack",
+      "cafe"
+    ],
+    "mentions": [],
+    "note": "類型：咖啡・甜點；地址：阿児町神明747-17 近鉄賢島駅 2F；預算（食べログ列表）：夜 -／昼 1000～1999；近鉄賢島駅 2F（景點 サミエール 同一棟）；觀光協會「食べる」：9:00～17:00；賢島站內唯一的輕食，沒達 A、C（3.26／49）"
+  },
+  {
+    "key": "tabelog-24019199",
+    "name": {
+      "ja": "ROCCA＆FRIENDS CREPERIE 伊勢志摩店"
+    },
+    "region": "shima-ugata",
+    "category": "クレープ・ガレット",
+    "status": "not-included",
+    "criteria": [],
+    "reason": "未符合 A～F",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.18,
+      "tabelogReviews": 31
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240303/24019199/"
+    },
+    "contexts": [
+      "snack"
+    ],
+    "mentions": [],
+    "note": "類型：咖啡・甜點；地址：阿児町神明952-6；定休（食べログ列表）：月曜日；預算（食べログ列表）：夜 -／昼 1000～1999"
+  },
+  {
+    "key": "tabelog-24016703",
+    "name": {
+      "ja": "フランス料理 シェ・アン"
+    },
+    "region": "shima-ugata",
+    "category": "フレンチ",
+    "status": "not-included",
+    "criteria": [],
+    "reason": "未符合 A～F",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.12,
+      "tabelogReviews": 12
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240303/24016703/"
+    },
+    "contexts": [
+      "lunch"
+    ],
+    "mentions": [],
+    "note": "類型：洋食・義式；地址：阿児町神明小才庭2070-14；定休（食べログ列表）：木曜日"
+  },
+  {
+    "key": "tabelog-24014714",
+    "name": {
+      "ja": "THE HIRAMATSU HOTELS＆RESORTS 賢島"
+    },
+    "region": "shima-kashikojima",
+    "category": "レストラン、フレンチ",
+    "status": "pending",
+    "criteria": [
+      "A",
+      "B",
+      "C"
+    ],
+    "reason": "住宿本體＝餐廳（THE HIRAMATSU HOTELS & RESORTS 賢島，T9b 沒有這間的候選：楽天沒有），符合 A、B、C（個室、貸切）：非住客能不能用餐沒有來源（官網待看），T9d 確認；夜 100,000 円～",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.77,
+      "tabelogReviews": 71
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240303/24014714/"
+    },
+    "contexts": [
+      "dinner"
+    ],
+    "mentions": [
+      {
+        "type": "tourism",
+        "url": "https://www.kankomie.or.jp/report/1956",
+        "title": "觀光三重「EXILE 橘ケンチさんが「THE HIRAMATSU HOTELS ＆ RESORTS 賢島」で美食を堪能」（日期沒寫）",
+        "highlight": "伊勢海老のロースト アメリケーヌソース（スペシャリテ）、松阪牛",
+        "retrieved": "2026-10-18"
+      },
+      {
+        "type": "media",
+        "url": "https://guide.michelin.com/jp/ja/hotels-stays/Shima/the-hiramatsu-hotels-resorts-13376",
+        "title": "ミシュランガイド（ホテル）「ザ・ひらまつ ホテルズ＆リゾーツ 賢島」",
+        "highlight": "米其林指南收錄的飯店，餐廳是用志摩食材的法式料理",
+        "retrieved": "2026-10-18"
+      }
+    ],
+    "note": "類型：其他；地址：阿児町鵜方3618-52；個室（食べログ列表）：個室有；貸切可（食べログ列表）；預算（食べログ列表）：夜 100000～／昼 -"
+  },
+  {
+    "key": "tabelog-24016491",
+    "name": {
+      "ja": "天ぷら とばり"
+    },
+    "region": "shima-ugata",
+    "category": "天ぷら、日本料理",
+    "status": "included",
+    "criteria": [
+      "A",
+      "C"
+    ],
+    "reason": null,
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.74,
+      "tabelogReviews": 99
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240303/24016491/"
+    },
+    "contexts": [
+      "lunch",
+      "dinner"
+    ],
+    "mentions": [],
+    "note": "類型：和食・割烹；地址：阿児町鵜方1091-1；定休（食べログ列表）：火曜日；貸切可（食べログ列表）；預算（食べログ列表）：夜 20000～29999／昼 15000～19999"
+  },
+  {
+    "key": "tabelog-24000565",
+    "name": {
+      "ja": "日本料理 鯛"
+    },
+    "region": "shima-ugata",
+    "category": "日本料理、海鮮、揚げ物",
+    "status": "included",
+    "criteria": [
+      "A",
+      "C"
+    ],
+    "reason": null,
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.56,
+      "tabelogReviews": 220
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240303/24000565/"
+    },
+    "contexts": [
+      "lunch",
+      "dinner"
+    ],
+    "mentions": [],
+    "note": "類型：和食・割烹；地址：阿児町鵜方2037-1；定休（食べログ列表）：月曜日；個室（食べログ列表）：個室有(2〜30人可)；貸切可（食べログ列表）；預算（食べログ列表）：夜 5000～5999／昼 1000～1999；觀光協會「食べる」：11:00～14:00、16:30～21:30，月休；鵜方站步行 3 分（まっぷる店家頁）；第一晚（2/2 週二）有營業、30 人個室 → 全員晚餐的第一候選"
+  },
+  {
+    "key": "tabelog-24000435",
+    "name": {
+      "ja": "長太屋"
+    },
+    "region": "shima-ugata",
+    "category": "焼肉、ステーキ",
+    "status": "included",
+    "criteria": [
+      "A",
+      "C"
+    ],
+    "reason": null,
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.51,
+      "tabelogReviews": 284
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240303/24000435/"
+    },
+    "contexts": [
+      "lunch",
+      "dinner"
+    ],
+    "mentions": [],
+    "note": "類型：燒肉・肉料理；地址：阿児町鵜方2418；個室（食べログ列表）：個室有(4〜8人可)；貸切可（食べログ列表）；預算（食べログ列表）：夜 3000～3999／昼 1000～1999；觀光協會「食べる」：11:00～14:00、16:30～21:00，木休（食べログ列表沒寫）；鵜方站 5 分（食べログ PR）"
+  },
+  {
+    "key": "tabelog-24013198",
+    "name": {
+      "ja": "海の食堂 大家族"
+    },
+    "region": "shima-ugata",
+    "category": "海鮮",
+    "status": "included",
+    "criteria": [
+      "A",
+      "C"
+    ],
+    "reason": null,
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.43,
+      "tabelogReviews": 103
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240303/24013198/"
+    },
+    "contexts": [
+      "lunch",
+      "dinner"
+    ],
+    "mentions": [],
+    "note": "類型：海鮮丼；地址：阿児町鵜方4057-1 うがたファミリープラザ １Ｆ；定休（食べログ列表）：水曜日；貸切可（食べログ列表）；預算（食べログ列表）：夜 4000～4999／昼 1000～1999"
+  },
+  {
+    "key": "tabelog-24001034",
+    "name": {
+      "ja": "おとや"
+    },
+    "region": "shima-ugata",
+    "category": "寿司",
+    "status": "included",
+    "criteria": [
+      "A",
+      "C"
+    ],
+    "reason": null,
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.35,
+      "tabelogReviews": 91
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240303/24001034/"
+    },
+    "contexts": [
+      "lunch",
+      "dinner"
+    ],
+    "mentions": [],
+    "note": "類型：壽司；地址：阿児町鵜方1692；定休（食べログ列表）：火曜日、水曜日；個室（食べログ列表）：個室有(4人、10〜20人可)；貸切可（食べログ列表）；預算（食べログ列表）：夜 1000～1999／昼 1000～1999；觀光協會「食べる」：11:00～13:30、17:00～21:00（L.O.20:30），火、水休 → 2/2、2/3、2/9、2/10 不能去"
+  },
+  {
+    "key": "tabelog-24008717",
+    "name": {
+      "ja": "みやま亭"
+    },
+    "region": "shima-ugata",
+    "category": "海鮮",
+    "status": "included",
+    "criteria": [
+      "A",
+      "C"
+    ],
+    "reason": null,
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.34,
+      "tabelogReviews": 99
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240303/24008717/"
+    },
+    "contexts": [
+      "lunch",
+      "dinner"
+    ],
+    "mentions": [],
+    "note": "類型：海鮮丼；地址：阿児町鵜方4990；定休（食べログ列表）：水曜日；個室（食べログ列表）：個室有；貸切可（食べログ列表）；預算（食べログ列表）：夜 2000～2999／昼 2000～2999；觀光協會「食べる」：11:00～13:30、17:00～20:00（L.O.19:30），水休"
+  },
+  {
+    "key": "tabelog-24001504",
+    "name": {
+      "ja": "磯っ子"
+    },
+    "region": "shima-ugata",
+    "category": "居酒屋、海鮮",
+    "status": "included",
+    "criteria": [
+      "A",
+      "C"
+    ],
+    "reason": null,
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.3,
+      "tabelogReviews": 83
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240303/24001504/"
+    },
+    "contexts": [
+      "lunch",
+      "dinner"
+    ],
+    "mentions": [],
+    "note": "類型：居酒屋；地址：阿児町鵜方1998-12；定休（食べログ列表）：月曜日；個室（食べログ列表）：個室有；貸切可（食べログ列表）；預算（食べログ列表）：夜 2000～2999／昼 1000～1999；觀光協會「食べる」：11:00～14:00、16:30～22:00，月休"
+  },
+  {
+    "key": "tabelog-24000625",
+    "name": {
+      "ja": "グリルエドイチ"
+    },
+    "region": "shima-ugata",
+    "category": "洋食",
+    "status": "included",
+    "criteria": [
+      "C"
+    ],
+    "reason": null,
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.28,
+      "tabelogReviews": 59
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240303/24000625/"
+    },
+    "contexts": [
+      "lunch",
+      "dinner"
+    ],
+    "mentions": [],
+    "note": "類型：洋食・義式；地址：阿児町鵜方1089；定休（食べログ列表）：木曜日、日曜日；貸切可（食べログ列表）；預算（食べログ列表）：夜 1000～1999／昼 ～999；觀光協會「食べる」：11:00～19:00（L.O.18:30），木、日休"
+  },
+  {
+    "key": "tabelog-24012093",
+    "name": {
+      "ja": "近鉄賢島カンツリｰクラブレストラン"
+    },
+    "region": "shima-kashikojima",
+    "category": "レストラン",
+    "status": "pending",
+    "criteria": [
+      "C"
+    ],
+    "reason": "近鉄賢島カンツリークラブ（ゴルフ場）的餐廳，符合 C（個室、貸切；3.26／38）：不打球的人能不能用餐不確定（「會員制、只限住客」的待確認），T9d 第一步確認",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.26,
+      "tabelogReviews": 38
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240303/24012093/"
+    },
+    "contexts": [
+      "lunch"
+    ],
+    "mentions": [],
+    "note": "類型：其他；地址：阿児町鵜方3620-5；個室（食べログ列表）：個室有；貸切可（食べログ列表）"
+  },
+  {
+    "key": "tabelog-24020023",
+    "name": {
+      "ja": "都リゾート 志摩 ベイサイドテラス"
+    },
+    "region": "shima-kashikojima",
+    "category": "ホテル",
+    "status": "pending",
+    "criteria": [
+      "C"
+    ],
+    "reason": "住宿本體（lodging shima-miyako-bayside-terrace），符合 C（貸切；3.21／34）：館內餐廳 マレナSHIMA 另列；T9d 確認非住客的團體用餐",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.21,
+      "tabelogReviews": 34
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240303/24020023/"
+    },
+    "contexts": [
+      "dinner"
+    ],
+    "mentions": [],
+    "note": "類型：其他；地址：阿児町鵜方3618-33；貸切可（食べログ列表）；預算（食べログ列表）：夜 10000～14999／昼 -"
+  },
+  {
+    "key": "tabelog-24022283",
+    "name": {
+      "ja": "LA PIZZICA"
+    },
+    "region": "shima-ugata",
+    "category": "イタリアン",
+    "status": "included",
+    "criteria": [
+      "C"
+    ],
+    "reason": null,
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.2,
+      "tabelogReviews": 16
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240303/24022283/"
+    },
+    "contexts": [
+      "lunch",
+      "dinner"
+    ],
+    "mentions": [],
+    "note": "類型：洋食・義式；地址：阿児町鵜方1224-3；定休（食べログ列表）：木曜日；貸切可（食べログ列表）；預算（食べログ列表）：夜 3000～3999／昼 1000～1999；觀光協會「食べる」：11:00～14:00（L.O.）、17:00～21:00（L.O.），定休沒寫（食べログ列表：木休）"
+  },
+  {
+    "key": "tabelog-24020292",
+    "name": {
+      "ja": "まぶしのいちや"
+    },
+    "region": "shima-ugata",
+    "category": "うなぎ、牛料理、鳥料理",
+    "status": "included",
+    "criteria": [
+      "C"
+    ],
+    "reason": null,
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.18,
+      "tabelogReviews": 38
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240303/24020292/"
+    },
+    "contexts": [
+      "lunch",
+      "dinner"
+    ],
+    "mentions": [],
+    "note": "類型：和食・割烹；地址：阿児町鵜方4057-1；個室（食べログ列表）：個室有(4〜6人可)；貸切可（食べログ列表）；預算（食べログ列表）：夜 4000～4999／昼 2000～2999"
+  },
+  {
+    "key": "tabelog-24016233",
+    "name": {
+      "ja": "Shimaフレンチ食堂 ノルポル"
+    },
+    "region": "shima-ugata",
+    "category": "フレンチ",
+    "status": "included",
+    "criteria": [
+      "C"
+    ],
+    "reason": null,
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.18,
+      "tabelogReviews": 21
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240303/24016233/"
+    },
+    "contexts": [
+      "lunch",
+      "dinner"
+    ],
+    "mentions": [],
+    "note": "類型：洋食・義式；地址：阿児町鵜方4045-1 ニューチャムビル 1F；定休（食べログ列表）：火曜日；貸切可（食べログ列表）；預算（食べログ列表）：夜 6000～7999／昼 3000～3999"
+  },
+  {
+    "key": "tabelog-24005459",
+    "name": {
+      "ja": "ろっぽん木"
+    },
+    "region": "shima-ugata",
+    "category": "居酒屋、海鮮、鍋",
+    "status": "included",
+    "criteria": [
+      "C"
+    ],
+    "reason": null,
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.15,
+      "tabelogReviews": 19
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240303/24005459/"
+    },
+    "contexts": [
+      "lunch",
+      "dinner"
+    ],
+    "mentions": [],
+    "note": "類型：居酒屋；地址：阿児町鵜方2992-5；定休（食べログ列表）：日曜日；貸切可（食べログ列表）；預算（食べログ列表）：夜 2000～2999／昼 ～999"
+  },
+  {
+    "key": "tabelog-24015009",
+    "name": {
+      "ja": "伊鈴屋 鵜方駅前店"
+    },
+    "region": "shima-ugata",
+    "category": "居酒屋",
+    "status": "included",
+    "criteria": [
+      "C"
+    ],
+    "reason": null,
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.13,
+      "tabelogReviews": 39
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240303/24015009/"
+    },
+    "contexts": [
+      "lunch",
+      "dinner"
+    ],
+    "mentions": [],
+    "note": "類型：居酒屋；地址：阿児町鵜方4057-1；定休（食べログ列表）：火曜日；貸切可（食べログ列表）；預算（食べログ列表）：夜 1000～1999／昼 ～999；鵜方站前；觀光協會「食べる」：11:00～18:00、不定休（食べログ列表：火休）→ 晚餐不一定"
+  },
+  {
+    "key": "tabelog-24004673",
+    "name": {
+      "ja": "銀鱗"
+    },
+    "region": "shima-ugata",
+    "category": "日本料理、寿司、海鮮",
+    "status": "included",
+    "criteria": [
+      "C"
+    ],
+    "reason": null,
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.12,
+      "tabelogReviews": 24
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240303/24004673/"
+    },
+    "contexts": [
+      "lunch",
+      "dinner"
+    ],
+    "mentions": [],
+    "note": "類型：和食・割烹；地址：阿児町鵜方3112-1；貸切可（食べログ列表）；預算（食べログ列表）：夜 -／昼 1000～1999；觀光協會「食べる」：月～土 11:00～14:00、17:00～23:00，日祝 17:00～23:00，定休 無し"
+  },
+  {
+    "key": "tabelog-24009869",
+    "name": {
+      "ja": "桧扇荘"
+    },
+    "region": "shima-kashikojima",
+    "category": "旅館・民宿、海鮮",
+    "status": "not-included",
+    "criteria": [],
+    "reason": "在個室篩選裡但口コミ 10 則（C 要 15 則）",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.12,
+      "tabelogReviews": 10
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240303/24009869/"
+    },
+    "contexts": [
+      "lunch"
+    ],
+    "mentions": [],
+    "note": "類型：和食・割烹；地址：阿児町鵜方943-1；個室（食べログ列表）：個室有；貸切可（食べログ列表）"
+  },
+  {
+    "key": "tabelog-24007876",
+    "name": {
+      "ja": "ほんわ家"
+    },
+    "region": "shima-ugata",
+    "category": "お好み焼き、鉄板焼き、焼きそば",
+    "status": "not-included",
+    "criteria": [],
+    "reason": "在貸切篩選裡但口コミ 14 則（C 要 15 則）",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.11,
+      "tabelogReviews": 14
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240303/24007876/"
+    },
+    "contexts": [
+      "lunch"
+    ],
+    "mentions": [],
+    "note": "類型：其他；地址：阿児町鵜方1226-4；定休（食べログ列表）：木曜日；貸切可（食べログ列表）"
+  },
+  {
+    "key": "tabelog-24012239",
+    "name": {
+      "ja": "ふじみや"
+    },
+    "region": "shima-ugata",
+    "category": "居酒屋、食堂",
+    "status": "not-included",
+    "criteria": [],
+    "reason": "在個室篩選裡但口コミ 14 則（C 要 15 則）",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.11,
+      "tabelogReviews": 14
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240303/24012239/"
+    },
+    "contexts": [
+      "lunch"
+    ],
+    "mentions": [],
+    "note": "類型：居酒屋；地址：阿児町鵜方1284；個室（食べログ列表）：個室有；貸切可（食べログ列表）"
+  },
+  {
+    "key": "tabelog-24001644",
+    "name": {
+      "ja": "汀渚 ばさら邸"
+    },
+    "region": "shima-kashikojima",
+    "category": "料理旅館",
+    "status": "excluded",
+    "criteria": [
+      "A",
+      "C"
+    ],
+    "reason": "住宿本體（汀渚 ばさら邸，T9b 排除：中学生から，小孩不能住）；非住客用餐沒有來源",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.61,
+      "tabelogReviews": 125
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240303/24001644/"
+    },
+    "contexts": [
+      "dinner"
+    ],
+    "mentions": [],
+    "note": "類型：和食・割烹；地址：阿児町鵜方3618-74；個室（食べログ列表）：個室有(4人可)；預算（食べログ列表）：夜 100000～／昼 -"
+  },
+  {
+    "key": "tabelog-24006261",
+    "name": {
+      "ja": "わさび"
+    },
+    "region": "shima-ugata",
+    "category": "とんかつ、揚げ物",
+    "status": "included",
+    "criteria": [
+      "A",
+      "C"
+    ],
+    "reason": null,
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.32,
+      "tabelogReviews": 50
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240303/24006261/"
+    },
+    "contexts": [
+      "lunch"
+    ],
+    "mentions": [],
+    "note": "類型：其他；地址：阿児町鵜方3460；個室（食べログ列表）：個室有"
+  },
+  {
+    "key": "tabelog-24006560",
+    "name": {
+      "ja": "焼肉うえむら"
+    },
+    "region": "shima-ugata",
+    "category": "焼肉",
+    "status": "included",
+    "criteria": [
+      "C"
+    ],
+    "reason": null,
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.19,
+      "tabelogReviews": 51
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240303/24006560/"
+    },
+    "contexts": [
+      "lunch",
+      "dinner"
+    ],
+    "mentions": [],
+    "note": "類型：燒肉・肉料理；地址：阿児町鵜方2884-20；定休（食べログ列表）：水曜日；個室（食べログ列表）：個室有(2〜20人可)；預算（食べログ列表）：夜 2000～2999／昼 1000～1999；營業時間沒有觀光協會的資料（T9d 查）"
+  },
+  {
+    "key": "tabelog-24000337",
+    "name": {
+      "ja": "みやぎ野"
+    },
+    "region": "shima-ugata",
+    "category": "日本料理、海鮮",
+    "status": "included",
+    "criteria": [
+      "C"
+    ],
+    "reason": null,
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.15,
+      "tabelogReviews": 21
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240303/24000337/"
+    },
+    "contexts": [
+      "lunch",
+      "dinner"
+    ],
+    "mentions": [],
+    "note": "類型：和食・割烹；地址：阿児町鵜方3127-2 ボナール館内；定休（食べログ列表）：水曜日；個室（食べログ列表）：個室有；預算（食べログ列表）：夜 -／昼 1000～1999；ボナール館內；觀光協會「食べる」：11:00～14:00、17:30～21:30，水休"
+  },
+  {
+    "key": "tabelog-24022014",
+    "name": {
+      "ja": "しまかぜ食堂 鵜方店"
+    },
+    "region": "shima-ugata",
+    "category": "食堂",
+    "status": "included",
+    "criteria": [
+      "C"
+    ],
+    "reason": null,
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.14,
+      "tabelogReviews": 16
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240303/24022014/"
+    },
+    "contexts": [
+      "lunch"
+    ],
+    "mentions": [],
+    "note": "類型：定食・食堂；地址：阿児町鵜方字金谷3016-26；個室（食べログ列表）：個室有；預算（食べログ列表）：夜 -／昼 1000～1999"
+  },
+  {
+    "key": "tabelog-24010853",
+    "name": {
+      "ja": "京城 鵜方店"
+    },
+    "region": "shima-ugata",
+    "category": "焼肉",
+    "status": "included",
+    "criteria": [
+      "C"
+    ],
+    "reason": null,
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.13,
+      "tabelogReviews": 22
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240303/24010853/"
+    },
+    "contexts": [
+      "dinner"
+    ],
+    "mentions": [],
+    "note": "類型：燒肉・肉料理；地址：阿児町鵜方3227-3；定休（食べログ列表）：火曜日；個室（食べログ列表）：個室有；預算（食べログ列表）：夜 4000～4999／昼 -；觀光協會「食べる」：16:00～24:00（L.O.23:00）（食べログ列表：火休）"
+  },
+  {
+    "key": "tabelog-24006418",
+    "name": {
+      "ja": "炭火焼うなぎ 東山物産"
+    },
+    "region": "shima-ugata",
+    "category": "うなぎ、弁当",
+    "status": "included",
+    "criteria": [
+      "A"
+    ],
+    "reason": null,
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.74,
+      "tabelogReviews": 931
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240303/24006418/"
+    },
+    "contexts": [
+      "lunch",
+      "dinner"
+    ],
+    "mentions": [],
+    "note": "類型：和食・割烹；地址：阿児町鵜方4032；定休（食べログ列表）：火曜日；預算（食べログ列表）：夜 3000～3999／昼 2000～2999；觀光協會「食べる」：10:00～19:00 頃（L.O.18:00、賣完就打烊），火休（臨時休業あり）；鵜方站步行約 3 分（觀光協會的距離）"
+  },
+  {
+    "key": "tabelog-24000188",
+    "name": {
+      "ja": "プティレストラン宮本"
+    },
+    "region": "shima-ugata",
+    "category": "洋食、カレー",
+    "status": "included",
+    "criteria": [
+      "A"
+    ],
+    "reason": null,
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.51,
+      "tabelogReviews": 173
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240303/24000188/"
+    },
+    "contexts": [
+      "lunch",
+      "dinner"
+    ],
+    "mentions": [],
+    "note": "類型：洋食・義式；地址：阿児町鵜方3127-2；定休（食べログ列表）：月曜日、火曜日；預算（食べログ列表）：夜 2000～2999／昼 1000～1999"
+  },
+  {
+    "key": "tabelog-24015875",
+    "name": {
+      "ja": "横山展望台 横山天空カフェテラス ミラドール志摩"
+    },
+    "region": "shima-yokoyama",
+    "category": "カフェ、ハンバーガー、ソフトクリーム",
+    "status": "included",
+    "criteria": [
+      "A"
+    ],
+    "reason": null,
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.5,
+      "tabelogReviews": 220
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240303/24015875/"
+    },
+    "contexts": [
+      "lunch",
+      "snack",
+      "cafe"
+    ],
+    "mentions": [],
+    "note": "類型：咖啡・甜點；地址：阿児町鵜方875-20；預算（食べログ列表）：夜 ～999／昼 ～999；横山展望台 景點（shima-yokoyama 那筆）裡的カフェ，同一個地點；觀光協會「食べる」：9:00～16:30、不定休；2026-11-24～2027-03-01 工事期間 VC→展望台停車場不能通行（T9a），旅程中能不能營業 T9d 確認"
+  },
+  {
+    "key": "tabelog-24000658",
+    "name": {
+      "ja": "マレナSHIMA フレンチ"
+    },
+    "region": "shima-kashikojima",
+    "category": "フレンチ",
+    "status": "included",
+    "criteria": [
+      "A"
+    ],
+    "reason": null,
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.4,
+      "tabelogReviews": 111
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240303/24000658/"
+    },
+    "contexts": [
+      "dinner"
+    ],
+    "mentions": [],
+    "note": "類型：洋食・義式；地址：阿児町鵜方3618-33 都リゾート 志摩 ベイサイドテラス；預算（食べログ列表）：夜 10000～14999／昼 -；都リゾート 志摩 ベイサイドテラス 內（lodging shima-miyako-bayside-terrace）；住宿附設，非住客用餐 T9d 確認；T9b：2/2（週二）和食休、只剩法式"
+  },
+  {
+    "key": "tabelog-24007254",
+    "name": {
+      "ja": "大田屋 鵜方支店"
+    },
+    "region": "shima-ugata",
+    "category": "たい焼き・大判焼き、郷土料理",
+    "status": "included",
+    "criteria": [
+      "A"
+    ],
+    "reason": null,
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.37,
+      "tabelogReviews": 62
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240303/24007254/"
+    },
+    "contexts": [
+      "snack"
+    ],
+    "mentions": [],
+    "note": "類型：咖啡・甜點；地址：阿児町鵜方4066；預算（食べログ列表）：夜 -／昼 ～999"
+  },
+  {
+    "key": "tabelog-24001069",
+    "name": {
+      "ja": "お菓子職人 おとべ"
+    },
+    "region": "shima-ugata",
+    "category": "ケーキ、カフェ",
+    "status": "included",
+    "criteria": [
+      "A"
+    ],
+    "reason": null,
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.31,
+      "tabelogReviews": 83
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240303/24001069/"
+    },
+    "contexts": [
+      "snack",
+      "cafe"
+    ],
+    "mentions": [],
+    "note": "類型：咖啡・甜點；地址：阿児町鵜方小向井3373-16；定休（食べログ列表）：火曜日；預算（食べログ列表）：夜 -／昼 ～999"
+  },
+  {
+    "key": "tabelog-24012927",
+    "name": {
+      "ja": "すず木"
+    },
+    "region": "shima-ugata",
+    "category": "そば、鍋",
+    "status": "included",
+    "criteria": [
+      "A"
+    ],
+    "reason": null,
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.31,
+      "tabelogReviews": 66
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240303/24012927/"
+    },
+    "contexts": [
+      "lunch"
+    ],
+    "mentions": [],
+    "note": "類型：烏龍麵・蕎麥；地址：阿児町鵜方3507-6；定休（食べログ列表）：月曜日；預算（食べログ列表）：夜 -／昼 1000～1999；觀光協會「食べる」：11:00～14:00、夜 18:00～21:00 只有週五、六，月、火休（祝日營業、隔天補休）"
+  },
+  {
+    "key": "tabelog-24016036",
+    "name": {
+      "ja": "こだわり丼の店 サカエ"
+    },
+    "region": "shima-ugata",
+    "category": "天丼、かつ丼、丼",
+    "status": "not-included",
+    "criteria": [],
+    "reason": "未符合 A～F",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.27,
+      "tabelogReviews": 37
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240303/24016036/"
+    },
+    "contexts": [
+      "lunch",
+      "dinner"
+    ],
+    "mentions": [],
+    "note": "類型：其他；地址：阿児町鵜方3074-6；定休（食べログ列表）：木曜日；預算（食べログ列表）：夜 1000～1999／昼 1000～1999"
+  },
+  {
+    "key": "tabelog-24001723",
+    "name": {
+      "ja": "てっちゃん"
+    },
+    "region": "shima-ugata",
+    "category": "居酒屋",
+    "status": "not-included",
+    "criteria": [],
+    "reason": "未符合 A～F",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.24,
+      "tabelogReviews": 29
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240303/24001723/"
+    },
+    "contexts": [
+      "dinner"
+    ],
+    "mentions": [],
+    "note": "類型：居酒屋；地址：阿児町鵜方3460；預算（食べログ列表）：夜 3000～3999／昼 -"
+  },
+  {
+    "key": "tabelog-24019292",
+    "name": {
+      "ja": "潮騒"
+    },
+    "region": "shima-ugata",
+    "category": "ケーキ",
+    "status": "not-included",
+    "criteria": [],
+    "reason": "未符合 A～F",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.2,
+      "tabelogReviews": 35
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240303/24019292/"
+    },
+    "contexts": [
+      "snack"
+    ],
+    "mentions": [],
+    "note": "類型：咖啡・甜點；地址：阿児町鵜方1912-3；定休（食べログ列表）：月曜日、火曜日"
+  },
+  {
+    "key": "tabelog-24007427",
+    "name": {
+      "ja": "きんせい"
+    },
+    "region": "shima-ugata",
+    "category": "ラーメン、担々麺",
+    "status": "not-included",
+    "criteria": [],
+    "reason": "未符合 A～F",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.19,
+      "tabelogReviews": 63
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240303/24007427/"
+    },
+    "contexts": [
+      "lunch",
+      "dinner"
+    ],
+    "mentions": [],
+    "note": "類型：其他；地址：阿児町鵜方2850-126；定休（食べログ列表）：木曜日；預算（食べログ列表）：夜 1000～1999／昼 ～999"
+  },
+  {
+    "key": "tabelog-24007484",
+    "name": {
+      "ja": "中華料理 蓮"
+    },
+    "region": "shima-ugata",
+    "category": "中華料理、担々麺",
+    "status": "not-included",
+    "criteria": [],
+    "reason": "未符合 A～F",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.19,
+      "tabelogReviews": 35
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240303/24007484/"
+    },
+    "contexts": [
+      "lunch",
+      "dinner"
+    ],
+    "mentions": [],
+    "note": "類型：其他；地址：阿児町鵜方2425-1；預算（食べログ列表）：夜 1000～1999／昼 1000～1999"
+  },
+  {
+    "key": "tabelog-24019011",
+    "name": {
+      "ja": "Trattoria おくの"
+    },
+    "region": "shima-ugata",
+    "category": "イタリアン",
+    "status": "not-included",
+    "criteria": [],
+    "reason": "未符合 A～F",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.18,
+      "tabelogReviews": 11
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240303/24019011/"
+    },
+    "contexts": [
+      "lunch"
+    ],
+    "mentions": [],
+    "note": "類型：洋食・義式；地址：阿児町鵜方2969-3；定休（食べログ列表）：木曜日"
+  },
+  {
+    "key": "tabelog-24005214",
+    "name": {
+      "ja": "荒磯料理 海女小屋"
+    },
+    "region": "shima-ugata",
+    "category": "居酒屋",
+    "status": "not-included",
+    "criteria": [],
+    "reason": "未符合 A～F",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.16,
+      "tabelogReviews": 24
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240303/24005214/"
+    },
+    "contexts": [
+      "dinner"
+    ],
+    "mentions": [],
+    "note": "類型：居酒屋；地址：阿児町鵜方1229-2；定休（食べログ列表）：日曜日；預算（食べログ列表）：夜 2000～2999／昼 -"
+  },
+  {
+    "key": "tabelog-24002948",
+    "name": {
+      "ja": "手打ちうどん あこや"
+    },
+    "region": "shima-ugata",
+    "category": "うどん、居酒屋",
+    "status": "not-included",
+    "criteria": [],
+    "reason": "未符合 A～F",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.13,
+      "tabelogReviews": 22
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240303/24002948/"
+    },
+    "contexts": [
+      "lunch",
+      "dinner"
+    ],
+    "mentions": [],
+    "note": "類型：烏龍麵・蕎麥；地址：阿児町鵜方346；定休（食べログ列表）：火曜日；預算（食べログ列表）：夜 2000～2999／昼 1000～1999"
+  },
+  {
+    "key": "tabelog-24014844",
+    "name": {
+      "ja": "おはこ"
+    },
+    "region": "shima-ugata",
+    "category": "そば、寿司",
+    "status": "not-included",
+    "criteria": [],
+    "reason": "未符合 A～F",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.13,
+      "tabelogReviews": 19
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240303/24014844/"
+    },
+    "contexts": [
+      "lunch"
+    ],
+    "mentions": [],
+    "note": "類型：烏龍麵・蕎麥；地址：阿児町鵜方2407-6；定休（食べログ列表）：月曜日；預算（食べログ列表）：夜 -／昼 1000～1999"
+  },
+  {
+    "key": "tabelog-24010649",
+    "name": {
+      "ja": "マレナSHIMA 日本料理"
+    },
+    "region": "shima-kashikojima",
+    "category": "日本料理、海鮮",
+    "status": "not-included",
+    "criteria": [],
+    "reason": "未符合 A～F",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.12,
+      "tabelogReviews": 30
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240303/24010649/"
+    },
+    "contexts": [
+      "dinner"
+    ],
+    "mentions": [],
+    "note": "類型：和食・割烹；地址：阿児町鵜方3618-33 都リゾート 志摩 ベイサイドテラス；預算（食べログ列表）：夜 10000～14999／昼 -；都リゾート 志摩 ベイサイドテラス 內；T9b：2/2（週二）和食休"
+  },
+  {
+    "key": "tabelog-24021658",
+    "name": {
+      "ja": "志摩醸造 Craft Beer Stand"
+    },
+    "region": "shima-ugata",
+    "category": "ビアバー",
+    "status": "excluded",
+    "criteria": [],
+    "reason": "食べログ類別第一項是ビアバー → 酒吧排除",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.12,
+      "tabelogReviews": 14
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240303/24021658/"
+    },
+    "contexts": [
+      "lunch"
+    ],
+    "mentions": [],
+    "note": "類型：其他；地址：阿児町鵜方1670-2 近鉄鵜方駅 1F；預算（食べログ列表）：夜 -／昼 ～999"
+  },
+  {
+    "key": "tabelog-24017588",
+    "name": {
+      "ja": "寿し ささや"
+    },
+    "region": "shima-ugata",
+    "category": "寿司",
+    "status": "not-included",
+    "criteria": [],
+    "reason": "未符合 A～F",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.12,
+      "tabelogReviews": 13
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240303/24017588/"
+    },
+    "contexts": [
+      "dinner"
+    ],
+    "mentions": [],
+    "note": "類型：壽司；地址：阿児町鵜方4062；預算（食べログ列表）：夜 2000～2999／昼 -"
+  },
+  {
+    "key": "tabelog-24018185",
+    "name": {
+      "ja": "麺 波道"
+    },
+    "region": "shima-ugata",
+    "category": "ラーメン",
+    "status": "not-included",
+    "criteria": [],
+    "reason": "未符合 A～F",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.11,
+      "tabelogReviews": 44
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240303/24018185/"
+    },
+    "contexts": [
+      "lunch",
+      "dinner"
+    ],
+    "mentions": [],
+    "note": "類型：其他；地址：阿児町鵜方3112-1 マルールビル 1F；定休（食べログ列表）：月曜日；預算（食べログ列表）：夜 1000～1999／昼 1000～1999"
+  },
+  {
+    "key": "tabelog-24020262",
+    "name": {
+      "ja": "薪ストーブ料理 Resta＆Cafe ESSE"
+    },
+    "region": "shima-ugata",
+    "category": "カフェ、居酒屋",
+    "status": "not-included",
+    "criteria": [],
+    "reason": "未符合 A～F",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.11,
+      "tabelogReviews": 18
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/mie/A2403/A240303/24020262/"
+    },
+    "contexts": [
+      "snack",
+      "cafe"
+    ],
+    "mentions": [],
+    "note": "類型：咖啡・甜點；地址：阿児町鵜方2637-21；定休（食べログ列表）：祝後日；預算（食べログ列表）：夜 -／昼 1000～1999"
+  }
+]
