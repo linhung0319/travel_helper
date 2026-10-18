@@ -867,7 +867,6 @@
     "category": "寿司",
     "status": "included",
     "criteria": [
-      "A",
       "C"
     ],
     "reason": null,
@@ -895,7 +894,6 @@
     "category": "海鮮",
     "status": "included",
     "criteria": [
-      "A",
       "C"
     ],
     "reason": null,
@@ -923,7 +921,6 @@
     "category": "居酒屋、海鮮",
     "status": "included",
     "criteria": [
-      "A",
       "C"
     ],
     "reason": null,
@@ -1291,7 +1288,6 @@
     "category": "とんかつ、揚げ物",
     "status": "included",
     "criteria": [
-      "A",
       "C"
     ],
     "reason": null,
@@ -1530,11 +1526,9 @@
     },
     "region": "shima-ugata",
     "category": "たい焼き・大判焼き、郷土料理",
-    "status": "included",
-    "criteria": [
-      "A"
-    ],
-    "reason": null,
+    "status": "not-included",
+    "criteria": [],
+    "reason": "A 因數量控制（3.40）取消",
     "pointId": null,
     "ratings": {
       "tabelog": 3.37,
@@ -1556,11 +1550,9 @@
     },
     "region": "shima-ugata",
     "category": "ケーキ、カフェ",
-    "status": "included",
-    "criteria": [
-      "A"
-    ],
-    "reason": null,
+    "status": "not-included",
+    "criteria": [],
+    "reason": "A 因數量控制（3.40）取消",
     "pointId": null,
     "ratings": {
       "tabelog": 3.31,
@@ -1583,11 +1575,9 @@
     },
     "region": "shima-ugata",
     "category": "そば、鍋",
-    "status": "included",
-    "criteria": [
-      "A"
-    ],
-    "reason": null,
+    "status": "not-included",
+    "criteria": [],
+    "reason": "A 因數量控制（3.40）取消",
     "pointId": null,
     "ratings": {
       "tabelog": 3.31,
