@@ -1,0 +1,1697 @@
+{
+ "source": "https://www.kankomie.or.jp/spot/index（志摩市、見る・遊ぶ）",
+ "retrieved": "2026-10-18",
+ "note": "觀光三重的景點列表（scripts/kanko-mie.mjs）。categories 來自各類別的篩選結果；address、coords 來自詳細頁（coords 是詳細頁內嵌地圖的 q=緯度,經度，存成 [經度, 緯度]）。只存事實，不存介紹文",
+ "count": 118,
+ "spots": [
+  {
+   "id": 2307,
+   "name": "横山展望台（横山天空カフェテラス）",
+   "url": "https://www.kankomie.or.jp/spot/2307",
+   "categories": [
+    "自然・花を愛でる",
+    "絶景スポット",
+    "島"
+   ],
+   "address": "志摩市阿児町鵜方875-20",
+   "coords": [
+    136.798979,
+    34.33191
+   ],
+   "official": "https://chubu.env.go.jp/nature/yokoyama/index.html"
+  },
+  {
+   "id": 23599,
+   "name": "志摩市観光農園",
+   "url": "https://www.kankomie.or.jp/spot/23599",
+   "categories": [
+    "自然・花を愛でる",
+    "絶景スポット"
+   ],
+   "address": "志摩市磯部町穴川511-5（道の駅伊勢志摩）",
+   "coords": null,
+   "official": null
+  },
+  {
+   "id": 3494,
+   "name": "阿児の松原海水浴場",
+   "url": "https://www.kankomie.or.jp/spot/3494",
+   "categories": [
+    "自然・花を愛でる",
+    "キャンプ・スポーツを満喫",
+    "海水浴・釣り"
+   ],
+   "address": "志摩市阿児町甲賀",
+   "coords": [
+    136.878179,
+    34.325584
+   ],
+   "official": "http://www.kanko-shima.com/"
+  },
+  {
+   "id": 10197,
+   "name": "わたかのパールビーチ",
+   "url": "https://www.kankomie.or.jp/spot/10197",
+   "categories": [
+    "自然・花を愛でる",
+    "キャンプ・スポーツを満喫",
+    "海水浴・釣り"
+   ],
+   "address": "志摩市磯部町渡鹿野地内",
+   "coords": [
+    136.876928,
+    34.362511
+   ],
+   "official": "http://www.kanko-shima.com/"
+  },
+  {
+   "id": 3493,
+   "name": "御座白浜海水浴場",
+   "url": "https://www.kankomie.or.jp/spot/3493",
+   "categories": [
+    "自然・花を愛でる",
+    "キャンプ・スポーツを満喫",
+    "海水浴・釣り"
+   ],
+   "address": "志摩市志摩町御座",
+   "coords": [
+    136.762705,
+    34.27389
+   ],
+   "official": "http://www.kanko-shima.com/"
+  },
+  {
+   "id": 3492,
+   "name": "次郎六郎海水浴場",
+   "url": "https://www.kankomie.or.jp/spot/3492",
+   "categories": [
+    "自然・花を愛でる",
+    "キャンプ・スポーツを満喫",
+    "海水浴・釣り"
+   ],
+   "address": "志摩市大王町登茂山",
+   "coords": [
+    136.832432,
+    34.284269
+   ],
+   "official": "http://www.kanko-shima.com/"
+  },
+  {
+   "id": 3491,
+   "name": "大矢浜海水浴場（BIG ARROW BEACH）",
+   "url": "https://www.kankomie.or.jp/spot/3491",
+   "categories": [
+    "自然・花を愛でる",
+    "キャンプ・スポーツを満喫",
+    "体験プランで思い出作り",
+    "海水浴・釣り"
+   ],
+   "address": "志摩市浜島町浜島",
+   "coords": [
+    136.753271,
+    34.294323
+   ],
+   "official": "https://www.oyahama.com/"
+  },
+  {
+   "id": 9027,
+   "name": "大慈寺",
+   "url": "https://www.kankomie.or.jp/spot/9027",
+   "categories": [
+    "歴史・文化に触れる",
+    "自然・花を愛でる"
+   ],
+   "address": "志摩市大王町波切409",
+   "coords": [
+    136.895761,
+    34.277984
+   ],
+   "official": "http://www.daijiji.jp/"
+  },
+  {
+   "id": 3704,
+   "name": "NEMU GOLF CLUB",
+   "url": "https://www.kankomie.or.jp/spot/3704",
+   "categories": [
+    "自然・花を愛でる",
+    "キャンプ・スポーツを満喫"
+   ],
+   "address": "志摩市浜島町迫子2692-3",
+   "coords": [
+    136.794663,
+    34.297655
+   ],
+   "official": "https://www.nemuresort.com/nemugolf/"
+  },
+  {
+   "id": 3106,
+   "name": "志摩スペイン村 パルケエスパーニャ",
+   "url": "https://www.kankomie.or.jp/spot/3106",
+   "categories": [
+    "歴史・文化に触れる",
+    "テーマパークで遊ぶ",
+    "キャンプ・スポーツを満喫"
+   ],
+   "address": "志摩市磯部町坂崎",
+   "coords": [
+    136.846005,
+    34.361684
+   ],
+   "official": "https://www.parque-net.com/"
+  },
+  {
+   "id": 3216,
+   "name": "安乗埼灯台資料館",
+   "url": "https://www.kankomie.or.jp/spot/3216",
+   "categories": [
+    "テーマパークで遊ぶ"
+   ],
+   "address": "志摩市阿児町安乗794-1",
+   "coords": [
+    136.90702,
+    34.364193
+   ],
+   "official": "http://anorisaki.com/"
+  },
+  {
+   "id": 2318,
+   "name": "磯笛岬展望台(ツバスの鐘)",
+   "url": "https://www.kankomie.or.jp/spot/2318",
+   "categories": [
+    "キャンプ・スポーツを満喫"
+   ],
+   "address": "志摩市浜島町南張",
+   "coords": [
+    136.732321,
+    34.302557
+   ],
+   "official": "http://www.kanko-shima.com/"
+  },
+  {
+   "id": 3987,
+   "name": "あご湾定期船",
+   "url": "https://www.kankomie.or.jp/spot/3987",
+   "categories": [
+    "テーマパークで遊ぶ",
+    "絶景スポット"
+   ],
+   "address": "志摩市阿児町神明752-11（賢島）",
+   "coords": [
+    136.81864,
+    34.307456
+   ],
+   "official": "http://www.shima-marineleisure.com/"
+  },
+  {
+   "id": 3105,
+   "name": "NEMU RESORT",
+   "url": "https://www.kankomie.or.jp/spot/3105",
+   "categories": [
+    "歴史・文化に触れる",
+    "自然・花を愛でる",
+    "テーマパークで遊ぶ",
+    "キャンプ・スポーツを満喫"
+   ],
+   "address": "志摩市浜島町迫子2692-3",
+   "coords": [
+    136.794663,
+    34.297655
+   ],
+   "official": "https://www.nemuresort.com/"
+  },
+  {
+   "id": 3240,
+   "name": "賢島エスパーニャクルーズ【あご湾遊覧】",
+   "url": "https://www.kankomie.or.jp/spot/3240",
+   "categories": [
+    "自然・花を愛でる",
+    "テーマパークで遊ぶ",
+    "絶景スポット"
+   ],
+   "address": "志摩市阿児町賢島神明７５２－１１",
+   "coords": [
+    136.818634,
+    34.307458
+   ],
+   "official": "http://www.shima-marineleisure.com/"
+  },
+  {
+   "id": 11960,
+   "name": "志摩市浜島磯体験施設「海ほおずき」",
+   "url": "https://www.kankomie.or.jp/spot/11960",
+   "categories": [
+    "体験プランで思い出作り"
+   ],
+   "address": "志摩市浜島町浜島465番地14",
+   "coords": [
+    136.761793,
+    34.294556
+   ],
+   "official": "http://www.umihozuki.org/"
+  },
+  {
+   "id": 20687,
+   "name": "志摩地中海村",
+   "url": "https://www.kankomie.or.jp/spot/20687",
+   "categories": [
+    "歴史・文化に触れる",
+    "自然・花を愛でる",
+    "テーマパークで遊ぶ",
+    "体験プランで思い出作り",
+    "絶景スポット"
+   ],
+   "address": "志摩市浜島町迫子2619-1",
+   "coords": [
+    136.804667,
+    34.302629
+   ],
+   "official": "http://puebloamigo.jp/"
+  },
+  {
+   "id": 25150,
+   "name": "桐垣展望台",
+   "url": "https://www.kankomie.or.jp/spot/25150",
+   "categories": [
+    "自然・花を愛でる",
+    "絶景スポット"
+   ],
+   "address": "志摩市大王町波切2199",
+   "coords": [
+    136.837549,
+    34.287538
+   ],
+   "official": null
+  },
+  {
+   "id": 3980,
+   "name": "道の駅「伊勢志摩」",
+   "url": "https://www.kankomie.or.jp/spot/3980",
+   "categories": [],
+   "address": "志摩市磯部町穴川511-5",
+   "coords": [
+    136.798188,
+    34.359603
+   ],
+   "official": null
+  },
+  {
+   "id": 2222,
+   "name": "天の岩戸（恵利原の水穴）",
+   "url": "https://www.kankomie.or.jp/spot/2222",
+   "categories": [
+    "自然・花を愛でる"
+   ],
+   "address": "志摩市磯部町恵利原",
+   "coords": [
+    136.763459,
+    34.408014
+   ],
+   "official": "http://www.kanko-shima.com/"
+  },
+  {
+   "id": 23250,
+   "name": "かつおの天ぱく【鰹いぶし小屋見学】",
+   "url": "https://www.kankomie.or.jp/spot/23250",
+   "categories": [
+    "伊勢神宮関連",
+    "歴史・文化に触れる",
+    "体験プランで思い出作り",
+    "雨の日もOK"
+   ],
+   "address": "志摩市大王町波切2545-15",
+   "coords": [
+    136.871164,
+    34.286311
+   ],
+   "official": "https://katuobushi.com/"
+  },
+  {
+   "id": 2241,
+   "name": "安乗埼灯台",
+   "url": "https://www.kankomie.or.jp/spot/2241",
+   "categories": [
+    "自然・花を愛でる",
+    "絶景スポット"
+   ],
+   "address": "志摩市阿児町安乗",
+   "coords": [
+    136.908402,
+    34.36503
+   ],
+   "official": "https://www.tokokai.org/tourlight/tourlight08/"
+  },
+  {
+   "id": 2245,
+   "name": "大王埼灯台",
+   "url": "https://www.kankomie.or.jp/spot/2245",
+   "categories": [
+    "自然・花を愛でる",
+    "絶景スポット"
+   ],
+   "address": "志摩市大王町波切54",
+   "coords": [
+    136.901072,
+    34.278088
+   ],
+   "official": "https://www.tokokai.org/tourlight/tourlight09/"
+  },
+  {
+   "id": 23397,
+   "name": "海女さんと潜ろう！",
+   "url": "https://www.kankomie.or.jp/spot/23397",
+   "categories": [
+    "歴史・文化に触れる",
+    "自然・花を愛でる",
+    "体験プランで思い出作り"
+   ],
+   "address": "志摩市志摩町和具",
+   "coords": null,
+   "official": "https://miescape.jp/plan/166/"
+  },
+  {
+   "id": 24987,
+   "name": "賢島フィッシングパーク 海遊苑",
+   "url": "https://www.kankomie.or.jp/spot/24987",
+   "categories": [
+    "海水浴・釣り"
+   ],
+   "address": "志摩市阿児町神明682-16",
+   "coords": [
+    136.828027,
+    34.30932
+   ],
+   "official": "https://kaiyuuen.com/"
+  },
+  {
+   "id": 21577,
+   "name": "福寿寺",
+   "url": "https://www.kankomie.or.jp/spot/21577",
+   "categories": [
+    "歴史・文化に触れる"
+   ],
+   "address": "志摩市磯部町五知227",
+   "coords": [
+    136.807933,
+    34.408978
+   ],
+   "official": "http://www.city.shima.mie.jp/"
+  },
+  {
+   "id": 2955,
+   "name": "宇気比神社",
+   "url": "https://www.kankomie.or.jp/spot/2955",
+   "categories": [
+    "歴史・文化に触れる"
+   ],
+   "address": "志摩市浜島町浜島682",
+   "coords": [
+    136.758204,
+    34.295476
+   ],
+   "official": "http://www.city.shima.mie.jp/"
+  },
+  {
+   "id": 21695,
+   "name": "宇気比神社樹叢【県指定天然記念物】",
+   "url": "https://www.kankomie.or.jp/spot/21695",
+   "categories": [
+    "歴史・文化に触れる",
+    "自然・花を愛でる"
+   ],
+   "address": "志摩市浜島町浜島681",
+   "coords": [
+    136.757673,
+    34.295418
+   ],
+   "official": "http://www.city.shima.mie.jp/"
+  },
+  {
+   "id": 2270,
+   "name": "宇気比神社",
+   "url": "https://www.kankomie.or.jp/spot/2270",
+   "categories": [
+    "自然・花を愛でる"
+   ],
+   "address": "志摩市浜島町浜島681",
+   "coords": [
+    136.757673,
+    34.295418
+   ],
+   "official": null
+  },
+  {
+   "id": 3328,
+   "name": "志摩オートキャンプ場",
+   "url": "https://www.kankomie.or.jp/spot/3328",
+   "categories": [
+    "キャンプ・スポーツを満喫"
+   ],
+   "address": "志摩市志摩町越賀2279",
+   "coords": [
+    136.779732,
+    34.262665
+   ],
+   "official": "https://shima-de-camp.com/"
+  },
+  {
+   "id": 4567,
+   "name": "九鬼一族の墓",
+   "url": "https://www.kankomie.or.jp/spot/4567",
+   "categories": [
+    "歴史・文化に触れる"
+   ],
+   "address": "志摩市大王町波切",
+   "coords": [
+    136.898954,
+    34.278216
+   ],
+   "official": null
+  },
+  {
+   "id": 3819,
+   "name": "阿児の松原地域活性化センター",
+   "url": "https://www.kankomie.or.jp/spot/3819",
+   "categories": [
+    "海水浴・釣り"
+   ],
+   "address": "志摩市阿児町甲賀8-18",
+   "coords": [
+    136.876565,
+    34.327877
+   ],
+   "official": null
+  },
+  {
+   "id": 14774,
+   "name": "志摩自然学校",
+   "url": "https://www.kankomie.or.jp/spot/14774",
+   "categories": [
+    "自然・花を愛でる",
+    "キャンプ・スポーツを満喫",
+    "体験プランで思い出作り",
+    "絶景スポット",
+    "島"
+   ],
+   "address": "志摩市大王町波切2199 ともやま公園内",
+   "coords": [
+    136.840501,
+    34.287461
+   ],
+   "official": "https://shima-nature-school.jp/"
+  },
+  {
+   "id": 24716,
+   "name": "NARUMI Factory Shop",
+   "url": "https://www.kankomie.or.jp/spot/24716",
+   "categories": [],
+   "address": "志摩市磯部町築地1524－1",
+   "coords": [
+    136.783597,
+    34.374247
+   ],
+   "official": null
+  },
+  {
+   "id": 24620,
+   "name": "わたかのパールビーチ星空観測所",
+   "url": "https://www.kankomie.or.jp/spot/24620",
+   "categories": [],
+   "address": "志摩市磯部町渡鹿野507",
+   "coords": [
+    136.874234,
+    34.360266
+   ],
+   "official": null
+  },
+  {
+   "id": 24616,
+   "name": "スマイルサークル駐車場",
+   "url": "https://www.kankomie.or.jp/spot/24616",
+   "categories": [],
+   "address": "志摩市阿児町甲賀40",
+   "coords": [
+    136.876562,
+    34.325996
+   ],
+   "official": null
+  },
+  {
+   "id": 23360,
+   "name": "伊勢志摩サミット記念館 サミエール",
+   "url": "https://www.kankomie.or.jp/spot/23360",
+   "categories": [
+    "歴史・文化に触れる"
+   ],
+   "address": "志摩市阿児町神明747番地17 近鉄賢島駅2階 近鉄賢島駅2階へは階段をご利用いただくことになります。※2017年12月までに階段昇降機の設置を予定しています。",
+   "coords": [
+    136.818516,
+    34.308198
+   ],
+   "official": "https://www.city.shima.mie.jp/kakuka/seisakusuishin/sogoseisakuka/iseshimasummit/"
+  },
+  {
+   "id": 626,
+   "name": "伊勢志摩温泉 志摩スペイン村「ひまわりの湯」",
+   "url": "https://www.kankomie.or.jp/spot/626",
+   "categories": [
+    "日帰り入浴で極楽"
+   ],
+   "address": "志摩市磯部町坂崎",
+   "coords": [
+    136.843325,
+    34.359664
+   ],
+   "official": "http://www.parque-net.com/"
+  },
+  {
+   "id": 3877,
+   "name": "志摩市磯部プール",
+   "url": "https://www.kankomie.or.jp/spot/3877",
+   "categories": [
+    "キャンプ・スポーツを満喫"
+   ],
+   "address": "志摩市磯部町恵利原956",
+   "coords": [
+    136.809182,
+    34.377979
+   ],
+   "official": null
+  },
+  {
+   "id": 21739,
+   "name": "志摩地中海村 クラフト工房 Recuerdos",
+   "url": "https://www.kankomie.or.jp/spot/21739",
+   "categories": [
+    "体験プランで思い出作り",
+    "雨の日もOK"
+   ],
+   "address": "志摩市浜島町迫子２６１９－１",
+   "coords": null,
+   "official": "http://puebloamigo.jp/"
+  },
+  {
+   "id": 2244,
+   "name": "志摩丸山橋",
+   "url": "https://www.kankomie.or.jp/spot/2244",
+   "categories": [
+    "自然・花を愛でる",
+    "キャンプ・スポーツを満喫"
+   ],
+   "address": "志摩市志摩町片田～布施田",
+   "coords": [
+    136.828837,
+    34.261898
+   ],
+   "official": "https://www.kanko-shima.com/purpose/2196/"
+  },
+  {
+   "id": 3043,
+   "name": "和具観音堂",
+   "url": "https://www.kankomie.or.jp/spot/3043",
+   "categories": [
+    "歴史・文化に触れる"
+   ],
+   "address": "志摩市志摩町和具2985-7",
+   "coords": [
+    136.806713,
+    34.258667
+   ],
+   "official": "https://www.kanko-shima.com/purpose/2273/"
+  },
+  {
+   "id": 15609,
+   "name": "志摩市絵かきの町・大王 美術ギャラリー",
+   "url": "https://www.kankomie.or.jp/spot/15609",
+   "categories": [
+    "歴史・文化に触れる",
+    "テーマパークで遊ぶ"
+   ],
+   "address": "大王町波切3234-2（志摩市役所大王支所に併設）",
+   "coords": [
+    136.884726,
+    34.281603
+   ],
+   "official": "https://www.kanko-shima.com/purpose/3898/"
+  },
+  {
+   "id": 3622,
+   "name": "創造の森 横山",
+   "url": "https://www.kankomie.or.jp/spot/3622",
+   "categories": [
+    "自然・花を愛でる"
+   ],
+   "address": "志摩市阿児町鵜方",
+   "coords": [
+    136.798218,
+    34.333082
+   ],
+   "official": "https://www.kanko-shima.com/purpose/2355/"
+  },
+  {
+   "id": 2940,
+   "name": "佐美長神社",
+   "url": "https://www.kankomie.or.jp/spot/2940",
+   "categories": [
+    "歴史・文化に触れる"
+   ],
+   "address": "志摩市磯部町恵利原",
+   "coords": [
+    136.803482,
+    34.375225
+   ],
+   "official": "https://www.kanko-shima.com/purpose/2308/"
+  },
+  {
+   "id": 9024,
+   "name": "汗かき地蔵（堂の山薬師堂）",
+   "url": "https://www.kankomie.or.jp/spot/9024",
+   "categories": [
+    "歴史・文化に触れる"
+   ],
+   "address": "志摩市大王町波切",
+   "coords": [
+    136.895566,
+    34.27841
+   ],
+   "official": "https://www.kanko-shima.com/purpose/2116/"
+  },
+  {
+   "id": 2232,
+   "name": "恵比寿ケ丘",
+   "url": "https://www.kankomie.or.jp/spot/2232",
+   "categories": [
+    "自然・花を愛でる",
+    "キャンプ・スポーツを満喫"
+   ],
+   "address": "志摩市浜島町浜島",
+   "coords": [
+    136.756402,
+    34.295614
+   ],
+   "official": "https://www.kanko-shima.com/purpose/2348/"
+  },
+  {
+   "id": 4343,
+   "name": "石仏(潮仏）",
+   "url": "https://www.kankomie.or.jp/spot/4343",
+   "categories": [
+    "歴史・文化に触れる"
+   ],
+   "address": "志摩市志摩町御座",
+   "coords": [
+    136.766243,
+    34.278269
+   ],
+   "official": "https://www.kanko-shima.com/purpose/2293/"
+  },
+  {
+   "id": 23564,
+   "name": "パール美樹",
+   "url": "https://www.kankomie.or.jp/spot/23564",
+   "categories": [],
+   "address": "志摩市志摩町御座65-1",
+   "coords": [
+    136.776556,
+    34.275411
+   ],
+   "official": "https://isesima.info/pearl-miki/"
+  },
+  {
+   "id": 6701,
+   "name": "英虞湾",
+   "url": "https://www.kankomie.or.jp/spot/6701",
+   "categories": [
+    "自然・花を愛でる"
+   ],
+   "address": "志摩市阿児町",
+   "coords": [
+    136.803906,
+    34.288407
+   ],
+   "official": "http://www.kanko-shima.com/"
+  },
+  {
+   "id": 23846,
+   "name": "LUXUNA伊勢志摩（ラグナ）",
+   "url": "https://www.kankomie.or.jp/spot/23846",
+   "categories": [],
+   "address": "志摩市志摩町御座878",
+   "coords": [
+    136.757759,
+    34.271672
+   ],
+   "official": "https://luxuna2021.com/"
+  },
+  {
+   "id": 2534,
+   "name": "志摩市ともやま公園野外活動センター",
+   "url": "https://www.kankomie.or.jp/spot/2534",
+   "categories": [
+    "歴史・文化に触れる"
+   ],
+   "address": "志摩市大王町波切２１９９",
+   "coords": [
+    136.84089,
+    34.287554
+   ],
+   "official": "https://www.city.shima.mie.jp/kakuka/tomoyama/index.html"
+  },
+  {
+   "id": 2310,
+   "name": "麦埼灯台",
+   "url": "https://www.kankomie.or.jp/spot/2310",
+   "categories": [
+    "自然・花を愛でる",
+    "キャンプ・スポーツを満喫"
+   ],
+   "address": "志摩市志摩町片田",
+   "coords": [
+    136.847516,
+    34.247102
+   ],
+   "official": null
+  },
+  {
+   "id": 22402,
+   "name": "伊雑宮 （皇大神宮 別宮）",
+   "url": "https://www.kankomie.or.jp/spot/22402",
+   "categories": [
+    "伊勢神宮関連",
+    "歴史・文化に触れる",
+    "自然・花を愛でる",
+    "絶景スポット"
+   ],
+   "address": "志摩市磯部町上之郷374",
+   "coords": [
+    136.809011,
+    34.380067
+   ],
+   "official": "https://www.isejingu.or.jp/about/outerbetsugu/"
+  },
+  {
+   "id": 9022,
+   "name": "伊勢えび大王像",
+   "url": "https://www.kankomie.or.jp/spot/9022",
+   "categories": [
+    "歴史・文化に触れる",
+    "テーマパークで遊ぶ"
+   ],
+   "address": "志摩市浜島町浜島",
+   "coords": [
+    136.744716,
+    34.299016
+   ],
+   "official": "https://www.kanko-shima.com/purpose/2237/"
+  },
+  {
+   "id": 3217,
+   "name": "阿児ライブラリー",
+   "url": "https://www.kankomie.or.jp/spot/3217",
+   "categories": [
+    "テーマパークで遊ぶ"
+   ],
+   "address": "志摩市阿児町神明１０７４-１５",
+   "coords": [
+    136.829863,
+    34.322424
+   ],
+   "official": "https://www.lics-saas.nexs-service.jp/shima/index.html"
+  },
+  {
+   "id": 9023,
+   "name": "八幡さん公園",
+   "url": "https://www.kankomie.or.jp/spot/9023",
+   "categories": [
+    "キャンプ・スポーツを満喫"
+   ],
+   "address": "志摩市大王町波切111",
+   "coords": [
+    136.898274,
+    34.275672
+   ],
+   "official": "https://www.kanko-shima.com/purpose/2217/"
+  },
+  {
+   "id": 9035,
+   "name": "片田稲荷神社",
+   "url": "https://www.kankomie.or.jp/spot/9035",
+   "categories": [
+    "歴史・文化に触れる"
+   ],
+   "address": "志摩市志摩町片田",
+   "coords": [
+    136.853777,
+    34.262361
+   ],
+   "official": "http://www.ohyamanet.com/~katadainari/index0.htm"
+  },
+  {
+   "id": 2943,
+   "name": "波切神社",
+   "url": "https://www.kankomie.or.jp/spot/2943",
+   "categories": [
+    "歴史・文化に触れる"
+   ],
+   "address": "志摩市大王町波切1",
+   "coords": [
+    136.899873,
+    34.278571
+   ],
+   "official": null
+  },
+  {
+   "id": 1706,
+   "name": "安乗岬",
+   "url": "https://www.kankomie.or.jp/spot/1706",
+   "categories": [
+    "自然・花を愛でる"
+   ],
+   "address": "志摩市阿児町安乗",
+   "coords": [
+    136.908339,
+    34.364651
+   ],
+   "official": "http://anorisaki.com/"
+  },
+  {
+   "id": 1705,
+   "name": "市後浜",
+   "url": "https://www.kankomie.or.jp/spot/1705",
+   "categories": [
+    "自然・花を愛でる"
+   ],
+   "address": "志摩市阿児町志島",
+   "coords": [
+    136.88628,
+    34.306329
+   ],
+   "official": "http://www.kanko-shima.com/"
+  },
+  {
+   "id": 3030,
+   "name": "志摩国分寺",
+   "url": "https://www.kankomie.or.jp/spot/3030",
+   "categories": [
+    "歴史・文化に触れる"
+   ],
+   "address": "志摩市阿児町国府3476",
+   "coords": [
+    136.880031,
+    34.348469
+   ],
+   "official": "http://www.kanko-shima.com/"
+  },
+  {
+   "id": 2311,
+   "name": "金比羅山展望台",
+   "url": "https://www.kankomie.or.jp/spot/2311",
+   "categories": [
+    "自然・花を愛でる",
+    "絶景スポット"
+   ],
+   "address": "志摩市志摩町御座",
+   "coords": [
+    136.77529,
+    34.273079
+   ],
+   "official": null
+  },
+  {
+   "id": 2939,
+   "name": "伊雑宮",
+   "url": "https://www.kankomie.or.jp/spot/2939",
+   "categories": [
+    "伊勢神宮関連",
+    "歴史・文化に触れる"
+   ],
+   "address": "志摩市磯部町上之郷",
+   "coords": [
+    136.809011,
+    34.380067
+   ],
+   "official": "https://www.isejingu.or.jp/about/outerbetsugu/"
+  },
+  {
+   "id": 3256,
+   "name": "横山ビジターセンター",
+   "url": "https://www.kankomie.or.jp/spot/3256",
+   "categories": [
+    "テーマパークで遊ぶ"
+   ],
+   "address": "志摩市阿児町鵜方875-24",
+   "coords": [
+    136.800417,
+    34.335233
+   ],
+   "official": "http://chubu.env.go.jp/nature/yokoyama/"
+  },
+  {
+   "id": 3307,
+   "name": "志摩市ともやま公園",
+   "url": "https://www.kankomie.or.jp/spot/3307",
+   "categories": [
+    "キャンプ・スポーツを満喫"
+   ],
+   "address": "志摩市大王町波切2199番地",
+   "coords": [
+    136.841162,
+    34.288088
+   ],
+   "official": null
+  },
+  {
+   "id": 1714,
+   "name": "大王崎",
+   "url": "https://www.kankomie.or.jp/spot/1714",
+   "categories": [
+    "自然・花を愛でる",
+    "テーマパークで遊ぶ"
+   ],
+   "address": "志摩市大王町波切",
+   "coords": [
+    136.899343,
+    34.276133
+   ],
+   "official": "http://www.kanko-shima.com/"
+  },
+  {
+   "id": 1704,
+   "name": "国府白浜",
+   "url": "https://www.kankomie.or.jp/spot/1704",
+   "categories": [
+    "自然・花を愛でる"
+   ],
+   "address": "志摩市阿児町国府",
+   "coords": [
+    136.877117,
+    34.331866
+   ],
+   "official": "http://www.kanko-shima.com/"
+  },
+  {
+   "id": 22275,
+   "name": "海女小屋体験施設さとうみ庵",
+   "url": "https://www.kankomie.or.jp/spot/22275",
+   "categories": [
+    "歴史・文化に触れる",
+    "テーマパークで遊ぶ",
+    "体験プランで思い出作り",
+    "雨の日もOK",
+    "絶景スポット"
+   ],
+   "address": "志摩市志摩町越賀2279",
+   "coords": [
+    136.781035,
+    34.262253
+   ],
+   "official": "http://satoumian.com/"
+  },
+  {
+   "id": 1711,
+   "name": "御座岬",
+   "url": "https://www.kankomie.or.jp/spot/1711",
+   "categories": [
+    "自然・花を愛でる"
+   ],
+   "address": "志摩市志摩町御座",
+   "coords": [
+    136.750195,
+    34.270065
+   ],
+   "official": null
+  },
+  {
+   "id": 1712,
+   "name": "あづり浜",
+   "url": "https://www.kankomie.or.jp/spot/1712",
+   "categories": [
+    "自然・花を愛でる"
+   ],
+   "address": "志摩市志摩町越賀",
+   "coords": [
+    136.781104,
+    34.261132
+   ],
+   "official": null
+  },
+  {
+   "id": 23706,
+   "name": "ビン玉ロード",
+   "url": "https://www.kankomie.or.jp/spot/23706",
+   "categories": [
+    "絶景スポット"
+   ],
+   "address": "志摩市浜島町浜島",
+   "coords": [
+    136.748972,
+    34.293783
+   ],
+   "official": null
+  },
+  {
+   "id": 3313,
+   "name": "御座岬キャンプ場",
+   "url": "https://www.kankomie.or.jp/spot/3313",
+   "categories": [
+    "キャンプ・スポーツを満喫"
+   ],
+   "address": "志摩市志摩町御座",
+   "coords": [
+    136.759502,
+    34.271009
+   ],
+   "official": null
+  },
+  {
+   "id": 3703,
+   "name": "近鉄浜島カンツリークラブ",
+   "url": "https://www.kankomie.or.jp/spot/3703",
+   "categories": [
+    "キャンプ・スポーツを満喫"
+   ],
+   "address": "志摩市浜島町迫子字上浦山1614-1",
+   "coords": [
+    136.780125,
+    34.311678
+   ],
+   "official": "http://golf-resort.kintetsu-re.co.jp/mie/hamajima/"
+  },
+  {
+   "id": 3705,
+   "name": "近鉄賢島カンツリークラブ",
+   "url": "https://www.kankomie.or.jp/spot/3705",
+   "categories": [
+    "キャンプ・スポーツを満喫"
+   ],
+   "address": "志摩市阿児町鵜方3620-5",
+   "coords": [
+    136.807267,
+    34.319384
+   ],
+   "official": "http://www.kintetsu-re.co.jp/kashikojima/"
+  },
+  {
+   "id": 23479,
+   "name": "海上タクシー（賢島～志摩地中海村）海さんぽ＆カフェEntrada賢島",
+   "url": "https://www.kankomie.or.jp/spot/23479",
+   "categories": [
+    "自然・花を愛でる",
+    "絶景スポット"
+   ],
+   "address": "志摩市阿児町神明",
+   "coords": null,
+   "official": "https://entrada-kashikojima.com/"
+  },
+  {
+   "id": 3621,
+   "name": "阿児ふるさと公園",
+   "url": "https://www.kankomie.or.jp/spot/3621",
+   "categories": [
+    "キャンプ・スポーツを満喫"
+   ],
+   "address": "志摩市阿児町神明",
+   "coords": [
+    136.830791,
+    34.324237
+   ],
+   "official": null
+  },
+  {
+   "id": 4020,
+   "name": "伊良子清白の詩碑",
+   "url": "https://www.kankomie.or.jp/spot/4020",
+   "categories": [
+    "歴史・文化に触れる"
+   ],
+   "address": "志摩市阿児町安乗",
+   "coords": [
+    136.907008,
+    34.364552
+   ],
+   "official": null
+  },
+  {
+   "id": 9036,
+   "name": "越賀神社",
+   "url": "https://www.kankomie.or.jp/spot/9036",
+   "categories": [
+    "歴史・文化に触れる"
+   ],
+   "address": "志摩市志摩町越賀",
+   "coords": [
+    136.796485,
+    34.257514
+   ],
+   "official": null
+  },
+  {
+   "id": 9030,
+   "name": "磯部神社",
+   "url": "https://www.kankomie.or.jp/spot/9030",
+   "categories": [
+    "歴史・文化に触れる"
+   ],
+   "address": "志摩市磯部町恵利原",
+   "coords": [
+    136.803816,
+    34.377027
+   ],
+   "official": null
+  },
+  {
+   "id": 22381,
+   "name": "安乗神社",
+   "url": "https://www.kankomie.or.jp/spot/22381",
+   "categories": [
+    "歴史・文化に触れる"
+   ],
+   "address": "志摩市阿児町安乗844",
+   "coords": [
+    136.90469,
+    34.362198
+   ],
+   "official": "http://www.kanko-shima.com/"
+  },
+  {
+   "id": 3618,
+   "name": "崎山公園",
+   "url": "https://www.kankomie.or.jp/spot/3618",
+   "categories": [
+    "キャンプ・スポーツを満喫"
+   ],
+   "address": "志摩市大王町波切",
+   "coords": [
+    136.900649,
+    34.279049
+   ],
+   "official": null
+  },
+  {
+   "id": 23154,
+   "name": "志摩市観光案内所",
+   "url": "https://www.kankomie.or.jp/spot/23154",
+   "categories": [
+    "雨の日もOK"
+   ],
+   "address": "志摩市阿児町鵜方1670-2（近鉄鵜方駅改札階）",
+   "coords": [
+    136.825983,
+    34.329357
+   ],
+   "official": "https://kanko-shima.com/"
+  },
+  {
+   "id": 4021,
+   "name": "円空仏",
+   "url": "https://www.kankomie.or.jp/spot/4021",
+   "categories": [
+    "歴史・文化に触れる"
+   ],
+   "address": "志摩市阿児町立神",
+   "coords": [
+    136.857542,
+    34.300249
+   ],
+   "official": null
+  },
+  {
+   "id": 3623,
+   "name": "わたかの園地",
+   "url": "https://www.kankomie.or.jp/spot/3623",
+   "categories": [
+    "キャンプ・スポーツを満喫"
+   ],
+   "address": "志摩市磯部町渡鹿野",
+   "coords": [
+    136.876647,
+    34.367201
+   ],
+   "official": null
+  },
+  {
+   "id": 3042,
+   "name": "御座爪切不動尊",
+   "url": "https://www.kankomie.or.jp/spot/3042",
+   "categories": [
+    "歴史・文化に触れる"
+   ],
+   "address": "志摩市志摩町御座",
+   "coords": [
+    136.773171,
+    34.274391
+   ],
+   "official": null
+  },
+  {
+   "id": 23362,
+   "name": "宇賀多神社",
+   "url": "https://www.kankomie.or.jp/spot/23362",
+   "categories": [
+    "歴史・文化に触れる"
+   ],
+   "address": "志摩市阿児町鵜方1550",
+   "coords": [
+    136.823277,
+    34.332537
+   ],
+   "official": null
+  },
+  {
+   "id": 3329,
+   "name": "やまみオートキャンプ場",
+   "url": "https://www.kankomie.or.jp/spot/3329",
+   "categories": [
+    "キャンプ・スポーツを満喫"
+   ],
+   "address": "志摩市志摩町御座803-1",
+   "coords": [
+    136.760685,
+    34.272226
+   ],
+   "official": "http://yamami-camp.com/"
+  },
+  {
+   "id": 2312,
+   "name": "登茂山展望台(慕情が丘展望台）",
+   "url": "https://www.kankomie.or.jp/spot/2312",
+   "categories": [
+    "キャンプ・スポーツを満喫"
+   ],
+   "address": "志摩市大王町登茂山",
+   "coords": [
+    136.837654,
+    34.287325
+   ],
+   "official": "http://www.kanko-shima.com/"
+  },
+  {
+   "id": 2242,
+   "name": "的矢湾大橋",
+   "url": "https://www.kankomie.or.jp/spot/2242",
+   "categories": [
+    "自然・花を愛でる",
+    "キャンプ・スポーツを満喫"
+   ],
+   "address": "志摩市磯部町的矢",
+   "coords": [
+    136.848573,
+    34.37037
+   ],
+   "official": "http://www.kanko-shima.com/"
+  },
+  {
+   "id": 3873,
+   "name": "志摩市浜島Ｂ＆Ｇ海洋センター",
+   "url": "https://www.kankomie.or.jp/spot/3873",
+   "categories": [
+    "キャンプ・スポーツを満喫"
+   ],
+   "address": "志摩市浜島町浜島3564-4",
+   "coords": [
+    136.763798,
+    34.294295
+   ],
+   "official": null
+  },
+  {
+   "id": 9020,
+   "name": "塩鹿ビーチ",
+   "url": "https://www.kankomie.or.jp/spot/9020",
+   "categories": [
+    "自然・花を愛でる",
+    "キャンプ・スポーツを満喫"
+   ],
+   "address": "志摩市浜島町浜島",
+   "coords": [
+    136.738606,
+    34.301794
+   ],
+   "official": null
+  },
+  {
+   "id": 1906,
+   "name": "おじょか古墳",
+   "url": "https://www.kankomie.or.jp/spot/1906",
+   "categories": [
+    "歴史・文化に触れる"
+   ],
+   "address": "志摩市阿児町志島512-1",
+   "coords": [
+    136.889466,
+    34.310317
+   ],
+   "official": "http://www.city.shima.mie.jp/"
+  },
+  {
+   "id": 3816,
+   "name": "浜島ふるさと公園",
+   "url": "https://www.kankomie.or.jp/spot/3816",
+   "categories": [
+    "キャンプ・スポーツを満喫"
+   ],
+   "address": "志摩市浜島町桧山路553",
+   "coords": [
+    136.757579,
+    34.320403
+   ],
+   "official": null
+  },
+  {
+   "id": 9031,
+   "name": "薬師堂",
+   "url": "https://www.kankomie.or.jp/spot/9031",
+   "categories": [
+    "歴史・文化に触れる"
+   ],
+   "address": "志摩市磯部町五知",
+   "coords": [
+    136.79583,
+    34.411391
+   ],
+   "official": null
+  },
+  {
+   "id": 3309,
+   "name": "御座白浜キャンプ場",
+   "url": "https://www.kankomie.or.jp/spot/3309",
+   "categories": [
+    "キャンプ・スポーツを満喫"
+   ],
+   "address": "志摩市志摩町御座",
+   "coords": [
+    136.763697,
+    34.275327
+   ],
+   "official": null
+  },
+  {
+   "id": 9033,
+   "name": "御座白浜マリンブルーバンガロー",
+   "url": "https://www.kankomie.or.jp/spot/9033",
+   "categories": [
+    "キャンプ・スポーツを満喫"
+   ],
+   "address": "志摩市志摩町御座７７６",
+   "coords": [
+    136.763075,
+    34.273593
+   ],
+   "official": null
+  },
+  {
+   "id": 3044,
+   "name": "三蔵寺",
+   "url": "https://www.kankomie.or.jp/spot/3044",
+   "categories": [
+    "歴史・文化に触れる"
+   ],
+   "address": "志摩市志摩町片田",
+   "coords": [
+    136.846181,
+    34.251457
+   ],
+   "official": null
+  },
+  {
+   "id": 2956,
+   "name": "楠御前八柱神社（楠の宮）",
+   "url": "https://www.kankomie.or.jp/spot/2956",
+   "categories": [
+    "歴史・文化に触れる"
+   ],
+   "address": "志摩市浜島町南張",
+   "coords": [
+    136.720192,
+    34.307412
+   ],
+   "official": null
+  },
+  {
+   "id": 3447,
+   "name": "ともやま公園遊歩道",
+   "url": "https://www.kankomie.or.jp/spot/3447",
+   "categories": [
+    "キャンプ・スポーツを満喫"
+   ],
+   "address": "志摩市大王町登茂山",
+   "coords": [
+    136.841669,
+    34.287556
+   ],
+   "official": null
+  },
+  {
+   "id": 2941,
+   "name": "八重垣神社",
+   "url": "https://www.kankomie.or.jp/spot/2941",
+   "categories": [
+    "歴史・文化に触れる"
+   ],
+   "address": "志摩市磯部町渡鹿野",
+   "coords": [
+    136.874098,
+    34.360821
+   ],
+   "official": "http://www.city.shima.mie.jp/"
+  },
+  {
+   "id": 9032,
+   "name": "大日堂",
+   "url": "https://www.kankomie.or.jp/spot/9032",
+   "categories": [
+    "歴史・文化に触れる"
+   ],
+   "address": "志摩市磯部町三ヶ所",
+   "coords": [
+    136.867456,
+    34.35395
+   ],
+   "official": null
+  },
+  {
+   "id": 2932,
+   "name": "横山石神神社",
+   "url": "https://www.kankomie.or.jp/spot/2932",
+   "categories": [
+    "歴史・文化に触れる"
+   ],
+   "address": "志摩市阿児町鵜方",
+   "coords": [
+    136.801511,
+    34.333886
+   ],
+   "official": null
+  },
+  {
+   "id": 3449,
+   "name": "横山ハイキングコース",
+   "url": "https://www.kankomie.or.jp/spot/3449",
+   "categories": [
+    "自然・花を愛でる",
+    "キャンプ・スポーツを満喫"
+   ],
+   "address": "志摩市阿児町鵜方",
+   "coords": [
+    136.798983,
+    34.332096
+   ],
+   "official": null
+  },
+  {
+   "id": 3308,
+   "name": "御座白浜はまゆうバンガロー",
+   "url": "https://www.kankomie.or.jp/spot/3308",
+   "categories": [
+    "キャンプ・スポーツを満喫"
+   ],
+   "address": "志摩市志摩町御座",
+   "coords": [
+    136.76341,
+    34.273873
+   ],
+   "official": "http://shirahama-hamayu.com/"
+  },
+  {
+   "id": 1766,
+   "name": "志摩総合スポーツ公園",
+   "url": "https://www.kankomie.or.jp/spot/1766",
+   "categories": [
+    "キャンプ・スポーツを満喫"
+   ],
+   "address": "志摩市志摩町布施田1103",
+   "coords": [
+    136.821644,
+    34.253093
+   ],
+   "official": null
+  },
+  {
+   "id": 9047,
+   "name": "西山慕情ヶ丘",
+   "url": "https://www.kankomie.or.jp/spot/9047",
+   "categories": [
+    "自然・花を愛でる",
+    "キャンプ・スポーツを満喫"
+   ],
+   "address": "志摩市阿児町立神",
+   "coords": [
+    136.828939,
+    34.303532
+   ],
+   "official": "http://www.city.shima.mie.jp/"
+  },
+  {
+   "id": 3243,
+   "name": "的矢湾遊覧",
+   "url": "https://www.kankomie.or.jp/spot/3243",
+   "categories": [
+    "テーマパークで遊ぶ"
+   ],
+   "address": "志摩市磯部町渡鹿野",
+   "coords": [
+    136.878675,
+    34.355679
+   ],
+   "official": "http://www.amigo.ne.jp/~daitou/"
+  },
+  {
+   "id": 3239,
+   "name": "あご湾めぐりと船上バーベキュー【いわほ観光汽船】",
+   "url": "https://www.kankomie.or.jp/spot/3239",
+   "categories": [
+    "テーマパークで遊ぶ"
+   ],
+   "address": "志摩市浜島町塩屋511-113",
+   "coords": [
+    136.762919,
+    34.310325
+   ],
+   "official": null
+  },
+  {
+   "id": 2485,
+   "name": "志摩市志摩Ｂ＆Ｇ海洋センター",
+   "url": "https://www.kankomie.or.jp/spot/2485",
+   "categories": [
+    "キャンプ・スポーツを満喫"
+   ],
+   "address": "志摩市志摩町布施田１１０１",
+   "coords": [
+    136.823125,
+    34.253963
+   ],
+   "official": null
+  },
+  {
+   "id": 3820,
+   "name": "磯部ふれあい公園",
+   "url": "https://www.kankomie.or.jp/spot/3820",
+   "categories": [
+    "キャンプ・スポーツを満喫"
+   ],
+   "address": "志摩市磯部町恵利原557-1",
+   "coords": [
+    136.807775,
+    34.387491
+   ],
+   "official": "http://www.city.shima.mie.jp/"
+  },
+  {
+   "id": 2528,
+   "name": "阿児アリーナ",
+   "url": "https://www.kankomie.or.jp/spot/2528",
+   "categories": [
+    "歴史・文化に触れる"
+   ],
+   "address": "志摩市阿児町神明１０７４-１４",
+   "coords": [
+    136.830444,
+    34.323033
+   ],
+   "official": null
+  },
+  {
+   "id": 3242,
+   "name": "的矢湾めぐりと船上バーベキュー",
+   "url": "https://www.kankomie.or.jp/spot/3242",
+   "categories": [
+    "テーマパークで遊ぶ"
+   ],
+   "address": "志摩市磯部町渡鹿野",
+   "coords": [
+    136.878675,
+    34.355679
+   ],
+   "official": "http://www.amigo.ne.jp/~daitou/"
+  },
+  {
+   "id": 1935,
+   "name": "阿児特産物開発センター",
+   "url": "https://www.kankomie.or.jp/spot/1935",
+   "categories": [],
+   "address": "志摩市阿児町神明２０３４",
+   "coords": [
+    136.855434,
+    34.311681
+   ],
+   "official": "http://www6.ocn.ne.jp/~agotoku/"
+  },
+  {
+   "id": 3619,
+   "name": "長田小公園",
+   "url": "https://www.kankomie.or.jp/spot/3619",
+   "categories": [
+    "自然・花を愛でる",
+    "キャンプ・スポーツを満喫"
+   ],
+   "address": "志摩市志摩町布施田",
+   "coords": [
+    136.833655,
+    34.260522
+   ],
+   "official": null
+  },
+  {
+   "id": 3620,
+   "name": "和具漁港緑地公園",
+   "url": "https://www.kankomie.or.jp/spot/3620",
+   "categories": [
+    "キャンプ・スポーツを満喫"
+   ],
+   "address": "志摩市志摩町和具",
+   "coords": [
+    136.804991,
+    34.2548
+   ],
+   "official": null
+  },
+  {
+   "id": 9025,
+   "name": "堂の山 薬師如来座像",
+   "url": "https://www.kankomie.or.jp/spot/9025",
+   "categories": [
+    "歴史・文化に触れる"
+   ],
+   "address": "志摩市大王町波切",
+   "coords": [
+    136.895344,
+    34.278466
+   ],
+   "official": null
+  },
+  {
+   "id": 3467,
+   "name": "磯部大王自転車道",
+   "url": "https://www.kankomie.or.jp/spot/3467",
+   "categories": [
+    "キャンプ・スポーツを満喫"
+   ],
+   "address": "志摩市磯部町～大王町",
+   "coords": [
+    136.830582,
+    34.328523
+   ],
+   "official": null
+  }
+ ]
+}
