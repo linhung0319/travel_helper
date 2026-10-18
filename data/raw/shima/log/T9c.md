@@ -95,3 +95,64 @@
 
 ### 數量
 - 第 2 批 33 筆：included 16、pending 5、excluded 1、not-included 11。兩批合計收錄預定 51、pending 14。
+
+---
+
+## 第 3 批：shima-daio、shima-tomoyama、shima-goza、shima-wagu、shima-hamajima、shima-sakko、shima-other
+
+- 日期：2026-10-18。工作目錄 `data/cache/work/t9c-3/`。
+- Chrome：1 個分頁，browser_batch 8 次（第 1 次是波切列表＋町名代碼的 DOM 調查；町名列表 rt 18 頁、個室・貸切篩選 14 頁、關鍵字搜尋 8 頁）；沒有遇到驗證碼、登入、封鎖。結束時 `localStorage.removeItem("__th_tabelog-list")`、關掉分頁。
+- **WebSearch 3 次**（限 kankomie.or.jp）、WebFetch 8 次（觀光三重 season/article/178、report/1992、report/2225、report/997、topic/480、spot/376、report/993、report/305，一篇一次；spot/376 是鳥羽的總覽頁，沒用）。沒有遇到搜尋沒結果、額度用完。
+
+### 工具
+- 沒有改工具。數量控制原本預定 `add --replace` 整批重寫第 1 批，改成用 `candidates.mjs set` 只寫回有差異的 7 筆（`qc-patch.json`）；`t9c-1/rules.json` 加了 `thresholds`，重跑 build 和候選檔一致（重跑前先確認過：沒有 thresholds 的 build 和當時的候選檔 74 筆完全相同）。
+
+### 看過的食べログ列表（全部評分排序 `?SrtT=rt`；個室 `&ChkRoom=1&ChkSemiRoom=1`、貸切 `cond09-00-00`）
+| 町 | 網址 | 件數（rt／個室／貸切） | 看到 |
+|---|---|---|---|
+| 大王町波切 | https://tabelog.com/mie/C24215/C70690/rstLst/（＋/2/） | 29／1／3 | 全部 |
+| 大王町畔名 | https://tabelog.com/mie/C24215/C70689/rstLst/ | 1／—／— | 全部（3.10 以上 0，篩選沒看） |
+| 大王町船越 | https://tabelog.com/mie/C24215/C70692/rstLst/ | 11／3／0 | 全部 |
+| 志摩町片田 | https://tabelog.com/mie/C24215/C70684/rstLst/ | 7／—／— | 全部（15 則以上 0，篩選沒看） |
+| 志摩町御座 | https://tabelog.com/mie/C24215/C70685/rstLst/ | 19／—／— | 全部（同上） |
+| 志摩町越賀 | https://tabelog.com/mie/C24215/C70686/rstLst/ | 10／4／4 | 全部 |
+| 志摩町布施田 | https://tabelog.com/mie/C24215/C70687/rstLst/ | 11／—／— | 全部（同上） |
+| 志摩町和具 | https://tabelog.com/mie/C24215/C70688/rstLst/（＋/2/） | 37／3／11 | 全部 |
+| 浜島町塩屋 | https://tabelog.com/mie/C24215/C70693/rstLst/ | 1／—／— | 全部 |
+| 浜島町南張 | https://tabelog.com/mie/C24215/C70694/rstLst/ | 2／—／— | 全部 |
+| 浜島町迫子 | https://tabelog.com/mie/C24215/C70695/rstLst/（＋/2/） | 22／3／1 | 全部 |
+| 浜島町浜島 | https://tabelog.com/mie/C24215/C70696/rstLst/（＋/2/） | 30／7／5 | 全部 |
+| 浜島町桧山路 | https://tabelog.com/mie/C24215/C70697/rstLst/ | 2／—／— | 全部 |
+| 阿児町立神 | https://tabelog.com/mie/C24215/C70666/rstLst/ | 6／1／2 | 全部 |
+| 關鍵字 | https://tabelog.com/mie/C24215/rstLst/?SrtT=rt&sw=大王町、志摩町、浜島町、阿児町甲賀、阿児町立神、阿児町志島、阿児町安乗、阿児町国府 | 26／1／1／5／1／1／7／10 | 第 1 頁；比對結果 `kw/ago-keywords.txt`（町名外的只有 国府 的 ESSE 3.02／3）。「志摩町」「浜島町」只比對店名，結果是推薦的店，沒存檔 |
+
+- 大王町的町名頁只有畔名、波切、船越（名田沒有）；志摩町 5 個、浜島町 5 個都有。
+- 3.10 未満的店沒有寫進候選，例外是有 override 的 D、F（大万、どんぐり、槙之木、はまなぎ、磯人、海女の庭、縁、志摩半島、火場 広の浜、西口屋、味幸、きゅう、庄助）。
+
+### 媒體、觀光（WebSearch 3 次）
+1. 「観光三重 大王町 波切 浜島 和具 グルメ ランチ 海鮮 おすすめ」→ report/2225（2026-09-29 兜風路線：シェブロン 10:00～20:00（火～15:00）、まつむら、田中料理店）、report/997（2021，アクアフォレスト 夕食ビュッフェ）、海鮮丼特集（志摩 0）。另外直接 WebFetch 第 2 批記下的 season/article/178（大王荘）、report/1992（トッポリーノ）。
+2. 「観光三重 伊勢えび 特集 食べられる店 志摩 浜島 御座 海女小屋」→ topic/480（海女の庭，2024-03-27）、spot/376（鳥羽的海女小屋總覽）、民宿 やまや、山万（spot 頁，住宿）。
+3. 「観光三重 志摩地中海村 NEMU RESORT アマネム レストラン ランチ 日帰り」→ report/993（地中海村，2021-11-20：ココチャ、アスール 日帰り可）、report/305（NEMU，2022-10-12：里海、ロビーラウンジ）。アマネム 沒有觀光三重的記事。
+
+### 納入判斷
+- **子地區**：`rules.json` 的 `regions`（大王町船越、波切ともやま → tomoyama；波切・畔名・名田 → daio；御座・越賀 → goza；和具・布施田・片田 → wagu；浜島町迫子 → sakko；其他浜島町 → hamajima；阿児町立神 → other）。
+- **景點的用餐不重複**：さとうみ庵（A）excluded，用餐見 spot（同鳥羽 はちまんかまど）。
+- **F②**：海女小屋 磯人、海女の庭（御座）、火場 広の浜（和具）。
+- **D①**：daio 週二（田中、十次郎 火休）→ しまや、Cafe.C.C、大万；hamajima 2/3、2/4、2/10（八代 休）→ ヨット、坂のうえ、西口屋；tomoyama A～C 0 家 → はまなぎ、どんぐり、槙之木（pending）；goza A～C 0 家 → 縁、志摩半島（pending）。料理旅館 高曽 列表只有晚餐價位，沒收。other 沒有能吃午餐的店，D 補不了。
+- **D②**：登茂山的無晚餐住宿 → はまなぎ；OCEAN VILLA 倭 → 味幸；Small Resort 志摩 → 志摩半島；やどかり志摩 → 居酒屋きゅう、庄助。
+- **住宿本體 pending**：アマネム（A）、志摩地中海村（C）、ニュー浜島（C）、大江戸温泉 伊勢志摩（C）、志摩半島、槙之木；館內有店名的餐廳 included。
+- **排除**：メロンハウス かわぐち（月～金休，旅程 12 天裡 9 天）。
+- E 沒有用（這 7 區沒有近鐵車站）。
+
+### 數量
+- 第 3 批 43 筆：included 24、pending 6、excluded 2、not-included 11。
+
+---
+
+## T9c 總結
+
+- **候選 150 筆**：included 72、pending 20、excluded 13、not-included 45（三批：74＋33＋43）。
+- **數量控制**：三批合計收錄預定 75 → shima-ugata 的 A 提高到 3.40（大田屋、おとべ、すず木 取消）→ 72。C 沒提高（保留鵜方站周邊的晚餐店）；能坐 15 人的店不受影響。
+- **WebSearch：第 1 批 5、第 2 批 3、第 3 批 3，合計 11 次**（全部找觀光三重、觀光協會的特集；沒有找部落格心得）。沒有遇到搜尋沒結果、額度用完。
+- **Chrome**：三批合計 browser_batch 22 次、單獨的 navigate／javascript 約 11 次；列表約 87 頁；沒有遇到驗證碼、登入、封鎖。
+- **給 T9d**：分批 `data/cache/work/t9d-plan.json`（5 批，92 家），要確認的事見 README「給 T9d 的提醒」。
