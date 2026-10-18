@@ -1673,8 +1673,7 @@
     "category": "燈塔",
     "status": "included",
     "reason": null,
-    "pointId": null,
-    "detailPending": true,
+    "pointId": "shima-daiozaki-lighthouse",
     "mentions": [
       {
         "type": "tourism",
@@ -1730,8 +1729,7 @@
     "category": "工坊參觀",
     "status": "included",
     "reason": null,
-    "pointId": null,
-    "detailPending": true,
+    "pointId": "shima-katsuo-tenpaku",
     "mentions": [
       {
         "type": "tourism",
@@ -1766,8 +1764,7 @@
     "category": "美術館",
     "status": "included",
     "reason": null,
-    "pointId": null,
-    "detailPending": true,
+    "pointId": "shima-daio-gallery",
     "mentions": [
       {
         "type": "tourism",
@@ -1965,8 +1962,7 @@
     "category": "公園、展望台",
     "status": "included",
     "reason": null,
-    "pointId": null,
-    "detailPending": true,
+    "pointId": "shima-tomoyama-park",
     "mentions": [
       {
         "type": "tourism",
@@ -2043,8 +2039,7 @@
     "category": "自然體驗",
     "status": "included",
     "reason": null,
-    "pointId": null,
-    "detailPending": true,
+    "pointId": "shima-nature-school",
     "mentions": [
       {
         "type": "tourism",
@@ -2106,8 +2101,7 @@
     "category": "海女小屋",
     "status": "included",
     "reason": null,
-    "pointId": null,
-    "detailPending": true,
+    "pointId": "shima-satoumian",
     "mentions": [
       {
         "type": "tourism",
@@ -2163,8 +2157,7 @@
     "category": "真珠體驗",
     "status": "included",
     "reason": null,
-    "pointId": null,
-    "detailPending": true,
+    "pointId": "shima-shinju-no-sato",
     "mentions": [
       {
         "type": "tourism",
@@ -2192,8 +2185,7 @@
     "category": "真珠體驗",
     "status": "included",
     "reason": null,
-    "pointId": null,
-    "detailPending": true,
+    "pointId": "shima-pearl-miki",
     "mentions": [
       {
         "type": "tourism",
@@ -2672,8 +2664,7 @@
     "category": "磯體驗",
     "status": "included",
     "reason": null,
-    "pointId": null,
-    "detailPending": true,
+    "pointId": "shima-umihozuki",
     "mentions": [
       {
         "type": "tourism",
@@ -2722,8 +2713,7 @@
     "category": "遊覧船",
     "status": "included",
     "reason": null,
-    "pointId": null,
-    "detailPending": true,
+    "pointId": "shima-iwaho-bbq-cruise",
     "mentions": [
       {
         "type": "tourism",
@@ -3010,8 +3000,7 @@
     "category": "度假村",
     "status": "included",
     "reason": null,
-    "pointId": null,
-    "detailPending": true,
+    "pointId": "shima-chichukaimura",
     "mentions": [
       {
         "type": "tourism",
@@ -3053,8 +3042,7 @@
     "category": "戶外遊樂",
     "status": "included",
     "reason": null,
-    "pointId": null,
-    "detailPending": true,
+    "pointId": "shima-green-adventure",
     "mentions": [
       {
         "type": "tourism",
