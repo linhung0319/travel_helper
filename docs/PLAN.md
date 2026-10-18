@@ -63,21 +63,21 @@
 | T7g | 鳥羽：摘要與評分、校準範例、評分檢查腳本 | M | T7f | 3 | | ✅ |
 | T7h | 鳥羽：重點資料點補心得（口コミ、Google 評論）、重新打分 | S | T7g | 3 | 🌐 大量 | ⬜ |
 | T7i | 小腳本：觀光三重景點列表、じゃらん評分；補鳥羽、伊勢的じゃらん評分 | S | T7 | 3 | | ⬜ |
-| T7j | 鳥羽：深入調查（前幾名的部落格心得）、補丁式重新打分（另開 session） | S | T7h | 3 | | ⬜ |
+| T7j | 👤 鳥羽：檢討待確認的決定、深入調查（前幾名的部落格心得）、補丁式重新打分（另開 session） | S | T7h | 3 | | ⬜ |
 | T8a | 伊勢（含二見）：子地區與景點 | M | T7 | 3 | 🌐 大量 | ✅ |
 | T8b | 伊勢（含二見）：住宿 | M | T8a、T7d | 3 | 🌐 大量 | ✅ |
 | T8c | 伊勢（含二見）餐廳：候選名單 | M | T8b | 3 | 🌐 大量 | ✅ |
 | T8d | 伊勢（含二見）餐廳：詳細資料 | L | T8c | 3 | 🌐 大量 | ✅ |
 | T8e | 伊勢（含二見）：收尾（anchors、缺漏檢查、地圖檢查）、重點資料點補心得 | M | T8d | 3 | 🌐 大量 | ⬜ |
 | T8f | 伊勢（含二見）：摘要與評分 | M | T8e、T7g | 3 | | ⬜ |
-| T8g | 伊勢（含二見）：深入調查、補丁式重新打分（另開 session） | S | T8f | 3 | | ⬜ |
+| T8g | 👤 伊勢（含二見）：檢討待確認的決定、深入調查、補丁式重新打分（另開 session） | S | T8f | 3 | | ⬜ |
 | T9a | 志摩：子地區與景點 | M | T7 | 3 | 🌐 大量 | ⬜ |
 | T9b | 志摩：住宿 | M | T9a、T7d | 3 | 🌐 大量 | ⬜ |
 | T9c | 志摩餐廳：候選名單 | M | T9b | 3 | 🌐 大量 | ⬜ |
 | T9d | 志摩餐廳：詳細資料 | M | T9c | 3 | 🌐 大量 | ⬜ |
 | T9e | 志摩：收尾（anchors、缺漏檢查、地圖檢查） | S | T9d | 3 | 🌐 少量 | ⬜ |
 | T9f | 志摩：摘要與評分 | M | T9e、T7g | 3 | | ⬜ |
-| T9g | 志摩：深入調查、補丁式重新打分（另開 session） | S | T9f | 3 | | ⬜ |
+| T9g | 👤 志摩：檢討待確認的決定、深入調查、補丁式重新打分（另開 session） | S | T9f | 3 | | ⬜ |
 | T10 | 巴士時刻表（需要搭巴士的景點路線）、JR 參宮線 | M | T8a、T9a | 3 | | ⬜ |
 | T11 | 地圖網站 v1：圖層、詳情面板、車站時刻表面板 | M | T5、T7 | 3 | 🌐 少量 | ⬜ |
 | T12 | 地圖動作 API（給 UI 和 AI 共用的地圖指令） | S | T11 | 3 | 🌐 少量 | ⬜ |
@@ -229,7 +229,7 @@ T7c → T7d → T7e → T7f → T7g → T8a → T8b → T8c → T8d → T7i → 
 
 **和手動模式不同的規則**：
 - **分支**：每個任務從 master 開自己的分支（不用 worktree，指揮 session 在主目錄工作），做完由指揮 session 驗證後**自動 merge**、再驗證、把 §2 的狀態改成 ✅、刪分支。出問題時只要 revert 那一個 merge。
-- **不問問題**：任務卡裡要 👤 決定的地方（T8a、T9a 的子地區確認、T7g 評分檢查列出的項目、fit15 的疑問、納入標準的邊界等）照規則自己決定，寫進 `docs/decisions-pending.md`（日期、任務、決定、理由、怎麼改回）。👤 之後再看，要改的話另外開 session 改。
+- **不問問題**：任務卡裡要 👤 決定的地方（T8a、T9a 的子地區確認、T7g 評分檢查列出的項目、fit15 的疑問、納入標準的邊界等）照規則自己決定，寫進 `docs/decisions-pending.md`（日期、任務、決定、理由、怎麼改回）。**會改變收錄或排除、`fit15`／`groupFit`、子地區、評分門檻，或擴大解釋、違反 CONVENTIONS 規則的決定**，另外加到 decisions-pending 開頭「👤 建議先看」該區的清單（一行：任務、決定、為什麼要看）；邊界判斷只寫表格。這些要討論的決定，集中在該區的 g 任務（T7j、T8g、T9g）和 👤 一起看，不在自動流程中停下來問。
 - **只有這些情況才停**：驗證修 2 次還不過、merge 衝突、前置任務失敗、整個任務因為 API 或 Chrome 連續失敗而做不下去。網站要求驗證碼、登入或封鎖時**不繞過**：那一部分跳過、記錄，繼續做其他部分。
 - **紀錄**：每個任務結束在 `docs/auto-run-log.md` 加一行（任務、時間、merge commit、驗證、跳過或要 👤 看的事）。中斷後重開指揮 session，從這份紀錄接著做。
 - **定期換 session（WebSearch 額度）**：一個 session 的 WebSearch 是 200 次，指揮 session 和所有 subagent 共用，用完**不會報錯**（subagent 會默默只剩 WebFetch，T7e 發生過）。所以每個任務 subagent 回報 WebSearch 用了幾次，寫在 auto-run-log 那一行的最後一欄（「WebSearch N 次」）；**累計超過約 120 次、或已經做完 3 個任務**，就在 auto-run-log 寫「換 session（累計 N 次）」後停下來，請 👤 開新的指揮 session、貼同一個 prompt 接著做（`/clear` 也會歸零）。
@@ -452,9 +452,10 @@ T7c → T7d → T7e → T7f → T7g → T8a → T8b → T8c → T8d → T7i → 
 - **山田館**（伊勢，候選 `ise-yamadakan`，excluded）：官網最多 80 人、有宴會場，只因 Google 3.4（50 則）被排除（T8b）。腳本補查它的じゃらん評分，寫進候選的 `ratings` 和 README；10 則以上而且 3.8 以上的話，照 §5.7 不該排除，交給 T8e 照讀文筆記（`dossiers/ise-yamadakan.md`）補進 `lodging.json`（2026-10-18 👤 決定）。
 - 寫 `scripts/`、`data/derived/`、三區的 `lodging.json`（只動 `ratings`、`sources`），伊勢候選清單的山田館 `ratings`。
 
-#### T7j 深入調查、補丁式重新打分 〔S〕（另開 session）
+#### T7j 👤 檢討待確認的決定、深入調查、補丁式重新打分 〔S〕（另開 session）
+- **先和 👤 檢討**：讀 `docs/decisions-pending.md` 開頭「👤 建議先看」裡這一區還沒打勾的項目（不用讀整張表），逐項說明影響、給建議，讓 👤 決定；改了的照決定修資料、規則寫進 CONVENTIONS，打勾並在表格最後加一列。檢討完才挑深入調查的對象（決定可能改變收錄或分數）。
 - T7h 完成後做。照 CONVENTIONS §4「深入調查」：挑鳥羽的前幾名（住宿 S、A 而且 `groupFit` 4 以上；餐廳 S、A 加上 `groupFit` 5；景點 S 加上 `confidence` low 的 A；最多 25 筆），每筆一個 subagent 找部落格、中文心得（每筆 WebSearch 2～3 次），追加到 `dossiers/<id>.md`。
-- 只對有新資訊的那幾筆重寫 `summary`、`assessment`、`tier`（先讀 `assessment-notes.md`，標準不變）；星等或 tier 有變的列在 `data/raw/toba/README.md`，重跑評分檢查腳本。
+- 只對有新資訊、或檢討時改了資料的那幾筆重寫 `summary`、`assessment`、`tier`（先讀 `assessment-notes.md`；檢討改了評分門檻的話，受影響的全部重打）；星等或 tier 有變的列在 `data/raw/toba/README.md`，重跑評分檢查腳本。
 - **另開新的 Claude Code session（或先 `/clear`），不要放進指揮 session**；用自己的 worktree，不和鳥羽的其他任務、T13 同時做。`log/T7j.md` 記每筆的搜尋次數和找到的篇數。
 - **第二輪**：行程大致定下來後（T15 前後），照同一張任務卡，對象改成「行程選中、第一輪沒做過的」。
 - 寫 `data/raw/toba/dossiers/`、`README.md`、`log/T7j.md`、`data/areas/toba/` 三個資料檔的 `summary`、`assessment`、`tier`。
@@ -470,7 +471,7 @@ T7c → T7d → T7e → T7f → T7g → T8a → T8b → T8c → T8d → T7i → 
 | d 餐廳詳細 〔M～L〕 | 流程步驟 8：逐家查食べログ、Google Maps（同 T4b），記菜單連結、fit15 是 yes 或 split 的店的團體套餐，同時在背景開讀文 subagent；用 CONVENTIONS §4「工具」的 `candidates.mjs export` → `chrome-actions.mjs` → `build-restaurants.mjs draft／build`，不要在 scratchpad 重寫腳本；**可以依子地區拆成 2 個並行 session**，merge 時陣列衝突兩邊都保留 | Chrome、subagent | `restaurants.json`、`ig-notes.md`、筆記 |
 | e 收尾 〔S〕 | anchors（OSRM）、缺漏檢查、地圖檢查（同 T4c、T7f）；T8e 另外補心得（見下方「各區注意」） | 腳本 | `restaurants.json`、筆記 |
 | f 摘要與評分 〔M〕 | 流程步驟 10：先讀 `data/raw/toba/assessment-notes.md`，**先試算這一區 A 以上的比例，超過約 25% 照「依區調整」換門檻（伊勢的餐廳要換，試算見 assessment-notes）**，再只讀資料檔和筆記，照 §5.1 寫 `summary`、`assessment`、`tier`（同 T7g；可以依類型拆 3 個並行） | — | 三個檔案 |
-| g 深入調查 〔S〕 | 流程步驟 11（同 T7j）：f 完成後**另開新 session**（不在指揮 session 裡跑），挑前幾名找部落格、中文心得，重寫有新資訊那幾筆的評分；伊勢、二見各自算 25 筆上限；行程定了以後做第二輪 | WebSearch、subagent | 筆記、三個檔案的 `summary`／`assessment`／`tier` |
+| g 👤 檢討＋深入調查 〔S〕 | 流程步驟 11（同 T7j）：f 完成後**另開新 session**（不在指揮 session 裡跑），先和 👤 檢討「👤 建議先看」裡這一區的項目，再挑前幾名找部落格、中文心得，重寫有新資訊那幾筆的評分；伊勢、二見各自算 25 筆上限；行程定了以後做第二輪 | WebSearch、subagent | 筆記、三個檔案的 `summary`／`assessment`／`tier` |
 
 各區注意：
 - **伊勢（T8）**包含兩個區域：`ise`、`futami`（寫 `data/areas/ise/`、`data/areas/futami/`，筆記各自放在 `data/raw/ise/`、`data/raw/futami/`）。おはらい町的店很多，餐廳目標 80～100 家，T8d 建議拆成 2～3 個 session（例如：內宮・おはらい町／外宮・伊勢市站／二見）。旅程期間有 **2/3 節分**（神社活動）、**2/11 國定假日**，記在 `events`。
