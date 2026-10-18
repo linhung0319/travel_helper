@@ -9357,12 +9357,12 @@
     },
     "region": "ise-outskirts",
     "category": "海鮮丼、海鮮",
-    "status": "included",
+    "status": "excluded",
     "criteria": [
       "D1"
     ],
-    "reason": null,
-    "pointId": "ise-hakutakatei",
+    "reason": "2026-10-18 👤 決定排除：位置在朝熊 IC 的鳥羽側（離朝熊山頂 3.7 km、內宮 8.9 km），上山那天用不到；子地區調整後在 ise-outskirts，附近沒有景點需要它，D① 的理由不成立；Google 2.2（13 則）。讀文筆記 dossiers/ise-hakutakatei.md 保留",
+    "pointId": null,
     "ratings": {
       "tabelog": 3.16,
       "tabelogReviews": 63,

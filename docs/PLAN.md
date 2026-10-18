@@ -449,7 +449,8 @@ T7c → T7d → T7e → T7f → T7g → T8a → T8b → T8c → T8d → T7i → 
   - **頁面是 Shift_JIS**：用 `fetch` 取 `arrayBuffer()`，再用 `new TextDecoder('shift_jis')` 解碼（T3 用這個方法讀成功過，見 `data/raw/toba/log/T3.md`）；不要用 WebFetch 或 `res.text()`，會亂碼（T7d、T8b 就是因此沒記到）。
   - 方案、價格是動態載入，抓不到；腳本只拿總評分和評論數。
   - 現況：鳥羽 38 間有 21 間、伊勢 21 間有 1 間、二見 17 間有 1 間（二見那筆是搜尋摘要，沒有讀頁面）。補鳥羽、伊勢、二見 `lodging.json` 的 `ratings.jalan`、`ratings.jalanReviews`（只填讀得到的，讀不到維持 null；已有的值和腳本結果不同時以腳本為準，舊值寫進 `extra.conflicts`），`sources` 加じゃらん頁面。
-- 寫 `scripts/`、`data/derived/`、三區的 `lodging.json`（只動 `ratings`、`sources`）。
+- **山田館**（伊勢，候選 `ise-yamadakan`，excluded）：官網最多 80 人、有宴會場，只因 Google 3.4（50 則）被排除（T8b）。腳本補查它的じゃらん評分，寫進候選的 `ratings` 和 README；10 則以上而且 3.8 以上的話，照 §5.7 不該排除，交給 T8e 照讀文筆記（`dossiers/ise-yamadakan.md`）補進 `lodging.json`（2026-10-18 👤 決定）。
+- 寫 `scripts/`、`data/derived/`、三區的 `lodging.json`（只動 `ratings`、`sources`），伊勢候選清單的山田館 `ratings`。
 
 #### T7j 深入調查、補丁式重新打分 〔S〕（另開 session）
 - T7h 完成後做。照 CONVENTIONS §4「深入調查」：挑鳥羽的前幾名（住宿 S、A 而且 `groupFit` 4 以上；餐廳 S、A 加上 `groupFit` 5；景點 S 加上 `confidence` low 的 A；最多 25 筆），每筆一個 subagent 找部落格、中文心得（每筆 WebSearch 2～3 次），追加到 `dossiers/<id>.md`。
