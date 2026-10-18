@@ -437,7 +437,7 @@ T7c → T7d → T7e → T7f → T7g → T8a → T8b → T8c → T8d → T7i → 
 #### T7h 重點資料點補心得、重新打分 〔S〕（Chrome）
 - 背景：鳥羽餐廳 `confidence` low 57 家、high 0 家，原因是心得只找部落格，沒讀食べログ口コミ和 Google 評論（CONVENTIONS §4「取得方式」「口コミ、Google 評論」，2026-10-18）。
 - **只補重點**：餐廳 `assessment.groupFit` 5 的 12 家，加上 `tier` S、A 的店（重複的算一次，約 20～25 家）；景點、住宿只補 `tier` S、A 而且筆記心得不到 2 篇的。其他 low 的先不補，等行程縮小範圍再看。
-- 照 CONVENTIONS「口コミ、Google 評論」的固定步驟讀（用 T8e 寫的 `scripts/chrome/` 抽取程式，每家約 2～3 次 batch），補進 `dossiers/<id>.md`。評論讓 `kids`、`seating` 這類 null 欄位有了明確來源的（例如口コミ寫「有兒童餐」），照 §4 的優先順序回填資料檔，`sources` 加上該頁。
+- 照 CONVENTIONS「口コミ、Google 評論」的固定步驟讀（用 `scripts/chrome/` 的抽取程式，每家約 2～3 次 batch），補進 `dossiers/<id>.md`。評論讓 `kids`、`seating` 這類 null 欄位有了明確來源的（例如口コミ寫「有兒童餐」），用 `scripts/apply-patch.mjs` 回填資料檔（只填 null，`sources` 加上該頁）。
 - 補過的資料點照 §5.1 重新寫 `assessment`、`tier`、`summary`（先讀 `assessment-notes.md`，標準不變）；星等或 tier 有變的列在 `data/raw/toba/README.md`。重跑評分檢查腳本。
 - 寫 `data/raw/toba/dossiers/`、`data/areas/toba/` 三個資料檔的 `assessment`、`tier`、`summary`。
 
@@ -458,14 +458,14 @@ T7c → T7d → T7e → T7f → T7g → T8a → T8b → T8c → T8d → T7i → 
 - 寫 `data/raw/toba/dossiers/`、`README.md`、`log/T7j.md`、`data/areas/toba/` 三個資料檔的 `summary`、`assessment`、`tier`。
 
 ### T8a～T8f 伊勢（含二見）／ T9a～T9f 志摩
-兩區的步驟相同，照 CONVENTIONS §4 的「標準作業流程」（步驟 0～11）、「研究筆記怎麼存」和 §5 的規則。每一步都更新 `data/raw/<area>/README.md` 自己的那一節，過程寫在 `log/<任務 ID>.md`；開工先讀 README，不要整份讀其他 session 的 log。**兩區可以並行；同一區的步驟依序**。每筆從一開始就填新欄位：`region`、`links.googleMaps`、Google 星數與評論數、`photos`、數字的 `price`、`closures`，並且每筆都要有讀文筆記（subagent，`docs/prompts/dossier.md`）。
+兩區的步驟相同，照 CONVENTIONS §4 的「標準作業流程」（步驟 0～11）、「研究筆記怎麼存」和 §5 的規則。每一步都更新 `data/raw/<area>/README.md` 自己的那一節，過程寫在 `log/<任務 ID>.md`；開工先讀 README，不要整份讀其他 session 的 log。**兩區可以並行；同一區的步驟依序**。每筆從一開始就填新欄位：`region`、`links.googleMaps`、Google 星數與評論數、`photos`、數字的 `price`、`closures`，並且每筆都要有讀文筆記（subagent，`docs/prompts/dossier.md`）。一批的工作檔放 `data/cache/work/<任務>-<批>/`，用 CONVENTIONS §4「工具」的共用腳本。
 
 | 步驟 | 內容 | 工具 | 寫入 |
 |---|---|---|---|
 | a 子地區與景點 〔M〕 | 流程步驟 0～3：先定子地區，寫進 `areas.json` 該區域的 `regions`（例外允許，見 CONVENTIONS §2），👤 確認後列景點候選；每個景點一個讀文 subagent；Google Maps 用 Chrome 批次查 | WebSearch、subagent、Chrome | `areas.json` 的 regions、`spots.json`、`candidates/spots.json`、筆記 |
 | b 住宿 〔M〕 | 流程步驟 4～6：用 T7d 的 `scripts/rakuten.mjs` 依子地區和 2 月日期撈候選，套 §5.7 門檻；包棟、小民宿另外找；每間一個讀文 subagent；Google Maps 用 Chrome | 楽天 API、subagent、Chrome | `lodging.json`、`candidates/lodging.json`、筆記 |
 | c 餐廳候選 〔M〕 | 流程步驟 7：依子地區用食べログ列表、觀光協會、媒體蒐集，套 A～F（同 T4a）；列表文章的推薦重點寫進 `mentions` | Chrome | `candidates/restaurants.json` |
-| d 餐廳詳細 〔M～L〕 | 流程步驟 8：逐家查食べログ、Google Maps（同 T4b），記菜單連結、fit15 是 yes 或 split 的店的團體套餐，同時在背景開讀文 subagent；**可以依子地區拆成 2 個並行 session**，merge 時陣列衝突兩邊都保留 | Chrome、subagent | `restaurants.json`、`ig-notes.md`、筆記 |
+| d 餐廳詳細 〔M～L〕 | 流程步驟 8：逐家查食べログ、Google Maps（同 T4b），記菜單連結、fit15 是 yes 或 split 的店的團體套餐，同時在背景開讀文 subagent；用 CONVENTIONS §4「工具」的 `candidates.mjs export` → `chrome-actions.mjs` → `build-restaurants.mjs draft／build`，不要在 scratchpad 重寫腳本；**可以依子地區拆成 2 個並行 session**，merge 時陣列衝突兩邊都保留 | Chrome、subagent | `restaurants.json`、`ig-notes.md`、筆記 |
 | e 收尾 〔S〕 | anchors（OSRM）、缺漏檢查、地圖檢查（同 T4c、T7f）；T8e 另外補心得（見下方「各區注意」） | 腳本 | `restaurants.json`、筆記 |
 | f 摘要與評分 〔M〕 | 流程步驟 10：先讀 `data/raw/toba/assessment-notes.md`，再只讀資料檔和筆記，照 §5.1 寫 `summary`、`assessment`、`tier`（同 T7g；可以依類型拆 3 個並行） | — | 三個檔案 |
 | g 深入調查 〔S〕 | 流程步驟 11（同 T7j）：f 完成後**另開新 session**（不在指揮 session 裡跑），挑前幾名找部落格、中文心得，重寫有新資訊那幾筆的評分；伊勢、二見各自算 25 筆上限；行程定了以後做第二輪 | WebSearch、subagent | 筆記、三個檔案的 `summary`／`assessment`／`tier` |
@@ -473,7 +473,7 @@ T7c → T7d → T7e → T7f → T7g → T8a → T8b → T8c → T8d → T7i → 
 各區注意：
 - **伊勢（T8）**包含兩個區域：`ise`、`futami`（寫 `data/areas/ise/`、`data/areas/futami/`，筆記各自放在 `data/raw/ise/`、`data/raw/futami/`）。おはらい町的店很多，餐廳目標 80～100 家，T8d 建議拆成 2～3 個 session（例如：內宮・おはらい町／外宮・伊勢市站／二見）。旅程期間有 **2/3 節分**（神社活動）、**2/11 國定假日**，記在 `events`。
   - **T8e 補心得**（2026-10-18 加入）：T8a～T8d 是在「心得改讀口コミ、Google 評論」之前做的，96 份餐廳筆記心得幾乎 0 篇。T8e 在收尾之後、T8f 打分之前，照 CONVENTIONS「口コミ、Google 評論」的對象和固定步驟補進 `dossiers/`（餐廳約 30～50 家，加上心得不到 2 篇的景點、住宿；用 JS 抽取每家約 2～3 次 batch，退路是每家 6～7 次操作）。
-    - `scripts/chrome/tabelog-reviews.js`、`google-reviews.js` 已經寫好，2026-10-18 在 いかだ荘 實測過（CONVENTIONS「已確認」）。第一批再用 2～3 家確認能用，抓不到時照 CONVENTIONS 修正選擇器；之後的批次和 T7h、T9 直接用。評論讓 null 欄位有了明確來源的，照 §4 的優先順序回填資料檔。T8a 沒看觀光三重列表的部分由 T7i 產生清單，T13 決定要不要補。
+    - `scripts/chrome/tabelog-reviews.js`、`google-reviews.js` 已經寫好，2026-10-18 在 いかだ荘 實測過（CONVENTIONS「已確認」）。第一批再用 2～3 家確認能用，抓不到時照 CONVENTIONS 修正選擇器；之後的批次和 T7h、T9 直接用。評論讓 null 欄位有了明確來源的，用 `scripts/apply-patch.mjs` 回填資料檔。第一批順便用 2～3 家試跑 `scripts/chrome/tabelog-info.js`、`google-place.js`（2026-10-18 從 T8d 的程式整理出來，還沒在實際頁面跑過），抓不到就修選擇器，T9 才能直接用。T8a 沒看觀光三重列表的部分由 T7i 產生清單，T13 決定要不要補。
 - **志摩（T9）**的店和景點比較分散，很多地方要搭巴士或開車：子地區要標 `needsCar`，餐廳要填 `access`。第一天（2/2）傍晚才會到志摩，T9b 要特別看鵜方、賢島一帶的住宿，T9c 要找第一晚的晚餐。
   - 志摩比伊勢更鄉下，部落格心得只會更少：從一開始就照 CONVENTIONS 標準作業流程的步驟 3、6、8，由主 session 在 Chrome 讀口コミ、Google 評論補心得；讀文 subagent 只讀官網和已知網址，WebSearch 每個資料點最多 1 次（只找官網或事實來源）；部落格心得留給 T9g。
   - T9a 的景點候選先跑 T7i 的 `scripts/kanko-mie.mjs`（觀光三重列表）當母體；T9b 的じゃらん評分用 `scripts/jalan.mjs`。

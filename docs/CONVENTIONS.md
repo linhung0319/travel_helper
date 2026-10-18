@@ -33,7 +33,9 @@ travel_helper/
 │  │  ├─ questions.md        要打電話或人工確認的事
 │  │  └─ log/<任務 ID>.md    各任務的過程紀錄（寫完不再改）
 │  ├─ derived/               腳本產生的檢查結果（例如評分一致性），不要手改
-│  └─ cache/routes/          路線計算的快取
+│  └─ cache/
+│     ├─ routes/             路線計算的快取
+│     └─ work/<任務>-<批>/    一批的工作檔（batch.json、Chrome 抽取結果、facts、judgement），不進 git（見 §4「工具」）
 ├─ scripts/                  驗證、蒐集、地理計算的腳本
 └─ web/                      前端（Vite + React + TypeScript + MapLibre GL）
 ```
@@ -426,7 +428,7 @@ T7、T8 的心得幾乎是 0：鄉下小店本來就沒有個人部落格，而�
   - [小孩] 有小人松花堂弁当、お子様膳 1,100 円（有生魚片）；有帶小孩被安排進包廂的經驗（5、6）
   - [團體] 預約要打電話，曾經只收 11:00 那一輪（5，2022/11，1 則，要再確認）
   ```
-- 評論裡的事實（席數、營業時間）只當作參考，和資料檔不同時寫進 `extra.conflicts`，不覆蓋。
+- 評論裡的事實（席數、營業時間）只當作參考，和資料檔不同時寫進 `extra.conflicts`，不覆蓋。回填 null 欄位用 `scripts/apply-patch.mjs`（見「工具」），它只填 null、不同就寫進 `extra.conflicts`。
 
 #### 楽天トラベル API
 - 需要 👤 到楽天ウェブサービス註冊，取得 `applicationId` 和 `accessKey`，放在環境變數 `RAKUTEN_APPLICATION_ID`、`RAKUTEN_ACCESS_KEY`（寫在 `.env`，**不要 commit**）。
@@ -477,7 +479,7 @@ T7、T8 的心得幾乎是 0：鄉下小店本來就沒有個人部落格，而�
 
 1. **讀文（每個資料點一個 subagent）**：主 session 每個資料點開一個 subagent，指令用 [docs/prompts/dossier.md](prompts/dossier.md) 的範本。subagent 讀官網、觀光協會、媒體、口コミ站的**已知網址**（主 session 給的、候選清單 `mentions` 裡的，或 Chrome 步驟從食べログ HP 欄、Google 網站欄拿到的官網），不搜尋部落格心得，做兩件事：
    - 寫筆記 `data/raw/<area>/dossiers/<id>.md`：每條重點附來源編號，用固定標籤（推薦、缺點、團體、長輩、小孩、冬季、交通、價格），40 行以內。
-   - 回覆主 session 要回填的事實欄位和 `sources` 項目（JSON），**由主 session 寫進資料檔**（subagent 不改 JSON，避免互相覆蓋）。
+   - 把要回填的事實欄位和 `sources` 寫成工作目錄的 `facts/<id>.json`（格式見 dossier.md），回覆主 session 只要 5 行以內（不貼 JSON，省主 session 的 context）。**由主 session 寫進資料檔**（`build-restaurants.mjs` 或 `apply-patch.mjs`；subagent 不改資料檔，避免互相覆蓋）。
 2. **判斷（每個類型一次）**：區域蒐集完，主 session 只讀筆記和資料檔，寫 `summary`、`assessment`、`tier`（§5.1），**不重新爬文**。筆記資訊不夠的，`confidence` 填 low，或再開一個 subagent 用已知網址補讀；部落格心得留給「深入調查」。
 
 規則：
@@ -527,6 +529,28 @@ T7、T8 的心得幾乎是 0：鄉下小店本來就沒有個人部落格，而�
 ### 照片
 - **照片**（`photos`）：每筆 1～3 張，**只記 URL，不下載**。來源優先順序：官網（`og:image` 或主視覺）→ 楽天トラベル API 的飯店照片（住宿）→ Wikimedia Commons（景點，記作者和授權）→ Google Maps 上的照片 URL（Chrome，`kind: "google"`，`page` 記 Google Maps 連結）。**不使用食べログ的照片**（版權屬投稿者）。Wikimedia 等可以自由使用的照片才可以存縮圖。官網照片可以由讀文 subagent 順便回報。
 
+### 工具（scripts/）
+T7c～T8d 每一批都在 session 的 scratchpad 重寫同樣的抽取程式、合併腳本，session 結束就不見了，還出過轉換錯誤（T7e 把「沒有座敷」轉成 zashiki、把電話號碼當成天數）。2026-10-18 起改用 repo 裡的共用工具；**不要再在 scratchpad 重寫**，工具不夠用就改工具（附測試），在 commit 訊息說明。
+
+| 工具 | 用途 |
+|---|---|
+| `scripts/candidates.mjs list` | 過濾候選清單（不要整份讀）：`--status`、`--region`、`--criteria`、`--pending`、`--keys`、`--fields` |
+| `scripts/candidates.mjs export` | 一批的 `batch.json`（食べログ網址、類別、criteria、mentions），給讀文 subagent、`chrome-actions.mjs`、`build-restaurants.mjs` |
+| `scripts/candidates.mjs set` | 改候選的 `status`、`criteria`、`reason`、`pointId`、拿掉 `detailPending`；保留原本的換行和縮排 |
+| `scripts/chrome-actions.mjs` | 產生 `browser_batch` 的 actions：每頁 navigate＋跑 `scripts/chrome/` 的抽取程式（一次 4～5 頁） |
+| `scripts/chrome/tabelog-info.js` | 食べログ店家頁的店舗情報（白名單欄位）、分數、口コミ數、店舗会員、菜單分頁；コース頁的文字 |
+| `scripts/chrome/google-place.js` | Google Maps 地點：名稱、星數、評論數、cid、座標、地址、網站、主圖；搜尋結果是列表時回傳候選名稱 |
+| `scripts/chrome/tabelog-reviews.js`、`google-reviews.js` | 口コミ、Google 評論（見「口コミ、Google 評論」） |
+| `scripts/photo-check.mjs` | 照片網址能不能打開、是不是圖片（`--out photos.json` 給 build 用；`--data` 檢查資料檔） |
+| `scripts/build-restaurants.mjs` | 餐廳詳細（步驟 8）：`draft` 把食べログ店舗情報轉成欄位草稿（fit15 是建議值），Claude 改成 `judgement.json` 後 `build` 組成資料點寫進 `restaurants.json`，`--candidates` 同時更新候選 |
+| `scripts/apply-patch.mjs` | 回填既有資料點（讀文 facts、口コミ、官網）：只填 null，不同就寫進 `extra.conflicts`；確定要換的用 `overwrite` |
+
+- **工作目錄**：一批一個 `data/cache/work/<任務>-<批>/`（例如 `t9d-1`），不進 git，但 session 結束後還在，下一個 session 可以接著用。放 `batch.json`、`tabelog.jsonl`、`google.jsonl`（Chrome 回傳的 JSON 一家一行，前面加 `"key"`）、`facts/`、`photos.json`、`judgement.json`、讀文用的 `prompt-common.md`。
+- **Claude 只做判斷**：`judgement.json` 裡的 `hours`、`contexts`、`cuisine`、`price`、`access`、`notes`、`febNote`，以及確認草稿的 `group`、`reservation`、`kids`、`seating`。食べログ字樣的轉換、來源和菜單連結的合併、照片的取捨、候選清單的更新都由工具做。
+- `tabelog-parse.mjs` 的 `fit15` 只看容量和能不能訂位（不能預約 → unknown、可預約＋最大予約／個室／貸切 ≥15 → yes、可預約＋席數 ≥20 → split、席數 <15 → no）；備考提到團體、不接小孩這類要判斷的，放在 `_check` 給 Claude 看。
+- 景點、住宿的新資料點還沒有組裝工具（筆數少、來源不同）：照舊由主 session 寫，回填用 `apply-patch.mjs`。
+- **還沒在實際頁面跑過**：`tabelog-info.js`、`google-place.js` 是 2026-10-18 從 T8d 用過的抽取程式整理出來的（當時 Chrome 沒連線）。第一次用（T8e 第一批）先試 2～3 家；抓不到時回傳的 `warnings` 會說哪個選擇器失效，修好後把實際的 rows 加進 `scripts/test/tabelog-parse.test.ts`。`build-restaurants.mjs` 已用 T8d 第 5 批的兩家重組過，結果和現有資料一致。
+
 ### 標準作業流程
 每一區照這個順序做（同一區依序，不同區可以並行；任務拆分見 PLAN.md）。「主」是主 session，「sub」是讀文 subagent。
 
@@ -540,7 +564,7 @@ T7、T8 的心得幾乎是 0：鄉下小店本來就沒有個人部落格，而�
 | 5 住宿讀文 | 每間開 sub，收回欄位寫進 `lodging.json` | 官網（團體、接送、電梯、床、兒童價）、已知網址的口コミ站（不搜尋部落格） | `lodging.json`、筆記 |
 | 6 住宿 Chrome | Google Maps 的連結、星數、評論數；筆記心得不到 2 篇的順便讀評論，補進筆記。じゃらん評分用腳本（讀不到才用 Chrome） | — | `lodging.json`、筆記 |
 | 7 餐廳候選 | 食べログ列表（Chrome）＋觀光協會、媒體；套 A～F；列表文章的推薦重點寫進 `mentions[].highlight` | — | `candidates/restaurants.json` |
-| 8 餐廳詳細 | 逐家查食べログ店家頁、Google Maps（Chrome），寫進 `restaurants.json`；店家頁有菜單、コース分頁就記連結（`menu`），fit15 是 yes 或 split 的店再看コース頁記團體套餐（`group.groupMenu`）；重點店讀口コミ、Google 評論，補進筆記（見「口コミ、Google 評論」）；同時在背景開 sub 讀文 | 官網、候選清單 `mentions` 裡的文章（不搜尋部落格） | `restaurants.json`、筆記 |
+| 8 餐廳詳細 | 逐家查食べログ店家頁、Google Maps（Chrome，`tabelog-info.js`、`google-place.js`），用 `build-restaurants.mjs` 寫進 `restaurants.json`（見「工具」）；店家頁有菜單、コース分頁就記連結（`menu`），fit15 是 yes 或 split 的店再看コース頁記團體套餐（`group.groupMenu`）；重點店讀口コミ、Google 評論，補進筆記（見「口コミ、Google 評論」）；同時在背景開 sub 讀文 | 官網、候選清單 `mentions` 裡的文章（不搜尋部落格） | `restaurants.json`、筆記 |
 | 9 收尾 | `restaurant-anchors.mjs`、`restaurant-gaps.mjs`、地圖檢查 | — | `restaurants.json`、筆記 |
 | 10 摘要與評分 | 先讀 `data/raw/toba/assessment-notes.md`（校準範例），每個類型一次讀完筆記，寫 `summary`、`assessment`、`tier` | 筆記不夠時用已知網址補讀 | 三個資料檔 |
 | 11 深入調查（另開 session） | 照「深入調查」挑前幾名、開 sub；收回後重寫有新資訊那幾筆的 `summary`、`assessment`、`tier` | 部落格、中文心得（每筆 WebSearch 2～3 次） | 筆記、三個資料檔 |

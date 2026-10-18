@@ -2,11 +2,14 @@
 
 主 session 每個資料點開一個 subagent（`general-purpose`），把下面的範本填好當作 prompt。規則見 CONVENTIONS.md §4「讀文與筆記」。
 
+一批很多家時（例如 T8d 一批 20 家），可以把填好的範本存成工作目錄的 `prompt-common.md`（加上「這一批的重點」），每個 subagent 的 prompt 只寫「先讀 `<工作目錄>/prompt-common.md`，你負責的 key：…」；每家的食べログ網址、類別、mentions 在 `batch.json`（`node scripts/candidates.mjs export`）。3 家合一個 subagent 時，每家各寫各的筆記和 facts。
+
 ---
 
-你負責**一個資料點**的讀文工作。只讀網頁、寫一個筆記檔，不改其他檔案。
+你負責**一個資料點**的讀文工作。只讀網頁、寫筆記檔和事實檔，不改其他檔案。
 
 - 資料點：`{id}`（{類型：景點／住宿／餐廳}），{日文名稱}／{中文名稱}，{地址或子地區}
+- 旅客：15 人（5 位約 70 歲長輩、4 位 6～10 歲小孩），有時全員一起、有時 4～6 人分組；旅程 2027-02-02～02-13（2/3 節分、2/11 國定假日）
 - 專案：`{repo 路徑}`。**不用讀 CONVENTIONS.md**，這份指令就是全部規則（省 context）。
 - 這個類型評分會看的面向（主 session 從 CONVENTIONS §5.1 貼上該類型的表格那幾行）：{例如餐廳：推薦度、在地特色、15 人、長輩、小孩}；筆記要盡量涵蓋這些面向
 - 已知的來源（主 session 給的）：{URL 清單，例如官網、觀光協會頁、候選清單 `mentions` 裡的文章和 highlight}
@@ -22,10 +25,35 @@
 
 輸出：
 - **寫檔**：`data/raw/{area}/dossiers/{id}.md`，格式照下面，**40 行以內**。
-- **回覆主 session**（不要超過 30 行）：
-  1. 一行結論（例如「讀了 4 篇，冬季評價好，長階梯多」）
-  2. 要回填的事實欄位，用 JSON（只放有來源的欄位，每個欄位附來源 URL）
-  3. 要加進 `sources` 的項目，用 JSON 陣列（`type`、`url`、`retrieved`、`note`：這篇的重點一句）
+- **寫檔**：事實 JSON `{工作目錄}/facts/{id}.json`（工作目錄由主 session 給，例如 `data/cache/work/t9d-1/`），格式照下面。主 session 用 `scripts/build-restaurants.mjs`（新餐廳）或 `scripts/apply-patch.mjs`（回填既有資料點）寫進資料檔，你不要改資料檔。
+- **回覆主 session**（5 行以內，不要貼 JSON，已經寫檔）：一行結論（例如「讀了 4 篇，冬季評價好，長階梯多」）、有沒有和已知資料衝突的重點、WebSearch 用了幾次。
+
+事實 JSON（只放來源寫明的；沒有就 null 或省略，**不要猜**）。文字欄位寫「原文重點＋來源」，由主 session 判斷後轉成資料檔的欄位：
+```json
+{
+  "key": "{id}",
+  "official": "官網 URL 或 null",
+  "instagram": "@帳號（只限官網上連結的，不要打開 IG；只寫帳號，不要附網址）或 null",
+  "photos": [{ "url": "官網網域的圖（og:image 或主視覺，絕對網址）", "page": "圖所在的頁面" }],
+  "hours": "營業時間（例：10:00～17:00，L.O. 16:30；週末、季節不同分開寫）＋來源",
+  "closed": "公休（例：週四；遇國定假日隔天休）＋來源",
+  "febNote": "2 月、冬季的特別狀況＋來源",
+  "fares": "票價（大人、小孩、長輩、團體）＋來源（景點）",
+  "seats": null, "privateRoom": null, "maxReservation": null, "buyout": null,
+  "groupMenu": "團體／宴會套餐：價格、人數條件、幾天前訂＋來源（餐廳）",
+  "reservation": "可否預約、方式、電話、網路訂位網址＋來源",
+  "seating": "椅子／座敷／掘りごたつ／吧台＋來源",
+  "kids": "可否帶小孩、兒童餐、兒童價＋來源",
+  "accessibility": "樓層、樓梯、電梯、輪椅、休息處＋來源",
+  "access": "最近車站步行幾分、停車場、接送＋來源",
+  "price": "每人價位＋來源",
+  "mustTry": ["菜名（日文）價格"],
+  "queue": "排隊狀況＋來源",
+  "conflicts": ["來源之間的衝突，一條一句"],
+  "sources": [{ "type": "official|tourism|media|blog-ja|blog-zh|booking-site|other", "url": "...", "retrieved": "YYYY-MM-DD", "note": "這篇的重點一句" }]
+}
+```
+主 session 會說這個類型要哪些欄位（例如住宿加 `elevator`、`beds`、`pickup`，景點加 `stayMinutes`、`stairs`），用不到的省略。`sources.type`：官網 official；觀光協會、觀光三重 tourism；まっぷる、るるぶ、地方報 media；日文個人部落格 blog-ja；中文部落格、繁中媒體 blog-zh；Retty、ホットペッパー、じゃらん、4travel 等 booking-site 或 other。
 
 筆記格式：
 ```markdown

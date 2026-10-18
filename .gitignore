@@ -8,3 +8,6 @@ dist/
 Thumbs.db
 .vscode/
 .idea/
+
+# 一批的工作檔（CONVENTIONS §4「工具」）
+data/cache/work/
