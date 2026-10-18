@@ -97,6 +97,7 @@
 - [ ] T9d 第 5 批：**タベルナ・アスール fit15 yes**（官網：午餐方案 1 日 30 名限定、20 名以上可包場、團體事先聯絡），**只在午餐營業日**（2026-10 只有週日）；晚餐 buffet 非住客可否官網沒寫，`contexts` 仍放 dinner（febNote 註明要問）。**RIAS by Kokotxa fit15 unknown**（席數沒寫；食べログ 個室有・貸切可，官網只寫團體要先聯絡）
 - [ ] T9d 第 5 批：**hamajima・sakko 的結論**（README）：hamajima 2/3、2/10（三）午餐只有 **磯料理ヨット**（不能預約、15 席）、2/4（四）ヨット＋西口屋（12 席）——**15 人一起的午餐 3 天都沒有**；晚餐 八代（水・第 1 木 休）、味幸（火休）、大江戸 buffet（每天）。sakko：RIAS（午晚、完全予約）、アスール（午餐特定日、晚餐非住客待確認）、アマネムダイニング（只有大人的午餐）；里海 排除後 sakko 沒有確定能坐 15 人的晚餐
 - [ ] T9d 第 5 批：**overwrite（同第 1～4 批）**：mustTry 6 家改用口コミ的 [招牌]；坂のうえ hours・closedNote・febNote；reservation.note 3 家（八代、坂のうえ、ヨット）、八代 accessibility.note、ヨット kids.note 加口コミ（`recordOld: false`）
+- [ ] T9e：**D②（不含晚餐住宿附近的晚餐店）距離算出來太遠的 3 組照樣 included**——味幸（OCEAN VILLA 倭 直線 2.9 km）、レストラン はまなぎ（UMIBE、UMIBE Terrace 直線 3.3 km；アクアフォレスト 本身步行 1 分）、居酒屋きゅう・庄助（やどかり志摩 步行 29 分以上，OSRM）。T9c 寫「距離 T9e 算，太遠的改 not-included」，但 3 家同時是 hamajima、tomoyama、other 晚餐只有 1～3 家的店，排除會讓那幾個子地區的晚餐更少；這 4 間住宿的 `dinnerAccess` 都是 car
 
 ### 2026-10-18 盤點（已處理）
 
@@ -485,3 +486,10 @@
 | 2026-10-19 | T9d | 第 5 批：`access` 全部 car | hamajima、sakko 都 needsCar；味幸 浜島巴士站 3～5 分、ヨット 鴻住 巴士站即到，但巴士班次少，同第 3、4 批 | 改 walk |
 | 2026-10-19 | T9d | 第 5 批：口コミ・評論的對象 7 家（`review-targets.mjs` 6 家＋hamajima 週三・2/4 的午餐 ヨット）；大江戸、西口屋 沒讀 | ヨット 是 2/3、2/10 唯一的午餐；大江戸 是住宿本體的 buffet（住宿筆記有心得）、西口屋 fit15 no 而且 Google 4.3／54 不到 100 則 | — |
 | 2026-10-19 | T9d | 第 5 批：讀文 subagent 寫的 dossiers 有 2 份超過 40 行（RIAS 49、ヨット 41），主 session 合併重複的重點後改成 40 行 | CONVENTIONS「40 行以內」 | — |
+| 2026-10-19 | T9e | `shima-matoya-bbq-cruise` 座標改成集合地 Google「渡鹿野島対岸渡船のりば」[136.8793042, 34.355704]（舊值 T9a 用的 Google「大東丸観光」在渡鹿野島上，寫進 `extra.conflicts`）；`links.googleMaps`、星數仍是大東丸観光 | 判斷細則「Google 和原座標差 300 m 以上改用 Google」是同一個地點的比較；這裡是 Google 的點代表營業所，不是集合地（じゃらん、讀文都寫對岸的渡船場），anchors 從集合地算才對；和觀光三重原座標只差約 60 m | `apply-patch.mjs` 改回 [136.8714741, 34.3600078] |
+| 2026-10-19 | T9e | OSRM 繞路 3 倍以上的組合用 Google Maps 步行路線抽查 10 組（Chrome）：真的要繞的 7 組（賢島カンツリー→横山、マレナ→地中海村、槙之木→やどかり、庄助→ともやま公園、RIAS→賢島站、かきテラス→渡鹿野対岸、檜扇荘→マレナ）和同一片水域的組合加進 `anchor-rules.mjs`：`REAL_DETOURS` 15 組、`REAL_DETOUR_POINTS`（檜扇荘）、`REAL_DETOUR_REGIONS`（sakko↔kashikojima），照 OSRM；OSRM 少了橋的（芳カツ亭→賢島站 Google 750 m、shucafe→志摩神明站 900 m、弁天荘→ラ・メール ザ クラシック 1.2 km）維持直線估算 | 鳥羽 T4c 的 REAL_DETOURS 是人工看地圖；這次 Chrome 截圖逾時，改用 Google 步行路線的距離（OSRM 和 Google 差 10% 以內才算真的要繞） | 從 `anchor-rules.mjs` 拿掉，重跑 `restaurant-anchors.mjs`、`lodging-dinner-access.mjs --overwrite` |
+| 2026-10-19 | T9e | 離島的店（鮨裕禅＝間崎島、福寿荘＝渡鹿野島）的 anchors 只算同島的點（`ISLAND_ONLY`）：鮨裕禅 只有 間崎島（5 分）、福寿荘 只有 住宿 福寿荘（1 分），不放本土的車站 | OSRM 把島上的點吸附到對岸，算出不存在的路線；直線估算（賢島站 30 分）會讓人以為走得到。鳥羽的離島是「直線就超過上限不查」，這兩家離本土太近（1.8 km 以內）才會被算進去 | 從 `ISLAND_ONLY` 拿掉重跑 |
+| 2026-10-19 | T9e | needsCar 子地區的 anchors 照工具規則「照實算」：沒有 30 分內車站時，最近的景點、住宿不管多遠都放（最遠：的矢かきテラス→的矢湾 BBQ 集合地 135 分、板橋→Grand Mercure 109 分、きゅう→志摩自然学校 93 分，共 7 筆超過 60 分） | 工具（T4c、T8e）的規則，鳥羽浦村、伊勢外圍一樣；`access: car` 的店看 anchors 是知道「附近有什麼」，不是要走過去 | 改工具：needsCar 超過 60 分的不放 |
+| 2026-10-19 | T9e | `meals` 是 null 的住宿 2 間（ステーションホテル アネックス、UMILABO）`dinnerAccess` 留 null | 工具只判斷 none／breakfast／varies；アネックス 在鵜方站前（附近晚餐店 15 家以上），UMILABO 是船（賢島港），餐食不明 | 確認 meals 後重跑 |
+| 2026-10-19 | T9e | 子地區的 `center` 不改成資料點平均（T9a 說「餐廳收完後可以改」） | 現在的 center 是車站、主要景點的手算中心，平均會被飯店、南部零散的點拉走（例如 other 的 3 個點分散在立神）；改 `areas.json` 是 T9a 的範圍，這次只檢查座標和子地區是否一致（沒有不一致） | 用 `coord-check.mjs` 的平均改 `areas.json` |
+| 2026-10-19 | T9e | ESSE（国府3489，食べログ 3.02／3）不補 | T9c、T9d 留給缺漏檢查看；森と海 選素泊時步行 14～16 分有 BALI HOUSE、シェブロンカフェ（`dinnerAccess: walk`），不是缺口；也不到 3.10 | 用 `candidates.mjs` 加成 D② |

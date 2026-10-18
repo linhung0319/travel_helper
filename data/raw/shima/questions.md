@@ -123,3 +123,9 @@
 - [ ] shima-amanemu-dining：非住客的午餐預約（一休 2026-10 沒有可訂日期）、晚餐非住客可否、年齡限制（一休 12 歲以上 vs 住客帶小孩的口コミ）（0599-52-5006）
 - [ ] shima-satoumi-nemu（餐廳候選 tabelog-24013837，excluded）：NEMU 改裝後的 里海 非住客能不能吃晚餐、個室 10～20 人與個室料（能的話是 sakko 全員晚餐的候選，T9g 補回）（0599-52-1211）
 - [ ] shima-hamajima-tsubaki（餐廳候選 tabelog-24009839，excluded）：食べログ「完全予約制」的意思——非住客能不能只用餐（0599-53-1502）
+
+## 收尾（T9e）
+
+- [ ] 步行 20 分內沒有晚餐店（`dinnerAccess: car`）而且不含晚餐的住宿：晚餐怎麼安排（能不能加一泊二食、送迎到餐廳、外送或 BBQ 食材）——包棟 shima-umibe、shima-umibe-terrace、shima-yadokari、shima-ocean-villa-wa，和 shima-hanataku（朝食付）、shima-villa-daio（無早餐，BBQ 晚餐）。另外 car 但有一泊二食方案的（選一泊二食就沒問題）：shima-hiougiso（賢島西側半島，到賢島站周邊的店 Google 步行 5.7 km）、渡鹿野島的 shima-watakanoso、shima-haifu，shima-ichiyo、shima-morigen、shima-neboya、shima-kabuku-resort、shima-risoujin-club、shima-ikadaso-sanjo
+- [ ] shima-matoya-bbq-cruise：T9e 把座標改成集合地「渡鹿野島対岸渡船のりば」（Google，阿児町国府3584）；じゃらん寫的地址是国府3628-420，兩者是不是同一個乘船處（第 18 行的問題的一部分）
+- [ ] shima-sushi-yuzen（間崎島）、shima-fukujuso-dining（渡鹿野島）：anchors 只算同島的點（T9e），從本土過去的船班（賢島港送迎船、渡鹿野渡船 16:45 以後）要問
