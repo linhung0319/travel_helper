@@ -439,8 +439,10 @@ T7c → T7d → T7e → T7f → T7g → T8a → T8b → T8c → T8d → T7i → 
 #### T7i 小腳本：觀光三重列表、じゃらん評分 〔S〕
 - **觀光三重景點列表**（`scripts/kanko-mie.mjs`）：依市町抓景點列表（名稱、網址、類別），輸出到 `data/derived/kanko-mie-<area>.json`。先看 robots.txt、呼叫間隔至少 1 秒；被擋就停，記在 README，T9a 改人工。
   - 對伊勢、二見跑一次，和 `candidates/spots.json` 比對，沒在候選裡的列成 `data/derived/kanko-mie-missing-ise.json`（T8a 沒看觀光三重列表，可能漏景點）。**只產生清單，不改候選檔**，要不要補由 T13 決定。
-- **じゃらん評分**（`scripts/jalan.mjs`）：讀住宿頁的總評分和評論數，正確處理編碼（T7d 用 WebFetch 讀到亂碼）。先看 robots.txt 和利用規約，不允許就停、記在 README。
-  - 補鳥羽、伊勢、二見 `lodging.json` 的 `ratings.jalan`、`ratings.jalanReviews`（只填讀得到的，讀不到維持 null），`sources` 加じゃらん頁面。
+- **じゃらん評分**（`scripts/jalan.mjs`）：讀住宿頁的總評分和評論數。先看 robots.txt 和利用規約，不允許就停、記在 README。
+  - **頁面是 Shift_JIS**：用 `fetch` 取 `arrayBuffer()`，再用 `new TextDecoder('shift_jis')` 解碼（T3 用這個方法讀成功過，見 `data/raw/toba/log/T3.md`）；不要用 WebFetch 或 `res.text()`，會亂碼（T7d、T8b 就是因此沒記到）。
+  - 方案、價格是動態載入，抓不到；腳本只拿總評分和評論數。
+  - 現況：鳥羽 38 間有 21 間、伊勢 21 間有 1 間、二見 17 間有 1 間（二見那筆是搜尋摘要，沒有讀頁面）。補鳥羽、伊勢、二見 `lodging.json` 的 `ratings.jalan`、`ratings.jalanReviews`（只填讀得到的，讀不到維持 null；已有的值和腳本結果不同時以腳本為準，舊值寫進 `extra.conflicts`），`sources` 加じゃらん頁面。
 - 寫 `scripts/`、`data/derived/`、三區的 `lodging.json`（只動 `ratings`、`sources`）。
 
 ### T8a～T8f 伊勢（含二見）／ T9a～T9f 志摩
