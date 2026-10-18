@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-// 照片網址檢查：能不能打開、是不是圖片（CONVENTIONS §4「照片」：每張都先確認能打開）。T18 出發前也用這支重查。
+// 照片網址檢查：能不能打開、是不是圖片（CONVENTIONS §4「照片」：每張都先確認能打開）。
 //
 // 用法：
 //   node scripts/photo-check.mjs <網址>...
