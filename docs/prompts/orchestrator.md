@@ -17,15 +17,17 @@
    - 「中途不要問問題：需要 👤 決定的地方照規則自己決定，寫進 docs/decisions-pending.md（日期、任務、決定、理由、怎麼改回）。」
    - 用 Chrome 的任務加上：「用 Claude in Chrome 前，先用 ToolSearch 載入工具，再呼叫 tabs_context_mcp(createIfEmpty: true)；結束時關掉自己開的所有分頁。遇到驗證碼、登入、封鎖不要繞過，那一部分跳過、記錄原因、繼續。」
    - 「讀文照 docs/prompts/dossier.md 開讀文 subagent（不用 Chrome，同時最多 5 個）。」
-   - 「每完成一個段落跑 scripts/validate，通過才 commit。結束時回報（30 行以內）：commit 清單、驗證結果、跳過或沒做完的部分、寫進 decisions-pending.md 的決定。」
+   - 「每完成一個段落跑 scripts/validate，通過才 commit。結束時回報（30 行以內）：commit 清單、驗證結果、跳過或沒做完的部分、寫進 decisions-pending.md 的決定、整個任務（含讀文 subagent）WebSearch 用了幾次。」
 3. subagent 回報後（等完成通知），自己檢查：`git log`、`scripts/validate`。沒通過就請 subagent（或新開一個）修，最多 2 次。
 4. 通過後：`git checkout master`、`git merge --no-ff <分支> -m "Merge branch '<分支>'：<一句話>"`、再跑一次 `scripts/validate`、把 PLAN.md §2 該任務改成 ✅ 並 commit、`git branch -d <分支>`。
-5. 在 docs/auto-run-log.md 加一行並 commit：`| 任務 | 完成時間 | merge commit | 驗證 | 跳過或要 👤 看的事 |`。
+5. 在 docs/auto-run-log.md 加一行並 commit：`| 任務 | 完成時間 | merge commit | 驗證 | 跳過或要 👤 看的事 |`，最後一欄寫上「WebSearch N 次」。
+6. 算這個 session 的 WebSearch 累計（自己用的＋各任務回報的）。**累計超過約 120 次、或這個 session 已經做完 3 個任務**，就在 auto-run-log 加一行「換 session（累計 N 次）」並 commit，然後停下來，請我開新的指揮 session 貼同一個 prompt（額度是每個 session 200 次，用完不會報錯）。
 
 **只有這些情況才停下來**（停的時候在 auto-run-log.md 寫明原因和下一步）：
 - 驗證修 2 次還不過；merge 衝突。
 - 前置任務失敗或沒做完，後面的任務做不了。
 - 楽天 API、Chrome 連續失敗，整個任務做不下去（部分失敗就跳過那部分、繼續）。
+- WebSearch 累計到上限（見第 6 步）。
 
 **同一時間只有一個 subagent 用 Chrome**；讀文 subagent 不用 Chrome，可以並行。
 
