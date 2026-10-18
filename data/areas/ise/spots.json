@@ -108,7 +108,7 @@
       "神社寺院",
       "長階梯"
     ],
-    "tier": null,
+    "tier": "S",
     "nearestStation": {
       "id": "iseshi",
       "mode": "walk",
@@ -222,6 +222,47 @@
     "extra": {
       "betsugu": "宮域內有別宮 多賀宮、土宮、風宮（觀光協會）",
       "stayMinutesNote": "只拜正宮約 20～30 分，含別宮約 30～60 分（banzokubiology，2025-04，像 SEO 文章）。"
+    },
+    "summary": {
+      "text": "伊勢神宮的外宮，祭祀掌管衣食住的豐受大御神，習俗上先拜外宮再拜內宮（外宮先祭）。伊勢市站步行約 5 分，宮域是約 89 公頃的森林，有別宮多賀宮、土宮、風宮，旁邊的せんぐう館可以順便看正殿原寸模型。",
+      "pros": [
+        "伊勢評論數第二多的神社（Google 4.7、2.3 萬則），神宮官網、觀光協會都主打",
+        "伊勢市站步行 5 分，免費，2 月 5:00～18:00 都能參拜",
+        "入口免費借輪椅；土宮、風宮在石階下方，長輩可以只拜正宮和這兩宮"
+      ],
+      "cons": [
+        "入口到正宮約 10 分碎石路；別宮多賀宮要爬 98 段石階",
+        "全程戶外，神域內禁止飲食，冬天早上冷",
+        "連休、假日人多（2026 年 2 月三連休有擁擠的紀錄）；嬰兒車不出借"
+      ],
+      "basedOn": [
+        "https://www.isejingu.or.jp/about/geku/",
+        "https://www.isejingu.or.jp/about/geku/betsugu.html",
+        "https://www.isejingu.or.jp/qa/",
+        "https://ise-kanko.jp/purpose/geku/",
+        "https://4travel.jp/dm_shisetsu/10003993",
+        "https://yamap.com/activities/46278375/article"
+      ],
+      "generated": "2026-10-18"
+    },
+    "assessment": {
+      "rubric": "spot-v1",
+      "scores": {
+        "recommend": 5,
+        "winterFit": 3,
+        "elderFit": 3,
+        "kidsFit": null,
+        "accessEase": 5
+      },
+      "rationale": {
+        "recommend": "Google 4.7（22,976 則），神宮的兩座正宮之一，伊勢的代表，來伊勢必拜",
+        "winterFit": "全年開放、2 月 5:00～18:00，戶外森林，冬天沒有特別加分",
+        "elderFit": "正宮路線約 10 分碎石路、有輪椅出借；多賀宮 98 段石階可以跳過",
+        "kidsFit": "沒有來源提到小孩（kids.friendly 是 null）",
+        "accessEase": "伊勢市站步行約 5 分"
+      },
+      "confidence": "high",
+      "assessed": "2026-10-18"
     }
   },
   {
@@ -335,7 +376,7 @@
       "室內",
       "雨天備案"
     ],
-    "tier": null,
+    "tier": "B",
     "nearestStation": {
       "id": "iseshi",
       "mode": "walk",
@@ -443,7 +484,47 @@
       }
     ],
     "verified": false,
-    "extra": {}
+    "extra": {},
+    "summary": {
+      "text": "外宮勾玉池旁的博物館，主角是外宮正殿的原寸大模型，另有 1/20 殿舍配置模型、影片和遷宮用的工藝品、大工道具。適合參拜外宮前先來看，約 30 分可以看完。",
+      "pros": [
+        "外宮正殿原寸模型和遷宮介紹，4travel 展示內容 4.22",
+        "室內、有電梯，入口旁面向勾玉池的免費休憩所可以休息",
+        "伊勢市站步行 5 分，門票 300 円（小中學生 100 円）"
+      ],
+      "cons": [
+        "2/9（第 2 個週二）休館；館內禁止攝影",
+        "主題偏專門、沒有互動展品，小孩可能無聊；和神宮徴古館內容部分重疊",
+        "15 人不到團體價（20 人以上）"
+      ],
+      "basedOn": [
+        "https://www.sengukan.jp/enjoy_family/",
+        "https://www.sengukan.jp/exhibition_guide/",
+        "https://ise-kanko.jp/purpose/sengukan/",
+        "https://www.kankomie.or.jp/spot/21814",
+        "https://4travel.jp/dm_shisetsu/11331079"
+      ],
+      "generated": "2026-10-18"
+    },
+    "assessment": {
+      "rubric": "spot-v1",
+      "scores": {
+        "recommend": 3,
+        "winterFit": 4,
+        "elderFit": 4,
+        "kidsFit": 3,
+        "accessEase": 5
+      },
+      "rationale": {
+        "recommend": "Google 4.5（955 則）、觀光協會有專頁，但是外宮的附屬設施，順路參觀的好選擇",
+        "winterFit": "室內展示、2 月照開，但 2/9 休館",
+        "elderFit": "有電梯、輪椅可以參觀，入口旁有休憩所；館內步行距離沒有來源",
+        "kidsFit": "官網有親子導覽（約 30 分），但沒有互動展品、館內要安靜",
+        "accessEase": "伊勢市站步行約 5 分"
+      },
+      "confidence": "medium",
+      "assessed": "2026-10-18"
+    }
   },
   {
     "id": "ise-geku-sando",
@@ -499,7 +580,7 @@
       "instagram": null
     },
     "tags": [],
-    "tier": null,
+    "tier": "B",
     "nearestStation": {
       "id": "iseshi",
       "mode": "walk",
@@ -583,6 +664,46 @@
     "extra": {
       "luggage": "伊勢市站前有手荷物預かり所和投幣置物櫃；在配送受理時間內寄放，當天可以把行李送到伊勢、鳥羽、志摩地區的住宿（離島除外）（觀光協會）。觀光三重：手荷物預かり所 9:00～17:30 無休，寄放 1 件 600 円；13:10 前受理、當天 17:00 前送到住宿，1 件 1,150 円。外宮前観光サービスセンター 寄放 1 件 400 円（8:30～16:30）。營業到 17:00 或 17:30 來源不一致；15 人份行李能不能一次配送沒有來源。",
       "coordsNote": "參道沒有獨立的 OSM 點，座標用參道中段的店家位置"
+    },
+    "summary": {
+      "text": "連接伊勢市站和外宮、約 400 m 的參道，從大鳥居到外宮一路是老舖和新店，赤福外宮前特設店、伊勢せきや、伊勢菊一 都在這裡。比內宮的おはらい町安靜，適合去外宮的路上邊走邊吃、買伴手禮。",
+      "pros": [
+        "伊勢市站出來就是起點，到外宮步行約 7 分，石板路平坦好走",
+        "布丁霜淇淋、牛奶等小點心多，有內用和露天座位可以坐",
+        "伊勢市站前的手荷物預かり所可以當天把行李送到伊勢、鳥羽、志摩的住宿"
+      ],
+      "cons": [
+        "只有約 400 m，店不算多",
+        "多數店 17:00 左右就關，傍晚以後幾乎都打烊",
+        "店多是小店，15 人要分組逛，正餐要另找餐廳"
+      ],
+      "basedOn": [
+        "https://ise-kanko.jp/purpose/gekuusandou/",
+        "https://www.kankomie.or.jp/spot/23414",
+        "https://www.mapple.net/article/32572/",
+        "https://www.kankomie.or.jp/spot/22158",
+        "https://maps.google.com/?cid=12198854952165116416"
+      ],
+      "generated": "2026-10-18"
+    },
+    "assessment": {
+      "rubric": "spot-v1",
+      "scores": {
+        "recommend": 3,
+        "winterFit": 3,
+        "elderFit": 5,
+        "kidsFit": null,
+        "accessEase": 5
+      },
+      "rationale": {
+        "recommend": "觀光協會、觀光三重有獨立介紹，但是往外宮順路走的商店街；Google 19 則不代表人氣",
+        "winterFit": "戶外街道，2 月照常，店家 17:00 左右關",
+        "elderFit": "約 400 m 的平坦石板路，有內用、露天座位可以休息（mapple、Google 3 則）",
+        "kidsFit": "來源只列了點心店，沒有寫小孩反應",
+        "accessEase": "伊勢市站出站就是參道起點"
+      },
+      "confidence": "low",
+      "assessed": "2026-10-18"
     }
   },
   {
@@ -688,7 +809,7 @@
     "tags": [
       "神社寺院"
     ],
-    "tier": null,
+    "tier": "B",
     "nearestStation": {
       "id": "iseshi",
       "mode": "walk",
@@ -785,6 +906,45 @@
       "conflicts": [
         "伊勢市站步行時間：觀光協會、nap-camp 寫 5 分，神宮官網、觀光三重寫 10 分。"
       ]
+    },
+    "summary": {
+      "text": "外宮的別宮，在伊勢市站和外宮之間的市區裡，被樹齡數百年的楠木包圍，境內小、人少安靜。從外宮北御門走「神路通」約 5 分，可以和外宮一起排。",
+      "pros": [
+        "Google 4.5（2,022 則），伊勢市站步行 5～10 分",
+        "比外宮、內宮人少，可以安靜參拜",
+        "從外宮走神路通約 5 分，順路"
+      ],
+      "cons": [
+        "境內小、看點少，觀光協會的定位是外宮順遊",
+        "Google 低分集中在神職態度（求御朱印時被斥責），要御朱印記得帶御朱印帳",
+        "停車場只有 3～4 台；階梯、廁所沒有來源"
+      ],
+      "basedOn": [
+        "https://ise-kanko.jp/purpose/tsukiyominomiya2/",
+        "https://www.isejingu.or.jp/about/outerbetsugu/",
+        "https://www.kankomie.or.jp/spot/2935",
+        "https://maps.google.com/?cid=8527976512223609102"
+      ],
+      "generated": "2026-10-18"
+    },
+    "assessment": {
+      "rubric": "spot-v1",
+      "scores": {
+        "recommend": 3,
+        "winterFit": 3,
+        "elderFit": null,
+        "kidsFit": null,
+        "accessEase": 5
+      },
+      "rationale": {
+        "recommend": "Google 4.5（2,022 則），但是小別宮、觀光協會不主打，伊勢的門檻下是順路的好選擇",
+        "winterFit": "戶外，2 月 5:00～18:00；冬天晴天有陽光照進境內（Google 1 則）",
+        "elderFit": "階梯、坡道、廁所都沒有來源",
+        "kidsFit": "沒有來源提到小孩",
+        "accessEase": "伊勢市站步行約 5～10 分"
+      },
+      "confidence": "medium",
+      "assessed": "2026-10-18"
     }
   },
   {
@@ -887,7 +1047,7 @@
       "雨天備案",
       "親子"
     ],
-    "tier": null,
+    "tier": "B",
     "nearestStation": {
       "id": "iseshi",
       "mode": "walk",
@@ -1008,6 +1168,45 @@
       "conflicts": [
         "開館時間：官網 9:30～17:00；觀光協會 10:00～17:00（hours 照觀光協會填）；商人蔵 店家 10:00～17:00。"
       ]
+    },
+    "summary": {
+      "text": "把江戶到明治的酒問屋（倉 7 棟、町家 2 棟）改成的資料館，可以看商家和室、茶室、日本最古的紙幣「山田羽書」。對面的河崎商人蔵有約 20 家小店和咖啡，河崎一帶是勢田川邊的老街，適合花 1～2 小時散步。",
+      "pros": [
+        "國登錄有形文化財，櫃台人員解說詳細（Google 多則）",
+        "觀光三重的親子遊記：小孩愛玩唐箕風車、看展示很投入",
+        "有輪椅可用的公共廁所「河崎厠」、面庭園的茶室可以休息"
+      ],
+      "cons": [
+        "週二休館（2/2、2/9）",
+        "伊勢市站步行約 15 分；河崎的街道窄、車不少",
+        "各棟之間要走室外中庭，2 樓展示要爬樓梯（陡度不明）；有評論說展示偏雜"
+      ],
+      "basedOn": [
+        "http://www.isekawasaki.jp/info/",
+        "https://ise-kanko.jp/purpose/isekawasakishoninkan/",
+        "https://www.kankomie.or.jp/report/874",
+        "https://maps.google.com/?cid=14662979831462572524"
+      ],
+      "generated": "2026-10-18"
+    },
+    "assessment": {
+      "rubric": "spot-v1",
+      "scores": {
+        "recommend": 3,
+        "winterFit": 4,
+        "elderFit": 3,
+        "kidsFit": 5,
+        "accessEase": 4
+      },
+      "rationale": {
+        "recommend": "Google 4.0（304 則），觀光協會、觀光三重有專頁，但個人心得少，有時間可以去",
+        "winterFit": "以建物內參觀為主，但棟與棟之間走中庭；週二休館",
+        "elderFit": "1 樓和中庭可以看，2 樓要爬樓梯；有輪椅可用廁所和休息處",
+        "kidsFit": "kids.friendly high（觀光三重親子遊記）",
+        "accessEase": "伊勢市站步行約 15 分"
+      },
+      "confidence": "medium",
+      "assessed": "2026-10-18"
     }
   },
   {
@@ -1116,7 +1315,7 @@
       "雨天備案",
       "親子"
     ],
-    "tier": null,
+    "tier": "B",
     "nearestStation": {
       "id": "iseshi",
       "mode": "walk",
@@ -1234,6 +1433,46 @@
         "年齡：官網小學 3 年級以上（未滿要監護人陪同），asoview 標「8 歳から」。",
         "伊勢市站到河崎本店：官網步行約 15 分，觀光三重 2019 寫 10 分。"
       ]
+    },
+    "summary": {
+      "text": "伊勢老舖魚板店的手作體驗：用沒有刀刃的抹刀把魚漿做成板魚板（蒸好帶回去），再做烤魚板當場吃，約 70 分。店員一步步教，初學者和小孩也做得來。",
+      "pros": [
+        "評論說教得仔細、自己做的魚板好吃，負評很少",
+        "室內、2 月照常受理，適合當雨天備案",
+        "小學 3 年級以上可以自己做，未滿的和家長一起做"
+      ],
+      "cons": [
+        "要 5 天前預約；河崎本店一次 2～10 人，15 人要分 2 組，或改去下野工場（巴士 12 分＋步行 10 分）",
+        "每人 2,200 円（5 人以上 1,980 円），當天取消收 50%；蒸魚板要冷藏",
+        "坐著還是站著做、廁所沒有來源；抹魚漿手指會累，小孩可能要大人幫"
+      ],
+      "basedOn": [
+        "https://www.wakamatsuya.co.jp/tour",
+        "https://ise-kanko.jp/purpose/wakamatsuya-kamaboko/",
+        "https://www.kankomie.or.jp/report/397",
+        "https://www.asoview.com/base/2230/asorepo/list/",
+        "https://maps.google.com/?cid=7428969118049061318"
+      ],
+      "generated": "2026-10-18"
+    },
+    "assessment": {
+      "rubric": "spot-v1",
+      "scores": {
+        "recommend": 3,
+        "winterFit": 5,
+        "elderFit": null,
+        "kidsFit": 5,
+        "accessEase": 4
+      },
+      "rationale": {
+        "recommend": "Google 4.4 但只有 101 則、評的多是店舖；觀光協會、觀光三重有介紹，體驗本身好評",
+        "winterFit": "室內體驗，12 月～1 月上旬暫停，2 月照常",
+        "elderFit": "作業姿勢、階梯、廁所都沒有來源",
+        "kidsFit": "kids.friendly high：無刃刀，口碑有小學生自己完成",
+        "accessEase": "河崎本店伊勢市站步行約 15 分（15 人去下野工場要搭巴士）"
+      },
+      "confidence": "medium",
+      "assessed": "2026-10-18"
     }
   },
   {
@@ -1339,7 +1578,7 @@
     "tags": [
       "神社寺院"
     ],
-    "tier": null,
+    "tier": "B",
     "nearestStation": {
       "id": "isuzugawa",
       "mode": "walk",
@@ -1448,6 +1687,45 @@
       "conflicts": [
         "五十鈴川站步行時間：觀光協會、神宮官網、觀光三重寫 10 分，nap-camp 內文寫 8 分。"
       ]
+    },
+    "summary": {
+      "text": "內宮的別宮，月讀荒御魂宮、月讀宮、伊佐奈岐宮、伊佐奈彌宮四座宮社並排是特色，在五十鈴川站步行約 10 分的森林裡。比內宮人少，可以慢慢參拜。",
+      "pros": [
+        "Google 4.6（2,582 則），觀光協會「ご利益コース」用它當主視覺",
+        "四宮並排，依官網 ①～④ 的順序參拜",
+        "五十鈴川站步行約 10 分；入口常有計程車，轉往其他地方方便"
+      ],
+      "cons": [
+        "Google 低分都是社務所神職的態度，求御朱印要準備剛好的零錢",
+        "參道有長苔的石階（Google 1 則），坡道、廁所沒有來源",
+        "從內宮或猿田彥神社走過來有段距離"
+      ],
+      "basedOn": [
+        "https://ise-kanko.jp/purpose/tsukiyominomiya1/",
+        "https://www.isejingu.or.jp/about/outerbetsugu/",
+        "https://www.kankomie.or.jp/spot/2936",
+        "https://maps.google.com/?cid=12404741498896817386"
+      ],
+      "generated": "2026-10-18"
+    },
+    "assessment": {
+      "rubric": "spot-v1",
+      "scores": {
+        "recommend": 3,
+        "winterFit": 3,
+        "elderFit": 3,
+        "kidsFit": null,
+        "accessEase": 5
+      },
+      "rationale": {
+        "recommend": "Google 4.6（2,582 則），別宮裡人氣最高，但伊勢的門檻下（4 星要 5,000 則以上）是有時間可以去",
+        "winterFit": "戶外森林，2 月 5:00～18:00；冬天晴天人少、有陽光（Google 1 則）",
+        "elderFit": "有長苔石階的評論（約 2025），也有停車場過來沒有階梯的舊評論，算一段階梯",
+        "kidsFit": "沒有來源提到帶小孩參拜",
+        "accessEase": "五十鈴川站步行約 10 分"
+      },
+      "confidence": "medium",
+      "assessed": "2026-10-18"
     }
   },
   {
@@ -1554,7 +1832,7 @@
       "神社寺院",
       "長階梯"
     ],
-    "tier": null,
+    "tier": "B",
     "nearestStation": {
       "id": "isuzugawa",
       "mode": "walk",
@@ -1652,6 +1930,45 @@
       "conflicts": [
         "五十鈴川站步行時間：觀光協會寫 10 分，神宮官網寫 7 分。"
       ]
+    },
+    "summary": {
+      "text": "祭祀把天照大御神帶到伊勢、創建內宮的倭姬命，1923 年鎮座，是神宮最新的別宮。在倉田山的森林裡，參道是連續的石段；旁邊就是神宮徴古館、農業館、美術館，可以一起排。",
+      "pros": [
+        "Google 4.5（1,185 則），森林裡安靜",
+        "和神宮徴古館、農業館、美術館相鄰，可以一起逛",
+        "五十鈴川站步行 7～10 分，巴士「徴古館前」下車 3 分"
+      ],
+      "cons": [
+        "參道是連續的石段（段數不明），長輩較吃力",
+        "Google 低分集中在社務所神職的態度",
+        "有評論說傍晚已經不能進，不要排成最後一站"
+      ],
+      "basedOn": [
+        "https://ise-kanko.jp/purpose/yamatohimenomiya/",
+        "https://www.isejingu.or.jp/about/outerbetsugu/",
+        "https://www.timeout.jp/tokyo/ja/things-to-do/ise-gosyuin-guide",
+        "https://maps.google.com/?cid=5699891295883930630"
+      ],
+      "generated": "2026-10-18"
+    },
+    "assessment": {
+      "rubric": "spot-v1",
+      "scores": {
+        "recommend": 3,
+        "winterFit": 3,
+        "elderFit": 2,
+        "kidsFit": null,
+        "accessEase": 5
+      },
+      "rationale": {
+        "recommend": "Google 4.5（1,185 則），可以和徴古館一起排，有時間可以去",
+        "winterFit": "戶外森林，2 月 5:00～18:00，冬天沒有特別加分",
+        "elderFit": "參道是連續的石段（Time Out 2022），段數不明",
+        "kidsFit": "沒有來源提到帶小孩參拜",
+        "accessEase": "五十鈴川站步行約 7～10 分"
+      },
+      "confidence": "medium",
+      "assessed": "2026-10-18"
     }
   },
   {
@@ -1765,7 +2082,7 @@
       "室內",
       "雨天備案"
     ],
-    "tier": null,
+    "tier": "B",
     "nearestStation": {
       "id": "isuzugawa",
       "mode": "walk",
@@ -1882,6 +2199,46 @@
     "verified": false,
     "extra": {
       "parking": "小客車 43、巴士 12、身障 1 格，免費（官網、觀光三重）"
+    },
+    "summary": {
+      "text": "倉田山上的神宮博物館群：徴古館是 1909 年片山東熊設計的紅磚洋館，展出式年遷宮撤下的御神寶；農業館是日本第一座產業博物館；美術館展藝術家奉納的書畫工藝。評論說建築和庭園比展示精彩。",
+      "pros": [
+        "明治洋館建築（國登錄有形文化財），苑地有草坪和庭園",
+        "室內，可以和隔壁的倭姬宮一起排；免費大型停車場",
+        "館內人少安靜"
+      ],
+      "cons": [
+        "週四休館（2/4），2/11 照開、改 2/12 休；入館到 16:00",
+        "展示量少、說明只有日文、全館禁止攝影；評論說對小孩偏難",
+        "電梯、輪椅、入口階梯都沒有來源，要電話問；15 人不到團體價（20 人以上）"
+      ],
+      "basedOn": [
+        "https://museum.isejingu.or.jp/",
+        "https://ise-kanko.jp/purpose/jinguchokokan/",
+        "https://www.kankomie.or.jp/spot/3135",
+        "https://www.toretabi.jp/zipangclub/page/plan_shun2503_tokai.html",
+        "https://maps.google.com/?cid=16190517350889899513"
+      ],
+      "generated": "2026-10-18"
+    },
+    "assessment": {
+      "rubric": "spot-v1",
+      "scores": {
+        "recommend": 3,
+        "winterFit": 4,
+        "elderFit": null,
+        "kidsFit": 2,
+        "accessEase": 4
+      },
+      "rationale": {
+        "recommend": "Google 4.3（397 則），觀光協會有專頁但不主打；低分說展示少、建築比展示好",
+        "winterFit": "全室內，但週四休館（2/4、2/12）",
+        "elderFit": "無障礙資訊官網、觀光協會、觀光三重都沒寫",
+        "kidsFit": "沒有親子展示，評論說對小孩偏難、國中生以上比較適合（Google 1 則）",
+        "accessEase": "巴士 51 系統等「徴古館前」下車 3～4 分，伊勢市站約 10 分"
+      },
+      "confidence": "medium",
+      "assessed": "2026-10-18"
     }
   },
   {
@@ -1987,7 +2344,7 @@
     "tags": [
       "神社寺院"
     ],
-    "tier": null,
+    "tier": "B",
     "nearestStation": {
       "id": "ujiyamada",
       "mode": "bus",
@@ -2083,6 +2440,46 @@
       "conflicts": [
         "巴士站名：觀光三重寫「松尾観音」，觀光協會和官網寫「松尾観音前」；巴士終點名稱新舊寫法不同（ジャスコ新伊勢店／イオン伊勢店）。"
       ]
+    },
+    "summary": {
+      "text": "號稱日本最古的厄除觀音，本堂是約 200 年前的總欅造。本堂地板浮現的龍紋（撫で龍）和後方住著雌雄雙龍的「二つ池」是看點，常被當成パワースポット介紹。",
+      "pros": [
+        "Google 4.4（341 則），本堂地板的龍紋多則評論提到",
+        "參拜免費，境內小、參道短",
+        "五十鈴川站搭計程車約 5 分"
+      ],
+      "cons": [
+        "本堂 16:00 就關",
+        "在小丘上，停車場前有階梯；階數、廁所沒有來源",
+        "巴士班次沒有來源；2 月沒有祭典（初午大祭在 3 月）"
+      ],
+      "basedOn": [
+        "http://matsuokannonji.com/",
+        "http://matsuokannon.jugem.jp/?eid=4",
+        "https://ise-kanko.jp/purpose/matsuokannonji/",
+        "https://www.kankomie.or.jp/spot/12714",
+        "https://maps.google.com/?cid=7440224020794670453"
+      ],
+      "generated": "2026-10-18"
+    },
+    "assessment": {
+      "rubric": "spot-v1",
+      "scores": {
+        "recommend": 3,
+        "winterFit": 3,
+        "elderFit": 3,
+        "kidsFit": null,
+        "accessEase": 3
+      },
+      "rationale": {
+        "recommend": "Google 4.4（341 則），觀光協會、觀光三重有介紹但份量中等，有時間可以去",
+        "winterFit": "以戶外為主、本堂可以進去；2 月沒有活動",
+        "elderFit": "在小丘上、停車場前有階梯，但參道短（Google）",
+        "kidsFit": "沒有來源提到小孩",
+        "accessEase": "巴士「松尾観音前」下車步行 5 分（班次沒有來源），或五十鈴川站計程車約 5 分"
+      },
+      "confidence": "medium",
+      "assessed": "2026-10-18"
     }
   },
   {
@@ -2193,7 +2590,7 @@
     "tags": [
       "神社寺院"
     ],
-    "tier": null,
+    "tier": "S",
     "nearestStation": {
       "id": "isuzugawa",
       "mode": "bus",
@@ -2339,6 +2736,46 @@
       "conflicts": [
         "座標：Google（34.4550157, 136.7251851，正宮附近）和宇治橋差 442 m，保留宇治橋。"
       ]
+    },
+    "summary": {
+      "text": "伊勢神宮的中心、祭祀天照大御神的內宮。過宇治橋後沿五十鈴川走玉砂利參道到正宮，神宮官網有 60 分、90 分兩條參拜路線；門前就是おはらい町・おかげ横丁。",
+      "pros": [
+        "伊勢評論最多的神社（Google 4.7、3.4 萬則），伊勢觀光的核心",
+        "免費，2 月 5:00～18:00；入口免費借輪椅，無障礙廁所 3 處",
+        "五十鈴川站巴士約 8 分，伊勢市站巴士 15～20 分一班"
+      ],
+      "cons": [
+        "宇治橋到正宮約 20 分碎石路，正宮在石段上（段數不明），來回加別宮 1 小時以上",
+        "全程戶外，參道上不能飲食；假日、2/11 建國紀念日人多",
+        "要搭巴士或計程車；御垣內參拜的現行規定要問神宮"
+      ],
+      "basedOn": [
+        "https://www.isejingu.or.jp/visit/course/naiku.html",
+        "https://www.isejingu.or.jp/qa/",
+        "https://ise-kanko.jp/purpose/naiku/",
+        "https://www.arukikata.co.jp/webmagazine/235047/",
+        "https://allabout.co.jp/gm/gc/453675"
+      ],
+      "generated": "2026-10-18"
+    },
+    "assessment": {
+      "rubric": "spot-v1",
+      "scores": {
+        "recommend": 5,
+        "winterFit": 3,
+        "elderFit": 2,
+        "kidsFit": null,
+        "accessEase": 4
+      },
+      "rationale": {
+        "recommend": "Google 4.7（33,534 則）是伊勢最高等級，神宮的中心，來伊勢必拜",
+        "winterFit": "全年開放、戶外參道；2 月已過宇治橋日出的季節",
+        "elderFit": "宇治橋到正宮約 20 分碎石路，正宮前有石段，輪椅在碎石上難推",
+        "kidsFit": "沒有來源提到小孩反應（御手洗場的魚只有搜尋摘要）",
+        "accessEase": "五十鈴川站巴士約 8 分（20～25 分一班），伊勢市站約 20 分（15～20 分一班）"
+      },
+      "confidence": "medium",
+      "assessed": "2026-10-18"
     }
   },
   {
@@ -2451,7 +2888,7 @@
       "instagram": null
     },
     "tags": [],
-    "tier": null,
+    "tier": "A",
     "nearestStation": {
       "id": "isuzugawa",
       "mode": "bus",
@@ -2581,6 +3018,47 @@
     "extra": {
       "maps": "おはらい町・おかげ橫丁地圖 PDF（2026 年 2 月版）在觀光協會頁面",
       "shinondaiko": "神恩太鼓在太鼓櫓演出，2 月的日程要看官網行事曆（https://okageyokocho.com/main/works/shinondaiko/）"
+    },
+    "summary": {
+      "text": "內宮門前沿五十鈴川約 800 m 的石板路おはらい町，中段是重現江戶到明治街景的おかげ横丁（約 50 家店）。赤福本店、豚捨可樂餅等邊走邊吃，是伊勢最熱鬧的地方。",
+      "pros": [
+        "伊勢評論數最多（Google 4.2、3.9 萬則），觀光協會、觀光三重主打",
+        "冬季限定赤福ぜんざい、熱甘酒；太鼓櫓旁的免費座敷休息區冬天鋪電毯",
+        "廁所、長椅多，おみやげや 免費借輪椅、嬰兒車，不舒服可以躺著休息"
+      ],
+      "cons": [
+        "週末、連休擠到走不動，赤福本店排 30～60 分；中午以後長輩、小孩很累",
+        "2 月 17:00（土日祝 17:30）關門，晚上幾乎沒有店；沒有專用停車場",
+        "15 人在人潮中容易走散，要分 4～6 人一組、定集合點"
+      ],
+      "basedOn": [
+        "https://ise-kanko.jp/purpose/oharaimachi-okageyokocho/",
+        "https://okageyokocho.com/guide/",
+        "https://okageyokocho.com/saiji/",
+        "https://www.kankomie.or.jp/report/1305",
+        "https://banzokubiology.com/?p=10292",
+        "https://maps.google.com/?cid=15460748115152329112"
+      ],
+      "generated": "2026-10-18"
+    },
+    "assessment": {
+      "rubric": "spot-v1",
+      "scores": {
+        "recommend": 4,
+        "winterFit": 4,
+        "elderFit": 4,
+        "kidsFit": 3,
+        "accessEase": 4
+      },
+      "rationale": {
+        "recommend": "評論數伊勢最多，但 Google 4.2 低於 S 的 4.4，評論說週末太擠；和內宮一起去的門前町",
+        "winterFit": "戶外，但有冬季限定ぜんざい、甘酒和暖和的休息區，2/3 節分有鬼やらい",
+        "elderFit": "石板路平坦、長椅和廁所多、可以借輪椅，但約 800 m 長、人多難走",
+        "kidsFit": "kids.friendly 是 null；評論說射的受小孩歡迎，但人多時不推薦帶小孩、太鼓會嚇到小小孩",
+        "accessEase": "五十鈴川站巴士約 8 分（「神宮会館前」下車），伊勢市站約 20 分"
+      },
+      "confidence": "medium",
+      "assessed": "2026-10-18"
     }
   },
   {
@@ -2644,7 +3122,7 @@
     "tags": [
       "神社寺院"
     ],
-    "tier": null,
+    "tier": "A",
     "nearestStation": {
       "id": "isuzugawa",
       "mode": "bus",
@@ -2769,6 +3247,46 @@
       "conflicts": [
         "accessibility.stairs：Google 評論 1 則（約 2021）說「階段が長い」，另 2 則（約 2022、2025）說沒有樓梯，採用後者"
       ]
+    },
+    "summary": {
+      "text": "祭祀「導路之神」猿田彥大神的神社，在往內宮、おはらい町的路口。本殿前可以摸的八角形方位石、像寶船的たから石、子宝池是看點，境內社佐瑠女神社是藝能、緣結之神。",
+      "pros": [
+        "Google 4.4（9,387 則），觀光協會、觀光三重都有專頁和取材",
+        "巴士「猿田彦神社前」下車就到，境內平坦沒有樓梯，有參拜休憩所、廁所",
+        "到內宮步行約 15～20 分，可以和おはらい町串起來"
+      ],
+      "cons": [
+        "Google 低分集中在授與所的態度、御朱印字潦草；年末要排隊",
+        "佐瑠女神社改修預定 2026-11 完工，旅程前要確認有沒有延期",
+        "境內不大；隔壁停車場的車列會塞住浦田交差點"
+      ],
+      "basedOn": [
+        "https://www.sarutahikojinja.or.jp/keidai",
+        "https://ise-kanko.jp/purpose/sarutahikojinja/",
+        "https://www.kankomie.or.jp/report/1556",
+        "https://www.mapple.net/article/31874/",
+        "https://maps.google.com/?cid=291822430001789289"
+      ],
+      "generated": "2026-10-18"
+    },
+    "assessment": {
+      "rubric": "spot-v1",
+      "scores": {
+        "recommend": 4,
+        "winterFit": 3,
+        "elderFit": 5,
+        "kidsFit": 3,
+        "accessEase": 4
+      },
+      "rationale": {
+        "recommend": "Google 4.4（9,387 則），內宮周邊僅次於內宮、おかげ横丁的參拜點；不是神宮本身，不到 S",
+        "winterFit": "戶外神社，2 月照常；年末參拜要在冷天排隊（Google 1 則）",
+        "elderFit": "巴士站下車就到、境內平坦沒有樓梯和坡道（Google 2 則），有參拜休憩所、公共廁所",
+        "kidsFit": "kids.friendly 是 null；可以餵子宝池的鯉魚、摸方位石，評論有小孩喜歡交通安全貼紙",
+        "accessEase": "伊勢市站搭往內宮的巴士約 15 分，「猿田彦神社前」下車即到"
+      },
+      "confidence": "medium",
+      "assessed": "2026-10-18"
     }
   },
   {
@@ -2882,7 +3400,7 @@
       "雨天備案",
       "親子"
     ],
-    "tier": null,
+    "tier": "B",
     "nearestStation": {
       "id": "isuzugawa",
       "mode": "bus",
@@ -2994,6 +3512,46 @@
       "building": "舊「おかげ座 神話の館」改裝（PR TIMES）；沒有專用停車場（Walkerplus）",
       "booking": "https://okageyashiki.com/（預約網站）",
       "stayMinutesNote": "觀光三重寫所需約 45 分。"
+    },
+    "summary": {
+      "text": "2026 年 7 月在おかげ横丁開幕的室內互動設施，把舊「神話の館」改裝成約 12 種體驗：手影變成動物、おかげ犬小遊戲、接住飄下的籤、寬約 20 m 的影像空間等，約 45 分。適合 6～10 歲的小孩，也是雨天備案。",
+      "pros": [
+        "室內、年中無休，雨天和冷天的備案",
+        "互動多，觀光三重說小孩會很投入；評論說設施新、廁所乾淨",
+        "在おかげ横丁裡，巴士「神宮会館前」下車步行 2 分"
+      ],
+      "cons": [
+        "要事先上網預約付款，每 15 分一梯次，每梯次上限不明（15 人能不能同梯要電話問）",
+        "大人 1,500 円（土日祝 1,800 円），15 人不到團體價（20 人以上）；評論說偏小孩向",
+        "剛開幕，改裝後的評論只有約 2 則；階梯、電梯、輪椅沒有來源，有薄暗的通道"
+      ],
+      "basedOn": [
+        "https://okageyokocho.com/main/tenpo/okage_yashiki/",
+        "https://ise-kanko.jp/purpose/okage-okageyashiki/",
+        "https://prtimes.jp/main/html/rd/p/000000021.000009512.html",
+        "https://www.kankomie.or.jp/topic/1266",
+        "https://maps.google.com/?cid=1328486565404818773"
+      ],
+      "generated": "2026-10-18"
+    },
+    "assessment": {
+      "rubric": "spot-v1",
+      "scores": {
+        "recommend": 3,
+        "winterFit": 5,
+        "elderFit": null,
+        "kidsFit": 5,
+        "accessEase": 4
+      },
+      "rationale": {
+        "recommend": "2026-07 開幕，Google 4.2（232 則）多半是改裝前的舊設施，改裝後只有約 2 則；觀光三重、觀光協會有介紹",
+        "winterFit": "全室內、年中無休",
+        "elderFit": "階梯、電梯、輪椅都沒有來源",
+        "kidsFit": "kids.friendly high：約 12 種互動體驗，4 歲～小學生是兒童票",
+        "accessEase": "巴士「神宮会館前」下車步行 2 分（五十鈴川站約 8 分，伊勢市站約 20 分）"
+      },
+      "confidence": "low",
+      "assessed": "2026-10-18"
     }
   },
   {
@@ -3057,7 +3615,7 @@
     "tags": [
       "神社寺院"
     ],
-    "tier": null,
+    "tier": "B",
     "nearestStation": {
       "id": "isuzugawa",
       "mode": "bus",
@@ -3156,6 +3714,46 @@
     "verified": false,
     "extra": {
       "stayMinutesNote": "觀光三重（2017）：山頂展望台＋金剛證寺合計約 90 分；寺本身沒有單獨的時間。"
+    },
+    "summary": {
+      "text": "朝熊山（標高 555 m）上的古寺，有「お伊勢参らば朝熊をかけよ」的說法，被稱為伊勢神宮的奧之院。本堂是 1609 年再建的國指定重要文化財，往奧之院的路兩旁立著 2～8 m 的大卒塔婆，很有震撼力。",
+      "pros": [
+        "Google 4.3（1,108 則），觀光三重有專題，本堂是重要文化財",
+        "參拜、停車免費；可以和山頂展望台一起排（合計約 90 分）",
+        "奧之院的大卒塔婆景色特別"
+      ],
+      "cons": [
+        "平日沒有巴士（參宮巴士只在土日祝），15 人要 4 台計程車或 2 台大型計程車並讓車等，スカイライン另收通行費",
+        "停車場到本堂有兩段石階和坡道，雨天濕滑",
+        "山上冬天很冷、風大，可能積雪封路；Google 低分有住職、受付態度高壓"
+      ],
+      "basedOn": [
+        "https://www.iseshimaskyline.com/kongoushouji/index.html",
+        "https://ise-kanko.jp/purpose/kongoshoji/",
+        "https://www.kankomie.or.jp/report/189",
+        "https://www.jeepe.jp/ja/articles/asamadake-kongoshoji-2717",
+        "https://maps.google.com/?cid=6892205162661570832"
+      ],
+      "generated": "2026-10-18"
+    },
+    "assessment": {
+      "rubric": "spot-v1",
+      "scores": {
+        "recommend": 3,
+        "winterFit": 2,
+        "elderFit": 2,
+        "kidsFit": null,
+        "accessEase": 2
+      },
+      "rationale": {
+        "recommend": "Google 4.3（1,108 則），觀光三重有介紹，但要專程上山，伊勢的門檻下是有時間可以去",
+        "winterFit": "標高 555 m，冬天很冷、風大；スカイライン有積雪封路的評論（約 2025）",
+        "elderFit": "停車場→石階→仁王門→再上石階→本堂（Google 多則），往奧之院還要再走",
+        "kidsFit": "只有 1 則約 2021 年的舊評論，沒有可用的來源",
+        "accessEase": "平日沒有巴士，只能計程車約 30 分（土日祝參宮巴士 1 天 5 班）"
+      },
+      "confidence": "medium",
+      "assessed": "2026-10-18"
     }
   },
   {
@@ -3266,7 +3864,7 @@
     "tags": [
       "展望"
     ],
-    "tier": null,
+    "tier": "B",
     "nearestStation": {
       "id": "isuzugawa",
       "mode": "taxi",
@@ -3384,6 +3982,45 @@
       "parking": "山頂停車場 普通車 100 台、大型巴士 5 台",
       "stayMinutesNote": "觀光三重（2017）：只看山頂約 1 小時；和金剛證寺合計約 90 分。",
       "googleTenkuNoPost": "「朝熊山頂 天空のポスト」在 Google 另有一筆：4.3（950 則）"
+    },
+    "summary": {
+      "text": "朝熊山頂的展望廣場，可以 360° 看伊勢灣，冬天天氣好時偶爾看得到富士山。有邊泡腳邊看海的展望足湯（100 円），還有現役的昭和郵筒「天空のポスト」，在売店買明信片就能寄。",
+      "pros": [
+        "Google 4.2（4,072 則），伊勢志摩スカイライン的主要景點",
+        "足湯可以坐著看海；寄天空のポスト的明信片適合小孩",
+        "冬天晴天空氣清澈、看得遠"
+      ],
+      "cons": [
+        "平日沒有巴士，要計程車約 30 分並讓車等；スカイライン通行費普通車 1,270 円",
+        "冬天山頂風很強、很冷，曾因積雪封路；起霧就什麼都看不到",
+        "停車場到足湯、展望台要爬樓梯；評論說設施老舊、足湯不太乾淨"
+      ],
+      "basedOn": [
+        "https://www.iseshimaskyline.com/spot-summit.html",
+        "https://ise-kanko.jp/purpose/tenku-no-post/",
+        "https://www.kankomie.or.jp/report/189",
+        "https://maps.google.com/?cid=14942926032235101478"
+      ],
+      "generated": "2026-10-18"
+    },
+    "assessment": {
+      "rubric": "spot-v1",
+      "scores": {
+        "recommend": 3,
+        "winterFit": 2,
+        "elderFit": 3,
+        "kidsFit": 3,
+        "accessEase": 2
+      },
+      "rationale": {
+        "recommend": "Google 4.2（4,072 則），但評論說設施老舊、要看天氣；伊勢的門檻下（4 星要 5,000 則以上）是 3",
+        "winterFit": "晴天看得遠，但冬天強風、有積雪封路的紀錄（Google 多則）",
+        "elderFit": "停車場到足湯、展望台要爬一段樓梯，有長椅、足湯可以坐",
+        "kidsFit": "kids.friendly medium：天空のポスト、足湯、さんぽ道",
+        "accessEase": "平日沒有巴士，計程車約 30 分（土日祝參宮巴士）"
+      },
+      "confidence": "medium",
+      "assessed": "2026-10-18"
     }
   },
   {
@@ -3460,7 +4097,7 @@
       "雨天備案",
       "親子"
     ],
-    "tier": null,
+    "tier": "B",
     "nearestStation": {
       "id": "obata",
       "mode": "walk",
@@ -3564,6 +4201,46 @@
         "直賣所營業時間：第 1 批照觀光協會填 10:00～12:00；官網 about、じゃらん、ichigogari.info 寫 10:00～16:00 頃（官網說下午常不在，建議上午來）。",
         "停車位：觀光協會 30 台、じゃらん 14 台。"
       ]
+    },
+    "summary": {
+      "text": "小俣的採草莓溫室，品種是かおり野，一梯次 40 分吃到飽。じゃらん口コミ多是 4～5 分，說草莓大顆、小孩很開心。",
+      "pros": [
+        "2 月是採草莓季，冬天才有的體驗",
+        "溫室內不怕天氣；口コミ有很多 4～12 歲小孩的家庭",
+        "近鐵小俣站步行約 14 分"
+      ],
+      "cons": [
+        "只在週六日開（國定假日看草莓狀況加開），2027 年的日程還沒公布",
+        "只能用じゃらん遊び体験預約（刷卡），一梯次上限不明；兒童價沒找到",
+        "站著採還是蹲著採沒有來源；人多時好摘的草莓少（2024 口コミ）"
+      ],
+      "basedOn": [
+        "https://ise15.jp/",
+        "https://ise15.jp/fqa",
+        "https://ise-kanko.jp/purpose/伊勢苺園/",
+        "https://www.jalan.net/kankou/spt_guide000000215546/kuchikomi/",
+        "https://ichigogari.info/mie/4167/"
+      ],
+      "generated": "2026-10-18"
+    },
+    "assessment": {
+      "rubric": "spot-v1",
+      "scores": {
+        "recommend": 3,
+        "winterFit": 4,
+        "elderFit": null,
+        "kidsFit": 5,
+        "accessEase": 4
+      },
+      "rationale": {
+        "recommend": "Google 4.1 只有 30 則、じゃらん 3.8（11 則），觀光協會有介紹；評論少，最多 3",
+        "winterFit": "2 月是產季、在溫室內，但只開週六日、2027 日程未公布",
+        "elderFit": "是不是高設栽培（站著採）沒有來源",
+        "kidsFit": "kids.friendly high：吃到飽的採草莓，口コミ說小孩很開心",
+        "accessEase": "近鐵小俣站步行約 14 分（OSRM）"
+      },
+      "confidence": "low",
+      "assessed": "2026-10-18"
     }
   },
   {
@@ -3672,7 +4349,7 @@
       "雨天備案",
       "親子"
     ],
-    "tier": null,
+    "tier": "B",
     "nearestStation": {
       "id": "jr-isuzugaoka",
       "mode": "walk",
@@ -3785,6 +4462,46 @@
     "extra": {
       "parking": "一般車 15 台、大型巴士 4 台",
       "stayMinutesNote": "取珠約 20 分＋加工約 20 分；團體約 60 分（官網）；VELTRA 寫約 1 小時。"
+    },
+    "summary": {
+      "text": "從水槽挑活的阿古屋貝，自己打開取出真珠，職人當場加工成吊飾或項鍊帶走，約 40 分。全國少見的體驗，6 歲以上可以參加。",
+      "pros": [
+        "一定取得到真珠，當天就能帶走飾品",
+        "15 人可以一起做（30 人以內約 60 分）；室內、全年舉辦",
+        "JR 五十鈴ケ丘站步行 5 分"
+      ],
+      "cons": [
+        "取出的每顆真珠都要付金具費，曾有人花到約 23,000 円，預約時要問清楚",
+        "JR 參宮線，不能用近鐵 5 日券；不定休，官網寫有時不能體驗",
+        "座位、階梯、無障礙沒有來源"
+      ],
+      "basedOn": [
+        "https://kikuchipearl.com/trial.html",
+        "https://kikuchipearl.com/dantai.html",
+        "https://ise-kanko.jp/purpose/kikuchipearl-taiken/",
+        "https://www.kankomie.or.jp/spot/22853",
+        "https://www.veltra.com/jp/japan/mie/a/120279"
+      ],
+      "generated": "2026-10-18"
+    },
+    "assessment": {
+      "rubric": "spot-v1",
+      "scores": {
+        "recommend": 2,
+        "winterFit": 4,
+        "elderFit": null,
+        "kidsFit": 5,
+        "accessEase": 5
+      },
+      "rationale": {
+        "recommend": "Google 3.5（46 則）是伊勢景點最低；心得有金具費事前沒說清楚的抱怨",
+        "winterFit": "室內、全年舉辦，但不定休",
+        "elderFit": "座位、階梯、無障礙都沒有來源",
+        "kidsFit": "kids.friendly high：小學 1 年級以上可參加，有家族參加的好評",
+        "accessEase": "JR 五十鈴ケ丘站步行 5 分（JR，不能用近鐵 5 日券）"
+      },
+      "confidence": "low",
+      "assessed": "2026-10-18"
     }
   }
 ]

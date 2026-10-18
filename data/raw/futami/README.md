@@ -1,12 +1,12 @@
 # 二見：研究筆記 README
 
-> 開工先讀這份。最後更新：2026-10-18（T8d 完成：餐廳 18 筆；T8e 收尾：anchors、dinnerAccess；T8e 第 6 批 補心得 11 筆）。這份是**現況**，各任務更新自己的那一節（覆寫，不是追加）。二見和伊勢一起規劃（T8），過程紀錄寫在 `data/raw/ise/log/`（`log/T8a.md`、`log/T8b.md` 只放指向；`log/T8c.md`、`log/T8d.md` 寫二見的部分，共同方法在伊勢的 `log/T8c.md`、`log/T8d.md`）。
+> 開工先讀這份。最後更新：2026-10-18（T8d 完成：餐廳 18 筆；T8e 收尾：anchors、dinnerAccess；T8e 第 6 批 補心得 11 筆；T8f 第 1 批 景點評分）。這份是**現況**，各任務更新自己的那一節（覆寫，不是追加）。二見和伊勢一起規劃（T8），過程紀錄寫在 `data/raw/ise/log/`（`log/T8a.md`、`log/T8b.md` 只放指向；`log/T8c.md`、`log/T8d.md` 寫二見的部分，共同方法在伊勢的 `log/T8c.md`、`log/T8d.md`）。
 
 ## 檔案地圖
 
 | 檔案 | 內容 |
 |---|---|
-| `data/areas/futami/spots.json` | 景點 4 筆（T8a：基本欄位、Google、照片、讀文回填；`summary`／`assessment` 待 T8f） |
+| `data/areas/futami/spots.json` | 景點 4 筆（T8a：基本欄位、Google、照片、讀文回填；T8f 第 1 批寫了 `summary`／`assessment`／`tier`） |
 | `data/areas/futami/lodging.json` | 住宿 17 筆（T8b：楽天 API、Google、照片、讀文回填；`summary`／`assessment` 待 T8f） |
 | `data/areas/futami/restaurants.json` | 餐廳 18 筆（T8d：食べログ、Google、照片、讀文；`summary`／`assessment`／`tier` 待 T8f，`anchors` T8e 算好） |
 | `dossiers/<id>.md` | 讀文筆記（景點 4 份 T8a；住宿 17 份 T8b；餐廳 19 份 T8d，含不收的 `futami-yusura-dining`；T8e 第 6 批 11 份追加食べログ口コミ、Google 評論） |
@@ -15,6 +15,7 @@
 | `candidates/restaurants.json` | 餐廳候選 47 筆（收錄 18、排除 2、未納入 27）。用程式過濾 |
 | `log/T8c.md` | T8c 二見的過程紀錄（町名列表、篩選、D①／D② 怎麼補） |
 | `log/T8d.md` | T8d 第 6 批（二見）的過程紀錄 |
+| `data/raw/ise/log/T8f.md` | T8f（伊勢、二見共用）：第 1 批 景點評分 |
 | `data/raw/ise/log/T8e.md` | T8e（伊勢、二見共用）：第 2 批的收尾、補心得的對象；第 6 批 二見的補心得；總結 |
 | `ig-notes.md` | 餐廳 IG 帳號（沒打開 IG，T18 才看） |
 | `questions.md` | 要打電話、人工確認的事 |
@@ -32,10 +33,16 @@
 
 ### 現況（T8a 完成）
 - 收錄：二見興玉神社（夫婦岩）、伊勢シーパラダイス、夫婦岩表參道（旅館街）、松下社（蘇民將來、大楠）。
-- **4 筆都有**：基本欄位、`links.googleMaps`（cid）、Google 星數與評論數（夫婦岩表參道是地址型地點，沒有星數）、照片 2～3 張、讀文筆記（`dossiers/` 4 份）、`sources`；矛盾寫在 `extra.conflicts`。**還沒填**：`summary`／`assessment`（T8f）。
+- **4 筆都有**：基本欄位、`links.googleMaps`（cid）、Google 星數與評論數（夫婦岩表參道是地址型地點，沒有星數）、照片 2～3 張、讀文筆記（`dossiers/` 4 份）、`sources`；矛盾寫在 `extra.conflicts`。`summary`／`assessment`／`tier` 是 T8f 第 1 批寫的（見下面「評分」）。
 - 讀文回填：`stayMinutes` 二見興玉神社 45、シーパラ 150（表參道、松下社沒有來源）；`kids.friendly` シーパラ high、二見興玉神社 medium；シーパラ `indoor: true`（只有トドプール在屋外，加了室內、雨天備案、親子 tags）。
 - Google：二見興玉神社 4.4（12,515 則；夫婦岩另有 2,028 則）、シーパラ 4.2（5,647）、松下社 4.3（57）。
 - 座標：OSM 3 筆（和 Google 差 300 m 以內）；松下社 改用 Google（地址座標差 648 m）。
+
+### 評分（T8f 第 1 批，2026-10-18，`spot-v1`）
+- 分布：**S 1**（二見興玉神社：Google 4.4／12,515）、**A 1**（伊勢シーパラダイス：4.2／5,647）、3 星 0、2 星 2（夫婦岩表參道：沒有評論、賓日館休館；松下社：57 則、評論幾乎沒有內容）。
+- 門檻和伊勢相同（`data/raw/toba/assessment-notes.md`「依區調整」）：照鳥羽範例試算 A 以上 2／4＝50%，改用伊勢的門檻還是 50%。只有 4 筆，1 筆就是 25%，照規則不再往上加，列在 decisions-pending「👤 建議先看」給 T8g。
+- `confidence`：high 1（シーパラ）、medium 1（二見興玉神社：沒讀 Google 評論）、low 2。null：`elderFit` 2（二見興玉神社、松下社）、`kidsFit` 2（表參道、松下社）。
+- 評分檢查（`scripts/assessment-check.mjs futami --types spot`）列出 0 項。
 
 ### 旅程期間的日子
 - **2/3（三）二見興玉神社 節分祭 14:00**（官網：立春前一天 14:00）：境內特設撒豆台趕鬼、撒福豆和紅白餅；一般遊客能不能接豆、人潮沒有來源。
