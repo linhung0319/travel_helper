@@ -86,7 +86,7 @@ export function partyPrices(vac, hotelNo, { party = 15, queried }) {
     for (const p of list) {
       const [rooms, adults] = p.combo.split('x').map(Number);
       out.push({
-        plan: `${mealLabel(p)} 楽天 ${party} 人組合最低價（${p.planName}）`,
+        plan: `${mealLabel(p)} 楽天 ${party} 人組合最低價（${p.planName ?? p.roomName ?? "方案名不明"}）`,
         unit: 'per-person',
         adult: p.perPerson,
         child: null,
@@ -123,7 +123,7 @@ export function kidsPrice(entry, { hotelNo, date, adults = 3, up = 1, preferDinn
         ? 'API 的小學生價和大人相同（可能以房計價或兒童同價），兒童價不推算'
         : `API 算出的小學生價是大人的 ${ratio}%，不合理，兒童價不推算`;
   return {
-    plan: `${mealLabel(p)} 大人 ${adults}＋小學生高年級 ${up}（1 室）最低價（${p.planName}）`,
+    plan: `${mealLabel(p)} 大人 ${adults}＋小學生高年級 ${up}（1 室）最低價（${p.planName ?? p.roomName ?? "方案名不明"}）`,
     unit: 'per-person',
     adult: p.perPerson,
     child: ok ? child : null,
@@ -143,7 +143,7 @@ export function roomPrice(entry, { hotelNo, date, adults, preferDinner = false, 
   const pool = preferDinner && plans.some((p) => p.dinner) ? plans.filter((p) => p.dinner) : plans;
   const p = [...pool].sort((a, b) => (a.roomTotal ?? a.perPerson * adults) - (b.roomTotal ?? b.perPerson * adults))[0];
   return {
-    plan: `${mealLabel(p)} ${label ?? `1 間 大人 ${adults}`} 最低價（${p.planName}）`,
+    plan: `${mealLabel(p)} ${label ?? `1 間 大人 ${adults}`} 最低價（${p.planName ?? p.roomName ?? "方案名不明"}）`,
     unit: p.perPerson != null ? 'per-person' : 'per-room',
     adult: p.perPerson ?? null,
     child: null,
@@ -159,11 +159,19 @@ export function roomPrice(entry, { hotelNo, date, adults, preferDinner = false, 
 
 /** prices 的每人價範圍 → priceRange 文字 */
 export function priceRangeText(prices) {
-  const per = prices.filter((p) => p.unit === 'per-person' && typeof p.adult === 'number').map((p) => p.adult);
-  if (!per.length) return null;
-  const lo = Math.min(...per), hi = Math.max(...per);
-  const meals = [...new Set(prices.filter((p) => p.unit === 'per-person' && typeof p.adult === 'number').map((p) => p.plan.split(' ')[0]))];
-  return `每人約 ${yen(lo)}${hi > lo ? `～${yen(hi)}` : ''} 円（${meals.join('／')}；詳見 prices）`;
+  const per = prices.filter((p) => p.unit === 'per-person' && typeof p.adult === 'number');
+  if (per.length) {
+    const v = per.map((p) => p.adult);
+    const lo = Math.min(...v), hi = Math.max(...v);
+    const meals = [...new Set(per.map((p) => p.plan.split(' ')[0]))];
+    return `每人約 ${yen(lo)}${hi > lo ? `～${yen(hi)}` : ''} 円（${meals.join('／')}；詳見 prices）`;
+  }
+  // 一棟貸し、以房計價（沒有每人價）：每間（棟）的總價（T9b 加）
+  const whole = prices.filter((p) => (p.unit === 'per-room' || p.unit === 'per-house') && typeof p.price === 'number');
+  if (!whole.length) return null;
+  const v = whole.map((p) => p.price);
+  const lo = Math.min(...v), hi = Math.max(...v);
+  return `每間（棟）約 ${yen(lo)}${hi > lo ? `～${yen(hi)}` : ''} 円（詳見 prices）`;
 }
 
 // 照片：judgement 給的（官網）→ 楽天施設照片 → Google 主圖；photos.json 檢查不 ok 的拿掉

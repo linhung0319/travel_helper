@@ -8,7 +8,7 @@
     "category": "hotel",
     "status": "included",
     "reason": null,
-    "pointId": null,
+    "pointId": "shima-kanko-classic",
     "ratings": {
       "rakuten": 4.7,
       "rakutenReviews": 962,
@@ -20,8 +20,7 @@
     "links": {
       "googleMaps": "https://maps.google.com/?cid=435405046205010941"
     },
-    "note": "楽天 1150，112 室，楽天最低 16,005 円；15 人組合 2/2：5x3、2/3：5x3；2/2 一間可住：4 人；じゃらん yad312114",
-    "detailPending": true
+    "note": "楽天 1150，112 室，楽天最低 16,005 円；15 人組合 2/2：5x3、2/3：5x3；2/2 一間可住：4 人；じゃらん yad312114"
   },
   {
     "key": "shima-rakuten-4803",
@@ -53,7 +52,7 @@
     "category": "hotel",
     "status": "included",
     "reason": null,
-    "pointId": null,
+    "pointId": "shima-provence",
     "ratings": {
       "rakuten": 4.64,
       "rakutenReviews": 726,
@@ -65,8 +64,7 @@
     "links": {
       "googleMaps": "https://maps.google.com/?cid=1560447232878720288"
     },
-    "note": "楽天 4982，24 室，楽天最低 9,900 円；15 人組合 2/2：5x3、2/3：5x3；2/2 一間可住：2 人；じゃらん yad318402",
-    "detailPending": true
+    "note": "楽天 4982，24 室，楽天最低 9,900 円；15 人組合 2/2：5x3、2/3：5x3；2/2 一間可住：2 人；じゃらん yad318402"
   },
   {
     "key": "shima-michishio",
@@ -77,7 +75,7 @@
     "category": "ryokan",
     "status": "included",
     "reason": null,
-    "pointId": null,
+    "pointId": "shima-michishio",
     "ratings": {
       "rakuten": 4.3,
       "rakutenReviews": 1241,
@@ -89,8 +87,7 @@
     "links": {
       "googleMaps": "https://maps.google.com/?cid=3807650304058444541"
     },
-    "note": "楽天 5129，44 室，楽天最低 7,000 円；15 人組合 2/2：4x4/3x5/2x8、2/3：4x4/3x5/2x8；2/2 一間可住：8 人；じゃらん yad317598",
-    "detailPending": true
+    "note": "楽天 5129，44 室，楽天最低 7,000 円；15 人組合 2/2：4x4/3x5/2x8、2/3：4x4/3x5/2x8；2/2 一間可住：8 人；じゃらん yad317598"
   },
   {
     "key": "shima-kashikojima-harbor",
@@ -101,7 +98,7 @@
     "category": "pension／民泊",
     "status": "included",
     "reason": null,
-    "pointId": null,
+    "pointId": "shima-kashikojima-harbor",
     "ratings": {
       "rakuten": 4.79,
       "rakutenReviews": 387,
@@ -113,8 +110,7 @@
     "links": {
       "googleMaps": "https://maps.google.com/?cid=1325129138608243424"
     },
-    "note": "楽天 6247，5 室，楽天最低 4,700 円；15 人組合 2/2：無、2/3：無；2/2 一間可住：無空房；じゃらん yad325195",
-    "detailPending": true
+    "note": "楽天 6247，5 室，楽天最低 4,700 円；15 人組合 2/2：無、2/3：無；2/2 一間可住：無空房；じゃらん yad325195"
   },
   {
     "key": "shima-rakuten-7475",
@@ -169,18 +165,19 @@
     "category": "ryokan",
     "status": "included",
     "reason": null,
-    "pointId": null,
+    "pointId": "shima-shimahanto",
     "ratings": {
       "rakuten": 4.38,
       "rakutenReviews": 66,
-      "google": null,
-      "googleReviews": null,
+      "google": 4.2,
+      "googleReviews": 158,
       "jalan": 4.2,
       "jalanReviews": 226
     },
-    "links": {},
-    "note": "楽天 7508，12 室，楽天最低 5,850 円；15 人組合 2/2：無、2/3：無；2/2 一間可住：無空房；じゃらん yad382916",
-    "detailPending": true
+    "links": {
+      "googleMaps": "https://maps.google.com/?cid=9105299783259565138"
+    },
+    "note": "楽天 7508，12 室，楽天最低 5,850 円；15 人組合 2/2：無、2/3：無；2/2 一間可住：無空房；じゃらん yad382916"
   },
   {
     "key": "shima-watakanoso",
@@ -191,18 +188,19 @@
     "category": "ryokan",
     "status": "included",
     "reason": null,
-    "pointId": null,
+    "pointId": "shima-watakanoso",
     "ratings": {
       "rakuten": 4.33,
       "rakutenReviews": 119,
-      "google": null,
-      "googleReviews": null,
+      "google": 4.1,
+      "googleReviews": 77,
       "jalan": 4.5,
       "jalanReviews": 165
     },
-    "links": {},
-    "note": "楽天 7622，10 室，楽天最低 6,050 円；15 人組合 2/2：3x5、2/3：3x5；2/2 一間可住：6 人；じゃらん yad320403",
-    "detailPending": true
+    "links": {
+      "googleMaps": "https://maps.google.com/?cid=5745118419183234668"
+    },
+    "note": "楽天 7622，10 室，楽天最低 6,050 円；15 人組合 2/2：3x5、2/3：3x5；2/2 一間可住：6 人；じゃらん yad320403"
   },
   {
     "key": "shima-rakuten-7770",
@@ -257,18 +255,19 @@
     "category": "ryokan",
     "status": "included",
     "reason": null,
-    "pointId": null,
+    "pointId": "shima-marusada",
     "ratings": {
       "rakuten": 4.8,
       "rakutenReviews": 92,
-      "google": null,
-      "googleReviews": null,
+      "google": 4.6,
+      "googleReviews": 120,
       "jalan": 4.8,
       "jalanReviews": 407
     },
-    "links": {},
-    "note": "楽天 7836，5 室，楽天最低 12,100 円；15 人組合 2/2：無、2/3：無；2/2 一間可住：無空房；じゃらん yad318127",
-    "detailPending": true
+    "links": {
+      "googleMaps": "https://maps.google.com/?cid=10463726941960790590"
+    },
+    "note": "楽天 7836，5 室，楽天最低 12,100 円；15 人組合 2/2：無、2/3：無；2/2 一間可住：無空房；じゃらん yad318127"
   },
   {
     "key": "shima-rakuten-8266",
@@ -323,18 +322,19 @@
     "category": "ryokan",
     "status": "included",
     "reason": null,
-    "pointId": null,
+    "pointId": "shima-tachibana",
     "ratings": {
       "rakuten": 4.56,
       "rakutenReviews": 118,
-      "google": null,
-      "googleReviews": null,
+      "google": 4.2,
+      "googleReviews": 97,
       "jalan": 4.7,
       "jalanReviews": 158
     },
-    "links": {},
-    "note": "楽天 9406，16 室，楽天最低 10,000 円；15 人組合 2/2：無、2/3：無；2/2 一間可住：無空房；じゃらん yad317255",
-    "detailPending": true
+    "links": {
+      "googleMaps": "https://maps.google.com/?cid=5093322601112102177"
+    },
+    "note": "楽天 9406，16 室，楽天最低 10,000 円；15 人組合 2/2：無、2/3：無；2/2 一間可住：無空房；じゃらん yad317255"
   },
   {
     "key": "shima-rakuten-13527",
@@ -366,18 +366,19 @@
     "category": "hotel",
     "status": "included",
     "reason": null,
-    "pointId": null,
+    "pointId": "shima-station-hotel-annex",
     "ratings": {
       "rakuten": 3.8,
       "rakutenReviews": 181,
-      "google": null,
-      "googleReviews": null,
+      "google": 3.1,
+      "googleReviews": 48,
       "jalan": null,
       "jalanReviews": null
     },
-    "links": {},
-    "note": "楽天 13587，48 室；15 人組合 2/2：無、2/3：無；2/2 一間可住：無空房",
-    "detailPending": true
+    "links": {
+      "googleMaps": "https://maps.google.com/?cid=1669856417239245213"
+    },
+    "note": "楽天 13587，48 室；15 人組合 2/2：無、2/3：無；2/2 一間可住：無空房"
   },
   {
     "key": "shima-geiboso",
@@ -388,18 +389,19 @@
     "category": "ryokan",
     "status": "included",
     "reason": null,
-    "pointId": null,
+    "pointId": "shima-geiboso",
     "ratings": {
       "rakuten": 4.13,
       "rakutenReviews": 842,
-      "google": null,
-      "googleReviews": null,
+      "google": 3.7,
+      "googleReviews": 433,
       "jalan": 3.9,
       "jalanReviews": 613
     },
-    "links": {},
-    "note": "楽天 13891，35 室，楽天最低 6,600 円；15 人組合 2/2：4x4/3x5/2x8、2/3：5x3/4x4/3x5/2x8；2/2 一間可住：10 人；じゃらん yad310666",
-    "detailPending": true
+    "links": {
+      "googleMaps": "https://maps.google.com/?cid=17904793561798892697"
+    },
+    "note": "楽天 13891，35 室，楽天最低 6,600 円；15 人組合 2/2：4x4/3x5/2x8、2/3：5x3/4x4/3x5/2x8；2/2 一間可住：10 人；じゃらん yad310666"
   },
   {
     "key": "shima-grand-mercure",
@@ -410,18 +412,19 @@
     "category": "hotel",
     "status": "included",
     "reason": null,
-    "pointId": null,
+    "pointId": "shima-grand-mercure",
     "ratings": {
       "rakuten": 3.93,
       "rakutenReviews": 4405,
-      "google": null,
-      "googleReviews": null,
+      "google": 3.7,
+      "googleReviews": 3216,
       "jalan": 4.1,
       "jalanReviews": 1151
     },
-    "links": {},
-    "note": "楽天 13971，372 室，楽天最低 5,568 円；15 人組合 2/2：無、2/3：5x3/4x4/3x5；2/2 一間可住：無空房；じゃらん yad303899",
-    "detailPending": true
+    "links": {
+      "googleMaps": "https://maps.google.com/?cid=4822371600113264740"
+    },
+    "note": "楽天 13971，372 室，楽天最低 5,568 円；15 人組合 2/2：無、2/3：5x3/4x4/3x5；2/2 一間可住：無空房；じゃらん yad303899"
   },
   {
     "key": "shima-bentenso",
@@ -432,7 +435,7 @@
     "category": "ryokan",
     "status": "included",
     "reason": null,
-    "pointId": null,
+    "pointId": "shima-bentenso",
     "ratings": {
       "rakuten": 4.31,
       "rakutenReviews": 184,
@@ -444,8 +447,7 @@
     "links": {
       "googleMaps": "https://maps.google.com/?cid=13297500277898887666"
     },
-    "note": "楽天 14266，15 室，楽天最低 6,300 円；15 人組合 2/2：無、2/3：無；2/2 一間可住：4 人；じゃらん yad311292",
-    "detailPending": true
+    "note": "楽天 14266，15 室，楽天最低 6,300 円；15 人組合 2/2：無、2/3：無；2/2 一間可住：4 人；じゃらん yad311292"
   },
   {
     "key": "shima-rakuten-15027",
@@ -500,7 +502,7 @@
     "category": "ryokan",
     "status": "included",
     "reason": null,
-    "pointId": null,
+    "pointId": "shima-hoseien",
     "ratings": {
       "rakuten": 4.47,
       "rakutenReviews": 2641,
@@ -512,8 +514,7 @@
     "links": {
       "googleMaps": "https://maps.google.com/?cid=1489525318797124424"
     },
-    "note": "楽天 15716，165 室，楽天最低 14,500 円；15 人組合 2/2：無、2/3：無；2/2 一間可住：無空房；じゃらん yad327206",
-    "detailPending": true
+    "note": "楽天 15716，165 室，楽天最低 14,500 円；15 人組合 2/2：無、2/3：無；2/2 一間可住：無空房；じゃらん yad327206"
   },
   {
     "key": "shima-fukujuso",
@@ -524,18 +525,19 @@
     "category": "ryokan",
     "status": "included",
     "reason": null,
-    "pointId": null,
+    "pointId": "shima-fukujuso",
     "ratings": {
       "rakuten": 4.27,
       "rakutenReviews": 829,
-      "google": null,
-      "googleReviews": null,
+      "google": 4.1,
+      "googleReviews": 647,
       "jalan": 4.4,
       "jalanReviews": 2014
     },
-    "links": {},
-    "note": "楽天 15941，66 室，楽天最低 8,800 円；15 人組合 2/2：5x3/4x4/3x5/2x8、2/3：無；2/2 一間可住：8 人；じゃらん yad316648",
-    "detailPending": true
+    "links": {
+      "googleMaps": "https://maps.google.com/?cid=3922457230759835323"
+    },
+    "note": "楽天 15941，66 室，楽天最低 8,800 円；15 人組合 2/2：5x3/4x4/3x5/2x8、2/3：無；2/2 一間可住：8 人；じゃらん yad316648"
   },
   {
     "key": "shima-quintessa",
@@ -546,18 +548,19 @@
     "category": "hotel",
     "status": "included",
     "reason": null,
-    "pointId": null,
+    "pointId": "shima-quintessa",
     "ratings": {
       "rakuten": 4.22,
       "rakutenReviews": 1715,
-      "google": null,
-      "googleReviews": null,
+      "google": 3.8,
+      "googleReviews": 1101,
       "jalan": 4.2,
       "jalanReviews": 81
     },
-    "links": {},
-    "note": "楽天 16258，150 室，楽天最低 3,848 円；15 人組合 2/2：5x3/4x4、2/3：5x3/4x4；2/2 一間可住：4 人；じゃらん yad321594",
-    "detailPending": true
+    "links": {
+      "googleMaps": "https://maps.google.com/?cid=17417283536449565950"
+    },
+    "note": "楽天 16258，150 室，楽天最低 3,848 円；15 人組合 2/2：5x3/4x4、2/3：5x3/4x4；2/2 一間可住：4 人；じゃらん yad321594"
   },
   {
     "key": "shima-risoujin-club",
@@ -568,18 +571,19 @@
     "category": "ryokan",
     "status": "included",
     "reason": null,
-    "pointId": null,
+    "pointId": "shima-risoujin-club",
     "ratings": {
       "rakuten": 4.38,
       "rakutenReviews": 1393,
-      "google": null,
-      "googleReviews": null,
+      "google": 4.2,
+      "googleReviews": 491,
       "jalan": 4.5,
       "jalanReviews": 946
     },
-    "links": {},
-    "note": "楽天 19295，32 室，楽天最低 7,400 円；15 人組合 2/2：5x3/4x4/3x5、2/3：5x3/4x4/3x5；2/2 一間可住：6 人；じゃらん yad302904",
-    "detailPending": true
+    "links": {
+      "googleMaps": "https://maps.google.com/?cid=535107031864105846"
+    },
+    "note": "楽天 19295，32 室，楽天最低 7,400 円；15 人組合 2/2：5x3/4x4/3x5、2/3：5x3/4x4/3x5；2/2 一間可住：6 人；じゃらん yad302904"
   },
   {
     "key": "shima-rakuten-19499",
@@ -653,7 +657,7 @@
     "category": "hotel",
     "status": "included",
     "reason": null,
-    "pointId": null,
+    "pointId": "shima-miyako-bayside-terrace",
     "ratings": {
       "rakuten": 4.54,
       "rakutenReviews": 1126,
@@ -665,8 +669,7 @@
     "links": {
       "googleMaps": "https://maps.google.com/?cid=15504403311963173180"
     },
-    "note": "楽天 27737，108 室，楽天最低 10,250 円；15 人組合 2/2：5x3/4x4/3x5、2/3：5x3/4x4/3x5；2/2 一間可住：6 人；じゃらん yad324307",
-    "detailPending": true
+    "note": "楽天 27737，108 室，楽天最低 10,250 円；15 人組合 2/2：5x3/4x4/3x5、2/3：5x3/4x4/3x5；2/2 一間可住：6 人；じゃらん yad324307"
   },
   {
     "key": "shima-rakuten-28032",
@@ -786,18 +789,19 @@
     "category": "ryokan",
     "status": "included",
     "reason": null,
-    "pointId": null,
+    "pointId": "shima-ichiyo",
     "ratings": {
       "rakuten": 3.94,
       "rakutenReviews": 52,
-      "google": null,
-      "googleReviews": null,
+      "google": 4.2,
+      "googleReviews": 31,
       "jalan": null,
       "jalanReviews": null
     },
-    "links": {},
-    "note": "楽天 31468，3 室，楽天最低 4,600 円；15 人組合 2/2：3x5、2/3：3x5；2/2 一間可住：4 人",
-    "detailPending": true
+    "links": {
+      "googleMaps": "https://maps.google.com/?cid=14574803509563322501"
+    },
+    "note": "楽天 31468，3 室，楽天最低 4,600 円；15 人組合 2/2：3x5、2/3：3x5；2/2 一間可住：4 人"
   },
   {
     "key": "shima-hiougiso",
@@ -808,7 +812,7 @@
     "category": "ryokan",
     "status": "included",
     "reason": null,
-    "pointId": null,
+    "pointId": "shima-hiougiso",
     "ratings": {
       "rakuten": 4.44,
       "rakutenReviews": 400,
@@ -820,8 +824,7 @@
     "links": {
       "googleMaps": "https://maps.google.com/?cid=3928766524523123695"
     },
-    "note": "楽天 31698，21 室，楽天最低 8,900 円；15 人組合 2/2：5x3/4x4/3x5/2x8、2/3：5x3/4x4/3x5/2x8；2/2 一間可住：8 人；じゃらん yad307126",
-    "detailPending": true
+    "note": "楽天 31698，21 室，楽天最低 8,900 円；15 人組合 2/2：5x3/4x4/3x5/2x8、2/3：5x3/4x4/3x5/2x8；2/2 一間可住：8 人；じゃらん yad307126"
   },
   {
     "key": "shima-haifu",
@@ -832,18 +835,19 @@
     "category": "ryokan",
     "status": "included",
     "reason": null,
-    "pointId": null,
+    "pointId": "shima-haifu",
     "ratings": {
       "rakuten": 4.65,
       "rakutenReviews": 923,
-      "google": null,
-      "googleReviews": null,
+      "google": 4.4,
+      "googleReviews": 352,
       "jalan": 4.6,
       "jalanReviews": 1898
     },
-    "links": {},
-    "note": "楽天 37458，21 室，楽天最低 24,600 円；15 人組合 2/2：4x4、2/3：4x4；2/2 一間可住：6 人；じゃらん yad312380",
-    "detailPending": true
+    "links": {
+      "googleMaps": "https://maps.google.com/?cid=3996739810988013705"
+    },
+    "note": "楽天 37458，21 室，楽天最低 24,600 円；15 人組合 2/2：4x4、2/3：4x4；2/2 一間可住：6 人；じゃらん yad312380"
   },
   {
     "key": "shima-rakuten-38468",
@@ -875,18 +879,19 @@
     "category": "hotel",
     "status": "included",
     "reason": null,
-    "pointId": null,
+    "pointId": "shima-ugata-business-hotel",
     "ratings": {
       "rakuten": 4.27,
       "rakutenReviews": 250,
-      "google": null,
-      "googleReviews": null,
+      "google": 4.2,
+      "googleReviews": 44,
       "jalan": null,
       "jalanReviews": null
     },
-    "links": {},
-    "note": "楽天 39912，8 室，楽天最低 4,000 円；15 人組合 2/2：無、2/3：無；2/2 一間可住：無空房",
-    "detailPending": true
+    "links": {
+      "googleMaps": "https://maps.google.com/?cid=3255433810012442309"
+    },
+    "note": "楽天 39912，8 室，楽天最低 4,000 円；15 人組合 2/2：無、2/3：無；2/2 一間可住：無空房"
   },
   {
     "key": "shima-rakuten-40335",
@@ -1002,18 +1007,19 @@
     "category": "ryokan",
     "status": "included",
     "reason": null,
-    "pointId": null,
+    "pointId": "shima-hamajima-tsubaki",
     "ratings": {
       "rakuten": 4.47,
       "rakutenReviews": 410,
-      "google": null,
-      "googleReviews": null,
+      "google": 4,
+      "googleReviews": 458,
       "jalan": 4.4,
       "jalanReviews": 519
     },
-    "links": {},
-    "note": "楽天 44981，33 室，楽天最低 23,100 円；15 人組合 2/2：無、2/3：無；2/2 一間可住：無空房；じゃらん yad388000",
-    "detailPending": true
+    "links": {
+      "googleMaps": "https://maps.google.com/?cid=4890126790870026207"
+    },
+    "note": "楽天 44981，33 室，楽天最低 23,100 円；15 人組合 2/2：無、2/3：無；2/2 一間可住：無空房；じゃらん yad388000"
   },
   {
     "key": "shima-rakuten-50578",
@@ -1045,18 +1051,19 @@
     "category": "hotel",
     "status": "included",
     "reason": null,
-    "pointId": null,
+    "pointId": "shima-chichukaimura-hotel",
     "ratings": {
       "rakuten": 4.47,
       "rakutenReviews": 944,
-      "google": null,
-      "googleReviews": null,
+      "google": 4,
+      "googleReviews": 2625,
       "jalan": 4.6,
       "jalanReviews": 1071
     },
-    "links": {},
-    "note": "楽天 51449，53 室，楽天最低 12,200 円；15 人組合 2/2：5x3/4x4、2/3：5x3/4x4；2/2 一間可住：4 人；じゃらん yad342596",
-    "detailPending": true
+    "links": {
+      "googleMaps": "https://maps.google.com/?cid=670699759400185044"
+    },
+    "note": "楽天 51449，53 室，楽天最低 12,200 円；15 人組合 2/2：5x3/4x4、2/3：5x3/4x4；2/2 一間可住：4 人；じゃらん yad342596"
   },
   {
     "key": "shima-ikadaso-sanjo",
@@ -1067,18 +1074,19 @@
     "category": "ryokan",
     "status": "included",
     "reason": null,
-    "pointId": null,
+    "pointId": "shima-ikadaso-sanjo",
     "ratings": {
       "rakuten": 4.4,
       "rakutenReviews": 94,
-      "google": null,
-      "googleReviews": null,
+      "google": 4.4,
+      "googleReviews": 696,
       "jalan": 4.4,
       "jalanReviews": 2000
     },
-    "links": {},
-    "note": "楽天 67262，16 室，楽天最低 5,500 円；15 人組合 2/2：2x8、2/3：2x8；2/2 一間可住：8 人；じゃらん yad395984",
-    "detailPending": true
+    "links": {
+      "googleMaps": "https://maps.google.com/?cid=5256037722473781442"
+    },
+    "note": "楽天 67262，16 室，楽天最低 5,500 円；15 人組合 2/2：2x8、2/3：2x8；2/2 一間可住：8 人；じゃらん yad395984"
   },
   {
     "key": "shima-morigen",
@@ -1089,18 +1097,19 @@
     "category": "ryokan",
     "status": "included",
     "reason": null,
-    "pointId": null,
+    "pointId": "shima-morigen",
     "ratings": {
       "rakuten": 4.83,
       "rakutenReviews": 63,
-      "google": null,
-      "googleReviews": null,
+      "google": 4.6,
+      "googleReviews": 82,
       "jalan": 4.2,
       "jalanReviews": 163
     },
-    "links": {},
-    "note": "楽天 67388，4 室，楽天最低 6,600 円；15 人組合 2/2：無、2/3：無；2/2 一間可住：4 人；じゃらん yad341055",
-    "detailPending": true
+    "links": {
+      "googleMaps": "https://maps.google.com/?cid=3773687155928136655"
+    },
+    "note": "楽天 67388，4 室，楽天最低 6,600 円；15 人組合 2/2：無、2/3：無；2/2 一間可住：4 人；じゃらん yad341055"
   },
   {
     "key": "shima-neboya",
@@ -1111,18 +1120,19 @@
     "category": "ryokan",
     "status": "included",
     "reason": null,
-    "pointId": null,
+    "pointId": "shima-neboya",
     "ratings": {
       "rakuten": 4.61,
       "rakutenReviews": 353,
-      "google": null,
-      "googleReviews": null,
+      "google": 4.2,
+      "googleReviews": 239,
       "jalan": 4.8,
       "jalanReviews": 1617
     },
-    "links": {},
-    "note": "楽天 67420，9 室，楽天最低 22,660 円；15 人組合 2/2：無、2/3：無；2/2 一間可住：4 人；じゃらん yad342857",
-    "detailPending": true
+    "links": {
+      "googleMaps": "https://maps.google.com/?cid=1442389308072069358"
+    },
+    "note": "楽天 67420，9 室，楽天最低 22,660 円；15 人組合 2/2：無、2/3：無；2/2 一間可住：4 人；じゃらん yad342857"
   },
   {
     "key": "shima-resort-park-tomoyama",
@@ -1133,7 +1143,7 @@
     "category": "pension／民泊",
     "status": "included",
     "reason": null,
-    "pointId": null,
+    "pointId": "shima-resort-park-tomoyama",
     "ratings": {
       "rakuten": 4,
       "rakutenReviews": 319,
@@ -1142,9 +1152,10 @@
       "jalan": null,
       "jalanReviews": null
     },
-    "links": {},
-    "note": "楽天 67913，18 室，楽天最低 6,930 円；15 人組合 2/2：5x3/4x4/3x5/2x8、2/3：5x3/4x4/3x5/2x8；2/2 一間可住：8 人；じゃらん yad345511",
-    "detailPending": true
+    "links": {
+      "googleMaps": "https://maps.google.com/?cid=2637377338850702748"
+    },
+    "note": "楽天 67913，18 室，楽天最低 6,930 円；15 人組合 2/2：5x3/4x4/3x5/2x8、2/3：5x3/4x4/3x5/2x8；2/2 一間可住：8 人；じゃらん yad345511"
   },
   {
     "key": "shima-aqua-forest",
@@ -1155,18 +1166,19 @@
     "category": "hotel",
     "status": "included",
     "reason": null,
-    "pointId": null,
+    "pointId": "shima-aqua-forest",
     "ratings": {
       "rakuten": 4.24,
       "rakutenReviews": 3132,
-      "google": null,
-      "googleReviews": null,
+      "google": 4,
+      "googleReviews": 1372,
       "jalan": 4.3,
       "jalanReviews": 2205
     },
-    "links": {},
-    "note": "楽天 67941，127 室，楽天最低 10,600 円；15 人組合 2/2：5x3/4x4/3x5、2/3：5x3/4x4/3x5；2/2 一間可住：6 人；じゃらん yad349958",
-    "detailPending": true
+    "links": {
+      "googleMaps": "https://maps.google.com/?cid=2500419946184316378"
+    },
+    "note": "楽天 67941，127 室，楽天最低 10,600 円；15 人組合 2/2：5x3/4x4/3x5、2/3：5x3/4x4/3x5；2/2 一間可住：6 人；じゃらん yad349958"
   },
   {
     "key": "shima-rakuten-70389",
@@ -1198,7 +1210,7 @@
     "category": "hotel",
     "status": "included",
     "reason": null,
-    "pointId": null,
+    "pointId": "shima-kanko-bay-suites",
     "ratings": {
       "rakuten": 4.88,
       "rakutenReviews": 301,
@@ -1210,8 +1222,7 @@
     "links": {
       "googleMaps": "https://maps.google.com/?cid=16211176179024320156"
     },
-    "note": "楽天 105964，50 室，楽天最低 28,809 円；15 人組合 2/2：無、2/3：無；2/2 一間可住：4 人；じゃらん yad338802",
-    "detailPending": true
+    "note": "楽天 105964，50 室，楽天最低 28,809 円；15 人組合 2/2：無、2/3：無；2/2 一間可住：4 人；じゃらん yad338802"
   },
   {
     "key": "shima-rakuten-108192",
@@ -1241,8 +1252,8 @@
     },
     "region": "shima-kashikojima",
     "category": "ryokan",
-    "status": "included",
-    "reason": null,
+    "status": "excluded",
+    "reason": "讀文：楽天施設情報寫「お子様の宿泊を中学生から」，團裡 4 位 6～10 歲小孩不能住（判斷細則「所有方案限制學齡前不能住的排除」擴大到小學生；只有大人分組才可能，留給 T9g）。楽天 4.63／309、Google 4.4／487、じゃらん 4.4／883（筆記 dossiers/shima-basaratei.md）",
     "pointId": null,
     "ratings": {
       "rakuten": 4.63,
@@ -1255,8 +1266,7 @@
     "links": {
       "googleMaps": "https://maps.google.com/?cid=10033384969430321116"
     },
-    "note": "楽天 108260，20 室，楽天最低 51,700 円；15 人組合 2/2：無、2/3：無；2/2 一間可住：4 人；じゃらん yad361058",
-    "detailPending": true
+    "note": "楽天 108260，20 室，楽天最低 51,700 円；15 人組合 2/2：無、2/3：無；2/2 一間可住：4 人；じゃらん yad361058"
   },
   {
     "key": "shima-rakuten-108683",
@@ -1288,18 +1298,19 @@
     "category": "hotel",
     "status": "included",
     "reason": null,
-    "pointId": null,
+    "pointId": "shima-therapy-resort",
     "ratings": {
       "rakuten": 4.93,
       "rakutenReviews": 250,
-      "google": null,
-      "googleReviews": null,
+      "google": 4.4,
+      "googleReviews": 55,
       "jalan": 4.9,
       "jalanReviews": 148
     },
-    "links": {},
-    "note": "楽天 109444，5 室，楽天最低 19,800 円；15 人組合 2/2：無、2/3：無；2/2 一間可住：4 人；じゃらん yad357494",
-    "detailPending": true
+    "links": {
+      "googleMaps": "https://maps.google.com/?cid=13934231510455400455"
+    },
+    "note": "楽天 109444，5 室，楽天最低 19,800 円；15 人組合 2/2：無、2/3：無；2/2 一間可住：4 人；じゃらん yad357494"
   },
   {
     "key": "shima-rakuten-109462",
@@ -1331,18 +1342,19 @@
     "category": "hotel",
     "status": "included",
     "reason": null,
-    "pointId": null,
+    "pointId": "shima-business-hotel-fuji",
     "ratings": {
       "rakuten": 3.96,
       "rakutenReviews": 313,
-      "google": null,
-      "googleReviews": null,
+      "google": 3.6,
+      "googleReviews": 101,
       "jalan": 4.3,
       "jalanReviews": 201
     },
-    "links": {},
-    "note": "楽天 128302，22 室，楽天最低 6,050 円；15 人組合 2/2：無、2/3：無；2/2 一間可住：2 人；じゃらん yad342770",
-    "detailPending": true
+    "links": {
+      "googleMaps": "https://maps.google.com/?cid=1993285495210129812"
+    },
+    "note": "楽天 128302，22 室，楽天最低 6,050 円；15 人組合 2/2：無、2/3：無；2/2 一間可住：2 人；じゃらん yad342770"
   },
   {
     "key": "shima-rakuten-128360",
@@ -1374,18 +1386,19 @@
     "category": "ryokan",
     "status": "included",
     "reason": null,
-    "pointId": null,
+    "pointId": "shima-fukushio",
     "ratings": {
       "rakuten": 4.63,
       "rakutenReviews": 45,
-      "google": null,
-      "googleReviews": null,
+      "google": 4.5,
+      "googleReviews": 24,
       "jalan": null,
       "jalanReviews": null
     },
-    "links": {},
-    "note": "楽天 128552，12 室，楽天最低 18,700 円；15 人組合 2/2：4x4、2/3：4x4；2/2 一間可住：4 人",
-    "detailPending": true
+    "links": {
+      "googleMaps": "https://maps.google.com/?cid=12959129900314083295"
+    },
+    "note": "楽天 128552，12 室，楽天最低 18,700 円；15 人組合 2/2：4x4、2/3：4x4；2/2 一間可住：4 人"
   },
   {
     "key": "shima-rakuten-129615",
@@ -1440,18 +1453,19 @@
     "category": "ryokan",
     "status": "included",
     "reason": null,
-    "pointId": null,
+    "pointId": "shima-hikobe",
     "ratings": {
       "rakuten": 4.75,
       "rakutenReviews": 37,
-      "google": null,
-      "googleReviews": null,
+      "google": 4.1,
+      "googleReviews": 29,
       "jalan": null,
       "jalanReviews": null
     },
-    "links": {},
-    "note": "楽天 134852，13 室，楽天最低 13,500 円；15 人組合 2/2：3x5、2/3：3x5；2/2 一間可住：6 人；じゃらん yad310171",
-    "detailPending": true
+    "links": {
+      "googleMaps": "https://maps.google.com/?cid=8157077732137536141"
+    },
+    "note": "楽天 134852，13 室，楽天最低 13,500 円；15 人組合 2/2：3x5、2/3：3x5；2/2 一間可住：6 人；じゃらん yad310171"
   },
   {
     "key": "shima-rakuten-134855",
@@ -1506,18 +1520,19 @@
     "category": "ryokan",
     "status": "included",
     "reason": null,
-    "pointId": null,
+    "pointId": "shima-oedo-iseshima",
     "ratings": {
       "rakuten": 4.15,
       "rakutenReviews": 1144,
-      "google": null,
-      "googleReviews": null,
+      "google": 3.9,
+      "googleReviews": 1749,
       "jalan": 4.3,
       "jalanReviews": 1854
     },
-    "links": {},
-    "note": "楽天 137490，83 室，楽天最低 11,400 円；15 人組合 2/2：5x3/4x4/3x5、2/3：5x3/4x4/3x5；2/2 一間可住：10 人；じゃらん yad321110",
-    "detailPending": true
+    "links": {
+      "googleMaps": "https://maps.google.com/?cid=12781768572398887161"
+    },
+    "note": "楽天 137490，83 室，楽天最低 11,400 円；15 人組合 2/2：5x3/4x4/3x5、2/3：5x3/4x4/3x5；2/2 一間可住：10 人；じゃらん yad321110"
   },
   {
     "key": "shima-rakuten-139411",
@@ -1570,18 +1585,19 @@
     "category": "ryokan",
     "status": "included",
     "reason": null,
-    "pointId": null,
+    "pointId": "shima-oonami",
     "ratings": {
       "rakuten": 4.81,
       "rakutenReviews": 55,
-      "google": null,
-      "googleReviews": null,
+      "google": 4.8,
+      "googleReviews": 61,
       "jalan": null,
       "jalanReviews": null
     },
-    "links": {},
-    "note": "楽天 139963，5 室，楽天最低 19,800 円；15 人組合 2/2：無、2/3：無；2/2 一間可住：2 人",
-    "detailPending": true
+    "links": {
+      "googleMaps": "https://maps.google.com/?cid=16560943870457082864"
+    },
+    "note": "楽天 139963，5 室，楽天最低 19,800 円；15 人組合 2/2：無、2/3：無；2/2 一間可住：2 人"
   },
   {
     "key": "shima-saichoraku",
@@ -1592,7 +1608,7 @@
     "category": "ryokan",
     "status": "included",
     "reason": null,
-    "pointId": null,
+    "pointId": "shima-saichoraku",
     "ratings": {
       "rakuten": 3.83,
       "rakutenReviews": 1167,
@@ -1604,8 +1620,7 @@
     "links": {
       "googleMaps": "https://maps.google.com/?cid=1717074060645530770"
     },
-    "note": "楽天 142676，100 室，楽天最低 10,300 円；15 人組合 2/2：無、2/3：5x3/4x4/3x5；2/2 一間可住：無空房；じゃらん yad338676",
-    "detailPending": true
+    "note": "楽天 142676，100 室，楽天最低 10,300 円；15 人組合 2/2：無、2/3：5x3/4x4/3x5；2/2 一間可住：無空房；じゃらん yad338676"
   },
   {
     "key": "shima-rakuten-142677",
@@ -1637,18 +1652,19 @@
     "category": "hotel",
     "status": "included",
     "reason": null,
-    "pointId": null,
+    "pointId": "shima-nemu-resort",
     "ratings": {
       "rakuten": 4.5,
       "rakutenReviews": 484,
-      "google": null,
-      "googleReviews": null,
+      "google": 4.2,
+      "googleReviews": 976,
       "jalan": 4.6,
       "jalanReviews": 464
     },
-    "links": {},
-    "note": "楽天 147923，86 室，楽天最低 6,897 円；15 人組合 2/2：5x3/4x4、2/3：5x3/4x4；2/2 一間可住：6 人；じゃらん yad331417",
-    "detailPending": true
+    "links": {
+      "googleMaps": "https://maps.google.com/?cid=9136303781188342853"
+    },
+    "note": "楽天 147923，86 室，楽天最低 6,897 円；15 人組合 2/2：5x3/4x4、2/3：5x3/4x4；2/2 一間可住：6 人；じゃらん yad331417"
   },
   {
     "key": "shima-rakuten-148899",
@@ -1701,18 +1717,19 @@
     "category": "hotel",
     "status": "included",
     "reason": null,
-    "pointId": null,
+    "pointId": "shima-shunka",
     "ratings": {
       "rakuten": 4.47,
       "rakutenReviews": 64,
-      "google": null,
-      "googleReviews": null,
+      "google": 4.4,
+      "googleReviews": 223,
       "jalan": null,
       "jalanReviews": null
     },
-    "links": {},
-    "note": "楽天 151115，16 室，楽天最低 14,520 円；15 人組合 2/2：無、2/3：5x3/4x4/3x5/2x8；2/2 一間可住：無空房；じゃらん yad374282",
-    "detailPending": true
+    "links": {
+      "googleMaps": "https://maps.google.com/?cid=15290732935309405626"
+    },
+    "note": "楽天 151115，16 室，楽天最低 14,520 円；15 人組合 2/2：無、2/3：5x3/4x4/3x5/2x8；2/2 一間可住：無空房；じゃらん yad374282"
   },
   {
     "key": "shima-nocturne-no-mori",
@@ -1723,18 +1740,19 @@
     "category": "hotel",
     "status": "included",
     "reason": null,
-    "pointId": null,
+    "pointId": "shima-nocturne-no-mori",
     "ratings": {
       "rakuten": 4.39,
       "rakutenReviews": 852,
-      "google": null,
-      "googleReviews": null,
+      "google": 4.3,
+      "googleReviews": 312,
       "jalan": 4.6,
       "jalanReviews": 262
     },
-    "links": {},
-    "note": "楽天 151475，32 室，楽天最低 4,750 円；15 人組合 2/2：5x3/4x4/3x5、2/3：5x3/4x4/3x5；2/2 一間可住：6 人；じゃらん yad373882",
-    "detailPending": true
+    "links": {
+      "googleMaps": "https://maps.google.com/?cid=10268265578103643069"
+    },
+    "note": "楽天 151475，32 室，楽天最低 4,750 円；15 人組合 2/2：5x3/4x4/3x5、2/3：5x3/4x4/3x5；2/2 一間可住：6 人；じゃらん yad373882"
   },
   {
     "key": "shima-rakuten-153616",
@@ -1789,7 +1807,7 @@
     "category": "hotel",
     "status": "included",
     "reason": null,
-    "pointId": null,
+    "pointId": "shima-hotel-bay-garden",
     "ratings": {
       "rakuten": 4.02,
       "rakutenReviews": 354,
@@ -1801,8 +1819,7 @@
     "links": {
       "googleMaps": "https://maps.google.com/?cid=10250513279871879338"
     },
-    "note": "楽天 166181，29 室，楽天最低 4,800 円；15 人組合 2/2：無、2/3：無；2/2 一間可住：4 人；じゃらん yad331214",
-    "detailPending": true
+    "note": "楽天 166181，29 室，楽天最低 4,800 円；15 人組合 2/2：無、2/3：無；2/2 一間可住：4 人；じゃらん yad331214"
   },
   {
     "key": "shima-rakuten-166361",
@@ -1855,8 +1872,8 @@
     },
     "region": "shima-sakko",
     "category": "pension／民泊",
-    "status": "included",
-    "reason": null,
+    "status": "pending",
+    "reason": "讀文：楽天方案一覽「現在予約可能なプランがありません」、Google 地點頁顯示閉業或臨時休業字樣，營業狀態不明（判斷細則：營業狀態不明的標 pending）；楽天 5.00／89、Google 4.7／69（筆記 dossiers/shima-bb-forest.md）",
     "pointId": null,
     "ratings": {
       "rakuten": 5,
@@ -1867,8 +1884,7 @@
       "jalanReviews": null
     },
     "links": {},
-    "note": "楽天 167684，12 室；15 人組合 2/2：無、2/3：無；2/2 一間可住：無空房",
-    "detailPending": true
+    "note": "楽天 167684，12 室；15 人組合 2/2：無、2/3：無；2/2 一間可住：無空房"
   },
   {
     "key": "shima-rakuten-167880",
@@ -2005,18 +2021,19 @@
     "category": "hotel",
     "status": "included",
     "reason": null,
-    "pointId": null,
+    "pointId": "shima-ichiraku-onsen",
     "ratings": {
       "rakuten": 4.26,
       "rakutenReviews": 63,
-      "google": null,
-      "googleReviews": null,
+      "google": 4.4,
+      "googleReviews": 78,
       "jalan": 4.6,
       "jalanReviews": 144
     },
-    "links": {},
-    "note": "楽天 172942，14 室，楽天最低 6,500 円；15 人組合 2/2：無、2/3：無；2/2 一間可住：無空房；じゃらん yad377885",
-    "detailPending": true
+    "links": {
+      "googleMaps": "https://maps.google.com/?cid=3481688737457633644"
+    },
+    "note": "楽天 172942，14 室，楽天最低 6,500 円；15 人組合 2/2：無、2/3：無；2/2 一間可住：無空房；じゃらん yad377885"
   },
   {
     "key": "shima-rakuten-174103",
@@ -2048,18 +2065,19 @@
     "category": "pension／民泊",
     "status": "included",
     "reason": null,
-    "pointId": null,
+    "pointId": "shima-shimawaso",
     "ratings": {
       "rakuten": 4.2,
       "rakutenReviews": 56,
-      "google": null,
-      "googleReviews": null,
+      "google": 3.6,
+      "googleReviews": 37,
       "jalan": 4.4,
       "jalanReviews": 168
     },
-    "links": {},
-    "note": "楽天 176725，6 室，楽天最低 3,000 円；15 人組合 2/2：5x3/4x4、2/3：5x3/4x4；2/2 一間可住：6 人；じゃらん yad343552",
-    "detailPending": true
+    "links": {
+      "googleMaps": "https://maps.google.com/?cid=15461237563294042121"
+    },
+    "note": "楽天 176725，6 室，楽天最低 3,000 円；15 人組合 2/2：5x3/4x4、2/3：5x3/4x4；2/2 一間可住：6 人；じゃらん yad343552"
   },
   {
     "key": "shima-kabuku-resort",
@@ -2070,18 +2088,19 @@
     "category": "pension／民泊",
     "status": "included",
     "reason": null,
-    "pointId": null,
+    "pointId": "shima-kabuku-resort",
     "ratings": {
       "rakuten": 3.96,
       "rakutenReviews": 69,
-      "google": null,
-      "googleReviews": null,
+      "google": 4.1,
+      "googleReviews": 63,
       "jalan": null,
       "jalanReviews": null
     },
-    "links": {},
-    "note": "楽天 177971，8 室，楽天最低 5,300 円；15 人組合 2/2：4x4/3x5、2/3：4x4/3x5；2/2 一間可住：8 人",
-    "detailPending": true
+    "links": {
+      "googleMaps": "https://maps.google.com/?cid=3576074641729507689"
+    },
+    "note": "楽天 177971，8 室，楽天最低 5,300 円；15 人組合 2/2：4x4/3x5、2/3：4x4/3x5；2/2 一間可住：8 人"
   },
   {
     "key": "shima-villa-daio",
@@ -2092,18 +2111,19 @@
     "category": "hotel",
     "status": "included",
     "reason": null,
-    "pointId": null,
+    "pointId": "shima-villa-daio",
     "ratings": {
       "rakuten": 4.08,
       "rakutenReviews": 35,
-      "google": null,
-      "googleReviews": null,
+      "google": 4.5,
+      "googleReviews": 105,
       "jalan": null,
       "jalanReviews": null
     },
-    "links": {},
-    "note": "楽天 178448，10 室，楽天最低 4,200 円；15 人組合 2/2：5x3/4x4/3x5、2/3：5x3/4x4/3x5；2/2 一間可住：4 人；じゃらん yad356622",
-    "detailPending": true
+    "links": {
+      "googleMaps": "https://maps.google.com/?cid=420662562356104962"
+    },
+    "note": "楽天 178448，10 室，楽天最低 4,200 円；15 人組合 2/2：5x3/4x4/3x5、2/3：5x3/4x4/3x5；2/2 一間可住：4 人；じゃらん yad356622"
   },
   {
     "key": "shima-rakuten-180007",
@@ -2156,18 +2176,19 @@
     "category": "pension／民泊",
     "status": "included",
     "reason": null,
-    "pointId": null,
+    "pointId": "shima-log-anori",
     "ratings": {
       "rakuten": null,
       "rakutenReviews": 3,
-      "google": null,
-      "googleReviews": null,
+      "google": 3.8,
+      "googleReviews": 4,
       "jalan": null,
       "jalanReviews": null
     },
-    "links": {},
-    "note": "楽天 181598，1 室，楽天最低 5,660 円；15 人組合 2/2：無、2/3：無；2/2 一間可住：10 人",
-    "detailPending": true
+    "links": {
+      "googleMaps": "https://maps.google.com/?cid=17974993286291856197"
+    },
+    "note": "楽天 181598，1 室，楽天最低 5,660 円；15 人組合 2/2：無、2/3：無；2/2 一間可住：10 人"
   },
   {
     "key": "shima-villa-ryusei",
@@ -2178,18 +2199,19 @@
     "category": "hotel",
     "status": "included",
     "reason": null,
-    "pointId": null,
+    "pointId": "shima-villa-ryusei",
     "ratings": {
       "rakuten": 4.38,
       "rakutenReviews": 86,
-      "google": null,
-      "googleReviews": null,
+      "google": 4.2,
+      "googleReviews": 60,
       "jalan": null,
       "jalanReviews": null
     },
-    "links": {},
-    "note": "楽天 182365，9 室，楽天最低 17,850 円；15 人組合 2/2：無、2/3：無；2/2 一間可住：無空房",
-    "detailPending": true
+    "links": {
+      "googleMaps": "https://maps.google.com/?cid=8507857770425951803"
+    },
+    "note": "楽天 182365，9 室，楽天最低 17,850 円；15 人組合 2/2：無、2/3：無；2/2 一間可住：無空房"
   },
   {
     "key": "shima-yadokari",
@@ -2200,18 +2222,19 @@
     "category": "pension／民泊",
     "status": "included",
     "reason": null,
-    "pointId": null,
+    "pointId": "shima-yadokari",
     "ratings": {
       "rakuten": null,
       "rakutenReviews": null,
-      "google": null,
-      "googleReviews": null,
+      "google": 4,
+      "googleReviews": 6,
       "jalan": null,
       "jalanReviews": null
     },
-    "links": {},
-    "note": "楽天 183148，1 室，楽天最低 10,980 円；15 人組合 2/2：無、2/3：無；2/2 一間可住：10 人",
-    "detailPending": true
+    "links": {
+      "googleMaps": "https://maps.google.com/?cid=10446467054877278379"
+    },
+    "note": "楽天 183148，1 室，楽天最低 10,980 円；15 人組合 2/2：無、2/3：無；2/2 一間可住：10 人"
   },
   {
     "key": "shima-umibe",
@@ -2222,18 +2245,19 @@
     "category": "hotel",
     "status": "included",
     "reason": null,
-    "pointId": null,
+    "pointId": "shima-umibe",
     "ratings": {
       "rakuten": null,
       "rakutenReviews": null,
-      "google": null,
-      "googleReviews": null,
+      "google": 4.8,
+      "googleReviews": 33,
       "jalan": null,
       "jalanReviews": null
     },
-    "links": {},
-    "note": "楽天 184799，1 室，楽天最低 16,400 円；15 人組合 2/2：無、2/3：無；2/2 一間可住：10 人；じゃらん yad398772",
-    "detailPending": true
+    "links": {
+      "googleMaps": "https://maps.google.com/?cid=3943889506979948615"
+    },
+    "note": "楽天 184799，1 室，楽天最低 16,400 円；15 人組合 2/2：無、2/3：無；2/2 一間可住：10 人；じゃらん yad398772"
   },
   {
     "key": "shima-rakuten-186561",
@@ -2284,8 +2308,8 @@
     },
     "region": "shima-ugata",
     "category": "hotel",
-    "status": "included",
-    "reason": null,
+    "status": "excluded",
+    "reason": "讀文：官網寫「0〜12歳:宿泊不可」，小孩不能住；而且是共居／膠囊型（共用淋浴、ドミトリー），不適合長輩（筆記 dossiers/shima-circle-apartment.md）",
     "pointId": null,
     "ratings": {
       "rakuten": 3.65,
@@ -2298,8 +2322,7 @@
     "links": {
       "googleMaps": "https://maps.google.com/?cid=10430679290165419946"
     },
-    "note": "楽天 187267，24 室，楽天最低 4,250 円；15 人組合 2/2：無、2/3：無；2/2 一間可住：2 人",
-    "detailPending": true
+    "note": "楽天 187267，24 室，楽天最低 4,250 円；15 人組合 2/2：無、2/3：無；2/2 一間可住：2 人"
   },
   {
     "key": "shima-rakuten-187538",
@@ -2457,18 +2480,19 @@
     "category": "pension／民泊",
     "status": "included",
     "reason": null,
-    "pointId": null,
+    "pointId": "shima-umilabo",
     "ratings": {
       "rakuten": null,
       "rakutenReviews": null,
-      "google": null,
-      "googleReviews": null,
+      "google": 5,
+      "googleReviews": 75,
       "jalan": null,
       "jalanReviews": null
     },
-    "links": {},
-    "note": "楽天 191038，1 室，楽天最低 27,840 円；15 人組合 2/2：無、2/3：無；2/2 一間可住：8 人",
-    "detailPending": true
+    "links": {
+      "googleMaps": "https://maps.google.com/?cid=2270449584742145187"
+    },
+    "note": "楽天 191038，1 室，楽天最低 27,840 円；15 人組合 2/2：無、2/3：無；2/2 一間可住：8 人"
   },
   {
     "key": "shima-rakuten-191475",
@@ -2710,18 +2734,19 @@
     "category": "pension／民泊",
     "status": "included",
     "reason": null,
-    "pointId": null,
+    "pointId": "shima-umibe-terrace",
     "ratings": {
       "rakuten": null,
       "rakutenReviews": 2,
-      "google": null,
-      "googleReviews": null,
+      "google": 5,
+      "googleReviews": 10,
       "jalan": null,
       "jalanReviews": null
     },
-    "links": {},
-    "note": "楽天 196440，1 室，楽天最低 19,400 円；15 人組合 2/2：無、2/3：無；2/2 一間可住：8 人；じゃらん yad319620",
-    "detailPending": true
+    "links": {
+      "googleMaps": "https://maps.google.com/?cid=1955403319882222234"
+    },
+    "note": "楽天 196440，1 室，楽天最低 19,400 円；15 人組合 2/2：無、2/3：無；2/2 一間可住：8 人；じゃらん yad319620"
   },
   {
     "key": "shima-rakuten-196600",
@@ -2753,18 +2778,19 @@
     "category": "ryokan",
     "status": "included",
     "reason": null,
-    "pointId": null,
+    "pointId": "shima-taoya",
     "ratings": {
       "rakuten": 4.23,
       "rakutenReviews": 401,
-      "google": null,
-      "googleReviews": null,
+      "google": 4,
+      "googleReviews": 162,
       "jalan": 4.2,
       "jalanReviews": 190
     },
-    "links": {},
-    "note": "楽天 196797，93 室，楽天最低 16,500 円；15 人組合 2/2：5x3/4x4/3x5、2/3：5x3/4x4/3x5；2/2 一間可住：6 人；じゃらん yad347515",
-    "detailPending": true
+    "links": {
+      "googleMaps": "https://maps.google.com/?cid=12900116021146004508"
+    },
+    "note": "楽天 196797，93 室，楽天最低 16,500 円；15 人組合 2/2：5x3/4x4/3x5、2/3：5x3/4x4/3x5；2/2 一間可住：6 人；じゃらん yad347515"
   },
   {
     "key": "shima-rakuten-197718",
@@ -2796,18 +2822,19 @@
     "category": "hotel",
     "status": "included",
     "reason": null,
-    "pointId": null,
+    "pointId": "shima-small-resort",
     "ratings": {
       "rakuten": null,
       "rakutenReviews": 2,
-      "google": null,
-      "googleReviews": null,
+      "google": 4.9,
+      "googleReviews": 29,
       "jalan": null,
       "jalanReviews": null
     },
-    "links": {},
-    "note": "楽天 197802，1 室，楽天最低 65,789 円；15 人組合 2/2：無、2/3：無；2/2 一間可住：10 人",
-    "detailPending": true
+    "links": {
+      "googleMaps": "https://maps.google.com/?cid=18045061623048286687"
+    },
+    "note": "楽天 197802，1 室，楽天最低 65,789 円；15 人組合 2/2：無、2/3：無；2/2 一間可住：10 人"
   },
   {
     "key": "shima-rakuten-197997",
@@ -2860,18 +2887,19 @@
     "category": "hotel",
     "status": "included",
     "reason": null,
-    "pointId": null,
+    "pointId": "shima-mori-to-umi",
     "ratings": {
       "rakuten": null,
       "rakutenReviews": null,
-      "google": null,
-      "googleReviews": null,
+      "google": 4.5,
+      "googleReviews": 22,
       "jalan": null,
       "jalanReviews": null
     },
-    "links": {},
-    "note": "楽天 198954，1 室，楽天最低 27,500 円；15 人組合 2/2：無、2/3：無；2/2 一間可住：10 人；じゃらん yad361095",
-    "detailPending": true
+    "links": {
+      "googleMaps": "https://maps.google.com/?cid=2801035219297466723"
+    },
+    "note": "楽天 198954，1 室，楽天最低 27,500 円；15 人組合 2/2：無、2/3：無；2/2 一間可住：10 人；じゃらん yad361095"
   },
   {
     "key": "shima-rakuten-199387",
@@ -3029,18 +3057,19 @@
     "category": "hotel",
     "status": "included",
     "reason": null,
-    "pointId": null,
+    "pointId": "shima-villa-ise-shima",
     "ratings": {
       "rakuten": null,
       "rakutenReviews": null,
-      "google": null,
-      "googleReviews": null,
+      "google": 5,
+      "googleReviews": 4,
       "jalan": null,
       "jalanReviews": null
     },
-    "links": {},
-    "note": "楽天 201724，1 室，楽天最低 9,744 円；15 人組合 2/2：無、2/3：無；2/2 一間可住：8 人",
-    "detailPending": true
+    "links": {
+      "googleMaps": "https://maps.google.com/?cid=6890431814609024026"
+    },
+    "note": "楽天 201724，1 室，楽天最低 9,744 円；15 人組合 2/2：無、2/3：無；2/2 一間可住：8 人"
   },
   {
     "key": "shima-rakuten-201960",
@@ -3093,14 +3122,17 @@
     "category": "ryokan",
     "status": "included",
     "reason": null,
-    "pointId": null,
+    "pointId": "shima-hanataku",
     "ratings": {
       "jalan": 4.9,
-      "jalanReviews": 475
+      "jalanReviews": 475,
+      "google": 4.6,
+      "googleReviews": 65
     },
-    "links": {},
-    "note": "沒上楽天；じゃらん yad390432（阿児町甲賀2671），じゃらん 4.9／475 則",
-    "detailPending": true
+    "links": {
+      "googleMaps": "https://maps.google.com/?cid=14344078588759316607"
+    },
+    "note": "沒上楽天；じゃらん yad390432（阿児町甲賀2671），じゃらん 4.9／475 則"
   },
   {
     "key": "shima-ocean-villa-wa",
@@ -3111,11 +3143,15 @@
     "category": "rental-house",
     "status": "included",
     "reason": null,
-    "pointId": null,
-    "ratings": {},
-    "links": {},
-    "note": "沒上楽天；觀光三重 https://www.kankomie.or.jp/spot/23842（WebSearch 摘要：最多 10 人包棟）",
-    "detailPending": true
+    "pointId": "shima-ocean-villa-wa",
+    "ratings": {
+      "google": 3.2,
+      "googleReviews": 9
+    },
+    "links": {
+      "googleMaps": "https://maps.google.com/?cid=14254672148458479494"
+    },
+    "note": "沒上楽天；觀光三重 https://www.kankomie.or.jp/spot/23842（WebSearch 摘要：最多 10 人包棟）"
   },
   {
     "key": "shima-villa-south-coast",

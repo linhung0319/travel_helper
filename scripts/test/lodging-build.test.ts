@@ -131,3 +131,9 @@ test('nearbyCombos：住不下 15 人的，同區 1 km 內最近 4 間', () => {
   assert.deepEqual(pts[3].group.nearbyCombos, []);
   assert.deepEqual(pts[4].group.nearbyCombos, []);
 });
+
+test('priceRange：沒有每人價時用每間（棟）總價；方案名是 null 時用房型名', () => {
+  assert.equal(priceRangeText([{ plan: '素泊 x', unit: 'per-room', adult: null, price: 60900 }, { plan: '包棟', unit: 'per-house', price: 48000 }]), '每間（棟）約 48,000～60,900 円（詳見 prices）');
+  const p = roomPrice({ plans: [{ planName: null, roomName: '一棟貸し', perPerson: null, roomTotal: 60900, dinner: false, breakfast: false }] }, { hotelNo: 7, date: '2027-02-02', adults: 10, queried: '2026-10-18' });
+  assert.match(p.plan, /（一棟貸し）$/);
+});

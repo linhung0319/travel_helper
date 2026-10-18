@@ -55,6 +55,12 @@ const today = new Date().toISOString().slice(0, 10);
 
 const lodgingFile = path.join(ROOT, `data/areas/${area}/lodging.json`);
 const { data: lodging, eol } = readJson(lodgingFile);
+// 餐廳還沒蒐集的區域（例如 T9b 時的志摩）：不能判斷 walk／car，全部留 null，不要當成「附近沒有店」（T9b 加）
+const missingRest = restAreas.filter((a) => !fs.existsSync(path.join(ROOT, `data/areas/${a}/restaurants.json`)));
+if (missingRest.length) {
+  console.error(`沒有 ${missingRest.map((a) => `data/areas/${a}/restaurants.json`).join('、')}：餐廳資料還沒建立，dinnerAccess 維持 null（等餐廳任務後再跑）`);
+  process.exit(0);
+}
 const dinners = restAreas
   .flatMap((a) => readJson(path.join(ROOT, `data/areas/${a}/restaurants.json`)).data)
   .filter((r) => !r.id.endsWith('-dining') && isDinner(r, days));
