@@ -13,25 +13,35 @@
 //   node scripts/candidates.mjs set <area> <kind> <patch.json> [--dry-run]
 //       patch.json：[{ "key": "...", "set": { "status": "included", "pointId": "...", "ratings.google": 4.2 }, "unset": ["detailPending"] }]
 //       找不到 key 就整批不寫；寫回時保留原本的換行和縮排
+//   node scripts/candidates.mjs add <area> <kind> <new.json> [--replace] [--dry-run]
+//       new.json：候選的陣列（例如 restaurant-candidates.mjs build 的輸出），加到候選檔最後；候選檔不存在就建立（T9c 加）
+//       key 已經存在：預設整批不寫；--replace 用新的整筆原位取代（同一批重跑時用；手改過的欄位會被蓋掉，先用 list 確認）
 // kind：spots | lodging | restaurants
 
 import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { readJson, writeJson, getPath, setPath } from './lib/json-file.mjs';
+import { addCandidates } from './lib/candidates-add.mjs';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const [cmd, area, kind, ...rest] = process.argv.slice(2);
 const opt = (k) => (rest.includes(`--${k}`) ? rest[rest.indexOf(`--${k}`) + 1] : null);
 const flag = (k) => rest.includes(`--${k}`);
 
-if (!['list', 'export', 'set'].includes(cmd) || !area || !['spots', 'lodging', 'restaurants'].includes(kind)) {
-  console.error('用法：node scripts/candidates.mjs <list|export|set> <area> <spots|lodging|restaurants> [選項]（說明見檔案開頭）');
+if (!['list', 'export', 'set', 'add'].includes(cmd) || !area || !['spots', 'lodging', 'restaurants'].includes(kind)) {
+  console.error('用法：node scripts/candidates.mjs <list|export|set|add> <area> <spots|lodging|restaurants> [選項]（說明見檔案開頭）');
   process.exit(2);
 }
 
 const file = path.join(ROOT, `data/raw/${area}/candidates/${kind}.json`);
-const { data: cands, eol } = readJson(file);
+const exists = fs.existsSync(file);
+if (!exists && cmd !== 'add') {
+  console.error(`沒有候選檔：${path.relative(ROOT, file)}`);
+  process.exit(1);
+}
+// 新建的檔案用 CRLF（工作目錄的資料檔都是 CRLF，見 json-file.mjs）
+const { data: cands, eol } = exists ? readJson(file) : { data: [], eol: '\r\n' };
 const byKey = new Map(cands.map((c) => [c.key, c]));
 const keysOpt = opt('keys')?.split(',').map((s) => s.trim()).filter(Boolean);
 
@@ -87,6 +97,25 @@ if (cmd === 'list') {
     fs.writeFileSync(opt('out'), out);
     console.error(`寫了 ${batch.length} 筆到 ${opt('out')}`);
   } else process.stdout.write(out);
+} else if (cmd === 'add') {
+  const addFile = rest.find((a) => !a.startsWith('--'));
+  if (!addFile) {
+    console.error('add 要給 new.json');
+    process.exit(2);
+  }
+  const adds = JSON.parse(fs.readFileSync(addFile, 'utf8'));
+  const { result, added, replaced, conflicts } = addCandidates(cands, adds, { replace: flag('replace') });
+  if (conflicts.length) {
+    console.error(`這些 key 已經存在，整批不寫（要取代就加 --replace）：${conflicts.join(', ')}`);
+    process.exit(1);
+  }
+  console.error(`新增 ${added} 筆、取代 ${replaced} 筆（合計 ${result.length} 筆）`);
+  if (flag('dry-run')) console.error('（--dry-run，沒有寫檔）');
+  else {
+    fs.mkdirSync(path.dirname(file), { recursive: true });
+    writeJson(file, result, eol);
+    console.error(`寫回 ${path.relative(ROOT, file)}；記得跑 scripts/validate`);
+  }
 } else {
   const patchFile = rest.find((a) => !a.startsWith('--'));
   if (!patchFile) {

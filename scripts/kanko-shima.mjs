@@ -15,7 +15,7 @@ import { fileURLToPath } from 'node:url';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const BASE = 'https://www.kanko-shima.com';
-const LISTS = { see: '観る・遊ぶ', experience: '体験する' };
+const ALL_LISTS = { see: '観る・遊ぶ', experience: '体験する', eat: '食べる' };
 const UA = 'Mozilla/5.0 (compatible; travel-helper personal trip planning; 1 req/s)';
 const KEEP = ['住所', '電話番号', 'Webサイト', '営業時間', '定休日', '料金', '駐車場', 'アクセス'];
 
@@ -72,11 +72,19 @@ const today = () => {
 async function main() {
   const argv = process.argv.slice(2);
   if (argv[0] !== 'fetch') {
-    console.error('用法：node scripts/kanko-shima.mjs fetch [--no-details] [--out <檔案>]');
+    console.error('用法：node scripts/kanko-shima.mjs fetch [--no-details] [--lists see,experience|eat] [--out <檔案>]');
     process.exit(2);
   }
   const noDetails = argv.includes('--no-details');
-  const outFile = argv.includes('--out') ? path.resolve(argv[argv.indexOf('--out') + 1]) : path.join(ROOT, 'data/derived/kanko-shima.json');
+  const slugs = argv.includes('--lists') ? argv[argv.indexOf('--lists') + 1].split(',') : ['see', 'experience'];
+  const bad = slugs.filter((x) => !ALL_LISTS[x]);
+  if (bad.length) {
+    console.error(`不認得的列表：${bad.join(', ')}（可用：${Object.keys(ALL_LISTS).join(', ')}）`);
+    process.exit(2);
+  }
+  const LISTS = Object.fromEntries(slugs.map((x) => [x, ALL_LISTS[x]]));
+  const isEat = slugs.length === 1 && slugs[0] === 'eat';
+  const outFile = argv.includes('--out') ? path.resolve(argv[argv.indexOf('--out') + 1]) : path.join(ROOT, isEat ? 'data/derived/kanko-shima-eat.json' : 'data/derived/kanko-shima.json');
   const spots = new Map();
   for (const [slug, label] of Object.entries(LISTS)) {
     let n = 0;
