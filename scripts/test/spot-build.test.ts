@@ -21,6 +21,7 @@ test('座標：300 m 以內保留原座標，以上改用 Google', () => {
   assert.match(far.conflict, /差 \d+ m/);
   assert.equal(pickCoords(null, 'other', { lat: 1, lng: 2 }).coordsSource, 'google-maps-url');
   assert.equal(pickCoords(orig, 'osm', null).coordsSource, 'osm');
+  assert.match(pickCoords(orig, 'other', { lat: 34.3118, lng: 136.8186 }, '觀光三重').conflict, /（觀光三重）/);
 });
 
 test('照片：官網在前、Google 補到 3 張、打不開的拿掉', () => {
@@ -45,7 +46,7 @@ test('sources 依網址去重', () => {
 
 test('組一筆：Google 連結、星數、預設欄位、欄位順序', () => {
   const j = {
-    id: 'x-spot', name: { ja: 'X', zh: 'X' }, region: 'x-r', origCoords: [136.8, 34.3], origCoordsSource: 'other',
+    id: 'x-spot', name: { ja: 'X', zh: 'X' }, region: 'x-r', origCoords: [136.8, 34.3], origCoordsSource: 'other', origCoordsLabel: '觀光三重詳細頁', candKey: 'x',
     indoor: true, photos: [{ url: 'https://a/1.jpg', page: 'https://a/' }], links: { official: 'https://a/' },
     ratingsNote: '另有 Y 3.9（10）', extra: { conflicts: ['舊的'] },
   };
@@ -63,6 +64,8 @@ test('組一筆：Google 連結、星數、預設欄位、欄位順序', () => {
   assert.equal(point.verified, false);
   assert.deepEqual(point.extra.conflicts, ['舊的']);
   assert.equal('origCoords' in point, false);
+  assert.equal('candKey' in point, false);
+  assert.equal(point.extra.coordsNote, '座標：觀光三重詳細頁');
   const keys = Object.keys(point);
   assert.equal(keys[0], 'id');
   assert.deepEqual(keys.slice(-5), ['sources', 'verified', 'extra', 'summary', 'assessment']);

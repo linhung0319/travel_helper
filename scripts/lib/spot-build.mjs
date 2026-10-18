@@ -24,7 +24,7 @@ export const cleanCid = (cid) => (cid == null ? null : String(cid).replace(/\s+/
 export const googleUrl = (cid) => (cid ? `https://maps.google.com/?cid=${cleanCid(cid)}` : null);
 
 // 座標：原座標（觀光三重、OSM、官網）和 Google 差 300 m 以上改用 Google，原座標寫進 conflicts
-export function pickCoords(orig, origSource, g) {
+export function pickCoords(orig, origSource, g, label = origSource) {
   const gc = g?.lat && g?.lng ? [g.lng, g.lat] : null;
   if (!orig) return gc ? { coords: gc, coordsSource: 'google-maps-url', conflict: null, distance: null } : null;
   if (!gc) return { coords: orig, coordsSource: origSource, conflict: null, distance: null };
@@ -34,7 +34,7 @@ export function pickCoords(orig, origSource, g) {
       coords: gc,
       coordsSource: 'google-maps-url',
       distance: d,
-      conflict: `座標：原座標 [${orig.join(', ')}]（${origSource}）和 Google 差 ${d} m，改用 Google`,
+      conflict: `座標：原座標 [${orig.join(', ')}]（${label}）和 Google 差 ${d} m，改用 Google`,
     };
   }
   return { coords: orig, coordsSource: origSource, conflict: null, distance: d };
@@ -85,14 +85,15 @@ export function ordered(p) {
 
 // 組一筆：j＝judgement（Claude 寫的欄位），g＝google.jsonl 那一行，facts＝讀文 facts（只取 sources），opts.retrieved＝Chrome 查的日期
 export function buildSpot(j, { area, g = null, facts = null, checked = null, retrieved }) {
-  const { googleKey, origCoords, origCoordsSource, ratingsNote, extraSources = [], ...rest } = j;
+  const { googleKey, origCoords, origCoordsSource, origCoordsLabel, ratingsNote, extraSources = [], candKey, ...rest } = j;
   const cid = cleanCid(g?.cid);
   const gUrl = googleUrl(cid);
-  const pos = pickCoords(origCoords ?? null, origCoordsSource ?? 'other', g) ?? { coords: j.coords, coordsSource: j.coordsSource, conflict: null };
+  const pos = pickCoords(origCoords ?? null, origCoordsSource ?? 'other', g, origCoordsLabel ?? origCoordsSource ?? 'other') ?? { coords: j.coords, coordsSource: j.coordsSource, conflict: null };
   const { photos, dropped } = pickPhotos(j.photos, g, checked, gUrl);
   const extra = { ...(j.extra ?? {}) };
   if (pos.conflict) extra.conflicts = [...(extra.conflicts ?? []), pos.conflict];
   if (pos.distance != null) extra.googleDistanceMeters = pos.distance;
+  if (origCoordsLabel && pos.coordsSource === (origCoordsSource ?? 'other') && !extra.coordsNote) extra.coordsNote = `座標：${origCoordsLabel}`;
   const gSource = gUrl
     ? [{ type: 'google-maps', url: gUrl, retrieved, note: `星數、評論數、座標、照片（Google 名稱：${g.name ?? '—'}）` }]
     : [];

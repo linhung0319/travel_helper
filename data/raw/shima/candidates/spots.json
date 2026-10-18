@@ -8,8 +8,7 @@
     "category": "遊覧船",
     "status": "included",
     "reason": null,
-    "pointId": null,
-    "detailPending": true,
+    "pointId": "shima-espana-cruise",
     "mentions": [
       {
         "type": "tourism",
@@ -51,8 +50,7 @@
     "category": "遊覧船",
     "status": "included",
     "reason": null,
-    "pointId": null,
-    "detailPending": true,
+    "pointId": "shima-kashikojima-yuransen",
     "mentions": [
       {
         "type": "tourism",
@@ -73,8 +71,7 @@
     "category": "島",
     "status": "included",
     "reason": null,
-    "pointId": null,
-    "detailPending": true,
+    "pointId": "shima-mazakijima",
     "mentions": [
       {
         "type": "tourism",
@@ -109,8 +106,7 @@
     "category": "資料館",
     "status": "included",
     "reason": null,
-    "pointId": null,
-    "detailPending": true,
+    "pointId": "shima-samiere",
     "mentions": [
       {
         "type": "tourism",
@@ -138,8 +134,7 @@
     "category": "釣魚體驗",
     "status": "included",
     "reason": null,
-    "pointId": null,
-    "detailPending": true,
+    "pointId": "shima-kaiyuen",
     "mentions": [
       {
         "type": "tourism",
@@ -174,8 +169,7 @@
     "category": "遊覧船",
     "status": "included",
     "reason": null,
-    "pointId": null,
-    "detailPending": true,
+    "pointId": "shima-entrada",
     "mentions": [
       {
         "type": "tourism",
@@ -296,10 +290,9 @@
     },
     "region": "shima-ugata",
     "category": "工藝體驗",
-    "status": "included",
-    "reason": null,
+    "status": "excluded",
+    "reason": "營業狀態不明而且小孩不能參加（T9a 第 2 批讀文、Google）：Google Maps 標示「閉業しました」（2026-10-18），官網最後的內容更新是 2023-04；2 月只能做志摩藍染め（4,400 円、約 1.5 小時、週二、週四休），觀光協會方案頁寫 10 歲以上，6～9 歲的小孩不能參加。見 docs/decisions-pending.md，電話確認見 questions.md",
     "pointId": null,
-    "detailPending": true,
     "mentions": [
       {
         "type": "tourism",
@@ -337,7 +330,7 @@
         "retrieved": "2026-10-18"
       }
     ],
-    "note": "阿児町神明；藍染（生葉たたき染め 1,800 円～）、室內可；週二、週四休；一梯次人數要讀文確認"
+    "note": "讀文筆記 dossiers/shima-rays-farm.md 留著；營業中、年齡可放寬的話可以改回 included（2 月只有志摩藍染め；生葉染め是 7～10 月中）"
   },
   {
     "key": "shima-sushi-benkei",
@@ -348,8 +341,7 @@
     "category": "料理體驗",
     "status": "included",
     "reason": null,
-    "pointId": null,
-    "detailPending": true,
+    "pointId": "shima-sushi-benkei",
     "mentions": [
       {
         "type": "tourism",
@@ -566,8 +558,7 @@
     "category": "展望台",
     "status": "included",
     "reason": null,
-    "pointId": null,
-    "detailPending": true,
+    "pointId": "shima-yokoyama-observatory",
     "mentions": [
       {
         "type": "tourism",
@@ -670,8 +661,7 @@
     "category": "神社",
     "status": "included",
     "reason": null,
-    "pointId": null,
-    "detailPending": true,
+    "pointId": "shima-izawanomiya",
     "mentions": [
       {
         "type": "tourism",
@@ -1041,8 +1031,7 @@
     "category": "名水、自然",
     "status": "included",
     "reason": null,
-    "pointId": null,
-    "detailPending": true,
+    "pointId": "shima-amanoiwato",
     "mentions": [
       {
         "type": "tourism",
@@ -1090,8 +1079,7 @@
     "category": "遊覧船",
     "status": "included",
     "reason": null,
-    "pointId": null,
-    "detailPending": true,
+    "pointId": "shima-matoya-bbq-cruise",
     "mentions": [
       {
         "type": "tourism",
@@ -1303,8 +1291,7 @@
     "category": "燈塔",
     "status": "included",
     "reason": null,
-    "pointId": null,
-    "detailPending": true,
+    "pointId": "shima-anorisaki-lighthouse",
     "mentions": [
       {
         "type": "tourism",
