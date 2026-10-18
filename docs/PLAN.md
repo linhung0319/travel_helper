@@ -432,7 +432,7 @@ T7c → T7d → T7e → T7f → T7g → T8a → T8b → T8c → T8d → T7i → 
 #### T7h 重點資料點補心得、重新打分 〔S〕（Chrome）
 - 背景：鳥羽餐廳 `confidence` low 57 家、high 0 家，原因是心得只找部落格，沒讀食べログ口コミ和 Google 評論（CONVENTIONS §4「取得方式」「口コミ、Google 評論」，2026-10-18）。
 - **只補重點**：餐廳 `assessment.groupFit` 5 的 12 家，加上 `tier` S、A 的店（重複的算一次，約 20～25 家）；景點、住宿只補 `tier` S、A 而且筆記心得不到 2 篇的。其他 low 的先不補，等行程縮小範圍再看。
-- 照 CONVENTIONS「口コミ、Google 評論」的固定步驟讀（每家約 6～7 次操作，20～25 家約 150 次），補進 `dossiers/<id>.md`。評論讓 `kids`、`seating` 這類 null 欄位有了明確來源的（例如口コミ寫「有兒童餐」），照 §4 的優先順序回填資料檔，`sources` 加上該頁。
+- 照 CONVENTIONS「口コミ、Google 評論」的固定步驟讀（用 T8e 寫的 `scripts/chrome/` 抽取程式，每家約 2～3 次 batch），補進 `dossiers/<id>.md`。評論讓 `kids`、`seating` 這類 null 欄位有了明確來源的（例如口コミ寫「有兒童餐」），照 §4 的優先順序回填資料檔，`sources` 加上該頁。
 - 補過的資料點照 §5.1 重新寫 `assessment`、`tier`、`summary`（先讀 `assessment-notes.md`，標準不變）；星等或 tier 有變的列在 `data/raw/toba/README.md`。重跑評分檢查腳本。
 - 寫 `data/raw/toba/dossiers/`、`data/areas/toba/` 三個資料檔的 `assessment`、`tier`、`summary`。
 
@@ -459,7 +459,8 @@ T7c → T7d → T7e → T7f → T7g → T8a → T8b → T8c → T8d → T7i → 
 
 各區注意：
 - **伊勢（T8）**包含兩個區域：`ise`、`futami`（寫 `data/areas/ise/`、`data/areas/futami/`，筆記各自放在 `data/raw/ise/`、`data/raw/futami/`）。おはらい町的店很多，餐廳目標 80～100 家，T8d 建議拆成 2～3 個 session（例如：內宮・おはらい町／外宮・伊勢市站／二見）。旅程期間有 **2/3 節分**（神社活動）、**2/11 國定假日**，記在 `events`。
-  - **T8e 補心得**（2026-10-18 加入）：T8a～T8d 是在「心得改讀口コミ、Google 評論」之前做的，96 份餐廳筆記心得幾乎 0 篇。T8e 在收尾之後、T8f 打分之前，照 CONVENTIONS「口コミ、Google 評論」的對象和固定步驟補進 `dossiers/`（餐廳約 30～50 家，加上心得不到 2 篇的景點、住宿；每家約 6～7 次操作，每批 20 家約 130～140 次）。評論讓 null 欄位有了明確來源的，照 §4 的優先順序回填資料檔。T8a 沒看觀光三重列表的部分由 T7i 產生清單，T13 決定要不要補。
+  - **T8e 補心得**（2026-10-18 加入）：T8a～T8d 是在「心得改讀口コミ、Google 評論」之前做的，96 份餐廳筆記心得幾乎 0 篇。T8e 在收尾之後、T8f 打分之前，照 CONVENTIONS「口コミ、Google 評論」的對象和固定步驟補進 `dossiers/`（餐廳約 30～50 家，加上心得不到 2 篇的景點、住宿；用 JS 抽取每家約 2～3 次 batch，退路是每家 6～7 次操作）。
+    - **第一批先寫 `scripts/chrome/tabelog-reviews.js`、`google-reviews.js`**（貼進 `javascript_tool` 用的抽取程式，抓不到時回傳警告），在 2～3 家確認能用，並確認 CONVENTIONS「還沒確認的」兩點（`?cid=` 入口加 JS 點クチコミ分頁、外文評論是原文還是翻譯），結果補進 CONVENTIONS。之後的批次和 T7h、T9 直接用。評論讓 null 欄位有了明確來源的，照 §4 的優先順序回填資料檔。T8a 沒看觀光三重列表的部分由 T7i 產生清單，T13 決定要不要補。
 - **志摩（T9）**的店和景點比較分散，很多地方要搭巴士或開車：子地區要標 `needsCar`，餐廳要填 `access`。第一天（2/2）傍晚才會到志摩，T9b 要特別看鵜方、賢島一帶的住宿，T9c 要找第一晚的晚餐。
   - 志摩比伊勢更鄉下，部落格心得只會更少：從一開始就照 CONVENTIONS 標準作業流程的步驟 3、6、8，由主 session 在 Chrome 讀口コミ、Google 評論補心得；讀文 subagent 以官網和已知網址為主，WebSearch 每個限 2～3 次。
   - T9a 的景點候選先跑 T7i 的 `scripts/kanko-mie.mjs`（觀光三重列表）當母體；T9b 的じゃらん評分用 `scripts/jalan.mjs`。
