@@ -460,7 +460,7 @@ T7c → T7d → T7e → T7f → T7g → T8a → T8b → T8c → T8d → T7i → 
 各區注意：
 - **伊勢（T8）**包含兩個區域：`ise`、`futami`（寫 `data/areas/ise/`、`data/areas/futami/`，筆記各自放在 `data/raw/ise/`、`data/raw/futami/`）。おはらい町的店很多，餐廳目標 80～100 家，T8d 建議拆成 2～3 個 session（例如：內宮・おはらい町／外宮・伊勢市站／二見）。旅程期間有 **2/3 節分**（神社活動）、**2/11 國定假日**，記在 `events`。
   - **T8e 補心得**（2026-10-18 加入）：T8a～T8d 是在「心得改讀口コミ、Google 評論」之前做的，96 份餐廳筆記心得幾乎 0 篇。T8e 在收尾之後、T8f 打分之前，照 CONVENTIONS「口コミ、Google 評論」的對象和固定步驟補進 `dossiers/`（餐廳約 30～50 家，加上心得不到 2 篇的景點、住宿；用 JS 抽取每家約 2～3 次 batch，退路是每家 6～7 次操作）。
-    - **第一批先寫 `scripts/chrome/tabelog-reviews.js`、`google-reviews.js`**（貼進 `javascript_tool` 用的抽取程式，抓不到時回傳警告），在 2～3 家確認能用，並確認 CONVENTIONS「還沒確認的」兩點（`?cid=` 入口加 JS 點クチコミ分頁、外文評論是原文還是翻譯），結果補進 CONVENTIONS。之後的批次和 T7h、T9 直接用。評論讓 null 欄位有了明確來源的，照 §4 的優先順序回填資料檔。T8a 沒看觀光三重列表的部分由 T7i 產生清單，T13 決定要不要補。
+    - `scripts/chrome/tabelog-reviews.js`、`google-reviews.js` 已經寫好，2026-10-18 在 いかだ荘 實測過（CONVENTIONS「已確認」）。第一批再用 2～3 家確認能用，抓不到時照 CONVENTIONS 修正選擇器；之後的批次和 T7h、T9 直接用。評論讓 null 欄位有了明確來源的，照 §4 的優先順序回填資料檔。T8a 沒看觀光三重列表的部分由 T7i 產生清單，T13 決定要不要補。
 - **志摩（T9）**的店和景點比較分散，很多地方要搭巴士或開車：子地區要標 `needsCar`，餐廳要填 `access`。第一天（2/2）傍晚才會到志摩，T9b 要特別看鵜方、賢島一帶的住宿，T9c 要找第一晚的晚餐。
   - 志摩比伊勢更鄉下，部落格心得只會更少：從一開始就照 CONVENTIONS 標準作業流程的步驟 3、6、8，由主 session 在 Chrome 讀口コミ、Google 評論補心得；讀文 subagent 以官網和已知網址為主，WebSearch 每個限 2～3 次。
   - T9a 的景點候選先跑 T7i 的 `scripts/kanko-mie.mjs`（觀光三重列表）當母體；T9b 的じゃらん評分用 `scripts/jalan.mjs`。
