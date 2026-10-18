@@ -417,6 +417,12 @@
           }
         ]
       },
+      "inclusion": {
+        "description": "符合的納入條件（CONVENTIONS §4「餐廳候選納入標準」），和候選清單的 criteria 同樣寫法，例如 [\"A\", \"C\"]、[\"D1\"]、[\"F3\"]",
+        "type": "array",
+        "items": { "type": "string", "pattern": "^[A-F][1-9]?$" },
+        "uniqueItems": true
+      },
       "tabelogOwner": {
         "description": "食べログ店舗会員（資料由店家維護）",
         "$ref": "common.schema.json#/$defs/nullableBoolean"

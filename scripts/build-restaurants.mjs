@@ -22,7 +22,7 @@
 // judgement.json 每家的欄位（key 是 batch 的 key）：
 //   id（預設＝key）、region、access、zh、kana、address、hours、closedNote、febNote、closures、contexts、cuisine、
 //   priceRange、price、stayMinutes、mustTry、group、reservation、seating、kids、accessibility、smoking、notes、
-//   conflicts、official、ig、extraSources、menuPages、inclusion、lodgingId（住宿附設的餐廳：Google、座標借住宿）、ratingsNote、extra
+//   conflicts、official、ig、extraSources、menuPages、inclusion（陣列，預設＝候選的 criteria）、lodgingId（住宿附設的餐廳：Google、座標借住宿）、ratingsNote、extra
 //   hours 可以用簡寫：{ "default": [["11:00","15:00"]], "thu": [], "holiday": null, "lastEntry": "14:30", "note": "..." }
 
 import fs from 'node:fs';
@@ -233,7 +233,7 @@ for (const b of batch) {
   for (const tab of tabs) if (tab !== 'dtlmenu/drink/') menu.push({ url: b.tabelog + tab, source: 'tabelog', retrieved: D });
   if (!menu.length && b.tabelog) menu.push({ url: b.tabelog + 'dtlmenu/photo/', source: 'tabelog', retrieved: D });
 
-  const extra = { inclusion: j.inclusion ?? (b.criteria ?? []).join(''), ...(j.extra ?? {}) };
+  const extra = { ...(j.extra ?? {}) };
   if (j.conflicts?.length) extra.conflicts = j.conflicts;
   if (j.lodgingId) extra.lodgingId = j.lodgingId;
 
@@ -275,6 +275,7 @@ for (const b of batch) {
       googleReviews: g.reviews ?? null,
       note: j.ratingsNote ?? (lod ? `Google 是住宿本體「${lod.name.ja}」的評分` : null),
     },
+    inclusion: j.inclusion ?? b.criteria ?? [],
     tabelogOwner: t?.owner ?? null,
     googleName: g.name && g.name !== b.name ? g.name : null,
     notes: j.notes ?? null,

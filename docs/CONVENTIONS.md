@@ -196,6 +196,7 @@ travel_helper/
   ],
   "luggage": "可以在入住前寄放",
   "checkIn": "15:00", "checkOut": "10:00",
+  "rakutenHotelNo": 12345,           // 楽天トラベルの施設番号；行程定了用 scripts/rakuten.mjs 以實際日期重查。沒上楽天是 null
   "dinnerAccess": "car",             // 不含晚餐時：walk（步行 20 分內有店）| car（要搭車）| null
   "group": {                         // 能不能容納 15 人
     "totalRooms": 8,
@@ -237,6 +238,7 @@ travel_helper/
   "mustTry": ["伊勢龍蝦丼（伊勢海老丼）2,800 円"],   // 招牌菜 2～3 道，附日文；有寫價格就記（見 §4「菜單」）
   "menu": [{ "url": "https://tabelog.com/.../dtlmenu/", "source": "tabelog", "retrieved": "..." }],   // 只記菜單頁的連結，不抄完整菜單
   "ratings": { "tabelog": 3.62, "tabelogReviews": 120, "google": 4.3, "googleReviews": 850 },
+  "inclusion": ["A", "C"],           // 符合的納入條件（§4「餐廳候選納入標準」），寫法同候選的 criteria：A～F，D、F 可以加小項（"D1"、"F3"）
   "tabelogOwner": false,             // 食べログ店舗会員（資料由店家維護）
   "googleName": null,                // Google 上的店名和食べログ不同時
   "notes": "中午常常賣完；週三公休",
@@ -356,7 +358,7 @@ travel_helper/
 | 食べログ | 餐廳的**主要來源**：分數、口コミ數、席数、最大予約可能人数、個室、貸切、予約、お子様連れ、公休、IG 帳號；口コミ是重點店的**心得來源**（見下方「口コミ、Google 評論」） |
 | Google Maps | 星數、評論數、座標、營業時間、臨時休業或閉業；網站欄常常就是店家的 IG；評論是重點資料點的**心得來源**。不使用 API（T7 決定），用 Chrome 查；**每筆都要有 `links.googleMaps`**，需要即時資訊（臨時休業、最新評論、照片）的人點連結看 |
 | 觀光三重 | 景點列表（固定網站、固定欄位）：先試用腳本抓列表當景點候選的母體，被擋才改人工 |
-| じゃらん | 住宿評分、評論數（楽天沒有的補充）：用腳本（`scripts/jalan.mjs`，T7i）讀。**頁面是 Shift_JIS**，WebFetch 會亂碼（T7d、T8b 因此幾乎沒記到），要自己抓原始位元組再用 `new TextDecoder('shift_jis')` 解碼（T3 這樣讀成功過）。方案、價格是動態載入，抓不到，價格照舊用楽天 API |
+| じゃらん | 住宿評分、評論數（楽天沒有的補充）：用腳本（`scripts/jalan.mjs`，T7i）讀：先抓地區列表（`list`）把名稱對到旅館 ID，再讀旅館頁的結構化資料（`apply`）；地區列表只列有開放方案的旅館，列表上沒有的用 WebSearch 找 `jalan.net/yad<ID>/` 再 `--map` 指定。**近一年評論數不夠時じゃらん不顯示分數**（旅館頁沒有クチコミ総合），這時維持 null，不用總評論數推。**頁面是 Shift_JIS**，WebFetch 會亂碼（T7d、T8b 因此幾乎沒記到），要自己抓原始位元組再用 `new TextDecoder('shift_jis')` 解碼（T3 這樣讀成功過）。方案、價格是動態載入，抓不到，價格照舊用楽天 API |
 | 日文部落格、地方媒體 | 在地人推薦。**蒐集階段不搜尋**，只讀候選清單 `mentions` 裡已知的文章；搜尋留給「深入調查」（鄉下小店幾乎沒有個人部落格，找不到就停，不要一直搜尋） |
 | 中文部落格（台灣旅遊部落客、PTT、Dcard） | 觀光客視角、點餐建議、排隊狀況。只在「深入調查」搜尋 |
 | Instagram | **不主動查**，只記錄帳號（從食べログ或 Google 取得）。出發前（T18）才對行程中選定的店少量確認 |
@@ -433,7 +435,7 @@ T7、T8 的心得幾乎是 0：鄉下小店本來就沒有個人部落格，而�
 - 需要 👤 到楽天ウェブサービス註冊，取得 `applicationId` 和 `accessKey`，放在環境變數 `RAKUTEN_APPLICATION_ID`、`RAKUTEN_ACCESS_KEY`（寫在 `.env`，**不要 commit**）。
 - **空室検索**（`VacantHotelSearch`）：子地區中心座標、半徑最多 3 km、入住和退房日期（用旅程實際可能住的日期），`roomNum`（最多 10）× `adultNum`（每間最多 10）。例如 15 人查「5 間 × 3 人」和「4 間 × 4 人」，結果裡有空房的就是能全員同住的候選。
 - **施設情報**（`HotelDetailSearch`）：`reviewAverage`、`reviewCount`，以及服務、地點、房間、設備、浴場、早餐、晚餐、清潔度的細項評分；評分時晚餐、浴場的細項很有用。
-- 取得的價格寫進 `prices`（`source: "rakuten-api"`，附查詢日期和入住日期）；照片寫進 `photos`（`kind: "rakuten"`）。
+- 施設番号寫進 `rakutenHotelNo`（正式欄位，T7i 從 extra、網址搬過來）。取得的價格寫進 `prices`（`source: "rakuten-api"`，附查詢日期和入住日期）；照片寫進 `photos`（`kind: "rakuten"`）。
 - 規約要求顯示楽天的標示，T11 顯示這些資料時要加上；申請時順便確認規約對存放資料的規定，有限制的話寫進 `docs/requests.md`。
 - 呼叫間隔至少 1 秒，查詢腳本放在 `scripts/`。
 
@@ -584,6 +586,8 @@ T7c～T8d 每一批都在 session 的 scratchpad 重寫同樣的抽取程式、�
 | `scripts/chrome/tabelog-reviews.js`、`google-reviews.js` | 口コミ、Google 評論（見「口コミ、Google 評論」） |
 | `scripts/photo-check.mjs` | 照片網址能不能打開、是不是圖片（`--out photos.json` 給 build 用；`--data` 檢查資料檔） |
 | `scripts/build-restaurants.mjs` | 餐廳詳細（步驟 8）：`draft` 把食べログ店舗情報轉成欄位草稿（fit15 是建議值），Claude 改成 `judgement.json` 後 `build` 組成資料點寫進 `restaurants.json`，`--candidates` 同時更新候選 |
+| `scripts/kanko-mie.mjs` | 觀光三重的景點列表（名稱、網址、類別、住所、座標）：`fetch` 抓列表，`missing` 和候選比對、列出可能漏掉的景點（T9a 當景點候選的母體） |
+| `scripts/jalan.mjs` | じゃらん的住宿評分：`list` 地區列表、`yad` 單一旅館、`apply` 寫進 `lodging.json` 的 `ratings.jalan`、`jalanReviews` 和 `sources`（分數變了舊值寫 `extra.conflicts`） |
 | `scripts/apply-patch.mjs` | 回填既有資料點（讀文 facts、口コミ、官網）：只填 null，不同就寫進 `extra.conflicts`；確定要換的用 `overwrite` |
 
 - **工作目錄**：一批一個 `data/cache/work/<任務>-<批>/`（例如 `t9d-1`），不進 git，但 session 結束後還在，下一個 session 可以接著用。放 `batch.json`、`tabelog.jsonl`、`google.jsonl`（Chrome 回傳的 JSON 一家一行，前面加 `"key"`）、`facts/`、`photos.json`、`judgement.json`、讀文用的 `prompt-common.md`。

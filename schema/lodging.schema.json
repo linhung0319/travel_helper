@@ -290,6 +290,10 @@
           }
         ]
       },
+      "rakutenHotelNo": {
+        "description": "楽天トラベルの施設番号（https://travel.rakuten.co.jp/HOTEL/<番号>/）；行程定了以後用 scripts/rakuten.mjs 以實際日期重查空房、價格時用。沒上楽天的是 null",
+        "$ref": "common.schema.json#/$defs/nullableInteger"
+      },
       "dinnerAccess": {
         "description": "不含晚餐時，附近的晚餐怎麼去：walk（步行 20 分內有店）| car（要搭車）| null（含晚餐或不明）",
         "enum": [

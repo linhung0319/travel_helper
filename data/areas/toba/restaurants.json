@@ -253,6 +253,9 @@
       "googleReviews": 2054,
       "note": null
     },
+    "inclusion": [
+      "A"
+    ],
     "tabelogOwner": false,
     "googleName": null,
     "notes": "鳥羽站步行約 7 分。不接受預約，熱門店要排隊。1 樓桌席、2 樓也有座位（官網）。",
@@ -287,7 +290,6 @@
     },
     "smoking": "全席禁煙",
     "extra": {
-      "inclusion": "A",
       "conflicts": [
         "Google 的營業時間寫到 14:30、18:30（是 L.O.）；官網、食べログ寫 15:00、19:30 打烊",
         "營業時間：官網 平日 11:00～14:30 L.O.、16:30～18:30 L.O.，週末 10:30～；なっぷ・まっぷる寫 11:00～15:00、16:30～19:00"
@@ -637,6 +639,10 @@
       "googleReviews": 104,
       "note": "IG 是鳥羽國際飯店的帳號"
     },
+    "inclusion": [
+      "A",
+      "C"
+    ],
     "tabelogOwner": false,
     "googleName": null,
     "notes": "鳥羽國際飯店內，鳥羽站搭車 3 分，站前有接駁車。",
@@ -677,7 +683,6 @@
     },
     "smoking": "全席禁煙",
     "extra": {
-      "inclusion": "AC",
       "conflicts": [
         "Google 的時間是 L.O.（午餐到 13:30、晚餐到 20:30），也沒有反映週五午餐公休"
       ]
@@ -890,6 +895,10 @@
       "googleReviews": 95,
       "note": null
     },
+    "inclusion": [
+      "A",
+      "C"
+    ],
     "tabelogOwner": false,
     "googleName": null,
     "notes": "鳥羽站步行約 10 分。只有晚上營業。",
@@ -920,7 +929,6 @@
     "kids": null,
     "smoking": "全席喫煙可（食べログ，可能是舊資料）",
     "extra": {
-      "inclusion": "AC",
       "conflicts": [
         "食べログ（非店舗会員）寫 17:00～22:00，Google 寫 17:00～21:00，採用 Google",
         "營業時間：まっぷる・とばめしマップ 17:00～22:00 週四休；Google 17:00～21:00 週三週四休"
@@ -1154,6 +1162,11 @@
       "googleReviews": 136,
       "note": null
     },
+    "inclusion": [
+      "A",
+      "C",
+      "E"
+    ],
     "tabelogOwner": false,
     "googleName": "水沼サザエ店",
     "notes": "鳥羽站前さざえ店街（鳥羽 1-8-7）的攤位，鳥羽站步行約 3 分。廁所在店後面。",
@@ -1185,7 +1198,6 @@
     "kids": null,
     "smoking": "全席喫煙可（食べログ，可能是舊資料）",
     "extra": {
-      "inclusion": "ACE",
       "conflicts": [
         "食べログ（非店舗会員）寫 08:30～17:00，Google 寫 9:00～17:00，採用 Google",
         "營業時間：まっぷる・なっぷ 9:00～17:00 無休；とばめしマップ（2022）8:30～17:00 不定休"
@@ -1400,6 +1412,9 @@
       "googleReviews": 458,
       "note": "Google 網站欄是 IG"
     },
+    "inclusion": [
+      "A"
+    ],
     "tabelogOwner": false,
     "googleName": null,
     "notes": "鳥羽站步行約 6 分（小浜方向）。不含晚餐的旅館なおみ（小浜）附近的晚餐選擇之一。",
@@ -1437,7 +1452,6 @@
     },
     "smoking": "全席禁煙",
     "extra": {
-      "inclusion": "A",
       "conflicts": [
         "座位：aumo 寫吧台約 10 席、座敷 3 桌、包廂，沒寫桌席（現有 table 是食べログ）"
       ]
@@ -1684,6 +1698,10 @@
       "googleReviews": 12,
       "note": "Google 評論只有 12 則"
     },
+    "inclusion": [
+      "A",
+      "C"
+    ],
     "tabelogOwner": false,
     "googleName": "和食レストラン もんど岬／鳥羽国際ホテル",
     "notes": "鳥羽國際飯店內，只有晚餐，完全預約制。桌位以 2 人、4 人為單位；5 人以上安排相鄰的不同桌，或用包廂。",
@@ -1724,7 +1742,6 @@
     },
     "smoking": "全席禁煙",
     "extra": {
-      "inclusion": "AC",
       "conflicts": [
         "席數：食べログ 72 席、官網 60 名",
         "官網店舖頁只寫晚餐時段，午餐只出現在ご会食プラン頁；散客能不能吃午餐要問飯店"
@@ -1936,6 +1953,11 @@
       "googleReviews": 352,
       "note": null
     },
+    "inclusion": [
+      "A",
+      "F",
+      "E"
+    ],
     "tabelogOwner": true,
     "googleName": null,
     "notes": "鳥羽站前さざえ店街的海女小屋風格浜焼店，鳥羽站步行 2～3 分。體驗型（海女小屋）。沒有停車場。",
@@ -1970,7 +1992,6 @@
     },
     "smoking": "全席禁煙（店外有吸菸處）",
     "extra": {
-      "inclusion": "AFE",
       "conflicts": [
         "Google 寫 10:00～17:00、週二公休，與食べログ（店舗会員）一致"
       ]
@@ -2237,6 +2258,10 @@
       "googleReviews": 401,
       "note": null
     },
+    "inclusion": [
+      "A",
+      "C"
+    ],
     "tabelogOwner": false,
     "googleName": null,
     "notes": "鳥羽站 4 號出口步行約 5 分。T4a 搜尋結果裡「大廣間與包廂約 100 席」是另一家「伊勢大阪屋」，鳥羽店是食べログ的 80 席。",
@@ -2273,7 +2298,6 @@
     },
     "smoking": "全席禁煙",
     "extra": {
-      "inclusion": "AC",
       "conflicts": [
         "Google、食べログ（非店舗会員）都寫 11:00～14:00、17:00～20:00、週四公休，一致；官網 oosakaya.net 沒讀到（憑證錯誤）",
         "包廂：官網 4 人起、食べログ 2 人可"
@@ -2535,6 +2559,9 @@
       "googleReviews": 8,
       "note": "Google 只有 8 則評論；IG 是飯店帳號"
     },
+    "inclusion": [
+      "A"
+    ],
     "tabelogOwner": false,
     "googleName": "ザ・ロビーラウンジ／鳥羽国際ホテル",
     "notes": "鳥羽國際飯店大廳，非住客也可以用（食べログ備考）。看得到鳥羽灣。吧台座位未成年不能坐。",
@@ -2577,7 +2604,6 @@
     },
     "smoking": "全席禁煙",
     "extra": {
-      "inclusion": "A",
       "seatingNote": "有沙發座、露天座",
       "conflicts": [
         "Google 寫 10:00～17:00、18:00～22:00，食べログ（非店舗会員）寫 10:00～22:30；Google 沒有細分時段，採用食べログ的細項（官網沒查）",
@@ -2814,6 +2840,11 @@
       "googleReviews": 285,
       "note": null
     },
+    "inclusion": [
+      "A",
+      "C",
+      "E"
+    ],
     "tabelogOwner": true,
     "googleName": null,
     "notes": "鳥羽站步行 1 分（さざえ店街）。限時 90 分。當天取消不可，無故遲到 10 分視為取消，取消費每人 ¥1,000。",
@@ -2855,7 +2886,6 @@
     },
     "smoking": "全席禁煙",
     "extra": {
-      "inclusion": "ACE",
       "conflicts": [
         "Google 寫 10:00～18:30，食べログ（店舗会員）寫 10:15～18:30，採用食べログ",
         "地址：Google 寫鳥羽 1-8-5，食べログ寫 1-8-7（さざえ店街同一棟）",
@@ -3070,6 +3100,10 @@
       "googleReviews": 62,
       "note": null
     },
+    "inclusion": [
+      "A",
+      "E"
+    ],
     "tabelogOwner": true,
     "googleName": null,
     "notes": "JR 鳥羽站步行 1 分、近鐵鳥羽站 3 分（さざえ店街）。",
@@ -3108,7 +3142,6 @@
     },
     "smoking": "分煙（週末假日全面禁煙）",
     "extra": {
-      "inclusion": "AE",
       "conflicts": [
         "Google 寫 10:00～16:00，食べログ（店舗会員）寫 09:00～16:00，採用食べログ",
         "地址：Google 寫鳥羽 1-8-5",
@@ -3335,6 +3368,9 @@
       "googleReviews": 199,
       "note": null
     },
+    "inclusion": [
+      "A"
+    ],
     "tabelogOwner": false,
     "googleName": "手作りジェラート ミネルヴァ",
     "notes": "鳥羽一番街 1 樓，鳥羽站步行約 2 分。",
@@ -3363,7 +3399,6 @@
     "kids": null,
     "smoking": "全席禁煙",
     "extra": {
-      "inclusion": "A",
       "conflicts": [
         "食べログ（非店舗会員）寫 9:00～17:00（週末假日～18:00），Google 寫 9:30～17:30（週末～18:00），採用 Google",
         "網站：食べログ寫 minerva-gelato.com，Google 寫 web-minerva.com"
@@ -3588,6 +3623,9 @@
       "googleReviews": 701,
       "note": null
     },
+    "inclusion": [
+      "A"
+    ],
     "tabelogOwner": false,
     "googleName": null,
     "notes": "鳥羽站步行約 4 分。營業時間 Google 和食べログ差很多，要再確認。",
@@ -3619,7 +3657,6 @@
     },
     "smoking": "全席禁煙",
     "extra": {
-      "inclusion": "A",
       "conflicts": [
         "食べログ（非店舗会員）寫 7:30～20:30、週三公休（11:00～14:00 不能點甜點）；Google 寫每天 8:00～15:00。照優先順序採用 Google，差異很大",
         "地址：現有 鳥羽1-2383-5；なっぷ・じゃらん・Google 寫 鳥羽1-2379-24",
@@ -3879,6 +3916,9 @@
       "googleReviews": 461,
       "note": null
     },
+    "inclusion": [
+      "A"
+    ],
     "tabelogOwner": false,
     "googleName": null,
     "notes": "鳥羽站步行約 7 分（鳥羽 3 丁目，漣附近）。 團體午餐可預約：会席弁当 2,500～3,500 円、旬感・会席コース 3,800 円起，也接旅行社委託（官網 kaishoku.html）。",
@@ -3909,7 +3949,6 @@
     "kids": null,
     "smoking": "全席禁煙",
     "extra": {
-      "inclusion": "A",
       "conflicts": [
         "Google 寫 11:00～18:00（週四 11:00～15:00）、週三公休；官網、食べログ寫 11:00～15:00，採用官網",
         "營業時間：官網 11:00～15:00（晚上不定時）；なっぷ・とばめしマップ 11:00～18:00（週四到 15:00）",
@@ -4160,6 +4199,10 @@
       "googleReviews": 771,
       "note": null
     },
+    "inclusion": [
+      "A",
+      "F"
+    ],
     "tabelogOwner": false,
     "googleName": "海女小屋 鳥羽はまなみ",
     "notes": "鳥羽站步行約 4 分。體驗型（海女小屋風格）。不接受預約（官網，有中文說明「不接受預訂」）。平日只有午餐，週末假日營業到 20:00。",
@@ -4194,7 +4237,6 @@
     },
     "smoking": "全席禁煙",
     "extra": {
-      "inclusion": "AF",
       "conflicts": [
         "營業時間：まっぷる 11:00～16:00（週末假日到 19:30）只週四休；官網・るるぶ 平日 11:00～14:00、週末假日 11:00～20:00、週四週五休"
       ]
@@ -4434,6 +4476,10 @@
       "googleReviews": 316,
       "note": "Google 網站欄是 X（@maruhachiojisan）"
     },
+    "inclusion": [
+      "A",
+      "E"
+    ],
     "tabelogOwner": true,
     "googleName": "〇八食堂",
     "notes": "JR 鳥羽站名店街內，鳥羽站步行 1 分。舊店名「大家族」。官網 0hachi.jp 連不上。",
@@ -4470,7 +4516,6 @@
     },
     "smoking": "全席禁煙",
     "extra": {
-      "inclusion": "AE",
       "x": "@maruhachiojisan",
       "tabelogOldName": "大家族",
       "conflicts": [
@@ -4791,6 +4836,10 @@
       "googleReviews": 728,
       "note": null
     },
+    "inclusion": [
+      "A",
+      "C"
+    ],
     "tabelogOwner": true,
     "googleName": null,
     "notes": "鳥羽站步行約 4 分。1～3 樓共 88 席，有 5 間包廂和可坐 40 人的大宴會廳（官網）。網路訂位只開放 2 張 4 人桌，座敷要電話訂；桌席沒有兒童椅，座敷有。繁忙期只接受電話預約。",
@@ -4833,7 +4882,6 @@
     },
     "smoking": "全席禁煙（店外、3 樓有吸菸處）",
     "extra": {
-      "inclusion": "AC",
       "conflicts": [
         "Google 寫午餐到 14:00、晚餐到 21:00（是 L.O.），Google 電話 050-5493-6980（訂位代理）",
         "席數：官網 105、食べログ・hamoni 88"
@@ -5069,6 +5117,9 @@
       "googleReviews": 295,
       "note": "IG 是飯店帳號"
     },
+    "inclusion": [
+      "A"
+    ],
     "tabelogOwner": false,
     "googleName": "鳥羽国際ホテル内 ホテルショップ",
     "notes": "鳥羽國際飯店 2 樓的商店，人氣是起司蛋糕，以外帶為主（伴手禮、甜點）。",
@@ -5102,7 +5153,6 @@
     },
     "smoking": "全席禁煙",
     "extra": {
-      "inclusion": "A",
       "takeoutOnly": "以外帶為主（甜點，符合排除條件的例外）",
       "conflicts": [
         "營業時間：官網 平日 8:30～19:00、週末假日 8:00～19:00；観光三重 8:00～19:30、週末假日到 20:00"
@@ -5374,6 +5424,9 @@
       "googleReviews": 353,
       "note": null
     },
+    "inclusion": [
+      "C"
+    ],
     "tabelogOwner": true,
     "googleName": null,
     "notes": "天びん屋本店的姊妹店，鳥羽站步行約 4 分。自己在桌上烤海鮮和肉。",
@@ -5417,7 +5470,6 @@
     },
     "smoking": "全席禁煙（店外有吸菸處）",
     "extra": {
-      "inclusion": "C",
       "seatingNote": "座敷 8 人 ×1、6 人 ×3；也有沙發座",
       "conflicts": [
         "Google 寫午餐到 14:00、晚餐到 21:00（是 L.O.）",
@@ -5661,6 +5713,9 @@
       "googleReviews": 486,
       "note": null
     },
+    "inclusion": [
+      "C"
+    ],
     "tabelogOwner": false,
     "googleName": null,
     "notes": "鳥羽站前さざえ店街，步行約 3 分。",
@@ -5687,7 +5742,6 @@
     "kids": null,
     "smoking": "全席禁煙",
     "extra": {
-      "inclusion": "C",
       "conflicts": [
         "價格：なっぷ 寫焼き牡蠣 550 円起、岩がき 770 円起；官網焼かき 660 円、岩ガキ 1,100 円起"
       ]
@@ -5940,6 +5994,9 @@
       "googleReviews": 274,
       "note": null
     },
+    "inclusion": [
+      "C"
+    ],
     "tabelogOwner": false,
     "googleName": null,
     "notes": "鳥羽站步行約 4 分。1 樓吧台 10 席、2 樓桌席 16 席。套餐要一週前預約。披薩可外帶。",
@@ -5976,7 +6033,6 @@
     },
     "smoking": "分煙（2 樓桌席禁煙）",
     "extra": {
-      "inclusion": "C",
       "conflicts": [
         "食べログ（非店舗会員）寫每天 11:00～14:30、17:00～21:30（週二休）；Google 寫晚餐只有週六日。採用 Google",
         "晚上打烊：官網・Retty 24:00、まっぷる・とばめしマップ 22:00；まっぷる寫另收チャージ 500 円"
@@ -6254,6 +6310,9 @@
       "googleReviews": null,
       "note": "Google 沒有 Dining 白石 的獨立店家頁，連結借用潮路亭（住宿 toba-shiojitei）；星數是住宿本體的，不填"
     },
+    "inclusion": [
+      "C"
+    ],
     "tabelogOwner": false,
     "googleName": "鳥羽国際ホテル 潮路亭",
     "notes": "鳥羽國際飯店 潮路亭內的餐廳，全部是半包廂（24 間）。可以從一休餐廳訂位，看起來非住客也能用，但官網沒寫明，要確認。",
@@ -6290,7 +6349,6 @@
     },
     "smoking": "全席禁煙",
     "extra": {
-      "inclusion": "C",
       "coordsNote": "座標是 Google Maps 上「鳥羽国際ホテル 潮路亭」的位置",
       "nonGuest": "官網、食べログ都沒寫限住客；可以用一休餐廳訂位",
       "conflicts": [
@@ -6515,6 +6573,9 @@
       "googleReviews": 86,
       "note": null
     },
+    "inclusion": [
+      "C"
+    ],
     "tabelogOwner": false,
     "googleName": null,
     "notes": "鳥羽站前さざえ店街，步行約 3 分。",
@@ -6550,7 +6611,6 @@
     },
     "smoking": "全席喫煙可（食べログ，可能是舊資料）",
     "extra": {
-      "inclusion": "C",
       "conflicts": [
         "食べログ（非店舗会員）寫 08:30～17:00，Google 寫 10:30～18:00，採用 Google",
         "營業時間：るるぶ 10:00～18:00、とばめしマップ（2022）9:00～17:00；不定休"
@@ -6791,6 +6851,9 @@
       "googleReviews": 163,
       "note": "Google 只從搜尋結果列表讀到星數（店家頁打不開）"
     },
+    "inclusion": [
+      "C"
+    ],
     "tabelogOwner": true,
     "googleName": "MUSEAミュゼア ジェネラルストア＆カフェ",
     "notes": "鳥羽 3 丁目（漣附近），鳥羽站步行約 7 分。同系列另有鳥羽站店、鳥羽水族館店（沒有納入）。",
@@ -6828,7 +6891,6 @@
     },
     "smoking": "全席禁煙（戶外座位可吸菸）",
     "extra": {
-      "inclusion": "C",
       "seatingNote": "有沙發座、露天座（寵物只能坐露天座）",
       "x": "@infoMUSEA",
       "conflicts": [
@@ -7077,6 +7139,10 @@
       "googleReviews": 99,
       "note": null
     },
+    "inclusion": [
+      "B",
+      "C"
+    ],
     "tabelogOwner": false,
     "googleName": null,
     "notes": "鳥羽站步行約 4 分（鳥羽 1 丁目，城山公園方向）。有座敷和大包廂。",
@@ -7109,7 +7175,6 @@
     "kids": null,
     "smoking": "全席禁煙",
     "extra": {
-      "inclusion": "BC",
       "conflicts": [
         "食べログ（非店舗会員）寫 10:00～21:00，Google 寫 11:30～19:00，採用 Google；官網 susiume.com 沒讀到（憑證錯誤）",
         "席數 30 但包廂寫 30 人以上、包場 50 人以上，食べログ資料本身不一致",
@@ -7396,6 +7461,9 @@
       "googleReviews": 202,
       "note": null
     },
+    "inclusion": [
+      "C"
+    ],
     "tabelogOwner": false,
     "googleName": null,
     "notes": "鳥羽站步行約 2 分。100 席、有包廂和座敷。",
@@ -7433,7 +7501,6 @@
     },
     "smoking": "全席喫煙可（食べログ，可能是舊資料）",
     "extra": {
-      "inclusion": "C",
       "conflicts": [
         "Google 寫每天 11:00～14:30（沒有晚上），官網寫 11～15 時、17～21 時，採用官網",
         "席數：ホットペッパー 70 席（宴會最多 45 人）、現有 100",
@@ -7690,6 +7757,9 @@
       "googleReviews": 181,
       "note": null
     },
+    "inclusion": [
+      "C"
+    ],
     "tabelogOwner": false,
     "googleName": "海鮮 BUN",
     "notes": "鳥羽站步行約 4 分。2 樓有桌席、座敷的包廂。",
@@ -7722,7 +7792,6 @@
     "kids": null,
     "smoking": "全席喫煙可（食べログ，可能是舊資料）",
     "extra": {
-      "inclusion": "C",
       "conflicts": [
         "食べログ（非店舗会員）寫晚餐 18:00～22:00，Google 寫 18:00～21:00，採用 Google"
       ]
@@ -7946,6 +8015,9 @@
       "googleReviews": 56,
       "note": null
     },
+    "inclusion": [
+      "C"
+    ],
     "tabelogOwner": true,
     "googleName": "海鮮大和",
     "notes": "鳥羽站前さざえ店街，步行約 3 分。",
@@ -7976,7 +8048,6 @@
     "kids": null,
     "smoking": "全席喫煙可（食べログ，可能是舊資料）",
     "extra": {
-      "inclusion": "C",
       "conflicts": [
         "Google 寫週三、週五公休，平日 11:00～16:00、週末 10:00～17:00；食べログ（店舗会員）寫每天 10:00～17:00、無休，採用食べログ",
         "官網 yamato-toba.jp 網域解析不到（2026-10-18）；營業時間 10:00～17:00 L.O.、不定休，有預約的話 17:00 以後也營業（とばめしマップ 2022）"
@@ -8199,6 +8270,9 @@
       "googleReviews": 178,
       "note": null
     },
+    "inclusion": [
+      "C"
+    ],
     "tabelogOwner": false,
     "googleName": null,
     "notes": "鳥羽站步行約 4 分。",
@@ -8235,7 +8309,6 @@
     },
     "smoking": null,
     "extra": {
-      "inclusion": "C",
       "conflicts": [
         "營業時間：まっぷる（2025）11:00～15:00；とばめしマップ（2022）・ホットペッパー（2020）11:00～18:00（可能提早打烊）；週四休三者一致",
         "ホットペッパー 座敷欄寫なし，本文卻有「奥のお座敷」"
@@ -8543,6 +8616,9 @@
       "googleReviews": 449,
       "note": null
     },
+    "inclusion": [
+      "F"
+    ],
     "tabelogOwner": true,
     "googleName": "鳥羽海鮮料理屋形船おきた 伊勢海老/牡蠣",
     "notes": "三重縣唯一的屋形船餐廳（官網），在鳥羽灣邊吃海鮮邊遊船。體驗型。乘船處在鳥羽站步行約 5 分（佐田浜）。平時是和其他客人併船。",
@@ -8580,7 +8656,6 @@
     },
     "smoking": "分煙",
     "extra": {
-      "inclusion": "F",
       "conflicts": [
         "Google 沒有營業時間",
         "伊勢海老コース：官網 8,950 円、食べログ 9,450 円；2023 年介紹文是舊價",
@@ -8839,6 +8914,9 @@
       "googleReviews": 217,
       "note": "Google 的評論大多是住宿"
     },
+    "inclusion": [
+      "F"
+    ],
     "tabelogOwner": false,
     "googleName": null,
     "notes": "實際型態是建在小浜灣海上的小旅館（官網「海辺の小旅館」，觀光三重「味な宿」），可以在房間裡釣魚（座敷釣り）。食べログ寫中午 11:30～14:00 營業，但官網、觀光三重都沒寫非住客的午餐，要打電話確認。鳥羽站搭計程車 5 分。 官網 Q&A 寫晚餐只給住客；非住客的午餐或只用餐方案，所有來源都沒寫，要電話 0599-25-3202 問。",
@@ -8869,7 +8947,6 @@
     "kids": null,
     "smoking": "全席喫煙可（食べログ，可能是舊資料）",
     "extra": {
-      "inclusion": "F",
       "kind": "海上旅館（兼料亭）",
       "nonGuestLunch": "未確認",
       "conflicts": [
@@ -9086,6 +9163,9 @@
       "googleReviews": 330,
       "note": "Google 網站欄是 IG"
     },
+    "inclusion": [
+      "A"
+    ],
     "tabelogOwner": false,
     "googleName": null,
     "notes": "地址是鳥羽 5 丁目，實際上在志摩赤崎站步行約 3 分，離中之郷站約 1.3 km（地區沿用 T4a 的分類）。中午不休息，17 點前打烊，不能當晚餐（食べログ備考）。沒有小上がり座敷。",
@@ -9123,7 +9203,6 @@
     },
     "smoking": "全席禁煙",
     "extra": {
-      "inclusion": "A",
       "conflicts": [
         "食べログ（非店舗会員）寫 11:00～17:00，Google 寫 11:00～16:00，採用 Google",
         "讀文（https://miemen.net/shops/115/）：hours＝11:00～17:00（2018 年資料）",
@@ -9326,6 +9405,10 @@
       "googleReviews": 486,
       "note": null
     },
+    "inclusion": [
+      "A",
+      "E"
+    ],
     "tabelogOwner": false,
     "googleName": null,
     "notes": "中之郷站步行約 2 分。不含晚餐的 Lido Porte 附近的晚餐選擇（營業到 20:30）。",
@@ -9357,7 +9440,6 @@
     },
     "smoking": "全席禁煙",
     "extra": {
-      "inclusion": "AE",
       "conflicts": [
         "地址：Google 寫鳥羽 3-32-8，食べログ寫 3-32-6",
         "讀文（https://www.nap-camp.com/mag/50903）：hours＝11:00～20:00"
@@ -9580,6 +9662,9 @@
       "googleReviews": 110,
       "note": null
     },
+    "inclusion": [
+      "C"
+    ],
     "tabelogOwner": false,
     "googleName": null,
     "notes": "鳥羽 5 丁目，志摩赤崎站步行約 5 分（地區沿用 T4a 的分類，不在中之郷站步行圈）。",
@@ -9608,7 +9693,6 @@
     "kids": null,
     "smoking": "全席喫煙可（食べログ，可能是舊資料）",
     "extra": {
-      "inclusion": "C",
       "conflicts": [
         "Google 和食べログ（非店舗会員）一致",
         "讀文（https://retty.me/restaurant/100001007615/）：access＝近鐵志摩線志摩赤崎站步行 1 分（61 m）"
@@ -9803,6 +9887,9 @@
       "googleReviews": 132,
       "note": null
     },
+    "inclusion": [
+      "E"
+    ],
     "tabelogOwner": false,
     "googleName": "カフェテラスオレンジ",
     "notes": "中之郷站步行約 3 分，和錦屋同一條街。不含晚餐的 Lido Porte 附近的晚餐選擇（營業到 22:00）。",
@@ -9838,7 +9925,6 @@
     },
     "smoking": "全席禁煙（入口有菸灰缸）",
     "extra": {
-      "inclusion": "E",
       "conflicts": [
         "食べログ（非店舗会員）寫 11:00 開店，Google 寫 11:30，採用 Google"
       ]
@@ -9988,6 +10074,10 @@
       "googleReviews": 290,
       "note": null
     },
+    "inclusion": [
+      "A",
+      "F"
+    ],
     "tabelogOwner": false,
     "googleName": "中山かき養殖場",
     "notes": "浦村的牡蠣養殖場直營，10:00 開始、牡蠣賣完就結束（食べログ）。不能預約。Google 店名「中山かき養殖場」。",
@@ -10014,7 +10104,6 @@
     "kids": null,
     "smoking": "全席喫煙可（食べログ，可能是舊資料）",
     "extra": {
-      "inclusion": "AF",
       "googleStatus": "臨時休業（2026-10-17）",
       "tabelogHours": "10:00～牡蠣がなくなり次第終了"
     },
@@ -10249,6 +10338,11 @@
       "googleReviews": 2141,
       "note": null
     },
+    "inclusion": [
+      "A",
+      "B",
+      "C"
+    ],
     "tabelogOwner": false,
     "googleName": "海の駅黒潮 パールロード店",
     "notes": "珍珠路入口的「海の駅 黒潮」（市場＋餐廳），150 席。不能預約。",
@@ -10283,7 +10377,6 @@
     },
     "smoking": "分煙（1 樓、露台可吸菸，2 樓禁煙）",
     "extra": {
-      "inclusion": "ABC",
       "conflicts": [
         "觀光三重、食べログ（非店舗会員）寫 8:00～17:00，Google 寫 8:30～17:00，採用 Google",
         "讀文（https://www.uminoeki-kuroshio.com/dining/）：hours＝8:00～17:00，用餐 8:30 起",
@@ -10539,6 +10632,11 @@
       "googleReviews": 885,
       "note": null
     },
+    "inclusion": [
+      "A",
+      "B",
+      "F"
+    ],
     "tabelogOwner": true,
     "googleName": null,
     "notes": "浦村牡蠣吃到飽的人氣店，舊店名「共栄物産」。可以網路或電話預約。",
@@ -10577,7 +10675,6 @@
     },
     "smoking": "全席禁煙",
     "extra": {
-      "inclusion": "ABF",
       "x": "@yokichiya_kaki",
       "tabelogOldName": "共栄物産",
       "conflicts": [
@@ -10797,6 +10894,9 @@
       "googleReviews": 185,
       "note": null
     },
+    "inclusion": [
+      "A"
+    ],
     "tabelogOwner": false,
     "googleName": "Ciao チャオ",
     "notes": "安樂島、珍珠路入口，和鳥羽風土同一個地址。",
@@ -10830,7 +10930,6 @@
     },
     "smoking": "全席禁煙",
     "extra": {
-      "inclusion": "A",
       "conflicts": [
         "Google 和食べログ（非店舗会員）一致",
         "讀文（http://www.jp-ciao.com/）：hours＝10:00～18:00（L.O. 17:00）",
@@ -11069,6 +11168,11 @@
       "googleReviews": 618,
       "note": null
     },
+    "inclusion": [
+      "A",
+      "B",
+      "F"
+    ],
     "tabelogOwner": false,
     "googleName": null,
     "notes": "完全預約制，預約專用電話 090-5000-6784（也可以用 SMS，觀光三重）。",
@@ -11105,7 +11209,6 @@
     },
     "smoking": "全席禁煙",
     "extra": {
-      "inclusion": "ABF",
       "conflicts": [
         "公休：食べログ、觀光協會寫第 1・3 個週二，Google、觀光三重寫週二",
         "讀文（https://www.kankomie.or.jp/season/article/110）：reservation.method＝完全預約制，電話或 SMS 090-5000-6784；1 人也可以訂",
@@ -11364,6 +11467,10 @@
       "googleReviews": 393,
       "note": null
     },
+    "inclusion": [
+      "A",
+      "B"
+    ],
     "tabelogOwner": true,
     "googleName": "海太郎",
     "notes": "安樂島、珍珠路入口。60 席，有小上がり座敷。",
@@ -11400,7 +11507,6 @@
     },
     "smoking": "全席禁煙（店外可吸菸）",
     "extra": {
-      "inclusion": "AB",
       "conflicts": [
         "Google 寫 9:30～19:30、週四公休；觀光三重寫「9:30～日没まで、木曜休」；採用食べログ（店舗会員）",
         "讀文（http://www.kaitaro.jp/institution.html）：seating＝有座敷桌席（お座敷テーブル席）",
@@ -11632,6 +11738,10 @@
       "googleReviews": 895,
       "note": null
     },
+    "inclusion": [
+      "A",
+      "F"
+    ],
     "tabelogOwner": false,
     "googleName": null,
     "notes": "安樂島、珍珠路入口。可以自己帶酒、飲料、食物、調味料（食べログ）。網路、電話預約。",
@@ -11667,7 +11777,6 @@
     },
     "smoking": "全席禁煙",
     "extra": {
-      "inclusion": "AF",
       "conflicts": [
         "觀光三重 17 選寫 11:00～16:00、週三公休；食べログ（非店舗会員）寫 9:00～17:00、不定休；Google 寫週三 9:00 開。照優先順序採用 Google，但 2 月照觀光三重比較可靠",
         "讀文（https://uramurakaki-yamayasu.jp/）：reservation.method＝網路 https://booking.ebica.jp/webrsv/search/e014106401/28537?isfixshop=true 或預約專用電話 080-3064-2364；吃到飽要事先預約",
@@ -11894,6 +12003,9 @@
       "googleReviews": 194,
       "note": null
     },
+    "inclusion": [
+      "A"
+    ],
     "tabelogOwner": false,
     "googleName": null,
     "notes": "安樂島、珍珠路入口，和 Ciao 同一個地址。",
@@ -11924,7 +12036,6 @@
     "kids": null,
     "smoking": "全席禁煙",
     "extra": {
-      "inclusion": "A",
       "conflicts": [
         "食べログ（非店舗会員）寫 9:30～18:00（週六～19:00），Google 寫 11:00～17:30，採用 Google",
         "讀文（http://www.tobafood.net/）：hours＝11:00～18:00（週六到 19:00，BBQ 到 21:00）",
@@ -12139,6 +12250,10 @@
       "googleReviews": 71,
       "note": null
     },
+    "inclusion": [
+      "B",
+      "F"
+    ],
     "tabelogOwner": false,
     "googleName": "かきいち本店 by 浦村シーファーム",
     "notes": "食べログ：從浦村町 1560 移到浦村町 1-12（珍珠路入口一帶）。Google 店名「かきいち本店 by 浦村シーファーム」。電話預約。",
@@ -12172,7 +12287,6 @@
     },
     "smoking": "全席禁煙（戶外有吸菸處）",
     "extra": {
-      "inclusion": "BF",
       "movedFrom": "三重県鳥羽市浦村町1560（食べログ）",
       "googleStatus": "臨時休業（2026-10-17）",
       "conflicts": [
@@ -12389,6 +12503,9 @@
       "googleReviews": 178,
       "note": null
     },
+    "inclusion": [
+      "B"
+    ],
     "tabelogOwner": false,
     "googleName": null,
     "notes": "浦村的水產直營食堂（不是吃到飽）。",
@@ -12417,7 +12534,6 @@
     "kids": null,
     "smoking": null,
     "extra": {
-      "inclusion": "B",
       "conflicts": [
         "Google、食べログ、觀光協會一致（週末假日到 15:00）",
         "讀文（https://www.kankomie.or.jp/event/39679）：hours＝11:00～14:00（土日祝到 15:00）",
@@ -12660,6 +12776,9 @@
       "googleReviews": 174,
       "note": null
     },
+    "inclusion": [
+      "B"
+    ],
     "tabelogOwner": false,
     "googleName": null,
     "notes": "浦村牡蠣吃到飽。",
@@ -12693,7 +12812,6 @@
     },
     "smoking": null,
     "extra": {
-      "inclusion": "B",
       "conflicts": [
         "Google 寫週二、週三公休（觀光三重：週二，年內週二、三）；2 月照觀光三重應該只休週二",
         "讀文（http://www.sugikaki.com/）：hours＝官網：11～3 月平日 11:00～14:30、土日祝 11:00～16:15；觀光三重：1 部 11:00～12:20、2 部 13:00～14:20；tabiiro：土日祝另有 3 部 14:45～16:05",
@@ -12945,6 +13063,10 @@
       "googleReviews": 342,
       "note": null
     },
+    "inclusion": [
+      "B",
+      "F"
+    ],
     "tabelogOwner": false,
     "googleName": "海の食堂 はっかい",
     "notes": "Google 店名「海の食堂 はっかい」。電話預約。",
@@ -12981,7 +13103,6 @@
     },
     "smoking": "全席禁煙",
     "extra": {
-      "inclusion": "BF",
       "conflicts": [
         "食べログ（非店舗会員）寫週三、週四公休、10:00～15:30；Google 寫週四公休、10:00～15:00；觀光三重寫 10:00～16:00（L.O.）、週四休。採用 Google",
         "讀文（https://www.jalan.net/news/article/400323/）：hours＝10:00～17:00（料理 L.O. 16:00）",
@@ -13212,6 +13333,9 @@
       "googleReviews": 218,
       "note": null
     },
+    "inclusion": [
+      "B"
+    ],
     "tabelogOwner": false,
     "googleName": null,
     "notes": "完全預約制，電話預約 10:00～17:00（預約專用 090-5617-1817，觀光三重）。",
@@ -13246,7 +13370,6 @@
     },
     "smoking": "全席禁煙",
     "extra": {
-      "inclusion": "B",
       "conflicts": [
         "公休：Google、觀光三重寫週三；食べログ（非店舗会員）寫週三、週四",
         "讀文（http://hamahide.com/）：price＝國中以上 3,800 円、小學生 1,800 円、3 歲以上幼兒 500 円、未滿 3 歲免費（含稅）",
@@ -13447,6 +13570,10 @@
       "googleReviews": 362,
       "note": "Google 有 3 筆：「英治丸かき直売所」4.4／362（採用）、「株式会社英治丸」4.5／77、「英治丸」5.0／2"
     },
+    "inclusion": [
+      "B",
+      "F"
+    ],
     "tabelogOwner": false,
     "googleName": "英治丸かき直売所",
     "notes": "牡蠣養殖業者的直售所附設烤牡蠣小屋，有露天座位，可以外帶（附保冷）。不能預約（食べログ）。",
@@ -13475,7 +13602,6 @@
     "kids": null,
     "smoking": null,
     "extra": {
-      "inclusion": "BF",
       "googleOther": [
         "株式会社英治丸 4.5／77（0599-32-5960）",
         "英治丸 5.0／2（浦村町，餐廳）"
@@ -13719,6 +13845,9 @@
       "googleReviews": 303,
       "note": null
     },
+    "inclusion": [
+      "F"
+    ],
     "tabelogOwner": false,
     "googleName": null,
     "notes": "電話預約 10:00～19:00（觀光三重）。",
@@ -13752,7 +13881,6 @@
     },
     "smoking": null,
     "extra": {
-      "inclusion": "F",
       "googleStatus": "臨時休業（2026-10-17）",
       "conflicts": [
         "食べログ（非店舗会員）寫 10:00～15:00、期間中無休；採用觀光三重 17 選（Google 沒有營業時間，店家官網沒查）",
@@ -14032,6 +14160,9 @@
       "googleReviews": 156,
       "note": null
     },
+    "inclusion": [
+      "B"
+    ],
     "tabelogOwner": false,
     "googleName": "（有）丸善水産",
     "notes": "在鳥羽灣海上的浮台吃烤牡蠣吃到飽（觀光三重的店名「海上焼き牡蠣食べ放題 丸善水産」）。只能從官網預約。調味料只有醬油和醬汁，其他要自備，可以帶啤酒等。",
@@ -14065,7 +14196,6 @@
     },
     "smoking": null,
     "extra": {
-      "inclusion": "B",
       "conflicts": [
         "Google 平日寫 11:00～14:10（一筆時段）",
         "讀文（https://www.kankomie.or.jp/season/article/110）：kids.allowed＝帶未就學兒童無法預約；小孩票 1,925 円（年齡未寫）",
@@ -14281,6 +14411,9 @@
       "googleReviews": 572,
       "note": null
     },
+    "inclusion": [
+      "A"
+    ],
     "tabelogOwner": false,
     "googleName": null,
     "notes": "地址是畔蛸町（相差的北邊，往相差的路上），要開車。市場附設餐廳。不能預約。",
@@ -14307,7 +14440,6 @@
     "kids": null,
     "smoking": "全席禁煙",
     "extra": {
-      "inclusion": "A",
       "conflicts": [
         "食べログ（非店舗会員）寫週四 9:00 開，Google 寫每天 8:00～17:00，採用 Google",
         "讀文（http://www.uminoeki-kuroshio.com/ousatsu/）：hours＝8:00～17:00（用餐 8:30 起）；週四 9:00～17:00；IG 有寫 9:00～17:00 L.O. 16:30",
@@ -14524,6 +14656,10 @@
       "googleReviews": 249,
       "note": null
     },
+    "inclusion": [
+      "A",
+      "C"
+    ],
     "tabelogOwner": false,
     "googleName": null,
     "notes": "石神さん（神明神社）參道上，旁邊是海女の家 五左屋。",
@@ -14557,7 +14693,6 @@
     },
     "smoking": "分煙（戶外露台可吸菸）",
     "extra": {
-      "inclusion": "AC",
       "conflicts": [
         "Google 和食べログ（非店舗会員）一致",
         "讀文（https://osatsu.org/kitchen/）：hours＝9:00～17:00",
@@ -14790,6 +14925,9 @@
       "googleReviews": 275,
       "note": null
     },
+    "inclusion": [
+      "C"
+    ],
     "tabelogOwner": false,
     "googleName": null,
     "notes": "相差的鰻魚店。官網：有吧台、和室包廂，可以包場，一個人到團體都可以（沒寫人數）。可外帶、可預約。",
@@ -14821,7 +14959,6 @@
     "kids": null,
     "smoking": "全席禁煙",
     "extra": {
-      "inclusion": "C",
       "conflicts": [
         "食べログ（非店舗会員）寫晚上 17:00～20:00 也營業；官網、Google 只有中午，採用官網",
         "讀文（https://www.toba-nakashin.com/menu.html）：hours＝中午 11:00～14:00（官網沒寫晚上）",
@@ -15032,6 +15169,9 @@
       "googleReviews": 138,
       "note": null
     },
+    "inclusion": [
+      "A"
+    ],
     "tabelogOwner": false,
     "googleName": null,
     "notes": "相差海女文化資料館附近。和鳥羽站周邊的焼き鳥店「久兵衛」是不同的店。",
@@ -15060,7 +15200,6 @@
     "kids": null,
     "smoking": "全席禁煙",
     "extra": {
-      "inclusion": "A",
       "igHashtag": "#海の食堂久兵衛（食べログ的公式アカウント欄是 hashtag 頁，不是帳號）"
     },
     "summary": {
@@ -15291,6 +15430,9 @@
       "googleReviews": 56,
       "note": null
     },
+    "inclusion": [
+      "B"
+    ],
     "tabelogOwner": false,
     "googleName": "海女の家五左屋",
     "notes": "古民家改建的商店兼咖啡（觀光三重），在石神さん參道。",
@@ -15317,7 +15459,6 @@
     "kids": null,
     "smoking": "全席禁煙",
     "extra": {
-      "inclusion": "B",
       "conflicts": [
         "讀文（https://www.kankomie.or.jp/report/508）：hours＝9:00～17:00（L.O. 16:30）",
         "讀文（https://osatsu.org/gozaya/）：seating＝2 樓是咖啡休息區（窗邊座位），附海の図書館",
@@ -15549,6 +15690,9 @@
       "googleReviews": 27,
       "note": "食べログ沒有分數；Google 只有 27 則"
     },
+    "inclusion": [
+      "F"
+    ],
     "tabelogOwner": false,
     "googleName": "海女小屋プチかまどうえむら",
     "notes": "體驗型（海女小屋）：烤伊勢志摩海產的海女料理。席數 15（吧台 5、桌 6、戶外 4），戶外席冬天可能不適合。",
@@ -15583,7 +15727,6 @@
     "kids": null,
     "smoking": null,
     "extra": {
-      "inclusion": "F",
       "conflicts": [
         "讀文（https://amakoyauemura.com/）：reservation.method＝電話 080-9482-2160、Email amakoyauemura@gmail.com、預約網站 https://amakoyauemura.edisone.jp/",
         "讀文（https://amakoyauemura.com/）：febNote＝牡蠣 1～4 月提供（5～12 月改烏賊一夜干し），2 月套餐含牡蠣",
@@ -15810,6 +15953,9 @@
       "googleReviews": 660,
       "note": null
     },
+    "inclusion": [
+      "A"
+    ],
     "tabelogOwner": false,
     "googleName": null,
     "notes": "石鏡漁港旁的食堂，這一區唯一高人氣的店。不能預約。同一個地址（石鏡町 336-1）另有「漁師酒場 鏡」，但電話、公休日、營業時間都不同，是另一家店（見 data/raw/toba/log/T4b.md）。",
@@ -15836,7 +15982,6 @@
     "kids": null,
     "smoking": "全席禁煙",
     "extra": {
-      "inclusion": "A",
       "conflicts": [
         "Google 和食べログ（非店舗会員）一致",
         "讀文（https://ameblo.jp/yucchi87/entry-12772484903.html）：seating＝料理到櫃台自取、飲料自己從冰箱拿；店內不大",
@@ -16078,6 +16223,10 @@
       "googleReviews": 5403,
       "note": "Google 評論是整個鳥羽展望台的"
     },
+    "inclusion": [
+      "A",
+      "C"
+    ],
     "tabelogOwner": false,
     "googleName": "鳥羽展望台 海女のテラス",
     "notes": "珍珠路上的鳥羽展望台（景點 toba-observatory-pearl-road）裡的咖啡。",
@@ -16111,7 +16260,6 @@
     },
     "smoking": "全席禁煙",
     "extra": {
-      "inclusion": "AC",
       "conflicts": [
         "讀文（https://www.toba-tenboudai.co.jp/）：hours＝9:30～16:30（忙碌日延長）；咖啡 L.O. 為閉店前 30 分；週二可能因機器保養 15:30 L.O.",
         "讀文（https://www.toba-tenboudai.co.jp/）：closedNote＝週三公休；旺季照常營業、另擇日補休；天候等原因可能臨時休業"
@@ -16321,6 +16469,9 @@
       "googleReviews": 27,
       "note": "食べログ只有 3 則、Google 27 則"
     },
+    "inclusion": [
+      "D"
+    ],
     "tabelogOwner": false,
     "googleName": null,
     "notes": "國崎（鎧埼燈塔附近）的旅館兼「お食事処」。官網有「お食事予約」表單和お食事処營業時間（17:00～22:00），食べログ也寫午餐、晚餐要預約，判斷**非住客也可以預約用餐**（但官網沒有明寫「非住客」，訂的時候要確認）。相差的「東の窓」不含晚餐，這裡是要開車的晚餐選擇。",
@@ -16354,7 +16505,6 @@
     "kids": null,
     "smoking": "全席喫煙可（食べログ，可能是舊資料）",
     "extra": {
-      "inclusion": "D",
       "tabelogGenre": "旅館・民宿",
       "nonGuestMeals": "官網有お食事予約表單，判斷可以（沒有明寫）",
       "conflicts": [
@@ -16588,6 +16738,9 @@
       "googleReviews": 235,
       "note": null
     },
+    "inclusion": [
+      "A"
+    ],
     "tabelogOwner": false,
     "googleName": null,
     "notes": "答志島和具港附近。從鳥羽佐田浜港搭市營定期船。店內有大水槽，養著魚、伊勢龍蝦、貝類。全 19 席的小店。",
@@ -16619,7 +16772,6 @@
     "kids": null,
     "smoking": "全席喫煙可（食べログ，可能是舊資料）",
     "extra": {
-      "inclusion": "A",
       "conflicts": [
         "食べログ（非店舗会員）寫 11:00～22:00，Google 寫 11:00～21:00，採用 Google",
         "讀文（http://www.amigo.ne.jp/~marumitu/）：hours＝11:00～21:00；18:00 以後要電話預約，最後入店 19:00，L.O. 20:00",
@@ -16827,6 +16979,10 @@
       "googleReviews": 64,
       "note": "Google 網站欄是 IG"
     },
+    "inclusion": [
+      "A",
+      "C"
+    ],
     "tabelogOwner": false,
     "googleName": null,
     "notes": "答志島和具港步行約 5 分。中午要先聯絡。食べログ寫「14 名以上有團體折扣」。",
@@ -16858,7 +17014,6 @@
     "kids": null,
     "smoking": "分煙",
     "extra": {
-      "inclusion": "AC",
       "x": "@daiharu05993721",
       "conflicts": [
         "Google 沒有營業時間"
@@ -17143,6 +17298,9 @@
       "googleReviews": 53,
       "note": null
     },
+    "inclusion": [
+      "A"
+    ],
     "tabelogOwner": true,
     "googleName": "地物GYOKAI 喜久屋［完全予約制］",
     "notes": "答志島答志港附近。完全預約制，前一天以前電話預約（同時決定套餐或午餐套餐），每人一份。只收現金。預約時間前後可以寄放行李。**10 歲未滿的小孩原則上不能入店**（大人能確實管好小孩的話可以）；包廂只限國中以上。",
@@ -17181,7 +17339,6 @@
     },
     "smoking": "全席禁煙",
     "extra": {
-      "inclusion": "A",
       "conflicts": [
         "Google 寫週二、週三公休，食べログ（店舗会員）寫不定休，採用食べログ",
         "讀文（https://104kikuya.com/shop/）：group.maxReservation＝1 樓掘りごたつ席團體最多 12 人",
@@ -17383,6 +17540,9 @@
       "googleReviews": 25,
       "note": null
     },
+    "inclusion": [
+      "D"
+    ],
     "tabelogOwner": false,
     "googleName": null,
     "notes": "菅島港附近，島上少數的食堂（地區保底）。食べログ幾乎沒有資料。",
@@ -17408,9 +17568,7 @@
     "seating": [],
     "kids": null,
     "smoking": null,
-    "extra": {
-      "inclusion": "D"
-    },
+    "extra": {},
     "summary": {
       "text": "菅島港附近、島上少數的食堂，Google 4.0（25 則），10:00～17:00、週三休。讀文找不到任何介紹、菜單、價格。",
       "pros": [
@@ -17558,6 +17716,9 @@
       "googleReviews": 8,
       "note": null
     },
+    "inclusion": [
+      "D"
+    ],
     "tabelogOwner": false,
     "googleName": null,
     "notes": "神島唯一找到的飲食店（地區保底）。食べログ、Google 都沒有營業時間和電話。",
@@ -17586,7 +17747,6 @@
     "kids": null,
     "smoking": null,
     "extra": {
-      "inclusion": "D",
       "conflicts": [
         "讀文（https://www.kankomie.or.jp/report/1412）：seating＝桌椅座位＋小上がり和室"
       ],
@@ -17866,6 +18026,10 @@
       "googleReviews": 188,
       "note": null
     },
+    "inclusion": [
+      "A",
+      "C"
+    ],
     "tabelogOwner": true,
     "googleName": null,
     "notes": "大明東町（鳥羽站南邊，要搭車）。包廂有 2 人到 30 人以上的各種大小，50 人以上可以包場。常客滿，要早點預約。",
@@ -17900,7 +18064,6 @@
     },
     "smoking": "全席禁煙",
     "extra": {
-      "inclusion": "AC",
       "conflicts": [
         "Google 寫午餐到 14:30、晚餐到 20:30",
         "讀文（http://niku-matsumura.co.jp/menu/index.html）：price＝サービスメニュー 4,300～6,100 円；壽喜燒 8,000～11,000 円；涮涮鍋 10,000～13,000 円；網燒 8,000～19,000 円（每人、含稅）",
@@ -18177,6 +18340,10 @@
       "googleReviews": 627,
       "note": null
     },
+    "inclusion": [
+      "A",
+      "B"
+    ],
     "tabelogOwner": false,
     "googleName": null,
     "notes": "安樂島（從大明東町 2089-54 搬來，食べログ）。不能預約。Google 有一則臨時休業公告（8/31～9/3 店內整修，已過）。",
@@ -18212,7 +18379,6 @@
     },
     "smoking": "全席禁煙",
     "extra": {
-      "inclusion": "AB",
       "movedFrom": "三重県鳥羽市大明東町2089-54（食べログ）",
       "conflicts": [
         "食べログ（非店舗会員）寫 11:00～14:00（L.O. 13:30）、17:00～21:00（L.O. 20:30）；Google 寫 11:00～13:30、17:00～19:30，採用 Google",
@@ -18522,6 +18688,9 @@
       "googleReviews": 637,
       "note": null
     },
+    "inclusion": [
+      "A"
+    ],
     "tabelogOwner": false,
     "googleName": null,
     "notes": "大明東町，要搭車。110 席，有吧台、座敷。官網有網路預約（2026-10-01 公告 12 月的網路預約開放）。",
@@ -18563,7 +18732,6 @@
     },
     "smoking": "全席禁煙",
     "extra": {
-      "inclusion": "A",
       "conflicts": [
         "讀文（https://kagetu.co.jp/information/）：group.seats＝80 席：吧台 15、座敷 28、後方椅子席 40；無包廂記載",
         "讀文（https://kagetu.co.jp/menu2/menutanpinchild/）：kids.kidsMenu＝お子様セット 1,100 円（含稅），國小以下：當日料理、炸蝦、三重生魚片、飯、自製甜點",
@@ -18839,6 +19007,10 @@
       "googleReviews": 991,
       "note": null
     },
+    "inclusion": [
+      "A",
+      "C"
+    ],
     "tabelogOwner": false,
     "googleName": null,
     "notes": "從鳥羽 1-4-53 搬到安樂島町（食べログ），要搭車。",
@@ -18867,7 +19039,6 @@
     "kids": null,
     "smoking": "全席禁煙",
     "extra": {
-      "inclusion": "AC",
       "movedFrom": "三重県鳥羽市鳥羽1丁目4-53（食べログ）",
       "conflicts": [
         "食べログ（非店舗会員）寫 11:00～15:00、週三公休；Google 寫午餐到 14:00、週三週四公休，採用 Google",
@@ -19086,6 +19257,9 @@
       "googleReviews": 102,
       "note": null
     },
+    "inclusion": [
+      "C"
+    ],
     "tabelogOwner": true,
     "googleName": "馳走",
     "notes": "安樂島，只有晚上。",
@@ -19116,7 +19290,6 @@
     "kids": null,
     "smoking": "全席禁煙",
     "extra": {
-      "inclusion": "C",
       "conflicts": [
         "Google 寫 17:00～21:00",
         "讀文（https://chiso-toba.com/）：hours＝17:00～21:30（L.O. 21:00）",
@@ -19352,6 +19525,9 @@
       "googleReviews": 617,
       "note": "Google 評論是整個伴手禮中心的"
     },
+    "inclusion": [
+      "B"
+    ],
     "tabelogOwner": false,
     "googleName": "伊勢志摩みやげセンター王将",
     "notes": "松尾町（志摩線松尾站附近，國道沿線），大型伴手禮中心附設餐廳「海鮮料理 王将」。官網：1F、2F 的團體用大廣間已改成椅子桌席，一個人到大型觀光巴士團體都能接待。",
@@ -19383,7 +19559,6 @@
     "kids": null,
     "smoking": null,
     "extra": {
-      "inclusion": "B",
       "conflicts": [
         "讀文（http://www.ousho.co.jp/restaurant.html）：hours＝餐廳 11:00～17:30（L.O. 16:00），時間可能變動，要電話確認",
         "讀文（http://www.ousho.co.jp/restaurant.html）：closedNote＝全年無休",
@@ -19587,6 +19762,9 @@
       "googleReviews": 143,
       "note": null
     },
+    "inclusion": [
+      "D1"
+    ],
     "tabelogOwner": false,
     "googleName": "ポセイドン",
     "notes": "パールロード沿線、石鏡的海景食堂（一軒家）。國崎・パールロード週三、週四中午只剩 1 家，照 D「任何一天 0 家」補進來。官網網域（ijika-poseidon.com）已失效。",
@@ -19619,7 +19797,6 @@
     "accessibility": null,
     "smoking": "全席喫煙可（食べログ，可能是舊資料）",
     "extra": {
-      "inclusion": "D1",
       "tabelogGenre": "海鮮、食堂",
       "parking": "有（食べログ）",
       "conflicts": [
@@ -19901,6 +20078,9 @@
       "googleReviews": 82,
       "note": null
     },
+    "inclusion": [
+      "F3"
+    ],
     "tabelogOwner": false,
     "googleName": "丸仙",
     "notes": "國崎的料理旅館，館內有重現的「海女小屋」かまど用餐空間（體驗型）。官網寫不住宿也可以只訂午餐或晚餐（F③）；住宿本體不在 lodging.json。國崎週三、週四中午缺店，也算 D。",
@@ -19940,7 +20120,6 @@
     "accessibility": null,
     "smoking": null,
     "extra": {
-      "inclusion": "F3",
       "tabelogGenre": "料理旅館、海鮮",
       "nonGuestMeals": "官網預約頁：不住宿也可以只訂餐",
       "parking": "約 20 台（官網）",
@@ -20182,6 +20361,9 @@
       "googleReviews": 129,
       "note": null
     },
+    "inclusion": [
+      "F3"
+    ],
     "tabelogOwner": false,
     "googleName": "伊勢志摩TEPPANオーベルジュCaroCaro 鳥羽浦別邸",
     "notes": "浦村的鐵板燒オーベルジュ（住宿本體不在 lodging.json），サン浦島、御宿 The Earth 的姊妹館。食べログ寫「日帰りの方の送迎は行っておりません」、官網有日帰りプラン入口，判斷接受非住客用餐（F③）。浦村晚上幾乎沒有店，可以補 Anchor.、MFR 的晚餐缺口（要開車）。**晚餐不接受中學生以下的小孩**（食べログ）。",
@@ -20220,7 +20402,6 @@
     "accessibility": null,
     "smoking": null,
     "extra": {
-      "inclusion": "F3",
       "tabelogGenre": "オーベルジュ",
       "nonGuestMeals": "食べログ「日帰りの方の送迎は行っておりません」、官網有日帰りプラン入口",
       "parking": "9 台（食べログ、官網）",
@@ -20461,6 +20642,9 @@
       "googleReviews": 55,
       "note": null
     },
+    "inclusion": [
+      "D2"
+    ],
     "tabelogOwner": false,
     "googleName": "お食事処梵天",
     "notes": "相差的和食處，店主在大阪料亭做了約 40 年後回鄉（るるぶ）。晚上營業，補畔蛸「東の窓」（不含晚餐）的晚餐缺口（D②，要搭車）。晚餐能不能預約沒有來源。",
@@ -20490,7 +20674,6 @@
     "accessibility": null,
     "smoking": null,
     "extra": {
-      "inclusion": "D2",
       "tabelogGenre": "海鮮、日本料理",
       "parking": "5 台（るるぶ）",
       "conflicts": [
@@ -20688,6 +20871,9 @@
       "googleReviews": 84,
       "note": null
     },
+    "inclusion": [
+      "D2"
+    ],
     "tabelogOwner": false,
     "googleName": "食工房 天海",
     "notes": "相差（松尾寄り）的海鮮食堂，晚上營業，補畔蛸「東の窓」的晚餐缺口（D②，要搭車）。官網 pc-nct.biz/tenkai/ 回 404，心得沒找到；Google 84 則評論還算多。",
@@ -20717,7 +20903,6 @@
     "accessibility": null,
     "smoking": null,
     "extra": {
-      "inclusion": "D2",
       "tabelogGenre": "海鮮",
       "conflicts": [
         "營業時間：Google 11:00～13:30・17:00～21:00、食べログ 11:30～14:00・17:00～22:00（採 Google）",
@@ -20929,6 +21114,9 @@
       "googleReviews": 59,
       "note": null
     },
+    "inclusion": [
+      "D2"
+    ],
     "tabelogOwner": false,
     "googleName": null,
     "notes": "畔蛸的牡蠣養殖業者自己開的店，和「東の窓」同在畔蛸町，晚餐完全預約制，補東の窓的晚餐缺口（D②）。套餐有生牡蠣，小孩能不能換熟的要問。",
@@ -20965,7 +21153,6 @@
     "accessibility": null,
     "smoking": null,
     "extra": {
-      "inclusion": "D2",
       "tabelogGenre": "海鮮",
       "conflicts": [
         "午餐打烊：官網 15:00（L.O. 14:00）、Google 14:00"
@@ -21206,6 +21393,9 @@
       "googleReviews": 773,
       "note": "Google 是住宿本體的評分"
     },
+    "inclusion": [
+      "F3"
+    ],
     "tabelogOwner": false,
     "googleName": null,
     "notes": "相差的料理旅館「味の宿 みち潮」的非住客晚餐（日帰り夕食），住宿本體是 lodging `toba-osatsu-michishio`。相差晚上幾乎沒有店，可以補畔蛸「東の窓」的晚餐（F③）。日帰り沒有接送。",
@@ -21244,7 +21434,6 @@
     "accessibility": null,
     "smoking": null,
     "extra": {
-      "inclusion": "F3",
       "lodgingId": "toba-osatsu-michishio",
       "nonGuestMeals": "楽天、官網都有日帰り夕食方案",
       "conflicts": [
@@ -21478,6 +21667,9 @@
       "googleReviews": 1041,
       "note": "Google 是住宿本體的評分"
     },
+    "inclusion": [
+      "F3"
+    ],
     "tabelogOwner": false,
     "googleName": null,
     "notes": "石鏡的飯店「神具良」的非住客午餐（ダイニング波音，海景座位），住宿本體是 lodging `toba-ijika-kagura`。國崎・パールロード週三、週四中午缺店，可以補（F③）。接駁巴士配不上午餐時段，要開車或搭計程車。",
@@ -21516,7 +21708,6 @@
     },
     "smoking": null,
     "extra": {
-      "inclusion": "F3",
       "lodgingId": "toba-ijika-kagura",
       "nonGuestMeals": "楽天有不含客房的昼食方案"
     },
@@ -21736,6 +21927,9 @@
       "googleReviews": 984,
       "note": "Google 是住宿本體的評分"
     },
+    "inclusion": [
+      "F3"
+    ],
     "tabelogOwner": false,
     "googleName": null,
     "notes": "浦村「サン浦島 悠季の里」的日帰り專用全個室餐廳「風姿花伝」，住宿本體是 lodging `toba-motoura-sun-urashima`（F③）。鳥羽站 11:00 有接駁（回程 14:30、15:25、16:25，要預約）。",
@@ -21771,7 +21965,6 @@
     "accessibility": null,
     "smoking": null,
     "extra": {
-      "inclusion": "F3",
       "lodgingId": "toba-motoura-sun-urashima",
       "nonGuestMeals": "楽天有日帰り昼食方案",
       "conflicts": [
@@ -21967,6 +22160,9 @@
       "googleReviews": 23,
       "note": null
     },
+    "inclusion": [
+      "D2"
+    ],
     "tabelogOwner": false,
     "googleName": null,
     "notes": "鳥羽 1 丁目的ホルモン・鉄板焼き店。旅館なおみ（不含晚餐，小浜町）20 分內沒有晚餐的店，照 D② 補（README 的建議）；實際步行時間看 anchors。心得沒找到。",
@@ -22003,7 +22199,6 @@
     "accessibility": null,
     "smoking": null,
     "extra": {
-      "inclusion": "D2",
       "tabelogGenre": "ホルモン、鉄板焼き"
     },
     "summary": {
@@ -22198,6 +22393,9 @@
       "googleReviews": 7,
       "note": null
     },
+    "inclusion": [
+      "D3"
+    ],
     "tabelogOwner": false,
     "googleName": null,
     "notes": "菅島漁港前的預約制便當店（只做外帶）。菅島唯一的食堂重太郎屋週三休，照 D③「離島找不到可以坐下吃的店時，外帶便當也可以」補進來。能不能一次訂 15 個、在哪裡吃沒寫，要電話問。",
@@ -22231,7 +22429,6 @@
     },
     "smoking": null,
     "extra": {
-      "inclusion": "D3",
       "takeoutOnly": true
     },
     "summary": {
@@ -22372,6 +22569,9 @@
       "googleReviews": 119,
       "note": "Google 是住宿本體的評分"
     },
+    "inclusion": [
+      "D1"
+    ],
     "tabelogOwner": false,
     "googleName": null,
     "notes": "神島的民宿「山海荘」的非住客昼食（在食堂吃或外帶便當），住宿本體是 lodging `toba-kamishima-sankaiso`。神島唯一的店やま海營業時間不明，照 D「任何一天 0 家」補進來。住宿只在週五～週一營業、只收現金（住宿的資料，昼食是否相同沒寫）。",
@@ -22404,7 +22604,6 @@
     },
     "smoking": null,
     "extra": {
-      "inclusion": "D1",
       "lodgingId": "toba-kamishima-sankaiso",
       "nonGuestMeals": "観光三重：昼食非住客可（完全預約制）"
     },

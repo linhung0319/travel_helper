@@ -277,6 +277,12 @@ function main() {
           (soft ? warn : err)(shown, `[${c.key}] status 是 included，但沒有 pointId${dataExists ? (soft ? '（detailPending）' : '') : '（資料檔還沒建立）'}`);
         }
         if (c.detailPending === true && c.pointId) warn(shown, `[${c.key}] 已有 pointId，detailPending 要拿掉`);
+        // 住宿的 §5.7：「評論 10 則以上的評分來源都低於 3.8」才排除；有一個來源 3.8 以上就不該排除（T7i 補じゃらん後發現 3 間）
+        if (path.basename(rel) === 'lodging.json' && c.status === 'excluded' && /5\.7/.test(c.reason ?? '')) {
+          const r = c.ratings ?? {};
+          const ok = [['楽天', r.rakuten, r.rakutenReviews], ['じゃらん', r.jalan, r.jalanReviews], ['Google', r.google, r.googleReviews]].filter(([, v, n]) => v >= 3.8 && n >= 10);
+          if (ok.length) warn(shown, `[${c.key}] 以 §5.7 排除，但 ${ok.map(([s, v, n]) => `${s} ${v}（${n} 則）`).join('、')} 在 3.8 以上：照規則不該排除`);
+        }
         checkRef(shown, c.key, 'pointId', c.pointId);
         if (c.region && area && !(area.regions ?? []).some((g) => g.id === c.region)) {
           err(shown, `[${c.key}] region「${c.region}」不在 areas.json 區域「${area.id}」的 regions 裡`);

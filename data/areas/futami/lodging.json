@@ -115,6 +115,7 @@
     "luggage": null,
     "checkIn": "15:00",
     "checkOut": "10:00",
+    "rakutenHotelNo": 7563,
     "dinnerAccess": null,
     "group": {
       "totalRooms": 20,
@@ -133,8 +134,8 @@
     "ratings": {
       "rakuten": 4.08,
       "rakutenReviews": 1231,
-      "jalan": null,
-      "jalanReviews": null,
+      "jalan": 4,
+      "jalanReviews": 1490,
       "booking": null,
       "google": 4.1,
       "googleReviews": 313,
@@ -207,6 +208,12 @@
         "url": "https://yado.knt.co.jp/st/S240045/",
         "retrieved": "2026-10-18",
         "note": "二見浦站步行 13 分、夫婦岩步行 5 分、接送 14-19 時、大浴場 30 人"
+      },
+      {
+        "type": "booking-site",
+        "url": "https://www.jalan.net/yad325339/",
+        "retrieved": "2026-10-18",
+        "note": "じゃらん クチコミ総合、評論數（scripts/jalan.mjs）"
       }
     ],
     "verified": false,
@@ -217,7 +224,6 @@
         "房數：楽天 20 室 vs KNT 26 室",
         "大浴場時間：KNT 16:00～23:00 與夏季 9:00～23:00 兩種寫法"
       ],
-      "rakutenHotelNo": 7563,
       "rakutenVacancy": {
         "retrieved": "2026-10-18",
         "dates": [
@@ -308,6 +314,7 @@
     "luggage": "入住前、退房後可寄放行李；櫃台可寄宅急便",
     "checkIn": "15:00",
     "checkOut": "10:00",
+    "rakutenHotelNo": 5838,
     "dinnerAccess": null,
     "group": {
       "totalRooms": 19,
@@ -332,8 +339,8 @@
     "ratings": {
       "rakuten": 4.64,
       "rakutenReviews": 951,
-      "jalan": null,
-      "jalanReviews": null,
+      "jalan": 4.8,
+      "jalanReviews": 1634,
       "booking": null,
       "google": 4.5,
       "googleReviews": 264,
@@ -419,6 +426,12 @@
         "url": "https://www.oishiya.co.jp/access/",
         "retrieved": "2026-10-18",
         "note": "JR 二見浦駅接送約 5 分"
+      },
+      {
+        "type": "booking-site",
+        "url": "https://www.jalan.net/yad329225/",
+        "retrieved": "2026-10-18",
+        "note": "じゃらん クチコミ総合、評論數（scripts/jalan.mjs）"
       }
     ],
     "verified": false,
@@ -429,7 +442,6 @@
         "房數：楽天 19 室，部分訂房站 18 室",
         "楽天評價數 951（施設頁）vs 947（評價頁）"
       ],
-      "rakutenHotelNo": 5838,
       "rakutenVacancy": {
         "retrieved": "2026-10-18",
         "dates": [
@@ -542,6 +554,7 @@
     "luggage": null,
     "checkIn": "15:00",
     "checkOut": "10:00",
+    "rakutenHotelNo": 40176,
     "dinnerAccess": null,
     "group": {
       "totalRooms": 92,
@@ -559,8 +572,8 @@
     "ratings": {
       "rakuten": 3.93,
       "rakutenReviews": 2302,
-      "jalan": 3.9,
-      "jalanReviews": 3924,
+      "jalan": 4,
+      "jalanReviews": 3950,
       "booking": null,
       "google": 3.9,
       "googleReviews": 1507,
@@ -650,9 +663,9 @@
       "conflicts": [
         "接送班次：KNT 15:00/16:00/17:00 只接不送；Yahoo 摘要朝 3 夕 3；トラベルコ摘要 伊勢市站發 15:20/16:20/17:20/18:30、飯店發 7:45/9:00/10:00",
         "大浴場時間：楽天 入住～翌 9:30；旅色 15:00～翌 10:00；KNT 16:00～翌 10:00",
-        "じゃらん 分數只來自搜尋摘要，未直接讀頁"
+        "じゃらん 分數只來自搜尋摘要，未直接讀頁",
+        "じゃらん評分：舊值 3.9／3924 則，2026-10-18 旅館頁 4／3950 則（scripts/jalan.mjs，以旅館頁為準）"
       ],
-      "rakutenHotelNo": 40176,
       "rakutenVacancy": {
         "retrieved": "2026-10-18",
         "dates": [
@@ -780,6 +793,7 @@
     "luggage": null,
     "checkIn": "15:00",
     "checkOut": "10:00",
+    "rakutenHotelNo": 38655,
     "dinnerAccess": null,
     "group": {
       "totalRooms": 22,
@@ -892,7 +906,6 @@
       "conflicts": [
         "官網說所有方案都是一泊朝食，楽天、じゃらん卻有素泊方案"
       ],
-      "rakutenHotelNo": 38655,
       "rakutenVacancy": {
         "retrieved": "2026-10-18",
         "dates": [
@@ -1017,6 +1030,7 @@
     "luggage": "沒有電梯，大件行李館方幫忙搬到房間",
     "checkIn": "15:00",
     "checkOut": "10:00",
+    "rakutenHotelNo": 7676,
     "dinnerAccess": null,
     "group": {
       "totalRooms": 6,
@@ -1123,7 +1137,6 @@
       "conflicts": [
         "マップル寫一泊二食 9,720 円起，應該是舊價格，跟楽天現在的價格差很多"
       ],
-      "rakutenHotelNo": 7676,
       "rakutenVacancy": {
         "retrieved": "2026-10-18",
         "dates": [
@@ -1255,6 +1268,7 @@
     "luggage": null,
     "checkIn": "15:00",
     "checkOut": "10:00",
+    "rakutenHotelNo": 139993,
     "dinnerAccess": null,
     "group": {
       "totalRooms": 10,
@@ -1344,7 +1358,6 @@
     "extra": {
       "onsen": "有包租風呂；是否溫泉未寫；心得說水溫偏高、浴場分數偏低",
       "parking": "免費 20 台，不用預約",
-      "rakutenHotelNo": 139993,
       "rakutenVacancy": {
         "retrieved": "2026-10-18",
         "dates": [
@@ -1464,6 +1477,7 @@
     "luggage": null,
     "checkIn": "15:00",
     "checkOut": "10:00",
+    "rakutenHotelNo": 7723,
     "dinnerAccess": null,
     "group": {
       "totalRooms": 43,
@@ -1564,7 +1578,6 @@
       "conflicts": [
         "楽天施設トップ 4.29（57 則） vs 心得頁總評 4.00（58 則）"
       ],
-      "rakutenHotelNo": 7723,
       "rakutenVacancy": {
         "retrieved": "2026-10-18",
         "dates": [
@@ -1708,6 +1721,7 @@
     "luggage": null,
     "checkIn": "15:00",
     "checkOut": "10:00",
+    "rakutenHotelNo": 15478,
     "dinnerAccess": null,
     "group": {
       "totalRooms": 13,
@@ -1729,8 +1743,8 @@
     "ratings": {
       "rakuten": 4.53,
       "rakutenReviews": 127,
-      "jalan": null,
-      "jalanReviews": null,
+      "jalan": 4.7,
+      "jalanReviews": 710,
       "booking": null,
       "google": 4.2,
       "googleReviews": 125,
@@ -1798,6 +1812,12 @@
         "url": "https://review.travel.rakuten.co.jp/hotel/voice/15478/",
         "retrieved": "2026-10-18",
         "note": "4.53（127 則）、晚餐 4.92；只有樓梯、大浴場 4～5 人、建築老舊"
+      },
+      {
+        "type": "booking-site",
+        "url": "https://www.jalan.net/yad394480/",
+        "retrieved": "2026-10-18",
+        "note": "じゃらん クチコミ総合、評論數（scripts/jalan.mjs）"
       }
     ],
     "verified": false,
@@ -1808,7 +1828,6 @@
         "楽天施設トップ 4.57（126 則） vs 心得頁 4.53（127 則）",
         "車站步行：楽天說明 5 分以內 vs 心得 1 分"
       ],
-      "rakutenHotelNo": 15478,
       "rakutenVacancy": {
         "retrieved": "2026-10-18",
         "dates": [
@@ -1909,6 +1928,7 @@
     "luggage": null,
     "checkIn": "14:00",
     "checkOut": "09:00",
+    "rakutenHotelNo": 50638,
     "dinnerAccess": null,
     "group": {
       "totalRooms": 7,
@@ -2001,7 +2021,6 @@
         "楽天 API 平均 0（186 則）vs 施設頁 3.00（186 則）vs 口コミ頁 183 則多為 4～5 星",
         "不收信用卡"
       ],
-      "rakutenHotelNo": 50638,
       "rakutenVacancy": {
         "retrieved": "2026-10-18",
         "dates": [
@@ -2150,6 +2169,7 @@
     "luggage": null,
     "checkIn": "15:00",
     "checkOut": "10:00",
+    "rakutenHotelNo": 67334,
     "dinnerAccess": null,
     "group": {
       "totalRooms": 34,
@@ -2237,7 +2257,6 @@
       "conflicts": [
         "楽天總評 2.00（408 則）與星級分布（5 星 140、4 星 125）不一致，疑為舊制或顯示錯誤；楽天最新心得 2022-11"
       ],
-      "rakutenHotelNo": 67334,
       "rakutenVacancy": {
         "retrieved": "2026-10-18",
         "dates": [
@@ -2392,6 +2411,7 @@
     "luggage": "只能在入住前寄放於櫃台",
     "checkIn": "16:00",
     "checkOut": "10:00",
+    "rakutenHotelNo": 180248,
     "dinnerAccess": null,
     "group": {
       "totalRooms": 15,
@@ -2410,8 +2430,8 @@
     "ratings": {
       "rakuten": 3.69,
       "rakutenReviews": 17,
-      "jalan": null,
-      "jalanReviews": null,
+      "jalan": 4.5,
+      "jalanReviews": 19,
       "booking": null,
       "google": 4.1,
       "googleReviews": 25,
@@ -2472,6 +2492,12 @@
         "url": "https://hotel.travel.rakuten.co.jp/hotelinfo/plan/180248",
         "retrieved": "2026-10-18",
         "note": "只有素泊，每人約 6,400 円起；不能加餐、無接送"
+      },
+      {
+        "type": "booking-site",
+        "url": "https://www.jalan.net/yad319128/",
+        "retrieved": "2026-10-18",
+        "note": "じゃらん クチコミ総合、評論數（scripts/jalan.mjs）"
       }
     ],
     "verified": false,
@@ -2482,7 +2508,6 @@
         "方案標題寫共用浴室・廁所，內文寫無；部分房附廁所",
         "楽天施設頁 3.67（16 則）、口コミ頁 3.69（18 則）"
       ],
-      "rakutenHotelNo": 180248,
       "rakutenVacancy": {
         "retrieved": "2026-10-18",
         "dates": [
@@ -2627,6 +2652,7 @@
     "luggage": null,
     "checkIn": "16:00",
     "checkOut": "10:00",
+    "rakutenHotelNo": 146856,
     "dinnerAccess": null,
     "group": {
       "totalRooms": 12,
@@ -2720,7 +2746,6 @@
         "施設情報列有朝食・夕食場所，注意事項寫素泊",
         "搜尋摘要說可自炊，楽天心得說只有共用微波爐等、無完整廚房"
       ],
-      "rakutenHotelNo": 146856,
       "rakutenVacancy": {
         "retrieved": "2026-10-18",
         "dates": [
@@ -2875,6 +2900,7 @@
     "luggage": null,
     "checkIn": "15:00",
     "checkOut": "10:00",
+    "rakutenHotelNo": 40332,
     "dinnerAccess": null,
     "group": {
       "totalRooms": 57,
@@ -2898,8 +2924,8 @@
     "ratings": {
       "rakuten": 4.47,
       "rakutenReviews": 2737,
-      "jalan": null,
-      "jalanReviews": null,
+      "jalan": 4.5,
+      "jalanReviews": 1163,
       "booking": null,
       "google": 4.2,
       "googleReviews": 703,
@@ -3003,6 +3029,12 @@
         "url": "https://www.kankomie.or.jp/spot/13746",
         "retrieved": "2026-10-18",
         "note": "鳥羽站送迎要預約，車約 8 分"
+      },
+      {
+        "type": "booking-site",
+        "url": "https://www.jalan.net/yad391565/",
+        "retrieved": "2026-10-18",
+        "note": "じゃらん クチコミ総合、評論數（scripts/jalan.mjs）"
       }
     ],
     "verified": false,
@@ -3013,7 +3045,6 @@
         "送迎班距：官網約每 30 分鐘、KNT 寫每整點",
         "停車場：楽天 60 台、観光三重 70 台"
       ],
-      "rakutenHotelNo": 40332,
       "rakutenVacancy": {
         "retrieved": "2026-10-18",
         "dates": [
@@ -3164,6 +3195,7 @@
     "luggage": null,
     "checkIn": "15:00",
     "checkOut": "11:00",
+    "rakutenHotelNo": 166951,
     "dinnerAccess": null,
     "group": {
       "totalRooms": 5,
@@ -3274,7 +3306,6 @@
         "棟數：2021 年觀光三重寫 3 棟，現為 5 棟（2022-10 新增けやき、ひのき）",
         "かえで：官網寫 2 名限定，又說適合家族"
       ],
-      "rakutenHotelNo": 166951,
       "rakutenVacancy": {
         "retrieved": "2026-10-18",
         "dates": [
@@ -3435,6 +3466,7 @@
     "luggage": null,
     "checkIn": "15:00",
     "checkOut": "10:00",
+    "rakutenHotelNo": 188489,
     "dinnerAccess": null,
     "group": {
       "totalRooms": 17,
@@ -3529,7 +3561,6 @@
         "床型：楽天寫キング 1＋ダブル 2，Travelist 寫クイーン 2＋キング 1",
         "接送：搜尋摘要說目前不提供接送，未讀到原頁"
       ],
-      "rakutenHotelNo": 188489,
       "rakutenVacancy": {
         "retrieved": "2026-10-18",
         "dates": [
@@ -3650,6 +3681,7 @@
     "luggage": null,
     "checkIn": "15:00",
     "checkOut": "11:00",
+    "rakutenHotelNo": 185547,
     "dinnerAccess": null,
     "group": {
       "totalRooms": 1,
@@ -3667,8 +3699,8 @@
     "ratings": {
       "rakuten": null,
       "rakutenReviews": 1,
-      "jalan": null,
-      "jalanReviews": null,
+      "jalan": 3.5,
+      "jalanReviews": 7,
       "booking": null,
       "google": 4.5,
       "googleReviews": 6,
@@ -3739,7 +3771,6 @@
         "搜尋摘要稱需銀行轉帳預付，施設頁未見；施設頁寫不收信用卡",
         "じゃらん頁亂碼中看似 3.5（7 則），未記入"
       ],
-      "rakutenHotelNo": 185547,
       "rakutenVacancy": {
         "retrieved": "2026-10-18",
         "dates": [
@@ -3840,6 +3871,7 @@
     "luggage": null,
     "checkIn": "16:00",
     "checkOut": "10:00",
+    "rakutenHotelNo": 193993,
     "dinnerAccess": null,
     "group": {
       "totalRooms": 1,
@@ -3935,7 +3967,6 @@
         "施設頁寫不收信用卡，方案頁寫線上刷卡",
         "寢室數：旅色 2 間（又寫 3 ベッドルーム）vs 楽天 3 間"
       ],
-      "rakutenHotelNo": 193993,
       "rakutenVacancy": {
         "retrieved": "2026-10-18",
         "dates": [

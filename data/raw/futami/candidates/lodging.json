@@ -55,7 +55,9 @@
       "rakuten": 4.08,
       "rakutenReviews": 1231,
       "google": 4.1,
-      "googleReviews": 313
+      "googleReviews": 313,
+      "jalan": 4,
+      "jalanReviews": 1490
     },
     "links": {
       "googleMaps": "https://maps.google.com/?cid=6915761481779294940"
@@ -97,7 +99,9 @@
       "rakuten": 3.93,
       "rakutenReviews": 2302,
       "google": 3.9,
-      "googleReviews": 1507
+      "googleReviews": 1507,
+      "jalan": 4,
+      "jalanReviews": 3950
     },
     "links": {
       "googleMaps": "https://maps.google.com/?cid=14060385235708643334"
@@ -118,7 +122,9 @@
       "rakuten": 4.64,
       "rakutenReviews": 951,
       "google": 4.5,
-      "googleReviews": 264
+      "googleReviews": 264,
+      "jalan": 4.8,
+      "jalanReviews": 1634
     },
     "links": {
       "googleMaps": "https://maps.google.com/?cid=15348681165651807623"
@@ -139,7 +145,9 @@
       "rakuten": 3.69,
       "rakutenReviews": 17,
       "google": 4.1,
-      "googleReviews": 25
+      "googleReviews": 25,
+      "jalan": 4.5,
+      "jalanReviews": 19
     },
     "links": {
       "googleMaps": "https://maps.google.com/?cid=11342866978358193585"
@@ -202,7 +210,9 @@
       "rakuten": 4.53,
       "rakutenReviews": 127,
       "google": 4.2,
-      "googleReviews": 125
+      "googleReviews": 125,
+      "jalan": 4.7,
+      "jalanReviews": 710
     },
     "links": {
       "googleMaps": "https://maps.google.com/?cid=5674074088714481344"
@@ -328,7 +338,9 @@
       "rakuten": 4.47,
       "rakutenReviews": 2737,
       "google": 4.2,
-      "googleReviews": 703
+      "googleReviews": 703,
+      "jalan": 4.5,
+      "jalanReviews": 1163
     },
     "links": {
       "googleMaps": "https://maps.google.com/?cid=5909140712947163409"
@@ -349,7 +361,9 @@
       "rakuten": null,
       "rakutenReviews": 1,
       "google": 4.5,
-      "googleReviews": 6
+      "googleReviews": 6,
+      "jalan": 3.5,
+      "jalanReviews": 7
     },
     "links": {
       "googleMaps": "https://maps.google.com/?cid=9581078598415596588"
@@ -394,7 +408,7 @@
     "links": {
       "googleMaps": "https://maps.google.com/?cid=11826619366380381382"
     },
-    "note": "楽天 19247，15 室，楽天最低 13,200 円"
+    "note": "楽天 19247，15 室，楽天最低 13,200 円；T7i（2026-10-18）：じゃらん yad395248 沒有顯示分數（近一年評論數不足），維持排除"
   },
   {
     "key": "futami-maruya",
@@ -429,12 +443,14 @@
       "rakuten": 3.44,
       "rakutenReviews": 693,
       "google": 2.8,
-      "googleReviews": 708
+      "googleReviews": 708,
+      "jalan": 3.4,
+      "jalanReviews": 164
     },
     "links": {
       "googleMaps": "https://maps.google.com/?cid=14801743448918657376"
     },
-    "note": "楽天 7848，40 室，楽天最低 8,800 円"
+    "note": "楽天 7848，40 室，楽天最低 8,800 円；T7i（2026-10-18）：じゃらん 3.4（164 則，yad326401），維持排除"
   },
   {
     "key": "futami-rakuten-195376",

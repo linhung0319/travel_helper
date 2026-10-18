@@ -1,0 +1,1490 @@
+{
+ "source": "https://www.kankomie.or.jp/spot/index（伊勢市、見る・遊ぶ）",
+ "retrieved": "2026-10-18",
+ "note": "觀光三重的景點列表（scripts/kanko-mie.mjs）。categories 來自各類別的篩選結果；address、coords 來自詳細頁（coords 是詳細頁內嵌地圖的 q=緯度,經度，存成 [經度, 緯度]）。只存事實，不存介紹文",
+ "count": 101,
+ "spots": [
+  {
+   "id": 13554,
+   "name": "賓日館",
+   "url": "https://www.kankomie.or.jp/spot/13554",
+   "categories": [
+    "歴史・文化に触れる",
+    "テーマパークで遊ぶ"
+   ],
+   "address": "伊勢市二見町茶屋566-2",
+   "coords": [
+    136.784404,
+    34.508108
+   ],
+   "official": "https://hinjitsukan.com/"
+  },
+  {
+   "id": 3570,
+   "name": "ダイムスタジアム伊勢（倉田山公園野球場）",
+   "url": "https://www.kankomie.or.jp/spot/3570",
+   "categories": [
+    "キャンプ・スポーツを満喫"
+   ],
+   "address": "伊勢市楠部町159-1",
+   "coords": [
+    136.735502,
+    34.490212
+   ],
+   "official": null
+  },
+  {
+   "id": 21817,
+   "name": "内宮おかげ参道 ハート石",
+   "url": "https://www.kankomie.or.jp/spot/21817",
+   "categories": [
+    "テーマパークで遊ぶ"
+   ],
+   "address": "伊勢市宇治浦田1丁目",
+   "coords": [
+    136.723341,
+    34.465629
+   ],
+   "official": "http://www.ise-kanko.jp/"
+  },
+  {
+   "id": 2529,
+   "name": "シンフォニアテクノロジー響ホール伊勢（伊勢市観光文化会館）",
+   "url": "https://www.kankomie.or.jp/spot/2529",
+   "categories": [
+    "歴史・文化に触れる"
+   ],
+   "address": "伊勢市岩渕１丁目１３-１５",
+   "coords": [
+    136.712641,
+    34.488351
+   ],
+   "official": "https://www.ise-kanbun.jp/"
+  },
+  {
+   "id": 3300,
+   "name": "大仏山公園スポーツセンター",
+   "url": "https://www.kankomie.or.jp/spot/3300",
+   "categories": [
+    "キャンプ・スポーツを満喫"
+   ],
+   "address": "伊勢市小俣町新村605",
+   "coords": [
+    136.656269,
+    34.519463
+   ],
+   "official": "https://www.city.ise.mie.jp/kyouiku/sports/shisetsu/1001808.html"
+  },
+  {
+   "id": 22158,
+   "name": "伊勢市駅手荷物預かり所",
+   "url": "https://www.kankomie.or.jp/spot/22158",
+   "categories": [
+    "テーマパークで遊ぶ"
+   ],
+   "address": "伊勢市吹上１丁目１番１号",
+   "coords": [
+    136.710134,
+    34.490652
+   ],
+   "official": "https://ise-kanko.jp/purpose/tenimotsu/"
+  },
+  {
+   "id": 2844,
+   "name": "伊勢レンタサイクル（伊勢市観光協会）",
+   "url": "https://www.kankomie.or.jp/spot/2844",
+   "categories": [
+    "歴史・文化に触れる",
+    "体験プランで思い出作り"
+   ],
+   "address": "伊勢市本町１４－６",
+   "coords": [
+    136.706733,
+    34.487964
+   ],
+   "official": "https://ise-kanko.jp/purpose/rentacycle/"
+  },
+  {
+   "id": 3104,
+   "name": "ともいきの国 伊勢忍者キングダム",
+   "url": "https://www.kankomie.or.jp/spot/3104",
+   "categories": [
+    "歴史・文化に触れる",
+    "テーマパークで遊ぶ",
+    "日帰り入浴で極楽",
+    "体験プランで思い出作り",
+    "雨の日もOK",
+    "絶景スポット"
+   ],
+   "address": "伊勢市二見町三津1201-1",
+   "coords": [
+    136.777811,
+    34.49821
+   ],
+   "official": "http://www.ise-jokamachi.jp/"
+  },
+  {
+   "id": 23224,
+   "name": "旅荘 海の蝶 海水浴場",
+   "url": "https://www.kankomie.or.jp/spot/23224",
+   "categories": [
+    "海水浴・釣り"
+   ],
+   "address": "伊勢市二見町松下1693-1",
+   "coords": [
+    136.81439,
+    34.49514
+   ],
+   "official": "http://www.uminochou.com/"
+  },
+  {
+   "id": 24663,
+   "name": "伊勢市西豊浜町のヒマワリ畑",
+   "url": "https://www.kankomie.or.jp/spot/24663",
+   "categories": [
+    "自然・花を愛でる"
+   ],
+   "address": "伊勢市西豊浜町85",
+   "coords": [
+    136.689854,
+    34.519192
+   ],
+   "official": null
+  },
+  {
+   "id": 2933,
+   "name": "豊受大神宮（外宮 伊勢神宮 ）",
+   "url": "https://www.kankomie.or.jp/spot/2933",
+   "categories": [
+    "伊勢神宮関連",
+    "歴史・文化に触れる",
+    "自然・花を愛でる",
+    "絶景スポット"
+   ],
+   "address": "伊勢市豊川町279",
+   "coords": [
+    136.703589,
+    34.48698
+   ],
+   "official": "https://www.isejingu.or.jp/"
+  },
+  {
+   "id": 2937,
+   "name": "皇大神宮（内宮 伊勢神宮 ）",
+   "url": "https://www.kankomie.or.jp/spot/2937",
+   "categories": [
+    "伊勢神宮関連",
+    "歴史・文化に触れる",
+    "自然・花を愛でる",
+    "絶景スポット"
+   ],
+   "address": "伊勢市宇治館町1",
+   "coords": [
+    136.725776,
+    34.455014
+   ],
+   "official": "https://www.isejingu.or.jp/"
+  },
+  {
+   "id": 3489,
+   "name": "二見浦海水浴場",
+   "url": "https://www.kankomie.or.jp/spot/3489",
+   "categories": [
+    "自然・花を愛でる",
+    "海水浴・釣り"
+   ],
+   "address": "伊勢市二見町荘",
+   "coords": [
+    136.774764,
+    34.509315
+   ],
+   "official": "https://www.city.ise.mie.jp/kankou/event/1002910.html"
+  },
+  {
+   "id": 22301,
+   "name": "伊勢かぐらばリゾート 千の杜「流水プール」",
+   "url": "https://www.kankomie.or.jp/spot/22301",
+   "categories": [
+    "テーマパークで遊ぶ",
+    "キャンプ・スポーツを満喫"
+   ],
+   "address": "伊勢市佐八町池の上1165-1",
+   "coords": [
+    136.673334,
+    34.454377
+   ],
+   "official": "https://sennomori.kaiei-ryokans.com/facilities/index2.php#pool"
+  },
+  {
+   "id": 3052,
+   "name": "太江寺",
+   "url": "https://www.kankomie.or.jp/spot/3052",
+   "categories": [
+    "歴史・文化に触れる"
+   ],
+   "address": "伊勢市二見町江1659",
+   "coords": [
+    136.791459,
+    34.504845
+   ],
+   "official": "http://www.taikouji.com/"
+  },
+  {
+   "id": 21269,
+   "name": "二見しょうぶロマンの森",
+   "url": "https://www.kankomie.or.jp/spot/21269",
+   "categories": [
+    "自然・花を愛でる",
+    "テーマパークで遊ぶ"
+   ],
+   "address": "伊勢市二見町松下 （「民話の駅蘇民」近く）",
+   "coords": [
+    136.797236,
+    34.500154
+   ],
+   "official": "http://www.futami-somin.com/"
+  },
+  {
+   "id": 3611,
+   "name": "宮川ラブリバー公園",
+   "url": "https://www.kankomie.or.jp/spot/3611",
+   "categories": [
+    "キャンプ・スポーツを満喫"
+   ],
+   "address": "伊勢市御薗町高向",
+   "coords": [
+    136.696377,
+    34.510382
+   ],
+   "official": "https://www.city.ise.mie.jp/kurashi/douro_kasen_kouen/park/1016057/1016067.html"
+  },
+  {
+   "id": 3224,
+   "name": "伊藤小坡美術館",
+   "url": "https://www.kankomie.or.jp/spot/3224",
+   "categories": [
+    "テーマパークで遊ぶ"
+   ],
+   "address": "伊勢市宇治浦田2-4-65",
+   "coords": [
+    136.718996,
+    34.468133
+   ],
+   "official": "https://www.sarutahikojinja.or.jp/"
+  },
+  {
+   "id": 1724,
+   "name": "二見浦",
+   "url": "https://www.kankomie.or.jp/spot/1724",
+   "categories": [
+    "歴史・文化に触れる",
+    "自然・花を愛でる",
+    "テーマパークで遊ぶ",
+    "キャンプ・スポーツを満喫"
+   ],
+   "address": "伊勢市二見町茶屋ほか",
+   "coords": [
+    136.787397,
+    34.508984
+   ],
+   "official": "http://www.city.ise.mie.jp"
+  },
+  {
+   "id": 3802,
+   "name": "伊勢市二見テニスコート",
+   "url": "https://www.kankomie.or.jp/spot/3802",
+   "categories": [
+    "キャンプ・スポーツを満喫"
+   ],
+   "address": "伊勢市二見町荘2271",
+   "coords": [
+    136.773021,
+    34.507326
+   ],
+   "official": "https://www.city.ise.mie.jp/"
+  },
+  {
+   "id": 1816,
+   "name": "河崎のまちなみ",
+   "url": "https://www.kankomie.or.jp/spot/1816",
+   "categories": [
+    "歴史・文化に触れる"
+   ],
+   "address": "伊勢市河崎2丁目25番32号",
+   "coords": [
+    136.715155,
+    34.49424
+   ],
+   "official": "http://www.isekawasaki.jp/info/"
+  },
+  {
+   "id": 3831,
+   "name": "伊勢市やすらぎ公園プール",
+   "url": "https://www.kankomie.or.jp/spot/3831",
+   "categories": [
+    "キャンプ・スポーツを満喫"
+   ],
+   "address": "伊勢市旭町444-14",
+   "coords": [
+    136.699184,
+    34.475858
+   ],
+   "official": "https://www.city.ise.mie.jp/kyouiku/sports/shisetsu/1005790/index.html"
+  },
+  {
+   "id": 1817,
+   "name": "おはらい町",
+   "url": "https://www.kankomie.or.jp/spot/1817",
+   "categories": [
+    "歴史・文化に触れる",
+    "テーマパークで遊ぶ"
+   ],
+   "address": "伊勢市宇治今在家町・宇治中之切町",
+   "coords": [
+    136.723346,
+    34.46294
+   ],
+   "official": "https://ise-kanko.jp/purpose/oharaimachi-okageyokocho/"
+  },
+  {
+   "id": 2533,
+   "name": "ハートプラザみその",
+   "url": "https://www.kankomie.or.jp/spot/2533",
+   "categories": [
+    "歴史・文化に触れる"
+   ],
+   "address": "伊勢市御薗町長屋2767",
+   "coords": [
+    136.707878,
+    34.509698
+   ],
+   "official": "https://ise-shakyo.jp/fukushi/hart"
+  },
+  {
+   "id": 3866,
+   "name": "御薗Ｂ＆Ｇ海洋センター・プール",
+   "url": "https://www.kankomie.or.jp/spot/3866",
+   "categories": [
+    "キャンプ・スポーツを満喫"
+   ],
+   "address": "伊勢市御薗町上條1173の1",
+   "coords": [
+    136.713333,
+    34.513753
+   ],
+   "official": "https://www.city.ise.mie.jp/kyouiku/sports/shisetsu/1001803.html"
+  },
+  {
+   "id": 24982,
+   "name": "三重県営サンアリーナ 花の広場",
+   "url": "https://www.kankomie.or.jp/spot/24982",
+   "categories": [
+    "自然・花を愛でる"
+   ],
+   "address": "伊勢市朝熊町字鴨谷4383-4 三重県営サンアリーナ",
+   "coords": [
+    136.768906,
+    34.489527
+   ],
+   "official": null
+  },
+  {
+   "id": 3604,
+   "name": "宮川親水公園",
+   "url": "https://www.kankomie.or.jp/spot/3604",
+   "categories": [
+    "キャンプ・スポーツを満喫"
+   ],
+   "address": "伊勢市小俣町元町",
+   "coords": [
+    136.682323,
+    34.502077
+   ],
+   "official": null
+  },
+  {
+   "id": 3974,
+   "name": "民話の駅 蘇民",
+   "url": "https://www.kankomie.or.jp/spot/3974",
+   "categories": [],
+   "address": "伊勢市二見町松下1335",
+   "coords": [
+    136.797236,
+    34.500154
+   ],
+   "official": "http://www.futami-somin.com/"
+  },
+  {
+   "id": 3228,
+   "name": "マコンデ美術館",
+   "url": "https://www.kankomie.or.jp/spot/3228",
+   "categories": [
+    "テーマパークで遊ぶ"
+   ],
+   "address": "伊勢市二見町松下1799",
+   "coords": [
+    136.811626,
+    34.490767
+   ],
+   "official": "http://www.museum.makonde.jp/"
+  },
+  {
+   "id": 21304,
+   "name": "茜社",
+   "url": "https://www.kankomie.or.jp/spot/21304",
+   "categories": [
+    "歴史・文化に触れる"
+   ],
+   "address": "伊勢市豊川町274",
+   "coords": [
+    136.707263,
+    34.486202
+   ],
+   "official": "https://ise-akonesan.com/"
+  },
+  {
+   "id": 2220,
+   "name": "宮川堤（県指定名勝）",
+   "url": "https://www.kankomie.or.jp/spot/2220",
+   "categories": [
+    "歴史・文化に触れる",
+    "自然・花を愛でる"
+   ],
+   "address": "伊勢市中島1・2丁目、宮川2丁目",
+   "coords": [
+    136.684341,
+    34.494081
+   ],
+   "official": "https://www.city.ise.mie.jp/cul_spo_edu/culture/bunkazai_shiseki/bunkazai/kinenbutsu/1002148.html"
+  },
+  {
+   "id": 21575,
+   "name": "浄土寺",
+   "url": "https://www.kankomie.or.jp/spot/21575",
+   "categories": [
+    "歴史・文化に触れる"
+   ],
+   "address": "伊勢市小俣町元町753",
+   "coords": [
+    136.676925,
+    34.504883
+   ],
+   "official": "http://www.city.ise.mie.jp/"
+  },
+  {
+   "id": 21564,
+   "name": "等観寺",
+   "url": "https://www.kankomie.or.jp/spot/21564",
+   "categories": [
+    "歴史・文化に触れる"
+   ],
+   "address": "伊勢市八日市場町12-14",
+   "coords": [
+    136.698068,
+    34.490711
+   ],
+   "official": "http://www.city.ise.mie.jp/"
+  },
+  {
+   "id": 15366,
+   "name": "伊勢市農産物直売所 サンファームおばた",
+   "url": "https://www.kankomie.or.jp/spot/15366",
+   "categories": [
+    "歴史・文化に触れる"
+   ],
+   "address": "伊勢市小俣町湯田５５番地",
+   "coords": [
+    136.656513,
+    34.509937
+   ],
+   "official": null
+  },
+  {
+   "id": 15367,
+   "name": "伊勢市離宮の湯",
+   "url": "https://www.kankomie.or.jp/spot/15367",
+   "categories": [
+    "テーマパークで遊ぶ"
+   ],
+   "address": "伊勢市小俣町元町５３６（小俣保健センター内）",
+   "coords": [
+    136.675324,
+    34.507591
+   ],
+   "official": "http://www.city.ise.mie.jp/2416.htm"
+  },
+  {
+   "id": 1893,
+   "name": "山田奉行所跡",
+   "url": "https://www.kankomie.or.jp/spot/1893",
+   "categories": [
+    "歴史・文化に触れる"
+   ],
+   "address": "伊勢市御薗町小林",
+   "coords": [
+    136.718653,
+    34.521937
+   ],
+   "official": "https://www.city.ise.mie.jp/"
+  },
+  {
+   "id": 1861,
+   "name": "離宮院跡（離宮院公園）",
+   "url": "https://www.kankomie.or.jp/spot/1861",
+   "categories": [
+    "歴史・文化に触れる",
+    "キャンプ・スポーツを満喫"
+   ],
+   "address": "伊勢市小俣町本町1446-1",
+   "coords": [
+    136.673516,
+    34.502839
+   ],
+   "official": "http://www.ise-kanko.jp/"
+  },
+  {
+   "id": 2953,
+   "name": "二見興玉神社",
+   "url": "https://www.kankomie.or.jp/spot/2953",
+   "categories": [
+    "伊勢神宮関連",
+    "歴史・文化に触れる",
+    "絶景スポット"
+   ],
+   "address": "伊勢市二見町江575",
+   "coords": [
+    136.787654,
+    34.50878
+   ],
+   "official": "https://futamiokitamajinja.or.jp/"
+  },
+  {
+   "id": 25006,
+   "name": "工場直売 まる天 本店",
+   "url": "https://www.kankomie.or.jp/spot/25006",
+   "categories": [
+    "雨の日もOK"
+   ],
+   "address": "伊勢市通町422",
+   "coords": [
+    136.750656,
+    34.499952
+   ],
+   "official": "https://www.marutenn.co.jp/honten"
+  },
+  {
+   "id": 3117,
+   "name": "ゼロ距離水族館 伊勢シーパラダイス",
+   "url": "https://www.kankomie.or.jp/spot/3117",
+   "categories": [
+    "体験プランで思い出作り",
+    "雨の日もOK",
+    "絶景スポット"
+   ],
+   "address": "伊勢市二見町江580",
+   "coords": [
+    136.791831,
+    34.507331
+   ],
+   "official": "https://ise-seaparadise.com/"
+  },
+  {
+   "id": 3973,
+   "name": "伊勢夫婦岩めおと横丁",
+   "url": "https://www.kankomie.or.jp/spot/3973",
+   "categories": [
+    "伊勢神宮関連",
+    "歴史・文化に触れる",
+    "自然・花を愛でる",
+    "テーマパークで遊ぶ",
+    "体験プランで思い出作り",
+    "雨の日もOK",
+    "絶景スポット"
+   ],
+   "address": "伊勢市二見町江580",
+   "coords": [
+    136.790804,
+    34.507757
+   ],
+   "official": "https://ise-meotoiwa.jp/"
+  },
+  {
+   "id": 2231,
+   "name": "夫婦岩",
+   "url": "https://www.kankomie.or.jp/spot/2231",
+   "categories": [
+    "伊勢神宮関連",
+    "歴史・文化に触れる",
+    "自然・花を愛でる",
+    "絶景スポット"
+   ],
+   "address": "伊勢市二見町江 二見興玉神社内",
+   "coords": [
+    136.788313,
+    34.509405
+   ],
+   "official": "https://futamiokitamajinja.or.jp/meguru/meotoiwa/"
+  },
+  {
+   "id": 3035,
+   "name": "金剛證寺",
+   "url": "https://www.kankomie.or.jp/spot/3035",
+   "categories": [
+    "伊勢神宮関連",
+    "歴史・文化に触れる"
+   ],
+   "address": "伊勢市朝熊町548",
+   "coords": [
+    136.78542,
+    34.457407
+   ],
+   "official": "https://www.iseshimaskyline.com/kongoushouji/index.html"
+  },
+  {
+   "id": 22173,
+   "name": "伊勢・船江温泉 みたすの湯",
+   "url": "https://www.kankomie.or.jp/spot/22173",
+   "categories": [
+    "日帰り入浴で極楽",
+    "雨の日もOK"
+   ],
+   "address": "伊勢市船江1-471-3",
+   "coords": [
+    136.713615,
+    34.501063
+   ],
+   "official": "http://mts-ise.com/yu/"
+  },
+  {
+   "id": 23664,
+   "name": "ハスの花（二見しょうぶロマンの森）",
+   "url": "https://www.kankomie.or.jp/spot/23664",
+   "categories": [
+    "自然・花を愛でる"
+   ],
+   "address": "伊勢市二見町松下（「民話の駅 蘇民」近く）",
+   "coords": null,
+   "official": "http://www.futami-somin.com/"
+  },
+  {
+   "id": 23404,
+   "name": "株式会社パールファルコ 伊勢店",
+   "url": "https://www.kankomie.or.jp/spot/23404",
+   "categories": [
+    "体験プランで思い出作り",
+    "雨の日もOK"
+   ],
+   "address": "伊勢市一色町101",
+   "coords": [
+    136.747788,
+    34.500219
+   ],
+   "official": "http://www.p-falco.com/"
+  },
+  {
+   "id": 2309,
+   "name": "朝熊山頂売店・朝熊茶屋",
+   "url": "https://www.kankomie.or.jp/spot/2309",
+   "categories": [
+    "キャンプ・スポーツを満喫"
+   ],
+   "address": "伊勢市朝熊町字名古１８５番地３",
+   "coords": [
+    136.791187,
+    34.460019
+   ],
+   "official": "http://www.iseshimaskyline.com"
+  },
+  {
+   "id": 21814,
+   "name": "せんぐう館 【伊勢神宮の博物館】",
+   "url": "https://www.kankomie.or.jp/spot/21814",
+   "categories": [
+    "伊勢神宮関連",
+    "歴史・文化に触れる",
+    "自然・花を愛でる",
+    "テーマパークで遊ぶ",
+    "雨の日もOK"
+   ],
+   "address": "伊勢市豊川町前野126-1",
+   "coords": [
+    136.706786,
+    34.486825
+   ],
+   "official": "https://www.sengukan.jp/"
+  },
+  {
+   "id": 3036,
+   "name": "久昌寺",
+   "url": "https://www.kankomie.or.jp/spot/3036",
+   "categories": [
+    "歴史・文化に触れる"
+   ],
+   "address": "伊勢市矢持町菖蒲127",
+   "coords": [
+    136.697493,
+    34.410004
+   ],
+   "official": "https://ise-kanko.jp/purpose/kyushoji/"
+  },
+  {
+   "id": 24942,
+   "name": "着物の着付、和小物の店「きもの日和あやの」",
+   "url": "https://www.kankomie.or.jp/spot/24942",
+   "categories": [
+    "歴史・文化に触れる",
+    "体験プランで思い出作り"
+   ],
+   "address": "伊勢市宇治浦田一丁目5番6号",
+   "coords": [
+    136.722539,
+    34.465092
+   ],
+   "official": "https://okageyokocho.com/main/tenpo/ayano/"
+  },
+  {
+   "id": 3225,
+   "name": "ART and CULTURE 山徳",
+   "url": "https://www.kankomie.or.jp/spot/3225",
+   "categories": [
+    "伊勢神宮関連",
+    "歴史・文化に触れる",
+    "雨の日もOK"
+   ],
+   "address": "伊勢市宇治中之切町52（おかげ横丁内）",
+   "coords": [
+    136.723002,
+    34.462246
+   ],
+   "official": "https://okageyokocho.com/main/tenpo/artandcultureyamatoku/"
+  },
+  {
+   "id": 1815,
+   "name": "伊勢古市参宮街道",
+   "url": "https://www.kankomie.or.jp/spot/1815",
+   "categories": [
+    "歴史・文化に触れる"
+   ],
+   "address": "伊勢市倭～古市～中之～桜木",
+   "coords": [
+    136.720074,
+    34.476013
+   ],
+   "official": "http://www.ise-kanko.jp/"
+  },
+  {
+   "id": 24985,
+   "name": "朝熊山麓公園 みんなの芝生広場",
+   "url": "https://www.kankomie.or.jp/spot/24985",
+   "categories": [],
+   "address": "伊勢市朝熊町3477-2",
+   "coords": [
+    136.769825,
+    34.493331
+   ],
+   "official": "https://www.city.ise.mie.jp/kurashi/douro_kasen_kouen/park/1014296/1015175/1015168.html"
+  },
+  {
+   "id": 24986,
+   "name": "市営大仏山公園 山のなかよし広場",
+   "url": "https://www.kankomie.or.jp/spot/24986",
+   "categories": [],
+   "address": "伊勢市小俣町新村605",
+   "coords": [
+    136.657476,
+    34.518279
+   ],
+   "official": "https://www.city.ise.mie.jp/kurashi/douro_kasen_kouen/park/1014296/1016005/1017046.html"
+  },
+  {
+   "id": 1609,
+   "name": "朝熊山",
+   "url": "https://www.kankomie.or.jp/spot/1609",
+   "categories": [
+    "自然・花を愛でる"
+   ],
+   "address": "伊勢市朝熊町",
+   "coords": [
+    136.781567,
+    34.46075
+   ],
+   "official": "http://www.ise-kanko.jp/"
+  },
+  {
+   "id": 4086,
+   "name": "近鉄宇治山田駅",
+   "url": "https://www.kankomie.or.jp/spot/4086",
+   "categories": [
+    "歴史・文化に触れる"
+   ],
+   "address": "伊勢市岩渕2-1-43",
+   "coords": [
+    136.713722,
+    34.4882
+   ],
+   "official": "http://www.kintetsu.co.jp/station/station_info/station18018.html"
+  },
+  {
+   "id": 23254,
+   "name": "天空のポスト 伊勢志摩スカイライン",
+   "url": "https://www.kankomie.or.jp/spot/23254",
+   "categories": [
+    "歴史・文化に触れる",
+    "自然・花を愛でる",
+    "絶景スポット"
+   ],
+   "address": "伊勢市～朝熊山上～鳥羽市",
+   "coords": [
+    136.79021,
+    34.459927
+   ],
+   "official": "http://www.iseshimaskyline.com/"
+  },
+  {
+   "id": 2308,
+   "name": "伊勢志摩スカイライン",
+   "url": "https://www.kankomie.or.jp/spot/2308",
+   "categories": [
+    "自然・花を愛でる",
+    "絶景スポット",
+    "海水浴・釣り"
+   ],
+   "address": "伊勢市～朝熊山上～鳥羽市",
+   "coords": [
+    136.728682,
+    34.462332
+   ],
+   "official": "http://www.iseshimaskyline.com/"
+  },
+  {
+   "id": 1821,
+   "name": "おかげ横丁",
+   "url": "https://www.kankomie.or.jp/spot/1821",
+   "categories": [
+    "伊勢神宮関連",
+    "歴史・文化に触れる",
+    "テーマパークで遊ぶ",
+    "体験プランで思い出作り"
+   ],
+   "address": "伊勢市宇治中之切町52",
+   "coords": [
+    136.722841,
+    34.462833
+   ],
+   "official": "https://okageyokocho.com/"
+  },
+  {
+   "id": 2451,
+   "name": "伊勢市御薗Ｂ＆Ｇ海洋センター・体育館",
+   "url": "https://www.kankomie.or.jp/spot/2451",
+   "categories": [
+    "キャンプ・スポーツを満喫"
+   ],
+   "address": "伊勢市御薗町上條１１７３番地の１",
+   "coords": [
+    136.713333,
+    34.513753
+   ],
+   "official": "https://www.city.ise.mie.jp"
+  },
+  {
+   "id": 8007,
+   "name": "角屋民具館・味噌溜り蔵資料館",
+   "url": "https://www.kankomie.or.jp/spot/8007",
+   "categories": [
+    "歴史・文化に触れる",
+    "テーマパークで遊ぶ"
+   ],
+   "address": "伊勢市神久６丁目8-25",
+   "coords": [
+    136.727212,
+    34.496292
+   ],
+   "official": "http://www.kadoyahonten.co.jp"
+  },
+  {
+   "id": 22346,
+   "name": "伊勢 菊一",
+   "url": "https://www.kankomie.or.jp/spot/22346",
+   "categories": [],
+   "address": "伊勢市本町18-18",
+   "coords": [
+    136.707972,
+    34.489286
+   ],
+   "official": "http://isekikuichi.com/"
+  },
+  {
+   "id": 14271,
+   "name": "山田奉行所記念館",
+   "url": "https://www.kankomie.or.jp/spot/14271",
+   "categories": [
+    "歴史・文化に触れる",
+    "テーマパークで遊ぶ"
+   ],
+   "address": "伊勢市御薗町上條１６０２",
+   "coords": [
+    136.716075,
+    34.521221
+   ],
+   "official": "https://www.city.ise.mie.jp/cul_spo_edu/culture/shisetsu/yamadabugyousho/index.html"
+  },
+  {
+   "id": 3913,
+   "name": "若松屋 伊勢手づくりかまぼこ・箸づくり工房",
+   "url": "https://www.kankomie.or.jp/spot/3913",
+   "categories": [
+    "体験プランで思い出作り",
+    "雨の日もOK"
+   ],
+   "address": "伊勢市下野町６５３－９ 下野工業団地内",
+   "coords": [
+    136.739013,
+    34.519569
+   ],
+   "official": "https://www.wakamatsuya.co.jp/tour"
+  },
+  {
+   "id": 11538,
+   "name": "ゴーリキマリンビレッジ",
+   "url": "https://www.kankomie.or.jp/spot/11538",
+   "categories": [
+    "体験プランで思い出作り",
+    "海水浴・釣り"
+   ],
+   "address": "伊勢市大湊町1125－10",
+   "coords": [
+    136.738521,
+    34.526421
+   ],
+   "official": "http://www.gorikimarin.com/"
+  },
+  {
+   "id": 23352,
+   "name": "夢小町",
+   "url": "https://www.kankomie.or.jp/spot/23352",
+   "categories": [
+    "歴史・文化に触れる",
+    "体験プランで思い出作り"
+   ],
+   "address": "伊勢市宇治中之切町96-10",
+   "coords": [
+    136.722698,
+    34.461324
+   ],
+   "official": "https://www.yumekomachi15.com/"
+  },
+  {
+   "id": 2934,
+   "name": "倭姫宮 （皇大神宮 別宮）",
+   "url": "https://www.kankomie.or.jp/spot/2934",
+   "categories": [
+    "伊勢神宮関連",
+    "歴史・文化に触れる",
+    "自然・花を愛でる",
+    "絶景スポット"
+   ],
+   "address": "伊勢市楠部町",
+   "coords": [
+    136.722885,
+    34.485848
+   ],
+   "official": "https://www.isejingu.or.jp/about/outerbetsugu/"
+  },
+  {
+   "id": 2935,
+   "name": "月夜見宮 （豊受大神宮 別宮）",
+   "url": "https://www.kankomie.or.jp/spot/2935",
+   "categories": [
+    "伊勢神宮関連",
+    "歴史・文化に触れる",
+    "自然・花を愛でる",
+    "絶景スポット"
+   ],
+   "address": "伊勢市宮後１丁目",
+   "coords": [
+    136.705861,
+    34.492922
+   ],
+   "official": "https://www.isejingu.or.jp/about/outerbetsugu/"
+  },
+  {
+   "id": 2936,
+   "name": "月読宮 （皇大神宮 別宮）",
+   "url": "https://www.kankomie.or.jp/spot/2936",
+   "categories": [
+    "伊勢神宮関連",
+    "歴史・文化に触れる",
+    "自然・花を愛でる",
+    "絶景スポット"
+   ],
+   "address": "伊勢市中村町",
+   "coords": [
+    136.728843,
+    34.473559
+   ],
+   "official": "https://www.isejingu.or.jp/about/outerbetsugu/"
+  },
+  {
+   "id": 1854,
+   "name": "朝熊山経塚群",
+   "url": "https://www.kankomie.or.jp/spot/1854",
+   "categories": [
+    "歴史・文化に触れる"
+   ],
+   "address": "伊勢市朝熊町(その他)",
+   "coords": [
+    136.786914,
+    34.457522
+   ],
+   "official": "http://www.ise-kanko.jp/"
+  },
+  {
+   "id": 3135,
+   "name": "神宮徴古館･農業館 【伊勢神宮の博物館】",
+   "url": "https://www.kankomie.or.jp/spot/3135",
+   "categories": [
+    "伊勢神宮関連",
+    "歴史・文化に触れる",
+    "自然・花を愛でる"
+   ],
+   "address": "伊勢市神田久志本町1754-1",
+   "coords": [
+    136.724415,
+    34.486729
+   ],
+   "official": "https://museum.isejingu.or.jp/museum/"
+  },
+  {
+   "id": 3085,
+   "name": "神宮美術館 【伊勢神宮の美術館】",
+   "url": "https://www.kankomie.or.jp/spot/3085",
+   "categories": [
+    "伊勢神宮関連",
+    "歴史・文化に触れる",
+    "自然・花を愛でる",
+    "テーマパークで遊ぶ"
+   ],
+   "address": "伊勢市神田久志本町１７５４-１",
+   "coords": [
+    136.723341,
+    34.486763
+   ],
+   "official": "https://museum.isejingu.or.jp/artmuseum/"
+  },
+  {
+   "id": 3131,
+   "name": "伊勢河崎商人館",
+   "url": "https://www.kankomie.or.jp/spot/3131",
+   "categories": [
+    "歴史・文化に触れる",
+    "テーマパークで遊ぶ"
+   ],
+   "address": "伊勢市河崎2-25-32",
+   "coords": [
+    136.717549,
+    34.496822
+   ],
+   "official": "http://www.isekawasaki.jp/"
+  },
+  {
+   "id": 23387,
+   "name": "赤太郎ショップ",
+   "url": "https://www.kankomie.or.jp/spot/23387",
+   "categories": [],
+   "address": "伊勢市宇治浦田1-11-5",
+   "coords": [
+    136.724067,
+    34.465496
+   ],
+   "official": "https://www.akafuku.co.jp"
+  },
+  {
+   "id": 8100,
+   "name": "龍宮社",
+   "url": "https://www.kankomie.or.jp/spot/8100",
+   "categories": [
+    "歴史・文化に触れる"
+   ],
+   "address": "伊勢市二見町江５７５",
+   "coords": [
+    136.787654,
+    34.50878
+   ],
+   "official": "https://futamiokitamajinja.org/"
+  },
+  {
+   "id": 8096,
+   "name": "神前灯台（こうざきとうだい）",
+   "url": "https://www.kankomie.or.jp/spot/8096",
+   "categories": [
+    "自然・花を愛でる"
+   ],
+   "address": "伊勢市松下",
+   "coords": [
+    136.808701,
+    34.507717
+   ],
+   "official": "https://www.city.ise.mie.jp/"
+  },
+  {
+   "id": 2530,
+   "name": "三重県営サンアリーナ",
+   "url": "https://www.kankomie.or.jp/spot/2530",
+   "categories": [
+    "歴史・文化に触れる",
+    "キャンプ・スポーツを満喫"
+   ],
+   "address": "伊勢市朝熊町字鴨谷4383-4",
+   "coords": [
+    136.768733,
+    34.490524
+   ],
+   "official": "http://www.sun-arena.or.jp/"
+  },
+  {
+   "id": 2938,
+   "name": "猿田彦神社",
+   "url": "https://www.kankomie.or.jp/spot/2938",
+   "categories": [
+    "歴史・文化に触れる"
+   ],
+   "address": "伊勢市宇治浦田2丁目1-10",
+   "coords": [
+    136.720174,
+    34.466962
+   ],
+   "official": "http://www.sarutahikojinja.or.jp/"
+  },
+  {
+   "id": 23391,
+   "name": "お伊勢さん観光案内人",
+   "url": "https://www.kankomie.or.jp/spot/23391",
+   "categories": [
+    "伊勢神宮関連",
+    "歴史・文化に触れる",
+    "雨の日もOK"
+   ],
+   "address": "伊勢市宇治今在家町117 勢乃國屋内",
+   "coords": null,
+   "official": "https://ise-guide.jp/"
+  },
+  {
+   "id": 23356,
+   "name": "灯りの店",
+   "url": "https://www.kankomie.or.jp/spot/23356",
+   "categories": [
+    "伊勢神宮関連"
+   ],
+   "address": "伊勢市宇治中之切町",
+   "coords": null,
+   "official": "https://www.okageyokocho.co.jp/tenpo/akari/"
+  },
+  {
+   "id": 3137,
+   "name": "皇學館大学佐川記念神道博物館",
+   "url": "https://www.kankomie.or.jp/spot/3137",
+   "categories": [
+    "歴史・文化に触れる",
+    "テーマパークで遊ぶ"
+   ],
+   "address": "伊勢市神田久志本町1704",
+   "coords": [
+    136.725894,
+    34.48415
+   ],
+   "official": "http://www.kogakkan-u.ac.jp/"
+  },
+  {
+   "id": 3133,
+   "name": "伊勢古市参宮街道資料館",
+   "url": "https://www.kankomie.or.jp/spot/3133",
+   "categories": [
+    "テーマパークで遊ぶ"
+   ],
+   "address": "伊勢市中之町69",
+   "coords": [
+    136.720288,
+    34.476227
+   ],
+   "official": null
+  },
+  {
+   "id": 1795,
+   "name": "伊勢和紙館（大豐和紙工業）",
+   "url": "https://www.kankomie.or.jp/spot/1795",
+   "categories": [],
+   "address": "伊勢市大世古1-10-30",
+   "coords": [
+    136.703264,
+    34.491822
+   ],
+   "official": "https://isewashi.co.jp/"
+  },
+  {
+   "id": 8101,
+   "name": "天の岩屋",
+   "url": "https://www.kankomie.or.jp/spot/8101",
+   "categories": [
+    "歴史・文化に触れる"
+   ],
+   "address": "伊勢市二見町江５７５",
+   "coords": [
+    136.787654,
+    34.50878
+   ],
+   "official": "https://futamiokitamajinja.org/"
+  },
+  {
+   "id": 12714,
+   "name": "松尾観音寺",
+   "url": "https://www.kankomie.or.jp/spot/12714",
+   "categories": [
+    "歴史・文化に触れる"
+   ],
+   "address": "伊勢市楠部町",
+   "coords": [
+    136.733809,
+    34.487822
+   ],
+   "official": "http://matsuokannonji.com/"
+  },
+  {
+   "id": 21310,
+   "name": "箸作り体験工房",
+   "url": "https://www.kankomie.or.jp/spot/21310",
+   "categories": [
+    "体験プランで思い出作り",
+    "雨の日もOK"
+   ],
+   "address": "伊勢市河崎1-9-28",
+   "coords": [
+    136.713497,
+    34.495725
+   ],
+   "official": "http://www.wakamatsuya.co.jp/fs/kamaboko/c/syokunobunka"
+  },
+  {
+   "id": 23396,
+   "name": "伊勢志摩ツーリズム",
+   "url": "https://www.kankomie.or.jp/spot/23396",
+   "categories": [
+    "伊勢神宮関連",
+    "歴史・文化に触れる",
+    "自然・花を愛でる",
+    "キャンプ・スポーツを満喫",
+    "フルーツ狩り・収穫",
+    "日帰り入浴で極楽",
+    "体験プランで思い出作り",
+    "雨の日もOK",
+    "絶景スポット",
+    "海水浴・釣り",
+    "島"
+   ],
+   "address": "伊勢市楠部町510-86",
+   "coords": null,
+   "official": "https://miescape.jp/"
+  },
+  {
+   "id": 23436,
+   "name": "船で海女さんの漁見学",
+   "url": "https://www.kankomie.or.jp/spot/23436",
+   "categories": [
+    "歴史・文化に触れる",
+    "自然・花を愛でる",
+    "体験プランで思い出作り",
+    "絶景スポット"
+   ],
+   "address": "伊勢市楠部町510-86",
+   "coords": null,
+   "official": "https://miescape.jp/plan/796/"
+  },
+  {
+   "id": 23438,
+   "name": "海女さんと船で周遊＆漁見学＆釣りＢＢＱ",
+   "url": "https://www.kankomie.or.jp/spot/23438",
+   "categories": [
+    "歴史・文化に触れる",
+    "自然・花を愛でる",
+    "体験プランで思い出作り",
+    "絶景スポット"
+   ],
+   "address": "伊勢市楠部町510-86",
+   "coords": null,
+   "official": "https://miescape.jp/plan/345/"
+  },
+  {
+   "id": 2317,
+   "name": "音無山",
+   "url": "https://www.kankomie.or.jp/spot/2317",
+   "categories": [
+    "自然・花を愛でる",
+    "キャンプ・スポーツを満喫"
+   ],
+   "address": "伊勢市二見町江",
+   "coords": [
+    136.785048,
+    34.506574
+   ],
+   "official": "http://www.ise-kanko.jp"
+  },
+  {
+   "id": 23257,
+   "name": "尾崎咢堂記念館",
+   "url": "https://www.kankomie.or.jp/spot/23257",
+   "categories": [
+    "歴史・文化に触れる"
+   ],
+   "address": "伊勢市川端町97－2",
+   "coords": [
+    136.682369,
+    34.490355
+   ],
+   "official": null
+  },
+  {
+   "id": 2983,
+   "name": "明星寺",
+   "url": "https://www.kankomie.or.jp/spot/2983",
+   "categories": [
+    "歴史・文化に触れる"
+   ],
+   "address": "伊勢市二見町三津787",
+   "coords": [
+    136.773433,
+    34.502661
+   ],
+   "official": "http://www.ise-kanko.jp/"
+  },
+  {
+   "id": 3037,
+   "name": "寂照寺",
+   "url": "https://www.kankomie.or.jp/spot/3037",
+   "categories": [
+    "歴史・文化に触れる"
+   ],
+   "address": "伊勢市中之町101",
+   "coords": [
+    136.721352,
+    34.477333
+   ],
+   "official": "http://www.ise-kanko.jp/"
+  },
+  {
+   "id": 14776,
+   "name": "池の浦シーサイドパーク",
+   "url": "https://www.kankomie.or.jp/spot/14776",
+   "categories": [
+    "歴史・文化に触れる",
+    "自然・花を愛でる",
+    "キャンプ・スポーツを満喫"
+   ],
+   "address": "伊勢市二見町松下1693",
+   "coords": [
+    136.812165,
+    34.497821
+   ],
+   "official": null
+  },
+  {
+   "id": 3033,
+   "name": "光明寺",
+   "url": "https://www.kankomie.or.jp/spot/3033",
+   "categories": [
+    "歴史・文化に触れる"
+   ],
+   "address": "伊勢市岩渕3-3-11",
+   "coords": [
+    136.717085,
+    34.48889
+   ],
+   "official": "http://www.ise-kanko.jp/"
+  },
+  {
+   "id": 21693,
+   "name": "松下社の大樟【県指定天然記念物】",
+   "url": "https://www.kankomie.or.jp/spot/21693",
+   "categories": [
+    "歴史・文化に触れる",
+    "自然・花を愛でる"
+   ],
+   "address": "伊勢市二見町松下1335（周辺）",
+   "coords": [
+    136.796808,
+    34.501059
+   ],
+   "official": "http://www.city.ise.mie.jp/"
+  },
+  {
+   "id": 8099,
+   "name": "栄野神社",
+   "url": "https://www.kankomie.or.jp/spot/8099",
+   "categories": [
+    "歴史・文化に触れる"
+   ],
+   "address": "伊勢市二見町江",
+   "coords": [
+    136.791944,
+    34.500173
+   ],
+   "official": null
+  },
+  {
+   "id": 3034,
+   "name": "大林寺",
+   "url": "https://www.kankomie.or.jp/spot/3034",
+   "categories": [
+    "歴史・文化に触れる"
+   ],
+   "address": "伊勢市古市町９７",
+   "coords": [
+    136.721154,
+    34.480108
+   ],
+   "official": "http://www.dairinji.com"
+  },
+  {
+   "id": 3031,
+   "name": "世義寺",
+   "url": "https://www.kankomie.or.jp/spot/3031",
+   "categories": [
+    "歴史・文化に触れる"
+   ],
+   "address": "伊勢市岡本2-10-80",
+   "coords": [
+    136.713044,
+    34.481918
+   ],
+   "official": "http://www.ise-kanko.jp/"
+  },
+  {
+   "id": 1131,
+   "name": "二見温泉 蘇民の湯",
+   "url": "https://www.kankomie.or.jp/spot/1131",
+   "categories": [
+    "日帰り入浴で極楽"
+   ],
+   "address": "伊勢市二見町松下１３４９-１３６",
+   "coords": [
+    136.796239,
+    34.506031
+   ],
+   "official": "http://www.hotel-seikai.com/"
+  },
+  {
+   "id": 3032,
+   "name": "金剛證寺 内陣",
+   "url": "https://www.kankomie.or.jp/spot/3032",
+   "categories": [
+    "伊勢神宮関連",
+    "歴史・文化に触れる"
+   ],
+   "address": "伊勢市朝熊町岳５４８",
+   "coords": [
+    136.785844,
+    34.45725
+   ],
+   "official": "http://www.ise-kanko.jp/"
+  }
+ ]
+}

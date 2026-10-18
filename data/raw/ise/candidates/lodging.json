@@ -13,7 +13,9 @@
       "rakuten": 4.31,
       "rakutenReviews": 2409,
       "google": 4,
-      "googleReviews": 1384
+      "googleReviews": 1384,
+      "jalan": 4.3,
+      "jalanReviews": 1369
     },
     "links": {
       "googleMaps": "https://maps.google.com/?cid=13132639933777178043"
@@ -34,7 +36,9 @@
       "rakuten": 4.54,
       "rakutenReviews": 1446,
       "google": 4.4,
-      "googleReviews": 960
+      "googleReviews": 960,
+      "jalan": 4.5,
+      "jalanReviews": 1536
     },
     "links": {
       "googleMaps": "https://maps.google.com/?cid=1320609226001635846"
@@ -74,7 +78,9 @@
       "rakuten": 4.39,
       "rakutenReviews": 1980,
       "google": 4.2,
-      "googleReviews": 1211
+      "googleReviews": 1211,
+      "jalan": 4.5,
+      "jalanReviews": 1257
     },
     "links": {
       "googleMaps": "https://maps.google.com/?cid=9105342435517923091"
@@ -95,7 +101,9 @@
       "rakuten": 4.54,
       "rakutenReviews": 404,
       "google": 4.5,
-      "googleReviews": 235
+      "googleReviews": 235,
+      "jalan": 4.4,
+      "jalanReviews": 565
     },
     "links": {
       "googleMaps": "https://maps.google.com/?cid=7375533064905331946"
@@ -116,7 +124,9 @@
       "rakuten": 4.33,
       "rakutenReviews": 2326,
       "google": 4,
-      "googleReviews": 972
+      "googleReviews": 972,
+      "jalan": 4.4,
+      "jalanReviews": 1320
     },
     "links": {
       "googleMaps": "https://maps.google.com/?cid=9516679011560871532"
@@ -137,7 +147,9 @@
       "rakuten": 4.25,
       "rakutenReviews": 386,
       "google": 4.2,
-      "googleReviews": 338
+      "googleReviews": 338,
+      "jalan": 4.4,
+      "jalanReviews": 86
     },
     "links": {
       "googleMaps": "https://maps.google.com/?cid=13353400713495993155"
@@ -158,7 +170,9 @@
       "rakuten": 3.89,
       "rakutenReviews": 1115,
       "google": 3.5,
-      "googleReviews": 359
+      "googleReviews": 359,
+      "jalan": 3.7,
+      "jalanReviews": 297
     },
     "links": {
       "googleMaps": "https://maps.google.com/?cid=4244877151196628979"
@@ -242,7 +256,9 @@
       "rakuten": 4.71,
       "rakutenReviews": 14,
       "google": 4.9,
-      "googleReviews": 162
+      "googleReviews": 162,
+      "jalan": 4.7,
+      "jalanReviews": 10
     },
     "links": {
       "googleMaps": "https://maps.google.com/?cid=11205755571838556776"
@@ -263,7 +279,9 @@
       "rakuten": 4.12,
       "rakutenReviews": 525,
       "google": 4,
-      "googleReviews": 556
+      "googleReviews": 556,
+      "jalan": 4.1,
+      "jalanReviews": 97
     },
     "links": {
       "googleMaps": "https://maps.google.com/?cid=8954045600785852833"
@@ -305,7 +323,9 @@
       "rakuten": 4.62,
       "rakutenReviews": 324,
       "google": 4.5,
-      "googleReviews": 108
+      "googleReviews": 108,
+      "jalan": 4.6,
+      "jalanReviews": 530
     },
     "links": {
       "googleMaps": "https://maps.google.com/?cid=17320665345915300173"
@@ -368,7 +388,9 @@
       "rakuten": 4.01,
       "rakutenReviews": 777,
       "google": 3.6,
-      "googleReviews": 512
+      "googleReviews": 512,
+      "jalan": 4,
+      "jalanReviews": 153
     },
     "links": {
       "googleMaps": "https://maps.google.com/?cid=2634670890243818769"
@@ -389,7 +411,9 @@
       "rakuten": 4.66,
       "rakutenReviews": 1290,
       "google": 4.2,
-      "googleReviews": 1272
+      "googleReviews": 1272,
+      "jalan": 4.6,
+      "jalanReviews": 1819
     },
     "links": {
       "googleMaps": "https://maps.google.com/?cid=5571358783118802236"
@@ -410,7 +434,9 @@
       "rakuten": 4.68,
       "rakutenReviews": 578,
       "google": 4.2,
-      "googleReviews": 1278
+      "googleReviews": 1278,
+      "jalan": 4.6,
+      "jalanReviews": 2428
     },
     "links": {
       "googleMaps": "https://maps.google.com/?cid=8303533656005788219"
@@ -431,7 +457,9 @@
       "rakuten": null,
       "rakutenReviews": null,
       "google": 4.5,
-      "googleReviews": 199
+      "googleReviews": 199,
+      "jalan": 4.6,
+      "jalanReviews": 174
     },
     "links": {
       "googleMaps": "https://maps.google.com/?cid=3024080929685128171"
@@ -494,7 +522,7 @@
     "links": {
       "googleMaps": "https://maps.google.com/?cid=11508217364782797755"
     },
-    "note": "楽天 39210，14 室，楽天最低 6,900 円"
+    "note": "楽天 39210，14 室，楽天最低 6,900 円；T7i（2026-10-18）：じゃらん地區列表沒有，維持排除"
   },
   {
     "key": "ise-yamadakan",
@@ -515,7 +543,7 @@
     "links": {
       "googleMaps": "https://maps.google.com/?cid=13497103744635680216"
     },
-    "note": "楽天 31525，20 室"
+    "note": "楽天 31525，20 室；T7i（2026-10-18）：じゃらん yad321863 有 114 則口コミ（最新 2026-03），但「過去1年間に投稿されたクチコミが有効数に達していない」所以不顯示分數 → 仍然沒有 10 則以上、3.8 以上的評分來源，照 §5.7 維持排除。"
   },
   {
     "key": "ise-city-hotel",
@@ -531,12 +559,14 @@
       "rakuten": 3.58,
       "rakutenReviews": 3153,
       "google": 3.5,
-      "googleReviews": 830
+      "googleReviews": 830,
+      "jalan": 3.8,
+      "jalanReviews": 2262
     },
     "links": {
       "googleMaps": "https://maps.google.com/?cid=13747899747386063867"
     },
-    "note": "楽天 740，97 室，楽天最低 4,600 円"
+    "note": "楽天 740，97 室，楽天最低 4,600 円；T7i（2026-10-18）：じゃらん 3.8（2,262 則，yad379992）→ 有 10 則以上、3.8 以上的來源，照 §5.7 不該排除（評價普通），T8e 補回"
   },
   {
     "key": "ise-geku-bettei-michi",
@@ -552,10 +582,12 @@
       "rakuten": 3.6,
       "rakutenReviews": 16,
       "google": null,
-      "googleReviews": null
+      "googleReviews": null,
+      "jalan": 4.2,
+      "jalanReviews": 11
     },
     "links": {},
-    "note": "楽天 192775，2 室，楽天最低 7,000 円"
+    "note": "楽天 192775，2 室，楽天最低 7,000 円；T7i（2026-10-18）：じゃらん 4.2（11 則，yad396262）→ 照 §5.7 不該排除，T8e 補回"
   },
   {
     "key": "ise-pit",
@@ -592,12 +624,14 @@
       "rakuten": 3.35,
       "rakutenReviews": 623,
       "google": 3.2,
-      "googleReviews": 266
+      "googleReviews": 266,
+      "jalan": 3.3,
+      "jalanReviews": 399
     },
     "links": {
       "googleMaps": "https://maps.google.com/?cid=8265626815735723568"
     },
-    "note": "楽天 19749，90 室，楽天最低 5,800 円"
+    "note": "楽天 19749，90 室，楽天最低 5,800 円；T7i（2026-10-18）：じゃらん 3.3（399 則，yad318625），維持排除"
   },
   {
     "key": "ise-castle-inn",
@@ -613,10 +647,12 @@
       "rakuten": 3.73,
       "rakutenReviews": 2934,
       "google": 3.5,
-      "googleReviews": 1462
+      "googleReviews": 1462,
+      "jalan": 3.9,
+      "jalanReviews": 213
     },
     "links": {},
-    "note": "楽天 1360，217 室，楽天最低 4,704 円"
+    "note": "楽天 1360，217 室，楽天最低 4,704 円；T7i（2026-10-18）：じゃらん 3.9（213 則，yad311771；同名的「キャッスルイン伊勢夫婦岩」是二見那間）→ 照 §5.7 不該排除（評價普通），T8e 補回"
   },
   {
     "key": "ise-naiku-bettei-hoshimiya",
@@ -632,10 +668,12 @@
       "rakuten": 3.6,
       "rakutenReviews": 13,
       "google": null,
-      "googleReviews": null
+      "googleReviews": null,
+      "jalan": 3.5,
+      "jalanReviews": 6
     },
     "links": {},
-    "note": "楽天 192052，1 室，楽天最低 7,500 円"
+    "note": "楽天 192052，1 室，楽天最低 7,500 円；T7i（2026-10-18）：じゃらん 3.5（6 則，yad377498，不到 10 則不算），維持排除"
   },
   {
     "key": "ise-kyoheiso",
@@ -654,7 +692,7 @@
       "googleReviews": null
     },
     "links": {},
-    "note": "楽天 139802，5 室，楽天最低 37,510 円"
+    "note": "楽天 139802，5 室，楽天最低 37,510 円；T7i（2026-10-18）：じゃらん地區列表沒有，維持排除"
   },
   {
     "key": "ise-rakuten-171647",
