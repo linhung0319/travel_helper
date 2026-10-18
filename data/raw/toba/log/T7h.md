@@ -72,3 +72,42 @@
 - 照 §5.1 重寫上面 32 筆的 `summary`、`assessment`、`tier`（先讀 `assessment-notes.md`）；`confidence` 可以往上調（多數有 30～60 則口コミ／評論）。
 - 會影響分數的：王将（表示問題）、CaroCaro（非住客用餐根據變弱、不接小孩晚餐）、はっかい（約 2025 低分集中）、たかま／オレンジ（營業不穩、出餐慢）、クッカーニャ／たかま／オレンジ／天びん屋／西村（樓梯、台階 → elderFit）、むつみ（對小孩）、みち潮 dining（fit15 → yes → groupFit）、七越茶屋（16 人現場入店）。
 - 「👤 建議先看」鳥羽區有 6 條（T7j 討論）。
+
+## 第 2 批：重新打分（2026-10-18）
+
+### 範圍、做法
+- 對象：第 1 批的 32 筆（`data/cache/work/t7h-1/targets.json`）。只讀資料檔、`dossiers/`、第 1 批的重點；**不重新爬文、不用 Chrome、WebSearch 0 次**。
+- 先讀 `assessment-notes.md`（全部）、README。標準不變：鳥羽照原門檻，不套伊勢、二見的依區調整；`confidence` 照「心得來源種類」重填。
+- 工作檔 `data/cache/work/t7h-2/`：`content.mjs`（32 筆的 text／pros／cons、各面向分數和理由、confidence）、`build.mjs`（→ `patch-{restaurant,spot,lodging}.json`、`changes.json`；`basedOn` 加上 dossier 裡第 1 批讀的口コミ、Google 評論和三重縣公表資料網址）。寫入用 `scripts/apply-patch.mjs` overwrite（`recordOld: false`，先 `--dry-run`）：餐廳改 52、景點 6、住宿 6，衝突 0。工具不用改。
+
+### 結果
+- **推薦度、tier 32 筆都沒有變**。補過心得的店照數字門檻的結果和 T7g 一樣（第 1 批沒有改評分數字）；口コミ的負評照現有標準寫進對應面向和理由。
+- 鳥羽 S／A：餐廳 S 2（漣、西村食堂）、A 15；景點 S 3（水族館、石神さん、はちまんかまど）、A 6；住宿 S 5、A 18。餐廳 A 以上 17／83＝20%（不用依區調整）。
+- 面向有變的 17 筆（表在 README「T7h 心得補充與重新打分」）：
+  - `elderFit`：たかま null→2、天びん屋 3→2、オレンジ 3→2、なおみ 3→2（樓梯）；七越茶屋 2→3（有桌席、要排隊）；焼貝いろは 4→5（照規則補正）。
+  - `kidsFit`：一栄、ミネルヴァ、七越茶屋、クッカーニャ、まつむら、みなと食堂 3→4；水沼 null→4、王将 null→3；**むつみ 4→3**。
+  - `groupFit`：みち潮 日帰り夕食 3→5（fit15 yes）。`localFlavor`：大春 3→4、ミネルヴァ 3→2、王将 3→2。`meals`：なかよし 5→4。
+  - 注意：第 1 個 commit（6a3d851）的訊息寫「面向有變的 19 筆」，正確是 17 筆。
+- `confidence`：餐廳 high 2（漣 3,102 則、みなと食堂 1,150 則）／medium 32／low 49；景點 high 2／medium 12／low 14；住宿 high 14／medium 16／low 8。降級只有 CaroCaro（medium→low，非住客用餐的心得只有 2017）。
+
+### 判斷（細節在 decisions-pending）
+- **沒有套用** T8f 的「T8e 負評往下調一級」「全席可吸菸 kidsFit 扣一級」（伊勢還沒有 👤 確認，鳥羽標準沒有）：はっかい 3（約 2025 Google 低分集中）、たかま 4（營業時間內沒開 4 則）、王将 2、大阪屋 4 都照數字。列進「👤 建議先看」鳥羽區。
+- 王将：`recommend` 照規則已經是 2（Google 3.6＋心得負評），不降 1、不排除；標示不實反映在 `localFlavor` 3→2。列進「👤 建議先看」。
+- みち潮 日帰り夕食 `groupFit` 3→5：跟著第 1 批的 fit15 yes。列進「👤 建議先看」。
+- 口コミ、Google 評論算「心得來源」（confidence），**不算推薦度的「介紹」來源**：大春（Google 4.6／64 則）、オレンジ 維持 2（食べログ 3.3 未満而且讀文沒有介紹）。
+- F③（サン浦島、みち潮）的 confidence 維持 medium：住宿本體楽天 1,000 則以上、口コミ＋Google 2 種，但心得幾乎都是住客的餐，不是非住客用餐本身。
+- `elderFit` 依 15 人實際會坐的位置打（天びん屋 的 2F、3F；大阪屋 預約客帶到 2F）；漣 1F 桌席可輪椅（基準 5）＋排隊降一級維持 4。
+- 西村、漣 維持 S：負評（廁所、價格分歧、排隊、接待）不影響數字門檻，寫在 cons 和理由。
+
+### assessment-check（`node scripts/assessment-check.mjs toba`）
+列出 4 項（和第 2 批之前相同），都維持：
+- `toba-bay-cruise-irukajima`（4 星、Google 3.9）：不是 T7h 對象；T7g 的理由（觀光三重主打、一票玩遊覽船與海豚島）。
+- `toba-ryokan-naomi`（4 星、評論少）：主要訂房網是 Airbnb 4.8（142 則，「包棟另外看 Airbnb」），評論數只寫在 `ratings.note`，腳本讀不到當 0；照住宿門檻 100～299 則最多 4，不調。
+- `toba-yakatabune-okita`（4 星、食べログ 3.08）：體驗型第 3 條（Google 4.5 以上 300 則以上＋2 種來源）。
+- `toba-osatsu-michishio-dining`（4 星、食べログ 3.23）：F③ 看住宿本體楽天餐 4.55（4,943 則）。
+
+## T7h 總結
+- 32 筆（餐廳 26、景點 3、住宿 3）補了食べログ口コミ、Google 評論（第 1 批，Chrome），並照原標準重新打分（第 2 批）。tier、推薦度都沒有變；面向變 17 筆，confidence 上調 14 筆、下調 1 筆。
+- 「👤 建議先看」鳥羽區：第 1 批 6 條、第 2 批 3 條（T7j 討論）。`questions.md` +18（第 1 批）。
+- WebSearch：第 1 批 1 次（王将 的食品表示問題）、第 2 批 0 次；讀文 subagent 0。
+- 給 T7j：深入調查的前幾名照 PLAN 挑；負評往下調、吸菸扣分要不要在鳥羽也採用，決定後用 `data/cache/work/t7h-2/content.mjs` 改分數再跑 `build.mjs`、`apply-patch.mjs` 即可。

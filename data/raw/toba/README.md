@@ -1,6 +1,6 @@
 # 鳥羽：研究筆記 README
 
-> 開工先讀這份。最後更新：2026-10-18（T7f 收尾）。這份是**現況**，各任務更新自己的那一節（覆寫，不是追加）；過程紀錄在 `log/`，需要時才讀。
+> 開工先讀這份。最後更新：2026-10-18（T7h 重新打分）。這份是**現況**，各任務更新自己的那一節（覆寫，不是追加）；過程紀錄在 `log/`，需要時才讀。
 
 ## 檔案地圖
 
@@ -136,6 +136,37 @@
 - T7g：心得未補的店 `confidence` 填 low；只有甜點的海女のテラス、ところてん的五左屋 不要當正餐。
 - WebSearch 額度（session 共用約 200 次）在 T7e 第 1、3 批都用完過：T8～T9 的讀文 subagent 每個限 2～3 次，先 WebFetch 已知網址；とばめしマップ這類 PDF 先由主 session 轉成文字檔給 subagent。
 - 食べログ用一般頁面瀏覽，不要在分頁內用 `fetch` 批次讀（T7e 第 3 批被自動模式擋下）。
+
+## T7h 心得補充與重新打分（2026-10-18）
+
+- **第 1 批**（Chrome）：32 筆（餐廳 26、景點 3、住宿 3）讀食べログ口コミ、Google 評論，補進 `dossiers/`，null 欄位回填；過程和每筆重點在 `log/T7h.md`。
+- **第 2 批**（不重新爬文）：32 筆照 §5.1、`assessment-notes.md`（鳥羽原門檻，標準不變）重寫 `summary`、`assessment`、`tier`。
+- **推薦度、tier 沒有變**（鳥羽 S 餐廳 2、景點 3、住宿 5；A 餐廳 15、景點 6、住宿 18）：補過心得的店，數字門檻的結果和 T7g 相同；口コミ的負評（排隊、接待、營業不穩、衛生）只寫進對應面向和理由。**沒有套用** T8f 在伊勢加的「負評往下調一級」「全席可吸菸 kidsFit 扣一級」（列在 decisions-pending「👤 建議先看」鳥羽區，採用的話 はっかい 3→2、たかま A→B、王将 2→1）。
+- `confidence`：餐廳 high 0 → 2（漣、みなと食堂）、medium 26 → 32、low 57 → 49；景點 medium 11 → 12、low 15 → 14；住宿 medium 14 → 16、low 10 → 8。景點、住宿只讀了 Google 評論（1 種心得來源），最多 medium。
+- `assessment-check.mjs toba`：列出 4 項（遊覽船、なおみ、おきた、みち潮 日帰り夕食），都維持（理由在 `log/T7h.md`）。
+
+各面向星數有變的 17 筆，加上 confidence 降級的 CaroCaro；只有 confidence 往上調的 6 筆（漣 high、シーホース、大阪屋、おきた、はっかい、相差かまど medium）沒列：
+
+| id | 名稱 | tier | 舊 → 新 | 原因 |
+|---|---|---|---|---|
+| `toba-mizunuma-sazae` | 水沼さざえ店 | A | kidsFit null→4、confidence low→medium | 口コミ 3 則帶小孩、烤貝是熟食 |
+| `toba-kazuei` | 一栄 | A | kidsFit 3→4 | 口コミ帶小孩進個室，有炸蝦 |
+| `toba-yakigai-iroha` | 焼貝いろは | A | elderFit 4→5 | 資料檔已有「無障礙、輪椅可入店」＋椅子座位，照規則補正 |
+| `toba-minerva` | ミネルヴァ | A | localFlavor 3→2、kidsFit 3→4 | 甜點用在地食材照規則是 2（補正）；帶小孩口コミ 3 則 |
+| `toba-kitchen-takama` | キッチン たかま | A | elderFit null→2 | 店在 2F 要走樓梯、排隊排在樓梯上 |
+| `toba-nanakoshi-chaya` | 七越茶屋 | A | elderFit 2→3、kidsFit 3→4 | 口コミ確認有桌席（但要排隊）；有半份、兒童椅 |
+| `toba-tenbinya-honten` | 天びん屋 本店 | B | elderFit 3→2、confidence low→medium | 15 人用的 2F、3F 要走陡樓梯 |
+| `toba-cuccagna` | クッカーニャ 鳥羽店 | B | kidsFit 3→4 | 口コミ 3 則帶小孩，義大利麵 |
+| `toba-ryokan-naomi` | 旅館なおみ | A | elderFit 3→2、confidence low→medium | 寢室在 2F、樓梯很陡（Google） |
+| `toba-niku-matsumura` | 肉料理まつむら | A | kidsFit 3→4、confidence low→medium | 口コミ 2 則帶小孩、網燒 |
+| `toba-mutsumi` | むつみ | A | kidsFit 4→3 | Google 說對 3 歲小孩態度強硬，沒有正面經驗 |
+| `toba-minato-shokudo` | 漁師めし みなと食堂 | B | kidsFit 3→4、confidence medium→high | 帶小孩口コミ 3 則、熟食多；合計 1,150 則＋2 種心得 |
+| `toba-ousho-honten` | 伊勢志摩みやげセンター王将 鳥羽本店 | B | localFlavor 3→2、kidsFit null→3、confidence low→medium | 伊勢海老標示問題（三重縣公表）；有熟食 |
+| `toba-cafeterrace-orange` | カフェテラス オレンジ | B | elderFit 3→2、confidence low→medium | 店在 2F 外樓梯 |
+| `toba-carocaro` | TEPPANオーベルジュ CaroCaro 鳥羽浦別邸 | B | confidence medium→low | 非住客用餐的心得只有 2017 |
+| `toba-osatsu-michishio-dining` | 味の宿 みち潮（日帰り夕食） | A | groupFit 3→5 | fit15 yes（最大 120 人、宴會場 4 間） |
+| `toba-osatsu-nakayoshi` | 南鳥羽相差 海幸の宿 なかよし | A | meals 5→4、confidence low→medium | Google 評論料理冷、端出過敏食材 |
+| `toba-daiharu` | 大春 | B | localFlavor 3→4 | 口コミ多則確認招牌答志島トロさわら |
 
 ## 交通、IG
 - 交通：`transport.md`。15 人全員移動要 4 台一般計程車或 2 台ジャンボ（9 人座）；三重近鉄タクシー、三交タクシー有包車。
