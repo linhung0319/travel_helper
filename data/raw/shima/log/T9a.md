@@ -80,3 +80,40 @@
 - `data/areas/shima/spots.json` 12 筆；候選 included 24（12 筆有 pointId）、excluded 26（＋Rays Farm）。
 - 筆記 13 份（含 Rays Farm）；心得：Google 評論 7～30 則（10 筆），すし べんけい、的矢湾 0。
 - `scripts/validate`：錯誤 0、警告 12（第 3 批的 included 還沒有 pointId）。`npm test` 79 個通過。
+
+## 第 3 批：南部的景點 12 筆（讀文＋Chrome＋spots.json）＋T9a 總結（2026-10-18，自動模式）
+
+範圍：`t9a-plan.json` 的 `batch: 2` 12 筆（daio 3、tomoyama 2、goza 3、hamajima 2、sakko 2）。工作目錄 `data/cache/work/t9a-3/`。
+
+### 讀文
+- 12 個 subagent（`t9a-2/prompt-common.md` 改工作目錄後照抄成 `t9a-3/prompt-common.md`），同時最多 5 個、背景執行。
+- WebSearch：大王埼灯台（塔內階梯段數，沒找到）、大王美術ギャラリー（電梯，沒找到）、ともやま公園、さとうみ庵（團體人數，沒找到）、海ほおずき（冬季休止公告，沒找到）、いわほ観光汽船（官網，沒找到）、グリーンアドベンチャー（冬季營業，沒找到）各 1 次，合計 7 次；其他 5 個 0 次。主 session 0 次。搜尋都有結果，沒有額度用完的跡象。
+- 讀不到的：satoumian.com（STUDIO 網站，只讀到標題）、tabiniche.kankomie.or.jp（連線失敗）、uminohi.jp 的 PDF；いわほ 的じゃらん頁亂碼沒採用。
+- 重要發現：志摩自然学校 シーカヤック「通年催行」（第 1 批的疑問解決）；海ほおずき 冬季體驗官網標「現在休止中」；天ぱく 2025-04 漲價（3,500／2,500 円）、官網建議 10 歲以上；パール美樹 官網價格比觀光協會高（3,000＋金具 2,000 円～）、週三四休；**觀光協會 1589 頁其實是海遊苑的筏上 BBQ，不是いわほ**；地中海村 日歸要預約、團體要先電話、官網明寫非無障礙。
+
+### Google Maps（Chrome）
+- `google-place`：2 個 batch（5＋7 筆），列表點選 5 次：大王埼灯台（另有灯台ミュージアム 4.3／21）、ともやま公園（桐垣展望台 4.4／134、公園 4.2／258、芝生広場展望台 4.6／30 → 取公園，桐垣另讀）、海ほおずき（取 4.1／85，另有市役所名義 4.4／16）、グリーンアドベンチャー（取アトラクションフィールド 4.2／434，另有グランピング 4.6／36）。一次截圖逾時（renderer 沒回應），等 2 秒重截就好。
+- 座標差：天ぱく 2,385 m（觀光三重是事務所）、いわほ 1,668 m → 改用 Google；大王埼灯台 256 m、ともやま公園 101 m、其他 5～51 m 保留原座標；真珠の里、グリーンアドベンチャー 沒有觀光三重座標，用 Google。
+- 沒有遇到驗證碼、登入或封鎖。
+
+### Google 評論（12 筆的筆記心得都是 0 篇 → 全部讀）
+- `google-reviews.js`（`--wait 2 --store`，之後 `--stored`），10 個 batch（2 筆一個 batch 的 4 次）、約 130 個動作；ともやま公園 另讀桐垣展望台。關鍵字依缺的欄位：冬、階段、子供、団体、煙、日帰り、身長、伊勢海老、駐車場。
+- 實測：`?cid=` 網址加 `--wait 2` 後，第一個 JS 沒再失敗；いわほ（4 則）`open` 後 `extract`、`lowest` 都抽得到——和間崎島（9 則，extract 0）、T8e オレンジガーデン（2 則，lowest 0）都不同 → CONVENTIONS「口コミ、Google 評論」加一條「已確認」：評論少的地點兩步都排。天ぱく `lowest` 回「星數不是由低到高」警告（幾乎都是 5 星），照關聯度順用。
+- 寫進筆記用 `add-reviews.mjs`（從 t9a-2 複製），ともやま公園 跑 2 次（公園、桐垣）。筆記 30～43 行（加評論後有 4 份超過 40 行）。
+- 結束時 `removeItem` 兩個 localStorage 鍵、關掉分頁。
+
+### 組裝
+- `judgement-src.mjs` → `judgement.json`（12 筆）→ `build-spots.mjs --candidates`（dry-run 後正式）；照片 36 張全部 photo-check 200。
+- `apply-patch`：讀文 facts 的官網、IG 核對（12 筆相同）；海遊苑補 `extra.raftBbqNote`＋觀光協會 1589 來源。候選：1589 的 mention 從いわほ移到海遊苑，5 筆 note 改成讀文結論。
+- 決定寫進 `docs/decisions-pending.md`（表格 11 條，「👤 建議先看」3 條：いわほ 營業不明仍收錄、2 月沒明寫的 4 筆照收、天ぱく 建議 10 歲以上仍收錄）；`questions.md` 打勾 2 條、新增 9 條。
+
+### 結果
+- `spots.json` 24 筆；候選 included 24（全部有 pointId）、not-included 60、excluded 26。`scripts/validate`：錯誤 0、警告 0。
+
+## T9a 總結
+- 子地區 16 個（第 1 批）；景點候選 110 → 資料點 24 筆（賢島 6、大王 3、御座・越賀 3、登茂山 2、浜島 2、迫子 2、其他 6 個子地區各 1）。排除 26（含スペイン村 冬季休園、Rays Farm 閉業標示）。
+- 讀文筆記 25 份（含 Rays Farm），每份都有 Google 評論心得（すし べんけい、的矢湾 沒有評論）。
+- WebSearch：第 1 批 2 次、第 2 批 5 次（讀文 subagent）、第 3 批 7 次（讀文 subagent），合計 14 次；主 session 只有第 1 批的 2 次。
+- Chrome：Google Maps 約 25 地點＋評論約 23 地點，全程沒有遇到驗證碼、封鎖。
+- 新增工具：`scripts/kanko-shima.mjs`（第 1 批）、`scripts/build-spots.mjs`（第 2 批）。
+- 留給後續：T9b 住宿（README「給 T9b 住宿的建議」）、T10 巴士班次（南部全部要巴士或包車）、T9f 打分、T9g 檢討「👤 建議先看」志摩 9 條＋部落格心得。
