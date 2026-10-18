@@ -4202,18 +4202,18 @@
       "A"
     ],
     "reason": null,
-    "pointId": null,
-    "detailPending": true,
+    "pointId": "ise-kifu-ramen",
     "ratings": {
       "tabelog": 3.56,
-      "tabelogReviews": 249
+      "tabelogReviews": 249,
+      "google": 4,
+      "googleReviews": 175
     },
     "links": {
       "tabelog": "https://tabelog.com/mie/A2403/A240301/24011823/"
     },
     "contexts": [
-      "lunch",
-      "dinner"
+      "lunch"
     ],
     "note": "類型：其他；地址：伊勢市宮後2-25-3；定休（食べログ列表）：水曜日"
   },
@@ -4229,11 +4229,12 @@
       "A"
     ],
     "reason": null,
-    "pointId": null,
-    "detailPending": true,
+    "pointId": "ise-mameya",
     "ratings": {
       "tabelog": 3.54,
-      "tabelogReviews": 573
+      "tabelogReviews": 573,
+      "google": 4.1,
+      "googleReviews": 843
     },
     "links": {
       "tabelog": "https://tabelog.com/mie/A2403/A240301/24000012/"
@@ -4265,11 +4266,12 @@
       "A"
     ],
     "reason": null,
-    "pointId": null,
-    "detailPending": true,
+    "pointId": "ise-kura-de-ramen",
     "ratings": {
       "tabelog": 3.5,
-      "tabelogReviews": 361
+      "tabelogReviews": 361,
+      "google": 4.1,
+      "googleReviews": 971
     },
     "links": {
       "tabelog": "https://tabelog.com/mie/A2403/A240301/24010288/"
@@ -5040,11 +5042,12 @@
       "C"
     ],
     "reason": null,
-    "pointId": null,
-    "detailPending": true,
+    "pointId": "ise-oriori2",
     "ratings": {
       "tabelog": 3.63,
-      "tabelogReviews": 93
+      "tabelogReviews": 93,
+      "google": 4.6,
+      "googleReviews": 96
     },
     "links": {
       "tabelog": "https://tabelog.com/mie/A2403/A240301/24021313/"
@@ -5066,18 +5069,19 @@
       "A"
     ],
     "reason": null,
-    "pointId": null,
-    "detailPending": true,
+    "pointId": "ise-dandelion-chocolate-geku",
     "ratings": {
       "tabelog": 3.59,
-      "tabelogReviews": 414
+      "tabelogReviews": 414,
+      "google": 4.1,
+      "googleReviews": 535
     },
     "links": {
       "tabelog": "https://tabelog.com/mie/A2403/A240301/24014443/"
     },
     "contexts": [
-      "snack",
-      "cafe"
+      "cafe",
+      "snack"
     ],
     "mentions": [
       {
@@ -5194,17 +5198,19 @@
       "A"
     ],
     "reason": null,
-    "pointId": null,
-    "detailPending": true,
+    "pointId": "ise-asora-no-chaya",
     "ratings": {
       "tabelog": 3.52,
-      "tabelogReviews": 476
+      "tabelogReviews": 476,
+      "google": 4.3,
+      "googleReviews": 383
     },
     "links": {
       "tabelog": "https://tabelog.com/mie/A2403/A240301/24011551/"
     },
     "contexts": [
-      "lunch"
+      "lunch",
+      "cafe"
     ],
     "mentions": [
       {
@@ -5229,18 +5235,19 @@
       "B"
     ],
     "reason": "A 因數量控制（3.50）取消",
-    "pointId": null,
-    "detailPending": true,
+    "pointId": "ise-sando-terrace",
     "ratings": {
       "tabelog": 3.49,
-      "tabelogReviews": 306
+      "tabelogReviews": 306,
+      "google": 4,
+      "googleReviews": 600
     },
     "links": {
       "tabelog": "https://tabelog.com/mie/A2403/A240301/24014420/"
     },
     "contexts": [
-      "snack",
-      "cafe"
+      "cafe",
+      "snack"
     ],
     "mentions": [
       {
@@ -5384,11 +5391,12 @@
       "C"
     ],
     "reason": "A 因數量控制（3.50）取消",
-    "pointId": null,
-    "detailPending": true,
+    "pointId": "ise-kitaya-unagi",
     "ratings": {
       "tabelog": 3.44,
-      "tabelogReviews": 201
+      "tabelogReviews": 201,
+      "google": 4.2,
+      "googleReviews": 452
     },
     "links": {
       "tabelog": "https://tabelog.com/mie/A2403/A240301/24000766/"
@@ -5616,11 +5624,12 @@
       "B"
     ],
     "reason": null,
-    "pointId": null,
-    "detailPending": true,
+    "pointId": "ise-yamamura-milk-geku",
     "ratings": {
       "tabelog": 3.27,
-      "tabelogReviews": 265
+      "tabelogReviews": 265,
+      "google": 4.3,
+      "googleReviews": 251
     },
     "links": {
       "tabelog": "https://tabelog.com/mie/A2403/A240301/24012018/"
@@ -6006,13 +6015,12 @@
     },
     "region": "ise-geku",
     "category": "その他、和菓子、日本料理",
-    "status": "included",
+    "status": "excluded",
     "criteria": [
       "B"
     ],
-    "reason": null,
+    "reason": "T8d 確認：1F 是伴手禮（參宮あわび等）賣場，用餐的部分就是 2F 的 あそらの茶屋（ise-asora-no-chaya，已收錄，Google 地址同為本町 13-7）；同一處不重複收錄（同 ザ・朝市／はくたか亭）（2026-10-18）",
     "pointId": null,
-    "detailPending": true,
     "ratings": {
       "tabelog": 3.13,
       "tabelogReviews": 125
@@ -6122,18 +6130,18 @@
       "A"
     ],
     "reason": null,
-    "pointId": null,
-    "detailPending": true,
+    "pointId": "ise-chitose",
     "ratings": {
       "tabelog": 3.58,
-      "tabelogReviews": 680
+      "tabelogReviews": 680,
+      "google": 4.2,
+      "googleReviews": 741
     },
     "links": {
       "tabelog": "https://tabelog.com/mie/A2403/A240301/24001056/"
     },
     "contexts": [
-      "lunch",
-      "dinner"
+      "lunch"
     ],
     "mentions": [
       {
@@ -6158,17 +6166,18 @@
       "A"
     ],
     "reason": null,
-    "pointId": null,
-    "detailPending": true,
+    "pointId": "ise-mori-kissa",
     "ratings": {
       "tabelog": 3.57,
-      "tabelogReviews": 471
+      "tabelogReviews": 471,
+      "google": 4.3,
+      "googleReviews": 658
     },
     "links": {
       "tabelog": "https://tabelog.com/mie/A2403/A240301/24001592/"
     },
     "contexts": [
-      "snack",
+      "lunch",
       "cafe"
     ],
     "note": "類型：咖啡・甜點；地址：伊勢市岩渕1-15-10 2F；定休（食べログ列表）：月曜日"
@@ -6214,18 +6223,20 @@
       "A"
     ],
     "reason": null,
-    "pointId": null,
-    "detailPending": true,
+    "pointId": "ise-butasute-geku",
     "ratings": {
       "tabelog": 3.52,
-      "tabelogReviews": 794
+      "tabelogReviews": 794,
+      "google": 4.2,
+      "googleReviews": 1066
     },
     "links": {
       "tabelog": "https://tabelog.com/mie/A2403/A240301/24011334/"
     },
     "contexts": [
       "lunch",
-      "dinner"
+      "dinner",
+      "snack"
     ],
     "note": "類型：定食・食堂；地址：伊勢市岩渕1-1-33；定休（食べログ列表）：水曜日、木曜日"
   },
@@ -6241,18 +6252,19 @@
       "A"
     ],
     "reason": null,
-    "pointId": null,
-    "detailPending": true,
+    "pointId": "ise-kinoshita-chaen-geku",
     "ratings": {
       "tabelog": 3.52,
-      "tabelogReviews": 160
+      "tabelogReviews": 160,
+      "google": 4,
+      "googleReviews": 226
     },
     "links": {
       "tabelog": "https://tabelog.com/mie/A2403/A240301/24014239/"
     },
     "contexts": [
-      "snack",
-      "cafe"
+      "cafe",
+      "snack"
     ],
     "mentions": [
       {
@@ -6362,18 +6374,19 @@
       "C"
     ],
     "reason": "A 因數量控制（3.50）取消",
-    "pointId": null,
-    "detailPending": true,
+    "pointId": "ise-cafe-bianca",
     "ratings": {
       "tabelog": 3.45,
-      "tabelogReviews": 171
+      "tabelogReviews": 171,
+      "google": 4.1,
+      "googleReviews": 351
     },
     "links": {
       "tabelog": "https://tabelog.com/mie/A2403/A240301/24012103/"
     },
     "contexts": [
-      "snack",
-      "cafe"
+      "cafe",
+      "lunch"
     ],
     "note": "類型：咖啡・甜點；地址：伊勢市岩渕1-1-3；定休（食べログ列表）：水曜日"
   },
@@ -7280,11 +7293,12 @@
       "C"
     ],
     "reason": null,
-    "pointId": null,
-    "detailPending": true,
+    "pointId": "ise-kan-sushi",
     "ratings": {
       "tabelog": 3.57,
-      "tabelogReviews": 38
+      "tabelogReviews": 38,
+      "google": 4.3,
+      "googleReviews": 36
     },
     "links": {
       "tabelog": "https://tabelog.com/mie/A2403/A240301/24015982/"
@@ -8279,11 +8293,12 @@
       "A"
     ],
     "reason": null,
-    "pointId": null,
-    "detailPending": true,
+    "pointId": "ise-kaki-no-tomo",
     "ratings": {
       "tabelog": 3.55,
-      "tabelogReviews": 178
+      "tabelogReviews": 178,
+      "google": 4.5,
+      "googleReviews": 296
     },
     "links": {
       "tabelog": "https://tabelog.com/mie/A2403/A240301/24017554/"
@@ -8336,18 +8351,19 @@
       "C"
     ],
     "reason": null,
-    "pointId": null,
-    "detailPending": true,
+    "pointId": "ise-iori-sushi",
     "ratings": {
       "tabelog": 3.5,
-      "tabelogReviews": 44
+      "tabelogReviews": 44,
+      "google": 4.8,
+      "googleReviews": 48
     },
     "links": {
       "tabelog": "https://tabelog.com/mie/A2403/A240301/24019496/"
     },
     "contexts": [
-      "lunch",
-      "dinner"
+      "dinner",
+      "lunch"
     ],
     "note": "類型：壽司；地址：伊勢市河崎2-23-8"
   },
@@ -8707,18 +8723,19 @@
       "A"
     ],
     "reason": null,
-    "pointId": null,
-    "detailPending": true,
+    "pointId": "ise-misuzu-gyoza",
     "ratings": {
       "tabelog": 3.72,
-      "tabelogReviews": 1195
+      "tabelogReviews": 1195,
+      "google": 4.4,
+      "googleReviews": 1421
     },
     "links": {
       "tabelog": "https://tabelog.com/mie/A2403/A240301/24000014/"
     },
     "contexts": [
-      "lunch",
-      "dinner"
+      "dinner",
+      "snack"
     ],
     "note": "類型：其他；地址：伊勢市宮町1-2-17；定休（食べログ列表）：月曜日"
   },
@@ -8915,19 +8932,24 @@
     },
     "region": "ise-geku",
     "category": "料理旅館、日本料理、うなぎ",
-    "status": "pending",
-    "criteria": [],
-    "reason": "住宿本體（lodging ise-okubun，料理旅館、うなぎ）；接受非住客用餐的話以 F③ 納入（食べログ口コミ有非住客吃鰻魚的紀錄，但官方沒寫）；3.11／14 則不符合 A、C。T8d 先確認",
-    "pointId": null,
+    "status": "included",
+    "criteria": [
+      "F3"
+    ],
+    "reason": "住宿本體（lodging ise-okubun）；T8d 確認：食べログ 有午晚營業時間（11:00～14:00、17:00～20:30，完全予約制），ぐるなび、HAMONI 列為餐廳（40 席、会席膳 3,300 円～、弁当、お子さま膳），判斷非住客可預約用餐，以 F③ 收錄；店家沒有明寫非住客可，訂的時候確認（2026-10-18）",
+    "pointId": "ise-okubun-dining",
     "ratings": {
       "tabelog": 3.11,
-      "tabelogReviews": 14
+      "tabelogReviews": 14,
+      "google": 3.9,
+      "googleReviews": 58
     },
     "links": {
       "tabelog": "https://tabelog.com/mie/A2403/A240301/24009581/"
     },
     "contexts": [
-      "lunch"
+      "lunch",
+      "dinner"
     ],
     "note": "類型：和食・割烹；地址：伊勢市宮町1丁目9-49；個室（食べログ列表）：個室有"
   },
