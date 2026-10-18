@@ -63,11 +63,24 @@ export const ISLAND_ONLY = new Map([
   ['shima-fukujuso-dining', new Set(['shima-fukujuso', 'shima-watakanoso', 'shima-haifu'])],
 ]);
 
+// 一個點的所有繞路都是真的（隔著海灣，抽樣用 Google 步行路線確認過）：照 OSRM（T9e）
+export const REAL_DETOUR_POINTS = new Set([
+  // 檜扇荘（阿児町鵜方943，賢島西側的半島）：到 マレナ（志摩ベイサイドテラス）直線 400 m，Google 步行 5.7 km
+  'shima-hiougiso',
+]);
+
+// 兩個子地區之間隔著海，繞路是真的（T9e）：迫子（地中海村、NEMU）↔ 賢島，Google 步行 RIAS→賢島站 9.5 km、マレナ→地中海村 9.0 km
+export const REAL_DETOUR_REGIONS = [['shima-sakko', 'shima-kashikojima']];
+
 // 'osrm'：照 OSRM（真的要繞）；'skip'：不放；null：照一般規則
-export function pairRule(fromId, toId) {
+// regions：{ from, to } 兩點的子地區（可省略）
+export function pairRule(fromId, toId, regions = {}) {
   const k = `${fromId}>${toId}`;
   const island = ISLAND_ONLY.get(fromId);
   if (island && !island.has(toId)) return 'skip';
   if (REAL_DETOURS.has(k)) return 'osrm';
+  if (REAL_DETOUR_POINTS.has(fromId) || REAL_DETOUR_POINTS.has(toId)) return 'osrm';
+  const { from, to } = regions;
+  if (from && to && REAL_DETOUR_REGIONS.some(([a, b]) => (a === from && b === to) || (a === to && b === from))) return 'osrm';
   return null;
 }

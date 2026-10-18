@@ -32,3 +32,10 @@ test('個別組合：真的要繞的照 OSRM、離島的店只和同島的點算
   assert.equal(pairRule('shima-fukujuso-dining', 'shima-fukujuso'), null);
   assert.equal(pairRule('kashikojima', 'shima-rias-by-cococha'), null); // 有方向
 });
+
+test('點、子地區層級的真繞路（T9e）', () => {
+  assert.equal(pairRule('shima-marena-french', 'shima-hiougiso'), 'osrm');
+  assert.equal(pairRule('shima-la-mer', 'shima-chichukaimura-hotel', { from: 'shima-kashikojima', to: 'shima-sakko' }), 'osrm');
+  assert.equal(pairRule('shima-la-mer', 'shima-chichukaimura-hotel', { from: 'shima-sakko', to: 'shima-kashikojima' }), 'osrm');
+  assert.equal(pairRule('shima-la-mer', 'shima-michishio', { from: 'shima-kashikojima', to: 'shima-kashikojima' }), null);
+});

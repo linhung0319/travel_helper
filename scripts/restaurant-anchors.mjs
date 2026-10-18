@@ -86,7 +86,7 @@ async function walk(from, to) {
     issues.push(r.error ?? 'OSRM 沒有結果');
   }
   // pairRule 'osrm'：確認過是真的路線（隔著海灣），吸附、繞路的警告都不管，照 OSRM
-  const ok = r.source === 'osrm' && (issues.length === 0 || pairRule(from.id, to.id) === 'osrm');
+  const ok = r.source === 'osrm' && (issues.length === 0 || pairRule(from.id, to.id, { from: from.region, to: to.region }) === 'osrm');
   const est = geo.estimateWalk(from.coords, to.coords);
   return {
     id: to.id,
