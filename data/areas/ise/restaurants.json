@@ -11353,6 +11353,12 @@
         "url": "https://www.nap-camp.com/mag/57168",
         "retrieved": "2026-10-18",
         "note": "伊勢居酒屋特集，刺身與さめのたれ，建議預約"
+      },
+      {
+        "type": "tabelog",
+        "url": "https://tabelog.com/mie/A2403/A240301/24005695/dtlrvwlst/",
+        "retrieved": "2026-10-18",
+        "note": "口コミ（最新 20 則＋關鍵字搜尋）、頁尾店舗情報"
       }
     ],
     "verified": false,
@@ -11491,13 +11497,13 @@
       "table"
     ],
     "kids": {
-      "allowed": "unknown",
+      "allowed": "yes",
       "minAge": null,
       "kidsMenu": null,
       "note": "食べログ 沒有お子様連れ欄"
     },
     "accessibility": {
-      "barrierFree": null,
+      "barrierFree": "バリアフリー、車椅子で入店可（食べログ）",
       "note": "座位以座敷（24 席）為主，テーブル只有 8 席；15 人多半要坐座敷（沒有來源說明怎麼配席）"
     },
     "smoking": "全席禁煙（店外有長椅和菸灰缸）",
@@ -13163,6 +13169,12 @@
         "url": "https://retty.me/restaurant/100000051363/",
         "retrieved": "2026-10-18",
         "note": "35 席無包廂、5,000 日圓以下、不收卡，口コミ到 2026-09"
+      },
+      {
+        "type": "tabelog",
+        "url": "https://tabelog.com/mie/A2403/A240301/24000592/dtlrvwlst/",
+        "retrieved": "2026-10-18",
+        "note": "口コミ（最新 20 則＋關鍵字搜尋）、頁尾店舗情報"
       }
     ],
     "verified": false,
@@ -13304,7 +13316,7 @@
       "counter"
     ],
     "kids": {
-      "allowed": "unknown",
+      "allowed": "yes",
       "minAge": null,
       "kidsMenu": null,
       "note": null
@@ -13318,7 +13330,8 @@
       "conflicts": [
         "營業時間：17:00～賣完為止（食べログ、Time Out）；17:00～22:00（和樂web 2019）",
         "公休：不定休（食べログ、Time Out）；週二（和樂web、Retty）",
-        "席數：食べログ 36；Retty 35"
+        "席數：食べログ 36；Retty 35",
+        "seating：現值 [\"counter\"]；另一個來源 [\"counter\",\"table\"]（食べログ口コミ（2024/11，1 則））"
       ]
     }
   },
@@ -13769,6 +13782,12 @@
         "url": "https://co-trip.jp/post/141239",
         "retrieved": "2026-10-18",
         "note": "2017 投稿，只看到搜尋摘要（403）：松阪牛套餐好評、フレンチトースト"
+      },
+      {
+        "type": "tabelog",
+        "url": "https://tabelog.com/mie/A2403/A240301/24011258/dtlrvwlst/",
+        "retrieved": "2026-10-18",
+        "note": "口コミ（最新 20 則＋關鍵字搜尋）、頁尾店舗情報"
       }
     ],
     "verified": false,
@@ -13921,7 +13940,7 @@
       "note": "子供可（食べログ）"
     },
     "accessibility": {
-      "barrierFree": null,
+      "barrierFree": "車椅子で入店可（食べログ）",
       "note": "浦田ビル 1F"
     },
     "smoking": "全席禁煙",
@@ -14319,6 +14338,12 @@
         "url": "https://aumo.jp/articles/37016",
         "retrieved": "2026-10-18",
         "note": "推てこね寿司，個室適合帶小孩；營業時間與官網不同"
+      },
+      {
+        "type": "tabelog",
+        "url": "https://tabelog.com/mie/A2403/A240301/24000011/dtlrvwlst/",
+        "retrieved": "2026-10-18",
+        "note": "口コミ（最新 20 則＋關鍵字搜尋）、頁尾店舗情報"
       }
     ],
     "verified": false,
@@ -14484,7 +14509,7 @@
       "note": "お子様にぎり 1,100 円、お子様弁当 1,320 円；兒童椅、嬰兒車可（食べログ、ぐるなび）"
     },
     "accessibility": {
-      "barrierFree": null,
+      "barrierFree": "バリアフリー、車椅子で入店可；1 階テーブル席は車いすのまま食事可（食べログ）",
       "note": "多目的廁所；1F 桌席可以坐輪椅用餐（食べログ）；2 樓電梯沒有來源；停車場 40 台、大巴可"
     },
     "smoking": "全席禁煙（有吸菸室）",
@@ -14611,6 +14636,12 @@
         "url": "https://retty.me/restaurant/100000784446/",
         "retrieved": "2026-10-18",
         "note": "外宮前店（別店）：60 席、無個室，對照用"
+      },
+      {
+        "type": "tabelog",
+        "url": "https://tabelog.com/mie/A2403/A240301/24000563/dtlrvwlst/",
+        "retrieved": "2026-10-18",
+        "note": "口コミ（最新 20 則＋關鍵字搜尋）、頁尾店舗情報"
       }
     ],
     "verified": false,
@@ -14755,7 +14786,7 @@
       "note": "子供可（乳兒、學齡前、小學生），請安靜（食べログ）；兒童餐沒有來源"
     },
     "accessibility": {
-      "barrierFree": null,
+      "barrierFree": "バリアフリー（食べログ）",
       "note": "洋式桌席個室 2 間是無障礙（官網）；停車場 20 台、大巴 3 台"
     },
     "smoking": "全席禁煙（屋外有吸菸處）",
@@ -17245,6 +17276,12 @@
         "url": "https://www.hotpepper.jp/strJ000108045/",
         "retrieved": "2026-10-18",
         "note": "44 席、座敷、無個室、不可包場、可帶小孩"
+      },
+      {
+        "type": "tabelog",
+        "url": "https://tabelog.com/mie/A2403/A240301/24000012/dtlrvwlst/",
+        "retrieved": "2026-10-18",
+        "note": "口コミ（最新 20 則＋關鍵字搜尋）、頁尾店舗情報"
       }
     ],
     "verified": false,
@@ -17387,7 +17424,7 @@
     "kids": {
       "allowed": "yes",
       "minAge": null,
-      "kidsMenu": null,
+      "kidsMenu": true,
       "note": "子供可（乳兒、學齡前、小學生）（食べログ）"
     },
     "accessibility": {
