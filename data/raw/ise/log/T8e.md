@@ -187,3 +187,56 @@
 ### 給下一批（第 6 批：futami 11 筆）
 - 住宿版型的 `open` 偶爾第一次找不到排序按鈕，直接重跑 `open` 就好。
 - 資料檔 Google 連結沒有評論的住宿，先看候選或筆記有沒有別棟／別名的 Google 地點。
+
+## 第 6 批：補心得 futami 11 筆（2026-10-18）
+
+### 範圍
+- 對象清單 `data/cache/work/t8e-targets.json` 的 batch 4：餐廳 5（松風軒、maruru cafe、う吉、ワスケ、海の蝶 dining）、景點 2（夫婦岩表參道、松下社）、住宿 4（岩戸館、日章館、桃源郷、オレンジガーデン）。11 筆都做了（夫婦岩表參道 Google 沒有評論，筆記只記原因）。
+- 加做：第 4 批漏搜的 リビエラ Google「冬」（0 筆，只改筆記）。
+- 工作目錄 `data/cache/work/t8e-6/`：`batch.json`（id、食べログ、Google、關鍵字、現有欄位）、`notes/`（每筆的重點 JSON，格式同第 5 批）、`notes-all.json`、`patch-r.json`、`q.md`、`d.md`、`ise-sec.md`、`fut-sec.md`、`riv-reps.mjs`；工作用腳本 `mk.sh`、`up.cjs`、`dossier-merge.mjs`、`append-md.mjs`、`mdrep.mjs`（第 5 批照抄）。
+
+### 步驟
+1. Chrome 1 個分頁（結束關掉；tabelog.com、www.google.com 的 localStorage 都 removeItem 並確認）。`chrome-actions.mjs --store` 第一次存程式，之後 `--stored`；共 19 次 browser_batch（一次 3～19 個動作，沒有逾時）＋單獨的 javascript_tool 3 次（新しい順 1、查店家回覆的 DOM 2）。
+2. 狀況：岩戸館（住宿版型）`open` 第一次找不到排序按鈕，重跑成功（第 5 批的提醒）；オレンジガーデン（2 則）`lowest` 回傳空清單＋警告，改成 `open` 後直接 `extract` 抽到 2 則；リビエラ `open` 後馬上 `search` 輸入框沒打開，重跑成功。`google-reviews.js` 的低分順都正確套用（沒有星數順序警告）。沒有驗證碼、登入、封鎖、對話框；食べログ沒遇到 Cloudflare 重新載入。
+3. 重點寫成 `notes/<id>.json`，`dossier-merge.mjs` 併進 `dossiers/`；回填 `apply-patch.mjs`（先 `--dry-run`）；validate 通過後 commit c6b02b0。
+
+### 程式修正（commit bc9e99d）
+- `google-reviews.js`：日章館「新しい順」10 則中 4 則 5 星的內文其實是**店家回覆**（「オーナーからの返信」後面也是 `.wiI7pd`，評論本人沒有內文時會抓到回覆）。改成取第一個前面不是「オーナーからの返信」的 `.wiI7pd`（抽成 `reviewBody`，`scripts/test/google-reviews.test.ts` 加測試，`npm test` 70 個全過）。執行中的修正照第 3 批的做法直接字串替換 localStorage 裡的那份。第 3～5 批讀的評論也可能混到店家回覆（內容是固定的感謝文，讀的時候看得出來，筆記沒有採用這類內容）。
+- 沒改：`lowest` 在評論只有 2 則時回傳空清單（排序後第一則沒換、清單太短捲不動）；評論少於 10 則的直接 `extract` 就好，寫在下面的提醒。
+
+### 結果
+- 11 筆筆記都追加了口コミ／評論（餐廳每家約 25～37 則；景點 0～1 則；住宿 2～9 則）。
+- 回填：海の蝶 dining `accessibility.barrierFree`（食べログ店舗情報）；う吉 conflicts 2 條（バリアフリー、營業時間）。沒有 overwrite。
+- `questions.md` +5。decisions-pending 3 列（沒有進「👤 建議先看」：松風軒 `kids.allowed` 維持 unknown 是不改值的判斷）。
+- 讀法的例外：日章館 低分順多是 6 年以上，多讀「新しい順」10 則；海の蝶 dining 多搜「日帰り」、沒搜「2階」；桃源郷、オレンジガーデン 評論少於 10 則，讀全部不搜尋；夫婦岩表參道 沒有評論、不找沿街設施的評論。
+
+### WebSearch
+- 0 次（沒有開讀文 subagent）。
+
+## T8e 總結（2026-10-18）
+
+### 各批
+| 批 | 內容 | 筆數 | browser_batch | WebSearch |
+|---|---|---|---|---|
+| 1 | Chrome 抽取程式實測＋補回大個室店 13 家（3 家兼讀口コミ、評論） | 餐廳 +13 | （手動組 batch） | 7（讀文 subagent） |
+| 2 | 補回 §5.7 住宿 3 間、收尾（anchors、dinnerAccess、缺漏、地圖）、補心得的對象清單 | 住宿 +3 | 1＋本機地圖 3 | 3（讀文 subagent） |
+| 3 | 補心得 ise-geku | 23 | 每家約 1.5～2 | 0 |
+| 4 | 補心得 kurata・isuzugaoka・obata | 15 | 18 | 0 |
+| 5 | 補心得 naiku・asama・outskirts | 25 | 41 | 0 |
+| 6 | 補心得 futami | 11 | 19 | 0 |
+
+- 補心得合計 77 筆（第 1 批 3＋對象清單 74：餐廳 55、景點 15、住宿 7），沒有跳過；沒有遇到驗證碼、登入、封鎖、對話框。
+- 資料：伊勢 餐廳 95 → 108、住宿 21 → 24；二見不變（餐廳 18、住宿 17、景點 4）。anchors 伊勢 811＋二見 90 筆；住宿 `dinnerAccess` 伊勢 22＋二見 13 間。
+- 回填（補心得）：barrierFree 12、accessibility.note 5、kidsMenu 2、elevator 1、景點 stairs／toilets 2 處、宿屋五十鈴 館內樓梯；overwrite（「👤 建議先看」）：`kids.allowed` unknown → yes 4、`seating` [] → 確定值 4。`questions.md` 伊勢 +45（第 1 批 12＋補心得 33）、二見 +5。
+- WebSearch 合計 10 次（第 1 批 7、第 2 批 3、第 3～6 批 0），都有結果，沒有額度用完的跡象。
+
+### Chrome 程式的修正（都附測試或實測；細節在 CONVENTIONS「口コミ、Google 評論」「工具」）
+- `tabelog-info.js`、`tabelog-reviews.js`（第 1 批）：等 Cloudflare「請稍候…」最多 10 秒；路徑只回傳店家 ID 之後（完整路徑被當成 Base64 擋下）；コース頁、`?sw=` 頁不重複回傳店舗情報；`tabs` 排除 `party/<ID>`；不收「予算（口コミ集計）」。
+- `google-place.js`（第 1 批）：cid 每 4 位加空格（Base64 誤判）；電話 +81 改回 0；從列表點進去時店名用地點面板的 aria-label。
+- `google-reviews.js`：兩段等待（舊清單換掉、清空後才捲動，第 1 批）；低分順的 `starsAscending` 檢查、送 pointer／mouse 事件、等 0.7 秒才點選單、`search` 輸入框沒開時再點一次、住宿版型（下拉排序、「4/5」星數、常開搜尋框；第 3 批）；跳過店家回覆的 `reviewBody`（第 6 批）。
+- `chrome-actions.mjs`：`--store／--stored／--cleanup`、`tabelog-reviews --keywords`、`google-reviews --keywords`（第 1 批）；`--store` 拿掉整行註解（第 3 批）。
+- 新工具（第 2 批）：`scripts/lib/anchor-rules.mjs`、`scripts/lib/trip-hours.mjs`、`scripts/lodging-dinner-access.mjs`、`scripts/review-targets.mjs`；`candidates.mjs export --ids`（第 1 批）。
+
+### 給 T8f、T9e（之後的補心得）
+- T8f：各區 README 的「補心得」一節列了要扣分、全席可吸菸、要電話確認的店；沒讀的 62 家（fit15 unknown／no）心得仍幾乎 0。
+- T9e 照這次的流程：`review-targets.mjs` 產生對象 → 每批一個工作目錄 → `chrome-actions.mjs --store`（之後 `--stored`）→ notes JSON → `dossier-merge.mjs`（工作用，可以照抄 `data/cache/work/t8e-6/`）→ `apply-patch.mjs`。一個 browser_batch 控制在約 20 個動作內；住宿版型 `open` 偶爾要重跑；評論少於 10 則的直接 `extract`；資料檔 Google 沒有評論的先看有沒有別棟／別名的地點。
