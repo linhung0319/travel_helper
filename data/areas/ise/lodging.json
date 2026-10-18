@@ -103,6 +103,7 @@
     "luggage": "別館 Grande 有自助行李寄放處（セルフクロークスペース），入住前、退房後可放；本館未載明",
     "checkIn": "15:00",
     "checkOut": "10:00",
+    "rakutenHotelNo": 158426,
     "dinnerAccess": null,
     "group": {
       "totalRooms": 165,
@@ -236,7 +237,6 @@
         "官網內宮巴士寫 15 分與約 33 分兩種",
         "別館 Grande 退房 11:00，本館 10:00"
       ],
-      "rakutenHotelNo": 158426,
       "rakutenVacancy": {
         "retrieved": "2026-10-18",
         "dates": [
@@ -364,6 +364,7 @@
     "luggage": "入住前、退房後都可在櫃檯寄放行李",
     "checkIn": "15:00",
     "checkOut": "11:00",
+    "rakutenHotelNo": 142619,
     "dinnerAccess": null,
     "group": {
       "totalRooms": 45,
@@ -478,7 +479,6 @@
         "電話：0570-0117-22（楽天、官網）vs 0596-26-0100（観光三重）",
         "最晚入住：楽天 18:00 vs 其他訂房網 23:00"
       ],
-      "rakutenHotelNo": 142619,
       "rakutenVacancy": {
         "retrieved": "2026-10-18",
         "dates": [
@@ -623,6 +623,7 @@
     "luggage": "可寄放行李（大廳密碼鎖式寄物處，心得說法）",
     "checkIn": "15:00",
     "checkOut": "10:00",
+    "rakutenHotelNo": 166509,
     "dinnerAccess": null,
     "group": {
       "totalRooms": 153,
@@ -726,7 +727,6 @@
         "クイーンエコノミー 面積 15㎡／17㎡ 兩處不一致",
         "「フォースルーム」方案的實際房型待確認"
       ],
-      "rakutenHotelNo": 166509,
       "rakutenVacancy": {
         "retrieved": "2026-10-18",
         "dates": [
@@ -848,6 +848,7 @@
     "luggage": "有 100 日圓退幣式置物櫃（貴重品不可），退房後也可使用",
     "checkIn": "15:00",
     "checkOut": "10:00",
+    "rakutenHotelNo": 1232,
     "dinnerAccess": null,
     "group": {
       "totalRooms": 100,
@@ -961,7 +962,6 @@
         "電梯未明確列出（推測有）",
         "兒童收費、加床、添い寝未查到"
       ],
-      "rakutenHotelNo": 1232,
       "rakutenVacancy": {
         "retrieved": "2026-10-18",
         "dates": [
@@ -1102,6 +1102,7 @@
     "luggage": "可寄放行李（心得）；另有住客專用免費置物櫃 23 台",
     "checkIn": "15:00",
     "checkOut": "10:00",
+    "rakutenHotelNo": 184219,
     "dinnerAccess": null,
     "group": {
       "totalRooms": 147,
@@ -1205,7 +1206,6 @@
         "停車場 70 台（FAQ）vs 79 台（施設情報）",
         "徒步 12 分 vs 某旅行社頁面徒步約 4 分（無法確認是本館）"
       ],
-      "rakutenHotelNo": 184219,
       "rakutenVacancy": {
         "retrieved": "2026-10-18",
         "dates": [
@@ -1358,6 +1358,7 @@
     "luggage": "口コミ提到可寄放行李；可用宅配",
     "checkIn": "15:00",
     "checkOut": "10:00",
+    "rakutenHotelNo": 56193,
     "dinnerAccess": null,
     "group": {
       "totalRooms": 10,
@@ -1476,7 +1477,6 @@
         "築年：楽天約 60 年、口コミ說約 100 年（昭和 4 年創業）",
         "國登錄有形文化財：來源皆未提及"
       ],
-      "rakutenHotelNo": 56193,
       "rakutenVacancy": {
         "retrieved": "2026-10-18",
         "dates": [
@@ -1608,6 +1608,7 @@
     "luggage": "衝突：楽天寫有寄放空間但有限、有條件；KNT 寫入住前、退房後不寄放",
     "checkIn": "15:00",
     "checkOut": "10:00",
+    "rakutenHotelNo": 183396,
     "dinnerAccess": null,
     "group": {
       "totalRooms": 36,
@@ -1719,7 +1720,6 @@
         "行李寄放：楽天說有限度可寄，KNT 說不寄放",
         "電梯未查到"
       ],
-      "rakutenHotelNo": 183396,
       "rakutenVacancy": {
         "retrieved": "2026-10-18",
         "dates": [
@@ -1862,6 +1862,7 @@
     "luggage": null,
     "checkIn": "15:00",
     "checkOut": "10:00",
+    "rakutenHotelNo": 184858,
     "dinnerAccess": null,
     "group": {
       "totalRooms": 143,
@@ -1970,7 +1971,6 @@
       "conflicts": [
         "站步行約 4 分 vs 5 分圈內"
       ],
-      "rakutenHotelNo": 184858,
       "rakutenVacancy": {
         "retrieved": "2026-10-18",
         "dates": [
@@ -2106,6 +2106,7 @@
     "luggage": null,
     "checkIn": "16:00",
     "checkOut": "10:00",
+    "rakutenHotelNo": 19502,
     "dinnerAccess": null,
     "group": {
       "totalRooms": 8,
@@ -2217,7 +2218,6 @@
         "伊勢市站步行：楽天 18 分 vs じゃらん 15 分",
         "浴室是否在房內：心得說法不一，應為可上鎖的共用浴室，待確認"
       ],
-      "rakutenHotelNo": 19502,
       "rakutenVacancy": {
         "retrieved": "2026-10-18",
         "dates": [
@@ -2342,6 +2342,7 @@
     "luggage": "時間外 check-in 時可先寄放行李；可收宅配",
     "checkIn": "16:00",
     "checkOut": "10:00",
+    "rakutenHotelNo": 30971,
     "dinnerAccess": null,
     "group": {
       "totalRooms": 10,
@@ -2455,7 +2456,6 @@
         "楽天分數頁面 4.43（313 則）vs 任務給 4.46（314 則）",
         "創業：官網昭和元年 vs 三重縣文化財資料昭和 2 年建造、原名花屋"
       ],
-      "rakutenHotelNo": 30971,
       "rakutenVacancy": {
         "retrieved": "2026-10-18",
         "dates": [
@@ -2599,6 +2599,7 @@
     "luggage": null,
     "checkIn": "15:00",
     "checkOut": "11:00",
+    "rakutenHotelNo": 196826,
     "dinnerAccess": null,
     "group": {
       "totalRooms": 8,
@@ -2711,7 +2712,6 @@
         "棟數：官網概要「5 棟 8 室」vs 官網重點、楽天、トラベルボイス「6 棟 8 室」",
         "TOKIWA 302 定員：官網 TOKIWA 系列「4 名まで」vs 楽天「1～3 名・3 ベッド」"
       ],
-      "rakutenHotelNo": 196826,
       "rakutenVacancy": {
         "retrieved": "2026-10-18",
         "dates": [
@@ -2855,6 +2855,7 @@
     "luggage": null,
     "checkIn": "16:00",
     "checkOut": "10:00",
+    "rakutenHotelNo": 38483,
     "dinnerAccess": null,
     "group": {
       "totalRooms": 10,
@@ -2960,7 +2961,6 @@
         "價格：楽天施設頁季節の会席 13,200 円 vs 方案頁旬会席 14,300 円",
         "楽天平均分不公開（顯示「-」），92 則中 5 分 45、4 分 26"
       ],
-      "rakutenHotelNo": 38483,
       "rakutenVacancy": {
         "retrieved": "2026-10-18",
         "dates": [
@@ -3068,6 +3068,7 @@
     "luggage": null,
     "checkIn": "15:00",
     "checkOut": "10:00",
+    "rakutenHotelNo": 5668,
     "dinnerAccess": null,
     "group": {
       "totalRooms": 10,
@@ -3166,7 +3167,6 @@
         "楽天口コミ總分顯示「-」，各則分布 5 點 4、4 點 5、3 點 1、2 點 1",
         "官網 URL 未找到"
       ],
-      "rakutenHotelNo": 5668,
       "rakutenVacancy": {
         "retrieved": "2026-10-18",
         "dates": [
@@ -3267,6 +3267,7 @@
     "luggage": null,
     "checkIn": "15:00",
     "checkOut": "11:00",
+    "rakutenHotelNo": 193960,
     "dinnerAccess": null,
     "group": {
       "totalRooms": 1,
@@ -3345,7 +3346,6 @@
       "conflicts": [
         "伊勢市站步行 1 分 vs 3 分"
       ],
-      "rakutenHotelNo": 193960,
       "rakutenVacancy": {
         "retrieved": "2026-10-18",
         "dates": [
@@ -3459,6 +3459,7 @@
     "luggage": "前一天以前電話聯絡可寄放；當天聯絡可能不行",
     "checkIn": "17:30",
     "checkOut": "09:00",
+    "rakutenHotelNo": 172712,
     "dinnerAccess": null,
     "group": {
       "totalRooms": 2,
@@ -3564,7 +3565,6 @@
         "女性專用：楽天說現在男性也可住；フォートラベル（使用者投稿）仍寫女性專用、有大浴場露天",
         "定員：楽天 2F 1～4 人 vs 観光三重各房 4～5 人"
       ],
-      "rakutenHotelNo": 172712,
       "rakutenVacancy": {
         "retrieved": "2026-10-18",
         "dates": [
@@ -3658,6 +3658,7 @@
     "luggage": null,
     "checkIn": "16:00",
     "checkOut": "10:00",
+    "rakutenHotelNo": null,
     "dinnerAccess": null,
     "group": {
       "totalRooms": null,
@@ -3889,6 +3890,7 @@
     "luggage": null,
     "checkIn": "15:00",
     "checkOut": "10:00",
+    "rakutenHotelNo": 181078,
     "dinnerAccess": null,
     "group": {
       "totalRooms": 74,
@@ -4002,7 +4004,6 @@
         "總房數：楽天 74 室 vs 官網 73 室",
         "免費添い寝年齡：官網 5 歲以下 vs 公式單人房未就學 vs 心得提到小學生以下家庭方案"
       ],
-      "rakutenHotelNo": 181078,
       "rakutenVacancy": {
         "retrieved": "2026-10-18",
         "dates": [
@@ -4128,6 +4129,7 @@
     "luggage": "入住前、退房後可在櫃台寄放行李；可事先寄行李到館（元払い，註明住宿日與代表人），也可代寄。",
     "checkIn": "15:00",
     "checkOut": "11:00",
+    "rakutenHotelNo": 142809,
     "dinnerAccess": null,
     "group": {
       "totalRooms": 58,
@@ -4263,7 +4265,6 @@
         "客室頁分節的房數和「客室概要」不一致（和ツイン 23 對 32、和洋室 2 對 3、和トリプル 2 對 3 等）",
         "官網寫 9 タイプ客室，頁面列 12 項"
       ],
-      "rakutenHotelNo": 142809,
       "rakutenVacancy": {
         "retrieved": "2026-10-18",
         "dates": [
@@ -4388,6 +4389,7 @@
     "luggage": "入住前、退房後都可寄放行李，宅配行李也收（註明住宿日與團體名）",
     "checkIn": "15:00",
     "checkOut": "10:00",
+    "rakutenHotelNo": 140958,
     "dinnerAccess": null,
     "group": {
       "totalRooms": 65,
@@ -4525,7 +4527,6 @@
         "4travel 口コミ稱本館部分房間沒有廁所，官網稱本館全室附ユニットバス",
         "電梯有無未查到"
       ],
-      "rakutenHotelNo": 140958,
       "rakutenVacancy": {
         "retrieved": "2026-10-18",
         "dates": [
@@ -4659,6 +4660,7 @@
     "luggage": "可寄放行李（楽天交通頁標語「荷物預かり致します」）",
     "checkIn": "17:30",
     "checkOut": "10:00",
+    "rakutenHotelNo": 147038,
     "dinnerAccess": null,
     "group": {
       "totalRooms": 4,
@@ -4749,7 +4751,6 @@
         "check-in 17:30～20:00 vs 停車段落寫 13:30～13:00",
         "停車 3 台 vs 4 台"
       ],
-      "rakutenHotelNo": 147038,
       "rakutenVacancy": {
         "retrieved": "2026-10-18",
         "dates": [
@@ -4893,6 +4894,7 @@
     "luggage": null,
     "checkIn": "15:00",
     "checkOut": "10:00",
+    "rakutenHotelNo": 201681,
     "dinnerAccess": null,
     "group": {
       "totalRooms": 5,
@@ -4983,7 +4985,6 @@
       "conflicts": [
         "宇治浦田荘定員：楽天 1～6 人 vs じゃらん「最多 4 人」（じゃらん頁亂碼）"
       ],
-      "rakutenHotelNo": 201681,
       "rakutenVacancy": {
         "retrieved": "2026-10-18",
         "dates": [

@@ -15,3 +15,10 @@
 - 結果：鳥羽 24／38（原本 21）、伊勢 14／21（原本 1）、二見 7／17（原本 1）。分數變動：銀鱗 4.6 → 4.7、キャッスルイン夫婦岩 3.9 → 4.0。
 - **§5.7 的排除要重看**：伊勢シティホテル（じゃらん 3.8／2,262）、外宮前別邸 道（4.2／11）、キャッスルイン伊勢（3.9／213）有 10 則以上、3.8 以上的來源，不該排除 → PLAN T8e 補回。山田館 じゃらん 114 則但不顯示分數，維持排除。各候選的 note 有寫。
 - 候選 schema 的 `ratings` 沒有 jalan 欄位，所以候選的じゃらん結果寫在 note（不在 T7i 改 schema）。
+
+## schema 補欄位（👤 確認後，同一個分支）
+- 候選 `ratings` 加 `jalan`、`jalanReviews`：`jalan.mjs apply --candidates` 同時更新有 pointId 的候選；被排除的 6 間（伊勢シティ、道、キャッスルイン伊勢、丸二、星宮、清海）手動搬進 ratings（note 的判斷文字保留）。
+- `validate.mjs` 加住宿 §5.7 檢查：以 §5.7 排除、但有 10 則以上、3.8 以上的來源 → 警告。目前警告的就是 T8e 要補回的 3 間。
+- 餐廳 `inclusion`（陣列，寫法同候選 criteria）取代 `extra.inclusion` 的字串（"AC" → ["A","C"]），三區 196 家轉換；`build-restaurants.mjs` 改寫正式欄位。
+- 住宿 `rakutenHotelNo` 取代伊勢、二見的 `extra.rakutenHotelNo`；鳥羽從楽天網址解析（32／38，其他 6 間不在楽天）。
+- 測試 `build-restaurants.mjs` 後用 `git checkout` 還原資料檔，把還沒 commit 的伊勢餐廳轉換也還原了，重跑一次。之後測試要先 commit 或用 `--dry-run`。

@@ -196,6 +196,7 @@ travel_helper/
   ],
   "luggage": "可以在入住前寄放",
   "checkIn": "15:00", "checkOut": "10:00",
+  "rakutenHotelNo": 12345,           // 楽天トラベルの施設番号；行程定了用 scripts/rakuten.mjs 以實際日期重查。沒上楽天是 null
   "dinnerAccess": "car",             // 不含晚餐時：walk（步行 20 分內有店）| car（要搭車）| null
   "group": {                         // 能不能容納 15 人
     "totalRooms": 8,
@@ -237,6 +238,7 @@ travel_helper/
   "mustTry": ["伊勢龍蝦丼（伊勢海老丼）2,800 円"],   // 招牌菜 2～3 道，附日文；有寫價格就記（見 §4「菜單」）
   "menu": [{ "url": "https://tabelog.com/.../dtlmenu/", "source": "tabelog", "retrieved": "..." }],   // 只記菜單頁的連結，不抄完整菜單
   "ratings": { "tabelog": 3.62, "tabelogReviews": 120, "google": 4.3, "googleReviews": 850 },
+  "inclusion": ["A", "C"],           // 符合的納入條件（§4「餐廳候選納入標準」），寫法同候選的 criteria：A～F，D、F 可以加小項（"D1"、"F3"）
   "tabelogOwner": false,             // 食べログ店舗会員（資料由店家維護）
   "googleName": null,                // Google 上的店名和食べログ不同時
   "notes": "中午常常賣完；週三公休",
@@ -433,7 +435,7 @@ T7、T8 的心得幾乎是 0：鄉下小店本來就沒有個人部落格，而�
 - 需要 👤 到楽天ウェブサービス註冊，取得 `applicationId` 和 `accessKey`，放在環境變數 `RAKUTEN_APPLICATION_ID`、`RAKUTEN_ACCESS_KEY`（寫在 `.env`，**不要 commit**）。
 - **空室検索**（`VacantHotelSearch`）：子地區中心座標、半徑最多 3 km、入住和退房日期（用旅程實際可能住的日期），`roomNum`（最多 10）× `adultNum`（每間最多 10）。例如 15 人查「5 間 × 3 人」和「4 間 × 4 人」，結果裡有空房的就是能全員同住的候選。
 - **施設情報**（`HotelDetailSearch`）：`reviewAverage`、`reviewCount`，以及服務、地點、房間、設備、浴場、早餐、晚餐、清潔度的細項評分；評分時晚餐、浴場的細項很有用。
-- 取得的價格寫進 `prices`（`source: "rakuten-api"`，附查詢日期和入住日期）；照片寫進 `photos`（`kind: "rakuten"`）。
+- 施設番号寫進 `rakutenHotelNo`（正式欄位，T7i 從 extra、網址搬過來）。取得的價格寫進 `prices`（`source: "rakuten-api"`，附查詢日期和入住日期）；照片寫進 `photos`（`kind: "rakuten"`）。
 - 規約要求顯示楽天的標示，T11 顯示這些資料時要加上；申請時順便確認規約對存放資料的規定，有限制的話寫進 `docs/requests.md`。
 - 呼叫間隔至少 1 秒，查詢腳本放在 `scripts/`。
 

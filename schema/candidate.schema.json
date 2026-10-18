@@ -41,7 +41,9 @@
           "google": { "$ref": "common.schema.json#/$defs/nullableNumber" },
           "googleReviews": { "$ref": "common.schema.json#/$defs/nullableInteger" },
           "rakuten": { "$ref": "common.schema.json#/$defs/nullableNumber" },
-          "rakutenReviews": { "$ref": "common.schema.json#/$defs/nullableInteger" }
+          "rakutenReviews": { "$ref": "common.schema.json#/$defs/nullableInteger" },
+          "jalan": { "$ref": "common.schema.json#/$defs/nullableNumber" },
+          "jalanReviews": { "$ref": "common.schema.json#/$defs/nullableInteger" }
         },
         "additionalProperties": false
       },

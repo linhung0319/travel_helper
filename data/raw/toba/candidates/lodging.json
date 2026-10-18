@@ -13,7 +13,9 @@
       "rakuten": 4.42,
       "rakutenReviews": 2343,
       "google": 4,
-      "googleReviews": 959
+      "googleReviews": 959,
+      "jalan": 4.4,
+      "jalanReviews": 3203
     },
     "links": {
       "googleMaps": "https://maps.google.com/?cid=16764296179127339954"
@@ -33,7 +35,9 @@
       "rakuten": 4.45,
       "rakutenReviews": 1147,
       "google": 4.3,
-      "googleReviews": 1311
+      "googleReviews": 1311,
+      "jalan": 4.6,
+      "jalanReviews": 1488
     },
     "links": {
       "googleMaps": "https://maps.google.com/?cid=7322715018306743510"
@@ -53,7 +57,9 @@
       "rakuten": 4.55,
       "rakutenReviews": 997,
       "google": 4.3,
-      "googleReviews": 827
+      "googleReviews": 827,
+      "jalan": 4.7,
+      "jalanReviews": 1284
     },
     "links": {
       "googleMaps": "https://maps.google.com/?cid=15272840618039616145"
@@ -73,7 +79,9 @@
       "rakuten": 4.42,
       "rakutenReviews": 1650,
       "google": 4.1,
-      "googleReviews": 2285
+      "googleReviews": 2285,
+      "jalan": 4.5,
+      "jalanReviews": 3006
     },
     "links": {
       "googleMaps": "https://maps.google.com/?cid=5370321429050937368"
@@ -93,7 +101,9 @@
       "rakuten": 4.39,
       "rakutenReviews": 1724,
       "google": 4,
-      "googleReviews": 867
+      "googleReviews": 867,
+      "jalan": 4.5,
+      "jalanReviews": 2650
     },
     "links": {
       "googleMaps": "https://maps.google.com/?cid=5649092476483122273"
@@ -113,7 +123,9 @@
       "rakuten": 4.29,
       "rakutenReviews": 1278,
       "google": 3.9,
-      "googleReviews": 884
+      "googleReviews": 884,
+      "jalan": 4.4,
+      "jalanReviews": 1666
     },
     "links": {
       "googleMaps": "https://maps.google.com/?cid=7828602569851740785"
@@ -133,7 +145,9 @@
       "rakuten": 4.47,
       "rakutenReviews": 4329,
       "google": 4.1,
-      "googleReviews": 1887
+      "googleReviews": 1887,
+      "jalan": 4.6,
+      "jalanReviews": 5624
     },
     "links": {
       "googleMaps": "https://maps.google.com/?cid=10450912265696800281"
@@ -153,7 +167,9 @@
       "rakuten": 4.44,
       "rakutenReviews": 1495,
       "google": 4.1,
-      "googleReviews": 738
+      "googleReviews": 738,
+      "jalan": 4.3,
+      "jalanReviews": 2448
     },
     "links": {
       "googleMaps": "https://maps.google.com/?cid=5782841468991380273"
@@ -173,7 +189,9 @@
       "rakuten": 3.83,
       "rakutenReviews": 1239,
       "google": 3.6,
-      "googleReviews": 1669
+      "googleReviews": 1669,
+      "jalan": 4,
+      "jalanReviews": 1656
     },
     "links": {
       "googleMaps": "https://maps.google.com/?cid=14388968417459406705"
@@ -193,7 +211,9 @@
       "rakuten": 4.09,
       "rakutenReviews": 2739,
       "google": 4,
-      "googleReviews": 1277
+      "googleReviews": 1277,
+      "jalan": 4.2,
+      "jalanReviews": 3264
     },
     "links": {
       "googleMaps": "https://maps.google.com/?cid=10883172910691436448"
@@ -213,7 +233,9 @@
       "rakuten": 4.22,
       "rakutenReviews": 1102,
       "google": 3.9,
-      "googleReviews": 288
+      "googleReviews": 288,
+      "jalan": 4.3,
+      "jalanReviews": 876
     },
     "links": {
       "googleMaps": "https://maps.google.com/?cid=15497936183367246491"
@@ -233,7 +255,9 @@
       "rakuten": 4.15,
       "rakutenReviews": 1146,
       "google": 3.9,
-      "googleReviews": 928
+      "googleReviews": 928,
+      "jalan": 4.2,
+      "jalanReviews": 116
     },
     "links": {
       "googleMaps": "https://maps.google.com/?cid=2454234225546370204"
@@ -253,7 +277,9 @@
       "rakuten": 4.39,
       "rakutenReviews": 4943,
       "google": 4.3,
-      "googleReviews": 773
+      "googleReviews": 773,
+      "jalan": 4.3,
+      "jalanReviews": 33
     },
     "links": {
       "googleMaps": "https://maps.google.com/?cid=10961817507857237206"
@@ -273,7 +299,9 @@
       "rakuten": 4.5,
       "rakutenReviews": 1801,
       "google": 4.2,
-      "googleReviews": 619
+      "googleReviews": 619,
+      "jalan": 4.6,
+      "jalanReviews": 1810
     },
     "links": {
       "googleMaps": "https://maps.google.com/?cid=8217610275262821245"
@@ -313,7 +341,9 @@
       "rakuten": 4.64,
       "rakutenReviews": 463,
       "google": 4.3,
-      "googleReviews": 162
+      "googleReviews": 162,
+      "jalan": 4.3,
+      "jalanReviews": 369
     },
     "links": {
       "googleMaps": "https://maps.google.com/?cid=17015909701539195772"
@@ -333,7 +363,9 @@
       "rakuten": 4.74,
       "rakutenReviews": 138,
       "google": 4.4,
-      "googleReviews": 129
+      "googleReviews": 129,
+      "jalan": 4.5,
+      "jalanReviews": 182
     },
     "links": {
       "googleMaps": "https://maps.google.com/?cid=5225507501311499002"
@@ -353,7 +385,9 @@
       "rakuten": 4.94,
       "rakutenReviews": 137,
       "google": 4.7,
-      "googleReviews": 90
+      "googleReviews": 90,
+      "jalan": 4.8,
+      "jalanReviews": 433
     },
     "links": {
       "googleMaps": "https://maps.google.com/?cid=8637192482555009752"
@@ -393,7 +427,9 @@
       "rakuten": 4.35,
       "rakutenReviews": 3880,
       "google": 4.1,
-      "googleReviews": 1041
+      "googleReviews": 1041,
+      "jalan": 4.1,
+      "jalanReviews": 1219
     },
     "links": {
       "googleMaps": "https://maps.google.com/?cid=5234885912897678253"
@@ -413,7 +449,9 @@
       "rakuten": 4.63,
       "rakutenReviews": 1045,
       "google": 4.5,
-      "googleReviews": 984
+      "googleReviews": 984,
+      "jalan": 4.8,
+      "jalanReviews": 2077
     },
     "links": {
       "googleMaps": "https://maps.google.com/?cid=10853908049603136495"
@@ -433,7 +471,9 @@
       "rakuten": 4.85,
       "rakutenReviews": 306,
       "google": 4.6,
-      "googleReviews": 77
+      "googleReviews": 77,
+      "jalan": 4.8,
+      "jalanReviews": 520
     },
     "links": {
       "googleMaps": "https://maps.google.com/?cid=13910879656447217722"
@@ -473,7 +513,9 @@
       "rakuten": 4.54,
       "rakutenReviews": 228,
       "google": 4.4,
-      "googleReviews": 127
+      "googleReviews": 127,
+      "jalan": 4.7,
+      "jalanReviews": 492
     },
     "links": {
       "googleMaps": "https://maps.google.com/?cid=12443972553253250301"
@@ -533,7 +575,9 @@
       "rakuten": 4.29,
       "rakutenReviews": 127,
       "google": 4.2,
-      "googleReviews": 102
+      "googleReviews": 102,
+      "jalan": 4.5,
+      "jalanReviews": 554
     },
     "links": {
       "googleMaps": "https://maps.google.com/?cid=4829018036424678639"
@@ -553,7 +597,9 @@
       "rakuten": 4.52,
       "rakutenReviews": 126,
       "google": 4.3,
-      "googleReviews": 179
+      "googleReviews": 179,
+      "jalan": 4.4,
+      "jalanReviews": 291
     },
     "links": {
       "googleMaps": "https://maps.google.com/?cid=2587708139054811993"
@@ -665,7 +711,9 @@
       "rakuten": 4.67,
       "rakutenReviews": 76,
       "google": 4.3,
-      "googleReviews": 47
+      "googleReviews": 47,
+      "jalan": 4.4,
+      "jalanReviews": 205
     },
     "links": {
       "googleMaps": "https://maps.google.com/?cid=7265743898059284989"

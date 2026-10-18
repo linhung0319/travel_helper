@@ -171,6 +171,9 @@
       "googleReviews": 604,
       "note": null
     },
+    "inclusion": [
+      "A"
+    ],
     "tabelogOwner": false,
     "googleName": "株式会社御福餅本家",
     "notes": "伊勢名物「御福餅」的本家，甘味處可以坐下來吃 3 種盛り（附抹茶）、あんみつ。二見興玉神社 參拜後的點心。外帶伴手禮也在這裡買。",
@@ -208,7 +211,6 @@
     },
     "smoking": "全席禁煙",
     "extra": {
-      "inclusion": "A",
       "conflicts": [
         "3種盛り：官網 900 円；まっぷる 880 円",
         "4travel 寫「二見本店閉鎖」是舊址（茶屋 197-1），它的口碑是舊店的（2014～2023）；現在是新社屋（茶屋 568-1，2024-04 起）"
@@ -376,6 +378,9 @@
       "googleReviews": 175,
       "note": null
     },
+    "inclusion": [
+      "A"
+    ],
     "tabelogOwner": true,
     "googleName": null,
     "notes": "1913 年創業的酒素饅頭老舖，一個 100 円、現蒸，賣完就關。外帶為主，店前有椅子（2014 年心得）。二見浦站一出來就到，可以當散步點心。",
@@ -413,7 +418,6 @@
     },
     "smoking": "全席禁煙",
     "extra": {
-      "inclusion": "A",
       "conflicts": [
         "公休：不定休（観光三重・まっぷる）vs 月 1 次不定休（るるぶ）",
         "價格：82 円（2015）、90 円（2020～21 口碑）、100 円（るるぶ・まっぷる）",
@@ -573,6 +577,9 @@
       "googleReviews": 229,
       "note": null
     },
+    "inclusion": [
+      "A"
+    ],
     "tabelogOwner": false,
     "googleName": "豚まん ウァン 本店",
     "notes": "二見的豚まん名店（Google 名稱「豚まん ウァン 本店」），一個 250 円；也有栗あんまん、炸物棒。只能外帶，邊走邊吃。",
@@ -610,7 +617,6 @@
     },
     "smoking": null,
     "extra": {
-      "inclusion": "A",
       "conflicts": [
         "地址：食べログ・4travel 茶屋 53-3；HAMONI 茶屋 100-1",
         "以前可以搭電梯到頂樓內用（IG 心得），現在外帶專門"
@@ -831,6 +837,9 @@
       "googleReviews": 570,
       "note": null
     },
+    "inclusion": [
+      "A"
+    ],
     "tabelogOwner": true,
     "googleName": "扇屋",
     "notes": "二見浦站前的古民家定食店，松阪牛漢堡排、炸蝦；冬季有浦村牡蠣定食。二見浦一帶少數晚上開的店，但 19:30 就收、週四休、不能訂位，15 人要分批或早點去。",
@@ -868,7 +877,6 @@
     },
     "smoking": "全席禁煙（店外有吸菸區）",
     "extra": {
-      "inclusion": "A",
       "conflicts": [
         "營業時間：官網 11:00～14:00/14:15、17:00～19:30；まっぷる 11:00～14:30、17:00～20:00；るるぶ 11～19 時；食べログ 17:00～19:00",
         "預約：官網 不接受；HAMONI 有個室・貸切（採官網、食べログ）",
@@ -1023,6 +1031,9 @@
       "googleReviews": 144,
       "note": null
     },
+    "inclusion": [
+      "A"
+    ],
     "tabelogOwner": false,
     "googleName": null,
     "notes": "用二見「岩戸の塩」做的塩ようかん專門店，伴手禮為主（一條 777 円）。有 6 席，內用菜單沒有來源。",
@@ -1060,7 +1071,6 @@
     },
     "smoking": "全席禁煙",
     "extra": {
-      "inclusion": "A",
       "conflicts": []
     }
   },
@@ -1230,6 +1240,9 @@
       "googleReviews": 113,
       "note": null
     },
+    "inclusion": [
+      "A"
+    ],
     "tabelogOwner": false,
     "googleName": "BonTin cafe 禊 (ボンタンカフェみそぎ)",
     "notes": "東京日本橋 BonTin cafe 的 2 號店，在二見興玉神社境內，看得到禊橋和伊勢灣。自家焙煎咖啡、卵サンド、甜點。只收電子支付（不收現金）。",
@@ -1265,7 +1278,6 @@
     },
     "smoking": "全席禁煙",
     "extra": {
-      "inclusion": "A",
       "conflicts": [
         "讀音：神社官網「ボンタンカフェ」、ぐるなび「ボンティンカフェミソギ」",
         "公休：食べログ 列表 週五；食べログ 店家頁 週五（一致）"
@@ -1459,6 +1471,9 @@
       "googleReviews": 128,
       "note": null
     },
+    "inclusion": [
+      "A"
+    ],
     "tabelogOwner": false,
     "googleName": null,
     "notes": "夫婦岩表參道的中華・飲茶（Google 4.5／128 則）。午餐從 17 種主菜＋6 種點心選的套餐；晚餐是配紹興酒的套餐。二見浦少數開到 21:00 的店。",
@@ -1496,7 +1511,6 @@
     },
     "smoking": "全席禁煙",
     "extra": {
-      "inclusion": "A",
       "conflicts": [
         "個室：食べログ 無；HAMONI 有",
         "晚餐開始：伊勢志摩観光ナビ 17:30；食べログ 17:00"
@@ -1661,6 +1675,9 @@
       "googleReviews": 275,
       "note": null
     },
+    "inclusion": [
+      "C"
+    ],
     "tabelogOwner": false,
     "googleName": "まるはま 伊勢店",
     "notes": "二見興玉神社 門前的食堂（Google 名稱「まるはま 伊勢店」，3.3／275 則，評價偏低），伊勢烏龍、丼飯套餐、海鮮定食、霜淇淋。座位多、有座敷，參拜後就近吃午餐的選項。",
@@ -1699,7 +1716,6 @@
     },
     "smoking": "全席禁煙",
     "extra": {
-      "inclusion": "C",
       "conflicts": [
         "營業時間：食べログ 9:00～16:00；るるぶ・なっぷ 9:00～17:00",
         "HAMONI 的「まるはま」是千葉縣 金谷港 的同名店，沒有採用"
@@ -1855,6 +1871,9 @@
       "googleReviews": 43,
       "note": null
     },
+    "inclusion": [
+      "C"
+    ],
     "tabelogOwner": false,
     "googleName": null,
     "notes": "神社境內的日本畫・緣起物・しめ縄 的店，兼賣伊勢茶、甘酒、かえるクッキー、拿鐵（可外帶）。參拜時順路買點心，不是坐下吃飯的地方。",
@@ -1890,7 +1909,6 @@
     },
     "smoking": null,
     "extra": {
-      "inclusion": "C",
       "conflicts": [
         "個室：食べログ 列表標「個室有」，和店的實際樣子（美術品店兼外帶）對不上",
         "官網：食べログ HP 欄 withwhite.jp；Google 網站欄 umikaze.store"
@@ -1998,6 +2016,9 @@
       "googleReviews": 177,
       "note": null
     },
+    "inclusion": [
+      "C"
+    ],
     "tabelogOwner": false,
     "googleName": "民宿 お食事処 潮騒",
     "notes": "二見町江的民宿兼食堂（Google 名稱「民宿 お食事処 潮騒」，3.8／177 則）。Google 名稱有「お食事処」，判斷一般客也能用餐；營業時間、菜單完全沒有來源（4travel 只有 2014 年的住宿口碑）。**非住客能不能用餐沒有明寫**，排進行程時先電話確認（questions.md）。",
@@ -2035,7 +2056,6 @@
     },
     "smoking": null,
     "extra": {
-      "inclusion": "C",
       "conflicts": [
         "4travel 把同址登記成民宿「潮騒」；食べログ 是日本料理店。非住客能否用餐沒有明寫（Google 名稱有「お食事処」）"
       ]
@@ -2231,6 +2251,9 @@
       "googleReviews": 205,
       "note": null
     },
+    "inclusion": [
+      "C"
+    ],
     "tabelogOwner": false,
     "googleName": null,
     "notes": "創業約 60 年的割烹・仕出し（外送便當）店（Google 3.9／205 則），伊勢路定食、炸大蝦定食、鰻魚、壽司，宴會可以做伊勢海老・河豚。二見浦能接團體宴會的少數店，但全面可吸菸。",
@@ -2272,7 +2295,6 @@
     },
     "smoking": "全席喫煙可（官網「全面喫煙可」）",
     "extra": {
-      "inclusion": "C",
       "conflicts": [
         "營業時間：HAMONI 只列週日 12:00～16:00；官網 12:00～14:30／17:00～不定時；食べログ 17:00～20:00"
       ]
@@ -2471,6 +2493,9 @@
       "googleReviews": 73,
       "note": null
     },
+    "inclusion": [
+      "C"
+    ],
     "tabelogOwner": true,
     "googleName": "maruru cafe（カフェ＆ダイニング）伊勢・夫婦岩",
     "notes": "夫婦岩表參道的咖啡＆餐廳（Google 名稱「maruru cafe（カフェ＆ダイニング）伊勢・夫婦岩」，3.8／73 則），午餐定食・義大利麵・鬆餅，晚餐有松阪牛、伊勢海老。開到 20:00 不休息，二見浦晚上能訂位、能包場的少數店。",
@@ -2510,7 +2535,6 @@
     },
     "smoking": "全席禁煙（腹地內有吸菸區）",
     "extra": {
-      "inclusion": "C",
       "conflicts": [
         "營業時間：官網 11:00～20:00、不定休；HAMONI 引的投稿 11:00～18:00、週三休（可能是 2023 開幕初期）",
         "所在的やわらの湯 まるや 是女性專用旅館；咖啡店官網、媒體都當一般咖啡店介紹，非住客、男性可以用餐（沒有明寫）"
@@ -2702,6 +2726,9 @@
       "googleReviews": 15,
       "note": null
     },
+    "inclusion": [
+      "D2"
+    ],
     "tabelogOwner": true,
     "googleName": null,
     "notes": "二見町西的鰻魚店（2023 年開，Google 3.7／15 則，ホットペッパー 口碑 3.9），肉厚份量多、CP 值高。D② 補二見町西的不含晚餐住宿（オレンジガーデン、プラフィーノ）的晚餐，但 L.O. 18:30～19:30 很早。",
@@ -2743,7 +2770,6 @@
     },
     "smoking": "全席禁煙（店外有吸菸區）",
     "extra": {
-      "inclusion": "D2",
       "conflicts": [
         "營業時間：食べログ 11:00～19:00 通し（L.O. 18:30）；ホットペッパー 午晚分開、晚到 20:00",
         "吧台：ホットペッパー 座位表寫沒有吧台，照片說明寫有大吧台；食べログ 吧台 14 席"
@@ -2937,6 +2963,9 @@
       "googleReviews": 415,
       "note": null
     },
+    "inclusion": [
+      "A"
+    ],
     "tabelogOwner": false,
     "googleName": null,
     "notes": "二見町溝口的大份量中華（Google 4.1／415 則），HAMONI 伊勢中華排第 2。招牌是天津飯＋炒飯的「スーパー天炒飯」。開車去；人氣店，可以先打電話訂。",
@@ -2976,7 +3005,6 @@
     },
     "smoking": "全席禁煙（食べログ）",
     "extra": {
-      "inclusion": "A",
       "conflicts": [
         "個室：ホットペッパー 無；HAMONI 有包場用個室",
         "吸菸：ホットペッパー（2020）全席喫煙可；食べログ・HAMONI 禁煙",
@@ -3143,6 +3171,9 @@
       "googleReviews": 560,
       "note": null
     },
+    "inclusion": [
+      "D1"
+    ],
     "tabelogOwner": false,
     "googleName": null,
     "notes": "松下社旁的地產直賣所（Google 3.8／560 則），名物是現搗麻糬、便當、麵包、霜淇淋。D① 補二見外圍週一中午的缺口；能不能坐下吃不確定，當外帶午餐或點心。",
@@ -3180,7 +3211,6 @@
     },
     "smoking": "全席禁煙",
     "extra": {
-      "inclusion": "D1",
       "conflicts": []
     }
   },
@@ -3324,6 +3354,9 @@
       "googleReviews": 37,
       "note": null
     },
+    "inclusion": [
+      "D1"
+    ],
     "tabelogOwner": false,
     "googleName": null,
     "notes": "二見町溝口的泰式家庭料理・咖哩（Google 4.3／37 則）。食べログ 以外幾乎沒有來源；D① 補二見外圍週一中午的缺口（ワスケ 週一休）。",
@@ -3361,7 +3394,6 @@
     },
     "smoking": null,
     "extra": {
-      "inclusion": "D1",
       "conflicts": []
     }
   },
@@ -3496,6 +3528,9 @@
       "googleReviews": 44,
       "note": null
     },
+    "inclusion": [
+      "D1"
+    ],
     "tabelogOwner": false,
     "googleName": null,
     "notes": "松下的老喫茶店（Google 4.5／44 則），8:00 開，有早餐・午餐。食べログ 以外完全沒有來源；全席可吸菸，帶小孩、長輩不太適合。",
@@ -3533,7 +3568,6 @@
     },
     "smoking": "全席喫煙可（食べログ）",
     "extra": {
-      "inclusion": "D1",
       "conflicts": [
         "地址：食べログ 二見町松下 1337-2；Google 二見町松下 227（座標在 蘇民 旁約 70 m）"
       ]
@@ -3691,6 +3725,9 @@
       "googleReviews": 703,
       "note": "Google 星數・評論數・座標借住宿本體（futami-uminocho）"
     },
+    "inclusion": [
+      "A"
+    ],
     "tabelogOwner": true,
     "googleName": null,
     "notes": "二見外圍松下的料理旅館（住宿 `futami-uminocho`），官網公告「日帰り夕食」開始，非住客可以吃會席晚餐（14,850 円起，伊勢海老・鮑・松阪牛）。桃源郷（`futami-togenkyo`，約 700 m）一帶晚上唯一能吃飯的地方。",
@@ -3729,7 +3766,6 @@
     },
     "smoking": "全席禁煙（有吸菸處）",
     "extra": {
-      "inclusion": "A",
       "conflicts": [
         "プレミアム会席：489ban 日帰り 19,800 円；食べログ コース 19,250 円",
         "停車場：楽天 60 台、観光三重 70 台"

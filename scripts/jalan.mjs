@@ -7,10 +7,11 @@
 //       （旅館 ID、名稱、評分、評論數），給 apply 對名稱用。三重縣：鳥羽 241100、南鳥羽 241300、伊勢・二見 241000、志摩 241400
 //   node scripts/jalan.mjs yad <旅館ID>...
 //       讀旅館頁（https://www.jalan.net/yad<ID>/）的評分，一行一筆印出
-//   node scripts/jalan.mjs apply <area> --lists 241100,241300 [--map 資料點id=旅館ID,...] [--dry-run]
+//   node scripts/jalan.mjs apply <area> --lists 241100,241300 [--map 資料點id=旅館ID,...] [--candidates] [--dry-run]
 //       對 data/areas/<area>/lodging.json 每一筆：旅館 ID 先看既有的じゃらん網址，沒有就用名稱對地區列表（--map 可以手動指定）；
 //       再讀旅館頁拿評分，寫進 ratings.jalan、ratings.jalanReviews，sources 加旅館頁。
 //       已有的值和旅館頁不同時以旅館頁為準，舊值寫進 extra.conflicts（PLAN T7i）。只動 ratings、sources、extra.conflicts。
+//       --candidates：同時更新 data/raw/<area>/candidates/lodging.json 裡對應候選（pointId）的 ratings.jalan、jalanReviews。
 //
 // 頁面是 Shift_JIS：取 arrayBuffer() 再用 TextDecoder('shift_jis') 解碼（res.text()、WebFetch 會亂碼）。
 // robots.txt（2026-10-18）沒有禁止 /yad…/ 和地區列表；呼叫間隔 1.1 秒；403、429 就停。
@@ -99,6 +100,8 @@ if (cmd === 'list') {
   const { data, eol } = readJson(file);
   const norm = (s) => (s ?? '').normalize('NFKC').replace(/[【\[（(「『].*?[】\]）)」』]/g, '').replace(/[\s　・･|｜／/〜~\-－ー、。,.!！]/g, '').toLowerCase();
   const D = today();
+  const candFile = path.join(ROOT, `data/raw/${area}/candidates/lodging.json`);
+  const cands = args.includes('--candidates') ? readJson(candFile) : null;
   let changed = 0;
   for (const x of data) {
     const known = [x.bookingLinks?.jalan, ...(x.sources ?? []).map((s) => s.url)].find((u) => /jalan\.net\/yad\d+/.test(u ?? ''));
@@ -139,12 +142,17 @@ if (cmd === 'list') {
     const src = x.sources.find((s) => s.url.replace(/\/$/, '') === r.url.replace(/\/$/, ''));
     if (src) src.retrieved = D;
     else x.sources.push({ type: 'booking-site', url: r.url, retrieved: D, note: 'じゃらん クチコミ総合、評論數（scripts/jalan.mjs）' });
+    const cand = cands?.data.find((c) => c.pointId === x.id);
+    if (cand) cand.ratings = { ...cand.ratings, jalan: after.jalan, jalanReviews: after.jalanReviews };
     changed++;
     console.log(`ok ${x.id}  yad${yadNo}（${how}）${r.name}：${before.jalan ?? '-'} → ${after.jalan}／${after.jalanReviews} 則`);
   }
   console.log(`寫入 ${changed} 間（${area} 共 ${data.length} 間）`);
   if (args.includes('--dry-run')) console.error('（--dry-run，沒有寫檔）');
-  else writeJson(file, data, eol);
+  else {
+    writeJson(file, data, eol);
+    if (cands) writeJson(candFile, cands.data, cands.eol);
+  }
 } else {
   console.error('用法：node scripts/jalan.mjs <list|yad|apply> …（說明見檔案開頭）');
   process.exit(2);

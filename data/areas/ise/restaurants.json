@@ -175,6 +175,10 @@
       "googleReviews": 1981,
       "note": null
     },
+    "inclusion": [
+      "A",
+      "B"
+    ],
     "tabelogOwner": false,
     "googleName": null,
     "notes": "おかげ横丁裡的伊勢烏龍老店，先點餐、拿號碼牌再入座。份量偏小，可以當輕食；手打麵限量。",
@@ -214,7 +218,6 @@
     },
     "smoking": "全席禁煙（おかげ横丁內有吸菸處）",
     "extra": {
-      "inclusion": "AB",
       "conflicts": [
         "營業時間：官網 10:00～17:00（L.O. 16:30）；食べログ、まっぷる、ホットペッパー 10:00～16:30",
         "伊勢うどん價格：官網 650 円；まっぷる、るるぶ 600 円；LIVE JAPAN（2021）500 円"
@@ -384,6 +387,10 @@
       "googleReviews": 573,
       "note": null
     },
+    "inclusion": [
+      "A",
+      "C"
+    ],
     "tabelogOwner": false,
     "googleName": "伊勢うどん奥野家",
     "notes": "大正年間創業的伊勢烏龍店，和牛ステーキ おく乃 同地址、同電話（可能同一經營者）。午餐尖峰要排隊，手こね寿司套餐常賣完。",
@@ -421,7 +428,6 @@
     },
     "smoking": "全席禁煙",
     "extra": {
-      "inclusion": "AC",
       "conflicts": [
         "和 ise-okuno-steak 同址同電話（0596-22-2589）"
       ]
@@ -591,6 +597,9 @@
       "googleReviews": 439,
       "note": null
     },
+    "inclusion": [
+      "A"
+    ],
     "tabelogOwner": false,
     "googleName": null,
     "notes": "第 2 代店主的伊勢烏龍店，醬汁放一晚，推薦加蛋（玉子入り）。中午常排隊，開店後或平日 14:30 以後比較好進。",
@@ -629,7 +638,6 @@
     },
     "smoking": "全席禁煙",
     "extra": {
-      "inclusion": "A",
       "conflicts": [
         "公休：觀光三重 週四（祝日營業）；まっぷる 另有每月一次不定休週三、部分假日前一天",
         "座位：4travel（2017）只有 4 人桌；Wanderlog 有座敷"
@@ -806,6 +814,9 @@
       "googleReviews": 295,
       "note": null
     },
+    "inclusion": [
+      "A"
+    ],
     "tabelogOwner": false,
     "googleName": "伊勢醤油本舗 本店",
     "notes": "おかげ横丁裡的伊勢醬油直營店，鐵板現炒的伊勢焼きうどん和醬油霜淇淋。外帶為主，適合邊走邊吃。",
@@ -843,7 +854,6 @@
     },
     "smoking": "全席禁煙（おかげ横丁內有吸菸處）",
     "extra": {
-      "inclusion": "A",
       "conflicts": [
         "伊勢焼きうどん價格：官網 650 円；まっぷる 550／600 円；hamoni 500 円",
         "營業時間：官網、観光三重 9:30～17:00；まっぷる 9:30～17:30",
@@ -1028,6 +1038,9 @@
       "googleReviews": 632,
       "note": null
     },
+    "inclusion": [
+      "A"
+    ],
     "tabelogOwner": false,
     "googleName": null,
     "notes": "手こね寿司＋伊勢烏龍的連鎖店（手こね茶屋 3 家之一）。席位多，通常不太用等。",
@@ -1063,7 +1076,6 @@
     "accessibility": null,
     "smoking": "全面禁煙",
     "extra": {
-      "inclusion": "A",
       "conflicts": [
         "營業時間：官網 平日 10:30～17:30、週末假日 10:00～17:30；食べログ 10:30～17:00",
         "地址：食べログ 93-1、官網 93"
@@ -1215,6 +1227,9 @@
       "googleReviews": 293,
       "note": null
     },
+    "inclusion": [
+      "A"
+    ],
     "tabelogOwner": false,
     "googleName": null,
     "notes": "自助式點餐的伊勢烏龍小店，伊勢うどん 500 円起（價格多是 2018～2023 的口コミ）。午餐時段擁擠，2023 年有人排約 15 分。",
@@ -1247,7 +1262,6 @@
     "accessibility": null,
     "smoking": "全席禁煙",
     "extra": {
-      "inclusion": "A",
       "conflicts": [
         "地址：食べログ 宇治中之切町 10；Google、Retty 另一頁 11"
       ]
@@ -1403,6 +1417,9 @@
       "googleReviews": 91,
       "note": null
     },
+    "inclusion": [
+      "A"
+    ],
     "tabelogOwner": false,
     "googleName": null,
     "notes": "宇治浦田的玉子燒外帶小店（明和町產雞蛋），食べログ類別是うどん、サンドイッチ，但 Retty 口コミ說只有玉子焼、玉子サンド。現煎要等約 15 分。",
@@ -1435,7 +1452,6 @@
     "accessibility": null,
     "smoking": "全席禁煙",
     "extra": {
-      "inclusion": "A",
       "conflicts": [
         "營業時間：食べログ 10:00～15:00；Retty 11:00～16:00",
         "類別：食べログ うどん、サンドイッチ；Retty 口コミ說只有玉子焼、玉子サンド",
@@ -1648,6 +1664,11 @@
       "googleReviews": 2616,
       "note": null
     },
+    "inclusion": [
+      "A",
+      "B",
+      "C"
+    ],
     "tabelogOwner": false,
     "googleName": null,
     "notes": "天保年間創業的てこね寿司老店，建物用了宇治橋的古材。網路訂位只到 10 人，15 人要電話訂。",
@@ -1689,7 +1710,6 @@
     },
     "smoking": "全席禁煙（店外有吸菸處）",
     "extra": {
-      "inclusion": "ABC",
       "conflicts": [
         "營業時間：官網、觀光三重 11:00～17:00；Retty、ホットペッパー、まっぷる 10:30～19:30",
         "席數：食べログ 123、Retty 228",
@@ -1879,6 +1899,9 @@
       "googleReviews": 668,
       "note": null
     },
+    "inclusion": [
+      "A"
+    ],
     "tabelogOwner": false,
     "googleName": "手こね茶屋",
     "notes": "內宮前宇治園 2 樓的手こね茶屋，有さんまずし。要走樓梯上 2 樓。",
@@ -1918,7 +1941,6 @@
     },
     "smoking": "全面禁煙",
     "extra": {
-      "inclusion": "A",
       "conflicts": [
         "營業時間：食べログ 平日 11:00～16:00、週末假日 10:30～17:00；官網推定週末 10:00～17:00；まっぷる 10:30～16:30",
         "地址：食べログ 47-22、Google 47-13、官網 47-1（都是宇治園 2F）"
@@ -2082,6 +2104,9 @@
       "googleReviews": 36,
       "note": null
     },
+    "inclusion": [
+      "C"
+    ],
     "tabelogOwner": false,
     "googleName": "伊勢鮨 海さち山さち",
     "notes": "おかげ横丁裡用三重海產、山產的吧台壽司。伊勢うなぎ握り可以外帶。",
@@ -2119,7 +2144,6 @@
     },
     "smoking": null,
     "extra": {
-      "inclusion": "C",
       "conflicts": []
     }
   },
@@ -2287,6 +2311,9 @@
       "googleReviews": 844,
       "note": null
     },
+    "inclusion": [
+      "A"
+    ],
     "tabelogOwner": false,
     "googleName": null,
     "notes": "伊勢精釀啤酒「伊勢角屋麦酒」的食堂，看得到五十鈴川。冬天主打牡蠣（カキフライ、土手鍋）。",
@@ -2321,7 +2348,6 @@
     "accessibility": null,
     "smoking": "全席禁煙（おかげ横丁內有吸菸處）",
     "extra": {
-      "inclusion": "A",
       "conflicts": [
         "營業時間：官網 11:00～17:00；食べログ 週末到 17:30"
       ]
@@ -2505,6 +2531,10 @@
       "googleReviews": 276,
       "note": null
     },
+    "inclusion": [
+      "A",
+      "C"
+    ],
     "tabelogOwner": false,
     "googleName": "参宮亭五十鈴食堂（岩戸屋内）",
     "notes": "內宮前土產店岩戸屋裡的食堂（舊名 岩戸屋 五十鈴食堂），早上 8 點多就開，可以參拜前吃早餐。",
@@ -2537,7 +2567,6 @@
     "accessibility": null,
     "smoking": "全席禁煙",
     "extra": {
-      "inclusion": "AC",
       "conflicts": []
     }
   },
@@ -2723,6 +2752,10 @@
       "googleReviews": 3453,
       "note": null
     },
+    "inclusion": [
+      "A",
+      "C"
+    ],
     "tabelogOwner": true,
     "googleName": null,
     "notes": "內宮前明治創業的大食堂，手こね寿司、松阪牛ローストビーフてこねずし、伊勢烏龍。店前的あわび串會排隊。",
@@ -2761,7 +2794,6 @@
     "accessibility": null,
     "smoking": "全席禁煙",
     "extra": {
-      "inclusion": "AC",
       "conflicts": [
         "電話：官網、食べログ 050-1809-3924；HAMONI 0596-24-3494",
         "座席：食べログ テーブル 27 席・座敷 11 席（合計和 160 席對不上，可能是桌數）"
@@ -2938,6 +2970,9 @@
       "googleReviews": 840,
       "note": null
     },
+    "inclusion": [
+      "A"
+    ],
     "tabelogOwner": false,
     "googleName": null,
     "notes": "おかげ横丁裡有活魚池的漁師料理店，伊勢海老、鮑魚可以點來現做。尖峰時段要排隊（2026-06 口コミ 約 10 分）。",
@@ -2975,7 +3010,6 @@
     "accessibility": null,
     "smoking": "全席禁煙（おかげ横丁內有吸菸處）",
     "extra": {
-      "inclusion": "A",
       "conflicts": [
         "席數：食べログ 63、Retty 128",
         "營業時間：官網 平日 11:00～17:00；食べログ 平日到 16:30；まっぷる 11:00～16:30"
@@ -3167,6 +3201,9 @@
       "googleReviews": 250,
       "note": null
     },
+    "inclusion": [
+      "C"
+    ],
     "tabelogOwner": true,
     "googleName": "伊勢海老屋えび勢",
     "notes": "伊勢海老專門店，白天單點（片身焼、天丼），晚上只有預約的套餐。Google 3.1 偏低。",
@@ -3209,7 +3246,6 @@
     },
     "smoking": "全席禁煙",
     "extra": {
-      "inclusion": "C",
       "conflicts": [
         "營業時間：官網・食べログ 11:00～18:00、夜間預約制；hamoni 11:00～21:00、年中無休"
       ]
@@ -3361,6 +3397,9 @@
       "googleReviews": 40,
       "note": null
     },
+    "inclusion": [
+      "C"
+    ],
     "tabelogOwner": true,
     "googleName": null,
     "notes": "浦村牡蠣養殖業者開的店，生牡蠣、焼き岩ガキ、伊勢烏龍、おでん。只收現金或 PayPay（2024 口コミ）。在おはらい町通深處，比較安靜。",
@@ -3395,7 +3434,6 @@
     "accessibility": null,
     "smoking": "分煙",
     "extra": {
-      "inclusion": "C",
       "conflicts": []
     }
   },
@@ -3581,6 +3619,10 @@
       "googleReviews": 1104,
       "note": null
     },
+    "inclusion": [
+      "A",
+      "C"
+    ],
     "tabelogOwner": false,
     "googleName": "五十鈴川河畔 とうふや",
     "notes": "五十鈴川旁的古民家，店前工房自製豆腐（品評會得獎），配國產天然星鰻。桌席只有 18 席。",
@@ -3623,7 +3665,6 @@
     },
     "smoking": "全席禁煙（店外有吸菸處）",
     "extra": {
-      "inclusion": "AC",
       "conflicts": [
         "營業時間：官網 11:00～17:00；食べログ 11:00～15:00；LIVE JAPAN（2020）有晚餐，現在官網沒有",
         "とうふや膳 價格：官網 2,000 円、Walker（2025）1,950 円、LIVE JAPAN（2020）1,900 円"
@@ -3799,6 +3840,10 @@
       "googleReviews": 178,
       "note": null
     },
+    "inclusion": [
+      "A",
+      "C"
+    ],
     "tabelogOwner": false,
     "googleName": null,
     "notes": "おかげ横丁北端、五十鈴川旁的 2 層樓食堂，灶炊土鍋飯的一汁三菜。口コミ都說人少、安靜（2014～2019 舊口コミ）。",
@@ -3838,7 +3883,6 @@
     },
     "smoking": "全席禁煙",
     "extra": {
-      "inclusion": "AC",
       "conflicts": []
     }
   },
@@ -4024,6 +4068,9 @@
       "googleReviews": 467,
       "note": null
     },
+    "inclusion": [
+      "A"
+    ],
     "tabelogOwner": true,
     "googleName": null,
     "notes": "宇治橋前土產店二光堂裡的餐廳，松阪牛ステーキ丼（平成 3 年開賣）、てこね寿司＋伊勢烏龍套餐。",
@@ -4062,7 +4109,6 @@
     "accessibility": null,
     "smoking": "全面禁煙",
     "extra": {
-      "inclusion": "A",
       "conflicts": [
         "席數：官網・觀光三重 56、食べログ 70、旅色 70（座敷 30、椅子 40）",
         "包場：官網不可、旅色可"
@@ -4269,6 +4315,9 @@
       "googleReviews": 385,
       "note": null
     },
+    "inclusion": [
+      "A"
+    ],
     "tabelogOwner": true,
     "googleName": "松阪まるよし 伊勢おはらい町店",
     "notes": "松阪牛專門店，1 樓外帶（牛すきまん、コロッケ）、2 樓餐廳（牛鍋御膳）。不能預約，午餐時段可能要等。",
@@ -4304,7 +4353,6 @@
     },
     "smoking": "全面禁煙",
     "extra": {
-      "inclusion": "A",
       "conflicts": [
         "營業時間：官網 10:30～17:00（L.O. 16:00）；食べログ 10:30～16:00",
         "個室：官網 8 席、GLTJP 8 間",
@@ -4486,6 +4534,9 @@
       "googleReviews": 291,
       "note": null
     },
+    "inclusion": [
+      "C"
+    ],
     "tabelogOwner": true,
     "googleName": "おく乃",
     "notes": "奥野家同址的和牛牛排店，松阪牛ヒレ膳、和牛ロース膳。個室 4・6・8 人，15 人要分 2～3 間。",
@@ -4524,7 +4575,6 @@
     },
     "smoking": "全席禁煙",
     "extra": {
-      "inclusion": "C",
       "conflicts": [
         "松阪牛ヒレ膳：まっぷる 9,600 円、ぐるなび 7,900 円、食べログ コース 120g 13,500 円",
         "和 ise-okunoya 同址同電話"
@@ -4705,6 +4755,9 @@
       "googleReviews": 383,
       "note": null
     },
+    "inclusion": [
+      "C"
+    ],
     "tabelogOwner": true,
     "googleName": null,
     "notes": "松阪市老牌燒肉一升びん 的內宮店，只做午餐，A5 松阪牛燒肉、壽喜燒套餐。",
@@ -4740,7 +4793,6 @@
     "accessibility": null,
     "smoking": "全席禁煙",
     "extra": {
-      "inclusion": "C",
       "conflicts": []
     }
   },
@@ -4911,6 +4963,9 @@
       "googleReviews": 203,
       "note": null
     },
+    "inclusion": [
+      "C"
+    ],
     "tabelogOwner": true,
     "googleName": "焼肉すだく伊勢神宮おはらい町店",
     "notes": "おはらい町少數營業到晚上 21:00 的店，主打近江牛、牛舌（和伊勢在地料理關聯弱）。各桌有排煙罩。",
@@ -4951,7 +5006,6 @@
     },
     "smoking": "全席禁煙",
     "extra": {
-      "inclusion": "C",
       "conflicts": [
         "貸切：食べログ 可；ホットペッパー 本文可、項目欄不可"
       ]
@@ -5134,6 +5188,10 @@
       "googleReviews": 215,
       "note": null
     },
+    "inclusion": [
+      "A",
+      "C"
+    ],
     "tabelogOwner": false,
     "googleName": "横丁いかだ荘",
     "notes": "志摩的矢灣いかだ荘 山上 的おかげ横丁店，的矢牡蠣フライ定食、生牡蠣、伊勢真鯛茶漬け。只營業到 17:00，不能當晚餐。",
@@ -5175,7 +5233,6 @@
     },
     "smoking": "全席禁煙",
     "extra": {
-      "inclusion": "AC",
       "conflicts": [
         "營業時間：官網 11:00～17:00；食べログ 週末到 17:30"
       ]
@@ -5363,6 +5420,9 @@
       "googleReviews": 341,
       "note": null
     },
+    "inclusion": [
+      "C"
+    ],
     "tabelogOwner": false,
     "googleName": "はいからさん おかげ横丁",
     "notes": "おかげ横丁裡明治・大正風洋館的洋食店，オムハヤシ、漢堡排、伊勢志摩パールポークのカツカレー。小孩容易吃。",
@@ -5398,7 +5458,6 @@
     "accessibility": null,
     "smoking": "全席禁煙（おかげ横丁內有吸菸處）",
     "extra": {
-      "inclusion": "C",
       "conflicts": [
         "營業時間：官網 10:00～17:00；食べログ 10:00～16:30；まっぷる 10:30～16:30"
       ]
@@ -5524,6 +5583,10 @@
       "googleReviews": 1278,
       "note": "Google 是住宿本體「神宮会館」的評分"
     },
+    "inclusion": [
+      "C",
+      "F"
+    ],
     "tabelogOwner": false,
     "googleName": "神宮会館",
     "notes": "內宮前住宿 神宮会館（lodging `ise-jingu-kaikan`）的團體昼食：官網寫「神宮参拝の昼食に」、10 人以上受理。非住客能不能只訂昼食官網沒有明寫，訂的時候要確認。住宿本體另收在 lodging.json。",
@@ -5561,7 +5624,6 @@
     },
     "smoking": "全席禁煙",
     "extra": {
-      "inclusion": "CF",
       "lodgingId": "ise-jingu-kaikan",
       "conflicts": [
         "食べログ地址寫「152 ４階」，官網沒寫昼食在幾樓"
@@ -5755,6 +5817,10 @@
       "googleReviews": 7936,
       "note": null
     },
+    "inclusion": [
+      "A",
+      "B"
+    ],
     "tabelogOwner": false,
     "googleName": null,
     "notes": "1707 年創業的赤福總本店，早上 5:00 開。內用只有赤福餅（盆：2 個＋ほうじ茶）。尖峰平日排 10～30 分、週末 30 分～1 小時，清晨和 16:00 以後較空（部落格）。",
@@ -5793,7 +5859,6 @@
     },
     "smoking": "全席禁煙",
     "extra": {
-      "inclusion": "AB",
       "conflicts": [
         "盆的價格：官網現行 400 円；觀光三重（2022）250 円；LIVE JAPAN（2020）210 円"
       ]
@@ -5966,6 +6031,9 @@
       "googleReviews": 182,
       "note": null
     },
+    "inclusion": [
+      "A"
+    ],
     "tabelogOwner": false,
     "googleName": null,
     "notes": "赤福本店對面的季節店：冬季賣赤福ぜんざい（附焼餅、塩昆布），夏季賣赤福氷。只能內用。",
@@ -6001,7 +6069,6 @@
     },
     "smoking": "全席禁煙",
     "extra": {
-      "inclusion": "A",
       "conflicts": [
         "ぜんざい價格：官網現行 800 円；觀光三重 530 円、co-trip 600 円（日期不明）",
         "公休：官網「依活動日程」vs 觀光三重「期間中無休」",
@@ -6171,6 +6238,9 @@
       "googleReviews": 3011,
       "note": null
     },
+    "inclusion": [
+      "A"
+    ],
     "tabelogOwner": false,
     "googleName": null,
     "notes": "離內宮宇治橋最近的赤福，比本店空（口コミ）；年末會排長隊。",
@@ -6208,7 +6278,6 @@
     },
     "smoking": "全席禁煙",
     "extra": {
-      "inclusion": "A",
       "conflicts": [
         "價格：4travel 舊口コミ（2019～2021）2 個 210 円；官網現行 400 円"
       ]
@@ -6382,6 +6451,9 @@
       "googleReviews": 1693,
       "note": null
     },
+    "inclusion": [
+      "A"
+    ],
     "tabelogOwner": false,
     "googleName": null,
     "notes": "おはらい町北端、市營浦田停車場旁的赤福，比本店好進（口コミ）。有椅子席，長輩比較方便。",
@@ -6421,7 +6493,6 @@
     },
     "smoking": "全席禁煙",
     "extra": {
-      "inclusion": "A",
       "conflicts": [
         "營業時間：官網 9:00～17:00（平日喫茶 10:00～）；食べログ 9:00～17:30；4travel 2025-01 口コミ說早上 8 點有開",
         "位置：4travel 寫在本店對面，官網地址是宇治浦田 1-11-5（浦田停車場旁）"
@@ -6610,6 +6681,9 @@
       "googleReviews": 564,
       "note": null
     },
+    "inclusion": [
+      "A"
+    ],
     "tabelogOwner": false,
     "googleName": "五十鈴茶屋",
     "notes": "赤福集團的和菓子・喫茶店，在赤福本店旁。比赤福本店好進（口コミ），季節菓子午後可能賣完。",
@@ -6648,7 +6722,6 @@
     },
     "smoking": "全席禁煙",
     "extra": {
-      "inclusion": "A",
       "conflicts": [
         "營業時間：官網 9:00～17:00（喫茶 9:30～16:30）；觀光三重 8:00～17:00；Retty 9:00～16:30",
         "電話：官網 0596-22-7000；觀光三重、Retty 0596-22-3012",
@@ -6833,6 +6906,9 @@
       "googleReviews": 732,
       "note": null
     },
+    "inclusion": [
+      "A"
+    ],
     "tabelogOwner": false,
     "googleName": null,
     "notes": "おかげ横丁裡面河的咖啡館，ネルドリップ咖啡。週末約 5 人排隊、很快有位（Retty 2026）。",
@@ -6871,7 +6947,6 @@
     },
     "smoking": "全席禁煙（渡り廊下過去的房間可吸菸）",
     "extra": {
-      "inclusion": "A",
       "conflicts": [
         "營業時間：官網、觀光三重 9:30～17:00（L.O. 16:30）；Retty 9:00～17:30",
         "席數：食べログ 27、Retty 30"
@@ -7097,6 +7172,10 @@
       "googleReviews": 1986,
       "note": null
     },
+    "inclusion": [
+      "A",
+      "B"
+    ],
     "tabelogOwner": false,
     "googleName": null,
     "notes": "明治創業的伊勢牛老店。店頭外帶的コロッケ 常排長隊，內用是牛丼、牛鍋。席多又能電話預約，是おかげ横丁裡少數能讓 15 人坐下吃午餐的店（要分桌）。",
@@ -7137,7 +7216,6 @@
     },
     "smoking": "全席禁煙（おかげ横丁內有吸菸處）",
     "extra": {
-      "inclusion": "AB",
       "conflicts": [
         "營業時間：豚捨官網 物販 9:00～17:30、食事 11:00～17:30；おかげ横丁官網 9:30～17:00（飲食 11:00～、L.O. 16:30）；食べログ 平日 9:30～17:30、土日 9:30～18:00（1～2 月另寫 9:30～17:00）",
         "席數：官網 134；食べログ 86；LIVE JAPAN（2021）約 150",
@@ -7316,6 +7394,9 @@
       "googleReviews": 227,
       "note": null
     },
+    "inclusion": [
+      "A"
+    ],
     "tabelogOwner": false,
     "googleName": null,
     "notes": "おはらい町的豆腐店，外帶うの花（豆渣）甜甜圈、豆腐霜淇淋。現在的價格沒有來源（2017 年 100 円）。",
@@ -7353,7 +7434,6 @@
     },
     "smoking": "全席禁煙",
     "extra": {
-      "inclusion": "A",
       "conflicts": []
     }
   },
@@ -7537,6 +7617,9 @@
       "googleReviews": 348,
       "note": null
     },
+    "inclusion": [
+      "A"
+    ],
     "tabelogOwner": false,
     "googleName": "だんご屋 おはらい町",
     "notes": "おかげ横丁的現烤糰子店，外帶為主。",
@@ -7574,7 +7657,6 @@
     },
     "smoking": "全席禁煙",
     "extra": {
-      "inclusion": "A",
       "conflicts": [
         "黒糖みつ団子 價格：觀光三重（2022）130 円；官網現行 250 円",
         "營業時間：觀光三重 9:30～17:30；官網 9:30～17:00（季節變動）"
@@ -7765,6 +7847,9 @@
       "googleReviews": 364,
       "note": null
     },
+    "inclusion": [
+      "A"
+    ],
     "tabelogOwner": false,
     "googleName": null,
     "notes": "おかげ横丁中央的自助式茶屋，賣牛串、豚汁、おにぎり、冬季赤福ぜんざい，座位多。",
@@ -7804,7 +7889,6 @@
     },
     "smoking": "全席禁煙（おかげ横丁內有吸菸處）",
     "extra": {
-      "inclusion": "A",
       "conflicts": [
         "營業時間：おかげ横丁官網 10:00～17:00（L.O. 16:30）；まっぷる 10:00～16:30",
         "牛串：官網 900 円；まっぷる（2025）、4travel（2022）750 円"
@@ -8004,6 +8088,10 @@
       "googleReviews": 193,
       "note": null
     },
+    "inclusion": [
+      "A",
+      "B"
+    ],
     "tabelogOwner": false,
     "googleName": "おかげ横丁 若松屋",
     "notes": "1905 年創業的伊勢魚板（かまぼこ）老店在おかげ横丁的現炸店，外帶為主。",
@@ -8041,7 +8129,6 @@
     },
     "smoking": "全席禁煙（おかげ横丁內有吸菸處）",
     "extra": {
-      "inclusion": "AB",
       "conflicts": [
         "伊勢ひりょうず：官網 450 円；るるぶ（2023）、觀光三重（2022）400 円"
       ]
@@ -8206,6 +8293,9 @@
       "googleReviews": 726,
       "note": null
     },
+    "inclusion": [
+      "A"
+    ],
     "tabelogOwner": false,
     "googleName": null,
     "notes": "創業 250 年以上的へんば餅老店（本店在小俣）在おはらい町北端的分店。",
@@ -8245,7 +8335,6 @@
     },
     "smoking": "全席禁煙",
     "extra": {
-      "inclusion": "A",
       "conflicts": [
         "內用位置：觀光三重寫小座敷；官網寫 2 階の茶屋席（可能兩者都有）",
         "內用時間：官網 9:00～16:00；食べログ 9:00～16:30"
@@ -8422,6 +8511,9 @@
       "googleReviews": 400,
       "note": null
     },
+    "inclusion": [
+      "A"
+    ],
     "tabelogOwner": true,
     "googleName": "横丁そば小西湖",
     "notes": "おかげ横丁裡的中華そば店，松阪牛骨＋和風だし的雙湯。",
@@ -8457,7 +8549,6 @@
     },
     "smoking": "全席禁煙（おかげ横丁內有吸菸處）",
     "extra": {
-      "inclusion": "A",
       "conflicts": [
         "焼豚満開横丁そば：官網 2,200 円；まっぷる 價格欄 1,600 円、內文 2,000 円"
       ]
@@ -8615,6 +8706,9 @@
       "googleReviews": 252,
       "note": null
     },
+    "inclusion": [
+      "A"
+    ],
     "tabelogOwner": false,
     "googleName": null,
     "notes": "おはらい町的食べ歩き店：松阪牛串、福まん（肉包）、可樂餅、義式冰淇淋。資料很少（只有まっぷる）。",
@@ -8650,7 +8744,6 @@
     },
     "smoking": "全席禁煙",
     "extra": {
-      "inclusion": "A",
       "conflicts": [
         "營業時間：食べログ 10:00～16:00；まっぷる 10:00～17:00（繁忙期 9:00～18:00）"
       ]
@@ -8818,6 +8911,9 @@
       "googleReviews": 256,
       "note": null
     },
+    "inclusion": [
+      "A"
+    ],
     "tabelogOwner": false,
     "googleName": "いもんね伊勢内宮前本店",
     "notes": "地瓜甜點店，招牌是地瓜義式冰淇淋夾麻糬的ジェラ餅。價格沒有來源。",
@@ -8856,7 +8952,6 @@
     },
     "smoking": "全席禁煙",
     "extra": {
-      "inclusion": "A",
       "conflicts": []
     }
   },
@@ -9048,6 +9143,10 @@
       "googleReviews": 1202,
       "note": null
     },
+    "inclusion": [
+      "A",
+      "B"
+    ],
     "tabelogOwner": true,
     "googleName": "SNOOPY Village 伊勢店",
     "notes": "2023-12-22 改裝成 SNOOPY Village 伊勢（Google 名稱也改了），賣 SNOOPY 造型的鯛魚燒型點心、抹茶飲料和周邊商品。",
@@ -9083,7 +9182,6 @@
     },
     "smoking": "全席禁煙",
     "extra": {
-      "inclusion": "AB",
       "conflicts": [
         "內用：觀光三重 topic/417 說改裝後取消內用、只剩外帶；同文照片說明和 Walkerplus 列「イートイン 356 円」；食べログ（店舗会員）仍寫餐廳 52 席",
         "官網 2026-07 有「伊勢店 伊勢うどん 商品不良」公告，伊勢烏龍是不是伴手禮商品不明"
@@ -9335,6 +9433,10 @@
       "googleReviews": 940,
       "note": null
     },
+    "inclusion": [
+      "A",
+      "C"
+    ],
     "tabelogOwner": false,
     "googleName": null,
     "notes": "內宮宇治橋前的和菓子・土產大店，招牌岩戸餅；樓上是團體食堂（和 ise-sanguutei-isuzu 参宮亭五十鈴食堂 同一家公司，食べログ 分頁）。內宮前少數能預約 15 人團體餐的地方。",
@@ -9373,7 +9475,6 @@
     },
     "smoking": "全席禁煙",
     "extra": {
-      "inclusion": "AC",
       "conflicts": [
         "營業時間：官網・觀光三重 9:00～17:00；Retty 平日 9:30～16:40；和樂web（2019）8:30～17:25",
         "個室：官網有收費小個室；Retty 寫無個室；食べログ 個室 10～20 人",
@@ -9550,6 +9651,9 @@
       "googleReviews": 100,
       "note": null
     },
+    "inclusion": [
+      "A"
+    ],
     "tabelogOwner": false,
     "googleName": null,
     "notes": "明治創業的和菓子店（おはらい町另有本店），本館在五十鈴川東岸、國道 23 號旁，要開車或搭計程車。",
@@ -9589,7 +9693,6 @@
     },
     "smoking": "全席禁煙",
     "extra": {
-      "inclusion": "A",
       "conflicts": [
         "營業時間：官網 8:30～17:30；食べログ 9:00～18:00",
         "地址：食べログ 鹿海町 1650-2；Google 鹿海町 1655-1"
@@ -9758,6 +9861,9 @@
       "googleReviews": 79,
       "note": null
     },
+    "inclusion": [
+      "D1"
+    ],
     "tabelogOwner": false,
     "googleName": "お食事処朝熊茶屋",
     "notes": "伊勢志摩スカイライン 朝熊山頂売店裡的食堂（朝熊山頂展望台 ise-asama-summit 旁），志摩うどん、中華そば、咖哩等輕食；要開車走收費的スカイライン。",
@@ -9793,7 +9899,6 @@
     },
     "smoking": "全席禁煙",
     "extra": {
-      "inclusion": "D1",
       "conflicts": [
         "官網的茶屋頁讀不到內容，營業時間只來自觀光三重、食べログ"
       ]
@@ -9942,6 +10047,9 @@
       "googleReviews": 382,
       "note": null
     },
+    "inclusion": [
+      "A"
+    ],
     "tabelogOwner": true,
     "googleName": null,
     "notes": "伊勢市站北側（宮後）的酒舖兼居酒屋，地魚造り、いわし酢漬 是招牌。平日也客滿，要預約。最大預約 20 人，是伊勢市站一帶少數可以 15 人一起訂的晚餐居酒屋（座敷為主）。",
@@ -9983,7 +10091,6 @@
     },
     "smoking": "全席禁煙（店外有長椅和菸灰缸）",
     "extra": {
-      "inclusion": "A",
       "conflicts": [
         "公休：食べログ 週日・週一（週一有時營業）；Time Out 週日＋國定假日的週一；ぐるなび 週日＋每月 2 次週一；なっぷ 只寫週日",
         "L.O.：食べログ 料理 21:00、飲料 21:30；Time Out 21:30"
@@ -10133,6 +10240,10 @@
       "googleReviews": 274,
       "note": null
     },
+    "inclusion": [
+      "A",
+      "C"
+    ],
     "tabelogOwner": true,
     "googleName": "酒場森下 本館",
     "notes": "伊勢市站 JR 口步行 2 分、大提燈的居酒屋（舊名 酒蔵 森下）。伊勢マグロ、伊勢海老グラタン、自家製伊勢うどん。對面另有別館（2F），Retty 心得多半是別館。",
@@ -10173,7 +10284,6 @@
     },
     "smoking": "全席禁煙",
     "extra": {
-      "inclusion": "AC",
       "conflicts": [
         "Retty 的資料是別館（本町 2-6 2F），本館是本町 2-3，兩者不能混用",
         "食べログ 菜單更新日 2023-09，價格可能已變"
@@ -10333,6 +10443,10 @@
       "googleReviews": 894,
       "note": null
     },
+    "inclusion": [
+      "A",
+      "C"
+    ],
     "tabelogOwner": false,
     "googleName": null,
     "notes": "大正 3 年創業、宮町站附近的老居酒屋，下午 2 點就開，湯豆腐、ふくだめ（とこぶし）、さめたれ 等伊勢的下酒菜。便宜、在地客多，不能預約，適合 4～6 人早點去。",
@@ -10371,7 +10485,6 @@
     },
     "smoking": "全席喫煙可（食べログ）",
     "extra": {
-      "inclusion": "AC",
       "conflicts": [
         "開店時間：食べログ 14:00；Retty 本文 14 時、表 14:30；BAILA（2019）14:30",
         "打烊：食べログ 21:00；Retty 22:00",
@@ -10538,6 +10651,10 @@
       "googleReviews": 209,
       "note": null
     },
+    "inclusion": [
+      "A",
+      "C"
+    ],
     "tabelogOwner": true,
     "googleName": null,
     "notes": "伊勢市站步行 2 分、町家改建的餐酒館，伊勢鶏、披薩、黒毛和牛。只限大人：未滿 20 歲不能進。",
@@ -10579,7 +10696,6 @@
     },
     "smoking": "喫煙可（食べログ お子様連れ欄）",
     "extra": {
-      "inclusion": "AC",
       "conflicts": [
         "IG：HAMONI 列 @machiyabar，食べログ 公式アカウント欄也是 @machiyabar（一致）",
         "不要和「町結cafe & バル」（大世古）搞混"
@@ -10707,6 +10823,10 @@
       "googleReviews": 62,
       "note": null
     },
+    "inclusion": [
+      "A",
+      "C"
+    ],
     "tabelogOwner": true,
     "googleName": "焼鳥にかわ",
     "notes": "一之木的燒鳥套餐店（約 10 串、備長炭），完全預約制、一齊開始。食べログ 3.93。不接小孩，只適合大人的小組。",
@@ -10747,7 +10867,6 @@
     },
     "smoking": "全席禁煙（套餐中禁菸）",
     "extra": {
-      "inclusion": "AC",
       "conflicts": [
         "公休：Time Out 不定休；なっぷ 週日；食べログ 不定休",
         "炭：Time Out 伊勢志摩備長炭；なっぷ 土佐備長炭"
@@ -10887,6 +11006,9 @@
       "googleReviews": 44,
       "note": null
     },
+    "inclusion": [
+      "A"
+    ],
     "tabelogOwner": false,
     "googleName": null,
     "notes": "一之木（伊勢市站北）大樓 2 樓的小居酒屋，食べログ 3.55、Google 4.6。除了食べログ 沒有找到其他來源，菜色、價格不明。",
@@ -10927,7 +11049,6 @@
     },
     "smoking": "全席禁煙",
     "extra": {
-      "inclusion": "A",
       "conflicts": [
         "讀文：食べログ 以外沒有來源；搜尋摘要提到預算 8,000～9,999 円、蛸しゃぶ・地鶏たたき，沒讀到原文"
       ]
@@ -11080,6 +11201,9 @@
       "googleReviews": 72,
       "note": null
     },
+    "inclusion": [
+      "A"
+    ],
     "tabelogOwner": true,
     "googleName": null,
     "notes": "河崎的 6 席壽司店，只有 33,000 円起的おまかせ，食べログ 4.60（伊勢最高）。完全預約制、很難訂，最多適合 4～6 位大人。",
@@ -11119,7 +11243,6 @@
     },
     "smoking": "全席禁煙",
     "extra": {
-      "inclusion": "A",
       "conflicts": [
         "なっぷ 寫「ミシュラン三つ星の実績」，其他來源沒有，可能有誤"
       ]
@@ -11272,6 +11395,9 @@
       "googleReviews": 410,
       "note": null
     },
+    "inclusion": [
+      "A"
+    ],
     "tabelogOwner": false,
     "googleName": null,
     "notes": "河崎的天然魚居酒屋（不用養殖・冷凍魚），刺身評價很高。不收信用卡；店內告示說不點魚料理的客人謝絕（Retty 心得）。",
@@ -11311,7 +11437,6 @@
     },
     "smoking": "全席禁煙（店外有菸灰缸）",
     "extra": {
-      "inclusion": "A",
       "conflicts": [
         "營業時間：17:00～賣完為止（食べログ、Time Out）；17:00～22:00（和樂web 2019）",
         "公休：不定休（食べログ、Time Out）；週二（和樂web、Retty）",
@@ -11507,6 +11632,10 @@
       "googleReviews": 147,
       "note": null
     },
+    "inclusion": [
+      "A",
+      "C"
+    ],
     "tabelogOwner": true,
     "googleName": "ボンヴィヴァン外宮前店",
     "notes": "外宮參道旁、大正時代郵局洋館改建的法餐（1983 年創業），只有主廚套餐，伊勢海老、鮑、松阪牛。完全預約制，最多 12 人，適合大人或有小學生的小組。",
@@ -11547,7 +11676,6 @@
     },
     "smoking": "全席禁煙",
     "extra": {
-      "inclusion": "AC",
       "conflicts": [
         "營業時間：官網 午 12:00～15:00（L.O. 13:00）、晚 17:30～21:00（L.O. 19:00），週日只有午餐；食べログ 週三只有晚餐、週四午餐 12:00～13:00；Time Out L.O. 13:30／21:30 閉",
         "公休：官網 週一＋週二・週日晚；Time Out 週一＋第 3 週二（2024 起不定休）；まっぷる 週一・二",
@@ -11739,6 +11867,10 @@
       "googleReviews": 186,
       "note": null
     },
+    "inclusion": [
+      "A",
+      "C"
+    ],
     "tabelogOwner": false,
     "googleName": null,
     "notes": "外宮參道的鐵板 bistro，松阪牛、伊勢海老、鮑。午餐便宜（1,000 円台）。",
@@ -11779,7 +11911,6 @@
     },
     "smoking": "全席禁煙",
     "extra": {
-      "inclusion": "AC",
       "conflicts": [
         "營業時間：食べログ 11:00～14:00（L.O.）、17:30～21:00（L.O. 20:00）；觀光三重 午 11:30～14:00、晚 L.O. 21:00；ことりっぷ（2017）晚 17:30～21:30"
       ]
@@ -11904,6 +12035,10 @@
       "googleReviews": 38,
       "note": null
     },
+    "inclusion": [
+      "A",
+      "C"
+    ],
     "tabelogOwner": false,
     "googleName": null,
     "notes": "宇治山田站旁的小割烹，伊勢灣鮮魚、三重蔬菜的季節おまかせ（午餐以食事為主、晚上以下酒菜為主）。",
@@ -11945,7 +12080,6 @@
     },
     "smoking": "全席禁煙",
     "extra": {
-      "inclusion": "AC",
       "conflicts": [
         "公休：食べログ 無休；官網、NAVITIME 不定休"
       ]
@@ -12147,6 +12281,9 @@
       "googleReviews": 940,
       "note": null
     },
+    "inclusion": [
+      "C"
+    ],
     "tabelogOwner": true,
     "googleName": null,
     "notes": "伊勢市站南側的老字號割烹，伊勢海老、鮑、てこね寿司。席多、有大個室、兒童餐、無障礙，是外宮一帶 15 人晚餐（含長輩、小孩）的首選之一。",
@@ -12190,7 +12327,6 @@
     },
     "smoking": "全席禁煙（有吸菸室）",
     "extra": {
-      "inclusion": "C",
       "conflicts": [
         "席數：食べログ 104；官網・ぐるなび 130",
         "營業時間：官網・食べログ 晚 16:30～20:30（L.O. 20:00）；aumo（2025-08）到 21:30",
@@ -12361,6 +12497,10 @@
       "googleReviews": 231,
       "note": null
     },
+    "inclusion": [
+      "A",
+      "C"
+    ],
     "tabelogOwner": true,
     "googleName": null,
     "notes": "豚捨本店旁的別館，伊勢牛的壽喜燒、網燒，全是個室，有 20 人、50 人的宴會場。15 人可以同一間，但每人 1 萬円以上。",
@@ -12402,7 +12542,6 @@
     },
     "smoking": "全席禁煙（屋外有吸菸處）",
     "extra": {
-      "inclusion": "AC",
       "conflicts": [
         "個室數：食べログ 10 室；官網 8 間＋宴會場",
         "最後入店：食べログ 全營業日 18:30；L.O. 19:30"
@@ -12609,6 +12748,10 @@
       "googleReviews": 47,
       "note": null
     },
+    "inclusion": [
+      "A",
+      "C"
+    ],
     "tabelogOwner": true,
     "googleName": "オステリアイルモスト",
     "notes": "伊勢市站北、伊勢志摩ワイナリー（伊勢美し国醸造所）2 樓的義式餐廳，自家釀葡萄酒配三重食材。10 席，適合大人小組；小孩只能午餐。",
@@ -12650,7 +12793,6 @@
     },
     "smoking": "全席禁煙",
     "extra": {
-      "inclusion": "AC",
       "conflicts": [
         "個室：HAMONI 有個室；食べログ 無",
         "晚餐開始：食べログ 17:30；搜尋摘要 17:00",
@@ -12811,6 +12953,9 @@
       "googleReviews": 126,
       "note": null
     },
+    "inclusion": [
+      "A"
+    ],
     "tabelogOwner": false,
     "googleName": null,
     "notes": "伊勢市站前（吹上）的義式小館，營業到深夜 1 點，伊勢市站一帶少數晚上 9 點以後還能好好吃一頓的店。",
@@ -12849,7 +12994,6 @@
     },
     "smoking": "全席禁煙",
     "extra": {
-      "inclusion": "A",
       "conflicts": [
         "2019 必比登只在搜尋摘要看到（autoreserve），車站距離和地址對不上",
         "公休：官網 週日＋月 1 次不定休；食べログ 週日＋第 2 週一",
@@ -13050,6 +13194,10 @@
       "googleReviews": 102,
       "note": null
     },
+    "inclusion": [
+      "A",
+      "C"
+    ],
     "tabelogOwner": false,
     "googleName": "柚 クッチーナ ナチュラーレ",
     "notes": "從名古屋搬到河崎的義式餐廳，自家手打麵、伊勢志摩食材。全館包場 22 人，15 人可以包下來（16 人起包場，15 人要確認）。",
@@ -13090,7 +13238,6 @@
     },
     "smoking": "全席禁煙",
     "extra": {
-      "inclusion": "AC",
       "conflicts": [
         "打烊：官網 22:00；食べログ 22:30",
         "包場人數：全館 22 人 vs 著席約 24 人（官網同一頁）；16 人起包場，15 人能不能包要確認",
@@ -13274,6 +13421,10 @@
       "googleReviews": 148,
       "note": null
     },
+    "inclusion": [
+      "A",
+      "C"
+    ],
     "tabelogOwner": false,
     "googleName": null,
     "notes": "八日市場町（外宮北）的懷石料理，冬季有あのりふぐ（安乘河豚）套餐。小學生以下不接，只適合大人小組。",
@@ -13314,7 +13465,6 @@
     },
     "smoking": "全席禁煙",
     "extra": {
-      "inclusion": "AC",
       "conflicts": [
         "搜尋摘要說 2019 米其林東海版二星、G7 伊勢志摩峰會料理監修，沒讀到原文"
       ]
@@ -13574,6 +13724,10 @@
       "googleReviews": 252,
       "note": null
     },
+    "inclusion": [
+      "A",
+      "C"
+    ],
     "tabelogOwner": true,
     "googleName": null,
     "notes": "倭町（伊勢市站東南，車程約 5 分）的伊勢海老・河豚料理店，招牌是「幻の脱皮伊勢海老」。有兒童套餐。席料每人 400～700 円。",
@@ -13615,7 +13769,6 @@
     },
     "smoking": "全席禁煙",
     "extra": {
-      "inclusion": "AC",
       "conflicts": [
         "營業時間：官網 晚 21:30 閉（L.O. 20:45）；食べログ 21:00（L.O. 20:30）",
         "預算：食べログ 晚 3,000～3,999（口コミ）；GLT 12,000 円～；官網套餐 8,800 円起",
@@ -13820,6 +13973,9 @@
       "googleReviews": 58,
       "note": "Google 是住宿本體「料理旅館 おく文」的評分"
     },
+    "inclusion": [
+      "F3"
+    ],
     "tabelogOwner": false,
     "googleName": null,
     "notes": "住宿 料理旅館 おく文（`ise-okubun`）的食事處，鰻魚店起家、「孝行鰻」是名物。食べログ 有午晚營業時間（完全予約制），ぐるなび、HAMONI 列為餐廳，有會席膳、弁当、外帶弁当，判斷非住客可以預約用餐（F③，推定：官網沒有明寫「非住客可」，排進行程時先電話確認）；單點うな重 能不能吃沒有來源，訂的時候確認。近鐵宮町站步行約 8 分。",
@@ -13862,7 +14018,6 @@
     },
     "smoking": "全席禁煙",
     "extra": {
-      "inclusion": "F3",
       "conflicts": [
         "非住客用餐：食べログ、ぐるなび、HAMONI 都當餐廳列出，但店家沒有明寫「非住客可」",
         "伊勢楽市膳 價格：三重縣 2013 本文 7,000 円（税別）vs 圖說 4,800 円",
@@ -14024,6 +14179,9 @@
       "googleReviews": 452,
       "note": null
     },
+    "inclusion": [
+      "C"
+    ],
     "tabelogOwner": false,
     "googleName": "喜多や",
     "notes": "外宮參道旁（本町）1910 年創業的鰻魚老舖，招牌是伊勢まぶし。70 席、歡迎小孩，但午餐不能預約。",
@@ -14062,7 +14220,6 @@
     },
     "smoking": "全席禁煙",
     "extra": {
-      "inclusion": "C",
       "conflicts": [
         "營業時間：食べログ 11:00～17:00（L.O. 15:00）；NAVITIME 店內 11:00～15:30；Retty 11:00～19:00（L.O. 18:00）",
         "公休：食べログ・NAVITIME 週三週四；Retty 只週四（每月 1 日和祝日營業）",
@@ -14222,6 +14379,10 @@
       "googleReviews": 96,
       "note": null
     },
+    "inclusion": [
+      "A",
+      "C"
+    ],
     "tabelogOwner": false,
     "googleName": null,
     "notes": "外宮參道一帶 2 樓的預約制鰻魚店，只有午餐。和山區的本店「うなぎ横輪おりおり」電話相同（關係沒有來源確認）。",
@@ -14259,7 +14420,6 @@
     },
     "smoking": "全席禁煙",
     "extra": {
-      "inclusion": "AC",
       "conflicts": [
         "本店 うなぎ横輪おりおり 的資料（11 席、包場、可帶小孩、鰻重 3,900 円）不能直接套用"
       ]
@@ -14457,6 +14617,9 @@
       "googleReviews": 843,
       "note": null
     },
+    "inclusion": [
+      "A"
+    ],
     "tabelogOwner": false,
     "googleName": "伊勢うどん まめや",
     "notes": "伊勢市站北側（宮後）的伊勢烏龍麵店，有晚餐（到 19:30）。官網接 10～20 人的團體預約（手こね寿司・うどんセット），是伊勢市站一帶少數能一次坐 15 人的平價午餐。",
@@ -14496,7 +14659,6 @@
     },
     "smoking": "全席禁煙",
     "extra": {
-      "inclusion": "A",
       "conflicts": [
         "營業時間：官網 平日 10:00～15:00；食べログ 10:00～14:45（L.O. 寫法差異）",
         "停車場：官網 14 台 vs 觀光三重 10 台"
@@ -14656,6 +14818,9 @@
       "googleReviews": 741,
       "note": null
     },
+    "inclusion": [
+      "A"
+    ],
     "tabelogOwner": false,
     "googleName": null,
     "notes": "外宮前（岩渕）的伊勢烏龍麵老店，只有午餐，常排隊。不收信用卡。",
@@ -14694,7 +14859,6 @@
     },
     "smoking": "全席禁煙",
     "extra": {
-      "inclusion": "A",
       "conflicts": [
         "營業時間：食べログ・觀光三重 平日 11:00～14:30、土日祝 ～16:00；Retty 10:00～14:00、16:00～18:00；觀光三重景點頁 10:00～18:30",
         "公休：週二・三（食べログ、觀光三重）vs 週三（Retty）",
@@ -14883,6 +15047,9 @@
       "googleReviews": 1421,
       "note": null
     },
+    "inclusion": [
+      "A"
+    ],
     "tabelogOwner": false,
     "googleName": null,
     "notes": "宮町站附近的老牌餃子店，只有吧台、常排隊；大部分可外帶，店前也賣生／冷凍餃子。伊勢市站一帶晚餐、宵夜的平價選擇。不收信用卡、可 PayPay（Retty）。",
@@ -14920,7 +15087,6 @@
     },
     "smoking": "全席禁煙",
     "extra": {
-      "inclusion": "A",
       "conflicts": [
         "營業時間：食べログ 火～日 11:30～13:30、15:00～22:00；觀光三重・Retty 平日 15:00 開、土日 12:00 開；ホットペッパー（2020）17:00～24:00",
         "席數：食べログ 17、Retty 18、ホットペッパー 19",
@@ -15081,6 +15247,9 @@
       "googleReviews": 175,
       "note": null
     },
+    "inclusion": [
+      "A"
+    ],
     "tabelogOwner": false,
     "googleName": "ラーメン専門店 吉風",
     "notes": "伊勢市站北側（宮後）的雞豚骨拉麵店，午餐常排隊、湯賣完就關。只適合小組。不能刷卡。",
@@ -15118,7 +15287,6 @@
     },
     "smoking": "全席禁煙",
     "extra": {
-      "inclusion": "A",
       "conflicts": [
         "營業時間：食べログ・なっぷ 11:30～14:00；Retty 另有 18:00～21:00",
         "Retty 店家資料寫カウンター無，評論說 7 席吧台",
@@ -15308,6 +15476,9 @@
       "googleReviews": 971,
       "note": null
     },
+    "inclusion": [
+      "A"
+    ],
     "tabelogOwner": false,
     "googleName": null,
     "notes": "味噌・醬油老舖 糀屋（1816 年創業）經營的伊勢味噌拉麵專賣店，在伊勢市站北側（宮後），有晚餐。PayPay 可、不能刷卡（Retty）。",
@@ -15346,7 +15517,6 @@
     },
     "smoking": "全席禁煙（店外有菸灰缸）",
     "extra": {
-      "inclusion": "A",
       "conflicts": [
         "晚餐開始：Time Out・なっぷ・食べログ 17:00；Retty 平日 18:00",
         "地址：食べログ 宮後1-9；Google 宮後1丁目9-17"
@@ -15540,6 +15710,9 @@
       "googleReviews": 1066,
       "note": null
     },
+    "inclusion": [
+      "A"
+    ],
     "tabelogOwner": true,
     "googleName": null,
     "notes": "外宮參道入口的豚捨（1909 年創業的松阪牛系牛肉店），牛丼、漢堡排、現炸可樂餅；有晚餐。現在只開 1F、不能預約；おかげ横丁店（`ise-butasute-okage`）、若柳（`ise-butasute-wakayanagi`）是同公司。",
@@ -15578,7 +15751,6 @@
     },
     "smoking": "全席禁煙",
     "extra": {
-      "inclusion": "A",
       "conflicts": [
         "2F：食べログ 店舗会員「2F 座敷終了、1F のみ」；官網店舖頁仍列 2F 個室 8・座敷 18；ぐるなび（2023）包場 15～30 人",
         "公休：官網・食べログ 週三週四；Time Out（2023）只週四"
@@ -15751,6 +15923,9 @@
       "googleReviews": 535,
       "note": null
     },
+    "inclusion": [
+      "A"
+    ],
     "tabelogOwner": false,
     "googleName": "ダンデライオン・チョコレート ショップ＆カフェ伊勢外宮",
     "notes": "外宮參道的舊郵局建築（逓信館）裡的 bean to bar 巧克力店兼咖啡館，伊勢限定熱巧克力、外宮店限定可麗露。可外帶。",
@@ -15789,7 +15964,6 @@
     },
     "smoking": "全席禁煙",
     "extra": {
-      "inclusion": "A",
       "conflicts": [
         "營業時間：食べログ・觀光三重（2016）10:00～17:00；ウォーカープラス（2025）週末假日・每月 1 日 9:00 開"
       ]
@@ -15992,6 +16166,9 @@
       "googleReviews": 383,
       "note": null
     },
+    "inclusion": [
+      "A"
+    ],
     "tabelogOwner": true,
     "googleName": null,
     "notes": "外宮參道 伊勢せきや 本店 2F 的鮑魚料理店，7:30 開始的「御饌の朝かゆ」是外宮早參拜後的早餐，午餐是鮑魚釜飯。有電梯、無障礙廁所，長輩友善。不收信用卡、PayPay 可。",
@@ -16033,7 +16210,6 @@
     },
     "smoking": "全席禁煙",
     "extra": {
-      "inclusion": "A",
       "conflicts": [
         "預約：食べログ「予約不可」但最大予約 30 人；Retty 說午餐可預約",
         "公休：官網・食べログ 週二週三；せきや 店舖頁・Retty 只週三"
@@ -16211,6 +16387,9 @@
       "googleReviews": 600,
       "note": null
     },
+    "inclusion": [
+      "B"
+    ],
     "tabelogOwner": false,
     "googleName": "参道terrace",
     "notes": "伊勢市站前 伊勢神泉 一樓的咖啡（お伊勢参りcafé 參道テラス），窯烤長崎蛋糕、水出咖啡；72 席，等車、會合的好地方。",
@@ -16249,7 +16428,6 @@
     },
     "smoking": "全席禁煙",
     "extra": {
-      "inclusion": "B",
       "conflicts": [
         "店名表記：お伊勢まいりcafé（觀光三重）vs お伊勢参りcafé（官網、まっぷる）"
       ]
@@ -16430,6 +16608,9 @@
       "googleReviews": 251,
       "note": null
     },
+    "inclusion": [
+      "B"
+    ],
     "tabelogOwner": false,
     "googleName": null,
     "notes": "伊勢的老牌牛奶廠 山村乳業 的外帶店，在外宮參道（せきや 隔壁），布丁霜淇淋、小瓶牛奶。沒有內用，邊走邊吃。",
@@ -16465,7 +16646,6 @@
     },
     "smoking": "全席禁煙",
     "extra": {
-      "inclusion": "B",
       "conflicts": [
         "營業時間：10:00～17:00（觀光三重、新聞稿）vs 夏季到 17:30（まっぷる）"
       ]
@@ -16628,6 +16808,9 @@
       "googleReviews": 658,
       "note": null
     },
+    "inclusion": [
+      "A"
+    ],
     "tabelogOwner": false,
     "googleName": "喫茶 モリ",
     "notes": "外宮前（ちとせ 隔壁）1970 年代起的老喫茶，招牌是特製義大利麵「モリスパ」、鐵板拿坡里。平價、小孩容易吃。",
@@ -16665,7 +16848,6 @@
     },
     "smoking": "全席禁煙",
     "extra": {
-      "inclusion": "A",
       "conflicts": [
         "營業時間：食べログ 平日 10:00～18:00、土日 10:00～14:30・17:00～18:30；觀光三重・Time Out L.O. 18:50、土日祝 10:00～15:00・17:00～18:50",
         "個室・貸切：食べログ 無・不可；HAMONI 有・可"
@@ -16832,6 +17014,9 @@
       "googleReviews": 226,
       "note": null
     },
+    "inclusion": [
+      "A"
+    ],
     "tabelogOwner": false,
     "googleName": null,
     "notes": "外宮參道入口 豊恩館 1F 的伊勢茶專賣店兼甜點咖啡，抹茶・焙茶聖代、白玉餡蜜。",
@@ -16870,7 +17055,6 @@
     },
     "smoking": "全席禁煙",
     "extra": {
-      "inclusion": "A",
       "conflicts": [
         "公休：官網・まっぷる・食べログ 週三；Retty 週三週四",
         "營業時間：官網 11:00～17:00；Retty 10:30～17:00",
@@ -17020,6 +17204,9 @@
       "googleReviews": 351,
       "note": null
     },
+    "inclusion": [
+      "C"
+    ],
     "tabelogOwner": false,
     "googleName": "ビアンカ",
     "notes": "伊勢市站和外宮之間（岩渕）7:00 開門的老咖啡店，早參拜外宮前的早餐：奶油綜合咖啡、法式吐司套餐。可刷卡（Retty）。",
@@ -17058,7 +17245,6 @@
     },
     "smoking": "全席禁煙",
     "extra": {
-      "inclusion": "C",
       "conflicts": [
         "席數：食べログ 18、Retty 15（口コミ說約 18）"
       ]
@@ -17198,6 +17384,10 @@
       "googleReviews": 36,
       "note": null
     },
+    "inclusion": [
+      "A",
+      "C"
+    ],
     "tabelogOwner": true,
     "googleName": "貫(かん)",
     "notes": "伊勢市站東側（吹上）6 席吧台的高級壽司（赤醋飯、伊勢志摩地魚），每晚兩輪。只適合大人小組。",
@@ -17238,7 +17428,6 @@
     },
     "smoking": "全席禁煙",
     "extra": {
-      "inclusion": "AC",
       "conflicts": [
         "搜尋摘要把米其林實績連到這個地址，原文是 こま田（河崎），不採用"
       ]
@@ -17415,6 +17604,9 @@
       "googleReviews": 296,
       "note": null
     },
+    "inclusion": [
+      "A"
+    ],
     "tabelogOwner": true,
     "googleName": null,
     "notes": "河崎老街的牡蠣定食店，炸牡蠣・炸蝦定食、岩牡蠣定食。14 席、不能預約。",
@@ -17452,7 +17644,6 @@
     },
     "smoking": "全席禁煙",
     "extra": {
-      "inclusion": "A",
       "conflicts": [
         "公休：食べログ 週四＋第 2 週三（週三晚休）；HAMONI 只週四",
         "支付：HAMONI 摘要只收現金 vs 設備欄可刷卡",
@@ -17619,6 +17810,10 @@
       "googleReviews": 48,
       "note": null
     },
+    "inclusion": [
+      "A",
+      "C"
+    ],
     "tabelogOwner": true,
     "googleName": null,
     "notes": "河崎（伊勢市站步行約 15 分）2022 年開的壽司店，伊勢志摩地魚的おまかせ。Google 4.8。可刷卡。",
@@ -17659,7 +17854,6 @@
     },
     "smoking": "全席禁煙（庭院可）",
     "extra": {
-      "inclusion": "AC",
       "conflicts": []
     }
   },
@@ -17866,6 +18060,9 @@
       "googleReviews": 179,
       "note": null
     },
+    "inclusion": [
+      "A"
+    ],
     "tabelogOwner": false,
     "googleName": "とんかつ四十三番 伊勢店",
     "notes": "低溫慢炸的豬排專門店，ねとらぼ 三重縣豬排 Google 評價排行前段。JR 五十鈴ケ丘站步行約 7 分（ぐるなび），一般要開車或計程車；停車場 7～8 台。",
@@ -17906,7 +18103,6 @@
     },
     "smoking": "全席禁煙",
     "extra": {
-      "inclusion": "A",
       "conflicts": [
         "個室・包場：HAMONI 列有個室、可包場；食べログ 個室無、貸切不可（採食べログ）"
       ]
@@ -18093,6 +18289,9 @@
       "googleReviews": 455,
       "note": null
     },
+    "inclusion": [
+      "A"
+    ],
     "tabelogOwner": false,
     "googleName": "ナッツ·ベリー",
     "notes": "1994 年開的漢堡排店（Google 名稱「ナッツ·ベリー」，455 則），招牌是松阪牛的和牛 100% 漢堡排。黒瀬町（伊勢 IC 附近），JR 五十鈴ケ丘站約 530 m（HAMONI），一般開車。",
@@ -18128,7 +18327,6 @@
     },
     "smoking": "全席禁煙",
     "extra": {
-      "inclusion": "A",
       "conflicts": [
         "個室・包場：HAMONI 列有個室、可包場；食べログ 個室無、貸切不可（採食べログ）"
       ]
@@ -18304,6 +18502,10 @@
       "googleReviews": 247,
       "note": null
     },
+    "inclusion": [
+      "A",
+      "C"
+    ],
     "tabelogOwner": true,
     "googleName": "ORANGER CAFE wood",
     "notes": "近鐵五十鈴川站前結婚會場附設的咖啡，石窯麵包、湯品套餐、咖哩和ハヤシ；露台可帶寵物。月讀宮、內宮巴士的轉乘點附近，雨天也能坐。",
@@ -18345,7 +18547,6 @@
     },
     "smoking": "全席禁煙（露台一部分可）",
     "extra": {
-      "inclusion": "AC",
       "conflicts": [
         "營業時間：官網・食べログ 11:00～17:00；まっぷる 11:00～19:00（土日祝 10:00～）"
       ]
@@ -18520,6 +18721,10 @@
       "googleReviews": 231,
       "note": null
     },
+    "inclusion": [
+      "A",
+      "C"
+    ],
     "tabelogOwner": false,
     "googleName": "Cuccagna.3",
     "notes": "鳥羽人氣義式「クッカーニャ」的 3 號店（Google 名稱「Cuccagna.3」），石窯披薩、義大利麵，午餐到晚餐不休息。五十鈴川站步行 4 分。",
@@ -18561,7 +18766,6 @@
     },
     "smoking": "分煙（吧台、露台可吸菸）",
     "extra": {
-      "inclusion": "AC",
       "conflicts": [
         "公休：官網 年中無休；食べログ 週二；Retty 週三",
         "IG：食べログ 公式アカウント @cuccagna.2；官網連結 @cuccagnaespresso（讀文）"
@@ -18712,6 +18916,9 @@
       "googleReviews": 388,
       "note": null
     },
+    "inclusion": [
+      "A"
+    ],
     "tabelogOwner": true,
     "googleName": null,
     "notes": "手打伊勢烏龍和たまり醤油的かつ丼，ねとらぼ 2025-04 三重縣かつ丼排行第 1。只開午餐 3 小時、週四天，賣完就關；參拜月讀宮順路。",
@@ -18747,7 +18954,6 @@
     },
     "smoking": "全席禁煙",
     "extra": {
-      "inclusion": "A",
       "conflicts": [
         "營業時間：官網 11:00～14:00（L.O. 13:30）；食べログ 11:00～13:30；官網 2026-08 公告縮短"
       ]
@@ -18873,6 +19079,9 @@
       "googleReviews": 116,
       "note": null
     },
+    "inclusion": [
+      "A"
+    ],
     "tabelogOwner": false,
     "googleName": "Rhino and the Bread サイとパン",
     "notes": "楠部町的麵包店（Google 名稱「Rhino and the Bread サイとパン」，4.8／116 則）。食べログ 以外沒有任何來源（官網、心得都沒有），內用與否、招牌都不知道；五十鈴川站約 300 m。",
@@ -18908,7 +19117,6 @@
     },
     "smoking": null,
     "extra": {
-      "inclusion": "A",
       "conflicts": []
     }
   },
@@ -19081,6 +19289,10 @@
       "googleReviews": 419,
       "note": null
     },
+    "inclusion": [
+      "A",
+      "C"
+    ],
     "tabelogOwner": false,
     "googleName": "ファミリーレストラン リビエラ",
     "notes": "五十鈴川站附近的老家庭餐廳（Google 名稱「ファミリーレストラン リビエラ」，4.0／419 則），牛排、漢堡排、義大利麵，9:30 開到 21:00、只有元旦休，小孩、長輩都好點。",
@@ -19120,7 +19332,6 @@
     },
     "smoking": "全席禁煙（店外有吸菸區）",
     "extra": {
-      "inclusion": "AC",
       "conflicts": [
         "營業時間：食べログ 9:30～21:00；HAMONI 週日 8:00～21:00",
         "官網 sunny-road.jp 連不上（2026-10-18）"
@@ -19305,6 +19516,10 @@
       "googleReviews": 112,
       "note": null
     },
+    "inclusion": [
+      "A",
+      "C"
+    ],
     "tabelogOwner": true,
     "googleName": "つぼ銀",
     "notes": "古市參宮街道的割烹居酒屋，伊勢海老、鰻、すっぽん、松阪牛、刺身盛り；店主有東京ふぐ調理師免許。五十鈴川站步行 10～15 分、宇治山田站計程車 5 分。只做晚餐。",
@@ -19347,7 +19562,6 @@
     },
     "smoking": "全席禁煙",
     "extra": {
-      "inclusion": "AC",
       "conflicts": [
         "席數：食べログ 26、官網 24、ヒトサラ 25",
         "最大人數：食べログ 最大予約 15、個室 10～20；ヒトサラ 宴會最多 18"
@@ -19533,6 +19747,10 @@
       "googleReviews": 93,
       "note": null
     },
+    "inclusion": [
+      "A",
+      "C"
+    ],
     "tabelogOwner": true,
     "googleName": null,
     "notes": "御薗町的一軒家懷石，店主在京都修業；食べログ 3.76、Google 4.9。15 人要包場（20 人以下），每人 15,000 円起，適合全員一次的正式晚餐（小孩要先商量）。不能用香水。",
@@ -19573,7 +19791,6 @@
     },
     "smoking": "全席禁煙",
     "extra": {
-      "inclusion": "AC",
       "conflicts": [
         "午餐：食べログ 有午餐（12:00～15:00）；なっぷ 只寫 18:00～22:00",
         "預算：食べログ 15,000～30,000；一休 12,000～14,999"
@@ -19745,6 +19962,9 @@
       "googleReviews": 579,
       "note": null
     },
+    "inclusion": [
+      "A"
+    ],
     "tabelogOwner": false,
     "googleName": null,
     "notes": "名物「開き海老フライ」的定食店（Google 579 則），份量大、自家製塔塔醬。在 T8b 排除的ホテルキャッスルイン伊勢 1F，餐廳另列。現在只有午餐，開店就快滿，可以先預約。",
@@ -19782,7 +20002,6 @@
     },
     "smoking": "分煙",
     "extra": {
-      "inclusion": "A",
       "conflicts": [
         "營業時間：官網 11:00～15:00；食べログ 11:00～14:30（L.O. 14:00）；KNT 11:00～14:00",
         "停車場 130 台（観光三重）vs 120 台（KNT）"
@@ -20004,6 +20223,10 @@
       "googleReviews": 233,
       "note": null
     },
+    "inclusion": [
+      "A",
+      "C"
+    ],
     "tabelogOwner": true,
     "googleName": null,
     "notes": "1991 年開的法國料理（2026 年 35 周年），附設甜點咖啡（シュークリーム 外帶）。全預約的主廚套餐，午餐 7,700 円起；小孩要小學生以上。",
@@ -20042,7 +20265,6 @@
     },
     "smoking": "全席禁煙",
     "extra": {
-      "inclusion": "AC",
       "conflicts": [
         "公休：官網 週一・二；まっぷる 週二；ヒトサラ 週一晚・週二",
         "價格：まっぷる（2025-03）午 5,500 円～；官網・食べログ 現在 7,700 円～",
@@ -20251,6 +20473,9 @@
       "googleReviews": 864,
       "note": null
     },
+    "inclusion": [
+      "D"
+    ],
     "tabelogOwner": false,
     "googleName": null,
     "notes": "通町的鰻魚店（Google 4.2／864 則），就在菊池パール（取珍珠體驗）旁約 90 m，兩個行程可以接在一起。很熱門，11 點左右就客滿，個室先訂。只收現金・QR。",
@@ -20292,7 +20517,6 @@
     },
     "smoking": "全席禁煙",
     "extra": {
-      "inclusion": "D",
       "conflicts": [
         "席數：官網 26 席（桌 10、座敷 16）；ホットペッパー・食べログ 42 席",
         "特上うな重：官網 5,500 円；Foodle（2024-08）4,800 円",
@@ -20525,6 +20749,9 @@
       "googleReviews": 212,
       "note": null
     },
+    "inclusion": [
+      "D"
+    ],
     "tabelogOwner": true,
     "googleName": "個室創作ダイニング パセプション",
     "notes": "小俣町的全個室創作和食（Google 名稱「個室創作ダイニング パセプション」，4.3／212 則），午餐 1,200 円起、ミニ会席 2,970 円；最多 30 人的個室和兒童餐，是伊勢苺園（週末採草莓）那天 15 人一起吃午餐的候選。",
@@ -20563,7 +20790,6 @@
     },
     "smoking": "全席禁煙",
     "extra": {
-      "inclusion": "D",
       "conflicts": [
         "座位形式（桌椅或座敷）沒有來源"
       ]

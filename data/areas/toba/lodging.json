@@ -200,6 +200,7 @@
     "luggage": "入住前、退房後都可在櫃台寄放（官網 FAQ、楽天 FAQ）。也可事先宅配到館（收件人需與訂房人同名，不收貨到付款、冷藏冷凍品）。",
     "checkIn": "15:00",
     "checkOut": "10:00",
+    "rakutenHotelNo": 4761,
     "dinnerAccess": "walk",
     "group": {
       "totalRooms": 160,
@@ -563,6 +564,7 @@
     "luggage": "可事先宅配行李到飯店代收（送り状寫住宿日與代表人姓名）（楽天）。",
     "checkIn": "14:00",
     "checkOut": "11:00",
+    "rakutenHotelNo": 8529,
     "dinnerAccess": "walk",
     "group": {
       "totalRooms": 84,
@@ -874,6 +876,7 @@
     "luggage": null,
     "checkIn": "14:00",
     "checkOut": "11:00",
+    "rakutenHotelNo": 8528,
     "dinnerAccess": "walk",
     "group": {
       "totalRooms": 46,
@@ -1230,6 +1233,7 @@
     "luggage": "可事先宅配行李到館（官網 FAQ）；當天寄放未寫明。",
     "checkIn": "15:00",
     "checkOut": "10:00",
+    "rakutenHotelNo": 15780,
     "dinnerAccess": "car",
     "group": {
       "totalRooms": 206,
@@ -1579,6 +1583,7 @@
     "luggage": null,
     "checkIn": "15:00",
     "checkOut": "10:00",
+    "rakutenHotelNo": 15548,
     "dinnerAccess": null,
     "group": {
       "totalRooms": 44,
@@ -1952,6 +1957,7 @@
     "luggage": "可在櫃台寄放（官網 FAQ）；也可事先宅配。",
     "checkIn": "15:00",
     "checkOut": "10:00",
+    "rakutenHotelNo": 27855,
     "dinnerAccess": "walk",
     "group": {
       "totalRooms": 65,
@@ -2318,6 +2324,7 @@
     "luggage": "可事先宅配到飯店（託運單註明住宿日與訂房人姓名）；當天寄放官網沒寫（官網 FAQ）。",
     "checkIn": "15:00",
     "checkOut": "11:00",
+    "rakutenHotelNo": 19190,
     "dinnerAccess": null,
     "group": {
       "totalRooms": 75,
@@ -2663,6 +2670,7 @@
     "luggage": null,
     "checkIn": "15:00",
     "checkOut": "10:00",
+    "rakutenHotelNo": 31542,
     "dinnerAccess": null,
     "group": {
       "totalRooms": 35,
@@ -3005,6 +3013,7 @@
     "luggage": null,
     "checkIn": "15:00",
     "checkOut": "11:00",
+    "rakutenHotelNo": 108905,
     "dinnerAccess": "car",
     "group": {
       "totalRooms": 92,
@@ -3353,6 +3362,7 @@
     "luggage": null,
     "checkIn": "15:00",
     "checkOut": "11:00",
+    "rakutenHotelNo": 8543,
     "dinnerAccess": null,
     "group": {
       "totalRooms": 72,
@@ -3706,6 +3716,7 @@
     "luggage": "有宅配便服務；當天寄放沒寫（楽天）。",
     "checkIn": "15:00",
     "checkOut": "10:00",
+    "rakutenHotelNo": 13548,
     "dinnerAccess": "walk",
     "group": {
       "totalRooms": 33,
@@ -4071,6 +4082,7 @@
     "luggage": "入住前、退房後可在櫃台寄放；可事先聯絡後宅配寄存（官網 FAQ）。",
     "checkIn": "15:00",
     "checkOut": "10:00",
+    "rakutenHotelNo": 69276,
     "dinnerAccess": "car",
     "group": {
       "totalRooms": 68,
@@ -4435,6 +4447,7 @@
     "luggage": "官網 FAQ：入住前（13:00 起）、退房後（到 12:00）可免費使用泳池、淋浴、停車場，行李請放在車上；沒有寫可以寄放（搭電車來的要再確認）。",
     "checkIn": "15:00",
     "checkOut": "10:00",
+    "rakutenHotelNo": 5545,
     "dinnerAccess": null,
     "group": {
       "totalRooms": 27,
@@ -4808,6 +4821,7 @@
     "luggage": "楽天：停車場在入住前、退房後都可使用，有免費溫水淋浴和置物櫃；沒有寫行李寄放。",
     "checkIn": "15:00",
     "checkOut": "10:00",
+    "rakutenHotelNo": 4723,
     "dinnerAccess": "walk",
     "group": {
       "totalRooms": 34,
@@ -5136,6 +5150,7 @@
     "luggage": "楽天：入住前、退房後都可以寄放行李。",
     "checkIn": "15:00",
     "checkOut": "10:00",
+    "rakutenHotelNo": 30958,
     "dinnerAccess": null,
     "group": {
       "totalRooms": 40,
@@ -5486,6 +5501,7 @@
     "luggage": "可寄宅配便；當天寄放沒寫（楽天）。",
     "checkIn": "15:00",
     "checkOut": "11:00",
+    "rakutenHotelNo": 7678,
     "dinnerAccess": "walk",
     "group": {
       "totalRooms": 10,
@@ -5790,6 +5806,7 @@
     "luggage": null,
     "checkIn": "15:00",
     "checkOut": "10:00",
+    "rakutenHotelNo": 24568,
     "dinnerAccess": null,
     "group": {
       "totalRooms": 14,
@@ -6106,6 +6123,7 @@
     "luggage": "可寄宅配便；當天寄放沒寫（楽天）。",
     "checkIn": "15:00",
     "checkOut": "10:00",
+    "rakutenHotelNo": 11075,
     "dinnerAccess": null,
     "group": {
       "totalRooms": 5,
@@ -6404,6 +6422,7 @@
     "luggage": null,
     "checkIn": "15:00",
     "checkOut": "10:00",
+    "rakutenHotelNo": 24572,
     "dinnerAccess": null,
     "group": {
       "totalRooms": 5,
@@ -6730,6 +6749,7 @@
     "luggage": null,
     "checkIn": "15:00",
     "checkOut": "10:00",
+    "rakutenHotelNo": 62677,
     "dinnerAccess": "walk",
     "group": {
       "totalRooms": 29,
@@ -7079,6 +7099,7 @@
     "luggage": "可寄放行李（cocolocala 設施列表）。",
     "checkIn": "15:00",
     "checkOut": "11:00",
+    "rakutenHotelNo": 8647,
     "dinnerAccess": "walk",
     "group": {
       "totalRooms": 32,
@@ -7414,6 +7435,7 @@
     "luggage": null,
     "checkIn": "15:00",
     "checkOut": "10:00",
+    "rakutenHotelNo": 20657,
     "dinnerAccess": null,
     "group": {
       "totalRooms": 8,
@@ -7697,6 +7719,7 @@
     "luggage": null,
     "checkIn": "15:00",
     "checkOut": "10:00",
+    "rakutenHotelNo": 129466,
     "dinnerAccess": null,
     "group": {
       "totalRooms": 9,
@@ -8049,6 +8072,7 @@
     "luggage": null,
     "checkIn": "15:00",
     "checkOut": "10:00",
+    "rakutenHotelNo": 38890,
     "dinnerAccess": "walk",
     "group": {
       "totalRooms": 7,
@@ -8374,6 +8398,7 @@
     "luggage": "口コミ說退房後可寄放行李（楽天口コミ 2026-08）；官方沒寫。",
     "checkIn": "14:00",
     "checkOut": "10:00",
+    "rakutenHotelNo": 18310,
     "dinnerAccess": null,
     "group": {
       "totalRooms": 20,
@@ -8634,6 +8659,7 @@
     "luggage": "じゃらん「遊び・体験」頁的一則旅客口コミ提到入住前、退房後都幫忙寄放行李；官網沒寫，要再確認。",
     "checkIn": "15:00",
     "checkOut": "10:00",
+    "rakutenHotelNo": 9646,
     "dinnerAccess": null,
     "group": {
       "totalRooms": 20,
@@ -9017,6 +9043,7 @@
     "luggage": null,
     "checkIn": "14:00",
     "checkOut": "10:00",
+    "rakutenHotelNo": 11026,
     "dinnerAccess": null,
     "group": {
       "totalRooms": 18,
@@ -9369,6 +9396,7 @@
     "luggage": "入住前可以寄放行李（楽天心得 2026-04）。",
     "checkIn": "14:00",
     "checkOut": "10:00",
+    "rakutenHotelNo": 32033,
     "dinnerAccess": null,
     "group": {
       "totalRooms": 13,
@@ -9685,6 +9713,7 @@
     "luggage": null,
     "checkIn": "14:00",
     "checkOut": "10:00",
+    "rakutenHotelNo": null,
     "dinnerAccess": null,
     "group": {
       "totalRooms": 10,
@@ -9904,6 +9933,7 @@
     "luggage": null,
     "checkIn": "14:00",
     "checkOut": "10:00",
+    "rakutenHotelNo": null,
     "dinnerAccess": null,
     "group": {
       "totalRooms": 18,
@@ -10113,6 +10143,7 @@
     "luggage": "只寫有宅配便服務，沒寫當天寄放（楽天）。",
     "checkIn": "14:30",
     "checkOut": "10:00",
+    "rakutenHotelNo": 30731,
     "dinnerAccess": null,
     "group": {
       "totalRooms": 5,
@@ -10355,6 +10386,7 @@
     "luggage": null,
     "checkIn": "15:00",
     "checkOut": "10:00",
+    "rakutenHotelNo": null,
     "dinnerAccess": null,
     "group": {
       "totalRooms": null,
@@ -10574,6 +10606,7 @@
     "luggage": "官網沒有寫行李寄放；15:00 前不能進入（含停車場、戶外區），10:00 後只能用 2 樓客廳。不知道能不能寄放。",
     "checkIn": "15:00",
     "checkOut": "11:00",
+    "rakutenHotelNo": null,
     "dinnerAccess": "car",
     "group": {
       "totalRooms": 7,
@@ -10880,6 +10913,7 @@
     "luggage": null,
     "checkIn": "15:00",
     "checkOut": "11:00",
+    "rakutenHotelNo": 104562,
     "dinnerAccess": "car",
     "group": {
       "totalRooms": 2,
@@ -11167,6 +11201,7 @@
     "luggage": null,
     "checkIn": "15:00",
     "checkOut": "10:00",
+    "rakutenHotelNo": null,
     "dinnerAccess": "car",
     "group": {
       "totalRooms": 2,
@@ -11397,6 +11432,7 @@
     "luggage": null,
     "checkIn": "15:00",
     "checkOut": "10:00",
+    "rakutenHotelNo": null,
     "dinnerAccess": "walk",
     "group": {
       "totalRooms": 10,
@@ -11646,6 +11682,7 @@
     "luggage": null,
     "checkIn": "15:00",
     "checkOut": "10:00",
+    "rakutenHotelNo": 185002,
     "dinnerAccess": "walk",
     "group": {
       "totalRooms": 1,
@@ -11888,6 +11925,7 @@
     "luggage": null,
     "checkIn": "15:00",
     "checkOut": "10:00",
+    "rakutenHotelNo": 195618,
     "dinnerAccess": "walk",
     "group": {
       "totalRooms": 1,
