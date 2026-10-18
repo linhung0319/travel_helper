@@ -77,3 +77,12 @@
 | @sazanami_official | 漣 伊勢店（`ise-sazanami`） | 多店 | 食べログ公式アカウント欄 |
 | @campagne_ise | カンパーニュ（`ise-campagne`） | | 官網 |
 | @perception_ise | パセプション（`ise-perception`） | | 官網 |
+| @mansenya_hanare | 満船屋 HANARE（`ise-mansenya-hanare`） | | 食べログ公式アカウント欄（T8e） |
+| @aburiyaki_takumi | あぶり焼肉 匠 PART2（`ise-aburi-takumi-part2`） | 集團（炭火焼肉匠 也是同集團，沒填） | 官網（T8e） |
+| @y.noshiro | やきとり能代（`ise-yakitori-noshiro`） | | 食べログ公式アカウント欄（T8e） |
+| @isshobin | 一升びん 松寿亭（`ise-isshobin-shojutei`） | 多店（一升びん 集團） | 官網（T8e） |
+| @shikisairyouri_hibino | ひびの（`ise-hibino`） | | 食べログ公式アカウント欄、Google 網站欄（T8e） |
+| @rairaiken_ise | 味の來々軒（`ise-ajino-rairaiken`） | | 食べログ公式アカウント欄（T8e） |
+| @oosakayaise | 伊勢大阪屋（`ise-osakaya`） | | 食べログ公式アカウント欄（T8e） |
+| @yuzu1783 | 柚子（`ise-yuzu-misono`） | | 食べログ公式アカウント欄（T8e） |
+| @yakiniku_tamachan | たまちゃん（`ise-tamachan`） | | 食べログ公式アカウント欄（T8e） |

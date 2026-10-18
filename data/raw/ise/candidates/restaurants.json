@@ -4445,20 +4445,20 @@
       "C"
     ],
     "reason": "C 補回（T8e，2026-10-18 數量控制改規則：能坐 15 人的店不受數量控制，照原門檻 3.10 收錄）：食べログ列表 個室有(2〜30人可)。原本：C 因數量控制（3.40）取消（個室、貸切）",
-    "pointId": null,
+    "pointId": "ise-sumibi-yakiniku-takumi",
     "ratings": {
       "tabelog": 3.28,
-      "tabelogReviews": 74
+      "tabelogReviews": 74,
+      "google": 3.9,
+      "googleReviews": 90
     },
     "links": {
       "tabelog": "https://tabelog.com/mie/A2403/A240301/24015298/"
     },
     "contexts": [
-      "lunch",
       "dinner"
     ],
-    "note": "類型：居酒屋；地址：伊勢市宮後1-7-7 あさをビル 1F；個室（食べログ列表）：個室有(2〜30人可)；定休（食べログ列表）：水曜日",
-    "detailPending": true
+    "note": "類型：居酒屋；地址：伊勢市宮後1-7-7 あさをビル 1F；個室（食べログ列表）：個室有(2〜30人可)；定休（食べログ列表）：水曜日"
   },
   {
     "key": "tabelog-24019438",
@@ -4472,10 +4472,12 @@
       "C"
     ],
     "reason": "C 補回（T8e，2026-10-18 數量控制改規則：能坐 15 人的店不受數量控制，照原門檻 3.10 收錄）：食べログ列表 完全個室有(4〜20人可)。原本：C 因數量控制（3.40）取消（個室、貸切）",
-    "pointId": null,
+    "pointId": "ise-mansenya-hanare",
     "ratings": {
       "tabelog": 3.25,
-      "tabelogReviews": 42
+      "tabelogReviews": 42,
+      "google": 4.2,
+      "googleReviews": 138
     },
     "links": {
       "tabelog": "https://tabelog.com/mie/A2403/A240301/24019438/"
@@ -4483,8 +4485,7 @@
     "contexts": [
       "dinner"
     ],
-    "note": "類型：居酒屋；地址：伊勢市宮後1-7-39 サウスアイランドビル 1F；個室（食べログ列表）：完全個室有(4〜20人可)",
-    "detailPending": true
+    "note": "類型：居酒屋；地址：伊勢市宮後1-7-39 サウスアイランドビル 1F；個室（食べログ列表）：完全個室有(4〜20人可)"
   },
   {
     "key": "tabelog-24004079",
@@ -5448,10 +5449,12 @@
       "C"
     ],
     "reason": "C 補回（T8e，2026-10-18 數量控制改規則：能坐 15 人的店不受數量控制，照原門檻 3.10 收錄）：食べログ列表 個室有(2〜30人、30人以上可)。原本：A 因數量控制（3.50）取消；C 因數量控制（3.40）取消（個室、貸切）",
-    "pointId": null,
+    "pointId": "ise-katsura-geku",
     "ratings": {
       "tabelog": 3.39,
-      "tabelogReviews": 178
+      "tabelogReviews": 178,
+      "google": 4,
+      "googleReviews": 664
     },
     "links": {
       "tabelog": "https://tabelog.com/mie/A2403/A240301/24012311/"
@@ -5460,8 +5463,7 @@
       "lunch",
       "dinner"
     ],
-    "note": "類型：和食・割烹；地址：伊勢市本町17-16；個室（食べログ列表）：個室有(2〜30人、30人以上可)；定休（食べログ列表）：水曜日",
-    "detailPending": true
+    "note": "類型：和食・割烹；地址：伊勢市本町17-16；個室（食べログ列表）：個室有(2〜30人、30人以上可)；定休（食べログ列表）：水曜日"
   },
   {
     "key": "tabelog-24020257",
@@ -7966,20 +7968,20 @@
       "C"
     ],
     "reason": "C 補回（T8e，2026-10-18 數量控制改規則：能坐 15 人的店不受數量控制，照原門檻 3.10 收錄）：食べログ列表 個室有(2〜20人可)。原本：A 因數量控制（3.50）取消；C 因數量控制（3.40）取消（個室、貸切）",
-    "pointId": null,
+    "pointId": "ise-aburi-takumi-part2",
     "ratings": {
       "tabelog": 3.34,
-      "tabelogReviews": 96
+      "tabelogReviews": 96,
+      "google": 3.3,
+      "googleReviews": 224
     },
     "links": {
       "tabelog": "https://tabelog.com/mie/A2403/A240301/24012782/"
     },
     "contexts": [
-      "lunch",
       "dinner"
     ],
-    "note": "類型：燒肉・肉料理；地址：伊勢市一之木3-10-11；個室（食べログ列表）：個室有(2〜20人可)",
-    "detailPending": true
+    "note": "類型：燒肉・肉料理；地址：伊勢市一之木3-10-11；個室（食べログ列表）：個室有(2〜20人可)"
   },
   {
     "key": "tabelog-24006701",
@@ -7993,10 +7995,12 @@
       "C"
     ],
     "reason": "C 補回（T8e，2026-10-18 數量控制改規則：能坐 15 人的店不受數量控制，照原門檻 3.10 收錄）：食べログ列表 完全個室有(4〜30人可)。原本：C 因數量控制（3.40）取消（個室）",
-    "pointId": null,
+    "pointId": "ise-yakitori-noshiro",
     "ratings": {
       "tabelog": 3.28,
-      "tabelogReviews": 60
+      "tabelogReviews": 60,
+      "google": 4.1,
+      "googleReviews": 182
     },
     "links": {
       "tabelog": "https://tabelog.com/mie/A2403/A240301/24006701/"
@@ -8004,8 +8008,7 @@
     "contexts": [
       "dinner"
     ],
-    "note": "類型：燒肉・肉料理；地址：伊勢市一之木2-12-11；個室（食べログ列表）：完全個室有(4〜30人可)；定休（食べログ列表）：水曜日",
-    "detailPending": true
+    "note": "類型：燒肉・肉料理；地址：伊勢市一之木2-12-11；個室（食べログ列表）：完全個室有(4〜30人可)；定休（食べログ列表）：水曜日"
   },
   {
     "key": "tabelog-24007097",
@@ -8067,10 +8070,12 @@
       "C"
     ],
     "reason": "C 補回（T8e，2026-10-18 數量控制改規則：能坐 15 人的店不受數量控制，照原門檻 3.10 收錄）：食べログ列表 個室有(10〜20人可)。原本：C 因數量控制（3.40）取消（個室、貸切）",
-    "pointId": null,
+    "pointId": "ise-fuguya",
     "ratings": {
       "tabelog": 3.24,
-      "tabelogReviews": 47
+      "tabelogReviews": 47,
+      "google": 4.2,
+      "googleReviews": 153
     },
     "links": {
       "tabelog": "https://tabelog.com/mie/A2403/A240301/24000389/"
@@ -8078,8 +8083,7 @@
     "contexts": [
       "dinner"
     ],
-    "note": "類型：和食・割烹；地址：伊勢市一之木3-7-11；個室（食べログ列表）：個室有(10〜20人可)；定休（食べログ列表）：木曜日",
-    "detailPending": true
+    "note": "類型：和食・割烹；地址：伊勢市一之木3-7-11；個室（食べログ列表）：個室有(10〜20人可)；定休（食べログ列表）：木曜日"
   },
   {
     "key": "tabelog-24000431",
@@ -8093,10 +8097,12 @@
       "C"
     ],
     "reason": "C 補回（T8e，2026-10-18 數量控制改規則：能坐 15 人的店不受數量控制，照原門檻 3.10 收錄）：食べログ列表 個室有(6〜30人可)。原本：C 因數量控制（3.40）取消（個室、貸切）",
-    "pointId": null,
+    "pointId": "ise-isshobin-shojutei",
     "ratings": {
       "tabelog": 3.21,
-      "tabelogReviews": 165
+      "tabelogReviews": 165,
+      "google": 4,
+      "googleReviews": 428
     },
     "links": {
       "tabelog": "https://tabelog.com/mie/A2403/A240301/24000431/"
@@ -8105,8 +8111,7 @@
       "lunch",
       "dinner"
     ],
-    "note": "類型：燒肉・肉料理；地址：伊勢市一之木5-13-20；個室（食べログ列表）：個室有(6〜30人可)；定休（食べログ列表）：火曜日",
-    "detailPending": true
+    "note": "類型：燒肉・肉料理；地址：伊勢市一之木5-13-20；個室（食べログ列表）：個室有(6〜30人可)；定休（食べログ列表）：火曜日"
   },
   {
     "key": "tabelog-24005217",
@@ -9150,19 +9155,21 @@
       "C"
     ],
     "reason": "C 補回（T8e，2026-10-18 數量控制改規則：能坐 15 人的店不受數量控制，照原門檻 3.10 收錄）：食べログ列表 個室有(10〜20人可)。原本：A 因數量控制（3.50）取消；C 因數量控制（3.40）取消（個室、貸切）",
-    "pointId": null,
+    "pointId": "ise-hibino",
     "ratings": {
       "tabelog": 3.3,
-      "tabelogReviews": 26
+      "tabelogReviews": 26,
+      "google": 4.3,
+      "googleReviews": 56
     },
     "links": {
       "tabelog": "https://tabelog.com/mie/A2403/A240301/24005086/"
     },
     "contexts": [
-      "lunch"
+      "lunch",
+      "dinner"
     ],
-    "note": "類型：和食・割烹；地址：伊勢市岡本2-9-43；個室（食べログ列表）：個室有(10〜20人可)；定休（食べログ列表）：月曜日",
-    "detailPending": true
+    "note": "類型：和食・割烹；地址：伊勢市岡本2-9-43；個室（食べログ列表）：個室有(10〜20人可)；定休（食べログ列表）：月曜日"
   },
   {
     "key": "tabelog-24005793",
@@ -9759,10 +9766,12 @@
       "C"
     ],
     "reason": "C 補回（T8e，2026-10-18 數量控制改規則：能坐 15 人的店不受數量控制，照原門檻 3.10 收錄）：食べログ列表 完全個室有(2〜20人可)。原本：C 因數量控制（3.30）取消（個室／貸切）",
-    "pointId": null,
+    "pointId": "ise-kagura",
     "ratings": {
       "tabelog": 3.29,
-      "tabelogReviews": 68
+      "tabelogReviews": 68,
+      "google": 4.3,
+      "googleReviews": 142
     },
     "links": {
       "tabelog": "https://tabelog.com/mie/A2403/A240301/24001258/"
@@ -9771,8 +9780,7 @@
       "lunch",
       "dinner"
     ],
-    "note": "類型：燒肉・肉料理；地址：伊勢市中村町815-1；個室（食べログ列表）：完全個室有(2〜20人可)；貸切可（食べログ篩選）；月讀宮附近，完全個室 2〜20 人",
-    "detailPending": true
+    "note": "類型：燒肉・肉料理；地址：伊勢市中村町815-1；個室（食べログ列表）：完全個室有(2〜20人可)；貸切可（食べログ篩選）；月讀宮附近，完全個室 2〜20 人"
   },
   {
     "key": "tabelog-24012790",
@@ -10679,10 +10687,12 @@
       "C"
     ],
     "reason": "C 補回（T8e，2026-10-18 數量控制改規則：能坐 15 人的店不受數量控制，照原門檻 3.10 收錄）：食べログ列表 個室有(30人以上可)。原本：A 因數量控制（3.60）取消；C 因數量控制（3.60）取消（個室／貸切）",
-    "pointId": null,
+    "pointId": "ise-ajino-rairaiken",
     "ratings": {
       "tabelog": 3.34,
-      "tabelogReviews": 49
+      "tabelogReviews": 49,
+      "google": 4.1,
+      "googleReviews": 263
     },
     "links": {
       "tabelog": "https://tabelog.com/mie/A2403/A240301/24001481/"
@@ -10691,8 +10701,7 @@
       "lunch",
       "dinner"
     ],
-    "note": "類型：其他；地址：伊勢市川端町231-1；定休（食べログ列表）：水曜日；個室（食べログ列表）：個室有(30人以上可)；貸切可（食べログ篩選）；子地區：川端町 歸 ise-outskirts",
-    "detailPending": true
+    "note": "類型：其他；地址：伊勢市川端町231-1；定休（食べログ列表）：水曜日；個室（食べログ列表）：個室有(30人以上可)；貸切可（食べログ篩選）；子地區：川端町 歸 ise-outskirts"
   },
   {
     "key": "tabelog-24012430",
@@ -11013,10 +11022,12 @@
       "C"
     ],
     "reason": "C 補回（T8e，2026-10-18 數量控制改規則：能坐 15 人的店不受數量控制，照原門檻 3.10 收錄）：食べログ列表 完全個室有(10〜30人、30人以上可)。原本：C 因數量控制（3.60）取消（個室／貸切）",
-    "pointId": null,
+    "pointId": "ise-osakaya",
     "ratings": {
       "tabelog": 3.28,
-      "tabelogReviews": 103
+      "tabelogReviews": 103,
+      "google": 3.6,
+      "googleReviews": 333
     },
     "links": {
       "tabelog": "https://tabelog.com/mie/A2403/A240301/24007622/"
@@ -11025,8 +11036,7 @@
       "lunch",
       "dinner"
     ],
-    "note": "類型：海鮮丼；地址：伊勢市上地町2582- 1；個室（食べログ列表）：完全個室有(10〜30人、30人以上可)；貸切可（食べログ篩選）",
-    "detailPending": true
+    "note": "類型：海鮮丼；地址：伊勢市上地町2582- 1；個室（食べログ列表）：完全個室有(10〜30人、30人以上可)；貸切可（食べログ篩選）"
   },
   {
     "key": "tabelog-24012940",
@@ -11086,10 +11096,12 @@
       "C"
     ],
     "reason": "C 補回（T8e，2026-10-18 數量控制改規則：能坐 15 人的店不受數量控制，照原門檻 3.10 收錄）：食べログ列表 完全個室有(2〜20人可)。原本：C 因數量控制（3.60）取消（個室／貸切）",
-    "pointId": null,
+    "pointId": "ise-yuzu-misono",
     "ratings": {
       "tabelog": 3.26,
-      "tabelogReviews": 32
+      "tabelogReviews": 32,
+      "google": 4.5,
+      "googleReviews": 92
     },
     "links": {
       "tabelog": "https://tabelog.com/mie/A2403/A240301/24003146/"
@@ -11098,8 +11110,7 @@
       "lunch",
       "dinner"
     ],
-    "note": "類型：和食・割烹；地址：伊勢市御薗町長屋1983-1；定休（食べログ列表）：火曜日；個室（食べログ列表）：完全個室有(2〜20人可)；貸切可（食べログ篩選）",
-    "detailPending": true
+    "note": "類型：和食・割烹；地址：伊勢市御薗町長屋1983-1；定休（食べログ列表）：火曜日；個室（食べログ列表）：完全個室有(2〜20人可)；貸切可（食べログ篩選）"
   },
   {
     "key": "tabelog-24004947",
@@ -11326,10 +11337,12 @@
       "C"
     ],
     "reason": "C 補回（T8e，2026-10-18 數量控制改規則：能坐 15 人的店不受數量控制，照原門檻 3.10 收錄）：食べログ列表 個室有(30人以上可)。原本：C 因數量控制（3.60）取消（個室）",
-    "pointId": null,
+    "pointId": "ise-tamachan",
     "ratings": {
       "tabelog": 3.19,
-      "tabelogReviews": 26
+      "tabelogReviews": 26,
+      "google": 4.1,
+      "googleReviews": 83
     },
     "links": {
       "tabelog": "https://tabelog.com/mie/A2403/A240301/24015615/"
@@ -11338,8 +11351,7 @@
       "lunch",
       "dinner"
     ],
-    "note": "類型：燒肉・肉料理；地址：伊勢市小俣町湯田185-17；定休（食べログ列表）：月曜日；個室（食べログ列表）：個室有(30人以上可)",
-    "detailPending": true
+    "note": "類型：燒肉・肉料理；地址：伊勢市小俣町湯田185-17；定休（食べログ列表）：月曜日；個室（食べログ列表）：個室有(30人以上可)"
   },
   {
     "key": "tabelog-24018085",
