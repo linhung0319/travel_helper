@@ -211,16 +211,18 @@
       "C"
     ],
     "reason": null,
-    "pointId": null,
+    "pointId": "shima-iwajin-kissa",
     "ratings": {
       "tabelog": 3.45,
-      "tabelogReviews": 122
+      "tabelogReviews": 122,
+      "google": 4.3,
+      "googleReviews": 18
     },
     "links": {
       "tabelog": "https://tabelog.com/mie/A2403/A240303/24008581/"
     },
     "contexts": [
-      "snack",
+      "lunch",
       "cafe"
     ],
     "mentions": [],
@@ -238,16 +240,20 @@
       "C"
     ],
     "reason": null,
-    "pointId": null,
+    "pointId": "shima-michelle",
     "ratings": {
       "tabelog": 3.28,
-      "tabelogReviews": 64
+      "tabelogReviews": 64,
+      "google": 4.3,
+      "googleReviews": 176
     },
     "links": {
       "tabelog": "https://tabelog.com/mie/A2403/A240303/24012463/"
     },
     "contexts": [
-      "lunch"
+      "lunch",
+      "dinner",
+      "cafe"
     ],
     "mentions": [],
     "note": "類型：洋食・義式；地址：阿児町神明2180-6；定休（食べログ列表）：金曜日；貸切可（食べログ列表）；預算（食べログ列表）：夜 -／昼 1000～1999；地址 神明2180-6（志摩神明站一帶？子地區照地址推定 ugata，T9d 看座標）"
@@ -259,11 +265,11 @@
     },
     "region": "shima-kashikojima",
     "category": "ホテル",
-    "status": "pending",
+    "status": "excluded",
     "criteria": [
       "C"
     ],
-    "reason": "住宿本體（lodging shima-kanko-classic），符合 C（個室、貸切；3.25／106）：館內餐廳另列（ラ・メール ザ クラシック、山吹、リアン）；這筆可能是宴會場・團體用餐，T9d 看官網確認非住客的宴會、團體方案",
+    "reason": "住宿本體的總頁（志摩観光ホテル，lodging shima-kanko-classic）。館內的餐廳 ラ・メール ザ クラシック、浜木綿、山吹、リアン 已個別收錄，這筆和它們重複，不另立資料點（T9d 2026-10-18）",
     "pointId": null,
     "ratings": {
       "tabelog": 3.25,
@@ -285,11 +291,11 @@
     },
     "region": "shima-kashikojima",
     "category": "ホテル",
-    "status": "pending",
+    "status": "excluded",
     "criteria": [
       "C"
     ],
-    "reason": "住宿本體（lodging shima-kanko-bay-suites），符合 C（個室、貸切；3.25／103）：館內餐廳另列（ラ・メール、浜木綿）；T9d 確認非住客的團體用餐",
+    "reason": "住宿本體的總頁（志摩観光ホテル ザ ベイスイート，lodging shima-kanko-bay-suites）。館內的 ラ・メール、浜木綿 已個別收錄，這筆和它們重複，不另立資料點（T9d 2026-10-18）",
     "pointId": null,
     "ratings": {
       "tabelog": 3.25,
@@ -311,21 +317,25 @@
     },
     "region": "shima-kashikojima",
     "category": "ホテル",
-    "status": "pending",
+    "status": "included",
     "criteria": [
-      "C"
+      "C",
+      "F3"
     ],
-    "reason": "住宿本體（賢島ファミリーホテル はな屋，T9b 候選 not-included），符合 C（貸切；3.22／52）：觀光協會「食べる」列了昼食 11:30～14:00、夜「お問い合わせください」、不定休；官網的非住客用餐 T9d 確認（判斷細則 F③）",
-    "pointId": null,
+    "reason": "住宿附設（賢島ファミリーホテル はな屋 2F 和食堂「あじさい」，住宿候選 not-included）。T9d 確認：官網寫「お食事のみのお客様も大歓迎、日帰り旅行のお客様も」→ F③ 收錄；營業時間只有食べログ（11:30～14:30、17:00～20:00 事前確認要）（2026-10-18）",
+    "pointId": "shima-hanaya-dining",
     "ratings": {
       "tabelog": 3.22,
-      "tabelogReviews": 52
+      "tabelogReviews": 52,
+      "google": 4.4,
+      "googleReviews": 156
     },
     "links": {
       "tabelog": "https://tabelog.com/mie/A2403/A240303/24010611/"
     },
     "contexts": [
-      "lunch"
+      "lunch",
+      "dinner"
     ],
     "mentions": [],
     "note": "類型：其他；地址：阿児町神明737-13；貸切可（食べログ列表）"
@@ -337,11 +347,11 @@
     },
     "region": "shima-ugata",
     "category": "オーベルジュ、カフェ、洋食",
-    "status": "pending",
+    "status": "excluded",
     "criteria": [
       "C"
     ],
-    "reason": "住宿本體（lodging shima-nocturne-no-mori，舊名フィオーレ志摩，神明1916-60），符合 C（貸切；3.17／20）：T9b 現在的方案不含晚餐，餐廳可能已經不營業；T9d 確認",
+    "reason": "住宿本體（lodging shima-nocturne-no-mori，舊名フィオーレ志摩）。T9d 確認：官網現在沒有ランチ、ディナー，只有不定期營業的テラスカフェ（輕食、飲料）；食べログ的カフェ＆ランチ、ディナー（4 日前預約）、貸切 20～50 人是改名前的舊資料 → 照判斷細則 F③ 不收錄（2026-10-19）",
     "pointId": null,
     "ratings": {
       "tabelog": 3.17,
@@ -369,16 +379,18 @@
       "C"
     ],
     "reason": null,
-    "pointId": null,
+    "pointId": "shima-shucafe",
     "ratings": {
       "tabelog": 3.16,
-      "tabelogReviews": 36
+      "tabelogReviews": 36,
+      "google": 4.2,
+      "googleReviews": 109
     },
     "links": {
       "tabelog": "https://tabelog.com/mie/A2403/A240303/24005869/"
     },
     "contexts": [
-      "snack",
+      "lunch",
       "cafe"
     ],
     "mentions": [],
@@ -415,22 +427,25 @@
     },
     "region": "shima-kashikojima",
     "category": "料理旅館",
-    "status": "pending",
+    "status": "included",
     "criteria": [
       "A",
-      "C"
+      "C",
+      "F3"
     ],
-    "reason": "住宿本體（lodging shima-hoseien），符合 A、C（個室）：觀光協會「食べる」列了昼食 11:30～13:30（月、火休，祝日除く），但官網的非住客用餐方案還沒看（判斷細則 F③），T9d 確認",
-    "pointId": null,
+    "reason": "住宿附設（lodging shima-hoseien）。T9d 確認：官網「日帰り昼食プラン」非住客午餐（餐廳 英虞のうみ，11:30～13:30 預約制，週一・二休）→ F③ 只收午餐；非住客晚餐官網沒寫（2026-10-18）",
+    "pointId": "shima-hoseien-dining",
     "ratings": {
       "tabelog": 3.45,
-      "tabelogReviews": 162
+      "tabelogReviews": 162,
+      "google": 4.3,
+      "googleReviews": 2596
     },
     "links": {
       "tabelog": "https://tabelog.com/mie/A2403/A240303/24001751/"
     },
     "contexts": [
-      "dinner"
+      "lunch"
     ],
     "mentions": [
       {
@@ -455,15 +470,18 @@
       "A"
     ],
     "reason": null,
-    "pointId": null,
+    "pointId": "shima-la-mer",
     "ratings": {
       "tabelog": 4.04,
-      "tabelogReviews": 267
+      "tabelogReviews": 267,
+      "google": 4.8,
+      "googleReviews": 102
     },
     "links": {
       "tabelog": "https://tabelog.com/mie/A2403/A240303/24005111/"
     },
     "contexts": [
+      "lunch",
       "dinner"
     ],
     "mentions": [],
@@ -481,10 +499,12 @@
       "A"
     ],
     "reason": null,
-    "pointId": null,
+    "pointId": "shima-la-mer-classic",
     "ratings": {
       "tabelog": 4.01,
-      "tabelogReviews": 552
+      "tabelogReviews": 552,
+      "google": 4.6,
+      "googleReviews": 387
     },
     "links": {
       "tabelog": "https://tabelog.com/mie/A2403/A240303/24000053/"
@@ -508,15 +528,18 @@
       "A"
     ],
     "reason": null,
-    "pointId": null,
+    "pointId": "shima-hamayu",
     "ratings": {
       "tabelog": 3.63,
-      "tabelogReviews": 72
+      "tabelogReviews": 72,
+      "google": 4.5,
+      "googleReviews": 23
     },
     "links": {
       "tabelog": "https://tabelog.com/mie/A2403/A240303/24000919/"
     },
     "contexts": [
+      "lunch",
       "dinner"
     ],
     "mentions": [],
@@ -529,21 +552,23 @@
     },
     "region": "shima-ugata",
     "category": "オーベルジュ、日本料理、創作料理",
-    "status": "pending",
+    "status": "included",
     "criteria": [
-      "A"
+      "A",
+      "F3"
     ],
-    "reason": "住宿本體（lodging shima-provence），符合 A（3.50／73）：觀光協會「食べる」列了 17:30～21:00、無休（F③ 的候選，志摩神明站附近晚上少數的店），官網的非住客用餐方案 T9d 確認",
-    "pointId": null,
+    "reason": "住宿附設（lodging shima-provence，美食の隠れ家プロヴァンス）。T9d 確認：觀光協會「食べる」列了ディナー 17:30～21:00、無休、おまかせコース 15,400 円、當天 15:00 前預約（晚餐客人免費日歸入浴）→ F③ 收錄晚餐；午餐對外沒有來源（2026-10-19）",
+    "pointId": "shima-provence-dining",
     "ratings": {
       "tabelog": 3.5,
-      "tabelogReviews": 73
+      "tabelogReviews": 73,
+      "google": 4.2,
+      "googleReviews": 398
     },
     "links": {
       "tabelog": "https://tabelog.com/mie/A2403/A240303/24011469/"
     },
     "contexts": [
-      "lunch",
       "dinner"
     ],
     "mentions": [],
@@ -561,17 +586,18 @@
       "A"
     ],
     "reason": null,
-    "pointId": null,
+    "pointId": "shima-lien",
     "ratings": {
       "tabelog": 3.39,
-      "tabelogReviews": 74
+      "tabelogReviews": 74,
+      "google": 4.7,
+      "googleReviews": 79
     },
     "links": {
       "tabelog": "https://tabelog.com/mie/A2403/A240303/24014858/"
     },
     "contexts": [
       "lunch",
-      "dinner",
       "cafe"
     ],
     "mentions": [],
@@ -589,10 +615,12 @@
       "A"
     ],
     "reason": null,
-    "pointId": null,
+    "pointId": "shima-yoshikatsutei",
     "ratings": {
       "tabelog": 3.33,
-      "tabelogReviews": 118
+      "tabelogReviews": 118,
+      "google": 4.3,
+      "googleReviews": 493
     },
     "links": {
       "tabelog": "https://tabelog.com/mie/A2403/A240303/24001518/"
@@ -615,16 +643,17 @@
       "A"
     ],
     "reason": null,
-    "pointId": null,
+    "pointId": "shima-yamabuki",
     "ratings": {
       "tabelog": 3.3,
-      "tabelogReviews": 25
+      "tabelogReviews": 25,
+      "google": 4.9,
+      "googleReviews": 13
     },
     "links": {
       "tabelog": "https://tabelog.com/mie/A2403/A240303/24014903/"
     },
     "contexts": [
-      "lunch",
       "dinner"
     ],
     "mentions": [],
@@ -710,13 +739,13 @@
     },
     "region": "shima-kashikojima",
     "category": "レストラン、フレンチ",
-    "status": "pending",
+    "status": "excluded",
     "criteria": [
       "A",
       "B",
       "C"
     ],
-    "reason": "住宿本體＝餐廳（THE HIRAMATSU HOTELS & RESORTS 賢島，T9b 沒有這間的候選：楽天沒有），符合 A、B、C（個室、貸切）：非住客能不能用餐沒有來源（官網待看），T9d 確認；夜 100,000 円～",
+    "reason": "住宿本體（THE HIRAMATSU 賢島，不在 lodging.json）。T9d 確認：官網只有住客的晚餐、朝食說明，沒有レストランのみ、ランチ或非住客方案；觀光三重也沒寫 → 照判斷細則 F③ 不收錄。非住客能否預約晚餐列進 questions.md（0599-65-7001）（2026-10-18）",
     "pointId": null,
     "ratings": {
       "tabelog": 3.77,
@@ -759,10 +788,12 @@
       "C"
     ],
     "reason": null,
-    "pointId": null,
+    "pointId": "shima-tobari",
     "ratings": {
       "tabelog": 3.74,
-      "tabelogReviews": 99
+      "tabelogReviews": 99,
+      "google": 4.3,
+      "googleReviews": 119
     },
     "links": {
       "tabelog": "https://tabelog.com/mie/A2403/A240303/24016491/"
@@ -787,10 +818,12 @@
       "C"
     ],
     "reason": null,
-    "pointId": null,
+    "pointId": "shima-tai",
     "ratings": {
       "tabelog": 3.56,
-      "tabelogReviews": 220
+      "tabelogReviews": 220,
+      "google": 4.1,
+      "googleReviews": 328
     },
     "links": {
       "tabelog": "https://tabelog.com/mie/A2403/A240303/24000565/"
@@ -815,10 +848,12 @@
       "C"
     ],
     "reason": null,
-    "pointId": null,
+    "pointId": "shima-chotaya",
     "ratings": {
       "tabelog": 3.51,
-      "tabelogReviews": 284
+      "tabelogReviews": 284,
+      "google": 4.2,
+      "googleReviews": 733
     },
     "links": {
       "tabelog": "https://tabelog.com/mie/A2403/A240303/24000435/"
@@ -843,10 +878,12 @@
       "C"
     ],
     "reason": null,
-    "pointId": null,
+    "pointId": "shima-daikazoku",
     "ratings": {
       "tabelog": 3.43,
-      "tabelogReviews": 103
+      "tabelogReviews": 103,
+      "google": 4.4,
+      "googleReviews": 201
     },
     "links": {
       "tabelog": "https://tabelog.com/mie/A2403/A240303/24013198/"
@@ -870,10 +907,12 @@
       "C"
     ],
     "reason": null,
-    "pointId": null,
+    "pointId": "shima-otoya",
     "ratings": {
       "tabelog": 3.35,
-      "tabelogReviews": 91
+      "tabelogReviews": 91,
+      "google": 3.7,
+      "googleReviews": 180
     },
     "links": {
       "tabelog": "https://tabelog.com/mie/A2403/A240303/24001034/"
@@ -897,10 +936,12 @@
       "C"
     ],
     "reason": null,
-    "pointId": null,
+    "pointId": "shima-miyamatei",
     "ratings": {
       "tabelog": 3.34,
-      "tabelogReviews": 99
+      "tabelogReviews": 99,
+      "google": 4,
+      "googleReviews": 362
     },
     "links": {
       "tabelog": "https://tabelog.com/mie/A2403/A240303/24008717/"
@@ -924,10 +965,12 @@
       "C"
     ],
     "reason": null,
-    "pointId": null,
+    "pointId": "shima-isokko",
     "ratings": {
       "tabelog": 3.3,
-      "tabelogReviews": 83
+      "tabelogReviews": 83,
+      "google": 3.9,
+      "googleReviews": 337
     },
     "links": {
       "tabelog": "https://tabelog.com/mie/A2403/A240303/24001504/"
@@ -951,17 +994,18 @@
       "C"
     ],
     "reason": null,
-    "pointId": null,
+    "pointId": "shima-grill-edoichi",
     "ratings": {
       "tabelog": 3.28,
-      "tabelogReviews": 59
+      "tabelogReviews": 59,
+      "google": 4.3,
+      "googleReviews": 188
     },
     "links": {
       "tabelog": "https://tabelog.com/mie/A2403/A240303/24000625/"
     },
     "contexts": [
-      "lunch",
-      "dinner"
+      "lunch"
     ],
     "mentions": [],
     "note": "類型：洋食・義式；地址：阿児町鵜方1089；定休（食べログ列表）：木曜日、日曜日；貸切可（食べログ列表）；預算（食べログ列表）：夜 1000～1999／昼 ～999；觀光協會「食べる」：11:00～19:00（L.O.18:30），木、日休"
@@ -973,15 +1017,18 @@
     },
     "region": "shima-kashikojima",
     "category": "レストラン",
-    "status": "pending",
+    "status": "included",
     "criteria": [
-      "C"
+      "C",
+      "F3"
     ],
-    "reason": "近鉄賢島カンツリークラブ（ゴルフ場）的餐廳，符合 C（個室、貸切；3.26／38）：不打球的人能不能用餐不確定（「會員制、只限住客」的待確認），T9d 第一步確認",
-    "pointId": null,
+    "reason": "高爾夫球場的餐廳。T9d 確認：官網「レストランのみ（ゴルフをされない方）の利用も可能」→ F③ 收錄（午餐）；營業時間、休場日官網沒寫（2026-10-18）",
+    "pointId": "shima-kashikojima-cc-restaurant",
     "ratings": {
       "tabelog": 3.26,
-      "tabelogReviews": 38
+      "tabelogReviews": 38,
+      "google": 4.3,
+      "googleReviews": 433
     },
     "links": {
       "tabelog": "https://tabelog.com/mie/A2403/A240303/24012093/"
@@ -999,21 +1046,26 @@
     },
     "region": "shima-kashikojima",
     "category": "ホテル",
-    "status": "pending",
+    "status": "included",
     "criteria": [
-      "C"
+      "C",
+      "F3"
     ],
-    "reason": "住宿本體（lodging shima-miyako-bayside-terrace），符合 C（貸切；3.21／34）：館內餐廳 マレナSHIMA 另列；T9d 確認非住客的團體用餐",
-    "pointId": null,
+    "reason": "住宿本體（lodging shima-miyako-bayside-terrace）。T9d 確認：館內和食・カフェ在 TableCheck 公開接受一般預約、官網「貸切ランチプラン」15～50 人 → F③ 收錄，資料點代表和食・カフェ・貸切ランチ（法式 マレナSHIMA 另列）（2026-10-18）",
+    "pointId": "shima-miyako-bayside-terrace-dining",
     "ratings": {
       "tabelog": 3.21,
-      "tabelogReviews": 34
+      "tabelogReviews": 34,
+      "google": 4.2,
+      "googleReviews": 1177
     },
     "links": {
       "tabelog": "https://tabelog.com/mie/A2403/A240303/24020023/"
     },
     "contexts": [
-      "dinner"
+      "lunch",
+      "dinner",
+      "cafe"
     ],
     "mentions": [],
     "note": "類型：其他；地址：阿児町鵜方3618-33；貸切可（食べログ列表）；預算（食べログ列表）：夜 10000～14999／昼 -"
@@ -1030,10 +1082,12 @@
       "C"
     ],
     "reason": null,
-    "pointId": null,
+    "pointId": "shima-la-pizzica",
     "ratings": {
       "tabelog": 3.2,
-      "tabelogReviews": 16
+      "tabelogReviews": 16,
+      "google": 4.3,
+      "googleReviews": 186
     },
     "links": {
       "tabelog": "https://tabelog.com/mie/A2403/A240303/24022283/"
@@ -1057,10 +1111,12 @@
       "C"
     ],
     "reason": null,
-    "pointId": null,
+    "pointId": "shima-mabushi-ichiya",
     "ratings": {
       "tabelog": 3.18,
-      "tabelogReviews": 38
+      "tabelogReviews": 38,
+      "google": 4.4,
+      "googleReviews": 174
     },
     "links": {
       "tabelog": "https://tabelog.com/mie/A2403/A240303/24020292/"
@@ -1084,10 +1140,12 @@
       "C"
     ],
     "reason": null,
-    "pointId": null,
+    "pointId": "shima-norpol",
     "ratings": {
       "tabelog": 3.18,
-      "tabelogReviews": 21
+      "tabelogReviews": 21,
+      "google": 4.1,
+      "googleReviews": 70
     },
     "links": {
       "tabelog": "https://tabelog.com/mie/A2403/A240303/24016233/"
@@ -1111,10 +1169,12 @@
       "C"
     ],
     "reason": null,
-    "pointId": null,
+    "pointId": "shima-roppongi",
     "ratings": {
       "tabelog": 3.15,
-      "tabelogReviews": 19
+      "tabelogReviews": 19,
+      "google": 3.9,
+      "googleReviews": 112
     },
     "links": {
       "tabelog": "https://tabelog.com/mie/A2403/A240303/24005459/"
@@ -1138,10 +1198,12 @@
       "C"
     ],
     "reason": null,
-    "pointId": null,
+    "pointId": "shima-isuzuya-ugata",
     "ratings": {
       "tabelog": 3.13,
-      "tabelogReviews": 39
+      "tabelogReviews": 39,
+      "google": 4,
+      "googleReviews": 98
     },
     "links": {
       "tabelog": "https://tabelog.com/mie/A2403/A240303/24015009/"
@@ -1165,10 +1227,12 @@
       "C"
     ],
     "reason": null,
-    "pointId": null,
+    "pointId": "shima-ginrin",
     "ratings": {
       "tabelog": 3.12,
-      "tabelogReviews": 24
+      "tabelogReviews": 24,
+      "google": 3.8,
+      "googleReviews": 87
     },
     "links": {
       "tabelog": "https://tabelog.com/mie/A2403/A240303/24004673/"
@@ -1291,10 +1355,12 @@
       "C"
     ],
     "reason": null,
-    "pointId": null,
+    "pointId": "shima-wasabi",
     "ratings": {
       "tabelog": 3.32,
-      "tabelogReviews": 50
+      "tabelogReviews": 50,
+      "google": 4,
+      "googleReviews": 204
     },
     "links": {
       "tabelog": "https://tabelog.com/mie/A2403/A240303/24006261/"
@@ -1317,10 +1383,12 @@
       "C"
     ],
     "reason": null,
-    "pointId": null,
+    "pointId": "shima-yakiniku-uemura",
     "ratings": {
       "tabelog": 3.19,
-      "tabelogReviews": 51
+      "tabelogReviews": 51,
+      "google": 4.1,
+      "googleReviews": 234
     },
     "links": {
       "tabelog": "https://tabelog.com/mie/A2403/A240303/24006560/"
@@ -1344,10 +1412,12 @@
       "C"
     ],
     "reason": null,
-    "pointId": null,
+    "pointId": "shima-miyagino",
     "ratings": {
       "tabelog": 3.15,
-      "tabelogReviews": 21
+      "tabelogReviews": 21,
+      "google": 4.4,
+      "googleReviews": 90
     },
     "links": {
       "tabelog": "https://tabelog.com/mie/A2403/A240303/24000337/"
@@ -1371,16 +1441,19 @@
       "C"
     ],
     "reason": null,
-    "pointId": null,
+    "pointId": "shima-shimakaze-shokudo",
     "ratings": {
       "tabelog": 3.14,
-      "tabelogReviews": 16
+      "tabelogReviews": 16,
+      "google": 3.9,
+      "googleReviews": 30
     },
     "links": {
       "tabelog": "https://tabelog.com/mie/A2403/A240303/24022014/"
     },
     "contexts": [
-      "lunch"
+      "lunch",
+      "dinner"
     ],
     "mentions": [],
     "note": "類型：定食・食堂；地址：阿児町鵜方字金谷3016-26；個室（食べログ列表）：個室有；預算（食べログ列表）：夜 -／昼 1000～1999"
@@ -1397,10 +1470,12 @@
       "C"
     ],
     "reason": null,
-    "pointId": null,
+    "pointId": "shima-keijo-ugata",
     "ratings": {
       "tabelog": 3.13,
-      "tabelogReviews": 22
+      "tabelogReviews": 22,
+      "google": 4,
+      "googleReviews": 177
     },
     "links": {
       "tabelog": "https://tabelog.com/mie/A2403/A240303/24010853/"
@@ -1423,17 +1498,18 @@
       "A"
     ],
     "reason": null,
-    "pointId": null,
+    "pointId": "shima-higashiyama-bussan",
     "ratings": {
       "tabelog": 3.74,
-      "tabelogReviews": 931
+      "tabelogReviews": 931,
+      "google": 4.5,
+      "googleReviews": 1767
     },
     "links": {
       "tabelog": "https://tabelog.com/mie/A2403/A240303/24006418/"
     },
     "contexts": [
-      "lunch",
-      "dinner"
+      "lunch"
     ],
     "mentions": [],
     "note": "類型：和食・割烹；地址：阿児町鵜方4032；定休（食べログ列表）：火曜日；預算（食べログ列表）：夜 3000～3999／昼 2000～2999；觀光協會「食べる」：10:00～19:00 頃（L.O.18:00、賣完就打烊），火休（臨時休業あり）；鵜方站步行約 3 分（觀光協會的距離）"
@@ -1450,10 +1526,12 @@
       "A"
     ],
     "reason": null,
-    "pointId": null,
+    "pointId": "shima-miyamoto",
     "ratings": {
       "tabelog": 3.51,
-      "tabelogReviews": 173
+      "tabelogReviews": 173,
+      "google": 4.2,
+      "googleReviews": 292
     },
     "links": {
       "tabelog": "https://tabelog.com/mie/A2403/A240303/24000188/"
@@ -1477,16 +1555,17 @@
       "A"
     ],
     "reason": null,
-    "pointId": null,
+    "pointId": "shima-mirador",
     "ratings": {
       "tabelog": 3.5,
-      "tabelogReviews": 220
+      "tabelogReviews": 220,
+      "google": 4,
+      "googleReviews": 646
     },
     "links": {
       "tabelog": "https://tabelog.com/mie/A2403/A240303/24015875/"
     },
     "contexts": [
-      "lunch",
       "snack",
       "cafe"
     ],
@@ -1505,10 +1584,12 @@
       "A"
     ],
     "reason": null,
-    "pointId": null,
+    "pointId": "shima-marena-french",
     "ratings": {
       "tabelog": 3.4,
-      "tabelogReviews": 111
+      "tabelogReviews": 111,
+      "google": 3.3,
+      "googleReviews": 4
     },
     "links": {
       "tabelog": "https://tabelog.com/mie/A2403/A240303/24000658/"
@@ -1946,10 +2027,12 @@
       "C"
     ],
     "reason": null,
-    "pointId": null,
+    "pointId": "shima-hamazaki",
     "ratings": {
       "tabelog": 3.18,
-      "tabelogReviews": 24
+      "tabelogReviews": 24,
+      "google": 3.6,
+      "googleReviews": 123
     },
     "links": {
       "tabelog": "https://tabelog.com/mie/A2403/A240303/24017421/"
@@ -2070,15 +2153,18 @@
       "C"
     ],
     "reason": null,
-    "pointId": null,
+    "pointId": "shima-todai-cafe",
     "ratings": {
       "tabelog": 3.4,
-      "tabelogReviews": 103
+      "tabelogReviews": 103,
+      "google": 4.5,
+      "googleReviews": 392
     },
     "links": {
       "tabelog": "https://tabelog.com/mie/A2403/A240303/24016462/"
     },
     "contexts": [
+      "cafe",
       "snack"
     ],
     "mentions": [],
@@ -2097,10 +2183,12 @@
       "C"
     ],
     "reason": null,
-    "pointId": null,
+    "pointId": "shima-marusei",
     "ratings": {
       "tabelog": 3.31,
-      "tabelogReviews": 73
+      "tabelogReviews": 73,
+      "google": 4.3,
+      "googleReviews": 247
     },
     "links": {
       "tabelog": "https://tabelog.com/mie/A2403/A240303/24002115/"
@@ -2129,13 +2217,16 @@
     "category": "料理旅館、海鮮",
     "status": "included",
     "criteria": [
-      "C"
+      "C",
+      "F3"
     ],
     "reason": null,
-    "pointId": null,
+    "pointId": "shima-hisada",
     "ratings": {
       "tabelog": 3.22,
-      "tabelogReviews": 16
+      "tabelogReviews": 16,
+      "google": 4.3,
+      "googleReviews": 95
     },
     "links": {
       "tabelog": "https://tabelog.com/mie/A2403/A240303/24001174/"
@@ -2164,19 +2255,23 @@
     "category": "海鮮、ふぐ",
     "status": "included",
     "criteria": [
-      "D1"
+      "D1",
+      "F3"
     ],
     "reason": null,
-    "pointId": null,
+    "pointId": "shima-marutora",
     "ratings": {
       "tabelog": 3.02,
-      "tabelogReviews": 2
+      "tabelogReviews": 2,
+      "google": 4.5,
+      "googleReviews": 50
     },
     "links": {
       "tabelog": "https://tabelog.com/mie/A2403/A240303/24001186/"
     },
     "contexts": [
-      "lunch"
+      "lunch",
+      "dinner"
     ],
     "mentions": [
       {
@@ -2201,17 +2296,18 @@
       "A"
     ],
     "reason": null,
-    "pointId": null,
+    "pointId": "shima-manpuku-itabashi",
     "ratings": {
       "tabelog": 3.37,
-      "tabelogReviews": 120
+      "tabelogReviews": 120,
+      "google": 4,
+      "googleReviews": 431
     },
     "links": {
       "tabelog": "https://tabelog.com/mie/A2403/A240303/24005399/"
     },
     "contexts": [
-      "lunch",
-      "dinner"
+      "lunch"
     ],
     "mentions": [],
     "note": "類型：定食・食堂；地址：磯部町恵利原240；定休（食べログ列表）：火曜日；預算（食べログ列表）：夜 ～999／昼 1000～1999；地址 恵利原240：照規則推定 isobe（恵利原的平地；1000 番台以上推定是 amanoiwato 的山區），T9d 看座標"
@@ -2229,10 +2325,12 @@
       "C"
     ],
     "reason": null,
-    "pointId": null,
+    "pointId": "shima-kawaume",
     "ratings": {
       "tabelog": 3.37,
-      "tabelogReviews": 83
+      "tabelogReviews": 83,
+      "google": 4,
+      "googleReviews": 383
     },
     "links": {
       "tabelog": "https://tabelog.com/mie/A2403/A240303/24000557/"
@@ -2290,10 +2388,12 @@
       "F1"
     ],
     "reason": null,
-    "pointId": null,
+    "pointId": "shima-matoya-kaki-terrace",
     "ratings": {
       "tabelog": 3.62,
-      "tabelogReviews": 251
+      "tabelogReviews": 251,
+      "google": 4.3,
+      "googleReviews": 765
     },
     "links": {
       "tabelog": "https://tabelog.com/mie/A2403/A240303/24018818/"
@@ -2319,16 +2419,19 @@
     },
     "region": "shima-matoya",
     "category": "海鮮、オイスターバー、日本料理",
-    "status": "pending",
+    "status": "included",
     "criteria": [
       "A",
-      "C"
+      "C",
+      "F3"
     ],
-    "reason": "住宿本體（lodging shima-ikadaso-sanjo），符合 A、C（3.54／154，個室、貸切）：觀光三重 spot/22848 只有 9:00～21:00、不定休，沒有非住客的用餐方案（判斷細則 F③），T9d 看官網確認；matoya 週二午餐唯一可能的店",
-    "pointId": null,
+    "reason": "住宿附設（lodging shima-ikadaso-sanjo）。T9d 確認：官網 FAQ「昼食だけの利用は可能」、官網有單獨的御食事予約頁（線上 10 名以下、超過電話），食べログ 完全予約制、最大予約 80 人 → F③ 收錄午餐、晚餐（2026-10-19）",
+    "pointId": "shima-ikadaso-sanjo-dining",
     "ratings": {
       "tabelog": 3.54,
-      "tabelogReviews": 154
+      "tabelogReviews": 154,
+      "google": 4.4,
+      "googleReviews": 696
     },
     "links": {
       "tabelog": "https://tabelog.com/mie/A2403/A240303/24001032/"
@@ -2353,10 +2456,12 @@
       "C"
     ],
     "reason": null,
-    "pointId": null,
+    "pointId": "shima-nakaroku",
     "ratings": {
       "tabelog": 3.39,
-      "tabelogReviews": 125
+      "tabelogReviews": 125,
+      "google": 4.4,
+      "googleReviews": 376
     },
     "links": {
       "tabelog": "https://tabelog.com/mie/A2403/A240303/24000718/"
@@ -2398,21 +2503,25 @@
     },
     "region": "shima-matoya",
     "category": "料理旅館、海鮮",
-    "status": "pending",
+    "status": "included",
     "criteria": [
-      "C"
+      "C",
+      "F3"
     ],
-    "reason": "住宿本體（lodging shima-tachibana），符合 C（3.21／48，個室 30 人以上可）：食べログ列表有午餐價位 1,000～1,999 円，但非住客用餐方案沒有來源（判斷細則 F③），T9d 確認；T9b：官網滿席公告 2/2、2/3 晚餐已滿",
-    "pointId": null,
+    "reason": "住宿附設（lodging shima-tachibana，料理旅館）。T9d 確認：官網每個料理套餐都可以只用餐預約（滿席日公告含午餐），まっぷる 11:30～14:30、17:00～20:00；官網滿席公告 2027-02-02 午餐已滿 → F③ 收錄（2026-10-19）",
+    "pointId": "shima-tachibana-dining",
     "ratings": {
       "tabelog": 3.21,
-      "tabelogReviews": 48
+      "tabelogReviews": 48,
+      "google": 4.2,
+      "googleReviews": 97
     },
     "links": {
       "tabelog": "https://tabelog.com/mie/A2403/A240303/24001171/"
     },
     "contexts": [
-      "lunch"
+      "lunch",
+      "dinner"
     ],
     "mentions": [],
     "note": "類型：和食・割烹；地址：磯部町的矢310；個室（食べログ列表）：個室有(30人以上可)；預算（食べログ列表）：夜 -／昼 1000～1999"
@@ -2424,20 +2533,24 @@
     },
     "region": "shima-matoya",
     "category": "ホテル",
-    "status": "pending",
+    "status": "included",
     "criteria": [
-      "C"
+      "C",
+      "F3"
     ],
-    "reason": "住宿本體（lodging shima-fukujuso，渡鹿野島），符合 C（3.21／36，個室）：非住客用餐沒有來源；觀光協會「食べる」另有「カフェ・レストランかいげつ」（渡鹿野516，8:00～21:00、無休，食べログ沒有），可能是館內的店，T9d 確認",
-    "pointId": null,
+    "reason": "住宿附設（lodging shima-fukujuso）。T9d 確認：官網寫午餐、晚餐的客人可免費日帰り入浴，団体・宴会 表單有「日帰り宴会プラン」「昼食プラン」（宴會場最多 160 名、可安排鵜方站送迎與渡船），るるぶ 有食事處（会席要預約）；價格未公開 → F③ 收錄（以團體昼食為主，2026-10-19）",
+    "pointId": "shima-fukujuso-dining",
     "ratings": {
       "tabelog": 3.21,
-      "tabelogReviews": 36
+      "tabelogReviews": 36,
+      "google": 4.1,
+      "googleReviews": 647
     },
     "links": {
       "tabelog": "https://tabelog.com/mie/A2403/A240303/24009226/"
     },
     "contexts": [
+      "lunch",
       "dinner"
     ],
     "mentions": [],
@@ -2481,17 +2594,20 @@
       "C"
     ],
     "reason": null,
-    "pointId": null,
+    "pointId": "shima-chevron-cafe",
     "ratings": {
       "tabelog": 3.27,
-      "tabelogReviews": 98
+      "tabelogReviews": 98,
+      "google": 4.1,
+      "googleReviews": 313
     },
     "links": {
       "tabelog": "https://tabelog.com/mie/A2403/A240303/24010790/"
     },
     "contexts": [
       "lunch",
-      "dinner"
+      "dinner",
+      "cafe"
     ],
     "mentions": [
       {
@@ -2511,11 +2627,11 @@
     },
     "region": "shima-kokufu",
     "category": "ピザ",
-    "status": "included",
+    "status": "excluded",
     "criteria": [
       "A"
     ],
-    "reason": null,
+    "reason": "T9d 確認：Google マップ 標示「閉業」（2026-10-19），食べログ 的官網（business.site）404、WebSearch 找不到其他營業中的來源 → 當作已閉店排除（食べログ 還沒標閉店）",
     "pointId": null,
     "ratings": {
       "tabelog": 3.31,
@@ -2566,10 +2682,12 @@
       "D2"
     ],
     "reason": null,
-    "pointId": null,
+    "pointId": "shima-bali-house",
     "ratings": {
       "tabelog": 3.18,
-      "tabelogReviews": 19
+      "tabelogReviews": 19,
+      "google": 4.7,
+      "googleReviews": 99
     },
     "links": {
       "tabelog": "https://tabelog.com/mie/A2403/A240303/24019767/"
@@ -2635,10 +2753,12 @@
       "C"
     ],
     "reason": null,
-    "pointId": null,
+    "pointId": "shima-sushi-akatsuki",
     "ratings": {
       "tabelog": 3.37,
-      "tabelogReviews": 89
+      "tabelogReviews": 89,
+      "google": 4.5,
+      "googleReviews": 233
     },
     "links": {
       "tabelog": "https://tabelog.com/mie/A2403/A240303/24000879/"
@@ -2686,10 +2806,12 @@
       "C"
     ],
     "reason": null,
-    "pointId": null,
+    "pointId": "shima-matsumura",
     "ratings": {
       "tabelog": 3.17,
-      "tabelogReviews": 43
+      "tabelogReviews": 43,
+      "google": 4.1,
+      "googleReviews": 145
     },
     "links": {
       "tabelog": "https://tabelog.com/mie/A2403/A240303/24004781/"
@@ -2713,10 +2835,12 @@
       "F1"
     ],
     "reason": null,
-    "pointId": null,
+    "pointId": "shima-hashimoto",
     "ratings": {
       "tabelog": 3.08,
-      "tabelogReviews": 19
+      "tabelogReviews": 19,
+      "google": 4.4,
+      "googleReviews": 105
     },
     "links": {
       "tabelog": "https://tabelog.com/mie/A2403/A240303/24016065/"
@@ -2782,21 +2906,25 @@
     },
     "region": "shima-matoya",
     "category": "海鮮",
-    "status": "pending",
+    "status": "included",
     "criteria": [
-      "D1"
+      "D1",
+      "F3"
     ],
-    "reason": "D①（matoya 週二 2/2、2/9 午餐 0 家：かきテラス、はしもと 都火休）：住宿本體（lodging shima-marusada），3.07／17，食べログ列表有午餐價位 4,000～4,999 円；非住客用餐沒有來源（判斷細則 F③），T9d 確認",
-    "pointId": null,
+    "reason": "住宿附設（lodging shima-marusada）。T9d 確認：官網お食事プラン 有非住客午餐（1 日 3 組 10 名まで、前一天預約、依住客情況有不開的日子；最新公告是 2024-25 季）→ F③ 收錄午餐，15 人不能一起（2026-10-19）",
+    "pointId": "shima-marusada-dining",
     "ratings": {
       "tabelog": 3.07,
-      "tabelogReviews": 17
+      "tabelogReviews": 17,
+      "google": 4.6,
+      "googleReviews": 120
     },
     "links": {
       "tabelog": "https://tabelog.com/mie/A2403/A240303/24001029/"
     },
     "contexts": [
-      "lunch"
+      "lunch",
+      "dinner"
     ],
     "mentions": [],
     "note": "類型：海鮮丼；地址：磯部町的矢934-5 丸定旅館；預算（食べログ列表）：夜 -／昼 4000～4999"
@@ -2810,13 +2938,16 @@
     "category": "かき",
     "status": "included",
     "criteria": [
-      "F1"
+      "F1",
+      "F3"
     ],
     "reason": null,
-    "pointId": null,
+    "pointId": "shima-bettei-matoya",
     "ratings": {
       "tabelog": 3.02,
-      "tabelogReviews": 1
+      "tabelogReviews": 1,
+      "google": 3.7,
+      "googleReviews": 3216
     },
     "links": {
       "tabelog": "https://tabelog.com/mie/A2403/A240303/24022578/"
@@ -2834,11 +2965,11 @@
     },
     "region": "shima-matoya",
     "category": "料理旅館",
-    "status": "pending",
+    "status": "excluded",
     "criteria": [
       "C"
     ],
-    "reason": "住宿本體（lodging shima-haifu，渡鹿野島），符合 C（3.24／50，個室）：非住客用餐沒有來源（判斷細則 F③），T9d 確認",
+    "reason": "住宿本體（lodging shima-haifu，福寿荘別館）。T9d 確認：官網沒有只用餐、午餐的方案，FAQ 只寫住客的早晚餐，日帰り只有到本館 福寿荘 入浴 → 照判斷細則 F③ 不收錄（非住客用餐用本館 shima-fukujuso-dining，2026-10-19）",
     "pointId": null,
     "ratings": {
       "tabelog": 3.24,
@@ -2863,19 +2994,21 @@
     "status": "included",
     "criteria": [
       "D1",
-      "D2"
+      "D2",
+      "F3"
     ],
     "reason": null,
-    "pointId": null,
+    "pointId": "shima-hamanagi",
     "ratings": {
       "tabelog": 3.05,
-      "tabelogReviews": 13
+      "tabelogReviews": 13,
+      "google": 3.7,
+      "googleReviews": 30
     },
     "links": {
       "tabelog": "https://tabelog.com/mie/A2403/A240303/24002114/"
     },
     "contexts": [
-      "lunch",
       "dinner"
     ],
     "mentions": [],
@@ -2917,16 +3050,19 @@
       "D1"
     ],
     "reason": null,
-    "pointId": null,
+    "pointId": "shima-donguri",
     "ratings": {
       "tabelog": 3.03,
-      "tabelogReviews": 3
+      "tabelogReviews": 3,
+      "google": 4.1,
+      "googleReviews": 10
     },
     "links": {
       "tabelog": "https://tabelog.com/mie/A2403/A240303/24018372/"
     },
     "contexts": [
-      "lunch"
+      "lunch",
+      "cafe"
     ],
     "mentions": [],
     "note": "類型：咖啡・甜點；地址：大王町船越314-35；D①（tomoyama A～C 0 家）：3.03／3，喫茶・食堂；大王町船越314-35（住宿 UMIBE 船越312-5 旁）；營業時間沒有來源（T9d 查）"
@@ -2943,10 +3079,12 @@
       "F2"
     ],
     "reason": null,
-    "pointId": null,
+    "pointId": "shima-amagoya-isondo",
     "ratings": {
       "tabelog": 3.07,
-      "tabelogReviews": 13
+      "tabelogReviews": 13,
+      "google": 4.2,
+      "googleReviews": 63
     },
     "links": {
       "tabelog": "https://tabelog.com/mie/A2403/A240303/24010504/"
@@ -2964,11 +3102,11 @@
     },
     "region": "shima-goza",
     "category": "海鮮",
-    "status": "included",
+    "status": "excluded",
     "criteria": [
       "F2"
     ],
-    "reason": null,
+    "reason": "T9d 確認：Google マップ「臨時休業」（2026-10-19）；食べログ 的官網 ama-iseshima.com 已不存在，Google 的官網 amanoniwa.jp（2026-06-26 改版）變成グラスボート伊勢志摩 經營的「船でしか行けない」包場設施（英虞湾クルーズ＋海鮮 BBQ 3～4 小時方案，價格沒寫），觀光三重 2024 的 ランチ 1,500 円當天可 已不適用 → 不當餐廳收錄（可當體驗，T9g 判斷）",
     "pointId": null,
     "ratings": {
       "tabelog": 3.04,
@@ -3004,10 +3142,12 @@
       "C"
     ],
     "reason": null,
-    "pointId": null,
+    "pointId": "shima-amimoto-yashiro",
     "ratings": {
       "tabelog": 3.52,
-      "tabelogReviews": 127
+      "tabelogReviews": 127,
+      "google": 4.4,
+      "googleReviews": 529
     },
     "links": {
       "tabelog": "https://tabelog.com/mie/A2403/A240303/24001184/"
@@ -3026,11 +3166,11 @@
     },
     "region": "shima-hamajima",
     "category": "料理旅館、海鮮",
-    "status": "pending",
+    "status": "excluded",
     "criteria": [
       "C"
     ],
-    "reason": "住宿本體（lodging shima-hamajima-tsubaki，湯元館 ニュー浜島），符合 C（個室、貸切；3.22／27）：個室只寫 2 人；非住客用餐沒有來源（判斷細則 F③），T9d 確認",
+    "reason": "住宿本體（lodging shima-hamajima-tsubaki）。T9d 確認：官網 料理頁・FAQ 只有住宿附的晚餐，沒有「日帰り」「お食事のみ」「昼食」「宴会」，溫泉是住客專用 → 照判斷細則 F③ 不收錄（食べログ「完全予約制」的意思列 questions 電話確認，2026-10-19）",
     "pointId": null,
     "ratings": {
       "tabelog": 3.22,
@@ -3052,15 +3192,18 @@
     },
     "region": "shima-hamajima",
     "category": "ホテル",
-    "status": "pending",
+    "status": "included",
     "criteria": [
-      "C"
+      "C",
+      "F3"
     ],
-    "reason": "住宿本體（lodging shima-oedo-iseshima），符合 C（個室；3.10／45）：大型溫泉飯店的ビュッフェ，非住客用餐沒有來源（判斷細則 F③），T9d 確認",
-    "pointId": null,
+    "reason": "住宿本體（lodging shima-oedo-iseshima）。T9d 確認：官網「日帰りのご案内」有非住客的『入浴付ディナーバイキング（要事前予約）』17:00～18:30、大人 4,200 円～ → F③ 收錄，id shima-oedo-iseshima-dining（2026-10-19）",
+    "pointId": "shima-oedo-iseshima-dining",
     "ratings": {
       "tabelog": 3.1,
-      "tabelogReviews": 45
+      "tabelogReviews": 45,
+      "google": 3.9,
+      "googleReviews": 1749
     },
     "links": {
       "tabelog": "https://tabelog.com/mie/A2403/A240303/24011169/"
@@ -3083,10 +3226,12 @@
       "D2"
     ],
     "reason": null,
-    "pointId": null,
+    "pointId": "shima-miyuki-hamajima",
     "ratings": {
       "tabelog": 3.03,
-      "tabelogReviews": 8
+      "tabelogReviews": 8,
+      "google": 4.3,
+      "googleReviews": 75
     },
     "links": {
       "tabelog": "https://tabelog.com/mie/A2403/A240303/24001105/"
@@ -3109,10 +3254,12 @@
       "D1"
     ],
     "reason": null,
-    "pointId": null,
+    "pointId": "shima-iso-ryori-yacht",
     "ratings": {
       "tabelog": 3.22,
-      "tabelogReviews": 65
+      "tabelogReviews": 65,
+      "google": 4.2,
+      "googleReviews": 298
     },
     "links": {
       "tabelog": "https://tabelog.com/mie/A2403/A240303/24001160/"
@@ -3159,10 +3306,12 @@
       "D1"
     ],
     "reason": null,
-    "pointId": null,
+    "pointId": "shima-nishiguchiya",
     "ratings": {
       "tabelog": 3.06,
-      "tabelogReviews": 17
+      "tabelogReviews": 17,
+      "google": 4.3,
+      "googleReviews": 54
     },
     "links": {
       "tabelog": "https://tabelog.com/mie/A2403/A240303/24011240/"
@@ -3185,10 +3334,12 @@
       "D1"
     ],
     "reason": null,
-    "pointId": null,
+    "pointId": "shima-sakanoue",
     "ratings": {
       "tabelog": 3.18,
-      "tabelogReviews": 40
+      "tabelogReviews": 40,
+      "google": 4.2,
+      "googleReviews": 102
     },
     "links": {
       "tabelog": "https://tabelog.com/mie/A2403/A240303/24013678/"
@@ -3259,11 +3410,11 @@
     },
     "region": "shima-goza",
     "category": "カフェ、洋食、丼",
-    "status": "included",
+    "status": "excluded",
     "criteria": [
       "D1"
     ],
-    "reason": null,
+    "reason": "T9d 確認：Google マップ「臨時休業」（2026-10-19），最新評論（約 2025）寫 2025-08-16 起「設備故障のため休止中」的看板，之後沒有評論、沒有官網 → 當作休業中排除（重開的話 T9g 再補回）",
     "pointId": null,
     "ratings": {
       "tabelog": 3.09,
@@ -3285,12 +3436,12 @@
     },
     "region": "shima-goza",
     "category": "料理旅館、日本料理",
-    "status": "pending",
+    "status": "excluded",
     "criteria": [
       "D1",
       "D2"
     ],
-    "reason": "D①（goza A～C 0 家）＋D②（不含晚餐的 Small Resort 志摩（越賀759-3）附近的晚餐店）：住宿本體（lodging shima-shimahanto），3.04／8，個室 10〜20 人；非住客用餐沒有來源（判斷細則 F③），T9d 確認",
+    "reason": "住宿本體（lodging shima-shimahanto）。T9d 確認：官網料金只有 1泊2食・朝食付・素泊まり，楽天 9 個方案都是住宿，沒有「お食事のみ」「昼食」「日帰り」→ 照判斷細則 F③ 不收錄（非住客能不能用餐列 questions 電話確認；能的話 T9g 再補回，2026-10-19）",
     "pointId": null,
     "ratings": {
       "tabelog": 3.04,
@@ -3318,10 +3469,12 @@
       "C"
     ],
     "reason": null,
-    "pointId": null,
+    "pointId": "shima-tanaka-ryoriten",
     "ratings": {
       "tabelog": 3.33,
-      "tabelogReviews": 59
+      "tabelogReviews": 59,
+      "google": 4.2,
+      "googleReviews": 190
     },
     "links": {
       "tabelog": "https://tabelog.com/mie/A2403/A240303/24001159/"
@@ -3348,11 +3501,11 @@
     },
     "region": "shima-daio",
     "category": "海鮮",
-    "status": "included",
+    "status": "excluded",
     "criteria": [
       "C"
     ],
-    "reason": null,
+    "reason": "T9d 確認：Google マップ 標示「閉業」（2026-10-19，面板開頭）；食べログ 還沒標閉店 → 當作已閉店排除",
     "pointId": null,
     "ratings": {
       "tabelog": 3.17,
@@ -3403,16 +3556,19 @@
       "D1"
     ],
     "reason": null,
-    "pointId": null,
+    "pointId": "shima-shimaya-daio",
     "ratings": {
       "tabelog": 3.13,
-      "tabelogReviews": 28
+      "tabelogReviews": 28,
+      "google": 4.3,
+      "googleReviews": 125
     },
     "links": {
       "tabelog": "https://tabelog.com/mie/A2403/A240303/24000826/"
     },
     "contexts": [
-      "lunch"
+      "lunch",
+      "dinner"
     ],
     "mentions": [],
     "note": "類型：和食・割烹；地址：大王町波切234；定休（食べログ列表）：火曜日；預算（食べログ列表）：夜 1000～1999／昼 1000～1999；D①（daio 週二 2/2、2/9 午餐：田中料理店、十次郎 都火休；這家也火休，依口コミ數取前幾家）：3.13／28；觀光協會「食べる」：10:00～17:30（L.O.17:00），火休"
@@ -3429,10 +3585,12 @@
       "D1"
     ],
     "reason": null,
-    "pointId": null,
+    "pointId": "shima-cafe-cc",
     "ratings": {
       "tabelog": 3.1,
-      "tabelogReviews": 19
+      "tabelogReviews": 19,
+      "google": 4.2,
+      "googleReviews": 78
     },
     "links": {
       "tabelog": "https://tabelog.com/mie/A2403/A240303/24007621/"
@@ -3451,21 +3609,25 @@
     },
     "region": "shima-tomoyama",
     "category": "フレンチ、オーベルジュ",
-    "status": "pending",
+    "status": "included",
     "criteria": [
-      "D1"
+      "D1",
+      "F3"
     ],
-    "reason": "D①（tomoyama A～C 0 家）：住宿本體（ホテル槇之木，楽天 shima-rakuten-15027，T9b not-included），3.03／3，フレンチ・オーベルジュ；館內的「レストラン ビビット」（24000877，3.01／1）是同一處；非住客的午餐、晚餐沒有來源（判斷細則 F③），T9d 確認",
-    "pointId": null,
+    "reason": "住宿附設（ホテル槇之木，住宿候選 shima-rakuten-15027 not-included）。T9d 確認：官網 MENU「ご昼食＆ご夕食のみのご予約も承っております」（ランチ 3,800 円～、ディナー 6,600 円～，完全予約）→ F③ 收錄（2026-10-19）",
+    "pointId": "shima-makinoki",
     "ratings": {
       "tabelog": 3.03,
-      "tabelogReviews": 3
+      "tabelogReviews": 3,
+      "google": 4.5,
+      "googleReviews": 41
     },
     "links": {
       "tabelog": "https://tabelog.com/mie/A2403/A240303/24006889/"
     },
     "contexts": [
-      "lunch"
+      "lunch",
+      "dinner"
     ],
     "mentions": [],
     "note": "類型：洋食・義式；地址：大王町波切ともやま2235-13"
@@ -3479,13 +3641,16 @@
     "category": "海鮮",
     "status": "included",
     "criteria": [
-      "D1"
+      "D1",
+      "F3"
     ],
     "reason": null,
-    "pointId": null,
+    "pointId": "shima-daiman",
     "ratings": {
       "tabelog": null,
-      "tabelogReviews": null
+      "tabelogReviews": null,
+      "google": 3.4,
+      "googleReviews": 9
     },
     "links": {
       "tabelog": "https://tabelog.com/mie/A2403/A240303/24008343/"
@@ -3542,13 +3707,16 @@
     "status": "included",
     "criteria": [
       "A",
-      "C"
+      "C",
+      "F3"
     ],
     "reason": null,
-    "pointId": null,
+    "pointId": "shima-rias-by-cococha",
     "ratings": {
       "tabelog": 3.6,
-      "tabelogReviews": 90
+      "tabelogReviews": 90,
+      "google": 4.3,
+      "googleReviews": 166
     },
     "links": {
       "tabelog": "https://tabelog.com/mie/A2403/A240303/24015478/"
@@ -3575,11 +3743,11 @@
     },
     "region": "shima-sakko",
     "category": "カフェ、ヨーロッパ料理、オーベルジュ",
-    "status": "pending",
+    "status": "excluded",
     "criteria": [
       "C"
     ],
-    "reason": "住宿本體（lodging shima-chichukaimura-hotel），符合 C（個室；3.25／76）：館內餐廳 リアス バイ ココチャ、タベルナ・アスール、カフェ アミーゴ 另列；這筆可能是オーベルジュ的晚餐，T9d 確認非住客用餐",
+    "reason": "住宿本體（lodging shima-chichukaimura-hotel）。T9d 確認：這筆是志摩地中海村的總條目，官網的村內餐飲只有 RIAS by Kokotxa、タベルナ・アスール、カフェ アミーゴ、ペスカドール；食べログ「レストラン 70 席」的時間和 RIAS 相同、「カフェ 20 席」是カフェ アミーゴ → 和收錄的 RIAS、アスール 重複，不另建資料點（非住客可進村，入村料 700 円，2026-10-19）",
     "pointId": null,
     "ratings": {
       "tabelog": 3.25,
@@ -3602,11 +3770,11 @@
     },
     "region": "shima-sakko",
     "category": "日本料理、海鮮",
-    "status": "included",
+    "status": "excluded",
     "criteria": [
       "C"
     ],
-    "reason": null,
+    "reason": "住宿附設（HOTEL NEMU 1F，lodging shima-nemu-resort）。T9d 確認：2026-04 改裝後仍營業（朝・昼・夕），但官網 restaurant・satoumi 頁沒有「宿泊者以外」「お食事のみ」，洋食晚餐寫「全客室」對象，晚餐價格未上 → 照判斷細則 F③ 不收錄（個室 10～20 人是全員晚餐的候選，非住客可否列 questions 電話確認，可以的話 T9g 補回，2026-10-19）",
     "pointId": null,
     "ratings": {
       "tabelog": 3.13,
@@ -3636,11 +3804,11 @@
     },
     "region": "shima-sakko",
     "category": "料理旅館",
-    "status": "pending",
+    "status": "excluded",
     "criteria": [
       "A"
     ],
-    "reason": "住宿本體（AMANEMU，T9b 沒有候選：楽天沒有），符合 A（3.84／78）：館內餐廳 アマネムダイニング 另列；非住客用餐沒有來源（判斷細則 F③），T9d 確認",
+    "reason": "住宿本體（AMANEMU）。T9d 確認：食べログ 備考寫這筆是インルームダイニング（客房送餐），只對住客；館內餐廳另列 アマネムダイニング（收錄）→ 不收錄（2026-10-19）",
     "pointId": null,
     "ratings": {
       "tabelog": 3.84,
@@ -3664,19 +3832,22 @@
     "category": "日本料理",
     "status": "included",
     "criteria": [
-      "A"
+      "A",
+      "F3"
     ],
     "reason": null,
-    "pointId": null,
+    "pointId": "shima-amanemu-dining",
     "ratings": {
       "tabelog": 3.56,
-      "tabelogReviews": 91
+      "tabelogReviews": 91,
+      "google": 4.5,
+      "googleReviews": 15
     },
     "links": {
       "tabelog": "https://tabelog.com/mie/A2403/A240303/24015181/"
     },
     "contexts": [
-      "dinner"
+      "lunch"
     ],
     "mentions": [],
     "note": "類型：和食・割烹；地址：浜島町迫子2165；預算（食べログ列表）：夜 100000～／昼 -；アマネム（AMANEMU）館內的餐廳，住宿附設，非住客用餐 T9d 確認（T9b 沒有アマネム的候選：楽天沒有）；夜 100,000 円～"
@@ -3690,19 +3861,23 @@
     "category": "ビュッフェ",
     "status": "included",
     "criteria": [
-      "A"
+      "A",
+      "F3"
     ],
     "reason": null,
-    "pointId": null,
+    "pointId": "shima-taberna-azul",
     "ratings": {
       "tabelog": 3.33,
-      "tabelogReviews": 49
+      "tabelogReviews": 49,
+      "google": 4.2,
+      "googleReviews": 83
     },
     "links": {
       "tabelog": "https://tabelog.com/mie/A2403/A240303/24016781/"
     },
     "contexts": [
-      "lunch"
+      "lunch",
+      "dinner"
     ],
     "mentions": [
       {
@@ -3825,10 +4000,12 @@
       "D2"
     ],
     "reason": null,
-    "pointId": null,
+    "pointId": "shima-shosuke",
     "ratings": {
       "tabelog": null,
-      "tabelogReviews": 1
+      "tabelogReviews": 1,
+      "google": 4.2,
+      "googleReviews": 17
     },
     "links": {
       "tabelog": "https://tabelog.com/mie/A2403/A240303/24003661/"
@@ -3875,10 +4052,12 @@
       "D2"
     ],
     "reason": null,
-    "pointId": null,
+    "pointId": "shima-izakaya-kyu",
     "ratings": {
       "tabelog": 3.01,
-      "tabelogReviews": 3
+      "tabelogReviews": 3,
+      "google": 4.7,
+      "googleReviews": 10
     },
     "links": {
       "tabelog": "https://tabelog.com/mie/A2403/A240303/24002704/"
@@ -3927,17 +4106,20 @@
     "name": {
       "ja": "鮨裕禅"
     },
-    "region": "shima-wagu",
+    "region": "shima-kashikojima",
     "category": "寿司、オーベルジュ",
     "status": "included",
     "criteria": [
-      "C"
+      "C",
+      "F3"
     ],
     "reason": null,
-    "pointId": null,
+    "pointId": "shima-sushi-yuzen",
     "ratings": {
       "tabelog": 3.18,
-      "tabelogReviews": 22
+      "tabelogReviews": 22,
+      "google": 3.7,
+      "googleReviews": 22
     },
     "links": {
       "tabelog": "https://tabelog.com/mie/A2403/A240303/24018498/"
@@ -3985,10 +4167,12 @@
       "F2"
     ],
     "reason": null,
-    "pointId": null,
+    "pointId": "shima-amagoya-hiba-hironohama",
     "ratings": {
       "tabelog": 3.01,
-      "tabelogReviews": 1
+      "tabelogReviews": 1,
+      "google": 4.5,
+      "googleReviews": 42
     },
     "links": {
       "tabelog": "https://tabelog.com/mie/A2403/A240303/24017668/"
@@ -4011,10 +4195,12 @@
       "A"
     ],
     "reason": null,
-    "pointId": null,
+    "pointId": "shima-hidechan",
     "ratings": {
       "tabelog": 3.39,
-      "tabelogReviews": 50
+      "tabelogReviews": 50,
+      "google": 4.5,
+      "googleReviews": 225
     },
     "links": {
       "tabelog": "https://tabelog.com/mie/A2403/A240303/24014579/"
