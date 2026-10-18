@@ -66,3 +66,14 @@
 | @yamamura_milk | 山村みるくがっこう 外宮前店（`ise-yamamura-milk-geku`） | 多店（公司） | 食べログ公式アカウント欄、官網 |
 | @mori_spaghtti1970 | 喫茶 モリ（`ise-mori-kissa`） | | 食べログ公式アカウント欄（HAMONI 也列同帳號） |
 | @kinoshitachaen_geku | 木下茶園 外宮前店（`ise-kinoshita-chaen-geku`） | | 食べログ公式アカウント欄、官網（可 IG 私訊預約） |
+| **第 5 批：ise-kurata・ise-outskirts・景點旁午餐** | | | |
+| @tonkatsu43ban | とんかつ 四十三番 伊勢店（`ise-tonkatsu-yonjusanban`） | 可能多店（チェーン） | 食べログ公式アカウント欄 |
+| @knottsberry1994 | Knott's Berry（`ise-knotts-berry`） | | 食べログ公式アカウント欄、Google 網站欄 |
+| @oranger_cafe_wood | オランジェ カフェウッド（`ise-oranger-cafe-wood`） | | 食べログ公式アカウント欄 |
+| @cuccagna.2 | クッカーニャ・トレ（`ise-cuccagna-tre`） | 可能是 2 號店（外宮）的帳號 | 食べログ公式アカウント欄；官網連的是 @cuccagnaespresso（讀文） |
+| @rhinoandthebread | サイとパン（`ise-sai-to-pan`） | | 食べログ公式アカウント欄、Google 網站欄（營業日、內用只能從 IG 確認，T18 要看） |
+| @tsubogin | 旬彩居酒屋 古市 つぼ銀（`ise-furuichi-tsubogin`） | | 官網 |
+| @ise_sangen | 伊勢 三玄（`ise-sangen`） | | 食べログ公式アカウント欄 |
+| @sazanami_official | 漣 伊勢店（`ise-sazanami`） | 多店 | 食べログ公式アカウント欄 |
+| @campagne_ise | カンパーニュ（`ise-campagne`） | | 官網 |
+| @perception_ise | パセプション（`ise-perception`） | | 官網 |
