@@ -15,6 +15,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { tripDays, tripCount as tripCountOn, isLunch as isLunchOn, isDinner as isDinnerOn, overlaps } from './lib/trip-hours.mjs';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const args = process.argv.slice(2);
@@ -32,34 +33,12 @@ const read = (p) => JSON.parse(fs.readFileSync(path.join(ROOT, p), 'utf8').repla
 const restaurants = read(`data/areas/${area}/restaurants.json`);
 const lodging = read(`data/areas/${area}/lodging.json`);
 
-const DAYS = ['sun', 'mon', 'tue', 'wed', 'thu', 'fri', 'sat'];
-const tripDays = [];
-for (let d = new Date(`${from}T00:00:00Z`); d <= new Date(`${to}T00:00:00Z`); d.setUTCDate(d.getUTCDate() + 1)) {
-  const iso = d.toISOString().slice(0, 10);
-  tripDays.push({ iso, dow: DAYS[d.getUTCDay()], holiday: holidays.has(iso) });
-}
-
-const mins = (t) => {
-  const [h, m] = t.split(':').map(Number);
-  return h * 60 + m;
-};
-const overlaps = (slots, a, b) => slots.some(([s, e]) => mins(s) < mins(b) && mins(e) > mins(a));
-
-// 回傳 { open, unknown }：旅程中這個時段有營業的天數、不明的天數；hours 為 null 時 null
-function tripCount(r, a, b) {
-  if (!r.hours) return null;
-  let open = 0;
-  let unknown = 0;
-  for (const d of tripDays) {
-    let slots = d.holiday && r.hours.holiday !== undefined && r.hours.holiday !== null ? r.hours.holiday : r.hours[d.dow];
-    if (slots == null) unknown++;
-    else if (overlaps(slots, a, b)) open++;
-  }
-  return { open, unknown };
-}
-const isLunch = (r) => (r.contexts ?? []).includes('lunch') && (r.hours == null || (tripCount(r, '11:30', '13:30')?.open ?? 0) + (tripCount(r, '11:30', '13:30')?.unknown ?? 0) > 0);
-const isDinner = (r) => (r.contexts ?? []).includes('dinner') && r.hours != null && (tripCount(r, '18:00', '19:00')?.open ?? 0) > 0;
-const fmtCount = (c) => (c == null ? '營業時間不明' : `${c.open}/${tripDays.length} 天${c.unknown ? `（${c.unknown} 天不明）` : ''}`);
+const days = tripDays(from, to, [...holidays]);
+const tripCount = (r, a, b) => tripCountOn(r, a, b, days);
+const isLunch = (r) => isLunchOn(r, days);
+const isDinner = (r) => isDinnerOn(r, days);
+const tripDaysList = days;
+const fmtCount = (c) => (c == null ? '營業時間不明' : `${c.open}/${tripDaysList.length} 天${c.unknown ? `（${c.unknown} 天不明）` : ''}`);
 
 const hav = (p, q) => {
   const R = 6371008.8;
@@ -72,7 +51,7 @@ const hav = (p, q) => {
 
 const regions = [...new Set(restaurants.map((r) => r.region ?? r.extra?.region ?? '（無）'))];
 const out = [];
-out.push(`旅程 ${from}～${to}（${tripDays.length} 天；國定假日 ${[...holidays].join('、')}）`);
+out.push(`旅程 ${from}～${to}（${tripDaysList.length} 天；國定假日 ${[...holidays].join('、')}）`);
 
 out.push('', '#### 各地區的午餐', '', '| 地區 | 午餐家數 | 店（旅程中午有營業的天數） |', '|---|---|---|');
 for (const reg of regions) {
@@ -80,10 +59,10 @@ for (const reg of regions) {
   out.push(`| ${reg} | ${list.length} | ${list.map((r) => `${r.name.ja}（${fmtCount(tripCount(r, '11:30', '13:30'))}）`).join('、') || '**無**'} |`);
 }
 
-out.push('', '#### 各地區每天中午有營業的家數（hours 為 null 的不算）', '', `| 地區 | ${tripDays.map((d) => `${d.iso.slice(5)} ${d.holiday ? 'hol' : d.dow}`).join(' | ')} |`, `|---|${tripDays.map(() => '---').join('|')}|`);
+out.push('', '#### 各地區每天中午有營業的家數（hours 為 null 的不算）', '', `| 地區 | ${tripDaysList.map((d) => `${d.iso.slice(5)} ${d.holiday ? 'hol' : d.dow}`).join(' | ')} |`, `|---|${tripDaysList.map(() => '---').join('|')}|`);
 for (const reg of regions) {
   const list = restaurants.filter((r) => (r.region ?? r.extra?.region ?? '（無）') === reg && (r.contexts ?? []).includes('lunch') && r.hours);
-  const cells = tripDays.map((d) => {
+  const cells = tripDaysList.map((d) => {
     const n = list.filter((r) => {
       const slots = d.holiday && r.hours.holiday != null ? r.hours.holiday : r.hours[d.dow];
       return slots && overlaps(slots, '11:30', '13:30');
