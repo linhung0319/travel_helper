@@ -1,0 +1,3461 @@
+[
+  {
+    "key": "shima-espana-cruise",
+    "name": {
+      "ja": "賢島エスパーニャクルーズ（英虞湾遊覧）"
+    },
+    "region": "shima-kashikojima",
+    "category": "遊覧船",
+    "status": "included",
+    "reason": null,
+    "pointId": null,
+    "detailPending": true,
+    "mentions": [
+      {
+        "type": "tourism",
+        "url": "https://www.kankomie.or.jp/spot/3240",
+        "title": "観光三重：賢島エスパーニャクルーズ【あご湾遊覧】",
+        "highlight": null,
+        "retrieved": "2026-10-18"
+      },
+      {
+        "type": "tourism",
+        "url": "https://www.kanko-shima.com/purpose/1061/",
+        "title": "志摩市観光協会：賢島エスパーニャクルーズ（あご湾遊覧）",
+        "highlight": null,
+        "retrieved": "2026-10-18"
+      },
+      {
+        "type": "tourism",
+        "url": "https://www.kanko-shima.com/purpose/367/",
+        "title": "志摩市観光協会：【約50分間】志摩の絶景を体感！あご湾クルーズ",
+        "highlight": null,
+        "retrieved": "2026-10-18"
+      },
+      {
+        "type": "official",
+        "url": "http://www.shima-marineleisure.com/",
+        "title": "志摩マリンレジャー",
+        "highlight": null,
+        "retrieved": "2026-10-18"
+      }
+    ],
+    "note": "賢島駅步行即到；官網 2026-10-18「平常運航」，冬季運休沒有寫（讀文確認）；大人 1,900 円、小人 1,100 円是サンセットクルーズ的價格"
+  },
+  {
+    "key": "shima-kashikojima-yuransen",
+    "name": {
+      "ja": "あご湾島めぐりクルーズ（賢島遊覧船組合）"
+    },
+    "region": "shima-kashikojima",
+    "category": "遊覧船",
+    "status": "included",
+    "reason": null,
+    "pointId": null,
+    "detailPending": true,
+    "mentions": [
+      {
+        "type": "tourism",
+        "url": "https://www.kanko-shima.com/purpose/2001/",
+        "title": "志摩市観光協会：あご湾島めぐりクルーズ｜賢島遊覧船組合",
+        "highlight": null,
+        "retrieved": "2026-10-18"
+      }
+    ],
+    "note": "小船隨時出航 9:30～15:30、1,500 円；週三或週四可能休；一艘能載幾人要讀文確認（15 人可能要分船）"
+  },
+  {
+    "key": "shima-mazakijima",
+    "name": {
+      "ja": "間崎島（あご湾定期船）"
+    },
+    "region": "shima-kashikojima",
+    "category": "島",
+    "status": "included",
+    "reason": null,
+    "pointId": null,
+    "detailPending": true,
+    "mentions": [
+      {
+        "type": "tourism",
+        "url": "https://www.kankomie.or.jp/spot/3987",
+        "title": "観光三重：あご湾定期船",
+        "highlight": null,
+        "retrieved": "2026-10-18"
+      },
+      {
+        "type": "tourism",
+        "url": "https://www.kanko-shima.com/purpose/18092/",
+        "title": "志摩市観光協会：間崎島",
+        "highlight": null,
+        "retrieved": "2026-10-18"
+      },
+      {
+        "type": "official",
+        "url": "http://www.shima-marineleisure.com/",
+        "title": "志摩マリンレジャー（あご湾定期船）",
+        "highlight": null,
+        "retrieved": "2026-10-18"
+      }
+    ],
+    "note": "地址是志摩町和具，但只能從賢島搭あご湾定期船（約 10 分）去，所以放賢島（2026-10-01 改時刻）；島上沒有車、商店很少，2 月能做什麼要讀文確認"
+  },
+  {
+    "key": "shima-samiere",
+    "name": {
+      "ja": "伊勢志摩サミット記念館 サミエール"
+    },
+    "region": "shima-kashikojima",
+    "category": "資料館",
+    "status": "included",
+    "reason": null,
+    "pointId": null,
+    "detailPending": true,
+    "mentions": [
+      {
+        "type": "tourism",
+        "url": "https://www.kankomie.or.jp/spot/23360",
+        "title": "観光三重：伊勢志摩サミット記念館 サミエール",
+        "highlight": null,
+        "retrieved": "2026-10-18"
+      },
+      {
+        "type": "tourism",
+        "url": "https://www.kanko-shima.com/purpose/2298/",
+        "title": "志摩市観光協会：伊勢志摩サミット記念館「サミエール」",
+        "highlight": null,
+        "retrieved": "2026-10-18"
+      }
+    ],
+    "note": "近鐵賢島駅 2 樓，年中無休、室內；觀光三重寫「2 樓只能走樓梯，預定 2017 年 12 月裝樓梯升降機」，現況要讀文確認"
+  },
+  {
+    "key": "shima-kaiyuen",
+    "name": {
+      "ja": "賢島フィッシングパーク 海遊苑"
+    },
+    "region": "shima-kashikojima",
+    "category": "釣魚體驗",
+    "status": "included",
+    "reason": null,
+    "pointId": null,
+    "detailPending": true,
+    "mentions": [
+      {
+        "type": "tourism",
+        "url": "https://www.kankomie.or.jp/spot/24987",
+        "title": "観光三重：賢島フィッシングパーク 海遊苑",
+        "highlight": null,
+        "retrieved": "2026-10-18"
+      },
+      {
+        "type": "tourism",
+        "url": "https://www.kanko-shima.com/purpose/1068/",
+        "title": "志摩市観光協会：賢島フィッシングパーク 海遊苑",
+        "highlight": null,
+        "retrieved": "2026-10-18"
+      },
+      {
+        "type": "official",
+        "url": "https://kaiyuuen.com/",
+        "title": "海遊苑",
+        "highlight": null,
+        "retrieved": "2026-10-18"
+      }
+    ],
+    "note": "海上釣り堀，官網「初學者、小孩也能安心」；不定休、要預約；位置在賢島大橋的本土側（阿児町神明），志摩神明駅、賢島駅都約 1 km"
+  },
+  {
+    "key": "shima-entrada",
+    "name": {
+      "ja": "海上タクシー＆クルーズ Entrada賢島（海さんぽ）"
+    },
+    "region": "shima-kashikojima",
+    "category": "遊覧船",
+    "status": "included",
+    "reason": null,
+    "pointId": null,
+    "detailPending": true,
+    "mentions": [
+      {
+        "type": "tourism",
+        "url": "https://www.kankomie.or.jp/spot/23479",
+        "title": "観光三重：海上タクシー（賢島～志摩地中海村）海さんぽ＆カフェEntrada賢島",
+        "highlight": null,
+        "retrieved": "2026-10-18"
+      },
+      {
+        "type": "tourism",
+        "url": "https://www.kanko-shima.com/purpose/1233/",
+        "title": "志摩市観光協会：海上タクシー＆クルーズ Entrada賢島",
+        "highlight": null,
+        "retrieved": "2026-10-18"
+      },
+      {
+        "type": "official",
+        "url": "https://entrada-kashikojima.com/",
+        "title": "Entrada賢島",
+        "highlight": null,
+        "retrieved": "2026-10-18"
+      }
+    ],
+    "note": "賢島 ↔ 志摩地中海村 的海上計程車、英虞湾小遊覽；9:30～17:00、不定休、荒天休；定員、價格要讀文確認"
+  },
+  {
+    "key": "shima-maruyama-park",
+    "name": {
+      "ja": "円山公園／真珠供養塔（賢島）"
+    },
+    "region": "shima-kashikojima",
+    "category": "公園",
+    "status": "not-included",
+    "reason": "賢島島內的小公園，併在賢島散步，不另外收",
+    "pointId": null,
+    "mentions": [
+      {
+        "type": "tourism",
+        "url": "https://www.kanko-shima.com/purpose/2013/",
+        "title": "志摩市観光協会：円山公園／真珠供養塔",
+        "highlight": null,
+        "retrieved": "2026-10-18"
+      }
+    ]
+  },
+  {
+    "key": "shima-kashikojima-bridge",
+    "name": {
+      "ja": "賢島大橋"
+    },
+    "region": "shima-kashikojima",
+    "category": "橋",
+    "status": "not-included",
+    "reason": "交通設施（過橋的風景），不另外收",
+    "pointId": null,
+    "mentions": [
+      {
+        "type": "tourism",
+        "url": "https://www.kanko-shima.com/purpose/2130/",
+        "title": "志摩市観光協会：賢島大橋",
+        "highlight": null,
+        "retrieved": "2026-10-18"
+      }
+    ]
+  },
+  {
+    "key": "shima-ama-diving",
+    "name": {
+      "ja": "海女漁体験プラン／海女さんと潜ろう！（伊勢志摩ツーリズム）"
+    },
+    "region": "shima-kashikojima",
+    "category": "潛水體驗",
+    "status": "not-included",
+    "reason": "跟海女一起下海的潛水體驗，每人 22,000 円；2 月水溫低，不適合長輩、6～10 歲小孩",
+    "pointId": null,
+    "mentions": [
+      {
+        "type": "tourism",
+        "url": "https://www.kankomie.or.jp/spot/23397",
+        "title": "観光三重：海女さんと潜ろう！",
+        "highlight": null,
+        "retrieved": "2026-10-18"
+      },
+      {
+        "type": "tourism",
+        "url": "https://www.kanko-shima.com/purpose/2316/",
+        "title": "志摩市観光協会：海女漁体験プラン｜伊勢志摩ツーリズム",
+        "highlight": null,
+        "retrieved": "2026-10-18"
+      }
+    ],
+    "note": "觀光三重的地址是志摩町和具、觀光協會是賢島集合"
+  },
+  {
+    "key": "shima-rito-camp",
+    "name": {
+      "ja": "離島キャンプ＆サウナ 貸切のキャンプ場"
+    },
+    "region": "shima-kashikojima",
+    "category": "露營",
+    "status": "not-included",
+    "reason": "露營、三溫暖，一組 4 人，不適合 15 人的行程",
+    "pointId": null,
+    "mentions": [
+      {
+        "type": "tourism",
+        "url": "https://www.kanko-shima.com/purpose/399/",
+        "title": "志摩市観光協会：離島キャンプ＆サウナ 貸切のキャンプ場",
+        "highlight": null,
+        "retrieved": "2026-10-18"
+      }
+    ]
+  },
+  {
+    "key": "shima-rays-farm",
+    "name": {
+      "ja": "Rays Farm（レイズファーム）藍染め体験"
+    },
+    "region": "shima-ugata",
+    "category": "工藝體驗",
+    "status": "included",
+    "reason": null,
+    "pointId": null,
+    "detailPending": true,
+    "mentions": [
+      {
+        "type": "tourism",
+        "url": "https://www.kanko-shima.com/purpose/955/",
+        "title": "志摩市観光協会：Rays Farm（レイズファーム）",
+        "highlight": null,
+        "retrieved": "2026-10-18"
+      },
+      {
+        "type": "tourism",
+        "url": "https://www.kanko-shima.com/purpose/2431/",
+        "title": "志摩市観光協会：【藍染め体験in志摩】【たたき染め】たで藍の葉で可愛い葉っぱのデザイン♪",
+        "highlight": null,
+        "retrieved": "2026-10-18"
+      },
+      {
+        "type": "tourism",
+        "url": "https://www.kanko-shima.com/purpose/2437/",
+        "title": "志摩市観光協会：【藍染め体験in志摩】【乾燥葉染め】染め模様は自分自身で決定できます！",
+        "highlight": null,
+        "retrieved": "2026-10-18"
+      },
+      {
+        "type": "tourism",
+        "url": "https://www.kanko-shima.com/purpose/2440/",
+        "title": "志摩市観光協会：【藍染め体験in志摩】【生葉染め（シルク染）】やさしい藍に染まる！シルクストールのプラン",
+        "highlight": null,
+        "retrieved": "2026-10-18"
+      },
+      {
+        "type": "official",
+        "url": "https://raysfarm.jp/",
+        "title": "Rays Farm",
+        "highlight": null,
+        "retrieved": "2026-10-18"
+      }
+    ],
+    "note": "阿児町神明；藍染（生葉たたき染め 1,800 円～）、室內可；週二、週四休；一梯次人數要讀文確認"
+  },
+  {
+    "key": "shima-sushi-benkei",
+    "name": {
+      "ja": "すし べんけい 寿司握り体験（鵜方）"
+    },
+    "region": "shima-ugata",
+    "category": "料理體驗",
+    "status": "included",
+    "reason": null,
+    "pointId": null,
+    "detailPending": true,
+    "mentions": [
+      {
+        "type": "tourism",
+        "url": "https://www.kanko-shima.com/purpose/17387/",
+        "title": "志摩市観光協会：【すし べんけい｜鵜方】寿司職人の技を学ぶ本格寿司握り体験",
+        "highlight": null,
+        "retrieved": "2026-10-18"
+      },
+      {
+        "type": "tourism",
+        "url": "https://www.kanko-shima.com/purpose/20349/",
+        "title": "志摩市観光協会：宿泊先で本格お寿司！すしべんけいの「Temaki to GO」",
+        "highlight": null,
+        "retrieved": "2026-10-18"
+      }
+    ],
+    "note": "鵜方的壽司店，12:00～14:00 的握壽司體驗；人數、小孩能不能參加、價格要讀文確認（觀光協會頁只有地址、時間）"
+  },
+  {
+    "key": "shima-maruyoshi-backyard",
+    "name": {
+      "ja": "地元鮮魚店プレミアムバックヤード体験（丸義商店）"
+    },
+    "region": "shima-ugata",
+    "category": "料理體驗",
+    "status": "not-included",
+    "reason": "每人 7,000 円起、預約人數不明，魚店後場體驗，對 15 人行程不實際",
+    "pointId": null,
+    "mentions": [
+      {
+        "type": "tourism",
+        "url": "https://www.kanko-shima.com/purpose/12176/",
+        "title": "志摩市観光協会：【ラグジュアリーコース】地元鮮魚店プレミアムバックヤード体験 ～高級食材を匠の技で～",
+        "highlight": null,
+        "retrieved": "2026-10-18"
+      },
+      {
+        "type": "tourism",
+        "url": "https://www.kanko-shima.com/purpose/12431/",
+        "title": "志摩市観光協会：【スタンダードコース】地元鮮魚店プレミアムバックヤード体験 ～高級食材を匠の技で～",
+        "highlight": null,
+        "retrieved": "2026-10-18"
+      },
+      {
+        "type": "tourism",
+        "url": "https://www.kanko-shima.com/purpose/12446/",
+        "title": "志摩市観光協会：【プレミアムコース】地元鮮魚店プレミアムバックヤード体験 ～高級食材を匠の技で～",
+        "highlight": null,
+        "retrieved": "2026-10-18"
+      }
+    ],
+    "note": "鵜方駅附近（阿児町鵜方1678-2）"
+  },
+  {
+    "key": "shima-ugata-jinja",
+    "name": {
+      "ja": "宇賀多神社"
+    },
+    "region": "shima-ugata",
+    "category": "神社",
+    "status": "not-included",
+    "reason": "地方小神社，觀光資訊少",
+    "pointId": null,
+    "mentions": [
+      {
+        "type": "tourism",
+        "url": "https://www.kankomie.or.jp/spot/23362",
+        "title": "観光三重：宇賀多神社",
+        "highlight": null,
+        "retrieved": "2026-10-18"
+      },
+      {
+        "type": "tourism",
+        "url": "https://www.kanko-shima.com/purpose/2224/",
+        "title": "志摩市観光協会：宇賀多神社",
+        "highlight": null,
+        "retrieved": "2026-10-18"
+      }
+    ]
+  },
+  {
+    "key": "shima-ago-furusato-park",
+    "name": {
+      "ja": "阿児ふるさと公園"
+    },
+    "region": "shima-ugata",
+    "category": "公園",
+    "status": "not-included",
+    "reason": "地方公園",
+    "pointId": null,
+    "mentions": [
+      {
+        "type": "tourism",
+        "url": "https://www.kankomie.or.jp/spot/3621",
+        "title": "観光三重：阿児ふるさと公園",
+        "highlight": null,
+        "retrieved": "2026-10-18"
+      }
+    ]
+  },
+  {
+    "key": "shima-ago-library",
+    "name": {
+      "ja": "阿児ライブラリー"
+    },
+    "region": "shima-ugata",
+    "category": "圖書館",
+    "status": "excluded",
+    "reason": "圖書館（服務設施）",
+    "pointId": null,
+    "mentions": [
+      {
+        "type": "tourism",
+        "url": "https://www.kankomie.or.jp/spot/3217",
+        "title": "観光三重：阿児ライブラリー",
+        "highlight": null,
+        "retrieved": "2026-10-18"
+      }
+    ]
+  },
+  {
+    "key": "shima-ago-arena",
+    "name": {
+      "ja": "阿児アリーナ"
+    },
+    "region": "shima-ugata",
+    "category": "運動設施",
+    "status": "excluded",
+    "reason": "運動、市民設施",
+    "pointId": null,
+    "mentions": [
+      {
+        "type": "tourism",
+        "url": "https://www.kankomie.or.jp/spot/2528",
+        "title": "観光三重：阿児アリーナ",
+        "highlight": null,
+        "retrieved": "2026-10-18"
+      }
+    ]
+  },
+  {
+    "key": "shima-tourist-info",
+    "name": {
+      "ja": "志摩市観光案内所（近鉄鵜方駅）"
+    },
+    "region": "shima-ugata",
+    "category": "觀光案內所",
+    "status": "excluded",
+    "reason": "觀光案內所（服務設施）；免費借輪椅（觀光三重）、電動自行車出租，寫在之後鵜方的資料",
+    "pointId": null,
+    "mentions": [
+      {
+        "type": "tourism",
+        "url": "https://www.kankomie.or.jp/spot/23154",
+        "title": "観光三重：志摩市観光案内所",
+        "highlight": null,
+        "retrieved": "2026-10-18"
+      },
+      {
+        "type": "tourism",
+        "url": "https://www.kanko-shima.com/purpose/1584/",
+        "title": "志摩市観光協会：【8時半～20時】【電動アシスト自転車レンタルプラン】",
+        "highlight": null,
+        "retrieved": "2026-10-18"
+      }
+    ]
+  },
+  {
+    "key": "shima-bicycle-journey",
+    "name": {
+      "ja": "Bicycle Journey Ise-Shima"
+    },
+    "region": "shima-ugata",
+    "category": "自行車導覽",
+    "status": "not-included",
+    "reason": "自行車導覽，不適合長輩、15 人",
+    "pointId": null,
+    "mentions": [
+      {
+        "type": "tourism",
+        "url": "https://www.kanko-shima.com/purpose/1080/",
+        "title": "志摩市観光協会：Bicycle Journey Ise-Shima",
+        "highlight": null,
+        "retrieved": "2026-10-18"
+      }
+    ]
+  },
+  {
+    "key": "shima-arist-divers",
+    "name": {
+      "ja": "アリストダイバーズ"
+    },
+    "region": "shima-ugata",
+    "category": "潛水",
+    "status": "not-included",
+    "reason": "潛水店",
+    "pointId": null,
+    "mentions": [
+      {
+        "type": "tourism",
+        "url": "https://www.kanko-shima.com/purpose/2233/",
+        "title": "志摩市観光協会：アリストダイバーズ",
+        "highlight": null,
+        "retrieved": "2026-10-18"
+      }
+    ]
+  },
+  {
+    "key": "shima-yokoyama-observatory",
+    "name": {
+      "ja": "横山展望台（横山天空カフェテラス、横山ビジターセンター）"
+    },
+    "region": "shima-yokoyama",
+    "category": "展望台",
+    "status": "included",
+    "reason": null,
+    "pointId": null,
+    "detailPending": true,
+    "mentions": [
+      {
+        "type": "tourism",
+        "url": "https://www.kankomie.or.jp/spot/2307",
+        "title": "観光三重：横山展望台（横山天空カフェテラス）",
+        "highlight": null,
+        "retrieved": "2026-10-18"
+      },
+      {
+        "type": "tourism",
+        "url": "https://www.kankomie.or.jp/spot/3256",
+        "title": "観光三重：横山ビジターセンター",
+        "highlight": null,
+        "retrieved": "2026-10-18"
+      },
+      {
+        "type": "tourism",
+        "url": "https://www.kanko-shima.com/purpose/965/",
+        "title": "志摩市観光協会：横山展望台",
+        "highlight": null,
+        "retrieved": "2026-10-18"
+      },
+      {
+        "type": "tourism",
+        "url": "https://www.kanko-shima.com/purpose/2313/",
+        "title": "志摩市観光協会：横山ビジターセンター",
+        "highlight": null,
+        "retrieved": "2026-10-18"
+      },
+      {
+        "type": "official",
+        "url": "https://chubu.env.go.jp/nature/yokoyama/index.html",
+        "title": "環境省 横山ビジターセンター",
+        "highlight": null,
+        "retrieved": "2026-10-18"
+      }
+    ],
+    "note": "英虞湾的代表景觀；ビジターセンター、天空カフェテラス 年中無休 9:00～16:30（環境省頁）；入口有斜坡，輪椅、嬰兒車可；鵜方駅計程車約 8 分、「横山VIEWタクシー」單程 1,000 円（觀光協會，2026 年度）"
+  },
+  {
+    "key": "shima-yokoyama-sozo-no-mori",
+    "name": {
+      "ja": "創造の森 横山／横山ハイキングコース"
+    },
+    "region": "shima-yokoyama",
+    "category": "健行步道",
+    "status": "not-included",
+    "reason": "森林步道，併在横山展望台一筆",
+    "pointId": null,
+    "mentions": [
+      {
+        "type": "tourism",
+        "url": "https://www.kankomie.or.jp/spot/3622",
+        "title": "観光三重：創造の森 横山",
+        "highlight": null,
+        "retrieved": "2026-10-18"
+      },
+      {
+        "type": "tourism",
+        "url": "https://www.kankomie.or.jp/spot/3449",
+        "title": "観光三重：横山ハイキングコース",
+        "highlight": null,
+        "retrieved": "2026-10-18"
+      },
+      {
+        "type": "tourism",
+        "url": "https://www.kanko-shima.com/purpose/2355/",
+        "title": "志摩市観光協会：創造の森横山",
+        "highlight": null,
+        "retrieved": "2026-10-18"
+      }
+    ]
+  },
+  {
+    "key": "shima-yokoyama-ishigami",
+    "name": {
+      "ja": "横山石神神社"
+    },
+    "region": "shima-yokoyama",
+    "category": "神社",
+    "status": "not-included",
+    "reason": "小神社，併在横山展望台一帶",
+    "pointId": null,
+    "mentions": [
+      {
+        "type": "tourism",
+        "url": "https://www.kankomie.or.jp/spot/2932",
+        "title": "観光三重：横山石神神社",
+        "highlight": null,
+        "retrieved": "2026-10-18"
+      }
+    ]
+  },
+  {
+    "key": "shima-izawanomiya",
+    "name": {
+      "ja": "伊雑宮（皇大神宮 別宮）"
+    },
+    "region": "shima-isobe",
+    "category": "神社",
+    "status": "included",
+    "reason": null,
+    "pointId": null,
+    "detailPending": true,
+    "mentions": [
+      {
+        "type": "tourism",
+        "url": "https://www.kankomie.or.jp/spot/22402",
+        "title": "観光三重：伊雑宮 （皇大神宮 別宮）",
+        "highlight": null,
+        "retrieved": "2026-10-18"
+      },
+      {
+        "type": "tourism",
+        "url": "https://www.kankomie.or.jp/spot/2939",
+        "title": "観光三重：伊雑宮",
+        "highlight": null,
+        "retrieved": "2026-10-18"
+      },
+      {
+        "type": "tourism",
+        "url": "https://www.kanko-shima.com/purpose/810/",
+        "title": "志摩市観光協会：伊雑宮",
+        "highlight": null,
+        "retrieved": "2026-10-18"
+      },
+      {
+        "type": "official",
+        "url": "https://www.isejingu.or.jp/about/outerbetsugu/",
+        "title": "神宮（伊雑宮）",
+        "highlight": null,
+        "retrieved": "2026-10-18"
+      }
+    ],
+    "note": "內宮的別宮，近鐵上之郷駅步行約 3 分；年中無休"
+  },
+  {
+    "key": "shima-samenaga-jinja",
+    "name": {
+      "ja": "佐美長神社"
+    },
+    "region": "shima-isobe",
+    "category": "神社",
+    "status": "not-included",
+    "reason": "伊雑宮的所管社，小神社，可以併在伊雑宮",
+    "pointId": null,
+    "mentions": [
+      {
+        "type": "tourism",
+        "url": "https://www.kankomie.or.jp/spot/2940",
+        "title": "観光三重：佐美長神社",
+        "highlight": null,
+        "retrieved": "2026-10-18"
+      },
+      {
+        "type": "tourism",
+        "url": "https://www.kanko-shima.com/purpose/2308/",
+        "title": "志摩市観光協会：佐美長神社",
+        "highlight": null,
+        "retrieved": "2026-10-18"
+      }
+    ]
+  },
+  {
+    "key": "shima-isobe-jinja",
+    "name": {
+      "ja": "磯部神社"
+    },
+    "region": "shima-isobe",
+    "category": "神社",
+    "status": "not-included",
+    "reason": "地方神社",
+    "pointId": null,
+    "mentions": [
+      {
+        "type": "tourism",
+        "url": "https://www.kankomie.or.jp/spot/9030",
+        "title": "観光三重：磯部神社",
+        "highlight": null,
+        "retrieved": "2026-10-18"
+      },
+      {
+        "type": "tourism",
+        "url": "https://www.kanko-shima.com/purpose/2009/",
+        "title": "志摩市観光協会：磯部神社",
+        "highlight": null,
+        "retrieved": "2026-10-18"
+      }
+    ]
+  },
+  {
+    "key": "shima-rekishi-minzoku",
+    "name": {
+      "ja": "志摩市歴史民俗資料館"
+    },
+    "region": "shima-isobe",
+    "category": "資料館",
+    "status": "excluded",
+    "reason": "2/1～2/11 特別整理期間休館、每週一休，旅程裡只剩 2/12（五）開，那天要往關西機場移動",
+    "pointId": null,
+    "mentions": [
+      {
+        "type": "tourism",
+        "url": "https://www.kanko-shima.com/purpose/2327/",
+        "title": "志摩市観光協会：志摩市歴史民俗資料館",
+        "highlight": null,
+        "retrieved": "2026-10-18"
+      }
+    ],
+    "note": "觀光協會：9:30～18:00、常設展免費；休館日 月曜日、毎月最終木曜日、年末年始、特別整理期間（2月1日～同11日）"
+  },
+  {
+    "key": "shima-michinoeki-iseshima",
+    "name": {
+      "ja": "道の駅「伊勢志摩」（志摩市観光農園）"
+    },
+    "region": "shima-isobe",
+    "category": "道の駅",
+    "status": "not-included",
+    "reason": "物產販售、休息站；餐廳的部分留給 T9c",
+    "pointId": null,
+    "mentions": [
+      {
+        "type": "tourism",
+        "url": "https://www.kankomie.or.jp/spot/3980",
+        "title": "観光三重：道の駅「伊勢志摩」",
+        "highlight": null,
+        "retrieved": "2026-10-18"
+      },
+      {
+        "type": "tourism",
+        "url": "https://www.kankomie.or.jp/spot/23599",
+        "title": "観光三重：志摩市観光農園",
+        "highlight": null,
+        "retrieved": "2026-10-18"
+      },
+      {
+        "type": "tourism",
+        "url": "https://www.kanko-shima.com/purpose/2158/",
+        "title": "志摩市観光協会：道の駅「伊勢志摩」",
+        "highlight": null,
+        "retrieved": "2026-10-18"
+      }
+    ],
+    "note": "磯部町穴川、年中無休"
+  },
+  {
+    "key": "shima-everglades",
+    "name": {
+      "ja": "伊勢志摩エバーグレイズ"
+    },
+    "region": "shima-isobe",
+    "category": "露營、獨木舟",
+    "status": "not-included",
+    "reason": "露營場的日帰り露營、獨木舟，2 月戶外水上活動不適合長輩、小孩",
+    "pointId": null,
+    "mentions": [
+      {
+        "type": "tourism",
+        "url": "https://www.kanko-shima.com/purpose/1086/",
+        "title": "志摩市観光協会：伊勢志摩エバーグレイズ",
+        "highlight": null,
+        "retrieved": "2026-10-18"
+      }
+    ],
+    "note": "穴川駅步行 10 分；年中無休 9:00～17:00"
+  },
+  {
+    "key": "shima-narumi",
+    "name": {
+      "ja": "NARUMI Factory Shop"
+    },
+    "region": "shima-isobe",
+    "category": "購物",
+    "status": "not-included",
+    "reason": "餐具工廠直營店（購物），週二、週三休",
+    "pointId": null,
+    "mentions": [
+      {
+        "type": "tourism",
+        "url": "https://www.kankomie.or.jp/spot/24716",
+        "title": "観光三重：NARUMI Factory Shop",
+        "highlight": null,
+        "retrieved": "2026-10-18"
+      },
+      {
+        "type": "tourism",
+        "url": "https://www.kanko-shima.com/purpose/2166/",
+        "title": "志摩市観光協会：NARUMI Factory Shop",
+        "highlight": null,
+        "retrieved": "2026-10-18"
+      }
+    ]
+  },
+  {
+    "key": "shima-izawa-no-ura",
+    "name": {
+      "ja": "伊雑ノ浦"
+    },
+    "region": "shima-isobe",
+    "category": "風景",
+    "status": "not-included",
+    "reason": "海灣風景，沒有設施",
+    "pointId": null,
+    "mentions": [
+      {
+        "type": "tourism",
+        "url": "https://www.kanko-shima.com/purpose/2290/",
+        "title": "志摩市観光協会：伊雑ノ浦",
+        "highlight": null,
+        "retrieved": "2026-10-18"
+      }
+    ]
+  },
+  {
+    "key": "shima-oshimazakura",
+    "name": {
+      "ja": "オオシマザクラ（恵利原）"
+    },
+    "region": "shima-isobe",
+    "category": "花",
+    "status": "excluded",
+    "reason": "櫻花（4 月），2 月不是花季",
+    "pointId": null,
+    "mentions": [
+      {
+        "type": "tourism",
+        "url": "https://www.kanko-shima.com/purpose/2341/",
+        "title": "志摩市観光協会：オオシマザクラ",
+        "highlight": null,
+        "retrieved": "2026-10-18"
+      }
+    ]
+  },
+  {
+    "key": "shima-isobe-pool",
+    "name": {
+      "ja": "志摩市磯部プール／磯部ふれあい公園"
+    },
+    "region": "shima-isobe",
+    "category": "運動設施",
+    "status": "excluded",
+    "reason": "運動、市民設施",
+    "pointId": null,
+    "mentions": [
+      {
+        "type": "tourism",
+        "url": "https://www.kankomie.or.jp/spot/3877",
+        "title": "観光三重：志摩市磯部プール",
+        "highlight": null,
+        "retrieved": "2026-10-18"
+      },
+      {
+        "type": "tourism",
+        "url": "https://www.kankomie.or.jp/spot/3820",
+        "title": "観光三重：磯部ふれあい公園",
+        "highlight": null,
+        "retrieved": "2026-10-18"
+      }
+    ]
+  },
+  {
+    "key": "shima-wakame",
+    "name": {
+      "ja": "乾燥ワカメ詰め放題体験"
+    },
+    "region": "shima-isobe",
+    "category": "購物體驗",
+    "status": "not-included",
+    "reason": "じゃらん的購物方案（海帶芽裝到飽），店家、地點不明",
+    "pointId": null,
+    "mentions": [
+      {
+        "type": "tourism",
+        "url": "https://www.kanko-shima.com/purpose/2136/",
+        "title": "志摩市観光協会：◆10％OFFクーポン付き◆乾燥ワカメ詰め放題体験【じゃらん限定】",
+        "highlight": null,
+        "retrieved": "2026-10-18"
+      }
+    ]
+  },
+  {
+    "key": "shima-kazamachi-no-yu",
+    "name": {
+      "ja": "自家源泉『風待ちの湯』日帰り入浴プラン"
+    },
+    "region": "shima-isobe",
+    "category": "日歸溫泉",
+    "status": "not-included",
+    "reason": "飯店（伊勢志摩ロイヤルホテル？）的日歸入浴方案，觀光協會頁沒有地點；溫泉留給住宿 T9b",
+    "pointId": null,
+    "mentions": [
+      {
+        "type": "tourism",
+        "url": "https://www.kanko-shima.com/purpose/1558/",
+        "title": "志摩市観光協会：地下1300ｍから湧出する自家源泉『風待ちの湯』日帰り入浴プラン",
+        "highlight": null,
+        "retrieved": "2026-10-18"
+      }
+    ]
+  },
+  {
+    "key": "shima-parque-espana",
+    "name": {
+      "ja": "志摩スペイン村 パルケエスパーニャ"
+    },
+    "region": "shima-spain",
+    "category": "主題樂園",
+    "status": "excluded",
+    "reason": "2027-01-12～02-12 冬季休園（官網營業カレンダー），旅程 2/2～2/12 全部休園",
+    "pointId": null,
+    "mentions": [
+      {
+        "type": "tourism",
+        "url": "https://www.kankomie.or.jp/spot/3106",
+        "title": "観光三重：志摩スペイン村 パルケエスパーニャ",
+        "highlight": null,
+        "retrieved": "2026-10-18"
+      },
+      {
+        "type": "tourism",
+        "url": "https://www.kanko-shima.com/purpose/1074/",
+        "title": "志摩市観光協会：志摩スペイン村",
+        "highlight": null,
+        "retrieved": "2026-10-18"
+      },
+      {
+        "type": "official",
+        "url": "https://www.parque-net.com/calendar/index.html",
+        "title": "志摩スペイン村 営業カレンダー",
+        "highlight": null,
+        "retrieved": "2026-10-18"
+      }
+    ],
+    "note": "志摩最大的景點；2/13 起才開。官網「休園日・休館日は、変更する場合がございます」，T18 出發前再看一次"
+  },
+  {
+    "key": "shima-himawari-no-yu",
+    "name": {
+      "ja": "伊勢志摩温泉 志摩スペイン村「ひまわりの湯」"
+    },
+    "region": "shima-spain",
+    "category": "日歸溫泉",
+    "status": "excluded",
+    "reason": "2027-01-11～02-11 休館（官網營業カレンダー），旅程裡只剩 2/12",
+    "pointId": null,
+    "mentions": [
+      {
+        "type": "tourism",
+        "url": "https://www.kankomie.or.jp/spot/626",
+        "title": "観光三重：伊勢志摩温泉 志摩スペイン村「ひまわりの湯」",
+        "highlight": null,
+        "retrieved": "2026-10-18"
+      },
+      {
+        "type": "official",
+        "url": "https://www.parque-net.com/calendar/index.html",
+        "title": "志摩スペイン村 営業カレンダー",
+        "highlight": null,
+        "retrieved": "2026-10-18"
+      }
+    ],
+    "note": "ホテル志摩スペイン村 也同期間休館（T9b 參考）"
+  },
+  {
+    "key": "shima-amanoiwato",
+    "name": {
+      "ja": "天の岩戸（恵利原の水穴）"
+    },
+    "region": "shima-amanoiwato",
+    "category": "名水、自然",
+    "status": "included",
+    "reason": null,
+    "pointId": null,
+    "detailPending": true,
+    "mentions": [
+      {
+        "type": "tourism",
+        "url": "https://www.kankomie.or.jp/spot/2222",
+        "title": "観光三重：天の岩戸（恵利原の水穴）",
+        "highlight": null,
+        "retrieved": "2026-10-18"
+      },
+      {
+        "type": "tourism",
+        "url": "https://www.kanko-shima.com/purpose/1990/",
+        "title": "志摩市観光協会：天の岩戸（環境省選定 名水百選）",
+        "highlight": null,
+        "retrieved": "2026-10-18"
+      }
+    ],
+    "note": "環境省名水百選；磯部町恵利原的山裡，要開車或計程車；步道、階梯要讀文確認"
+  },
+  {
+    "key": "shima-oumuiwa",
+    "name": {
+      "ja": "鸚鵡岩（おうむ石）"
+    },
+    "region": "shima-amanoiwato",
+    "category": "奇岩",
+    "status": "not-included",
+    "reason": "恵利原巴士站步行 25～30 分的山路，長輩不適合；可以和天の岩戸一起看",
+    "pointId": null,
+    "mentions": [
+      {
+        "type": "tourism",
+        "url": "https://www.kanko-shima.com/purpose/2199/",
+        "title": "志摩市観光協会：鸚鵡岩 (おうむ石)",
+        "highlight": null,
+        "retrieved": "2026-10-18"
+      }
+    ]
+  },
+  {
+    "key": "shima-matoya-bbq-cruise",
+    "name": {
+      "ja": "的矢湾めぐりと船上バーベキュー（的矢湾遊覧）"
+    },
+    "region": "shima-matoya",
+    "category": "遊覧船",
+    "status": "included",
+    "reason": null,
+    "pointId": null,
+    "detailPending": true,
+    "mentions": [
+      {
+        "type": "tourism",
+        "url": "https://www.kankomie.or.jp/spot/3243",
+        "title": "観光三重：的矢湾遊覧",
+        "highlight": null,
+        "retrieved": "2026-10-18"
+      },
+      {
+        "type": "tourism",
+        "url": "https://www.kankomie.or.jp/spot/3242",
+        "title": "観光三重：的矢湾めぐりと船上バーベキュー",
+        "highlight": null,
+        "retrieved": "2026-10-18"
+      },
+      {
+        "type": "tourism",
+        "url": "https://www.kanko-shima.com/purpose/2058/",
+        "title": "志摩市観光協会：【伊勢志摩・遊覧】サザエコース★的矢湾めぐりと船上バーベキューのプラン",
+        "highlight": null,
+        "retrieved": "2026-10-18"
+      },
+      {
+        "type": "tourism",
+        "url": "https://www.kanko-shima.com/purpose/2066/",
+        "title": "志摩市観光協会：【伊勢志摩・遊覧】アワビ又は伊勢エビ付きコース★的矢湾めぐりと船上バーベキュープラン",
+        "highlight": null,
+        "retrieved": "2026-10-18"
+      },
+      {
+        "type": "tourism",
+        "url": "https://www.kanko-shima.com/purpose/2070/",
+        "title": "志摩市観光協会：【アワビ＆伊勢エビ付き】的矢湾フルコース★的矢湾めぐりと船上バーベキュープラン",
+        "highlight": null,
+        "retrieved": "2026-10-18"
+      },
+      {
+        "type": "official",
+        "url": "http://www.amigo.ne.jp/~daitou/",
+        "title": "的矢湾遊覧（大東）",
+        "highlight": null,
+        "retrieved": "2026-10-18"
+      }
+    ],
+    "note": "渡鹿野一帶出航、船上吃海鮮 BBQ（サザエ、アワビ、伊勢海老的方案）；可以包船的話適合 15 人；冬季是否營業、人數上限、官網是否還在要讀文確認"
+  },
+  {
+    "key": "shima-watakanojima",
+    "name": {
+      "ja": "渡鹿野島（わたかのじま）"
+    },
+    "region": "shima-matoya",
+    "category": "島",
+    "status": "not-included",
+    "reason": "島上主要是住宿和夏天的海灘（パールビーチ、恋人の聖地），2 月沒有活動；住宿留給 T9b",
+    "pointId": null,
+    "mentions": [
+      {
+        "type": "tourism",
+        "url": "https://www.kanko-shima.com/purpose/18031/",
+        "title": "志摩市観光協会：渡鹿野島（わたかのじま）",
+        "highlight": null,
+        "retrieved": "2026-10-18"
+      },
+      {
+        "type": "tourism",
+        "url": "https://www.kanko-shima.com/purpose/3574/",
+        "title": "志摩市観光協会：恋人の聖地",
+        "highlight": null,
+        "retrieved": "2026-10-18"
+      }
+    ],
+    "note": "渡鹿野渡船場搭船約 3 分"
+  },
+  {
+    "key": "shima-watakano-beach",
+    "name": {
+      "ja": "わたかのパールビーチ（星空觀測所）"
+    },
+    "region": "shima-matoya",
+    "category": "海水浴場",
+    "status": "excluded",
+    "reason": "海水浴場（夏季），2 月不開",
+    "pointId": null,
+    "mentions": [
+      {
+        "type": "tourism",
+        "url": "https://www.kankomie.or.jp/spot/10197",
+        "title": "観光三重：わたかのパールビーチ",
+        "highlight": null,
+        "retrieved": "2026-10-18"
+      },
+      {
+        "type": "tourism",
+        "url": "https://www.kankomie.or.jp/spot/24620",
+        "title": "観光三重：わたかのパールビーチ星空観測所",
+        "highlight": null,
+        "retrieved": "2026-10-18"
+      },
+      {
+        "type": "tourism",
+        "url": "https://www.kanko-shima.com/purpose/2246/",
+        "title": "志摩市観光協会：わたかのパールビーチ",
+        "highlight": null,
+        "retrieved": "2026-10-18"
+      }
+    ]
+  },
+  {
+    "key": "shima-watakano-other",
+    "name": {
+      "ja": "わたかの園地、八重垣神社"
+    },
+    "region": "shima-matoya",
+    "category": "公園、神社",
+    "status": "not-included",
+    "reason": "島上的小公園、小神社",
+    "pointId": null,
+    "mentions": [
+      {
+        "type": "tourism",
+        "url": "https://www.kankomie.or.jp/spot/3623",
+        "title": "観光三重：わたかの園地",
+        "highlight": null,
+        "retrieved": "2026-10-18"
+      },
+      {
+        "type": "tourism",
+        "url": "https://www.kankomie.or.jp/spot/2941",
+        "title": "観光三重：八重垣神社",
+        "highlight": null,
+        "retrieved": "2026-10-18"
+      }
+    ]
+  },
+  {
+    "key": "shima-matoya-bridge",
+    "name": {
+      "ja": "的矢湾大橋"
+    },
+    "region": "shima-matoya",
+    "category": "橋",
+    "status": "not-included",
+    "reason": "交通設施（橋上的風景）",
+    "pointId": null,
+    "mentions": [
+      {
+        "type": "tourism",
+        "url": "https://www.kankomie.or.jp/spot/2242",
+        "title": "観光三重：的矢湾大橋",
+        "highlight": null,
+        "retrieved": "2026-10-18"
+      },
+      {
+        "type": "tourism",
+        "url": "https://www.kanko-shima.com/purpose/2241/",
+        "title": "志摩市観光協会：的矢湾大橋",
+        "highlight": null,
+        "retrieved": "2026-10-18"
+      }
+    ]
+  },
+  {
+    "key": "shima-dainichido",
+    "name": {
+      "ja": "大日堂（三ヶ所）"
+    },
+    "region": "shima-matoya",
+    "category": "寺院",
+    "status": "not-included",
+    "reason": "地方小佛堂",
+    "pointId": null,
+    "mentions": [
+      {
+        "type": "tourism",
+        "url": "https://www.kankomie.or.jp/spot/9032",
+        "title": "観光三重：大日堂",
+        "highlight": null,
+        "retrieved": "2026-10-18"
+      }
+    ]
+  },
+  {
+    "key": "shima-iseshima-cc",
+    "name": {
+      "ja": "伊勢志摩カントリークラブ"
+    },
+    "region": "shima-matoya",
+    "category": "高爾夫",
+    "status": "excluded",
+    "reason": "高爾夫球場",
+    "pointId": null,
+    "mentions": [
+      {
+        "type": "tourism",
+        "url": "https://www.kanko-shima.com/purpose/2172/",
+        "title": "志摩市観光協会：伊勢志摩カントリークラブ",
+        "highlight": null,
+        "retrieved": "2026-10-18"
+      }
+    ]
+  },
+  {
+    "key": "shima-anorisaki-lighthouse",
+    "name": {
+      "ja": "安乗埼灯台（灯台資料館）"
+    },
+    "region": "shima-anori",
+    "category": "燈塔",
+    "status": "included",
+    "reason": null,
+    "pointId": null,
+    "detailPending": true,
+    "mentions": [
+      {
+        "type": "tourism",
+        "url": "https://www.kankomie.or.jp/spot/2241",
+        "title": "観光三重：安乗埼灯台",
+        "highlight": null,
+        "retrieved": "2026-10-18"
+      },
+      {
+        "type": "tourism",
+        "url": "https://www.kankomie.or.jp/spot/3216",
+        "title": "観光三重：安乗埼灯台資料館",
+        "highlight": null,
+        "retrieved": "2026-10-18"
+      },
+      {
+        "type": "tourism",
+        "url": "https://www.kankomie.or.jp/spot/1706",
+        "title": "観光三重：安乗岬",
+        "highlight": null,
+        "retrieved": "2026-10-18"
+      },
+      {
+        "type": "tourism",
+        "url": "https://www.kankomie.or.jp/spot/4020",
+        "title": "観光三重：伊良子清白の詩碑",
+        "highlight": null,
+        "retrieved": "2026-10-18"
+      },
+      {
+        "type": "tourism",
+        "url": "https://www.kanko-shima.com/purpose/2100/",
+        "title": "志摩市観光協会：安乗埼灯台",
+        "highlight": null,
+        "retrieved": "2026-10-18"
+      },
+      {
+        "type": "tourism",
+        "url": "https://www.kanko-shima.com/purpose/2110/",
+        "title": "志摩市観光協会：安乗埼灯台資料館",
+        "highlight": null,
+        "retrieved": "2026-10-18"
+      },
+      {
+        "type": "tourism",
+        "url": "https://www.kanko-shima.com/purpose/2366/",
+        "title": "志摩市観光協会：伊良子清白の詩碑",
+        "highlight": null,
+        "retrieved": "2026-10-18"
+      },
+      {
+        "type": "official",
+        "url": "https://www.tokokai.org/tourlight/tourlight08/",
+        "title": "燈光会 安乗埼灯台",
+        "highlight": null,
+        "retrieved": "2026-10-18"
+      }
+    ],
+    "note": "可以登上的燈塔；11～2 月參觀 9:00～12:00、13:00～16:00（2026-03 起中午休），國中以上 300 円、小學以下免費；觀光三重的官網 anorisaki.com 現在轉到別的網站（不要用）"
+  },
+  {
+    "key": "shima-anori-jinja",
+    "name": {
+      "ja": "安乗神社"
+    },
+    "region": "shima-anori",
+    "category": "神社",
+    "status": "not-included",
+    "reason": "地方神社（安乗人形芝居的舞台），2 月沒有演出",
+    "pointId": null,
+    "mentions": [
+      {
+        "type": "tourism",
+        "url": "https://www.kankomie.or.jp/spot/22381",
+        "title": "観光三重：安乗神社",
+        "highlight": null,
+        "retrieved": "2026-10-18"
+      },
+      {
+        "type": "tourism",
+        "url": "https://www.kanko-shima.com/purpose/2228/",
+        "title": "志摩市観光協会：安乗神社",
+        "highlight": null,
+        "retrieved": "2026-10-18"
+      }
+    ]
+  },
+  {
+    "key": "shima-kokufu-shirahama",
+    "name": {
+      "ja": "国府白浜"
+    },
+    "region": "shima-kokufu",
+    "category": "海灘",
+    "status": "not-included",
+    "reason": "衝浪海灘，2 月只能看海；可以當移動途中的風景",
+    "pointId": null,
+    "mentions": [
+      {
+        "type": "tourism",
+        "url": "https://www.kankomie.or.jp/spot/1704",
+        "title": "観光三重：国府白浜",
+        "highlight": null,
+        "retrieved": "2026-10-18"
+      }
+    ]
+  },
+  {
+    "key": "shima-ago-no-matsubara",
+    "name": {
+      "ja": "阿児の松原海水浴場"
+    },
+    "region": "shima-kokufu",
+    "category": "海水浴場",
+    "status": "excluded",
+    "reason": "海水浴場（夏季）",
+    "pointId": null,
+    "mentions": [
+      {
+        "type": "tourism",
+        "url": "https://www.kankomie.or.jp/spot/3494",
+        "title": "観光三重：阿児の松原海水浴場",
+        "highlight": null,
+        "retrieved": "2026-10-18"
+      },
+      {
+        "type": "tourism",
+        "url": "https://www.kankomie.or.jp/spot/3819",
+        "title": "観光三重：阿児の松原地域活性化センター",
+        "highlight": null,
+        "retrieved": "2026-10-18"
+      },
+      {
+        "type": "tourism",
+        "url": "https://www.kankomie.or.jp/spot/24616",
+        "title": "観光三重：スマイルサークル駐車場",
+        "highlight": null,
+        "retrieved": "2026-10-18"
+      },
+      {
+        "type": "tourism",
+        "url": "https://www.kanko-shima.com/purpose/2267/",
+        "title": "志摩市観光協会：阿児の松原海水浴場",
+        "highlight": null,
+        "retrieved": "2026-10-18"
+      }
+    ]
+  },
+  {
+    "key": "shima-ichigohama",
+    "name": {
+      "ja": "市後浜（いちご浜）"
+    },
+    "region": "shima-kokufu",
+    "category": "海灘",
+    "status": "not-included",
+    "reason": "海灘，2 月只能看海",
+    "pointId": null,
+    "mentions": [
+      {
+        "type": "tourism",
+        "url": "https://www.kankomie.or.jp/spot/1705",
+        "title": "観光三重：市後浜",
+        "highlight": null,
+        "retrieved": "2026-10-18"
+      },
+      {
+        "type": "tourism",
+        "url": "https://www.kanko-shima.com/purpose/1092/",
+        "title": "志摩市観光協会：市後浜（いちご浜）",
+        "highlight": null,
+        "retrieved": "2026-10-18"
+      }
+    ]
+  },
+  {
+    "key": "shima-ojoka-kofun",
+    "name": {
+      "ja": "おじょか古墳"
+    },
+    "region": "shima-kokufu",
+    "category": "古墳",
+    "status": "not-included",
+    "reason": "小古墳（史跡），觀光資訊少",
+    "pointId": null,
+    "mentions": [
+      {
+        "type": "tourism",
+        "url": "https://www.kankomie.or.jp/spot/1906",
+        "title": "観光三重：おじょか古墳",
+        "highlight": null,
+        "retrieved": "2026-10-18"
+      }
+    ]
+  },
+  {
+    "key": "shima-kokubunji",
+    "name": {
+      "ja": "志摩国分寺"
+    },
+    "region": "shima-kokufu",
+    "category": "寺院",
+    "status": "not-included",
+    "reason": "地方寺院",
+    "pointId": null,
+    "mentions": [
+      {
+        "type": "tourism",
+        "url": "https://www.kankomie.or.jp/spot/3030",
+        "title": "観光三重：志摩国分寺",
+        "highlight": null,
+        "retrieved": "2026-10-18"
+      },
+      {
+        "type": "tourism",
+        "url": "https://www.kanko-shima.com/purpose/2184/",
+        "title": "志摩市観光協会：志摩国分寺",
+        "highlight": null,
+        "retrieved": "2026-10-18"
+      }
+    ]
+  },
+  {
+    "key": "shima-kokufu-makigaki",
+    "name": {
+      "ja": "国府の槙垣群"
+    },
+    "region": "shima-kokufu",
+    "category": "聚落景觀",
+    "status": "not-included",
+    "reason": "聚落的防風樹籬，沒有設施",
+    "pointId": null,
+    "mentions": [
+      {
+        "type": "tourism",
+        "url": "https://www.kanko-shima.com/purpose/2364/",
+        "title": "志摩市観光協会：国府の槙垣群",
+        "highlight": null,
+        "retrieved": "2026-10-18"
+      }
+    ]
+  },
+  {
+    "key": "shima-park-golf",
+    "name": {
+      "ja": "志摩パークゴルフ場"
+    },
+    "region": "shima-kokufu",
+    "category": "運動設施",
+    "status": "not-included",
+    "reason": "公園高爾夫（運動設施）",
+    "pointId": null,
+    "mentions": [
+      {
+        "type": "tourism",
+        "url": "https://www.kanko-shima.com/purpose/2031/",
+        "title": "志摩市観光協会：志摩パークゴルフ場",
+        "highlight": null,
+        "retrieved": "2026-10-18"
+      }
+    ]
+  },
+  {
+    "key": "shima-dive-station-35",
+    "name": {
+      "ja": "ダイブステーション35（ダイビング、エコツアー）"
+    },
+    "region": "shima-kokufu",
+    "category": "潛水",
+    "status": "not-included",
+    "reason": "潛水、海上活動，2 月不適合長輩、小孩",
+    "pointId": null,
+    "mentions": [
+      {
+        "type": "tourism",
+        "url": "https://www.kanko-shima.com/purpose/2037/",
+        "title": "志摩市観光協会：ダイブステーション35",
+        "highlight": null,
+        "retrieved": "2026-10-18"
+      },
+      {
+        "type": "tourism",
+        "url": "https://www.kanko-shima.com/purpose/15358/",
+        "title": "志摩市観光協会：ダイブステーション３５",
+        "highlight": null,
+        "retrieved": "2026-10-18"
+      },
+      {
+        "type": "tourism",
+        "url": "https://www.kanko-shima.com/purpose/15362/",
+        "title": "志摩市観光協会：ダイブステーション３５",
+        "highlight": null,
+        "retrieved": "2026-10-18"
+      },
+      {
+        "type": "tourism",
+        "url": "https://www.kanko-shima.com/purpose/2115/",
+        "title": "志摩市観光協会：【初心者大歓迎！！】体験ダイビング",
+        "highlight": null,
+        "retrieved": "2026-10-18"
+      }
+    ]
+  },
+  {
+    "key": "shima-kokufu-surf",
+    "name": {
+      "ja": "国府白浜のサーフィン体験・ボードレンタル・SUP"
+    },
+    "region": "shima-kokufu",
+    "category": "衝浪",
+    "status": "not-included",
+    "reason": "衝浪、SUP 體驗，2 月不適合長輩、小孩",
+    "pointId": null,
+    "mentions": [
+      {
+        "type": "tourism",
+        "url": "https://www.kanko-shima.com/purpose/2071/",
+        "title": "志摩市観光協会：【志摩×サーフィン体験】 サーフィン初心者体験コース☆",
+        "highlight": null,
+        "retrieved": "2026-10-18"
+      },
+      {
+        "type": "tourism",
+        "url": "https://www.kanko-shima.com/purpose/2079/",
+        "title": "志摩市観光協会：【志摩×サーフィン体験】経験者向け♪サーフボードレンタルのみプラン",
+        "highlight": null,
+        "retrieved": "2026-10-18"
+      },
+      {
+        "type": "tourism",
+        "url": "https://www.kanko-shima.com/purpose/2080/",
+        "title": "志摩市観光協会：サーフィンレッスン（午後の部）のプラン",
+        "highlight": null,
+        "retrieved": "2026-10-18"
+      },
+      {
+        "type": "tourism",
+        "url": "https://www.kanko-shima.com/purpose/2091/",
+        "title": "志摩市観光協会：サーフィンレッスン（午前の部）のプラン",
+        "highlight": null,
+        "retrieved": "2026-10-18"
+      },
+      {
+        "type": "tourism",
+        "url": "https://www.kanko-shima.com/purpose/2092/",
+        "title": "志摩市観光協会：海のお散歩（スタンドアップパドルサーフィン体験）のプラン詳細",
+        "highlight": null,
+        "retrieved": "2026-10-18"
+      },
+      {
+        "type": "tourism",
+        "url": "https://www.kanko-shima.com/purpose/2144/",
+        "title": "志摩市観光協会：【志摩・国府】【レンタルボード】8:00～17:00の時間内で最大8時間レンタルOK！",
+        "highlight": null,
+        "retrieved": "2026-10-18"
+      },
+      {
+        "type": "tourism",
+        "url": "https://www.kanko-shima.com/purpose/2146/",
+        "title": "志摩市観光協会：【志摩・国府】【サーフィン体験教室】サーフィン始めたい方、初めての方大歓迎♪",
+        "highlight": null,
+        "retrieved": "2026-10-18"
+      },
+      {
+        "type": "tourism",
+        "url": "https://www.kanko-shima.com/purpose/2043/",
+        "title": "志摩市観光協会：【伊勢志摩】★1日ボードレンタル★トイレ＆シャワー完備♪のプラン",
+        "highlight": null,
+        "retrieved": "2026-10-18"
+      }
+    ]
+  },
+  {
+    "key": "shima-daiozaki-lighthouse",
+    "name": {
+      "ja": "大王埼灯台（大王崎、八幡さん公園）"
+    },
+    "region": "shima-daio",
+    "category": "燈塔",
+    "status": "included",
+    "reason": null,
+    "pointId": null,
+    "detailPending": true,
+    "mentions": [
+      {
+        "type": "tourism",
+        "url": "https://www.kankomie.or.jp/spot/2245",
+        "title": "観光三重：大王埼灯台",
+        "highlight": null,
+        "retrieved": "2026-10-18"
+      },
+      {
+        "type": "tourism",
+        "url": "https://www.kankomie.or.jp/spot/1714",
+        "title": "観光三重：大王崎",
+        "highlight": null,
+        "retrieved": "2026-10-18"
+      },
+      {
+        "type": "tourism",
+        "url": "https://www.kankomie.or.jp/spot/9023",
+        "title": "観光三重：八幡さん公園",
+        "highlight": null,
+        "retrieved": "2026-10-18"
+      },
+      {
+        "type": "tourism",
+        "url": "https://www.kanko-shima.com/purpose/2094/",
+        "title": "志摩市観光協会：大王埼灯台",
+        "highlight": null,
+        "retrieved": "2026-10-18"
+      },
+      {
+        "type": "tourism",
+        "url": "https://www.kanko-shima.com/purpose/2217/",
+        "title": "志摩市観光協会：八幡さん公園",
+        "highlight": null,
+        "retrieved": "2026-10-18"
+      },
+      {
+        "type": "official",
+        "url": "https://www.tokokai.org/tourlight/tourlight09/",
+        "title": "燈光会 大王埼灯台",
+        "highlight": null,
+        "retrieved": "2026-10-18"
+      }
+    ],
+    "note": "可以登上的燈塔；11～2 月參觀 9:00～12:00、13:00～16:00，國中以上 300 円；從停車場走漁村坡道、石階（要讀文確認）；八幡さん公園 是燈塔對面的展望點"
+  },
+  {
+    "key": "shima-katsuo-tenpaku",
+    "name": {
+      "ja": "かつおの天ぱく 鰹いぶし小屋見学"
+    },
+    "region": "shima-daio",
+    "category": "工坊參觀",
+    "status": "included",
+    "reason": null,
+    "pointId": null,
+    "detailPending": true,
+    "mentions": [
+      {
+        "type": "tourism",
+        "url": "https://www.kankomie.or.jp/spot/23250",
+        "title": "観光三重：かつおの天ぱく【鰹いぶし小屋見学】",
+        "highlight": null,
+        "retrieved": "2026-10-18"
+      },
+      {
+        "type": "tourism",
+        "url": "https://www.kanko-shima.com/purpose/1221/",
+        "title": "志摩市観光協会：かつおの天ぱく 鰹いぶし小屋体験",
+        "highlight": null,
+        "retrieved": "2026-10-18"
+      },
+      {
+        "type": "official",
+        "url": "https://katuobushi.com/",
+        "title": "天ぱく",
+        "highlight": null,
+        "retrieved": "2026-10-18"
+      }
+    ],
+    "note": "傳統柴魚燻製小屋參觀、試喝高湯；週三、週日休，12/1～1/10 休（2 月開）；大人 2,000 円、中人 1,500 円、小人 1,000 円；要預約，人數上限要讀文確認"
+  },
+  {
+    "key": "shima-daio-gallery",
+    "name": {
+      "ja": "志摩市絵かきの町・大王美術ギャラリー"
+    },
+    "region": "shima-daio",
+    "category": "美術館",
+    "status": "included",
+    "reason": null,
+    "pointId": null,
+    "detailPending": true,
+    "mentions": [
+      {
+        "type": "tourism",
+        "url": "https://www.kankomie.or.jp/spot/15609",
+        "title": "観光三重：志摩市絵かきの町・大王 美術ギャラリー",
+        "highlight": null,
+        "retrieved": "2026-10-18"
+      },
+      {
+        "type": "tourism",
+        "url": "https://www.kanko-shima.com/purpose/3898/",
+        "title": "志摩市観光協会：志摩市絵かきの町・大王美術ギャラリー",
+        "highlight": null,
+        "retrieved": "2026-10-18"
+      }
+    ],
+    "note": "大王支所併設的小美術館，室內（雨天備案）；週二、週三休"
+  },
+  {
+    "key": "shima-nakiri-jinja",
+    "name": {
+      "ja": "波切神社"
+    },
+    "region": "shima-daio",
+    "category": "神社",
+    "status": "not-included",
+    "reason": "大王埼灯台旁的小神社（わらじ祭 9 月），併在燈塔散步",
+    "pointId": null,
+    "mentions": [
+      {
+        "type": "tourism",
+        "url": "https://www.kankomie.or.jp/spot/2943",
+        "title": "観光三重：波切神社",
+        "highlight": null,
+        "retrieved": "2026-10-18"
+      },
+      {
+        "type": "tourism",
+        "url": "https://www.kanko-shima.com/purpose/16769/",
+        "title": "志摩市観光協会：波切神社",
+        "highlight": null,
+        "retrieved": "2026-10-18"
+      }
+    ]
+  },
+  {
+    "key": "shima-daijiji",
+    "name": {
+      "ja": "大慈寺"
+    },
+    "region": "shima-daio",
+    "category": "寺院",
+    "status": "not-included",
+    "reason": "地方寺院",
+    "pointId": null,
+    "mentions": [
+      {
+        "type": "tourism",
+        "url": "https://www.kankomie.or.jp/spot/9027",
+        "title": "観光三重：大慈寺",
+        "highlight": null,
+        "retrieved": "2026-10-18"
+      },
+      {
+        "type": "tourism",
+        "url": "https://www.kanko-shima.com/purpose/2303/",
+        "title": "志摩市観光協会：大慈寺",
+        "highlight": null,
+        "retrieved": "2026-10-18"
+      }
+    ]
+  },
+  {
+    "key": "shima-nakiri-small",
+    "name": {
+      "ja": "汗かき地蔵、九鬼一族の墓、堂の山 薬師如来、崎山公園、伝三坂・天満"
+    },
+    "region": "shima-daio",
+    "category": "史跡",
+    "status": "not-included",
+    "reason": "波切漁村的小史跡，可以當燈塔一帶的散步",
+    "pointId": null,
+    "mentions": [
+      {
+        "type": "tourism",
+        "url": "https://www.kankomie.or.jp/spot/9024",
+        "title": "観光三重：汗かき地蔵（堂の山薬師堂）",
+        "highlight": null,
+        "retrieved": "2026-10-18"
+      },
+      {
+        "type": "tourism",
+        "url": "https://www.kankomie.or.jp/spot/4567",
+        "title": "観光三重：九鬼一族の墓",
+        "highlight": null,
+        "retrieved": "2026-10-18"
+      },
+      {
+        "type": "tourism",
+        "url": "https://www.kankomie.or.jp/spot/9025",
+        "title": "観光三重：堂の山 薬師如来座像",
+        "highlight": null,
+        "retrieved": "2026-10-18"
+      },
+      {
+        "type": "tourism",
+        "url": "https://www.kankomie.or.jp/spot/3618",
+        "title": "観光三重：崎山公園",
+        "highlight": null,
+        "retrieved": "2026-10-18"
+      },
+      {
+        "type": "tourism",
+        "url": "https://www.kanko-shima.com/purpose/2116/",
+        "title": "志摩市観光協会：汗かき地蔵（堂の山薬師堂）",
+        "highlight": null,
+        "retrieved": "2026-10-18"
+      },
+      {
+        "type": "tourism",
+        "url": "https://www.kanko-shima.com/purpose/2372/",
+        "title": "志摩市観光協会：九鬼一族の墓",
+        "highlight": null,
+        "retrieved": "2026-10-18"
+      },
+      {
+        "type": "tourism",
+        "url": "https://www.kanko-shima.com/purpose/2221/",
+        "title": "志摩市観光協会：崎山公園",
+        "highlight": null,
+        "retrieved": "2026-10-18"
+      },
+      {
+        "type": "tourism",
+        "url": "https://www.kanko-shima.com/purpose/2369/",
+        "title": "志摩市観光協会：伝三坂・天満",
+        "highlight": null,
+        "retrieved": "2026-10-18"
+      }
+    ]
+  },
+  {
+    "key": "shima-nakiri-port",
+    "name": {
+      "ja": "波切漁港、宝門の浜・船頭の浜・はせどの浜"
+    },
+    "region": "shima-daio",
+    "category": "漁港",
+    "status": "not-included",
+    "reason": "漁港、小海灘的風景",
+    "pointId": null,
+    "mentions": [
+      {
+        "type": "tourism",
+        "url": "https://www.kanko-shima.com/purpose/2381/",
+        "title": "志摩市観光協会：波切漁港",
+        "highlight": null,
+        "retrieved": "2026-10-18"
+      },
+      {
+        "type": "tourism",
+        "url": "https://www.kanko-shima.com/purpose/2393/",
+        "title": "志摩市観光協会：宝門の浜・船頭の浜・はせどの浜",
+        "highlight": null,
+        "retrieved": "2026-10-18"
+      }
+    ]
+  },
+  {
+    "key": "shima-annainin",
+    "name": {
+      "ja": "志摩の国・案内人（大王町船越）"
+    },
+    "region": "shima-daio",
+    "category": "導覽",
+    "status": "not-included",
+    "reason": "導覽服務，觀光協會頁沒有內容",
+    "pointId": null,
+    "mentions": [
+      {
+        "type": "tourism",
+        "url": "https://www.kanko-shima.com/purpose/2333/",
+        "title": "志摩市観光協会：志摩の国・案内人",
+        "highlight": null,
+        "retrieved": "2026-10-18"
+      }
+    ]
+  },
+  {
+    "key": "shima-tomoyama-park",
+    "name": {
+      "ja": "志摩市ともやま公園（桐垣展望台、登茂山展望台）"
+    },
+    "region": "shima-tomoyama",
+    "category": "公園、展望台",
+    "status": "included",
+    "reason": null,
+    "pointId": null,
+    "detailPending": true,
+    "mentions": [
+      {
+        "type": "tourism",
+        "url": "https://www.kankomie.or.jp/spot/3307",
+        "title": "観光三重：志摩市ともやま公園",
+        "highlight": null,
+        "retrieved": "2026-10-18"
+      },
+      {
+        "type": "tourism",
+        "url": "https://www.kankomie.or.jp/spot/25150",
+        "title": "観光三重：桐垣展望台",
+        "highlight": null,
+        "retrieved": "2026-10-18"
+      },
+      {
+        "type": "tourism",
+        "url": "https://www.kankomie.or.jp/spot/2312",
+        "title": "観光三重：登茂山展望台(慕情が丘展望台）",
+        "highlight": null,
+        "retrieved": "2026-10-18"
+      },
+      {
+        "type": "tourism",
+        "url": "https://www.kankomie.or.jp/spot/3447",
+        "title": "観光三重：ともやま公園遊歩道",
+        "highlight": null,
+        "retrieved": "2026-10-18"
+      },
+      {
+        "type": "tourism",
+        "url": "https://www.kankomie.or.jp/spot/2534",
+        "title": "観光三重：志摩市ともやま公園野外活動センター",
+        "highlight": null,
+        "retrieved": "2026-10-18"
+      },
+      {
+        "type": "tourism",
+        "url": "https://www.kanko-shima.com/purpose/1249/",
+        "title": "志摩市観光協会：桐垣展望台",
+        "highlight": null,
+        "retrieved": "2026-10-18"
+      },
+      {
+        "type": "tourism",
+        "url": "https://www.kanko-shima.com/purpose/2203/",
+        "title": "志摩市観光協会：ともやま展望台",
+        "highlight": null,
+        "retrieved": "2026-10-18"
+      },
+      {
+        "type": "tourism",
+        "url": "https://www.kanko-shima.com/purpose/2163/",
+        "title": "志摩市観光協会：ともやま公園キャンプ村",
+        "highlight": null,
+        "retrieved": "2026-10-18"
+      },
+      {
+        "type": "official",
+        "url": "https://www.city.shima.mie.jp/kakuka/tomoyama/index.html",
+        "title": "志摩市 ともやま公園",
+        "highlight": null,
+        "retrieved": "2026-10-18"
+      }
+    ],
+    "note": "英虞湾的夕陽名所（桐垣展望台）；12/29～1/3 休；鵜方駅計程車約 25 分；步道、階梯要讀文確認"
+  },
+  {
+    "key": "shima-nature-school",
+    "name": {
+      "ja": "志摩自然学校（ともやま公園）"
+    },
+    "region": "shima-tomoyama",
+    "category": "自然體驗",
+    "status": "included",
+    "reason": null,
+    "pointId": null,
+    "detailPending": true,
+    "mentions": [
+      {
+        "type": "tourism",
+        "url": "https://www.kankomie.or.jp/spot/14774",
+        "title": "観光三重：志摩自然学校",
+        "highlight": null,
+        "retrieved": "2026-10-18"
+      },
+      {
+        "type": "tourism",
+        "url": "https://www.kanko-shima.com/purpose/2004/",
+        "title": "志摩市観光協会：志摩自然学校",
+        "highlight": null,
+        "retrieved": "2026-10-18"
+      },
+      {
+        "type": "official",
+        "url": "https://shima-nature-school.jp/",
+        "title": "志摩自然学校",
+        "highlight": null,
+        "retrieved": "2026-10-18"
+      }
+    ],
+    "note": "シーカヤック、無人島導覽等；官網沒寫 1～2 月有沒有一般行程（「冬は星空観察」），2 月營業要讀文確認，沒有就改 excluded"
+  },
+  {
+    "key": "shima-jirorokuro-beach",
+    "name": {
+      "ja": "次郎六郎海水浴場"
+    },
+    "region": "shima-tomoyama",
+    "category": "海水浴場",
+    "status": "excluded",
+    "reason": "海水浴場（夏季）",
+    "pointId": null,
+    "mentions": [
+      {
+        "type": "tourism",
+        "url": "https://www.kankomie.or.jp/spot/3492",
+        "title": "観光三重：次郎六郎海水浴場",
+        "highlight": null,
+        "retrieved": "2026-10-18"
+      },
+      {
+        "type": "tourism",
+        "url": "https://www.kanko-shima.com/purpose/2255/",
+        "title": "志摩市観光協会：次郎六郎海水浴場",
+        "highlight": null,
+        "retrieved": "2026-10-18"
+      }
+    ]
+  },
+  {
+    "key": "shima-satoumian",
+    "name": {
+      "ja": "海女小屋体験施設さとうみ庵（海女資料館）"
+    },
+    "region": "shima-goza",
+    "category": "海女小屋",
+    "status": "included",
+    "reason": null,
+    "pointId": null,
+    "detailPending": true,
+    "mentions": [
+      {
+        "type": "tourism",
+        "url": "https://www.kankomie.or.jp/spot/22275",
+        "title": "観光三重：海女小屋体験施設さとうみ庵",
+        "highlight": null,
+        "retrieved": "2026-10-18"
+      },
+      {
+        "type": "tourism",
+        "url": "https://www.kanko-shima.com/purpose/2023/",
+        "title": "志摩市観光協会：海女資料館",
+        "highlight": null,
+        "retrieved": "2026-10-18"
+      },
+      {
+        "type": "tourism",
+        "url": "https://www.kanko-shima.com/purpose/1605/",
+        "title": "志摩市観光協会：【3名様～】基本コース＋伊勢海老付プラン♪～志摩を豪快に食べつくそう!!",
+        "highlight": null,
+        "retrieved": "2026-10-18"
+      },
+      {
+        "type": "tourism",
+        "url": "https://www.kanko-shima.com/purpose/1632/",
+        "title": "志摩市観光協会：【2名様専用】基本コース＋伊勢えび付プラン♪～志摩を豪快に食べつくそう!!",
+        "highlight": null,
+        "retrieved": "2026-10-18"
+      },
+      {
+        "type": "tourism",
+        "url": "https://www.kanko-shima.com/purpose/1635/",
+        "title": "志摩市観光協会：【3名様からお得になる】海女さんと話せて新鮮な魚介類も楽しめるコース♪",
+        "highlight": null,
+        "retrieved": "2026-10-18"
+      },
+      {
+        "type": "official",
+        "url": "http://satoumian.com/",
+        "title": "さとうみ庵",
+        "highlight": null,
+        "retrieved": "2026-10-18"
+      }
+    ],
+    "note": "海女小屋裡和海女聊天、吃炭烤海鮮（3 人以上的方案、伊勢海老方案）；旁邊的海女資料館免費、9:00～17:00，1/12、1/13 休；鵜方駅巴士約 60 分「あづり浜」下車，要讀文確認 15 人能不能一次"
+  },
+  {
+    "key": "shima-shinju-no-sato",
+    "name": {
+      "ja": "真珠工房 真珠の里"
+    },
+    "region": "shima-goza",
+    "category": "真珠體驗",
+    "status": "included",
+    "reason": null,
+    "pointId": null,
+    "detailPending": true,
+    "mentions": [
+      {
+        "type": "tourism",
+        "url": "https://www.kanko-shima.com/purpose/1984/",
+        "title": "志摩市観光協会：真珠工房 真珠の里",
+        "highlight": null,
+        "retrieved": "2026-10-18"
+      },
+      {
+        "type": "official",
+        "url": "http://s-tamachan.net/",
+        "title": "真珠の里",
+        "highlight": null,
+        "retrieved": "2026-10-18"
+      }
+    ],
+    "note": "取珍珠體驗（あこや貝 1 個 2,200 円～）、飾品製作；9:30～17:00、週二休；和具港、越賀巴士站有接送；大型巴士停車位 1"
+  },
+  {
+    "key": "shima-pearl-miki",
+    "name": {
+      "ja": "真珠体験 パール美樹"
+    },
+    "region": "shima-goza",
+    "category": "真珠體驗",
+    "status": "included",
+    "reason": null,
+    "pointId": null,
+    "detailPending": true,
+    "mentions": [
+      {
+        "type": "tourism",
+        "url": "https://www.kankomie.or.jp/spot/23564",
+        "title": "観光三重：パール美樹",
+        "highlight": null,
+        "retrieved": "2026-10-18"
+      },
+      {
+        "type": "tourism",
+        "url": "https://www.kanko-shima.com/purpose/1227/",
+        "title": "志摩市観光協会：真珠体験 パール美樹",
+        "highlight": null,
+        "retrieved": "2026-10-18"
+      },
+      {
+        "type": "official",
+        "url": "https://isesima.info/pearl-miki/",
+        "title": "パール美樹",
+        "highlight": null,
+        "retrieved": "2026-10-18"
+      }
+    ],
+    "note": "取珍珠體驗 每人 2,500 円～，10:00～15:00 要預約；御座港巴士站步行約 15 分"
+  },
+  {
+    "key": "shima-goza-shirahama",
+    "name": {
+      "ja": "御座白浜海水浴場（キャンプ場、バンガロー）"
+    },
+    "region": "shima-goza",
+    "category": "海水浴場",
+    "status": "excluded",
+    "reason": "海水浴場、露營場（夏季）",
+    "pointId": null,
+    "mentions": [
+      {
+        "type": "tourism",
+        "url": "https://www.kankomie.or.jp/spot/3493",
+        "title": "観光三重：御座白浜海水浴場",
+        "highlight": null,
+        "retrieved": "2026-10-18"
+      },
+      {
+        "type": "tourism",
+        "url": "https://www.kankomie.or.jp/spot/3309",
+        "title": "観光三重：御座白浜キャンプ場",
+        "highlight": null,
+        "retrieved": "2026-10-18"
+      },
+      {
+        "type": "tourism",
+        "url": "https://www.kankomie.or.jp/spot/9033",
+        "title": "観光三重：御座白浜マリンブルーバンガロー",
+        "highlight": null,
+        "retrieved": "2026-10-18"
+      },
+      {
+        "type": "tourism",
+        "url": "https://www.kankomie.or.jp/spot/3308",
+        "title": "観光三重：御座白浜はまゆうバンガロー",
+        "highlight": null,
+        "retrieved": "2026-10-18"
+      },
+      {
+        "type": "tourism",
+        "url": "https://www.kankomie.or.jp/spot/3313",
+        "title": "観光三重：御座岬キャンプ場",
+        "highlight": null,
+        "retrieved": "2026-10-18"
+      },
+      {
+        "type": "tourism",
+        "url": "https://www.kankomie.or.jp/spot/3329",
+        "title": "観光三重：やまみオートキャンプ場",
+        "highlight": null,
+        "retrieved": "2026-10-18"
+      },
+      {
+        "type": "tourism",
+        "url": "https://www.kanko-shima.com/purpose/2261/",
+        "title": "志摩市観光協会：御座白浜海水浴場",
+        "highlight": null,
+        "retrieved": "2026-10-18"
+      }
+    ]
+  },
+  {
+    "key": "shima-shiobotoke",
+    "name": {
+      "ja": "石仏（潮仏）地蔵尊"
+    },
+    "region": "shima-goza",
+    "category": "石佛",
+    "status": "not-included",
+    "reason": "海邊的小石佛（退潮才看得到），觀光資訊少",
+    "pointId": null,
+    "mentions": [
+      {
+        "type": "tourism",
+        "url": "https://www.kankomie.or.jp/spot/4343",
+        "title": "観光三重：石仏(潮仏）",
+        "highlight": null,
+        "retrieved": "2026-10-18"
+      },
+      {
+        "type": "tourism",
+        "url": "https://www.kanko-shima.com/purpose/2293/",
+        "title": "志摩市観光協会：石仏（潮仏）地蔵尊",
+        "highlight": null,
+        "retrieved": "2026-10-18"
+      }
+    ]
+  },
+  {
+    "key": "shima-goza-small",
+    "name": {
+      "ja": "金比羅山展望台、御座岬、御座爪切不動尊、越賀神社、あづり浜"
+    },
+    "region": "shima-goza",
+    "category": "展望、神社",
+    "status": "not-included",
+    "reason": "前島半島的小景點",
+    "pointId": null,
+    "mentions": [
+      {
+        "type": "tourism",
+        "url": "https://www.kankomie.or.jp/spot/2311",
+        "title": "観光三重：金比羅山展望台",
+        "highlight": null,
+        "retrieved": "2026-10-18"
+      },
+      {
+        "type": "tourism",
+        "url": "https://www.kankomie.or.jp/spot/1711",
+        "title": "観光三重：御座岬",
+        "highlight": null,
+        "retrieved": "2026-10-18"
+      },
+      {
+        "type": "tourism",
+        "url": "https://www.kankomie.or.jp/spot/3042",
+        "title": "観光三重：御座爪切不動尊",
+        "highlight": null,
+        "retrieved": "2026-10-18"
+      },
+      {
+        "type": "tourism",
+        "url": "https://www.kankomie.or.jp/spot/9036",
+        "title": "観光三重：越賀神社",
+        "highlight": null,
+        "retrieved": "2026-10-18"
+      },
+      {
+        "type": "tourism",
+        "url": "https://www.kankomie.or.jp/spot/1712",
+        "title": "観光三重：あづり浜",
+        "highlight": null,
+        "retrieved": "2026-10-18"
+      },
+      {
+        "type": "tourism",
+        "url": "https://www.kanko-shima.com/purpose/2321/",
+        "title": "志摩市観光協会：金比羅山展望台",
+        "highlight": null,
+        "retrieved": "2026-10-18"
+      },
+      {
+        "type": "tourism",
+        "url": "https://www.kanko-shima.com/purpose/2278/",
+        "title": "志摩市観光協会：御座爪切不動尊",
+        "highlight": null,
+        "retrieved": "2026-10-18"
+      },
+      {
+        "type": "tourism",
+        "url": "https://www.kanko-shima.com/purpose/2282/",
+        "title": "志摩市観光協会：越賀神社",
+        "highlight": null,
+        "retrieved": "2026-10-18"
+      },
+      {
+        "type": "tourism",
+        "url": "https://www.kanko-shima.com/purpose/2180/",
+        "title": "志摩市観光協会：あづり浜",
+        "highlight": null,
+        "retrieved": "2026-10-18"
+      }
+    ]
+  },
+  {
+    "key": "shima-auto-camp",
+    "name": {
+      "ja": "志摩オートキャンプ場"
+    },
+    "region": "shima-goza",
+    "category": "露營",
+    "status": "excluded",
+    "reason": "露營場",
+    "pointId": null,
+    "mentions": [
+      {
+        "type": "tourism",
+        "url": "https://www.kankomie.or.jp/spot/3328",
+        "title": "観光三重：志摩オートキャンプ場",
+        "highlight": null,
+        "retrieved": "2026-10-18"
+      },
+      {
+        "type": "tourism",
+        "url": "https://www.kanko-shima.com/purpose/1643/",
+        "title": "志摩市観光協会：≪じゃらん限定≫キャンプ用品コミコミ！手ぶらでキャンプ♪※１グループ料金",
+        "highlight": null,
+        "retrieved": "2026-10-18"
+      }
+    ]
+  },
+  {
+    "key": "shima-luxuna",
+    "name": {
+      "ja": "LUXUNA伊勢志摩（ラグナ）"
+    },
+    "region": "shima-goza",
+    "category": "住宿",
+    "status": "excluded",
+    "reason": "住宿設施，留給 T9b",
+    "pointId": null,
+    "mentions": [
+      {
+        "type": "tourism",
+        "url": "https://www.kankomie.or.jp/spot/23846",
+        "title": "観光三重：LUXUNA伊勢志摩（ラグナ）",
+        "highlight": null,
+        "retrieved": "2026-10-18"
+      }
+    ]
+  },
+  {
+    "key": "shima-mugizaki-lighthouse",
+    "name": {
+      "ja": "麦埼灯台"
+    },
+    "region": "shima-wagu",
+    "category": "燈塔",
+    "status": "not-included",
+    "reason": "不能登上的燈塔，只能從外面看",
+    "pointId": null,
+    "mentions": [
+      {
+        "type": "tourism",
+        "url": "https://www.kankomie.or.jp/spot/2310",
+        "title": "観光三重：麦埼灯台",
+        "highlight": null,
+        "retrieved": "2026-10-18"
+      },
+      {
+        "type": "tourism",
+        "url": "https://www.kanko-shima.com/purpose/2190/",
+        "title": "志摩市観光協会：麦埼灯台",
+        "highlight": null,
+        "retrieved": "2026-10-18"
+      }
+    ]
+  },
+  {
+    "key": "shima-wagu-small",
+    "name": {
+      "ja": "和具観音堂、片田稲荷神社、三蔵寺、和具漁港"
+    },
+    "region": "shima-wagu",
+    "category": "寺社、漁港",
+    "status": "not-included",
+    "reason": "地方寺社、漁港",
+    "pointId": null,
+    "mentions": [
+      {
+        "type": "tourism",
+        "url": "https://www.kankomie.or.jp/spot/3043",
+        "title": "観光三重：和具観音堂",
+        "highlight": null,
+        "retrieved": "2026-10-18"
+      },
+      {
+        "type": "tourism",
+        "url": "https://www.kankomie.or.jp/spot/9035",
+        "title": "観光三重：片田稲荷神社",
+        "highlight": null,
+        "retrieved": "2026-10-18"
+      },
+      {
+        "type": "tourism",
+        "url": "https://www.kankomie.or.jp/spot/3044",
+        "title": "観光三重：三蔵寺",
+        "highlight": null,
+        "retrieved": "2026-10-18"
+      },
+      {
+        "type": "tourism",
+        "url": "https://www.kankomie.or.jp/spot/3620",
+        "title": "観光三重：和具漁港緑地公園",
+        "highlight": null,
+        "retrieved": "2026-10-18"
+      },
+      {
+        "type": "tourism",
+        "url": "https://www.kanko-shima.com/purpose/2273/",
+        "title": "志摩市観光協会：和具観音堂",
+        "highlight": null,
+        "retrieved": "2026-10-18"
+      },
+      {
+        "type": "tourism",
+        "url": "https://www.kanko-shima.com/purpose/2287/",
+        "title": "志摩市観光協会：片田稲荷神社",
+        "highlight": null,
+        "retrieved": "2026-10-18"
+      },
+      {
+        "type": "tourism",
+        "url": "https://www.kanko-shima.com/purpose/2378/",
+        "title": "志摩市観光協会：和具漁港",
+        "highlight": null,
+        "retrieved": "2026-10-18"
+      }
+    ]
+  },
+  {
+    "key": "shima-bridges",
+    "name": {
+      "ja": "志摩丸山橋、志摩大橋（志摩パールブリッジ）、深谷水道"
+    },
+    "region": "shima-wagu",
+    "category": "橋",
+    "status": "not-included",
+    "reason": "橋、水道的風景（開車經過）",
+    "pointId": null,
+    "mentions": [
+      {
+        "type": "tourism",
+        "url": "https://www.kankomie.or.jp/spot/2244",
+        "title": "観光三重：志摩丸山橋",
+        "highlight": null,
+        "retrieved": "2026-10-18"
+      },
+      {
+        "type": "tourism",
+        "url": "https://www.kanko-shima.com/purpose/2196/",
+        "title": "志摩市観光協会：志摩丸山橋",
+        "highlight": null,
+        "retrieved": "2026-10-18"
+      },
+      {
+        "type": "tourism",
+        "url": "https://www.kanko-shima.com/purpose/2374/",
+        "title": "志摩市観光協会：志摩大橋（志摩パールブリッジ）",
+        "highlight": null,
+        "retrieved": "2026-10-18"
+      },
+      {
+        "type": "tourism",
+        "url": "https://www.kanko-shima.com/purpose/2352/",
+        "title": "志摩市観光協会：深谷水道",
+        "highlight": null,
+        "retrieved": "2026-10-18"
+      }
+    ]
+  },
+  {
+    "key": "shima-oshima",
+    "name": {
+      "ja": "大島（和具沖）"
+    },
+    "region": "shima-wagu",
+    "category": "島",
+    "status": "not-included",
+    "reason": "和具外海的無人島（夏天渡船），2 月沒有渡船資訊",
+    "pointId": null,
+    "mentions": [
+      {
+        "type": "tourism",
+        "url": "https://www.kanko-shima.com/purpose/2397/",
+        "title": "志摩市観光協会：大島",
+        "highlight": null,
+        "retrieved": "2026-10-18"
+      }
+    ]
+  },
+  {
+    "key": "shima-sports-park",
+    "name": {
+      "ja": "志摩総合スポーツ公園／志摩B&G海洋センター、長田小公園"
+    },
+    "region": "shima-wagu",
+    "category": "運動設施",
+    "status": "excluded",
+    "reason": "運動、市民設施",
+    "pointId": null,
+    "mentions": [
+      {
+        "type": "tourism",
+        "url": "https://www.kankomie.or.jp/spot/1766",
+        "title": "観光三重：志摩総合スポーツ公園",
+        "highlight": null,
+        "retrieved": "2026-10-18"
+      },
+      {
+        "type": "tourism",
+        "url": "https://www.kankomie.or.jp/spot/2485",
+        "title": "観光三重：志摩市志摩Ｂ＆Ｇ海洋センター",
+        "highlight": null,
+        "retrieved": "2026-10-18"
+      },
+      {
+        "type": "tourism",
+        "url": "https://www.kankomie.or.jp/spot/3619",
+        "title": "観光三重：長田小公園",
+        "highlight": null,
+        "retrieved": "2026-10-18"
+      },
+      {
+        "type": "tourism",
+        "url": "https://www.kanko-shima.com/purpose/2485/",
+        "title": "志摩市観光協会：志摩Ｂ＆Ｇ海洋センター/志摩総合スポーツ公園",
+        "highlight": null,
+        "retrieved": "2026-10-18"
+      }
+    ]
+  },
+  {
+    "key": "shima-kodomo-no-shiro",
+    "name": {
+      "ja": "子どもの城 伊勢志摩（間崎島）"
+    },
+    "region": "shima-wagu",
+    "category": "教育體驗",
+    "status": "not-included",
+    "reason": "給小孩的長期自然教育方案，不是一般觀光",
+    "pointId": null,
+    "mentions": [
+      {
+        "type": "tourism",
+        "url": "https://www.kanko-shima.com/purpose/20420/",
+        "title": "志摩市観光協会：【子どもの城 伊勢志摩】伊勢志摩・間崎島で育む、子どもたちの「生きるチカラ」",
+        "highlight": null,
+        "retrieved": "2026-10-18"
+      }
+    ],
+    "note": "地址志摩町和具4427（間崎島）"
+  },
+  {
+    "key": "shima-sushiyu-zen",
+    "name": {
+      "ja": "鮨裕 禅（間崎島）寿司握り体験"
+    },
+    "region": "shima-wagu",
+    "category": "料理體驗",
+    "status": "not-included",
+    "reason": "1 天 1 組的高價方案，坐不下 15 人",
+    "pointId": null,
+    "mentions": [
+      {
+        "type": "tourism",
+        "url": "https://www.kanko-shima.com/purpose/20176/",
+        "title": "志摩市観光協会：【鮨裕 禅｜間崎島】世界の食通がもとめる最高峰の寿司 1日1組限定・至高の本格寿司握り体験",
+        "highlight": null,
+        "retrieved": "2026-10-18"
+      }
+    ]
+  },
+  {
+    "key": "shima-umihozuki",
+    "name": {
+      "ja": "志摩市浜島磯体験施設「海ほおずき」"
+    },
+    "region": "shima-hamajima",
+    "category": "磯體驗",
+    "status": "included",
+    "reason": null,
+    "pointId": null,
+    "detailPending": true,
+    "mentions": [
+      {
+        "type": "tourism",
+        "url": "https://www.kankomie.or.jp/spot/11960",
+        "title": "観光三重：志摩市浜島磯体験施設「海ほおずき」",
+        "highlight": null,
+        "retrieved": "2026-10-18"
+      },
+      {
+        "type": "tourism",
+        "url": "https://www.kanko-shima.com/purpose/973/",
+        "title": "志摩市観光協会：釣った後はその場でアジフライにして食べられる 浅磯体験エリアで生き物とのふれあいも",
+        "highlight": null,
+        "retrieved": "2026-10-18"
+      },
+      {
+        "type": "tourism",
+        "url": "https://www.kanko-shima.com/purpose/999/",
+        "title": "志摩市観光協会：わんぱく磯で磯の岩場をのぞいてみよう♪水の中の生物とふれあえる浅磯体験",
+        "highlight": null,
+        "retrieved": "2026-10-18"
+      },
+      {
+        "type": "tourism",
+        "url": "https://www.kanko-shima.com/purpose/1005/",
+        "title": "志摩市観光協会：おいしいカツオでてこね寿司作り体験 1人前から大人数でのご予約も可能",
+        "highlight": null,
+        "retrieved": "2026-10-18"
+      },
+      {
+        "type": "official",
+        "url": "http://www.umihozuki.org/",
+        "title": "海ほおずき",
+        "highlight": null,
+        "retrieved": "2026-10-18"
+      }
+    ],
+    "note": "11 月初～4 月中 有見學、伊勢海老・釣魚・摸貝體驗（官網 2026-10-18 寫「現在休止中」的是季前）、アジ釣り 通年、てこね寿司作り；每週二休；適合小孩"
+  },
+  {
+    "key": "shima-iwaho-bbq-cruise",
+    "name": {
+      "ja": "あご湾めぐりと船上バーベキュー（いわほ観光汽船）"
+    },
+    "region": "shima-hamajima",
+    "category": "遊覧船",
+    "status": "included",
+    "reason": null,
+    "pointId": null,
+    "detailPending": true,
+    "mentions": [
+      {
+        "type": "tourism",
+        "url": "https://www.kankomie.or.jp/spot/3239",
+        "title": "観光三重：あご湾めぐりと船上バーベキュー【いわほ観光汽船】",
+        "highlight": null,
+        "retrieved": "2026-10-18"
+      },
+      {
+        "type": "tourism",
+        "url": "https://www.kanko-shima.com/purpose/1589/",
+        "title": "志摩市観光協会：【伊勢志摩×ＢＢＱ】手ぶらＯＫ！！新鮮海鮮！地産肉がセットになった贅沢海上バーベキュー♪",
+        "highlight": null,
+        "retrieved": "2026-10-18"
+      }
+    ],
+    "note": "浜島町塩屋出航、英虞湾遊覽＋船上海鮮 BBQ；冬季營業、人數上限要讀文確認"
+  },
+  {
+    "key": "shima-ukehi-jinja",
+    "name": {
+      "ja": "宇気比神社（樹叢）"
+    },
+    "region": "shima-hamajima",
+    "category": "神社",
+    "status": "not-included",
+    "reason": "地方神社（縣天然紀念物的樹林）",
+    "pointId": null,
+    "mentions": [
+      {
+        "type": "tourism",
+        "url": "https://www.kankomie.or.jp/spot/2955",
+        "title": "観光三重：宇気比神社",
+        "highlight": null,
+        "retrieved": "2026-10-18"
+      },
+      {
+        "type": "tourism",
+        "url": "https://www.kankomie.or.jp/spot/21695",
+        "title": "観光三重：宇気比神社樹叢【県指定天然記念物】",
+        "highlight": null,
+        "retrieved": "2026-10-18"
+      },
+      {
+        "type": "tourism",
+        "url": "https://www.kankomie.or.jp/spot/2270",
+        "title": "観光三重：宇気比神社",
+        "highlight": null,
+        "retrieved": "2026-10-18"
+      }
+    ]
+  },
+  {
+    "key": "shima-hamajima-photo",
+    "name": {
+      "ja": "伊勢えび大王像、伊勢えびモニュメント、鼻かけえびす像、恵比寿ケ丘、ビン玉ロード、夢海道チップアート、矢取島"
+    },
+    "region": "shima-hamajima",
+    "category": "拍照點",
+    "status": "not-included",
+    "reason": "浜島的小拍照點（可以當散步），單獨不值得專程",
+    "pointId": null,
+    "mentions": [
+      {
+        "type": "tourism",
+        "url": "https://www.kankomie.or.jp/spot/9022",
+        "title": "観光三重：伊勢えび大王像",
+        "highlight": null,
+        "retrieved": "2026-10-18"
+      },
+      {
+        "type": "tourism",
+        "url": "https://www.kankomie.or.jp/spot/2232",
+        "title": "観光三重：恵比寿ケ丘",
+        "highlight": null,
+        "retrieved": "2026-10-18"
+      },
+      {
+        "type": "tourism",
+        "url": "https://www.kankomie.or.jp/spot/23706",
+        "title": "観光三重：ビン玉ロード",
+        "highlight": null,
+        "retrieved": "2026-10-18"
+      },
+      {
+        "type": "tourism",
+        "url": "https://www.kanko-shima.com/purpose/2237/",
+        "title": "志摩市観光協会：伊勢えび大王像",
+        "highlight": null,
+        "retrieved": "2026-10-18"
+      },
+      {
+        "type": "tourism",
+        "url": "https://www.kanko-shima.com/purpose/2345/",
+        "title": "志摩市観光協会：伊勢えびモニュメント",
+        "highlight": null,
+        "retrieved": "2026-10-18"
+      },
+      {
+        "type": "tourism",
+        "url": "https://www.kanko-shima.com/purpose/2348/",
+        "title": "志摩市観光協会：鼻かけえびす像",
+        "highlight": null,
+        "retrieved": "2026-10-18"
+      },
+      {
+        "type": "tourism",
+        "url": "https://www.kanko-shima.com/purpose/1978/",
+        "title": "志摩市観光協会：ビン玉ロード",
+        "highlight": null,
+        "retrieved": "2026-10-18"
+      },
+      {
+        "type": "tourism",
+        "url": "https://www.kanko-shima.com/purpose/2387/",
+        "title": "志摩市観光協会：夢海道チップアート",
+        "highlight": null,
+        "retrieved": "2026-10-18"
+      },
+      {
+        "type": "tourism",
+        "url": "https://www.kanko-shima.com/purpose/2362/",
+        "title": "志摩市観光協会：矢取島",
+        "highlight": null,
+        "retrieved": "2026-10-18"
+      }
+    ]
+  },
+  {
+    "key": "shima-isobue-misaki",
+    "name": {
+      "ja": "磯笛岬展望台（ツバスの鐘）"
+    },
+    "region": "shima-hamajima",
+    "category": "展望台",
+    "status": "not-included",
+    "reason": "南張的小展望台（開車經過）",
+    "pointId": null,
+    "mentions": [
+      {
+        "type": "tourism",
+        "url": "https://www.kankomie.or.jp/spot/2318",
+        "title": "観光三重：磯笛岬展望台(ツバスの鐘)",
+        "highlight": null,
+        "retrieved": "2026-10-18"
+      },
+      {
+        "type": "tourism",
+        "url": "https://www.kanko-shima.com/purpose/2212/",
+        "title": "志摩市観光協会：磯笛岬展望台・ツバスの鐘",
+        "highlight": null,
+        "retrieved": "2026-10-18"
+      }
+    ]
+  },
+  {
+    "key": "shima-kusu-no-miya",
+    "name": {
+      "ja": "楠御前八柱神社（楠の宮）"
+    },
+    "region": "shima-hamajima",
+    "category": "神社",
+    "status": "not-included",
+    "reason": "地方神社",
+    "pointId": null,
+    "mentions": [
+      {
+        "type": "tourism",
+        "url": "https://www.kankomie.or.jp/spot/2956",
+        "title": "観光三重：楠御前八柱神社（楠の宮）",
+        "highlight": null,
+        "retrieved": "2026-10-18"
+      },
+      {
+        "type": "tourism",
+        "url": "https://www.kanko-shima.com/purpose/2358/",
+        "title": "志摩市観光協会：楠御前八柱神社（楠の宮）",
+        "highlight": null,
+        "retrieved": "2026-10-18"
+      }
+    ]
+  },
+  {
+    "key": "shima-oyahama",
+    "name": {
+      "ja": "大矢浜海水浴場（BIG ARROW BEACH）、塩鹿ビーチ"
+    },
+    "region": "shima-hamajima",
+    "category": "海水浴場",
+    "status": "excluded",
+    "reason": "海水浴場（夏季）；BBQ 方案也是海灘的",
+    "pointId": null,
+    "mentions": [
+      {
+        "type": "tourism",
+        "url": "https://www.kankomie.or.jp/spot/3491",
+        "title": "観光三重：大矢浜海水浴場（BIG ARROW BEACH）",
+        "highlight": null,
+        "retrieved": "2026-10-18"
+      },
+      {
+        "type": "tourism",
+        "url": "https://www.kankomie.or.jp/spot/9020",
+        "title": "観光三重：塩鹿ビーチ",
+        "highlight": null,
+        "retrieved": "2026-10-18"
+      },
+      {
+        "type": "tourism",
+        "url": "https://www.kanko-shima.com/purpose/2252/",
+        "title": "志摩市観光協会：大矢浜海水浴場 (BIG ARROW BEACH)",
+        "highlight": null,
+        "retrieved": "2026-10-18"
+      },
+      {
+        "type": "tourism",
+        "url": "https://www.kanko-shima.com/purpose/1534/",
+        "title": "志摩市観光協会：【平日】★じゃらん限定プラン★高級食材アワビも入った海の幸&国産牛セットのＢＢＱプラン＆ソフトドリンク飲み放題付き【食材持ち込みもＯＫ】≪火おこし不要／ゴミ回収ＯＫ≫のプラン詳細",
+        "highlight": null,
+        "retrieved": "2026-10-18"
+      },
+      {
+        "type": "tourism",
+        "url": "https://www.kanko-shima.com/purpose/1552/",
+        "title": "志摩市観光協会：【土日祝】★じゃらん限定プラン★高級食材アワビも入った海の幸&国産牛セットのＢＢＱプラン＆ソフトドリンク飲み放題付き【食材持ち込みもＯＫ】≪火おこし不要／ゴミ回収ＯＫ≫のプラン詳細",
+        "highlight": null,
+        "retrieved": "2026-10-18"
+      }
+    ]
+  },
+  {
+    "key": "shima-ocho-maru",
+    "name": {
+      "ja": "浜島遊漁船 おちょ丸"
+    },
+    "region": "shima-hamajima",
+    "category": "釣魚船",
+    "status": "not-included",
+    "reason": "海釣船，2 月不適合長輩、小孩",
+    "pointId": null,
+    "mentions": [
+      {
+        "type": "tourism",
+        "url": "https://www.kanko-shima.com/purpose/16249/",
+        "title": "志摩市観光協会：浜島遊漁船 おちょ丸",
+        "highlight": null,
+        "retrieved": "2026-10-18"
+      }
+    ]
+  },
+  {
+    "key": "shima-hamajima-public",
+    "name": {
+      "ja": "浜島B&G海洋センター、浜島ふるさと公園"
+    },
+    "region": "shima-hamajima",
+    "category": "運動設施",
+    "status": "excluded",
+    "reason": "運動、市民設施",
+    "pointId": null,
+    "mentions": [
+      {
+        "type": "tourism",
+        "url": "https://www.kankomie.or.jp/spot/3873",
+        "title": "観光三重：志摩市浜島Ｂ＆Ｇ海洋センター",
+        "highlight": null,
+        "retrieved": "2026-10-18"
+      },
+      {
+        "type": "tourism",
+        "url": "https://www.kankomie.or.jp/spot/3816",
+        "title": "観光三重：浜島ふるさと公園",
+        "highlight": null,
+        "retrieved": "2026-10-18"
+      }
+    ]
+  },
+  {
+    "key": "shima-chichukaimura",
+    "name": {
+      "ja": "志摩地中海村（クラフト工房 Recuerdos）"
+    },
+    "region": "shima-sakko",
+    "category": "度假村",
+    "status": "included",
+    "reason": null,
+    "pointId": null,
+    "detailPending": true,
+    "mentions": [
+      {
+        "type": "tourism",
+        "url": "https://www.kankomie.or.jp/spot/20687",
+        "title": "観光三重：志摩地中海村",
+        "highlight": null,
+        "retrieved": "2026-10-18"
+      },
+      {
+        "type": "tourism",
+        "url": "https://www.kankomie.or.jp/spot/21739",
+        "title": "観光三重：志摩地中海村 クラフト工房 Recuerdos",
+        "highlight": null,
+        "retrieved": "2026-10-18"
+      },
+      {
+        "type": "tourism",
+        "url": "https://www.kanko-shima.com/purpose/2208/",
+        "title": "志摩市観光協会：志摩地中海村 クラフト工房 Recuerdos",
+        "highlight": null,
+        "retrieved": "2026-10-18"
+      },
+      {
+        "type": "official",
+        "url": "http://puebloamigo.jp/",
+        "title": "志摩地中海村",
+        "highlight": null,
+        "retrieved": "2026-10-18"
+      }
+    ],
+    "note": "西班牙風的度假村（住宿＋村內散步、工藝體驗、餐廳）；日歸的入村費、時間要讀文確認，官網寫團體、觀光巴士日歸要事先聯絡；賢島有海上計程車（Entrada）"
+  },
+  {
+    "key": "shima-green-adventure",
+    "name": {
+      "ja": "志摩グリーンアドベンチャー（アトラクションフィールド）"
+    },
+    "region": "shima-sakko",
+    "category": "戶外遊樂",
+    "status": "included",
+    "reason": null,
+    "pointId": null,
+    "detailPending": true,
+    "mentions": [
+      {
+        "type": "tourism",
+        "url": "https://www.kanko-shima.com/purpose/9656/",
+        "title": "志摩市観光協会：アトラクションフィールド【志摩グリーンアドベンチャー】",
+        "highlight": null,
+        "retrieved": "2026-10-18"
+      },
+      {
+        "type": "official",
+        "url": "https://golf-resort.kintetsu-re.co.jp/shima-greenadventure/attraction/",
+        "title": "志摩グリーンアドベンチャー",
+        "highlight": null,
+        "retrieved": "2026-10-18"
+      }
+    ],
+    "note": "近鉄浜島カンツリー 的戶外遊樂設施（滑索等）10:00～17:00；鵜方駅有接駁巴士約 10 分；冬季營業、身高年齡限制要讀文確認"
+  },
+  {
+    "key": "shima-nemu-resort",
+    "name": {
+      "ja": "NEMU RESORT"
+    },
+    "region": "shima-sakko",
+    "category": "度假村",
+    "status": "not-included",
+    "reason": "以住宿為主的度假村，留給 T9b",
+    "pointId": null,
+    "mentions": [
+      {
+        "type": "tourism",
+        "url": "https://www.kankomie.or.jp/spot/3105",
+        "title": "観光三重：NEMU RESORT",
+        "highlight": null,
+        "retrieved": "2026-10-18"
+      }
+    ]
+  },
+  {
+    "key": "shima-golf",
+    "name": {
+      "ja": "NEMU GOLF CLUB、近鉄浜島カンツリークラブ、近鉄賢島カンツリークラブ"
+    },
+    "region": "shima-sakko",
+    "category": "高爾夫",
+    "status": "excluded",
+    "reason": "高爾夫球場",
+    "pointId": null,
+    "mentions": [
+      {
+        "type": "tourism",
+        "url": "https://www.kankomie.or.jp/spot/3704",
+        "title": "観光三重：NEMU GOLF CLUB",
+        "highlight": null,
+        "retrieved": "2026-10-18"
+      },
+      {
+        "type": "tourism",
+        "url": "https://www.kankomie.or.jp/spot/3703",
+        "title": "観光三重：近鉄浜島カンツリークラブ",
+        "highlight": null,
+        "retrieved": "2026-10-18"
+      },
+      {
+        "type": "tourism",
+        "url": "https://www.kankomie.or.jp/spot/3705",
+        "title": "観光三重：近鉄賢島カンツリークラブ",
+        "highlight": null,
+        "retrieved": "2026-10-18"
+      },
+      {
+        "type": "tourism",
+        "url": "https://www.kanko-shima.com/purpose/1996/",
+        "title": "志摩市観光協会：NEMU GOLF CLUB",
+        "highlight": null,
+        "retrieved": "2026-10-18"
+      },
+      {
+        "type": "tourism",
+        "url": "https://www.kanko-shima.com/purpose/2027/",
+        "title": "志摩市観光協会：近鉄賢島カンツリークラブ",
+        "highlight": null,
+        "retrieved": "2026-10-18"
+      }
+    ],
+    "note": "近鉄賢島カンツリー 在阿児町鵜方"
+  },
+  {
+    "key": "shima-gochi-temples",
+    "name": {
+      "ja": "福寿寺、薬師堂（五知）"
+    },
+    "region": "shima-other",
+    "category": "寺院",
+    "status": "not-included",
+    "reason": "五知的地方寺院",
+    "pointId": null,
+    "mentions": [
+      {
+        "type": "tourism",
+        "url": "https://www.kankomie.or.jp/spot/21577",
+        "title": "観光三重：福寿寺",
+        "highlight": null,
+        "retrieved": "2026-10-18"
+      },
+      {
+        "type": "tourism",
+        "url": "https://www.kankomie.or.jp/spot/9031",
+        "title": "観光三重：薬師堂",
+        "highlight": null,
+        "retrieved": "2026-10-18"
+      }
+    ]
+  },
+  {
+    "key": "shima-tategami",
+    "name": {
+      "ja": "円空仏、立石明神（立神）"
+    },
+    "region": "shima-other",
+    "category": "寺社",
+    "status": "not-included",
+    "reason": "立神的小寺社",
+    "pointId": null,
+    "mentions": [
+      {
+        "type": "tourism",
+        "url": "https://www.kankomie.or.jp/spot/4021",
+        "title": "観光三重：円空仏",
+        "highlight": null,
+        "retrieved": "2026-10-18"
+      },
+      {
+        "type": "tourism",
+        "url": "https://www.kanko-shima.com/purpose/2339/",
+        "title": "志摩市観光協会：立石明神",
+        "highlight": null,
+        "retrieved": "2026-10-18"
+      }
+    ]
+  },
+  {
+    "key": "shima-nishiyama-bojogaoka",
+    "name": {
+      "ja": "西山慕情ヶ丘"
+    },
+    "region": "shima-other",
+    "category": "展望",
+    "status": "not-included",
+    "reason": "立神的小展望點",
+    "pointId": null,
+    "mentions": [
+      {
+        "type": "tourism",
+        "url": "https://www.kankomie.or.jp/spot/9047",
+        "title": "観光三重：西山慕情ヶ丘",
+        "highlight": null,
+        "retrieved": "2026-10-18"
+      },
+      {
+        "type": "tourism",
+        "url": "https://www.kanko-shima.com/purpose/2177/",
+        "title": "志摩市観光協会：西山慕情ヶ丘",
+        "highlight": null,
+        "retrieved": "2026-10-18"
+      }
+    ]
+  },
+  {
+    "key": "shima-ago-tokusan",
+    "name": {
+      "ja": "阿児特産物開発センター"
+    },
+    "region": "shima-other",
+    "category": "物產",
+    "status": "not-included",
+    "reason": "物產加工設施，資訊少",
+    "pointId": null,
+    "mentions": [
+      {
+        "type": "tourism",
+        "url": "https://www.kankomie.or.jp/spot/1935",
+        "title": "観光三重：阿児特産物開発センター",
+        "highlight": null,
+        "retrieved": "2026-10-18"
+      }
+    ]
+  },
+  {
+    "key": "shima-cycling-road",
+    "name": {
+      "ja": "磯部大王自転車道"
+    },
+    "region": "shima-other",
+    "category": "自行車道",
+    "status": "not-included",
+    "reason": "自行車道（磯部～大王），不適合長輩、15 人",
+    "pointId": null,
+    "mentions": [
+      {
+        "type": "tourism",
+        "url": "https://www.kankomie.or.jp/spot/3467",
+        "title": "観光三重：磯部大王自転車道",
+        "highlight": null,
+        "retrieved": "2026-10-18"
+      }
+    ]
+  },
+  {
+    "key": "shima-agowan",
+    "name": {
+      "ja": "英虞湾"
+    },
+    "region": "shima-other",
+    "category": "風景",
+    "status": "not-included",
+    "reason": "整個海灣的總稱，用横山展望台、遊覧船、ともやま公園代表",
+    "pointId": null,
+    "mentions": [
+      {
+        "type": "tourism",
+        "url": "https://www.kankomie.or.jp/spot/6701",
+        "title": "観光三重：英虞湾",
+        "highlight": null,
+        "retrieved": "2026-10-18"
+      }
+    ]
+  },
+  {
+    "key": "shima-fiore-bbq",
+    "name": {
+      "ja": "フィオーレ志摩 プールサイドBBQ"
+    },
+    "region": "shima-other",
+    "category": "BBQ",
+    "status": "not-included",
+    "reason": "住宿附設的 BBQ 方案（じゃらん），屬住宿、餐廳，不當景點",
+    "pointId": null,
+    "mentions": [
+      {
+        "type": "tourism",
+        "url": "https://www.kanko-shima.com/purpose/2054/",
+        "title": "志摩市観光協会：＜緑に囲まれたプールサイドBBQ＞ペット同伴可◎手ぶらでOK♪フィオーレ志摩～",
+        "highlight": null,
+        "retrieved": "2026-10-18"
+      }
+    ]
+  },
+  {
+    "key": "shima-kayak-summer",
+    "name": {
+      "ja": "【志摩×カヤック】お手軽カヤック体験（5～8 月）"
+    },
+    "region": "shima-other",
+    "category": "獨木舟",
+    "status": "excluded",
+    "reason": "只在 5～8 月",
+    "pointId": null,
+    "mentions": [
+      {
+        "type": "tourism",
+        "url": "https://www.kanko-shima.com/purpose/1301/",
+        "title": "志摩市観光協会：【志摩×カヤック】＜５～８月＞お手軽に１時間で楽しめるカヤック体験",
+        "highlight": null,
+        "retrieved": "2026-10-18"
+      }
+    ],
+    "note": "觀光協會「志摩エリア」，集合地點沒寫"
+  },
+  {
+    "key": "shima-immerse-tour",
+    "name": {
+      "ja": "Immerse yourself in the rural Japan Ise-Shima"
+    },
+    "region": "shima-other",
+    "category": "導覽",
+    "status": "not-included",
+    "reason": "英文導覽方案，觀光協會頁沒有內容",
+    "pointId": null,
+    "mentions": [
+      {
+        "type": "tourism",
+        "url": "https://www.kanko-shima.com/purpose/17929/",
+        "title": "志摩市観光協会：Immerse yourself in the rural Japan Ise-Shima",
+        "highlight": null,
+        "retrieved": "2026-10-18"
+      }
+    ]
+  },
+  {
+    "key": "shima-ext-skyline",
+    "name": {
+      "ja": "伊勢志摩スカイライン"
+    },
+    "region": "shima-other",
+    "category": "道路",
+    "status": "excluded",
+    "reason": "在伊勢市（朝熊山），伊勢區已收 ise-asama-summit",
+    "pointId": null,
+    "mentions": [
+      {
+        "type": "tourism",
+        "url": "https://www.kanko-shima.com/purpose/1237/",
+        "title": "志摩市観光協会：伊勢志摩スカイライン",
+        "highlight": null,
+        "retrieved": "2026-10-18"
+      }
+    ]
+  },
+  {
+    "key": "shima-ext-kaito-yumin",
+    "name": {
+      "ja": "海島遊民くらぶ"
+    },
+    "region": "shima-other",
+    "category": "導覽",
+    "status": "excluded",
+    "reason": "鳥羽市的導覽公司，屬鳥羽區",
+    "pointId": null,
+    "mentions": [
+      {
+        "type": "tourism",
+        "url": "https://www.kanko-shima.com/purpose/1055/",
+        "title": "志摩市観光協会：海島遊民くらぶ",
+        "highlight": null,
+        "retrieved": "2026-10-18"
+      }
+    ]
+  },
+  {
+    "key": "shima-ext-isewan-ferry",
+    "name": {
+      "ja": "伊勢湾フェリー"
+    },
+    "region": "shima-other",
+    "category": "渡輪",
+    "status": "excluded",
+    "reason": "鳥羽港的渡輪，屬鳥羽區",
+    "pointId": null,
+    "mentions": [
+      {
+        "type": "tourism",
+        "url": "https://www.kanko-shima.com/purpose/1243/",
+        "title": "志摩市観光協会：伊勢湾フェリー株式会社",
+        "highlight": null,
+        "retrieved": "2026-10-18"
+      }
+    ]
+  },
+  {
+    "key": "shima-ext-tenku-no-tabi",
+    "name": {
+      "ja": "伊勢志摩鳥羽 天空の旅（遊覧飛行）"
+    },
+    "region": "shima-other",
+    "category": "遊覽飛行",
+    "status": "excluded",
+    "reason": "在南伊勢町（志摩市外），每人 6,000 円起",
+    "pointId": null,
+    "mentions": [
+      {
+        "type": "tourism",
+        "url": "https://www.kanko-shima.com/purpose/2018/",
+        "title": "志摩市観光協会：伊勢志摩鳥羽 天空の旅",
+        "highlight": null,
+        "retrieved": "2026-10-18"
+      }
+    ]
+  },
+  {
+    "key": "shima-marineland",
+    "name": {
+      "ja": "志摩マリンランド"
+    },
+    "region": "shima-kashikojima",
+    "category": "水族館",
+    "status": "excluded",
+    "reason": "2021-03-31 起營業休止（設施老化），沒有再開的消息；觀光三重、觀光協會的列表都已經沒有",
+    "pointId": null,
+    "mentions": [
+      {
+        "type": "media",
+        "url": "https://www.tetsudo.com/calendar/20210129/",
+        "title": "鉄道コム（志摩マリンランド 営業休止）",
+        "highlight": null,
+        "retrieved": "2026-10-18"
+      }
+    ],
+    "note": "賢島駅旁；以前的旅遊書、部落格還會出現，避免之後重複查"
+  }
+]
