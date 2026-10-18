@@ -162,3 +162,28 @@
 ### 給下一批（第 5 批：naiku・asama・outskirts 25 筆）
 - 一個 browser_batch 控制在約 20 個動作內（Google 2 家＋搜尋 5 個詞會逾時）。
 - 住宿（第 5 批有 2 間）用住宿版型，程式已支援（第 3 批）。
+
+## 第 5 批：補心得 naiku・asama・outskirts 25 筆（2026-10-18）
+
+### 範圍
+- 對象清單 `data/cache/work/t8e-targets.json` 的 batch 3：餐廳 18（ise-naiku 17＋ise-outskirts 味の來々軒）、景點 5（おはらい町、猿田彥神社、オカゲ屋敷、金剛證寺、朝熊山頂展望台）、住宿 2（宿屋五十鈴、おかげ参り宿場）。25 筆都做了，沒有跳過。
+- 工作目錄 `data/cache/work/t8e-5/`：`batch.json`（id、食べログ、Google、關鍵字、現有欄位）、`notes/`（每筆的重點 JSON，格式同第 3、4 批，多了 `questions`）、`notes-a/b/c.json`、`patch-a.json`、`patch-b.json`、`patch-spots.json`、`patch-lodging.json`、`q.md`、`q-b.md`、`q-c.md`、`d.md`；工作用腳本 `mk.sh`、`up.cjs`、`dossier-merge.mjs`、`append-md.mjs`、`mdrep.mjs`（第 4 批照抄）。
+
+### 步驟
+1. Chrome 1 個分頁（結束關掉；tabelog.com、www.google.com 的 localStorage 都 removeItem 並確認）。`chrome-actions.mjs --store` 第一次存程式，之後 `--stored`；共 41 次 browser_batch（一次 13～21 個動作，沒有逾時）。食べログ（最新 20＋關鍵字）和 Google（低分順 10＋食べログ 0 筆的詞）照第 4 批的方式接在同一個 batch。
+2. 狀況：すし久 的食べログ第一頁遇到 Cloudflare 重新載入（JS 那步失敗），從 JS 重跑就好；神宮会館（住宿版型）`open` 第一次逾時沒找到排序按鈕，重跑成功；おかげ参り宿場 的資料檔 Google（宇治浦田荘）沒有クチコミ分頁（0 則），改用 Google Maps 搜尋開另一棟「おはらい町通り荘」讀 2 則；截圖 2 次逾時（renderer 沒回應，沒影響）。`google-reviews.js` 的低分順 25 筆都正確套用（沒有警告，網址變成 `/place//@25.10…` 的頁面也正常）。沒有驗證碼、登入、封鎖、對話框。
+3. 重點寫成 `notes/<id>.json`，`dossier-merge.mjs` 併進 `dossiers/`；回填 `apply-patch.mjs`（先 `--dry-run`）；分 3 次 validate、commit（餐廳 9、餐廳 9、景點住宿 7）。
+
+### 結果
+- 25 筆筆記都追加了口コミ／評論（餐廳每家約 25～60 則；神宮会館 dining 的食べログ全是住宿餐，團體午餐相關只有約 6 則；景點 3～20 則；住宿 2～10 則）。
+- 回填：accessibility 9 家（barrierFree：とうふや、豚捨、岩戸屋、おく乃；note：角屋、ゑびや、寶来亭、海老丸、はいからさん）；いかだ荘、來々軒 `kids.allowed` unknown → yes、角屋・野あそび棚・はいからさん `seating` [] → 確定值（overwrite，「👤 建議先看」）；來々軒 `kidsMenu: true`；猿田彥神社 `stairs: 無`、朝熊山頂 `stairs: 少`、兩處 `toilets: true`；宿屋五十鈴 `accessibility.stairs` 補館內樓梯（overwrite）。conflicts：海老丸 seating、焼肉すだく バリアフリー vs 2F、とうふや 營業時間、猿田彥神社 stairs。
+- 海老丸 `seating` 第一次誤用 overwrite（`["counter"]` → 3 種），照第 3 批 虎丸 的做法用 Edit 手動改回、conflicts 改寫（commit 前）。
+- `questions.md` +11。decisions-pending 9 列（2 條進「👤 建議先看」）。
+- 讀法的例外：食べログ只有 5 年以上舊口コミ的詞當 0 筆、Google 補搜（寶来亭、えび勢、野あそび棚、來々軒）；神宮会館 dining 多搜「昼食」、沒搜「2階」；オカゲ屋敷 多搜「子供」（評論多是 2026-07 改裝前）。
+
+### WebSearch
+- 0 次（沒有開讀文 subagent）。
+
+### 給下一批（第 6 批：futami 11 筆）
+- 住宿版型的 `open` 偶爾第一次找不到排序按鈕，直接重跑 `open` 就好。
+- 資料檔 Google 連結沒有評論的住宿，先看候選或筆記有沒有別棟／別名的 Google 地點。
