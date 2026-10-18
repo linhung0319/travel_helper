@@ -83,6 +83,13 @@
 - [ ] T9d 第 3 批：**fit15 的判斷**：灯台カフェ yes（甜點咖啡店，食べログ 貸切 20 人以下）、福寿荘 yes（團體 宴會場 160 名、日帰り宴会・昼食プラン）、丸定旅館 **no**（官網午餐 1 日 3 組 10 名まで）、はま崎 split（官網 店舗案内的座位數自己加總約 35 席；食べログ 席數沒寫）、的矢かきテラス split（120 席，但食べログ 最大予約 6 人）、まつむら split（40 席）、鮨暁 split（25 席）
 - [ ] T9d 第 3 批：**matoya 週二（2/2、2/9）午餐的結論**（README）：確定營業的只有 いかだ荘 山上（冬季只休週四；網路 10 人以下、15 人電話、最大予約 80）；橘 2/2 午餐已滿、2/9 還有；丸定、福寿荘 要電話。2 月 的矢かきテラス、いかだ荘 都可能**沒有生牡蠣**（2026/01～02 多則停止供應）
 - [ ] T9d 第 3 批：**overwrite（同第 1、2 批）**：中六 `kids` unknown → yes（口コミ 2025/06 1 則）、的矢かきテラス `seating` `[]` → table・terrace・other（筏席）、いかだ荘 `seating` `["zashiki"]` → zashiki・table、はしもと `seating` `[]` → zashiki・table、まつむら `cuisine` 其他 → 洋食・義式（我在 judgement 判斷錯）；mustTry 13 家改用口コミ的 [招牌]
+- [ ] T9d 第 4 批：**pending 2 家的結論**——槙之木（ホテル槇之木）**以 F③ 收錄**（官網 MENU「ご昼食＆ご夕食のみのご予約も承っております」）；住宿 槇之木 是 not-included 的候選、不是資料點，所以 id 用 `shima-makinoki`（沒有 `extra.lodgingId`），Google 借飯店本體 4.5／41。**志摩半島 excluded**（官網料金、楽天 9 個方案都是住宿，沒有只用餐）→ **goza 的晚餐還是每天 0 家**（questions 電話問非住客能不能吃）
+- [ ] T9d 第 4 批：**included → excluded 3 家**：漁師料理 十次郎（daio，C；Google「閉業」，食べログ 還沒標）、Cloud1 Dining 縁（goza，D①；Google「臨時休業」＋最新評論約 2025 寫 2025-08-16 起設備故障休止）、**海女の庭**（goza，F②；Google「臨時休業」、舊官網 DNS 不存在，新官網 amanoniwa.jp 2026-06 改成グラスボート伊勢志摩 經營的「船でしか行けない」包場設施（英虞湾クルーズ＋海鮮 BBQ 約 4 小時，價格沒寫））——海女の庭 可能適合當**景點／體驗**，T9g 決定要不要另列
+- [ ] T9d 第 4 批：**鮨裕禅 的子地區 wagu → kashikojima、`access: ferry`**：地址是志摩町和具4442，但實際在英虞湾的離島 **間崎島**（MOKU ISESHIMA，賢島港搭送迎船），照 README「只能從某個港搭船去的島照交通歸（間崎島 → 賢島）」。另外 **食べログ 寫「会員または会員紹介で予約可」、官網 FAQ 寫「食事のみの利用はできますか → はい（8 名まで）」**，以官網為準收錄（F3）；昼夜 30,000 円以上
+- [ ] T9d 第 4 批：**レストラン はまなぎ（アクアフォレスト）的 F③ 依據比較弱**：官網 FAQ 寫外來只用餐「混雑状況によりお受けできない日もございます。ご来館前にお問合せ」——當作「有非住客用餐的明文」收錄；buffet 不接受預約、團體可能分開坐 → `fit15` unknown。登茂山的不含晚餐住宿（ともやま、ヴィラダイオー、UMIBE）唯一近的晚餐
+- [ ] T9d 第 4 批：**fit15 的判斷**：海女小屋 火場 広の浜 yes（食べログ 最大予約 着席 40 人；官網包場桌椅最多 24 人）；split——田中料理店（20 席、貸切可）、しまや（30 席）、Cafe.C.C（27 席）、大万（觀光協會 25 席）、槙之木（35 席、完全予約）、ひでちゃん（伊勢志摩観光ナビ 収容 20 名）、庄助（20 席、個室 8、貸切可）；no——鮨裕禅（8 名同時スタート）、居酒屋きゅう（食べログ「3 席」照原文，可能誤植）；unknown——はまなぎ、どんぐり、磯人（席數沒寫）
+- [ ] T9d 第 4 批：**goza・daio 的結論**（README）：goza 午餐只剩 **磯人**（完全予約、天候不定休；景點 さとうみ庵 另計），晚餐 0 家；daio 週二（2/2、2/9）午餐 Cafe.C.C、大万（觀光協會 水休、要電話），晚餐只有大万；週三晚餐只有田中料理店（大万 水休）。wagu 有 ひでちゃん（午晚、日休）、火場（午餐、2 天前預約）
+- [ ] T9d 第 4 批：**overwrite（同第 1～3 批）**：mustTry 7 家改用口コミ的 [招牌]；febNote 3 家（Cafe.C.C、火場、磯人）、reservation.note 3 家（田中、ひでちゃん、庄助）、槙之木 accessibility.note 加口コミ（`recordOld: false`）
 
 ### 2026-10-18 盤點（已處理）
 
@@ -444,3 +451,16 @@
 | 2026-10-19 | T9d | 第 3 批：Google 地點的營業狀態誤判（まるせい、的矢かきテラス、鮨暁 被標 closed-or-temporary） | `google-place.js` 對整個面板比對，店家貼文、訪問者情報也會中；工具已修正（只看「概要」之前），google.jsonl 手改 | — |
 | 2026-10-19 | T9d | 第 3 批：讀文筆記超過 40 行（いかだ荘 45、橘 42、的矢かきテラス・丸定 41） | 讀文 34～38 行＋口コミ・評論重點；刪了會丟證據 | 刪減 |
 | 2026-10-19 | T9d | 第 3 批：讀文 subagent D 用 curl 把灯台カフェ 的菜單圖（nicepagecdn）下載到 scratchpad 讀 | 官網菜單只有圖片；沒有存進 repo | — |
+| 2026-10-19 | T9d | 第 4 批：槙之木 included（F3）、志摩半島 excluded（見「👤 建議先看」） | 槙之木 官網 MENU 明寫只用餐可；志摩半島 官網、楽天 都只有住宿方案 | `candidates.mjs set` 改回 pending，restaurants.json 刪 `shima-makinoki` |
+| 2026-10-19 | T9d | 第 4 批：十次郎、縁、海女の庭 excluded（見「👤 建議先看」） | Google 閉業／臨時休業＋評論、官網的現況 | `candidates.mjs set` 改回 included，照 `t9d-4/batch.all.json` 補建資料點（tabelog.jsonl、google.jsonl、facts 都有） |
+| 2026-10-19 | T9d | 第 4 批：鮨裕禅 region kashikojima、access ferry（見「👤 建議先看」） | 間崎島（志摩町和具 的飛地）只能從賢島港搭船 | 改回 shima-wagu（候選、資料點） |
+| 2026-10-19 | T9d | 第 4 批：大万 `inclusion` D1＋F3、Google 用食事處自己的地點「大万」3.4／9（不借 大王荘 3.9／12） | 官網「昼食だけでも可能」；Google 有獨立地點就用自己的（判斷細則「名稱對得上」）；大王荘 不是 lodging 資料點，沒有 `lodgingId` | — |
+| 2026-10-19 | T9d | 第 4 批：はまなぎ `extra.lodgingId: shima-aqua-forest`，但 Google 用館內餐廳自己的地點（3.7／30） | 用 `extra.lodgingId` 而不是 judgement 的 `lodgingId`（後者會借住宿的 Google、座標） | — |
+| 2026-10-19 | T9d | 第 4 批：`access` 全部 car，鮨裕禅 ferry | daio・tomoyama・goza・wagu・other 都 needsCar；ひでちゃん 和具巴士站步行數分、しまや 波切巴士站 3 分，但巴士 1 小時 1 班以下，同第 3 批算 car | 改 walk |
+| 2026-10-19 | T9d | 第 4 批：Cafe.C.C `official` null | 官網 cafecc.jp 已是待售網域的停放頁 | — |
+| 2026-10-19 | T9d | 第 4 批：磯人 `official` 保留食べログ HP 欄的網址（讀不到） | 憑證錯誤、連線中斷，可能只是暫時；讀文 subagent 沒有繞過 | 改 null |
+| 2026-10-19 | T9d | 第 4 批：はまなぎ `hours` 放早餐＋晚餐兩段、`contexts` 只有 dinner | 沒有午餐（官網）；早餐不是 contexts 的情境 | — |
+| 2026-10-19 | T9d | 第 4 批：どんぐり `contexts` lunch・cafe | 食べログ 類別 喫茶店、食堂，10:00～18:00；餐點沒有來源 | 只留 cafe |
+| 2026-10-19 | T9d | 第 4 批：槙之木、火場、庄助 的食べログ口コミ（2009～2020）都超過 5 年不採用 | CONVENTIONS「5 年以上的不寫」 | — |
+| 2026-10-19 | T9d | 第 4 批：tabelog-info 抽到的 Cafe.C.C 店名被 Claude in Chrome 擋成「[BLOCKED: JWT token]」，tabelog.jsonl 手改 | 店名「Cafe.C.C」被誤判；其他欄位正常 | — |
+| 2026-10-19 | T9d | 第 4 批：磯人 的讀文筆記把「官網讀取失敗」寫在來源清單第一行，`dossier-merge.mjs` 找不到編號，手動移到第 1 項後面 | 工作用腳本只認「  N. 」開頭的連續行 | — |

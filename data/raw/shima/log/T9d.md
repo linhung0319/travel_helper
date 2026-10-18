@@ -98,3 +98,34 @@
 - 第 4 批（daio＋tomoyama＋goza＋wagu＋other 17＋pending 2：槙之木、志摩半島）照這批的步驟；`t9d-3/judgement-src.mjs`、`patch-r-src.mjs`、`dp-add.mjs` 可以照抄改內容。
 - 新的 `google-place.js` 存進 localStorage 前要用 `--store`（舊程式還在其他瀏覽器分頁的話不影響，這批已清掉）。
 - 海女小屋（磯人、海女の庭、火場）、大万 的營業・預約・人數是重點；牡蠣、生食的 2 月狀況看口コミ「中止」。
+
+## 第 4 批：shima-daio＋tomoyama＋goza＋wagu＋other 17 家（2026-10-19）
+
+### 結果
+- 收錄 **13 筆**（daio 4、tomoyama 3、goza 1、wagu 2、kashikojima 1、other 2）：田中料理店、しまや、Cafe.C.C、大万、はまなぎ、どんぐり、槙之木、海女小屋 磯人、鮨裕禅、海女小屋 火場 広の浜、ひでちゃん、庄助、居酒屋きゅう。
+- **pending 2**：槙之木 收錄（F3，官網 MENU 只用餐可）；志摩半島 排除（官網、楽天 只有住宿方案）。
+- **included → excluded 3**：十次郎（Google「閉業」）、縁（Google「臨時休業」，評論：2025-08-16 起設備故障休止）、海女の庭（Google「臨時休業」，官網改成船接送的包場設施）。
+- 鮨裕禅 在間崎島 → 子地區 kashikojima、`access: ferry`（候選 region 也改）。
+- fit15：yes 1、split 7、no 2、unknown 3（README）。照片：官網 6 張（photo-check 200）＋Google 主圖。
+- 南部的結論寫在 README「南部（daio・tomoyama・goza・wagu）的午餐、晚餐」。
+
+### 步驟
+1. `candidates.mjs export --keys … --ids …` → `t9d-4/batch.json`（17 家；住宿附設的 はまなぎ 用自己的 id＋`extra.lodgingId: shima-aqua-forest`，志摩半島 `shima-shimahanto-dining`，槙之木、大万 的住宿不是資料點，用自己的 id）。排除的 4 家從 batch 拿掉後才 draft（原檔 `batch.all.json`）。
+2. **食べログ（Chrome）**：`tabelog-info --store`，店家頁 17＋コース頁 1（海女の庭）＝ browser_batch 3 次。沒有 Cloudflare 畫面。Cafe.C.C 的店名被 Claude in Chrome 擋成「[BLOCKED: JWT token]」，tabelog.jsonl 手改。
+3. **讀文 subagent 5 個**（背景，`t9d-4/prompt-common.md`：重點是住宿附設的非住客用餐、海女小屋的營業・預約・人數、goza・daio 的晚餐、週二午餐）：4＋3＋3＋3＋4 家，17 份筆記。大万 官網是 Shift_JIS（Node＋TextDecoder）；志摩半島 官網其實是 UTF-8；しまや 官網 WebFetch 502、改 Node；磯人 官網憑證錯誤讀不到（沒有繞過）；海女の庭 的食べログ HP（ama-iseshima.com）DNS 不存在。
+4. **Google Maps**：`google-place --google --store`，browser_batch 3 次（+ 大万 另搜 1 次：食事處有自己的地點）。志摩半島 不搜（排除）。**3 家 closed**：十次郎 `permanently-closed`、海女の庭・縁 `temporarily-closed` → JS 讀面板開頭確認（「閉業」「臨時休業」），縁・海女の庭 再跑 `open`＋`newest`（海女の庭 是 `extract`）看最新評論；主 session 用 Node fetch 讀了海女の庭 的新官網 amanoniwa.jp（Google 網站欄）。
+5. `candidates.mjs set`（`cand-status.json`：pending 2、excluded 3、criteria 加 F3 3 家、鮨裕禅 region）→ `photo-check` → `build-restaurants draft` → `judgement-src.mjs` → `build --candidates`（先 `--dry-run`）。validate 通過，commit。
+6. **口コミ・評論**（`review-targets.mjs shima` → 8 家：fit15 split／yes 的 田中、しまや、Cafe.C.C、大万、槙之木、火場、ひでちゃん、庄助；加 goza 唯一午餐的 磯人）：tabelog-reviews browser_batch 4 次、google-reviews 4 次（＋確認休業的 2 次），截圖 0、逾時 0。重點寫 `t9d-4/notes/` → `notes-to-json.mjs` → `dossier-merge.mjs`；回填 `patch-r-src.mjs` → `patch-r.json` → `apply-patch.mjs`（`recordOld: false`，先 `--dry-run`）。
+7. 結束：www.google.com、tabelog.com 的 `__th_*` localStorage 都 removeItem（確認 0 筆），關掉分頁。沒有遇到驗證碼、登入、封鎖、對話框。
+
+### 口コミ・評論的讀法
+- 食べログ：最新 20＋「中止」「冬」，依缺口加「子供」（田中、しまや、ひでちゃん）、「団体」「座敷」（田中、ひでちゃん）、「予約」（ひでちゃん）；口コミ 3 則以下的（槙之木、火場、庄助）只讀全部——全部是 2009～2020，5 年以上不採用。大万 食べログ 0 則。
+- Google：低分順 10 則（7 家）；大万（9 則）`extract`＋`lowest` 都跑；槙之木 是飯店本體，只搜「ランチ」「料理」；Cafe.C.C 加 `newest`（官網過期，確認營業）；磯人 只跑 `newest`。
+- 發現：ひでちゃん 刺身定食每天限量、預約客優先；火場 2026-01-14 冬季平日有營業；田中料理店 中午滿席、沒預約被拒；Cafe.C.C 週日營業時間三種說法；槙之木 路窄。
+
+### WebSearch
+- 主 session 0 次；讀文 subagent 10 次（A 1、B 0、C 2、D 3、E 4）。搜尋都有回應（十次郎 找到ホットペッパー、庄助 找到ヒトサラ；縁、どんぐり、きゅう、ひでちゃん、鮨裕禅、磯人、海女の庭 沒找到新事實），沒有額度用完的跡象。
+
+### 給下一批
+- 第 5 批（hamajima＋sakko 13＋pending 4：ニュー浜島、大江戸温泉 伊勢志摩、アマネム、志摩地中海村）照這批的步驟；`t9d-4/judgement-src.mjs`、`patch-r-src.mjs`、`dp-add.mjs` 可以照抄改內容。
+- Google `closed` 出現時用 JS 讀面板開頭、跑 `newest` 看最新評論日期，再看官網（這批 3 家都是這樣確認的）。

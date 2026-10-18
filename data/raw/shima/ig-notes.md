@@ -43,6 +43,9 @@
 | @kazamachinoyu_fukujyuso | 福寿荘（`shima-fukujuso-dining`） | 住宿本體 | 官網（讀文） |
 | @balihousekou | BALI HOUSE（`shima-bali-house`） |  | 食べログ公式アカウント欄、Google 網站欄（另有 FB @balihouse.futami）；沒有官網，營業時間 T18 看最近貼文 |
 | @bettei_matoya | 別亭 まとや（`shima-bettei-matoya`） | Grand Mercure 館內 | 食べログ公式アカウント欄；官網沒有連結 |
+| @sushi_yutaka_zen | 鮨裕禅（`shima-sushi-yuzen`） | 間崎島 MOKU ISESHIMA 館內 | 食べログ公式アカウント欄（官網的帳號是 @moku_iseshima，讀文） |
+| @isodo_gozashiragama | 海女小屋体験 磯人（`shima-amagoya-isondo`） |  | Google 網站欄；官網讀不到，營業、預約 T18 看最近貼文 |
 - 沒有帳號：はな屋 あじさい、芳カツ亭、近鉄賢島カンツリークラブ レストラン（官網、食べログ 都沒有連結）。
 - 第 2 批沒有帳號：鯛、伊鈴屋、銀鱗、みやぎ野、京城、LA PIZZICA、ろっぽん木、しまかぜ食堂、グリルエドイチ、みやま亭、shucafe（食べログ、官網、Google 都沒有連結）。
 - 第 3 批沒有帳號：はま崎、まるせい、ひさだ、丸寅、まんぷく食堂 板橋、中六、橘、シェブロンカフェ、鮨暁、まつむら、はしもと、丸定旅館（食べログ、官網、Google 都沒有連結）。
+- 第 4 批沒有帳號：田中料理店、しまや、Cafe.C.C（Google 評論說菜單在 IG 公布，但帳號沒有來源）、大万、はまなぎ（住宿 アクアフォレスト 的帳號見 lodging）、どんぐり、槙之木、火場 広の浜、ひでちゃん、庄助、きゅう。排除的 縁 有 @cloud1dining_enishi（食べログ公式アカウント欄），海女の庭 有 @ama.iseshima（官網），沒有記進表。
