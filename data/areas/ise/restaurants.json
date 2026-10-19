@@ -14116,17 +14116,17 @@
         "localFlavor": 4,
         "groupFit": 1,
         "elderFit": 2,
-        "kidsFit": 2
+        "kidsFit": 3
       },
       "rationale": {
         "recommend": "食べログ 3.72（465 則）、Google 4.4（894 則），伊勢志摩観光ナビ、Retty、BAILA 介紹；大正創業、每晚客滿，伊勢老居酒屋的代表",
         "localFlavor": "さめたれ、ふくだめ、湯豆腐 等伊勢的下酒菜",
         "groupFit": "不能預約，開店後很快坐滿",
         "elderFit": "吧台和座敷，要早點去排",
-        "kidsFit": "小孩規定沒寫；全席可吸菸"
+        "kidsFit": "小孩規定沒寫；全席可吸菸（吸菸不扣分，見 smoking）"
       },
       "confidence": "medium",
-      "assessed": "2026-10-18"
+      "assessed": "2026-10-19"
     }
   },
   {
@@ -19327,9 +19327,9 @@
       "privateRoom": true,
       "buyout": "可",
       "groupMenu": "会席膳 3,300 円～（有飲み放題方案）、弁当 1,100 円～、お子さま膳（2025-09 店家 IG，經 HAMONI）；伊勢楽市膳 要預約（三重縣 2013：7,000 円税別）",
-      "fit15": "yes",
+      "fit15": "unknown",
       "fitSubgroup": "yes",
-      "source": "食べログ：完全予約制、座敷 10 室、個室有、貸切可；ぐるなび：40 席；HAMONI：テーブル・座敷・掘りごたつ、個室、貸切可。可預約、40 席、可包場 → yes。非住客能不能用餐沒有店家明寫，見 notes"
+      "source": "食べログ：完全予約制、座敷 10 室、個室有、貸切可；ぐるなび：40 席；HAMONI：テーブル・座敷・掘りごたつ、個室、貸切可。可預約、40 席、可包場 → yes。非住客能不能用餐沒有店家明寫，見 notes。2026-10-19（T8g）：F③ 的 fit15 只看非住客方案的來源，上面都是店舗情報 → unknown"
     },
     "reservation": {
       "accepted": "yes",
@@ -19375,7 +19375,7 @@
         "近鐵宮町站步行約 8 分"
       ],
       "cons": [
-        "非住客能不能用餐沒有明寫",
+        "非住客能不能用餐、15 人能不能訂都沒有明寫",
         "老建築，無障礙評分低",
         "找不到官網，營業資料少"
       ],
@@ -19387,26 +19387,26 @@
         "https://tabelog.com/mie/A2403/A240301/24009581/",
         "https://maps.google.com/?cid=7072040251221998084"
       ],
-      "generated": "2026-10-18"
+      "generated": "2026-10-19"
     },
     "assessment": {
       "rubric": "restaurant-v1",
       "scores": {
         "recommend": 3,
         "localFlavor": 3,
-        "groupFit": 4,
+        "groupFit": 3,
         "elderFit": 3,
         "kidsFit": 5
       },
       "rationale": {
         "recommend": "料理旅館的非住客用餐（F③）：住宿本體楽天評分不公開（92 則）、Google 3.9（58 則）；HAMONI 伊勢鰻魚第 2",
         "localFlavor": "孝行鰻（うな重）、会席膳，伊勢楽市膳有伊勢海老、さめのたれ",
-        "groupFit": "40 席、座敷 10 室、貸切可；非住客用餐沒有明寫，要電話確認",
+        "groupFit": "F③：40 席、座敷 10 室、貸切可是店舗情報，非住客能不能用、能不能訂 15 人沒有店家明寫 → fit15 unknown，要電話確認",
         "elderFit": "有桌席和掘りごたつ，但昭和初期的老建築、無障礙評分低",
         "kidsFit": "有お子さま膳，孫子生日、お食い初め的實例"
       },
       "confidence": "low",
-      "assessed": "2026-10-18"
+      "assessed": "2026-10-19"
     }
   },
   {
@@ -28420,9 +28420,7 @@
     },
     "smoking": "全席禁煙",
     "extra": {
-      "conflicts": [
-        "座位形式（桌椅或座敷）沒有來源"
-      ]
+      "conflicts": []
     },
     "summary": {
       "text": "小俣町的全個室創作和食，午餐かご盛り膳 2,387 円、ミニ会席 2,970 円，晚上會席 3,900 円起，最多 30 人的個室。伊勢苺園（週末採草莓）那天 15 人一起吃午餐的候選。",
@@ -28773,21 +28771,21 @@
     "assessment": {
       "rubric": "restaurant-v1",
       "scores": {
-        "recommend": 3,
+        "recommend": 2,
         "localFlavor": 4,
         "groupFit": 5,
         "elderFit": 3,
-        "kidsFit": 3
+        "kidsFit": 4
       },
       "rationale": {
-        "recommend": "食べログ 3.24（47 則）、Google 4.2（153 則）→ 評論數上限 3；Google 低分說對生客冷淡",
+        "recommend": "食べログ 3.24（47 則）、Google 4.2（153 則）→ 評論數上限 3；Google 1 星 3 則（約 2023～2026）集中在店員對生客冷淡（服務）→ 往下調一級",
         "localFlavor": "伊勢灣天然虎河豚，2 月正當季",
         "groupFit": "座敷個室打通最多 32 席、貸切可",
         "elderFit": "入口附近有桌席・掘りごたつ 30 席，大広間是座敷",
-        "kidsFit": "官網歡迎家族；吸菸規定官網禁菸、食べログ全席可吸菸，不一致"
+        "kidsFit": "官網歡迎家族；吸菸規定官網禁菸、食べログ全席可吸菸，不一致（吸菸不扣分，見 smoking）"
       },
       "confidence": "medium",
-      "assessed": "2026-10-18"
+      "assessed": "2026-10-19"
     }
   },
   {
@@ -29426,17 +29424,17 @@
         "localFlavor": 3,
         "groupFit": 5,
         "elderFit": 4,
-        "kidsFit": 2
+        "kidsFit": 3
       },
       "rationale": {
         "recommend": "食べログ 3.29（68 則）、Google 4.3（142 則）→ 評論數上限 3；Google 低分說份量少、CP 值低",
         "localFlavor": "整頭買進的松阪牛すき焼き、あみ焼き",
         "groupFit": "最大予約 25 人、個室 2～20 人、貸切 20～50 人",
         "elderFit": "全室個室，有和室擺桌椅的房間",
-        "kidsFit": "小孩規定沒寫；全席可吸菸（個室內）"
+        "kidsFit": "小孩規定沒寫；全席可吸菸（個室內）（吸菸不扣分，見 smoking）"
       },
       "confidence": "medium",
-      "assessed": "2026-10-18"
+      "assessed": "2026-10-19"
     }
   },
   {
@@ -29675,7 +29673,7 @@
       "allowed": "yes",
       "minAge": null,
       "kidsMenu": true,
-      "note": "沒有來源"
+      "note": "Google 評論（約 2026）個室帶小 2・小 5、有お子様メニュー；約 2023 大人 4＋小孩 3"
     },
     "accessibility": {
       "barrierFree": "バリアフリー",
@@ -29714,17 +29712,17 @@
         "localFlavor": 1,
         "groupFit": 5,
         "elderFit": 4,
-        "kidsFit": 4
+        "kidsFit": 5
       },
       "rationale": {
         "recommend": "食べログ 3.34（49 則）、Google 4.1（263 則）→ 評論數上限 3",
         "localFlavor": "陳建一直傳的四川中華",
         "groupFit": "個室 30 人以上、貸切 20～50 人以上",
         "elderFit": "店在 2F，有電梯（1 則）、バリアフリー、席寬",
-        "kidsFit": "有兒童菜單、個室帶小孩方便；全席可吸菸"
+        "kidsFit": "有兒童菜單、個室帶小孩方便；全席可吸菸（吸菸不扣分，見 smoking）"
       },
       "confidence": "medium",
-      "assessed": "2026-10-18"
+      "assessed": "2026-10-19"
     }
   },
   {
@@ -30304,17 +30302,17 @@
         "localFlavor": 3,
         "groupFit": 5,
         "elderFit": 2,
-        "kidsFit": 2
+        "kidsFit": 3
       },
       "rationale": {
         "recommend": "食べログ 3.30（26 則）、Google 4.3（56 則）→ 評論數上限 3",
         "localFlavor": "京風的四季料理",
         "groupFit": "個室 10～20 人、貸切 20～50 人",
         "elderFit": "只有座敷和吧台；在高台住宅區，要爬坡",
-        "kidsFit": "小孩規定沒寫；全席可吸菸"
+        "kidsFit": "小孩規定沒寫；全席可吸菸（吸菸不扣分，見 smoking）"
       },
       "confidence": "low",
-      "assessed": "2026-10-18"
+      "assessed": "2026-10-19"
     }
   },
   {
@@ -31604,17 +31602,17 @@
         "localFlavor": 3,
         "groupFit": 5,
         "elderFit": 4,
-        "kidsFit": 2
+        "kidsFit": 3
       },
       "rationale": {
-        "recommend": "Google 3.3（224 則），Google 1 星 10 則中 9 則在約 2024～2026（肉質、慢、店員、廁所），食べログ 2026 年 1.0～1.2 分 → 心得普遍負評",
+        "recommend": "Google 3.3（224 則）照數字是 2（Google 3.5 以下）；近 3 年負評集中在品質、服務、衛生（Google 1 星 10 則中 9 則在約 2024～2026：肉質、慢、店員、廁所；食べログ 2026 年 1.0～1.2 分）→ 往下調一級",
         "localFlavor": "松阪牛炙燒燒肉",
         "groupFit": "60 席全半個室、貸切 20～50 人",
         "elderFit": "有桌椅半個室、車椅子で入店可",
-        "kidsFit": "官網說家族也可以、有飲料吧；全席可吸菸"
+        "kidsFit": "官網說家族也可以、有飲料吧；全席可吸菸（吸菸不扣分，見 smoking）"
       },
       "confidence": "medium",
-      "assessed": "2026-10-18"
+      "assessed": "2026-10-19"
     }
   },
   {
@@ -32497,17 +32495,17 @@
         "localFlavor": 4,
         "groupFit": 5,
         "elderFit": 3,
-        "kidsFit": 3
+        "kidsFit": 4
       },
       "rationale": {
         "recommend": "食べログ 3.25（42 則）、Google 4.2（138 則）→ 評論數上限 3；Google 1 星 10 則（約 2024～2026）集中在服務、衛生、海鮮鮮度 → 往下調 2",
         "localFlavor": "浜焼き（活貝）、伊勢海老",
         "groupFit": "個室 4～20 人、貸切 20～50 人、宴會套餐 3～40 名",
         "elderFit": "全是掘りごたつ個室",
-        "kidsFit": "小孩自己烤海鮮會喜歡；全席可吸菸"
+        "kidsFit": "小孩自己烤海鮮會喜歡；全席可吸菸（吸菸不扣分，見 smoking）"
       },
       "confidence": "medium",
-      "assessed": "2026-10-18"
+      "assessed": "2026-10-19"
     }
   }
 ]
