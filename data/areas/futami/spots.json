@@ -213,9 +213,9 @@
         "2/3 節分祭 14:00 有撒豆趕鬼、撒福豆和紅白餅"
       ],
       "cons": [
-        "2 月不是夫婦岩日出（5～7 月）、月出（11～1 月）的季節；海邊戶外",
+        "2 月不是夫婦岩日出（5～7 月）、月出（11～1 月）的季節；海邊戶外；冬季授與所 16:00 前後就關",
         "JR 二見浦站步行約 15 分（不能用近鐵 5 日券），計程車常不在現場待命",
-        "階梯、坡道、輪椅、多功能廁所都沒有來源，要問社務所"
+        "境內的階梯、輪椅、多功能廁所沒有來源（到神社的路以平坦為主），要問社務所"
       ],
       "basedOn": [
         "https://futamiokitamajinja.or.jp/faq/",
@@ -225,26 +225,26 @@
         "https://www.kankomie.or.jp/event/8199",
         "https://banzokubiology.com/meotoiwa-time/"
       ],
-      "generated": "2026-10-18"
+      "generated": "2026-10-19"
     },
     "assessment": {
       "rubric": "spot-v1",
       "scores": {
         "recommend": 5,
         "winterFit": 3,
-        "elderFit": null,
+        "elderFit": 4,
         "kidsFit": 3,
         "accessEase": 4
       },
       "rationale": {
         "recommend": "Google 4.4（12,515 則），夫婦岩是二見的代表，來二見必去",
         "winterFit": "全天開放，但 2 月不是日出、月出季，海邊冬天冷；2/3 有節分祭",
-        "elderFit": "階梯、坡道、無障礙官網和觀光頁都沒寫",
+        "elderFit": "二見浦站到神社約 1.1 km、步行約 15 分，以平坦道路為主（部落格 2026）；可搭巴士到「夫婦岩東口」少走路；境內的階梯沒有來源",
         "kidsFit": "kids.friendly medium：找青蛙像、海邊",
         "accessEase": "JR 二見浦站步行約 15 分，CANばす「夫婦岩東口」下車 5 分"
       },
       "confidence": "medium",
-      "assessed": "2026-10-18"
+      "assessed": "2026-10-19"
     }
   },
   {
