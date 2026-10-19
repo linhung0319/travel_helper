@@ -1,0 +1,2006 @@
+[
+  {
+    "id": "kix-nikko",
+    "type": "lodging",
+    "name": {
+      "ja": "ホテル日航関西空港",
+      "zh": "關西機場日航酒店"
+    },
+    "area": "kix",
+    "region": "kix-island",
+    "kind": "hotel",
+    "coords": [
+      135.2428908,
+      34.4371566
+    ],
+    "coordsSource": "other",
+    "address": "大阪府泉佐野市泉州空港北1 ",
+    "hours": null,
+    "closedNote": null,
+    "febNote": null,
+    "closures": [],
+    "photos": [
+      {
+        "url": "https://img.travel.rakuten.co.jp/share/HOTEL/187/187.jpg",
+        "page": "https://travel.rakuten.co.jp/HOTEL/187/187.html",
+        "kind": "rakuten",
+        "credit": "楽天トラベル（施設提供）",
+        "license": null
+      },
+      {
+        "url": "https://img.travel.rakuten.co.jp/share/HOTEL/187/187_tw.jpg",
+        "page": "https://travel.rakuten.co.jp/HOTEL/187/187.html",
+        "kind": "rakuten",
+        "credit": "楽天トラベル（施設提供）",
+        "license": null
+      },
+      {
+        "url": "https://lh3.googleusercontent.com/grass-cs/AABkmLe-fM6A-2rPC2KMZ66ZLJyAjjm3GH3lePGtQKqWBQ3crl_AlfGdHObd8uJd0OXmAvaavQOR6yzJCVl0AI2hc1IqHNOQtpmD-8_v7gfkoC01O53uFPCSHOPikdM9ceW0ctXDhLF9UQ=w800",
+        "page": "https://maps.google.com/?cid=17101069485606895356",
+        "kind": "google",
+        "credit": "Google マップ（施設或使用者上傳）",
+        "license": null
+      }
+    ],
+    "links": {
+      "official": "https://www.nikkokix.com/",
+      "googleMaps": "https://maps.google.com/?cid=17101069485606895356"
+    },
+    "tags": [],
+    "tier": null,
+    "nearestStation": null,
+    "pickup": "不需要：飯店在 T1 旁的エアロプラザ，T1 2F 有連絡通道直通飯店 2F，也直通 JR・南海關西空港站（官網）；T2 有免費連絡巴士",
+    "meals": "varies",
+    "priceRange": "每人約 9,070～11,350 円（素泊；詳見 prices）",
+    "prices": [
+      {
+        "plan": "素泊 楽天 15 人組合最低價（【さき楽90】【早期でお得】90日前までの早割りプラン／食事なし）",
+        "unit": "per-person",
+        "adult": 9070,
+        "child": null,
+        "currency": "JPY",
+        "season": "2027-02-12（五）1 泊，5 間 × 3 人（大人）有空房時的最低價",
+        "note": "房型：禁煙プレミアムエコノミークラス　トリプルルーム／29平米。楽天 API 空室検索（查詢 2026-10-19），含稅、不含入湯稅等。這天有空房的組合：8x2、5x3、4x4。",
+        "source": "rakuten-api",
+        "url": "https://hotel.travel.rakuten.co.jp/hotelinfo/plan/187?f_nen1=2027&f_tuki1=2&f_hi1=12&f_nen2=2027&f_tuki2=2&f_hi2=13&f_heya_su=5&f_otona_su=3&f_s1=0&f_s2=0&f_y1=0&f_y2=0&f_y3=0&f_y4=0",
+        "retrieved": "2026-10-19"
+      },
+      {
+        "plan": "素泊 大人 3＋小學生高年級 1（1 室）最低價（【さき楽90】【早期でお得】90日前までの早割りプラン／食事なし）",
+        "unit": "per-person",
+        "adult": 11350,
+        "child": null,
+        "currency": "JPY",
+        "season": "2027-02-12（五）1 泊，1 間 大人 3＋小學生高年級 1",
+        "note": "房型：禁煙ビジネスクラス　フォースルーム／58平米（ミニバー無料）。一間總價 45,400 円；API 的小學生價和大人相同（可能以房計價或兒童同價），兒童價不推算。楽天 API（查詢 2026-10-19）。",
+        "source": "rakuten-api",
+        "url": "https://hotel.travel.rakuten.co.jp/hotelinfo/plan/187?f_nen1=2027&f_tuki1=2&f_hi1=12&f_nen2=2027&f_tuki2=2&f_hi2=13&f_heya_su=1&f_otona_su=3&f_s1=1&f_s2=0&f_y1=0&f_y2=0&f_y3=0&f_y4=0",
+        "retrieved": "2026-10-19"
+      }
+    ],
+    "luggage": null,
+    "checkIn": "15:00",
+    "checkOut": "11:00",
+    "rakutenHotelNo": 187,
+    "dinnerAccess": null,
+    "group": {
+      "totalRooms": 576,
+      "roomTypes": [
+        "576 室；シングル、ダブル、ツイン、トリプル、フォース、コーナーツイン（官網首頁）；和室未載"
+      ],
+      "maxGuests": null,
+      "wholeRental": null,
+      "pickupCapacity": null,
+      "nearbyCombos": [],
+      "note": "團體預約方式、3～4 人房間數未載，電話 072-455-1111"
+    },
+    "ratings": {
+      "rakuten": 4.53,
+      "rakutenReviews": 4312,
+      "jalan": 4.5,
+      "jalanReviews": 2455,
+      "booking": null,
+      "google": 4.4,
+      "googleReviews": 3132,
+      "rakutenService": 4.53,
+      "rakutenLocation": 4.6,
+      "rakutenRoom": 4.55,
+      "rakutenEquipment": 4.46,
+      "rakutenBath": 4.42,
+      "rakutenMeal": 4.49,
+      "note": null
+    },
+    "accessibility": {
+      "elevator": null,
+      "beds": "全室床（床寬 120cm 起）",
+      "stairs": null,
+      "kids": "添寢每床 12 歲以下 1 名；嬰兒床免費；兒童價未載",
+      "note": "無障礙客房、輪椅出借；到 T1 步行直通、沒有階梯"
+    },
+    "reservation": {
+      "methods": [
+        "rakuten",
+        "phone"
+      ],
+      "phone": "072-455-1111",
+      "url": "https://www.nikkokix.com/",
+      "groupNote": null
+    },
+    "bookingLinks": {
+      "rakuten": "https://travel.rakuten.co.jp/HOTEL/187/187.html"
+    },
+    "sources": [
+      {
+        "type": "booking-site",
+        "url": "https://travel.rakuten.co.jp/HOTEL/187/187.html",
+        "retrieved": "2026-10-19",
+        "note": "楽天トラベル API（SimpleHotelSearch、HotelDetailSearch、VacantHotelSearch，scripts/rakuten.mjs）：評分、細項評分、房數、check-in/out、照片、2027-02-12 的空房與價格"
+      },
+      {
+        "type": "google-maps",
+        "url": "https://maps.google.com/?cid=17101069485606895356",
+        "retrieved": "2026-10-19",
+        "note": "Google 地圖「ホテル日航関西空港」：星數、評論數、座標、照片"
+      },
+      {
+        "type": "official",
+        "url": "https://www.nikkokix.com/access/",
+        "retrieved": "2026-10-19",
+        "note": "交通、T1直結、T2連絡巴士"
+      },
+      {
+        "type": "official",
+        "url": "https://www.nikkokix.com/",
+        "retrieved": "2026-10-19",
+        "note": "房型、餐廳、公告"
+      },
+      {
+        "type": "official",
+        "url": "https://www.nikkokix.com/restaurant/",
+        "retrieved": "2026-10-19",
+        "note": "餐廳一覽"
+      },
+      {
+        "type": "official",
+        "url": "https://www.nikkokix.com/restaurant/brasserie.html",
+        "retrieved": "2026-10-19",
+        "note": "早餐時間（WebSearch 摘要）"
+      },
+      {
+        "type": "booking-site",
+        "url": "https://www.jalan.net/yad324560/",
+        "retrieved": "2026-10-19",
+        "note": "じゃらん評分 4.5／2455 則（scripts/jalan.mjs list 273800）"
+      }
+    ],
+    "verified": false,
+    "extra": {
+      "stationAccess": "關西空港站步行直結。難波：南海空港急行約 50 分、Rapi:t 約 40 分；楽天寫到大阪市內最短 35 分。上本町、天王寺未載（來源1、2）",
+      "airportAccess": "與 T1 及 JR・南海關西空港站步行直結；T1 2F 有 3 條通道連到飯店 2F 入口，步行即可（來源1、2）",
+      "dining": "ザ・ブラッスリー（早餐自助 5:45-10:00 L.O.9:30，舊頁 6:45-9:30；午晚餐）、桃李（中華）、花ざと（和食）、銀杏（鐵板燒，目前休業）。可否接 15 人、包廂未載（來源4、5）",
+      "nearbyDinner": null,
+      "conflicts": [
+        "早餐時間：新頁 5:45～10:00、舊 FAQ 6:45～9:30"
+      ],
+      "taiwanNote": "Google 1 則中文評論（約 2026）說 check-in 時國籍「台灣」被要求改寫成「中國台灣」",
+      "rakutenVacancy": {
+        "retrieved": "2026-10-19",
+        "dates": [
+          "2027-02-12"
+        ],
+        "combos": [
+          "8x2",
+          "5x3",
+          "4x4",
+          "3x5",
+          "2x8"
+        ],
+        "available": {
+          "2027-02-12": [
+            "8x2",
+            "5x3",
+            "4x4"
+          ]
+        },
+        "note": "15 人（全部以大人計）分 N 間同住的組合，有空房的列出；只代表查詢當天楽天上的庫存"
+      }
+    },
+    "summary": null,
+    "assessment": null
+  },
+  {
+    "id": "kix-stargate",
+    "type": "lodging",
+    "name": {
+      "ja": "スターゲイトホテル関西エアポート",
+      "zh": "關西機場星門酒店"
+    },
+    "area": "kix",
+    "region": "rinku",
+    "kind": "hotel",
+    "coords": [
+      135.2998448,
+      34.4113576
+    ],
+    "coordsSource": "other",
+    "address": "大阪府泉佐野市りんくう往来北1番地",
+    "hours": null,
+    "closedNote": null,
+    "febNote": null,
+    "closures": [],
+    "photos": [
+      {
+        "url": "https://img.travel.rakuten.co.jp/share/HOTEL/197/197.jpg",
+        "page": "https://travel.rakuten.co.jp/HOTEL/197/197.html",
+        "kind": "rakuten",
+        "credit": "楽天トラベル（施設提供）",
+        "license": null
+      },
+      {
+        "url": "https://img.travel.rakuten.co.jp/share/HOTEL/197/197_nig.jpg",
+        "page": "https://travel.rakuten.co.jp/HOTEL/197/197.html",
+        "kind": "rakuten",
+        "credit": "楽天トラベル（施設提供）",
+        "license": null
+      },
+      {
+        "url": "https://lh3.googleusercontent.com/grass-cs/AABkmLeeuNjtuwfKjFZ6qrOvEa-3wygW9WiSIqr_-MtXedzCVKRl73nZqX1k-aexWnnJcWJbhAZuOnHBHTDV0OUjGTeXxi1crJx9IJ0Rk6p5fbyl4sqwRIztxrTB8PwVLa5UmnjUapU_tA=w800",
+        "page": "https://maps.google.com/?cid=6847443493239423900",
+        "kind": "google",
+        "credit": "Google マップ（施設或使用者上傳）",
+        "license": null
+      }
+    ],
+    "links": {
+      "official": "https://www.s-gth.jp/",
+      "googleMaps": "https://maps.google.com/?cid=6847443493239423900"
+    },
+    "tags": [],
+    "tier": null,
+    "nearestStation": null,
+    "pickup": "官網：關西國際空港←→飯店免費接駁；住客限定；當日可預約（入住前亦可）；05:10、05:55 兩班開往第2航廈；時刻表為圖片，首班、所要、載客數、費用、行李未載 [1][2]",
+    "meals": "varies",
+    "priceRange": "每人約 4,500～5,000 円（素泊；詳見 prices）",
+    "prices": [
+      {
+        "plan": "素泊 楽天 15 人組合最低價（【早割30】30日前までの早期予約（素泊り）【駅直結】）",
+        "unit": "per-person",
+        "adult": 5000,
+        "child": null,
+        "currency": "JPY",
+        "season": "2027-02-12（五）1 泊，5 間 × 3 人（大人）有空房時的最低價",
+        "note": "房型：【禁煙】トリプル（スーペリアツイン＋エキストラベッド1台）。楽天 API 空室検索（查詢 2026-10-19），含稅、不含入湯稅等。這天有空房的組合：8x2、5x3。",
+        "source": "rakuten-api",
+        "url": "https://hotel.travel.rakuten.co.jp/hotelinfo/plan/197?f_nen1=2027&f_tuki1=2&f_hi1=12&f_nen2=2027&f_tuki2=2&f_hi2=13&f_heya_su=5&f_otona_su=3&f_s1=0&f_s2=0&f_y1=0&f_y2=0&f_y3=0&f_y4=0",
+        "retrieved": "2026-10-19"
+      },
+      {
+        "plan": "素泊 大人 3＋小學生高年級 1（1 室）最低價（夜景遺産認定 関空前後泊プラン（素泊り）【駅直結】）",
+        "unit": "per-person",
+        "adult": 4500,
+        "child": null,
+        "currency": "JPY",
+        "season": "2027-02-12（五）1 泊，1 間 大人 3＋小學生高年級 1",
+        "note": "房型：【禁煙】フォース（コーナーツイン＋エキストラベッド2台）。一間總價 18,000 円；API 的小學生價和大人相同（可能以房計價或兒童同價），兒童價不推算。楽天 API（查詢 2026-10-19）。",
+        "source": "rakuten-api",
+        "url": "https://hotel.travel.rakuten.co.jp/hotelinfo/plan/197?f_nen1=2027&f_tuki1=2&f_hi1=12&f_nen2=2027&f_tuki2=2&f_hi2=13&f_heya_su=1&f_otona_su=3&f_s1=1&f_s2=0&f_y1=0&f_y2=0&f_y3=0&f_y4=0",
+        "retrieved": "2026-10-19"
+      }
+    ],
+    "luggage": "宅配便可用 [4]；寄放未載",
+    "checkIn": "15:00",
+    "checkOut": "11:00",
+    "rakutenHotelNo": 197,
+    "dinnerAccess": null,
+    "group": {
+      "totalRooms": 358,
+      "roomTypes": [
+        "358 室，全室海景或天空景；三人房（正床 2＋加床 1）、四人房（正床 2＋加床 2）；和室未載"
+      ],
+      "maxGuests": null,
+      "wholeRental": null,
+      "pickupCapacity": null,
+      "nearbyCombos": [],
+      "note": "團體預約方式未載；52～54F 有宴會場、包廂"
+    },
+    "ratings": {
+      "rakuten": 4.38,
+      "rakutenReviews": 4977,
+      "jalan": 4.4,
+      "jalanReviews": 3140,
+      "booking": null,
+      "google": 4.1,
+      "googleReviews": 3268,
+      "rakutenService": 4.38,
+      "rakutenLocation": 4.56,
+      "rakutenRoom": 4.38,
+      "rakutenEquipment": 4.24,
+      "rakutenBath": 4.17,
+      "rakutenMeal": 4.4,
+      "note": null
+    },
+    "accessibility": {
+      "elevator": true,
+      "beds": "全室床；三、四人房用加床",
+      "stairs": null,
+      "kids": "小學生以下同床免費（每張正床 1 名）；早餐 4～12 歲 1,900 円",
+      "note": "りんくうタウン站 3 號出口經 2F 天橋直結，櫃台在 1F（有電梯、手扶梯）；無障礙房、輪椅"
+    },
+    "reservation": {
+      "methods": [
+        "rakuten",
+        "phone"
+      ],
+      "phone": "072-460-1111",
+      "url": "https://www.s-gth.jp/",
+      "groupNote": "未載明團體預約方式；官網有家庭方案分類 [2]"
+    },
+    "bookingLinks": {
+      "rakuten": "https://travel.rakuten.co.jp/HOTEL/197/197.html"
+    },
+    "sources": [
+      {
+        "type": "booking-site",
+        "url": "https://travel.rakuten.co.jp/HOTEL/197/197.html",
+        "retrieved": "2026-10-19",
+        "note": "楽天トラベル API（SimpleHotelSearch、HotelDetailSearch、VacantHotelSearch，scripts/rakuten.mjs）：評分、細項評分、房數、check-in/out、照片、2027-02-12 的空房與價格"
+      },
+      {
+        "type": "google-maps",
+        "url": "https://maps.google.com/?cid=6847443493239423900",
+        "retrieved": "2026-10-19",
+        "note": "Google 地圖「スターゲイトホテル関西エアポート」：星數、評論數、座標、照片"
+      },
+      {
+        "type": "official",
+        "url": "https://www.s-gth.jp/access/shuttle/",
+        "retrieved": "2026-10-19",
+        "note": "接駁文字部分，時刻表為圖片"
+      },
+      {
+        "type": "official",
+        "url": "https://www.s-gth.jp/",
+        "retrieved": "2026-10-19",
+        "note": "房數、接駁、地址"
+      },
+      {
+        "type": "booking-site",
+        "url": "https://travel.rakuten.co.jp/HOTEL/197/197_std.html",
+        "retrieved": "2026-10-19",
+        "note": "設備、加床、無障礙"
+      },
+      {
+        "type": "official",
+        "url": "https://www.s-gth.jp/restaurant/",
+        "retrieved": "2026-10-19",
+        "note": "餐廳清單"
+      },
+      {
+        "type": "official",
+        "url": "https://www.s-gth.jp/restaurant/breakfast/",
+        "retrieved": "2026-10-19",
+        "note": "早餐時間價格"
+      },
+      {
+        "type": "official",
+        "url": "https://www.s-gth.jp/access/train/",
+        "retrieved": "2026-10-19",
+        "note": "站到飯店步行路線"
+      },
+      {
+        "type": "booking-site",
+        "url": "https://www.jalan.net/yad331817/",
+        "retrieved": "2026-10-19",
+        "note": "じゃらん評分 4.4／3140 則（scripts/jalan.mjs list 273800）"
+      }
+    ],
+    "verified": false,
+    "extra": {
+      "stationAccess": "りんくうタウン站（JR・南海）3 號出口直結，經 2 樓行人天橋，2 樓入口、櫃台在 1 樓 [3][7]；難波／天王寺所要時間僅在圖片 [7]",
+      "airportAccess": "電車：りんくうタウン站→關西空港 1 站 5 分 [3]；接駁 T1 班次時刻未能確認（圖片）[1]",
+      "dining": "52～54F 有餐廳、宴會場、包廂；54F スカイダイニング256「スターゲイト」早餐 6:30-10:30（L.O.10:00）大人¥3,800 [4][6]；餐廳名單：鐵板燒、涮涮鍋、日本料理、中華、法式、2F 咖啡 [5]；晚餐營業時間與 15 人接待未載",
+      "nearbyDinner": "2F 24 小時 Lawson（SiSりんくうタワー店）[3]；りんくうプレミアムアウトレット [2]；步行分鐘未載",
+      "rakutenVacancy": {
+        "retrieved": "2026-10-19",
+        "dates": [
+          "2027-02-12"
+        ],
+        "combos": [
+          "8x2",
+          "5x3",
+          "4x4",
+          "3x5",
+          "2x8"
+        ],
+        "available": {
+          "2027-02-12": [
+            "8x2",
+            "5x3"
+          ]
+        },
+        "note": "15 人（全部以大人計）分 N 間同住的組合，有空房的列出；只代表查詢當天楽天上的庫存"
+      }
+    },
+    "summary": null,
+    "assessment": null
+  },
+  {
+    "id": "kix-washington",
+    "type": "lodging",
+    "name": {
+      "ja": "関西エアポートワシントンホテル",
+      "zh": "關西機場華盛頓酒店"
+    },
+    "area": "kix",
+    "region": "rinku",
+    "kind": "hotel",
+    "coords": [
+      135.3017391,
+      34.4114604
+    ],
+    "coordsSource": "other",
+    "address": "大阪府泉佐野市りんくう往来北1-7",
+    "hours": null,
+    "closedNote": null,
+    "febNote": null,
+    "closures": [],
+    "photos": [
+      {
+        "url": "https://washington-hotels.jp/wp/wp-content/uploads/2024/09/WH17_fv1-scaled.jpg",
+        "page": "https://washington-hotels.jp/kansai/",
+        "kind": "official",
+        "credit": null,
+        "license": null
+      },
+      {
+        "url": "https://img.travel.rakuten.co.jp/share/HOTEL/4650/4650.jpg",
+        "page": "https://travel.rakuten.co.jp/HOTEL/4650/4650.html",
+        "kind": "rakuten",
+        "credit": "楽天トラベル（施設提供）",
+        "license": null
+      },
+      {
+        "url": "https://img.travel.rakuten.co.jp/share/HOTEL/4650/4650_room.jpg",
+        "page": "https://travel.rakuten.co.jp/HOTEL/4650/4650.html",
+        "kind": "rakuten",
+        "credit": "楽天トラベル（施設提供）",
+        "license": null
+      }
+    ],
+    "links": {
+      "official": "https://washington-hotels.jp/kansai/",
+      "googleMaps": "https://maps.google.com/?cid=1070941223550663047"
+    },
+    "tags": [],
+    "tier": null,
+    "nearestStation": null,
+    "pickup": "免費定時接駁，約10～15分；ホテル正面玄關前→T1 4F 國際線出發層，機場側南側団体のりば；送り需在櫃台預約；時刻表為圖片PDF未能讀取（2026-11-01起調整：https://washington-hotels.jp/wp/wp-content/uploads/2026/10/761e6f1793150aa0d4263043ab7b3b68.pdf）；載客數、行李數未知（官網access、KNT）",
+    "meals": "varies",
+    "priceRange": "每人約 7,425 円（素泊；詳見 prices）",
+    "prices": [
+      {
+        "plan": "素泊 楽天 15 人組合最低價（【さき楽60】早期ご予約の方におすすめプラン（素泊まり））",
+        "unit": "per-person",
+        "adult": 7425,
+        "child": null,
+        "currency": "JPY",
+        "season": "2027-02-12（五）1 泊，8 間 × 2 人（大人）有空房時的最低價",
+        "note": "房型：カジュアルダブル【禁煙】。楽天 API 空室検索（查詢 2026-10-19），含稅、不含入湯稅等。這天有空房的組合：8x2、5x3。",
+        "source": "rakuten-api",
+        "url": "https://hotel.travel.rakuten.co.jp/hotelinfo/plan/4650?f_nen1=2027&f_tuki1=2&f_hi1=12&f_nen2=2027&f_tuki2=2&f_hi2=13&f_heya_su=8&f_otona_su=2&f_s1=0&f_s2=0&f_y1=0&f_y2=0&f_y3=0&f_y4=0",
+        "retrieved": "2026-10-19"
+      }
+    ],
+    "luggage": "check-in前/out後可在櫃台寄放；2F ファミリーマート可收發宅配；寄送到櫃台需標明住宿日與姓名、限已付款、不可冷藏冷凍（官網FAQ）",
+    "checkIn": "15:00",
+    "checkOut": "11:00",
+    "rakutenHotelNo": 4650,
+    "dinnerAccess": null,
+    "group": {
+      "totalRooms": 504,
+      "roomTypes": [
+        "504 室；三人房 27.3㎡（120×2＋沙發床）、通用房；沒有和室、四人房、家庭房"
+      ],
+      "maxGuests": null,
+      "wholeRental": null,
+      "pickupCapacity": null,
+      "nearbyCombos": [],
+      "note": "有團體住宿手冊（官網 facilities）；10 人以上接駁要預約（搜尋摘要，非官網）"
+    },
+    "ratings": {
+      "rakuten": 4.33,
+      "rakutenReviews": 3585,
+      "jalan": 4.4,
+      "jalanReviews": 2400,
+      "booking": null,
+      "google": 4.2,
+      "googleReviews": 3234,
+      "rakutenService": 4.32,
+      "rakutenLocation": 4.36,
+      "rakutenRoom": 4.38,
+      "rakutenEquipment": 4.28,
+      "rakutenBath": 4.16,
+      "rakutenMeal": 4.42,
+      "note": null
+    },
+    "accessibility": {
+      "elevator": null,
+      "beds": "全室床",
+      "stairs": null,
+      "kids": "12 歲以下同床免費；早餐小學生 1,600 円",
+      "note": "無障礙房；沒有大浴場"
+    },
+    "reservation": {
+      "methods": [
+        "rakuten",
+        "phone"
+      ],
+      "phone": "072-461-2222",
+      "url": "https://washington-hotels.jp/kansai/",
+      "groupNote": "官網有團體住宿手冊PDF（facilities頁）、団体問い合わせ https://www.washingtonhotel.co.jp/group/；10人以上接駁需預約（搜尋摘要，非官網）"
+    },
+    "bookingLinks": {
+      "rakuten": "https://travel.rakuten.co.jp/HOTEL/4650/4650.html"
+    },
+    "sources": [
+      {
+        "type": "booking-site",
+        "url": "https://travel.rakuten.co.jp/HOTEL/4650/4650.html",
+        "retrieved": "2026-10-19",
+        "note": "楽天トラベル API（SimpleHotelSearch、HotelDetailSearch、VacantHotelSearch，scripts/rakuten.mjs）：評分、細項評分、房數、check-in/out、照片、2027-02-12 的空房與價格"
+      },
+      {
+        "type": "google-maps",
+        "url": "https://maps.google.com/?cid=1070941223550663047",
+        "retrieved": "2026-10-19",
+        "note": "Google 地圖「関西エアポートワシントンホテル」：星數、評論數、座標、照片"
+      },
+      {
+        "type": "official",
+        "url": "https://washington-hotels.jp/kansai/",
+        "retrieved": "2026-10-19",
+        "note": "首頁、room、restaurant、access、facilities、faq、information"
+      },
+      {
+        "type": "booking-site",
+        "url": "https://travel.rakuten.co.jp/HOTEL/4650/4650_std.html",
+        "retrieved": "2026-10-19",
+        "note": "504室、電話、無障礙"
+      },
+      {
+        "type": "booking-site",
+        "url": "https://yado.knt.co.jp/st/S270123/",
+        "retrieved": "2026-10-19",
+        "note": "接駁乘場、預約、餐廳時間"
+      },
+      {
+        "type": "other",
+        "url": "https://icotto.jp/hotels/5863",
+        "retrieved": "2026-10-19",
+        "note": "WebSearch 摘要，團體預約說明，未直接讀取"
+      },
+      {
+        "type": "booking-site",
+        "url": "https://www.jalan.net/yad387723/",
+        "retrieved": "2026-10-19",
+        "note": "じゃらん評分 4.4／2400 則（scripts/jalan.mjs list 273800）"
+      }
+    ],
+    "verified": false,
+    "extra": {
+      "stationAccess": "JR、南海りんくうタウン站步行3分；難波搭南海本線空港急行約40分（官網access）",
+      "airportAccess": "接駁約10～15分，或電車1站約5分；2/13 10:15 前班次需看PDF時刻表或電話確認（官網、楽天）",
+      "dining": "2F waterfront kitchen garden 180席（店內120+屋內露台60）；早餐自助6:30～9:30(LO9:00)；晚餐17:00～22:00(LO21:15)單點；包廂與15人團體未載（官網restaurant）",
+      "nearbyDinner": "館內2F ファミリーマート；周邊未載",
+      "conflicts": [
+        "接駁到 T1 所要：10 分、15 分兩說",
+        "館內餐廳 waterfront kitchen garden：官網寫晚餐 17:00～22:00（單點），食べログ店舗情報只有早餐、午餐"
+      ],
+      "rakutenVacancy": {
+        "retrieved": "2026-10-19",
+        "dates": [
+          "2027-02-12"
+        ],
+        "combos": [
+          "8x2",
+          "5x3",
+          "4x4",
+          "3x5",
+          "2x8"
+        ],
+        "available": {
+          "2027-02-12": [
+            "8x2",
+            "5x3"
+          ]
+        },
+        "note": "15 人（全部以大人計）分 N 間同住的組合，有空房的列出；只代表查詢當天楽天上的庫存"
+      }
+    },
+    "summary": null,
+    "assessment": null
+  },
+  {
+    "id": "kix-odysis-suites",
+    "type": "lodging",
+    "name": {
+      "ja": "オディシススイーツ大阪エアポートホテル",
+      "zh": "Odysis Suites 大阪機場酒店"
+    },
+    "area": "kix",
+    "region": "rinku",
+    "kind": "hotel",
+    "coords": [
+      135.2997322,
+      34.4113328
+    ],
+    "coordsSource": "other",
+    "address": "大阪府泉佐野市りんくう往来北1",
+    "hours": null,
+    "closedNote": null,
+    "febNote": null,
+    "closures": [],
+    "photos": [
+      {
+        "url": "https://img.travel.rakuten.co.jp/share/HOTEL/187454/187454.jpg",
+        "page": "https://travel.rakuten.co.jp/HOTEL/187454/187454.html",
+        "kind": "rakuten",
+        "credit": "楽天トラベル（施設提供）",
+        "license": null
+      },
+      {
+        "url": "https://lh3.googleusercontent.com/grass-cs/AABkmLdAVmqGjVDKy6ScQuDWUPX_V7AQCFw0Dy8chbnxv1A8ouYzqrD1NhI5TSb7f4eUiW42WDZ5g1ZXLJhU4mkJ1QShES2pAfLpM2xtxCI2TtkOjntkRU1b7tVUCuRBNVIWFpHopjtu=w800",
+        "page": "https://maps.google.com/?cid=9589354795952735103",
+        "kind": "google",
+        "credit": "Google マップ（施設或使用者上傳）",
+        "license": null
+      }
+    ],
+    "links": {
+      "official": "https://www.odysissuitesosaka.com/",
+      "googleMaps": "https://maps.google.com/?cid=9589354795952735103"
+    },
+    "tags": [],
+    "tier": null,
+    "nearestStation": null,
+    "pickup": "官網アクセス：接駁巴士時刻為圖片（文字不可讀）；無法事前預約，往關西空港的班次於 check-in 時在櫃檯申請；05:10、05:55 兩班到 T2；載客數、費用未載（4）。楽天列有送迎バス（6），第三方稱免費需預約（7）",
+    "meals": "varies",
+    "priceRange": "每人約 5,000 円（素泊；詳見 prices）",
+    "prices": [
+      {
+        "plan": "素泊 楽天 15 人組合最低價（【お日にち・室数限定】お部屋タイプおまかせプラン◆素泊り＠全室Wi-Fi無料＆全室禁煙＠）",
+        "unit": "per-person",
+        "adult": 5000,
+        "child": null,
+        "currency": "JPY",
+        "season": "2027-02-12（五）1 泊，8 間 × 2 人（大人）有空房時的最低價",
+        "note": "房型：【禁煙】【お部屋タイプおまかせ】2名様利用。楽天 API 空室検索（查詢 2026-10-19），含稅、不含入湯稅等。這天有空房的組合：8x2、5x3。",
+        "source": "rakuten-api",
+        "url": "https://hotel.travel.rakuten.co.jp/hotelinfo/plan/187454?f_nen1=2027&f_tuki1=2&f_hi1=12&f_nen2=2027&f_tuki2=2&f_hi2=13&f_heya_su=8&f_otona_su=2&f_s1=0&f_s2=0&f_y1=0&f_y2=0&f_y3=0&f_y4=0",
+        "retrieved": "2026-10-19"
+      }
+    ],
+    "luggage": "1 樓櫃檯 check-in 前後免費寄放；可事先寄宅配到飯店，註明住宿日與姓名；櫃檯可安排國內宅配（2,5）",
+    "checkIn": "15:00",
+    "checkOut": "11:00",
+    "rakutenHotelNo": 187454,
+    "dinnerAccess": null,
+    "group": {
+      "totalRooms": 258,
+      "roomTypes": [
+        "258 室；一般房 2～3 人（18～44㎡）；套房 75.1㎡ 最多 4 人（7 室）；沒有和室、4 人以上一般房"
+      ],
+      "maxGuests": null,
+      "wholeRental": null,
+      "pickupCapacity": null,
+      "nearbyCombos": [],
+      "note": "團體方式未載"
+    },
+    "ratings": {
+      "rakuten": 4.61,
+      "rakutenReviews": 345,
+      "jalan": 4.6,
+      "jalanReviews": 250,
+      "booking": null,
+      "google": 4.5,
+      "googleReviews": 1222,
+      "rakutenService": 4.55,
+      "rakutenLocation": 4.64,
+      "rakutenRoom": 4.65,
+      "rakutenEquipment": 4.55,
+      "rakutenBath": 4.49,
+      "rakutenMeal": 4.58,
+      "note": null
+    },
+    "accessibility": {
+      "elevator": null,
+      "beds": "全室床（Simmons）",
+      "stairs": null,
+      "kids": "0～12 歲陪睡免費；加床 5,000 円",
+      "note": "19F 無障礙房；りんくうタウン站直結（りんくうゲートタワービル）"
+    },
+    "reservation": {
+      "methods": [
+        "rakuten",
+        "phone"
+      ],
+      "phone": "072-458-0018",
+      "url": "https://www.odysissuitesosaka.com/",
+      "groupNote": "官網未載團體方式，電話 072-458-0018（2）"
+    },
+    "bookingLinks": {
+      "rakuten": "https://travel.rakuten.co.jp/HOTEL/187454/187454.html"
+    },
+    "sources": [
+      {
+        "type": "booking-site",
+        "url": "https://travel.rakuten.co.jp/HOTEL/187454/187454.html",
+        "retrieved": "2026-10-19",
+        "note": "楽天トラベル API（SimpleHotelSearch、HotelDetailSearch、VacantHotelSearch，scripts/rakuten.mjs）：評分、細項評分、房數、check-in/out、照片、2027-02-12 的空房與價格"
+      },
+      {
+        "type": "google-maps",
+        "url": "https://maps.google.com/?cid=9589354795952735103",
+        "retrieved": "2026-10-19",
+        "note": "Google 地圖「オディシススイーツ大阪エアポートホテル」：星數、評論數、座標、照片"
+      },
+      {
+        "type": "official",
+        "url": "https://www.odysissuitesosaka.com/",
+        "retrieved": "2026-10-19",
+        "note": "官網"
+      },
+      {
+        "type": "official",
+        "url": "https://www.odysissuitesosaka.com/faq/",
+        "retrieved": "2026-10-19",
+        "note": "官網"
+      },
+      {
+        "type": "official",
+        "url": "https://www.odysissuitesosaka.com/rooms/guest-room/",
+        "retrieved": "2026-10-19",
+        "note": "官網"
+      },
+      {
+        "type": "official",
+        "url": "https://www.odysissuitesosaka.com/rooms/suite-room/",
+        "retrieved": "2026-10-19",
+        "note": "官網"
+      },
+      {
+        "type": "official",
+        "url": "https://www.odysissuitesosaka.com/access/",
+        "retrieved": "2026-10-19",
+        "note": "官網"
+      },
+      {
+        "type": "official",
+        "url": "https://www.odysissuitesosaka.com/facilities/",
+        "retrieved": "2026-10-19",
+        "note": "官網"
+      },
+      {
+        "type": "booking-site",
+        "url": "https://travel.rakuten.co.jp/HOTEL/187454/rtmap.html",
+        "retrieved": "2026-10-19",
+        "note": "交通"
+      },
+      {
+        "type": "booking-site",
+        "url": "https://travel.rakuten.co.jp/HOTEL/187454/187454_std.html",
+        "retrieved": "2026-10-19",
+        "note": "施設情報"
+      },
+      {
+        "type": "other",
+        "url": "https://www.cocolocala.jp/hotels/882951",
+        "retrieved": "2026-10-19",
+        "note": "WebSearch 摘要，接駁、早餐時間"
+      },
+      {
+        "type": "booking-site",
+        "url": "https://www.jalan.net/yad396520/",
+        "retrieved": "2026-10-19",
+        "note": "じゃらん評分 4.6／250 則（scripts/jalan.mjs list 273800）"
+      }
+    ],
+    "verified": false,
+    "extra": {
+      "stationAccess": "站直結，步行分鐘未載；從難波／上本町官網未載（南海至りんくうタウン）（4）",
+      "airportAccess": "JR・南海りんくうタウン站直結，關西空港 1 站約 5 分（1,4）；2/13 趕 10:45 前到 T1 以電車為宜",
+      "dining": "54 樓 Skydining 256「スターゲイト」早餐自助 6:30～10:30（LO 10:00），客滿時可能換場地／指定時間（2）；另有中華、日本料理、鐵板燒、52 樓涮涮鍋、咖啡廳（1）；晚餐時間、15 人未載",
+      "nearbyDinner": "館內另有多間餐廳（1）；2 樓 Lawson（5）",
+      "conflicts": [
+        "接駁：官網「不能事前預約、check-in 時申請」，第三方「免費需預約」"
+      ],
+      "rakutenVacancy": {
+        "retrieved": "2026-10-19",
+        "dates": [
+          "2027-02-12"
+        ],
+        "combos": [
+          "8x2",
+          "5x3",
+          "4x4",
+          "3x5",
+          "2x8"
+        ],
+        "available": {
+          "2027-02-12": [
+            "8x2",
+            "5x3"
+          ]
+        },
+        "note": "15 人（全部以大人計）分 N 間同住的組合，有空房的列出；只代表查詢當天楽天上的庫存"
+      }
+    },
+    "summary": null,
+    "assessment": null
+  },
+  {
+    "id": "kix-omo",
+    "type": "lodging",
+    "name": {
+      "ja": "OMO関西空港 by 星野リゾート",
+      "zh": "OMO 關西機場 by 星野集團"
+    },
+    "area": "kix",
+    "region": "rinku",
+    "kind": "hotel",
+    "coords": [
+      135.3009275,
+      34.4103473
+    ],
+    "coordsSource": "google-maps-url",
+    "address": "大阪府泉佐野市りんくう往来北1-833",
+    "hours": null,
+    "closedNote": null,
+    "febNote": null,
+    "closures": [],
+    "photos": [
+      {
+        "url": "https://lh3.googleusercontent.com/grass-cs/AABkmLfUbiy9u_qWLLrXMD8wpNJdqHSMjhANQxnooYukjOPhofi4VyJZ9TrNAMUJ7GchJFBM9uLn2Y_t_uduzcBj6pYmxPq8tFmSnyBqNiUDjQAu0Uwr7xf-iqg-X_8tqEvG5FoXG_R5=w800",
+        "page": "https://maps.google.com/?cid=4656933647063665032",
+        "kind": "google",
+        "credit": "Google マップ（施設或使用者上傳）",
+        "license": null
+      }
+    ],
+    "links": {
+      "official": "https://hoshinoresorts.com/ja/hotels/omokansaiairport/",
+      "googleMaps": "https://maps.google.com/?cid=4656933647063665032"
+    },
+    "tags": [],
+    "tier": null,
+    "nearestStation": null,
+    "pickup": "住客限定免費單程接駁巴士，1F 入口前巴士站→T1→T2；5:00～11:00 發車（5:00、5:45、6:00、6:30、7:00、7:30、8:00、9:00、10:00、11:00）；T1 約10分、T2 約20分；每班20～24名；需網路預約，截止當日3:00，0:00後到前台；路況可能延誤；是否加開車與行李規定未載（2）",
+    "meals": "varies",
+    "priceRange": null,
+    "prices": [],
+    "luggage": "2F置物櫃、大型行李房、24小時便利商店；宅配可住宿前一天起寄存，不收到付與冷藏品（1）",
+    "checkIn": "15:00",
+    "checkOut": "11:00",
+    "rakutenHotelNo": null,
+    "dinnerAccess": null,
+    "group": {
+      "totalRooms": 700,
+      "roomTypes": [
+        "700 室；1～4 名房（官網）；6 人房未見"
+      ],
+      "maxGuests": null,
+      "wholeRental": null,
+      "pickupCapacity": 24,
+      "nearbyCombos": [
+        "kix-washington",
+        "kix-stargate",
+        "kix-odysis-suites",
+        "kix-henn-na-resort"
+      ],
+      "note": "接駁每班 20～24 名；15 人預約方式未載"
+    },
+    "ratings": {
+      "rakuten": null,
+      "rakutenReviews": null,
+      "jalan": 4.2,
+      "jalanReviews": 330,
+      "booking": null,
+      "google": 4.2,
+      "googleReviews": 2021,
+      "note": null
+    },
+    "accessibility": {
+      "elevator": null,
+      "beds": null,
+      "stairs": null,
+      "kids": "6 歲以下可添寢；兒童價未載",
+      "note": "大浴場（炭酸風呂、半露天、桑拿）；りんくうタウン站 5 號出口步行 1 分"
+    },
+    "reservation": {
+      "methods": [
+        "official",
+        "phone"
+      ],
+      "phone": "050-3134-8095",
+      "url": "https://hoshinoresorts.com/ja/hotels/omokansaiairport/",
+      "groupNote": "未載（15人預約方式官網首頁無資訊）"
+    },
+    "bookingLinks": {},
+    "sources": [
+      {
+        "type": "google-maps",
+        "url": "https://maps.google.com/?cid=4656933647063665032",
+        "retrieved": "2026-10-19",
+        "note": "Google 地圖「OMO関西空港 by 星野リゾート」：星數、評論數、座標、照片"
+      },
+      {
+        "type": "official",
+        "url": "https://hoshinoresorts.com/ja/hotels/omokansaiairport/",
+        "retrieved": "2026-10-19",
+        "note": "官網首頁"
+      },
+      {
+        "type": "official",
+        "url": "https://hoshinoresorts.com/ja/hotels/omokansaiairport/activities/13776/",
+        "retrieved": "2026-10-19",
+        "note": "接駁巴士"
+      },
+      {
+        "type": "official",
+        "url": "https://hoshinoresorts.com/ja/hotels/omokansaiairport/access/",
+        "retrieved": "2026-10-19",
+        "note": "交通"
+      },
+      {
+        "type": "booking-site",
+        "url": "https://www.jalan.net/yad389642/",
+        "retrieved": "2026-10-19",
+        "note": "じゃらん評分 4.2／330 則（scripts/jalan.mjs list 273800）"
+      }
+    ],
+    "verified": false,
+    "extra": {
+      "stationAccess": "JR／南海りんくうタウン站5號出口步行約1分；難波搭南海特急ラピート約30分；關西空港站→りんくうタウン約5分（3）",
+      "airportAccess": "2/13 搭9:00或10:00班巴士約10分到T1（班次對應為推算）；備案計程車約10分（2,3）",
+      "dining": "3間餐廳；21F OMOダイニング夕食自助式，2026/10/5～12/3暫改18:00～20:00（最後點餐19:45）部分菜單；能否接15人、早餐時間未載（1）",
+      "nearbyDinner": null
+    },
+    "summary": null,
+    "assessment": null
+  },
+  {
+    "id": "kix-henn-na-resort",
+    "type": "lodging",
+    "name": {
+      "ja": "変なリゾート＆スパ 関西空港",
+      "zh": "奇怪度假酒店 關西機場"
+    },
+    "area": "kix",
+    "region": "rinku",
+    "kind": "hotel",
+    "coords": [
+      135.2988609,
+      34.415005
+    ],
+    "coordsSource": "other",
+    "address": "大阪府泉佐野市りんくう往来北1-23",
+    "hours": null,
+    "closedNote": null,
+    "febNote": null,
+    "closures": [],
+    "photos": [
+      {
+        "url": "https://www.hennnahotel.com/kansai-airport/wp-content/uploads/2024/10/7a75adca928ebfab3d15da052ebda53e.jpeg",
+        "page": "https://www.hennnahotel.com/kansai-airport/",
+        "kind": "official",
+        "credit": null,
+        "license": null
+      },
+      {
+        "url": "https://img.travel.rakuten.co.jp/share/HOTEL/173021/173021.jpg",
+        "page": "https://travel.rakuten.co.jp/HOTEL/173021/173021.html",
+        "kind": "rakuten",
+        "credit": "楽天トラベル（施設提供）",
+        "license": null
+      },
+      {
+        "url": "https://img.travel.rakuten.co.jp/share/HOTEL/173021/173021_kan.jpg",
+        "page": "https://travel.rakuten.co.jp/HOTEL/173021/173021.html",
+        "kind": "rakuten",
+        "credit": "楽天トラベル（施設提供）",
+        "license": null
+      }
+    ],
+    "links": {
+      "official": "https://www.hennnahotel.com/kansai-airport/",
+      "googleMaps": "https://maps.google.com/?cid=8629589819632557802"
+    },
+    "tags": [],
+    "tier": null,
+    "nearestStation": null,
+    "pickup": "沒有接駁巴士（楽天、官網）；りんくうタウン站步行 9～10 分，再搭電車 1 站",
+    "meals": "varies",
+    "priceRange": "每人約 6,610 円（素泊；詳見 prices）",
+    "prices": [
+      {
+        "plan": "素泊 楽天 15 人組合最低價（【さき楽90】早めの予約がお得♪海辺で楽しむ天然温泉リゾートステイ＜食事なし＞）",
+        "unit": "per-person",
+        "adult": 6610,
+        "child": null,
+        "currency": "JPY",
+        "season": "2027-02-12（五）1 泊，8 間 × 2 人（大人）有空房時的最低價",
+        "note": "房型：オーシャンビューハリウッドツイン【海側確約】。楽天 API 空室検索（查詢 2026-10-19），含稅、不含入湯稅等。這天有空房的組合：8x2。",
+        "source": "rakuten-api",
+        "url": "https://hotel.travel.rakuten.co.jp/hotelinfo/plan/173021?f_nen1=2027&f_tuki1=2&f_hi1=12&f_nen2=2027&f_tuki2=2&f_hi2=13&f_heya_su=8&f_otona_su=2&f_s1=0&f_s2=0&f_y1=0&f_y2=0&f_y3=0&f_y4=0",
+        "retrieved": "2026-10-19"
+      }
+    ],
+    "luggage": "入住前／退房後免費寄放，跨日每件每日 2,000 日圓（來源1）；宅配僅到付（來源2）",
+    "checkIn": "15:00",
+    "checkOut": "11:00",
+    "rakutenHotelNo": 173021,
+    "dinnerAccess": null,
+    "group": {
+      "totalRooms": 98,
+      "roomTypes": [
+        "98 室；三人房（沙發床）、ツインエキストラ（3 名以上）；其他最多 2 人"
+      ],
+      "maxGuests": null,
+      "wholeRental": null,
+      "pickupCapacity": null,
+      "nearbyCombos": [],
+      "note": "官網有團體詢問表單"
+    },
+    "ratings": {
+      "rakuten": 4.12,
+      "rakutenReviews": 1451,
+      "jalan": 3.9,
+      "jalanReviews": 1036,
+      "booking": null,
+      "google": 3.9,
+      "googleReviews": 1211,
+      "rakutenService": 3.94,
+      "rakutenLocation": 4.11,
+      "rakutenRoom": 4.1,
+      "rakutenEquipment": 4.06,
+      "rakutenBath": 4.23,
+      "rakutenMeal": 3.76,
+      "note": null
+    },
+    "accessibility": {
+      "elevator": null,
+      "beds": "雙床 100×195、沙發床 90×195",
+      "stairs": null,
+      "kids": "6 歲以下加床免費（每房最多 2 位）",
+      "note": "天然溫泉大浴場「泉州の湯」（2026-10-20 曾暫停）；館內餐廳 青庵（溫泉棟 2F）"
+    },
+    "reservation": {
+      "methods": [
+        "rakuten",
+        "phone"
+      ],
+      "phone": "050-5210-5300",
+      "url": "https://www.hennnahotel.com/kansai-airport/",
+      "groupNote": "官網有「団体旅行のお問い合わせ」表單，無條件說明（來源2）"
+    },
+    "bookingLinks": {
+      "rakuten": "https://travel.rakuten.co.jp/HOTEL/173021/173021.html"
+    },
+    "sources": [
+      {
+        "type": "booking-site",
+        "url": "https://travel.rakuten.co.jp/HOTEL/173021/173021.html",
+        "retrieved": "2026-10-19",
+        "note": "楽天トラベル API（SimpleHotelSearch、HotelDetailSearch、VacantHotelSearch，scripts/rakuten.mjs）：評分、細項評分、房數、check-in/out、照片、2027-02-12 的空房與價格"
+      },
+      {
+        "type": "google-maps",
+        "url": "https://maps.google.com/?cid=8629589819632557802",
+        "retrieved": "2026-10-19",
+        "note": "Google 地圖「変なリゾート＆スパ 関西空港」：星數、評論數、座標、照片"
+      },
+      {
+        "type": "official",
+        "url": "https://www.hennnahotel.com/kansai-airport/",
+        "retrieved": "2026-10-19",
+        "note": "官網關西機場頁"
+      },
+      {
+        "type": "official",
+        "url": "https://www.hennnahotel.com/",
+        "retrieved": "2026-10-19",
+        "note": "官網首頁"
+      },
+      {
+        "type": "booking-site",
+        "url": "https://www.jalan.net/yad368142/",
+        "retrieved": "2026-10-19",
+        "note": "じゃらん評分 3.9／1036 則（scripts/jalan.mjs list 273800）"
+      }
+    ],
+    "verified": false,
+    "extra": {
+      "stationAccess": "JR関西空港線・南海空港線りんくうタウン站步行 9 分（來源2）／10 分（來源1）；開車從泉佐野南IC 約 15 分（來源1）。從難波／上本町的走法來源未載",
+      "airportAccess": "りんくうタウン站步行約 9～10 分，再搭 JR／南海 1 站到關西空港；時間來源未載（來源1、2）",
+      "dining": "青庵Seian 54 席（溫泉棟 2F）；早餐平日 7:00–9:30、週末假日 6:30–9:30（L.O. 9:00）；晚餐 17:00–22:00（L.O. 21:30），團體包場時段一般客不能用；能否接 15 人未載（來源1）",
+      "nearbyDinner": null,
+      "rakutenVacancy": {
+        "retrieved": "2026-10-19",
+        "dates": [
+          "2027-02-12"
+        ],
+        "combos": [
+          "8x2",
+          "5x3",
+          "4x4",
+          "3x5",
+          "2x8"
+        ],
+        "available": {
+          "2027-02-12": [
+            "8x2"
+          ]
+        },
+        "note": "15 人（全部以大人計）分 N 間同住的組合，有空房的列出；只代表查詢當天楽天上的庫存"
+      }
+    },
+    "summary": null,
+    "assessment": null
+  },
+  {
+    "id": "kix-garden-palace",
+    "type": "lodging",
+    "name": {
+      "ja": "関空温泉ホテルガーデンパレス",
+      "zh": "關空溫泉花園皇宮酒店"
+    },
+    "area": "kix",
+    "region": "izumisano",
+    "kind": "hotel",
+    "coords": [
+      135.3173713,
+      34.4030728
+    ],
+    "coordsSource": "other",
+    "address": "大阪府泉佐野市中町1-3-51",
+    "hours": null,
+    "closedNote": null,
+    "febNote": null,
+    "closures": [],
+    "photos": [
+      {
+        "url": "https://img.travel.rakuten.co.jp/share/HOTEL/222/222.jpg",
+        "page": "https://travel.rakuten.co.jp/HOTEL/222/222.html",
+        "kind": "rakuten",
+        "credit": "楽天トラベル（施設提供）",
+        "license": null
+      },
+      {
+        "url": "https://img.travel.rakuten.co.jp/share/HOTEL/222/222a.gif",
+        "page": "https://travel.rakuten.co.jp/HOTEL/222/222.html",
+        "kind": "rakuten",
+        "credit": "楽天トラベル（施設提供）",
+        "license": null
+      },
+      {
+        "url": "https://lh3.googleusercontent.com/grass-proxy/AIM7gW3Y8Lw3daGoaL4YQRFN32TPV5h2-OZV6tDRCZYFmUoHKysED1CsTxX5khb4TSwjmqDjH0rVW04sRQBbxhEri90C9g1Zucy59qRQnoG3n2P__bHKmjSt9C4uynJTQKRNuionhfHLjS5E_DJXNNw_Qpno8GECIQQmoLyHp0uXR2rB6XPrir2MoDdn=w800",
+        "page": "https://maps.google.com/?cid=11534839712515803551",
+        "kind": "google",
+        "credit": "Google マップ（施設或使用者上傳）",
+        "license": null
+      }
+    ],
+    "links": {
+      "official": "https://www.gardenpalace-spa.co.jp/",
+      "googleMaps": "https://maps.google.com/?cid=11534839712515803551"
+    },
+    "tags": [],
+    "tier": null,
+    "nearestStation": null,
+    "pickup": "官網：飯店→車站(退房)5:20/6:20/7:40/8:40/9:40/10:40共6班，須事前預約，無預約不開；日根野/泉佐野東口/りんくうタウン5號出口，約8分，電話或check-in時預約。機場→飯店(入住)直達17:15/19:15/21:15/22:15前日電話預約；或到南海泉佐野站電話，免預約至20時。團體貸切巴士1台5,000円。載客數、行李未載。[3][4]",
+    "meals": "varies",
+    "priceRange": "每人約 7,700～14,980 円（一泊二食／素泊；詳見 prices）",
+    "prices": [
+      {
+        "plan": "一泊二食 楽天 15 人組合最低價（■麻雀パック■二食付／賑わい（牛＆豚焼肉盛合わせ）会席と和朝食■全自動麻雀付13時イン翌12時アウト）",
+        "unit": "per-person",
+        "adult": 14980,
+        "child": null,
+        "currency": "JPY",
+        "season": "2027-02-12（五）1 泊，3 間 × 5 人（大人）有空房時的最低價",
+        "note": "房型：:禁煙◇特別室◇全自動麻雀卓付 （2食付）。楽天 API 空室検索（查詢 2026-10-19），含稅、不含入湯稅等。這天有空房的組合：3x5。",
+        "source": "rakuten-api",
+        "url": "https://hotel.travel.rakuten.co.jp/hotelinfo/plan/222?f_nen1=2027&f_tuki1=2&f_hi1=12&f_nen2=2027&f_tuki2=2&f_hi2=13&f_heya_su=3&f_otona_su=5&f_s1=0&f_s2=0&f_y1=0&f_y2=0&f_y3=0&f_y4=0",
+        "retrieved": "2026-10-19"
+      },
+      {
+        "plan": "素泊 大人 3＋小學生高年級 1（1 室）最低價（【素泊りプラン】全室デュベスタイル＆シモンズベットアウト10：00）",
+        "unit": "per-person",
+        "adult": 7700,
+        "child": 6160,
+        "currency": "JPY",
+        "season": "2027-02-12（五）1 泊，1 間 大人 3＋小學生高年級 1",
+        "note": "房型：New! バリアフリールーム。一間總價 29,260 円；小學生（高學年）6,160 円＝大人的 80%。楽天 API（查詢 2026-10-19）。",
+        "source": "rakuten-api",
+        "url": "https://hotel.travel.rakuten.co.jp/hotelinfo/plan/222?f_nen1=2027&f_tuki1=2&f_hi1=12&f_nen2=2027&f_tuki2=2&f_hi2=13&f_heya_su=1&f_otona_su=3&f_s1=1&f_s2=0&f_y1=0&f_y2=0&f_y3=0&f_y4=0",
+        "retrieved": "2026-10-19"
+      }
+    ],
+    "luggage": "宅配便あり（設備欄）；寄放未載 [1][3]",
+    "checkIn": "16:00",
+    "checkOut": "10:00",
+    "rakutenHotelNo": 222,
+    "dinnerAccess": null,
+    "group": {
+      "totalRooms": 63,
+      "roomTypes": [
+        "63 室；ツイン、デラックスツイン和洋室 1～4 名（可鋪 2 組被）、バリアフリー和洋室、トリプル、フォーベッド"
+      ],
+      "maxGuests": null,
+      "wholeRental": null,
+      "pickupCapacity": null,
+      "nearbyCombos": [],
+      "note": "宴會場 9～32 名（15 人可一起吃晚餐）；團體貸切巴士 1 台 5,000 円"
+    },
+    "ratings": {
+      "rakuten": 4.45,
+      "rakutenReviews": 2207,
+      "jalan": 4.7,
+      "jalanReviews": 2408,
+      "booking": null,
+      "google": 4.1,
+      "googleReviews": 779,
+      "rakutenService": 4.5,
+      "rakutenLocation": 4.05,
+      "rakutenRoom": 4.3,
+      "rakutenEquipment": 4.27,
+      "rakutenBath": 4.43,
+      "rakutenMeal": 4.59,
+      "note": null
+    },
+    "accessibility": {
+      "elevator": null,
+      "beds": "全室シモンズ床；和洋室另有榻榻米",
+      "stairs": null,
+      "kids": "添寢設施使用料 550 円",
+      "note": "無障礙和洋室、輪椅 1 台（事先電話）；大浴場、貸切露天 5 座"
+    },
+    "reservation": {
+      "methods": [
+        "rakuten",
+        "phone"
+      ],
+      "phone": "072-462-4026",
+      "url": "https://www.gardenpalace-spa.co.jp/",
+      "groupNote": "宴会場定員9～32名；團體貸切巴士5,000円；團體預約方式未載 [3][5]"
+    },
+    "bookingLinks": {
+      "rakuten": "https://travel.rakuten.co.jp/HOTEL/222/222.html"
+    },
+    "sources": [
+      {
+        "type": "booking-site",
+        "url": "https://travel.rakuten.co.jp/HOTEL/222/222.html",
+        "retrieved": "2026-10-19",
+        "note": "楽天トラベル API（SimpleHotelSearch、HotelDetailSearch、VacantHotelSearch，scripts/rakuten.mjs）：評分、細項評分、房數、check-in/out、照片、2027-02-12 的空房與價格"
+      },
+      {
+        "type": "google-maps",
+        "url": "https://maps.google.com/?cid=11534839712515803551",
+        "retrieved": "2026-10-19",
+        "note": "Google 地圖「関空温泉ホテルガーデンパレス」：星數、評論數、座標、照片"
+      },
+      {
+        "type": "official",
+        "url": "https://www.gardenpalace-spa.co.jp/access/",
+        "retrieved": "2026-10-19",
+        "note": "接送時刻"
+      },
+      {
+        "type": "official",
+        "url": "https://www.gardenpalace-spa.co.jp/news/p-1163/",
+        "retrieved": "2026-10-19",
+        "note": "入住時接送"
+      },
+      {
+        "type": "official",
+        "url": "https://www.gardenpalace-spa.co.jp/cuisine/",
+        "retrieved": "2026-10-19",
+        "note": "餐食與宴會場"
+      },
+      {
+        "type": "official",
+        "url": "https://www.gardenpalace-spa.co.jp/room/",
+        "retrieved": "2026-10-19",
+        "note": "客室"
+      },
+      {
+        "type": "booking-site",
+        "url": "https://travel.rakuten.co.jp/HOTEL/222/rtmap.html",
+        "retrieved": "2026-10-19",
+        "note": "交通"
+      },
+      {
+        "type": "booking-site",
+        "url": "https://travel.rakuten.co.jp/HOTEL/222/222_std.html",
+        "retrieved": "2026-10-19",
+        "note": "設施"
+      },
+      {
+        "type": "booking-site",
+        "url": "https://www.jalan.net/yad389840/",
+        "retrieved": "2026-10-19",
+        "note": "じゃらん評分 4.7／2408 則（scripts/jalan.mjs list 273800）"
+      }
+    ],
+    "verified": false,
+    "extra": {
+      "stationAccess": "南海本線泉佐野駅・JR日根野・りんくうタウン駅から無料送迎あり（チェックイン・アウト時のみ、13時～20時）；步行分鐘未載；從難波經南海本線可到泉佐野 [1][2]",
+      "airportAccess": "2/13官網只列飯店→車站班（最晚10:40太晚，建議9:40班），直達機場班官網未載，楽天寫有免費巴士；須電話確認。機場計程車約5,000円 [1][3]",
+      "dining": "晚餐17:00～21:00(LO20:30)；早餐6:30～9:00(最終入店8:30，僅住客)；場地：新館個室レストラン響(4名以上)、宴会場(9～32名)、個室(1～4、5～8名)、和洋室限定部屋食 [5]",
+      "nearbyDinner": null,
+      "conflicts": [
+        "到機場：官網只列飯店→車站班（5:20～10:40，要預約），楽天寫有免費巴士到機場；要電話確認"
+      ],
+      "rakutenVacancy": {
+        "retrieved": "2026-10-19",
+        "dates": [
+          "2027-02-12"
+        ],
+        "combos": [
+          "8x2",
+          "5x3",
+          "4x4",
+          "3x5",
+          "2x8"
+        ],
+        "available": {
+          "2027-02-12": [
+            "3x5"
+          ]
+        },
+        "note": "15 人（全部以大人計）分 N 間同住的組合，有空房的列出；只代表查詢當天楽天上的庫存"
+      }
+    },
+    "summary": null,
+    "assessment": null
+  },
+  {
+    "id": "kix-bellevue-garden",
+    "type": "lodging",
+    "name": {
+      "ja": "ベルビューガーデンホテル関西空港",
+      "zh": "關西機場美景花園酒店"
+    },
+    "area": "kix",
+    "region": "izumisano",
+    "kind": "hotel",
+    "coords": [
+      135.320257,
+      34.407539
+    ],
+    "coordsSource": "other",
+    "address": "大阪府泉佐野市市場西3-3-34",
+    "hours": null,
+    "closedNote": null,
+    "febNote": null,
+    "closures": [],
+    "photos": [
+      {
+        "url": "https://img.travel.rakuten.co.jp/share/HOTEL/87/87.jpg",
+        "page": "https://travel.rakuten.co.jp/HOTEL/87/87.html",
+        "kind": "rakuten",
+        "credit": "楽天トラベル（施設提供）",
+        "license": null
+      },
+      {
+        "url": "https://img.travel.rakuten.co.jp/share/HOTEL/87/87_room.jpg",
+        "page": "https://travel.rakuten.co.jp/HOTEL/87/87.html",
+        "kind": "rakuten",
+        "credit": "楽天トラベル（施設提供）",
+        "license": null
+      },
+      {
+        "url": "https://lh3.googleusercontent.com/grass-proxy/AIM7gW37N8KNbmSx2tXwGf_Dya9MSNZmwKFh6GI-8DkgRMZ1J182ea4bTlYsqCICbxjs_QwZww-73Zay8vzpM80O4S_nsIZGSKmvNvv5AsEDO9RabS_dY-CQEjrBWvwW8Z5wEl_3TRRzoheGCN81XyqR-VE7_z5ghQo8j2iZHA5PC2BMR_42jMRb0bNeDg=w800",
+        "page": "https://maps.google.com/?cid=11097700744617446304",
+        "kind": "google",
+        "credit": "Google マップ（施設或使用者上傳）",
+        "license": null
+      }
+    ],
+    "links": {
+      "official": "https://www.bellevuekix.com/",
+      "googleMaps": "https://maps.google.com/?cid=11097700744617446304"
+    },
+    "tags": [],
+    "tier": null,
+    "nearestStation": null,
+    "pickup": "免費接駁約 15 分，T1 南團體巴士站 S-12。飯店發 5:30★/6:30★/7:30/8:30/9:30/11:00★/18:00（★經 T2 或 outlet，未標哪班）；機場發 10:05/18:30/19:30/20:30/21:30/22:30 免預約；22:30 後用南海。定員通常 8～24 人，超過請等下班或電車。飯店發原則前日前預約（楽天：check-in 時）。行李未載；月份可能變更時刻。PDF https://bellevuekix.com/wp-content/uploads/2026/03/bus-jpnew.pdf (官網 access)",
+    "meals": "varies",
+    "priceRange": "每人約 6,250 円（素泊；詳見 prices）",
+    "prices": [
+      {
+        "plan": "素泊 楽天 15 人組合最低價（【駐車場1週間無料特典】早期ご予約でお得な早割30日前プラン）",
+        "unit": "per-person",
+        "adult": 6250,
+        "child": null,
+        "currency": "JPY",
+        "season": "2027-02-12（五）1 泊，8 間 × 2 人（大人）有空房時的最低價",
+        "note": "房型：スタンダードツイン（禁煙）2名利用。楽天 API 空室検索（查詢 2026-10-19），含稅、不含入湯稅等。這天有空房的組合：8x2。",
+        "source": "rakuten-api",
+        "url": "https://hotel.travel.rakuten.co.jp/hotelinfo/plan/87?f_nen1=2027&f_tuki1=2&f_hi1=12&f_nen2=2027&f_tuki2=2&f_hi2=13&f_heya_su=8&f_otona_su=2&f_s1=0&f_s2=0&f_y1=0&f_y2=0&f_y3=0&f_y4=0",
+        "retrieved": "2026-10-19"
+      }
+    ],
+    "luggage": "宅配便服務有 (官網 navigation)；行李寄放未載",
+    "checkIn": "14:00",
+    "checkOut": "11:00",
+    "rakutenHotelNo": 87,
+    "dinnerAccess": null,
+    "group": {
+      "totalRooms": 186,
+      "roomTypes": [
+        "186 室（22㎡ 以上）；ツイン、ダブル、デラックスツイン（加沙發床 3 人）、和室、套房"
+      ],
+      "maxGuests": null,
+      "wholeRental": null,
+      "pickupCapacity": 24,
+      "nearbyCombos": [],
+      "note": "接駁定員通常 8～24 人；宴會場最多 140 名；餐廳泉の幸 有大小包廂"
+    },
+    "ratings": {
+      "rakuten": 4.2,
+      "rakutenReviews": 2660,
+      "jalan": 4.5,
+      "jalanReviews": 1188,
+      "booking": null,
+      "google": 3.8,
+      "googleReviews": 546,
+      "rakutenService": 4.17,
+      "rakutenLocation": 4.17,
+      "rakutenRoom": 4.16,
+      "rakutenEquipment": 3.96,
+      "rakutenBath": 3.82,
+      "rakutenMeal": 4.21,
+      "note": null
+    },
+    "accessibility": {
+      "elevator": null,
+      "beds": "床（有和室）",
+      "stairs": null,
+      "kids": "添寢免費、嬰兒床",
+      "note": "無障礙房、輪椅"
+    },
+    "reservation": {
+      "methods": [
+        "rakuten",
+        "phone"
+      ],
+      "phone": "072-469-1112",
+      "url": "https://www.bellevuekix.com/",
+      "groupNote": "團體預約方式未載；宴會 072-469-1112（10:00～17:00）；宴會場最大正餐 140 名 (官網 restaurant)"
+    },
+    "bookingLinks": {
+      "rakuten": "https://travel.rakuten.co.jp/HOTEL/87/87.html"
+    },
+    "sources": [
+      {
+        "type": "booking-site",
+        "url": "https://travel.rakuten.co.jp/HOTEL/87/87.html",
+        "retrieved": "2026-10-19",
+        "note": "楽天トラベル API（SimpleHotelSearch、HotelDetailSearch、VacantHotelSearch，scripts/rakuten.mjs）：評分、細項評分、房數、check-in/out、照片、2027-02-12 的空房與價格"
+      },
+      {
+        "type": "google-maps",
+        "url": "https://maps.google.com/?cid=11097700744617446304",
+        "retrieved": "2026-10-19",
+        "note": "Google 地圖「ベルビューガーデンホテル関西空港」：星數、評論數、座標、照片"
+      },
+      {
+        "type": "official",
+        "url": "https://bellevuekix.com/access/",
+        "retrieved": "2026-10-19",
+        "note": "接駁時刻、定員"
+      },
+      {
+        "type": "official",
+        "url": "https://bellevuekix.com/navigation/",
+        "retrieved": "2026-10-19",
+        "note": "房數、設施"
+      },
+      {
+        "type": "official",
+        "url": "https://bellevuekix.com/restaurant/",
+        "retrieved": "2026-10-19",
+        "note": "餐廳"
+      },
+      {
+        "type": "official",
+        "url": "https://bellevuekix.com/morning/",
+        "retrieved": "2026-10-19",
+        "note": "早餐"
+      },
+      {
+        "type": "official",
+        "url": "https://bellevuekix.com/plan/",
+        "retrieved": "2026-10-19",
+        "note": "房型"
+      },
+      {
+        "type": "booking-site",
+        "url": "https://www.jalan.net/yad310389/",
+        "retrieved": "2026-10-19",
+        "note": "じゃらん評分 4.5／1188 則（scripts/jalan.mjs list 273800）"
+      }
+    ],
+    "verified": false,
+    "extra": {
+      "stationAccess": "南海泉佐野站東口步行約 7 分；從難波搭南海到泉佐野，官網未明示時間 (官網 access)",
+      "airportAccess": "2/13 搭 9:30 班約 9:45 到 T1；15 人可能超過定員須預約，備案：泉佐野站東口步行 7 分，南海空港線 2 站到關空 (官網 access, 楽天)",
+      "dining": "創作料理 泉の幸：午 11:30～14:00、晚 17:00～21:30（L.O.21:00）無休，有大小包廂、小上がり、桌席，15 人可否未載 (官網 restaurant)。早餐 6:30～9:30（最終入場 9:00），2 樓宴會廳自助 45 種以上，料金未載 (官網 morning)",
+      "nearbyDinner": null,
+      "conflicts": [
+        "接駁預約：官網「前日前」、楽天「check-in 時」"
+      ],
+      "rakutenVacancy": {
+        "retrieved": "2026-10-19",
+        "dates": [
+          "2027-02-12"
+        ],
+        "combos": [
+          "8x2",
+          "5x3",
+          "4x4",
+          "3x5",
+          "2x8"
+        ],
+        "available": {
+          "2027-02-12": [
+            "8x2"
+          ]
+        },
+        "note": "15 人（全部以大人計）分 N 間同住的組合，有空房的列出；只代表查詢當天楽天上的庫存"
+      }
+    },
+    "summary": null,
+    "assessment": null
+  },
+  {
+    "id": "kix-aston-plaza",
+    "type": "lodging",
+    "name": {
+      "ja": "ホテルアストンプラザ関西空港",
+      "zh": "關西機場阿斯頓廣場酒店"
+    },
+    "area": "kix",
+    "region": "rinku",
+    "kind": "hotel",
+    "coords": [
+      135.3057214,
+      34.3926195
+    ],
+    "coordsSource": "other",
+    "address": "大阪府泉佐野市南中安松674-1",
+    "hours": null,
+    "closedNote": null,
+    "febNote": null,
+    "closures": [],
+    "photos": [
+      {
+        "url": "https://img.travel.rakuten.co.jp/share/HOTEL/160665/160665.jpg",
+        "page": "https://travel.rakuten.co.jp/HOTEL/160665/160665.html",
+        "kind": "rakuten",
+        "credit": "楽天トラベル（施設提供）",
+        "license": null
+      },
+      {
+        "url": "https://img.travel.rakuten.co.jp/share/HOTEL/160665/160665_kan1.jpg",
+        "page": "https://travel.rakuten.co.jp/HOTEL/160665/160665.html",
+        "kind": "rakuten",
+        "credit": "楽天トラベル（施設提供）",
+        "license": null
+      },
+      {
+        "url": "https://lh3.googleusercontent.com/grass-cs/AABkmLdqsAzzeMn445F1KWluNe5Hu3PtZf_qsfs8FhFbejjTfV5eWKuofgzi32HvcPLs4pekJ4TsX0YHOiCYjeOr9_j7myx_6Djl11M6ACMd9RdD5D6qHctqfSwDrXrunNOTd2mOUogM=w800",
+        "page": "https://maps.google.com/?cid=17759672685087123223",
+        "kind": "google",
+        "credit": "Google マップ（施設或使用者上傳）",
+        "license": null
+      }
+    ],
+    "links": {
+      "official": "https://www.aston-kix.com/",
+      "googleMaps": "https://maps.google.com/?cid=17759672685087123223"
+    },
+    "tags": [],
+    "tier": null,
+    "nearestStation": null,
+    "pickup": "官網：免費接駁巴士（僅住客），約25分；乘車處T1（團體巴士乘車處南側）、T2、りんくうタウン站；關空發車免預約，りんくうタウン站發車要預約，飯店發車於check-in時預約；8人以上團體一律先預約(072-490-2100)；發車前3分鐘上車；可載重行李；時刻表為官網PDF（未讀到）(官網/shuttlebus)",
+    "meals": "varies",
+    "priceRange": "每人約 4,400 円（素泊；詳見 prices）",
+    "prices": [
+      {
+        "plan": "素泊 楽天 15 人組合最低價（【さき楽２８】予約なしでOK「空港往復送迎」あり！駐車場無料！夜は大浴場でゆったりと＜素泊＞）",
+        "unit": "per-person",
+        "adult": 4400,
+        "child": null,
+        "currency": "JPY",
+        "season": "2027-02-12（五）1 泊，8 間 × 2 人（大人）有空房時的最低價",
+        "note": "房型：◆禁煙　ダブルルーム。楽天 API 空室検索（查詢 2026-10-19），含稅、不含入湯稅等。這天有空房的組合：8x2。",
+        "source": "rakuten-api",
+        "url": "https://hotel.travel.rakuten.co.jp/hotelinfo/plan/160665?f_nen1=2027&f_tuki1=2&f_hi1=12&f_nen2=2027&f_tuki2=2&f_hi2=13&f_heya_su=8&f_otona_su=2&f_s1=0&f_s2=0&f_y1=0&f_y2=0&f_y3=0&f_y4=0",
+        "retrieved": "2026-10-19"
+      }
+    ],
+    "luggage": "check-in前／check-out後免費寄放前台；宅急便代寄（元払い）(官網/qa)",
+    "checkIn": "15:00",
+    "checkOut": "10:00",
+    "rakutenHotelNo": 160665,
+    "dinnerAccess": null,
+    "group": {
+      "totalRooms": 125,
+      "roomTypes": [
+        "125 室；單人、雙人、ツイン（每間 1～2 人）；沒有 3～4 人房、和室"
+      ],
+      "maxGuests": null,
+      "wholeRental": null,
+      "pickupCapacity": null,
+      "nearbyCombos": [],
+      "note": "8 人以上接駁一律先預約（072-490-2100）"
+    },
+    "ratings": {
+      "rakuten": 4.18,
+      "rakutenReviews": 924,
+      "jalan": 4.1,
+      "jalanReviews": 569,
+      "booking": null,
+      "google": 4,
+      "googleReviews": 785,
+      "rakutenService": 4.23,
+      "rakutenLocation": 4.08,
+      "rakutenRoom": 4.17,
+      "rakutenEquipment": 4.14,
+      "rakutenBath": 4.19,
+      "rakutenMeal": 3.95,
+      "note": null
+    },
+    "accessibility": {
+      "elevator": null,
+      "beds": "床（90～140cm）",
+      "stairs": null,
+      "kids": "學齡前每床 1 名免費添寢，小學生不適用",
+      "note": "大浴場；無障礙房（楽天）；最近車站羽倉崎步行 15 分"
+    },
+    "reservation": {
+      "methods": [
+        "rakuten",
+        "phone"
+      ],
+      "phone": "072-490-2100",
+      "url": "https://www.aston-kix.com/",
+      "groupNote": "8人以上接駁一律預約；8人以上取消規定不同需來電(官網/shuttlebus,/qa)"
+    },
+    "bookingLinks": {
+      "rakuten": "https://travel.rakuten.co.jp/HOTEL/160665/160665.html"
+    },
+    "sources": [
+      {
+        "type": "booking-site",
+        "url": "https://travel.rakuten.co.jp/HOTEL/160665/160665.html",
+        "retrieved": "2026-10-19",
+        "note": "楽天トラベル API（SimpleHotelSearch、HotelDetailSearch、VacantHotelSearch，scripts/rakuten.mjs）：評分、細項評分、房數、check-in/out、照片、2027-02-12 的空房與價格"
+      },
+      {
+        "type": "google-maps",
+        "url": "https://maps.google.com/?cid=17759672685087123223",
+        "retrieved": "2026-10-19",
+        "note": "Google 地圖「ホテルアストンプラザ関西空港」：星數、評論數、座標、照片"
+      },
+      {
+        "type": "official",
+        "url": "https://www.aston-kix.com/qa/",
+        "retrieved": "2026-10-19",
+        "note": "官網"
+      },
+      {
+        "type": "official",
+        "url": "https://www.aston-kix.com/facility",
+        "retrieved": "2026-10-19",
+        "note": "官網"
+      },
+      {
+        "type": "official",
+        "url": "https://www.aston-kix.com/dining/",
+        "retrieved": "2026-10-19",
+        "note": "官網"
+      },
+      {
+        "type": "official",
+        "url": "https://www.aston-kix.com/room",
+        "retrieved": "2026-10-19",
+        "note": "官網"
+      },
+      {
+        "type": "official",
+        "url": "https://www.aston-kix.com/access",
+        "retrieved": "2026-10-19",
+        "note": "官網"
+      },
+      {
+        "type": "official",
+        "url": "https://www.aston-kix.com/shuttlebus/",
+        "retrieved": "2026-10-19",
+        "note": "官網"
+      },
+      {
+        "type": "official",
+        "url": "https://www.aston-kix.com/",
+        "retrieved": "2026-10-19",
+        "note": "官網"
+      },
+      {
+        "type": "booking-site",
+        "url": "https://travel.rakuten.co.jp/HOTEL/160665/rtmap.html",
+        "retrieved": "2026-10-19",
+        "note": "交通、接駁、停車場"
+      },
+      {
+        "type": "booking-site",
+        "url": "https://travel.rakuten.co.jp/HOTEL/160665/160665_std.html",
+        "retrieved": "2026-10-19",
+        "note": "施設情報、無障礙"
+      },
+      {
+        "type": "other",
+        "url": "https://jcation.com/hotel/detail-7036/",
+        "retrieved": "2026-10-19",
+        "note": "第三方稱接駁事前預約制"
+      },
+      {
+        "type": "booking-site",
+        "url": "https://www.jalan.net/yad359122/",
+        "retrieved": "2026-10-19",
+        "note": "じゃらん評分 4.1／569 則（scripts/jalan.mjs list 273800）"
+      }
+    ],
+    "verified": false,
+    "extra": {
+      "stationAccess": "南海羽倉崎站步行約15分；泉佐野站計程車約10分；接駁停りんくうタウン站（需預約）；難波路線官網未載(官網/access)",
+      "airportAccess": "接駁約25分，車程約13分(官網/shuttlebus,/access)；2/13早上班次需看PDF或電話",
+      "dining": "早餐06:30-09:00於1F カフェラウンジ，官網/電話訂免費（平時800円）；官網未載晚餐(官網/dining)",
+      "nearbyDinner": "步行約5分7-Eleven；館內自動販賣機（麵包、杯麵）(官網/qa)；餐廳名稱未載",
+      "rakutenVacancy": {
+        "retrieved": "2026-10-19",
+        "dates": [
+          "2027-02-12"
+        ],
+        "combos": [
+          "8x2",
+          "5x3",
+          "4x4",
+          "3x5",
+          "2x8"
+        ],
+        "available": {
+          "2027-02-12": [
+            "8x2"
+          ]
+        },
+        "note": "15 人（全部以大人計）分 N 間同住的組合，有空房的列出；只代表查詢當天楽天上的庫存"
+      }
+    },
+    "summary": null,
+    "assessment": null
+  },
+  {
+    "id": "kix-ref-izumisano",
+    "type": "lodging",
+    "name": {
+      "ja": "レフ関空泉佐野 by ベッセルホテルズ",
+      "zh": "REF 關空泉佐野"
+    },
+    "area": "kix",
+    "region": "izumisano",
+    "kind": "hotel",
+    "coords": [
+      135.316699,
+      34.4107274
+    ],
+    "coordsSource": "other",
+    "address": "大阪府泉佐野市上町3-11-21",
+    "hours": null,
+    "closedNote": null,
+    "febNote": null,
+    "closures": [],
+    "photos": [
+      {
+        "url": "https://img.travel.rakuten.co.jp/share/HOTEL/183997/183997.jpg",
+        "page": "https://travel.rakuten.co.jp/HOTEL/183997/183997.html",
+        "kind": "rakuten",
+        "credit": "楽天トラベル（施設提供）",
+        "license": null
+      },
+      {
+        "url": "https://lh3.googleusercontent.com/grass-cs/AABkmLcs3LufTtyJAxoG-zb4N6ecCH6GPEAuok4g-acLm5nkne25v8bOrbpBZIxVIm7VzcYtnzcfWtm3P6_66jGif7_VKOO7om9SfjivAT81U0H8RPowYFonbl-8_pDJHrdpsunKCmZzZ8Y_fB0=w800",
+        "page": "https://maps.google.com/?cid=13903880658695547345",
+        "kind": "google",
+        "credit": "Google マップ（施設或使用者上傳）",
+        "license": null
+      }
+    ],
+    "links": {
+      "official": "https://www.vessel-hotel.jp/ref/izumisano/",
+      "googleMaps": "https://maps.google.com/?cid=13903880658695547345"
+    },
+    "tags": [],
+    "tier": null,
+    "nearestStation": null,
+    "pickup": "沒有接駁（官網）；團體可付費、由飯店介紹外部接送公司（楽天）；泉佐野站步行 1 分，南海到關西空港約 9 分",
+    "meals": "varies",
+    "priceRange": "每人約 4,995 円（素泊；詳見 prices）",
+    "prices": [
+      {
+        "plan": "素泊 楽天 15 人組合最低價（【2名以上限定】早割60♪素泊まり・泉佐野駅隣接★関西空港まで2駅！観光・ビジネスに便利な好立地）",
+        "unit": "per-person",
+        "adult": 4995,
+        "child": null,
+        "currency": "JPY",
+        "season": "2027-02-12（五）1 泊，8 間 × 2 人（大人）有空房時的最低價",
+        "note": "房型：シャワーブースシングル★禁煙。楽天 API 空室検索（查詢 2026-10-19），含稅、不含入湯稅等。這天有空房的組合：8x2。",
+        "source": "rakuten-api",
+        "url": "https://hotel.travel.rakuten.co.jp/hotelinfo/plan/183997?f_nen1=2027&f_tuki1=2&f_hi1=12&f_nen2=2027&f_tuki2=2&f_hi2=13&f_heya_su=8&f_otona_su=2&f_s1=0&f_s2=0&f_y1=0&f_y2=0&f_y3=0&f_y4=0",
+        "retrieved": "2026-10-19"
+      }
+    ],
+    "luggage": "前台寄放行李、收宅配便；3樓大廳免費自助置物櫃（入住前/退房後，當日24時前）（官網service）",
+    "checkIn": "14:00",
+    "checkOut": "11:00",
+    "rakutenHotelNo": 183997,
+    "dinnerAccess": null,
+    "group": {
+      "totalRooms": 222,
+      "roomTypes": [
+        "222 室；コンフォートトリプル（3 人）、プレミアム 41.4㎡（1～5 人）；沒有 4 人房、和室"
+      ],
+      "maxGuests": null,
+      "wholeRental": null,
+      "pickupCapacity": null,
+      "nearbyCombos": [],
+      "note": "團體預約方式未載；全額預付（楽天）"
+    },
+    "ratings": {
+      "rakuten": 4.53,
+      "rakutenReviews": 767,
+      "jalan": 4.6,
+      "jalanReviews": 444,
+      "booking": null,
+      "google": 4.3,
+      "googleReviews": 481,
+      "rakutenService": 4.52,
+      "rakutenLocation": 4.57,
+      "rakutenRoom": 4.51,
+      "rakutenEquipment": 4.52,
+      "rakutenBath": 4.57,
+      "rakutenMeal": 4.58,
+      "note": null
+    },
+    "accessibility": {
+      "elevator": true,
+      "beds": "全室床（120～140cm）",
+      "stairs": null,
+      "kids": "18 歲以下與父母、祖父母同房添寢免費；早餐 6～12 歲 1,000 円",
+      "note": "4～6F 各 1 間無障礙房；12F 大浴場"
+    },
+    "reservation": {
+      "methods": [
+        "rakuten",
+        "phone"
+      ],
+      "phone": "072-464-7111",
+      "url": "https://www.vessel-hotel.jp/ref/izumisano/",
+      "groupNote": "官網未載明團體預約方式；全額預付（樂天）"
+    },
+    "bookingLinks": {
+      "rakuten": "https://travel.rakuten.co.jp/HOTEL/183997/183997.html"
+    },
+    "sources": [
+      {
+        "type": "booking-site",
+        "url": "https://travel.rakuten.co.jp/HOTEL/183997/183997.html",
+        "retrieved": "2026-10-19",
+        "note": "楽天トラベル API（SimpleHotelSearch、HotelDetailSearch、VacantHotelSearch，scripts/rakuten.mjs）：評分、細項評分、房數、check-in/out、照片、2027-02-12 的空房與價格"
+      },
+      {
+        "type": "google-maps",
+        "url": "https://maps.google.com/?cid=13903880658695547345",
+        "retrieved": "2026-10-19",
+        "note": "Google 地圖「レフ関空泉佐野 by ベッセルホテルズ」：星數、評論數、座標、照片"
+      },
+      {
+        "type": "official",
+        "url": "https://www.vessel-hotel.jp/ref/izumisano/stay/",
+        "retrieved": "2026-10-19",
+        "note": "客室"
+      },
+      {
+        "type": "official",
+        "url": "https://www.vessel-hotel.jp/ref/izumisano/access/",
+        "retrieved": "2026-10-19",
+        "note": "交通"
+      },
+      {
+        "type": "official",
+        "url": "https://www.vessel-hotel.jp/ref/izumisano/breakfast/",
+        "retrieved": "2026-10-19",
+        "note": "朝食"
+      },
+      {
+        "type": "official",
+        "url": "https://www.vessel-hotel.jp/ref/izumisano/service/",
+        "retrieved": "2026-10-19",
+        "note": "設備"
+      },
+      {
+        "type": "official",
+        "url": "https://www.vessel-hotel.jp/ref/izumisano/",
+        "retrieved": "2026-10-19",
+        "note": "首頁、お知らせ"
+      },
+      {
+        "type": "booking-site",
+        "url": "https://travel.rakuten.co.jp/HOTEL/183997/rtmap.html",
+        "retrieved": "2026-10-19",
+        "note": "交通"
+      },
+      {
+        "type": "booking-site",
+        "url": "https://travel.rakuten.co.jp/HOTEL/183997/183997_std.html",
+        "retrieved": "2026-10-19",
+        "note": "222 室、設備"
+      },
+      {
+        "type": "media",
+        "url": "https://www.dreamnews.jp/press/0000226964/",
+        "retrieved": "2026-10-19",
+        "note": "開業新聞稿，房型、車站 1 分、9 分到泉佐野"
+      },
+      {
+        "type": "booking-site",
+        "url": "https://www.jalan.net/yad330686/",
+        "retrieved": "2026-10-19",
+        "note": "じゃらん評分 4.6／444 則（scripts/jalan.mjs list 273800）"
+      }
+    ],
+    "verified": false,
+    "extra": {
+      "stationAccess": "泉佐野站步行1分內（官網，樂天施設情報寫5分內，採官網）；南海難波→泉佐野約35分（特急29分）（官網アクセス）",
+      "airportAccess": "泉佐野站搭南海到關西空港約9分；站到飯店步行1分內；泉佐野首班5點台（官網アクセス）",
+      "dining": "館內無獨立餐廳；早餐3樓ラウンジ6:00～9:30，住客2000円（官網breakfast）",
+      "nearbyDinner": null,
+      "conflicts": [
+        "泉佐野站步行：官網 1 分、楽天施設情報 5 分內（採官網）"
+      ],
+      "rakutenVacancy": {
+        "retrieved": "2026-10-19",
+        "dates": [
+          "2027-02-12"
+        ],
+        "combos": [
+          "8x2",
+          "5x3",
+          "4x4",
+          "3x5",
+          "2x8"
+        ],
+        "available": {
+          "2027-02-12": [
+            "8x2"
+          ]
+        },
+        "note": "15 人（全部以大人計）分 N 間同住的組合，有空房的列出；只代表查詢當天楽天上的庫存"
+      }
+    },
+    "summary": null,
+    "assessment": null
+  }
+]
