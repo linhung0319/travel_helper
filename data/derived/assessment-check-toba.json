@@ -1,6 +1,6 @@
 {
   "area": "toba",
-  "generated": "2026-10-18",
+  "generated": "2026-10-19",
   "script": "scripts/assessment-check.mjs",
   "rules": {
     "restaurant": {
@@ -104,8 +104,8 @@
       "flagged": 2,
       "byStar": {
         "1": 2,
-        "2": 15,
-        "3": 49,
+        "2": 16,
+        "3": 48,
         "4": 15,
         "5": 2
       }

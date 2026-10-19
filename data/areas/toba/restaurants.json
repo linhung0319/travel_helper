@@ -8805,12 +8805,13 @@
       "pros": [
         "用餐本身就是體驗，冬季照常出航、有蒸牡蠣",
         "48 席、可以包船；親戚 10 人、巴士團都來過",
-        "掘りごたつ可以垂腳坐；有兒童飯糰套餐"
+        "掘りごたつ可以垂腳坐；冬季蒸牡蠣套餐有香腸、玉米，小孩能吃；觀光協會取材 2～80 多歲 4 代同行，小孩在座敷玩得開心（2023）"
       ],
       "cons": [
         "只有 12:30、18:30 出航（15 分前集合）；網路訂位曾經店家沒收到，要電話確認",
         "網路訂位限小學生以上，6 歲以下要先洽詢；小學生和大人同價",
-        "上船要脫鞋、上 2 樓甲板要走樓梯；天候差改停泊用餐"
+        "上船要脫鞋、上 2 樓甲板要走樓梯；天候差改停泊用餐",
+        "近鐵有「近鉄電車の旅」套裝（車資＋乘船＋餐，6 人起），2027 年 2 月有沒有要確認"
       ],
       "basedOn": [
         "https://tobayakatabune.jp/",
@@ -8823,7 +8824,7 @@
         "https://tabelog.com/mie/A2403/A240302/24014971/dtlrvwlst/",
         "https://maps.google.com/?cid=10827356673329115862"
       ],
-      "generated": "2026-10-18"
+      "generated": "2026-10-19"
     },
     "assessment": {
       "rubric": "restaurant-v1",
@@ -8842,7 +8843,7 @@
         "kidsFit": "網路訂位限小學生以上，6 歲以下要洽詢；有兒童飯糰套餐，小孩可以分食貝類套餐"
       },
       "confidence": "medium",
-      "assessed": "2026-10-18"
+      "assessed": "2026-10-19"
     },
     "accessibility": {
       "barrierFree": null,
@@ -18295,7 +18296,7 @@
       "cons": [
         "全室座敷（榻榻米）",
         "價位高（每人 1 萬円以上），只接 1 個月內的預約、要事先點菜",
-        "網燒的煙沾衣服；Google 低分有個室安排、接待、服務費的問題"
+        "網燒的煙很大、沾衣服，口コミ建議開窗吃（2 月會冷，長輩、小孩多帶外套，或改點壽喜燒、涮涮鍋）；Google 低分有個室安排、服務費的問題"
       ],
       "basedOn": [
         "http://niku-matsumura.co.jp/",
@@ -18306,7 +18307,7 @@
         "https://tabelog.com/mie/A2403/A240302/24000186/dtlrvwlst/",
         "https://maps.google.com/?cid=14830138975194611530"
       ],
-      "generated": "2026-10-18"
+      "generated": "2026-10-19"
     },
     "assessment": {
       "rubric": "restaurant-v1",
@@ -18325,7 +18326,7 @@
         "kidsFit": "可帶小孩（口コミ 2 則），網燒是熟食；沒有兒童餐的資料"
       },
       "confidence": "medium",
-      "assessed": "2026-10-18"
+      "assessed": "2026-10-19"
     }
   },
   {
@@ -18974,7 +18975,7 @@
       "pros": [
         "活伊勢海老現蒸，口コミ說蝦頭味噌湯最好；大型巴士團常來",
         "有兒童套餐 1,100 円，店員會教小孩剝伊勢海老",
-        "店舗情報寫無障礙；有椅子席和座敷"
+        "椅子席 40 席、輪椅可入店和用廁所，座敷有座椅子；ぐるなび 寫有 10～16 人的桌席個室（要確認）"
       ],
       "cons": [
         "價格高，伊勢海老大小和價格的關係難懂；午餐限定菜單不接團體",
@@ -18991,9 +18992,10 @@
         "https://hamoni.jp/area/mie/toba/list/curry-and-donburi",
         "https://www.city.toba.mie.jp/material/files/group/37/tobameshi_map_2022_06.pdf",
         "https://tabelog.com/mie/A2403/A240302/24000397/dtlrvwlst/",
-        "https://maps.google.com/?cid=16625186041905310118"
+        "https://maps.google.com/?cid=16625186041905310118",
+        "https://r.gnavi.co.jp/n185600/"
       ],
-      "generated": "2026-10-18"
+      "generated": "2026-10-19"
     },
     "assessment": {
       "rubric": "restaurant-v1",
@@ -19001,18 +19003,18 @@
         "recommend": 4,
         "localFlavor": 4,
         "groupFit": 3,
-        "elderFit": 4,
+        "elderFit": 5,
         "kidsFit": 5
       },
       "rationale": {
         "recommend": "食べログ 3.53（294 則）、Google 4.3（637 則），まっぷる、市府地圖、HAMONI 心得；Google 低分是價格、尺寸",
         "localFlavor": "活伊勢海老專門，冬季有鳥羽牡蠣",
-        "groupFit": "fit15 split：80～110 席、套餐可預約，午餐限定不接團體；15 人能不能同一區要電話問",
-        "elderFit": "官網後方椅子席 40 席、店舗情報無障礙；口コミ也有榻榻米上擺桌的座位",
+        "groupFit": "fit15 split：80～110 席、套餐可預約，午餐限定不接團體；ぐるなび 寫桌席個室 10～16 人、座敷個室 40～56 人，但食べログ寫沒有個室（衝突），要電話問",
+        "elderFit": "官網後方椅子席 40 席、食べログ無障礙；ぐるなび 輪椅可入店、輪椅廁所、座敷有座椅子；要預約、不用排隊 → 5",
         "kidsFit": "有兒童套餐 1,100 円"
       },
       "confidence": "medium",
-      "assessed": "2026-10-18"
+      "assessed": "2026-10-19"
     }
   },
   {
