@@ -4937,8 +4937,7 @@
       "leadDays": 1
     },
     "seating": [
-      "counter",
-      "table"
+      "counter"
     ],
     "kids": {
       "allowed": "yes",
@@ -4959,13 +4958,13 @@
         "定休：官網、觀光協會 不定休 vs 食べログ 週二",
         "晚餐：官網 18:00～L.O. 20:30、觀光協會 ～19:30、食べログ 17:30～",
         "步行：官網 15 分 vs 觀光協會 10 分",
-        "seating：原本 [\"counter\"]，改用 [\"counter\",\"table\"]（食べログ口コミ、Google 評論（2026-10-19））",
         "mustTry：原本 [\"天丼（ランチ限定，タレ／塩）\"]，改用 [\"車海老の天ぷら（コース內）\",\"あおさ（雲丹）の天ぷら（コース內）\",\"あたご丼／穴子丼（ランチコースの〆）\"]（食べログ口コミ、Google 評論（2026-10-19））",
-        "席數：食べログ口コミ L 字吧台 6＋4 人桌 3（2026/03）vs 食べログ 25 席"
+        "席數：食べログ口コミ L 字吧台 6＋4 人桌 3（2026/03）vs 食べログ 25 席",
+        "seating：口コミ 1 則（2026/03）寫 L 字吧台 6 席＋4 人桌 3 張；不完整的值要 2 則以上近 3 年的來源才補，維持 [\"counter\"]（T9g，CONVENTIONS「空值的範圍」）"
       ]
     },
     "summary": {
-      "text": "天婦羅百名店（食べログ 3.74，志摩餐廳最高分之一），用志摩食材的おまかせ天婦羅コース 13,200～33,000 円：車海老、あおさ雲丹、鮑、伊勢海老；午餐コース 5,500 円 CP 值極高。L 字吧台 6 席＋4 人桌 3 張，完全預約制，10 人以上可依預算包場。",
+      "text": "天婦羅百名店（食べログ 3.74，志摩餐廳最高分之一），用志摩食材的おまかせ天婦羅コース 13,200～33,000 円：車海老、あおさ雲丹、鮑、伊勢海老；午餐コース 5,500 円 CP 值極高。L 字吧台 6 席（口コミ 1 則說另有 4 人桌 3 張），完全預約制，10 人以上可依預算包場。",
       "pros": [
         "食べログ 3.74（99 則），口コミ說衣輕、不油膩，午餐 5,500 円很划算",
         "官網：10 人以上可依預算包場",
@@ -4984,26 +4983,26 @@
         "https://tabelog.com/mie/A2403/A240303/24016491/dtlrvwlst/",
         "https://maps.google.com/?cid=1333299723456305451"
       ],
-      "generated": "2026-10-19"
+      "generated": "2026-10-20"
     },
     "assessment": {
       "rubric": "restaurant-v1",
       "scores": {
         "recommend": 3,
         "localFlavor": 3,
-        "groupFit": 5,
-        "elderFit": 4,
+        "groupFit": 4,
+        "elderFit": 3,
         "kidsFit": 5
       },
       "rationale": {
         "recommend": "食べログ 3.74 但口コミ 99 則、Google 119 則 → 評論數上限 3（差 1 則）",
         "localFlavor": "用志摩海鮮的天婦羅（一般和食）→ 3",
-        "groupFit": "官網：10 人以上可依預算包場 → 5",
-        "elderFit": "L 字吧台＋4 人桌 3 張 → 4",
+        "groupFit": "官網：10 人以上可依預算包場，但店約 25 席（吧台為主），15 人要包場才坐得下 → 4（鳥羽「要包場才坐得下的小店」）",
+        "elderFit": "座位欄只有吧台；4 人桌 3 張只有 1 則口コミ（2026/03）→ 3（同伊勢 虎丸）",
         "kidsFit": "有兒童套餐、椅子席（口コミ「子連れ◎」）→ 5"
       },
       "confidence": "medium",
-      "assessed": "2026-10-19"
+      "assessed": "2026-10-20"
     }
   },
   {
@@ -5247,7 +5246,6 @@
     },
     "seating": [
       "zashiki",
-      "horigotatsu",
       "counter"
     ],
     "kids": {
@@ -5266,8 +5264,8 @@
         "營業時間：觀光協會 16:30～21:30，食べログ 17:00～21:00",
         "定休：觀光協會只寫月曜，食べログ另寫火曜（月1回）、年末年始",
         "停車場：觀光協會 20 台，食べログ店前 10 台ほど＋專用停車場",
-        "seating：原本 [\"zashiki\",\"counter\"]，改用 [\"zashiki\",\"horigotatsu\",\"counter\"]（食べログ口コミ、Google 評論（2026-10-19））",
-        "mustTry：原本 []，改用 [\"鯛茶漬けセット（附生魚片）約 2,500～2,750 円\",\"造り御膳 2,700 円\"]（食べログ口コミ、Google 評論（2026-10-19））"
+        "mustTry：原本 []，改用 [\"鯛茶漬けセット（附生魚片）約 2,500～2,750 円\",\"造り御膳 2,700 円\"]（食べログ口コミ、Google 評論（2026-10-19））",
+        "seating：口コミ 1 則（2026/07）寫個室有掘りごたつ；不完整的值要 2 則以上近 3 年的來源才補，維持 [\"zashiki\",\"counter\"]（T9g，CONVENTIONS「空值的範圍」）"
       ]
     },
     "summary": {
@@ -5280,7 +5278,7 @@
       "cons": [
         "每月一次週二休、哪週不明 → 2/2 要電話確認；L.O. 沒寫",
         "Google 低分順 10 則都是 1 星：接客冷淡、伊勢海老・鮑價格不透明",
-        "宴會座敷在 2F，個室是掘りごたつ"
+        "宴會座敷在 2F；個室可能是掘りごたつ（口コミ 1 則）"
       ],
       "basedOn": [
         "http://shima-tai.com/index.html",
@@ -5290,7 +5288,7 @@
         "https://tabelog.com/mie/A2403/A240303/24000565/dtlrvwlst/",
         "https://maps.google.com/?cid=12841812623179404428"
       ],
-      "generated": "2026-10-19"
+      "generated": "2026-10-20"
     },
     "assessment": {
       "rubric": "restaurant-v1",
@@ -5305,11 +5303,11 @@
         "recommend": "食べログ 3.56（220 則）＋ Google 4.1 → 第 1 條 4；Google 低分順的負評是挑出來的 10 則，照數字",
         "localFlavor": "鯛茶漬け、造り，招牌有鮑定食 → 4",
         "groupFit": "食べログ：個室最多 20～30 人、貸切 50 人以上 → 5",
-        "elderFit": "個室是掘りごたつ、2F 宴會座敷（電梯沒寫）→ 3",
+        "elderFit": "座敷＋吧台；個室的掘りごたつ只有 1 則口コミ（2026/07），2F 宴會座敷（電梯沒寫）→ 3",
         "kidsFit": "子供可、有炸物等熟食 → 4"
       },
       "confidence": "medium",
-      "assessed": "2026-10-19"
+      "assessed": "2026-10-20"
     }
   },
   {
@@ -5424,7 +5422,7 @@
       "instagram": "@chodaya_matsusakabeef"
     },
     "tags": [],
-    "tier": "A",
+    "tier": "B",
     "sources": [
       {
         "type": "tabelog",
@@ -5617,26 +5615,26 @@
         "https://tabelog.com/mie/A2403/A240303/24000435/dtlrvwlst/",
         "https://maps.google.com/?cid=17065065015197939931"
       ],
-      "generated": "2026-10-19"
+      "generated": "2026-10-20"
     },
     "assessment": {
       "rubric": "restaurant-v1",
       "scores": {
-        "recommend": 4,
+        "recommend": 3,
         "localFlavor": 3,
         "groupFit": 4,
         "elderFit": 2,
         "kidsFit": 4
       },
       "rationale": {
-        "recommend": "食べログ 3.51（284 則）＋ Google 4.2 → 第 1 條 4（5 要食べログ 3.6）",
+        "recommend": "食べログ 3.51（284 則）＋ Google 4.2 → 照數字 4；Google 低分順：肉硬、有筋、品質差的肉 多則（約 2025～2026）→ 負評往下調一級 → 3（T7j 規則）",
         "localFlavor": "松阪牛（算 3）→ 3",
         "groupFit": "fit15 yes 但根據是 100 席，個室最多 8 人、包場 50 人以上 → 4",
         "elderFit": "只有座敷 → 2",
         "kidsFit": "子供可、燒肉熟食 → 4"
       },
       "confidence": "high",
-      "assessed": "2026-10-19"
+      "assessed": "2026-10-20"
     }
   },
   {
@@ -5914,26 +5912,26 @@
         "https://tabelog.com/mie/A2403/A240303/24013198/dtlrvwlst/",
         "https://maps.google.com/?cid=17461622138978014804"
       ],
-      "generated": "2026-10-19"
+      "generated": "2026-10-20"
     },
     "assessment": {
       "rubric": "restaurant-v1",
       "scores": {
-        "recommend": 3,
+        "recommend": 2,
         "localFlavor": 4,
         "groupFit": 3,
         "elderFit": 4,
         "kidsFit": 5
       },
       "rationale": {
-        "recommend": "食べログ 3.43 不到 3.45；Google 4.4 但 201 則不到 300 → 3",
+        "recommend": "食べログ 3.43 不到 3.45；Google 4.4 但 201 則不到 300 → 3；Google 低分順：份量或品質不值（牡蠣小、刺身不新鮮）多則（約 2024～2026）→ 負評往下調一級 → 2（T7j 規則）",
         "localFlavor": "地魚刺身、蒸し牡蠣、伊勢海老味噌汁 → 4",
         "groupFit": "fit15 split：30 席、可包場 → 3",
         "elderFit": "座敷＋吧台，口コミ有 4 人桌和 6～8 人大桌 → 4",
         "kidsFit": "兒童おまかせ 1,000 円 → 5"
       },
       "confidence": "medium",
-      "assessed": "2026-10-19"
+      "assessed": "2026-10-20"
     }
   },
   {
@@ -7704,26 +7702,26 @@
         "https://tabelog.com/mie/A2403/A240303/24020292/dtlrvwlst/",
         "https://maps.google.com/?cid=15271833112006851021"
       ],
-      "generated": "2026-10-19"
+      "generated": "2026-10-20"
     },
     "assessment": {
       "rubric": "restaurant-v1",
       "scores": {
-        "recommend": 3,
+        "recommend": 2,
         "localFlavor": 3,
         "groupFit": 4,
         "elderFit": 4,
         "kidsFit": 4
       },
       "rationale": {
-        "recommend": "食べログ 3.18（38 則）、Google 4.4（174 則）→ 評論數上限 3",
+        "recommend": "食べログ 3.18（38 則）、Google 4.4（174 則）→ 評論數上限 3；女店員態度差 多則（約 2025～2026，近 2 週也有）→ 負評往下調一級 → 2（T7j 規則）",
         "localFlavor": "鰻（1），但有松阪牛、伊勢どり（三重食材）→ 3",
         "groupFit": "fit15 yes 但店小、要包場或コース 16 人 → 4",
         "elderFit": "座敷、桌、吧台 → 4",
         "kidsFit": "小孩可、熟食（ひつまぶし）→ 4"
       },
       "confidence": "medium",
-      "assessed": "2026-10-19"
+      "assessed": "2026-10-20"
     }
   },
   {
@@ -8306,7 +8304,9 @@
       "conflicts": [
         "閉店：官網 24:00 vs 食べログ 01:30（L.O.01:00）",
         "包場：官網 20～40 名 vs 食べログ 20～50 人",
-        "打烊：官網 24:00 vs 食べログ 01:30"
+        "打烊：官網 24:00 vs 食べログ 01:30",
+        "seating：ホットペッパー 店舗頁（2023/06 更新）寫有テーブル 6 名×2、無個室、沒有無障礙設備；只有 1 個來源，seating 不補（T9g 深入調查）",
+        "席數、宴會人數：官網 40 席・包場 20～40 人 vs ホットペッパー 32 席・宴會最大 32 人（T9g 深入調查）"
       ]
     },
     "summary": {
@@ -8318,7 +8318,7 @@
       ],
       "cons": [
         "Google 3.9：店主・店員無愛想、刺身不新鮮、冷凍炸物的負評",
-        "座敷＋吧台、無個室",
+        "座敷（小上がり）＋吧台為主，ホットペッパー 寫另有 6 人桌 2 張；無個室、沒有無障礙設備",
         "鵜方站約 900 m（長輩搭計程車 3 分）；週日休"
       ],
       "basedOn": [
@@ -8329,7 +8329,7 @@
         "https://tabelog.com/mie/A2403/A240303/24005459/dtlrvwlst/",
         "https://maps.google.com/?cid=18420540658307184290"
       ],
-      "generated": "2026-10-19"
+      "generated": "2026-10-20"
     },
     "assessment": {
       "rubric": "restaurant-v1",
@@ -8343,12 +8343,12 @@
       "rationale": {
         "recommend": "食べログ 3.15（19 則）、Google 3.9（112 則）→ 評論數上限 3",
         "localFlavor": "居酒屋的鮮魚刺身、塩焼き → 3",
-        "groupFit": "官網：包場 20～40 人、宴會套餐 → 5",
-        "elderFit": "座敷＋吧台，沒有桌席 → 3",
+        "groupFit": "官網：包場 20～40 人、宴會套餐（ホットペッパー：宴會最大 32 人）→ 5",
+        "elderFit": "座敷＋吧台；ホットペッパー 寫有 6 人桌 2 張但只有 1 個來源、沒有無障礙設備 → 3",
         "kidsFit": "子供可、有烤魚等熟食 → 4"
       },
       "confidence": "low",
-      "assessed": "2026-10-19"
+      "assessed": "2026-10-20"
     }
   },
   {
@@ -10106,26 +10106,26 @@
         "https://tabelog.com/mie/A2403/A240303/24010853/",
         "https://maps.google.com/?cid=7796040394836651743"
       ],
-      "generated": "2026-10-19"
+      "generated": "2026-10-20"
     },
     "assessment": {
       "rubric": "restaurant-v1",
       "scores": {
-        "recommend": 3,
+        "recommend": 2,
         "localFlavor": 1,
         "groupFit": 2,
         "elderFit": null,
         "kidsFit": 4
       },
       "rationale": {
-        "recommend": "食べログ 3.13（22 則）、Google 4.0（177 則）→ 評論數上限 3（觀光協會有介紹，不是 2）",
+        "recommend": "食べログ 3.13 未満 3.3，讀文只有觀光協會「食べる」（會員名錄、不算介紹，T8g 規則）→ 2",
         "localFlavor": "一般燒肉，沒有松阪牛等的來源 → 1",
         "groupFit": "fit15 unknown：有個室（人數不明）、不可包場 → 2",
         "elderFit": "座位形式沒有來源",
         "kidsFit": "觀光協會：各年齡層都適合；燒肉熟食 → 4"
       },
       "confidence": "low",
-      "assessed": "2026-10-19"
+      "assessed": "2026-10-20"
     }
   },
   {
@@ -10351,7 +10351,8 @@
       "cons": [
         "座位不能預約：預留了鰻魚還常等 1～2 小時，沒預留可能吃不到",
         "週二休（2/2、2/9）、只收現金；L.O. 18:00",
-        "全座敷"
+        "全座敷",
+        "ホットペッパー：最大宴會 25 人但貸切不可、無個室；15 人只能分批預留鰻魚"
       ],
       "basedOn": [
         "https://higashiyamabussan.gorp.jp/",
@@ -10360,7 +10361,7 @@
         "https://tabelog.com/mie/A2403/A240303/24006418/dtlrvwlst/",
         "https://maps.google.com/?cid=18388069724135556055"
       ],
-      "generated": "2026-10-19"
+      "generated": "2026-10-20"
     },
     "assessment": {
       "rubric": "restaurant-v1",
@@ -10372,14 +10373,14 @@
         "kidsFit": 4
       },
       "rationale": {
-        "recommend": "食べログ 3.74（931 則）＋ Google 4.5 → 第 1 條 4；介紹只有觀光協會 1 種，不到 5 的 3 種",
+        "recommend": "食べログ 3.74（931 則）＋ Google 4.5 → 第 1 條 4；觀光協會「食べる」是會員名錄、不算介紹（T8g 規則），不到 5 的 3 種來源。低分多是口味不合（甜醬、薄身）和預約制度，不是品質問題 → 不往下調",
         "localFlavor": "鰻魚，和在地無關 → 1",
-        "groupFit": "座位不能預約 → 1",
+        "groupFit": "座位不能預約（ホットペッパー 寫最大宴會 25 人，但貸切不可、無個室、網路預約不受理）→ 1",
         "elderFit": "全座敷，而且要等 1～2 小時 → 2 降一級 1",
         "kidsFit": "子供可、有兒童椅、鰻魚是熟食 → 4"
       },
       "confidence": "high",
-      "assessed": "2026-10-19"
+      "assessed": "2026-10-20"
     }
   },
   {
@@ -11217,7 +11218,7 @@
         "https://tabelog.com/mie/A2403/A240303/24016462/dtlrvwlst/",
         "https://maps.google.com/?cid=9722853393265016956"
       ],
-      "generated": "2026-10-19"
+      "generated": "2026-10-20"
     },
     "assessment": {
       "rubric": "restaurant-v1",
@@ -11229,14 +11230,14 @@
         "kidsFit": 4
       },
       "rationale": {
-        "recommend": "食べログ 3.40 不到 3.45；Google 4.5（392 則），但介紹只有觀光協會 1 種（第 2 條要 2 種）→ 3",
+        "recommend": "食べログ 3.40 不到 3.45；Google 4.5（392 則），但觀光協會「食べる」是會員名錄、不算介紹（T8g 規則），第 2 條不成立 → 3",
         "localFlavor": "志摩名產きんこ芋的甜點 → 4",
         "groupFit": "fit15 yes 但根據是包場 20 人以下、席數沒寫（輕食）→ 4",
         "elderFit": "座位形式沒有來源（食べログ寫バリアフリー，沒有用來代替座位形式）",
         "kidsFit": "子供可、甜點霜淇淋、外面有草坪 → 4"
       },
       "confidence": "medium",
-      "assessed": "2026-10-19"
+      "assessed": "2026-10-20"
     }
   },
   {
@@ -11517,7 +11518,8 @@
         "價格：官網菜單（2019 年版網站）コース 5,500・フルコース 11,000；觀光三重 2025 御膳 3,500・フルコース 11,000 稅別；食べログコース頁（2026-10）コース 6,600・フルコース 12,100 稅込",
         "團體：官網 18 名宴會 vs 食べログ貸切 20～50 人",
         "停車場：觀光三重 7＋15 台 vs 食べログ 20 台",
-        "mustTry：原本 []，改用 [\"あのりふぐコース 5,500～6,600 円\",\"あのりふぐフルコース 12,100 円\"]（食べログ口コミ、Google 評論（2026-10-19））"
+        "mustTry：原本 []，改用 [\"あのりふぐコース 5,500～6,600 円\",\"あのりふぐフルコース 12,100 円\"]（食べログ口コミ、Google 評論（2026-10-19））",
+        "個室：Retty 店舗資訊寫「個室：無」、40 席 vs 官網 座敷包廂可辦 18 名宴會（T9g 深入調查；以官網為準，要電話確認）"
       ]
     },
     "summary": {
@@ -11530,7 +11532,8 @@
       "cons": [
         "週二休（2/2、2/9）；2～3 月是旺季、要早訂；當天取消收全額",
         "全座敷；熱門時座敷要等前一組換桌",
-        "鵜方站計程車約 15 分（巴士約 1.5 小時 1 班）"
+        "鵜方站計程車約 15 分（巴士約 1.5 小時 1 班）",
+        "Retty 寫個室「無」，和官網的 18 名宴會包廂不一致 → 15 人的席要電話確認"
       ],
       "basedOn": [
         "http://anorifugu.com/marusei/",
@@ -11542,7 +11545,7 @@
         "https://tabelog.com/mie/A2403/A240303/24002115/dtlrvwlst/",
         "https://maps.google.com/?cid=3268255678231578888"
       ],
-      "generated": "2026-10-19"
+      "generated": "2026-10-20"
     },
     "assessment": {
       "rubric": "restaurant-v1",
@@ -11561,7 +11564,7 @@
         "kidsFit": "小孩規定沒寫；唐揚げ、てっちり 等熟食 → 3"
       },
       "confidence": "medium",
-      "assessed": "2026-10-19"
+      "assessed": "2026-10-20"
     }
   },
   {
@@ -12695,26 +12698,26 @@
         "https://tabelog.com/mie/A2403/A240303/24000557/dtlrvwlst/",
         "https://maps.google.com/?cid=17570581391559481937"
       ],
-      "generated": "2026-10-19"
+      "generated": "2026-10-20"
     },
     "assessment": {
       "rubric": "restaurant-v1",
       "scores": {
-        "recommend": 3,
+        "recommend": 2,
         "localFlavor": 3,
         "groupFit": 5,
         "elderFit": 2,
         "kidsFit": 5
       },
       "rationale": {
-        "recommend": "食べログ 3.37（83 則）、Google 4.0（383 則）→ 3",
+        "recommend": "食べログ 3.37（83 則）、Google 4.0（383 則）→ 3；鰻魚像橡膠、像事先烤好的 近 1 年 3 則（品質）→ 負評往下調一級 → 2（T7j 規則）",
         "localFlavor": "招牌是鰻魚（1），冬季有的矢かき御膳（4）→ 3",
         "groupFit": "食べログ：個室 2～30 人、宴會最大 40 人；官網 10 人以上可接送 → 5",
         "elderFit": "座敷為主、椅子席沒有來源 → 2",
         "kidsFit": "官網：お子様連れ OK、お子様うな重 950 円 → 5"
       },
       "confidence": "medium",
-      "assessed": "2026-10-19"
+      "assessed": "2026-10-20"
     }
   },
   {
@@ -12800,7 +12803,7 @@
       "instagram": "@seijyoumatoyakaki"
     },
     "tags": [],
-    "tier": "A",
+    "tier": "B",
     "sources": [
       {
         "type": "tabelog",
@@ -12968,26 +12971,26 @@
         "https://tabelog.com/mie/A2403/A240303/24018818/dtlrvwlst/",
         "https://maps.google.com/?cid=7070301200354678047"
       ],
-      "generated": "2026-10-19"
+      "generated": "2026-10-20"
     },
     "assessment": {
       "rubric": "restaurant-v1",
       "scores": {
-        "recommend": 4,
+        "recommend": 3,
         "localFlavor": 5,
         "groupFit": 3,
         "elderFit": 4,
         "kidsFit": 4
       },
       "rationale": {
-        "recommend": "食べログ 3.62（251 則）＋ Google 4.3 → 第 1、2 條 4；5 要食べログ 300 則以上",
+        "recommend": "食べログ 3.62（251 則）＋ Google 4.3 → 照數字 4；吃完腹痛、嘔吐的 1 星 3 則（約 2025～2026，衛生）→ 負評往下調一級 → 3（T7j 規則）",
         "localFlavor": "養殖場直營、海上筏席吃的矢牡蠣，用餐本身是在地體驗 → 5",
         "groupFit": "fit15 split：約 118 席，但網路最多 6 人、團體要電話問 → 3",
         "elderFit": "入口坡道、1F 輪椅席、無障礙廁所、桌席；熱門要等、筏席會搖 → 4",
         "kidsFit": "子供可（乳兒～小學生），有炸蝦、唐揚げ 定食 → 4"
       },
       "confidence": "high",
-      "assessed": "2026-10-19"
+      "assessed": "2026-10-20"
     }
   },
   {
@@ -13251,9 +13254,9 @@
       "privateRoom": true,
       "buyout": "可（20～50 人、50 人以上）",
       "groupMenu": "官網、食べログ コース（2026/08）：いかだ御膳 4,400 円、伊勢志摩じのもの会席 8,800 円、的矢牡蠣会席 8,800～16,500 円、海老フライセット 2,750 円（兒童、少食）；沒有團體專用套餐，貸切・團體電話洽詢",
-      "fit15": "yes",
+      "fit15": "unknown",
       "fitSubgroup": "yes",
-      "source": "食べログ（店舗会員）：66 席、最大予約 80 人、貸切 20～50 人以上、完全予約制；備考「貸切・団体様のご予約に関しては、お電話で」；官網網路訂位最多大人 10 位"
+      "source": "食べログ（店舗会員）：66 席、最大予約 80 人、貸切 20～50 人以上、完全予約制；備考「貸切・団体様のご予約に関しては、お電話で」；官網網路訂位最多大人 10 位 → F③ 的 fit15 只看非住客方案，非住客 15 人沒有來源 → unknown（T7j 規則，T9g 改）"
     },
     "reservation": {
       "accepted": "yes",
@@ -13291,10 +13294,10 @@
       "lodgingId": "shima-ikadaso-sanjo"
     },
     "summary": {
-      "text": "的矢湾的牡蠣料理旅館 いかだ荘 山上 對外的午餐、晚餐（官網 FAQ「昼食だけの利用は可能」）：いかだ御膳 4,400 円（生・焼・フライ・牡蠣飯）、冬季的矢牡蠣会席 8,800～16,500 円；兒童餐 海老フライセット 2,750 円。最大予約 80 人、可包場，冬季只休週四，是的矢湾週二午餐唯一確定營業的店。",
+      "text": "的矢湾的牡蠣料理旅館 いかだ荘 山上 對外的午餐、晚餐（官網 FAQ「昼食だけの利用は可能」）：いかだ御膳 4,400 円（生・焼・フライ・牡蠣飯）、冬季的矢牡蠣会席 8,800～16,500 円；兒童餐 海老フライセット 2,750 円。食べログ寫最大予約 80 人（非住客 15 人要電話確認），冬季只休週四，是的矢湾週二午餐唯一確定營業的店。",
       "pros": [
         "食べログ 3.54（154 則）、Google 4.4，口コミ說牡蠣大顆新鮮",
-        "最大予約 80 人、宴會場 80 名；用餐客可免費泡大浴場",
+        "食べログ：最大予約 80 人、可包場（非住客 15 人要電話確認）；用餐客可免費泡大浴場",
         "兒童餐 2,750 円、帶小孩安排個室"
       ],
       "cons": [
@@ -13312,26 +13315,26 @@
         "https://tabelog.com/mie/A2403/A240303/24001032/party/",
         "https://tabelog.com/mie/A2403/A240303/24001032/dtlrvwlst/"
       ],
-      "generated": "2026-10-19"
+      "generated": "2026-10-20"
     },
     "assessment": {
       "rubric": "restaurant-v1",
       "scores": {
         "recommend": 4,
         "localFlavor": 4,
-        "groupFit": 5,
+        "groupFit": 3,
         "elderFit": 4,
         "kidsFit": 5
       },
       "rationale": {
         "recommend": "食べログ 3.54（154 則）＋ Google 4.4（住宿本體）→ 第 1 條 4",
         "localFlavor": "的矢牡蠣会席、いかだ御膳 → 4",
-        "groupFit": "食べログ（店舗会員）：最大予約 80 人、貸切可 → 5",
+        "groupFit": "F③：最大予約 80 人是食べログ店舗情報、官網網路訂位最多大人 10 位，非住客 15 人的方案沒有來源 → fit15 unknown、3（T7j 規則，同鳥羽 みち潮）",
         "elderFit": "一樓的食事處，座敷＋和室桌席（口コミ）→ 4",
         "kidsFit": "兒童餐 海老フライセット、不吃牡蠣可換菜 → 5"
       },
       "confidence": "medium",
-      "assessed": "2026-10-19"
+      "assessed": "2026-10-20"
     }
   },
   {
@@ -13416,7 +13419,7 @@
       "instagram": null
     },
     "tags": [],
-    "tier": "A",
+    "tier": "B",
     "sources": [
       {
         "type": "tabelog",
@@ -13545,7 +13548,7 @@
     "summary": {
       "text": "上之郷站前、伊雑宮鳥居前的鰻魚老店，店舖是昭和 4 年的木造旅館（登錄有形文化財）：うなぎ丼 3～5 切れ（5 切れ 3,270 円）、炭火焦香、價格便宜。只開 11:00～13:00、不能預約、全座敷，開店前就排隊；參拜伊雑宮時的午餐，15 人一起難安排。",
       "pros": [
-        "食べログ 3.39、Google 4.4（376 則），觀光協會、るるぶ 介紹",
+        "食べログ 3.39、Google 4.4（376 則），るるぶ 介紹",
         "登錄有形文化財的旅館建築，冬天 2 樓座敷日照溫暖",
         "上之郷站步行 3 分"
       ],
@@ -13561,26 +13564,26 @@
         "https://tabelog.com/mie/A2403/A240303/24000718/dtlrvwlst/",
         "https://maps.google.com/?cid=298914775954048078"
       ],
-      "generated": "2026-10-19"
+      "generated": "2026-10-20"
     },
     "assessment": {
       "rubric": "restaurant-v1",
       "scores": {
-        "recommend": 4,
+        "recommend": 2,
         "localFlavor": 1,
         "groupFit": 1,
         "elderFit": 1,
         "kidsFit": 4
       },
       "rationale": {
-        "recommend": "食べログ 3.39（≥3.3）＋ Google 4.4（376 則）＋觀光協會・るるぶ 2 種 → 第 2 條 4",
+        "recommend": "食べログ 3.39 不到 3.45；第 2 條的介紹只有 るるぶ&more 1 種（觀光協會「食べる」是會員名錄、不算介紹，T8g 規則）→ 3；Google 低分順：鰻魚口感像橡膠 多則（約 2024～2026）→ 負評往下調一級 → 2（T7j 規則）",
         "localFlavor": "鰻魚，和在地無關 → 1",
         "groupFit": "不接受預約 → 1",
         "elderFit": "全座敷、多在 2 樓，還要排隊 → 1",
         "kidsFit": "子供可、2 樓廣大和室適合帶小孩，鰻魚是熟食 → 4"
       },
       "confidence": "medium",
-      "assessed": "2026-10-19"
+      "assessed": "2026-10-20"
     }
   },
   {
@@ -13831,9 +13834,9 @@
       "privateRoom": true,
       "buyout": null,
       "groupMenu": "官網：沒有團體套餐；広間可辦 80～100 名宴會，料理在個室上菜；的矢かき味覚コース 7,500 円、あのりふぐ系 3 天前預約",
-      "fit15": "yes",
+      "fit15": "unknown",
       "fitSubgroup": "yes",
-      "source": "食べログ：80 席、個室 30 人以上、予約可；官網：広間 80～100 名 → yes"
+      "source": "食べログ：80 席、個室 30 人以上、予約可；官網：広間 80～100 名（住宿整體的宴會場）→ F③ 的 fit15 只看非住客方案，非住客的人數條件沒寫 → unknown（T7j 規則，T9g 改）"
     },
     "reservation": {
       "accepted": "yes",
@@ -13871,7 +13874,7 @@
     "summary": {
       "text": "的矢湾的料理旅館 橘，非住客可預約午餐、晚餐：冬季的矢かきランチ 3,960 円（殼付 6 個＋炸牡蠣＋かきご飯）、的矢かき御膳 2,750 円、套餐 7,500 円起，也有あのりふぐ。広間 80～100 名；6,000 円以上的套餐有志摩磯部・鵜方站免費小巴。官網公告 2027/2/2 午餐已客滿，2/9 還有。",
       "pros": [
-        "広間 80～100 名、個室 30 人以上",
+        "広間 80～100 名（住宿整體；非住客 15 人要電話確認）",
         "冬季的矢かき料理，口コミ說量很多、女將親切",
         "6,000 円以上套餐有車站免費小巴"
       ],
@@ -13890,26 +13893,26 @@
         "https://tabelog.com/mie/A2403/A240303/24001171/",
         "https://tabelog.com/mie/A2403/A240303/24001171/dtlrvwlst/"
       ],
-      "generated": "2026-10-19"
+      "generated": "2026-10-20"
     },
     "assessment": {
       "rubric": "restaurant-v1",
       "scores": {
         "recommend": 3,
         "localFlavor": 4,
-        "groupFit": 5,
+        "groupFit": 3,
         "elderFit": 2,
         "kidsFit": 3
       },
       "rationale": {
         "recommend": "食べログ 3.21（48 則）、Google 4.2（97 則）→ 評論數上限 3",
         "localFlavor": "的矢かき料理、あのりふぐ → 4",
-        "groupFit": "官網：広間 80～100 名；食べログ 個室 30 人以上 → 5",
+        "groupFit": "F③：広間 80～100 名是住宿整體的宴會場、個室 30 人以上是食べログ店舗情報；非住客方案沒寫人數 → fit15 unknown、3（T7j 規則）",
         "elderFit": "座敷（冬季座位沒寫）→ 2",
         "kidsFit": "小孩規定沒寫；焼き牡蠣、カキフライ 等熟食 → 3"
       },
       "confidence": "low",
-      "assessed": "2026-10-19"
+      "assessed": "2026-10-20"
     }
   },
   {

@@ -274,7 +274,8 @@
       "cons": [
         "15 人組合一泊二食每人約 44,605 円（2/2），志摩最貴的一群",
         "和食浜木綿限小學生以上；晚餐有 smart casual 服裝規定",
-        "大浴場只給ベイスイート住客；電梯沒有來源"
+        "大浴場只給ベイスイート住客；電梯沒有來源",
+        "口コミ：浴室是ユニットバス；晚餐「無難」、人手不足（2025/11，1 則）"
       ],
       "basedOn": [
         "https://www.miyakohotels.ne.jp/shima/",
@@ -286,7 +287,7 @@
         "https://travel.rakuten.co.jp/HOTEL/1150/1150.html",
         "https://travel.rakuten.co.jp/HOTEL/1150/1150_std.html"
       ],
-      "generated": "2026-10-19"
+      "generated": "2026-10-20"
     },
     "assessment": {
       "rubric": "lodging-v1",
@@ -305,7 +306,7 @@
         "accessEase": "賢島站步行 5 分、定時免費接駁 2 分；2/2 第一晚：賢島發 18:50 末班接得上（車的定員沒寫）"
       },
       "confidence": "medium",
-      "assessed": "2026-10-19"
+      "assessed": "2026-10-20"
     }
   },
   {
@@ -2930,26 +2931,26 @@
         "https://travel.rakuten.co.jp/HOTEL/13971/13971.html",
         "https://travel.rakuten.co.jp/HOTEL/13971/13971_std.html"
       ],
-      "generated": "2026-10-19"
+      "generated": "2026-10-20"
     },
     "assessment": {
       "rubric": "lodging-v1",
       "scores": {
         "recommend": 3,
         "meals": 3,
-        "groupFit": 3,
+        "groupFit": 4,
         "elderFit": 4,
         "accessEase": 4
       },
       "rationale": {
         "recommend": "楽天 3.93（4,405 則）、じゃらん 4.1、Google 3.7：評價普通，負評是人多、不是設備清潔 → 3",
         "meals": "楽天餐 3.98 → 3（自助）",
-        "groupFit": "372 室、房型 5～9 人，團體要寫信洽詢；宴會場沒查到 → 3",
+        "groupFit": "372 室、房型 5～9 人；團體要寫信洽詢，宴會場沒查到，15 人能在同一處訂到 → 4（T8g 規則：groupFit 4 不要求宴會場；一起吃晚餐看 meals）",
         "elderFit": "有電梯 3 台、多是床、有輪椅用客室，但館大、電梯擠 → 4",
         "accessEase": "鵜方站接駁 33 人座、免預約，每小時 1 班、15 分 → 4；2/2 第一晚：休館（2/2 不能住）"
       },
       "confidence": "medium",
-      "assessed": "2026-10-19"
+      "assessed": "2026-10-20"
     }
   },
   {
@@ -5519,26 +5520,26 @@
         "https://travel.rakuten.co.jp/HOTEL/37458/37458.html",
         "https://travel.rakuten.co.jp/HOTEL/37458/37458_std.html"
       ],
-      "generated": "2026-10-19"
+      "generated": "2026-10-20"
     },
     "assessment": {
       "rubric": "lodging-v1",
       "scores": {
         "recommend": 5,
         "meals": 4,
-        "groupFit": 3,
+        "groupFit": 4,
         "elderFit": 2,
         "accessEase": 3
       },
       "rationale": {
         "recommend": "主要訂房網じゃらん 4.6（1,898 則）、Google 4.4 → 5（心得 0 篇，沒讀到負評）",
         "meals": "楽天餐 4.63 → 4",
-        "groupFit": "21 室，房型多是 2 人、各房型室數沒寫，沒有宴會場 → 3",
+        "groupFit": "21 室、房型 2～6 人（各房型室數沒寫），15 人能在同一處訂到 → 4（T8g 規則：groupFit 4 不要求宴會場；一起吃晚餐看 meals）",
         "elderFit": "館內有階梯、上下船有階梯，客房內不能用輪椅；電梯沒有來源 → 2",
         "accessEase": "鵜方站免費接送一天 3 班（前一天預約）＋專用船 3 分 → 3；2/2 第一晚：接送 16:45、含晚餐 18:00 前入住，趕不上"
       },
       "confidence": "medium",
-      "assessed": "2026-10-19"
+      "assessed": "2026-10-20"
     }
   },
   {
@@ -5976,26 +5977,26 @@
         "https://travel.rakuten.co.jp/HOTEL/44981/44981.html",
         "https://travel.rakuten.co.jp/HOTEL/44981/44981_std.html"
       ],
-      "generated": "2026-10-19"
+      "generated": "2026-10-20"
     },
     "assessment": {
       "rubric": "lodging-v1",
       "scores": {
         "recommend": 3,
         "meals": 4,
-        "groupFit": 3,
+        "groupFit": 4,
         "elderFit": 3,
         "accessEase": 3
       },
       "rationale": {
         "recommend": "楽天 4.47（410 則）、Google 4.0；照原門檻是 4，依區調整後要 4.5 以上 → 3",
         "meals": "楽天餐 4.56 → 4",
-        "groupFit": "33 室（每間 1～5 人），沒有宴會場、團體方案的來源 → 3",
+        "groupFit": "全館 33 室、每間 1～5 人，15 人能在同一處訂到 → 4（T8g 規則：groupFit 4 不要求宴會場；一起吃晚餐看 meals）",
         "elderFit": "椿有附床和室；電梯沒有來源 → 3",
         "accessEase": "賢島站免費接送約 20 分、一天 4 班、要預約 → 3；2/2 第一晚：末班 17:45 趕不上"
       },
       "confidence": "medium",
-      "assessed": "2026-10-19"
+      "assessed": "2026-10-20"
     }
   },
   {
@@ -6287,26 +6288,26 @@
         "https://travel.rakuten.co.jp/HOTEL/51449/51449_std.html",
         "https://www.jalan.net/yad342596/"
       ],
-      "generated": "2026-10-19"
+      "generated": "2026-10-20"
     },
     "assessment": {
       "rubric": "lodging-v1",
       "scores": {
         "recommend": 3,
         "meals": 4,
-        "groupFit": 3,
+        "groupFit": 4,
         "elderFit": 2,
         "accessEase": 3
       },
       "rationale": {
         "recommend": "主要訂房網じゃらん 4.6（1,071 則）但 Google 4.0（2,625 則，含日歸）→ 依區調整後 4 要 Google 4.2 → 3",
         "meals": "楽天餐 4.48 → 4",
-        "groupFit": "53 室、每間 2～3 人（加床到 5），沒有宴會場、團體方案 → 3",
+        "groupFit": "53 室、每間 2～4 人（加床到 5），15 人能在同一處訂到 → 4（T8g 規則：groupFit 4 不要求宴會場；一起吃晚餐看 meals）",
         "elderFit": "官網明寫非無障礙、階梯多、全區石板路；電梯沒有來源 → 2",
         "accessEase": "鵜方站免費接送一天 4 班（預約）、車程 15 分 → 3；2/2 第一晚：末班 17:40，要計程車並在 19:00 前電話"
       },
       "confidence": "medium",
-      "assessed": "2026-10-19"
+      "assessed": "2026-10-20"
     }
   },
   {
@@ -7351,26 +7352,26 @@
         "https://travel.rakuten.co.jp/HOTEL/67913/67913_std.html",
         "https://maps.google.com/?cid=2637377338850702748"
       ],
-      "generated": "2026-10-19"
+      "generated": "2026-10-20"
     },
     "assessment": {
       "rubric": "lodging-v1",
       "scores": {
         "recommend": 3,
         "meals": 3,
-        "groupFit": 3,
+        "groupFit": 4,
         "elderFit": 3,
         "accessEase": 3
       },
       "rationale": {
         "recommend": "楽天 4.00（319 則），Google 沒有評分 → 3",
         "meals": "不供餐，dinnerAccess walk（槙之木 19 分），部分棟有廚房 → 3",
-        "groupFit": "18 棟、每棟 2～9 人，15 人要 2～3 棟 → 3",
+        "groupFit": "コテージ 18 棟（每棟 2～9 人），15 人 2～3 棟、同一處訂得到（同伊勢 プラフィーノ），15 人能在同一處訂到 → 4（T8g 規則：groupFit 4 不要求宴會場；一起吃晚餐看 meals）",
         "elderFit": "每棟有雙人床臥室；階梯沒有來源 → 3",
         "accessEase": "鵜方站計程車 15 分、接送已終止 → 3；2/2 第一晚：入住到 22:00"
       },
       "confidence": "medium",
-      "assessed": "2026-10-19"
+      "assessed": "2026-10-20"
     }
   },
   {
@@ -7667,26 +7668,26 @@
         "https://travel.rakuten.co.jp/HOTEL/67941/67941.html",
         "https://travel.rakuten.co.jp/HOTEL/67941/67941_std.html"
       ],
-      "generated": "2026-10-19"
+      "generated": "2026-10-20"
     },
     "assessment": {
       "rubric": "lodging-v1",
       "scores": {
         "recommend": 3,
         "meals": 3,
-        "groupFit": 3,
+        "groupFit": 4,
         "elderFit": 3,
         "accessEase": 3
       },
       "rationale": {
         "recommend": "楽天 4.24（3,132 則）、Google 4.0 → 3",
         "meals": "楽天餐 4.29 → 3",
-        "groupFit": "127 室、房型定員清楚，但餐廳不接受訂位、宴會場沒讀 → 3",
+        "groupFit": "127 室、房型定員 3～6 人都查得到；餐廳不接受訂位，15 人能在同一處訂到 → 4（T8g 規則：groupFit 4 不要求宴會場；一起吃晚餐看 meals）",
         "elderFit": "有バリアフリールーム、洋室是床；電梯沒有來源 → 3",
         "accessEase": "賢島站免費接駁約 25 分、不用預約 → 3；2/2 第一晚：接駁已停，計程車到、晚餐最終入店 19:30"
       },
       "confidence": "medium",
-      "assessed": "2026-10-19"
+      "assessed": "2026-10-20"
     }
   },
   {
@@ -7812,11 +7813,11 @@
       "note": null
     },
     "accessibility": {
-      "elevator": null,
+      "elevator": true,
       "beds": "シーリー社製ベッド（未註明房型）；ツイン／キング房型；FUTONスイート（名稱含 FUTON，是否和室未寫）（2）",
       "stairs": null,
       "kids": "楽天訂房表單有小学生高学年／低学年、幼児四種（食事・布団付／食事のみ／布団のみ／不要）區分，價格未寫（7）；兩間餐廳「ご利用は小学生以上」（4、5、6）",
-      "note": "楽天設備欄：車椅子可入、車椅子貸出、バリアフリー厠所、バリアフリー客室（詳細需向飯店確認）（6）"
+      "note": "楽天設備欄：車椅子可入、車椅子貸出、バリアフリー厠所、バリアフリー客室（詳細需向飯店確認）（6）；BAILA 宿泊記（2026/07）寫「部屋までのエレベータ」（T9g 深入調查）"
     },
     "reservation": {
       "methods": [
@@ -7885,6 +7886,18 @@
         "url": "https://www.jalan.net/yad338802/",
         "retrieved": "2026-10-18",
         "note": "じゃらん クチコミ総合、評論數（scripts/jalan.mjs）"
+      },
+      {
+        "type": "blog-ja",
+        "url": "https://baila.hpplus.jp/blogs/naganuma_yui/81050",
+        "retrieved": "2026-10-20",
+        "note": "BAILA ブロガー宿泊記（2026/07）：到客房的電梯、ラウンジ、賢島駅接送（T9g 深入調查）"
+      },
+      {
+        "type": "other",
+        "url": "https://4travel.jp/dm_hotel-10220130",
+        "retrieved": "2026-10-20",
+        "note": "4travel 口コミ（2023/07～2026/03）：到ザ クラシック 的距離、清潔、晚餐的評價（T9g 深入調查）"
       }
     ],
     "verified": false,
@@ -7924,7 +7937,8 @@
       "cons": [
         "兩間餐廳都限小學生以上，6 歲還沒上小學的孩子不能進餐廳",
         "每間最多 2～3 人，15 人要 6～8 間；素泊每人約 28,809 円起，價位最高",
-        "楽天 2/2、2/3 15 人組合沒有空房（2027-02 方案可能還沒開）"
+        "楽天 2/2、2/3 15 人組合沒有空房（2027-02 方案可能還沒開）",
+        "到 ザ クラシック（餐廳、大浴場）要走一段，冷天雨天辛苦（口コミ 2024/07）；陽台清潔、晚餐食材降級的意見各 1 則"
       ],
       "basedOn": [
         "https://www.miyakohotels.ne.jp/shima/",
@@ -7934,28 +7948,30 @@
         "https://www.miyakohotels.ne.jp/shima/restaurant/hamayu/",
         "https://travel.rakuten.co.jp/HOTEL/105964/105964.html",
         "https://travel.rakuten.co.jp/HOTEL/105964/105964_std.html",
-        "https://www.jalan.net/yad338802/"
+        "https://www.jalan.net/yad338802/",
+        "https://baila.hpplus.jp/blogs/naganuma_yui/81050",
+        "https://4travel.jp/dm_hotel-10220130"
       ],
-      "generated": "2026-10-19"
+      "generated": "2026-10-20"
     },
     "assessment": {
       "rubric": "lodging-v1",
       "scores": {
         "recommend": 5,
         "meals": 5,
-        "groupFit": 3,
-        "elderFit": 3,
+        "groupFit": 4,
+        "elderFit": 4,
         "accessEase": 4
       },
       "rationale": {
         "recommend": "楽天 4.88（301 則）、じゃらん 4.9、Google 4.6（1,683 則）→ 5",
         "meals": "楽天餐 4.89 → 5；餐廳限小學生以上寫在 cons（kids 另看）",
-        "groupFit": "50 室、每間 2～3 人，宴會頁（和クラシック共用）沒讀；沒有團體方案、要電話確認",
-        "elderFit": "全部是床、有無障礙客房；電梯沒有來源",
+        "groupFit": "50 室、每間 2～3 人；宴會頁沒讀、沒有住宿團體方案，15 人能在同一處訂到 → 4（T8g 規則：groupFit 4 不要求宴會場；一起吃晚餐看 meals）",
+        "elderFit": "全部是床、有無障礙客房；宿泊記（2026/07）寫有到客房的電梯 → 有電梯有床；但餐廳、大浴場在另一棟 ザ クラシック，口コミ（2024/07）說冷天雨天走過去辛苦 → 4",
         "accessEase": "賢島站個別接送 3 分、要前一天告知到站時間（徒歩 10 分）；2/2 第一晚：可以照到站時間接，送迎幾點結束沒寫"
       },
       "confidence": "medium",
-      "assessed": "2026-10-19"
+      "assessed": "2026-10-20"
     }
   },
   {
@@ -8425,26 +8441,26 @@
         "https://www.jalan.net/yad342770/",
         "https://maps.google.com/?cid=1993285495210129812"
       ],
-      "generated": "2026-10-19"
+      "generated": "2026-10-20"
     },
     "assessment": {
       "rubric": "lodging-v1",
       "scores": {
         "recommend": 3,
         "meals": 3,
-        "groupFit": 3,
+        "groupFit": 4,
         "elderFit": 3,
         "accessEase": 3
       },
       "rationale": {
         "recommend": "楽天 3.96（313 則）、じゃらん 4.3、Google 3.6；負評多是 2019 年以前 → 3",
         "meals": "不供餐，dinnerAccess walk（とばり 2 分等）→ 3",
-        "groupFit": "22 室、容量夠；不供餐也沒有一起吃的地方 → 3",
+        "groupFit": "22 室（ツイン 8 室可住 3 人、シングル 14 室）；不供餐，15 人能在同一處訂到 → 4（T8g 規則：groupFit 4 不要求宴會場；一起吃晚餐看 meals）",
         "elderFit": "ツイン是床、車椅子可；電梯沒有來源 → 3",
         "accessEase": "鵜方站步行 15 分、沒有接送 → 3；2/2 第一晚：入住到 24:00"
       },
       "confidence": "medium",
-      "assessed": "2026-10-19"
+      "assessed": "2026-10-20"
     }
   },
   {
@@ -10018,12 +10034,13 @@
       "pros": [
         "楽天 4.50（484 則）、じゃらん 4.6、Google 4.2（976 則）",
         "房型 4～6 人；ボールルーム可辦團體餐會；有ユニバーサル房",
-        "晚餐 L.O. 20:30，晚到也能吃；2/2、2/3 楽天有空房"
+        "晚餐 L.O. 20:30，晚到也能吃；2/2、2/3 楽天有空房",
+        "改裝後既存館和室 31 室改成有床的房間、Villa 有 2 臥室房型 2 棟、新設キッズスペース（トラベル Watch 2025/11 改裝發表）"
       ],
       "cons": [
         "一泊二食每人約 33,671 円（2/2）",
         "賢島站接駁要 2 小時前預約、20 分；最晚入住 19:00",
-        "園區大、Villa 靠高爾夫球車；電梯、床沒有來源"
+        "園區大、Villa 靠高爾夫球車；電梯沒有來源"
       ],
       "basedOn": [
         "https://www.nemuresort.com/",
@@ -10035,7 +10052,7 @@
         "https://www.nemuresort.com/restaurant/",
         "https://www.nemuresort.com/nemustyle/babykids/"
       ],
-      "generated": "2026-10-19"
+      "generated": "2026-10-20"
     },
     "assessment": {
       "rubric": "lodging-v1",
@@ -10050,11 +10067,11 @@
         "recommend": "主要訂房網楽天 4.50（484 則）、Google 4.2 → 依區調整後的 4；不到 4.6 → 不到 5",
         "meals": "楽天餐 4.47 → 4",
         "groupFit": "86 室、ボールルーム（分割最多 200 名）可團體餐會，沒有住宿團體方案 → 4",
-        "elderFit": "有ユニバーサル房；園區大、電梯沒有來源 → 3",
+        "elderFit": "有ユニバーサル房、改裝後和室 31 室改成有床（トラベル Watch 2025/11）；園區大、電梯沒有來源 → 3",
         "accessEase": "賢島站免費接駁約 20 分、預定時刻 2 小時前預約 → 3；2/2 第一晚：可以預約接駁，最晚入住 19:00 很緊"
       },
       "confidence": "medium",
-      "assessed": "2026-10-19"
+      "assessed": "2026-10-20"
     }
   },
   {
@@ -10319,26 +10336,26 @@
         "https://ise-shima.hotel-shunka.jp/access/",
         "https://ise-shima.hotel-shunka.jp/status/"
       ],
-      "generated": "2026-10-19"
+      "generated": "2026-10-20"
     },
     "assessment": {
       "rubric": "lodging-v1",
       "scores": {
         "recommend": 3,
         "meals": 4,
-        "groupFit": 3,
+        "groupFit": 4,
         "elderFit": 3,
         "accessEase": 3
       },
       "rationale": {
         "recommend": "楽天 4.47 但只有 64 則（評論數上限 3）",
         "meals": "楽天餐 4.56 → 4",
-        "groupFit": "本館 16 室＋別邸 4 棟，沒有宴會場，餐廳依團體分桌 → 3",
+        "groupFit": "本館 16 室（每間 2～4 人）＋別邸 4 棟（各最多 8 人）；沒有宴會場，餐廳依團體分桌，15 人能在同一處訂到 → 4（T8g 規則：groupFit 4 不要求宴會場；一起吃晚餐看 meals）",
         "elderFit": "和室也放床、1 樓無障礙房；電梯沒有來源 → 3",
         "accessEase": "鵜方站巴士＋步行 3 分，接送依時段 → 3；2/2 第一晚：晚餐 18:30 前開始，晚到要問"
       },
       "confidence": "low",
-      "assessed": "2026-10-19"
+      "assessed": "2026-10-20"
     }
   },
   {
@@ -10666,26 +10683,26 @@
         "https://www.rio-hotels.co.jp/shima/2026/07/2026720-open.html",
         "https://www.rio-hotels.co.jp/shima/2026/10/20261015.html"
       ],
-      "generated": "2026-10-19"
+      "generated": "2026-10-20"
     },
     "assessment": {
       "rubric": "lodging-v1",
       "scores": {
         "recommend": 3,
         "meals": 3,
-        "groupFit": 3,
+        "groupFit": 4,
         "elderFit": 2,
         "accessEase": 3
       },
       "rationale": {
         "recommend": "楽天 4.39（852 則）、Google 4.3；照原門檻是 4，依區調整後要 4.5 以上 → 3",
         "meals": "不供晚餐（朝食バスケット，楽天餐 3.95）；dinnerAccess walk（Michelle 15 分）、可 BBQ → 3",
-        "groupFit": "32 室分棟，15 人要 3 棟，沒有一起吃的地方 → 3",
+        "groupFit": "分棟 16 棟 32 室（每棟 4～6 人），15 人約 3 棟、同一處訂得到（同伊勢 NIPPONIA 河崎），15 人能在同一處訂到 → 4（T8g 規則：groupFit 4 不要求宴會場；一起吃晚餐看 meals）",
         "elderFit": "全部 1 樓客廳、2 樓寢室，要爬樓梯 → 2",
         "accessEase": "鵜方站計程車約 10 分、沒有接送 → 3；2/2 第一晚：入住到 22:00 沒問題"
       },
       "confidence": "medium",
-      "assessed": "2026-10-19"
+      "assessed": "2026-10-20"
     }
   },
   {
@@ -10939,26 +10956,26 @@
         "https://travel.rakuten.co.jp/HOTEL/166181/166181_std.html",
         "https://www.jalan.net/yad331214/"
       ],
-      "generated": "2026-10-19"
+      "generated": "2026-10-20"
     },
     "assessment": {
       "rubric": "lodging-v1",
       "scores": {
         "recommend": 3,
         "meals": 3,
-        "groupFit": 3,
+        "groupFit": 4,
         "elderFit": 4,
         "accessEase": 5
       },
       "rationale": {
         "recommend": "主要訂房網楽天 4.02（354 則）、じゃらん 4.4、Google 4.3 → 3",
         "meals": "現在不供餐，dinnerAccess walk（志摩観光ホテル館內 3 家 4～9 分）→ 3",
-        "groupFit": "29 室（每間 2～4 人），容量夠；沒有團體方案、不供餐也沒有一起吃的地方",
+        "groupFit": "29 室（每間 1～4 人）；不供餐，15 人能在同一處訂到 → 4（T8g 規則：groupFit 4 不要求宴會場；一起吃晚餐看 meals）",
         "elderFit": "有電梯、有床的房間（洋室、和室ベット付き）；客室、脫衣所入口有段差 → 4",
         "accessEase": "賢島站步行 3 分；2/2 第一晚：入住到 23:00"
       },
       "confidence": "medium",
-      "assessed": "2026-10-19"
+      "assessed": "2026-10-20"
     }
   },
   {

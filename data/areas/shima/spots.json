@@ -925,7 +925,7 @@
         "https://www.kanko-shima.com/purpose/2298/",
         "https://maps.google.com/?cid=13725898248839106999"
       ],
-      "generated": "2026-10-19"
+      "generated": "2026-10-20"
     },
     "assessment": {
       "rubric": "spot-v1",
@@ -933,18 +933,18 @@
         "recommend": 3,
         "winterFit": 5,
         "elderFit": 4,
-        "kidsFit": null,
+        "kidsFit": 3,
         "accessEase": 5
       },
       "rationale": {
         "recommend": "Google 3.9（568 則），規模小、適合等電車 → 順路的好選擇",
         "winterFit": "全室內、原則年中無休",
         "elderFit": "一層樓梯、沒有電梯；輪椅可用階段昇降機（志摩市，2026-06）",
-        "kidsFit": "kids.friendly 是 null，照鳥羽規則不打（評論說小孩會無聊）",
+        "kidsFit": "筆記：對峰會沒興趣的小孩會覺得無聊（約 2019），有問答式多螢幕 → 3（可以去但會無聊；kids.friendly null 時照筆記描述，T8g 規則）",
         "accessEase": "在賢島站 2 樓"
       },
       "confidence": "medium",
-      "assessed": "2026-10-19"
+      "assessed": "2026-10-20"
     }
   },
   {
@@ -1444,7 +1444,7 @@
         "https://www.asoview.com/channel/activities/ja/entrada-kashikojima/offices/4163/courses",
         "https://maps.google.com/?cid=9795020751607286852"
       ],
-      "generated": "2026-10-19"
+      "generated": "2026-10-20"
     },
     "assessment": {
       "rubric": "spot-v1",
@@ -1452,18 +1452,18 @@
         "recommend": 3,
         "winterFit": 3,
         "elderFit": null,
-        "kidsFit": null,
+        "kidsFit": 3,
         "accessEase": 5
       },
       "rationale": {
         "recommend": "Google 4.4 但只有 58 則 → 最多 3",
         "winterFit": "2 月照常（サンセット 2 月也有），小船在戶外、冬天冷，荒天停航",
         "elderFit": "マリーナ桟橋上下船，階梯、船內座位沒有來源",
-        "kidsFit": "kids.friendly 是 null，照鳥羽規則不打（有帶小孩參加的評論，約 2024）",
+        "kidsFit": "筆記：帶小孩參加サンセットクルーズ、解說有趣（1 則，約 2024），未就學免費 → 3（同エスパーニャ、遊覧船；T8g 規則）",
         "accessEase": "賢島站步行約 1 分"
       },
       "confidence": "low",
-      "assessed": "2026-10-19"
+      "assessed": "2026-10-20"
     }
   },
   {
@@ -1630,26 +1630,26 @@
         "https://www.kanko-shima.com/purpose/20349/",
         "https://maps.google.com/?cid=18374805642612178895"
       ],
-      "generated": "2026-10-19"
+      "generated": "2026-10-20"
     },
     "assessment": {
       "rubric": "spot-v1",
       "scores": {
         "recommend": 2,
-        "winterFit": 2,
+        "winterFit": 4,
         "elderFit": null,
         "kidsFit": 3,
         "accessEase": 3
       },
       "rationale": {
         "recommend": "Google 3.7、評論極少、沒有心得 → 冷門的打 2",
-        "winterFit": "營業日、2 月營業沒有來源 → 2",
+        "winterFit": "室內體驗；營業日、2 月營業沒有來源，但沒有冬季休業的跡象 → 照室內打 4（T9g：「沒明寫」不再一律 2，同鳥羽 おおさつ かまど）",
         "elderFit": "座位、階梯沒有來源",
         "kidsFit": "kids.friendly medium（6 歲以上可參加）",
         "accessEase": "鵜方站步行約 20 分（OSRM），或計程車（分鐘數沒有來源，英文頁寫約 5～10 分）"
       },
       "confidence": "low",
-      "assessed": "2026-10-19"
+      "assessed": "2026-10-20"
     }
   },
   {
@@ -2168,7 +2168,7 @@
         "https://www.kanko-shima.com/purpose/810/",
         "https://maps.google.com/?cid=8710943366694770121"
       ],
-      "generated": "2026-10-19"
+      "generated": "2026-10-20"
     },
     "assessment": {
       "rubric": "spot-v1",
@@ -2176,18 +2176,18 @@
         "recommend": 4,
         "winterFit": 3,
         "elderFit": null,
-        "kidsFit": null,
+        "kidsFit": 3,
         "accessEase": 5
       },
       "rationale": {
         "recommend": "Google 4.6（1,676 則），內宮別宮、志摩一の宮 → 依區調整的 4（4.0 以上、800 則以上、觀光網站介紹）；5 要 5,000 則以上",
         "winterFit": "戶外神社，2 月 5:00～18:00；2/11 有建国記念祭，冬天沒有其他加分",
         "elderFit": "境內圖顯示建物集中、停車場和廁所在旁，但階梯、坡道沒有文字來源",
-        "kidsFit": "kids 沒有資料",
+        "kidsFit": "筆記：沒有小孩用的設施（旁邊有御料田）→ 3（可以去但選擇少；同伊勢 猿田彥神社，T8g 規則）",
         "accessEase": "近鐵上之郷站步行約 3 分"
       },
       "confidence": "medium",
-      "assessed": "2026-10-19"
+      "assessed": "2026-10-20"
     }
   },
   {
@@ -3707,7 +3707,7 @@
         "https://www.kanko-shima.com/purpose/3898/",
         "https://maps.google.com/?cid=8810117637913858542"
       ],
-      "generated": "2026-10-19"
+      "generated": "2026-10-20"
     },
     "assessment": {
       "rubric": "spot-v1",
@@ -3715,18 +3715,18 @@
         "recommend": 3,
         "winterFit": 4,
         "elderFit": null,
-        "kidsFit": null,
+        "kidsFit": 2,
         "accessEase": 3
       },
       "rationale": {
         "recommend": "Google 4.5 但只有 24 則；有具體看點（平賀亀祐記念館）→ 照鳥羽 角屋 打 3",
         "winterFit": "室內，2 月照常，但週二、週三休 → 4",
         "elderFit": "展示在 2、3 樓，電梯、階梯沒有來源",
-        "kidsFit": "kids 沒有資料",
+        "kidsFit": "筆記：純看畫的展示，子ども絵かき教室只在夏季 → 2（同伊勢 徴古館，T8g 規則）",
         "accessEase": "鵜方站巴士約 25 分「大王支所前」下車即到（班次沒查）"
       },
       "confidence": "low",
-      "assessed": "2026-10-19"
+      "assessed": "2026-10-20"
     }
   },
   {
@@ -4500,26 +4500,26 @@
         "https://www.kanko-shima.com/purpose/2023/",
         "https://maps.google.com/?cid=12226859927298305404"
       ],
-      "generated": "2026-10-19"
+      "generated": "2026-10-20"
     },
     "assessment": {
       "rubric": "spot-v1",
       "scores": {
         "recommend": 3,
-        "winterFit": 2,
+        "winterFit": 3,
         "elderFit": null,
         "kidsFit": 5,
         "accessEase": 3
       },
       "rationale": {
         "recommend": "Google 4.4（392 則），體驗內容具體；依區調整的 4 要 800 則以上 → 3",
-        "winterFit": "2 月營業沒明寫（觀光三重是 2022～23 年的資料）→ 2；沒有暖氣",
+        "winterFit": "2 月營業沒明寫（觀光三重是 2022～23 年的資料），沒有冬季休業的跡象；海女小屋沒有暖氣 → 3（T9g：「沒明寫」不再一律 2）",
         "elderFit": "座位、階梯、廁所沒有來源",
         "kidsFit": "kids.friendly high：0 歲起、海女對小孩親切",
         "accessEase": "鵜方站巴士約 60 分「あづり浜」下車即到，或計程車約 30 分"
       },
       "confidence": "medium",
-      "assessed": "2026-10-19"
+      "assessed": "2026-10-20"
     }
   },
   {
@@ -5000,26 +5000,26 @@
         "https://www.kankomie.or.jp/spot/23564",
         "https://maps.google.com/?cid=965091325535477213"
       ],
-      "generated": "2026-10-19"
+      "generated": "2026-10-20"
     },
     "assessment": {
       "rubric": "spot-v1",
       "scores": {
         "recommend": 3,
-        "winterFit": 2,
+        "winterFit": 4,
         "elderFit": 2,
         "kidsFit": 5,
         "accessEase": 3
       },
       "rationale": {
         "recommend": "Google 4.6 但只有 44 則 → 最多 3",
-        "winterFit": "2 月營業沒明寫 → 2",
+        "winterFit": "室內的珍珠體驗；2 月營業沒明寫，但沒有冬季休業的跡象 → 4（T9g：「沒明寫」不再一律 2）",
         "elderFit": "去筏要走搖晃的細窄棧橋（官網、評論），停車場在坡下",
         "kidsFit": "kids.friendly high：小學生以下也講解仔細、餵河豚",
         "accessEase": "鵜方站巴士約 60 分「御座港」下車步行約 15 分（班次沒查）"
       },
       "confidence": "low",
-      "assessed": "2026-10-19"
+      "assessed": "2026-10-20"
     }
   },
   {
@@ -6003,26 +6003,26 @@
         "https://www.kanko-shima.com/purpose/9656/",
         "https://maps.google.com/?cid=5214804951239961877"
       ],
-      "generated": "2026-10-19"
+      "generated": "2026-10-20"
     },
     "assessment": {
       "rubric": "spot-v1",
       "scores": {
         "recommend": 3,
-        "winterFit": 2,
+        "winterFit": 3,
         "elderFit": 3,
         "kidsFit": 5,
         "accessEase": 4
       },
       "rationale": {
         "recommend": "Google 4.2（434 則），觀光協會收錄；依區調整的 4 要 800 則以上 → 3；低分集中在預約不到",
-        "winterFit": "營業カレンダー只公布到 2026-10，2 月營業未確認 → 2",
+        "winterFit": "戶外設施；營業カレンダー只公布到 2026-10（還沒公布，不是休業的跡象）→ 戶外 3（T9g：「沒明寫」不再一律 2）",
         "elderFit": "園內以步行為主，2 處急坡有自動カート、可借輪椅、有多目的廁所",
         "kidsFit": "kids.friendly high（滑索、攀岩限 125 cm 以上）",
         "accessEase": "鵜方站免費接駁巴士約 10 分（滿員不能上、班次要再確認）"
       },
       "confidence": "medium",
-      "assessed": "2026-10-19"
+      "assessed": "2026-10-20"
     }
   }
 ]
