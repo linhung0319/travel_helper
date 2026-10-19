@@ -85,6 +85,7 @@ travel_helper/
 | `data/derived/` | 只由腳本產生（例如評分的一致性檢查），不要手改 |
 | `docs/decisions-pending.md` | 任何任務都可以新增（自動模式下代替 👤 做的決定）；只追加，不改別人的項目。開頭的「👤 建議先看」由 👤 或盤點的 session 維護 |
 | `docs/auto-run-log.md` | 只有指揮 session（PLAN §3「自動依序執行」） |
+| `docs/interaction-design.md` | 👤 討論後修改；T11、T12、T14、T15、T16 實作時可以補上細節，改到設計方向的先和 👤 確認 |
 | `web/` | T5、T11、T12、T15、T16（同時進行時，各自負責的目錄要先講好） |
 | `scripts/` | 新增檔案自由；修改別人的腳本要在 commit 訊息裡說明 |
 
