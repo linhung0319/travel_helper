@@ -1,0 +1,535 @@
+{
+ "source": "https://www.jalan.net/270000/LRG_273800/",
+ "retrieved": "2026-10-19",
+ "count": 88,
+ "hotels": [
+  {
+   "yadNo": 392864,
+   "name": "ホテル アゴーラ リージェンシー 大阪堺",
+   "rating": 4.3,
+   "reviews": 1218
+  },
+  {
+   "yadNo": 368142,
+   "name": "変なリゾート＆スパ 関西空港",
+   "rating": 3.9,
+   "reviews": 1036
+  },
+  {
+   "yadNo": 331817,
+   "name": "スターゲイトホテル関西エアポート 夜景のキレイな超高層ホテル",
+   "rating": 4.4,
+   "reviews": 3140
+  },
+  {
+   "yadNo": 371516,
+   "name": "ザ・ベース・堺東・アパートメントホテル",
+   "rating": 4.6,
+   "reviews": 267
+  },
+  {
+   "yadNo": 394536,
+   "name": "ホテルルートイン大阪岸和田－東岸和田駅前／関西空港－",
+   "rating": 4.5,
+   "reviews": 322
+  },
+  {
+   "yadNo": 386745,
+   "name": "コンフォートホテル堺",
+   "rating": 4.2,
+   "reviews": 1277
+  },
+  {
+   "yadNo": 361861,
+   "name": "くれたけイン南海堺駅前",
+   "rating": 3.8,
+   "reviews": 520
+  },
+  {
+   "yadNo": 302112,
+   "name": "ハタゴイン関西空港",
+   "rating": 4.4,
+   "reviews": 226
+  },
+  {
+   "yadNo": 339437,
+   "name": "ホテルサンプラザ大阪堺ANNEX",
+   "rating": 4.2,
+   "reviews": 519
+  },
+  {
+   "yadNo": 352310,
+   "name": "アパホテル〈堺駅前〉",
+   "rating": 4,
+   "reviews": 37
+  },
+  {
+   "yadNo": 389642,
+   "name": "OMO関西空港 by 星野リゾート",
+   "rating": 4.2,
+   "reviews": 330
+  },
+  {
+   "yadNo": 339141,
+   "name": "関空泉佐野ファーストホテル",
+   "rating": 4.2,
+   "reviews": 925
+  },
+  {
+   "yadNo": 324560,
+   "name": "ホテル日航関西空港（関西空港へ徒歩３分）",
+   "rating": 4.5,
+   "reviews": 2455
+  },
+  {
+   "yadNo": 332394,
+   "name": "ホテルレイクアルスターアルザ泉大津",
+   "rating": 4.5,
+   "reviews": 27
+  },
+  {
+   "yadNo": 373150,
+   "name": "サンホテル堺（堺サンホテル石津川）",
+   "rating": 3.6,
+   "reviews": 168
+  },
+  {
+   "yadNo": 389840,
+   "name": "関空温泉ホテルガーデンパレス",
+   "rating": 4.7,
+   "reviews": 2408
+  },
+  {
+   "yadNo": 396520,
+   "name": "オディシススイーツ大阪エアポートホテル",
+   "rating": 4.6,
+   "reviews": 250
+  },
+  {
+   "yadNo": 386334,
+   "name": "ＨＯＴＥＬ ＫＡＮＡＤＥ 関空貝塚",
+   "rating": 4.2,
+   "reviews": 48
+  },
+  {
+   "yadNo": 300875,
+   "name": "ドーセット バイ アゴーラ 大阪堺",
+   "rating": 4.2,
+   "reviews": 51
+  },
+  {
+   "yadNo": 341120,
+   "name": "Ｔａｂｉｓｔ ビジネスホテル ニュー大浜",
+   "rating": 4,
+   "reviews": 141
+  },
+  {
+   "yadNo": 303441,
+   "name": "シティホテルエアポートインプリンス",
+   "rating": 3.9,
+   "reviews": 527
+  },
+  {
+   "yadNo": 358825,
+   "name": "ダイワロイネットホテル堺東",
+   "rating": 4.3,
+   "reviews": 1572
+  },
+  {
+   "yadNo": 330686,
+   "name": "レフ関空泉佐野 by ベッセルホテルズ【大浴場・サウナ完備】",
+   "rating": 4.6,
+   "reviews": 444
+  },
+  {
+   "yadNo": 300594,
+   "name": "ＡＢホテル堺東",
+   "rating": 4.2,
+   "reviews": 344
+  },
+  {
+   "yadNo": 315065,
+   "name": "ホテルルートイン大阪和泉府中",
+   "rating": 4.4,
+   "reviews": 304
+  },
+  {
+   "yadNo": 387723,
+   "name": "関西エアポートワシントンホテル",
+   "rating": 4.4,
+   "reviews": 2400
+  },
+  {
+   "yadNo": 374085,
+   "name": "泉佐野センターホテル",
+   "rating": 4.3,
+   "reviews": 298
+  },
+  {
+   "yadNo": 369649,
+   "name": "高濃度炭酸泉 けやきの湯 スーパーホテル関空・熊取駅前",
+   "rating": 4.6,
+   "reviews": 842
+  },
+  {
+   "yadNo": 393422,
+   "name": "ホテルルートイン大阪高石―羽衣駅前―",
+   "rating": 4.3,
+   "reviews": 216
+  },
+  {
+   "yadNo": 347418,
+   "name": "天然温泉 花乃井の湯 スーパーホテル堺マリティマ",
+   "rating": 4.3,
+   "reviews": 686
+  },
+  {
+   "yadNo": 377675,
+   "name": "ホテルルートイン大阪和泉－岸和田和泉インター－",
+   "rating": 4.3,
+   "reviews": 529
+  },
+  {
+   "yadNo": 339455,
+   "name": "大阪関西エアポートホテル【関西空港】",
+   "rating": 4.3,
+   "reviews": 65
+  },
+  {
+   "yadNo": 327066,
+   "name": "アパホテル〈関空岸和田〉（関西国際空港／ＫＩＸ）",
+   "rating": 4.2,
+   "reviews": 23
+  },
+  {
+   "yadNo": 359122,
+   "name": "ホテルアストンプラザ関西空港",
+   "rating": 4.1,
+   "reviews": 569
+  },
+  {
+   "yadNo": 337577,
+   "name": "関空泉大津ワシントンホテル",
+   "rating": 4,
+   "reviews": 1386
+  },
+  {
+   "yadNo": 399093,
+   "name": "プレミアムホテルりんくう(The premium hotel in rinku)",
+   "rating": 3.8,
+   "reviews": 218
+  },
+  {
+   "yadNo": 301737,
+   "name": "東横ＩＮＮ堺駅前",
+   "rating": 4.1,
+   "reviews": 24
+  },
+  {
+   "yadNo": 369355,
+   "name": "犬鳴山温泉 不動口館",
+   "rating": 4.5,
+   "reviews": 170
+  },
+  {
+   "yadNo": 318139,
+   "name": "ホテルサンプラザ堺本館",
+   "rating": 3.9,
+   "reviews": 1152
+  },
+  {
+   "yadNo": 323695,
+   "name": "み奈美亭",
+   "rating": 4.1,
+   "reviews": 82
+  },
+  {
+   "yadNo": 310389,
+   "name": "ベルビューガーデンホテル 関西空港",
+   "rating": 4.5,
+   "reviews": 1188
+  },
+  {
+   "yadNo": 317655,
+   "name": "臨海ホテル石津店",
+   "rating": 3.4,
+   "reviews": 216
+  },
+  {
+   "yadNo": 308029,
+   "name": "シティホテル青雲荘",
+   "rating": 4,
+   "reviews": 99
+  },
+  {
+   "yadNo": 301307,
+   "name": "国際障害者交流センター（ビッグ・アイ）",
+   "rating": 4.4,
+   "reviews": 132
+  },
+  {
+   "yadNo": 395333,
+   "name": "ファームグランピング ル・クロ かいづか いぶきヴィレッジ",
+   "rating": null,
+   "reviews": null
+  },
+  {
+   "yadNo": 318266,
+   "name": "ホテル サンライズイン",
+   "rating": 3.3,
+   "reviews": 167
+  },
+  {
+   "yadNo": 376032,
+   "name": "東横ＩＮＮ堺東駅",
+   "rating": 4.1,
+   "reviews": 89
+  },
+  {
+   "yadNo": 354736,
+   "name": "EZ HOTEL 関西空港 Seaside",
+   "rating": 4.2,
+   "reviews": 16
+  },
+  {
+   "yadNo": 321834,
+   "name": "ホテルアストンプラザ大阪堺（２０２６年７月全館リニューアル）",
+   "rating": null,
+   "reviews": null
+  },
+  {
+   "yadNo": 329750,
+   "name": "櫻吉ホテル SAKURAKICHI HOTEL",
+   "rating": 4.6,
+   "reviews": 9
+  },
+  {
+   "yadNo": 319362,
+   "name": "ホテルニューユタカ",
+   "rating": 4.2,
+   "reviews": 6
+  },
+  {
+   "yadNo": 337339,
+   "name": "大阪ベイプラザホテル",
+   "rating": 3.4,
+   "reviews": 200
+  },
+  {
+   "yadNo": 376320,
+   "name": "ホテルサンプラスユタカ",
+   "rating": 3.8,
+   "reviews": 7
+  },
+  {
+   "yadNo": 362706,
+   "name": "Trip Inn 関西空港",
+   "rating": 3.8,
+   "reviews": 25
+  },
+  {
+   "yadNo": 327715,
+   "name": "ホテル シーガル",
+   "rating": 3.9,
+   "reviews": 511
+  },
+  {
+   "yadNo": 376927,
+   "name": "ＰＬＡＺＡ ＩＮ ＫＡＮＫＵ ＨＯＴＥＬ",
+   "rating": 3.4,
+   "reviews": 30
+  },
+  {
+   "yadNo": 314063,
+   "name": "ホテル・ザ・ネクスト関空",
+   "rating": 3.8,
+   "reviews": 432
+  },
+  {
+   "yadNo": 369529,
+   "name": "R Hotel Kansai Airport",
+   "rating": 3.9,
+   "reviews": 9
+  },
+  {
+   "yadNo": 331832,
+   "name": "うみテラス二色の浜",
+   "rating": null,
+   "reviews": null
+  },
+  {
+   "yadNo": 397836,
+   "name": "HOTEL BAYGULLS ホテルベイガルズ",
+   "rating": 4,
+   "reviews": 91
+  },
+  {
+   "yadNo": 314970,
+   "name": "夕日の宿 龍宮館",
+   "rating": null,
+   "reviews": null
+  },
+  {
+   "yadNo": 372968,
+   "name": "臨海ホテル北店",
+   "rating": 3.8,
+   "reviews": 110
+  },
+  {
+   "yadNo": 306748,
+   "name": "ホテルユタカウイング",
+   "rating": null,
+   "reviews": null
+  },
+  {
+   "yadNo": 366660,
+   "name": "Ｎ ＧＡＴＥ ＨＯＴＥＬ ＯＳＡＫＡ",
+   "rating": 4.2,
+   "reviews": 19
+  },
+  {
+   "yadNo": 313292,
+   "name": "ホテルイルグランディ",
+   "rating": null,
+   "reviews": null
+  },
+  {
+   "yadNo": 314360,
+   "name": "住一HOTEL関空店",
+   "rating": null,
+   "reviews": null
+  },
+  {
+   "yadNo": 335640,
+   "name": "ビジネス旅館 美松荘",
+   "rating": 4.1,
+   "reviews": 162
+  },
+  {
+   "yadNo": 357957,
+   "name": "sunseacottage",
+   "rating": null,
+   "reviews": null
+  },
+  {
+   "yadNo": 332324,
+   "name": "みまつ旅館",
+   "rating": 4.9,
+   "reviews": 77
+  },
+  {
+   "yadNo": 356929,
+   "name": "STAY THE RINKU BAY APARTMENT HOTEL",
+   "rating": null,
+   "reviews": null
+  },
+  {
+   "yadNo": 366390,
+   "name": "アパートメントホテル ステイザ大阪",
+   "rating": null,
+   "reviews": null
+  },
+  {
+   "yadNo": 332159,
+   "name": "自由家民泊",
+   "rating": null,
+   "reviews": null
+  },
+  {
+   "yadNo": 370328,
+   "name": "犬鳴山いこいの家",
+   "rating": null,
+   "reviews": null
+  },
+  {
+   "yadNo": 354970,
+   "name": "ゲストハウス喜平",
+   "rating": null,
+   "reviews": null
+  },
+  {
+   "yadNo": 301787,
+   "name": "ＡＢＣ ＧＵＥＳＴＨＯＵＳＥ （１Ｆ）",
+   "rating": null,
+   "reviews": null
+  },
+  {
+   "yadNo": 397636,
+   "name": "Ａ＆Ｚ ＧＵＥＳＴＨＯＵＳＥ",
+   "rating": null,
+   "reviews": null
+  },
+  {
+   "yadNo": 386594,
+   "name": "アパートメントホテル ステイザ関西空港",
+   "rating": null,
+   "reviews": null
+  },
+  {
+   "yadNo": 397384,
+   "name": "ＡＢＣ ＧＵＥＳＴＨＯＵＳＥ（２Ｆ）",
+   "rating": null,
+   "reviews": null
+  },
+  {
+   "yadNo": 366702,
+   "name": "旅館 さらし",
+   "rating": null,
+   "reviews": null
+  },
+  {
+   "yadNo": 346906,
+   "name": "Guest House 古民家 和",
+   "rating": null,
+   "reviews": null
+  },
+  {
+   "yadNo": 374865,
+   "name": "ゲストハウス堺東ニコニコ",
+   "rating": null,
+   "reviews": null
+  },
+  {
+   "yadNo": 369136,
+   "name": "大阪国際ユースホステル",
+   "rating": null,
+   "reviews": null
+  },
+  {
+   "yadNo": 339552,
+   "name": "UNITY-KIX",
+   "rating": null,
+   "reviews": null
+  },
+  {
+   "yadNo": 389183,
+   "name": "ゲストハウス知輪－ｃｈｉｒｉｎ－",
+   "rating": null,
+   "reviews": null
+  },
+  {
+   "yadNo": 366568,
+   "name": "ＳＡＫＡＩＮＯＭＡＨＯＴＥＬＨＡＭＡ旧福井邸",
+   "rating": null,
+   "reviews": null
+  },
+  {
+   "yadNo": 335756,
+   "name": "ｎａｂｅ ｃａｐｅ",
+   "rating": null,
+   "reviews": null
+  },
+  {
+   "yadNo": 335312,
+   "name": "ステーションホテルいろは",
+   "rating": null,
+   "reviews": null
+  },
+  {
+   "yadNo": 356532,
+   "name": "Sanada Maru",
+   "rating": null,
+   "reviews": null
+  }
+ ]
+}

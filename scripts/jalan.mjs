@@ -3,7 +3,7 @@
 //
 // 用法：
 //   node scripts/jalan.mjs list <地區代碼>...
-//       讀じゃらん的地區列表（https://www.jalan.net/240000/LRG_<代碼>/pageN.html），存成 data/derived/jalan-list-<代碼>.json
+//       讀じゃらん的地區列表（https://www.jalan.net/<縣代碼 前 2 碼>0000/LRG_<代碼>/pageN.html），存成 data/derived/jalan-list-<代碼>.json
 //       （旅館 ID、名稱、評分、評論數），給 apply 對名稱用。三重縣：鳥羽 241100、南鳥羽 241300、伊勢・二見 241000、志摩 241400
 //   node scripts/jalan.mjs yad <旅館ID>...
 //       讀旅館頁（https://www.jalan.net/yad<ID>/）的評分，一行一筆印出
@@ -53,7 +53,7 @@ const strip = (s) => s.replace(/<[^>]+>/g, ' ').replace(/&nbsp;/g, ' ').replace(
 async function readList(code) {
   const out = new Map();
   for (let page = 1; page < 40; page++) {
-    const html = await get(`https://www.jalan.net/240000/LRG_${code}/${page === 1 ? '' : `page${page}.html`}`);
+    const html = await get(`https://www.jalan.net/${code.slice(0, 2)}0000/LRG_${code}/${page === 1 ? '' : `page${page}.html`}`);
     if (!html) break;
     // 一間一個 <li id="…yadNo123456" class="p-yadoCassette …">；PR 欄會重複出現同一間，用 ID 去重
     const items = html.split(/<li id="(?:sa_)?yadNo(\d+)"/).slice(1);
@@ -87,7 +87,7 @@ if (cmd === 'list') {
   for (const code of positional) {
     const list = await readList(code);
     const f = path.join(ROOT, `data/derived/jalan-list-${code}.json`);
-    fs.writeFileSync(f, JSON.stringify({ source: `https://www.jalan.net/240000/LRG_${code}/`, retrieved: today(), count: list.length, hotels: list }, null, 1) + '\n');
+    fs.writeFileSync(f, JSON.stringify({ source: `https://www.jalan.net/${code.slice(0, 2)}0000/LRG_${code}/`, retrieved: today(), count: list.length, hotels: list }, null, 1) + '\n');
     console.log(`LRG_${code}：${list.length} 間 → ${path.relative(ROOT, f)}`);
   }
 } else if (cmd === 'yad') {

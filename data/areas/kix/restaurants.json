@@ -1,0 +1,1425 @@
+[
+  {
+    "id": "kix-nikko-touri",
+    "type": "restaurant",
+    "name": {
+      "ja": "中華料理 桃李",
+      "kana": "ちゅうかりょうり とうり",
+      "zh": "中華料理 桃李（日航酒店）",
+      "en": null
+    },
+    "area": "kix",
+    "region": "kix-island",
+    "coords": [
+      135.2428573,
+      34.4364619
+    ],
+    "coordsSource": "google-maps-url",
+    "address": "大阪府泉佐野市泉州空港北1 ホテル日航関西空港 2F",
+    "hours": {
+      "mon": [
+        [
+          "11:30",
+          "14:30"
+        ],
+        [
+          "17:30",
+          "21:00"
+        ]
+      ],
+      "tue": [
+        [
+          "11:30",
+          "14:30"
+        ],
+        [
+          "17:30",
+          "21:00"
+        ]
+      ],
+      "wed": [],
+      "thu": [
+        [
+          "11:30",
+          "14:30"
+        ],
+        [
+          "17:30",
+          "21:00"
+        ]
+      ],
+      "fri": [
+        [
+          "11:30",
+          "14:30"
+        ],
+        [
+          "17:30",
+          "21:00"
+        ]
+      ],
+      "sat": [
+        [
+          "11:30",
+          "14:30"
+        ],
+        [
+          "17:30",
+          "21:00"
+        ]
+      ],
+      "sun": [
+        [
+          "11:30",
+          "14:30"
+        ],
+        [
+          "17:30",
+          "21:00"
+        ]
+      ],
+      "holiday": null,
+      "lastEntry": [
+        "14:00",
+        "20:30"
+      ],
+      "note": "週三公休（遇國定假日照常，官網コース頁）"
+    },
+    "closedNote": "週三",
+    "febNote": null,
+    "closures": [],
+    "photos": [
+      {
+        "url": "https://lh3.googleusercontent.com/grass-cs/AABkmLctgVe-5bvXBDrybwtnkK52kr2pI0XoAeb8V7mTcQqAzmwh7QWxytErSfHFf8rgHMstc0jw-hrKQMYKkB9LJwiFTWcgtRfw4UFeXw303stnZMcovf_JJKuei6tgo5Zi1f_XmkwNC6bpvIlP=w800",
+        "page": "https://maps.google.com/?cid=11928420244035706489",
+        "kind": "google",
+        "credit": "Google マップ",
+        "license": null
+      }
+    ],
+    "links": {
+      "official": "https://www.nikkokix.com/restaurant/tohlee.html",
+      "googleMaps": "https://maps.google.com/?cid=11928420244035706489",
+      "tabelog": "https://tabelog.com/osaka/A2705/A270503/27003094/",
+      "instagram": null
+    },
+    "tags": [],
+    "tier": "B",
+    "sources": [
+      {
+        "type": "tabelog",
+        "url": "https://tabelog.com/osaka/A2705/A270503/27003094/",
+        "retrieved": "2026-10-19",
+        "note": "店舗情報：分數、席數、預約、個室、貸切、營業時間、お子様連れ（店舗会員）"
+      },
+      {
+        "type": "google-maps",
+        "url": "https://maps.google.com/?cid=11928420244035706489",
+        "retrieved": "2026-10-19",
+        "note": "星數、評論數、座標、照片"
+      },
+      {
+        "type": "tabelog",
+        "url": "https://tabelog.com/osaka/A2705/A270503/27003094/party/",
+        "retrieved": "2026-10-19",
+        "note": "コース一覧：套餐名稱、價格、人數"
+      },
+      {
+        "type": "official",
+        "url": "https://www.nikkokix.com/restaurant/tohlee.html",
+        "retrieved": "2026-10-19",
+        "note": "営業時間・席数・予約"
+      },
+      {
+        "type": "official",
+        "url": "https://www.nikkokix.com/restaurant/private_room_thl.html",
+        "retrieved": "2026-10-19",
+        "note": "個室人数・室料"
+      }
+    ],
+    "verified": false,
+    "anchors": [
+      {
+        "id": "kix-nikko",
+        "walkMinutes": 2,
+        "walkSource": "estimate"
+      }
+    ],
+    "contexts": [
+      "lunch",
+      "dinner"
+    ],
+    "access": "walk",
+    "cuisine": [
+      "其他"
+    ],
+    "priceRange": "午 ¥4,000～4,999／晚 ¥6,000～7,999",
+    "price": {
+      "lunch": [
+        4000,
+        4999
+      ],
+      "dinner": [
+        6000,
+        7999
+      ]
+    },
+    "stayMinutes": null,
+    "mustTry": [
+      "飲茶吃到飽（テーブルオーダーバイキング，午餐）"
+    ],
+    "menu": [
+      {
+        "url": "https://tabelog.com/osaka/A2705/A270503/27003094/party/",
+        "source": "tabelog",
+        "retrieved": "2026-10-19"
+      },
+      {
+        "url": "https://tabelog.com/osaka/A2705/A270503/27003094/dtlmenu/",
+        "source": "tabelog",
+        "retrieved": "2026-10-19"
+      },
+      {
+        "url": "https://tabelog.com/osaka/A2705/A270503/27003094/dtlmenu/lunch/",
+        "source": "tabelog",
+        "retrieved": "2026-10-19"
+      }
+    ],
+    "ratings": {
+      "tabelog": 3.26,
+      "tabelogReviews": 55,
+      "google": 4.3,
+      "googleReviews": 66,
+      "note": null
+    },
+    "inclusion": [
+      "C"
+    ],
+    "tabelogOwner": true,
+    "googleName": "中華料理 桃李【ホテル日航関西空港】",
+    "notes": "ホテル日航関西空港 2F 的中華，住日航時走路就到；2/12（週五）有營業。15 人可用包廂（1 桌最多 10 人，分 2 桌）。",
+    "group": {
+      "seats": 100,
+      "maxReservation": null,
+      "privateRoom": true,
+      "buyout": "可 （20人以下可）",
+      "groupMenu": "百花繚乱（60 種以上選 4 品）6,500 円起，以桌為單位點；包廂 2 間（桃花、李花）各 2～20 名，但 1 桌最多 10 名，15 人要分 2 桌；包廂室料晚餐 8,000～9,000 円另計（官網、食べログ コース頁 2026-10）",
+      "fit15": "yes",
+      "fitSubgroup": "yes",
+      "source": "食べログ：席数 100席 （内 個室20席×2室あり）、個室 有 （8人可、10～20人可）、貸切 可 （20人以下可）、予約可 ※One Harmony会員特典を含むその他の優待・割引との併用はいたしかねます。 → yes（個室最多 20 人）"
+    },
+    "reservation": {
+      "accepted": "yes",
+      "methods": [
+        "phone",
+        "web"
+      ],
+      "phone": "072-455-1120",
+      "url": null,
+      "language": "日文",
+      "note": "電話 072-455-1120 或 TableCheck 網路訂位（官網）；食べログ 050-5869-8798",
+      "leadDays": null
+    },
+    "seating": [
+      "table"
+    ],
+    "kids": {
+      "allowed": "yes",
+      "minAge": null,
+      "kidsMenu": null,
+      "note": "食べログ：子供可；口コミ 3 則帶小孩用餐好評"
+    },
+    "accessibility": {
+      "barrierFree": null,
+      "note": "飯店 2F，和 T1、關西空港站同層相連"
+    },
+    "smoking": "全席禁煙",
+    "extra": {
+      "conflicts": [
+        "席数 官網102席 vs 食べログ100席"
+      ]
+    },
+    "summary": {
+      "text": "ホテル日航関西空港 2F 的中華，和 T1、關西空港站同層相連，住日航時走路就到。有 2 間包廂（各 2～20 人，但 1 桌最多 10 人，15 人分 2 桌），晚餐 17:30～21:00、週三休，2/12（週五）有營業。午餐的點心吃到飽很受歡迎。",
+      "pros": [
+        "包廂 2 間各 2～20 人，可以網路（TableCheck）或電話訂",
+        "飯店中華的安靜高級感；帶小孩的口コミ評價好",
+        "週三公休，2/12 週五有開"
+      ],
+      "cons": [
+        "晚餐每人約 6,000～8,000 円，包廂晚餐另收室料 8,000～9,000 円",
+        "1 桌最多 10 人，15 人要分 2 桌",
+        "食べログ 3.26（55 則）；低分說上菜慢、調味偏鹹"
+      ],
+      "basedOn": [
+        "https://www.nikkokix.com/restaurant/tohlee.html",
+        "https://www.nikkokix.com/restaurant/private_room_thl.html",
+        "https://tabelog.com/osaka/A2705/A270503/27003094/",
+        "https://tabelog.com/osaka/A2705/A270503/27003094/party/",
+        "https://maps.google.com/?cid=11928420244035706489"
+      ],
+      "generated": "2026-10-19"
+    },
+    "assessment": {
+      "rubric": "restaurant-v1",
+      "scores": {
+        "recommend": 3,
+        "localFlavor": 1,
+        "groupFit": 5,
+        "elderFit": 5,
+        "kidsFit": 4
+      },
+      "rationale": {
+        "recommend": "食べログ 3.26（55 則）、Google 4.3（66 則）→ 評論數上限 3",
+        "localFlavor": "一般中華，和在地無關 → 1",
+        "groupFit": "fit15 yes：包廂 20 人、貸切 20 人以下、可預約 → 5（1 桌最多 10 人，分 2 桌）",
+        "elderFit": "飯店 2F、桌席、和車站同層相連 → 5",
+        "kidsFit": "子供可、口コミ 3 則帶小孩用餐好評，熟食為主；兒童餐沒有來源 → 4"
+      },
+      "confidence": "low",
+      "assessed": "2026-10-19"
+    }
+  },
+  {
+    "id": "kix-seian",
+    "type": "restaurant",
+    "name": {
+      "ja": "青庵",
+      "kana": "せいあん",
+      "zh": "青庵",
+      "en": null
+    },
+    "area": "kix",
+    "region": "rinku",
+    "coords": [
+      135.2984206,
+      34.4151229
+    ],
+    "coordsSource": "google-maps-url",
+    "address": "大阪府泉佐野市りんくう往来北1-23",
+    "hours": {
+      "mon": [
+        [
+          "07:00",
+          "09:30"
+        ],
+        [
+          "11:00",
+          "15:00"
+        ],
+        [
+          "17:00",
+          "22:00"
+        ]
+      ],
+      "tue": [
+        [
+          "07:00",
+          "09:30"
+        ],
+        [
+          "11:00",
+          "15:00"
+        ],
+        [
+          "17:00",
+          "22:00"
+        ]
+      ],
+      "wed": [
+        [
+          "07:00",
+          "09:30"
+        ],
+        [
+          "11:00",
+          "15:00"
+        ],
+        [
+          "17:00",
+          "22:00"
+        ]
+      ],
+      "thu": [
+        [
+          "07:00",
+          "09:30"
+        ],
+        [
+          "11:00",
+          "15:00"
+        ],
+        [
+          "17:00",
+          "22:00"
+        ]
+      ],
+      "fri": [
+        [
+          "07:00",
+          "09:30"
+        ],
+        [
+          "11:00",
+          "15:00"
+        ],
+        [
+          "17:00",
+          "22:00"
+        ]
+      ],
+      "sat": [
+        [
+          "06:30",
+          "09:30"
+        ],
+        [
+          "11:00",
+          "15:00"
+        ],
+        [
+          "17:00",
+          "22:00"
+        ]
+      ],
+      "sun": [
+        [
+          "06:30",
+          "09:30"
+        ],
+        [
+          "11:00",
+          "15:00"
+        ],
+        [
+          "17:00",
+          "22:00"
+        ]
+      ],
+      "holiday": [
+        [
+          "06:30",
+          "09:30"
+        ],
+        [
+          "11:00",
+          "15:00"
+        ],
+        [
+          "17:00",
+          "22:00"
+        ]
+      ],
+      "lastEntry": [
+        "09:00",
+        "14:30",
+        "21:30"
+      ],
+      "note": "無休；官網寫可能臨時包場不營業（食べログ、官網）"
+    },
+    "closedNote": "無休（偶有臨時包場）",
+    "febNote": null,
+    "closures": [],
+    "photos": [
+      {
+        "url": "https://lh3.googleusercontent.com/grass-cs/AABkmLdzQ4sf0YpMfodTY8rfHKtDWXf8BmiCNMt046sIqQ6UB-VX6LddXKDotPR9VIOOA8u9AVI9NgRE2Zohy_j4iExtlwS3udoj41f6kFIw10gsnpYtiq47tm4hMBG-8nhrsFwuMcmc=w800",
+        "page": "https://maps.google.com/?cid=8551990792774294460",
+        "kind": "google",
+        "credit": "Google マップ",
+        "license": null
+      }
+    ],
+    "links": {
+      "official": "https://senshu-onsen.com/restaurant/",
+      "googleMaps": "https://maps.google.com/?cid=8551990792774294460",
+      "tabelog": "https://tabelog.com/osaka/A2705/A270503/27116219/",
+      "instagram": null
+    },
+    "tags": [],
+    "tier": "B",
+    "sources": [
+      {
+        "type": "tabelog",
+        "url": "https://tabelog.com/osaka/A2705/A270503/27116219/",
+        "retrieved": "2026-10-19",
+        "note": "店舗情報：分數、席數、預約、個室、貸切、營業時間、お子様連れ"
+      },
+      {
+        "type": "google-maps",
+        "url": "https://maps.google.com/?cid=8551990792774294460",
+        "retrieved": "2026-10-19",
+        "note": "星數、評論數、座標、照片"
+      },
+      {
+        "type": "official",
+        "url": "https://senshu-onsen.com/restaurant/",
+        "retrieved": "2026-10-19",
+        "note": "営業時間・無休・価格"
+      },
+      {
+        "type": "official",
+        "url": "https://www.hennnahotel.com/kansai-airport/restaurant/",
+        "retrieved": "2026-10-19",
+        "note": "席数・非宿泊利用・2階"
+      },
+      {
+        "type": "booking-site",
+        "url": "https://travel.rakuten.co.jp/HOTEL/173021/173021.html",
+        "retrieved": "2026-10-19",
+        "note": "アクセス"
+      }
+    ],
+    "verified": false,
+    "anchors": [
+      {
+        "id": "kix-henn-na-resort",
+        "walkMinutes": 4,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "kix-odysis-suites",
+        "walkMinutes": 9,
+        "walkSource": "osrm"
+      }
+    ],
+    "contexts": [
+      "lunch",
+      "dinner"
+    ],
+    "access": "walk",
+    "cuisine": [
+      "定食・食堂"
+    ],
+    "priceRange": "午 ¥1,000～1,999／晚 ¥2,000～2,999",
+    "price": {
+      "lunch": [
+        1000,
+        1999
+      ],
+      "dinner": [
+        2000,
+        2999
+      ]
+    },
+    "stayMinutes": null,
+    "mustTry": [],
+    "menu": [
+      {
+        "url": "https://tabelog.com/osaka/A2705/A270503/27116219/dtlmenu/",
+        "source": "tabelog",
+        "retrieved": "2026-10-19"
+      }
+    ],
+    "ratings": {
+      "tabelog": 3.24,
+      "tabelogReviews": 58,
+      "google": 3.8,
+      "googleReviews": 114,
+      "note": null
+    },
+    "inclusion": [
+      "C"
+    ],
+    "tabelogOwner": false,
+    "googleName": null,
+    "notes": "変なリゾート＆スパ 関西空港 的溫泉棟（天然温泉 泉州の湯）裡的海鮮定食堂，非住客也能用；窗邊看海。変なリゾート的住客晚餐、早餐也在這裡。",
+    "group": {
+      "seats": 60,
+      "maxReservation": null,
+      "privateRoom": false,
+      "buyout": "可",
+      "groupMenu": null,
+      "fit15": "split",
+      "fitSubgroup": "yes",
+      "source": "食べログ：席数 60席、個室 無、貸切 可、予約可 → split（可預約、席數 60，沒寫一次能接 15 人）"
+    },
+    "reservation": {
+      "accepted": "yes",
+      "methods": [
+        "phone"
+      ],
+      "phone": "072-463-1603",
+      "url": null,
+      "language": "日文",
+      "note": "食べログ：予約可",
+      "leadDays": null
+    },
+    "seating": [
+      "table",
+      "sofa"
+    ],
+    "kids": {
+      "allowed": "yes",
+      "minAge": null,
+      "kidsMenu": true,
+      "note": "食べログ：子供可、お子様メニューあり；口コミ 1 則（2021）說小學生和幼兒的兒童餐一樣、份量少"
+    },
+    "accessibility": {
+      "barrierFree": null,
+      "note": "變なリゾート＆スパ 溫浴棟（泉州の湯）2F，館內要脫鞋；電梯未載"
+    },
+    "smoking": "全席禁煙",
+    "extra": {
+      "conflicts": [
+        "席数 変なリゾート頁54席 vs 食べログ60席",
+        "定食価格 変なリゾート頁と泉州温泉頁で50円差"
+      ]
+    },
+    "summary": {
+      "text": "変なリゾート＆スパ 的天然溫泉「泉州の湯」館內 2F 的海鮮定食堂，窗邊看海，非住客也能用。晚餐 17:00～22:00、無休，60 席、可包場，有兒童餐；刺身定食 1,740 円這種平價定食為主。りんくうタウン站步行約 8 分，是りんくう一帶少數晚上能坐下吃飯的地方。",
+      "pros": [
+        "無休、晚上到 22:00；可預約、可包場",
+        "有兒童餐；價格平實（定食 1,500～2,000 円）",
+        "りんくう的飯店（スターゲイト、オディシス、OMO）步行 9～12 分"
+      ],
+      "cons": [
+        "食べログ 3.24、Google 3.8；口コミ說刺身只有 3 種、份量偏少",
+        "在溫泉館內要脫鞋赤腳進去；2F、電梯沒有來源",
+        "官網寫可能臨時包場不營業，要先確認"
+      ],
+      "basedOn": [
+        "https://senshu-onsen.com/restaurant/",
+        "https://www.hennnahotel.com/kansai-airport/restaurant/",
+        "https://travel.rakuten.co.jp/HOTEL/173021/173021.html",
+        "https://tabelog.com/osaka/A2705/A270503/27116219/",
+        "https://maps.google.com/?cid=8551990792774294460"
+      ],
+      "generated": "2026-10-19"
+    },
+    "assessment": {
+      "rubric": "restaurant-v1",
+      "scores": {
+        "recommend": 2,
+        "localFlavor": 3,
+        "groupFit": 3,
+        "elderFit": 3,
+        "kidsFit": 5
+      },
+      "rationale": {
+        "recommend": "食べログ 3.24（69 則）未滿 3.3、Google 3.8 未滿 4.0 → 2",
+        "localFlavor": "刺身、海鮮丼、炸物的一般海鮮定食（關西機場周邊）→ 3",
+        "groupFit": "fit15 split：60 席、可預約、可包場，沒寫一次能接 15 人 → 3",
+        "elderFit": "桌席、沙發席；溫泉館 2F、電梯沒有來源 → 3",
+        "kidsFit": "子供可、有兒童餐、熟食多 → 5（2021 一則說兒童餐份量少）"
+      },
+      "confidence": "medium",
+      "assessed": "2026-10-19"
+    }
+  },
+  {
+    "id": "kix-ranbai",
+    "type": "restaurant",
+    "name": {
+      "ja": "四川料理 蘭梅",
+      "kana": "らんめい",
+      "zh": "四川料理 蘭梅",
+      "en": null
+    },
+    "area": "kix",
+    "region": "izumisano",
+    "coords": [
+      135.3240404,
+      34.409146
+    ],
+    "coordsSource": "google-maps-url",
+    "address": "大阪府泉佐野市上町1-8‐26",
+    "hours": {
+      "mon": [],
+      "tue": [
+        [
+          "11:00",
+          "15:00"
+        ],
+        [
+          "17:00",
+          "22:00"
+        ]
+      ],
+      "wed": [
+        [
+          "11:00",
+          "15:00"
+        ],
+        [
+          "17:00",
+          "22:00"
+        ]
+      ],
+      "thu": [
+        [
+          "11:00",
+          "15:00"
+        ],
+        [
+          "17:00",
+          "22:00"
+        ]
+      ],
+      "fri": [
+        [
+          "11:00",
+          "15:00"
+        ],
+        [
+          "17:00",
+          "22:00"
+        ]
+      ],
+      "sat": [
+        [
+          "11:00",
+          "15:00"
+        ],
+        [
+          "17:00",
+          "22:00"
+        ]
+      ],
+      "sun": [
+        [
+          "11:00",
+          "15:00"
+        ],
+        [
+          "17:00",
+          "22:00"
+        ]
+      ],
+      "holiday": null,
+      "note": "週一公休（食べログ、官網）"
+    },
+    "closedNote": "週一",
+    "febNote": null,
+    "closures": [],
+    "photos": [
+      {
+        "url": "https://lh3.googleusercontent.com/grass-cs/AABkmLeApcHmvsYtWuR6Ef1b6515qVjSgXIotxptHhLFcrMPItbu7uEDKR8jULI7U2N4PM4jo9UzgkzO5ffrvYOxo7dqpHYu37nmJq6Cc7tZCUFr1050lY7hlmxSrbzLkzsQig1XgfU=w800",
+        "page": "https://maps.google.com/?cid=17390399228433398552",
+        "kind": "google",
+        "credit": "Google マップ",
+        "license": null
+      }
+    ],
+    "links": {
+      "official": "https://ranmei2006.com/",
+      "googleMaps": "https://maps.google.com/?cid=17390399228433398552",
+      "tabelog": "https://tabelog.com/osaka/A2705/A270503/27019638/",
+      "instagram": null
+    },
+    "tags": [],
+    "tier": "B",
+    "sources": [
+      {
+        "type": "tabelog",
+        "url": "https://tabelog.com/osaka/A2705/A270503/27019638/",
+        "retrieved": "2026-10-19",
+        "note": "店舗情報：分數、席數、預約、個室、貸切、營業時間、お子様連れ"
+      },
+      {
+        "type": "google-maps",
+        "url": "https://maps.google.com/?cid=17390399228433398552",
+        "retrieved": "2026-10-19",
+        "note": "星數、評論數、座標、照片"
+      },
+      {
+        "type": "tabelog",
+        "url": "https://tabelog.com/osaka/A2705/A270503/27019638/party/",
+        "retrieved": "2026-10-19",
+        "note": "コース一覧：套餐名稱、價格、人數"
+      },
+      {
+        "type": "official",
+        "url": "https://ranmei2006.com/",
+        "retrieved": "2026-10-19",
+        "note": "営業時間・定休日・辛さ・電話・駐車場"
+      },
+      {
+        "type": "other",
+        "url": "https://www.navitime.co.jp/category/0307/27213/",
+        "retrieved": "2026-10-19",
+        "note": "アクセス（検索摘要）"
+      },
+      {
+        "type": "other",
+        "url": "https://retty.me/theme/101752914/",
+        "retrieved": "2026-10-19",
+        "note": "ランチ定食（検索摘要）"
+      }
+    ],
+    "verified": false,
+    "anchors": [
+      {
+        "id": "kix-bellevue-garden",
+        "walkMinutes": 7,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "kix-ref-izumisano",
+        "walkMinutes": 12,
+        "walkSource": "osrm"
+      }
+    ],
+    "contexts": [
+      "lunch",
+      "dinner"
+    ],
+    "access": "walk",
+    "cuisine": [
+      "其他"
+    ],
+    "priceRange": "午 ¥1,000～1,999／晚 ¥1,000～1,999（宴會コース 4,800 円起）",
+    "price": {
+      "lunch": [
+        1000,
+        1999
+      ],
+      "dinner": [
+        1000,
+        1999
+      ]
+    },
+    "stayMinutes": null,
+    "mustTry": [
+      "麻婆豆腐定食（大人気麻婆豆腐定食，辣度可選）"
+    ],
+    "menu": [
+      {
+        "url": "https://tabelog.com/osaka/A2705/A270503/27019638/party/",
+        "source": "tabelog",
+        "retrieved": "2026-10-19"
+      },
+      {
+        "url": "https://tabelog.com/osaka/A2705/A270503/27019638/dtlmenu/",
+        "source": "tabelog",
+        "retrieved": "2026-10-19"
+      }
+    ],
+    "ratings": {
+      "tabelog": 3.42,
+      "tabelogReviews": 168,
+      "google": 3.9,
+      "googleReviews": 299,
+      "note": null
+    },
+    "inclusion": [
+      "A",
+      "C"
+    ],
+    "tabelogOwner": false,
+    "googleName": null,
+    "notes": "中國籍店主的四川料理，24 席（4 人桌 4、5～6 人桌 1、吧台 2；口コミ說有轉盤圓桌）。可包場，15 人要包場或分桌；泉佐野站步行約 11 分。",
+    "group": {
+      "seats": 24,
+      "maxReservation": null,
+      "privateRoom": false,
+      "buyout": "可",
+      "groupMenu": "120 分飲み放題付 宴会コース：水仙 15 品 4,800 円、薔薇 5,600 円、菊 6,600 円、牡丹 8,900 円（4 名～）；不含飲料 竹 3,000～蘭 5,500 円（2 名～）（食べログ コース頁 2026-10-19）",
+      "fit15": "split",
+      "fitSubgroup": "yes",
+      "source": "食べログ：席数 24席 （４名席X４卓、５～６名席X１卓＋カウンター席２席）、個室 無、貸切 可、予約可 → split（可預約、席數 24，沒寫一次能接 15 人）"
+    },
+    "reservation": {
+      "accepted": "yes",
+      "methods": [
+        "phone"
+      ],
+      "phone": "072-463-1658",
+      "url": null,
+      "language": "日文",
+      "note": "食べログ：予約可",
+      "leadDays": null
+    },
+    "seating": [
+      "table",
+      "counter"
+    ],
+    "kids": {
+      "allowed": "yes",
+      "minAge": null,
+      "kidsMenu": null,
+      "note": "食べログ沒寫；口コミ：店主喜歡小孩（2022）、可點不辣的麻婆豆腐（2018）"
+    },
+    "accessibility": {
+      "barrierFree": null,
+      "note": "店前停車 6～7 台"
+    },
+    "smoking": "全席禁煙",
+    "extra": {
+      "conflicts": [
+        "徒歩 9分 vs 11分"
+      ]
+    },
+    "summary": {
+      "text": "中國籍店主的四川料理（泉佐野站步行約 11 分），招牌是可以選辣度的麻婆豆腐定食，午餐常客滿。晚餐 17:00～22:00、週一休。24 席（4 人桌 4、5～6 人桌 1），可包場；有 120 分飲み放題的宴會套餐 4,800 円起。",
+      "pros": [
+        "麻婆豆腐（辣度可選），口コミ多則推薦",
+        "可包場；宴會套餐 4,800～8,900 円（4 名起）",
+        "店主喜歡小孩；可以點不辣的麻婆豆腐"
+      ],
+      "cons": [
+        "24 席、沒有包廂，15 人要包場或分桌",
+        "Google 低分說調味偏鹹、味道不穩定（多是 3 年以上前）",
+        "週一公休；店前停車 6～7 台"
+      ],
+      "basedOn": [
+        "https://ranmei2006.com/",
+        "https://www.navitime.co.jp/category/0307/27213/",
+        "https://retty.me/theme/101752914/",
+        "https://tabelog.com/osaka/A2705/A270503/27019638/",
+        "https://tabelog.com/osaka/A2705/A270503/27019638/party/",
+        "https://maps.google.com/?cid=17390399228433398552"
+      ],
+      "generated": "2026-10-19"
+    },
+    "assessment": {
+      "rubric": "restaurant-v1",
+      "scores": {
+        "recommend": 3,
+        "localFlavor": 1,
+        "groupFit": 3,
+        "elderFit": 4,
+        "kidsFit": 4
+      },
+      "rationale": {
+        "recommend": "食べログ 3.42（195 則）、Google 3.9（299 則）→ 3（4 要 3.45 以上＋Google 4.0）",
+        "localFlavor": "四川料理，和在地無關 → 1",
+        "groupFit": "fit15 split：24 席、貸切可、可預約；包場人數沒寫 → 3",
+        "elderFit": "桌席（口コミ說有轉盤圓桌）→ 4",
+        "kidsFit": "口コミ：店主喜歡小孩（2022）、可點不辣的麻婆豆腐；熟食 → 4"
+      },
+      "confidence": "medium",
+      "assessed": "2026-10-19"
+    }
+  },
+  {
+    "id": "kix-odoroki",
+    "type": "restaurant",
+    "name": {
+      "ja": "地魚 寿司 逸品 おどろき",
+      "kana": "おどろき",
+      "zh": "地魚壽司 逸品 Odoroki",
+      "en": null
+    },
+    "area": "kix",
+    "region": "izumisano",
+    "coords": [
+      135.3182173,
+      34.4099887
+    ],
+    "coordsSource": "google-maps-url",
+    "address": "大阪府泉佐野市上町3-6-8",
+    "hours": {
+      "mon": [
+        [
+          "18:00",
+          "24:00"
+        ]
+      ],
+      "tue": [
+        [
+          "18:00",
+          "24:00"
+        ]
+      ],
+      "wed": [
+        [
+          "18:00",
+          "24:00"
+        ]
+      ],
+      "thu": [
+        [
+          "18:00",
+          "24:00"
+        ]
+      ],
+      "fri": [
+        [
+          "18:00",
+          "24:00"
+        ]
+      ],
+      "sat": [
+        [
+          "18:00",
+          "24:00"
+        ]
+      ],
+      "sun": [
+        [
+          "18:00",
+          "24:00"
+        ]
+      ],
+      "holiday": [
+        [
+          "18:00",
+          "24:00"
+        ]
+      ],
+      "lastEntry": "23:00",
+      "note": "第 3 週日公休（2/21 是第 3 週日，2/12 照常）；飲料 L.O. 23:30"
+    },
+    "closedNote": "每月第 3 週日",
+    "febNote": null,
+    "closures": [],
+    "photos": [
+      {
+        "url": "https://lh3.googleusercontent.com/grass-cs/AABkmLcoSD1q2PeXEaqDxVuqwTCWeXIphHHMm43EmRZ4qQzMmShEGptR_je9BcsJu8xxIlprB2FalrvZu3sMiS6qTr2Xc0M8OU23vDGVTulrgeDqbuf4llqhBVRAL0tu3JZsCOwYvEsg=w800",
+        "page": "https://maps.google.com/?cid=14038338544471819886",
+        "kind": "google",
+        "credit": "Google マップ",
+        "license": null
+      }
+    ],
+    "links": {
+      "official": "https://www.odoroki-izumisano.com/",
+      "googleMaps": "https://maps.google.com/?cid=14038338544471819886",
+      "tabelog": "https://tabelog.com/osaka/A2705/A270503/27131462/",
+      "instagram": "@umaiodoroki"
+    },
+    "tags": [],
+    "tier": "B",
+    "sources": [
+      {
+        "type": "tabelog",
+        "url": "https://tabelog.com/osaka/A2705/A270503/27131462/",
+        "retrieved": "2026-10-19",
+        "note": "店舗情報：分數、席數、預約、個室、貸切、營業時間、お子様連れ（店舗会員）"
+      },
+      {
+        "type": "google-maps",
+        "url": "https://maps.google.com/?cid=14038338544471819886",
+        "retrieved": "2026-10-19",
+        "note": "星數、評論數、座標、照片"
+      },
+      {
+        "type": "tabelog",
+        "url": "https://tabelog.com/osaka/A2705/A270503/27131462/party/",
+        "retrieved": "2026-10-19",
+        "note": "コース一覧：套餐名稱、價格、人數"
+      },
+      {
+        "type": "official",
+        "url": "https://www.odoroki-izumisano.com/",
+        "retrieved": "2026-10-19",
+        "note": "官網首頁"
+      }
+    ],
+    "verified": false,
+    "anchors": [
+      {
+        "id": "kix-ref-izumisano",
+        "walkMinutes": 4,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "kix-bellevue-garden",
+        "walkMinutes": 7,
+        "walkSource": "osrm"
+      }
+    ],
+    "contexts": [
+      "dinner"
+    ],
+    "access": "walk",
+    "cuisine": [
+      "壽司",
+      "居酒屋"
+    ],
+    "priceRange": "晚 ¥6,000～7,999",
+    "price": {
+      "lunch": null,
+      "dinner": [
+        6000,
+        7999
+      ]
+    },
+    "stayMinutes": null,
+    "mustTry": [
+      "赤酢のとろたく巻き",
+      "厳選お造り盛り合わせ（乾冰演出的舟盛り）"
+    ],
+    "menu": [
+      {
+        "url": "https://tabelog.com/osaka/A2705/A270503/27131462/party/",
+        "source": "tabelog",
+        "retrieved": "2026-10-19"
+      },
+      {
+        "url": "https://tabelog.com/osaka/A2705/A270503/27131462/dtlmenu/",
+        "source": "tabelog",
+        "retrieved": "2026-10-19"
+      }
+    ],
+    "ratings": {
+      "tabelog": 3.14,
+      "tabelogReviews": 49,
+      "google": 4,
+      "googleReviews": 165,
+      "note": null
+    },
+    "inclusion": [
+      "C"
+    ],
+    "tabelogOwner": true,
+    "googleName": null,
+    "notes": "泉佐野站步行 3 分，泉州地魚的壽司居酒屋；15 人可用包廂（2～14 人程度）或座敷包場（24 人起）。全席可吸菸，帶小孩要先問禁菸包廂。",
+    "group": {
+      "seats": 90,
+      "maxReservation": 60,
+      "privateRoom": true,
+      "buyout": "可 （20人～50人可、50人以上可）",
+      "groupMenu": "飲み放題付コース：おどろき名物逸品 7,000 円、もち豚しゃぶ／桜鯛しゃぶしゃぶ／選べる鍋 6,500 円（食べログ コース頁，2026-04 版）；座敷 24～40 名可包場",
+      "fit15": "yes",
+      "fitSubgroup": "yes",
+      "source": "食べログ：席数 90席、最大予約 着席時 60人、個室 有 （2人可、4人可、6人可、8人可、10～20人可） 様々なタイプの個室をご用意しております。 2～14人程度まで利用可能、貸切 可 （20人～50人可、50人以上可）、予約可 混雑時お席2時間半制とさせていただいております。 ※2名様でテーブル席をご要望のお客様は、直接お店にお問い合わせくださいませ。 → yes（最大予約 60 人）"
+    },
+    "reservation": {
+      "accepted": "yes",
+      "methods": [
+        "phone"
+      ],
+      "phone": "050-5595-1179",
+      "url": null,
+      "language": "日文",
+      "note": "食べログ：予約可 混雑時お席2時間半制とさせていただいております。 ※2名様でテーブル席をご要望のお客様は、直接お店にお問い合わせくださいませ。",
+      "leadDays": null
+    },
+    "seating": [
+      "table",
+      "zashiki",
+      "counter"
+    ],
+    "kids": {
+      "allowed": "unknown",
+      "minAge": null,
+      "kidsMenu": null,
+      "note": "食べログ、官網都沒寫；官網有キッズルーム照片；全席可吸菸"
+    },
+    "accessibility": {
+      "barrierFree": null,
+      "note": "包廂在 2F（口コミ），座敷用簾子隔"
+    },
+    "smoking": "全席喫煙可",
+    "extra": {
+      "conflicts": [
+        "步行1分(官網) vs 3分(食べログ)",
+        "貸切40名～(官網) vs 24～40名(食べログ)"
+      ]
+    },
+    "summary": {
+      "text": "泉佐野站步行 3 分的壽司居酒屋，用泉州的地魚，招牌是赤酢的とろたく巻和乾冰演出的生魚片拼盤。90 席、最大予約 60 人，有 2～14 人的包廂和可包場的座敷（24～40 人）；飲み放題套餐 6,500～7,000 円。營業 18:00～24:00，第 3 週日休。",
+      "pros": [
+        "包廂 2～14 人、座敷包場 24～40 人，最大予約 60 人",
+        "泉州地魚的生魚片、赤酢壽司口コミ評價高（2025～2026）",
+        "REF 步行 4 分、ベルビュー 7 分"
+      ],
+      "cons": [
+        "全席可吸菸；兒童政策沒有來源",
+        "包廂在 2F、座敷（榻榻米），用簾子隔、聽得到隔壁",
+        "Google 低分：訂位時間糾紛、未告知的服務費、套餐和照片差很多"
+      ],
+      "basedOn": [
+        "https://www.odoroki-izumisano.com/",
+        "https://tabelog.com/osaka/A2705/A270503/27131462/",
+        "https://tabelog.com/osaka/A2705/A270503/27131462/party/",
+        "https://maps.google.com/?cid=14038338544471819886"
+      ],
+      "generated": "2026-10-19"
+    },
+    "assessment": {
+      "rubric": "restaurant-v1",
+      "scores": {
+        "recommend": 3,
+        "localFlavor": 3,
+        "groupFit": 5,
+        "elderFit": 3,
+        "kidsFit": 3
+      },
+      "rationale": {
+        "recommend": "食べログ 3.14（50 則）、Google 4.0（165 則）→ 評論數上限 3",
+        "localFlavor": "泉州地魚的壽司、生魚片（不是伊勢志摩特產）→ 3",
+        "groupFit": "fit15 yes：最大予約 60 人、座敷包場 24～40 人 → 5",
+        "elderFit": "有桌席，但包廂在 2F、座敷 → 3",
+        "kidsFit": "小孩規定沒有來源、熟食也有；全席可吸菸 → 3"
+      },
+      "confidence": "medium",
+      "assessed": "2026-10-19"
+    }
+  },
+  {
+    "id": "kix-la-trampista",
+    "type": "restaurant",
+    "name": {
+      "ja": "ラ・トランピスタ",
+      "kana": "ら・とらんぴすた",
+      "zh": "La Trampista 義大利餐廳",
+      "en": null
+    },
+    "area": "kix",
+    "region": "izumisano",
+    "coords": [
+      135.3252752,
+      34.4095932
+    ],
+    "coordsSource": "google-maps-url",
+    "address": "大阪府泉佐野市上町1-10-12-4",
+    "hours": {
+      "mon": [],
+      "tue": [
+        [
+          "11:30",
+          "15:00"
+        ],
+        [
+          "17:30",
+          "22:00"
+        ]
+      ],
+      "wed": [
+        [
+          "11:30",
+          "15:00"
+        ],
+        [
+          "17:30",
+          "22:00"
+        ]
+      ],
+      "thu": [
+        [
+          "11:30",
+          "15:00"
+        ],
+        [
+          "17:30",
+          "22:00"
+        ]
+      ],
+      "fri": [
+        [
+          "11:30",
+          "15:00"
+        ],
+        [
+          "17:30",
+          "22:00"
+        ]
+      ],
+      "sat": [
+        [
+          "11:30",
+          "15:00"
+        ],
+        [
+          "17:30",
+          "22:00"
+        ]
+      ],
+      "sun": [
+        [
+          "11:30",
+          "15:00"
+        ],
+        [
+          "17:30",
+          "22:00"
+        ]
+      ],
+      "holiday": null,
+      "lastEntry": [
+        "14:00",
+        "21:00"
+      ],
+      "note": "週一公休（遇國定假日營業、隔天休）；晚餐前一天前預約制（2 名起）"
+    },
+    "closedNote": "週一",
+    "febNote": null,
+    "closures": [],
+    "photos": [
+      {
+        "url": "https://lh3.googleusercontent.com/grass-cs/AABkmLcJWcVVlekceNH-6psLIPBG_EFAXO1VxXkcAZyX7o7cW1vr9YrhLsHJGbpniDhMUnBvXase7PCwqEMgx0ODDCIqVG0kdiKp4MofLjNFaXpSP2TKAkr7BBxiX149oSGepb9N4awrHw=w800",
+        "page": "https://maps.google.com/?cid=12489158553438728957",
+        "kind": "google",
+        "credit": "Google マップ",
+        "license": null
+      }
+    ],
+    "links": {
+      "official": "https://la-trampista-osaka.com/",
+      "googleMaps": "https://maps.google.com/?cid=12489158553438728957",
+      "tabelog": "https://tabelog.com/osaka/A2705/A270503/27010876/",
+      "instagram": "@la_trampista"
+    },
+    "tags": [],
+    "tier": "B",
+    "sources": [
+      {
+        "type": "tabelog",
+        "url": "https://tabelog.com/osaka/A2705/A270503/27010876/",
+        "retrieved": "2026-10-19",
+        "note": "店舗情報：分數、席數、預約、個室、貸切、營業時間、お子様連れ（店舗会員）"
+      },
+      {
+        "type": "google-maps",
+        "url": "https://maps.google.com/?cid=12489158553438728957",
+        "retrieved": "2026-10-19",
+        "note": "星數、評論數、座標、照片"
+      },
+      {
+        "type": "tabelog",
+        "url": "https://tabelog.com/osaka/A2705/A270503/27010876/party/",
+        "retrieved": "2026-10-19",
+        "note": "コース一覧：套餐名稱、價格、人數"
+      },
+      {
+        "type": "official",
+        "url": "https://la-trampista-osaka.com/",
+        "retrieved": "2026-10-19",
+        "note": "官網首頁"
+      },
+      {
+        "type": "other",
+        "url": "https://s.tabelog.com/en/osaka/A2705/A270503/27010876/",
+        "retrieved": "2026-10-19",
+        "note": "搜尋結果出現，未讀，且未確認是否同店"
+      }
+    ],
+    "verified": false,
+    "anchors": [
+      {
+        "id": "kix-bellevue-garden",
+        "walkMinutes": 9,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "kix-ref-izumisano",
+        "walkMinutes": 15,
+        "walkSource": "osrm"
+      }
+    ],
+    "contexts": [
+      "lunch",
+      "dinner"
+    ],
+    "access": "walk",
+    "cuisine": [
+      "洋食・義式"
+    ],
+    "priceRange": "午 ¥2,000～2,999／晚 ¥5,000～5,999",
+    "price": {
+      "lunch": [
+        2000,
+        2999
+      ],
+      "dinner": [
+        5000,
+        5999
+      ]
+    },
+    "stayMinutes": null,
+    "mustTry": [],
+    "menu": [
+      {
+        "url": "https://tabelog.com/osaka/A2705/A270503/27010876/party/",
+        "source": "tabelog",
+        "retrieved": "2026-10-19"
+      }
+    ],
+    "ratings": {
+      "tabelog": 3.22,
+      "tabelogReviews": 54,
+      "google": 4,
+      "googleReviews": 108,
+      "note": null
+    },
+    "inclusion": [
+      "C"
+    ],
+    "tabelogOwner": true,
+    "googleName": null,
+    "notes": "泉佐野站步行 13 分的一軒家義大利餐廳（面池塘）。食べログ寫最大 50 人、包場 20 人以下，但口コミ說目前店主一人經營，15 人晚餐要電話確認出菜。",
+    "group": {
+      "seats": 26,
+      "maxReservation": 50,
+      "privateRoom": true,
+      "buyout": "可 （20人以下可）",
+      "groupMenu": "晚餐コース 6 品 5,300 円、シェフおまかせ 6 品 6,600 円（2～20 名，2 小時）（食べログ コース頁 2025-12）；包廂只接午餐 7 名以上的コース",
+      "fit15": "yes",
+      "fitSubgroup": "yes",
+      "source": "食べログ：席数 26席、最大予約 着席時 50人、個室 有 （10～20人可）、貸切 可 （20人以下可）、予約可 【席のみ予約について】 14時ご予約の場合、15時閉店の為滞在時間は1時間となります。 お子様連れのお客様は、コメント欄にお子様それぞれの内訳(年齢)を書いていただくとご案内がスムーズになります。 個室のご希望は、7名様以上お昼のコースご予約のみ承ります。 混雑時はお席の希望に添えない場合もございますのでご了承ください。 → yes（最大予約 50 人）"
+    },
+    "reservation": {
+      "accepted": "yes",
+      "methods": [
+        "phone"
+      ],
+      "phone": "072-474-5500",
+      "url": null,
+      "language": "日文",
+      "note": "晚餐前一天前預約（2 名起）；口コミ說目前店主一人經營",
+      "leadDays": 1
+    },
+    "seating": [
+      "table",
+      "terrace"
+    ],
+    "kids": {
+      "allowed": "yes",
+      "minAge": null,
+      "kidsMenu": true,
+      "note": "食べログ：子供可、お子様メニュー；有兒童椅（口コミ）"
+    },
+    "accessibility": {
+      "barrierFree": "車椅子で入店可",
+      "note": "一軒家、面池塘"
+    },
+    "smoking": "全席禁煙",
+    "extra": {
+      "conflicts": [
+        "席數26席 vs 最大預約50人（食べログ內部矛盾，官網無資料）"
+      ]
+    },
+    "summary": {
+      "text": "泉佐野站步行 13 分、面池塘的一軒家義大利餐廳，季節水果全餐（桃、無花果）午餐很有名。晚餐 17:30～22:00、前一天預約、週一休；晚餐套餐 5,300／6,600 円（2～20 名）。食べログ寫最大 50 人、包場 20 人以下，有兒童餐、可推輪椅。",
+      "pros": [
+        "晚餐套餐 2～20 名可訂；有兒童餐、兒童椅",
+        "車椅子で入店可；面池塘的露台、一軒家",
+        "口コミ說水果午餐 4.5～5.0"
+      ],
+      "cons": [
+        "口コミ說目前店主一人經營，15 人一起出菜要電話確認",
+        "Google 低分：麵包市售、蔬菜不新鮮（2025～2026）",
+        "包廂只接午餐 7 名以上的套餐；26 席和「最大 50 人」矛盾"
+      ],
+      "basedOn": [
+        "https://la-trampista-osaka.com/",
+        "https://s.tabelog.com/en/osaka/A2705/A270503/27010876/",
+        "https://tabelog.com/osaka/A2705/A270503/27010876/",
+        "https://tabelog.com/osaka/A2705/A270503/27010876/party/",
+        "https://maps.google.com/?cid=12489158553438728957"
+      ],
+      "generated": "2026-10-19"
+    },
+    "assessment": {
+      "rubric": "restaurant-v1",
+      "scores": {
+        "recommend": 3,
+        "localFlavor": 2,
+        "groupFit": 4,
+        "elderFit": 4,
+        "kidsFit": 5
+      },
+      "rationale": {
+        "recommend": "食べログ 3.22（57 則）、Google 4.0（108 則）→ 評論數上限 3",
+        "localFlavor": "義大利菜，用和歌山的季節水果 → 2",
+        "groupFit": "fit15 yes（最大予約 50、包場 20 人以下），但包廂只接午餐、目前店主一人經營 → 4",
+        "elderFit": "桌席、車椅子で入店可 → 4",
+        "kidsFit": "子供可、有兒童餐、兒童椅 → 5"
+      },
+      "confidence": "medium",
+      "assessed": "2026-10-19"
+    }
+  }
+]

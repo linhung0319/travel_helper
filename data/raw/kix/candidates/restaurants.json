@@ -1,0 +1,1323 @@
+[
+  {
+    "key": "tabelog-27014109",
+    "name": {
+      "ja": "自家製うどん 天羽"
+    },
+    "region": "izumisano",
+    "category": "うどん、カレーうどん",
+    "status": "not-included",
+    "criteria": [
+      "A",
+      "C"
+    ],
+    "reason": "符合 A、C，但 T19 只收住宿附近、能接 15 人的晚餐（任務卡 3～5 家）：食べログ列表沒有晚餐預算（午餐、咖啡為主）；之後要補再從這裡撈",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.53,
+      "tabelogReviews": 220
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/osaka/A2705/A270503/27014109/"
+    },
+    "contexts": [
+      "lunch"
+    ],
+    "mentions": [],
+    "note": "類型：烏龍麵・蕎麥；地址：市場東2-298-2 吉川ビル1F；定休（食べログ列表）：月曜日；貸切可（食べログ列表）；預算（食べログ列表）：夜 -／昼 1000～1999"
+  },
+  {
+    "key": "tabelog-27098328",
+    "name": {
+      "ja": "そうさく料理 てんきち"
+    },
+    "region": "rinku",
+    "category": "創作料理、天ぷら、日本料理",
+    "status": "not-included",
+    "criteria": [
+      "A",
+      "C"
+    ],
+    "reason": "符合 A、C，但 T19 只收住宿附近、能接 15 人的晚餐（任務卡 3～5 家）：同一區已有能接 15 人的店，或沒有 15 人以上的個室／貸切資訊、離收錄住宿較遠；之後要補再從這裡撈",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.43,
+      "tabelogReviews": 130
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/osaka/A2705/A270503/27098328/"
+    },
+    "contexts": [
+      "lunch",
+      "dinner"
+    ],
+    "mentions": [],
+    "note": "類型：其他；地址：りんくう往来北1-10 スーパーセンター りんくうタウン店；定休（食べログ列表）：月曜日、火曜日；貸切可（食べログ列表）；預算（食べログ列表）：夜 1000～1999／昼 ～999"
+  },
+  {
+    "key": "tabelog-27019638",
+    "name": {
+      "ja": "四川料理 蘭梅"
+    },
+    "region": "izumisano",
+    "category": "四川料理、担々麺、餃子",
+    "status": "included",
+    "criteria": [
+      "A",
+      "C"
+    ],
+    "reason": null,
+    "pointId": "kix-ranbai",
+    "ratings": {
+      "tabelog": 3.42,
+      "tabelogReviews": 168,
+      "google": 3.9,
+      "googleReviews": 299
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/osaka/A2705/A270503/27019638/"
+    },
+    "contexts": [
+      "lunch",
+      "dinner"
+    ],
+    "mentions": [],
+    "note": "類型：其他；地址：上町1-8‐26；定休（食べログ列表）：月曜日；貸切可（食べログ列表）；預算（食べログ列表）：夜 1000～1999／昼 1000～1999"
+  },
+  {
+    "key": "tabelog-27045176",
+    "name": {
+      "ja": "鮮味館 泉佐野店"
+    },
+    "region": "izumisano",
+    "category": "中華料理、台湾料理、ラーメン",
+    "status": "not-included",
+    "criteria": [
+      "A",
+      "C"
+    ],
+    "reason": "符合 A、C，但 T19 只收住宿附近、能接 15 人的晚餐（任務卡 3～5 家）：同一區已有能接 15 人的店，或沒有 15 人以上的個室／貸切資訊、離收錄住宿較遠；之後要補再從這裡撈",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.38,
+      "tabelogReviews": 141
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/osaka/A2705/A270503/27045176/"
+    },
+    "contexts": [
+      "lunch",
+      "dinner"
+    ],
+    "mentions": [],
+    "note": "類型：其他；地址：松原2-5-60；貸切可（食べログ列表）；預算（食べログ列表）：夜 1000～1999／昼 ～999"
+  },
+  {
+    "key": "tabelog-27067856",
+    "name": {
+      "ja": "ピッツェリアバラッキーノ"
+    },
+    "region": "izumisano",
+    "category": "ピザ、イタリアン",
+    "status": "not-included",
+    "criteria": [
+      "A",
+      "C"
+    ],
+    "reason": "符合 A、C，但 T19 只收住宿附近、能接 15 人的晚餐（任務卡 3～5 家）：同一區已有能接 15 人的店，或沒有 15 人以上的個室／貸切資訊、離收錄住宿較遠；之後要補再從這裡撈",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.36,
+      "tabelogReviews": 108
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/osaka/A2705/A270503/27067856/"
+    },
+    "contexts": [
+      "lunch",
+      "dinner"
+    ],
+    "mentions": [],
+    "note": "類型：洋食・義式；地址：高松西1-2626-39；貸切可（食べログ列表）；預算（食べログ列表）：夜 4000～4999／昼 2000～2999"
+  },
+  {
+    "key": "tabelog-27078663",
+    "name": {
+      "ja": "THE KOREAN STYLE OBON PEP りんくう店"
+    },
+    "region": "rinku",
+    "category": "韓国料理、焼肉、居酒屋",
+    "status": "excluded",
+    "criteria": [
+      "A",
+      "C"
+    ],
+    "reason": "食べログ店舗情報（2026-10-19）：りんくうプレジャータウン シークル閉館，本店 2026-10-31 結束營業",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.35,
+      "tabelogReviews": 109
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/osaka/A2705/A270503/27078663/"
+    },
+    "contexts": [
+      "lunch",
+      "dinner"
+    ],
+    "mentions": [],
+    "note": "類型：其他；地址：りんくう往来南3 りんくうプレジャータウンシークル 2F；貸切可（食べログ列表）；預算（食べログ列表）：夜 2000～2999／昼 ～999"
+  },
+  {
+    "key": "tabelog-27003411",
+    "name": {
+      "ja": "美食倶楽部 一歩"
+    },
+    "region": "izumisano",
+    "category": "フレンチ、ステーキ、カレー",
+    "status": "not-included",
+    "criteria": [
+      "A",
+      "C"
+    ],
+    "reason": "符合 A、C，但 T19 只收住宿附近、能接 15 人的晚餐（任務卡 3～5 家）：同一區已有能接 15 人的店，或沒有 15 人以上的個室／貸切資訊、離收錄住宿較遠；之後要補再從這裡撈",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.35,
+      "tabelogReviews": 71
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/osaka/A2705/A270503/27003411/"
+    },
+    "contexts": [
+      "lunch",
+      "dinner"
+    ],
+    "mentions": [],
+    "note": "類型：洋食・義式；地址：高松南1-1-45；貸切可（食べログ列表）；預算（食べログ列表）：夜 6000～7999／昼 3000～3999"
+  },
+  {
+    "key": "tabelog-27117157",
+    "name": {
+      "ja": "ジャパニーズダイニング 小はれ"
+    },
+    "region": "izumisano",
+    "category": "居酒屋、ラーメン",
+    "status": "not-included",
+    "criteria": [
+      "A",
+      "C"
+    ],
+    "reason": "符合 A、C，但 T19 只收住宿附近、能接 15 人的晚餐（任務卡 3～5 家）：同一區已有能接 15 人的店，或沒有 15 人以上的個室／貸切資訊、離收錄住宿較遠；之後要補再從這裡撈",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.33,
+      "tabelogReviews": 39
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/osaka/A2705/A270503/27117157/"
+    },
+    "contexts": [
+      "dinner"
+    ],
+    "mentions": [],
+    "note": "類型：居酒屋；地址：上町3-5-25；貸切可（食べログ列表）；預算（食べログ列表）：夜 1000～1999／昼 -"
+  },
+  {
+    "key": "tabelog-27051672",
+    "name": {
+      "ja": "不動口館"
+    },
+    "region": "izumisano",
+    "category": "料理旅館、日本料理",
+    "status": "not-included",
+    "criteria": [
+      "A",
+      "C"
+    ],
+    "reason": "符合 A、C，但 T19 只收住宿附近、能接 15 人的晚餐（任務卡 3～5 家）：食べログ列表沒有晚餐預算（午餐、咖啡為主）；之後要補再從這裡撈",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.31,
+      "tabelogReviews": 40
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/osaka/A2705/A270503/27051672/"
+    },
+    "contexts": [
+      "lunch"
+    ],
+    "mentions": [],
+    "note": "類型：和食・割烹；地址：大木7番地；個室（食べログ列表）：個室有；貸切可（食べログ列表）"
+  },
+  {
+    "key": "tabelog-27072852",
+    "name": {
+      "ja": "亀仙人食堂"
+    },
+    "region": "izumisano",
+    "category": "食堂、中華料理",
+    "status": "not-included",
+    "criteria": [
+      "A",
+      "C"
+    ],
+    "reason": "符合 A、C，但 T19 只收住宿附近、能接 15 人的晚餐（任務卡 3～5 家）：食べログ列表沒有晚餐預算（午餐、咖啡為主）；之後要補再從這裡撈",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.31,
+      "tabelogReviews": 36
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/osaka/A2705/A270503/27072852/"
+    },
+    "contexts": [
+      "lunch"
+    ],
+    "mentions": [],
+    "note": "類型：定食・食堂；地址：中町1-1-1；定休（食べログ列表）：月曜日、水曜日、木曜日、金曜日、日曜日、祝日；貸切可（食べログ列表）；預算（食べログ列表）：夜 -／昼 1000～1999"
+  },
+  {
+    "key": "tabelog-27090077",
+    "name": {
+      "ja": "錦綉"
+    },
+    "region": "izumisano",
+    "category": "四川料理",
+    "status": "not-included",
+    "criteria": [
+      "A",
+      "C"
+    ],
+    "reason": "符合 A、C，但 T19 只收住宿附近、能接 15 人的晚餐（任務卡 3～5 家）：同一區已有能接 15 人的店，或沒有 15 人以上的個室／貸切資訊、離收錄住宿較遠；之後要補再從這裡撈",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.3,
+      "tabelogReviews": 63
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/osaka/A2705/A270503/27090077/"
+    },
+    "contexts": [
+      "lunch",
+      "dinner"
+    ],
+    "mentions": [],
+    "note": "類型：其他；地址：鶴原4-1-31；定休（食べログ列表）：水曜日；個室（食べログ列表）：個室有(2人、8〜20人可)；貸切可（食べログ列表）；預算（食べログ列表）：夜 2000～2999／昼 ～999"
+  },
+  {
+    "key": "tabelog-27043837",
+    "name": {
+      "ja": "エッセ ディ ピュ"
+    },
+    "region": "rinku",
+    "category": "ピザ、イタリアン、パスタ",
+    "status": "not-included",
+    "criteria": [
+      "C"
+    ],
+    "reason": "符合 C，但 T19 只收住宿附近、能接 15 人的晚餐（任務卡 3～5 家）：同一區已有能接 15 人的店，或沒有 15 人以上的個室／貸切資訊、離收錄住宿較遠；之後要補再從這裡撈",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.29,
+      "tabelogReviews": 122
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/osaka/A2705/A270503/27043837/"
+    },
+    "contexts": [
+      "lunch",
+      "dinner"
+    ],
+    "mentions": [],
+    "note": "類型：洋食・義式；地址：りんくう往来北6番地 いずみさの関空マリーナ内；定休（食べログ列表）：火曜日；貸切可（食べログ列表）；預算（食べログ列表）：夜 4000～4999／昼 2000～2999"
+  },
+  {
+    "key": "tabelog-27075054",
+    "name": {
+      "ja": "洋食 ピッコローサ"
+    },
+    "region": "izumisano",
+    "category": "オムライス、ステーキ、洋食",
+    "status": "not-included",
+    "criteria": [
+      "C"
+    ],
+    "reason": "符合 C，但 T19 只收住宿附近、能接 15 人的晚餐（任務卡 3～5 家）：同一區已有能接 15 人的店，或沒有 15 人以上的個室／貸切資訊、離收錄住宿較遠；之後要補再從這裡撈",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.28,
+      "tabelogReviews": 65
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/osaka/A2705/A270503/27075054/"
+    },
+    "contexts": [
+      "lunch",
+      "dinner"
+    ],
+    "mentions": [],
+    "note": "類型：洋食・義式；地址：上瓦屋224-5；定休（食べログ列表）：月曜日、火曜日；貸切可（食べログ列表）；預算（食べログ列表）：夜 1000～1999／昼 1000～1999"
+  },
+  {
+    "key": "tabelog-27041894",
+    "name": {
+      "ja": "カフェテラス空"
+    },
+    "region": "izumisano",
+    "category": "創作料理",
+    "status": "not-included",
+    "criteria": [
+      "C"
+    ],
+    "reason": "符合 C，但 T19 只收住宿附近、能接 15 人的晚餐（任務卡 3～5 家）：食べログ列表沒有晚餐預算（午餐、咖啡為主）；之後要補再從這裡撈",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.28,
+      "tabelogReviews": 46
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/osaka/A2705/A270503/27041894/"
+    },
+    "contexts": [
+      "lunch"
+    ],
+    "mentions": [],
+    "note": "類型：其他；地址：大木7；定休（食べログ列表）：木曜日；貸切可（食べログ列表）；預算（食べログ列表）：夜 -／昼 2000～2999"
+  },
+  {
+    "key": "tabelog-27119038",
+    "name": {
+      "ja": "スノーピーク カフェ アンド ダイニング 大阪りんくう店"
+    },
+    "region": "rinku",
+    "category": "ダイニングバー、洋食、カフェ",
+    "status": "excluded",
+    "criteria": [
+      "C"
+    ],
+    "reason": "食べログ類別第一項是ダイニングバー → 酒吧排除",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.26,
+      "tabelogReviews": 76
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/osaka/A2705/A270503/27119038/"
+    },
+    "contexts": [
+      "lunch",
+      "dinner"
+    ],
+    "mentions": [],
+    "note": "類型：其他；地址：りんくう往来南4-17 りんくうアウトレットシーサイド 79；貸切可（食べログ列表）；預算（食べログ列表）：夜 2000～2999／昼 1000～1999"
+  },
+  {
+    "key": "tabelog-27003094",
+    "name": {
+      "ja": "中華料理 桃李"
+    },
+    "region": "kix-island",
+    "category": "中華料理、飲茶・点心",
+    "status": "included",
+    "criteria": [
+      "C"
+    ],
+    "reason": null,
+    "pointId": "kix-nikko-touri",
+    "ratings": {
+      "tabelog": 3.26,
+      "tabelogReviews": 55,
+      "google": 4.3,
+      "googleReviews": 66
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/osaka/A2705/A270503/27003094/"
+    },
+    "contexts": [
+      "lunch",
+      "dinner"
+    ],
+    "mentions": [],
+    "note": "類型：其他；地址：泉州空港北1 ホテル日航関西空港 2F；個室（食べログ列表）：完全個室有(8〜20人可)；貸切可（食べログ列表）；預算（食べログ列表）：夜 6000～7999／昼 4000～4999"
+  },
+  {
+    "key": "tabelog-27127007",
+    "name": {
+      "ja": "山形豚専門店 んだんだ"
+    },
+    "region": "rinku",
+    "category": "豚料理",
+    "status": "not-included",
+    "criteria": [
+      "C"
+    ],
+    "reason": "在りんくうプレジャータウン シークル 2F：同館的 OBON PEP 公告シークル閉館、2026-10-31 結束營業，本店很可能也一樣（未確認）；T19 只收晚餐 3～5 家，沒查",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.25,
+      "tabelogReviews": 39
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/osaka/A2705/A270503/27127007/"
+    },
+    "contexts": [
+      "lunch",
+      "dinner"
+    ],
+    "mentions": [],
+    "note": "類型：其他；地址：りんくう往来南3 プレジャータウンシークル 2F；貸切可（食べログ列表）；預算（食べログ列表）：夜 1000～1999／昼 1000～1999"
+  },
+  {
+    "key": "tabelog-27116219",
+    "name": {
+      "ja": "青庵"
+    },
+    "region": "rinku",
+    "category": "食堂、海鮮、日本料理",
+    "status": "included",
+    "criteria": [
+      "C"
+    ],
+    "reason": null,
+    "pointId": "kix-seian",
+    "ratings": {
+      "tabelog": 3.24,
+      "tabelogReviews": 58,
+      "google": 3.8,
+      "googleReviews": 114
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/osaka/A2705/A270503/27116219/"
+    },
+    "contexts": [
+      "lunch",
+      "dinner"
+    ],
+    "mentions": [],
+    "note": "類型：定食・食堂；地址：りんくう往来北1-23；貸切可（食べログ列表）；預算（食べログ列表）：夜 2000～2999／昼 1000～1999"
+  },
+  {
+    "key": "tabelog-27107452",
+    "name": {
+      "ja": "パンケーキカフェ cafeblow 泉佐野店"
+    },
+    "region": "izumisano",
+    "category": "パンケーキ、洋菓子、カフェ",
+    "status": "not-included",
+    "criteria": [
+      "C"
+    ],
+    "reason": "符合 C，但 T19 只收住宿附近、能接 15 人的晚餐（任務卡 3～5 家）：食べログ列表沒有晚餐預算（午餐、咖啡為主）；之後要補再從這裡撈",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.22,
+      "tabelogReviews": 97
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/osaka/A2705/A270503/27107452/"
+    },
+    "contexts": [
+      "snack",
+      "cafe"
+    ],
+    "mentions": [],
+    "note": "類型：咖啡・甜點；地址：日根野3963-3；貸切可（食べログ列表）；預算（食べログ列表）：夜 -／昼 1000～1999"
+  },
+  {
+    "key": "tabelog-27010876",
+    "name": {
+      "ja": "ラ・トランピスタ"
+    },
+    "region": "izumisano",
+    "category": "イタリアン、ダイニングバー、居酒屋",
+    "status": "included",
+    "criteria": [
+      "C"
+    ],
+    "reason": null,
+    "pointId": "kix-la-trampista",
+    "ratings": {
+      "tabelog": 3.22,
+      "tabelogReviews": 54,
+      "google": 4,
+      "googleReviews": 108
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/osaka/A2705/A270503/27010876/"
+    },
+    "contexts": [
+      "lunch",
+      "dinner"
+    ],
+    "mentions": [],
+    "note": "類型：洋食・義式；地址：上町1-10-12-4；定休（食べログ列表）：月曜日；個室（食べログ列表）：個室有(10〜20人可)；貸切可（食べログ列表）；預算（食べログ列表）：夜 5000～5999／昼 2000～2999"
+  },
+  {
+    "key": "tabelog-27145803",
+    "name": {
+      "ja": "泉州漁港食堂 きくのや"
+    },
+    "region": "izumisano",
+    "category": "海鮮、食堂、寿司",
+    "status": "not-included",
+    "criteria": [
+      "A",
+      "C"
+    ],
+    "reason": "符合 A、C，但 T19 只收住宿附近、能接 15 人的晚餐（任務卡 3～5 家）：食べログ列表沒有晚餐預算（午餐、咖啡為主）；之後要補再從這裡撈",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.34,
+      "tabelogReviews": 117
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/osaka/A2705/A270503/27145803/"
+    },
+    "contexts": [
+      "lunch"
+    ],
+    "mentions": [],
+    "note": "類型：海鮮丼；地址：新浜町4-3；個室（食べログ列表）：個室有(30人以上可)；預算（食べログ列表）：夜 -／昼 1000～1999"
+  },
+  {
+    "key": "tabelog-27011978",
+    "name": {
+      "ja": "スカイダイニング256 スターゲイト"
+    },
+    "region": "rinku",
+    "category": "ビュッフェ",
+    "status": "not-included",
+    "criteria": [
+      "A",
+      "C"
+    ],
+    "reason": "食べログ店舗情報（2026-10-19）：スターゲイト 54F 自助餐只有早餐和週末午餐，沒有晚餐；貸切不可。T19 只收晚餐",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.32,
+      "tabelogReviews": 98
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/osaka/A2705/A270503/27011978/"
+    },
+    "contexts": [
+      "lunch"
+    ],
+    "mentions": [],
+    "note": "類型：其他；地址：りんくう往来北1 スターゲイトホテル関西エアポート 54F；個室（食べログ列表）：個室有；預算（食べログ列表）：夜 -／昼 5000～5999"
+  },
+  {
+    "key": "tabelog-27096982",
+    "name": {
+      "ja": "寿司きく"
+    },
+    "region": "izumisano",
+    "category": "寿司、海鮮、居酒屋",
+    "status": "not-included",
+    "criteria": [
+      "A",
+      "C"
+    ],
+    "reason": "符合 A、C，但 T19 只收住宿附近、能接 15 人的晚餐（任務卡 3～5 家）：同一區已有能接 15 人的店，或沒有 15 人以上的個室／貸切資訊、離收錄住宿較遠；之後要補再從這裡撈",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.31,
+      "tabelogReviews": 42
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/osaka/A2705/A270503/27096982/"
+    },
+    "contexts": [
+      "lunch",
+      "dinner"
+    ],
+    "mentions": [],
+    "note": "類型：壽司；地址：鶴原2-10-18；定休（食べログ列表）：水曜日；個室（食べログ列表）：個室有；預算（食べログ列表）：夜 2000～2999／昼 ～999"
+  },
+  {
+    "key": "tabelog-27070331",
+    "name": {
+      "ja": "関空温泉ホテルガーデンパレス"
+    },
+    "region": "izumisano",
+    "category": "ホテル",
+    "status": "not-included",
+    "criteria": [
+      "C"
+    ],
+    "reason": "符合 C，但 T19 只收住宿附近、能接 15 人的晚餐（任務卡 3～5 家）：同一區已有能接 15 人的店，或沒有 15 人以上的個室／貸切資訊、離收錄住宿較遠；之後要補再從這裡撈",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.21,
+      "tabelogReviews": 39
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/osaka/A2705/A270503/27070331/"
+    },
+    "contexts": [
+      "lunch",
+      "dinner"
+    ],
+    "mentions": [],
+    "note": "類型：其他；地址：中町1-3-51；個室（食べログ列表）：個室有(2〜4人可)；預算（食べログ列表）：夜 8000～9999／昼 6000～7999"
+  },
+  {
+    "key": "tabelog-27017537",
+    "name": {
+      "ja": "waterfront kitchen garden"
+    },
+    "region": "rinku",
+    "category": "ビュッフェ",
+    "status": "not-included",
+    "criteria": [
+      "C"
+    ],
+    "reason": "食べログ店舗情報（2026-10-19）：營業只有早餐 06:30～09:30、午餐 11:00～15:00，沒有晚餐；貸切不可、半個室 8 人。T19 只收晚餐",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.2,
+      "tabelogReviews": 39
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/osaka/A2705/A270503/27017537/"
+    },
+    "contexts": [
+      "lunch",
+      "dinner"
+    ],
+    "mentions": [],
+    "note": "類型：其他；地址：りんくう往来北1-7 関西エアポートワシントンホテル 2F；個室（食べログ列表）：個室有(8人可)；預算（食べログ列表）：夜 2000～2999／昼 2000～2999"
+  },
+  {
+    "key": "tabelog-27122708",
+    "name": {
+      "ja": "KIXエアポート カフェラウンジ NODOKA"
+    },
+    "region": "kix-island",
+    "category": "その他",
+    "status": "not-included",
+    "criteria": [
+      "C"
+    ],
+    "reason": "符合 C，但 T19 只收住宿附近、能接 15 人的晚餐（任務卡 3～5 家）：同一區已有能接 15 人的店，或沒有 15 人以上的個室／貸切資訊、離收錄住宿較遠；之後要補再從這裡撈",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.17,
+      "tabelogReviews": 108
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/osaka/A2705/A270503/27122708/"
+    },
+    "contexts": [
+      "dinner"
+    ],
+    "mentions": [],
+    "note": "類型：其他；地址：泉州空港北1 関西国際空港 エアロプラザ 2F；個室（食べログ列表）：個室有；預算（食べログ列表）：夜 ～999／昼 -"
+  },
+  {
+    "key": "tabelog-27013500",
+    "name": {
+      "ja": "み奈美亭"
+    },
+    "region": "izumisano",
+    "category": "料理旅館、日本料理",
+    "status": "not-included",
+    "criteria": [
+      "C"
+    ],
+    "reason": "符合 C，但 T19 只收住宿附近、能接 15 人的晚餐（任務卡 3～5 家）：食べログ列表沒有晚餐預算（午餐、咖啡為主）；之後要補再從這裡撈",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.17,
+      "tabelogReviews": 26
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/osaka/A2705/A270503/27013500/"
+    },
+    "contexts": [
+      "lunch"
+    ],
+    "mentions": [],
+    "note": "類型：和食・割烹；地址：大木2236 犬鳴山温泉 み奈美亭；個室（食べログ列表）：個室有"
+  },
+  {
+    "key": "tabelog-27066025",
+    "name": {
+      "ja": "Caffe GIUSTO"
+    },
+    "region": "izumisano",
+    "category": "カフェ、イタリアン、パスタ",
+    "status": "not-included",
+    "criteria": [
+      "C"
+    ],
+    "reason": "符合 C，但 T19 只收住宿附近、能接 15 人的晚餐（任務卡 3～5 家）：食べログ列表沒有晚餐預算（午餐、咖啡為主）；之後要補再從這裡撈",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.16,
+      "tabelogReviews": 50
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/osaka/A2705/A270503/27066025/"
+    },
+    "contexts": [
+      "snack",
+      "cafe"
+    ],
+    "mentions": [],
+    "note": "類型：咖啡・甜點；地址：高松北1-1-4；個室（食べログ列表）：個室有；預算（食べログ列表）：夜 2000～2999／昼 1000～1999"
+  },
+  {
+    "key": "tabelog-27048225",
+    "name": {
+      "ja": "和モードちよ松"
+    },
+    "region": "izumisano",
+    "category": "日本料理、寿司",
+    "status": "not-included",
+    "criteria": [
+      "C"
+    ],
+    "reason": "符合 C，但 T19 只收住宿附近、能接 15 人的晚餐（任務卡 3～5 家）：同一區已有能接 15 人的店，或沒有 15 人以上的個室／貸切資訊、離收錄住宿較遠；之後要補再從這裡撈",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.16,
+      "tabelogReviews": 36
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/osaka/A2705/A270503/27048225/"
+    },
+    "contexts": [
+      "lunch",
+      "dinner"
+    ],
+    "mentions": [],
+    "note": "類型：和食・割烹；地址：下瓦屋2-4-59；定休（食べログ列表）：水曜日；個室（食べログ列表）：完全個室有(4〜20人可)；預算（食べログ列表）：夜 8000～9999／昼 3000～3999"
+  },
+  {
+    "key": "tabelog-27131462",
+    "name": {
+      "ja": "地魚 寿司 逸品 おどろき"
+    },
+    "region": "izumisano",
+    "category": "海鮮、寿司、居酒屋",
+    "status": "included",
+    "criteria": [
+      "C"
+    ],
+    "reason": null,
+    "pointId": "kix-odoroki",
+    "ratings": {
+      "tabelog": 3.14,
+      "tabelogReviews": 49,
+      "google": 4,
+      "googleReviews": 165
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/osaka/A2705/A270503/27131462/"
+    },
+    "contexts": [
+      "dinner"
+    ],
+    "mentions": [],
+    "note": "類型：海鮮丼；地址：上町3-6-8；個室（食べログ列表）：完全個室有(2〜20人可)；預算（食べログ列表）：夜 6000～7999／昼 -"
+  },
+  {
+    "key": "tabelog-27140613",
+    "name": {
+      "ja": "レフ関空泉佐野byベッセルホテルズ"
+    },
+    "region": "izumisano",
+    "category": "ホテル",
+    "status": "not-included",
+    "criteria": [],
+    "reason": "在個室篩選裡但口コミ 14 則（C 要 15 則）",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.14,
+      "tabelogReviews": 14
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/osaka/A2705/A270503/27140613/"
+    },
+    "contexts": [
+      "lunch"
+    ],
+    "mentions": [],
+    "note": "類型：其他；地址：上町3-11-21；個室（食べログ列表）：個室有"
+  },
+  {
+    "key": "tabelog-27150211",
+    "name": {
+      "ja": "KIX Lounge Kansai"
+    },
+    "region": "kix-island",
+    "category": "その他",
+    "status": "not-included",
+    "criteria": [
+      "C"
+    ],
+    "reason": "符合 C，但 T19 只收住宿附近、能接 15 人的晚餐（任務卡 3～5 家）：食べログ列表沒有晚餐預算（午餐、咖啡為主）；之後要補再從這裡撈",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.13,
+      "tabelogReviews": 43
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/osaka/A2705/A270503/27150211/"
+    },
+    "contexts": [
+      "lunch"
+    ],
+    "mentions": [],
+    "note": "類型：其他；地址：泉州空港北1 第1ターミナルビル 国際線ゲートエリア中央；個室（食べログ列表）：個室有"
+  },
+  {
+    "key": "tabelog-27064814",
+    "name": {
+      "ja": "泉佐野カントリークラブ"
+    },
+    "region": "izumisano",
+    "category": "レストラン",
+    "status": "not-included",
+    "criteria": [
+      "C"
+    ],
+    "reason": "符合 C，但 T19 只收住宿附近、能接 15 人的晚餐（任務卡 3～5 家）：食べログ列表沒有晚餐預算（午餐、咖啡為主）；之後要補再從這裡撈",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.13,
+      "tabelogReviews": 38
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/osaka/A2705/A270502/27064814/"
+    },
+    "contexts": [
+      "lunch"
+    ],
+    "mentions": [],
+    "note": "類型：其他；地址：日根野5320；個室（食べログ列表）：個室有；預算（食べログ列表）：夜 -／昼 1000～1999"
+  },
+  {
+    "key": "tabelog-27019327",
+    "name": {
+      "ja": "十色"
+    },
+    "region": "izumisano",
+    "category": "日本料理、海鮮",
+    "status": "not-included",
+    "criteria": [
+      "C"
+    ],
+    "reason": "符合 C，但 T19 只收住宿附近、能接 15 人的晚餐（任務卡 3～5 家）：同一區已有能接 15 人的店，或沒有 15 人以上的個室／貸切資訊、離收錄住宿較遠；之後要補再從這裡撈",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.13,
+      "tabelogReviews": 33
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/osaka/A2705/A270503/27019327/"
+    },
+    "contexts": [
+      "dinner"
+    ],
+    "mentions": [],
+    "note": "類型：和食・割烹；地址：日根野7039；定休（食べログ列表）：水曜日；個室（食べログ列表）：個室有(4人可)；預算（食べログ列表）：夜 5000～5999／昼 -"
+  },
+  {
+    "key": "tabelog-27143183",
+    "name": {
+      "ja": "純喫酒コパープル"
+    },
+    "region": "izumisano",
+    "category": "カフェ",
+    "status": "not-included",
+    "criteria": [
+      "C"
+    ],
+    "reason": "符合 C，但 T19 只收住宿附近、能接 15 人的晚餐（任務卡 3～5 家）：食べログ列表沒有晚餐預算（午餐、咖啡為主）；之後要補再從這裡撈",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.13,
+      "tabelogReviews": 23
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/osaka/A2705/A270503/27143183/"
+    },
+    "contexts": [
+      "snack",
+      "cafe"
+    ],
+    "mentions": [],
+    "note": "類型：咖啡・甜點；地址：若宮町5-16；定休（食べログ列表）：火曜日；個室（食べログ列表）：個室有；預算（食べログ列表）：夜 -／昼 1000～1999"
+  },
+  {
+    "key": "tabelog-27127829",
+    "name": {
+      "ja": "ワイン食堂 キャトルヴァン"
+    },
+    "region": "izumisano",
+    "category": "ワインバー",
+    "status": "excluded",
+    "criteria": [],
+    "reason": "食べログ類別第一項是ワインバー → 酒吧排除",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.12,
+      "tabelogReviews": 10
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/osaka/A2705/A270503/27127829/"
+    },
+    "contexts": [
+      "dinner"
+    ],
+    "mentions": [],
+    "note": "類型：其他；地址：若宮町3-16；個室（食べログ列表）：個室有(4〜8人可)；預算（食べログ列表）：夜 4000～4999／昼 -"
+  },
+  {
+    "key": "tabelog-27003026",
+    "name": {
+      "ja": "酒房たかだ 本店"
+    },
+    "region": "izumisano",
+    "category": "居酒屋、海鮮、寿司",
+    "status": "not-included",
+    "criteria": [
+      "A"
+    ],
+    "reason": "符合 A，但 T19 只收住宿附近、能接 15 人的晚餐（任務卡 3～5 家）：同一區已有能接 15 人的店，或沒有 15 人以上的個室／貸切資訊、離收錄住宿較遠；之後要補再從這裡撈",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.53,
+      "tabelogReviews": 152
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/osaka/A2705/A270503/27003026/"
+    },
+    "contexts": [
+      "dinner"
+    ],
+    "mentions": [],
+    "note": "類型：居酒屋；地址：大西1-13-29；定休（食べログ列表）：水曜日；預算（食べログ列表）：夜 5000～5999／昼 -"
+  },
+  {
+    "key": "tabelog-27014539",
+    "name": {
+      "ja": "ヨッシャ食堂"
+    },
+    "region": "izumisano",
+    "category": "食堂",
+    "status": "not-included",
+    "criteria": [
+      "A"
+    ],
+    "reason": "符合 A，但 T19 只收住宿附近、能接 15 人的晚餐（任務卡 3～5 家）：食べログ列表沒有晚餐預算（午餐、咖啡為主）；之後要補再從這裡撈",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.49,
+      "tabelogReviews": 488
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/osaka/A2705/A270503/27014539/"
+    },
+    "contexts": [
+      "lunch"
+    ],
+    "mentions": [],
+    "note": "類型：定食・食堂；地址：大西1-13-14；定休（食べログ列表）：火曜日；預算（食べログ列表）：夜 -／昼 1000～1999"
+  },
+  {
+    "key": "tabelog-27117347",
+    "name": {
+      "ja": "お魚食堂 こたや"
+    },
+    "region": "izumisano",
+    "category": "海鮮、海鮮丼",
+    "status": "not-included",
+    "criteria": [
+      "A"
+    ],
+    "reason": "符合 A，但 T19 只收住宿附近、能接 15 人的晚餐（任務卡 3～5 家）：食べログ列表沒有晚餐預算（午餐、咖啡為主）；之後要補再從這裡撈",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.48,
+      "tabelogReviews": 522
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/osaka/A2705/A270503/27117347/"
+    },
+    "contexts": [
+      "lunch"
+    ],
+    "mentions": [],
+    "note": "類型：海鮮丼；地址：新浜町3；預算（食べログ列表）：夜 -／昼 1000～1999"
+  },
+  {
+    "key": "tabelog-27020254",
+    "name": {
+      "ja": "裕太朗寿し"
+    },
+    "region": "izumisano",
+    "category": "寿司、海鮮",
+    "status": "not-included",
+    "criteria": [
+      "A"
+    ],
+    "reason": "符合 A，但 T19 只收住宿附近、能接 15 人的晚餐（任務卡 3～5 家）：食べログ列表沒有晚餐預算（午餐、咖啡為主）；之後要補再從這裡撈",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.46,
+      "tabelogReviews": 226
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/osaka/A2705/A270503/27020254/"
+    },
+    "contexts": [
+      "lunch"
+    ],
+    "mentions": [],
+    "note": "類型：壽司；地址：新町2-5187-101 泉佐野漁港青空市場内；定休（食べログ列表）：水曜日；預算（食べログ列表）：夜 -／昼 1000～1999"
+  },
+  {
+    "key": "tabelog-27051197",
+    "name": {
+      "ja": "活魚寿司"
+    },
+    "region": "izumisano",
+    "category": "回転寿司、海鮮",
+    "status": "not-included",
+    "criteria": [
+      "A"
+    ],
+    "reason": "符合 A，但 T19 只收住宿附近、能接 15 人的晚餐（任務卡 3～5 家）：同一區已有能接 15 人的店，或沒有 15 人以上的個室／貸切資訊、離收錄住宿較遠；之後要補再從這裡撈",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.46,
+      "tabelogReviews": 221
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/osaka/A2705/A270503/27051197/"
+    },
+    "contexts": [
+      "lunch",
+      "dinner"
+    ],
+    "mentions": [],
+    "note": "類型：壽司；地址：鶴原1953-2；預算（食べログ列表）：夜 1000～1999／昼 2000～2999"
+  },
+  {
+    "key": "tabelog-27018338",
+    "name": {
+      "ja": "お好み焼き 文福"
+    },
+    "region": "izumisano",
+    "category": "お好み焼き",
+    "status": "not-included",
+    "criteria": [
+      "A"
+    ],
+    "reason": "符合 A，但 T19 只收住宿附近、能接 15 人的晚餐（任務卡 3～5 家）：同一區已有能接 15 人的店，或沒有 15 人以上的個室／貸切資訊、離收錄住宿較遠；之後要補再從這裡撈",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.45,
+      "tabelogReviews": 167
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/osaka/A2705/A270503/27018338/"
+    },
+    "contexts": [
+      "lunch",
+      "dinner"
+    ],
+    "mentions": [],
+    "note": "類型：其他；地址：若宮町7-18；定休（食べログ列表）：木曜日；預算（食べログ列表）：夜 1000～1999／昼 1000～1999"
+  },
+  {
+    "key": "tabelog-27030720",
+    "name": {
+      "ja": "イルカ"
+    },
+    "region": "izumisano",
+    "category": "海鮮、海鮮丼、食堂",
+    "status": "not-included",
+    "criteria": [
+      "A"
+    ],
+    "reason": "符合 A，但 T19 只收住宿附近、能接 15 人的晚餐（任務卡 3～5 家）：同一區已有能接 15 人的店，或沒有 15 人以上的個室／貸切資訊、離收錄住宿較遠；之後要補再從這裡撈",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.44,
+      "tabelogReviews": 247
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/osaka/A2705/A270503/27030720/"
+    },
+    "contexts": [
+      "lunch",
+      "dinner"
+    ],
+    "mentions": [],
+    "note": "類型：海鮮丼；地址：新町2-5187-101；定休（食べログ列表）：水曜日、木曜日；預算（食べログ列表）：夜 1000～1999／昼 1000～1999"
+  },
+  {
+    "key": "tabelog-27140916",
+    "name": {
+      "ja": "麺屋 げんでん"
+    },
+    "region": "izumisano",
+    "category": "ラーメン",
+    "status": "not-included",
+    "criteria": [
+      "A"
+    ],
+    "reason": "符合 A，但 T19 只收住宿附近、能接 15 人的晚餐（任務卡 3～5 家）：同一區已有能接 15 人的店，或沒有 15 人以上的個室／貸切資訊、離收錄住宿較遠；之後要補再從這裡撈",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.43,
+      "tabelogReviews": 153
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/osaka/A2705/A270503/27140916/"
+    },
+    "contexts": [
+      "lunch",
+      "dinner"
+    ],
+    "mentions": [],
+    "note": "類型：其他；地址：上町2-7-23；定休（食べログ列表）：火曜日；預算（食べログ列表）：夜 1000～1999／昼 1000～1999"
+  },
+  {
+    "key": "tabelog-27114482",
+    "name": {
+      "ja": "鮨 たくぼ"
+    },
+    "region": "izumisano",
+    "category": "寿司",
+    "status": "not-included",
+    "criteria": [
+      "A"
+    ],
+    "reason": "符合 A，但 T19 只收住宿附近、能接 15 人的晚餐（任務卡 3～5 家）：同一區已有能接 15 人的店，或沒有 15 人以上的個室／貸切資訊、離收錄住宿較遠；之後要補再從這裡撈",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.4,
+      "tabelogReviews": 34
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/osaka/A2705/A270503/27114482/"
+    },
+    "contexts": [
+      "dinner"
+    ],
+    "mentions": [],
+    "note": "類型：壽司；地址：上町3-1-13 エルスン上町ビル 1F；定休（食べログ列表）：日曜日；預算（食べログ列表）：夜 20000～29999／昼 -"
+  },
+  {
+    "key": "tabelog-27141095",
+    "name": {
+      "ja": "牡蠣小屋 こはくや"
+    },
+    "region": "izumisano",
+    "category": "食堂",
+    "status": "not-included",
+    "criteria": [
+      "A"
+    ],
+    "reason": "符合 A，但 T19 只收住宿附近、能接 15 人的晚餐（任務卡 3～5 家）：同一區已有能接 15 人的店，或沒有 15 人以上的個室／貸切資訊、離收錄住宿較遠；之後要補再從這裡撈",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.39,
+      "tabelogReviews": 105
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/osaka/A2705/A270503/27141095/"
+    },
+    "contexts": [
+      "lunch",
+      "dinner"
+    ],
+    "mentions": [],
+    "note": "類型：定食・食堂；地址：新浜町3；定休（食べログ列表）：火曜日；預算（食べログ列表）：夜 2000～2999／昼 1000～1999"
+  },
+  {
+    "key": "tabelog-27150876",
+    "name": {
+      "ja": "シェイクシャック りんくうプレミアム・アウトレット"
+    },
+    "region": "rinku",
+    "category": "ハンバーガー",
+    "status": "not-included",
+    "criteria": [
+      "A"
+    ],
+    "reason": "符合 A，但 T19 只收住宿附近、能接 15 人的晚餐（任務卡 3～5 家）：食べログ列表沒有晚餐預算（午餐、咖啡為主）；之後要補再從這裡撈",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.38,
+      "tabelogReviews": 65
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/osaka/A2705/A270503/27150876/"
+    },
+    "contexts": [
+      "lunch"
+    ],
+    "mentions": [],
+    "note": "類型：洋食・義式；地址：りんくう往来南3-28 シーサイドエリア 1F"
+  },
+  {
+    "key": "tabelog-27102120",
+    "name": {
+      "ja": "ティラミッシモ"
+    },
+    "region": "izumisano",
+    "category": "ケーキ",
+    "status": "not-included",
+    "criteria": [
+      "A"
+    ],
+    "reason": "符合 A，但 T19 只收住宿附近、能接 15 人的晚餐（任務卡 3～5 家）：食べログ列表沒有晚餐預算（午餐、咖啡為主）；之後要補再從這裡撈",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.37,
+      "tabelogReviews": 135
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/osaka/A2705/A270503/27102120/"
+    },
+    "contexts": [
+      "snack"
+    ],
+    "mentions": [],
+    "note": "類型：咖啡・甜點；地址：中町2-2-33；預算（食べログ列表）：夜 -／昼 1000～1999"
+  },
+  {
+    "key": "tabelog-27118908",
+    "name": {
+      "ja": "パンダエクスプレス りんくうプレミアムアウトレット店"
+    },
+    "region": "rinku",
+    "category": "中華料理",
+    "status": "not-included",
+    "criteria": [
+      "A"
+    ],
+    "reason": "符合 A，但 T19 只收住宿附近、能接 15 人的晚餐（任務卡 3～5 家）：同一區已有能接 15 人的店，或沒有 15 人以上的個室／貸切資訊、離收錄住宿較遠；之後要補再從這裡撈",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.34,
+      "tabelogReviews": 172
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/osaka/A2705/A270503/27118908/"
+    },
+    "contexts": [
+      "lunch",
+      "dinner"
+    ],
+    "mentions": [],
+    "note": "類型：其他；地址：りんくう往来南3-28 Sea Side エリア 3F；預算（食べログ列表）：夜 1000～1999／昼 1000～1999"
+  }
+]

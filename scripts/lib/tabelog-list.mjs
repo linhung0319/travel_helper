@@ -38,5 +38,6 @@ export function parseLines(raw) {
   return { pages, warnings, complete: ends === pages.length };
 }
 
-// 食べログ店家網址（列表只回傳 ID 和 area 代碼）
-export const tabelogUrl = (s) => `https://tabelog.com/mie/${s.area.split('-').join('/')}/${s.id}/`;
+// 食べログ店家網址（列表只回傳 ID 和 area 代碼）。縣名由 area 代碼的前 2 碼決定（A24 三重、A27 大阪；T19 加）
+const PREF = { 24: 'mie', 27: 'osaka' };
+export const tabelogUrl = (s) => `https://tabelog.com/${PREF[s.area.slice(1, 3)] ?? 'mie'}/${s.area.split('-').join('/')}/${s.id}/`;

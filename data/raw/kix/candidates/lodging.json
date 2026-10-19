@@ -1,0 +1,1168 @@
+[
+  {
+    "key": "kix-rakuten-182304",
+    "name": {
+      "ja": "ＦＩＲＳＴ　ＣＡＢＩＮ（ファーストキャビン）　関西空港"
+    },
+    "region": "kix-island",
+    "category": "hotel",
+    "status": "not-included",
+    "criteria": [],
+    "reason": "カプセルホテル（ファーストキャビン，機場 T1 エアロプラザ內）：房間是膠囊、共用浴廁，長輩、小孩、15 人不適合；15 人組合沒空房；沒有讀文",
+    "pointId": null,
+    "ratings": {
+      "rakuten": 4.03,
+      "rakutenReviews": 370,
+      "google": null,
+      "googleReviews": null,
+      "jalan": null,
+      "jalanReviews": null
+    },
+    "links": {},
+    "note": "楽天 182304，153 室，楽天最低 6,800 円；15 人組合 2/12：無；大阪府泉佐野市泉州空港北1　エアロプラザ3F"
+  },
+  {
+    "key": "kix-nikko",
+    "name": {
+      "ja": "ホテル日航関西空港"
+    },
+    "region": "kix-island",
+    "category": "hotel",
+    "status": "included",
+    "criteria": [],
+    "reason": null,
+    "pointId": "kix-nikko",
+    "ratings": {
+      "rakuten": 4.53,
+      "rakutenReviews": 4312,
+      "google": null,
+      "googleReviews": null,
+      "jalan": 4.5,
+      "jalanReviews": 2455
+    },
+    "links": {},
+    "note": "楽天 187，576 室，楽天最低 7,170 円；15 人組合 2/12：8x2/5x3/4x4；じゃらん yad324560；大阪府泉佐野市泉州空港北1 "
+  },
+  {
+    "key": "kix-rakuten-162875",
+    "name": {
+      "ja": "プレミアムホテルりんくう（ＴＨＥ　ＰＲＥＭＩＵＭ　ＨＯＴＥＬ　ＩＮ　ＲＩＮＫＵ）"
+    },
+    "region": "rinku",
+    "category": "hotel",
+    "status": "not-included",
+    "criteria": [],
+    "reason": "87 室；楽天 3.74／343 則、じゃらん 3.8／218 則；2/12 有 15 人組合空房，但沒有 300 則以上而且 4.0 以上的評分來源；沒有讀文",
+    "pointId": null,
+    "ratings": {
+      "rakuten": 3.74,
+      "rakutenReviews": 343,
+      "google": null,
+      "googleReviews": null,
+      "jalan": 3.8,
+      "jalanReviews": 218
+    },
+    "links": {},
+    "note": "楽天 162875，87 室，楽天最低 2,010 円；15 人組合 2/12：8x2；じゃらん yad399093；大阪府泉佐野市りんくう往来南3-6"
+  },
+  {
+    "key": "kix-rakuten-191588",
+    "name": {
+      "ja": "ＥＺ　ＨＯＴＥＬ　関西空港　Ｓｅａｓｉｄｅ"
+    },
+    "region": "rinku",
+    "category": "pension",
+    "status": "not-included",
+    "criteria": [],
+    "reason": "62 室；楽天 4.05／71 則、じゃらん 4.2／16 則；2/12 15 人組合（5x3、4x4、3x5、2x8、8x2）都沒有空房；沒有讀文",
+    "pointId": null,
+    "ratings": {
+      "rakuten": 4.05,
+      "rakutenReviews": 71,
+      "google": null,
+      "googleReviews": null,
+      "jalan": 4.2,
+      "jalanReviews": 16
+    },
+    "links": {},
+    "note": "楽天 191588，62 室，楽天最低 4,420 円；15 人組合 2/12：無；じゃらん yad354736；大阪府泉佐野市りんくう往来南6-3"
+  },
+  {
+    "key": "kix-rakuten-166041",
+    "name": {
+      "ja": "Ｎ　ＧＡＴＥ　ＨＯＴＥＬ　ＯＳＡＫＡ"
+    },
+    "region": "rinku",
+    "category": "hotel",
+    "status": "not-included",
+    "criteria": [],
+    "reason": "90 室；楽天 4.13／15 則、じゃらん 4.2／19 則；2/12 有 15 人組合空房，但沒有 300 則以上而且 4.0 以上的評分來源；沒有讀文",
+    "pointId": null,
+    "ratings": {
+      "rakuten": 4.13,
+      "rakutenReviews": 15,
+      "google": null,
+      "googleReviews": null,
+      "jalan": 4.2,
+      "jalanReviews": 19
+    },
+    "links": {},
+    "note": "楽天 166041，90 室，楽天最低 4,400 円；15 人組合 2/12：8x2；じゃらん yad366660；大阪府泉南郡田尻町りんくうポート北5-14"
+  },
+  {
+    "key": "kix-rakuten-173219",
+    "name": {
+      "ja": "ＨＯＴＥＬ　ＢＡＹ　ＧＵＬＬＳ（ホテル　ベイガルズ）"
+    },
+    "region": "rinku",
+    "category": "hotel",
+    "status": "not-included",
+    "criteria": [],
+    "reason": "240 室；楽天 4.05／195 則、じゃらん 4／91 則；2/12 15 人組合（5x3、4x4、3x5、2x8、8x2）都沒有空房；沒有讀文",
+    "pointId": null,
+    "ratings": {
+      "rakuten": 4.05,
+      "rakutenReviews": 195,
+      "google": null,
+      "googleReviews": null,
+      "jalan": 4,
+      "jalanReviews": 91
+    },
+    "links": {},
+    "note": "楽天 173219，240 室，楽天最低 5,000 円；15 人組合 2/12：無；じゃらん yad397836；大阪府泉南郡田尻町りんくうポート北3-5"
+  },
+  {
+    "key": "kix-rakuten-177953",
+    "name": {
+      "ja": "和楽二号館"
+    },
+    "region": "rinku",
+    "category": "pension",
+    "status": "not-included",
+    "criteria": [],
+    "reason": "4 室；楽天 —／1 則、じゃらん沒有分數；2/12 15 人組合（5x3、4x4、3x5、2x8、8x2）都沒有空房；沒有讀文",
+    "pointId": null,
+    "ratings": {
+      "rakuten": null,
+      "rakutenReviews": 1,
+      "google": null,
+      "googleReviews": null,
+      "jalan": null,
+      "jalanReviews": null
+    },
+    "links": {},
+    "note": "楽天 177953，4 室；15 人組合 2/12：無；大阪府泉佐野市松原2-4-69"
+  },
+  {
+    "key": "kix-rakuten-188374",
+    "name": {
+      "ja": "ＰＬＡＺＡ　ＩＮ　ＫＡＮＫＵ　ＨＯＴＥＬ"
+    },
+    "region": "rinku",
+    "category": "hotel",
+    "status": "not-included",
+    "criteria": [],
+    "reason": "48 室；楽天 3.36／17 則、じゃらん 3.4／30 則；2/12 15 人組合（5x3、4x4、3x5、2x8、8x2）都沒有空房；沒有讀文",
+    "pointId": null,
+    "ratings": {
+      "rakuten": 3.36,
+      "rakutenReviews": 17,
+      "google": null,
+      "googleReviews": null,
+      "jalan": 3.4,
+      "jalanReviews": 30
+    },
+    "links": {},
+    "note": "楽天 188374，48 室，楽天最低 3,000 円；15 人組合 2/12：無；じゃらん yad376927；大阪府泉佐野市松原2-5-73"
+  },
+  {
+    "key": "kix-odysis-suites",
+    "name": {
+      "ja": "オディシススイーツ大阪エアポートホテル"
+    },
+    "region": "rinku",
+    "category": "hotel",
+    "status": "included",
+    "criteria": [],
+    "reason": null,
+    "pointId": "kix-odysis-suites",
+    "ratings": {
+      "rakuten": 4.61,
+      "rakutenReviews": 345,
+      "google": null,
+      "googleReviews": null,
+      "jalan": 4.6,
+      "jalanReviews": 250
+    },
+    "links": {},
+    "note": "楽天 187454，258 室，楽天最低 4,750 円；15 人組合 2/12：8x2/5x3；じゃらん yad396520；大阪府泉佐野市りんくう往来北1"
+  },
+  {
+    "key": "kix-stargate",
+    "name": {
+      "ja": "スターゲイトホテル関西エアポート（ＳｉＳ　ＳＴＡＲＧＡＴＥ　ＨＯＴＥＬ）"
+    },
+    "region": "rinku",
+    "category": "hotel",
+    "status": "included",
+    "criteria": [],
+    "reason": null,
+    "pointId": "kix-stargate",
+    "ratings": {
+      "rakuten": 4.38,
+      "rakutenReviews": 4977,
+      "google": null,
+      "googleReviews": null,
+      "jalan": 4.4,
+      "jalanReviews": 3140
+    },
+    "links": {},
+    "note": "楽天 197，358 室，楽天最低 4,000 円；15 人組合 2/12：8x2/5x3；じゃらん yad331817；大阪府泉佐野市りんくう往来北1番地"
+  },
+  {
+    "key": "kix-rakuten-190273",
+    "name": {
+      "ja": "ヴィラかくれが"
+    },
+    "region": "rinku",
+    "category": "pension",
+    "status": "not-included",
+    "criteria": [],
+    "reason": "民泊／ゲストハウス／アパートメント型（1 室）：評論少，2/12 15 人組合沒有空房；沒有讀文",
+    "pointId": null,
+    "ratings": {
+      "rakuten": null,
+      "rakutenReviews": null,
+      "google": null,
+      "googleReviews": null,
+      "jalan": null,
+      "jalanReviews": null
+    },
+    "links": {},
+    "note": "楽天 190273，1 室；15 人組合 2/12：無；大阪府泉佐野市笠松1-8-17　Ｖｉｌｌａ　Ｋａｋｕｒｅｇａ"
+  },
+  {
+    "key": "kix-rakuten-192636",
+    "name": {
+      "ja": "住一ＨＯＴＥＬ　関空店"
+    },
+    "region": "rinku",
+    "category": "pension",
+    "status": "not-included",
+    "criteria": [],
+    "reason": "139 室；楽天 3.75／14 則、じゃらん沒有分數；2/12 15 人組合（5x3、4x4、3x5、2x8、8x2）都沒有空房；沒有讀文",
+    "pointId": null,
+    "ratings": {
+      "rakuten": 3.75,
+      "rakutenReviews": 14,
+      "google": null,
+      "googleReviews": null,
+      "jalan": null,
+      "jalanReviews": null
+    },
+    "links": {},
+    "note": "楽天 192636，139 室，楽天最低 2,500 円；15 人組合 2/12：無；じゃらん yad314360；大阪府泉南郡田尻町嘉祥寺588"
+  },
+  {
+    "key": "kix-washington",
+    "name": {
+      "ja": "関西エアポートワシントンホテル"
+    },
+    "region": "rinku",
+    "category": "hotel",
+    "status": "included",
+    "criteria": [],
+    "reason": null,
+    "pointId": "kix-washington",
+    "ratings": {
+      "rakuten": 4.33,
+      "rakutenReviews": 3585,
+      "google": null,
+      "googleReviews": null,
+      "jalan": 4.4,
+      "jalanReviews": 2400
+    },
+    "links": {},
+    "note": "楽天 4650，504 室，楽天最低 4,455 円；15 人組合 2/12：8x2/5x3；じゃらん yad387723；大阪府泉佐野市りんくう往来北1-7"
+  },
+  {
+    "key": "kix-rakuten-180542",
+    "name": {
+      "ja": "ステイザ関西空港"
+    },
+    "region": "izumisano",
+    "category": "pension",
+    "status": "not-included",
+    "criteria": [],
+    "reason": "民泊／ゲストハウス／アパートメント型（4 室、楽天 15 則）：評論少，2/12 15 人組合有（2x8）但不到 300 則；沒有讀文",
+    "pointId": null,
+    "ratings": {
+      "rakuten": 4,
+      "rakutenReviews": 15,
+      "google": null,
+      "googleReviews": null,
+      "jalan": null,
+      "jalanReviews": null
+    },
+    "links": {},
+    "note": "楽天 180542，4 室，楽天最低 3,030 円；15 人組合 2/12：2x8；じゃらん yad386594；大阪府泉佐野市笠松2-5-1"
+  },
+  {
+    "key": "kix-rakuten-174737",
+    "name": {
+      "ja": "りんくうアウトレットまで自転車で７分／民泊"
+    },
+    "region": "rinku",
+    "category": "pension",
+    "status": "not-included",
+    "criteria": [],
+    "reason": "民泊／ゲストハウス／アパートメント型（1 室）：評論少，2/12 15 人組合沒有空房；沒有讀文",
+    "pointId": null,
+    "ratings": {
+      "rakuten": null,
+      "rakutenReviews": null,
+      "google": null,
+      "googleReviews": null,
+      "jalan": null,
+      "jalanReviews": null
+    },
+    "links": {},
+    "note": "楽天 174737，1 室；15 人組合 2/12：無；大阪府泉佐野市羽倉崎上町2-480-1　幽舍の庭"
+  },
+  {
+    "key": "kix-henn-na-resort",
+    "name": {
+      "ja": "変なリゾート＆スパ　関西空港"
+    },
+    "region": "rinku",
+    "category": "hotel",
+    "status": "included",
+    "criteria": [],
+    "reason": null,
+    "pointId": "kix-henn-na-resort",
+    "ratings": {
+      "rakuten": 4.12,
+      "rakutenReviews": 1451,
+      "google": null,
+      "googleReviews": null,
+      "jalan": 3.9,
+      "jalanReviews": 1036
+    },
+    "links": {},
+    "note": "楽天 173021，98 室，楽天最低 4,680 円；15 人組合 2/12：8x2；じゃらん yad368142；大阪府泉佐野市りんくう往来北1-23"
+  },
+  {
+    "key": "kix-rakuten-164835",
+    "name": {
+      "ja": "ハタゴイン関西空港"
+    },
+    "region": "rinku",
+    "category": "hotel",
+    "status": "not-included",
+    "criteria": [],
+    "reason": "100 室；楽天 4.29／302 則、じゃらん 4.4／226 則；2/12 15 人組合（5x3、4x4、3x5、2x8、8x2）都沒有空房（方案可能未開；評分夠，行程定了可以重查）；沒有讀文",
+    "pointId": null,
+    "ratings": {
+      "rakuten": 4.29,
+      "rakutenReviews": 302,
+      "google": null,
+      "googleReviews": null,
+      "jalan": 4.4,
+      "jalanReviews": 226
+    },
+    "links": {},
+    "note": "楽天 164835，100 室，楽天最低 3,800 円；15 人組合 2/12：無；じゃらん yad302112；大阪府泉佐野市りんくう往来北2-85"
+  },
+  {
+    "key": "kix-rakuten-1318",
+    "name": {
+      "ja": "ホテル　ユタカウイング"
+    },
+    "region": "rinku",
+    "category": "hotel",
+    "status": "not-included",
+    "criteria": [],
+    "reason": "54 室；楽天 4.5／116 則、じゃらん沒有分數；2/12 有 15 人組合空房，但沒有 300 則以上而且 4.0 以上的評分來源；沒有讀文",
+    "pointId": null,
+    "ratings": {
+      "rakuten": 4.5,
+      "rakutenReviews": 116,
+      "google": null,
+      "googleReviews": null,
+      "jalan": null,
+      "jalanReviews": null
+    },
+    "links": {},
+    "note": "楽天 1318，54 室，楽天最低 4,200 円；15 人組合 2/12：8x2；じゃらん yad306748；大阪府泉南郡田尻町嘉祥寺352-6"
+  },
+  {
+    "key": "kix-rakuten-198057",
+    "name": {
+      "ja": "ステイザりんくうベイ"
+    },
+    "region": "izumisano",
+    "category": "hotel",
+    "status": "not-included",
+    "criteria": [],
+    "reason": "民泊／ゲストハウス／アパートメント型（6 室、楽天 3 則）：評論少，2/12 15 人組合有（5x3/4x4/3x5）但不到 300 則；沒有讀文",
+    "pointId": null,
+    "ratings": {
+      "rakuten": null,
+      "rakutenReviews": 3,
+      "google": null,
+      "googleReviews": null,
+      "jalan": null,
+      "jalanReviews": null
+    },
+    "links": {},
+    "note": "楽天 198057，6 室，楽天最低 2,830 円；15 人組合 2/12：5x3/4x4/3x5；じゃらん yad356929；大阪府泉佐野市笠松1-4-29"
+  },
+  {
+    "key": "kix-rakuten-167704",
+    "name": {
+      "ja": "関空オレンジハウス"
+    },
+    "region": "izumisano",
+    "category": "pension",
+    "status": "not-included",
+    "criteria": [],
+    "reason": "民泊／ゲストハウス／アパートメント型（10 室、楽天 2 則）：評論少，2/12 15 人組合沒有空房；沒有讀文",
+    "pointId": null,
+    "ratings": {
+      "rakuten": null,
+      "rakutenReviews": 2,
+      "google": null,
+      "googleReviews": null,
+      "jalan": null,
+      "jalanReviews": null
+    },
+    "links": {},
+    "note": "楽天 167704，10 室；15 人組合 2/12：無；大阪府泉佐野市高松西1-2750-1"
+  },
+  {
+    "key": "kix-aston-plaza",
+    "name": {
+      "ja": "ホテルアストンプラザ関西空港"
+    },
+    "region": "rinku",
+    "category": "hotel",
+    "status": "included",
+    "criteria": [],
+    "reason": null,
+    "pointId": "kix-aston-plaza",
+    "ratings": {
+      "rakuten": 4.18,
+      "rakutenReviews": 924,
+      "google": null,
+      "googleReviews": null,
+      "jalan": 4.1,
+      "jalanReviews": 569
+    },
+    "links": {},
+    "note": "楽天 160665，125 室，楽天最低 3,750 円；15 人組合 2/12：8x2；じゃらん yad359122；大阪府泉佐野市南中安松674-1"
+  },
+  {
+    "key": "kix-rakuten-192959",
+    "name": {
+      "ja": "ドッグにグッドな古民家りんくう"
+    },
+    "region": "izumisano",
+    "category": "pension",
+    "status": "not-included",
+    "criteria": [],
+    "reason": "民泊／ゲストハウス／アパートメント型（1 室）：評論少，2/12 15 人組合沒有空房；沒有讀文",
+    "pointId": null,
+    "ratings": {
+      "rakuten": null,
+      "rakutenReviews": null,
+      "google": null,
+      "googleReviews": null,
+      "jalan": null,
+      "jalanReviews": null
+    },
+    "links": {},
+    "note": "楽天 192959，1 室；15 人組合 2/12：無；大阪府泉佐野市野出町4-17"
+  },
+  {
+    "key": "kix-rakuten-41091",
+    "name": {
+      "ja": "ビジネス旅館　美松荘"
+    },
+    "region": "izumisano",
+    "category": "hotel",
+    "status": "not-included",
+    "criteria": [],
+    "reason": "9 室；楽天 4.35／101 則、じゃらん 4.1／162 則；2/12 15 人組合（5x3、4x4、3x5、2x8、8x2）都沒有空房；沒有讀文",
+    "pointId": null,
+    "ratings": {
+      "rakuten": 4.35,
+      "rakutenReviews": 101,
+      "google": null,
+      "googleReviews": null,
+      "jalan": 4.1,
+      "jalanReviews": 162
+    },
+    "links": {},
+    "note": "楽天 41091，9 室，楽天最低 3,500 円；15 人組合 2/12：無；じゃらん yad335640；大阪府泉佐野市高松北1-4-30"
+  },
+  {
+    "key": "kix-rakuten-197695",
+    "name": {
+      "ja": "ＳＡＫＵＲＡＫＩＣＨＩ　ＨＯＴＥＬ"
+    },
+    "region": "izumisano",
+    "category": "hotel",
+    "status": "not-included",
+    "criteria": [],
+    "reason": "40 室；楽天 4.09／33 則、じゃらん 4.6／9 則；2/12 15 人組合（5x3、4x4、3x5、2x8、8x2）都沒有空房；沒有讀文",
+    "pointId": null,
+    "ratings": {
+      "rakuten": 4.09,
+      "rakutenReviews": 33,
+      "google": null,
+      "googleReviews": null,
+      "jalan": 4.6,
+      "jalanReviews": 9
+    },
+    "links": {},
+    "note": "楽天 197695，40 室，楽天最低 4,500 円；15 人組合 2/12：無；じゃらん yad329750；大阪府泉佐野市若宮町4-11"
+  },
+  {
+    "key": "kix-rakuten-163487",
+    "name": {
+      "ja": "ＨＯＴＥＬ　Ｇｔ【大人専用１８禁・ハピホテ提携】"
+    },
+    "region": "rinku",
+    "category": "hotel",
+    "status": "excluded",
+    "criteria": [],
+    "reason": "成人限定（18 禁）的情侶旅館，排除對象；沒有讀文",
+    "pointId": null,
+    "ratings": {
+      "rakuten": null,
+      "rakutenReviews": null,
+      "google": null,
+      "googleReviews": null,
+      "jalan": null,
+      "jalanReviews": null
+    },
+    "links": {},
+    "note": "楽天 163487，24 室；15 人組合 2/12：無；大阪府泉南郡田尻町吉見93-4"
+  },
+  {
+    "key": "kix-garden-palace",
+    "name": {
+      "ja": "関空温泉ホテルガーデンパレス"
+    },
+    "region": "izumisano",
+    "category": "hotel",
+    "status": "included",
+    "criteria": [],
+    "reason": null,
+    "pointId": "kix-garden-palace",
+    "ratings": {
+      "rakuten": 4.45,
+      "rakutenReviews": 2207,
+      "google": null,
+      "googleReviews": null,
+      "jalan": 4.7,
+      "jalanReviews": 2408
+    },
+    "links": {},
+    "note": "楽天 222，63 室，楽天最低 5,500 円；15 人組合 2/12：3x5；じゃらん yad389840；大阪府泉佐野市中町1-3-51"
+  },
+  {
+    "key": "kix-rakuten-5662",
+    "name": {
+      "ja": "エアポートイン　プリンス"
+    },
+    "region": "izumisano",
+    "category": "hotel",
+    "status": "not-included",
+    "criteria": [],
+    "reason": "78 室；楽天 3.82／869 則、じゃらん 3.9／527 則；2/12 有 15 人組合空房，但沒有 300 則以上而且 4.0 以上的評分來源；沒有讀文",
+    "pointId": null,
+    "ratings": {
+      "rakuten": 3.82,
+      "rakutenReviews": 869,
+      "google": null,
+      "googleReviews": null,
+      "jalan": 3.9,
+      "jalanReviews": 527
+    },
+    "links": {},
+    "note": "楽天 5662，78 室，楽天最低 3,080 円；15 人組合 2/12：8x2；じゃらん yad303441；大阪府泉佐野市若宮町6-3"
+  },
+  {
+    "key": "kix-rakuten-191713",
+    "name": {
+      "ja": "Ｒ　Ｈｏｔｅｌ　Ｋａｎｓａｉ　Ａｉｒｐｏｒｔ"
+    },
+    "region": "izumisano",
+    "category": "pension",
+    "status": "not-included",
+    "criteria": [],
+    "reason": "48 室；楽天 4.48／52 則、じゃらん 3.9／9 則；2/12 有 15 人組合空房，但沒有 300 則以上而且 4.0 以上的評分來源；沒有讀文",
+    "pointId": null,
+    "ratings": {
+      "rakuten": 4.48,
+      "rakutenReviews": 52,
+      "google": null,
+      "googleReviews": null,
+      "jalan": 3.9,
+      "jalanReviews": 9
+    },
+    "links": {},
+    "note": "楽天 191713，48 室，楽天最低 4,000 円；15 人組合 2/12：8x2；じゃらん yad369529；大阪府泉佐野市若宮町5-3"
+  },
+  {
+    "key": "kix-ref-izumisano",
+    "name": {
+      "ja": "レフ関空泉佐野　ｂｙ　ベッセルホテルズ｜ＲＥＦ関空泉佐野｜サウナ付大浴場（関西空港）"
+    },
+    "region": "izumisano",
+    "category": "hotel",
+    "status": "included",
+    "criteria": [],
+    "reason": null,
+    "pointId": "kix-ref-izumisano",
+    "ratings": {
+      "rakuten": 4.53,
+      "rakutenReviews": 767,
+      "google": null,
+      "googleReviews": null,
+      "jalan": 4.6,
+      "jalanReviews": 444
+    },
+    "links": {},
+    "note": "楽天 183997，222 室，楽天最低 4,185 円；15 人組合 2/12：8x2；じゃらん yad330686；大阪府泉佐野市上町3-11-21"
+  },
+  {
+    "key": "kix-rakuten-198476",
+    "name": {
+      "ja": "泉佐野センターホテル"
+    },
+    "region": "izumisano",
+    "category": "hotel",
+    "status": "not-included",
+    "criteria": [],
+    "reason": "187 室；楽天 4／58 則、じゃらん 4.3／298 則；2/12 有 15 人組合空房，但沒有 300 則以上而且 4.0 以上的評分來源；沒有讀文",
+    "pointId": null,
+    "ratings": {
+      "rakuten": 4,
+      "rakutenReviews": 58,
+      "google": null,
+      "googleReviews": null,
+      "jalan": 4.3,
+      "jalanReviews": 298
+    },
+    "links": {},
+    "note": "楽天 198476，187 室，楽天最低 4,150 円；15 人組合 2/12：8x2；じゃらん yad374085；大阪府泉佐野市高松東1-10-37　泉佐野センタービル"
+  },
+  {
+    "key": "kix-rakuten-178937",
+    "name": {
+      "ja": "＋９　駅前民宿"
+    },
+    "region": "izumisano",
+    "category": "pension",
+    "status": "not-included",
+    "criteria": [],
+    "reason": "民泊／ゲストハウス／アパートメント型（6 室、楽天 13 則）：評論少，2/12 15 人組合沒有空房；沒有讀文",
+    "pointId": null,
+    "ratings": {
+      "rakuten": 4.17,
+      "rakutenReviews": 13,
+      "google": null,
+      "googleReviews": null,
+      "jalan": null,
+      "jalanReviews": null
+    },
+    "links": {},
+    "note": "楽天 178937，6 室，楽天最低 2,750 円；15 人組合 2/12：無；大阪府泉佐野市元町1-8"
+  },
+  {
+    "key": "kix-rakuten-179691",
+    "name": {
+      "ja": "ＡＢＣＧＵＥＳＴＨＯＵＳＥ　１Ｆ"
+    },
+    "region": "izumisano",
+    "category": "pension",
+    "status": "not-included",
+    "criteria": [],
+    "reason": "民泊／ゲストハウス／アパートメント型（2 室、楽天 11 則）：評論少，2/12 15 人組合沒有空房；沒有讀文",
+    "pointId": null,
+    "ratings": {
+      "rakuten": 5,
+      "rakutenReviews": 11,
+      "google": null,
+      "googleReviews": null,
+      "jalan": null,
+      "jalanReviews": null
+    },
+    "links": {},
+    "note": "楽天 179691，2 室，楽天最低 2,188 円；15 人組合 2/12：無；じゃらん yad301787；大阪府泉佐野市市場西3-4-25　1階"
+  },
+  {
+    "key": "kix-rakuten-179692",
+    "name": {
+      "ja": "ＡＢＣＧＵＥＳＴＨＯＵＳＥ　２Ｆ"
+    },
+    "region": "izumisano",
+    "category": "pension",
+    "status": "not-included",
+    "criteria": [],
+    "reason": "民泊／ゲストハウス／アパートメント型（2 室、楽天 3 則）：評論少，2/12 15 人組合沒有空房；沒有讀文",
+    "pointId": null,
+    "ratings": {
+      "rakuten": null,
+      "rakutenReviews": 3,
+      "google": null,
+      "googleReviews": null,
+      "jalan": null,
+      "jalanReviews": null
+    },
+    "links": {},
+    "note": "楽天 179692，2 室，楽天最低 2,188 円；15 人組合 2/12：無；じゃらん yad397384；大阪府泉佐野市市場西3-4-25　2階"
+  },
+  {
+    "key": "kix-rakuten-162784",
+    "name": {
+      "ja": "ステイザ大阪"
+    },
+    "region": "izumisano",
+    "category": "pension",
+    "status": "not-included",
+    "criteria": [],
+    "reason": "民泊／ゲストハウス／アパートメント型（4 室、楽天 14 則）：評論少，2/12 15 人組合有（4x4/3x5）但不到 300 則；沒有讀文",
+    "pointId": null,
+    "ratings": {
+      "rakuten": 4.5,
+      "rakutenReviews": 14,
+      "google": null,
+      "googleReviews": null,
+      "jalan": null,
+      "jalanReviews": null
+    },
+    "links": {},
+    "note": "楽天 162784，4 室，楽天最低 2,960 円；15 人組合 2/12：4x4/3x5；じゃらん yad366390；大阪府泉佐野市栄町2-6"
+  },
+  {
+    "key": "kix-rakuten-971",
+    "name": {
+      "ja": "関空泉佐野ファーストホテル"
+    },
+    "region": "izumisano",
+    "category": "hotel",
+    "status": "not-included",
+    "criteria": [],
+    "reason": "113 室；楽天 4.14／1340 則、じゃらん 4.2／925 則；2/12 15 人組合（5x3、4x4、3x5、2x8、8x2）都沒有空房（方案可能未開；評分夠，行程定了可以重查）；沒有讀文",
+    "pointId": null,
+    "ratings": {
+      "rakuten": 4.14,
+      "rakutenReviews": 1340,
+      "google": null,
+      "googleReviews": null,
+      "jalan": 4.2,
+      "jalanReviews": 925
+    },
+    "links": {},
+    "note": "楽天 971，113 室，楽天最低 4,000 円；15 人組合 2/12：無；じゃらん yad339141；大阪府泉佐野市上町3-4-18"
+  },
+  {
+    "key": "kix-rakuten-151152",
+    "name": {
+      "ja": "ＧＲＥＥＮＷＯＯＤ　ＨＯＳＴＥＬ"
+    },
+    "region": "izumisano",
+    "category": "pension",
+    "status": "not-included",
+    "criteria": [],
+    "reason": "民泊／ゲストハウス／アパートメント型（2 室、楽天 73 則）：評論少，2/12 15 人組合沒有空房；沒有讀文",
+    "pointId": null,
+    "ratings": {
+      "rakuten": 4.6,
+      "rakutenReviews": 73,
+      "google": null,
+      "googleReviews": null,
+      "jalan": null,
+      "jalanReviews": null
+    },
+    "links": {},
+    "note": "楽天 151152，2 室，楽天最低 3,000 円；15 人組合 2/12：無；大阪府泉佐野市上町3-6-40"
+  },
+  {
+    "key": "kix-rakuten-179693",
+    "name": {
+      "ja": "自由家民泊"
+    },
+    "region": "izumisano",
+    "category": "pension",
+    "status": "not-included",
+    "criteria": [],
+    "reason": "民泊／ゲストハウス／アパートメント型（4 室、楽天 2 則）：評論少，2/12 15 人組合沒有空房；沒有讀文",
+    "pointId": null,
+    "ratings": {
+      "rakuten": null,
+      "rakutenReviews": 2,
+      "google": null,
+      "googleReviews": null,
+      "jalan": null,
+      "jalanReviews": null
+    },
+    "links": {},
+    "note": "楽天 179693，4 室；15 人組合 2/12：無；じゃらん yad332159；大阪府泉佐野市大宮町14-8"
+  },
+  {
+    "key": "kix-rakuten-198418",
+    "name": {
+      "ja": "ＡＩＲ駅前民泊"
+    },
+    "region": "izumisano",
+    "category": "hotel",
+    "status": "not-included",
+    "criteria": [],
+    "reason": "民泊／ゲストハウス／アパートメント型（2 室、楽天 1 則）：評論少，2/12 15 人組合沒有空房；沒有讀文",
+    "pointId": null,
+    "ratings": {
+      "rakuten": null,
+      "rakutenReviews": 1,
+      "google": null,
+      "googleReviews": null,
+      "jalan": null,
+      "jalanReviews": null
+    },
+    "links": {},
+    "note": "楽天 198418，2 室；15 人組合 2/12：無；大阪府泉佐野市大宮町 15-19"
+  },
+  {
+    "key": "kix-bellevue-garden",
+    "name": {
+      "ja": "ベルビューガーデンホテル関西空港"
+    },
+    "region": "izumisano",
+    "category": "hotel",
+    "status": "included",
+    "criteria": [],
+    "reason": null,
+    "pointId": "kix-bellevue-garden",
+    "ratings": {
+      "rakuten": 4.2,
+      "rakutenReviews": 2660,
+      "google": null,
+      "googleReviews": null,
+      "jalan": 4.5,
+      "jalanReviews": 1188
+    },
+    "links": {},
+    "note": "楽天 87，186 室，楽天最低 4,050 円；15 人組合 2/12：8x2；じゃらん yad310389；大阪府泉佐野市市場西3-3-34"
+  },
+  {
+    "key": "kix-rakuten-189606",
+    "name": {
+      "ja": "オーガニックＬ－Ｓｔａｙあかつき／民泊"
+    },
+    "region": "izumisano",
+    "category": "pension",
+    "status": "not-included",
+    "criteria": [],
+    "reason": "民泊／ゲストハウス／アパートメント型（1 室）：評論少，2/12 15 人組合沒有空房；沒有讀文",
+    "pointId": null,
+    "ratings": {
+      "rakuten": null,
+      "rakutenReviews": null,
+      "google": null,
+      "googleReviews": null,
+      "jalan": null,
+      "jalanReviews": null
+    },
+    "links": {},
+    "note": "楽天 189606，1 室；15 人組合 2/12：無；大阪府泉佐野市大宮町12-6-202　Ｏｒｇａｎｉｃ　ＬーＳｔａｙ　Ａｋａｔｓｕｋｉ"
+  },
+  {
+    "key": "kix-rakuten-192082",
+    "name": {
+      "ja": "ＨＯＳＴＥＬ　ＫＵＲＩＹＡ　ＯＳＡＫＡ"
+    },
+    "region": "izumisano",
+    "category": "pension",
+    "status": "not-included",
+    "criteria": [],
+    "reason": "民泊／ゲストハウス／アパートメント型（3 室）：評論少，2/12 15 人組合沒有空房；沒有讀文",
+    "pointId": null,
+    "ratings": {
+      "rakuten": null,
+      "rakutenReviews": null,
+      "google": null,
+      "googleReviews": null,
+      "jalan": null,
+      "jalanReviews": null
+    },
+    "links": {},
+    "note": "楽天 192082，3 室；15 人組合 2/12：無；大阪府泉佐野市春日町5-10"
+  },
+  {
+    "key": "kix-rakuten-170036",
+    "name": {
+      "ja": "急行停車駅から徒歩５分／洗濯機／ダイニングテーブル付／静かな通り【アラウラ】"
+    },
+    "region": "izumisano",
+    "category": "pension",
+    "status": "not-included",
+    "criteria": [],
+    "reason": "民泊／ゲストハウス／アパートメント型（1 室）：評論少，2/12 15 人組合沒有空房；沒有讀文",
+    "pointId": null,
+    "ratings": {
+      "rakuten": null,
+      "rakutenReviews": null,
+      "google": null,
+      "googleReviews": null,
+      "jalan": null,
+      "jalanReviews": null
+    },
+    "links": {},
+    "note": "楽天 170036，1 室，楽天最低 3,770 円；15 人組合 2/12：無；大阪府泉佐野市大宮町3-3　アラウラ"
+  },
+  {
+    "key": "kix-rakuten-186302",
+    "name": {
+      "ja": "オレンジカウンティゲストハウス"
+    },
+    "region": "izumisano",
+    "category": "pension",
+    "status": "not-included",
+    "criteria": [],
+    "reason": "民泊／ゲストハウス／アパートメント型（1 室）：評論少，2/12 15 人組合沒有空房；沒有讀文",
+    "pointId": null,
+    "ratings": {
+      "rakuten": null,
+      "rakutenReviews": null,
+      "google": null,
+      "googleReviews": null,
+      "jalan": null,
+      "jalanReviews": null
+    },
+    "links": {},
+    "note": "楽天 186302，1 室；15 人組合 2/12：無；大阪府泉佐野市大宮町3-45　ｏｒａｎｇｅ　ｃｏｕｎｔｙ　ｇｕｅｓｔｈｏｕｓｅ"
+  },
+  {
+    "key": "kix-rakuten-171220",
+    "name": {
+      "ja": "Ｓａｎｏ　Ｓａｎ　Ｃｈｉ"
+    },
+    "region": "izumisano",
+    "category": "pension",
+    "status": "not-included",
+    "criteria": [],
+    "reason": "民泊／ゲストハウス／アパートメント型（1 室）：評論少，2/12 15 人組合沒有空房；沒有讀文",
+    "pointId": null,
+    "ratings": {
+      "rakuten": null,
+      "rakutenReviews": null,
+      "google": null,
+      "googleReviews": null,
+      "jalan": null,
+      "jalanReviews": null
+    },
+    "links": {},
+    "note": "楽天 171220，1 室；15 人組合 2/12：無；大阪府泉佐野市大宮町3-40　Ｓａｎｏ　Ｓａｎ　Ｃｈｉ"
+  },
+  {
+    "key": "kix-rakuten-161018",
+    "name": {
+      "ja": "Ｇｕｅｓｔ　Ｈｏｕｓｅ古民家　和"
+    },
+    "region": "izumisano",
+    "category": "pension",
+    "status": "not-included",
+    "criteria": [],
+    "reason": "民泊／ゲストハウス／アパートメント型（4 室、楽天 16 則）：評論少，2/12 15 人組合沒有空房；沒有讀文",
+    "pointId": null,
+    "ratings": {
+      "rakuten": 4,
+      "rakutenReviews": 16,
+      "google": null,
+      "googleReviews": null,
+      "jalan": null,
+      "jalanReviews": null
+    },
+    "links": {},
+    "note": "楽天 161018，4 室，楽天最低 3,700 円；15 人組合 2/12：無；じゃらん yad346906；大阪府泉佐野市新町1-6-6"
+  },
+  {
+    "key": "kix-rakuten-10939",
+    "name": {
+      "ja": "シティホテル　ユタカ"
+    },
+    "region": "izumisano",
+    "category": "hotel",
+    "status": "not-included",
+    "criteria": [],
+    "reason": "20 室；楽天 —／10 則、じゃらん沒有分數；2/12 15 人組合（5x3、4x4、3x5、2x8、8x2）都沒有空房；沒有讀文",
+    "pointId": null,
+    "ratings": {
+      "rakuten": null,
+      "rakutenReviews": 10,
+      "google": null,
+      "googleReviews": null,
+      "jalan": null,
+      "jalanReviews": null
+    },
+    "links": {},
+    "note": "楽天 10939，20 室；15 人組合 2/12：無；大阪府泉佐野市市場東2-1010-3"
+  },
+  {
+    "key": "kix-rakuten-177954",
+    "name": {
+      "ja": "和憩館"
+    },
+    "region": "izumisano",
+    "category": "pension",
+    "status": "not-included",
+    "criteria": [],
+    "reason": "民泊／ゲストハウス／アパートメント型（1 室）：評論少，2/12 15 人組合沒有空房；沒有讀文",
+    "pointId": null,
+    "ratings": {
+      "rakuten": null,
+      "rakutenReviews": null,
+      "google": null,
+      "googleReviews": null,
+      "jalan": null,
+      "jalanReviews": null
+    },
+    "links": {},
+    "note": "楽天 177954，1 室；15 人組合 2/12：無；大阪府泉佐野市旭町12-7"
+  },
+  {
+    "key": "kix-rakuten-162642",
+    "name": {
+      "ja": "ＢＩＧＴＲＥＥ　ＧＵＥＳＴＨＯＵＳＥ"
+    },
+    "region": "izumisano",
+    "category": "pension",
+    "status": "not-included",
+    "criteria": [],
+    "reason": "民泊／ゲストハウス／アパートメント型（3 室）：評論少，2/12 15 人組合沒有空房；沒有讀文",
+    "pointId": null,
+    "ratings": {
+      "rakuten": null,
+      "rakutenReviews": null,
+      "google": null,
+      "googleReviews": null,
+      "jalan": null,
+      "jalanReviews": null
+    },
+    "links": {},
+    "note": "楽天 162642，3 室；15 人組合 2/12：無；大阪府泉佐野市上町2-8-25"
+  },
+  {
+    "key": "kix-rakuten-180300",
+    "name": {
+      "ja": "ＵＲＢＡＮ　ＣＡＭＰ　ＨＯＴＥＬ　Ｍａｒｂｌｅ　Ｂｅａｃｈ"
+    },
+    "region": "rinku",
+    "category": "hotel",
+    "status": "not-included",
+    "criteria": [],
+    "reason": "グランピング（泉南りんくう公園內，泉南市），2 月夜間冷、長輩不便、到機場要開車；15 人組合沒空房；沒有讀文",
+    "pointId": null,
+    "ratings": {
+      "rakuten": 4.44,
+      "rakutenReviews": 36,
+      "google": null,
+      "googleReviews": null,
+      "jalan": null,
+      "jalanReviews": null
+    },
+    "links": {},
+    "note": "楽天 180300，20 室，楽天最低 11,550 円；15 人組合 2/12：無；大阪府泉南市りんくう南浜4-201　泉南りんくう公園内"
+  },
+  {
+    "key": "kix-rakuten-200713",
+    "name": {
+      "ja": "メゾネットＨＩＲＡＫＵ"
+    },
+    "region": "izumisano",
+    "category": "hotel",
+    "status": "not-included",
+    "criteria": [],
+    "reason": "民泊／ゲストハウス／アパートメント型（1 室）：評論少，2/12 15 人組合沒有空房；沒有讀文",
+    "pointId": null,
+    "ratings": {
+      "rakuten": null,
+      "rakutenReviews": null,
+      "google": null,
+      "googleReviews": null,
+      "jalan": null,
+      "jalanReviews": null
+    },
+    "links": {},
+    "note": "楽天 200713，1 室，楽天最低 8,816 円；15 人組合 2/12：無；大阪府泉佐野市湊3-6-7　Ｍａｉｓｏｎｅｔｔｅ　ＨＩＲＡＫＵ"
+  },
+  {
+    "key": "kix-rakuten-9482",
+    "name": {
+      "ja": "関空ホテル　サンプラスユタカ"
+    },
+    "region": "izumisano",
+    "category": "hotel",
+    "status": "not-included",
+    "criteria": [],
+    "reason": "83 室；楽天 3.94／437 則、じゃらん 3.8／7 則；2/12 15 人組合（5x3、4x4、3x5、2x8、8x2）都沒有空房；沒有讀文",
+    "pointId": null,
+    "ratings": {
+      "rakuten": 3.94,
+      "rakutenReviews": 437,
+      "google": null,
+      "googleReviews": null,
+      "jalan": 3.8,
+      "jalanReviews": 7
+    },
+    "links": {},
+    "note": "楽天 9482，83 室，楽天最低 4,000 円；15 人組合 2/12：無；じゃらん yad376320；大阪府泉佐野市湊3-3-4"
+  },
+  {
+    "key": "kix-rakuten-10782",
+    "name": {
+      "ja": "ホテルシーガル"
+    },
+    "region": "izumisano",
+    "category": "hotel",
+    "status": "not-included",
+    "criteria": [],
+    "reason": "63 室；楽天 4.03／586 則、じゃらん 3.9／511 則；2/12 15 人組合（5x3、4x4、3x5、2x8、8x2）都沒有空房（方案可能未開；評分夠，行程定了可以重查）；沒有讀文",
+    "pointId": null,
+    "ratings": {
+      "rakuten": 4.03,
+      "rakutenReviews": 586,
+      "google": null,
+      "googleReviews": null,
+      "jalan": 3.9,
+      "jalanReviews": 511
+    },
+    "links": {},
+    "note": "楽天 10782，63 室，楽天最低 3,500 円；15 人組合 2/12：無；じゃらん yad327715；大阪府泉佐野市下瓦屋2-4-78"
+  },
+  {
+    "key": "kix-omo",
+    "name": {
+      "ja": "OMO関西空港 by 星野リゾート"
+    },
+    "region": "rinku",
+    "category": "hotel",
+    "status": "included",
+    "criteria": [],
+    "reason": null,
+    "pointId": "kix-omo",
+    "ratings": {
+      "rakuten": null,
+      "rakutenReviews": null,
+      "google": null,
+      "googleReviews": null,
+      "jalan": 4.2,
+      "jalanReviews": 330
+    },
+    "links": {},
+    "note": "沒上楽天（星野リゾート）；じゃらん yad389642；大阪府泉佐野市りんくう往来北1-833；有住客限定的機場接駁（T1b）"
+  }
+]
