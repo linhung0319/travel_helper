@@ -1,0 +1,106 @@
+{
+  "id": "toba-teikisen-sakate",
+  "mode": "ferry",
+  "operator": "鳥羽市営定期船",
+  "name": {
+    "ja": "鳥羽～坂手",
+    "zh": "鳥羽市營定期船 坂手航線"
+  },
+  "validFrom": "2026-10-01",
+  "validTo": "2028-01-31",
+  "retrieved": "2026-10-19",
+  "feed": {
+    "id": "tobacity/teikisen",
+    "version": "2026/10/01改正-見える化ver2.6h",
+    "published": "2026-10-02",
+    "license": "CC BY 4.0",
+    "credit": "鳥羽市（GTFS-JP、CC BY 4.0）"
+  },
+  "dayTypeBasis": [
+    ["2027-02-02","weekday","2027-02-02"],
+    ["2027-02-03","weekday","2027-02-03"],
+    ["2027-02-04","weekday","2027-02-04"],
+    ["2027-02-05","weekday","2027-02-05"],
+    ["2027-02-06","saturday","2027-02-06"],
+    ["2027-02-07","holiday","2027-02-07"],
+    ["2027-02-08","weekday","2027-02-08"],
+    ["2027-02-09","weekday","2027-02-09"],
+    ["2027-02-10","weekday","2027-02-10"],
+    ["2027-02-11","holiday","2027-02-11"],
+    ["2027-02-12","weekday","2027-02-12"],
+    ["2027-02-13","saturday","2027-02-13"]
+  ],
+  "stops": [
+    {"id":"2_01","name":"佐田浜（鳥羽マリンターミナル）","coords":[136.84503,34.49014],"near":[{"id":"toba-sadahama-marine-terminal","meters":33},{"id":"toba-ichibangai","meters":334},{"id":"toba-marche","meters":338},{"id":"toba","meters":415},{"id":"jr-toba","meters":460},{"id":"toba-bay-cruise-irukajima","meters":670},{"id":"toba-hiyoriyama-observatory","meters":714},{"id":"toba-mikimoto-pearl-island","meters":769}]},
+    {"id":"3_01","name":"坂手","coords":[136.85774,34.48363],"near":[{"id":"toba-mikimoto-pearl-island","meters":995},{"id":"toba-bay-cruise-irukajima","meters":1151},{"id":"toba-aquarium","meters":1152},{"id":"toba-marche","meters":1260},{"id":"toba-castle-ruins","meters":1292},{"id":"toba-ichibangai","meters":1333}]}
+  ],
+  "trips": {
+    "weekday": [
+      {"id":"1全日_09時00分_系統941001","headsign":"坂手","dir":0,"stops":[["2_01",null,"09:00"],["3_01","09:10",null]]},
+      {"id":"1全日_09時15分_系統942001","headsign":"佐田浜（鳥羽マリンターミナル）","dir":1,"stops":[["3_01",null,"09:15"],["2_01","09:25",null]]},
+      {"id":"1全日_11時00分_系統942001","headsign":"佐田浜（鳥羽マリンターミナル）","dir":1,"stops":[["3_01",null,"11:00"],["2_01","11:15",null]]},
+      {"id":"1全日_13時10分_系統941001","headsign":"坂手","dir":0,"stops":[["2_01",null,"13:10"],["3_01","13:25",null]]},
+      {"id":"1全日_13時40分_系統942001","headsign":"佐田浜（鳥羽マリンターミナル）","dir":1,"stops":[["3_01",null,"13:40"],["2_01","13:55",null]]},
+      {"id":"1全日_16時10分_系統941001","headsign":"坂手","dir":0,"stops":[["2_01",null,"16:10"],["3_01","16:20",null]]},
+      {"id":"1全日_16時25分_系統942001","headsign":"佐田浜（鳥羽マリンターミナル）","dir":1,"stops":[["3_01",null,"16:25"],["2_01","16:35",null]]}
+    ],
+    "saturday": [
+      {"id":"1全日_09時00分_系統941001","headsign":"坂手","dir":0,"stops":[["2_01",null,"09:00"],["3_01","09:10",null]]},
+      {"id":"1全日_09時15分_系統942001","headsign":"佐田浜（鳥羽マリンターミナル）","dir":1,"stops":[["3_01",null,"09:15"],["2_01","09:25",null]]},
+      {"id":"1全日_11時00分_系統942001","headsign":"佐田浜（鳥羽マリンターミナル）","dir":1,"stops":[["3_01",null,"11:00"],["2_01","11:15",null]]},
+      {"id":"1全日_13時10分_系統941001","headsign":"坂手","dir":0,"stops":[["2_01",null,"13:10"],["3_01","13:25",null]]},
+      {"id":"1全日_13時40分_系統942001","headsign":"佐田浜（鳥羽マリンターミナル）","dir":1,"stops":[["3_01",null,"13:40"],["2_01","13:55",null]]},
+      {"id":"1全日_16時10分_系統941001","headsign":"坂手","dir":0,"stops":[["2_01",null,"16:10"],["3_01","16:20",null]]},
+      {"id":"1全日_16時25分_系統942001","headsign":"佐田浜（鳥羽マリンターミナル）","dir":1,"stops":[["3_01",null,"16:25"],["2_01","16:35",null]]}
+    ],
+    "holiday": [
+      {"id":"1全日_09時00分_系統941001","headsign":"坂手","dir":0,"stops":[["2_01",null,"09:00"],["3_01","09:10",null]]},
+      {"id":"1全日_09時15分_系統942001","headsign":"佐田浜（鳥羽マリンターミナル）","dir":1,"stops":[["3_01",null,"09:15"],["2_01","09:25",null]]},
+      {"id":"1全日_11時00分_系統942001","headsign":"佐田浜（鳥羽マリンターミナル）","dir":1,"stops":[["3_01",null,"11:00"],["2_01","11:15",null]]},
+      {"id":"1全日_13時10分_系統941001","headsign":"坂手","dir":0,"stops":[["2_01",null,"13:10"],["3_01","13:25",null]]},
+      {"id":"1全日_13時40分_系統942001","headsign":"佐田浜（鳥羽マリンターミナル）","dir":1,"stops":[["3_01",null,"13:40"],["2_01","13:55",null]]},
+      {"id":"1全日_16時10分_系統941001","headsign":"坂手","dir":0,"stops":[["2_01",null,"16:10"],["3_01","16:20",null]]},
+      {"id":"1全日_16時25分_系統942001","headsign":"佐田浜（鳥羽マリンターミナル）","dir":1,"stops":[["3_01",null,"16:25"],["2_01","16:35",null]]}
+    ]
+  },
+  "fares": {
+    "currency": "JPY",
+    "adult": {
+      "2_01": {"3_01":220},
+      "3_01": {"2_01":220}
+    },
+    "child": "小學生付小人運賃（金額在運賃表 PDF，沒讀到）；1 歲以上幼兒每位大人可免費帶 1 位",
+    "note": "只列附近有車站、景點的停留所（和起訖站）之間的大人票價；兒童票見 notes"
+  },
+  "notes": "團體 15 人以上普通票 9 折。1 日自由乘船券 大人 1,480／小孩 740 円（只在佐田浜窗口賣、限當天）。行李：三邊和 200 cm、30 kg 以內 2 件免費。停航是即時資訊：出發當天看運航狀況（官網 5531.html 直接寫，或 LINE @tobacity）；停航基準是風速 16 m/s 以上或港外浪高 1.5 m 以上（見 toba spots 的港口資料），2 月常有北西季風，可能停航，停航頻率查無資料。全員上島要先確認回程末班船。KINTETSU RAIL PASS 官網的範圍沒有列船，視為不能用。",
+  "sources": [
+    {
+      "type": "official",
+      "url": "https://api.gtfs-data.jp/v2/organizations/tobacity/feeds/teikisen",
+      "retrieved": "2026-10-19",
+      "note": "GTFS-JP「鳥羽市営定期船」（CC BY 4.0），feed 期間 2026-10-01～2028-01-31"
+    },
+    {
+      "type": "official",
+      "url": "https://www.city.toba.mie.jp/kurashi/kotsu/kokyo_kotsu/5531.html",
+      "retrieved": "2026-10-19",
+      "note": "鳥羽市営定期船 官網"
+    },
+    {
+      "type": "official",
+      "url": "https://www.city.toba.mie.jp/soshiki/t_kanri/gyomu/doro_kotsu/kokyo_kotsu/3163.html",
+      "retrieved": "2026-10-19",
+      "note": "定期船運賃、團體折扣、1 日券"
+    },
+    {
+      "type": "official",
+      "url": "https://www.city.toba.mie.jp/soshiki/t_kanri/gyomu/doro_kotsu/kokyo_kotsu/5205.html",
+      "retrieved": "2026-10-19",
+      "note": "行李規定"
+    }
+  ],
+  "passes": {
+    "kintetsu-rail-pass-5day": false,
+    "kintetsu-rail-pass-5day-plus": false
+  }
+}

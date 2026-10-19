@@ -19,7 +19,7 @@
       "eligibility": "限訪日外國旅客，乘車時要帶護照；未滿 6 歲免費",
       "purchase": "只在網路購買（手機 QR 電子票）或海外旅行社；每次訂購最多 4 張，15 人至少要分 4 次訂、用 4 支手機。官網沒有寫車站（關西機場、難波）能不能買",
       "coverage": "近鐵全線（含大阪、奈良、京都、伊勢志摩、名古屋）＋伊賀鐵道",
-      "excludes": ["特急要另外買特急券（特急料金）", "しまかぜ等的特別車両料金", "纜車（ロープウェイ）", "巴士（5day plus 才有）", "關西機場沒有近鐵，關西機場 → 難波要另外付（南海等）"],
+      "excludes": ["特急要另外買特急券（特急料金）", "しまかぜ等的特別車両料金", "纜車（ロープウェイ）", "巴士（5day plus 才有）", "關西機場沒有近鐵，關西機場 → 難波要另外付（南海等）", "JR（例如參宮線的二見浦）", "船（鳥羽市営定期船、あご湾定期船）"],
       "perks": "約 70 處設施的優惠，每個設施 1 次",
       "sources": [
         { "type": "official", "url": "https://www.kintetsu.co.jp/foreign/english/ticket/krp_5day.html", "retrieved": "2026-10-17", "note": "價格、使用範圍、特急另外收費" },
@@ -35,11 +35,12 @@
       "validity": "同 5day：連續 5 天",
       "eligibility": "同 5day",
       "purchase": "同 5day",
-      "coverage": "5day 的範圍，再加上巴士：奈良交通（奈良公園、西之京、法隆寺、飛鳥、室生、山邊之道）；三重交通與鳥羽市營巴士（かもめバス）的松阪、伊勢、鳥羽、志摩路線；名張～赤目滝；湯の山～御在所；桑名・長島～なばなの里",
-      "excludes": ["特急券", "特別車両料金", "纜車"],
+      "coverage": "5day 的範圍，再加上巴士：奈良交通（奈良公園、西之京、法隆寺、飛鳥、室生、山邊之道）；三重交通與鳥羽市營巴士（かもめバス）的松阪、伊勢、鳥羽、志摩路線；名張～赤目滝；湯の山～御在所；桑名・長島～なばなの里。伊勢志摩的巴士、船、JR 時刻表在 data/timetables/bus|ferry|jr/，每個檔案的 passes 欄位標示能不能用（T10）；三重交通的部分官網只寫地區（Matsusaka/Ise/Toba/Shima area），沒有逐條列路線，CANばす、参宮バス這類觀光路線是否例外不明",
+      "excludes": ["特急券", "特別車両料金", "纜車", "JR", "船（鳥羽市営定期船、あご湾定期船：官網範圍只列鐵道和巴士）", "志摩市的安乗線代替交通（不是三重交通，能不能搭不明）"],
       "perks": "同 5day",
       "sources": [
-        { "type": "official", "url": "https://www.kintetsu.co.jp/foreign/english/ticket/krp_5dayplus.html", "retrieved": "2026-10-17", "note": "價格、巴士範圍" }
+        { "type": "official", "url": "https://www.kintetsu.co.jp/foreign/english/ticket/krp_5dayplus.html", "retrieved": "2026-10-17", "note": "價格、巴士範圍" },
+        { "type": "official", "url": "https://www.kintetsu.co.jp/foreign/english/ticket/krp_5dayplus.html", "retrieved": "2026-10-19", "note": "T10 重讀：Mie Kotsu bus 與 Toba Kamome Bus（Ise-Shima area），沒有提到船" }
       ]
     }
   ],

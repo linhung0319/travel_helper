@@ -151,3 +151,27 @@
   - `operator` 是 `jr`／`nankai`（schema 的 operator 目前只有 kintetsu、jr、bus，要加 `nankai` 或用 `other`），`passCovered: false`（近鐵 5 日券不能用）。
 - 原因：kix 的住宿、餐廳 `nearestStation` 現在都是 null（T19 把站名和步行分鐘寫在 `extra.stationAccess`、`pickup`），行程引擎（T14）算不了「飯店 → 車站 → 機場」；加站後 T19（或 T13）補 `nearestStation`，重跑 `restaurant-anchors.mjs kix`。
 - 狀態：未處理
+
+## [T10] 為 data/timetables/bus|ferry|jr/*.json 建立正式 schema
+- 要改的檔案：`schema/`（新增 `timetable-route.schema.json`，巴士、船共用；JR 見下一條）、`scripts/validate.mjs` 的 ROUTES（T10 已暫時把 `timetables/(bus|ferry|jr)/` 指到 `sourced-document`，並在 commit 訊息說明）
+- 內容：格式由 `scripts/gtfs-timetable.mjs` 產生（實際內容見 `data/timetables/bus/sanco-canbus.json`）。
+  - 最外層：`id`（= 檔名）、`mode`（`bus` | `ferry`）、`operator`、`name`（common 的 name：`ja`、`zh`）、`validFrom`、`validTo`（feed 期間，日期）、`retrieved`、`feed`（`{ id, version, published, license, credit }`）、`dayTypeBasis`、`stops`、`trips`、`fares`、`notes`、`passes`（選填）、`sources`（必填）
+  - `dayTypeBasis`：`[[旅程日期, 日別, feed 裡用來推算的日期|null], ...]`；日別是 `weekday` | `saturday` | `holiday`（日曜和國定假日）
+  - `stops[]`：`{ id（GTFS 的 stop_id，字串）, name, coords: [經度, 緯度], platform?, near?: [{ id（資料點 ID）, meters（整數，直線距離）}] }`
+  - `trips`：`{ weekday: Trip[], saturday: Trip[], holiday: Trip[] }`；`Trip = { id, headsign, dir（0 | 1 | null）, stops: [[stop_id, 到 HH:MM|null, 發 HH:MM|null], ...], dates?: [日期] }`（`dates` 只在該日別只有部分日子行駛時出現）
+  - `fares`：`{ currency: "JPY", adult: { <stop_id>: { <stop_id>: 整數 } }, child: 字串|null, note }`
+  - `passes`：`{ <passes.json 的 pass id>: true | false | null }`
+  - 建議 validate 多檢查：`stops[].near[].id` 存在；`trips` 裡的 stop_id 都在 `stops`；`fares.adult` 的鍵都在 `stops`；檔名和 `id` 一致。
+- 原因：`scripts/next-bus.mjs`、T11 停留所面板、T14 行程引擎都靠這些欄位查下一班與票價。
+- 狀態：待處理
+
+## [T10] JR 各站時刻表（data/timetables/jr/<station-id>.json）沿用近鐵 schema
+- 要改的檔案：`scripts/validate.mjs` 的 ROUTES（`timetables/jr/jr-*.json` 裡的各站檔案改用 `timetable-kintetsu`，或把它改名成通用的 `timetable-station`）；`jr/jr-sangu.json` 是路線格式，用上一條的 schema
+- 內容：各站檔案（`jr-iseshi`、`jr-isuzugaoka`、`jr-futaminoura`、`jr-matsushita`、`jr-toba`）由 `scripts/jr-timetable.mjs` 產生，欄位和近鐵相同（`station`、`validFrom`、`validTo`、`retrieved`、`source`、`sources`、`directions`、`notes`、`extra`）。不同處：
+  - 方向鍵是 `for-toba`（往鳥羽）、`for-taki`（往多気、松阪、名古屋）；schema 的 `propertyNames` 是 `^for-`，可以通過，但 description 只寫了近鐵的兩個方向。
+  - `to` 是終點站 ID，區間外的站用 `jr-<羅馬字>`（`jr-taki`、`jr-kameyama`、`jr-nagoya`、`jr-matsusaka`、`jr-tsu`、`jr-shingu`、`jr-kii-katsuura`），這些不在 `stations.json`（和近鐵的 `osaka-namba` 一樣）。
+  - `trainNo` 是 JR 的列車番號（例如 `919C`），對應 `jr-sangu.json` 的 `trips[].id`。
+  - 土曜和日祝的班次不同時，土曜放在 `extra.saturday`（目前相同，沒有這個欄位）。
+  - `validFrom`、`validTo` 是 null（網站沒有寫時刻表的改正日）；推算用的日子寫在 `sources[0].note`。
+- 原因：T11 的車站面板要顯示 JR 二見浦等站的下一班車。
+- 狀態：待處理

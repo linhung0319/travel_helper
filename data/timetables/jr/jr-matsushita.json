@@ -1,0 +1,108 @@
+{
+  "station": "jr-matsushita",
+  "validFrom": null,
+  "validTo": null,
+  "retrieved": "2026-10-19",
+  "source": "https://timetable.jr-odekake.net/line-timetable/2321",
+  "sources": [
+    {
+      "type": "official",
+      "url": "https://timetable.jr-odekake.net/line-timetable/2321",
+      "retrieved": "2026-10-19",
+      "note": "JR おでかけネット 区間時刻表 紀勢本線・参宮線(亀山～多気～鳥羽) 下り；推算用的日子：weekday 2026-12-22、saturday 2026-12-26、holiday 2026-12-27"
+    },
+    {
+      "type": "official",
+      "url": "https://timetable.jr-odekake.net/line-timetable/2322",
+      "retrieved": "2026-10-19",
+      "note": "同上 上り"
+    }
+  ],
+  "directions": {
+    "for-toba": {
+      "weekday": [
+        {"dep":"06:22","type":"普通","to":"jr-toba","trainNo":"901C"},
+        {"dep":"07:10","type":"普通","to":"jr-toba","trainNo":"903D"},
+        {"dep":"07:38","type":"普通","to":"jr-toba","trainNo":"905C"},
+        {"dep":"08:29","type":"普通","to":"jr-toba","trainNo":"909D"},
+        {"dep":"09:33","type":"普通","to":"jr-toba","trainNo":"915D"},
+        {"dep":"10:32","type":"快速 みえ 1号","to":"jr-toba","trainNo":"2901D"},
+        {"dep":"11:14","type":"普通","to":"jr-toba","trainNo":"919C"},
+        {"dep":"12:14","type":"普通","to":"jr-toba","trainNo":"921C"},
+        {"dep":"12:58","type":"普通","to":"jr-toba","trainNo":"923C"},
+        {"dep":"13:55","type":"普通","to":"jr-toba","trainNo":"925C"},
+        {"dep":"15:10","type":"普通","to":"jr-toba","trainNo":"927C"},
+        {"dep":"16:05","type":"普通","to":"jr-toba","trainNo":"929C"},
+        {"dep":"17:23","type":"快速 みえ 15号","to":"jr-toba","trainNo":"2915D"},
+        {"dep":"17:49","type":"普通","to":"jr-toba","trainNo":"935C"},
+        {"dep":"18:37","type":"快速 みえ 17号","to":"jr-toba","trainNo":"2917D"},
+        {"dep":"19:30","type":"普通","to":"jr-toba","trainNo":"941C"},
+        {"dep":"20:43","type":"普通","to":"jr-toba","trainNo":"945C"},
+        {"dep":"21:59","type":"普通","to":"jr-toba","trainNo":"949C"}
+      ],
+      "holiday": [
+        {"dep":"06:22","type":"普通","to":"jr-toba","trainNo":"901C"},
+        {"dep":"07:10","type":"普通","to":"jr-toba","trainNo":"903D"},
+        {"dep":"07:38","type":"普通","to":"jr-toba","trainNo":"905C"},
+        {"dep":"08:29","type":"普通","to":"jr-toba","trainNo":"909D"},
+        {"dep":"09:48","type":"普通","to":"jr-toba","trainNo":"3915D"},
+        {"dep":"10:32","type":"快速 みえ 1号","to":"jr-toba","trainNo":"2901D"},
+        {"dep":"11:14","type":"普通","to":"jr-toba","trainNo":"919C"},
+        {"dep":"12:14","type":"普通","to":"jr-toba","trainNo":"921C"},
+        {"dep":"12:58","type":"普通","to":"jr-toba","trainNo":"923C"},
+        {"dep":"13:55","type":"普通","to":"jr-toba","trainNo":"925C"},
+        {"dep":"15:10","type":"普通","to":"jr-toba","trainNo":"927C"},
+        {"dep":"16:05","type":"普通","to":"jr-toba","trainNo":"929C"},
+        {"dep":"17:23","type":"快速 みえ 15号","to":"jr-toba","trainNo":"2915D"},
+        {"dep":"17:49","type":"普通","to":"jr-toba","trainNo":"935C"},
+        {"dep":"18:37","type":"快速 みえ 17号","to":"jr-toba","trainNo":"2917D"},
+        {"dep":"19:30","type":"普通","to":"jr-toba","trainNo":"941C"},
+        {"dep":"20:43","type":"普通","to":"jr-toba","trainNo":"945C"},
+        {"dep":"21:59","type":"普通","to":"jr-toba","trainNo":"949C"}
+      ]
+    },
+    "for-taki": {
+      "weekday": [
+        {"dep":"06:44","type":"普通","to":"jr-iseshi","trainNo":"910C"},
+        {"dep":"07:31","type":"快速 みえ 4号","to":"jr-nagoya","trainNo":"2904D"},
+        {"dep":"08:02","type":"普通","to":"jr-kameyama","trainNo":"914C"},
+        {"dep":"09:08","type":"快速 みえ 6号","to":"jr-nagoya","trainNo":"2906D"},
+        {"dep":"10:08","type":"快速 みえ 8号","to":"jr-nagoya","trainNo":"2908D"},
+        {"dep":"11:08","type":"快速 みえ 10号","to":"jr-nagoya","trainNo":"2910D"},
+        {"dep":"11:42","type":"普通","to":"jr-kameyama","trainNo":"922C"},
+        {"dep":"12:49","type":"普通","to":"jr-iseshi","trainNo":"924C"},
+        {"dep":"13:30","type":"普通","to":"jr-iseshi","trainNo":"928C"},
+        {"dep":"14:36","type":"普通","to":"jr-iseshi","trainNo":"932C"},
+        {"dep":"15:39","type":"普通","to":"jr-kameyama","trainNo":"938C"},
+        {"dep":"16:31","type":"普通","to":"jr-matsusaka","trainNo":"940C"},
+        {"dep":"17:42","type":"快速 みえ 24号","to":"jr-nagoya","trainNo":"2924D"},
+        {"dep":"18:29","type":"普通","to":"jr-kameyama","trainNo":"946C"},
+        {"dep":"19:23","type":"快速 みえ 26号","to":"jr-nagoya","trainNo":"2926D"},
+        {"dep":"20:06","type":"普通","to":"jr-kameyama","trainNo":"952C"},
+        {"dep":"21:06","type":"普通","to":"jr-kameyama","trainNo":"954C"},
+        {"dep":"22:19","type":"普通","to":"jr-taki","trainNo":"956C"}
+      ],
+      "holiday": [
+        {"dep":"06:44","type":"普通","to":"jr-iseshi","trainNo":"910C"},
+        {"dep":"07:31","type":"快速 みえ 4号","to":"jr-nagoya","trainNo":"2904D"},
+        {"dep":"08:02","type":"普通","to":"jr-kameyama","trainNo":"914C"},
+        {"dep":"09:08","type":"快速 みえ 6号","to":"jr-nagoya","trainNo":"2906D"},
+        {"dep":"10:08","type":"快速 みえ 8号","to":"jr-nagoya","trainNo":"2908D"},
+        {"dep":"11:08","type":"快速 みえ 10号","to":"jr-nagoya","trainNo":"2910D"},
+        {"dep":"11:42","type":"普通","to":"jr-kameyama","trainNo":"922C"},
+        {"dep":"12:49","type":"普通","to":"jr-iseshi","trainNo":"924C"},
+        {"dep":"13:30","type":"普通","to":"jr-iseshi","trainNo":"928C"},
+        {"dep":"14:36","type":"普通","to":"jr-iseshi","trainNo":"932C"},
+        {"dep":"15:39","type":"普通","to":"jr-kameyama","trainNo":"938C"},
+        {"dep":"16:31","type":"普通","to":"jr-matsusaka","trainNo":"940C"},
+        {"dep":"17:42","type":"快速 みえ 24号","to":"jr-nagoya","trainNo":"2924D"},
+        {"dep":"18:29","type":"普通","to":"jr-kameyama","trainNo":"946C"},
+        {"dep":"19:23","type":"快速 みえ 26号","to":"jr-nagoya","trainNo":"2926D"},
+        {"dep":"20:06","type":"普通","to":"jr-kameyama","trainNo":"952C"},
+        {"dep":"21:06","type":"普通","to":"jr-kameyama","trainNo":"954C"},
+        {"dep":"22:19","type":"普通","to":"jr-taki","trainNo":"956C"}
+      ]
+    }
+  },
+  "notes": "JR 參宮線松下站。to 是終點站 ID（區間外的站用 jr-<羅馬字>，例如 jr-taki 多気、jr-nagoya 名古屋），trainNo 是 JR 的列車番號；各站之間的到發時刻見 jr-sangu.json。土曜和日祝的班次相同，holiday 是土休日。"
+}

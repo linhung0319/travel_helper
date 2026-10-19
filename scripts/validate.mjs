@@ -45,7 +45,7 @@ const ROUTES = [
   { re: /^timetables\/kintetsu\/_travel-times\.json$/, schema: 'kintetsu-travel-times', kind: 'travel-times' },
   { re: /^timetables\/kintetsu\/_[a-z0-9-]+\.json$/, schema: 'sourced-document', kind: 'doc' },
   { re: /^timetables\/kintetsu\/[a-z0-9-]+\.json$/, schema: 'timetable-kintetsu', kind: 'timetable' },
-  { re: /^timetables\/bus\/[a-z0-9-]+\.json$/, schema: 'sourced-document', kind: 'doc' },
+  { re: /^timetables\/(bus|ferry|jr)\/[a-z0-9-]+\.json$/, schema: 'sourced-document', kind: 'doc' }, // T10：格式見 docs/requests.md，正式 schema 由 T7 補
   { re: /^passes\.json$/, schema: 'passes', kind: 'doc' },
   { re: /^access\/[a-z0-9-]+\.json$/, schema: 'access', kind: 'doc', bbox: BBOX_WIDE },
   { re: /^cache\//, schema: null, kind: 'cache' },
