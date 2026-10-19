@@ -47,7 +47,7 @@
       "googleMaps": "https://maps.google.com/?cid=17101069485606895356"
     },
     "tags": [],
-    "tier": null,
+    "tier": "A",
     "nearestStation": null,
     "pickup": "不需要：飯店在 T1 旁的エアロプラザ，T1 2F 有連絡通道直通飯店 2F，也直通 JR・南海關西空港站（官網）；T2 有免費連絡巴士",
     "meals": "varies",
@@ -206,8 +206,48 @@
       },
       "dinnerAccessNote": "步行 20 分內的晚餐店 1 家：中華料理 桃李 6 分（選素泊、朝食付方案時；OSRM，scripts/lodging-dinner-access.mjs，2026-10-19）"
     },
-    "summary": null,
-    "assessment": null
+    "summary": {
+      "text": "機場島上唯一的飯店，T1 和 JR・南海關西空港站都從 2F 走通道直通，2/13 早上不用搭車、也不用擔心 15 人分批上接駁車。楽天 4.53（4,312 則）、じゃらん 4.5、Google 4.4。館內有中華桃李（包廂 20 人）、和食、自助餐，2/12 晚餐可以不出飯店。",
+      "pros": [
+        "走路直通 T1 和關西空港站，帶大行李最省事",
+        "楽天 4.53（4,312 則）、Google 4.4（3,132 則）",
+        "2/12 楽天有 5 間×3 人、4 間×4 人、8 間×2 人的空房（素泊每人約 9,070 円起）；館內桃李有 20 人包廂"
+      ],
+      "cons": [
+        "關西機場周邊最貴的一群（每人約 9,000～12,000 円，素泊）",
+        "Google 低分說舊房型寢具舊、隔音差；1 則中文評論說 check-in 被要求把國籍「台灣」改成「中國台灣」",
+        "電梯、3～4 人房間數、團體預約方式沒有來源"
+      ],
+      "basedOn": [
+        "https://www.nikkokix.com/access/",
+        "https://www.nikkokix.com/",
+        "https://www.nikkokix.com/restaurant/",
+        "https://www.nikkokix.com/restaurant/brasserie.html",
+        "https://travel.rakuten.co.jp/HOTEL/187/187.html",
+        "https://www.jalan.net/yad324560/",
+        "https://maps.google.com/?cid=17101069485606895356"
+      ],
+      "generated": "2026-10-19"
+    },
+    "assessment": {
+      "rubric": "lodging-v1",
+      "scores": {
+        "recommend": 4,
+        "meals": 4,
+        "groupFit": 4,
+        "elderFit": 3,
+        "accessEase": 5
+      },
+      "rationale": {
+        "recommend": "楽天 4.53（4,312 則）、Google 4.4 → 依區調整後的 4（4.5 以上＋Google 4.2 以上）；5 要 4.6 以上，而且 Google 有舊房型、清潔的負評",
+        "meals": "楽天餐 4.49 → 4（早餐自助）；素泊時館內桃李步行 6 分（同一棟）",
+        "groupFit": "576 室、有トリプル・フォース；館內桃李有 2 間 20 人包廂可以一起吃晚餐 → 4（沒有住宿團體方案）",
+        "elderFit": "全室床、無障礙客房、輪椅出借，走到 T1 不用上下樓；電梯沒有來源 → 3",
+        "accessEase": "T1 和關西空港站步行直通 → 5；2/13 早上：走路即可，10:15 到 T1 沒問題"
+      },
+      "confidence": "medium",
+      "assessed": "2026-10-19"
+    }
   },
   {
     "id": "kix-stargate",
@@ -257,7 +297,7 @@
       "googleMaps": "https://maps.google.com/?cid=6847443493239423900"
     },
     "tags": [],
-    "tier": null,
+    "tier": "B",
     "nearestStation": null,
     "pickup": "官網：關西國際空港←→飯店免費接駁；住客限定；當日可預約（入住前亦可）；05:10、05:55 兩班開往第2航廈；時刻表為圖片，首班、所要、載客數、費用、行李未載 [1][2]",
     "meals": "varies",
@@ -423,8 +463,49 @@
       },
       "dinnerAccessNote": "步行 20 分內的晚餐店 1 家：青庵 9 分（選素泊、朝食付方案時；OSRM，scripts/lodging-dinner-access.mjs，2026-10-19）"
     },
-    "summary": null,
-    "assessment": null
+    "summary": {
+      "text": "りんくうタウン站 3 號出口經 2F 天橋直結的 56 層超高層飯店，全室看海或天空，楽天 4.38（4,977 則）、じゃらん 4.4、Google 4.1。有三人房、四人房（加床），往機場有住客免費接駁，也可以搭電車 1 站 5 分。",
+      "pros": [
+        "りんくうタウン站直結（有電梯、手扶梯），電車 1 站到關西空港",
+        "2/12 楽天 5 間×3 人、8 間×2 人有空房，素泊每人約 5,000 円起",
+        "有四人房（正床 2＋加床 2）；小學生以下同床免費"
+      ],
+      "cons": [
+        "Google 4.1，低分說房間臭、地毯髒、浴室霉味、電梯吵（設備老舊）",
+        "接駁時刻表是圖片，到 T1 的班次、載客數沒查到",
+        "館內餐廳在 52～54F，晚餐營業時間和 15 人接不接沒查到；54F 自助餐沒有晚餐"
+      ],
+      "basedOn": [
+        "https://www.s-gth.jp/access/shuttle/",
+        "https://www.s-gth.jp/",
+        "https://www.s-gth.jp/restaurant/",
+        "https://www.s-gth.jp/restaurant/breakfast/",
+        "https://www.s-gth.jp/access/train/",
+        "https://travel.rakuten.co.jp/HOTEL/197/197.html",
+        "https://travel.rakuten.co.jp/HOTEL/197/197_std.html",
+        "https://www.jalan.net/yad331817/"
+      ],
+      "generated": "2026-10-19"
+    },
+    "assessment": {
+      "rubric": "lodging-v1",
+      "scores": {
+        "recommend": 3,
+        "meals": 4,
+        "groupFit": 4,
+        "elderFit": 5,
+        "accessEase": 5
+      },
+      "rationale": {
+        "recommend": "楽天 4.38（4,977 則）、Google 4.1 → 依區調整後是 3（4 要 4.5 以上＋Google 4.2 以上）",
+        "meals": "楽天餐 4.40 → 4（早餐自助 3,800 円）；素泊時 青庵 步行 9 分",
+        "groupFit": "358 室、有四人房；52～54F 有宴會場、包廂 → 4（沒有住宿團體方案）",
+        "elderFit": "有電梯（站到櫃台）、全室床、無障礙房 → 5",
+        "accessEase": "りんくうタウン站直結 → 5；2/13 早上：電車 1 站 5 分，或住客接駁（T1 班次要確認）"
+      },
+      "confidence": "medium",
+      "assessed": "2026-10-19"
+    }
   },
   {
     "id": "kix-washington",
@@ -474,7 +555,7 @@
       "googleMaps": "https://maps.google.com/?cid=1070941223550663047"
     },
     "tags": [],
-    "tier": null,
+    "tier": "B",
     "nearestStation": null,
     "pickup": "免費定時接駁，約10～15分；ホテル正面玄關前→T1 4F 國際線出發層，機場側南側団体のりば；送り需在櫃台預約；時刻表為圖片PDF未能讀取（2026-11-01起調整：https://washington-hotels.jp/wp/wp-content/uploads/2026/10/761e6f1793150aa0d4263043ab7b3b68.pdf）；載客數、行李數未知（官網access、KNT）",
     "meals": "varies",
@@ -620,8 +701,48 @@
       },
       "dinnerAccessNote": "步行 20 分內的晚餐店 1 家：青庵 12 分（選素泊、朝食付方案時；OSRM，scripts/lodging-dinner-access.mjs，2026-10-19）"
     },
-    "summary": null,
-    "assessment": null
+    "summary": {
+      "text": "りんくうタウン站步行 3 分的商務型大飯店（504 室），楽天 4.33（3,585 則）、じゃらん 4.4、Google 4.2。免費接駁直達 T1 4F 出發層（約 10～15 分），2F 有全家、對面有 24 小時超市。房型最多三人房。",
+      "pros": [
+        "免費接駁到 T1 4F 出發層（櫃台預約），或電車 1 站",
+        "2/12 楽天 5 間×3 人、8 間×2 人有空房，素泊每人約 7,400 円起",
+        "有團體住宿手冊；2F 餐廳 180 席、全家，對面 24 小時超市"
+      ],
+      "cons": [
+        "沒有四人房、和室；15 人要分 5～8 間",
+        "冬天只有中央暖氣、房間很久才暖（Google 2 則）；房間老舊",
+        "接駁時刻表是 PDF 圖片（2026-11 改版），首班、載客數沒查到"
+      ],
+      "basedOn": [
+        "https://washington-hotels.jp/kansai/",
+        "https://travel.rakuten.co.jp/HOTEL/4650/4650.html",
+        "https://travel.rakuten.co.jp/HOTEL/4650/4650_std.html",
+        "https://yado.knt.co.jp/st/S270123/",
+        "https://www.jalan.net/yad387723/",
+        "https://icotto.jp/hotels/5863",
+        "https://maps.google.com/?cid=1070941223550663047"
+      ],
+      "generated": "2026-10-19"
+    },
+    "assessment": {
+      "rubric": "lodging-v1",
+      "scores": {
+        "recommend": 3,
+        "meals": 4,
+        "groupFit": 4,
+        "elderFit": 3,
+        "accessEase": 5
+      },
+      "rationale": {
+        "recommend": "楽天 4.33（3,585 則）、Google 4.2 → 依區調整後是 3",
+        "meals": "楽天餐 4.42 → 4（早餐自助）；館內 waterfront kitchen garden 官網寫有晚餐（食べログ說沒有），青庵 步行 12 分",
+        "groupFit": "504 室、三人房；官網有團體住宿手冊、團體詢問窗口 → 4（沒有宴會場來源，用團體窗口代替）",
+        "elderFit": "全室床、無障礙房；電梯沒有來源；沒有大浴場 → 3",
+        "accessEase": "りんくうタウン站步行 3 分 → 5；2/13 早上：接駁到 T1 出發層約 10～15 分（櫃台預約），或電車 1 站"
+      },
+      "confidence": "medium",
+      "assessed": "2026-10-19"
+    }
   },
   {
     "id": "kix-odysis-suites",
@@ -664,7 +785,7 @@
       "googleMaps": "https://maps.google.com/?cid=9589354795952735103"
     },
     "tags": [],
-    "tier": null,
+    "tier": "A",
     "nearestStation": null,
     "pickup": "官網アクセス：接駁巴士時刻為圖片（文字不可讀）；無法事前預約，往關西空港的班次於 check-in 時在櫃檯申請；05:10、05:55 兩班到 T2；載客數、費用未載（4）。楽天列有送迎バス（6），第三方稱免費需預約（7）",
     "meals": "varies",
@@ -839,8 +960,49 @@
       },
       "dinnerAccessNote": "步行 20 分內的晚餐店 1 家：青庵 9 分（選素泊、朝食付方案時；OSRM，scripts/lodging-dinner-access.mjs，2026-10-19）"
     },
-    "summary": null,
-    "assessment": null
+    "summary": {
+      "text": "りんくうタウン站直結的りんくうゲートタワービル裡的飯店（258 室），楽天 4.61、じゃらん 4.6、Google 4.5（1,222 則），數字是這一區最高的一群。一般房 2～3 人，套房最多 4 人但只有 7 間。54F 自助早餐。",
+      "pros": [
+        "楽天 4.61、じゃらん 4.6、Google 4.5，這一區評分最高",
+        "りんくうタウン站直結，電車 1 站到關西空港",
+        "2/12 楽天 5 間×3 人、8 間×2 人有空房，素泊每人約 5,000 円起；0～12 歲陪睡免費"
+      ],
+      "cons": [
+        "Google 低分很多說清潔差（床單污漬、頭髮、加濕器、廁所臭）、照片和實際不同",
+        "一般房最多 3 人，15 人要 6～8 間",
+        "接駁巴士說法矛盾（官網：check-in 時申請；第三方：要預約），時刻表是圖片"
+      ],
+      "basedOn": [
+        "https://www.odysissuitesosaka.com/",
+        "https://www.odysissuitesosaka.com/faq/",
+        "https://www.odysissuitesosaka.com/rooms/guest-room/",
+        "https://www.odysissuitesosaka.com/rooms/suite-room/",
+        "https://www.odysissuitesosaka.com/access/",
+        "https://www.odysissuitesosaka.com/facilities/",
+        "https://travel.rakuten.co.jp/HOTEL/187454/187454.html",
+        "https://travel.rakuten.co.jp/HOTEL/187454/rtmap.html"
+      ],
+      "generated": "2026-10-19"
+    },
+    "assessment": {
+      "rubric": "lodging-v1",
+      "scores": {
+        "recommend": 4,
+        "meals": 4,
+        "groupFit": 3,
+        "elderFit": 3,
+        "accessEase": 5
+      },
+      "rationale": {
+        "recommend": "楽天 4.61（345 則）、Google 4.5 → 數字是 5，但 Google 有多則清潔負評（2025～2026）→ 往下調一級 4",
+        "meals": "楽天餐 4.58 → 4（54F 自助早餐）；素泊時 青庵 步行 9 分",
+        "groupFit": "258 室、一般房 2～3 人；團體方式、宴會場沒有來源 → 3",
+        "elderFit": "全室床、19F 無障礙房；電梯沒有來源 → 3",
+        "accessEase": "りんくうタウン站直結 → 5；2/13 早上：電車 1 站 5 分"
+      },
+      "confidence": "medium",
+      "assessed": "2026-10-19"
+    }
   },
   {
     "id": "kix-omo",
@@ -876,7 +1038,7 @@
       "googleMaps": "https://maps.google.com/?cid=4656933647063665032"
     },
     "tags": [],
-    "tier": null,
+    "tier": "B",
     "nearestStation": null,
     "pickup": "住客限定免費單程接駁巴士，1F 入口前巴士站→T1→T2；5:00～11:00 發車（5:00、5:45、6:00、6:30、7:00、7:30、8:00、9:00、10:00、11:00）；T1 約10分、T2 約20分；每班20～24名；需網路預約，截止當日3:00，0:00後到前台；路況可能延誤；是否加開車與行李規定未載（2）",
     "meals": "varies",
@@ -970,8 +1132,46 @@
       "nearbyDinner": null,
       "dinnerAccessNote": "步行 20 分內的晚餐店 1 家：青庵 12 分（選素泊、朝食付方案時；OSRM，scripts/lodging-dinner-access.mjs，2026-10-19）"
     },
-    "summary": null,
-    "assessment": null
+    "summary": {
+      "text": "星野リゾート 的 OMO（700 室），りんくうタウン站 5 號出口步行 1 分。住客限定免費接駁巴士 5:00～11:00 往 T1（約 10 分，每班 20～24 人、要網路預約），2/13 搭 9:00 班剛好；有大浴場、21F 自助晚餐。じゃらん 4.2、Google 4.2（2,021 則）。沒上楽天。",
+      "pros": [
+        "接駁巴士每班 20～24 人，15 人有機會一班坐完（要網路預約）",
+        "りんくうタウン站步行 1 分；21F 有自助晚餐、大浴場",
+        "很多員工會說中文（Google 評論）"
+      ],
+      "cons": [
+        "沒上楽天，價格、2/12 空房沒查到（要看官網）",
+        "房間 1～4 人，沒有 6 人房；Google 低分說大浴場部分停用、房間有味道、隔音差",
+        "15 人的預約方式、早餐時間、電梯沒有來源"
+      ],
+      "basedOn": [
+        "https://hoshinoresorts.com/ja/hotels/omokansaiairport/",
+        "https://hoshinoresorts.com/ja/hotels/omokansaiairport/activities/13776/",
+        "https://hoshinoresorts.com/ja/hotels/omokansaiairport/access/",
+        "https://www.jalan.net/yad389642/",
+        "https://maps.google.com/?cid=4656933647063665032"
+      ],
+      "generated": "2026-10-19"
+    },
+    "assessment": {
+      "rubric": "lodging-v1",
+      "scores": {
+        "recommend": 3,
+        "meals": 3,
+        "groupFit": 3,
+        "elderFit": 3,
+        "accessEase": 5
+      },
+      "rationale": {
+        "recommend": "じゃらん 4.2（330 則）、Google 4.2 → 3（主要訂房網 3.8～4.3）",
+        "meals": "館內 21F 自助晚餐（2026-10～12 暫改 18:00～20:00），沒有楽天細項；素泊時 青庵 步行 12 分 → 3",
+        "groupFit": "700 室、1～4 人房；接駁每班 20～24 人；團體方式沒有來源 → 3",
+        "elderFit": "電梯、床型都沒有來源（官網只寫定員）→ 3",
+        "accessEase": "りんくうタウン站步行 1 分 → 5；2/13 早上：住客接駁 9:00 班約 10 分到 T1（每班 20～24 人，前一天網路預約）"
+      },
+      "confidence": "medium",
+      "assessed": "2026-10-19"
+    }
   },
   {
     "id": "kix-henn-na-resort",
@@ -1021,7 +1221,7 @@
       "googleMaps": "https://maps.google.com/?cid=8629589819632557802"
     },
     "tags": [],
-    "tier": null,
+    "tier": "B",
     "nearestStation": null,
     "pickup": "沒有接駁巴士（楽天、官網）；りんくうタウン站步行 9～10 分，再搭電車 1 站",
     "meals": "varies",
@@ -1150,8 +1350,46 @@
       },
       "dinnerAccessNote": "步行 20 分內的晚餐店 1 家：青庵 4 分（選素泊、朝食付方案時；OSRM，scripts/lodging-dinner-access.mjs，2026-10-19）"
     },
-    "summary": null,
-    "assessment": null
+    "summary": {
+      "text": "機器人櫃台的変なホテル系列，和天然温泉「泉州の湯」、海鮮食堂 青庵 在同一個海邊園區，楽天 4.12、じゃらん 3.9、Google 3.9。りんくうタウン站步行 9～10 分，沒有接駁巴士。有三人房；6 歲以下加床免費。",
+      "pros": [
+        "天然溫泉大浴場、同園區的 青庵 晚餐步行 4 分",
+        "2/12 楽天 8 間×2 人有空房，素泊每人約 6,600 円起",
+        "6 歲以下加床免費（每房 2 位）"
+      ],
+      "cons": [
+        "沒有接駁巴士，到りんくうタウン站要走 9～10 分（帶大行李）",
+        "じゃらん 3.9、Google 3.9；低分說 2022 年後品質下滑、房間有臭味、溫泉故障停用",
+        "其他房型最多 2 人；App 價格和現場不同（沙發床加價）"
+      ],
+      "basedOn": [
+        "https://www.hennnahotel.com/kansai-airport/",
+        "https://www.hennnahotel.com/",
+        "https://travel.rakuten.co.jp/HOTEL/173021/173021.html",
+        "https://www.jalan.net/yad368142/",
+        "https://maps.google.com/?cid=8629589819632557802"
+      ],
+      "generated": "2026-10-19"
+    },
+    "assessment": {
+      "rubric": "lodging-v1",
+      "scores": {
+        "recommend": 3,
+        "meals": 3,
+        "groupFit": 3,
+        "elderFit": 3,
+        "accessEase": 4
+      },
+      "rationale": {
+        "recommend": "楽天 4.12（1,451 則）、じゃらん 3.9、Google 3.9 → 3；Google 有品質下滑、臭味的負評",
+        "meals": "楽天餐 3.76 → 3；素泊時 青庵 步行 4 分（同園區）",
+        "groupFit": "98 室、三人房；官網有團體詢問表單，沒有宴會場 → 3",
+        "elderFit": "有無障礙房、輪椅；電梯沒有來源 → 3",
+        "accessEase": "りんくうタウン站步行 9～10 分、沒有接駁 → 4（介於「站前 5 分」和「要搭車」之間）；2/13 早上：走 10 分到站再搭 1 站"
+      },
+      "confidence": "medium",
+      "assessed": "2026-10-19"
+    }
   },
   {
     "id": "kix-garden-palace",
@@ -1201,7 +1439,7 @@
       "googleMaps": "https://maps.google.com/?cid=11534839712515803551"
     },
     "tags": [],
-    "tier": null,
+    "tier": "B",
     "nearestStation": null,
     "pickup": "官網：飯店→車站(退房)5:20/6:20/7:40/8:40/9:40/10:40共6班，須事前預約，無預約不開；日根野/泉佐野東口/りんくうタウン5號出口，約8分，電話或check-in時預約。機場→飯店(入住)直達17:15/19:15/21:15/22:15前日電話預約；或到南海泉佐野站電話，免預約至20時。團體貸切巴士1台5,000円。載客數、行李未載。[3][4]",
     "meals": "varies",
@@ -1369,8 +1607,49 @@
       },
       "dinnerAccessNote": "步行 20 分內的晚餐店 3 家：地魚 寿司 逸品 おどろき 15 分、四川料理 蘭梅 16 分、ラ・トランピスタ 18 分（選素泊、朝食付方案時；OSRM，scripts/lodging-dinner-access.mjs，2026-10-19）"
     },
-    "summary": null,
-    "assessment": null
+    "summary": {
+      "text": "泉佐野市區的溫泉飯店（63 室），有大浴場和 5 座貸切露天風呂，じゃらん 4.7（2,408 則）、楽天 4.45、Google 4.1。這一區唯一有一泊二食方案的（2/12 3 間×5 人，每人約 14,980 円含晚餐），宴會場 9～32 人可以全員一起吃。往車站、機場有接送（要預約）。",
+      "pros": [
+        "一泊二食：宴會場 9～32 人，15 人可以一起吃晚餐；楽天餐 4.59",
+        "じゃらん 4.7（2,408 則），近 3 年 Google 沒有低分評論",
+        "和洋室 1～4 名（可鋪 2 組被）、無障礙和洋室；團體貸切巴士 1 台 5,000 円"
+      ],
+      "cons": [
+        "到機場：官網只列「飯店→車站」接送（5:20～10:40、要預約），直達機場的班次要電話確認",
+        "Google 4.1；check-out 10:00 比較早",
+        "電梯沒有來源；添寢另收 550 円"
+      ],
+      "basedOn": [
+        "https://www.gardenpalace-spa.co.jp/access/",
+        "https://www.gardenpalace-spa.co.jp/news/p-1163/",
+        "https://www.gardenpalace-spa.co.jp/cuisine/",
+        "https://www.gardenpalace-spa.co.jp/room/",
+        "https://travel.rakuten.co.jp/HOTEL/222/222.html",
+        "https://travel.rakuten.co.jp/HOTEL/222/rtmap.html",
+        "https://travel.rakuten.co.jp/HOTEL/222/222_std.html",
+        "https://www.jalan.net/yad389840/"
+      ],
+      "generated": "2026-10-19"
+    },
+    "assessment": {
+      "rubric": "lodging-v1",
+      "scores": {
+        "recommend": 3,
+        "meals": 4,
+        "groupFit": 5,
+        "elderFit": 3,
+        "accessEase": 3
+      },
+      "rationale": {
+        "recommend": "じゃらん 4.7（2,408 則）但 Google 4.1 → 依區調整後是 3（4 要 Google 4.2 以上）",
+        "meals": "楽天餐 4.59 → 4；一泊二食是燒肉會席＋和朝食；素泊時 おどろき 步行 15 分",
+        "groupFit": "官方宴會場 9～32 名可以團體用餐＋團體貸切巴士 1 台 5,000 円 → 5（「團體用餐＋團體接送」）；2/12 楽天 3 間×5 人有空房",
+        "elderFit": "全室シモンズ床、無障礙和洋室、輪椅 1 台；電梯沒有來源 → 3",
+        "accessEase": "車站接送一天 6 班要預約、約 8 分；到機場直達班要確認 → 3；2/13 早上：9:40 送到車站，再搭南海到關西空港"
+      },
+      "confidence": "medium",
+      "assessed": "2026-10-19"
+    }
   },
   {
     "id": "kix-bellevue-garden",
@@ -1420,7 +1699,7 @@
       "googleMaps": "https://maps.google.com/?cid=11097700744617446304"
     },
     "tags": [],
-    "tier": null,
+    "tier": "B",
     "nearestStation": null,
     "pickup": "免費接駁約 15 分，T1 南團體巴士站 S-12。飯店發 5:30★/6:30★/7:30/8:30/9:30/11:00★/18:00（★經 T2 或 outlet，未標哪班）；機場發 10:05/18:30/19:30/20:30/21:30/22:30 免預約；22:30 後用南海。定員通常 8～24 人，超過請等下班或電車。飯店發原則前日前預約（楽天：check-in 時）。行李未載；月份可能變更時刻。PDF https://bellevuekix.com/wp-content/uploads/2026/03/bus-jpnew.pdf (官網 access)",
     "meals": "varies",
@@ -1570,8 +1849,49 @@
       },
       "dinnerAccessNote": "步行 20 分內的晚餐店 3 家：地魚 寿司 逸品 おどろき 7 分、四川料理 蘭梅 7 分、ラ・トランピスタ 9 分（選素泊、朝食付方案時；OSRM，scripts/lodging-dinner-access.mjs，2026-10-19）"
     },
-    "summary": null,
-    "assessment": null
+    "summary": {
+      "text": "泉佐野站東口步行 7 分的大型飯店（186 室），楽天 4.2（2,660 則）、じゃらん 4.5、Google 3.8。免費接駁到 T1 南團體巴士站（約 15 分），2/13 搭 9:30 班約 9:45 到；館內有創作料理「泉の幸」（包廂）、宴會場最多 140 名。",
+      "pros": [
+        "免費接駁到 T1（約 15 分，2/13 9:30 班），定員 8～24 人",
+        "2/12 楽天 8 間×2 人有空房，素泊每人約 6,250 円起",
+        "館內餐廳 泉の幸（17:00～21:30、有大小包廂）；有和室、デラックスツイン（3 人）"
+      ],
+      "cons": [
+        "Google 3.8，低分多是櫃台、電話態度差",
+        "接駁定員 8～24 人，15 人加行李可能要分 2 班，要前一天預約",
+        "大巴進出入口窄（Google 1 則）；電梯、大浴場沒有來源"
+      ],
+      "basedOn": [
+        "https://bellevuekix.com/access/",
+        "https://bellevuekix.com/navigation/",
+        "https://bellevuekix.com/restaurant/",
+        "https://bellevuekix.com/morning/",
+        "https://bellevuekix.com/plan/",
+        "https://travel.rakuten.co.jp/HOTEL/87/87.html",
+        "https://www.jalan.net/yad310389/",
+        "https://maps.google.com/?cid=11097700744617446304"
+      ],
+      "generated": "2026-10-19"
+    },
+    "assessment": {
+      "rubric": "lodging-v1",
+      "scores": {
+        "recommend": 3,
+        "meals": 3,
+        "groupFit": 4,
+        "elderFit": 3,
+        "accessEase": 4
+      },
+      "rationale": {
+        "recommend": "楽天 4.2（2,660 則）、Google 3.8 → 3（Google 不到 4.0）",
+        "meals": "楽天餐 4.21 → 3；館內 泉の幸 有晚餐，素泊時 おどろき、蘭梅 步行 7 分",
+        "groupFit": "186 室；宴會場最多 140 名、餐廳有包廂 → 4（沒有住宿團體方案）",
+        "elderFit": "有和室、無障礙房、輪椅；電梯沒有來源 → 3",
+        "accessEase": "免費接駁一天 7 班（要預約）、約 15 分 → 4；泉佐野站步行 7 分；2/13 早上：9:30 班約 9:45 到 T1（15 人可能超過定員）"
+      },
+      "confidence": "medium",
+      "assessed": "2026-10-19"
+    }
   },
   {
     "id": "kix-aston-plaza",
@@ -1621,7 +1941,7 @@
       "googleMaps": "https://maps.google.com/?cid=17759672685087123223"
     },
     "tags": [],
-    "tier": null,
+    "tier": "B",
     "nearestStation": null,
     "pickup": "官網：免費接駁巴士（僅住客），約25分；乘車處T1（團體巴士乘車處南側）、T2、りんくうタウン站；關空發車免預約，りんくうタウン站發車要預約，飯店發車於check-in時預約；8人以上團體一律先預約(072-490-2100)；發車前3分鐘上車；可載重行李；時刻表為官網PDF（未讀到）(官網/shuttlebus)",
     "meals": "varies",
@@ -1798,8 +2118,49 @@
       },
       "dinnerAccessNote": "步行 20 分內沒有晚餐店（直線 1.6 km 內沒有），要搭車（scripts/lodging-dinner-access.mjs，2026-10-19）"
     },
-    "summary": null,
-    "assessment": null
+    "summary": {
+      "text": "泉佐野市南中安松、離車站較遠的商務飯店（125 室），楽天 4.18、じゃらん 4.1、Google 4.0。免費接駁到 T1、T2 和りんくうタウン站（約 25 分，8 人以上要預約），有大浴場。房間只有 1～2 人房。",
+      "pros": [
+        "免費接駁到 T1（可載重行李），8 人以上先預約",
+        "2/12 楽天 8 間×2 人有空房，素泊每人約 4,400 円起（這一區最便宜）",
+        "大浴場；早餐官網預約免費"
+      ],
+      "cons": [
+        "最近車站羽倉崎步行 15 分，附近只有 7-Eleven，晚餐要搭車",
+        "房間每間 1～2 人，15 人要 8 間；小學生不能添寢",
+        "Google 低分：靠大馬路吵、空調聲、房間小"
+      ],
+      "basedOn": [
+        "https://www.aston-kix.com/qa/",
+        "https://www.aston-kix.com/facility",
+        "https://www.aston-kix.com/dining/",
+        "https://www.aston-kix.com/room",
+        "https://www.aston-kix.com/access",
+        "https://www.aston-kix.com/shuttlebus/",
+        "https://www.aston-kix.com/",
+        "https://travel.rakuten.co.jp/HOTEL/160665/160665.html"
+      ],
+      "generated": "2026-10-19"
+    },
+    "assessment": {
+      "rubric": "lodging-v1",
+      "scores": {
+        "recommend": 3,
+        "meals": 3,
+        "groupFit": 3,
+        "elderFit": 3,
+        "accessEase": 3
+      },
+      "rationale": {
+        "recommend": "楽天 4.18（924 則）、Google 4.0 → 3",
+        "meals": "楽天餐 3.95 → 3（只有早餐）；dinnerAccess car，步行 20 分內沒有晚餐店",
+        "groupFit": "125 室、全是 1～2 人房；8 人以上接駁要預約，沒有宴會場 → 3",
+        "elderFit": "有無障礙房（楽天）、全室床；電梯沒有來源 → 3",
+        "accessEase": "免費接駁約 25 分、要預約；羽倉崎站步行 15 分 → 3；2/13 早上：接駁時刻表要看官網 PDF"
+      },
+      "confidence": "medium",
+      "assessed": "2026-10-19"
+    }
   },
   {
     "id": "kix-ref-izumisano",
@@ -1842,7 +2203,7 @@
       "googleMaps": "https://maps.google.com/?cid=13903880658695547345"
     },
     "tags": [],
-    "tier": null,
+    "tier": "A",
     "nearestStation": null,
     "pickup": "沒有接駁（官網）；團體可付費、由飯店介紹外部接送公司（楽天）；泉佐野站步行 1 分，南海到關西空港約 9 分",
     "meals": "varies",
@@ -2010,7 +2371,48 @@
       },
       "dinnerAccessNote": "步行 20 分內的晚餐店 3 家：地魚 寿司 逸品 おどろき 4 分、四川料理 蘭梅 12 分、ラ・トランピスタ 15 分（選素泊、朝食付方案時；OSRM，scripts/lodging-dinner-access.mjs，2026-10-19）"
     },
-    "summary": null,
-    "assessment": null
+    "summary": {
+      "text": "南海泉佐野站步行 1 分的新型飯店（222 室），楽天 4.53、じゃらん 4.6、Google 4.3，12F 有大浴場和三溫暖。沒有接駁，搭南海 2 站約 9 分到關西空港。有 3 人房和最多 5 人的プレミアム房；18 歲以下與家人同房添寢免費。",
+      "pros": [
+        "泉佐野站步行 1 分，南海約 9 分到關西空港；站前 おどろき 步行 4 分",
+        "楽天 4.53、じゃらん 4.6、Google 4.3；12F 大浴場",
+        "有電梯；プレミアム房最多 5 人、トリプル 3 人；18 歲以下添寢免費"
+      ],
+      "cons": [
+        "沒有接駁巴士，要自己搭電車到機場",
+        "靠車站，清晨電車聲（Google 1 則）；部分房間體味、曾有床蟲咬（約 2024）",
+        "館內沒有餐廳（只有早餐 2,000 円）；團體預約方式沒有來源"
+      ],
+      "basedOn": [
+        "https://www.dreamnews.jp/press/0000226964/",
+        "https://www.vessel-hotel.jp/ref/izumisano/stay/",
+        "https://www.vessel-hotel.jp/ref/izumisano/access/",
+        "https://www.vessel-hotel.jp/ref/izumisano/breakfast/",
+        "https://www.vessel-hotel.jp/ref/izumisano/service/",
+        "https://www.vessel-hotel.jp/ref/izumisano/",
+        "https://travel.rakuten.co.jp/HOTEL/183997/183997.html",
+        "https://travel.rakuten.co.jp/HOTEL/183997/rtmap.html"
+      ],
+      "generated": "2026-10-19"
+    },
+    "assessment": {
+      "rubric": "lodging-v1",
+      "scores": {
+        "recommend": 4,
+        "meals": 4,
+        "groupFit": 3,
+        "elderFit": 5,
+        "accessEase": 5
+      },
+      "rationale": {
+        "recommend": "楽天 4.53（767 則）、じゃらん 4.6、Google 4.3 → 依區調整後的 4",
+        "meals": "楽天餐 4.58 → 4（早餐 3F ラウンジ）；素泊時 おどろき 步行 4 分、蘭梅 12 分",
+        "groupFit": "222 室、トリプル、プレミアム（1～5 人）；沒有宴會場、團體方式沒有來源 → 3",
+        "elderFit": "有電梯（要房卡）、全室床、4～6F 無障礙房 → 5",
+        "accessEase": "泉佐野站步行 1 分 → 5；2/13 早上：南海泉佐野→關西空港約 9 分"
+      },
+      "confidence": "medium",
+      "assessed": "2026-10-19"
+    }
   }
 ]

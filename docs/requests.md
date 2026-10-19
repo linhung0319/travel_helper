@@ -140,3 +140,14 @@
 - 內容：新增近鐵山田線 **小俣**（おばた，Obata）站。座標用 OSM：`[136.6851209, 34.5127509]`（https://www.openstreetmap.org/way/184365192 ，2026-10-18，伊勢市小俣町元町）；`operator: "kintetsu"`、`lines: ["山田線"]`、`passCovered: true`（近鐵 5 日券的範圍內，在明星～宮町之間，請 T0／T7 確認站號、有沒有站員、置物櫃、無障礙）。之後時刻表（T7a 的 `kintetsu-timetable.mjs`）要不要抓這一站，看行程會不會用到。
 - 原因：伊勢苺園（`ise-ichigoen`）在小俣站步行約 8 分（觀光協會），但 `stations.json` 沒有這一站，`nearestStation` 只能留 null，行程引擎算不了交通。加站後 T8 把 `ise-ichigoen` 的 `nearestStation` 改成 `{ "id": "<新 id>", "mode": "walk", "minutes": 8 }`（`extra.accessNote` 已有這句）。
 - 狀態：已處理（2026-10-18，盤點後）：新增 `obata`（小俣，M71）和 `miyamachi`（宮町，M72，紅葉軒、おく文 最近的站），座標 OSM、站構造照日文維基（都是無人站）；`areas.json` 的 ise.stations 加上兩站。`ise-ichigoen` 的 nearestStation 改成小俣（OSRM 14 分，觀光協會寫 8 分），紅葉軒、おく文 改成宮町（OSRM 13、11 分）
+
+## [T19] stations.json：關西機場周邊的車站
+- 要改的檔案：`data/stations.json`、`data/areas.json` 的 `kix.stations`（T0／T7 的檔案）
+- 內容：新增 kix 區的 4 站（座標請用 OSM 或日文維基確認）：
+  - **関西空港**（JR 関西空港線・南海空港線，T1 直結；ホテル日航関西空港 走通道直通）
+  - **りんくうタウン**（JR・南海，關西空港前 1 站約 5 分；スターゲイト、オディシス 直結，OMO 5 號出口 1 分，ワシントン 3 分，変なリゾート 9～10 分）
+  - **泉佐野**（南海本線・空港線，關西空港約 9 分；レフ 1 分、ベルビュー 東口 7 分，晚餐店 おどろき 3 分、蘭梅 11 分、ラ・トランピスタ 13 分）
+  - **羽倉崎**（南海本線；アストンプラザ 步行 15 分，只有這間用得到，可以不加）
+  - `operator` 是 `jr`／`nankai`（schema 的 operator 目前只有 kintetsu、jr、bus，要加 `nankai` 或用 `other`），`passCovered: false`（近鐵 5 日券不能用）。
+- 原因：kix 的住宿、餐廳 `nearestStation` 現在都是 null（T19 把站名和步行分鐘寫在 `extra.stationAccess`、`pickup`），行程引擎（T14）算不了「飯店 → 車站 → 機場」；加站後 T19（或 T13）補 `nearestStation`，重跑 `restaurant-anchors.mjs kix`。
+- 狀態：未處理

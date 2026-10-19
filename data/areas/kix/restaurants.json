@@ -104,7 +104,7 @@
       "instagram": null
     },
     "tags": [],
-    "tier": null,
+    "tier": "B",
     "sources": [
       {
         "type": "tabelog",
@@ -238,6 +238,46 @@
       "conflicts": [
         "席数 官網102席 vs 食べログ100席"
       ]
+    },
+    "summary": {
+      "text": "ホテル日航関西空港 2F 的中華，和 T1、關西空港站同層相連，住日航時走路就到。有 2 間包廂（各 2～20 人，但 1 桌最多 10 人，15 人分 2 桌），晚餐 17:30～21:00、週三休，2/12（週五）有營業。午餐的點心吃到飽很受歡迎。",
+      "pros": [
+        "包廂 2 間各 2～20 人，可以網路（TableCheck）或電話訂",
+        "飯店中華的安靜高級感；帶小孩的口コミ評價好",
+        "週三公休，2/12 週五有開"
+      ],
+      "cons": [
+        "晚餐每人約 6,000～8,000 円，包廂晚餐另收室料 8,000～9,000 円",
+        "1 桌最多 10 人，15 人要分 2 桌",
+        "食べログ 3.26（55 則）；低分說上菜慢、調味偏鹹"
+      ],
+      "basedOn": [
+        "https://www.nikkokix.com/restaurant/tohlee.html",
+        "https://www.nikkokix.com/restaurant/private_room_thl.html",
+        "https://tabelog.com/osaka/A2705/A270503/27003094/",
+        "https://tabelog.com/osaka/A2705/A270503/27003094/party/",
+        "https://maps.google.com/?cid=11928420244035706489"
+      ],
+      "generated": "2026-10-19"
+    },
+    "assessment": {
+      "rubric": "restaurant-v1",
+      "scores": {
+        "recommend": 3,
+        "localFlavor": 1,
+        "groupFit": 5,
+        "elderFit": 5,
+        "kidsFit": 4
+      },
+      "rationale": {
+        "recommend": "食べログ 3.26（55 則）、Google 4.3（66 則）→ 評論數上限 3",
+        "localFlavor": "一般中華，和在地無關 → 1",
+        "groupFit": "fit15 yes：包廂 20 人、貸切 20 人以下、可預約 → 5（1 桌最多 10 人，分 2 桌）",
+        "elderFit": "飯店 2F、桌席、和車站同層相連 → 5",
+        "kidsFit": "子供可、口コミ 3 則帶小孩用餐好評，熟食為主；兒童餐沒有來源 → 4"
+      },
+      "confidence": "low",
+      "assessed": "2026-10-19"
     }
   },
   {
@@ -396,7 +436,7 @@
       "instagram": null
     },
     "tags": [],
-    "tier": null,
+    "tier": "B",
     "sources": [
       {
         "type": "tabelog",
@@ -524,6 +564,46 @@
         "席数 変なリゾート頁54席 vs 食べログ60席",
         "定食価格 変なリゾート頁と泉州温泉頁で50円差"
       ]
+    },
+    "summary": {
+      "text": "変なリゾート＆スパ 的天然溫泉「泉州の湯」館內 2F 的海鮮定食堂，窗邊看海，非住客也能用。晚餐 17:00～22:00、無休，60 席、可包場，有兒童餐；刺身定食 1,740 円這種平價定食為主。りんくうタウン站步行約 8 分，是りんくう一帶少數晚上能坐下吃飯的地方。",
+      "pros": [
+        "無休、晚上到 22:00；可預約、可包場",
+        "有兒童餐；價格平實（定食 1,500～2,000 円）",
+        "りんくう的飯店（スターゲイト、オディシス、OMO）步行 9～12 分"
+      ],
+      "cons": [
+        "食べログ 3.24、Google 3.8；口コミ說刺身只有 3 種、份量偏少",
+        "在溫泉館內要脫鞋赤腳進去；2F、電梯沒有來源",
+        "官網寫可能臨時包場不營業，要先確認"
+      ],
+      "basedOn": [
+        "https://senshu-onsen.com/restaurant/",
+        "https://www.hennnahotel.com/kansai-airport/restaurant/",
+        "https://travel.rakuten.co.jp/HOTEL/173021/173021.html",
+        "https://tabelog.com/osaka/A2705/A270503/27116219/",
+        "https://maps.google.com/?cid=8551990792774294460"
+      ],
+      "generated": "2026-10-19"
+    },
+    "assessment": {
+      "rubric": "restaurant-v1",
+      "scores": {
+        "recommend": 2,
+        "localFlavor": 3,
+        "groupFit": 3,
+        "elderFit": 3,
+        "kidsFit": 5
+      },
+      "rationale": {
+        "recommend": "食べログ 3.24（69 則）未滿 3.3、Google 3.8 未滿 4.0 → 2",
+        "localFlavor": "刺身、海鮮丼、炸物的一般海鮮定食（關西機場周邊）→ 3",
+        "groupFit": "fit15 split：60 席、可預約、可包場，沒寫一次能接 15 人 → 3",
+        "elderFit": "桌席、沙發席；溫泉館 2F、電梯沒有來源 → 3",
+        "kidsFit": "子供可、有兒童餐、熟食多 → 5（2021 一則說兒童餐份量少）"
+      },
+      "confidence": "medium",
+      "assessed": "2026-10-19"
     }
   },
   {
@@ -627,7 +707,7 @@
       "instagram": null
     },
     "tags": [],
-    "tier": null,
+    "tier": "B",
     "sources": [
       {
         "type": "tabelog",
@@ -768,6 +848,47 @@
       "conflicts": [
         "徒歩 9分 vs 11分"
       ]
+    },
+    "summary": {
+      "text": "中國籍店主的四川料理（泉佐野站步行約 11 分），招牌是可以選辣度的麻婆豆腐定食，午餐常客滿。晚餐 17:00～22:00、週一休。24 席（4 人桌 4、5～6 人桌 1），可包場；有 120 分飲み放題的宴會套餐 4,800 円起。",
+      "pros": [
+        "麻婆豆腐（辣度可選），口コミ多則推薦",
+        "可包場；宴會套餐 4,800～8,900 円（4 名起）",
+        "店主喜歡小孩；可以點不辣的麻婆豆腐"
+      ],
+      "cons": [
+        "24 席、沒有包廂，15 人要包場或分桌",
+        "Google 低分說調味偏鹹、味道不穩定（多是 3 年以上前）",
+        "週一公休；店前停車 6～7 台"
+      ],
+      "basedOn": [
+        "https://ranmei2006.com/",
+        "https://www.navitime.co.jp/category/0307/27213/",
+        "https://retty.me/theme/101752914/",
+        "https://tabelog.com/osaka/A2705/A270503/27019638/",
+        "https://tabelog.com/osaka/A2705/A270503/27019638/party/",
+        "https://maps.google.com/?cid=17390399228433398552"
+      ],
+      "generated": "2026-10-19"
+    },
+    "assessment": {
+      "rubric": "restaurant-v1",
+      "scores": {
+        "recommend": 3,
+        "localFlavor": 1,
+        "groupFit": 3,
+        "elderFit": 4,
+        "kidsFit": 4
+      },
+      "rationale": {
+        "recommend": "食べログ 3.42（195 則）、Google 3.9（299 則）→ 3（4 要 3.45 以上＋Google 4.0）",
+        "localFlavor": "四川料理，和在地無關 → 1",
+        "groupFit": "fit15 split：24 席、貸切可、可預約；包場人數沒寫 → 3",
+        "elderFit": "桌席（口コミ說有轉盤圓桌）→ 4",
+        "kidsFit": "口コミ：店主喜歡小孩（2022）、可點不辣的麻婆豆腐；熟食 → 4"
+      },
+      "confidence": "medium",
+      "assessed": "2026-10-19"
     }
   },
   {
@@ -858,7 +979,7 @@
       "instagram": "@umaiodoroki"
     },
     "tags": [],
-    "tier": null,
+    "tier": "B",
     "sources": [
       {
         "type": "tabelog",
@@ -986,6 +1107,45 @@
         "步行1分(官網) vs 3分(食べログ)",
         "貸切40名～(官網) vs 24～40名(食べログ)"
       ]
+    },
+    "summary": {
+      "text": "泉佐野站步行 3 分的壽司居酒屋，用泉州的地魚，招牌是赤酢的とろたく巻和乾冰演出的生魚片拼盤。90 席、最大予約 60 人，有 2～14 人的包廂和可包場的座敷（24～40 人）；飲み放題套餐 6,500～7,000 円。營業 18:00～24:00，第 3 週日休。",
+      "pros": [
+        "包廂 2～14 人、座敷包場 24～40 人，最大予約 60 人",
+        "泉州地魚的生魚片、赤酢壽司口コミ評價高（2025～2026）",
+        "REF 步行 4 分、ベルビュー 7 分"
+      ],
+      "cons": [
+        "全席可吸菸；兒童政策沒有來源",
+        "包廂在 2F、座敷（榻榻米），用簾子隔、聽得到隔壁",
+        "Google 低分：訂位時間糾紛、未告知的服務費、套餐和照片差很多"
+      ],
+      "basedOn": [
+        "https://www.odoroki-izumisano.com/",
+        "https://tabelog.com/osaka/A2705/A270503/27131462/",
+        "https://tabelog.com/osaka/A2705/A270503/27131462/party/",
+        "https://maps.google.com/?cid=14038338544471819886"
+      ],
+      "generated": "2026-10-19"
+    },
+    "assessment": {
+      "rubric": "restaurant-v1",
+      "scores": {
+        "recommend": 3,
+        "localFlavor": 3,
+        "groupFit": 5,
+        "elderFit": 3,
+        "kidsFit": 3
+      },
+      "rationale": {
+        "recommend": "食べログ 3.14（50 則）、Google 4.0（165 則）→ 評論數上限 3",
+        "localFlavor": "泉州地魚的壽司、生魚片（不是伊勢志摩特產）→ 3",
+        "groupFit": "fit15 yes：最大予約 60 人、座敷包場 24～40 人 → 5",
+        "elderFit": "有桌席，但包廂在 2F、座敷 → 3",
+        "kidsFit": "小孩規定沒有來源、熟食也有；全席可吸菸 → 3"
+      },
+      "confidence": "medium",
+      "assessed": "2026-10-19"
     }
   },
   {
@@ -1093,7 +1253,7 @@
       "instagram": "@la_trampista"
     },
     "tags": [],
-    "tier": null,
+    "tier": "B",
     "sources": [
       {
         "type": "tabelog",
@@ -1220,6 +1380,46 @@
       "conflicts": [
         "席數26席 vs 最大預約50人（食べログ內部矛盾，官網無資料）"
       ]
+    },
+    "summary": {
+      "text": "泉佐野站步行 13 分、面池塘的一軒家義大利餐廳，季節水果全餐（桃、無花果）午餐很有名。晚餐 17:30～22:00、前一天預約、週一休；晚餐套餐 5,300／6,600 円（2～20 名）。食べログ寫最大 50 人、包場 20 人以下，有兒童餐、可推輪椅。",
+      "pros": [
+        "晚餐套餐 2～20 名可訂；有兒童餐、兒童椅",
+        "車椅子で入店可；面池塘的露台、一軒家",
+        "口コミ說水果午餐 4.5～5.0"
+      ],
+      "cons": [
+        "口コミ說目前店主一人經營，15 人一起出菜要電話確認",
+        "Google 低分：麵包市售、蔬菜不新鮮（2025～2026）",
+        "包廂只接午餐 7 名以上的套餐；26 席和「最大 50 人」矛盾"
+      ],
+      "basedOn": [
+        "https://la-trampista-osaka.com/",
+        "https://s.tabelog.com/en/osaka/A2705/A270503/27010876/",
+        "https://tabelog.com/osaka/A2705/A270503/27010876/",
+        "https://tabelog.com/osaka/A2705/A270503/27010876/party/",
+        "https://maps.google.com/?cid=12489158553438728957"
+      ],
+      "generated": "2026-10-19"
+    },
+    "assessment": {
+      "rubric": "restaurant-v1",
+      "scores": {
+        "recommend": 3,
+        "localFlavor": 2,
+        "groupFit": 4,
+        "elderFit": 4,
+        "kidsFit": 5
+      },
+      "rationale": {
+        "recommend": "食べログ 3.22（57 則）、Google 4.0（108 則）→ 評論數上限 3",
+        "localFlavor": "義大利菜，用和歌山的季節水果 → 2",
+        "groupFit": "fit15 yes（最大予約 50、包場 20 人以下），但包廂只接午餐、目前店主一人經營 → 4",
+        "elderFit": "桌席、車椅子で入店可 → 4",
+        "kidsFit": "子供可、有兒童餐、兒童椅 → 5"
+      },
+      "confidence": "medium",
+      "assessed": "2026-10-19"
     }
   }
 ]
