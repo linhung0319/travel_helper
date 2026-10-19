@@ -31,12 +31,12 @@
     ["2027-02-13","saturday","2027-01-16"]
   ],
   "stops": [
-    {"id":"7329_2","name":"五十鈴川駅前","coords":[136.72751,34.477043],"near":[{"id":"isuzugawa","meters":69},{"id":"ise-tsukiyomi-no-miya","meters":430}]},
+    {"id":"7329_2","name":"五十鈴川駅前","coords":[136.72751,34.477043],"near":[{"id":"isuzugawa","meters":69},{"id":"ise-tsukiyomi-no-miya","meters":430},{"id":"ise-yamatohime-no-miya","meters":985}]},
     {"id":"7071_2","name":"浦田町","coords":[136.72319,34.465664],"near":[{"id":"ise-okage-yashiki","meters":329},{"id":"ise-sarutahiko-jinja","meters":332},{"id":"ise-oharaimachi","meters":358}]},
     {"id":"7282_1","name":"金剛證寺","coords":[136.78773,34.45748],"near":[{"id":"ise-kongoshoji","meters":210},{"id":"ise-asama-summit","meters":330}]},
-    {"id":"7283_1","name":"山上広苑","coords":[136.791,34.45971],"near":[{"id":"ise-asama-summit","meters":144}]},
+    {"id":"7283_1","name":"山上広苑","coords":[136.791,34.45971],"near":[{"id":"ise-asama-summit","meters":144},{"id":"ise-kongoshoji","meters":568}]},
     {"id":"7071_1","name":"浦田町","coords":[136.7229,34.46559],"near":[{"id":"ise-sarutahiko-jinja","meters":316},{"id":"ise-okage-yashiki","meters":316},{"id":"ise-oharaimachi","meters":349}]},
-    {"id":"7329_1","name":"五十鈴川駅前","coords":[136.72755,34.477135],"near":[{"id":"isuzugawa","meters":80},{"id":"ise-tsukiyomi-no-miya","meters":440}]}
+    {"id":"7329_1","name":"五十鈴川駅前","coords":[136.72755,34.477135],"near":[{"id":"isuzugawa","meters":80},{"id":"ise-tsukiyomi-no-miya","meters":440},{"id":"ise-yamatohime-no-miya","meters":977}]}
   ],
   "trips": {
     "weekday": [],

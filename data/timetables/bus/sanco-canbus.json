@@ -31,24 +31,24 @@
     ["2027-02-13","saturday","2027-01-16"]
   ],
   "stops": [
-    {"id":"7329_2","name":"五十鈴川駅前","coords":[136.72751,34.477043],"near":[{"id":"isuzugawa","meters":69},{"id":"ise-tsukiyomi-no-miya","meters":430}]},
-    {"id":"7328_2","name":"中村町（月讀宮前）","coords":[136.72609,34.470985],"near":[{"id":"ise-tsukiyomi-no-miya","meters":329}]},
+    {"id":"7329_2","name":"五十鈴川駅前","coords":[136.72751,34.477043],"near":[{"id":"isuzugawa","meters":69},{"id":"ise-tsukiyomi-no-miya","meters":430},{"id":"ise-yamatohime-no-miya","meters":985}]},
+    {"id":"7328_2","name":"中村町（月讀宮前）","coords":[136.72609,34.470985],"near":[{"id":"ise-tsukiyomi-no-miya","meters":329},{"id":"ise-sarutahiko-jinja","meters":674},{"id":"ise-okage-yashiki","meters":972}]},
     {"id":"7351_1","name":"内宮前","coords":[136.7222,34.45983],"near":[{"id":"ise-naiku","meters":164},{"id":"ise-oharaimachi","meters":298},{"id":"ise-okage-yashiki","meters":327}]},
     {"id":"7398_1","name":"サンアリーナ","coords":[136.76894,34.491478]},
     {"id":"7387_1","name":"伊勢忍者キングダム","coords":[136.7778,34.497917]},
-    {"id":"7040_1","name":"二見浦表参道","coords":[136.77731,34.50612],"near":[{"id":"jr-futaminoura","meters":262}]},
-    {"id":"7366_1","name":"夫婦岩東口","coords":[136.79242,34.50689],"near":[{"id":"futami-sea-paradise","meters":117},{"id":"futami-okitama-jinja","meters":369}]},
-    {"id":"7367_2","name":"民話の駅・蘇民前","coords":[136.79686,34.500027],"near":[{"id":"futami-matsushita-yashiro","meters":114}]},
+    {"id":"7040_1","name":"二見浦表参道","coords":[136.77731,34.50612],"near":[{"id":"jr-futaminoura","meters":262},{"id":"futami-omotesando","meters":694}]},
+    {"id":"7366_1","name":"夫婦岩東口","coords":[136.79242,34.50689],"near":[{"id":"futami-sea-paradise","meters":117},{"id":"futami-okitama-jinja","meters":369},{"id":"futami-omotesando","meters":755}]},
+    {"id":"7367_2","name":"民話の駅・蘇民前","coords":[136.79686,34.500027],"near":[{"id":"futami-matsushita-yashiro","meters":114},{"id":"futami-sea-paradise","meters":963}]},
     {"id":"7043_2","name":"池の浦","coords":[136.81055,34.49217]},
     {"id":"7047_3","name":"鳥羽バスセンター","coords":[136.84343,34.48752],"near":[{"id":"toba-ichibangai","meters":49},{"id":"toba","meters":89},{"id":"toba-marche","meters":122},{"id":"jr-toba","meters":134},{"id":"toba-sadahama-marine-terminal","meters":351}]},
     {"id":"7382_1","name":"鳥羽水族館・ミキモト真珠島","coords":[136.84674,34.479992],"near":[{"id":"nakanogo","meters":114},{"id":"toba-aquarium","meters":259},{"id":"toba-mikimoto-pearl-island","meters":379},{"id":"toba-castle-ruins","meters":399}]},
     {"id":"7043_1","name":"池の浦","coords":[136.8103,34.492207]},
-    {"id":"7367_1","name":"民話の駅・蘇民前","coords":[136.79695,34.500126],"near":[{"id":"futami-matsushita-yashiro","meters":104}]},
-    {"id":"7366_2","name":"夫婦岩東口","coords":[136.79164,34.50693],"near":[{"id":"futami-sea-paradise","meters":59},{"id":"futami-okitama-jinja","meters":304}]},
+    {"id":"7367_1","name":"民話の駅・蘇民前","coords":[136.79695,34.500126],"near":[{"id":"futami-matsushita-yashiro","meters":104},{"id":"futami-sea-paradise","meters":958}]},
+    {"id":"7366_2","name":"夫婦岩東口","coords":[136.79164,34.50693],"near":[{"id":"futami-sea-paradise","meters":59},{"id":"futami-okitama-jinja","meters":304},{"id":"futami-omotesando","meters":684}]},
     {"id":"7398_2","name":"サンアリーナ","coords":[136.76862,34.491283]},
     {"id":"7351_2","name":"内宮前","coords":[136.72218,34.459934],"near":[{"id":"ise-naiku","meters":175},{"id":"ise-oharaimachi","meters":288},{"id":"ise-okage-yashiki","meters":316}]},
-    {"id":"7329_1","name":"五十鈴川駅前","coords":[136.72755,34.477135],"near":[{"id":"isuzugawa","meters":80},{"id":"ise-tsukiyomi-no-miya","meters":440}]},
-    {"id":"7381_1","name":"鳥羽シーサイドホテル","coords":[136.85175,34.478474]}
+    {"id":"7329_1","name":"五十鈴川駅前","coords":[136.72755,34.477135],"near":[{"id":"isuzugawa","meters":80},{"id":"ise-tsukiyomi-no-miya","meters":440},{"id":"ise-yamatohime-no-miya","meters":977}]},
+    {"id":"7381_1","name":"鳥羽シーサイドホテル","coords":[136.85175,34.478474],"near":[{"id":"toba-mikimoto-pearl-island","meters":706},{"id":"toba-kadoya","meters":707},{"id":"toba-aquarium","meters":708}]}
   ],
   "trips": {
     "weekday": [

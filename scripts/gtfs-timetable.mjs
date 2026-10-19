@@ -18,9 +18,10 @@ import { tripDays } from './lib/trip-hours.mjs';
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const API = 'https://api.gtfs-data.jp/v2/organizations';
 const TRIP = { from: '2027-02-02', to: '2027-02-13', holidays: ['2027-02-11'] };
-// 停留所附近的車站、景點（直線距離）：車站在範圍內都列，景點取最近的幾個。
-// 船的範圍放大：離島的景點多半離港口 1 km 左右（間崎島約 700 m）
-const NEAR = { bus: { meters: 500, spots: 3 }, ferry: { meters: 1500, spots: 6 }, jr: { meters: 500, spots: 3 } };
+// 停留所附近的車站、景點（直線距離）：車站 500 m 內都列；景點取範圍內最近的幾個。
+// 景點常常「下車走 10～15 分」（安乗埼灯台、パールミキ），巴士用 1 km；離島的景點多半離港口 1 km 左右，船用 1.5 km
+const STATION_METERS = 500;
+const NEAR = { bus: { meters: 1000, spots: 3 }, ferry: { meters: 1500, spots: 6 } };
 
 // 官網查到的事實（2026-10-19，T10 讀文；筆記在 data/timetables/README.md）：兒童票、5day plus、注意事項、來源。
 // 這些寫在這裡（不手改 JSON），重跑時才不會被蓋掉。
@@ -176,7 +177,7 @@ const nearOf = (coords, mode) => {
   const { meters, spots } = NEAR[mode];
   const all = points
     .map((p) => ({ id: p.id, station: p.type === 'station', meters: Math.round(hav(coords, p.coords)) }))
-    .filter((x) => x.meters <= meters)
+    .filter((x) => x.meters <= (x.station ? STATION_METERS : meters))
     .sort((a, b) => a.meters - b.meters);
   const keep = new Set([...all.filter((x) => x.station), ...all.filter((x) => !x.station).slice(0, spots)]);
   return all.filter((x) => keep.has(x)).map(({ id, meters: m }) => ({ id, meters: m }));

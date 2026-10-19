@@ -31,9 +31,9 @@
     ["2027-02-13","saturday","2027-02-13"]
   ],
   "stops": [
-    {"id":"2_01","name":"佐田浜（鳥羽マリンターミナル）","coords":[136.84503,34.49014],"near":[{"id":"toba-sadahama-marine-terminal","meters":33},{"id":"toba-ichibangai","meters":334},{"id":"toba-marche","meters":338},{"id":"toba","meters":415},{"id":"jr-toba","meters":460},{"id":"toba-bay-cruise-irukajima","meters":670},{"id":"toba-hiyoriyama-observatory","meters":714},{"id":"toba-mikimoto-pearl-island","meters":769},{"id":"nakanogo","meters":1161}]},
+    {"id":"2_01","name":"佐田浜（鳥羽マリンターミナル）","coords":[136.84503,34.49014],"near":[{"id":"toba-sadahama-marine-terminal","meters":33},{"id":"toba-ichibangai","meters":334},{"id":"toba-marche","meters":338},{"id":"toba","meters":415},{"id":"jr-toba","meters":460},{"id":"toba-bay-cruise-irukajima","meters":670},{"id":"toba-hiyoriyama-observatory","meters":714},{"id":"toba-mikimoto-pearl-island","meters":769}]},
     {"id":"7_01","name":"菅島","coords":[136.89891,34.499241],"near":[{"id":"toba-port-sugashima","meters":12},{"id":"toba-sugashima-shirongo-beach","meters":801},{"id":"toba-sugashima-lighthouse","meters":904}]},
-    {"id":"3_01","name":"坂手","coords":[136.85774,34.48363],"near":[{"id":"toba-mikimoto-pearl-island","meters":995},{"id":"toba-bay-cruise-irukajima","meters":1151},{"id":"toba-aquarium","meters":1152},{"id":"nakanogo","meters":1199},{"id":"toba-marche","meters":1260},{"id":"toba-castle-ruins","meters":1292},{"id":"toba-ichibangai","meters":1333},{"id":"toba","meters":1390},{"id":"jr-toba","meters":1410}]}
+    {"id":"3_01","name":"坂手","coords":[136.85774,34.48363],"near":[{"id":"toba-mikimoto-pearl-island","meters":995},{"id":"toba-bay-cruise-irukajima","meters":1151},{"id":"toba-aquarium","meters":1152},{"id":"toba-marche","meters":1260},{"id":"toba-castle-ruins","meters":1292},{"id":"toba-ichibangai","meters":1333}]}
   ],
   "trips": {
     "weekday": [
