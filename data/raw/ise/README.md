@@ -248,3 +248,40 @@
 - 倉田山的桜木町、黑瀬町沒有逐町看（町名索引是灰色或沒看），3.30 未満的店只有在個室／貸切篩選裡的才有記；外圍的貸切篩選 3.21 未満沒看。
 - ise-outskirts 因 A 3.60 只收 3 家，**景點旁的午餐**沒有收錄 → T8d 第 5 批以 D 補了 さし汐（菊池パール）、パセプション（伊勢苺園）。
 - 15 人：收錄的 C 店寫明 15 人以上個室的只有 豚捨 若柳、大喜、懐石 かみむら（2〜20）、つぼ銀（8〜20）（第 1 批沒有抄個室人數，ise-naiku 的 C 15 家要在 T8d 看）；因數量控制沒收錄的大個室店（桂 外宮、炭火焼肉匠、やきとり能代、一升びん 松寿亭、かぐら、味の來々軒、伊勢大阪屋 等）列在 log，T8e 照 D 檢討。
+
+## T8g 檢討與深入調查（2026-10-19）
+
+- **檢討**（👤）：「👤 建議先看」伊勢、二見 18 項都照建議做（後半 👤 授權直接照建議），決定和新規則記在 `docs/decisions-pending.md` 最後幾列（T8g）。新規則寫進了 CONVENTIONS 和 `assessment-notes.md`：
+  - 官網過時時營業時間用較新的來源；
+  - 10 筆以下的區域，A 的比例只當參考；
+  - 景點 kidsFit 可以用筆記裡的小孩描述；
+  - 住宿 groupFit 4 不要求宴會場；
+  - 住宿電梯要有官網文字才算有來源；
+  - 餐廳「介紹來源」只算真的介紹這家店的；
+  - 餐廳 localFlavor 補例子；
+  - 餐廳 elderFit：「車椅子で入店可」打 4。
+- **伊勢餐廳門檻放寬**：第 1 條改成「食べログ 3.55 以上（150 則以上）＋ Google 4.1 以上」，A 以上從 13 家變 21／108＝19%。
+- **深入調查**：伊勢 25 筆、二見 7 筆。伊勢用的是平衡版名單：甜點、咖啡店換成全員用餐的候選。WebSearch 共 86 次，有內容的部落格只有 9 筆、共 11 篇（多是媒體、彙整、口コミ站），23 筆 0 篇。每筆的次數和篇數在 `log/T8g.md`。
+- **只改 summary、理由、conflicts 的**：外宮（神宮外的服務中心可借 1 台嬰兒車）、神宮会館（30 人團體同住的實例，groupFit 4 維持）、美鈴（15:00 開店時最好入座）、ボン・ヴィヴァン（有冬季休業的可能，febNote、questions）、大喜（營業時間、價格衝突）。
+- `assessment-check.mjs ise` 列出 2 項（すだく、町家バル：負評往下調一級），和 T8f 相同，維持。二見 0 項。
+
+伊勢有變的（二見的在 `data/raw/futami/README.md`）：
+
+| id | 名稱 | tier | 變更 | 理由 |
+|---|---|---|---|---|
+| `ise-komada` | こま田 | B→A | recommend 3→4；confidence low→medium | 門檻放寬（4.60／192）；深入調查找到日文部落格（2026-02） |
+| `ise-nikawa` | にかわ | B→A | recommend 3→4 | 門檻放寬（3.93／150、Google 4.5） |
+| `ise-bon-vivant` | ボン・ヴィヴァン | B→A | recommend 3→4 | 門檻放寬（3.71／155、Google 4.5）；有冬季休業的可能，見 febNote |
+| `ise-butasute-wakayanagi` | 豚捨 若柳 | B→A | recommend 3→4 | 門檻放寬（3.63／168、Google 4.4） |
+| `ise-kaki-no-tomo` | 牡蠣の朋 | B→A | recommend 3→4 | 門檻放寬（3.55／178、Google 4.5） |
+| `ise-fukusuke` | ふくすけ | B→A | recommend 3→4；elderFit 4→3 | 門檻放寬（Google 4.1）；4travel：店內桌席約 4 張，多半坐店外縁台，要拿號碼牌等 |
+| `ise-dandelion-chocolate-geku` | ダンデライオン | B→A | recommend 3→4 | 門檻放寬（Google 4.1） |
+| `ise-sazanami` | 漣 伊勢店 | B→A | recommend 3→4 | 門檻放寬（Google 4.1） |
+| `ise-fuguya` | ふぐや | B | recommend 3→2；kidsFit 3→4 | 負評往下調一級（服務 1 星 3 則）；吸菸不扣 |
+| `ise-okubun-dining` | おく文 | B | groupFit 4→3（fit15 yes→unknown） | F③ 的 fit15 只看非住客方案 |
+| `ise-ichigetsuya` | 一月家 | S | kidsFit 2→3 | 吸菸不扣 |
+| `ise-ajino-rairaiken` | 味の來々軒 | B | kidsFit 4→5 | 吸菸不扣（有兒童菜單） |
+| `ise-hibino`、`ise-kagura`、`ise-aburi-takumi-part2` | ひびの、かぐら、匠 PART2 | B | kidsFit 2→3 | 吸菸不扣 |
+| `ise-mansenya-hanare` | 満船屋 HANARE | B | kidsFit 3→4 | 吸菸不扣 |
+| `ise-misuzu-gyoza` | ぎょうざの美鈴 | S | confidence medium→high | Retty 口コミ＋日文部落格 2 種、合計 2,616 則 |
+| `ise-naiku` | 內宮 | S | （elderFit 2 維持） | 石段 25 段、宇治橋～正宮 800 m 玉砂利有了來源；理由、cons 改寫 |

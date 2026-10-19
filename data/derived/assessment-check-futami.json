@@ -1,6 +1,6 @@
 {
   "area": "futami",
-  "generated": "2026-10-18",
+  "generated": "2026-10-19",
   "script": "scripts/assessment-check.mjs",
   "rules": {
     "restaurant": {
@@ -96,7 +96,8 @@
       "notAssessed": [],
       "flagged": 0,
       "byStar": {
-        "2": 9,
+        "1": 1,
+        "2": 8,
         "3": 6,
         "4": 3
       }

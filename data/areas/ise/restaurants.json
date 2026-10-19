@@ -87,7 +87,7 @@
       "instagram": null
     },
     "tags": [],
-    "tier": "B",
+    "tier": "A",
     "sources": [
       {
         "type": "tabelog",
@@ -251,7 +251,8 @@
     "extra": {
       "conflicts": [
         "營業時間：官網 10:00～17:00（L.O. 16:30）；食べログ、まっぷる、ホットペッパー 10:00～16:30",
-        "伊勢うどん價格：官網 650 円；まっぷる、るるぶ 600 円；LIVE JAPAN（2021）500 円"
+        "伊勢うどん價格：官網 650 円；まっぷる、るるぶ 600 円；LIVE JAPAN（2021）500 円",
+        "席數：ホットペッパー 68 席；4travel（2023-01）店內桌席約 4 張＋座敷，座位多在店外縁台（68 席可能含戶外）"
       ]
     },
     "summary": {
@@ -262,7 +263,7 @@
         "麵軟、乳幼兒也可以"
       ],
       "cons": [
-        "不接受預約，尖峰 15 人不保證坐在一起",
+        "不接受預約，尖峰 15 人不保證坐在一起；店內桌席少，多半坐店外縁台（2 月冷）",
         "份量小，不適合當正式的一餐；手打麵會賣完",
         "營業時間依季節變動"
       ],
@@ -276,26 +277,26 @@
         "https://tabelog.com/mie/A2403/A240301/24000009/",
         "https://maps.google.com/?cid=8783159083125833346"
       ],
-      "generated": "2026-10-18"
+      "generated": "2026-10-19"
     },
     "assessment": {
       "rubric": "restaurant-v1",
       "scores": {
-        "recommend": 3,
+        "recommend": 4,
         "localFlavor": 4,
         "groupFit": 1,
-        "elderFit": 4,
+        "elderFit": 3,
         "kidsFit": 4
       },
       "rationale": {
-        "recommend": "食べログ 3.59（3,325 則）但 Google 4.1（1,981 則），伊勢的 4 要 Google 4.2 以上；媒體都列為おかげ横丁的伊勢烏龍代表",
+        "recommend": "食べログ 3.59（3,325 則）、Google 4.1（1,981 則）→ 伊勢的第 1 條（T8g 改成 3.55／150 則＋Google 4.1）；媒體都列為おかげ横丁的伊勢烏龍代表",
         "localFlavor": "伊勢烏龍（手打麵用三重縣產小麥）",
         "groupFit": "不接受預約，68 席先點餐拿號碼牌",
-        "elderFit": "有桌席、座敷，1 樓路面店；店外縁台 2 月會冷",
+        "elderFit": "店內桌席約 4 張＋座敷，座位多半在店外縁台（4travel 2023，2 月會冷），尖峰要拿號碼牌等 → 降一級",
         "kidsFit": "乳幼兒也可以，麵軟、份量小，小孩好入口"
       },
       "confidence": "medium",
-      "assessed": "2026-10-18"
+      "assessed": "2026-10-19"
     }
   },
   {
@@ -14116,17 +14117,17 @@
         "localFlavor": 4,
         "groupFit": 1,
         "elderFit": 2,
-        "kidsFit": 2
+        "kidsFit": 3
       },
       "rationale": {
         "recommend": "食べログ 3.72（465 則）、Google 4.4（894 則），伊勢志摩観光ナビ、Retty、BAILA 介紹；大正創業、每晚客滿，伊勢老居酒屋的代表",
         "localFlavor": "さめたれ、ふくだめ、湯豆腐 等伊勢的下酒菜",
         "groupFit": "不能預約，開店後很快坐滿",
         "elderFit": "吧台和座敷，要早點去排",
-        "kidsFit": "小孩規定沒寫；全席可吸菸"
+        "kidsFit": "小孩規定沒寫；全席可吸菸（吸菸不扣分，見 smoking）"
       },
       "confidence": "medium",
-      "assessed": "2026-10-18"
+      "assessed": "2026-10-19"
     }
   },
   {
@@ -14492,7 +14493,7 @@
       "instagram": "@yakitori_nikawa_ise"
     },
     "tags": [],
-    "tier": "B",
+    "tier": "A",
     "sources": [
       {
         "type": "tabelog",
@@ -14709,21 +14710,21 @@
     "assessment": {
       "rubric": "restaurant-v1",
       "scores": {
-        "recommend": 3,
+        "recommend": 4,
         "localFlavor": 1,
         "groupFit": 1,
         "elderFit": 3,
         "kidsFit": 1
       },
       "rationale": {
-        "recommend": "食べログ 3.93（150 則）、Google 4.5（62 則），Time Out、なっぷ 說入選米其林必比登；伊勢的 4 要食べログ 200 則以上 → 3",
+        "recommend": "食べログ 3.93（150 則）、Google 4.5（62 則）→ 伊勢的第 1 條（3.55／150 則＋Google 4.1）；Time Out、なっぷ 說入選米其林必比登",
         "localFlavor": "高知放養的原創雞、燒鳥，和在地無關",
         "groupFit": "7 席吧台",
         "elderFit": "只有吧台",
         "kidsFit": "不接受小孩"
       },
       "confidence": "low",
-      "assessed": "2026-10-18"
+      "assessed": "2026-10-19"
     }
   },
   {
@@ -15081,7 +15082,7 @@
       "instagram": null
     },
     "tags": [],
-    "tier": "B",
+    "tier": "A",
     "sources": [
       {
         "type": "tabelog",
@@ -15287,26 +15288,26 @@
         "https://tabelog.com/mie/A2403/A240301/24012212/party/",
         "https://maps.google.com/?cid=9790614238863183937"
       ],
-      "generated": "2026-10-18"
+      "generated": "2026-10-19"
     },
     "assessment": {
       "rubric": "restaurant-v1",
       "scores": {
-        "recommend": 3,
+        "recommend": 4,
         "localFlavor": 3,
         "groupFit": 1,
         "elderFit": 3,
         "kidsFit": null
       },
       "rationale": {
-        "recommend": "食べログ 4.60（192 則）是伊勢最高，但伊勢的 4 要 200 則以上，Google 只有 72 則 → 3",
+        "recommend": "食べログ 4.60（192 則）是伊勢最高、Google 4.4（72 則）→ 伊勢的第 1 條（3.55／150 則＋Google 4.1）；吧台約 6 席、預約很難",
         "localFlavor": "伊勢志摩海鮮的江戶前おまかせ",
         "groupFit": "6 席吧台、貸切不可",
         "elderFit": "只有吧台",
         "kidsFit": "小孩規定沒有來源；只有 33,000 円起的おまかせ"
       },
-      "confidence": "low",
-      "assessed": "2026-10-18"
+      "confidence": "medium",
+      "assessed": "2026-10-19"
     }
   },
   {
@@ -15695,7 +15696,7 @@
       "note": "午餐 L.O. 13:00、晚餐 L.O. 19:00；完全預約制；週一・週二遇國定假日營業（官網、食べログ 店舗会員）"
     },
     "closedNote": "週一、週二、週日晚上（遇國定假日營業）；有臨時休業",
-    "febNote": "2/4、2/11（四）營業；まっぷる 說 1 月、8 月有臨時休業",
+    "febNote": "2/4、2/11（四）營業；まっぷる 說 1 月、8 月有臨時休業；るるぶ&more 寫「夏・冬期休業あり（要問合せ）」，2/2～2/13 有沒有休要確認",
     "closures": [],
     "photos": [
       {
@@ -15720,7 +15721,7 @@
       "instagram": "@bonvivant_ise"
     },
     "tags": [],
-    "tier": "B",
+    "tier": "A",
     "sources": [
       {
         "type": "tabelog",
@@ -15925,7 +15926,8 @@
       "conflicts": [
         "營業時間：官網 午 12:00～15:00（L.O. 13:00）、晚 17:30～21:00（L.O. 19:00），週日只有午餐；食べログ 週三只有晚餐、週四午餐 12:00～13:00；Time Out L.O. 13:30／21:30 閉",
         "公休：官網 週一＋週二・週日晚；Time Out 週一＋第 3 週二（2024 起不定休）；まっぷる 週一・二",
-        "人數：食べログ 10 席・貸切最大 12；Time Out 最多約 16 人"
+        "人數：食べログ 10 席・貸切最大 12；Time Out 最多約 16 人",
+        "預約期限：るるぶ 前一天前的完全予約制；Time Out 當天午餐 11 時前、晚餐 16 時前可訂"
       ]
     },
     "summary": {
@@ -15938,7 +15940,8 @@
       "cons": [
         "最多 12 人，15 人坐不下",
         "每人 11,000 円起，完全預約制",
-        "週一、週二、週日晚上休；1 月有臨時休業"
+        "週一、週二、週日晚上休；1 月有臨時休業",
+        "メインダイニング 1 日 2 組限定；有冬季休業（るるぶ），2 月要先確認"
       ],
       "basedOn": [
         "https://bonvivant1983.com/",
@@ -15950,26 +15953,26 @@
         "https://tabelog.com/mie/A2403/A240301/24000015/party/",
         "https://maps.google.com/?cid=10565799226996224762"
       ],
-      "generated": "2026-10-18"
+      "generated": "2026-10-19"
     },
     "assessment": {
       "rubric": "restaurant-v1",
       "scores": {
-        "recommend": 3,
+        "recommend": 4,
         "localFlavor": 2,
         "groupFit": 1,
         "elderFit": 4,
         "kidsFit": 3
       },
       "rationale": {
-        "recommend": "食べログ 3.71（155 則）、Google 4.5（147 則），米其林 2019、Gault&Millau 掲載，觀光三重、まっぷる 推薦；伊勢的 4 要食べログ 200 則以上 → 3",
+        "recommend": "食べログ 3.71（155 則）、Google 4.5（147 則）→ 伊勢的第 1 條（3.55／150 則＋Google 4.1）；米其林 2019、Gault&Millau 掲載，觀光三重、まっぷる 推薦",
         "localFlavor": "用在地海鮮、蔬菜的法餐",
         "groupFit": "10 席、貸切最大 12 名",
         "elderFit": "桌椅席（大正洋館）",
         "kidsFit": "小學生以上吃大人套餐可以；官網說小小孩請避免"
       },
       "confidence": "low",
-      "assessed": "2026-10-18"
+      "assessed": "2026-10-19"
     }
   },
   {
@@ -16930,7 +16933,9 @@
       "conflicts": [
         "席數：食べログ 104；官網・ぐるなび 130",
         "營業時間：官網・食べログ 晚 16:30～20:30（L.O. 20:00）；aumo（2025-08）到 21:30",
-        "官網網址：食べログ 寫 ise.ne.jp/daiki/；讀文找到的是 nbec000.gorp.jp"
+        "官網網址：食べログ 寫 ise.ne.jp/daiki/；讀文找到的是 nbec000.gorp.jp",
+        "營業時間：観光三重（2026-08）晚 16:30～21:00（L.O. 20:30）；官網 到 20:30（L.O. 20:00）",
+        "伊勢海老コース：観光三重 14,300 円起（志摩產約 2.5 尾）；搜尋摘要 16,500 円起（出處不明）"
       ]
     },
     "summary": {
@@ -17054,7 +17059,7 @@
       "instagram": "@butasute_official"
     },
     "tags": [],
-    "tier": "B",
+    "tier": "A",
     "sources": [
       {
         "type": "tabelog",
@@ -17277,21 +17282,21 @@
     "assessment": {
       "rubric": "restaurant-v1",
       "scores": {
-        "recommend": 3,
+        "recommend": 4,
         "localFlavor": 3,
         "groupFit": 5,
         "elderFit": 4,
         "kidsFit": 4
       },
       "rationale": {
-        "recommend": "食べログ 3.63 但只有 168 則、Google 4.4（231 則），伊勢的 4 要 200 則以上；近 3 年低分很少",
+        "recommend": "食べログ 3.63（168 則）、Google 4.4（231 則）→ 伊勢的第 1 條（3.55／150 則＋Google 4.1）；近 3 年低分很少",
         "localFlavor": "伊勢牛的網焼、すき焼",
         "groupFit": "全室個室，宴會場 大 50・中 20 人，可包場",
         "elderFit": "無障礙的洋式桌席個室 2 間，其他是座敷",
         "kidsFit": "可帶小孩，個室座敷、有兒童椅"
       },
       "confidence": "medium",
-      "assessed": "2026-10-18"
+      "assessed": "2026-10-19"
     }
   },
   {
@@ -19327,9 +19332,9 @@
       "privateRoom": true,
       "buyout": "可",
       "groupMenu": "会席膳 3,300 円～（有飲み放題方案）、弁当 1,100 円～、お子さま膳（2025-09 店家 IG，經 HAMONI）；伊勢楽市膳 要預約（三重縣 2013：7,000 円税別）",
-      "fit15": "yes",
+      "fit15": "unknown",
       "fitSubgroup": "yes",
-      "source": "食べログ：完全予約制、座敷 10 室、個室有、貸切可；ぐるなび：40 席；HAMONI：テーブル・座敷・掘りごたつ、個室、貸切可。可預約、40 席、可包場 → yes。非住客能不能用餐沒有店家明寫，見 notes"
+      "source": "食べログ：完全予約制、座敷 10 室、個室有、貸切可；ぐるなび：40 席；HAMONI：テーブル・座敷・掘りごたつ、個室、貸切可。可預約、40 席、可包場 → yes。非住客能不能用餐沒有店家明寫，見 notes。2026-10-19（T8g）：F③ 的 fit15 只看非住客方案的來源，上面都是店舗情報 → unknown"
     },
     "reservation": {
       "accepted": "yes",
@@ -19375,7 +19380,7 @@
         "近鐵宮町站步行約 8 分"
       ],
       "cons": [
-        "非住客能不能用餐沒有明寫",
+        "非住客能不能用餐、15 人能不能訂都沒有明寫",
         "老建築，無障礙評分低",
         "找不到官網，營業資料少"
       ],
@@ -19387,26 +19392,26 @@
         "https://tabelog.com/mie/A2403/A240301/24009581/",
         "https://maps.google.com/?cid=7072040251221998084"
       ],
-      "generated": "2026-10-18"
+      "generated": "2026-10-19"
     },
     "assessment": {
       "rubric": "restaurant-v1",
       "scores": {
         "recommend": 3,
         "localFlavor": 3,
-        "groupFit": 4,
+        "groupFit": 3,
         "elderFit": 3,
         "kidsFit": 5
       },
       "rationale": {
         "recommend": "料理旅館的非住客用餐（F③）：住宿本體楽天評分不公開（92 則）、Google 3.9（58 則）；HAMONI 伊勢鰻魚第 2",
         "localFlavor": "孝行鰻（うな重）、会席膳，伊勢楽市膳有伊勢海老、さめのたれ",
-        "groupFit": "40 席、座敷 10 室、貸切可；非住客用餐沒有明寫，要電話確認",
+        "groupFit": "F③：40 席、座敷 10 室、貸切可是店舗情報，非住客能不能用、能不能訂 15 人沒有店家明寫 → fit15 unknown，要電話確認",
         "elderFit": "有桌席和掘りごたつ，但昭和初期的老建築、無障礙評分低",
         "kidsFit": "有お子さま膳，孫子生日、お食い初め的實例"
       },
       "confidence": "low",
-      "assessed": "2026-10-18"
+      "assessed": "2026-10-19"
     }
   },
   {
@@ -20871,7 +20876,7 @@
       "cons": [
         "只有約 17 席吧台、不能預約，15 人不行",
         "週一休（2/8），每月 1 次連休",
-        "要排隊；不收信用卡"
+        "要排隊（15:00 剛開店最容易入座）；不收信用卡"
       ],
       "basedOn": [
         "https://www.kankomie.or.jp/report/1371",
@@ -20881,7 +20886,7 @@
         "https://tabelog.com/mie/A2403/A240301/24000014/",
         "https://maps.google.com/?cid=10509411486143151441"
       ],
-      "generated": "2026-10-18"
+      "generated": "2026-10-19"
     },
     "assessment": {
       "rubric": "restaurant-v1",
@@ -20899,8 +20904,8 @@
         "elderFit": "只有吧台，要排隊",
         "kidsFit": "可帶小孩；餃子、唐揚、飯糰"
       },
-      "confidence": "medium",
-      "assessed": "2026-10-18"
+      "confidence": "high",
+      "assessed": "2026-10-19"
     }
   },
   {
@@ -21935,7 +21940,7 @@
       "instagram": "@dandelion_chocolate_ise"
     },
     "tags": [],
-    "tier": "B",
+    "tier": "A",
     "sources": [
       {
         "type": "tabelog",
@@ -22120,21 +22125,21 @@
     "assessment": {
       "rubric": "restaurant-v1",
       "scores": {
-        "recommend": 3,
+        "recommend": 4,
         "localFlavor": 2,
         "groupFit": 1,
         "elderFit": 4,
         "kidsFit": 3
       },
       "rationale": {
-        "recommend": "食べログ 3.59（414 則）但 Google 4.1（535 則），伊勢的 4 要 Google 4.2；觀光三重、Walkerplus、Time Out 介紹，心得 0 篇",
+        "recommend": "食べログ 3.59（414 則）、Google 4.1（535 則）→ 伊勢的第 1 條（3.55／150 則＋Google 4.1）；觀光三重、Walkerplus、Time Out 介紹",
         "localFlavor": "bean to bar 巧克力，伊勢限定熱巧克力用度會町的焙茶",
         "groupFit": "不能預約，30 席",
         "elderFit": "桌席，咖啡區中央有榻榻米可以坐下休息",
         "kidsFit": "小孩規定沒寫；熱巧克力、布朗尼"
       },
       "confidence": "low",
-      "assessed": "2026-10-18"
+      "assessed": "2026-10-19"
     }
   },
   {
@@ -24235,7 +24240,7 @@
       "instagram": null
     },
     "tags": [],
-    "tier": "B",
+    "tier": "A",
     "sources": [
       {
         "type": "tabelog",
@@ -24438,21 +24443,21 @@
     "assessment": {
       "rubric": "restaurant-v1",
       "scores": {
-        "recommend": 3,
+        "recommend": 4,
         "localFlavor": 4,
         "groupFit": 1,
         "elderFit": 4,
         "kidsFit": 3
       },
       "rationale": {
-        "recommend": "食べログ 3.55 但只有 178 則、Google 4.5（296 則），伊勢的 4 要 200 則以上；只有 TikTok／IG 轉載",
+        "recommend": "食べログ 3.55（178 則）、Google 4.5（296 則）→ 伊勢的第 1 條（3.55／150 則＋Google 4.1）；介紹只有 TikTok／IG 轉載",
         "localFlavor": "牡蠣專門食堂，2 月正當季",
         "groupFit": "不能預約，14 席",
         "elderFit": "桌席（古民家改裝）",
         "kidsFit": "小孩規定沒寫；カキフライ"
       },
       "confidence": "low",
-      "assessed": "2026-10-18"
+      "assessed": "2026-10-19"
     }
   },
   {
@@ -27318,7 +27323,7 @@
       "instagram": "@sazanami_official"
     },
     "tags": [],
-    "tier": "B",
+    "tier": "A",
     "sources": [
       {
         "type": "tabelog",
@@ -27480,21 +27485,21 @@
     "assessment": {
       "rubric": "restaurant-v1",
       "scores": {
-        "recommend": 3,
+        "recommend": 4,
         "localFlavor": 3,
         "groupFit": 2,
         "elderFit": null,
         "kidsFit": 4
       },
       "rationale": {
-        "recommend": "食べログ 3.67（318 則）但 Google 4.1（579 則），伊勢的 4 要 Google 4.2；4travel 3.32",
+        "recommend": "食べログ 3.67（318 則）、Google 4.1（579 則）→ 伊勢的第 1 條（3.55／150 則＋Google 4.1）；4travel 3.32（9 件）偏低但多是舊評",
         "localFlavor": "開き海老フライ（炸蝦），在地海鮮的定食",
         "groupFit": "可預約（有 5 人預約的心得），席數沒寫",
         "elderFit": "在飯店 1F，座位形式沒寫",
         "kidsFit": "可帶小孩；炸蝦定食"
       },
       "confidence": "medium",
-      "assessed": "2026-10-18"
+      "assessed": "2026-10-19"
     }
   },
   {
@@ -28420,9 +28425,7 @@
     },
     "smoking": "全席禁煙",
     "extra": {
-      "conflicts": [
-        "座位形式（桌椅或座敷）沒有來源"
-      ]
+      "conflicts": []
     },
     "summary": {
       "text": "小俣町的全個室創作和食，午餐かご盛り膳 2,387 円、ミニ会席 2,970 円，晚上會席 3,900 円起，最多 30 人的個室。伊勢苺園（週末採草莓）那天 15 人一起吃午餐的候選。",
@@ -28773,21 +28776,21 @@
     "assessment": {
       "rubric": "restaurant-v1",
       "scores": {
-        "recommend": 3,
+        "recommend": 2,
         "localFlavor": 4,
         "groupFit": 5,
         "elderFit": 3,
-        "kidsFit": 3
+        "kidsFit": 4
       },
       "rationale": {
-        "recommend": "食べログ 3.24（47 則）、Google 4.2（153 則）→ 評論數上限 3；Google 低分說對生客冷淡",
+        "recommend": "食べログ 3.24（47 則）、Google 4.2（153 則）→ 評論數上限 3；Google 1 星 3 則（約 2023～2026）集中在店員對生客冷淡（服務）→ 往下調一級",
         "localFlavor": "伊勢灣天然虎河豚，2 月正當季",
         "groupFit": "座敷個室打通最多 32 席、貸切可",
         "elderFit": "入口附近有桌席・掘りごたつ 30 席，大広間是座敷",
-        "kidsFit": "官網歡迎家族；吸菸規定官網禁菸、食べログ全席可吸菸，不一致"
+        "kidsFit": "官網歡迎家族；吸菸規定官網禁菸、食べログ全席可吸菸，不一致（吸菸不扣分，見 smoking）"
       },
       "confidence": "medium",
-      "assessed": "2026-10-18"
+      "assessed": "2026-10-19"
     }
   },
   {
@@ -29426,17 +29429,17 @@
         "localFlavor": 3,
         "groupFit": 5,
         "elderFit": 4,
-        "kidsFit": 2
+        "kidsFit": 3
       },
       "rationale": {
         "recommend": "食べログ 3.29（68 則）、Google 4.3（142 則）→ 評論數上限 3；Google 低分說份量少、CP 值低",
         "localFlavor": "整頭買進的松阪牛すき焼き、あみ焼き",
         "groupFit": "最大予約 25 人、個室 2～20 人、貸切 20～50 人",
         "elderFit": "全室個室，有和室擺桌椅的房間",
-        "kidsFit": "小孩規定沒寫；全席可吸菸（個室內）"
+        "kidsFit": "小孩規定沒寫；全席可吸菸（個室內）（吸菸不扣分，見 smoking）"
       },
       "confidence": "medium",
-      "assessed": "2026-10-18"
+      "assessed": "2026-10-19"
     }
   },
   {
@@ -29675,7 +29678,7 @@
       "allowed": "yes",
       "minAge": null,
       "kidsMenu": true,
-      "note": "沒有來源"
+      "note": "Google 評論（約 2026）個室帶小 2・小 5、有お子様メニュー；約 2023 大人 4＋小孩 3"
     },
     "accessibility": {
       "barrierFree": "バリアフリー",
@@ -29714,17 +29717,17 @@
         "localFlavor": 1,
         "groupFit": 5,
         "elderFit": 4,
-        "kidsFit": 4
+        "kidsFit": 5
       },
       "rationale": {
         "recommend": "食べログ 3.34（49 則）、Google 4.1（263 則）→ 評論數上限 3",
         "localFlavor": "陳建一直傳的四川中華",
         "groupFit": "個室 30 人以上、貸切 20～50 人以上",
         "elderFit": "店在 2F，有電梯（1 則）、バリアフリー、席寬",
-        "kidsFit": "有兒童菜單、個室帶小孩方便；全席可吸菸"
+        "kidsFit": "有兒童菜單、個室帶小孩方便；全席可吸菸（吸菸不扣分，見 smoking）"
       },
       "confidence": "medium",
-      "assessed": "2026-10-18"
+      "assessed": "2026-10-19"
     }
   },
   {
@@ -30304,17 +30307,17 @@
         "localFlavor": 3,
         "groupFit": 5,
         "elderFit": 2,
-        "kidsFit": 2
+        "kidsFit": 3
       },
       "rationale": {
         "recommend": "食べログ 3.30（26 則）、Google 4.3（56 則）→ 評論數上限 3",
         "localFlavor": "京風的四季料理",
         "groupFit": "個室 10～20 人、貸切 20～50 人",
         "elderFit": "只有座敷和吧台；在高台住宅區，要爬坡",
-        "kidsFit": "小孩規定沒寫；全席可吸菸"
+        "kidsFit": "小孩規定沒寫；全席可吸菸（吸菸不扣分，見 smoking）"
       },
       "confidence": "low",
-      "assessed": "2026-10-18"
+      "assessed": "2026-10-19"
     }
   },
   {
@@ -31604,17 +31607,17 @@
         "localFlavor": 3,
         "groupFit": 5,
         "elderFit": 4,
-        "kidsFit": 2
+        "kidsFit": 3
       },
       "rationale": {
-        "recommend": "Google 3.3（224 則），Google 1 星 10 則中 9 則在約 2024～2026（肉質、慢、店員、廁所），食べログ 2026 年 1.0～1.2 分 → 心得普遍負評",
+        "recommend": "Google 3.3（224 則）照數字是 2（Google 3.5 以下）；近 3 年負評集中在品質、服務、衛生（Google 1 星 10 則中 9 則在約 2024～2026：肉質、慢、店員、廁所；食べログ 2026 年 1.0～1.2 分）→ 往下調一級",
         "localFlavor": "松阪牛炙燒燒肉",
         "groupFit": "60 席全半個室、貸切 20～50 人",
         "elderFit": "有桌椅半個室、車椅子で入店可",
-        "kidsFit": "官網說家族也可以、有飲料吧；全席可吸菸"
+        "kidsFit": "官網說家族也可以、有飲料吧；全席可吸菸（吸菸不扣分，見 smoking）"
       },
       "confidence": "medium",
-      "assessed": "2026-10-18"
+      "assessed": "2026-10-19"
     }
   },
   {
@@ -32497,17 +32500,17 @@
         "localFlavor": 4,
         "groupFit": 5,
         "elderFit": 3,
-        "kidsFit": 3
+        "kidsFit": 4
       },
       "rationale": {
         "recommend": "食べログ 3.25（42 則）、Google 4.2（138 則）→ 評論數上限 3；Google 1 星 10 則（約 2024～2026）集中在服務、衛生、海鮮鮮度 → 往下調 2",
         "localFlavor": "浜焼き（活貝）、伊勢海老",
         "groupFit": "個室 4～20 人、貸切 20～50 人、宴會套餐 3～40 名",
         "elderFit": "全是掘りごたつ個室",
-        "kidsFit": "小孩自己烤海鮮會喜歡；全席可吸菸"
+        "kidsFit": "小孩自己烤海鮮會喜歡；全席可吸菸（吸菸不扣分，見 smoking）"
       },
       "confidence": "medium",
-      "assessed": "2026-10-18"
+      "assessed": "2026-10-19"
     }
   }
 ]

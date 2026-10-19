@@ -1,6 +1,6 @@
 {
   "area": "ise",
-  "generated": "2026-10-18",
+  "generated": "2026-10-19",
   "script": "scripts/assessment-check.mjs",
   "rules": {
     "restaurant": {
@@ -98,9 +98,9 @@
       "flagged": 2,
       "byStar": {
         "1": 1,
-        "2": 12,
-        "3": 82,
-        "4": 11,
+        "2": 13,
+        "3": 73,
+        "4": 19,
         "5": 2
       }
     }
