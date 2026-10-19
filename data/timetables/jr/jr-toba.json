@@ -1,0 +1,78 @@
+{
+  "station": "jr-toba",
+  "validFrom": null,
+  "validTo": null,
+  "retrieved": "2026-10-19",
+  "source": "https://timetable.jr-odekake.net/line-timetable/2321",
+  "sources": [
+    {
+      "type": "official",
+      "url": "https://timetable.jr-odekake.net/line-timetable/2321",
+      "retrieved": "2026-10-19",
+      "note": "JR おでかけネット 区間時刻表 紀勢本線・参宮線(亀山～多気～鳥羽) 下り；推算用的日子：weekday 2026-12-22、saturday 2026-12-26、holiday 2026-12-27"
+    },
+    {
+      "type": "official",
+      "url": "https://timetable.jr-odekake.net/line-timetable/2322",
+      "retrieved": "2026-10-19",
+      "note": "同上 上り"
+    }
+  ],
+  "directions": {
+    "for-taki": {
+      "weekday": [
+        {"dep":"06:37","type":"普通","to":"jr-iseshi","trainNo":"910C"},
+        {"dep":"07:25","type":"快速 みえ 4号","to":"jr-nagoya","trainNo":"2904D"},
+        {"dep":"07:56","type":"普通","to":"jr-kameyama","trainNo":"914C"},
+        {"dep":"09:02","type":"快速 みえ 6号","to":"jr-nagoya","trainNo":"2906D"},
+        {"dep":"10:02","type":"快速 みえ 8号","to":"jr-nagoya","trainNo":"2908D"},
+        {"dep":"11:02","type":"快速 みえ 10号","to":"jr-nagoya","trainNo":"2910D"},
+        {"dep":"11:35","type":"普通","to":"jr-kameyama","trainNo":"922C"},
+        {"dep":"12:02","type":"快速 みえ 12号","to":"jr-nagoya","trainNo":"2912D"},
+        {"dep":"12:42","type":"普通","to":"jr-iseshi","trainNo":"924C"},
+        {"dep":"13:07","type":"快速 みえ 14号","to":"jr-nagoya","trainNo":"2914D"},
+        {"dep":"13:23","type":"普通","to":"jr-iseshi","trainNo":"928C"},
+        {"dep":"14:05","type":"快速 みえ 16号","to":"jr-nagoya","trainNo":"2916D"},
+        {"dep":"14:29","type":"普通","to":"jr-iseshi","trainNo":"932C"},
+        {"dep":"14:59","type":"快速 みえ 18号","to":"jr-nagoya","trainNo":"2918D"},
+        {"dep":"15:33","type":"普通","to":"jr-kameyama","trainNo":"938C"},
+        {"dep":"15:54","type":"快速 みえ 20号","to":"jr-nagoya","trainNo":"2920D"},
+        {"dep":"16:24","type":"普通","to":"jr-matsusaka","trainNo":"940C"},
+        {"dep":"16:46","type":"快速 みえ 22号","to":"jr-nagoya","trainNo":"2922D"},
+        {"dep":"17:36","type":"快速 みえ 24号","to":"jr-nagoya","trainNo":"2924D"},
+        {"dep":"18:22","type":"普通","to":"jr-kameyama","trainNo":"946C"},
+        {"dep":"19:17","type":"快速 みえ 26号","to":"jr-nagoya","trainNo":"2926D"},
+        {"dep":"20:00","type":"普通","to":"jr-kameyama","trainNo":"952C"},
+        {"dep":"21:00","type":"普通","to":"jr-kameyama","trainNo":"954C"},
+        {"dep":"22:12","type":"普通","to":"jr-taki","trainNo":"956C"}
+      ],
+      "holiday": [
+        {"dep":"06:37","type":"普通","to":"jr-iseshi","trainNo":"910C"},
+        {"dep":"07:25","type":"快速 みえ 4号","to":"jr-nagoya","trainNo":"2904D"},
+        {"dep":"07:56","type":"普通","to":"jr-kameyama","trainNo":"914C"},
+        {"dep":"09:02","type":"快速 みえ 6号","to":"jr-nagoya","trainNo":"2906D"},
+        {"dep":"10:02","type":"快速 みえ 8号","to":"jr-nagoya","trainNo":"2908D"},
+        {"dep":"11:02","type":"快速 みえ 10号","to":"jr-nagoya","trainNo":"2910D"},
+        {"dep":"11:35","type":"普通","to":"jr-kameyama","trainNo":"922C"},
+        {"dep":"12:02","type":"快速 みえ 12号","to":"jr-nagoya","trainNo":"2912D"},
+        {"dep":"12:42","type":"普通","to":"jr-iseshi","trainNo":"924C"},
+        {"dep":"13:07","type":"快速 みえ 14号","to":"jr-nagoya","trainNo":"2914D"},
+        {"dep":"13:23","type":"普通","to":"jr-iseshi","trainNo":"928C"},
+        {"dep":"14:05","type":"快速 みえ 16号","to":"jr-nagoya","trainNo":"2916D"},
+        {"dep":"14:29","type":"普通","to":"jr-iseshi","trainNo":"932C"},
+        {"dep":"14:59","type":"快速 みえ 18号","to":"jr-nagoya","trainNo":"2918D"},
+        {"dep":"15:33","type":"普通","to":"jr-kameyama","trainNo":"938C"},
+        {"dep":"15:54","type":"快速 みえ 20号","to":"jr-nagoya","trainNo":"2920D"},
+        {"dep":"16:24","type":"普通","to":"jr-matsusaka","trainNo":"940C"},
+        {"dep":"16:46","type":"快速 みえ 22号","to":"jr-nagoya","trainNo":"2922D"},
+        {"dep":"17:36","type":"快速 みえ 24号","to":"jr-nagoya","trainNo":"2924D"},
+        {"dep":"18:22","type":"普通","to":"jr-kameyama","trainNo":"946C"},
+        {"dep":"19:17","type":"快速 みえ 26号","to":"jr-nagoya","trainNo":"2926D"},
+        {"dep":"20:00","type":"普通","to":"jr-kameyama","trainNo":"952C"},
+        {"dep":"21:00","type":"普通","to":"jr-kameyama","trainNo":"954C"},
+        {"dep":"22:12","type":"普通","to":"jr-taki","trainNo":"956C"}
+      ]
+    }
+  },
+  "notes": "JR 參宮線鳥羽站。to 是終點站 ID（區間外的站用 jr-<羅馬字>，例如 jr-taki 多気、jr-nagoya 名古屋），trainNo 是 JR 的列車番號；各站之間的到發時刻見 jr-sangu.json。土曜和日祝的班次相同，holiday 是土休日。"
+}

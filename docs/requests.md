@@ -140,3 +140,16 @@
 - 內容：新增近鐵山田線 **小俣**（おばた，Obata）站。座標用 OSM：`[136.6851209, 34.5127509]`（https://www.openstreetmap.org/way/184365192 ，2026-10-18，伊勢市小俣町元町）；`operator: "kintetsu"`、`lines: ["山田線"]`、`passCovered: true`（近鐵 5 日券的範圍內，在明星～宮町之間，請 T0／T7 確認站號、有沒有站員、置物櫃、無障礙）。之後時刻表（T7a 的 `kintetsu-timetable.mjs`）要不要抓這一站，看行程會不會用到。
 - 原因：伊勢苺園（`ise-ichigoen`）在小俣站步行約 8 分（觀光協會），但 `stations.json` 沒有這一站，`nearestStation` 只能留 null，行程引擎算不了交通。加站後 T8 把 `ise-ichigoen` 的 `nearestStation` 改成 `{ "id": "<新 id>", "mode": "walk", "minutes": 8 }`（`extra.accessNote` 已有這句）。
 - 狀態：已處理（2026-10-18，盤點後）：新增 `obata`（小俣，M71）和 `miyamachi`（宮町，M72，紅葉軒、おく文 最近的站），座標 OSM、站構造照日文維基（都是無人站）；`areas.json` 的 ise.stations 加上兩站。`ise-ichigoen` 的 nearestStation 改成小俣（OSRM 14 分，觀光協會寫 8 分），紅葉軒、おく文 改成宮町（OSRM 13、11 分）
+
+## [T10] 為 data/timetables/bus|ferry|jr/*.json 建立正式 schema
+- 要改的檔案：`schema/`（新增 `timetable-route.schema.json`，巴士、船共用；JR 見下一條）、`scripts/validate.mjs` 的 ROUTES（T10 已暫時把 `timetables/(bus|ferry|jr)/` 指到 `sourced-document`，並在 commit 訊息說明）
+- 內容：格式由 `scripts/gtfs-timetable.mjs` 產生（實際內容見 `data/timetables/bus/sanco-canbus.json`）。
+  - 最外層：`id`（= 檔名）、`mode`（`bus` | `ferry`）、`operator`、`name`（common 的 name：`ja`、`zh`）、`validFrom`、`validTo`（feed 期間，日期）、`retrieved`、`feed`（`{ id, version, published, license, credit }`）、`dayTypeBasis`、`stops`、`trips`、`fares`、`notes`、`passes`（選填）、`sources`（必填）
+  - `dayTypeBasis`：`[[旅程日期, 日別, feed 裡用來推算的日期|null], ...]`；日別是 `weekday` | `saturday` | `holiday`（日曜和國定假日）
+  - `stops[]`：`{ id（GTFS 的 stop_id，字串）, name, coords: [經度, 緯度], platform?, near?: [{ id（資料點 ID）, meters（整數，直線距離）}] }`
+  - `trips`：`{ weekday: Trip[], saturday: Trip[], holiday: Trip[] }`；`Trip = { id, headsign, dir（0 | 1 | null）, stops: [[stop_id, 到 HH:MM|null, 發 HH:MM|null], ...], dates?: [日期] }`（`dates` 只在該日別只有部分日子行駛時出現）
+  - `fares`：`{ currency: "JPY", adult: { <stop_id>: { <stop_id>: 整數 } }, child: 字串|null, note }`
+  - `passes`：`{ <passes.json 的 pass id>: true | false | null }`
+  - 建議 validate 多檢查：`stops[].near[].id` 存在；`trips` 裡的 stop_id 都在 `stops`；`fares.adult` 的鍵都在 `stops`；檔名和 `id` 一致。
+- 原因：`scripts/next-bus.mjs`、T11 停留所面板、T14 行程引擎都靠這些欄位查下一班與票價。
+- 狀態：待處理

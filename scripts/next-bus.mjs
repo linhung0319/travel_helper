@@ -31,7 +31,10 @@ const docs = [];
 for (const mode of ['bus', 'ferry', 'jr']) {
   const dir = path.join(ROOT, 'data/timetables', mode);
   if (!fs.existsSync(dir)) continue;
-  for (const f of fs.readdirSync(dir).filter((f) => f.endsWith('.json'))) docs.push(JSON.parse(fs.readFileSync(path.join(dir, f), 'utf8')));
+  for (const f of fs.readdirSync(dir).filter((f) => f.endsWith('.json'))) {
+    const doc = JSON.parse(fs.readFileSync(path.join(dir, f), 'utf8'));
+    if (doc.stops && doc.trips) docs.push(doc); // jr/ 的各站時刻表（近鐵格式）不用
+  }
 }
 
 // 某個路線檔裡，符合 <A> 的停留所：ID → 直線距離（停留所名稱完全相同算 0）
@@ -60,10 +63,12 @@ for (const doc of docs) {
     const idx = trip.stops.map((_, i) => i);
     const ia = best(idx.filter((i) => A.has(trip.stops[i][0]) && trip.stops[i][2] && pad(trip.stops[i][2]) >= pad(time)), (i) => A.get(trip.stops[i][0]));
     if (ia < 0) continue;
-    const ib = best(idx.filter((i) => i > ia && B.has(trip.stops[i][0]) && trip.stops[i][1]), (i) => B.get(trip.stops[i][0]));
+    const ib = best(idx.filter((i) => i > ia && B.has(trip.stops[i][0]) && (trip.stops[i][1] ?? trip.stops[i][2])), (i) => B.get(trip.stops[i][0]));
     if (ib < 0) continue;
     const [aId, , dep] = trip.stops[ia];
-    const [bId, arr] = trip.stops[ib];
+    // 中間站只有發車時刻時（JR 的時刻表只寫発）用發車時刻當到站
+    const [bId, bArr, bDep] = trip.stops[ib];
+    const arr = bArr ?? bDep;
     results.push({
       route: `${doc.name.ja}（${doc.operator}）`,
       headsign: trip.headsign,
@@ -72,7 +77,7 @@ for (const doc of docs) {
       from: `${name(aId)}${A.get(aId) ? `（距 ${from} ${A.get(aId)} m）` : ''}`,
       to: `${name(bId)}${B.get(bId) ? `（距 ${to} ${B.get(bId)} m）` : ''}`,
       fare: doc.fares?.adult?.[aId]?.[bId] ?? null,
-      estimated: date > doc.validTo,
+      estimated: (() => { const b = doc.dayTypeBasis?.find((x) => x[0] === date); return b ? b[2] !== date : date > doc.validTo; })(),
     });
   }
 }
@@ -90,6 +95,6 @@ for (const r of shown.slice(0, count)) {
   console.log(
     `  ${r.dep} → ${r.arr}（${min(r.arr) - min(r.dep)} 分）${r.route} 往 ${r.headsign}：${r.from} → ${r.to}` +
       (r.fare != null ? `，大人 ${r.fare} 円` : '') +
-      (r.estimated ? ' ※feed 期間外，依同星期幾推算' : ''),
+      (r.estimated ? ' ※依同星期幾的其他日子推算（資料還沒涵蓋這天）' : ''),
   );
 }
