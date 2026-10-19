@@ -74,10 +74,10 @@
       "7283_1": {"7282_1":200,"7071_1":930,"7329_1":1000},
       "7071_1": {"7329_1":210}
     },
-    "child": null,
+    "child": "小學生（6～11 歲）是大人的半價，10 円未滿進位；1～5 歲由小學生以上同行時每人可免費帶 1 位",
     "note": "只列附近有車站、景點的停留所（和起訖站）之間的大人票價；兒童票見 notes"
   },
-  "notes": null,
+  "notes": "只在土日祝行駛（GTFS 也只有土曜、日祝班次；官網頁面是 2015 年的：土日祝與 8/13～15、12/30～1/4）。旅程中 2/6、2/7、2/11、2/13 有車。路線巴士不能預約，15 人要搭同一班時注意班次和座位（觀光季可能客滿）。三重交通 2026-09-10 公告 2026-12-14 起調整路線巴士票價（公告 PDF 沒能讀），這裡的票價是 GTFS（2026-10）的，旅程時可能已經調漲，出發前重跑本腳本。KINTETSU RAIL PASS 5day plus 官網寫「伊勢志摩地區的三重交通巴士」可以搭，沒有逐條列路線。伊勢鳥羽みちくさきっぷ 1DAY 大人 1,300／小孩 650 円、2DAYS 1,900／950 円（官網轉述，範圍見官網地圖）。",
   "sources": [
     {
       "type": "official",
@@ -90,6 +90,34 @@
       "url": "https://www.sanco.co.jp/",
       "retrieved": "2026-10-19",
       "note": "三重交通 官網"
+    },
+    {
+      "type": "official",
+      "url": "https://www.sanco.co.jp/shuttle/shuttle01-01/",
+      "retrieved": "2026-10-19",
+      "note": "小兒運賃：大人的半額，10 円未滿進位"
+    },
+    {
+      "type": "official",
+      "url": "https://www.sanco.co.jp/newsrelease/release_260910/",
+      "retrieved": "2026-10-19",
+      "note": "2026-09-10 公告：路線巴士運賃變更（內容在 PDF，沒能讀）"
+    },
+    {
+      "type": "official",
+      "url": "https://www.sanco.co.jp/shuttle/shuttle01-01/post-6",
+      "retrieved": "2026-10-19",
+      "note": "伊勢鳥羽みちくさきっぷ"
+    },
+    {
+      "type": "official",
+      "url": "https://www.kintetsu.co.jp/foreign/english/ticket/krp_5dayplus.html",
+      "retrieved": "2026-10-19",
+      "note": "5day plus：Mie Kotsu bus（Matsusaka/Ise/Toba/Shima area）"
     }
-  ]
+  ],
+  "passes": {
+    "kintetsu-rail-pass-5day": false,
+    "kintetsu-rail-pass-5day-plus": true
+  }
 }

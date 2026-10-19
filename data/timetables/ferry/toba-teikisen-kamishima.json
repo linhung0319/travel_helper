@@ -79,10 +79,10 @@
       "4_01": {"8_01":510},
       "7_01": {"2_01":510}
     },
-    "child": null,
+    "child": "小學生付小人運賃（金額在運賃表 PDF，沒讀到）；1 歲以上幼兒每位大人可免費帶 1 位",
     "note": "只列附近有車站、景點的停留所（和起訖站）之間的大人票價；兒童票見 notes"
   },
-  "notes": null,
+  "notes": "冬季（10/16～2 月底）佐田浜最後一班 17:03 開、神島最後一班 17:35 開（GTFS 已反映）。團體 15 人以上普通票 9 折。1 日自由乘船券 大人 1,480／小孩 740 円（只在佐田浜窗口賣、限當天）。行李：三邊和 200 cm、30 kg 以內 2 件免費。停航是即時資訊：出發當天看運航狀況（官網 5531.html 直接寫，或 LINE @tobacity）；停航基準是風速 16 m/s 以上或港外浪高 1.5 m 以上（見 toba spots 的港口資料），2 月常有北西季風，可能停航，停航頻率查無資料。全員上島要先確認回程末班船。KINTETSU RAIL PASS 官網的範圍沒有列船，視為不能用。",
   "sources": [
     {
       "type": "official",
@@ -95,6 +95,22 @@
       "url": "https://www.city.toba.mie.jp/kurashi/kotsu/kokyo_kotsu/5531.html",
       "retrieved": "2026-10-19",
       "note": "鳥羽市営定期船 官網"
+    },
+    {
+      "type": "official",
+      "url": "https://www.city.toba.mie.jp/soshiki/t_kanri/gyomu/doro_kotsu/kokyo_kotsu/3163.html",
+      "retrieved": "2026-10-19",
+      "note": "定期船運賃、團體折扣、1 日券"
+    },
+    {
+      "type": "official",
+      "url": "https://www.city.toba.mie.jp/soshiki/t_kanri/gyomu/doro_kotsu/kokyo_kotsu/5205.html",
+      "retrieved": "2026-10-19",
+      "note": "行李規定"
     }
-  ]
+  ],
+  "passes": {
+    "kintetsu-rail-pass-5day": false,
+    "kintetsu-rail-pass-5day-plus": false
+  }
 }

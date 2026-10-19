@@ -165,8 +165,26 @@ const sources = (extra = []) => [
 const fileFor = (name) => path.join(OUT, name);
 const keep = (name) => (fs.existsSync(fileFor(name)) ? JSON.parse(fs.readFileSync(fileFor(name), 'utf8')) : {});
 
+// 票價、注意事項（2026-10-19 查；ekitan 是第三方網站，JR 東海官方的票價沒查到。伊勢市～鳥羽的 JR 票價 ekitan 只顯示近鐵的，不明）
+const FARE_SRC = [
+  { type: 'other', url: 'https://ekitan.com/transit/fare/sf-3853/st-4604', retrieved: '2026-10-19', note: 'JR 伊勢市～二見浦 大人 210、小孩 100 円（非官方）' },
+  { type: 'other', url: 'https://ekitan.com/transit/fare/sf-4404/st-4604', retrieved: '2026-10-19', note: 'JR 二見浦～鳥羽 大人 210、小孩 100 円（非官方）' },
+];
+const FARES = {
+  currency: 'JPY',
+  adult: {
+    'jr-iseshi': { 'jr-futaminoura': 210 },
+    'jr-futaminoura': { 'jr-iseshi': 210, 'jr-toba': 210 },
+    'jr-toba': { 'jr-futaminoura': 210 },
+  },
+  child: '伊勢市～二見浦、二見浦～鳥羽 100 円（ekitan，非官方）；其他區間不明',
+  note: '只有 ekitan 查得到的區間；伊勢市～鳥羽的 JR 票價不明',
+};
+const NOTES =
+  'JR 不能用 KINTETSU RAIL PASS（近鐵券只含近鐵、伊賀鐵道；5day plus 另含巴士），車資另付。二見浦站是無人站，快速みえ全部停靠。' +
+  '鳥羽站的近鐵、JR 轉乘通道 2020-03-17 起關閉，轉乘要出站再進站（見 stations.json）。單線，五十鈴ケ丘等站會等交會，同一區間車程可能差幾分鐘。';
+
 // 路線格式
-const old = keep('jr-sangu.json');
 const route = {
   id: 'jr-sangu',
   mode: 'jr',
@@ -178,10 +196,10 @@ const route = {
   dayTypeBasis: basis,
   stops: STATIONS.map(([name, id]) => ({ id, name, coords: coordsOf(id), near: [{ id, meters: 0 }] })),
   trips: tripsBy,
-  fares: old.fares ?? { currency: 'JPY', adult: {}, child: null, note: null },
-  notes: old.notes ?? null,
-  passes: old.passes ?? { 'kintetsu-rail-pass-5day': false, 'kintetsu-rail-pass-5day-plus': false },
-  sources: sources((old.sources ?? []).filter((s) => !s.url.startsWith(BASE))),
+  fares: FARES,
+  notes: NOTES,
+  passes: { 'kintetsu-rail-pass-5day': false, 'kintetsu-rail-pass-5day-plus': false },
+  sources: sources(FARE_SRC),
 };
 
 function format(doc) {

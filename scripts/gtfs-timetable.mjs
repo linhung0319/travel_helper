@@ -22,13 +22,80 @@ const TRIP = { from: '2027-02-02', to: '2027-02-13', holidays: ['2027-02-11'] };
 // 船的範圍放大：離島的景點多半離港口 1 km 左右（間崎島約 700 m）
 const NEAR = { bus: { meters: 500, spots: 3 }, ferry: { meters: 1500, spots: 6 }, jr: { meters: 500, spots: 3 } };
 
+// 官網查到的事實（2026-10-19，T10 讀文；筆記在 data/timetables/README.md）：兒童票、5day plus、注意事項、來源。
+// 這些寫在這裡（不手改 JSON），重跑時才不會被蓋掉。
+const PASS = (plus) => ({ 'kintetsu-rail-pass-5day': false, 'kintetsu-rail-pass-5day-plus': plus });
+const SRC = (url, note) => ({ type: 'official', url, retrieved: '2026-10-19', note });
+const SANCO = {
+  operator: '三重交通',
+  page: 'https://www.sanco.co.jp/',
+  child: '小學生（6～11 歲）是大人的半價，10 円未滿進位；1～5 歲由小學生以上同行時每人可免費帶 1 位',
+  passes: PASS(true),
+  notes:
+    '路線巴士不能預約，15 人要搭同一班時注意班次和座位（觀光季可能客滿）。三重交通 2026-09-10 公告 2026-12-14 起調整路線巴士票價（公告 PDF 沒能讀），' +
+    '這裡的票價是 GTFS（2026-10）的，旅程時可能已經調漲，出發前重跑本腳本。KINTETSU RAIL PASS 5day plus 官網寫「伊勢志摩地區的三重交通巴士」可以搭，沒有逐條列路線。' +
+    '伊勢鳥羽みちくさきっぷ 1DAY 大人 1,300／小孩 650 円、2DAYS 1,900／950 円（官網轉述，範圍見官網地圖）。',
+  sources: [
+    SRC('https://www.sanco.co.jp/shuttle/shuttle01-01/', '小兒運賃：大人的半額，10 円未滿進位'),
+    SRC('https://www.sanco.co.jp/newsrelease/release_260910/', '2026-09-10 公告：路線巴士運賃變更（內容在 PDF，沒能讀）'),
+    SRC('https://www.sanco.co.jp/shuttle/shuttle01-01/post-6', '伊勢鳥羽みちくさきっぷ'),
+    SRC('https://www.kintetsu.co.jp/foreign/english/ticket/krp_5dayplus.html', '5day plus：Mie Kotsu bus（Matsusaka/Ise/Toba/Shima area）'),
+  ],
+};
 const FEEDS = {
-  'mie-kotsu/sancoise': { operator: '三重交通', page: 'https://www.sanco.co.jp/' },
-  'mie-kotsu/sancoshima': { operator: '三重交通', page: 'https://www.sanco.co.jp/' },
-  'tobacity/communitybus': { operator: '鳥羽市（かもめバス）', page: 'https://www.city.toba.mie.jp/kurashi/kotsu/kokyo_kotsu/1910.html' },
-  'tobacity/teikisen': { operator: '鳥羽市営定期船', page: 'https://www.city.toba.mie.jp/kurashi/kotsu/kokyo_kotsu/5531.html' },
-  'shimacity/agowanteikisen': { operator: '志摩マリンレジャー（あご湾定期船）', page: 'https://shima-marineleisure.com/ago' },
-  'shimacity/anori': { operator: '志摩市', page: 'https://www.city.shima.mie.jp/kurashi_tetsuzuki/kokyokotu/index.html' },
+  'mie-kotsu/sancoise': SANCO,
+  'mie-kotsu/sancoshima': SANCO,
+  'tobacity/communitybus': {
+    operator: '鳥羽市（かもめバス）',
+    page: 'https://www.city.toba.mie.jp/kurashi/kotsu/kokyo_kotsu/1910.html',
+    child: '小學生是運賃表的半額（零頭怎麼算官網沒寫）；乳兒、幼兒免費',
+    passes: PASS(true),
+    notes: '1 日周遊券 大人 1,000／小孩 500 円、2 日 1,500／800 円（鳥羽バスセンター窗口或「ぶらりすと」）。KINTETSU RAIL PASS 5day plus 官網明寫可以搭鳥羽かもめバス。',
+    sources: [
+      SRC('https://www.city.toba.mie.jp/soshiki/t_kanri/gyomu/doro_kotsu/kokyo_kotsu/1511.html', 'かもめバス運賃'),
+      SRC('https://www.city.toba.mie.jp/soshiki/t_kanri/gyomu/doro_kotsu/kokyo_kotsu/2514.html', '周遊券'),
+      SRC('https://www.kintetsu.co.jp/foreign/english/ticket/krp_5dayplus.html', "5day plus：Toba 'Kamome' Bus"),
+    ],
+  },
+  'tobacity/teikisen': {
+    operator: '鳥羽市営定期船',
+    page: 'https://www.city.toba.mie.jp/kurashi/kotsu/kokyo_kotsu/5531.html',
+    child: '小學生付小人運賃（金額在運賃表 PDF，沒讀到）；1 歲以上幼兒每位大人可免費帶 1 位',
+    passes: PASS(false),
+    notes:
+      '團體 15 人以上普通票 9 折。1 日自由乘船券 大人 1,480／小孩 740 円（只在佐田浜窗口賣、限當天）。行李：三邊和 200 cm、30 kg 以內 2 件免費。' +
+      '停航是即時資訊：出發當天看運航狀況（官網 5531.html 直接寫，或 LINE @tobacity）；停航基準是風速 16 m/s 以上或港外浪高 1.5 m 以上（見 toba spots 的港口資料），' +
+      '2 月常有北西季風，可能停航，停航頻率查無資料。全員上島要先確認回程末班船。KINTETSU RAIL PASS 官網的範圍沒有列船，視為不能用。',
+    sources: [
+      SRC('https://www.city.toba.mie.jp/soshiki/t_kanri/gyomu/doro_kotsu/kokyo_kotsu/3163.html', '定期船運賃、團體折扣、1 日券'),
+      SRC('https://www.city.toba.mie.jp/soshiki/t_kanri/gyomu/doro_kotsu/kokyo_kotsu/5205.html', '行李規定'),
+    ],
+  },
+  'shimacity/agowanteikisen': {
+    operator: '志摩マリンレジャー（あご湾定期船）',
+    page: 'https://shima-marineleisure.com/ago',
+    child: '小學生是大人的半價：賢島～間崎、間崎～和具 200 円，賢島～和具 400 円；未上小學的幼兒每位大人可免費帶 1 位',
+    passes: PASS(false),
+    notes:
+      '12/25～1/6、3/20～4/5 停駛，2 月有開。標「※」的班次土日祝停駛，所以土日祝比平日少 2 班。15 人以上有團體折扣（價目 PDF 沒讀）。天候不佳可能臨時停駛，運航狀況看官網同一頁或打 0599-25-3147。' +
+      'KINTETSU RAIL PASS 官網的範圍沒有列船，視為不能用。',
+    sources: [],
+  },
+  'shimacity/anori': {
+    operator: '志摩市',
+    page: 'https://www.city.shima.mie.jp/kurashi_tetsuzuki/kokyokotu/index.html',
+    child: null,
+    passes: PASS(null),
+    notes: '志摩市營運、只在日祝行駛。為什麼有替代交通、和三重交通安乗線的關係，官網找不到說明。5day plus 能不能搭：不明（不是三重交通）。',
+    sources: [],
+  },
+};
+// 路線各自的注意事項（加在 feed 的 notes 前面）
+const ROUTE_NOTES = {
+  'sanco-canbus': '每天行駛（平日、土休日兩種時刻），約 1 小時 1 班；冬季有沒有減班官網沒寫。',
+  'sanco-sangu': '只在土日祝行駛（GTFS 也只有土曜、日祝班次；官網頁面是 2015 年的：土日祝與 8/13～15、12/30～1/4）。旅程中 2/6、2/7、2/11、2/13 有車。',
+  'sanco-anori': '平日班次較多，土日祝少；日祝另有志摩市的替代巴士（shima-anori-daitai）。',
+  'toba-teikisen-kamishima': '冬季（10/16～2 月底）佐田浜最後一班 17:03 開、神島最後一班 17:35 開（GTFS 已反映）。',
 };
 
 // 要轉的路線：景點要搭巴士或船的（T10 從 spots.json 的 access、nearestStation 和停留所距離挑出來，理由寫在 data/timetables/README.md）
@@ -241,16 +308,11 @@ for (const spec of ROUTES) {
   if (!feeds.has(spec.feed)) feeds.set(spec.feed, await getFeed(spec.feed));
   const doc = convert(spec, feeds.get(spec.feed));
   const outFile = path.join(ROOT, 'data/timetables', spec.mode, `${spec.id}.json`);
-  // 人工補的欄位（票價的兒童票、notes、其他來源）保留
-  if (fs.existsSync(outFile)) {
-    const old = JSON.parse(fs.readFileSync(outFile, 'utf8'));
-    doc.fares.child = old.fares?.child ?? null;
-    doc.fares.note = old.fares?.note ?? doc.fares.note;
-    doc.notes = old.notes ?? null;
-    if (old.passes) doc.passes = old.passes;
-    const extra = (old.sources ?? []).filter((s) => !doc.sources.some((n) => n.url === s.url));
-    doc.sources.push(...extra);
-  }
+  const conf = FEEDS[spec.feed];
+  doc.fares.child = conf.child;
+  doc.notes = [ROUTE_NOTES[spec.id], conf.notes].filter(Boolean).join('') || null;
+  doc.passes = conf.passes;
+  doc.sources.push(...conf.sources);
   fs.mkdirSync(path.dirname(outFile), { recursive: true });
   fs.writeFileSync(outFile, format(doc));
   const n = (k) => doc.trips[k].length;

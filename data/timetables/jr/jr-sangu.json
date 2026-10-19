@@ -184,11 +184,22 @@
   },
   "fares": {
     "currency": "JPY",
-    "adult": {},
-    "child": null,
-    "note": null
+    "adult": {
+      "jr-iseshi": {
+        "jr-futaminoura": 210
+      },
+      "jr-futaminoura": {
+        "jr-iseshi": 210,
+        "jr-toba": 210
+      },
+      "jr-toba": {
+        "jr-futaminoura": 210
+      }
+    },
+    "child": "伊勢市～二見浦、二見浦～鳥羽 100 円（ekitan，非官方）；其他區間不明",
+    "note": "只有 ekitan 查得到的區間；伊勢市～鳥羽的 JR 票價不明"
   },
-  "notes": null,
+  "notes": "JR 不能用 KINTETSU RAIL PASS（近鐵券只含近鐵、伊賀鐵道；5day plus 另含巴士），車資另付。二見浦站是無人站，快速みえ全部停靠。鳥羽站的近鐵、JR 轉乘通道 2020-03-17 起關閉，轉乘要出站再進站（見 stations.json）。單線，五十鈴ケ丘等站會等交會，同一區間車程可能差幾分鐘。",
   "passes": {
     "kintetsu-rail-pass-5day": false,
     "kintetsu-rail-pass-5day-plus": false
@@ -205,6 +216,18 @@
       "url": "https://timetable.jr-odekake.net/line-timetable/2322",
       "retrieved": "2026-10-19",
       "note": "同上 上り"
+    },
+    {
+      "type": "other",
+      "url": "https://ekitan.com/transit/fare/sf-3853/st-4604",
+      "retrieved": "2026-10-19",
+      "note": "JR 伊勢市～二見浦 大人 210、小孩 100 円（非官方）"
+    },
+    {
+      "type": "other",
+      "url": "https://ekitan.com/transit/fare/sf-4404/st-4604",
+      "retrieved": "2026-10-19",
+      "note": "JR 二見浦～鳥羽 大人 210、小孩 100 円（非官方）"
     }
   ]
 }

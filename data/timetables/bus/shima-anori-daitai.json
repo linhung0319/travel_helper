@@ -82,7 +82,7 @@
     "child": null,
     "note": "只列附近有車站、景點的停留所（和起訖站）之間的大人票價；兒童票見 notes"
   },
-  "notes": null,
+  "notes": "志摩市營運、只在日祝行駛。為什麼有替代交通、和三重交通安乗線的關係，官網找不到說明。5day plus 能不能搭：不明（不是三重交通）。",
   "sources": [
     {
       "type": "official",
@@ -96,5 +96,9 @@
       "retrieved": "2026-10-19",
       "note": "志摩市 官網"
     }
-  ]
+  ],
+  "passes": {
+    "kintetsu-rail-pass-5day": false,
+    "kintetsu-rail-pass-5day-plus": null
+  }
 }

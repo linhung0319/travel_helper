@@ -136,10 +136,10 @@
       "12_01": {"1_01":300,"8_01":300,"9_01":200,"11_09":200},
       "15_01": {"1_01":300,"8_01":300,"9_01":200,"11_09":200,"14_01":200,"13_01":200,"12_01":200}
     },
-    "child": null,
+    "child": "小學生是運賃表的半額（零頭怎麼算官網沒寫）；乳兒、幼兒免費",
     "note": "只列附近有車站、景點的停留所（和起訖站）之間的大人票價；兒童票見 notes"
   },
-  "notes": null,
+  "notes": "1 日周遊券 大人 1,000／小孩 500 円、2 日 1,500／800 円（鳥羽バスセンター窗口或「ぶらりすと」）。KINTETSU RAIL PASS 5day plus 官網明寫可以搭鳥羽かもめバス。",
   "sources": [
     {
       "type": "official",
@@ -152,6 +152,28 @@
       "url": "https://www.city.toba.mie.jp/kurashi/kotsu/kokyo_kotsu/1910.html",
       "retrieved": "2026-10-19",
       "note": "鳥羽市（かもめバス） 官網"
+    },
+    {
+      "type": "official",
+      "url": "https://www.city.toba.mie.jp/soshiki/t_kanri/gyomu/doro_kotsu/kokyo_kotsu/1511.html",
+      "retrieved": "2026-10-19",
+      "note": "かもめバス運賃"
+    },
+    {
+      "type": "official",
+      "url": "https://www.city.toba.mie.jp/soshiki/t_kanri/gyomu/doro_kotsu/kokyo_kotsu/2514.html",
+      "retrieved": "2026-10-19",
+      "note": "周遊券"
+    },
+    {
+      "type": "official",
+      "url": "https://www.kintetsu.co.jp/foreign/english/ticket/krp_5dayplus.html",
+      "retrieved": "2026-10-19",
+      "note": "5day plus：Toba 'Kamome' Bus"
     }
-  ]
+  ],
+  "passes": {
+    "kintetsu-rail-pass-5day": false,
+    "kintetsu-rail-pass-5day-plus": true
+  }
 }
