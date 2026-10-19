@@ -61,7 +61,8 @@ if (!area) {
 const read = (p) => JSON.parse(fs.readFileSync(path.join(ROOT, p), 'utf8').replace(/^﻿/, ''));
 const restaurantsPath = `data/areas/${area}/restaurants.json`;
 const restaurants = read(restaurantsPath);
-const spots = read(`data/areas/${area}/spots.json`);
+// kix（關西機場周邊）不蒐集景點，沒有 spots.json（T19）
+const spots = fs.existsSync(path.join(ROOT, `data/areas/${area}/spots.json`)) ? read(`data/areas/${area}/spots.json`) : [];
 const lodging = read(`data/areas/${area}/lodging.json`);
 const needsCar = needsCarMap(read('data/areas.json'));
 const stations = read('data/stations.json').filter((s) => s.operator === 'kintetsu' || s.operator === 'jr');

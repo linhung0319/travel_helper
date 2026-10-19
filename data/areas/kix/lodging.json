@@ -82,7 +82,7 @@
     "checkIn": "15:00",
     "checkOut": "11:00",
     "rakutenHotelNo": 187,
-    "dinnerAccess": null,
+    "dinnerAccess": "walk",
     "group": {
       "totalRooms": 576,
       "roomTypes": [
@@ -203,7 +203,8 @@
           ]
         },
         "note": "15 人（全部以大人計）分 N 間同住的組合，有空房的列出；只代表查詢當天楽天上的庫存"
-      }
+      },
+      "dinnerAccessNote": "步行 20 分內的晚餐店 1 家：中華料理 桃李 6 分（選素泊、朝食付方案時；OSRM，scripts/lodging-dinner-access.mjs，2026-10-19）"
     },
     "summary": null,
     "assessment": null
@@ -291,7 +292,7 @@
     "checkIn": "15:00",
     "checkOut": "11:00",
     "rakutenHotelNo": 197,
-    "dinnerAccess": null,
+    "dinnerAccess": "walk",
     "group": {
       "totalRooms": 358,
       "roomTypes": [
@@ -419,7 +420,8 @@
           ]
         },
         "note": "15 人（全部以大人計）分 N 間同住的組合，有空房的列出；只代表查詢當天楽天上的庫存"
-      }
+      },
+      "dinnerAccessNote": "步行 20 分內的晚餐店 1 家：青庵 9 分（選素泊、朝食付方案時；OSRM，scripts/lodging-dinner-access.mjs，2026-10-19）"
     },
     "summary": null,
     "assessment": null
@@ -495,7 +497,7 @@
     "checkIn": "15:00",
     "checkOut": "11:00",
     "rakutenHotelNo": 4650,
-    "dinnerAccess": null,
+    "dinnerAccess": "walk",
     "group": {
       "totalRooms": 504,
       "roomTypes": [
@@ -615,7 +617,8 @@
           ]
         },
         "note": "15 人（全部以大人計）分 N 間同住的組合，有空房的列出；只代表查詢當天楽天上的庫存"
-      }
+      },
+      "dinnerAccessNote": "步行 20 分內的晚餐店 1 家：青庵 12 分（選素泊、朝食付方案時；OSRM，scripts/lodging-dinner-access.mjs，2026-10-19）"
     },
     "summary": null,
     "assessment": null
@@ -684,7 +687,7 @@
     "checkIn": "15:00",
     "checkOut": "11:00",
     "rakutenHotelNo": 187454,
-    "dinnerAccess": null,
+    "dinnerAccess": "walk",
     "group": {
       "totalRooms": 258,
       "roomTypes": [
@@ -833,7 +836,8 @@
           ]
         },
         "note": "15 人（全部以大人計）分 N 間同住的組合，有空房的列出；只代表查詢當天楽天上的庫存"
-      }
+      },
+      "dinnerAccessNote": "步行 20 分內的晚餐店 1 家：青庵 9 分（選素泊、朝食付方案時；OSRM，scripts/lodging-dinner-access.mjs，2026-10-19）"
     },
     "summary": null,
     "assessment": null
@@ -882,7 +886,7 @@
     "checkIn": "15:00",
     "checkOut": "11:00",
     "rakutenHotelNo": null,
-    "dinnerAccess": null,
+    "dinnerAccess": "walk",
     "group": {
       "totalRooms": 700,
       "roomTypes": [
@@ -963,7 +967,8 @@
       "stationAccess": "JR／南海りんくうタウン站5號出口步行約1分；難波搭南海特急ラピート約30分；關西空港站→りんくうタウン約5分（3）",
       "airportAccess": "2/13 搭9:00或10:00班巴士約10分到T1（班次對應為推算）；備案計程車約10分（2,3）",
       "dining": "3間餐廳；21F OMOダイニング夕食自助式，2026/10/5～12/3暫改18:00～20:00（最後點餐19:45）部分菜單；能否接15人、早餐時間未載（1）",
-      "nearbyDinner": null
+      "nearbyDinner": null,
+      "dinnerAccessNote": "步行 20 分內的晚餐店 1 家：青庵 12 分（選素泊、朝食付方案時；OSRM，scripts/lodging-dinner-access.mjs，2026-10-19）"
     },
     "summary": null,
     "assessment": null
@@ -1039,7 +1044,7 @@
     "checkIn": "15:00",
     "checkOut": "11:00",
     "rakutenHotelNo": 173021,
-    "dinnerAccess": null,
+    "dinnerAccess": "walk",
     "group": {
       "totalRooms": 98,
       "roomTypes": [
@@ -1142,7 +1147,8 @@
           ]
         },
         "note": "15 人（全部以大人計）分 N 間同住的組合，有空房的列出；只代表查詢當天楽天上的庫存"
-      }
+      },
+      "dinnerAccessNote": "步行 20 分內的晚餐店 1 家：青庵 4 分（選素泊、朝食付方案時；OSRM，scripts/lodging-dinner-access.mjs，2026-10-19）"
     },
     "summary": null,
     "assessment": null
@@ -1230,7 +1236,7 @@
     "checkIn": "16:00",
     "checkOut": "10:00",
     "rakutenHotelNo": 222,
-    "dinnerAccess": null,
+    "dinnerAccess": "walk",
     "group": {
       "totalRooms": 63,
       "roomTypes": [
@@ -1360,7 +1366,8 @@
           ]
         },
         "note": "15 人（全部以大人計）分 N 間同住的組合，有空房的列出；只代表查詢當天楽天上的庫存"
-      }
+      },
+      "dinnerAccessNote": "步行 20 分內的晚餐店 3 家：地魚 寿司 逸品 おどろき 15 分、四川料理 蘭梅 16 分、ラ・トランピスタ 18 分（選素泊、朝食付方案時；OSRM，scripts/lodging-dinner-access.mjs，2026-10-19）"
     },
     "summary": null,
     "assessment": null
@@ -1436,7 +1443,7 @@
     "checkIn": "14:00",
     "checkOut": "11:00",
     "rakutenHotelNo": 87,
-    "dinnerAccess": null,
+    "dinnerAccess": "walk",
     "group": {
       "totalRooms": 186,
       "roomTypes": [
@@ -1560,7 +1567,8 @@
           ]
         },
         "note": "15 人（全部以大人計）分 N 間同住的組合，有空房的列出；只代表查詢當天楽天上的庫存"
-      }
+      },
+      "dinnerAccessNote": "步行 20 分內的晚餐店 3 家：地魚 寿司 逸品 おどろき 7 分、四川料理 蘭梅 7 分、ラ・トランピスタ 9 分（選素泊、朝食付方案時；OSRM，scripts/lodging-dinner-access.mjs，2026-10-19）"
     },
     "summary": null,
     "assessment": null
@@ -1636,7 +1644,7 @@
     "checkIn": "15:00",
     "checkOut": "10:00",
     "rakutenHotelNo": 160665,
-    "dinnerAccess": null,
+    "dinnerAccess": "car",
     "group": {
       "totalRooms": 125,
       "roomTypes": [
@@ -1787,7 +1795,8 @@
           ]
         },
         "note": "15 人（全部以大人計）分 N 間同住的組合，有空房的列出；只代表查詢當天楽天上的庫存"
-      }
+      },
+      "dinnerAccessNote": "步行 20 分內沒有晚餐店（直線 1.6 km 內沒有），要搭車（scripts/lodging-dinner-access.mjs，2026-10-19）"
     },
     "summary": null,
     "assessment": null
@@ -1856,7 +1865,7 @@
     "checkIn": "14:00",
     "checkOut": "11:00",
     "rakutenHotelNo": 183997,
-    "dinnerAccess": null,
+    "dinnerAccess": "walk",
     "group": {
       "totalRooms": 222,
       "roomTypes": [
@@ -1998,7 +2007,8 @@
           ]
         },
         "note": "15 人（全部以大人計）分 N 間同住的組合，有空房的列出；只代表查詢當天楽天上的庫存"
-      }
+      },
+      "dinnerAccessNote": "步行 20 分內的晚餐店 3 家：地魚 寿司 逸品 おどろき 4 分、四川料理 蘭梅 12 分、ラ・トランピスタ 15 分（選素泊、朝食付方案時；OSRM，scripts/lodging-dinner-access.mjs，2026-10-19）"
     },
     "summary": null,
     "assessment": null
