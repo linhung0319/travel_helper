@@ -25,7 +25,9 @@ travel_helper/
 │  │  └─ restaurants.json    餐廳
 │  ├─ timetables/
 │  │  ├─ kintetsu/<station-id>.json
-│  │  └─ bus/<route-id>.json
+│  │  ├─ bus/<route-id>.json
+│  │  ├─ jr/<station-id>.json
+│  │  └─ ferry/<route-id>.json
 │  ├─ raw/<area-id>/         研究筆記（怎麼存見 §4「研究筆記怎麼存」）
 │  │  ├─ README.md           區域的現況、決定、給後續的建議（開工先讀這個）
 │  │  ├─ candidates/         候選清單 JSON（含沒納入、被排除的）
@@ -76,7 +78,7 @@ travel_helper/
 | `data/areas.json` 裡**自己區域的 `regions`** | 負責該區的任務（T7b～T7g、T8a、T9a、T19）；其他欄位仍然只有 T0、T7 |
 | `data/timetables/kintetsu/`、`data/passes.json` | T1 |
 | `data/access/`、`data/raw/access/` | T1b（機場往返交通） |
-| `data/timetables/bus/` | T10（`passes.json` 的巴士部分也由 T10 補充） |
+| `data/timetables/bus/`、`jr/`、`ferry/` | T10（`passes.json` 的巴士部分也由 T10 補充） |
 | `data/areas/<area>/`、`data/raw/<area>/` | 負責該區的任務（鳥羽 T2～T4c、T7b～T7h；伊勢 T8a～T8f；志摩 T9a～T9f；關西機場周邊 T19）。例外：T7i 改鳥羽、伊勢、二見 `lodging.json` 的 `ratings`、`sources`（不和 T8e 同時做） |
 | `docs/CONVENTIONS.md` 的「口コミ、Google 評論」一節 | T8e 補「還沒確認的」實測結果和選擇器的修正；其他部分照舊由 👤 討論後修改 |
 | `data/cache/` | 任何任務都可以新增，不可以刪除別人的檔案 |
