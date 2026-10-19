@@ -274,7 +274,8 @@
       "cons": [
         "15 人組合一泊二食每人約 44,605 円（2/2），志摩最貴的一群",
         "和食浜木綿限小學生以上；晚餐有 smart casual 服裝規定",
-        "大浴場只給ベイスイート住客；電梯沒有來源"
+        "大浴場只給ベイスイート住客；電梯沒有來源",
+        "口コミ：浴室是ユニットバス；晚餐「無難」、人手不足（2025/11，1 則）"
       ],
       "basedOn": [
         "https://www.miyakohotels.ne.jp/shima/",
@@ -286,7 +287,7 @@
         "https://travel.rakuten.co.jp/HOTEL/1150/1150.html",
         "https://travel.rakuten.co.jp/HOTEL/1150/1150_std.html"
       ],
-      "generated": "2026-10-19"
+      "generated": "2026-10-20"
     },
     "assessment": {
       "rubric": "lodging-v1",
@@ -305,7 +306,7 @@
         "accessEase": "賢島站步行 5 分、定時免費接駁 2 分；2/2 第一晚：賢島發 18:50 末班接得上（車的定員沒寫）"
       },
       "confidence": "medium",
-      "assessed": "2026-10-19"
+      "assessed": "2026-10-20"
     }
   },
   {
@@ -7812,11 +7813,11 @@
       "note": null
     },
     "accessibility": {
-      "elevator": null,
+      "elevator": true,
       "beds": "シーリー社製ベッド（未註明房型）；ツイン／キング房型；FUTONスイート（名稱含 FUTON，是否和室未寫）（2）",
       "stairs": null,
       "kids": "楽天訂房表單有小学生高学年／低学年、幼児四種（食事・布団付／食事のみ／布団のみ／不要）區分，價格未寫（7）；兩間餐廳「ご利用は小学生以上」（4、5、6）",
-      "note": "楽天設備欄：車椅子可入、車椅子貸出、バリアフリー厠所、バリアフリー客室（詳細需向飯店確認）（6）"
+      "note": "楽天設備欄：車椅子可入、車椅子貸出、バリアフリー厠所、バリアフリー客室（詳細需向飯店確認）（6）；BAILA 宿泊記（2026/07）寫「部屋までのエレベータ」（T9g 深入調查）"
     },
     "reservation": {
       "methods": [
@@ -7885,6 +7886,18 @@
         "url": "https://www.jalan.net/yad338802/",
         "retrieved": "2026-10-18",
         "note": "じゃらん クチコミ総合、評論數（scripts/jalan.mjs）"
+      },
+      {
+        "type": "blog-ja",
+        "url": "https://baila.hpplus.jp/blogs/naganuma_yui/81050",
+        "retrieved": "2026-10-20",
+        "note": "BAILA ブロガー宿泊記（2026/07）：到客房的電梯、ラウンジ、賢島駅接送（T9g 深入調查）"
+      },
+      {
+        "type": "other",
+        "url": "https://4travel.jp/dm_hotel-10220130",
+        "retrieved": "2026-10-20",
+        "note": "4travel 口コミ（2023/07～2026/03）：到ザ クラシック 的距離、清潔、晚餐的評價（T9g 深入調查）"
       }
     ],
     "verified": false,
@@ -7924,7 +7937,8 @@
       "cons": [
         "兩間餐廳都限小學生以上，6 歲還沒上小學的孩子不能進餐廳",
         "每間最多 2～3 人，15 人要 6～8 間；素泊每人約 28,809 円起，價位最高",
-        "楽天 2/2、2/3 15 人組合沒有空房（2027-02 方案可能還沒開）"
+        "楽天 2/2、2/3 15 人組合沒有空房（2027-02 方案可能還沒開）",
+        "到 ザ クラシック（餐廳、大浴場）要走一段，冷天雨天辛苦（口コミ 2024/07）；陽台清潔、晚餐食材降級的意見各 1 則"
       ],
       "basedOn": [
         "https://www.miyakohotels.ne.jp/shima/",
@@ -7934,7 +7948,9 @@
         "https://www.miyakohotels.ne.jp/shima/restaurant/hamayu/",
         "https://travel.rakuten.co.jp/HOTEL/105964/105964.html",
         "https://travel.rakuten.co.jp/HOTEL/105964/105964_std.html",
-        "https://www.jalan.net/yad338802/"
+        "https://www.jalan.net/yad338802/",
+        "https://baila.hpplus.jp/blogs/naganuma_yui/81050",
+        "https://4travel.jp/dm_hotel-10220130"
       ],
       "generated": "2026-10-20"
     },
@@ -7944,14 +7960,14 @@
         "recommend": 5,
         "meals": 5,
         "groupFit": 4,
-        "elderFit": 3,
+        "elderFit": 4,
         "accessEase": 4
       },
       "rationale": {
         "recommend": "楽天 4.88（301 則）、じゃらん 4.9、Google 4.6（1,683 則）→ 5",
         "meals": "楽天餐 4.89 → 5；餐廳限小學生以上寫在 cons（kids 另看）",
         "groupFit": "50 室、每間 2～3 人；宴會頁沒讀、沒有住宿團體方案，15 人能在同一處訂到 → 4（T8g 規則：groupFit 4 不要求宴會場；一起吃晚餐看 meals）",
-        "elderFit": "全部是床、有無障礙客房；電梯沒有來源",
+        "elderFit": "全部是床、有無障礙客房；宿泊記（2026/07）寫有到客房的電梯 → 有電梯有床；但餐廳、大浴場在另一棟 ザ クラシック，口コミ（2024/07）說冷天雨天走過去辛苦 → 4",
         "accessEase": "賢島站個別接送 3 分、要前一天告知到站時間（徒歩 10 分）；2/2 第一晚：可以照到站時間接，送迎幾點結束沒寫"
       },
       "confidence": "medium",
@@ -10018,12 +10034,13 @@
       "pros": [
         "楽天 4.50（484 則）、じゃらん 4.6、Google 4.2（976 則）",
         "房型 4～6 人；ボールルーム可辦團體餐會；有ユニバーサル房",
-        "晚餐 L.O. 20:30，晚到也能吃；2/2、2/3 楽天有空房"
+        "晚餐 L.O. 20:30，晚到也能吃；2/2、2/3 楽天有空房",
+        "改裝後既存館和室 31 室改成有床的房間、Villa 有 2 臥室房型 2 棟、新設キッズスペース（トラベル Watch 2025/11 改裝發表）"
       ],
       "cons": [
         "一泊二食每人約 33,671 円（2/2）",
         "賢島站接駁要 2 小時前預約、20 分；最晚入住 19:00",
-        "園區大、Villa 靠高爾夫球車；電梯、床沒有來源"
+        "園區大、Villa 靠高爾夫球車；電梯沒有來源"
       ],
       "basedOn": [
         "https://www.nemuresort.com/",
@@ -10035,7 +10052,7 @@
         "https://www.nemuresort.com/restaurant/",
         "https://www.nemuresort.com/nemustyle/babykids/"
       ],
-      "generated": "2026-10-19"
+      "generated": "2026-10-20"
     },
     "assessment": {
       "rubric": "lodging-v1",
@@ -10050,11 +10067,11 @@
         "recommend": "主要訂房網楽天 4.50（484 則）、Google 4.2 → 依區調整後的 4；不到 4.6 → 不到 5",
         "meals": "楽天餐 4.47 → 4",
         "groupFit": "86 室、ボールルーム（分割最多 200 名）可團體餐會，沒有住宿團體方案 → 4",
-        "elderFit": "有ユニバーサル房；園區大、電梯沒有來源 → 3",
+        "elderFit": "有ユニバーサル房、改裝後和室 31 室改成有床（トラベル Watch 2025/11）；園區大、電梯沒有來源 → 3",
         "accessEase": "賢島站免費接駁約 20 分、預定時刻 2 小時前預約 → 3；2/2 第一晚：可以預約接駁，最晚入住 19:00 很緊"
       },
       "confidence": "medium",
-      "assessed": "2026-10-19"
+      "assessed": "2026-10-20"
     }
   },
   {

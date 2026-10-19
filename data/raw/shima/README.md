@@ -292,3 +292,12 @@
 | `shima-daio-gallery` | 大王美術ギャラリー | B | kidsFit null→2 | 同上（純看畫的展示） |
 | `shima-sushi-benkei`、`shima-pearl-miki` | すし べんけい、パール美樹 | B | winterFit 2→4 | 室內、沒有冬季休業的跡象 |
 | `shima-satoumian`、`shima-green-adventure` | さとうみ庵、グリーンアドベンチャー | B | winterFit 2→3 | 沒有冬季休業的跡象（沒有暖氣的小屋、戶外） |
+
+- **深入調查**（25 筆，平衡版名單：住宿 5、景點 1、餐廳 19；換掉整段旅程休業的 ラ・メール ザ クラシック 和外帶咖啡 ミラドール，補 groupFit 5 的 福寿荘、火場 広の浜）：WebSearch 75 次，有內容的部落格・口コミ站只有 8 筆共 10 篇（日文），17 筆 0 篇，**中文心得 0 篇**。志摩的部落格心得幾乎都在 5 年以前（はいふう、まるせい、宮本、マレナ），第二輪也不要期待太多；電話確認（`questions.md`）比較實際。
+- **深入調查改的**：只有 ベイスイート 的 elderFit（電梯有了宿泊記的來源）；クラシック、NEMU、ろっぽん木、東山物産、まるせい 只改 summary、理由、conflicts。
+
+深入調查改的：
+
+| id | 名稱 | tier | 變更 | 理由 |
+|---|---|---|---|---|
+| `shima-kanko-bay-suites` | 志摩観光ホテル ザ ベイスイート | S | elderFit 3→4（`accessibility.elevator` null→true） | BAILA 宿泊記（2026/07）寫有到客房的電梯；餐廳、大浴場在另一棟，冷天雨天要走（口コミ 2024/07）→ 不是 5 |
