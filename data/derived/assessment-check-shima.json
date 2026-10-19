@@ -1,6 +1,6 @@
 {
   "area": "shima",
-  "generated": "2026-10-19",
+  "generated": "2026-10-20",
   "script": "scripts/assessment-check.mjs",
   "rules": {
     "restaurant": {
@@ -96,11 +96,11 @@
       "total": 78,
       "assessed": 78,
       "notAssessed": [],
-      "flagged": 2,
+      "flagged": 5,
       "byStar": {
-        "2": 22,
-        "3": 42,
-        "4": 14
+        "2": 27,
+        "3": 40,
+        "4": 11
       }
     }
   },
@@ -116,6 +116,42 @@
       "rule": "high-star-low-rating",
       "message": "4 星但食べログ或 Google 偏低（門檻 3.3／3.8）",
       "rationale": "料理旅館的非住客用餐（F③）：住宿本體楽天餐 4.55（1,126 則）→ 4（食べログ 3.21 只有 33 則，不給 5）"
+    },
+    {
+      "type": "restaurant",
+      "id": "shima-daikazoku",
+      "name": "海の食堂 大家族",
+      "recommend": 2,
+      "tier": "B",
+      "confidence": "medium",
+      "ratings": "食べログ 3.43（103 則）、Google 4.4（201 則）",
+      "rule": "low-star-high-rating",
+      "message": "2 星但食べログ 3.5 以上或 Google 4.4 以上（100 則以上）",
+      "rationale": "食べログ 3.43 不到 3.45；Google 4.4 但 201 則不到 300 → 3；Google 低分順：份量或品質不值（牡蠣小、刺身不新鮮）多則（約 2024～2026）→ 負評往下調一級 → 2（T7j 規則）"
+    },
+    {
+      "type": "restaurant",
+      "id": "shima-mabushi-ichiya",
+      "name": "まぶしのいちや",
+      "recommend": 2,
+      "tier": "B",
+      "confidence": "medium",
+      "ratings": "食べログ 3.18（38 則）、Google 4.4（174 則）",
+      "rule": "low-star-high-rating",
+      "message": "2 星但食べログ 3.5 以上或 Google 4.4 以上（100 則以上）",
+      "rationale": "食べログ 3.18（38 則）、Google 4.4（174 則）→ 評論數上限 3；女店員態度差 多則（約 2025～2026，近 2 週也有）→ 負評往下調一級 → 2（T7j 規則）"
+    },
+    {
+      "type": "restaurant",
+      "id": "shima-nakaroku",
+      "name": "中六",
+      "recommend": 2,
+      "tier": "B",
+      "confidence": "medium",
+      "ratings": "食べログ 3.39（125 則）、Google 4.4（376 則）",
+      "rule": "low-star-high-rating",
+      "message": "2 星但食べログ 3.5 以上或 Google 4.4 以上（100 則以上）",
+      "rationale": "食べログ 3.39 不到 3.45；第 2 條的介紹只有 るるぶ&more 1 種（觀光協會「食べる」是會員名錄、不算介紹，T8g 規則）→ 3；Google 低分順：鰻魚口感像橡膠 多則（約 2024～2026）→ 負評往下調一級 → 2（T7j 規則）"
     },
     {
       "type": "restaurant",
