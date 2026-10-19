@@ -32,8 +32,8 @@
   ],
   "stops": [
     {"id":"10_01","name":"和具港","coords":[136.81191265583,34.2632240162361]},
-    {"id":"20_01","name":"間崎島","coords":[136.809788346291,34.2871835398716]},
-    {"id":"30_01","name":"賢島港","coords":[136.818875670433,34.3073919995513],"near":[{"id":"shima-kashikojima-yuransen","meters":14},{"id":"shima-espana-cruise","meters":23},{"id":"shima-entrada","meters":28}]}
+    {"id":"20_01","name":"間崎島","coords":[136.809788346291,34.2871835398716],"near":[{"id":"shima-mazakijima","meters":690}]},
+    {"id":"30_01","name":"賢島港","coords":[136.818875670433,34.3073919995513],"near":[{"id":"shima-kashikojima-yuransen","meters":14},{"id":"shima-espana-cruise","meters":23},{"id":"shima-entrada","meters":28},{"id":"kashikojima","meters":135},{"id":"shima-samiere","meters":140},{"id":"shima-kaiyuen","meters":867},{"id":"shima-shimmei","meters":1390},{"id":"shima-chichukaimura","meters":1408}]}
   ],
   "trips": {
     "weekday": [
@@ -90,8 +90,9 @@
   "fares": {
     "currency": "JPY",
     "adult": {
-      "10_01": {"30_01":800},
-      "30_01": {"10_01":800}
+      "10_01": {"20_01":400,"30_01":800},
+      "20_01": {"10_01":400,"30_01":400},
+      "30_01": {"10_01":800,"20_01":400}
     },
     "child": null,
     "note": "只列附近有車站、景點的停留所（和起訖站）之間的大人票價；兒童票見 notes"

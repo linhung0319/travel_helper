@@ -32,9 +32,9 @@
   ],
   "stops": [
     {"id":"7025_1","name":"宇治山田駅前","coords":[136.7136,34.487953],"near":[{"id":"ujiyamada","meters":44},{"id":"jr-iseshi","meters":495}]},
-    {"id":"7083_1","name":"吹上町","coords":[136.71147,34.489742],"near":[{"id":"jr-iseshi","meters":216},{"id":"iseshi","meters":270},{"id":"ujiyamada","meters":279}]},
-    {"id":"7023_10","name":"伊勢市駅前","coords":[136.70938,34.49108],"near":[{"id":"jr-iseshi","meters":42},{"id":"iseshi","meters":135},{"id":"ise-geku-sando","meters":166}]},
-    {"id":"7024_3","name":"外宮前","coords":[136.70723,34.487534],"near":[{"id":"ise-sengukan","meters":87},{"id":"ise-geku-sando","meters":279},{"id":"ise-geku","meters":324}]},
+    {"id":"7083_1","name":"吹上町","coords":[136.71147,34.489742],"near":[{"id":"jr-iseshi","meters":216},{"id":"iseshi","meters":270},{"id":"ujiyamada","meters":279},{"id":"ise-geku-sando","meters":293}]},
+    {"id":"7023_10","name":"伊勢市駅前","coords":[136.70938,34.49108],"near":[{"id":"jr-iseshi","meters":42},{"id":"iseshi","meters":135},{"id":"ise-geku-sando","meters":166},{"id":"ise-tsukiyomi-no-miya-geku","meters":379}]},
+    {"id":"7024_3","name":"外宮前","coords":[136.70723,34.487534],"near":[{"id":"ise-sengukan","meters":87},{"id":"ise-geku-sando","meters":279},{"id":"ise-geku","meters":324},{"id":"jr-iseshi","meters":466}]},
     {"id":"7314_2","name":"明倫小学校前","coords":[136.70952,34.483707],"near":[{"id":"ise-sengukan","meters":436}]},
     {"id":"7313_2","name":"庁舎前","coords":[136.70932,34.48133]},
     {"id":"7312_2","name":"勢田町","coords":[136.70949,34.477737]},
@@ -55,8 +55,8 @@
     {"id":"7312_1","name":"勢田町","coords":[136.70964,34.477737]},
     {"id":"7313_1","name":"庁舎前","coords":[136.70952,34.481136]},
     {"id":"7314_1","name":"明倫小学校前","coords":[136.70969,34.483746],"near":[{"id":"ise-sengukan","meters":442}]},
-    {"id":"7024_6","name":"外宮前","coords":[136.70724,34.487255],"near":[{"id":"ise-sengukan","meters":64},{"id":"ise-geku-sando","meters":308},{"id":"ise-geku","meters":325}]},
-    {"id":"7023_1","name":"伊勢市駅前","coords":[136.70836,34.4919],"near":[{"id":"jr-iseshi","meters":159},{"id":"iseshi","meters":183},{"id":"ise-geku-sando","meters":224}]}
+    {"id":"7024_6","name":"外宮前","coords":[136.70724,34.487255],"near":[{"id":"ise-sengukan","meters":64},{"id":"ise-geku-sando","meters":308},{"id":"ise-geku","meters":325},{"id":"jr-iseshi","meters":492}]},
+    {"id":"7023_1","name":"伊勢市駅前","coords":[136.70836,34.4919],"near":[{"id":"jr-iseshi","meters":159},{"id":"iseshi","meters":183},{"id":"ise-geku-sando","meters":224},{"id":"ise-tsukiyomi-no-miya-geku","meters":252}]}
   ],
   "trips": {
     "weekday": [

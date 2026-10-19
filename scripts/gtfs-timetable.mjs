@@ -18,8 +18,9 @@ import { tripDays } from './lib/trip-hours.mjs';
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const API = 'https://api.gtfs-data.jp/v2/organizations';
 const TRIP = { from: '2027-02-02', to: '2027-02-13', holidays: ['2027-02-11'] };
-const NEAR_METERS = 500; // 停留所附近的車站、景點（直線距離）
-const NEAR_MAX = 3;
+// 停留所附近的車站、景點（直線距離）：車站在範圍內都列，景點取最近的幾個。
+// 船的範圍放大：離島的景點多半離港口 1 km 左右（間崎島約 700 m）
+const NEAR = { bus: { meters: 500, spots: 3 }, ferry: { meters: 1500, spots: 6 }, jr: { meters: 500, spots: 3 } };
 
 const FEEDS = {
   'mie-kotsu/sancoise': { operator: '三重交通', page: 'https://www.sanco.co.jp/' },
@@ -104,12 +105,15 @@ for (const area of ['ise', 'futami', 'toba', 'shima']) {
   const f = path.join(ROOT, `data/areas/${area}/spots.json`);
   if (fs.existsSync(f)) points.push(...JSON.parse(fs.readFileSync(f, 'utf8')));
 }
-const nearOf = (coords) =>
-  points
-    .map((p) => ({ id: p.id, meters: Math.round(hav(coords, p.coords)) }))
-    .filter((x) => x.meters <= NEAR_METERS)
-    .sort((a, b) => a.meters - b.meters)
-    .slice(0, NEAR_MAX);
+const nearOf = (coords, mode) => {
+  const { meters, spots } = NEAR[mode];
+  const all = points
+    .map((p) => ({ id: p.id, station: p.type === 'station', meters: Math.round(hav(coords, p.coords)) }))
+    .filter((x) => x.meters <= meters)
+    .sort((a, b) => a.meters - b.meters);
+  const keep = new Set([...all.filter((x) => x.station), ...all.filter((x) => !x.station).slice(0, spots)]);
+  return all.filter((x) => keep.has(x)).map(({ id, meters: m }) => ({ id, meters: m }));
+};
 
 // ---------- 轉換一條路線 ----------
 function convert(spec, { feed, meta }) {
@@ -141,7 +145,7 @@ function convert(spec, { feed, meta }) {
     const coords = [Number(s.stop_lon), Number(s.stop_lat)];
     const stop = { id, name: s.stop_name, coords };
     if (s.platform_code) stop.platform = s.platform_code;
-    const near = nearOf(coords);
+    const near = nearOf(coords, spec.mode);
     if (near.length) stop.near = near;
     stops.push(stop);
   }
