@@ -12,6 +12,7 @@ travel_helper/
 ├─ docs/
 │  ├─ PLAN.md                任務與執行順序
 │  ├─ CONVENTIONS.md         本文件
+│  ├─ architecture.md        技術選型、資料庫、部署、登入（寫程式的任務先讀）
 │  └─ requests.md            修改共用檔案的請求（由 T0、T7 處理）
 ├─ schema/                   JSON Schema（T0 建立）
 ├─ data/
@@ -38,7 +39,9 @@ travel_helper/
 │  └─ cache/
 │     ├─ routes/             路線計算的快取
 │     └─ work/<任務>-<批>/    一批的工作檔（batch.json、Chrome 抽取結果、facts、judgement），不進 git（見 §4「工具」）
-├─ scripts/                  驗證、蒐集、地理計算的腳本
+├─ scripts/                  驗證、蒐集、地理計算、匯入的腳本
+├─ packages/engine/          行程引擎（T14；T22 建立）
+├─ worker/                   Cloudflare Worker：API、登入、匯入（T24、T25；T22 建立）
 └─ web/                      前端（Vite + React + TypeScript + MapLibre GL）
 ```
 
@@ -61,6 +64,8 @@ travel_helper/
 - 近鐵車站：站名的羅馬字（`toba`、`ugata`、`kashikojima`、`shima-isobe`）；JR 車站加 `jr-` 前綴（`jr-toba`、`jr-futaminoura`）。同一站的近鐵、JR 用 `transfers` 互相連結。
 - 區域 ID 是另一個命名空間，可以和車站 ID 相同（區域 `toba`、車站 `toba`）。
 - 其他資料點建議以區域開頭，例如 `toba-aquarium`。
+- **第一次正式匯入資料庫（T24、T25）之後，已經匯入的 ID 不改名**：ID 是連接預設資料、使用者的修改、行程、投票的關鍵。合併重複的點時保留一個 ID，被合併的記成轉址（`data/redirects.json`，格式由 T24 定）。見 [architecture.md](architecture.md) §3.5。
+- 網站上線後，既有區域的資料修正一律在網站上改（修改層）；Claude Code 只在新增區域或整批重查時改 `data/areas/`，再照 architecture.md §3.4 重新匯入。
 
 ### 營業時間（`hours`）
 - 整個欄位 `null`：不知道。某一天 `null`：那天不知道；`[]`：那天公休；可以有多個時段，例如 `[["11:00", "14:00"], ["17:00", "21:00"]]`。
@@ -87,6 +92,9 @@ travel_helper/
 | `docs/auto-run-log.md` | 只有指揮 session（PLAN §3「自動依序執行」） |
 | `docs/interaction-design.md` | 👤 討論後修改；T11、T12、T14、T15、T16 實作時可以補上細節，改到設計方向的先和 👤 確認 |
 | `web/` | T5、T11、T12、T15、T16（同時進行時，各自負責的目錄要先講好） |
+| `packages/engine/` | T14（T22 建立空殼） |
+| `worker/` | T24、T25、T16（T22 建立空殼；同時進行時，各自負責的檔案要先講好） |
+| `docs/architecture.md` | 👤 討論後修改；T22～T25 實作時可以補上細節（例如 T23 的實驗結果），改到設計方向的先和 👤 確認 |
 | `scripts/` | 新增檔案自由；修改別人的腳本要在 commit 訊息裡說明 |
 
 需要修改不屬於自己的檔案時，寫在 `docs/requests.md`，不要直接改。
