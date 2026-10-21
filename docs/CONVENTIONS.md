@@ -61,7 +61,7 @@ travel_helper/
 - schema 不允許沒定義的欄位：暫時放進 `extra`，需要正式欄位的話寫到 `docs/requests.md`。
 
 ### ID 規則
-- 近鐵車站：站名的羅馬字（`toba`、`ugata`、`kashikojima`、`shima-isobe`）；JR 車站加 `jr-` 前綴（`jr-toba`、`jr-futaminoura`）。同一站的近鐵、JR 用 `transfers` 互相連結。
+- 近鐵車站：站名的羅馬字（`toba`、`ugata`、`kashikojima`、`shima-isobe`）；JR 車站加 `jr-` 前綴（`jr-toba`、`jr-futaminoura`）。同一站的近鐵、JR 用 `transfers` 互相連結。關西機場周邊（JR・南海共用、或只有南海）的車站用站名的羅馬字、不加前綴，`operator: "other"`、`lines` 寫各業者的線名（`kansai-airport`、`rinku-town`、`izumisano`、`hagurazaki`；2026-10-21 T13）。
 - 區域 ID 是另一個命名空間，可以和車站 ID 相同（區域 `toba`、車站 `toba`）。
 - 其他資料點建議以區域開頭，例如 `toba-aquarium`。
 - **第一次正式匯入資料庫（T24、T25）之後，已經匯入的 ID 不改名**：ID 是連接預設資料、使用者的修改、行程、投票的關鍵。合併重複的點時保留一個 ID，被合併的記成轉址（`data/redirects.json`，格式由 T24 定）。見 [architecture.md](architecture.md) §3.5。
