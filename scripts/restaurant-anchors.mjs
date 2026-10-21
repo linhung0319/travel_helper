@@ -65,7 +65,7 @@ const restaurants = read(restaurantsPath);
 const spots = fs.existsSync(path.join(ROOT, `data/areas/${area}/spots.json`)) ? read(`data/areas/${area}/spots.json`) : [];
 const lodging = read(`data/areas/${area}/lodging.json`);
 const needsCar = needsCarMap(read('data/areas.json'));
-const stations = read('data/stations.json').filter((s) => s.operator === 'kintetsu' || s.operator === 'jr');
+const stations = read('data/stations.json').filter((s) => s.operator !== 'bus'); // 鐵路車站（kintetsu、jr、other：kix 的 JR・南海，T13 加）
 const noDinner = lodging.filter((l) => l.meals === 'none' || l.meals === 'breakfast');
 const noDinnerIds = new Set(noDinner.map((l) => l.id));
 

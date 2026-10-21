@@ -48,7 +48,12 @@
     },
     "tags": [],
     "tier": "A",
-    "nearestStation": null,
+    "nearestStation": {
+      "id": "kansai-airport",
+      "mode": "walk",
+      "minutes": 6,
+      "note": "官網：關西空港站步行直結（通道）；OSRM 6 分"
+    },
     "pickup": "不需要：飯店在 T1 旁的エアロプラザ，T1 2F 有連絡通道直通飯店 2F，也直通 JR・南海關西空港站（官網）；T2 有免費連絡巴士",
     "meals": "varies",
     "priceRange": "每人約 9,070～11,350 円（素泊；詳見 prices）",
@@ -298,7 +303,12 @@
     },
     "tags": [],
     "tier": "B",
-    "nearestStation": null,
+    "nearestStation": {
+      "id": "rinku-town",
+      "mode": "walk",
+      "minutes": 3,
+      "note": "官網：3 號出口經 2 樓行人天橋直結；OSRM 3 分"
+    },
     "pickup": "官網：關西國際空港←→飯店免費接駁；住客限定；當日可預約（入住前亦可）；05:10、05:55 兩班開往第2航廈；時刻表為圖片，首班、所要、載客數、費用、行李未載 [1][2]",
     "meals": "varies",
     "priceRange": "每人約 4,500～5,000 円（素泊；詳見 prices）",
@@ -556,7 +566,12 @@
     },
     "tags": [],
     "tier": "B",
-    "nearestStation": null,
+    "nearestStation": {
+      "id": "rinku-town",
+      "mode": "walk",
+      "minutes": 4,
+      "note": "官網 3 分；OSRM 4 分"
+    },
     "pickup": "免費定時接駁，約10～15分；ホテル正面玄關前→T1 4F 國際線出發層，機場側南側団体のりば；送り需在櫃台預約；時刻表為圖片PDF未能讀取（2026-11-01起調整：https://washington-hotels.jp/wp/wp-content/uploads/2026/10/761e6f1793150aa0d4263043ab7b3b68.pdf）；載客數、行李數未知（官網access、KNT）",
     "meals": "varies",
     "priceRange": "每人約 7,425 円（素泊；詳見 prices）",
@@ -786,7 +801,12 @@
     },
     "tags": [],
     "tier": "A",
-    "nearestStation": null,
+    "nearestStation": {
+      "id": "rinku-town",
+      "mode": "walk",
+      "minutes": 3,
+      "note": "官網：站直結；OSRM 3 分"
+    },
     "pickup": "官網アクセス：接駁巴士時刻為圖片（文字不可讀）；無法事前預約，往關西空港的班次於 check-in 時在櫃檯申請；05:10、05:55 兩班到 T2；載客數、費用未載（4）。楽天列有送迎バス（6），第三方稱免費需預約（7）",
     "meals": "varies",
     "priceRange": "每人約 5,000 円（素泊；詳見 prices）",
@@ -1039,7 +1059,12 @@
     },
     "tags": [],
     "tier": "B",
-    "nearestStation": null,
+    "nearestStation": {
+      "id": "rinku-town",
+      "mode": "walk",
+      "minutes": 4,
+      "note": "官網：5 號出口步行約 1 分；OSRM 4 分"
+    },
     "pickup": "住客限定免費單程接駁巴士，1F 入口前巴士站→T1→T2；5:00～11:00 發車（5:00、5:45、6:00、6:30、7:00、7:30、8:00、9:00、10:00、11:00）；T1 約10分、T2 約20分；每班20～24名；需網路預約，截止當日3:00，0:00後到前台；路況可能延誤；是否加開車與行李規定未載（2）",
     "meals": "varies",
     "priceRange": null,
@@ -1222,7 +1247,12 @@
     },
     "tags": [],
     "tier": "B",
-    "nearestStation": null,
+    "nearestStation": {
+      "id": "rinku-town",
+      "mode": "walk",
+      "minutes": 10,
+      "note": "官網 9～10 分；OSRM 10 分"
+    },
     "pickup": "沒有接駁巴士（楽天、官網）；りんくうタウン站步行 9～10 分，再搭電車 1 站",
     "meals": "varies",
     "priceRange": "每人約 6,610 円（素泊；詳見 prices）",
@@ -1440,7 +1470,12 @@
     },
     "tags": [],
     "tier": "B",
-    "nearestStation": null,
+    "nearestStation": {
+      "id": "izumisano",
+      "mode": "walk",
+      "minutes": 17,
+      "note": "OSRM 17 分；泉佐野站、りんくうタウン站有免費接送（只在入住、退房時，13:00～20:00）"
+    },
     "pickup": "官網：飯店→車站(退房)5:20/6:20/7:40/8:40/9:40/10:40共6班，須事前預約，無預約不開；日根野/泉佐野東口/りんくうタウン5號出口，約8分，電話或check-in時預約。機場→飯店(入住)直達17:15/19:15/21:15/22:15前日電話預約；或到南海泉佐野站電話，免預約至20時。團體貸切巴士1台5,000円。載客數、行李未載。[3][4]",
     "meals": "varies",
     "priceRange": "每人約 7,700～14,980 円（一泊二食／素泊；詳見 prices）",
@@ -1700,7 +1735,12 @@
     },
     "tags": [],
     "tier": "B",
-    "nearestStation": null,
+    "nearestStation": {
+      "id": "izumisano",
+      "mode": "walk",
+      "minutes": 9,
+      "note": "官網：東口步行約 7 分；OSRM 9 分"
+    },
     "pickup": "免費接駁約 15 分，T1 南團體巴士站 S-12。飯店發 5:30★/6:30★/7:30/8:30/9:30/11:00★/18:00（★經 T2 或 outlet，未標哪班）；機場發 10:05/18:30/19:30/20:30/21:30/22:30 免預約；22:30 後用南海。定員通常 8～24 人，超過請等下班或電車。飯店發原則前日前預約（楽天：check-in 時）。行李未載；月份可能變更時刻。PDF https://bellevuekix.com/wp-content/uploads/2026/03/bus-jpnew.pdf (官網 access)",
     "meals": "varies",
     "priceRange": "每人約 6,250 円（素泊；詳見 prices）",
@@ -1942,7 +1982,12 @@
     },
     "tags": [],
     "tier": "B",
-    "nearestStation": null,
+    "nearestStation": {
+      "id": "hagurazaki",
+      "mode": "walk",
+      "minutes": 21,
+      "note": "官網 15 分；OSRM 21 分。泉佐野站計程車約 10 分；接駁停りんくうタウン站（要預約）"
+    },
     "pickup": "官網：免費接駁巴士（僅住客），約25分；乘車處T1（團體巴士乘車處南側）、T2、りんくうタウン站；關空發車免預約，りんくうタウン站發車要預約，飯店發車於check-in時預約；8人以上團體一律先預約(072-490-2100)；發車前3分鐘上車；可載重行李；時刻表為官網PDF（未讀到）(官網/shuttlebus)",
     "meals": "varies",
     "priceRange": "每人約 4,400 円（素泊；詳見 prices）",
@@ -2204,7 +2249,12 @@
     },
     "tags": [],
     "tier": "A",
-    "nearestStation": null,
+    "nearestStation": {
+      "id": "izumisano",
+      "mode": "walk",
+      "minutes": 2,
+      "note": "官網 1 分內；OSRM 2 分"
+    },
     "pickup": "沒有接駁（官網）；團體可付費、由飯店介紹外部接送公司（楽天）；泉佐野站步行 1 分，南海到關西空港約 9 分",
     "meals": "varies",
     "priceRange": "每人約 4,995 円（素泊；詳見 prices）",

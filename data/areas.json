@@ -674,8 +674,13 @@
       135.36,
       34.45
     ],
-    "stations": [],
-    "notes": "不在伊勢志摩，驗證腳本對這區的座標放寬到關西、中部。重點是住宿到機場的接駁（時間、班次、15 人和行李）。車站（りんくうタウン、関西空港）目前不在 stations.json。",
+    "stations": [
+      "kansai-airport",
+      "rinku-town",
+      "izumisano",
+      "hagurazaki"
+    ],
+    "notes": "不在伊勢志摩，驗證腳本對這區的座標放寬到關西、中部。重點是住宿到機場的接駁（時間、班次、15 人和行李）。車站（関西空港、りんくうタウン、泉佐野、羽倉崎）T13 加進 stations.json，operator 是 other（JR・南海），近鐵 5 日券不能用。",
     "regions": [
       {
         "id": "kix-island",

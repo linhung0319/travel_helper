@@ -150,7 +150,7 @@
   - **羽倉崎**（南海本線；アストンプラザ 步行 15 分，只有這間用得到，可以不加）
   - `operator` 是 `jr`／`nankai`（schema 的 operator 目前只有 kintetsu、jr、bus，要加 `nankai` 或用 `other`），`passCovered: false`（近鐵 5 日券不能用）。
 - 原因：kix 的住宿、餐廳 `nearestStation` 現在都是 null（T19 把站名和步行分鐘寫在 `extra.stationAccess`、`pickup`），行程引擎（T14）算不了「飯店 → 車站 → 機場」；加站後 T19（或 T13）補 `nearestStation`，重跑 `restaurant-anchors.mjs kix`。
-- 狀態：未處理
+- 狀態：已處理（2026-10-21，T13，👤 同意由 T13 做）：新增 `kansai-airport`、`rinku-town`、`izumisano`、`hagurazaki` 4 站，`operator: "other"`（schema 原本就有 other，不加 nankai；lines 寫 JR・南海的線名），座標 OSM、站號和所在地照日文維基；`areas.json` 的 kix.stations 加上 4 站。kix 住宿 10 間補 `nearestStation`（OSRM 分鐘，來源的分鐘寫在 note）；`restaurant-anchors.mjs` 的車站改成「bus 以外」，重跑 kix --write
 
 ## [T10] 為 data/timetables/bus|ferry|jr/*.json 建立正式 schema
 - 要改的檔案：`schema/`（新增 `timetable-route.schema.json`，巴士、船共用；JR 見下一條）、`scripts/validate.mjs` 的 ROUTES（T10 已暫時把 `timetables/(bus|ferry|jr)/` 指到 `sourced-document`，並在 commit 訊息說明）
