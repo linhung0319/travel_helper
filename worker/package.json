@@ -1,0 +1,16 @@
+{
+  "name": "@travel-helper/worker",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "description": "伊勢志摩旅遊規劃：Cloudflare Worker（API、登入、匯入、Claude 代理）",
+  "scripts": {
+    "typecheck": "tsc -p ."
+  },
+  "dependencies": {
+    "@travel-helper/engine": "*"
+  },
+  "devDependencies": {
+    "typescript": "^7.0.2"
+  }
+}

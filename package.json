@@ -2,17 +2,21 @@
   "name": "travel-helper",
   "private": true,
   "type": "module",
-  "description": "伊勢志摩旅遊規劃：資料與驗證腳本",
+  "description": "伊勢志摩旅遊規劃：npm workspaces 的根目錄",
+  "workspaces": [
+    "packages/*",
+    "scripts",
+    "web",
+    "worker"
+  ],
   "scripts": {
     "validate": "node scripts/validate.mjs",
-    "test": "node --experimental-strip-types --disable-warning=ExperimentalWarning --test \"scripts/test/*.test.ts\"",
+    "test": "node --experimental-strip-types --disable-warning=ExperimentalWarning --test \"scripts/test/*.test.ts\" \"packages/*/test/*.test.ts\"",
+    "typecheck": "npm run typecheck --workspaces --if-present",
+    "dev": "npm run dev -w web --",
+    "build": "npm run build -w web --",
     "kintetsu:fetch": "node scripts/kintetsu-timetable.mjs",
     "next-train": "node scripts/next-train.mjs",
     "test:geo": "node --experimental-strip-types --disable-warning=ExperimentalWarning --test \"scripts/test/*.test.ts\""
-  },
-  "devDependencies": {
-    "ajv": "^8.20.0",
-    "ajv-formats": "^3.0.1",
-    "ajv-i18n": "^4.2.0"
   }
 }
