@@ -39,11 +39,14 @@ travel_helper/
 │  └─ cache/
 │     ├─ routes/             路線計算的快取
 │     └─ work/<任務>-<批>/    一批的工作檔（batch.json、Chrome 抽取結果、facts、judgement），不進 git（見 §4「工具」）
-├─ scripts/                  驗證、蒐集、地理計算、匯入的腳本
-├─ packages/engine/          行程引擎（T14；T22 建立）
-├─ worker/                   Cloudflare Worker：API、登入、匯入（T24、T25；T22 建立）
+├─ package.json              npm workspaces 的根目錄；validate、test、dev、build 等指令都在這裡跑
+├─ scripts/                  驗證、蒐集、地理計算、匯入的腳本（workspace `@travel-helper/scripts`）
+├─ packages/engine/          行程引擎（T14）和 web、worker 共用的型別（`src/types.ts`）；T22 建立
+├─ worker/                   Cloudflare Worker：API、登入、匯入（T24、T25；T22 建立空殼）
 └─ web/                      前端（Vite + React + TypeScript + MapLibre GL）
 ```
+
+`packages/engine`、`scripts`、`web`、`worker` 是 npm workspaces：在根目錄跑一次 `npm install` 就裝好全部，只有根目錄有 `package-lock.json`（見 [architecture.md](architecture.md) §1）。
 
 區域 ID：`ise`、`futami`、`toba`、`shima`、`kix`（關西機場周邊，只有住宿和晚餐）
 

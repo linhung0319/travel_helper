@@ -41,16 +41,25 @@
 travel_helper/
 ├─ package.json          npm workspaces 的根目錄；validate、test 等指令維持在這裡
 ├─ packages/
-│  └─ engine/            T14 行程引擎：純 TS，沒有 UI、沒有 I/O，資料從參數傳進來
+│  └─ engine/            T14 行程引擎和共用型別：純 TS，沒有 UI、沒有 I/O，資料從參數傳進來
 ├─ web/                  前端（T11、T12、T15、T16）
 ├─ worker/               Cloudflare Worker：API、登入、匯入、Claude 代理（T24、T25、T16）
-├─ scripts/              蒐集資料、驗證、匯入的腳本（維持現狀）
+├─ scripts/              蒐集資料、驗證、匯入的腳本（檔案位置不變，多一份 package.json）
 ├─ schema/               JSON Schema：驗證 data/，Worker 驗證修改後的結果也用同一份
 └─ data/                 參考資料的匯入來源（見 §3）
 ```
 
-- `packages/engine` 不 import 瀏覽器或 Node 專用的 API，所以 `web` 和 `worker` 都能用。
-- 資料點、行程的型別定義放在 `packages/engine`（或另一個 `packages/types`，T22 決定），`web`、`worker` 共用。
+- `packages/engine` 不 import 瀏覽器或 Node 專用的 API，所以 `web` 和 `worker` 都能用。`tsconfig.json` 的 `lib` 只放 `ES2022`、`types` 是空的，用到 DOM 或 Node 的 API 時 typecheck 就會失敗。
+- **共用型別放在 `packages/engine/src/types.ts`，不另開 `packages/types`**（T22 決定）：
+  - 引擎本身就是純 TS、沒有任何依賴，`web`、`worker` import 它不會多帶進別的東西；只用型別時寫 `import type`，打包後完全不留。
+  - 行程的型別（T14）和操作行程的程式一起改，放在同一個套件，T14 不用同時改兩個套件。
+  - 少一個套件，就少一份 `package.json`、`tsconfig.json` 要維護。之後真的需要拆（例如 Worker 只想要型別），再把 `types.ts` 搬出去，`./types` 這個匯出路徑可以照舊。
+  - 型別只列程式用得到的欄位；資料格式以 `schema/` 為準。
+- **套件不先編譯**：`packages/engine` 的 `exports` 直接指到 `src/*.ts`。Vite 會處理 TS；Node（`node --test`、腳本）用 type stripping 直接跑，所以 engine 裡的 import 要寫副檔名（`./types.ts`），也不能用 `enum`、`namespace` 這類需要轉換的語法。workspace 是用連結裝進 `node_modules` 的，Node 會照實際路徑（`packages/engine/`）處理，不受「`node_modules` 裡的 TS 不能 strip」的限制。
+- **workspace 名稱**：`@travel-helper/engine`、`@travel-helper/web`、`@travel-helper/worker`、`@travel-helper/scripts`。互相依賴寫 `"@travel-helper/engine": "*"`（npm 不支援 `workspace:` 協定）。
+- **安裝**：只在根目錄跑一次 `npm install`，只有根目錄有 `package-lock.json`。各 workspace 自己的依賴寫在自己的 `package.json`，加套件用 `npm install <套件> -w web` 這種寫法。
+- **指令**：都可以在根目錄跑。`npm run validate`、`npm test`（`scripts/test/` 和 `packages/*/test/`）、`npm run typecheck`（每個有 `typecheck` 的 workspace）、`npm run dev`、`npm run build`（轉給 `web`；要加參數時寫 `npm run dev -- --host`）。在 `web/` 裡直接跑 `npm run dev` 也可以。
+- `scripts/` 是 workspace，只是為了把 ajv 等依賴寫在 `scripts/package.json`；腳本的指令仍然在根目錄的 `package.json`。
 
 ---
 

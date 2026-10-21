@@ -245,7 +245,7 @@ T7j → T8g → T9g → T13 → T21 → T11、T14、T24（並行）→ T12、T25
    ```sh
    git worktree add ../travel_helper-t3 -b t3 master   # 分支名稱用任務 ID 的小寫，例如 t1b、t3
    cd ../travel_helper-t3
-   npm install && (cd web && npm install)              # worktree 不會共用 node_modules
+   npm install                                         # worktree 不會共用 node_modules；在根目錄跑一次就裝好所有 workspace
    ```
 2. **進行中**：照常在分支上 commit（跑過 `scripts/validate` 才 commit）。
 3. **結束**：任務完成後**先不要 merge**，回報分支名稱、commit 清單和驗證結果，等 👤 你說「merge」。
