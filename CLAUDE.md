@@ -25,4 +25,5 @@
 - IG 不查看，只記錄店家帳號。食べログ、Google Maps 要用 Claude in Chrome 瀏覽（食べログ用程式抓會被擋），不大量瀏覽，也不繞過網站限制。
 - 寫完資料要跑 `scripts/validate`，通過才 commit。
 - 文件和 commit 訊息用繁體中文。
+- npm workspaces（`packages/engine`、`scripts`、`web`、`worker`）：在根目錄跑一次 `npm install` 就裝好全部；`npm run validate`、`npm test`、`npm run typecheck`、`npm run dev`、`npm run build` 都在根目錄跑（見 architecture.md §1）。
 - 程式一律用 JavaScript／TypeScript（Node 22）。真的需要 Python 時用 uv 管理環境，不要直接用系統的 Python。

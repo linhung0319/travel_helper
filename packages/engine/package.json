@@ -1,0 +1,17 @@
+{
+  "name": "@travel-helper/engine",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "description": "伊勢志摩旅遊規劃：行程引擎與共用型別（純 TS，沒有 UI、沒有 I/O）",
+  "exports": {
+    ".": "./src/index.ts",
+    "./types": "./src/types.ts"
+  },
+  "scripts": {
+    "typecheck": "tsc -p ."
+  },
+  "devDependencies": {
+    "typescript": "^7.0.2"
+  }
+}

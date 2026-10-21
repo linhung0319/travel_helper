@@ -1,5 +1,5 @@
 {
-  "name": "travel-helper-web",
+  "name": "@travel-helper/web",
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -11,6 +11,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@travel-helper/engine": "*",
     "maplibre-gl": "^6.14.0",
     "react": "^19.3.1",
     "react-dom": "^19.3.1"

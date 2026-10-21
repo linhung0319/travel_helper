@@ -6,23 +6,27 @@
 
 ## 啟動
 
-需要 Node 22。
+需要 Node 22。`web` 是 npm workspaces 的一員（`@travel-helper/web`），**在專案根目錄**安裝：
 
 ```sh
-cd web
-npm install
+npm install        # 在根目錄跑一次就好，不用再進 web/ 安裝
 npm run dev        # 開發伺服器，網址會印在終端機（預設 http://localhost:5173）
 ```
 
-其他指令：
+其他指令（在根目錄跑）：
 
 ```sh
-npm run typecheck  # 只跑 tsc
-npm run build      # tsc + vite build，輸出到 web/dist/
-npm run preview    # 預覽 build 的結果
+npm run typecheck              # 所有 workspace 的 tsc（web、packages/engine、worker）
+npm run typecheck -w web       # 只跑 web 的 tsc
+npm run build                  # tsc + vite build，輸出到 web/dist/
+npm run preview -w web         # 預覽 build 的結果
 ```
 
+在 `web/` 裡直接跑 `npm run dev`、`npm run build` 等也可以。
+
 手機上看：`npm run dev -- --host`，再用手機開終端機印出的區網網址。
+
+加套件：`npm install <套件> -w web`（寫進 `web/package.json`，lock 檔只有根目錄一份）。共用的型別從 `@travel-helper/engine` import（見 [architecture.md](../docs/architecture.md) §1）。
 
 ## 資料從哪裡來
 

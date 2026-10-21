@@ -1,0 +1,12 @@
+{
+  "name": "@travel-helper/scripts",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "description": "伊勢志摩旅遊規劃：蒐集、驗證、匯入的腳本（指令在根目錄的 package.json）",
+  "devDependencies": {
+    "ajv": "^8.20.0",
+    "ajv-formats": "^3.0.1",
+    "ajv-i18n": "^4.2.0"
+  }
+}
