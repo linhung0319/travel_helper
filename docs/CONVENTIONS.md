@@ -534,7 +534,7 @@ T7c～T8d 在自動模式下反覆用到、沒有被 👤 改掉的判斷，整�
 
 **欄位怎麼填**
 - 讀文 subagent 推斷的值不採用（例如來源只說「有石階」，不填 `stairs: 少`）；口コミ或第三方設施列表**明寫**的可以用，在 note 註明來源。
-- `tags` 從結構化欄位補，只加不刪：`indoor: true` → 室內、雨天備案；`accessibility.stairs: 多` → 長階梯；`kids.friendly: high` → 親子。
+- `tags` 從結構化欄位補，只加不刪：`indoor: true` → 室內、雨天備案；`accessibility.stairs: 多` → 長階梯；`kids.friendly: high` → 親子。住宿（2026-10-21 T13 跨區統一）：`group.wholeRental: true` → 包棟；`extra.onsen` 寫天然溫泉、源泉或泉質 → 溫泉（人工溫泉、非溫泉、溫泉與否沒寫的不加）。`scripts/cross-area-check.mjs --write-tags` 照這幾條補。
 - `kids.friendly` 只給有小孩相關描述、或明顯是親子體驗的；神社、博物館沒有來源就留 null。
 - 照片：官網 → 楽天（住宿）→ Google 主圖，每筆最多 3 張；只用官網網域的圖（媒體、部落格的不用），觀光協會、觀光三重的照片 `kind` 記 `official`；每張先用 `scripts/photo-check.mjs` 確認打得開。
 - `mustTry` 只從筆記的 `[招牌]` 整理，沒有就留空，不用コース名稱補。`menu`：食べログ沒有文字菜單的店記 `dtlmenu/photo/` 的連結。
