@@ -1,6 +1,6 @@
 {
   "area": "toba",
-  "generated": "2026-10-19",
+  "generated": "2026-10-21",
   "script": "scripts/assessment-check.mjs",
   "rules": {
     "restaurant": {
@@ -89,11 +89,11 @@
       "total": 38,
       "assessed": 38,
       "notAssessed": [],
-      "flagged": 1,
+      "flagged": 0,
       "byStar": {
         "2": 3,
-        "3": 12,
-        "4": 18,
+        "3": 26,
+        "4": 4,
         "5": 5
       }
     },
@@ -123,18 +123,6 @@
       "rule": "high-star-low-rating",
       "message": "4 星但 Google 不到 4",
       "rationale": "觀光三重主打景點，一票玩遊覽船與海豚島；Google 3.9（250 則）"
-    },
-    {
-      "type": "lodging",
-      "id": "toba-ryokan-naomi",
-      "name": "旅館なおみ",
-      "recommend": 4,
-      "tier": "A",
-      "confidence": "medium",
-      "ratings": "楽天 4.33、Google 4.3（7 則）",
-      "rule": "high-star-few-reviews",
-      "message": "4 星但訂房網、Google 都不到 100 則（訂房網評論數沒記的當 0）",
-      "rationale": "Airbnb 4.8（142 則）、Google 4.3（7 則）；Google 有內文的 5 則是 4 則 5 星、1 則 1 星（樓梯陡、暗、入住流程）"
     },
     {
       "type": "restaurant",

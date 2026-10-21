@@ -357,7 +357,9 @@
       "instagram": null,
       "googleMaps": "https://maps.google.com/?cid=1560447232878720288"
     },
-    "tags": [],
+    "tags": [
+      "溫泉"
+    ],
     "tier": "S",
     "nearestStation": {
       "id": "shima-shimmei",
@@ -1174,7 +1176,9 @@
       "instagram": null,
       "googleMaps": "https://maps.google.com/?cid=9105299783259565138"
     },
-    "tags": [],
+    "tags": [
+      "溫泉"
+    ],
     "tier": "B",
     "nearestStation": {
       "id": "kashikojima",
@@ -2401,7 +2405,9 @@
       "instagram": "@geibousou_",
       "googleMaps": "https://maps.google.com/?cid=17904793561798892697"
     },
-    "tags": [],
+    "tags": [
+      "溫泉"
+    ],
     "tier": "B",
     "nearestStation": {
       "id": "kashikojima",
@@ -2726,7 +2732,9 @@
       "instagram": "@grandmercure_iseshima",
       "googleMaps": "https://maps.google.com/?cid=4822371600113264740"
     },
-    "tags": [],
+    "tags": [
+      "溫泉"
+    ],
     "tier": "B",
     "nearestStation": {
       "id": "ugata",
@@ -3259,7 +3267,9 @@
       "instagram": "@kashikojimahojoen_official",
       "googleMaps": "https://maps.google.com/?cid=1489525318797124424"
     },
-    "tags": [],
+    "tags": [
+      "溫泉"
+    ],
     "tier": "B",
     "nearestStation": {
       "id": "kashikojima",
@@ -3517,7 +3527,9 @@
       "instagram": "@kazamachinoyu_fukujyuso",
       "googleMaps": "https://maps.google.com/?cid=3922457230759835323"
     },
-    "tags": [],
+    "tags": [
+      "溫泉"
+    ],
     "tier": "B",
     "nearestStation": {
       "id": "ugata",
@@ -4079,7 +4091,9 @@
       "instagram": "@resortclub.iseshima",
       "googleMaps": "https://maps.google.com/?cid=535107031864105846"
     },
-    "tags": [],
+    "tags": [
+      "溫泉"
+    ],
     "tier": "B",
     "nearestStation": {
       "id": "ugata",
@@ -5276,7 +5290,9 @@
       "instagram": null,
       "googleMaps": "https://maps.google.com/?cid=3996739810988013705"
     },
-    "tags": [],
+    "tags": [
+      "溫泉"
+    ],
     "tier": "S",
     "nearestStation": {
       "id": "ugata",
@@ -5801,7 +5817,9 @@
       "instagram": "@new_hamajima_tsubaki",
       "googleMaps": "https://maps.google.com/?cid=4890126790870026207"
     },
-    "tags": [],
+    "tags": [
+      "溫泉"
+    ],
     "tier": "B",
     "nearestStation": {
       "id": "kashikojima",
@@ -6047,7 +6065,9 @@
       "instagram": "@shima_chichuukaimura_official",
       "googleMaps": "https://maps.google.com/?cid=670699759400185044"
     },
-    "tags": [],
+    "tags": [
+      "溫泉"
+    ],
     "tier": "B",
     "nearestStation": {
       "id": "ugata",
@@ -6893,7 +6913,9 @@
       "instagram": null,
       "googleMaps": "https://maps.google.com/?cid=1442389308072069358"
     },
-    "tags": [],
+    "tags": [
+      "溫泉"
+    ],
     "tier": "S",
     "nearestStation": {
       "id": "ugata",
@@ -7422,7 +7444,9 @@
       "instagram": "@miyako_okushima_aquaforest",
       "googleMaps": "https://maps.google.com/?cid=2500419946184316378"
     },
-    "tags": [],
+    "tags": [
+      "溫泉"
+    ],
     "tier": "B",
     "nearestStation": {
       "id": "kashikojima",
@@ -8023,7 +8047,8 @@
       "googleMaps": "https://maps.google.com/?cid=13934231510455400455"
     },
     "tags": [
-      "包棟"
+      "包棟",
+      "溫泉"
     ],
     "tier": "B",
     "nearestStation": {
@@ -8991,7 +9016,9 @@
       "instagram": null,
       "googleMaps": "https://maps.google.com/?cid=12781768572398887161"
     },
-    "tags": [],
+    "tags": [
+      "溫泉"
+    ],
     "tier": "B",
     "nearestStation": {
       "id": "ugata",
@@ -9536,7 +9563,9 @@
       "instagram": null,
       "googleMaps": "https://maps.google.com/?cid=1717074060645530770"
     },
-    "tags": [],
+    "tags": [
+      "溫泉"
+    ],
     "tier": "B",
     "nearestStation": {
       "id": "kashikojima",
@@ -9793,7 +9822,9 @@
       "instagram": "@nemu_resort",
       "googleMaps": "https://maps.google.com/?cid=9136303781188342853"
     },
-    "tags": [],
+    "tags": [
+      "溫泉"
+    ],
     "tier": "A",
     "nearestStation": {
       "id": "kashikojima",
@@ -11027,7 +11058,8 @@
       "googleMaps": "https://maps.google.com/?cid=3481688737457633644"
     },
     "tags": [
-      "包棟"
+      "包棟",
+      "溫泉"
     ],
     "tier": "B",
     "nearestStation": {
@@ -13538,7 +13570,9 @@
       "instagram": null,
       "googleMaps": "https://maps.google.com/?cid=12900116021146004508"
     },
-    "tags": [],
+    "tags": [
+      "溫泉"
+    ],
     "tier": "B",
     "nearestStation": {
       "id": "ugata",

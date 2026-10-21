@@ -64,7 +64,7 @@ travel_helper/
 - schema 不允許沒定義的欄位：暫時放進 `extra`，需要正式欄位的話寫到 `docs/requests.md`。
 
 ### ID 規則
-- 近鐵車站：站名的羅馬字（`toba`、`ugata`、`kashikojima`、`shima-isobe`）；JR 車站加 `jr-` 前綴（`jr-toba`、`jr-futaminoura`）。同一站的近鐵、JR 用 `transfers` 互相連結。
+- 近鐵車站：站名的羅馬字（`toba`、`ugata`、`kashikojima`、`shima-isobe`）；JR 車站加 `jr-` 前綴（`jr-toba`、`jr-futaminoura`）。同一站的近鐵、JR 用 `transfers` 互相連結。關西機場周邊（JR・南海共用、或只有南海）的車站用站名的羅馬字、不加前綴，`operator: "other"`、`lines` 寫各業者的線名（`kansai-airport`、`rinku-town`、`izumisano`、`hagurazaki`；2026-10-21 T13）。
 - 區域 ID 是另一個命名空間，可以和車站 ID 相同（區域 `toba`、車站 `toba`）。
 - 其他資料點建議以區域開頭，例如 `toba-aquarium`。
 - **第一次正式匯入資料庫（T24、T25）之後，已經匯入的 ID 不改名**：ID 是連接預設資料、使用者的修改、行程、投票的關鍵。合併重複的點時保留一個 ID，被合併的記成轉址（`data/redirects.json`，格式由 T24 定）。見 [architecture.md](architecture.md) §3.5。
@@ -537,7 +537,7 @@ T7c～T8d 在自動模式下反覆用到、沒有被 👤 改掉的判斷，整�
 
 **欄位怎麼填**
 - 讀文 subagent 推斷的值不採用（例如來源只說「有石階」，不填 `stairs: 少`）；口コミ或第三方設施列表**明寫**的可以用，在 note 註明來源。
-- `tags` 從結構化欄位補，只加不刪：`indoor: true` → 室內、雨天備案；`accessibility.stairs: 多` → 長階梯；`kids.friendly: high` → 親子。
+- `tags` 從結構化欄位補，只加不刪：`indoor: true` → 室內、雨天備案；`accessibility.stairs: 多` → 長階梯；`kids.friendly: high` → 親子。住宿（2026-10-21 T13 跨區統一）：`group.wholeRental: true` → 包棟；`extra.onsen` 寫天然溫泉、源泉或泉質 → 溫泉（人工溫泉、非溫泉、溫泉與否沒寫的不加）。`scripts/cross-area-check.mjs --write-tags` 照這幾條補。
 - `kids.friendly` 只給有小孩相關描述、或明顯是親子體驗的；神社、博物館沒有來源就留 null。
 - 照片：官網 → 楽天（住宿）→ Google 主圖，每筆最多 3 張；只用官網網域的圖（媒體、部落格的不用），觀光協會、觀光三重的照片 `kind` 記 `official`；每張先用 `scripts/photo-check.mjs` 確認打得開。
 - `mustTry` 只從筆記的 `[招牌]` 整理，沒有就留空，不用コース名稱補。`menu`：食べログ沒有文字菜單的店記 `dtlmenu/photo/` 的連結。

@@ -6,7 +6,7 @@
 - 只蒐集**回程前一晚（2027-02-12，週五）的住宿和晚餐**，不蒐集景點。2/13（週六）搭 12:45、12:55 的航班，**10:45 前要到 T1**（15 人帶行李最好 10:15～10:30）。
 - 從伊勢過來：伊勢市→（近鐵特急）→難波或上本町→南海到りんくうタウン／泉佐野／關西空港（見 `data/access/kix.json` 的 `lastDay`）。
 - 子地區（`areas.json`）：`kix-island`（機場島）、`rinku`（りんくうタウン站一帶，到機場 1 站約 5 分）、**`izumisano`（泉佐野站一帶，T19 加；南海到機場約 9 分）**。
-- `stations.json` 沒有這一區的車站（関西空港、りんくうタウン、泉佐野、羽倉崎），`nearestStation` 全部 null，站名和步行分鐘寫在 `extra.stationAccess`、`pickup`；請求見 `docs/requests.md`「[T19] stations.json」。
+- 車站（2026-10-21 T13 加）：`kansai-airport`、`rinku-town`、`izumisano`、`hagurazaki`（`operator: other`，近鐵 5 日券不能用）。住宿 10 間的 `nearestStation` 是 OSRM 步行分鐘（來源寫的分鐘在 note）；餐廳的 anchors 加上車站。原本寫在 `extra.stationAccess`、`pickup` 的說明保留。
 
 ## 檔案
 | 檔案 | 內容 |
@@ -82,6 +82,6 @@
 - **全員一起吃的建議**：住日航 → 桃李（包廂、分 2 桌）；住泉佐野 → おどろき（要問禁菸包廂）或 蘭梅 包場；住りんくう → 青庵，或飯店館內。
 
 ## 給後續
-- **T13**：kix 是 B 為主的小區，跨區比較時看原始評分；車站加進 stations.json 後補 `nearestStation`、重跑 `restaurant-anchors.mjs kix --write`。
+- **T13（2026-10-21 完成）**：kix 是 B 為主的小區，跨區比較時看原始評分。車站已加、`nearestStation` 已補、anchors 已重算；decisions-pending「建議先看」的 5 項 👤 都照 T19 的做法（打勾）。
 - **行程定了以後**：打 `questions.md` 的電話（接駁定員、15 人預約）；楽天重查 2/12 空房和價格；OMO 看官網價格。
 - 深入調查（部落格心得）沒做；需要的話對日航、OMO、レフ、ガーデンパレス 和晚餐 5 家做。

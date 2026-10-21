@@ -140,9 +140,14 @@
     "verified": false,
     "anchors": [
       {
+        "id": "kansai-airport",
+        "walkMinutes": 1,
+        "walkSource": "osrm"
+      },
+      {
         "id": "kix-nikko",
-        "walkMinutes": 2,
-        "walkSource": "estimate"
+        "walkMinutes": 6,
+        "walkSource": "osrm"
       }
     ],
     "contexts": [
@@ -472,6 +477,11 @@
     "verified": false,
     "anchors": [
       {
+        "id": "rinku-town",
+        "walkMinutes": 11,
+        "walkSource": "osrm"
+      },
+      {
         "id": "kix-henn-na-resort",
         "walkMinutes": 4,
         "walkSource": "osrm"
@@ -749,6 +759,11 @@
     "verified": false,
     "anchors": [
       {
+        "id": "izumisano",
+        "walkMinutes": 12,
+        "walkSource": "osrm"
+      },
+      {
         "id": "kix-bellevue-garden",
         "walkMinutes": 7,
         "walkSource": "osrm"
@@ -1008,6 +1023,11 @@
     ],
     "verified": false,
     "anchors": [
+      {
+        "id": "izumisano",
+        "walkMinutes": 4,
+        "walkSource": "osrm"
+      },
       {
         "id": "kix-ref-izumisano",
         "walkMinutes": 4,
@@ -1288,6 +1308,11 @@
     ],
     "verified": false,
     "anchors": [
+      {
+        "id": "izumisano",
+        "walkMinutes": 14,
+        "walkSource": "osrm"
+      },
       {
         "id": "kix-bellevue-garden",
         "walkMinutes": 9,

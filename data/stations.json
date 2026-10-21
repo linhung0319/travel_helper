@@ -2140,5 +2140,204 @@
       }
     ],
     "verified": false
+  },
+  {
+    "id": "kansai-airport",
+    "type": "station",
+    "name": {
+      "ja": "関西空港",
+      "kana": "かんさいくうこう",
+      "zh": "關西機場",
+      "en": "Kansai Airport"
+    },
+    "area": "kix",
+    "coords": [
+      135.2434129,
+      34.4359259
+    ],
+    "coordsSource": "osm",
+    "address": "大阪府泉南郡田尻町泉州空港中1",
+    "links": {},
+    "operator": "other",
+    "stationNumber": "JR-S47／NK32",
+    "lines": [
+      "JR関西空港線",
+      "南海空港線"
+    ],
+    "passCovered": false,
+    "staffed": null,
+    "transfers": [],
+    "coinLockers": null,
+    "accessibility": null,
+    "sources": [
+      {
+        "type": "osm",
+        "url": "https://www.openstreetmap.org/node/6468743342",
+        "retrieved": "2026-10-21",
+        "note": "座標"
+      },
+      {
+        "type": "wikipedia",
+        "url": "https://ja.wikipedia.org/wiki/%E9%96%A2%E8%A5%BF%E7%A9%BA%E6%B8%AF%E9%A7%85",
+        "retrieved": "2026-10-21",
+        "note": "所在地、讀音、站號（JR 西日本・南海共用）"
+      },
+      {
+        "type": "official",
+        "url": "https://www.kintetsu.co.jp/foreign/english/ticket/krp_5day.html",
+        "retrieved": "2026-10-21",
+        "note": "KINTETSU RAIL PASS 只能搭近鐵全線和伊賀鐵道，不含 JR、南海"
+      }
+    ],
+    "verified": false
+  },
+  {
+    "id": "rinku-town",
+    "type": "station",
+    "name": {
+      "ja": "りんくうタウン",
+      "kana": "りんくうたうん",
+      "zh": "臨空城",
+      "en": "Rinku Town"
+    },
+    "area": "kix",
+    "coords": [
+      135.2996565,
+      34.4107517
+    ],
+    "coordsSource": "osm",
+    "address": "大阪府泉佐野市りんくう往来北1",
+    "links": {},
+    "operator": "other",
+    "stationNumber": "JR-S46／NK31",
+    "lines": [
+      "JR関西空港線",
+      "南海空港線"
+    ],
+    "passCovered": false,
+    "staffed": null,
+    "transfers": [],
+    "coinLockers": null,
+    "accessibility": null,
+    "sources": [
+      {
+        "type": "osm",
+        "url": "https://www.openstreetmap.org/node/3978841588",
+        "retrieved": "2026-10-21",
+        "note": "座標"
+      },
+      {
+        "type": "wikipedia",
+        "url": "https://ja.wikipedia.org/wiki/%E3%82%8A%E3%82%93%E3%81%8F%E3%81%86%E3%82%BF%E3%82%A6%E3%83%B3%E9%A7%85",
+        "retrieved": "2026-10-21",
+        "note": "所在地、讀音、站號（JR 西日本・南海共用）"
+      },
+      {
+        "type": "official",
+        "url": "https://www.kintetsu.co.jp/foreign/english/ticket/krp_5day.html",
+        "retrieved": "2026-10-21",
+        "note": "KINTETSU RAIL PASS 只能搭近鐵全線和伊賀鐵道，不含 JR、南海"
+      }
+    ],
+    "verified": false
+  },
+  {
+    "id": "izumisano",
+    "type": "station",
+    "name": {
+      "ja": "泉佐野",
+      "kana": "いずみさの",
+      "zh": "泉佐野",
+      "en": "Izumisano"
+    },
+    "area": "kix",
+    "coords": [
+      135.3169821,
+      34.4111901
+    ],
+    "coordsSource": "osm",
+    "address": "大阪府泉佐野市上町3丁目11番41号",
+    "links": {},
+    "operator": "other",
+    "stationNumber": "NK30",
+    "lines": [
+      "南海本線",
+      "南海空港線"
+    ],
+    "passCovered": false,
+    "staffed": null,
+    "transfers": [],
+    "coinLockers": null,
+    "accessibility": null,
+    "sources": [
+      {
+        "type": "osm",
+        "url": "https://www.openstreetmap.org/node/3978818100",
+        "retrieved": "2026-10-21",
+        "note": "座標"
+      },
+      {
+        "type": "wikipedia",
+        "url": "https://ja.wikipedia.org/wiki/%E6%B3%89%E4%BD%90%E9%87%8E%E9%A7%85",
+        "retrieved": "2026-10-21",
+        "note": "所在地、讀音、站號"
+      },
+      {
+        "type": "official",
+        "url": "https://www.kintetsu.co.jp/foreign/english/ticket/krp_5day.html",
+        "retrieved": "2026-10-21",
+        "note": "KINTETSU RAIL PASS 只能搭近鐵全線和伊賀鐵道，不含 JR、南海"
+      }
+    ],
+    "verified": false
+  },
+  {
+    "id": "hagurazaki",
+    "type": "station",
+    "name": {
+      "ja": "羽倉崎",
+      "kana": "はぐらざき",
+      "zh": "羽倉崎",
+      "en": "Hagurazaki"
+    },
+    "area": "kix",
+    "coords": [
+      135.2998353,
+      34.3994265
+    ],
+    "coordsSource": "osm",
+    "address": "大阪府泉佐野市羽倉崎一丁目1番24号",
+    "links": {},
+    "operator": "other",
+    "stationNumber": "NK33",
+    "lines": [
+      "南海本線"
+    ],
+    "passCovered": false,
+    "staffed": null,
+    "transfers": [],
+    "coinLockers": null,
+    "accessibility": null,
+    "sources": [
+      {
+        "type": "osm",
+        "url": "https://www.openstreetmap.org/node/8157672507",
+        "retrieved": "2026-10-21",
+        "note": "座標"
+      },
+      {
+        "type": "wikipedia",
+        "url": "https://ja.wikipedia.org/wiki/%E7%BE%BD%E5%80%89%E5%B4%8E%E9%A7%85",
+        "retrieved": "2026-10-21",
+        "note": "所在地、讀音、站號"
+      },
+      {
+        "type": "official",
+        "url": "https://www.kintetsu.co.jp/foreign/english/ticket/krp_5day.html",
+        "retrieved": "2026-10-21",
+        "note": "KINTETSU RAIL PASS 只能搭近鐵全線和伊賀鐵道，不含 JR、南海"
+      }
+    ],
+    "verified": false
   }
 ]
