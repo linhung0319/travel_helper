@@ -91,11 +91,12 @@
 | T11 | 地圖網站 v1（手機優先）：store、版面、圖層、天數分頁、小卡片與詳情面板、探索模式（圖片牆）、車站時刻表面板 | M | T5、T7、T21、T22 | 3 | 🌐 少量 | ⬜ |
 | T12 | 地圖動作 API（給 UI 和 AI 共用的地圖指令、篩選標籤、選取的點、畫面狀態） | S | T11 | 3 | 🌐 少量 | ⬜ |
 | T13 | 跨區整理與驗證：去除重複、分級、缺漏檢查 | M | T7j、T8g、T9g、T19 | 3 | 🌐 少量 | ⬜ |
+| T13b | 伊勢、二見：補景點 4 筆（T13 決定：古市參宮街道、角屋民具館、御塩殿神社、蘇民の湯） | S | T13 | 3 | 🌐 大量 | ⬜ |
 | T14 | 行程引擎：確定的行程格式（航班、備案、分組）、行程的操作、時間軸、空檔、交通方式判斷、衝突檢查（純邏輯） | M | T6、T7、T22 | 4 | | ⬜ |
 | T15 | 行程與建議 UI：這一天的時間軸、建議、規劃模式、手動選單、快照、投票、修改紀錄 | M | T11、T12、T14、T24、T25 | 4 | 🌐 少量 | ⬜ |
 | T16 | AI Agent（主要的操作方式）：對話介面、兩種模式的工具（寫建議、提議行程、修改資料點、加地點）、聊天紀錄 | L | T12、T14、T24、T25（規劃模式的提議要用 T15a 的時間軸） | 4 | 🌐 少量 | ⬜ |
 | T19 | 關西機場周邊：2/12 住宿與晚餐、摘要與評分 | S | T7d（評分部分等 T7g） | 3 | | ✅ |
-| T21 | 代表照片：每個資料點挑一張最能代表的照片，排到 `photos` 第一張 | M | T13 | 3 | | ⬜ |
+| T21 | 代表照片：每個資料點挑一張最能代表的照片，排到 `photos` 第一張 | M | T13、T13b | 3 | | ⬜ |
 | T20 | 匯出給 Claude app：最終行程、分組和資料整理成 claude.ai Project 用的檔案 | S | T15、行程定案 | 6 | | ⬜ |
 | T22 | monorepo 調整：npm workspaces（`packages/engine`、`web`、`worker`、`scripts`） | S | — | 3 | | ⬜ |
 | T23 | 👤 LINE 登入小實驗：免費官方帳號能不能查單一群組成員 | S | — | 3 | | ⬜ |
@@ -586,6 +587,13 @@ T7c → T7d → T7e → T7f → T7g → T8a → T8b → T8c → T8d → T7i → 
 - 看 T7i 的 `data/derived/kanko-mie-missing-ise.json`（伊勢、二見在觀光三重有、候選裡沒有的景點），決定要不要補；要補的列成清單給 👤，或另開任務補。
 - 統一分級和標籤；列出「資料可信度低、需要人工確認」的清單給 👤 你。
 - 和 👤 一起看 `docs/decisions-pending.md` 的「關西機場周邊（T19）」還沒打勾的項目（不屬於任何 g 任務），做法同 T7j 的「先和 👤 檢討」。
+- 結果（2026-10-21）：[T13-review.md](T13-review.md)；檢查腳本 `scripts/cross-area-check.mjs`（報告 `data/derived/cross-area-check.md`）。
+
+#### T13b 伊勢、二見：補景點 4 筆 〔S〕（Chrome）
+- T13 和 👤 決定要補的（觀光三重列表、各區 README 提過的）：**伊勢古市參宮街道**（`ise`，外宮 → 內宮之間的舊參宮道、古市）、**角屋民具館・味噌溜り蔵資料館**（`ise`，神久）、**御塩殿神社**（`futami`）、**二見温泉 蘇民の湯**（`futami`，日歸溫泉）。
+- 照 T8a 的做法（CONVENTIONS §4 標準作業流程步驟 1～3）：候選加進 `candidates/spots.json`、讀文 subagent 寫 `dossiers/<id>.md`、Google Maps 用 Chrome 查 cid、星數、照片；口コミ、Google 評論照「口コミ、Google 評論」補心得。
+- 照 `data/raw/toba/assessment-notes.md` 伊勢、二見景點的門檻寫 `summary`、`assessment`、`tier`；重跑附近餐廳的 anchors（`restaurant-anchors.mjs ise`、`futami`）、`assessment-check.mjs`、`cross-area-check.mjs`。
+- 在 T21 之前做（T21 要幫新的點挑代表照片）。寫 `data/areas/ise/`、`data/areas/futami/` 的 `spots.json`（anchors 會改 `restaurants.json`）、`data/raw/ise/`、`data/raw/futami/`。
 
 ### T14 行程引擎 〔M〕
 - 純邏輯模組，不碰 UI，放在 `packages/engine`（T22 建立）；瀏覽器（T15）和 AI 工具（T16）共用同一份（[architecture.md](architecture.md) §1）：
