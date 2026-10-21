@@ -3314,7 +3314,9 @@
       "official": "https://www.uminochou.com/",
       "googleMaps": "https://maps.google.com/?cid=5909140712947163409"
     },
-    "tags": [],
+    "tags": [
+      "溫泉"
+    ],
     "tier": "A",
     "nearestStation": {
       "id": "toba",
@@ -3667,7 +3669,9 @@
       "official": "https://yusura-ise.com/",
       "googleMaps": "https://maps.google.com/?cid=2356653672564801568"
     },
-    "tags": [],
+    "tags": [
+      "溫泉"
+    ],
     "tier": "B",
     "nearestStation": {
       "id": "jr-futaminoura",
@@ -3957,7 +3961,9 @@
       "official": null,
       "googleMaps": "https://maps.google.com/?cid=16612280592546847093"
     },
-    "tags": [],
+    "tags": [
+      "溫泉"
+    ],
     "tier": "B",
     "nearestStation": {
       "id": "jr-futaminoura",
@@ -4262,7 +4268,9 @@
       "official": null,
       "googleMaps": "https://maps.google.com/?cid=9581078598415596588"
     },
-    "tags": [],
+    "tags": [
+      "包棟"
+    ],
     "tier": "B",
     "nearestStation": {
       "id": "ikenoura",
@@ -4505,7 +4513,9 @@
       "official": null,
       "googleMaps": "https://maps.google.com/?cid=1662670256767147235"
     },
-    "tags": [],
+    "tags": [
+      "包棟"
+    ],
     "tier": "B",
     "nearestStation": {
       "id": "jr-futaminoura",

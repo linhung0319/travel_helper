@@ -356,7 +356,9 @@
       "official": "https://www.iseshinsen.jp/",
       "googleMaps": "https://maps.google.com/?cid=1320609226001635846"
     },
-    "tags": [],
+    "tags": [
+      "溫泉"
+    ],
     "tier": "A",
     "nearestStation": {
       "id": "iseshi",
@@ -3786,7 +3788,9 @@
       "official": null,
       "googleMaps": "https://www.google.com/maps/search/?api=1&query=34.4928183,136.7085633"
     },
-    "tags": [],
+    "tags": [
+      "包棟"
+    ],
     "tier": "B",
     "nearestStation": {
       "id": "iseshi",
@@ -4802,7 +4806,9 @@
       "official": "https://dormy-hotels.com/resort/hotels/ikyu/",
       "googleMaps": "https://maps.google.com/?cid=5571358783118802236"
     },
-    "tags": [],
+    "tags": [
+      "溫泉"
+    ],
     "tier": "S",
     "nearestStation": {
       "id": "isuzugawa",
@@ -5410,7 +5416,9 @@
       "official": null,
       "googleMaps": "https://maps.google.com/?cid=5845092566921505709"
     },
-    "tags": [],
+    "tags": [
+      "包棟"
+    ],
     "tier": "B",
     "nearestStation": {
       "id": "isuzugawa",
@@ -5673,7 +5681,9 @@
       "official": null,
       "googleMaps": "https://maps.google.com/?cid=13059494982787400317"
     },
-    "tags": [],
+    "tags": [
+      "包棟"
+    ],
     "tier": "B",
     "nearestStation": {
       "id": "isuzugawa",

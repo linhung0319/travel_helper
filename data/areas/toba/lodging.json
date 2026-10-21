@@ -7951,7 +7951,9 @@
       "rakuten": "https://travel.rakuten.co.jp/HOTEL/38890/",
       "googleMaps": "https://maps.google.com/?cid=12443972553253250301"
     },
-    "tags": [],
+    "tags": [
+      "包棟"
+    ],
     "nearestStation": {
       "id": "toba",
       "mode": "shuttle",

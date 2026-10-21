@@ -1,0 +1,946 @@
+{
+  "generated": "2026-10-21",
+  "counts": {
+    "spot": 79,
+    "lodging": 145,
+    "restaurant": 292
+  },
+  "dups": [
+    {
+      "a": "ise-akafuku-honten",
+      "b": "ise-akafuku-bettenpo",
+      "why": [
+        "近 24 m"
+      ],
+      "crossArea": false
+    }
+  ],
+  "idIssues": [
+    {
+      "id": "shima-hanaya-dining",
+      "issue": "-dining 但沒有 extra.lodgingId，也對不到住宿（住宿沒收錄的館內餐廳）"
+    },
+    {
+      "id": "shima-amanemu-dining",
+      "issue": "-dining 但沒有 extra.lodgingId，也對不到住宿（住宿沒收錄的館內餐廳）"
+    }
+  ],
+  "tagIssues": [],
+  "tagMissing": [],
+  "tiers": [
+    {
+      "area": "shima",
+      "type": "spot",
+      "total": 24,
+      "S": 1,
+      "A": 4,
+      "B": 19,
+      "none": 0,
+      "aOrAbove": 21
+    },
+    {
+      "area": "shima",
+      "type": "lodging",
+      "total": 56,
+      "S": 6,
+      "A": 4,
+      "B": 46,
+      "none": 0,
+      "aOrAbove": 18
+    },
+    {
+      "area": "shima",
+      "type": "restaurant",
+      "total": 78,
+      "S": 0,
+      "A": 11,
+      "B": 67,
+      "none": 0,
+      "aOrAbove": 14
+    },
+    {
+      "area": "toba",
+      "type": "spot",
+      "total": 33,
+      "S": 3,
+      "A": 6,
+      "B": 19,
+      "none": 5,
+      "aOrAbove": 32
+    },
+    {
+      "area": "toba",
+      "type": "lodging",
+      "total": 38,
+      "S": 5,
+      "A": 18,
+      "B": 15,
+      "none": 0,
+      "aOrAbove": 61
+    },
+    {
+      "area": "toba",
+      "type": "restaurant",
+      "total": 83,
+      "S": 2,
+      "A": 15,
+      "B": 66,
+      "none": 0,
+      "aOrAbove": 20
+    },
+    {
+      "area": "futami",
+      "type": "spot",
+      "total": 4,
+      "S": 1,
+      "A": 1,
+      "B": 2,
+      "none": 0,
+      "aOrAbove": 50
+    },
+    {
+      "area": "futami",
+      "type": "lodging",
+      "total": 17,
+      "S": 2,
+      "A": 1,
+      "B": 14,
+      "none": 0,
+      "aOrAbove": 18
+    },
+    {
+      "area": "futami",
+      "type": "restaurant",
+      "total": 18,
+      "S": 0,
+      "A": 3,
+      "B": 15,
+      "none": 0,
+      "aOrAbove": 17
+    },
+    {
+      "area": "ise",
+      "type": "spot",
+      "total": 18,
+      "S": 2,
+      "A": 2,
+      "B": 14,
+      "none": 0,
+      "aOrAbove": 22
+    },
+    {
+      "area": "ise",
+      "type": "lodging",
+      "total": 24,
+      "S": 3,
+      "A": 1,
+      "B": 20,
+      "none": 0,
+      "aOrAbove": 17
+    },
+    {
+      "area": "ise",
+      "type": "restaurant",
+      "total": 108,
+      "S": 2,
+      "A": 19,
+      "B": 87,
+      "none": 0,
+      "aOrAbove": 19
+    },
+    {
+      "area": "kix",
+      "type": "lodging",
+      "total": 10,
+      "S": 0,
+      "A": 3,
+      "B": 7,
+      "none": 0,
+      "aOrAbove": 30
+    },
+    {
+      "area": "kix",
+      "type": "restaurant",
+      "total": 5,
+      "S": 0,
+      "A": 0,
+      "B": 5,
+      "none": 0,
+      "aOrAbove": 0
+    }
+  ],
+  "stations": [
+    {
+      "id": "iseshi",
+      "name": "伊勢市",
+      "area": "ise",
+      "restaurants": 13,
+      "lunch": 6,
+      "dinner": 10,
+      "fit15": 5,
+      "spots": 6,
+      "lodging": 15
+    },
+    {
+      "id": "ujiyamada",
+      "name": "宇治山田",
+      "area": "ise",
+      "restaurants": 6,
+      "lunch": 6,
+      "dinner": 3,
+      "fit15": 2,
+      "spots": 1,
+      "lodging": 2
+    },
+    {
+      "id": "isuzugawa",
+      "name": "五十鈴川",
+      "area": "ise",
+      "restaurants": 47,
+      "lunch": 31,
+      "dinner": 6,
+      "fit15": 14,
+      "spots": 9,
+      "lodging": 4
+    },
+    {
+      "id": "asama",
+      "name": "朝熊",
+      "area": "ise",
+      "restaurants": 0,
+      "lunch": 0,
+      "dinner": 0,
+      "fit15": 0,
+      "spots": 0,
+      "lodging": 0
+    },
+    {
+      "id": "ikenoura",
+      "name": "池の浦",
+      "area": "toba",
+      "restaurants": 0,
+      "lunch": 0,
+      "dinner": 0,
+      "fit15": 0,
+      "spots": 0,
+      "lodging": 1
+    },
+    {
+      "id": "toba",
+      "name": "鳥羽",
+      "area": "toba",
+      "restaurants": 11,
+      "lunch": 8,
+      "dinner": 5,
+      "fit15": 4,
+      "spots": 32,
+      "lodging": 37
+    },
+    {
+      "id": "nakanogo",
+      "name": "中之郷",
+      "area": "toba",
+      "restaurants": 2,
+      "lunch": 2,
+      "dinner": 2,
+      "fit15": 1,
+      "spots": 1,
+      "lodging": 1
+    },
+    {
+      "id": "shima-akasaki",
+      "name": "志摩赤崎",
+      "area": "toba",
+      "restaurants": 6,
+      "lunch": 6,
+      "dinner": 5,
+      "fit15": 3,
+      "spots": 0,
+      "lodging": 0
+    },
+    {
+      "id": "funatsu",
+      "name": "船津",
+      "area": "toba",
+      "restaurants": 0,
+      "lunch": 0,
+      "dinner": 0,
+      "fit15": 0,
+      "spots": 0,
+      "lodging": 0
+    },
+    {
+      "id": "kamo",
+      "name": "加茂",
+      "area": "toba",
+      "restaurants": 1,
+      "lunch": 1,
+      "dinner": 0,
+      "fit15": 1,
+      "spots": 0,
+      "lodging": 0
+    },
+    {
+      "id": "matsuo",
+      "name": "松尾",
+      "area": "toba",
+      "restaurants": 0,
+      "lunch": 0,
+      "dinner": 0,
+      "fit15": 0,
+      "spots": 0,
+      "lodging": 1
+    },
+    {
+      "id": "shiraki",
+      "name": "白木",
+      "area": "toba",
+      "restaurants": 0,
+      "lunch": 0,
+      "dinner": 0,
+      "fit15": 0,
+      "spots": 0,
+      "lodging": 0
+    },
+    {
+      "id": "gochi",
+      "name": "五知",
+      "area": "shima",
+      "restaurants": 0,
+      "lunch": 0,
+      "dinner": 0,
+      "fit15": 0,
+      "spots": 0,
+      "lodging": 0
+    },
+    {
+      "id": "kutsukake",
+      "name": "沓掛",
+      "area": "shima",
+      "restaurants": 0,
+      "lunch": 0,
+      "dinner": 0,
+      "fit15": 0,
+      "spots": 0,
+      "lodging": 0
+    },
+    {
+      "id": "kaminogo",
+      "name": "上之郷",
+      "area": "shima",
+      "restaurants": 1,
+      "lunch": 1,
+      "dinner": 0,
+      "fit15": 0,
+      "spots": 1,
+      "lodging": 0
+    },
+    {
+      "id": "shima-isobe",
+      "name": "志摩磯部",
+      "area": "shima",
+      "restaurants": 1,
+      "lunch": 1,
+      "dinner": 1,
+      "fit15": 1,
+      "spots": 1,
+      "lodging": 2
+    },
+    {
+      "id": "anagawa",
+      "name": "穴川",
+      "area": "shima",
+      "restaurants": 0,
+      "lunch": 0,
+      "dinner": 0,
+      "fit15": 0,
+      "spots": 0,
+      "lodging": 0
+    },
+    {
+      "id": "shima-yokoyama",
+      "name": "志摩横山",
+      "area": "shima",
+      "restaurants": 4,
+      "lunch": 4,
+      "dinner": 3,
+      "fit15": 3,
+      "spots": 0,
+      "lodging": 1
+    },
+    {
+      "id": "ugata",
+      "name": "鵜方",
+      "area": "shima",
+      "restaurants": 18,
+      "lunch": 16,
+      "dinner": 16,
+      "fit15": 9,
+      "spots": 16,
+      "lodging": 31
+    },
+    {
+      "id": "shima-shimmei",
+      "name": "志摩神明",
+      "area": "shima",
+      "restaurants": 3,
+      "lunch": 2,
+      "dinner": 2,
+      "fit15": 1,
+      "spots": 1,
+      "lodging": 2
+    },
+    {
+      "id": "kashikojima",
+      "name": "賢島",
+      "area": "shima",
+      "restaurants": 12,
+      "lunch": 9,
+      "dinner": 6,
+      "fit15": 6,
+      "spots": 5,
+      "lodging": 20
+    },
+    {
+      "id": "jr-iseshi",
+      "name": "伊勢市",
+      "area": "ise",
+      "restaurants": 20,
+      "lunch": 10,
+      "dinner": 12,
+      "fit15": 6,
+      "spots": 0,
+      "lodging": 0
+    },
+    {
+      "id": "jr-isuzugaoka",
+      "name": "五十鈴ケ丘",
+      "area": "ise",
+      "restaurants": 5,
+      "lunch": 4,
+      "dinner": 4,
+      "fit15": 2,
+      "spots": 1,
+      "lodging": 1
+    },
+    {
+      "id": "jr-futaminoura",
+      "name": "二見浦",
+      "area": "futami",
+      "restaurants": 14,
+      "lunch": 8,
+      "dinner": 6,
+      "fit15": 3,
+      "spots": 3,
+      "lodging": 15
+    },
+    {
+      "id": "jr-matsushita",
+      "name": "松下",
+      "area": "futami",
+      "restaurants": 3,
+      "lunch": 2,
+      "dinner": 0,
+      "fit15": 0,
+      "spots": 1,
+      "lodging": 0
+    },
+    {
+      "id": "jr-toba",
+      "name": "鳥羽",
+      "area": "toba",
+      "restaurants": 21,
+      "lunch": 17,
+      "dinner": 13,
+      "fit15": 5,
+      "spots": 0,
+      "lodging": 0
+    },
+    {
+      "id": "obata",
+      "name": "小俣",
+      "area": "ise",
+      "restaurants": 1,
+      "lunch": 1,
+      "dinner": 1,
+      "fit15": 1,
+      "spots": 1,
+      "lodging": 0
+    },
+    {
+      "id": "miyamachi",
+      "name": "宮町",
+      "area": "ise",
+      "restaurants": 10,
+      "lunch": 7,
+      "dinner": 10,
+      "fit15": 6,
+      "spots": 0,
+      "lodging": 2
+    }
+  ],
+  "regions": [
+    {
+      "area": "shima",
+      "region": "shima-kashikojima",
+      "name": "賢島",
+      "needsCar": false,
+      "spot": 6,
+      "lodging": 12,
+      "restaurant": 13
+    },
+    {
+      "area": "shima",
+      "region": "shima-ugata",
+      "name": "鵜方・志摩神明",
+      "needsCar": false,
+      "spot": 1,
+      "lodging": 9,
+      "restaurant": 24
+    },
+    {
+      "area": "shima",
+      "region": "shima-yokoyama",
+      "name": "横山",
+      "needsCar": true,
+      "spot": 1,
+      "lodging": 0,
+      "restaurant": 1
+    },
+    {
+      "area": "shima",
+      "region": "shima-isobe",
+      "name": "志摩磯部・上之郷・穴川",
+      "needsCar": false,
+      "spot": 1,
+      "lodging": 0,
+      "restaurant": 4
+    },
+    {
+      "area": "shima",
+      "region": "shima-spain",
+      "name": "志摩スペイン村（坂崎）",
+      "needsCar": false,
+      "spot": 0,
+      "lodging": 0,
+      "restaurant": 0
+    },
+    {
+      "area": "shima",
+      "region": "shima-amanoiwato",
+      "name": "天の岩戸・恵利原",
+      "needsCar": true,
+      "spot": 1,
+      "lodging": 0,
+      "restaurant": 0
+    },
+    {
+      "area": "shima",
+      "region": "shima-matoya",
+      "name": "的矢湾・渡鹿野島",
+      "needsCar": true,
+      "spot": 1,
+      "lodging": 8,
+      "restaurant": 7
+    },
+    {
+      "area": "shima",
+      "region": "shima-anori",
+      "name": "安乗",
+      "needsCar": true,
+      "spot": 1,
+      "lodging": 3,
+      "restaurant": 4
+    },
+    {
+      "area": "shima",
+      "region": "shima-kokufu",
+      "name": "国府・甲賀・志島",
+      "needsCar": true,
+      "spot": 0,
+      "lodging": 6,
+      "restaurant": 4
+    },
+    {
+      "area": "shima",
+      "region": "shima-daio",
+      "name": "大王・波切",
+      "needsCar": true,
+      "spot": 3,
+      "lodging": 0,
+      "restaurant": 4
+    },
+    {
+      "area": "shima",
+      "region": "shima-tomoyama",
+      "name": "登茂山（ともやま公園）",
+      "needsCar": true,
+      "spot": 2,
+      "lodging": 5,
+      "restaurant": 3
+    },
+    {
+      "area": "shima",
+      "region": "shima-goza",
+      "name": "御座・越賀",
+      "needsCar": true,
+      "spot": 3,
+      "lodging": 4,
+      "restaurant": 1
+    },
+    {
+      "area": "shima",
+      "region": "shima-wagu",
+      "name": "和具・布施田・片田",
+      "needsCar": true,
+      "spot": 0,
+      "lodging": 1,
+      "restaurant": 2
+    },
+    {
+      "area": "shima",
+      "region": "shima-hamajima",
+      "name": "浜島",
+      "needsCar": true,
+      "spot": 2,
+      "lodging": 5,
+      "restaurant": 6
+    },
+    {
+      "area": "shima",
+      "region": "shima-sakko",
+      "name": "迫子（志摩地中海村・NEMU）",
+      "needsCar": true,
+      "spot": 2,
+      "lodging": 2,
+      "restaurant": 3
+    },
+    {
+      "area": "shima",
+      "region": "shima-other",
+      "name": "志摩市その他（散在）",
+      "needsCar": true,
+      "spot": 0,
+      "lodging": 1,
+      "restaurant": 2
+    },
+    {
+      "area": "toba",
+      "region": "toba-station",
+      "name": "鳥羽駅周辺",
+      "needsCar": false,
+      "spot": 9,
+      "lodging": 8,
+      "restaurant": 32
+    },
+    {
+      "area": "toba",
+      "region": "toba-outskirts",
+      "name": "鳥羽市街外縁",
+      "needsCar": true,
+      "spot": 1,
+      "lodging": 6,
+      "restaurant": 6
+    },
+    {
+      "area": "toba",
+      "region": "nakanogo",
+      "name": "中之郷",
+      "needsCar": false,
+      "spot": 1,
+      "lodging": 1,
+      "restaurant": 4
+    },
+    {
+      "area": "toba",
+      "region": "uramura",
+      "name": "浦村",
+      "needsCar": true,
+      "spot": 1,
+      "lodging": 6,
+      "restaurant": 18
+    },
+    {
+      "area": "toba",
+      "region": "osatsu",
+      "name": "相差",
+      "needsCar": true,
+      "spot": 4,
+      "lodging": 7,
+      "restaurant": 10
+    },
+    {
+      "area": "toba",
+      "region": "kuzaki",
+      "name": "国崎・パールロード",
+      "needsCar": true,
+      "spot": 4,
+      "lodging": 2,
+      "restaurant": 6
+    },
+    {
+      "area": "toba",
+      "region": "toshijima",
+      "name": "答志島",
+      "needsCar": false,
+      "spot": 5,
+      "lodging": 6,
+      "restaurant": 3
+    },
+    {
+      "area": "toba",
+      "region": "sugashima",
+      "name": "菅島",
+      "needsCar": false,
+      "spot": 3,
+      "lodging": 1,
+      "restaurant": 2
+    },
+    {
+      "area": "toba",
+      "region": "kamishima",
+      "name": "神島",
+      "needsCar": false,
+      "spot": 5,
+      "lodging": 1,
+      "restaurant": 2
+    },
+    {
+      "area": "futami",
+      "region": "futami-okitama",
+      "name": "二見浦・夫婦岩",
+      "needsCar": false,
+      "spot": 3,
+      "lodging": 12,
+      "restaurant": 13
+    },
+    {
+      "area": "futami",
+      "region": "futami-outskirts",
+      "name": "二見町外縁",
+      "needsCar": true,
+      "spot": 1,
+      "lodging": 5,
+      "restaurant": 5
+    },
+    {
+      "area": "ise",
+      "region": "ise-geku",
+      "name": "外宮・伊勢市駅周辺",
+      "needsCar": false,
+      "spot": 6,
+      "lodging": 17,
+      "restaurant": 45
+    },
+    {
+      "area": "ise",
+      "region": "ise-kurata",
+      "name": "倉田山・五十鈴川駅周辺",
+      "needsCar": false,
+      "spot": 4,
+      "lodging": 1,
+      "restaurant": 7
+    },
+    {
+      "area": "ise",
+      "region": "ise-isuzugaoka",
+      "name": "五十鈴ケ丘・伊勢IC周辺",
+      "needsCar": true,
+      "spot": 1,
+      "lodging": 1,
+      "restaurant": 4
+    },
+    {
+      "area": "ise",
+      "region": "ise-obata",
+      "name": "小俣・御薗",
+      "needsCar": false,
+      "spot": 1,
+      "lodging": 0,
+      "restaurant": 4
+    },
+    {
+      "area": "ise",
+      "region": "ise-naiku",
+      "name": "内宮・おはらい町",
+      "needsCar": false,
+      "spot": 4,
+      "lodging": 4,
+      "restaurant": 43
+    },
+    {
+      "area": "ise",
+      "region": "ise-asama",
+      "name": "朝熊山",
+      "needsCar": true,
+      "spot": 2,
+      "lodging": 0,
+      "restaurant": 1
+    },
+    {
+      "area": "ise",
+      "region": "ise-outskirts",
+      "name": "伊勢市街外縁（その他）",
+      "needsCar": true,
+      "spot": 0,
+      "lodging": 1,
+      "restaurant": 4
+    },
+    {
+      "area": "kix",
+      "region": "kix-island",
+      "name": "関西空港（空港島）",
+      "needsCar": false,
+      "spot": 0,
+      "lodging": 1,
+      "restaurant": 1
+    },
+    {
+      "area": "kix",
+      "region": "rinku",
+      "name": "りんくうタウン",
+      "needsCar": false,
+      "spot": 0,
+      "lodging": 6,
+      "restaurant": 1
+    },
+    {
+      "area": "kix",
+      "region": "izumisano",
+      "name": "泉佐野",
+      "needsCar": false,
+      "spot": 0,
+      "lodging": 3,
+      "restaurant": 3
+    }
+  ],
+  "lowConfTop": [
+    {
+      "id": "shima-iwajin-kissa",
+      "name": "イワジン喫茶室",
+      "tier": "A",
+      "why": "食べログ 3.45（122 則）＋ Google 4.3 → 第 1 條 4；口コミ（2025～2026）多在 3.5 以上，負評只有送錯餐 1 則"
+    },
+    {
+      "id": "futami-ofukumochi-honke",
+      "name": "御福餅 本家",
+      "tier": "A",
+      "why": "食べログ 3.49（203 則）、Google 4.2（604 則），まっぷる、4travel 都有介紹；口コミ多半是 2024 年搬遷前的舊店"
+    },
+    {
+      "id": "futami-asahiya-sakamoto-manju",
+      "name": "旭家 酒素饅頭製造本舗",
+      "tier": "A",
+      "why": "食べログ 3.45（100 則）、Google 4.6（175 則），観光三重、るるぶ、まっぷる 都介紹"
+    },
+    {
+      "id": "ise-tofuan-yamanaka",
+      "name": "豆腐庵山中",
+      "tier": "A",
+      "why": "食べログ 3.59（593 則）、Google 4.2（227 則），觀光三重 2 篇特輯都選入"
+    },
+    {
+      "id": "ise-nikawa",
+      "name": "にかわ",
+      "tier": "A",
+      "why": "食べログ 3.93（150 則）、Google 4.5（62 則）→ 伊勢的第 1 條（3.55／150 則＋Google 4.1）；Time Out、なっぷ 說入選米其林必比登"
+    },
+    {
+      "id": "ise-bon-vivant",
+      "name": "ボン・ヴィヴァン",
+      "tier": "A",
+      "why": "食べログ 3.71（155 則）、Google 4.5（147 則）→ 伊勢的第 1 條（3.55／150 則＋Google 4.1）；米其林 2019、Gault&Millau 掲載，觀光三重、まっぷる 推薦"
+    },
+    {
+      "id": "ise-dandelion-chocolate-geku",
+      "name": "ダンデライオン・チョコレート 伊勢外宮店",
+      "tier": "A",
+      "why": "食べログ 3.59（414 則）、Google 4.1（535 則）→ 伊勢的第 1 條（3.55／150 則＋Google 4.1）；觀光三重、Walkerplus、Time Out 介紹"
+    },
+    {
+      "id": "ise-kaki-no-tomo",
+      "name": "牡蠣の朋",
+      "tier": "A",
+      "why": "食べログ 3.55（178 則）、Google 4.5（296 則）→ 伊勢的第 1 條（3.55／150 則＋Google 4.1）；介紹只有 TikTok／IG 轉載"
+    }
+  ],
+  "winterUnsure": [
+    {
+      "id": "shima-espana-cruise",
+      "name": "賢島エスパーニャクルーズ（英虞湾遊覧）",
+      "tier": "B",
+      "winterFit": 2,
+      "why": "2/1～3/5 大船休業、改小型代替船（定員、設備不明），冬天甲板冷"
+    },
+    {
+      "id": "shima-kashikojima-yuransen",
+      "name": "あご湾島めぐりクルーズ（賢島遊覧船組合）",
+      "tier": "B",
+      "winterFit": 2,
+      "why": "2 月營業沒明寫（不定期運行、天候休）→ 照「2 月很可能休業但日期未確認」打 2"
+    },
+    {
+      "id": "shima-kaiyuen",
+      "name": "賢島フィッシングパーク 海遊苑",
+      "tier": "B",
+      "winterFit": 2,
+      "why": "觀光協會說冬天改陶板燒，但 2 月釣り堀營業沒明寫 → 2"
+    },
+    {
+      "id": "shima-sushi-benkei",
+      "name": "すし べんけい 寿司握り体験",
+      "tier": "B",
+      "winterFit": 4,
+      "why": "室內體驗；營業日、2 月營業沒有來源，但沒有冬季休業的跡象 → 照室內打 4（T9g：「沒明寫」不再一律 2，同鳥羽 おおさつ かまど）"
+    },
+    {
+      "id": "shima-satoumian",
+      "name": "海女小屋体験施設さとうみ庵（海女資料館）",
+      "tier": "B",
+      "winterFit": 3,
+      "why": "2 月營業沒明寫（觀光三重是 2022～23 年的資料），沒有冬季休業的跡象；海女小屋沒有暖氣 → 3（T9g：「沒明寫」不再一律 2）"
+    },
+    {
+      "id": "shima-pearl-miki",
+      "name": "真珠体験 パール美樹",
+      "tier": "B",
+      "winterFit": 4,
+      "why": "室內的珍珠體驗；2 月營業沒明寫，但沒有冬季休業的跡象 → 4（T9g：「沒明寫」不再一律 2）"
+    },
+    {
+      "id": "shima-iwaho-bbq-cruise",
+      "name": "あご湾めぐりと船上バーベキュー（いわほ観光汽船）",
+      "tier": "B",
+      "winterFit": 2,
+      "why": "2 月營業沒明寫（觀光三重只寫年中無休）→ 2"
+    },
+    {
+      "id": "shima-green-adventure",
+      "name": "志摩グリーンアドベンチャー（アトラクションフィールド）",
+      "tier": "B",
+      "winterFit": 3,
+      "why": "戶外設施；營業カレンダー只公布到 2026-10（還沒公布，不是休業的跡象）→ 戶外 3（T9g：「沒明寫」不再一律 2）"
+    },
+    {
+      "id": "toba-bay-cruise-irukajima",
+      "name": "鳥羽湾めぐりとイルカ島",
+      "tier": "A",
+      "winterFit": 2,
+      "why": "1 月中旬～2 月上旬有年度休業，旅程大半很可能停航；有開的話海上也冷"
+    },
+    {
+      "id": "toba-osatsu-kamado",
+      "name": "海女小屋 相差かまど",
+      "tier": "A",
+      "winterFit": 4,
+      "why": "室內有炭火、冬天是貝類的季節；2 月營業沒有來源確認"
+    },
+    {
+      "id": "futami-omotesando",
+      "name": "夫婦岩表参道（旅館街）",
+      "tier": "B",
+      "winterFit": 3,
+      "why": "戶外街道、全年通行，2 月店家營業不明"
+    }
+  ]
+}
