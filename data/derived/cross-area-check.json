@@ -73,10 +73,10 @@
       "type": "lodging",
       "total": 38,
       "S": 5,
-      "A": 18,
-      "B": 15,
+      "A": 4,
+      "B": 29,
       "none": 0,
-      "aOrAbove": 61
+      "aOrAbove": 24
     },
     {
       "area": "toba",
@@ -477,6 +477,50 @@
       "fit15": 6,
       "spots": 0,
       "lodging": 2
+    },
+    {
+      "id": "kansai-airport",
+      "name": "関西空港",
+      "area": "kix",
+      "restaurants": 1,
+      "lunch": 1,
+      "dinner": 1,
+      "fit15": 1,
+      "spots": 0,
+      "lodging": 1
+    },
+    {
+      "id": "rinku-town",
+      "name": "りんくうタウン",
+      "area": "kix",
+      "restaurants": 1,
+      "lunch": 1,
+      "dinner": 1,
+      "fit15": 0,
+      "spots": 0,
+      "lodging": 5
+    },
+    {
+      "id": "izumisano",
+      "name": "泉佐野",
+      "area": "kix",
+      "restaurants": 3,
+      "lunch": 2,
+      "dinner": 3,
+      "fit15": 2,
+      "spots": 0,
+      "lodging": 3
+    },
+    {
+      "id": "hagurazaki",
+      "name": "羽倉崎",
+      "area": "kix",
+      "restaurants": 0,
+      "lunch": 0,
+      "dinner": 0,
+      "fit15": 0,
+      "spots": 0,
+      "lodging": 1
     }
   ],
   "regions": [

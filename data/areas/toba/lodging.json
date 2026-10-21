@@ -28,7 +28,7 @@
         "license": null
       }
     ],
-    "tier": "A",
+    "tier": "B",
     "verified": false,
     "id": "toba-todaya",
     "name": {
@@ -396,21 +396,21 @@
     "assessment": {
       "rubric": "lodging-v1",
       "scores": {
-        "recommend": 4,
+        "recommend": 3,
         "meals": 4,
         "groupFit": 5,
         "elderFit": 4,
         "accessEase": 5
       },
       "rationale": {
-        "recommend": "楽天 4.42、じゃらん 4.4 都超過 2,000 則，Google 4.0；近期口コミ多好評，少數說設施老舊",
+        "recommend": "楽天 4.42、じゃらん 4.4 都超過 2,000 則，Google 4.0；近期口コミ多好評，少數說設施老舊。T13（2026-10-21）鳥羽住宿照伊勢、志摩依區調整（4＝主要訂房網 4.5 以上、300 則以上＋Google 4.2 以上）：主要訂房網 じゃらん 4.4（3203 則）、Google 4 → 3",
         "meals": "楽天餐 4.56，自助晚餐有解體秀、現烤牛排；素泊時步行 5～9 分有 8 家晚上營業的店",
         "groupFit": "官網團體方案 8 人以上、宴會場 8 人以上可用；楽天兩天都有 15 人的房間組合",
         "elderFit": "有電梯和很多有床的房間，但館內移動距離長，帶 90 歲長輩的心得說要借步行器",
         "accessEase": "鳥羽站步行約 3 分、路平"
       },
       "confidence": "high",
-      "assessed": "2026-10-18"
+      "assessed": "2026-10-21"
     }
   },
   {
@@ -1086,7 +1086,7 @@
         "license": null
       }
     ],
-    "tier": "A",
+    "tier": "B",
     "verified": false,
     "id": "toba-seaside-hotel",
     "name": {
@@ -1425,21 +1425,21 @@
     "assessment": {
       "rubric": "lodging-v1",
       "scores": {
-        "recommend": 4,
+        "recommend": 3,
         "meals": 4,
         "groupFit": 5,
         "elderFit": 4,
         "accessEase": 4
       },
       "rationale": {
-        "recommend": "楽天 4.42（1,650 則）、じゃらん 4.5（3,006 則）、Google 4.1（2,285 則）；有溫泉氯味、昭和感的意見",
+        "recommend": "楽天 4.42（1,650 則）、じゃらん 4.5（3,006 則）、Google 4.1（2,285 則）；有溫泉氯味、昭和感的意見。T13（2026-10-21）鳥羽住宿照伊勢、志摩依區調整（4＝主要訂房網 4.5 以上、300 則以上＋Google 4.2 以上）：主要訂房網 じゃらん 4.5（3006 則）、Google 4.1 → 3",
         "meals": "楽天餐 4.4，海鮮自助品項多受好評；素泊時附近沒有店，要在館內吃",
         "groupFit": "團體方案 10～500 人，2 月可用；楽天兩天都有 15 人的組合",
         "elderFit": "有電梯、有和ベッド客室，但三棟之間要走一段",
         "accessEase": "鳥羽站 1 號出口免費接駁，13:30～18:00 每 30 分，車程 10 分"
       },
       "confidence": "high",
-      "assessed": "2026-10-18"
+      "assessed": "2026-10-21"
     }
   },
   {
@@ -1471,7 +1471,7 @@
         "license": null
       }
     ],
-    "tier": "A",
+    "tier": "B",
     "verified": false,
     "id": "toba-view-hotel-hanashinju",
     "name": {
@@ -1786,21 +1786,21 @@
     "assessment": {
       "rubric": "lodging-v1",
       "scores": {
-        "recommend": 4,
+        "recommend": 3,
         "meals": 4,
         "groupFit": 4,
         "elderFit": 2,
         "accessEase": 4
       },
       "rationale": {
-        "recommend": "楽天 4.39（1,724 則）、じゃらん 4.5（2,650 則）、Google 4.0；少數負評（噪音、棉被潮濕）",
+        "recommend": "楽天 4.39（1,724 則）、じゃらん 4.5（2,650 則）、Google 4.0；少數負評（噪音、棉被潮濕）。T13（2026-10-21）鳥羽住宿照伊勢、志摩依區調整（4＝主要訂房網 4.5 以上、300 則以上＋Google 4.2 以上）：主要訂房網 じゃらん 4.5（2650 則）、Google 4 → 3",
         "meals": "楽天餐 4.55、じゃらん晚餐 4.5，會席有松阪牛、伊勢海老、鮑",
         "groupFit": "44 室、房間最多 6 人，15 人分 3 間；12 人以上在宴會場吃；沒有團體方案",
         "elderFit": "全館和室鋪被，電梯沒有來源",
         "accessEase": "鳥羽站免費接駁 15:00～18:00 每 30 分、不用預約，車程 8 分"
       },
       "confidence": "high",
-      "assessed": "2026-10-18"
+      "assessed": "2026-10-21"
     }
   },
   {
@@ -2213,7 +2213,7 @@
         "license": null
       }
     ],
-    "tier": "A",
+    "tier": "B",
     "verified": false,
     "id": "toba-grand-hotel",
     "name": {
@@ -2533,21 +2533,21 @@
     "assessment": {
       "rubric": "lodging-v1",
       "scores": {
-        "recommend": 4,
+        "recommend": 3,
         "meals": 3,
         "groupFit": 4,
         "elderFit": 4,
         "accessEase": 4
       },
       "rationale": {
-        "recommend": "楽天 4.47、じゃらん 4.6，評論數鳥羽最多；Google 4.1、Relux 4.0，心得說設施老舊",
+        "recommend": "楽天 4.47、じゃらん 4.6，評論數鳥羽最多；Google 4.1、Relux 4.0，心得說設施老舊。T13（2026-10-21）鳥羽住宿照伊勢、志摩依區調整（4＝主要訂房網 4.5 以上、300 則以上＋Google 4.2 以上）：主要訂房網 じゃらん 4.6（5624 則）、Google 4.1 → 3",
         "meals": "楽天餐 4.55，但 Relux 晚餐 3.9、舊心得說自助餐味道普通；2026 夏的口コミ說會場翻新、伊勢海老和牛好評，舊評還沒被蓋過，維持 3",
         "groupFit": "75 室，8 人以上可用宴會場；沒有住宿團體方案",
         "elderFit": "有床的房型多、1 間無障礙房；住客口コミ（2026-07）確認有電梯，但到大浴場、餐廳要轉乘電梯、等很久，部分客房有段差 → 4",
         "accessEase": "鳥羽站免費接駁 14:50～18:00 來回運行、不用預約，約 5 分"
       },
       "confidence": "high",
-      "assessed": "2026-10-19"
+      "assessed": "2026-10-21"
     }
   },
   {
@@ -2572,7 +2572,7 @@
         "license": null
       }
     ],
-    "tier": "A",
+    "tier": "B",
     "verified": false,
     "id": "toba-kochoran",
     "name": {
@@ -2852,21 +2852,21 @@
     "assessment": {
       "rubric": "lodging-v1",
       "scores": {
-        "recommend": 4,
+        "recommend": 3,
         "meals": 4,
         "groupFit": 4,
         "elderFit": 3,
         "accessEase": 3
       },
       "rationale": {
-        "recommend": "楽天 4.44（1,495 則）、じゃらん 4.3、Google 4.1；4travel 3.32，少數料理負評",
+        "recommend": "楽天 4.44（1,495 則）、じゃらん 4.3、Google 4.1；4travel 3.32，少數料理負評。T13（2026-10-21）鳥羽住宿照伊勢、志摩依區調整（4＝主要訂房網 4.5 以上、300 則以上＋Google 4.2 以上）：主要訂房網 じゃらん 4.3（2448 則）、Google 4.1 → 3",
         "meals": "楽天餐 4.49，房間用餐的伊勢海老、鮑會席；早餐評價較弱",
         "groupFit": "35 室、房間最多 6 人，有宴會場但沒寫團體方案",
         "elderFit": "有電梯但窄，有床的房間只有和洋室 6 間",
         "accessEase": "鳥羽站禮車接送 14:45～18:00，約 5 分；禮車載客少，15 人要分好幾趟"
       },
       "confidence": "high",
-      "assessed": "2026-10-18"
+      "assessed": "2026-10-21"
     }
   },
   {
@@ -4336,7 +4336,7 @@
         "license": null
       }
     ],
-    "tier": "A",
+    "tier": "B",
     "verified": false,
     "id": "toba-osatsu-michishio",
     "kind": "ryokan",
@@ -4639,21 +4639,21 @@
     "assessment": {
       "rubric": "lodging-v1",
       "scores": {
-        "recommend": 4,
+        "recommend": 3,
         "meals": 4,
         "groupFit": 4,
         "elderFit": 4,
         "accessEase": 3
       },
       "rationale": {
-        "recommend": "楽天 4.39（4,943 則）、Google 4.3（773 則）；4travel 3.27（多是舊評），料理好評、客室老舊",
+        "recommend": "楽天 4.39（4,943 則）、Google 4.3（773 則）；4travel 3.27（多是舊評），料理好評、客室老舊。T13（2026-10-21）鳥羽住宿照伊勢、志摩依區調整（4＝主要訂房網 4.5 以上、300 則以上＋Google 4.2 以上）：主要訂房網 楽天 4.39（4943 則）、Google 4.3 → 3",
         "meals": "楽天餐 4.55，伊勢海老舟盛、刺身多篇稱讚",
         "groupFit": "收容 130 人、有大廣間；同團體要訂同一方案，沒有團體方案",
         "elderFit": "2 台電梯、輪椅可移動，但有床的房型只有少數幾間",
         "accessEase": "鳥羽站免費接送 15:00／16:30 兩班、要預約共乘，約 30 分；或相差海女シャトル"
       },
       "confidence": "high",
-      "assessed": "2026-10-18"
+      "assessed": "2026-10-21"
     }
   },
   {
@@ -5721,7 +5721,7 @@
         "license": null
       }
     ],
-    "tier": "A",
+    "tier": "B",
     "verified": false,
     "id": "toba-osatsu-nakayoshi",
     "kind": "ryokan",
@@ -5969,21 +5969,21 @@
     "assessment": {
       "rubric": "lodging-v1",
       "scores": {
-        "recommend": 4,
+        "recommend": 3,
         "meals": 4,
         "groupFit": 4,
         "elderFit": 4,
         "accessEase": 3
       },
       "rationale": {
-        "recommend": "楽天 4.74、じゃらん 4.5、Google 4.4，但主要訂房網不到 300 則（上限 4）；Google 低分有接待、過敏對應的負評",
+        "recommend": "楽天 4.74、じゃらん 4.5、Google 4.4，但主要訂房網不到 300 則（上限 4）；Google 低分有接待、過敏對應的負評。T13（2026-10-21）鳥羽住宿照伊勢、志摩依區調整（4＝主要訂房網 4.5 以上、300 則以上＋Google 4.2 以上）：主要訂房網 じゃらん 4.5（182 則）、Google 4.4 → 3",
         "meals": "楽天餐 4.90，但 Google 評論有料理冷、刺身不新鮮、端出過敏食材的意見 → 降一級",
         "groupFit": "14 室、有宴會場，15 人分 3～5 間；沒有團體方案",
         "elderFit": "有電梯，有床的客室要電話預約",
         "accessEase": "鳥羽站接送 15:30／16:30（早上只有 9:30 一班），要前一天預約、依日期可能沒有；可用相差海女シャトル"
       },
       "confidence": "medium",
-      "assessed": "2026-10-18"
+      "assessed": "2026-10-21"
     }
   },
   {
@@ -6350,7 +6350,7 @@
         "license": null
       }
     ],
-    "tier": "A",
+    "tier": "B",
     "verified": false,
     "id": "toba-kuzaki-tamaya",
     "kind": "ryokan",
@@ -6581,21 +6581,21 @@
     "assessment": {
       "rubric": "lodging-v1",
       "scores": {
-        "recommend": 4,
+        "recommend": 3,
         "meals": 5,
         "groupFit": 3,
         "elderFit": 2,
         "accessEase": 2
       },
       "rationale": {
-        "recommend": "楽天 4.81（435 則），Google 4.1 只有 38 則；心得稱讚料理服務，但建築老舊",
+        "recommend": "楽天 4.81（435 則），Google 4.1 只有 38 則；心得稱讚料理服務，但建築老舊。T13（2026-10-21）鳥羽住宿照伊勢、志摩依區調整（4＝主要訂房網 4.5 以上、300 則以上＋Google 4.2 以上）：主要訂房網 楽天 4.81（435 則）、Google 4.1 → 3",
         "meals": "楽天餐 4.81，伊勢海老活造り、鮑陶板焼き",
         "groupFit": "全 5 室、每室 2～5 人，15 人等於包下全館，要電話問",
         "elderFit": "全部和室鋪被、客房沒有衛浴，電梯和階梯沒有資料",
         "accessEase": "接送有無各來源矛盾；巴士或開車約 30 分"
       },
       "confidence": "medium",
-      "assessed": "2026-10-18"
+      "assessed": "2026-10-21"
     }
   },
   {
@@ -6627,7 +6627,7 @@
         "license": null
       }
     ],
-    "tier": "A",
+    "tier": "B",
     "verified": false,
     "id": "toba-ijika-kagura",
     "kind": "hotel",
@@ -6931,21 +6931,21 @@
     "assessment": {
       "rubric": "lodging-v1",
       "scores": {
-        "recommend": 4,
+        "recommend": 3,
         "meals": 3,
         "groupFit": 4,
         "elderFit": 3,
         "accessEase": 3
       },
       "rationale": {
-        "recommend": "楽天 4.35（3,880 則）、じゃらん 4.1、Google 4.1（1,041 則）；有建築老舊的負評",
+        "recommend": "楽天 4.35（3,880 則）、じゃらん 4.1、Google 4.1（1,041 則）；有建築老舊的負評。T13（2026-10-21）鳥羽住宿照伊勢、志摩依區調整（4＝主要訂房網 4.5 以上、300 則以上＋Google 4.2 以上）：主要訂房網 楽天 4.35（3880 則）、Google 4.1 → 3",
         "meals": "楽天餐 4.43，但じゃらん晚餐 3.7，國產牛鐵板燒有偏硬的意見",
         "groupFit": "52～55 室、有宴會場，可以全員同館；沒有團體方案",
         "elderFit": "有電梯但要跨館換乘，玄關有階梯和陡坡；有和洋室、洋室，但便宜方案不能指定",
         "accessEase": "鳥羽站 1 號出口免費接送 15:00／16:00／17:00，要預約，約 20～25 分"
       },
       "confidence": "high",
-      "assessed": "2026-10-18"
+      "assessed": "2026-10-21"
     }
   },
   {
@@ -7647,7 +7647,7 @@
         "license": null
       }
     ],
-    "tier": "A",
+    "tier": "B",
     "verified": false,
     "id": "toba-uramura-miurasou",
     "kind": "minshuku",
@@ -7889,21 +7889,21 @@
     "assessment": {
       "rubric": "lodging-v1",
       "scores": {
-        "recommend": 4,
+        "recommend": 3,
         "meals": 5,
         "groupFit": 3,
         "elderFit": 2,
         "accessEase": 3
       },
       "rationale": {
-        "recommend": "楽天 4.60、Google 4.5，評論 200 則以下；有建築老舊、淋浴故障的意見",
+        "recommend": "楽天 4.60、Google 4.5，評論 200 則以下；有建築老舊、淋浴故障的意見。T13（2026-10-21）鳥羽住宿照伊勢、志摩依區調整（4＝主要訂房網 4.5 以上、300 則以上＋Google 4.2 以上）：主要訂房網 楽天 4.6（196 則）、Google 4.5 → 3",
         "meals": "楽天餐 4.82，冬季牡蠣全餐多篇稱讚",
         "groupFit": "全 9 室、每室最多 4 人，15 人幾乎包下；能不能包棟要電話問",
         "elderFit": "全部和室鋪被、客室沒有浴廁，電梯沒有資料",
         "accessEase": "鳥羽站接送要預約、16:00 以前；巴士約 21 分＋步行 5 分"
       },
       "confidence": "medium",
-      "assessed": "2026-10-18"
+      "assessed": "2026-10-21"
     }
   },
   {
@@ -8328,7 +8328,7 @@
     "tags": [
       "溫泉"
     ],
-    "tier": "A",
+    "tier": "B",
     "nearestStation": {
       "id": "toba",
       "mode": "ferry",
@@ -8581,21 +8581,21 @@
     "assessment": {
       "rubric": "lodging-v1",
       "scores": {
-        "recommend": 4,
+        "recommend": 3,
         "meals": 4,
         "groupFit": 4,
         "elderFit": 3,
         "accessEase": 3
       },
       "rationale": {
-        "recommend": "楽天 4.36（237 則）、Google 4.3（208 則）；海鮮、景色好評，有蟑螂、收盤太快的負評",
+        "recommend": "楽天 4.36（237 則）、Google 4.3（208 則）；海鮮、景色好評，有蟑螂、收盤太快的負評。T13（2026-10-21）鳥羽住宿照伊勢、志摩依區調整（4＝主要訂房網 4.5 以上、300 則以上＋Google 4.2 以上）：主要訂房網 楽天 4.36（237 則）、Google 4.3 → 3",
         "meals": "楽天餐 4.57，島上海鮮份量多；也有人覺得伊勢海老不如預期",
         "groupFit": "20 室、70 疊大廣間，有住到 7 人的房型，15 人可 3 間同館；團體價格要問",
         "elderFit": "有床的和室、可借輪椅、大浴場有扶手，但在高台、電梯沒有資料",
         "accessEase": "佐田浜搭定期船約 18 分到和具港，旅館小巴接送；末班 18:45"
       },
       "confidence": "medium",
-      "assessed": "2026-10-18"
+      "assessed": "2026-10-21"
     }
   },
   {
@@ -9309,7 +9309,7 @@
       "體驗",
       "溫泉"
     ],
-    "tier": "A",
+    "tier": "B",
     "nearestStation": {
       "id": "toba",
       "mode": "ferry",
@@ -9602,21 +9602,21 @@
     "assessment": {
       "rubric": "lodging-v1",
       "scores": {
-        "recommend": 4,
+        "recommend": 3,
         "meals": 4,
         "groupFit": 4,
         "elderFit": 2,
         "accessEase": 3
       },
       "rationale": {
-        "recommend": "楽天 4.52（126 則）、じゃらん 4.4、Google 4.3；心得多好評",
+        "recommend": "楽天 4.52（126 則）、じゃらん 4.4、Google 4.3；心得多好評。T13（2026-10-21）鳥羽住宿照伊勢、志摩依區調整（4＝主要訂房網 4.5 以上、300 則以上＋Google 4.2 以上）：主要訂房網 じゃらん 4.4（291 則）、Google 4.3 → 3",
         "meals": "楽天餐 4.56，伊勢海老、鮑、松阪牛",
         "groupFit": "13～15 室、有宴會場和 18 疊大房；伊勢海老會席每日限 6 組",
         "elderFit": "心得說看不出有電梯，館內移動全靠樓梯；有少數有床的和洋室",
         "accessEase": "定期船到答志港步行 5 分，或和具港接送（13:00 以後的船）"
       },
       "confidence": "medium",
-      "assessed": "2026-10-18"
+      "assessed": "2026-10-21"
     }
   },
   {
@@ -10823,7 +10823,7 @@
     "tags": [
       "包棟"
     ],
-    "tier": "A",
+    "tier": "B",
     "nearestStation": {
       "id": "toba",
       "mode": "taxi",
@@ -11107,21 +11107,21 @@
     "assessment": {
       "rubric": "lodging-v1",
       "scores": {
-        "recommend": 4,
+        "recommend": 3,
         "meals": 2,
         "groupFit": 3,
         "elderFit": 4,
         "accessEase": 3
       },
       "rationale": {
-        "recommend": "楽天 4.67（76 則）、じゃらん 4.4（205 則）、Google 4.3；有小故障的意見",
+        "recommend": "楽天 4.67（76 則）、じゃらん 4.4（205 則）、Google 4.3；有小故障的意見。T13（2026-10-21）鳥羽住宿照伊勢、志摩依區調整（4＝主要訂房網 4.5 以上、300 則以上＋Google 4.2 以上）：主要訂房網 じゃらん 4.4（205 則）、Google 4.3 → 3",
         "meals": "不供餐，可以訂鍋、BBQ 食材組自炊；附近沒有晚上營業的店",
         "groupFit": "每棟最多 13 人，15 人要兩棟；能不能同時訂要問",
         "elderFit": "沒有電梯，但全部是床，兩棟 1 樓共 8 床",
         "accessEase": "沒有接送，鳥羽站計程車約 10 分（約 2,000 円）"
       },
       "confidence": "medium",
-      "assessed": "2026-10-18"
+      "assessed": "2026-10-21"
     }
   },
   {
@@ -11892,7 +11892,7 @@
     "tags": [
       "包棟"
     ],
-    "tier": "A",
+    "tier": "B",
     "nearestStation": {
       "id": "toba",
       "mode": "bus",
@@ -12105,21 +12105,21 @@
     "assessment": {
       "rubric": "lodging-v1",
       "scores": {
-        "recommend": 4,
+        "recommend": 3,
         "meals": 3,
         "groupFit": 2,
         "elderFit": 2,
         "accessEase": 3
       },
       "rationale": {
-        "recommend": "Airbnb 4.8（142 則）、Google 4.3（7 則）；Google 有內文的 5 則是 4 則 5 星、1 則 1 星（樓梯陡、暗、入住流程）",
+        "recommend": "Airbnb 4.8（142 則）、Google 4.3（7 則）；Google 有內文的 5 則是 4 則 5 星、1 則 1 星（樓梯陡、暗、入住流程）。T13（2026-10-21）鳥羽住宿照伊勢、志摩依區調整（4＝主要訂房網 4.5 以上、300 則以上＋Google 4.2 以上）：主要訂房網 Airbnb 4.8（142 則）、Google 4.3 → 3",
         "meals": "不供餐；步行 19 分有 1 家晚上營業的店",
         "groupFit": "最多 6 人，15 人要和 Lido Porte 等分住",
         "elderFit": "有床，但寢室在 2 樓、樓梯很陡（Google 約 2026/07），五右衛門風呂深",
         "accessEase": "鳥羽站搭巴士約 7 分（步行約 26 分）"
       },
       "confidence": "medium",
-      "assessed": "2026-10-18"
+      "assessed": "2026-10-21"
     }
   }
 ]

@@ -33,7 +33,7 @@ A 以上的比例超過約 25% 要看門檻（§5.1「數字門檻依區調整�
 | shima | lodging | 56 | 6 | 4 | 46 | 0 | 18% |
 | shima | restaurant | 78 | 0 | 11 | 67 | 0 | 14% |
 | toba | spot | 33 | 3 | 6 | 19 | 5 | 32% ⚠️ |
-| toba | lodging | 38 | 5 | 18 | 15 | 0 | 61% ⚠️ |
+| toba | lodging | 38 | 5 | 4 | 29 | 0 | 24% |
 | toba | restaurant | 83 | 2 | 15 | 66 | 0 | 20% |
 | futami | spot | 4 | 1 | 1 | 2 | 0 | 50% |
 | futami | lodging | 17 | 2 | 1 | 14 | 0 | 18% |
@@ -78,6 +78,10 @@ A 以上的比例超過約 25% 要看門檻（§5.1「數字門檻依區調整�
 | jr-toba 鳥羽 | toba | 21 | 17 | 13 | 5 | 0 | 0 |
 | obata 小俣 | ise | 1 | 1 | 1 | 1 | 1 | 0 |
 | miyamachi 宮町 | ise | 10 | 7 | 10 | 6 | 0 | 2 |
+| kansai-airport 関西空港 | kix | 1 | 1 | 1 | 1 | 0 | 1 |
+| rinku-town りんくうタウン | kix | 1 | 1 | 1 | 0 | 0 | 5 |
+| izumisano 泉佐野 | kix | 3 | 2 | 3 | 2 | 0 | 3 |
+| hagurazaki 羽倉崎 | kix | **0** | **0** | **0** | 0 | 0 | 1 |
 
 ## 6. 子地區
 
