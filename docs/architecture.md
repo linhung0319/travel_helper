@@ -11,14 +11,15 @@
 |---|---|
 | 語言 | 全部用 TypeScript（Node 22）；不用 Python |
 | 專案結構 | npm workspaces 的 monorepo：`packages/engine`、`web`、`worker`、`scripts` |
-| 前端 | Vite + React + MapLibre GL + Zustand，靜態的單頁應用（SPA），不用 Next.js |
+| 前端 | Vite + React + MapLibre GL + Zustand，靜態的單頁應用（SPA），不用 Next.js；**手機優先**，操作以 AI 對話為主，不做拖拉 |
 | 部署 | Cloudflare：Workers 靜態資源（網站）＋Worker（API）＋D1（資料庫） |
 | 參考資料 | git 裡的 JSON 是**匯入的來源**；匯入 D1 的「預設資料層」後才是正式資料 |
 | 使用者的修改 | 另存一層（修改層），**全員共用**，記錄誰改的，可以復原；不直接改預設資料 |
 | 時刻表 | 不放進資料庫，維持靜態檔案 |
 | 登入 | LINE 登入＋檢查是否為家人 LINE 群組的成員；另有白名單備案 |
-| 編輯權限 | 登入的人都能改行程和資料點；靠修改紀錄和快照復原，不做角色管理 |
-| AI（T16） | 工具在瀏覽器執行；Worker 只負責轉發，並加上 Claude API key |
+| 行程與編輯 | 只有**一份確定的行程**；家人在每一天留**建議**（只有寫的人能刪）；任何人進入**規劃模式**後才能改行程（防止誤按的開關，不是權限控管）；資料點的修改直接生效，有紀錄、可以復原。見 interaction-design §6、§11 |
+| AI（T16） | 工具在瀏覽器執行；Worker 只負責轉發，並加上 Claude API key；聊天紀錄存在 D1，只有自己看得到 |
+| 時間 | 一律是日本時間，存成日期（`YYYY-MM-DD`）＋`HH:MM` 字串，不做時區換算（§3.8） |
 
 ---
 
@@ -26,7 +27,7 @@
 
 ### 為什麼全部用 TypeScript
 - **T14 行程引擎要在好幾個地方跑同一份程式**：
-  - 瀏覽器（T15）：拖拉行程時要馬上重算時間軸、空檔、衝突。
+  - 瀏覽器（T15、T16）：改行程、顯示 AI 的提議時要馬上重算時間軸、空檔、衝突。
   - AI 工具（T16）：`update_itinerary` 要透過引擎檢查。
   - 測試：Node 的 `node --test`。
 
@@ -56,8 +57,10 @@ travel_helper/
 ## 2. 前端
 
 - 沿用 v0 的 Vite + React + TypeScript + MapLibre GL，圖磚用 OpenFreeMap。
-- **狀態**：用 Zustand（T12）。地圖範圍、選定的天、篩選、選取的點放在同一個 store；UI 和 AI 指令改的是同一份狀態。
-- **拖拉**：用 dnd-kit（T15）。
+- **手機優先**（interaction-design §1）：手機是全螢幕地圖加上可以拉起的面板；電腦是聊天室在左、地圖在右。同一套元件，用螢幕寬度切換版面。家人多半是在 LINE 內建瀏覽器打開，要在 iOS、Android 的 LINE 裡實測。
+- **狀態**：用 Zustand。地圖範圍、選定的天、篩選、選取的點、規劃模式放在同一個 store；UI 和 AI 指令改的是同一份狀態。**store 的形狀在 T11 開頭就定**，T12 再補上動作 API。
+- **不做拖拉**：排行程交給 AI，或用規劃模式的手動選單（interaction-design §11）。
+- **語音輸入**：靠手機鍵盤的麥克風，網站不另外做語音辨識。
 - **不需要伺服器端渲染**：不需要 SEO，打包成靜態檔案，由 Cloudflare 提供。
 - **資料存取包在一層介面後面**（`web/src/data/`），有兩種實作：
   - **本機**：直接讀 `data/*.json`（v0 的 `import.meta.glob`），修改層是空的。T11、T12、T14 開發時用，不用等後端。
@@ -76,7 +79,8 @@ travel_helper/
 | **預設資料**：車站、景點、住宿、餐廳 | **只有匯入腳本** | D1 `places_base` |
 | **修改**：針對某個點的某個欄位的修改 | 使用者（網站） | D1 `place_edits` |
 | **自己加的點** | 使用者（網站） | D1 `user_places` |
-| **行程、方案、快照、投票** | 使用者（網站） | D1（§3.6） |
+| **確定的行程、快照、建議、投票** | 使用者（網站） | D1（§3.6） |
+| **聊天紀錄** | 使用者和 AI | D1，只有自己看得到（§6） |
 | **時刻表**（近鐵、JR、巴士、定期船）、`passes.json`、`access/` | Claude Code | 靜態檔案（§3.7） |
 | **研究筆記**（`data/raw/`）、`data/cache/`、`data/derived/` | Claude Code | **不上網站**，只留在 git |
 
@@ -88,6 +92,8 @@ travel_helper/
 - **改完要驗證**：Worker 收到修改時，先合併再用 `schema/` 驗證，不符合就拒絕。Worker 不能執行 `new Function`，所以用 ajv 的 standalone 模式，把 schema 先編譯成驗證程式。
 - 修改時順便記下當時的預設值（`base_value`），重新匯入時用來比對（§3.4）。
 - **畫面上標出改過的欄位**：顯示「已修改（誰、何時）」，可以看修改紀錄、復原，也可以一鍵看原本的值。
+- **修改直接生效，不走建議**：這是事實的更正，不是行程的安排，而且有紀錄、可以復原。使用者透過 AI 修改（AI 提議、使用者確認）。
+- **不刪別人的修改**：改錯了就再新增一筆修改蓋過去；復原（`reverted_at`）只有改的人自己能按。
 - 個人想記、不給大家看的東西，之後需要時另外做成「個人備註」，不放進修改層。
 
 ### 3.3 資料表草稿（D1，T24 定案）
@@ -100,13 +106,20 @@ place_edits   (id PK, place_id, field_path, value JSON, base_value JSON,
 user_places   (id PK, type, data JSON, author, created_at, updated_at, deleted_at)
 redirects     (old_id PK, new_id, import_id)        -- 合併重複點時用（§3.5）
 members       (line_user_id PK, display_name, picture_url, source, checked_at, disabled_at)
-plans         (id PK, name, data JSON, version, updated_by, updated_at, deleted_at)
-snapshots     (id PK, plan_id, data JSON, reason, created_by, created_at)
+itinerary     (id PK, data JSON, version, updated_by, updated_at)   -- 只有一列：確定的行程
+snapshots     (id PK, data JSON, version, reason, created_by, created_at)
+suggestions   (id PK, day, place_ids JSON, text, author, created_at, updated_at,
+               status, status_note, status_by, status_at, adopted_item_ids JSON, deleted_at)
+               -- day：'2027-02-02'～'2027-02-13'，或 'trip'（整趟）
+               -- status：pending／adopted／declined
 votes         (place_id, member_id, value, note, updated_at, PRIMARY KEY (place_id, member_id))
+chat_messages (id PK, member_id, conversation_id, role, content JSON, created_at)
+ai_usage      (member_id, date, input_tokens, output_tokens, PRIMARY KEY (member_id, date))
 ```
 
-- 結構複雜、常常整份讀寫的東西（資料點的內容、行程）存成 JSON 欄位；要統計、篩選的東西（投票、修改紀錄）拆成一列一列。
-- 資料點約 3,000 筆（2026-10 時），D1 的免費額度對 15 人綽綽有餘（實際數字開工時再查官網）。
+- 結構複雜、常常整份讀寫的東西（資料點的內容、行程）存成 JSON 欄位；要統計、篩選的東西（投票、修改紀錄、建議）拆成一列一列。
+- `user_places`、`suggestions` 的 `author`、`votes` 的 `member_id` 都對到 `members`；**只有本人能刪**，由 Worker 檢查。
+- 資料點約 550 筆（2026-10-21：住宿 145、餐廳 292、景點 79、車站 28），D1 的免費額度對 15 人綽綽有餘（實際數字開工時再查官網）。
 
 ### 3.4 匯入（T24 寫腳本）
 
@@ -135,10 +148,14 @@ votes         (place_id, member_id, value, note, updated_at, PRIMARY KEY (place_
 - **網站上線後，資料的修正一律在網站上改**（修改層），不再請 Claude Code 改既有區域的 JSON。預設資料只有匯入一種改法。例外是整批重查（例如重查某一區的營業時間），這時照 §3.4 重新匯入並處理衝突。
 - **schema 改版**：欄位改名、搬位置時，修改層的 `field_path` 也要跟著搬，寫在 migration 裡。
 
-### 3.6 行程、方案、快照、投票
-- **方案**：整份行程存成一個 JSON 文件（格式由 T14 定），帶一個 `version` 號碼。
-- **同時編輯**：存檔時送出自己手上的 `version`。和資料庫的不一樣，就表示有人先改過，提示「別人改過了」，讓使用者重新載入，或另存成新方案。15 人的規模不做即時協作（CRDT、Durable Objects）。
-- **快照**：每次大改前自動存一份（包括採用 AI 的提議），可以復原。
+### 3.6 確定的行程、建議、快照、投票
+設計見 interaction-design §6、§11。
+
+- **確定的行程只有一份**：整份存成一個 JSON 文件（格式由 T14 定），帶一個 `version` 號碼。一開始就放好航班當固定項目。不做「方案」。
+- **只有規劃模式能改行程**：規劃模式是前端的開關，Worker 只檢查有沒有登入，不另外做權限。每次改動記下是誰改的。
+- **同時編輯**：存檔時送出自己手上的 `version`。和資料庫的不一樣，就表示有人先改過，提示「別人改過了」，讓使用者重新載入再改。15 人的規模不做即時協作（CRDT、Durable Objects）。
+- **快照**：每次改行程前自動存一份（包括採用 AI 的提議），可以復原；復原本身也是一次修改，會再存快照。
+- **建議**：存一則一列（`suggestions`）。寫的人可以改、可以刪（軟刪除）；規劃模式下的人只能改狀態（已採用／不採用＋一句話）。採用時記下對應的行程項目，行程項目也記「誰提的」。
 - **投票**：一人對一個點一筆（❤️／👎＋備註），見 interaction-design §9。
 - 行程裡的點可能是預設資料、自己加的點，或已下架的點，引擎都要能處理。
 
@@ -146,6 +163,10 @@ votes         (place_id, member_id, value, note, updated_at, PRIMARY KEY (place_
 - `timetables/`、`passes.json`、`access/`、`areas.json` 在 build 時整理成靜態 JSON，和網站一起部署。
 - **時刻表照車站拆開**，用到時才載入。
 - 這些資料使用者不會在網站上改，查詢量又大，所以不放進資料庫。要更新就改 JSON、重新部署。
+
+### 3.8 時間與同步
+- **時間一律是日本時間**：行程、時刻表、營業時間都存成日期（`YYYY-MM-DD`）加 `HH:MM` 字串，過了午夜寫 `25:00`（同 CONVENTIONS 的 `hours`）。**不轉成 JavaScript 的 `Date`、不做時區換算**：看網站的人在台灣，瀏覽器的時區比日本晚一小時，一換算就錯。網站只做規劃，用不到「現在幾點」。
+- **同步**：別人改了行程、寫了建議、投了票，切回分頁時重新抓一次，平常每 30 秒檢查一次有沒有新的（用 `version` 或最後更新時間比對）。不做即時推播。
 
 ---
 
@@ -162,7 +183,8 @@ votes         (place_id, member_id, value, note, updated_at, PRIMARY KEY (place_
 
 - **API 草稿**（T24、T25 定案）：
   - 資料：`GET /api/places`（預設資料，用匯入版本當 ETag 快取）、`GET /api/edits?since=`、`POST /api/edits`、`POST /api/edits/:id/revert`、`/api/user-places`
-  - 行程與投票：`/api/plans`、`/api/plans/:id/snapshots`、`/api/votes`
+  - 行程、建議、投票：`GET/PUT /api/itinerary`（PUT 要帶 `version`）、`/api/itinerary/snapshots`、`/api/suggestions`（`PATCH /api/suggestions/:id/status` 標狀態）、`/api/votes`
+  - 聊天紀錄：`/api/chats`（只回傳自己的）
   - 登入：`/auth/line/login`、`/auth/line/callback`、`/auth/logout`、`GET /api/me`
   - LINE 的通知：`POST /line/webhook`（驗證簽章）
   - AI：`POST /api/claude/messages`
@@ -217,7 +239,10 @@ votes         (place_id, member_id, value, note, updated_at, PRIMARY KEY (place_
 
 - **地圖指令本來就一定要在瀏覽器執行**（`focus`、`showProposal`）；查資料、跑引擎也在瀏覽器，因為資料和引擎已經在那裡了。
 - Worker 只負責轉發，不用載入資料、不用跑引擎，所以不會碰到 Worker 的 CPU 時間限制。
-- **防止用掉太多額度**：只有登入的人能呼叫；Worker 依使用者記錄用量，設每天的上限。
+- **AI 是主要的操作方式**（interaction-design §0、§11），所以工具要涵蓋：查資料（中文名、日文名、別名模糊搜尋）、篩選與地圖指令、寫建議的草稿、提議行程的修改、提議資料點的修改、自己加地點。
+- **兩種模式給不同的工具**：一般模式只能產生建議的草稿和資料點修改的提議；規劃模式才有改行程的工具。每種改動都要使用者按確認才寫進去。
+- **聊天紀錄**存在 D1（`chat_messages`），只有自己看得到；同一個人換裝置（手機、電腦）也接得上。AI 對話時帶上目前的建議和投票，避免重複提一樣的東西。
+- **防止用掉太多額度**：只有登入的人能呼叫；Worker 依使用者記錄用量（`ai_usage`），設每天的上限。15 人都會用，T16 開工時先估算費用，再定上限和模型。
 
 ---
 
@@ -229,11 +254,19 @@ votes         (place_id, member_id, value, note, updated_at, PRIMARY KEY (place_
 | T23 👤 LINE 登入小實驗 | §5 |
 | T24 資料庫與匯入 | §3（資料表、匯入、規則）、§4 API 的資料部分 |
 | T25 Worker：登入與部署 | §4、§5 |
-| T11、T12 | §2（先用本機的資料存取） |
-| T14 行程引擎 | §1（`packages/engine`）、§3.6（行程格式要能處理自己加的點、已下架的點） |
-| T15 行程規劃 UI | §2（改用 API）、§3.2（修改資料點的 UI）、§3.6 |
+| T11、T12 | §2（手機優先、store、先用本機的資料存取） |
+| T14 行程引擎 | §1（`packages/engine`）、§3.6（確定的行程，要能處理自己加的點、已下架的點）、§3.8（時間） |
+| T15 行程與建議 UI | §2（改用 API）、§3.2（修改紀錄的顯示）、§3.6、§3.8（同步） |
 | T16 AI Agent | §6 |
 | T20 匯出給 Claude app | 匯出合併後的資料（預設資料加修改），不是 git 裡的 JSON |
+
+---
+
+## 8. 測試與完成條件
+
+- **引擎、匯入、Worker 的邏輯**：單元測試（`node --test`），每個任務卡列的規則都要有測試。
+- **UI**：用 Playwright 跑幾條主要流程，例如「點資料點 → 看詳情 → 按 ❤️」「寫建議 → 進入規劃模式 → 採用 → 時間軸出現」。手機尺寸和電腦尺寸各跑一次。畫面好不好看用 Claude in Chrome 看，或交給 👤 看。
+- **每張任務卡都列「完成條件」**，做完逐條確認，結果寫在回報裡。
 
 ---
 

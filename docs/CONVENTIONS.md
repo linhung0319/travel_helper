@@ -301,6 +301,9 @@ travel_helper/
 - 各站之間的車程和每班車的停站時刻存在 `data/timetables/kintetsu/_travel-times.json`（格式見 `schema/kintetsu-travel-times.schema.json`）。
 
 ### 行程（T14 會訂出完整格式，這裡先放草稿）
+- **只有一份確定的行程**（2026-10-21）：12 天，一開始就放好航班當固定項目；不做方案。家人的建議、投票、使用者加的點不放在行程裡，另外存在資料庫（[architecture.md](architecture.md) §3.6、[interaction-design.md](interaction-design.md) §6）。下面草稿的 `wishlist` 改由「整趟」的建議取代。
+- **時間一律是日本時間**：日期寫 `YYYY-MM-DD`、時間寫 `HH:MM` 字串（過了午夜寫 `25:00`），程式不轉成 `Date`、不做時區換算（architecture §3.8）。
+
 ```jsonc
 {
   "days": [
