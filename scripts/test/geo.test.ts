@@ -84,7 +84,9 @@ describe('經緯度順序 [經度, 緯度]', () => {
     for (const s of stations) {
       if (!s.coords) continue;
       assert.equal(looksSwapped(s.coords), false, s.id);
-      assert.ok(s.coords[0] > 136 && s.coords[0] < 137 && s.coords[1] > 34 && s.coords[1] < 35, s.id);
+      // 關西機場周邊（kix，T13 加）在大阪府，經度 135
+      const [minLon, maxLon] = s.area === 'kix' ? [135, 136] : [136, 137];
+      assert.ok(s.coords[0] > minLon && s.coords[0] < maxLon && s.coords[1] > 34 && s.coords[1] < 35, s.id);
     }
   });
 });
@@ -146,7 +148,7 @@ describe('nearestStations（stations.json 真資料）', () => {
     assert.deepEqual(kin.slice(0, 2).map((r) => r.station.id), ['nakanogo', 'toba']);
     assert.ok(kin.every((r) => r.station.operator === 'kintetsu'));
     const both = nearestStations(p, stations, { operator: ['kintetsu', 'jr'], limit: 30 });
-    assert.equal(both.length, stations.filter((s) => s.coords).length);
+    assert.equal(both.length, stations.filter((s) => s.coords && ['kintetsu', 'jr'].includes(s.operator)).length);
   });
 
   test('limit、maxMeters、團體步行係數', () => {
