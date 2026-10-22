@@ -3,7 +3,8 @@
 import { createStore } from 'zustand/vanilla';
 import { dataSource } from './data/index.ts';
 import type { Area, Place } from './data/types.ts';
-import { placeDays, type ItineraryLike } from './lib/itinerary.ts';
+import type { Itinerary } from '@travel-helper/engine/types';
+import { placeDays } from './lib/itinerary.ts';
 import { loadFakeItinerary } from './dev-fixtures/fakeItinerary.ts';
 
 export interface DataState {
@@ -12,7 +13,8 @@ export interface DataState {
   areas: Area[];
   places: Place[];
   byId: Map<string, Place>;
-  itinerary: ItineraryLike | null;
+  /** 確定的行程（itinerary-v1）。T11、T12 是開發用的假行程，T15 換成 API */
+  itinerary: Itinerary | null;
   /** 資料點 → 排在哪幾天 */
   days: Map<string, { date: string; order: number }[]>;
   /** 車站 ID → 顯示名稱（時刻表的終點用） */

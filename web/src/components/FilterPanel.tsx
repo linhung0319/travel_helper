@@ -2,9 +2,9 @@ import { useMemo } from 'react';
 import { appStore } from '../store.ts';
 import { useApp, useData } from '../hooks.ts';
 import { displayName } from '../data/normalize.ts';
-import { CONTEXT_LABELS, TYPE_LABELS, matchesFilter } from '../lib/filter.ts';
-import { areasExtent } from '../lib/areas.ts';
+import { CONTEXT_LABELS, FIT15_LABELS, TYPE_LABELS, matchesFilter } from '../lib/filter.ts';
 import { CONTEXTS, PLACE_TYPES, TIERS } from '../data/types.ts';
+import { commands } from '../appCommands.ts';
 import { fakeItineraryEnabled, setFakeItineraryEnabled } from '../dev-fixtures/fakeItinerary.ts';
 
 function Toggle({ on, label, onClick, count }: { on: boolean; label: string; onClick(): void; count?: number }) {
@@ -16,7 +16,7 @@ function Toggle({ on, label, onClick, count }: { on: boolean; label: string; onC
   );
 }
 
-/** 篩選器（區域、子地區、類型、情境、分級）和「跳到區域」。選項一律從 areas.json 和資料來 */
+/** 篩選器（區域、子地區、類型、情境、分級、團體）和「跳到區域」。選項一律從 areas.json 和資料來 */
 export function FilterPanel({ onClose }: { onClose(): void }) {
   const filter = useApp((s) => s.filter);
   const areas = useData((s) => s.areas);
@@ -80,6 +80,12 @@ export function FilterPanel({ onClose }: { onClose(): void }) {
           <Toggle key={c} label={CONTEXT_LABELS[c]} on={filter.contexts.includes(c)} count={countWith({ contexts: [c] })} onClick={() => toggleFilter('contexts', c)} />
         ))}
       </div>
+      <h4>團體（餐廳）</h4>
+      <div className="pills">
+        {(['yes', 'split'] as const).map((v) => (
+          <Toggle key={v} label={FIT15_LABELS[v]} on={filter.fit15.includes(v)} count={countWith({ fit15: [v] })} onClick={() => toggleFilter('fit15', v)} />
+        ))}
+      </div>
       <h4>分級</h4>
       <div className="pills">
         {TIERS.map((t) => (
@@ -94,8 +100,7 @@ export function FilterPanel({ onClose }: { onClose(): void }) {
             type="button"
             className="pill"
             onClick={() => {
-              const ext = areasExtent([a], places);
-              if (ext) appStore.getState().moveCamera({ bbox: ext });
+              commands.focus({ area: a.id });
               onClose();
             }}
           >

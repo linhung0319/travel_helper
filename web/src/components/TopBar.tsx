@@ -1,28 +1,19 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
 import { appStore } from '../store.ts';
+import { commands } from '../appCommands.ts';
 import { useApp, useData } from '../hooks.ts';
 import { filterChips, isFilterEmpty, matchesFilter } from '../lib/filter.ts';
 import { shortDayLabel, tripDates, weekdayZh, JP_HOLIDAYS } from '../lib/trip.ts';
-import { extentOf } from '../lib/areas.ts';
-import { dayPlan } from '../lib/itinerary.ts';
 import { FilterPanel } from './FilterPanel.tsx';
 
 const DATES = tripDates();
 
 function DayTabs() {
   const day = useApp((s) => s.day);
-  const itinerary = useData((s) => s.itinerary);
-  const byId = useData((s) => s.byId);
   const ref = useRef<HTMLDivElement>(null);
 
-  // 選了某一天：地圖移到那天排的點（沒有排東西就不動）
-  const select = (d: string) => {
-    appStore.getState().selectDay(d);
-    if (d === 'all') return;
-    const coords = (dayPlan(itinerary, d)?.items ?? []).map((it) => byId.get(it.place)?.coords).filter((c): c is [number, number] => !!c);
-    const ext = extentOf(coords);
-    if (ext) appStore.getState().moveCamera({ bbox: ext, zoom: 14 });
-  };
+  // 和 AI 用同一個指令：選了某一天，地圖移到那天排的點（沒有排東西就不動）
+  const select = (d: string) => commands.selectDay(d);
 
   // 選定的分頁捲到看得到的地方（手機上分頁可以左右滑）
   useEffect(() => {
@@ -68,13 +59,13 @@ function FilterChips() {
           type="button"
           className="chip"
           aria-label={`取消篩選 ${c.label}`}
-          onClick={() => appStore.getState().toggleFilter(c.key, c.value)}
+          onClick={() => commands.setFilter({ [c.key]: (filter[c.key] as string[]).filter((v) => v !== c.value) })}
         >
           {c.label} ✕
         </button>
       ))}
       {chips.length > 1 && (
-        <button type="button" className="chip chip-clear" onClick={() => appStore.getState().clearFilter()}>
+        <button type="button" className="chip chip-clear" onClick={() => commands.clearFilter()}>
           全部取消
         </button>
       )}

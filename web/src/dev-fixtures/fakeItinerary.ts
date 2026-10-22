@@ -1,5 +1,5 @@
 // 開發用的假行程（👤 2026-10-22：只在 dev server 有，預設開、可以關；正式 build 不帶）。
-import type { ItineraryLike } from '../lib/itinerary.ts';
+import type { Itinerary } from '@travel-helper/engine/types';
 
 const KEY = 'travel-helper:fakeItinerary';
 
@@ -20,11 +20,11 @@ export function setFakeItineraryEnabled(on: boolean) {
   }
 }
 
-export async function loadFakeItinerary(): Promise<ItineraryLike | null> {
+export async function loadFakeItinerary(): Promise<Itinerary | null> {
   // 直接用 import.meta.env.DEV 判斷，build 時整段會被拿掉，假行程不會出現在 dist/
   if (import.meta.env.DEV && fakeItineraryEnabled()) {
     const mod = await import('./itinerary.json');
-    return mod.default as ItineraryLike;
+    return mod.default as unknown as Itinerary;
   }
   return null;
 }

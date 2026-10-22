@@ -14,6 +14,11 @@ import { dayColor, placeVisual } from '../lib/visual.ts';
 import { tripDates } from '../lib/trip.ts';
 import { PLACE_TYPES, type Bbox, type Place } from '../data/types.ts';
 import { PreviewCard } from './PreviewCard.tsx';
+import { addOverlayLayers, OVERLAY_SOURCES } from './mapOverlayLayers.ts';
+import { compareFeatures, highlightFeatures, proposalFeatures, routeFeatures, routeLabels } from '../lib/overlays.ts';
+import { HIGHLIGHT_STYLES } from '../store.ts';
+import { commands } from '../appCommands.ts';
+import { MapCommandBars } from './MapCommandBars.tsx';
 
 setWorkerUrl(maplibreWorkerUrl);
 
@@ -89,6 +94,7 @@ export function MapView() {
   const containerRef = useRef<HTMLDivElement>(null);
   const mapRef = useRef<MapLibreMap | null>(null);
   const markersRef = useRef<Map<string, Marker>>(new Map());
+  const routeLabelsRef = useRef<Map<string, Marker>>(new Map());
   const [loaded, setLoaded] = useState(false);
   const [, setTick] = useState(0); // 地圖移動時重畫小卡片的位置
   const canHover = useCanHover();
@@ -104,6 +110,11 @@ export function MapView() {
   const detailId = useApp((s) => s.detailId);
   const camera = useApp((s) => s.camera);
   const mode = useApp((s) => s.mode);
+  const highlights = useApp((s) => s.highlights);
+  const compare = useApp((s) => s.compare);
+  const routes = useApp((s) => s.routes);
+  const proposal = useApp((s) => s.proposal);
+  const itinerary = useData((s) => s.itinerary);
 
   // 點了一個點：滑鼠直接開詳情（小卡片已經在移上去時出現）；觸控先出小卡片，同一點再點一次開詳情
   const pick = (id: string | null) => {
@@ -248,6 +259,8 @@ export function MapView() {
         },
       });
 
+      addOverlayLayers(map);
+
       map.on('click', (e: MapMouseEvent) => {
         const pad = 10; // 手機上手指比較粗，點的周圍留一點空間
         const feats = map.queryRenderedFeatures(
@@ -310,6 +323,7 @@ export function MapView() {
         map,
         appStore,
         dataStore,
+        commands,
         visual: (id: string) => {
           const p = dataStore.getState().byId.get(id);
           const s = appStore.getState();
@@ -322,6 +336,8 @@ export function MapView() {
       ro.disconnect();
       markersRef.current.forEach((m) => m.remove());
       markersRef.current.clear();
+      routeLabelsRef.current.forEach((m) => m.remove());
+      routeLabelsRef.current.clear();
       map.remove();
       mapRef.current = null;
     };
@@ -383,7 +399,70 @@ export function MapView() {
     };
   }, [loaded, hoveredId]);
 
-  // 移動地圖的請求（跳到區域、之後 T12 的 focus）
+  // 地圖指令（T12）：標示、比較
+  useEffect(() => {
+    if (!loaded) return;
+    const map = mapRef.current!;
+    const { byId } = dataStore.getState();
+    (map.getSource(OVERLAY_SOURCES.highlights) as GeoJSONSource).setData(highlightFeatures(highlights, byId));
+    (map.getSource(OVERLAY_SOURCES.compare) as GeoJSONSource).setData(compareFeatures(compare, byId));
+    // 照片標記（DOM）蓋在圖層上面，另外加 class
+    markersRef.current.forEach((m, id) => {
+      const el = m.getElement();
+      for (const st of HIGHLIGHT_STYLES) el.classList.toggle(`hl-${st}`, !!highlights[st]?.includes(id));
+      el.classList.toggle('compared', compare.includes(id));
+    });
+  }, [loaded, highlights, compare]);
+
+  // 路線：線畫在圖層，中間的標籤（🚶 8 分）是 DOM 標記，才放得了 emoji
+  useEffect(() => {
+    if (!loaded) return;
+    const map = mapRef.current!;
+    (map.getSource(OVERLAY_SOURCES.routes) as GeoJSONSource).setData(routeFeatures(routes));
+    const labels = routeLabels(routes);
+    const keep = new Set(labels.map((l) => l.id));
+    routeLabelsRef.current.forEach((m, id) => {
+      if (keep.has(id)) return;
+      m.remove();
+      routeLabelsRef.current.delete(id);
+    });
+    for (const l of labels) {
+      let m = routeLabelsRef.current.get(l.id);
+      if (!m) {
+        const el = document.createElement('div');
+        el.className = 'route-label';
+        el.dataset.route = l.id;
+        m = new Marker({ element: el }).setLngLat(l.coords).addTo(map);
+        routeLabelsRef.current.set(l.id, m);
+      }
+      m.setLngLat(l.coords);
+      m.getElement().textContent = l.text;
+    }
+  }, [loaded, routes]);
+
+  // AI 的提議：虛線、半透明（interaction-design §0）
+  useEffect(() => {
+    if (!loaded) return;
+    const map = mapRef.current!;
+    const empty: FeatureCollection = { type: 'FeatureCollection', features: [] };
+    const f = proposal ? proposalFeatures(proposal, itinerary, dataStore.getState().byId, DATES) : { points: empty, lines: empty };
+    (map.getSource(OVERLAY_SOURCES.proposalPoints) as GeoJSONSource).setData(f.points);
+    (map.getSource(OVERLAY_SOURCES.proposalLines) as GeoJSONSource).setData(f.lines);
+    // 放大後照片標記（DOM）會蓋住圖層上的編號和 ×，所以照片標記自己也標出來
+    const marks = new Map(f.points.features.map((x) => [String(x.properties?.id), x.properties as { status: string; order: number; color: string }]));
+    markersRef.current.forEach((m, id) => {
+      const el = m.getElement();
+      const p = marks.get(id);
+      el.classList.toggle('proposal-added', p?.status === 'added');
+      el.classList.toggle('proposal-removed', p?.status === 'removed');
+      if (p) {
+        el.dataset.proposal = p.status === 'removed' ? '×' : String(p.order);
+        el.style.setProperty('--proposal-color', p.color);
+      } else delete el.dataset.proposal;
+    });
+  }, [loaded, proposal, itinerary]);
+
+  // 移動地圖的請求（跳到區域、T12 的 focus）
   useEffect(() => {
     if (!loaded || !camera) return;
     const map = mapRef.current!;
@@ -412,6 +491,7 @@ export function MapView() {
   return (
     <div className="map-wrap">
       <div ref={containerRef} className="map" data-testid="map" />
+      <MapCommandBars />
       {previewPlace && previewPos && (
         <PreviewCard
           place={previewPlace}

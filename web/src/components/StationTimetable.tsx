@@ -4,7 +4,7 @@ import { useApp, useData } from '../hooks.ts';
 import { dataSource } from '../data/index.ts';
 import { departuresAround, googleTransitUrl, jorudanUrl, terminusName } from '../lib/timetable.ts';
 import { dayLabel, timetableDayType, tripDates, TRIP_START } from '../lib/trip.ts';
-import { dayPlan } from '../lib/itinerary.ts';
+import { stopsOn } from '../lib/itinerary.ts';
 import type { Place, StationTimetable } from '../data/types.ts';
 
 const DATES = tripDates();
@@ -37,7 +37,7 @@ export function StationTimetablePanel({ place }: { place: Place }) {
   }, [place.id]);
 
   const itinerary = useData((s) => s.itinerary);
-  const plannedTime = dayPlan(itinerary, date)?.items.find((it) => it.place === place.id)?.arrive ?? null;
+  const plannedTime = stopsOn(itinerary, date).find((s) => s.place === place.id)?.time ?? null;
   const time = stationTime ?? plannedTime ?? DEFAULT_STATION_TIME;
   const dayType = timetableDayType(date);
 

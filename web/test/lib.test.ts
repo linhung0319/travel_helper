@@ -9,7 +9,8 @@ import { EMPTY_FILTER, filterChips, matchesFilter } from '../src/lib/filter.ts';
 import { closedDaysLabel, rowForDate } from '../src/lib/hours.ts';
 import { nearbyPlaces } from '../src/lib/nearby.ts';
 import { placeVisual, wallPlaces } from '../src/lib/visual.ts';
-import { placeDays } from '../src/lib/itinerary.ts';
+import { dayStops, placeDays } from '../src/lib/itinerary.ts';
+import { itin } from './helpers.ts';
 import type { Area, Place, StationTimetable } from '../src/data/types.ts';
 
 // 測試用的區域：故意不用真的區域 ID，確認程式沒有寫死（PLAN T11「區域不寫死」）
@@ -144,7 +145,7 @@ test('篩選：空的不篩；各項是「且」，同一項是「或」；標�
 });
 
 test('選定的天：不在那天的點變淡，在那天的有順序', () => {
-  const days = placeDays({ days: [{ date: '2027-02-05', items: [{ place: 'a' }, { place: 'b' }] }] });
+  const days = placeDays(itin({ '2027-02-05': ['a', 'b'] }));
   const a = place('a');
   const c = place('c');
   assert.deepEqual(placeVisual(a, EMPTY_FILTER, 'all', days), { match: true, dim: false, order: null });
@@ -176,4 +177,25 @@ test('附近：anchors 的分鐘優先，反向 anchors 也算，沒有的用直
   assert.deepEqual(g.get('restaurant'), [{ place: rest, minutes: 4, estimated: false }]);
   assert.equal(g.get('station')?.[0].estimated, true);
   assert.ok(!g.get('restaurant')?.some((x) => x.place.id === 'far'));
+});
+
+test('一天的順序：選定的選項、同機場的航班只算一站、住宿放最後', () => {
+  const day = {
+    date: '2027-02-02',
+    lodging: 'hotel',
+    items: [
+      { id: 'f-1', type: 'flight' as const, direction: 'arrive' as const, airport: 'kix', depart: '08:20', arrive: '11:55' },
+      { id: 'f-2', type: 'flight' as const, direction: 'arrive' as const, airport: 'kix', depart: '09:45', arrive: '13:20' },
+      { id: 'i-1', type: 'visit' as const, options: [{ place: 'a' }, { place: 'b' }], selected: 1, start: '15:00' },
+      { id: 'i-2', type: 'free' as const, minutes: 30 },
+    ],
+  };
+  assert.deepEqual(
+    dayStops(day).map((s) => [s.place, s.kind, s.time]),
+    [
+      ['kix', 'flight', '11:55'],
+      ['b', 'visit', '15:00'],
+      ['hotel', 'lodging', null],
+    ],
+  );
 });

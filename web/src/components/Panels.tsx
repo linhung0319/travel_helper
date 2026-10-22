@@ -1,8 +1,9 @@
 // 聊天室（T16）、這一天（T15）先放位置；T11 只放得到的內容（選取的點、假行程）。
 
 import { appStore } from '../store.ts';
+import { commands } from '../appCommands.ts';
 import { useApp, useData } from '../hooks.ts';
-import { dayPlan } from '../lib/itinerary.ts';
+import { stopsOn } from '../lib/itinerary.ts';
 import { dayLabel } from '../lib/trip.ts';
 import { TYPE_ICONS } from '../lib/typeStyle.ts';
 
@@ -20,7 +21,7 @@ export function ChatPanel() {
           {selection.map((id) => {
             const p = byId.get(id);
             return (
-              <button key={id} type="button" className="chip" onClick={() => appStore.getState().removeFromSelection(id)} aria-label={`取消選取 ${p?.name.zh ?? id}`}>
+              <button key={id} type="button" className="chip" onClick={() => commands.unselect(id)} aria-label={`取消選取 ${p?.name.zh ?? id}`}>
                 {p ? `${TYPE_ICONS[p.type]} ${p.name.zh || p.name.ja}` : id} ✕
               </button>
             );
@@ -43,16 +44,16 @@ export function DayPanel() {
       </div>
     );
   }
-  const plan = dayPlan(itinerary, day);
+  const stops = stopsOn(itinerary, day);
   return (
     <div className="day-panel" data-testid="day-panel">
       <h3>
         {dayLabel(day)}
         {itinerary && <span className="badge badge-warn">假行程</span>}
       </h3>
-      {plan && plan.items.length > 0 ? (
+      {stops.length > 0 ? (
         <ol className="timeline">
-          {plan.items.map((it, i) => {
+          {stops.map((it, i) => {
             const p = byId.get(it.place);
             return (
               <li key={i}>
@@ -61,12 +62,11 @@ export function DayPanel() {
                   className="link-button"
                   onClick={() => {
                     if (!p) return;
-                    appStore.getState().moveCamera({ center: p.coords, zoom: 15 });
+                    commands.focus(p.id);
                     appStore.getState().openPreview(p.id);
-                    appStore.getState().hover(p.id);
                   }}
                 >
-                  <span className="time">{it.arrive ?? '--:--'}</span> {p ? `${TYPE_ICONS[p.type]} ${p.name.zh || p.name.ja}` : it.place}
+                  <span className="time">{it.time ?? (it.kind === 'lodging' ? '住宿' : '--:--')}</span> {p ? `${TYPE_ICONS[p.type]} ${p.name.zh || p.name.ja}` : it.place}
                 </button>
               </li>
             );

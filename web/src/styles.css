@@ -1203,3 +1203,152 @@ dl {
 .layout.desktop .maplibregl-ctrl-bottom-left {
   margin-bottom: 0;
 }
+
+/* ---------- 地圖指令（T12）：提議、比較、標示、路線 ---------- */
+
+.command-bars {
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  right: 56px; /* 右上角是縮放按鈕 */
+  z-index: 4;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  pointer-events: none;
+}
+
+.command-bar {
+  pointer-events: auto;
+  align-self: flex-start;
+  max-width: 100%;
+  background: var(--bg);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 6px 10px;
+}
+
+.command-bar p {
+  margin: 2px 0;
+}
+
+.command-bar-head {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  justify-content: space-between;
+}
+
+.proposal-bar {
+  border-left: 4px dashed var(--accent);
+}
+
+.marks-bar {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.compare-cards {
+  display: flex;
+  gap: 6px;
+  overflow-x: auto;
+  scrollbar-width: none;
+  padding-top: 4px;
+}
+
+.compare-card {
+  flex: 0 0 auto;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  column-gap: 6px;
+  align-items: center;
+  text-align: left;
+  max-width: 220px;
+  min-height: var(--tap);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--soft);
+  padding: 4px 8px;
+}
+
+.compare-letter {
+  grid-row: span 2;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: #8250df;
+  color: #fff;
+  font-weight: 700;
+  display: grid;
+  place-items: center;
+}
+
+.compare-name,
+.compare-badges {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.compare-badges {
+  color: var(--muted);
+}
+
+.route-label {
+  background: var(--bg);
+  border-radius: 999px;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.25);
+  padding: 2px 8px;
+  font-size: 0.85rem;
+  white-space: nowrap;
+  pointer-events: none;
+}
+
+.photo-marker.hl-primary {
+  outline: 4px solid #d4a72c;
+}
+
+.photo-marker.hl-warning {
+  outline: 4px solid #cf222e;
+}
+
+.photo-marker.hl-muted {
+  outline: 4px solid #8c959f;
+}
+
+.photo-marker.compared {
+  outline: 4px solid #8250df;
+}
+
+/* 提議（T12 showProposal）在照片標記上：右下角的編號、新增綠框、拿掉的變灰加 × */
+.photo-marker[data-proposal]::after {
+  content: attr(data-proposal);
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  min-width: 20px;
+  height: 20px;
+  border-radius: 8px 0 6px 0;
+  background: rgba(255, 255, 255, 0.85);
+  color: var(--proposal-color, var(--fg));
+  border: 2px dashed var(--proposal-color, var(--fg));
+  font-weight: 700;
+  font-size: 0.8rem;
+  line-height: 16px;
+  text-align: center;
+}
+
+.photo-marker.proposal-added {
+  outline: 4px solid #1a7f37;
+}
+
+.photo-marker.proposal-removed {
+  filter: grayscale(1);
+  opacity: 0.55;
+}
+
+.photo-marker.proposal-removed::after {
+  color: #57606a;
+  border-color: #57606a;
+}
