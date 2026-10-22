@@ -1,59 +1,353 @@
 {
-  "note": "（假）開發用的假行程：只用來試天數分頁、其他天變淡。真正的行程格式由 T14 定，T15 接上。只在 dev server 載入，不進正式 build。",
+  "note": "（假）開發用的假行程（itinerary-v1）：只用來試天數分頁、其他天變淡、提議的顯示。只在 dev server 載入，不進正式 build；T15 換成確定的行程。",
+  "format": "itinerary-v1",
+  "seq": 20,
+  "party": {
+    "size": 15,
+    "elders": 5,
+    "kids": 4
+  },
   "days": [
-    { "date": "2027-02-02", "items": [{ "place": "kashikojima", "arrive": "18:40" }, { "place": "shima-kashikojima-harbor", "arrive": "19:00" }] },
+    {
+      "date": "2027-02-02",
+      "lodging": "shima-kashikojima-harbor",
+      "lodgingMeals": null,
+      "start": null,
+      "note": null,
+      "items": [
+        {
+          "id": "f-1",
+          "type": "flight",
+          "direction": "arrive",
+          "airport": "kansai-airport",
+          "depart": "08:20",
+          "arrive": "11:55",
+          "flightNo": null,
+          "people": null,
+          "note": "去程第一批"
+        },
+        {
+          "id": "f-2",
+          "type": "flight",
+          "direction": "arrive",
+          "airport": "kansai-airport",
+          "depart": "09:45",
+          "arrive": "13:20",
+          "flightNo": null,
+          "people": null,
+          "note": "去程第二批"
+        },
+        {
+          "id": "i-1",
+          "type": "visit",
+          "options": [
+            {
+              "place": "kashikojima",
+              "stayMinutes": null
+            }
+          ],
+          "selected": 0,
+          "start": "18:40"
+        }
+      ]
+    },
     {
       "date": "2027-02-03",
+      "lodging": "shima-kanko-classic",
+      "lodgingMeals": null,
+      "start": null,
+      "note": null,
       "items": [
-        { "place": "kashikojima", "arrive": "09:30" },
-        { "place": "shima-yokoyama-observatory", "arrive": "10:00", "stayMinutes": 60 },
-        { "place": "shima-la-mer", "arrive": "12:00", "stayMinutes": 90 },
-        { "place": "shima-kanko-classic", "arrive": "16:30" }
+        {
+          "id": "i-2",
+          "type": "visit",
+          "options": [
+            {
+              "place": "kashikojima",
+              "stayMinutes": null
+            }
+          ],
+          "selected": 0,
+          "start": "09:30"
+        },
+        {
+          "id": "i-3",
+          "type": "visit",
+          "options": [
+            {
+              "place": "shima-yokoyama-observatory",
+              "stayMinutes": 60
+            }
+          ],
+          "selected": 0,
+          "start": "10:00"
+        },
+        {
+          "id": "i-4",
+          "type": "visit",
+          "options": [
+            {
+              "place": "shima-la-mer",
+              "stayMinutes": 90
+            }
+          ],
+          "selected": 0,
+          "start": "12:00"
+        }
       ]
     },
     {
       "date": "2027-02-04",
+      "lodging": "shima-marusada",
+      "lodgingMeals": null,
+      "start": null,
+      "note": null,
       "items": [
-        { "place": "shima-izawanomiya", "arrive": "10:00", "stayMinutes": 40 },
-        { "place": "shima-daiozaki-lighthouse", "arrive": "13:00", "stayMinutes": 60 },
-        { "place": "shima-marusada", "arrive": "16:30" }
+        {
+          "id": "i-5",
+          "type": "visit",
+          "options": [
+            {
+              "place": "shima-izawanomiya",
+              "stayMinutes": 40
+            }
+          ],
+          "selected": 0,
+          "start": "10:00"
+        },
+        {
+          "id": "i-6",
+          "type": "visit",
+          "options": [
+            {
+              "place": "shima-daiozaki-lighthouse",
+              "stayMinutes": 60
+            }
+          ],
+          "selected": 0,
+          "start": "13:00"
+        }
       ]
     },
     {
       "date": "2027-02-05",
+      "lodging": "toba-kokusai-hotel",
+      "lodgingMeals": null,
+      "start": null,
+      "note": null,
       "items": [
-        { "place": "toba", "arrive": "09:30" },
-        { "place": "toba-aquarium", "arrive": "09:45", "stayMinutes": 150 },
-        { "place": "toba-sazanami", "arrive": "12:30", "stayMinutes": 60 },
-        { "place": "toba-mikimoto-pearl-island", "arrive": "14:00", "stayMinutes": 90 },
-        { "place": "toba-kokusai-hotel", "arrive": "16:30" }
+        {
+          "id": "i-7",
+          "type": "visit",
+          "options": [
+            {
+              "place": "toba",
+              "stayMinutes": null
+            }
+          ],
+          "selected": 0,
+          "start": "09:30"
+        },
+        {
+          "id": "i-8",
+          "type": "visit",
+          "options": [
+            {
+              "place": "toba-aquarium",
+              "stayMinutes": 150
+            }
+          ],
+          "selected": 0,
+          "start": "09:45"
+        },
+        {
+          "id": "i-9",
+          "type": "visit",
+          "options": [
+            {
+              "place": "toba-sazanami",
+              "stayMinutes": 60
+            }
+          ],
+          "selected": 0,
+          "start": "12:30"
+        },
+        {
+          "id": "i-10",
+          "type": "visit",
+          "options": [
+            {
+              "place": "toba-mikimoto-pearl-island",
+              "stayMinutes": 90
+            }
+          ],
+          "selected": 0,
+          "start": "14:00"
+        }
       ]
     },
     {
       "date": "2027-02-06",
+      "lodging": "toba-osatsu-ohtaya",
+      "lodgingMeals": null,
+      "start": null,
+      "note": null,
       "items": [
-        { "place": "toba-osatsu-ishigami", "arrive": "10:00", "stayMinutes": 45 },
-        { "place": "toba-sea-folk-museum", "arrive": "13:30", "stayMinutes": 60 },
-        { "place": "toba-osatsu-ohtaya", "arrive": "16:30" }
+        {
+          "id": "i-11",
+          "type": "visit",
+          "options": [
+            {
+              "place": "toba-osatsu-ishigami",
+              "stayMinutes": 45
+            }
+          ],
+          "selected": 0,
+          "start": "10:00"
+        },
+        {
+          "id": "i-12",
+          "type": "visit",
+          "options": [
+            {
+              "place": "toba-sea-folk-museum",
+              "stayMinutes": 60
+            }
+          ],
+          "selected": 0,
+          "start": "13:30"
+        }
       ]
+    },
+    {
+      "date": "2027-02-07",
+      "lodging": null,
+      "lodgingMeals": null,
+      "start": null,
+      "note": null,
+      "items": []
     },
     {
       "date": "2027-02-08",
+      "lodging": "futami-oishiya",
+      "lodgingMeals": null,
+      "start": null,
+      "note": null,
       "items": [
-        { "place": "futami-okitama-jinja", "arrive": "09:30", "stayMinutes": 45 },
-        { "place": "futami-sea-paradise", "arrive": "10:30", "stayMinutes": 90 },
-        { "place": "futami-oishiya", "arrive": "16:30" }
+        {
+          "id": "i-13",
+          "type": "visit",
+          "options": [
+            {
+              "place": "futami-okitama-jinja",
+              "stayMinutes": 45
+            }
+          ],
+          "selected": 0,
+          "start": "09:30"
+        },
+        {
+          "id": "i-14",
+          "type": "visit",
+          "options": [
+            {
+              "place": "futami-sea-paradise",
+              "stayMinutes": 90
+            }
+          ],
+          "selected": 0,
+          "start": "10:30"
+        }
       ]
     },
     {
+      "date": "2027-02-09",
+      "lodging": null,
+      "lodgingMeals": null,
+      "start": null,
+      "note": null,
+      "items": []
+    },
+    {
       "date": "2027-02-10",
+      "lodging": "ise-momijiken",
+      "lodgingMeals": null,
+      "start": null,
+      "note": null,
       "items": [
-        { "place": "ise-geku", "arrive": "09:30", "stayMinutes": 60 },
-        { "place": "ise-naiku", "arrive": "11:00", "stayMinutes": 90 },
-        { "place": "ise-oharaimachi", "arrive": "12:30", "stayMinutes": 120 },
-        { "place": "ise-momijiken", "arrive": "16:30" }
+        {
+          "id": "i-15",
+          "type": "visit",
+          "options": [
+            {
+              "place": "ise-geku",
+              "stayMinutes": 60
+            }
+          ],
+          "selected": 0,
+          "start": "09:30"
+        },
+        {
+          "id": "i-16",
+          "type": "visit",
+          "options": [
+            {
+              "place": "ise-naiku",
+              "stayMinutes": 90
+            }
+          ],
+          "selected": 0,
+          "start": "11:00"
+        },
+        {
+          "id": "i-17",
+          "type": "visit",
+          "options": [
+            {
+              "place": "ise-oharaimachi",
+              "stayMinutes": 120
+            }
+          ],
+          "selected": 0,
+          "start": "12:30"
+        }
       ]
     },
-    { "date": "2027-02-12", "items": [{ "place": "kix-nikko", "arrive": "18:00" }] }
+    {
+      "date": "2027-02-11",
+      "lodging": null,
+      "lodgingMeals": null,
+      "start": null,
+      "note": null,
+      "items": []
+    },
+    {
+      "date": "2027-02-12",
+      "lodging": "kix-nikko",
+      "lodgingMeals": null,
+      "start": null,
+      "note": null,
+      "items": []
+    },
+    {
+      "date": "2027-02-13",
+      "lodging": null,
+      "lodgingMeals": null,
+      "start": null,
+      "note": null,
+      "items": [
+        {
+          "id": "f-3",
+          "type": "flight",
+          "direction": "depart",
+          "airport": "kansai-airport",
+          "depart": "12:45",
+          "arrive": "15:00",
+          "flightNo": null,
+          "people": null,
+          "note": "回程"
+        }
+      ]
+    }
   ]
 }

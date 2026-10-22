@@ -4,8 +4,8 @@
 export const PLACE_TYPES = ['station', 'spot', 'lodging', 'restaurant'] as const;
 export type PlaceType = (typeof PLACE_TYPES)[number];
 
-export const AREA_IDS = ['ise', 'futami', 'toba', 'shima', 'kix'] as const;
-export type AreaId = (typeof AREA_IDS)[number];
+/** 區域 ID。區域不寫死（PLAN T11、T12）：清單在執行時從 data/areas.json 讀，加了新區域不用改程式 */
+export type AreaId = string;
 
 /** [經度, 緯度] */
 export type LonLat = [number, number];

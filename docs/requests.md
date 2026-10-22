@@ -224,4 +224,4 @@
 - 要改的檔案：`packages/engine/src/types.ts` 的 `AREA_IDS`、`AreaId`（T14 負責；T24 不改別人已有的型別）
 - 內容：`AreaId` 現在是五個區域的聯集型別。區域不寫死之後，建議改成 `string`（或 `string & {}`），區域清單在執行時從 `areas.json`（靜態資料，`npm run build:static` 輸出的 `static/areas.json`）讀。`worker/` 裡區域一律當成字串處理，沒有用到 `AREA_IDS`。
 - 原因：之後加大阪時，型別寫死的話 web、引擎要改程式（PLAN T24「區域不寫死」）。
-- 狀態：待處理
+- 狀態：已處理（2026-10-22，T12）：拿掉 `AREA_IDS`，`AreaId` 改成 `string`；區域清單在執行時從 `areas.json` 讀。`packages/engine/test/index.test.ts` 跟著改。

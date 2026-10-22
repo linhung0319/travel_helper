@@ -1,4 +1,4 @@
-// 篩選：區域、子地區、類型、情境、分級。每一項都是「空陣列＝不篩」，有值時符合其中一個就算。
+// 篩選：區域、子地區、類型、情境、分級、團體（15 人）。每一項都是「空陣列＝不篩」，有值時符合其中一個就算。
 
 import { displayName } from '../data/normalize.ts';
 import type { Area, Context, Place, PlaceType, Tier } from '../data/types.ts';
@@ -9,11 +9,16 @@ export interface Filter {
   types: PlaceType[];
   contexts: Context[];
   tiers: Tier[];
+  /** 餐廳的 group.fit15（interaction-design §5 的「可容納 15 人」）；有值時只剩餐廳 */
+  fit15: Fit15[];
 }
+
+export const FIT15_VALUES = ['yes', 'split', 'no', 'unknown'] as const;
+export type Fit15 = (typeof FIT15_VALUES)[number];
 
 export type FilterKey = keyof Filter;
 
-export const EMPTY_FILTER: Filter = { areas: [], regions: [], types: [], contexts: [], tiers: [] };
+export const EMPTY_FILTER: Filter = { areas: [], regions: [], types: [], contexts: [], tiers: [], fit15: [] };
 
 export const TYPE_LABELS: Record<PlaceType, string> = {
   station: '車站',
@@ -30,6 +35,19 @@ export const CONTEXT_LABELS: Record<Context, string> = {
   cafe: '咖啡',
 };
 
+export const FIT15_LABELS: Record<Fit15, string> = {
+  yes: '可容納 15 人',
+  split: '15 人要分桌',
+  no: '坐不下 15 人',
+  unknown: '15 人：未查',
+};
+
+export function placeFit15(p: Place): Fit15 | null {
+  const g = p.raw.group as Record<string, unknown> | undefined;
+  const v = g?.fit15;
+  return typeof v === 'string' && (FIT15_VALUES as readonly string[]).includes(v) ? (v as Fit15) : null;
+}
+
 export function isFilterEmpty(f: Filter): boolean {
   return Object.values(f).every((v) => v.length === 0);
 }
@@ -41,6 +59,10 @@ export function matchesFilter(p: Place, f: Filter): boolean {
   if (f.contexts.length && !p.contexts.some((c) => f.contexts.includes(c))) return false;
   // 車站沒有分級：只篩分級時車站照樣顯示，方便看交通
   if (f.tiers.length && p.type !== 'station' && !(p.tier && f.tiers.includes(p.tier))) return false;
+  if (f.fit15.length) {
+    const v = placeFit15(p);
+    if (!(v && f.fit15.includes(v))) return false;
+  }
   return true;
 }
 
@@ -60,6 +82,7 @@ export function filterChips(f: Filter, areas: Area[]): FilterChip[] {
     ...f.types.map((v) => ({ key: 'types' as const, value: v, label: TYPE_LABELS[v] })),
     ...f.contexts.map((v) => ({ key: 'contexts' as const, value: v, label: CONTEXT_LABELS[v] })),
     ...f.tiers.map((v) => ({ key: 'tiers' as const, value: v, label: `${v} 級` })),
+    ...f.fit15.map((v) => ({ key: 'fit15' as const, value: v, label: FIT15_LABELS[v] })),
   ];
 }
 

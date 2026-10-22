@@ -70,6 +70,20 @@ test('超過上限、沒有車 → 計程車：台數和起跳價；加算費率
   assert.equal(priced.leg.taxi?.fareEstimateYen, 700 + Math.ceil((3000 * 1.3 - 1200) / 300) * 100);
 });
 
+test('driveMeters（OSRM 開車路徑）優先於直線 × roadDetour', () => {
+  const a = spot('a', at(0));
+  const b = spot('b', at(3000));
+  const straight = planLeg(ep(a), ep(b), ctx(fake([a, b])));
+  const road = planLeg(ep(a), ep(b), ctx(fake([a, b], { driveMeters: () => 6000 })));
+  assert.equal(road.leg.mode, 'taxi');
+  assert.ok(road.leg.minutes > straight.leg.minutes);
+  assert.match(road.leg.basis, /osrm/);
+  assert.match(straight.leg.basis, /直線/);
+  // 30 km/h：6 km 是 12 分，加上叫車的時間
+  const overhead = straight.leg.minutes - Math.ceil((3000 * 1.3) / 1000 / 30 * 60);
+  assert.ok(Math.abs(road.leg.minutes - (12 + overhead)) <= 1);
+});
+
 // 假的巴士路線：停留所 s1 在 a 旁、s2 在 b 旁
 function busRoute(deps: string[], ride = 10): RouteTimetable {
   const pad = (m: number) => `${String(Math.floor(m / 60)).padStart(2, '0')}:${String(m % 60).padStart(2, '0')}`;

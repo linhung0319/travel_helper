@@ -213,9 +213,16 @@ function routeCandidates(a: Endpoint, b: Endpoint, ctx: LegContext, factor: numb
 
 // --- 計程車 -----------------------------------------------------------------
 
-export function taxiEstimate(a: LonLat, b: LonLat, party: PartyProfile, cfg: EngineConfig): { minutes: number; meters: number; taxi: TaxiInfo } {
+/** roadMeters：實際開車距離（EngineData.driveMeters）；沒有時用直線 × roadDetour */
+export function taxiEstimate(
+  a: LonLat,
+  b: LonLat,
+  party: PartyProfile,
+  cfg: EngineConfig,
+  roadMeters?: number | null,
+): { minutes: number; meters: number; taxi: TaxiInfo } {
   const t = cfg.taxi;
-  const meters = haversineMeters(a, b) * t.roadDetour;
+  const meters = roadMeters ?? haversineMeters(a, b) * t.roadDetour;
   const minutes = t.overheadMinutes + (meters / 1000 / t.kmPerHour) * 60;
   const cars = Math.ceil(party.size / t.carCapacity);
   const jumboCars = Math.ceil(party.size / t.jumboCapacity);
@@ -324,9 +331,10 @@ export function planLeg(a: Endpoint, b: Endpoint, ctx: LegContext, spec?: Travel
     warnings.push({ code: 'travel-unknown', level: 'error', message: '距離太遠，找不到時刻表裡的交通方式；請用 travel 指定（參考 data/access/）' });
     return { leg: leg({ mode: 'unknown', minutes: 0, basis: '找不到交通方式' }, a, b, ctx.depart), warnings };
   }
-  const t = taxiEstimate(a.coords, b.coords, party, cfg);
+  const road = ctx.data.driveMeters?.(a.coords, b.coords) ?? null;
+  const t = taxiEstimate(a.coords, b.coords, party, cfg, road);
   warnings.push({ code: 'taxi', level: 'info', message: t.taxi.note });
-  return { leg: leg({ mode: 'taxi', minutes: t.minutes, taxi: t.taxi, basis: `計程車估算（${cfg.taxi.kmPerHour} km/h）` }, a, b, ctx.depart), warnings };
+  return { leg: leg({ mode: 'taxi', minutes: t.minutes, taxi: t.taxi, basis: `計程車估算（${road != null ? 'osrm' : '直線'}，${cfg.taxi.kmPerHour} km/h）` }, a, b, ctx.depart), warnings };
 }
 
 function specifiedLeg(a: Endpoint, b: Endpoint, ctx: LegContext, spec: TravelSpec, walk: number | null, factor: number, warnings: LegWarning[]): Leg {
@@ -349,7 +357,8 @@ function specifiedLeg(a: Endpoint, b: Endpoint, ctx: LegContext, spec: TravelSpe
     warnings.push({ code: 'travel-unknown', level: 'error', message: '缺座標，算不出交通時間；請填 minutes' });
     return leg({ ...base, mode: spec.mode, minutes: 0, basis: '缺座標' }, a, b, ctx.depart);
   }
-  const t = taxiEstimate(a.coords, b.coords, ctx.party, ctx.cfg);
+  const road = ctx.data.driveMeters?.(a.coords, b.coords) ?? null;
+  const t = taxiEstimate(a.coords, b.coords, ctx.party, ctx.cfg, road);
   if (spec.mode === 'taxi') warnings.push({ code: 'taxi', level: 'info', message: t.taxi.note });
-  return leg({ ...base, mode: spec.mode, minutes: t.minutes, taxi: spec.mode === 'taxi' ? t.taxi : null, basis: '車程估算' }, a, b, ctx.depart);
+  return leg({ ...base, mode: spec.mode, minutes: t.minutes, taxi: spec.mode === 'taxi' ? t.taxi : null, basis: road != null ? '車程估算（osrm）' : '車程估算' }, a, b, ctx.depart);
 }

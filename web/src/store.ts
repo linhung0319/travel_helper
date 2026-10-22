@@ -1,9 +1,11 @@
-// 地圖網站的狀態（architecture §2）。UI 和之後的 AI 指令（T12）改的是同一份。
-// 這裡只放最基本的設定函式；T12 會在上面包一層地圖指令（focus、highlight、selectDay、setFilter…）。
+// 地圖網站的狀態（architecture §2）。UI 和 AI 的地圖指令（commands.ts，T12）改的是同一份。
+// 這裡只放同步、不檢查的設定函式；檢查輸入、算範圍、移動地圖由 commands.ts 做。
 
 import { createStore } from 'zustand/vanilla';
 import { EMPTY_FILTER, toggleValue, type Filter, type FilterKey } from './lib/filter.ts';
 import type { Bbox, LonLat } from './data/types.ts';
+import type { Itinerary, TravelMode } from '@travel-helper/engine/types';
+import type { Change } from '@travel-helper/engine';
 
 /** 'all'＝全部的天；否則是 YYYY-MM-DD */
 export type DaySelection = 'all' | string;
@@ -17,6 +19,47 @@ export interface CameraRequest {
   bbox?: Bbox;
   center?: LonLat;
   zoom?: number;
+}
+
+/** 標示的樣式：主要（黃）、注意（紅）、次要（灰） */
+export const HIGHLIGHT_STYLES = ['primary', 'warning', 'muted'] as const;
+export type HighlightStyle = (typeof HIGHLIGHT_STYLES)[number];
+
+/** 路線的一端：資料點（place）或座標 */
+export interface RouteEnd {
+  place: string | null;
+  coords: LonLat;
+}
+
+/**
+ * 地圖上的一條路線（drawRoute）。geometry 先是 null（畫直線），routeResolver 查到路徑後補上：
+ * 步行、車沿道路走（OSRM），電車依序連經過的車站，船畫直線。
+ */
+export interface MapRoute {
+  id: string;
+  from: RouteEnd;
+  to: RouteEnd;
+  mode: TravelMode;
+  /** 顯示的分鐘：呼叫者給的（例如 T14 的 Leg），或從路徑距離用預設速度算的 */
+  minutes: number | null;
+  /** 呼叫者給了分鐘時是 true；false 時 routeResolver 用距離算 */
+  minutesGiven: boolean;
+  label: string | null;
+  geometry: LonLat[] | null;
+  /** 路徑的距離（公尺）；直線時是直線距離 */
+  meters: number | null;
+  /** pending：還在查；osrm：沿道路；rail：沿鐵路的車站；straight：直線（查不到或船）；given：呼叫者給的 */
+  source: 'pending' | 'osrm' | 'rail' | 'straight' | 'given';
+}
+
+/** AI 提議的行程（showProposal）：地圖用虛線、半透明畫，採用前不改確定的行程 */
+export interface Proposal {
+  itinerary: Itinerary;
+  /** 有改動的天（地圖只畫這幾天的提議） */
+  dates: string[];
+  /** 和確定的行程比，改了什麼（engine 的 diffItinerary） */
+  changes: Change[];
+  summary: string | null;
 }
 
 export interface AppState {
@@ -39,6 +82,13 @@ export interface AppState {
   /** 車站面板的指定時間；null＝預設 */
   stationTime: string | null;
   camera: CameraRequest | null;
+  /** highlight：每種樣式一組點 */
+  highlights: Partial<Record<HighlightStyle, string[]>>;
+  /** drawRoute 畫的路線 */
+  routes: MapRoute[];
+  /** compare：比較中的點（地圖標 A、B、C，上方出現比較列） */
+  compare: string[];
+  proposal: Proposal | null;
 }
 
 export interface AppActions {
@@ -58,6 +108,15 @@ export interface AppActions {
   setSheet(patch: Partial<AppState['sheet']>): void;
   setStationTime(time: string | null): void;
   moveCamera(req: Omit<CameraRequest, 'seq'>): void;
+  setSelection(ids: string[]): void;
+  setHighlight(style: HighlightStyle, ids: string[]): void;
+  /** 回傳新路線的 ID */
+  addRoute(route: Omit<MapRoute, 'id'>): string;
+  updateRoute(id: string, patch: Partial<Omit<MapRoute, 'id'>>): void;
+  setCompare(ids: string[]): void;
+  /** 清掉標示、路線、比較（不動提議） */
+  clearHighlights(): void;
+  setProposal(proposal: Proposal | null): void;
 }
 
 export type AppStore = AppState & AppActions;
@@ -75,9 +134,14 @@ export const initialState: AppState = {
   sheet: { tab: 'chat', snap: 'peek' },
   stationTime: null,
   camera: null,
+  highlights: {},
+  routes: [],
+  compare: [],
+  proposal: null,
 };
 
 export function createAppStore(init: Partial<AppState> = {}) {
+  let routeSeq = 0;
   return createStore<AppStore>()((set) => ({
     ...initialState,
     ...init,
@@ -100,6 +164,23 @@ export function createAppStore(init: Partial<AppState> = {}) {
     setSheet: (patch) => set((s) => ({ sheet: { ...s.sheet, ...patch } })),
     setStationTime: (stationTime) => set({ stationTime }),
     moveCamera: (req) => set((s) => ({ camera: { ...req, seq: (s.camera?.seq ?? 0) + 1 } })),
+    setSelection: (ids) => set({ selection: [...new Set(ids)] }),
+    setHighlight: (style, ids) =>
+      set((s) => {
+        const highlights = { ...s.highlights };
+        if (ids.length) highlights[style] = [...new Set(ids)];
+        else delete highlights[style];
+        return { highlights };
+      }),
+    addRoute: (route) => {
+      const id = `r${++routeSeq}`;
+      set((s) => ({ routes: [...s.routes, { ...route, id }] }));
+      return id;
+    },
+    updateRoute: (id, patch) => set((s) => ({ routes: s.routes.map((r) => (r.id === id ? { ...r, ...patch } : r)) })),
+    setCompare: (ids) => set({ compare: [...new Set(ids)] }),
+    clearHighlights: () => set({ highlights: {}, routes: [], compare: [] }),
+    setProposal: (proposal) => set({ proposal }),
   }));
 }
 

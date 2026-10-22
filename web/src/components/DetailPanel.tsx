@@ -1,5 +1,6 @@
 import { useMemo, type ReactNode } from 'react';
 import { appStore } from '../store.ts';
+import { commands } from '../appCommands.ts';
 import { useApp, useData } from '../hooks.ts';
 import { displayName } from '../data/normalize.ts';
 import { TYPE_LABELS, CONTEXT_LABELS } from '../lib/filter.ts';
@@ -425,7 +426,7 @@ export function DetailPanel({ place }: { place: Place }) {
         <button
           type="button"
           className={`action ${selected ? 'on' : ''}`}
-          onClick={() => (selected ? appStore.getState().removeFromSelection(place.id) : appStore.getState().addToSelection(place.id))}
+          onClick={() => (selected ? commands.unselect(place.id) : commands.select(place.id))}
         >
           💬 {selected ? '已帶進聊天' : '問 AI'}
         </button>
