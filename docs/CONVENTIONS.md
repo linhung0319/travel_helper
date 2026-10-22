@@ -303,26 +303,76 @@ travel_helper/
 - `trainNo` 是近鐵時刻表網站的列車編號（例如 `1-3896`），同一班車在各站相同，可以對到 `_travel-times.json` 的 `trains`。
 - 各站之間的車程和每班車的停站時刻存在 `data/timetables/kintetsu/_travel-times.json`（格式見 `schema/kintetsu-travel-times.schema.json`）。
 
-### 行程（T14 會訂出完整格式，這裡先放草稿）
-- **只有一份確定的行程**（2026-10-21）：12 天，一開始就放好航班當固定項目；不做方案。家人的建議、投票、使用者加的點不放在行程裡，另外存在資料庫（[architecture.md](architecture.md) §3.6、[interaction-design.md](interaction-design.md) §6）。下面草稿的 `wishlist` 改由「整趟」的建議取代。
+### 行程（`itinerary-v1`，T14 訂定，2026-10-22）
+- **只有一份確定的行程**（2026-10-21）：12 天，一開始就放好航班當固定項目；不做方案。家人的建議、投票、使用者加的點不放在行程裡，另外存在資料庫（[architecture.md](architecture.md) §3.6、[interaction-design.md](interaction-design.md) §6）；「整趟」的建議取代原本草稿的 `wishlist`。
 - **時間一律是日本時間**：日期寫 `YYYY-MM-DD`、時間寫 `HH:MM` 字串（過了午夜寫 `25:00`），程式不轉成 `Date`、不做時區換算（architecture §3.8）。
+- 型別在 `packages/engine/src/types.ts`，操作、檢查在 `packages/engine`（T15、T16 共用）。存進資料庫的只有下面這份 JSON；交通、抵達和出發時間、空檔、警告都是引擎算出來的，**不存**。
+- 一開始的行程用 `createItinerary()` 產生；改行程一律用引擎的操作（`addItem`、`removeItem`、`moveItemToDay`、`moveItem`、`setStay`、`selectOption`、`addOption`、`removeOption`、`setStart`、`setTravel`、`setLodging`），不要直接改 JSON；收到外部的 JSON（PUT、匯入）先跑 `validateItinerary()`。
 
 ```jsonc
 {
-  "days": [
+  "format": "itinerary-v1",
+  "seq": 12,                                         // 最後用掉的項目流水號；刪掉的 ID 不再重用（引擎維護）
+  "party": { "size": 15, "elders": 5, "kids": 4 },   // 全員的組成：檢查用（步行係數、坐不坐得下、不接小孩的店）
+  "days": [                                          // 固定 12 天，2027-02-02～02-13，依日期排序
     {
       "date": "2027-02-05",
-      "lodging": "toba-hotel-xx",
-      "items": [
-        { "place": "toba-aquarium", "arrive": "09:30", "stayMinutes": 120 },
-        { "leg": { "mode": "walk", "minutes": 8 } },
-        { "place": "restaurant-yy", "arrive": "11:38", "stayMinutes": 60 }
-      ]
+      "lodging": "toba-todaya",      // 這晚住哪裡；null＝還沒排 → 空檔「住宿（未排）」；最後一天是 null
+      "lodgingMeals": null,          // 這晚的方案：dinner+breakfast | breakfast | none；null＝照住宿資料的 meals（meals 是 "varies" 的要填）
+      "start": null,                 // 這天從哪裡出發；null＝前一晚的住宿
+      "note": null,
+      "items": [ /* 項目，依順序 */ ]
     }
-  ],
-  "wishlist": ["yokoyama-observatory"]
+  ]
 }
 ```
+
+**項目**（`type` 有 4 種）。每個項目都有行程內唯一的 `id`（`i-<流水號>`、航班 `f-<流水號>`、分組裡的項目 `<分組 id>-<組 id>-<n>`），建議的 `adopted_item_ids` 指到這裡；ID 由引擎產生，不用亂數。
+
+```jsonc
+// 1. visit：去一個點（景點、餐廳、住宿、車站、使用者加的點）
+{
+  "id": "i-12", "type": "visit",
+  "options": [                                    // 時段備案；引擎只用 selected 那個算，地圖上其他的用空心標記
+    { "place": "toba-aquarium", "stayMinutes": null, "note": null },   // stayMinutes null＝資料的 stayMinutes，餐廳沒有時用 §5.5 的料理預設
+    { "place": "toba-mikimoto-pearl-island", "stayMinutes": 90, "note": "雨天備案" }
+  ],
+  "selected": 0,
+  "start": null,         // 指定開始時間（訂位、表演、船班）；null＝到了就開始，沒開門會等到開門。到得比指定時間晚 → 衝突
+  "meal": null,          // breakfast | lunch | dinner | snack；null＝餐廳在午餐、晚餐時段內自動算那一餐，其他時間算 snack
+  "travel": null,        // 指定從上一站怎麼來：{ "mode": "charter", "minutes": 20, "note": "包車" }；null＝引擎依 §5.4 選
+                         // mode：walk | train | bus | ferry | taxi | charter | car | other；沒填 minutes 時引擎照方式估算
+  "proposedBy": ["<member id>"],   // 誰提的（建議的作者）
+  "addedBy": "<member id>",
+  "note": null
+}
+
+// 2. flight：固定項目，createItinerary() 放好（2/2 兩班抵達、2/13 兩班出發），不能刪、不能移
+{ "id": "f-1", "type": "flight", "direction": "arrive", "airport": "kansai-airport",
+  "depart": "08:20", "arrive": "11:55", "flightNo": null, "people": null, "note": "去程第一批" }
+
+// 3. split：分組行動。各組從上一站出發，在 meet 會合；之後的項目從會合點、會合時間接著算
+{
+  "id": "i-13", "type": "split",
+  "groups": [                                     // 至少兩組；只記人數組成，不記是誰
+    { "id": "g1", "name": "長輩組", "size": 6, "elders": 5, "kids": 0, "items": [ /* visit、free */ ] },
+    { "id": "g2", "name": "爬坡組", "size": 9, "elders": 0, "kids": 4, "items": [ ] }
+  ],
+  "meet": { "place": "toba-ichibangai", "time": "15:45" }
+}
+
+// 4. free：自由時間、休息（算進「半天自由時間」）；place null＝留在上一站
+{ "id": "i-14", "type": "free", "minutes": 180, "place": null, "start": null, "note": "回飯店休息" }
+```
+
+- **地點 ID** 用字串，不分預設資料或使用者加的點：引擎透過傳進來的 `getPlace` 查。使用者加的點只用座標估算交通，營業時間、團體條件標「未查」；已下架的點照常算，但發警告；查不到的點是錯誤。
+- **引擎的輸出**（`planItinerary(itinerary, data, config)`）：每天一個 `DayPlan`：
+  - `entries`：start（出發）、visit、flight、free、meet（分組，`groups` 是各組的 entries）、lodging（回住宿），各有 `arrive`／`start`／`end`、`waitMinutes`、`meal`，和到這一項的交通 `travel`（方式、出發／抵達、步行與等車分鐘、班次 `rides`、計程車台數和費用 `taxi`、怎麼算的 `basis`）。
+  - `gaps`：`lunch`「午餐（未排）」、`dinner`「晚餐（未排）」（不含晚餐的晚上）、`lodging`「住宿（未排）」、`idle`「空檔 N 分」，附建議插在哪兩個項目之間。
+  - `warnings`：`code`、`level`（error／warning／info）、`itemId`、`groupId`、`message`；`stats`：全員步行累計、主要景點數、回住宿時間、累不累、自由時間。
+  - 整趟的警告（連續兩天都累、沒有半天自由時間）在 `ItineraryPlan.warnings`。
+- **改了什麼**：`diffItinerary(before, after)` 列出新增、刪除、移到別天、換順序、改欄位、改住宿；`checkProposal()` 套用前後都跑引擎，附文字摘要（「2/5：＋鳥羽水族館 09:38～11:38」）和新出現、消失的警告（T16 的提議、T15 的確認畫面用）。
+- **規則的數字**在 `packages/engine/src/config.ts`（`DEFAULT_CONFIG`），預設照 §5；§5 沒寫的：午餐 11:00～13:30、晚餐 17:30～19:30、一泊二食 17:00 前到、落地到出關 75 分、起飛前 120 分到機場、電車等車 30 分內、計程車 30 km/h、加算費率未查（`null`，只顯示起跳價）。
 
 ---
 
