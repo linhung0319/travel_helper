@@ -18856,6 +18856,11 @@
         "walkSource": "osrm"
       },
       {
+        "id": "ise-furuichi-kaido",
+        "walkMinutes": 14,
+        "walkSource": "osrm"
+      },
+      {
         "id": "ise-yamatohime-no-miya",
         "walkMinutes": 15,
         "walkSource": "osrm"
@@ -24595,6 +24600,11 @@
         "walkSource": "osrm"
       },
       {
+        "id": "ise-kadoya-mingukan",
+        "walkMinutes": 15,
+        "walkSource": "osrm"
+      },
+      {
         "id": "ise-nipponia-kawasaki",
         "walkMinutes": 3,
         "walkSource": "osrm"
@@ -25783,7 +25793,7 @@
         "walkSource": "osrm"
       },
       {
-        "id": "ise-jingu-museum",
+        "id": "ise-furuichi-kaido",
         "walkMinutes": 15,
         "walkSource": "osrm"
       }
@@ -26270,6 +26280,11 @@
       {
         "id": "ise-jingu-museum",
         "walkMinutes": 8,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-furuichi-kaido",
+        "walkMinutes": 14,
         "walkSource": "osrm"
       }
     ],
@@ -26796,6 +26811,11 @@
       {
         "id": "isuzugawa",
         "walkMinutes": 15,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "ise-furuichi-kaido",
+        "walkMinutes": 9,
         "walkSource": "osrm"
       },
       {
@@ -27669,8 +27689,8 @@
         "walkSource": "osrm"
       },
       {
-        "id": "ise-sarutahiko-jinja",
-        "walkMinutes": 14,
+        "id": "ise-furuichi-kaido",
+        "walkMinutes": 13,
         "walkSource": "osrm"
       },
       {
@@ -30188,8 +30208,8 @@
         "walkSource": "osrm"
       },
       {
-        "id": "ise-sengukan",
-        "walkMinutes": 18,
+        "id": "ise-furuichi-kaido",
+        "walkMinutes": 14,
         "walkSource": "osrm"
       },
       {

@@ -153,9 +153,9 @@
     },
     "region": "futami-okitama",
     "category": "神社",
-    "status": "not-included",
-    "reason": "神宮製作御鹽的所管社，規模小、沒有停車場；JR 二見浦站步行 15 分，順路可以去",
-    "pointId": null,
+    "status": "included",
+    "reason": "T13 決定補收（2026-10-21，T13-review §1）：原本以「規模小、順路可以去」沒收",
+    "pointId": "futami-mishiodono",
     "mentions": [
       {
         "type": "tourism",
@@ -385,5 +385,26 @@
         "retrieved": "2026-10-18"
       }
     ]
+  },
+  {
+    "key": "futami-sominoyu",
+    "name": {
+      "ja": "二見温泉 蘇民の湯"
+    },
+    "region": "futami-outskirts",
+    "category": "日帰り温泉",
+    "status": "included",
+    "reason": null,
+    "pointId": "futami-sominoyu",
+    "mentions": [
+      {
+        "type": "tourism",
+        "url": "https://www.kankomie.or.jp/spot/1131",
+        "title": "観光三重",
+        "highlight": null,
+        "retrieved": "2026-10-22"
+      }
+    ],
+    "note": "T13 決定補收（觀光三重列表沒收的，T13-review §1）；地址伊勢市二見町松下1349-136"
   }
 ]
