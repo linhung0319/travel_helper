@@ -87,7 +87,7 @@ travel_helper/
 |---|---|---|
 | `view` | `{ center, zoom, bounds } \| null` | 地圖目前的範圍，地圖移動結束時更新。探索模式的圖片牆、AI 的脈絡用（interaction-design §5） |
 | `day` | `'all' \| 'YYYY-MM-DD'` | 選定的天；不是 `all` 時其他天的點變淡 |
-| `filter` | `{ areas, regions, types, contexts, tiers }` | 都是陣列，空陣列＝不篩；各項之間是「且」、同一項裡是「或」。不符合的點變淡，圖片牆不放 |
+| `filter` | `{ areas, regions, types, contexts, tiers, fit15 }` | 都是陣列，空陣列＝不篩；`fit15` 是餐廳的 `group.fit15`（「可容納 15 人」，T12 加）；各項之間是「且」、同一項裡是「或」。不符合的點變淡，圖片牆不放 |
 | `mode` | `'map' \| 'explore'` | 地圖／探索 |
 | `planning` | `boolean` | 規劃模式（T15 接上進入前確認、閒置退出） |
 | `hoveredId` | `string \| null` | 地圖上要閃的點（滑鼠移過去、圖片牆點了、聊天室的地點標籤） |
@@ -97,12 +97,44 @@ travel_helper/
 | `sheet` | `{ tab: 'chat' \| 'day', snap: 'peek' \| 'half' \| 'full' }` | 手機的拉起面板；有 `detailId` 時面板顯示詳情 |
 | `stationTime` | `string \| null` | 車站面板的指定時間（`HH:MM`），null 時用行程排到的時間或 09:00 |
 | `camera` | `{ seq, bbox?, center?, zoom? } \| null` | 叫地圖移動的請求：MapView 看到 `seq` 變了就移過去。使用者自己拖地圖不產生請求，只更新 `view` |
+| `highlights` | `{ primary?, warning?, muted?: string[] }` | `highlight` 標示的點，每種樣式一組（黃、紅、灰框）（T12） |
+| `routes` | `MapRoute[]` | `drawRoute` 畫的路線：起訖（資料點或座標）、交通方式、分鐘、路徑、距離、`source`（`pending`／`osrm`／`rail`／`straight`／`given`）（T12） |
+| `compare` | `string[]` | 比較中的點：地圖標 A、B、C，上方出現比較列（T12） |
+| `proposal` | `{ itinerary, dates, changes, summary } \| null` | AI 提議的行程（itinerary-v1）、有改動的天、engine `diffItinerary` 的改動；地圖用虛線、半透明畫，不改確定的行程（T12） |
 
-設定函式（T11 只放最基本的，T12 再包成 `focus`、`selectDay`、`setFilter` 等指令）：`setView`、`selectDay`、`setFilter(patch)`、`toggleFilter(key, value)`、`clearFilter`、`setMode`、`setPlanning`、`hover`、`openPreview`、`openDetail`（小卡片收起、收起的面板拉到一半）、`closeDetail`、`addToSelection`、`removeFromSelection`、`setSheet`、`setStationTime`、`moveCamera`。
+設定函式（同步、不檢查輸入；UI 和 AI 要用下面的地圖指令）：`setView`、`selectDay`、`setFilter(patch)`、`toggleFilter(key, value)`、`clearFilter`、`setMode`、`setPlanning`、`hover`、`openPreview`、`openDetail`（小卡片收起、收起的面板拉到一半）、`closeDetail`、`addToSelection`、`removeFromSelection`、`setSheet`、`setStationTime`、`moveCamera`；T12 加 `setSelection`、`setHighlight(style, ids)`、`addRoute`、`updateRoute`、`setCompare`、`clearHighlights`（標示、路線、比較一起清）、`setProposal`。
 
-T12 要加的（還沒有）：`highlight(ids, style)`、`drawRoute`、`compare`、提議版本的顯示（`showProposal`）。加的時候在這個 store 加欄位，不另開一份。
+### 地圖指令（T12，2026-10-22）
 
-**`web/src/dataStore.ts`：讀進來的資料**（只在載入時改）：`status`、`areas`（areas.json，依 `tripOrder`）、`places`（合併後的資料點）、`byId`、`itinerary`（T11 只有開發用的假行程，T15 換成確定的行程）、`days`（資料點 → 排在哪幾天、第幾個）、`stationNames`。
+**UI 和 AI（T16）都透過 `web/src/commands.ts` 的指令操作地圖**，改的是上面同一份 store；網站共用的一份是 `web/src/appCommands.ts` 的 `commands`（dev server 下也在 `window.__th.commands`）。每個指令都檢查輸入，回傳 `{ ok: true, … }` 或 `{ ok: false, error }`（失敗時狀態不變），AI 可以讀結果決定下一步。
+
+| 指令 | 做什麼 |
+|---|---|
+| `focus(target)` | 地圖移過去。目標：資料點 ID（放大到 15、點會閃）、ID 的陣列（框住全部）、`{ area }`、`{ region }`（從 areas.json 讀）、`{ day }`、`{ bbox }`、`{ center, zoom }` |
+| `highlight(ids, style = 'primary')` | 標示幾個點；同一樣式再叫一次是取代，給空陣列是清掉那一組 |
+| `drawRoute(from, to, mode = 'walk', { minutes?, label?, geometry? })` | 畫一條路線，回傳 `routeId`。路徑由 `routeResolver.ts` 在背景補上（見下面「路線」） |
+| `compare(ids)` | 比較 2～6 個點：地圖框住、標 A、B、C，上方出現比較列；回傳每個點的分級、標章、摘要 |
+| `clearHighlights()` | 清掉標示、路線、比較（篩選、選取、提議不動） |
+| `selectDay(day)` | 切換天數；選了某一天，地圖框住那天排的點（最多放大到 14） |
+| `setFilter(patch)`／`clearFilter()` | 給的那幾項整個取代，沒給的不動；值從 areas.json 和常數檢查。回傳篩選標籤和筆數。地圖上方出現可以取消的篩選標籤 |
+| `select(ids)`／`unselect(ids?)` | 「問 AI」的選取：累加、不重複；`unselect()` 全部取消 |
+| `showProposal(itinerary, { summary? })`／`clearProposal()` | 顯示 AI 提議的行程：和確定的行程比出改動的天，只有一天時切到那天、框住提議的點。採用由 T15／T16 用 engine 的操作寫進行程，再 `clearProposal` |
+| `getViewState()` | 給 AI 的畫面狀態（interaction-design §5）：地圖範圍、畫面裡符合篩選的點數、選定的天和那天的點、篩選和標籤、模式、規劃模式、選取的點、打開的詳情、標示、比較、路線、提議。可以直接 JSON 化 |
+
+UI 的天數分頁、篩選標籤的 ✕、「跳到區域」、詳情的「問 AI」、聊天室選取標籤的 ✕、「這一天」的項目都改走這些指令。篩選面板的切換按鈕直接用 store 的 `toggleFilter`（同一份狀態）。
+
+**地圖上的樣子**（`components/mapOverlayLayers.ts`、`lib/overlays.ts`）：
+- 標示：黃、紅、灰的框；比較：紫框加 A、B、C。照片標記（DOM）另外加 class。
+- 路線：白底加一條依交通方式上色的線，步行點線、船虛線、其他實線；直線（查不到路徑）比較淡。中間的標籤（「🚶 8 分」）是 DOM 標記。
+- 提議（👤 2026-10-22 決定）：確定的行程照常；提議那幾天的點用半透明白底、那天顏色的框，編號在點的下方（確定的行程的編號在上方），依序用那天顏色的虛線連起來；新增的點加綠框，拿掉的點變灰加 ×。照片標記也標出編號、綠框、變灰。上方的提議列有摘要（「2/5：＋鳥羽水族館、－XX」）和「不看提議」；「採用／修改」在 T15／T16 加。
+
+**路線**（`lib/routing.ts`，👤 2026-10-22 決定：沿道路走、在瀏覽器直接查）：
+- 步行（OSRM foot）、計程車、包車、自駕、巴士（OSRM car）：在瀏覽器查公開的 OSRM（`routing.openstreetmap.de`），請求排隊、間隔 1.1 秒；查過的存在記憶體和 localStorage，同樣的起訖點（四捨五入到約 1 公尺）不再查。查不到（網路、OSRM 錯誤）畫直線。
+- 電車：依序連經過的車站（同一家、同字首的站號，例如近鐵 M71～M93）；連不起來（JR 沒有站號）畫直線。船、其他：直線。
+- 分鐘：呼叫者給的優先（例如 T14 的 `Leg.minutes`）；沒給時，步行用路徑距離 ÷ 每分 80 m × 全員係數（engine 的 `DEFAULT_CONFIG`，實際路徑不再乘繞路係數），計程車、包車、自駕用 engine 的 `taxiEstimate`；電車、巴士、船看時刻表，不算。
+- 查到的距離也給引擎用：`roadRouter.cachedMeters(profile, from, to)` 是同步的，T15 先查好路徑，再接到 `EngineData.walkMeters`、`driveMeters`（T12 加，計程車、包車用實際開車距離）。`data/cache/routes/` 照 §3.1 不上網站。
+
+**`web/src/dataStore.ts`：讀進來的資料**（只在載入時改）：`status`、`areas`（areas.json，依 `tripOrder`）、`places`（合併後的資料點）、`byId`、`itinerary`（engine 的 itinerary-v1；T11、T12 是開發用的假行程，T15 換成確定的行程）、`days`（資料點 → 排在哪幾天、第幾個；順序是 `lib/itinerary.ts` 的 `dayStops`：選定的選項、同一個機場連續的航班算一站、分組只放會合點、住宿放最後）、`stationNames`。
 
 **區域不寫死**：區域清單、名稱、子地區、區域篩選的選項、「跳到區域」都從 `areas.json` 讀。地圖的初始範圍：bbox 彼此在 30 km 以內的區域分成一群，用資料點最多的那群的資料點範圍（`web/src/lib/areas.ts`）；所以加了大阪也會和關西機場周邊同一群，不影響初始畫面。區域的顏色依 `tripOrder` 的順序配。
 
