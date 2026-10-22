@@ -107,6 +107,11 @@ export interface EngineData {
    * 沒有就回傳 null，引擎改用 anchors 或直線估算。
    */
   walkMeters?: (from: LonLat, to: LonLat) => number | null;
+  /**
+   * 實際開車距離（公尺），例如網站從 OSRM 的開車路徑拿到的；沒有就回傳 null，
+   * 計程車、包車改用直線 × roadDetour 估算。
+   */
+  driveMeters?: (from: LonLat, to: LonLat) => number | null;
 }
 
 /** 從一批資料點建 EngineData.getPlace：users 是使用者加的點，retired 是已下架的 ID */
