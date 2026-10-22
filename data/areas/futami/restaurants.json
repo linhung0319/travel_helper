@@ -73,17 +73,17 @@
     "closures": [],
     "photos": [
       {
-        "url": "https://ofukumochi.com/ofuku-wp/wp-content/uploads/2024/03/020__3752-1024x682.jpg",
-        "page": "https://ofukumochi.com/shops/",
-        "kind": "official",
-        "credit": "御福餅 本家",
-        "license": null
-      },
-      {
         "url": "https://lh3.googleusercontent.com/grass-cs/AABkmLdg1L-1xlU9rOr3SBiK9nNrkhPBmUa78vaMoaAAwbFDKlkHs1ON9hof99F5BtXr3VRtBCcKJ2H8MgFBkcFtscAmW3mkFIxQXef1SgQly9oBb-HwUPDsRG7r1du12Lc03pf6ja0A=w800",
         "page": "https://maps.google.com/?cid=14463137259893633306",
         "kind": "google",
         "credit": "Google マップ",
+        "license": null
+      },
+      {
+        "url": "https://ofukumochi.com/ofuku-wp/wp-content/uploads/2024/03/020__3752-1024x682.jpg",
+        "page": "https://ofukumochi.com/shops/",
+        "kind": "official",
+        "credit": "御福餅 本家",
         "license": null
       }
     ],
@@ -1501,14 +1501,14 @@
     "closures": [],
     "photos": [
       {
-        "url": "https://futamiokitamajinja.or.jp/wp-content/uploads/2024/12/E01_kyuukei3.jpg",
+        "url": "https://futamiokitamajinja.or.jp/wp-content/uploads/2020/03/E01_kyuukei4.jpg",
         "page": "https://futamiokitamajinja.or.jp/meguru/%e4%bc%91%e6%86%a9%e5%87%a6%ef%bc%88%e3%82%ab%e3%83%95%e3%82%a7%e3%83%bb%e3%81%86%e3%81%a9%e3%82%93%e5%b1%8b%e3%83%bb%e7%be%8e%e8%a1%93%e5%ba%97%ef%bc%89/",
         "kind": "official",
         "credit": "BonTin cafe 禊",
         "license": null
       },
       {
-        "url": "https://futamiokitamajinja.or.jp/wp-content/uploads/2020/03/E01_kyuukei4.jpg",
+        "url": "https://futamiokitamajinja.or.jp/wp-content/uploads/2024/12/E01_kyuukei3.jpg",
         "page": "https://futamiokitamajinja.or.jp/meguru/%e4%bc%91%e6%86%a9%e5%87%a6%ef%bc%88%e3%82%ab%e3%83%95%e3%82%a7%e3%83%bb%e3%81%86%e3%81%a9%e3%82%93%e5%b1%8b%e3%83%bb%e7%be%8e%e8%a1%93%e5%ba%97%ef%bc%89/",
         "kind": "official",
         "credit": "BonTin cafe 禊",

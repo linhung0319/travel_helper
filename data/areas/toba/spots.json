@@ -355,17 +355,17 @@
     "closures": [],
     "photos": [
       {
-        "url": "https://static.wixstatic.com/media/e0589f_de6161db94c54060b8d393141ba662ac~mv2.jpg",
-        "page": "https://www.mikimoto-pearl-island.jp/",
-        "kind": "official",
-        "credit": "ミキモト真珠島",
-        "license": null
-      },
-      {
         "url": "https://lh3.googleusercontent.com/grass-cs/AABkmLe7bobDe-H9Ut40WeEtJkV4ihBmVChzXJd7u-sk9Pi4T9YtrhGADzEgCN3NAXJ9fX_HBO6v_GK-dbW88uuCtwrp_BQh0WFf0yabp5Td1_Vn1cSoLM3svkSUBzKJJ4IpPjOF7Rs=w426-h240-k-no",
         "page": "https://maps.google.com/?cid=15879917307162474626",
         "kind": "google",
         "credit": "Google マップ（店家或使用者上傳）",
+        "license": null
+      },
+      {
+        "url": "https://static.wixstatic.com/media/e0589f_de6161db94c54060b8d393141ba662ac~mv2.jpg",
+        "page": "https://www.mikimoto-pearl-island.jp/",
+        "kind": "official",
+        "credit": "ミキモト真珠島",
         "license": null
       }
     ],
@@ -1562,17 +1562,17 @@
     "closures": [],
     "photos": [
       {
-        "url": "https://www.toba1ban.co.jp/common/images/share.jpg",
-        "page": "https://www.toba1ban.co.jp/",
-        "kind": "official",
-        "credit": "鳥羽1番街",
-        "license": null
-      },
-      {
         "url": "https://lh3.googleusercontent.com/grass-cs/AABkmLel6ziv_CvIVD7Jk1eC3dCVCOAsxH297iIDl9vqqDAUJZmWYX0_K4a9zazF4Vv-OKJJ1HXjYIR7uZ1XZB5HmB29XQKcBcUGMiuOKY2h66NEkhJuKkejAtVNk_lZ8Il40xJG9YSc5kH3lVEj=w408-h544-k-no",
         "page": "https://maps.google.com/?cid=11913489232024806130",
         "kind": "google",
         "credit": "Google マップ（店家或使用者上傳）",
+        "license": null
+      },
+      {
+        "url": "https://www.toba1ban.co.jp/common/images/share.jpg",
+        "page": "https://www.toba1ban.co.jp/",
+        "kind": "official",
+        "credit": "鳥羽1番街",
         "license": null
       }
     ],
@@ -2340,6 +2340,13 @@
     ],
     "photos": [
       {
+        "url": "https://lh3.googleusercontent.com/grass-cs/AABkmLdAeaX0tlt84Gn5zlhn_iLfilOvC62oZUvotANVe4HiKKQWTV6t2_VvAjGO0Exkw2Wu30aU3S_RwQe-khJZ7hF8aSuQgod6ZyB6C-aOLjp8Rx3rG8Eys8hO2RZErqZ9nnTSkkP00A=w408-h271-k-no",
+        "page": "https://maps.google.com/?cid=4295714032720302082",
+        "kind": "google",
+        "credit": "Google マップ（店家或使用者上傳）",
+        "license": null
+      },
+      {
         "url": "https://upload.wikimedia.org/wikipedia/commons/c/cd/Toba_Sea-Folk_Museum01.jpg",
         "page": "https://commons.wikimedia.org/wiki/File:Toba_Sea-Folk_Museum01.jpg",
         "kind": "wikimedia",
@@ -2351,13 +2358,6 @@
         "page": "https://www.umihaku.com/facility/cafe.php",
         "kind": "official",
         "credit": "鳥羽市立海の博物館",
-        "license": null
-      },
-      {
-        "url": "https://lh3.googleusercontent.com/grass-cs/AABkmLdAeaX0tlt84Gn5zlhn_iLfilOvC62oZUvotANVe4HiKKQWTV6t2_VvAjGO0Exkw2Wu30aU3S_RwQe-khJZ7hF8aSuQgod6ZyB6C-aOLjp8Rx3rG8Eys8hO2RZErqZ9nnTSkkP00A=w408-h271-k-no",
-        "page": "https://maps.google.com/?cid=4295714032720302082",
-        "kind": "google",
-        "credit": "Google マップ（店家或使用者上傳）",
         "license": null
       }
     ],
@@ -4201,17 +4201,17 @@
     "closures": [],
     "photos": [
       {
-        "url": "https://www.kankomie.or.jp/rails/active_storage/representations/proxy/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBazRUIiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--aafc10da2fdddb4f36e0c232c552cc18ca362eb3/22231_1_org.jpg",
-        "page": "https://www.kankomie.or.jp/spot/22231",
-        "kind": "official",
-        "credit": "観光三重",
-        "license": null
-      },
-      {
         "url": "https://lh3.googleusercontent.com/grass-cs/AABkmLdZTLcN7UUAjIkG7ntHrJYOzJqwgV2Te_LQM71vPe5c0opmwVLRplJG_7INv9Z47jDbKlJQ7tAfwADIpnzdDcu1YecTEL8QJ9G5Ft_JwYw0xB7DJ076GqRuw4-Zpc5aP5IiJHxbPg=w426-h240-k-no",
         "page": "https://maps.google.com/?cid=8423946117756381509",
         "kind": "google",
         "credit": "Google マップ（店家或使用者上傳）",
+        "license": null
+      },
+      {
+        "url": "https://www.kankomie.or.jp/rails/active_storage/representations/proxy/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBazRUIiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--aafc10da2fdddb4f36e0c232c552cc18ca362eb3/22231_1_org.jpg",
+        "page": "https://www.kankomie.or.jp/spot/22231",
+        "kind": "official",
+        "credit": "観光三重",
         "license": null
       }
     ],
@@ -4387,17 +4387,17 @@
     "closures": [],
     "photos": [
       {
-        "url": "https://www.kankomie.or.jp/rails/active_storage/representations/proxy/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBL2pDQkE9PSIsImV4cCI6bnVsbCwicHVyIjoiYmxvYl9pZCJ9fQ==--dd1328caf314faa0c9c26d9c3eb672eeee44e756/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdCem9MWm05eWJXRjBPZ2wzWldKd09oSnlaWE5wZW1WZmRHOWZabWwwV3dkcEFvUURNQT09IiwiZXhwIjpudWxsLCJwdXIiOiJ2YXJpYXRpb24ifX0=--ef4af471d0804d4a7b7d74cb943d03ada1b9519d/IMG_7010.jpeg",
-        "page": "https://www.kankomie.or.jp/spot/23390",
-        "kind": "official",
-        "credit": "観光三重",
-        "license": null
-      },
-      {
         "url": "https://lh3.googleusercontent.com/grass-cs/AABkmLeEjqUW6e1jFSEZkyRrXk8aQ8hTnsfAitI1DCqurp-AZTk-SLqcB1se1hflfC1HiCaTZwx6X722gdzTqabHa2RCZcOgaoDkqUg00SWg4YHUA3ReX4QwnAa9Enhnrx4dXZ9veZ3L273uBUlp=w408-h306-k-no",
         "page": "https://maps.google.com/?cid=10015027161109851868",
         "kind": "google",
         "credit": "Google マップ（店家或使用者上傳）",
+        "license": null
+      },
+      {
+        "url": "https://www.kankomie.or.jp/rails/active_storage/representations/proxy/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBL2pDQkE9PSIsImV4cCI6bnVsbCwicHVyIjoiYmxvYl9pZCJ9fQ==--dd1328caf314faa0c9c26d9c3eb672eeee44e756/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdCem9MWm05eWJXRjBPZ2wzWldKd09oSnlaWE5wZW1WZmRHOWZabWwwV3dkcEFvUURNQT09IiwiZXhwIjpudWxsLCJwdXIiOiJ2YXJpYXRpb24ifX0=--ef4af471d0804d4a7b7d74cb943d03ada1b9519d/IMG_7010.jpeg",
+        "page": "https://www.kankomie.or.jp/spot/23390",
+        "kind": "official",
+        "credit": "観光三重",
         "license": null
       }
     ],
@@ -4848,18 +4848,18 @@
     "closures": [],
     "photos": [
       {
-        "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Toba_Marin_Terminal_ac_(1).jpg",
-        "page": "https://commons.wikimedia.org/wiki/File:Toba_Marin_Terminal_ac_(1).jpg",
-        "kind": "wikimedia",
-        "credit": "Wikimedia: Asturio Cantabrio",
-        "license": "CC BY-SA 4.0"
-      },
-      {
         "url": "https://lh3.googleusercontent.com/grass-cs/AABkmLfMvCgdovmTD358O_Gp_R6AaDIWHzgJBXd7A__YbrfvchAMj9OHOLzWyyH9c8opzdhBraxPlo_tbsJwTfIBInN9v9fxSYiujid5kZBYv3NMaf_jNF4vNTrtZGHoVfPsDUyjK8h4Kg=w408-h544-k-no",
         "page": "https://maps.google.com/?cid=909286600885379435",
         "kind": "google",
         "credit": "Google マップ（店家或使用者上傳）",
         "license": null
+      },
+      {
+        "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Toba_Marin_Terminal_ac_(1).jpg",
+        "page": "https://commons.wikimedia.org/wiki/File:Toba_Marin_Terminal_ac_(1).jpg",
+        "kind": "wikimedia",
+        "credit": "Wikimedia: Asturio Cantabrio",
+        "license": "CC BY-SA 4.0"
       }
     ],
     "links": {
@@ -5308,17 +5308,17 @@
     "closures": [],
     "photos": [
       {
-        "url": "https://www.shima-tabi.net/images/experience/roji1.jpg",
-        "page": "https://www.shima-tabi.net/rojiura.html",
-        "kind": "official",
-        "credit": "島の旅社",
-        "license": null
-      },
-      {
         "url": "https://lh3.googleusercontent.com/grass-cs/AABkmLfuS4HzyFcEy0lA_Wkbn2ouWuN7QEQKnOLccdu6Wlq7xjFwVCP7TCxNnNPi5djgoKb-d5700oFdvZPGJnJ3XC7Mnhm8UIGL2d3Y1ZRcqrIqwENV_vOaJlirB2dRwJiBMHjFv2f-FDMnJR5r=w408-h544-k-no",
         "page": "https://maps.google.com/?cid=17203596992470264533",
         "kind": "google",
         "credit": "Google マップ（店家或使用者上傳）",
+        "license": null
+      },
+      {
+        "url": "https://www.shima-tabi.net/images/experience/roji1.jpg",
+        "page": "https://www.shima-tabi.net/rojiura.html",
+        "kind": "official",
+        "credit": "島の旅社",
         "license": null
       }
     ],
@@ -5542,18 +5542,18 @@
     "closures": [],
     "photos": [
       {
-        "url": "https://upload.wikimedia.org/wikipedia/commons/b/b9/Sugashima_Lighthouse_%282016-01-16%29.jpg",
-        "page": "https://commons.wikimedia.org/wiki/File:Sugashima_Lighthouse_(2016-01-16).jpg",
-        "kind": "wikimedia",
-        "credit": "Wikimedia: Alpsdake",
-        "license": "CC BY-SA 4.0"
-      },
-      {
         "url": "https://lh3.googleusercontent.com/grass-cs/AABkmLdzLKBbmdIy9gaWPNtoW9d4VK09dB7jrZwEBTjY3y0FF8KO6s0m6I5TU1L3_QLugCptGcBxG0etyg3YaGKY8l8qJqxaDgF7zYp9pm_I2q-1KjU-CG5BcMCBVEOXu989S11poei0uvjZeSPS=w408-h544-k-no",
         "page": "https://maps.google.com/?cid=16311914199240034507",
         "kind": "google",
         "credit": "Google マップ（店家或使用者上傳）",
         "license": null
+      },
+      {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/b/b9/Sugashima_Lighthouse_%282016-01-16%29.jpg",
+        "page": "https://commons.wikimedia.org/wiki/File:Sugashima_Lighthouse_(2016-01-16).jpg",
+        "kind": "wikimedia",
+        "credit": "Wikimedia: Alpsdake",
+        "license": "CC BY-SA 4.0"
       }
     ],
     "links": {
@@ -6419,18 +6419,18 @@
     "closures": [],
     "photos": [
       {
-        "url": "https://commons.wikimedia.org/wiki/Special:FilePath/2016-08-05_Kami-shima_Island%2C_Kanteki-sh%C3%B4_Ruins_%E7%A5%9E%E5%B3%B6%E7%9B%A3%E7%9A%84%E5%93%A8%E8%B7%A1_DSCF6357.jpg",
-        "page": "https://commons.wikimedia.org/wiki/File:2016-08-05_Kami-shima_Island,_Kanteki-sh%C3%B4_Ruins_%E7%A5%9E%E5%B3%B6%E7%9B%A3%E7%9A%84%E5%93%A8%E8%B7%A1_DSCF6357.jpg",
-        "kind": "wikimedia",
-        "credit": "Wikimedia: 松岡明芳",
-        "license": "CC BY-SA 4.0"
-      },
-      {
         "url": "https://lh3.googleusercontent.com/grass-cs/AABkmLfJgvUar3p4bZJ1Ar3MrbVsGsW7rggBWfGr6S_Jz9cYKBC683IDymFpqHeZsL0akh3D1Zv-5ETfoGctAHl1rHBGuJHRBuy6cdRrPC9lqQG2I8hg1Yt1iJPlyAiwdKztsuJxgwTY745EWaf7=w408-h306-k-no",
         "page": "https://maps.google.com/?cid=4195907219191193047",
         "kind": "google",
         "credit": "Google マップ（店家或使用者上傳）",
         "license": null
+      },
+      {
+        "url": "https://commons.wikimedia.org/wiki/Special:FilePath/2016-08-05_Kami-shima_Island%2C_Kanteki-sh%C3%B4_Ruins_%E7%A5%9E%E5%B3%B6%E7%9B%A3%E7%9A%84%E5%93%A8%E8%B7%A1_DSCF6357.jpg",
+        "page": "https://commons.wikimedia.org/wiki/File:2016-08-05_Kami-shima_Island,_Kanteki-sh%C3%B4_Ruins_%E7%A5%9E%E5%B3%B6%E7%9B%A3%E7%9A%84%E5%93%A8%E8%B7%A1_DSCF6357.jpg",
+        "kind": "wikimedia",
+        "credit": "Wikimedia: 松岡明芳",
+        "license": "CC BY-SA 4.0"
       }
     ],
     "links": {

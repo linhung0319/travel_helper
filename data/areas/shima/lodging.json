@@ -331,17 +331,17 @@
     "closures": [],
     "photos": [
       {
-        "url": "https://www.kashikojima.com/provence/images/pc_index_mainphoto01.jpg",
-        "page": "https://www.kashikojima.com/provence/",
-        "kind": "official",
-        "credit": "美食の隠れ家　ＰＲＯＶＥＮＣＥ（プロヴァンス）",
-        "license": null
-      },
-      {
         "url": "https://img.travel.rakuten.co.jp/share/HOTEL/4982/4982.jpg",
         "page": "https://travel.rakuten.co.jp/HOTEL/4982/4982.html",
         "kind": "rakuten",
         "credit": "楽天トラベル（施設提供）",
+        "license": null
+      },
+      {
+        "url": "https://www.kashikojima.com/provence/images/pc_index_mainphoto01.jpg",
+        "page": "https://www.kashikojima.com/provence/",
+        "kind": "official",
+        "credit": "美食の隠れ家　ＰＲＯＶＥＮＣＥ（プロヴァンス）",
         "license": null
       },
       {
@@ -622,17 +622,17 @@
     "closures": [],
     "photos": [
       {
-        "url": "https://www.michishio.jp/img/main_room.png",
-        "page": "https://www.michishio.jp/room/",
-        "kind": "official",
-        "credit": "伊勢志摩国立公園　賢島の宿　みち潮",
-        "license": null
-      },
-      {
         "url": "https://img.travel.rakuten.co.jp/share/HOTEL/5129/5129.jpg",
         "page": "https://travel.rakuten.co.jp/HOTEL/5129/5129.html",
         "kind": "rakuten",
         "credit": "楽天トラベル（施設提供）",
+        "license": null
+      },
+      {
+        "url": "https://www.michishio.jp/img/main_room.png",
+        "page": "https://www.michishio.jp/room/",
+        "kind": "official",
+        "credit": "伊勢志摩国立公園　賢島の宿　みち潮",
         "license": null
       },
       {
@@ -927,6 +927,13 @@
     "closures": [],
     "photos": [
       {
+        "url": "https://img.travel.rakuten.co.jp/share/HOTEL/6247/6247.jpg",
+        "page": "https://travel.rakuten.co.jp/HOTEL/6247/6247.html",
+        "kind": "rakuten",
+        "credit": "楽天トラベル（施設提供）",
+        "license": null
+      },
+      {
         "url": "https://www.kashikojima.net/img/main.jpg",
         "page": "https://www.kashikojima.net/",
         "kind": "official",
@@ -938,13 +945,6 @@
         "page": "https://www.kashikojima.net/en/room.html",
         "kind": "official",
         "credit": "プチホテル　賢島ハーバー",
-        "license": null
-      },
-      {
-        "url": "https://img.travel.rakuten.co.jp/share/HOTEL/6247/6247.jpg",
-        "page": "https://travel.rakuten.co.jp/HOTEL/6247/6247.html",
-        "kind": "rakuten",
-        "credit": "楽天トラベル（施設提供）",
         "license": null
       }
     ],
@@ -1367,17 +1367,17 @@
     "closures": [],
     "photos": [
       {
-        "url": "https://www.watakanosou.co.jp/images/kannai_r11_c4.jpg",
-        "page": "https://www.watakanosou.co.jp/introduction.html",
-        "kind": "official",
-        "credit": "ペットと泊まれる宿　わたかの荘＜渡鹿野島＞",
-        "license": null
-      },
-      {
         "url": "https://img.travel.rakuten.co.jp/share/HOTEL/7622/7622.jpg",
         "page": "https://travel.rakuten.co.jp/HOTEL/7622/7622.html",
         "kind": "rakuten",
         "credit": "楽天トラベル（施設提供）",
+        "license": null
+      },
+      {
+        "url": "https://www.watakanosou.co.jp/images/kannai_r11_c4.jpg",
+        "page": "https://www.watakanosou.co.jp/introduction.html",
+        "kind": "official",
+        "credit": "ペットと泊まれる宿　わたかの荘＜渡鹿野島＞",
         "license": null
       },
       {
@@ -1917,17 +1917,17 @@
     "closures": [],
     "photos": [
       {
-        "url": "https://tatibana.com/wp/wp-content/uploads/2019/06/exterior_compressed.png",
-        "page": "https://www.tatibana.com/",
-        "kind": "official",
-        "credit": "美味し国の旅館　橘＜三重県＞",
-        "license": null
-      },
-      {
         "url": "https://img.travel.rakuten.co.jp/share/HOTEL/9406/9406.jpg",
         "page": "https://travel.rakuten.co.jp/HOTEL/9406/9406.html",
         "kind": "rakuten",
         "credit": "楽天トラベル（施設提供）",
+        "license": null
+      },
+      {
+        "url": "https://tatibana.com/wp/wp-content/uploads/2019/06/exterior_compressed.png",
+        "page": "https://www.tatibana.com/",
+        "kind": "official",
+        "credit": "美味し国の旅館　橘＜三重県＞",
         "license": null
       },
       {
@@ -2379,6 +2379,13 @@
     "closures": [],
     "photos": [
       {
+        "url": "https://img.travel.rakuten.co.jp/share/HOTEL/13891/13891_bath.jpg",
+        "page": "https://travel.rakuten.co.jp/HOTEL/13891/13891.html",
+        "kind": "rakuten",
+        "credit": "楽天トラベル（施設提供）",
+        "license": null
+      },
+      {
         "url": "https://www.geibouso.co.jp/img/pagetitle/room.jpg",
         "page": "https://www.geibouso.co.jp/room.php",
         "kind": "official",
@@ -2387,13 +2394,6 @@
       },
       {
         "url": "https://img.travel.rakuten.co.jp/share/HOTEL/13891/13891.jpg",
-        "page": "https://travel.rakuten.co.jp/HOTEL/13891/13891.html",
-        "kind": "rakuten",
-        "credit": "楽天トラベル（施設提供）",
-        "license": null
-      },
-      {
-        "url": "https://img.travel.rakuten.co.jp/share/HOTEL/13891/13891_bath.jpg",
         "page": "https://travel.rakuten.co.jp/HOTEL/13891/13891.html",
         "kind": "rakuten",
         "credit": "楽天トラベル（施設提供）",
@@ -2706,17 +2706,17 @@
     ],
     "photos": [
       {
-        "url": "https://media.grand-mercure-iseshima-resortandspa.jp/2025/04/Japan-Shima-Grand-Mercure-Ise-shima-Resort-and-Spa-Room-Woman-2024-4-1.webp",
-        "page": "https://grand-mercure-iseshima-resortandspa.jp/rooms/",
-        "kind": "official",
-        "credit": "グランドメルキュール伊勢志摩リゾート＆スパ",
-        "license": null
-      },
-      {
         "url": "https://img.travel.rakuten.co.jp/share/HOTEL/13971/13971.jpg",
         "page": "https://travel.rakuten.co.jp/HOTEL/13971/13971.html",
         "kind": "rakuten",
         "credit": "楽天トラベル（施設提供）",
+        "license": null
+      },
+      {
+        "url": "https://media.grand-mercure-iseshima-resortandspa.jp/2025/04/Japan-Shima-Grand-Mercure-Ise-shima-Resort-and-Spa-Room-Woman-2024-4-1.webp",
+        "page": "https://grand-mercure-iseshima-resortandspa.jp/rooms/",
+        "kind": "official",
+        "credit": "グランドメルキュール伊勢志摩リゾート＆スパ",
         "license": null
       },
       {
@@ -3501,17 +3501,17 @@
     "closures": [],
     "photos": [
       {
-        "url": "https://www.fukujyuso.co.jp/images/dining/ttl_mv.png",
-        "page": "https://www.fukujyuso.co.jp/dining/",
-        "kind": "official",
-        "credit": "風待ちの湯福寿荘　伊勢志摩の温泉旅館＜渡鹿野島＞",
-        "license": null
-      },
-      {
         "url": "https://img.travel.rakuten.co.jp/share/HOTEL/15941/15941.jpg",
         "page": "https://travel.rakuten.co.jp/HOTEL/15941/15941.html",
         "kind": "rakuten",
         "credit": "楽天トラベル（施設提供）",
+        "license": null
+      },
+      {
+        "url": "https://www.fukujyuso.co.jp/images/dining/ttl_mv.png",
+        "page": "https://www.fukujyuso.co.jp/dining/",
+        "kind": "official",
+        "credit": "風待ちの湯福寿荘　伊勢志摩の温泉旅館＜渡鹿野島＞",
         "license": null
       },
       {
@@ -3774,17 +3774,17 @@
     "closures": [],
     "photos": [
       {
-        "url": "https://quintessahotels.com/iseshima/files/images/footer/img_footer.jpg",
-        "page": "https://quintessahotels.com/iseshima/",
-        "kind": "official",
-        "credit": "クインテッサホテル伊勢志摩",
-        "license": null
-      },
-      {
         "url": "https://img.travel.rakuten.co.jp/share/HOTEL/16258/16258.jpg",
         "page": "https://travel.rakuten.co.jp/HOTEL/16258/16258.html",
         "kind": "rakuten",
         "credit": "楽天トラベル（施設提供）",
+        "license": null
+      },
+      {
+        "url": "https://quintessahotels.com/iseshima/files/images/footer/img_footer.jpg",
+        "page": "https://quintessahotels.com/iseshima/",
+        "kind": "official",
+        "credit": "クインテッサホテル伊勢志摩",
         "license": null
       },
       {
@@ -4065,17 +4065,17 @@
     "closures": [],
     "photos": [
       {
-        "url": "https://resortclub-iseshima.jp/wp-content/themes/resort-club-shima/img/single/room/fv.png",
-        "page": "https://resortclub-iseshima.jp/room",
-        "kind": "official",
-        "credit": "里創人倶楽部　伊勢志摩",
-        "license": null
-      },
-      {
         "url": "https://img.travel.rakuten.co.jp/share/HOTEL/19295/19295.jpg",
         "page": "https://travel.rakuten.co.jp/HOTEL/19295/19295.html",
         "kind": "rakuten",
         "credit": "楽天トラベル（施設提供）",
+        "license": null
+      },
+      {
+        "url": "https://resortclub-iseshima.jp/wp-content/themes/resort-club-shima/img/single/room/fv.png",
+        "page": "https://resortclub-iseshima.jp/room",
+        "kind": "official",
+        "credit": "里創人倶楽部　伊勢志摩",
         "license": null
       },
       {
@@ -4396,17 +4396,17 @@
     "closures": [],
     "photos": [
       {
-        "url": "https://www.miyakohotels.ne.jp/datas/cache/images/2025/01/13/1100x2048_ea1e9d427fb5664c32c517a73e421e58_de5fda44af7be6d3f33950908866376275a38006.jpg",
-        "page": "https://www.miyakohotels.ne.jp/bayside-terrace/stay/spanish_garden/",
-        "kind": "official",
-        "credit": "都リゾート　志摩　ベイサイドテラス",
-        "license": null
-      },
-      {
         "url": "https://img.travel.rakuten.co.jp/share/HOTEL/27737/27737.jpg",
         "page": "https://travel.rakuten.co.jp/HOTEL/27737/27737.html",
         "kind": "rakuten",
         "credit": "楽天トラベル（施設提供）",
+        "license": null
+      },
+      {
+        "url": "https://www.miyakohotels.ne.jp/datas/cache/images/2025/01/13/1100x2048_ea1e9d427fb5664c32c517a73e421e58_de5fda44af7be6d3f33950908866376275a38006.jpg",
+        "page": "https://www.miyakohotels.ne.jp/bayside-terrace/stay/spanish_garden/",
+        "kind": "official",
+        "credit": "都リゾート　志摩　ベイサイドテラス",
         "license": null
       },
       {
@@ -4692,14 +4692,14 @@
     "closures": [],
     "photos": [
       {
-        "url": "https://img.travel.rakuten.co.jp/share/HOTEL/31468/31468.jpg",
+        "url": "https://img.travel.rakuten.co.jp/share/HOTEL/31468/31468_dx.jpg",
         "page": "https://travel.rakuten.co.jp/HOTEL/31468/31468.html",
         "kind": "rakuten",
         "credit": "楽天トラベル（施設提供）",
         "license": null
       },
       {
-        "url": "https://img.travel.rakuten.co.jp/share/HOTEL/31468/31468_dx.jpg",
+        "url": "https://img.travel.rakuten.co.jp/share/HOTEL/31468/31468.jpg",
         "page": "https://travel.rakuten.co.jp/HOTEL/31468/31468.html",
         "kind": "rakuten",
         "credit": "楽天トラベル（施設提供）",
@@ -6039,17 +6039,17 @@
     "closures": [],
     "photos": [
       {
-        "url": "https://puebloamigo.jp/hotel/img/hotel_pic_001.jpg",
-        "page": "https://puebloamigo.jp/hotel/",
-        "kind": "official",
-        "credit": "志摩地中海村",
-        "license": null
-      },
-      {
         "url": "https://img.travel.rakuten.co.jp/share/HOTEL/51449/51449.jpg",
         "page": "https://travel.rakuten.co.jp/HOTEL/51449/51449.html",
         "kind": "rakuten",
         "credit": "楽天トラベル（施設提供）",
+        "license": null
+      },
+      {
+        "url": "https://puebloamigo.jp/hotel/img/hotel_pic_001.jpg",
+        "page": "https://puebloamigo.jp/hotel/",
+        "kind": "official",
+        "credit": "志摩地中海村",
         "license": null
       },
       {
@@ -7152,6 +7152,13 @@
     "closures": [],
     "photos": [
       {
+        "url": "https://img.travel.rakuten.co.jp/share/HOTEL/67913/67913.jpg",
+        "page": "https://travel.rakuten.co.jp/HOTEL/67913/67913.html",
+        "kind": "rakuten",
+        "credit": "楽天トラベル（施設提供）",
+        "license": null
+      },
+      {
         "url": "https://www.tomoyama.co.jp/img/index_mainimg.jpg",
         "page": "https://www.tomoyama.co.jp/",
         "kind": "official",
@@ -7163,13 +7170,6 @@
         "page": "https://www.tomoyama.co.jp/room/",
         "kind": "official",
         "credit": "リゾートパーク　ともやま",
-        "license": null
-      },
-      {
-        "url": "https://img.travel.rakuten.co.jp/share/HOTEL/67913/67913.jpg",
-        "page": "https://travel.rakuten.co.jp/HOTEL/67913/67913.html",
-        "kind": "rakuten",
-        "credit": "楽天トラベル（施設提供）",
         "license": null
       }
     ],
@@ -7418,17 +7418,17 @@
     "closures": [],
     "photos": [
       {
-        "url": "https://www.miyakohotels.ne.jp/datas/cache/images/2022/02/06/1800x2048_ea1e9d427fb5664c32c517a73e421e58_dfec81472ba4e88c7498283eec5294e468155f7e.jpg",
-        "page": "https://www.miyakohotels.ne.jp/aqua-forest/stay/",
-        "kind": "official",
-        "credit": "都リゾート　奥志摩　アクアフォレスト",
-        "license": null
-      },
-      {
         "url": "https://img.travel.rakuten.co.jp/share/HOTEL/67941/67941.jpg",
         "page": "https://travel.rakuten.co.jp/HOTEL/67941/67941.html",
         "kind": "rakuten",
         "credit": "楽天トラベル（施設提供）",
+        "license": null
+      },
+      {
+        "url": "https://www.miyakohotels.ne.jp/datas/cache/images/2022/02/06/1800x2048_ea1e9d427fb5664c32c517a73e421e58_dfec81472ba4e88c7498283eec5294e468155f7e.jpg",
+        "page": "https://www.miyakohotels.ne.jp/aqua-forest/stay/",
+        "kind": "official",
+        "credit": "都リゾート　奥志摩　アクアフォレスト",
         "license": null
       },
       {
@@ -7736,17 +7736,17 @@
     "closures": [],
     "photos": [
       {
-        "url": "https://www.miyakohotels.ne.jp/datas/cache/images/2022/02/19/1800x2048_ea1e9d427fb5664c32c517a73e421e58_f8198937b397e11b958310d25ceb55fe5a883dad.jpg",
-        "page": "https://www.miyakohotels.ne.jp/shima/stay/",
-        "kind": "official",
-        "credit": "志摩観光ホテル　ザ　ベイスイート",
-        "license": null
-      },
-      {
         "url": "https://img.travel.rakuten.co.jp/share/HOTEL/105964/105964.jpg",
         "page": "https://travel.rakuten.co.jp/HOTEL/105964/105964.html",
         "kind": "rakuten",
         "credit": "楽天トラベル（施設提供）",
+        "license": null
+      },
+      {
+        "url": "https://www.miyakohotels.ne.jp/datas/cache/images/2022/02/19/1800x2048_ea1e9d427fb5664c32c517a73e421e58_f8198937b397e11b958310d25ceb55fe5a883dad.jpg",
+        "page": "https://www.miyakohotels.ne.jp/shima/stay/",
+        "kind": "official",
+        "credit": "志摩観光ホテル　ザ　ベイスイート",
         "license": null
       },
       {
@@ -8277,17 +8277,17 @@
     "closures": [],
     "photos": [
       {
-        "url": "http://shima-businesshotel-fuji.com/images/twin.jpg",
-        "page": "http://shima-businesshotel-fuji.com/",
-        "kind": "official",
-        "credit": "ビジネスホテル藤",
-        "license": null
-      },
-      {
         "url": "https://img.travel.rakuten.co.jp/share/HOTEL/128302/128302.jpg",
         "page": "https://travel.rakuten.co.jp/HOTEL/128302/128302.html",
         "kind": "rakuten",
         "credit": "楽天トラベル（施設提供）",
+        "license": null
+      },
+      {
+        "url": "http://shima-businesshotel-fuji.com/images/twin.jpg",
+        "page": "http://shima-businesshotel-fuji.com/",
+        "kind": "official",
+        "credit": "ビジネスホテル藤",
         "license": null
       },
       {
@@ -10127,6 +10127,13 @@
     "closures": [],
     "photos": [
       {
+        "url": "https://img.travel.rakuten.co.jp/share/HOTEL/151115/151115.jpg",
+        "page": "https://travel.rakuten.co.jp/HOTEL/151115/151115.html",
+        "kind": "rakuten",
+        "credit": "楽天トラベル（施設提供）",
+        "license": null
+      },
+      {
         "url": "https://ise-shima.hotel-shunka.jp/wp-content/themes/%E4%BC%8A%E5%8B%A2%E5%BF%97%E6%91%A9%E3%83%AA%E3%82%BE%E3%83%BC%E3%83%88/images/sub/sub02.jpg",
         "page": "https://ise-shima.hotel-shunka.jp/room/",
         "kind": "official",
@@ -10138,13 +10145,6 @@
         "page": "https://ise-shima.hotel-shunka.jp/room/",
         "kind": "official",
         "credit": "ホテル旬香　伊勢志摩リゾート",
-        "license": null
-      },
-      {
-        "url": "https://img.travel.rakuten.co.jp/share/HOTEL/151115/151115.jpg",
-        "page": "https://travel.rakuten.co.jp/HOTEL/151115/151115.html",
-        "kind": "rakuten",
-        "credit": "楽天トラベル（施設提供）",
         "license": null
       }
     ],
@@ -11031,6 +11031,13 @@
     "closures": [],
     "photos": [
       {
+        "url": "https://img.travel.rakuten.co.jp/share/HOTEL/172942/172942_kan1.jpg",
+        "page": "https://travel.rakuten.co.jp/HOTEL/172942/172942.html",
+        "kind": "rakuten",
+        "credit": "楽天トラベル（施設提供）",
+        "license": null
+      },
+      {
         "url": "https://www.ichiraku-hotel.com/img/top/sec01_img.jpg",
         "page": "https://www.ichiraku-hotel.com/",
         "kind": "official",
@@ -11039,13 +11046,6 @@
       },
       {
         "url": "https://img.travel.rakuten.co.jp/share/HOTEL/172942/172942.jpg",
-        "page": "https://travel.rakuten.co.jp/HOTEL/172942/172942.html",
-        "kind": "rakuten",
-        "credit": "楽天トラベル（施設提供）",
-        "license": null
-      },
-      {
-        "url": "https://img.travel.rakuten.co.jp/share/HOTEL/172942/172942_kan1.jpg",
         "page": "https://travel.rakuten.co.jp/HOTEL/172942/172942.html",
         "kind": "rakuten",
         "credit": "楽天トラベル（施設提供）",
@@ -11283,17 +11283,17 @@
     "closures": [],
     "photos": [
       {
-        "url": "https://shimawaso.com/images/img/facilities/img_01.jpg",
-        "page": "https://shimawaso.com/facilities.html",
-        "kind": "official",
-        "credit": "志摩和荘",
-        "license": null
-      },
-      {
         "url": "https://img.travel.rakuten.co.jp/share/HOTEL/176725/176725.jpg",
         "page": "https://travel.rakuten.co.jp/HOTEL/176725/176725.html",
         "kind": "rakuten",
         "credit": "楽天トラベル（施設提供）",
+        "license": null
+      },
+      {
+        "url": "https://shimawaso.com/images/img/facilities/img_01.jpg",
+        "page": "https://shimawaso.com/facilities.html",
+        "kind": "official",
+        "credit": "志摩和荘",
         "license": null
       },
       {
@@ -12329,6 +12329,13 @@
     "closures": [],
     "photos": [
       {
+        "url": "https://img.travel.rakuten.co.jp/share/HOTEL/182365/182365.jpg",
+        "page": "https://travel.rakuten.co.jp/HOTEL/182365/182365.html",
+        "kind": "rakuten",
+        "credit": "楽天トラベル（施設提供）",
+        "license": null
+      },
+      {
         "url": "https://villa-ryusei.com/images/rooms/photo_rooms01_1.jpg",
         "page": "https://villa-ryusei.com/rooms/",
         "kind": "official",
@@ -12340,13 +12347,6 @@
         "page": "https://villa-ryusei.com/rooms/",
         "kind": "official",
         "credit": "全室露天風呂付き！たった９室だけの伊勢志摩リゾートヴィラ　伊勢志摩・賢島｜Ｖｉｌｌａ　Ｒｙｕｓｅｉ",
-        "license": null
-      },
-      {
-        "url": "https://img.travel.rakuten.co.jp/share/HOTEL/182365/182365.jpg",
-        "page": "https://travel.rakuten.co.jp/HOTEL/182365/182365.html",
-        "kind": "rakuten",
-        "credit": "楽天トラベル（施設提供）",
         "license": null
       }
     ],
@@ -13807,14 +13807,14 @@
     "closures": [],
     "photos": [
       {
-        "url": "https://shippotownhotel.com/smallresortshima/wp-content/uploads/2025/08/Small-Resort志摩-9-scaled.jpg",
+        "url": "https://shippotownhotel.com/smallresortshima/wp-content/uploads/2025/08/Small-Resort志摩-4-scaled.jpg",
         "page": "https://shippotownhotel.com/smallresortshima/facility/",
         "kind": "official",
         "credit": "Ｓｍａｌｌ　Ｒｅｓｏｒｔ　志摩",
         "license": null
       },
       {
-        "url": "https://shippotownhotel.com/smallresortshima/wp-content/uploads/2025/08/Small-Resort志摩-4-scaled.jpg",
+        "url": "https://shippotownhotel.com/smallresortshima/wp-content/uploads/2025/08/Small-Resort志摩-9-scaled.jpg",
         "page": "https://shippotownhotel.com/smallresortshima/facility/",
         "kind": "official",
         "credit": "Ｓｍａｌｌ　Ｒｅｓｏｒｔ　志摩",
@@ -14733,6 +14733,13 @@
     "closures": [],
     "photos": [
       {
+        "url": "https://lh3.googleusercontent.com/grass-cs/AABkmLcC_31jDXFWVfRrSUXqaOhucdc3u-27v6o93Q6l38mo0xyY2CDdiMdkJA3Z-UMTM_VHVEfdxsViJ7Fo0aplE8yhpyB8lWAR1avB6SpL3wEFhkCgbYDWtvGqbwR0kikJ62UrA9qu5cLN_78=w800",
+        "page": "https://maps.google.com/?cid=14254672148458479494",
+        "kind": "google",
+        "credit": "Google マップ（施設或使用者上傳）",
+        "license": null
+      },
+      {
         "url": "https://iseshimaoceanvillayamato.com/_assets/img/top_villaresort1.jpg",
         "page": "https://iseshimaoceanvillayamato.com/",
         "kind": "official",
@@ -14744,13 +14751,6 @@
         "page": "https://iseshimaoceanvillayamato.com/facility/",
         "kind": "official",
         "credit": "ISE-SHIMA OCEAN VILLA 倭",
-        "license": null
-      },
-      {
-        "url": "https://lh3.googleusercontent.com/grass-cs/AABkmLcC_31jDXFWVfRrSUXqaOhucdc3u-27v6o93Q6l38mo0xyY2CDdiMdkJA3Z-UMTM_VHVEfdxsViJ7Fo0aplE8yhpyB8lWAR1avB6SpL3wEFhkCgbYDWtvGqbwR0kikJ62UrA9qu5cLN_78=w800",
-        "page": "https://maps.google.com/?cid=14254672148458479494",
-        "kind": "google",
-        "credit": "Google マップ（施設或使用者上傳）",
         "license": null
       }
     ],

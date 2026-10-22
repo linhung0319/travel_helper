@@ -1220,6 +1220,13 @@
     "closures": [],
     "photos": [
       {
+        "url": "https://img.travel.rakuten.co.jp/share/HOTEL/173021/173021_kan.jpg",
+        "page": "https://travel.rakuten.co.jp/HOTEL/173021/173021.html",
+        "kind": "rakuten",
+        "credit": "楽天トラベル（施設提供）",
+        "license": null
+      },
+      {
         "url": "https://www.hennnahotel.com/kansai-airport/wp-content/uploads/2024/10/7a75adca928ebfab3d15da052ebda53e.jpeg",
         "page": "https://www.hennnahotel.com/kansai-airport/",
         "kind": "official",
@@ -1228,13 +1235,6 @@
       },
       {
         "url": "https://img.travel.rakuten.co.jp/share/HOTEL/173021/173021.jpg",
-        "page": "https://travel.rakuten.co.jp/HOTEL/173021/173021.html",
-        "kind": "rakuten",
-        "credit": "楽天トラベル（施設提供）",
-        "license": null
-      },
-      {
-        "url": "https://img.travel.rakuten.co.jp/share/HOTEL/173021/173021_kan.jpg",
         "page": "https://travel.rakuten.co.jp/HOTEL/173021/173021.html",
         "kind": "rakuten",
         "credit": "楽天トラベル（施設提供）",

@@ -175,3 +175,11 @@
   - `validFrom`、`validTo` 是 null（網站沒有寫時刻表的改正日）；推算用的日子寫在 `sources[0].note`。
 - 原因：T11 的車站面板要顯示 JR 二見浦等站的下一班車。
 - 狀態：待處理
+
+## [T21] CONVENTIONS §4「工具」表加上照片的兩支工具；§4「照片」補 Wikimedia 的 User-Agent
+- 要改的檔案：`docs/CONVENTIONS.md` §4「工具（scripts/）」的表格、§4「照片」
+- 內容：
+  - 工具表加兩行：`scripts/photo-sheet.mjs`（下載資料點的照片、拼成對照表給 Claude 讀圖，需要 ffmpeg）、`scripts/photo-order.mjs`（照 picks.json 把選中的照片排到 `photos` 第一張，`--log` 產生每筆的選擇表）。
+  - 「照片」補一句：腳本讀照片時 User-Agent 不要假裝成瀏覽器（Wikimedia 會對「Mozilla/5.0 …」回 429）；就算改了 UA，連續下載 Wikimedia 原圖還是會被限流，T21 照規則沒有繞過，Wikimedia 的照片沒有看到。
+- 原因：T21 新增的工具之後新增資料點、重挑代表照片時要用；`photo-check.mjs` 已經改了 UA（T21）。
+- 狀態：待處理

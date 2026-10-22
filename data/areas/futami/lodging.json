@@ -317,17 +317,17 @@
     "closures": [],
     "photos": [
       {
-        "url": "https://www.oishiya.co.jp/room/img/sec1_fig.jpg",
-        "page": "https://www.oishiya.co.jp/room/",
-        "kind": "official",
-        "credit": "大石屋",
-        "license": null
-      },
-      {
         "url": "https://img.travel.rakuten.co.jp/share/HOTEL/5838/5838.jpg",
         "page": "https://travel.rakuten.co.jp/HOTEL/5838/5838.html",
         "kind": "rakuten",
         "credit": "楽天トラベル（施設提供）",
+        "license": null
+      },
+      {
+        "url": "https://www.oishiya.co.jp/room/img/sec1_fig.jpg",
+        "page": "https://www.oishiya.co.jp/room/",
+        "kind": "official",
+        "credit": "大石屋",
         "license": null
       },
       {
@@ -845,17 +845,17 @@
     "closures": [],
     "photos": [
       {
-        "url": "https://www.iwatokan.com/common/img/index_main_visual_002.jpg",
-        "page": "https://www.iwatokan.com/",
-        "kind": "official",
-        "credit": "岩戸館",
-        "license": null
-      },
-      {
         "url": "https://img.travel.rakuten.co.jp/share/HOTEL/38655/38655.jpg",
         "page": "https://travel.rakuten.co.jp/HOTEL/38655/38655.html",
         "kind": "rakuten",
         "credit": "楽天トラベル（施設提供）",
+        "license": null
+      },
+      {
+        "url": "https://www.iwatokan.com/common/img/index_main_visual_002.jpg",
+        "page": "https://www.iwatokan.com/",
+        "kind": "official",
+        "credit": "岩戸館",
         "license": null
       },
       {
@@ -1655,17 +1655,17 @@
     "closures": [],
     "photos": [
       {
-        "url": "https://trvimg.r10s.jp/share/image_up/7723/origin/9817ab56b201a43cca6b790bd31be8c03692dfaf.47.1.26.2.jpg",
-        "page": "https://travel.rakuten.co.jp/HOTEL/7723/7723.html",
-        "kind": "official",
-        "credit": "名勝二見浦 海鮮割烹の宿 海洋楼",
-        "license": null
-      },
-      {
         "url": "https://img.travel.rakuten.co.jp/share/HOTEL/7723/7723.jpg",
         "page": "https://travel.rakuten.co.jp/HOTEL/7723/7723.html",
         "kind": "rakuten",
         "credit": "楽天トラベル（施設提供）",
+        "license": null
+      },
+      {
+        "url": "https://trvimg.r10s.jp/share/image_up/7723/origin/9817ab56b201a43cca6b790bd31be8c03692dfaf.47.1.26.2.jpg",
+        "page": "https://travel.rakuten.co.jp/HOTEL/7723/7723.html",
+        "kind": "official",
+        "credit": "名勝二見浦 海鮮割烹の宿 海洋楼",
         "license": null
       },
       {
@@ -4250,17 +4250,17 @@
     "closures": [],
     "photos": [
       {
-        "url": "https://img.travel.rakuten.co.jp/share/HOTEL/185547/185547.jpg",
-        "page": "https://travel.rakuten.co.jp/HOTEL/185547/185547.html",
-        "kind": "rakuten",
-        "credit": "楽天トラベル（施設提供）",
-        "license": null
-      },
-      {
         "url": "https://lh3.googleusercontent.com/grass-cs/AABkmLdRpO4i-4YKXiaSga3wROVG8LJGqbjcZor4LVpByJvOoQNTT5GrtR0PR9A1MXIBwLSl0bvAfw8Uha6QMi6pCwj5pwOGc6rp_YkEFLxAZ1DLHEvVwn8LPGgkKOzRJQ5KgLr1EHbQ=w408-h306-k-no",
         "page": "https://maps.google.com/?cid=9581078598415596588",
         "kind": "google",
         "credit": "Google マップ",
+        "license": null
+      },
+      {
+        "url": "https://img.travel.rakuten.co.jp/share/HOTEL/185547/185547.jpg",
+        "page": "https://travel.rakuten.co.jp/HOTEL/185547/185547.html",
+        "kind": "rakuten",
+        "credit": "楽天トラベル（施設提供）",
         "license": null
       }
     ],

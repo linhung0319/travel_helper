@@ -327,17 +327,17 @@
     ],
     "photos": [
       {
-        "url": "https://ise-seaparadise.com/wp-content/themes/ise-seaparadise_theme/img/index/ashika.webp",
-        "page": "https://ise-seaparadise.com/",
-        "kind": "official",
-        "credit": "伊勢シーパラダイス",
-        "license": null
-      },
-      {
         "url": "https://ise-kanko.jp/cms/wp-content/uploads/2021/01/si-paradaisu-001.jpg",
         "page": "https://ise-kanko.jp/purpose/ise-seaparadis/",
         "kind": "official",
         "credit": "伊勢市観光協会",
+        "license": null
+      },
+      {
+        "url": "https://ise-seaparadise.com/wp-content/themes/ise-seaparadise_theme/img/index/ashika.webp",
+        "page": "https://ise-seaparadise.com/",
+        "kind": "official",
+        "credit": "伊勢シーパラダイス",
         "license": null
       },
       {

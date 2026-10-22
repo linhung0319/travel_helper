@@ -662,15 +662,15 @@
     "closures": [],
     "photos": [
       {
-        "url": "https://www.hojoen.com/images/mv_planday.jpg",
-        "page": "https://www.hojoen.com/planday/",
+        "url": "https://www.hojoen.com/images/mv_room.jpg",
+        "page": "https://www.hojoen.com/guestroom/",
         "kind": "official",
         "credit": "賢島宝生苑",
         "license": null
       },
       {
-        "url": "https://www.hojoen.com/images/mv_room.jpg",
-        "page": "https://www.hojoen.com/guestroom/",
+        "url": "https://www.hojoen.com/images/mv_planday.jpg",
+        "page": "https://www.hojoen.com/planday/",
         "kind": "official",
         "credit": "賢島宝生苑",
         "license": null
@@ -19288,14 +19288,14 @@
     ],
     "photos": [
       {
-        "url": "https://cdn.goope.jp/195758/221110202902fetb.jpg",
+        "url": "https://cdn.goope.jp/195758/2211232023556qgr_l.jpg",
         "page": "https://r.goope.jp/shima-yashiro/",
         "kind": "official",
         "credit": "網元の店八代",
         "license": null
       },
       {
-        "url": "https://cdn.goope.jp/195758/2211232023556qgr_l.jpg",
+        "url": "https://cdn.goope.jp/195758/221110202902fetb.jpg",
         "page": "https://r.goope.jp/shima-yashiro/",
         "kind": "official",
         "credit": "網元の店八代",

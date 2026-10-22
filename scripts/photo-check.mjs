@@ -6,7 +6,8 @@
 //   node scripts/photo-check.mjs --file <網址清單.txt>        一行一個網址
 //   node scripts/photo-check.mjs --data <資料檔.json>         檢查資料檔裡每筆 photos 的網址
 //   加 --out <photos.json>：結果寫成 { 網址: { status, type, ok } }（build-restaurants.mjs 會讀）
-// ok＝HTTP 200 而且 Content-Type 是 image/*。同一個網站之間隔 0.5 秒。
+// ok＝HTTP 200 而且 Content-Type 是 image/*。同一個網站之間隔 0.5 秒（Wikimedia 2 秒）。
+// User-Agent 不能假裝成瀏覽器：Wikimedia 會對「Mozilla/5.0 …」這種 UA 回 429（T21 實測）。
 
 import fs from 'node:fs';
 import { readJson } from './lib/json-file.mjs';
@@ -33,7 +34,7 @@ const lastHit = new Map();
 const result = {};
 for (const url of urls) {
   const host = new URL(url).host;
-  const wait = 500 - (Date.now() - (lastHit.get(host) ?? 0));
+  const wait = (host.endsWith('wikimedia.org') ? 2000 : 500) - (Date.now() - (lastHit.get(host) ?? 0));
   if (wait > 0) await sleep(wait);
   lastHit.set(host, Date.now());
   let status = null;
@@ -41,7 +42,7 @@ for (const url of urls) {
   try {
     const ctl = new AbortController();
     const timer = setTimeout(() => ctl.abort(), 15000);
-    const res = await fetch(url, { signal: ctl.signal, redirect: 'follow', headers: { 'User-Agent': 'Mozilla/5.0 travel-helper photo-check' } });
+    const res = await fetch(url, { signal: ctl.signal, redirect: 'follow', headers: { 'User-Agent': 'travel_helper photo-check (personal trip planning)' } });
     clearTimeout(timer);
     status = res.status;
     type = res.headers.get('content-type');

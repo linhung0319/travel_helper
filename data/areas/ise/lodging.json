@@ -903,17 +903,17 @@
     "closures": [],
     "photos": [
       {
-        "url": "https://www.pearlpier.com/img/home/main_slide_01.jpg",
-        "page": "https://www.pearlpier.com/",
-        "kind": "official",
-        "credit": "伊勢パールピアホテル",
-        "license": null
-      },
-      {
         "url": "https://img.travel.rakuten.co.jp/share/HOTEL/1232/1232.jpg",
         "page": "https://travel.rakuten.co.jp/HOTEL/1232/1232.html",
         "kind": "rakuten",
         "credit": "楽天トラベル（施設提供）",
+        "license": null
+      },
+      {
+        "url": "https://www.pearlpier.com/img/home/main_slide_01.jpg",
+        "page": "https://www.pearlpier.com/",
+        "kind": "official",
+        "credit": "伊勢パールピアホテル",
         "license": null
       },
       {
@@ -2931,14 +2931,14 @@
     "closures": [],
     "photos": [
       {
-        "url": "https://www.kazenoheritage.jp/hotels/ise-kawasaki/wp-content/uploads/sites/26/2026/09/tokiwa-img01.jpg",
+        "url": "https://www.kazenoheritage.jp/hotels/ise-kawasaki/wp-content/uploads/sites/26/2026/09/asama-img01.jpg",
         "page": "https://www.kazenoheritage.jp/hotels/ise-kawasaki/rooms/",
         "kind": "official",
         "credit": "NIPPONIA HOTEL 伊勢河崎 商人町",
         "license": null
       },
       {
-        "url": "https://www.kazenoheritage.jp/hotels/ise-kawasaki/wp-content/uploads/sites/26/2026/09/asama-img01.jpg",
+        "url": "https://www.kazenoheritage.jp/hotels/ise-kawasaki/wp-content/uploads/sites/26/2026/09/tokiwa-img01.jpg",
         "page": "https://www.kazenoheritage.jp/hotels/ise-kawasaki/rooms/",
         "kind": "official",
         "credit": "NIPPONIA HOTEL 伊勢河崎 商人町",
@@ -3231,17 +3231,17 @@
     "closures": [],
     "photos": [
       {
-        "url": "https://trvimg.r10s.jp/share/image_up/38483/LARGE/ttHV7w.jpeg",
-        "page": "https://travel.rakuten.co.jp/HOTEL/38483/38483.html",
-        "kind": "official",
-        "credit": "料理旅館 おく文",
-        "license": null
-      },
-      {
         "url": "https://img.travel.rakuten.co.jp/share/HOTEL/38483/38483.jpg",
         "page": "https://travel.rakuten.co.jp/HOTEL/38483/38483.html",
         "kind": "rakuten",
         "credit": "楽天トラベル（施設提供）",
+        "license": null
+      },
+      {
+        "url": "https://trvimg.r10s.jp/share/image_up/38483/LARGE/ttHV7w.jpeg",
+        "page": "https://travel.rakuten.co.jp/HOTEL/38483/38483.html",
+        "kind": "official",
+        "credit": "料理旅館 おく文",
         "license": null
       },
       {
@@ -5391,17 +5391,17 @@
     "closures": [],
     "photos": [
       {
-        "url": "https://trvimg.r10s.jp/share/image_up/147038/LARGE/462c23290840620d40644bb888112282770f891f.47.9.26.3.jpg",
-        "page": "https://travel.rakuten.co.jp/HOTEL/147038/147038.html",
-        "kind": "official",
-        "credit": "参宮の宿 宿屋五十鈴",
-        "license": null
-      },
-      {
         "url": "https://img.travel.rakuten.co.jp/share/HOTEL/147038/147038.jpg",
         "page": "https://travel.rakuten.co.jp/HOTEL/147038/147038.html",
         "kind": "rakuten",
         "credit": "楽天トラベル（施設提供）",
+        "license": null
+      },
+      {
+        "url": "https://trvimg.r10s.jp/share/image_up/147038/LARGE/462c23290840620d40644bb888112282770f891f.47.9.26.3.jpg",
+        "page": "https://travel.rakuten.co.jp/HOTEL/147038/147038.html",
+        "kind": "official",
+        "credit": "参宮の宿 宿屋五十鈴",
         "license": null
       },
       {
@@ -5937,6 +5937,13 @@
     "febNote": "2 月沒有特別休館資訊",
     "photos": [
       {
+        "url": "https://img.travel.rakuten.co.jp/share/HOTEL/740/740.jpg",
+        "page": "https://travel.rakuten.co.jp/HOTEL/740/740.html",
+        "kind": "rakuten",
+        "credit": "楽天トラベル（施設提供）",
+        "license": null
+      },
+      {
         "url": "https://www.greens.co.jp/datas/cache/images/2019/02/25/1920x600_2316b9813e89df84ed4f445374c77f6a_fd2a8019a8786be3daf4e20b277f43bc298c8326.jpg",
         "page": "https://www.greens.co.jp/isech/",
         "kind": "official",
@@ -5948,13 +5955,6 @@
         "page": "https://www.greens.co.jp/isech/",
         "kind": "official",
         "credit": "伊勢シティホテル 官網",
-        "license": null
-      },
-      {
-        "url": "https://img.travel.rakuten.co.jp/share/HOTEL/740/740.jpg",
-        "page": "https://travel.rakuten.co.jp/HOTEL/740/740.html",
-        "kind": "rakuten",
-        "credit": "楽天トラベル（施設提供）",
         "license": null
       }
     ],

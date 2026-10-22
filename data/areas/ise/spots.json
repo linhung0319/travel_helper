@@ -1283,17 +1283,17 @@
     "events": [],
     "photos": [
       {
-        "url": "https://www.wakamatsuya.co.jp/wp/wp-content/themes/wakamatsuya/img/tour/header.jpg",
-        "page": "https://www.wakamatsuya.co.jp/tour",
-        "kind": "official",
-        "credit": "若松屋",
-        "license": null
-      },
-      {
         "url": "https://ise-kanko.jp/cms/wp-content/uploads/2021/03/wakamatsuya-kamaboko.jpg",
         "page": "https://ise-kanko.jp/purpose/wakamatsuya-kamaboko/",
         "kind": "official",
         "credit": "伊勢市観光協会",
+        "license": null
+      },
+      {
+        "url": "https://www.wakamatsuya.co.jp/wp/wp-content/themes/wakamatsuya/img/tour/header.jpg",
+        "page": "https://www.wakamatsuya.co.jp/tour",
+        "kind": "official",
+        "credit": "若松屋",
         "license": null
       },
       {
@@ -3370,6 +3370,13 @@
     ],
     "photos": [
       {
+        "url": "https://lh3.googleusercontent.com/grass-cs/AABkmLd8cCAdj922nWKPSY4ByCeY2-PkzdcxVH0Ni5WPO0lr5IV06fyUUFCW-HcN1SD9R4wzbRbZC-32ouqLOj6ljbze5OIEam74Fo7kOLjj4H_0d6YOLYnszBRTyI14orMQ8wwGJW0OUUQKoIVm=w800-h600-k-no",
+        "page": "https://maps.google.com/?cid=1328486565404818773",
+        "kind": "google",
+        "credit": "Google マップ（店家或使用者上傳）",
+        "license": null
+      },
+      {
         "url": "https://okageyokocho.com/main/wp-content/uploads/2026/05/web%E7%94%A8%E3%82%AD%E3%83%BC%E3%83%93%E3%82%B8%E3%83%A5%E3%82%A2%E3%83%AB-01-scaled.jpg",
         "page": "https://okageyokocho.com/main/tenpo/okage_yashiki/",
         "kind": "official",
@@ -3381,13 +3388,6 @@
         "page": "https://prtimes.jp/main/html/rd/p/000000021.000009512.html",
         "kind": "official",
         "credit": "株式会社伊勢福（PR TIMES）",
-        "license": null
-      },
-      {
-        "url": "https://lh3.googleusercontent.com/grass-cs/AABkmLd8cCAdj922nWKPSY4ByCeY2-PkzdcxVH0Ni5WPO0lr5IV06fyUUFCW-HcN1SD9R4wzbRbZC-32ouqLOj6ljbze5OIEam74Fo7kOLjj4H_0d6YOLYnszBRTyI14orMQ8wwGJW0OUUQKoIVm=w800-h600-k-no",
-        "page": "https://maps.google.com/?cid=1328486565404818773",
-        "kind": "google",
-        "credit": "Google マップ（店家或使用者上傳）",
         "license": null
       }
     ],
@@ -3836,15 +3836,15 @@
     ],
     "photos": [
       {
-        "url": "https://ise-kanko.jp/cms/wp-content/uploads/2022/08/%E5%A4%A9%E7%A9%BA%E3%81%AE%E3%83%9D%E3%82%B9%E3%83%882-scaled.jpg",
-        "page": "https://ise-kanko.jp/purpose/tenku-no-post/",
+        "url": "https://ise-kanko.jp/cms/wp-content/uploads/2021/01/sukairain-scaled.jpg",
+        "page": "https://ise-kanko.jp/purpose/skyline/",
         "kind": "official",
         "credit": "伊勢市観光協会",
         "license": null
       },
       {
-        "url": "https://ise-kanko.jp/cms/wp-content/uploads/2021/01/sukairain-scaled.jpg",
-        "page": "https://ise-kanko.jp/purpose/skyline/",
+        "url": "https://ise-kanko.jp/cms/wp-content/uploads/2022/08/%E5%A4%A9%E7%A9%BA%E3%81%AE%E3%83%9D%E3%82%B9%E3%83%882-scaled.jpg",
+        "page": "https://ise-kanko.jp/purpose/tenku-no-post/",
         "kind": "official",
         "credit": "伊勢市観光協会",
         "license": null
@@ -4318,17 +4318,17 @@
     "events": [],
     "photos": [
       {
-        "url": "https://kikuchipearl.com/images/trial/img_main2.jpg",
-        "page": "https://kikuchipearl.com/trial.html",
-        "kind": "official",
-        "credit": "菊池パール",
-        "license": null
-      },
-      {
         "url": "https://ise-kanko.jp/cms/wp-content/uploads/2021/01/kikutipa-ru-002.jpg",
         "page": "https://ise-kanko.jp/purpose/kikuchipearl-taiken/",
         "kind": "official",
         "credit": "伊勢市観光協会",
+        "license": null
+      },
+      {
+        "url": "https://kikuchipearl.com/images/trial/img_main2.jpg",
+        "page": "https://kikuchipearl.com/trial.html",
+        "kind": "official",
+        "credit": "菊池パール",
         "license": null
       },
       {
@@ -4816,14 +4816,14 @@
     "events": [],
     "photos": [
       {
-        "url": "https://www.kankomie.or.jp/rails/active_storage/representations/proxy/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBbmdMIiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--a9aaa5e40e5cd62792626b8625357dc61fa5ee5f/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdCem9MWm05eWJXRjBPZ2wzWldKd09oSnlaWE5wZW1WZmRHOWZabWwwV3dkcEFvUURNQT09IiwiZXhwIjpudWxsLCJwdXIiOiJ2YXJpYXRpb24ifX0=--ef4af471d0804d4a7b7d74cb943d03ada1b9519d/8007_1_org.jpg",
+        "url": "https://www.kankomie.or.jp/rails/active_storage/representations/proxy/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBbmtMIiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--6653a18746a808147cbc53e9f294daabfe3b6e6d/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdCem9MWm05eWJXRjBPZ2wzWldKd09oSnlaWE5wZW1WZmRHOWZabWwwV3dkcEFvUURNQT09IiwiZXhwIjpudWxsLCJwdXIiOiJ2YXJpYXRpb24ifX0=--ef4af471d0804d4a7b7d74cb943d03ada1b9519d/8007_2_org.jpg",
         "page": "https://www.kankomie.or.jp/spot/8007",
         "kind": "official",
         "credit": "観光三重",
         "license": null
       },
       {
-        "url": "https://www.kankomie.or.jp/rails/active_storage/representations/proxy/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBbmtMIiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--6653a18746a808147cbc53e9f294daabfe3b6e6d/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdCem9MWm05eWJXRjBPZ2wzWldKd09oSnlaWE5wZW1WZmRHOWZabWwwV3dkcEFvUURNQT09IiwiZXhwIjpudWxsLCJwdXIiOiJ2YXJpYXRpb24ifX0=--ef4af471d0804d4a7b7d74cb943d03ada1b9519d/8007_2_org.jpg",
+        "url": "https://www.kankomie.or.jp/rails/active_storage/representations/proxy/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBbmdMIiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--a9aaa5e40e5cd62792626b8625357dc61fa5ee5f/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdCem9MWm05eWJXRjBPZ2wzWldKd09oSnlaWE5wZW1WZmRHOWZabWwwV3dkcEFvUURNQT09IiwiZXhwIjpudWxsLCJwdXIiOiJ2YXJpYXRpb24ifX0=--ef4af471d0804d4a7b7d74cb943d03ada1b9519d/8007_1_org.jpg",
         "page": "https://www.kankomie.or.jp/spot/8007",
         "kind": "official",
         "credit": "観光三重",
