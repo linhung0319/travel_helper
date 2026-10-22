@@ -775,6 +775,12 @@ a {
   z-index: 1;
 }
 
+/* 手機的拉起面板裡不黏在上面：sticky 加上面板的高度動畫，Chrome 會在地圖上畫出一塊白色殘影
+   （面板上方的分頁一直看得到，可以離開詳情） */
+.layout.mobile .detail-head {
+  position: static;
+}
+
 .detail-title {
   flex: 1;
   min-width: 0;
@@ -1075,6 +1081,12 @@ dl {
   font-variant-numeric: tabular-nums;
   font-weight: 600;
   width: 3.5em;
+}
+
+/* 終點站名不要被擠成直排 */
+.trains td:last-child {
+  white-space: nowrap;
+  text-align: right;
 }
 
 .trains tr.past {
