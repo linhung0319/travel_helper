@@ -5,12 +5,17 @@
   "type": "module",
   "description": "伊勢志摩旅遊規劃：Cloudflare Worker（API、登入、匯入、Claude 代理）",
   "scripts": {
-    "typecheck": "tsc -p ."
+    "typecheck": "tsc -p .",
+    "dev": "wrangler dev",
+    "db:migrate": "wrangler d1 migrations apply travel-helper --local"
   },
   "dependencies": {
-    "@travel-helper/engine": "*"
+    "@travel-helper/engine": "*",
+    "ajv": "^8.20.0"
   },
   "devDependencies": {
-    "typescript": "^7.0.2"
+    "@cloudflare/workers-types": "^5.20261022.1",
+    "typescript": "^7.0.2",
+    "wrangler": "^4.151.3"
   }
 }
