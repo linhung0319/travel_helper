@@ -419,9 +419,9 @@
     },
     "region": "ise-kurata",
     "category": "街道・資料館",
-    "status": "not-included",
-    "reason": "舊參宮街道的散步路線，資料館規模小（週一休）；外宮→內宮步行時順路，不另外收",
-    "pointId": null,
+    "status": "included",
+    "reason": "T13 決定補收（2026-10-21，T13-review §1）：外宮→內宮之間的舊參宮道；原本以「順路、不另外收」沒收",
+    "pointId": "ise-furuichi-kaido",
     "mentions": [
       {
         "type": "tourism",
@@ -991,5 +991,26 @@
     "status": "not-included",
     "reason": "若松屋魚板體驗 11～70 人的場地，寫在 ise-wakamatsuya-kamaboko 的 extra",
     "pointId": null
+  },
+  {
+    "key": "ise-kadoya-mingukan",
+    "name": {
+      "ja": "角屋民具館・味噌溜り蔵資料館"
+    },
+    "region": "ise-outskirts",
+    "category": "資料館",
+    "status": "included",
+    "reason": null,
+    "pointId": "ise-kadoya-mingukan",
+    "mentions": [
+      {
+        "type": "tourism",
+        "url": "https://www.kankomie.or.jp/spot/8007",
+        "title": "観光三重",
+        "highlight": null,
+        "retrieved": "2026-10-22"
+      }
+    ],
+    "note": "T13 決定補收（觀光三重列表沒收的，T13-review §1）；地址伊勢市神久6丁目8-25"
   }
 ]

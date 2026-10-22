@@ -889,5 +889,329 @@
       "confidence": "low",
       "assessed": "2026-10-18"
     }
+  },
+  {
+    "id": "futami-mishiodono",
+    "type": "spot",
+    "name": {
+      "ja": "御塩殿神社",
+      "kana": "みしおどのじんじゃ",
+      "zh": "御鹽殿神社",
+      "en": "Mishiodono Shrine"
+    },
+    "area": "futami",
+    "region": "futami-okitama",
+    "coords": [
+      136.7704554,
+      34.5102028
+    ],
+    "coordsSource": "google-maps-url",
+    "address": "三重県伊勢市二見町荘唐剣山2019-1",
+    "hours": {
+      "always": true,
+      "note": "推定：參拜時間沒有來源（觀光協會只寫沒有定休日；神宮官網的參拜時間只寫內宮、外宮、別宮）"
+    },
+    "closedNote": "沒有定休日",
+    "febNote": "2 月沒有製鹽作業：御塩殿燒固堅塩每年 10 月（10/5 御塩殿祭後 5 天）和 3 月，採鹹在 7 月下旬；御料地一般人不能進入，旅程中看不到御塩焼き。",
+    "closures": [],
+    "events": [],
+    "photos": [
+      {
+        "url": "https://ise-kanko.jp/cms/wp-content/uploads/2021/02/course_futami_003.jpg",
+        "page": "https://ise-kanko.jp/purpose/mishiodonojinja/",
+        "kind": "official",
+        "credit": "伊勢市観光協会",
+        "license": null
+      },
+      {
+        "url": "https://lh3.googleusercontent.com/grass-cs/AABkmLeFMMJa4C95ex2GtEl0Hgi65bGzU7ZYT4oqTqxc3VVicBvYyXwzOCbypfoHoXJdarM20cNF_qIBzj9KgInqCu4oz04u6RSRUMZs8THLp5Zg1R7qY1sk8TJloohhh_-P4WOo72Bp=w800",
+        "page": "https://maps.google.com/?cid=946366962760237075",
+        "kind": "google",
+        "credit": "Google マップ（店家或使用者上傳）",
+        "license": null
+      }
+    ],
+    "links": {
+      "official": "https://ise-kanko.jp/purpose/mishiodonojinja/",
+      "instagram": null,
+      "googleMaps": "https://maps.google.com/?cid=946366962760237075"
+    },
+    "tags": [
+      "神社寺院",
+      "海邊"
+    ],
+    "tier": null,
+    "nearestStation": {
+      "id": "jr-futaminoura",
+      "mode": "walk",
+      "minutes": 15,
+      "note": "JR 二見浦站步行約 15 分（觀光協會；OSRM 約 16 分）；Google 評論有人覺得要 20～30 分"
+    },
+    "access": [
+      {
+        "from": "jr-futaminoura",
+        "mode": "walk",
+        "minutes": 15,
+        "note": "JR，不能用近鐵 5 日券；沒有停車場（觀光協會）"
+      }
+    ],
+    "admission": null,
+    "phone": "0596-24-1111",
+    "stayMinutes": null,
+    "indoor": false,
+    "fares": null,
+    "group": null,
+    "accessibility": {
+      "walkInsideMinutes": null,
+      "stairs": null,
+      "slope": null,
+      "restAreas": null,
+      "toilets": null,
+      "barrierFree": null,
+      "note": "沒有停車場；開車可以停二見浦グラウンド旁的海水浴場停車場（Google 評論，約 2022，要再確認）"
+    },
+    "kids": null,
+    "ratings": {
+      "google": 4.3,
+      "googleReviews": 141,
+      "note": null
+    },
+    "sources": [
+      {
+        "type": "tourism",
+        "url": "https://ise-kanko.jp/purpose/mishiodonojinja/",
+        "retrieved": "2026-10-22",
+        "note": "住所、電話、JR二見浦站步行約15分、無停車場、無定休日、10月御塩殿祭"
+      },
+      {
+        "type": "official",
+        "url": "https://www.isejingu.or.jp/about/estate/",
+        "retrieved": "2026-10-22",
+        "note": "御塩製作流程：7月下旬採鹹、御塩焼所熬荒塩、10月與3月在御塩殿燒固；御料地不可進入"
+      },
+      {
+        "type": "official",
+        "url": "https://www.isejingu.or.jp/visit/",
+        "retrieved": "2026-10-22",
+        "note": "只寫內宮・外宮・別宮的月別參拜時間，未提所管社"
+      },
+      {
+        "type": "google-maps",
+        "url": "https://maps.google.com/?cid=946366962760237075",
+        "retrieved": "2026-10-22",
+        "note": "星數、評論數、座標、照片（Google 名稱：御塩殿神社）"
+      }
+    ],
+    "verified": false,
+    "extra": {
+      "description": "伊勢神宮內宮的所管社，祭祀鹽之神。旁邊的御塩殿把御塩焼所熬的荒鹽裝進三角錐土器燒成神宮祭典用的堅塩；境內在海邊松林，安靜人少。",
+      "phoneNote": "神宮司廳（觀光協會）",
+      "jingu": "神宮官網的御料地介紹：https://www.isejingu.or.jp/about/estate/"
+    },
+    "summary": null,
+    "assessment": null
+  },
+  {
+    "id": "futami-sominoyu",
+    "type": "spot",
+    "name": {
+      "ja": "二見温泉 蘇民の湯",
+      "kana": "ふたみおんせん そみんのゆ",
+      "zh": "二見溫泉 蘇民之湯",
+      "en": "Futami Onsen Somin no Yu"
+    },
+    "area": "futami",
+    "region": "futami-outskirts",
+    "coords": [
+      136.7962494,
+      34.5060272
+    ],
+    "coordsSource": "google-maps-url",
+    "address": "三重県伊勢市二見町松下1349-136（ホテル清海）",
+    "hours": {
+      "mon": [
+        [
+          "15:00",
+          "22:30"
+        ]
+      ],
+      "tue": [
+        [
+          "15:00",
+          "22:30"
+        ]
+      ],
+      "wed": [
+        [
+          "15:00",
+          "22:30"
+        ]
+      ],
+      "thu": [
+        [
+          "15:00",
+          "22:30"
+        ]
+      ],
+      "fri": [
+        [
+          "15:00",
+          "22:30"
+        ]
+      ],
+      "sat": [
+        [
+          "15:00",
+          "22:30"
+        ]
+      ],
+      "sun": [
+        [
+          "15:00",
+          "22:30"
+        ]
+      ],
+      "holiday": [
+        [
+          "15:00",
+          "22:30"
+        ]
+      ],
+      "lastEntry": "21:30",
+      "note": "日歸入浴 15:00～22:30（最後受理 21:30），維護時可能變更，官網建議先打電話；定休日、點檢休館沒有來源（官網）"
+    },
+    "closedNote": "定休日沒有來源",
+    "febNote": "室內大浴場＋露天風呂；2 月營業、點檢休館沒有來源，要打電話確認。",
+    "closures": [],
+    "events": [],
+    "photos": [
+      {
+        "url": "https://www.kankomie.or.jp/rails/active_storage/representations/proxy/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBdjhCIiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--100d1395629f079bc8999d2a9e624fe7962f97b9/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdCem9MWm05eWJXRjBPZ2wzWldKd09oSnlaWE5wZW1WZmRHOWZabWwwV3dkcEFvUURNQT09IiwiZXhwIjpudWxsLCJwdXIiOiJ2YXJpYXRpb24ifX0=--ef4af471d0804d4a7b7d74cb943d03ada1b9519d/1131_1_org.jpg",
+        "page": "https://www.kankomie.or.jp/spot/1131",
+        "kind": "official",
+        "credit": "観光三重",
+        "license": null
+      }
+    ],
+    "links": {
+      "official": "http://hotel-seikai.com/spa/",
+      "instagram": null,
+      "googleMaps": "https://maps.google.com/?cid=14801743448918657376"
+    },
+    "tags": [
+      "溫泉",
+      "海邊",
+      "室內",
+      "雨天備案"
+    ],
+    "tier": null,
+    "nearestStation": {
+      "id": "jr-futaminoura",
+      "mode": "shuttle",
+      "minutes": 5,
+      "note": "JR 二見浦站有ホテル清海的免費接送車約 5 分（到站打電話；10:00～15:00 不接送）（官網）；直線最近是 JR 松下站（OSRM 步行約 19 分），來源沒提"
+    },
+    "access": [
+      {
+        "from": "jr-futaminoura",
+        "mode": "shuttle",
+        "minutes": 5,
+        "note": "ホテル清海 免費接送（到站打電話，10:00～15:00 不接送）；步行 OSRM 約 37 分"
+      },
+      {
+        "from": "iseshi",
+        "mode": "bus",
+        "minutes": 25,
+        "note": "伊勢市站、宇治山田站搭往「夫婦岩東口」的巴士 25 分，下車步行 3～5 分（觀光三重、官網）"
+      }
+    ],
+    "admission": "大人 1,100 円、小孩 770 円、幼兒 550 円",
+    "phone": "0596-43-2046",
+    "stayMinutes": null,
+    "indoor": true,
+    "fares": {
+      "adult": "1,100 円",
+      "child": "770 円（年齡區分沒寫）",
+      "senior": null,
+      "group": null,
+      "note": "幼兒 550 円、乳兒免費；毛巾 100 円（販售）、浴巾 200 円（租借）（官網，含稅）"
+    },
+    "group": {
+      "reservation": null,
+      "contact": {
+        "phone": "0596-43-2046",
+        "url": "http://hotel-seikai.com/spa/",
+        "note": "ホテル清海，日文"
+      },
+      "note": "團體料金、15 人能不能一起入浴沒有來源"
+    },
+    "accessibility": {
+      "walkInsideMinutes": null,
+      "stairs": null,
+      "slope": null,
+      "restAreas": null,
+      "toilets": null,
+      "barrierFree": null,
+      "note": "電梯、無障礙沒有來源；有刺青不能進大浴場（官網）。館內 1 樓有賣店、御食事處（入店 15:00～19:00）"
+    },
+    "kids": {
+      "friendly": null,
+      "note": "有兒童、幼兒料金，乳兒免費（年齡區分沒寫）"
+    },
+    "ratings": {
+      "google": null,
+      "googleReviews": null,
+      "note": "Google 沒有日歸溫泉的獨立地點，連結借ホテル清海；飯店本體 Google 2.8（709 則）評的是住宿，不填"
+    },
+    "sources": [
+      {
+        "type": "tourism",
+        "url": "https://www.kankomie.or.jp/spot/1131",
+        "retrieved": "2026-10-22",
+        "note": "住所、電話、巴士 25 分＋步行 3 分、停車場 250 台；無營業時間與料金"
+      },
+      {
+        "type": "official",
+        "url": "http://hotel-seikai.com/spa/",
+        "retrieved": "2026-10-22",
+        "note": "日歸入浴時間、料金、泉質、兩浴場露天"
+      },
+      {
+        "type": "official",
+        "url": "http://hotel-seikai.com/access/",
+        "retrieved": "2026-10-22",
+        "note": "JR 二見浦駅送迎約 5 分、夫婦岩東口步行約 5 分、停車場 250 台"
+      },
+      {
+        "type": "official",
+        "url": "http://hotel-seikai.com/facilities/",
+        "retrieved": "2026-10-22",
+        "note": "日歸受付 15:00～22:30、刺青不可、賣店與食事處"
+      },
+      {
+        "type": "other",
+        "url": "https://www.nta.co.jp/yado/shisetsu/6417-101.htm",
+        "retrieved": "2026-10-22",
+        "note": "WebSearch 摘要：JR 二見浦駅送迎約 7 分（未直接讀頁）"
+      },
+      {
+        "type": "google-maps",
+        "url": "https://maps.google.com/?cid=14801743448918657376",
+        "retrieved": "2026-10-22",
+        "note": "星數、評論數、座標、照片（Google 名稱：ホテル清海）"
+      }
+    ],
+    "verified": false,
+    "extra": {
+      "description": "飯店「ホテル清海」的大浴場開放日歸入浴，不是獨立的設施。浴場「日の出の湯」「真珠の湯」男女輪替，都有看海的大浴場＋露天風呂，日の出の湯可以望見伊勢灣、夫婦岩方向；泉質是含硫黄・ナトリウム・塩化物強塩冷鉱泉。",
+      "lodgingCandidate": "futami-seikai（住宿候選，T8b 依 §5.7 排除：楽天 3.44／693、Google 2.8／708、じゃらん 3.4／164）",
+      "onsen": "含硫黄・ナトリウム・塩化物強塩冷鉱泉［H2S 型］（官網）",
+      "conflicts": [
+        "夫婦岩東口巴士站步行：觀光三重 3 分、官網約 5 分",
+        "JR 二見浦站接送車：官網約 5 分、日本旅行約 7 分（搜尋摘要）"
+      ]
+    },
+    "summary": null,
+    "assessment": null
   }
 ]

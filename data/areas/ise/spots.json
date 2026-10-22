@@ -4504,5 +4504,402 @@
       "confidence": "low",
       "assessed": "2026-10-18"
     }
+  },
+  {
+    "id": "ise-furuichi-kaido",
+    "type": "spot",
+    "name": {
+      "ja": "伊勢古市参宮街道・伊勢古市参宮街道資料館",
+      "kana": "いせふるいちさんぐうかいどう",
+      "zh": "伊勢古市參宮街道・資料館",
+      "en": "Ise Furuichi Sangu Kaido"
+    },
+    "area": "ise",
+    "region": "ise-kurata",
+    "coords": [
+      136.7202728,
+      34.4762401
+    ],
+    "coordsSource": "google-maps-url",
+    "address": "三重県伊勢市中之町69（資料館）",
+    "hours": {
+      "mon": [],
+      "tue": [
+        [
+          "09:00",
+          "16:30"
+        ]
+      ],
+      "wed": [
+        [
+          "09:00",
+          "16:30"
+        ]
+      ],
+      "thu": [
+        [
+          "09:00",
+          "16:30"
+        ]
+      ],
+      "fri": [
+        [
+          "09:00",
+          "16:30"
+        ]
+      ],
+      "sat": [
+        [
+          "09:00",
+          "16:30"
+        ]
+      ],
+      "sun": [
+        [
+          "09:00",
+          "16:30"
+        ]
+      ],
+      "holiday": [
+        [
+          "09:00",
+          "16:30"
+        ]
+      ],
+      "note": "資料館展示室 9:00～16:30；週一休（遇國定假日改隔天）、國定假日隔天休（隔天是週日除外）、12/29～1/3 休。街道本身是公共道路，隨時可以走（資料館休館日也可以散步）。"
+    },
+    "closedNote": "資料館：週一、國定假日隔天、年末年始",
+    "febNote": "旅程中資料館休 2/8（一）、2/12（五，2/11 國定假日隔天）；2 月沒有其他休館的記載。",
+    "closures": [
+      {
+        "from": "2027-02-12",
+        "to": "2027-02-12",
+        "note": "資料館休館（2/11 國定假日隔天）"
+      }
+    ],
+    "events": [],
+    "photos": [
+      {
+        "url": "https://ise-kanko.jp/cms/wp-content/uploads/2021/03/furuichikaidou.jpg",
+        "page": "https://ise-kanko.jp/purpose/furuichikaidou/",
+        "kind": "official",
+        "credit": "伊勢市観光協会",
+        "license": null
+      },
+      {
+        "url": "https://ise-kanko.jp/cms/wp-content/uploads/2021/03/moderu-016.jpg",
+        "page": "https://ise-kanko.jp/purpose/shiryokan/",
+        "kind": "official",
+        "credit": "伊勢市観光協会",
+        "license": null
+      },
+      {
+        "url": "https://lh3.googleusercontent.com/grass-cs/AABkmLcs_wHjwrDII_AX3ceBhvvOzrYuAw8oGdfjj6tWm78tcr7M4peI0Tq0-lqVqk0_-E96Me2AAQzrwrqM-js7jS09BY2qe_Qv2b89CCRMrppmU9T7Jz801EC7hDhR_gMOmPHDgHXfig=w800",
+        "page": "https://maps.google.com/?cid=7453135032053717866",
+        "kind": "google",
+        "credit": "Google マップ（店家或使用者上傳）",
+        "license": null
+      }
+    ],
+    "links": {
+      "official": "https://ise-kanko.jp/purpose/furuichikaidou/",
+      "instagram": null,
+      "googleMaps": "https://maps.google.com/?cid=7453135032053717866"
+    },
+    "tags": [],
+    "tier": null,
+    "nearestStation": {
+      "id": "isuzugawa",
+      "mode": "walk",
+      "minutes": 18,
+      "note": "資料館到近鐵五十鈴川站，OSRM 步行約 18 分（係數 1）；街道北端到 JR 伊勢市站、近鐵宇治山田站步行 15 分（觀光三重）"
+    },
+    "access": [
+      {
+        "from": "iseshi",
+        "mode": "bus",
+        "minutes": 11,
+        "note": "伊勢市站搭往「浦田町」的巴士 11 分，「三条前」下車即到資料館（觀光協會）；到「古市」6 分（觀光三重）"
+      },
+      {
+        "from": "ujiyamada",
+        "mode": "walk",
+        "minutes": 15,
+        "note": "到街道入口（觀光三重）；資料館在街道中段"
+      }
+    ],
+    "admission": "資料館展示室免費",
+    "phone": "0596-22-8410",
+    "stayMinutes": null,
+    "indoor": false,
+    "fares": {
+      "adult": "免費（資料館展示室）",
+      "child": null,
+      "senior": null,
+      "group": null
+    },
+    "group": null,
+    "accessibility": {
+      "walkInsideMinutes": null,
+      "stairs": null,
+      "slope": "街道沿小田の橋到牛谷坂的小丘陵走，有坡（觀光協會）；坡度沒有來源",
+      "restAreas": null,
+      "toilets": null,
+      "barrierFree": null,
+      "note": "資料館有免費停車場約 4 台（Google 評論，約 2019，要再確認）"
+    },
+    "kids": {
+      "friendly": null,
+      "note": "展示以參宮街道、古市遊郭、伊勢歌舞伎的歷史資料為主，沒有互動展品的來源"
+    },
+    "ratings": {
+      "google": 4.1,
+      "googleReviews": 109,
+      "note": null
+    },
+    "sources": [
+      {
+        "type": "tourism",
+        "url": "https://ise-kanko.jp/purpose/furuichikaidou/",
+        "retrieved": "2026-10-22",
+        "note": "街道沿小田の橋到牛谷坂的丘陵，舊時外宮到內宮唯一的路"
+      },
+      {
+        "type": "tourism",
+        "url": "https://ise-kanko.jp/purpose/shiryokan/",
+        "retrieved": "2026-10-22",
+        "note": "資料館休館日、住址、電話、巴士三条前下車即到"
+      },
+      {
+        "type": "tourism",
+        "url": "https://www.kankomie.or.jp/spot/3133",
+        "retrieved": "2026-10-22",
+        "note": "資料館 9:00～16:30、展示室免費、休館規則"
+      },
+      {
+        "type": "tourism",
+        "url": "https://www.kankomie.or.jp/spot/1815",
+        "retrieved": "2026-10-22",
+        "note": "街道說明、伊勢市站與宇治山田站步行 15 分、周邊寂照寺、大林寺"
+      },
+      {
+        "type": "tourism",
+        "url": "https://ise-kanko.jp/purpose/asakichi/",
+        "retrieved": "2026-10-22",
+        "note": "麻吉旅館創業 200 年仍營業，五十鈴川站步行 15 分"
+      },
+      {
+        "type": "google-maps",
+        "url": "https://maps.google.com/?cid=7453135032053717866",
+        "retrieved": "2026-10-22",
+        "note": "星數、評論數、座標、照片（Google 名稱：伊勢古市参宮街道資料館）"
+      }
+    ],
+    "verified": false,
+    "extra": {
+      "description": "外宮與內宮之間的舊參宮道（間の山）。江戶時代古市是和江戶吉原、京都島原並稱的遊郭，現在留有大林寺、寂照寺、創業約 200 年的麻吉旅館（仍營業，只能從外面看）；資料館介紹參宮街道、遊里、伊勢歌舞伎、萬金丹。",
+      "coordsNote": "座標是資料館（街道中段）；街道從倭町、古市町到中之町、桜木町"
+    },
+    "summary": null,
+    "assessment": null
+  },
+  {
+    "id": "ise-kadoya-mingukan",
+    "type": "spot",
+    "name": {
+      "ja": "角屋民具館・味噌溜り蔵資料館",
+      "kana": "かどやみんぐかん・みそたまりぐらしりょうかん",
+      "zh": "角屋民具館・味噌醬油藏資料館",
+      "en": "Kadoya Folk Tools Museum"
+    },
+    "area": "ise",
+    "region": "ise-outskirts",
+    "coords": [
+      136.7271167,
+      34.495752
+    ],
+    "coordsSource": "google-maps-url",
+    "address": "三重県伊勢市神久6丁目8-25",
+    "hours": {
+      "mon": [
+        [
+          "08:00",
+          "18:00"
+        ]
+      ],
+      "tue": [
+        [
+          "08:00",
+          "18:00"
+        ]
+      ],
+      "wed": [
+        [
+          "08:00",
+          "18:00"
+        ]
+      ],
+      "thu": [
+        [
+          "08:00",
+          "18:00"
+        ]
+      ],
+      "fri": [
+        [
+          "08:00",
+          "18:00"
+        ]
+      ],
+      "sat": [
+        [
+          "08:00",
+          "18:00"
+        ]
+      ],
+      "sun": [
+        [
+          "08:00",
+          "18:00"
+        ]
+      ],
+      "holiday": [
+        [
+          "08:00",
+          "18:00"
+        ]
+      ],
+      "note": "8:00～18:00、全年無休（觀光三重）。導覽參觀行程要預約（2020 年資料）。"
+    },
+    "closedNote": "全年無休",
+    "febNote": "全年無休，2 月沒有特別說明。",
+    "closures": [],
+    "events": [],
+    "photos": [
+      {
+        "url": "https://www.kankomie.or.jp/rails/active_storage/representations/proxy/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBbmdMIiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--a9aaa5e40e5cd62792626b8625357dc61fa5ee5f/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdCem9MWm05eWJXRjBPZ2wzWldKd09oSnlaWE5wZW1WZmRHOWZabWwwV3dkcEFvUURNQT09IiwiZXhwIjpudWxsLCJwdXIiOiJ2YXJpYXRpb24ifX0=--ef4af471d0804d4a7b7d74cb943d03ada1b9519d/8007_1_org.jpg",
+        "page": "https://www.kankomie.or.jp/spot/8007",
+        "kind": "official",
+        "credit": "観光三重",
+        "license": null
+      },
+      {
+        "url": "https://www.kankomie.or.jp/rails/active_storage/representations/proxy/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBbmtMIiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--6653a18746a808147cbc53e9f294daabfe3b6e6d/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdCem9MWm05eWJXRjBPZ2wzWldKd09oSnlaWE5wZW1WZmRHOWZabWwwV3dkcEFvUURNQT09IiwiZXhwIjpudWxsLCJwdXIiOiJ2YXJpYXRpb24ifX0=--ef4af471d0804d4a7b7d74cb943d03ada1b9519d/8007_2_org.jpg",
+        "page": "https://www.kankomie.or.jp/spot/8007",
+        "kind": "official",
+        "credit": "観光三重",
+        "license": null
+      },
+      {
+        "url": "https://www.kankomie.or.jp/rails/active_storage/representations/proxy/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBbm9MIiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--3b921164bb1f552bc7d0fab85b3b1d2cd94b5204/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdCem9MWm05eWJXRjBPZ2wzWldKd09oSnlaWE5wZW1WZmRHOWZabWwwV3dkcEFvUURNQT09IiwiZXhwIjpudWxsLCJwdXIiOiJ2YXJpYXRpb24ifX0=--ef4af471d0804d4a7b7d74cb943d03ada1b9519d/8007_3_org.jpg",
+        "page": "https://www.kankomie.or.jp/spot/8007",
+        "kind": "official",
+        "credit": "観光三重",
+        "license": null
+      }
+    ],
+    "links": {
+      "official": null,
+      "instagram": null,
+      "googleMaps": "https://maps.google.com/?cid=14845470409664829839"
+    },
+    "tags": [
+      "室內",
+      "雨天備案"
+    ],
+    "tier": null,
+    "nearestStation": {
+      "id": "jr-isuzugaoka",
+      "mode": "walk",
+      "minutes": 19,
+      "note": "JR 五十鈴ケ丘站 OSRM 步行約 19 分（係數 1）、近鐵宇治山田站約 26 分；來源只寫巴士"
+    },
+    "access": [
+      {
+        "from": "iseshi",
+        "mode": "bus",
+        "minutes": 8,
+        "note": "伊勢市站、宇治山田站搭三重交通巴士（往鳥羽・二見・夫婦岩東口）約 8 分，「二軒茶屋」下車即到（觀光三重）"
+      },
+      {
+        "from": "ujiyamada",
+        "mode": "bus",
+        "minutes": 8,
+        "note": "同上（觀光三重）"
+      }
+    ],
+    "admission": "免費",
+    "phone": "0596-23-3040",
+    "stayMinutes": null,
+    "indoor": true,
+    "fares": {
+      "adult": "免費",
+      "child": "免費",
+      "senior": null,
+      "group": "導覽參觀行程每人 600 円，含二軒茶屋餅試吃、伊勢角屋麦酒試飲（觀光三重特集 2020-12，要再確認）"
+    },
+    "group": {
+      "reservation": "導覽參觀行程（二軒茶屋餅 → 民具館 → 味噌醬油釀造藏 → 麦酒工場，約 1 小時）要預約；人數上限沒有來源",
+      "contact": {
+        "phone": "0596-23-3040",
+        "url": null,
+        "note": "二軒茶屋餅角屋本店，日文"
+      },
+      "note": "2020 年的資料，現在還有沒有、價格要再確認"
+    },
+    "accessibility": {
+      "walkInsideMinutes": null,
+      "stairs": null,
+      "slope": null,
+      "restAreas": null,
+      "toilets": null,
+      "barrierFree": null,
+      "note": "隔壁二軒茶屋餅本店有座位可以坐下吃餅喝茶；停車場 40 台（觀光三重）"
+    },
+    "kids": {
+      "friendly": null,
+      "note": "小孩可以吃現做的二軒茶屋餅；民具、釀造設備的展示有沒有互動沒有來源；啤酒試飲只限大人"
+    },
+    "ratings": {
+      "google": 5,
+      "googleReviews": 1,
+      "note": "Google 地點是「角屋醤油味噌醸造元」，只有 1 則評論"
+    },
+    "sources": [
+      {
+        "type": "tourism",
+        "url": "https://www.kankomie.or.jp/spot/8007",
+        "retrieved": "2026-10-22",
+        "note": "民具館・味噌溜り蔵資料館：免費、8～18 時、無休、巴士 8 分、停車場 40 台；官網連結 kadoyahonten.co.jp 已 404"
+      },
+      {
+        "type": "tourism",
+        "url": "https://www.kankomie.or.jp/spot/24479",
+        "retrieved": "2026-10-22",
+        "note": "二軒茶屋餅角屋本店：8～18 時、無休、電話 0596-23-3040；伊勢角屋麦酒約 83m"
+      },
+      {
+        "type": "tourism",
+        "url": "https://www.kankomie.or.jp/report/721",
+        "retrieved": "2026-10-22",
+        "note": "2020-12 特集：預約制導覽約 1 小時 600 日圓含試吃試飲；麦酒神久工場 11～17 時不定休"
+      },
+      {
+        "type": "google-maps",
+        "url": "https://maps.google.com/?cid=14845470409664829839",
+        "retrieved": "2026-10-22",
+        "note": "星數、評論數、座標、照片（Google 名稱：角屋醤油味噌醸造元）"
+      }
+    ],
+    "verified": false,
+    "extra": {
+      "description": "1575 年創業的二軒茶屋餅把舊砂糖藏改成民具館，加上約百年的味噌溜り藏，以「伊勢のまちかど博物館」免費公開。同一處有二軒茶屋餅本店（現做紅豆餅＋伊勢茶）、約 80 m 外有伊勢角屋麦酒 神久工場（11:00～17:00，不定休）。",
+      "conflicts": [
+        "官網：觀光三重連到的 kadoyahonten.co.jp 已經打不開（404）",
+        "停車場 40 台：觀光三重 spot 頁寫在民具館，2020 特集寫在麦酒工場，可能共用"
+      ]
+    },
+    "summary": null,
+    "assessment": null
   }
 ]
