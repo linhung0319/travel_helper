@@ -13,3 +13,4 @@ Thumbs.db
 data/cache/work/
 .wrangler/
 build/
+data/cache/import/
