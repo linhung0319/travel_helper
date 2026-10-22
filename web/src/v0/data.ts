@@ -1,13 +1,13 @@
 import { POINT_TYPES, type Area, type Bbox, type Issue, type LngLat, type Point, type PointType } from './types';
 
 // data/ 下所有 JSON（cache/ 除外）。新增的檔案會自動出現，不用改程式。
-const dataModules = import.meta.glob<unknown>(['../../data/**/*.json', '!../../data/cache/**'], {
+const dataModules = import.meta.glob<unknown>(['../../../data/**/*.json', '!../../../data/cache/**'], {
   eager: true,
   import: 'default',
 });
 
 // 開發用的假資料，只放在 web/src/dev-fixtures/，不會進 data/
-const fixtureModules = import.meta.glob<unknown>('./dev-fixtures/*.json', {
+const fixtureModules = import.meta.glob<unknown>('../dev-fixtures/*.json', {
   eager: true,
   import: 'default',
 });
@@ -85,7 +85,7 @@ function extractPoints(modules: Record<string, unknown>, prefix: RegExp, base: s
 }
 
 function extractAreas(): Area[] {
-  const content = dataModules['../../data/areas.json'];
+  const content = dataModules['../../../data/areas.json'];
   if (!Array.isArray(content)) return [];
   return content
     .filter(isObject)
@@ -95,8 +95,8 @@ function extractAreas(): Area[] {
 }
 
 export const areas: Area[] = extractAreas();
-export const realPoints: Point[] = extractPoints(dataModules, /^\.\.\/\.\.\/data\//, 'data/', false);
-export const fixturePoints: Point[] = extractPoints(fixtureModules, /^\.\/dev-fixtures\//, 'web/src/dev-fixtures/', true);
+export const realPoints: Point[] = extractPoints(dataModules, /^\.\.\/\.\.\/\.\.\/data\//, 'data/', false);
+export const fixturePoints: Point[] = extractPoints(fixtureModules, /^\.\.\/dev-fixtures\//, 'web/src/dev-fixtures/', true);
 
 export function inBbox([lon, lat]: LngLat, [w, s, e, n]: Bbox): boolean {
   return lon >= w && lon <= e && lat >= s && lat <= n;

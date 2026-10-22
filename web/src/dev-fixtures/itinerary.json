@@ -1,0 +1,59 @@
+{
+  "note": "（假）開發用的假行程：只用來試天數分頁、其他天變淡。真正的行程格式由 T14 定，T15 接上。只在 dev server 載入，不進正式 build。",
+  "days": [
+    { "date": "2027-02-02", "items": [{ "place": "kashikojima", "arrive": "18:40" }, { "place": "shima-kashikojima-harbor", "arrive": "19:00" }] },
+    {
+      "date": "2027-02-03",
+      "items": [
+        { "place": "kashikojima", "arrive": "09:30" },
+        { "place": "shima-yokoyama-observatory", "arrive": "10:00", "stayMinutes": 60 },
+        { "place": "shima-la-mer", "arrive": "12:00", "stayMinutes": 90 },
+        { "place": "shima-kanko-classic", "arrive": "16:30" }
+      ]
+    },
+    {
+      "date": "2027-02-04",
+      "items": [
+        { "place": "shima-izawanomiya", "arrive": "10:00", "stayMinutes": 40 },
+        { "place": "shima-daiozaki-lighthouse", "arrive": "13:00", "stayMinutes": 60 },
+        { "place": "shima-marusada", "arrive": "16:30" }
+      ]
+    },
+    {
+      "date": "2027-02-05",
+      "items": [
+        { "place": "toba", "arrive": "09:30" },
+        { "place": "toba-aquarium", "arrive": "09:45", "stayMinutes": 150 },
+        { "place": "toba-sazanami", "arrive": "12:30", "stayMinutes": 60 },
+        { "place": "toba-mikimoto-pearl-island", "arrive": "14:00", "stayMinutes": 90 },
+        { "place": "toba-kokusai-hotel", "arrive": "16:30" }
+      ]
+    },
+    {
+      "date": "2027-02-06",
+      "items": [
+        { "place": "toba-osatsu-ishigami", "arrive": "10:00", "stayMinutes": 45 },
+        { "place": "toba-sea-folk-museum", "arrive": "13:30", "stayMinutes": 60 },
+        { "place": "toba-osatsu-ohtaya", "arrive": "16:30" }
+      ]
+    },
+    {
+      "date": "2027-02-08",
+      "items": [
+        { "place": "futami-okitama-jinja", "arrive": "09:30", "stayMinutes": 45 },
+        { "place": "futami-sea-paradise", "arrive": "10:30", "stayMinutes": 90 },
+        { "place": "futami-oishiya", "arrive": "16:30" }
+      ]
+    },
+    {
+      "date": "2027-02-10",
+      "items": [
+        { "place": "ise-geku", "arrive": "09:30", "stayMinutes": 60 },
+        { "place": "ise-naiku", "arrive": "11:00", "stayMinutes": 90 },
+        { "place": "ise-oharaimachi", "arrive": "12:30", "stayMinutes": 120 },
+        { "place": "ise-momijiken", "arrive": "16:30" }
+      ]
+    },
+    { "date": "2027-02-12", "items": [{ "place": "kix-nikko", "arrive": "18:00" }] }
+  ]
+}
