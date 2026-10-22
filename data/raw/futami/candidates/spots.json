@@ -393,9 +393,9 @@
     },
     "region": "futami-outskirts",
     "category": "日帰り温泉",
-    "status": "included",
-    "reason": null,
-    "pointId": "futami-sominoyu",
+    "status": "excluded",
+    "reason": "T13b 收錄後 👤 決定去除（2026-10-22）：是ホテル清海（住宿候選 futami-seikai，§5.7 排除：Google 2.8、楽天 3.44）的大浴場開放日歸入浴，不是獨立設施；日歸只有 15:00～22:30",
+    "pointId": null,
     "mentions": [
       {
         "type": "tourism",

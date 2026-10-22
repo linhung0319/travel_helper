@@ -1,7 +1,7 @@
 {
   "generated": "2026-10-22",
   "counts": {
-    "spot": 83,
+    "spot": 82,
     "lodging": 145,
     "restaurant": 292
   },
@@ -91,12 +91,12 @@
     {
       "area": "futami",
       "type": "spot",
-      "total": 6,
+      "total": 5,
       "S": 1,
       "A": 1,
-      "B": 4,
+      "B": 3,
       "none": 0,
-      "aOrAbove": 33
+      "aOrAbove": 40
     },
     {
       "area": "futami",
@@ -431,7 +431,7 @@
       "lunch": 8,
       "dinner": 6,
       "fit15": 3,
-      "spots": 5,
+      "spots": 4,
       "lodging": 15
     },
     {
@@ -763,7 +763,7 @@
       "region": "futami-outskirts",
       "name": "二見町外縁",
       "needsCar": true,
-      "spot": 2,
+      "spot": 1,
       "lodging": 5,
       "restaurant": 5
     },
@@ -985,13 +985,6 @@
       "tier": "B",
       "winterFit": 3,
       "why": "戶外街道、全年通行，2 月店家營業不明"
-    },
-    {
-      "id": "futami-sominoyu",
-      "name": "二見温泉 蘇民の湯",
-      "tier": "B",
-      "winterFit": 4,
-      "why": "室內大浴場＋露天，冬天適合；2 月營業未確認"
     }
   ]
 }

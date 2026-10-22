@@ -1,6 +1,6 @@
 # 跨區整理檢查（T13，scripts/cross-area-check.mjs）
 
-產生：2026-10-22。資料點：景點 83、住宿 145、餐廳 292。
+產生：2026-10-22。資料點：景點 82、住宿 145、餐廳 292。
 
 ## 1. 重複候選（1）
 
@@ -35,7 +35,7 @@ A 以上的比例超過約 25% 要看門檻（§5.1「數字門檻依區調整�
 | toba | spot | 33 | 3 | 6 | 19 | 5 | 32% ⚠️ |
 | toba | lodging | 38 | 5 | 4 | 29 | 0 | 24% |
 | toba | restaurant | 83 | 2 | 15 | 66 | 0 | 20% |
-| futami | spot | 6 | 1 | 1 | 4 | 0 | 33% |
+| futami | spot | 5 | 1 | 1 | 3 | 0 | 40% |
 | futami | lodging | 17 | 2 | 1 | 14 | 0 | 18% |
 | futami | restaurant | 18 | 0 | 3 | 15 | 0 | 17% |
 | ise | spot | 20 | 2 | 2 | 16 | 0 | 20% |
@@ -73,7 +73,7 @@ A 以上的比例超過約 25% 要看門檻（§5.1「數字門檻依區調整�
 | kashikojima 賢島 | shima | 12 | 9 | 6 | 6 | 5 | 20 |
 | jr-iseshi 伊勢市 | ise | 20 | 10 | 12 | 6 | 0 | 0 |
 | jr-isuzugaoka 五十鈴ケ丘 | ise | 5 | 4 | 4 | 2 | 2 | 1 |
-| jr-futaminoura 二見浦 | futami | 14 | 8 | 6 | 3 | 5 | 15 |
+| jr-futaminoura 二見浦 | futami | 14 | 8 | 6 | 3 | 4 | 15 |
 | jr-matsushita 松下 | futami | 3 | 2 | **0** | 0 | 1 | 0 |
 | jr-toba 鳥羽 | toba | 21 | 17 | 13 | 5 | 0 | 0 |
 | obata 小俣 | ise | 1 | 1 | 1 | 1 | 1 | 0 |
@@ -113,7 +113,7 @@ A 以上的比例超過約 25% 要看門檻（§5.1「數字門檻依區調整�
 | toba | sugashima 菅島 |  | 3 | 1 | 2 |
 | toba | kamishima 神島 |  | 5 | 1 | 2 |
 | futami | futami-okitama 二見浦・夫婦岩 |  | 4 | 12 | 13 |
-| futami | futami-outskirts 二見町外縁 | ✓ | 2 | 5 | 5 |
+| futami | futami-outskirts 二見町外縁 | ✓ | 1 | 5 | 5 |
 | ise | ise-geku 外宮・伊勢市駅周辺 |  | 6 | 17 | 45 |
 | ise | ise-kurata 倉田山・五十鈴川駅周辺 |  | 5 | 1 | 7 |
 | ise | ise-isuzugaoka 五十鈴ケ丘・伊勢IC周辺 | ✓ | 1 | 1 | 4 |
@@ -140,7 +140,7 @@ A 以上的比例超過約 25% 要看門檻（§5.1「數字門檻依區調整�
 | A | ise-dandelion-chocolate-geku | ダンデライオン・チョコレート 伊勢外宮店 | 食べログ 3.59（414 則）、Google 4.1（535 則）→ 伊勢的第 1 條（3.55／150 則＋Google 4.1）；觀光三重、Walkerplus、Time Out 介紹 |
 | A | ise-kaki-no-tomo | 牡蠣の朋 | 食べログ 3.55（178 則）、Google 4.5（296 則）→ 伊勢的第 1 條（3.55／150 則＋Google 4.1）；介紹只有 TikTok／IG 轉載 |
 
-### 2 月營業或營業狀態沒確認的景點（12）
+### 2 月營業或營業狀態沒確認的景點（11）
 
 | tier | ID | 名稱 | winterFit | 理由 |
 |---|---|---|---|---|
@@ -155,4 +155,3 @@ A 以上的比例超過約 25% 要看門檻（§5.1「數字門檻依區調整�
 | A | toba-bay-cruise-irukajima | 鳥羽湾めぐりとイルカ島 | 2 | 1 月中旬～2 月上旬有年度休業，旅程大半很可能停航；有開的話海上也冷 |
 | A | toba-osatsu-kamado | 海女小屋 相差かまど | 4 | 室內有炭火、冬天是貝類的季節；2 月營業沒有來源確認 |
 | B | futami-omotesando | 夫婦岩表参道（旅館街） | 3 | 戶外街道、全年通行，2 月店家營業不明 |
-| B | futami-sominoyu | 二見温泉 蘇民の湯 | 4 | 室內大浴場＋露天，冬天適合；2 月營業未確認 |
