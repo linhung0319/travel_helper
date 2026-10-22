@@ -572,7 +572,7 @@ T7c → T7d → T7e → T7f → T7g → T8a → T8b → T8c → T8d → T7i → 
 - **完成條件**：
   - 手機尺寸（約 390px 寬）和電腦尺寸都能完成：找到一個點 → 看小卡片 → 開詳情 → 關掉；切換天數；套用、取消篩選；切到探索模式，移動地圖時圖片牆跟著換。
   - 上面這些流程有 Playwright 測試（architecture §8）。
-  - 在手機的 LINE 內建瀏覽器打開過（👤 協助），沒有版面跑掉或點不到的地方。
+  - 在手機的 LINE 內建瀏覽器打開過（👤 協助），沒有版面跑掉或點不到的地方。**（2026-10-22 👤 決定：移到 T25，部署後和 LINE 登入一起實測）**
 
 ### T12 地圖動作 API 〔S〕
 - 在 T11 的 store 上定義一組地圖指令，**UI 和 AI 都透過它操作地圖**：
@@ -580,6 +580,7 @@ T7c → T7d → T7e → T7f → T7g → T8a → T8b → T8c → T8d → T7i → 
   - 再加上：`selectDay(day)`、`setFilter(filter)`／`clearFilter()`（地圖上方要出現可以取消的篩選標籤）、`select(ids)`／`unselect(ids)`（「問 AI」選取的點，設計文件 §5）、`showProposal(itinerary)`（AI 提議的版本用虛線或半透明，見設計文件 §0）
 - **畫面狀態**要能讀出來給 AI 當脈絡：目前地圖範圍、選定的天、篩選、選取的點、是不是規劃模式（設計文件 §5）。拉框選取先不做。
 - 地圖依 store 的狀態重畫；使用者的操作和 AI 的指令改的是同一份狀態。
+- **區域不寫死（接 T11）**（2026-10-22 👤 決定）：`packages/engine/src/types.ts` 的 `AREA_IDS` 寫死五個區域，改成區域 ID 是一般字串（`AreaId = string`），區域清單在執行時從 `areas.json` 讀；一併處理 `docs/requests.md` 的「[T24] packages/engine 的 AREA_IDS 寫死五個區域」並標成已處理，`packages/engine/test/index.test.ts` 跟著改。改 engine 要在 commit 訊息說明（T14 已完成）。
 - **完成條件**：每個指令都有測試（呼叫後 store 的狀態正確）；用指令能重現 T11 的手動操作（切天數、篩選、聚焦），畫面一樣。
 
 ### T13 跨區整理與驗證 〔M〕
@@ -699,6 +700,7 @@ T7c → T7d → T7e → T7f → T7g → T8a → T8b → T8c → T8d → T7i → 
   - 白名單用的簡單管理頁（只有 👤 能看）。
 - 部署和 LINE 的設定需要 👤：Cloudflare 帳號、LINE channel 的 secret。
 - 在手機的 LINE 裡實際登入一次（🌐 少量：電腦上的流程可以用 Chrome 看）。
+- **LINE 內建瀏覽器實測（接 T11）**（2026-10-22 👤 決定）：登入時一併看地圖網站在 iOS、Android 的 LINE 內建瀏覽器有沒有版面跑掉或點不到的地方（天數分頁左右滑、拉起面板的把手、小卡片→詳情、iPhone 下緣的安全區域、外站照片能不能顯示），結果寫進 T25 的回報；有問題的另開任務修。
 
 ---
 
