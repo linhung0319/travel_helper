@@ -4607,7 +4607,7 @@
       "googleMaps": "https://maps.google.com/?cid=7453135032053717866"
     },
     "tags": [],
-    "tier": null,
+    "tier": "B",
     "nearestStation": {
       "id": "isuzugawa",
       "mode": "walk",
@@ -4700,8 +4700,47 @@
       "description": "外宮與內宮之間的舊參宮道（間の山）。江戶時代古市是和江戶吉原、京都島原並稱的遊郭，現在留有大林寺、寂照寺、創業約 200 年的麻吉旅館（仍營業，只能從外面看）；資料館介紹參宮街道、遊里、伊勢歌舞伎、萬金丹。",
       "coordsNote": "座標是資料館（街道中段）；街道從倭町、古市町到中之町、桜木町"
     },
-    "summary": null,
-    "assessment": null
+    "summary": {
+      "text": "外宮和內宮之間的舊參宮道，江戶時代是和吉原、島原並稱的古市遊郭所在，現在留有寂照寺、大林寺和創業約 200 年的麻吉旅館。街道中段的資料館免費，用展示品介紹參宮街道、遊郭和伊勢歌舞伎。",
+      "pros": [
+        "外宮 → 內宮之間的舊參宮道，可以和倭姬宮、月讀宮一起排",
+        "資料館免費，Google 評論說適合順路進去休息",
+        "伊勢市站搭往浦田町的巴士 11 分「三条前」下車即到資料館"
+      ],
+      "cons": [
+        "資料館規模小，旅程中週一（2/8）和 2/12（國定假日隔天）休館",
+        "街道沿著小丘陵，有坡（坡度、階梯沒有來源）",
+        "主題是遊郭歷史，對小孩沒什麼吸引力；麻吉旅館只能從外面看",
+        "停車場只有約 4 台（舊評論，要再確認）"
+      ],
+      "basedOn": [
+        "https://ise-kanko.jp/purpose/furuichikaidou/",
+        "https://ise-kanko.jp/purpose/shiryokan/",
+        "https://www.kankomie.or.jp/spot/3133",
+        "https://www.kankomie.or.jp/spot/1815",
+        "https://maps.google.com/?cid=7453135032053717866"
+      ],
+      "generated": "2026-10-22"
+    },
+    "assessment": {
+      "rubric": "spot-v1",
+      "scores": {
+        "recommend": 3,
+        "winterFit": 3,
+        "elderFit": 3,
+        "kidsFit": null,
+        "accessEase": 4
+      },
+      "rationale": {
+        "recommend": "Google 4.1（109 則，資料館），觀光協會、觀光三重都有介紹；低分評論沒有具體負評 → 順路的好選擇，伊勢門檻下最多 3",
+        "winterFit": "街道是戶外散步，資料館室內；2 月沒有特別休館",
+        "elderFit": "觀光協會寫沿小丘陵走、有坡，坡度和階梯沒有來源",
+        "kidsFit": "沒有小孩相關的來源（遊郭、歷史資料為主）",
+        "accessEase": "宇治山田站步行 15 分到街道、五十鈴川站約 18 分到資料館；巴士 三条前、古市 下車即到"
+      },
+      "confidence": "medium",
+      "assessed": "2026-10-22"
+    }
   },
   {
     "id": "ise-kadoya-mingukan",
@@ -4807,7 +4846,7 @@
       "室內",
       "雨天備案"
     ],
-    "tier": null,
+    "tier": "B",
     "nearestStation": {
       "id": "jr-isuzugaoka",
       "mode": "walk",
@@ -4899,7 +4938,44 @@
         "停車場 40 台：觀光三重 spot 頁寫在民具館，2020 特集寫在麦酒工場，可能共用"
       ]
     },
-    "summary": null,
-    "assessment": null
+    "summary": {
+      "text": "1575 年創業的二軒茶屋餅把舊砂糖藏改成民具館，連同約百年的味噌溜り藏免費公開，是伊勢的「まちかど博物館」之一。同一處可以吃現做的二軒茶屋餅、配伊勢茶，附近還有伊勢角屋麦酒的工場。",
+      "pros": [
+        "免費、8:00～18:00 全年無休，室內，下雨也能去",
+        "隔壁二軒茶屋餅本店可以坐下吃現做紅豆餅，順便買味噌、醬油",
+        "有預約制的導覽（約 1 小時，含餅試吃、啤酒試飲；2020 年資料）"
+      ],
+      "cons": [
+        "小型私人資料館，評論幾乎沒有（Google 只有 1 則），內容和大小不清楚",
+        "離鐵路站遠（JR 五十鈴ケ丘 步行約 19 分），要搭巴士到「二軒茶屋」",
+        "階梯、廁所、無障礙、15 人能不能一起參觀都沒有來源",
+        "導覽的價格、現在還有沒有要再確認；官網已經打不開"
+      ],
+      "basedOn": [
+        "https://www.kankomie.or.jp/spot/8007",
+        "https://www.kankomie.or.jp/spot/24479",
+        "https://www.kankomie.or.jp/report/721"
+      ],
+      "generated": "2026-10-22"
+    },
+    "assessment": {
+      "rubric": "spot-v1",
+      "scores": {
+        "recommend": 2,
+        "winterFit": 4,
+        "elderFit": null,
+        "kidsFit": null,
+        "accessEase": 3
+      },
+      "rationale": {
+        "recommend": "冷門的小資料館，Google 1 則、心得 0 篇；觀光三重有介紹和 2020 年特集 → 2（同鳥羽 亂步館）",
+        "winterFit": "室內、全年無休；2 月沒有特別的資料",
+        "elderFit": "階梯、坡道、座位沒有來源",
+        "kidsFit": "沒有小孩相關的描述（只有啤酒試飲限大人）",
+        "accessEase": "伊勢市站、宇治山田站搭巴士約 8 分「二軒茶屋」下車即到；鐵路站步行約 19 分以上"
+      },
+      "confidence": "low",
+      "assessed": "2026-10-22"
+    }
   }
 ]

@@ -428,6 +428,11 @@
         "walkSource": "osrm"
       },
       {
+        "id": "futami-mishiodono",
+        "walkMinutes": 13,
+        "walkSource": "osrm"
+      },
+      {
         "id": "futami-yamato",
         "walkMinutes": 2,
         "walkSource": "osrm"
@@ -679,6 +684,11 @@
       {
         "id": "jr-futaminoura",
         "walkMinutes": 5,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "futami-mishiodono",
+        "walkMinutes": 13,
         "walkSource": "osrm"
       },
       {
@@ -995,6 +1005,11 @@
       {
         "id": "futami-omotesando",
         "walkMinutes": 12,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "futami-mishiodono",
+        "walkMinutes": 15,
         "walkSource": "osrm"
       },
       {
@@ -1862,6 +1877,11 @@
       {
         "id": "futami-okitama-jinja",
         "walkMinutes": 12,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "futami-mishiodono",
+        "walkMinutes": 15,
         "walkSource": "osrm"
       },
       {
@@ -2935,6 +2955,11 @@
         "walkSource": "osrm"
       },
       {
+        "id": "futami-mishiodono",
+        "walkMinutes": 12,
+        "walkSource": "osrm"
+      },
+      {
         "id": "futami-asahikan",
         "walkMinutes": 2,
         "walkSource": "osrm"
@@ -3241,6 +3266,11 @@
       {
         "id": "futami-omotesando",
         "walkMinutes": 10,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "futami-mishiodono",
+        "walkMinutes": 12,
         "walkSource": "osrm"
       },
       {
@@ -3570,8 +3600,8 @@
         "walkSource": "osrm"
       },
       {
-        "id": "futami-omotesando",
-        "walkMinutes": 41,
+        "id": "futami-mishiodono",
+        "walkMinutes": 23,
         "walkSource": "osrm"
       },
       {
@@ -3874,6 +3904,11 @@
       {
         "id": "jr-futaminoura",
         "walkMinutes": 28,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "futami-mishiodono",
+        "walkMinutes": 25,
         "walkSource": "osrm"
       },
       {
@@ -4379,6 +4414,11 @@
       {
         "id": "jr-isuzugaoka",
         "walkMinutes": 24,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "futami-mishiodono",
+        "walkMinutes": 28,
         "walkSource": "osrm"
       },
       {

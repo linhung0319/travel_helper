@@ -1,16 +1,16 @@
 # 二見：研究筆記 README
 
-> 開工先讀這份。最後更新：2026-10-18（T8d 完成：餐廳 18 筆；T8e 收尾：anchors、dinnerAccess；T8e 第 6 批 補心得 11 筆；T8f 完成：景點、住宿、餐廳的摘要與評分）。這份是**現況**，各任務更新自己的那一節（覆寫，不是追加）。二見和伊勢一起規劃（T8），過程紀錄寫在 `data/raw/ise/log/`（`log/T8a.md`、`log/T8b.md` 只放指向；`log/T8c.md`、`log/T8d.md` 寫二見的部分，共同方法在伊勢的 `log/T8c.md`、`log/T8d.md`）。
+> 開工先讀這份。最後更新：2026-10-18（T8d 完成：餐廳 18 筆；T8e 收尾：anchors、dinnerAccess；T8e 第 6 批 補心得 11 筆；T8f 完成：景點、住宿、餐廳的摘要與評分；2026-10-22 T13b 補景點 2 筆）。這份是**現況**，各任務更新自己的那一節（覆寫，不是追加）。二見和伊勢一起規劃（T8），過程紀錄寫在 `data/raw/ise/log/`（`log/T8a.md`、`log/T8b.md` 只放指向；`log/T8c.md`、`log/T8d.md` 寫二見的部分，共同方法在伊勢的 `log/T8c.md`、`log/T8d.md`）。
 
 ## 檔案地圖
 
 | 檔案 | 內容 |
 |---|---|
-| `data/areas/futami/spots.json` | 景點 4 筆（T8a：基本欄位、Google、照片、讀文回填；T8f 第 1 批寫了 `summary`／`assessment`／`tier`） |
+| `data/areas/futami/spots.json` | 景點 6 筆（T8a：基本欄位、Google、照片、讀文回填；T8f 第 1 批寫了 `summary`／`assessment`／`tier`；T13b 補 2 筆） |
 | `data/areas/futami/lodging.json` | 住宿 17 筆（T8b：楽天 API、Google、照片、讀文回填；T8f 第 2 批寫了 `summary`／`assessment`／`tier`） |
 | `data/areas/futami/restaurants.json` | 餐廳 18 筆（T8d：食べログ、Google、照片、讀文；`anchors` T8e 算好；T8f 第 3 批寫了 `summary`／`assessment`／`tier`） |
 | `dossiers/<id>.md` | 讀文筆記（景點 4 份 T8a；住宿 17 份 T8b；餐廳 19 份 T8d，含不收的 `futami-yusura-dining`；T8e 第 6 批 11 份追加食べログ口コミ、Google 評論） |
-| `candidates/spots.json` | 景點候選 19 筆（已收錄 4、沒收錄 12、排除 3）。用程式過濾，不要整份讀 |
+| `candidates/spots.json` | 景點候選 20 筆（已收錄 6、沒收錄 11、排除 3）。用程式過濾，不要整份讀 |
 | `candidates/lodging.json` | 住宿候選 23 筆（已收錄 17、排除 4、沒收錄 2） |
 | `candidates/restaurants.json` | 餐廳候選 47 筆（收錄 18、排除 2、未納入 27）。用程式過濾 |
 | `log/T8c.md` | T8c 二見的過程紀錄（町名列表、篩選、D①／D② 怎麼補） |
@@ -24,12 +24,18 @@
 
 | 子地區 | 景點 | 住宿 | 餐廳 |
 |---|---|---|---|
-| futami-okitama | 3 | 12 | 13 |
-| futami-outskirts | 1 | 5 | 5 |
+| futami-okitama | 4 | 12 | 13 |
+| futami-outskirts | 2 | 5 | 5 |
 
 **交通**：近鐵沒有經過二見，最近的是 JR 參宮線二見浦站、松下站（**不能用近鐵 5 日券**）。巴士有 CANばす（伊勢二見鳥羽周遊巴士，五十鈴川站、鳥羽站）和三重交通路線巴士「夫婦岩東口」。
 
-## 景點（4 筆）
+## 景點（6 筆）
+
+### T13b 補景點（2026-10-22）
+- T13 決定補 2 筆（`docs/T13-review.md` §1），照 T8a 的做法，過程在 `data/raw/ise/log/T13b.md`：
+  - **御塩殿神社**（`futami-mishiodono`，futami-okitama）：內宮所管社，製作神宮的堅塩。JR 二見浦站步行約 15 分、沒有停車場；**2 月沒有製鹽作業**（燒固在 3 月、10 月），御料地不能進入。參拜時間沒有來源 → `hours.always`（推定）。Google 4.3（141 則）。B（3 星，confidence medium）。
+  - **二見温泉 蘇民の湯**（`futami-sominoyu`，futami-outskirts）：**其實是ホテル清海的大浴場開放日歸入浴**（住宿候選 `futami-seikai` 在 T8b 依 §5.7 排除：Google 2.8、楽天 3.44）。日歸只有 15:00～22:30（最後 21:30），大人 1,100 円；看海的大浴場＋露天，有刺青不能進。JR 二見浦站有飯店接送約 5 分（日歸客能不能搭沒寫明）。Google 沒有獨立地點，`links.googleMaps` 借飯店、星數不填；飯店的評論頁抽不到日歸入浴的心得。B（2 星，confidence low）。
+- 二見景點變成 6 筆：S 1、A 1、B 4（A 以上 33%，10 筆以下只當參考）。御塩殿神社成了 futami-okitama 7 家、futami-outskirts 2 家餐廳的 anchor。
 
 ### 現況（T8a 完成）
 - 收錄：二見興玉神社（夫婦岩）、伊勢シーパラダイス、夫婦岩表參道（旅館街）、松下社（蘇民將來、大楠）。
@@ -54,7 +60,7 @@
 - **夫婦岩表參道**：JR 二見浦站→表參道 5 分→夫婦岩，是順路走的老街（御福餅本家、扇屋等），沿路店家 2 月的營業時間沒有來源；賓日館 2026-03～2032 休館。
 - **松下社**：小神社＋樹齡 2000 年的大楠，needsCar（JR 松下站步行 10 分）；蘇民將來注連繩在哪裡授與、停車場都沒有來源。重要度低，可以和 T8c 的直賣所「民話の駅 蘇民」一起考慮。
 - **ともいきの国 伊勢忍者キングダム 不收錄**：官網 2026-07-23 起改裝休業、重開日未定。
-- 沒收錄、可以考慮的：御塩殿神社（神宮所管社，二見浦站步行 15 分）、三重県真珠（取珍珠體驗，和伊勢的菊池パール同類型、但在夫婦岩旁）。
+- 沒收錄、可以考慮的：三重県真珠（取珍珠體驗，和伊勢的菊池パール同類型、但在夫婦岩旁）。
 
 ### 缺口
 - 心得少：表參道、松下社 0 篇；二見興玉神社只有攻略文；シーパラ 有 asoview 口碑和部落格。

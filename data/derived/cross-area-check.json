@@ -1,7 +1,7 @@
 {
-  "generated": "2026-10-21",
+  "generated": "2026-10-22",
   "counts": {
-    "spot": 79,
+    "spot": 83,
     "lodging": 145,
     "restaurant": 292
   },
@@ -91,12 +91,12 @@
     {
       "area": "futami",
       "type": "spot",
-      "total": 4,
+      "total": 6,
       "S": 1,
       "A": 1,
-      "B": 2,
+      "B": 4,
       "none": 0,
-      "aOrAbove": 50
+      "aOrAbove": 33
     },
     {
       "area": "futami",
@@ -121,12 +121,12 @@
     {
       "area": "ise",
       "type": "spot",
-      "total": 18,
+      "total": 20,
       "S": 2,
       "A": 2,
-      "B": 14,
+      "B": 16,
       "none": 0,
-      "aOrAbove": 22
+      "aOrAbove": 20
     },
     {
       "area": "ise",
@@ -200,7 +200,7 @@
       "lunch": 31,
       "dinner": 6,
       "fit15": 14,
-      "spots": 9,
+      "spots": 10,
       "lodging": 4
     },
     {
@@ -420,7 +420,7 @@
       "lunch": 4,
       "dinner": 4,
       "fit15": 2,
-      "spots": 1,
+      "spots": 2,
       "lodging": 1
     },
     {
@@ -431,7 +431,7 @@
       "lunch": 8,
       "dinner": 6,
       "fit15": 3,
-      "spots": 3,
+      "spots": 5,
       "lodging": 15
     },
     {
@@ -754,7 +754,7 @@
       "region": "futami-okitama",
       "name": "二見浦・夫婦岩",
       "needsCar": false,
-      "spot": 3,
+      "spot": 4,
       "lodging": 12,
       "restaurant": 13
     },
@@ -763,7 +763,7 @@
       "region": "futami-outskirts",
       "name": "二見町外縁",
       "needsCar": true,
-      "spot": 1,
+      "spot": 2,
       "lodging": 5,
       "restaurant": 5
     },
@@ -781,7 +781,7 @@
       "region": "ise-kurata",
       "name": "倉田山・五十鈴川駅周辺",
       "needsCar": false,
-      "spot": 4,
+      "spot": 5,
       "lodging": 1,
       "restaurant": 7
     },
@@ -826,7 +826,7 @@
       "region": "ise-outskirts",
       "name": "伊勢市街外縁（その他）",
       "needsCar": true,
-      "spot": 0,
+      "spot": 1,
       "lodging": 1,
       "restaurant": 4
     },
@@ -985,6 +985,13 @@
       "tier": "B",
       "winterFit": 3,
       "why": "戶外街道、全年通行，2 月店家營業不明"
+    },
+    {
+      "id": "futami-sominoyu",
+      "name": "二見温泉 蘇民の湯",
+      "tier": "B",
+      "winterFit": 4,
+      "why": "室內大浴場＋露天，冬天適合；2 月營業未確認"
     }
   ]
 }

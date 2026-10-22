@@ -940,7 +940,7 @@
       "神社寺院",
       "海邊"
     ],
-    "tier": null,
+    "tier": "B",
     "nearestStation": {
       "id": "jr-futaminoura",
       "mode": "walk",
@@ -1008,8 +1008,44 @@
       "phoneNote": "神宮司廳（觀光協會）",
       "jingu": "神宮官網的御料地介紹：https://www.isejingu.or.jp/about/estate/"
     },
-    "summary": null,
-    "assessment": null
+    "summary": {
+      "text": "伊勢神宮內宮的所管社，祭祀鹽之神；旁邊的御塩殿每年 3 月、10 月把荒鹽燒成神宮祭典用的堅塩。神社在海邊松林裡，安靜人少，從二見浦站步行約 15 分。",
+      "pros": [
+        "神宮御鹽的製作地，有別處看不到的建築",
+        "安靜、人少，走到海邊聽得到浪聲",
+        "可以和二見興玉神社排在同一天（神宮參拜前先在二見浦禊的說法）"
+      ],
+      "cons": [
+        "2 月沒有製鹽作業，御料地不能進入，旅程中看不到御塩焼き",
+        "沒有停車場；JR 二見浦站步行約 15 分（評論有人覺得要 20～30 分），JR 不能用近鐵 5 日券",
+        "參拜時間、階梯、廁所都沒有來源"
+      ],
+      "basedOn": [
+        "https://ise-kanko.jp/purpose/mishiodonojinja/",
+        "https://www.isejingu.or.jp/about/estate/",
+        "https://maps.google.com/?cid=946366962760237075"
+      ],
+      "generated": "2026-10-22"
+    },
+    "assessment": {
+      "rubric": "spot-v1",
+      "scores": {
+        "recommend": 3,
+        "winterFit": 3,
+        "elderFit": null,
+        "kidsFit": null,
+        "accessEase": 4
+      },
+      "rationale": {
+        "recommend": "Google 4.3（141 則），觀光協會介紹、神宮所管社有具體看點（御塩殿）；評論數少 → 3",
+        "winterFit": "戶外神社，海邊；2 月沒有製鹽作業",
+        "elderFit": "參道、階梯、境內大小都沒有來源",
+        "kidsFit": "沒有小孩相關的來源",
+        "accessEase": "JR 二見浦站步行約 15 分（觀光協會）；沒有停車場"
+      },
+      "confidence": "medium",
+      "assessed": "2026-10-22"
+    }
   },
   {
     "id": "futami-sominoyu",
@@ -1104,7 +1140,7 @@
       "室內",
       "雨天備案"
     ],
-    "tier": null,
+    "tier": "B",
     "nearestStation": {
       "id": "jr-futaminoura",
       "mode": "shuttle",
@@ -1211,7 +1247,45 @@
         "JR 二見浦站接送車：官網約 5 分、日本旅行約 7 分（搜尋摘要）"
       ]
     },
-    "summary": null,
-    "assessment": null
+    "summary": {
+      "text": "二見浦東側飯店「ホテル清海」的大浴場，開放日歸入浴（15:00～22:30）。兩個浴場男女輪替，都有看海的大浴場和露天風呂，其中日の出の湯可以望見伊勢灣和夫婦岩方向。",
+      "pros": [
+        "冬天泡湯、室內＋露天，雨天也可以",
+        "大人 1,100 円、小孩 770 円，乳兒免費",
+        "JR 二見浦站有免費接送車（約 5 分，到站打電話）"
+      ],
+      "cons": [
+        "只有 15:00 以後能泡，白天不行；定休日、2 月點檢休館都沒有來源，要先打電話",
+        "所在的ホテル清海 Google 2.8、楽天 3.44，住宿因評價差被排除；日歸入浴本身的心得沒有讀到",
+        "有刺青不能進；團體料金、無障礙、電梯沒有來源",
+        "在二見外圍，走路到二見浦站約 37 分；接送車是飯店的，日歸客能不能搭要確認"
+      ],
+      "basedOn": [
+        "https://www.kankomie.or.jp/spot/1131",
+        "http://hotel-seikai.com/spa/",
+        "http://hotel-seikai.com/access/",
+        "http://hotel-seikai.com/facilities/"
+      ],
+      "generated": "2026-10-22"
+    },
+    "assessment": {
+      "rubric": "spot-v1",
+      "scores": {
+        "recommend": 2,
+        "winterFit": 4,
+        "elderFit": null,
+        "kidsFit": null,
+        "accessEase": 3
+      },
+      "rationale": {
+        "recommend": "沒有日歸溫泉自己的評分；飯店本體 Google 2.8（709 則）、楽天 3.44，心得 0 篇 → 2",
+        "winterFit": "室內大浴場＋露天，冬天適合；2 月營業未確認",
+        "elderFit": "電梯、階梯、無障礙沒有來源",
+        "kidsFit": "只有兒童料金，沒有小孩相關的描述",
+        "accessEase": "JR 二見浦站有飯店接送約 5 分（日歸客能不能搭沒寫明），或伊勢市站搭巴士 25 分＋步行 3～5 分"
+      },
+      "confidence": "low",
+      "assessed": "2026-10-22"
+    }
   }
 ]
