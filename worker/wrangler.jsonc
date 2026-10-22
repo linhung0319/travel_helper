@@ -1,0 +1,23 @@
+// Cloudflare Worker 的設定（T24：只用本機的 D1）。
+// 正式環境的 database_id、部署、LINE 的 secret 由 T25 設定；T24 不部署、不建立雲端資源。
+{
+  "$schema": "../node_modules/wrangler/config-schema.json",
+  "name": "travel-helper",
+  "main": "src/index.ts",
+  "compatibility_date": "2026-10-01",
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "travel-helper",
+      // 本機（--local、wrangler dev）不會用到這個 ID；T25 建立正式的 D1 後換成真的 ID
+      "database_id": "00000000-0000-0000-0000-000000000000",
+      "migrations_dir": "migrations"
+    }
+  ],
+  "vars": {
+    // 開發用的固定身分（T25 換成 LINE 登入）。正式環境不能設成 "1"
+    "DEV_AUTH": "1",
+    "DEV_MEMBER_ID": "dev-user",
+    "DEV_MEMBER_NAME": "開發者"
+  }
+}

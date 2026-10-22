@@ -1,9 +1,9 @@
 {
   "compilerOptions": {
     "target": "ES2022",
-    // T25 加 wrangler 時改用 @cloudflare/workers-types
-    "lib": ["ES2022", "WebWorker"],
-    "types": [],
+    // Workers 的執行環境：@cloudflare/workers-types（T24 加上 wrangler 時改，不再用 WebWorker）
+    "lib": ["ES2022"],
+    "types": ["@cloudflare/workers-types"],
     "module": "ESNext",
     "moduleResolution": "bundler",
     "skipLibCheck": true,

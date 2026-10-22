@@ -183,3 +183,45 @@
   - 「照片」補一句：腳本讀照片時 User-Agent 不要假裝成瀏覽器（Wikimedia 會對「Mozilla/5.0 …」回 429）；就算改了 UA，連續下載 Wikimedia 原圖還是會被限流，T21 照規則沒有繞過，Wikimedia 的照片沒有看到。
 - 原因：T21 新增的工具之後新增資料點、重挑代表照片時要用；`photo-check.mjs` 已經改了 UA（T21）。
 - 狀態：待處理
+
+## [T24] common.schema.json 的 areaId 不寫死
+- 要改的檔案：`schema/common.schema.json` 的 `$defs.areaId`；`docs/CONVENTIONS.md` §1「區域 ID」那一行
+- 內容：`areaId` 目前是 `["ise", "futami", "toba", "shima", "kix"]` 的 enum，改成 `{ "$ref": "#/$defs/id" }`（一般的 kebab-case ID）。「區域在不在 `areas.json`」由 `scripts/validate.mjs` 檢查（本來就有：資料點的 `area`、`areas/<area>/`、`raw/<area>/` 都要在 `areas.json`）。CONVENTIONS 的區域 ID 那行改成「區域 ID 以 `areas.json` 為準（目前是…）」。
+- 原因：2026-10-22 👤 決定區域不寫死，之後要加大阪這類新區域時不用改 schema 和程式（PLAN T24 任務卡）。在 schema 改之前，`scripts/lib/schemas.mjs` 讀 schema 時先在記憶體裡把 enum 換掉（validate 和 Worker 的驗證程式都用它），schema 改好之後那段就不會做任何事，不用再改程式。
+- 狀態：待處理
+
+## [T24] data/redirects.json 的 schema（合併重複點的轉址）
+- 要改的檔案：`schema/`（新增 `redirects.schema.json`）；`docs/CONVENTIONS.md` §1 目錄（`data/redirects.json`）、§1.5 的 schema 清單
+- 內容：最外層是陣列，一筆一個轉址。下面是建議的 schema（`scripts/test/helpers/test-area.ts` 的 `REDIRECTS_SCHEMA` 是同一份，測試用它）：
+  ```json
+  {
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "$id": "https://travel-helper.local/schema/redirects.schema.json",
+    "title": "轉址（data/redirects.json）：合併重複的資料點時，被合併的舊 ID → 保留的 ID",
+    "type": "array",
+    "items": {
+      "type": "object",
+      "properties": {
+        "from": { "description": "被合併掉的舊 ID（資料裡已經沒有）", "$ref": "common.schema.json#/$defs/id" },
+        "to": { "description": "保留的 ID（資料裡要有；不能再轉址）", "$ref": "common.schema.json#/$defs/id" },
+        "date": { "description": "合併的日期", "$ref": "common.schema.json#/$defs/date" },
+        "reason": { "description": "為什麼合併（例如「同一家店，食べログ有兩頁」）", "type": "string", "minLength": 1 },
+        "task": { "description": "做合併的任務 ID", "type": ["string", "null"] }
+      },
+      "required": ["from", "to", "date", "reason"],
+      "additionalProperties": false
+    }
+  }
+  ```
+  - 範例：`[{ "from": "toba-xx-2", "to": "toba-xx", "date": "2027-01-05", "reason": "同一家店，食べログ有兩頁", "task": "T13" }]`
+  - 不需要 `sources`：轉址是整理資料的決定，不是查到的事實；查到「是同一家」的依據寫在保留那一筆的 `sources`。
+  - 驗證路徑：`data/redirects.json`。`scripts/validate.mjs` 已經加上這個路徑和內容的檢查（舊 ID 已經不在資料裡、目的地存在、不能連鎖、不能重複），schema 加進去之後就會生效；在那之前這個檔案不存在，不影響。
+  - 匯入時（`npm run db:import`）寫進 D1 的 `redirects`，同時把修改、投票、建議、確定的行程裡的舊 ID 換成新 ID（architecture §3.4）。
+- 原因：architecture §3.5：第一次正式匯入之後 ID 不改名，合併重複的點要記轉址。
+- 狀態：待處理
+
+## [T24] packages/engine 的 AREA_IDS 寫死五個區域（給 T14、T11）
+- 要改的檔案：`packages/engine/src/types.ts` 的 `AREA_IDS`、`AreaId`（T14 負責；T24 不改別人已有的型別）
+- 內容：`AreaId` 現在是五個區域的聯集型別。區域不寫死之後，建議改成 `string`（或 `string & {}`），區域清單在執行時從 `areas.json`（靜態資料，`npm run build:static` 輸出的 `static/areas.json`）讀。`worker/` 裡區域一律當成字串處理，沒有用到 `AREA_IDS`。
+- 原因：之後加大阪時，型別寫死的話 web、引擎要改程式（PLAN T24「區域不寫死」）。
+- 狀態：待處理

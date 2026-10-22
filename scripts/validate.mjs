@@ -2,9 +2,13 @@
 // 驗證 data/ 下所有 JSON：
 //   1. 符合 schema/ 裡對應的 JSON Schema（每筆資料都要有 sources）
 //   2. 資料點 ID 全專案唯一
-//   3. 座標落在範圍內（伊勢志摩；機場交通檔案放寬到關西、中部）
+//   3. 座標落在所屬區域的範圍內（areas.json 的 bbox 往外放寬 BBOX_MARGIN 算錯誤，超出 bbox 本身只警告）
 //   4. 引用的 ID（最近車站、anchors、轉乘車站…）都存在
 //   5. region 在 areas.json 該區域的 regions 裡
+//   6. data/redirects.json（合併重複點的轉址）：舊 ID 已經不在資料裡、新 ID 存在、沒有連鎖
+//
+// 區域不寫死（T24）：區域 ID、檔案路徑裡的 areas/<area>/、raw/<area>/ 都從 areas.json 讀。
+// 新增區域時只要把資料放進 data/areas/<新區域>/、areas.json 加上這一區，不用改這支程式。
 //
 // 用法：node scripts/validate.mjs [--data <dir>] [--schema <dir>]
 //       或 npm run validate、scripts/validate
@@ -15,6 +19,7 @@ import { fileURLToPath } from 'node:url';
 import Ajv2020 from 'ajv/dist/2020.js';
 import addFormats from 'ajv-formats';
 import localizeZhTW from 'ajv-i18n/localize/zh-TW/index.js';
+import { loadSchemaDocs } from './lib/schemas.mjs';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 
@@ -32,26 +37,43 @@ function parseArgs(argv) {
 }
 
 // [西經度, 南緯度, 東經度, 北緯度]
-const BBOX_ISESHIMA = [136.5, 34.2, 137.1, 34.65];
-const BBOX_WIDE = [134.9, 33.8, 137.3, 35.4]; // 關西機場、大阪、名古屋都在內
+// 座標的錯誤範圍：所屬區域的 bbox 往外放寬這麼多度（約 20 km）。超出 bbox 本身只警告（bbox 是大致範圍）。
+// 以前寫死「伊勢志摩」和「關西、中部」兩個範圍；改成從 areas.json 算，新增區域不用改程式（T24）。
+export const BBOX_MARGIN = 0.2;
+// access/（機場往返交通）跨區域：所有區域 bbox 的外框再放寬這麼多度（約 90 km，大阪、名古屋、京都都在內）
+export const ACCESS_MARGIN = 0.8;
+
+const AREA = '([a-z0-9]+(?:-[a-z0-9]+)*)'; // 區域 ID 的格式；是不是在 areas.json 裡另外檢查
 
 // 依路徑決定用哪個 schema。cache/、derived/ 只檢查 JSON 格式。
+// areaGroup：路徑裡第幾個括號是區域 ID（要在 areas.json 裡）
 const ROUTES = [
   { re: /^areas\.json$/, schema: 'area', kind: 'areas' },
   { re: /^stations\.json$/, schema: 'station', kind: 'points' },
-  { re: /^areas\/(ise|futami|toba|shima|kix)\/spots\.json$/, schema: 'spot', kind: 'points' },
-  { re: /^areas\/(ise|futami|toba|shima|kix)\/lodging\.json$/, schema: 'lodging', kind: 'points' },
-  { re: /^areas\/(ise|futami|toba|shima|kix)\/restaurants\.json$/, schema: 'restaurant', kind: 'points' },
+  { re: /^redirects\.json$/, schema: 'redirects', kind: 'redirects' }, // T24：schema 見 docs/requests.md
+  { re: new RegExp(`^areas/${AREA}/spots\\.json$`), schema: 'spot', kind: 'points', areaGroup: 1 },
+  { re: new RegExp(`^areas/${AREA}/lodging\\.json$`), schema: 'lodging', kind: 'points', areaGroup: 1 },
+  { re: new RegExp(`^areas/${AREA}/restaurants\\.json$`), schema: 'restaurant', kind: 'points', areaGroup: 1 },
   { re: /^timetables\/kintetsu\/_travel-times\.json$/, schema: 'kintetsu-travel-times', kind: 'travel-times' },
   { re: /^timetables\/kintetsu\/_[a-z0-9-]+\.json$/, schema: 'sourced-document', kind: 'doc' },
   { re: /^timetables\/kintetsu\/[a-z0-9-]+\.json$/, schema: 'timetable-kintetsu', kind: 'timetable' },
   { re: /^timetables\/(bus|ferry|jr)\/[a-z0-9-]+\.json$/, schema: 'sourced-document', kind: 'doc' }, // T10：格式見 docs/requests.md，正式 schema 由 T7 補
   { re: /^passes\.json$/, schema: 'passes', kind: 'doc' },
-  { re: /^access\/[a-z0-9-]+\.json$/, schema: 'access', kind: 'doc', bbox: BBOX_WIDE },
+  { re: /^access\/[a-z0-9-]+\.json$/, schema: 'access', kind: 'doc', range: 'access' },
   { re: /^cache\//, schema: null, kind: 'cache' },
   { re: /^derived\//, schema: null, kind: 'cache' }, // 腳本產生（分數、分級），只檢查 JSON 格式
-  { re: /^raw\/(ise|futami|toba|shima|kix)\/candidates\/(spots|lodging|restaurants)\.json$/, schema: 'candidate', kind: 'candidates' },
+  { re: new RegExp(`^raw/${AREA}/candidates/(spots|lodging|restaurants)\\.json$`), schema: 'candidate', kind: 'candidates', areaGroup: 1 },
 ];
+
+/** bbox 往外放寬 m 度 */
+export function expandBbox([w, s, e, n], m) {
+  return [w - m, s - m, e + m, n + m];
+}
+
+/** 好幾個 bbox 的外框 */
+export function envelope(boxes) {
+  return boxes.reduce((a, b) => [Math.min(a[0], b[0]), Math.min(a[1], b[1]), Math.max(a[2], b[2]), Math.max(a[3], b[3])]);
+}
 
 function walk(dir) {
   const out = [];
@@ -72,12 +94,9 @@ function loadSchemas(schemaDir) {
   const ajv = new Ajv2020({ allErrors: true, strict: false });
   addFormats(ajv);
   const validators = {};
-  for (const f of fs.readdirSync(schemaDir).filter((f) => f.endsWith('.schema.json'))) {
-    ajv.addSchema(JSON.parse(fs.readFileSync(path.join(schemaDir, f), 'utf8')), f);
-  }
-  for (const f of fs.readdirSync(schemaDir).filter((f) => f.endsWith('.schema.json'))) {
-    validators[f.replace('.schema.json', '')] = ajv.getSchema(f);
-  }
+  const docs = loadSchemaDocs(schemaDir);
+  for (const { file, schema } of docs) ajv.addSchema(schema, file);
+  for (const { file } of docs) validators[file.replace('.schema.json', '')] = ajv.getSchema(file);
   return validators;
 }
 
@@ -150,6 +169,14 @@ function main() {
   const points = new Map(); // id → { file, record }
   const areas = new Map();
   const loaded = [];
+  // 先讀 areas.json：檔案路徑裡的區域 ID 要對得到（areas.json 本身的檢查照舊在下面的迴圈做）
+  let areaIds = null;
+  try {
+    const list = JSON.parse(fs.readFileSync(path.join(opts.data, 'areas.json'), 'utf8').replace(/^﻿/, ''));
+    if (Array.isArray(list)) areaIds = new Set(list.map((a) => a?.id).filter(Boolean));
+  } catch {
+    // 沒有 areas.json 或格式錯：路徑裡的區域 ID 不檢查（areas.json 的錯誤在下面報）
+  }
 
   for (const abs of files) {
     const rel = path.relative(opts.data, abs).split(path.sep).join('/');
@@ -167,6 +194,10 @@ function main() {
       continue;
     }
     if (route.kind === 'cache') continue;
+    if (route.areaGroup && areaIds) {
+      const areaInRoute = rel.match(route.re)[route.areaGroup];
+      if (!areaIds.has(areaInRoute)) err(shown, `區域「${areaInRoute}」不在 areas.json（新增區域要先在 areas.json 加上這一區）`);
+    }
 
     const validate = validators[route.schema];
     if (!validate) {
@@ -212,16 +243,26 @@ function main() {
     if (id && !points.has(id)) err(shown, `[${owner}] ${field} 引用的「${id}」不存在`);
   };
 
+  // 座標範圍都從 areas.json 的 bbox 算（區域不寫死）
+  const areaBoxes = [...areas.values()].filter((a) => Array.isArray(a.bbox) && a.bbox.length === 4);
+  const rangeOf = (areaId) => {
+    const a = areas.get(areaId);
+    return a?.bbox ? [expandBbox(a.bbox, BBOX_MARGIN)] : areaBoxes.map((b) => expandBbox(b.bbox, BBOX_MARGIN));
+  };
+  const accessRange = areaBoxes.length ? [expandBbox(envelope(areaBoxes.map((a) => a.bbox)), ACCESS_MARGIN)] : [];
+  const inAny = (c, ranges) => ranges.some((r) => inBbox(c, r));
+
   for (const { shown, rel, route, data } of loaded) {
     if (route.kind === 'points' && Array.isArray(data)) {
       for (const rec of data) {
         if (!rec?.id) continue;
-        if (Array.isArray(rec.coords) && rec.coords.length === 2) {
-          // 關西機場周邊（kix）不在伊勢志摩，放寬到關西、中部
-          const range = rec.area === 'kix' ? BBOX_WIDE : BBOX_ISESHIMA;
-          if (!inBbox(rec.coords, range)) {
-            const swapped = inBbox([rec.coords[1], rec.coords[0]], range);
-            err(shown, `[${rec.id}] 座標 ${JSON.stringify(rec.coords)} 不在${rec.area === 'kix' ? '關西、中部' : '伊勢志摩'}範圍內${swapped ? '（經緯度可能寫反了，應該是 [經度, 緯度]）' : ''}`);
+        if (/^user-/.test(rec.id)) err(shown, `[${rec.id}] ID 不能用「user-」開頭（保留給使用者在網站上自己加的點）`);
+        if (Array.isArray(rec.coords) && rec.coords.length === 2 && areaBoxes.length) {
+          const ranges = rangeOf(rec.area);
+          const label = areas.has(rec.area) ? `區域「${rec.area}」` : '任何區域';
+          if (!inAny(rec.coords, ranges)) {
+            const swapped = inAny([rec.coords[1], rec.coords[0]], ranges);
+            err(shown, `[${rec.id}] 座標 ${JSON.stringify(rec.coords)} 不在${label}的範圍內（bbox 往外 ${BBOX_MARGIN} 度）${swapped ? '（經緯度可能寫反了，應該是 [經度, 緯度]）' : ''}`);
           } else if (areas.has(rec.area) && !inBbox(rec.coords, areas.get(rec.area).bbox)) {
             warn(shown, `[${rec.id}] 座標不在區域「${rec.area}」的大致範圍內，請確認 area 是否正確`);
           }
@@ -289,9 +330,24 @@ function main() {
         }
       }
     } else if (route.kind === 'doc') {
-      const bbox = route.bbox ?? BBOX_ISESHIMA;
+      // 時刻表等不屬於單一區域的檔案：在任何一個區域的範圍內就好；access/ 用所有區域的外框再放寬
+      const ranges = route.range === 'access' ? accessRange : rangeOf(null);
+      if (!ranges.length) continue;
       for (const c of findCoords(data)) {
-        if (!inBbox(c.coords, bbox)) err(shown, `${c.path} 座標 ${JSON.stringify(c.coords)} 超出範圍`);
+        if (!inAny(c.coords, ranges)) err(shown, `${c.path} 座標 ${JSON.stringify(c.coords)} 超出範圍`);
+      }
+    } else if (route.kind === 'redirects' && Array.isArray(data)) {
+      // 轉址（T24，architecture §3.5）：from 是被合併掉的舊 ID、to 是保留的 ID
+      const froms = new Set(data.map((r) => r?.from).filter(Boolean));
+      const seen = new Set();
+      for (const r of data) {
+        if (!r?.from || !r?.to) continue;
+        if (seen.has(r.from)) err(shown, `[${r.from}] 轉址重複`);
+        seen.add(r.from);
+        if (r.from === r.to) err(shown, `[${r.from}] 轉到自己`);
+        if (points.has(r.from)) err(shown, `[${r.from}] 已經轉址到「${r.to}」，但資料裡還有這個 ID（${points.get(r.from).file}）`);
+        if (!points.has(r.to)) err(shown, `[${r.from}] 轉址的目的地「${r.to}」不存在`);
+        if (froms.has(r.to)) err(shown, `[${r.from}] 轉到「${r.to}」，但「${r.to}」本身也轉址了：請直接寫最後的 ID`);
       }
     }
   }
@@ -353,4 +409,5 @@ function main() {
   console.log('驗證通過。');
 }
 
-main();
+// 直接執行才跑（測試會 import expandBbox 等函式）
+if (process.argv[1] && path.resolve(process.argv[1]) === fileURLToPath(import.meta.url)) main();
