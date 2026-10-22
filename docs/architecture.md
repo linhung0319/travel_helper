@@ -105,7 +105,20 @@ travel_helper/
 - **不刪別人的修改**：改錯了就再新增一筆修改蓋過去；復原（`reverted_at`）只有改的人自己能按。
 - 個人想記、不給大家看的東西，之後需要時另外做成「個人備註」，不放進修改層。
 
-### 3.3 資料表草稿（D1，T24 定案）
+### 3.3 資料表（D1，T24 定案）
+
+定案的 SQL 在 `worker/migrations/0001_init.sql`（每個欄位都有註解）。下面是 2026-10-21 的草稿，T24 定案時改了這些：
+
+- `place_edits` 加 `updated_at`（建立、復原、匯入收掉時更新，`GET /api/edits?since=` 用）、`note`（修改的理由）、`closed_at`／`closed_import_id`／`closed_reason`（匯入時收掉：`same-as-new-base` 兩邊改成一樣、`conflict-use-base` 衝突時選了新的預設值）。ID 是自動編號的整數，越大越新。
+- `base_value` 是 SQL 的 `NULL` 表示「預設資料沒有這個欄位」，和 JSON 的 `null`（欄位是 null）分開。
+- `places_base` 加 `first_import_id`、`retired_import_id`；`import_id` 是最後一次改到這一列的匯入。
+- `votes` 加 `deleted_at`：收回投票是軟刪除。**所有刪除都是軟刪除**，同步只要看 `MAX(updated_at)`（§4「同步」）。
+- `user_places` 加 `updated_by`；ID 是 `user-<隨機 12 碼>`，validate 禁止匯入的資料用 `user-` 開頭，不會撞。
+- `redirects` 加 `reason`。
+- 時間欄位（`*_at`）是 UTC 的 ISO 字串，只用來記錄誰、何時改的；行程裡的時間照 §3.8 存日本時間的字串。
+- D1 預設開著外鍵檢查：`author`、`member_id` 都要先在 `members` 裡（開發用的身分第一次出現時自動加進去）。
+
+草稿：
 
 ```sql
 imports       (id, area, git_commit, imported_at, imported_by, summary JSON)
@@ -128,7 +141,7 @@ ai_usage      (member_id, date, input_tokens, output_tokens, PRIMARY KEY (member
 
 - 結構複雜、常常整份讀寫的東西（資料點的內容、行程）存成 JSON 欄位；要統計、篩選的東西（投票、修改紀錄、建議）拆成一列一列。
 - `user_places`、`suggestions` 的 `author`、`votes` 的 `member_id` 都對到 `members`；**只有本人能刪**，由 Worker 檢查。
-- 資料點約 550 筆（2026-10-21：住宿 145、餐廳 292、景點 79、車站 28），D1 的免費額度對 15 人綽綽有餘（實際數字開工時再查官網）。
+- 資料點 551 筆（2026-10-22：住宿 145、餐廳 292、景點 82、車站 32），JSON 共約 2.9 MB，最大的一筆約 12 KB。D1 的免費額度見 §4「免費額度」。
 
 ### 3.4 匯入（T24 寫腳本）
 
@@ -149,11 +162,31 @@ ai_usage      (member_id, date, input_tokens, output_tokens, PRIMARY KEY (member
 3. 👤 看過報告、處理完衝突，再正式匯入。匯入記在 `imports`（區域、git commit、各類筆數）。
 4. **本機和正式環境分開**：先匯入本機的 D1（`wrangler dev`）試，沒問題再匯入正式環境。
 
+**實作（T24）**：`scripts/db-import.mjs`（比對和 SQL 在 `scripts/lib/import-plan.mjs`，合併和三方比對和 Worker 共用 `worker/src/lib/merge.ts`）。
+
+```sh
+npm run db:import -- --all                 # 1. dry run：validate → 比對 → 報告（還沒寫進資料庫）
+npm run db:import -- --area ise,futami     #    只匯入指定的區域（areas.json 的 ID）
+npm run db:import -- --all --resolve r.json  # 有衝突時：{ "<修改 ID>": "keep" | "use-base" }，再出一次報告
+npm run db:import -- --apply data/cache/import/<時間>-all.json   # 2. 👤 看過報告後正式匯入
+```
+
+- 報告寫到 `data/cache/import/<時間>-<範圍>.md`（給 👤 看：新增、更新的欄位、恢復、下架、區域換了、衝突的三個值、轉址）和 `.json`（計畫）。
+- `--apply` 會重新比對一次，算出的 `planHash` 和報告不一樣（出報告之後資料或資料庫變了）就不匯入。有沒處理的衝突也不匯入。
+- 比對用 `content_hash`：資料點的 JSON 鍵排序後的 sha256，所以只改縮排、鍵的順序不算「變了」。
+- **區域不寫死**：可以指定的區域、要讀哪些檔案都從 `areas.json` 來。資料點的 `area` 換了（例如從 A 搬到 B），只匯入 A 時不下架（報告列成「區域換了」），匯入 B 時才更新。
+- **衝突的處理**：`keep`＝保留使用者的修改，`base_value` 換成新的預設值（之後再匯入時以新的為準）；`use-base`＝用新的預設值，這筆修改收掉。兩種都記在 `imports.summary`。
+- 下架的點又出現時恢復（`retired_at` 清掉）。
+- 正式環境（`--remote`）的匯入等 T25 設定好 Cloudflare 才開放。
+
 **新增區域**（例如之後加大阪）：照現在的方式蒐集到 `data/areas/osaka/`，驗證後匯入。大阪的 ID 都是新的，只會新增，不會碰到任何人的修改。
 
 ### 3.5 規則
 - **ID 不改名**：ID 是連接預設資料、修改、行程、投票的關鍵。第一次正式匯入之後，已經匯入的 ID 不改名。
-- **合併重複的點**：保留一個 ID，被合併的記成轉址（舊 ID → 新 ID）。轉址記在 `data/redirects.json`，格式由 T24 定，匯入時寫進 `redirects`；行程、投票、修改都跟著轉過去。
+- **合併重複的點**：保留一個 ID，被合併的記成轉址（舊 ID → 新 ID）。轉址記在 `data/redirects.json`，匯入時寫進 `redirects`；行程、投票、修改都跟著轉過去。
+  - 格式（T24 定，schema 見 `docs/requests.md`）：`[{ "from": "舊 ID", "to": "保留的 ID", "date": "YYYY-MM-DD", "reason": "為什麼合併", "task": "T13" }]`。validate 檢查：舊 ID 已經不在資料裡、目的地存在、不能連鎖、不能重複。
+  - 匯入時：舊的點下架；修改的 `place_id` 換成新 ID；投票換過去（同一個人兩邊都投過就保留新 ID 那一票，舊的軟刪除）；建議的 `place_ids`、確定的行程裡**完全等於**舊 ID 的 JSON 字串換成新 ID（行程改之前先存快照、`version` 加一）；之前轉到舊 ID 的轉址直接改指新 ID。
+  - Worker 收到舊 ID（`GET /api/places/:id`、修改、投票）時自動轉到新 ID；`GET /api/places` 回傳轉址表，前端顯示舊行程時用。
 - **網站上線後，資料的修正一律在網站上改**（修改層），不再請 Claude Code 改既有區域的 JSON。預設資料只有匯入一種改法。例外是整批重查（例如重查某一區的營業時間），這時照 §3.4 重新匯入並處理衝突。
 - **schema 改版**：欄位改名、搬位置時，修改層的 `field_path` 也要跟著搬，寫在 migration 裡。
 
@@ -171,6 +204,12 @@ ai_usage      (member_id, date, input_tokens, output_tokens, PRIMARY KEY (member
 ### 3.7 時刻表和其他靜態資料
 - `timetables/`、`passes.json`、`access/`、`areas.json` 在 build 時整理成靜態 JSON，和網站一起部署。
 - **時刻表照車站拆開**，用到時才載入。
+- **實作（T24）**：`npm run build:static`（`scripts/build-static.mjs`），先跑 validate，預設輸出到 `build/static/`（不進 git；部署時 T25 放進網站的靜態檔案）。
+  - 近鐵：一站一個檔案，每一班加上 `next`（這班車在這站之後的停站 `[[車站, 到, 發], ...]`，從 `_travel-times.json` 的 `trains` 拆進來），查「從這站到哪站」只要載入出發站。站間車程另外放 `timetables/kintetsu/_segments.json`。
+  - JR 各站、巴士、船：一個車站或路線一個檔案，照原樣。巴士停留所不是車站，所以照路線分。
+  - `timetables/index.json`：每個檔案有什麼（車站、路線名、停留所的座標、GTFS 的出處），加上 `byPlace`（資料點 ID → 附近有停的路線，從停留所的 `near`）。
+  - `manifest.json`：每個檔案的 sha256（快取用）和 git commit。網站先讀它和 `index.json`，用到哪個車站或路線再載入那一個檔案。
+  - `areas.json` 也照原樣輸出：網站的區域清單從這裡讀（區域不寫死）。
 - 這些資料使用者不會在網站上改，查詢量又大，所以不放進資料庫。要更新就改 JSON、重新部署。
 
 ### 3.8 時間與同步
@@ -190,7 +229,7 @@ ai_usage      (member_id, date, input_tokens, output_tokens, PRIMARY KEY (member
 | Claude API 代理（T16） | 同一個 Worker；API key 存成 Worker secret |
 | 資料庫 | D1 |
 
-- **API 草稿**（T24、T25 定案）：
+- **API 草稿**（T24、T25 定案；T24 定案的資料部分見下方「資料 API（T24）」）：
   - 資料：`GET /api/places`（預設資料，用匯入版本當 ETag 快取）、`GET /api/edits?since=`、`POST /api/edits`、`POST /api/edits/:id/revert`、`/api/user-places`
   - 行程、建議、投票：`GET/PUT /api/itinerary`（PUT 要帶 `version`）、`/api/itinerary/snapshots`、`/api/suggestions`（`PATCH /api/suggestions/:id/status` 標狀態）、`/api/votes`
   - 聊天紀錄：`/api/chats`（只回傳自己的）
@@ -200,6 +239,50 @@ ai_usage      (member_id, date, input_tokens, output_tokens, PRIMARY KEY (member
 - **除了登入和 LINE 的通知，所有 API 都要先登入。**
 - **環境**：本機用 `wrangler dev`（本機的 D1），正式環境部署到 Cloudflare。用 GitHub Actions 自動部署是之後的事，一開始手動 `wrangler deploy` 就好。
 - **費用**：預期都在免費額度內。Workers 免費方案每次請求的 CPU 時間很短，所以 Worker 只做轉發、讀寫資料庫、簡單的合併與驗證；重的計算（行程引擎）放在瀏覽器（§6）。
+
+### 免費額度（2026-10-22 查官網）
+
+| 項目 | Workers 免費方案 | 對這個網站的意思 |
+|---|---|---|
+| Worker 請求 | 每天 10 萬次（UTC 0 點重算） | 15 人每 30 秒輪詢一次，整天開著約 4.3 萬次：**輪詢只能打一支 API**（`/api/sync`） |
+| 每次請求的 CPU 時間 | 10 ms（付費方案預設 30 秒、最多 5 分鐘） | 不在 Worker 裡解開、重組 3 MB 的資料點（`/api/places` 直接接起 JSON 文字）；行程引擎在瀏覽器 |
+| 記憶體 | 每個 isolate 128 MB | |
+| 子請求 | 每次請求 50 個 | LINE、Claude API 的呼叫（T25、T16） |
+| Worker 大小 | 64 MiB（沒壓縮的；沒有壓縮後的上限） | 產生的驗證程式約 314 KB |
+| 靜態檔案 | 每個版本 2 萬個、每個 25 MiB | 靜態資料 53 個檔案、約 2.3 MB |
+| 環境變數 | 64 個、每個 5 KB | |
+| D1 讀取 | 每天 500 萬列（掃過的列都算，不管有沒有回傳；UTC 0 點重算） | `/api/places` 一次讀約 550 列，靠 ETag（匯入編號）回 304 省掉；同步只用有索引的 `MAX()`，**不用 `COUNT(*)`**（每次都會掃整張表） |
+| D1 寫入 | 每天 10 萬列 | 一次全部匯入約 550 列 |
+| D1 容量 | 每個資料庫 500 MB、帳號共 5 GB、最多 10 個資料庫 | 資料點約 3 MB |
+| D1 每次請求的查詢數 | 50 個 | 一個 API 最多 6～7 個查詢 |
+| D1 一句 SQL | 最長 100 KB；參數最多 100 個；一列（字串）最大 2 MB | 匯入一筆一句（最大約 12 KB）；行程限制 1 MB |
+| D1 的 LIKE 樣式 | 最長 50 bytes | 用 `instr()` 代替 LIKE（轉址時找 ID） |
+| D1 Time Travel | 7 天 | 正式環境誤改時可以還原 |
+
+### 資料 API（T24）
+
+除了 T25 的登入，所有 API 都要先登入；T24 用開發用的固定身分（`worker/src/auth.ts`：`wrangler.jsonc` 的 `DEV_AUTH = "1"`、`DEV_MEMBER_ID`，測試時可以加 header `X-Dev-Member: dev-xxx` 換人），T25 換掉 `currentMember()` 就好。錯誤一律回 `{ error, message, details? }`。
+
+| API | 說明 |
+|---|---|
+| `GET /api/places` | `{ importId, places, retired: {id: 時間}, redirects: {舊: 新} }`，ETag 是 `"imp-<匯入編號>"`，沒變回 304 |
+| `GET /api/places/:id` | 合併後的 `data`、預設的 `base`、`edited`（改過的欄位 → 誰、何時）、`edits`（修改紀錄）；舊 ID 自動轉址 |
+| `GET /api/edits?since=&place=` | 修改紀錄（含已復原、已收掉的）；`since` 比 `updated_at`（`>=`，前端用 id 去重複） |
+| `POST /api/edits` | `{ placeId, fieldPath, value, note? }`：先合併再用 schema 驗證（不符合 400，`details` 列出哪裡錯）；不能改 `id`、`type` |
+| `POST /api/edits/:id/revert` | 只有改的人自己能按（別人 403） |
+| `GET/POST /api/user-places`、`PATCH/DELETE /api/user-places/:id` | 自己加的點：只檢查名稱、座標、類別（不是查到的資料，沒有 sources）；誰都能改、只有本人能刪 |
+| `GET/PUT /api/itinerary` | PUT 帶 `version`，和資料庫不同回 409（`details.current`）；改之前自動存快照 |
+| `GET /api/itinerary/snapshots`、`/:id`、`POST /:id/restore` | 復原也是一次修改，會再存快照 |
+| `GET/POST /api/suggestions`、`PATCH/DELETE /api/suggestions/:id` | 只有寫的人能改、能刪；`day` 是日期或 `trip` |
+| `PATCH /api/suggestions/:id/status` | `{ status, note?, adoptedItemIds? }`：誰都能標（規劃模式是前端的開關） |
+| `GET /api/votes`、`PUT/DELETE /api/votes/:placeId` | `{ value: 'like' | 'dislike', note? }`，只能投、收回自己的 |
+| `GET /api/chats`、`GET/POST/DELETE /api/chats/:conversationId` | 只看得到自己的 |
+| `GET /api/me`、`GET /api/members` | |
+| `GET /api/sync` | 各種資料的版本（匯入編號、行程 version、其他是 `MAX(updated_at)`）：前端輪詢只打這一支，變了才用 `since=` 抓那一種 |
+
+- **本機開發**：`npm run db:migrate`（套用 migrations 到本機的 D1）→ `npm run db:import` → `npm run dev:worker`（`wrangler dev`，和匯入用同一份 `worker/.wrangler/state`）。
+- **驗證程式**：`npm run build:validators` 把 `schema/` 編譯成 `worker/src/generated/place-validators.js`（ajv standalone，不 require 任何套件）。schema 改了要重跑；`npm test` 會檢查有沒有過期。
+- **區域不寫死**：`common.schema.json` 的 `areaId` 還是五個區域的 enum（改 schema 的請求在 `docs/requests.md`）；validate 和 Worker 的驗證程式讀 schema 時先換成一般的 ID 格式（`scripts/lib/schemas.mjs`），區域在不在 `areas.json` 由 validate 檢查。
 
 ---
 
@@ -279,7 +362,8 @@ ai_usage      (member_id, date, input_tokens, output_tokens, PRIMARY KEY (member
 
 ---
 
-## 來源（2026-10-21 取得）
+## 來源（2026-10-21 取得；Cloudflare 是 2026-10-22）
+- Cloudflare：[Workers Limits](https://developers.cloudflare.com/workers/platform/limits/)、[D1 Limits](https://developers.cloudflare.com/d1/platform/limits/)、[D1 Pricing](https://developers.cloudflare.com/d1/platform/pricing/)：§4「免費額度」的數字（2026-10-22 取得）
 - LINE Developers：[Getting user IDs](https://developers.line.biz/en/docs/messaging-api/getting-user-ids/)：同一個 provider 底下，不同 channel 的 userId 相同；列出群組全部成員的 API 只限認證過或付費的帳號；成員加入、發言時的通知裡會帶 userId
 - LINE Developers：[Consent on getting user profile information](https://developers.line.biz/en/docs/messaging-api/user-consent/)：使用者要同意才拿得到資料；只用電腦版 LINE 的人無法同意
 - [LINE Messaging API SDK for Python（PyPI）](https://pypi.org/project/line-bot-sdk/1.4.0)：查群組成員資料的 API，可以查沒加機器人好友或封鎖機器人的人

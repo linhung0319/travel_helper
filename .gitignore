@@ -12,3 +12,4 @@ Thumbs.db
 # 一批的工作檔（CONVENTIONS §4「工具」）
 data/cache/work/
 .wrangler/
+build/
