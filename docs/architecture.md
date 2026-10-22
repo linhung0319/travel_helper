@@ -77,6 +77,35 @@ travel_helper/
 
   UI 只看到合併後的資料點，另外附上「哪些欄位被改過」，所以兩種實作可以互換。
 
+### store 的形狀（T11 定，2026-10-22）
+
+兩個 store，都用 Zustand 的 `createStore`（vanilla，所以 Node 的測試、之後 T12 的指令都能直接用），React 透過 `web/src/hooks.ts` 的 `useApp`、`useData` 讀。
+
+**`web/src/store.ts`：畫面狀態**（UI 和 T12 的地圖指令改的是這一份）
+
+| 欄位 | 型別 | 說明 |
+|---|---|---|
+| `view` | `{ center, zoom, bounds } \| null` | 地圖目前的範圍，地圖移動結束時更新。探索模式的圖片牆、AI 的脈絡用（interaction-design §5） |
+| `day` | `'all' \| 'YYYY-MM-DD'` | 選定的天；不是 `all` 時其他天的點變淡 |
+| `filter` | `{ areas, regions, types, contexts, tiers }` | 都是陣列，空陣列＝不篩；各項之間是「且」、同一項裡是「或」。不符合的點變淡，圖片牆不放 |
+| `mode` | `'map' \| 'explore'` | 地圖／探索 |
+| `planning` | `boolean` | 規劃模式（T15 接上進入前確認、閒置退出） |
+| `hoveredId` | `string \| null` | 地圖上要閃的點（滑鼠移過去、圖片牆點了、聊天室的地點標籤） |
+| `previewId` | `string \| null` | 小卡片 |
+| `detailId` | `string \| null` | 詳情面板（車站的詳情裡有時刻表） |
+| `selection` | `string[]` | 「問 AI」選取的點 |
+| `sheet` | `{ tab: 'chat' \| 'day', snap: 'peek' \| 'half' \| 'full' }` | 手機的拉起面板；有 `detailId` 時面板顯示詳情 |
+| `stationTime` | `string \| null` | 車站面板的指定時間（`HH:MM`），null 時用行程排到的時間或 09:00 |
+| `camera` | `{ seq, bbox?, center?, zoom? } \| null` | 叫地圖移動的請求：MapView 看到 `seq` 變了就移過去。使用者自己拖地圖不產生請求，只更新 `view` |
+
+設定函式（T11 只放最基本的，T12 再包成 `focus`、`selectDay`、`setFilter` 等指令）：`setView`、`selectDay`、`setFilter(patch)`、`toggleFilter(key, value)`、`clearFilter`、`setMode`、`setPlanning`、`hover`、`openPreview`、`openDetail`（小卡片收起、收起的面板拉到一半）、`closeDetail`、`addToSelection`、`removeFromSelection`、`setSheet`、`setStationTime`、`moveCamera`。
+
+T12 要加的（還沒有）：`highlight(ids, style)`、`drawRoute`、`compare`、提議版本的顯示（`showProposal`）。加的時候在這個 store 加欄位，不另開一份。
+
+**`web/src/dataStore.ts`：讀進來的資料**（只在載入時改）：`status`、`areas`（areas.json，依 `tripOrder`）、`places`（合併後的資料點）、`byId`、`itinerary`（T11 只有開發用的假行程，T15 換成確定的行程）、`days`（資料點 → 排在哪幾天、第幾個）、`stationNames`。
+
+**區域不寫死**：區域清單、名稱、子地區、區域篩選的選項、「跳到區域」都從 `areas.json` 讀。地圖的初始範圍：bbox 彼此在 30 km 以內的區域分成一群，用資料點最多的那群的資料點範圍（`web/src/lib/areas.ts`）；所以加了大阪也會和關西機場周邊同一群，不影響初始畫面。區域的顏色依 `tripOrder` 的順序配。
+
 ---
 
 ## 3. 資料：預設資料層＋修改層
