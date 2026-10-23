@@ -117,6 +117,30 @@ export function timelineRows(day: DayPlan): TimelineRow[] {
   return rows;
 }
 
+// --- 順序編號 ---------------------------------------------------------------
+
+/**
+ * 地圖和時間軸共用的編號：出發、回到的住宿是「宿」，航班的機場是「機」，其他依時間軸的順序 1、2、3…
+ * 分組的那天，先編各組的點（照組的順序），再編會合點。同一個點出現兩次時，地圖上寫「1・4」。
+ */
+export function stopMarks(day: DayPlan | null, isLodging: (placeId: string) => boolean): { byEntry: Map<TimelineEntry, string>; byPlace: Map<string, string> } {
+  const byEntry = new Map<TimelineEntry, string>();
+  const byPlace = new Map<string, string>();
+  let n = 0;
+  const mark = (e: TimelineEntry) => {
+    if (!e.placeId) return;
+    const label = e.kind === 'lodging' || (e.kind === 'start' && isLodging(e.placeId)) ? '宿' : e.kind === 'flight' ? '機' : e.kind === 'start' ? '起' : String(++n);
+    byEntry.set(e, label);
+    const prev = byPlace.get(e.placeId);
+    byPlace.set(e.placeId, prev && prev !== label ? `${prev}・${label}` : label);
+  };
+  for (const e of day?.entries ?? []) {
+    if (e.groups) for (const g of e.groups) for (const x of g.entries) if (x.kind !== 'meet') mark(x);
+    mark(e);
+  }
+  return { byEntry, byPlace };
+}
+
 // --- 需要預約 ---------------------------------------------------------------
 
 export interface ReservationRow {

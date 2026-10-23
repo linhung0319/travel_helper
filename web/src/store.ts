@@ -76,6 +76,8 @@ export interface AppState {
   previewId: string | null;
   /** 詳情面板（車站的詳情面板裡有時刻表） */
   detailId: string | null;
+  /** 電腦版點了地圖上的點：探索清單捲到那張卡片（seq 讓同一個點再點一次也會捲） */
+  exploreTarget: { id: string; seq: number } | null;
   /** 「問 AI」選取的點（interaction-design §5；T12、T16 接上） */
   selection: string[];
   sheet: { tab: SheetTab; snap: SheetSnap };
@@ -103,6 +105,7 @@ export interface AppActions {
   openPreview(id: string | null): void;
   openDetail(id: string): void;
   closeDetail(): void;
+  revealInExplore(id: string): void;
   addToSelection(id: string): void;
   removeFromSelection(id: string): void;
   setSheet(patch: Partial<AppState['sheet']>): void;
@@ -130,6 +133,7 @@ export const initialState: AppState = {
   hoveredId: null,
   previewId: null,
   detailId: null,
+  exploreTarget: null,
   selection: [],
   sheet: { tab: 'chat', snap: 'peek' },
   stationTime: null,
@@ -159,6 +163,7 @@ export function createAppStore(init: Partial<AppState> = {}) {
     openDetail: (detailId) =>
       set((s) => ({ detailId, previewId: null, sheet: { ...s.sheet, snap: s.sheet.snap === 'peek' ? 'half' : s.sheet.snap } })),
     closeDetail: () => set({ detailId: null }),
+    revealInExplore: (id) => set((s) => ({ exploreTarget: { id, seq: (s.exploreTarget?.seq ?? 0) + 1 } })),
     addToSelection: (id) => set((s) => (s.selection.includes(id) ? s : { selection: [...s.selection, id] })),
     removeFromSelection: (id) => set((s) => ({ selection: s.selection.filter((x) => x !== id) })),
     setSheet: (patch) => set((s) => ({ sheet: { ...s.sheet, ...patch } })),

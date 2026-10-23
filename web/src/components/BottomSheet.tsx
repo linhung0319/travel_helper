@@ -21,6 +21,7 @@ function snapHeight(snap: SheetSnap, avail: number): number {
 export function BottomSheet() {
   const sheet = useApp((s) => s.sheet);
   const detailId = useApp((s) => s.detailId);
+  const selection = useApp((s) => s.selection);
   const byId = useData((s) => s.byId);
   const ref = useRef<HTMLDivElement>(null);
   const drag = useRef<{ y: number; h: number; avail: number; moved: boolean } | null>(null);
@@ -74,8 +75,8 @@ export function BottomSheet() {
         <span className="grip" />
       </div>
       <div className="sheet-tabs" role="tablist">
-        <button type="button" role="tab" aria-selected={!place && sheet.tab === 'chat'} onClick={() => tab('chat')}>
-          💬 聊天
+        <button type="button" role="tab" aria-selected={!place && sheet.tab === 'chat'} onClick={() => tab('chat')} data-testid="sheet-tab-chat">
+          💬 聊天{selection.length > 0 && <span className="tab-count">{selection.length}</span>}
         </button>
         <button type="button" role="tab" aria-selected={!place && sheet.tab === 'day'} onClick={() => tab('day')}>
           📅 這一天

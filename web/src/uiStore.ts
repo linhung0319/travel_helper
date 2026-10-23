@@ -14,7 +14,6 @@ export type DialogState =
   | { kind: 'move'; itemId: string }
   | { kind: 'adopt'; suggestionId: number }
   | { kind: 'decline'; suggestionId: number }
-  | { kind: 'vote'; placeId: string }
   | { kind: 'history'; placeId: string; field?: string };
 
 export interface UiState {

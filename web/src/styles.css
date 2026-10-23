@@ -127,50 +127,6 @@ a {
   min-height: 0;
 }
 
-.main-column {
-  flex: 1;
-  min-width: 0;
-  display: flex;
-  flex-direction: column;
-}
-
-.layout.desktop .stage {
-  flex-direction: row;
-}
-
-.layout.desktop .stage.mode-explore .explore-wall {
-  flex: 0 0 46%;
-  border-right: 1px solid var(--line);
-}
-
-.detail-side {
-  position: absolute;
-  top: 8px;
-  right: 8px;
-  bottom: 8px;
-  width: min(420px, 48%);
-  background: var(--bg);
-  border-radius: var(--radius);
-  box-shadow: var(--shadow);
-  overflow-y: auto;
-  z-index: 5;
-}
-
-.day-dock {
-  border-top: 1px solid var(--line);
-  max-height: 42vh;
-  overflow-y: auto;
-}
-
-.day-dock-toggle {
-  border: 0;
-  background: var(--soft);
-  width: 100%;
-  text-align: left;
-  padding: 6px 12px;
-  min-height: 36px;
-}
-
 /* ---------- 上方列 ---------- */
 
 .top-bar {
@@ -403,23 +359,27 @@ a {
   min-width: 1.6em;
   height: 1.6em;
   border-radius: 6px;
-  color: #fff;
-  font-weight: 700;
+  font-family: Georgia, 'Times New Roman', serif;
+  font-weight: 800;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.55), 0 1px 2px rgba(0, 0, 0, 0.2);
   font-size: 0.85em;
   margin-right: 6px;
   vertical-align: 0.1em;
 }
 
 .tier-S {
-  background: var(--tier-s);
+  background: linear-gradient(145deg, #fbe08a, #d4a017);
+  color: #5b3a00;
 }
 
 .tier-A {
-  background: var(--tier-a);
+  background: linear-gradient(145deg, #f1f4f7, #a3b0bd);
+  color: #2f3a45;
 }
 
 .tier-B {
-  background: var(--tier-b);
+  background: linear-gradient(145deg, #f3cba8, #b47040);
+  color: #4a2508;
 }
 
 .badges {
@@ -488,52 +448,6 @@ a {
 .photo-fallback-name {
   font-size: 0.85rem;
   font-weight: 600;
-}
-
-/* 地圖上的照片標記：放大到 PHOTO_MARKER_ZOOM 以上才顯示 */
-.photo-marker {
-  display: none;
-  width: 44px;
-  height: 44px;
-  padding: 0;
-  border: 3px solid;
-  border-radius: 10px;
-  overflow: hidden;
-  background: #fff;
-  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.35);
-}
-
-.photo-marker.tier-S {
-  width: 56px;
-  height: 56px;
-}
-
-.photo-marker img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
-}
-
-.show-photo-markers .photo-marker {
-  display: block;
-}
-
-.photo-marker-fallback {
-  font-size: 1.2rem;
-  line-height: 1;
-}
-
-.photo-marker.dim {
-  opacity: 0.25;
-}
-
-.photo-marker.focus {
-  outline: 3px solid var(--fg);
-}
-
-.photo-marker.flash {
-  outline: 4px solid #ffd33d;
 }
 
 /* ---------- 小卡片 ---------- */
@@ -741,13 +655,9 @@ a {
 
 .detail-head {
   display: flex;
-  align-items: flex-start;
-  gap: 8px;
-  position: sticky;
-  top: 0;
-  background: var(--bg);
-  padding-top: 8px;
-  z-index: 1;
+  align-items: center;
+  gap: 12px;
+  padding: 6px 0 10px;
 }
 
 /* 手機的拉起面板裡不黏在上面：sticky 加上面板的高度動畫，Chrome 會在地圖上畫出一塊白色殘影
@@ -763,7 +673,8 @@ a {
 
 .detail-title h2 {
   margin: 0;
-  font-size: 1.25rem;
+  font-size: 1.3rem;
+  line-height: 1.3;
 }
 
 .detail-title p {
@@ -789,45 +700,6 @@ a {
   background: var(--info-bg);
   border-color: var(--accent);
   color: var(--accent);
-}
-
-.carousel {
-  display: flex;
-  gap: 6px;
-  overflow-x: auto;
-  scroll-snap-type: x mandatory;
-  margin: 0 -14px;
-  padding: 0 14px;
-}
-
-.carousel-item {
-  flex: 0 0 86%;
-  margin: 0;
-  scroll-snap-align: center;
-  position: relative;
-  height: 200px;
-  border-radius: 10px;
-  overflow: hidden;
-}
-
-.carousel:has(.carousel-item:only-child) .carousel-item {
-  flex-basis: 100%;
-}
-
-.carousel-item figcaption {
-  position: absolute;
-  right: 0;
-  bottom: 0;
-  background: rgba(0, 0, 0, 0.5);
-  color: #fff;
-  font-size: 0.7rem;
-  padding: 1px 6px;
-  border-top-left-radius: 6px;
-}
-
-.carousel-single {
-  height: 140px;
-  border-radius: 10px;
 }
 
 .detail-section {
@@ -1278,54 +1150,6 @@ dl {
   font-size: 0.85rem;
   white-space: nowrap;
   pointer-events: none;
-}
-
-.photo-marker.hl-primary {
-  outline: 4px solid #d4a72c;
-}
-
-.photo-marker.hl-warning {
-  outline: 4px solid #cf222e;
-}
-
-.photo-marker.hl-muted {
-  outline: 4px solid #8c959f;
-}
-
-.photo-marker.compared {
-  outline: 4px solid #8250df;
-}
-
-/* 提議（T12 showProposal）在照片標記上：右下角的編號、新增綠框、拿掉的變灰加 × */
-.photo-marker[data-proposal]::after {
-  content: attr(data-proposal);
-  position: absolute;
-  right: 0;
-  bottom: 0;
-  min-width: 20px;
-  height: 20px;
-  border-radius: 8px 0 6px 0;
-  background: rgba(255, 255, 255, 0.85);
-  color: var(--proposal-color, var(--fg));
-  border: 2px dashed var(--proposal-color, var(--fg));
-  font-weight: 700;
-  font-size: 0.8rem;
-  line-height: 16px;
-  text-align: center;
-}
-
-.photo-marker.proposal-added {
-  outline: 4px solid #1a7f37;
-}
-
-.photo-marker.proposal-removed {
-  filter: grayscale(1);
-  opacity: 0.55;
-}
-
-.photo-marker.proposal-removed::after {
-  color: #57606a;
-  border-color: #57606a;
 }
 
 /* ======================================================================
@@ -2192,14 +2016,6 @@ dl {
   color: var(--bad);
 }
 
-.vote-summary {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 4px 10px;
-  margin: 0 0 8px;
-}
-
 .wall-vote {
   border: 0;
   cursor: pointer;
@@ -2361,4 +2177,929 @@ button.edited {
 
 .layout.mobile .planning-bar .text-button {
   padding: 2px 4px;
+}
+
+/* ======================================================================
+   電腦版三欄（T15m 版面調整，參考 puma.taipei/heart-island）：
+   左聊天室、中地圖（日期等浮在上方）、右側行程／探索／詳情共用一欄
+   ====================================================================== */
+
+.layout.desktop .chat-column {
+  flex: 0 0 340px;
+}
+
+.map-column {
+  position: relative;
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.side-column {
+  flex: 0 0 clamp(400px, 32vw, 520px);
+  border-left: 1px solid var(--line);
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  background: var(--bg);
+}
+
+/* 浮在地圖上方的日期、規劃模式、我 */
+.map-top {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  right: 10px;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  pointer-events: none;
+}
+
+.map-top > * {
+  pointer-events: auto;
+}
+
+.map-top-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  flex-wrap: wrap;
+  pointer-events: none;
+}
+
+.float-bar {
+  pointer-events: auto;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(255, 255, 255, 0.96);
+  border-radius: 999px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.16);
+  padding: 4px;
+}
+
+.day-float {
+  min-width: 0;
+  flex: 0 1 auto;
+}
+
+.day-float .day-tab {
+  border-color: transparent;
+  min-height: 38px;
+  min-width: 40px;
+  padding: 2px 6px;
+}
+
+.me-float {
+  margin-left: auto;
+  flex: 0 0 auto;
+}
+
+.me-float .toggle {
+  min-height: 38px;
+}
+
+.map-top .planning-bar,
+.map-top .conflict-bar {
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.16);
+  align-self: flex-start;
+  max-width: 100%;
+}
+
+/* 地圖的縮放鈕移到右下角，讓出上方的浮動列 */
+.layout.desktop .maplibregl-ctrl-top-right {
+  top: auto;
+  bottom: 28px;
+}
+
+/* 右欄：分頁＋內容 */
+.side-panel {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  min-height: 0;
+}
+
+.side-tabs {
+  display: flex;
+  gap: 4px;
+  padding: 10px 12px 0;
+  border-bottom: 1px solid var(--line);
+  flex: 0 0 auto;
+}
+
+.side-tab {
+  border: 0;
+  background: none;
+  padding: 8px 14px;
+  min-height: 42px;
+  border-bottom: 3px solid transparent;
+  font-weight: 600;
+  color: var(--muted);
+}
+
+.side-tab.on {
+  color: var(--fg);
+  border-bottom-color: var(--fg);
+}
+
+.side-body {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+}
+
+/* ---------- 時間軸和地圖共用的編號 ---------- */
+
+.tl-mark {
+  display: inline-grid;
+  width: fit-content;
+  justify-self: start;
+  align-self: start;
+  place-items: center;
+  min-width: 1.6em;
+  height: 1.6em;
+  padding: 0 4px;
+  border-radius: 999px;
+  color: #fff;
+  font-weight: 700;
+  font-size: 0.8rem;
+  margin-right: 6px;
+  border: 2px solid #fff;
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.12);
+  vertical-align: middle;
+  flex: 0 0 auto;
+}
+
+/* ---------- 探索 ---------- */
+
+.explore-panel {
+  display: flex;
+  flex-direction: column;
+}
+
+.ex-controls {
+  padding: 10px 12px 4px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.ex-areas,
+.ex-regions,
+.ex-quick {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.small-pill {
+  min-height: 32px;
+  padding: 2px 10px;
+  font-size: 0.85rem;
+}
+
+.ex-types {
+  margin-left: 0;
+  align-self: stretch;
+}
+
+.ex-types button {
+  flex: 1;
+}
+
+/* 筆數、排序、顯示方式：捲動時黏在上面 */
+.ex-bar {
+  background: var(--bg);
+  padding: 6px 12px;
+  border-bottom: 1px solid var(--line);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.ex-bar select {
+  font: inherit;
+  padding: 4px 6px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--bg);
+}
+
+.ex-view {
+  margin-left: 0;
+}
+
+.ex-view button {
+  min-height: 32px;
+  padding: 0 10px;
+}
+
+.filter-panel.embedded {
+  position: static;
+  max-width: none;
+  max-height: none;
+  box-shadow: none;
+  border: 1px solid var(--line);
+  padding: 0 12px 12px;
+}
+
+.filter-panel.embedded .filter-head strong::after {
+  content: '（其他條件）';
+  font-weight: 400;
+  color: var(--muted);
+  font-size: 0.85rem;
+}
+
+.ex-list {
+  list-style: none;
+  margin: 0;
+  padding: 10px 12px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.ex-list.view-list {
+  gap: 0;
+  padding-top: 0;
+}
+
+.ex-empty {
+  padding: 24px 0;
+  text-align: center;
+}
+
+/* 照片模式：一張大照片、類別標籤、名次 */
+.ex-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding: 0;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--bg);
+  overflow: hidden;
+  text-align: left;
+}
+
+.ex-card:hover,
+.ex-card.flash {
+  border-color: var(--fg);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.12);
+}
+
+.ex-photo {
+  position: relative;
+  display: block;
+  aspect-ratio: 16 / 9;
+  background: var(--soft);
+}
+
+.ex-photo .photo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: grid;
+  place-items: center;
+}
+
+.ex-type {
+  position: absolute;
+  left: 8px;
+  top: 8px;
+  color: #fff;
+  border-radius: 999px;
+  padding: 2px 10px;
+  font-size: 0.8rem;
+  font-weight: 700;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
+}
+
+.ex-rank-badge {
+  position: absolute;
+  left: 8px;
+  bottom: 8px;
+  background: rgba(0, 0, 0, 0.65);
+  color: #fff;
+  border-radius: 8px;
+  min-width: 28px;
+  padding: 0 6px;
+  text-align: center;
+  font-weight: 700;
+}
+
+.ex-card .wall-vote {
+  top: 8px;
+  right: 8px;
+}
+
+.ex-text {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  padding: 8px 12px 10px;
+  min-width: 0;
+}
+
+.ex-name {
+  font-weight: 700;
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.ex-ja {
+  font-weight: 400;
+}
+
+.ex-meta {
+  color: var(--muted);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2px 8px;
+}
+
+.ex-trip {
+  color: var(--accent);
+}
+
+.ex-summary {
+  color: var(--fg);
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* 文字模式：一列一個 */
+.ex-row {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  padding: 8px 4px;
+  border: 0;
+  border-bottom: 1px solid var(--line);
+  background: none;
+  text-align: left;
+}
+
+.ex-row:hover,
+.ex-row.flash {
+  background: var(--soft);
+}
+
+.ex-row .ex-text {
+  flex: 1;
+  padding: 0;
+}
+
+.ex-rank {
+  width: 1.8em;
+  text-align: right;
+  color: var(--muted);
+  font-variant-numeric: tabular-nums;
+}
+
+.ex-dot {
+  flex: 0 0 auto;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  font-size: 0.9rem;
+  border: 2px solid #fff;
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.12);
+}
+
+.ex-row .wall-vote {
+  position: static;
+  background: var(--soft);
+}
+
+/* 地圖指令的提議、比較列放到地圖下方（上方是浮動列） */
+.layout.desktop .command-bars {
+  top: auto;
+  bottom: 30px;
+  right: 60px;
+}
+
+/* 篩選標籤（AI 套的或探索留下的）：浮在日期列下面，可以一個一個取消 */
+.map-top .chips {
+  align-self: flex-start;
+  max-width: 100%;
+  flex-wrap: wrap;
+  background: rgba(255, 255, 255, 0.96);
+  border-radius: 999px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.16);
+  padding: 4px 6px 4px 12px;
+}
+
+/* ---------- 詳情（T15m 重新設計）：上方一列、標題、分頁 ---------- */
+
+.detail-bar {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 0 2px;
+}
+
+.detail-back {
+  border: 0;
+  background: none;
+  padding: 4px 8px 4px 0;
+  min-height: 36px;
+  font-weight: 600;
+  color: var(--fg);
+  white-space: nowrap;
+}
+
+.detail-back:hover {
+  color: var(--accent);
+}
+
+.detail-bar-actions {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
+
+.action.small-action {
+  min-height: 34px;
+  padding: 0 10px;
+  font-size: 0.85rem;
+}
+
+.detail-votes {
+  display: flex;
+  gap: 4px;
+  flex: 0 0 auto;
+}
+
+.detail-votes .action {
+  min-height: 38px;
+  padding: 0 10px;
+  font-variant-numeric: tabular-nums;
+}
+
+/* 分級徽章：S 金、A 銀、B 銅 */
+.tier-medal {
+  flex: 0 0 auto;
+  width: 46px;
+  height: 50px;
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.7),
+    inset 0 -2px 0 rgba(0, 0, 0, 0.12),
+    0 2px 6px rgba(0, 0, 0, 0.18);
+}
+
+.tier-medal-letter {
+  font-family: Georgia, 'Times New Roman', serif;
+  font-weight: 800;
+  font-size: 1.75rem;
+  line-height: 1;
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
+}
+
+.tier-medal-word {
+  font-size: 0.5rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  margin-top: 3px;
+  opacity: 0.75;
+}
+
+.tier-medal-S {
+  background: linear-gradient(145deg, #fff3c4 0%, #f2c94c 38%, #c99712 72%, #f6d77a 100%);
+  color: #5b3a00;
+}
+
+.tier-medal-A {
+  background: linear-gradient(145deg, #ffffff 0%, #dde3ea 38%, #9eabb8 72%, #e6ebf0 100%);
+  color: #2f3a45;
+}
+
+.tier-medal-B {
+  background: linear-gradient(145deg, #ffe6cf 0%, #e3a574 38%, #a8622f 72%, #ecb98f 100%);
+  color: #4a2508;
+}
+
+.detail-tabs {
+  display: flex;
+  margin: 0 -14px;
+  padding: 0 8px;
+  border-bottom: 1px solid var(--line);
+  background: var(--bg);
+  overflow-x: auto;
+}
+
+/* 電腦版：捲下去分頁還在上面（手機的拉起面板不黏，見 .layout.mobile .detail-head 的說明） */
+.side-detail .detail-tabs {
+  position: sticky;
+  top: 0;
+  z-index: 2;
+}
+
+.detail-tabs button {
+  border: 0;
+  background: none;
+  padding: 8px 12px;
+  min-height: 42px;
+  border-bottom: 3px solid transparent;
+  font-weight: 600;
+  color: var(--muted);
+  white-space: nowrap;
+}
+
+.detail-tabs button.on {
+  color: var(--fg);
+  border-bottom-color: var(--fg);
+}
+
+.detail-tab-count {
+  margin-left: 4px;
+  font-size: 0.75rem;
+  font-weight: 400;
+  color: var(--muted);
+}
+
+.detail-body {
+  padding-top: 12px;
+}
+
+/* 總覽：首張照片 */
+.detail-hero {
+  position: relative;
+  margin: 0;
+  aspect-ratio: 16 / 9;
+  border-radius: var(--radius);
+  overflow: hidden;
+  background: var(--soft);
+}
+
+.detail-hero .photo,
+.photo-grid-item .photo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: grid;
+  place-items: center;
+}
+
+.hero-more {
+  position: absolute;
+  right: 8px;
+  bottom: 8px;
+  border: 0;
+  border-radius: 999px;
+  background: rgba(0, 0, 0, 0.62);
+  color: #fff;
+  padding: 3px 10px;
+  font-size: 0.8rem;
+  cursor: pointer;
+}
+
+.detail-hero figcaption,
+.photo-grid-item figcaption {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  color: #fff;
+  font-size: 0.7rem;
+  padding: 1px 6px;
+  border-top-right-radius: 6px;
+}
+
+/* 評分：Google、食べログ 兩顆，展開看其他網站和我們的五項 */
+.ratings-box {
+  margin: 10px 0 0;
+}
+
+div.ratings-box,
+.ratings-box > summary {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+}
+
+.ratings-box > summary {
+  list-style: none;
+  cursor: pointer;
+}
+
+.ratings-box > summary::-webkit-details-marker {
+  display: none;
+}
+
+.ratings-more {
+  margin-left: auto;
+}
+
+.ratings-more::after {
+  content: ' ▾';
+}
+
+.ratings-box[open] .ratings-more::after {
+  content: ' ▴';
+}
+
+.rate {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 3px 10px 3px 3px;
+  border-radius: 999px;
+  border: 1px solid var(--line);
+  background: var(--bg);
+  white-space: nowrap;
+}
+
+.rate-src {
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  border-radius: 999px;
+  padding: 2px 8px;
+  background: var(--soft);
+  color: var(--muted);
+}
+
+.rate-star {
+  color: #e3a008;
+  font-size: 0.9rem;
+}
+
+.rate-score {
+  font-size: 1.05rem;
+  font-variant-numeric: tabular-nums;
+}
+
+.rate-n {
+  font-size: 0.75rem;
+  color: var(--muted);
+}
+
+.rate-google .rate-src {
+  background: #e8f0fe;
+  color: #1a56b8;
+}
+
+.rate-tabelog .rate-src {
+  background: #fff1e6;
+  color: #b4410e;
+}
+
+.rate-tabelog .rate-star,
+.rate-tabelog .rate-score {
+  color: #c2410c;
+}
+
+.ratings-rest {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 8px;
+}
+
+.ratings-box .scores {
+  margin-top: 8px;
+  padding: 6px 10px;
+  background: var(--soft);
+  border-radius: 10px;
+}
+
+/* 總覽：介紹 */
+.detail-summary {
+  margin-top: 12px;
+}
+
+.detail-summary > p:first-child {
+  margin: 0 0 6px;
+  line-height: 1.7;
+}
+
+.detail-tags {
+  margin: 8px 0 0;
+}
+
+/* 圖片分頁 */
+.photo-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 6px;
+}
+
+.photo-grid-item {
+  position: relative;
+  margin: 0;
+  aspect-ratio: 4 / 3;
+  border-radius: 8px;
+  overflow: hidden;
+  background: var(--soft);
+}
+
+.photo-grid-item:first-child {
+  grid-column: 1 / -1;
+  aspect-ratio: 16 / 9;
+}
+
+.detail-body > .detail-section:first-child {
+  border-top: 0;
+  margin-top: 0;
+  padding-top: 0;
+}
+
+/* 探索的上方：類型一直黏著；往下捲時篩選收合成一列摘要，疊在清單上 */
+.ex-head {
+  position: sticky;
+  top: 0;
+  z-index: 3;
+  background: var(--bg);
+  padding: 10px 12px 8px;
+  border-bottom: 1px solid var(--line);
+}
+
+.ex-compact {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 100%;
+  background: var(--bg);
+  border-bottom: 1px solid var(--line);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+}
+
+.ex-compact .ex-bar {
+  padding: 6px 12px;
+}
+
+.ex-bar > .ex-count:first-child {
+  margin-right: auto;
+}
+
+.ex-filtersum {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: var(--soft);
+  padding: 4px 12px;
+  min-height: 34px;
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+
+.ex-filtersum.on {
+  border-color: var(--fg);
+  background: var(--bg);
+}
+
+.ex-filtersum-text {
+  flex: 1;
+  min-width: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-weight: 600;
+}
+
+.ex-drop {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 4px 12px 12px;
+  max-height: 60vh;
+  overflow-y: auto;
+}
+
+/* 把探索卡片、詳情標題拖到聊天室（askAi.ts）：跟著游標的小標籤、聊天室亮起來 */
+.place-ghost {
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 1000;
+  pointer-events: none;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  max-width: 240px;
+  padding: 4px 12px 4px 4px;
+  border-radius: 999px;
+  background: var(--bg);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.25);
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+.place-ghost-dot {
+  flex: 0 0 auto;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  font-size: 0.85rem;
+  border: 2px solid #fff;
+}
+
+.place-ghost-name {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+body.dragging-place [data-drop-ai] {
+  position: relative;
+  outline: 2px dashed var(--accent);
+  outline-offset: -6px;
+  background: var(--info-bg);
+}
+
+body.dragging-place .chat-column[data-drop-ai]::after {
+  content: '放到這裡問 AI';
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  font-weight: 700;
+  font-size: 1.1rem;
+  color: var(--accent);
+  pointer-events: none;
+}
+
+body.dragging-place .chat-column .placeholder {
+  visibility: hidden;
+}
+
+body.dragging-place [data-drop-ai].drop-over {
+  outline-style: solid;
+  outline-width: 3px;
+  background: #b6e3ff;
+}
+
+.detail-head.draggable {
+  cursor: grab;
+}
+
+.ex-card[draggable='true'],
+.ex-row[draggable='true'] {
+  cursor: pointer;
+}
+
+/* 手機：照片上的「＋ AI」、聊天分頁上帶了幾個點 */
+.wall-ask {
+  position: absolute;
+  top: 6px;
+  left: 6px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.9);
+  color: var(--accent);
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 0 10px;
+  min-height: 30px;
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+}
+
+.wall-ask.on {
+  background: var(--accent);
+  color: #fff;
+}
+
+.tab-count {
+  display: inline-grid;
+  place-items: center;
+  min-width: 1.4em;
+  height: 1.4em;
+  margin-left: 4px;
+  padding: 0 4px;
+  border-radius: 999px;
+  background: var(--accent);
+  color: #fff;
+  font-size: 0.75rem;
+  font-weight: 700;
 }

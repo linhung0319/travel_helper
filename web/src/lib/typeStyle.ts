@@ -9,7 +9,7 @@ export const TYPE_COLORS: Record<PlaceType, string> = {
 
 export const TYPE_ICONS: Record<PlaceType, string> = {
   station: '🚉',
-  spot: '📍',
+  spot: '📷',
   lodging: '🏨',
   restaurant: '🍴',
 };

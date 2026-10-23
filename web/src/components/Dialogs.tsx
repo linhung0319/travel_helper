@@ -5,7 +5,6 @@ import { shared } from '../appShared.ts';
 import { useShared, useUi } from '../hooks.ts';
 import { AdoptDialog, DeclineDialog, PendingDialog, SuggestDialog } from './Suggestions.tsx';
 import { AddToDayDialog, MoveDialog, PlanningConfirmDialog, SnapshotsDialog } from './Planning.tsx';
-import { VoteDialog } from './Votes.tsx';
 import { HistoryDialog } from './EditHistory.tsx';
 import { ReservationsDialog } from './Reservations.tsx';
 
@@ -31,8 +30,6 @@ export function Dialogs() {
       return <AdoptDialog suggestionId={d.suggestionId} />;
     case 'decline':
       return <DeclineDialog suggestionId={d.suggestionId} />;
-    case 'vote':
-      return <VoteDialog placeId={d.placeId} />;
     case 'history':
       return <HistoryDialog placeId={d.placeId} field={d.field} />;
   }

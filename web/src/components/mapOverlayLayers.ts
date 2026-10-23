@@ -40,7 +40,31 @@ export function addOverlayLayers(map: MapLibreMap, below = 'places-circle') {
       type: 'line',
       source: OVERLAY_SOURCES.itineraryLines,
       layout: { 'line-cap': 'round', 'line-join': 'round' },
-      paint: { 'line-color': ['get', 'color'], 'line-width': 3.5, 'line-opacity': ['case', ['==', ['get', 'active'], 1], 0.85, 0.15] },
+      paint: {
+        'line-color': ['get', 'color'],
+        'line-width': ['case', ['==', ['get', 'selected'], 1], 4.5, 3.5],
+        'line-opacity': ['case', ['==', ['get', 'active'], 1], 0.85, 0.15],
+      },
+    },
+    below,
+  );
+  // 選定那天的方向箭頭（圖片在 mapIcons.ts）
+  map.addLayer(
+    {
+      id: 'itinerary-arrow',
+      type: 'symbol',
+      source: OVERLAY_SOURCES.itineraryLines,
+      filter: ['==', ['get', 'selected'], 1],
+      layout: {
+        'symbol-placement': 'line',
+        'symbol-spacing': 90,
+        'icon-image': 'route-arrow',
+        'icon-size': 1,
+        'icon-allow-overlap': true,
+        'icon-ignore-placement': true,
+        'icon-rotation-alignment': 'map',
+      },
+      paint: { 'icon-color': ['get', 'color'], 'icon-halo-color': '#ffffff', 'icon-halo-width': 1.5 },
     },
     below,
   );

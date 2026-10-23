@@ -10,10 +10,30 @@ import { commands } from '../appCommands.ts';
 import { shared } from '../appShared.ts';
 import { useApp, useData } from '../hooks.ts';
 import { openDialog } from '../uiStore.ts';
-import { findItemRef, legDetail, legText, timelineRows, WARNING_ICONS, warningsByItem } from '../lib/planView.ts';
+import { findItemRef, legDetail, legText, stopMarks, timelineRows, WARNING_ICONS, warningsByItem } from '../lib/planView.ts';
+import { dayColor } from '../lib/visual.ts';
+import { tripDates } from '../lib/trip.ts';
 import { TYPE_ICONS } from '../lib/typeStyle.ts';
 import type { Place } from '../data/types.ts';
 import { MemberName, PlaceChip } from './common.tsx';
+
+const DATES = tripDates();
+
+/** 地圖上同一個編號（宿、1、2…），那天的顏色 */
+interface Marks {
+  byEntry: Map<TimelineEntry, string>;
+  color: string;
+}
+
+function Mark({ entry, marks }: { entry: TimelineEntry; marks: Marks }) {
+  const label = marks.byEntry.get(entry);
+  if (!label) return null;
+  return (
+    <span className="tl-mark" style={{ background: marks.color }} data-testid="tl-mark">
+      {label}
+    </span>
+  );
+}
 
 const MEAL_LABELS: Record<string, string> = { breakfast: '早餐', lunch: '午餐', dinner: '晚餐', snack: '點心' };
 
@@ -136,7 +156,7 @@ function Options({ item }: { item: VisitItem }) {
   );
 }
 
-function EntryRow({ entry, day, warnings, gapsBeforeMeet, plan }: { entry: TimelineEntry; day: ItineraryDay; warnings: Map<string, EngineWarning[]>; gapsBeforeMeet?: Gap[]; plan?: DayPlan }) {
+function EntryRow({ entry, day, warnings, gapsBeforeMeet, plan, marks }: { entry: TimelineEntry; day: ItineraryDay; warnings: Map<string, EngineWarning[]>; gapsBeforeMeet?: Gap[]; plan?: DayPlan; marks: Marks }) {
   const byId = useData((s) => s.byId);
   const itinerary = useData((s) => s.itinerary);
   const planning = useApp((s) => s.planning);
@@ -151,7 +171,10 @@ function EntryRow({ entry, day, warnings, gapsBeforeMeet, plan }: { entry: Timel
       <li className="tl-row tl-start">
         <span className="tl-time">{entry.start}</span>
         <span className="tl-body muted">
-          從 {p ? `${TYPE_ICONS[p.type]} ${name(p)}` : '上一站'} 出發
+          <span className="tl-title">
+            <Mark entry={entry} marks={marks} />
+            從 {p ? `${TYPE_ICONS[p.type]} ${name(p)}` : '上一站'} 出發
+          </span>
         </span>
       </li>
     );
@@ -178,7 +201,7 @@ function EntryRow({ entry, day, warnings, gapsBeforeMeet, plan }: { entry: Timel
                     {g.entries
                       .filter((e) => e.kind !== 'meet')
                       .map((e, i) => (
-                        <EntryRow key={i} entry={e} day={day} warnings={warnings} />
+                        <EntryRow key={i} entry={e} day={day} warnings={warnings} marks={marks} />
                       ))}
                   </ol>
                 </div>
@@ -191,7 +214,10 @@ function EntryRow({ entry, day, warnings, gapsBeforeMeet, plan }: { entry: Timel
         <li className="tl-row tl-meet" data-testid="tl-meet">
           <span className="tl-time">{entry.start}</span>
           <span className="tl-body">
-            🤝 會合：{entry.placeId ? <PlaceChip id={entry.placeId} /> : '（未定）'}
+            <span className="tl-title">
+              <Mark entry={entry} marks={marks} />
+              🤝 會合：{entry.placeId ? <PlaceChip id={entry.placeId} /> : '（未定）'}
+            </span>
             {entry.waitMinutes > 0 && <span className="muted small">（最早到的組等 {entry.waitMinutes} 分）</span>}
           </span>
         </li>
@@ -207,6 +233,7 @@ function EntryRow({ entry, day, warnings, gapsBeforeMeet, plan }: { entry: Timel
           <span className="tl-time">{entry.arrive}</span>
           <span className="tl-body">
             <span className="tl-title">
+              <Mark entry={entry} marks={marks} />
               🏨 住宿：{p ? <PlaceChip id={p.id} /> : entry.placeId}
               {planning && (
                 <button type="button" className="text-button small" onClick={() => void shared.changeItinerary((it) => setLodging(it, day.date, null), `清掉 ${day.date} 的住宿`)}>
@@ -233,6 +260,7 @@ function EntryRow({ entry, day, warnings, gapsBeforeMeet, plan }: { entry: Timel
         </span>
         <span className="tl-body">
           <span className="tl-title">
+            <Mark entry={entry} marks={marks} />
             <button type="button" className="link-button" onClick={() => focusPlace(entry.placeId)} onMouseEnter={() => appStore.getState().hover(entry.placeId)} onMouseLeave={() => appStore.getState().hover(null)}>
               {icon} {flight ? `${flight.direction === 'arrive' ? '抵達' : '起飛'} ${name(p)}` : entry.kind === 'free' ? `自由時間${p ? `：${name(p)}` : ''}` : name(p)}
             </button>
@@ -307,11 +335,13 @@ function GapRow({ gap, plan }: { gap: Gap; plan: DayPlan }) {
 }
 
 export function Timeline({ plan, day }: { plan: DayPlan; day: ItineraryDay }) {
+  const byId = useData((s) => s.byId);
   const { byItem } = warningsByItem(plan);
+  const marks: Marks = { byEntry: stopMarks(plan, (id) => byId.get(id)?.type === 'lodging').byEntry, color: dayColor(DATES, day.date) };
   return (
     <ol className="tl" data-testid="timeline">
       {timelineRows(plan).map((row, i) =>
-        row.kind === 'gap' ? <GapRow key={`g${i}`} gap={row.gap} plan={plan} /> : <EntryRow key={`e${i}`} entry={row.entry} day={day} warnings={byItem} gapsBeforeMeet={row.gapsBeforeMeet} plan={plan} />,
+        row.kind === 'gap' ? <GapRow key={`g${i}`} gap={row.gap} plan={plan} /> : <EntryRow key={`e${i}`} entry={row.entry} day={day} warnings={byItem} gapsBeforeMeet={row.gapsBeforeMeet} plan={plan} marks={marks} />,
       )}
     </ol>
   );

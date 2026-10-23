@@ -1,47 +1,36 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { appStore } from './store.ts';
 import { loadData } from './dataStore.ts';
 import { useApp, useData, useIsDesktop } from './hooks.ts';
 import { MapView } from './components/MapView.tsx';
-import { TopBar } from './components/TopBar.tsx';
+import { MapTopBar, TopBar } from './components/TopBar.tsx';
 import { ExploreWall } from './components/ExploreWall.tsx';
 import { BottomSheet } from './components/BottomSheet.tsx';
-import { DetailPanel } from './components/DetailPanel.tsx';
-import { ChatPanel, DayPanel } from './components/Panels.tsx';
+import { ChatPanel } from './components/Panels.tsx';
+import { dropAiProps } from './components/askAi.ts';
+import { SidePanel } from './components/SidePanel.tsx';
 import { Dialogs, Toast } from './components/Dialogs.tsx';
 import { usePlanningIdle } from './components/Planning.tsx';
 import './styles.css';
 
-/** 電腦版：聊天室在左；地圖在右，詳情面板疊在地圖右側，這一天在地圖下方（interaction-design §1） */
+/**
+ * 電腦版三欄（參考 puma.taipei/heart-island）：左邊聊天室；中間地圖，日期、規劃模式、我浮在地圖上方；
+ * 右邊是行程／探索／詳情共用的一欄。聊天室和右欄都頂到最上面。
+ */
 function DesktopLayout() {
-  const mode = useApp((s) => s.mode);
-  const detailId = useApp((s) => s.detailId);
-  const byId = useData((s) => s.byId);
-  const [dayOpen, setDayOpen] = useState(true);
-  const place = detailId ? byId.get(detailId) : null;
   return (
     <div className="layout desktop">
-      <aside className="chat-column">
+      {/* 探索卡片、詳情標題可以拖到這裡問 AI（askAi.ts） */}
+      <aside className="chat-column" {...dropAiProps()}>
         <ChatPanel />
       </aside>
-      <main className="main-column">
-        <TopBar />
-        <div className={`stage mode-${mode}`}>
-          {mode === 'explore' && <ExploreWall />}
-          <MapView />
-          {place && (
-            <aside className="detail-side">
-              <DetailPanel place={place} />
-            </aside>
-          )}
-        </div>
-        <section className={`day-dock ${dayOpen ? 'open' : ''}`}>
-          <button type="button" className="day-dock-toggle" onClick={() => setDayOpen((o) => !o)} aria-expanded={dayOpen}>
-            📅 這一天 {dayOpen ? '▾' : '▴'}
-          </button>
-          {dayOpen && <DayPanel />}
-        </section>
+      <main className="map-column">
+        <MapView />
+        <MapTopBar />
       </main>
+      <aside className="side-column">
+        <SidePanel />
+      </aside>
     </div>
   );
 }

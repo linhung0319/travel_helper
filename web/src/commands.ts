@@ -141,8 +141,13 @@ export function createCommands(app: StoreApi<AppStore>, data: StoreApi<DataState
     if ('day' in target) {
       if (!dates().includes(target.day)) return { ok: false, error: `focus：${target.day} 不在旅程的日期裡` };
       const { byId, itinerary } = data.getState();
-      const coords = stopsOn(itinerary, target.day)
-        .map((s) => byId.get(s.place)?.coords)
+      // 前一晚的住宿（那天的起點）、分組裡各組去的點也框進來
+      const day = itinerary?.days.find((d) => d.date === target.day);
+      const prevDate = dates()[dates().indexOf(target.day) - 1];
+      const prev = itinerary?.days.find((d) => d.date === prevDate);
+      const groupPlaces = (day?.items ?? []).flatMap((i) => (i.type === 'split' ? i.groups.flatMap((g) => g.items.flatMap((x) => (x.type === 'visit' ? [x.options[x.selected]?.place] : []))) : []));
+      const coords = [...stopsOn(itinerary, target.day).map((s) => s.place), ...(prev?.lodging ? [prev.lodging] : []), ...groupPlaces]
+        .map((id) => (id ? byId.get(id)?.coords : undefined))
         .filter((c): c is LonLat => !!c);
       if (!coords.length) return { ok: true, bbox: null };
       // 一個點也框成範圍（和 T11 的天數分頁一樣），不拉到單點的放大倍率

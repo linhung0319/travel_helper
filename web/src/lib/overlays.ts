@@ -151,27 +151,45 @@ export function itineraryFeatures(
   for (const d of it?.days ?? []) {
     const color = dayColor(dates, d.date);
     const active = day === 'all' || day === d.date ? 1 : 0;
+    // 只有選定的那天畫方向箭頭
+    const selected = day === d.date ? 1 : 0;
     const dp = plan?.days.find((x) => x.date === d.date);
-    // 有時間軸時照時間軸（含出發的住宿）；還沒算好時照行程的順序
-    const order: { place: string; leg: DayPlan['entries'][number]['travel'] }[] = dp
-      ? dp.entries.filter((e) => e.placeId).map((e) => ({ place: e.placeId!, leg: e.travel }))
-      : stopsOn(it, d.date).map((s) => ({ place: s.place, leg: null }));
-    const coords: LonLat[] = [];
-    let prev: LonLat | null = null;
-    for (const o of order) {
-      const p = byId.get(o.place);
-      if (!p) continue;
-      if (prev && (prev[0] !== p.coords[0] || prev[1] !== p.coords[1]) && day === d.date && o.leg && o.leg.mode !== 'none' && o.leg.minutes > 0) {
-        legs.push({
-          id: `leg-${d.date}-${legs.length}`,
-          coords: lineMidpoint([prev, p.coords]),
-          text: o.leg.mode === 'unknown' ? `❓ ${o.leg.minutes} 分` : routeLabel(o.leg.mode, o.leg.minutes),
-        });
+    type Stop = { place: string; leg: DayPlan['entries'][number]['travel'] };
+    const toStop = (e: DayPlan['entries'][number]): Stop => ({ place: e.placeId!, leg: e.travel });
+    // 有時間軸時照時間軸（含出發的住宿）；還沒算好時照行程的順序。
+    // 分組的那天，線在分組前斷開：每組從上一站經過組裡的點到會合點各一條，會合後再接著走
+    const paths: Stop[][] = [[]];
+    if (dp) {
+      for (const e of dp.entries) {
+        if (!e.placeId) continue;
+        if (e.groups) {
+          const before = paths[paths.length - 1].at(-1);
+          for (const g of e.groups) {
+            const inGroup = g.entries.filter((x) => x.placeId && x.kind !== 'meet').map(toStop);
+            paths.push([...(before ? [before] : []), ...inGroup, { place: e.placeId, leg: g.entries.find((x) => x.kind === 'meet')?.travel ?? e.travel }]);
+          }
+          paths.push([{ place: e.placeId, leg: null }]);
+        } else paths[paths.length - 1].push(toStop(e));
       }
-      coords.push(p.coords);
-      prev = p.coords;
+    } else paths[0] = stopsOn(it, d.date).map((s) => ({ place: s.place, leg: null }));
+    for (const path of paths) {
+      const coords: LonLat[] = [];
+      let prev: LonLat | null = null;
+      for (const o of path) {
+        const p = byId.get(o.place);
+        if (!p) continue;
+        if (prev && (prev[0] !== p.coords[0] || prev[1] !== p.coords[1]) && day === d.date && o.leg && o.leg.mode !== 'none' && o.leg.minutes > 0) {
+          legs.push({
+            id: `leg-${d.date}-${legs.length}`,
+            coords: lineMidpoint([prev, p.coords]),
+            text: o.leg.mode === 'unknown' ? `❓ ${o.leg.minutes} 分` : routeLabel(o.leg.mode, o.leg.minutes),
+          });
+        }
+        coords.push(p.coords);
+        prev = p.coords;
+      }
+      if (coords.length >= 2) lines.push(line(coords, { date: d.date, color, active, selected }));
     }
-    if (coords.length >= 2) lines.push(line(coords, { date: d.date, color, active }));
     for (const item of d.items) {
       const visits = item.type === 'visit' ? [item] : item.type === 'split' ? item.groups.flatMap((g) => g.items.filter((x) => x.type === 'visit')) : [];
       for (const v of visits) {

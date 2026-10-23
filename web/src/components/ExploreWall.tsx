@@ -5,6 +5,30 @@ import { placeVisual, wallPlaces } from '../lib/visual.ts';
 import { Photo } from './Photo.tsx';
 import { WallVote } from './Votes.tsx';
 import { TierBadge } from './TierBadge.tsx';
+import { toggleAskAi } from './askAi.ts';
+
+/** 照片上的「＋ 問 AI」（手機沒有拖曳）：點了帶進聊天、再點拿掉，不開詳情 */
+function WallAsk({ placeId, on }: { placeId: string; on: boolean }) {
+  const act = (e: { stopPropagation(): void; preventDefault(): void }) => {
+    e.stopPropagation();
+    e.preventDefault();
+    toggleAskAi(placeId);
+  };
+  return (
+    <span
+      role="button"
+      tabIndex={0}
+      className={`wall-ask ${on ? 'on' : ''}`}
+      aria-pressed={on}
+      aria-label={on ? '從聊天拿掉' : '帶進聊天問 AI'}
+      data-testid="wall-ask"
+      onClick={act}
+      onKeyDown={(e) => (e.key === 'Enter' || e.key === ' ') && act(e)}
+    >
+      {on ? '✓ AI' : '＋ AI'}
+    </span>
+  );
+}
 
 /**
  * 探索模式的圖片牆（interaction-design §7）：只顯示目前地圖畫面裡、符合篩選的點；
@@ -17,6 +41,7 @@ export function ExploreWall() {
   const previewId = useApp((s) => s.previewId);
   const detailId = useApp((s) => s.detailId);
   const hoveredId = useApp((s) => s.hoveredId);
+  const selection = useApp((s) => s.selection);
   const places = useData((s) => s.places);
   const days = useData((s) => s.days);
   const canHover = useCanHover();
@@ -62,6 +87,7 @@ export function ExploreWall() {
                 {v.order && <span className="wall-order">#{v.order}</span>}
               </span>
               <WallVote placeId={p.id} />
+              <WallAsk placeId={p.id} on={selection.includes(p.id)} />
             </button>
           );
         })}

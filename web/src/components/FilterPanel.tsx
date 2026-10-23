@@ -15,8 +15,11 @@ function Toggle({ on, label, onClick, count }: { on: boolean; label: string; onC
   );
 }
 
-/** 篩選器（區域、子地區、類型、情境、分級、團體）和「跳到區域」。選項一律從 areas.json 和資料來 */
-export function FilterPanel({ onClose }: { onClose(): void }) {
+/**
+ * 篩選器（區域、子地區、類型、情境、分級、團體）和「跳到區域」。選項一律從 areas.json 和資料來。
+ * embedded：放在電腦版的「探索」分頁裡（區域、類型已經在上面選了，不再列）
+ */
+export function FilterPanel({ onClose, embedded }: { onClose(): void; embedded?: boolean }) {
   const filter = useApp((s) => s.filter);
   const areas = useData((s) => s.areas);
   const places = useData((s) => s.places);
@@ -29,7 +32,7 @@ export function FilterPanel({ onClose }: { onClose(): void }) {
   const regionAreas = filter.areas.length ? areas.filter((a) => filter.areas.includes(a.id)) : [];
 
   return (
-    <div className="filter-panel" role="dialog" aria-label="篩選" data-testid="filter-panel">
+    <div className={`filter-panel ${embedded ? 'embedded' : ''}`} role={embedded ? 'group' : 'dialog'} aria-label="篩選" data-testid="filter-panel">
       <div className="filter-head">
         <strong>篩選</strong>
         <button type="button" className="link-button" onClick={clearFilter}>
@@ -39,6 +42,8 @@ export function FilterPanel({ onClose }: { onClose(): void }) {
           ✕
         </button>
       </div>
+      {!embedded && (
+        <>
       <h4>類型</h4>
       <div className="pills">
         {PLACE_TYPES.map((t) => (
@@ -73,6 +78,8 @@ export function FilterPanel({ onClose }: { onClose(): void }) {
           </div>
         </div>
       ))}
+        </>
+      )}
       <h4>情境（餐廳）</h4>
       <div className="pills">
         {CONTEXTS.map((c) => (
@@ -97,6 +104,8 @@ export function FilterPanel({ onClose }: { onClose(): void }) {
           <Toggle key={t} label={`${t} 級`} on={filter.tiers.includes(t)} count={countWith({ tiers: [t] })} onClick={() => toggleFilter('tiers', t)} />
         ))}
       </div>
+      {!embedded && (
+        <>
       <h4>跳到區域</h4>
       <div className="pills">
         {areas.map((a) => (
@@ -113,6 +122,8 @@ export function FilterPanel({ onClose }: { onClose(): void }) {
           </button>
         ))}
       </div>
+        </>
+      )}
     </div>
   );
 }

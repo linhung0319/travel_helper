@@ -6,39 +6,45 @@ import type { FeatureCollection } from 'geojson';
 import 'maplibre-gl/dist/maplibre-gl.css';
 import { appStore } from '../store.ts';
 import { dataStore } from '../dataStore.ts';
-import { useApp, useCanHover, useData, usePlan, useShared } from '../hooks.ts';
+import { DESKTOP_QUERY, useApp, useCanHover, useData, usePlan, useShared } from '../hooks.ts';
 import { suggestionCounts, voteCounts } from '../sharedStore.ts';
 import { initialExtent } from '../lib/areas.ts';
-import { photoCandidates } from '../lib/photos.ts';
-import { TYPE_COLORS, TYPE_ICONS } from '../lib/typeStyle.ts';
+import { TYPE_COLORS } from '../lib/typeStyle.ts';
+import { stopMarks } from '../lib/planView.ts';
+import { dayPlanOf } from '../planStore.ts';
+import { addMapIcons } from './mapIcons.ts';
 import { dayColor, placeVisual } from '../lib/visual.ts';
 import { tripDates } from '../lib/trip.ts';
 import { PLACE_TYPES, type Bbox, type Place } from '../data/types.ts';
 import { PreviewCard } from './PreviewCard.tsx';
 import { addOverlayLayers, OVERLAY_SOURCES } from './mapOverlayLayers.ts';
 import { compareFeatures, highlightFeatures, itineraryFeatures, placeBadges, proposalFeatures, routeFeatures, routeLabels } from '../lib/overlays.ts';
-import { HIGHLIGHT_STYLES } from '../store.ts';
 import { commands } from '../appCommands.ts';
 import { MapCommandBars } from './MapCommandBars.tsx';
+import { showInExplore } from './Explore.tsx';
 
 setWorkerUrl(maplibreWorkerUrl);
 
 const STYLE_URL = 'https://tiles.openfreemap.org/styles/liberty';
-/** 放大到這裡以上，S、A 級顯示小張照片，其他只顯示小點（interaction-design §7） */
-export const PHOTO_MARKER_ZOOM = 13;
+/** 放大到這裡以上，小點換成類別圖標（像 Google Maps） */
+export const ICON_ZOOM = 12;
 /** 這個縮放以上才顯示每個點的 💬／❤️ 數字 */
 const BADGE_ZOOM = 10;
 const DATES = tripDates();
 
 const typeColorExpr = ['match', ['get', 'type'], ...PLACE_TYPES.flatMap((t) => [t, TYPE_COLORS[t]]), '#555'];
 
-function featureCollection(places: Place[]): FeatureCollection {
-  const { filter, day } = appStore.getState();
+/** marks：選定那天的編號（宿、1、2…，planView.stopMarks）；有編號的點畫成那天顏色的編號圓 */
+function featureCollection(places: Place[], marks: Map<string, string>): FeatureCollection {
+  const { filter, day, mode } = appStore.getState();
   const { days } = dataStore.getState();
+  const color = day === 'all' ? '' : dayColor(DATES, day);
+  // 探索時不因為「不在那天」變淡（找的是那天還沒排的點），只看篩選
+  const dimDay = mode === 'explore' ? 'all' : day;
   return {
     type: 'FeatureCollection',
     features: places.map((p) => {
-      const v = placeVisual(p, filter, day, days);
+      const v = placeVisual(p, filter, dimDay, days);
       return {
         type: 'Feature',
         id: undefined,
@@ -49,54 +55,20 @@ function featureCollection(places: Place[]): FeatureCollection {
           tier: p.tier ?? '',
           label: p.name.zh || p.name.ja,
           dim: v.dim ? 1 : 0,
-          order: v.order ?? 0,
-          dayColor: day === 'all' ? '' : dayColor(DATES, day),
-          photo: (p.tier === 'S' || p.tier === 'A') && p.photos.length > 0 ? 1 : 0,
+          mark: marks.get(p.id) ?? '',
+          dayColor: color,
         },
       };
     }),
   };
 }
 
-/** S、A 級的照片標記（DOM）。照片打不開時依序換下一張，全部打不開就換成類別色的圓點 */
-function photoMarkerElement(p: Place, onPick: (id: string) => void): HTMLElement {
-  const el = document.createElement('button');
-  el.type = 'button';
-  el.className = `photo-marker tier-${p.tier}`;
-  el.dataset.id = p.id;
-  el.setAttribute('aria-label', p.name.zh || p.name.ja);
-  el.style.borderColor = TYPE_COLORS[p.type];
-  const urls = photoCandidates(p.photos, 200);
-  const img = document.createElement('img');
-  img.loading = 'lazy';
-  img.decoding = 'async';
-  img.referrerPolicy = 'no-referrer';
-  img.alt = '';
-  let i = 0;
-  img.onerror = () => {
-    i += 1;
-    if (i < urls.length) img.src = urls[i];
-    else {
-      img.remove();
-      el.classList.add('photo-marker-fallback');
-      el.style.background = TYPE_COLORS[p.type];
-      el.textContent = TYPE_ICONS[p.type];
-    }
-  };
-  img.src = urls[0];
-  el.appendChild(img);
-  el.addEventListener('click', (e) => {
-    e.stopPropagation();
-    onPick(p.id);
-  });
-  el.addEventListener('mouseenter', () => el.dispatchEvent(new CustomEvent('th-hover', { bubbles: true, detail: p.id })));
-  return el;
-}
+/** 可以點的圖層（點的時候都要查） */
+const PICK_LAYERS = ['places-circle', 'places-icon', 'places-mark', 'places-pin'];
 
 export function MapView() {
   const containerRef = useRef<HTMLDivElement>(null);
   const mapRef = useRef<MapLibreMap | null>(null);
-  const markersRef = useRef<Map<string, Marker>>(new Map());
   const routeLabelsRef = useRef<Map<string, Marker>>(new Map());
   // 確定的行程的交通標籤、每個點的 💬／❤️（T15m）
   const legLabelsRef = useRef<Marker[]>([]);
@@ -114,6 +86,7 @@ export function MapView() {
   const hoveredId = useApp((s) => s.hoveredId);
   const previewId = useApp((s) => s.previewId);
   const detailId = useApp((s) => s.detailId);
+  const exploreTarget = useApp((s) => s.exploreTarget);
   const camera = useApp((s) => s.camera);
   const mode = useApp((s) => s.mode);
   const highlights = useApp((s) => s.highlights);
@@ -128,14 +101,18 @@ export function MapView() {
   const suggestions = useShared((s) => s.suggestions);
   const votes = useShared((s) => s.votes);
 
-  // 點了一個點：滑鼠直接開詳情（小卡片已經在移上去時出現）；觸控先出小卡片，同一點再點一次開詳情
+  // 點了一個點：電腦版右側切到探索、捲到那張卡片（再點卡片開詳情）；觸控先出小卡片，同一點再點一次開詳情
   const pick = (id: string | null) => {
     const s = appStore.getState();
     if (!id) {
       s.openPreview(null);
       return;
     }
-    if (canHoverRef.current || s.previewId === id) s.openDetail(id);
+    if (window.matchMedia(DESKTOP_QUERY).matches) {
+      showInExplore(id);
+      return;
+    }
+    if (s.previewId === id) s.openDetail(id);
     else s.openPreview(id);
     s.hover(id);
   };
@@ -187,61 +164,98 @@ export function MapView() {
         zoom: map.getZoom(),
         bounds: [bounds.getWest(), bounds.getSouth(), bounds.getEast(), bounds.getNorth()],
       });
-      containerRef.current?.classList.toggle('show-photo-markers', map.getZoom() >= PHOTO_MARKER_ZOOM);
       containerRef.current?.classList.toggle('show-badges', map.getZoom() >= BADGE_ZOOM);
     };
 
     map.on('load', () => {
       map.addSource('places', { type: 'geojson', data: { type: 'FeatureCollection', features: [] } });
-      // 變淡的點畫在下面
+      addMapIcons(map);
+      // 縮小時是類別色的小點；放大到 ICON_ZOOM 換成圖標。選定那天的點不畫在這裡（畫成編號圓）
       map.addLayer({
         id: 'places-circle',
         type: 'circle',
         source: 'places',
+        filter: ['==', ['get', 'mark'], ''],
         layout: { 'circle-sort-key': ['-', 1, ['get', 'dim']] },
         paint: {
-          'circle-radius': [
-            'interpolate',
-            ['linear'],
-            ['zoom'],
-            8,
-            ['match', ['get', 'tier'], 'S', 6, 'A', 5, 3.5],
-            14,
-            ['match', ['get', 'tier'], 'S', 11, 'A', 9, 6],
-          ],
+          'circle-radius': ['interpolate', ['linear'], ['zoom'], 8, ['match', ['get', 'tier'], 'S', 6, 'A', 4.5, 3], 12, ['match', ['get', 'tier'], 'S', 8.5, 'A', 6, 4.5]],
           'circle-color': typeColorExpr as never,
-          'circle-opacity': ['case', ['==', ['get', 'dim'], 1], 0.25, 0.95],
-          'circle-stroke-color': ['case', ['>', ['get', 'order'], 0], ['get', 'dayColor'], '#ffffff'],
-          'circle-stroke-width': ['case', ['>', ['get', 'order'], 0], 3, 1.5],
-          'circle-stroke-opacity': ['case', ['==', ['get', 'dim'], 1], 0.25, 1],
+          'circle-opacity': ['step', ['zoom'], ['case', ['==', ['get', 'dim'], 1], 0.25, 0.95], ICON_ZOOM, 0],
+          'circle-stroke-color': '#ffffff',
+          'circle-stroke-width': 1.5,
+          'circle-stroke-opacity': ['step', ['zoom'], ['case', ['==', ['get', 'dim'], 1], 0.25, 1], ICON_ZOOM, 0],
         },
       });
       map.addLayer({
-        id: 'places-order',
+        id: 'places-icon',
         type: 'symbol',
         source: 'places',
-        filter: ['>', ['get', 'order'], 0],
+        minzoom: ICON_ZOOM,
+        filter: ['==', ['get', 'mark'], ''],
         layout: {
-          'text-field': ['to-string', ['get', 'order']],
+          'icon-image': ['concat', 'icon-', ['get', 'type']],
+          // S 大、B 小，拉開差距讓好的點顯眼（整體密度不變）
+          'icon-size': ['match', ['get', 'tier'], 'S', 1.2, 'A', 0.9, 0.72],
+          'icon-allow-overlap': true,
+          'symbol-sort-key': ['+', ['*', ['get', 'dim'], 10], ['match', ['get', 'tier'], 'S', 0, 'A', 1, 2]],
+        },
+        paint: { 'icon-opacity': ['case', ['==', ['get', 'dim'], 1], 0.3, 1] },
+      });
+      // 選定那天的點：那天顏色的圓，寫「宿」「1」「2」…（和時間軸的編號一樣）
+      map.addLayer({
+        id: 'places-mark',
+        type: 'circle',
+        source: 'places',
+        filter: ['!=', ['get', 'mark'], ''],
+        paint: {
+          'circle-radius': ['interpolate', ['linear'], ['zoom'], 8, 10, 14, 13],
+          'circle-color': ['get', 'dayColor'],
+          'circle-stroke-color': '#ffffff',
+          'circle-stroke-width': 2.5,
+        },
+      });
+      map.addLayer({
+        id: 'places-mark-text',
+        type: 'symbol',
+        source: 'places',
+        filter: ['!=', ['get', 'mark'], ''],
+        layout: {
+          'text-field': ['get', 'mark'],
+          'text-font': ['Noto Sans Bold'],
+          'text-size': ['case', ['>', ['length', ['get', 'mark']], 2], 9, 13],
+          'text-allow-overlap': true,
+          'text-ignore-placement': true,
+        },
+        paint: { 'text-color': '#ffffff' },
+      });
+      // 選定那天的點一律寫名稱，看得出順序是哪幾個地方
+      map.addLayer({
+        id: 'places-mark-label',
+        type: 'symbol',
+        source: 'places',
+        filter: ['!=', ['get', 'mark'], ''],
+        layout: {
+          'text-field': ['get', 'label'],
           'text-font': ['Noto Sans Bold'],
           'text-size': 12,
-          'text-offset': [0, -1.4],
-          'text-allow-overlap': true,
+          'text-anchor': 'left',
+          'text-offset': [1.3, 0],
+          'text-optional': true,
         },
-        paint: { 'text-color': '#fff', 'text-halo-color': ['get', 'dayColor'], 'text-halo-width': 2.5 },
+        paint: { 'text-color': '#24292f', 'text-halo-color': '#fff', 'text-halo-width': 1.8 },
       });
       map.addLayer({
         id: 'places-label',
         type: 'symbol',
         source: 'places',
-        minzoom: 12,
-        filter: ['==', ['get', 'dim'], 0],
+        minzoom: 13,
+        filter: ['all', ['==', ['get', 'dim'], 0], ['==', ['get', 'mark'], '']],
         layout: {
           'text-field': ['get', 'label'],
           'text-font': ['Noto Sans Regular'],
           'text-size': 12,
           'text-anchor': 'left',
-          'text-offset': [0.9, 0],
+          'text-offset': [1.2, 0],
           'text-optional': true,
         },
         paint: { 'text-color': '#24292f', 'text-halo-color': '#fff', 'text-halo-width': 1.5 },
@@ -272,28 +286,43 @@ export function MapView() {
         },
       });
 
+      // 選中的點（打開詳情、點了跳到探索卡片）：水滴形的大圖釘，尖端在點上，任何縮放都看得到
+      map.addLayer({
+        id: 'places-pin',
+        type: 'symbol',
+        source: 'places',
+        filter: ['==', ['get', 'id'], ''],
+        layout: {
+          'icon-image': ['concat', 'pin-', ['get', 'type']],
+          'icon-anchor': 'bottom',
+          'icon-allow-overlap': true,
+          'icon-ignore-placement': true,
+        },
+      });
+
       addOverlayLayers(map);
 
-      map.on('click', (e: MapMouseEvent) => {
-        const pad = 10; // 手機上手指比較粗，點的周圍留一點空間
+      // 點了哪個點；手機上手指比較粗，點的周圍留一點空間。好幾個點重疊時，選最靠近手指的那個
+      const placeAt = (p: { x: number; y: number }): string | null => {
+        const pad = 10;
         const feats = map.queryRenderedFeatures(
           [
-            [e.point.x - pad, e.point.y - pad],
-            [e.point.x + pad, e.point.y + pad],
+            [p.x - pad, p.y - pad],
+            [p.x + pad, p.y + pad],
           ],
-          { layers: ['places-circle'] },
+          { layers: PICK_LAYERS },
         );
-        // 好幾個點重疊時，選最靠近手指的那個
         let best: { id: string; d: number } | null = null;
         for (const f of feats) {
           const [x, y] = (f.geometry as GeoJSON.Point).coordinates;
           const pt = map.project([x, y]);
-          const d = Math.hypot(pt.x - e.point.x, pt.y - e.point.y);
+          const d = Math.hypot(pt.x - p.x, pt.y - p.y);
           if (!best || d < best.d) best = { id: String(f.properties.id), d };
         }
-        pickRef.current(best?.id ?? null);
-      });
-      map.on('mousemove', 'places-circle', (e) => {
+        return best?.id ?? null;
+      };
+      map.on('click', (e: MapMouseEvent) => pickRef.current(placeAt(e.point)));
+      map.on('mousemove', PICK_LAYERS, (e) => {
         if (!canHoverRef.current) return;
         const id = String(e.features?.[0]?.properties.id ?? '');
         if (!id) return;
@@ -303,7 +332,7 @@ export function MapView() {
         if (s.previewId !== id) s.openPreview(id);
         if (s.hoveredId !== id) s.hover(id);
       });
-      map.on('mouseleave', 'places-circle', () => {
+      map.on('mouseleave', PICK_LAYERS, () => {
         map.getCanvas().style.cursor = '';
         if (canHoverRef.current) scheduleHideRef.current();
       });
@@ -312,19 +341,6 @@ export function MapView() {
       reportView();
       setLoaded(true);
     });
-
-    const onMarkerHover = (e: Event) => {
-      if (!canHoverRef.current) return;
-      const id = (e as CustomEvent<string>).detail;
-      cancelHideRef.current();
-      appStore.getState().openPreview(id);
-      appStore.getState().hover(id);
-    };
-    containerRef.current!.addEventListener('th-hover', onMarkerHover);
-    const onMarkerLeave = (e: Event) => {
-      if ((e.target as HTMLElement).closest?.('.photo-marker') && canHoverRef.current) scheduleHideRef.current();
-    };
-    containerRef.current!.addEventListener('mouseout', onMarkerLeave);
 
     // 版面改變（切到探索模式、手機轉向）時地圖要重新算大小
     const ro = new ResizeObserver(() => map.resize());
@@ -347,8 +363,6 @@ export function MapView() {
 
     return () => {
       ro.disconnect();
-      markersRef.current.forEach((m) => m.remove());
-      markersRef.current.clear();
       routeLabelsRef.current.forEach((m) => m.remove());
       routeLabelsRef.current.clear();
       legLabelsRef.current.forEach((m) => m.remove());
@@ -365,40 +379,26 @@ export function MapView() {
   // 資料點、篩選、選定的天、行程 → 重畫
   useEffect(() => {
     if (!loaded) return;
-    (mapRef.current!.getSource('places') as GeoJSONSource).setData(featureCollection(places));
-    for (const p of places) {
-      const m = markersRef.current.get(p.id);
-      if (m) m.getElement().classList.toggle('dim', placeVisual(p, filter, day, days).dim);
-    }
-  }, [loaded, places, filter, day, days]);
+    const marks = day === 'all' ? new Map<string, string>() : stopMarks(dayPlanOf(plan, day), (id) => byId.get(id)?.type === 'lodging').byPlace;
+    (mapRef.current!.getSource('places') as GeoJSONSource).setData(featureCollection(places, marks));
+  }, [loaded, places, filter, day, days, plan, byId, mode]);
 
-  // S、A 級的照片標記
+  // 選中的點（詳情、探索捲到的卡片）：換成水滴圖釘，原本的圖標藏起來；只有小卡片的點：框起來
+  // 滑鼠移過去、圖片牆點了的點：閃一下
   useEffect(() => {
     if (!loaded) return;
     const map = mapRef.current!;
-    const { days } = dataStore.getState();
-    const s = appStore.getState();
-    for (const p of places) {
-      if ((p.tier !== 'S' && p.tier !== 'A') || p.photos.length === 0 || markersRef.current.has(p.id)) continue;
-      const el = photoMarkerElement(p, (id) => pickRef.current(id));
-      el.classList.toggle('dim', placeVisual(p, s.filter, s.day, days).dim);
-      markersRef.current.set(p.id, new Marker({ element: el }).setLngLat(p.coords).addTo(map));
-    }
-  }, [loaded, places]);
-
-  // 小卡片或詳情的點：框起來；滑鼠移過去、圖片牆點了的點：閃一下
-  useEffect(() => {
-    if (!loaded) return;
-    const map = mapRef.current!;
-    map.setFilter('places-focus', ['==', ['get', 'id'], detailId ?? previewId ?? '']);
-    markersRef.current.forEach((m, id) => m.getElement().classList.toggle('focus', id === (detailId ?? previewId)));
-  }, [loaded, previewId, detailId]);
+    const pinned = detailId ?? (mode === 'explore' ? exploreTarget?.id : null) ?? '';
+    map.setFilter('places-pin', ['==', ['get', 'id'], pinned]);
+    map.setFilter('places-icon', ['all', ['==', ['get', 'mark'], ''], ['!=', ['get', 'id'], pinned]]);
+    map.setFilter('places-circle', ['all', ['==', ['get', 'mark'], ''], ['!=', ['get', 'id'], pinned]]);
+    map.setFilter('places-focus', ['==', ['get', 'id'], pinned ? '' : (previewId ?? '')]);
+  }, [loaded, previewId, detailId, exploreTarget, mode]);
 
   useEffect(() => {
     if (!loaded) return;
     const map = mapRef.current!;
     map.setFilter('places-flash', ['==', ['get', 'id'], hoveredId ?? '']);
-    markersRef.current.forEach((m, id) => m.getElement().classList.toggle('flash', id === hoveredId));
     if (!hoveredId) return;
     // 閃幾下就停
     let n = 0;
@@ -421,12 +421,6 @@ export function MapView() {
     const { byId } = dataStore.getState();
     (map.getSource(OVERLAY_SOURCES.highlights) as GeoJSONSource).setData(highlightFeatures(highlights, byId));
     (map.getSource(OVERLAY_SOURCES.compare) as GeoJSONSource).setData(compareFeatures(compare, byId));
-    // 照片標記（DOM）蓋在圖層上面，另外加 class
-    markersRef.current.forEach((m, id) => {
-      const el = m.getElement();
-      for (const st of HIGHLIGHT_STYLES) el.classList.toggle(`hl-${st}`, !!highlights[st]?.includes(id));
-      el.classList.toggle('compared', compare.includes(id));
-    });
   }, [loaded, highlights, compare]);
 
   // 路線：線畫在圖層，中間的標籤（🚶 8 分）是 DOM 標記，才放得了 emoji
@@ -463,18 +457,6 @@ export function MapView() {
     const f = proposal ? proposalFeatures(proposal, itinerary, dataStore.getState().byId, DATES) : { points: empty, lines: empty };
     (map.getSource(OVERLAY_SOURCES.proposalPoints) as GeoJSONSource).setData(f.points);
     (map.getSource(OVERLAY_SOURCES.proposalLines) as GeoJSONSource).setData(f.lines);
-    // 放大後照片標記（DOM）會蓋住圖層上的編號和 ×，所以照片標記自己也標出來
-    const marks = new Map(f.points.features.map((x) => [String(x.properties?.id), x.properties as { status: string; order: number; color: string }]));
-    markersRef.current.forEach((m, id) => {
-      const el = m.getElement();
-      const p = marks.get(id);
-      el.classList.toggle('proposal-added', p?.status === 'added');
-      el.classList.toggle('proposal-removed', p?.status === 'removed');
-      if (p) {
-        el.dataset.proposal = p.status === 'removed' ? '×' : String(p.order);
-        el.style.setProperty('--proposal-color', p.color);
-      } else delete el.dataset.proposal;
-    });
   }, [loaded, proposal, itinerary]);
 
   // 確定的行程（T15m）：每天的路線、備選的空心圈、選定那天的交通標籤
@@ -530,7 +512,8 @@ export function MapView() {
           [w, s],
           [e, n],
         ],
-        { padding: 40, maxZoom: camera.zoom ?? 15, duration: 600 },
+        // 上方浮著日期列
+        { padding: { top: 90, bottom: 60, left: 60, right: 60 }, maxZoom: camera.zoom ?? 15, duration: 600 },
       );
     } else if (camera.center) {
       map.flyTo({ center: camera.center, zoom: camera.zoom ?? Math.max(map.getZoom(), 14), duration: 600 });

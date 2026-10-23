@@ -308,6 +308,8 @@ export function createShared(getBackend: () => Backend, data: StoreApi<DataState
     syncOnce,
     reloadMe,
     clearToast: () => set({ toast: null }),
+    /** 一般的提示（例如「已帶進聊天」） */
+    notify: (text: string) => toast('ok', text),
   };
 }
 

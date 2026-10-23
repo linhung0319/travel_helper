@@ -7,15 +7,20 @@ import { shortDayLabel, tripDates, weekdayZh, JP_HOLIDAYS } from '../lib/trip.ts
 import { ConflictBar, PendingBadge, PlanningBar, PlanningToggle } from './Planning.tsx';
 import { MeMenu } from './MeMenu.tsx';
 import { FilterPanel } from './FilterPanel.tsx';
+import { showItinerary } from './Explore.tsx';
 
 const DATES = tripDates();
 
-function DayTabs() {
+/** onSelect：電腦版選了某一天，右側切回「行程」 */
+function DayTabs({ onSelect }: { onSelect?: () => void }) {
   const day = useApp((s) => s.day);
   const ref = useRef<HTMLDivElement>(null);
 
   // 和 AI 用同一個指令：選了某一天，地圖移到那天排的點（沒有排東西就不動）
-  const select = (d: string) => commands.selectDay(d);
+  const select = (d: string) => {
+    commands.selectDay(d);
+    onSelect?.();
+  };
 
   // 選定的分頁捲到看得到的地方（手機上分頁可以左右滑）
   useEffect(() => {
@@ -110,6 +115,32 @@ export function TopBar() {
       <PlanningBar />
       <ConflictBar />
       {filterOpen && <FilterPanel onClose={() => setFilterOpen(false)} />}
+    </div>
+  );
+}
+
+/**
+ * 電腦版：浮在地圖上方（參考 puma.taipei 的版面）。左邊是日期，右邊是待處理、規劃模式、我；
+ * 篩選、探索搬到右側的「探索」分頁。
+ */
+export function MapTopBar() {
+  const mode = useApp((s) => s.mode);
+  return (
+    <div className="map-top">
+      <div className="map-top-row">
+        <div className="float-bar day-float">
+          <DayTabs onSelect={showItinerary} />
+        </div>
+        <div className="float-bar me-float">
+          <PendingBadge />
+          <PlanningToggle />
+          <MeMenu />
+        </div>
+      </div>
+      <PlanningBar />
+      <ConflictBar />
+      {/* 探索分頁裡已經看得到篩選，不重複 */}
+      {mode !== 'explore' && <FilterChips />}
     </div>
   );
 }

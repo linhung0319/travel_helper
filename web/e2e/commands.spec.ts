@@ -51,8 +51,25 @@ const run = (page: Page, fn: string, ...args: unknown[]) =>
   page.evaluate(([fn, args]) => (window as any).__th.commands[fn as string](...(args as unknown[])), [fn, args] as const);
 
 test('用指令重現 T11 的手動操作：切天數、篩選、聚焦，畫面一樣', async ({ page }) => {
-  // 手動：點天數分頁、在篩選面板選餐廳和 S 級、跳到鳥羽
   await ready(page);
+  if (!(await isMobile(page))) {
+    // 電腦版：篩選在右側的「探索」分頁。點天數、切到探索、選餐廳和 S 級、點地區「鳥羽」（篩選加上鳥羽、地圖移過去）
+    await page.locator(`.day-float [data-day="${DAY}"]`).click();
+    await page.getByTestId('side-tab-explore').click();
+    await page.locator('.ex-types [data-type="restaurant"]').click();
+    await page.locator('.ex-quick').getByRole('button', { name: 'S 級' }).click();
+    await page.locator('.ex-areas [data-area="toba"]').click();
+    const manual = await snapshot(page);
+    await ready(page);
+    expect((await run(page, 'selectDay', DAY)).ok).toBe(true);
+    await page.evaluate(() => (window as any).__th.appStore.getState().setMode('explore'));
+    expect((await run(page, 'setFilter', { types: ['restaurant'], tiers: ['S'], areas: ['toba'] })).ok).toBe(true);
+    expect((await run(page, 'focus', { area: 'toba' })).ok).toBe(true);
+    expect(await snapshot(page)).toEqual(manual);
+    await expect(page.locator(`.day-float [data-day="${DAY}"]`)).toHaveAttribute('aria-selected', 'true');
+    return;
+  }
+  // 手動：點天數分頁、在篩選面板選餐廳和 S 級、跳到鳥羽
   await page.locator(`[data-day="${DAY}"]`).click();
   await page.getByTestId('filter-button').click();
   const panel = page.getByTestId('filter-panel');
@@ -130,7 +147,7 @@ test('標示、路線（沿道路）、比較：畫在地圖上，可以清掉',
   await shot(page, 'compare');
   await bar.locator('.compare-card').first().click();
   await expect(page.getByTestId('detail-panel')).toBeVisible();
-  await page.getByTestId('detail-close').click();
+  await page.getByTestId((await isMobile(page)) ? 'detail-close' : 'detail-back').click();
 
   await page.getByTestId('marks-bar').getByRole('button', { name: '清掉 ✕' }).click();
   await expect(label).toHaveCount(0);

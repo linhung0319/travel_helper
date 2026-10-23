@@ -4,6 +4,7 @@ import { TYPE_LABELS } from '../lib/filter.ts';
 import type { Place } from '../data/types.ts';
 import { Photo } from './Photo.tsx';
 import { TierBadge } from './TierBadge.tsx';
+import { showInExplore } from './Explore.tsx';
 
 interface Props {
   place: Place;
@@ -19,9 +20,9 @@ export function firstSentence(text: string): string {
   return m ? m[0] : text;
 }
 
-/** 小卡片（interaction-design §4）：照片、名稱、分級、一句摘要、1～2 個標章。點一下開詳情 */
+/** 小卡片（interaction-design §4）：照片、名稱、分級、一句摘要、1～2 個標章。手機點一下開詳情；電腦版和點地圖上的點一樣，捲到探索的卡片 */
 export function PreviewCard({ place, anchor, onEnter, onLeave }: Props) {
-  const open = () => appStore.getState().openDetail(place.id);
+  const open = () => (anchor ? showInExplore(place.id) : appStore.getState().openDetail(place.id));
   const style = anchor ? { left: anchor.x, top: anchor.y } : undefined;
   return (
     <div
@@ -31,7 +32,7 @@ export function PreviewCard({ place, anchor, onEnter, onLeave }: Props) {
       onMouseEnter={onEnter}
       onMouseLeave={onLeave}
     >
-      <button type="button" className="preview-body" onClick={open} aria-label={`打開 ${place.name.zh || place.name.ja} 的詳情`}>
+      <button type="button" className="preview-body" onClick={open} aria-label={anchor ? `在探索裡看 ${place.name.zh || place.name.ja}` : `打開 ${place.name.zh || place.name.ja} 的詳情`}>
         <Photo place={place} width={400} className="preview-photo" />
         <span className="preview-text">
           <span className="preview-title">

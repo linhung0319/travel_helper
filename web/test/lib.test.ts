@@ -11,6 +11,9 @@ import { nearbyPlaces } from '../src/lib/nearby.ts';
 import { placeVisual, wallPlaces } from '../src/lib/visual.ts';
 import { dayStops, placeDays } from '../src/lib/itinerary.ts';
 import { itin } from './helpers.ts';
+import { stopMarks } from '../src/lib/planView.ts';
+import { explorePlaces, typeCounts } from '../src/lib/explore.ts';
+import type { DayPlan, TimelineEntry } from '@travel-helper/engine';
 import type { Area, Place, StationTimetable } from '../src/data/types.ts';
 
 // 測試用的區域：故意不用真的區域 ID，確認程式沒有寫死（PLAN T11「區域不寫死」）
@@ -198,4 +201,55 @@ test('一天的順序：選定的選項、同機場的航班只算一站、住�
       ['hotel', 'lodging', null],
     ],
   );
+});
+
+// --- T15m 版面調整：地圖和時間軸共用的編號、探索清單 ---
+
+const entry = (kind: TimelineEntry['kind'], placeId: string | null, extra: Partial<TimelineEntry> = {}): TimelineEntry => ({
+  kind,
+  itemId: placeId,
+  placeId,
+  travel: null,
+  arrive: '09:00',
+  start: '09:00',
+  end: '09:00',
+  waitMinutes: 0,
+  ...extra,
+});
+
+test('stopMarks：住宿是「宿」、機場是「機」，其他依序編號；分組先編各組再編會合點', () => {
+  const split = entry('meet', 'meet-pt', {
+    groups: [
+      { id: 'g1', name: 'A', entries: [entry('visit', 'ga'), entry('meet', 'meet-pt')] },
+      { id: 'g2', name: 'B', entries: [entry('visit', 'gb')] },
+    ],
+  });
+  const day = { entries: [entry('start', 'hotel-1'), entry('visit', 'x'), split, entry('visit', 'x'), entry('lodging', 'hotel-2')] } as unknown as DayPlan;
+  const { byPlace, byEntry } = stopMarks(day, (id) => id.startsWith('hotel'));
+  assert.equal(byPlace.get('hotel-1'), '宿');
+  assert.equal(byPlace.get('ga'), '2');
+  assert.equal(byPlace.get('gb'), '3');
+  assert.equal(byPlace.get('meet-pt'), '4');
+  // 同一個點去兩次
+  assert.equal(byPlace.get('x'), '1・5');
+  assert.equal(byPlace.get('hotel-2'), '宿');
+  assert.equal(byEntry.get(day.entries[0]), '宿');
+  const flights = { entries: [entry('flight', 'kix'), entry('visit', 'y')] } as unknown as DayPlan;
+  assert.deepEqual([...stopMarks(flights, () => false).byPlace], [['kix', '機'], ['y', '1']]);
+});
+
+test('explorePlaces：不列車站；依評分、❤️ 排序時同分保留推薦的順序；可以只看畫面裡的', () => {
+  const ps = [
+    place('s1', { type: 'station' }),
+    place('r1', { type: 'restaurant', tier: 'S', ratings: { google: 4.0 } }),
+    place('r2', { type: 'restaurant', tier: 'A', ratings: { google: 4.5 } }),
+    place('r3', { type: 'restaurant', tier: 'B', ratings: { tabelog: 3.6 }, coords: [137.5, 34.4] }),
+  ];
+  const ids = (list: Place[]) => list.map((p) => p.id);
+  assert.deepEqual(ids(explorePlaces(ps, EMPTY_FILTER, null, 'recommend', () => 0)), ['r1', 'r2', 'r3']);
+  // 食べログ 3.6 ≈ 4.1 星
+  assert.deepEqual(ids(explorePlaces(ps, EMPTY_FILTER, null, 'rating', () => 0)), ['r2', 'r3', 'r1']);
+  assert.deepEqual(ids(explorePlaces(ps, EMPTY_FILTER, null, 'likes', (id) => (id === 'r3' ? 2 : 0))), ['r3', 'r1', 'r2']);
+  assert.deepEqual(ids(explorePlaces(ps, EMPTY_FILTER, [136.7, 34.3, 136.9, 34.5], 'recommend', () => 0)), ['r1', 'r2']);
+  assert.deepEqual(typeCounts(ps, { ...EMPTY_FILTER, types: ['lodging'] }, null), { restaurant: 3, lodging: 0, spot: 0 });
 });
