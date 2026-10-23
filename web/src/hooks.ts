@@ -2,6 +2,9 @@ import { useEffect, useState } from 'react';
 import { useStore } from 'zustand';
 import { appStore, type AppStore } from './store.ts';
 import { dataStore, type DataState } from './dataStore.ts';
+import { sharedStore } from './appShared.ts';
+import type { SharedState } from './sharedStore.ts';
+import { planStore, type PlanState } from './planStore.ts';
 
 export function useApp<T>(selector: (s: AppStore) => T): T {
   return useStore(appStore, selector);
@@ -9,6 +12,14 @@ export function useApp<T>(selector: (s: AppStore) => T): T {
 
 export function useData<T>(selector: (s: DataState) => T): T {
   return useStore(dataStore, selector);
+}
+
+export function useShared<T>(selector: (s: SharedState) => T): T {
+  return useStore(sharedStore, selector);
+}
+
+export function usePlan<T>(selector: (s: PlanState) => T): T {
+  return useStore(planStore, selector);
 }
 
 /** 電腦版的寬度（interaction-design §1）：900px 以上左右分 */

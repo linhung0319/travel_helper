@@ -38,6 +38,7 @@ function setup(itinerary: Itinerary | null = itin({ '2027-02-05': ['a', 'b'] }))
     status: 'ready',
     error: null,
     areas: AREAS,
+    basePlaces: PLACES,
     places: PLACES,
     byId: new Map(PLACES.map((p) => [p.id, p])),
     itinerary,

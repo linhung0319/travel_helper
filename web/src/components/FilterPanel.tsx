@@ -5,7 +5,6 @@ import { displayName } from '../data/normalize.ts';
 import { CONTEXT_LABELS, FIT15_LABELS, TYPE_LABELS, matchesFilter } from '../lib/filter.ts';
 import { CONTEXTS, PLACE_TYPES, TIERS } from '../data/types.ts';
 import { commands } from '../appCommands.ts';
-import { fakeItineraryEnabled, setFakeItineraryEnabled } from '../dev-fixtures/fakeItinerary.ts';
 
 function Toggle({ on, label, onClick, count }: { on: boolean; label: string; onClick(): void; count?: number }) {
   return (
@@ -108,19 +107,6 @@ export function FilterPanel({ onClose }: { onClose(): void }) {
           </button>
         ))}
       </div>
-      {import.meta.env.DEV && (
-        <label className="dev-option small">
-          <input
-            type="checkbox"
-            defaultChecked={fakeItineraryEnabled()}
-            onChange={(e) => {
-              setFakeItineraryEnabled(e.target.checked);
-              location.reload();
-            }}
-          />
-          （開發用）顯示假行程
-        </label>
-      )}
     </div>
   );
 }

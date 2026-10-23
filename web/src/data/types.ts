@@ -87,8 +87,10 @@ export interface Anchor {
   walkSource?: string | null;
 }
 
-/** 使用者修改過的欄位（architecture §3.2）。本機的實作沒有修改層，一律是空的 */
+/** 使用者修改過的欄位（architecture §3.2）。修改層由 data/merge.ts 套上；沒改過是空的 */
 export interface FieldEdit {
+  /** 最新那筆修改的 ID（看紀錄、復原用） */
+  editId: number;
   author: string;
   at: string;
   baseValue: unknown;

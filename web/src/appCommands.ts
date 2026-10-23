@@ -4,6 +4,8 @@ import { dataStore } from './dataStore.ts';
 import { createCommands } from './commands.ts';
 import { createRoadRouter } from './lib/routing.ts';
 import { startRouteResolver } from './routeResolver.ts';
+import { startPlanner } from './planStore.ts';
+import { dataSource } from './data/index.ts';
 
 function browserStorage() {
   try {
@@ -19,3 +21,6 @@ export const commands = createCommands(appStore, dataStore);
 export const roadRouter = createRoadRouter({ storage: browserStorage() });
 
 startRouteResolver(appStore, dataStore, roadRouter);
+
+// 行程引擎：行程、資料點變了就重算時間軸（T15m）
+startPlanner(dataStore, dataSource, roadRouter);

@@ -1,6 +1,7 @@
-// 本機的實作：build 時直接讀 data/（Vite 的 import.meta.glob），修改層是空的。
+// 本機的實作：build 時直接讀 data/（Vite 的 import.meta.glob）。
 // 只讀網站要用的檔案（areas/、stations.json、areas.json、時刻表），研究筆記（raw/）、cache/、derived/ 不打包。
 
+import type { KintetsuTimes, RouteTimetable } from '@travel-helper/engine';
 import { normalizeAreas, normalizePlaceList } from './normalize.ts';
 import type { DataSource } from './source.ts';
 import type { StationTimetable } from './types.ts';
@@ -18,6 +19,12 @@ const timetableModules = import.meta.glob<unknown>(
   ['../../../data/timetables/kintetsu/[!_]*.json', '../../../data/timetables/jr/*.json'],
   { import: 'default' },
 );
+
+// 行程引擎用的：近鐵的站間車程、巴士、船、JR 的路線檔（有 stops、trips 的）
+const kintetsuTimesModule = import.meta.glob<unknown>('../../../data/timetables/kintetsu/_travel-times.json', { import: 'default' });
+const routeModules = import.meta.glob<unknown>(['../../../data/timetables/bus/*.json', '../../../data/timetables/ferry/*.json', '../../../data/timetables/jr/*.json'], {
+  import: 'default',
+});
 
 function timetableLoader(stationId: string) {
   for (const [path, load] of Object.entries(timetableModules)) {
@@ -39,5 +46,15 @@ export const localSource: DataSource = {
     const content = (await load()) as StationTimetable;
     // jr-sangu.json 這類路線格式的檔案沒有 directions
     return content && typeof content === 'object' && 'directions' in content ? content : null;
+  },
+  async loadEngineTimetables() {
+    const [kintetsu, ...routes] = await Promise.all([
+      Object.values(kintetsuTimesModule)[0]?.() ?? Promise.resolve(null),
+      ...Object.values(routeModules).map((load) => load()),
+    ]);
+    return {
+      kintetsu: (kintetsu as KintetsuTimes | null) ?? null,
+      routes: routes.filter((r): r is RouteTimetable => !!r && typeof r === 'object' && 'stops' in r && 'trips' in r),
+    };
   },
 };

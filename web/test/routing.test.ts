@@ -154,6 +154,7 @@ function setup(router: Parameters<typeof startRouteResolver>[2]) {
     status: 'ready',
     error: null,
     areas: [],
+    basePlaces: places,
     places,
     byId: new Map(places.map((p) => [p.id, p])),
     itinerary: null,
