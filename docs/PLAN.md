@@ -670,7 +670,12 @@ T7c → T7d → T7e → T7f → T7g → T8a → T8b → T8c → T8d → T7i → 
 
 ### T23 👤 LINE 登入小實驗 〔S〕
 - 目的：確認 [architecture.md](architecture.md) §5 的做法可行。👤 要做的事：在 LINE Developers 開 provider 和兩個 channel（LINE Login、Messaging API），把機器人邀進家人群組（或先用一個測試群組）。
-- 用一個臨時的 Worker（或 `wrangler dev` 加上通道）接 LINE 的通知，記下群組 ID。
+- 👤 在 LINE Developers 的設定細節：
+  - Messaging API channel 要先在 LINE Official Account Manager 建免費官方帳號，再啟用 Messaging API，選同一個 provider（選了不能改）。
+  - 官方帳號打開「允許加入群組」，關掉自動回應和歡迎訊息，Webhook 設成啟用。
+  - 發一個 long-lived 的 channel access token。
+  - LINE Login channel 選 Web app。
+- 用一個臨時的 Worker（或 `wrangler dev` 加上通道）接 LINE 的通知，記下群組 ID。通道用 ngrok 的固定網域（`@ngrok/ngrok`，見 [architecture.md](architecture.md) §4「本機接 LINE」）；實驗用的 secret 也放在 `data/cache/work/t23/`。
 - 用**免費的官方帳號**呼叫 `GET /v2/bot/group/{groupId}/member/{userId}`，測這幾種人：群組成員、沒加機器人好友的群組成員、不在群組的人。預期依序是 200、200、404。
 - 在 iOS、Android 的 LINE 內建瀏覽器試 LINE 登入，確認點一下就能登入；也試試 channel 還在「開發中」時，非測試人員會看到什麼。
 - 結果寫回 architecture.md §5「要注意的地方」。群組檢查行不通的話，改用「LINE 登入＋白名單核准」（§5「備案」），和 👤 確認後更新 T25。
@@ -698,7 +703,13 @@ T7c → T7d → T7e → T7f → T7g → T8a → T8b → T8c → T8d → T7i → 
   - Claude API 代理（`POST /api/claude/messages`）和每人每天的用量上限；API key 存成 Worker secret。也可以留到 T16 再做。
   - 部署到 Cloudflare：網站、Worker、D1 的正式環境；正式環境的 D1 第一次匯入（T24 的腳本）。
   - 白名單用的簡單管理頁（只有 👤 能看）。
-- 部署和 LINE 的設定需要 👤：Cloudflare 帳號、LINE channel 的 secret。
+- 部署和 LINE 的設定需要 👤：Cloudflare 帳號、LINE channel 的 secret、ngrok 帳號（固定網域）。
+- **本機開發用 ngrok 通道**（2026-10-23 👤 決定，見 [architecture.md](architecture.md) §4「本機接 LINE」「設定值和 secret」）：
+  - 加 `npm run dev:tunnel`：啟動 `wrangler dev`，用 `@ngrok/ngrok` 開固定網域的通道，在 terminal 印出要貼到 LINE Developers 的 Webhook URL、Callback URL。
+  - `PUBLIC_BASE_URL` 用來組 `redirect_uri`。
+  - 本機的值放在 `worker/.env`，附一個 `worker/.env.example`（只有名稱、沒有值）。正式環境用 `wrangler secret put`。
+  - 部署前把 `wrangler.jsonc` 的 `DEV_AUTH` 改成只在本機生效。
+  - 變數名稱定案後更新 architecture §4 的表。
 - 在手機的 LINE 裡實際登入一次（🌐 少量：電腦上的流程可以用 Chrome 看）。
 - **LINE 內建瀏覽器實測（接 T11）**（2026-10-22 👤 決定）：登入時一併看地圖網站在 iOS、Android 的 LINE 內建瀏覽器有沒有版面跑掉或點不到的地方（天數分頁左右滑、拉起面板的把手、小卡片→詳情、iPhone 下緣的安全區域、外站照片能不能顯示），結果寫進 T25 的回報；有問題的另開任務修。
 

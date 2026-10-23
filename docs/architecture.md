@@ -299,6 +299,30 @@ npm run db:import -- --apply data/cache/import/<時間>-all.json   # 2. 👤 看
   - AI：`POST /api/claude/messages`
 - **除了登入和 LINE 的通知，所有 API 都要先登入。**
 - **環境**：本機用 `wrangler dev`（本機的 D1），正式環境部署到 Cloudflare。用 GitHub Actions 自動部署是之後的事，一開始手動 `wrangler deploy` 就好。
+- **本機接 LINE：用 ngrok 通道**（2026-10-23 👤 決定）：LINE 的 webhook 是從外面連進來，手機的 LINE 也連不到電腦的 `localhost`，所以本機開發要開一個公開的 HTTPS 網址。
+  - 用 ngrok 免費帳號的**固定網域**（`xxxx.ngrok-free.app`）：LINE Developers 的 Webhook URL、Callback URL 貼一次就好，重開不用改。不用 Cloudflare 的臨時通道（每次網址都換）。
+  - `npm run dev:tunnel`：啟動 `wrangler dev`，再用 npm 套件 `@ngrok/ngrok` 開通道，在 terminal 印出要貼到 LINE Developers 的兩個網址（`<網址>/line/webhook`、`<網址>/auth/line/callback`）。`npm run dev:worker` 照舊不開通道。
+  - 開不開通道看跑哪個指令，不在 `.env` 放開關；`wrangler deploy` 不會執行這支腳本，正式環境不會用到 ngrok。
+  - 免費版 ngrok 用瀏覽器第一次打開時會先出現一頁警告，要按 Visit；webhook 不受影響。所以在 LINE 內建瀏覽器實測版面、登入要用部署後的正式網址。
+- **設定值和 secret**：
+  - 本機放在 `worker/.env`（wrangler dev 會讀；根目錄 `.gitignore` 已經擋 `.env`）。不用 `.dev.vars`，因為 `.gitignore` 沒擋。
+  - 正式環境用 `npx wrangler secret put <名稱>`（在 `worker/` 底下跑），不寫進檔案。
+  - Cloudflare 帳號用 `wrangler login`，不放進 `.env`。
+  - 正式環境不能設 `DEV_AUTH = "1"`。
+
+| 名稱 | 從哪裡拿 | 用途 |
+|---|---|---|
+| `LINE_LOGIN_CHANNEL_ID` | LINE Login channel → Basic settings | OAuth、驗證 ID token（`aud`） |
+| `LINE_LOGIN_CHANNEL_SECRET` | 同上 | 用授權碼換 token |
+| `LINE_MESSAGING_CHANNEL_SECRET` | Messaging API channel → Basic settings | 驗證 webhook 簽章 |
+| `LINE_MESSAGING_ACCESS_TOKEN` | Messaging API 分頁發的 long-lived token | 查群組成員 |
+| `SESSION_SECRET` | 自己產生的亂數（例如 `openssl rand -base64 32`） | 簽登入憑證（cookie） |
+| `PUBLIC_BASE_URL` | 本機是 ngrok 網址，正式環境是正式網址 | 組 LINE 的 `redirect_uri`；明確設定，不從 request 猜 |
+| `ADMIN_LINE_USER_IDS` | 第一次登入後從 `members` 查 | 白名單管理頁只給 👤 看 |
+| `ANTHROPIC_API_KEY` | Claude Console | Claude API 代理（T25 或 T16） |
+| `NGROK_AUTHTOKEN`、`NGROK_DOMAIN` | ngrok 後台 | 只有本機的 `dev:tunnel` 用 |
+
+  變數名稱由 T25 定案，改了要更新這張表。群組 ID 不放設定檔：機器人被邀進群組時從 `join` 通知記下來，存在資料庫（§5）。
 - **費用**：預期都在免費額度內。Workers 免費方案每次請求的 CPU 時間很短，所以 Worker 只做轉發、讀寫資料庫、簡單的合併與驗證；重的計算（行程引擎）放在瀏覽器（§6）。
 
 ### 免費額度（2026-10-22 查官網）
