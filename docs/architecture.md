@@ -93,6 +93,7 @@ travel_helper/
 | `hoveredId` | `string \| null` | 地圖上要閃的點（滑鼠移過去、圖片牆點了、聊天室的地點標籤） |
 | `previewId` | `string \| null` | 小卡片 |
 | `detailId` | `string \| null` | 詳情面板（車站的詳情裡有時刻表） |
+| `exploreTarget` | `{ id, seq } \| null` | 電腦版點了地圖上的點：探索清單捲到那張卡片（`seq` 讓同一點再點也會捲） |
 | `selection` | `string[]` | 「問 AI」選取的點 |
 | `sheet` | `{ tab: 'chat' \| 'day', snap: 'peek' \| 'half' \| 'full' }` | 手機的拉起面板；有 `detailId` 時面板顯示詳情 |
 | `stationTime` | `string \| null` | 車站面板的指定時間（`HH:MM`），null 時用行程排到的時間或 09:00 |
@@ -102,7 +103,7 @@ travel_helper/
 | `compare` | `string[]` | 比較中的點：地圖標 A、B、C，上方出現比較列（T12） |
 | `proposal` | `{ itinerary, dates, changes, summary } \| null` | AI 提議的行程（itinerary-v1）、有改動的天、engine `diffItinerary` 的改動；地圖用虛線、半透明畫，不改確定的行程（T12） |
 
-設定函式（同步、不檢查輸入；UI 和 AI 要用下面的地圖指令）：`setView`、`selectDay`、`setFilter(patch)`、`toggleFilter(key, value)`、`clearFilter`、`setMode`、`setPlanning`、`hover`、`openPreview`、`openDetail`（小卡片收起、收起的面板拉到一半）、`closeDetail`、`addToSelection`、`removeFromSelection`、`setSheet`、`setStationTime`、`moveCamera`；T12 加 `setSelection`、`setHighlight(style, ids)`、`addRoute`、`updateRoute`、`setCompare`、`clearHighlights`（標示、路線、比較一起清）、`setProposal`。
+設定函式（同步、不檢查輸入；UI 和 AI 要用下面的地圖指令）：`setView`、`selectDay`、`setFilter(patch)`、`toggleFilter(key, value)`、`clearFilter`、`setMode`、`setPlanning`、`hover`、`openPreview`、`openDetail`（小卡片收起、收起的面板拉到一半）、`closeDetail`、`revealInExplore(id)`、`addToSelection`、`removeFromSelection`、`setSheet`、`setStationTime`、`moveCamera`；T12 加 `setSelection`、`setHighlight(style, ids)`、`addRoute`、`updateRoute`、`setCompare`、`clearHighlights`（標示、路線、比較一起清）、`setProposal`。
 
 ### 地圖指令（T12，2026-10-22）
 
@@ -124,9 +125,9 @@ travel_helper/
 UI 的天數分頁、篩選標籤的 ✕、「跳到區域」、詳情的「問 AI」、聊天室選取標籤的 ✕、「這一天」的項目都改走這些指令。篩選面板的切換按鈕直接用 store 的 `toggleFilter`（同一份狀態）。
 
 **地圖上的樣子**（`components/mapOverlayLayers.ts`、`lib/overlays.ts`）：
-- 標示：黃、紅、灰的框；比較：紫框加 A、B、C。照片標記（DOM）另外加 class。
+- 標示：黃、紅、灰的框；比較：紫框加 A、B、C。
 - 路線：白底加一條依交通方式上色的線，步行點線、船虛線、其他實線；直線（查不到路徑）比較淡。中間的標籤（「🚶 8 分」）是 DOM 標記。
-- 提議（👤 2026-10-22 決定）：確定的行程照常；提議那幾天的點用半透明白底、那天顏色的框，編號在點的下方（確定的行程的編號在上方），依序用那天顏色的虛線連起來；新增的點加綠框，拿掉的點變灰加 ×。照片標記也標出編號、綠框、變灰。上方的提議列有摘要（「2/5：＋鳥羽水族館、－XX」）和「不看提議」；「採用／修改」在 T15／T16 加。
+- 提議（👤 2026-10-22 決定）：確定的行程照常；提議那幾天的點用半透明白底、那天顏色的框，編號在點的下方（確定的行程的編號在上方），依序用那天顏色的虛線連起來；新增的點加綠框，拿掉的點變灰加 ×。提議列有摘要（「2/5：＋鳥羽水族館、－XX」）和「不看提議」；「採用／修改」在 T15／T16 加。
 
 **路線**（`lib/routing.ts`，👤 2026-10-22 決定：沿道路走、在瀏覽器直接查）：
 - 步行（OSRM foot）、計程車、包車、自駕、巴士（OSRM car）：在瀏覽器查公開的 OSRM（`routing.openstreetmap.de`），請求排隊、間隔 1.1 秒；查過的存在記憶體和 localStorage，同樣的起訖點（四捨五入到約 1 公尺）不再查。查不到（網路、OSRM 錯誤）畫直線。
@@ -149,10 +150,13 @@ T15m 先用假後端把畫面做出來，T15 只換後端的實作，畫面的�
   - 同步照 §3.8：每 30 秒、切回分頁時打一次 `sync`，變了才重抓那一種；行程有別人的新版本時直接換上（存檔中、衝突中不換）。
   - 修改紀錄在瀏覽器合併：`data/merge.ts` 直接用 Worker 的 `worker/src/lib/merge.ts`，`place.edited` 是「欄位 → 最新那筆修改（`editId`、誰、何時、原本的值）」。
 - **`web/src/planStore.ts`：行程引擎在瀏覽器跑**。行程或資料點變了就重算整份（12 天約 15 ms）。引擎要的時刻表從 `DataSource.loadEngineTimetables()` 讀（近鐵 `_travel-times.json`、巴士、船、JR 的路線檔，約 1.3 MB，第一次算時才載入）；`walkMeters`、`driveMeters` 接 `roadRouter.cachedMeters`。T15 的 API 實作要從 `build:static` 的輸出讀這些檔案。
-- **`web/src/uiStore.ts`：對話框**，一次只開一個（寫建議、進入規劃模式的確認、快照、待處理的建議、排進行程、移到別天、採用、不採用、投票備註、修改紀錄、需要預約），`components/Dialogs.tsx` 負責畫；另有規劃模式的閒置分鐘（預設 10）。
+- **`web/src/uiStore.ts`：對話框**，一次只開一個（寫建議、進入規劃模式的確認、快照、待處理的建議、排進行程、移到別天、採用、不採用、修改紀錄、需要預約），`components/Dialogs.tsx` 負責畫；另有規劃模式的閒置分鐘（預設 10）。
 - **篩選加 `votes`**（`'popular'`：❤️ 2 人以上、`'mine'`：我按了 ❤️）。投票不在資料點裡，`appShared` 用 `setVoteLookup` 註冊查詢，`matchesFilter` 的呼叫者不用改；T12 的 `setFilter` 也認得。
 - **規劃模式**：`appStore.planning` 還是唯一的開關；進入前確認（`PlanningToggle`）、規劃列、閒置退出（`usePlanningIdle`）。Worker 不檢查規劃模式（§3.6）。
 - **地圖**（`lib/overlays.ts` 的 `itineraryFeatures`、`placeBadges`）：每天顏色的路線（直線，照時間軸的順序）、選了某一天時那天的交通標籤、時段備案的備選是那天顏色的空心圈、每個點的 💬 建議數和 ❤️ 數（放大到 10 以上）。
+- **電腦版三欄**（T15m 版面調整，參考 puma.taipei/heart-island）：`App.tsx` 的 `DesktopLayout` 是聊天室｜地圖｜右欄。地圖上方浮著 `TopBar.tsx` 的 `MapTopBar`（日期、待處理、規劃模式、我、篩選標籤）；右欄是 `SidePanel.tsx`，分頁用 `appStore.mode`（`map`＝行程、`explore`＝探索），`detailId` 有值時詳情蓋在右欄上。探索是 `Explore.tsx`（清單邏輯在 `lib/explore.ts`），類型寫在 `filter.types`，從探索切回行程時拿掉（`showItinerary`）。點地圖上的點走 `showInExplore`：切到探索、換成那一類（目前的篩選看不到它就只留類型和地區）、捲到卡片；再點卡片才開詳情。詳情面板（`DetailPanel.tsx`）分成總覽、詳細、附近・連結、圖片四頁。探索上方的類型分頁是 sticky；篩選捲出畫面時（看 `.side-body` 的捲動）收合成一列摘要，疊在清單上、不推動清單。
+- **問 AI**（`components/askAi.ts`）：電腦版的探索卡片、詳情標題用 HTML 的拖放（`dragPlaceProps`，資料型別 `application/x-travel-place`），放到聊天欄（`dropAiProps`，`data-drop-ai`）就 `commands.select(id)` 並提示「已帶進聊天」。手機沒有拖曳：圖片牆照片上的「＋ AI」、詳情的「＋ 問 AI」（`toggleAskAi`），拉起面板的聊天分頁顯示選取數。地圖上的點不做拖曳（和拖地圖衝突）。T16 的聊天室把選取帶進對話，AI 就知道要問哪幾個點（例如兩點的距離）；之後再加輸入框的 `@` 選地點、自動帶入正在看的點。
+- **地圖的點**（`MapView.tsx`、`mapIcons.ts`）：照片標記拿掉，改成 Google Maps 那種類別圖標（canvas 畫的 `icon-<type>`），`ICON_ZOOM`（12）以下是小點。選了某一天，那天的點換成編號圓（`places-mark`），編號由 `lib/planView.ts` 的 `stopMarks` 照時間軸算（住宿「宿」、機場「機」、其他 1、2、3…；分組先編各組再編會合點），時間軸用同一份；那天的路線加方向箭頭（`itinerary-arrow`，分組時每組各一條）。選中的點（`detailId`，或探索分頁的 `exploreTarget`）畫成水滴圖釘（`pin-<type>`、`places-pin` 圖層），原本的圖標藏起來；只有小卡片時才用圓框（`places-focus`）。點的時候查 `places-circle`、`places-icon`、`places-mark`、`places-pin` 四層。探索分頁時不因為「不在那天」變淡。
 - **`data-day` 只給天數分頁用**（e2e 靠它找分頁）；其他選日子的按鈕用 `data-pick-day`、`data-overview-day`。
 
 **區域不寫死**：區域清單、名稱、子地區、區域篩選的選項、「跳到區域」都從 `areas.json` 讀。地圖的初始範圍：bbox 彼此在 30 km 以內的區域分成一群，用資料點最多的那群的資料點範圍（`web/src/lib/areas.ts`）；所以加了大阪也會和關西機場周邊同一群，不影響初始畫面。區域的顏色依 `tripOrder` 的順序配。
