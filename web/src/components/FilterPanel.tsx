@@ -2,7 +2,7 @@ import { useMemo } from 'react';
 import { appStore } from '../store.ts';
 import { useApp, useData } from '../hooks.ts';
 import { displayName } from '../data/normalize.ts';
-import { CONTEXT_LABELS, FIT15_LABELS, TYPE_LABELS, matchesFilter } from '../lib/filter.ts';
+import { CONTEXT_LABELS, FIT15_LABELS, TYPE_LABELS, VOTE_FILTER_LABELS, VOTE_FILTER_VALUES, matchesFilter } from '../lib/filter.ts';
 import { CONTEXTS, PLACE_TYPES, TIERS } from '../data/types.ts';
 import { commands } from '../appCommands.ts';
 
@@ -83,6 +83,12 @@ export function FilterPanel({ onClose }: { onClose(): void }) {
       <div className="pills">
         {(['yes', 'split'] as const).map((v) => (
           <Toggle key={v} label={FIT15_LABELS[v]} on={filter.fit15.includes(v)} count={countWith({ fit15: [v] })} onClick={() => toggleFilter('fit15', v)} />
+        ))}
+      </div>
+      <h4>投票</h4>
+      <div className="pills">
+        {VOTE_FILTER_VALUES.map((v) => (
+          <Toggle key={v} label={VOTE_FILTER_LABELS[v]} on={filter.votes.includes(v)} count={countWith({ votes: [v] })} onClick={() => toggleFilter('votes', v)} />
         ))}
       </div>
       <h4>分級</h4>

@@ -3,6 +3,7 @@ import { appStore } from '../store.ts';
 import { useApp, useCanHover, useData } from '../hooks.ts';
 import { placeVisual, wallPlaces } from '../lib/visual.ts';
 import { Photo } from './Photo.tsx';
+import { WallVote } from './Votes.tsx';
 import { TierBadge } from './TierBadge.tsx';
 
 /**
@@ -60,10 +61,7 @@ export function ExploreWall() {
                 <span className="wall-name">{p.name.zh || p.name.ja}</span>
                 {v.order && <span className="wall-order">#{v.order}</span>}
               </span>
-              {/* ❤️／👎 在 T15 接上 */}
-              <span className="wall-vote" aria-hidden>
-                ♡
-              </span>
+              <WallVote placeId={p.id} />
             </button>
           );
         })}

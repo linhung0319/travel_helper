@@ -4,6 +4,8 @@ import { commands } from '../appCommands.ts';
 import { useApp, useData } from '../hooks.ts';
 import { filterChips, isFilterEmpty, matchesFilter } from '../lib/filter.ts';
 import { shortDayLabel, tripDates, weekdayZh, JP_HOLIDAYS } from '../lib/trip.ts';
+import { ConflictBar, PendingBadge, PlanningBar, PlanningToggle } from './Planning.tsx';
+import { MeMenu } from './MeMenu.tsx';
 import { FilterPanel } from './FilterPanel.tsx';
 
 const DATES = tripDates();
@@ -75,22 +77,15 @@ function FilterChips() {
 
 export function TopBar() {
   const mode = useApp((s) => s.mode);
-  const planning = useApp((s) => s.planning);
   const filter = useApp((s) => s.filter);
   const [filterOpen, setFilterOpen] = useState(false);
   return (
     <div className="top-bar">
       <div className="top-row">
         <DayTabs />
-        <button
-          type="button"
-          className={`toggle planning-toggle ${planning ? 'on' : ''}`}
-          aria-pressed={planning}
-          title="規劃模式（T15 接上進入前確認）"
-          onClick={() => appStore.getState().setPlanning(!planning)}
-        >
-          {planning ? '規劃中' : '規劃模式'}
-        </button>
+        <PendingBadge />
+        <PlanningToggle />
+        <MeMenu />
       </div>
       <div className="top-row">
         <button
@@ -112,7 +107,8 @@ export function TopBar() {
           </button>
         </div>
       </div>
-      {planning && <div className="planning-banner">規劃模式中：修改行程的功能在 T15 接上</div>}
+      <PlanningBar />
+      <ConflictBar />
       {filterOpen && <FilterPanel onClose={() => setFilterOpen(false)} />}
     </div>
   );

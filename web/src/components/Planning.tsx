@@ -1,0 +1,387 @@
+// 規劃模式（interaction-design §6、§11）：進入前確認、畫面上一直顯示、閒置自動退出；
+// 快照列表與復原、「排進行程」、「移到第 _ 天」、別人改過了的提示。
+
+import { useEffect, useState } from 'react';
+import { addItem, describeChanges, diffItinerary, moveItemToDay, setLodging } from '@travel-helper/engine';
+import type { Itinerary } from '@travel-helper/engine/types';
+import { appStore } from '../store.ts';
+import { shared } from '../appShared.ts';
+import { backend } from '../backend/index.ts';
+import { addProposer, pendingCount } from '../sharedStore.ts';
+import { useApp, useData, useShared, useUi } from '../hooks.ts';
+import { closeDialog, openDialog, uiStore } from '../uiStore.ts';
+import { dayLabel, shortDayLabel, tripDates } from '../lib/trip.ts';
+import { findItemRef, itemsWithPlace } from '../lib/planView.ts';
+import { stopsOn } from '../lib/itinerary.ts';
+import type { Snapshot } from '../backend/types.ts';
+import { Dialog, MemberName, PlaceChip, stamp } from './common.tsx';
+import { SuggestionCard } from './Suggestions.tsx';
+
+const DATES = tripDates();
+
+/** 規劃模式的開關：進去前先確認，出來直接出來 */
+export function PlanningToggle() {
+  const planning = useApp((s) => s.planning);
+  return (
+    <button
+      type="button"
+      className={`toggle planning-toggle ${planning ? 'on' : ''}`}
+      aria-pressed={planning}
+      data-testid="planning-toggle"
+      onClick={() => (planning ? appStore.getState().setPlanning(false) : openDialog({ kind: 'planning' }))}
+    >
+      🛠 {planning ? '規劃中' : (
+        <>
+          規劃<span className="desktop-only">模式</span>
+        </>
+      )}
+    </button>
+  );
+}
+
+export function PlanningConfirmDialog() {
+  const pending = useShared((s) => pendingCount(s.suggestions));
+  const idle = useUi((s) => s.idleMinutes);
+  return (
+    <Dialog
+      title="進入規劃模式？"
+      onClose={closeDialog}
+      testId="planning-dialog"
+      footer={
+        <>
+          <button type="button" className="button" onClick={closeDialog}>
+            取消
+          </button>
+          <button
+            type="button"
+            className="button primary"
+            data-testid="planning-confirm"
+            onClick={() => {
+              appStore.getState().setPlanning(true);
+              closeDialog();
+            }}
+          >
+            進入規劃模式
+          </button>
+        </>
+      }
+    >
+      <p>進入後可以修改<strong>大家共用的那一份行程</strong>：排進行程、刪除、移到別天、換順序、標建議的狀態、復原快照。</p>
+      <ul className="small">
+        <li>每次修改前都會自動存一份快照，改錯了可以復原。</li>
+        <li>{idle} 分鐘沒有動作會自動退出。</li>
+        {pending > 0 && <li>目前有 {pending} 則待處理的建議。</li>}
+      </ul>
+    </Dialog>
+  );
+}
+
+/** 規劃模式中一直顯示：待處理的建議、快照、儲存狀態、退出 */
+export function PlanningBar() {
+  const planning = useApp((s) => s.planning);
+  const pending = useShared((s) => pendingCount(s.suggestions));
+  const saving = useShared((s) => s.saving);
+  const version = useShared((s) => s.version);
+  if (!planning) return null;
+  return (
+    <div className="planning-bar" data-testid="planning-bar">
+      <strong>🛠 規劃模式中</strong>
+      <span className="muted small">{saving ? '儲存中…' : `第 ${version} 版`}</span>
+      <span className="planning-bar-actions">
+        <button type="button" className="text-button" onClick={() => openDialog({ kind: 'pending' })} data-testid="pending-button">
+          📝 待處理 <span className={`count ${pending ? 'hot' : ''}`}>{pending}</span>
+        </button>
+        <button type="button" className="text-button" onClick={() => openDialog({ kind: 'snapshots' })} data-testid="snapshots-button">
+          🕘 快照
+        </button>
+        <button type="button" className="text-button" onClick={() => appStore.getState().setPlanning(false)}>
+          退出
+        </button>
+      </span>
+    </div>
+  );
+}
+
+/** 不在規劃模式時，待處理的建議數量也看得到（點了進建議清單） */
+export function PendingBadge() {
+  const planning = useApp((s) => s.planning);
+  const pending = useShared((s) => pendingCount(s.suggestions));
+  if (planning || !pending) return null;
+  return (
+    <button type="button" className="toggle pending-badge" onClick={() => openDialog({ kind: 'pending' })} title="待處理的建議">
+      📝 {pending}
+    </button>
+  );
+}
+
+/** 別人改過了（存檔回 409）：重新載入才能再改（architecture §3.6） */
+export function ConflictBar() {
+  const conflict = useShared((s) => s.conflict);
+  const [busy, setBusy] = useState(false);
+  if (!conflict) return null;
+  return (
+    <div className="conflict-bar" role="alert" data-testid="conflict-bar">
+      <span>⚠️ 別人剛改過行程，你這次的修改沒有存。重新載入最新的行程後再改。</span>
+      <button
+        type="button"
+        className="button primary"
+        disabled={busy}
+        onClick={async () => {
+          setBusy(true);
+          await shared.reloadItinerary();
+          setBusy(false);
+        }}
+      >
+        重新載入
+      </button>
+    </div>
+  );
+}
+
+/** 規劃模式閒置自動退出（interaction-design §6） */
+export function usePlanningIdle() {
+  const planning = useApp((s) => s.planning);
+  const minutes = useUi((s) => s.idleMinutes);
+  useEffect(() => {
+    if (!planning) return;
+    let last = Date.now();
+    const touch = () => (last = Date.now());
+    const events = ['pointerdown', 'keydown', 'wheel', 'touchstart'] as const;
+    events.forEach((e) => window.addEventListener(e, touch, { passive: true }));
+    const timer = window.setInterval(() => {
+      if (Date.now() - last < minutes * 60_000) return;
+      appStore.getState().setPlanning(false);
+      shared.store.setState({ toast: { seq: Date.now(), kind: 'ok', text: `${minutes} 分鐘沒有動作，已退出規劃模式` } });
+    }, 5_000);
+    return () => {
+      events.forEach((e) => window.removeEventListener(e, touch));
+      window.clearInterval(timer);
+    };
+  }, [planning, minutes]);
+}
+
+export function SnapshotsDialog() {
+  const snapshots = useShared((s) => s.snapshots);
+  const version = useShared((s) => s.version);
+  const updatedBy = useShared((s) => s.updatedBy);
+  const updatedAt = useShared((s) => s.updatedAt);
+  const planning = useApp((s) => s.planning);
+  const itinerary = useData((s) => s.itinerary);
+  const byId = useData((s) => s.byId);
+  const [open, setOpen] = useState<{ id: number; snap: Snapshot | null } | null>(null);
+  const [confirm, setConfirm] = useState<number | null>(null);
+  const nameOf = (id: string) => byId.get(id)?.name.zh || byId.get(id)?.name.ja || id;
+  const expand = async (id: number) => {
+    if (open?.id === id) return setOpen(null);
+    setOpen({ id, snap: null });
+    setOpen({ id, snap: await backend().getSnapshot(id) });
+  };
+  return (
+    <Dialog title="快照" onClose={closeDialog} testId="snapshots-dialog">
+      <p className="small">
+        目前是第 {version} 版（<MemberName id={updatedBy} />・{stamp(updatedAt)}）。每次修改前會自動存一份。
+      </p>
+      {!planning && <p className="muted small">要復原，請先進入規劃模式。</p>}
+      {snapshots.length === 0 && <p className="muted">還沒有快照。</p>}
+      <ol className="snapshot-list">
+        {snapshots.map((s) => {
+          const changes = open?.id === s.id && open.snap && itinerary ? describeChanges(diffItinerary(itinerary, open.snap.data), { nameOf }) : null;
+          return (
+            <li key={s.id} className="snapshot" data-testid="snapshot">
+              <div className="snapshot-head">
+                <span>
+                  <strong>#{s.id}</strong>・第 {s.version} 版
+                </span>
+                <span className="muted small">
+                  <MemberName id={s.createdBy} /> 修改前・{stamp(s.createdAt)}
+                </span>
+              </div>
+              {s.reason && <p className="small">之後的修改：{s.reason}</p>}
+              <div className="snapshot-actions">
+                <button type="button" className="text-button" onClick={() => void expand(s.id)}>
+                  {open?.id === s.id ? '收起' : '和現在比'}
+                </button>
+                {planning && confirm !== s.id && (
+                  <button type="button" className="text-button" onClick={() => setConfirm(s.id)} data-testid="snapshot-restore">
+                    ↩︎ 復原到這一版
+                  </button>
+                )}
+                {planning && confirm === s.id && (
+                  <>
+                    <span className="small">確定復原？（現在的版本也會存成快照）</span>
+                    <button
+                      type="button"
+                      className="text-button danger"
+                      data-testid="snapshot-restore-confirm"
+                      onClick={async () => {
+                        const r = await shared.restoreSnapshot(s.id);
+                        if (r.ok) closeDialog();
+                      }}
+                    >
+                      復原
+                    </button>
+                    <button type="button" className="text-button" onClick={() => setConfirm(null)}>
+                      取消
+                    </button>
+                  </>
+                )}
+              </div>
+              {open?.id === s.id && (
+                <div className="snapshot-diff small">
+                  {!open.snap && <span className="muted">讀取中…</span>}
+                  {changes && changes.length === 0 && <span className="muted">和現在一樣。</span>}
+                  {changes && changes.length > 0 && (
+                    <>
+                      <span className="muted">復原的話：</span>
+                      <ul>
+                        {changes.map((c) => (
+                          <li key={c}>{c}</li>
+                        ))}
+                      </ul>
+                    </>
+                  )}
+                </div>
+              )}
+            </li>
+          );
+        })}
+      </ol>
+    </Dialog>
+  );
+}
+
+/** 排進行程（詳情面板的「📅 排進行程」）：選哪一天；住宿是設成那晚住這裡。可以順便把提到這個點的建議標成已採用 */
+export function AddToDayDialog({ placeId, day: initialDay }: { placeId: string; day?: string }) {
+  const byId = useData((s) => s.byId);
+  const p = byId.get(placeId);
+  const itinerary = useData((s) => s.itinerary);
+  const selectedDay = useApp((s) => s.day);
+  const suggestions = useShared((s) => s.suggestions);
+  const related = suggestions.filter((s) => s.status === 'pending' && s.placeIds.includes(placeId));
+  const [day, setDay] = useState(initialDay ?? (selectedDay !== 'all' ? selectedDay : (related.find((s) => s.day !== 'trip')?.day ?? DATES[0])));
+  const [adopt, setAdopt] = useState<Set<number>>(() => new Set(related.filter((s) => s.day === 'trip' || s.day === day).map((s) => s.id)));
+  const [busy, setBusy] = useState(false);
+  if (!p || !itinerary) return null;
+  const lodging = p.type === 'lodging';
+  const already = itemsWithPlace(itinerary, placeId);
+  const name = p.name.zh || p.name.ja;
+  const submit = async () => {
+    const adopted = related.filter((x) => adopt.has(x.id));
+    setBusy(true);
+    let newId: string | null = null;
+    const r = await shared.changeItinerary(
+      (it: Itinerary) => {
+        if (lodging) return setLodging(it, day, placeId);
+        const added = addItem(it, day, { type: 'visit', options: [{ place: placeId, stayMinutes: null }], addedBy: shared.store.getState().me?.id ?? null });
+        newId = added.itemId;
+        // 「誰提的」一起寫進去：一個動作只存一次檔、只有一份快照，復原才會整個回去
+        let next = added.itinerary;
+        for (const s of adopted) next = addProposer(next, [added.itemId], s.author);
+        return next;
+      },
+      lodging ? `${shortDayLabel(day)} 住 ${name}` : `${shortDayLabel(day)}：＋${name}`,
+    );
+    if (r.ok) {
+      for (const s of adopted) await shared.setSuggestionStatus(s.id, 'adopted', { adoptedItemIds: newId ? [newId] : [] });
+      appStore.getState().selectDay(day);
+      closeDialog();
+    }
+    setBusy(false);
+  };
+  return (
+    <Dialog
+      title={lodging ? `設成住宿：${name}` : `排進行程：${name}`}
+      onClose={closeDialog}
+      testId="add-dialog"
+      footer={
+        <>
+          <button type="button" className="button" onClick={closeDialog}>
+            取消
+          </button>
+          <button type="button" className="button primary" disabled={busy} onClick={() => void submit()} data-testid="add-submit">
+            {busy ? '儲存中…' : lodging ? '設成這晚的住宿' : '排進去'}
+          </button>
+        </>
+      }
+    >
+      {already.length > 0 && <p className="small warn">已經排在 {already.map((r) => shortDayLabel(r.date)).join('、')}。</p>}
+      <div className="field">
+        <span className="field-label">{lodging ? '哪一晚' : '哪一天（排在那天的最後）'}</span>
+        <div className="day-picker">
+          {DATES.map((d) => {
+            const dayData = itinerary.days.find((x) => x.date === d);
+            const count = stopsOn(itinerary, d).filter((s) => s.kind !== 'lodging' && s.kind !== 'flight').length;
+            const lodge = dayData?.lodging ? byId.get(dayData.lodging) : null;
+            const lodgeName = lodge ? lodge.name.zh || lodge.name.ja : (dayData?.lodging ?? null);
+            return (
+              <button key={d} type="button" className={`day-pick ${d === day ? 'on' : ''}`} aria-pressed={d === day} onClick={() => setDay(d)} data-pick-day={d}>
+                <span>{dayLabel(d)}</span>
+                <span className="muted small">{lodging ? (lodgeName ? `住 ${lodgeName}` : '還沒排住宿') : `${count} 個點`}</span>
+              </button>
+            );
+          })}
+        </div>
+      </div>
+      {related.length > 0 && (
+        <div className="field">
+          <span className="field-label">提到這個點的建議，順便標成已採用</span>
+          {related.map((s) => (
+            <label key={s.id} className="check">
+              <input
+                type="checkbox"
+                checked={adopt.has(s.id)}
+                onChange={() => {
+                  const next = new Set(adopt);
+                  if (next.has(s.id)) next.delete(s.id);
+                  else next.add(s.id);
+                  setAdopt(next);
+                }}
+              />
+              <SuggestionCard s={s} showDay />
+            </label>
+          ))}
+        </div>
+      )}
+    </Dialog>
+  );
+}
+
+/** 手動選單的「移到第 _ 天」 */
+export function MoveDialog({ itemId }: { itemId: string }) {
+  const itinerary = useData((s) => s.itinerary);
+  const ref = findItemRef(itinerary, itemId);
+  const [busy, setBusy] = useState(false);
+  if (!ref) return null;
+  const place = ref.item.type === 'visit' ? ref.item.options[ref.item.selected]?.place : null;
+  const move = async (date: string) => {
+    setBusy(true);
+    const r = await shared.changeItinerary((it) => moveItemToDay(it, itemId, date), `移到 ${shortDayLabel(date)}`);
+    setBusy(false);
+    if (r.ok) {
+      appStore.getState().selectDay(date);
+      closeDialog();
+    }
+  };
+  return (
+    <Dialog title="移到第幾天" onClose={closeDialog} testId="move-dialog">
+      {place && (
+        <p>
+          <PlaceChip id={place} />（現在在 {shortDayLabel(ref.date)}
+          {ref.split ? `・${ref.split.groupName}，移過去會變成全員一起` : ''}）
+        </p>
+      )}
+      <div className="day-picker">
+        {DATES.filter((d) => d !== ref.date).map((d) => (
+          <button key={d} type="button" className="day-pick" disabled={busy} onClick={() => void move(d)} data-pick-day={d}>
+            <span>{dayLabel(d)}</span>
+            <span className="muted small">{stopsOn(itinerary, d).filter((s) => s.kind !== 'lodging' && s.kind !== 'flight').length} 個點</span>
+          </button>
+        ))}
+      </div>
+      <p className="muted small">放在那天的最後，順序可以再調。</p>
+    </Dialog>
+  );
+}
+
+/** dev 選單也用：把閒置時間改短 */
+export const setIdleMinutes = (idleMinutes: number) => uiStore.setState({ idleMinutes });

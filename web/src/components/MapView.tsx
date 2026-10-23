@@ -6,7 +6,8 @@ import type { FeatureCollection } from 'geojson';
 import 'maplibre-gl/dist/maplibre-gl.css';
 import { appStore } from '../store.ts';
 import { dataStore } from '../dataStore.ts';
-import { useApp, useCanHover, useData } from '../hooks.ts';
+import { useApp, useCanHover, useData, usePlan, useShared } from '../hooks.ts';
+import { suggestionCounts, voteCounts } from '../sharedStore.ts';
 import { initialExtent } from '../lib/areas.ts';
 import { photoCandidates } from '../lib/photos.ts';
 import { TYPE_COLORS, TYPE_ICONS } from '../lib/typeStyle.ts';
@@ -15,7 +16,7 @@ import { tripDates } from '../lib/trip.ts';
 import { PLACE_TYPES, type Bbox, type Place } from '../data/types.ts';
 import { PreviewCard } from './PreviewCard.tsx';
 import { addOverlayLayers, OVERLAY_SOURCES } from './mapOverlayLayers.ts';
-import { compareFeatures, highlightFeatures, proposalFeatures, routeFeatures, routeLabels } from '../lib/overlays.ts';
+import { compareFeatures, highlightFeatures, itineraryFeatures, placeBadges, proposalFeatures, routeFeatures, routeLabels } from '../lib/overlays.ts';
 import { HIGHLIGHT_STYLES } from '../store.ts';
 import { commands } from '../appCommands.ts';
 import { MapCommandBars } from './MapCommandBars.tsx';
@@ -25,6 +26,8 @@ setWorkerUrl(maplibreWorkerUrl);
 const STYLE_URL = 'https://tiles.openfreemap.org/styles/liberty';
 /** 放大到這裡以上，S、A 級顯示小張照片，其他只顯示小點（interaction-design §7） */
 export const PHOTO_MARKER_ZOOM = 13;
+/** 這個縮放以上才顯示每個點的 💬／❤️ 數字 */
+const BADGE_ZOOM = 10;
 const DATES = tripDates();
 
 const typeColorExpr = ['match', ['get', 'type'], ...PLACE_TYPES.flatMap((t) => [t, TYPE_COLORS[t]]), '#555'];
@@ -95,6 +98,9 @@ export function MapView() {
   const mapRef = useRef<MapLibreMap | null>(null);
   const markersRef = useRef<Map<string, Marker>>(new Map());
   const routeLabelsRef = useRef<Map<string, Marker>>(new Map());
+  // 確定的行程的交通標籤、每個點的 💬／❤️（T15m）
+  const legLabelsRef = useRef<Marker[]>([]);
+  const badgesRef = useRef<Map<string, Marker>>(new Map());
   const [loaded, setLoaded] = useState(false);
   const [, setTick] = useState(0); // 地圖移動時重畫小卡片的位置
   const canHover = useCanHover();
@@ -115,6 +121,12 @@ export function MapView() {
   const routes = useApp((s) => s.routes);
   const proposal = useApp((s) => s.proposal);
   const itinerary = useData((s) => s.itinerary);
+  const byId = useData((s) => s.byId);
+  // 行程改了（T15m）：順序編號、變淡要重畫
+  const days = useData((s) => s.days);
+  const plan = usePlan((s) => s.plan);
+  const suggestions = useShared((s) => s.suggestions);
+  const votes = useShared((s) => s.votes);
 
   // 點了一個點：滑鼠直接開詳情（小卡片已經在移上去時出現）；觸控先出小卡片，同一點再點一次開詳情
   const pick = (id: string | null) => {
@@ -176,6 +188,7 @@ export function MapView() {
         bounds: [bounds.getWest(), bounds.getSouth(), bounds.getEast(), bounds.getNorth()],
       });
       containerRef.current?.classList.toggle('show-photo-markers', map.getZoom() >= PHOTO_MARKER_ZOOM);
+      containerRef.current?.classList.toggle('show-badges', map.getZoom() >= BADGE_ZOOM);
     };
 
     map.on('load', () => {
@@ -338,6 +351,9 @@ export function MapView() {
       markersRef.current.clear();
       routeLabelsRef.current.forEach((m) => m.remove());
       routeLabelsRef.current.clear();
+      legLabelsRef.current.forEach((m) => m.remove());
+      badgesRef.current.forEach((m) => m.remove());
+      badgesRef.current.clear();
       map.remove();
       mapRef.current = null;
     };
@@ -346,16 +362,15 @@ export function MapView() {
   const cancelHideRef = useRef(cancelHide);
   cancelHideRef.current = cancelHide;
 
-  // 資料點、篩選、選定的天 → 重畫
+  // 資料點、篩選、選定的天、行程 → 重畫
   useEffect(() => {
     if (!loaded) return;
     (mapRef.current!.getSource('places') as GeoJSONSource).setData(featureCollection(places));
-    const { days } = dataStore.getState();
     for (const p of places) {
       const m = markersRef.current.get(p.id);
       if (m) m.getElement().classList.toggle('dim', placeVisual(p, filter, day, days).dim);
     }
-  }, [loaded, places, filter, day]);
+  }, [loaded, places, filter, day, days]);
 
   // S、A 級的照片標記
   useEffect(() => {
@@ -461,6 +476,48 @@ export function MapView() {
       } else delete el.dataset.proposal;
     });
   }, [loaded, proposal, itinerary]);
+
+  // 確定的行程（T15m）：每天的路線、備選的空心圈、選定那天的交通標籤
+  useEffect(() => {
+    if (!loaded) return;
+    const map = mapRef.current!;
+    const f = itineraryFeatures(itinerary, plan, byId, DATES, day);
+    (map.getSource(OVERLAY_SOURCES.itineraryLines) as GeoJSONSource).setData(f.lines);
+    (map.getSource(OVERLAY_SOURCES.itineraryAlts) as GeoJSONSource).setData(f.alts);
+    legLabelsRef.current.forEach((m) => m.remove());
+    legLabelsRef.current = f.legs.map((l) => {
+      const el = document.createElement('div');
+      el.className = 'route-label leg-label';
+      el.textContent = l.text;
+      return new Marker({ element: el }).setLngLat(l.coords).addTo(map);
+    });
+  }, [loaded, itinerary, plan, byId, day]);
+
+  // 每個點的 💬 建議數、❤️ 數（放大到 BADGE_ZOOM 才顯示）
+  useEffect(() => {
+    if (!loaded) return;
+    const map = mapRef.current!;
+    const likes = new Map([...voteCounts(votes)].filter(([, c]) => c.like > 0).map(([id, c]) => [id, c.like]));
+    const badges = placeBadges(byId, suggestionCounts(suggestions), likes);
+    const keep = new Set(badges.map((b) => b.id));
+    badgesRef.current.forEach((m, id) => {
+      if (keep.has(id)) return;
+      m.remove();
+      badgesRef.current.delete(id);
+    });
+    for (const b of badges) {
+      let m = badgesRef.current.get(b.id);
+      if (!m) {
+        const el = document.createElement('div');
+        el.className = 'place-badge';
+        el.dataset.id = b.id;
+        m = new Marker({ element: el, offset: [18, -16] }).setLngLat(b.coords).addTo(map);
+        badgesRef.current.set(b.id, m);
+      }
+      m.setLngLat(b.coords);
+      m.getElement().textContent = b.text;
+    }
+  }, [loaded, suggestions, votes, byId]);
 
   // 移動地圖的請求（跳到區域、T12 的 focus）
   useEffect(() => {

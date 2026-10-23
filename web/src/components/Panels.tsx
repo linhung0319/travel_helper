@@ -1,10 +1,7 @@
-// 聊天室（T16）、這一天（T15）先放位置；T11 只放得到的內容（選取的點、假行程）。
+// 聊天室（T16 接上）先放位置，只放得到的內容（選取的點）；這一天在 DayPanel.tsx。
 
-import { appStore } from '../store.ts';
 import { commands } from '../appCommands.ts';
 import { useApp, useData } from '../hooks.ts';
-import { stopsOn } from '../lib/itinerary.ts';
-import { dayLabel } from '../lib/trip.ts';
 import { TYPE_ICONS } from '../lib/typeStyle.ts';
 
 export function ChatPanel() {
@@ -33,49 +30,5 @@ export function ChatPanel() {
   );
 }
 
-export function DayPanel() {
-  const day = useApp((s) => s.day);
-  const itinerary = useData((s) => s.itinerary);
-  const byId = useData((s) => s.byId);
-  if (day === 'all') {
-    return (
-      <div className="day-panel placeholder" data-testid="day-panel">
-        <p>選上方的一天，看那天的行程和建議。</p>
-      </div>
-    );
-  }
-  const stops = stopsOn(itinerary, day);
-  return (
-    <div className="day-panel" data-testid="day-panel">
-      <h3>
-        {dayLabel(day)}
-        {itinerary && <span className="badge badge-warn">假行程</span>}
-      </h3>
-      {stops.length > 0 ? (
-        <ol className="timeline">
-          {stops.map((it, i) => {
-            const p = byId.get(it.place);
-            return (
-              <li key={i}>
-                <button
-                  type="button"
-                  className="link-button"
-                  onClick={() => {
-                    if (!p) return;
-                    commands.focus(p.id);
-                    appStore.getState().openPreview(p.id);
-                  }}
-                >
-                  <span className="time">{it.time ?? (it.kind === 'lodging' ? '住宿' : '--:--')}</span> {p ? `${TYPE_ICONS[p.type]} ${p.name.zh || p.name.ja}` : it.place}
-                </button>
-              </li>
-            );
-          })}
-        </ol>
-      ) : (
-        <p className="muted">這一天還沒有排東西。</p>
-      )}
-      <p className="muted small">時間軸、交通時間、大家的建議在 T15 接上。</p>
-    </div>
-  );
-}
+// 這一天（T15m）
+export { DayPanel } from './DayPanel.tsx';

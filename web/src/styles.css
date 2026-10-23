@@ -158,7 +158,7 @@ a {
 
 .day-dock {
   border-top: 1px solid var(--line);
-  max-height: 34vh;
+  max-height: 42vh;
   overflow-y: auto;
 }
 
@@ -259,14 +259,6 @@ a {
   background: var(--warn-bg);
   border-color: var(--warn);
   color: var(--warn);
-}
-
-.planning-banner {
-  background: var(--warn-bg);
-  color: var(--warn);
-  border-radius: 8px;
-  padding: 4px 10px;
-  font-size: 0.9rem;
 }
 
 .segmented {
@@ -382,12 +374,6 @@ a {
   margin-left: 6px;
   font-size: 0.8rem;
   opacity: 0.7;
-}
-
-.dev-option {
-  display: block;
-  margin-top: 12px;
-  color: var(--muted);
 }
 
 /* ---------- 按鈕、標章 ---------- */
@@ -745,17 +731,6 @@ a {
 
 .day-panel h3 {
   margin: 4px 0 8px;
-}
-
-.timeline {
-  margin: 0;
-  padding-left: 1.4em;
-}
-
-.timeline .time {
-  font-variant-numeric: tabular-nums;
-  color: var(--muted);
-  margin-right: 6px;
 }
 
 /* ---------- 詳情 ---------- */
@@ -1351,4 +1326,1039 @@ dl {
 .photo-marker.proposal-removed::after {
   color: #57606a;
   border-color: #57606a;
+}
+
+/* ======================================================================
+   T15m：這一天的時間軸、建議、規劃模式、投票、修改紀錄、需要預約、對話框
+   ====================================================================== */
+
+:root {
+  --bad: #cf222e;
+  --bad-bg: #ffebe9;
+  --plan: #9a6700;
+  --plan-bg: #fff8c5;
+}
+
+/* ---------- 按鈕、表單 ---------- */
+
+.button {
+  min-height: var(--tap);
+  padding: 0 16px;
+  border-radius: 999px;
+  border: 1px solid var(--line);
+  background: var(--bg);
+}
+
+.button.primary,
+.action.primary {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #fff;
+}
+
+.text-button {
+  border: 0;
+  background: none;
+  color: var(--accent);
+  min-height: 36px;
+  padding: 2px 6px;
+  border-radius: 8px;
+}
+
+.text-button:hover {
+  background: var(--soft);
+}
+
+.text-button.good {
+  color: var(--good);
+}
+
+.text-button.danger,
+.menu .danger {
+  color: var(--bad);
+}
+
+.icon-button.small {
+  width: 32px;
+  height: 32px;
+  font-size: 1rem;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin: 12px 0;
+}
+
+.field-label {
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.field select,
+.field input[type="text"],
+.field textarea,
+.dev-menu select {
+  font: inherit;
+  min-height: var(--tap);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 6px 10px;
+  background: var(--bg);
+  color: var(--fg);
+}
+
+.field textarea {
+  resize: vertical;
+  min-height: 96px;
+}
+
+.check {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  padding: 4px 0;
+}
+
+.check input {
+  width: 20px;
+  height: 20px;
+  margin-top: 8px;
+  flex: 0 0 auto;
+}
+
+.check .suggestion {
+  flex: 1;
+}
+
+.segmented.big {
+  margin: 8px 0;
+}
+
+.segmented.big button {
+  flex: 1;
+  min-height: var(--tap);
+}
+
+/* ---------- 對話框：手機從下面滑上來、電腦在中間 ---------- */
+
+.dialog-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.35);
+  z-index: 100;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+}
+
+.dialog {
+  background: var(--bg);
+  width: 100%;
+  max-height: 88dvh;
+  border-radius: var(--radius) var(--radius) 0 0;
+  box-shadow: var(--shadow);
+  display: flex;
+  flex-direction: column;
+}
+
+@media (min-width: 900px) {
+  .dialog-backdrop {
+    align-items: center;
+  }
+  .dialog {
+    width: min(560px, 92vw);
+    max-height: 82vh;
+    border-radius: var(--radius);
+  }
+}
+
+.dialog-head {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 8px 8px 16px;
+  border-bottom: 1px solid var(--line);
+}
+
+.dialog-head h2 {
+  flex: 1;
+  margin: 0;
+  font-size: 1.1rem;
+}
+
+.dialog-body {
+  overflow-y: auto;
+  padding: 4px 16px 12px;
+}
+
+.dialog-foot {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+  padding: 10px 16px calc(10px + env(safe-area-inset-bottom));
+  border-top: 1px solid var(--line);
+}
+
+.toast {
+  position: fixed;
+  left: 50%;
+  top: 12px;
+  transform: translateX(-50%);
+  z-index: 120;
+  max-width: min(520px, calc(100vw - 32px));
+  padding: 8px 14px;
+  border-radius: 999px;
+  box-shadow: var(--shadow);
+  background: var(--fg);
+  color: #fff;
+  font-size: 0.9rem;
+}
+
+.toast-error {
+  background: var(--bad);
+}
+
+/* ---------- 地點標籤、成員 ---------- */
+
+.place-chip {
+  display: inline-flex;
+  align-items: center;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: var(--soft);
+  flex: 0 0 auto;
+  max-width: 100%;
+}
+
+.place-chip-main {
+  border: 0;
+  background: none;
+  color: var(--accent);
+  padding: 2px 10px;
+  min-height: 32px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 100%;
+}
+
+.place-chip-x {
+  border: 0;
+  background: none;
+  color: var(--muted);
+  min-height: 32px;
+  padding: 0 8px 0 0;
+}
+
+.avatar {
+  display: inline-grid;
+  place-items: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 999px;
+  background: var(--accent);
+  color: #fff;
+  font-size: 0.85rem;
+  flex: 0 0 auto;
+}
+
+/* ---------- 上方列：我、待處理、規劃列、衝突 ---------- */
+
+.me-menu {
+  position: relative;
+  flex: 0 0 auto;
+}
+
+.me-button {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  border: 1px solid var(--line);
+  background: var(--bg);
+  border-radius: 999px;
+  min-height: 40px;
+  padding: 0 8px 0 4px;
+}
+
+.me-button img {
+  width: 28px;
+  height: 28px;
+  border-radius: 999px;
+}
+
+/* 手機上只放頭像 */
+.layout.mobile .me-name {
+  display: none;
+}
+
+.layout.mobile .me-button {
+  padding: 0 4px;
+}
+
+.dev-menu {
+  position: absolute;
+  right: 0;
+  top: calc(100% + 6px);
+  width: 280px;
+  max-width: calc(100vw - 24px);
+  background: var(--bg);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  z-index: 30;
+}
+
+.dev-menu button {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  border: 0;
+  background: none;
+  text-align: left;
+  min-height: 40px;
+  padding: 4px 8px;
+  border-radius: 8px;
+}
+
+.dev-menu button:hover,
+.dev-menu button.on {
+  background: var(--soft);
+}
+
+.dev-menu button.on {
+  font-weight: 700;
+}
+
+.dev-menu p {
+  margin: 4px 8px;
+}
+
+.dev-title {
+  font-weight: 700;
+  font-size: 0.85rem;
+}
+
+.dev-menu hr {
+  border: 0;
+  border-top: 1px solid var(--line);
+  width: 100%;
+}
+
+.dev-menu label {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 8px;
+  flex-wrap: wrap;
+}
+
+.pending-badge {
+  background: var(--plan-bg);
+  border-color: var(--plan);
+  color: var(--plan);
+}
+
+.planning-bar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  background: var(--plan-bg);
+  color: var(--plan);
+  border: 1px solid var(--plan);
+  border-radius: 8px;
+  padding: 2px 4px 2px 10px;
+}
+
+.planning-bar-actions {
+  margin-left: auto;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.planning-bar .text-button {
+  color: var(--plan);
+}
+
+.count {
+  display: inline-grid;
+  place-items: center;
+  min-width: 1.5em;
+  border-radius: 999px;
+  background: rgba(0, 0, 0, 0.08);
+  font-size: 0.8rem;
+  padding: 0 4px;
+}
+
+.count.hot {
+  background: var(--plan);
+  color: #fff;
+}
+
+.conflict-bar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  background: var(--bad-bg);
+  color: var(--bad);
+  border: 1px solid var(--bad);
+  border-radius: 8px;
+  padding: 6px 10px;
+  font-size: 0.9rem;
+}
+
+.conflict-bar span {
+  flex: 1 1 200px;
+}
+
+/* ---------- 這一天 ---------- */
+
+.day-head {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.day-head h3 {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.day-stats {
+  color: var(--muted);
+}
+
+.panel-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2px;
+  margin: 0 -6px 4px;
+}
+
+.day-section {
+  margin-top: 16px;
+  border-top: 1px solid var(--line);
+  padding-top: 8px;
+}
+
+.day-section h4,
+.day-section summary {
+  margin: 4px 0 8px;
+  font-weight: 600;
+}
+
+.day-section summary {
+  cursor: pointer;
+  min-height: 36px;
+  display: flex;
+  align-items: center;
+}
+
+.overview {
+  list-style: none;
+  margin: 8px 0;
+  padding: 0;
+}
+
+.overview-day {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+  border: 0;
+  border-bottom: 1px solid var(--soft);
+  background: none;
+  text-align: left;
+  min-height: var(--tap);
+  padding: 6px 0;
+}
+
+.overview-day:hover {
+  background: var(--soft);
+}
+
+.overview-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 999px;
+  flex: 0 0 auto;
+  display: inline-block;
+}
+
+.overview-date {
+  flex: 0 0 auto;
+  font-variant-numeric: tabular-nums;
+  min-width: 6.5em;
+}
+
+.overview-stops {
+  flex: 1;
+  min-width: 0;
+  font-size: 0.9rem;
+}
+
+.overview-flags {
+  flex: 0 0 auto;
+}
+
+/* 時間軸：左邊是時間，右邊是內容；相鄰兩點之間是交通 */
+.tl {
+  list-style: none;
+  margin: 8px 0;
+  padding: 0;
+}
+
+.tl-row {
+  display: grid;
+  grid-template-columns: 5.6em 1fr;
+  gap: 8px;
+  padding: 4px 0;
+  border-radius: 8px;
+}
+
+.tl-row.flash {
+  background: var(--warn-bg);
+}
+
+.tl-time {
+  font-variant-numeric: tabular-nums;
+  color: var(--muted);
+  font-size: 0.9rem;
+  padding-top: 8px;
+  display: flex;
+  flex-direction: column;
+  line-height: 1.2;
+}
+
+.tl-wait {
+  font-size: 0.75rem;
+}
+
+.tl-body {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.tl-title {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  flex-wrap: wrap;
+}
+
+.tl-title .link-button {
+  font-weight: 600;
+}
+
+.tl-title .badge {
+  margin-left: 0;
+}
+
+.tl-start .tl-body,
+.tl-meet .tl-body {
+  padding-top: 6px;
+}
+
+.tl-lodging .tl-title {
+  padding-top: 2px;
+}
+
+.tl-leg {
+  display: grid;
+  grid-template-columns: 5.6em 1fr;
+  gap: 8px;
+  font-size: 0.85rem;
+  color: var(--muted);
+}
+
+.tl-leg-line {
+  justify-self: center;
+  width: 0;
+  border-left: 2px dotted var(--line);
+  min-height: 22px;
+}
+
+.tl-leg-text {
+  padding: 2px 0;
+}
+
+.tl-note {
+  color: var(--fg);
+}
+
+.tl-warnings {
+  list-style: none;
+  margin: 2px 0;
+  padding: 0;
+  font-size: 0.85rem;
+}
+
+.warning-error {
+  color: var(--bad);
+}
+
+.warning-warning {
+  color: var(--warn);
+}
+
+.warning-info {
+  color: var(--muted);
+}
+
+.day-warnings {
+  background: var(--soft);
+  border-radius: 8px;
+  padding: 6px 10px;
+}
+
+.tl-options {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+}
+
+.option {
+  border: 1px dashed var(--line);
+  background: var(--bg);
+  border-radius: 999px;
+  min-height: 32px;
+  padding: 0 10px;
+  font-size: 0.85rem;
+}
+
+.option.on {
+  border-style: solid;
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+.tl-gap {
+  margin: 2px 0;
+}
+
+.tl-gap-button {
+  display: grid;
+  grid-template-columns: 5.6em 1fr;
+  gap: 8px;
+  width: 100%;
+  text-align: left;
+  border: 1.5px dashed var(--line);
+  background: var(--soft);
+  border-radius: 8px;
+  min-height: var(--tap);
+  align-items: center;
+  padding: 0;
+  color: var(--muted);
+}
+
+.tl-gap-button .tl-time {
+  padding: 0 0 0 8px;
+}
+
+.gap-lunch .tl-gap-button,
+.gap-dinner .tl-gap-button {
+  border-color: #f0b37e;
+  color: #9a4c00;
+}
+
+.tl-gap-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  padding: 4px 0 4px 6.1em;
+}
+
+.tl-split {
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 6px 8px;
+  margin: 6px 0;
+}
+
+.tl-split-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-weight: 600;
+}
+
+.tl-groups {
+  display: grid;
+  gap: 8px;
+}
+
+@media (min-width: 900px) {
+  .tl-groups {
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  }
+}
+
+.tl-group {
+  background: var(--soft);
+  border-radius: 8px;
+  padding: 4px 8px;
+}
+
+.tl-group-name {
+  font-weight: 600;
+}
+
+.tl-group .tl {
+  margin: 0;
+}
+
+.item-menu {
+  position: relative;
+  margin-left: auto;
+}
+
+.menu {
+  position: absolute;
+  right: 0;
+  top: 100%;
+  z-index: 20;
+  display: flex;
+  flex-direction: column;
+  min-width: 200px;
+  background: var(--bg);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 4px;
+}
+
+.menu button {
+  border: 0;
+  background: none;
+  text-align: left;
+  min-height: 40px;
+  padding: 0 10px;
+  border-radius: 8px;
+}
+
+.menu button:hover {
+  background: var(--soft);
+}
+
+/* ---------- 建議 ---------- */
+
+.suggestion-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.suggestion {
+  border: 1px solid var(--line);
+  border-left: 4px solid var(--plan);
+  border-radius: 8px;
+  padding: 6px 10px;
+  background: var(--bg);
+}
+
+.suggestion.status-adopted {
+  border-left-color: var(--good);
+}
+
+.suggestion.status-declined {
+  border-left-color: var(--line);
+  background: var(--soft);
+}
+
+.suggestion-head {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.suggestion-head .badge {
+  margin-left: 0;
+}
+
+.suggestion-day {
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+.suggestion-text {
+  margin: 4px 0;
+  white-space: pre-wrap;
+}
+
+.suggestion .chips {
+  flex-wrap: wrap;
+}
+
+.suggestion-status {
+  margin: 4px 0 0;
+  color: var(--muted);
+}
+
+.suggestion-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 2px;
+  margin: 2px -6px 0;
+}
+
+.status-pending {
+  background: var(--plan-bg);
+  color: var(--plan);
+}
+
+.status-declined {
+  background: var(--soft);
+  color: var(--muted);
+}
+
+/* ---------- 快照、選日子 ---------- */
+
+.snapshot-list {
+  list-style: none;
+  padding: 0;
+  margin: 8px 0;
+}
+
+.snapshot {
+  border-bottom: 1px solid var(--line);
+  padding: 8px 0;
+}
+
+.snapshot p {
+  margin: 2px 0;
+}
+
+.snapshot-head {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.snapshot-actions {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  flex-wrap: wrap;
+  margin: 0 -6px;
+}
+
+.snapshot-diff ul {
+  margin: 4px 0;
+  padding-left: 1.2em;
+}
+
+.day-picker {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 6px;
+}
+
+.day-pick {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--bg);
+  padding: 6px 10px;
+  min-height: var(--tap);
+  text-align: left;
+}
+
+.day-pick.on {
+  border-color: var(--accent);
+  background: var(--info-bg);
+}
+
+/* ---------- 投票、修改紀錄、行程裡 ---------- */
+
+.action.vote.on {
+  background: var(--bad-bg);
+  border-color: var(--bad);
+  color: var(--bad);
+}
+
+.vote-summary {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 4px 10px;
+  margin: 0 0 8px;
+}
+
+.wall-vote {
+  border: 0;
+  cursor: pointer;
+  width: auto;
+  min-width: 34px;
+  height: 34px;
+  padding: 0 8px;
+  grid-auto-flow: column;
+  gap: 2px;
+}
+
+.wall-vote.on {
+  background: #fff;
+}
+
+.wall-vote-count {
+  font-size: 0.8rem;
+  font-weight: 700;
+}
+
+button.edited {
+  border: 0;
+  cursor: pointer;
+  font: inherit;
+  font-size: 0.75rem;
+  font-weight: normal;
+  min-height: 24px;
+}
+
+.history-list {
+  list-style: none;
+  padding: 0;
+  margin: 8px 0;
+}
+
+.history {
+  border-bottom: 1px solid var(--line);
+  padding: 8px 0;
+}
+
+.history.reverted {
+  opacity: 0.6;
+}
+
+.history-head {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.history-head .badge {
+  margin-left: 0;
+}
+
+.history-values {
+  margin: 4px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.in-trip {
+  background: var(--soft);
+  border-radius: 8px;
+  padding: 4px 10px;
+  margin: 4px 0 8px;
+}
+
+.in-trip p {
+  margin: 0;
+}
+
+.in-trip summary {
+  cursor: pointer;
+  min-height: 32px;
+  display: flex;
+  align-items: center;
+}
+
+/* ---------- 需要預約 ---------- */
+
+.reservation-list {
+  list-style: none;
+  padding: 0;
+  margin: 8px 0;
+}
+
+.reservation {
+  padding: 4px 0 8px;
+  border-bottom: 1px solid var(--soft);
+}
+
+.reservation h4 {
+  margin: 10px 0 4px;
+}
+
+.reservation-main {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.reservation-main .badge {
+  margin-left: 0;
+}
+
+.reservation-how {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  padding-left: 4px;
+}
+
+.reservation p {
+  margin: 2px 0 0 4px;
+}
+
+/* ---------- 地圖：💬／❤️ 數字、行程的交通標籤 ---------- */
+
+.place-badge {
+  display: none;
+  background: var(--bg);
+  border-radius: 999px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+  padding: 0 6px;
+  font-size: 0.75rem;
+  white-space: nowrap;
+  pointer-events: none;
+}
+
+.map.show-badges .place-badge {
+  display: block;
+}
+
+.leg-label {
+  font-size: 0.8rem;
+  opacity: 0.92;
+}
+
+.layout.mobile .desktop-only {
+  display: none;
+}
+
+.layout.mobile .planning-bar {
+  flex-wrap: nowrap;
+  font-size: 0.9rem;
+  padding-left: 8px;
+}
+
+.layout.mobile .planning-bar > .muted {
+  display: none;
+}
+
+.layout.mobile .planning-bar-actions {
+  flex-wrap: nowrap;
+}
+
+.layout.mobile .planning-bar .text-button {
+  padding: 2px 4px;
 }

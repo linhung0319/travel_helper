@@ -8,6 +8,8 @@ import { ExploreWall } from './components/ExploreWall.tsx';
 import { BottomSheet } from './components/BottomSheet.tsx';
 import { DetailPanel } from './components/DetailPanel.tsx';
 import { ChatPanel, DayPanel } from './components/Panels.tsx';
+import { Dialogs, Toast } from './components/Dialogs.tsx';
+import { usePlanningIdle } from './components/Planning.tsx';
 import './styles.css';
 
 /** 電腦版：聊天室在左；地圖在右，詳情面板疊在地圖右側，這一天在地圖下方（interaction-design §1） */
@@ -63,6 +65,7 @@ export default function App() {
   const status = useData((s) => s.status);
   const error = useData((s) => s.error);
   const desktop = useIsDesktop();
+  usePlanningIdle();
 
   useEffect(() => {
     void loadData();
@@ -82,5 +85,11 @@ export default function App() {
 
   if (status === 'loading') return <div className="splash">載入中…</div>;
   if (status === 'error') return <div className="splash">資料載入失敗：{error}</div>;
-  return desktop ? <DesktopLayout /> : <MobileLayout />;
+  return (
+    <>
+      {desktop ? <DesktopLayout /> : <MobileLayout />}
+      <Dialogs />
+      <Toast />
+    </>
+  );
 }

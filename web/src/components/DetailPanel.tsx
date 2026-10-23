@@ -1,7 +1,7 @@
 import { useMemo, type ReactNode } from 'react';
 import { appStore } from '../store.ts';
 import { commands } from '../appCommands.ts';
-import { useApp, useData } from '../hooks.ts';
+import { useApp, useData, useShared } from '../hooks.ts';
 import { displayName } from '../data/normalize.ts';
 import { TYPE_LABELS, CONTEXT_LABELS } from '../lib/filter.ts';
 import { DAY_ROWS, closureOn, formatRanges, rowForDate } from '../lib/hours.ts';
@@ -22,12 +22,17 @@ import {
 } from '../lib/labels.ts';
 import { nearbyPlaces } from '../lib/nearby.ts';
 import { photoCredit } from '../lib/photos.ts';
-import { dayLabel } from '../lib/trip.ts';
+import { dayLabel, shortDayLabel } from '../lib/trip.ts';
 import { TYPE_ICONS } from '../lib/typeStyle.ts';
 import type { Place } from '../data/types.ts';
 import { Photo } from './Photo.tsx';
 import { TierBadge } from './TierBadge.tsx';
 import { StationTimetablePanel } from './StationTimetable.tsx';
+import { EditedMark, editedOf } from './EditHistory.tsx';
+import { VoteButtons, VoteSummary } from './Votes.tsx';
+import { SuggestionCard } from './Suggestions.tsx';
+import { openDialog } from '../uiStore.ts';
+import { itemsWithPlace } from '../lib/planView.ts';
 
 type Obj = Record<string, unknown>;
 const obj = (v: unknown): Obj => (v && typeof v === 'object' && !Array.isArray(v) ? (v as Obj) : {});
@@ -35,30 +40,27 @@ const text = (v: unknown): string | null => (typeof v === 'string' && v.trim() ?
 const yesNo = (v: unknown): string | null => (v === true ? '有' : v === false ? '沒有' : null);
 
 /** 一列「名稱：內容」；內容是空的就不顯示 */
-function Row({ k, v, edited }: { k: string; v: ReactNode; edited?: boolean }) {
+type Edited = ReturnType<typeof editedOf>;
+
+function Row({ k, v, edited }: { k: string; v: ReactNode; edited?: Edited }) {
   if (v === null || v === undefined || v === '' || (Array.isArray(v) && v.length === 0)) return null;
   return (
     <div className="row">
       <dt>{k}</dt>
       <dd>
         {v}
-        {edited && <EditedMark />}
+        {edited && <EditedMark {...edited} />}
       </dd>
     </div>
   );
 }
 
-/** 使用者改過的欄位（architecture §3.2）；本機的資料沒有修改層，T15 接上 API 後才會出現 */
-function EditedMark() {
-  return <span className="edited">已修改</span>;
-}
-
-function Section({ title, children, edited }: { title: string; children: ReactNode; edited?: boolean }) {
+function Section({ title, children, edited }: { title: string; children: ReactNode; edited?: Edited }) {
   return (
     <section className="detail-section">
       <h3>
         {title}
-        {edited && <EditedMark />}
+        {edited && <EditedMark {...edited} />}
       </h3>
       {children}
     </section>
@@ -115,8 +117,8 @@ function HoursTable({ place, date }: { place: Place; date: string | null }) {
       <dl>
         <Row k="最後入場" v={Array.isArray(h?.lastEntry) ? h!.lastEntry.filter(Boolean).join('、') : text(h?.lastEntry)} />
         <Row k="說明" v={text(h?.note)} />
-        <Row k="公休" v={place.closedNote} />
-        <Row k="2 月" v={place.febNote} />
+        <Row k="公休" v={place.closedNote} edited={editedOf(place, 'closedNote')} />
+        <Row k="2 月" v={place.febNote} edited={editedOf(place, 'febNote')} />
         <Row k="休業期間" v={place.closures.map((c) => `${c.from}～${c.to}${c.note ? `（${c.note}）` : ''}`).join('；') || null} />
       </dl>
     </>
@@ -126,14 +128,13 @@ function HoursTable({ place, date }: { place: Place; date: string | null }) {
 function GroupSection({ place }: { place: Place }) {
   const g = obj(place.raw.group);
   const r = obj(place.raw.reservation);
-  const ed = place.edited;
   const methods = Array.isArray(r.methods) ? (r.methods as string[]).map((m) => METHOD_LABELS[m] ?? m).join('、') : null;
   return (
-    <Section title="團體" edited={!!(ed.group || ed.reservation)}>
+    <Section title="團體" edited={editedOf(place, 'group', 'reservation')}>
       <dl>
         {place.type === 'restaurant' && (
           <>
-            <Row k="全員 15 人" v={label(FIT15_LABELS, g.fit15)} />
+            <Row k="全員 15 人" v={label(FIT15_LABELS, g.fit15)} edited={editedOf(place, 'group.fit15')} />
             <Row k="分組 4～6 人" v={label(FIT_SUBGROUP_LABELS, g.fitSubgroup)} />
             <Row k="席數" v={text(g.seats)} />
             <Row k="最多預約" v={g.maxReservation != null ? `${g.maxReservation} 人` : null} />
@@ -204,7 +205,7 @@ function ElderKidsSection({ place }: { place: Place }) {
     );
   }
   return (
-    <Section title="長輩、小孩" edited={!!(place.edited.accessibility || place.edited.kids)}>
+    <Section title="長輩、小孩" edited={editedOf(place, 'accessibility', 'kids')}>
       <dl>
         <Row k="座位" v={seating} />
         <Row k="內部步行" v={acc.walkInsideMinutes != null ? `約 ${acc.walkInsideMinutes} 分` : null} />
@@ -233,7 +234,7 @@ function PriceSection({ place }: { place: Place }) {
   const hasAny = raw.priceRange || raw.admission || prices.length || Object.keys(fares).length || raw.mustTry;
   if (!hasAny) return null;
   return (
-    <Section title="價格" edited={!!(place.edited.prices || place.edited.price || place.edited.fares)}>
+    <Section title="價格" edited={editedOf(place, 'prices', 'price', 'fares')}>
       <dl>
         <Row k="價位" v={text(raw.priceRange)} />
         <Row k="門票" v={text(raw.admission)} />
@@ -378,6 +379,44 @@ function PhotoCarousel({ place }: { place: Place }) {
   );
 }
 
+/** 這個點排在哪幾天、有哪些建議提到它（地圖上的 💬） */
+function PlaceInTrip({ place }: { place: Place }) {
+  const itinerary = useData((s) => s.itinerary);
+  const suggestions = useShared((s) => s.suggestions);
+  const refs = itemsWithPlace(itinerary, place.id);
+  const lodgingDays = itinerary?.days.filter((d) => d.lodging === place.id).map((d) => d.date) ?? [];
+  const about = suggestions.filter((s) => s.placeIds.includes(place.id));
+  if (!refs.length && !lodgingDays.length && !about.length) return null;
+  return (
+    <section className="detail-section in-trip">
+      {(refs.length > 0 || lodgingDays.length > 0) && (
+        <p className="small">
+          📅 排在：
+          {refs.map((r, i) => (
+            <button key={r.item.id} type="button" className="link-button" onClick={() => commands.selectDay(r.date)}>
+              {i > 0 && '、'}
+              {shortDayLabel(r.date)}
+              {r.item.type === 'visit' && r.item.options[r.item.selected]?.place !== place.id ? '（備案）' : ''}
+              {r.split ? `（${r.split.groupName}）` : ''}
+            </button>
+          ))}
+          {lodgingDays.length > 0 && `${refs.length ? '；' : ''}住 ${lodgingDays.map(shortDayLabel).join('、')}`}
+        </p>
+      )}
+      {about.length > 0 && (
+        <details open={about.some((s) => s.status === 'pending')}>
+          <summary className="small">💬 {about.length} 則建議提到這裡</summary>
+          <div className="suggestion-list">
+            {about.map((s) => (
+              <SuggestionCard key={s.id} s={s} showDay />
+            ))}
+          </div>
+        </details>
+      )}
+    </section>
+  );
+}
+
 /** 詳情面板（interaction-design §4），由上往下照文件的順序 */
 export function DetailPanel({ place }: { place: Place }) {
   const day = useApp((s) => s.day);
@@ -412,15 +451,15 @@ export function DetailPanel({ place }: { place: Place }) {
           ✕
         </button>
       </header>
-      {/* ❤️／👎、寫建議 T15 接上；問 AI 先放進選取，T16 的聊天室再用 */}
+      {/* ❤️／👎、寫建議（T15m）；問 AI 先放進選取，T16 的聊天室再用；規劃模式多一個「排進行程」 */}
       <div className="detail-actions">
-        <button type="button" className="action" disabled title="T15 接上">
-          ❤️
-        </button>
-        <button type="button" className="action" disabled title="T15 接上">
-          👎
-        </button>
-        <button type="button" className="action" disabled title="T15 接上">
+        <VoteButtons placeId={place.id} />
+        <button
+          type="button"
+          className="action"
+          data-testid="detail-suggest"
+          onClick={() => openDialog({ kind: 'suggest', placeIds: [place.id], day: day !== 'all' ? day : undefined })}
+        >
           ✏️ 寫建議
         </button>
         <button
@@ -430,12 +469,14 @@ export function DetailPanel({ place }: { place: Place }) {
         >
           💬 {selected ? '已帶進聊天' : '問 AI'}
         </button>
-        {planning && (
-          <button type="button" className="action" disabled title="T15 接上">
-            📅 排進行程
+        {planning && place.type !== 'station' && (
+          <button type="button" className="action primary" data-testid="detail-add" onClick={() => openDialog({ kind: 'add', placeId: place.id })}>
+            📅 {place.type === 'lodging' ? '設成住宿' : '排進行程'}
           </button>
         )}
       </div>
+      <VoteSummary placeId={place.id} />
+      <PlaceInTrip place={place} />
 
       {/* 車站沒有照片，不放替代圖 */}
       {(place.type !== 'station' || place.photos.length > 0) && <PhotoCarousel place={place} />}
@@ -451,7 +492,7 @@ export function DetailPanel({ place }: { place: Place }) {
       {!place.assessment && place.type !== 'station' && <RatingsLine place={place} />}
 
       {place.summary && (
-        <Section title="介紹" edited={!!place.edited.summary}>
+        <Section title="介紹" edited={editedOf(place, 'summary')}>
           <p>{place.summary.text}</p>
           {!!place.summary.pros?.length && (
             <ul className="pros">
@@ -476,7 +517,7 @@ export function DetailPanel({ place }: { place: Place }) {
       <ElderKidsSection place={place} />
 
       {place.type !== 'station' && (
-        <Section title="營業時間" edited={!!place.edited.hours}>
+        <Section title="營業時間" edited={editedOf(place, 'hours', 'closedNote', 'febNote', 'closures')}>
           <HoursTable place={place} date={date} />
         </Section>
       )}

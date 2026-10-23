@@ -5,6 +5,7 @@ import { dataStore, type DataState } from './dataStore.ts';
 import { sharedStore } from './appShared.ts';
 import type { SharedState } from './sharedStore.ts';
 import { planStore, type PlanState } from './planStore.ts';
+import { uiStore, type UiState } from './uiStore.ts';
 
 export function useApp<T>(selector: (s: AppStore) => T): T {
   return useStore(appStore, selector);
@@ -16,6 +17,10 @@ export function useData<T>(selector: (s: DataState) => T): T {
 
 export function useShared<T>(selector: (s: SharedState) => T): T {
   return useStore(sharedStore, selector);
+}
+
+export function useUi<T>(selector: (s: UiState) => T): T {
+  return useStore(uiStore, selector);
 }
 
 export function usePlan<T>(selector: (s: PlanState) => T): T {

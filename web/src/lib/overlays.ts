@@ -1,7 +1,8 @@
-// 地圖指令（T12）畫在地圖上的東西 → GeoJSON：標示、比較、路線、AI 的提議。MapView 拿去 setData。
+// 畫在地圖上的東西 → GeoJSON：地圖指令（T12）的標示、比較、路線、AI 的提議，和確定的行程（T15m）。MapView 拿去 setData。
 
 import type { Feature, FeatureCollection, LineString, Point } from 'geojson';
 import type { Itinerary } from '@travel-helper/engine/types';
+import type { DayPlan } from '@travel-helper/engine';
 import type { HighlightStyle, MapRoute, Proposal } from '../store.ts';
 import type { LonLat, Place } from '../data/types.ts';
 import { stopsOn } from './itinerary.ts';
@@ -128,4 +129,71 @@ export function describeChanges(changes: Change[], nameOf: (id: string) => strin
     else push(c.date, `改了${n(c.place)}`);
   }
   return [...byDate.entries()].sort(([a], [b]) => a.localeCompare(b)).map(([date, parts]) => ({ date, text: `${shortDayLabel(date)}：${parts.join('、')}` }));
+}
+
+/**
+ * 確定的行程（T15m，interaction-design §3）：
+ * - 線：每天一種顏色，依時間軸的順序（出發的住宿 → 各點 → 會合點 → 住宿）連起來；選了某一天時其他天變淡
+ * - 備選：時段備案的非主選點，用那天顏色的空心圈
+ * - 交通標籤：只有選定的那天，在每段的中間標「🚃 12 分」
+ * 線是直線（不查路徑），T15 再看要不要沿道路畫。
+ */
+export function itineraryFeatures(
+  it: Itinerary | null,
+  plan: { days: DayPlan[] } | null,
+  byId: Map<string, Place>,
+  dates: string[],
+  day: string,
+): { lines: FeatureCollection<LineString>; alts: FeatureCollection<Point>; legs: RouteLabel[] } {
+  const lines: Feature<LineString>[] = [];
+  const alts: Feature<Point>[] = [];
+  const legs: RouteLabel[] = [];
+  for (const d of it?.days ?? []) {
+    const color = dayColor(dates, d.date);
+    const active = day === 'all' || day === d.date ? 1 : 0;
+    const dp = plan?.days.find((x) => x.date === d.date);
+    // 有時間軸時照時間軸（含出發的住宿）；還沒算好時照行程的順序
+    const order: { place: string; leg: DayPlan['entries'][number]['travel'] }[] = dp
+      ? dp.entries.filter((e) => e.placeId).map((e) => ({ place: e.placeId!, leg: e.travel }))
+      : stopsOn(it, d.date).map((s) => ({ place: s.place, leg: null }));
+    const coords: LonLat[] = [];
+    let prev: LonLat | null = null;
+    for (const o of order) {
+      const p = byId.get(o.place);
+      if (!p) continue;
+      if (prev && (prev[0] !== p.coords[0] || prev[1] !== p.coords[1]) && day === d.date && o.leg && o.leg.mode !== 'none' && o.leg.minutes > 0) {
+        legs.push({
+          id: `leg-${d.date}-${legs.length}`,
+          coords: lineMidpoint([prev, p.coords]),
+          text: o.leg.mode === 'unknown' ? `❓ ${o.leg.minutes} 分` : routeLabel(o.leg.mode, o.leg.minutes),
+        });
+      }
+      coords.push(p.coords);
+      prev = p.coords;
+    }
+    if (coords.length >= 2) lines.push(line(coords, { date: d.date, color, active }));
+    for (const item of d.items) {
+      const visits = item.type === 'visit' ? [item] : item.type === 'split' ? item.groups.flatMap((g) => g.items.filter((x) => x.type === 'visit')) : [];
+      for (const v of visits) {
+        v.options.forEach((o, i) => {
+          const p = byId.get(o.place);
+          if (p && i !== v.selected) alts.push(point(p.coords, { id: p.id, date: d.date, color, active }));
+        });
+      }
+    }
+  }
+  return { lines: collection(lines), alts: collection(alts), legs };
+}
+
+/** 地圖上每個點的小標記：💬 建議數、❤️ 數（interaction-design §3、§9） */
+export function placeBadges(byId: Map<string, Place>, suggestions: Map<string, number>, likes: Map<string, number>): { id: string; coords: LonLat; text: string }[] {
+  const ids = new Set([...suggestions.keys(), ...likes.keys()]);
+  const out: { id: string; coords: LonLat; text: string }[] = [];
+  for (const id of ids) {
+    const p = byId.get(id);
+    if (!p) continue;
+    const parts = [suggestions.get(id) ? `💬${suggestions.get(id)}` : '', likes.get(id) ? `❤️${likes.get(id)}` : ''].filter(Boolean);
+    if (parts.length) out.push({ id, coords: p.coords, text: parts.join(' ') });
+  }
+  return out;
 }

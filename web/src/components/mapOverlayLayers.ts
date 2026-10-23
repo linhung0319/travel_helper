@@ -9,6 +9,8 @@ export const OVERLAY_SOURCES = {
   routes: 'overlay-routes',
   proposalPoints: 'overlay-proposal-points',
   proposalLines: 'overlay-proposal-lines',
+  itineraryLines: 'overlay-itinerary-lines',
+  itineraryAlts: 'overlay-itinerary-alts',
 } as const;
 
 const HIGHLIGHT_COLORS: Record<string, string> = { primary: '#d4a72c', warning: '#cf222e', muted: '#8c959f' };
@@ -20,6 +22,28 @@ const ROUTE_COLOR = ['match', ['get', 'mode'], 'walk', '#0969da', 'train', '#242
 export function addOverlayLayers(map: MapLibreMap, below = 'places-circle') {
   const empty = { type: 'FeatureCollection' as const, features: [] };
   for (const id of Object.values(OVERLAY_SOURCES)) map.addSource(id, { type: 'geojson', data: empty });
+
+  // 確定的行程（T15m）：每天的顏色、實線；選了某一天時其他天變淡。畫在最下面
+  map.addLayer(
+    {
+      id: 'itinerary-casing',
+      type: 'line',
+      source: OVERLAY_SOURCES.itineraryLines,
+      layout: { 'line-cap': 'round', 'line-join': 'round' },
+      paint: { 'line-color': '#ffffff', 'line-width': 6, 'line-opacity': ['case', ['==', ['get', 'active'], 1], 0.85, 0.2] },
+    },
+    below,
+  );
+  map.addLayer(
+    {
+      id: 'itinerary-line',
+      type: 'line',
+      source: OVERLAY_SOURCES.itineraryLines,
+      layout: { 'line-cap': 'round', 'line-join': 'round' },
+      paint: { 'line-color': ['get', 'color'], 'line-width': 3.5, 'line-opacity': ['case', ['==', ['get', 'active'], 1], 0.85, 0.15] },
+    },
+    below,
+  );
 
   // 路線：白色的底，再畫一條依交通方式上色的線；查不到路徑（直線）時比較淡
   map.addLayer(
@@ -65,6 +89,19 @@ export function addOverlayLayers(map: MapLibreMap, below = 'places-circle') {
     },
     below,
   );
+  // 時段備案的備選：那天顏色的空心圈（interaction-design §6）
+  map.addLayer({
+    id: 'itinerary-alt',
+    type: 'circle',
+    source: OVERLAY_SOURCES.itineraryAlts,
+    paint: {
+      'circle-radius': ['interpolate', ['linear'], ['zoom'], 8, 8, 14, 14],
+      'circle-color': 'rgba(0,0,0,0)',
+      'circle-stroke-color': ['get', 'color'],
+      'circle-stroke-width': 2.5,
+      'circle-stroke-opacity': ['case', ['==', ['get', 'active'], 1], 0.95, 0.25],
+    },
+  });
   // 提議拿掉的點：灰色加 ×
   map.addLayer({
     id: 'proposal-removed',

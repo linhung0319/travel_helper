@@ -31,7 +31,8 @@ export function seedItinerary(): Itinerary {
       day('2027-02-02', 'shima-kashikojima-harbor', [
         { id: 'f-1', type: 'flight', direction: 'arrive', airport: 'kansai-airport', depart: '08:20', arrive: '11:55', flightNo: null, people: null, note: '去程第一批' },
         { id: 'f-2', type: 'flight', direction: 'arrive', airport: 'kansai-airport', depart: '09:45', arrive: '13:20', flightNo: null, people: null, note: '去程第二批' },
-        visit('i-1', 'kashikojima'),
+        // 引擎找不到關西機場到賢島的時刻表，手動指定（data/access/ 的參考時間）
+        visit('i-1', 'kashikojima', { travel: { mode: 'train', minutes: 165, note: '南海＋近鐵特急，難波轉乘' } }),
       ]),
       day('2027-02-03', 'shima-kanko-classic', [
         visit('i-2', 'shima-yokoyama-observatory'),
