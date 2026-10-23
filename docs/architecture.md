@@ -134,7 +134,26 @@ UI 的天數分頁、篩選標籤的 ✕、「跳到區域」、詳情的「問 
 - 分鐘：呼叫者給的優先（例如 T14 的 `Leg.minutes`）；沒給時，步行用路徑距離 ÷ 每分 80 m × 全員係數（engine 的 `DEFAULT_CONFIG`，實際路徑不再乘繞路係數），計程車、包車、自駕用 engine 的 `taxiEstimate`；電車、巴士、船看時刻表，不算。
 - 查到的距離也給引擎用：`roadRouter.cachedMeters(profile, from, to)` 是同步的，T15 先查好路徑，再接到 `EngineData.walkMeters`、`driveMeters`（T12 加，計程車、包車用實際開車距離）。`data/cache/routes/` 照 §3.1 不上網站。
 
-**`web/src/dataStore.ts`：讀進來的資料**（只在載入時改）：`status`、`areas`（areas.json，依 `tripOrder`）、`places`（合併後的資料點）、`byId`、`itinerary`（engine 的 itinerary-v1；T11、T12 是開發用的假行程，T15 換成確定的行程）、`days`（資料點 → 排在哪幾天、第幾個；順序是 `lib/itinerary.ts` 的 `dayStops`：選定的選項、同一個機場連續的航班算一站、分組只放會合點、住宿放最後）、`stationNames`。
+**`web/src/dataStore.ts`：讀進來的資料**：`status`、`areas`（areas.json，依 `tripOrder`）、`basePlaces`（預設資料）、`places`（套上修改層的，畫面都用這一份）、`byId`、`itinerary`（確定的行程，engine 的 itinerary-v1，從後端讀）、`days`（資料點 → 排在哪幾天、第幾個；順序是 `lib/itinerary.ts` 的 `dayStops`：選定的選項、同一個機場連續的航班算一站、分組只放會合點、住宿放最後）、`stationNames`。`itinerary`、`places` 由下面的 `sharedStore` 換（存檔、同步、修改紀錄變了）。
+
+### 後端、共用資料、行程引擎（T15m，2026-10-23）
+
+T15m 先用假後端把畫面做出來，T15 只換後端的實作，畫面的程式不改。
+
+- **`web/src/backend/`：後端的介面**（`types.ts` 的 `Backend`）。形狀照 §4「資料 API」：行程（`version`、409 衝突）、快照、建議、投票、修改紀錄、成員、`sync`。錯誤是 `BackendError`（HTTP 狀態＋`error`、`message`、`details`）。
+  - `mock.ts`：假後端，規則和 Worker 一樣（只有寫的人能改刪、軟刪除、改行程前自動存快照、version 不對回 409），資料存在記憶體加 localStorage（`travel-helper:mockBackend`）。種子資料在 `dev-fixtures/seed.ts`（4 位假家人、排了一半的行程：有時段備案、分組、空檔）。
+  - `index.ts`：dev server 用假後端；正式 build 先用「還沒接上」的版本（只能看、寫入都回 503）。**T15 在這裡換成呼叫 API 的實作**。假後端、種子資料、dev 選單都用 `import.meta.env.DEV` 包起來，不會進 `dist/`。
+- **`web/src/sharedStore.ts`（純邏輯）／`appShared.ts`（網站共用的一份）：大家共用的資料**。
+  - 狀態：`me`、`members`、`version`（手上那份行程的）、`updatedBy`、`updatedAt`、`snapshots`、`suggestions`、`votes`、`edits`、`saving`、`conflict`（409 之後不能再改，按「重新載入」才清掉）、`toast`、`lastSync`。
+  - 動作：`changeItinerary(fn, reason)`（fn 用 engine 的操作；先在畫面上改，存不了就退回；**一個使用者動作只存一次檔**，快照才會整個復原）、`reloadItinerary`、`restoreSnapshot`、建議的新增／修改／刪除／標狀態、`adoptSuggestion`（行程項目記 `proposedBy`）、`vote`、`revertEdit`、`syncOnce`。
+  - 同步照 §3.8：每 30 秒、切回分頁時打一次 `sync`，變了才重抓那一種；行程有別人的新版本時直接換上（存檔中、衝突中不換）。
+  - 修改紀錄在瀏覽器合併：`data/merge.ts` 直接用 Worker 的 `worker/src/lib/merge.ts`，`place.edited` 是「欄位 → 最新那筆修改（`editId`、誰、何時、原本的值）」。
+- **`web/src/planStore.ts`：行程引擎在瀏覽器跑**。行程或資料點變了就重算整份（12 天約 15 ms）。引擎要的時刻表從 `DataSource.loadEngineTimetables()` 讀（近鐵 `_travel-times.json`、巴士、船、JR 的路線檔，約 1.3 MB，第一次算時才載入）；`walkMeters`、`driveMeters` 接 `roadRouter.cachedMeters`。T15 的 API 實作要從 `build:static` 的輸出讀這些檔案。
+- **`web/src/uiStore.ts`：對話框**，一次只開一個（寫建議、進入規劃模式的確認、快照、待處理的建議、排進行程、移到別天、採用、不採用、投票備註、修改紀錄、需要預約），`components/Dialogs.tsx` 負責畫；另有規劃模式的閒置分鐘（預設 10）。
+- **篩選加 `votes`**（`'popular'`：❤️ 2 人以上、`'mine'`：我按了 ❤️）。投票不在資料點裡，`appShared` 用 `setVoteLookup` 註冊查詢，`matchesFilter` 的呼叫者不用改；T12 的 `setFilter` 也認得。
+- **規劃模式**：`appStore.planning` 還是唯一的開關；進入前確認（`PlanningToggle`）、規劃列、閒置退出（`usePlanningIdle`）。Worker 不檢查規劃模式（§3.6）。
+- **地圖**（`lib/overlays.ts` 的 `itineraryFeatures`、`placeBadges`）：每天顏色的路線（直線，照時間軸的順序）、選了某一天時那天的交通標籤、時段備案的備選是那天顏色的空心圈、每個點的 💬 建議數和 ❤️ 數（放大到 10 以上）。
+- **`data-day` 只給天數分頁用**（e2e 靠它找分頁）；其他選日子的按鈕用 `data-pick-day`、`data-overview-day`。
 
 **區域不寫死**：區域清單、名稱、子地區、區域篩選的選項、「跳到區域」都從 `areas.json` 讀。地圖的初始範圍：bbox 彼此在 30 km 以內的區域分成一群，用資料點最多的那群的資料點範圍（`web/src/lib/areas.ts`）；所以加了大阪也會和關西機場周邊同一群，不影響初始畫面。區域的顏色依 `tripOrder` 的順序配。
 
