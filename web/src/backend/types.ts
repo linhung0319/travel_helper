@@ -46,10 +46,10 @@ export interface Vote {
 /** normal：一般留言；planner：規劃模式下留的（顯示〔規劃〕）；decline：不採用的理由 */
 export type CommentKind = 'normal' | 'planner' | 'decline';
 
-/** 地點或某一天的留言（只有一層，不能回覆留言） */
+/** 地點、某一天或整趟旅程的留言（只有一層，不能回覆留言） */
 export interface Comment {
   id: number;
-  /** 地點 ID，或某一天 `day:<日期>`（dayTarget） */
+  /** 地點 ID，某一天 `day:<日期>`（dayTarget），或整趟 `trip`（TRIP_TARGET） */
   target: string;
   text: string;
   kind: CommentKind;
@@ -73,6 +73,23 @@ export interface Candidate {
 
 /** 某一天的留言的 target */
 export const dayTarget = (date: string) => `day:${date}`;
+
+/** 整趟旅程的留言的 target（行程分頁最下面的留言） */
+export const TRIP_TARGET = 'trip';
+
+export type ReservationStatus = 'pending' | 'booked' | 'skip';
+
+/** 預約筆記：某天某個點的訂位狀態（同一個 (date, placeId) 只有一筆）；住宿的 date 是入住那晚 */
+export interface Reservation {
+  date: string;
+  placeId: string;
+  status: ReservationStatus;
+  note: string | null;
+  /** 住宿：存下訂時的晚數，用來標「晚數變了」 */
+  nights: number | null;
+  updatedBy: string;
+  updatedAt: string;
+}
 
 /** 資料點的一筆修改（GET /api/edits） */
 export interface PlaceEdit {
@@ -99,6 +116,7 @@ export interface SyncState {
   votes: string | null;
   comments: string | null;
   candidates: string | null;
+  reservations: string | null;
   edits: string | null;
 }
 
@@ -150,6 +168,11 @@ export interface Backend {
   createCandidate(input: { placeId: string; day: string }): Promise<Candidate>;
   /** 誰都能拿掉（拿掉別人加的要寫理由，由畫面另外留一則不採用的留言） */
   deleteCandidate(id: number): Promise<void>;
+
+  /** 預約筆記 */
+  listReservations(): Promise<Reservation[]>;
+  /** 同一個 (date, placeId) 覆蓋 */
+  putReservation(input: { date: string; placeId: string; status: ReservationStatus; note?: string | null; nights?: number | null }): Promise<Reservation>;
 
   /** 修改紀錄（含已復原的） */
   listEdits(): Promise<PlaceEdit[]>;

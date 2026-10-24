@@ -14,6 +14,8 @@ import {
   type CommentKind,
   type Member,
   type PlaceEdit,
+  type Reservation,
+  type ReservationStatus,
   type SnapshotMeta,
   type SyncState,
   type Vote,
@@ -42,6 +44,8 @@ export interface SharedState {
   comments: Comment[];
   /** 某天的候選（想去的「加到某天」） */
   candidates: Candidate[];
+  /** 預約筆記 */
+  reservations: Reservation[];
   edits: PlaceEdit[];
   /** 存檔中（畫面顯示「儲存中…」） */
   saving: boolean;
@@ -62,6 +66,7 @@ const initial: SharedState = {
   votes: [],
   comments: [],
   candidates: [],
+  reservations: [],
   edits: [],
   saving: false,
   conflict: null,
@@ -105,6 +110,7 @@ export function createShared(getBackend: () => Backend, data: StoreApi<DataState
   const loadVotes = async () => set({ votes: await getBackend().listVotes() });
   const loadComments = async () => set({ comments: await getBackend().listComments() });
   const loadCandidates = async () => set({ candidates: await getBackend().listCandidates() });
+  const loadReservations = async () => set({ reservations: await getBackend().listReservations() });
   async function loadEdits() {
     const edits = await getBackend().listEdits();
     set({ edits });
@@ -115,7 +121,7 @@ export function createShared(getBackend: () => Backend, data: StoreApi<DataState
     const b = getBackend();
     const [me, members, lastSync] = await Promise.all([b.me(), b.members(), b.sync()]);
     set({ me, members, lastSync });
-    await Promise.all([loadItinerary(), loadSnapshots(), loadVotes(), loadComments(), loadCandidates(), loadEdits()]);
+    await Promise.all([loadItinerary(), loadSnapshots(), loadVotes(), loadComments(), loadCandidates(), loadReservations(), loadEdits()]);
   }
 
   /**
@@ -265,6 +271,23 @@ export function createShared(getBackend: () => Backend, data: StoreApi<DataState
     }
   }
 
+  /** 預約筆記：先改畫面，後端存不了就退回；同一個 (date, placeId) 覆蓋 */
+  async function setReservation(input: { date: string; placeId: string; status: ReservationStatus; note?: string | null; nights?: number | null }): Promise<Result<Reservation>> {
+    const before = store.getState().reservations;
+    const same = (x: Reservation) => x.date === input.date && x.placeId === input.placeId;
+    const me = store.getState().me?.id ?? '';
+    const guess: Reservation = { note: null, nights: null, ...input, updatedBy: me, updatedAt: new Date().toISOString() } as Reservation;
+    set({ reservations: [...before.filter((x) => !same(x)), guess] });
+    try {
+      const r = await getBackend().putReservation(input);
+      set({ reservations: [...store.getState().reservations.filter((x) => !same(x)), r] });
+      return { ok: true, value: r } as Result<Reservation>;
+    } catch (e) {
+      set({ reservations: [...store.getState().reservations.filter((x) => !same(x)), ...before.filter(same)] });
+      return fail(e);
+    }
+  }
+
   async function revertEdit(id: number): Promise<Result> {
     try {
       const e = await getBackend().revertEdit(id);
@@ -298,6 +321,7 @@ export function createShared(getBackend: () => Backend, data: StoreApi<DataState
     if (next.votes !== prev.votes) jobs.push(loadVotes());
     if (next.comments !== prev.comments) jobs.push(loadComments());
     if (next.candidates !== prev.candidates) jobs.push(loadCandidates());
+    if (next.reservations !== prev.reservations) jobs.push(loadReservations());
     if (next.edits !== prev.edits) jobs.push(loadEdits());
     await Promise.all(jobs);
   }
@@ -320,6 +344,7 @@ export function createShared(getBackend: () => Backend, data: StoreApi<DataState
     deleteComment,
     addCandidate,
     removeCandidate,
+    setReservation,
     revertEdit,
     syncOnce,
     reloadMe,

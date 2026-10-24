@@ -2,7 +2,7 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { createMockBackend, type MockSeed } from '../src/backend/mock.ts';
-import { BackendError, isVersionConflict, dayTarget } from '../src/backend/types.ts';
+import { BackendError, isVersionConflict, dayTarget, TRIP_TARGET } from '../src/backend/types.ts';
 import { itin } from './helpers.ts';
 
 const SEED: MockSeed = {
@@ -112,6 +112,28 @@ test('這天的留言：target 是 day:<日期>', async () => {
   assert.equal(c.target, 'day:2027-02-05');
 });
 
+test('預約筆記：同一個 (日期, 點) 覆蓋，記下是誰改的', async () => {
+  const b = createMockBackend(SEED, { now });
+  await b.putReservation({ date: '2027-02-05', placeId: 'x', status: 'booked', note: '電話訂好', nights: 2 });
+  b.setMe('m-b');
+  const r = await b.putReservation({ date: '2027-02-05', placeId: 'x', status: 'skip' });
+  await b.putReservation({ date: '2027-02-06', placeId: 'x', status: 'pending' });
+  assert.equal(r.updatedBy, 'm-b');
+  const all = await b.listReservations();
+  assert.equal(all.length, 2);
+  const x = all.find((y) => y.date === '2027-02-05')!;
+  assert.deepEqual([x.status, x.note, x.nights, x.updatedBy], ['skip', null, null, 'm-b']);
+  assert.equal(await status(b.putReservation({ date: '2027-02-05', placeId: 'x', status: 'nope' as never })), 400);
+  assert.equal(await status(b.putReservation({ date: '壞', placeId: 'x', status: 'booked' })), 400);
+});
+
+test('整趟的留言：target 是 trip', async () => {
+  const b = createMockBackend(SEED, { now });
+  const c = await b.createComment({ target: TRIP_TARGET, text: '整趟都要小心感冒' });
+  assert.equal(c.target, 'trip');
+  assert.equal((await b.listComments()).length, 1);
+});
+
 test('修改紀錄：只有改的人能復原', async () => {
   const b = createMockBackend(
     {
@@ -168,4 +190,7 @@ test('sync：各種資料的版本', async () => {
   await b.createCandidate({ placeId: 'x', day: '2027-02-05' });
   assert.notEqual(s2.candidates, (await b.sync()).candidates);
   assert.equal(s1.votes, s2.votes);
+  const s3 = await b.sync();
+  await b.putReservation({ date: '2027-02-05', placeId: 'x', status: 'booked' });
+  assert.notEqual(s3.reservations, (await b.sync()).reservations);
 });

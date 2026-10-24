@@ -1,18 +1,20 @@
 // 「需要預約」的清單（PLAN T15m）：每晚的住宿，加上行程裡接受訂位的餐廳、體驗；附訂位方式和聯絡資訊。
 
-import { useData, usePlan } from '../hooks.ts';
+import { useData, usePlan, useShared } from '../hooks.ts';
 import { closeDialog } from '../uiStore.ts';
-import { METHOD_LABELS, reservationRows } from '../lib/planView.ts';
+import { METHOD_LABELS } from '../lib/planView.ts';
+import { noteRows } from '../lib/reservations.ts';
 import { dayLabel } from '../lib/trip.ts';
 import { Dialog, PlaceChip } from './common.tsx';
 
-const ROLE_LABELS = { main: '', backup: '備案', lodging: '住宿' } as const;
+const ROLE_LABELS = { main: '', other: '備案', lodging: '住宿' } as const;
 
 export function ReservationsDialog() {
   const itinerary = useData((s) => s.itinerary);
   const byId = useData((s) => s.byId);
   const plan = usePlan((s) => s.plan);
-  const rows = reservationRows(itinerary, plan, byId);
+  const reservations = useShared((s) => s.reservations);
+  const rows = noteRows(itinerary, plan, byId, reservations);
   let lastDate = '';
   return (
     <Dialog title={`需要預約（${rows.length}）`} onClose={closeDialog} testId="reservations-dialog">
@@ -44,7 +46,7 @@ export function ReservationsDialog() {
                 {r.leadDays != null && <span>{r.leadDays} 天前要訂</span>}
                 {!r.methods.length && !r.phone && !r.url && <span className="muted">訂位方式未查</span>}
               </div>
-              {r.note && <p className="muted small">{r.note}</p>}
+              {r.placeNote && <p className="muted small">{r.placeNote}</p>}
               {r.accepted === 'groups-only' && <p className="small warn">只接受團體預約</p>}
             </li>
           );

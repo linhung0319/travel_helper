@@ -145,6 +145,14 @@ export function devSeed(kind: 'full' | 'flights-only' = 'full'): MockSeed {
           { placeId: 'shima-yokoyama-observatory', day: '2027-02-03', addedBy: 'dev-ayi', createdAt: at('10-21', '06:45') },
         ]
       : [],
+    // 預約筆記：不同人記的；住宿的 date 是入住那晚
+    reservations: full
+      ? [
+          { date: '2027-02-05', placeId: 'toba-kokusai-hotel', status: 'booked', nights: 1, note: '已用楽天訂好，2 間和室加 1 間洋室', updatedBy: 'dev-mama', updatedAt: at('10-22', '03:00') },
+          { date: '2027-02-10', placeId: 'ise-mukai-sakenomise', status: 'booked', note: null, updatedBy: 'dev-agong', updatedAt: at('10-23', '01:30') },
+          { date: '2027-02-03', placeId: 'shima-la-mer', status: 'skip', note: '當天現場排隊就好', updatedBy: 'dev-baba', updatedAt: at('10-23', '06:00') },
+        ]
+      : [],
     edits: full
       ? [
           {

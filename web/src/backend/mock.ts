@@ -12,6 +12,8 @@ import {
   type ItineraryDoc,
   type Member,
   type PlaceEdit,
+  type Reservation,
+  type ReservationStatus,
   type Snapshot,
   type Vote,
   type VoteValue,
@@ -27,6 +29,7 @@ export interface MockSeed {
   votes?: (Omit<Vote, 'updatedAt' | 'deletedAt'> & { updatedAt?: string })[];
   comments?: Omit<Comment, 'id' | 'updatedAt' | 'deletedAt'>[];
   candidates?: Omit<Candidate, 'id' | 'updatedAt' | 'deletedAt'>[];
+  reservations?: (Omit<Reservation, 'note' | 'nights'> & { note?: string | null; nights?: number | null })[];
   edits?: Omit<PlaceEdit, 'id' | 'updatedAt' | 'revertedAt' | 'revertedBy' | 'closedAt'>[];
 }
 
@@ -38,6 +41,7 @@ interface MockState {
   votes: Vote[];
   comments: Comment[];
   candidates: Candidate[];
+  reservations: Reservation[];
   edits: PlaceEdit[];
   seq: { snapshot: number; comment: number; candidate: number; edit: number };
 }
@@ -65,6 +69,7 @@ export interface MockBackend extends Backend {
 }
 
 const MAX_TEXT = 500;
+const RESERVATION_STATUSES: ReservationStatus[] = ['pending', 'booked', 'skip'];
 const KINDS: CommentKind[] = ['normal', 'planner', 'decline'];
 const DATE = /^\d{4}-\d{2}-\d{2}$/;
 const clone = <T>(x: T): T => structuredClone(x);
@@ -103,6 +108,7 @@ function fromSeed(seed: MockSeed, now: string): MockState {
     votes: (seed.votes ?? []).map((v) => ({ ...clone(v), updatedAt: v.updatedAt ?? now, deletedAt: null })),
     comments: (seed.comments ?? []).map((x, i) => ({ ...clone(x), id: i + 1, updatedAt: x.createdAt, deletedAt: null })),
     candidates: (seed.candidates ?? []).map((x, i) => ({ ...clone(x), id: i + 1, updatedAt: x.createdAt, deletedAt: null })),
+    reservations: (seed.reservations ?? []).map((r) => ({ note: null, nights: null, ...clone(r) })),
     edits: (seed.edits ?? []).map((e, i) => ({ ...clone(e), id: i + 1, updatedAt: e.createdAt, revertedAt: null, revertedBy: null, closedAt: null })),
     seq: { snapshot: 0, comment: seed.comments?.length ?? 0, candidate: seed.candidates?.length ?? 0, edit: seed.edits?.length ?? 0 },
   };
@@ -110,8 +116,8 @@ function fromSeed(seed: MockSeed, now: string): MockState {
 
 export function createMockBackend(seed: MockSeed, opts: MockOptions = {}): MockBackend {
   const storage = opts.storage ?? null;
-  // v3：2026-10-24 建議換成留言、候選，舊的存檔讀不進來
-  const key = opts.storageKey ?? 'travel-helper:mockBackend:v3';
+  // v4：2026-10-24 加了預約筆記，舊的存檔讀不進來
+  const key = opts.storageKey ?? 'travel-helper:mockBackend:v4';
   const now = opts.now ?? (() => new Date().toISOString());
   let currentSeed = seed;
 
@@ -177,6 +183,7 @@ export function createMockBackend(seed: MockSeed, opts: MockOptions = {}): MockB
         votes: maxUpdated(state.votes),
         comments: maxUpdated(state.comments),
         candidates: maxUpdated(state.candidates),
+        reservations: maxUpdated(state.reservations),
         edits: maxUpdated(state.edits),
       })),
 
@@ -258,6 +265,20 @@ export function createMockBackend(seed: MockSeed, opts: MockOptions = {}): MockB
         const x = state.candidates.find((c) => c.id === id);
         if (!x || x.deletedAt) notFound(`沒有候選 #${id}`);
         x.deletedAt = x.updatedAt = now();
+      }),
+
+    listReservations: () => call(() => state.reservations),
+    putReservation: ({ date, placeId, status, note = null, nights = null }) =>
+      call(() => {
+        if (typeof date !== 'string' || !DATE.test(date)) badRequest('date 要是 YYYY-MM-DD');
+        if (typeof placeId !== 'string' || !placeId) badRequest('placeId 不能是空的');
+        if (!RESERVATION_STATUSES.includes(status)) badRequest(`status 要是 ${RESERVATION_STATUSES.join('、')} 其中之一`);
+        if (note !== null && (typeof note !== 'string' || note.length > MAX_TEXT)) badRequest(`note 要是 ${MAX_TEXT} 字以內的文字`);
+        const next: Reservation = { date, placeId, status, note: note?.trim() || null, nights, updatedBy: member(), updatedAt: now() };
+        const i = state.reservations.findIndex((x) => x.date === date && x.placeId === placeId);
+        if (i < 0) state.reservations.push(next);
+        else state.reservations[i] = next;
+        return next;
       }),
 
     listEdits: () => call(() => state.edits),

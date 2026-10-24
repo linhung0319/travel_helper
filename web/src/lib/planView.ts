@@ -1,8 +1,7 @@
-// 「這一天」面板和地圖要的行程資訊（T15m）：交通的文字、行程裡找項目、需要預約的清單、匯出。
+// 「這一天」面板和地圖要的行程資訊（T15m）：交通的文字、行程裡找項目、匯出。
 // 純函式：時間軸、交通時間、空檔、警告都是引擎（T14）算好的，這裡只整理成畫面要的樣子。
 
 import type { DayPlan, EngineWarning, Itinerary, ItineraryItem, Leg, TimelineEntry, VisitItem } from '@travel-helper/engine';
-import type { Place } from '../data/types.ts';
 import { MODE_ICONS } from './routing.ts';
 
 /** 引擎自動加的緩衝（集合、上下車），讓人知道時間怎麼來的 */
@@ -194,84 +193,6 @@ export function stopMarks(day: DayPlan | null, isLodging: (placeId: string) => b
     mark(e);
   }
   return { byEntry, byPlace };
-}
-
-// --- 需要預約 ---------------------------------------------------------------
-
-export interface ReservationRow {
-  date: string;
-  /** 行程項目；住宿是 null */
-  itemId: string | null;
-  placeId: string;
-  /** 主選、備案、住宿 */
-  role: 'main' | 'backup' | 'lodging';
-  time: string | null;
-  /** 幾個人（分組的那組人數，全員是行程的 party） */
-  people: number;
-  accepted: string | null;
-  methods: string[];
-  phone: string | null;
-  url: string | null;
-  note: string | null;
-  leadDays: number | null;
-}
-
-const RESERVE_ACCEPTED = new Set(['yes', 'groups-only']);
-
-function reservationOf(p: Place) {
-  const r = (p.raw.reservation ?? null) as Record<string, unknown> | null;
-  const str = (k: string) => (typeof r?.[k] === 'string' ? (r[k] as string) : null);
-  return {
-    accepted: str('accepted'),
-    methods: Array.isArray(r?.methods) ? (r.methods as string[]) : [],
-    phone: str('phone') ?? (typeof p.raw.phone === 'string' ? p.raw.phone : null),
-    url: str('url') ?? p.links.official ?? null,
-    note: str('note'),
-    leadDays: typeof r?.leadDays === 'number' ? r.leadDays : null,
-  };
-}
-
-/**
- * 「需要預約」的清單（PLAN T15m）：每晚的住宿，加上接受訂位的餐廳、體驗（主選和備案都列，備案標出來）。
- * 時間用引擎算出的開始時間，訂位時好對照。
- */
-export function reservationRows(it: Itinerary | null, plan: { days: DayPlan[] } | null, byId: Map<string, Place>): ReservationRow[] {
-  if (!it) return [];
-  const out: ReservationRow[] = [];
-  const startOf = new Map<string, string>();
-  for (const d of plan?.days ?? []) {
-    const walk = (es: TimelineEntry[]) => {
-      for (const e of es) {
-        if (e.itemId) startOf.set(e.itemId, e.start);
-        for (const g of e.groups ?? []) walk(g.entries);
-      }
-    };
-    walk(d.entries);
-  }
-  for (const ref of allItems(it)) {
-    if (ref.item.type !== 'visit') continue;
-    const v = ref.item;
-    const people = ref.split ? groupSize(it, ref) : it.party.size;
-    v.options.forEach((o, i) => {
-      const p = byId.get(o.place);
-      if (!p || p.type === 'lodging') return;
-      const r = reservationOf(p);
-      if (!r.accepted || !RESERVE_ACCEPTED.has(r.accepted)) return;
-      out.push({ date: ref.date, itemId: v.id, placeId: p.id, role: i === v.selected ? 'main' : 'backup', time: v.start ?? startOf.get(v.id) ?? null, people, ...r });
-    });
-  }
-  for (const d of it.days) {
-    const p = d.lodging ? byId.get(d.lodging) : null;
-    if (!p) continue;
-    out.push({ date: d.date, itemId: null, placeId: p.id, role: 'lodging', time: null, people: it.party.size, ...reservationOf(p) });
-  }
-  return out.sort((a, b) => a.date.localeCompare(b.date) || (a.role === 'lodging' ? 1 : 0) - (b.role === 'lodging' ? 1 : 0) || (a.time ?? '').localeCompare(b.time ?? ''));
-}
-
-function groupSize(it: Itinerary, ref: ItemRef): number {
-  const day = it.days.find((d) => d.date === ref.date);
-  const sp = day?.items.find((x) => x.id === ref.split?.id);
-  return (sp?.type === 'split' && sp.groups.find((g) => g.id === ref.split?.group)?.size) || it.party.size;
 }
 
 export const METHOD_LABELS: Record<string, string> = {

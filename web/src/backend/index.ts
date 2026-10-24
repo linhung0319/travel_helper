@@ -9,7 +9,7 @@ const offline: Backend = (() => {
   return {
     me: async () => ({ id: 'guest', displayName: '訪客', pictureUrl: null }),
     members: async () => [],
-    sync: async () => ({ itinerary: 0, votes: null, comments: null, candidates: null, edits: null }),
+    sync: async () => ({ itinerary: 0, votes: null, comments: null, candidates: null, reservations: null, edits: null }),
     getItinerary: async () => ({ version: 0, data: null, updatedBy: null, updatedAt: null }),
     putItinerary: no,
     listSnapshots: async () => [],
@@ -25,6 +25,8 @@ const offline: Backend = (() => {
     listCandidates: async () => [],
     createCandidate: no,
     deleteCandidate: no,
+    listReservations: async () => [],
+    putReservation: no,
     listEdits: async () => [],
     revertEdit: no,
   };

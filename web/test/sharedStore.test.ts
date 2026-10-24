@@ -164,3 +164,35 @@ test('同步：別人改了行程就換上新的', async () => {
   assert.equal(shared.store.getState().version, 2);
   assert.equal(shared.store.getState().updatedBy, 'm-b');
 });
+
+test('預約筆記：先改畫面，後端丟錯時退回', async () => {
+  const { backend, shared } = await setup();
+  const input = { date: '2027-02-03', placeId: 'x', status: 'booked' as const, note: '電話訂好' };
+  const pending = shared.setReservation(input);
+  assert.equal(shared.store.getState().reservations[0]?.status, 'booked', '樂觀更新');
+  const ok = await pending;
+  assert.ok(ok.ok);
+  assert.equal(shared.store.getState().reservations.length, 1);
+  assert.equal(shared.store.getState().reservations[0].updatedBy, 'm-a');
+
+  const real = backend.putReservation;
+  backend.putReservation = async () => {
+    throw new Error('壞了');
+  };
+  const failing = shared.setReservation({ ...input, status: 'skip' });
+  assert.equal(shared.store.getState().reservations[0].status, 'skip');
+  const bad = await failing;
+  assert.equal(bad.ok, false);
+  assert.equal(shared.store.getState().reservations.length, 1);
+  assert.equal(shared.store.getState().reservations[0].status, 'booked', '退回原本的');
+  backend.putReservation = real;
+});
+
+test('預約筆記：同步時別人改的會抓進來', async () => {
+  const { backend, shared } = await setup();
+  backend.setMe('m-b');
+  await backend.putReservation({ date: '2027-02-03', placeId: 'y', status: 'booked' });
+  backend.setMe('m-a');
+  await shared.syncOnce();
+  assert.equal(shared.store.getState().reservations.length, 1);
+});
