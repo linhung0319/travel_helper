@@ -138,6 +138,34 @@ test('OSRM：錯誤（HTTP、沒有路線、網路）回傳 null，不寫快取�
   assert.deepEqual(sleeps, [1100, 1100]);
 });
 
+test('查失敗的段落 10 分鐘內不重查，過了才再查；成功的不受影響', async () => {
+  let t = 1000;
+  let calls = 0;
+  let fail = true;
+  const router = createRoadRouter({
+    fetch: async () => {
+      calls++;
+      return fail ? { ok: false, status: 503, json: async () => ({}) } : { ok: true, status: 200, json: async () => osrmBody([[0, 0], [0, 0.005], [0, 0.01]], 1000) };
+    },
+    now: () => t,
+    sleep: async () => undefined,
+    minIntervalMs: 0,
+  });
+  assert.equal(await router.route('foot', [0, 0], [0, 0.01]), null);
+  assert.equal(calls, 1);
+  t += 9 * 60 * 1000;
+  assert.equal(await router.route('foot', [0, 0], [0, 0.01]), null);
+  assert.equal(calls, 1); // 還在 10 分鐘內
+  assert.equal(await router.route('car', [0, 0], [0, 0.01]), null); // 另一個 profile 是另一個 key
+  assert.equal(calls, 2);
+  t += 2 * 60 * 1000;
+  fail = false;
+  assert.ok(await router.route('foot', [0, 0], [0, 0.01]));
+  assert.equal(calls, 3); // 過了 TTL 再查
+  assert.ok(await router.route('foot', [0, 0], [0, 0.01])); // 成功後走快取
+  assert.equal(calls, 3);
+});
+
 function place(id: string, coords: [number, number], over: Record<string, unknown> = {}): Place {
   const p = normalizePlace({ id, type: 'spot', name: { ja: id }, area: 'x', coords, sources: [], ...over });
   assert.ok(p);

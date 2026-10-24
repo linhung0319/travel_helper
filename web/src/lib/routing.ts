@@ -145,10 +145,14 @@ export interface RoadRouterOptions {
   storage?: KeyValueStorage | null;
   minIntervalMs?: number;
   timeoutMs?: number;
+  /** 查失敗的段落多久內不再查（預設 10 分鐘，只放記憶體） */
+  failureTtlMs?: number;
   now?: () => number;
   sleep?: (ms: number) => Promise<void>;
 }
 
+/** 查失敗（OSRM 掛了、查不到路）後不再重查的時間：公開的 OSRM 要求低頻使用 */
+export const FAILURE_TTL_MS = 10 * 60 * 1000;
 const STORAGE_PREFIX = 'travel-helper:route:';
 const r5 = (v: number) => v.toFixed(5);
 
@@ -179,12 +183,15 @@ export function createRoadRouter(opts: RoadRouterOptions = {}) {
     storage = null,
     minIntervalMs = OSRM_MIN_INTERVAL_MS,
     timeoutMs = 15000,
+    failureTtlMs = FAILURE_TTL_MS,
     now = () => Date.now(),
     sleep = (ms: number) => new Promise<void>((r) => setTimeout(r, ms)),
   } = opts;
   const doFetch = opts.fetch ?? (globalThis.fetch as FetchLike | undefined);
   const memory = new Map<string, RoadRoute>();
   const inflight = new Map<string, Promise<RoadRoute | null>>();
+  /** 查失敗的 key → 可以再查的時間 */
+  const failedUntil = new Map<string, number>();
   let lastAt = -Infinity;
   let queue: Promise<unknown> = Promise.resolve();
   let calls = 0;
@@ -211,6 +218,12 @@ export function createRoadRouter(opts: RoadRouterOptions = {}) {
     const hit = cached(profile, from, to);
     if (hit) return Promise.resolve(hit);
     const key = roadKey(profile, from, to);
+    // 剛失敗過：不再送請求，直接當查不到（呼叫者畫直線）
+    const retryAt = failedUntil.get(key);
+    if (retryAt != null) {
+      if (now() < retryAt) return Promise.resolve(null);
+      failedUntil.delete(key);
+    }
     const pending = inflight.get(key);
     if (pending) return pending;
     if (!doFetch) return Promise.resolve(null);
@@ -235,6 +248,7 @@ export function createRoadRouter(opts: RoadRouterOptions = {}) {
         }
         return r;
       } catch {
+        failedUntil.set(key, now() + failureTtlMs);
         return null;
       } finally {
         if (timer) clearTimeout(timer);
