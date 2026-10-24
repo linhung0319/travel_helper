@@ -4058,6 +4058,11 @@ button.tl-leg-text {
   background: var(--type-other-bg);
 }
 
+/* 地圖上的點被指到時，時間軸的卡片閃一下（要贏過上面的類型底色） */
+.tl-row.tl-card.flash {
+  background: var(--warn-bg);
+}
+
 /* 時間（開始–結束）後面接停留時間 */
 .tl-timeline {
   display: flex;

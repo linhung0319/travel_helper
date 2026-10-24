@@ -249,8 +249,11 @@ function OptionStack({ visit, date, children }: { visit: VisitItem; date: string
   const takeOut = async () => {
     const existed = shared.store.getState().candidates.some((c) => c.placeId === placeId && c.day === date);
     // 先放回候選、再從卡片拿掉：「已放回候選」的復原提示要最後出現（共用一個提示位置）
-    const added = await shared.addCandidate(placeId, date);
-    if (!added.ok) return;
+    // 這天已經有這個候選就不用再加，照樣從卡片拿掉；加不起來時 addCandidate 自己會跳錯誤提示
+    if (!existed) {
+      const added = await shared.addCandidate(placeId, date);
+      if (!added.ok) return;
+    }
     const r = await shared.changeItinerary((it) => removeOption(it, visit.id, index), `${label} 從卡片拿出來`, {
       undo: { text: `已放回候選・${label}`, after: () => dropCandidate(placeId, date, existed) },
     });
@@ -294,7 +297,7 @@ function OptionStack({ visit, date, children }: { visit: VisitItem; date: string
         start.current = null;
         if (!s) return;
         const dx = e.clientX - s.x;
-        if (Math.abs(dx) > 40 && Math.abs(dx) > Math.abs(e.clientY - s.y)) go(dx < 0 ? 1 : -1);
+        if (e.pointerType === 'touch' && Math.abs(dx) > 40 && Math.abs(dx) > Math.abs(e.clientY - s.y)) go(dx < 0 ? 1 : -1);
       }}
       onPointerCancel={() => {
         start.current = null;
