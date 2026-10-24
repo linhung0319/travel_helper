@@ -2114,15 +2114,6 @@ dl {
   white-space: normal;
 }
 
-.cand-merge {
-  margin-left: 0;
-}
-
-.cand-merge .menu {
-  left: 0;
-  right: auto;
-}
-
 .hope-chip.scheduled {
   background: var(--soft);
   color: var(--fg);
@@ -3572,6 +3563,66 @@ body.dragging-plan .tl-dropend {
 
 body.dragging-plan .tl-card {
   user-select: none;
+}
+
+/* 第四輪：放在卡片中間＝合併（亮藍框）、邊緣＝排在這裡（插入線）；不能合併的卡片變淡；候選可以拖、候選區收備卡 */
+body.dragging-plan .tl-row.tl-card.drop-merge {
+  outline: 2px solid var(--accent);
+  outline-offset: 1px;
+  background: var(--info-bg);
+}
+
+.tl-row.tl-card.drop-nomerge:not(.drag-source) {
+  opacity: 0.55;
+}
+
+.drop-merge .tl-body::after,
+.drop-before .tl-body::after,
+.drop-after .tl-body::after,
+.day-candidates.drop-cand-over::after {
+  position: absolute;
+  right: 8px;
+  z-index: 2;
+  padding: 1px 8px;
+  border-radius: 999px;
+  background: var(--accent);
+  color: #fff;
+  font-size: 0.75rem;
+  font-weight: 600;
+  pointer-events: none;
+  white-space: nowrap;
+}
+
+.drop-merge .tl-body::after {
+  content: '放開＝合併到這張';
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.drop-before .tl-body::after {
+  content: '放開＝排在這裡';
+  top: -10px;
+}
+
+.drop-after .tl-body::after {
+  content: '放開＝排在這裡';
+  bottom: -10px;
+}
+
+.day-candidates.drop-cand-over {
+  position: relative;
+  outline: 2px dashed var(--accent);
+  outline-offset: 2px;
+  border-radius: 10px;
+}
+
+.day-candidates.drop-cand-over::after {
+  content: '放開＝放回候選';
+  top: 4px;
+}
+
+.cand[draggable='true'] {
+  cursor: grab;
 }
 
 /* ---------- 第三輪：日期列的工具、地圖區的視窗、行程分頁的標題列 ---------- */

@@ -1,18 +1,14 @@
 // 想去（interaction-design §6）：❤️ 就是想去。「❤️ 想去」分頁照搬探索（Explore.tsx 的 source="wish"），
 // 每張卡片底下多了「📅 加到某天」（小月曆，DayPicker.tsx）、留言（只有一層，收起來）；❤️／👎 數在照片右上角。
 // 加到某天的點變成那天的「候選」，放在行程分頁時間軸的下面；規劃模式下按 ↑ 排進行程（插在最順路的位置），
-// 或「併到…」某張卡片（成為那張卡片「這個時段也可以去」的一個）。
+// 或拖到時間軸（卡片中間＝合併成那張卡片的備卡、卡片之間＝排在那裡；planDrag.ts）。備卡也可以拖回候選區。
 // 這天、整趟的留言（Comments）放在地圖區的視窗（MapPanel）。
 
 import { useEffect, useMemo, useRef, useState, type PointerEvent as ReactPointerEvent } from 'react';
-import { addOption, type DayPlan, type TimelineEntry } from '@travel-helper/engine';
-import type { VisitItem } from '@travel-helper/engine/types';
 import { appStore } from '../store.ts';
 import { commands } from '../appCommands.ts';
 import { shared } from '../appShared.ts';
-import { useApp, useData, usePlan, useShared } from '../hooks.ts';
-import { dayPlanOf } from '../planStore.ts';
-import { allItems, selectedPlace } from '../lib/planView.ts';
+import { useApp, useData, useIsDesktop, useShared } from '../hooks.ts';
 import { closeDialog, openDialog } from '../uiStore.ts';
 import type { Candidate, Comment } from '../backend/types.ts';
 import { dayCandidates, likedPlaces } from '../lib/wishlist.ts';
@@ -22,6 +18,8 @@ import { memberName } from '../sharedStore.ts';
 import { Avatar, AvatarStack, Dialog, MemberName, stamp } from './common.tsx';
 import { addPlaceToDay } from './addToDay.ts';
 import { AddToDay } from './DayPicker.tsx';
+import { dragSourceProps, dropOnCandidatesProps, useLongPressDrag } from './planDrag.ts';
+import type { DragSource } from '../lib/dropIntent.ts';
 
 /** 有人 ❤️ 的點（想去分頁的內容）；地圖、分頁的數字也用這個 */
 export function useLiked() {
@@ -141,66 +139,8 @@ export function WishExtras({ placeId }: { placeId: string }) {
   );
 }
 
-/** 某天的時間軸裡，每個項目的開始時間（含分組裡的） */
-function startTimes(plan: DayPlan | null): Map<string, string> {
-  const out = new Map<string, string>();
-  const walk = (entries: TimelineEntry[]) => {
-    for (const e of entries) {
-      if (e.itemId && e.kind !== 'meet') out.set(e.itemId, e.start);
-      e.groups?.forEach((g) => walk(g.entries));
-    }
-  };
-  walk(plan?.entries ?? []);
-  return out;
-}
-
-/** 候選的「併到…」：選這天的哪一張造訪卡片，這個點就放進那張卡片的「這個時段也可以去」，候選拿掉 */
-function MergeMenu({ candidateId, placeId, date, name }: { candidateId: number; placeId: string; date: string; name: string }) {
-  const [open, setOpen] = useState(false);
-  const [busy, setBusy] = useState(false);
-  const itinerary = useData((s) => s.itinerary);
-  const byId = useData((s) => s.byId);
-  const plan = usePlan((s) => dayPlanOf(s.plan, date));
-  const times = startTimes(plan);
-  const placeName = (v: VisitItem) => {
-    const p = byId.get(selectedPlace(v) ?? '');
-    return p ? p.name.zh || p.name.ja : (selectedPlace(v) ?? '');
-  };
-  const targets = allItems(itinerary)
-    .filter((r) => r.date === date && r.item.type === 'visit')
-    .map((r) => r.item as VisitItem)
-    .filter((v) => !v.options.some((o) => o.place === placeId));
-  const merge = async (v: VisitItem) => {
-    setBusy(true);
-    const r = await shared.changeItinerary((it) => addOption(it, v.id, { place: placeId, stayMinutes: null }), `${name} 併到 ${placeName(v)}`);
-    if (r.ok) await shared.removeCandidate(candidateId, undefined, true);
-    setBusy(false);
-    setOpen(false);
-  };
-  return (
-    <span className="item-menu cand-merge">
-      <button type="button" className="text-button small" aria-expanded={open} disabled={busy} onClick={() => setOpen(!open)} title="放進某張卡片的「這個時段也可以去」" data-testid="candidate-merge">
-        併到…
-      </button>
-      {open && (
-        <span className="menu" role="menu" data-testid="merge-menu">
-          {targets.length === 0 && <span className="muted small menu-note">這天還沒有可以併的卡片</span>}
-          {targets.map((v) => {
-            const p = byId.get(selectedPlace(v) ?? '');
-            return (
-              <button key={v.id} type="button" role="menuitem" disabled={busy} onClick={() => void merge(v)} data-merge-item={v.id}>
-                <span className="muted">{times.get(v.id) ?? ''}</span> {p ? TYPE_ICONS[p.type] : ''} {placeName(v)}
-              </button>
-            );
-          })}
-        </span>
-      )}
-    </span>
-  );
-}
-
-/** 手機長按顯示提示（電腦版滑鼠移過去看 title） */
-function useLongPressHint(text: string) {
+/** 手機長按顯示提示（電腦版滑鼠移過去看 title）；enabled＝false 時不掛 */
+function useLongPressHint(text: string, enabled = true) {
   const timer = useRef<number | null>(null);
   const cancel = () => {
     if (timer.current != null) window.clearTimeout(timer.current);
@@ -209,7 +149,7 @@ function useLongPressHint(text: string) {
   useEffect(() => cancel, []);
   return {
     onPointerDown: (e: ReactPointerEvent) => {
-      if (e.pointerType !== 'touch') return;
+      if (!enabled || e.pointerType !== 'touch') return;
       cancel();
       timer.current = window.setTimeout(() => shared.notify(text), 500);
     },
@@ -219,7 +159,7 @@ function useLongPressHint(text: string) {
   };
 }
 
-/** 這天候選的一筆：類型圖示、名稱、❤️ 頭像；誰加的放在 title（手機長按） */
+/** 這天候選的一筆：類型圖示、名稱、❤️ 頭像；誰加的放在 title（手機長按）。規劃模式下可以拖進時間軸（住宿不行） */
 function CandidateRow({ c, date }: { c: Candidate; date: string }) {
   const me = useShared((s) => s.me?.id);
   const members = useShared((s) => s.members);
@@ -231,8 +171,12 @@ function CandidateRow({ c, date }: { c: Candidate; date: string }) {
   const name = p ? p.name.zh || p.name.ja : c.placeId;
   const mine = c.addedBy === me;
   const addedBy = `${mine ? '我' : memberName(members, c.addedBy)} 加的`;
-  const hint = useLongPressHint(addedBy);
   const lodging = p?.type === 'lodging';
+  const desktop = useIsDesktop();
+  const dragSrc: DragSource | null = planning && !lodging ? { kind: 'candidate', candidateId: c.id, placeId: c.placeId, placeType: p?.type ?? null } : null;
+  const pressRef = useLongPressDrag<HTMLLIElement>(dragSrc, !desktop);
+  // 可以長按拖的時候，長按就是拖，不跳「誰加的」提示
+  const hint = useLongPressHint(addedBy, !dragSrc);
   const up = async () => {
     // 住宿會換掉那晚原本的住宿，用對話框確認
     if (lodging) return openDialog({ kind: 'add', placeId: c.placeId, day: date });
@@ -248,7 +192,9 @@ function CandidateRow({ c, date }: { c: Candidate; date: string }) {
       title={addedBy}
       onMouseEnter={() => appStore.getState().hover(c.placeId)}
       onMouseLeave={() => appStore.getState().hover(null)}
+      ref={pressRef}
       {...hint}
+      {...(desktop ? dragSourceProps(dragSrc, c.placeId) : {})}
     >
       {planning && (
         <button type="button" className="button small primary cand-up" disabled={busy} onClick={() => void up()} title={lodging ? '設成這晚的住宿' : '插在這天最順路的位置'} data-testid="cand-up">
@@ -268,7 +214,6 @@ function CandidateRow({ c, date }: { c: Candidate; date: string }) {
         <strong>{name}</strong>
       </button>
       {liked && <AvatarStack ids={liked.likes} dislikes={liked.dislikes} />}
-      {planning && !lodging && <MergeMenu candidateId={c.id} placeId={c.placeId} date={date} name={name} />}
       {mine ? (
         <button type="button" className="text-button small" onClick={() => void shared.removeCandidate(c.id)} data-testid="cand-withdraw">
           撤回
@@ -284,14 +229,14 @@ function CandidateRow({ c, date }: { c: Candidate; date: string }) {
   );
 }
 
-/** 行程分頁：這天的候選。點一筆＝地圖飛過去、跳出小卡片；規劃模式下 ↑ 排進行程、併到某張卡片 */
+/** 行程分頁：這天的候選。點一筆＝地圖飛過去、跳出小卡片；規劃模式下 ↑ 排進行程、拖到時間軸；這一區也收拖回來的備卡 */
 export function DayCandidates({ date }: { date: string }) {
   const all = useShared((s) => s.candidates);
   const itinerary = useData((s) => s.itinerary);
   const planning = useApp((s) => s.planning);
   const list = dayCandidates(all, date, itinerary);
   return (
-    <section className="day-section day-candidates" data-testid="day-candidates">
+    <section className="day-section day-candidates" data-testid="day-candidates" {...dropOnCandidatesProps(date, planning)}>
       <h4>
         📅 這天的候選{list.length ? `（${list.length}）` : ''}
       </h4>

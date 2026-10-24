@@ -11,8 +11,13 @@ import { currentEngineData } from '../planStore.ts';
 import { shortDayLabel } from '../lib/trip.ts';
 import type { Result } from '../sharedStore.ts';
 
-/** at：拖進時間軸時指定的位置（不給就插在最順路的位置） */
-export async function addPlaceToDay(placeId: string, date: string, at?: { index: number; split?: { id: string; group: string } }): Promise<Result> {
+/** at：拖進時間軸時指定的位置（不給就插在最順路的位置）；undo：存好後跳出可以復原的提示（同 changeItinerary） */
+export async function addPlaceToDay(
+  placeId: string,
+  date: string,
+  at?: { index: number; split?: { id: string; group: string } },
+  undo?: { text: string; after?: () => Promise<unknown> },
+): Promise<Result> {
   const p = dataStore.getState().byId.get(placeId);
   const name = p ? p.name.zh || p.name.ja : placeId;
   const s = shared.store.getState();
@@ -33,7 +38,7 @@ export async function addPlaceToDay(placeId: string, date: string, at?: { index:
       return addItem(it, date, item, index == null ? {} : { index }).itinerary;
     };
   }
-  const r = await shared.changeItinerary(fn, reason);
+  const r = await shared.changeItinerary(fn, reason, undo ? { undo } : {});
   if (r.ok) {
     appStore.getState().selectDay(date);
     for (const c of shared.store.getState().candidates.filter((x) => x.placeId === placeId && x.day === date)) await shared.removeCandidate(c.id, undefined, true);

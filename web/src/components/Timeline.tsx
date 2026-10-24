@@ -3,16 +3,17 @@
 // 一般模式只顯示要看的（設計 §6）：時間（開始–結束）、編號、類型圖示、名稱、停留時間、tag、❤️ 頭像、⚠ 數。
 // 卡片底色是類型的淡色；起點、終點的住宿和造訪是同樣的卡片（只寫一個時間）。有備卡的卡片疊著淡色卡、右上角 👑、‹ n/m › 換著看。
 // 規劃模式下才有：停留時間 −／＋、點時間固定開始（📌）、⋯ 選單（刪除、移到第 _ 天、移進／移出分組、標用餐、標吃法）、
-// 拖卡片換順序（電腦版拖、手機長按後拖）、看備卡時的「設為主要」「拿出來」。
+// 拖卡片（電腦版拖、手機長按後拖）：放在卡片中間合併、邊緣換順序；看備卡時拖的是那張備卡；看備卡時的「設為主要」「拿出來」。
 
 import { useEffect, useRef, useState, type ReactNode } from 'react';
-import { moveItemTo, removeItem, removeOption, selectOption, setLodging, fromMinutes, setStart, setStay, toMinutes, type DayPlan, type EngineWarning, type Gap, type LodgingMeals, type TimelineEntry } from '@travel-helper/engine';
+import { moveItemTo, removeItem, selectOption, setLodging, fromMinutes, setStart, setStay, toMinutes, type DayPlan, type EngineWarning, type Gap, type LodgingMeals, type TimelineEntry } from '@travel-helper/engine';
 import type { ItineraryDay, ItineraryItem, VisitItem } from '@travel-helper/engine/types';
 import { appStore } from '../store.ts';
 import { commands } from '../appCommands.ts';
 import { shared } from '../appShared.ts';
 import { useApp, useData, useIsDesktop } from '../hooks.ts';
-import { dropOnEndProps, dropOnItemProps, itemDragProps, useLongPressDrag } from './planDrag.ts';
+import { dragSourceProps, dropOnCardProps, dropOnEndProps, putBackOption, useLongPressDrag } from './planDrag.ts';
+import type { DragSource } from '../lib/dropIntent.ts';
 import { openDialog } from '../uiStore.ts';
 import { cardTime, dayBar, daySummary, findItemRef, formatStay, stopMarks, timelineRows, WARNING_ICONS, warningsByItem, type BarSegment } from '../lib/planView.ts';
 import { shortDayLabel } from '../lib/trip.ts';
@@ -207,19 +208,13 @@ interface ShownOption {
   actions: ReactNode;
 }
 
-/** 復原「拿出來」：把剛放進候選的那筆撤回（原本就有的不動） */
-async function dropCandidate(placeId: string, date: string, existed: boolean) {
-  if (existed) return;
-  const c = shared.store.getState().candidates.find((x) => x.placeId === placeId && x.day === date);
-  if (c) await shared.removeCandidate(c.id, undefined, true);
-}
-
 /**
  * 有備卡的卡片（visit.options 超過一個）：本地 state shown 是「看的是第幾個」，只是看，不改主卡。
  * 右上角 👑 在看主卡時亮、看備卡時灰；‹ n/m › 或手機左右滑換卡；看備卡時地圖上那個點亮起來。
- * 規劃模式看備卡：「設為主要」（selectOption）、「拿出來」（removeOption 後放回這天的候選，可復原）。
+ * 規劃模式看備卡：「設為主要」（selectOption）、「拿出來」（放回這天的候選，可復原）。
+ * onShown：看的備卡換了就告訴卡片（看主卡是 null），拖卡片時拖的就是那張備卡。
  */
-function OptionStack({ visit, date, children }: { visit: VisitItem; date: string; children: (v: ShownOption) => ReactNode }) {
+function OptionStack({ visit, date, onShown, children }: { visit: VisitItem; date: string; onShown: (index: number | null) => void; children: (v: ShownOption) => ReactNode }) {
   const byId = useData((s) => s.byId);
   const planning = useApp((s) => s.planning);
   const n = visit.options.length;
@@ -230,6 +225,7 @@ function OptionStack({ visit, date, children }: { visit: VisitItem; date: string
   const option = visit.options[index];
   const isMain = index === visit.selected;
   const placeId = option.place;
+  useEffect(() => onShown(isMain ? null : index), [isMain, index]);
 
   // 看備卡時地圖上那個點亮起來；換回主卡或卸載時清掉自己亮的
   const lit = isMain ? '' : placeId;
@@ -246,19 +242,6 @@ function OptionStack({ visit, date, children }: { visit: VisitItem; date: string
   const start = useRef<{ x: number; y: number } | null>(null);
   const label = name(byId.get(placeId));
   const makeMain = () => void shared.changeItinerary((it) => selectOption(it, visit.id, index), `${label} 設為主要`);
-  const takeOut = async () => {
-    const existed = shared.store.getState().candidates.some((c) => c.placeId === placeId && c.day === date);
-    // 先放回候選、再從卡片拿掉：「已放回候選」的復原提示要最後出現（共用一個提示位置）
-    // 這天已經有這個候選就不用再加，照樣從卡片拿掉；加不起來時 addCandidate 自己會跳錯誤提示
-    if (!existed) {
-      const added = await shared.addCandidate(placeId, date);
-      if (!added.ok) return;
-    }
-    const r = await shared.changeItinerary((it) => removeOption(it, visit.id, index), `${label} 從卡片拿出來`, {
-      undo: { text: `已放回候選・${label}`, after: () => dropCandidate(placeId, date, existed) },
-    });
-    if (!r.ok) await dropCandidate(placeId, date, existed);
-  };
   const switcher = (
     <span className="option-switch small" data-testid="option-switch">
       <button type="button" aria-label="上一個" onClick={() => go(-1)} data-testid="option-prev">
@@ -278,7 +261,7 @@ function OptionStack({ visit, date, children }: { visit: VisitItem; date: string
         <button type="button" className="button small" onClick={makeMain} data-testid="option-make-main">
           👑 設為主要
         </button>
-        <button type="button" className="text-button small" onClick={() => void takeOut()} data-testid="option-takeout">
+        <button type="button" className="text-button small" onClick={() => void putBackOption(visit.id, index, date)} data-testid="option-takeout">
           拿出來
         </button>
       </span>
@@ -326,9 +309,20 @@ function EntryRow({ entry, day, warnings, gapsBeforeMeet, plan, marks, inGroup =
   const desktop = useIsDesktop();
   const ref = entry.itemId ? findItemRef(itinerary, entry.itemId) : null;
   const item = ref?.item ?? null;
-  // 手機：長按後拖（hook 不能放在下面的提前 return 之後）
-  const pressRef = useLongPressDrag<HTMLLIElement>(entry.itemId, planning && !desktop && !!item && item.type !== 'flight');
   const p = entry.placeId ? byId.get(entry.placeId) : undefined;
+  // 有備卡的卡片正在看哪張備卡（看主卡是 null）
+  const [backup, setBackup] = useState<number | null>(null);
+  // 拖的東西：看備卡時是那張備卡，不然整張卡片（航班不能動）；hook 不能放在下面的提前 return 之後
+  const visitItem = item?.type === 'visit' ? item : null;
+  const backupPlace = visitItem && backup != null ? visitItem.options[backup]?.place : undefined;
+  const dragSrc: DragSource | null =
+    !planning || !item || item.type === 'flight' || entry.kind === 'start' || entry.kind === 'lodging' || entry.kind === 'meet'
+      ? null
+      : visitItem && backupPlace && backup !== visitItem.selected
+        ? { kind: 'option', itemId: item.id, index: backup!, placeType: byId.get(backupPlace)?.type ?? null }
+        : { kind: 'item', itemId: item.id, placeType: visitItem ? (p?.type ?? null) : null, options: visitItem?.options.length ?? 1 };
+  // 手機：長按後拖
+  const pressRef = useLongPressDrag<HTMLLIElement>(dragSrc, !desktop);
   const likedMap = useLiked();
   const [tagsOpen, setTagsOpen] = useState(false);
 
@@ -433,7 +427,7 @@ function EntryRow({ entry, day, warnings, gapsBeforeMeet, plan, marks, inGroup =
   const flight = item?.type === 'flight' ? item : null;
   const time = cardTime(entry);
   // 規劃模式：電腦版拖曳、手機長按後拖（航班不能動）
-  const movable = planning && !!item && item.type !== 'flight';
+  const movable = !!dragSrc;
   const itemWarnings = entry.itemId ? warnings.get(entry.itemId) : undefined;
   const stacked = visit && visit.options.length > 1 ? Math.min(visit.options.length - 1, 2) : 0;
 
@@ -481,10 +475,10 @@ function EntryRow({ entry, day, warnings, gapsBeforeMeet, plan, marks, inGroup =
         data-item={entry.itemId ?? ''}
         data-place={entry.placeId ?? ''}
         ref={pressRef}
-        {...(movable && entry.itemId ? { ...(desktop ? itemDragProps(entry.itemId, entry.placeId, true) : {}), ...dropOnItemProps(entry.itemId, true) } : {})}
+        {...(movable && entry.itemId ? { ...(desktop ? dragSourceProps(dragSrc, dragSrc?.kind === 'option' ? (backupPlace ?? null) : entry.placeId) : {}), ...dropOnCardProps({ kind: 'card', itemId: entry.itemId, placeType: visit ? (p?.type ?? null) : null, isFlight: false }, true) } : {})}
       >
         {visit && stacked ? (
-          <OptionStack visit={visit} date={day.date}>
+          <OptionStack visit={visit} date={day.date} onShown={setBackup}>
             {(v) => content(v)}
           </OptionStack>
         ) : (
