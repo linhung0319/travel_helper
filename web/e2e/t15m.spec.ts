@@ -493,3 +493,63 @@ test('探索：原本是 👎，加到某天會換成 ❤️；兩個按鈕一�
   await expect(card.getByTestId('card-like')).toHaveAttribute('aria-pressed', 'true');
   await expect(card.getByTestId('card-dislike')).toHaveAttribute('aria-pressed', 'false');
 });
+
+/** 第三輪完成條件：加到 2/5 → 規劃模式 ↑ 排進 → 候選併到卡片 → 午餐、分開吃 → 緩衝 −5 → 復原快照 */
+test('第三輪完成條件：排進、併到卡片、標午餐和分開吃、緩衝 −5 後面提早 5 分、復原快照', async ({ page }) => {
+  const D = '2027-02-05';
+  const MERGE_PLACE = 'toba-osakaya';
+  const toMin = (s: string) => {
+    const m = /(\d{1,2}):(\d{2})/.exec(s)!;
+    return Number(m[1]) * 60 + Number(m[2]);
+  };
+  await ready(page);
+  const before = (await th(page, '__th.dataStore.getState().itinerary')) as { days: unknown };
+
+  // 1. 把點加到 2/5（想去的卡片「加到某天」；先按 ❤️）→ 進入規劃模式
+  await openDetail(page, PLACE);
+  await page.getByTestId('vote-like').click();
+  const list = await openWish(page);
+  await wish(list).getByTestId('add-to-day').click();
+  await wish(list).getByTestId(`day-picker-${D}`).click();
+  await showDay(page, D);
+  await enterPlanning(page);
+  await expect(cand(page)).toBeVisible();
+
+  // 2. 候選 ↑ 排進
+  await cand(page).getByTestId('cand-up').click();
+  const row = page.getByTestId('timeline').locator(`[data-testid="tl-row"][data-place="${PLACE}"]`);
+  await expect(row).toBeVisible();
+
+  // 3. 另一個候選「併到…」水族館那張卡片 → 展開「這個時段也可以去」有兩個點
+  const aquarium = tlRow(page, 'i-6');
+  await cand(page, MERGE_PLACE).getByTestId('candidate-merge').click();
+  await page.getByTestId('merge-menu').locator('[data-merge-item="i-6"]').click();
+  await aquarium.getByTestId('options-toggle').click();
+  await expect(aquarium.getByTestId('option-row')).toHaveCount(2);
+
+  // 4. 標「午餐」「分開吃」
+  await aquarium.getByTestId('tag-edit').click();
+  await aquarium.getByTestId('tag-meal-lunch').click();
+  await aquarium.getByTestId('tag-edit').click();
+  await aquarium.getByTestId('tag-dining-separate').click();
+  await expect(aquarium.getByTestId('tag-meal')).toHaveText('午餐');
+  await expect(aquarium.getByTestId('tag-dining')).toHaveText('分開吃');
+
+  // 5. 點交通細列、緩衝 −5：後面的時間提早 5 分
+  const rows = page.getByTestId('timeline').locator('[data-testid="tl-row"] .tl-time');
+  const last = rows.first(); // 第一段交通後面的那張卡片（再後面有固定時間的 17:30，會吸收）
+  const t0 = toMin(await last.innerText());
+  const leg = page.getByTestId('timeline').getByTestId('tl-leg').first();
+  await leg.getByRole('button').first().click();
+  await leg.getByTestId('leg-buffer-minus').click();
+  await expect.poll(async () => toMin(await last.innerText())).toBe(t0 - 5);
+
+  // 6. 復原快照 → 回到原狀
+  await page.getByTestId('snapshots-button').click();
+  const snap = page.getByTestId('snapshot').last();
+  await snap.getByTestId('snapshot-restore').click();
+  await snap.getByTestId('snapshot-restore-confirm').click();
+  await expect(page.getByTestId('snapshots-dialog')).toHaveCount(0);
+  const after = (await th(page, '__th.dataStore.getState().itinerary')) as { days: unknown };
+  expect(after.days).toEqual(before.days);
+});

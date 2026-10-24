@@ -14,3 +14,7 @@ data/cache/work/
 .wrangler/
 build/
 data/cache/import/
+
+# Playwright 的輸出
+test-results/
+playwright-report/

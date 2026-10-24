@@ -652,6 +652,7 @@ T7c → T7d → T7e → T7f → T7g → T8a → T8b → T8c → T8d → T7i → 
 ### T15 行程與建議：串接 〔S〕
 - **把 T15m 的假後端換成 T24、T25 的 API**：確定的行程、快照、投票、留言、候選、修改紀錄存在 D1；畫面的程式不改（要改的話，代表 T15m 的介面沒定好，回頭修介面）。
 - **Worker 要跟上 T15m 改的形狀**（2026-10-24，architecture §3.6）：投票拿掉備註；建議（`suggestions` 和它的 API）換成留言（`comments`，對地點或某一天）和候選（`candidates`）；`sync` 改回傳 `votes`、`comments`、`candidates`。規則照 `web/src/backend/mock.ts`。
+- **預約筆記和整趟留言也要接 worker 和 D1**（T15m 第三輪，architecture §2「預約筆記的假後端」）：`Reservation` API 形狀是列出全部（`GET`）加按 `(date, placeId)` 寫入一筆（`PUT`，整筆取代），欄位 `status`（`pending`／`booked`／`skip`）、`note`、`nights`、`updatedBy`、`updatedAt`（後者由 Worker 填）；住宿的 `date` 是入住那晚。D1 多一張 `reservations` 表（主鍵 `(date, place_id)`），`sync` 回傳 `reservations` 時間戳。整趟留言（`target` 為 `'trip'`，`TRIP_TARGET`）走原本的留言 API，Worker 要接受這個 target。規則照 `web/src/backend/mock.ts`。
 - 假登入換成 T25 的 LINE 登入；同時編輯用 `version` 號碼偵測；同步照 architecture §3.8。
 - 用兩個真的帳號試一次同時編輯、同步。
 - **完成條件**（Playwright，手機和電腦尺寸各跑一次，用本機的 Worker 和 D1）：同 T15m 的流程，但「別人」是另一個登入的帳號；重新整理後資料還在。

@@ -1,5 +1,7 @@
 # 行程分頁精簡、預約筆記、多家餐廳卡片、交通設定（設計，T15m 第三輪）
 
+> **已實作**（計畫：`docs/superpowers/plans/2026-10-24-itinerary-tab-round3.md`）。
+
 > 2026-10-24 👤 用過第二輪（[2026-10-24-wishlist-planning-design.md](2026-10-24-wishlist-planning-design.md)）後的回饋，和 Claude 討論後整理。這份接在第二輪後面：第二輪沒提到的照舊，衝突的地方以這份為準。
 > 標「Claude 決定」的是 👤 沒有明講、由 Claude 先定的地方，👤 看過可以推翻。定案後和第二輪一起寫進 `docs/interaction-design.md`。
 
