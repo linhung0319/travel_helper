@@ -276,10 +276,10 @@ export function removeOption(it: Itinerary, itemId: string, index: number): Itin
 }
 
 /** 兩張卡的主卡類型要一樣、都不能是住宿（typeOf 沒給就不檢查類型） */
-function assertSameType(typeOf: ((placeId: string) => string | undefined) | undefined, a: VisitItem, b: VisitItem): void {
+function assertSameType(typeOf: ((placeId: string) => string | undefined) | undefined, placeA: string, placeB: string): void {
   if (!typeOf) return;
-  const ta = typeOf(a.options[a.selected].place);
-  const tb = typeOf(b.options[b.selected].place);
+  const ta = typeOf(placeA);
+  const tb = typeOf(placeB);
   if (ta === 'lodging' || tb === 'lodging') throw new ItineraryError('住宿不能合併');
   if (ta !== tb) throw new ItineraryError('只有同類型的點能合併');
 }
@@ -300,7 +300,7 @@ export function mergeItems(
   const dst = mustFind(next, targetId);
   if (src.item.type !== 'visit' || dst.item.type !== 'visit') throw new ItineraryError('只有 visit 能合併');
   if (src.item.options.length > 1) throw new ItineraryError('有備卡的卡片不能合併，只能換順序');
-  assertSameType(typeOf, src.item, dst.item);
+  assertSameType(typeOf, src.item.options[0].place, dst.item.options[dst.item.selected].place);
   dst.item.options.push(src.item.options[0]);
   const droppedStart = src.item.start ?? null;
   src.list.splice(src.index, 1);
@@ -352,7 +352,7 @@ export function moveOption(
   const from = mustBeBackup(mustFind(next, fromItemId).item, optionIndex);
   const to = mustFind(next, toItemId).item;
   if (to.type !== 'visit') throw new ItineraryError('只有 visit 有備案');
-  assertSameType(typeOf, from, to);
+  assertSameType(typeOf, from.options[optionIndex].place, to.options[to.selected].place);
   to.options.push(takeOption(from, optionIndex));
   return next;
 }

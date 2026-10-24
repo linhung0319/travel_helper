@@ -419,3 +419,9 @@ test('moveOption：備卡搬到別張同類型卡', () => {
   const s1 = addItem(two, D, visit('s1')).itemId;
   assert.throws(() => moveOption(addItem(two, D, visit('s1')).itinerary, source, 1, s1, typeOf), /只有同類型的點能合併/);
 });
+
+test('moveOption：類型看被搬的那個選項，不是來源卡的主卡', () => {
+  const { it, target, source } = mergeSetup();
+  const mixed = addOption(it, source, { place: 's9' });
+  assert.throws(() => moveOption(mixed, source, 1, target, typeOf), /只有同類型的點能合併/);
+});

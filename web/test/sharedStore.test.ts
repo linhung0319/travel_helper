@@ -210,8 +210,20 @@ test('changeItinerary 的復原：回到改之前的行程、跑 after', async (
   assert.equal(t?.text, '已合併到 A');
   assert.equal(t?.action?.label, '復原');
   assert.notDeepEqual(data.getState().itinerary, before);
-  t!.action!.run();
-  await new Promise((res) => setTimeout(res, 20));
+  await t!.action!.run();
   assert.deepEqual(data.getState().itinerary, before);
   assert.equal(afterCalls, 1);
+});
+
+test('changeItinerary 的復原：after 失敗時行程照樣復原、顯示錯誤提示', async () => {
+  const { data, shared } = await setup();
+  const before = data.getState().itinerary;
+  const after = async () => {
+    throw new Error('候選加不回去');
+  };
+  await shared.changeItinerary((it) => removeItem(it, '2027-02-03:x'), '合併', { undo: { text: '已合併', after } });
+  await shared.store.getState().toast!.action!.run();
+  assert.deepEqual(data.getState().itinerary, before);
+  assert.equal(shared.store.getState().toast?.kind, 'error');
+  assert.match(shared.store.getState().toast!.text, /候選加不回去/);
 });

@@ -31,7 +31,7 @@ export interface Toast {
   kind: 'ok' | 'error';
   text: string;
   /** 提示上的按鈕（例如「復原」） */
-  action?: { label: string; run: () => void };
+  action?: { label: string; run: () => void | Promise<void> };
 }
 
 export interface SharedState {
@@ -156,8 +156,14 @@ export function createShared(getBackend: () => Backend, data: StoreApi<DataState
       if (undo) {
         toast('ok', undo.text, {
           label: '復原',
-          run: () => {
-            void changeItinerary(() => before, `復原：${reason}`).then((r) => (r.ok ? undo.after?.() : undefined));
+          run: async () => {
+            const r = await changeItinerary(() => before, `復原：${reason}`);
+            if (!r.ok) return;
+            try {
+              await undo.after?.();
+            } catch (e) {
+              fail(e);
+            }
           },
         });
       } else toast('ok', `已儲存：${reason}`);
