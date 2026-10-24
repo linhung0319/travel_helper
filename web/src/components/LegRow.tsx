@@ -8,8 +8,9 @@ import type { TravelMode } from '@travel-helper/engine/types';
 import { commands } from '../appCommands.ts';
 import { shared } from '../appShared.ts';
 import { useApp, useData, useShared, useUi } from '../hooks.ts';
-import { legDetail, legMapsUrl, legTargetOf, legText, rideLines } from '../lib/planView.ts';
+import { formatDistance, legDetail, legMapsUrl, legTargetOf, legText, rideLines } from '../lib/planView.ts';
 import { MODE_ICONS } from '../lib/routing.ts';
+import { haversineMeters } from '../lib/geo/distance.ts';
 import { uiStore } from '../uiStore.ts';
 
 const MODE_LABELS: Record<TravelMode, string> = { walk: '步行', taxi: '計程車', train: '電車', bus: '巴士', ferry: '船', charter: '包車', car: '自駕', other: '其他' };
@@ -119,9 +120,14 @@ export function LegRow({ entry, date }: { entry: TimelineEntry; date: string }) 
   const itinerary = useData((s) => s.itinerary);
   const planning = useApp((s) => s.planning);
   const target = legTargetOf(entry, date);
-  const key = `${date}:${target && 'itemId' in target ? target.itemId : 'lodging'}`;
-  const open = useUi((s) => s.legOpen) === key && !!target;
-  const hidden = !leg || leg.mode === 'none' || (leg.minutes === 0 && !leg.rides.length);
+  // 每一段交通有自己的 key（起點、會合這類不能改的也可以展開看，但不會開到別段）
+  const key = `${date}:${entry.kind === 'lodging' ? 'lodging' : `${entry.kind}:${entry.itemId ?? entry.placeId ?? ''}`}`;
+  const open = useUi((s) => s.legOpen) === key;
+  const routes = useApp((s) => s.routes);
+  const spec = readSpec(itinerary, target);
+  // 使用者設定過的（包含分鐘填 0）或有備註的不能藏起來，否則改不回來
+  const userSet = !!leg?.specified || !!spec;
+  const hidden = !leg || (!userSet && (leg.mode === 'none' || (leg.minutes === 0 && !leg.rides.length)));
   const nameOf = (id: string) => byId.get(id)?.name.zh || byId.get(id)?.name.ja || id;
   const fromId = leg?.from ?? null;
   const toId = leg?.to ?? null;
@@ -140,18 +146,21 @@ export function LegRow({ entry, date }: { entry: TimelineEntry; date: string }) 
 
   if (hidden || !leg) return null;
   const detail = legDetail(leg);
-  const spec = readSpec(itinerary, target);
   const editing = open && planning && !!target;
   const from = fromId ? byId.get(fromId) : undefined;
   const to = toId ? byId.get(toId) : undefined;
   const rides = rideLines(leg, nameOf);
+  // 距離：這段畫在地圖上的路線查到了就用（沿道路），否則直線距離
+  const drawn = routes.find((r) => r.from.place === fromId && r.to.place === toId && r.meters != null && r.source !== 'pending');
+  const straight = from && to ? haversineMeters(from.coords, to.coords) : null;
+  const distance = drawn?.meters != null ? (drawn.source === 'straight' ? `${formatDistance(drawn.meters)}（直線）` : formatDistance(drawn.meters)) : straight != null ? `${formatDistance(straight)}（直線）` : null;
   const toggle = () => uiStore.setState({ legOpen: open ? null : key });
   return (
     <li className={`tl-leg mode-${leg.mode} ${open ? 'open' : ''}`} data-testid="tl-leg">
       <span className="tl-leg-line" aria-hidden />
-      <span className="tl-leg-body">
+      <div className="tl-leg-body">
         <button type="button" className="tl-leg-text" aria-expanded={open} onClick={toggle}>
-          {legText(leg)}
+          {legText(leg) || '交通 0 分'}
           {detail.length > 0 && <span className="muted small">（{detail.join('、')}）</span>}
           {spec?.note && !editing && (
             <span className="muted small" data-testid="leg-note-text">
@@ -167,6 +176,7 @@ export function LegRow({ entry, date }: { entry: TimelineEntry; date: string }) 
           <div className="leg-detail" data-testid="leg-detail">
             <div>
               {MODE_ICONS[mode]} {leg.mode === 'unknown' ? '交通未定' : MODE_LABELS[mode]}・交通 {leg.minutes} 分・緩衝 {leg.bufferMinutes} 分
+              {distance && `・距離 ${distance}`}
               {leg.taxi && `・${leg.taxi.jumboCars ? `大型 ${leg.taxi.jumboCars} 台或 ` : ''}${leg.taxi.cars} 台`}
             </div>
             {rides.length > 0 && (
@@ -186,7 +196,7 @@ export function LegRow({ entry, date }: { entry: TimelineEntry; date: string }) 
             {editing && target && <LegEditor key={JSON.stringify(spec)} target={target} spec={spec} bufferNow={spec?.bufferMinutes ?? leg.bufferMinutes} />}
           </div>
         )}
-      </span>
+      </div>
     </li>
   );
 }

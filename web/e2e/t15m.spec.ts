@@ -382,4 +382,13 @@ test('第三輪：交通細列點開看詳細、地圖畫那一段；規劃模�
   await expect(first.getByTestId('leg-note')).toHaveValue('在飯店大廳集合');
   await first.locator('[data-testid="leg-mode"][data-mode="auto"]').click();
   await expect(first.locator('[data-testid="leg-mode"][data-mode="auto"]')).toHaveAttribute('aria-pressed', 'true');
+
+  // 分鐘填 0：這段還在（改得回來）；清空 → 自動
+  await first.getByTestId('leg-minutes').fill('0');
+  await first.getByTestId('leg-minutes').blur();
+  await expect.poll(() => th(page, "__th.dataStore.getState().itinerary.days.find((d) => d.date === '2027-02-05').items.map((i) => i.travel?.minutes).filter((m) => m === 0).length")).toBeGreaterThan(0);
+  await expect(first.getByTestId('leg-minutes')).toHaveValue('0');
+  await first.getByTestId('leg-minutes').fill('');
+  await first.getByTestId('leg-minutes').blur();
+  await expect.poll(() => th(page, "__th.dataStore.getState().itinerary.days.find((d) => d.date === '2027-02-05').items.map((i) => i.travel?.minutes).filter((m) => m != null).length")).toBe(0);
 });

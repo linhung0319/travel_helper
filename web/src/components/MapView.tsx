@@ -6,7 +6,7 @@ import type { FeatureCollection } from 'geojson';
 import 'maplibre-gl/dist/maplibre-gl.css';
 import { appStore } from '../store.ts';
 import { dataStore } from '../dataStore.ts';
-import { DESKTOP_QUERY, useApp, useCanHover, useData, usePlan, useShared } from '../hooks.ts';
+import { DESKTOP_QUERY, useApp, useCanHover, useData, usePlan, useShared, useUi } from '../hooks.ts';
 import { voteCounts } from '../sharedStore.ts';
 import { initialExtent } from '../lib/areas.ts';
 import { TYPE_COLORS } from '../lib/typeStyle.ts';
@@ -461,6 +461,17 @@ export function MapView() {
     (map.getSource(OVERLAY_SOURCES.proposalPoints) as GeoJSONSource).setData(f.points);
     (map.getSource(OVERLAY_SOURCES.proposalLines) as GeoJSONSource).setData(f.lines);
   }, [loaded, proposal, itinerary]);
+
+  // 點開某一段交通時，其他行程路線變淡（只亮那一段）；收起來還原
+  const legOpen = useUi((s) => s.legOpen);
+  useEffect(() => {
+    if (!loaded) return;
+    const map = mapRef.current!;
+    const dim = legOpen != null;
+    map.setPaintProperty('itinerary-line', 'line-opacity', dim ? 0.1 : (['case', ['==', ['get', 'active'], 1], 0.85, 0.15] as never));
+    map.setPaintProperty('itinerary-casing', 'line-opacity', dim ? 0.1 : (['case', ['==', ['get', 'active'], 1], 0.85, 0.2] as never));
+    map.setPaintProperty('itinerary-arrow', 'icon-opacity', dim ? 0.15 : 1);
+  }, [loaded, legOpen]);
 
   // 確定的行程（T15m）：每天的路線、備選的空心圈、選定那天的交通標籤
   useEffect(() => {

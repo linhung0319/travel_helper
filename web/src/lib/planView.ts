@@ -34,6 +34,11 @@ export function legDetail(leg: Leg): string[] {
   return out;
 }
 
+/** 距離的寫法：850 公尺、1.2 公里 */
+export function formatDistance(meters: number): string {
+  return meters < 1000 ? `${Math.round(meters)} 公尺` : `${(meters / 1000).toFixed(1)} 公里`;
+}
+
 /** 展開交通細列時列出每一程，例如「10:12 近鐵 鳥羽 → 宇治山田 10:30」，兩程之間「轉乘 8 分」；nameOf 把站名裡的資料點 ID 換成名稱 */
 export function rideLines(leg: Leg, nameOf: (id: string) => string): string[] {
   const out: string[] = [];

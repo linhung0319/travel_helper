@@ -11,7 +11,7 @@ import { nearbyPlaces } from '../src/lib/nearby.ts';
 import { placeVisual, wallPlaces } from '../src/lib/visual.ts';
 import { dayStops, placeDays } from '../src/lib/itinerary.ts';
 import { itin } from './helpers.ts';
-import { dayBar, daySummary, formatStay, legMapsUrl, legTargetOf, optionRows, rideLines, stopMarks } from '../src/lib/planView.ts';
+import { dayBar, daySummary, formatStay, formatDistance, legMapsUrl, legTargetOf, optionRows, rideLines, stopMarks } from '../src/lib/planView.ts';
 import { explorePlaces, typeCounts } from '../src/lib/explore.ts';
 import type { DayPlan, TimelineEntry } from '@travel-helper/engine';
 import type { Area, Place, StationTimetable } from '../src/data/types.ts';
@@ -382,4 +382,11 @@ test('legMapsUrl：步行 walking、電車巴士船 transit、其他 driving；�
   assert.equal(legMapsUrl(a, b, 'walk'), base + 'walking');
   for (const m of ['train', 'bus', 'ferry'] as const) assert.equal(legMapsUrl(a, b, m), base + 'transit');
   for (const m of ['taxi', 'charter', 'car', 'other'] as const) assert.equal(legMapsUrl(a, b, m), base + 'driving');
+});
+
+test('formatDistance：不到 1 公里寫公尺，其他寫公里一位小數', () => {
+  assert.equal(formatDistance(850), '850 公尺');
+  assert.equal(formatDistance(849.6), '850 公尺');
+  assert.equal(formatDistance(1200), '1.2 公里');
+  assert.equal(formatDistance(12345), '12.3 公里');
 });
