@@ -4,7 +4,7 @@ import assert from 'node:assert/strict';
 import { spawnSync } from 'node:child_process';
 import fs from 'node:fs';
 import path from 'node:path';
-import { DEFAULT_CONFIG, earliestTrain, fromMinutes, routeRides, toMinutes, type RouteTimetable } from '../src/index.ts';
+import { DEFAULT_CONFIG, departuresFrom, directTrains, earliestTrain, fromMinutes, routeRides, toMinutes, type RouteTimetable } from '../src/index.ts';
 import { ROOT } from './fixtures.ts';
 
 const readJson = (p: string) => JSON.parse(fs.readFileSync(p, 'utf8'));
@@ -40,6 +40,22 @@ for (const [from, to, date, time] of TRAIN_CASES) {
 
 test('近鐵：末班車之後沒有車', () => {
   assert.equal(earliestTrain(tt, { from: 'kashikojima', to: 'toba', date: '2027-02-08', after: toMinutes('23:59'), holidays: DEFAULT_CONFIG.holidays }), null);
+});
+
+test('近鐵：同樣的查詢第二次直接回傳同一個結果；不同日子分開算', () => {
+  const q = { from: 'toba', to: 'kashikojima', date: '2027-02-05', after: toMinutes('09:00'), holidays: DEFAULT_CONFIG.holidays };
+  const a = earliestTrain(tt, q);
+  assert.equal(earliestTrain(tt, { ...q }), a);
+  const b = earliestTrain(tt, { ...q, date: '2027-02-06' });
+  assert.notEqual(b, a);
+});
+
+test('近鐵：A 站這天的發車時刻由早到晚、不重複，包含直達車的每一班', () => {
+  const q = { from: 'toba', date: '2027-02-05', holidays: DEFAULT_CONFIG.holidays };
+  const deps = departuresFrom(tt, q);
+  assert.ok(deps.length > 20);
+  assert.deepEqual(deps, [...new Set(deps)].sort((x, y) => x - y));
+  for (const r of directTrains(tt, { ...q, to: 'kashikojima', after: 0 }).filter((x) => !x.off)) assert.ok(deps.includes(r.dep));
 });
 
 const BUS_CASES: [string, string, string, string][] = [

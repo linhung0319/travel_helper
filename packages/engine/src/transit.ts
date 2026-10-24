@@ -40,8 +40,20 @@ interface PreparedTrain {
   stops: { station: string; arr: number | null; dep: number | null }[];
 }
 
+// 同一份時刻表、同一種日子、同樣的特急設定只整理一次（每段交通都要查好幾次，整理很花時間）
+const prepared = new WeakMap<KintetsuTimes, Map<string, PreparedTrain[]>>();
+
 function prepare(tt: KintetsuTimes, date: DateString, holidays: readonly DateString[], allowExpress: boolean): PreparedTrain[] {
   const day = kintetsuDayType(date, holidays);
+  let byKey = prepared.get(tt);
+  if (!byKey) prepared.set(tt, (byKey = new Map()));
+  const key = `${day}|${allowExpress}`;
+  let out = byKey.get(key);
+  if (!out) byKey.set(key, (out = prepareDay(tt, day, allowExpress)));
+  return out;
+}
+
+function prepareDay(tt: KintetsuTimes, day: ReturnType<typeof kintetsuDayType>, allowExpress: boolean): PreparedTrain[] {
   return Object.entries(tt.trains[day] ?? {})
     .filter(([, t]) => allowExpress || !EXPRESS.has(t.type))
     .map(([no, t]) => ({
@@ -77,12 +89,37 @@ export function directTrains(tt: KintetsuTimes, q: TrainQuery): (TrainRide & { o
     .sort((x, y) => x.dep - y.dep);
 }
 
+/** A 站這天所有發車時刻（分鐘，由早到晚、不重複；不含當天固定停駛的しまかぜ）：找前一班時用 */
+export function departuresFrom(tt: KintetsuTimes, q: Omit<TrainQuery, 'after' | 'to'>): number[] {
+  const out = new Set<number>();
+  for (const p of prepare(tt, q.date, q.holidays, q.allowExpress ?? true)) {
+    if (shimakazeOff(p.t, q.date)) continue;
+    for (const s of p.stops) if (s.station === q.from && s.dep != null) out.add(s.dep);
+  }
+  return [...out].sort((x, y) => x - y);
+}
+
 /**
  * 最早抵達：允許轉乘 1 次（轉乘至少 minTransfer 分）。同時抵達時取晚出發的。
  * 回傳 1～2 段；沒有車回傳 null。
  */
 export function earliestTrain(tt: KintetsuTimes, q: TrainQuery): TrainRide[] | null {
   if (q.from === q.to) return null;
+  let memo = earliestMemo.get(tt);
+  if (!memo) earliestMemo.set(tt, (memo = new Map()));
+  const key = [q.from, q.to, q.date, kintetsuDayType(q.date, q.holidays), q.allowExpress ?? true, q.minTransfer ?? 3, q.after].join('|');
+  if (memo.has(key)) return memo.get(key) as TrainRide[] | null;
+  if (memo.size >= EARLIEST_MEMO_MAX) memo.clear();
+  const out = searchEarliest(tt, q);
+  memo.set(key, out);
+  return out;
+}
+
+// 同樣的查詢回傳同一個結果（規劃每次編輯都整份重算、插入位置要每個空檔算一次）；呼叫的人不能改回傳的陣列
+const earliestMemo = new WeakMap<KintetsuTimes, Map<string, TrainRide[] | null>>();
+const EARLIEST_MEMO_MAX = 50_000;
+
+function searchEarliest(tt: KintetsuTimes, q: TrainQuery): TrainRide[] | null {
   const minTransfer = q.minTransfer ?? 3;
   const trains = prepare(tt, q.date, q.holidays, q.allowExpress ?? true).filter((p) => !shimakazeOff(p.t, q.date));
   let best: TrainRide[] | null = null;
@@ -96,13 +133,15 @@ export function earliestTrain(tt: KintetsuTimes, q: TrainQuery): TrainRide[] | n
     const r = ride(p, q.from, q.to, q.after);
     if (r && better([r])) best = [r];
   }
+  // 第二程一定要停目的地：先挑出來，轉乘時只看這些車（順序不變，結果一樣）
+  const toTrains = trains.filter((p) => p.stops.some((s) => s.station === q.to));
   for (const p1 of trains) {
     const i = p1.stops.findIndex((s) => s.station === q.from);
     if (i < 0 || p1.stops[i].dep == null || (p1.stops[i].dep as number) < q.after) continue;
     for (const x of p1.stops.slice(i + 1)) {
       const leg1 = ride(p1, q.from, x.station, q.after);
       if (!leg1) continue;
-      for (const p2 of trains) {
+      for (const p2 of toTrains) {
         if (p2 === p1) continue;
         const leg2 = ride(p2, x.station, q.to, leg1.arr + minTransfer);
         if (leg2 && better([leg1, leg2])) best = [leg1, leg2];

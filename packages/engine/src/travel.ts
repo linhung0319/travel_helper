@@ -6,7 +6,7 @@
 import type { EngineConfig } from './config.ts';
 import type { EngineData, PlaceRecord, RouteTimetable } from './data.ts';
 import { estimateWalk, haversineMeters, isLonLat, minutesForMeters, nearestStations } from './geo.ts';
-import { anyTrainThatDay, directTrains, earliestTrain, routeRides, type RouteRide, type TrainQuery, type TrainRide } from './transit.ts';
+import { anyTrainThatDay, departuresFrom, directTrains, earliestTrain, routeRides, type RouteRide, type TrainQuery, type TrainRide } from './transit.ts';
 import { fromMinutes, toMinutes } from './time.ts';
 import type { DateString, EngineWarning, Leg, LonLat, PartyProfile, TaxiInfo, TransitRide, TravelMode, TravelSpec, TripRef } from './types.ts';
 
@@ -81,6 +81,8 @@ interface Candidate {
   rides: TransitRide[];
   headway: number | null;
   basis: string;
+  /** 近鐵：上下車站和兩端走路（已套係數、未進位），找前一班、後一班時只查這對車站 */
+  pair?: { from: string; to: string; walkFrom: number; walkTo: number };
 }
 
 /** 端點附近的近鐵車站（走得到的），附步行分鐘（已套係數） */
@@ -114,6 +116,32 @@ function stationName(id: string, data: EngineData): string {
 /** 走到上車點的分鐘（已進位）→ 從哪個時間開始找車 */
 type ReadyAt = (access: number) => number;
 
+/** 近鐵 1～2 段的候選；after：從幾點開始等車 */
+function trainCandidate(legs: TrainRide[], pair: NonNullable<Candidate['pair']>, after: number, ctx: LegContext): Candidate {
+  const last = legs[legs.length - 1];
+  return {
+    mode: 'train',
+    arrive: last.arr + round(pair.walkTo),
+    walk: pair.walkFrom + pair.walkTo,
+    access: round(pair.walkFrom),
+    dep: legs[0].dep,
+    wait: legs[0].dep - after,
+    rides: legs.map((r: TrainRide) => ({
+      mode: 'train' as const,
+      line: `${r.type}（往${stationName(r.to, ctx.data)}）`,
+      from: r.from,
+      to: r.alight,
+      depart: fromMinutes(r.dep),
+      arrive: fromMinutes(r.arr),
+      tripId: r.trainNo,
+      fareAdult: null,
+    })),
+    headway: null,
+    basis: '近鐵時刻表',
+    pair,
+  };
+}
+
 function trainCandidates(a: Endpoint, b: Endpoint, ctx: LegContext, factor: number, readyAt: ReadyAt): { cands: Candidate[]; missedLast: boolean } {
   const tt = ctx.data.kintetsu;
   if (!tt) return { cands: [], missedLast: false };
@@ -136,27 +164,7 @@ function trainCandidates(a: Endpoint, b: Endpoint, ctx: LegContext, factor: numb
         if (!anyDay && anyTrainThatDay(tt, q)) anyDay = true;
         continue;
       }
-      const last = legs[legs.length - 1];
-      cands.push({
-        mode: 'train',
-        arrive: last.arr + round(sb.walk),
-        walk: sa.walk + sb.walk,
-        access: round(sa.walk),
-        dep: legs[0].dep,
-        wait: legs[0].dep - q.after,
-        rides: legs.map((r: TrainRide) => ({
-          mode: 'train' as const,
-          line: `${r.type}（往${stationName(r.to, ctx.data)}）`,
-          from: r.from,
-          to: r.alight,
-          depart: fromMinutes(r.dep),
-          arrive: fromMinutes(r.arr),
-          tripId: r.trainNo,
-          fareAdult: null,
-        })),
-        headway: null,
-        basis: '近鐵時刻表',
-      });
+      cands.push(trainCandidate(legs, { from: sa.station, to: sb.station, walkFrom: sa.walk, walkTo: sb.walk }, q.after, ctx));
     }
   }
   return { cands, missedLast: !cands.length && anyDay };
@@ -272,23 +280,41 @@ function toTrip(c: Candidate, a: Endpoint, b: Endpoint): TripRef {
 /** 同一對上下車點（同一種車、同一個上車點、同一個下車點） */
 const samePoints = (x: Candidate, c: Candidate) => x.mode === c.mode && x.rides[0].from === c.rides[0].from && x.rides[x.rides.length - 1].to === c.rides[c.rides.length - 1].to;
 
-/** 同一對上下車點、c 之後的第一班 */
-function nextCandidate(c: Candidate, a: Endpoint, b: Endpoint, ctx: LegContext, factor: number): Candidate | null {
-  const later = searchTransit(a, b, ctx, factor, () => c.dep + 1).cands.filter((x) => samePoints(x, c) && x.dep > c.dep);
-  return later.reduce<Candidate | null>((m, x) => (!m || x.dep < m.dep ? x : m), null);
-}
+/** 前一班最多往前找幾分 */
+const PREV_WINDOW = 180;
 
-/** 同一對上下車點、c 之前的最後一班：往前 15、30、60、120、180 分找，找到後再往後補到最接近 c 的那班 */
-function prevCandidate(c: Candidate, a: Endpoint, b: Endpoint, ctx: LegContext, factor: number): Candidate | null {
-  for (const delta of [15, 30, 60, 120, 180]) {
-    const earlier = searchTransit(a, b, ctx, factor, () => c.dep - delta).cands.filter((x) => samePoints(x, c) && x.dep < c.dep);
-    let p = earlier.reduce<Candidate | null>((m, x) => (!m || x.dep > m.dep ? x : m), null);
-    if (!p) continue;
-    // 近鐵每對車站只回傳最早的一班：往後一班一班補，直到下一班就是 c
-    for (let n = nextCandidate(p, a, b, ctx, factor); n && n.dep < c.dep; n = nextCandidate(n, a, b, ctx, factor)) p = n;
-    return p;
+/**
+ * c 的前一班、後一班（同一對上下車點）。每段大眾運輸都要算，所以只查 c 那對車站或停留所：
+ * 近鐵：後一班＝c 發車後 1 分起最早到的；前一班＝A 站發車時刻由晚往早試，第一個發車早於 c 的。
+ * 路線：整天的班次已經排好，直接取 c 前後那班。前一班只找 PREV_WINDOW 分內
+ */
+function neighbours(c: Candidate, a: Endpoint, b: Endpoint, ctx: LegContext, factor: number): { prev: Candidate | null; next: Candidate | null } {
+  if (c.pair) {
+    const tt = ctx.data.kintetsu;
+    if (!tt) return { prev: null, next: null };
+    const p = c.pair;
+    const query = (after: number) => ({ from: p.from, to: p.to, date: ctx.date, after, holidays: ctx.cfg.holidays, allowExpress: ctx.cfg.transit.allowExpress, minTransfer: ctx.cfg.transit.minTransfer });
+    const at = (after: number) => {
+      const legs = earliestTrain(tt, query(after));
+      return legs && trainCandidate(legs, p, after, ctx);
+    };
+    const next = at(c.dep + 1);
+    let prev: Candidate | null = null;
+    const deps = departuresFrom(tt, query(0)).filter((t) => t < c.dep && t >= c.dep - PREV_WINDOW);
+    for (let i = deps.length - 1; i >= 0 && !prev; i--) {
+      const x = at(deps[i]);
+      if (x && x.dep < c.dep) prev = x;
+    }
+    return { prev, next };
   }
-  return null;
+  const same = routeCandidates(a, b, ctx, factor, () => 0).cands.filter((x) => samePoints(x, c));
+  let prev: Candidate | null = null;
+  let next: Candidate | null = null;
+  for (const x of same) {
+    if (x.dep < c.dep && x.dep >= c.dep - PREV_WINDOW && (!prev || x.dep > prev.dep)) prev = x;
+    if (x.dep > c.dep && (!next || x.dep < next.dep)) next = x;
+  }
+  return { prev, next };
 }
 
 // --- 計程車 -----------------------------------------------------------------
@@ -346,8 +372,7 @@ function leg(partial: Partial<Leg> & Pick<Leg, 'mode' | 'minutes' | 'basis'>, a:
  * 趕不上 c（選定的班次）時：等車 0，時間照「走到上車點後搭同一程」算（走路＋車程＋下車走路），不會少於走路、不會是負的
  */
 function fromCandidate(c: Candidate, a: Endpoint, b: Endpoint, ctx: LegContext, factor: number): Leg {
-  const prev = prevCandidate(c, a, b, ctx, factor);
-  const next = nextCandidate(c, a, b, ctx, factor);
+  const { prev, next } = neighbours(c, a, b, ctx, factor);
   const wait = c.dep - (ctx.depart + c.access);
   return leg(
     {
