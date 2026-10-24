@@ -1,15 +1,17 @@
 // 兩張卡片中間的交通細列（設計 §8）：一般模式點開看這段的詳細（方式、分鐘、緩衝、計程車台數、每一程的轉乘、
 // Google Maps 連結），規劃模式下多一塊設定（方式、分鐘、緩衝、備註）。
-// 點開時地圖只畫這一段（commands.drawRoute），轉乘的車站亮起來；收起來就清掉。一次只開一段（uiStore.legOpen）。
+// 點開時地圖只畫這一段（commands.drawRoute，搭車的照班次的站畫），每一程上下車的站亮起來；收起來就清掉。
+// 一次只開一段（uiStore.legOpen）；這列不見了（換天、回整趟、換分頁）時也收起來，地圖的行程線才會恢復。
 
-import { useEffect, useState } from 'react';
-import { getLegTravel, setLegTravel, type Itinerary, type LegTarget, type TimelineEntry, type TravelSpec } from '@travel-helper/engine';
+import { useEffect, useRef, useState } from 'react';
+import { DEFAULT_CONFIG, getLegTravel, setLegTravel, type Itinerary, type LegTarget, type TimelineEntry, type TravelSpec } from '@travel-helper/engine';
 import type { TravelMode } from '@travel-helper/engine/types';
-import { commands } from '../appCommands.ts';
+import { commands, itineraryPathOf } from '../appCommands.ts';
+import { dataStore } from '../dataStore.ts';
 import { shared } from '../appShared.ts';
 import { useApp, useData, useShared, useUi } from '../hooks.ts';
 import { formatDistance, legDetail, legMapsUrl, legTargetOf, legText, rideLines } from '../lib/planView.ts';
-import { MODE_ICONS } from '../lib/routing.ts';
+import { MODE_ICONS, rideStations } from '../lib/routing.ts';
 import { haversineMeters } from '../lib/geo/distance.ts';
 import { uiStore } from '../uiStore.ts';
 
@@ -28,8 +30,8 @@ function readSpec(it: Itinerary | null, target: LegTarget | null): TravelSpec | 
   }
 }
 
-/** 規劃模式的設定：改一個欄位，其他欄位照原本的 */
-function LegEditor({ target, spec, bufferNow }: { target: LegTarget; spec: TravelSpec | null; bufferNow: number }) {
+/** 規劃模式的設定：改一個欄位，其他欄位照原本的；preset 是引擎的預設緩衝（全員 10、分組 5） */
+function LegEditor({ target, spec, bufferNow, preset }: { target: LegTarget; spec: TravelSpec | null; bufferNow: number; preset: number }) {
   const saving = useShared((s) => s.saving);
   const patch = (p: Partial<TravelSpec>) => void shared.changeItinerary((it) => setLegTravel(it, target, { ...(getLegTravel(it, target) ?? {}), ...p }), '調整交通');
   const [minutes, setMinutes] = useState(spec?.minutes != null ? String(spec.minutes) : '');
@@ -44,7 +46,11 @@ function LegEditor({ target, spec, bufferNow }: { target: LegTarget; spec: Trave
     if (v !== (spec?.note ?? null)) patch({ note: v });
   };
   const adjusted = spec?.bufferMinutes != null;
-  const setBuffer = (v: number) => patch({ bufferMinutes: Math.max(0, v) });
+  // 調回預設的值就存 null（「預設」），之後引擎的預設改了也跟著變
+  const setBuffer = (v: number) => {
+    const next = Math.max(0, v);
+    patch({ bufferMinutes: next === preset ? null : next });
+  };
   return (
     <div className="leg-edit">
       <div className="leg-edit-row">
@@ -113,8 +119,8 @@ function LegEditor({ target, spec, bufferNow }: { target: LegTarget; spec: Trave
   );
 }
 
-/** 時間軸上的一段交通：一行摘要，點開看詳細；date 是這天的日期 */
-export function LegRow({ entry, date }: { entry: TimelineEntry; date: string }) {
+/** 時間軸上的一段交通：一行摘要，點開看詳細；date 是這天的日期，inGroup：分組裡的一段（預設緩衝不同） */
+export function LegRow({ entry, date, inGroup = false }: { entry: TimelineEntry; date: string; inGroup?: boolean }) {
   const leg = entry.travel;
   const byId = useData((s) => s.byId);
   const itinerary = useData((s) => s.itinerary);
@@ -133,16 +139,34 @@ export function LegRow({ entry, date }: { entry: TimelineEntry; date: string }) 
   const toId = leg?.to ?? null;
   const mode: TravelMode = leg && leg.mode !== 'none' && leg.mode !== 'unknown' ? leg.mode : 'other';
   const minutes = leg?.minutes ?? 0;
-  const transferKey = leg ? leg.rides.slice(1).map((r) => r.from).join('|') : '';
+  const ridesKey = leg ? leg.rides.map((r) => `${r.mode}:${r.from}>${r.to}`).join('|') : '';
+  // 班次本身放 ref：時間軸重算時陣列換了但站一樣，不用重畫
+  const ridesRef = useRef(leg?.rides ?? []);
+  ridesRef.current = leg?.rides ?? [];
 
-  // 點開時地圖只畫這一段，轉乘的車站亮起來；收起來（或換成別段、離開）就清掉
+  // 點開時地圖只畫這一段，每一程上下車的站亮起來；收起來（或換成別段、離開）就清掉
   useEffect(() => {
     if (!open || !fromId || !toId) return;
     commands.clearHighlights();
-    commands.drawRoute(fromId, toId, mode, { minutes });
-    if (transferKey) commands.highlight(transferKey.split('|'));
+    const rides = ridesRef.current;
+    // 搭車的照班次的站畫（和地圖上整天的行程線一樣）；其他交給 routeResolver 查
+    const byId = dataStore.getState().byId;
+    const a = byId.get(fromId);
+    const b = byId.get(toId);
+    const geometry = rides.length && a && b && (mode === 'train' || mode === 'bus' || mode === 'ferry') ? itineraryPathOf(a, b, mode, rides) : null;
+    commands.drawRoute(fromId, toId, mode, { minutes, geometry });
+    const stations = rideStations(rides).filter((id) => byId.has(id));
+    if (stations.length) commands.highlight(stations);
     return () => void commands.clearHighlights();
-  }, [open, fromId, toId, mode, minutes, transferKey]);
+  }, [open, fromId, toId, mode, minutes, ridesKey]);
+
+  // 這列不見了（換天、回整趟、換分頁）或換成別段時，展開中的是這段就收起來，否則地圖的行程線一直是淡的
+  useEffect(() => {
+    if (!open) return;
+    return () => {
+      if (uiStore.getState().legOpen === key) uiStore.setState({ legOpen: null });
+    };
+  }, [open, key]);
 
   if (hidden || !leg) return null;
   const detail = legDetail(leg);
@@ -193,7 +217,7 @@ export function LegRow({ entry, date }: { entry: TimelineEntry; date: string }) 
                 在 Google Maps 開路線
               </a>
             )}
-            {editing && target && <LegEditor key={JSON.stringify(spec)} target={target} spec={spec} bufferNow={spec?.bufferMinutes ?? leg.bufferMinutes} />}
+            {editing && target && <LegEditor key={JSON.stringify(spec)} target={target} spec={spec} bufferNow={spec?.bufferMinutes ?? leg.bufferMinutes} preset={inGroup ? DEFAULT_CONFIG.buffer.group : DEFAULT_CONFIG.buffer.whole} />}
           </div>
         )}
       </div>

@@ -250,7 +250,7 @@ function LodgingMenu({ date }: { date: string }) {
   );
 }
 
-function EntryRow({ entry, day, warnings, gapsBeforeMeet, plan, marks }: { entry: TimelineEntry; day: ItineraryDay; warnings: Map<string, EngineWarning[]>; gapsBeforeMeet?: Gap[]; plan?: DayPlan; marks: Marks }) {
+function EntryRow({ entry, day, warnings, gapsBeforeMeet, plan, marks, inGroup = false }: { entry: TimelineEntry; day: ItineraryDay; warnings: Map<string, EngineWarning[]>; gapsBeforeMeet?: Gap[]; plan?: DayPlan; marks: Marks; inGroup?: boolean }) {
   const byId = useData((s) => s.byId);
   const itinerary = useData((s) => s.itinerary);
   const planning = useApp((s) => s.planning);
@@ -313,7 +313,7 @@ function EntryRow({ entry, day, warnings, gapsBeforeMeet, plan, marks }: { entry
                     {g.entries
                       .filter((e) => e.kind !== 'meet')
                       .map((e, i) => (
-                        <EntryRow key={i} entry={e} day={day} warnings={warnings} marks={marks} />
+                        <EntryRow key={i} entry={e} day={day} warnings={warnings} marks={marks} inGroup />
                       ))}
                   </ol>
                 </div>
@@ -340,7 +340,7 @@ function EntryRow({ entry, day, warnings, gapsBeforeMeet, plan, marks }: { entry
   if (entry.kind === 'lodging') {
     return (
       <>
-        <LegRow entry={entry} date={day.date} />
+        <LegRow entry={entry} date={day.date} inGroup={inGroup} />
         <li className="tl-row tl-lodging" data-testid="tl-row">
           <span className="tl-time">{entry.arrive}</span>
           <span className="tl-body">
@@ -379,7 +379,7 @@ function EntryRow({ entry, day, warnings, gapsBeforeMeet, plan, marks }: { entry
   const itemWarnings = entry.itemId ? warnings.get(entry.itemId) : undefined;
   return (
     <>
-      <LegRow entry={entry} date={day.date} />
+      <LegRow entry={entry} date={day.date} inGroup={inGroup} />
       <li
         className={`tl-row tl-card tl-${entry.kind} ${hovered && hovered === entry.placeId ? 'flash' : ''} ${movable ? 'movable' : ''}`}
         data-testid="tl-row"
@@ -485,7 +485,7 @@ function StayChip({ itemId, minutes }: { itemId: string | null; minutes: number 
 }
 
 
-const GAP_ACTIONS: Record<Gap['kind'], { icon: string; look: string; types: ('restaurant' | 'spot' | 'lodging')[]; contexts?: ('lunch' | 'dinner')[] }> = {
+const GAP_ACTIONS: Record<Gap['kind'], { icon: string; look: string; types: ('restaurant' | 'spot' | 'lodging')[] }> = {
   lodging: { icon: '🏨', look: '看住宿', types: ['lodging'] },
   idle: { icon: '⏳', look: '看附近的景點', types: ['spot'] },
 };
@@ -511,7 +511,7 @@ function GapRow({ gap, plan }: { gap: Gap; plan: DayPlan }) {
             type="button"
             className="text-button"
             onClick={() => {
-              commands.setFilter({ types: a.types, contexts: a.contexts ?? [] });
+              commands.setFilter({ types: a.types, contexts: [] });
               if (around.length) commands.focus(around);
             }}
           >

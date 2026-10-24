@@ -124,6 +124,43 @@ export function railPath(fromId: string, toId: string, stations: RailStation[]):
   return na.n <= nb.n ? between : between.reverse();
 }
 
+/** 一程車：交通方式和上下車的站（引擎的 TransitRide 的子集） */
+export interface RideStops {
+  mode: 'train' | 'bus' | 'ferry';
+  from: string;
+  to: string;
+}
+
+/**
+ * 照班次畫一段交通（地點 → 地點）：起點直線到第一程上車的站，每一程電車沿車站（連不起來、巴士、船直線），
+ * 轉乘時兩站之間直線（走過去），最後一程下車的站直線到終點。
+ * coordsOf 找站的座標；沒有班次、或每一程的站都找不到時回傳 null。
+ */
+export function ridesPath(from: LonLat, to: LonLat, rides: RideStops[], stations: RailStation[], coordsOf: (id: string) => LonLat | null): LonLat[] | null {
+  const out: LonLat[] = [from];
+  const push = (c: LonLat) => {
+    const last = out[out.length - 1];
+    if (last[0] !== c[0] || last[1] !== c[1]) out.push(c);
+  };
+  let found = false;
+  for (const r of rides) {
+    const a = coordsOf(r.from);
+    const b = coordsOf(r.to);
+    if (!a || !b) continue;
+    found = true;
+    const rail = r.mode === 'train' ? railPath(r.from, r.to, stations) : null;
+    (rail && rail.length >= 2 ? rail : [a, b]).forEach(push);
+  }
+  if (!found) return null;
+  push(to);
+  return out.length >= 2 ? out : null;
+}
+
+/** 一段交通要亮起來的車站：每一程上車和下車的站（轉乘的站也算），不重複 */
+export function rideStations(rides: RideStops[]): string[] {
+  return [...new Set(rides.flatMap((r) => [r.from, r.to]))];
+}
+
 // --- 步行、開車：OSRM -----------------------------------------------------------
 
 export interface RoadRoute {

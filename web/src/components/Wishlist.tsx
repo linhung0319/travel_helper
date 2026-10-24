@@ -293,7 +293,7 @@ export function DayCandidates({ date }: { date: string }) {
   return (
     <section className="day-section day-candidates" data-testid="day-candidates">
       <h4>
-        📋 這天的候選{list.length ? `（${list.length}）` : ''}
+        📅 這天的候選{list.length ? `（${list.length}）` : ''}
       </h4>
       {list.length > 0 && !planning && <p className="muted small">進入規劃模式，就可以按 ↑ 排進行程</p>}
       {list.length === 0 && <p className="muted small">在想去的卡片按『加到某天』，就會出現在這裡。</p>}

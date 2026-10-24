@@ -381,6 +381,12 @@ test('第三輪：交通細列點開看詳細、地圖畫那一段；規劃模�
   await expect(first).toContainText('🚕');
   await first.getByTestId('leg-buffer-plus').click();
   await expect(first.getByText('已調整')).toBeVisible();
+  // −5 調回預設的值：存成「預設」（null），不是「已調整」
+  await first.getByTestId('leg-buffer-minus').click();
+  await expect(first.getByText('預設', { exact: true })).toBeVisible();
+  await expect.poll(() => th(page, "__th.dataStore.getState().itinerary.days.find((d) => d.date === '2027-02-05').items.find((i) => i.travel?.mode === 'taxi')?.travel.bufferMinutes ?? null")).toBe(null);
+  await first.getByTestId('leg-buffer-plus').click();
+  await expect(first.getByText('已調整')).toBeVisible();
   await first.getByRole('button', { name: '恢復預設' }).click();
   await expect(first.getByText('預設', { exact: true })).toBeVisible();
   await first.getByTestId('leg-note').fill('在飯店大廳集合');
@@ -397,6 +403,37 @@ test('第三輪：交通細列點開看詳細、地圖畫那一段；規劃模�
   await first.getByTestId('leg-minutes').fill('');
   await first.getByTestId('leg-minutes').blur();
   await expect.poll(() => th(page, "__th.dataStore.getState().itinerary.days.find((d) => d.date === '2027-02-05').items.map((i) => i.travel?.minutes).filter((m) => m != null).length")).toBe(0);
+});
+
+test('最後檢查：展開交通細列後換到下一天，地圖的行程線恢復（不再是淡的）', async ({ page }) => {
+  await ready(page);
+  await showDay(page, '2027-02-05');
+  const opacity = () => page.evaluate(() => JSON.stringify((window as any).__th.map.getPaintProperty('itinerary-line', 'line-opacity')));
+  const normal = await opacity();
+  const leg = page.getByTestId('timeline').getByTestId('tl-leg').first();
+  await leg.getByRole('button').first().click();
+  await expect(leg.getByTestId('leg-detail')).toBeVisible();
+  await expect.poll(opacity).toBe('0.1');
+  await page.getByTestId('day-next').click();
+  await expect.poll(() => th(page, '__th.uiStore.getState().legOpen')).toBe(null);
+  await expect.poll(opacity).toBe(normal);
+  expect(normal).not.toBe('0.1');
+});
+
+test('最後檢查：預約筆記點名稱打開詳情（手機先關掉視窗）', async ({ page }) => {
+  await ready(page);
+  await showDay(page, '2027-02-05');
+  await page.getByTestId('toolbar-reservations').click();
+  const panel = page.getByTestId('map-panel');
+  await expect(panel).toBeVisible();
+  const row = panel.getByTestId('note-row').first();
+  const placeId = (await row.getAttribute('data-place'))!;
+  await row.locator('.link-button').first().click();
+  await expect(page.getByTestId('detail-panel')).toBeVisible();
+  expect(await th(page, '__th.appStore.getState().detailId')).toBe(placeId);
+  // 手機：視窗蓋住整個畫面，要關掉才看得到詳情；電腦版視窗還在
+  if (await isMobile(page)) await expect(page.getByTestId('map-panel')).toHaveCount(0);
+  else await expect(page.getByTestId('map-panel')).toBeVisible();
 });
 
 test('第三輪：選了某一天，地圖上那天的行程線改沿道路畫（OSRM 用假的回應）', async ({ page }) => {

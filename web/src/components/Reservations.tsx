@@ -5,10 +5,10 @@ import { useEffect, useRef, useState } from 'react';
 import type { ReservationStatus } from '../backend/types.ts';
 import { appStore } from '../store.ts';
 import { commands } from '../appCommands.ts';
-import { useData, usePlan, useShared, useUi } from '../hooks.ts';
+import { DESKTOP_QUERY, useData, usePlan, useShared, useUi } from '../hooks.ts';
 import { noteRows, linkLabel, reservationFor, type NoteRow } from '../lib/reservations.ts';
 import { dayLabel } from '../lib/trip.ts';
-import { openMapPanel } from '../uiStore.ts';
+import { closeMapPanel, openMapPanel } from '../uiStore.ts';
 import { AvatarStack, stamp } from './common.tsx';
 import { shared, sharedStore } from '../appShared.ts';
 
@@ -66,6 +66,8 @@ function Row({ row }: { row: NoteRow }) {
   const name = place ? place.name.zh || place.name.ja : row.placeId;
   const open = () => {
     const s = appStore.getState();
+    // 手機的視窗蓋住整個畫面，詳情開在下面的面板裡看不到：先關掉視窗
+    if (!window.matchMedia(DESKTOP_QUERY).matches) closeMapPanel();
     commands.focus(row.placeId);
     s.openDetail(row.placeId);
   };

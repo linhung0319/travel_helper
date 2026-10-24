@@ -24,6 +24,7 @@ import { MapCommandBars } from './MapCommandBars.tsx';
 import { showInExplore } from './Explore.tsx';
 import { shared } from '../appShared.ts';
 import { likedPlaces } from '../lib/wishlist.ts';
+import { uiStore } from '../uiStore.ts';
 
 setWorkerUrl(maplibreWorkerUrl);
 
@@ -355,6 +356,7 @@ export function MapView() {
         map,
         appStore,
         dataStore,
+        uiStore,
         commands,
         visual: (id: string) => {
           const p = dataStore.getState().byId.get(id);

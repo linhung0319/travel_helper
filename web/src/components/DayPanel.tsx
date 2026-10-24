@@ -60,7 +60,7 @@ function Overview() {
                   {lp && <span className="muted small">　🏨 {lp.name.zh || lp.name.ja}</span>}
                 </span>
                 <span className="overview-flags">
-                  {cands > 0 && <span className="badge">📋 {cands}</span>}
+                  {cands > 0 && <span className="badge">📅 {cands}</span>}
                   {warn > 0 && <span className="badge badge-warn">⚠️ {warn}</span>}
                 </span>
               </button>

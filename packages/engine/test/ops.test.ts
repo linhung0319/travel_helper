@@ -202,6 +202,17 @@ test('改了什麼：新增、刪除、移到別天、換順序、改欄位、�
   assert.deepEqual(diffItinerary(it, it), []);
 });
 
+test('改了什麼：回住宿的交通也算（setLegTravel({ lodging })）', () => {
+  const { it } = threeItems();
+  const next = setLegTravel(it, { lodging: D }, { mode: 'taxi' });
+  const ch = diffItinerary(it, next);
+  assert.deepEqual(ch, [{ kind: 'return-travel', date: D }]);
+  assert.deepEqual(describeChanges(ch), ['2/5：回住宿的交通']);
+  // 只改備註也算；改回一樣就沒有
+  assert.equal(diffItinerary(next, setLegTravel(next, { lodging: D }, { mode: 'taxi', note: '叫兩台' })).length, 1);
+  assert.deepEqual(diffItinerary(next, setLegTravel(it, { lodging: D }, { mode: 'taxi' })), []);
+});
+
 test('提議的摘要與檢查：套用前後都跑引擎，列出新出現、消失的警告', () => {
   const H = lodging('h', at(0));
   const A = spot('a', at(400));

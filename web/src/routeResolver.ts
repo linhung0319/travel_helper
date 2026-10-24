@@ -56,10 +56,10 @@ export function startRouteResolver(app: StoreApi<AppStore>, data: StoreApi<DataS
 
   const check = (s: AppStore) => {
     for (const r of s.routes) if (!started.has(r.id) && r.source === 'pending') resolve(r);
-    // 給了路徑但沒給分鐘的，也用距離算
+    // 給了路徑的：補上距離（交通細列顯示用）；沒給分鐘的也用距離算
     for (const r of s.routes) if (!started.has(r.id) && r.source === 'given') {
       started.add(r.id);
-      if (!r.minutesGiven) finish(r, r.geometry!, 'given');
+      finish(r, r.geometry!, 'given');
     }
   };
   check(app.getState());

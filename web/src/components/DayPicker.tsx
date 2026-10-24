@@ -31,8 +31,13 @@ export function DayPicker({ placeId, onClose }: { placeId: string; onClose: () =
   const planning = useApp((s) => s.planning);
   const status = placeDayStatus(placeId, candidates, itinerary);
   const [busy, setBusy] = useState(false);
+  // 這個點這天的候選：自己和別人都加過時用自己的（非規劃模式也能撤回）
+  const candidateOn = (date: string) => {
+    const list = candidates.filter((x) => x.placeId === placeId && x.day === date && !x.deletedAt);
+    return list.find((x) => x.addedBy === me) ?? list[0];
+  };
   const click = async (date: string) => {
-    const c = candidates.find((x) => x.placeId === placeId && x.day === date && !x.deletedAt);
+    const c = candidateOn(date);
     setBusy(true);
     if (!c) {
       const r = await shared.addCandidate(placeId, date);
@@ -58,7 +63,7 @@ export function DayPicker({ placeId, onClose }: { placeId: string; onClose: () =
           if (!d) return <span key={`blank-${i}`} />;
           const scheduled = status.scheduled.includes(d);
           const cand = status.candidate.includes(d);
-          const others = cand && !planning && candidates.some((x) => x.placeId === placeId && x.day === d && !x.deletedAt && x.addedBy !== me);
+          const others = cand && !planning && candidateOn(d)?.addedBy !== me;
           return (
             <button
               key={d}

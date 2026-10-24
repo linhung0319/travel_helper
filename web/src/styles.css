@@ -3776,11 +3776,6 @@ body.dragging-plan .tl-card {
   margin: 2px 0;
 }
 
-/* 電腦版：視窗開著時，浮在地圖上的日期列（含 💬 📋 ⋯）還在視窗上面，視窗往下讓出一列 */
-.map-column .map-panel {
-  padding-top: 64px;
-}
-
 .note-row.flash {
   animation: note-flash 1.6s ease-out;
 }

@@ -7,7 +7,8 @@ import { findItem } from './ops.ts';
 import { planItinerary } from './timeline.ts';
 import type { DateString, EngineWarning, GroupItem, Itinerary, ItineraryItem, ItineraryPlan, TimelineEntry } from './types.ts';
 
-export type ChangeKind = 'added' | 'removed' | 'moved-day' | 'reordered' | 'changed' | 'lodging';
+/** return-travel：那天回住宿的交通（day.returnTravel）改了 */
+export type ChangeKind = 'added' | 'removed' | 'moved-day' | 'reordered' | 'changed' | 'lodging' | 'return-travel';
 
 export interface Change {
   kind: ChangeKind;
@@ -110,6 +111,7 @@ export function diffItinerary(before: Itinerary, after: Itinerary): Change[] {
     if (bd.lodging !== day.lodging || (bd.lodgingMeals ?? null) !== (day.lodgingMeals ?? null)) {
       changes.push({ kind: 'lodging', date: day.date, before: bd.lodging, after: day.lodging });
     }
+    if (!same(bd.returnTravel, day.returnTravel)) changes.push({ kind: 'return-travel', date: day.date });
   }
   return changes.sort((x, y) => x.date.localeCompare(y.date));
 }
@@ -141,6 +143,8 @@ export function describeChanges(changes: Change[], opts: { nameOf?: (id: string)
         return `${d}：${name(c.place)} 改了 ${(c.fields ?? []).join('、')}${time(c)}`;
       case 'lodging':
         return `${d}：住宿 ${name(c.before)} → ${name(c.after)}`;
+      case 'return-travel':
+        return `${d}：回住宿的交通`;
     }
   });
 }

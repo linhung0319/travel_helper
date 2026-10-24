@@ -2,7 +2,7 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { createStore } from 'zustand/vanilla';
-import { createRoadRouter, lineMeters, lineMidpoint, minutesFromMeters, railPath, roadKey, routeLabel, routeProfile, type KeyValueStorage } from '../src/lib/routing.ts';
+import { createRoadRouter, lineMeters, lineMidpoint, minutesFromMeters, railPath, rideStations, ridesPath, roadKey, routeLabel, routeProfile, type KeyValueStorage } from '../src/lib/routing.ts';
 import { describeChanges, itineraryFeatures, proposalFeatures, routeFeatures, routeLabels } from '../src/lib/overlays.ts';
 import { createAppStore } from '../src/store.ts';
 import { createCommands } from '../src/commands.ts';
@@ -69,6 +69,32 @@ test('電車：同一家、同字首的站號依序連起來；反方向倒過�
   assert.equal(railPath('s71', 'jr1', STATIONS), null);
   assert.equal(railPath('s71', 'nk', STATIONS), null);
   assert.equal(railPath('s71', 'nope', STATIONS), null);
+});
+
+test('照班次畫：起點 → 上車站，每一程沿車站，轉乘的兩站直線，下車站 → 終點；亮起來的站含轉乘站', () => {
+  const coordsOf = (id: string) => STATIONS.find((x) => x.id === id)?.coords ?? null;
+  const rides = [
+    { mode: 'train' as const, from: 's71', to: 's73' },
+    { mode: 'train' as const, from: 'jr1', to: 'nk' },
+  ];
+  assert.deepEqual(ridesPath([0, 1], [10, 1], rides, STATIONS, coordsOf), [
+    [0, 1], // 起點
+    [1, 0], // s71 上車
+    [2, 0], // 經過 s72
+    [3, 0], // s73 下車
+    [5, 0], // 走到 jr1 轉乘（JR 沒有站號：直線）
+    [9, 0], // nk 下車
+    [10, 1], // 終點
+  ]);
+  assert.deepEqual(rideStations(rides), ['s71', 's73', 'jr1', 'nk']);
+  // 巴士、船不沿車站；站找不到的那一程略過，全部找不到 → null
+  assert.deepEqual(ridesPath([0, 1], [10, 1], [{ mode: 'bus', from: 's71', to: 's73' }], STATIONS, coordsOf), [[0, 1], [1, 0], [3, 0], [10, 1]]);
+  assert.equal(ridesPath([0, 1], [10, 1], [{ mode: 'bus', from: '鳥羽バスセンター', to: '答志' }], STATIONS, coordsOf), null);
+  assert.equal(ridesPath([0, 1], [10, 1], [], STATIONS, coordsOf), null);
+});
+
+test('提議的摘要：回住宿的交通', () => {
+  assert.deepEqual(describeChanges([{ kind: 'return-travel', date: '2027-02-05' }], (id) => id), [{ date: '2027-02-05', text: '2/5：回住宿的交通' }]);
 });
 
 function osrmBody(coords: [number, number][], distance: number) {
@@ -363,6 +389,10 @@ test('行程線：createPathOf 步行看快取、電車沿車站、船和未知�
   assert.equal(pathOf(st('st1'), st('st3'), 'train')?.length, 3);
   assert.equal(pathOf(A, B, 'ferry'), null);
   assert.equal(pathOf(A, B, 'unknown'), null);
+  // 地點 → 地點的電車：照班次，從 A 走到 st1，沿車站到 st3，再到 B
+  const ride = { mode: 'train' as const, line: '普通', from: 'st1', to: 'st3', depart: '09:00', arrive: '09:10' };
+  assert.deepEqual(pathOf(A, B, 'train', [ride]), [A.coords, st('st1').coords, st('st2').coords, st('st3').coords, B.coords]);
+  assert.equal(pathOf(A, B, 'train'), null); // 沒有班次、起訖不是車站
 });
 
 function setupItinerary(router: ReturnType<typeof createRoadRouter>, mode = 'walk') {

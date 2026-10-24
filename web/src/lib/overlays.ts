@@ -127,6 +127,7 @@ export function describeChanges(changes: Change[], nameOf: (id: string) => strin
       push(c.fromDate!, `－${n(c.place)}（移到 ${shortDayLabel(c.date)}）`);
     } else if (c.kind === 'reordered') push(c.date, '調整順序');
     else if (c.kind === 'lodging') push(c.date, `住宿：${n(c.before)} → ${n(c.after)}`);
+    else if (c.kind === 'return-travel') push(c.date, '回住宿的交通');
     else push(c.date, `改了${n(c.place)}`);
   }
   return [...byDate.entries()].sort(([a], [b]) => a.localeCompare(b)).map(([date, parts]) => ({ date, text: `${shortDayLabel(date)}：${parts.join('、')}` }));
@@ -137,7 +138,7 @@ export function describeChanges(changes: Change[], nameOf: (id: string) => strin
  * - 線：每天一種顏色，依時間軸的順序（出發的住宿 → 各點 → 會合點 → 住宿）連起來；選了某一天時其他天變淡
  * - 備選：時段備案的非主選點，用那天顏色的空心圈
  * - 交通標籤：只有選定的那天，在每段的中間標「🚃 12 分」
- * 線有 pathOf 給的路徑（步行、車沿道路，電車沿車站）就照路徑畫，沒有（還沒查到、船）就是兩點之間的直線。
+ * 線有 pathOf 給的路徑（步行、車沿道路，搭車照班次的站、電車沿車站）就照路徑畫，沒有（還沒查到、船）就是兩點之間的直線。
  */
 export function itineraryFeatures(
   it: Itinerary | null,
@@ -145,7 +146,7 @@ export function itineraryFeatures(
   byId: Map<string, Place>,
   dates: string[],
   day: string,
-  pathOf?: (from: Place, to: Place, mode: Leg['mode']) => LonLat[] | null,
+  pathOf?: (from: Place, to: Place, mode: Leg['mode'], rides: Leg['rides']) => LonLat[] | null,
 ): { lines: FeatureCollection<LineString>; alts: FeatureCollection<Point>; legs: RouteLabel[] } {
   const lines: Feature<LineString>[] = [];
   const alts: Feature<Point>[] = [];
@@ -182,7 +183,7 @@ export function itineraryFeatures(
         const p = byId.get(o.place);
         if (!p) continue;
         const moved = prev && (prev[0] !== p.coords[0] || prev[1] !== p.coords[1]);
-        const seg = moved && prevPlace && pathOf && o.leg ? pathOf(prevPlace, p, o.leg.mode) : null;
+        const seg = moved && prevPlace && pathOf && o.leg ? pathOf(prevPlace, p, o.leg.mode, o.leg.rides) : null;
         if (prev && moved && day === d.date && o.leg && o.leg.mode !== 'none' && o.leg.minutes > 0) {
           legs.push({
             id: `leg-${d.date}-${legs.length}`,
