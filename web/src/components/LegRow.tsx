@@ -2,7 +2,7 @@
 // 第一行是方式、分鐘、計程車台數、等車、距離、📝 備註和 Google Maps 小圖示；搭電車、巴士、船時下面每一程一行。
 // 點卡片：地圖只畫這一段（commands.drawRoute，搭車的照班次的站畫），每一程上下車的站亮起來；再點一次或點別段就恢復。
 // 規劃模式下，點開的那張就在原地變成編輯狀態（不跳視窗）：自動／步行／計程車／大眾運輸、前一班後一班、備註；
-// 算不出來（交通未定）時才出現「自己填分鐘」。按「完成」收起來。
+// 算不出來（交通未定）或已經填過分鐘時才出現「自己填分鐘」（清空＝回到自動）。按「完成」收起來。
 // 一次只開一段（uiStore.legOpen）；這張卡不見了（換天、回整趟、換分頁）時也收起來，地圖的行程線才會恢復。
 // 規劃模式下交通卡也是放置區：拖到這裡＝排在這段通往的那張卡片前面（planDrag.dropOnLegProps）。
 
@@ -121,7 +121,7 @@ function LegEditor({ target, spec, leg }: { target: LegTarget; spec: TravelSpec 
           </div>
         </div>
       )}
-      {leg.mode === 'unknown' && (
+      {(leg.mode === 'unknown' || spec?.minutes != null) && (
         <div className="leg-edit-row">
           <span className="leg-edit-label">時間</span>
           <input
@@ -130,7 +130,7 @@ function LegEditor({ target, spec, leg }: { target: LegTarget; spec: TravelSpec 
             inputMode="numeric"
             className="leg-minutes"
             placeholder="分鐘"
-            aria-label="自己填交通分鐘"
+            aria-label="自己填交通分鐘（空白：自動）"
             value={minutes}
             disabled={saving}
             onChange={(e) => setMinutes(e.target.value)}
@@ -231,7 +231,7 @@ export function LegRow({ entry, date }: { entry: TimelineEntry; date: string }) 
     <li className={`tl-leg mode-${leg.mode} ${open ? 'open' : ''}`} data-testid="tl-leg" {...dropOnLegProps(entry.itemId, date, planning)}>
       <div className="tl-leg-card" onClick={toggle}>
         <div className="tl-leg-head">
-          <button type="button" className="tl-leg-text">
+          <button type="button" className="tl-leg-text" aria-pressed={open}>
             {legText(leg) || '交通 0 分'}
             {legacyLabel(spec)}
             {distance && `・${distance}`}
