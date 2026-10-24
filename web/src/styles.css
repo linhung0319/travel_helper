@@ -3650,7 +3650,13 @@ body.dragging-plan .tl-card {
 }
 
 .note-row.flash {
-  background: var(--warn-bg);
+  animation: note-flash 1.6s ease-out;
+}
+
+@keyframes note-flash {
+  from {
+    background: var(--warn-bg);
+  }
 }
 
 /* 電腦版：地圖上方的日期列、搜尋列浮在視窗上面，視窗的標題往下讓開 */

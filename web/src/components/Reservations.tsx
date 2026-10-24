@@ -10,7 +10,7 @@ import { noteRows, linkLabel, reservationFor, type NoteRow } from '../lib/reserv
 import { dayLabel } from '../lib/trip.ts';
 import { openMapPanel } from '../uiStore.ts';
 import { MemberName, stamp } from './common.tsx';
-import { shared } from '../appShared.ts';
+import { shared, sharedStore } from '../appShared.ts';
 
 const ROLE_LABELS = { main: '', other: '這個時段也可以去', lodging: '住宿' } as const;
 const STATUS_LABELS: Record<ReservationStatus, string> = { pending: '未訂位', booked: '已訂位', skip: '不訂位' };
@@ -26,13 +26,25 @@ function dateText(r: NoteRow): string {
   return md(r.date);
 }
 
+/** 寫一個欄位：狀態和備註各自從 store 讀「現在」的紀錄再合併，不用畫面上可能過期的那份 */
+function write(row: NoteRow, patch: { status?: ReservationStatus; note?: string | null }) {
+  const cur = sharedStore.getState().reservations.find((x) => x.date === row.key.date && x.placeId === row.key.placeId);
+  void shared.setReservation({
+    date: row.key.date,
+    placeId: row.key.placeId,
+    status: patch.status ?? cur?.status ?? 'pending',
+    note: patch.note !== undefined ? patch.note : (cur?.note ?? null),
+    nights: row.nights,
+  });
+}
+
 /** 備註：離開輸入框或按 Enter 才存 */
 function NoteInput({ row }: { row: NoteRow }) {
   const [text, setText] = useState(row.note ?? '');
   useEffect(() => setText(row.note ?? ''), [row.note]);
   const save = () => {
     if (text.trim() === (row.note ?? '')) return;
-    void shared.setReservation({ date: row.key.date, placeId: row.key.placeId, status: row.status, note: text.trim() || null, nights: row.nights });
+    write(row, { note: text.trim() || null });
   };
   return (
     <input
@@ -43,7 +55,7 @@ function NoteInput({ row }: { row: NoteRow }) {
       aria-label="備註"
       onChange={(e) => setText(e.target.value)}
       onBlur={save}
-      onKeyDown={(e) => e.key === 'Enter' && e.currentTarget.blur()}
+      onKeyDown={(e) => e.key === 'Enter' && !e.nativeEvent.isComposing && e.keyCode !== 229 && e.currentTarget.blur()}
       data-testid="note-text"
     />
   );
@@ -59,10 +71,10 @@ function Row({ row }: { row: NoteRow }) {
   };
   const setStatus = (status: ReservationStatus) => {
     if (status === row.status) return;
-    void shared.setReservation({ date: row.key.date, placeId: row.key.placeId, status, note: row.note, nights: row.nights });
+    write(row, { status });
   };
   return (
-    <li className={`reservation note-row role-${row.role}`} data-testid="note-row" data-key={rowKey(row)} data-place={row.placeId} data-date={row.date} data-status={row.status}>
+    <div className={`reservation note-row role-${row.role}`} data-testid="note-row" data-key={rowKey(row)} data-place={row.placeId} data-date={row.date} data-status={row.status}>
       <div className="reservation-main">
         <button type="button" className="link-button" onClick={open}>
           {name}
@@ -99,7 +111,7 @@ function Row({ row }: { row: NoteRow }) {
           <MemberName id={row.updatedBy} /> {stamp(row.updatedAt)} 改的
         </p>
       )}
-    </li>
+    </div>
   );
 }
 
@@ -115,13 +127,20 @@ export function ReservationNotes({ date }: { scope?: 'day' | 'trip'; date: strin
   const all = noteRows(itinerary, plan, byId, reservations);
   const rows = all.filter((r) => (!date || r.date === date) && (!onlyPending || r.status === 'pending'));
 
-  // 從時間軸的 tag 進來：捲到那一列
+  // 從時間軸的 tag 進來：先取消「只看未訂位」，再捲到那一列閃一下
+  const doneFor = useRef<unknown>(null);
   useEffect(() => {
-    if (!focus) return;
-    const el = listRef.current?.querySelector<HTMLElement>(`[data-key="${CSS.escape(`${focus.date}|${focus.placeId}`)}"]`);
-    el?.scrollIntoView({ block: 'center' });
-    el?.classList.add('flash');
+    if (focus && doneFor.current !== focus) setOnlyPending(false);
   }, [focus]);
+  useEffect(() => {
+    if (!focus || doneFor.current === focus) return;
+    const el = listRef.current?.querySelector<HTMLElement>(`[data-key="${CSS.escape(`${focus.date}|${focus.placeId}`)}"]`);
+    if (!el) return;
+    doneFor.current = focus;
+    el.scrollIntoView({ block: 'center' });
+    el.classList.add('flash');
+    window.setTimeout(() => el.classList.remove('flash'), 1600);
+  }, [focus, rows.length, onlyPending]);
 
   let lastDate = '';
   return (

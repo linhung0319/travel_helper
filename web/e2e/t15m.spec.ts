@@ -258,3 +258,21 @@ test('預約筆記：改成已訂位、時間軸 tag 跟著變', async ({ page }
   await expect(again).toBeVisible();
   await expect(again.getByTestId('note-text')).toHaveValue(BOOK_NOTE);
 });
+
+test('預約筆記：打了備註不按 Enter 直接按狀態，兩個都存得下來', async ({ page }) => {
+  const TEXT2 = '先打字再按狀態（e2e）';
+  await ready(page);
+  await showDay(page, '2027-02-05');
+  await page.getByTestId('toolbar-reservations').click();
+  const row = page.getByTestId('map-panel').getByTestId('note-row').first();
+  const placeId = (await row.getAttribute('data-place'))!;
+  await row.getByTestId('note-text').fill(TEXT2);
+  await row.getByTestId('note-status-booked').click();
+  await page.getByTestId('map-panel-close').click();
+  await page.getByTestId('me-button').click();
+  await page.locator('[data-member="dev-agong"]').click();
+  await page.getByTestId('toolbar-reservations').click();
+  const again = page.getByTestId('map-panel').locator(`[data-testid="note-row"][data-place="${placeId}"]`).first();
+  await expect(again).toHaveAttribute('data-status', 'booked');
+  await expect(again.getByTestId('note-text')).toHaveValue(TEXT2);
+});
