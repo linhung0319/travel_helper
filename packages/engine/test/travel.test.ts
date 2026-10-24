@@ -288,6 +288,17 @@ test('趕不上選定的班次：照樣用、警告', () => {
   assert.ok(w);
   assert.equal(w.level, 'warning');
   assert.match(w.message, /趕不上 10:32 這班/);
+  // 時間照「走到停留所後搭同一程」算：走 2 分＋車程 10 分＋下車走 2 分，不會少於走路、不會是負的
+  assert.equal(r.leg.minutes, 2 + 10 + 2);
+  assert.equal(r.leg.arrive, '10:54');
+  assert.ok(r.warnings.some((x) => x.code === 'bus-crowd'));
+  // 選定的班次在出發前就到站了（停留加長很多）：照樣 14 分
+  const late = planLeg(ep(a), ep(b), ctx(data, { depart: 11 * 60 + 30 }), { trip: tripOf('t0', '10:02', '10:12') });
+  assert.equal(late.leg.trip?.id, 't0');
+  assert.equal(late.leg.minutes, 14);
+  assert.equal(late.leg.arrive, '11:44');
+  assert.ok(toMinutes(late.leg.arrive) >= toMinutes(late.leg.depart));
+  assert.ok(late.warnings.some((x) => x.code === 'missed-trip'));
 });
 
 test('起訖點變了的 trip 不用', () => {
@@ -325,7 +336,7 @@ test('前一班、後一班', () => {
   assert.equal(d.leg.nextTrip ?? null, null);
 });
 
-test('transitAvailable：有班次就是 true，不管等多久；步行就到的段落也要算', () => {
+test('transitAvailable：出發後還有班次就是 true，不管等多久；步行就到的段落也要算', () => {
   const a = spot('a', at(0));
   const b = spot('b', at(400)); // 走 10 分
   const near = planLeg(ep(a), ep(b), ctx(fake([a, b], { routes: [busRoute(['16:00'])] })));
@@ -339,11 +350,16 @@ test('transitAvailable：有班次就是 true，不管等多久；步行就到�
   // 指定了計程車也照樣標（規劃模式要知道大眾運輸能不能選）
   const taxi = planLeg(ep(a), ep(b), ctx(fake([a, b], { routes: [busRoute(['16:00'])] })), { mode: 'taxi' });
   assert.equal(taxi.leg.transitAvailable, true);
+  // 末班車之後：false（大眾運輸灰掉）
+  const after = planLeg(ep(a), ep(b), ctx(fake([a, b], { routes: [busRoute(['08:00', '09:58'])] })));
+  assert.equal(after.leg.transitAvailable, false);
 });
 
-test('transitAvailable（真的資料）：近鐵、離島的船；末班車之後也算有班次', () => {
-  assert.equal(planLeg(P('toba'), P('kashikojima'), ctx(real, { depart: 23 * 60 + 50 })).leg.transitAvailable, true);
-  assert.equal(planLeg(P('toba-sadahama-marine-terminal'), P('toba-port-kamishima'), ctx(real, { date: '2027-02-06', depart: 18 * 60 })).leg.transitAvailable, true);
+test('transitAvailable（真的資料）：近鐵、離島的船；末班車之後是 false', () => {
+  assert.equal(planLeg(P('toba'), P('kashikojima'), ctx(real, { depart: 9 * 60 })).leg.transitAvailable, true);
+  assert.equal(planLeg(P('toba'), P('kashikojima'), ctx(real, { depart: 23 * 60 + 50 })).leg.transitAvailable, false);
+  assert.equal(planLeg(P('toba-sadahama-marine-terminal'), P('toba-port-kamishima'), ctx(real, { date: '2027-02-06', depart: 18 * 60 })).leg.transitAvailable, false);
+  assert.equal(planLeg(P('toba-sadahama-marine-terminal'), P('toba-port-kamishima'), ctx(real, { date: '2027-02-06', depart: 8 * 60 })).leg.transitAvailable, true);
   // 太遠、時刻表裡沒有
   assert.equal(planLeg(P('kansai-airport'), P('toba'), ctx(real, { depart: 14 * 60 })).leg.transitAvailable, false);
   // 近鐵的前一班、後一班是同一對車站

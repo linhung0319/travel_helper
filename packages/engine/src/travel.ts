@@ -244,12 +244,12 @@ export function transitCandidates(a: Endpoint, b: Endpoint, ctx: LegContext, fac
 }
 
 /**
- * 這兩點之間時刻表裡有沒有任何班次（這天從頭找，不管等多久）。每段交通都要算，所以先看路線、近鐵直達，
- * 沒有直達才用比較慢的轉乘搜尋；結果和 transitCandidates(…, 0) 有沒有候選相同。離島只看船
+ * 從 ctx.depart 出發（加上走到上車點）之後，還有沒有任何班次（不管等多久）。每段交通都要算，所以先看路線、近鐵直達，
+ * 沒有直達才用比較慢的轉乘搜尋；結果和 transitCandidates(…, ctx.depart) 有沒有候選相同。離島只看船
  */
 function transitExists(a: Endpoint, b: Endpoint, ctx: LegContext, factor: number): boolean {
   const sea = crossesSea(a, b, ctx.cfg);
-  const routes = routeCandidates(a, b, ctx, factor, (access) => access).cands;
+  const routes = routeCandidates(a, b, ctx, factor, (access) => ctx.depart + access).cands;
   if (routes.some((c) => !sea || c.mode === 'ferry')) return true;
   const tt = ctx.data.kintetsu;
   if (!tt || sea) return false;
@@ -257,7 +257,7 @@ function transitExists(a: Endpoint, b: Endpoint, ctx: LegContext, factor: number
   for (const sa of kintetsuAccess(a, ctx, factor)) {
     for (const sb of kintetsuAccess(b, ctx, factor)) {
       if (sa.station === sb.station) continue;
-      const q = { from: sa.station, to: sb.station, date: ctx.date, after: round(sa.walk), holidays: ctx.cfg.holidays, allowExpress: ctx.cfg.transit.allowExpress };
+      const q = { from: sa.station, to: sb.station, date: ctx.date, after: ctx.depart + round(sa.walk), holidays: ctx.cfg.holidays, allowExpress: ctx.cfg.transit.allowExpress };
       if (directTrains(tt, q).some((r) => !r.off)) return true;
       pairs.push({ ...q, minTransfer: ctx.cfg.transit.minTransfer });
     }
@@ -341,16 +341,21 @@ function leg(partial: Partial<Leg> & Pick<Leg, 'mode' | 'minutes' | 'basis'>, a:
   };
 }
 
-/** 搭 c 的一段：等車＝發車 −（出發＋走到上車點），趕不上時是 0；附上這班、前一班、後一班 */
+/**
+ * 搭 c 的一段：等車＝發車 −（出發＋走到上車點）；附上這班、前一班、後一班。
+ * 趕不上 c（選定的班次）時：等車 0，時間照「走到上車點後搭同一程」算（走路＋車程＋下車走路），不會少於走路、不會是負的
+ */
 function fromCandidate(c: Candidate, a: Endpoint, b: Endpoint, ctx: LegContext, factor: number): Leg {
   const prev = prevCandidate(c, a, b, ctx, factor);
   const next = nextCandidate(c, a, b, ctx, factor);
+  const wait = c.dep - (ctx.depart + c.access);
   return leg(
     {
       mode: c.mode,
-      minutes: c.arrive - ctx.depart,
+      // c.arrive − c.dep＝車程＋下車後走路
+      minutes: wait >= 0 ? c.arrive - ctx.depart : c.access + (c.arrive - c.dep),
       walkMinutes: round(c.walk),
-      waitMinutes: Math.max(0, c.dep - (ctx.depart + c.access)),
+      waitMinutes: Math.max(0, wait),
       rides: c.rides,
       trip: toTrip(c, a, b),
       prevTrip: prev && toTrip(prev, a, b),
@@ -379,7 +384,7 @@ export function planLeg(a: Endpoint, b: Endpoint, ctx: LegContext, spec?: Travel
   const factor = walkFactor(party, ctx.whole, cfg);
   const walk = walkMinutes(a, b, factor, ctx.data, cfg);
   const same = !!((a.id && a.id === b.id) || (a.id == null && b.id == null && a.coords && b.coords && haversineMeters(a.coords, b.coords) < 1));
-  // 時刻表裡有沒有任何班次（這天從頭找，不管等多久）：規劃模式用來決定「大眾運輸」能不能選
+  // 出發後還有沒有電車、巴士、船（不管等多久）：沒有時規劃模式的「大眾運輸」灰掉
   const transitAvailable = !same && transitExists(a, b, ctx, factor);
   const done = (l: Leg) => ({ leg: { ...l, transitAvailable }, warnings });
   // 選定的班次：起訖點和選的時候一樣才用；換了順序（起訖點不同）就當作沒選
@@ -411,6 +416,7 @@ function tripLeg(a: Endpoint, b: Endpoint, ctx: LegContext, trip: TripRef, facto
   const c = best(searchTransit(a, b, ctx, factor, () => at).cands.filter((x) => x.rides[0].tripId === trip.id && keep(x)));
   if (!c) return null;
   if (c.dep < ctx.depart + c.access) warnings.push({ code: 'missed-trip', level: 'warning', message: `趕不上 ${c.rides[0].depart} 這班` });
+  busCrowd(c, ctx, warnings);
   return fromCandidate(c, a, b, ctx, factor);
 }
 

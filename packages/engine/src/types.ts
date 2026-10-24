@@ -239,7 +239,7 @@ export interface Leg {
   /** 同一對上下車點的前一班、後一班（規劃模式的 ‹ ›）；沒有是 null */
   prevTrip?: TripRef | null;
   nextTrip?: TripRef | null;
-  /** 這兩點之間時刻表裡有沒有任何班次（不管等多久） */
+  /** 出發後（加上走到上車點）時刻表裡還有沒有這兩點之間的班次（不管等多久）；false 時規劃模式的「大眾運輸」灰掉 */
   transitAvailable?: boolean;
   taxi?: TaxiInfo | null;
   /** 使用者用 travel 指定的 */
