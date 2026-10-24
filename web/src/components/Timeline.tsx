@@ -445,12 +445,19 @@ export function Timeline({ plan, day }: { plan: DayPlan; day: ItineraryDay }) {
 const minutesText = (m: number) => (m >= 60 ? `${Math.floor(m / 60)} 小時${m % 60 ? ` ${m % 60} 分` : ''}` : `${m} 分`);
 
 /** 標題的一行：幾點出發、幾點回住宿、交通多久（含緩衝）、警告數 */
-export function DaySummaryLine({ plan }: { plan: DayPlan }) {
+export function DaySummaryLine({ plan, warnOpen, onWarn }: { plan: DayPlan; warnOpen?: boolean; onWarn?: () => void }) {
   const s = daySummary(plan);
   return (
     <span className="day-stats small" data-testid="day-summary">
       {[s.start && `${s.start} 出發`, s.back && `${s.back} 回住宿`, s.travelMinutes > 0 && `交通 ${minutesText(s.travelMinutes)}`].filter(Boolean).join('・')}
-      {s.warnings > 0 && <span className="badge badge-warn">⚠ {s.warnings}</span>}
+      {s.warnings > 0 &&
+        (onWarn ? (
+          <button type="button" className="badge badge-warn warn-button" aria-expanded={!!warnOpen} onClick={onWarn} data-testid="day-warn-toggle">
+            ⚠ {s.warnings} {warnOpen ? '▴' : '▾'}
+          </button>
+        ) : (
+          <span className="badge badge-warn">⚠ {s.warnings}</span>
+        ))}
       {plan.stats.tiring && <span className="badge badge-warn">累</span>}
     </span>
   );
@@ -459,7 +466,7 @@ export function DaySummaryLine({ plan }: { plan: DayPlan }) {
 const BAR_LABELS: Record<BarSegment['kind'], string> = { visit: '停留', meal: '用餐', travel: '交通', idle: '空著' };
 
 /** 按時間比例的橫條：一眼看出哪裡緊、哪裡空；分組的時段每組一條細線。點一段捲到那張卡片 */
-export function DayBar({ plan, color }: { plan: DayPlan; color: string }) {
+export function DayBar({ plan, color, thin }: { plan: DayPlan; color: string; thin?: boolean }) {
   const segs = dayBar(plan);
   if (!segs.length) return null;
   const t0 = Math.min(...segs.map((s) => toMinutes(s.from)));
@@ -472,7 +479,7 @@ export function DayBar({ plan, color }: { plan: DayPlan; color: string }) {
   };
   return (
     <div className="day-bar" data-testid="day-bar" style={{ ['--day' as string]: color }}>
-      <div className="day-bar-track" style={{ height: lanes ? 10 + lanes * 6 : 10 }}>
+      <div className="day-bar-track" style={{ height: thin ? (lanes ? 6 + lanes * 4 : 6) : lanes ? 10 + lanes * 6 : 10 }}>
         {segs.map((s, i) => (
           <button
             key={i}

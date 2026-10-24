@@ -3453,3 +3453,162 @@ body.dragging-plan .tl-dropend {
 body.dragging-plan .tl-card {
   user-select: none;
 }
+
+/* ---------- 第三輪：日期列的工具、地圖區的視窗、行程分頁的標題列 ---------- */
+
+/* 日期列：分頁可以橫向捲，右端的工具固定不動 */
+.day-bar-wrap {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  flex: 1;
+  min-width: 0;
+}
+
+.day-tools {
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  padding-left: 4px;
+  border-left: 1px solid var(--line);
+}
+
+.day-tool {
+  min-height: 38px;
+  min-width: 38px;
+  padding: 0 6px;
+  border: 0;
+  border-radius: 999px;
+  background: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+.day-tool-n {
+  font-size: 0.72rem;
+  background: var(--soft);
+  border-radius: 999px;
+  padding: 0 6px;
+}
+
+.day-tool-n.warn {
+  background: #fde7c8;
+  color: #9a5b00;
+}
+
+.day-tool-menu {
+  position: relative;
+}
+
+.day-tool-pop {
+  position: absolute;
+  right: 0;
+  top: 100%;
+  z-index: 30;
+  background: var(--bg);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.18);
+  padding: 4px;
+  white-space: nowrap;
+}
+
+.day-tool-pop button {
+  min-height: 40px;
+  padding: 0 12px;
+  border: 0;
+  background: none;
+  cursor: pointer;
+}
+
+.day-float .day-bar-wrap {
+  max-width: min(60vw, 720px);
+}
+
+/* 地圖區的視窗：電腦版蓋住地圖那一欄，手機是全螢幕 */
+.map-panel {
+  position: absolute;
+  inset: 0;
+  z-index: 15;
+  background: var(--bg);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 12px;
+  min-height: 0;
+}
+
+.layout.mobile .map-panel {
+  position: fixed;
+  z-index: 50;
+  animation: map-panel-in 0.18s ease-out;
+}
+
+@keyframes map-panel-in {
+  from {
+    transform: translateY(-100%);
+  }
+}
+
+.map-panel-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.map-panel-head h2 {
+  font-size: 1.1rem;
+  margin: 0;
+}
+
+.map-panel-scope {
+  align-self: flex-start;
+}
+
+.map-panel-body {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+}
+
+/* 行程分頁某一天最上面一列 */
+.day-nav {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 4px 8px;
+}
+
+.day-nav h3 {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin: 0;
+}
+
+.day-step {
+  display: inline-flex;
+}
+
+.day-nav-actions {
+  margin-left: auto;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.warn-button {
+  border: 0;
+  cursor: pointer;
+  font: inherit;
+}
+
+.day-panel .day-bar {
+  margin: 2px 0;
+}

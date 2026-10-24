@@ -1,7 +1,14 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
 import { appStore } from '../store.ts';
+import { dataStore } from '../dataStore.ts';
+import { sharedStore } from '../appShared.ts';
 import { commands } from '../appCommands.ts';
-import { useApp, useData } from '../hooks.ts';
+import { useApp, useData, usePlan, useShared } from '../hooks.ts';
+import { dayTarget, TRIP_TARGET } from '../backend/types.ts';
+import { noteRows } from '../lib/reservations.ts';
+import { exportFileName } from '../lib/planView.ts';
+import { openMapPanel } from '../uiStore.ts';
+import { useCommentCount } from './Wishlist.tsx';
 import { filterChips, isFilterEmpty, matchesFilter, matchesQuery } from '../lib/filter.ts';
 import { shortDayLabel, tripDates, weekdayZh, JP_HOLIDAYS } from '../lib/trip.ts';
 import { ConflictBar, PlanningBar } from './Planning.tsx';
@@ -10,6 +17,58 @@ import { FilterPanel } from './FilterPanel.tsx';
 import { showItinerary } from './Explore.tsx';
 
 const DATES = tripDates();
+
+/** 下載目前的行程 JSON（原本行程分頁的「匯出 JSON」） */
+function exportJson() {
+  const itinerary = dataStore.getState().itinerary;
+  if (!itinerary) return;
+  const url = URL.createObjectURL(new Blob([JSON.stringify(itinerary, null, 2)], { type: 'application/json' }));
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = exportFileName(sharedStore.getState().version);
+  a.click();
+  URL.revokeObjectURL(url);
+}
+
+/** 日期列右端的工具：💬 留言、📋 預約筆記（數字是選的那天，選「全部」是整趟）、⋯ 選單（匯出） */
+function DayTools() {
+  const day = useApp((s) => s.day);
+  const itinerary = useData((s) => s.itinerary);
+  const byId = useData((s) => s.byId);
+  const plan = usePlan((s) => s.plan);
+  const reservations = useShared((s) => s.reservations);
+  const comments = useCommentCount(day === 'all' ? TRIP_TARGET : dayTarget(day));
+  const pending = noteRows(itinerary, plan, byId, reservations).filter((r) => r.status === 'pending' && (day === 'all' || r.date === day)).length;
+  const [menu, setMenu] = useState(false);
+  useEffect(() => {
+    if (!menu) return;
+    const close = () => setMenu(false);
+    document.addEventListener('click', close);
+    return () => document.removeEventListener('click', close);
+  }, [menu]);
+  return (
+    <div className="day-tools">
+      <button type="button" className="day-tool" onClick={() => openMapPanel('comments')} aria-label="留言" data-testid="toolbar-comments">
+        💬{comments > 0 && <span className="day-tool-n">{comments}</span>}
+      </button>
+      <button type="button" className="day-tool" onClick={() => openMapPanel('reservations')} aria-label="預約筆記" data-testid="toolbar-reservations">
+        📋{pending > 0 && <span className="day-tool-n warn">{pending}</span>}
+      </button>
+      <span className="day-tool-menu">
+        <button type="button" className="day-tool" aria-label="更多" aria-expanded={menu} onClick={() => setMenu((o) => !o)} data-testid="toolbar-more">
+          ⋯
+        </button>
+        {menu && (
+          <div className="day-tool-pop" role="menu">
+            <button type="button" role="menuitem" disabled={!itinerary} onClick={exportJson} data-testid="export-json">
+              ⬇ 匯出 JSON
+            </button>
+          </div>
+        )}
+      </span>
+    </div>
+  );
+}
 
 /** onSelect：電腦版選了某一天，右側切回「行程」 */
 function DayTabs({ onSelect }: { onSelect?: () => void }) {
@@ -28,6 +87,7 @@ function DayTabs({ onSelect }: { onSelect?: () => void }) {
   }, [day]);
 
   return (
+    <div className="day-bar-wrap">
     <div className="day-tabs" role="tablist" aria-label="天數" ref={ref}>
       <button type="button" role="tab" aria-selected={day === 'all'} className="day-tab" onClick={() => select('all')}>
         全部
@@ -46,6 +106,8 @@ function DayTabs({ onSelect }: { onSelect?: () => void }) {
           <span className="day-tab-wd">{weekdayZh(d)}</span>
         </button>
       ))}
+    </div>
+    <DayTools />
     </div>
   );
 }

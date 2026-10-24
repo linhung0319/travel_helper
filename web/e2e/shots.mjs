@@ -81,7 +81,7 @@ for (const size of SIZES) {
   await shot('10-snapshots');
   await page.keyboard.press('Escape');
   await openDay();
-  await page.getByTestId('reservations-button').click();
+  await page.getByTestId('toolbar-reservations').click();
   await shot('11-reservations');
   await page.keyboard.press('Escape');
   // 7. 探索模式的 ❤️

@@ -7,6 +7,7 @@ import { appStore } from '../store.ts';
 import { dataStore } from '../dataStore.ts';
 import { commands } from '../appCommands.ts';
 import { shared } from '../appShared.ts';
+import { stopsOn } from '../lib/itinerary.ts';
 import { TYPE_COLORS, TYPE_ICONS } from '../lib/typeStyle.ts';
 
 const MIME = 'application/x-travel-place';
@@ -15,6 +16,14 @@ const MIME = 'application/x-travel-place';
 export function askAi(id: string) {
   if (appStore.getState().selection.includes(id)) return;
   if (!commands.select(id).ok) return;
+  shared.notify(`已帶進聊天（${appStore.getState().selection.length} 個點）`);
+}
+
+/** 行程分頁的「🤖 問 AI」：把這天的點全部加進選取（已經在裡面的不動） */
+export function askAiAboutDay(date: string) {
+  const ids = [...new Set(stopsOn(dataStore.getState().itinerary, date).map((s) => s.place))];
+  const fresh = ids.filter((id) => !appStore.getState().selection.includes(id));
+  if (fresh.length && !commands.select(fresh).ok) return;
   shared.notify(`已帶進聊天（${appStore.getState().selection.length} 個點）`);
 }
 

@@ -47,7 +47,7 @@ test('切換天數：選的那天的點正常，其他天變淡；回到全部',
   expect(await visual('toba-aquarium')).toMatchObject({ dim: false, order: 2 });
   expect(await visual('ise-naiku')).toMatchObject({ dim: true });
   if (await isMobile(page)) {
-    await page.getByRole('tab', { name: '📅 這一天' }).click();
+    await page.getByRole('tab', { name: '📅 行程' }).click();
   }
   await expect(page.getByTestId('day-panel')).toContainText('鳥羽水族館');
   await page.getByRole('tab', { name: '全部' }).click();

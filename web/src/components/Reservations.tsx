@@ -1,24 +1,24 @@
-// 「需要預約」的清單（PLAN T15m）：每晚的住宿，加上行程裡接受訂位的餐廳、體驗；附訂位方式和聯絡資訊。
+// 預約筆記的清單（PLAN T15m）：每晚的住宿，加上行程裡接受訂位的餐廳、體驗；附訂位方式和聯絡資訊。放在地圖區的視窗（MapPanel）裡。
 
 import { useData, usePlan, useShared } from '../hooks.ts';
-import { closeDialog } from '../uiStore.ts';
 import { METHOD_LABELS } from '../lib/planView.ts';
 import { noteRows } from '../lib/reservations.ts';
 import { dayLabel } from '../lib/trip.ts';
-import { Dialog, PlaceChip } from './common.tsx';
+import { PlaceChip } from './common.tsx';
 
-const ROLE_LABELS = { main: '', other: '備案', lodging: '住宿' } as const;
+const ROLE_LABELS = { main: '', other: '也可以去', lodging: '住宿' } as const;
 
-export function ReservationsDialog() {
+/** date：只列那天（住宿算入住那天）；null 是整趟 */
+export function ReservationsView({ date }: { date: string | null }) {
   const itinerary = useData((s) => s.itinerary);
   const byId = useData((s) => s.byId);
   const plan = usePlan((s) => s.plan);
   const reservations = useShared((s) => s.reservations);
-  const rows = noteRows(itinerary, plan, byId, reservations);
+  const rows = noteRows(itinerary, plan, byId, reservations).filter((r) => !date || r.date === date);
   let lastDate = '';
   return (
-    <Dialog title={`需要預約（${rows.length}）`} onClose={closeDialog} testId="reservations-dialog">
-      <p className="muted small">每晚的住宿，加上行程裡接受訂位的餐廳、體驗（備案也列出來，訂不到主選時用）。時間是目前時間軸算出來的。</p>
+    <div data-testid="reservations-view">
+      <p className="muted small">每晚的住宿，加上行程裡接受訂位的餐廳、體驗。時間是目前時間軸算出來的。</p>
       {rows.length === 0 && <p className="muted">行程裡還沒有要預約的。</p>}
       <ol className="reservation-list">
         {rows.map((r, i) => {
@@ -52,6 +52,6 @@ export function ReservationsDialog() {
           );
         })}
       </ol>
-    </Dialog>
+    </div>
   );
 }

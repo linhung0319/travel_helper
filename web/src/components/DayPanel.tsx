@@ -1,51 +1,25 @@
-// 「這一天」面板（interaction-design §3、§6）：上面是確定的行程的時間軸，下面是這天的候選（想去「加到某天」的點）和這天的留言。
-// 選「全部」時是整趟的總覽：每天排了什麼、幾個候選、警告。
+// 「行程」分頁（interaction-design §3、§6），兩層，像探索的清單和詳情：
+// 選「全部」是整趟的總覽（每天排了什麼、幾個候選、警告）；選了某一天，最上面一列是「← 整趟、日期 ‹ ›、問 AI、規劃」，
+// 下面是摘要列（⚠ 點了展開提醒）、細的比例橫條、時間軸、這天的候選（想去「加到某天」的點）。留言、預約、匯出在日期列（TopBar）。
 
+import { useState } from 'react';
 import { appStore } from '../store.ts';
 import { commands } from '../appCommands.ts';
 import { useApp, useData, usePlan, useShared } from '../hooks.ts';
-import { openDialog } from '../uiStore.ts';
 import { dayPlanOf } from '../planStore.ts';
 import { dayLabel, tripDates } from '../lib/trip.ts';
 import { stopsOn } from '../lib/itinerary.ts';
-import { exportFileName, WARNING_ICONS, warningsByItem } from '../lib/planView.ts';
+import { WARNING_ICONS, warningsByItem } from '../lib/planView.ts';
 import { dayColor } from '../lib/visual.ts';
 import { DayBar, DaySummaryLine, Timeline } from './Timeline.tsx';
-import { DayCandidates, DayComments } from './Wishlist.tsx';
+import { DayCandidates } from './Wishlist.tsx';
 import { dayCandidates } from '../lib/wishlist.ts';
 import { PlanningToggle } from './Planning.tsx';
 import { MemberName, stamp } from './common.tsx';
+import { askAiAboutDay } from './askAi.ts';
+import { showList } from './SidePanel.tsx';
 
 const DATES = tripDates();
-
-function PanelActions() {
-  const itinerary = useData((s) => s.itinerary);
-  const version = useShared((s) => s.version);
-  return (
-    <div className="panel-actions">
-      <PlanningToggle />
-      <button type="button" className="text-button" onClick={() => openDialog({ kind: 'reservations' })} data-testid="reservations-button">
-        📋 需要預約
-      </button>
-      <button
-        type="button"
-        className="text-button"
-        disabled={!itinerary}
-        onClick={() => {
-          if (!itinerary) return;
-          const url = URL.createObjectURL(new Blob([JSON.stringify(itinerary, null, 2)], { type: 'application/json' }));
-          const a = document.createElement('a');
-          a.href = url;
-          a.download = exportFileName(version);
-          a.click();
-          URL.revokeObjectURL(url);
-        }}
-      >
-        ⬇ 匯出 JSON
-      </button>
-    </div>
-  );
-}
 
 function Overview() {
   const itinerary = useData((s) => s.itinerary);
@@ -63,7 +37,6 @@ function Overview() {
           第 {version} 版・<MemberName id={updatedBy} /> {stamp(updatedAt)} 改的
         </span>
       </div>
-      <PanelActions />
       {plan?.warnings.map((w, i) => (
         <p key={i} className={`small warning-${w.level}`}>
           {WARNING_ICONS[w.level]} {w.message}
@@ -99,50 +72,83 @@ function Overview() {
   );
 }
 
+/** 去想去分頁（手機是下方面板的想去分頁） */
+function goWish() {
+  showList('wish');
+  appStore.getState().setSheet({ tab: 'wish' });
+}
+
+/** 某一天最上面一列：← 整趟、日期 ‹ ›、問 AI、規劃 */
+function DayHead({ day }: { day: string }) {
+  const i = DATES.indexOf(day);
+  return (
+    <div className="day-nav" data-testid="day-nav">
+      <button type="button" className="text-button" onClick={() => commands.selectDay('all')} data-testid="day-back">
+        ← 整趟
+      </button>
+      <h3>
+        <span className="overview-dot" style={{ background: dayColor(DATES, day) }} />
+        {dayLabel(day)}
+      </h3>
+      <span className="day-step">
+        <button type="button" className="text-button" aria-label="前一天" disabled={i <= 0} onClick={() => commands.selectDay(DATES[i - 1])} data-testid="day-prev">
+          ‹
+        </button>
+        <button type="button" className="text-button" aria-label="後一天" disabled={i < 0 || i >= DATES.length - 1} onClick={() => commands.selectDay(DATES[i + 1])} data-testid="day-next">
+          ›
+        </button>
+      </span>
+      <span className="day-nav-actions">
+        <button type="button" className="text-button" onClick={() => askAiAboutDay(day)} data-testid="day-ask-ai">
+          🤖 問 AI
+        </button>
+        <PlanningToggle />
+      </span>
+    </div>
+  );
+}
+
 export function DayPanel() {
   const day = useApp((s) => s.day);
   const itinerary = useData((s) => s.itinerary);
   const planStatus = usePlan((s) => s.status);
   const planError = usePlan((s) => s.error);
   const plan = usePlan((s) => (day === 'all' ? null : dayPlanOf(s.plan, day)));
+  const [warnOpen, setWarnOpen] = useState(false);
   if (day === 'all') return <Overview />;
   const itDay = itinerary?.days.find((d) => d.date === day) ?? null;
   const { day: dayWarnings } = warningsByItem(plan);
   return (
     <div className="day-panel" data-testid="day-panel">
-      <div className="day-head">
-        <h3>
-          <span className="overview-dot" style={{ background: dayColor(DATES, day) }} />
-          {dayLabel(day)}
-        </h3>
-        {plan && <DaySummaryLine plan={plan} />}
-      </div>
-      {plan && <DayBar plan={plan} color={dayColor(DATES, day)} />}
-      <PanelActions />
+      <DayHead day={day} />
+      {plan && (
+        <div className="day-head">
+          <DaySummaryLine plan={plan} warnOpen={warnOpen} onWarn={() => setWarnOpen((o) => !o)} />
+        </div>
+      )}
+      {warnOpen && dayWarnings.length > 0 && (
+        <ul className="tl-warnings day-warnings" data-testid="day-warnings">
+          {dayWarnings.map((w, i) => (
+            <li key={i} className={`warning-${w.level}`}>
+              {WARNING_ICONS[w.level]} {w.message}
+            </li>
+          ))}
+        </ul>
+      )}
+      {plan && <DayBar plan={plan} color={dayColor(DATES, day)} thin />}
       {!itDay && <p className="muted">行程裡沒有這一天。</p>}
       {itDay && planStatus === 'loading' && <p className="muted">計算時間軸中…</p>}
       {planStatus === 'error' && <p className="warn">時間軸算不出來：{planError}</p>}
-      {dayWarnings.length > 0 && (
-        <details className="day-warnings" data-testid="day-warnings">
-          <summary className="small">
-            {WARNING_ICONS[dayWarnings.some((w) => w.level !== 'info') ? 'warning' : 'info']} 這天有 {dayWarnings.length} 個提醒
-          </summary>
-          <ul className="tl-warnings">
-            {dayWarnings.map((w, i) => (
-              <li key={i} className={`warning-${w.level}`}>
-                {WARNING_ICONS[w.level]} {w.message}
-              </li>
-            ))}
-          </ul>
-        </details>
-      )}
       {itDay && plan && <Timeline plan={plan} day={itDay} />}
-      {itDay && plan && itDay.items.length === 0 && <p className="muted small">這天還沒排東西。在「❤️ 想去」把點加到這天，再進入規劃模式，從下面的候選按 ↑ 排進。</p>}
+      {itDay && plan && itDay.items.length === 0 && (
+        <p className="muted small" data-testid="day-empty">
+          這天還沒排。到 ❤️ 想去把想去的點加到這天{' '}
+          <button type="button" className="button small" onClick={goWish} data-testid="day-go-wish">
+            去想去
+          </button>
+        </p>
+      )}
       <DayCandidates date={day} />
-      <DayComments date={day} />
-      <button type="button" className="text-button small" onClick={() => appStore.getState().selectDay('all')}>
-        ← 看整趟
-      </button>
     </div>
   );
 }

@@ -1,4 +1,4 @@
-// 電腦版的右側：行程、探索、想去共用一欄，頂到最上面。點了探索或想去的卡片，詳情蓋在這一欄上，「← 返回」回到原本的分頁。
+// 電腦版的右側：探索、想去、行程共用一欄（順序是使用的順序），頂到最上面。點了探索或想去的卡片，詳情蓋在這一欄上，「← 返回」回到原本的分頁。
 // 想去是只放有人 ❤️ 的點的探索（Explore.tsx 的 source="wish"）。AI 沒有自己的分頁：地圖和這三個分頁就是 AI 操作的東西（T16）。
 
 import { appStore } from '../store.ts';
@@ -38,9 +38,9 @@ export function SidePanel() {
   return (
     <div className="side-panel">
       <div className="side-tabs" role="tablist" aria-label="右側">
-        {tab('📅 行程', mode === 'map' && !place, showItinerary, 'side-tab-day')}
         {tab('🔎 探索', mode === 'explore' && !place, () => showList('explore'), 'side-tab-explore')}
         {tab(`❤️ 想去${liked ? ` ${liked}` : ''}`, mode === 'wish' && !place, () => showList('wish'), 'side-tab-wish')}
+        {tab('📅 行程', mode === 'map' && !place, showItinerary, 'side-tab-day')}
       </div>
       {place ? (
         <div className="side-body side-detail">

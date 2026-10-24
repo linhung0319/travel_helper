@@ -170,9 +170,9 @@ test('T15m：自己加的候選可以撤回；這天的留言', async ({ page })
   await expect(iroha).toHaveCount(0);
 
   await showDay(page, '2027-02-07');
-  const box = page.getByTestId('day-comments');
+  await page.getByTestId('toolbar-comments').click();
+  const box = page.getByTestId('map-panel');
   await expect(box.getByTestId('wish-comments')).toContainText('2 則這天的留言');
-  await box.getByTestId('wish-comments').click();
   await expect(box.getByTestId('wish-comment').first()).toContainText('泡湯');
 });
 

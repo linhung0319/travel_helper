@@ -1,7 +1,7 @@
 // 想去（interaction-design §6）：❤️ 就是想去。「❤️ 想去」分頁照搬探索（Explore.tsx 的 source="wish"），
 // 每張卡片底下多了 ❤️ 的頭像、👎 數、留言（只有一層，收起來）、「📅 加到某天」。
 // 加到某天的點變成那天的「候選」，放在行程分頁時間軸的下面；規劃模式下按 ↑ 排進行程（插在最順路的位置）。
-// 這天的留言（例如「這天想輕鬆一點」）也放在行程分頁。
+// 這天、整趟的留言（Comments）放在地圖區的視窗（MapPanel）。
 
 import { useMemo, useState } from 'react';
 import { appStore } from '../store.ts';
@@ -9,7 +9,7 @@ import { commands } from '../appCommands.ts';
 import { shared } from '../appShared.ts';
 import { useApp, useData, useShared } from '../hooks.ts';
 import { closeDialog, openDialog } from '../uiStore.ts';
-import { dayTarget, type Comment } from '../backend/types.ts';
+import type { Comment } from '../backend/types.ts';
 import { dayCandidates, likedPlaces } from '../lib/wishlist.ts';
 import { shortDayLabel, tripDates } from '../lib/trip.ts';
 import { TYPE_ICONS } from '../lib/typeStyle.ts';
@@ -44,10 +44,15 @@ function useComments(target: string) {
   return useMemo(() => comments.filter((c) => c.target === target && !c.deletedAt).sort((a, b) => a.createdAt.localeCompare(b.createdAt)), [comments, target]);
 }
 
-/** 留言：預設收起來；只有一層；自己的可以改、可以刪。規劃模式下留的標〔規劃〕 */
-function Comments({ target, label = '留言', placeholder = '留言…' }: { target: string; label?: string; placeholder?: string }) {
+/** 這個 target（地點、某一天 dayTarget、整趟 TRIP_TARGET）的留言數 */
+export function useCommentCount(target: string): number {
+  return useComments(target).length;
+}
+
+/** 留言：預設收起來（open＝true 時一開始就展開）；只有一層；自己的可以改、可以刪。規劃模式下留的標〔規劃〕 */
+export function Comments({ target, label = '留言', placeholder = '留言…', open: openAtStart = false }: { target: string; label?: string; placeholder?: string; open?: boolean }) {
   const list = useComments(target);
-  const [open, setOpen] = useState(false);
+  const [open, setOpen] = useState(openAtStart);
   const [text, setText] = useState('');
   const [editing, setEditing] = useState<{ id: number; text: string } | null>(null);
   const me = useShared((s) => s.me?.id);
@@ -217,9 +222,9 @@ export function DayCandidates({ date }: { date: string }) {
     <section className="day-section day-candidates" data-testid="day-candidates">
       <h4>
         📋 這天的候選{list.length ? `（${list.length}）` : ''}
-        {list.length > 0 && !planning && <span className="muted small">　進入規劃模式後按 ↑ 排進行程</span>}
       </h4>
-      {list.length === 0 && <p className="muted small">在「❤️ 想去」的卡片按「📅 加到某天」，就會出現在這裡。</p>}
+      {list.length > 0 && !planning && <p className="muted small">進入規劃模式，就可以按 ↑ 排進行程</p>}
+      {list.length === 0 && <p className="muted small">在想去的卡片按『加到某天』，就會出現在這裡。</p>}
       <ul className="cand-list">
         {list.map((c) => {
           const p = byId.get(c.placeId);
@@ -276,15 +281,6 @@ export function DayCandidates({ date }: { date: string }) {
           );
         })}
       </ul>
-    </section>
-  );
-}
-
-/** 行程分頁：這天的留言（對這天行程的討論，例如「這天想輕鬆一點」） */
-export function DayComments({ date }: { date: string }) {
-  return (
-    <section className="day-section day-comments" data-testid="day-comments">
-      <Comments target={dayTarget(date)} label="這天的留言" placeholder="例如：這天想輕鬆一點，下午在旅館泡湯" />
     </section>
   );
 }

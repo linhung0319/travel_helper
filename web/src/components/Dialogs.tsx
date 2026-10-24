@@ -6,7 +6,6 @@ import { useShared, useUi } from '../hooks.ts';
 import { RejectDialog } from './Wishlist.tsx';
 import { AddToDayDialog, MoveDialog, PlanningConfirmDialog, SnapshotsDialog } from './Planning.tsx';
 import { HistoryDialog } from './EditHistory.tsx';
-import { ReservationsDialog } from './Reservations.tsx';
 
 export function Dialogs() {
   const d = useUi((s) => s.dialog);
@@ -16,8 +15,6 @@ export function Dialogs() {
       return <PlanningConfirmDialog />;
     case 'snapshots':
       return <SnapshotsDialog />;
-    case 'reservations':
-      return <ReservationsDialog />;
     case 'add':
       return <AddToDayDialog placeId={d.placeId} day={d.day} />;
     case 'move':

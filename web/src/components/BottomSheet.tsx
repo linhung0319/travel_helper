@@ -17,7 +17,7 @@ function snapHeight(snap: SheetSnap, avail: number): number {
 }
 
 /**
- * 手機的拉起面板（interaction-design §1）：聊天、這一天、想去、詳情。想去和電腦版的想去分頁一樣（只放有人 ❤️ 的探索），
+ * 手機的拉起面板（interaction-design §1）：聊天、想去、行程、詳情。想去和電腦版的想去分頁一樣（只放有人 ❤️ 的探索），
  * 打開時地圖也只亮這些點（mode 換成 wish）。
  * 拉把手可以在三段之間切換；點把手也會切換。只有面板能拉，地圖上的點不做拖拉。
  */
@@ -84,11 +84,11 @@ export function BottomSheet() {
         <button type="button" role="tab" aria-selected={!place && sheet.tab === 'chat'} onClick={() => tab('chat')} data-testid="sheet-tab-chat">
           💬 聊天{selection.length > 0 && <span className="tab-count">{selection.length}</span>}
         </button>
-        <button type="button" role="tab" aria-selected={!place && sheet.tab === 'day'} onClick={() => tab('day')}>
-          📅 這一天
-        </button>
         <button type="button" role="tab" aria-selected={!place && sheet.tab === 'wish'} onClick={() => tab('wish')} data-testid="sheet-tab-wish">
           ❤️ 想去{wishCount > 0 && <span className="tab-count">{wishCount}</span>}
+        </button>
+        <button type="button" role="tab" aria-selected={!place && sheet.tab === 'day'} onClick={() => tab('day')} data-testid="sheet-tab-day">
+          📅 行程
         </button>
       </div>
       <div className="sheet-body">{place ? <DetailPanel place={place} /> : sheet.tab === 'chat' ? <ChatPanel /> : sheet.tab === 'wish' ? <ExplorePanel source="wish" /> : <DayPanel />}</div>
