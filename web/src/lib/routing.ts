@@ -30,6 +30,8 @@ export function routeProfile(mode: TravelMode): RouteProfile {
       return 'car';
     case 'train':
       return 'rail';
+    case 'transit': // 實際路徑照 rides 畫
+      return 'straight';
     default:
       return 'straight';
   }
@@ -54,15 +56,21 @@ export function routeLabel(mode: TravelMode, minutes: number | null, label: stri
 }
 
 /**
- * 用路徑距離和預設速度算分鐘：步行乘團體係數（全員），計程車、包車、自駕用 engine 的計程車速度；
+ * 用路徑距離和預設速度算分鐘：步行乘團體係數（全員），計程車、包車、自駕用 OSRM 的開車時間（roadMinutes），沒有時用 engine 的計程車速度；
  * 電車、巴士、船看時刻表，這裡不算（回傳 null）。
  */
-export function minutesFromMeters(mode: TravelMode, meters: number, party: PartyProfile, cfg: EngineConfig = DEFAULT_CONFIG): number | null {
+export function minutesFromMeters(
+  mode: TravelMode,
+  meters: number,
+  party: PartyProfile,
+  cfg: EngineConfig = DEFAULT_CONFIG,
+  roadMinutes?: number | null,
+): number | null {
   if (mode === 'walk') {
     // 實際路徑不用再乘繞路係數
     return minutesForMeters(meters, { metersPerMinute: cfg.walk.metersPerMinute, detourFactor: 1, groupFactor: walkFactor(party, true, cfg) });
   }
-  if (mode === 'taxi' || mode === 'charter' || mode === 'car') return taxiEstimate([0, 0], [0, 0], party, cfg, meters).minutes;
+  if (mode === 'taxi' || mode === 'charter' || mode === 'car') return taxiEstimate([0, 0], [0, 0], party, cfg, meters, roadMinutes).minutes;
   return null;
 }
 
@@ -168,6 +176,8 @@ export interface RoadRoute {
   geometry: LonLat[];
   /** 路線距離＋起訖點到道路的距離（和 lib/geo/route.ts、引擎的 walkMeters 算法一致） */
   meters: number;
+  /** OSRM routes[0].duration（開車時間，秒）；步行路線也存，但只有開車用 */
+  seconds: number;
 }
 
 type FetchLike = (url: string, init?: { signal?: AbortSignal }) => Promise<{ ok: boolean; status: number; json(): Promise<unknown> }>;
@@ -202,18 +212,18 @@ export function roadKey(profile: 'foot' | 'car', from: LonLat, to: LonLat): stri
 function parseOsrm(body: unknown): RoadRoute {
   const b = body as {
     code?: string;
-    routes?: { distance?: unknown; geometry?: { coordinates?: unknown } }[];
+    routes?: { distance?: unknown; duration?: unknown; geometry?: { coordinates?: unknown } }[];
     waypoints?: { distance?: unknown }[];
   };
   if (b?.code !== 'Ok') throw new Error(`OSRM 回傳 ${b?.code ?? '格式不明'}`);
   const r = b.routes?.[0];
   const coords = r?.geometry?.coordinates;
-  if (!r || typeof r.distance !== 'number' || !Array.isArray(coords) || coords.length < 2) throw new Error('OSRM 回傳沒有路線');
+  if (!r || typeof r.distance !== 'number' || typeof r.duration !== 'number' || !Array.isArray(coords) || coords.length < 2) throw new Error('OSRM 回傳沒有路線');
   const snap = (i: number) => {
     const d = b.waypoints?.[i]?.distance;
     return typeof d === 'number' && Number.isFinite(d) ? d : 0;
   };
-  return { geometry: coords as LonLat[], meters: r.distance + snap(0) + snap(1) };
+  return { geometry: coords as LonLat[], meters: r.distance + snap(0) + snap(1), seconds: r.duration };
 }
 
 export function createRoadRouter(opts: RoadRouterOptions = {}) {
@@ -241,9 +251,12 @@ export function createRoadRouter(opts: RoadRouterOptions = {}) {
     try {
       const raw = storage?.getItem(STORAGE_PREFIX + key);
       if (raw) {
-        const r = JSON.parse(raw) as RoadRoute;
-        memory.set(key, r);
-        return r;
+        const r = JSON.parse(raw) as Partial<RoadRoute>;
+        // 舊資料沒有 seconds：當作沒查過（會再查一次）
+        if (typeof r.seconds === 'number') {
+          memory.set(key, r as RoadRoute);
+          return r as RoadRoute;
+        }
       }
     } catch {
       // 讀不到 localStorage（無痕模式等）就當作沒有快取
@@ -302,6 +315,11 @@ export function createRoadRouter(opts: RoadRouterOptions = {}) {
     route,
     /** 只看快取（同步）：給 engine 的 walkMeters／driveMeters 用；沒查過回傳 null */
     cachedMeters: (profile: 'foot' | 'car', from: LonLat, to: LonLat): number | null => cached(profile, from, to)?.meters ?? null,
+    /** 只看快取（同步）：給 engine 的 driveMinutes 用；沒查過回傳 null */
+    cachedMinutes: (profile: 'foot' | 'car', from: LonLat, to: LonLat): number | null => {
+      const s = cached(profile, from, to)?.seconds;
+      return s != null ? s / 60 : null;
+    },
     /** 只看快取（同步）：地圖上的行程線用；沒查過回傳 null */
     cachedPath: (profile: 'foot' | 'car', from: LonLat, to: LonLat): LonLat[] | null => cached(profile, from, to)?.geometry ?? null,
     get apiCalls() {

@@ -14,6 +14,7 @@ import { normalizePlace } from '../src/data/normalize.ts';
 import { placeDays } from '../src/lib/itinerary.ts';
 import type { DataState } from '../src/dataStore.ts';
 import type { Place } from '../src/data/types.ts';
+import { DEFAULT_CONFIG } from '@travel-helper/engine';
 import { itin } from './helpers.ts';
 
 const PARTY = { size: 15, elders: 5, kids: 4 };
@@ -24,6 +25,7 @@ test('交通方式 → 路徑的查法', () => {
   assert.equal(routeProfile('bus'), 'car');
   assert.equal(routeProfile('train'), 'rail');
   assert.equal(routeProfile('ferry'), 'straight');
+  assert.equal(routeProfile('transit'), 'straight');
 });
 
 test('分鐘：步行用路徑距離 ÷ 80 m/分 × 全員係數（不再乘繞路係數）；計程車用 engine 的速度；電車不算', () => {
@@ -34,6 +36,14 @@ test('分鐘：步行用路徑距離 ÷ 80 m/分 × 全員係數（不再乘繞�
   assert.equal(routeLabel('walk', 13.2), '🚶 14 分');
   assert.equal(routeLabel('train', null), '🚃');
   assert.equal(routeLabel('train', 12, '特急 10:05 發'), '🚃 特急 10:05 發');
+});
+
+test('minutesFromMeters：計程車有路線時間時用它（再由 routeLabel 進位）', () => {
+  const cfg = DEFAULT_CONFIG;
+  const m = minutesFromMeters('taxi', 4200, PARTY, cfg, 9.6)!;
+  assert.equal(m, 9.6 + cfg.taxi.overheadMinutes);
+  assert.equal(routeLabel('taxi', m), '🚕 10 分');
+  assert.equal(minutesFromMeters('walk', 800, PARTY, cfg, 99), 14); // 步行不受影響
 });
 
 test('折線的長度和中點', () => {
@@ -488,7 +498,7 @@ test('行程線：等待中的那段被別人查到（快取裡出現）：下�
   const stop = startItineraryRoutes(app, data, plan, router);
   await tick();
   assert.equal(app.getState().routesVersion, 0);
-  storage.setItem('travel-helper:route:' + roadKey('foot', C.coords, D.coords), JSON.stringify({ geometry: [C.coords, D.coords], meters: 100 }));
+  storage.setItem('travel-helper:route:' + roadKey('foot', C.coords, D.coords), JSON.stringify({ geometry: [C.coords, D.coords], meters: 100, seconds: 60 }));
   plan.setState({ plan: fakePlan('walk', TWO_DAYS()) }); // 時間軸重算
   await ticks(2);
   assert.equal(app.getState().routesVersion, 1);
@@ -507,4 +517,32 @@ test('行程線：查不到時 routesVersion 不變、不丟錯，行程線維�
   const f = itineraryFeatures(data.getState().itinerary, plan.getState().plan, data.getState().byId, tripDates(), DAY, createPathOf(router, data));
   assert.deepEqual(f.lines.features[0].geometry.coordinates, [A.coords, B.coords]);
   stop();
+});
+
+test('OSRM 的 duration 存成 seconds，cachedMinutes 換成分鐘', async () => {
+  const fetch = async () => ({ ok: true, status: 200, json: async () => ({ code: 'Ok', routes: [{ distance: 4200, duration: 576, geometry: { coordinates: [[136.8, 34.5], [136.81, 34.5]] } }] }) });
+  const router = createRoadRouter({ fetch, minIntervalMs: 0 });
+  const a: [number, number] = [136.8, 34.5];
+  const b: [number, number] = [136.81, 34.5];
+  assert.equal(router.cachedMinutes('car', a, b), null);
+  const r = await router.route('car', a, b);
+  assert.equal(r?.seconds, 576);
+  assert.ok(Math.abs(router.cachedMinutes('car', a, b)! - 9.6) < 1e-9);
+});
+
+test('舊快取沒有 seconds 當作沒查過', async () => {
+  const a: [number, number] = [136.8, 34.5];
+  const b: [number, number] = [136.81, 34.5];
+  const storage = memoryStorage();
+  storage.setItem('travel-helper:route:' + roadKey('car', a, b), JSON.stringify({ geometry: [a, b], meters: 4200 }));
+  let calls = 0;
+  const fetch = async () => {
+    calls++;
+    return { ok: true, status: 200, json: async () => osrmBody([a, b], 4200) };
+  };
+  const router = createRoadRouter({ fetch, storage, minIntervalMs: 0 });
+  assert.equal(router.cachedMinutes('car', a, b), null);
+  assert.equal(router.cachedMeters('car', a, b), null);
+  await router.route('car', a, b);
+  assert.equal(calls, 1);
 });

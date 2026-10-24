@@ -21,6 +21,7 @@ export const currentEngineData = () => lastEngineData;
 
 export interface RoadCache {
   cachedMeters(profile: 'foot' | 'car', from: LonLat, to: LonLat): number | null;
+  cachedMinutes(profile: 'foot' | 'car', from: LonLat, to: LonLat): number | null;
 }
 
 export function buildEngineData(d: DataState, tt: { kintetsu: KintetsuTimes | null; routes: RouteTimetable[] }, roads?: RoadCache): EngineData {
@@ -35,6 +36,7 @@ export function buildEngineData(d: DataState, tt: { kintetsu: KintetsuTimes | nu
     regionNeedsCar: needsCar,
     walkMeters: roads ? (a, b) => roads.cachedMeters('foot', a, b) : undefined,
     driveMeters: roads ? (a, b) => roads.cachedMeters('car', a, b) : undefined,
+    driveMinutes: roads ? (a, b) => roads.cachedMinutes('car', a, b) : undefined,
   };
 }
 

@@ -48,7 +48,7 @@ export function startRouteResolver(app: StoreApi<AppStore>, data: StoreApi<DataS
           geometry,
           meters: road.meters,
           source: 'osrm',
-          minutes: r.minutesGiven ? r.minutes : minutesFromMeters(r.mode, road.meters, party),
+          minutes: r.minutesGiven ? r.minutes : minutesFromMeters(r.mode, road.meters, party, undefined, profile === 'car' ? road.seconds / 60 : null),
         });
       } else finish(r, straight, 'straight');
     });
