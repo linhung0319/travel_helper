@@ -45,8 +45,8 @@ function popularity(p: Place): number {
 }
 
 // 每天一種顏色（interaction-design §3）。避開四種類型色（藍、綠、紫、橘）的色相，
-// 才不會把「這天」和「這種地方」搞混；test/lib.test.ts 檢查色相差至少 25°
-export const DAY_PALETTE = ['#d6336c', '#0f8b8d', '#b8a000', '#d63fb8', '#5c940d', '#66d9e8', '#7a8b00', '#8a1c3c', '#495057', '#adb5bd', '#a61e8a', '#6b4f00'];
+// 才不會把「這天」和「這種地方」搞混；test/lib.test.ts 檢查：色相差至少 25°，12 色彼此 CIELAB ΔE 至少 20；畫在淺色地圖上，不用太淺的色
+export const DAY_PALETTE = ['#495057', '#3bbd0f', '#bd0fbd', '#bd0f3b', '#9c840d', '#0fbda0', '#6a1b5d', '#2e6a1b', '#7f9410', '#bd0f74', '#0d909c', '#6a1b2e'];
 
 /** #rrggbb → 色相 h（度）、飽和度 s、亮度 l（0～1） */
 export function hueOf(hex: string): { h: number; s: number; l: number } {
@@ -59,6 +59,22 @@ export function hueOf(hex: string): { h: number; s: number; l: number } {
   const s = d / (1 - Math.abs(2 * l - 1));
   const h = mx === r ? ((g - b) / d) % 6 : mx === g ? (b - r) / d + 2 : (r - g) / d + 4;
   return { h: (h * 60 + 360) % 360, s, l };
+}
+
+/** #rrggbb → CIELAB（D65） */
+export function labOf(hex: string): [number, number, number] {
+  const [r, g, b] = [1, 3, 5].map((i) => parseInt(hex.slice(i, i + 2), 16) / 255).map((v) => (v <= 0.04045 ? v / 12.92 : ((v + 0.055) / 1.055) ** 2.4));
+  const x = (0.4124 * r + 0.3576 * g + 0.1805 * b) / 0.95047;
+  const y = 0.2126 * r + 0.7152 * g + 0.0722 * b;
+  const z = (0.0193 * r + 0.1192 * g + 0.9505 * b) / 1.08883;
+  const f = (t: number) => (t > 0.008856 ? Math.cbrt(t) : 7.787 * t + 16 / 116);
+  return [116 * f(y) - 16, 500 * (f(x) - f(y)), 200 * (f(y) - f(z))];
+}
+
+/** 兩個顏色的色差（CIE76） */
+export function deltaE(a: string, b: string): number {
+  const [p, q] = [labOf(a), labOf(b)];
+  return Math.hypot(p[0] - q[0], p[1] - q[1], p[2] - q[2]);
 }
 
 export function dayColor(dates: string[], date: string): string {

@@ -35,6 +35,7 @@ export const ICON_ZOOM = 12;
 /** 這個縮放以上才顯示每個點的 ❤️ 數字 */
 const BADGE_ZOOM = 10;
 const DATES = tripDates();
+const PULSE_OFF = ['all', ['!=', ['get', 'mark'], ''], ['==', ['get', 'id'], '']] as never;
 
 const typeColorExpr = ['match', ['get', 'type'], ...PLACE_TYPES.flatMap((t) => [t, TYPE_COLORS[t]]), '#555'];
 
@@ -205,7 +206,7 @@ export function MapView() {
         },
         paint: { 'icon-opacity': ['case', ['==', ['get', 'dim'], 1], 0.3, 1] },
       });
-      // 選定那天的點：類型色的圓（和時間軸的編號一樣），寫「宿」「1」「2」…（和時間軸的編號一樣）
+      // 選定那天的點：類型色的圓（和時間軸的編號一樣），寫「宿」「1」「2」…
       map.addLayer({
         id: 'places-mark',
         type: 'circle',
@@ -223,7 +224,7 @@ export function MapView() {
         id: 'places-mark-pulse',
         type: 'circle',
         source: 'places',
-        filter: ['==', ['get', 'id'], ''],
+        filter: PULSE_OFF,
         paint: {
           'circle-radius': ['interpolate', ['linear'], ['zoom'], 8, 10, 14, 13],
           'circle-color': ['get', 'typeColor'],
@@ -541,11 +542,11 @@ export function MapView() {
     let raf = 0;
     const stop = () => {
       cancelAnimationFrame(raf);
-      map.setFilter('places-mark-pulse', ['==', ['get', 'id'], '']);
+      map.setFilter('places-mark-pulse', PULSE_OFF);
     };
     const onPulse = (e: Event) => {
       stop();
-      map.setFilter('places-mark-pulse', ['==', ['get', 'id'], (e as CustomEvent<string>).detail]);
+      map.setFilter('places-mark-pulse', ['all', ['!=', ['get', 'mark'], ''], ['==', ['get', 'id'], (e as CustomEvent<string>).detail]]);
       const t0 = performance.now();
       const tick = (now: number) => {
         const t = (now - t0) / PULSE_MS;

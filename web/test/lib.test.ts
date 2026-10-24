@@ -8,7 +8,7 @@ import { dayLabel, hoursKeys, timetableDayType, tripDates } from '../src/lib/tri
 import { EMPTY_FILTER, filterChips, matchesFilter, matchesQuery } from '../src/lib/filter.ts';
 import { closedDaysLabel, rowForDate } from '../src/lib/hours.ts';
 import { nearbyPlaces } from '../src/lib/nearby.ts';
-import { DAY_PALETTE, hueOf, placeVisual, wallPlaces } from '../src/lib/visual.ts';
+import { DAY_PALETTE, deltaE, hueOf, labOf, placeVisual, wallPlaces } from '../src/lib/visual.ts';
 import { TYPE_COLORS } from '../src/lib/typeStyle.ts';
 import { dayStops, placeDays } from '../src/lib/itinerary.ts';
 import { itin } from './helpers.ts';
@@ -434,5 +434,10 @@ test('每天的色盤：12 色、不重複、避開類型色', () => {
       const d = Math.min(Math.abs(a.h - b.h), 360 - Math.abs(a.h - b.h));
       assert.ok(d >= 25, `${c} 和類型色 ${t} 太像（色相差 ${d.toFixed(0)}°）`);
     }
+  }
+  assert.ok(DAY_PALETTE.filter((c) => hueOf(c).s < 0.15).length <= 1, '灰色最多一個');
+  for (const c of DAY_PALETTE) assert.ok(labOf(c)[0] <= 70, `${c} 太淺，畫在淺色地圖上看不清楚`);
+  for (const [i, a] of DAY_PALETTE.entries()) {
+    for (const b of DAY_PALETTE.slice(i + 1)) assert.ok(deltaE(a, b) >= 20, `${a} 和 ${b} 太像（ΔE ${deltaE(a, b).toFixed(0)}）`);
   }
 });
