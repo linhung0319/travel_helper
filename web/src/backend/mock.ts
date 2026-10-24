@@ -1,16 +1,18 @@
-// 假後端（T15m）：規則照 T24 的 Worker（worker/src/api/），資料存在記憶體，有 storage 時也存進 localStorage。
+// 假後端（T15m）：規則照 T24 的 Worker（worker/src/api/；留言、候選是新的，T15 再同步過去），資料存在記憶體，有 storage 時也存進 localStorage。
 // 只在 dev server 用（backend/index.ts）；Node 的測試不給 storage、不延遲。
 
 import type { Itinerary } from '@travel-helper/engine/types';
+import { DEFAULT_CONFIG } from '@travel-helper/engine';
 import {
   BackendError,
   type Backend,
+  type Candidate,
+  type Comment,
+  type CommentKind,
   type ItineraryDoc,
   type Member,
   type PlaceEdit,
   type Snapshot,
-  type Suggestion,
-  type SuggestionStatus,
   type Vote,
   type VoteValue,
 } from './types.ts';
@@ -21,8 +23,10 @@ export interface MockSeed {
   /** 一開始登入的人 */
   me: string;
   itinerary: Itinerary | null;
-  suggestions?: Omit<Suggestion, 'id' | 'updatedAt' | 'deletedAt'>[];
-  votes?: Omit<Vote, 'updatedAt' | 'deletedAt'>[];
+  /** updatedAt 不給時用建立假後端的時間 */
+  votes?: (Omit<Vote, 'updatedAt' | 'deletedAt'> & { updatedAt?: string })[];
+  comments?: Omit<Comment, 'id' | 'updatedAt' | 'deletedAt'>[];
+  candidates?: Omit<Candidate, 'id' | 'updatedAt' | 'deletedAt'>[];
   edits?: Omit<PlaceEdit, 'id' | 'updatedAt' | 'revertedAt' | 'revertedBy' | 'closedAt'>[];
 }
 
@@ -31,10 +35,11 @@ interface MockState {
   me: string;
   itinerary: ItineraryDoc;
   snapshots: Snapshot[];
-  suggestions: Suggestion[];
   votes: Vote[];
+  comments: Comment[];
+  candidates: Candidate[];
   edits: PlaceEdit[];
-  seq: { snapshot: number; suggestion: number; edit: number };
+  seq: { snapshot: number; comment: number; candidate: number; edit: number };
 }
 
 type StorageLike = Pick<Storage, 'getItem' | 'setItem' | 'removeItem'>;
@@ -59,7 +64,8 @@ export interface MockBackend extends Backend {
   simulateOtherEdit(memberId?: string): void;
 }
 
-const MAX_TEXT = 4000;
+const MAX_TEXT = 500;
+const KINDS: CommentKind[] = ['normal', 'planner', 'decline'];
 const DATE = /^\d{4}-\d{2}-\d{2}$/;
 const clone = <T>(x: T): T => structuredClone(x);
 
@@ -73,9 +79,11 @@ function notFound(message: string): never {
   throw new BackendError(404, 'not-found', message);
 }
 
+/** 旅程裡的日期 */
 function checkDay(day: unknown): string {
-  if (day === 'trip' || (typeof day === 'string' && DATE.test(day))) return day as string;
-  return badRequest("day 要是 'YYYY-MM-DD' 或 'trip'（整趟）");
+  const { from, to } = DEFAULT_CONFIG.trip;
+  if (typeof day === 'string' && DATE.test(day) && day >= from && day <= to) return day;
+  return badRequest(`day 要是 ${from}～${to} 的日期`);
 }
 
 function checkText(text: unknown): string {
@@ -92,16 +100,18 @@ function fromSeed(seed: MockSeed, now: string): MockState {
       ? { version: 1, data: clone(seed.itinerary), updatedBy: seed.me, updatedAt: now }
       : { version: 0, data: null, updatedBy: null, updatedAt: null },
     snapshots: [],
-    suggestions: (seed.suggestions ?? []).map((s, i) => ({ ...clone(s), id: i + 1, updatedAt: s.statusAt ?? s.createdAt, deletedAt: null })),
-    votes: (seed.votes ?? []).map((v) => ({ ...clone(v), updatedAt: now, deletedAt: null })),
+    votes: (seed.votes ?? []).map((v) => ({ ...clone(v), updatedAt: v.updatedAt ?? now, deletedAt: null })),
+    comments: (seed.comments ?? []).map((x, i) => ({ ...clone(x), id: i + 1, updatedAt: x.createdAt, deletedAt: null })),
+    candidates: (seed.candidates ?? []).map((x, i) => ({ ...clone(x), id: i + 1, updatedAt: x.createdAt, deletedAt: null })),
     edits: (seed.edits ?? []).map((e, i) => ({ ...clone(e), id: i + 1, updatedAt: e.createdAt, revertedAt: null, revertedBy: null, closedAt: null })),
-    seq: { snapshot: 0, suggestion: seed.suggestions?.length ?? 0, edit: seed.edits?.length ?? 0 },
+    seq: { snapshot: 0, comment: seed.comments?.length ?? 0, candidate: seed.candidates?.length ?? 0, edit: seed.edits?.length ?? 0 },
   };
 }
 
 export function createMockBackend(seed: MockSeed, opts: MockOptions = {}): MockBackend {
   const storage = opts.storage ?? null;
-  const key = opts.storageKey ?? 'travel-helper:mockBackend';
+  // v3：2026-10-24 建議換成留言、候選，舊的存檔讀不進來
+  const key = opts.storageKey ?? 'travel-helper:mockBackend:v3';
   const now = opts.now ?? (() => new Date().toISOString());
   let currentSeed = seed;
 
@@ -146,10 +156,14 @@ export function createMockBackend(seed: MockSeed, opts: MockOptions = {}): MockB
     return state.itinerary;
   }
 
-  function findSuggestion(id: number): Suggestion {
-    const s = state.suggestions.find((x) => x.id === id);
-    if (!s || s.deletedAt) notFound(`沒有建議 #${id}`);
-    return s;
+  function findComment(id: number): Comment {
+    const x = state.comments.find((c) => c.id === id);
+    if (!x || x.deletedAt) notFound(`沒有留言 #${id}`);
+    return x;
+  }
+  function mine<T extends { author: string }>(x: T, what: string): T {
+    if (x.author !== member()) forbidden(`只有寫的人能${what}`);
+    return x;
   }
 
   const maxUpdated = (rows: { updatedAt: string }[]) => rows.reduce<string | null>((m, r) => (m === null || r.updatedAt > m ? r.updatedAt : m), null);
@@ -160,8 +174,9 @@ export function createMockBackend(seed: MockSeed, opts: MockOptions = {}): MockB
     sync: () =>
       call(() => ({
         itinerary: state.itinerary.version,
-        suggestions: maxUpdated(state.suggestions),
         votes: maxUpdated(state.votes),
+        comments: maxUpdated(state.comments),
+        candidates: maxUpdated(state.candidates),
         edits: maxUpdated(state.edits),
       })),
 
@@ -185,78 +200,64 @@ export function createMockBackend(seed: MockSeed, opts: MockOptions = {}): MockB
         return saveItinerary(version, s.data, `復原到快照 #${s.id}（第 ${s.version} 版）`, member());
       }),
 
-    listSuggestions: () => call(() => state.suggestions.filter((s) => !s.deletedAt)),
-    createSuggestion: (input) =>
-      call(() => {
-        const at = now();
-        const s: Suggestion = {
-          id: ++state.seq.suggestion,
-          day: checkDay(input.day),
-          placeIds: [...(input.placeIds ?? [])],
-          text: checkText(input.text),
-          author: member(),
-          createdAt: at,
-          updatedAt: at,
-          status: 'pending',
-          statusNote: null,
-          statusBy: null,
-          statusAt: null,
-          adoptedItemIds: null,
-          deletedAt: null,
-        };
-        state.suggestions.push(s);
-        return s;
-      }),
-    updateSuggestion: (id, patch) =>
-      call(() => {
-        const s = findSuggestion(id);
-        if (s.author !== member()) forbidden('只有寫的人能改');
-        if (patch.day !== undefined) s.day = checkDay(patch.day);
-        if (patch.text !== undefined) s.text = checkText(patch.text);
-        if (patch.placeIds !== undefined) s.placeIds = [...patch.placeIds];
-        s.updatedAt = now();
-        return s;
-      }),
-    deleteSuggestion: (id) =>
-      call(() => {
-        const s = findSuggestion(id);
-        if (s.author !== member()) forbidden('只有寫的人能刪');
-        s.deletedAt = s.updatedAt = now();
-      }),
-    setSuggestionStatus: (id, input) =>
-      call(() => {
-        const s = findSuggestion(id);
-        const statuses: SuggestionStatus[] = ['pending', 'adopted', 'declined'];
-        if (!statuses.includes(input.status)) badRequest('status 要是 pending、adopted、declined 其中之一');
-        if (input.note != null && input.note.length > 200) badRequest('note 要是 200 字以內的字串');
-        const pending = input.status === 'pending';
-        const at = now();
-        s.status = input.status;
-        s.statusNote = pending ? null : (input.note ?? null);
-        s.statusBy = pending ? null : member();
-        s.statusAt = pending ? null : at;
-        s.adoptedItemIds = input.status === 'adopted' ? [...(input.adoptedItemIds ?? [])] : null;
-        s.updatedAt = at;
-        return s;
-      }),
-
     listVotes: () => call(() => state.votes.filter((v) => !v.deletedAt)),
-    putVote: (placeId, value: VoteValue, note = null) =>
+    putVote: (placeId, value: VoteValue) =>
       call(() => {
         if (value !== 'like' && value !== 'dislike') badRequest("value 要是 'like'（❤️）或 'dislike'（👎）");
-        if (note != null && note.length > 500) badRequest('note 要是 500 字以內的字串');
         const at = now();
         let v = state.votes.find((x) => x.placeId === placeId && x.memberId === member());
         if (!v) {
-          v = { placeId, memberId: member(), value, note, updatedAt: at, deletedAt: null };
+          v = { placeId, memberId: member(), value, updatedAt: at, deletedAt: null };
           state.votes.push(v);
-        } else Object.assign(v, { value, note, updatedAt: at, deletedAt: null });
+        } else Object.assign(v, { value, updatedAt: at, deletedAt: null });
         return v;
       }),
     deleteVote: (placeId) =>
       call(() => {
         const v = state.votes.find((x) => x.placeId === placeId && x.memberId === member() && !x.deletedAt);
         if (v) v.deletedAt = v.updatedAt = now();
+      }),
+
+    listComments: () => call(() => state.comments.filter((x) => !x.deletedAt)),
+    createComment: ({ target, text, kind = 'normal' }) =>
+      call(() => {
+        if (typeof target !== 'string' || !target) badRequest('target 不能是空的');
+        if (!KINDS.includes(kind)) badRequest(`kind 要是 ${KINDS.join('、')} 其中之一`);
+        const at = now();
+        const x: Comment = { id: ++state.seq.comment, target, text: checkText(text), kind, author: member(), createdAt: at, updatedAt: at, deletedAt: null };
+        state.comments.push(x);
+        return x;
+      }),
+    updateComment: (id, text) =>
+      call(() => {
+        const x = mine(findComment(id), '改');
+        x.text = checkText(text);
+        x.updatedAt = now();
+        return x;
+      }),
+    deleteComment: (id) =>
+      call(() => {
+        const x = mine(findComment(id), '刪');
+        x.deletedAt = x.updatedAt = now();
+      }),
+
+    listCandidates: () => call(() => state.candidates.filter((x) => !x.deletedAt)),
+    createCandidate: ({ placeId, day }) =>
+      call(() => {
+        if (typeof placeId !== 'string' || !placeId) badRequest('placeId 不能是空的');
+        const d = checkDay(day);
+        const old = state.candidates.find((x) => !x.deletedAt && x.placeId === placeId && x.day === d);
+        if (old) return old;
+        const at = now();
+        const x: Candidate = { id: ++state.seq.candidate, placeId, day: d, addedBy: member(), createdAt: at, updatedAt: at, deletedAt: null };
+        state.candidates.push(x);
+        return x;
+      }),
+    deleteCandidate: (id) =>
+      call(() => {
+        const x = state.candidates.find((c) => c.id === id);
+        if (!x || x.deletedAt) notFound(`沒有候選 #${id}`);
+        x.deletedAt = x.updatedAt = now();
       }),
 
     listEdits: () => call(() => state.edits),

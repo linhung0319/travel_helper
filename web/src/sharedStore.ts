@@ -1,4 +1,4 @@
-// 大家共用的資料（T15m）：行程的 version、快照、建議、投票、修改紀錄、成員。全部經過 backend/（T15m 是假後端）。
+// 大家共用的資料（T15m）：行程的 version、快照、投票（❤️ 就是想去）、留言、候選、修改紀錄、成員。全部經過 backend/（T15m 是假後端）。
 // 行程本身放在 dataStore（地圖、時間軸都讀那一份），修改紀錄合併進 dataStore 的資料點。
 // 同步照 architecture §3.8：每 30 秒、切回分頁時問一次 sync，變了才重抓那一種。
 // 這裡是純邏輯（Node 的測試也能用）；網站共用的一份在 appShared.ts。
@@ -9,11 +9,12 @@ import { ItineraryError } from '@travel-helper/engine';
 import {
   isVersionConflict,
   type Backend,
+  type Candidate,
+  type Comment,
+  type CommentKind,
   type Member,
   type PlaceEdit,
   type SnapshotMeta,
-  type Suggestion,
-  type SuggestionStatus,
   type SyncState,
   type Vote,
   type VoteValue,
@@ -21,6 +22,7 @@ import {
 import type { DataState } from './dataStore.ts';
 import { mergePlaceEdits } from './data/merge.ts';
 import { placeDays } from './lib/itinerary.ts';
+import { shortDayLabel } from './lib/trip.ts';
 
 export interface Toast {
   seq: number;
@@ -36,8 +38,10 @@ export interface SharedState {
   updatedBy: string | null;
   updatedAt: string | null;
   snapshots: SnapshotMeta[];
-  suggestions: Suggestion[];
   votes: Vote[];
+  comments: Comment[];
+  /** 某天的候選（想去的「加到某天」） */
+  candidates: Candidate[];
   edits: PlaceEdit[];
   /** 存檔中（畫面顯示「儲存中…」） */
   saving: boolean;
@@ -55,8 +59,9 @@ const initial: SharedState = {
   updatedBy: null,
   updatedAt: null,
   snapshots: [],
-  suggestions: [],
   votes: [],
+  comments: [],
+  candidates: [],
   edits: [],
   saving: false,
   conflict: null,
@@ -97,8 +102,9 @@ export function createShared(getBackend: () => Backend, data: StoreApi<DataState
   }
 
   const loadSnapshots = async () => set({ snapshots: await getBackend().listSnapshots() });
-  const loadSuggestions = async () => set({ suggestions: await getBackend().listSuggestions() });
   const loadVotes = async () => set({ votes: await getBackend().listVotes() });
+  const loadComments = async () => set({ comments: await getBackend().listComments() });
+  const loadCandidates = async () => set({ candidates: await getBackend().listCandidates() });
   async function loadEdits() {
     const edits = await getBackend().listEdits();
     set({ edits });
@@ -109,7 +115,7 @@ export function createShared(getBackend: () => Backend, data: StoreApi<DataState
     const b = getBackend();
     const [me, members, lastSync] = await Promise.all([b.me(), b.members(), b.sync()]);
     set({ me, members, lastSync });
-    await Promise.all([loadItinerary(), loadSnapshots(), loadSuggestions(), loadVotes(), loadEdits()]);
+    await Promise.all([loadItinerary(), loadSnapshots(), loadVotes(), loadComments(), loadCandidates(), loadEdits()]);
   }
 
   /**
@@ -174,76 +180,85 @@ export function createShared(getBackend: () => Backend, data: StoreApi<DataState
     }
   }
 
-  /** 一筆建議改了：換掉清單裡那一筆（刪掉的拿掉） */
-  const putSuggestion = (sg: Suggestion | null, id: number) =>
-    set({ suggestions: sg ? store.getState().suggestions.map((x) => (x.id === id ? sg : x)) : store.getState().suggestions.filter((x) => x.id !== id) });
-
-  async function createSuggestion(input: { day: string; text: string; placeIds?: string[] }): Promise<Result<Suggestion>> {
-    try {
-      const sg = await getBackend().createSuggestion(input);
-      set({ suggestions: [...store.getState().suggestions, sg] });
-      toast('ok', '已送出建議');
-      return { ok: true, value: sg } as Result<Suggestion>;
-    } catch (e) {
-      return fail(e);
-    }
+  /** 自己的票換成 v（null：收回） */
+  function putMyVote(placeId: string, v: Vote | null) {
+    const me = store.getState().me?.id;
+    const rest = store.getState().votes.filter((x) => !(x.placeId === placeId && x.memberId === me));
+    set({ votes: v ? [...rest, v] : rest });
   }
 
-  async function updateSuggestion(id: number, patch: { day?: string; text?: string; placeIds?: string[] }): Promise<Result> {
+  /** ❤️（想去）／👎：value 是 null 時收回 */
+  async function vote(placeId: string, value: VoteValue | null): Promise<Result> {
     try {
-      putSuggestion(await getBackend().updateSuggestion(id, patch), id);
-      toast('ok', '已更新建議');
+      if (value) putMyVote(placeId, await getBackend().putVote(placeId, value));
+      else {
+        await getBackend().deleteVote(placeId);
+        putMyVote(placeId, null);
+      }
       return { ok: true };
     } catch (e) {
       return fail(e);
     }
   }
 
-  async function deleteSuggestion(id: number): Promise<Result> {
+  /** 一則留言改了：換掉清單裡那一筆（刪掉的拿掉） */
+  const putComment = (x: Comment | null, id: number) =>
+    set({ comments: x ? store.getState().comments.map((c) => (c.id === id ? x : c)) : store.getState().comments.filter((c) => c.id !== id) });
+
+  async function comment(target: string, text: string, kind: CommentKind = 'normal'): Promise<Result<Comment>> {
     try {
-      await getBackend().deleteSuggestion(id);
-      putSuggestion(null, id);
-      toast('ok', '已刪除建議');
+      const x = await getBackend().createComment({ target, text, kind });
+      set({ comments: [...store.getState().comments, x] });
+      return { ok: true, value: x } as Result<Comment>;
+    } catch (e) {
+      return fail(e);
+    }
+  }
+
+  async function editComment(id: number, text: string): Promise<Result> {
+    try {
+      putComment(await getBackend().updateComment(id, text), id);
       return { ok: true };
     } catch (e) {
       return fail(e);
     }
   }
 
-  async function setSuggestionStatus(id: number, status: SuggestionStatus, opts: { note?: string | null; adoptedItemIds?: string[] } = {}): Promise<Result> {
+  async function deleteComment(id: number): Promise<Result> {
     try {
-      putSuggestion(await getBackend().setSuggestionStatus(id, { status, ...opts }), id);
+      await getBackend().deleteComment(id);
+      putComment(null, id);
       return { ok: true };
+    } catch (e) {
+      return fail(e);
+    }
+  }
+
+  /** 加到某天的候選（同一天同一個點只有一筆） */
+  async function addCandidate(placeId: string, day: string): Promise<Result<Candidate>> {
+    try {
+      const c = await getBackend().createCandidate({ placeId, day });
+      set({ candidates: [...store.getState().candidates.filter((x) => x.id !== c.id), c] });
+      toast('ok', `已加到 ${shortDayLabel(day)} 的候選`);
+      return { ok: true, value: c } as Result<Candidate>;
     } catch (e) {
       return fail(e);
     }
   }
 
   /**
-   * 採用建議：行程項目記「誰提的」（interaction-design §6），再把建議標成已採用。
-   * 項目是手動選單或「排進行程」剛加的，所以這裡只補 proposedBy。
+   * 從候選拿掉。自己加的直接撤回；別人加的要寫理由（規劃模式），理由變成那個點的一則不採用留言。
+   * 排進行程後也用這個拿掉（自己的操作，不用理由：placed）。
    */
-  async function adoptSuggestion(sg: Suggestion, itemIds: string[]): Promise<Result> {
-    if (itemIds.length) {
-      const r = await changeItinerary((it) => addProposer(it, itemIds, sg.author), `採用建議 #${sg.id}`);
-      if (!r.ok) return r;
-    }
-    const r = await setSuggestionStatus(sg.id, 'adopted', { adoptedItemIds: itemIds });
-    if (r.ok) toast('ok', '已標成已採用');
-    return r;
-  }
-
-  /** ❤️／👎：value 是 null 時收回 */
-  async function vote(placeId: string, value: VoteValue | null, note: string | null = null): Promise<Result> {
-    const me = store.getState().me?.id;
+  async function removeCandidate(id: number, reason?: string, placed = false): Promise<Result> {
+    const c = store.getState().candidates.find((x) => x.id === id);
+    if (!c) return { ok: true };
+    const mine = c.addedBy === store.getState().me?.id;
+    if (!mine && !placed && !reason?.trim()) return fail(new Error('拿掉別人加的候選要寫理由'));
     try {
-      if (value) {
-        const v = await getBackend().putVote(placeId, value, note);
-        set({ votes: [...store.getState().votes.filter((x) => !(x.placeId === placeId && x.memberId === me)), v] });
-      } else {
-        await getBackend().deleteVote(placeId);
-        set({ votes: store.getState().votes.filter((x) => !(x.placeId === placeId && x.memberId === me)) });
-      }
+      if (!mine && !placed) await getBackend().createComment({ target: c.placeId, text: `（${shortDayLabel(c.day)} 的候選）${reason!.trim()}`, kind: 'decline' }).then((x) => set({ comments: [...store.getState().comments, x] }));
+      await getBackend().deleteCandidate(id);
+      set({ candidates: store.getState().candidates.filter((x) => x.id !== id) });
       return { ok: true };
     } catch (e) {
       return fail(e);
@@ -280,8 +295,9 @@ export function createShared(getBackend: () => Backend, data: StoreApi<DataState
         loadSnapshots(),
       );
     }
-    if (next.suggestions !== prev.suggestions) jobs.push(loadSuggestions());
     if (next.votes !== prev.votes) jobs.push(loadVotes());
+    if (next.comments !== prev.comments) jobs.push(loadComments());
+    if (next.candidates !== prev.candidates) jobs.push(loadCandidates());
     if (next.edits !== prev.edits) jobs.push(loadEdits());
     await Promise.all(jobs);
   }
@@ -298,12 +314,12 @@ export function createShared(getBackend: () => Backend, data: StoreApi<DataState
     reloadItinerary,
     changeItinerary,
     restoreSnapshot,
-    createSuggestion,
-    updateSuggestion,
-    deleteSuggestion,
-    setSuggestionStatus,
-    adoptSuggestion,
     vote,
+    comment,
+    editComment,
+    deleteComment,
+    addCandidate,
+    removeCandidate,
     revertEdit,
     syncOnce,
     reloadMe,
@@ -337,15 +353,6 @@ export function voteCounts(votes: Vote[]): Map<string, { like: number; dislike: 
   }
   return out;
 }
-
-/** 每個點有幾則建議（地圖的 💬 數字；沒刪除、不管狀態） */
-export function suggestionCounts(suggestions: Suggestion[]): Map<string, number> {
-  const out = new Map<string, number>();
-  for (const s of suggestions) for (const id of s.placeIds) out.set(id, (out.get(id) ?? 0) + 1);
-  return out;
-}
-
-export const pendingCount = (suggestions: Suggestion[]) => suggestions.filter((s) => s.status === 'pending').length;
 
 export function memberName(members: Member[], id: string | null | undefined): string {
   if (!id) return '（不明）';

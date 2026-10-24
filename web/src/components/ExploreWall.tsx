@@ -4,6 +4,7 @@ import { useApp, useCanHover, useData } from '../hooks.ts';
 import { placeVisual, wallPlaces } from '../lib/visual.ts';
 import { Photo } from './Photo.tsx';
 import { WallVote } from './Votes.tsx';
+import { SearchBox } from './SearchBox.tsx';
 import { TierBadge } from './TierBadge.tsx';
 import { toggleAskAi } from './askAi.ts';
 
@@ -37,6 +38,7 @@ function WallAsk({ placeId, on }: { placeId: string; on: boolean }) {
 export function ExploreWall() {
   const bounds = useApp((s) => s.view?.bounds ?? null);
   const filter = useApp((s) => s.filter);
+  const query = useApp((s) => s.query);
   const day = useApp((s) => s.day);
   const previewId = useApp((s) => s.previewId);
   const detailId = useApp((s) => s.detailId);
@@ -47,7 +49,7 @@ export function ExploreWall() {
   const canHover = useCanHover();
   const ref = useRef<HTMLDivElement>(null);
 
-  const items = useMemo(() => wallPlaces(places, bounds, filter), [places, bounds, filter]);
+  const items = useMemo(() => wallPlaces(places, bounds, filter, query), [places, bounds, filter, query]);
 
   // 點了地圖上的點：圖片牆捲到那張照片
   useEffect(() => {
@@ -65,10 +67,11 @@ export function ExploreWall() {
 
   return (
     <div className="explore-wall" ref={ref} data-testid="explore-wall">
+      <SearchBox />
       <p className="wall-count muted small">畫面裡有 {items.length} 個地點{items.length > 0 ? '，移動地圖會跟著換' : '，移動或縮小地圖看看'}</p>
       <div className="wall-grid">
         {items.map((p) => {
-          const v = placeVisual(p, filter, day, days);
+          const v = placeVisual(p, filter, day, days, query);
           return (
             <button
               key={p.id}

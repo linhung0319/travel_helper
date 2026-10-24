@@ -15,6 +15,10 @@ export interface PlanState {
 
 export const planStore = createStore<PlanState>()(() => ({ status: 'loading', error: null, plan: null }));
 
+let lastEngineData: EngineData | null = null;
+/** 最後一次算時間軸用的資料（「＋ 排進」算最順路的位置用）；時刻表還沒載入時是 null */
+export const currentEngineData = () => lastEngineData;
+
 export interface RoadCache {
   cachedMeters(profile: 'foot' | 'car', from: LonLat, to: LonLat): number | null;
 }
@@ -45,7 +49,8 @@ export function startPlanner(data: StoreApi<DataState>, source: DataSource, road
       return;
     }
     try {
-      store.setState({ status: 'ready', error: null, plan: planItinerary(d.itinerary, buildEngineData(d, timetables, roads)) });
+      lastEngineData = buildEngineData(d, timetables, roads);
+      store.setState({ status: 'ready', error: null, plan: planItinerary(d.itinerary, lastEngineData) });
     } catch (e) {
       store.setState({ status: 'error', error: e instanceof Error ? e.message : String(e) });
     }

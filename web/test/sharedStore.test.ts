@@ -1,9 +1,9 @@
-// T15m：共用資料的動作（存檔、衝突退回、採用建議、投票、修改紀錄合併）。
+// T15m：共用資料的動作（存檔、衝突退回、投票、留言、候選、修改紀錄合併）。
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { createStore } from 'zustand/vanilla';
 import { moveItem, removeItem } from '@travel-helper/engine';
-import { createShared, voteCounts, suggestionCounts, pendingCount } from '../src/sharedStore.ts';
+import { createShared, voteCounts } from '../src/sharedStore.ts';
 import { createMockBackend, type MockSeed } from '../src/backend/mock.ts';
 import type { DataState } from '../src/dataStore.ts';
 import { normalizePlace } from '../src/data/normalize.ts';
@@ -102,38 +102,45 @@ test('復原快照：回到原狀', async () => {
   assert.equal(shared.store.getState().version, 3);
 });
 
-test('採用建議：行程項目記下誰提的，建議標成已採用', async () => {
-  const { backend, data, shared } = await setup();
+test('候選：加到某天、自己撤回；拿掉別人加的要寫理由，理由變成那個點的不採用留言', async () => {
+  const { backend, shared } = await setup();
+  assert.ok((await shared.addCandidate('x', '2027-02-05')).ok);
+  assert.ok((await shared.addCandidate('y', '2027-02-05')).ok);
+  const [cx, cy] = shared.store.getState().candidates;
+  assert.ok((await shared.removeCandidate(cx.id)).ok);
+  assert.deepEqual(shared.store.getState().candidates.map((c) => c.placeId), ['y']);
   backend.setMe('m-b');
   await shared.reloadMe();
-  const r = await shared.createSuggestion({ day: '2027-02-03', text: '想吃 y', placeIds: ['y'] });
-  assert.ok(r.ok);
-  backend.setMe('m-a');
-  await shared.reloadMe();
-  const sg = shared.store.getState().suggestions[0];
-  assert.ok((await shared.adoptSuggestion(sg, ['2027-02-03:y'])).ok);
-  const item = data.getState().itinerary!.days[0].items[1];
-  assert.deepEqual(item.type === 'visit' && item.proposedBy, ['m-b']);
-  const after = shared.store.getState().suggestions[0];
-  assert.equal(after.status, 'adopted');
-  assert.equal(after.statusBy, 'm-a');
-  assert.equal(pendingCount(shared.store.getState().suggestions), 0);
+  assert.equal((await shared.removeCandidate(cy.id)).ok, false, '別人加的沒寫理由不能拿掉');
+  assert.ok((await shared.removeCandidate(cy.id, '這天排不下')).ok);
+  assert.equal(shared.store.getState().candidates.length, 0);
+  const c = shared.store.getState().comments[0];
+  assert.equal(c.kind, 'decline');
+  assert.equal(c.target, 'y');
+  assert.ok(c.text.includes('2/5'));
+  assert.match(c.text, /這天排不下/);
 });
 
-test('別人的建議：刪不掉，清單不變', async () => {
+test('留言：新增、改、刪；只有作者能刪', async () => {
   const { backend, shared } = await setup();
-  await shared.createSuggestion({ day: 'trip', text: '阿公的建議' });
+  assert.ok((await shared.comment('x', '想早上去')).ok);
+  const id = shared.store.getState().comments[0].id;
+  assert.ok((await shared.editComment(id, '想早上去，人少')).ok);
+  assert.equal(shared.store.getState().comments[0].text, '想早上去，人少');
   backend.setMe('m-b');
   await shared.reloadMe();
-  const r = await shared.deleteSuggestion(shared.store.getState().suggestions[0].id);
-  assert.equal(r.ok, false);
-  assert.equal(shared.store.getState().suggestions.length, 1);
+  assert.equal((await shared.deleteComment(id)).ok, false);
+  backend.setMe('m-a');
+  await shared.reloadMe();
+  assert.ok((await shared.deleteComment(id)).ok);
+  assert.equal(shared.store.getState().comments.length, 0);
 });
 
 test('投票：取代自己的票、收回；計數', async () => {
   const { shared } = await setup();
   await shared.vote('x', 'like');
-  await shared.vote('x', 'dislike', '太遠');
+  assert.equal(shared.store.getState().votes[0].value, 'like');
+  await shared.vote('x', 'dislike');
   assert.deepEqual(voteCounts(shared.store.getState().votes).get('x'), { like: 0, dislike: 1 });
   await shared.vote('x', null);
   assert.equal(voteCounts(shared.store.getState().votes).get('x'), undefined);
@@ -156,12 +163,4 @@ test('同步：別人改了行程就換上新的', async () => {
   await shared.syncOnce();
   assert.equal(shared.store.getState().version, 2);
   assert.equal(shared.store.getState().updatedBy, 'm-b');
-});
-
-test('suggestionCounts：每個點幾則', () => {
-  const c = suggestionCounts([{ placeIds: ['a', 'b'] }, { placeIds: ['a'] }] as never);
-  assert.deepEqual([...c], [
-    ['a', 2],
-    ['b', 1],
-  ]);
 });

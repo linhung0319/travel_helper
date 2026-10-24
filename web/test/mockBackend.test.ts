@@ -1,8 +1,8 @@
-// T15m：假後端的規則要和 T24 的 Worker 一樣（只有寫的人能改刪、version 衝突、快照、軟刪除）。
+// T15m：假後端的規則（只有寫的人能改刪、version 衝突、快照、軟刪除）。投票、留言、候選的規則 T15 要同步到 Worker。
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { createMockBackend, type MockSeed } from '../src/backend/mock.ts';
-import { BackendError, isVersionConflict } from '../src/backend/types.ts';
+import { BackendError, isVersionConflict, dayTarget } from '../src/backend/types.ts';
 import { itin } from './helpers.ts';
 
 const SEED: MockSeed = {
@@ -57,56 +57,59 @@ test('快照復原：也是一次修改，會再存快照', async () => {
   assert.equal((await b.listSnapshots()).length, 2);
 });
 
-test('建議：別人看得到、改不了、刪不掉；寫的人可以刪（軟刪除）', async () => {
+test('投票：一人一點只有一個狀態，先 👎 再 ❤️ 變成 ❤️；收回後不列出', async () => {
   const b = createMockBackend(SEED, { now });
-  const s = await b.createSuggestion({ day: '2027-02-03', text: '想去水族館', placeIds: ['x'] });
-  assert.equal(s.author, 'm-a');
-  assert.equal(s.status, 'pending');
-
-  b.setMe('m-b');
-  assert.equal((await b.listSuggestions()).length, 1);
-  assert.equal(await status(b.updateSuggestion(s.id, { text: '改掉' })), 403);
-  assert.equal(await status(b.deleteSuggestion(s.id)), 403);
-  // 規劃的人可以標狀態
-  const adopted = await b.setSuggestionStatus(s.id, { status: 'adopted', adoptedItemIds: ['i-1'] });
-  assert.equal(adopted.statusBy, 'm-b');
-  assert.deepEqual(adopted.adoptedItemIds, ['i-1']);
-
-  b.setMe('m-a');
-  await b.deleteSuggestion(s.id);
-  assert.equal((await b.listSuggestions()).length, 0);
-  assert.equal(await status(b.deleteSuggestion(s.id)), 404);
-});
-
-test('建議：day 要是日期或 trip，text 不能空', async () => {
-  const b = createMockBackend(SEED, { now });
-  assert.equal(await status(b.createSuggestion({ day: 'tomorrow', text: 'x' })), 400);
-  assert.equal(await status(b.createSuggestion({ day: 'trip', text: '  ' })), 400);
-  assert.equal(await status(b.createSuggestion({ day: 'trip', text: '想吃伊勢龍蝦' })), 200);
-});
-
-test('建議：標回待處理時清掉標的人和採用的項目', async () => {
-  const b = createMockBackend(SEED, { now });
-  const s = await b.createSuggestion({ day: 'trip', text: 'x' });
-  await b.setSuggestionStatus(s.id, { status: 'declined', note: '排不下' });
-  const back = await b.setSuggestionStatus(s.id, { status: 'pending' });
-  assert.equal(back.statusNote, null);
-  assert.equal(back.statusBy, null);
-  assert.equal(back.adoptedItemIds, null);
-});
-
-test('投票：一人對一個點一筆，再投是取代，收回後不列出', async () => {
-  const b = createMockBackend(SEED, { now });
+  await b.putVote('x', 'dislike');
   await b.putVote('x', 'like');
-  await b.putVote('x', 'dislike', '太遠');
   b.setMe('m-b');
   await b.putVote('x', 'like');
   let votes = await b.listVotes();
   assert.equal(votes.length, 2);
-  assert.deepEqual(votes.find((v) => v.memberId === 'm-a'), { placeId: 'x', memberId: 'm-a', value: 'dislike', note: '太遠', updatedAt: votes[0].updatedAt, deletedAt: null });
+  assert.deepEqual(votes.find((v) => v.memberId === 'm-a'), { placeId: 'x', memberId: 'm-a', value: 'like', updatedAt: votes[0].updatedAt, deletedAt: null });
   await b.deleteVote('x');
   votes = await b.listVotes();
   assert.deepEqual(votes.map((v) => v.memberId), ['m-a']);
+});
+
+test('候選：加到某天；同一天同一個點只有一筆；日期要在旅程裡；誰都能拿掉', async () => {
+  const b = createMockBackend(SEED, { now });
+  const c = await b.createCandidate({ placeId: 'x', day: '2027-02-05' });
+  assert.equal(c.addedBy, 'm-a');
+  assert.equal((await b.createCandidate({ placeId: 'x', day: '2027-02-05' })).id, c.id);
+  await b.createCandidate({ placeId: 'x', day: '2027-02-06' });
+  assert.equal(await status(b.createCandidate({ placeId: 'x', day: '2027-03-01' })), 400);
+  assert.equal(await status(b.createCandidate({ placeId: '', day: '2027-02-05' })), 400);
+  b.setMe('m-b');
+  await b.deleteCandidate(c.id);
+  assert.deepEqual((await b.listCandidates()).map((x) => x.day), ['2027-02-06']);
+  assert.equal(await status(b.deleteCandidate(c.id)), 404);
+  // 拿掉後可以再加
+  assert.notEqual((await b.createCandidate({ placeId: 'x', day: '2027-02-05' })).id, c.id);
+});
+
+test('留言：大家都能留，只有作者能改、能刪（軟刪除）；文字不能空', async () => {
+  const b = createMockBackend(SEED, { now });
+  const c = await b.createComment({ target: 'x', text: '想早上去' });
+  assert.equal(c.author, 'm-a');
+  assert.equal(c.kind, 'normal');
+  b.setMe('m-b');
+  assert.equal((await b.listComments()).length, 1);
+  assert.equal(await status(b.updateComment(c.id, '改掉')), 403);
+  assert.equal(await status(b.deleteComment(c.id)), 403);
+  const d = await b.createComment({ target: 'x', text: '這天排不下', kind: 'decline' });
+  assert.equal(d.kind, 'decline');
+  assert.equal(await status(b.createComment({ target: 'x', text: '  ' })), 400);
+  b.setMe('m-a');
+  assert.equal((await b.updateComment(c.id, '想早上去，人少')).text, '想早上去，人少');
+  await b.deleteComment(c.id);
+  assert.deepEqual((await b.listComments()).map((x) => x.id), [d.id]);
+  assert.equal(await status(b.deleteComment(c.id)), 404);
+});
+
+test('這天的留言：target 是 day:<日期>', async () => {
+  const b = createMockBackend(SEED, { now });
+  const c = await b.createComment({ target: dayTarget('2027-02-05'), text: '這天想輕鬆一點' });
+  assert.equal(c.target, 'day:2027-02-05');
 });
 
 test('修改紀錄：只有改的人能復原', async () => {
@@ -136,13 +139,13 @@ test('存進 storage，重新建立時讀回來；reset 回到種子資料', asy
   const mem = new Map<string, string>();
   const storage = { getItem: (k: string) => mem.get(k) ?? null, setItem: (k: string, v: string) => void mem.set(k, v), removeItem: (k: string) => void mem.delete(k) };
   const b1 = createMockBackend(SEED, { now, storage });
-  await b1.createSuggestion({ day: 'trip', text: '留著' });
+  await b1.createCandidate({ placeId: 'x', day: '2027-02-05' });
   b1.setMe('m-b');
   const b2 = createMockBackend(SEED, { now, storage });
-  assert.equal((await b2.listSuggestions()).length, 1);
+  assert.equal((await b2.listCandidates()).length, 1);
   assert.equal(b2.currentMemberId(), 'm-b');
   b2.reset();
-  assert.equal((await b2.listSuggestions()).length, 0);
+  assert.equal((await b2.listCandidates()).length, 0);
   assert.equal(b2.currentMemberId(), 'm-b', 'reset 不換人');
 });
 
@@ -157,9 +160,12 @@ test('simulateOtherEdit：version 加一，記成別人改的', async () => {
 test('sync：各種資料的版本', async () => {
   const b = createMockBackend(SEED, { now });
   const s1 = await b.sync();
-  await b.createSuggestion({ day: 'trip', text: 'x' });
+  await b.createComment({ target: 'x', text: 'x' });
   const s2 = await b.sync();
   assert.equal(s1.itinerary, 1);
-  assert.notEqual(s1.suggestions, s2.suggestions);
+  assert.notEqual(s1.comments, s2.comments);
+  assert.equal(s1.candidates, s2.candidates);
+  await b.createCandidate({ placeId: 'x', day: '2027-02-05' });
+  assert.notEqual(s2.candidates, (await b.sync()).candidates);
   assert.equal(s1.votes, s2.votes);
 });

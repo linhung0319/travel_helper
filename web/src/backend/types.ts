@@ -1,6 +1,6 @@
-// 後端的介面（T15m）：確定的行程、快照、建議、投票、修改紀錄、成員。
+// 後端的介面（T15m）：確定的行程、快照、投票（❤️ 就是想去）、留言、候選、修改紀錄、成員。
 // 形狀照 T24 的資料 API（architecture §4「資料 API」、worker/src/api/）：T15m 先用假後端（mock.ts），
-// T15 換成呼叫 API 的實作，畫面的程式不改。
+// T15 換成呼叫 API 的實作，畫面的程式不改。留言、候選是 2026-10-24 改的（取代建議），T15 要同步到 Worker。
 
 import type { Itinerary } from '@travel-helper/engine/types';
 
@@ -31,36 +31,48 @@ export interface Snapshot extends SnapshotMeta {
   data: Itinerary;
 }
 
-export type SuggestionStatus = 'pending' | 'adopted' | 'declined';
-
-export interface Suggestion {
-  id: number;
-  /** 日期（YYYY-MM-DD）或 'trip'（整趟） */
-  day: string;
-  placeIds: string[];
-  text: string;
-  author: string;
-  createdAt: string;
-  updatedAt: string;
-  status: SuggestionStatus;
-  statusNote: string | null;
-  statusBy: string | null;
-  statusAt: string | null;
-  /** 採用時對應的行程項目 */
-  adoptedItemIds: string[] | null;
-  deletedAt: string | null;
-}
-
 export type VoteValue = 'like' | 'dislike';
 
+/** ❤️ 就是「想去」（進想去分頁），👎 是不想去；一人一點只有一個狀態 */
 export interface Vote {
+  /** 地點 ID */
   placeId: string;
   memberId: string;
   value: VoteValue;
-  note: string | null;
   updatedAt: string;
   deletedAt: string | null;
 }
+
+/** normal：一般留言；planner：規劃模式下留的（顯示〔規劃〕）；decline：不採用的理由 */
+export type CommentKind = 'normal' | 'planner' | 'decline';
+
+/** 地點或某一天的留言（只有一層，不能回覆留言） */
+export interface Comment {
+  id: number;
+  /** 地點 ID，或某一天 `day:<日期>`（dayTarget） */
+  target: string;
+  text: string;
+  kind: CommentKind;
+  author: string;
+  createdAt: string;
+  updatedAt: string;
+  deletedAt: string | null;
+}
+
+/** 某天的候選：在想去按「加到某天」；排進行程或被拿掉後刪除 */
+export interface Candidate {
+  id: number;
+  placeId: string;
+  /** YYYY-MM-DD，旅程裡的日期 */
+  day: string;
+  addedBy: string;
+  createdAt: string;
+  updatedAt: string;
+  deletedAt: string | null;
+}
+
+/** 某一天的留言的 target */
+export const dayTarget = (date: string) => `day:${date}`;
 
 /** 資料點的一筆修改（GET /api/edits） */
 export interface PlaceEdit {
@@ -84,8 +96,9 @@ export interface PlaceEdit {
 /** GET /api/sync：各種資料的版本，變了才重抓那一種 */
 export interface SyncState {
   itinerary: number;
-  suggestions: string | null;
   votes: string | null;
+  comments: string | null;
+  candidates: string | null;
   edits: string | null;
 }
 
@@ -119,19 +132,24 @@ export interface Backend {
   /** 復原也是一次修改，會再存快照 */
   restoreSnapshot(id: number, version: number): Promise<ItineraryDoc>;
 
-  /** 沒刪除的建議 */
-  listSuggestions(): Promise<Suggestion[]>;
-  createSuggestion(input: { day: string; text: string; placeIds?: string[] }): Promise<Suggestion>;
-  /** 只有寫的人能改（403） */
-  updateSuggestion(id: number, patch: { day?: string; text?: string; placeIds?: string[] }): Promise<Suggestion>;
-  /** 只有寫的人能刪（403） */
-  deleteSuggestion(id: number): Promise<void>;
-  setSuggestionStatus(id: number, input: { status: SuggestionStatus; note?: string | null; adoptedItemIds?: string[] }): Promise<Suggestion>;
-
   /** 沒收回的票 */
   listVotes(): Promise<Vote[]>;
-  putVote(placeId: string, value: VoteValue, note?: string | null): Promise<Vote>;
+  putVote(placeId: string, value: VoteValue): Promise<Vote>;
   deleteVote(placeId: string): Promise<void>;
+
+  /** 沒刪除的留言 */
+  listComments(): Promise<Comment[]>;
+  createComment(input: { target: string; text: string; kind?: CommentKind }): Promise<Comment>;
+  /** 只有作者能改、能刪（403） */
+  updateComment(id: number, text: string): Promise<Comment>;
+  deleteComment(id: number): Promise<void>;
+
+  /** 沒刪除的候選 */
+  listCandidates(): Promise<Candidate[]>;
+  /** 同一天同一個點已經有了就回傳那一筆；day 要是旅程裡的日期 */
+  createCandidate(input: { placeId: string; day: string }): Promise<Candidate>;
+  /** 誰都能拿掉（拿掉別人加的要寫理由，由畫面另外留一則不採用的留言） */
+  deleteCandidate(id: number): Promise<void>;
 
   /** 修改紀錄（含已復原的） */
   listEdits(): Promise<PlaceEdit[]>;

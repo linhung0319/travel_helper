@@ -97,6 +97,20 @@ export function matchesFilter(p: Place, f: Filter): boolean {
   return true;
 }
 
+/** 比對用：全形半形統一、小寫 */
+const fold = (s: string) => s.normalize('NFKC').toLowerCase();
+
+/**
+ * 搜尋欄（探索、想去）：名稱（中文、日文、假名、英文）裡找得到每一個詞就算。空字串都符合。
+ * 搜尋不放進 Filter：Filter 是 T12 setFilter 指令的格式（都是陣列）。
+ */
+export function matchesQuery(p: Place, q: string): boolean {
+  const words = fold(q).split(/\s+/).filter(Boolean);
+  if (!words.length) return true;
+  const names = [p.name.zh, p.name.ja, p.name.kana, p.name.en].filter((x): x is string => !!x).map(fold);
+  return words.every((w) => names.some((n) => n.includes(w)));
+}
+
 export interface FilterChip {
   key: FilterKey;
   value: string;

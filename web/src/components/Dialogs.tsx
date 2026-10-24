@@ -3,7 +3,7 @@
 import { useEffect } from 'react';
 import { shared } from '../appShared.ts';
 import { useShared, useUi } from '../hooks.ts';
-import { AdoptDialog, DeclineDialog, PendingDialog, SuggestDialog } from './Suggestions.tsx';
+import { RejectDialog } from './Wishlist.tsx';
 import { AddToDayDialog, MoveDialog, PlanningConfirmDialog, SnapshotsDialog } from './Planning.tsx';
 import { HistoryDialog } from './EditHistory.tsx';
 import { ReservationsDialog } from './Reservations.tsx';
@@ -12,24 +12,18 @@ export function Dialogs() {
   const d = useUi((s) => s.dialog);
   if (!d) return null;
   switch (d.kind) {
-    case 'suggest':
-      return <SuggestDialog key={d.editing?.id ?? 'new'} day={d.day} placeIds={d.placeIds} editing={d.editing} />;
     case 'planning':
       return <PlanningConfirmDialog />;
     case 'snapshots':
       return <SnapshotsDialog />;
-    case 'pending':
-      return <PendingDialog />;
     case 'reservations':
       return <ReservationsDialog />;
     case 'add':
       return <AddToDayDialog placeId={d.placeId} day={d.day} />;
     case 'move':
       return <MoveDialog itemId={d.itemId} />;
-    case 'adopt':
-      return <AdoptDialog suggestionId={d.suggestionId} />;
-    case 'decline':
-      return <DeclineDialog suggestionId={d.suggestionId} />;
+    case 'reject':
+      return <RejectDialog candidateId={d.candidateId} />;
     case 'history':
       return <HistoryDialog placeId={d.placeId} field={d.field} />;
   }

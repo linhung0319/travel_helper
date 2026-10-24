@@ -1,5 +1,5 @@
-// ❤️／👎（interaction-design §9）：每人對每個點一票；地圖、探索清單顯示 ❤️ 數。詳情的 ❤️／👎 移上去看是誰投的。
-// 投票是「喜不喜歡這個點」，和建議（「這天想做什麼」）分開。
+// ❤️／👎（interaction-design §9）：❤️ 就是「想去」——按了這個點就進「想去」分頁；👎 是不想去。每人對每個點一個狀態。
+// 想排在哪天用想去卡片上的「加到某天」（沒有「希望哪天」）。詳情的 ❤️／👎 移上去看是誰按的。
 
 import { shared } from '../appShared.ts';
 import { memberName } from '../sharedStore.ts';
@@ -18,6 +18,11 @@ function useVotes(placeId: string) {
   };
 }
 
+/** 投票（想去卡片的 ❤️ 也走這裡）；value 是 null 時收回 */
+export async function castVote(placeId: string, value: VoteValue | null) {
+  await shared.vote(placeId, value);
+}
+
 /** 詳情面板標題旁：❤️ 數、👎 數；點一下投、再點一下收回。滑鼠移上去看是誰投的 */
 export function VoteButtons({ placeId }: { placeId: string }) {
   const { list, mine, like, dislike } = useVotes(placeId);
@@ -28,7 +33,7 @@ export function VoteButtons({ placeId }: { placeId: string }) {
       .filter((v) => v.value === value)
       .map((v) => (v.memberId === me ? '我' : memberName(members, v.memberId)))
       .join('、');
-  const toggle = (value: VoteValue) => void shared.vote(placeId, mine?.value === value ? null : value, mine?.value === value ? null : (mine?.note ?? null));
+  const toggle = (value: VoteValue) => void castVote(placeId, mine?.value === value ? null : value);
   return (
     <>
       <button
@@ -69,13 +74,13 @@ export function WallVote({ placeId }: { placeId: string }) {
       data-testid="wall-vote"
       onClick={(e) => {
         e.stopPropagation();
-        void shared.vote(placeId, on ? null : 'like');
+        void castVote(placeId, on ? null : 'like');
       }}
       onKeyDown={(e) => {
         if (e.key !== 'Enter' && e.key !== ' ') return;
         e.preventDefault();
         e.stopPropagation();
-        void shared.vote(placeId, on ? null : 'like');
+        void castVote(placeId, on ? null : 'like');
       }}
     >
       {on ? '❤️' : '♡'}

@@ -2,9 +2,9 @@ import { useEffect, useMemo, useRef, useState } from 'react';
 import { appStore } from '../store.ts';
 import { commands } from '../appCommands.ts';
 import { useApp, useData } from '../hooks.ts';
-import { filterChips, isFilterEmpty, matchesFilter } from '../lib/filter.ts';
+import { filterChips, isFilterEmpty, matchesFilter, matchesQuery } from '../lib/filter.ts';
 import { shortDayLabel, tripDates, weekdayZh, JP_HOLIDAYS } from '../lib/trip.ts';
-import { ConflictBar, PendingBadge, PlanningBar, PlanningToggle } from './Planning.tsx';
+import { ConflictBar, PlanningBar } from './Planning.tsx';
 import { MeMenu } from './MeMenu.tsx';
 import { FilterPanel } from './FilterPanel.tsx';
 import { showItinerary } from './Explore.tsx';
@@ -55,7 +55,8 @@ function FilterChips() {
   const areas = useData((s) => s.areas);
   const places = useData((s) => s.places);
   const chips = filterChips(filter, areas);
-  const count = useMemo(() => places.filter((p) => matchesFilter(p, filter)).length, [places, filter]);
+  const query = useApp((s) => s.query);
+  const count = useMemo(() => places.filter((p) => matchesFilter(p, filter) && matchesQuery(p, query)).length, [places, filter, query]);
   if (chips.length === 0) return null;
   return (
     <div className="chips" data-testid="filter-chips">
@@ -88,8 +89,6 @@ export function TopBar() {
     <div className="top-bar">
       <div className="top-row">
         <DayTabs />
-        <PendingBadge />
-        <PlanningToggle />
         <MeMenu />
       </div>
       <div className="top-row">
@@ -120,7 +119,7 @@ export function TopBar() {
 }
 
 /**
- * 電腦版：浮在地圖上方（參考 puma.taipei 的版面）。左邊是日期，右邊是待處理、規劃模式、我；
+ * 電腦版：浮在地圖上方（參考 puma.taipei 的版面）。左邊是日期，右邊是我；規劃模式的按鈕在右側的「行程」分頁；
  * 篩選、探索搬到右側的「探索」分頁。
  */
 export function MapTopBar() {
@@ -132,8 +131,6 @@ export function MapTopBar() {
           <DayTabs onSelect={showItinerary} />
         </div>
         <div className="float-bar me-float">
-          <PendingBadge />
-          <PlanningToggle />
           <MeMenu />
         </div>
       </div>

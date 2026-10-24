@@ -4,14 +4,19 @@
 // 清單可以切換大照片（像 IG）或只有文字；滑鼠移上去地圖上的點會閃，點了地圖移過去、打開詳情。
 // 反過來，點地圖上的點：切到探索、捲到那張卡片（showInExplore），再點卡片才開詳情（手機沒有 hover，所以用點的）。
 // 探索的類型寫在篩選裡（地圖跟著變淡），回到「行程」時拿掉（showItinerary）。
+// 「❤️ 想去」分頁是同一個元件（source="wish"）：只列有人 ❤️ 的點，卡片底下多了頭像、留言、加到某天（Wishlist.tsx 的 WishExtras）。
 
-import { useEffect, useMemo, useRef, useState } from 'react';
+import { useEffect, useMemo, useRef, useState, type ReactNode } from 'react';
 import { appStore } from '../store.ts';
 import { dataStore } from '../dataStore.ts';
+import { shared } from '../appShared.ts';
+import { likedPlaces } from '../lib/wishlist.ts';
 import { commands } from '../appCommands.ts';
 import { useApp, useData, useShared } from '../hooks.ts';
 import { displayName } from '../data/normalize.ts';
-import { CONTEXT_LABELS, EMPTY_FILTER, TYPE_LABELS, VOTE_FILTER_LABELS, filterChips, isFilterEmpty, matchesFilter, type FilterKey } from '../lib/filter.ts';
+import { CONTEXT_LABELS, EMPTY_FILTER, TYPE_LABELS, VOTE_FILTER_LABELS, filterChips, isFilterEmpty, matchesFilter, matchesQuery, type FilterKey } from '../lib/filter.ts';
+import { SearchBox } from './SearchBox.tsx';
+import { AreaFilter } from './AreaFilter.tsx';
 import { EXPLORE_SORTS, EXPLORE_SORT_LABELS, EXPLORE_TYPES, explorePlaces, typeCounts, type ExploreSort, type ExploreType } from '../lib/explore.ts';
 import { placeBadges } from '../lib/badges.ts';
 import { voteCounts } from '../sharedStore.ts';
@@ -23,6 +28,9 @@ import { TierBadge } from './TierBadge.tsx';
 import { WallVote } from './Votes.tsx';
 import { FilterPanel } from './FilterPanel.tsx';
 import { dragPlaceProps } from './askAi.ts';
+import { useLiked, WishExtras } from './Wishlist.tsx';
+
+export type ListSource = 'explore' | 'wish';
 
 type View = 'photo' | 'list';
 const VIEW_KEY = 'travel-helper:exploreView';
@@ -109,12 +117,13 @@ function TypeTag({ place }: { place: Place }) {
   );
 }
 
-function Item({ place, rank, view, hot }: { place: Place; rank: number; view: View; hot: boolean }) {
+function Item({ place, rank, view, hot, source }: { place: Place; rank: number; view: View; hot: boolean; source: ListSource }) {
   const name = place.name.zh || place.name.ja;
+  const wish = source === 'wish';
   const common = {
     type: 'button' as const,
     'data-id': place.id,
-    'data-testid': 'explore-item',
+    'data-testid': wish ? 'wish-open' : 'explore-item',
     onMouseEnter: () => appStore.getState().hover(place.id),
     onMouseLeave: () => appStore.getState().hover(null),
     onClick: () => open(place.id),
@@ -122,9 +131,17 @@ function Item({ place, rank, view, hot }: { place: Place; rank: number; view: Vi
     ...dragPlaceProps(place.id),
     title: '點了看詳情；拖到左邊的聊天室可以問 AI',
   };
+  const li = (body: ReactNode) =>
+    wish ? (
+      <li className={`wish-card view-${view} ${hot ? 'flash' : ''}`} data-testid="wish-item" data-id={place.id}>
+        {body}
+        <WishExtras placeId={place.id} />
+      </li>
+    ) : (
+      <li>{body}</li>
+    );
   if (view === 'list') {
-    return (
-      <li>
+    return li(
         <button {...common} className={`ex-row ${hot ? 'flash' : ''}`}>
           <span className="ex-rank">{rank}</span>
           <span className="ex-dot" style={{ background: TYPE_COLORS[place.type] }} aria-hidden>
@@ -138,12 +155,10 @@ function Item({ place, rank, view, hot }: { place: Place; rank: number; view: Vi
             <Meta place={place} />
           </span>
           <WallVote placeId={place.id} />
-        </button>
-      </li>
+        </button>,
     );
   }
-  return (
-    <li>
+  return li(
       <button {...common} className={`ex-card ${hot ? 'flash' : ''}`}>
         <span className="ex-photo">
           <Photo place={place} width={600} />
@@ -161,21 +176,24 @@ function Item({ place, rank, view, hot }: { place: Place; rank: number; view: Vi
           <Badges place={place} />
         </span>
         <WallVote placeId={place.id} />
-      </button>
-    </li>
+      </button>,
   );
 }
 
-export function ExplorePanel() {
+export function ExplorePanel({ source = 'explore' }: { source?: ListSource }) {
   const filter = useApp((s) => s.filter);
+  const query = useApp((s) => s.query);
   const bounds = useApp((s) => s.view?.bounds ?? null);
   const hoveredId = useApp((s) => s.hoveredId);
   const target = useApp((s) => s.exploreTarget);
-  const places = useData((s) => s.places);
+  const allPlaces = useData((s) => s.places);
   const areas = useData((s) => s.areas);
   const votes = useShared((s) => s.votes);
   const [view, setView] = useState<View>(loadView);
-  const [sort, setSort] = useState<ExploreSort>('recommend');
+  // 想去預設依 ❤️ 多排
+  const [sort, setSort] = useState<ExploreSort>(source === 'wish' ? 'likes' : 'recommend');
+  const liked = useLiked();
+  const pool = useMemo(() => (source === 'wish' ? allPlaces.filter((p) => liked.has(p.id)) : allPlaces), [source, allPlaces, liked]);
   const [inView, setInView] = useState(false);
   const [more, setMore] = useState(false);
   const ref = useRef<HTMLOListElement>(null);
@@ -211,9 +229,8 @@ export function ExplorePanel() {
     const c = voteCounts(votes);
     return (id: string) => c.get(id)?.like ?? 0;
   }, [votes]);
-  const area = filter.areas.length === 1 ? areas.find((a) => a.id === filter.areas[0]) : undefined;
-  const list = useMemo(() => explorePlaces(places, filter, inView ? bounds : null, sort, likes), [places, filter, inView, bounds, sort, likes]);
-  const counts = useMemo(() => typeCounts(places, filter, inView ? bounds : null), [places, filter, inView, bounds]);
+  const list = useMemo(() => explorePlaces(pool, filter, inView ? bounds : null, sort, likes, query), [pool, filter, inView, bounds, sort, likes, query]);
+  const counts = useMemo(() => typeCounts(pool, filter, inView ? bounds : null, query), [pool, filter, inView, bounds, query]);
 
   // 地圖上點了某個點：清單直接跳到那張卡片（清單可能很長，平滑捲動會在半路被照片載入打斷）
   useEffect(() => {
@@ -221,49 +238,28 @@ export function ExplorePanel() {
     ref.current?.querySelector<HTMLElement>(`[data-id="${CSS.escape(target.id)}"]`)?.scrollIntoView({ block: 'center' });
   }, [target]);
 
-  const pickArea = (id: string | null) => {
-    const s = appStore.getState();
-    s.setFilter({ areas: id ? [id] : [], regions: [] });
-    if (id) commands.focus({ area: id });
-  };
-  const quickOn = (q: { key: FilterKey; value: string }) => (filter[q.key] as string[]).includes(q.value);
+  // 搜尋時這一類沒有、別類有：直接切過去（打「水族」不用自己找在哪一類）；剛打開想去時也一樣（還沒人 ❤️ 餐廳時先看景點）
+  const opened = useRef(false);
+  useEffect(() => {
+    const first = source === 'wish' && !opened.current;
+    opened.current = true;
+    if ((!query.trim() && !first) || counts[type] > 0) return;
+    const other = EXPLORE_TYPES.find((t) => counts[t] > 0);
+    if (other) appStore.getState().setFilter({ types: [other] });
+  }, [query, counts, type, source]);
+
+  const quickOn = (q: { key: FilterKey; value: string }) =>(filter[q.key] as string[]).includes(q.value);
   // 「更多篩選」的 ●：只算外面那排標籤沒有的條件
   const extra = { ...filter, areas: [], regions: [], types: [] };
   for (const q of QUICK[type]) (extra[q.key] as string[]) = (extra[q.key] as string[]).filter((v) => v !== q.value);
 
   // 往下捲到篩選都看不到時，上方只留類型和一列摘要；點摘要展開篩選
   const toggleQuick = (q: { key: FilterKey; value: string }) => appStore.getState().toggleFilter(q.key, q.value);
-  const summary = [...filterChips(filter, areas).filter((c) => c.key !== 'types').map((c) => c.label), ...(inView ? ['地圖畫面裡'] : [])];
+  const summary = [...(query.trim() ? [`「${query.trim()}」`] : []), ...filterChips(filter, areas).filter((c) => c.key !== 'types').map((c) => c.label), ...(inView ? ['地圖畫面裡'] : [])];
   const controls = (
     <>
-      <div className="ex-areas" role="group" aria-label="地區">
-        <button type="button" className={`pill ${filter.areas.length === 0 ? 'on' : ''}`} onClick={() => pickArea(null)}>
-          全部地區
-        </button>
-        {areas.map((a) => (
-          <button key={a.id} type="button" className={`pill ${area?.id === a.id ? 'on' : ''}`} onClick={() => pickArea(a.id)} data-area={a.id}>
-            {displayName(a.name, a.id)}
-          </button>
-        ))}
-      </div>
-      {area?.regions?.length ? (
-        <div className="ex-regions" role="group" aria-label="小區域">
-          {area.regions.map((r) => (
-            <button
-              key={r.id}
-              type="button"
-              className={`pill small-pill ${filter.regions.includes(r.id) ? 'on' : ''}`}
-              aria-pressed={filter.regions.includes(r.id)}
-              onClick={() => {
-                appStore.getState().toggleFilter('regions', r.id);
-                commands.focus({ region: r.id });
-              }}
-            >
-              {displayName(r.name, r.id)}
-            </button>
-          ))}
-        </div>
-      ) : null}
+      <SearchBox />
+      <AreaFilter />
       <div className="ex-quick">
         {QUICK[type].map((q) => (
           <button key={`${q.key}:${q.value}`} type="button" className={`pill small-pill ${quickOn(q) ? 'on' : ''}`} aria-pressed={quickOn(q)} onClick={() => toggleQuick(q)}>
@@ -318,7 +314,7 @@ export function ExplorePanel() {
   );
 
   return (
-    <div className="explore-panel" data-testid="explore-panel">
+    <div className={`explore-panel source-${source}`} data-testid={source === 'wish' ? 'wish-panel' : 'explore-panel'}>
       {/* 黏在上面：餐廳／住宿／景點；收合時下面多一列摘要（疊在清單上，不推動清單） */}
       <div className="ex-head" ref={headRef}>
         <div className="segmented big ex-types" role="tablist" aria-label="類型">
@@ -355,9 +351,11 @@ export function ExplorePanel() {
       <div ref={sentinelRef} aria-hidden />
       <ol className={`ex-list view-${view}`} ref={ref}>
         {list.map((p, i) => (
-          <Item key={p.id} place={p} rank={i + 1} view={view} hot={hoveredId === p.id || target?.id === p.id} />
+          <Item key={p.id} place={p} rank={i + 1} view={view} hot={hoveredId === p.id || target?.id === p.id} source={source} />
         ))}
-        {list.length === 0 && <li className="muted ex-empty">沒有符合的地點，取消一些篩選看看。</li>}
+        {list.length === 0 && (
+          <li className="muted ex-empty">{source === 'wish' && pool.length === 0 ? '還沒有人按 ❤️。在探索或詳情按 ❤️，就會出現在這裡。' : '沒有符合的地點，取消一些篩選看看。'}</li>
+        )}
       </ol>
     </div>
   );
@@ -365,7 +363,7 @@ export function ExplorePanel() {
 
 
 /**
- * 電腦版點了地圖上的點：右側切到探索、換成那一類、捲到那張卡片，點會閃。
+ * 電腦版點了地圖上的點：右側切到探索（在想去分頁、而且這個點有人 ❤️ 時留在想去）、換成那一類、捲到那張卡片，點會閃。
  * 目前的篩選看不到它時，改成只篩那一類和那個地區。車站不在探索裡，直接開詳情。
  */
 export function showInExplore(id: string) {
@@ -378,17 +376,18 @@ export function showInExplore(id: string) {
     return;
   }
   s.closeDetail();
-  s.setMode('explore');
+  s.setMode(s.mode === 'wish' && likedPlaces(shared.store.getState().votes).has(id) ? 'wish' : 'explore');
   const keep = { ...s.filter, types: [p.type] };
   s.setFilter(matchesFilter(p, keep) ? keep : { ...EMPTY_FILTER, types: [p.type], areas: p.area ? [p.area] : [] });
+  if (!matchesQuery(p, s.query)) s.setQuery('');
   s.hover(id);
   s.revealInExplore(id);
 }
 
-/** 右側切回「行程」：關掉詳情；從探索切回來時拿掉探索加上的類型 */
+/** 右側切回「行程」：關掉詳情；從探索、想去切回來時拿掉探索加上的類型 */
 export function showItinerary() {
   const s = appStore.getState();
-  const leaving = s.mode === 'explore';
+  const leaving = s.mode === 'explore' || s.mode === 'wish';
   s.closeDetail();
   s.setMode('map');
   if (leaving && s.filter.types.length) s.setFilter({ types: [] });

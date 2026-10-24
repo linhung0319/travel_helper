@@ -1,7 +1,7 @@
-// 右側「探索」分頁的清單：符合篩選的點，依推薦、評分或 ❤️ 排好；可以只列地圖畫面裡的。
+// 右側「探索」分頁的清單：符合篩選和搜尋的點，依推薦、評分或 ❤️ 排好；可以只列地圖畫面裡的。
 // 參考 Google Maps 的搜尋結果、食べログ的排行：一列一個點，點了地圖移過去。
 
-import { matchesFilter, type Filter } from './filter.ts';
+import { matchesFilter, matchesQuery, type Filter } from './filter.ts';
 import { inBbox } from './areas.ts';
 import { wallPlaces } from './visual.ts';
 import type { Bbox, Place, PlaceType } from '../data/types.ts';
@@ -24,9 +24,9 @@ export function ratingOf(p: Place): number | null {
   return null;
 }
 
-export function explorePlaces(places: Place[], filter: Filter, bounds: Bbox | null, sort: ExploreSort, likes: (id: string) => number): Place[] {
+export function explorePlaces(places: Place[], filter: Filter, bounds: Bbox | null, sort: ExploreSort, likes: (id: string) => number, query = ''): Place[] {
   // 推薦：S → A → B，同級依評論數（和原本的圖片牆一樣）
-  const list = wallPlaces(places, bounds ?? WORLD, filter).filter((p) => p.type !== 'station');
+  const list = wallPlaces(places, bounds ?? WORLD, filter, query).filter((p) => p.type !== 'station');
   if (sort === 'recommend') return list;
   const key = sort === 'rating' ? (p: Place) => ratingOf(p) ?? -1 : (p: Place) => likes(p.id);
   // 穩定排序：同分時保留推薦的順序
@@ -37,11 +37,11 @@ export function explorePlaces(places: Place[], filter: Filter, bounds: Bbox | nu
 }
 
 /** 每一類各有幾個（區域、其他篩選照目前的，不看類型） */
-export function typeCounts(places: Place[], filter: Filter, bounds: Bbox | null): Record<ExploreType, number> {
+export function typeCounts(places: Place[], filter: Filter, bounds: Bbox | null, query = ''): Record<ExploreType, number> {
   const out = { restaurant: 0, lodging: 0, spot: 0 };
   for (const p of places) {
     if (p.type === 'station' || (bounds && !inBbox(p.coords, bounds))) continue;
-    if (matchesFilter(p, { ...filter, types: [] })) out[p.type] += 1;
+    if (matchesFilter(p, { ...filter, types: [] }) && matchesQuery(p, query)) out[p.type] += 1;
   }
   return out;
 }

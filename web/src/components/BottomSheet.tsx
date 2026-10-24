@@ -1,6 +1,8 @@
 import { useRef, useState, type PointerEvent as ReactPointerEvent } from 'react';
 import { appStore, type SheetSnap } from '../store.ts';
 import { useApp, useData } from '../hooks.ts';
+import { useLiked } from './Wishlist.tsx';
+import { ExplorePanel } from './Explore.tsx';
 import { DetailPanel } from './DetailPanel.tsx';
 import { ChatPanel, DayPanel } from './Panels.tsx';
 
@@ -15,7 +17,8 @@ function snapHeight(snap: SheetSnap, avail: number): number {
 }
 
 /**
- * 手機的拉起面板（interaction-design §1）：聊天、這一天、詳情。
+ * 手機的拉起面板（interaction-design §1）：聊天、這一天、想去、詳情。想去和電腦版的想去分頁一樣（只放有人 ❤️ 的探索），
+ * 打開時地圖也只亮這些點（mode 換成 wish）。
  * 拉把手可以在三段之間切換；點把手也會切換。只有面板能拉，地圖上的點不做拖拉。
  */
 export function BottomSheet() {
@@ -57,9 +60,12 @@ export function BottomSheet() {
 
   const place = detailId ? byId.get(detailId) : null;
   const height = dragH ?? null;
-  const tab = (t: 'chat' | 'day') => {
+  const wishCount = useLiked().size;
+  const tab = (t: 'chat' | 'day' | 'wish') => {
     const s = appStore.getState();
     s.closeDetail();
+    if (t === 'wish') s.setMode('wish');
+    else if (s.mode === 'wish') s.setMode('map');
     s.setSheet({ tab: t, snap: s.sheet.snap === 'peek' ? 'half' : s.sheet.snap });
   };
 
@@ -81,8 +87,11 @@ export function BottomSheet() {
         <button type="button" role="tab" aria-selected={!place && sheet.tab === 'day'} onClick={() => tab('day')}>
           📅 這一天
         </button>
+        <button type="button" role="tab" aria-selected={!place && sheet.tab === 'wish'} onClick={() => tab('wish')} data-testid="sheet-tab-wish">
+          ❤️ 想去{wishCount > 0 && <span className="tab-count">{wishCount}</span>}
+        </button>
       </div>
-      <div className="sheet-body">{place ? <DetailPanel place={place} /> : sheet.tab === 'chat' ? <ChatPanel /> : <DayPanel />}</div>
+      <div className="sheet-body">{place ? <DetailPanel place={place} /> : sheet.tab === 'chat' ? <ChatPanel /> : sheet.tab === 'wish' ? <ExplorePanel source="wish" /> : <DayPanel />}</div>
     </div>
   );
 }

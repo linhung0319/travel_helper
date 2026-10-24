@@ -11,7 +11,7 @@ export function ChatPanel() {
     <div className="chat-panel" data-testid="chat-panel">
       <div className="placeholder">
         <p>💬 AI 聊天（T16 接上）</p>
-        <p className="muted small">之後可以在這裡用說的找地點、寫建議、排行程。</p>
+        <p className="muted small">之後可以在這裡用說的找地點、按 ❤️、排行程。</p>
       </div>
       {selection.length > 0 && (
         <div className="chips selection">

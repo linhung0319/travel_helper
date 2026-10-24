@@ -10,7 +10,7 @@ import type { Change } from '@travel-helper/engine';
 /** 'all'＝全部的天；否則是 YYYY-MM-DD */
 export type DaySelection = 'all' | string;
 
-export type SheetTab = 'chat' | 'day';
+export type SheetTab = 'chat' | 'day' | 'wish';
 export type SheetSnap = 'peek' | 'half' | 'full';
 
 /** 叫地圖移動的請求：MapView 看到 seq 變了就移過去（使用者自己拖地圖不會產生請求） */
@@ -67,7 +67,9 @@ export interface AppState {
   view: { center: LonLat; zoom: number; bounds: Bbox } | null;
   day: DaySelection;
   filter: Filter;
-  mode: 'map' | 'explore';
+  /** 搜尋欄（探索、想去、地圖共用；不放進 Filter） */
+  query: string;
+  mode: 'map' | 'explore' | 'wish';
   /** 規劃模式（T15 接上進入前確認、閒置退出） */
   planning: boolean;
   /** 滑鼠移過去、或在圖片牆點了的點：地圖上會閃 */
@@ -99,6 +101,7 @@ export interface AppActions {
   setFilter(patch: Partial<Filter>): void;
   toggleFilter(key: FilterKey, value: string): void;
   clearFilter(): void;
+  setQuery(query: string): void;
   setMode(mode: AppState['mode']): void;
   setPlanning(on: boolean): void;
   hover(id: string | null): void;
@@ -128,6 +131,7 @@ export const initialState: AppState = {
   view: null,
   day: 'all',
   filter: EMPTY_FILTER,
+  query: '',
   mode: 'map',
   planning: false,
   hoveredId: null,
@@ -155,6 +159,7 @@ export function createAppStore(init: Partial<AppState> = {}) {
     toggleFilter: (key, value) =>
       set((s) => ({ filter: { ...s.filter, [key]: toggleValue(s.filter[key] as string[], value) } })),
     clearFilter: () => set({ filter: EMPTY_FILTER }),
+    setQuery: (query) => set({ query }),
     setMode: (mode) => set({ mode }),
     setPlanning: (planning) => set({ planning }),
     hover: (hoveredId) => set({ hoveredId }),

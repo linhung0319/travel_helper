@@ -203,15 +203,12 @@ export function itineraryFeatures(
   return { lines: collection(lines), alts: collection(alts), legs };
 }
 
-/** 地圖上每個點的小標記：💬 建議數、❤️ 數（interaction-design §3、§9） */
-export function placeBadges(byId: Map<string, Place>, suggestions: Map<string, number>, likes: Map<string, number>): { id: string; coords: LonLat; text: string }[] {
-  const ids = new Set([...suggestions.keys(), ...likes.keys()]);
+/** 地圖上每個點的小標記：❤️ 數（想去的人數，interaction-design §3、§9） */
+export function placeBadges(byId: Map<string, Place>, likes: Map<string, number>): { id: string; coords: LonLat; text: string }[] {
   const out: { id: string; coords: LonLat; text: string }[] = [];
-  for (const id of ids) {
+  for (const [id, n] of likes) {
     const p = byId.get(id);
-    if (!p) continue;
-    const parts = [suggestions.get(id) ? `💬${suggestions.get(id)}` : '', likes.get(id) ? `❤️${likes.get(id)}` : ''].filter(Boolean);
-    if (parts.length) out.push({ id, coords: p.coords, text: parts.join(' ') });
+    if (p && n > 0) out.push({ id, coords: p.coords, text: `❤️${n}` });
   }
   return out;
 }

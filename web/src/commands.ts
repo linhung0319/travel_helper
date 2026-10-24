@@ -57,7 +57,7 @@ export interface ViewState {
   filterLabels: string[];
   /** 符合篩選的點有幾個 */
   filterCount: number;
-  mode: 'map' | 'explore';
+  mode: 'map' | 'explore' | 'wish';
   planning: boolean;
   /** 「問 AI」選取的點 */
   selection: { id: string; name: string; type: string }[];

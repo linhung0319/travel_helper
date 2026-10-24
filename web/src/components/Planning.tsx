@@ -2,12 +2,10 @@
 // 快照列表與復原、「排進行程」、「移到第 _ 天」、別人改過了的提示。
 
 import { useEffect, useState } from 'react';
-import { addItem, describeChanges, diffItinerary, moveItemToDay, setLodging } from '@travel-helper/engine';
-import type { Itinerary } from '@travel-helper/engine/types';
+import { describeChanges, diffItinerary, moveItemToDay } from '@travel-helper/engine';
 import { appStore } from '../store.ts';
 import { shared } from '../appShared.ts';
 import { backend } from '../backend/index.ts';
-import { addProposer, pendingCount } from '../sharedStore.ts';
 import { useApp, useData, useShared, useUi } from '../hooks.ts';
 import { closeDialog, openDialog, uiStore } from '../uiStore.ts';
 import { dayLabel, shortDayLabel, tripDates } from '../lib/trip.ts';
@@ -15,7 +13,7 @@ import { findItemRef, itemsWithPlace } from '../lib/planView.ts';
 import { stopsOn } from '../lib/itinerary.ts';
 import type { Snapshot } from '../backend/types.ts';
 import { Dialog, MemberName, PlaceChip, stamp } from './common.tsx';
-import { SuggestionCard } from './Suggestions.tsx';
+import { addPlaceToDay } from './addToDay.ts';
 
 const DATES = tripDates();
 
@@ -40,7 +38,6 @@ export function PlanningToggle() {
 }
 
 export function PlanningConfirmDialog() {
-  const pending = useShared((s) => pendingCount(s.suggestions));
   const idle = useUi((s) => s.idleMinutes);
   return (
     <Dialog
@@ -66,20 +63,18 @@ export function PlanningConfirmDialog() {
         </>
       }
     >
-      <p>進入後可以修改<strong>大家共用的那一份行程</strong>：排進行程、刪除、移到別天、換順序、標建議的狀態、復原快照。</p>
+      <p>進入後可以修改<strong>大家共用的那一份行程</strong>：把這天的候選排進行程、拿掉別人加的候選、刪除、移到別天、換順序、改停留時間、復原快照。</p>
       <ul className="small">
         <li>每次修改前都會自動存一份快照，改錯了可以復原。</li>
         <li>{idle} 分鐘沒有動作會自動退出。</li>
-        {pending > 0 && <li>目前有 {pending} 則待處理的建議。</li>}
       </ul>
     </Dialog>
   );
 }
 
-/** 規劃模式中一直顯示：待處理的建議、快照、儲存狀態、退出 */
+/** 規劃模式中一直顯示：快照、儲存狀態、退出 */
 export function PlanningBar() {
   const planning = useApp((s) => s.planning);
-  const pending = useShared((s) => pendingCount(s.suggestions));
   const saving = useShared((s) => s.saving);
   const version = useShared((s) => s.version);
   if (!planning) return null;
@@ -88,9 +83,6 @@ export function PlanningBar() {
       <strong>🛠 規劃模式中</strong>
       <span className="muted small">{saving ? '儲存中…' : `第 ${version} 版`}</span>
       <span className="planning-bar-actions">
-        <button type="button" className="text-button" onClick={() => openDialog({ kind: 'pending' })} data-testid="pending-button">
-          📝 待處理 <span className={`count ${pending ? 'hot' : ''}`}>{pending}</span>
-        </button>
         <button type="button" className="text-button" onClick={() => openDialog({ kind: 'snapshots' })} data-testid="snapshots-button">
           🕘 快照
         </button>
@@ -99,18 +91,6 @@ export function PlanningBar() {
         </button>
       </span>
     </div>
-  );
-}
-
-/** 不在規劃模式時，待處理的建議數量也看得到（點了進建議清單） */
-export function PendingBadge() {
-  const planning = useApp((s) => s.planning);
-  const pending = useShared((s) => pendingCount(s.suggestions));
-  if (planning || !pending) return null;
-  return (
-    <button type="button" className="toggle pending-badge" onClick={() => openDialog({ kind: 'pending' })} title="待處理的建議">
-      📝 {pending}
-    </button>
   );
 }
 
@@ -250,42 +230,24 @@ export function SnapshotsDialog() {
   );
 }
 
-/** 排進行程（詳情面板的「📅 排進行程」）：選哪一天；住宿是設成那晚住這裡。可以順便把提到這個點的建議標成已採用 */
+/** 排進行程（詳情面板的「📅 排進行程」）：選哪一天，插在那天最順路的位置；住宿是設成那晚住這裡 */
 export function AddToDayDialog({ placeId, day: initialDay }: { placeId: string; day?: string }) {
   const byId = useData((s) => s.byId);
   const p = byId.get(placeId);
   const itinerary = useData((s) => s.itinerary);
   const selectedDay = useApp((s) => s.day);
-  const suggestions = useShared((s) => s.suggestions);
-  const related = suggestions.filter((s) => s.status === 'pending' && s.placeIds.includes(placeId));
-  const [day, setDay] = useState(initialDay ?? (selectedDay !== 'all' ? selectedDay : (related.find((s) => s.day !== 'trip')?.day ?? DATES[0])));
-  const [adopt, setAdopt] = useState<Set<number>>(() => new Set(related.filter((s) => s.day === 'trip' || s.day === day).map((s) => s.id)));
+  const candidates = useShared((s) => s.candidates);
+  const candDays = new Set(candidates.filter((c) => c.placeId === placeId).map((c) => c.day));
+  const [day, setDay] = useState(initialDay ?? (selectedDay !== 'all' ? selectedDay : ([...candDays].sort()[0] ?? DATES[0])));
   const [busy, setBusy] = useState(false);
   if (!p || !itinerary) return null;
   const lodging = p.type === 'lodging';
   const already = itemsWithPlace(itinerary, placeId);
   const name = p.name.zh || p.name.ja;
   const submit = async () => {
-    const adopted = related.filter((x) => adopt.has(x.id));
     setBusy(true);
-    let newId: string | null = null;
-    const r = await shared.changeItinerary(
-      (it: Itinerary) => {
-        if (lodging) return setLodging(it, day, placeId);
-        const added = addItem(it, day, { type: 'visit', options: [{ place: placeId, stayMinutes: null }], addedBy: shared.store.getState().me?.id ?? null });
-        newId = added.itemId;
-        // 「誰提的」一起寫進去：一個動作只存一次檔、只有一份快照，復原才會整個回去
-        let next = added.itinerary;
-        for (const s of adopted) next = addProposer(next, [added.itemId], s.author);
-        return next;
-      },
-      lodging ? `${shortDayLabel(day)} 住 ${name}` : `${shortDayLabel(day)}：＋${name}`,
-    );
-    if (r.ok) {
-      for (const s of adopted) await shared.setSuggestionStatus(s.id, 'adopted', { adoptedItemIds: newId ? [newId] : [] });
-      appStore.getState().selectDay(day);
-      closeDialog();
-    }
+    const r = await addPlaceToDay(placeId, day);
+    if (r.ok) closeDialog();
     setBusy(false);
   };
   return (
@@ -306,7 +268,7 @@ export function AddToDayDialog({ placeId, day: initialDay }: { placeId: string; 
     >
       {already.length > 0 && <p className="small warn">已經排在 {already.map((r) => shortDayLabel(r.date)).join('、')}。</p>}
       <div className="field">
-        <span className="field-label">{lodging ? '哪一晚' : '哪一天（排在那天的最後）'}</span>
+        <span className="field-label">{lodging ? '哪一晚' : '哪一天（插在那天最順路的位置）'}</span>
         <div className="day-picker">
           {DATES.map((d) => {
             const dayData = itinerary.days.find((x) => x.date === d);
@@ -315,33 +277,16 @@ export function AddToDayDialog({ placeId, day: initialDay }: { placeId: string; 
             const lodgeName = lodge ? lodge.name.zh || lodge.name.ja : (dayData?.lodging ?? null);
             return (
               <button key={d} type="button" className={`day-pick ${d === day ? 'on' : ''}`} aria-pressed={d === day} onClick={() => setDay(d)} data-pick-day={d}>
-                <span>{dayLabel(d)}</span>
+                <span>
+                  {dayLabel(d)}
+                  {candDays.has(d) ? '・候選' : ''}
+                </span>
                 <span className="muted small">{lodging ? (lodgeName ? `住 ${lodgeName}` : '還沒排住宿') : `${count} 個點`}</span>
               </button>
             );
           })}
         </div>
       </div>
-      {related.length > 0 && (
-        <div className="field">
-          <span className="field-label">提到這個點的建議，順便標成已採用</span>
-          {related.map((s) => (
-            <label key={s.id} className="check">
-              <input
-                type="checkbox"
-                checked={adopt.has(s.id)}
-                onChange={() => {
-                  const next = new Set(adopt);
-                  if (next.has(s.id)) next.delete(s.id);
-                  else next.add(s.id);
-                  setAdopt(next);
-                }}
-              />
-              <SuggestionCard s={s} showDay />
-            </label>
-          ))}
-        </div>
-      )}
     </Dialog>
   );
 }

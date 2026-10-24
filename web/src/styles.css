@@ -1252,9 +1252,6 @@ dl {
   flex: 0 0 auto;
 }
 
-.check .suggestion {
-  flex: 1;
-}
 
 .segmented.big {
   margin: 8px 0;
@@ -1480,12 +1477,6 @@ dl {
   gap: 6px;
   padding: 4px 8px;
   flex-wrap: wrap;
-}
-
-.pending-badge {
-  background: var(--plan-bg);
-  border-color: var(--plan);
-  color: var(--plan);
 }
 
 .planning-bar {
@@ -1875,73 +1866,251 @@ dl {
   background: var(--soft);
 }
 
-/* ---------- 建議 ---------- */
+/* ---------- 想去（❤️ 就是想去；探索的卡片＋頭像、留言、加到某天）、這天的候選 ---------- */
 
-.suggestion-list {
+.wish-card {
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 4px;
 }
 
-.suggestion {
+.wish-card.view-photo {
   border: 1px solid var(--line);
-  border-left: 4px solid var(--plan);
-  border-radius: 8px;
+  border-radius: var(--radius);
+  overflow: hidden;
+  background: var(--bg);
+}
+
+.wish-card.view-photo > .ex-card {
+  border: 0;
+  border-radius: 0;
+}
+
+.wish-card.view-list {
+  border-bottom: 1px solid var(--line);
+  padding-bottom: 6px;
+}
+
+.wish-card.view-list > .ex-row {
+  border-bottom: 0;
+}
+
+.wish-card.flash {
+  border-color: var(--fg);
+}
+
+.wish-extras {
+  padding: 0 12px 8px;
+}
+
+.wish-card.view-list .wish-extras {
+  padding: 0 8px 0 40px;
+}
+
+.wish-days {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  margin: 4px 0;
+}
+
+.cand-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.cand {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 4px 8px;
+  border: 1px dashed var(--line);
+  border-radius: 10px;
   padding: 6px 10px;
   background: var(--bg);
 }
 
-.suggestion.status-adopted {
-  border-left-color: var(--good);
+.cand.hot {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 2px var(--info-bg);
 }
 
-.suggestion.status-declined {
-  border-left-color: var(--line);
-  background: var(--soft);
+.cand-name {
+  border: 0;
+  background: none;
+  padding: 0;
+  font: inherit;
+  color: inherit;
+  text-align: left;
+  cursor: pointer;
 }
 
-.suggestion-head {
+.cand-meta {
+  margin-left: auto;
+}
+
+.cand-up {
+  min-height: 30px;
+  min-width: 34px;
+  padding: 2px 8px;
+  font-weight: 700;
+}
+
+.day-candidates h4 {
+  margin: 0 0 6px;
+  font-size: 0.95rem;
+}
+
+
+
+
+
+
+
+
+
+
+
+.wish-meta {
   display: flex;
   align-items: center;
-  gap: 6px;
   flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 4px;
 }
 
-.suggestion-head .badge {
+.wish-reactions {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+
+
+.avatars {
+  display: inline-flex;
+}
+
+.avatars .avatar {
+  width: 22px;
+  height: 22px;
+  font-size: 0.7rem;
+  margin-left: -4px;
+  border: 2px solid var(--bg);
+  overflow: hidden;
+}
+
+.avatars .avatar:first-child {
   margin-left: 0;
 }
 
-.suggestion-day {
-  font-weight: 600;
-  font-size: 0.9rem;
+.avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
-.suggestion-text {
-  margin: 4px 0;
-  white-space: pre-wrap;
+.avatar.me {
+  background: var(--good);
 }
 
-.suggestion .chips {
-  flex-wrap: wrap;
+.hope-chip.scheduled {
+  background: var(--soft);
+  color: var(--fg);
 }
 
-.suggestion-status {
-  margin: 4px 0 0;
+.hope-chip {
+  font-size: 0.78rem;
+  padding: 1px 8px;
+  border-radius: 999px;
+  background: var(--info-bg);
+  color: var(--accent);
+}
+
+
+.tag {
+  font-size: 0.78rem;
+  margin-left: 4px;
   color: var(--muted);
 }
 
-.suggestion-actions {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 2px;
-  margin: 2px -6px 0;
+.tag-planner {
+  color: var(--accent);
 }
 
-.status-pending {
-  background: var(--plan-bg);
-  color: var(--plan);
+.tag-decline {
+  color: var(--warn);
 }
+
+.wish-comments {
+  margin-top: 2px;
+}
+
+.wish-comment-list {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 4px 0 0 8px;
+  border-left: 2px solid var(--line);
+}
+
+.wish-comment {
+  display: flex;
+  gap: 6px;
+  align-items: flex-start;
+}
+
+.wish-comment .avatar {
+  width: 22px;
+  height: 22px;
+  font-size: 0.7rem;
+}
+
+.wish-comment-body {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.wish-comment-text {
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+
+.wish-comment.kind-decline .wish-comment-text {
+  color: var(--warn);
+}
+
+.wish-comment-actions {
+  display: flex;
+  gap: 2px;
+  margin-left: -6px;
+}
+
+.wish-comment-new,
+.wish-comment-edit {
+  display: flex;
+  gap: 4px;
+}
+
+.wish-comment-new input,
+.wish-comment-edit input {
+  flex: 1;
+  min-width: 0;
+  padding: 4px 8px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  font: inherit;
+  background: var(--bg);
+  color: inherit;
+}
+
+
+
 
 .status-declined {
   background: var(--soft);
@@ -3102,4 +3271,191 @@ body.dragging-place [data-drop-ai].drop-over {
   color: #fff;
   font-size: 0.75rem;
   font-weight: 700;
+}
+
+/* 搜尋欄（探索、想去清單） */
+.search-box { position: relative; display: flex; align-items: center; margin: 0 0 8px; }
+.search-box input { flex: 1; min-width: 0; padding: 7px 30px 7px 32px; border: 1px solid var(--line); border-radius: 999px; font: inherit; background: var(--bg); color: inherit; }
+.search-box input::-webkit-search-cancel-button { display: none; }
+.search-icon { position: absolute; left: 10px; font-size: 13px; opacity: .6; pointer-events: none; }
+.search-clear { position: absolute; right: 6px; border: 0; background: none; cursor: pointer; padding: 4px 6px; color: var(--muted); }
+
+.panel-actions .planning-toggle {
+  order: 2;
+  margin-left: auto;
+  align-self: center;
+}
+
+
+/* ---------- 時間軸改版（卡片、停留時間、比例橫條） ---------- */
+
+.tl-card {
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: 6px 8px;
+  background: var(--bg);
+}
+
+.tl-start-time {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--fg);
+  border: 0;
+  background: none;
+  padding: 0;
+  font-variant-numeric: tabular-nums;
+  text-align: left;
+  font-family: inherit;
+}
+
+.tl-start-time.fixable {
+  cursor: pointer;
+  border-bottom: 1px dashed var(--line);
+  width: fit-content;
+}
+
+.tl-name {
+  font-size: 1.02rem;
+}
+
+.stay-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+  width: fit-content;
+  font-size: 0.8rem;
+  color: var(--muted);
+  background: var(--soft);
+  border-radius: 999px;
+  padding: 0 8px;
+}
+
+.stay-chip button {
+  border: 0;
+  background: none;
+  min-width: 26px;
+  min-height: 26px;
+  font-size: 1rem;
+  cursor: pointer;
+  color: var(--accent);
+}
+
+.stay-chip button:disabled {
+  color: var(--line);
+}
+
+.warn-toggle {
+  margin-left: auto;
+  border: 1px solid var(--line);
+  background: var(--bg);
+  border-radius: 999px;
+  font-size: 0.78rem;
+  padding: 0 8px;
+  min-height: 24px;
+  cursor: pointer;
+}
+
+.warn-toggle.level-error {
+  border-color: var(--bad);
+  color: var(--bad);
+}
+
+.warn-toggle.level-warning {
+  border-color: var(--warn);
+  color: var(--warn);
+}
+
+.tl-card .item-menu {
+  margin-left: 0;
+}
+
+.day-warnings {
+  margin: 6px 0;
+}
+
+.day-bar {
+  margin: 6px 0 4px;
+}
+
+.day-bar-track {
+  position: relative;
+  background: var(--soft);
+  border-radius: 4px;
+}
+
+.day-bar-seg {
+  position: absolute;
+  border: 0;
+  padding: 0;
+  border-radius: 3px;
+  cursor: pointer;
+  min-width: 2px;
+}
+
+.seg-visit {
+  background: var(--day, var(--accent));
+}
+
+.seg-meal {
+  background: #f08c00;
+}
+
+.seg-travel {
+  background: repeating-linear-gradient(90deg, #8c959f 0 3px, transparent 3px 5px);
+}
+
+.seg-idle {
+  background: transparent;
+  outline: 1px dashed #8c959f;
+  outline-offset: -1px;
+}
+
+.day-bar-scale {
+  display: flex;
+  justify-content: space-between;
+}
+
+/* ---------- 規劃模式的拖曳：卡片換順序、想去清單拖進時間軸 ---------- */
+
+.tl-card.movable {
+  cursor: grab;
+}
+
+.tl-card.movable .tl-name {
+  cursor: pointer;
+}
+
+
+.drop-before {
+  box-shadow: inset 0 3px 0 var(--accent);
+}
+
+.drop-after {
+  box-shadow: inset 0 -3px 0 var(--accent);
+}
+
+.drag-source {
+  opacity: 0.5;
+}
+
+.tl-dropend {
+  border: 1px dashed var(--line);
+  border-radius: 10px;
+  padding: 6px 10px;
+  text-align: center;
+  display: none;
+}
+
+body.dragging-plan .tl-dropend {
+  display: block;
+}
+
+.tl-dropend.drop-end-over {
+  border-color: var(--accent);
+  background: var(--info-bg);
+  color: var(--accent);
+}
+
+body.dragging-plan .tl-card {
+  user-select: none;
 }

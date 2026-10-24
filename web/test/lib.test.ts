@@ -5,13 +5,13 @@ import { areasExtent, bboxGapMeters, groupAreas, initialExtent } from '../src/li
 import { photoCandidates, wikimediaThumb } from '../src/lib/photos.ts';
 import { departuresAround, terminusName } from '../src/lib/timetable.ts';
 import { dayLabel, hoursKeys, timetableDayType, tripDates } from '../src/lib/trip.ts';
-import { EMPTY_FILTER, filterChips, matchesFilter } from '../src/lib/filter.ts';
+import { EMPTY_FILTER, filterChips, matchesFilter, matchesQuery } from '../src/lib/filter.ts';
 import { closedDaysLabel, rowForDate } from '../src/lib/hours.ts';
 import { nearbyPlaces } from '../src/lib/nearby.ts';
 import { placeVisual, wallPlaces } from '../src/lib/visual.ts';
 import { dayStops, placeDays } from '../src/lib/itinerary.ts';
 import { itin } from './helpers.ts';
-import { stopMarks } from '../src/lib/planView.ts';
+import { dayBar, daySummary, formatStay, stopMarks, timelineRows } from '../src/lib/planView.ts';
 import { explorePlaces, typeCounts } from '../src/lib/explore.ts';
 import type { DayPlan, TimelineEntry } from '@travel-helper/engine';
 import type { Area, Place, StationTimetable } from '../src/data/types.ts';
@@ -252,4 +252,88 @@ test('explorePlaces：不列車站；依評分、❤️ 排序時同分保留推
   assert.deepEqual(ids(explorePlaces(ps, EMPTY_FILTER, null, 'likes', (id) => (id === 'r3' ? 2 : 0))), ['r3', 'r1', 'r2']);
   assert.deepEqual(ids(explorePlaces(ps, EMPTY_FILTER, [136.7, 34.3, 136.9, 34.5], 'recommend', () => 0)), ['r1', 'r2']);
   assert.deepEqual(typeCounts(ps, { ...EMPTY_FILTER, types: ['lodging'] }, null), { restaurant: 3, lodging: 0, spot: 0 });
+});
+
+test('matchesQuery：中文、日文、假名、英文都找得到；不分大小寫、全形半形；空字串都符合', () => {
+  const p = normalizePlace({ id: 'q', type: 'spot', name: { zh: '鳥羽水族館', ja: '鳥羽水族館', kana: 'とばすいぞくかん', en: 'Toba Aquarium' }, area: 'toba', coords: [136.8, 34.5], sources: [] })!;
+  assert.ok(matchesQuery(p, ''));
+  assert.ok(matchesQuery(p, '  '));
+  assert.ok(matchesQuery(p, '水族'));
+  assert.ok(matchesQuery(p, 'すいぞく'));
+  assert.ok(matchesQuery(p, 'aquarium'));
+  assert.ok(matchesQuery(p, 'ＴＯＢＡ'));
+  assert.ok(matchesQuery(p, 'toba aqua'));
+  assert.ok(!matchesQuery(p, '珍珠'));
+});
+
+// --- 時間軸改版：晚餐順序、比例橫條、摘要、停留時間 ---
+
+const leg = (depart: string, minutes: number, buffer = 0): NonNullable<TimelineEntry['travel']> => ({
+  mode: 'taxi',
+  from: null,
+  to: null,
+  depart,
+  arrive: '00:00',
+  minutes,
+  walkMinutes: 0,
+  waitMinutes: 0,
+  bufferMinutes: buffer,
+  rides: [],
+  specified: false,
+  basis: '',
+});
+
+test('timelineRows：沒排的晚餐在回住宿之後（時間不倒流）', () => {
+  const day = {
+    entries: [entry('start', 'h'), entry('visit', 'a', { start: '10:00', end: '15:40' }), entry('lodging', 'h', { itemId: null, arrive: '16:02', start: '16:02', end: '16:02' })],
+    gaps: [{ kind: 'dinner', date: '2027-02-05', label: '晚餐（未排）', from: '17:30', to: '19:30', afterItemId: 'a', beforeItemId: null }],
+  } as unknown as DayPlan;
+  const rows = timelineRows(day);
+  const lodging = rows.findIndex((r) => r.kind === 'entry' && r.entry.kind === 'lodging');
+  const dinner = rows.findIndex((r) => r.kind === 'gap');
+  assert.ok(lodging < dinner, `回住宿（${lodging}）要在晚餐（${dinner}）前面`);
+});
+
+test('dayBar：交通、停留、等待各一段；分組的時段每組一條 lane', () => {
+  const split = entry('meet', 'm', {
+    itemId: 's',
+    arrive: '12:00',
+    start: '12:00',
+    end: '12:00',
+    groups: [
+      { id: 'g1', name: 'A', entries: [entry('visit', 'ga', { itemId: 'ga', travel: leg('10:00', 20), arrive: '10:20', start: '10:20', end: '11:30' })] },
+      { id: 'g2', name: 'B', entries: [entry('visit', 'gb', { itemId: 'gb', travel: leg('10:00', 10), arrive: '10:10', start: '10:30', end: '11:00' })] },
+    ],
+  });
+  const day = { entries: [entry('start', 'h', { start: '09:30', end: '09:30' }), entry('visit', 'a', { travel: leg('09:30', 10), arrive: '09:40', start: '09:40', end: '10:00', meal: null }), split] } as unknown as DayPlan;
+  const bar = dayBar(day);
+  assert.deepEqual(bar.filter((s) => s.lane === 0).map((s) => [s.kind, s.from, s.to]), [
+    ['travel', '09:30', '09:40'],
+    ['visit', '09:40', '10:00'],
+  ]);
+  assert.deepEqual(bar.filter((s) => s.lane === 2).map((s) => [s.kind, s.from, s.to]), [
+    ['travel', '10:00', '10:10'],
+    ['idle', '10:10', '10:30'],
+    ['visit', '10:30', '11:00'],
+  ]);
+});
+
+test('daySummary：出發、回住宿、交通（含緩衝、含各組）、警告數（不算 info）', () => {
+  const day = {
+    entries: [
+      entry('start', 'h', { start: '09:30' }),
+      entry('visit', 'a', { travel: leg('09:30', 10, 10) }),
+      entry('meet', 'm', { groups: [{ id: 'g', name: 'g', entries: [entry('visit', 'b', { travel: leg('11:00', 5, 5) })] }] }),
+      entry('lodging', 'h', { travel: leg('15:00', 20, 10), arrive: '15:30' }),
+    ],
+    warnings: [{ level: 'warning' }, { level: 'info' }, { level: 'error' }],
+  } as unknown as DayPlan;
+  assert.deepEqual(daySummary(day), { start: '09:30', back: '15:30', travelMinutes: 60, warnings: 2 });
+});
+
+test('formatStay', () => {
+  assert.equal(formatStay(45), '45 分');
+  assert.equal(formatStay(60), '1 小時');
+  assert.equal(formatStay(150), '2.5 小時');
+  assert.equal(formatStay(80), '1 小時 20 分');
 });

@@ -5,6 +5,9 @@ import type { DayPlan, EngineWarning, Itinerary, ItineraryItem, Leg, TimelineEnt
 import type { Place } from '../data/types.ts';
 import { MODE_ICONS } from './routing.ts';
 
+/** 引擎自動加的緩衝（集合、上下車），讓人知道時間怎麼來的 */
+const bufferText = (leg: Leg) => (leg.bufferMinutes ? `＋緩衝 ${leg.bufferMinutes} 分` : '');
+
 /** 一段交通的短文字，例如「🚶 8 分」「🚃 特急 10:02→10:15」「🚕 39 分・4 台」 */
 export function legText(leg: Leg): string {
   if (leg.mode === 'none') return '';
@@ -13,10 +16,10 @@ export function legText(leg: Leg): string {
   if (leg.rides.length) {
     const r = leg.rides[0];
     const more = leg.rides.length > 1 ? `＋轉乘 ${leg.rides.length - 1} 次` : '';
-    return `${icon} ${r.line} ${r.depart}→${leg.rides.at(-1)!.arrive}${more}`;
+    return `${icon} ${r.line} ${r.depart}→${leg.rides.at(-1)!.arrive}${more}${bufferText(leg)}`;
   }
   const cars = leg.taxi ? `・${leg.taxi.jumboCars ? `大型 ${leg.taxi.jumboCars} 台或 ` : ''}${leg.taxi.cars} 台` : '';
-  return `${icon} ${leg.minutes} 分${cars}`;
+  return `${icon} ${leg.minutes} 分${bufferText(leg)}${cars}`;
 }
 
 /** 交通的補充：等車、走到車站、怎麼算的 */
@@ -105,16 +108,73 @@ export function timelineRows(day: DayPlan): TimelineRow[] {
   const splitIds = new Set(day.entries.filter((e) => e.groups).map((e) => e.itemId));
   const waits = day.gaps.filter((g) => g.beforeItemId && splitIds.has(g.beforeItemId));
   waits.forEach((g) => used.add(g));
+  // 沒排的晚餐在回住宿之後才開始時，排在住宿那一列後面（時間不倒流）
+  const lodging = day.entries.find((e) => e.kind === 'lodging');
+  const afterLodging = day.gaps.filter((g) => g.kind === 'dinner' && lodging && g.from && g.from >= lodging.arrive);
+  afterLodging.forEach((g) => used.add(g));
   for (const e of day.entries) {
     // 住宿是最後一列：「住宿（未排）」這類空檔放在它前面
     if (e.kind === 'lodging') pushGaps(null);
     const before = e.groups ? waits.filter((g) => g.beforeItemId === e.itemId) : [];
     rows.push(before.length ? { kind: 'entry', entry: e, gapsBeforeMeet: before } : { kind: 'entry', entry: e });
+    if (e.kind === 'lodging') afterLodging.forEach((g) => rows.push({ kind: 'gap', gap: g }));
     if (e.kind === 'start') continue;
     if (e.itemId) pushGaps(e.itemId);
   }
   pushGaps(null);
   return rows;
+}
+
+// --- 這一天的摘要、比例橫條、停留時間 ---------------------------------------
+
+export interface BarSegment {
+  kind: 'visit' | 'meal' | 'travel' | 'idle';
+  from: string;
+  to: string;
+  itemId: string | null;
+  /** 0 是全員；分組的時段，第 n 組是 n */
+  lane: number;
+}
+
+/** 這天按時間比例的橫條：每段交通、等待、停留各一段（出發到回住宿） */
+export function dayBar(day: DayPlan): BarSegment[] {
+  const out: BarSegment[] = [];
+  const walk = (entries: TimelineEntry[], lane: number) => {
+    for (const e of entries) {
+      if (e.kind === 'start') continue;
+      if (e.travel && e.travel.minutes + e.travel.bufferMinutes > 0) out.push({ kind: 'travel', from: e.travel.depart, to: e.arrive, itemId: e.itemId, lane });
+      if (e.groups) {
+        e.groups.forEach((g, i) => walk(g.entries.filter((x) => x.kind !== 'meet'), i + 1));
+        continue;
+      }
+      if (e.start > e.arrive) out.push({ kind: 'idle', from: e.arrive, to: e.start, itemId: e.itemId, lane });
+      if (e.end > e.start) out.push({ kind: e.meal ? 'meal' : 'visit', from: e.start, to: e.end, itemId: e.itemId, lane });
+    }
+  };
+  walk(day.entries, 0);
+  return out;
+}
+
+/** 標題的一行：幾點出發、幾點回住宿、交通多久（含緩衝、各組）、幾個要注意的警告 */
+export function daySummary(day: DayPlan): { start: string | null; back: string | null; travelMinutes: number; warnings: number } {
+  const sum = (entries: TimelineEntry[]): number =>
+    entries.reduce((n, e) => n + (e.travel ? e.travel.minutes + e.travel.bufferMinutes : 0) + (e.groups ?? []).reduce((m, g) => m + sum(g.entries), 0), 0);
+  return {
+    start: day.entries.find((e) => e.kind === 'start')?.start ?? null,
+    back: day.entries.find((e) => e.kind === 'lodging')?.arrive ?? null,
+    travelMinutes: sum(day.entries),
+    warnings: day.warnings.filter((w) => w.level !== 'info').length,
+  };
+}
+
+/** 停留時間的標籤：45 分、1 小時、2.5 小時、1 小時 20 分 */
+export function formatStay(minutes: number): string {
+  if (minutes < 60) return `${minutes} 分`;
+  const h = Math.floor(minutes / 60);
+  const m = minutes % 60;
+  if (m === 0) return `${h} 小時`;
+  if (m === 30) return `${h}.5 小時`;
+  return `${h} 小時 ${m} 分`;
 }
 
 // --- 順序編號 ---------------------------------------------------------------

@@ -7,7 +7,7 @@ import 'maplibre-gl/dist/maplibre-gl.css';
 import { appStore } from '../store.ts';
 import { dataStore } from '../dataStore.ts';
 import { DESKTOP_QUERY, useApp, useCanHover, useData, usePlan, useShared } from '../hooks.ts';
-import { suggestionCounts, voteCounts } from '../sharedStore.ts';
+import { voteCounts } from '../sharedStore.ts';
 import { initialExtent } from '../lib/areas.ts';
 import { TYPE_COLORS } from '../lib/typeStyle.ts';
 import { stopMarks } from '../lib/planView.ts';
@@ -22,13 +22,15 @@ import { compareFeatures, highlightFeatures, itineraryFeatures, placeBadges, pro
 import { commands } from '../appCommands.ts';
 import { MapCommandBars } from './MapCommandBars.tsx';
 import { showInExplore } from './Explore.tsx';
+import { shared } from '../appShared.ts';
+import { likedPlaces } from '../lib/wishlist.ts';
 
 setWorkerUrl(maplibreWorkerUrl);
 
 const STYLE_URL = 'https://tiles.openfreemap.org/styles/liberty';
 /** 放大到這裡以上，小點換成類別圖標（像 Google Maps） */
 export const ICON_ZOOM = 12;
-/** 這個縮放以上才顯示每個點的 💬／❤️ 數字 */
+/** 這個縮放以上才顯示每個點的 ❤️ 數字 */
 const BADGE_ZOOM = 10;
 const DATES = tripDates();
 
@@ -36,15 +38,16 @@ const typeColorExpr = ['match', ['get', 'type'], ...PLACE_TYPES.flatMap((t) => [
 
 /** marks：選定那天的編號（宿、1、2…，planView.stopMarks）；有編號的點畫成那天顏色的編號圓 */
 function featureCollection(places: Place[], marks: Map<string, string>): FeatureCollection {
-  const { filter, day, mode } = appStore.getState();
+  const { filter, query, day, mode } = appStore.getState();
   const { days } = dataStore.getState();
   const color = day === 'all' ? '' : dayColor(DATES, day);
-  // 探索時不因為「不在那天」變淡（找的是那天還沒排的點），只看篩選
-  const dimDay = mode === 'explore' ? 'all' : day;
+  // 探索、想去時不因為「不在那天」變淡（找的是那天還沒排的點），只看篩選；想去時沒人 ❤️ 的點也變淡
+  const dimDay = mode === 'explore' || mode === 'wish' ? 'all' : day;
+  const liked = mode === 'wish' ? likedPlaces(shared.store.getState().votes) : null;
   return {
     type: 'FeatureCollection',
     features: places.map((p) => {
-      const v = placeVisual(p, filter, dimDay, days);
+      const v = placeVisual(p, filter, dimDay, days, query);
       return {
         type: 'Feature',
         id: undefined,
@@ -54,7 +57,7 @@ function featureCollection(places: Place[], marks: Map<string, string>): Feature
           type: p.type,
           tier: p.tier ?? '',
           label: p.name.zh || p.name.ja,
-          dim: v.dim ? 1 : 0,
+          dim: v.dim || (liked && !liked.has(p.id)) ? 1 : 0,
           mark: marks.get(p.id) ?? '',
           dayColor: color,
         },
@@ -82,6 +85,7 @@ export function MapView() {
 
   const places = useData((s) => s.places);
   const filter = useApp((s) => s.filter);
+  const query = useApp((s) => s.query);
   const day = useApp((s) => s.day);
   const hoveredId = useApp((s) => s.hoveredId);
   const previewId = useApp((s) => s.previewId);
@@ -98,7 +102,6 @@ export function MapView() {
   // 行程改了（T15m）：順序編號、變淡要重畫
   const days = useData((s) => s.days);
   const plan = usePlan((s) => s.plan);
-  const suggestions = useShared((s) => s.suggestions);
   const votes = useShared((s) => s.votes);
 
   // 點了一個點：電腦版右側切到探索、捲到那張卡片（再點卡片開詳情）；觸控先出小卡片，同一點再點一次開詳情
@@ -356,7 +359,7 @@ export function MapView() {
         visual: (id: string) => {
           const p = dataStore.getState().byId.get(id);
           const s = appStore.getState();
-          return p ? placeVisual(p, s.filter, s.day, dataStore.getState().days) : null;
+          return p ? placeVisual(p, s.filter, s.day, dataStore.getState().days, s.query) : null;
         },
       };
     }
@@ -381,14 +384,14 @@ export function MapView() {
     if (!loaded) return;
     const marks = day === 'all' ? new Map<string, string>() : stopMarks(dayPlanOf(plan, day), (id) => byId.get(id)?.type === 'lodging').byPlace;
     (mapRef.current!.getSource('places') as GeoJSONSource).setData(featureCollection(places, marks));
-  }, [loaded, places, filter, day, days, plan, byId, mode]);
+  }, [loaded, places, filter, query, day, days, plan, byId, mode, votes]);
 
   // 選中的點（詳情、探索捲到的卡片）：換成水滴圖釘，原本的圖標藏起來；只有小卡片的點：框起來
   // 滑鼠移過去、圖片牆點了的點：閃一下
   useEffect(() => {
     if (!loaded) return;
     const map = mapRef.current!;
-    const pinned = detailId ?? (mode === 'explore' ? exploreTarget?.id : null) ?? '';
+    const pinned = detailId ?? (mode === 'explore' || mode === 'wish' ? exploreTarget?.id : null) ?? '';
     map.setFilter('places-pin', ['==', ['get', 'id'], pinned]);
     map.setFilter('places-icon', ['all', ['==', ['get', 'mark'], ''], ['!=', ['get', 'id'], pinned]]);
     map.setFilter('places-circle', ['all', ['==', ['get', 'mark'], ''], ['!=', ['get', 'id'], pinned]]);
@@ -475,12 +478,12 @@ export function MapView() {
     });
   }, [loaded, itinerary, plan, byId, day]);
 
-  // 每個點的 💬 建議數、❤️ 數（放大到 BADGE_ZOOM 才顯示）
+  // 每個點的 ❤️ 數（放大到 BADGE_ZOOM 才顯示）
   useEffect(() => {
     if (!loaded) return;
     const map = mapRef.current!;
     const likes = new Map([...voteCounts(votes)].filter(([, c]) => c.like > 0).map(([id, c]) => [id, c.like]));
-    const badges = placeBadges(byId, suggestionCounts(suggestions), likes);
+    const badges = placeBadges(byId, likes);
     const keep = new Set(badges.map((b) => b.id));
     badgesRef.current.forEach((m, id) => {
       if (keep.has(id)) return;
@@ -499,7 +502,7 @@ export function MapView() {
       m.setLngLat(b.coords);
       m.getElement().textContent = b.text;
     }
-  }, [loaded, suggestions, votes, byId]);
+  }, [loaded, votes, byId]);
 
   // 移動地圖的請求（跳到區域、T12 的 focus）
   useEffect(() => {

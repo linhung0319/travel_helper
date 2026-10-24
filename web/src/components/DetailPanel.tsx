@@ -1,7 +1,7 @@
 import { useMemo, useState, type ReactNode } from 'react';
 import { appStore } from '../store.ts';
 import { commands } from '../appCommands.ts';
-import { useApp, useData, useShared } from '../hooks.ts';
+import { useApp, useData } from '../hooks.ts';
 import { displayName } from '../data/normalize.ts';
 import { TYPE_LABELS, CONTEXT_LABELS } from '../lib/filter.ts';
 import { DAY_ROWS, closureOn, formatRanges, rowForDate } from '../lib/hours.ts';
@@ -30,7 +30,6 @@ import { Photo } from './Photo.tsx';
 import { StationTimetablePanel } from './StationTimetable.tsx';
 import { EditedMark, editedOf } from './EditHistory.tsx';
 import { VoteButtons } from './Votes.tsx';
-import { SuggestionCard } from './Suggestions.tsx';
 import { openDialog } from '../uiStore.ts';
 import { itemsWithPlace } from '../lib/planView.ts';
 import { dragPlaceProps, toggleAskAi } from './askAi.ts';
@@ -462,40 +461,26 @@ function TierMedal({ tier }: { tier: Place['tier'] }) {
   );
 }
 
-/** 這個點排在哪幾天、有哪些建議提到它（地圖上的 💬） */
+/** 這個點排在哪幾天（想去卡片上也標「已排」） */
 function PlaceInTrip({ place }: { place: Place }) {
   const itinerary = useData((s) => s.itinerary);
-  const suggestions = useShared((s) => s.suggestions);
   const refs = itemsWithPlace(itinerary, place.id);
   const lodgingDays = itinerary?.days.filter((d) => d.lodging === place.id).map((d) => d.date) ?? [];
-  const about = suggestions.filter((s) => s.placeIds.includes(place.id));
-  if (!refs.length && !lodgingDays.length && !about.length) return null;
+  if (!refs.length && !lodgingDays.length) return null;
   return (
-    <section className="detail-section in-trip">
-      {(refs.length > 0 || lodgingDays.length > 0) && (
-        <p className="small">
-          📅 排在：
-          {refs.map((r, i) => (
-            <button key={r.item.id} type="button" className="link-button" onClick={() => commands.selectDay(r.date)}>
-              {i > 0 && '、'}
-              {shortDayLabel(r.date)}
-              {r.item.type === 'visit' && r.item.options[r.item.selected]?.place !== place.id ? '（備案）' : ''}
-              {r.split ? `（${r.split.groupName}）` : ''}
-            </button>
-          ))}
-          {lodgingDays.length > 0 && `${refs.length ? '；' : ''}住 ${lodgingDays.map(shortDayLabel).join('、')}`}
-        </p>
-      )}
-      {about.length > 0 && (
-        <details open={about.some((s) => s.status === 'pending')}>
-          <summary className="small">💬 {about.length} 則建議提到這裡</summary>
-          <div className="suggestion-list">
-            {about.map((s) => (
-              <SuggestionCard key={s.id} s={s} showDay />
-            ))}
-          </div>
-        </details>
-      )}
+    <section className="detail-section in-trip" data-testid="in-trip">
+      <p className="small">
+        📅 已排：
+        {refs.map((r, i) => (
+          <button key={r.item.id} type="button" className="link-button" onClick={() => commands.selectDay(r.date)}>
+            {i > 0 && '、'}
+            {r.item.type === 'visit' && r.item.options[r.item.selected]?.place !== place.id ? '備選 ' : ''}
+            {shortDayLabel(r.date)}
+            {r.split ? `（${r.split.groupName}）` : ''}
+          </button>
+        ))}
+        {lodgingDays.length > 0 && `${refs.length ? '；' : ''}住 ${lodgingDays.map(shortDayLabel).join('、')}`}
+      </p>
     </section>
   );
 }
@@ -555,7 +540,7 @@ export function DetailPanel({ place, back }: { place: Place; back?: { label: str
 
   return (
     <article className="detail" data-testid="detail-panel" aria-label={`${name} 的詳情`}>
-      {/* 上方一列：返回（電腦版）、寫建議、問 AI；規劃模式多一個「排進行程」。手機沒有返回，右邊是 ✕ */}
+      {/* 上方一列：返回（電腦版）、問 AI；規劃模式多一個「排進行程」。手機沒有返回，右邊是 ✕；想去用標題旁的 ❤️ */}
       <div className="detail-bar">
         {back && (
           <button type="button" className="detail-back" onClick={back.onClick} data-testid="detail-back">
@@ -568,14 +553,6 @@ export function DetailPanel({ place, back }: { place: Place; back?: { label: str
               📅 {place.type === 'lodging' ? '設成住宿' : '排進行程'}
             </button>
           )}
-          <button
-            type="button"
-            className="action small-action"
-            data-testid="detail-suggest"
-            onClick={() => openDialog({ kind: 'suggest', placeIds: [place.id], day: day !== 'all' ? day : undefined })}
-          >
-            ✏️ 寫建議
-          </button>
           <button
             type="button"
             className={`action small-action ${selected ? 'on' : ''}`}

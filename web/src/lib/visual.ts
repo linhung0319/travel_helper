@@ -1,6 +1,6 @@
 // 每個點在畫面上怎麼顯示：符不符合篩選、是不是選定那天的點（其他天變淡、不隱藏，interaction-design §3）。
 
-import { matchesFilter, type Filter } from './filter.ts';
+import { matchesFilter, matchesQuery, type Filter } from './filter.ts';
 import { inBbox } from './areas.ts';
 import type { Bbox, Place, Tier } from '../data/types.ts';
 
@@ -17,8 +17,9 @@ export function placeVisual(
   filter: Filter,
   day: string,
   days: Map<string, { date: string; order: number }[]>,
+  query = '',
 ): PlaceVisual {
-  const match = matchesFilter(p, filter);
+  const match = matchesFilter(p, filter) && matchesQuery(p, query);
   const inDay = day === 'all' ? null : (days.get(p.id)?.find((d) => d.date === day) ?? null);
   return { match, dim: !match || (day !== 'all' && !inDay), order: inDay?.order ?? null };
 }
@@ -26,10 +27,10 @@ export function placeVisual(
 const TIER_RANK: Record<Tier, number> = { S: 0, A: 1, B: 2 };
 
 /** 探索模式：目前畫面裡、符合篩選的點；S → A → B，同級的依評論數（人氣） */
-export function wallPlaces(places: Place[], bounds: Bbox | null, filter: Filter): Place[] {
+export function wallPlaces(places: Place[], bounds: Bbox | null, filter: Filter, query = ''): Place[] {
   if (!bounds) return [];
   return places
-    .filter((p) => inBbox(p.coords, bounds) && matchesFilter(p, filter))
+    .filter((p) => inBbox(p.coords, bounds) && matchesFilter(p, filter) && matchesQuery(p, query))
     .sort((a, b) => rank(a) - rank(b) || popularity(b) - popularity(a) || a.id.localeCompare(b.id));
 }
 

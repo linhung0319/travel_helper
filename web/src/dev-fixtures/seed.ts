@@ -1,8 +1,9 @@
-// 假後端的種子資料（T15m，只在 dev server 用）：幾位家人、一份排了一半的行程、建議、投票、修改紀錄，
+// 假後端的種子資料（T15m，只在 dev server 用）：幾位家人、一份排了一半的行程、❤️／👎、留言、候選、修改紀錄，
 // 畫面一打開就有東西看。資料點 ID 都是 data/ 裡真的點；修改紀錄的 baseValue 是 2026-10-23 的預設值。
 
 import type { Itinerary, ItineraryItem, VisitItem } from '@travel-helper/engine/types';
 import type { MockSeed } from '../backend/mock.ts';
+import { dayTarget } from '../backend/types.ts';
 
 export const DEV_MEMBERS = [
   { id: 'dev-baba', displayName: '小明爸', pictureUrl: null },
@@ -92,104 +93,56 @@ export function devSeed(kind: 'full' | 'flights-only' = 'full'): MockSeed {
     members: DEV_MEMBERS,
     me: 'dev-baba',
     itinerary: full ? seedItinerary() : emptyItinerary(),
-    suggestions: full
-      ? [
-          {
-            day: '2027-02-05',
-            placeIds: ['toba-aquarium'],
-            text: '想看海象表演，早上去人比較少',
-            author: 'dev-agong',
-            createdAt: at('10-18', '01:20'),
-            status: 'pending',
-            statusNote: null,
-            statusBy: null,
-            statusAt: null,
-            adoptedItemIds: null,
-          },
-          {
-            day: '2027-02-05',
-            placeIds: ['toba-mikimoto-pearl-island'],
-            text: '珍珠島的海女表演一定要看。我膝蓋不好，希望不要爬太多樓梯',
-            author: 'dev-mama',
-            createdAt: at('10-18', '02:05'),
-            status: 'adopted',
-            statusNote: null,
-            statusBy: 'dev-baba',
-            statusAt: at('10-19', '12:00'),
-            adoptedItemIds: ['i-8'],
-          },
-          {
-            day: 'trip',
-            placeIds: [],
-            text: '想吃一次伊勢龍蝦，貴一點沒關係',
-            author: 'dev-ayi',
-            createdAt: at('10-19', '03:30'),
-            status: 'pending',
-            statusNote: null,
-            statusBy: null,
-            statusAt: null,
-            adoptedItemIds: null,
-          },
-          {
-            day: '2027-02-06',
-            placeIds: ['toba-hachiman-kamado'],
-            text: '海女小屋吃烤海鮮，小孩應該會喜歡',
-            author: 'dev-baba',
-            createdAt: at('10-19', '05:00'),
-            status: 'adopted',
-            statusNote: null,
-            statusBy: 'dev-baba',
-            statusAt: at('10-19', '12:10'),
-            adoptedItemIds: ['i-10'],
-          },
-          {
-            day: '2027-02-10',
-            placeIds: ['ise-tofuya'],
-            text: '內宮附近的豆腐料理，可以訂位，長輩吃得慣',
-            author: 'dev-agong',
-            createdAt: at('10-20', '00:40'),
-            status: 'pending',
-            statusNote: null,
-            statusBy: null,
-            statusAt: null,
-            adoptedItemIds: null,
-          },
-          {
-            day: '2027-02-07',
-            placeIds: [],
-            text: '這天想輕鬆一點，下午在旅館泡湯',
-            author: 'dev-mama',
-            createdAt: at('10-20', '02:15'),
-            status: 'declined',
-            statusNote: '這天要從鳥羽移到二見，改到 2/11 好嗎',
-            statusBy: 'dev-baba',
-            statusAt: at('10-20', '13:00'),
-            adoptedItemIds: null,
-          },
-          {
-            day: '2027-02-03',
-            placeIds: ['shima-yokoyama-observatory'],
-            text: '展望台要早上去，下午逆光拍不好',
-            author: 'dev-ayi',
-            createdAt: at('10-21', '06:45'),
-            status: 'pending',
-            statusNote: null,
-            statusBy: null,
-            statusAt: null,
-            adoptedItemIds: null,
-          },
-        ]
-      : [],
+    // ❤️ 就是想去；原本建議的文字變成留言、建議的日期變成那天的候選；「這天想輕鬆一點」變成那天的留言
     votes: full
       ? [
-          ...['dev-agong', 'dev-mama', 'dev-ayi', 'dev-baba'].map((m) => ({ placeId: 'toba-aquarium', memberId: m, value: 'like' as const, note: null })),
-          { placeId: 'toba-mikimoto-pearl-island', memberId: 'dev-mama', value: 'like', note: '海女表演' },
-          { placeId: 'toba-mikimoto-pearl-island', memberId: 'dev-ayi', value: 'like', note: null },
-          { placeId: 'ise-naiku', memberId: 'dev-agong', value: 'like', note: '一定要去參拜' },
-          { placeId: 'ise-naiku', memberId: 'dev-mama', value: 'like', note: null },
-          { placeId: 'shima-daiozaki-lighthouse', memberId: 'dev-agong', value: 'dislike', note: '坡太陡，走不上去' },
-          { placeId: 'toba-hachiman-kamado', memberId: 'dev-ayi', value: 'like', note: null },
-          { placeId: 'ise-tofuya', memberId: 'dev-agong', value: 'like', note: null },
+          ...['dev-agong', 'dev-mama', 'dev-ayi', 'dev-baba'].map((m) => ({ placeId: 'toba-aquarium', memberId: m, value: 'like' as const })),
+          { placeId: 'toba-mikimoto-pearl-island', memberId: 'dev-mama', value: 'like' },
+          { placeId: 'toba-mikimoto-pearl-island', memberId: 'dev-ayi', value: 'like' },
+          { placeId: 'ise-naiku', memberId: 'dev-agong', value: 'like' },
+          { placeId: 'ise-naiku', memberId: 'dev-mama', value: 'like' },
+          { placeId: 'shima-daiozaki-lighthouse', memberId: 'dev-agong', value: 'dislike' },
+          { placeId: 'toba-hachiman-kamado', memberId: 'dev-ayi', value: 'like' },
+          { placeId: 'toba-hachiman-kamado', memberId: 'dev-baba', value: 'like' },
+          { placeId: 'ise-tofuya', memberId: 'dev-agong', value: 'like' },
+          { placeId: 'shima-yokoyama-observatory', memberId: 'dev-ayi', value: 'like' },
+          { placeId: 'shima-daiozaki-lighthouse', memberId: 'dev-ayi', value: 'like' },
+          { placeId: 'toba-bay-cruise-irukajima', memberId: 'dev-mama', value: 'like' },
+          { placeId: 'toba-bay-cruise-irukajima', memberId: 'dev-ayi', value: 'like' },
+          { placeId: 'toba-bay-cruise-irukajima', memberId: 'dev-baba', value: 'like' },
+          { placeId: 'toba-observatory-pearl-road', memberId: 'dev-agong', value: 'like' },
+          { placeId: 'toba-yakigai-iroha', memberId: 'dev-baba', value: 'like' },
+          { placeId: 'toba-yakigai-iroha', memberId: 'dev-ayi', value: 'like' },
+          { placeId: 'toba-osakaya', memberId: 'dev-ayi', value: 'like' },
+          { placeId: 'toba-osakaya', memberId: 'dev-mama', value: 'dislike' },
+        ]
+      : [],
+    comments: full
+      ? [
+          { target: 'toba-aquarium', text: '想看海象表演，早上去人比較少', kind: 'normal', author: 'dev-agong', createdAt: at('10-18', '01:20') },
+          { target: 'toba-mikimoto-pearl-island', text: '珍珠島的海女表演一定要看。我膝蓋不好，希望不要爬太多樓梯', kind: 'normal', author: 'dev-mama', createdAt: at('10-18', '02:05') },
+          { target: 'toba-hachiman-kamado', text: '海女小屋吃烤海鮮，小孩應該會喜歡', kind: 'normal', author: 'dev-baba', createdAt: at('10-19', '05:00') },
+          { target: 'ise-tofuya', text: '內宮附近的豆腐料理，可以訂位，長輩吃得慣', kind: 'normal', author: 'dev-agong', createdAt: at('10-20', '00:40') },
+          { target: 'ise-naiku', text: '一定要去參拜', kind: 'normal', author: 'dev-agong', createdAt: at('10-20', '00:45') },
+          { target: 'shima-daiozaki-lighthouse', text: '坡太陡，走不上去', kind: 'normal', author: 'dev-agong', createdAt: at('10-20', '01:00') },
+          { target: 'toba-bay-cruise-irukajima', text: '小孩想看海豚，船上有廁所嗎？', kind: 'normal', author: 'dev-mama', createdAt: at('10-21', '01:10') },
+          { target: 'toba-bay-cruise-irukajima', text: '2 月有班，50 分鐘一圈，長輩可以坐著', kind: 'normal', author: 'dev-baba', createdAt: at('10-21', '03:30') },
+          { target: 'toba-osakaya', text: '上次去覺得太貴', kind: 'normal', author: 'dev-mama', createdAt: at('10-21', '04:00') },
+          { target: dayTarget('2027-02-07'), text: '這天想輕鬆一點，下午在旅館泡湯', kind: 'normal', author: 'dev-mama', createdAt: at('10-20', '02:15') },
+          { target: dayTarget('2027-02-07'), text: '好，這天只排上午，下午留給旅館', kind: 'planner', author: 'dev-baba', createdAt: at('10-20', '13:00') },
+          { target: 'toba-osakaya', text: '（2/6 的候選）上次太貴，這次先不去', kind: 'decline', author: 'dev-baba', createdAt: at('10-21', '05:00') },
+          { target: 'shima-yokoyama-observatory', text: '展望台要早上去，下午逆光拍不好', kind: 'normal', author: 'dev-ayi', createdAt: at('10-21', '06:45') },
+        ]
+      : [],
+    // 原本建議裡選的日期（已經排進行程的不算）
+    candidates: full
+      ? [
+          { placeId: 'toba-bay-cruise-irukajima', day: '2027-02-05', addedBy: 'dev-mama', createdAt: at('10-21', '01:10') },
+          { placeId: 'toba-osakaya', day: '2027-02-05', addedBy: 'dev-ayi', createdAt: at('10-21', '03:00') },
+          { placeId: 'toba-observatory-pearl-road', day: '2027-02-06', addedBy: 'dev-agong', createdAt: at('10-20', '00:30') },
+          { placeId: 'toba-yakigai-iroha', day: '2027-02-06', addedBy: 'dev-baba', createdAt: at('10-20', '00:35') },
+          { placeId: 'ise-tofuya', day: '2027-02-10', addedBy: 'dev-agong', createdAt: at('10-20', '00:40') },
+          { placeId: 'shima-yokoyama-observatory', day: '2027-02-03', addedBy: 'dev-ayi', createdAt: at('10-21', '06:45') },
         ]
       : [],
     edits: full
