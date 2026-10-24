@@ -300,7 +300,7 @@ function OptionStack({ visit, date, onShown, children }: { visit: VisitItem; dat
   );
 }
 
-function EntryRow({ entry, day, warnings, gapsBeforeMeet, plan, marks, inGroup = false }: { entry: TimelineEntry; day: ItineraryDay; warnings: Map<string, EngineWarning[]>; gapsBeforeMeet?: Gap[]; plan?: DayPlan; marks: Marks; inGroup?: boolean }) {
+function EntryRow({ entry, day, warnings, gapsBeforeMeet, plan, marks }: { entry: TimelineEntry; day: ItineraryDay; warnings: Map<string, EngineWarning[]>; gapsBeforeMeet?: Gap[]; plan?: DayPlan; marks: Marks }) {
   const byId = useData((s) => s.byId);
   const itinerary = useData((s) => s.itinerary);
   const planning = useApp((s) => s.planning);
@@ -369,7 +369,7 @@ function EntryRow({ entry, day, warnings, gapsBeforeMeet, plan, marks, inGroup =
                     {g.entries
                       .filter((e) => e.kind !== 'meet')
                       .map((e, i) => (
-                        <EntryRow key={i} entry={e} day={day} warnings={warnings} marks={marks} inGroup />
+                        <EntryRow key={i} entry={e} day={day} warnings={warnings} marks={marks} />
                       ))}
                   </ol>
                 </div>
@@ -396,7 +396,7 @@ function EntryRow({ entry, day, warnings, gapsBeforeMeet, plan, marks, inGroup =
   if (entry.kind === 'lodging') {
     return (
       <>
-        <LegRow entry={entry} date={day.date} inGroup={inGroup} />
+        <LegRow entry={entry} date={day.date} />
         <li className={`tl-row tl-card tl-lodging ${typeClass(p)}`} data-testid="tl-row" data-place={entry.placeId ?? ''}>
           <span className="tl-body">
             <span className="tl-timeline">
@@ -468,7 +468,7 @@ function EntryRow({ entry, day, warnings, gapsBeforeMeet, plan, marks, inGroup =
 
   return (
     <>
-      <LegRow entry={entry} date={day.date} inGroup={inGroup} />
+      <LegRow entry={entry} date={day.date} />
       <li
         className={`tl-row tl-card tl-${entry.kind} ${typeClass(p)} ${stacked ? `stacked stacked-${stacked}` : ''} ${hovered && hovered === entry.placeId ? 'flash' : ''} ${movable ? 'movable' : ''}`}
         data-testid="tl-row"
@@ -612,7 +612,7 @@ export function Timeline({ plan, day }: { plan: DayPlan; day: ItineraryDay }) {
 
 const minutesText = (m: number) => (m >= 60 ? `${Math.floor(m / 60)} 小時${m % 60 ? ` ${m % 60} 分` : ''}` : `${m} 分`);
 
-/** 標題的一行：幾點出發、幾點回住宿、交通多久（含緩衝）、警告數 */
+/** 標題的一行：幾點出發、幾點回住宿、交通總分鐘（含等車）、警告數 */
 export function DaySummaryLine({ plan, warnOpen, onWarn, reminders = 0 }: { plan: DayPlan; warnOpen?: boolean; onWarn?: () => void; reminders?: number }) {
   const s = daySummary(plan);
   return (

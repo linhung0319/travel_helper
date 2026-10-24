@@ -53,3 +53,15 @@ test('dropIntent：拖到自己是 none；候選區只收備卡', () => {
   assert.equal(dropIntent(item, { kind: 'end' }, rect, 0), 'after');
   assert.equal(dropIntent(cand, { kind: 'end' }, rect, 0), 'after');
 });
+
+test('dropIntent：放在交通卡上一律是插入（排在下一張卡片前面），不合併；拖到通往自己的交通卡不動', () => {
+  const item: DragSource = { kind: 'item', itemId: 'a', placeType: 'restaurant', options: 1 };
+  const legToB: DropTargetInfo = { kind: 'leg', itemId: 'b' };
+  for (const y of [5, 50, 95]) assert.equal(dropIntent(item, legToB, rect, y), 'before');
+  assert.equal(dropIntent(item, { kind: 'leg', itemId: null }, rect, 50), 'before');
+  assert.equal(dropIntent(item, { kind: 'leg', itemId: 'a' }, rect, 50), 'none');
+  const opt: DragSource = { kind: 'option', itemId: 'a', index: 1, placeType: 'restaurant' };
+  assert.equal(dropIntent(opt, { kind: 'leg', itemId: 'a' }, rect, 50), 'before');
+  const cand: DragSource = { kind: 'candidate', candidateId: 1, placeId: 'p', placeType: 'restaurant' };
+  assert.equal(dropIntent(cand, legToB, rect, 50), 'before');
+});

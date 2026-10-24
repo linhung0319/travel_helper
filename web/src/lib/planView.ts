@@ -1,34 +1,44 @@
 // 「這一天」面板和地圖要的行程資訊（T15m）：交通的文字、行程裡找項目、匯出。
 // 純函式：時間軸、交通時間、空檔、警告都是引擎（T14）算好的，這裡只整理成畫面要的樣子。
 
-import type { DayPlan, EngineWarning, Itinerary, ItineraryItem, Leg, LegTarget, TimelineEntry, TravelMode, VisitItem } from '@travel-helper/engine';
+import type { DayPlan, EngineWarning, Itinerary, ItineraryItem, Leg, LegTarget, TimelineEntry, TravelMode, TravelSpec, VisitItem } from '@travel-helper/engine';
 import { toMinutes } from '@travel-helper/engine';
 import { MODE_ICONS } from './routing.ts';
 import { displayMinutes, estimateWalk } from './geo/walk.ts';
 import type { Place } from '../data/types.ts';
 
-/** 一段交通的短文字，例如「🚶 8 分」「🚃 特急 10:02→10:15」「🚕 39 分・4 台」 */
+/**
+ * 交通卡的第一行（距離由元件接在後面），例如「🚶 8 分」「🚕 12 分・大型 2 台或 4 台」「🚃 34 分・等 11 分」。
+ * 搭車的每一程另外一行一行列（rideLines）
+ */
 export function legText(leg: Leg): string {
   if (leg.mode === 'none') return '';
   if (leg.mode === 'unknown') return `❓ 交通未定 ${leg.minutes} 分`;
-  const icon = MODE_ICONS[leg.mode];
-  if (leg.rides.length) {
-    const r = leg.rides[0];
-    const more = leg.rides.length > 1 ? `＋轉乘 ${leg.rides.length - 1} 次` : '';
-    return `${icon} ${r.line} ${r.depart}→${leg.rides.at(-1)!.arrive}${more}`;
-  }
   const cars = leg.taxi ? `・${leg.taxi.jumboCars ? `大型 ${leg.taxi.jumboCars} 台或 ` : ''}${leg.taxi.cars} 台` : '';
-  return `${icon} ${leg.minutes} 分${cars}`;
+  const wait = leg.waitMinutes ? `・等 ${leg.waitMinutes} 分` : '';
+  return `${MODE_ICONS[leg.mode]} ${leg.minutes} 分${cars}${wait}`;
 }
 
-/** 交通的補充：等車、走到車站、怎麼算的 */
+/** 交通卡的補充：走到車站、計程車費用、手動指定（等車寫在第一行） */
 export function legDetail(leg: Leg): string[] {
   const out: string[] = [];
   if (leg.walkMinutes && leg.rides.length) out.push(`含步行 ${leg.walkMinutes} 分`);
-  if (leg.waitMinutes) out.push(`等 ${leg.waitMinutes} 分`);
   if (leg.taxi?.fareEstimateYen) out.push(`每台約 ${leg.taxi.fareEstimateYen.toLocaleString()} 円`);
   if (leg.specified) out.push('手動指定');
   return out;
+}
+
+/** 規劃模式的交通方式選單（auto：不寫 mode，由引擎挑） */
+export const EDITOR_MODES = ['auto', 'walk', 'taxi', 'transit'] as const;
+export type EditorMode = (typeof EDITOR_MODES)[number];
+
+/** 這段的設定在選單上亮哪個：舊的電車、巴士、船算大眾運輸；包車、自駕、其他是 legacy（選單都不亮，卡片照原名） */
+export function editorModeOf(spec: TravelSpec | null): EditorMode | 'legacy' {
+  const m = spec?.mode;
+  if (!m) return 'auto';
+  if (m === 'walk' || m === 'taxi' || m === 'transit') return m;
+  if (m === 'train' || m === 'bus' || m === 'ferry') return 'transit';
+  return 'legacy';
 }
 
 /** 距離的寫法：850 公尺、1.2 公里 */
@@ -36,7 +46,7 @@ export function formatDistance(meters: number): string {
   return meters < 1000 ? `${Math.round(meters)} 公尺` : `${(meters / 1000).toFixed(1)} 公里`;
 }
 
-/** 展開交通細列時列出每一程，例如「10:12 近鐵 鳥羽 → 宇治山田 10:30」，兩程之間「轉乘 8 分」；nameOf 把站名裡的資料點 ID 換成名稱 */
+/** 交通卡上列出每一程，例如「10:12 近鐵 鳥羽 → 宇治山田 10:30」，兩程之間「轉乘 8 分」；nameOf 把站名裡的資料點 ID 換成名稱 */
 export function rideLines(leg: Leg, nameOf: (id: string) => string): string[] {
   const out: string[] = [];
   leg.rides.forEach((r, i) => {
@@ -56,7 +66,7 @@ export function legTargetOf(entry: TimelineEntry, date: string): LegTarget | nul
 
 /** 在 Google Maps 開這段路線（起訖座標、交通方式） */
 export function legMapsUrl(from: Place, to: Place, mode: TravelMode): string {
-  const travelmode = mode === 'walk' ? 'walking' : mode === 'train' || mode === 'bus' || mode === 'ferry' ? 'transit' : 'driving';
+  const travelmode = mode === 'walk' ? 'walking' : mode === 'train' || mode === 'bus' || mode === 'ferry' || mode === 'transit' ? 'transit' : 'driving';
   const [flon, flat] = from.coords;
   const [tlon, tlat] = to.coords;
   return `https://www.google.com/maps/dir/?api=1&origin=${flat},${flon}&destination=${tlat},${tlon}&travelmode=${travelmode}`;
@@ -209,7 +219,7 @@ export function dayBar(day: DayPlan): BarSegment[] {
   return out;
 }
 
-/** 標題的一行：幾點出發、幾點回住宿、交通多久（含各組）、幾個要注意的警告 */
+/** 標題的一行：幾點出發、幾點回住宿、交通總分鐘（含各組、等車；沒有緩衝）、幾個要注意的警告 */
 export function daySummary(day: DayPlan): { start: string | null; back: string | null; travelMinutes: number; warnings: number } {
   const sum = (entries: TimelineEntry[]): number =>
     entries.reduce((n, e) => n + (e.travel ? e.travel.minutes : 0) + (e.groups ?? []).reduce((m, g) => m + sum(g.entries), 0), 0);

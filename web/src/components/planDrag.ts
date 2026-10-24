@@ -3,9 +3,11 @@
 //   第三輪的「不從候選拖到時間軸」作廢：候選拖到卡片上＝合併，拖到卡片之間＝排進那個位置。
 // - 電腦版用 HTML5 拖曳；手機長按 0.4 秒後拖。兩條路都是「取得 DragSource → 每次移動算 dropIntent（lib/dropIntent.ts）→ 標記 → 放開時執行」。
 // - 放在同類型卡片的中間＝合併（亮藍框「放開＝合併到這張」）；卡片上下邊緣、最後的放置區＝排在這裡（插入線）；
+//   放在交通卡上＝排在這段通往的卡片前面（不合併；回住宿那段＝這天的最後）；
 //   備卡放到候選區＝放回候選。拖曳開始時，不能合併的卡片變淡（drop-nomerge）。
 // - 合併、換順序、拆開、排進、放回候選都可以復原（changeItinerary 的 undo）。
-// 放置區：卡片 data-drop-item（data-drop-type、data-drop-flight）、最後的放置區 data-drop-end、候選區 data-drop-candidates。
+// 放置區：卡片 data-drop-item（data-drop-type、data-drop-flight）、交通卡 data-drop-leg（data-drop-date）、
+// 最後的放置區 data-drop-end、候選區 data-drop-candidates。
 // 同時放 application/x-travel-place，拖到聊天室也能問 AI（askAi.ts）。
 
 import { useEffect, useRef, type DragEvent } from 'react';
@@ -176,6 +178,8 @@ interface Hit {
 function hitOf(start: Element | null): Hit | null {
   const card = start?.closest<HTMLElement>('[data-drop-item]');
   if (card) return { el: card, target: { kind: 'card', itemId: card.dataset.dropItem!, placeType: card.dataset.dropType || null, isFlight: card.dataset.dropFlight === 'true' } };
+  const leg = start?.closest<HTMLElement>('[data-drop-leg]');
+  if (leg) return { el: leg, target: { kind: 'leg', itemId: leg.dataset.dropLeg || null } };
   const end = start?.closest<HTMLElement>('[data-drop-end]');
   if (end) return { el: end, target: { kind: 'end' } };
   const cands = start?.closest<HTMLElement>('[data-drop-candidates]');
@@ -190,22 +194,23 @@ function resolve(hit: Hit, intent: DropIntent): Resolved | null {
   if (intent === 'none') return null;
   const t = hit.target;
   if (t.kind === 'card') return intent === 'merge' ? { kind: 'merge', itemId: t.itemId } : { kind: 'insert', at: { kind: 'item', itemId: t.itemId, after: intent === 'after' } };
+  if (t.kind === 'leg') return { kind: 'insert', at: t.itemId ? { kind: 'item', itemId: t.itemId, after: false } : { kind: 'end', date: hit.el.dataset.dropDate! } };
   if (t.kind === 'end') return { kind: 'insert', at: { kind: 'end', date: hit.el.dataset.dropEnd! } };
   return { kind: 'candidates', date: hit.el.dataset.dropCandidates! };
 }
 
-const MARKS = ['drop-before', 'drop-after', 'drop-merge', 'drop-end-over', 'drop-cand-over'];
+const MARKS = ['drop-before', 'drop-after', 'drop-merge', 'drop-leg-over', 'drop-end-over', 'drop-cand-over'];
 
 function clearMarks() {
   document.querySelectorAll(MARKS.map((c) => `.${c}`).join(', ')).forEach((el) => el.classList.remove(...MARKS));
 }
 
-/** 標記放開的結果：合併亮框、插入線、放置區亮起來 */
+/** 標記放開的結果：合併亮框、插入線、交通卡和放置區亮起來 */
 function mark(hit: Hit | null, intent: DropIntent) {
   clearMarks();
   if (!hit || intent === 'none') return;
   if (hit.target.kind === 'card') hit.el.classList.add(intent === 'merge' ? 'drop-merge' : intent === 'before' ? 'drop-before' : 'drop-after');
-  else hit.el.classList.add(hit.target.kind === 'end' ? 'drop-end-over' : 'drop-cand-over');
+  else hit.el.classList.add(hit.target.kind === 'leg' ? 'drop-leg-over' : hit.target.kind === 'end' ? 'drop-end-over' : 'drop-cand-over');
 }
 
 /** 拖曳中的東西（HTML5 的 dragover 讀不到 dataTransfer 的內容，放在這裡） */
@@ -278,6 +283,12 @@ function dropZoneHandlers() {
 export function dropOnCardProps(target: Extract<DropTargetInfo, { kind: 'card' }>, enabled: boolean) {
   if (!enabled) return {};
   return { 'data-drop-item': target.itemId, 'data-drop-type': target.placeType ?? '', 'data-drop-flight': String(target.isFlight), ...dropZoneHandlers() };
+}
+
+/** 交通卡：排在這段通往的卡片前面（itemId 是 null：回住宿那段，放在這天的最後） */
+export function dropOnLegProps(itemId: string | null, date: string, enabled: boolean) {
+  if (!enabled) return {};
+  return { 'data-drop-leg': itemId ?? '', 'data-drop-date': date, ...dropZoneHandlers() };
 }
 
 /** 時間軸最後的放置區：放在這天的最後（出發航班之前） */

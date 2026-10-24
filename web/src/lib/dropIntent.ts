@@ -1,5 +1,6 @@
 // 規劃模式的拖曳（設計 §4）：拖的是什麼（DragSource）、放在哪（DropTargetInfo），算出放開時要做什麼。
 // 卡片上下各 1/4 高是插入（before／after），中間是合併；不能合併時中間照上下半插入。
+// 交通卡整張都是插入：排在這段交通通往的那張卡片前面（不合併）。
 // 純函式，不碰畫面；planDrag.ts 每次移動都呼叫，標記和放開的動作照這個結果。
 
 /** 拖的東西：時間軸的卡片（options：幾個選項）、這天的候選、合併卡片正在看的備卡 */
@@ -8,8 +9,12 @@ export type DragSource =
   | { kind: 'candidate'; candidateId: number; placeId: string; placeType: string | null }
   | { kind: 'option'; itemId: string; index: number; placeType: string | null };
 
-/** 放的地方：某張卡片、這天最後的放置區、候選區 */
-export type DropTargetInfo = { kind: 'card'; itemId: string; placeType: string | null; isFlight: boolean } | { kind: 'end' } | { kind: 'candidates' };
+/** 放的地方：某張卡片、交通卡（itemId：這段通往的項目，回住宿那段是 null）、這天最後的放置區、候選區 */
+export type DropTargetInfo =
+  | { kind: 'card'; itemId: string; placeType: string | null; isFlight: boolean }
+  | { kind: 'leg'; itemId: string | null }
+  | { kind: 'end' }
+  | { kind: 'candidates' };
 
 export type DropIntent = 'merge' | 'before' | 'after' | 'none';
 
@@ -26,6 +31,8 @@ export function canMerge(src: DragSource, target: Extract<DropTargetInfo, { kind
 export function dropIntent(src: DragSource, target: DropTargetInfo, rect: { top: number; height: number }, clientY: number): DropIntent {
   if (target.kind === 'end') return 'after';
   if (target.kind === 'candidates') return src.kind === 'option' ? 'after' : 'none';
+  // 拖整張卡片到通往自己的交通卡＝放回原位
+  if (target.kind === 'leg') return src.kind === 'item' && src.itemId === target.itemId ? 'none' : 'before';
   if (src.kind !== 'candidate' && src.itemId === target.itemId) return 'none';
   const y = rect.height > 0 ? (clientY - rect.top) / rect.height : 0.5;
   if (y < 0.25) return 'before';

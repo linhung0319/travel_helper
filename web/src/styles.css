@@ -1688,25 +1688,6 @@ dl {
   padding-top: 2px;
 }
 
-.tl-leg {
-  display: grid;
-  grid-template-columns: 5.6em 1fr;
-  gap: 8px;
-  font-size: 0.85rem;
-  color: var(--muted);
-}
-
-.tl-leg-line {
-  justify-self: center;
-  width: 0;
-  border-left: 2px dotted var(--line);
-  min-height: 22px;
-}
-
-.tl-leg-text {
-  padding: 2px 0;
-}
-
 .tl-note {
   color: var(--fg);
 }
@@ -3799,41 +3780,55 @@ body.dragging-plan .tl-row.tl-card.drop-merge {
   padding-top: 118px;
 }
 
-/* 交通細列展開（設計 §8） */
-.tl-leg-body {
-  display: block;
-  min-width: 0;
+/* 交通卡（第四輪 §5.1、§5.2）：和資料卡一樣的圓角、淺灰底，內容一直顯示；規劃模式點開＝原地編輯 */
+.tl-leg {
+  margin: 4px 0;
+  font-size: 0.85rem;
+  color: var(--muted);
+}
+
+.tl-leg-card {
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: 4px 8px;
+  background: var(--soft);
+  cursor: pointer;
+}
+
+.tl-leg.open .tl-leg-card {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 1px var(--accent);
+}
+
+.tl-leg-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 2px 8px;
 }
 
 button.tl-leg-text {
-  display: inline;
   padding: 2px 0;
   border: 0;
   background: none;
-  color: inherit;
+  color: var(--fg);
   font: inherit;
   text-align: left;
   cursor: pointer;
 }
 
-.tl-leg-caret {
-  margin-left: 4px;
-  font-size: 0.75em;
+.tl-leg-note {
+  color: var(--fg);
 }
 
-.leg-detail {
-  display: grid;
-  gap: 6px;
-  margin: 4px 0 8px;
-  padding: 8px 10px;
-  border: 1px solid var(--line);
-  border-radius: 8px;
-  color: var(--fg);
+.leg-maps {
+  margin-left: auto;
+  text-decoration: none;
 }
 
 .leg-rides {
   list-style: none;
-  margin: 0;
+  margin: 0 0 2px;
   padding: 0;
 }
 
@@ -3844,8 +3839,11 @@ button.tl-leg-text {
 .leg-edit {
   display: grid;
   gap: 6px;
-  padding-top: 6px;
+  margin-top: 4px;
+  padding: 6px 0 2px;
   border-top: 1px dashed var(--line);
+  color: var(--fg);
+  cursor: auto;
 }
 
 .leg-edit-row {
@@ -3860,10 +3858,33 @@ button.tl-leg-text {
   color: var(--muted);
 }
 
-.leg-modes {
+.leg-modes,
+.leg-trip-nav {
   display: flex;
   flex-wrap: wrap;
   gap: 4px;
+}
+
+/* 選中的方式填滿；沒選的白底 */
+.leg-modes .chip[aria-pressed='false'] {
+  background: var(--bg);
+  color: var(--fg);
+  border-color: var(--line);
+}
+
+.leg-modes .chip[aria-pressed='true'] {
+  background: var(--accent);
+  color: #fff;
+}
+
+.leg-modes .chip:disabled {
+  opacity: 0.45;
+}
+
+.leg-trip-list {
+  list-style: none;
+  margin: 0 0 4px;
+  padding: 0;
 }
 
 .leg-minutes {
@@ -3873,6 +3894,29 @@ button.tl-leg-text {
 .leg-note {
   flex: 1;
   min-width: 10em;
+}
+
+/* 規劃模式拖到交通卡上：排在下一張卡片前面 */
+.tl-leg.drop-leg-over .tl-leg-card {
+  position: relative;
+  border-color: var(--accent);
+  background: var(--info-bg);
+}
+
+.tl-leg.drop-leg-over .tl-leg-card::after {
+  content: '放開＝排在下一站前面';
+  position: absolute;
+  right: 8px;
+  top: 50%;
+  transform: translateY(-50%);
+  padding: 1px 8px;
+  border-radius: 999px;
+  background: var(--accent);
+  color: #fff;
+  font-size: 0.75rem;
+  font-weight: 600;
+  pointer-events: none;
+  white-space: nowrap;
 }
 
 /* 卡片照片右上角的 ❤️／👎（CardVotes）；只有文字的卡片放在名稱後面（inline） */

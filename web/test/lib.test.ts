@@ -11,7 +11,7 @@ import { nearbyPlaces } from '../src/lib/nearby.ts';
 import { placeVisual, wallPlaces } from '../src/lib/visual.ts';
 import { dayStops, placeDays } from '../src/lib/itinerary.ts';
 import { itin } from './helpers.ts';
-import { cardTime, dayBar, daySummary, formatStay, formatDistance, legMapsUrl, legTargetOf, optionRows, rideLines, stopMarks } from '../src/lib/planView.ts';
+import { cardTime, dayBar, daySummary, editorModeOf, formatStay, formatDistance, legMapsUrl, legTargetOf, legText, optionRows, rideLines, stopMarks } from '../src/lib/planView.ts';
 import { explorePlaces, typeCounts } from '../src/lib/explore.ts';
 import type { DayPlan, TimelineEntry } from '@travel-helper/engine';
 import type { Area, Place, StationTimetable } from '../src/data/types.ts';
@@ -306,7 +306,7 @@ test('dayBar：交通、停留、等待各一段；分組的時段每組一條 l
   ]);
 });
 
-test('daySummary：出發、回住宿、交通（含各組）、警告數（不算 info）', () => {
+test('daySummary：出發、回住宿、交通總分鐘（含各組、不含緩衝）、警告數（不算 info）', () => {
   const day = {
     entries: [
       entry('start', 'h', { start: '09:30' }),
@@ -317,6 +317,31 @@ test('daySummary：出發、回住宿、交通（含各組）、警告數（不�
     warnings: [{ level: 'warning' }, { level: 'info' }, { level: 'error' }],
   } as unknown as DayPlan;
   assert.deepEqual(daySummary(day), { start: '09:30', back: '15:30', travelMinutes: 35, warnings: 2 });
+});
+
+/** 只寫要的欄位，其他照 leg() 的預設 */
+const legWith = (p: Partial<NonNullable<TimelineEntry['travel']>>) => ({ ...leg('10:00', 0), ...p });
+
+test('legText：等車寫在交通卡，沒有緩衝', () => {
+  assert.equal(legText(legWith({ mode: 'train', minutes: 34, waitMinutes: 11 })), '🚃 34 分・等 11 分');
+  assert.equal(legText(legWith({ mode: 'taxi', minutes: 12, taxi: { cars: 4, jumboCars: 2 } as never })), '🚕 12 分・大型 2 台或 4 台');
+  assert.equal(legText(legWith({ mode: 'walk', minutes: 8, bufferMinutes: 10 } as never)), '🚶 8 分');
+  assert.equal(legText(legWith({ mode: 'unknown', minutes: 0 })), '❓ 交通未定 0 分');
+  assert.equal(legText(legWith({ mode: 'none' })), '');
+});
+
+test('editorModeOf：舊的方式對到新選單', () => {
+  assert.equal(editorModeOf(null), 'auto');
+  assert.equal(editorModeOf({ note: '集合' }), 'auto');
+  assert.equal(editorModeOf({ mode: 'walk' }), 'walk');
+  assert.equal(editorModeOf({ mode: 'taxi' }), 'taxi');
+  assert.equal(editorModeOf({ mode: 'transit' }), 'transit');
+  assert.equal(editorModeOf({ mode: 'bus' }), 'transit');
+  assert.equal(editorModeOf({ mode: 'train' }), 'transit');
+  assert.equal(editorModeOf({ mode: 'ferry' }), 'transit');
+  assert.equal(editorModeOf({ mode: 'charter' }), 'legacy');
+  assert.equal(editorModeOf({ mode: 'car' }), 'legacy');
+  assert.equal(editorModeOf({ mode: 'other' }), 'legacy');
 });
 
 test('formatStay', () => {
@@ -374,12 +399,12 @@ test('legTargetOf：住宿用日期，造訪、自由時間、航班用項目 ID
   assert.equal(legTargetOf(entry('start', 'a', { itemId: null }), '2027-02-05'), null);
 });
 
-test('legMapsUrl：步行 walking、電車巴士船 transit、其他 driving；座標是 緯度,經度', () => {
+test('legMapsUrl：步行 walking、電車巴士船、大眾運輸 transit、其他 driving；座標是 緯度,經度', () => {
   const a = place('a', { coords: [136.8, 34.4] });
   const b = place('b', { coords: [136.9, 34.5] });
   const base = 'https://www.google.com/maps/dir/?api=1&origin=34.4,136.8&destination=34.5,136.9&travelmode=';
   assert.equal(legMapsUrl(a, b, 'walk'), base + 'walking');
-  for (const m of ['train', 'bus', 'ferry'] as const) assert.equal(legMapsUrl(a, b, m), base + 'transit');
+  for (const m of ['train', 'bus', 'ferry', 'transit'] as const) assert.equal(legMapsUrl(a, b, m), base + 'transit');
   for (const m of ['taxi', 'charter', 'car', 'other'] as const) assert.equal(legMapsUrl(a, b, m), base + 'driving');
 });
 
