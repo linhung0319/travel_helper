@@ -1,11 +1,10 @@
-import { useEffect, useMemo, useRef, useState } from 'react';
+import { useEffect, useMemo, useRef } from 'react';
 import { appStore } from '../store.ts';
 import { useApp, useCanHover, useData } from '../hooks.ts';
 import { placeVisual, wallPlaces } from '../lib/visual.ts';
 import { Photo } from './Photo.tsx';
 import { CardVotes } from './Votes.tsx';
-import { DayPicker, DayStatusTag } from './DayPicker.tsx';
-import { Dialog } from './common.tsx';
+import { DayStatusTag } from './DayPicker.tsx';
 import { SearchBox } from './SearchBox.tsx';
 import { TierBadge } from './TierBadge.tsx';
 import { toggleAskAi } from './askAi.ts';
@@ -33,20 +32,6 @@ function WallAsk({ placeId, on }: { placeId: string; on: boolean }) {
   );
 }
 
-/** 照片上的「📅」（手機照片小，月曆開在對話框裡）：點了不開詳情 */
-function WallAddDay({ onOpen }: { onOpen: () => void }) {
-  const act = (e: { stopPropagation(): void; preventDefault(): void }) => {
-    e.stopPropagation();
-    e.preventDefault();
-    onOpen();
-  };
-  return (
-    <span role="button" tabIndex={0} className="wall-add-day" aria-label="加到某天" data-testid="add-to-day" onClick={act} onKeyDown={(e) => (e.key === 'Enter' || e.key === ' ') && act(e)}>
-      📅
-    </span>
-  );
-}
-
 /**
  * 探索模式的圖片牆（interaction-design §7）：只顯示目前地圖畫面裡、符合篩選的點；
  * S 級照片大一倍、A 正常、B 小張。移動地圖，圖片牆跟著換。
@@ -64,8 +49,6 @@ export function ExploreWall() {
   const days = useData((s) => s.days);
   const canHover = useCanHover();
   const ref = useRef<HTMLDivElement>(null);
-  const [picking, setPicking] = useState<string | null>(null);
-  const pickPlace = picking ? places.find((p) => p.id === picking) : null;
 
   const items = useMemo(() => wallPlaces(places, bounds, filter, query), [places, bounds, filter, query]);
 
@@ -112,16 +95,10 @@ export function ExploreWall() {
               <span className="wall-tags">
                 <DayStatusTag placeId={p.id} />
               </span>
-              <WallAddDay onOpen={() => setPicking(p.id)} />
             </button>
           );
         })}
       </div>
-      {pickPlace && (
-        <Dialog title={`加到某天：${pickPlace.name.zh || pickPlace.name.ja}`} onClose={() => setPicking(null)}>
-          <DayPicker placeId={pickPlace.id} onClose={() => setPicking(null)} />
-        </Dialog>
-      )}
     </div>
   );
 }

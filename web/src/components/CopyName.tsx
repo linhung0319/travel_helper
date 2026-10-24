@@ -12,10 +12,11 @@ export function CopyName({ place }: { place: Place }) {
     e.preventDefault();
     const text = copyText(place);
     try {
+      if (!navigator.clipboard) throw new Error('no clipboard');
       await navigator.clipboard.writeText(text);
       shared.notify(`已複製：${text}`);
     } catch {
-      shared.notifyError('無法複製（瀏覽器沒有剪貼簿權限）');
+      shared.notifyError('這個瀏覽器不能複製');
     }
   };
   return (

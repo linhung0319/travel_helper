@@ -4092,24 +4092,6 @@ button.tl-leg-text {
   padding: 1px 6px;
 }
 
-.wall-add-day {
-  position: absolute;
-  right: 6px;
-  top: 46px;
-  z-index: 2;
-  min-height: 30px;
-  min-width: 34px;
-  padding: 0 6px;
-  display: grid;
-  place-items: center;
-  border-radius: 999px;
-  background: var(--accent);
-  color: #fff;
-  font-size: 0.75rem;
-  font-weight: 700;
-  cursor: pointer;
-}
-
 /* ---------- 時間軸的資料卡：類型的淡底色、起終點和造訪同樣的卡片、合併卡片的疊層（T15m 第四輪） ---------- */
 
 :root {
@@ -4258,23 +4240,23 @@ button.option-crown {
   margin-top: 4px;
 }
 
-/* ---------- 探索、想去卡片：類型淡底色（和時間軸卡片同一組變數）、名稱旁的複製鍵、❤️ 加強 ---------- */
+/* ---------- 探索、想去卡片：類型淡底色（和時間軸卡片同一組變數）、名稱旁的複製鍵、❤️ 稍微加強 ---------- */
 
 .ex-card.type-spot,
 .ex-row.type-spot,
-.wish-card.view-photo.type-spot {
+.wish-card.type-spot {
   background: var(--type-spot-bg);
 }
 
 .ex-card.type-restaurant,
 .ex-row.type-restaurant,
-.wish-card.view-photo.type-restaurant {
+.wish-card.type-restaurant {
   background: var(--type-restaurant-bg);
 }
 
 .ex-card.type-lodging,
 .ex-row.type-lodging,
-.wish-card.view-photo.type-lodging {
+.wish-card.type-lodging {
   background: var(--type-lodging-bg);
 }
 
@@ -4282,8 +4264,8 @@ button.option-crown {
 .ex-row.type-station,
 .ex-card.type-other,
 .ex-row.type-other,
-.wish-card.view-photo.type-station,
-.wish-card.view-photo.type-other {
+.wish-card.type-station,
+.wish-card.type-other {
   background: var(--type-station-bg);
 }
 
@@ -4316,4 +4298,14 @@ button.option-crown {
 
 .detail-name-row h2 {
   margin: 0;
+}
+
+/* 探索卡片上 ❤️ 是最主要的按鈕：圖示大一點、有邊框 */
+.ex-card .card-votes,
+.ex-row .card-votes {
+  box-shadow: 0 0 0 1px var(--tier-s);
+}
+
+.card-vote[data-testid='card-like'] {
+  font-size: 1.05rem;
 }
