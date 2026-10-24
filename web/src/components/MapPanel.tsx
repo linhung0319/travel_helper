@@ -1,6 +1,5 @@
-// 地圖區的視窗（T15m 第三輪 §3）：日期列的 💬、📋 打開。電腦版蓋住地圖那一欄（左邊的聊天、右邊的分頁還在，可以一邊看一邊寫）；
-// 手機是從上面蓋下來的全螢幕。標題寫範圍，下面一排切換「這天／整趟」（選「全部」時只有整趟）。
-// 預約筆記的內容是 ReservationNotes（Reservations.tsx）。
+// 地圖區的彈窗（T15m 第三、四輪）：右上角的 💬、📋 打開。電腦版是浮在地圖上的大視窗，四周留地圖（沒有遮罩，點地圖就關）；
+// 手機是從下方拉起、高 80vh 的面板，上方露出的地圖點了就關。標題寫範圍，下面一排切換「這天／整趟」（選「全部」時只有整趟）。
 
 import { useApp, useUi } from '../hooks.ts';
 import { dayTarget, TRIP_TARGET } from '../backend/types.ts';
@@ -16,7 +15,7 @@ export function MapPanel() {
   // 選了「全部」時沒有「這天」
   const scope = day === 'all' ? 'trip' : panel.scope;
   const date = scope === 'day' && day !== 'all' ? day : null;
-  const what = panel.kind === 'comments' ? '留言' : '預約';
+  const what = panel.kind === 'comments' ? '討論' : '預約';
   const title = date ? `${dayLabel(date)}的${what}` : `整趟的${what}`;
   return (
     <section className="map-panel" data-testid="map-panel" data-kind={panel.kind} data-scope={scope} aria-label={title}>
@@ -41,7 +40,7 @@ export function MapPanel() {
           <Comments
             key={date ?? TRIP_TARGET}
             target={date ? dayTarget(date) : TRIP_TARGET}
-            label={date ? '這天的留言' : '整趟的留言'}
+            label={date ? '這天的討論' : '整趟的討論'}
             placeholder={date ? '例如：這天想輕鬆一點，下午在旅館泡湯' : '例如：第一天大家都累，晚餐簡單吃'}
             open
           />

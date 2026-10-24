@@ -24,7 +24,7 @@ import { MapCommandBars } from './MapCommandBars.tsx';
 import { showInExplore } from './Explore.tsx';
 import { shared } from '../appShared.ts';
 import { likedPlaces } from '../lib/wishlist.ts';
-import { uiStore } from '../uiStore.ts';
+import { closeMapPanel, uiStore } from '../uiStore.ts';
 
 setWorkerUrl(maplibreWorkerUrl);
 
@@ -325,7 +325,10 @@ export function MapView() {
         }
         return best?.id ?? null;
       };
-      map.on('click', (e: MapMouseEvent) => pickRef.current(placeAt(e.point)));
+      map.on('click', (e: MapMouseEvent) => {
+        closeMapPanel();
+        pickRef.current(placeAt(e.point));
+      });
       map.on('mousemove', PICK_LAYERS, (e) => {
         if (!canHoverRef.current) return;
         const id = String(e.features?.[0]?.properties.id ?? '');

@@ -3617,13 +3617,18 @@ body.dragging-plan .tl-row.tl-card.drop-merge {
   min-width: 0;
 }
 
-.day-tools {
+/* 右上角：整趟工具＋帳號 */
+.account-bar {
   flex: 0 0 auto;
   display: flex;
   align-items: center;
+  gap: 4px;
+}
+
+.trip-tools {
+  display: flex;
+  align-items: center;
   gap: 2px;
-  padding-left: 4px;
-  border-left: 1px solid var(--line);
 }
 
 .day-tool {
@@ -3636,9 +3641,15 @@ body.dragging-plan .tl-row.tl-card.drop-merge {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 2px;
-  font-size: 1rem;
+  gap: 3px;
+  font-size: 0.9rem;
   cursor: pointer;
+  white-space: nowrap;
+}
+
+.day-tool:disabled {
+  opacity: 0.4;
+  cursor: default;
 }
 
 .day-tool-n {
@@ -3657,35 +3668,22 @@ body.dragging-plan .tl-row.tl-card.drop-merge {
   position: relative;
 }
 
-.day-tool-pop {
-  position: absolute;
-  right: 0;
-  top: 100%;
-  z-index: 30;
-  background: var(--bg);
-  border: 1px solid var(--line);
-  border-radius: 8px;
-  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.18);
-  padding: 4px;
-  white-space: nowrap;
-}
-
-.day-tool-pop button {
-  min-height: 40px;
-  padding: 0 12px;
-  border: 0;
-  background: none;
-  cursor: pointer;
-}
-
 .day-float .day-bar-wrap {
   max-width: min(60vw, 720px);
 }
 
-/* 地圖區的視窗：電腦版蓋住地圖那一欄，手機是全螢幕 */
+/* 地圖區的彈窗：電腦版浮在地圖上，左右留 15%、上下留 48px 以上（變數方便調）；手機從下方拉起 80vh */
+.map-column {
+  --panel-gap-x: 15%;
+  --panel-gap-y: 64px;
+}
+
 .map-panel {
   position: absolute;
-  inset: 0;
+  inset: var(--panel-gap-y) var(--panel-gap-x);
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.28);
   z-index: 15;
   background: var(--bg);
   display: flex;
@@ -3697,13 +3695,16 @@ body.dragging-plan .tl-row.tl-card.drop-merge {
 
 .layout.mobile .map-panel {
   position: fixed;
+  inset: auto 0 0 0;
+  height: 80vh;
+  border-radius: 14px 14px 0 0;
   z-index: 50;
   animation: map-panel-in 0.18s ease-out;
 }
 
 @keyframes map-panel-in {
   from {
-    transform: translateY(-100%);
+    transform: translateY(100%);
   }
 }
 
@@ -3773,11 +3774,6 @@ body.dragging-plan .tl-row.tl-card.drop-merge {
   from {
     background: var(--warn-bg);
   }
-}
-
-/* 電腦版：地圖上方的日期列、搜尋列浮在視窗上面，視窗的標題往下讓開 */
-.layout:not(.mobile) .map-panel {
-  padding-top: 118px;
 }
 
 /* 交通卡（第四輪 §5.1、§5.2）：和資料卡一樣的圓角、淺灰底，內容一直顯示；規劃模式點開＝原地編輯 */

@@ -30,8 +30,8 @@ function exportJson() {
   URL.revokeObjectURL(url);
 }
 
-/** 日期列右端的工具：💬 留言、📋 預約筆記（數字是選的那天，選「全部」是整趟）、⋯ 選單（匯出） */
-function DayTools() {
+/** 右上角的整趟工具：💬 討論、📋 預約筆記（數字是選的那天，選「全部」是整趟）、⬇ 下載行程 JSON */
+function TripTools() {
   const day = useApp((s) => s.day);
   const itinerary = useData((s) => s.itinerary);
   const byId = useData((s) => s.byId);
@@ -39,37 +39,31 @@ function DayTools() {
   const reservations = useShared((s) => s.reservations);
   const comments = useCommentCount(day === 'all' ? TRIP_TARGET : dayTarget(day));
   const pending = noteRows(itinerary, plan, byId, reservations).filter((r) => r.status === 'pending' && (day === 'all' || r.date === day)).length;
-  const [menu, setMenu] = useState(false);
-  const menuRef = useRef<HTMLSpanElement>(null);
-  useEffect(() => {
-    if (!menu) return;
-    // 選單以外的地方按下去才關（選單自己的按鈕不算，開啟的那一下也不會立刻關掉）
-    const close = (e: Event) => {
-      if (!menuRef.current?.contains(e.target as Node)) setMenu(false);
-    };
-    document.addEventListener('pointerdown', close);
-    return () => document.removeEventListener('pointerdown', close);
-  }, [menu]);
   return (
-    <div className="day-tools">
-      <button type="button" className="day-tool" onClick={() => openMapPanel('comments')} aria-label="留言" data-testid="toolbar-comments">
-        💬{comments > 0 && <span className="day-tool-n">{comments}</span>}
+    <div className="trip-tools">
+      <button type="button" className="day-tool" onClick={() => openMapPanel('comments')} aria-label="討論" data-testid="toolbar-comments">
+        💬 <span className="day-tool-text">討論</span>
+        {comments > 0 && <span className="day-tool-n">{comments}</span>}
       </button>
       <button type="button" className="day-tool" onClick={() => openMapPanel('reservations')} aria-label="預約筆記" data-testid="toolbar-reservations">
-        📋{pending > 0 && <span className="day-tool-n warn">{pending}</span>}
+        📋 <span className="day-tool-text">預約</span>
+        {pending > 0 && <span className="day-tool-n warn">{pending}</span>}
       </button>
-      <span className="day-tool-menu" ref={menuRef}>
-        <button type="button" className="day-tool" aria-label="更多" aria-expanded={menu} onClick={() => setMenu((o) => !o)} data-testid="toolbar-more">
-          ⋯
+      <span className="day-tool-menu" data-testid="toolbar-more">
+        <button type="button" className="day-tool" aria-label="下載行程 JSON" title="下載行程 JSON" disabled={!itinerary} onClick={exportJson} data-testid="export-json">
+          ⬇
         </button>
-        {menu && (
-          <div className="day-tool-pop" role="menu">
-            <button type="button" role="menuitem" disabled={!itinerary} onClick={exportJson} data-testid="export-json">
-              ⬇ 匯出 JSON
-            </button>
-          </div>
-        )}
       </span>
+    </div>
+  );
+}
+
+/** 右上角：整趟工具和帳號放一起（電腦、手機各一處） */
+function AccountBar() {
+  return (
+    <div className="account-bar">
+      <TripTools />
+      <MeMenu />
     </div>
   );
 }
@@ -111,7 +105,6 @@ function DayTabs({ onSelect }: { onSelect?: () => void }) {
         </button>
       ))}
     </div>
-    <DayTools />
     </div>
   );
 }
@@ -155,7 +148,7 @@ export function TopBar() {
     <div className="top-bar">
       <div className="top-row">
         <DayTabs />
-        <MeMenu />
+        <AccountBar />
       </div>
       <div className="top-row">
         <button
@@ -197,7 +190,7 @@ export function MapTopBar() {
           <DayTabs onSelect={showItinerary} />
         </div>
         <div className="float-bar me-float">
-          <MeMenu />
+          <AccountBar />
         </div>
       </div>
       <PlanningBar />
