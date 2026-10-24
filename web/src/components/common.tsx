@@ -130,16 +130,26 @@ export function AvatarStack({ ids, max = 4, dislikes }: { ids: string[]; max?: n
         {more > 0 && <span className="avatar-more small">+{more}</span>}
       </button>
       {open && (
-        <span className="avatar-list small" role="dialog" aria-label="名單" data-testid="avatar-list">
-          {dislikes ? (
-            <>
-              <span>❤️ {ids.length ? names(ids) : '（沒有）'}</span>
-              {dislikes.length > 0 && <span>👎 {names(dislikes)}</span>}
-            </>
-          ) : (
-            <span>{names(ids)}</span>
-          )}
-        </span>
+        <NameList ids={ids} dislikes={dislikes} />
+      )}
+    </span>
+  );
+}
+
+/** 名單（點頭像或 ▾ 跳出的）：沒給 dislikes 就只列 ids；給了分「❤️ 誰」「👎 誰」兩行 */
+export function NameList({ ids, dislikes, className = '' }: { ids: string[]; dislikes?: string[]; className?: string }) {
+  const members = useShared((s) => s.members);
+  const me = useShared((s) => s.me?.id);
+  const names = (list: string[]) => list.map((id) => (id === me ? '我' : memberName(members, id))).join('、');
+  return (
+    <span className={`avatar-list small ${className}`} role="dialog" aria-label="名單" data-testid="avatar-list" onClick={(e) => e.stopPropagation()}>
+      {dislikes ? (
+        <>
+          {ids.length > 0 && <span>❤️ {names(ids)}</span>}
+          {dislikes.length > 0 && <span>👎 {names(dislikes)}</span>}
+        </>
+      ) : (
+        <span>{names(ids)}</span>
       )}
     </span>
   );

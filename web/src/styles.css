@@ -1029,19 +1029,6 @@ dl {
   font-weight: 700;
 }
 
-.wall-vote {
-  position: absolute;
-  top: 6px;
-  right: 6px;
-  background: rgba(255, 255, 255, 0.85);
-  border-radius: 999px;
-  width: 30px;
-  height: 30px;
-  display: grid;
-  place-items: center;
-  color: var(--tier-s);
-}
-
 /* 地圖控制項不要被上方列、面板擋住 */
 .maplibregl-ctrl-bottom-left {
   margin-bottom: 70px;
@@ -1057,7 +1044,7 @@ dl {
   position: absolute;
   top: 8px;
   left: 8px;
-  right: 56px; /* 右上角是縮放按鈕 */
+  right: 110px; /* 右上角是縮放按鈕 */
   z-index: 4;
   display: flex;
   flex-direction: column;
@@ -2346,26 +2333,6 @@ dl {
   color: var(--bad);
 }
 
-.wall-vote {
-  border: 0;
-  cursor: pointer;
-  width: auto;
-  min-width: 34px;
-  height: 34px;
-  padding: 0 8px;
-  grid-auto-flow: column;
-  gap: 2px;
-}
-
-.wall-vote.on {
-  background: #fff;
-}
-
-.wall-vote-count {
-  font-size: 0.8rem;
-  font-weight: 700;
-}
-
 button.edited {
   border: 0;
   cursor: pointer;
@@ -2829,10 +2796,18 @@ button.edited {
   place-items: center;
 }
 
-.ex-type {
+.ex-tags {
   position: absolute;
   left: 8px;
   top: 8px;
+  right: 120px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 4px;
+}
+
+.ex-type {
   color: #fff;
   border-radius: 999px;
   padding: 2px 10px;
@@ -2852,11 +2827,6 @@ button.edited {
   padding: 0 6px;
   text-align: center;
   font-weight: 700;
-}
-
-.ex-card .wall-vote {
-  top: 8px;
-  right: 8px;
 }
 
 .ex-text {
@@ -2939,11 +2909,6 @@ button.edited {
   font-size: 0.9rem;
   border: 2px solid #fff;
   box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.12);
-}
-
-.ex-row .wall-vote {
-  position: static;
-  background: var(--soft);
 }
 
 /* 地圖指令的提議、比較列放到地圖下方（上方是浮動列） */
@@ -3905,4 +3870,185 @@ button.tl-leg-text {
 .leg-note {
   flex: 1;
   min-width: 10em;
+}
+
+/* 卡片照片右上角的 ❤️／👎（CardVotes）；只有文字的卡片放在名稱後面（inline） */
+.card-votes {
+  position: absolute;
+  top: 6px;
+  right: 6px;
+  z-index: 2;
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+  background: rgba(255, 255, 255, 0.92);
+  border-radius: 999px;
+  padding: 0 4px;
+  color: var(--tier-s);
+}
+
+.card-votes.inline {
+  position: relative;
+  top: auto;
+  right: auto;
+  background: var(--soft);
+}
+
+.card-vote,
+.card-vote-more {
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+  min-height: 34px;
+  padding: 0 6px;
+  cursor: pointer;
+  border-radius: 999px;
+}
+
+.card-votes.inline .card-vote,
+.card-votes.inline .card-vote-more {
+  min-height: 28px;
+}
+
+.card-vote.on {
+  background: var(--info-bg);
+}
+
+.card-vote-more {
+  padding: 0 4px;
+  color: var(--muted);
+  font-size: 0.75rem;
+}
+
+.card-vote-count {
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--fg);
+}
+
+.card-vote-list {
+  right: 0;
+  left: auto;
+  min-width: 150px;
+  color: var(--fg);
+  text-align: left;
+  font-weight: 400;
+}
+
+/* 行程狀態 tag：📅 候選 2/5、✓ 已排 2/5 */
+.day-status-tags {
+  display: inline-flex;
+  flex-wrap: wrap;
+  gap: 4px;
+}
+
+.day-status {
+  font-size: 0.78rem;
+  font-weight: 700;
+  padding: 1px 8px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.92);
+  color: var(--accent);
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.25);
+}
+
+.day-status.scheduled {
+  color: var(--good);
+}
+
+.ex-row .day-status {
+  box-shadow: none;
+  background: var(--info-bg);
+}
+
+/* 加到某天：卡片底部的實心主色按鈕和小月曆 */
+.add-to-day,
+.ex-add {
+  padding: 0 12px 10px;
+}
+
+.add-to-day {
+  padding: 4px 0 6px;
+}
+
+.wish-extras .add-to-day {
+  padding: 4px 0 6px;
+}
+
+.day-picker {
+  margin-top: 6px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 4px;
+}
+
+.day-picker-grid {
+  display: grid;
+  grid-template-columns: repeat(7, minmax(36px, 1fr));
+  gap: 4px;
+  width: 100%;
+  max-width: 320px;
+}
+
+.day-picker-week {
+  text-align: center;
+}
+
+.day-picker-day {
+  display: grid;
+  place-items: center;
+  min-height: 40px;
+  padding: 2px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--bg);
+  color: var(--fg);
+  font: inherit;
+  cursor: pointer;
+  line-height: 1.1;
+}
+
+.day-picker-day.cand {
+  border-color: var(--accent);
+  background: var(--info-bg);
+  color: var(--accent);
+  font-weight: 700;
+}
+
+.day-picker-day.scheduled {
+  background: var(--soft);
+  color: var(--good);
+  font-weight: 700;
+  cursor: default;
+}
+
+.day-picker-mark {
+  font-size: 0.7rem;
+}
+
+/* 手機圖片牆：左上 AI、下面是行程狀態；右上 ❤️／👎、下面是加到某天 */
+.wall-tags {
+  position: absolute;
+  left: 6px;
+  top: 42px;
+  right: 110px;
+  z-index: 1;
+}
+
+.wall-add-day {
+  position: absolute;
+  right: 6px;
+  top: 46px;
+  z-index: 2;
+  min-height: 30px;
+  padding: 0 10px;
+  display: grid;
+  place-items: center;
+  border-radius: 999px;
+  background: var(--accent);
+  color: #fff;
+  font-size: 0.75rem;
+  font-weight: 700;
+  cursor: pointer;
 }

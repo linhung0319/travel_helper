@@ -1,5 +1,5 @@
 // 想去（interaction-design §6）：❤️ 就是想去。「❤️ 想去」分頁照搬探索（Explore.tsx 的 source="wish"），
-// 每張卡片底下多了 ❤️ 的頭像、👎 數、留言（只有一層，收起來）、「📅 加到某天」。
+// 每張卡片底下多了「📅 加到某天」（小月曆，DayPicker.tsx）、留言（只有一層，收起來）；❤️／👎 數在照片右上角。
 // 加到某天的點變成那天的「候選」，放在行程分頁時間軸的下面；規劃模式下按 ↑ 排進行程（插在最順路的位置），
 // 或「併到…」某張卡片（成為那張卡片「這個時段也可以去」的一個）。
 // 這天、整趟的留言（Comments）放在地圖區的視窗（MapPanel）。
@@ -16,13 +16,12 @@ import { allItems, selectedPlace } from '../lib/planView.ts';
 import { closeDialog, openDialog } from '../uiStore.ts';
 import type { Candidate, Comment } from '../backend/types.ts';
 import { dayCandidates, likedPlaces } from '../lib/wishlist.ts';
-import { shortDayLabel, tripDates } from '../lib/trip.ts';
+import { shortDayLabel } from '../lib/trip.ts';
 import { TYPE_ICONS } from '../lib/typeStyle.ts';
 import { memberName } from '../sharedStore.ts';
 import { Avatar, AvatarStack, Dialog, MemberName, stamp } from './common.tsx';
 import { addPlaceToDay } from './addToDay.ts';
-
-const DATES = tripDates();
+import { AddToDay } from './DayPicker.tsx';
 
 /** 有人 ❤️ 的點（想去分頁的內容）；地圖、分頁的數字也用這個 */
 export function useLiked() {
@@ -123,80 +122,13 @@ export function Comments({ target, label = '留言', placeholder = '留言…', 
   );
 }
 
-/** ❤️ 的頭像、👎 數（自己按 ❤️／👎 用卡片上的按鈕或詳情） */
-function Reactions({ likes, dislikes }: { likes: string[]; dislikes: string[] }) {
-  const me = useShared((s) => s.me?.id);
-  const members = useShared((s) => s.members);
-  return (
-    <span className="wish-reactions" title={`❤️ ${likes.map((id) => (id === me ? '我' : memberName(members, id))).join('、')}`}>
-      <span className="avatars">
-        {likes.map((id) => (
-          <Avatar key={id} id={id} />
-        ))}
-      </span>
-      <span className="muted small">❤️ {likes.length}</span>
-      {dislikes.length > 0 && (
-        <span className="muted small" title={`👎 ${dislikes.map((id) => (id === me ? '我' : memberName(members, id))).join('、')}`}>
-          　👎 {dislikes.length}
-        </span>
-      )}
-    </span>
-  );
-}
-
-/** 「📅 加到某天」：展開一排日期，選一天就進那天的候選；已經是候選的那天標起來 */
-function AddToDay({ placeId }: { placeId: string }) {
-  const [open, setOpen] = useState(false);
-  const candidates = useShared((s) => s.candidates);
-  const on = new Set(candidates.filter((c) => c.placeId === placeId).map((c) => c.day));
-  if (!open)
-    return (
-      <button type="button" className="text-button small" onClick={() => setOpen(true)} data-testid="wish-add-day">
-        📅 加到某天
-      </button>
-    );
-  return (
-    <div className="wish-days" role="group" aria-label="加到哪天的候選">
-      {DATES.map((d) => (
-        <button
-          key={d}
-          type="button"
-          className={`pill small-pill ${on.has(d) ? 'on' : ''}`}
-          aria-pressed={on.has(d)}
-          disabled={on.has(d)}
-          data-add-day={d}
-          onClick={async () => {
-            if ((await shared.addCandidate(placeId, d)).ok) setOpen(false);
-          }}
-        >
-          {shortDayLabel(d)}
-        </button>
-      ))}
-      <button type="button" className="text-button small" onClick={() => setOpen(false)}>
-        取消
-      </button>
-    </div>
-  );
-}
-
-/** 想去卡片底下：頭像、👎、哪幾天的候選、加到某天、留言（已排哪天在卡片上的 📅）。規劃模式下住宿多「設為 2/5 的住宿」 */
+/** 想去卡片底下：加到某天（月曆）、留言。規劃模式下住宿多「設為 2/5 的住宿」。❤️／👎 數和候選、已排的 tag 在卡片的照片上 */
 export function WishExtras({ placeId }: { placeId: string }) {
-  const liked = useLiked().get(placeId);
-  const candidates = useShared((s) => s.candidates);
   const isLodging = useData((s) => s.byId.get(placeId)?.type === 'lodging');
   const planning = useApp((s) => s.planning);
   const day = useApp((s) => s.day);
-  const cands = candidates.filter((c) => c.placeId === placeId).sort((a, b) => a.day.localeCompare(b.day));
   return (
     <div className="wish-extras">
-      <div className="wish-meta">
-        {liked && <Reactions likes={liked.likes} dislikes={liked.dislikes} />}
-        {cands.map((c) => (
-          <span key={c.id} className="hope-chip" title={`${shortDayLabel(c.day)} 的候選`}>
-            候選 {shortDayLabel(c.day)}
-          </span>
-        ))}
-      </div>
       {planning && isLodging && day !== 'all' && (
         // 時間軸住宿卡片的「換住宿」切過來的；會換掉那晚原本的住宿，用排進行程的對話框確認
         <button type="button" className="button small primary" onClick={() => openDialog({ kind: 'add', placeId, day })} data-testid="wish-set-lodging">

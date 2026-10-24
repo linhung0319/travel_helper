@@ -2,7 +2,7 @@
 // 按 ❤️ → 想去分頁出現、留言 → 換人看得到、改不了別人的留言 → 加到某天 → 這天的候選
 // → 進入規劃模式按 ↑ 排進 → 時間軸出現、有交通（含緩衝）→ 停留時間 ＋15 → 復原快照後回到原狀。
 import { test, type Locator, type Page } from '@playwright/test';
-import { expect, isMobile, ready } from './helpers.ts';
+import { centerOn, expect, isMobile, ready } from './helpers.ts';
 
 const DAY = '2027-02-07';
 const PLACE = 'toba-seahorse';
@@ -72,9 +72,9 @@ test('T15m：❤️ 想去 → 留言 → 加到某天 → 規劃模式按 ↑ �
   await wish(list).getByTestId('wish-comments').click();
   await expect(wish(list).getByTestId('wish-comment')).toContainText(TEXT);
   await expect(wish(list).getByTestId('wish-comment').getByRole('button', { name: '改' })).toHaveCount(0);
-  await wish(list).getByTestId('wish-add-day').click();
-  await wish(list).locator(`[data-add-day="${DAY}"]`).click();
-  await expect(wish(list)).toContainText('候選 2/7');
+  await wish(list).getByTestId('add-to-day').click();
+  await wish(list).getByTestId(`day-picker-${DAY}`).click();
+  await expect(wish(list).getByTestId('card-status-tag')).toContainText('候選 2/7');
 
   // 4. 行程分頁：這天的候選有它；一般模式沒有 ↑
   await showDay(page, DAY);
@@ -422,4 +422,41 @@ test('第三輪：選了某一天，地圖上那天的行程線改沿道路畫�
     )
     .toBe(true);
   expect(errors).toEqual([]);
+});
+
+test('在探索加到某天：自動 ❤️、出現在那天的候選', async ({ page }) => {
+  await ready(page);
+  const mobile = await isMobile(page);
+  const type = (await th(page, `__th.dataStore.getState().byId.get('${PLACE}').type`)) as string;
+  let card: Locator;
+  if (mobile) {
+    await page.getByRole('button', { name: '探索' }).click();
+    await expect(page.getByTestId('explore-wall')).toBeVisible();
+    await centerOn(page, PLACE, 14);
+    card = page.locator(`[data-testid="wall-item"][data-id="${PLACE}"]`);
+  } else {
+    await page.getByTestId('side-tab-explore').click();
+    await page.evaluate((t) => (window as any).__th.appStore.getState().setFilter({ types: [t] }), type);
+    card = page.locator(`li:has([data-testid="explore-item"][data-id="${PLACE}"])`);
+  }
+  await card.scrollIntoViewIfNeeded();
+  // 還沒人 ❤️：照片上是空心的 ♡
+  await expect(card.getByTestId('card-like')).toHaveAttribute('aria-pressed', 'false');
+  await card.getByTestId('add-to-day').click();
+  const picker = page.getByTestId('day-picker');
+  await expect(picker).toBeVisible();
+  await picker.getByTestId(`day-picker-${DAY}`).click();
+  await expect(picker.getByTestId(`day-picker-${DAY}`)).toHaveAttribute('aria-pressed', 'true');
+  // 手機的月曆在對話框裡，先關掉才點得到卡片
+  if (mobile) await page.getByRole('button', { name: '完成' }).click();
+  // 順手按了 ❤️，卡片上有候選 tag
+  await expect(card.getByTestId('card-like')).toHaveAttribute('aria-pressed', 'true');
+  await expect(card.getByTestId('card-votes')).toContainText('1');
+  await expect(card.getByTestId('card-status-tag')).toContainText('候選 2/7');
+  // 點 ▾ 看是誰按的
+  await card.getByTestId('card-votes-more').click();
+  await expect(card.getByTestId('avatar-list')).toContainText('❤️');
+  // 那天的候選有它
+  await showDay(page, DAY);
+  await expect(cand(page)).toBeVisible();
 });

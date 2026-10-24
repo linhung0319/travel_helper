@@ -33,3 +33,10 @@ export function dayCandidates(candidates: Candidate[], date: string, it: Itinera
   const on = placesOnDay(it, date);
   return candidates.filter((c) => c.day === date && !c.deletedAt && !on.has(c.placeId)).sort((a, b) => a.createdAt.localeCompare(b.createdAt));
 }
+
+/** 一個點的行程狀態：哪幾天是候選（已經排進那天的不算）、哪幾天已排進行程；日期由早到晚 */
+export function placeDayStatus(placeId: string, candidates: Candidate[], it: Itinerary | null): { candidate: string[]; scheduled: string[] } {
+  const scheduled = (it?.days ?? []).filter((d) => placesOnDay(it, d.date).has(placeId)).map((d) => d.date);
+  const candidate = candidates.filter((c) => c.placeId === placeId && !c.deletedAt && !scheduled.includes(c.day)).map((c) => c.day);
+  return { candidate: [...new Set(candidate)].sort(), scheduled: [...new Set(scheduled)].sort() };
+}

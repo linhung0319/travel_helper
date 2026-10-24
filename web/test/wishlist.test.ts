@@ -1,7 +1,7 @@
 // 想去：有 ❤️ 的點（頭像、👎）；某天的候選（已經排進那天的不列）
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { dayCandidates, likedPlaces } from '../src/lib/wishlist.ts';
+import { dayCandidates, likedPlaces, placeDayStatus } from '../src/lib/wishlist.ts';
 import type { Candidate, Vote } from '../src/backend/types.ts';
 import { itin } from './helpers.ts';
 
@@ -48,4 +48,12 @@ test('dayCandidates：備選、分組裡的項目也算已經排進那天', () =
   } as never);
   const list = ['backup', 'g', 'main', 'free'].map((p) => cand(p, '2027-02-05'));
   assert.deepEqual(dayCandidates(list, '2027-02-05', it).map((c) => c.placeId), ['free']);
+});
+
+test('placeDayStatus：兩天候選、一天已排，日期排序；已排的那天不再算候選', () => {
+  const it = itin({ '2027-02-04': ['x'], '2027-02-05': ['y'] });
+  const list = [cand('x', '2027-02-08'), cand('x', '2027-02-05'), cand('x', '2027-02-04'), cand('y', '2027-02-06')];
+  assert.deepEqual(placeDayStatus('x', list, it), { candidate: ['2027-02-05', '2027-02-08'], scheduled: ['2027-02-04'] });
+  assert.deepEqual(placeDayStatus('z', list, it), { candidate: [], scheduled: [] });
+  assert.deepEqual(placeDayStatus('x', list, null), { candidate: ['2027-02-04', '2027-02-05', '2027-02-08'], scheduled: [] });
 });

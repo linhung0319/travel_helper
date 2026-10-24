@@ -4,7 +4,8 @@
 // 清單可以切換大照片（像 IG）或只有文字；滑鼠移上去地圖上的點會閃，點了地圖移過去、打開詳情。
 // 反過來，點地圖上的點：切到探索、捲到那張卡片（showInExplore），再點卡片才開詳情（手機沒有 hover，所以用點的）。
 // 探索的類型寫在篩選裡（地圖跟著變淡），回到「行程」時拿掉（showItinerary）。
-// 「❤️ 想去」分頁是同一個元件（source="wish"）：只列有人 ❤️ 的點，卡片底下多了頭像、留言、加到某天（Wishlist.tsx 的 WishExtras）。
+// 「❤️ 想去」分頁是同一個元件（source="wish"）：只列有人 ❤️ 的點，卡片底下多了留言（Wishlist.tsx 的 WishExtras）；「📅 加到某天」兩個分頁的卡片都有（DayPicker.tsx）。
+// 卡片照片右上角是 ❤️／👎 數（CardVotes），左上角是類型和行程狀態（候選、已排）的 tag。
 
 import { useEffect, useMemo, useRef, useState, type ReactNode } from 'react';
 import { appStore } from '../store.ts';
@@ -25,7 +26,8 @@ import { TYPE_COLORS, TYPE_ICONS } from '../lib/typeStyle.ts';
 import type { Place } from '../data/types.ts';
 import { Photo } from './Photo.tsx';
 import { TierBadge } from './TierBadge.tsx';
-import { WallVote } from './Votes.tsx';
+import { CardVotes } from './Votes.tsx';
+import { AddToDay, DayStatusTag } from './DayPicker.tsx';
 import { FilterPanel } from './FilterPanel.tsx';
 import { dragPlaceProps } from './askAi.ts';
 import { useLiked, WishExtras } from './Wishlist.tsx';
@@ -138,7 +140,12 @@ function Item({ place, rank, view, hot, source }: { place: Place; rank: number; 
         <WishExtras placeId={place.id} />
       </li>
     ) : (
-      <li>{body}</li>
+      <li>
+        {body}
+        <div className="ex-add">
+          <AddToDay placeId={place.id} />
+        </div>
+      </li>
     );
   if (view === 'list') {
     return li(
@@ -151,10 +158,11 @@ function Item({ place, rank, view, hot, source }: { place: Place; rank: number; 
             <span className="ex-name">
               <TierBadge tier={place.tier} />
               {name}
+              <CardVotes placeId={place.id} inline />
+              <DayStatusTag placeId={place.id} />
             </span>
             <Meta place={place} />
           </span>
-          <WallVote placeId={place.id} />
         </button>,
     );
   }
@@ -162,7 +170,11 @@ function Item({ place, rank, view, hot, source }: { place: Place; rank: number; 
       <button {...common} className={`ex-card ${hot ? 'flash' : ''}`}>
         <span className="ex-photo">
           <Photo place={place} width={600} />
-          <TypeTag place={place} />
+          <span className="ex-tags">
+            <TypeTag place={place} />
+            <DayStatusTag placeId={place.id} />
+          </span>
+          <CardVotes placeId={place.id} />
           <span className="ex-rank-badge">{rank}</span>
         </span>
         <span className="ex-text">
@@ -175,7 +187,6 @@ function Item({ place, rank, view, hot, source }: { place: Place; rank: number; 
           {place.summary && <span className="ex-summary small">{place.summary.text}</span>}
           <Badges place={place} />
         </span>
-        <WallVote placeId={place.id} />
       </button>,
   );
 }

@@ -51,7 +51,7 @@ for (const [name, viewport] of [
   const card = page.locator('[data-testid="wish-item"][data-id="toba-bay-cruise-irukajima"]');
   await card.scrollIntoViewIfNeeded();
   await card.getByTestId('wish-comments').click();
-  await card.getByTestId('wish-add-day').click();
+  await card.getByTestId('add-to-day').click();
   await shot(page, `${name}-24-wish-card`);
   await page.locator('.side-body').first().evaluate((el) => (el.scrollTop = 0));
   await page.waitForTimeout(300);
