@@ -3,6 +3,8 @@
 
 import type { DayPlan, EngineWarning, Itinerary, ItineraryItem, Leg, TimelineEntry, VisitItem } from '@travel-helper/engine';
 import { MODE_ICONS } from './routing.ts';
+import { displayMinutes, estimateWalk } from './geo/walk.ts';
+import type { Place } from '../data/types.ts';
 
 /** 引擎自動加的緩衝（集合、上下車），讓人知道時間怎麼來的 */
 const bufferText = (leg: Leg) => (leg.bufferMinutes ? `＋緩衝 ${leg.bufferMinutes} 分` : '');
@@ -63,6 +65,35 @@ export function itemsWithPlace(it: Itinerary | null, placeId: string): ItemRef[]
 
 /** visit 目前選的點 */
 export const selectedPlace = (v: VisitItem) => v.options[v.selected]?.place ?? null;
+
+/** 多點卡片「這個時段也可以去」的一列 */
+export interface OptionRow {
+  place: Place;
+  /** 在 options 裡的位置（selectOption、removeOption 用） */
+  index: number;
+  main: boolean;
+  /** 從主要那個走過來幾分（anchors 有就用，沒有用直線估算）；主要那個是 null */
+  walkMinutesFromMain: number | null;
+}
+
+/** 從 a 走到 b 幾分：a、b 任一邊的 anchors 有就用，沒有用直線估算 */
+function walkBetween(a: Place, b: Place): number {
+  const m = a.anchors.find((x) => x.id === b.id)?.walkMinutes ?? b.anchors.find((x) => x.id === a.id)?.walkMinutes;
+  return m ?? displayMinutes(estimateWalk(a.coords, b.coords).minutes);
+}
+
+/** 一張卡片裡的幾個點：主要的排第一，其他照原本的順序；找不到資料的點不列 */
+export function optionRows(item: VisitItem, byId: Map<string, Place>): OptionRow[] {
+  const main = byId.get(item.options[item.selected]?.place ?? '');
+  const rows: OptionRow[] = [];
+  item.options.forEach((o, index) => {
+    const place = byId.get(o.place);
+    if (!place) return;
+    const isMain = index === item.selected;
+    rows.push({ place, index, main: isMain, walkMinutesFromMain: isMain || !main ? null : walkBetween(main, place) });
+  });
+  return rows.sort((a, b) => Number(b.main) - Number(a.main));
+}
 
 /** 畫面上不另外列的警告：計程車的台數已經寫在交通那一行 */
 const HIDDEN_WARNINGS = new Set(['taxi']);

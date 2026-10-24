@@ -126,6 +126,22 @@ test('備案：加、切換、刪；刪到只剩一個不行', () => {
   assert.throws(() => removeOption(next, a, 0), /至少/);
 });
 
+test('拿掉主要的那個，selected 指到還在的點', () => {
+  const { it, ids: [a] } = threeItems();
+  let base = addOption(addOption(it, a, { place: 'x' }), a, { place: 'y' });
+  base = selectOption(base, a, 1);
+  const sel = (x: Itinerary) => (findItem(x, a)?.item as VisitItem).selected;
+  const gone = removeOption(base, a, 1);
+  assert.equal(sel(gone), 0);
+  assert.equal((findItem(gone, a)?.item as VisitItem).options.length, 2);
+  // 拿掉 selected 之前的：selected 減 1，還是同一個點
+  const before = removeOption(base, a, 0);
+  assert.equal(sel(before), 0);
+  assert.equal((findItem(before, a)?.item as VisitItem).options[0].place, 'x');
+  // 拿掉 selected 之後的：不變
+  assert.equal(sel(removeOption(base, a, 2)), 1);
+});
+
 test('指定開始時間、交通、住宿', () => {
   const { it, ids: [a] } = threeItems();
   assert.equal((findItem(setStart(it, a, '10:30'), a)?.item as VisitItem).start, '10:30');

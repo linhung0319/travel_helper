@@ -9,7 +9,7 @@ import { useData, usePlan, useShared, useUi } from '../hooks.ts';
 import { noteRows, linkLabel, reservationFor, type NoteRow } from '../lib/reservations.ts';
 import { dayLabel } from '../lib/trip.ts';
 import { openMapPanel } from '../uiStore.ts';
-import { MemberName, stamp } from './common.tsx';
+import { AvatarStack, stamp } from './common.tsx';
 import { shared, sharedStore } from '../appShared.ts';
 
 const ROLE_LABELS = { main: '', other: '這個時段也可以去', lodging: '住宿' } as const;
@@ -108,7 +108,7 @@ function Row({ row }: { row: NoteRow }) {
       <NoteInput row={row} />
       {row.updatedBy && (
         <p className="muted small note-by">
-          <MemberName id={row.updatedBy} /> {stamp(row.updatedAt)} 改的
+          <AvatarStack ids={[row.updatedBy]} /> {stamp(row.updatedAt)} 改的
         </p>
       )}
     </div>

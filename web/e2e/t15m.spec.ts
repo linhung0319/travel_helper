@@ -88,7 +88,7 @@ test('T15m：❤️ 想去 → 留言 → 加到某天 → 規劃模式按 ↑ �
   await expect(cand(page)).toHaveCount(0);
   const row = page.getByTestId('timeline').locator(`[data-testid="tl-row"][data-place="${PLACE}"]`);
   await expect(row).toBeVisible();
-  await expect(row).toContainText('提的');
+  await expect(row.getByTestId('avatar-stack')).toBeVisible(); // 按 ❤️ 的人（爸爸）的頭像
   await expect(page.getByTestId('timeline').getByTestId('tl-leg').first()).toContainText('緩衝');
 
   // 6. 停留時間 ＋15：標籤跟著變
@@ -275,4 +275,71 @@ test('預約筆記：打了備註不按 Enter 直接按狀態，兩個都存得�
   const again = page.getByTestId('map-panel').locator(`[data-testid="note-row"][data-place="${placeId}"]`).first();
   await expect(again).toHaveAttribute('data-status', 'booked');
   await expect(again.getByTestId('note-text')).toHaveValue(TEXT2);
+});
+
+const tlRow = (page: Page, item: string) => page.getByTestId('timeline').locator(`[data-testid="tl-row"][data-item="${item}"]`);
+
+test('第三輪：一般模式只看；多點卡片展開、設為主要、標吃法、拿掉放回候選、候選併到卡片', async ({ page }) => {
+  await ready(page);
+  await showDay(page, '2027-02-05');
+  // 一般模式：午餐 tag、＋1、頭像；沒有 −／＋、⋯
+  const lunch = tlRow(page, 'i-7');
+  await expect(lunch.getByTestId('tag-meal')).toHaveText('午餐');
+  await expect(lunch.getByTestId('stay-minus')).toHaveCount(0);
+  await expect(lunch.getByTestId('item-menu')).toHaveCount(0);
+  await expect(lunch.getByTestId('tag-edit')).toHaveCount(0);
+  const aquarium = tlRow(page, 'i-6');
+  await aquarium.getByTestId('avatar-stack').click();
+  await expect(aquarium.getByTestId('avatar-list')).toContainText('媽媽');
+
+  // 展開「這個時段也可以去」：主要排第一、一般模式不能改
+  await expect(lunch.getByTestId('options-toggle')).toHaveText('＋1');
+  await lunch.getByTestId('options-toggle').click();
+  await expect(lunch.getByTestId('options-list')).toContainText('這個時段也可以去');
+  await expect(lunch.getByTestId('option-row')).toHaveCount(2);
+  await expect(lunch.getByTestId('option-row').first()).toHaveAttribute('data-main', 'true');
+  await expect(lunch.getByTestId('option-make-main')).toHaveCount(0);
+  expect(await th(page, '__th.appStore.getState().highlights.primary')).toEqual(['toba-sazanami', 'toba-kazuei']);
+
+  // 規劃模式：設為主要 → 卡片換成一榮
+  await enterPlanning(page);
+  await lunch.locator('[data-testid="option-row"][data-place="toba-kazuei"]').getByTestId('option-make-main').click();
+  await expect(lunch).toHaveAttribute('data-place', 'toba-kazuei');
+
+  // 標吃法：點 tag 那一排 → 分開吃
+  await lunch.getByTestId('tag-edit').click();
+  await lunch.getByTestId('tag-dining-separate').click();
+  await expect(lunch.getByTestId('tag-dining')).toHaveText('分開吃');
+
+  // 從這張卡片拿掉漣 → 回到這天的候選
+  if (!(await lunch.getByTestId('options-list').count())) await lunch.getByTestId('options-toggle').click();
+  await lunch.locator('[data-testid="option-row"][data-place="toba-sazanami"]').getByTestId('option-remove').click();
+  await expect(lunch.getByTestId('options-toggle')).toHaveCount(0);
+  const sazanami = cand(page, 'toba-sazanami');
+  await expect(sazanami).toBeVisible();
+
+  // 併到…水族館那張卡片：候選消失，水族館變成 ＋1
+  await sazanami.getByTestId('candidate-merge').click();
+  await page.getByTestId('merge-menu').locator('[data-merge-item="i-6"]').click();
+  await expect(sazanami).toHaveCount(0);
+  await expect(aquarium.getByTestId('options-toggle')).toHaveText('＋1');
+});
+
+test('第三輪：住宿卡片的含餐 tag、換住宿 → 想去的住宿「設為 2/7 的住宿」', async ({ page }) => {
+  await ready(page);
+  // 先 ❤️ 一間住宿，想去才有它
+  await openDetail(page, 'toba-kokusai-hotel');
+  await page.getByTestId('vote-like').click();
+  await closeDetail(page);
+  await showDay(page, DAY);
+  const lodging = page.getByTestId('timeline').locator('.tl-lodging');
+  await expect(lodging.getByTestId('lodging-meal')).toHaveText(['含晚餐', '含早餐']);
+  await expect(lodging.getByTestId('lodging-change')).toHaveCount(0);
+  await enterPlanning(page);
+  await lodging.getByTestId('lodging-change').click();
+  const card = page.getByTestId('wish-panel').locator('[data-testid="wish-item"][data-id="toba-kokusai-hotel"]');
+  await card.getByTestId('wish-set-lodging').click();
+  await expect(page.getByTestId('add-dialog')).toBeVisible();
+  await page.getByTestId('add-submit').click();
+  await expect.poll(() => th(page, `__th.dataStore.getState().itinerary.days.find((d) => d.date === '${DAY}').lodging`)).toBe('toba-kokusai-hotel');
 });

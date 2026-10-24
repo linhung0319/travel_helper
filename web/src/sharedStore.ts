@@ -354,20 +354,6 @@ export function createShared(getBackend: () => Backend, data: StoreApi<DataState
   };
 }
 
-/** 行程項目加上「誰提的」（已經有就不重複） */
-export function addProposer(it: Itinerary, itemIds: string[], memberId: string): Itinerary {
-  const ids = new Set(itemIds);
-  const mark = <T extends { id: string; type: string; proposedBy?: string[] }>(x: T): T =>
-    ids.has(x.id) && x.type === 'visit' && !(x.proposedBy ?? []).includes(memberId) ? { ...x, proposedBy: [...(x.proposedBy ?? []), memberId] } : x;
-  return {
-    ...it,
-    days: it.days.map((d) => ({
-      ...d,
-      items: d.items.map((x) => (x.type === 'split' ? { ...x, groups: x.groups.map((g) => ({ ...g, items: g.items.map(mark) })) } : mark(x))),
-    })),
-  };
-}
-
 /** 計數：每個點的 ❤️、👎 */
 export function voteCounts(votes: Vote[]): Map<string, { like: number; dislike: number }> {
   const out = new Map<string, { like: number; dislike: number }>();

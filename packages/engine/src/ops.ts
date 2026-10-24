@@ -257,7 +257,7 @@ export function addOption(it: Itinerary, itemId: string, option: VisitItem['opti
   return next;
 }
 
-/** 刪一個備案；不能刪到沒有 */
+/** 刪一個選項；不能刪到沒有。刪到主要的那個時改成第一個，刪到前面的照樣指著原本那個 */
 export function removeOption(it: Itinerary, itemId: string, index: number): Itinerary {
   const next = clone(it);
   const { item } = mustFind(next, itemId);
@@ -265,7 +265,8 @@ export function removeOption(it: Itinerary, itemId: string, index: number): Itin
   if (item.options.length <= 1) throw new ItineraryError('至少要留一個選項');
   if (index < 0 || index >= item.options.length) throw new ItineraryError('沒有這個備案');
   item.options.splice(index, 1);
-  if (item.selected > index || item.selected >= item.options.length) item.selected = Math.max(0, item.selected - 1);
+  if (item.selected === index) item.selected = 0;
+  else if (item.selected > index) item.selected -= 1;
   return next;
 }
 

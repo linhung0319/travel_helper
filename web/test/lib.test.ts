@@ -11,7 +11,7 @@ import { nearbyPlaces } from '../src/lib/nearby.ts';
 import { placeVisual, wallPlaces } from '../src/lib/visual.ts';
 import { dayStops, placeDays } from '../src/lib/itinerary.ts';
 import { itin } from './helpers.ts';
-import { dayBar, daySummary, formatStay, stopMarks } from '../src/lib/planView.ts';
+import { dayBar, daySummary, formatStay, optionRows, stopMarks } from '../src/lib/planView.ts';
 import { explorePlaces, typeCounts } from '../src/lib/explore.ts';
 import type { DayPlan, TimelineEntry } from '@travel-helper/engine';
 import type { Area, Place, StationTimetable } from '../src/data/types.ts';
@@ -325,4 +325,24 @@ test('formatStay', () => {
   assert.equal(formatStay(60), '1 小時');
   assert.equal(formatStay(150), '2.5 小時');
   assert.equal(formatStay(80), '1 小時 20 分');
+});
+
+test('多點卡片的清單：主要的排第一、走路分鐘是 null，其他照 anchors 或直線估算', () => {
+  const a = place('a', { type: 'restaurant', coords: [136.8, 34.4] });
+  const b = place('b', { type: 'restaurant', coords: [136.801, 34.4], anchors: [{ id: 'a', walkMinutes: 4, walkSource: 'osrm' }] });
+  const c = place('c', { type: 'restaurant', coords: [136.802, 34.4] });
+  const byId = new Map([a, b, c].map((p) => [p.id, p]));
+  const item = { id: 'i-1', type: 'visit' as const, options: [{ place: 'b' }, { place: 'a' }, { place: 'gone' }, { place: 'c' }], selected: 1 };
+  const rows = optionRows(item, byId);
+  assert.deepEqual(
+    rows.map((r) => [r.place.id, r.index, r.main]),
+    [
+      ['a', 1, true],
+      ['b', 0, false],
+      ['c', 3, false],
+    ],
+  );
+  assert.equal(rows[0].walkMinutesFromMain, null);
+  assert.equal(rows[1].walkMinutesFromMain, 4);
+  assert.ok(typeof rows[2].walkMinutesFromMain === 'number' && rows[2].walkMinutesFromMain > 0);
 });

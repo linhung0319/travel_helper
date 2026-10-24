@@ -1,20 +1,25 @@
 // 想去（interaction-design §6）：❤️ 就是想去。「❤️ 想去」分頁照搬探索（Explore.tsx 的 source="wish"），
 // 每張卡片底下多了 ❤️ 的頭像、👎 數、留言（只有一層，收起來）、「📅 加到某天」。
-// 加到某天的點變成那天的「候選」，放在行程分頁時間軸的下面；規劃模式下按 ↑ 排進行程（插在最順路的位置）。
+// 加到某天的點變成那天的「候選」，放在行程分頁時間軸的下面；規劃模式下按 ↑ 排進行程（插在最順路的位置），
+// 或「併到…」某張卡片（成為那張卡片「這個時段也可以去」的一個）。
 // 這天、整趟的留言（Comments）放在地圖區的視窗（MapPanel）。
 
-import { useMemo, useState } from 'react';
+import { useEffect, useMemo, useRef, useState, type PointerEvent as ReactPointerEvent } from 'react';
+import { addOption, type DayPlan, type TimelineEntry } from '@travel-helper/engine';
+import type { VisitItem } from '@travel-helper/engine/types';
 import { appStore } from '../store.ts';
 import { commands } from '../appCommands.ts';
 import { shared } from '../appShared.ts';
-import { useApp, useData, useShared } from '../hooks.ts';
+import { useApp, useData, usePlan, useShared } from '../hooks.ts';
+import { dayPlanOf } from '../planStore.ts';
+import { allItems, selectedPlace } from '../lib/planView.ts';
 import { closeDialog, openDialog } from '../uiStore.ts';
-import type { Comment } from '../backend/types.ts';
+import type { Candidate, Comment } from '../backend/types.ts';
 import { dayCandidates, likedPlaces } from '../lib/wishlist.ts';
 import { shortDayLabel, tripDates } from '../lib/trip.ts';
 import { TYPE_ICONS } from '../lib/typeStyle.ts';
 import { memberName } from '../sharedStore.ts';
-import { Dialog, MemberName, stamp } from './common.tsx';
+import { Avatar, AvatarStack, Dialog, MemberName, stamp } from './common.tsx';
 import { addPlaceToDay } from './addToDay.ts';
 
 const DATES = tripDates();
@@ -23,18 +28,6 @@ const DATES = tripDates();
 export function useLiked() {
   const votes = useShared((s) => s.votes);
   return useMemo(() => likedPlaces(votes), [votes]);
-}
-
-function Avatar({ id }: { id: string }) {
-  const members = useShared((s) => s.members);
-  const me = useShared((s) => s.me?.id);
-  const m = members.find((x) => x.id === id);
-  const name = id === me ? '我' : memberName(members, id);
-  return (
-    <span className={`avatar ${id === me ? 'me' : ''}`} title={name}>
-      {m?.pictureUrl ? <img src={m.pictureUrl} alt="" /> : name.slice(0, 1)}
-    </span>
-  );
 }
 
 const KIND_TAGS: Record<Comment['kind'], string | null> = { normal: null, planner: '規劃', decline: '不採用' };
@@ -186,10 +179,13 @@ function AddToDay({ placeId }: { placeId: string }) {
   );
 }
 
-/** 想去卡片底下：頭像、👎、哪幾天的候選、加到某天、留言（已排哪天在卡片上的 📅） */
+/** 想去卡片底下：頭像、👎、哪幾天的候選、加到某天、留言（已排哪天在卡片上的 📅）。規劃模式下住宿多「設為 2/5 的住宿」 */
 export function WishExtras({ placeId }: { placeId: string }) {
   const liked = useLiked().get(placeId);
   const candidates = useShared((s) => s.candidates);
+  const isLodging = useData((s) => s.byId.get(placeId)?.type === 'lodging');
+  const planning = useApp((s) => s.planning);
+  const day = useApp((s) => s.day);
   const cands = candidates.filter((c) => c.placeId === placeId).sort((a, b) => a.day.localeCompare(b.day));
   return (
     <div className="wish-extras">
@@ -201,22 +197,166 @@ export function WishExtras({ placeId }: { placeId: string }) {
           </span>
         ))}
       </div>
+      {planning && isLodging && day !== 'all' && (
+        // 時間軸住宿卡片的「換住宿」切過來的；會換掉那晚原本的住宿，用排進行程的對話框確認
+        <button type="button" className="button small primary" onClick={() => openDialog({ kind: 'add', placeId, day })} data-testid="wish-set-lodging">
+          🏨 設為 {shortDayLabel(day)} 的住宿
+        </button>
+      )}
       <AddToDay placeId={placeId} />
       <Comments target={placeId} />
     </div>
   );
 }
 
-/** 行程分頁：這天的候選。點一筆＝地圖飛過去、跳出小卡片；規劃模式下 ↑ 排進行程 */
-export function DayCandidates({ date }: { date: string }) {
-  const all = useShared((s) => s.candidates);
-  const me = useShared((s) => s.me?.id);
+/** 某天的時間軸裡，每個項目的開始時間（含分組裡的） */
+function startTimes(plan: DayPlan | null): Map<string, string> {
+  const out = new Map<string, string>();
+  const walk = (entries: TimelineEntry[]) => {
+    for (const e of entries) {
+      if (e.itemId && e.kind !== 'meet') out.set(e.itemId, e.start);
+      e.groups?.forEach((g) => walk(g.entries));
+    }
+  };
+  walk(plan?.entries ?? []);
+  return out;
+}
+
+/** 候選的「併到…」：選這天的哪一張造訪卡片，這個點就放進那張卡片的「這個時段也可以去」，候選拿掉 */
+function MergeMenu({ candidateId, placeId, date, name }: { candidateId: number; placeId: string; date: string; name: string }) {
+  const [open, setOpen] = useState(false);
+  const [busy, setBusy] = useState(false);
   const itinerary = useData((s) => s.itinerary);
   const byId = useData((s) => s.byId);
+  const plan = usePlan((s) => dayPlanOf(s.plan, date));
+  const times = startTimes(plan);
+  const placeName = (v: VisitItem) => {
+    const p = byId.get(selectedPlace(v) ?? '');
+    return p ? p.name.zh || p.name.ja : (selectedPlace(v) ?? '');
+  };
+  const targets = allItems(itinerary)
+    .filter((r) => r.date === date && r.item.type === 'visit')
+    .map((r) => r.item as VisitItem)
+    .filter((v) => !v.options.some((o) => o.place === placeId));
+  const merge = async (v: VisitItem) => {
+    setBusy(true);
+    const r = await shared.changeItinerary((it) => addOption(it, v.id, { place: placeId, stayMinutes: null }), `${name} 併到 ${placeName(v)}`);
+    if (r.ok) await shared.removeCandidate(candidateId, undefined, true);
+    setBusy(false);
+    setOpen(false);
+  };
+  return (
+    <span className="item-menu cand-merge">
+      <button type="button" className="text-button small" aria-expanded={open} disabled={busy} onClick={() => setOpen(!open)} title="放進某張卡片的「這個時段也可以去」" data-testid="candidate-merge">
+        併到…
+      </button>
+      {open && (
+        <span className="menu" role="menu" data-testid="merge-menu">
+          {targets.length === 0 && <span className="muted small menu-note">這天還沒有可以併的卡片</span>}
+          {targets.map((v) => {
+            const p = byId.get(selectedPlace(v) ?? '');
+            return (
+              <button key={v.id} type="button" role="menuitem" disabled={busy} onClick={() => void merge(v)} data-merge-item={v.id}>
+                <span className="muted">{times.get(v.id) ?? ''}</span> {p ? TYPE_ICONS[p.type] : ''} {placeName(v)}
+              </button>
+            );
+          })}
+        </span>
+      )}
+    </span>
+  );
+}
+
+/** 手機長按顯示提示（電腦版滑鼠移過去看 title） */
+function useLongPressHint(text: string) {
+  const timer = useRef<number | null>(null);
+  const cancel = () => {
+    if (timer.current != null) window.clearTimeout(timer.current);
+    timer.current = null;
+  };
+  useEffect(() => cancel, []);
+  return {
+    onPointerDown: (e: ReactPointerEvent) => {
+      if (e.pointerType !== 'touch') return;
+      cancel();
+      timer.current = window.setTimeout(() => shared.notify(text), 500);
+    },
+    onPointerUp: cancel,
+    onPointerLeave: cancel,
+    onPointerCancel: cancel,
+  };
+}
+
+/** 這天候選的一筆：類型圖示、名稱、❤️ 頭像；誰加的放在 title（手機長按） */
+function CandidateRow({ c, date }: { c: Candidate; date: string }) {
+  const me = useShared((s) => s.me?.id);
+  const members = useShared((s) => s.members);
+  const p = useData((s) => s.byId.get(c.placeId));
   const planning = useApp((s) => s.planning);
   const hovered = useApp((s) => s.hoveredId);
-  const liked = useLiked();
-  const [busy, setBusy] = useState<number | null>(null);
+  const liked = useLiked().get(c.placeId);
+  const [busy, setBusy] = useState(false);
+  const name = p ? p.name.zh || p.name.ja : c.placeId;
+  const mine = c.addedBy === me;
+  const addedBy = `${mine ? '我' : memberName(members, c.addedBy)} 加的`;
+  const hint = useLongPressHint(addedBy);
+  const lodging = p?.type === 'lodging';
+  const up = async () => {
+    // 住宿會換掉那晚原本的住宿，用對話框確認
+    if (lodging) return openDialog({ kind: 'add', placeId: c.placeId, day: date });
+    setBusy(true);
+    await addPlaceToDay(c.placeId, date);
+    setBusy(false);
+  };
+  return (
+    <li
+      className={`cand ${hovered === c.placeId ? 'hot' : ''}`}
+      data-testid="cand-item"
+      data-id={c.placeId}
+      title={addedBy}
+      onMouseEnter={() => appStore.getState().hover(c.placeId)}
+      onMouseLeave={() => appStore.getState().hover(null)}
+      {...hint}
+    >
+      {planning && (
+        <button type="button" className="button small primary cand-up" disabled={busy} onClick={() => void up()} title={lodging ? '設成這晚的住宿' : '插在這天最順路的位置'} data-testid="cand-up">
+          ↑
+        </button>
+      )}
+      <button
+        type="button"
+        className="cand-name"
+        onClick={() => {
+          commands.focus(c.placeId);
+          appStore.getState().openPreview(c.placeId);
+        }}
+      >
+        {p && <span aria-hidden>{TYPE_ICONS[p.type]} </span>}
+        {p?.tier && <span className={`tier tier-${p.tier}`}>{p.tier}</span>}
+        <strong>{name}</strong>
+      </button>
+      {liked && <AvatarStack ids={liked.likes} dislikes={liked.dislikes} />}
+      {planning && !lodging && <MergeMenu candidateId={c.id} placeId={c.placeId} date={date} name={name} />}
+      {mine ? (
+        <button type="button" className="text-button small" onClick={() => void shared.removeCandidate(c.id)} data-testid="cand-withdraw">
+          撤回
+        </button>
+      ) : (
+        planning && (
+          <button type="button" className="text-button small" onClick={() => openDialog({ kind: 'reject', candidateId: c.id })} data-testid="cand-reject">
+            拿掉
+          </button>
+        )
+      )}
+    </li>
+  );
+}
+
+/** 行程分頁：這天的候選。點一筆＝地圖飛過去、跳出小卡片；規劃模式下 ↑ 排進行程、併到某張卡片 */
+export function DayCandidates({ date }: { date: string }) {
+  const all = useShared((s) => s.candidates);
+  const itinerary = useData((s) => s.itinerary);
+  const planning = useApp((s) => s.planning);
   const list = dayCandidates(all, date, itinerary);
   return (
     <section className="day-section day-candidates" data-testid="day-candidates">
@@ -226,60 +366,9 @@ export function DayCandidates({ date }: { date: string }) {
       {list.length > 0 && !planning && <p className="muted small">進入規劃模式，就可以按 ↑ 排進行程</p>}
       {list.length === 0 && <p className="muted small">在想去的卡片按『加到某天』，就會出現在這裡。</p>}
       <ul className="cand-list">
-        {list.map((c) => {
-          const p = byId.get(c.placeId);
-          const name = p ? p.name.zh || p.name.ja : c.placeId;
-          const mine = c.addedBy === me;
-          const up = async () => {
-            // 住宿會換掉那晚原本的住宿，用對話框確認
-            if (p?.type === 'lodging') return openDialog({ kind: 'add', placeId: c.placeId, day: date });
-            setBusy(c.id);
-            await addPlaceToDay(c.placeId, date);
-            setBusy(null);
-          };
-          return (
-            <li
-              key={c.id}
-              className={`cand ${hovered === c.placeId ? 'hot' : ''}`}
-              data-testid="cand-item"
-              data-id={c.placeId}
-              onMouseEnter={() => appStore.getState().hover(c.placeId)}
-              onMouseLeave={() => appStore.getState().hover(null)}
-            >
-              {planning && (
-                <button type="button" className="button small primary cand-up" disabled={busy === c.id} onClick={() => void up()} title={p?.type === 'lodging' ? '設成這晚的住宿' : '插在這天最順路的位置'} data-testid="cand-up">
-                  ↑
-                </button>
-              )}
-              <button
-                type="button"
-                className="cand-name"
-                onClick={() => {
-                  commands.focus(c.placeId);
-                  appStore.getState().openPreview(c.placeId);
-                }}
-              >
-                {p && <span aria-hidden>{TYPE_ICONS[p.type]} </span>}
-                {p?.tier && <span className={`tier tier-${p.tier}`}>{p.tier}</span>}
-                <strong>{name}</strong>
-              </button>
-              <span className="muted small cand-meta">
-                ❤️ {liked.get(c.placeId)?.likes.length ?? 0}・<MemberName id={c.addedBy} /> 加的
-              </span>
-              {mine ? (
-                <button type="button" className="text-button small" onClick={() => void shared.removeCandidate(c.id)} data-testid="cand-withdraw">
-                  撤回
-                </button>
-              ) : (
-                planning && (
-                  <button type="button" className="text-button small" onClick={() => openDialog({ kind: 'reject', candidateId: c.id })} data-testid="cand-reject">
-                    拿掉
-                  </button>
-                )
-              )}
-            </li>
-          );
-        })}
+        {list.map((c) => (
+          <CandidateRow key={c.id} c={c} date={date} />
+        ))}
       </ul>
     </section>
   );

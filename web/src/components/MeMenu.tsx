@@ -7,10 +7,7 @@ import { mockBackend } from '../backend/index.ts';
 import { appStore } from '../store.ts';
 import { useShared, useUi } from '../hooks.ts';
 import { setIdleMinutes } from './Planning.tsx';
-
-function initial(name: string) {
-  return [...name][0] ?? '?';
-}
+import { initial } from './common.tsx';
 
 export function MeMenu() {
   const me = useShared((s) => s.me);

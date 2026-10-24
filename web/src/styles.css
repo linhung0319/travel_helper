@@ -1737,25 +1737,143 @@ dl {
   padding: 6px 10px;
 }
 
-.tl-options {
+/* 停留時間和 tag 同一排，在名稱下面 */
+.tl-meta {
   display: flex;
   flex-wrap: wrap;
+  align-items: center;
+  gap: 4px 8px;
+}
+
+.item-tags {
+  position: relative;
+  display: inline-flex;
+  flex-wrap: wrap;
+  align-items: center;
   gap: 4px;
 }
 
-.option {
-  border: 1px dashed var(--line);
-  background: var(--bg);
-  border-radius: 999px;
-  min-height: 32px;
-  padding: 0 10px;
-  font-size: 0.85rem;
+.item-tags:empty {
+  display: none;
 }
 
-.option.on {
-  border-style: solid;
-  border-color: var(--accent);
-  color: var(--accent);
+.item-tags .badge {
+  margin-left: 0;
+}
+
+.tag-dining {
+  background: var(--soft);
+  border: 1px solid var(--line);
+}
+
+/* 規劃模式：點 tag 那一排改 */
+.tag-edit {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  min-height: 32px;
+  padding: 0 6px;
+  border: 1px dashed var(--plan);
+  border-radius: 8px;
+  background: none;
+  cursor: pointer;
+}
+
+.tag-edit .badge {
+  margin-left: 0;
+}
+
+/* 選單放在 tag 那一排下面（不浮出去，手機也不會超出畫面） */
+.menu.tag-menu {
+  position: static;
+  flex: 0 0 100%;
+  min-width: 0;
+  max-width: 320px;
+  gap: 8px;
+  padding: 8px;
+}
+
+.tag-menu-group {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px;
+}
+
+.tag-menu-group > .muted {
+  flex: 0 0 100%;
+}
+
+.menu .tag-menu-group button.pill {
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  min-height: 36px;
+  padding: 2px 12px;
+}
+
+.menu .tag-menu-group button.pill.on {
+  background: var(--fg);
+  color: #fff;
+  border-color: var(--fg);
+}
+
+.menu-note {
+  padding: 8px 10px;
+}
+
+/* 多點卡片：名稱後面的 ＋N、展開的「這個時段也可以去」 */
+.options-toggle {
+  border: 0;
+  min-height: 28px;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.tl-options {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  margin-top: 4px;
+  padding: 6px 8px;
+  border-radius: 8px;
+  background: var(--soft);
+}
+
+.tl-options ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.tl-option {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 2px 8px;
+}
+
+.tl-option-name {
+  border: 0;
+  background: none;
+  padding: 0;
+  min-height: 36px;
+  font: inherit;
+  color: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+
+.tl-option.main .tl-option-name {
+  font-weight: 600;
+}
+
+.tl-option-star {
+  display: inline-block;
+  width: 1.2em;
+  color: var(--warn);
 }
 
 .tl-gap {
@@ -2010,6 +2128,55 @@ dl {
 
 .avatar.me {
   background: var(--good);
+}
+
+/* 疊在一起的頭像（最多 4 個、+N）；點了跳出名單 */
+.avatar-stack {
+  position: relative;
+  display: inline-flex;
+}
+
+.avatar-stack-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+  border: 0;
+  background: none;
+  padding: 0 2px;
+  min-height: 28px;
+  cursor: pointer;
+  color: var(--muted);
+}
+
+.avatar-more {
+  margin-left: 2px;
+}
+
+.avatar-list {
+  position: absolute;
+  left: 0;
+  top: 100%;
+  z-index: 20;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 180px;
+  max-width: 260px;
+  padding: 6px 10px;
+  background: var(--bg);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  box-shadow: var(--shadow);
+  white-space: normal;
+}
+
+.cand-merge {
+  margin-left: 0;
+}
+
+.cand-merge .menu {
+  left: 0;
+  right: auto;
 }
 
 .hope-chip.scheduled {

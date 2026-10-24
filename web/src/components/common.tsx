@@ -1,6 +1,6 @@
-// T15m 共用的小元件：對話框外框、地點標籤、成員名字、紀錄的時間。
+// T15m 共用的小元件：對話框外框、地點標籤、成員名字、頭像、紀錄的時間。
 
-import { useEffect, useRef, type ReactNode } from 'react';
+import { useEffect, useRef, useState, type ReactNode } from 'react';
 import { appStore } from '../store.ts';
 import { commands } from '../appCommands.ts';
 import { useData, useShared } from '../hooks.ts';
@@ -71,6 +71,78 @@ export function MemberName({ id }: { id: string | null | undefined }) {
   const members = useShared((s) => s.members);
   const me = useShared((s) => s.me?.id);
   return <span className="member">{id && id === me ? '我' : memberName(members, id)}</span>;
+}
+
+/** 名字的第一個字（頭像用） */
+export const initial = (name: string) => [...name][0] ?? '?';
+
+/** 圓形頭像：有照片用照片，沒有就是名字第一個字（和 MeMenu 一樣）；自己是綠色 */
+export function Avatar({ id }: { id: string }) {
+  const members = useShared((s) => s.members);
+  const me = useShared((s) => s.me?.id);
+  const m = members.find((x) => x.id === id);
+  const name = id === me ? '我' : memberName(members, id);
+  return (
+    <span className={`avatar ${id === me ? 'me' : ''}`} title={name}>
+      {m?.pictureUrl ? <img src={m.pictureUrl} alt="" /> : initial(memberName(members, id))}
+    </span>
+  );
+}
+
+/**
+ * 疊在一起的頭像（像 FB）：最多 max 個，其他寫「+N」。點了跳出名單；
+ * 給了 dislikes 時名單分「❤️ 誰」「👎 誰」兩行（頭像只畫 ids）。
+ */
+export function AvatarStack({ ids, max = 4, dislikes }: { ids: string[]; max?: number; dislikes?: string[] }) {
+  const members = useShared((s) => s.members);
+  const me = useShared((s) => s.me?.id);
+  const [open, setOpen] = useState(false);
+  const ref = useRef<HTMLSpanElement>(null);
+  useEffect(() => {
+    if (!open) return;
+    const close = (e: PointerEvent) => {
+      if (!ref.current?.contains(e.target as Node)) setOpen(false);
+    };
+    document.addEventListener('pointerdown', close);
+    return () => document.removeEventListener('pointerdown', close);
+  }, [open]);
+  if (!ids.length && !dislikes?.length) return null;
+  const names = (list: string[]) => list.map((id) => (id === me ? '我' : memberName(members, id))).join('、');
+  const more = ids.length - max;
+  return (
+    <span className="avatar-stack" ref={ref}>
+      <button
+        type="button"
+        className="avatar-stack-button"
+        aria-expanded={open}
+        aria-label={`${dislikes ? '❤️ ' : ''}${names(ids)}`}
+        onClick={(e) => {
+          e.stopPropagation();
+          setOpen(!open);
+        }}
+        data-testid="avatar-stack"
+      >
+        <span className="avatars">
+          {ids.slice(0, max).map((id) => (
+            <Avatar key={id} id={id} />
+          ))}
+        </span>
+        {more > 0 && <span className="avatar-more small">+{more}</span>}
+      </button>
+      {open && (
+        <span className="avatar-list small" role="dialog" aria-label="名單" data-testid="avatar-list">
+          {dislikes ? (
+            <>
+              <span>❤️ {ids.length ? names(ids) : '（沒有）'}</span>
+              {dislikes.length > 0 && <span>👎 {names(dislikes)}</span>}
+            </>
+          ) : (
+            <span>{names(ids)}</span>
+          )}
+        </span>
+      )}
+    </span>
+  );
 }
 
 /** 紀錄的時間（建議、修改、快照）：月/日 時:分。這是「什麼時候寫的」，用瀏覽器的時間就好；行程的時間一律是日本時間字串 */
