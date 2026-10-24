@@ -287,23 +287,25 @@ test('placeDays 用的是 engine 的行程：同一個點排在兩天', () => {
 const DAY = '2027-02-05';
 const leg = (mode: string) => ({ mode, from: null, to: null, depart: '09:00', arrive: '09:10', minutes: 10, walkMinutes: 0, waitMinutes: 0 });
 /** 只有 itineraryFeatures 用得到的欄位 */
-function fakePlan(mode: string) {
+function fakePlan(mode: string, legs: [string, string, string][] = [[DAY, 'a', 'b']]) {
   return {
-    days: [
-      {
-        date: DAY,
-        entries: [
-          { placeId: 'a', travel: null },
-          { placeId: 'b', travel: leg(mode) },
-        ],
-      },
-    ],
+    days: legs.map(([date, from, to]) => ({
+      date,
+      entries: [
+        { placeId: from, travel: null },
+        { placeId: to, travel: leg(mode) },
+      ],
+    })),
   } as never;
 }
-const itinAB = () => itin({ [DAY]: ['a', 'b'] });
+const DAY2 = '2027-02-06';
+const itinAB = () => itin({ [DAY]: ['a', 'b'], [DAY2]: ['c', 'd'] });
+const TWO_DAYS = (): [string, string, string][] => [[DAY, 'a', 'b'], [DAY2, 'c', 'd']];
 const A = place('a', [136.8, 34.5]);
 const B = place('b', [136.81, 34.5]);
-const byIdAB = new Map([['a', A], ['b', B]]);
+const C = place('c', [136.9, 34.6]);
+const D = place('d', [136.91, 34.6]);
+const byIdAB = new Map([['a', A], ['b', B], ['c', C], ['d', D]]);
 
 test('行程線：pathOf 給三個點的路徑就接起來，標籤放在路徑中點；不給就是直線', () => {
   const mid: [number, number] = [136.805, 34.502];
@@ -339,6 +341,8 @@ function setupItinerary(router: ReturnType<typeof createRoadRouter>, mode = 'wal
   const places = [
     A,
     B,
+    C,
+    D,
     place('st1', [136.7, 34.4], { type: 'station', operator: 'kintetsu', stationNumber: 'M1' }),
     place('st2', [136.72, 34.41], { type: 'station', operator: 'kintetsu', stationNumber: 'M2' }),
     place('st3', [136.74, 34.42], { type: 'station', operator: 'kintetsu', stationNumber: 'M3' }),
@@ -355,32 +359,82 @@ function setupItinerary(router: ReturnType<typeof createRoadRouter>, mode = 'wal
     days: new Map(),
     stationNames: new Map(),
   }));
-  const plan = createStore<PlanState>()(() => ({ status: 'ready', error: null, plan: fakePlan(mode) }));
+  const plan = createStore<PlanState>()(() => ({ status: 'ready', error: null, plan: fakePlan(mode, TWO_DAYS()) }));
   return { app, data, plan, router };
 }
 
-test('行程線：startItineraryRoutes 只查選定那天的段落，查到就讓 routesVersion 加一；選「全部」不查', async () => {
+const OK = (url: string) => ({ ok: true, status: 200, json: async () => osrmBody([[136.8, 34.5], [136.805, 34.502], [136.81, 34.5]], 795), url });
+const ticks = async (n = 6) => {
+  for (let i = 0; i < n; i++) await tick();
+};
+
+test('行程線：選「全部」每一天都查（照日期）；選了某天，那天先、其他天照日期接著', async () => {
   const urls: string[] = [];
-  const fetch = async (url: string) => {
-    urls.push(url);
-    return { ok: true, status: 200, json: async () => osrmBody([[136.8, 34.5], [136.805, 34.502], [136.81, 34.5]], 795) };
-  };
+  const router = createRoadRouter({ fetch: async (u: string) => (urls.push(u), OK(u)), minIntervalMs: 0 });
+  const { app, data, plan } = setupItinerary(router);
+  const stop = startItineraryRoutes(app, data, plan, router);
+  await ticks();
+  assert.equal(urls.length, 2);
+  assert.ok(urls[0].includes('136.8,34.5;136.81,34.5') && urls[1].includes('136.9,34.6;136.91,34.6'), urls.join('\n'));
+  assert.equal(app.getState().routesVersion, 2);
+  stop();
+
+  // 選了 2/6：2/6 的先查
+  const urls2: string[] = [];
+  const router2 = createRoadRouter({ fetch: async (u: string) => (urls2.push(u), OK(u)), minIntervalMs: 0 });
+  const s2 = setupItinerary(router2);
+  s2.app.getState().selectDay(DAY2);
+  const stop2 = startItineraryRoutes(s2.app, s2.data, s2.plan, router2);
+  await ticks();
+  assert.equal(urls2.length, 2);
+  assert.ok(urls2[0].includes('136.9,34.6') && urls2[1].includes('136.8,34.5'), urls2.join('\n'));
+  // 同樣的資料再觸發不重查
+  s2.plan.setState({ plan: fakePlan('walk', TWO_DAYS()) });
+  await ticks();
+  assert.equal(urls2.length, 2);
+  stop2();
+});
+
+test('行程線：查到一半換天（2/5 → 2/6）：新的那天優先，routesVersion 照樣加', async () => {
+  const urls: string[] = [];
+  const gates: (() => void)[] = [];
+  const fetch = (url: string) =>
+    new Promise<ReturnType<typeof OK>>((resolve) => {
+      urls.push(url);
+      gates.push(() => resolve(OK(url)));
+    });
   const router = createRoadRouter({ fetch, minIntervalMs: 0 });
+  const { app, data, plan } = setupItinerary(router);
+  app.getState().selectDay(DAY);
+  const stop = startItineraryRoutes(app, data, plan, router);
+  await tick();
+  assert.equal(urls.length, 1); // 2/5 的那段送出去了，還沒回來
+  app.getState().selectDay(DAY2);
+  await tick();
+  gates[0](); // 2/5 的回來：舊的一輪不再往下，但路徑已進快取，地圖要重畫
+  await ticks();
+  assert.equal(app.getState().routesVersion, 1);
+  assert.equal(urls.length, 2);
+  assert.ok(urls[1].includes('136.9,34.6'), urls.join('\n')); // 新的那天接著查
+  gates[1]();
+  await ticks();
+  assert.ok(app.getState().routesVersion >= 2, String(app.getState().routesVersion)); // 新一輪也會等到還在飛的 2/5 那段，多加一次無妨
+  assert.equal(urls.length, 2); // 2/5 已在快取，不重查
+  stop();
+});
+
+test('行程線：等待中的那段被別人查到（快取裡出現）：下一次檢查時地圖照樣重畫', async () => {
+  const storage = memoryStorage();
+  const router = createRoadRouter({ fetch: () => new Promise(() => undefined), storage, minIntervalMs: 0 }); // 第一段一直不回來
   const { app, data, plan } = setupItinerary(router);
   const stop = startItineraryRoutes(app, data, plan, router);
   await tick();
-  assert.equal(urls.length, 0); // 預設選「全部」
-  app.getState().selectDay(DAY);
-  await tick();
-  await tick();
-  assert.equal(urls.length, 1);
-  assert.ok(urls[0].includes('routed-foot'));
+  assert.equal(app.getState().routesVersion, 0);
+  storage.setItem('travel-helper:route:' + roadKey('foot', C.coords, D.coords), JSON.stringify({ geometry: [C.coords, D.coords], meters: 100 }));
+  plan.setState({ plan: fakePlan('walk', TWO_DAYS()) }); // 時間軸重算
+  await ticks(2);
   assert.equal(app.getState().routesVersion, 1);
-  assert.equal(router.cachedPath('foot', A.coords, B.coords)?.length, 3);
-  // 同一天再觸發不重查
-  plan.setState({ plan: fakePlan('walk') });
-  await tick();
-  assert.equal(urls.length, 1);
+  assert.equal(createPathOf(router, data)(C, D, 'walk')?.length, 2);
   stop();
 });
 

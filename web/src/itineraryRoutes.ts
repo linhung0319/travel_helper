@@ -1,8 +1,8 @@
 // 地圖上的行程線沿道路和鐵路畫（T15m 第三輪）：
 // - createPathOf：給 itineraryFeatures 用，同步回傳那一段的路徑（步行、車看 router 的快取，電車沿車站），沒有就 null（畫直線）
-// - startItineraryRoutes：選定的那天變了或時間軸重算後，把那天每一段步行、車的路徑一段一段向 router 要，
-//   拿到就讓 routesVersion 加一，地圖重畫。換天時舊的那天不再排新的請求，新的那天從頭排（優先於其他天）。
-// 選「全部」時不查（太多段，OSRM 要求低頻），只畫已經在快取裡的。
+// - startItineraryRoutes：每一天每一段步行、車的路徑一段一段向 router（共用的佇列，1.1 秒一個）要：
+//   選定的那天先，其他天照日期排在後面；選「全部」就照日期。拿到就讓 routesVersion 加一，地圖重畫。
+//   換天或時間軸重算時重新排（已在快取的不再查），舊的一輪不再往下排。
 
 import type { StoreApi } from 'zustand/vanilla';
 import type { Leg } from '@travel-helper/engine';
@@ -53,48 +53,57 @@ export function createPathOf(router: Pick<RoadRouter, 'cachedPath'>, data: Store
 
 export function startItineraryRoutes(app: StoreApi<AppStore>, data: StoreApi<DataState>, plan: StoreApi<PlanState>, router: RoadRouter): () => void {
   let generation = 0;
-  let key = '';
+  let pending = new Map<string, true>();
 
-  /** 選定那天需要查、還沒在快取裡的段落（照時間軸的順序） */
+  /** 全部要查、還沒在快取裡的段落：選定的那天先，其他天照日期；選「全部」就是照日期 */
   const wanted = (day: string) => {
-    const out: { profile: 'foot' | 'car'; from: LonLat; to: LonLat }[] = [];
+    const out: { key: string; profile: 'foot' | 'car'; from: LonLat; to: LonLat }[] = [];
     const seen = new Set<string>();
     const collect: PathOf = (from, to, mode) => {
       const profile = roadProfile(mode);
       if (profile && !router.cachedPath(profile, from.coords, to.coords)) {
-        const k = `${profile}|${from.coords}|${to.coords}`;
-        if (!seen.has(k)) {
-          seen.add(k);
-          out.push({ profile, from: from.coords, to: to.coords });
+        const key = `${profile}|${from.coords}|${to.coords}`;
+        if (!seen.has(key)) {
+          seen.add(key);
+          out.push({ key, profile, from: from.coords, to: to.coords });
         }
       }
       return null;
     };
     const d = data.getState();
-    itineraryFeatures(d.itinerary, plan.getState().plan, d.byId, DATES, day, collect);
+    const it = d.itinerary;
+    if (!it) return out;
+    const dates = it.days.map((x) => x.date).sort();
+    const order = day === 'all' ? dates : [day, ...dates.filter((x) => x !== day)];
+    for (const date of order) {
+      const one = it.days.find((x) => x.date === date);
+      if (one) itineraryFeatures({ ...it, days: [one] }, plan.getState().plan, d.byId, DATES, date, collect);
+    }
     return out;
   };
 
+  const bump = () => app.setState((s) => ({ routesVersion: s.routesVersion + 1 }));
+
   const check = () => {
-    const day = app.getState().day;
-    const d = data.getState();
     const p = plan.getState().plan;
-    if (day === 'all' || !d.itinerary || !p) {
+    if (!data.getState().itinerary || !p) {
       generation++;
-      key = '';
+      pending = new Map();
       return;
     }
-    const todo = wanted(day);
-    const nextKey = todo.map((t) => `${t.profile}|${t.from}|${t.to}`).join(';');
-    if (nextKey === key) return;
-    key = nextKey;
+    const todo = wanted(app.getState().day);
+    const now = new Set(todo.map((t) => t.key));
+    // 之前在等的段落，現在已經在快取裡（別人查到的，或換天、重算時剛好完成）：地圖要重畫
+    const gotCached = [...pending.keys()].some((k) => !now.has(k));
+    pending = new Map(todo.map((t) => [t.key, true]));
+    if (gotCached) bump();
     const mine = ++generation;
     void (async () => {
       for (const t of todo) {
         if (mine !== generation) return;
         const road = await router.route(t.profile, t.from, t.to);
-        if (mine !== generation) return;
-        if (road) app.setState((s) => ({ routesVersion: s.routesVersion + 1 }));
+        // 換了天或重算了：路徑已經進快取，新的一輪不會再查它，所以這裡一定要讓地圖重畫
+        if (road) bump();
       }
     })();
   };
@@ -102,7 +111,7 @@ export function startItineraryRoutes(app: StoreApi<AppStore>, data: StoreApi<Dat
   check();
   const offs = [
     app.subscribe((s, prev) => {
-      if (s.day !== prev.day) check();
+      if (s.day !== prev.day || s.routes !== prev.routes) check();
     }),
     plan.subscribe((s, prev) => {
       if (s.plan !== prev.plan) check();
