@@ -13,7 +13,8 @@ import { TYPE_COLORS } from '../lib/typeStyle.ts';
 import { stopMarks } from '../lib/planView.ts';
 import { dayPlanOf } from '../planStore.ts';
 import { addMapIcons } from './mapIcons.ts';
-import { dayColor, placeVisual } from '../lib/visual.ts';
+import { placeVisual } from '../lib/visual.ts';
+import { PULSE_EVENT, PULSE_MS } from '../lib/mapPulse.ts';
 import { tripDates } from '../lib/trip.ts';
 import { PLACE_TYPES, type Bbox, type Place } from '../data/types.ts';
 import { PreviewCard } from './PreviewCard.tsx';
@@ -37,11 +38,10 @@ const DATES = tripDates();
 
 const typeColorExpr = ['match', ['get', 'type'], ...PLACE_TYPES.flatMap((t) => [t, TYPE_COLORS[t]]), '#555'];
 
-/** marks：選定那天的編號（宿、1、2…，planView.stopMarks）；有編號的點畫成那天顏色的編號圓 */
+/** marks：選定那天的編號（宿、1、2…，planView.stopMarks）；有編號的點畫成類型色的編號圓 */
 function featureCollection(places: Place[], marks: Map<string, string>): FeatureCollection {
   const { filter, query, day, mode } = appStore.getState();
   const { days } = dataStore.getState();
-  const color = day === 'all' ? '' : dayColor(DATES, day);
   // 探索、想去時不因為「不在那天」變淡（找的是那天還沒排的點），只看篩選；想去時沒人 ❤️ 的點也變淡
   const dimDay = mode === 'explore' || mode === 'wish' ? 'all' : day;
   const liked = mode === 'wish' ? likedPlaces(shared.store.getState().votes) : null;
@@ -60,7 +60,7 @@ function featureCollection(places: Place[], marks: Map<string, string>): Feature
           label: p.name.zh || p.name.ja,
           dim: v.dim || (liked && !liked.has(p.id)) ? 1 : 0,
           mark: marks.get(p.id) ?? '',
-          dayColor: color,
+          typeColor: TYPE_COLORS[p.type],
         },
       };
     }),
@@ -205,7 +205,7 @@ export function MapView() {
         },
         paint: { 'icon-opacity': ['case', ['==', ['get', 'dim'], 1], 0.3, 1] },
       });
-      // 選定那天的點：那天顏色的圓，寫「宿」「1」「2」…（和時間軸的編號一樣）
+      // 選定那天的點：類型色的圓（和時間軸的編號一樣），寫「宿」「1」「2」…（和時間軸的編號一樣）
       map.addLayer({
         id: 'places-mark',
         type: 'circle',
@@ -213,7 +213,20 @@ export function MapView() {
         filter: ['!=', ['get', 'mark'], ''],
         paint: {
           'circle-radius': ['interpolate', ['linear'], ['zoom'], 8, 10, 14, 13],
-          'circle-color': ['get', 'dayColor'],
+          'circle-color': ['get', 'typeColor'],
+          'circle-stroke-color': '#ffffff',
+          'circle-stroke-width': 2.5,
+        },
+      });
+      // 點時間軸的卡片時，那個編號圓放大再縮回來（pulseMark）；蓋在 places-mark 上、文字下面
+      map.addLayer({
+        id: 'places-mark-pulse',
+        type: 'circle',
+        source: 'places',
+        filter: ['==', ['get', 'id'], ''],
+        paint: {
+          'circle-radius': ['interpolate', ['linear'], ['zoom'], 8, 10, 14, 13],
+          'circle-color': ['get', 'typeColor'],
           'circle-stroke-color': '#ffffff',
           'circle-stroke-width': 2.5,
         },
@@ -520,6 +533,35 @@ export function MapView() {
       m.getElement().textContent = b.text;
     }
   }, [loaded, votes, byId]);
+
+  // 編號圓跳一下：pulse 圖層的半徑在 0.8 秒內放大到 1.5 倍再回來
+  useEffect(() => {
+    if (!loaded) return;
+    const map = mapRef.current!;
+    let raf = 0;
+    const stop = () => {
+      cancelAnimationFrame(raf);
+      map.setFilter('places-mark-pulse', ['==', ['get', 'id'], '']);
+    };
+    const onPulse = (e: Event) => {
+      stop();
+      map.setFilter('places-mark-pulse', ['==', ['get', 'id'], (e as CustomEvent<string>).detail]);
+      const t0 = performance.now();
+      const tick = (now: number) => {
+        const t = (now - t0) / PULSE_MS;
+        if (t >= 1) return stop();
+        const k = 1 + 0.5 * Math.sin(Math.PI * t);
+        map.setPaintProperty('places-mark-pulse', 'circle-radius', ['interpolate', ['linear'], ['zoom'], 8, 10 * k, 14, 13 * k]);
+        raf = requestAnimationFrame(tick);
+      };
+      raf = requestAnimationFrame(tick);
+    };
+    window.addEventListener(PULSE_EVENT, onPulse);
+    return () => {
+      window.removeEventListener(PULSE_EVENT, onPulse);
+      stop();
+    };
+  }, [loaded]);
 
   // 移動地圖的請求（跳到區域、T12 的 focus）
   useEffect(() => {

@@ -44,8 +44,22 @@ function popularity(p: Place): number {
   return Math.max(...['googleReviews', 'tabelogReviews', 'rakutenReviews', 'jalanReviews'].map((k) => (typeof r[k] === 'number' ? (r[k] as number) : 0)));
 }
 
-// 每天一種顏色（interaction-design §3）
-const DAY_PALETTE = ['#e5534b', '#f08c00', '#c69026', '#57ab5a', '#2da44e', '#1b7c83', '#3d76c5', '#6e40c9', '#a8459b', '#d03592', '#8c6d1f', '#57606a'];
+// 每天一種顏色（interaction-design §3）。避開四種類型色（藍、綠、紫、橘）的色相，
+// 才不會把「這天」和「這種地方」搞混；test/lib.test.ts 檢查色相差至少 25°
+export const DAY_PALETTE = ['#d6336c', '#0f8b8d', '#b8a000', '#d63fb8', '#5c940d', '#66d9e8', '#7a8b00', '#8a1c3c', '#495057', '#adb5bd', '#a61e8a', '#6b4f00'];
+
+/** #rrggbb → 色相 h（度）、飽和度 s、亮度 l（0～1） */
+export function hueOf(hex: string): { h: number; s: number; l: number } {
+  const [r, g, b] = [1, 3, 5].map((i) => parseInt(hex.slice(i, i + 2), 16) / 255);
+  const mx = Math.max(r, g, b);
+  const mn = Math.min(r, g, b);
+  const d = mx - mn;
+  const l = (mx + mn) / 2;
+  if (!d) return { h: 0, s: 0, l };
+  const s = d / (1 - Math.abs(2 * l - 1));
+  const h = mx === r ? ((g - b) / d) % 6 : mx === g ? (b - r) / d + 2 : (r - g) / d + 4;
+  return { h: (h * 60 + 360) % 360, s, l };
+}
 
 export function dayColor(dates: string[], date: string): string {
   const i = dates.indexOf(date);

@@ -135,7 +135,7 @@ export function describeChanges(changes: Change[], nameOf: (id: string) => strin
 
 /**
  * 確定的行程（T15m，interaction-design §3）：
- * - 線：每天一種顏色，依時間軸的順序（出發的住宿 → 各點 → 會合點 → 住宿）連起來；選了某一天時其他天變淡
+ * - 線：每天一種顏色，依時間軸的順序（出發的住宿 → 各點 → 會合點 → 住宿）連起來；選了某一天時只畫那天
  * - 備選：時段備案的非主選點，用那天顏色的空心圈
  * - 交通標籤：只有選定的那天，在每段的中間標「🚃 12 分」
  * 線有 pathOf 給的路徑（步行、車沿道路，搭車照班次的站、電車沿車站）就照路徑畫，沒有（還沒查到、船）就是兩點之間的直線。
@@ -152,8 +152,10 @@ export function itineraryFeatures(
   const alts: Feature<Point>[] = [];
   const legs: RouteLabel[] = [];
   for (const d of it?.days ?? []) {
+    // 選了某一天就只畫那天
+    if (day !== 'all' && day !== d.date) continue;
     const color = dayColor(dates, d.date);
-    const active = day === 'all' || day === d.date ? 1 : 0;
+    const active = 1;
     // 只有選定的那天畫方向箭頭
     const selected = day === d.date ? 1 : 0;
     const dp = plan?.days.find((x) => x.date === d.date);

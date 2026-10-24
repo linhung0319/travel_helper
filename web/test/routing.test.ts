@@ -387,6 +387,15 @@ test('行程線：pathOf 給三個點的路徑就接起來，標籤放在路徑�
   assert.deepEqual(none.lines.features[0].geometry.coordinates, [A.coords, B.coords]);
 });
 
+test('itineraryFeatures：選了某天只畫那天，全部時兩天都畫', () => {
+  const dates = (day: string) => itineraryFeatures(itinAB(), fakePlan('walk', TWO_DAYS()), byIdAB, tripDates(), day).lines.features.map((f) => f.properties!.date);
+  assert.deepEqual(dates(DAY), [DAY]);
+  assert.deepEqual(dates(DAY2), [DAY2]);
+  assert.deepEqual(dates('all'), [DAY, DAY2]);
+  const alts = itineraryFeatures(itinAB(), null, byIdAB, tripDates(), DAY).alts.features;
+  assert.ok(alts.every((f) => f.properties!.date === DAY));
+});
+
 test('行程線：createPathOf 步行看快取、電車沿車站、船和未知是 null', async () => {
   const router = createRoadRouter({ fetch: async () => ({ ok: true, status: 200, json: async () => osrmBody([[136.8, 34.5], [136.805, 34.502], [136.81, 34.5]], 795) }), minIntervalMs: 0 });
   const { data } = setupItinerary(router);

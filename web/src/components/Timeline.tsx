@@ -24,6 +24,7 @@ import { LegRow } from './LegRow.tsx';
 import { ReservationTag } from './Reservations.tsx';
 import { ItemTags, useHasRestaurant } from './ItemTags.tsx';
 import { useLiked } from './Wishlist.tsx';
+import { pulseMark } from '../lib/mapPulse.ts';
 
 /** 地圖上同一個編號（宿、1、2…）；顏色是那個點的類型色 */
 interface Marks {
@@ -47,6 +48,7 @@ function Mark({ entry, marks }: { entry: TimelineEntry; marks: Marks }) {
 function focusPlace(id: string | null) {
   if (!id) return;
   commands.focus(id);
+  pulseMark(id);
   appStore.getState().openPreview(id);
 }
 

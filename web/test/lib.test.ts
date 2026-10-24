@@ -8,7 +8,8 @@ import { dayLabel, hoursKeys, timetableDayType, tripDates } from '../src/lib/tri
 import { EMPTY_FILTER, filterChips, matchesFilter, matchesQuery } from '../src/lib/filter.ts';
 import { closedDaysLabel, rowForDate } from '../src/lib/hours.ts';
 import { nearbyPlaces } from '../src/lib/nearby.ts';
-import { placeVisual, wallPlaces } from '../src/lib/visual.ts';
+import { DAY_PALETTE, hueOf, placeVisual, wallPlaces } from '../src/lib/visual.ts';
+import { TYPE_COLORS } from '../src/lib/typeStyle.ts';
 import { dayStops, placeDays } from '../src/lib/itinerary.ts';
 import { itin } from './helpers.ts';
 import { cardTime, dayBar, daySummary, editorModeOf, formatStay, formatDistance, legMapsUrl, legTargetOf, legText, optionRows, rideLines, stopMarks } from '../src/lib/planView.ts';
@@ -420,4 +421,18 @@ test('cardTime：起點、終點只寫一個時間；其他寫開始–結束', 
   assert.deepEqual(cardTime(entry('lodging', 'h', { arrive: '15:10', start: '15:10', end: '15:10' })), { text: '15:10 到住宿', stay: null });
   assert.deepEqual(cardTime(entry('visit', 'a', { start: '09:42', end: '11:12' })), { text: '09:42–11:12', stay: 90 });
   assert.deepEqual(cardTime(entry('visit', 'a', { start: '09:42', end: '09:42' })), { text: '09:42', stay: null });
+});
+
+test('每天的色盤：12 色、不重複、避開類型色', () => {
+  assert.equal(DAY_PALETTE.length, 12);
+  assert.equal(new Set(DAY_PALETTE).size, 12);
+  for (const c of DAY_PALETTE) {
+    const a = hueOf(c);
+    if (a.s < 0.15) continue; // 灰色不算撞色
+    for (const t of Object.values(TYPE_COLORS)) {
+      const b = hueOf(t);
+      const d = Math.min(Math.abs(a.h - b.h), 360 - Math.abs(a.h - b.h));
+      assert.ok(d >= 25, `${c} 和類型色 ${t} 太像（色相差 ${d.toFixed(0)}°）`);
+    }
+  }
 });
