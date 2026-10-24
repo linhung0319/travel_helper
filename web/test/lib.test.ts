@@ -11,7 +11,7 @@ import { nearbyPlaces } from '../src/lib/nearby.ts';
 import { placeVisual, wallPlaces } from '../src/lib/visual.ts';
 import { dayStops, placeDays } from '../src/lib/itinerary.ts';
 import { itin } from './helpers.ts';
-import { dayBar, daySummary, formatStay, optionRows, stopMarks } from '../src/lib/planView.ts';
+import { dayBar, daySummary, formatStay, legMapsUrl, legTargetOf, optionRows, rideLines, stopMarks } from '../src/lib/planView.ts';
 import { explorePlaces, typeCounts } from '../src/lib/explore.ts';
 import type { DayPlan, TimelineEntry } from '@travel-helper/engine';
 import type { Area, Place, StationTimetable } from '../src/data/types.ts';
@@ -345,4 +345,41 @@ test('多點卡片的清單：主要的排第一、走路分鐘是 null，其他
   assert.equal(rows[0].walkMinutesFromMain, null);
   assert.equal(rows[1].walkMinutesFromMain, 4);
   assert.ok(typeof rows[2].walkMinutesFromMain === 'number' && rows[2].walkMinutesFromMain > 0);
+});
+
+// --- 交通細列：每一程、設定的對象、Google Maps 連結 ---
+
+test('rideLines：每程一行，兩程之間寫轉乘幾分', () => {
+  const l = {
+    ...leg('10:12', 26),
+    mode: 'train' as const,
+    rides: [
+      { mode: 'train' as const, line: '近鐵', from: 'toba', to: 'ujiyamada', depart: '10:12', arrive: '10:30' },
+      { mode: 'bus' as const, line: '三重交通', from: 'ujiyamada', to: 'geku', depart: '10:38', arrive: '10:45' },
+    ],
+  };
+  const names: Record<string, string> = { toba: '鳥羽', ujiyamada: '宇治山田', geku: '外宮前' };
+  assert.deepEqual(
+    rideLines(l, (id) => names[id] ?? id),
+    ['10:12 近鐵 鳥羽 → 宇治山田 10:30', '轉乘 8 分', '10:38 三重交通 宇治山田 → 外宮前 10:45'],
+  );
+  assert.deepEqual(rideLines(leg('10:00', 5), (id) => id), []);
+});
+
+test('legTargetOf：住宿用日期，造訪、自由時間、航班用項目 ID，起點和會合不能改', () => {
+  assert.deepEqual(legTargetOf(entry('lodging', 'hotel-a', { itemId: null }), '2027-02-05'), { lodging: '2027-02-05' });
+  assert.deepEqual(legTargetOf(entry('visit', 'a', { itemId: 'v1' }), '2027-02-05'), { itemId: 'v1' });
+  assert.deepEqual(legTargetOf(entry('free', null, { itemId: 'f1' }), '2027-02-05'), { itemId: 'f1' });
+  assert.deepEqual(legTargetOf(entry('flight', 'kix', { itemId: 'fl1' }), '2027-02-05'), { itemId: 'fl1' });
+  assert.equal(legTargetOf(entry('meet', 'a', { itemId: 'm1' }), '2027-02-05'), null);
+  assert.equal(legTargetOf(entry('start', 'a', { itemId: null }), '2027-02-05'), null);
+});
+
+test('legMapsUrl：步行 walking、電車巴士船 transit、其他 driving；座標是 緯度,經度', () => {
+  const a = place('a', { coords: [136.8, 34.4] });
+  const b = place('b', { coords: [136.9, 34.5] });
+  const base = 'https://www.google.com/maps/dir/?api=1&origin=34.4,136.8&destination=34.5,136.9&travelmode=';
+  assert.equal(legMapsUrl(a, b, 'walk'), base + 'walking');
+  for (const m of ['train', 'bus', 'ferry'] as const) assert.equal(legMapsUrl(a, b, m), base + 'transit');
+  for (const m of ['taxi', 'charter', 'car', 'other'] as const) assert.equal(legMapsUrl(a, b, m), base + 'driving');
 });

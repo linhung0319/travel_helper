@@ -273,7 +273,9 @@ export function planLeg(a: Endpoint, b: Endpoint, ctx: LegContext, spec?: Travel
     const auto = planLeg(a, b, ctx, null);
     const minutes = round(spec.minutes);
     const l = auto.leg;
-    return { leg: { ...l, minutes, arrive: fromMinutes(ctx.depart + minutes), specified: true, basis: '指定' }, warnings: auto.warnings };
+    // 時間是使用者填的：不帶自動那段的班次，步行分鐘看最後的方式，也不再報「算不出交通」
+    const walkMinutes = l.mode === 'walk' ? minutes : 0;
+    return { leg: { ...l, minutes, arrive: fromMinutes(ctx.depart + minutes), walkMinutes, waitMinutes: 0, rides: [], specified: true, basis: '指定' }, warnings: auto.warnings.filter((w) => w.code !== 'travel-unknown') };
   }
 
   if ((a.id && a.id === b.id) || (a.id == null && b.id == null && a.coords && b.coords && haversineMeters(a.coords, b.coords) < 1)) {

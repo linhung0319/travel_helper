@@ -1,7 +1,8 @@
 // 「這一天」面板和地圖要的行程資訊（T15m）：交通的文字、行程裡找項目、匯出。
 // 純函式：時間軸、交通時間、空檔、警告都是引擎（T14）算好的，這裡只整理成畫面要的樣子。
 
-import type { DayPlan, EngineWarning, Itinerary, ItineraryItem, Leg, TimelineEntry, VisitItem } from '@travel-helper/engine';
+import type { DayPlan, EngineWarning, Itinerary, ItineraryItem, Leg, LegTarget, TimelineEntry, TravelMode, VisitItem } from '@travel-helper/engine';
+import { toMinutes } from '@travel-helper/engine';
 import { MODE_ICONS } from './routing.ts';
 import { displayMinutes, estimateWalk } from './geo/walk.ts';
 import type { Place } from '../data/types.ts';
@@ -31,6 +32,32 @@ export function legDetail(leg: Leg): string[] {
   if (leg.taxi?.fareEstimateYen) out.push(`每台約 ${leg.taxi.fareEstimateYen.toLocaleString()} 円`);
   if (leg.specified) out.push('手動指定');
   return out;
+}
+
+/** 展開交通細列時列出每一程，例如「10:12 近鐵 鳥羽 → 宇治山田 10:30」，兩程之間「轉乘 8 分」；nameOf 把站名裡的資料點 ID 換成名稱 */
+export function rideLines(leg: Leg, nameOf: (id: string) => string): string[] {
+  const out: string[] = [];
+  leg.rides.forEach((r, i) => {
+    const prev = leg.rides[i - 1];
+    if (prev) out.push(`轉乘 ${toMinutes(r.depart) - toMinutes(prev.arrive)} 分`);
+    out.push(`${r.depart} ${r.line} ${nameOf(r.from)} → ${nameOf(r.to)} ${r.arrive}`);
+  });
+  return out;
+}
+
+/** 這一列的交通是設定在哪裡（setLegTravel 的對象）；起點、會合沒有可設的交通 */
+export function legTargetOf(entry: TimelineEntry, date: string): LegTarget | null {
+  if (entry.kind === 'lodging') return { lodging: date };
+  if ((entry.kind === 'visit' || entry.kind === 'free' || entry.kind === 'flight') && entry.itemId) return { itemId: entry.itemId };
+  return null;
+}
+
+/** 在 Google Maps 開這段路線（起訖座標、交通方式） */
+export function legMapsUrl(from: Place, to: Place, mode: TravelMode): string {
+  const travelmode = mode === 'walk' ? 'walking' : mode === 'train' || mode === 'bus' || mode === 'ferry' ? 'transit' : 'driving';
+  const [flon, flat] = from.coords;
+  const [tlon, tlat] = to.coords;
+  return `https://www.google.com/maps/dir/?api=1&origin=${flat},${flon}&destination=${tlat},${tlon}&travelmode=${travelmode}`;
 }
 
 export interface ItemRef {

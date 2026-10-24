@@ -13,13 +13,14 @@ import { shared } from '../appShared.ts';
 import { useApp, useData, useIsDesktop } from '../hooks.ts';
 import { dropOnEndProps, dropOnItemProps, itemDragProps, useLongPressDrag } from './planDrag.ts';
 import { openDialog } from '../uiStore.ts';
-import { dayBar, daySummary, findItemRef, formatStay, legDetail, legText, optionRows, stopMarks, timelineRows, WARNING_ICONS, warningsByItem, type BarSegment } from '../lib/planView.ts';
+import { dayBar, daySummary, findItemRef, formatStay, optionRows, stopMarks, timelineRows, WARNING_ICONS, warningsByItem, type BarSegment } from '../lib/planView.ts';
 import { dayColor } from '../lib/visual.ts';
 import { shortDayLabel, tripDates } from '../lib/trip.ts';
 import { TYPE_ICONS } from '../lib/typeStyle.ts';
 import { TYPE_LABELS } from '../lib/filter.ts';
 import type { Place } from '../data/types.ts';
 import { AvatarStack, PlaceChip } from './common.tsx';
+import { LegRow } from './LegRow.tsx';
 import { ReservationTag } from './Reservations.tsx';
 import { ItemTags, useHasRestaurant } from './ItemTags.tsx';
 import { useLiked } from './Wishlist.tsx';
@@ -59,21 +60,6 @@ function Warnings({ list }: { list: EngineWarning[] | undefined }) {
         </li>
       ))}
     </ul>
-  );
-}
-
-function Leg({ entry }: { entry: TimelineEntry }) {
-  const leg = entry.travel;
-  if (!leg || leg.mode === 'none' || (leg.minutes === 0 && !leg.rides.length)) return null;
-  const detail = legDetail(leg);
-  return (
-    <li className={`tl-leg mode-${leg.mode}`} data-testid="tl-leg">
-      <span className="tl-leg-line" aria-hidden />
-      <span className="tl-leg-text">
-        {legText(leg)}
-        {detail.length > 0 && <span className="muted small">（{detail.join('、')}）</span>}
-      </span>
-    </li>
   );
 }
 
@@ -354,7 +340,7 @@ function EntryRow({ entry, day, warnings, gapsBeforeMeet, plan, marks }: { entry
   if (entry.kind === 'lodging') {
     return (
       <>
-        <Leg entry={entry} />
+        <LegRow entry={entry} date={day.date} />
         <li className="tl-row tl-lodging" data-testid="tl-row">
           <span className="tl-time">{entry.arrive}</span>
           <span className="tl-body">
@@ -393,7 +379,7 @@ function EntryRow({ entry, day, warnings, gapsBeforeMeet, plan, marks }: { entry
   const itemWarnings = entry.itemId ? warnings.get(entry.itemId) : undefined;
   return (
     <>
-      <Leg entry={entry} />
+      <LegRow entry={entry} date={day.date} />
       <li
         className={`tl-row tl-card tl-${entry.kind} ${hovered && hovered === entry.placeId ? 'flash' : ''} ${movable ? 'movable' : ''}`}
         data-testid="tl-row"
@@ -428,7 +414,6 @@ function EntryRow({ entry, day, warnings, gapsBeforeMeet, plan, marks }: { entry
           {flight?.note && <span className="muted small">{flight.note}（{flight.depart} 起飛 → {flight.arrive} 抵達）</span>}
           {visit && optsOpen && visit.options.length > 1 && <OptionsList item={visit} date={day.date} />}
           {visit?.note && <span className="tl-note small">📝 {visit.note}</span>}
-          {visit?.travel?.note && <span className="muted small">交通：{visit.travel.note}</span>}
           {warnOpen && <Warnings list={itemWarnings} />}
         </span>
       </li>

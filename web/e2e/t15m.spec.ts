@@ -344,3 +344,42 @@ test('第三輪：住宿卡片的含餐 tag、換住宿 → 想去的住宿「�
   await page.getByTestId('add-submit').click();
   await expect.poll(() => th(page, `__th.dataStore.getState().itinerary.days.find((d) => d.date === '${DAY}').lodging`)).toBe('toba-kokusai-hotel');
 });
+
+test('第三輪：交通細列點開看詳細、地圖畫那一段；規劃模式改方式、分鐘、緩衝', async ({ page }) => {
+  await ready(page);
+  await showDay(page, '2027-02-05');
+  const legs = page.getByTestId('timeline').getByTestId('tl-leg');
+  await expect(legs.nth(1)).toBeVisible();
+  const first = legs.first();
+  // 一般模式：點開有詳細和 Google Maps 連結，沒有設定；地圖畫了一條路線
+  await expect(first.getByTestId('leg-detail')).toHaveCount(0);
+  await first.getByRole('button').first().click();
+  await expect(first.getByTestId('leg-detail')).toBeVisible();
+  await expect(first.getByTestId('leg-maps')).toHaveAttribute('href', /google\.com\/maps\/dir\/.*travelmode=/);
+  await expect(first.getByTestId('leg-mode')).toHaveCount(0);
+  await expect.poll(() => th(page, '__th.appStore.getState().routes.length')).toBe(1);
+  // 一次只開一段：開第二段，第一段收起
+  await legs.nth(1).getByRole('button').first().click();
+  await expect(first.getByTestId('leg-detail')).toHaveCount(0);
+  await expect(legs.nth(1).getByTestId('leg-detail')).toBeVisible();
+  await expect.poll(() => th(page, '__th.appStore.getState().routes.length')).toBe(1);
+  // 再點收起 → 路線清掉
+  await legs.nth(1).getByRole('button').first().click();
+  await expect.poll(() => th(page, '__th.appStore.getState().routes.length')).toBe(0);
+
+  // 規劃模式：選計程車、緩衝 ＋5（預設 → 已調整）、恢復預設
+  await enterPlanning(page);
+  await first.getByRole('button').first().click();
+  await first.locator('[data-testid="leg-mode"][data-mode="taxi"]').click();
+  await expect(first.locator('[data-testid="leg-mode"][data-mode="taxi"]')).toHaveAttribute('aria-pressed', 'true');
+  await expect(first).toContainText('🚕');
+  await first.getByTestId('leg-buffer-plus').click();
+  await expect(first.getByText('已調整')).toBeVisible();
+  await first.getByRole('button', { name: '恢復預設' }).click();
+  await expect(first.getByText('預設', { exact: true })).toBeVisible();
+  await first.getByTestId('leg-note').fill('在飯店大廳集合');
+  await first.getByTestId('leg-note').blur();
+  await expect(first.getByTestId('leg-note')).toHaveValue('在飯店大廳集合');
+  await first.locator('[data-testid="leg-mode"][data-mode="auto"]').click();
+  await expect(first.locator('[data-testid="leg-mode"][data-mode="auto"]')).toHaveAttribute('aria-pressed', 'true');
+});

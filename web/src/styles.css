@@ -3830,3 +3830,79 @@ body.dragging-plan .tl-card {
 .layout:not(.mobile) .map-panel {
   padding-top: 118px;
 }
+
+/* 交通細列展開（設計 §8） */
+.tl-leg-body {
+  display: block;
+  min-width: 0;
+}
+
+button.tl-leg-text {
+  display: inline;
+  padding: 2px 0;
+  border: 0;
+  background: none;
+  color: inherit;
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+
+.tl-leg-caret {
+  margin-left: 4px;
+  font-size: 0.75em;
+}
+
+.leg-detail {
+  display: grid;
+  gap: 6px;
+  margin: 4px 0 8px;
+  padding: 8px 10px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  color: var(--fg);
+}
+
+.leg-rides {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.leg-transfer {
+  padding-left: 1.5em;
+}
+
+.leg-edit {
+  display: grid;
+  gap: 6px;
+  padding-top: 6px;
+  border-top: 1px dashed var(--line);
+}
+
+.leg-edit-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px;
+}
+
+.leg-edit-label {
+  min-width: 2.5em;
+  color: var(--muted);
+}
+
+.leg-modes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+}
+
+.leg-minutes {
+  width: 5em;
+}
+
+.leg-note {
+  flex: 1;
+  min-width: 10em;
+}

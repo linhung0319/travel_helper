@@ -25,9 +25,11 @@ export interface UiState {
   mapPanel: MapPanelState | null;
   /** 規劃模式閒置多久自動退出（分鐘）；dev 選單可以改短 */
   idleMinutes: number;
+  /** 展開中的交通細列（日期:項目 ID 或 lodging）；一次只展開一段 */
+  legOpen: string | null;
 }
 
-export const uiStore = createStore<UiState>()(() => ({ dialog: null, mapPanel: null, idleMinutes: 10 }));
+export const uiStore = createStore<UiState>()(() => ({ dialog: null, mapPanel: null, idleMinutes: 10, legOpen: null }));
 
 export const openDialog = (dialog: DialogState) => uiStore.setState({ dialog });
 export const closeDialog = () => uiStore.setState({ dialog: null });

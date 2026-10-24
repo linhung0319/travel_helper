@@ -186,3 +186,27 @@ test('缺座標 → 算不出交通時間', () => {
   assert.equal(r.leg.mode, 'unknown');
   assert.ok(r.warnings.some((w) => w.level === 'error'));
 });
+
+test('只填分鐘（方式自動）：不帶自動那段的班次、步行分鐘看最後的方式、不報算不出交通', () => {
+  const a = spot('a', at(0));
+  const b = spot('b', at(4000));
+  const data = fake([a, b], { routes: [busRoute(['10:05', '10:35'])] });
+  assert.equal(planLeg(ep(a), ep(b), ctx(data)).leg.rides.length, 1);
+  const r = planLeg(ep(a), ep(b), ctx(data), { minutes: 30 });
+  assert.equal(r.leg.mode, 'bus');
+  assert.equal(r.leg.minutes, 30);
+  assert.equal(r.leg.arrive, '10:30');
+  assert.deepEqual(r.leg.rides, []);
+  assert.equal(r.leg.walkMinutes, 0);
+  assert.equal(r.leg.specified, true);
+  // 自動是步行時，步行分鐘就是填的分鐘
+  const c = spot('c', at(300));
+  const w = planLeg(ep(a), ep(c), ctx(fake([a, c])), { minutes: 20 });
+  assert.equal(w.leg.mode, 'walk');
+  assert.equal(w.leg.walkMinutes, 20);
+  // 缺座標算不出自動的交通，但時間是填的，就不再報錯
+  const nowhere: Endpoint = { id: null, coords: null, record: null };
+  const u = planLeg(ep(a), nowhere, ctx(fake([a])), { minutes: 15 });
+  assert.ok(!u.warnings.some((x) => x.code === 'travel-unknown'));
+  assert.equal(u.leg.minutes, 15);
+});
