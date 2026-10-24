@@ -4008,8 +4008,7 @@ button.tl-leg-text {
 }
 
 /* 加到某天：卡片底部的實心主色按鈕和小月曆 */
-.add-to-day,
-.ex-add {
+.add-to-day {
   padding: 0 12px 10px;
 }
 
@@ -4257,4 +4256,64 @@ button.option-crown {
   align-items: center;
   gap: 4px 8px;
   margin-top: 4px;
+}
+
+/* ---------- 探索、想去卡片：類型淡底色（和時間軸卡片同一組變數）、名稱旁的複製鍵、❤️ 加強 ---------- */
+
+.ex-card.type-spot,
+.ex-row.type-spot,
+.wish-card.view-photo.type-spot {
+  background: var(--type-spot-bg);
+}
+
+.ex-card.type-restaurant,
+.ex-row.type-restaurant,
+.wish-card.view-photo.type-restaurant {
+  background: var(--type-restaurant-bg);
+}
+
+.ex-card.type-lodging,
+.ex-row.type-lodging,
+.wish-card.view-photo.type-lodging {
+  background: var(--type-lodging-bg);
+}
+
+.ex-card.type-station,
+.ex-row.type-station,
+.ex-card.type-other,
+.ex-row.type-other,
+.wish-card.view-photo.type-station,
+.wish-card.view-photo.type-other {
+  background: var(--type-station-bg);
+}
+
+.copy-name {
+  display: inline-grid;
+  place-items: center;
+  width: 22px;
+  height: 22px;
+  margin-left: 4px;
+  border-radius: 6px;
+  color: var(--muted, #667);
+  font-size: 0.85rem;
+  line-height: 1;
+  cursor: pointer;
+  vertical-align: middle;
+  user-select: none;
+}
+
+.copy-name:hover,
+.copy-name:focus-visible {
+  background: rgba(0, 0, 0, 0.08);
+  color: inherit;
+}
+
+.detail-name-row {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.detail-name-row h2 {
+  margin: 0;
 }

@@ -58,3 +58,8 @@ export function label(map: Record<string, string>, v: unknown): string | null {
   if (typeof v !== 'string') return null;
   return map[v] ?? v;
 }
+
+/** 複製名稱鍵複製的文字：日文名稱，沒有就中文 */
+export function copyText(place: { name: { ja: string; zh?: string | null } }): string {
+  return place.name.ja || place.name.zh || '';
+}

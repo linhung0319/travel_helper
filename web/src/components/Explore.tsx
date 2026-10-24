@@ -4,7 +4,7 @@
 // 清單可以切換大照片（像 IG）或只有文字；滑鼠移上去地圖上的點會閃，點了地圖移過去、打開詳情。
 // 反過來，點地圖上的點：切到探索、捲到那張卡片（showInExplore），再點卡片才開詳情（手機沒有 hover，所以用點的）。
 // 探索的類型寫在篩選裡（地圖跟著變淡），回到「行程」時拿掉（showItinerary）。
-// 「❤️ 想去」分頁是同一個元件（source="wish"）：只列有人 ❤️ 的點，卡片底下多了留言（Wishlist.tsx 的 WishExtras）；「📅 加到某天」兩個分頁的卡片都有（DayPicker.tsx）。
+// 「❤️ 想去」分頁是同一個元件（source="wish"）：只列有人 ❤️ 的點，卡片底下多了留言（Wishlist.tsx 的 WishExtras）；只有想去的卡片有「📅 加到某天」（探索只有 ❤️，流程是先 ❤️ 再到想去加到某天）。
 // 卡片照片右上角是 ❤️／👎 數（CardVotes），左上角是類型和行程狀態（候選、已排）的 tag。
 
 import { useEffect, useMemo, useRef, useState, type ReactNode } from 'react';
@@ -25,9 +25,10 @@ import { shortDayLabel } from '../lib/trip.ts';
 import { TYPE_COLORS, TYPE_ICONS } from '../lib/typeStyle.ts';
 import type { Place } from '../data/types.ts';
 import { Photo } from './Photo.tsx';
+import { CopyName } from './CopyName.tsx';
 import { TierBadge } from './TierBadge.tsx';
 import { CardVotes } from './Votes.tsx';
-import { AddToDay, DayStatusTag } from './DayPicker.tsx';
+import { DayStatusTag } from './DayPicker.tsx';
 import { FilterPanel } from './FilterPanel.tsx';
 import { dragPlaceProps } from './askAi.ts';
 import { useLiked, WishExtras } from './Wishlist.tsx';
@@ -135,21 +136,16 @@ function Item({ place, rank, view, hot, source }: { place: Place; rank: number; 
   };
   const li = (body: ReactNode) =>
     wish ? (
-      <li className={`wish-card view-${view} ${hot ? 'flash' : ''}`} data-testid="wish-item" data-id={place.id}>
+      <li className={`wish-card view-${view} type-${place.type} ${hot ? 'flash' : ''}`} data-testid="wish-item" data-id={place.id}>
         {body}
         <WishExtras placeId={place.id} />
       </li>
     ) : (
-      <li>
-        {body}
-        <div className="ex-add">
-          <AddToDay placeId={place.id} />
-        </div>
-      </li>
+      <li>{body}</li>
     );
   if (view === 'list') {
     return li(
-        <button {...common} className={`ex-row ${hot ? 'flash' : ''}`}>
+        <button {...common} className={`ex-row type-${place.type} ${hot ? 'flash' : ''}`}>
           <span className="ex-rank">{rank}</span>
           <span className="ex-dot" style={{ background: TYPE_COLORS[place.type] }} aria-hidden>
             {TYPE_ICONS[place.type]}
@@ -158,6 +154,7 @@ function Item({ place, rank, view, hot, source }: { place: Place; rank: number; 
             <span className="ex-name">
               <TierBadge tier={place.tier} />
               {name}
+              <CopyName place={place} />
               <CardVotes placeId={place.id} inline />
               <DayStatusTag placeId={place.id} />
             </span>
@@ -167,7 +164,7 @@ function Item({ place, rank, view, hot, source }: { place: Place; rank: number; 
     );
   }
   return li(
-      <button {...common} className={`ex-card ${hot ? 'flash' : ''}`}>
+      <button {...common} className={`ex-card type-${place.type} ${hot ? 'flash' : ''}`}>
         <span className="ex-photo">
           <Photo place={place} width={600} />
           <span className="ex-tags">
@@ -181,6 +178,7 @@ function Item({ place, rank, view, hot, source }: { place: Place; rank: number; 
           <span className="ex-name">
             <TierBadge tier={place.tier} />
             {name}
+            <CopyName place={place} />
             {place.name.zh && place.name.ja !== place.name.zh && <span className="muted small ex-ja">{place.name.ja}</span>}
           </span>
           <Meta place={place} />

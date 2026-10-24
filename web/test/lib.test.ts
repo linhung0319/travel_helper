@@ -9,6 +9,7 @@ import { EMPTY_FILTER, filterChips, matchesFilter, matchesQuery } from '../src/l
 import { closedDaysLabel, rowForDate } from '../src/lib/hours.ts';
 import { nearbyPlaces } from '../src/lib/nearby.ts';
 import { DAY_PALETTE, deltaE, hueOf, labOf, placeVisual, wallPlaces } from '../src/lib/visual.ts';
+import { copyText } from '../src/lib/labels.ts';
 import { TYPE_COLORS } from '../src/lib/typeStyle.ts';
 import { dayStops, placeDays } from '../src/lib/itinerary.ts';
 import { itin } from './helpers.ts';
@@ -440,4 +441,9 @@ test('每天的色盤：12 色、不重複、避開類型色', () => {
   for (const [i, a] of DAY_PALETTE.entries()) {
     for (const b of DAY_PALETTE.slice(i + 1)) assert.ok(deltaE(a, b) >= 20, `${a} 和 ${b} 太像（ΔE ${deltaE(a, b).toFixed(0)}）`);
   }
+});
+
+test('copyText：日文名稱優先，沒有用中文', () => {
+  assert.equal(copyText(place('a', { name: { ja: '鳥羽水族館', zh: '鳥羽水族館（中）' } })), '鳥羽水族館');
+  assert.equal(copyText(place('b', { name: { ja: '', zh: '海女小屋' } })), '海女小屋');
 });

@@ -1,4 +1,5 @@
 import { useMemo, useState, type ReactNode } from 'react';
+import { CopyName } from './CopyName.tsx';
 import { appStore } from '../store.ts';
 import { commands } from '../appCommands.ts';
 import { useApp, useData } from '../hooks.ts';
@@ -573,7 +574,10 @@ export function DetailPanel({ place, back }: { place: Place; back?: { label: str
       <header className={`detail-head ${back ? 'draggable' : ''}`} {...dragPlaceProps(place.id, !!back)} title={back ? '拖到左邊的聊天室可以問 AI' : undefined}>
         <TierMedal tier={place.tier} />
         <div className="detail-title">
-          <h2>{name}</h2>
+          <div className="detail-name-row">
+            <h2>{name}</h2>
+            <CopyName place={place} />
+          </div>
           <p className="muted small">
             {place.type === 'lodging' && raw.kind ? `${label(LODGING_KIND_LABELS, raw.kind)}・` : ''}
             {place.name.zh && place.name.ja !== place.name.zh ? `${place.name.ja}・` : ''}

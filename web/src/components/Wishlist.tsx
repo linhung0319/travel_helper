@@ -120,19 +120,10 @@ export function Comments({ target, label = '留言', placeholder = '留言…', 
   );
 }
 
-/** 想去卡片底下：加到某天（月曆）、留言。規劃模式下住宿多「設為 2/5 的住宿」。❤️／👎 數和候選、已排的 tag 在卡片的照片上 */
+/** 想去卡片底下：加到某天（月曆）、留言。❤️／👎 數和候選、已排的 tag 在卡片的照片上 */
 export function WishExtras({ placeId }: { placeId: string }) {
-  const isLodging = useData((s) => s.byId.get(placeId)?.type === 'lodging');
-  const planning = useApp((s) => s.planning);
-  const day = useApp((s) => s.day);
   return (
     <div className="wish-extras">
-      {planning && isLodging && day !== 'all' && (
-        // 時間軸住宿卡片的「換住宿」切過來的；會換掉那晚原本的住宿，用排進行程的對話框確認
-        <button type="button" className="button small primary" onClick={() => openDialog({ kind: 'add', placeId, day })} data-testid="wish-set-lodging">
-          🏨 設為 {shortDayLabel(day)} 的住宿
-        </button>
-      )}
       <AddToDay placeId={placeId} />
       <Comments target={placeId} />
     </div>
