@@ -218,3 +218,43 @@ test('T15m：規劃模式拖曳換順序（電腦版）', async ({ page }) => {
   await page.mouse.up();
   await expect.poll(async () => (await order())[2]).toBe(second);
 });
+
+test('預約筆記：改成已訂位、時間軸 tag 跟著變', async ({ page }) => {
+  const BOOK_NOTE = '用電話訂了 18:00（e2e）';
+  await ready(page);
+  await showDay(page, '2027-02-05');
+  await page.getByTestId('toolbar-reservations').click();
+  const panel = page.getByTestId('map-panel');
+  await expect(panel).toBeVisible();
+  const row = panel.getByTestId('note-row').first();
+  await expect(row).toBeVisible();
+  const placeId = (await row.getAttribute('data-place'))!;
+  await row.getByTestId('note-status-booked').click();
+  await expect(row).toHaveAttribute('data-status', 'booked');
+  await row.getByTestId('note-text').fill(BOOK_NOTE);
+  await row.getByTestId('note-text').press('Enter');
+
+  // 只看未訂位：這列不見了
+  await panel.getByTestId('only-pending').check();
+  await expect(panel.locator(`[data-testid="note-row"][data-place="${placeId}"][data-status="booked"]`)).toHaveCount(0);
+  await panel.getByTestId('only-pending').uncheck();
+
+  // 關掉：那張卡片的 tag 寫已訂位
+  await page.getByTestId('map-panel-close').click();
+  await showDay(page, '2027-02-05');
+  const tag = page.locator(`[data-testid="tl-row"] [data-testid="reservation-tag"][data-status="booked"]`).first();
+  await expect(tag).toHaveText('已訂位 ✓');
+
+  // 點 tag 回到預約筆記
+  await tag.click();
+  await expect(page.getByTestId('map-panel')).toBeVisible();
+  await page.getByTestId('map-panel-close').click();
+
+  // 換人：同一個狀態和備註
+  await page.getByTestId('me-button').click();
+  await page.locator('[data-member="dev-agong"]').click();
+  await page.getByTestId('toolbar-reservations').click();
+  const again = page.getByTestId('map-panel').locator(`[data-testid="note-row"][data-place="${placeId}"][data-status="booked"]`).first();
+  await expect(again).toBeVisible();
+  await expect(again.getByTestId('note-text')).toHaveValue(BOOK_NOTE);
+});

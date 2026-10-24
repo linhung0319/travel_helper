@@ -16,6 +16,8 @@ export type DialogState =
 export interface MapPanelState {
   kind: 'comments' | 'reservations';
   scope: 'day' | 'trip';
+  /** 從時間軸的預約 tag 進來：捲到那一列 */
+  focus?: { date: string; placeId: string };
 }
 
 export interface UiState {
@@ -31,9 +33,12 @@ export const openDialog = (dialog: DialogState) => uiStore.setState({ dialog });
 export const closeDialog = () => uiStore.setState({ dialog: null });
 
 
-/** 打開地圖區的視窗；範圍照目前選的天（選「全部」是整趟） */
-export const openMapPanel = (kind: MapPanelState['kind']) =>
-  uiStore.setState({ mapPanel: { kind, scope: appStore.getState().day === 'all' ? 'trip' : 'day' } });
+/** 打開地圖區的視窗；範圍照目前選的天（選「全部」或 focus 的那列不在這天時是整趟） */
+export const openMapPanel = (kind: MapPanelState['kind'], opts?: { focus: { date: string; placeId: string } }) => {
+  const day = appStore.getState().day;
+  const scope = day === 'all' || (opts && opts.focus.date !== day) ? 'trip' : 'day';
+  uiStore.setState({ mapPanel: { kind, scope, ...(opts ? { focus: opts.focus } : {}) } });
+};
 export const closeMapPanel = () => uiStore.setState({ mapPanel: null });
 /** 視窗裡切換「這天／整趟」 */
 export const setMapPanelScope = (scope: MapPanelState['scope']) => uiStore.setState((s) => (s.mapPanel ? { mapPanel: { ...s.mapPanel, scope } } : s));

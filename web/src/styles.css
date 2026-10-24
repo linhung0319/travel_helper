@@ -2298,6 +2298,37 @@ button.edited {
   margin: 2px 0 0 4px;
 }
 
+.reservation-day {
+  margin: 10px 0 4px;
+}
+
+.note-status {
+  margin: 6px 0 4px;
+}
+
+.note-input {
+  width: 100%;
+  box-sizing: border-box;
+  min-height: 36px;
+}
+
+.only-pending {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  min-height: 32px;
+}
+
+.reservation-tag {
+  cursor: pointer;
+  border: 0;
+}
+
+.reservation-tag.tag-booked {
+  background: #dafbe1;
+  color: #1a7f37;
+}
+
 /* ---------- 地圖：💬／❤️ 數字、行程的交通標籤 ---------- */
 
 .place-badge {
@@ -3616,4 +3647,13 @@ body.dragging-plan .tl-card {
 /* 電腦版：視窗開著時，浮在地圖上的日期列（含 💬 📋 ⋯）還在視窗上面，視窗往下讓出一列 */
 .map-column .map-panel {
   padding-top: 64px;
+}
+
+.note-row.flash {
+  background: var(--warn-bg);
+}
+
+/* 電腦版：地圖上方的日期列、搜尋列浮在視窗上面，視窗的標題往下讓開 */
+.layout:not(.mobile) .map-panel {
+  padding-top: 118px;
 }

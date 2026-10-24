@@ -1,13 +1,13 @@
 // 地圖區的視窗（T15m 第三輪 §3）：日期列的 💬、📋 打開。電腦版蓋住地圖那一欄（左邊的聊天、右邊的分頁還在，可以一邊看一邊寫）；
 // 手機是從上面蓋下來的全螢幕。標題寫範圍，下面一排切換「這天／整趟」（選「全部」時只有整趟）。
-// 預約筆記的內容在 Task 4 換成記狀態的版本，現在先列清單（Reservations.tsx）。
+// 預約筆記的內容是 ReservationNotes（Reservations.tsx）。
 
 import { useApp, useUi } from '../hooks.ts';
 import { dayTarget, TRIP_TARGET } from '../backend/types.ts';
 import { dayLabel } from '../lib/trip.ts';
 import { closeMapPanel, setMapPanelScope } from '../uiStore.ts';
 import { Comments } from './Wishlist.tsx';
-import { ReservationsView } from './Reservations.tsx';
+import { ReservationNotes } from './Reservations.tsx';
 
 export function MapPanel() {
   const panel = useUi((s) => s.mapPanel);
@@ -46,7 +46,7 @@ export function MapPanel() {
             open
           />
         ) : (
-          <ReservationsView date={date} />
+          <ReservationNotes scope={scope} date={date} />
         )}
       </div>
     </section>

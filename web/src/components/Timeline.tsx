@@ -17,6 +17,7 @@ import { tripDates } from '../lib/trip.ts';
 import { TYPE_ICONS } from '../lib/typeStyle.ts';
 import type { Place } from '../data/types.ts';
 import { MemberName, PlaceChip } from './common.tsx';
+import { ReservationTag } from './Reservations.tsx';
 
 const DATES = tripDates();
 
@@ -254,6 +255,7 @@ function EntryRow({ entry, day, warnings, gapsBeforeMeet, plan, marks }: { entry
             <span className="tl-title">
               <Mark entry={entry} marks={marks} />
               🏨 住宿：{p ? <PlaceChip id={p.id} /> : entry.placeId}
+              {p && <ReservationTag date={day.date} placeId={p.id} />}
               {planning && (
                 <button type="button" className="text-button small" onClick={() => void shared.changeItinerary((it) => setLodging(it, day.date, null), `清掉 ${day.date} 的住宿`)}>
                   清掉
@@ -295,6 +297,7 @@ function EntryRow({ entry, day, warnings, gapsBeforeMeet, plan, marks }: { entry
               {icon} {flight ? `${flight.direction === 'arrive' ? '抵達' : '起飛'} ${name(p)}` : entry.kind === 'free' ? `自由時間${p ? `：${name(p)}` : ''}` : name(p)}
             </button>
             {entry.meal && <span className="badge">{MEAL_LABELS[entry.meal]}</span>}
+            {visit && entry.placeId && <ReservationTag date={day.date} placeId={entry.placeId} />}
             <WarnToggle list={itemWarnings} open={warnOpen} onToggle={() => setWarnOpen(!warnOpen)} />
             {planning && item && item.type !== 'flight' && <ItemMenu itemId={item.id} item={item} />}
           </span>
