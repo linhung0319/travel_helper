@@ -11,7 +11,7 @@ import { nearbyPlaces } from '../src/lib/nearby.ts';
 import { placeVisual, wallPlaces } from '../src/lib/visual.ts';
 import { dayStops, placeDays } from '../src/lib/itinerary.ts';
 import { itin } from './helpers.ts';
-import { dayBar, daySummary, formatStay, formatDistance, legMapsUrl, legTargetOf, optionRows, rideLines, stopMarks } from '../src/lib/planView.ts';
+import { cardTime, dayBar, daySummary, formatStay, formatDistance, legMapsUrl, legTargetOf, optionRows, rideLines, stopMarks } from '../src/lib/planView.ts';
 import { explorePlaces, typeCounts } from '../src/lib/explore.ts';
 import type { DayPlan, TimelineEntry } from '@travel-helper/engine';
 import type { Area, Place, StationTimetable } from '../src/data/types.ts';
@@ -388,4 +388,11 @@ test('formatDistance：不到 1 公里寫公尺，其他寫公里一位小數', 
   assert.equal(formatDistance(849.6), '850 公尺');
   assert.equal(formatDistance(1200), '1.2 公里');
   assert.equal(formatDistance(12345), '12.3 公里');
+});
+
+test('cardTime：起點、終點只寫一個時間；其他寫開始–結束', () => {
+  assert.deepEqual(cardTime(entry('start', null, { start: '09:30', end: '09:30' })), { text: '09:30 出發', stay: null });
+  assert.deepEqual(cardTime(entry('lodging', 'h', { arrive: '15:10', start: '15:10', end: '15:10' })), { text: '15:10 到住宿', stay: null });
+  assert.deepEqual(cardTime(entry('visit', 'a', { start: '09:42', end: '11:12' })), { text: '09:42–11:12', stay: 90 });
+  assert.deepEqual(cardTime(entry('visit', 'a', { start: '09:42', end: '09:42' })), { text: '09:42', stay: null });
 });

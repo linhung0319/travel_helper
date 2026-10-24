@@ -267,3 +267,15 @@ export const METHOD_LABELS: Record<string, string> = {
 
 /** 匯出的檔名，例如 itinerary-v12.json */
 export const exportFileName = (version: number) => `itinerary-v${version}.json`;
+
+/**
+ * 資料卡上的時間：起點「09:30 出發」、終點「15:10 到住宿」只寫一個時間；
+ * 其他「開始–結束」加停留分鐘（0 分只寫開始時間）；航班只寫一個時間（抵達／起飛，entry.start）。
+ */
+export function cardTime(entry: TimelineEntry): { text: string; stay: number | null } {
+  if (entry.kind === 'start') return { text: `${entry.start} 出發`, stay: null };
+  if (entry.kind === 'lodging') return { text: `${entry.arrive} 到住宿`, stay: null };
+  const stay = toMinutes(entry.end) - toMinutes(entry.start);
+  if (entry.kind === 'flight' || stay <= 0) return { text: entry.start, stay: null };
+  return { text: `${entry.start}–${entry.end}`, stay };
+}

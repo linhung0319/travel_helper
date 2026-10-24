@@ -1820,61 +1820,6 @@ dl {
   padding: 8px 10px;
 }
 
-/* 多點卡片：名稱後面的 ＋N、展開的「這個時段也可以去」 */
-.options-toggle {
-  border: 0;
-  min-height: 28px;
-  cursor: pointer;
-  font-weight: 600;
-}
-
-.tl-options {
-  display: flex;
-  flex-direction: column;
-  gap: 2px;
-  margin-top: 4px;
-  padding: 6px 8px;
-  border-radius: 8px;
-  background: var(--soft);
-}
-
-.tl-options ul {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  display: flex;
-  flex-direction: column;
-  gap: 2px;
-}
-
-.tl-option {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 2px 8px;
-}
-
-.tl-option-name {
-  border: 0;
-  background: none;
-  padding: 0;
-  min-height: 36px;
-  font: inherit;
-  color: inherit;
-  text-align: left;
-  cursor: pointer;
-}
-
-.tl-option.main .tl-option-name {
-  font-weight: 600;
-}
-
-.tl-option-star {
-  display: inline-block;
-  width: 1.2em;
-  color: var(--warn);
-}
-
 .tl-gap {
   margin: 2px 0;
 }
@@ -4075,4 +4020,147 @@ button.tl-leg-text {
   font-size: 0.75rem;
   font-weight: 700;
   cursor: pointer;
+}
+
+/* ---------- 時間軸的資料卡：類型的淡底色、起終點和造訪同樣的卡片、合併卡片的疊層（T15m 第四輪） ---------- */
+
+:root {
+  --type-spot-bg: #eaf7ed;
+  --type-restaurant-bg: #fff0e5;
+  --type-lodging-bg: #f2ecfc;
+  --type-station-bg: #eef0f3;
+  --type-other-bg: #eef0f3;
+}
+
+.tl-row.tl-card {
+  grid-template-columns: 1fr;
+  position: relative;
+  isolation: isolate;
+}
+
+.tl-card.type-spot {
+  background: var(--type-spot-bg);
+}
+
+.tl-card.type-restaurant {
+  background: var(--type-restaurant-bg);
+}
+
+.tl-card.type-lodging {
+  background: var(--type-lodging-bg);
+}
+
+.tl-card.type-station {
+  background: var(--type-station-bg);
+}
+
+.tl-card.type-other {
+  background: var(--type-other-bg);
+}
+
+/* 時間（開始–結束）後面接停留時間 */
+.tl-timeline {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 2px 8px;
+}
+
+.tl-timeline .tl-wait {
+  color: var(--muted);
+}
+
+/* 有備卡：卡片後面疊一層（1 張備卡）或兩層（2 張以上）淡色卡 */
+.tl-card.stacked {
+  margin-bottom: 10px;
+}
+
+.tl-card.stacked::before,
+.tl-card.stacked::after {
+  content: '';
+  position: absolute;
+  top: 12px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: var(--soft);
+  z-index: -1;
+}
+
+.tl-card.stacked::before {
+  left: 6px;
+  right: 6px;
+  bottom: -5px;
+}
+
+.tl-card.stacked::after {
+  display: none;
+  left: 12px;
+  right: 12px;
+  bottom: -10px;
+  z-index: -2;
+}
+
+.tl-card.stacked-2::after {
+  display: block;
+}
+
+.tl-card.stacked-2 {
+  margin-bottom: 14px;
+}
+
+.option-stack {
+  position: relative;
+  padding-right: 1.8em;
+  touch-action: pan-y;
+}
+
+.option-crown {
+  position: absolute;
+  top: -2px;
+  right: -2px;
+  border: 0;
+  background: none;
+  padding: 0;
+  font-size: 1.1rem;
+  line-height: 1;
+  filter: grayscale(1);
+  opacity: 0.45;
+}
+
+.option-crown.on {
+  filter: none;
+  opacity: 1;
+}
+
+button.option-crown {
+  cursor: pointer;
+  min-width: 28px;
+  min-height: 28px;
+}
+
+.option-switch {
+  margin-left: auto;
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+  font-variant-numeric: tabular-nums;
+}
+
+.option-switch button {
+  border: 0;
+  background: none;
+  min-width: 32px;
+  min-height: 32px;
+  font-size: 1.2rem;
+  line-height: 1;
+  cursor: pointer;
+  color: inherit;
+}
+
+.option-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 4px 8px;
+  margin-top: 4px;
 }

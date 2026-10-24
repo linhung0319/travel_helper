@@ -1,10 +1,11 @@
 // 這一天的時間軸（interaction-design §3、§6）：引擎算好的項目、相鄰兩點之間的交通、空檔、警告。
 // 手機是直的清單，電腦放在地圖下方。點項目地圖跳過去；空檔可以點（看附近的餐廳）。
-// 一般模式只顯示要看的（設計 §6）：開始時間、編號、類型圖示、名稱、停留時間、tag、❤️ 頭像、⚠ 數。
-// 規劃模式下才有：停留時間 −／＋、點開始時間固定（📌）、⋯ 選單（刪除、移到第 _ 天、移進／移出分組、標用餐、標吃法）、
-// 拖卡片換順序（電腦版拖、手機長按後拖）、多點卡片的「設為主要」「從這張卡片拿掉」、住宿的「換住宿」。
+// 一般模式只顯示要看的（設計 §6）：時間（開始–結束）、編號、類型圖示、名稱、停留時間、tag、❤️ 頭像、⚠ 數。
+// 卡片底色是類型的淡色；起點、終點的住宿和造訪是同樣的卡片（只寫一個時間）。有備卡的卡片疊著淡色卡、右上角 👑、‹ n/m › 換著看。
+// 規劃模式下才有：停留時間 −／＋、點時間固定開始（📌）、⋯ 選單（刪除、移到第 _ 天、移進／移出分組、標用餐、標吃法）、
+// 拖卡片換順序（電腦版拖、手機長按後拖）、看備卡時的「設為主要」「拿出來」。
 
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState, type ReactNode } from 'react';
 import { moveItemTo, removeItem, removeOption, selectOption, setLodging, fromMinutes, setStart, setStay, toMinutes, type DayPlan, type EngineWarning, type Gap, type LodgingMeals, type TimelineEntry } from '@travel-helper/engine';
 import type { ItineraryDay, ItineraryItem, VisitItem } from '@travel-helper/engine/types';
 import { appStore } from '../store.ts';
@@ -13,32 +14,30 @@ import { shared } from '../appShared.ts';
 import { useApp, useData, useIsDesktop } from '../hooks.ts';
 import { dropOnEndProps, dropOnItemProps, itemDragProps, useLongPressDrag } from './planDrag.ts';
 import { openDialog } from '../uiStore.ts';
-import { dayBar, daySummary, findItemRef, formatStay, optionRows, stopMarks, timelineRows, WARNING_ICONS, warningsByItem, type BarSegment } from '../lib/planView.ts';
-import { dayColor } from '../lib/visual.ts';
-import { shortDayLabel, tripDates } from '../lib/trip.ts';
-import { TYPE_ICONS } from '../lib/typeStyle.ts';
-import { TYPE_LABELS } from '../lib/filter.ts';
+import { cardTime, dayBar, daySummary, findItemRef, formatStay, stopMarks, timelineRows, WARNING_ICONS, warningsByItem, type BarSegment } from '../lib/planView.ts';
+import { shortDayLabel } from '../lib/trip.ts';
+import { TYPE_COLORS, TYPE_ICONS } from '../lib/typeStyle.ts';
 import type { Place } from '../data/types.ts';
 import { AvatarStack, PlaceChip } from './common.tsx';
 import { LegRow } from './LegRow.tsx';
 import { ReservationTag } from './Reservations.tsx';
 import { ItemTags, useHasRestaurant } from './ItemTags.tsx';
 import { useLiked } from './Wishlist.tsx';
-import { showList } from './SidePanel.tsx';
 
-const DATES = tripDates();
-
-/** 地圖上同一個編號（宿、1、2…），那天的顏色 */
+/** 地圖上同一個編號（宿、1、2…）；顏色是那個點的類型色 */
 interface Marks {
   byEntry: Map<TimelineEntry, string>;
-  color: string;
 }
 
+const NEUTRAL_COLOR = '#6e7781';
+
 function Mark({ entry, marks }: { entry: TimelineEntry; marks: Marks }) {
+  const byId = useData((s) => s.byId);
   const label = marks.byEntry.get(entry);
   if (!label) return null;
+  const type = entry.placeId ? byId.get(entry.placeId)?.type : undefined;
   return (
-    <span className="tl-mark" style={{ background: marks.color }} data-testid="tl-mark">
+    <span className="tl-mark" style={{ background: type ? TYPE_COLORS[type] : NEUTRAL_COLOR }} data-testid="tl-mark">
       {label}
     </span>
   );
@@ -158,68 +157,12 @@ function ItemMenu({ itemId, item, onTags }: { itemId: string; item: ItineraryIte
 
 const name = (p: Place | undefined) => (p ? p.name.zh || p.name.ja : '（不明）');
 
-/**
- * 多點卡片展開的「這個時段也可以去」：★ 主要、名稱、類型、❤️ 頭像、離主要那個走幾分。點一列地圖飛過去（不改主要）。
- * 規劃模式下每列多「設為主要」（後面的時間重算）、「從這張卡片拿掉」（放回這天的候選）。
- */
-function OptionsList({ item, date }: { item: VisitItem; date: string }) {
-  const byId = useData((s) => s.byId);
-  const planning = useApp((s) => s.planning);
-  const liked = useLiked();
-  const rows = optionRows(item, byId);
-  const makeMain = (index: number, p: Place) => void shared.changeItinerary((it) => selectOption(it, item.id, index), `${name(p)} 設為主要`);
-  const takeOut = async (index: number, p: Place) => {
-    const r = await shared.changeItinerary((it) => removeOption(it, item.id, index), `${name(p)} 從卡片拿掉`);
-    if (r.ok) await shared.addCandidate(p.id, date);
-  };
-  return (
-    <div className="tl-options" data-testid="options-list">
-      <span className="tl-options-title small muted">這個時段也可以去</span>
-      <ul>
-        {rows.map((r) => {
-          const l = liked.get(r.place.id);
-          return (
-            <li key={r.index} className={`tl-option ${r.main ? 'main' : ''}`} data-testid="option-row" data-place={r.place.id} data-main={r.main}>
-              <button type="button" className="tl-option-name" onClick={() => focusPlace(r.place.id)}>
-                <span className="tl-option-star" aria-label={r.main ? '主要' : undefined}>
-                  {r.main ? '★' : ''}
-                </span>
-                {TYPE_ICONS[r.place.type]} {name(r.place)}
-                <span className="muted small"> {TYPE_LABELS[r.place.type]}</span>
-              </button>
-              {l && <AvatarStack ids={l.likes} dislikes={l.dislikes} />}
-              {r.walkMinutesFromMain != null && <span className="muted small">走 {r.walkMinutesFromMain} 分</span>}
-              {planning && !r.main && (
-                <button type="button" className="text-button small" onClick={() => makeMain(r.index, r.place)} data-testid="option-make-main">
-                  設為主要
-                </button>
-              )}
-              {planning && (
-                <button type="button" className="text-button small" onClick={() => void takeOut(r.index, r.place)} data-testid="option-remove">
-                  從這張卡片拿掉
-                </button>
-              )}
-            </li>
-          );
-        })}
-      </ul>
-    </div>
-  );
-}
-
 /** 住宿這晚含的餐：照 lodgingMeals，沒填照住宿資料的 meals；「看方案」（varies）不顯示 */
 function lodgingMealTags(day: ItineraryDay, p: Place | undefined): string[] {
   const meals = (day.lodgingMeals ?? p?.raw.meals ?? null) as LodgingMeals | 'varies' | null;
   if (meals === 'dinner+breakfast') return ['含晚餐', '含早餐'];
   if (meals === 'breakfast') return ['含早餐'];
   return [];
-}
-
-/** 住宿卡片的「換住宿」：切到想去分頁、類型設成住宿（地區篩選照現在的），在那裡按「設為 2/5 的住宿」 */
-function changeLodging() {
-  showList('wish');
-  appStore.getState().setSheet({ tab: 'wish' });
-  commands.setFilter({ types: ['lodging'] });
 }
 
 /** 住宿卡片的 ⋯ 選單：清掉這晚的住宿 */
@@ -250,6 +193,127 @@ function LodgingMenu({ date }: { date: string }) {
   );
 }
 
+const typeClass = (p: Place | undefined) => `type-${p?.type ?? 'other'}`;
+
+interface ShownOption {
+  placeId: string;
+  /** 看的是主卡 */
+  isMain: boolean;
+  /** 那個選項自己填的停留分鐘（沒填是 null：引擎只替主卡算好時間） */
+  stayMinutes: number | null;
+  /** tag 那一排右邊的 ‹ n/m › */
+  switcher: ReactNode;
+  /** 規劃模式、看備卡時的「設為主要」「拿出來」 */
+  actions: ReactNode;
+}
+
+/** 復原「拿出來」：把剛放進候選的那筆撤回（原本就有的不動） */
+async function dropCandidate(placeId: string, date: string, existed: boolean) {
+  if (existed) return;
+  const c = shared.store.getState().candidates.find((x) => x.placeId === placeId && x.day === date);
+  if (c) await shared.removeCandidate(c.id, undefined, true);
+}
+
+/**
+ * 有備卡的卡片（visit.options 超過一個）：本地 state shown 是「看的是第幾個」，只是看，不改主卡。
+ * 右上角 👑 在看主卡時亮、看備卡時灰；‹ n/m › 或手機左右滑換卡；看備卡時地圖上那個點亮起來。
+ * 規劃模式看備卡：「設為主要」（selectOption）、「拿出來」（removeOption 後放回這天的候選，可復原）。
+ */
+function OptionStack({ visit, date, children }: { visit: VisitItem; date: string; children: (v: ShownOption) => ReactNode }) {
+  const byId = useData((s) => s.byId);
+  const planning = useApp((s) => s.planning);
+  const n = visit.options.length;
+  const [shown, setShown] = useState(visit.selected);
+  // 主卡換了、備卡被拿掉時，回到看主卡
+  useEffect(() => setShown(visit.selected), [visit.selected, n]);
+  const index = shown < n ? shown : visit.selected;
+  const option = visit.options[index];
+  const isMain = index === visit.selected;
+  const placeId = option.place;
+
+  // 看備卡時地圖上那個點亮起來；換回主卡或卸載時清掉自己亮的
+  const lit = isMain ? '' : placeId;
+  useEffect(() => {
+    if (!lit) return;
+    commands.highlight([lit]);
+    return () => {
+      const now = appStore.getState().highlights.primary ?? [];
+      if (now.length === 1 && now[0] === lit) commands.highlight([]);
+    };
+  }, [lit]);
+
+  const go = (d: number) => setShown((index + d + n) % n);
+  const start = useRef<{ x: number; y: number } | null>(null);
+  const label = name(byId.get(placeId));
+  const makeMain = () => void shared.changeItinerary((it) => selectOption(it, visit.id, index), `${label} 設為主要`);
+  const takeOut = async () => {
+    const existed = shared.store.getState().candidates.some((c) => c.placeId === placeId && c.day === date);
+    // 先放回候選、再從卡片拿掉：「已放回候選」的復原提示要最後出現（共用一個提示位置）
+    const added = await shared.addCandidate(placeId, date);
+    if (!added.ok) return;
+    const r = await shared.changeItinerary((it) => removeOption(it, visit.id, index), `${label} 從卡片拿出來`, {
+      undo: { text: `已放回候選・${label}`, after: () => dropCandidate(placeId, date, existed) },
+    });
+    if (!r.ok) await dropCandidate(placeId, date, existed);
+  };
+  const switcher = (
+    <span className="option-switch small" data-testid="option-switch">
+      <button type="button" aria-label="上一個" onClick={() => go(-1)} data-testid="option-prev">
+        ‹
+      </button>
+      <span>
+        {index + 1}/{n}
+      </span>
+      <button type="button" aria-label="下一個" onClick={() => go(1)} data-testid="option-next">
+        ›
+      </button>
+    </span>
+  );
+  const actions =
+    planning && !isMain ? (
+      <span className="option-actions">
+        <button type="button" className="button small" onClick={makeMain} data-testid="option-make-main">
+          👑 設為主要
+        </button>
+        <button type="button" className="text-button small" onClick={() => void takeOut()} data-testid="option-takeout">
+          拿出來
+        </button>
+      </span>
+    ) : null;
+  return (
+    <div
+      className="option-stack"
+      data-testid="option-stack"
+      data-shown={index}
+      data-main={isMain}
+      onPointerDown={(e) => {
+        start.current = { x: e.clientX, y: e.clientY };
+      }}
+      onPointerUp={(e) => {
+        const s = start.current;
+        start.current = null;
+        if (!s) return;
+        const dx = e.clientX - s.x;
+        if (Math.abs(dx) > 40 && Math.abs(dx) > Math.abs(e.clientY - s.y)) go(dx < 0 ? 1 : -1);
+      }}
+      onPointerCancel={() => {
+        start.current = null;
+      }}
+    >
+      {isMain || !planning ? (
+        <span className={`option-crown ${isMain ? 'on' : ''}`} aria-label={isMain ? '主要' : '備案'} title={isMain ? '主要' : '備案'} data-testid="option-crown">
+          👑
+        </span>
+      ) : (
+        <button type="button" className="option-crown" aria-label="設為主要" title="設為主要" onClick={makeMain} data-testid="option-crown">
+          👑
+        </button>
+      )}
+      {children({ placeId, isMain, stayMinutes: option.stayMinutes ?? null, switcher, actions })}
+    </div>
+  );
+}
+
 function EntryRow({ entry, day, warnings, gapsBeforeMeet, plan, marks, inGroup = false }: { entry: TimelineEntry; day: ItineraryDay; warnings: Map<string, EngineWarning[]>; gapsBeforeMeet?: Gap[]; plan?: DayPlan; marks: Marks; inGroup?: boolean }) {
   const byId = useData((s) => s.byId);
   const itinerary = useData((s) => s.itinerary);
@@ -262,30 +326,25 @@ function EntryRow({ entry, day, warnings, gapsBeforeMeet, plan, marks, inGroup =
   // 手機：長按後拖（hook 不能放在下面的提前 return 之後）
   const pressRef = useLongPressDrag<HTMLLIElement>(entry.itemId, planning && !desktop && !!item && item.type !== 'flight');
   const p = entry.placeId ? byId.get(entry.placeId) : undefined;
-  const liked = useLiked().get(entry.placeId ?? '');
+  const likedMap = useLiked();
   const [tagsOpen, setTagsOpen] = useState(false);
-  const [optsOpen, setOptsOpen] = useState(false);
-  const optionPlaces = item?.type === 'visit' && item.options.length > 1 ? item.options.map((o) => o.place) : null;
-  const optionKey = optsOpen && optionPlaces ? optionPlaces.join('|') : '';
-  // 展開多點卡片時，地圖上這幾個點亮起來（主要實心、其他空心是行程圖層本來的畫法）；收起來時清掉自己亮的
-  useEffect(() => {
-    if (!optionKey) return;
-    const ids = optionKey.split('|');
-    commands.highlight(ids);
-    return () => {
-      const now = appStore.getState().highlights.primary ?? [];
-      if (now.length === ids.length && now.every((x) => ids.includes(x))) commands.highlight([]);
-    };
-  }, [optionKey]);
 
   if (entry.kind === 'start') {
     return (
-      <li className="tl-row tl-start">
-        <span className="tl-time">{entry.start}</span>
-        <span className="tl-body muted">
+      <li className={`tl-row tl-card tl-start ${typeClass(p)}`} data-testid="tl-start" data-place={entry.placeId ?? ''}>
+        <span className="tl-body">
+          <span className="tl-timeline">
+            <span className="tl-start-time">{cardTime(entry).text}</span>
+          </span>
           <span className="tl-title">
             <Mark entry={entry} marks={marks} />
-            從 {p ? `${TYPE_ICONS[p.type]} ${name(p)}` : '上一站'} 出發
+            {p ? (
+              <button type="button" className="link-button tl-name" onClick={() => focusPlace(entry.placeId)}>
+                {TYPE_ICONS[p.type]} {name(p)}
+              </button>
+            ) : (
+              <span className="muted">上一站</span>
+            )}
           </span>
         </span>
       </li>
@@ -341,12 +400,16 @@ function EntryRow({ entry, day, warnings, gapsBeforeMeet, plan, marks, inGroup =
     return (
       <>
         <LegRow entry={entry} date={day.date} inGroup={inGroup} />
-        <li className="tl-row tl-lodging" data-testid="tl-row">
-          <span className="tl-time">{entry.arrive}</span>
+        <li className={`tl-row tl-card tl-lodging ${typeClass(p)}`} data-testid="tl-row" data-place={entry.placeId ?? ''}>
           <span className="tl-body">
+            <span className="tl-timeline">
+              <span className="tl-start-time">{cardTime(entry).text}</span>
+            </span>
             <span className="tl-title">
               <Mark entry={entry} marks={marks} />
-              🏨 住宿：{p ? <PlaceChip id={p.id} /> : entry.placeId}
+              <button type="button" className="link-button tl-name" onClick={() => focusPlace(entry.placeId)}>
+                {p ? `${TYPE_ICONS[p.type]} ${name(p)}` : entry.placeId}
+              </button>
               {planning && <LodgingMenu date={day.date} />}
             </span>
             <span className="item-tags">
@@ -357,13 +420,6 @@ function EntryRow({ entry, day, warnings, gapsBeforeMeet, plan, marks, inGroup =
               ))}
               {p && <ReservationTag date={day.date} placeId={p.id} />}
             </span>
-            {planning && (
-              <span>
-                <button type="button" className="button small" onClick={changeLodging} data-testid="lodging-change">
-                  🔁 換住宿
-                </button>
-              </span>
-            )}
           </span>
         </li>
       </>
@@ -372,50 +428,65 @@ function EntryRow({ entry, day, warnings, gapsBeforeMeet, plan, marks, inGroup =
 
   const visit = item?.type === 'visit' ? item : null;
   const flight = item?.type === 'flight' ? item : null;
-  const icon = entry.kind === 'flight' ? '✈️' : entry.kind === 'free' ? '☕' : p ? TYPE_ICONS[p.type] : '📍';
-  const stay = toMinutes(entry.end) - toMinutes(entry.start);
+  const time = cardTime(entry);
   // 規劃模式：電腦版拖曳、手機長按後拖（航班不能動）
   const movable = planning && !!item && item.type !== 'flight';
   const itemWarnings = entry.itemId ? warnings.get(entry.itemId) : undefined;
+  const stacked = visit && visit.options.length > 1 ? Math.min(visit.options.length - 1, 2) : 0;
+
+  // 卡片的內容；有備卡時 v 是現在看的那個選項（名稱、類型圖示、❤️ 頭像、停留時間換成它）
+  const content = (v?: ShownOption) => {
+    const sp = v ? byId.get(v.placeId) : p;
+    const liked = likedMap.get(v?.placeId ?? entry.placeId ?? '');
+    const icon = entry.kind === 'flight' ? '✈️' : entry.kind === 'free' ? '☕' : sp ? TYPE_ICONS[sp.type] : '📍';
+    const backup = !!v && !v.isMain;
+    const stay = backup ? v.stayMinutes : time.stay;
+    return (
+      <span className="tl-body">
+        <span className="tl-timeline">
+          {backup ? <span className="tl-start-time">{entry.start}</span> : <StartTime entry={entry} visit={visit} flight={flight} text={time.text} />}
+          {entry.waitMinutes > 0 && !backup && <span className="tl-wait">等 {entry.waitMinutes} 分</span>}
+          {!flight && stay != null && stay > 0 && <StayChip itemId={visit?.id ?? null} minutes={stay} readOnly={backup} />}
+        </span>
+        <span className="tl-title">
+          <Mark entry={entry} marks={marks} />
+          <button type="button" className="link-button tl-name" onClick={() => focusPlace(v?.placeId ?? entry.placeId)} onMouseEnter={() => appStore.getState().hover(v?.placeId ?? entry.placeId)} onMouseLeave={() => appStore.getState().hover(null)}>
+            {icon} {flight ? `${flight.direction === 'arrive' ? '抵達' : '起飛'} ${name(sp)}` : entry.kind === 'free' ? `自由時間${sp ? `：${name(sp)}` : ''}` : name(sp)}
+          </button>
+          {visit && liked && <AvatarStack ids={liked.likes} dislikes={liked.dislikes} />}
+          <WarnToggle list={itemWarnings} open={warnOpen} onToggle={() => setWarnOpen(!warnOpen)} />
+          {planning && item && item.type !== 'flight' && <ItemMenu itemId={item.id} item={item} onTags={visit ? () => setTagsOpen(true) : undefined} />}
+        </span>
+        <span className="tl-meta">
+          {visit && <ItemTags visit={visit} mealTag={entry.mealTag ?? null} date={day.date} placeId={entry.placeId} open={tagsOpen} onOpenChange={setTagsOpen} />}
+          {v?.switcher}
+        </span>
+        {v?.actions}
+        {flight?.note && <span className="muted small">{flight.note}（{flight.depart} 起飛 → {flight.arrive} 抵達）</span>}
+        {visit?.note && <span className="tl-note small">📝 {visit.note}</span>}
+        {warnOpen && <Warnings list={itemWarnings} />}
+      </span>
+    );
+  };
+
   return (
     <>
       <LegRow entry={entry} date={day.date} inGroup={inGroup} />
       <li
-        className={`tl-row tl-card tl-${entry.kind} ${hovered && hovered === entry.placeId ? 'flash' : ''} ${movable ? 'movable' : ''}`}
+        className={`tl-row tl-card tl-${entry.kind} ${typeClass(p)} ${stacked ? `stacked stacked-${stacked}` : ''} ${hovered && hovered === entry.placeId ? 'flash' : ''} ${movable ? 'movable' : ''}`}
         data-testid="tl-row"
         data-item={entry.itemId ?? ''}
         data-place={entry.placeId ?? ''}
         ref={pressRef}
         {...(movable && entry.itemId ? { ...(desktop ? itemDragProps(entry.itemId, entry.placeId, true) : {}), ...dropOnItemProps(entry.itemId, true) } : {})}
       >
-        <span className="tl-time">
-          <StartTime entry={entry} visit={visit} flight={flight} />
-          {entry.waitMinutes > 0 && <span className="tl-wait">等 {entry.waitMinutes} 分</span>}
-        </span>
-        <span className="tl-body">
-          <span className="tl-title">
-            <Mark entry={entry} marks={marks} />
-            <button type="button" className="link-button tl-name" onClick={() => focusPlace(entry.placeId)} onMouseEnter={() => appStore.getState().hover(entry.placeId)} onMouseLeave={() => appStore.getState().hover(null)}>
-              {icon} {flight ? `${flight.direction === 'arrive' ? '抵達' : '起飛'} ${name(p)}` : entry.kind === 'free' ? `自由時間${p ? `：${name(p)}` : ''}` : name(p)}
-            </button>
-            {visit && visit.options.length > 1 && (
-              <button type="button" className="badge options-toggle" aria-expanded={optsOpen} aria-label={`這個時段也可以去：另外 ${visit.options.length - 1} 個`} onClick={() => setOptsOpen(!optsOpen)} data-testid="options-toggle">
-                ＋{visit.options.length - 1}
-              </button>
-            )}
-            {visit && liked && <AvatarStack ids={liked.likes} dislikes={liked.dislikes} />}
-            <WarnToggle list={itemWarnings} open={warnOpen} onToggle={() => setWarnOpen(!warnOpen)} />
-            {planning && item && item.type !== 'flight' && <ItemMenu itemId={item.id} item={item} onTags={visit ? () => setTagsOpen(true) : undefined} />}
-          </span>
-          <span className="tl-meta">
-            {!flight && stay > 0 && <StayChip itemId={visit?.id ?? null} minutes={stay} />}
-            {visit && <ItemTags visit={visit} mealTag={entry.mealTag ?? null} date={day.date} placeId={entry.placeId} open={tagsOpen} onOpenChange={setTagsOpen} />}
-          </span>
-          {flight?.note && <span className="muted small">{flight.note}（{flight.depart} 起飛 → {flight.arrive} 抵達）</span>}
-          {visit && optsOpen && visit.options.length > 1 && <OptionsList item={visit} date={day.date} />}
-          {visit?.note && <span className="tl-note small">📝 {visit.note}</span>}
-          {warnOpen && <Warnings list={itemWarnings} />}
-        </span>
+        {visit && stacked ? (
+          <OptionStack visit={visit} date={day.date}>
+            {(v) => content(v)}
+          </OptionStack>
+        ) : (
+          content()
+        )}
       </li>
     </>
   );
@@ -432,10 +503,10 @@ function WarnToggle({ list, open, onToggle }: { list: EngineWarning[] | undefine
   );
 }
 
-/** 開始時間（大字）；固定時間（訂位、表演）標 📌。規劃模式下點了切換固定／不固定 */
-function StartTime({ entry, visit, flight }: { entry: TimelineEntry; visit: VisitItem | null; flight: Extract<ItineraryItem, { type: 'flight' }> | null }) {
+/** 時間（大字，造訪是「開始–結束」）；固定時間（訂位、表演）標 📌。規劃模式下點了切換固定／不固定 */
+function StartTime({ entry, visit, flight, text }: { entry: TimelineEntry; visit: VisitItem | null; flight: Extract<ItineraryItem, { type: 'flight' }> | null; text: string }) {
   const planning = useApp((s) => s.planning);
-  const time = flight ? (flight.direction === 'arrive' ? flight.arrive : flight.depart) : entry.start;
+  const time = flight ? (flight.direction === 'arrive' ? flight.arrive : flight.depart) : text;
   const fixed = !!visit?.start;
   if (!planning || !visit)
     return (
@@ -460,8 +531,8 @@ function StartTime({ entry, visit, flight }: { entry: TimelineEntry; visit: Visi
 }
 
 /** 停留時間的標籤；規劃模式下 −15／＋15（後面的時間跟著重算） */
-function StayChip({ itemId, minutes }: { itemId: string | null; minutes: number }) {
-  const planning = useApp((s) => s.planning);
+function StayChip({ itemId, minutes, readOnly = false }: { itemId: string | null; minutes: number; readOnly?: boolean }) {
+  const planning = useApp((s) => s.planning) && !readOnly;
   const change = (d: number) => {
     if (!itemId) return;
     const next = Math.max(15, minutes + d);
@@ -527,7 +598,7 @@ export function Timeline({ plan, day }: { plan: DayPlan; day: ItineraryDay }) {
   const byId = useData((s) => s.byId);
   const planning = useApp((s) => s.planning);
   const { byItem } = warningsByItem(plan);
-  const marks: Marks = { byEntry: stopMarks(plan, (id) => byId.get(id)?.type === 'lodging').byEntry, color: dayColor(DATES, day.date) };
+  const marks: Marks = { byEntry: stopMarks(plan, (id) => byId.get(id)?.type === 'lodging').byEntry };
   return (
     <ol className="tl" data-testid="timeline">
       {timelineRows(plan).map((row, i) =>
