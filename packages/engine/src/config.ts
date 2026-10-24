@@ -97,6 +97,12 @@ export interface EngineConfig {
     userPlace: number;
   };
 
+  /** 每段交通加的緩衝（分鐘）：集合、上下車、上廁所；全員 15 人和分組各一個值 */
+  buffer: {
+    whole: number;
+    group: number;
+  };
+
   flight: {
     /** 落地到出關（入境、領 15 人的行李），access/kix.json 推估 60～75 分 */
     arrivalClearMinutes: number;
@@ -169,6 +175,7 @@ export const DEFAULT_CONFIG: EngineConfig = {
     defaultStay: 60,
   },
   stay: { spot: 60, lodging: 30, station: 0, userPlace: 60 },
+  buffer: { whole: 10, group: 5 },
   flight: { arrivalClearMinutes: 75, departAtAirportBefore: 120 },
   holidays: ['2026-11-03', '2026-11-23', '2027-01-01', '2027-01-11', '2027-02-11', '2027-02-23', '2027-03-21', '2027-03-22'],
 };

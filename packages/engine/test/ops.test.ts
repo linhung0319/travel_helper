@@ -11,6 +11,7 @@ import {
   findItem,
   ItineraryError,
   moveItem,
+  moveItemTo,
   moveItemToDay,
   removeItem,
   removeOption,
@@ -192,10 +193,37 @@ test('提議的摘要與檢查：套用前後都跑引擎，列出新出現、�
   before = addItem(before, D, visit('a')).itinerary;
   const after = addItem(before, D, visit('s')).itinerary;
   const r = checkProposal(before, after, data, {}, (id) => ({ s: '展望台', a: '水族館' })[id] ?? id);
-  assert.deepEqual(r.summary, ['2/5：＋展望台 10:43～11:43']); // a 10:40 結束，走 100 m 3 分
+  assert.deepEqual(r.summary, ['2/5：＋展望台 11:03～12:03']); // a 10:50 結束（含緩衝 10 分），走 100 m 3 分＋緩衝 10 分
   assert.ok(r.newWarnings.some((w) => w.code === 'stairs'));
   assert.deepEqual(r.resolvedWarnings, []);
   const back = checkProposal(after, before, data);
   assert.ok(back.resolvedWarnings.some((w) => w.code === 'stairs'));
   assert.deepEqual(describeChanges(back.changes), ['2/5：－s']);
+});
+
+test('moveItemTo：同一天換位置、移到別天的某個位置', () => {
+  const { it, ids: [a, b, c] } = threeItems();
+  assert.deepEqual(ids(moveItemTo(it, c, D, 0)), [c, a, b]);
+  assert.deepEqual(ids(moveItemTo(it, a, D, 2)), [b, c, a]);
+  const other = '2027-02-06';
+  const moved = moveItemTo(addItem(it, other, visit('x')).itinerary, b, other, 0);
+  assert.deepEqual(ids(moved), [a, c]);
+  assert.equal(ids(moved, other)?.[0], b);
+});
+
+test('moveItemTo：移進分組、移出分組；分組不能放進分組；不能跨過航班', () => {
+  let { it, ids: [a, b] } = threeItems();
+  const sp = addItem(it, D, { type: 'split', groups: [{ id: 'g1', name: '一組', size: 15, elders: 5, kids: 4, items: [] }], meet: { place: 'a', time: '15:00' } } as never);
+  it = sp.itinerary;
+  const inGroup = moveItemTo(it, a, D, 0, { id: sp.itemId, group: 'g1' });
+  const split = inGroup.days.find((d) => d.date === D)!.items.find((x) => x.id === sp.itemId)!;
+  assert.deepEqual(split.type === 'split' && split.groups[0].items.map((x) => x.id), [a]);
+  const out = moveItemTo(inGroup, a, D, 0);
+  assert.equal(ids(out)?.[0], a);
+  assert.throws(() => moveItemTo(it, sp.itemId, D, 0, { id: sp.itemId, group: 'g1' }), ItineraryError);
+  const first = '2027-02-02';
+  assert.throws(() => moveItemTo(it, b, first, 0), ItineraryError);
+  const last = '2027-02-13';
+  assert.throws(() => moveItemTo(it, b, last, 2), ItineraryError);
+  assert.deepEqual(ids(moveItemTo(it, b, last, 0), last)?.[0], b);
 });

@@ -245,6 +245,7 @@ function leg(partial: Partial<Leg> & Pick<Leg, 'mode' | 'minutes' | 'basis'>, a:
     arrive: fromMinutes(depart + minutes),
     walkMinutes: 0,
     waitMinutes: 0,
+    bufferMinutes: 0,
     rides: [],
     taxi: null,
     specified: false,

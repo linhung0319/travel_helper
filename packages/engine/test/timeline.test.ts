@@ -48,8 +48,11 @@ function build(items: NewItem[], o: Opts = {}): Itinerary {
 
 const visit = (place: string, extra: Record<string, unknown> = {}): NewItem => ({ type: 'visit', options: [{ place, ...(extra.stay != null ? { stayMinutes: extra.stay as number } : {}) }], ...extra, stay: undefined } as NewItem);
 
+/** 這裡測的是時間怎麼推算，緩衝預設關掉（緩衝另外測） */
+const NO_BUFFER: ConfigOverride = { buffer: { whole: 0, group: 0 } };
+
 function plan(it: Itinerary, data: EngineData, date = D, cfg: ConfigOverride = {}): DayPlan {
-  const d = planItinerary(it, data, cfg).days.find((x) => x.date === date);
+  const d = planItinerary(it, data, { ...NO_BUFFER, ...cfg }).days.find((x) => x.date === date);
   assert.ok(d);
   return d;
 }
@@ -356,4 +359,21 @@ test('規則的數字可以調整：單段步行上限改 30 分 → 改走路',
   const it = build([visit('c')]);
   assert.equal(plan(it, fake(BASE)).entries[1].travel?.mode, 'taxi');
   assert.equal(plan(it, fake(BASE), D, { walk: { legMaxWhole: 30 } }).entries[1].travel?.mode, 'walk');
+});
+
+test('緩衝：每段交通加緩衝，全員 10 分、分組 5 分；可以用設定關掉', () => {
+  const d = planItinerary(build([visit('a'), visit('b')]), fake(BASE)).days.find((x) => x.date === D)!;
+  const leg = d.entries[2].travel!;
+  assert.equal(leg.bufferMinutes, 10);
+  assert.equal(toMinutes(d.entries[2].arrive), toMinutes(leg.depart) + leg.minutes + 10);
+  const g = planItinerary(build([splitItem([visit('a'), visit('c')], [visit('c')])]), fake(BASE)).days.find((x) => x.date === D)!;
+  assert.equal(g.entries[1].groups?.[0].entries[1].travel?.bufferMinutes, 5);
+  const off = planItinerary(build([visit('a'), visit('b')]), fake(BASE), { buffer: { whole: 0 } }).days.find((x) => x.date === D)!;
+  assert.equal(off.entries[2].travel?.bufferMinutes, 0);
+});
+
+test('緩衝：同一個點連續兩項（沒有移動）不加', () => {
+  const d = planItinerary(build([visit('a', { stay: 30 }), visit('a', { stay: 30 })]), fake(BASE)).days.find((x) => x.date === D)!;
+  assert.equal(d.entries[2].travel?.bufferMinutes ?? 0, 0);
+  assert.equal(d.entries[2].arrive, d.entries[1].end);
 });

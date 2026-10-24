@@ -206,6 +206,8 @@ export interface Leg {
   walkMinutes: number;
   /** 等車的分鐘 */
   waitMinutes: number;
+  /** 緩衝（集合、上下車），已經算進 arrive；minutes 不含 */
+  bufferMinutes: number;
   rides: TransitRide[];
   taxi?: TaxiInfo | null;
   /** 使用者用 travel 指定的 */

@@ -184,6 +184,32 @@ export function moveItemToDay(it: Itinerary, itemId: string, date: DateString, i
   return next;
 }
 
+/**
+ * 拖曳用：移到某天（或某天某個分組）的第 index 個。index 是「先拿出來、再插進去」之後的位置。
+ * 分組不能放進分組；不能放在抵達航班之前、出發航班之後。
+ */
+export function moveItemTo(it: Itinerary, itemId: string, date: DateString, index: number, split?: { id: string; group: string }): Itinerary {
+  const next = clone(it);
+  const loc = mustFind(next, itemId);
+  assertMovable(loc.item);
+  const [item] = loc.list.splice(loc.index, 1);
+  const day = next.days[dayIndexOf(next, date)];
+  let list: (ItineraryItem | GroupItem)[] = day.items;
+  if (split) {
+    if (item.type === 'split') throw new ItineraryError('分組裡不能再分組');
+    const sp = day.items.find((x) => x.id === split.id);
+    const g = sp?.type === 'split' ? sp.groups.find((x) => x.id === split.group) : null;
+    if (!g) throw new ItineraryError(`這天沒有分組 ${split.id}／${split.group}`);
+    list = g.items;
+  }
+  if (index < 0 || index > list.length) throw new ItineraryError(`位置 ${index} 超出範圍`);
+  const lo = list.map((x) => x.type === 'flight' && x.direction === 'arrive').lastIndexOf(true) + 1;
+  const firstDepart = list.findIndex((x) => x.type === 'flight' && x.direction === 'depart');
+  if (index < lo || (firstDepart >= 0 && index > firstDepart)) throw new ItineraryError('不能移到航班的另一邊');
+  list.splice(index, 0, item as GroupItem);
+  return next;
+}
+
 /** 上移／下移一格（同一天、同一組裡）；不能跨過航班 */
 export function moveItem(it: Itinerary, itemId: string, direction: 'up' | 'down'): Itinerary {
   const next = clone(it);
