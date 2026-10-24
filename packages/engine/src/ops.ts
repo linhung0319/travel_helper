@@ -196,6 +196,12 @@ export function moveItemTo(it: Itinerary, itemId: string, date: DateString, inde
   const loc = mustFind(next, itemId);
   assertMovable(loc.item);
   const [item] = loc.list.splice(loc.index, 1);
+  insertChecked(next, item, date, index, split);
+  return next;
+}
+
+/** moveItemTo 的插入：在 next（會被改）的 date（或某分組）第 index 個放進 item，並檢查航班邊界 */
+function insertChecked(next: Itinerary, item: ItineraryItem | GroupItem, date: DateString, index: number, split?: { id: string; group: string }): void {
   const day = next.days[dayIndexOf(next, date)];
   let list: (ItineraryItem | GroupItem)[] = day.items;
   if (split) {
@@ -210,7 +216,6 @@ export function moveItemTo(it: Itinerary, itemId: string, date: DateString, inde
   const firstDepart = list.findIndex((x) => x.type === 'flight' && x.direction === 'depart');
   if (index < lo || (firstDepart >= 0 && index > firstDepart)) throw new ItineraryError('不能移到航班的另一邊');
   list.splice(index, 0, item as GroupItem);
-  return next;
 }
 
 /** 上移／下移一格（同一天、同一組裡）；不能跨過航班 */
@@ -267,6 +272,88 @@ export function removeOption(it: Itinerary, itemId: string, index: number): Itin
   item.options.splice(index, 1);
   if (item.selected === index) item.selected = 0;
   else if (item.selected > index) item.selected -= 1;
+  return next;
+}
+
+/** 兩張卡的主卡類型要一樣、都不能是住宿（typeOf 沒給就不檢查類型） */
+function assertSameType(typeOf: ((placeId: string) => string | undefined) | undefined, a: VisitItem, b: VisitItem): void {
+  if (!typeOf) return;
+  const ta = typeOf(a.options[a.selected].place);
+  const tb = typeOf(b.options[b.selected].place);
+  if (ta === 'lodging' || tb === 'lodging') throw new ItineraryError('住宿不能合併');
+  if (ta !== tb) throw new ItineraryError('只有同類型的點能合併');
+}
+
+/**
+ * 合併：source（visit、只有一個選項）的選項加到 target 的最後，刪掉 source。
+ * target 的 selected、start、meal、dining、travel 不變；回傳 source 原本的 start（被丟掉的時間，給畫面提示）。
+ */
+export function mergeItems(
+  it: Itinerary,
+  sourceId: string,
+  targetId: string,
+  typeOf?: (placeId: string) => string | undefined,
+): { itinerary: Itinerary; droppedStart: TimeString | null } {
+  if (sourceId === targetId) throw new ItineraryError('不能合併到自己');
+  const next = clone(it);
+  const src = mustFind(next, sourceId);
+  const dst = mustFind(next, targetId);
+  if (src.item.type !== 'visit' || dst.item.type !== 'visit') throw new ItineraryError('只有 visit 能合併');
+  if (src.item.options.length > 1) throw new ItineraryError('有備卡的卡片不能合併，只能換順序');
+  assertSameType(typeOf, src.item, dst.item);
+  dst.item.options.push(src.item.options[0]);
+  const droppedStart = src.item.start ?? null;
+  src.list.splice(src.index, 1);
+  return { itinerary: next, droppedStart };
+}
+
+function mustBeBackup(item: ItineraryItem | GroupItem, optionIndex: number): VisitItem {
+  if (item.type !== 'visit') throw new ItineraryError('只有 visit 有備案');
+  if (!Number.isInteger(optionIndex) || optionIndex < 0 || optionIndex >= item.options.length) throw new ItineraryError('沒有這個備案');
+  if (optionIndex === item.selected) throw new ItineraryError('主卡要先把皇冠給別張');
+  return item;
+}
+
+/** 拿掉 item 的第 optionIndex 個選項（selected 跟著調整），回傳那個選項 */
+function takeOption(item: VisitItem, optionIndex: number): VisitItem['options'][number] {
+  const [opt] = item.options.splice(optionIndex, 1);
+  if (item.selected > optionIndex) item.selected -= 1;
+  return opt;
+}
+
+/** 拆開：備卡拿出來變成獨立的一站，插在 date（或某分組）的第 index 個（先拿出來再插進去的位置，同 moveItemTo） */
+export function detachOption(
+  it: Itinerary,
+  itemId: string,
+  optionIndex: number,
+  date: DateString,
+  index: number,
+  split?: { id: string; group: string },
+): { itinerary: Itinerary; itemId: string } {
+  const next = clone(it);
+  const item = mustBeBackup(mustFind(next, itemId).item, optionIndex);
+  const opt = takeOption(item, optionIndex);
+  const id = nextItemId(next);
+  next.seq = Number(id.split('-')[1]);
+  insertChecked(next, { id, type: 'visit', options: [opt], selected: 0 }, date, index, split);
+  return { itinerary: next, itemId: id };
+}
+
+/** 備卡搬到別張同類型卡的最後；不能搬主卡 */
+export function moveOption(
+  it: Itinerary,
+  fromItemId: string,
+  optionIndex: number,
+  toItemId: string,
+  typeOf?: (placeId: string) => string | undefined,
+): Itinerary {
+  if (fromItemId === toItemId) throw new ItineraryError('已經在這張卡裡了');
+  const next = clone(it);
+  const from = mustBeBackup(mustFind(next, fromItemId).item, optionIndex);
+  const to = mustFind(next, toItemId).item;
+  if (to.type !== 'visit') throw new ItineraryError('只有 visit 有備案');
+  assertSameType(typeOf, from, to);
+  to.options.push(takeOption(from, optionIndex));
   return next;
 }
 

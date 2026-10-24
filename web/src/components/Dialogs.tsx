@@ -32,7 +32,7 @@ export function Toast() {
     if (!toast) return;
     const t = window.setTimeout(() => {
       if (shared.store.getState().toast?.seq === toast.seq) shared.clearToast();
-    }, toast.kind === 'error' ? 6000 : 3000);
+    }, toast.kind === 'error' || toast.action ? 6000 : 3000);
     return () => window.clearTimeout(t);
   }, [toast]);
   if (!toast) return null;
@@ -40,6 +40,21 @@ export function Toast() {
     <div className={`toast toast-${toast.kind}`} role={toast.kind === 'error' ? 'alert' : 'status'} data-testid="toast" onClick={() => shared.clearToast()}>
       {toast.kind === 'error' ? '⚠️ ' : '✓ '}
       {toast.text}
+      {toast.action && (
+        <button
+          type="button"
+          className="toast-undo"
+          data-testid="toast-undo"
+          onClick={(e) => {
+            e.stopPropagation();
+            const run = toast.action!.run;
+            shared.clearToast();
+            run();
+          }}
+        >
+          {toast.action.label}
+        </button>
+      )}
     </div>
   );
 }

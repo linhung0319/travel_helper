@@ -7,6 +7,9 @@ import {
   checkProposal,
   createItinerary,
   describeChanges,
+  detachOption,
+  mergeItems,
+  moveOption,
   diffItinerary,
   findItem,
   ItineraryError,
@@ -342,4 +345,77 @@ test('validateItinerary：mode transit 合法、trip 要有 id 和 HH:MM 的 dep
   assert.ok(errs.some((e) => e.includes('trip.id')));
   assert.ok(errs.some((e) => e.includes('trip.depart')));
   assert.ok(validateItinerary(withTravel({ trip: { id: 't1', depart: '10:35', arrive: 'x', from: 'a', to: 'b' } })).some((e) => e.includes('trip.arrive')));
+});
+
+// --- 合併、拆開、搬移備卡 ---------------------------------------------------
+
+const typeOf = (id: string) => (id.startsWith('h') ? 'lodging' : id.startsWith('r') ? 'restaurant' : 'spot');
+const visitOf = (it: Itinerary, id: string) => findItem(it, id)?.item as VisitItem;
+
+function mergeSetup() {
+  let it = createItinerary();
+  const t = addItem(it, D, { type: 'visit', options: [{ place: 'r1' }], selected: 0, start: '12:00', meal: 'lunch' });
+  it = t.itinerary;
+  const s = addItem(it, D, { type: 'visit', options: [{ place: 'r2', stayMinutes: 45 }], selected: 0, start: '11:30' });
+  return { it: s.itinerary, target: t.itemId, source: s.itemId };
+}
+
+test('mergeItems：source 的點變成 target 的最後一個選項，target 的欄位不變', () => {
+  const { it, target, source } = mergeSetup();
+  const r = mergeItems(it, source, target, typeOf);
+  const t = visitOf(r.itinerary, target);
+  assert.deepEqual(t.options, [{ place: 'r1' }, { place: 'r2', stayMinutes: 45 }]);
+  assert.equal(t.selected, 0);
+  assert.equal(t.start, '12:00');
+  assert.equal(t.meal, 'lunch');
+  assert.equal(findItem(r.itinerary, source), null);
+  assert.equal(r.droppedStart, '11:30');
+  assert.equal(visitOf(it, target).options.length, 1, '不改原本的行程');
+});
+
+test('mergeItems：有備卡的 source、不同類型、住宿都丟錯', () => {
+  const { it, target, source } = mergeSetup();
+  const withBackup = addOption(it, source, { place: 'r3' });
+  assert.throws(() => mergeItems(withBackup, source, target, typeOf), /有備卡的卡片不能合併，只能換順序/);
+  const spotItem = addItem(it, D, visit('s1')).itemId;
+  const it2 = addItem(it, D, visit('s1')).itinerary;
+  assert.throws(() => mergeItems(it2, spotItem, target, typeOf), /只有同類型的點能合併/);
+  const h1 = addItem(it, D, visit('h1'));
+  const h2 = addItem(h1.itinerary, D, visit('h2'));
+  assert.throws(() => mergeItems(h2.itinerary, h2.itemId, h1.itemId, typeOf), /住宿不能合併/);
+  assert.throws(() => mergeItems(it, source, source, typeOf), ItineraryError);
+});
+
+test('detachOption：備卡變成獨立一站；主卡不能拆', () => {
+  const { it, ids: [a] } = threeItems();
+  const two = addOption(it, a, { place: 'a2' });
+  const r = detachOption(two, a, 1, D, 0);
+  assert.deepEqual(ids(r.itinerary)?.[0], r.itemId);
+  assert.equal(ids(r.itinerary)?.[1], a);
+  assert.deepEqual(visitOf(r.itinerary, r.itemId).options, [{ place: 'a2' }]);
+  assert.equal(visitOf(r.itinerary, r.itemId).selected, 0);
+  assert.equal(visitOf(r.itinerary, a).options.length, 1);
+  assert.equal(r.itinerary.seq, Number(r.itemId.split('-')[1]));
+  assert.throws(() => detachOption(two, a, 0, D, 0), /主卡要先把皇冠給別張/);
+});
+
+test('detachOption：拆掉前面的選項時 selected 跟著指原本那個', () => {
+  const { it, ids: [a] } = threeItems();
+  let x = addOption(addOption(it, a, { place: 'b' }), a, { place: 'c' });
+  x = selectOption(x, a, 2);
+  const r = detachOption(x, a, 0, D, 0);
+  const v = visitOf(r.itinerary, a);
+  assert.equal(v.selected, 1);
+  assert.equal(v.options[v.selected].place, 'c');
+});
+
+test('moveOption：備卡搬到別張同類型卡', () => {
+  const { it, target, source } = mergeSetup();
+  const two = addOption(it, source, { place: 'r3' });
+  const r = moveOption(two, source, 1, target, typeOf);
+  assert.deepEqual(visitOf(r, source).options.map((o) => o.place), ['r2']);
+  assert.deepEqual(visitOf(r, target).options.map((o) => o.place), ['r1', 'r3']);
+  assert.throws(() => moveOption(two, source, 0, target, typeOf), /主卡要先把皇冠給別張/);
+  const s1 = addItem(two, D, visit('s1')).itemId;
+  assert.throws(() => moveOption(addItem(two, D, visit('s1')).itinerary, source, 1, s1, typeOf), /只有同類型的點能合併/);
 });

@@ -196,3 +196,22 @@ test('預約筆記：同步時別人改的會抓進來', async () => {
   await shared.syncOnce();
   assert.equal(shared.store.getState().reservations.length, 1);
 });
+
+test('changeItinerary 的復原：回到改之前的行程、跑 after', async () => {
+  const { data, shared } = await setup();
+  const before = data.getState().itinerary;
+  let afterCalls = 0;
+  const after = async () => {
+    afterCalls++;
+  };
+  const r = await shared.changeItinerary((it) => removeItem(it, '2027-02-03:x'), '合併', { undo: { text: '已合併到 A', after } });
+  assert.ok(r.ok);
+  const t = shared.store.getState().toast;
+  assert.equal(t?.text, '已合併到 A');
+  assert.equal(t?.action?.label, '復原');
+  assert.notDeepEqual(data.getState().itinerary, before);
+  t!.action!.run();
+  await new Promise((res) => setTimeout(res, 20));
+  assert.deepEqual(data.getState().itinerary, before);
+  assert.equal(afterCalls, 1);
+});

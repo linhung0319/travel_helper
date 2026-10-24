@@ -30,6 +30,8 @@ export interface Toast {
   seq: number;
   kind: 'ok' | 'error';
   text: string;
+  /** 提示上的按鈕（例如「復原」） */
+  action?: { label: string; run: () => void };
 }
 
 export interface SharedState {
@@ -93,7 +95,7 @@ export function createShared(getBackend: () => Backend, data: StoreApi<DataState
   const store = createStore<SharedState>()(() => initial);
   let toastSeq = 0;
   const set = (patch: Partial<SharedState>) => store.setState(patch);
-  const toast = (kind: Toast['kind'], text: string) => set({ toast: { seq: ++toastSeq, kind, text } });
+  const toast = (kind: Toast['kind'], text: string, action?: Toast['action']) => set({ toast: { seq: ++toastSeq, kind, text, ...(action ? { action } : {}) } });
   const fail = (e: unknown): { ok: false; error: string } => {
     const text = message(e);
     toast('error', text);
@@ -128,7 +130,11 @@ export function createShared(getBackend: () => Backend, data: StoreApi<DataState
    * 改行程：先在畫面上改（樂觀更新），再存檔；存不了就退回。
    * fn 用 engine 的操作（ops.ts），丟 ItineraryError 時不存。後端存檔前會自動存快照。
    */
-  async function changeItinerary(fn: (it: Itinerary) => Itinerary, reason: string): Promise<Result<Itinerary>> {
+  async function changeItinerary(
+    fn: (it: Itinerary) => Itinerary,
+    reason: string,
+    opts: { undo?: { text: string; after?: () => Promise<unknown> } } = {},
+  ): Promise<Result<Itinerary>> {
     const s = store.getState();
     if (s.conflict) return fail(new Error('別人改過了，請先重新載入'));
     if (s.saving) return fail(new Error('還在儲存上一個修改，請稍等'));
@@ -146,7 +152,15 @@ export function createShared(getBackend: () => Backend, data: StoreApi<DataState
     try {
       const doc = await getBackend().putItinerary(s.version, next, reason);
       set({ version: doc.version, updatedBy: doc.updatedBy, updatedAt: doc.updatedAt, saving: false });
-      toast('ok', `已儲存：${reason}`);
+      const undo = opts.undo;
+      if (undo) {
+        toast('ok', undo.text, {
+          label: '復原',
+          run: () => {
+            void changeItinerary(() => before, `復原：${reason}`).then((r) => (r.ok ? undo.after?.() : undefined));
+          },
+        });
+      } else toast('ok', `已儲存：${reason}`);
       void loadSnapshots();
       return { ok: true, value: next } as Result<Itinerary>;
     } catch (e) {
