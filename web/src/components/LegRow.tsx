@@ -1,10 +1,10 @@
-// 兩張卡片中間的交通細列（設計 §8）：一般模式點開看這段的詳細（方式、分鐘、緩衝、計程車台數、每一程的轉乘、
-// Google Maps 連結），規劃模式下多一塊設定（方式、分鐘、緩衝、備註）。
+// 兩張卡片中間的交通細列（設計 §8）：一般模式點開看這段的詳細（方式、分鐘、計程車台數、每一程的轉乘、
+// Google Maps 連結），規劃模式下多一塊設定（方式、分鐘、備註）。
 // 點開時地圖只畫這一段（commands.drawRoute，搭車的照班次的站畫），每一程上下車的站亮起來；收起來就清掉。
 // 一次只開一段（uiStore.legOpen）；這列不見了（換天、回整趟、換分頁）時也收起來，地圖的行程線才會恢復。
 
 import { useEffect, useRef, useState } from 'react';
-import { DEFAULT_CONFIG, getLegTravel, setLegTravel, type Itinerary, type LegTarget, type TimelineEntry, type TravelSpec } from '@travel-helper/engine';
+import { getLegTravel, setLegTravel, type Itinerary, type LegTarget, type TimelineEntry, type TravelSpec } from '@travel-helper/engine';
 import type { TravelMode } from '@travel-helper/engine/types';
 import { commands, itineraryPathOf } from '../appCommands.ts';
 import { dataStore } from '../dataStore.ts';
@@ -15,10 +15,9 @@ import { MODE_ICONS, rideStations } from '../lib/routing.ts';
 import { haversineMeters } from '../lib/geo/distance.ts';
 import { uiStore } from '../uiStore.ts';
 
-const MODE_LABELS: Record<TravelMode, string> = { walk: '步行', taxi: '計程車', train: '電車', bus: '巴士', ferry: '船', charter: '包車', car: '自駕', other: '其他' };
+const MODE_LABELS: Record<TravelMode, string> = { walk: '步行', taxi: '計程車', train: '電車', bus: '巴士', ferry: '船', charter: '包車', car: '自駕', other: '其他', transit: '大眾運輸' };
 /** 按鈕的順序（自動排在最前面） */
 const MODE_ORDER: TravelMode[] = ['walk', 'taxi', 'train', 'bus', 'ferry', 'charter', 'car', 'other'];
-const BUFFER_STEP = 5;
 
 /** 讀這段已經設定的值；找不到項目（剛被刪掉）時當作沒設定 */
 function readSpec(it: Itinerary | null, target: LegTarget | null): TravelSpec | null {
@@ -30,8 +29,8 @@ function readSpec(it: Itinerary | null, target: LegTarget | null): TravelSpec | 
   }
 }
 
-/** 規劃模式的設定：改一個欄位，其他欄位照原本的；preset 是引擎的預設緩衝（全員 10、分組 5） */
-function LegEditor({ target, spec, bufferNow, preset }: { target: LegTarget; spec: TravelSpec | null; bufferNow: number; preset: number }) {
+/** 規劃模式的設定：改一個欄位，其他欄位照原本的 */
+function LegEditor({ target, spec }: { target: LegTarget; spec: TravelSpec | null }) {
   const saving = useShared((s) => s.saving);
   const patch = (p: Partial<TravelSpec>) => void shared.changeItinerary((it) => setLegTravel(it, target, { ...(getLegTravel(it, target) ?? {}), ...p }), '調整交通');
   const [minutes, setMinutes] = useState(spec?.minutes != null ? String(spec.minutes) : '');
@@ -44,12 +43,6 @@ function LegEditor({ target, spec, bufferNow, preset }: { target: LegTarget; spe
   const commitNote = () => {
     const v = note.trim() === '' ? null : note.trim();
     if (v !== (spec?.note ?? null)) patch({ note: v });
-  };
-  const adjusted = spec?.bufferMinutes != null;
-  // 調回預設的值就存 null（「預設」），之後引擎的預設改了也跟著變
-  const setBuffer = (v: number) => {
-    const next = Math.max(0, v);
-    patch({ bufferMinutes: next === preset ? null : next });
   };
   return (
     <div className="leg-edit">
@@ -85,22 +78,6 @@ function LegEditor({ target, spec, bufferNow, preset }: { target: LegTarget; spe
         <span className="muted small">分{spec?.minutes == null ? '（自動）' : ''}</span>
       </div>
       <div className="leg-edit-row">
-        <span className="leg-edit-label">緩衝</span>
-        <button type="button" className="button small" disabled={saving || bufferNow <= 0} onClick={() => setBuffer(bufferNow - BUFFER_STEP)} aria-label="緩衝減 5 分" data-testid="leg-buffer-minus">
-          −5
-        </button>
-        <span>{bufferNow} 分</span>
-        <button type="button" className="button small" disabled={saving} onClick={() => setBuffer(bufferNow + BUFFER_STEP)} aria-label="緩衝加 5 分" data-testid="leg-buffer-plus">
-          ＋5
-        </button>
-        <span className="muted small">{adjusted ? '已調整' : '預設'}</span>
-        {adjusted && (
-          <button type="button" className="button small" disabled={saving} onClick={() => patch({ bufferMinutes: null })}>
-            恢復預設
-          </button>
-        )}
-      </div>
-      <div className="leg-edit-row">
         <span className="leg-edit-label">備註</span>
         <input
           type="text"
@@ -119,8 +96,8 @@ function LegEditor({ target, spec, bufferNow, preset }: { target: LegTarget; spe
   );
 }
 
-/** 時間軸上的一段交通：一行摘要，點開看詳細；date 是這天的日期，inGroup：分組裡的一段（預設緩衝不同） */
-export function LegRow({ entry, date, inGroup = false }: { entry: TimelineEntry; date: string; inGroup?: boolean }) {
+/** 時間軸上的一段交通：一行摘要，點開看詳細；date 是這天的日期。inGroup（分組裡的一段）原本用來決定預設緩衝，緩衝拿掉後沒用到 */
+export function LegRow({ entry, date }: { entry: TimelineEntry; date: string; inGroup?: boolean }) {
   const leg = entry.travel;
   const byId = useData((s) => s.byId);
   const itinerary = useData((s) => s.itinerary);
@@ -199,7 +176,7 @@ export function LegRow({ entry, date, inGroup = false }: { entry: TimelineEntry;
         {open && (
           <div className="leg-detail" data-testid="leg-detail">
             <div>
-              {MODE_ICONS[mode]} {leg.mode === 'unknown' ? '交通未定' : MODE_LABELS[mode]}・交通 {leg.minutes} 分・緩衝 {leg.bufferMinutes} 分
+              {MODE_ICONS[mode]} {leg.mode === 'unknown' ? '交通未定' : MODE_LABELS[mode]}・交通 {leg.minutes} 分
               {distance && `・距離 ${distance}`}
               {leg.taxi && `・${leg.taxi.jumboCars ? `大型 ${leg.taxi.jumboCars} 台或 ` : ''}${leg.taxi.cars} 台`}
             </div>
@@ -217,7 +194,7 @@ export function LegRow({ entry, date, inGroup = false }: { entry: TimelineEntry;
                 在 Google Maps 開路線
               </a>
             )}
-            {editing && target && <LegEditor key={JSON.stringify(spec)} target={target} spec={spec} bufferNow={spec?.bufferMinutes ?? leg.bufferMinutes} preset={inGroup ? DEFAULT_CONFIG.buffer.group : DEFAULT_CONFIG.buffer.whole} />}
+            {editing && target && <LegEditor key={JSON.stringify(spec)} target={target} spec={spec} />}
           </div>
         )}
       </div>

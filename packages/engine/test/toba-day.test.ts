@@ -6,8 +6,7 @@ import { realData } from './fixtures.ts';
 import { TOBA_DATE, tobaDay } from './toba-day.ts';
 
 const it = tobaDay();
-// T14 的完成條件寫在加緩衝之前（指定 12:00 的午餐要「提早到就等」），這裡關掉緩衝；緩衝在 timeline.test.ts 測
-const day = planItinerary(it, realData(), { buffer: { whole: 0, group: 0 } }).days.find((d) => d.date === TOBA_DATE);
+const day = planItinerary(it, realData()).days.find((d) => d.date === TOBA_DATE);
 
 test('鳥羽一天：行程格式合法', () => {
   assert.deepEqual(validateItinerary(it), []);

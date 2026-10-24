@@ -7,9 +7,6 @@ import { MODE_ICONS } from './routing.ts';
 import { displayMinutes, estimateWalk } from './geo/walk.ts';
 import type { Place } from '../data/types.ts';
 
-/** 引擎自動加的緩衝（集合、上下車），讓人知道時間怎麼來的 */
-const bufferText = (leg: Leg) => (leg.bufferMinutes ? `＋緩衝 ${leg.bufferMinutes} 分` : '');
-
 /** 一段交通的短文字，例如「🚶 8 分」「🚃 特急 10:02→10:15」「🚕 39 分・4 台」 */
 export function legText(leg: Leg): string {
   if (leg.mode === 'none') return '';
@@ -18,10 +15,10 @@ export function legText(leg: Leg): string {
   if (leg.rides.length) {
     const r = leg.rides[0];
     const more = leg.rides.length > 1 ? `＋轉乘 ${leg.rides.length - 1} 次` : '';
-    return `${icon} ${r.line} ${r.depart}→${leg.rides.at(-1)!.arrive}${more}${bufferText(leg)}`;
+    return `${icon} ${r.line} ${r.depart}→${leg.rides.at(-1)!.arrive}${more}`;
   }
   const cars = leg.taxi ? `・${leg.taxi.jumboCars ? `大型 ${leg.taxi.jumboCars} 台或 ` : ''}${leg.taxi.cars} 台` : '';
-  return `${icon} ${leg.minutes} 分${bufferText(leg)}${cars}`;
+  return `${icon} ${leg.minutes} 分${cars}`;
 }
 
 /** 交通的補充：等車、走到車站、怎麼算的 */
@@ -199,7 +196,7 @@ export function dayBar(day: DayPlan): BarSegment[] {
   const walk = (entries: TimelineEntry[], lane: number) => {
     for (const e of entries) {
       if (e.kind === 'start') continue;
-      if (e.travel && e.travel.minutes + e.travel.bufferMinutes > 0) out.push({ kind: 'travel', from: e.travel.depart, to: e.arrive, itemId: e.itemId, lane });
+      if (e.travel && e.travel.minutes > 0) out.push({ kind: 'travel', from: e.travel.depart, to: e.arrive, itemId: e.itemId, lane });
       if (e.groups) {
         e.groups.forEach((g, i) => walk(g.entries.filter((x) => x.kind !== 'meet'), i + 1));
         continue;
@@ -212,10 +209,10 @@ export function dayBar(day: DayPlan): BarSegment[] {
   return out;
 }
 
-/** 標題的一行：幾點出發、幾點回住宿、交通多久（含緩衝、各組）、幾個要注意的警告 */
+/** 標題的一行：幾點出發、幾點回住宿、交通多久（含各組）、幾個要注意的警告 */
 export function daySummary(day: DayPlan): { start: string | null; back: string | null; travelMinutes: number; warnings: number } {
   const sum = (entries: TimelineEntry[]): number =>
-    entries.reduce((n, e) => n + (e.travel ? e.travel.minutes + e.travel.bufferMinutes : 0) + (e.groups ?? []).reduce((m, g) => m + sum(g.entries), 0), 0);
+    entries.reduce((n, e) => n + (e.travel ? e.travel.minutes : 0) + (e.groups ?? []).reduce((m, g) => m + sum(g.entries), 0), 0);
   return {
     start: day.entries.find((e) => e.kind === 'start')?.start ?? null,
     back: day.entries.find((e) => e.kind === 'lodging')?.arrive ?? null,

@@ -1,4 +1,4 @@
-// 「＋ 排進」（想去清單）：把一個項目插在這天最順路的位置——試每個縫隙，整天的交通（含緩衝）增加最少的那個。
+// 「＋ 排進」（想去清單）：把一個項目插在這天最順路的位置——試每個縫隙，整天的交通分鐘增加最少的那個。
 // 只看頂層的縫隙：不插進分組裡，也不插在抵達航班之前、出發航班之後。
 
 import { resolveConfig, type ConfigOverride, type EngineConfig } from './config.ts';
@@ -7,10 +7,10 @@ import { addItem, ItineraryError, type NewItem } from './ops.ts';
 import { planDay } from './timeline.ts';
 import type { DateString, DayPlan, Itinerary, TimelineEntry } from './types.ts';
 
-/** 整天花在交通上的分鐘（含緩衝、含各組） */
+/** 整天花在交通上的分鐘（含各組） */
 function travelTotal(plan: DayPlan): number {
   const sum = (entries: TimelineEntry[]): number =>
-    entries.reduce((n, e) => n + (e.travel ? e.travel.minutes + e.travel.bufferMinutes : 0) + (e.groups ? e.groups.reduce((m, g) => m + sum(g.entries), 0) : 0), 0);
+    entries.reduce((n, e) => n + (e.travel ? e.travel.minutes : 0) + (e.groups ? e.groups.reduce((m, g) => m + sum(g.entries), 0) : 0), 0);
   return sum(plan.entries);
 }
 

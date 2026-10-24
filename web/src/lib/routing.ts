@@ -44,6 +44,7 @@ export const MODE_ICONS: Record<TravelMode, string> = {
   charter: '🚐',
   car: '🚗',
   other: '➡️',
+  transit: '🚃',
 };
 
 /** 路線中間的標籤，例如「🚶 8 分」（分鐘無條件進位，和引擎一樣）；沒有分鐘時只有圖示 */

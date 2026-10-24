@@ -56,20 +56,34 @@ export interface PartyProfile {
 export type MealKind = 'breakfast' | 'lunch' | 'dinner' | 'snack';
 export type LodgingMeals = 'dinner+breakfast' | 'breakfast' | 'none';
 
-export const TRAVEL_MODES = ['walk', 'train', 'bus', 'ferry', 'taxi', 'charter', 'car', 'other'] as const;
+/** transit：一定搭大眾運輸（電車、巴士、船），班次由引擎挑。train～other 是舊資料的方式，照樣合法、照樣算 */
+export const TRAVEL_MODES = ['walk', 'train', 'bus', 'ferry', 'taxi', 'charter', 'car', 'other', 'transit'] as const;
 export type TravelMode = (typeof TRAVEL_MODES)[number];
 
 /** 用餐的吃法：全員一起、分開吃 */
 export type DiningStyle = 'together' | 'separate';
 
 /**
+ * 選定的班次（電車、巴士、船）。id 是第一程的 tripId，depart 是第一程發車，arrive 是最後一程到達；
+ * from／to 是選的時候這段起訖的地點 ID：和現在的起訖點不同（換了順序）時引擎當作沒選
+ */
+export interface TripRef {
+  id: string;
+  depart: TimeString;
+  arrive: TimeString;
+  from: string | null;
+  to: string | null;
+}
+
+/**
  * 使用者指定的交通（從上一站到這一項）。
- * mode 沒寫：方式自動；minutes 是 null：時間照規則算；bufferMinutes 是 null：緩衝用預設
+ * mode 沒寫：方式自動；minutes 是 null：時間照規則算；trip：選定的班次（mode 沒寫或是大眾運輸時用）。
+ * 舊資料的 bufferMinutes 忽略
  */
 export interface TravelSpec {
   mode?: TravelMode | null;
   minutes?: number | null;
-  bufferMinutes?: number | null;
+  trip?: TripRef | null;
   note?: string | null;
 }
 
@@ -217,11 +231,16 @@ export interface Leg {
   minutes: number;
   /** 這段裡走路的分鐘（含到車站、停留所），算一天累計步行用 */
   walkMinutes: number;
-  /** 等車的分鐘 */
+  /** 等車的分鐘（含在 minutes 裡） */
   waitMinutes: number;
-  /** 緩衝（集合、上下車），已經算進 arrive；minutes 不含 */
-  bufferMinutes: number;
   rides: TransitRide[];
+  /** 這段實際用的班次；不是電車、巴士、船時是 null */
+  trip?: TripRef | null;
+  /** 同一對上下車點的前一班、後一班（規劃模式的 ‹ ›）；沒有是 null */
+  prevTrip?: TripRef | null;
+  nextTrip?: TripRef | null;
+  /** 這兩點之間時刻表裡有沒有任何班次（不管等多久） */
+  transitAvailable?: boolean;
   taxi?: TaxiInfo | null;
   /** 使用者用 travel 指定的 */
   specified: boolean;

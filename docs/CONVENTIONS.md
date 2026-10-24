@@ -342,9 +342,15 @@ travel_helper/
   "start": null,         // 指定開始時間（訂位、表演、船班）；null＝到了就開始，沒開門會等到開門。到得比指定時間晚 → 衝突
   "meal": null,          // breakfast | lunch | dinner | snack；使用者標的那一餐，null（或省略）＝不標、畫面不顯示用餐 tag（引擎內部另外猜一餐，只用在休息、分組用餐的判斷）
   "dining": null,        // together | separate；全員一起吃或分開吃；省略或 null＝不標
-  "travel": null,        // 指定從上一站怎麼來：{ "mode": "charter", "minutes": 20, "bufferMinutes": 5, "note": "包車" }；null＝引擎依 §5.4 選
-                         // 每個欄位都可以省略：mode 沒寫＝方式自動（只改時間或緩衝）；minutes 沒填時引擎照方式估算；bufferMinutes 沒填＝用預設緩衝（全員 10 分、分組 5 分），0＝不留緩衝
-                         // mode：walk | train | bus | ferry | taxi | charter | car | other
+  "travel": null,        // 指定從上一站怎麼來：{ "mode": "transit", "minutes": null, "trip": { … }, "note": "在車站前集合" }；null＝引擎依 §5.4 選
+                         // 每個欄位都可以省略：mode 沒寫＝方式自動（只改時間或只選班次）；minutes 沒填時引擎照方式估算；交通不加緩衝
+                         // mode：walk | taxi | transit（一定搭電車、巴士或船，班次由引擎挑，不套等車、班距的規則；找不到班次＝交通未定）
+                         //   舊資料的 train | bus | ferry | charter | car | other 照樣合法、照樣算（畫面的選單不再提供）
+                         // trip：選定的班次 { "id": "1-375", "depart": "09:13", "arrive": "09:42", "from": "toba", "to": "kashikojima" }
+                         //   id＝第一程的 tripId（近鐵的 trainNo、巴士的 trip id），depart＝第一程發車，arrive＝最後一程到達，from／to＝選的時候這段起訖的地點 ID
+                         //   mode 沒寫或是 transit（舊的 train／bus／ferry）時用；起訖點和 from／to 不同（換了順序）＝當作沒選，照規則挑
+                         //   等車寫在交通的 waitMinutes；趕不上那班照樣用，警告 missed-trip（「趕不上 10:32 這班」）
+                         // 舊資料的 bufferMinutes 忽略（緩衝 2026-10-25 拿掉）
   "proposedBy": ["<member id>"],   // 誰提的（建議的作者）
   "addedBy": "<member id>",
   "note": null
@@ -371,12 +377,12 @@ travel_helper/
 
 - **地點 ID** 用字串，不分預設資料或使用者加的點：引擎透過傳進來的 `getPlace` 查。使用者加的點只用座標估算交通，營業時間、團體條件標「未查」；已下架的點照常算，但發警告；查不到的點是錯誤。
 - **引擎的輸出**（`planItinerary(itinerary, data, config)`）：每天一個 `DayPlan`：
-  - `entries`：start（出發）、visit、flight、free、meet（分組，`groups` 是各組的 entries）、lodging（回住宿），各有 `arrive`／`start`／`end`、`waitMinutes`、`meal`（引擎猜的）、`mealTag`（使用者標的，畫面用），和到這一項的交通 `travel`（方式、出發／抵達、步行與等車分鐘、班次 `rides`、計程車台數和費用 `taxi`、怎麼算的 `basis`）。
+  - `entries`：start（出發）、visit、flight、free、meet（分組，`groups` 是各組的 entries）、lodging（回住宿），各有 `arrive`／`start`／`end`、`waitMinutes`、`meal`（引擎猜的）、`mealTag`（使用者標的，畫面用），和到這一項的交通 `travel`（方式、出發／抵達、步行與等車分鐘、班次 `rides`、用的班次 `trip` 和前一班／後一班 `prevTrip`／`nextTrip`、時刻表裡有沒有班次 `transitAvailable`、計程車台數和費用 `taxi`、怎麼算的 `basis`）。
   - `gaps`：`lodging`「住宿（未排）」、`idle`「空檔 N 分」（不再產生午餐、晚餐的空檔），附建議插在哪兩個項目之間。
   - `warnings`：`code`、`level`（error／warning／info）、`itemId`、`groupId`、`message`；`stats`：全員步行累計、主要景點數、回住宿時間、累不累、自由時間。
   - 整趟的警告（連續兩天都累、沒有半天自由時間）在 `ItineraryPlan.warnings`。
 - **改了什麼**：`diffItinerary(before, after)` 列出新增、刪除、移到別天、換順序、改欄位、改住宿；`checkProposal()` 套用前後都跑引擎，附文字摘要（「2/5：＋鳥羽水族館 09:38～11:38」）和新出現、消失的警告（T16 的提議、T15 的確認畫面用）。
-- **規則的數字**在 `packages/engine/src/config.ts`（`DEFAULT_CONFIG`），預設照 §5；§5 沒寫的：午餐 11:00～13:30、晚餐 17:30～19:30、一泊二食 17:00 前到、落地到出關 75 分、起飛前 120 分到機場、電車等車 30 分內、計程車 30 km/h、加算費率未查（`null`，只顯示起跳價）。
+- **規則的數字**在 `packages/engine/src/config.ts`（`DEFAULT_CONFIG`），預設照 §5；§5 沒寫的：午餐 11:00～13:30、晚餐 17:30～19:30、一泊二食 17:00 前到、落地到出關 75 分、起飛前 120 分到機場、電車等車 30 分內、計程車用 OSRM 的開車時間（查不到時用距離 ÷ 30 km/h 估算，沒有路線距離時用直線 × 1.3；不加叫車時間）、加算費率未查（`null`，只顯示起跳價）。交通不加緩衝（2026-10-25 拿掉）。
 
 ---
 

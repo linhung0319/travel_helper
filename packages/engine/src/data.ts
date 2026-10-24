@@ -112,6 +112,11 @@ export interface EngineData {
    * 計程車、包車改用直線 × roadDetour 估算。
    */
   driveMeters?: (from: LonLat, to: LonLat) => number | null;
+  /**
+   * 實際開車時間（分鐘），OSRM 開車路徑的 duration；沒有就回傳 null，
+   * 計程車、包車改用距離 ÷ kmPerHour 估算。
+   */
+  driveMinutes?: (from: LonLat, to: LonLat) => number | null;
 }
 
 /** 從一批資料點建 EngineData.getPlace：users 是使用者加的點，retired 是已下架的 ID */

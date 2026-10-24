@@ -268,7 +268,7 @@ test('matchesQuery：中文、日文、假名、英文都找得到；不分大�
 
 // --- 時間軸改版：晚餐順序、比例橫條、摘要、停留時間 ---
 
-const leg = (depart: string, minutes: number, buffer = 0): NonNullable<TimelineEntry['travel']> => ({
+const leg = (depart: string, minutes: number): NonNullable<TimelineEntry['travel']> => ({
   mode: 'taxi',
   from: null,
   to: null,
@@ -277,7 +277,6 @@ const leg = (depart: string, minutes: number, buffer = 0): NonNullable<TimelineE
   minutes,
   walkMinutes: 0,
   waitMinutes: 0,
-  bufferMinutes: buffer,
   rides: [],
   specified: false,
   basis: '',
@@ -307,17 +306,17 @@ test('dayBar：交通、停留、等待各一段；分組的時段每組一條 l
   ]);
 });
 
-test('daySummary：出發、回住宿、交通（含緩衝、含各組）、警告數（不算 info）', () => {
+test('daySummary：出發、回住宿、交通（含各組）、警告數（不算 info）', () => {
   const day = {
     entries: [
       entry('start', 'h', { start: '09:30' }),
-      entry('visit', 'a', { travel: leg('09:30', 10, 10) }),
-      entry('meet', 'm', { groups: [{ id: 'g', name: 'g', entries: [entry('visit', 'b', { travel: leg('11:00', 5, 5) })] }] }),
-      entry('lodging', 'h', { travel: leg('15:00', 20, 10), arrive: '15:30' }),
+      entry('visit', 'a', { travel: leg('09:30', 10) }),
+      entry('meet', 'm', { groups: [{ id: 'g', name: 'g', entries: [entry('visit', 'b', { travel: leg('11:00', 5) })] }] }),
+      entry('lodging', 'h', { travel: leg('15:00', 20), arrive: '15:30' }),
     ],
     warnings: [{ level: 'warning' }, { level: 'info' }, { level: 'error' }],
   } as unknown as DayPlan;
-  assert.deepEqual(daySummary(day), { start: '09:30', back: '15:30', travelMinutes: 60, warnings: 2 });
+  assert.deepEqual(daySummary(day), { start: '09:30', back: '15:30', travelMinutes: 35, warnings: 2 });
 });
 
 test('formatStay', () => {

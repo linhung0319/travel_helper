@@ -1,7 +1,7 @@
 // 兩點之間的交通方式（CONVENTIONS §5.4）
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { planLeg, resolveConfig, walkFactor, type Endpoint, type EngineData, type LegContext, type PlaceRecord, type RouteTimetable } from '../src/index.ts';
+import { DEFAULT_CONFIG, planLeg, resolveConfig, taxiEstimate, toMinutes, walkFactor, type Endpoint, type EngineData, type LegContext, type PlaceRecord, type RouteTimetable, type TripRef } from '../src/index.ts';
 import { at, fake, restaurant, spot } from './synthetic.ts';
 import { realData } from './fixtures.ts';
 
@@ -209,4 +209,146 @@ test('只填分鐘（方式自動）：不帶自動那段的班次、步行分�
   const u = planLeg(ep(a), nowhere, ctx(fake([a])), { minutes: 15 });
   assert.ok(!u.warnings.some((x) => x.code === 'travel-unknown'));
   assert.equal(u.leg.minutes, 15);
+});
+
+// --- 第四輪：計程車用路線時間、大眾運輸、選定班次 --------------------------------
+
+test('計程車有路線時間就用它，不加叫車時間', () => {
+  const r = taxiEstimate(at(0), at(3000), WHOLE, DEFAULT_CONFIG, 4200, 9.6);
+  assert.equal(r.minutes, 9.6);
+  assert.equal(r.meters, 4200);
+});
+
+test('計程車沒有路線時間時照距離估算', () => {
+  const r = taxiEstimate(at(0), at(3000), WHOLE, DEFAULT_CONFIG, 6000, null);
+  assert.equal(r.minutes, 12); // 6 km ÷ 30 km/h，overheadMinutes 0
+});
+
+test('planLeg 的計程車：有 driveMinutes 用它，basis 寫 osrm 時間', () => {
+  const a = spot('a', at(0));
+  const b = spot('b', at(3000));
+  const r = planLeg(ep(a), ep(b), ctx(fake([a, b], { driveMeters: () => 4200, driveMinutes: () => 9.6 })));
+  assert.equal(r.leg.mode, 'taxi');
+  assert.equal(r.leg.minutes, 10);
+  assert.equal(r.leg.basis, '計程車（osrm 時間）');
+  const est = planLeg(ep(a), ep(b), ctx(fake([a, b])));
+  assert.equal(est.leg.basis, '計程車估算（直線，30 km/h）');
+});
+
+test('transit：一定搭大眾運輸，不套等車上限', () => {
+  const a = spot('a', at(0));
+  const b = spot('b', at(4000));
+  // 出發 10:00、走到停留所 2 分，下一班 10:52：等 50 分（超過 busMaxWait 20）
+  const data = fake([a, b], { routes: [busRoute(['10:52', '11:22'])] });
+  assert.equal(planLeg(ep(a), ep(b), ctx(data)).leg.mode, 'taxi');
+  const r = planLeg(ep(a), ep(b), ctx(data), { mode: 'transit' });
+  assert.equal(r.leg.mode, 'bus');
+  assert.equal(r.leg.waitMinutes, 50);
+  assert.equal(r.leg.trip?.id, 't0');
+  assert.equal(r.leg.trip?.depart, '10:52');
+  assert.equal(r.leg.trip?.arrive, '11:02');
+  assert.equal(r.leg.trip?.from, 'a');
+  assert.equal(r.leg.trip?.to, 'b');
+  assert.equal(r.leg.specified, true);
+});
+
+test('transit：時刻表裡沒有班次時是 unknown', () => {
+  const a = spot('a', at(0));
+  const b = spot('b', at(4000));
+  const r = planLeg(ep(a), ep(b), ctx(fake([a, b])), { mode: 'transit' });
+  assert.equal(r.leg.mode, 'unknown');
+  assert.ok(r.warnings.some((w) => w.code === 'travel-unknown'));
+});
+
+const tripOf = (id: string, depart: string, arrive: string, from: string | null = 'a', to: string | null = 'b'): TripRef => ({ id, depart, arrive, from, to });
+
+test('選定班次：用那班，等車寫在 waitMinutes', () => {
+  const a = spot('a', at(0));
+  const b = spot('b', at(4000));
+  const data = fake([a, b], { routes: [busRoute(['10:05', '10:35', '11:05'])] });
+  const r = planLeg(ep(a), ep(b), ctx(data), { trip: tripOf('t1', '10:35', '10:45') });
+  assert.equal(r.leg.mode, 'bus');
+  assert.equal(r.leg.trip?.id, 't1');
+  assert.equal(r.leg.waitMinutes, 10 * 60 + 35 - (600 + 2)); // 發車 − (出發 + 走到停留所)
+  assert.equal(r.leg.arrive, '10:47');
+  assert.ok(!r.warnings.some((w) => w.code === 'missed-trip'));
+  // 寫了 mode transit 也一樣
+  const t = planLeg(ep(a), ep(b), ctx(data), { mode: 'transit', trip: tripOf('t1', '10:35', '10:45') });
+  assert.equal(t.leg.trip?.id, 't1');
+});
+
+test('趕不上選定的班次：照樣用、警告', () => {
+  const a = spot('a', at(0));
+  const b = spot('b', at(4000));
+  const data = fake([a, b], { routes: [busRoute(['10:02', '10:32', '11:02'])] });
+  const r = planLeg(ep(a), ep(b), ctx(data, { depart: 10 * 60 + 40 }), { trip: tripOf('t1', '10:32', '10:42') });
+  assert.equal(r.leg.trip?.id, 't1');
+  assert.equal(r.leg.waitMinutes, 0);
+  const w = r.warnings.find((x) => x.code === 'missed-trip');
+  assert.ok(w);
+  assert.equal(w.level, 'warning');
+  assert.match(w.message, /趕不上 10:32 這班/);
+});
+
+test('起訖點變了的 trip 不用', () => {
+  const a = spot('a', at(0));
+  const b = spot('b', at(4000));
+  const data = fake([a, b], { routes: [busRoute(['10:05', '10:35', '11:05'])] });
+  const plain = planLeg(ep(a), ep(b), ctx(data));
+  const stale = planLeg(ep(a), ep(b), ctx(data), { trip: tripOf('t1', '10:35', '10:45', 'x', 'b') });
+  assert.deepEqual({ ...stale.leg, specified: false, basis: '' }, { ...plain.leg, specified: false, basis: '' });
+  assert.deepEqual(stale.warnings, plain.warnings);
+  assert.ok(!stale.warnings.some((w) => w.code === 'missed-trip'));
+  // 時刻表裡找不到那班（例如時刻表改了）也當作沒有 trip
+  const gone = planLeg(ep(a), ep(b), ctx(data), { trip: tripOf('nope', '10:35', '10:45') });
+  assert.equal(gone.leg.trip?.id, plain.leg.trip?.id);
+});
+
+test('前一班、後一班', () => {
+  const a = spot('a', at(0));
+  const b = spot('b', at(4000));
+  const data = fake([a, b], { routes: [busRoute(['10:05', '10:35', '11:05'])] });
+  const first = planLeg(ep(a), ep(b), ctx(data));
+  assert.equal(first.leg.trip?.id, 't0');
+  assert.equal(first.leg.prevTrip ?? null, null);
+  assert.equal(first.leg.nextTrip?.id, 't1');
+  const mid = planLeg(ep(a), ep(b), ctx(data, { depart: 10 * 60 + 10 }), { mode: 'transit' });
+  const { prevTrip, trip, nextTrip } = mid.leg;
+  assert.ok(prevTrip && trip && nextTrip);
+  assert.deepEqual([prevTrip.id, trip.id, nextTrip.id], ['t0', 't1', 't2']);
+  assert.ok(toMinutes(prevTrip.depart) < toMinutes(trip.depart) && toMinutes(trip.depart) < toMinutes(nextTrip.depart));
+  for (const t of [prevTrip, trip, nextTrip]) assert.deepEqual([t.from, t.to], ['a', 'b']);
+  // 前一班找得到最接近的那班（不是區間裡最早的）
+  const dense = fake([a, b], { routes: [busRoute(['10:20', '10:25', '10:30', '10:35'])] });
+  const d = planLeg(ep(a), ep(b), ctx(dense), { trip: tripOf('t3', '10:35', '10:45') });
+  assert.equal(d.leg.prevTrip?.id, 't2');
+  assert.equal(d.leg.nextTrip ?? null, null);
+});
+
+test('transitAvailable：有班次就是 true，不管等多久；步行就到的段落也要算', () => {
+  const a = spot('a', at(0));
+  const b = spot('b', at(400)); // 走 10 分
+  const near = planLeg(ep(a), ep(b), ctx(fake([a, b], { routes: [busRoute(['16:00'])] })));
+  assert.equal(near.leg.mode, 'walk');
+  assert.equal(near.leg.transitAvailable, true);
+  assert.equal(near.leg.trip ?? null, null);
+  const c = spot('c', at(4000));
+  const none = planLeg(ep(a), ep(c), ctx(fake([a, c])));
+  assert.equal(none.leg.mode, 'taxi');
+  assert.equal(none.leg.transitAvailable, false);
+  // 指定了計程車也照樣標（規劃模式要知道大眾運輸能不能選）
+  const taxi = planLeg(ep(a), ep(b), ctx(fake([a, b], { routes: [busRoute(['16:00'])] })), { mode: 'taxi' });
+  assert.equal(taxi.leg.transitAvailable, true);
+});
+
+test('transitAvailable（真的資料）：近鐵、離島的船；末班車之後也算有班次', () => {
+  assert.equal(planLeg(P('toba'), P('kashikojima'), ctx(real, { depart: 23 * 60 + 50 })).leg.transitAvailable, true);
+  assert.equal(planLeg(P('toba-sadahama-marine-terminal'), P('toba-port-kamishima'), ctx(real, { date: '2027-02-06', depart: 18 * 60 })).leg.transitAvailable, true);
+  // 太遠、時刻表裡沒有
+  assert.equal(planLeg(P('kansai-airport'), P('toba'), ctx(real, { depart: 14 * 60 })).leg.transitAvailable, false);
+  // 近鐵的前一班、後一班是同一對車站
+  const r = planLeg(P('toba'), P('kashikojima'), ctx(real, { depart: 9 * 60 }));
+  assert.equal(r.leg.trip?.id, '1-375');
+  assert.ok(r.leg.prevTrip && r.leg.nextTrip);
+  assert.ok(r.leg.prevTrip.depart < '09:13' && r.leg.nextTrip.depart > '09:13');
 });

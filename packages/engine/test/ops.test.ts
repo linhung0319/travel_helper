@@ -25,7 +25,11 @@ import {
   setStay,
   setTravel,
   validateItinerary,
+  planItinerary,
+  toMinutes,
   type Itinerary,
+  type TravelSpec,
+  type TripRef,
   type VisitItem,
 } from '../src/index.ts';
 import { at, fake, lodging, spot } from './synthetic.ts';
@@ -224,7 +228,7 @@ test('提議的摘要與檢查：套用前後都跑引擎，列出新出現、�
   before = addItem(before, D, visit('a')).itinerary;
   const after = addItem(before, D, visit('s')).itinerary;
   const r = checkProposal(before, after, data, {}, (id) => ({ s: '展望台', a: '水族館' })[id] ?? id);
-  assert.deepEqual(r.summary, ['2/5：＋展望台 11:03～12:03']); // a 10:50 結束（含緩衝 10 分），走 100 m 3 分＋緩衝 10 分
+  assert.deepEqual(r.summary, ['2/5：＋展望台 10:43～11:43']); // a 10:40 結束，走 100 m 3 分（不加緩衝）
   assert.ok(r.newWarnings.some((w) => w.code === 'stairs'));
   assert.deepEqual(r.resolvedWarnings, []);
   const back = checkProposal(after, before, data);
@@ -259,12 +263,13 @@ test('moveItemTo：移進分組、移出分組；分組不能放進分組；不�
   assert.deepEqual(ids(moveItemTo(it, b, last, 0), last)?.[0], b);
 });
 
-test('setLegTravel／getLegTravel：項目的 travel 和某天回住宿的 returnTravel', () => {
+test('setLegTravel：只有 trip 也算有設定；全空存 null', () => {
   const { it, ids: [a] } = threeItems();
-  const one = setLegTravel(it, { itemId: a }, { bufferMinutes: 0 });
-  assert.deepEqual(getLegTravel(one, { itemId: a }), { bufferMinutes: 0 });
+  const trip = { id: 't1', depart: '10:35', arrive: '10:45', from: 'x', to: 'y' };
+  const one = setLegTravel(it, { itemId: a }, { trip });
+  assert.deepEqual(getLegTravel(one, { itemId: a }), { trip });
   assert.equal(getLegTravel(it, { itemId: a }), null);
-  const cleared = setLegTravel(one, { itemId: a }, { bufferMinutes: null });
+  const cleared = setLegTravel(one, { itemId: a }, { mode: null, minutes: null, trip: null, note: null });
   assert.equal((findItem(cleared, a)?.item as VisitItem).travel, null);
   const ret = setLegTravel(it, { lodging: D }, { mode: 'walk' });
   assert.deepEqual(ret.days.find((d) => d.date === D)?.returnTravel, { mode: 'walk' });
@@ -298,10 +303,43 @@ test('setMeal、setDining 改到對的項目；validateItinerary 接受新欄位
   assert.equal((findItem(m, b)?.item as VisitItem).dining, 'separate');
   assert.equal((findItem(setMeal(m, a, null), a)?.item as VisitItem).meal, null);
   assert.equal((findItem(setDining(m, b, null), b)?.item as VisitItem).dining, null);
-  assert.deepEqual(validateItinerary(setLegTravel(m, { lodging: D }, { bufferMinutes: 5 })), []);
+  assert.deepEqual(validateItinerary(setLegTravel(m, { lodging: D }, { mode: 'walk' })), []);
   const bad = JSON.parse(JSON.stringify(m)) as Itinerary;
   (bad.days.find((d) => d.date === D)!.items[0] as VisitItem).dining = 'x' as never;
   assert.ok(validateItinerary(bad).some((e) => e.includes('dining')));
-  const bad2 = setLegTravel(it, { itemId: a }, { bufferMinutes: -1 });
-  assert.ok(validateItinerary(bad2).some((e) => e.includes('bufferMinutes')));
+  const bad2 = setLegTravel(it, { itemId: a }, { minutes: -1 });
+  assert.ok(validateItinerary(bad2).some((e) => e.includes('minutes')));
+});
+
+/** 第一天之後的某天：a → b 兩項，b 的交通用 spec */
+function withTravel(spec: TravelSpec): Itinerary {
+  let it = createItinerary();
+  it = setLodging(it, '2027-02-04', 'h');
+  it = setLodging(it, D, 'h');
+  it = addItem(it, D, visit('a')).itinerary;
+  const b = addItem(it, D, visit('b'));
+  return setLegTravel(b.itinerary, { itemId: b.itemId }, spec);
+}
+
+test('舊的 bufferMinutes 忽略、舊的方式照樣算', () => {
+  const it = withTravel({ mode: 'charter', minutes: 20, bufferMinutes: 10 } as TravelSpec);
+  assert.deepEqual(validateItinerary(it), []);
+  const data = fake([lodging('h', at(0)), spot('a', at(400)), spot('b', at(3000))]);
+  const day = planItinerary(it, data).days.find((d) => d.date === D)!;
+  const leg = day.entries[2].travel!;
+  assert.equal(leg.mode, 'charter');
+  assert.equal(leg.minutes, 20);
+  assert.equal(toMinutes(day.entries[2].arrive), toMinutes(leg.depart) + 20);
+  // 舊的方式都還合法
+  for (const mode of ['train', 'bus', 'ferry', 'charter', 'car', 'other'] as const) assert.deepEqual(validateItinerary(withTravel({ mode })), []);
+});
+
+test('validateItinerary：mode transit 合法、trip 要有 id 和 HH:MM 的 depart', () => {
+  assert.deepEqual(validateItinerary(withTravel({ mode: 'transit' })), []);
+  assert.deepEqual(validateItinerary(withTravel({ mode: 'transit', trip: { id: 't1', depart: '10:35', arrive: '10:45', from: 'a', to: 'b' } })), []);
+  const errs = validateItinerary(withTravel({ mode: 'transit', trip: { id: '', depart: '9:5' } as TripRef }));
+  assert.equal(errs.length, 2, errs.join('；'));
+  assert.ok(errs.some((e) => e.includes('trip.id')));
+  assert.ok(errs.some((e) => e.includes('trip.depart')));
+  assert.ok(validateItinerary(withTravel({ trip: { id: 't1', depart: '10:35', arrive: 'x', from: 'a', to: 'b' } })).some((e) => e.includes('trip.arrive')));
 });

@@ -81,10 +81,7 @@ function travelTo(target: Endpoint, st: State, ctx: RunContext, spec: VisitItem[
   const { leg, warnings } = planLeg(st.loc, target, { date: ctx.date, depart: st.time, party: ctx.party, whole: ctx.whole, data: ctx.data, cfg: ctx.cfg }, spec);
   for (const w of warnings) warn(ctx, itemId ? { ...w, itemId } : w);
   if (leg.mode === 'ferry') ctx.tiring.value = true;
-  // 有移動才加緩衝（同一個點、找不到交通方式不加）
-  const preset = ctx.whole ? ctx.cfg.buffer.whole : ctx.cfg.buffer.group;
-  const buffer = leg.mode !== 'none' && leg.minutes > 0 ? Math.max(0, spec?.bufferMinutes ?? preset) : 0;
-  return buffer ? { ...leg, bufferMinutes: buffer, arrive: fromMinutes(toMinutes(leg.arrive) + buffer) } : leg;
+  return leg;
 }
 
 // --- 各種項目 ---------------------------------------------------------------
