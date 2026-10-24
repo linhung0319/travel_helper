@@ -183,8 +183,23 @@ export function TopBar() {
  */
 export function MapTopBar() {
   const mode = useApp((s) => s.mode);
+  const ref = useRef<HTMLDivElement>(null);
+  // 規劃列、衝突提示、篩選 chips 會讓浮動列變高：量出它的下緣，讓討論／預約彈窗的標題永遠在它下面（--bar-bottom）
+  useEffect(() => {
+    const el = ref.current;
+    const column = el?.parentElement;
+    if (!el || !column) return;
+    const measure = () => column.style.setProperty('--bar-bottom', `${el.offsetTop + el.offsetHeight}px`);
+    measure();
+    const ro = new ResizeObserver(measure);
+    ro.observe(el);
+    return () => {
+      ro.disconnect();
+      column.style.removeProperty('--bar-bottom');
+    };
+  }, []);
   return (
-    <div className="map-top">
+    <div className="map-top" ref={ref}>
       <div className="map-top-row">
         <div className="float-bar day-float">
           <DayTabs onSelect={showItinerary} />

@@ -3664,10 +3664,6 @@ body.dragging-plan .tl-row.tl-card.drop-merge {
   color: #9a5b00;
 }
 
-.day-tool-menu {
-  position: relative;
-}
-
 .day-float .day-bar-wrap {
   max-width: min(60vw, 720px);
 }
@@ -3675,12 +3671,13 @@ body.dragging-plan .tl-row.tl-card.drop-merge {
 /* 地圖區的彈窗：電腦版浮在地圖上，左右留 15%、上下留 48px 以上（變數方便調）；手機從下方拉起 80vh */
 .map-column {
   --panel-gap-x: 15%;
-  --panel-gap-y: 64px;
+  --panel-gap-y: 48px;
+  --bar-bottom: 0px; /* MapTopBar 量出浮動列的下緣 */
 }
 
 .map-panel {
   position: absolute;
-  inset: var(--panel-gap-y) var(--panel-gap-x);
+  inset: calc(max(var(--panel-gap-y), var(--bar-bottom)) + 8px) var(--panel-gap-x) var(--panel-gap-y) var(--panel-gap-x);
   border: 1px solid var(--line);
   border-radius: 14px;
   box-shadow: 0 8px 28px rgba(0, 0, 0, 0.28);
@@ -3697,6 +3694,7 @@ body.dragging-plan .tl-row.tl-card.drop-merge {
   position: fixed;
   inset: auto 0 0 0;
   height: 80vh;
+  height: 80dvh;
   border-radius: 14px 14px 0 0;
   z-index: 50;
   animation: map-panel-in 0.18s ease-out;
