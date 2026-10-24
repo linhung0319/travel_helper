@@ -176,6 +176,20 @@ test('T15m：自己加的候選可以撤回；這天的留言', async ({ page })
   await expect(box.getByTestId('wish-comment').first()).toContainText('泡湯');
 });
 
+test('第三輪：⋯ 選單打得開；視窗開著時日期列的按鈕還按得到', async ({ page }) => {
+  await ready(page);
+  await page.getByTestId('toolbar-more').click();
+  await expect(page.getByTestId('export-json')).toBeVisible();
+  await page.getByTestId('toolbar-more').click();
+  await expect(page.getByTestId('export-json')).toHaveCount(0);
+  if (!(await isMobile(page))) {
+    await page.getByTestId('toolbar-comments').click();
+    await expect(page.getByTestId('map-panel')).toBeVisible();
+    await page.getByTestId('toolbar-more').click(); // 日期列在視窗上面，沒被蓋住
+    await expect(page.getByTestId('export-json')).toBeVisible();
+  }
+});
+
 test('T15m：想去的卡片點了看詳情，返回想去（電腦版）', async ({ page }) => {
   test.skip(await isMobile(page), '手機的詳情在下方面板，沒有返回鈕');
   await ready(page);

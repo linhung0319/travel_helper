@@ -123,7 +123,7 @@ export function DayPanel() {
       <DayHead day={day} />
       {plan && (
         <div className="day-head">
-          <DaySummaryLine plan={plan} warnOpen={warnOpen} onWarn={() => setWarnOpen((o) => !o)} />
+          <DaySummaryLine plan={plan} warnOpen={warnOpen} reminders={dayWarnings.length} onWarn={() => setWarnOpen((o) => !o)} />
         </div>
       )}
       {warnOpen && dayWarnings.length > 0 && (

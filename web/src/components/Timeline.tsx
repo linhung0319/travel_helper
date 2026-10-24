@@ -445,19 +445,18 @@ export function Timeline({ plan, day }: { plan: DayPlan; day: ItineraryDay }) {
 const minutesText = (m: number) => (m >= 60 ? `${Math.floor(m / 60)} 小時${m % 60 ? ` ${m % 60} 分` : ''}` : `${m} 分`);
 
 /** 標題的一行：幾點出發、幾點回住宿、交通多久（含緩衝）、警告數 */
-export function DaySummaryLine({ plan, warnOpen, onWarn }: { plan: DayPlan; warnOpen?: boolean; onWarn?: () => void }) {
+export function DaySummaryLine({ plan, warnOpen, onWarn, reminders = 0 }: { plan: DayPlan; warnOpen?: boolean; onWarn?: () => void; reminders?: number }) {
   const s = daySummary(plan);
   return (
     <span className="day-stats small" data-testid="day-summary">
       {[s.start && `${s.start} 出發`, s.back && `${s.back} 回住宿`, s.travelMinutes > 0 && `交通 ${minutesText(s.travelMinutes)}`].filter(Boolean).join('・')}
-      {s.warnings > 0 &&
-        (onWarn ? (
-          <button type="button" className="badge badge-warn warn-button" aria-expanded={!!warnOpen} onClick={onWarn} data-testid="day-warn-toggle">
-            ⚠ {s.warnings} {warnOpen ? '▴' : '▾'}
-          </button>
-        ) : (
-          <span className="badge badge-warn">⚠ {s.warnings}</span>
-        ))}
+      {onWarn && reminders > 0 ? (
+        <button type="button" className={`badge warn-button ${s.warnings > 0 ? 'badge-warn' : ''}`} aria-expanded={!!warnOpen} onClick={onWarn} data-testid="day-warn-toggle">
+          {s.warnings > 0 ? '⚠' : WARNING_ICONS.info} {reminders} {warnOpen ? '▴' : '▾'}
+        </button>
+      ) : (
+        s.warnings > 0 && <span className="badge badge-warn">⚠ {s.warnings}</span>
+      )}
       {plan.stats.tiring && <span className="badge badge-warn">累</span>}
     </span>
   );
@@ -488,8 +487,8 @@ export function DayBar({ plan, color, thin }: { plan: DayPlan; color: string; th
             style={{
               left: `${((toMinutes(s.from) - t0) / span) * 100}%`,
               width: `${((toMinutes(s.to) - toMinutes(s.from)) / span) * 100}%`,
-              top: s.lane ? 10 + (s.lane - 1) * 6 : 0,
-              height: s.lane ? 5 : 10,
+              top: s.lane ? (thin ? 6 + (s.lane - 1) * 4 : 10 + (s.lane - 1) * 6) : 0,
+              height: s.lane ? (thin ? 3 : 5) : thin ? 6 : 10,
             }}
             title={`${BAR_LABELS[s.kind]} ${s.from}–${s.to}`}
             aria-label={`${BAR_LABELS[s.kind]} ${s.from}–${s.to}`}

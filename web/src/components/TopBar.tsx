@@ -40,11 +40,15 @@ function DayTools() {
   const comments = useCommentCount(day === 'all' ? TRIP_TARGET : dayTarget(day));
   const pending = noteRows(itinerary, plan, byId, reservations).filter((r) => r.status === 'pending' && (day === 'all' || r.date === day)).length;
   const [menu, setMenu] = useState(false);
+  const menuRef = useRef<HTMLSpanElement>(null);
   useEffect(() => {
     if (!menu) return;
-    const close = () => setMenu(false);
-    document.addEventListener('click', close);
-    return () => document.removeEventListener('click', close);
+    // 選單以外的地方按下去才關（選單自己的按鈕不算，開啟的那一下也不會立刻關掉）
+    const close = (e: Event) => {
+      if (!menuRef.current?.contains(e.target as Node)) setMenu(false);
+    };
+    document.addEventListener('pointerdown', close);
+    return () => document.removeEventListener('pointerdown', close);
   }, [menu]);
   return (
     <div className="day-tools">
@@ -54,7 +58,7 @@ function DayTools() {
       <button type="button" className="day-tool" onClick={() => openMapPanel('reservations')} aria-label="預約筆記" data-testid="toolbar-reservations">
         📋{pending > 0 && <span className="day-tool-n warn">{pending}</span>}
       </button>
-      <span className="day-tool-menu">
+      <span className="day-tool-menu" ref={menuRef}>
         <button type="button" className="day-tool" aria-label="更多" aria-expanded={menu} onClick={() => setMenu((o) => !o)} data-testid="toolbar-more">
           ⋯
         </button>
