@@ -421,6 +421,34 @@ test('第四輪：交通卡不收合、點了地圖畫那一段；規劃模式�
   await expect(first.getByTestId('leg-note-text')).toContainText('在飯店大廳集合');
 });
 
+test('第四輪：交通卡自己填的分鐘改得動、清得掉；算得出時間就沒有分鐘欄', async ({ page }) => {
+  await ready(page);
+  await showDay(page, '2027-02-02');
+  await enterPlanning(page);
+  // 關西機場 → 賢島：假行程手動指定電車 165 分（時刻表裡找不到）
+  const leg = page.getByTestId('timeline').getByTestId('tl-leg').first();
+  const travel = () => th(page, "JSON.stringify(__th.dataStore.getState().itinerary.days.find((d) => d.date === '2027-02-02').items.find((i) => i.id === 'i-1').travel)");
+  await leg.getByRole('button').first().click();
+  const minutes = leg.getByTestId('leg-minutes');
+  await expect(minutes).toHaveValue('165');
+  // 改成 170：存下來、卡片跟著變，欄位還在
+  await minutes.fill('170');
+  await minutes.blur();
+  await expect.poll(travel).toContain('"minutes":170');
+  await expect(leg.getByRole('button').first()).toContainText('170 分');
+  await expect(minutes).toHaveValue('170');
+  // 清空：回到照規則算（minutes 是 null）；電車還是找不到班次，欄位留著可以再填
+  await minutes.fill('');
+  await minutes.blur();
+  await expect.poll(travel).toContain('"minutes":null');
+  await expect(minutes).toBeVisible();
+  await expect(minutes).toHaveValue('');
+  // 改計程車：算得出時間，分鐘欄不見
+  await leg.locator('[data-testid="leg-mode"][data-mode="taxi"]').click();
+  await expect(leg.locator('[data-testid="leg-mode"][data-mode="taxi"]')).toHaveAttribute('aria-pressed', 'true');
+  await expect(leg.getByTestId('leg-minutes')).toHaveCount(0);
+});
+
 test('最後檢查：選了交通卡後換到下一天，地圖的行程線恢復（不再是淡的）', async ({ page }) => {
   await ready(page);
   await showDay(page, '2027-02-05');
@@ -558,6 +586,9 @@ test('第四輪：規劃模式把餐廳拖到另一間餐廳的中間 → 合併
   await dragOnto(src, target, 0.5);
   await expect(target.getByTestId('option-stack')).toBeVisible();
   await expect(target.getByTestId('option-crown')).toContainText('👑');
+  // 合併後看的是主卡（原本那間）：👑 亮著
+  await expect(target.getByTestId('option-crown')).toHaveClass(CROWN_ON);
+  await expect(target.getByTestId('option-stack')).toHaveAttribute('data-main', 'true');
   await expect(src).toHaveCount(0);
   await expect(rows).toHaveCount(n - 1);
   await expect(page.getByTestId('toast')).toContainText('已合併到');

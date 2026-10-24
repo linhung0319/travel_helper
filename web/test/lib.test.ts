@@ -13,7 +13,7 @@ import { copyText } from '../src/lib/labels.ts';
 import { TYPE_COLORS } from '../src/lib/typeStyle.ts';
 import { dayStops, placeDays } from '../src/lib/itinerary.ts';
 import { itin } from './helpers.ts';
-import { cardTime, dayBar, daySummary, editorModeOf, formatStay, formatDistance, legMapsUrl, legTargetOf, legText, optionRows, rideLines, stopMarks } from '../src/lib/planView.ts';
+import { cardTime, dayBar, daySummary, editorModeOf, showMinutesInput, formatStay, formatDistance, legMapsUrl, legTargetOf, legText, optionRows, rideLines, stopMarks } from '../src/lib/planView.ts';
 import { explorePlaces, typeCounts } from '../src/lib/explore.ts';
 import type { DayPlan, TimelineEntry } from '@travel-helper/engine';
 import type { Area, Place, StationTimetable } from '../src/data/types.ts';
@@ -330,6 +330,17 @@ test('legText：等車寫在交通卡，沒有緩衝', () => {
   assert.equal(legText(legWith({ mode: 'walk', minutes: 8, bufferMinutes: 10 } as never)), '🚶 8 分');
   assert.equal(legText(legWith({ mode: 'unknown', minutes: 0 })), '❓ 交通未定 0 分');
   assert.equal(legText(legWith({ mode: 'none' })), '');
+});
+
+test('showMinutesInput：算不出來（交通未定、指定的方式找不到班次、缺座標）或填過分鐘才有分鐘欄', () => {
+  const leg = (over: Record<string, unknown>) => ({ mode: 'walk', minutes: 5, basis: '步行估算', ...over }) as unknown as Parameters<typeof showMinutesInput>[0];
+  assert.equal(showMinutesInput(leg({}), null), false);
+  assert.equal(showMinutesInput(leg({ mode: 'unknown', minutes: 0, basis: '找不到交通方式' }), null), true);
+  // 指定舊的電車、時刻表找不到：引擎照 train 回傳 0 分，警告要填 minutes
+  assert.equal(showMinutesInput(leg({ mode: 'train', minutes: 0, basis: '找不到班次' }), { mode: 'train' }), true);
+  assert.equal(showMinutesInput(leg({ mode: 'charter', minutes: 0, basis: '缺座標' }), { mode: 'charter' }), true);
+  assert.equal(showMinutesInput(leg({ mode: 'train', minutes: 165, basis: '指定' }), { mode: 'train', minutes: 165 }), true);
+  assert.equal(showMinutesInput(leg({ mode: 'walk', minutes: 0, basis: '指定' }), { minutes: 0 }), true);
 });
 
 test('editorModeOf：舊的方式對到新選單', () => {

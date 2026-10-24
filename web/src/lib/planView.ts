@@ -41,6 +41,14 @@ export function editorModeOf(spec: TravelSpec | null): EditorMode | 'legacy' {
   return 'legacy';
 }
 
+/** 引擎算不出時間的依據（指定的方式在時刻表裡找不到班次、缺座標：照指定的方式回傳 0 分，警告要填 minutes） */
+const UNCOMPUTED_BASIS = new Set(['找不到班次', '缺座標']);
+
+/** 規劃模式要不要給「自己填分鐘」：算不出來（交通未定、指定的方式找不到班次、缺座標）或已經填過分鐘 */
+export function showMinutesInput(leg: Pick<Leg, 'mode' | 'basis'>, spec: TravelSpec | null): boolean {
+  return leg.mode === 'unknown' || UNCOMPUTED_BASIS.has(leg.basis) || spec?.minutes != null;
+}
+
 /** 距離的寫法：850 公尺、1.2 公里 */
 export function formatDistance(meters: number): string {
   return meters < 1000 ? `${Math.round(meters)} 公尺` : `${(meters / 1000).toFixed(1)} 公里`;

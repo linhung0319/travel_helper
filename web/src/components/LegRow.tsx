@@ -2,7 +2,7 @@
 // 第一行是方式、分鐘、計程車台數、等車、距離、📝 備註和 Google Maps 小圖示；搭電車、巴士、船時下面每一程一行。
 // 點卡片：地圖只畫這一段（commands.drawRoute，搭車的照班次的站畫），每一程上下車的站亮起來；再點一次或點別段就恢復。
 // 規劃模式下，點開的那張就在原地變成編輯狀態（不跳視窗）：自動／步行／計程車／大眾運輸、前一班後一班、備註；
-// 算不出來（交通未定）或已經填過分鐘時才出現「自己填分鐘」（清空＝回到自動）。按「完成」收起來。
+// 算不出來（交通未定、指定的方式找不到班次）或已經填過分鐘時才出現「自己填分鐘」（清空＝回到自動）。按「完成」收起來。
 // 一次只開一段（uiStore.legOpen）；這張卡不見了（換天、回整趟、換分頁）時也收起來，地圖的行程線才會恢復。
 // 規劃模式下交通卡也是放置區：拖到這裡＝排在這段通往的那張卡片前面（planDrag.dropOnLegProps）。
 
@@ -13,7 +13,7 @@ import { commands, itineraryPathOf } from '../appCommands.ts';
 import { dataStore } from '../dataStore.ts';
 import { shared } from '../appShared.ts';
 import { useApp, useData, useShared, useUi } from '../hooks.ts';
-import { EDITOR_MODES, editorModeOf, formatDistance, legDetail, legMapsUrl, legTargetOf, legText, rideLines, type EditorMode } from '../lib/planView.ts';
+import { EDITOR_MODES, editorModeOf, formatDistance, legDetail, legMapsUrl, legTargetOf, legText, rideLines, showMinutesInput, type EditorMode } from '../lib/planView.ts';
 import { rideStations } from '../lib/routing.ts';
 import { haversineMeters } from '../lib/geo/distance.ts';
 import { uiStore } from '../uiStore.ts';
@@ -121,7 +121,7 @@ function LegEditor({ target, spec, leg }: { target: LegTarget; spec: TravelSpec 
           </div>
         </div>
       )}
-      {(leg.mode === 'unknown' || spec?.minutes != null) && (
+      {showMinutesInput(leg, spec) && (
         <div className="leg-edit-row">
           <span className="leg-edit-label">時間</span>
           <input
