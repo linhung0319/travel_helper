@@ -8,6 +8,7 @@ import type { LonLat, Place } from '../data/types.ts';
 import { stopsOn } from './itinerary.ts';
 import { dayColor } from './visual.ts';
 import { lineMidpoint, routeLabel } from './routing.ts';
+import type { Leg } from '@travel-helper/engine';
 import { shortDayLabel } from './trip.ts';
 import type { Change } from '@travel-helper/engine';
 
@@ -136,7 +137,7 @@ export function describeChanges(changes: Change[], nameOf: (id: string) => strin
  * - 線：每天一種顏色，依時間軸的順序（出發的住宿 → 各點 → 會合點 → 住宿）連起來；選了某一天時其他天變淡
  * - 備選：時段備案的非主選點，用那天顏色的空心圈
  * - 交通標籤：只有選定的那天，在每段的中間標「🚃 12 分」
- * 線是直線（不查路徑），T15 再看要不要沿道路畫。
+ * 線有 pathOf 給的路徑（步行、車沿道路，電車沿車站）就照路徑畫，沒有（還沒查到、船）就是兩點之間的直線。
  */
 export function itineraryFeatures(
   it: Itinerary | null,
@@ -144,6 +145,7 @@ export function itineraryFeatures(
   byId: Map<string, Place>,
   dates: string[],
   day: string,
+  pathOf?: (from: Place, to: Place, mode: Leg['mode']) => LonLat[] | null,
 ): { lines: FeatureCollection<LineString>; alts: FeatureCollection<Point>; legs: RouteLabel[] } {
   const lines: Feature<LineString>[] = [];
   const alts: Feature<Point>[] = [];
@@ -175,18 +177,24 @@ export function itineraryFeatures(
     for (const path of paths) {
       const coords: LonLat[] = [];
       let prev: LonLat | null = null;
+      let prevPlace: Place | null = null;
       for (const o of path) {
         const p = byId.get(o.place);
         if (!p) continue;
-        if (prev && (prev[0] !== p.coords[0] || prev[1] !== p.coords[1]) && day === d.date && o.leg && o.leg.mode !== 'none' && o.leg.minutes > 0) {
+        const moved = prev && (prev[0] !== p.coords[0] || prev[1] !== p.coords[1]);
+        const seg = moved && prevPlace && pathOf && o.leg ? pathOf(prevPlace, p, o.leg.mode) : null;
+        if (prev && moved && day === d.date && o.leg && o.leg.mode !== 'none' && o.leg.minutes > 0) {
           legs.push({
             id: `leg-${d.date}-${legs.length}`,
-            coords: lineMidpoint([prev, p.coords]),
+            coords: lineMidpoint(seg && seg.length >= 2 ? seg : [prev, p.coords]),
             text: o.leg.mode === 'unknown' ? `❓ ${o.leg.minutes} 分` : routeLabel(o.leg.mode, o.leg.minutes),
           });
         }
+        // 路徑的頭尾就是前後兩站，中間的點接進來
+        if (seg && seg.length >= 2) coords.push(...seg.slice(1, -1));
         coords.push(p.coords);
         prev = p.coords;
+        prevPlace = p;
       }
       if (coords.length >= 2) lines.push(line(coords, { date: d.date, color, active, selected }));
     }

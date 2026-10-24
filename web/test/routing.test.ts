@@ -3,10 +3,13 @@ import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { createStore } from 'zustand/vanilla';
 import { createRoadRouter, lineMeters, lineMidpoint, minutesFromMeters, railPath, roadKey, routeLabel, routeProfile, type KeyValueStorage } from '../src/lib/routing.ts';
-import { describeChanges, proposalFeatures, routeFeatures, routeLabels } from '../src/lib/overlays.ts';
+import { describeChanges, itineraryFeatures, proposalFeatures, routeFeatures, routeLabels } from '../src/lib/overlays.ts';
 import { createAppStore } from '../src/store.ts';
 import { createCommands } from '../src/commands.ts';
 import { startRouteResolver } from '../src/routeResolver.ts';
+import { createPathOf, startItineraryRoutes } from '../src/itineraryRoutes.ts';
+import { tripDates } from '../src/lib/trip.ts';
+import type { PlanState } from '../src/planStore.ts';
 import { normalizePlace } from '../src/data/normalize.ts';
 import { placeDays } from '../src/lib/itinerary.ts';
 import type { DataState } from '../src/dataStore.ts';
@@ -277,4 +280,119 @@ test('placeDays 用的是 engine 的行程：同一個點排在兩天', () => {
     { date: '2027-02-05', order: 2 },
     { date: '2027-02-06', order: 1 },
   ]);
+});
+
+// --- 地圖上的行程線（第三輪 Task 7） ---------------------------------------------
+
+const DAY = '2027-02-05';
+const leg = (mode: string) => ({ mode, from: null, to: null, depart: '09:00', arrive: '09:10', minutes: 10, walkMinutes: 0, waitMinutes: 0 });
+/** 只有 itineraryFeatures 用得到的欄位 */
+function fakePlan(mode: string) {
+  return {
+    days: [
+      {
+        date: DAY,
+        entries: [
+          { placeId: 'a', travel: null },
+          { placeId: 'b', travel: leg(mode) },
+        ],
+      },
+    ],
+  } as never;
+}
+const itinAB = () => itin({ [DAY]: ['a', 'b'] });
+const A = place('a', [136.8, 34.5]);
+const B = place('b', [136.81, 34.5]);
+const byIdAB = new Map([['a', A], ['b', B]]);
+
+test('行程線：pathOf 給三個點的路徑就接起來，標籤放在路徑中點；不給就是直線', () => {
+  const mid: [number, number] = [136.805, 34.502];
+  const calls: string[] = [];
+  const withPath = itineraryFeatures(itinAB(), fakePlan('walk'), byIdAB, tripDates(), DAY, (from, to, mode) => {
+    calls.push(`${from.id}>${to.id}:${mode}`);
+    return [A.coords, mid, B.coords];
+  });
+  assert.deepEqual(calls, ['a>b:walk']);
+  assert.deepEqual(withPath.lines.features[0].geometry.coordinates, [A.coords, mid, B.coords]);
+  assert.deepEqual(withPath.legs[0].coords, lineMidpoint([A.coords, mid, B.coords]));
+  const plain = itineraryFeatures(itinAB(), fakePlan('walk'), byIdAB, tripDates(), DAY);
+  assert.deepEqual(plain.lines.features[0].geometry.coordinates, [A.coords, B.coords]);
+  const none = itineraryFeatures(itinAB(), fakePlan('walk'), byIdAB, tripDates(), DAY, () => null);
+  assert.deepEqual(none.lines.features[0].geometry.coordinates, [A.coords, B.coords]);
+});
+
+test('行程線：createPathOf 步行看快取、電車沿車站、船和未知是 null', async () => {
+  const router = createRoadRouter({ fetch: async () => ({ ok: true, status: 200, json: async () => osrmBody([[136.8, 34.5], [136.805, 34.502], [136.81, 34.5]], 795) }), minIntervalMs: 0 });
+  const { data } = setupItinerary(router);
+  const pathOf = createPathOf(router, data);
+  assert.equal(pathOf(A, B, 'walk'), null); // 還沒查
+  await router.route('foot', A.coords, B.coords);
+  assert.equal(pathOf(A, B, 'walk')?.length, 3);
+  assert.equal(pathOf(A, B, 'taxi'), null); // 車是另一個 profile
+  const st = (id: string) => data.getState().byId.get(id)!;
+  assert.equal(pathOf(st('st1'), st('st3'), 'train')?.length, 3);
+  assert.equal(pathOf(A, B, 'ferry'), null);
+  assert.equal(pathOf(A, B, 'unknown'), null);
+});
+
+function setupItinerary(router: ReturnType<typeof createRoadRouter>, mode = 'walk') {
+  const places = [
+    A,
+    B,
+    place('st1', [136.7, 34.4], { type: 'station', operator: 'kintetsu', stationNumber: 'M1' }),
+    place('st2', [136.72, 34.41], { type: 'station', operator: 'kintetsu', stationNumber: 'M2' }),
+    place('st3', [136.74, 34.42], { type: 'station', operator: 'kintetsu', stationNumber: 'M3' }),
+  ];
+  const app = createAppStore();
+  const data = createStore<DataState>()(() => ({
+    status: 'ready',
+    error: null,
+    areas: [],
+    basePlaces: places,
+    places,
+    byId: new Map(places.map((p) => [p.id, p])),
+    itinerary: itinAB(),
+    days: new Map(),
+    stationNames: new Map(),
+  }));
+  const plan = createStore<PlanState>()(() => ({ status: 'ready', error: null, plan: fakePlan(mode) }));
+  return { app, data, plan, router };
+}
+
+test('行程線：startItineraryRoutes 只查選定那天的段落，查到就讓 routesVersion 加一；選「全部」不查', async () => {
+  const urls: string[] = [];
+  const fetch = async (url: string) => {
+    urls.push(url);
+    return { ok: true, status: 200, json: async () => osrmBody([[136.8, 34.5], [136.805, 34.502], [136.81, 34.5]], 795) };
+  };
+  const router = createRoadRouter({ fetch, minIntervalMs: 0 });
+  const { app, data, plan } = setupItinerary(router);
+  const stop = startItineraryRoutes(app, data, plan, router);
+  await tick();
+  assert.equal(urls.length, 0); // 預設選「全部」
+  app.getState().selectDay(DAY);
+  await tick();
+  await tick();
+  assert.equal(urls.length, 1);
+  assert.ok(urls[0].includes('routed-foot'));
+  assert.equal(app.getState().routesVersion, 1);
+  assert.equal(router.cachedPath('foot', A.coords, B.coords)?.length, 3);
+  // 同一天再觸發不重查
+  plan.setState({ plan: fakePlan('walk') });
+  await tick();
+  assert.equal(urls.length, 1);
+  stop();
+});
+
+test('行程線：查不到時 routesVersion 不變、不丟錯，行程線維持直線', async () => {
+  const router = createRoadRouter({ fetch: async () => ({ ok: false, status: 503, json: async () => ({}) }), minIntervalMs: 0 });
+  const { app, data, plan } = setupItinerary(router, 'taxi');
+  const stop = startItineraryRoutes(app, data, plan, router);
+  app.getState().selectDay(DAY);
+  await tick();
+  await tick();
+  assert.equal(app.getState().routesVersion, 0);
+  const f = itineraryFeatures(data.getState().itinerary, plan.getState().plan, data.getState().byId, tripDates(), DAY, createPathOf(router, data));
+  assert.deepEqual(f.lines.features[0].geometry.coordinates, [A.coords, B.coords]);
+  stop();
 });

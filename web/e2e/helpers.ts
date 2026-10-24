@@ -2,6 +2,8 @@ import { expect, type Page } from '@playwright/test';
 
 /** 等資料和地圖都好了（地圖上有畫出資料點） */
 export async function ready(page: Page) {
+  // 不連公開的 OSRM：行程線維持直線，結果固定（要測沿道路的測試在 ready 之後自己 page.route，後註冊的優先）
+  await page.route('**/routing.openstreetmap.de/**', (route) => route.abort());
   await page.goto('/');
   await page.waitForFunction(() => {
     const th = (window as any).__th;

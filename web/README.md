@@ -75,6 +75,7 @@ web/
 │  ├─ hooks.ts            useApp、useData、螢幕寬度
 │  ├─ commands.ts         地圖指令（T12）：UI 和 AI 共用；appCommands.ts 是網站共用的那一份
 │  ├─ routeResolver.ts    drawRoute 的路線在背景補上路徑（OSRM、車站、直線）
+│  ├─ itineraryRoutes.ts  地圖上的行程線沿道路和鐵路畫（選定那天的段落向 roadRouter 要路徑）
 │  ├─ data/               資料存取的介面、本機實作、型別、整理資料的函式
 │  ├─ lib/                純邏輯（篩選、區域、照片、時刻表、日期、附近…），有單元測試
 │  ├─ components/         地圖、上方列、篩選、小卡片、詳情、車站、圖片牆、拉起面板

@@ -392,3 +392,34 @@ test('第三輪：交通細列點開看詳細、地圖畫那一段；規劃模�
   await first.getByTestId('leg-minutes').blur();
   await expect.poll(() => th(page, "__th.dataStore.getState().itinerary.days.find((d) => d.date === '2027-02-05').items.map((i) => i.travel?.minutes).filter((m) => m != null).length")).toBe(0);
 });
+
+test('第三輪：選了某一天，地圖上那天的行程線改沿道路畫（OSRM 用假的回應）', async ({ page }) => {
+  await ready(page);
+  // ready 先擋掉 OSRM；這裡後註冊，優先
+  await page.route('**/routing.openstreetmap.de/**', (route) => {
+    const m = /driving\/([\d.]+),([\d.]+);([\d.]+),([\d.]+)/.exec(route.request().url())!;
+    const [a, b] = [
+      [Number(m[1]), Number(m[2])],
+      [Number(m[3]), Number(m[4])],
+    ];
+    const mid = [(a[0] + b[0]) / 2 + 0.00123, (a[1] + b[1]) / 2];
+    return route.fulfill({ json: { code: 'Ok', routes: [{ distance: 640, duration: 500, geometry: { coordinates: [a, mid, b] } }], waypoints: [{ distance: 0 }, { distance: 0 }] } });
+  });
+  const errors: string[] = [];
+  page.on('pageerror', (e) => errors.push(e.message));
+  await showDay(page, '2027-02-05');
+  // 線上出現不是任何資料點的座標＝道路上的中間點
+  await expect
+    .poll(
+      () =>
+        page.evaluate(() => {
+          const t = (window as any).__th;
+          const known = new Set([...t.dataStore.getState().byId.values()].map((p: any) => p.coords.join(',')));
+          const data = t.map.getSource('overlay-itinerary-lines').serialize().data;
+          return data.features.some((f: any) => f.properties.date === '2027-02-05' && f.geometry.coordinates.some((c: number[]) => !known.has(c.join(','))));
+        }),
+      { timeout: 20000 },
+    )
+    .toBe(true);
+  expect(errors).toEqual([]);
+});

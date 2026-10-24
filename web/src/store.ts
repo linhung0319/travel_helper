@@ -90,6 +90,8 @@ export interface AppState {
   highlights: Partial<Record<HighlightStyle, string[]>>;
   /** drawRoute 畫的路線 */
   routes: MapRoute[];
+  /** 行程線的道路路徑查到一批就加一，地圖看到變了就重畫（itineraryRoutes.ts） */
+  routesVersion: number;
   /** compare：比較中的點（地圖標 A、B、C，上方出現比較列） */
   compare: string[];
   proposal: Proposal | null;
@@ -144,6 +146,7 @@ export const initialState: AppState = {
   camera: null,
   highlights: {},
   routes: [],
+  routesVersion: 0,
   compare: [],
   proposal: null,
 };

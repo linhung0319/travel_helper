@@ -114,7 +114,8 @@ test('聚焦一個點：地圖移過去、點會閃；篩選標籤可以取消�
 });
 
 test('標示、路線（沿道路）、比較：畫在地圖上，可以清掉', async ({ page }) => {
-  // OSRM 用假的回應：不打公開的 API，結果固定
+  await ready(page);
+  // OSRM 用假的回應（ready 先擋掉 OSRM，這裡後註冊，優先）：不打公開的 API，結果固定
   await page.route('**/routing.openstreetmap.de/**', (route) => {
     const m = /driving\/([\d.]+),([\d.]+);([\d.]+),([\d.]+)/.exec(route.request().url())!;
     const [a, b] = [
@@ -124,7 +125,6 @@ test('標示、路線（沿道路）、比較：畫在地圖上，可以清掉',
     const mid = [(a[0] + b[0]) / 2 + 0.001, (a[1] + b[1]) / 2];
     return route.fulfill({ json: { code: 'Ok', routes: [{ distance: 640, duration: 500, geometry: { coordinates: [a, mid, b] } }], waypoints: [{ distance: 0 }, { distance: 0 }] } });
   });
-  await ready(page);
   await run(page, 'highlight', ['toba-aquarium', 'toba-mikimoto-pearl-island']);
   await run(page, 'drawRoute', 'toba', 'toba-aquarium', 'walk');
   await run(page, 'focus', ['toba', 'toba-aquarium', 'toba-mikimoto-pearl-island']);

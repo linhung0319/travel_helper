@@ -4,7 +4,8 @@ import { dataStore } from './dataStore.ts';
 import { createCommands } from './commands.ts';
 import { createRoadRouter } from './lib/routing.ts';
 import { startRouteResolver } from './routeResolver.ts';
-import { startPlanner } from './planStore.ts';
+import { startPlanner, planStore } from './planStore.ts';
+import { createPathOf, startItineraryRoutes } from './itineraryRoutes.ts';
 import { dataSource } from './data/index.ts';
 
 function browserStorage() {
@@ -24,3 +25,7 @@ startRouteResolver(appStore, dataStore, roadRouter);
 
 // 行程引擎：行程、資料點變了就重算時間軸（T15m）
 startPlanner(dataStore, dataSource, roadRouter);
+
+// 地圖上的行程線沿道路畫：選定那天的每一段向同一個 router 要路徑（T15m 第三輪）
+export const itineraryPathOf = createPathOf(roadRouter, dataStore);
+startItineraryRoutes(appStore, dataStore, planStore, roadRouter);

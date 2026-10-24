@@ -19,7 +19,7 @@ import { PLACE_TYPES, type Bbox, type Place } from '../data/types.ts';
 import { PreviewCard } from './PreviewCard.tsx';
 import { addOverlayLayers, OVERLAY_SOURCES } from './mapOverlayLayers.ts';
 import { compareFeatures, highlightFeatures, itineraryFeatures, placeBadges, proposalFeatures, routeFeatures, routeLabels } from '../lib/overlays.ts';
-import { commands } from '../appCommands.ts';
+import { commands, itineraryPathOf } from '../appCommands.ts';
 import { MapCommandBars } from './MapCommandBars.tsx';
 import { showInExplore } from './Explore.tsx';
 import { shared } from '../appShared.ts';
@@ -473,11 +473,12 @@ export function MapView() {
     map.setPaintProperty('itinerary-arrow', 'icon-opacity', dim ? 0.15 : 1);
   }, [loaded, legOpen]);
 
+  const routesVersion = useApp((s) => s.routesVersion);
   // 確定的行程（T15m）：每天的路線、備選的空心圈、選定那天的交通標籤
   useEffect(() => {
     if (!loaded) return;
     const map = mapRef.current!;
-    const f = itineraryFeatures(itinerary, plan, byId, DATES, day);
+    const f = itineraryFeatures(itinerary, plan, byId, DATES, day, itineraryPathOf);
     (map.getSource(OVERLAY_SOURCES.itineraryLines) as GeoJSONSource).setData(f.lines);
     (map.getSource(OVERLAY_SOURCES.itineraryAlts) as GeoJSONSource).setData(f.alts);
     legLabelsRef.current.forEach((m) => m.remove());
@@ -487,7 +488,7 @@ export function MapView() {
       el.textContent = l.text;
       return new Marker({ element: el }).setLngLat(l.coords).addTo(map);
     });
-  }, [loaded, itinerary, plan, byId, day]);
+  }, [loaded, itinerary, plan, byId, day, routesVersion]);
 
   // 每個點的 ❤️ 數（放大到 BADGE_ZOOM 才顯示）
   useEffect(() => {

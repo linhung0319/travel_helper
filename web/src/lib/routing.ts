@@ -250,6 +250,8 @@ export function createRoadRouter(opts: RoadRouterOptions = {}) {
     route,
     /** 只看快取（同步）：給 engine 的 walkMeters／driveMeters 用；沒查過回傳 null */
     cachedMeters: (profile: 'foot' | 'car', from: LonLat, to: LonLat): number | null => cached(profile, from, to)?.meters ?? null,
+    /** 只看快取（同步）：地圖上的行程線用；沒查過回傳 null */
+    cachedPath: (profile: 'foot' | 'car', from: LonLat, to: LonLat): LonLat[] | null => cached(profile, from, to)?.geometry ?? null,
     get apiCalls() {
       return calls;
     },
