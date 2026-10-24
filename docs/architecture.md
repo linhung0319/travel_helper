@@ -141,19 +141,20 @@ UI 的天數分頁、篩選標籤的 ✕、「跳到區域」、詳情的「問 
 
 T15m 先用假後端把畫面做出來，T15 只換後端的實作，畫面的程式不改。
 
-- **`web/src/backend/`：後端的介面**（`types.ts` 的 `Backend`）。形狀照 §4「資料 API」：行程（`version`、409 衝突）、快照、建議、投票、修改紀錄、成員、`sync`。錯誤是 `BackendError`（HTTP 狀態＋`error`、`message`、`details`）。
-  - `mock.ts`：假後端，規則和 Worker 一樣（只有寫的人能改刪、軟刪除、改行程前自動存快照、version 不對回 409），資料存在記憶體加 localStorage（`travel-helper:mockBackend`）。種子資料在 `dev-fixtures/seed.ts`（4 位假家人、排了一半的行程：有時段備案、分組、空檔）。
+- **`web/src/backend/`：後端的介面**（`types.ts` 的 `Backend`）。形狀照 §4「資料 API」：行程（`version`、409 衝突）、快照、投票（❤️ 就是想去）、留言（地點或某一天）、候選（某天的候選）、修改紀錄、成員、`sync`。2026-10-24 拿掉建議、改成想去分頁和候選（設計見 `docs/superpowers/specs/2026-10-24-wishlist-planning-design.md`）；留言、候選 Worker 還沒有，T15 要補（§3.6）。錯誤是 `BackendError`（HTTP 狀態＋`error`、`message`、`details`）。
+  - `mock.ts`：假後端，規則和 Worker 一樣（只有寫的人能改刪、軟刪除、改行程前自動存快照、version 不對回 409），資料存在記憶體加 localStorage（`travel-helper:mockBackend:v2`）。種子資料在 `dev-fixtures/seed.ts`（4 位假家人、排了一半的行程：有時段備案、分組、空檔）。
   - `index.ts`：dev server 用假後端；正式 build 先用「還沒接上」的版本（只能看、寫入都回 503）。**T15 在這裡換成呼叫 API 的實作**。假後端、種子資料、dev 選單都用 `import.meta.env.DEV` 包起來，不會進 `dist/`。
 - **`web/src/sharedStore.ts`（純邏輯）／`appShared.ts`（網站共用的一份）：大家共用的資料**。
-  - 狀態：`me`、`members`、`version`（手上那份行程的）、`updatedBy`、`updatedAt`、`snapshots`、`suggestions`、`votes`、`edits`、`saving`、`conflict`（409 之後不能再改，按「重新載入」才清掉）、`toast`、`lastSync`。
-  - 動作：`changeItinerary(fn, reason)`（fn 用 engine 的操作；先在畫面上改，存不了就退回；**一個使用者動作只存一次檔**，快照才會整個復原）、`reloadItinerary`、`restoreSnapshot`、建議的新增／修改／刪除／標狀態、`adoptSuggestion`（行程項目記 `proposedBy`）、`vote`、`revertEdit`、`syncOnce`。
+  - 狀態：`me`、`members`、`version`（手上那份行程的）、`updatedBy`、`updatedAt`、`snapshots`、`votes`、`comments`、`wishes`、`edits`、`saving`、`conflict`（409 之後不能再改，按「重新載入」才清掉）、`toast`、`lastSync`。
+  - 動作：`changeItinerary(fn, reason)`（fn 用 engine 的操作；先在畫面上改，存不了就退回；**一個使用者動作只存一次檔**，快照才會整個復原）、`reloadItinerary`、`restoreSnapshot`、`vote(placeId, value)`、留言的新增／修改／刪除（`comment`、`editComment`、`deleteComment`）、`addCandidate(placeId, day)`、`removeCandidate(id, reason?, placed?)`（自己加的直接撤回；別人加的要理由，理由變成那個點一則 `kind: 'decline'` 的留言；排進行程後用 `placed` 拿掉）、`revertEdit`、`syncOnce`。純函式在 `lib/wishlist.ts`：`likedPlaces`（有人 ❤️ 的點、頭像）、`dayCandidates`（某天的候選，已經排進那天的不列）。
   - 同步照 §3.8：每 30 秒、切回分頁時打一次 `sync`，變了才重抓那一種；行程有別人的新版本時直接換上（存檔中、衝突中不換）。
   - 修改紀錄在瀏覽器合併：`data/merge.ts` 直接用 Worker 的 `worker/src/lib/merge.ts`，`place.edited` 是「欄位 → 最新那筆修改（`editId`、誰、何時、原本的值）」。
 - **`web/src/planStore.ts`：行程引擎在瀏覽器跑**。行程或資料點變了就重算整份（12 天約 15 ms）。引擎要的時刻表從 `DataSource.loadEngineTimetables()` 讀（近鐵 `_travel-times.json`、巴士、船、JR 的路線檔，約 1.3 MB，第一次算時才載入）；`walkMeters`、`driveMeters` 接 `roadRouter.cachedMeters`。T15 的 API 實作要從 `build:static` 的輸出讀這些檔案。
-- **`web/src/uiStore.ts`：對話框**，一次只開一個（寫建議、進入規劃模式的確認、快照、待處理的建議、排進行程、移到別天、採用、不採用、修改紀錄、需要預約），`components/Dialogs.tsx` 負責畫；另有規劃模式的閒置分鐘（預設 10）。
-- **篩選加 `votes`**（`'popular'`：❤️ 2 人以上、`'mine'`：我按了 ❤️）。投票不在資料點裡，`appShared` 用 `setVoteLookup` 註冊查詢，`matchesFilter` 的呼叫者不用改；T12 的 `setFilter` 也認得。
-- **規劃模式**：`appStore.planning` 還是唯一的開關；進入前確認（`PlanningToggle`）、規劃列、閒置退出（`usePlanningIdle`）。Worker 不檢查規劃模式（§3.6）。
-- **地圖**（`lib/overlays.ts` 的 `itineraryFeatures`、`placeBadges`）：每天顏色的路線（直線，照時間軸的順序）、選了某一天時那天的交通標籤、時段備案的備選是那天顏色的空心圈、每個點的 💬 建議數和 ❤️ 數（放大到 10 以上）。
+- **`web/src/uiStore.ts`：對話框**，一次只開一個（進入規劃模式的確認、快照、排進行程、移到別天、拿掉別人加的候選、修改紀錄、需要預約），`components/Dialogs.tsx` 負責畫；另有規劃模式的閒置分鐘（預設 10）。
+- **篩選加 `votes`**（`'popular'`：❤️ 2 人以上、`'mine'`：我按了 ❤️）。投票不在資料點裡，`appShared` 用 `setVoteLookup` 註冊查詢，`matchesFilter` 的呼叫者不用改；T12 的 `setFilter` 也認得。**搜尋**不放進 `Filter`（`setFilter` 的格式都是陣列）：`appStore.query`＋`matchesQuery`，探索、想去、地圖共用。
+- **規劃模式**：`appStore.planning` 還是唯一的開關；進入前確認（`PlanningToggle`，放在「這一天」面板）、規劃列、閒置退出（`usePlanningIdle`）。Worker 不檢查規劃模式（§3.6）。**想去**是 `appStore.mode === 'wish'`：電腦版右欄第三個分頁、手機下方面板的分頁，內容是 `ExplorePanel source="wish"`（只列有人 ❤️ 的點，卡片底下是 `Wishlist.tsx` 的 `WishExtras`）；地圖在這個模式把沒人 ❤️ 的點變淡。行程分頁時間軸下面是這天的候選（`DayCandidates`，規劃模式下 ↑ 排進）和這天的留言（`DayComments`，`target` 是 `day:<日期>`）。排進行程走 `components/addToDay.ts`：引擎的 `bestInsertIndex` 找最順路的位置（`planStore.currentEngineData()` 給引擎資料），`proposedBy` 記按 ❤️ 的人。排進後那天的候選自動拿掉。拖曳只在時間軸裡換順序（`components/planDrag.ts`：電腦版 HTML5 拖放，手機長按 0.4 秒後拖），移動用引擎的 `moveItemTo`。
+- **引擎的緩衝**：每段交通自動加緩衝（`config.buffer`：全員 10 分、分組 5 分），`Leg.bufferMinutes`，`leg.arrive` 已含；時間軸的交通列寫「＋緩衝 N 分」。
+- **地圖**（`lib/overlays.ts` 的 `itineraryFeatures`、`placeBadges`）：每天顏色的路線（直線，照時間軸的順序）、選了某一天時那天的交通標籤、時段備案的備選是那天顏色的空心圈、每個點的 ❤️ 數（放大到 10 以上）。
 - **電腦版三欄**（T15m 版面調整，參考 puma.taipei/heart-island）：`App.tsx` 的 `DesktopLayout` 是聊天室｜地圖｜右欄。地圖上方浮著 `TopBar.tsx` 的 `MapTopBar`（日期、待處理、規劃模式、我、篩選標籤）；右欄是 `SidePanel.tsx`，分頁用 `appStore.mode`（`map`＝行程、`explore`＝探索），`detailId` 有值時詳情蓋在右欄上。探索是 `Explore.tsx`（清單邏輯在 `lib/explore.ts`），類型寫在 `filter.types`，從探索切回行程時拿掉（`showItinerary`）。點地圖上的點走 `showInExplore`：切到探索、換成那一類（目前的篩選看不到它就只留類型和地區）、捲到卡片；再點卡片才開詳情。詳情面板（`DetailPanel.tsx`）分成總覽、詳細、附近・連結、圖片四頁。探索上方的類型分頁是 sticky；篩選捲出畫面時（看 `.side-body` 的捲動）收合成一列摘要，疊在清單上、不推動清單。
 - **問 AI**（`components/askAi.ts`）：電腦版的探索卡片、詳情標題用 HTML 的拖放（`dragPlaceProps`，資料型別 `application/x-travel-place`），放到聊天欄（`dropAiProps`，`data-drop-ai`）就 `commands.select(id)` 並提示「已帶進聊天」。手機沒有拖曳：圖片牆照片上的「＋ AI」、詳情的「＋ 問 AI」（`toggleAskAi`），拉起面板的聊天分頁顯示選取數。地圖上的點不做拖曳（和拖地圖衝突）。T16 的聊天室把選取帶進對話，AI 就知道要問哪幾個點（例如兩點的距離）；之後再加輸入框的 `@` 選地點、自動帶入正在看的點。
 - **地圖的點**（`MapView.tsx`、`mapIcons.ts`）：照片標記拿掉，改成 Google Maps 那種類別圖標（canvas 畫的 `icon-<type>`），`ICON_ZOOM`（12）以下是小點。選了某一天，那天的點換成編號圓（`places-mark`），編號由 `lib/planView.ts` 的 `stopMarks` 照時間軸算（住宿「宿」、機場「機」、其他 1、2、3…；分組先編各組再編會合點），時間軸用同一份；那天的路線加方向箭頭（`itinerary-arrow`，分組時每組各一條）。選中的點（`detailId`，或探索分頁的 `exploreTarget`）畫成水滴圖釘（`pin-<type>`、`places-pin` 圖層），原本的圖標藏起來；只有小卡片時才用圓框（`places-focus`）。點的時候查 `places-circle`、`places-icon`、`places-mark`、`places-pin` 四層。探索分頁時不因為「不在那天」變淡。
@@ -283,6 +284,7 @@ npm run db:import -- --apply data/cache/import/<時間>-all.json   # 2. 👤 看
 - **快照**：每次改行程前自動存一份（包括採用 AI 的提議），可以復原；復原本身也是一次修改，會再存快照。
 - **建議**：存一則一列（`suggestions`）。寫的人可以改、可以刪（軟刪除）；規劃模式下的人只能改狀態（已採用／不採用＋一句話）。採用時記下對應的行程項目，行程項目也記「誰提的」。
 - **投票**：一人對一個點一筆（❤️／👎＋備註），見 interaction-design §9。
+- **2026-10-24 改成想去清單**（T15m，設計見 `docs/superpowers/specs/2026-10-24-wishlist-planning-design.md`）：❤️ 就是想去，投票拿掉備註；建議拿掉，換成**留言**（`comments`：`target` 是地點 ID 或某一天 `day:<日期>`，`kind` 是 `normal`／`planner`／`decline`，只有作者能改刪）和**候選**（`candidates`：哪個點、哪天、誰加的；同一天同一個點只有一筆，誰都能拿掉，拿掉別人加的由畫面另外留一則 `decline` 留言）。上面「建議」那兩條和 §4 的建議 API、D1 的 `suggestions` 是 T24 做的舊版，**T15 串接時改成這裡的形狀**（假後端 `web/src/backend/mock.ts` 是規則的參考）。
 - 行程裡的點可能是預設資料、自己加的點，或已下架的點，引擎都要能處理。
 
 ### 3.7 時刻表和其他靜態資料
@@ -467,7 +469,7 @@ npm run db:import -- --apply data/cache/import/<時間>-all.json   # 2. 👤 看
 ## 8. 測試與完成條件
 
 - **引擎、匯入、Worker 的邏輯**：單元測試（`node --test`），每個任務卡列的規則都要有測試。
-- **UI**：用 Playwright 跑幾條主要流程，例如「點資料點 → 看詳情 → 按 ❤️」「寫建議 → 進入規劃模式 → 採用 → 時間軸出現」。手機尺寸和電腦尺寸各跑一次。畫面好不好看用 Claude in Chrome 看，或交給 👤 看。
+- **UI**：用 Playwright 跑幾條主要流程，例如「點資料點 → 看詳情 → 按 ❤️」「按 ❤️ → 加到某天 → 進入規劃模式 → ↑ 排進 → 時間軸出現」。手機尺寸和電腦尺寸各跑一次。畫面好不好看用 Claude in Chrome 看，或交給 👤 看。
 - **每張任務卡都列「完成條件」**，做完逐條確認，結果寫在回報裡。
 
 ---
