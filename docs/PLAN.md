@@ -647,12 +647,13 @@ T7c → T7d → T7e → T7f → T7g → T8a → T8b → T8c → T8d → T7i → 
 - **假的東西只在 dev server 有**（同 `dev-fixtures/fakeItinerary.ts`），正式 build 不帶；dev 選單可以「重設假資料」。
 - **可以拆成三個並行子任務**：T15m-a 這一天的時間軸、地圖上的行程路線；T15m-b 建議、規劃模式、手動選單、快照；T15m-c 投票、修改紀錄、需要預約的清單。
 - **👤 檢視**：每個子任務做完，用 `npm run dev` 讓 👤 在瀏覽器切換手機、平板、電腦尺寸檢視；另外用 Playwright 對手機和電腦尺寸各截一組主要畫面的圖，放在 `data/cache/work/t15m/`（不進 git）方便對照。👤 確認的 UI 決定寫回 interaction-design.md。
-- **完成條件**（Playwright，手機和電腦尺寸各跑一次，用假後端）：按 ❤️ → 想去分頁出現、留言 → 換人看得到、改不了別人的留言 → 加到某天 → 這天的候選 → 進入規劃模式按 ↑ 排進 → 時間軸出現、有交通時間（含緩衝）→ 改停留時間 → 復原快照後回到原狀；👤 確認 UI 定案。（2026-10-24 建議改成想去分頁和這天的候選，設計見 `docs/superpowers/specs/2026-10-24-wishlist-planning-design.md`）
+- **完成條件**（Playwright，手機和電腦尺寸各跑一次，用假後端）：按 ❤️ → 想去分頁出現、留言 → 換人看得到、改不了別人的留言 → 加到某天 → 這天的候選 → 進入規劃模式按 ↑ 排進 → 時間軸出現、有交通時間 → 改停留時間 → 復原快照後回到原狀；👤 確認 UI 定案。（2026-10-24 建議改成想去分頁和這天的候選，設計見 `docs/superpowers/specs/2026-10-24-wishlist-planning-design.md`；2026-10-25 第四輪拿掉緩衝、換住宿、併到…，改成拖曳合併，設計見 `docs/superpowers/specs/2026-10-25-itinerary-round4-design.md`）
 
 ### T15 行程與建議：串接 〔S〕
 - **把 T15m 的假後端換成 T24、T25 的 API**：確定的行程、快照、投票、留言、候選、修改紀錄存在 D1；畫面的程式不改（要改的話，代表 T15m 的介面沒定好，回頭修介面）。
 - **Worker 要跟上 T15m 改的形狀**（2026-10-24，architecture §3.6）：投票拿掉備註；建議（`suggestions` 和它的 API）換成留言（`comments`，對地點或某一天）和候選（`candidates`）；`sync` 改回傳 `votes`、`comments`、`candidates`。規則照 `web/src/backend/mock.ts`。
 - **預約筆記和整趟留言也要接 worker 和 D1**（T15m 第三輪，architecture §2「預約筆記的假後端」）：`Reservation` API 形狀是列出全部（`GET`）加按 `(date, placeId)` 寫入一筆（`PUT`，整筆取代），欄位 `status`（`pending`／`booked`／`skip`）、`note`、`nights`、`updatedBy`、`updatedAt`（後者由 Worker 填）；住宿的 `date` 是入住那晚。D1 多一張 `reservations` 表（主鍵 `(date, place_id)`），`sync` 回傳 `reservations` 時間戳。整趟留言（`target` 為 `'trip'`，`TRIP_TARGET`）走原本的留言 API，Worker 要接受這個 target。規則照 `web/src/backend/mock.ts`。
+- **行程格式的第四輪改動也要接到 Worker 的驗證**（T15m 第四輪，`packages/engine/src/types.ts`）：`TravelSpec.mode` 多了 `transit`（舊的 `train`、`bus`、`ferry`、`charter`、`car`、`other` 照樣合法）、`TravelSpec.trip`（選定的班次 `TripRef`，可以省略或 `null`）；`bufferMinutes` 拿掉了，舊資料留著也不能報錯。Worker 存行程時的驗證要照 `validateItinerary` 收這些欄位。
 - 假登入換成 T25 的 LINE 登入；同時編輯用 `version` 號碼偵測；同步照 architecture §3.8。
 - 用兩個真的帳號試一次同時編輯、同步。
 - **完成條件**（Playwright，手機和電腦尺寸各跑一次，用本機的 Worker 和 D1）：同 T15m 的流程，但「別人」是另一個登入的帳號；重新整理後資料還在。

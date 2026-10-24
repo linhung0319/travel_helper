@@ -1,5 +1,6 @@
 # 行程卡片、交通卡、拖曳合併、整趟工具列（設計，T15m 第四輪）
 
+> **已實作**（計畫：`docs/superpowers/plans/2026-10-25-itinerary-round4.md`）。
 > 2026-10-25 👤 用過第三輪（[2026-10-24-itinerary-tab-round3-design.md](2026-10-24-itinerary-tab-round3-design.md)）後的回饋，和 Claude 討論後整理（草圖在 `.superpowers/brainstorm/`，不進 git）。這份接在第三輪後面：沒提到的照舊，衝突的地方以這份為準。
 > 標「Claude 決定」的是 👤 沒有明講、由 Claude 先定的地方，👤 看過可以推翻。
 
