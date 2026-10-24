@@ -1781,12 +1781,6 @@ dl {
   padding: 0 0 0 8px;
 }
 
-.gap-lunch .tl-gap-button,
-.gap-dinner .tl-gap-button {
-  border-color: #f0b37e;
-  color: #9a4c00;
-}
-
 .tl-gap-actions {
   display: flex;
   flex-wrap: wrap;

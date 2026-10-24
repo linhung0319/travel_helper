@@ -309,23 +309,11 @@ test('航班：第一天從較晚那班的抵達＋出關時間開始；最後�
   assert.ok(d12b.warnings.some((w) => w.code === 'flight-late'));
 });
 
-test('空檔：午餐（未排）、晚餐（未排，不含晚餐的晚上）、住宿（未排）', () => {
+test('空檔：只有住宿（未排）；午餐、晚餐不產生空檔', () => {
   const d = plan(build([visit('a', { stay: 120 }), visit('b', { stay: 120 })], { meals: 'breakfast' }), fake(BASE));
-  const lunch = d.gaps.find((g) => g.kind === 'lunch');
-  assert.equal(lunch?.label, '午餐（未排）');
-  assert.deepEqual([lunch?.afterItemId, lunch?.beforeItemId], [d.entries[1].itemId, d.entries[2].itemId]);
-  assert.ok(d.gaps.some((g) => g.kind === 'dinner' && g.label === '晚餐（未排）'));
-  const withLunch = plan(build([visit('a', { stay: 120 }), visit('r'), visit('b')]), fake(BASE));
-  assert.ok(!withLunch.gaps.some((g) => g.kind === 'lunch' || g.kind === 'dinner'));
+  assert.ok(!d.gaps.some((g) => (g.kind as string) === 'lunch' || (g.kind as string) === 'dinner'));
   const noLodging = plan(build([visit('a')], { lodging: null }), fake(BASE));
   assert.ok(noLodging.gaps.some((g) => g.kind === 'lodging' && g.label === '住宿（未排）'));
-});
-
-test('空檔：分組時每一組都吃了午餐才算有排', () => {
-  const both = plan(build([visit('a', { stay: 120 }), splitItem([visit('r')], [visit('r')], { place: 'b', time: '13:30' })]), fake(BASE));
-  assert.ok(!both.gaps.some((g) => g.kind === 'lunch'));
-  const one = plan(build([visit('a', { stay: 120 }), splitItem([visit('r')], [visit('c')], { place: 'b', time: '13:30' })]), fake(BASE));
-  assert.ok(one.gaps.some((g) => g.kind === 'lunch'));
 });
 
 test('自由時間：留在原地或到指定地點，算進 freeMinutes', () => {
@@ -376,4 +364,65 @@ test('緩衝：同一個點連續兩項（沒有移動）不加', () => {
   const d = planItinerary(build([visit('a', { stay: 30 }), visit('a', { stay: 30 })]), fake(BASE)).days.find((x) => x.date === D)!;
   assert.equal(d.entries[2].travel?.bufferMinutes ?? 0, 0);
   assert.equal(d.entries[2].arrive, d.entries[1].end);
+});
+
+test('沒排餐不產生午餐、晚餐空檔', () => {
+  const d = plan(build([visit('a', { stay: 120 }), visit('b', { stay: 240 })], { meals: 'breakfast' }), fake(BASE));
+  assert.ok(d.gaps.every((g) => g.kind !== ('lunch' as string) && g.kind !== ('dinner' as string)));
+  assert.ok(!d.warnings.some((w) => w.code.includes('meal')));
+});
+
+test('mealTag 只反映使用者標的', () => {
+  const none = plan(build([visit('a', { stay: 120 }), visit('r')]), fake(BASE));
+  assert.equal(none.entries[2].meal, 'lunch'); // 引擎猜的照舊
+  assert.equal(none.entries[2].mealTag ?? null, null);
+  const tagged = plan(build([visit('a', { stay: 120 }), visit('r', { meal: 'lunch' })]), fake(BASE));
+  assert.equal(tagged.entries[2].mealTag, 'lunch');
+});
+
+test('只填緩衝、方式自動', () => {
+  const base = planItinerary(build([visit('a'), visit('b')]), fake(BASE)).days.find((x) => x.date === D)!.entries[2].travel!;
+  const zero = planItinerary(build([visit('a'), visit('b', { travel: { bufferMinutes: 0 } })]), fake(BASE)).days.find((x) => x.date === D)!.entries[2].travel!;
+  assert.equal(zero.mode, base.mode);
+  assert.equal(zero.bufferMinutes, 0);
+  const b25 = planItinerary(build([visit('a'), visit('b', { travel: { bufferMinutes: 25 } })]), fake(BASE)).days.find((x) => x.date === D)!.entries[2].travel!;
+  assert.equal(b25.mode, base.mode);
+  assert.equal(b25.bufferMinutes, 25);
+});
+
+test('只填分鐘、方式自動：用填的分鐘，標記為指定', () => {
+  const l = plan(build([visit('a'), visit('b', { travel: { minutes: 33 } })]), fake(BASE)).entries[2].travel!;
+  assert.equal(l.minutes, 33);
+  assert.equal(l.specified, true);
+  assert.equal(l.basis, '指定');
+});
+
+test('回住宿那段可以指定', () => {
+  const it = build([visit('a')]);
+  it.days.find((d) => d.date === D)!.returnTravel = { mode: 'taxi', minutes: 30 };
+  const e = plan(it, fake(BASE)).entries.find((x) => x.kind === 'lodging')!;
+  assert.equal(e.travel?.mode, 'taxi');
+  assert.equal(e.travel?.minutes, 30);
+  assert.equal(e.travel?.specified, true);
+});
+
+test('去機場那段可以指定', () => {
+  const kix = station('kansai-airport', at(0, 500));
+  const k = lodging('k', at(0, 900));
+  let it = createItinerary();
+  it = setLodging(it, '2027-02-12', 'k');
+  const dep = it.days[11].items.find((i) => i.type === 'flight')!;
+  if (dep.type === 'flight') dep.travel = { minutes: 90 };
+  const e = planItinerary(it, fake([kix, k])).days[11].entries.find((x) => x.kind === 'flight')!;
+  assert.equal(e.travel?.minutes, 90);
+});
+
+test('舊格式的行程結果不變', async () => {
+  const { realData } = await import('./fixtures.ts');
+  const { TOBA_DATE, tobaDay } = await import('./toba-day.ts');
+  type E = { kind: string; start: string; travel?: { minutes: number } | null; groups?: { entries: E[] }[] };
+  const f = (es: E[]): unknown[] => es.map((e) => [e.kind, e.start, e.travel?.minutes ?? null, ...(e.groups ? [e.groups.map((g) => f(g.entries))] : [])]);
+  const run = (cfg: ConfigOverride) => f(planItinerary(tobaDay(), realData(), cfg).days.find((x) => x.date === TOBA_DATE)!.entries as E[]);
+  assert.deepEqual(run({ buffer: { whole: 0, group: 0 } }), [["start","09:30",null],["visit","09:38",8],["visit","12:00",8],["meet","15:45",null,[[["visit","13:23",8],["meet","14:49",11]],[["visit","13:20",5],["visit","13:59",9],["meet","15:08",9]]]],["visit","15:55",10],["lodging","16:39",14]]);
+  assert.deepEqual(run({}), [["start","09:30",null],["visit","09:48",8],["visit","12:06",8],["meet","15:45",null,[[["visit","13:34",8],["meet","15:05",11]],[["visit","13:31",5],["visit","14:15",9],["meet","15:29",9]]]],["visit","16:05",10],["lodging","16:59",14]]);
 });

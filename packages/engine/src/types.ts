@@ -59,10 +59,17 @@ export type LodgingMeals = 'dinner+breakfast' | 'breakfast' | 'none';
 export const TRAVEL_MODES = ['walk', 'train', 'bus', 'ferry', 'taxi', 'charter', 'car', 'other'] as const;
 export type TravelMode = (typeof TRAVEL_MODES)[number];
 
-/** 使用者指定的交通（從上一站到這一項）；minutes 是 null 時引擎照規則算時間 */
+/** 用餐的吃法：全員一起、分開吃 */
+export type DiningStyle = 'together' | 'separate';
+
+/**
+ * 使用者指定的交通（從上一站到這一項）。
+ * mode 沒寫：方式自動；minutes 是 null：時間照規則算；bufferMinutes 是 null：緩衝用預設
+ */
 export interface TravelSpec {
-  mode: TravelMode;
+  mode?: TravelMode | null;
   minutes?: number | null;
+  bufferMinutes?: number | null;
   note?: string | null;
 }
 
@@ -90,6 +97,8 @@ export interface VisitItem extends ItemBase {
   start?: TimeString | null;
   /** null：餐廳在午餐、晚餐時段內自動算那一餐 */
   meal?: MealKind | null;
+  /** 吃法（全員一起、分開吃）；null：沒標 */
+  dining?: DiningStyle | null;
   travel?: TravelSpec | null;
   /** 誰提的（建議的作者，member id） */
   proposedBy?: string[];
@@ -107,6 +116,8 @@ export interface FlightItem extends ItemBase {
   flightNo?: string | null;
   /** 這班的人數；null：不知道 */
   people?: number | null;
+  /** 去機場那段（出發航班用）；null：引擎照規則算 */
+  travel?: TravelSpec | null;
 }
 
 /** 自由時間、休息；place 是 null 時留在上一站 */
@@ -144,6 +155,8 @@ export interface ItineraryDay {
   /** 這天從哪裡出發；null：前一晚的住宿 */
   start?: string | null;
   note?: string | null;
+  /** 回住宿那段；null：引擎照規則算 */
+  returnTravel?: TravelSpec | null;
   items: ItineraryItem[];
 }
 
@@ -229,18 +242,21 @@ export interface TimelineEntry {
   end: TimeString;
   /** 到了之後等的分鐘（等開門、等指定時間） */
   waitMinutes: number;
+  /** 引擎猜的那一餐（內部用：休息、分組用餐的判斷） */
   meal?: MealKind | null;
+  /** 使用者標的那一餐（畫面用）；項目的 meal 沒填就是 null */
+  mealTag?: MealKind | null;
   groupId?: string | null;
   /** split 的各組 */
   groups?: { id: string; name: string; entries: TimelineEntry[] }[];
 }
 
-export type GapKind = 'lunch' | 'dinner' | 'lodging' | 'idle';
+export type GapKind = 'lodging' | 'idle';
 
 export interface Gap {
   kind: GapKind;
   date: DateString;
-  /** 給 UI 的標籤，例如「午餐（未排）」 */
+  /** 給 UI 的標籤，例如「住宿（未排）」 */
   label: string;
   from: TimeString | null;
   to: TimeString | null;

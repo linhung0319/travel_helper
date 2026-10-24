@@ -16,7 +16,11 @@ import {
   removeItem,
   removeOption,
   selectOption,
+  getLegTravel,
+  setDining,
+  setLegTravel,
   setLodging,
+  setMeal,
   setStart,
   setStay,
   setTravel,
@@ -226,4 +230,51 @@ test('moveItemTo：移進分組、移出分組；分組不能放進分組；不�
   const last = '2027-02-13';
   assert.throws(() => moveItemTo(it, b, last, 2), ItineraryError);
   assert.deepEqual(ids(moveItemTo(it, b, last, 0), last)?.[0], b);
+});
+
+test('setLegTravel／getLegTravel：項目的 travel 和某天回住宿的 returnTravel', () => {
+  const { it, ids: [a] } = threeItems();
+  const one = setLegTravel(it, { itemId: a }, { bufferMinutes: 0 });
+  assert.deepEqual(getLegTravel(one, { itemId: a }), { bufferMinutes: 0 });
+  assert.equal(getLegTravel(it, { itemId: a }), null);
+  const cleared = setLegTravel(one, { itemId: a }, { bufferMinutes: null });
+  assert.equal((findItem(cleared, a)?.item as VisitItem).travel, null);
+  const ret = setLegTravel(it, { lodging: D }, { mode: 'walk' });
+  assert.deepEqual(ret.days.find((d) => d.date === D)?.returnTravel, { mode: 'walk' });
+  assert.deepEqual(getLegTravel(ret, { lodging: D }), { mode: 'walk' });
+  assert.equal(it.days.find((d) => d.date === D)?.returnTravel, undefined); // 不改原本的
+});
+
+test('setLegTravel：航班可以；split 項目本身丟錯', () => {
+  const it = createItinerary();
+  const dep = it.days[11].items.find((i) => i.type === 'flight')!;
+  assert.deepEqual(getLegTravel(setLegTravel(it, { itemId: dep.id }, { minutes: 90 }), { itemId: dep.id }), { minutes: 90 });
+  const sp = addItem(it, D, {
+    type: 'split',
+    groups: [
+      { id: 'g1', name: '一', size: 7, elders: 5, kids: 0, items: [{ id: '', ...visit('a'), selected: 0 }] },
+      { id: 'g2', name: '二', size: 8, elders: 0, kids: 4, items: [] },
+    ],
+    meet: { place: 'b', time: '12:00' },
+  });
+  assert.throws(() => setLegTravel(sp.itinerary, { itemId: sp.itemId }, { minutes: 5 }), ItineraryError);
+  assert.throws(() => setLegTravel(sp.itinerary, { itemId: 'nope' }, { minutes: 5 }), ItineraryError);
+  const inner = (findItem(sp.itinerary, sp.itemId)?.item as { groups: { items: { id: string }[] }[] }).groups[0].items[0].id;
+  assert.deepEqual(getLegTravel(setLegTravel(sp.itinerary, { itemId: inner }, { minutes: 5 }), { itemId: inner }), { minutes: 5 });
+});
+
+test('setMeal、setDining 改到對的項目；validateItinerary 接受新欄位', () => {
+  const { it, ids: [a, b] } = threeItems();
+  const m = setDining(setMeal(it, a, 'dinner'), b, 'separate');
+  assert.equal((findItem(m, a)?.item as VisitItem).meal, 'dinner');
+  assert.equal((findItem(m, a)?.item as VisitItem).dining ?? null, null);
+  assert.equal((findItem(m, b)?.item as VisitItem).dining, 'separate');
+  assert.equal((findItem(setMeal(m, a, null), a)?.item as VisitItem).meal, null);
+  assert.equal((findItem(setDining(m, b, null), b)?.item as VisitItem).dining, null);
+  assert.deepEqual(validateItinerary(setLegTravel(m, { lodging: D }, { bufferMinutes: 5 })), []);
+  const bad = JSON.parse(JSON.stringify(m)) as Itinerary;
+  (bad.days.find((d) => d.date === D)!.items[0] as VisitItem).dining = 'x' as never;
+  assert.ok(validateItinerary(bad).some((e) => e.includes('dining')));
+  const bad2 = setLegTravel(it, { itemId: a }, { bufferMinutes: -1 });
+  assert.ok(validateItinerary(bad2).some((e) => e.includes('bufferMinutes')));
 });

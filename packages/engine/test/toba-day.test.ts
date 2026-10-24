@@ -36,9 +36,9 @@ test('鳥羽一天：時間軸從戶田家出發、分組會合、回到戶田�
   assert.equal(day.entries[3].start, '15:45');
 });
 
-test('鳥羽一天：空檔（不含晚餐的晚上 → 晚餐未排）', () => {
+test('鳥羽一天：沒有空檔（不再產生晚餐未排）', () => {
   assert.ok(day);
-  assert.deepEqual(day.gaps.map((g) => [g.kind, g.label]), [['dinner', '晚餐（未排）']]);
+  assert.deepEqual(day.gaps.map((g) => [g.kind, g.label]), []);
 });
 
 test('鳥羽一天：警告（全員點心坐不下、計程車台數）', () => {

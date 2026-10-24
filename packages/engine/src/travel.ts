@@ -7,7 +7,7 @@ import type { EngineData, PlaceRecord, RouteTimetable } from './data.ts';
 import { estimateWalk, haversineMeters, isLonLat, minutesForMeters, nearestStations } from './geo.ts';
 import { anyTrainThatDay, earliestTrain, routeRides, type RouteRide, type TrainRide } from './transit.ts';
 import { fromMinutes, toMinutes } from './time.ts';
-import type { DateString, EngineWarning, Leg, LonLat, PartyProfile, TaxiInfo, TransitRide, TravelSpec } from './types.ts';
+import type { DateString, EngineWarning, Leg, LonLat, PartyProfile, TaxiInfo, TransitRide, TravelMode, TravelSpec } from './types.ts';
 
 export interface Endpoint {
   id: string | null;
@@ -267,7 +267,14 @@ export function planLeg(a: Endpoint, b: Endpoint, ctx: LegContext, spec?: Travel
   const factor = walkFactor(party, ctx.whole, cfg);
   const walk = walkMinutes(a, b, factor, ctx.data, cfg);
 
-  if (spec) return { leg: specifiedLeg(a, b, ctx, spec, walk?.minutes ?? null, factor, warnings), warnings };
+  if (spec?.mode) return { leg: specifiedLeg(a, b, ctx, { ...spec, mode: spec.mode }, walk?.minutes ?? null, factor, warnings), warnings };
+  // 只填分鐘（或緩衝）：方式自動，時間用填的
+  if (spec?.minutes != null) {
+    const auto = planLeg(a, b, ctx, null);
+    const minutes = round(spec.minutes);
+    const l = auto.leg;
+    return { leg: { ...l, minutes, arrive: fromMinutes(ctx.depart + minutes), specified: true, basis: '指定' }, warnings: auto.warnings };
+  }
 
   if ((a.id && a.id === b.id) || (a.id == null && b.id == null && a.coords && b.coords && haversineMeters(a.coords, b.coords) < 1)) {
     return { leg: leg({ mode: 'none', minutes: 0, basis: '同一個地點' }, a, b, ctx.depart), warnings };
@@ -338,7 +345,7 @@ export function planLeg(a: Endpoint, b: Endpoint, ctx: LegContext, spec?: Travel
   return { leg: leg({ mode: 'taxi', minutes: t.minutes, taxi: t.taxi, basis: `計程車估算（${road != null ? 'osrm' : '直線'}，${cfg.taxi.kmPerHour} km/h）` }, a, b, ctx.depart), warnings };
 }
 
-function specifiedLeg(a: Endpoint, b: Endpoint, ctx: LegContext, spec: TravelSpec, walk: number | null, factor: number, warnings: LegWarning[]): Leg {
+function specifiedLeg(a: Endpoint, b: Endpoint, ctx: LegContext, spec: TravelSpec & { mode: TravelMode }, walk: number | null, factor: number, warnings: LegWarning[]): Leg {
   const base = { specified: true };
   if (spec.minutes != null) {
     return leg({ ...base, mode: spec.mode, minutes: spec.minutes, walkMinutes: spec.mode === 'walk' ? spec.minutes : 0, basis: '指定' }, a, b, ctx.depart);

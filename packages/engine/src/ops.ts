@@ -5,12 +5,15 @@ import { DEFAULT_CONFIG } from './config.ts';
 import { dateRange, isDate, isTime } from './time.ts';
 import {
   ITINERARY_FORMAT,
+  TRAVEL_MODES,
   type DateString,
+  type DiningStyle,
   type FlightItem,
   type GroupItem,
   type Itinerary,
   type ItineraryItem,
   type LodgingMeals,
+  type MealKind,
   type PartyProfile,
   type TimeString,
   type TravelSpec,
@@ -285,6 +288,51 @@ export function setTravel(it: Itinerary, itemId: string, travel: TravelSpec | nu
   return next;
 }
 
+/** 交通設定的對象：某個項目（從上一站到它），或某天回住宿那段 */
+export type LegTarget = { itemId: string } | { lodging: DateString };
+
+/** 欄位全空的交通設定視為沒設定 */
+const isEmptySpec = (s: TravelSpec) => s.mode == null && s.minutes == null && s.bufferMinutes == null && s.note == null;
+
+/** 設定某一段交通（方式、分鐘、緩衝可以只填一部分）；spec 是 null 或欄位全空：清掉。split 項目本身不能設 */
+export function setLegTravel(it: Itinerary, to: LegTarget, spec: TravelSpec | null): Itinerary {
+  const next = clone(it);
+  const value = spec && !isEmptySpec(spec) ? clone(spec) : null;
+  if ('lodging' in to) {
+    next.days[dayIndexOf(next, to.lodging)].returnTravel = value;
+    return next;
+  }
+  const { item } = mustFind(next, to.itemId);
+  if (item.type === 'split') throw new ItineraryError('分組項目不能指定交通；請設定組裡的項目');
+  item.travel = value;
+  return next;
+}
+
+/** 讀某一段交通的設定；沒設定是 null */
+export function getLegTravel(it: Itinerary, to: LegTarget): TravelSpec | null {
+  if ('lodging' in to) return it.days[dayIndexOf(it, to.lodging)].returnTravel ?? null;
+  const { item } = mustFind(it, to.itemId);
+  return item.type === 'split' ? null : (item.travel ?? null);
+}
+
+/** 標這個地點是哪一餐（null：不標） */
+export function setMeal(it: Itinerary, itemId: string, meal: MealKind | null): Itinerary {
+  const next = clone(it);
+  const { item } = mustFind(next, itemId);
+  if (item.type !== 'visit') throw new ItineraryError('只有 visit 可以標用餐');
+  item.meal = meal;
+  return next;
+}
+
+/** 標吃法：全員一起或分開吃（null：不標） */
+export function setDining(it: Itinerary, itemId: string, dining: DiningStyle | null): Itinerary {
+  const next = clone(it);
+  const { item } = mustFind(next, itemId);
+  if (item.type !== 'visit') throw new ItineraryError('只有 visit 可以標吃法');
+  item.dining = dining;
+  return next;
+}
+
 /** 設定這晚的住宿與方案 */
 export function setLodging(it: Itinerary, date: DateString, lodging: string | null, meals: LodgingMeals | null = null): Itinerary {
   const next = clone(it);
@@ -312,6 +360,12 @@ export function validateItinerary(it: unknown): string[] {
     else if (ids.has(id)) errs.push(`${where}：id ${id} 重複`);
     else ids.add(id);
   };
+  const checkTravel = (t: TravelSpec | null | undefined, where: string) => {
+    if (t == null) return;
+    if (t.mode != null && !(TRAVEL_MODES as readonly string[]).includes(t.mode)) errs.push(`${where}：travel.mode 不認得`);
+    if (t.minutes != null && !(Number.isFinite(t.minutes) && t.minutes >= 0)) errs.push(`${where}：travel.minutes 要是 0 以上`);
+    if (t.bufferMinutes != null && !(Number.isFinite(t.bufferMinutes) && t.bufferMinutes >= 0)) errs.push(`${where}：travel.bufferMinutes 要是 0 以上`);
+  };
   const checkItem = (i: ItineraryItem | GroupItem, where: string, inGroup: boolean) => {
     checkId(i?.id, where);
     switch (i?.type) {
@@ -320,16 +374,20 @@ export function validateItinerary(it: unknown): string[] {
         else if (!Number.isInteger(i.selected) || i.selected < 0 || i.selected >= i.options.length) errs.push(`${where}：selected 超出範圍`);
         else if (i.options.some((o) => typeof o.place !== 'string' || !o.place)) errs.push(`${where}：選項缺 place`);
         if (i.start != null && !isTime(i.start)) errs.push(`${where}：start 要是 HH:MM`);
+        if (i.dining != null && i.dining !== 'together' && i.dining !== 'separate') errs.push(`${where}：dining 要是 together 或 separate`);
+        checkTravel(i.travel, where);
         break;
       case 'free':
         if (!(Number.isFinite(i.minutes) && i.minutes >= 0)) errs.push(`${where}：minutes 要是 0 以上`);
         if (i.start != null && !isTime(i.start)) errs.push(`${where}：start 要是 HH:MM`);
+        checkTravel(i.travel, where);
         break;
       default: {
         const it2 = i as ItineraryItem;
         if (inGroup) errs.push(`${where}：分組裡只能有 visit、free`);
         else if (it2?.type === 'flight') {
           if (!isTime(it2.depart) || !isTime(it2.arrive)) errs.push(`${where}：航班時間要是 HH:MM`);
+          checkTravel(it2.travel, where);
         } else if (it2?.type === 'split') {
           if (!it2.meet || typeof it2.meet.place !== 'string' || !isTime(it2.meet.time)) errs.push(`${where}：meet 要有 place、time`);
           if (!Array.isArray(it2.groups) || it2.groups.length < 2) errs.push(`${where}：至少兩組`);
@@ -344,6 +402,7 @@ export function validateItinerary(it: unknown): string[] {
     if (!isDate(d?.date)) errs.push(`${where}：date 要是 YYYY-MM-DD`);
     else if (d.date <= prev) errs.push(`${where}：日期要依序、不重複`);
     else prev = d.date;
+    checkTravel(d?.returnTravel, where);
     if (!Array.isArray(d?.items)) errs.push(`${where}：items 要是陣列`);
     else d.items.forEach((i, k) => checkItem(i, `${where}第 ${k + 1} 項`, false));
   });

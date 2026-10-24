@@ -11,7 +11,7 @@ import { nearbyPlaces } from '../src/lib/nearby.ts';
 import { placeVisual, wallPlaces } from '../src/lib/visual.ts';
 import { dayStops, placeDays } from '../src/lib/itinerary.ts';
 import { itin } from './helpers.ts';
-import { dayBar, daySummary, formatStay, stopMarks, timelineRows } from '../src/lib/planView.ts';
+import { dayBar, daySummary, formatStay, stopMarks } from '../src/lib/planView.ts';
 import { explorePlaces, typeCounts } from '../src/lib/explore.ts';
 import type { DayPlan, TimelineEntry } from '@travel-helper/engine';
 import type { Area, Place, StationTimetable } from '../src/data/types.ts';
@@ -281,17 +281,6 @@ const leg = (depart: string, minutes: number, buffer = 0): NonNullable<TimelineE
   rides: [],
   specified: false,
   basis: '',
-});
-
-test('timelineRows：沒排的晚餐在回住宿之後（時間不倒流）', () => {
-  const day = {
-    entries: [entry('start', 'h'), entry('visit', 'a', { start: '10:00', end: '15:40' }), entry('lodging', 'h', { itemId: null, arrive: '16:02', start: '16:02', end: '16:02' })],
-    gaps: [{ kind: 'dinner', date: '2027-02-05', label: '晚餐（未排）', from: '17:30', to: '19:30', afterItemId: 'a', beforeItemId: null }],
-  } as unknown as DayPlan;
-  const rows = timelineRows(day);
-  const lodging = rows.findIndex((r) => r.kind === 'entry' && r.entry.kind === 'lodging');
-  const dinner = rows.findIndex((r) => r.kind === 'gap');
-  assert.ok(lodging < dinner, `回住宿（${lodging}）要在晚餐（${dinner}）前面`);
 });
 
 test('dayBar：交通、停留、等待各一段；分組的時段每組一條 lane', () => {

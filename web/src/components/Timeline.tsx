@@ -386,8 +386,6 @@ function StayChip({ itemId, minutes }: { itemId: string | null; minutes: number 
 
 
 const GAP_ACTIONS: Record<Gap['kind'], { icon: string; look: string; types: ('restaurant' | 'spot' | 'lodging')[]; contexts?: ('lunch' | 'dinner')[] }> = {
-  lunch: { icon: '🍴', look: '看附近可以吃午餐的', types: ['restaurant'], contexts: ['lunch'] },
-  dinner: { icon: '🍴', look: '看附近可以吃晚餐的', types: ['restaurant'], contexts: ['dinner'] },
   lodging: { icon: '🏨', look: '看住宿', types: ['lodging'] },
   idle: { icon: '⏳', look: '看附近的景點', types: ['spot'] },
 };

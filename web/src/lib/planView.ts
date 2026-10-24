@@ -108,16 +108,11 @@ export function timelineRows(day: DayPlan): TimelineRow[] {
   const splitIds = new Set(day.entries.filter((e) => e.groups).map((e) => e.itemId));
   const waits = day.gaps.filter((g) => g.beforeItemId && splitIds.has(g.beforeItemId));
   waits.forEach((g) => used.add(g));
-  // 沒排的晚餐在回住宿之後才開始時，排在住宿那一列後面（時間不倒流）
-  const lodging = day.entries.find((e) => e.kind === 'lodging');
-  const afterLodging = day.gaps.filter((g) => g.kind === 'dinner' && lodging && g.from && g.from >= lodging.arrive);
-  afterLodging.forEach((g) => used.add(g));
   for (const e of day.entries) {
     // 住宿是最後一列：「住宿（未排）」這類空檔放在它前面
     if (e.kind === 'lodging') pushGaps(null);
     const before = e.groups ? waits.filter((g) => g.beforeItemId === e.itemId) : [];
     rows.push(before.length ? { kind: 'entry', entry: e, gapsBeforeMeet: before } : { kind: 'entry', entry: e });
-    if (e.kind === 'lodging') afterLodging.forEach((g) => rows.push({ kind: 'gap', gap: g }));
     if (e.kind === 'start') continue;
     if (e.itemId) pushGaps(e.itemId);
   }

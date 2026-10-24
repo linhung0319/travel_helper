@@ -82,7 +82,8 @@ function travelTo(target: Endpoint, st: State, ctx: RunContext, spec: VisitItem[
   for (const w of warnings) warn(ctx, itemId ? { ...w, itemId } : w);
   if (leg.mode === 'ferry') ctx.tiring.value = true;
   // 有移動才加緩衝（同一個點、找不到交通方式不加）
-  const buffer = leg.mode !== 'none' && leg.minutes > 0 ? (ctx.whole ? ctx.cfg.buffer.whole : ctx.cfg.buffer.group) : 0;
+  const preset = ctx.whole ? ctx.cfg.buffer.whole : ctx.cfg.buffer.group;
+  const buffer = leg.mode !== 'none' && leg.minutes > 0 ? Math.max(0, spec?.bufferMinutes ?? preset) : 0;
   return buffer ? { ...leg, bufferMinutes: buffer, arrive: fromMinutes(toMinutes(leg.arrive) + buffer) } : leg;
 }
 
@@ -208,6 +209,7 @@ function runVisit(item: VisitItem, st: State, ctx: RunContext): TimelineEntry {
     end: fromMinutes(end),
     waitMinutes: start - arrive,
     meal,
+    mealTag: item.meal ?? null,
     groupId: ctx.groupId,
   };
 }
@@ -253,7 +255,7 @@ function runFlight(item: FlightItem, st: State, ctx: RunContext): TimelineEntry 
     st.loc = target;
     return { kind: 'flight', itemId: item.id, placeId: item.airport, travel: null, arrive: item.arrive, start: item.arrive, end: fromMinutes(end), waitMinutes: 0 };
   }
-  const leg = travelTo(target, st, ctx, null, item.id);
+  const leg = travelTo(target, st, ctx, item.travel, item.id);
   const arrive = leg ? toMinutes(leg.arrive) : st.time;
   const deadline = toMinutes(item.depart) - ctx.cfg.flight.departAtAirportBefore;
   if (arrive > deadline) {
@@ -328,12 +330,6 @@ function allEntries(entries: TimelineEntry[]): TimelineEntry[] {
   return entries.flatMap((e) => [e, ...(e.groups?.flatMap((g) => g.entries) ?? [])]);
 }
 
-/** 這一餐有沒有排：全員的項目有，或每一組都有 */
-function hasMeal(entries: TimelineEntry[], meal: MealKind): boolean {
-  if (entries.some((e) => e.meal === meal)) return true;
-  return entries.some((e) => e.groups?.length && e.groups.every((g) => g.entries.some((x) => x.meal === meal)));
-}
-
 export function planDay(it: Itinerary, index: number, data: EngineData, cfg: EngineConfig): DayPlan {
   const day = it.days[index];
   const isFirst = day.date === cfg.trip.from;
@@ -355,7 +351,7 @@ export function planDay(it: Itinerary, index: number, data: EngineData, cfg: Eng
   if (day.lodging && !isLast) {
     placeChecks(data.getPlace(day.lodging), day.lodging, undefined, ctx);
     const target = endpointOf(day.lodging, data);
-    const leg = travelTo(target, st, ctx, null, undefined);
+    const leg = travelTo(target, st, ctx, day.returnTravel, undefined);
     const arrive = leg ? toMinutes(leg.arrive) : st.time;
     returnTime = fromMinutes(arrive);
     entries.push({ kind: 'lodging', itemId: null, placeId: day.lodging, travel: leg, arrive: returnTime, start: returnTime, end: returnTime, waitMinutes: 0 });
@@ -415,7 +411,7 @@ export function planDay(it: Itinerary, index: number, data: EngineData, cfg: Eng
   return {
     date: day.date,
     entries,
-    gaps: findGaps(day, entries, meals, isLast, cfg),
+    gaps: findGaps(day, entries, isLast, cfg),
     warnings: [...warnings],
     stats: { walkMinutes: walk, mainSpots, returnTime, tiring: tiring.value, freeMinutes },
   };
@@ -423,45 +419,9 @@ export function planDay(it: Itinerary, index: number, data: EngineData, cfg: Eng
 
 // --- 空檔 -------------------------------------------------------------------
 
-function findGaps(day: Itinerary['days'][number], entries: TimelineEntry[], meals: string | null, isLast: boolean, cfg: EngineConfig): Gap[] {
+function findGaps(day: Itinerary['days'][number], entries: TimelineEntry[], isLast: boolean, cfg: EngineConfig): Gap[] {
   const gaps: Gap[] = [];
   const timed = entries.filter((e) => e.kind !== 'start');
-  const first = entries.length ? toMinutes(entries[0].start) : null;
-  const last = entries.length ? toMinutes(entries[entries.length - 1].end) : null;
-  const flightOverlaps = ([a, b]: [string, string]) =>
-    day.items.some((i) => i.type === 'flight' && toMinutes(i.depart) < toMinutes(b) && toMinutes(i.arrive) > toMinutes(a));
-
-  /** 插在哪裡：第一個結束時間 ≥ t 的項目之後 */
-  const position = (t: number): Pick<Gap, 'afterItemId' | 'beforeItemId' | 'from'> => {
-    const i = timed.findIndex((e) => toMinutes(e.end) >= t && e.kind !== 'lodging');
-    const prev = i >= 0 ? timed[i] : timed.filter((e) => e.kind !== 'lodging').pop();
-    const next = prev ? timed[timed.indexOf(prev) + 1] : timed[0];
-    return {
-      afterItemId: prev?.itemId ?? null,
-      beforeItemId: next?.itemId ?? null,
-      from: prev ? fromMinutes(Math.max(toMinutes(prev.end), t)) : fromMinutes(t),
-    };
-  };
-
-  const [ls, le] = cfg.meals.lunch.map(toMinutes);
-  if (first != null && last != null && first < le && last > ls && !hasMeal(entries, 'lunch') && !flightOverlaps(cfg.meals.lunch) && timed.length) {
-    gaps.push({ kind: 'lunch', date: day.date, label: '午餐（未排）', to: cfg.meals.lunch[1], ...position(ls) });
-  }
-  const dinnerAtLodging = meals === 'dinner+breakfast';
-  if (!isLast && !dinnerAtLodging && !hasMeal(entries, 'dinner') && timed.length) {
-    const ds = toMinutes(cfg.meals.dinner[0]);
-    const nonLodging = timed.filter((e) => e.kind !== 'lodging');
-    const prev = nonLodging[nonLodging.length - 1];
-    gaps.push({
-      kind: 'dinner',
-      date: day.date,
-      label: '晚餐（未排）',
-      from: fromMinutes(Math.max(prev ? toMinutes(prev.end) : ds, ds)),
-      to: cfg.meals.dinner[1],
-      afterItemId: prev?.itemId ?? null,
-      beforeItemId: null,
-    });
-  }
   if (!isLast && !day.lodging) {
     gaps.push({ kind: 'lodging', date: day.date, label: '住宿（未排）', from: null, to: null, afterItemId: timed[timed.length - 1]?.itemId ?? null, beforeItemId: null });
   }

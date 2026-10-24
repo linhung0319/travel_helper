@@ -307,7 +307,7 @@ travel_helper/
 - **只有一份確定的行程**（2026-10-21）：12 天，一開始就放好航班當固定項目；不做方案。家人的建議、投票、使用者加的點不放在行程裡，另外存在資料庫（[architecture.md](architecture.md) §3.6、[interaction-design.md](interaction-design.md) §6）；「整趟」的建議取代原本草稿的 `wishlist`。
 - **時間一律是日本時間**：日期寫 `YYYY-MM-DD`、時間寫 `HH:MM` 字串（過了午夜寫 `25:00`），程式不轉成 `Date`、不做時區換算（architecture §3.8）。
 - 型別在 `packages/engine/src/types.ts`，操作、檢查在 `packages/engine`（T15、T16 共用）。存進資料庫的只有下面這份 JSON；交通、抵達和出發時間、空檔、警告都是引擎算出來的，**不存**。
-- 一開始的行程用 `createItinerary()` 產生；改行程一律用引擎的操作（`addItem`、`removeItem`、`moveItemToDay`、`moveItem`、`setStay`、`selectOption`、`addOption`、`removeOption`、`setStart`、`setTravel`、`setLodging`），不要直接改 JSON；收到外部的 JSON（PUT、匯入）先跑 `validateItinerary()`。
+- 一開始的行程用 `createItinerary()` 產生；改行程一律用引擎的操作（`addItem`、`removeItem`、`moveItemToDay`、`moveItem`、`setStay`、`selectOption`、`addOption`、`removeOption`、`setStart`、`setTravel`、`setLegTravel`、`setMeal`、`setDining`、`setLodging`），不要直接改 JSON；收到外部的 JSON（PUT、匯入）先跑 `validateItinerary()`。
 
 ```jsonc
 {
@@ -320,6 +320,7 @@ travel_helper/
       "lodging": "toba-todaya",      // 這晚住哪裡；null＝還沒排 → 空檔「住宿（未排）」；最後一天是 null
       "lodgingMeals": null,          // 這晚的方案：dinner+breakfast | breakfast | none；null＝照住宿資料的 meals（meals 是 "varies" 的要填）
       "start": null,                 // 這天從哪裡出發；null＝前一晚的住宿
+      "returnTravel": null,          // 回住宿那段的交通設定（格式同 visit 的 travel）；省略或 null＝引擎依規則選
       "note": null,
       "items": [ /* 項目，依順序 */ ]
     }
@@ -339,9 +340,11 @@ travel_helper/
   ],
   "selected": 0,
   "start": null,         // 指定開始時間（訂位、表演、船班）；null＝到了就開始，沒開門會等到開門。到得比指定時間晚 → 衝突
-  "meal": null,          // breakfast | lunch | dinner | snack；null＝餐廳在午餐、晚餐時段內自動算那一餐，其他時間算 snack
-  "travel": null,        // 指定從上一站怎麼來：{ "mode": "charter", "minutes": 20, "note": "包車" }；null＝引擎依 §5.4 選
-                         // mode：walk | train | bus | ferry | taxi | charter | car | other；沒填 minutes 時引擎照方式估算
+  "meal": null,          // breakfast | lunch | dinner | snack；使用者標的那一餐，null（或省略）＝不標、畫面不顯示用餐 tag（引擎內部另外猜一餐，只用在休息、分組用餐的判斷）
+  "dining": null,        // together | separate；全員一起吃或分開吃；省略或 null＝不標
+  "travel": null,        // 指定從上一站怎麼來：{ "mode": "charter", "minutes": 20, "bufferMinutes": 5, "note": "包車" }；null＝引擎依 §5.4 選
+                         // 每個欄位都可以省略：mode 沒寫＝方式自動（只改時間或緩衝）；minutes 沒填時引擎照方式估算；bufferMinutes 沒填＝用預設緩衝（全員 10 分、分組 5 分），0＝不留緩衝
+                         // mode：walk | train | bus | ferry | taxi | charter | car | other
   "proposedBy": ["<member id>"],   // 誰提的（建議的作者）
   "addedBy": "<member id>",
   "note": null
@@ -349,7 +352,8 @@ travel_helper/
 
 // 2. flight：固定項目，createItinerary() 放好（2/2 兩班抵達、2/13 兩班出發），不能刪、不能移
 { "id": "f-1", "type": "flight", "direction": "arrive", "airport": "kansai-airport",
-  "depart": "08:20", "arrive": "11:55", "flightNo": null, "people": null, "note": "去程第一批" }
+  "depart": "08:20", "arrive": "11:55", "flightNo": null, "people": null, "note": "去程第一批",
+  "travel": null }       // 出發航班可以指定「去機場那段」的交通（格式同 visit 的 travel）；省略或 null＝引擎依規則選
 
 // 3. split：分組行動。各組從上一站出發，在 meet 會合；之後的項目從會合點、會合時間接著算
 {
@@ -367,8 +371,8 @@ travel_helper/
 
 - **地點 ID** 用字串，不分預設資料或使用者加的點：引擎透過傳進來的 `getPlace` 查。使用者加的點只用座標估算交通，營業時間、團體條件標「未查」；已下架的點照常算，但發警告；查不到的點是錯誤。
 - **引擎的輸出**（`planItinerary(itinerary, data, config)`）：每天一個 `DayPlan`：
-  - `entries`：start（出發）、visit、flight、free、meet（分組，`groups` 是各組的 entries）、lodging（回住宿），各有 `arrive`／`start`／`end`、`waitMinutes`、`meal`，和到這一項的交通 `travel`（方式、出發／抵達、步行與等車分鐘、班次 `rides`、計程車台數和費用 `taxi`、怎麼算的 `basis`）。
-  - `gaps`：`lunch`「午餐（未排）」、`dinner`「晚餐（未排）」（不含晚餐的晚上）、`lodging`「住宿（未排）」、`idle`「空檔 N 分」，附建議插在哪兩個項目之間。
+  - `entries`：start（出發）、visit、flight、free、meet（分組，`groups` 是各組的 entries）、lodging（回住宿），各有 `arrive`／`start`／`end`、`waitMinutes`、`meal`（引擎猜的）、`mealTag`（使用者標的，畫面用），和到這一項的交通 `travel`（方式、出發／抵達、步行與等車分鐘、班次 `rides`、計程車台數和費用 `taxi`、怎麼算的 `basis`）。
+  - `gaps`：`lodging`「住宿（未排）」、`idle`「空檔 N 分」（不再產生午餐、晚餐的空檔），附建議插在哪兩個項目之間。
   - `warnings`：`code`、`level`（error／warning／info）、`itemId`、`groupId`、`message`；`stats`：全員步行累計、主要景點數、回住宿時間、累不累、自由時間。
   - 整趟的警告（連續兩天都累、沒有半天自由時間）在 `ItineraryPlan.warnings`。
 - **改了什麼**：`diffItinerary(before, after)` 列出新增、刪除、移到別天、換順序、改欄位、改住宿；`checkProposal()` 套用前後都跑引擎，附文字摘要（「2/5：＋鳥羽水族館 09:38～11:38」）和新出現、消失的警告（T16 的提議、T15 的確認畫面用）。
