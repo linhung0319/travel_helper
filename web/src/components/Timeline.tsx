@@ -427,8 +427,8 @@ function EntryRow({ entry, day, warnings, gapsBeforeMeet, plan, marks }: { entry
           </span>
           {flight?.note && <span className="muted small">{flight.note}（{flight.depart} 起飛 → {flight.arrive} 抵達）</span>}
           {visit && optsOpen && visit.options.length > 1 && <OptionsList item={visit} date={day.date} />}
-          {planning && visit?.note && <span className="tl-note small">📝 {visit.note}</span>}
-          {planning && visit?.travel?.note && <span className="muted small">交通：{visit.travel.note}</span>}
+          {visit?.note && <span className="tl-note small">📝 {visit.note}</span>}
+          {visit?.travel?.note && <span className="muted small">交通：{visit.travel.note}</span>}
           {warnOpen && <Warnings list={itemWarnings} />}
         </span>
       </li>

@@ -288,6 +288,7 @@ test('第三輪：一般模式只看；多點卡片展開、設為主要、標�
   await expect(lunch.getByTestId('stay-minus')).toHaveCount(0);
   await expect(lunch.getByTestId('item-menu')).toHaveCount(0);
   await expect(lunch.getByTestId('tag-edit')).toHaveCount(0);
+  await expect(lunch).toContainText('漣不能訂位'); // 備註一般模式也看得到（只是不能改）
   const aquarium = tlRow(page, 'i-6');
   await aquarium.getByTestId('avatar-stack').click();
   await expect(aquarium.getByTestId('avatar-list')).toContainText('媽媽');
