@@ -89,8 +89,8 @@ function MiniButton({ className, label, pressed, testId, onPress, children }: { 
 }
 
 /**
- * 探索、想去的卡片上的 ❤️／👎（interaction-design §12）：`❤️ 3　👎 1`，只有一種就只顯示那種，都沒有時是空心的 ♡；
- * 兩個都可以點（按的是自己的票，再點收回）；數字旁的 ▾ 跳出名單。照片上放右上角，只有文字的卡片放在名稱後面（inline）。
+ * 探索、想去的卡片上的 ❤️／👎（interaction-design §12）：`❤️ 3　👎 1`，數字大於 0 才寫；
+ * 兩個按鈕一直都在（沒人按時是空心、不寫數字），兩個都可以點（按的是自己的票，再點收回）；數字旁的 ▾ 跳出名單。照片上放右上角，只有文字的卡片放在名稱後面（inline）。
  */
 export function CardVotes({ placeId, inline = false }: { placeId: string; inline?: boolean }) {
   const { list, mine, like, dislike } = useVotes(placeId);
@@ -109,17 +109,14 @@ export function CardVotes({ placeId, inline = false }: { placeId: string; inline
   const dislikeOn = mine?.value === 'dislike';
   return (
     <span className={`card-votes ${inline ? 'inline' : ''}`} ref={ref} data-testid="card-votes">
-      {(like > 0 || dislike === 0) && (
-        <MiniButton className={`card-vote ${likeOn ? 'on' : ''}`} label={likeOn ? '收回 ❤️' : '按 ❤️'} pressed={likeOn} testId="card-like" onPress={() => toggle('like')}>
-          {likeOn || like > 0 ? '❤️' : '♡'}
-          {like > 0 && <span className="card-vote-count">{like}</span>}
-        </MiniButton>
-      )}
-      {dislike > 0 && (
-        <MiniButton className={`card-vote ${dislikeOn ? 'on' : ''}`} label={dislikeOn ? '收回 👎' : '按 👎'} pressed={dislikeOn} testId="card-dislike" onPress={() => toggle('dislike')}>
-          👎<span className="card-vote-count">{dislike}</span>
-        </MiniButton>
-      )}
+      <MiniButton className={`card-vote ${likeOn ? 'on' : ''}`} label={likeOn ? '收回 ❤️' : '按 ❤️'} pressed={likeOn} testId="card-like" onPress={() => toggle('like')}>
+        {likeOn || like > 0 ? '❤️' : '♡'}
+        {like > 0 && <span className="card-vote-count">{like}</span>}
+      </MiniButton>
+      <MiniButton className={`card-vote card-dislike ${dislikeOn ? 'on' : ''} ${dislike > 0 || dislikeOn ? '' : 'empty'}`} label={dislikeOn ? '收回 👎' : '按 👎'} pressed={dislikeOn} testId="card-dislike" onPress={() => toggle('dislike')}>
+        👎
+        {dislike > 0 && <span className="card-vote-count">{dislike}</span>}
+      </MiniButton>
       {list.length > 0 && (
         <MiniButton className="card-vote-more" label="看是誰按的" pressed={open} testId="card-votes-more" onPress={() => setOpen(!open)}>
           ▾

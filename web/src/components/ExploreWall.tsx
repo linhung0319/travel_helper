@@ -42,7 +42,7 @@ function WallAddDay({ onOpen }: { onOpen: () => void }) {
   };
   return (
     <span role="button" tabIndex={0} className="wall-add-day" aria-label="加到某天" data-testid="add-to-day" onClick={act} onKeyDown={(e) => (e.key === 'Enter' || e.key === ' ') && act(e)}>
-      📅 加到某天
+      📅
     </span>
   );
 }

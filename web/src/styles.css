@@ -1044,7 +1044,7 @@ dl {
   position: absolute;
   top: 8px;
   left: 8px;
-  right: 110px; /* 右上角是縮放按鈕 */
+  right: 56px; /* 右上角是縮放按鈕 */
   z-index: 4;
   display: flex;
   flex-direction: column;
@@ -3914,6 +3914,11 @@ button.tl-leg-text {
   background: var(--info-bg);
 }
 
+.card-vote.empty {
+  opacity: 0.45;
+  filter: grayscale(1);
+}
+
 .card-vote-more {
   padding: 0 4px;
   color: var(--muted);
@@ -4032,8 +4037,19 @@ button.tl-leg-text {
   position: absolute;
   left: 6px;
   top: 42px;
-  right: 110px;
+  right: 50px;
   z-index: 1;
+  overflow: hidden;
+}
+
+.wall-tags .day-status-tags {
+  flex-wrap: nowrap;
+}
+
+.wall-tags .day-status {
+  white-space: nowrap;
+  font-size: 0.72rem;
+  padding: 1px 6px;
 }
 
 .wall-add-day {
@@ -4042,7 +4058,8 @@ button.tl-leg-text {
   top: 46px;
   z-index: 2;
   min-height: 30px;
-  padding: 0 10px;
+  min-width: 34px;
+  padding: 0 6px;
   display: grid;
   place-items: center;
   border-radius: 999px;

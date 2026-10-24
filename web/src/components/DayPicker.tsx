@@ -4,7 +4,7 @@
 
 import { useState } from 'react';
 import { shared } from '../appShared.ts';
-import { useData, useShared } from '../hooks.ts';
+import { useApp, useData, useShared } from '../hooks.ts';
 import { placeDayStatus } from '../lib/wishlist.ts';
 import { shortDayLabel, tripDates, weekdayZh } from '../lib/trip.ts';
 import { openDialog } from '../uiStore.ts';
@@ -28,6 +28,7 @@ export function DayPicker({ placeId, onClose }: { placeId: string; onClose: () =
   const candidates = useShared((s) => s.candidates);
   const me = useShared((s) => s.me?.id);
   const itinerary = useData((s) => s.itinerary);
+  const planning = useApp((s) => s.planning);
   const status = placeDayStatus(placeId, candidates, itinerary);
   const [busy, setBusy] = useState(false);
   const click = async (date: string) => {
@@ -35,11 +36,11 @@ export function DayPicker({ placeId, onClose }: { placeId: string; onClose: () =
     setBusy(true);
     if (!c) {
       const r = await shared.addCandidate(placeId, date);
-      // 加進候選＝想去：自己還沒按 ❤️ 就按
+      // 加進候選＝想去：自己還沒按 ❤️ 就按（每人對每個點只有一個狀態，原本是 👎 的會換成 ❤️）
       if (r.ok && !shared.store.getState().votes.some((v) => v.placeId === placeId && v.memberId === me && v.value === 'like' && !v.deletedAt)) await castVote(placeId, 'like');
     } else if (c.addedBy === me) await shared.removeCandidate(c.id);
     else {
-      // 別人加的要寫理由才能拿掉
+      // 別人加的：規劃模式才能拿掉，要寫理由
       openDialog({ kind: 'reject', candidateId: c.id });
       onClose();
     }
@@ -57,14 +58,15 @@ export function DayPicker({ placeId, onClose }: { placeId: string; onClose: () =
           if (!d) return <span key={`blank-${i}`} />;
           const scheduled = status.scheduled.includes(d);
           const cand = status.candidate.includes(d);
+          const others = cand && !planning && candidates.some((x) => x.placeId === placeId && x.day === d && !x.deletedAt && x.addedBy !== me);
           return (
             <button
               key={d}
               type="button"
               className={`day-picker-day ${cand ? 'cand' : ''} ${scheduled ? 'scheduled' : ''}`}
               aria-pressed={cand}
-              disabled={busy || scheduled}
-              title={scheduled ? `${shortDayLabel(d)} 已排進行程` : cand ? `${shortDayLabel(d)} 的候選（再點取消）` : `加到 ${shortDayLabel(d)} 的候選`}
+              disabled={busy || scheduled || others}
+              title={others ? '別人加的候選，規劃模式才能拿掉' : scheduled ? `${shortDayLabel(d)} 已排進行程` : cand ? `${shortDayLabel(d)} 的候選（再點取消）` : `加到 ${shortDayLabel(d)} 的候選`}
               data-testid={`day-picker-${d}`}
               onClick={() => void click(d)}
             >

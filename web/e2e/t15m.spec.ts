@@ -143,6 +143,12 @@ test('T15m：拿掉別人加的候選要寫理由，理由變成那個點的留�
   const cruise = cand(page, 'toba-bay-cruise-irukajima');
   await expect(cruise).toBeVisible();
   await expect(cruise.getByTestId('cand-reject')).toHaveCount(0);
+  // 月曆裡別人加的候選，一般模式點不了（不會開拿掉的對話框）
+  const wishList = await openWish(page, 'toba-bay-cruise-irukajima');
+  await wish(wishList, 'toba-bay-cruise-irukajima').getByTestId('add-to-day').click();
+  await expect(page.getByTestId('day-picker-2027-02-05')).toBeDisabled();
+  await expect(page.getByTestId('reject-dialog')).toHaveCount(0);
+  await showDay(page, '2027-02-05');
   await enterPlanning(page);
   await cruise.getByTestId('cand-reject').click();
   await expect(page.getByTestId('reject-submit')).toBeDisabled();
@@ -459,4 +465,31 @@ test('在探索加到某天：自動 ❤️、出現在那天的候選', async (
   // 那天的候選有它
   await showDay(page, DAY);
   await expect(cand(page)).toBeVisible();
+});
+
+test('探索：原本是 👎，加到某天會換成 ❤️；兩個按鈕一直都在', async ({ page }) => {
+  await ready(page);
+  const mobile = await isMobile(page);
+  const type = (await th(page, `__th.dataStore.getState().byId.get('${PLACE}').type`)) as string;
+  let card: Locator;
+  if (mobile) {
+    await page.getByRole('button', { name: '探索' }).click();
+    await centerOn(page, PLACE, 14);
+    card = page.locator(`[data-testid="wall-item"][data-id="${PLACE}"]`);
+  } else {
+    await page.getByTestId('side-tab-explore').click();
+    await page.evaluate((t) => (window as any).__th.appStore.getState().setFilter({ types: [t] }), type);
+    card = page.locator(`li:has([data-testid="explore-item"][data-id="${PLACE}"])`);
+  }
+  await card.scrollIntoViewIfNeeded();
+  await expect(card.getByTestId('card-like')).toBeVisible();
+  await card.getByTestId('card-dislike').click();
+  await expect(card.getByTestId('card-dislike')).toHaveAttribute('aria-pressed', 'true');
+  // 只有 👎 時，❤️ 的按鈕還在、按得動
+  await expect(card.getByTestId('card-like')).toHaveAttribute('aria-pressed', 'false');
+  await card.getByTestId('add-to-day').click();
+  await page.getByTestId(`day-picker-${DAY}`).click();
+  if (mobile) await page.getByRole('button', { name: '完成' }).click();
+  await expect(card.getByTestId('card-like')).toHaveAttribute('aria-pressed', 'true');
+  await expect(card.getByTestId('card-dislike')).toHaveAttribute('aria-pressed', 'false');
 });
