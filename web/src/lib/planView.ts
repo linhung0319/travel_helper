@@ -1,7 +1,7 @@
 // 「這一天」面板和地圖要的行程資訊（T15m）：交通的文字、行程裡找項目、匯出。
 // 純函式：時間軸、交通時間、空檔、警告都是引擎（T14）算好的，這裡只整理成畫面要的樣子。
 
-import type { DayPlan, EngineWarning, Itinerary, ItineraryItem, Leg, LegTarget, TimelineEntry, TravelMode, TravelSpec, VisitItem } from '@travel-helper/engine';
+import type { DayPlan, EngineWarning, Itinerary, ItineraryItem, Leg, LegTarget, TimelineEntry, TravelMode, TravelSpec, TripRef, VisitItem } from '@travel-helper/engine';
 import { toMinutes } from '@travel-helper/engine';
 import { MODE_ICONS } from './routing.ts';
 import { displayMinutes, estimateWalk } from './geo/walk.ts';
@@ -31,6 +31,11 @@ export function legDetail(leg: Leg): string[] {
 /** 規劃模式的交通方式選單（auto：不寫 mode，由引擎挑） */
 export const EDITOR_MODES = ['auto', 'walk', 'taxi', 'transit'] as const;
 export type EditorMode = (typeof EDITOR_MODES)[number];
+
+/** 前一班／後一班：只換 trip，方式照原樣（自動的段落還是自動，引擎用 trip 不需要 mode） */
+export function specWithTrip(cur: TravelSpec | null | undefined, trip: TripRef): TravelSpec {
+  return { ...cur, trip };
+}
 
 /** 這段的設定在選單上亮哪個：舊的電車、巴士、船算大眾運輸；包車、自駕、其他是 legacy（選單都不亮，卡片照原名） */
 export function editorModeOf(spec: TravelSpec | null): EditorMode | 'legacy' {
@@ -161,6 +166,13 @@ export function warningsByItem(day: DayPlan | null): { byItem: Map<string, Engin
     else rest.push(w);
   }
   return { byItem, day: rest };
+}
+
+/** 卡片上要顯示的警告：看主卡是這個項目全部的警告；看備卡時引擎沒有替備卡算，只留指名那張備卡的（placeId 相同） */
+export function shownWarnings(list: EngineWarning[] | undefined, placeId: string | null, isMain: boolean): EngineWarning[] | undefined {
+  if (isMain || !list) return list;
+  const out = list.filter((w) => w.placeId != null && w.placeId === placeId);
+  return out.length ? out : undefined;
 }
 
 export const WARNING_ICONS: Record<EngineWarning['level'], string> = { error: '⚠️', warning: '⚠️', info: 'ℹ️' };

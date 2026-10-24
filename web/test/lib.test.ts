@@ -13,7 +13,7 @@ import { copyText } from '../src/lib/labels.ts';
 import { TYPE_COLORS } from '../src/lib/typeStyle.ts';
 import { dayStops, placeDays } from '../src/lib/itinerary.ts';
 import { itin } from './helpers.ts';
-import { cardTime, dayBar, daySummary, editorModeOf, showMinutesInput, formatStay, formatDistance, legMapsUrl, legTargetOf, legText, optionRows, rideLines, stopMarks } from '../src/lib/planView.ts';
+import { cardTime, dayBar, daySummary, editorModeOf, showMinutesInput, formatStay, formatDistance, legMapsUrl, legTargetOf, legText, optionRows, rideLines, shownWarnings, specWithTrip, stopMarks } from '../src/lib/planView.ts';
 import { explorePlaces, typeCounts } from '../src/lib/explore.ts';
 import type { DayPlan, TimelineEntry } from '@travel-helper/engine';
 import type { Area, Place, StationTimetable } from '../src/data/types.ts';
@@ -457,4 +457,23 @@ test('每天的色盤：12 色、不重複、避開類型色', () => {
 test('copyText：日文名稱優先，沒有用中文', () => {
   assert.equal(copyText(place('a', { name: { ja: '鳥羽水族館', zh: '鳥羽水族館（中）' } })), '鳥羽水族館');
   assert.equal(copyText(place('b', { name: { ja: '', zh: '海女小屋' } })), '海女小屋');
+});
+
+test('shownWarnings：看主卡是全部；看備卡只留指名那張備卡的', () => {
+  const list = [
+    { code: 'closed', level: 'warning' as const, message: '公休', itemId: 'i1', placeId: 'main' },
+    { code: 'late', level: 'info' as const, message: '晚了', itemId: 'i1' },
+    { code: 'closed', level: 'warning' as const, message: '公休', itemId: 'i1', placeId: 'b' },
+  ];
+  assert.equal(shownWarnings(list, 'main', true), list);
+  assert.deepEqual(shownWarnings(list, 'b', false), [list[2]]);
+  assert.equal(shownWarnings(list, 'c', false), undefined);
+  assert.equal(shownWarnings(undefined, 'b', false), undefined);
+});
+
+test('specWithTrip：只換班次，方式照原樣（自動的段落不會變成大眾運輸）', () => {
+  const trip = { id: 't1', depart: '10:35', arrive: '10:45', from: 'a', to: 'b' };
+  assert.deepEqual(specWithTrip(null, trip), { trip });
+  assert.deepEqual(specWithTrip({ note: '備註' }, trip), { note: '備註', trip });
+  assert.deepEqual(specWithTrip({ mode: 'transit', trip: { ...trip, id: 't0' } }, trip), { mode: 'transit', trip });
 });

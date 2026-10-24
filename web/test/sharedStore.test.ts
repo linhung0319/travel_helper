@@ -227,3 +227,40 @@ test('changeItinerary 的復原：after 失敗時行程照樣復原、顯示錯�
   assert.equal(shared.store.getState().toast?.kind, 'error');
   assert.match(shared.store.getState().toast!.text, /候選加不回去/);
 });
+
+test('changeItinerary 的 settle：做完才跳「復原」；馬上按復原，候選加得回去', async () => {
+  const { data, shared } = await setup();
+  const before = data.getState().itinerary;
+  const added = await shared.addCandidate('x', '2027-02-04');
+  assert.ok(added.ok);
+  const candidateId = added.value.id;
+  const has = () => shared.store.getState().candidates.some((c) => c.placeId === 'x' && c.day === '2027-02-04');
+  let toastDuringSettle: unknown = 'unset';
+  // 照候選拖進時間軸的做法：settle 拿掉候選，復原的 after 沒有就加回去
+  const settle = async () => {
+    toastDuringSettle = shared.store.getState().toast?.action;
+    await shared.removeCandidate(candidateId, undefined, true);
+  };
+  const after = async () => {
+    if (!has()) await shared.addCandidate('x', '2027-02-04');
+  };
+  const r = await shared.changeItinerary((it) => removeItem(it, '2027-02-03:y'), '排進', { undo: { text: '已排進 x', after }, settle });
+  assert.ok(r.ok);
+  assert.equal(toastDuringSettle, undefined, 'settle 做的時候還沒有「復原」');
+  assert.equal(has(), false);
+  await shared.store.getState().toast!.action!.run();
+  assert.deepEqual(data.getState().itinerary, before);
+  assert.equal(has(), true);
+});
+
+test('changeItinerary 的復原：行程之後又被改過就不復原，顯示錯誤提示', async () => {
+  const { data, shared } = await setup();
+  await shared.changeItinerary((it) => removeItem(it, '2027-02-03:x'), '刪 x', { undo: { text: '已刪 x' } });
+  const undo = shared.store.getState().toast!.action!;
+  await shared.changeItinerary((it) => removeItem(it, '2027-02-03:y'), '刪 y');
+  const now = data.getState().itinerary;
+  await undo.run();
+  assert.equal(data.getState().itinerary, now, '不能蓋掉後來的修改');
+  assert.equal(shared.store.getState().toast?.kind, 'error');
+  assert.equal(shared.store.getState().toast?.text, '行程已經被改過，不能復原');
+});

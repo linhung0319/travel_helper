@@ -129,11 +129,13 @@ export function createShared(getBackend: () => Backend, data: StoreApi<DataState
   /**
    * 改行程：先在畫面上改（樂觀更新），再存檔；存不了就退回。
    * fn 用 engine 的操作（ops.ts），丟 ItineraryError 時不存。後端存檔前會自動存快照。
+   * settle：存好之後、跳提示之前要做完的事（例如拿掉排進去的候選）；做完才出現「復原」，馬上按復原也不會和它搶。
+   * 復原只在行程還是這次改完的樣子時才做；之後又被改過（自己或同步進來別人的）就不復原，免得蓋掉。
    */
   async function changeItinerary(
     fn: (it: Itinerary) => Itinerary,
     reason: string,
-    opts: { undo?: { text: string; after?: () => Promise<unknown> } } = {},
+    opts: { undo?: { text: string; after?: () => Promise<unknown> }; settle?: () => Promise<unknown> } = {},
   ): Promise<Result<Itinerary>> {
     const s = store.getState();
     if (s.conflict) return fail(new Error('別人改過了，請先重新載入'));
@@ -152,11 +154,20 @@ export function createShared(getBackend: () => Backend, data: StoreApi<DataState
     try {
       const doc = await getBackend().putItinerary(s.version, next, reason);
       set({ version: doc.version, updatedBy: doc.updatedBy, updatedAt: doc.updatedAt, saving: false });
+      try {
+        await opts.settle?.();
+      } catch (e) {
+        fail(e);
+      }
       const undo = opts.undo;
       if (undo) {
         toast('ok', undo.text, {
           label: '復原',
           run: async () => {
+            if (data.getState().itinerary !== next) {
+              fail(new Error('行程已經被改過，不能復原'));
+              return;
+            }
             const r = await changeItinerary(() => before, `復原：${reason}`);
             if (!r.ok) return;
             try {

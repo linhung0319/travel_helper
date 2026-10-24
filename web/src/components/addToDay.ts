@@ -11,12 +11,16 @@ import { currentEngineData } from '../planStore.ts';
 import { shortDayLabel } from '../lib/trip.ts';
 import type { Result } from '../sharedStore.ts';
 
-/** at：拖進時間軸時指定的位置（不給就插在最順路的位置）；undo：存好後跳出可以復原的提示（同 changeItinerary） */
+/**
+ * at：拖進時間軸時指定的位置（不給就插在最順路的位置）；undo：存好後跳出可以復原的提示（同 changeItinerary）；
+ * settle：拿掉候選之後、跳提示之前還要做完的事（候選拖進來時拿掉那筆候選）
+ */
 export async function addPlaceToDay(
   placeId: string,
   date: string,
   at?: { index: number; split?: { id: string; group: string } },
   undo?: { text: string; after?: () => Promise<unknown> },
+  settle?: () => Promise<unknown>,
 ): Promise<Result> {
   const p = dataStore.getState().byId.get(placeId);
   const name = p ? p.name.zh || p.name.ja : placeId;
@@ -38,10 +42,12 @@ export async function addPlaceToDay(
       return addItem(it, date, item, index == null ? {} : { index }).itinerary;
     };
   }
-  const r = await shared.changeItinerary(fn, reason, undo ? { undo } : {});
-  if (r.ok) {
+  // 候選在跳「復原」提示之前就拿掉：馬上按復原時，復原的 after 才看得到候選已經不在、加得回去
+  const removeCandidates = async () => {
     appStore.getState().selectDay(date);
     for (const c of shared.store.getState().candidates.filter((x) => x.placeId === placeId && x.day === date)) await shared.removeCandidate(c.id, undefined, true);
-  }
+    await settle?.();
+  };
+  const r = await shared.changeItinerary(fn, reason, { ...(undo ? { undo } : {}), settle: removeCandidates });
   return r.ok ? { ok: true } : r;
 }

@@ -5,7 +5,7 @@
 // - 放在同類型卡片的中間＝合併（亮藍框「放開＝合併到這張」）；卡片上下邊緣、最後的放置區＝排在這裡（插入線）；
 //   放在交通卡上＝排在這段通往的卡片前面（不合併；回住宿那段＝這天的最後）；
 //   備卡放到候選區＝放回候選。拖曳開始時，不能合併的卡片變淡（drop-nomerge）。
-// - 合併、換順序、拆開、排進、放回候選都可以復原（changeItinerary 的 undo）。
+// - 合併、換順序、拆開、排進、放回候選都可以復原（changeItinerary 的 undo）；候選的增減在 settle 裡做完才跳復原提示。放回原位不存檔。
 // 放置區：卡片 data-drop-item（data-drop-type、data-drop-flight）、交通卡 data-drop-leg（data-drop-date）、
 // 最後的放置區 data-drop-end、候選區 data-drop-candidates。
 // 同時放 application/x-travel-place，拖到聊天室也能問 AI（askAi.ts）。
@@ -16,37 +16,13 @@ import type { Itinerary } from '@travel-helper/engine/types';
 import { shared } from '../appShared.ts';
 import { dataStore } from '../dataStore.ts';
 import { findItemRef } from '../lib/planView.ts';
-import { canMerge, dropIntent, type DragSource, type DropIntent, type DropTargetInfo } from '../lib/dropIntent.ts';
+import { canMerge, dropIntent, dropTarget, samePosition, type DragSource, type DropAt, type DropIntent, type DropTargetInfo } from '../lib/dropIntent.ts';
 import { addPlaceToDay } from './addToDay.ts';
 
 const ITEM = 'application/x-travel-item';
 const CANDIDATE = 'application/x-travel-candidate';
 const OPTION = 'application/x-travel-option';
 const PLACE = 'application/x-travel-place';
-
-/** 放在哪裡：某張卡片的前面或後面，或某天的最後 */
-export type DropAt = { kind: 'item'; itemId: string; after: boolean } | { kind: 'end'; date: string };
-
-/** 放開的位置換成 moveItemTo／addItem 的 date、index、split（source：被拖的項目，同一串裡要扣掉它自己） */
-export function dropTarget(it: Itinerary, at: DropAt, source: string | null): { date: string; index: number; split?: { id: string; group: string } } | null {
-  if (at.kind === 'end') {
-    const day = it.days.find((d) => d.date === at.date);
-    if (!day) return null;
-    const depart = day.items.findIndex((x) => x.type === 'flight' && x.direction === 'depart');
-    let index = depart >= 0 ? depart : day.items.length;
-    const src = source ? day.items.findIndex((x) => x.id === source) : -1;
-    if (src >= 0 && src < index) index -= 1;
-    return { date: at.date, index };
-  }
-  const ref = findItemRef(it, at.itemId);
-  if (!ref) return null;
-  const day = it.days.find((d) => d.date === ref.date)!;
-  const list = ref.split ? (day.items.find((x) => x.id === ref.split!.id) as Extract<Itinerary['days'][number]['items'][number], { type: 'split' }>).groups.find((g) => g.id === ref.split!.group)!.items : day.items;
-  let index = list.findIndex((x) => x.id === at.itemId) + (at.after ? 1 : 0);
-  const src = source ? list.findIndex((x) => x.id === source) : -1;
-  if (src >= 0 && src < index) index -= 1;
-  return { date: ref.date, index, ...(ref.split ? { split: { id: ref.split.id, group: ref.split.group } } : {}) };
-}
 
 const placeName = (id: string | null | undefined) => {
   const p = id ? dataStore.getState().byId.get(id) : null;
@@ -66,7 +42,8 @@ export async function dropItem(itemId: string, at: DropAt) {
   const it = dataStore.getState().itinerary;
   if (!it || (at.kind === 'item' && at.itemId === itemId)) return;
   const t = dropTarget(it, at, itemId);
-  if (!t) return;
+  // 放回原來的位置（自己前後的邊緣、通往自己的交通卡）：不存檔、不跳提示
+  if (!t || samePosition(it, itemId, t)) return;
   const label = `${placeName(optionPlace(it, itemId))} 換位置`;
   await shared.changeItinerary((x) => moveItemTo(x, itemId, t.date, t.index, t.split), label, { undo: { text: label } });
 }
@@ -125,7 +102,10 @@ async function dropCandidateIn(it: Itinerary, src: Extract<DragSource, { kind: '
   const after = async () => {
     if (!shared.store.getState().candidates.some((c) => c.placeId === src.placeId && c.day === day)) await shared.addCandidate(src.placeId, day);
   };
-  let ok: boolean;
+  // 成功後拿掉候選：在跳「復原」提示之前做完（settle），馬上按復原也加得回去
+  const settle = async () => {
+    await shared.removeCandidate(src.candidateId, undefined, true);
+  };
   if (r.kind === 'merge') {
     const target = placeName(optionPlace(it, r.itemId));
     const add = (x: Itinerary) => {
@@ -133,13 +113,12 @@ async function dropCandidateIn(it: Itinerary, src: Extract<DragSource, { kind: '
       if (item?.type === 'visit' && item.options.some((o) => o.place === src.placeId)) throw new ItineraryError(`${target} 已經有 ${name}`);
       return addOption(x, r.itemId, { place: src.placeId, stayMinutes: null });
     };
-    ok = (await shared.changeItinerary(add, `${name} 合併到 ${target}`, { undo: { text: `已合併到 ${target}`, after } })).ok;
+    await shared.changeItinerary(add, `${name} 合併到 ${target}`, { undo: { text: `已合併到 ${target}`, after }, settle });
   } else {
     const t = dropTarget(it, r.at, null);
     if (!t) return;
-    ok = (await addPlaceToDay(src.placeId, t.date, { index: t.index, split: t.split }, { text: `已排進 ${name}`, after })).ok;
+    await addPlaceToDay(src.placeId, t.date, { index: t.index, split: t.split }, { text: `已排進 ${name}`, after }, settle);
   }
-  if (ok) await shared.removeCandidate(src.candidateId, undefined, true);
 }
 
 /** 備卡拖出來：移到別張卡、拆成獨立一站、放回候選 */

@@ -3668,7 +3668,9 @@ body.dragging-plan .tl-row.tl-card.drop-merge {
   max-width: min(60vw, 720px);
 }
 
-/* 地圖區的彈窗：電腦版浮在地圖上，左右留 15%、上下留 48px 以上（變數方便調）；手機從下方拉起 80vh */
+/* 地圖區的討論、預約彈窗（.map-panel）：電腦版浮在地圖上，左右留 --panel-gap-x、下面留 --panel-gap-y；
+   上緣在浮動列（MapTopBar 量出的 --bar-bottom，規劃列、篩選 chips 會讓它變高）下方 8px，至少留 --panel-gap-y。
+   手機從下方拉起 80dvh（不支援 dvh 的退回 80vh）。變數放在 .map-column 方便調 */
 .map-column {
   --panel-gap-x: 15%;
   --panel-gap-y: 48px;

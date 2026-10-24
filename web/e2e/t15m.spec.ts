@@ -343,7 +343,10 @@ test('第四輪：一般模式只看；合併卡片換著看、設為主要、�
 
   // 規劃模式：看一榮 → 設為主要 → 卡片換成一榮
   await enterPlanning(page);
+  await expect(lunch.getByTestId('item-menu')).toHaveCount(1);
   await stack.getByTestId('option-next').click();
+  // 看備卡時沒有 ⋯ 選單（裡面的刪除是刪整張卡片）
+  await expect(lunch.getByTestId('item-menu')).toHaveCount(0);
   await lunch.getByTestId('option-make-main').click();
   await expect(lunch).toHaveAttribute('data-place', 'toba-kazuei');
 
@@ -619,6 +622,10 @@ test('第四輪：規劃模式把候選拖到兩張卡片之間 → 時間軸多
   await expect(cand(page, C)).toHaveCount(0);
   const order = await rows.evaluateAll((els) => els.map((e) => (e as HTMLElement).dataset.place));
   expect(order[order.indexOf('toba-aquarium') - 1]).toBe(C);
+  // 馬上按復原：時間軸少回一站，候選加回來（候選拿掉之後才跳復原提示）
+  await page.getByTestId('toast-undo').click();
+  await expect(rows).toHaveCount(n);
+  await expect(cand(page, C)).toBeVisible();
 });
 
 /** 第四輪完成條件：加到 2/5 → 規劃模式 ↑ 排進 → 標午餐和分開吃 → 交通改計程車 → 復原快照 */

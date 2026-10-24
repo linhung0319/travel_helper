@@ -1,7 +1,8 @@
 // 拖曳放在哪：卡片中間合併、上下邊緣插入；不能合併時中間照上下半插入；拖到自己不動；候選區只收備卡
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { dropIntent, type DragSource, type DropTargetInfo } from '../src/lib/dropIntent.ts';
+import { dropIntent, dropTarget, samePosition, type DragSource, type DropTargetInfo } from '../src/lib/dropIntent.ts';
+import { itin } from './helpers.ts';
 
 const rect = { top: 0, height: 100 };
 const card = (itemId: string, placeType: string | null, isFlight = false): DropTargetInfo => ({ kind: 'card', itemId, placeType, isFlight });
@@ -64,4 +65,20 @@ test('dropIntent：放在交通卡上一律是插入（排在下一張卡片前�
   assert.equal(dropIntent(opt, { kind: 'leg', itemId: 'a' }, rect, 50), 'before');
   const cand: DragSource = { kind: 'candidate', candidateId: 1, placeId: 'p', placeType: 'restaurant' };
   assert.equal(dropIntent(cand, legToB, rect, 50), 'before');
+});
+
+test('samePosition：放回自己前後、通往自己的交通卡（＝排在自己前面）是原位；其他不是', () => {
+  const it = itin({ '2027-02-03': ['a', 'b', 'c'], '2027-02-04': ['d'] });
+  const id = '2027-02-03:b';
+  const at = (x: Parameters<typeof dropTarget>[1]) => samePosition(it, id, dropTarget(it, x, id)!);
+  // 放在 a 的後面、c 的前面、自己前後的邊緣都還在第 2 個
+  assert.equal(at({ kind: 'item', itemId: '2027-02-03:a', after: true }), true);
+  assert.equal(at({ kind: 'item', itemId: '2027-02-03:c', after: false }), true);
+  assert.equal(at({ kind: 'item', itemId: '2027-02-03:a', after: false }), false);
+  assert.equal(at({ kind: 'item', itemId: '2027-02-03:c', after: true }), false);
+  assert.equal(at({ kind: 'end', date: '2027-02-03' }), false);
+  assert.equal(at({ kind: 'end', date: '2027-02-04' }), false);
+  // 已經在最後的放到這天最後：原位
+  const last = '2027-02-03:c';
+  assert.equal(samePosition(it, last, dropTarget(it, { kind: 'end', date: '2027-02-03' }, last)!), true);
 });

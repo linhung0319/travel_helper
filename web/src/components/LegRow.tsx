@@ -13,7 +13,7 @@ import { commands, itineraryPathOf } from '../appCommands.ts';
 import { dataStore } from '../dataStore.ts';
 import { shared } from '../appShared.ts';
 import { useApp, useData, useShared, useUi } from '../hooks.ts';
-import { EDITOR_MODES, editorModeOf, formatDistance, legDetail, legMapsUrl, legTargetOf, legText, rideLines, showMinutesInput, type EditorMode } from '../lib/planView.ts';
+import { EDITOR_MODES, editorModeOf, formatDistance, legDetail, legMapsUrl, legTargetOf, legText, rideLines, showMinutesInput, specWithTrip, type EditorMode } from '../lib/planView.ts';
 import { rideStations } from '../lib/routing.ts';
 import { haversineMeters } from '../lib/geo/distance.ts';
 import { uiStore } from '../uiStore.ts';
@@ -54,7 +54,7 @@ function LegEditor({ target, spec, leg }: { target: LegTarget; spec: TravelSpec 
     if (m === current) return;
     change((cur) => ({ ...(m === 'auto' ? {} : { mode: m }), ...(cur?.note ? { note: cur.note } : {}) }));
   };
-  const pickTrip = (trip: TripRef) => change((cur) => ({ ...cur, mode: cur?.mode ?? 'transit', trip }), '換班次');
+  const pickTrip = (trip: TripRef) => change((cur) => specWithTrip(cur, trip), '換班次');
   const commitMinutes = () => {
     const n = minutes.trim() === '' ? null : Number(minutes);
     if (n != null && !(Number.isFinite(n) && n >= 0)) return setMinutes(spec?.minutes != null ? String(spec.minutes) : '');
