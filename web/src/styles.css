@@ -5183,7 +5183,12 @@ button.cand-up:disabled {
   font-variant-numeric: tabular-nums;
 }
 
-.day-cell.red-day {
+.day-cell-weekday {
+  color: var(--muted);
+}
+
+.day-cell.red-day,
+.day-cell.red-day .day-cell-weekday {
   color: var(--red-day);
 }
 

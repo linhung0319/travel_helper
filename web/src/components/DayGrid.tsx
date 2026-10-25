@@ -24,7 +24,7 @@ export function DayGrid({ current, disabled, onPick }: { current?: string; disab
             <span className="day-cell-date">
               {Number(mo)}/{Number(day)}
             </span>
-            <span className="muted small">{now ? '現在' : weekdayZh(d)}</span>
+            <span className="day-cell-weekday small">{now ? '現在' : weekdayZh(d)}</span>
           </button>
         );
       })}

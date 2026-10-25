@@ -1246,6 +1246,8 @@ test('移到第幾天：4×3 格子、紅字、沒有「假日」', async ({ pag
   await expect(dlg.locator('[data-pick-day="2027-02-10"]')).not.toHaveClass(/red-day/);
   await expect(dlg.locator('[data-pick-day="2027-02-06"]')).toContainText('六');
   await expect(dlg.locator('[data-pick-day="2027-02-10"]')).toContainText('三');
+  await expect(dlg.locator('[data-pick-day="2027-02-06"] .day-cell-weekday')).toHaveCSS('color', 'rgb(211, 47, 47)');
+  await expect(dlg.locator('[data-pick-day="2027-02-10"] .day-cell-weekday')).not.toHaveCSS('color', 'rgb(211, 47, 47)');
   const cur = dlg.locator('[data-pick-day="2027-02-03"]');
   await expect(cur).toBeDisabled();
   await expect(cur).toContainText('現在');
