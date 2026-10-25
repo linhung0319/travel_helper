@@ -7,7 +7,7 @@ import type { HighlightStyle, MapRoute, Proposal } from '../store.ts';
 import type { LonLat, Place } from '../data/types.ts';
 import { stopsOn } from './itinerary.ts';
 import { dayColor } from './visual.ts';
-import { lineMidpoint, routeLabel } from './routing.ts';
+import { lineMidpoint } from './routing.ts';
 import type { Leg } from '@travel-helper/engine';
 import { shortDayLabel } from './trip.ts';
 import type { Change } from '@travel-helper/engine';
@@ -62,15 +62,28 @@ export function routeFeatures(routes: MapRoute[]): FeatureCollection<LineString>
 export interface RouteLabel {
   id: string;
   coords: LonLat;
+  /** 圖示（MapView 用 modeIconHtml 畫）；transit 已換成第一程的方式 */
+  mode: Leg['mode'];
+  minutes: number | null;
+  /** 不含圖示和 emoji 的字，例如「16 分」（e2e 讀這個） */
   text: string;
 }
 
-/** 路線中間的標籤（DOM 標記，才放得了 emoji） */
+/** 標籤的字：自訂文字優先，否則「N 分」（無條件進位）；還在查時是「…」 */
+function labelText(minutes: number | null, label: string | null = null, pending = false): string {
+  if (label) return label;
+  if (minutes != null) return `${Math.max(1, Math.ceil(minutes - 1e-9))} 分`;
+  return pending ? '…' : '';
+}
+
+/** 路線中間的標籤（DOM 標記：交通圖示＋分鐘） */
 export function routeLabels(routes: MapRoute[]): RouteLabel[] {
   return routes.map((r) => ({
     id: r.id,
     coords: lineMidpoint(r.geometry ?? [r.from.coords, r.to.coords]),
-    text: r.source === 'pending' && r.minutes == null ? `${routeLabel(r.mode, null, r.label)} …` : routeLabel(r.mode, r.minutes, r.label),
+    mode: r.mode,
+    minutes: r.minutes,
+    text: labelText(r.minutes, r.label, r.source === 'pending'),
   }));
 }
 
@@ -137,7 +150,7 @@ export function describeChanges(changes: Change[], nameOf: (id: string) => strin
  * 確定的行程（T15m，interaction-design §3）：
  * - 線：每天一種顏色，依時間軸的順序（出發的住宿 → 各點 → 會合點 → 住宿）連起來；選了某一天時只畫那天
  * - 備選：時段備案的非主選點，用那天顏色的空心圈
- * - 交通標籤：只有選定的那天，在每段的中間標「🚃 12 分」
+ * - 交通標籤：只有選定的那天，在每段的中間標交通圖示和「12 分」
  * 線有 pathOf 給的路徑（步行、車沿道路，搭車照班次的站、電車沿車站）就照路徑畫，沒有（還沒查到、船）就是兩點之間的直線。
  */
 export function itineraryFeatures(
@@ -190,7 +203,10 @@ export function itineraryFeatures(
           legs.push({
             id: `leg-${d.date}-${legs.length}`,
             coords: lineMidpoint(seg && seg.length >= 2 ? seg : [prev, p.coords]),
-            text: o.leg.mode === 'unknown' ? `❓ ${o.leg.minutes} 分` : routeLabel(o.leg.mode, o.leg.minutes),
+            // 大眾運輸的圖示用第一程的方式
+            mode: o.leg.mode === 'transit' ? (o.leg.rides?.[0]?.mode ?? 'transit') : o.leg.mode,
+            minutes: o.leg.minutes,
+            text: labelText(o.leg.minutes),
           });
         }
         // 路徑的頭尾就是前後兩站，中間的點接進來

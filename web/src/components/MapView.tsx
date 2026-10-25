@@ -21,6 +21,7 @@ import { PreviewCard } from './PreviewCard.tsx';
 import { addOverlayLayers, OVERLAY_SOURCES } from './mapOverlayLayers.ts';
 import { compareFeatures, highlightFeatures, itineraryFeatures, placeBadges, proposalFeatures, routeFeatures, routeLabels } from '../lib/overlays.ts';
 import { commands, itineraryPathOf } from '../appCommands.ts';
+import { routeLabelHtml } from '../lib/modeIcon.ts';
 import { MapCommandBars } from './MapCommandBars.tsx';
 import { showInExplore } from './Explore.tsx';
 import { shared } from '../appShared.ts';
@@ -446,7 +447,7 @@ export function MapView() {
     (map.getSource(OVERLAY_SOURCES.compare) as GeoJSONSource).setData(compareFeatures(compare, byId));
   }, [loaded, highlights, compare]);
 
-  // 路線：線畫在圖層，中間的標籤（🚶 8 分）是 DOM 標記，才放得了 emoji
+  // 路線：線畫在圖層，中間的標籤（交通圖示＋8 分）是 DOM 標記
   useEffect(() => {
     if (!loaded) return;
     const map = mapRef.current!;
@@ -468,7 +469,7 @@ export function MapView() {
         routeLabelsRef.current.set(l.id, m);
       }
       m.setLngLat(l.coords);
-      m.getElement().textContent = l.text;
+      m.getElement().innerHTML = routeLabelHtml(l.mode, l.text);
     }
   }, [loaded, routes]);
 
@@ -505,7 +506,7 @@ export function MapView() {
     legLabelsRef.current = f.legs.map((l) => {
       const el = document.createElement('div');
       el.className = 'route-label leg-label';
-      el.textContent = l.text;
+      el.innerHTML = routeLabelHtml(l.mode, l.text);
       return new Marker({ element: el }).setLngLat(l.coords).addTo(map);
     });
   }, [loaded, itinerary, plan, byId, day, routesVersion]);

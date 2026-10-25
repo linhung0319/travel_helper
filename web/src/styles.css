@@ -4314,3 +4314,24 @@ button.option-crown {
 .card-vote[data-testid='card-like'] {
   font-size: 1.05rem;
 }
+
+/* 交通圖示（ModeIcon、地圖路線標籤） */
+.mode-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 6px;
+  flex: none;
+  vertical-align: middle;
+}
+
+.mode-icon-s {
+  border-radius: 4px;
+}
+
+.route-label {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 2px 8px 2px 3px;
+}

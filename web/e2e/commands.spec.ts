@@ -129,7 +129,7 @@ test('標示、路線（沿道路）、比較：畫在地圖上，可以清掉',
   await run(page, 'drawRoute', 'toba', 'toba-aquarium', 'walk');
   await run(page, 'focus', ['toba', 'toba-aquarium', 'toba-mikimoto-pearl-island']);
   const label = page.locator('.route-label');
-  await expect(label).toHaveText('🚶 12 分'); // 640 m ÷ 80 × 1.4 = 11.2 → 12
+  await expect(label).toHaveText('12 分'); // 640 m ÷ 80 × 1.4 = 11.2 → 12
   expect(await page.evaluate(() => (window as any).__th.appStore.getState().routes[0].source)).toBe('osrm');
   const lines = await overlay(page, 'overlay-routes', 'routes-dot');
   expect(lines.features.map((f: any) => f.dash)).toEqual(['dot']);

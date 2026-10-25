@@ -3,6 +3,7 @@ import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { createStore } from 'zustand/vanilla';
 import { createRoadRouter, lineMeters, lineMidpoint, minutesFromMeters, railPath, rideStations, ridesPath, roadKey, routeLabel, routeProfile, type KeyValueStorage } from '../src/lib/routing.ts';
+import { modeIconKey } from '../src/lib/modeIcon.ts';
 import { describeChanges, itineraryFeatures, proposalFeatures, routeFeatures, routeLabels } from '../src/lib/overlays.ts';
 import { createAppStore } from '../src/store.ts';
 import { createCommands } from '../src/commands.ts';
@@ -296,8 +297,21 @@ test('路線的圖層資料：還在查、直線的比較淡；步行點線、�
   );
   assert.deepEqual(
     routeLabels(routes).map((l) => l.text),
-    ['🚶 …', '⛴️ 30 分', '🚃 12 分'],
+    ['…', '30 分', '12 分'],
   );
+  const ls = routeLabels(routes);
+  assert.deepEqual(
+    ls.map((l) => [l.mode, l.minutes]),
+    [
+      ['walk', null],
+      ['ferry', 30],
+      ['train', 12],
+    ],
+  );
+  for (const l of ls) assert.doesNotMatch(l.text, /\p{Extended_Pictographic}/u);
+  assert.equal(modeIconKey('transit'), 'bus');
+  assert.equal(modeIconKey('charter'), 'car');
+  assert.equal(modeIconKey('train'), 'train');
 });
 
 test('提議的圖層資料：提議的順序、新增的點、拿掉的點、虛線；摘要一天一行', () => {
