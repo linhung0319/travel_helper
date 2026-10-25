@@ -444,8 +444,17 @@ a {
   font-weight: 600;
 }
 
-/* ---------- 小卡片 ---------- */
+/* ---------- 小卡片（地圖彈窗） ---------- */
 
+/*
+ * 浮在地圖上的東西的 z-index（由下到上）：
+ *   4  .command-bars（比較列、提議列）
+ *   15 .map-panel（討論、預約）
+ *   16 .map-top（日期列、右上工具列、編輯中條）
+ *   18 .timetable-pop（班次表）
+ *   19 .preview-card.anchored（地圖彈窗，第五輪 §10：永遠在最上層，靠近上緣時蓋在日期列上）
+ * 手機的拉起面板（.sheet 8、.map-panel／.timetable-pop 50）不算：彈窗在手機是固定在下方的 docked，留在面板下面。
+ */
 .preview-card {
   position: absolute;
   z-index: 6;
@@ -456,9 +465,17 @@ a {
   overflow: hidden;
 }
 
+/* 電腦：寬 340 的直式卡片，貼在點的上方；上方放不下時翻到點的下方（.below） */
 .preview-card.anchored {
-  width: 320px;
+  z-index: 19;
+  width: 340px;
+  border-radius: 12px;
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.28);
   transform: translate(-50%, calc(-100% - 18px));
+}
+
+.preview-card.anchored.below {
+  transform: translate(-50%, 18px);
 }
 
 /* 手機：固定在地圖下方、收起來的面板上面 */
@@ -479,11 +496,49 @@ a {
   min-width: 0;
 }
 
-.preview-photo {
+.preview-card.anchored .preview-body {
+  flex-direction: column;
+  gap: 0;
+}
+
+.preview-photo-wrap {
+  position: relative;
   flex: 0 0 104px;
+  display: flex;
+}
+
+.preview-card.anchored .preview-photo-wrap {
+  flex: none;
+  height: 150px;
+}
+
+.preview-photo {
   width: 104px;
   height: auto;
   min-height: 104px;
+  object-fit: cover;
+}
+
+.preview-card.anchored .preview-photo {
+  width: 100%;
+  height: 150px;
+  min-height: 0;
+}
+
+/* 照片右下的「1 / 5」 */
+.preview-count {
+  position: absolute;
+  right: 8px;
+  bottom: 8px;
+  background: rgba(0, 0, 0, 0.5);
+  color: #fff;
+  border-radius: 10px;
+  font-size: 11px;
+  padding: 1px 7px;
+}
+
+.preview-card.docked .preview-count {
+  display: none;
 }
 
 .preview-text {
@@ -494,8 +549,31 @@ a {
   min-width: 0;
 }
 
+.preview-card.anchored .preview-text {
+  gap: 4px;
+  padding: 10px 12px 12px;
+}
+
+.preview-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
+}
+
 .preview-title strong {
   font-size: 1.05rem;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.preview-title .tl-card-type {
+  width: 26px;
+  height: 26px;
+  font-size: 0.8rem;
+  border-radius: 6px;
 }
 
 .preview-sub {
@@ -503,18 +581,49 @@ a {
   color: var(--muted);
 }
 
+/* tag 一排，放不下的切掉 */
+.preview-tags {
+  flex-wrap: nowrap;
+  overflow: hidden;
+}
+
+.preview-tags .badge {
+  flex: none;
+}
+
+.preview-card.docked .preview-tags {
+  display: none;
+}
+
 .preview-summary {
   font-size: 0.88rem;
+  line-height: 1.5;
   display: -webkit-box;
-  -webkit-line-clamp: 2;
+  -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
   overflow: hidden;
+}
+
+.preview-card.docked .preview-summary {
+  -webkit-line-clamp: 2;
 }
 
 .preview-close {
   margin: 6px;
   width: 36px;
   height: 36px;
+}
+
+/* 電腦：✕ 疊在照片右上角 */
+.preview-card.anchored .preview-close {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.5);
+  color: #fff;
 }
 
 /* ---------- 手機的拉起面板 ---------- */

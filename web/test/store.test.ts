@@ -65,6 +65,17 @@ test('編輯中換天照樣在編輯；選「全部」就結束編輯', () => {
   assert.equal(store.getState().planning, false);
 });
 
+test('tripFocusDay：整趟點了某天的路線；換天清掉', () => {
+  const store = createAppStore();
+  store.getState().setTripFocusDay('2027-02-05');
+  assert.equal(store.getState().tripFocusDay, '2027-02-05');
+  store.getState().selectDay('2027-02-03');
+  assert.equal(store.getState().tripFocusDay, null);
+  store.getState().setTripFocusDay('2027-02-05');
+  store.getState().selectDay('all');
+  assert.equal(store.getState().tripFocusDay, null);
+});
+
 test('dayPanelShowing：時間軸面板不在畫面上時才要顯示精簡的編輯中條', async () => {
   const { dayPanelShowing } = await import('../src/lib/editing.ts');
   const s = { mode: 'map' as const, detailId: null, sheet: { tab: 'day' } };

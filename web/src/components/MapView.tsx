@@ -10,16 +10,14 @@ import { DESKTOP_QUERY, useApp, useCanHover, useData, usePlan, useShared, useUi 
 import { voteCounts } from '../sharedStore.ts';
 import { initialExtent } from '../lib/areas.ts';
 import { TYPE_COLORS } from '../lib/typeStyle.ts';
-import { mapMark, stopMarks } from '../lib/planView.ts';
-import { dayPlanOf } from '../planStore.ts';
 import { addMapIcons } from './mapIcons.ts';
 import { placeVisual } from '../lib/visual.ts';
 import { PULSE_EVENT, PULSE_MS } from '../lib/mapPulse.ts';
 import { tripDates } from '../lib/trip.ts';
 import { PLACE_TYPES, type Bbox, type Place } from '../data/types.ts';
 import { PreviewCard } from './PreviewCard.tsx';
-import { addOverlayLayers, OVERLAY_SOURCES } from './mapOverlayLayers.ts';
-import { compareFeatures, highlightFeatures, itineraryFeatures, placeBadges, proposalFeatures, routeFeatures, routeLabels } from '../lib/overlays.ts';
+import { addOverlayLayers, ITINERARY_CASING_OPACITY, ITINERARY_LINE_OPACITY, OVERLAY_SOURCES } from './mapOverlayLayers.ts';
+import { compareFeatures, highlightFeatures, itineraryFeatures, itineraryMarks, placeBadges, proposalFeatures, routeFeatures, routeLabels } from '../lib/overlays.ts';
 import { commands, itineraryPathOf } from '../appCommands.ts';
 import { routeLabelHtml } from '../lib/modeIcon.ts';
 import { MapCommandBars } from './MapCommandBars.tsx';
@@ -40,7 +38,7 @@ const PULSE_OFF = ['all', ['!=', ['get', 'mark'], ''], ['==', ['get', 'id'], '']
 
 const typeColorExpr = ['match', ['get', 'type'], ...PLACE_TYPES.flatMap((t) => [t, TYPE_COLORS[t]]), '#555'];
 
-/** marks：選定那天的編號（0、1、2…，planView.stopMarks、mapMark）；有編號的點畫成類型色的編號圓 */
+/** marks：行程的編號（0、1、2…，overlays.itineraryMarks：某一天、點開的那段、整趟）；有編號的點畫成類型色的編號圓 */
 function featureCollection(places: Place[], marks: Map<string, string>): FeatureCollection {
   const { filter, query, day, mode } = appStore.getState();
   const { days } = dataStore.getState();
@@ -106,6 +104,9 @@ export function MapView() {
   const days = useData((s) => s.days);
   const plan = usePlan((s) => s.plan);
   const votes = useShared((s) => s.votes);
+  // 點開的交通卡（那段的兩端照那段的號碼、其他路線變淡）、整趟點亮的那天
+  const legOpen = useUi((s) => s.legOpen);
+  const tripFocusDay = useApp((s) => s.tripFocusDay);
 
   // 點了一個點：電腦版右側切到探索、捲到那張卡片（再點卡片開詳情）；觸控先出小卡片，同一點再點一次開詳情
   const pick = (id: string | null) => {
@@ -340,10 +341,26 @@ export function MapView() {
         }
         return best?.id ?? null;
       };
+      // 整趟時點到哪一天的行程線（沒點到是 null）
+      const tripLineAt = (p: { x: number; y: number }): string | null => {
+        if (appStore.getState().day !== 'all') return null;
+        const pad = 6;
+        const hit = map.queryRenderedFeatures(
+          [
+            [p.x - pad, p.y - pad],
+            [p.x + pad, p.y + pad],
+          ],
+          { layers: ['itinerary-line'] },
+        )[0];
+        return hit ? String(hit.properties.date) : null;
+      };
       map.on('click', (e: MapMouseEvent) => {
         closeMapPanel();
         closeTimetable();
-        pickRef.current(placeAt(e.point));
+        const id = placeAt(e.point);
+        pickRef.current(id);
+        // 整趟：點某天的路線 → 那天亮、其他天淡；點空白處清掉（點到點不動）
+        if (!id) appStore.getState().setTripFocusDay(tripLineAt(e.point));
       });
       map.on('mousemove', PICK_LAYERS, (e) => {
         if (!canHoverRef.current) return;
@@ -403,10 +420,9 @@ export function MapView() {
   // 資料點、篩選、選定的天、行程 → 重畫
   useEffect(() => {
     if (!loaded) return;
-    const marks = new Map<string, string>();
-    if (day !== 'all') for (const [id, list] of stopMarks(dayPlanOf(plan, day)).byPlace) marks.set(id, mapMark(list, 'day'));
+    const marks = itineraryMarks(plan, day, legOpen, tripFocusDay);
     (mapRef.current!.getSource('places') as GeoJSONSource).setData(featureCollection(places, marks));
-  }, [loaded, places, filter, query, day, days, plan, byId, mode, votes]);
+  }, [loaded, places, filter, query, day, days, plan, byId, mode, votes, legOpen, tripFocusDay]);
 
   // 選中的點（詳情、探索捲到的卡片）：換成水滴圖釘，原本的圖標藏起來；只有小卡片的點：框起來
   // 滑鼠移過去、圖片牆點了的點：閃一下
@@ -485,13 +501,12 @@ export function MapView() {
   }, [loaded, proposal, itinerary]);
 
   // 點開某一段交通時，其他行程路線變淡（只亮那一段）；收起來還原
-  const legOpen = useUi((s) => s.legOpen);
   useEffect(() => {
     if (!loaded) return;
     const map = mapRef.current!;
     const dim = legOpen != null;
-    map.setPaintProperty('itinerary-line', 'line-opacity', dim ? 0.1 : (['case', ['==', ['get', 'active'], 1], 0.85, 0.15] as never));
-    map.setPaintProperty('itinerary-casing', 'line-opacity', dim ? 0.1 : (['case', ['==', ['get', 'active'], 1], 0.85, 0.2] as never));
+    map.setPaintProperty('itinerary-line', 'line-opacity', dim ? 0.1 : ITINERARY_LINE_OPACITY);
+    map.setPaintProperty('itinerary-casing', 'line-opacity', dim ? 0.1 : ITINERARY_CASING_OPACITY);
     map.setPaintProperty('itinerary-arrow', 'icon-opacity', dim ? 0.15 : 1);
   }, [loaded, legOpen]);
 
@@ -500,7 +515,7 @@ export function MapView() {
   useEffect(() => {
     if (!loaded) return;
     const map = mapRef.current!;
-    const f = itineraryFeatures(itinerary, plan, byId, DATES, day, itineraryPathOf);
+    const f = itineraryFeatures(itinerary, plan, byId, DATES, day, itineraryPathOf, tripFocusDay);
     (map.getSource(OVERLAY_SOURCES.itineraryLines) as GeoJSONSource).setData(f.lines);
     (map.getSource(OVERLAY_SOURCES.itineraryAlts) as GeoJSONSource).setData(f.alts);
     legLabelsRef.current.forEach((m) => m.remove());
@@ -510,7 +525,7 @@ export function MapView() {
       el.innerHTML = routeLabelHtml(l.mode, l.text);
       return new Marker({ element: el }).setLngLat(l.coords).addTo(map);
     });
-  }, [loaded, itinerary, plan, byId, day, routesVersion]);
+  }, [loaded, itinerary, plan, byId, day, routesVersion, tripFocusDay]);
 
   // 每個點的 ❤️ 數（放大到 BADGE_ZOOM 才顯示）
   useEffect(() => {

@@ -1,4 +1,5 @@
 // 畫在地圖上的東西 → GeoJSON：地圖指令（T12）的標示、比較、路線、AI 的提議，和確定的行程（T15m）。MapView 拿去 setData。
+// 也算地圖上每個點的編號（itineraryMarks：某一天、點開的那段交通、整趟三種規則，第五輪 §9.2）。
 
 import type { Feature, FeatureCollection, LineString, Point } from 'geojson';
 import type { Itinerary } from '@travel-helper/engine/types';
@@ -10,6 +11,7 @@ import { dayColor } from './visual.ts';
 import { lineMidpoint } from './routing.ts';
 import type { Leg } from '@travel-helper/engine';
 import { shortDayLabel } from './trip.ts';
+import { legKeyOf, mapMark, stopMarks } from './planView.ts';
 import type { Change } from '@travel-helper/engine';
 
 const point = (coords: LonLat, properties: Record<string, unknown>): Feature<Point> => ({
@@ -151,6 +153,7 @@ export function describeChanges(changes: Change[], nameOf: (id: string) => strin
  * - 線：每天一種顏色，依時間軸的順序（出發的住宿 → 各點 → 會合點 → 住宿）連起來；選了某一天時只畫那天
  * - 備選：時段備案的非主選點，用那天顏色的空心圈
  * - 交通標籤：只有選定的那天，在每段的中間標交通圖示和「12 分」
+ * - 整趟時點了某一天的路線（focusDay）：其他天的線 dim（變淡），同色的兩天才不會搞混（第五輪 §9.1）
  * 線有 pathOf 給的路徑（步行、車沿道路，搭車照班次的站、電車沿車站）就照路徑畫，沒有（還沒查到、船）就是兩點之間的直線。
  */
 export function itineraryFeatures(
@@ -160,6 +163,7 @@ export function itineraryFeatures(
   dates: string[],
   day: string,
   pathOf?: (from: Place, to: Place, mode: Leg['mode'], rides: Leg['rides']) => LonLat[] | null,
+  focusDay: string | null = null,
 ): { lines: FeatureCollection<LineString>; alts: FeatureCollection<Point>; legs: RouteLabel[] } {
   const lines: Feature<LineString>[] = [];
   const alts: Feature<Point>[] = [];
@@ -169,6 +173,7 @@ export function itineraryFeatures(
     if (day !== 'all' && day !== d.date) continue;
     const color = dayColor(dates, d.date);
     const active = 1;
+    const dim = day === 'all' && focusDay != null && focusDay !== d.date;
     // 只有選定的那天畫方向箭頭
     const selected = day === d.date ? 1 : 0;
     const dp = plan?.days.find((x) => x.date === d.date);
@@ -215,7 +220,7 @@ export function itineraryFeatures(
         prev = p.coords;
         prevPlace = p;
       }
-      if (coords.length >= 2) lines.push(line(coords, { date: d.date, color, active, selected }));
+      if (coords.length >= 2) lines.push(line(coords, { date: d.date, color, active, selected, dim }));
     }
     for (const item of d.items) {
       const visits = item.type === 'visit' ? [item] : item.type === 'split' ? item.groups.flatMap((g) => g.items.filter((x) => x.type === 'visit')) : [];
@@ -228,6 +233,52 @@ export function itineraryFeatures(
     }
   }
   return { lines: collection(lines), alts: collection(alts), legs };
+}
+
+/** 這段交通（legKeyOf）的兩端：to 是那張卡的點，from 是時間軸上前一個點（分組裡第一個點從分組前的點出發）；找不到是 null */
+function legEnds(day: DayPlan, legKey: string): { from: string; to: string } | null {
+  const walk = (entries: DayPlan['entries'], before: string | null): { from: string; to: string } | null => {
+    let prev = before;
+    for (const e of entries) {
+      for (const g of e.groups ?? []) {
+        const hit = walk(g.entries, prev);
+        if (hit) return hit;
+      }
+      if (e.placeId && prev && legKeyOf(e, day.date) === legKey) return { from: prev, to: e.placeId };
+      if (e.placeId) prev = e.placeId;
+    }
+    return null;
+  };
+  return walk(day.entries, null);
+}
+
+/**
+ * 地圖上每個點寫的號碼（第五輪 §9.2，規則在 planView.mapMark）：
+ * - 某一天：照那天的 stopMarks（起終點同一點是 0）；legOpen 是這天的一段交通時，那段的兩端照 'leg'（例如回住宿那段，住宿是最後一號）
+ * - 整趟（'all'）：每天的點都編；那天的終點（住宿）隔天也在 → 照隔天的號碼（隔天的 0）。
+ *   同一個點排在好幾天時，focusDay（整趟點亮的那天）優先，其次是比較早的那天
+ */
+export function itineraryMarks(plan: { days: DayPlan[] } | null, day: string, legOpen: string | null, focusDay: string | null = null): Map<string, string> {
+  const out = new Map<string, string>();
+  const days = plan?.days ?? [];
+  if (day !== 'all') {
+    const dp = days.find((d) => d.date === day);
+    if (!dp) return out;
+    const leg = legOpen?.startsWith(`${day}:`) ? legEnds(dp, legOpen) : null;
+    for (const [id, list] of stopMarks(dp).byPlace) out.set(id, leg ? mapMark(list, 'leg', leg, id) : mapMark(list, 'day'));
+    return out;
+  }
+  const marks = days.map((d) => stopMarks(d).byPlace);
+  const order = days.map((_, i) => i).sort((a, b) => Number(days[b].date === focusDay) - Number(days[a].date === focusDay));
+  for (const i of order) {
+    const last = days[i].entries.filter((e) => e.placeId).at(-1)?.placeId;
+    for (const [id, list] of marks[i]) {
+      if (out.has(id)) continue;
+      const next = id === last ? marks[i + 1]?.get(id) : undefined;
+      out.set(id, mapMark(next ?? list, 'trip'));
+    }
+  }
+  return out;
 }
 
 /** 地圖上每個點的小標記：❤️ 數（想去的人數，interaction-design §3、§9） */

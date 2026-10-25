@@ -19,6 +19,10 @@ const PROPOSAL_ADDED_COLOR = '#1a7f37';
 /** 步行藍、電車黑、巴士橘、船青綠，其他（計程車、包車）紫 */
 const ROUTE_COLOR = ['match', ['get', 'mode'], 'walk', '#0969da', 'train', '#24292f', 'bus', '#bc4c00', 'ferry', '#1b7c83', '#6e40c9'];
 
+/** 行程線、白底的透明度：整趟點了某天時其他天（dim）0.25（第五輪 §9.1）；MapView 收起交通卡時還原成這個 */
+export const ITINERARY_LINE_OPACITY = ['case', ['==', ['get', 'dim'], true], 0.25, ['==', ['get', 'active'], 1], 0.85, 0.15] as never;
+export const ITINERARY_CASING_OPACITY = ['case', ['==', ['get', 'dim'], true], 0.25, ['==', ['get', 'active'], 1], 0.85, 0.2] as never;
+
 export function addOverlayLayers(map: MapLibreMap, below = 'places-circle') {
   const empty = { type: 'FeatureCollection' as const, features: [] };
   for (const id of Object.values(OVERLAY_SOURCES)) map.addSource(id, { type: 'geojson', data: empty });
@@ -30,7 +34,7 @@ export function addOverlayLayers(map: MapLibreMap, below = 'places-circle') {
       type: 'line',
       source: OVERLAY_SOURCES.itineraryLines,
       layout: { 'line-cap': 'round', 'line-join': 'round' },
-      paint: { 'line-color': '#ffffff', 'line-width': 6, 'line-opacity': ['case', ['==', ['get', 'active'], 1], 0.85, 0.2] },
+      paint: { 'line-color': '#ffffff', 'line-width': 6, 'line-opacity': ITINERARY_CASING_OPACITY },
     },
     below,
   );
@@ -43,7 +47,7 @@ export function addOverlayLayers(map: MapLibreMap, below = 'places-circle') {
       paint: {
         'line-color': ['get', 'color'],
         'line-width': ['case', ['==', ['get', 'selected'], 1], 4.5, 3.5],
-        'line-opacity': ['case', ['==', ['get', 'active'], 1], 0.85, 0.15],
+        'line-opacity': ITINERARY_LINE_OPACITY,
       },
     },
     below,

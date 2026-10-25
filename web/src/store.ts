@@ -66,6 +66,8 @@ export interface AppState {
   /** 地圖目前的範圍（地圖移動結束時更新）；給探索模式和 AI 當脈絡 */
   view: { center: LonLat; zoom: number; bounds: Bbox } | null;
   day: DaySelection;
+  /** 整趟模式點了哪一天的路線：那天亮、其他天變淡（第五輪 §9.1）；點地圖空白處、換天清掉 */
+  tripFocusDay: string | null;
   filter: Filter;
   /** 搜尋欄（探索、想去、地圖共用；不放進 Filter） */
   query: string;
@@ -100,6 +102,7 @@ export interface AppState {
 export interface AppActions {
   setView(view: AppState['view']): void;
   selectDay(day: DaySelection): void;
+  setTripFocusDay(date: string | null): void;
   setFilter(patch: Partial<Filter>): void;
   toggleFilter(key: FilterKey, value: string): void;
   clearFilter(): void;
@@ -132,6 +135,7 @@ export type AppStore = AppState & AppActions;
 export const initialState: AppState = {
   view: null,
   day: 'all',
+  tripFocusDay: null,
   filter: EMPTY_FILTER,
   query: '',
   mode: 'map',
@@ -157,8 +161,9 @@ export function createAppStore(init: Partial<AppState> = {}) {
     ...initialState,
     ...init,
     setView: (view) => set({ view }),
-    // 換天照樣在編輯；選「全部」（整趟總覽）就結束編輯
-    selectDay: (day) => set(day === 'all' ? { day, planning: false } : { day }),
+    // 換天照樣在編輯；選「全部」（整趟總覽）就結束編輯。換天時整趟點亮的那天清掉
+    selectDay: (day) => set(day === 'all' ? { day, planning: false, tripFocusDay: null } : { day, tripFocusDay: null }),
+    setTripFocusDay: (tripFocusDay) => set({ tripFocusDay }),
     setFilter: (patch) => set((s) => ({ filter: { ...s.filter, ...patch } })),
     toggleFilter: (key, value) =>
       set((s) => ({ filter: { ...s.filter, [key]: toggleValue(s.filter[key] as string[], value) } })),
