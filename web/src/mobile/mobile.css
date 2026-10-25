@@ -1127,7 +1127,7 @@
 /* 面板的三個高度：低＝只露出把手和天數列；中＝可用高度的比例（地圖約佔上面 1/3）；高＝地圖只露出一小條。
    地圖只畫在面板上面那塊（多蓋 12px 到面板的圓角底下），飛到的點才在看得到的地方 */
 .m-app {
-  --m-sheet-low: 100px;
+  --m-sheet-low: 112px;
   --m-sheet-mid: 0.67;
   --m-map-min: 48px;
   --m-sheet-overlap: 12px;
@@ -1177,9 +1177,10 @@
   transition: none;
 }
 
+/* 把手：看起來是一小條，點的範圍 44px 高 */
 .m-trip-grab {
   flex: 0 0 auto;
-  height: 24px;
+  height: var(--tap);
   display: grid;
   place-items: center;
   touch-action: none;

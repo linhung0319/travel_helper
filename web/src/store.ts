@@ -123,7 +123,7 @@ export interface AppActions {
   addRoute(route: Omit<MapRoute, 'id'>): string;
   updateRoute(id: string, patch: Partial<Omit<MapRoute, 'id'>>): void;
   setCompare(ids: string[]): void;
-  /** 清掉標示、路線、比較（不動提議） */
+  /** 清掉標示、路線、比較（不動提議、不動手機選到的卡 focus） */
   clearHighlights(): void;
   setProposal(proposal: Proposal | null): void;
 }
@@ -193,7 +193,8 @@ export function createAppStore(init: Partial<AppState> = {}) {
     },
     updateRoute: (id, patch) => set((s) => ({ routes: s.routes.map((r) => (r.id === id ? { ...r, ...patch } : r)) })),
     setCompare: (ids) => set({ compare: [...new Set(ids)] }),
-    clearHighlights: () => set({ highlights: {}, routes: [], compare: [] }),
+    // 手機行程選到的那張卡（focus）是畫面自己的狀態，不跟著清（點開交通卡、AI 清標示時，選到的卡的黑框還在）
+    clearHighlights: () => set((s) => ({ highlights: s.highlights.focus ? { focus: s.highlights.focus } : {}, routes: [], compare: [] })),
     setProposal: (proposal) => set({ proposal }),
   }));
 }

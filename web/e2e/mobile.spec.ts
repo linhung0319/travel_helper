@@ -544,8 +544,9 @@ test('行程：地圖右上 💬、📋，右下 ⛶ 把面板放低；拖把手
   await expect(sheet).toHaveAttribute('data-snap', 'low');
   // 低：只露出天數列
   await expect(page.getByTestId('m-day-strip')).toBeInViewport();
-  // 往上拖把手 → 變高
+  // 往上拖把手 → 變高；把手點的範圍至少 44px 高
   const g = (await page.getByTestId('m-sheet-grab').boundingBox())!;
+  expect(g.height).toBeGreaterThanOrEqual(44);
   await page.mouse.move(g.x + g.width / 2, g.y + g.height / 2);
   await page.mouse.down();
   await page.mouse.move(g.x + g.width / 2, g.y - 300, { steps: 8 });
@@ -574,4 +575,20 @@ test('行程卡：沒有照片的點顯示類型色塊', async ({ page }) => {
   const fb = page.locator('[data-testid="m-card"][data-item="i-2"]').getByTestId('m-thumb-fallback');
   await expect(fb).toBeVisible();
   await expect(fb).toHaveText('景');
+});
+
+test('交通開著時點卡片：黑框和路線變淡還在', async ({ page }) => {
+  await ready(page);
+  await pickDay(page, '2027-02-03');
+  await page.getByTestId('m-leg').first().locator('.m-leg-text').click();
+  await expect.poll(() => page.evaluate(() => (window as any).__th.uiStore.getState().legOpen)).not.toBeNull();
+  const card = page.locator('[data-testid="m-card"][data-item="i-3"]');
+  await card.getByTestId('m-card-name').click();
+  await expect(card).toHaveAttribute('aria-current', 'true');
+  await expect.poll(() => page.evaluate(() => (window as any).__th.uiStore.getState().legOpen)).toBeNull();
+  await expect.poll(() => page.evaluate(() => (window as any).__th.appStore.getState().highlights.focus)).toEqual(['shima-la-mer']);
+  // 再等一下：交通卡收起來的清理跑完之後，黑框、變淡都還在
+  await page.waitForTimeout(500);
+  expect(await page.evaluate(() => (window as any).__th.appStore.getState().highlights.focus)).toEqual(['shima-la-mer']);
+  expect(await page.evaluate(() => (window as any).__th.map.getPaintProperty('itinerary-line', 'line-opacity'))).toBe(0.1);
 });

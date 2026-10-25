@@ -32,7 +32,7 @@ function snapHeights(sheet: HTMLElement): Record<TripSnap, number> {
   const css = getComputedStyle(sheet);
   const avail = (sheet.offsetParent as HTMLElement | null)?.clientHeight ?? window.innerHeight;
   return {
-    low: parseFloat(css.getPropertyValue('--m-sheet-low')) || 100,
+    low: parseFloat(css.getPropertyValue('--m-sheet-low')) || 112,
     mid: avail * (parseFloat(css.getPropertyValue('--m-sheet-mid')) || 0.67),
     high: avail - (parseFloat(css.getPropertyValue('--m-map-min')) || 48),
   };
