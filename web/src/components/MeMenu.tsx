@@ -1,5 +1,5 @@
 // 上方列的「我」：之後是 LINE 的名字和大頭照（T25）。dev server 下點了打開開發用選單（T15m 的假登入）：
-// 切換使用者、重設假資料、假裝別人改了行程、規劃模式的閒置時間。
+// 切換使用者、重設假資料、假裝別人改了行程、編輯的閒置時間。
 
 import { useState } from 'react';
 import { shared } from '../appShared.ts';
@@ -63,12 +63,12 @@ export function MeMenu() {
             ✈️ 重設成只有航班的行程
           </button>
           <label className="small">
-            規劃模式閒置
+            編輯閒置
             <select value={idle} onChange={(e) => setIdleMinutes(Number(e.target.value))}>
               <option value={10}>10 分鐘</option>
               <option value={1}>1 分鐘（測試用）</option>
             </select>
-            後退出
+            後結束編輯
           </label>
         </div>
       )}

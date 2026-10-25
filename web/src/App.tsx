@@ -16,7 +16,7 @@ import { usePlanningIdle } from './components/Planning.tsx';
 import './styles.css';
 
 /**
- * 電腦版三欄（參考 puma.taipei/heart-island）：左邊聊天室；中間地圖，日期、規劃模式、我浮在地圖上方；
+ * 電腦版三欄（參考 puma.taipei/heart-island）：左邊聊天室；中間地圖，日期、我浮在地圖上方；
  * 右邊是行程／探索／詳情共用的一欄。聊天室和右欄都頂到最上面。
  */
 function DesktopLayout() {

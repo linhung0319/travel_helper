@@ -3,11 +3,11 @@
 // 點卡片：地圖只畫這一段（commands.drawRoute，搭車的照班次的站畫），每一程上下車的站亮起來；再點一次或點別段就恢復。
 // 大眾運輸點了就展開步驟（legSteps）：左邊時間、中間細線（步行點線、搭車用圖示色的粗實線、節點小圓圈）、右邊文字；
 // 搭車那一行是膠囊，點了在地圖那側開班次表（uiStore.openTimetable，一般模式只能看）。步行、計程車沒有步驟，不展開。
-// 規劃模式下，點開的那張就在原地變成編輯狀態（藍框）：自動（目前的方式）／步行／計程車／大眾運輸、
+// 編輯中，點開的那張就在原地變成編輯狀態（藍框）：自動（目前的方式）／步行／計程車／大眾運輸、
 // 大眾運輸的步驟一定展開，膠囊換成只列搭得到的班次的下拉（selectRideTrip）；
 // 算不出來（交通未定、指定的方式找不到班次）或已經填過分鐘時才出現「自己填分鐘」（清空＝回到自動）；備註、「完成」收起來。
 // 一次只開一段（uiStore.legOpen）；這張卡不見了（換天、回整趟、換分頁）時也收起來，地圖的行程線才會恢復。
-// 規劃模式下交通卡也是放置區：拖到這裡＝排在這段通往的那張卡片前面（planDrag.dropOnLegProps）。
+// 編輯中交通卡也是放置區：拖到這裡＝排在這段通往的那張卡片前面（planDrag.dropOnLegProps）。
 
 import { useEffect, useRef, useState, type MouseEvent, type ReactNode } from 'react';
 import { getLegTravel, rideDepartures, setLegTravel, type Itinerary, type Leg, type LegTarget, type RideDeparture, type TimelineEntry, type TravelSpec } from '@travel-helper/engine';
@@ -188,7 +188,7 @@ function LegSteps({ steps, leg, date, legKey, target, editing, saving }: { steps
   );
 }
 
-/** 規劃模式的編輯狀態，由上到下：方式、步驟（children，大眾運輸的班次在這裡選）、（算不出來時）分鐘、備註、完成 */
+/** 編輯的編輯狀態，由上到下：方式、步驟（children，大眾運輸的班次在這裡選）、（算不出來時）分鐘、備註、完成 */
 function LegEditor({ target, spec, leg, children }: { target: LegTarget; spec: TravelSpec | null; leg: Leg; children?: ReactNode }) {
   const saving = useShared((s) => s.saving);
   // 每次都從最新的行程讀目前的設定再改

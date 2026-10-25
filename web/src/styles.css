@@ -211,12 +211,6 @@ a {
   color: var(--accent);
 }
 
-.planning-toggle.on {
-  background: var(--warn-bg);
-  border-color: var(--warn);
-  color: var(--warn);
-}
-
 .segmented {
   display: flex;
   margin-left: auto;
@@ -1140,7 +1134,7 @@ dl {
 }
 
 /* ======================================================================
-   T15m：這一天的時間軸、建議、規劃模式、投票、修改紀錄、需要預約、對話框
+   T15m：這一天的時間軸、建議、編輯、投票、修改紀錄、需要預約、對話框
    ====================================================================== */
 
 :root {
@@ -1483,11 +1477,80 @@ dl {
   align-items: center;
   gap: 8px;
   flex-wrap: wrap;
-  background: var(--plan-bg);
-  color: var(--plan);
-  border: 1px solid var(--plan);
+  background: var(--accent);
+  color: #fff;
   border-radius: 8px;
+  padding: 4px 6px 4px 10px;
+  margin-bottom: 6px;
+}
+
+.planning-bar-status {
+  font-size: 0.8rem;
+  opacity: 0.85;
+}
+
+/* 藍條右邊白底的「完成」 */
+button.planning-done {
+  border: 0;
+  border-radius: 6px;
+  background: #fff;
+  color: var(--accent);
+  font: inherit;
+  font-weight: 600;
+  padding: 3px 12px;
+  min-height: 30px;
+  cursor: pointer;
+}
+
+/* 日期列上最顯眼的藍色實心「✏️ 編輯這天」 */
+button.edit-toggle {
+  border: 0;
+  border-radius: 8px;
+  background: var(--accent);
+  color: #fff;
+  font: inherit;
+  font-weight: 600;
+  padding: 4px 12px;
+  min-height: 34px;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+/* 🤖 問 AI 退成比較淡的文字按鈕 */
+.ask-ai-quiet {
+  color: var(--muted);
+}
+
+/* 編輯中：面板 2px 藍框；資料卡左邊 ⠿ */
+.day-panel.editing {
+  border: 2px solid var(--accent);
+  border-radius: 10px;
+}
+
+.edit-hint {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin: 4px 0 8px;
   padding: 2px 4px 2px 10px;
+  border-radius: 8px;
+  background: var(--info-bg);
+  color: var(--accent);
+}
+
+.tl-card.movable {
+  position: relative;
+  padding-left: 22px;
+}
+
+.tl-handle {
+  position: absolute;
+  left: 6px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #999;
+  cursor: grab;
 }
 
 .planning-bar-actions {
@@ -1497,7 +1560,7 @@ dl {
 }
 
 .planning-bar .text-button {
-  color: var(--plan);
+  color: #fff;
 }
 
 .count {
@@ -1742,7 +1805,7 @@ dl {
   border: 1px solid var(--line);
 }
 
-/* 規劃模式：點 tag 那一排改 */
+/* 編輯：點 tag 那一排改 */
 .tag-edit {
   display: inline-flex;
   align-items: center;
@@ -2408,12 +2471,12 @@ button.edited {
 }
 
 .layout.mobile .planning-bar {
-  flex-wrap: nowrap;
+  flex-wrap: wrap;
   font-size: 0.9rem;
   padding-left: 8px;
 }
 
-.layout.mobile .planning-bar > .muted {
+.layout.mobile .planning-bar-status {
   display: none;
 }
 
@@ -2451,7 +2514,7 @@ button.edited {
   background: var(--bg);
 }
 
-/* 浮在地圖上方的日期、規劃模式、我 */
+/* 浮在地圖上方的日期、我 */
 .map-top {
   position: absolute;
   top: 10px;
@@ -2508,7 +2571,6 @@ button.edited {
   min-height: 38px;
 }
 
-.map-top .planning-bar,
 .map-top .conflict-bar {
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.16);
   align-self: flex-start;
@@ -3493,7 +3555,7 @@ body.dragging-place [data-drop-ai].drop-over {
   justify-content: space-between;
 }
 
-/* ---------- 規劃模式的拖曳：卡片換順序、想去清單拖進時間軸 ---------- */
+/* ---------- 編輯的拖曳：卡片換順序、想去清單拖進時間軸 ---------- */
 
 .tl-card.movable {
   cursor: grab;
@@ -4235,7 +4297,7 @@ button.leg-ride-more {
   min-width: 10em;
 }
 
-/* 規劃模式拖到交通卡上：排在下一張卡片前面 */
+/* 編輯拖到交通卡上：排在下一張卡片前面 */
 .tl-leg.drop-leg-over .tl-leg-card {
   position: relative;
   border-color: var(--accent);

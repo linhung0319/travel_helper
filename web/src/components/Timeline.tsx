@@ -4,7 +4,7 @@
 // 資料卡只顯示要看的（設計 §6）：左邊類型色塊（宿／景／餐／站／機／點）、右上角編號（類型色的實心圓）、
 // 時間（開始–結束）、停留時間（X小時MM分）、名稱、tag、❤️ 頭像、⚠ 數。
 // 卡片底色是類型的淡色；起點、終點的住宿和造訪是同樣的卡片（只寫一個時間）。有備卡的卡片疊著淡色卡、右上角 👑、‹ n/m › 換著看。
-// 規劃模式下才有：停留時間 −／＋、點時間固定開始（📌）、⋯ 選單（刪除、移到第 _ 天、移進／移出分組、標用餐、標吃法）、
+// 編輯中才有：停留時間 −／＋、點時間固定開始（📌）、⋯ 選單（刪除、移到第 _ 天、移進／移出分組、標用餐、標吃法）、
 // 拖卡片（電腦版拖、手機長按後拖）：放在卡片中間合併、邊緣換順序；看備卡時拖的是那張備卡；看備卡時的「設為主要」「拿出來」。
 // 看備卡時預約 tag、警告跟著那張備卡，⋯ 選單收起來（裡面的刪除是刪整張卡片）。
 
@@ -97,7 +97,7 @@ function Warnings({ list }: { list: EngineWarning[] | undefined }) {
   );
 }
 
-/** 規劃模式的手動選單；onTags：打開 tag 那一排的選單（造訪的卡片才有） */
+/** 編輯的手動選單；onTags：打開 tag 那一排的選單（造訪的卡片才有） */
 function ItemMenu({ itemId, item, onTags }: { itemId: string; item: ItineraryItem; onTags?: () => void }) {
   const [open, setOpen] = useState(false);
   const [confirm, setConfirm] = useState(false);
@@ -238,14 +238,14 @@ interface ShownOption {
   stayMinutes: number | null;
   /** tag 那一排右邊的 ‹ n/m › */
   switcher: ReactNode;
-  /** 規劃模式、看備卡時的「設為主要」「拿出來」 */
+  /** 編輯、看備卡時的「設為主要」「拿出來」 */
   actions: ReactNode;
 }
 
 /**
  * 有備卡的卡片（visit.options 超過一個）：本地 state shown 是「看的是第幾個」，只是看，不改主卡。
  * 右上角 👑 在看主卡時亮、看備卡時灰；‹ n/m › 或手機左右滑換卡；看備卡時地圖上那個點亮起來。
- * 規劃模式看備卡：「設為主要」（selectOption）、「拿出來」（放回這天的候選，可復原）。
+ * 編輯看備卡：「設為主要」（selectOption）、「拿出來」（放回這天的候選，可復原）。
  * onShown：看的備卡換了就告訴卡片（看主卡是 null），拖卡片時拖的就是那張備卡。
  */
 function OptionStack({ visit, date, onShown, children }: { visit: VisitItem; date: string; onShown: (index: number | null) => void; children: (v: ShownOption) => ReactNode }) {
@@ -466,7 +466,7 @@ function EntryRow({ entry, day, warnings, plan, marks }: { entry: TimelineEntry;
   const visit = item?.type === 'visit' ? item : null;
   const flight = item?.type === 'flight' ? item : null;
   const time = cardTime(entry);
-  // 規劃模式：電腦版拖曳、手機長按後拖（航班不能動）
+  // 編輯：電腦版拖曳、手機長按後拖（航班不能動）
   const movable = !!dragSrc;
   const itemWarnings = entry.itemId ? warnings.get(entry.itemId) : undefined;
   const stacked = visit && visit.options.length > 1 ? Math.min(visit.options.length - 1, 2) : 0;
@@ -521,6 +521,11 @@ function EntryRow({ entry, day, warnings, plan, marks }: { entry: TimelineEntry;
         ref={pressRef}
         {...(movable && entry.itemId ? { ...(desktop ? dragSourceProps(dragSrc, dragSrc?.kind === 'option' ? (backupPlace ?? null) : entry.placeId) : {}), ...dropOnCardProps({ kind: 'card', itemId: entry.itemId, placeType: visit ? (p?.type ?? null) : null, isFlight: false }, true) } : {})}
       >
+        {movable && (
+          <span className="tl-handle" aria-hidden>
+            ⠿
+          </span>
+        )}
         {visit && stacked ? (
           <OptionStack visit={visit} date={day.date} onShown={setBackup}>
             {(v) => content(v)}
@@ -545,7 +550,7 @@ function WarnToggle({ list, open, onToggle }: { list: EngineWarning[] | undefine
   );
 }
 
-/** 時間（大字，造訪是「開始–結束」）；固定時間（訂位、表演）標 📌。規劃模式下點了切換固定／不固定 */
+/** 時間（大字，造訪是「開始–結束」）；固定時間（訂位、表演）標 📌。編輯中點了切換固定／不固定 */
 function StartTime({ entry, visit, flight, text }: { entry: TimelineEntry; visit: VisitItem | null; flight: Extract<ItineraryItem, { type: 'flight' }> | null; text: string }) {
   const planning = useApp((s) => s.planning);
   const time = flight ? (flight.direction === 'arrive' ? flight.arrive : flight.depart) : text;
@@ -572,7 +577,7 @@ function StartTime({ entry, visit, flight, text }: { entry: TimelineEntry; visit
   );
 }
 
-/** 停留時間的標籤（X小時MM分，等寬數字、固定最小寬度，調時間時字不跳）；規劃模式下 −15／＋15（後面的時間跟著重算） */
+/** 停留時間的標籤（X小時MM分，等寬數字、固定最小寬度，調時間時字不跳）；編輯中 −15／＋15（後面的時間跟著重算） */
 function StayChip({ itemId, minutes, readOnly = false }: { itemId: string | null; minutes: number; readOnly?: boolean }) {
   const planning = useApp((s) => s.planning) && !readOnly;
   const change = (d: number) => {

@@ -1,5 +1,5 @@
 // 時間軸卡片名稱下面那一排 tag（設計 §7）：用餐（早餐／午餐／晚餐／點心）在前、吃法（全員一起／分開吃）在後、預約狀態最後。
-// tag 都是使用者自己標的（引擎猜的用餐不顯示）。規劃模式下點那一排（或 ⋯ 選單的「標用餐」「標吃法」）跳出選單改；一般模式只看。
+// tag 都是使用者自己標的（引擎猜的用餐不顯示）。編輯中點那一排（或 ⋯ 選單的「標用餐」「標吃法」）跳出選單改；一般模式只看。
 
 import { useEffect, useRef } from 'react';
 import { setDining, setMeal, type DiningStyle, type MealKind } from '@travel-helper/engine';

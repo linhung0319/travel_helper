@@ -541,7 +541,7 @@ export function DetailPanel({ place, back }: { place: Place; back?: { label: str
 
   return (
     <article className="detail" data-testid="detail-panel" aria-label={`${name} 的詳情`}>
-      {/* 上方一列：返回（電腦版）、問 AI；規劃模式多一個「排進行程」。手機沒有返回，右邊是 ✕；想去用標題旁的 ❤️ */}
+      {/* 上方一列：返回（電腦版）、問 AI；編輯多一個「排進行程」。手機沒有返回，右邊是 ✕；想去用標題旁的 ❤️ */}
       <div className="detail-bar">
         {back && (
           <button type="button" className="detail-back" onClick={back.onClick} data-testid="detail-back">

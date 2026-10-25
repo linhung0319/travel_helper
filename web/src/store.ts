@@ -70,7 +70,7 @@ export interface AppState {
   /** 搜尋欄（探索、想去、地圖共用；不放進 Filter） */
   query: string;
   mode: 'map' | 'explore' | 'wish';
-  /** 規劃模式（T15 接上進入前確認、閒置退出） */
+  /** 編輯中（進入前確認、閒置結束）；選「全部」時一定結束 */
   planning: boolean;
   /** 滑鼠移過去、或在圖片牆點了的點：地圖上會閃 */
   hoveredId: string | null;
@@ -157,7 +157,8 @@ export function createAppStore(init: Partial<AppState> = {}) {
     ...initialState,
     ...init,
     setView: (view) => set({ view }),
-    selectDay: (day) => set({ day }),
+    // 換天照樣在編輯；選「全部」（整趟總覽）就結束編輯
+    selectDay: (day) => set(day === 'all' ? { day, planning: false } : { day }),
     setFilter: (patch) => set((s) => ({ filter: { ...s.filter, ...patch } })),
     toggleFilter: (key, value) =>
       set((s) => ({ filter: { ...s.filter, [key]: toggleValue(s.filter[key] as string[], value) } })),

@@ -31,7 +31,7 @@ export function DayPicker({ placeId, onClose }: { placeId: string; onClose: () =
   const planning = useApp((s) => s.planning);
   const status = placeDayStatus(placeId, candidates, itinerary);
   const [busy, setBusy] = useState(false);
-  // 這個點這天的候選：自己和別人都加過時用自己的（非規劃模式也能撤回）
+  // 這個點這天的候選：自己和別人都加過時用自己的（不在編輯也能撤回）
   const candidateOn = (date: string) => {
     const list = candidates.filter((x) => x.placeId === placeId && x.day === date && !x.deletedAt);
     return list.find((x) => x.addedBy === me) ?? list[0];
@@ -45,7 +45,7 @@ export function DayPicker({ placeId, onClose }: { placeId: string; onClose: () =
       if (r.ok && !shared.store.getState().votes.some((v) => v.placeId === placeId && v.memberId === me && v.value === 'like' && !v.deletedAt)) await castVote(placeId, 'like');
     } else if (c.addedBy === me) await shared.removeCandidate(c.id);
     else {
-      // 別人加的：規劃模式才能拿掉，要寫理由
+      // 別人加的：編輯時才能拿掉，要寫理由
       openDialog({ kind: 'reject', candidateId: c.id });
       onClose();
     }
@@ -71,7 +71,7 @@ export function DayPicker({ placeId, onClose }: { placeId: string; onClose: () =
               className={`day-picker-day ${cand ? 'cand' : ''} ${scheduled ? 'scheduled' : ''}`}
               aria-pressed={cand}
               disabled={busy || scheduled || others}
-              title={others ? '別人加的候選，規劃模式才能拿掉' : scheduled ? `${shortDayLabel(d)} 已排進行程` : cand ? `${shortDayLabel(d)} 的候選（再點取消）` : `加到 ${shortDayLabel(d)} 的候選`}
+              title={others ? '別人加的候選，編輯時才能拿掉' : scheduled ? `${shortDayLabel(d)} 已排進行程` : cand ? `${shortDayLabel(d)} 的候選（再點取消）` : `加到 ${shortDayLabel(d)} 的候選`}
               data-testid={`day-picker-${d}`}
               onClick={() => void click(d)}
             >

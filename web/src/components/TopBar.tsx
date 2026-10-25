@@ -11,7 +11,7 @@ import { openMapPanel } from '../uiStore.ts';
 import { useCommentCount } from './Wishlist.tsx';
 import { filterChips, isFilterEmpty, matchesFilter, matchesQuery } from '../lib/filter.ts';
 import { shortDayLabel, tripDates, weekdayZh, JP_HOLIDAYS } from '../lib/trip.ts';
-import { ConflictBar, PlanningBar } from './Planning.tsx';
+import { ConflictBar } from './Planning.tsx';
 import { MeMenu } from './MeMenu.tsx';
 import { FilterPanel } from './FilterPanel.tsx';
 import { showItinerary } from './Explore.tsx';
@@ -170,7 +170,6 @@ export function TopBar() {
           </button>
         </div>
       </div>
-      <PlanningBar />
       <ConflictBar />
       {filterOpen && <FilterPanel onClose={() => setFilterOpen(false)} />}
     </div>
@@ -178,13 +177,13 @@ export function TopBar() {
 }
 
 /**
- * 電腦版：浮在地圖上方（參考 puma.taipei 的版面）。左邊是日期，右邊是我；規劃模式的按鈕在右側的「行程」分頁；
+ * 電腦版：浮在地圖上方（參考 puma.taipei 的版面）。左邊是日期，右邊是我；編輯的按鈕在右側的「行程」分頁；
  * 篩選、探索搬到右側的「探索」分頁。
  */
 export function MapTopBar() {
   const mode = useApp((s) => s.mode);
   const ref = useRef<HTMLDivElement>(null);
-  // 規劃列、衝突提示、篩選 chips 會讓浮動列變高：量出它的下緣，讓討論／預約彈窗的標題永遠在它下面（--bar-bottom）
+  // 衝突提示、篩選 chips 會讓浮動列變高：量出它的下緣，讓討論／預約彈窗的標題永遠在它下面（--bar-bottom）
   useEffect(() => {
     const el = ref.current;
     const column = el?.parentElement;
@@ -208,7 +207,6 @@ export function MapTopBar() {
           <AccountBar />
         </div>
       </div>
-      <PlanningBar />
       <ConflictBar />
       {/* 探索分頁裡已經看得到篩選，不重複 */}
       {mode !== 'explore' && <FilterChips />}

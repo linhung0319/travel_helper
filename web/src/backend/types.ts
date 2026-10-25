@@ -43,7 +43,7 @@ export interface Vote {
   deletedAt: string | null;
 }
 
-/** normal：一般留言；planner：規劃模式下留的（顯示〔規劃〕）；decline：不採用的理由 */
+/** normal：一般留言；planner：編輯中留的（顯示〔規劃〕）；decline：不採用的理由 */
 export type CommentKind = 'normal' | 'planner' | 'decline';
 
 /** 地點、某一天或整趟旅程的留言（只有一層，不能回覆留言） */

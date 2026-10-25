@@ -1,5 +1,5 @@
-// 對話框（T15m）：進入規劃模式的確認、快照、排進行程、移到別天、修改紀錄、拿掉別人加的候選；展開中的交通卡、地圖那側的班次表。
-// 一次只開一個；從哪裡打開都走這裡（詳情面板、時間軸、規劃列），App 底下的 <Dialogs /> 負責畫。
+// 對話框（T15m）：進入編輯的確認、快照、排進行程、移到別天、修改紀錄、拿掉別人加的候選；展開中的交通卡、地圖那側的班次表。
+// 一次只開一個；從哪裡打開都走這裡（詳情面板、時間軸、編輯藍條），App 底下的 <Dialogs /> 負責畫。
 
 import { createStore } from 'zustand/vanilla';
 import { appStore } from './store.ts';
@@ -30,7 +30,7 @@ export interface TimetableState {
 export interface UiState {
   dialog: DialogState | null;
   mapPanel: MapPanelState | null;
-  /** 規劃模式閒置多久自動退出（分鐘）；dev 選單可以改短 */
+  /** 編輯閒置多久自動結束編輯（分鐘）；dev 選單可以改短 */
   idleMinutes: number;
   /** 展開中的交通細列（日期:項目 ID 或 lodging）；一次只展開一段 */
   legOpen: string | null;

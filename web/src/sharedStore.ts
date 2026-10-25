@@ -284,7 +284,7 @@ export function createShared(getBackend: () => Backend, data: StoreApi<DataState
   }
 
   /**
-   * 從候選拿掉。自己加的直接撤回；別人加的要寫理由（規劃模式），理由變成那個點的一則不採用留言。
+   * 從候選拿掉。自己加的直接撤回；別人加的要寫理由（編輯），理由變成那個點的一則不採用留言。
    * 排進行程後也用這個拿掉（自己的操作，不用理由：placed）。
    */
   async function removeCandidate(id: number, reason?: string, placed = false): Promise<Result> {

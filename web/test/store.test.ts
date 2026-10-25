@@ -53,3 +53,14 @@ test('選取（問 AI）不重複；移動地圖的請求每次 seq 加 1', () =
   assert.equal(store.getState().camera?.seq, 2);
   assert.deepEqual(store.getState().camera?.bbox, [0, 0, 1, 1]);
 });
+
+test('編輯中換天照樣在編輯；選「全部」就結束編輯', () => {
+  const store = createAppStore();
+  store.getState().selectDay('2027-02-03');
+  store.getState().setPlanning(true);
+  store.getState().selectDay('2027-02-04');
+  assert.equal(store.getState().planning, true);
+  store.getState().selectDay('all');
+  assert.equal(store.getState().day, 'all');
+  assert.equal(store.getState().planning, false);
+});

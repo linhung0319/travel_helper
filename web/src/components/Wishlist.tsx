@@ -1,7 +1,7 @@
 // 想去（interaction-design §6）：❤️ 就是想去。「❤️ 想去」分頁照搬探索（Explore.tsx 的 source="wish"），
 // 每張卡片底下多了「📅 加到某天」（小月曆，DayPicker.tsx）、留言（只有一層，收起來）；❤️／👎 數在照片右上角。
 // 加到某天的點變成那天的「候選」，放在行程分頁時間軸的下面，樣子和資料卡一樣（類型淡底色、類型色塊），
-// 用虛線框、沒有編號表示還沒排進去，下面一行「加的人」。規劃模式下左邊 ⠿、右邊「↑ 排進」（插在最順路的位置），
+// 用虛線框、沒有編號表示還沒排進去，下面一行「加的人」。編輯中左邊 ⠿、右邊「↑ 排進」（插在最順路的位置），
 // 或拖到時間軸（卡片中間＝合併成那張卡片的備卡、卡片之間＝排在那裡；planDrag.ts）。備卡也可以拖回候選區。
 // 這天、整趟的留言（Comments）放在地圖區的視窗（MapPanel）。
 
@@ -39,7 +39,7 @@ export function useCommentCount(target: string): number {
   return useComments(target).length;
 }
 
-/** 留言：預設收起來（open＝true 時一開始就展開）；只有一層；自己的可以改、可以刪。規劃模式下留的標〔規劃〕 */
+/** 留言：預設收起來（open＝true 時一開始就展開）；只有一層；自己的可以改、可以刪。編輯中留的標〔規劃〕 */
 export function Comments({ target, label = '留言', placeholder = '留言…', open: openAtStart = false }: { target: string; label?: string; placeholder?: string; open?: boolean }) {
   const list = useComments(target);
   const [open, setOpen] = useState(openAtStart);
@@ -130,7 +130,7 @@ export function WishExtras({ placeId }: { placeId: string }) {
   );
 }
 
-/** 候選的一筆：類型色塊、名稱、❤️ 頭像，下面一行「加的人」。規劃模式下左邊 ⠿ 可以拖進時間軸（住宿不行）、右邊「↑ 排進」 */
+/** 候選的一筆：類型色塊、名稱、❤️ 頭像，下面一行「加的人」。編輯中左邊 ⠿ 可以拖進時間軸（住宿不行）、右邊「↑ 排進」 */
 function CandidateRow({ c, date }: { c: Candidate; date: string }) {
   const me = useShared((s) => s.me?.id);
   const p = useData((s) => s.byId.get(c.placeId));
@@ -206,7 +206,7 @@ function CandidateRow({ c, date }: { c: Candidate; date: string }) {
   );
 }
 
-/** 行程分頁：這天的候選（標題「候選 N」）。點一筆＝地圖飛過去、跳出小卡片；規劃模式下 ↑ 排進行程、拖到時間軸；這一區也收拖回來的備卡 */
+/** 行程分頁：這天的候選（標題「候選 N」）。點一筆＝地圖飛過去、跳出小卡片；編輯中 ↑ 排進行程、拖到時間軸；這一區也收拖回來的備卡 */
 export function DayCandidates({ date }: { date: string }) {
   const all = useShared((s) => s.candidates);
   const itinerary = useData((s) => s.itinerary);

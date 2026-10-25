@@ -1,4 +1,4 @@
-// 規劃模式（interaction-design §6、§11）：進入前確認、畫面上一直顯示、閒置自動退出；
+// 編輯（interaction-design §6、§11、第五輪設計 §5）：「✏️ 編輯這天」按鈕、進入前確認、時間軸面板最上面的藍條、第一次的提示、閒置自動結束；
 // 快照列表與復原、「排進行程」、「移到第 _ 天」、別人改過了的提示。
 
 import { useEffect, useState } from 'react';
@@ -17,22 +17,13 @@ import { addPlaceToDay } from './addToDay.ts';
 
 const DATES = tripDates();
 
-/** 規劃模式的開關：進去前先確認，出來直接出來 */
+/** 日期列上的藍色實心按鈕「✏️ 編輯這天」：點了先確認；編輯中不顯示（離開用藍條的「完成」） */
 export function PlanningToggle() {
   const planning = useApp((s) => s.planning);
+  if (planning) return null;
   return (
-    <button
-      type="button"
-      className={`toggle planning-toggle ${planning ? 'on' : ''}`}
-      aria-pressed={planning}
-      data-testid="planning-toggle"
-      onClick={() => (planning ? appStore.getState().setPlanning(false) : openDialog({ kind: 'planning' }))}
-    >
-      🛠 {planning ? '規劃中' : (
-        <>
-          規劃<span className="desktop-only">模式</span>
-        </>
-      )}
+    <button type="button" className="edit-toggle" data-testid="planning-toggle" onClick={() => openDialog({ kind: 'planning' })}>
+      ✏️ 編輯這天
     </button>
   );
 }
@@ -41,7 +32,7 @@ export function PlanningConfirmDialog() {
   const idle = useUi((s) => s.idleMinutes);
   return (
     <Dialog
-      title="進入規劃模式？"
+      title="開始編輯？"
       onClose={closeDialog}
       testId="planning-dialog"
       footer={
@@ -58,7 +49,7 @@ export function PlanningConfirmDialog() {
               closeDialog();
             }}
           >
-            進入規劃模式
+            開始編輯
           </button>
         </>
       }
@@ -66,13 +57,13 @@ export function PlanningConfirmDialog() {
       <p>進入後可以修改<strong>大家共用的那一份行程</strong>：把這天的候選排進行程、拿掉別人加的候選、刪除、移到別天、換順序、改停留時間、復原快照。</p>
       <ul className="small">
         <li>每次修改前都會自動存一份快照，改錯了可以復原。</li>
-        <li>{idle} 分鐘沒有動作會自動退出。</li>
+        <li>{idle} 分鐘沒有動作會自動結束編輯。</li>
       </ul>
     </Dialog>
   );
 }
 
-/** 規劃模式中一直顯示：快照、儲存狀態、退出 */
+/** 編輯中，時間軸面板最上面的藍條：說明、儲存狀態、快照、完成（白底） */
 export function PlanningBar() {
   const planning = useApp((s) => s.planning);
   const saving = useShared((s) => s.saving);
@@ -80,17 +71,55 @@ export function PlanningBar() {
   if (!planning) return null;
   return (
     <div className="planning-bar" data-testid="planning-bar">
-      <strong>🛠 規劃模式中</strong>
-      <span className="muted small">{saving ? '儲存中…' : `第 ${version} 版`}</span>
+      <strong>✏️ 編輯中・改了會自動存，大家都看得到</strong>
+      <span className="planning-bar-status">{saving ? '儲存中…' : `第 ${version} 版`}</span>
       <span className="planning-bar-actions">
         <button type="button" className="text-button" onClick={() => openDialog({ kind: 'snapshots' })} data-testid="snapshots-button">
           🕘 快照
         </button>
-        <button type="button" className="text-button" onClick={() => appStore.getState().setPlanning(false)}>
-          退出
+        <button type="button" className="planning-done" data-testid="planning-done" onClick={() => appStore.getState().setPlanning(false)}>
+          完成
         </button>
       </span>
     </div>
+  );
+}
+
+const HINT_KEY = 'th-edit-hint-seen';
+
+function hintSeen(): boolean {
+  try {
+    return localStorage.getItem(HINT_KEY) === '1';
+  } catch {
+    return false;
+  }
+}
+
+/** 第一次進編輯：時間軸上方一行提示，✕ 關掉後記在 localStorage（讀寫失敗就當沒看過，下次再顯示） */
+export function EditHint() {
+  const planning = useApp((s) => s.planning);
+  const [seen, setSeen] = useState(hintSeen);
+  if (!planning || seen) return null;
+  return (
+    <p className="edit-hint small" data-testid="edit-hint">
+      <span>拖 ⠿ 換順序；點交通卡改方式、班次</span>
+      <button
+        type="button"
+        className="text-button"
+        aria-label="關掉提示"
+        data-testid="edit-hint-close"
+        onClick={() => {
+          setSeen(true);
+          try {
+            localStorage.setItem(HINT_KEY, '1');
+          } catch {
+            // 存不了就算了
+          }
+        }}
+      >
+        ✕
+      </button>
+    </p>
   );
 }
 
@@ -118,7 +147,7 @@ export function ConflictBar() {
   );
 }
 
-/** 規劃模式閒置自動退出（interaction-design §6） */
+/** 編輯閒置自動結束（interaction-design §6） */
 export function usePlanningIdle() {
   const planning = useApp((s) => s.planning);
   const minutes = useUi((s) => s.idleMinutes);
@@ -131,7 +160,7 @@ export function usePlanningIdle() {
     const timer = window.setInterval(() => {
       if (Date.now() - last < minutes * 60_000) return;
       appStore.getState().setPlanning(false);
-      shared.store.setState({ toast: { seq: Date.now(), kind: 'ok', text: `${minutes} 分鐘沒有動作，已退出規劃模式` } });
+      shared.store.setState({ toast: { seq: Date.now(), kind: 'ok', text: `${minutes} 分鐘沒有動作，已結束編輯` } });
     }, 5_000);
     return () => {
       events.forEach((e) => window.removeEventListener(e, touch));
@@ -161,7 +190,7 @@ export function SnapshotsDialog() {
       <p className="small">
         目前是第 {version} 版（<MemberName id={updatedBy} />・{stamp(updatedAt)}）。每次修改前會自動存一份。
       </p>
-      {!planning && <p className="muted small">要復原，請先進入規劃模式。</p>}
+      {!planning && <p className="muted small">要復原，請先開始編輯。</p>}
       {snapshots.length === 0 && <p className="muted">還沒有快照。</p>}
       <ol className="snapshot-list">
         {snapshots.map((s) => {

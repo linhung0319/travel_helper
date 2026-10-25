@@ -1,4 +1,4 @@
-// 規劃模式的拖曳（interaction-design §6、第四輪設計 §4）：
+// 編輯的拖曳（interaction-design §6、第四輪設計 §4）：
 // - 可以拖的：時間軸的卡片（有備卡時連同備卡）、合併卡片正在看的備卡、這天的候選（住宿的候選不能拖）。
 //   第三輪的「不從候選拖到時間軸」作廢：候選拖到卡片上＝合併，拖到卡片之間＝排進那個位置。
 // - 電腦版用 HTML5 拖曳；手機長按 0.4 秒後拖。兩條路都是「取得 DragSource → 每次移動算 dropIntent（lib/dropIntent.ts）→ 標記 → 放開時執行」。
@@ -291,7 +291,7 @@ const MOVE_CANCEL_PX = 8;
  * 手機：長按進入拖曳，放開時照 dropIntent 執行。回傳要掛在拖曳來源（卡片、候選）上的 ref。
  * src 放在 ref 裡（換著看備卡時跟著換），監聽器只在能不能拖變了才重掛，重畫不會打斷拖到一半的手勢。
  * 監聽器直接掛在元素上（touchmove 一開始就是 passive: false，Chrome 才讓長按之後擋得住捲動），
- * 卸載或關掉規劃模式時一定清乾淨（不然整頁不能捲）。
+ * 卸載或關掉編輯時一定清乾淨（不然整頁不能捲）。
  */
 export function useLongPressDrag<T extends HTMLElement>(src: DragSource | null, enabled: boolean) {
   const ref = useRef<T>(null);

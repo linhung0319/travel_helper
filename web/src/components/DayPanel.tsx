@@ -1,5 +1,5 @@
 // 「行程」分頁（interaction-design §3、§6），兩層，像探索的清單和詳情：
-// 選「全部」是整趟的總覽（每天排了什麼、幾個候選、警告）；選了某一天，最上面一列是「← 整趟、日期 ‹ ›、問 AI、規劃」，
+// 選「全部」是整趟的總覽（每天排了什麼、幾個候選、警告）；選了某一天，編輯中最上面是藍條（說明、快照、完成），接著一列「← 整趟、日期 ‹ ›、問 AI、✏️ 編輯這天」，
 // 下面是摘要列（⚠ 點了展開提醒）、細的比例橫條、時間軸（資料卡是類型的淡底色，起點、終點的住宿也是卡片）、這天的候選（想去「加到某天」的點）。💬 討論、📋 預約、⬇ 下載在地圖區右上角（TopBar.tsx 的 AccountBar，和帳號頭像一起）。
 
 import { useState } from 'react';
@@ -14,7 +14,7 @@ import { dayColor } from '../lib/visual.ts';
 import { DayBar, DaySummaryLine, Timeline } from './Timeline.tsx';
 import { DayCandidates } from './Wishlist.tsx';
 import { dayCandidates } from '../lib/wishlist.ts';
-import { PlanningToggle } from './Planning.tsx';
+import { EditHint, PlanningBar, PlanningToggle } from './Planning.tsx';
 import { MemberName, stamp } from './common.tsx';
 import { askAiAboutDay } from './askAi.ts';
 import { showList } from './SidePanel.tsx';
@@ -78,7 +78,7 @@ function goWish() {
   appStore.getState().setSheet({ tab: 'wish' });
 }
 
-/** 某一天最上面一列：← 整趟、日期 ‹ ›、問 AI、規劃 */
+/** 某一天最上面一列：← 整趟、日期 ‹ ›、問 AI（淡的文字按鈕）、✏️ 編輯這天（藍色實心） */
 function DayHead({ day }: { day: string }) {
   const i = DATES.indexOf(day);
   return (
@@ -99,7 +99,7 @@ function DayHead({ day }: { day: string }) {
         </button>
       </span>
       <span className="day-nav-actions">
-        <button type="button" className="text-button" onClick={() => askAiAboutDay(day)} data-testid="day-ask-ai">
+        <button type="button" className="text-button ask-ai-quiet" onClick={() => askAiAboutDay(day)} data-testid="day-ask-ai">
           🤖 問 AI
         </button>
         <PlanningToggle />
@@ -110,6 +110,7 @@ function DayHead({ day }: { day: string }) {
 
 export function DayPanel() {
   const day = useApp((s) => s.day);
+  const planning = useApp((s) => s.planning);
   const itinerary = useData((s) => s.itinerary);
   const planStatus = usePlan((s) => s.status);
   const planError = usePlan((s) => s.error);
@@ -119,7 +120,8 @@ export function DayPanel() {
   const itDay = itinerary?.days.find((d) => d.date === day) ?? null;
   const { day: dayWarnings } = warningsByItem(plan);
   return (
-    <div className="day-panel" data-testid="day-panel">
+    <div className={`day-panel ${planning ? 'editing' : ''}`} data-testid="day-panel">
+      <PlanningBar />
       <DayHead day={day} />
       {plan && (
         <div className="day-head">
@@ -139,6 +141,7 @@ export function DayPanel() {
       {!itDay && <p className="muted">行程裡沒有這一天。</p>}
       {itDay && planStatus === 'loading' && <p className="muted">計算時間軸中…</p>}
       {planStatus === 'error' && <p className="warn">時間軸算不出來：{planError}</p>}
+      <EditHint />
       {itDay && plan && <Timeline plan={plan} day={itDay} />}
       {itDay && plan && itDay.items.length === 0 && (
         <p className="muted small" data-testid="day-empty">
