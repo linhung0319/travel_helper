@@ -178,6 +178,7 @@ UI 的天數分頁、篩選標籤的 ✕、「跳到區域」、詳情的「問 
 - `redirects` 加 `reason`。
 - 時間欄位（`*_at`）是 UTC 的 ISO 字串，只用來記錄誰、何時改的；行程裡的時間照 §3.8 存日本時間的字串。
 - D1 預設開著外鍵檢查：`author`、`member_id` 都要先在 `members` 裡（開發用的身分第一次出現時自動加進去）。
+- **T25 加的**（`worker/migrations/0002_auth.sql`）：`line_groups`（機器人所在的群組，`status` 是 pending／approved／rejected，`left_at`）、`login_requests`（登入被擋下的人，管理頁核准成白名單）、`members.disabled_reason`（`left-group` 退出群組、`admin` 管理員停用）。`members.source` 多了 `admin`（§5）。
 
 草稿：
 
@@ -294,21 +295,29 @@ npm run db:import -- --apply data/cache/import/<時間>-all.json   # 2. 👤 看
   - 資料：`GET /api/places`（預設資料，用匯入版本當 ETag 快取）、`GET /api/edits?since=`、`POST /api/edits`、`POST /api/edits/:id/revert`、`/api/user-places`
   - 行程、建議、投票：`GET/PUT /api/itinerary`（PUT 要帶 `version`）、`/api/itinerary/snapshots`、`/api/suggestions`（`PATCH /api/suggestions/:id/status` 標狀態）、`/api/votes`
   - 聊天紀錄：`/api/chats`（只回傳自己的）
-  - 登入：`/auth/line/login`、`/auth/line/callback`、`/auth/logout`、`GET /api/me`
+  - 登入（T25）：`GET /auth/line/login?return=<站內路徑>`、`GET /auth/line/callback`、`POST /auth/logout`、`GET /api/me`（`{ member, isAdmin }`）
   - LINE 的通知：`POST /line/webhook`（驗證簽章）
-  - AI：`POST /api/claude/messages`
-- **除了登入和 LINE 的通知，所有 API 都要先登入。**
-- **環境**：本機用 `wrangler dev`（本機的 D1），正式環境部署到 Cloudflare。用 GitHub Actions 自動部署是之後的事，一開始手動 `wrangler deploy` 就好。
+  - 管理頁（T25）：`GET /admin`、`POST /admin/action`（Worker 直接回 HTML，只有管理員能開）
+  - AI：`POST /api/claude/messages`（T16）
+- **除了登入和 LINE 的通知，所有 API 都要先登入。網站本身也要**（T25）：`wrangler.jsonc` 的 `assets.run_worker_first` 讓每個請求先經過 Worker，沒登入就回登入頁，所以只有家人看得到網站。沒登入的 API 回 401 JSON。
+- **會改東西的請求檢查 `Origin`**（T25）：有 `Origin` header 又不是自己的網站（或 `PUBLIC_BASE_URL`）就 403。cookie 本來就是 `SameSite=Lax`，這是多一層。
+- **環境**：本機用 `wrangler dev`（本機的 D1），正式環境部署到 Cloudflare（T30）。用 GitHub Actions 自動部署是之後的事，一開始手動 `npm run deploy` 就好。
+- **本機的兩種跑法**（T25）：
+  - `npm run dev:worker`：`wrangler dev --var DEV_AUTH:1`，用開發用的固定身分，不用 LINE。一般開發用這個。
+  - `npm run dev:tunnel`：開 ngrok 通道，用真的 LINE 登入（見下方「本機接 LINE」）。只有要測登入、webhook 時才用。
+  - 兩種都會先跑 `worker/scripts/build-site.mjs --ensure`：`build/site/` 不存在時 wrangler dev 會啟動失敗，所以先放一頁說明。要看 build 過的網站就跑 `npm run build:site`。
 - **本機接 LINE：用 ngrok 通道**（2026-10-23 👤 決定）：LINE 的 webhook 是從外面連進來，手機的 LINE 也連不到電腦的 `localhost`，所以本機開發要開一個公開的 HTTPS 網址。
   - 用 ngrok 免費帳號的**固定網域**（`xxxx.ngrok-free.dev`）：LINE Developers 的 Webhook URL、Callback URL 貼一次就好，重開不用改。不用 Cloudflare 的臨時通道（每次網址都換）。
-  - `npm run dev:tunnel`：啟動 `wrangler dev`，再用 npm 套件 `@ngrok/ngrok` 開通道，在 terminal 印出要貼到 LINE Developers 的兩個網址（`<網址>/line/webhook`、`<網址>/auth/line/callback`）。`npm run dev:worker` 照舊不開通道。
+  - `npm run dev:tunnel`（`worker/scripts/dev-tunnel.mjs`）：啟動 `wrangler dev`，再用 npm 套件 `@ngrok/ngrok` 開通道，在 terminal 印出要貼到 LINE Developers 的兩個網址（`<網址>/line/webhook`、`<網址>/auth/line/callback`）。`npm run dev:worker` 照舊不開通道。
+  - `dev:tunnel` 用 `--var` 傳 `PUBLIC_BASE_URL=https://<NGROK_DOMAIN>`（`.env` 的 `PUBLIC_BASE_URL` 留空就好，ngrok 網址只寫在 `NGROK_DOMAIN`）和 `DEV_AUTH=0`：通道是公開的網址，一律要 LINE 登入。T25 實測 `--var` 會蓋過 `.env` 的值。
   - 開不開通道看跑哪個指令，不在 `.env` 放開關；`wrangler deploy` 不會執行這支腳本，正式環境不會用到 ngrok。
-  - 免費版 ngrok 用瀏覽器第一次打開時會先出現一頁警告，要按 Visit；webhook 不受影響。所以在 LINE 內建瀏覽器實測版面、登入要用部署後的正式網址。
+  - 免費版 ngrok 用瀏覽器第一次打開時會先出現一頁警告，要按 Visit；webhook 不受影響。所以在 LINE 內建瀏覽器實測版面要用部署後的正式網址（T30）。登入流程本身用 ngrok 測過（T25）。
 - **設定值和 secret**：
   - 本機放在 `worker/.env`（wrangler dev 會讀；根目錄 `.gitignore` 已經擋 `.env`）。不用 `.dev.vars`，因為 `.gitignore` 沒擋。
   - 正式環境用 `npx wrangler secret put <名稱>`（在 `worker/` 底下跑），不寫進檔案。
   - Cloudflare 帳號用 `wrangler login`，不放進 `.env`。
-  - 正式環境不能設 `DEV_AUTH = "1"`。
+  - **`DEV_AUTH` 不放在 `wrangler.jsonc`**（T25）：只有 `npm run dev:worker` 用 `--var DEV_AUTH:1` 傳進去，而且 Worker 只認 localhost 的請求（`worker/src/auth.ts`），所以就算正式環境誤設了也沒有作用。正式環境也不要設。
+  - 範本是 `worker/.env.example`（只有名稱）。
 
 | 名稱 | 從哪裡拿 | 用途 |
 |---|---|---|
@@ -316,13 +325,20 @@ npm run db:import -- --apply data/cache/import/<時間>-all.json   # 2. 👤 看
 | `LINE_LOGIN_CHANNEL_SECRET` | 同上 | 用授權碼換 token |
 | `LINE_MESSAGING_CHANNEL_SECRET` | Messaging API channel → Basic settings | 驗證 webhook 簽章 |
 | `LINE_MESSAGING_ACCESS_TOKEN` | Messaging API 分頁發的 long-lived token | 查群組成員 |
-| `SESSION_SECRET` | 自己產生的亂數（例如 `openssl rand -base64 32`） | 簽登入憑證（cookie） |
-| `PUBLIC_BASE_URL` | 本機是 ngrok 網址，正式環境是正式網址 | 組 LINE 的 `redirect_uri`；明確設定，不從 request 猜 |
-| `ADMIN_LINE_USER_IDS` | 第一次登入後從 `members` 查 | 白名單管理頁只給 👤 看 |
-| `ANTHROPIC_API_KEY` | Claude Console | Claude API 代理（T25 或 T16） |
+| `SESSION_SECRET` | 自己產生的亂數（例如 `openssl rand -base64 32`），**至少 32 個字元**；本機和正式環境用不同的 | 簽登入憑證（cookie） |
+| `PUBLIC_BASE_URL` | 本機由 `dev:tunnel` 自動帶 ngrok 網址；正式環境是正式網址 | 組 LINE 的 `redirect_uri`；明確設定，不從 request 猜 |
+| `ADMIN_LINE_USER_IDS` | 自己的 userId：LINE Developers 的 Basic settings 下方「Your user ID」（用 LINE 帳號登入後台才看得到），或是登入網站後打開 `/admin`，頁面會寫你的 userId。逗號分隔 | 管理頁只給 👤 看；管理員不用在群組裡也能登入 |
+| `ANTHROPIC_API_KEY` | Claude Console | Claude API 代理（T16） |
 | `NGROK_AUTHTOKEN`、`NGROK_DOMAIN` | ngrok 後台 | 只有本機的 `dev:tunnel` 用 |
 
-  變數名稱由 T25 定案，改了要更新這張表。群組 ID 不放設定檔：機器人被邀進群組時從 `join` 通知記下來，存在資料庫（§5）。
+  變數名稱 T25 定案（2026-10-26）。`DEV_MEMBER_ID`、`DEV_MEMBER_NAME` 在 `wrangler.jsonc` 的 `vars`（只是開發用身分的名字）。群組 ID 不放設定檔：機器人被邀進群組時從 `join` 通知記下來，存在資料庫（§5）。
+- **部署（T30）**：T25 把設定做好，實際部署等 👤 確定預設資料和 schema 之後、邀請家人之前（2026-10-26 👤 決定，PLAN T30）。
+  - 網站：`npm run build:site` 把 `web/dist/` 和 `build/static/`（放在 `/static/`）組成 `build/site/`，就是 `wrangler.jsonc` 的 `assets.directory`。`not_found_handling` 是 SPA。
+  - `npm run deploy` ＝ `build:site` 加 `wrangler deploy`。正式網址是 `https://travel-helper.<帳號的子網域>.workers.dev`（`workers_dev: true`）。
+  - D1：`npx wrangler d1 create travel-helper`，ID 填進 `wrangler.jsonc` 的 `database_id`（ID 不是秘密，可以進 git）；`npm run db:migrate:remote` 套用 migrations。
+  - 匯入：`npm run db:import -- --all --remote` 出報告，`--apply <報告>.json --remote` 寫進去。報告記著是本機還是正式環境，`--apply` 時對不上就不匯入；正式環境不自動套用 migrations。
+  - **邀請家人之前，正式環境的 D1 可以清空重建**；ID 不改名（§3.5）從邀請家人那天開始算。
+  - LINE：Messaging API 的 Webhook URL 只能填一個，改成正式網址後本機的 `dev:tunnel` 就收不到通知（要測的時候暫時改回來）；LINE Login 的 Callback URL 可以填多個，正式和 ngrok 的都留著。
 - **費用**：預期都在免費額度內。Workers 免費方案每次請求的 CPU 時間很短，所以 Worker 只做轉發、讀寫資料庫、簡單的合併與驗證；重的計算（行程引擎）放在瀏覽器（§6）。
 
 ### 免費額度（2026-10-22 查官網）
@@ -346,7 +362,7 @@ npm run db:import -- --apply data/cache/import/<時間>-all.json   # 2. 👤 看
 
 ### 資料 API（T24）
 
-除了 T25 的登入，所有 API 都要先登入；T24 用開發用的固定身分（`worker/src/auth.ts`：`wrangler.jsonc` 的 `DEV_AUTH = "1"`、`DEV_MEMBER_ID`，測試時可以加 header `X-Dev-Member: dev-xxx` 換人），T25 換掉 `currentMember()` 就好。錯誤一律回 `{ error, message, details? }`。
+除了 T25 的登入，所有 API 都要先登入。T25 之後 `currentMember()`（`worker/src/auth.ts`）先認 LINE 登入的憑證；開發用的固定身分（T24）只在 `DEV_AUTH = "1"`（`npm run dev:worker` 傳的）而且是 localhost 的請求時有效，預設是 `wrangler.jsonc` 的 `DEV_MEMBER_ID`，測試時可以加 header `X-Dev-Member: dev-xxx` 換人。錯誤一律回 `{ error, message, details? }`。
 
 | API | 說明 |
 |---|---|
@@ -378,16 +394,28 @@ npm run db:import -- --apply data/cache/import/<時間>-all.json   # 2. 👤 看
   - **LINE Login**：給網站登入用，App type 選 Web app，要切成「Published」狀態，否則只有管理員和測試人員能登入。還在「Developing」時，其他人登入只會看到「錯誤 無法正常執行」，沒有說明原因（T23）。用 email（商用帳號）登入 LINE Developers 的話，自己手機上的 LINE 帳號也不算管理員，一樣會被擋。
   - **Messaging API**：一個免費的 LINE 官方帳號（機器人）。
 - **兩個 channel 一定要在同一個 provider 底下**：同一個人在兩邊的 userId 才會一樣，網站才能拿登入的人去比對群組成員。
-- 把機器人邀進家人的 LINE 群組。機器人被加進群組時，Worker 會收到 `join` 通知，從裡面記下群組 ID（存成設定）。機器人不發訊息。
+- 把機器人邀進家人的 LINE 群組。機器人被加進群組時，Worker 會收到 `join` 通知，把群組記進 `line_groups`。機器人不發訊息。
+- **群組要 👤 在管理頁核准才算數**（T25）：誰都能加機器人好友、把它邀進自己的群組，如果「機器人在的群組」都算，外人自己開一個群組就能進來。所以新的群組先記成「等待核准」，只有核准的群組的成員能登入。
+  - 機器人在 webhook 上線前就已經在群組裡的話，收不到 `join`：在群組裡講一句話，Worker 收到訊息時也會補記這個群組。
+  - 被移出群組（`leave`）時標成離開，不再拿來檢查；又被邀回來時恢復，核准狀態照舊。
 
-### 登入流程
-1. 使用者按「用 LINE 登入」→ LINE 授權（scope：`openid profile`）→ 回到 `/auth/line/callback`。
-2. Worker 驗證 ID token，拿到 userId、顯示名稱、大頭照。
-3. **檢查是不是群組成員**：Worker 呼叫 `GET /v2/bot/group/{groupId}/member/{userId}`。
-   - 回應 200：是成員，寫入或更新 `members`。
-   - 其他回應：再查白名單（`members.source = 'allowlist'`），也沒有就擋掉，顯示「請洽管理員」。
-4. Worker 發一個簽章過的登入憑證，存在 HttpOnly cookie。之後的 API 只驗這個憑證，不每次都問 LINE。
-5. **定期重新檢查**：每次登入時檢查一次；憑證的有效期限設長一點（例如 30 天），過期就重新登入，順便再檢查一次群組。收到成員退出群組的通知時，也標成停用。
+### 登入流程（T25 實作：`worker/src/auth.ts`）
+1. 使用者按「用 LINE 登入」→ `/auth/line/login` 產生 `state`、`nonce`，存在短期的 cookie（10 分鐘）→ LINE 授權（scope：`openid profile`）→ 回到 `/auth/line/callback`，比對 `state`。
+2. Worker 用授權碼換 token，再請 LINE 驗證 ID token（`/oauth2/v2.1/verify`，帶 `nonce`），拿到 userId、顯示名稱、大頭照。
+3. **能不能進來**，依序：
+   - 被管理員停用的（`disabled_reason = 'admin'`）：擋掉。
+   - **管理員**（`ADMIN_LINE_USER_IDS`）：直接放行（`source = 'admin'`）。還沒核准任何群組時，要先有人能進管理頁。
+   - **核准的群組**：對每個核准、機器人還在的群組呼叫 `GET /v2/bot/group/{groupId}/member/{userId}`，有一個回 200 就放行（`source = 'group'`）。
+   - **白名單**（`members.source = 'allowlist'`）：放行。
+   - 都不是：擋掉，顯示「請告訴管理員」，並記進 `login_requests`，管理頁可以一鍵核准成白名單。查群組時 LINE 回 404 以外的錯誤（5xx 等），顯示「請等一下再試」，不記進 `login_requests`。
+   - 放行時寫入或更新 `members`（名字、大頭照、`checked_at`），清掉退出群組的停用；白名單不會被改成別的。
+4. Worker 發一個簽章過的登入憑證（HMAC-SHA256，`th_session` cookie：HttpOnly、Secure、SameSite=Lax），回到登入前的頁面（只接受站內路徑）。之後的請求只驗這個憑證，再看 `members` 有沒有被停用，不每次都問 LINE。
+5. **定期重新檢查**：每次登入時檢查一次；憑證 30 天，過期就重新登入，順便再檢查一次群組。核准的群組有人退出（`memberLeft`）時標成停用（`disabled_reason = 'left-group'`），已經登入的也立刻被擋；重新登入時還在別的核准群組（或白名單）就恢復。
+
+### 管理頁（`/admin`，T25）
+- 只有 `ADMIN_LINE_USER_IDS` 的人能開。Worker 直接回 HTML，不靠前端的 JS，每個按鈕是一個表單。
+- **LINE 群組**：核准、不核准。**等待核准**：登入被擋下的人，核准（加進白名單）或不核准。**成員**：停用（不能停用自己）、恢復、改成白名單。
+- 不是管理員打開時，頁面會寫出他的 userId（要把別人加成管理員時可以用）。
 
 ### 為什麼這樣做
 - 不用「選你的名字」：直接用 LINE 的名字和大頭照，投票和修改紀錄都對得到真人，也不能冒用別人的名字。
@@ -402,7 +430,7 @@ npm run db:import -- --apply data/cache/import/<時間>-all.json   # 2. 👤 看
   - LINE Login 拿到的 userId，和 webhook 通知裡的 userId 一樣（同一個 provider）。
   - webhook：機器人被邀進群組時收到 `join`（帶群組 ID）；有人加入群組時收到 `memberJoined`，`joined.members` 裡帶 userId。退出群組（`memberLeft`）沒有實測。
   - 只測了 iPhone（LINE 內建瀏覽器、Safari），Android 沒有測，T25 部署後再看。
-- **用手機的瀏覽器打開**：網址加上 `?openExternalBrowser=1`，從 LINE 點開會改用手機的預設瀏覽器（LINE 的功能，T23 沒有逐項確認）。好處是可以加到主畫面、登入狀態比較不會被清掉；登入狀態是各瀏覽器分開存的，換瀏覽器要再登入一次。要不要在群組裡貼這種網址，T25 決定。
+- **用手機的瀏覽器打開**：網址加上 `?openExternalBrowser=1`，從 LINE 點開會改用手機的預設瀏覽器（LINE 的功能，T23 沒有逐項確認）。好處是可以加到主畫面、登入狀態比較不會被清掉；登入狀態是各瀏覽器分開存的，換瀏覽器要再登入一次。要不要在群組裡貼這種網址，部署時（T30）和 👤 一起試過再決定。
 - **使用者要同意分享個人資料**：LINE 規定機器人要拿到使用者的資料，使用者得先同意。手機版 LINE 在一開始使用時就同意了；**只用電腦版 LINE 的人沒辦法同意**，查不到。
 - 群組裡會多一個機器人。
 
@@ -437,7 +465,8 @@ npm run db:import -- --apply data/cache/import/<時間>-all.json   # 2. 👤 看
 | T22 monorepo 調整 | §1 目錄 |
 | T23 👤 LINE 登入小實驗 | §5 |
 | T24 資料庫與匯入 | §3（資料表、匯入、規則）、§4 API 的資料部分 |
-| T25 Worker：登入與部署 | §4、§5 |
+| T25 Worker：登入 | §4、§5 |
+| T30 👤 部署到 Cloudflare | §4「部署（T30）」、§5 |
 | T11、T12 | §2（手機優先、store、先用本機的資料存取） |
 | T14 行程引擎 | §1（`packages/engine`）、§3.6（確定的行程，要能處理自己加的點、已下架的點）、§3.8（時間） |
 | T15m 行程與建議 UI 原型 | §2（假後端照 §4「資料 API」的形狀）、§3.2（修改紀錄的顯示）、§3.6 |

@@ -103,7 +103,7 @@
 | T22 | monorepo 調整：npm workspaces（`packages/engine`、`web`、`worker`、`scripts`） | S | — | 3 | | ✅ |
 | T23 | 👤 LINE 登入小實驗：免費官方帳號能不能查單一群組成員 | S | — | 3 | | ✅ |
 | T24 | 資料庫與匯入：D1 資料表、匯入腳本（比對、衝突、下架）、資料與修改的 API | M | T22、T13 | 3 | | ✅ |
-| T25 | Worker：LINE 登入、群組檢查、白名單、部署到 Cloudflare | M | T23、T24 | 4 | 🌐 少量 | ⬜ |
+| T25 | Worker：LINE 登入、群組檢查、白名單、管理頁（本機可以完整跑；部署拆到 T30） | M | T23、T24 | 4 | 🌐 少量 | ⬜ |
 | T26 | 👤 Places 照片備案：資料點對應 place ID；主照片失效、或詳情往下捲時，透過 Worker 即時向 Places API 取照片（不存照片） | M | T25 | 4 | | ⬜ |
 | T27a | 👤 大阪：子地區與景點（含 USJ） | S | — | 3 | 🌐 大量 | ⬜ |
 | T27b | 大阪：住宿 | S | T27a | 3 | 🌐 大量 | ⬜ |
@@ -111,6 +111,7 @@
 | T27d | 大阪：收尾、摘要與評分、代表照片（自動排序）、匯入 | S | T27b、T27c | 3 | | ⬜ |
 | T28 | 大阪交通：近鐵 伊勢 ↔ 大阪的特急、市區路線的所需時間和班距、大站轉乘的步行時間和電梯 | M | — | 3 | | ⬜ |
 | T29 | engine：班距型路線（市區鐵道）、轉乘步行；車站面板顯示班距 | S | T28（格式定好就可以開始） | 3 | 🌐 少量 | ⬜ |
+| T30 | 👤 部署到 Cloudflare：正式的 D1 和 secret、網站和 Worker、正式環境第一次匯入、LINE 改用正式網址、LINE 內建瀏覽器實測 | S | T25、👤 資料和 schema 定案（邀請家人之前） | 4 | 🌐 少量 | ⬜ |
 
 ---
 
@@ -177,12 +178,13 @@
   [T11 地圖 v1]   [T14 行程引擎]   [T24 資料庫與匯入]         │
        ▼               │                  └────────┬──────────┘
   [T12 地圖動作 API]   │                           ▼
-       │               │                  [T25 登入、部署]
+       │               │                  [T25 登入]
        ▼               ▼                           │
 階段 4 └───────┬───────┘                           │
                ├──► [T15m 行程與建議 UI 原型] ──► [T15 串接] ◄──┤（T15 需 T15m、T24、T25）
                └──► [T16m AI Agent UI 原型] ───► [T16 串接] ◄──┘（T16 需 T16m、T24、T25）
                     （T15m、T16m 並行，現在就能做；規劃模式的提議要用 T15m 的時間軸）
+                    [T30 部署]（T25 之後；👤 資料和 schema 定案、邀請家人之前）
                                       │
 階段 6                        [T20 匯出給 Claude app]（行程定案後）
 ```
@@ -227,6 +229,12 @@ T7j → T8g → T9g → T13 → T21 → T11、T14、T24（並行）→ T12 → T
 - 資料裡約 330 個點用到 Google Maps 的照片網址（`googleusercontent`），其中 173 個點的代表照片就是它；這種網址沒有保證能用多久（2026-10-26 抽測：`gps-proxy` 格式的 2 張已經 403，其他格式正常）。Places API 的照片代號和網址依條款不能存，所以改成用到時才即時查。
 - **T26 在 T25 之後**：要用 Worker 的登入和 secret；和 T15、T16 可以同時做（T26 只改詳情的照片區）。
 
+2026-10-26 **T25 拆出部署（T30）**（👤 決定）：
+
+- 預設資料和 schema 還會變（大阪、介面任務），所以先不部署。T25 做到本機可以完整跑（`npm run dev:tunnel` 用真的 LINE 登入、群組檢查、管理頁），部署留給 T30。
+- **T30 在 👤 確定資料和 schema 之後、邀請家人之前做**：第一次正式匯入之後 ID 不改名（architecture §3.5）。在那之前不影響其他任務：T15、T16、T26 都可以在本機用 `dev:worker`、`dev:tunnel` 開發和測試。
+- LINE 內建瀏覽器的版面實測（接 T11）要用正式網址（ngrok 免費版有警告頁），跟著移到 T30。
+
 2026-10-26 加上**大阪**（👤 決定：最後 1～2 天在大阪）：
 
 ```
@@ -256,6 +264,7 @@ T28 大阪交通 ──────┴──► T29 engine 班距型路線（T28
 | 階段 4 原型 | T15m、T16m 並行（T15m 可拆成三個子任務，見任務說明）；同時 👤 做 T23，接著 T25 | 2～4 |
 | 階段 4 串接 | T15、T16 並行（需 T15m／T16m、T24、T25）；T26 也在 T25 之後，可以同時做 | 2～3 |
 | 大阪 | T27a（🌐）＋T28 並行；之後 T27b → T27c（🌐，依序），T29 和 T27c 並行；最後 T27d。可以和階段 4 的介面任務同時做 | 2 |
+| 部署 | T30（👤 資料和 schema 定案後；不和改 `worker/wrangler.jsonc`、migration 的任務同時做） | 1 |
 | 階段 6 | T20 | 1 |
 
 ### 為什麼這樣排
@@ -612,7 +621,7 @@ T7c → T7d → T7e → T7f → T7g → T8a → T8b → T8c → T8d → T7i → 
 - **完成條件**：
   - 手機尺寸（約 390px 寬）和電腦尺寸都能完成：找到一個點 → 看小卡片 → 開詳情 → 關掉；切換天數；套用、取消篩選；切到探索模式，移動地圖時圖片牆跟著換。
   - 上面這些流程有 Playwright 測試（architecture §8）。
-  - 在手機的 LINE 內建瀏覽器打開過（👤 協助），沒有版面跑掉或點不到的地方。**（2026-10-22 👤 決定：移到 T25，部署後和 LINE 登入一起實測）**
+  - 在手機的 LINE 內建瀏覽器打開過（👤 協助），沒有版面跑掉或點不到的地方。**（2026-10-22 👤 決定：移到 T25，部署後和 LINE 登入一起實測；2026-10-26 部署拆到 T30，跟著移到 T30）**
 
 ### T12 地圖動作 API 〔S〕
 - 在 T11 的 store 上定義一組地圖指令，**UI 和 AI 都透過它操作地圖**：
@@ -710,7 +719,7 @@ T7c → T7d → T7e → T7f → T7g → T8a → T8b → T8c → T8d → T7i → 
 
 ### T16 AI Agent：串接 〔M〕
 - **把 T16m 的假 AI 換成 Claude API 的 tool use**；畫面和工具不改。
-- API key 不可以放在前端。T25 的 Worker 只負責轉發並加上 API key；只有登入的人能用，依使用者設每天的用量上限。開工時先估算 15 人使用的費用，再定上限和模型（[architecture.md](architecture.md) §6）。
+- API key 不可以放在前端。Worker 只負責轉發並加上 API key（`POST /api/claude/messages`，T25 沒做，在這裡做）；只有登入的人能用，依使用者設每天的用量上限。開工時先估算 15 人使用的費用，再定上限和模型（[architecture.md](architecture.md) §6）。
 - **系統提示詞和工具說明**：用 T16m 的對話腳本當測試案例，調到真的模型在這些情境下會呼叫對的工具。
 - **脈絡**、交通的路線連結、兩種模式的限制照 T16m 的說明，這裡確認真的模型做得到。
 - **聊天紀錄**改存 D1（`/api/chats`），只有自己看得到。
@@ -765,23 +774,38 @@ T7c → T7d → T7e → T7f → T7g → T8a → T8b → T8c → T8d → T7i → 
 - 要寫測試：合併規則、三方比對、下架、轉址。
 - 會在 T21 之後再匯入一次（照片順序變了），確認重跑沒有問題。
 
-### T25 Worker：登入與部署 〔M〕
+### T25 Worker：登入 〔M〕
+- **2026-10-26 👤 決定：部署拆到 T30**。T25 做到本機可以完整跑：`npm run dev:tunnel` 用真的 LINE 登入、群組檢查、管理頁。
 - 照 [architecture.md](architecture.md) §4、§5 做：
   - LINE 登入（OAuth、驗證 ID token）、群組成員檢查、白名單、登入憑證（HttpOnly cookie）、`GET /api/me`。
   - LINE 的通知：驗證簽章，記下群組 ID、成員加入、退出。
   - 除了登入和 LINE 的通知，所有 API 都要先登入。
-  - Claude API 代理（`POST /api/claude/messages`）和每人每天的用量上限；API key 存成 Worker secret。也可以留到 T16 再做。
-  - 部署到 Cloudflare：網站、Worker、D1 的正式環境；正式環境的 D1 第一次匯入（T24 的腳本）。
+  - ~~Claude API 代理~~：留到 T16。
+  - 部署的設定（`wrangler.jsonc` 的 `assets`、`npm run build:site`、`deploy`、匯入的 `--remote`）先做好，實際部署在 T30。
   - 白名單用的簡單管理頁（只有 👤 能看）。
-- 部署和 LINE 的設定需要 👤：Cloudflare 帳號、LINE channel 的 secret、ngrok 帳號（固定網域）。
+- LINE 的設定需要 👤：LINE channel 的 secret、ngrok 帳號（固定網域）。
 - **本機開發用 ngrok 通道**（2026-10-23 👤 決定，見 [architecture.md](architecture.md) §4「本機接 LINE」「設定值和 secret」）：
   - 加 `npm run dev:tunnel`：啟動 `wrangler dev`，用 `@ngrok/ngrok` 開固定網域的通道，在 terminal 印出要貼到 LINE Developers 的 Webhook URL、Callback URL。
-  - `PUBLIC_BASE_URL` 用來組 `redirect_uri`。
+  - `PUBLIC_BASE_URL` 用來組 `redirect_uri`（`dev:tunnel` 自動帶 ngrok 的網址）。
   - 本機的值放在 `worker/.env`，附一個 `worker/.env.example`（只有名稱、沒有值）。正式環境用 `wrangler secret put`。
-  - 部署前把 `wrangler.jsonc` 的 `DEV_AUTH` 改成只在本機生效。
+  - `DEV_AUTH` 從 `wrangler.jsonc` 拿掉：只有 `dev:worker` 傳 `"1"`，而且只認 localhost 的請求。
   - 變數名稱定案後更新 architecture §4 的表。
-- 在手機的 LINE 裡實際登入一次（🌐 少量：電腦上的流程可以用 Chrome 看）。
-- **LINE 內建瀏覽器實測（接 T11）**（2026-10-22 👤 決定）：登入時一併看地圖網站在 iOS、Android 的 LINE 內建瀏覽器有沒有版面跑掉或點不到的地方（天數分頁左右滑、拉起面板的把手、小卡片→詳情、iPhone 下緣的安全區域、外站照片能不能顯示），結果寫進 T25 的回報；有問題的另開任務修。
+- 在手機的 LINE 裡實際登入一次（🌐 少量：電腦上的流程可以用 Chrome 看）。2026-10-26 用 `dev:tunnel` 實測：👤 用 iPhone 登入（管理員）、在管理頁核准測試群組，都正常。
+- LINE 內建瀏覽器的版面實測移到 T30（要用正式網址）。
+
+### T30 👤 部署到 Cloudflare 〔S〕
+- **什麼時候做**：👤 確定預設資料和 schema 之後、邀請家人之前（2026-10-26 👤 決定）。第一次正式匯入之後 ID 不改名（[architecture.md](architecture.md) §3.5）；在那之前，正式環境的 D1 可以清空重建。
+- 步驟照 [architecture.md](architecture.md) §4「部署（T30）」：
+  1. 👤 註冊 Cloudflare（免費方案）、`npx wrangler login`；第一次用 Workers 要選帳號的子網域。
+  2. `npx wrangler d1 create travel-helper`，把 ID 填進 `worker/wrangler.jsonc` 的 `database_id`；`npm run db:migrate:remote`。
+  3. `npm run deploy`（`build:site` 加 `wrangler deploy`），拿到正式網址 `https://travel-helper.<子網域>.workers.dev`。
+  4. secret：LINE 的四個值、`ADMIN_LINE_USER_IDS` 和本機一樣；`SESSION_SECRET` 另外產生一組（不和本機共用）；`PUBLIC_BASE_URL` 是正式網址。用 `wrangler secret put`，不寫進檔案。
+  5. 正式環境第一次匯入：`npm run db:import -- --all --remote` 出報告，👤 看過再 `--apply … --remote`。
+  6. 👤 在 LINE Developers：Messaging API 的 Webhook URL 改成正式網址（只能填一個，之後本機的 `dev:tunnel` 就收不到通知）；LINE Login 的 Callback URL 加上正式網址（可以填多個，ngrok 的留著）。
+  7. 機器人已經在群組裡的話，在群組講一句話，正式環境才會記下這個群組；👤 在正式的 `/admin` 核准。
+- **決定群組裡貼的網址**：要不要加 `?openExternalBrowser=1`（用手機的預設瀏覽器打開，architecture §5「要注意的地方」），和 👤 一起試過再決定。
+- **LINE 內建瀏覽器實測（接 T11）**（2026-10-22 👤 決定）：登入時一併看地圖網站在 iOS、Android 的 LINE 內建瀏覽器有沒有版面跑掉或點不到的地方（天數分頁左右滑、拉起面板的把手、小卡片→詳情、iPhone 下緣的安全區域、外站照片能不能顯示）；Android 的 LINE 登入也一起測（T23 只測了 iPhone）。結果寫進 T30 的回報；有問題的另開任務修。
+- 完成條件：正式網址用 LINE 登入成功（iOS、Android）；不在群組的人被擋下、出現在管理頁的「等待核准」；`wrangler tail` 看得到 webhook 的通知；正式環境的 D1 有匯入紀錄。
 
 ### T26 👤 Places 照片備案 〔M〕
 - 目的：主照片打不開、或想在詳情多看幾張照片時，用 Places API (New) 即時取得 Google Maps 上的照片。**照片代號和照片網址都不存**（Google 條款只允許長期保存 place ID），每次用到才查。
