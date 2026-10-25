@@ -312,3 +312,16 @@
 .m-app.m-app[data-tab='trip'][data-chat] .m-map {
   bottom: calc(55dvh - 12px);
 }
+
+/* 手機的地圖上，地圖指令的說明列（網頁版共用的 MapCommandBars：AI 的提議…）：
+   放在右上 💬、📋 下面（不被蓋住），右邊讓出縮放按鈕；「不看提議 ✕」這類按鈕點的範圍至少 44px。網頁版不變。 */
+.m-app .command-bars {
+  top: 62px;
+  left: 8px;
+  right: 52px;
+}
+
+.m-app .command-bar .link-button {
+  min-height: var(--tap);
+  padding: 0 4px;
+}

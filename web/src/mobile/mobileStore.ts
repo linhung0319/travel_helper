@@ -4,7 +4,8 @@
 // history.back() 是非同步的：關掉詳情後，退回去的 popstate 還沒到之前又開了詳情，要等它到了才推新的那筆（不然 popstate 會把新的詳情關掉）。
 // 整頁的東西一次只有一層（§3.0）：開詳情會關掉討論／預約，開討論／預約會關掉詳情。
 // 聊天（§3.6）：行程頁的半屏聊天（chatSheet）只在行程分頁出現，換分頁就收起來。詳情的「問 AI」（uiStore.chatDraft 的 seq 變了）：
-// 從行程打開的詳情回到行程、打開半屏聊天，其他地方打開的跳到 AI 分頁；兩種都關掉詳情。
+// 從行程打開的詳情回到行程、打開半屏聊天，其他地方打開的跳到 AI 分頁；兩種都關掉詳情（只在手機版掛著時：MapView 讓網頁版也載入這個檔）。
+// AI 的提議（appStore.proposal）是半屏聊天帶出來的：關掉半屏、離開行程分頁時一起清掉，不會卡在手機的地圖上。
 
 import { createStore } from 'zustand/vanilla';
 import { useStore } from 'zustand';
@@ -12,6 +13,7 @@ import type { DayPlan, TimelineEntry } from '@travel-helper/engine';
 import type { ActionId, CardActionContext } from '../shared/cardActions.ts';
 import type { ActionTarget } from '../components/cardActionRun.ts';
 import { uiStore } from '../uiStore.ts';
+import { appStore } from '../store.ts';
 import { EMPTY_FEED, type ExploreSort, type ExploreType, type Feed } from '../lib/explore.ts';
 
 export type MobileTab = 'explore' | 'wish' | 'trip' | 'ai' | 'me';
@@ -100,6 +102,18 @@ function pushDetail() {
   window.history.pushState({ ...(window.history.state ?? {}), [HISTORY_KEY]: true }, '');
 }
 
+/** 清掉地圖上 AI 的提議（有才清） */
+function clearProposal() {
+  if (appStore.getState().proposal) appStore.getState().setProposal(null);
+}
+
+/** 手機版（MobileApp）掛著沒有：網頁版也會載入這個檔，問 AI 時不動手機的分頁 */
+let mobileActive = false;
+/** MobileApp 掛上、卸下時呼叫 */
+export function setMobileActive(active: boolean) {
+  mobileActive = active;
+}
+
 export const mobileStore = createStore<MobileStore>()((set, get) => ({
   // 打開網站先看行程（計畫的決定）
   tab: 'trip',
@@ -114,6 +128,7 @@ export const mobileStore = createStore<MobileStore>()((set, get) => ({
   // 換分頁：整頁的東西、半屏聊天都關掉
   setTab: (tab) => {
     if (get().detail) get().closePlace();
+    if (tab !== 'trip') clearProposal();
     set({ tab, page: null, actions: null, chatSheet: false });
   },
   setSnap: (tripSnap) => set({ tripSnap }),
@@ -150,7 +165,10 @@ export const mobileStore = createStore<MobileStore>()((set, get) => ({
     get().setTab('trip');
     set({ chatSheet: true });
   },
-  closeChatSheet: () => set({ chatSheet: false }),
+  closeChatSheet: () => {
+    clearProposal();
+    set({ chatSheet: false });
+  },
   expandChat: () => get().setTab('ai'),
   setFeed: (patch) => set({ feed: { ...get().feed, ...patch } }),
   toggleFeedQuick: (token) => {
@@ -180,6 +198,7 @@ if (typeof window !== 'undefined') {
     const d = s.chatDraft;
     if (!d || d.seq === lastSeq) return;
     lastSeq = d.seq;
+    if (!mobileActive) return;
     const m = mobileStore.getState();
     m.closePlace();
     if (d.from === 'trip') m.openChatSheet();

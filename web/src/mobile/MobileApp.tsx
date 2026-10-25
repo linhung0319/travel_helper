@@ -10,7 +10,7 @@ import { useApp } from '../hooks.ts';
 import { appStore } from '../store.ts';
 import { MapView, resizeMap } from '../components/MapView.tsx';
 import { Dialogs, Toast } from '../components/Dialogs.tsx';
-import { mobileStore, useMobile, type MobileTab } from './mobileStore.ts';
+import { mobileStore, setMobileActive, useMobile, type MobileTab } from './mobileStore.ts';
 import { TabBar } from './TabBar.tsx';
 import { MePage, MePageView } from './MePage.tsx';
 import { ExploreFeed } from './ExploreFeed.tsx';
@@ -35,6 +35,12 @@ export function MobileApp() {
   const snap = useMobile((s) => s.tripSnap);
   // 行程頁的半屏聊天開著（ChatSheet 一樣的條件：編輯中不出現）
   const chat = useMobile((s) => s.chatSheet && s.tab === 'trip') && !planning;
+
+  // 手機版掛著：詳情的「問 AI」才切手機的分頁（mobileStore 的 chatDraft 監聽）
+  useEffect(() => {
+    setMobileActive(true);
+    return () => setMobileActive(false);
+  }, []);
 
   // 共用的元件（地圖觸控點第二下、預約列的名稱…）用 appStore.openDetail 開詳情：手機版改開整頁詳情（from＝現在的分頁）
   useEffect(

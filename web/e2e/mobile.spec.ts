@@ -952,3 +952,35 @@ test('探索詳情的問 AI → AI 分頁；行程詳情的問 AI → 半屏', a
   await expect(sheet).toBeVisible();
   await expect(sheet.getByTestId('m-chat-context')).toContainText('📍 關於：橫山展望台');
 });
+
+test('手機地圖上的提議列：不被 💬／📋 蓋住、「不看提議」44px；關掉半屏、離開行程時清掉提議', async ({ page }) => {
+  await ready(page);
+  await goTab(page, 'ai');
+  await page.getByTestId('m-chat-proposal-view').click();
+  const bar = page.getByTestId('proposal-bar');
+  await expect(bar).toBeVisible();
+  const dismiss = bar.getByRole('button', { name: '不看提議 ✕' });
+  const box = (await dismiss.boundingBox())!;
+  expect(box.height).toBeGreaterThanOrEqual(44);
+  // 點得到：中心點最上面的就是這個按鈕
+  const hit = (sel: string, b: { x: number; y: number; width: number; height: number }) =>
+    page.evaluate(([sel, x, y]) => !!document.elementFromPoint(x as number, y as number)?.closest(sel as string), [sel, b.x + b.width / 2, b.y + b.height / 2] as const);
+  expect(await hit('.proposal-bar .link-button', box)).toBe(true);
+  // 💬、📋 也還點得到
+  for (const id of ['m-trip-comments', 'm-trip-reservations']) {
+    expect(await hit(`[data-testid="${id}"]`, (await page.getByTestId(id).boundingBox())!), id).toBe(true);
+  }
+  expect(await scrollsSideways(page)).toBe(false);
+  const proposal = () => page.evaluate(() => (window as any).__th.appStore.getState().proposal);
+  // 關掉半屏：提議一起清掉
+  await page.getByTestId('m-chat-sheet-close').click();
+  await expect.poll(proposal).toBeNull();
+  await expect(bar).toHaveCount(0);
+  // 再看一次提議，然後離開行程分頁（半屏往上拉成 AI 分頁；半屏蓋住分頁列，要離開只能這樣）：也清掉
+  await goTab(page, 'ai');
+  await page.getByTestId('m-chat-proposal-view').click();
+  await expect.poll(proposal).not.toBeNull();
+  await page.getByTestId('m-chat-sheet-expand').click();
+  await expect(page.getByTestId('m-tab-ai')).toHaveAttribute('aria-current', 'page');
+  await expect.poll(proposal).toBeNull();
+});
