@@ -1,0 +1,314 @@
+/* 手機版聊天（第六輪 §3.6）：AI 分頁（ChatPage）、行程頁的半屏聊天（ChatSheet）、兩邊共用的 ChatView。
+   ChatView 載入時才載入這份；版面的共用規則（m-ellipsis、m-icon-button…）在 mobile.css。點得到的東西至少 44px 高。 */
+
+/* ---------- AI 分頁：標題列＋聊天填滿 ---------- */
+
+.m-chat-page {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.m-page-ai {
+  overflow: hidden;
+}
+
+.m-chat-head {
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  min-height: var(--tap);
+  padding: 4px 16px;
+  border-bottom: 1px solid var(--line);
+}
+
+/* ---------- 共用：訊息列表＋輸入框 ---------- */
+
+.m-chat {
+  flex: 1;
+  min-height: 0;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.m-chat-list {
+  flex: 1;
+  min-height: 0;
+  overflow-x: hidden;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  padding: 8px 12px 12px;
+}
+
+.m-chat-note {
+  margin: 4px 0 8px;
+  text-align: center;
+}
+
+.m-chat-row {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 6px;
+  margin-bottom: 10px;
+  min-width: 0;
+}
+
+.m-chat-row.me {
+  align-items: flex-end;
+}
+
+.m-chat-msg {
+  max-width: 85%;
+  padding: 8px 12px;
+  border-radius: 14px;
+  line-height: 1.45;
+  overflow-wrap: anywhere;
+  background: var(--soft);
+}
+
+.m-chat-msg.me {
+  background: var(--accent);
+  color: #fff;
+}
+
+/* 照片卡輪播：左右滑，不撐出整頁的橫向捲動 */
+.m-chat-carousel {
+  align-self: stretch;
+  display: flex;
+  gap: 8px;
+  min-width: 0;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  padding-bottom: 4px;
+}
+
+.m-chat-place {
+  flex: 0 0 148px;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  overflow: hidden;
+  background: var(--bg);
+  scroll-snap-align: start;
+}
+
+.m-chat-place-photo {
+  display: block;
+  height: 96px;
+  overflow: hidden;
+}
+
+.m-chat-place-photo .m-thumb {
+  width: 100%;
+  height: 100%;
+}
+
+.m-chat-place-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.m-chat-place-name {
+  display: block;
+  padding: 6px 8px 0;
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+.m-chat-place-meta {
+  display: block;
+  padding: 0 8px;
+  color: var(--muted);
+  font-size: 0.8rem;
+}
+
+.m-chat-place-actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.m-chat-place-like,
+.m-chat-place-detail {
+  min-height: var(--tap);
+  min-width: var(--tap);
+  padding: 0 8px;
+  border: none;
+  background: none;
+  font-size: 0.95rem;
+  cursor: pointer;
+}
+
+.m-chat-place-detail {
+  color: var(--accent);
+}
+
+/* 提議卡：＋ 是藍色（地圖上新加的點也是藍色），－ 是紅色刪除線 */
+.m-chat-proposal {
+  align-self: stretch;
+  padding: 10px 12px;
+  border: 1px solid var(--accent);
+  border-radius: var(--radius);
+  background: var(--info-bg);
+  min-width: 0;
+}
+
+.m-chat-proposal-line {
+  margin-top: 4px;
+  overflow-wrap: anywhere;
+}
+
+.m-chat-proposal-line.add {
+  color: var(--accent);
+}
+
+.m-chat-proposal-line.remove {
+  color: #cf222e;
+  text-decoration: line-through;
+}
+
+.m-chat-proposal-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 8px;
+}
+
+.m-chat-button {
+  min-height: var(--tap);
+  padding: 0 12px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: var(--bg);
+  font-size: 0.9rem;
+  cursor: pointer;
+}
+
+.m-chat-button.primary {
+  border-color: var(--accent);
+  background: var(--accent);
+  color: #fff;
+}
+
+/* 輸入框：上面是上下文小標 */
+.m-chat-composer {
+  flex: 0 0 auto;
+  padding: 6px 12px 8px;
+  border-top: 1px solid var(--line);
+  background: var(--bg);
+}
+
+.m-chat-context {
+  display: inline-flex;
+  align-items: center;
+  max-width: 100%;
+  min-width: 0;
+  margin-bottom: 4px;
+  padding-left: 10px;
+  border-radius: 999px;
+  background: var(--info-bg);
+  font-size: 0.85rem;
+}
+
+.m-chat-context-clear {
+  flex: 0 0 auto;
+  min-width: var(--tap);
+  min-height: var(--tap);
+  border: none;
+  background: none;
+  cursor: pointer;
+}
+
+.m-chat-form {
+  display: flex;
+  gap: 8px;
+}
+
+.m-chat-input {
+  flex: 1;
+  min-width: 0;
+  min-height: var(--tap);
+  padding: 0 14px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  /* 16px 以上 iOS 才不會自動放大 */
+  font-size: 16px;
+}
+
+.m-chat-send {
+  flex: 0 0 auto;
+  min-width: var(--tap);
+  min-height: var(--tap);
+  border: none;
+  border-radius: 999px;
+  background: var(--accent);
+  color: #fff;
+  cursor: pointer;
+}
+
+.m-chat-send:disabled {
+  opacity: 0.4;
+}
+
+/* ---------- 行程頁的半屏聊天：蓋在分頁列、行程面板上面（整頁詳情 z-index 40 還是蓋在它上面） ---------- */
+
+.m-chat-sheet {
+  position: fixed;
+  z-index: 35;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 55vh;
+  height: 55dvh;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  padding-bottom: env(safe-area-inset-bottom);
+  border-radius: 16px 16px 0 0;
+  background: var(--bg);
+  box-shadow: 0 -4px 14px rgba(0, 0, 0, 0.18);
+}
+
+/* 把手：往上拉變全螢幕 */
+.m-chat-sheet-grab {
+  flex: 0 0 auto;
+  touch-action: none;
+  border-bottom: 1px solid var(--line);
+}
+
+.m-chat-sheet-handle {
+  display: block;
+  width: 40px;
+  height: 4px;
+  margin: 6px auto 0;
+  border-radius: 2px;
+  background: var(--line);
+}
+
+.m-chat-sheet-head {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 0 8px 4px 16px;
+}
+
+.m-chat-sheet-head b {
+  flex: 1;
+}
+
+.m-chat-sheet-head .m-icon-button {
+  border: none;
+}
+
+/* 半屏聊天打開時：地圖只畫在聊天上面那塊（提議、路線框在看得到的地方） */
+.m-app.m-app[data-tab='trip'][data-chat] .m-map {
+  bottom: calc(55dvh - 12px);
+}

@@ -3,12 +3,15 @@
 // 不放進 store.ts（地圖指令那層）；網頁版用不到。打開詳情時推一筆 history，手機的返回鍵（瀏覽器上一頁）就是關掉詳情。
 // history.back() 是非同步的：關掉詳情後，退回去的 popstate 還沒到之前又開了詳情，要等它到了才推新的那筆（不然 popstate 會把新的詳情關掉）。
 // 整頁的東西一次只有一層（§3.0）：開詳情會關掉討論／預約，開討論／預約會關掉詳情。
+// 聊天（§3.6）：行程頁的半屏聊天（chatSheet）只在行程分頁出現，換分頁就收起來。詳情的「問 AI」（uiStore.chatDraft 的 seq 變了）：
+// 從行程打開的詳情回到行程、打開半屏聊天，其他地方打開的跳到 AI 分頁；兩種都關掉詳情。
 
 import { createStore } from 'zustand/vanilla';
 import { useStore } from 'zustand';
 import type { DayPlan, TimelineEntry } from '@travel-helper/engine';
 import type { ActionId, CardActionContext } from '../shared/cardActions.ts';
 import type { ActionTarget } from '../components/cardActionRun.ts';
+import { uiStore } from '../uiStore.ts';
 import { EMPTY_FEED, type ExploreSort, type ExploreType, type Feed } from '../lib/explore.ts';
 
 export type MobileTab = 'explore' | 'wish' | 'trip' | 'ai' | 'me';
@@ -43,7 +46,7 @@ export interface MobileState {
   tripSnap: TripSnap;
   /** 整頁詳情：哪個點、從哪個分頁打開（返回時回到那裡） */
   detail: { placeId: string; from: MobileTab } | null;
-  /** 行程頁上的聊天面板（T16m 接上） */
+  /** 行程頁上的半屏聊天（ChatSheet）；只在行程分頁有效，換分頁就變回 false */
   chatSheet: boolean;
   /** 行程頁選到的那張卡（focusKeyOf 的 key；地圖飛過去、清單捲到那張） */
   focused: string | null;
@@ -69,6 +72,11 @@ export interface MobileActions {
   openPlace(placeId: string, from: NonNullable<MobileState['detail']>['from']): void;
   closePlace(): void;
   setPage(page: MobileState['page']): void;
+  /** 切到行程分頁、打開半屏聊天 */
+  openChatSheet(): void;
+  closeChatSheet(): void;
+  /** 半屏聊天往上拉：變成全螢幕（AI 分頁，同一份對話） */
+  expandChat(): void;
   setFeed(patch: Partial<Feed>): void;
   /** 探索的條件（"欄位:值"）有就拿掉、沒有就加上 */
   toggleFeedQuick(token: string): void;
@@ -103,10 +111,10 @@ export const mobileStore = createStore<MobileStore>()((set, get) => ({
   page: null,
   feed: EMPTY_FEED,
   wish: { type: null, area: null, sort: 'likes', view: 'photo' },
-  // 換分頁：整頁的東西都關掉
+  // 換分頁：整頁的東西、半屏聊天都關掉
   setTab: (tab) => {
     if (get().detail) get().closePlace();
-    set({ tab, page: null, actions: null });
+    set({ tab, page: null, actions: null, chatSheet: false });
   },
   setSnap: (tripSnap) => set({ tripSnap }),
   focusItem: (focused, keepSnap = false) => set(focused ? { focused, ...(keepSnap ? {} : { tripSnap: 'mid' as const }) } : { focused: null }),
@@ -138,6 +146,12 @@ export const mobileStore = createStore<MobileStore>()((set, get) => ({
     if (page && get().detail) get().closePlace();
     set({ page });
   },
+  openChatSheet: () => {
+    get().setTab('trip');
+    set({ chatSheet: true });
+  },
+  closeChatSheet: () => set({ chatSheet: false }),
+  expandChat: () => get().setTab('ai'),
   setFeed: (patch) => set({ feed: { ...get().feed, ...patch } }),
   toggleFeedQuick: (token) => {
     const q = get().feed.quick;
@@ -159,6 +173,17 @@ if (typeof window !== 'undefined') {
       return;
     }
     if (mobileStore.getState().detail) mobileStore.setState({ detail: null });
+  });
+  // 詳情的「問 AI」：看 chatDraft.seq，從行程問的回到行程開半屏聊天，其他的跳到 AI 分頁（setTab 會關掉詳情）
+  let lastSeq = uiStore.getState().chatDraft?.seq ?? 0;
+  uiStore.subscribe((s) => {
+    const d = s.chatDraft;
+    if (!d || d.seq === lastSeq) return;
+    lastSeq = d.seq;
+    const m = mobileStore.getState();
+    m.closePlace();
+    if (d.from === 'trip') m.openChatSheet();
+    else m.setTab('ai');
   });
   // Playwright 測試、Claude in Chrome 檢查畫面用
   if (import.meta.env?.DEV) (window as unknown as Record<string, unknown>).__thMobile = mobileStore;

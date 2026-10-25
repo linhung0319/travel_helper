@@ -305,8 +305,8 @@ function DayView({ date }: { date: string }) {
         <h2 className={`m-dayhead-title ${isRedDay(date) ? 'red-day' : ''}`} data-testid="m-trip-title">
           {dayLabel(date)}第 {DATES.indexOf(date) + 1} 天
         </h2>
-        {/* ✨ 半屏聊天：Task 12 接上 */}
-        <button type="button" className="m-icon-button" aria-label="問 AI 這天" data-testid="m-trip-ai">
+        {/* ✨ 半屏聊天（ChatSheet） */}
+        <button type="button" className="m-icon-button" aria-label="問 AI 這天" onClick={() => mobileStore.getState().openChatSheet()} data-testid="m-trip-ai">
           ✨
         </button>
         {!planning && (
