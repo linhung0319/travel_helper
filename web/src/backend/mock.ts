@@ -2,7 +2,7 @@
 // 只在 dev server 用（backend/index.ts）；Node 的測試不給 storage、不延遲。
 
 import type { Itinerary } from '@travel-helper/engine/types';
-import { DEFAULT_CONFIG } from '@travel-helper/engine';
+import { DEFAULT_CONFIG, upgradeItinerary } from '@travel-helper/engine';
 import {
   BackendError,
   type Backend,
@@ -126,7 +126,12 @@ export function createMockBackend(seed: MockSeed, opts: MockOptions = {}): MockB
   function load(): MockState | null {
     try {
       const text = storage?.getItem(key);
-      return text ? (JSON.parse(text) as MockState) : null;
+      if (!text) return null;
+      // 舊存檔的 meal、dining 轉成 tags
+      const st = JSON.parse(text) as MockState;
+      if (st.itinerary?.data) st.itinerary.data = upgradeItinerary(st.itinerary.data);
+      for (const s of st.snapshots ?? []) s.data = upgradeItinerary(s.data);
+      return st;
     } catch {
       return null;
     }

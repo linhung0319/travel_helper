@@ -37,19 +37,19 @@ export function seedItinerary(): Itinerary {
       ]),
       day('2027-02-03', 'shima-kanko-classic', [
         visit('i-2', 'shima-yokoyama-observatory'),
-        visit('i-3', 'shima-la-mer', { start: '12:00', meal: 'lunch', note: '已訂位（假的）' }),
+        visit('i-3', 'shima-la-mer', { start: '12:00', tags: ['lunch'], note: '已訂位（假的）' }),
       ]),
       day('2027-02-04', 'shima-marusada', [visit('i-4', 'shima-izawanomiya'), visit('i-5', 'shima-daiozaki-lighthouse')]),
       day('2027-02-05', 'toba-kokusai-hotel', [
         // 順序和 T11 的假行程一樣（e2e 用：水族館是第 2 個、漣在這天）
         visit('i-20', 'toba'),
         visit('i-6', 'toba-aquarium'),
-        visit('i-7', ['toba-sazanami', 'toba-kazuei'], { meal: 'lunch', note: '漣不能訂位，客滿就去一榮' }),
+        visit('i-7', ['toba-sazanami', 'toba-kazuei'], { tags: ['lunch'], note: '漣不能訂位，客滿就去一榮' }),
         visit('i-8', 'toba-mikimoto-pearl-island', { proposedBy: ['dev-mama'] }),
       ]),
       day('2027-02-06', 'toba-osatsu-ohtaya', [
         visit('i-9', 'toba-osatsu-ishigami'),
-        visit('i-10', 'toba-hachiman-kamado', { meal: 'lunch', proposedBy: ['dev-baba'] }),
+        visit('i-10', 'toba-hachiman-kamado', { tags: ['lunch'], proposedBy: ['dev-baba'] }),
         visit('i-11', 'toba-sea-folk-museum'),
       ]),
       day('2027-02-07', 'futami-oishiya', []),
@@ -67,7 +67,7 @@ export function seedItinerary(): Itinerary {
           ],
           meet: { place: 'ise-oharaimachi', time: '15:00' },
         },
-        visit('i-19', 'ise-mukai-sakenomise', { start: '18:00', meal: 'dinner' }),
+        visit('i-19', 'ise-mukai-sakenomise', { start: '18:00', tags: ['dinner'] }),
       ]),
       day('2027-02-11', 'ise-momijiken', []),
       day('2027-02-12', 'kix-nikko', []),

@@ -5,15 +5,15 @@ import { DEFAULT_CONFIG } from './config.ts';
 import { dateRange, isDate, isTime } from './time.ts';
 import {
   ITINERARY_FORMAT,
+  TAG_IDS,
   TRAVEL_MODES,
   type DateString,
-  type DiningStyle,
   type FlightItem,
   type GroupItem,
   type Itinerary,
   type ItineraryItem,
   type LodgingMeals,
-  type MealKind,
+  type TagId,
   type PartyProfile,
   type TimeString,
   type TravelSpec,
@@ -286,7 +286,7 @@ function assertSameType(typeOf: ((placeId: string) => string | undefined) | unde
 
 /**
  * 合併：source（visit、只有一個選項）的選項加到 target 的最後，刪掉 source。
- * target 的 selected、start、meal、dining、travel 不變；回傳 source 原本的 start（被丟掉的時間，給畫面提示）。
+ * target 的 selected、start、tags、travel 不變；回傳 source 原本的 start（被丟掉的時間，給畫面提示）。
  */
 export function mergeItems(
   it: Itinerary,
@@ -403,21 +403,38 @@ export function getLegTravel(it: Itinerary, to: LegTarget): TravelSpec | null {
   return item.type === 'split' ? null : (item.travel ?? null);
 }
 
-/** 標這個地點是哪一餐（null：不標） */
-export function setMeal(it: Itinerary, itemId: string, meal: MealKind | null): Itinerary {
+/** 設定 visit 的標籤：去掉重複，照 TAG_IDS 的順序存（互斥是畫面規則，這裡不檢查） */
+export function setTags(it: Itinerary, itemId: string, tags: TagId[]): Itinerary {
   const next = clone(it);
   const { item } = mustFind(next, itemId);
-  if (item.type !== 'visit') throw new ItineraryError('只有 visit 可以標用餐');
-  item.meal = meal;
+  if (item.type !== 'visit') throw new ItineraryError('只有 visit 可以標標籤');
+  item.tags = TAG_IDS.filter((t) => tags.includes(t));
   return next;
 }
 
-/** 標吃法：全員一起或分開吃（null：不標） */
-export function setDining(it: Itinerary, itemId: string, dining: DiningStyle | null): Itinerary {
-  const next = clone(it);
-  const { item } = mustFind(next, itemId);
-  if (item.type !== 'visit') throw new ItineraryError('只有 visit 可以標吃法');
-  item.dining = dining;
+/** 把舊的 meal、dining 轉成 tags（meal: x → x；together → all；separate → groups）；沒有舊欄位就原樣回傳同一個物件 */
+export function upgradeItinerary(raw: Itinerary): Itinerary {
+  const old = (i: ItineraryItem | GroupItem) => i.type === 'visit' && ('meal' in i || 'dining' in i);
+  const needs = raw.days.some((d) => d.items.some((i) => old(i) || (i.type === 'split' && i.groups.some((g) => g.items.some(old)))));
+  if (!needs) return raw;
+  const next = clone(raw);
+  const fix = (i: ItineraryItem | GroupItem) => {
+    if (i.type !== 'visit' || !('meal' in i || 'dining' in i)) return;
+    const legacy = i as VisitItem & { meal?: TagId | null; dining?: string | null };
+    const tags: TagId[] = [...(legacy.tags ?? [])];
+    if (legacy.meal) tags.push(legacy.meal);
+    if (legacy.dining === 'together') tags.push('all');
+    else if (legacy.dining === 'separate') tags.push('groups');
+    delete legacy.meal;
+    delete legacy.dining;
+    legacy.tags = TAG_IDS.filter((t) => tags.includes(t));
+  };
+  for (const d of next.days) {
+    for (const i of d.items) {
+      fix(i);
+      if (i.type === 'split') for (const g of i.groups) g.items.forEach(fix);
+    }
+  }
   return next;
 }
 
@@ -469,7 +486,8 @@ export function validateItinerary(it: unknown): string[] {
         else if (!Number.isInteger(i.selected) || i.selected < 0 || i.selected >= i.options.length) errs.push(`${where}：selected 超出範圍`);
         else if (i.options.some((o) => typeof o.place !== 'string' || !o.place)) errs.push(`${where}：選項缺 place`);
         if (i.start != null && !isTime(i.start)) errs.push(`${where}：start 要是 HH:MM`);
-        if (i.dining != null && i.dining !== 'together' && i.dining !== 'separate') errs.push(`${where}：dining 要是 together 或 separate`);
+        if ('meal' in i || 'dining' in i) errs.push(`${where}：舊格式，請先 upgradeItinerary`);
+        if (i.tags != null && !(Array.isArray(i.tags) && i.tags.every((t) => (TAG_IDS as readonly string[]).includes(t)))) errs.push(`${where}：tags 要是 TAG_IDS 裡的值的陣列`);
         checkTravel(i.travel, where);
         break;
       case 'free':

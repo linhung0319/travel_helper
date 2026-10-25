@@ -20,10 +20,11 @@ import {
   removeOption,
   selectOption,
   getLegTravel,
-  setDining,
   setLegTravel,
   setLodging,
-  setMeal,
+  setTags,
+  upgradeItinerary,
+  pickMeal,
   setStart,
   setStay,
   setTravel,
@@ -298,66 +299,50 @@ test('setLegTravel：航班可以；split 項目本身丟錯', () => {
   assert.deepEqual(getLegTravel(setLegTravel(sp.itinerary, { itemId: inner }, { minutes: 5 }), { itemId: inner }), { minutes: 5 });
 });
 
-test('setMeal、setDining 改到對的項目；validateItinerary 接受新欄位', () => {
-  const { it, ids: [a, b] } = threeItems();
-  const m = setDining(setMeal(it, a, 'dinner'), b, 'separate');
-  assert.equal((findItem(m, a)?.item as VisitItem).meal, 'dinner');
-  assert.equal((findItem(m, a)?.item as VisitItem).dining ?? null, null);
-  assert.equal((findItem(m, b)?.item as VisitItem).dining, 'separate');
-  assert.equal((findItem(setMeal(m, a, null), a)?.item as VisitItem).meal, null);
-  assert.equal((findItem(setDining(m, b, null), b)?.item as VisitItem).dining, null);
-  assert.deepEqual(validateItinerary(setLegTravel(m, { lodging: D }, { mode: 'walk' })), []);
-  const bad = JSON.parse(JSON.stringify(m)) as Itinerary;
-  (bad.days.find((d) => d.date === D)!.items[0] as VisitItem).dining = 'x' as never;
-  assert.ok(validateItinerary(bad).some((e) => e.includes('dining')));
+test('setTags：去重、照 TAG_IDS 排序；validateItinerary 接受', () => {
+  const { it, ids: [a] } = threeItems();
+  const next = setTags(it, a, ['rest', 'lunch', 'lunch', 'breakfast']);
+  assert.deepEqual((findItem(next, a)?.item as VisitItem).tags, ['breakfast', 'lunch', 'rest']);
+  assert.deepEqual(validateItinerary(next), []);
+  assert.throws(() => setTags(it, 'nope', ['lunch']), ItineraryError);
   const bad2 = setLegTravel(it, { itemId: a }, { minutes: -1 });
   assert.ok(validateItinerary(bad2).some((e) => e.includes('minutes')));
 });
 
-/** 第一天之後的某天：a → b 兩項，b 的交通用 spec */
-function withTravel(spec: TravelSpec): Itinerary {
-  let it = createItinerary();
-  it = setLodging(it, '2027-02-04', 'h');
-  it = setLodging(it, D, 'h');
-  it = addItem(it, D, visit('a')).itinerary;
-  const b = addItem(it, D, visit('b'));
-  return setLegTravel(b.itinerary, { itemId: b.itemId }, spec);
+function withVisit(extra: Record<string, unknown>): Itinerary {
+  const { it, ids: [a] } = threeItems();
+  const copy = JSON.parse(JSON.stringify(it)) as Itinerary;
+  Object.assign(findItem(copy, a)!.item, extra);
+  return copy;
 }
+const firstVisit = (it: Itinerary) => it.days.find((d) => d.date === D)!.items[0] as VisitItem;
 
-test('舊的 bufferMinutes 忽略、舊的方式照樣算', () => {
-  const it = withTravel({ mode: 'charter', minutes: 20, bufferMinutes: 10 } as TravelSpec);
-  assert.deepEqual(validateItinerary(it), []);
-  const data = fake([lodging('h', at(0)), spot('a', at(400)), spot('b', at(3000))]);
-  const day = planItinerary(it, data).days.find((d) => d.date === D)!;
-  const leg = day.entries[2].travel!;
-  assert.equal(leg.mode, 'charter');
-  assert.equal(leg.minutes, 20);
-  assert.equal(toMinutes(day.entries[2].arrive), toMinutes(leg.depart) + 20);
-  // 舊的方式都還合法
-  for (const mode of ['train', 'bus', 'ferry', 'charter', 'car', 'other'] as const) assert.deepEqual(validateItinerary(withTravel({ mode })), []);
+test('upgradeItinerary：meal、dining 轉成 tags', () => {
+  const old = withVisit({ meal: 'lunch', dining: 'separate' });
+  const v = firstVisit(upgradeItinerary(old));
+  assert.deepEqual(v.tags, ['lunch', 'groups']);
+  assert.equal('meal' in v, false);
+  assert.equal('dining' in v, false);
+  assert.deepEqual(firstVisit(upgradeItinerary(withVisit({ meal: null, dining: 'together' }))).tags, ['all']);
+  const clean = withVisit({ tags: ['rest'] });
+  assert.equal(upgradeItinerary(clean), clean);
 });
 
-test('validateItinerary：mode transit 合法、trip 要有 id 和 HH:MM 的 depart', () => {
-  assert.deepEqual(validateItinerary(withTravel({ mode: 'transit' })), []);
-  assert.deepEqual(validateItinerary(withTravel({ mode: 'transit', trip: { id: 't1', depart: '10:35', arrive: '10:45', from: 'a', to: 'b' } })), []);
-  const errs = validateItinerary(withTravel({ mode: 'transit', trip: { id: '', depart: '9:5' } as TripRef }));
-  assert.equal(errs.length, 2, errs.join('；'));
-  assert.ok(errs.some((e) => e.includes('trip.id')));
-  assert.ok(errs.some((e) => e.includes('trip.depart')));
-  assert.ok(validateItinerary(withTravel({ trip: { id: 't1', depart: '10:35', arrive: 'x', from: 'a', to: 'b' } })).some((e) => e.includes('trip.arrive')));
+test('validateItinerary：舊欄位、未知的 tag 報錯', () => {
+  assert.ok(validateItinerary(withVisit({ meal: 'lunch' })).some((e) => e.includes('upgradeItinerary')));
+  assert.ok(validateItinerary(withVisit({ dining: 'together' })).some((e) => e.includes('upgradeItinerary')));
+  assert.ok(validateItinerary(withVisit({ tags: ['brunch'] })).length > 0);
+  assert.ok(validateItinerary(withVisit({ tags: 'lunch' })).length > 0);
 });
 
-test('validateItinerary：trip.rides 是每一程的 tripId（字串陣列）', () => {
-  const trip = { id: '1-1963', depart: '11:14', arrive: '11:41', from: 'a', to: 'b' };
-  assert.deepEqual(validateItinerary(withTravel({ mode: 'transit', trip: { ...trip, rides: ['1-1963', '1-3799'] } })), []);
-  assert.deepEqual(validateItinerary(withTravel({ mode: 'transit', trip: { ...trip, rides: null } })), []);
-  assert.deepEqual(validateItinerary(withTravel({ mode: 'transit', trip: { ...trip, rides: ['1-1963', '1-3799'], via: 'toba' } })), []);
-  assert.deepEqual(validateItinerary(withTravel({ mode: 'transit', trip: { ...trip, via: null } })), []);
-  assert.ok(validateItinerary(withTravel({ trip: { ...trip, via: 3 as unknown as string } })).some((e) => e.includes('trip.via')));
-  assert.ok(validateItinerary(withTravel({ trip: { ...trip, rides: '1-1963' as unknown as string[] } })).some((e) => e.includes('trip.rides')));
-  assert.ok(validateItinerary(withTravel({ trip: { ...trip, rides: [1] as unknown as string[] } })).some((e) => e.includes('trip.rides')));
+test('pickMeal', () => {
+  assert.equal(pickMeal(['lunch'], 'dinner'), 'lunch');
+  assert.equal(pickMeal(['breakfast', 'lunch'], 'lunch'), 'lunch');
+  assert.equal(pickMeal(['dinner', 'breakfast'], null), 'breakfast');
+  assert.equal(pickMeal([], 'snack'), 'snack');
+  assert.equal(pickMeal(['rest'], null), null);
+  assert.equal(pickMeal(undefined, 'dinner'), 'dinner');
 });
-
 // --- 合併、拆開、搬移備卡 ---------------------------------------------------
 
 const typeOf = (id: string) => (id.startsWith('h') ? 'lodging' : id.startsWith('r') ? 'restaurant' : 'spot');
@@ -365,7 +350,7 @@ const visitOf = (it: Itinerary, id: string) => findItem(it, id)?.item as VisitIt
 
 function mergeSetup() {
   let it = createItinerary();
-  const t = addItem(it, D, { type: 'visit', options: [{ place: 'r1' }], selected: 0, start: '12:00', meal: 'lunch' });
+  const t = addItem(it, D, { type: 'visit', options: [{ place: 'r1' }], selected: 0, start: '12:00', tags: ['lunch'] });
   it = t.itinerary;
   const s = addItem(it, D, { type: 'visit', options: [{ place: 'r2', stayMinutes: 45 }], selected: 0, start: '11:30' });
   return { it: s.itinerary, target: t.itemId, source: s.itemId };
@@ -378,7 +363,7 @@ test('mergeItems：source 的點變成 target 的最後一個選項，target 的
   assert.deepEqual(t.options, [{ place: 'r1' }, { place: 'r2', stayMinutes: 45 }]);
   assert.equal(t.selected, 0);
   assert.equal(t.start, '12:00');
-  assert.equal(t.meal, 'lunch');
+  assert.deepEqual(t.tags, ['lunch']);
   assert.equal(findItem(r.itinerary, source), null);
   assert.equal(r.droppedStart, '11:30');
   assert.equal(visitOf(it, target).options.length, 1, '不改原本的行程');

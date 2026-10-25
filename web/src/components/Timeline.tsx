@@ -497,7 +497,7 @@ function EntryRow({ entry, day, warnings, plan, marks }: { entry: TimelineEntry;
             {planning && item && item.type !== 'flight' && !backup && <ItemMenu itemId={item.id} item={item} onTags={visit ? () => setTagsOpen(true) : undefined} />}
           </span>
           <span className="tl-meta">
-            {visit && <ItemTags visit={visit} mealTag={entry.mealTag ?? null} date={day.date} placeId={shownPlace} open={tagsOpen} onOpenChange={setTagsOpen} />}
+            {visit && <ItemTags visit={visit} mealTags={entry.mealTags ?? []} date={day.date} placeId={shownPlace} open={tagsOpen} onOpenChange={setTagsOpen} />}
             {v?.switcher}
           </span>
           {v?.actions}

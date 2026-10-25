@@ -433,10 +433,10 @@ test('legSteps：計程車沒有步驟', () => {
 
 test('waitNote：📌 午餐、開門、其他', () => {
   const visit = { id: 'v', type: 'visit' as const, options: [{ place: 'r' }], selected: 0 };
-  const e = entry('visit', 'r', { arrive: '10:53', start: '12:00', waitMinutes: 67, mealTag: 'lunch' });
+  const e = entry('visit', 'r', { arrive: '10:53', start: '12:00', waitMinutes: 67, mealTags: ['lunch'] });
   assert.equal(waitNote(e, { ...visit, start: '12:00' }, place('r')), '⏳ 10:53 到，等 67 分（午餐 📌 12:00 才開始）');
-  assert.equal(waitNote({ ...e, mealTag: 'dinner' }, { ...visit, start: '12:00' }, place('r')), '⏳ 10:53 到，等 67 分（晚餐 📌 12:00 才開始）');
-  assert.equal(waitNote({ ...e, mealTag: null }, { ...visit, start: '12:00' }, place('r')), '⏳ 10:53 到，等 67 分（📌 12:00 才開始）');
+  assert.equal(waitNote({ ...e, mealTags: ['dinner'] }, { ...visit, start: '12:00' }, place('r')), '⏳ 10:53 到，等 67 分（晚餐 📌 12:00 才開始）');
+  assert.equal(waitNote({ ...e, mealTags: [] }, { ...visit, start: '12:00' }, place('r')), '⏳ 10:53 到，等 67 分（📌 12:00 才開始）');
   // 沒有 📌 的造訪：等開門
   const open = entry('visit', 'r', { arrive: '09:40', start: '10:00', waitMinutes: 20 });
   assert.equal(waitNote(open, visit, place('r')), '⏳ 09:40 到，等 20 分（10:00 才開門）');

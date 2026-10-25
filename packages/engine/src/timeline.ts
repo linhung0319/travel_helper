@@ -21,6 +21,7 @@ import type {
   SplitItem,
   TimelineEntry,
   VisitItem,
+  TagId,
 } from './types.ts';
 
 interface State {
@@ -130,13 +131,13 @@ function hoursCheck(rec: PlaceRecord, start: number, stay: number, fixed: boolea
 }
 
 /** 團體檢查（餐廳）與長輩、小孩檢查（景點） */
-function groupChecks(rec: PlaceRecord, itemId: string, ctx: RunContext): void {
+function groupChecks(rec: PlaceRecord, itemId: string, ctx: RunContext, tags: readonly TagId[] = []): void {
   const { party } = ctx;
   const placeId = rec.id;
   if (rec.type === 'restaurant') {
     const g = rec.group ?? {};
     const res = rec.reservation?.accepted ?? 'unknown';
-    if (ctx.whole) {
+    if (ctx.whole && !tags.includes('groups')) {
       const ok = g.fit15 === 'yes' || !!g.confirmed15;
       if (!ok) {
         const why = g.fit15 === 'split' ? '要分桌或分批' : g.fit15 === 'no' ? '坐不下' : '不確定坐不坐得下';
@@ -144,7 +145,7 @@ function groupChecks(rec: PlaceRecord, itemId: string, ctx: RunContext): void {
       }
       if (res === 'no') warn(ctx, { code: 'no-reservation', level: 'error', itemId, placeId, message: '全員用餐一定要預約，這家不接受預約（§5.6）' });
       else if (res === 'unknown') warn(ctx, { code: 'no-reservation', level: 'warning', itemId, placeId, message: '全員用餐要預約，這家能不能預約不確定' });
-    } else if (g.fitSubgroup === 'no') {
+    } else if (!ctx.whole && g.fitSubgroup === 'no') {
       warn(ctx, { code: 'group-seats', level: 'error', itemId, placeId, message: `這組 ${party.size} 人坐不下` });
     }
     const allowed = rec.kids?.allowed;
@@ -168,6 +169,16 @@ function groupChecks(rec: PlaceRecord, itemId: string, ctx: RunContext): void {
   }
 }
 
+const MEAL_TAGS = ['breakfast', 'lunch', 'dinner', 'snack'] as const satisfies readonly TagId[];
+
+/** 這張卡算哪一餐：只有一個用餐標籤就用它；好幾個時有猜的那餐就用猜的，沒有就用最早的；沒標用猜的 */
+export function pickMeal(tags: readonly TagId[] | undefined, guessed: MealKind | null): MealKind | null {
+  const meals = MEAL_TAGS.filter((m) => tags?.includes(m));
+  if (!meals.length) return guessed;
+  if (meals.length === 1) return meals[0];
+  return guessed && meals.includes(guessed) ? guessed : meals[0];
+}
+
 function runVisit(item: VisitItem, st: State, ctx: RunContext): TimelineEntry {
   const opt = item.options[item.selected] ?? item.options[0];
   if (!opt) throw new Error(`項目 ${item.id} 沒有選項`);
@@ -187,11 +198,9 @@ function runVisit(item: VisitItem, st: State, ctx: RunContext): TimelineEntry {
   }
   const rec = res?.origin === 'base' ? res.record : null;
   if (rec) start = hoursCheck(rec, start, stay, !!item.start, item.id, ctx);
-  let meal: MealKind | null = item.meal ?? null;
-  if (!meal && rec?.type === 'restaurant') {
-    meal = inWindow(start, ctx.cfg.meals.lunch) ? 'lunch' : inWindow(start, ctx.cfg.meals.dinner) ? 'dinner' : 'snack';
-  }
-  if (rec) groupChecks(rec, item.id, ctx);
+  const guessed: MealKind | null = rec?.type === 'restaurant' ? (inWindow(start, ctx.cfg.meals.lunch) ? 'lunch' : inWindow(start, ctx.cfg.meals.dinner) ? 'dinner' : 'snack') : null;
+  const meal = pickMeal(item.tags, guessed);
+  if (rec) groupChecks(rec, item.id, ctx, item.tags);
   const end = start + stay;
   st.loc = target;
   st.time = end;
@@ -206,7 +215,8 @@ function runVisit(item: VisitItem, st: State, ctx: RunContext): TimelineEntry {
     end: fromMinutes(end),
     waitMinutes: start - arrive,
     meal,
-    mealTag: item.meal ?? null,
+    mealTags: MEAL_TAGS.filter((m) => item.tags?.includes(m)),
+    ...(item.tags?.includes('rest') ? { rest: true } : {}),
     groupId: ctx.groupId,
   };
 }
@@ -395,7 +405,7 @@ export function planDay(it: Itinerary, index: number, data: EngineData, cfg: Eng
   if (it.party.elders > 0 || it.party.kids > 0) {
     let since: number | null = null;
     for (const e of whole) {
-      const rest = e.kind === 'start' || e.kind === 'free' || e.kind === 'lodging' || e.kind === 'flight' || e.meal != null;
+      const rest = e.kind === 'start' || e.kind === 'free' || e.kind === 'lodging' || e.kind === 'flight' || e.meal != null || e.rest === true;
       if (since == null) since = toMinutes(e.start);
       if (toMinutes(e.end) - since > cfg.day.maxMinutesWithoutRest && !rest) {
         warnings.push({ code: 'no-rest', level: 'warning', date: day.date, itemId: e.itemId ?? undefined, message: `連續 ${toMinutes(e.end) - since} 分沒有休息（用餐、喝咖啡、自由時間），長輩、小孩會累` });

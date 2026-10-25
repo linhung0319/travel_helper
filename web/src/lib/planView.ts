@@ -1,7 +1,7 @@
 // 「這一天」面板和地圖要的行程資訊（T15m）：交通的文字和步驟、等待說明、班次分類、距離、編號、時間條段落、行程裡找項目、匯出。
 // 純函式：時間軸、交通時間、空檔、警告都是引擎（T14）算好的，這裡只整理成畫面要的樣子。
 
-import type { DayPlan, EngineWarning, Itinerary, ItineraryItem, Leg, LegTarget, RideDeparture, TimelineEntry, TransitRide, TravelMode, TravelSpec, TripRef, VisitItem } from '@travel-helper/engine';
+import type { DayPlan, EngineWarning, Itinerary, ItineraryItem, Leg, LegTarget, MealKind, RideDeparture, TimelineEntry, TransitRide, TravelMode, TravelSpec, TripRef, VisitItem } from '@travel-helper/engine';
 import { toMinutes } from '@travel-helper/engine';
 import { displayMinutes, estimateWalk } from './geo/walk.ts';
 import { haversineMeters } from './geo/distance.ts';
@@ -444,7 +444,7 @@ export function legSteps(leg: Leg, fromName: string, toName: string, nameOf: (id
   return out;
 }
 
-const MEAL_LABELS: Partial<Record<NonNullable<TimelineEntry['mealTag']>, string>> = { lunch: '午餐 ', dinner: '晚餐 ' };
+const MEAL_LABELS: Partial<Record<MealKind, string>> = { lunch: '午餐 ', dinner: '晚餐 ' };
 
 /**
  * 交通卡下面「到了要等」的那條（第五輪 §2）：有 📌 寫「午餐 📌 12:00 才開始」；
@@ -453,7 +453,7 @@ const MEAL_LABELS: Partial<Record<NonNullable<TimelineEntry['mealTag']>, string>
 export function waitNote(entry: TimelineEntry, item: VisitItem | null, _place: Place | undefined): string | null {
   if (entry.waitMinutes <= 0) return null;
   const head = `⏳ ${entry.arrive} 到，等 ${entry.waitMinutes} 分`;
-  if (item?.start) return `${head}（${(entry.mealTag && MEAL_LABELS[entry.mealTag]) || ''}📌 ${item.start} 才開始）`;
+  if (item?.start) return `${head}（${(entry.mealTags?.[0] && MEAL_LABELS[entry.mealTags[0]]) || ''}📌 ${item.start} 才開始）`;
   if (item) return `${head}（${entry.start} 才開門）`;
   return head;
 }

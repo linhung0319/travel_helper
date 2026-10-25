@@ -60,8 +60,9 @@ export type LodgingMeals = 'dinner+breakfast' | 'breakfast' | 'none';
 export const TRAVEL_MODES = ['walk', 'train', 'bus', 'ferry', 'taxi', 'charter', 'car', 'other', 'transit'] as const;
 export type TravelMode = (typeof TRAVEL_MODES)[number];
 
-/** 用餐的吃法：全員一起、分開吃 */
-export type DiningStyle = 'together' | 'separate';
+/** visit 的標籤（第六輪）：用餐、誰去、安排；順序就是存的順序 */
+export const TAG_IDS = ['breakfast', 'lunch', 'dinner', 'snack', 'all', 'groups', 'must', 'skippable', 'rainplan', 'rest'] as const;
+export type TagId = (typeof TAG_IDS)[number];
 
 /**
  * 選定的班次（電車、巴士、船）。id 是第一程的 tripId，depart 是第一程發車，arrive 是最後一程到達；
@@ -113,10 +114,8 @@ export interface VisitItem extends ItemBase {
   selected: number;
   /** 指定開始時間（訂位、表演、船班）；null：到了就開始（沒開門會等到開門） */
   start?: TimeString | null;
-  /** null：餐廳在午餐、晚餐時段內自動算那一餐 */
-  meal?: MealKind | null;
-  /** 吃法（全員一起、分開吃）；null：沒標 */
-  dining?: DiningStyle | null;
+  /** 標籤；省略或 [] ＝沒標。用餐標籤決定這張卡算哪一餐，沒標時餐廳在午餐、晚餐時段內自動算那一餐 */
+  tags?: TagId[];
   travel?: TravelSpec | null;
   /** 誰提的（建議的作者，member id） */
   proposedBy?: string[];
@@ -275,8 +274,10 @@ export interface TimelineEntry {
   waitMinutes: number;
   /** 引擎猜的那一餐（內部用：休息、分組用餐的判斷） */
   meal?: MealKind | null;
-  /** 使用者標的那一餐（畫面用）；項目的 meal 沒填就是 null */
-  mealTag?: MealKind | null;
+  /** 使用者標的那幾餐（畫面用），照 TAG_IDS 的順序；沒標是 [] */
+  mealTags?: MealKind[];
+  /** visit 標了「休息」 */
+  rest?: boolean;
   groupId?: string | null;
   /** split 的各組 */
   groups?: { id: string; name: string; entries: TimelineEntry[] }[];

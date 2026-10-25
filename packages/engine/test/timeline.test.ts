@@ -154,7 +154,7 @@ test('指定開始時間：到得比較晚 → 錯誤；到得早 → 等，產�
 test('餐廳在午餐時段內自動算午餐；指定 meal 照指定', () => {
   const d = plan(build([visit('a', { stay: 120 }), visit('r')]), fake(BASE));
   assert.equal(d.entries[2].meal, 'lunch');
-  const s = plan(build([visit('r', { meal: 'snack' })]), fake(BASE));
+  const s = plan(build([visit('r', { tags: ['snack'] })]), fake(BASE));
   assert.equal(s.entries[1].meal, 'snack');
 });
 
@@ -370,12 +370,13 @@ test('沒排餐不產生午餐、晚餐空檔', () => {
   assert.ok(!d.warnings.some((w) => w.code.includes('meal')));
 });
 
-test('mealTag 只反映使用者標的', () => {
+test('mealTags 只反映使用者標的', () => {
   const none = plan(build([visit('a', { stay: 120 }), visit('r')]), fake(BASE));
   assert.equal(none.entries[2].meal, 'lunch'); // 引擎猜的照舊
-  assert.equal(none.entries[2].mealTag ?? null, null);
-  const tagged = plan(build([visit('a', { stay: 120 }), visit('r', { meal: 'lunch' })]), fake(BASE));
-  assert.equal(tagged.entries[2].mealTag, 'lunch');
+  assert.deepEqual(none.entries[2].mealTags ?? [], []);
+  const tagged = plan(build([visit('a', { stay: 120 }), visit('r', { tags: ['lunch', 'snack'] })]), fake(BASE));
+  assert.deepEqual(tagged.entries[2].mealTags, ['lunch', 'snack']);
+  assert.equal(tagged.entries[2].meal, 'lunch'); // 午餐時段內，猜的在標籤裡就用猜的
 });
 
 test('只填分鐘、方式自動：用填的分鐘，標記為指定', () => {
@@ -413,4 +414,20 @@ test('舊格式的行程結果不變', async () => {
   const run = (cfg: ConfigOverride) => f(planItinerary(tobaDay(), realData(), cfg).days.find((x) => x.date === TOBA_DATE)!.entries as E[]);
   // 第一段是計程車：第四輪拿掉叫車的 5 分（8 → 3 分）；其他段不加緩衝
   assert.deepEqual(run({}), [["start","09:30",null],["visit","09:33",3],["visit","12:00",8],["meet","15:45",null,[[["visit","13:23",8],["meet","14:49",11]],[["visit","13:20",5],["visit","13:59",9],["meet","15:08",9]]]],["visit","15:55",10],["lodging","16:39",14]]);
+});
+
+test('景點標 rest 算休息，不發 no-rest', () => {
+  const mid = plan(build([visit('a', { stay: 120 }), visit('b', { stay: 30, tags: ['rest'] }), visit('c', { stay: 100 })]), fake(BASE));
+  assert.ok(!codes(mid).includes('no-rest'));
+  const untagged = plan(build([visit('a', { stay: 120 }), visit('b', { stay: 30 }), visit('c', { stay: 100 })]), fake(BASE));
+  assert.ok(codes(untagged).includes('no-rest'));
+});
+
+test('餐廳標 groups 不發 group-seats、no-reservation；kids-not-allowed 照發', () => {
+  const bad = with_(R, { group: { fit15: 'no' }, reservation: { accepted: 'no' }, kids: { allowed: 'no' } });
+  const w = (tags?: string[]) => codes(plan(build([visit('r', tags ? { tags } : {})]), fake([H, bad])));
+  assert.ok(w().includes('group-seats') && w().includes('no-reservation'));
+  const tagged = w(['groups']);
+  assert.ok(!tagged.includes('group-seats') && !tagged.includes('no-reservation'));
+  assert.ok(tagged.includes('kids-not-allowed'));
 });

@@ -38,7 +38,7 @@ export function tobaDay(): Itinerary {
     ],
     meet: { place: 'toba-ichibangai', time: '15:45' },
   });
-  add({ type: 'visit', options: [{ place: 'toba-mizunuma-sazae', stayMinutes: 30 }], meal: 'snack' });
+  add({ type: 'visit', options: [{ place: 'toba-mizunuma-sazae', stayMinutes: 30 }], tags: ['snack'] });
   return it;
 }
 

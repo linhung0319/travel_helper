@@ -340,8 +340,7 @@ travel_helper/
   ],
   "selected": 0,
   "start": null,         // 指定開始時間（訂位、表演、船班）；null＝到了就開始，沒開門會等到開門。到得比指定時間晚 → 衝突
-  "meal": null,          // breakfast | lunch | dinner | snack；使用者標的那一餐，null（或省略）＝不標、畫面不顯示用餐 tag（引擎內部另外猜一餐，只用在休息、分組用餐的判斷）
-  "dining": null,        // together | separate；全員一起吃或分開吃；省略或 null＝不標
+  "tags": [],            // 標籤（省略或 [] ＝沒標）：breakfast | lunch | dinner | snack（用餐）、all | groups（全員／分組）、must | skippable | rainplan | rest（必去、可跳過、雨天備案、休息），照這個順序存；用餐標籤決定這張卡算哪一餐（沒標時引擎在餐廳的午餐、晚餐時段內自己猜，只用在休息、分組用餐的判斷）；groups 的餐廳不發全員用餐的座位、預約警告；rest 算休息
   "travel": null,        // 指定從上一站怎麼來：{ "mode": "transit", "minutes": null, "trip": { … }, "note": "在車站前集合" }；null＝引擎依 §5.4 選
                          // 每個欄位都可以省略：mode 沒寫＝方式自動（只改時間或只選班次）；minutes 沒填時引擎照方式估算；交通不加緩衝
                          // mode：walk | taxi | transit（一定搭電車、巴士或船，班次由引擎挑，不套等車、班距的規則；找不到班次＝交通未定）
@@ -380,7 +379,7 @@ travel_helper/
 
 - **地點 ID** 用字串，不分預設資料或使用者加的點：引擎透過傳進來的 `getPlace` 查。使用者加的點只用座標估算交通，營業時間、團體條件標「未查」；已下架的點照常算，但發警告；查不到的點是錯誤。
 - **引擎的輸出**（`planItinerary(itinerary, data, config)`）：每天一個 `DayPlan`：
-  - `entries`：start（出發）、visit、flight、free、meet（分組，`groups` 是各組的 entries）、lodging（回住宿），各有 `arrive`／`start`／`end`、`waitMinutes`、`meal`（引擎猜的）、`mealTag`（使用者標的，畫面用），和到這一項的交通 `travel`（方式、出發／抵達、步行與等車分鐘、班次 `rides`、用的班次 `trip` 和前一班／後一班 `prevTrip`／`nextTrip`、出發後還有沒有班次 `transitAvailable`、計程車台數和費用 `taxi`、怎麼算的 `basis`）。
+  - `entries`：start（出發）、visit、flight、free、meet（分組，`groups` 是各組的 entries）、lodging（回住宿），各有 `arrive`／`start`／`end`、`waitMinutes`、`meal`（引擎猜的）、`mealTags`（使用者標的幾餐，畫面用）、`rest`（標了休息），和到這一項的交通 `travel`（方式、出發／抵達、步行與等車分鐘、班次 `rides`、用的班次 `trip` 和前一班／後一班 `prevTrip`／`nextTrip`、出發後還有沒有班次 `transitAvailable`、計程車台數和費用 `taxi`、怎麼算的 `basis`）。
   - `gaps`：`lodging`「住宿（未排）」、`idle`「空檔 N 分」（不再產生午餐、晚餐的空檔），附建議插在哪兩個項目之間。
   - `warnings`：`code`、`level`（error／warning／info）、`itemId`、`groupId`、`message`；`stats`：全員步行累計、主要景點數、回住宿時間、累不累、自由時間。
   - 整趟的警告（連續兩天都累、沒有半天自由時間）在 `ItineraryPlan.warnings`。
