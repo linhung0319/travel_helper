@@ -100,6 +100,7 @@
 - 近鐵 3（`osaka-namba`、`osaka-uehommachi`、`tsuruhashi`，`operator: kintetsu`、5 日券可用）、南海 2、JR 8、Osaka Metro 18（南海、Metro 用 `operator: other`，`lines` 前面寫業者）。南海空港急行、ラピート的泉佐野、りんくうタウン、関西空港用既有的 `kix` 區域車站。
 - 座標：OpenStreetMap（Overpass），每站取對應業者的 node（同名多業者的站各自一點）。
 - `accessibility` 依各業者官網的構內圖、バリアフリー情報，大阪市交通バリアフリーマップ，らくらくおでかけネット（頁面註記有 2019 年的，衝突時以官網和大阪市 2026-06 版為準）。`staffed` 只有近鐵、南海和 JR 大阪、天王寺有根據，其他 null。
+- `areas.json` 的 `osaka.stations` 已經列這 31 站。T27a 的 14 個景點 `nearestStation` 還是 null（T27d 補）；直線距離最近的站都在 800 m 內，例：道頓堀 → metro-namba 300 m、黒門市場 → metro-nippombashi 150 m、大阪城天守閣 → metro-osaka-business-park 660 m（jr-osakajokoen 780 m）、通天閣 → metro-ebisucho 350 m、海遊館 → metro-osakako 500 m、USJ → jr-universal-city 630 m、今昔館 → metro-tenjimbashisuji-6chome 60 m。
 - 處理了 `docs/requests.md`「[T1b] stations.json：大阪側轉乘站的無障礙資訊」：大阪難波、大阪上本町、鶴橋加進來並記無障礙資訊。伊勢中川不是 T28 的範圍，仍然不明。
 
 ## 8. 沒查到、之後要補
