@@ -765,6 +765,44 @@ test('編輯：回住宿的這晚的方案、候選的 ⋯', async ({ page }) =>
   for (const el of await sheet.getByRole('menuitem').all()) expect((await el.boundingBox())!.height).toBeGreaterThanOrEqual(44);
 });
 
+test('編輯：重疊卡 ‹ n/m › 換著看、⋯ 的主要、拿出作用在看的那張', async ({ page }) => {
+  await editDay(page, '2027-02-05');
+  const lunch = mCard(page, 'i-7');
+  const sw = lunch.getByTestId('m-option-switch');
+  await expect(sw).toContainText('1/2');
+  for (const b of ['option-prev', 'option-next']) expect((await sw.getByTestId(b).boundingBox())!.height).toBeGreaterThanOrEqual(44);
+  await expect(lunch.getByTestId('m-card-name')).toContainText('漣');
+  // 看主卡：👑 主要不能點
+  await openActions(page, 'i-7');
+  const sheet = page.getByTestId('m-action-sheet');
+  await expect(sheet.getByRole('menuitem').first()).toHaveText('👑 主要');
+  await expect(sheet.getByTestId('m-action-main')).toBeDisabled();
+  await page.getByTestId('m-sheet-dim').click({ position: { x: 20, y: 20 } });
+  // 換到第 2 個：縮圖、名稱換成一榮，點了不會選卡片
+  await sw.getByTestId('option-next').click();
+  await expect(sw).toHaveAttribute('data-shown', '1');
+  await expect(lunch).toHaveAttribute('data-place', 'toba-kazuei');
+  await expect(lunch.getByTestId('m-card-name')).not.toContainText('漣');
+  await expect(lunch).not.toHaveAttribute('aria-current', 'true');
+  // ⋯ → 👑 主要：一榮變成主卡
+  await openActions(page, 'i-7');
+  await expect(sheet.getByTestId('m-action-head')).not.toContainText('漣');
+  await sheet.getByTestId('m-action-main').click();
+  const selected = () => page.evaluate(() => (window as any).__th.dataStore.getState().itinerary.days.find((d: any) => d.date === '2027-02-05').items.find((x: any) => x.id === 'i-7').selected);
+  await expect.poll(selected).toBe(1);
+  await expect(sw).toContainText('2/2');
+  // 換到漣（現在是備卡）→ ⋯ → ⤴ 拿出：多一張單獨的漣，排在一榮後面
+  const n = await page.getByTestId('m-card').count();
+  await sw.getByTestId('option-next').click();
+  await expect(lunch).toHaveAttribute('data-place', 'toba-sazanami');
+  await openActions(page, 'i-7');
+  await sheet.getByTestId('m-action-detach').click();
+  await expect(page.getByTestId('m-card')).toHaveCount(n + 1);
+  await expect(lunch.getByTestId('m-option-switch')).toHaveCount(0);
+  const places = await page.getByTestId('m-timeline').getByTestId('m-card').evaluateAll((els) => els.map((e) => e.getAttribute('data-place')));
+  expect(places[places.indexOf('toba-kazuei') + 1]).toBe('toba-sazanami');
+});
+
 test('編輯：完成以後分頁回來', async ({ page }) => {
   await editDay(page);
   await expect(page.getByTestId('m-tab-trip')).toHaveCount(0);

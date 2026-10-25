@@ -6,8 +6,9 @@
 // 編輯中：面板拉到高、最上面是藍色的編輯條（網頁版第五輪的 PlanningBar，手機用 m-edit-bar：「✏️ 編輯 2/3（三）」加「完成」）和別人改過了的提示（ConflictBar）；
 // 每張卡有把手（長按拖曳）、⋯（底部動作面板 ActionSheet，動作的 ctx 在這裡算），時間軸最後多一個放置區，候選區收拖回來的備卡。
 // 結束編輯、換天時關掉動作面板；結束編輯時面板回到中間。
+// 重疊卡（有備卡）用 ‹ n/m › 換著看（同網頁版）：看備卡時卡片顯示那張的縮圖、名稱、時間，⋯ 的主要、拿出和拖曳都作用在那張。
 
-import { Fragment, useEffect, useRef, type PointerEvent as ReactPointerEvent } from 'react';
+import { Fragment, useEffect, useRef, useState, type PointerEvent as ReactPointerEvent } from 'react';
 import type { EngineWarning, TimelineEntry, VisitItem } from '@travel-helper/engine';
 import { useApp, useData, useShared, useUi } from '../hooks.ts';
 import { openDialog } from '../uiStore.ts';
@@ -102,6 +103,11 @@ function EntryRows({ entry, ctx }: { entry: TimelineEntry; ctx: RowCtx }) {
   const byId = useData((s) => s.byId);
   const itinerary = useData((s) => s.itinerary);
   const planning = useApp((s) => s.planning);
+  // 重疊卡（有備卡）正在看第幾個選項（null＝主卡）；主卡換了、選項增減時回到看主卡
+  const [shown, setShown] = useState<number | null>(null);
+  const optItem = entry.itemId ? findItemRef(itinerary, entry.itemId)?.item : null;
+  const optKey = optItem?.type === 'visit' ? `${optItem.selected}/${optItem.options.length}` : '';
+  useEffect(() => setShown(null), [optKey]);
   if (!day) return null;
   /** 標籤那一排（編輯中）打開動作面板的某個子畫面 */
   const openSub = (menu: ActionSheetSpec, view: ActionView) => (open: boolean) => open && mobileStore.getState().openActions({ ...menu, view });
@@ -204,34 +210,64 @@ function EntryRows({ entry, ctx }: { entry: TimelineEntry; ctx: RowCtx }) {
   const free = item?.type === 'free' ? item : null;
   const name = flight ? `${flight.direction === 'arrive' ? '抵達' : '起飛'} ${nameOf(p)}` : entry.kind === 'free' ? `自由時間${p ? `：${nameOf(p)}` : ''}` : nameOf(p);
   const ref = item ? findItemRef(itinerary, item.id) : null;
-  const overlap = !!visit && visit.options.length > 1;
-  // 動作面板：造訪、自由時間才有（航班沒有）；手機版只看主卡，主要、拿出作用在主卡
+  const n = visit?.options.length ?? 0;
+  const overlap = n > 1;
+  // 看的是哪個選項（重疊卡用 ‹ n/m › 換著看，同網頁版）；看備卡時縮圖、名稱、時間、停留、警告換成那張，⋯ 的主要、拿出作用在那張
+  const index = visit ? (shown != null && shown < n ? shown : visit.selected) : undefined;
+  const backup = !!visit && index !== visit.selected;
+  const option = visit && index != null ? visit.options[index] : undefined;
+  const sp = backup && option ? byId.get(option.place) : p;
+  const shownPlace = backup && option ? option.place : entry.placeId;
+  const shownName = backup ? nameOf(sp) : name;
+  const go = (d: number) => setShown(((index ?? 0) + d + n) % n);
+  const switcher = overlap ? (
+    <span className="m-option-switch" data-testid="m-option-switch" data-shown={index}>
+      <button type="button" aria-label="上一個" onClick={() => go(-1)} data-testid="option-prev">
+        ‹
+      </button>
+      <span>
+        {(index ?? 0) + 1}/{n}
+      </span>
+      <button type="button" aria-label="下一個" onClick={() => go(1)} data-testid="option-next">
+        ›
+      </button>
+    </span>
+  ) : null;
+  // 動作面板：造訪、自由時間才有（航班沒有）；看主卡時「👑 主要」不能點
   const menu: ActionSheetSpec | null =
     item && (visit || free)
       ? {
           ctx: { kind: visit ? 'visit' : 'free', overlap, pinned: !!visit?.start, groupTargets: groupTargetsOf(itinerary, item.id), inGroup: !!ref?.split, surface: 'mobile' },
-          target: { date: day.date, itemId: item.id, optionIndex: visit?.selected, placeId: entry.placeId ?? undefined, start: entry.start },
-          name,
-          placeId: entry.placeId,
-          disabled: overlap ? ['main'] : [],
+          target: { date: day.date, itemId: item.id, optionIndex: index, placeId: shownPlace ?? undefined, start: entry.start },
+          name: shownName,
+          placeId: shownPlace,
+          disabled: overlap && !backup ? ['main'] : [],
         }
       : null;
-  const drag: DragSource | null = item && (visit || free) ? { kind: 'item', itemId: item.id, placeType: visit ? (p?.type ?? null) : null, options: visit?.options.length ?? 1 } : null;
+  // 拖的東西：看備卡時是那張備卡，不然整張卡（同網頁版）
+  const drag: DragSource | null =
+    item && (visit || free)
+      ? backup && index != null
+        ? { kind: 'option', itemId: item.id, index, placeType: sp?.type ?? null }
+        : { kind: 'item', itemId: item.id, placeType: visit ? (p?.type ?? null) : null, options: n || 1 }
+      : null;
+  const stayMin = backup ? (option?.stayMinutes ?? null) : time.stay;
   return (
     <>
       {leg}
       <MobileCard
         itemKey={key}
-        place={p}
+        place={sp}
         fallbackType={flight ? 'airport' : null}
         menu={menu}
+        switcher={switcher}
         drag={drag}
         drop={drag && item ? { kind: 'card', itemId: item.id, placeType: visit ? (p?.type ?? null) : null, isFlight: false } : null}
         mark={mark}
-        time={{ text: shownTime, pinned: !!visit?.start, stay: !flight && time.stay ? formatStay(time.stay) : null }}
-        name={name}
-        tags={visit ? <ItemTags visit={visit} kind={tagKindOf(p?.type)} date={day.date} placeId={entry.placeId} open={false} onOpenChange={menu ? openSub(menu, 'tags') : () => {}} /> : null}
-        warnings={warnCount(shownWarnings(entry.itemId ? tl.byItem.get(entry.itemId) : undefined, entry.placeId, true))}
+        time={{ text: backup ? entry.start : shownTime, pinned: !backup && !!visit?.start, stay: !flight && stayMin ? formatStay(stayMin) : null }}
+        name={shownName}
+        tags={visit ? <ItemTags visit={visit} kind={tagKindOf(p?.type)} date={day.date} placeId={shownPlace} open={false} onOpenChange={menu ? openSub(menu, 'tags') : () => {}} /> : null}
+        warnings={warnCount(shownWarnings(entry.itemId ? tl.byItem.get(entry.itemId) : undefined, shownPlace, !backup))}
         focused={focused === key}
       />
     </>

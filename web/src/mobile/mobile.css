@@ -2083,3 +2083,22 @@ body.dragging-plan .m-dropend {
   font-weight: 700;
   font-variant-numeric: tabular-nums;
 }
+
+/* 重疊卡的 ‹ n/m ›：按鈕點的範圍 44px */
+.m-option-switch {
+  display: inline-flex;
+  align-items: center;
+  font-variant-numeric: tabular-nums;
+  color: var(--muted);
+}
+
+.m-option-switch button {
+  width: var(--tap);
+  height: var(--tap);
+  padding: 0;
+  border: 0;
+  background: none;
+  color: var(--fg);
+  font-size: 1.2rem;
+  cursor: pointer;
+}

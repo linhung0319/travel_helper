@@ -4,6 +4,7 @@
 // 右邊 ⋯ 欄（只在編輯中、這張卡有動作時才有「⋯」，點了打開底部動作面板 ActionSheet；不在編輯中留空）。
 // 編輯中時間軸上的卡也是放置區（dropOnCardProps）：放在中間合併、邊緣換順序（第四輪的規則）。
 // 卡片底色是類型的淡色（照網頁版）。點卡片＝在地圖上找到它（focusItem；編輯中面板不降到中間）：被選的那張加框（aria-current），多一行「詳細資料 ›」打開整頁詳情。
+// 重疊卡（同一時段有備選）：標籤那一排後面是 ‹ n/m ›（按鈕 44px），換著看備卡（縮圖、名稱、時間由 DaySheet 換成那張）。
 // 候選卡：虛線框，寫「誰 加的」，沒有編號。
 
 import type { KeyboardEvent, MouseEvent, ReactNode } from 'react';
@@ -43,6 +44,8 @@ export interface MobileCardProps {
   /** 候選卡：誰加的（MemberName） */
   addedBy?: ReactNode;
   focused: boolean;
+  /** 重疊卡的 ‹ n/m ›（放在標籤那一排後面） */
+  switcher?: ReactNode;
   /** 編輯中「⋯」打開的動作面板；沒有動作（出發的宿、航班）是 null */
   menu?: ActionSheetSpec | null;
   /** 編輯中可以拖的東西（航班、宿不能拖：null） */
@@ -72,7 +75,7 @@ function CardThumb({ place, fallbackType, mark }: Pick<MobileCardProps, 'place' 
 }
 
 /** 一張資料卡（時間軸、候選） */
-export function MobileCard({ itemKey, place, fallbackType, mark, time, name, tags, warnings = 0, addedBy, focused, menu = null, drag = null, drop = null }: MobileCardProps) {
+export function MobileCard({ itemKey, place, fallbackType, mark, time, name, tags, warnings = 0, addedBy, focused, switcher = null, menu = null, drag = null, drop = null }: MobileCardProps) {
   const planning = useApp((s) => s.planning);
   const candidate = addedBy != null;
   const src = planning ? drag : null;
@@ -82,11 +85,11 @@ export function MobileCard({ itemKey, place, fallbackType, mark, time, name, tag
   const focus = () => mobileStore.getState().focusItem(itemKey, planning);
   // 點標籤那一排（編輯中打開標籤面板）不算點卡片
   const onClick = (e: MouseEvent) => {
-    if ((e.target as HTMLElement).closest('.tag-edit')) return;
+    if ((e.target as HTMLElement).closest('.tag-edit, .m-option-switch')) return;
     focus();
   };
   const onKey = (e: KeyboardEvent) => {
-    if ((e.target as HTMLElement).closest('.tag-edit')) return;
+    if ((e.target as HTMLElement).closest('.tag-edit, .m-option-switch')) return;
     if (e.key === 'Enter' || e.key === ' ') {
       e.preventDefault();
       focus();
@@ -122,9 +125,10 @@ export function MobileCard({ itemKey, place, fallbackType, mark, time, name, tag
           <span className="m-card-name m-ellipsis" data-testid="m-card-name">
             {name}
           </span>
-          {(tags || warnings > 0 || candidate) && (
+          {(tags || switcher || warnings > 0 || candidate) && (
             <span className="m-card-meta">
               {tags}
+              {switcher}
               {warnings > 0 && (
                 <span className="m-card-warn" data-testid="m-card-warn">
                   ⚠ {warnings}
