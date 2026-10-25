@@ -178,14 +178,17 @@ export function shownWarnings(list: EngineWarning[] | undefined, placeId: string
 
 export const WARNING_ICONS: Record<EngineWarning['level'], string> = { error: '⚠️', warning: '⚠️', info: 'ℹ️' };
 
-/** 時間軸上的一列：項目（含交通）或空檔，依時間排好。分組的那列帶著「等會合」的空檔，畫在會合之前 */
-export type TimelineRow = { kind: 'entry'; entry: TimelineEntry; gapsBeforeMeet?: DayPlan['gaps'] } | { kind: 'gap'; gap: DayPlan['gaps'][number] };
+/** 時間軸上的一列：項目（含交通）或空檔（「住宿（未排）」這類），依時間排好 */
+export type TimelineRow = { kind: 'entry'; entry: TimelineEntry } | { kind: 'gap'; gap: DayPlan['gaps'][number] };
 
-/** 把空檔插到時間軸裡（照引擎給的 afterItemId；沒有就放最前面） */
+/**
+ * 把空檔插到時間軸裡（照引擎給的 afterItemId；沒有就放最後）。
+ * 「到了要等」的空檔（idle）不另外一列：交通卡下面的等待那條（waitNote）就是它（第五輪 §2）
+ */
 export function timelineRows(day: DayPlan): TimelineRow[] {
   const rows: TimelineRow[] = [];
   const gapsAfter = new Map<string | null, DayPlan['gaps']>();
-  for (const g of day.gaps) gapsAfter.set(g.afterItemId, [...(gapsAfter.get(g.afterItemId) ?? []), g]);
+  for (const g of day.gaps) if (g.kind !== 'idle') gapsAfter.set(g.afterItemId, [...(gapsAfter.get(g.afterItemId) ?? []), g]);
   const used = new Set<DayPlan['gaps'][number]>();
   const pushGaps = (key: string | null) => {
     for (const g of gapsAfter.get(key) ?? []) {
@@ -194,15 +197,10 @@ export function timelineRows(day: DayPlan): TimelineRow[] {
       rows.push({ kind: 'gap', gap: g });
     }
   };
-  // 下一個是分組的空檔，其實是各組等會合的時間
-  const splitIds = new Set(day.entries.filter((e) => e.groups).map((e) => e.itemId));
-  const waits = day.gaps.filter((g) => g.beforeItemId && splitIds.has(g.beforeItemId));
-  waits.forEach((g) => used.add(g));
   for (const e of day.entries) {
     // 住宿是最後一列：「住宿（未排）」這類空檔放在它前面
     if (e.kind === 'lodging') pushGaps(null);
-    const before = e.groups ? waits.filter((g) => g.beforeItemId === e.itemId) : [];
-    rows.push(before.length ? { kind: 'entry', entry: e, gapsBeforeMeet: before } : { kind: 'entry', entry: e });
+    rows.push({ kind: 'entry', entry: e });
     if (e.kind === 'start') continue;
     if (e.itemId) pushGaps(e.itemId);
   }

@@ -1653,10 +1653,6 @@ dl {
   line-height: 1.2;
 }
 
-.tl-wait {
-  font-size: 0.75rem;
-}
-
 .tl-body {
   display: flex;
   flex-direction: column;
@@ -1988,13 +1984,6 @@ dl {
 
 .cand-meta {
   margin-left: auto;
-}
-
-.cand-up {
-  min-height: 30px;
-  min-width: 34px;
-  padding: 2px 8px;
-  font-weight: 700;
 }
 
 .day-candidates h4 {
@@ -4146,10 +4135,6 @@ button.tl-leg-text {
   gap: 2px 8px;
 }
 
-.tl-timeline .tl-wait {
-  color: var(--muted);
-}
-
 /* 有備卡：卡片後面疊一層（1 張備卡）或兩層（2 張以上）淡色卡 */
 .tl-card.stacked {
   margin-bottom: 10px;
@@ -4334,4 +4319,207 @@ button.option-crown {
   align-items: center;
   gap: 4px;
   padding: 2px 8px 2px 3px;
+}
+
+/* ---------- 時間軸第五輪（§2、§7）：虛線、資料卡的類型色塊和編號、等待那條、候選 ---------- */
+
+/* 時間軸外層：左邊一條灰色虛線，x 對齊資料卡色塊的中心（卡片框 1px＋左內距 8px＋色塊一半 17px＝26px）。
+   卡片、分組框蓋在虛線上面，交通卡、等待那條縮排讓出虛線 */
+.tl-rail {
+  position: relative;
+}
+
+.tl-rail::before {
+  content: '';
+  position: absolute;
+  left: 25px;
+  top: 20px;
+  bottom: 20px;
+  border-left: 2px dashed #9aa3ad;
+}
+
+.tl-rail > li {
+  position: relative;
+}
+
+.tl-rail > .tl-split,
+.tl-rail > .tl-meet,
+.tl-rail > .tl-dropend {
+  background: var(--bg);
+}
+
+/* 交通卡：左邊縮排讓出虛線，右緣和資料卡對齊 */
+.tl-rail > .tl-leg,
+.tl-rail > .tl-wait-row {
+  padding-left: 44px;
+}
+
+.tl-row.tl-card {
+  padding-right: 38px;
+}
+
+.tl-card-inner {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-width: 0;
+}
+
+.tl-card-inner > .tl-body {
+  flex: 1;
+}
+
+/* 類型色塊：宿、景、餐（類型色）；站、機、點（中性灰） */
+.tl-card-type {
+  flex: none;
+  width: 34px;
+  height: 34px;
+  border-radius: 8px;
+  color: #fff;
+  font-weight: 700;
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* 右上角的編號：類型色的實心圓、白字 */
+.tl-card-no {
+  position: absolute;
+  top: 6px;
+  right: 8px;
+  min-width: 22px;
+  height: 22px;
+  padding: 0 4px;
+  border-radius: 11px;
+  color: #fff;
+  font-weight: 700;
+  font-size: 0.75rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-variant-numeric: tabular-nums;
+  border: 2px solid #fff;
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.15);
+  box-sizing: border-box;
+}
+
+/* 停留時間：等寬數字、固定最小寬度，調時間時字不跳 */
+.stay-chip-text {
+  display: inline-block;
+  min-width: 5.5em;
+  text-align: center;
+  font-variant-numeric: tabular-nums;
+}
+
+/* 到了要等：交通卡下面、下一張資料卡上面，黃色虛框 */
+.tl-wait-row {
+  margin: 4px 0;
+}
+
+.tl-wait {
+  display: block;
+  width: 100%;
+  text-align: left;
+  font: inherit;
+  font-size: 0.8rem;
+  font-variant-numeric: tabular-nums;
+  color: #8a6d00;
+  background: #fff7d6;
+  border: 1px dashed #e0c25a;
+  border-radius: 8px;
+  padding: 3px 8px;
+  cursor: pointer;
+}
+
+.tl-wait-row .tl-gap-actions {
+  padding: 4px 0;
+}
+
+/* 候選：和資料卡同一套外觀（類型淡底色、類型色塊），虛線框、沒有編號 */
+.cand-head {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+}
+
+.cand-count {
+  font-weight: 500;
+  color: var(--muted);
+}
+
+.cand {
+  flex-wrap: nowrap;
+  gap: 10px;
+  border: 1.5px dashed rgba(0, 0, 0, 0.18);
+  padding: 8px 10px;
+}
+
+.cand.type-spot {
+  background: var(--type-spot-bg);
+}
+
+.cand.type-restaurant {
+  background: var(--type-restaurant-bg);
+}
+
+.cand.type-lodging {
+  background: var(--type-lodging-bg);
+}
+
+.cand.type-station,
+.cand.type-other {
+  background: var(--type-other-bg);
+}
+
+.cand-main {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.cand-title {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 4px 8px;
+}
+
+.cand-by {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.cand-by .avatar {
+  width: 18px;
+  height: 18px;
+  font-size: 0.65rem;
+}
+
+.cand-handle {
+  color: #999;
+  cursor: grab;
+  flex: none;
+}
+
+button.cand-up {
+  flex: none;
+  min-height: 30px;
+  font: inherit;
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--accent);
+  border: 1px solid var(--accent);
+  border-radius: 999px;
+  padding: 2px 10px;
+  background: var(--bg);
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+button.cand-up:disabled {
+  opacity: 0.5;
 }

@@ -34,6 +34,7 @@ import {
   shownWarnings,
   specWithTrip,
   stopMarks,
+  timelineRows,
   waitNote,
 } from '../src/lib/planView.ts';
 import { explorePlaces, typeCounts } from '../src/lib/explore.ts';
@@ -369,6 +370,21 @@ test('waitNote：📌 午餐、開門、其他', () => {
   // 不是造訪（自由時間的指定時間）：不寫原因
   assert.equal(waitNote(open, null, undefined), '⏳ 09:40 到，等 20 分');
   assert.equal(waitNote(entry('visit', 'r'), visit, place('r')), null);
+});
+
+test('timelineRows：等待的空檔（idle）不另外一列，「住宿（未排）」照舊放在最後', () => {
+  const gap = (kind: 'idle' | 'lodging', afterItemId: string | null, beforeItemId: string | null) => ({ kind, date: '2027-02-03', label: kind === 'idle' ? '空檔 67 分' : '住宿（未排）', from: null, to: null, afterItemId, beforeItemId });
+  const split = entry('meet', 'meet-pt', { itemId: 'sp', groups: [{ id: 'g1', name: 'A', entries: [entry('visit', 'ga')] }] });
+  const day = {
+    entries: [entry('start', 'hotel'), entry('visit', 'a'), entry('visit', 'r', { waitMinutes: 67 }), split],
+    gaps: [gap('idle', 'a', 'r'), gap('idle', 'r', 'sp'), gap('lodging', 'sp', null)],
+  } as unknown as DayPlan;
+  const rows = timelineRows(day);
+  assert.deepEqual(
+    rows.map((r) => (r.kind === 'gap' ? `gap:${r.gap.kind}` : `entry:${r.entry.placeId}`)),
+    ['entry:hotel', 'entry:a', 'entry:r', 'entry:meet-pt', 'gap:lodging'],
+  );
+  assert.ok(rows.every((r) => r.kind === 'gap' || !('gapsBeforeMeet' in r)));
 });
 
 test('dayBar：類型色段落、交通、等待', () => {

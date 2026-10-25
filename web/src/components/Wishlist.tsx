@@ -1,10 +1,11 @@
 // 想去（interaction-design §6）：❤️ 就是想去。「❤️ 想去」分頁照搬探索（Explore.tsx 的 source="wish"），
 // 每張卡片底下多了「📅 加到某天」（小月曆，DayPicker.tsx）、留言（只有一層，收起來）；❤️／👎 數在照片右上角。
-// 加到某天的點變成那天的「候選」，放在行程分頁時間軸的下面；規劃模式下按 ↑ 排進行程（插在最順路的位置），
+// 加到某天的點變成那天的「候選」，放在行程分頁時間軸的下面，樣子和資料卡一樣（類型淡底色、類型色塊），
+// 用虛線框、沒有編號表示還沒排進去，下面一行「加的人」。規劃模式下左邊 ⠿、右邊「↑ 排進」（插在最順路的位置），
 // 或拖到時間軸（卡片中間＝合併成那張卡片的備卡、卡片之間＝排在那裡；planDrag.ts）。備卡也可以拖回候選區。
 // 這天、整趟的留言（Comments）放在地圖區的視窗（MapPanel）。
 
-import { useEffect, useMemo, useRef, useState, type PointerEvent as ReactPointerEvent } from 'react';
+import { useMemo, useState } from 'react';
 import { appStore } from '../store.ts';
 import { commands } from '../appCommands.ts';
 import { shared } from '../appShared.ts';
@@ -13,13 +14,12 @@ import { closeDialog, openDialog } from '../uiStore.ts';
 import type { Candidate, Comment } from '../backend/types.ts';
 import { dayCandidates, likedPlaces } from '../lib/wishlist.ts';
 import { shortDayLabel } from '../lib/trip.ts';
-import { TYPE_ICONS } from '../lib/typeStyle.ts';
-import { memberName } from '../sharedStore.ts';
 import { Avatar, AvatarStack, Dialog, MemberName, stamp } from './common.tsx';
 import { addPlaceToDay } from './addToDay.ts';
 import { AddToDay } from './DayPicker.tsx';
 import { dragSourceProps, dropOnCandidatesProps, useLongPressDrag } from './planDrag.ts';
 import type { DragSource } from '../lib/dropIntent.ts';
+import { CardType } from './Timeline.tsx';
 
 /** 有人 ❤️ 的點（想去分頁的內容）；地圖、分頁的數字也用這個 */
 export function useLiked() {
@@ -130,30 +130,9 @@ export function WishExtras({ placeId }: { placeId: string }) {
   );
 }
 
-/** 手機長按顯示提示（電腦版滑鼠移過去看 title）；enabled＝false 時不掛 */
-function useLongPressHint(text: string, enabled = true) {
-  const timer = useRef<number | null>(null);
-  const cancel = () => {
-    if (timer.current != null) window.clearTimeout(timer.current);
-    timer.current = null;
-  };
-  useEffect(() => cancel, []);
-  return {
-    onPointerDown: (e: ReactPointerEvent) => {
-      if (!enabled || e.pointerType !== 'touch') return;
-      cancel();
-      timer.current = window.setTimeout(() => shared.notify(text), 500);
-    },
-    onPointerUp: cancel,
-    onPointerLeave: cancel,
-    onPointerCancel: cancel,
-  };
-}
-
-/** 這天候選的一筆：類型圖示、名稱、❤️ 頭像；誰加的放在 title（手機長按）。規劃模式下可以拖進時間軸（住宿不行） */
+/** 候選的一筆：類型色塊、名稱、❤️ 頭像，下面一行「加的人」。規劃模式下左邊 ⠿ 可以拖進時間軸（住宿不行）、右邊「↑ 排進」 */
 function CandidateRow({ c, date }: { c: Candidate; date: string }) {
   const me = useShared((s) => s.me?.id);
-  const members = useShared((s) => s.members);
   const p = useData((s) => s.byId.get(c.placeId));
   const planning = useApp((s) => s.planning);
   const hovered = useApp((s) => s.hoveredId);
@@ -161,13 +140,10 @@ function CandidateRow({ c, date }: { c: Candidate; date: string }) {
   const [busy, setBusy] = useState(false);
   const name = p ? p.name.zh || p.name.ja : c.placeId;
   const mine = c.addedBy === me;
-  const addedBy = `${mine ? '我' : memberName(members, c.addedBy)} 加的`;
   const lodging = p?.type === 'lodging';
   const desktop = useIsDesktop();
   const dragSrc: DragSource | null = planning && !lodging ? { kind: 'candidate', candidateId: c.id, placeId: c.placeId, placeType: p?.type ?? null } : null;
   const pressRef = useLongPressDrag<HTMLLIElement>(dragSrc, !desktop);
-  // 可以長按拖的時候，長按就是拖，不跳「誰加的」提示
-  const hint = useLongPressHint(addedBy, !dragSrc);
   const up = async () => {
     // 住宿會換掉那晚原本的住宿，用對話框確認
     if (lodging) return openDialog({ kind: 'add', placeId: c.placeId, day: date });
@@ -177,34 +153,44 @@ function CandidateRow({ c, date }: { c: Candidate; date: string }) {
   };
   return (
     <li
-      className={`cand ${hovered === c.placeId ? 'hot' : ''}`}
+      className={`cand type-${p?.type ?? 'other'} ${hovered === c.placeId ? 'hot' : ''}`}
       data-testid="cand-item"
       data-id={c.placeId}
-      title={addedBy}
       onMouseEnter={() => appStore.getState().hover(c.placeId)}
       onMouseLeave={() => appStore.getState().hover(null)}
       ref={pressRef}
-      {...hint}
       {...(desktop ? dragSourceProps(dragSrc, c.placeId) : {})}
     >
+      {dragSrc && (
+        <span className="cand-handle" aria-hidden title="拖到時間軸">
+          ⠿
+        </span>
+      )}
+      <CardType type={p?.type ?? null} />
+      <span className="cand-main">
+        <span className="cand-title">
+          <button
+            type="button"
+            className="cand-name"
+            onClick={() => {
+              commands.focus(c.placeId);
+              appStore.getState().openPreview(c.placeId);
+            }}
+          >
+            {p?.tier && <span className={`tier tier-${p.tier}`}>{p.tier}</span>}
+            <strong>{name}</strong>
+          </button>
+          {liked && <AvatarStack ids={liked.likes} dislikes={liked.dislikes} />}
+        </span>
+        <span className="cand-by small muted" data-testid="cand-by">
+          加的人 <Avatar id={c.addedBy} />
+        </span>
+      </span>
       {planning && (
-        <button type="button" className="button small primary cand-up" disabled={busy} onClick={() => void up()} title={lodging ? '設成這晚的住宿' : '插在這天最順路的位置'} data-testid="cand-up">
-          ↑
+        <button type="button" className="cand-up" disabled={busy} onClick={() => void up()} title={lodging ? '設成這晚的住宿' : '插在這天最順路的位置'} data-testid="cand-up">
+          {lodging ? '↑ 設為這晚的住宿' : '↑ 排進'}
         </button>
       )}
-      <button
-        type="button"
-        className="cand-name"
-        onClick={() => {
-          commands.focus(c.placeId);
-          appStore.getState().openPreview(c.placeId);
-        }}
-      >
-        {p && <span aria-hidden>{TYPE_ICONS[p.type]} </span>}
-        {p?.tier && <span className={`tier tier-${p.tier}`}>{p.tier}</span>}
-        <strong>{name}</strong>
-      </button>
-      {liked && <AvatarStack ids={liked.likes} dislikes={liked.dislikes} />}
       {mine ? (
         <button type="button" className="text-button small" onClick={() => void shared.removeCandidate(c.id)} data-testid="cand-withdraw">
           撤回
@@ -220,7 +206,7 @@ function CandidateRow({ c, date }: { c: Candidate; date: string }) {
   );
 }
 
-/** 行程分頁：這天的候選。點一筆＝地圖飛過去、跳出小卡片；規劃模式下 ↑ 排進行程、拖到時間軸；這一區也收拖回來的備卡 */
+/** 行程分頁：這天的候選（標題「候選 N」）。點一筆＝地圖飛過去、跳出小卡片；規劃模式下 ↑ 排進行程、拖到時間軸；這一區也收拖回來的備卡 */
 export function DayCandidates({ date }: { date: string }) {
   const all = useShared((s) => s.candidates);
   const itinerary = useData((s) => s.itinerary);
@@ -228,10 +214,9 @@ export function DayCandidates({ date }: { date: string }) {
   const list = dayCandidates(all, date, itinerary);
   return (
     <section className="day-section day-candidates" data-testid="day-candidates" {...dropOnCandidatesProps(date, planning)}>
-      <h4>
-        📅 這天的候選{list.length ? `（${list.length}）` : ''}
+      <h4 className="cand-head">
+        候選{list.length > 0 && <span className="cand-count">{list.length}</span>}
       </h4>
-      {list.length > 0 && !planning && <p className="muted small">進入規劃模式，就可以按 ↑ 排進行程</p>}
       {list.length === 0 && <p className="muted small">在想去的卡片按『加到某天』，就會出現在這裡。</p>}
       <ul className="cand-list">
         {list.map((c) => (

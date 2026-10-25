@@ -1,6 +1,8 @@
-// 這一天的時間軸（interaction-design §3、§6）：引擎算好的項目、相鄰兩點之間的交通、空檔、警告。
-// 手機是直的清單，電腦放在地圖下方。點項目地圖跳過去；空檔可以點（看附近的餐廳）。
-// 一般模式只顯示要看的（設計 §6）：時間（開始–結束）、編號、類型圖示、名稱、停留時間、tag、❤️ 頭像、⚠ 數。
+// 這一天的時間軸（interaction-design §3、§6、第五輪 §2）：引擎算好的項目、相鄰兩點之間的交通、等待、警告。
+// 手機是直的清單，電腦放在地圖下方。左邊一條虛線從一張資料卡串到下一張，交通卡在虛線右邊（右緣和資料卡對齊）。
+// 點項目地圖跳過去；到了要等（📌、還沒開門）時交通卡下面一條黃色虛框的「⏳ 幾點到，等 N 分（原因）」，點了看附近的景點。
+// 資料卡只顯示要看的（設計 §6）：左邊類型色塊（宿／景／餐／站／機／點）、右上角編號（類型色的實心圓）、
+// 時間（開始–結束）、停留時間（X小時MM分）、名稱、tag、❤️ 頭像、⚠ 數。
 // 卡片底色是類型的淡色；起點、終點的住宿和造訪是同樣的卡片（只寫一個時間）。有備卡的卡片疊著淡色卡、右上角 👑、‹ n/m › 換著看。
 // 規劃模式下才有：停留時間 −／＋、點時間固定開始（📌）、⋯ 選單（刪除、移到第 _ 天、移進／移出分組、標用餐、標吃法）、
 // 拖卡片（電腦版拖、手機長按後拖）：放在卡片中間合併、邊緣換順序；看備卡時拖的是那張備卡；看備卡時的「設為主要」「拿出來」。
@@ -16,9 +18,9 @@ import { useApp, useData, useIsDesktop } from '../hooks.ts';
 import { dragSourceProps, dropOnCardProps, dropOnEndProps, putBackOption, useLongPressDrag } from './planDrag.ts';
 import type { DragSource } from '../lib/dropIntent.ts';
 import { openDialog } from '../uiStore.ts';
-import { cardTime, dayBar, daySummary, findItemRef, formatStay, shownWarnings, stopMarks, timelineRows, WARNING_ICONS, warningsByItem, type BarSegment } from '../lib/planView.ts';
+import { cardTime, cardTypeLetter, dayBar, daySummary, findItemRef, formatStay, shownWarnings, stopMarks, timelineRows, waitNote, WARNING_ICONS, warningsByItem, type BarSegment } from '../lib/planView.ts';
 import { shortDayLabel } from '../lib/trip.ts';
-import { TYPE_COLORS, TYPE_ICONS } from '../lib/typeStyle.ts';
+import { TYPE_COLORS } from '../lib/typeStyle.ts';
 import type { Place } from '../data/types.ts';
 import { AvatarStack, PlaceChip } from './common.tsx';
 import { LegRow } from './LegRow.tsx';
@@ -32,15 +34,44 @@ interface Marks {
   byEntry: Map<TimelineEntry, string>;
 }
 
+/** 車站、機場、使用者加的點、沒有資料的點：中性灰 */
 const NEUTRAL_COLOR = '#6e7781';
 
+/** 類型色塊、編號圓圈的顏色：景點、住宿、餐廳用類型色，其他中性灰 */
+function typeColor(type: Place['type'] | null | undefined): string {
+  return type === 'spot' || type === 'lodging' || type === 'restaurant' ? TYPE_COLORS[type] : NEUTRAL_COLOR;
+}
+
+/** 資料卡（和候選卡）左邊的類型色塊：宿、景、餐、站、機、點 */
+export function CardType({ type }: { type: Place['type'] | 'airport' | null }) {
+  return (
+    <span className="tl-card-type" style={{ background: typeColor(type === 'airport' ? null : type) }} aria-hidden data-testid="tl-card-type">
+      {cardTypeLetter(type)}
+    </span>
+  );
+}
+
+/** 資料卡右上角的編號（和地圖同一個號碼），類型色的實心圓、白字 */
+function CardNo({ entry, marks }: { entry: TimelineEntry; marks: Marks }) {
+  const byId = useData((s) => s.byId);
+  const label = marks.byEntry.get(entry);
+  if (!label) return null;
+  const type = entry.placeId ? byId.get(entry.placeId)?.type : undefined;
+  return (
+    <span className="tl-card-no" style={{ background: typeColor(type) }} data-testid="tl-mark">
+      {label}
+    </span>
+  );
+}
+
+/** 會合那列的編號（不是資料卡，跟著文字） */
 function Mark({ entry, marks }: { entry: TimelineEntry; marks: Marks }) {
   const byId = useData((s) => s.byId);
   const label = marks.byEntry.get(entry);
   if (!label) return null;
   const type = entry.placeId ? byId.get(entry.placeId)?.type : undefined;
   return (
-    <span className="tl-mark" style={{ background: type ? TYPE_COLORS[type] : NEUTRAL_COLOR }} data-testid="tl-mark">
+    <span className="tl-mark" style={{ background: typeColor(type) }} data-testid="tl-mark">
       {label}
     </span>
   );
@@ -303,7 +334,7 @@ function OptionStack({ visit, date, onShown, children }: { visit: VisitItem; dat
   );
 }
 
-function EntryRow({ entry, day, warnings, gapsBeforeMeet, plan, marks }: { entry: TimelineEntry; day: ItineraryDay; warnings: Map<string, EngineWarning[]>; gapsBeforeMeet?: Gap[]; plan?: DayPlan; marks: Marks }) {
+function EntryRow({ entry, day, warnings, plan, marks }: { entry: TimelineEntry; day: ItineraryDay; warnings: Map<string, EngineWarning[]>; plan: DayPlan; marks: Marks }) {
   const byId = useData((s) => s.byId);
   const itinerary = useData((s) => s.itinerary);
   const planning = useApp((s) => s.planning);
@@ -332,21 +363,24 @@ function EntryRow({ entry, day, warnings, gapsBeforeMeet, plan, marks }: { entry
   if (entry.kind === 'start') {
     return (
       <li className={`tl-row tl-card tl-start ${typeClass(p)}`} data-testid="tl-start" data-place={entry.placeId ?? ''}>
-        <span className="tl-body">
-          <span className="tl-timeline">
-            <span className="tl-start-time">{cardTime(entry).text}</span>
-          </span>
-          <span className="tl-title">
-            <Mark entry={entry} marks={marks} />
-            {p ? (
-              <button type="button" className="link-button tl-name" onClick={() => focusPlace(entry.placeId)}>
-                {TYPE_ICONS[p.type]} {name(p)}
-              </button>
-            ) : (
-              <span className="muted">上一站</span>
-            )}
+        <span className="tl-card-inner">
+          <CardType type={p?.type ?? null} />
+          <span className="tl-body">
+            <span className="tl-timeline">
+              <span className="tl-start-time">{cardTime(entry).text}</span>
+            </span>
+            <span className="tl-title">
+              {p ? (
+                <button type="button" className="link-button tl-name" onClick={() => focusPlace(entry.placeId)}>
+                  {name(p)}
+                </button>
+              ) : (
+                <span className="muted">上一站</span>
+              )}
+            </span>
           </span>
         </span>
+        <CardNo entry={entry} marks={marks} />
       </li>
     );
   }
@@ -368,11 +402,11 @@ function EntryRow({ entry, day, warnings, gapsBeforeMeet, plan, marks }: { entry
                     {g.name}
                     {sg && <span className="muted small"> {sg.size} 人{sg.elders ? `・長輩 ${sg.elders}` : ''}{sg.kids ? `・小孩 ${sg.kids}` : ''}</span>}
                   </div>
-                  <ol className="tl">
+                  <ol className="tl tl-rail">
                     {g.entries
                       .filter((e) => e.kind !== 'meet')
                       .map((e, i) => (
-                        <EntryRow key={e.itemId ?? `${e.kind}${i}`} entry={e} day={day} warnings={warnings} marks={marks} />
+                        <EntryRow key={e.itemId ?? `${e.kind}${i}`} entry={e} day={day} warnings={warnings} plan={plan} marks={marks} />
                       ))}
                   </ol>
                 </div>
@@ -381,7 +415,6 @@ function EntryRow({ entry, day, warnings, gapsBeforeMeet, plan, marks }: { entry
           </div>
           <Warnings list={item ? warnings.get(item.id) : undefined} />
         </li>
-        {plan && gapsBeforeMeet?.map((g, i) => <GapRow key={i} gap={g} plan={plan} />)}
         <li className="tl-row tl-meet" data-testid="tl-meet">
           <span className="tl-time">{entry.start}</span>
           <span className="tl-body">
@@ -400,27 +433,31 @@ function EntryRow({ entry, day, warnings, gapsBeforeMeet, plan, marks }: { entry
     return (
       <>
         <LegRow entry={entry} date={day.date} />
+        <WaitRow entry={entry} item={null} plan={plan} />
         <li className={`tl-row tl-card tl-lodging ${typeClass(p)}`} data-testid="tl-row" data-place={entry.placeId ?? ''}>
-          <span className="tl-body">
-            <span className="tl-timeline">
-              <span className="tl-start-time">{cardTime(entry).text}</span>
-            </span>
-            <span className="tl-title">
-              <Mark entry={entry} marks={marks} />
-              <button type="button" className="link-button tl-name" onClick={() => focusPlace(entry.placeId)}>
-                {p ? `${TYPE_ICONS[p.type]} ${name(p)}` : entry.placeId}
-              </button>
-              {planning && <LodgingMenu date={day.date} />}
-            </span>
-            <span className="item-tags">
-              {lodgingMealTags(day, p).map((t) => (
-                <span key={t} className="badge tag-meal" data-testid="lodging-meal">
-                  {t}
-                </span>
-              ))}
-              {p && <ReservationTag date={day.date} placeId={p.id} />}
+          <span className="tl-card-inner">
+            <CardType type={p?.type ?? 'lodging'} />
+            <span className="tl-body">
+              <span className="tl-timeline">
+                <span className="tl-start-time">{cardTime(entry).text}</span>
+              </span>
+              <span className="tl-title">
+                <button type="button" className="link-button tl-name" onClick={() => focusPlace(entry.placeId)}>
+                  {p ? name(p) : entry.placeId}
+                </button>
+                {planning && <LodgingMenu date={day.date} />}
+              </span>
+              <span className="item-tags">
+                {lodgingMealTags(day, p).map((t) => (
+                  <span key={t} className="badge tag-meal" data-testid="lodging-meal">
+                    {t}
+                  </span>
+                ))}
+                {p && <ReservationTag date={day.date} placeId={p.id} />}
+              </span>
             </span>
           </span>
+          <CardNo entry={entry} marks={marks} />
         </li>
       </>
     );
@@ -438,36 +475,36 @@ function EntryRow({ entry, day, warnings, gapsBeforeMeet, plan, marks }: { entry
   const content = (v?: ShownOption) => {
     const sp = v ? byId.get(v.placeId) : p;
     const liked = likedMap.get(v?.placeId ?? entry.placeId ?? '');
-    const icon = entry.kind === 'flight' ? '✈️' : entry.kind === 'free' ? '☕' : sp ? TYPE_ICONS[sp.type] : '📍';
     const backup = !!v && !v.isMain;
     const stay = backup ? v.stayMinutes : time.stay;
     // 看備卡時：預約 tag、警告跟著那張備卡；⋯ 選單（刪除是刪整張卡片）收起來
     const shownPlace = v?.placeId ?? entry.placeId;
     const shownWarns = shownWarnings(itemWarnings, shownPlace, !backup);
     return (
-      <span className="tl-body">
-        <span className="tl-timeline">
-          {backup ? <span className="tl-start-time">{entry.start}</span> : <StartTime entry={entry} visit={visit} flight={flight} text={time.text} />}
-          {entry.waitMinutes > 0 && !backup && <span className="tl-wait">等 {entry.waitMinutes} 分</span>}
-          {!flight && stay != null && stay > 0 && <StayChip itemId={visit?.id ?? null} minutes={stay} readOnly={backup} />}
+      <span className="tl-card-inner">
+        <CardType type={flight ? 'airport' : (sp?.type ?? null)} />
+        <span className="tl-body">
+          <span className="tl-timeline">
+            {backup ? <span className="tl-start-time">{entry.start}</span> : <StartTime entry={entry} visit={visit} flight={flight} text={time.text} />}
+            {!flight && stay != null && stay > 0 && <StayChip itemId={visit?.id ?? null} minutes={stay} readOnly={backup} />}
+          </span>
+          <span className="tl-title">
+            <button type="button" className="link-button tl-name" onClick={() => focusPlace(v?.placeId ?? entry.placeId)} onMouseEnter={() => appStore.getState().hover(v?.placeId ?? entry.placeId)} onMouseLeave={() => appStore.getState().hover(null)}>
+              {flight ? `${flight.direction === 'arrive' ? '抵達' : '起飛'} ${name(sp)}` : entry.kind === 'free' ? `自由時間${sp ? `：${name(sp)}` : ''}` : name(sp)}
+            </button>
+            {visit && liked && <AvatarStack ids={liked.likes} dislikes={liked.dislikes} />}
+            <WarnToggle list={shownWarns} open={warnOpen} onToggle={() => setWarnOpen(!warnOpen)} />
+            {planning && item && item.type !== 'flight' && !backup && <ItemMenu itemId={item.id} item={item} onTags={visit ? () => setTagsOpen(true) : undefined} />}
+          </span>
+          <span className="tl-meta">
+            {visit && <ItemTags visit={visit} mealTag={entry.mealTag ?? null} date={day.date} placeId={shownPlace} open={tagsOpen} onOpenChange={setTagsOpen} />}
+            {v?.switcher}
+          </span>
+          {v?.actions}
+          {flight?.note && <span className="muted small">{flight.note}（{flight.depart} 起飛 → {flight.arrive} 抵達）</span>}
+          {visit?.note && <span className="tl-note small">📝 {visit.note}</span>}
+          {warnOpen && <Warnings list={shownWarns} />}
         </span>
-        <span className="tl-title">
-          <Mark entry={entry} marks={marks} />
-          <button type="button" className="link-button tl-name" onClick={() => focusPlace(v?.placeId ?? entry.placeId)} onMouseEnter={() => appStore.getState().hover(v?.placeId ?? entry.placeId)} onMouseLeave={() => appStore.getState().hover(null)}>
-            {icon} {flight ? `${flight.direction === 'arrive' ? '抵達' : '起飛'} ${name(sp)}` : entry.kind === 'free' ? `自由時間${sp ? `：${name(sp)}` : ''}` : name(sp)}
-          </button>
-          {visit && liked && <AvatarStack ids={liked.likes} dislikes={liked.dislikes} />}
-          <WarnToggle list={shownWarns} open={warnOpen} onToggle={() => setWarnOpen(!warnOpen)} />
-          {planning && item && item.type !== 'flight' && !backup && <ItemMenu itemId={item.id} item={item} onTags={visit ? () => setTagsOpen(true) : undefined} />}
-        </span>
-        <span className="tl-meta">
-          {visit && <ItemTags visit={visit} mealTag={entry.mealTag ?? null} date={day.date} placeId={shownPlace} open={tagsOpen} onOpenChange={setTagsOpen} />}
-          {v?.switcher}
-        </span>
-        {v?.actions}
-        {flight?.note && <span className="muted small">{flight.note}（{flight.depart} 起飛 → {flight.arrive} 抵達）</span>}
-        {visit?.note && <span className="tl-note small">📝 {visit.note}</span>}
-        {warnOpen && <Warnings list={shownWarns} />}
       </span>
     );
   };
@@ -475,6 +512,7 @@ function EntryRow({ entry, day, warnings, gapsBeforeMeet, plan, marks }: { entry
   return (
     <>
       <LegRow entry={entry} date={day.date} />
+      <WaitRow entry={entry} item={visit} plan={plan} />
       <li
         className={`tl-row tl-card tl-${entry.kind} ${typeClass(p)} ${stacked ? `stacked stacked-${stacked}` : ''} ${hovered && hovered === entry.placeId ? 'flash' : ''} ${movable ? 'movable' : ''}`}
         data-testid="tl-row"
@@ -490,6 +528,7 @@ function EntryRow({ entry, day, warnings, gapsBeforeMeet, plan, marks }: { entry
         ) : (
           content()
         )}
+        <CardNo entry={entry} marks={marks} />
       </li>
     </>
   );
@@ -533,7 +572,7 @@ function StartTime({ entry, visit, flight, text }: { entry: TimelineEntry; visit
   );
 }
 
-/** 停留時間的標籤；規劃模式下 −15／＋15（後面的時間跟著重算） */
+/** 停留時間的標籤（X小時MM分，等寬數字、固定最小寬度，調時間時字不跳）；規劃模式下 −15／＋15（後面的時間跟著重算） */
 function StayChip({ itemId, minutes, readOnly = false }: { itemId: string | null; minutes: number; readOnly?: boolean }) {
   const planning = useApp((s) => s.planning) && !readOnly;
   const change = (d: number) => {
@@ -548,7 +587,7 @@ function StayChip({ itemId, minutes, readOnly = false }: { itemId: string | null
           −
         </button>
       )}
-      <span>⏱ {formatStay(minutes)}</span>
+      <span className="stay-chip-text">{formatStay(minutes)}</span>
       {planning && itemId && (
         <button type="button" aria-label="多 15 分" onClick={() => change(15)} data-testid="stay-plus">
           ＋
@@ -564,7 +603,7 @@ const GAP_ACTIONS: Record<Gap['kind'], { icon: string; look: string; types: ('re
   idle: { icon: '⏳', look: '看附近的景點', types: ['spot'] },
 };
 
-/** 空檔：點了展開——看附近的餐廳／景點（篩選＋地圖框住前後兩站） */
+/** 空檔（「住宿（未排）」這類，不是等待）：點了展開——看住宿（篩選＋地圖框住前後兩站） */
 function GapRow({ gap, plan }: { gap: Gap; plan: DayPlan }) {
   const [open, setOpen] = useState(false);
   const a = GAP_ACTIONS[gap.kind];
@@ -597,18 +636,54 @@ function GapRow({ gap, plan }: { gap: Gap; plan: DayPlan }) {
   );
 }
 
+/**
+ * 交通卡下面、資料卡上面「到了要等」的那條（第五輪 §2）：文字是 waitNote；點了展開——看附近的景點（篩選＋地圖框住前後兩站）。
+ * 不用等就不畫；會合那列自己寫「最早到的組等 N 分」
+ */
+function WaitRow({ entry, item, plan }: { entry: TimelineEntry; item: VisitItem | null; plan: DayPlan }) {
+  const [open, setOpen] = useState(false);
+  const byId = useData((s) => s.byId);
+  const text = waitNote(entry, item, entry.placeId ? byId.get(entry.placeId) : undefined);
+  if (!text) return null;
+  const a = GAP_ACTIONS.idle;
+  // 前一站：交通的起點，沒有交通時找時間軸上的前一列
+  const prev = entry.travel?.from ?? plan.entries[plan.entries.indexOf(entry) - 1]?.placeId ?? null;
+  const around = [prev, entry.placeId].filter((x): x is string => !!x);
+  return (
+    <li className="tl-wait-row" data-testid="tl-wait">
+      <button type="button" className="tl-wait" aria-expanded={open} onClick={() => setOpen(!open)}>
+        {text}
+      </button>
+      {open && (
+        <span className="tl-gap-actions">
+          <button
+            type="button"
+            className="text-button"
+            onClick={() => {
+              commands.setFilter({ types: a.types, contexts: [] });
+              if (around.length) commands.focus(around);
+            }}
+          >
+            🔎 {a.look}
+          </button>
+        </span>
+      )}
+    </li>
+  );
+}
+
 export function Timeline({ plan, day }: { plan: DayPlan; day: ItineraryDay }) {
   const planning = useApp((s) => s.planning);
   const { byItem } = warningsByItem(plan);
   const marks: Marks = { byEntry: stopMarks(plan).byEntry };
   return (
-    <ol className="tl" data-testid="timeline">
+    <ol className="tl tl-rail" data-testid="timeline">
       {/* 用項目 ID 當 key：上面的卡片增減時，備卡看第幾張、警告展開這些本地 state 不會跑到別張卡片 */}
       {timelineRows(plan).map((row, i) =>
         row.kind === 'gap' ? (
           <GapRow key={`g:${row.gap.afterItemId ?? ''}:${row.gap.kind}:${i}`} gap={row.gap} plan={plan} />
         ) : (
-          <EntryRow key={row.entry.itemId ? `i:${row.entry.itemId}` : `${row.entry.kind}:${i}`} entry={row.entry} day={day} warnings={byItem} gapsBeforeMeet={row.gapsBeforeMeet} plan={plan} marks={marks} />
+          <EntryRow key={row.entry.itemId ? `i:${row.entry.itemId}` : `${row.entry.kind}:${i}`} entry={row.entry} day={day} warnings={byItem} plan={plan} marks={marks} />
         ),
       )}
       {planning && (
