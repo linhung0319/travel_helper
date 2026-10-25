@@ -458,6 +458,7 @@ export function validateItinerary(it: unknown): string[] {
       if (!isTime(t.trip.depart)) errs.push(`${where}：travel.trip.depart 要是 HH:MM`);
       if (t.trip.arrive != null && !isTime(t.trip.arrive)) errs.push(`${where}：travel.trip.arrive 要是 HH:MM`);
       if (t.trip.rides != null && !(Array.isArray(t.trip.rides) && t.trip.rides.every((r) => typeof r === 'string'))) errs.push(`${where}：travel.trip.rides 要是 tripId 的陣列`);
+      if (t.trip.via != null && (typeof t.trip.via !== 'string' || !t.trip.via)) errs.push(`${where}：travel.trip.via 要是車站 ID`);
     }
   };
   const checkItem = (i: ItineraryItem | GroupItem, where: string, inGroup: boolean) => {

@@ -351,6 +351,9 @@ test('validateItinerary：trip.rides 是每一程的 tripId（字串陣列）', 
   const trip = { id: '1-1963', depart: '11:14', arrive: '11:41', from: 'a', to: 'b' };
   assert.deepEqual(validateItinerary(withTravel({ mode: 'transit', trip: { ...trip, rides: ['1-1963', '1-3799'] } })), []);
   assert.deepEqual(validateItinerary(withTravel({ mode: 'transit', trip: { ...trip, rides: null } })), []);
+  assert.deepEqual(validateItinerary(withTravel({ mode: 'transit', trip: { ...trip, rides: ['1-1963', '1-3799'], via: 'toba' } })), []);
+  assert.deepEqual(validateItinerary(withTravel({ mode: 'transit', trip: { ...trip, via: null } })), []);
+  assert.ok(validateItinerary(withTravel({ trip: { ...trip, via: 3 as unknown as string } })).some((e) => e.includes('trip.via')));
   assert.ok(validateItinerary(withTravel({ trip: { ...trip, rides: '1-1963' as unknown as string[] } })).some((e) => e.includes('trip.rides')));
   assert.ok(validateItinerary(withTravel({ trip: { ...trip, rides: [1] as unknown as string[] } })).some((e) => e.includes('trip.rides')));
 });

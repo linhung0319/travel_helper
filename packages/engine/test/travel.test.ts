@@ -480,6 +480,47 @@ test('指定第二程：接得上就用那班；接不上改最早接得上的�
   assert.deepEqual(pick('nope').rides.map((r) => r.tripId), ['1-1963', '1-3799']);
 });
 
+test('trip.via：近鐵兩程的轉乘站；一程的沒有', () => {
+  assert.equal(transferLeg().trip?.via, 'toba');
+  const r = planLeg(P('toba'), P('kashikojima'), ctx(real, { depart: 9 * 60 }));
+  assert.equal(r.leg.trip?.via ?? null, null);
+});
+
+test('節點不變：第一程換成班次表裡的任何一班，轉乘站和程數都不變', () => {
+  for (const [from, to, depart] of [['iseshi', 'kamo', 10 * 60], ['iseshi', 'nakanogo', 8 * 60]] as const) {
+    const base = planLeg(P(from), P(to), ctx(real, { depart }), { mode: 'transit' }).leg;
+    assert.equal(base.rides.length, 2, `${from}→${to}`);
+    const via = base.rides[0].to;
+    const firsts = rideDepartures(real, cfg, '2027-02-05', base.rides[0]);
+    assert.ok(firsts.length > 8);
+    for (const f of firsts) {
+      const { leg } = planLeg(P(from), P(to), ctx(real, { depart }), {
+        mode: 'transit',
+        trip: { ...base.trip!, id: f.tripId, depart: f.depart, rides: [f.tripId, base.rides[1].tripId!] },
+      });
+      const where = `${from}→${to} 第一程 ${f.tripId}`;
+      assert.equal(leg.rides.length, 2, where);
+      assert.equal(leg.rides[0].tripId, f.tripId, where);
+      assert.equal(leg.rides[0].to, via, where);
+      assert.equal(leg.rides[1].from, via, where);
+      assert.equal(leg.trip?.via, via, where);
+    }
+  }
+});
+
+test('第二程整天都接不上：留原本那班，警告 missed-trip', () => {
+  const base = transferLeg();
+  // 伊勢市 → 鳥羽的末班之後已經沒有鳥羽 → 加茂的車
+  const firsts = rideDepartures(real, cfg, '2027-02-05', base.rides[0]);
+  const last = firsts[firsts.length - 1];
+  const r = planLeg(P('iseshi'), P('kamo'), ctx(real, { depart: 10 * 60 }), {
+    mode: 'transit',
+    trip: { ...base.trip!, id: last.tripId, depart: last.depart, rides: [last.tripId, '1-3799'] },
+  });
+  assert.deepEqual(r.leg.rides.map((x) => x.tripId), [last.tripId, '1-3799']);
+  assert.ok(r.warnings.some((w) => w.code === 'missed-trip' && w.message === '接不上 11:31 這班'));
+});
+
 test('舊的 trip（沒有 rides）照樣用第一程；只有一程的忽略第 1 個以後的', () => {
   const base = transferLeg();
   const { rides: _, ...old } = base.trip!;

@@ -160,13 +160,15 @@ function directOn(from: string, to: string, after: number, ctx: Pick<LegContext,
 
 /**
  * 第一程之後的每一程換成 wanted 指定的那班（同一對站）；那班接不上（發車 < 前一程到站＋minTransfer）或找不到，
- * 改成同一對站接得上的最早一班；同一對站都接不上就留原本的。前面那程不會被後面改
+ * 改成同一對站接得上的最早一班；同一對站整天都接不上就留原本的，加 missed-trip 警告。前面那程不會被後面改
  */
-function chainTrains(legs: TrainRide[], wanted: readonly string[], ctx: LegContext): TrainRide[] {
+function chainTrains(legs: TrainRide[], wanted: readonly (string | undefined)[], ctx: LegContext, warnings: LegWarning[]): TrainRide[] {
   const out = [legs[0]];
   for (let i = 1; i < legs.length; i++) {
     const deps = directOn(legs[i].from, legs[i].alight, out[i - 1].arr + ctx.cfg.transit.minTransfer, ctx);
-    out.push(deps.find((r) => r.trainNo === wanted[i]) ?? deps[0] ?? legs[i]);
+    const r = deps.find((x) => x.trainNo === wanted[i]) ?? deps[0];
+    if (!r) warnings.push({ code: 'missed-trip', level: 'warning', message: `接不上 ${fromMinutes(legs[i].dep)} 這班` });
+    out.push(r ?? legs[i]);
   }
   return out;
 }
@@ -200,39 +202,28 @@ function trainCandidates(a: Endpoint, b: Endpoint, ctx: LegContext, factor: numb
 }
 
 /**
- * 近鐵轉乘一次、第一程固定搭 first 的走法（選了晚一班的第一程，earliestTrain 不會挑它時用）。
- * 轉乘站：second 那班接得上的站優先（同樣早到取第一程先到的站，和 earliestTrain 一樣）；
- * 都接不上時取改搭最早一班後最早到的站（同樣早到取第一程最後到的站：通常就是原本的轉乘站）
+ * 近鐵轉乘一次、轉乘站固定在 via 的走法（trip.via）：第一程搭 first 到 via，第二程從 via 接 second（接不上改接得上的最早一班，chainTrains）。
+ * 不重新推轉乘站（節點不變）；第一程那班不到 via 回傳 null
  */
-function transferWith(a: Endpoint, b: Endpoint, ctx: LegContext, factor: number, first: string, second: string, after: number): Candidate | null {
-  const order = ctx.data.kintetsu?.stationOrder ?? [];
-  if (!order.length || crossesSea(a, b, ctx.cfg)) return null;
-  let found: { legs: TrainRide[]; hit: boolean; arrive: number; pair: NonNullable<Candidate['pair']> } | null = null;
+function viaCandidate(a: Endpoint, b: Endpoint, ctx: LegContext, factor: number, first: string, second: string | undefined, via: string, after: number, warnings: LegWarning[]): Candidate | null {
+  if (!ctx.data.kintetsu || crossesSea(a, b, ctx.cfg)) return null;
+  let found: { c: Candidate; warns: LegWarning[] } | null = null;
   for (const sa of kintetsuAccess(a, ctx, factor)) {
     for (const sb of kintetsuAccess(b, ctx, factor)) {
-      if (sa.station === sb.station) continue;
-      for (const x of order) {
-        if (x === sa.station || x === sb.station) continue;
-        const r1 = directOn(sa.station, x, 0, ctx).find((r) => r.trainNo === first);
-        if (!r1) continue;
-        const deps = directOn(x, sb.station, r1.arr + ctx.cfg.transit.minTransfer, ctx);
-        const r2 = deps.find((r) => r.trainNo === second) ?? deps[0];
-        if (!r2) continue;
-        const cand = { legs: [r1, r2], hit: r2.trainNo === second, arrive: r2.arr + round(sb.walk), pair: { from: sa.station, to: sb.station, walkFrom: sa.walk, walkTo: sb.walk } };
-        const better =
-          !found ||
-          (cand.hit !== found.hit
-            ? cand.hit
-            : cand.arrive !== found.arrive
-              ? cand.arrive < found.arrive
-              : cand.hit
-                ? r1.arr < found.legs[0].arr
-                : r1.arr > found.legs[0].arr);
-        if (better) found = cand;
-      }
+      if (sa.station === via || sb.station === via || sa.station === sb.station) continue;
+      const r1 = directOn(sa.station, via, 0, ctx).find((r) => r.trainNo === first);
+      if (!r1) continue;
+      const orig = directOn(via, sb.station, 0, ctx).find((r) => r.trainNo === second) ?? directOn(via, sb.station, r1.arr + ctx.cfg.transit.minTransfer, ctx)[0];
+      if (!orig) continue;
+      const warns: LegWarning[] = [];
+      const legs = chainTrains([r1, orig], [first, second], ctx, warns);
+      const c = trainCandidate(legs, { from: sa.station, to: sb.station, walkFrom: sa.walk, walkTo: sb.walk }, after, ctx);
+      if (!found || c.arrive < found.c.arrive) found = { c, warns };
     }
   }
-  return found && trainCandidate(found.legs, found.pair, after, ctx);
+  if (!found) return null;
+  warnings.push(...found.warns);
+  return found.c;
 }
 
 /** 端點對應的停留所：near 裡有這個 ID 的；沒有的話用座標找 accessMaxMeters 內的 */
@@ -347,6 +338,8 @@ function toTrip(c: Candidate, a: Endpoint, b: Endpoint): TripRef {
     from: a.id,
     to: b.id,
     rides: c.rides.map((r) => r.tripId ?? ''),
+    // 近鐵轉乘：轉乘站（換班次時不變）
+    ...(c.pair && c.rides.length === 2 ? { via: c.rides[0].to } : {}),
   };
 }
 
@@ -544,21 +537,25 @@ export function planLeg(a: Endpoint, b: Endpoint, ctx: LegContext, spec?: Travel
 
 /**
  * 用選定的班次（第一程 tripId 相同）；時刻表裡找不到回傳 null（當作沒選）。趕不上照樣用，加 missed-trip 警告。
- * trip.rides 有第 2 程以後的（近鐵轉乘）：後面每一程換成指定的那班，接不上改同一對站接得上的最早一班（chainTrains）
+ * trip.via（近鐵轉乘站）：照 via 直接組兩程（viaCandidate），不重新推轉乘站。
+ * 沒有 via 的：照第一程找候選；trip.rides 有第 2 程以後的，後面每一程換成指定的那班，接不上改同一對站接得上的最早一班（chainTrains）
  */
 function tripLeg(a: Endpoint, b: Endpoint, ctx: LegContext, trip: TripRef, factor: number, warnings: LegWarning[], keep: (c: Candidate) => boolean): Leg | null {
   if (typeof trip.id !== 'string' || !trip.id || typeof trip.depart !== 'string') return null;
   const at = toMinutes(trip.depart);
   if (!Number.isFinite(at)) return null;
   const wanted = Array.isArray(trip.rides) && trip.rides.length > 1 ? trip.rides : null;
-  let c = best(searchTransit(a, b, ctx, factor, () => at).cands.filter((x) => x.rides[0].tripId === trip.id && keep(x) && (!wanted || !x.trains || x.trains.length > 1)));
-  // 選的第一程不是那個時間最早到的走法（例如換了晚一班）：用第一程那班自己找轉乘站
-  if (!c && wanted) {
-    const t = transferWith(a, b, ctx, factor, trip.id, wanted[1], at);
-    if (t && keep(t)) c = t;
+  let c: Candidate | null;
+  if (typeof trip.via === 'string' && trip.via) {
+    const w: LegWarning[] = [];
+    c = viaCandidate(a, b, ctx, factor, trip.rides?.[0] ?? trip.id, trip.rides?.[1], trip.via, at, w);
+    if (c && !keep(c)) c = null;
+    if (c) warnings.push(...w);
+  } else {
+    c = best(searchTransit(a, b, ctx, factor, () => at).cands.filter((x) => x.rides[0].tripId === trip.id && keep(x) && (!wanted || !x.trains || x.trains.length > 1)));
+    if (c && wanted && c.trains && c.pair && c.trains.length > 1) c = trainCandidate(chainTrains(c.trains, wanted, ctx, warnings), c.pair, at, ctx);
   }
   if (!c) return null;
-  if (wanted && c.trains && c.pair && c.trains.length > 1) c = trainCandidate(chainTrains(c.trains, wanted, ctx), c.pair, at, ctx);
   if (c.dep < ctx.depart + c.access) warnings.push({ code: 'missed-trip', level: 'warning', message: `趕不上 ${c.rides[0].depart} 這班` });
   busCrowd(c, ctx, warnings);
   return fromCandidate(c, a, b, ctx, factor);

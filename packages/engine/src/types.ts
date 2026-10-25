@@ -75,6 +75,8 @@ export interface TripRef {
   to: string | null;
   /** 每一程的 tripId（依序）；沒有＝只指定第一程（id）。後面那程接不上時引擎改成同一對站接得上的最早一班 */
   rides?: string[] | null;
+  /** 近鐵兩程時的轉乘站 ID（引擎寫的）；換班次時照這個站組兩程，不重新推轉乘站。其他是 null 或沒有 */
+  via?: string | null;
 }
 
 /**
