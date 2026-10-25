@@ -27,7 +27,7 @@ import { ItemTags, useHasRestaurant } from './ItemTags.tsx';
 import { useLiked } from './Wishlist.tsx';
 import { pulseMark } from '../lib/mapPulse.ts';
 
-/** 地圖上同一個編號（宿、1、2…）；顏色是那個點的類型色 */
+/** 地圖上同一個編號（0、1、2…）；顏色是那個點的類型色 */
 interface Marks {
   byEntry: Map<TimelineEntry, string>;
 }
@@ -598,10 +598,9 @@ function GapRow({ gap, plan }: { gap: Gap; plan: DayPlan }) {
 }
 
 export function Timeline({ plan, day }: { plan: DayPlan; day: ItineraryDay }) {
-  const byId = useData((s) => s.byId);
   const planning = useApp((s) => s.planning);
   const { byItem } = warningsByItem(plan);
-  const marks: Marks = { byEntry: stopMarks(plan, (id) => byId.get(id)?.type === 'lodging').byEntry };
+  const marks: Marks = { byEntry: stopMarks(plan).byEntry };
   return (
     <ol className="tl" data-testid="timeline">
       {/* 用項目 ID 當 key：上面的卡片增減時，備卡看第幾張、警告展開這些本地 state 不會跑到別張卡片 */}
@@ -621,14 +620,12 @@ export function Timeline({ plan, day }: { plan: DayPlan; day: ItineraryDay }) {
   );
 }
 
-const minutesText = (m: number) => (m >= 60 ? `${Math.floor(m / 60)} 小時${m % 60 ? ` ${m % 60} 分` : ''}` : `${m} 分`);
-
 /** 標題的一行：幾點出發、幾點回住宿、交通總分鐘（含等車）、警告數 */
 export function DaySummaryLine({ plan, warnOpen, onWarn, reminders = 0 }: { plan: DayPlan; warnOpen?: boolean; onWarn?: () => void; reminders?: number }) {
   const s = daySummary(plan);
   return (
     <span className="day-stats small" data-testid="day-summary">
-      {[s.start && `${s.start} 出發`, s.back && `${s.back} 回住宿`, s.travelMinutes > 0 && `交通 ${minutesText(s.travelMinutes)}`].filter(Boolean).join('・')}
+      {[s.start && `${s.start} 出發`, s.back && `${s.back} 回住宿`, s.travelMinutes > 0 && `交通 ${formatStay(s.travelMinutes)}`].filter(Boolean).join('・')}
       {onWarn && reminders > 0 ? (
         <button type="button" className={`badge warn-button ${s.warnings > 0 ? 'badge-warn' : ''}`} aria-expanded={!!warnOpen} onClick={onWarn} data-testid="day-warn-toggle">
           {s.warnings > 0 ? '⚠' : WARNING_ICONS.info} {reminders} {warnOpen ? '▴' : '▾'}
@@ -641,11 +638,12 @@ export function DaySummaryLine({ plan, warnOpen, onWarn, reminders = 0 }: { plan
   );
 }
 
-const BAR_LABELS: Record<BarSegment['kind'], string> = { visit: '停留', meal: '用餐', travel: '交通', idle: '空著' };
+const BAR_LABELS: Record<BarSegment['kind'], string> = { spot: '景點', restaurant: '用餐', other: '停留', travel: '交通', wait: '等待' };
 
 /** 按時間比例的橫條：一眼看出哪裡緊、哪裡空；分組的時段每組一條細線。點一段捲到那張卡片 */
 export function DayBar({ plan, color, thin }: { plan: DayPlan; color: string; thin?: boolean }) {
-  const segs = dayBar(plan);
+  const byId = useData((s) => s.byId);
+  const segs = dayBar(plan, (id) => (id ? (byId.get(id)?.type ?? null) : null));
   if (!segs.length) return null;
   const t0 = Math.min(...segs.map((s) => toMinutes(s.from)));
   const t1 = Math.max(...segs.map((s) => toMinutes(s.to)));

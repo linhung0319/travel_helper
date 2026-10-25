@@ -1,11 +1,12 @@
-// 「這一天」面板和地圖要的行程資訊（T15m）：交通的文字、行程裡找項目、匯出。
+// 「這一天」面板和地圖要的行程資訊（T15m）：交通的文字和步驟、等待說明、班次分類、距離、編號、時間條段落、行程裡找項目、匯出。
 // 純函式：時間軸、交通時間、空檔、警告都是引擎（T14）算好的，這裡只整理成畫面要的樣子。
 
-import type { DayPlan, EngineWarning, Itinerary, ItineraryItem, Leg, LegTarget, TimelineEntry, TravelMode, TravelSpec, TripRef, VisitItem } from '@travel-helper/engine';
+import type { DayPlan, EngineWarning, Itinerary, ItineraryItem, Leg, LegTarget, RideDeparture, TimelineEntry, TransitRide, TravelMode, TravelSpec, TripRef, VisitItem } from '@travel-helper/engine';
 import { toMinutes } from '@travel-helper/engine';
 import { MODE_ICONS } from './routing.ts';
 import { displayMinutes, estimateWalk } from './geo/walk.ts';
-import type { Place } from '../data/types.ts';
+import { haversineMeters } from './geo/distance.ts';
+import type { LonLat, Place, PlaceType } from '../data/types.ts';
 
 /**
  * 交通卡的第一行（距離由元件接在後面），例如「🚶 8 分」「🚕 12 分・大型 2 台或 4 台」「🚃 34 分・等 11 分」。
@@ -28,7 +29,7 @@ export function legDetail(leg: Leg): string[] {
   return out;
 }
 
-/** 規劃模式的交通方式選單（auto：不寫 mode，由引擎挑） */
+/** 編輯時的交通方式選單（auto：不寫 mode，由引擎挑） */
 export const EDITOR_MODES = ['auto', 'walk', 'taxi', 'transit'] as const;
 export type EditorMode = (typeof EDITOR_MODES)[number];
 
@@ -49,7 +50,7 @@ export function editorModeOf(spec: TravelSpec | null): EditorMode | 'legacy' {
 /** 引擎算不出時間的依據（指定的方式在時刻表裡找不到班次、缺座標：照指定的方式回傳 0 分，警告要填 minutes） */
 const UNCOMPUTED_BASIS = new Set(['找不到班次', '缺座標']);
 
-/** 規劃模式要不要給「自己填分鐘」：算不出來（交通未定、指定的方式找不到班次、缺座標）或已經填過分鐘 */
+/** 編輯時要不要給「自己填分鐘」：算不出來（交通未定、指定的方式找不到班次、缺座標）或已經填過分鐘 */
 export function showMinutesInput(leg: Pick<Leg, 'mode' | 'basis'>, spec: TravelSpec | null): boolean {
   return leg.mode === 'unknown' || UNCOMPUTED_BASIS.has(leg.basis) || spec?.minutes != null;
 }
@@ -212,27 +213,44 @@ export function timelineRows(day: DayPlan): TimelineRow[] {
 // --- 這一天的摘要、比例橫條、停留時間 ---------------------------------------
 
 export interface BarSegment {
-  kind: 'visit' | 'meal' | 'travel' | 'idle';
+  /** 停留照類型（景點、餐廳、其他）；交通；等待（到了等開始、交通卡裡的等車） */
+  kind: 'spot' | 'restaurant' | 'other' | 'travel' | 'wait';
   from: string;
   to: string;
   itemId: string | null;
   /** 0 是全員；分組的時段，第 n 組是 n */
   lane: number;
+  /** 停留段的卡片編號（stopMarks），給段落裡寫字用；交通、等待是 null */
+  mark: string | null;
 }
 
-/** 這天按時間比例的橫條：每段交通、等待、停留各一段（出發到回住宿） */
-export function dayBar(day: DayPlan): BarSegment[] {
+/** 這天按時間比例的橫條：每段交通、等待、停留各一段（出發到回住宿）；交通卡裡的等車（走到上車站到第一程發車）切成等待 */
+export function dayBar(day: DayPlan, typeOf: (placeId: string | null) => PlaceType | null): BarSegment[] {
   const out: BarSegment[] = [];
+  const { byEntry } = stopMarks(day);
+  const push = (kind: BarSegment['kind'], from: string, to: string, e: TimelineEntry, lane: number, mark: string | null = null) => {
+    if (to > from) out.push({ kind, from, to, itemId: e.itemId, lane, mark });
+  };
   const walk = (entries: TimelineEntry[], lane: number) => {
     for (const e of entries) {
       if (e.kind === 'start') continue;
-      if (e.travel && e.travel.minutes > 0) out.push({ kind: 'travel', from: e.travel.depart, to: e.arrive, itemId: e.itemId, lane });
+      const t = e.travel;
+      if (t && t.minutes > 0) {
+        const ready = t.ready?.[0];
+        const board = t.rides[0]?.depart;
+        if (ready && board && board > ready) {
+          push('travel', t.depart, ready, e, lane);
+          push('wait', ready, board, e, lane);
+          push('travel', board, e.arrive, e, lane);
+        } else push('travel', t.depart, e.arrive, e, lane);
+      }
       if (e.groups) {
         e.groups.forEach((g, i) => walk(g.entries.filter((x) => x.kind !== 'meet'), i + 1));
         continue;
       }
-      if (e.start > e.arrive) out.push({ kind: 'idle', from: e.arrive, to: e.start, itemId: e.itemId, lane });
-      if (e.end > e.start) out.push({ kind: e.meal ? 'meal' : 'visit', from: e.start, to: e.end, itemId: e.itemId, lane });
+      push('wait', e.arrive, e.start, e, lane);
+      const type = typeOf(e.placeId);
+      push(type === 'spot' || type === 'restaurant' ? type : 'other', e.start, e.end, e, lane, byEntry.get(e) ?? null);
     }
   };
   walk(day.entries, 0);
@@ -251,38 +269,144 @@ export function daySummary(day: DayPlan): { start: string | null; back: string |
   };
 }
 
-/** 停留時間的標籤：45 分、1 小時、2.5 小時、1 小時 20 分 */
+/** 停留時間的標籤，分鐘補零：0小時45分、1小時00分、5小時15分（資料卡停留、時間條摘要的交通總時間） */
 export function formatStay(minutes: number): string {
-  if (minutes < 60) return `${minutes} 分`;
-  const h = Math.floor(minutes / 60);
-  const m = minutes % 60;
-  if (m === 0) return `${h} 小時`;
-  if (m === 30) return `${h}.5 小時`;
-  return `${h} 小時 ${m} 分`;
+  return `${Math.floor(minutes / 60)}小時${String(minutes % 60).padStart(2, '0')}分`;
 }
 
 // --- 順序編號 ---------------------------------------------------------------
 
 /**
- * 地圖和時間軸共用的編號：出發、回到的住宿是「宿」，航班的機場是「機」，其他依時間軸的順序 1、2、3…
- * 分組的那天，先編各組的點（照組的順序），再編會合點。同一個點出現兩次時，地圖上寫「1・4」。
+ * 地圖和時間軸共用的編號（第五輪 §2）：起點一律是 0（住宿、航班抵達的機場或其他），之後依時間軸的順序 1、2、3…，
+ * 終點（回到的住宿、出發的航班）接著編。分組的那天，先編各組的點（照組的順序），再編會合點。
+ * byPlace 是同一個點的所有號碼（依時間順序），地圖上顯示哪個交給 mapMark。isLodging 不再用到（起點不分住宿），留著相容舊的呼叫
  */
-export function stopMarks(day: DayPlan | null, isLodging: (placeId: string) => boolean): { byEntry: Map<TimelineEntry, string>; byPlace: Map<string, string> } {
+export function stopMarks(day: DayPlan | null, _isLodging?: (placeId: string) => boolean): { byEntry: Map<TimelineEntry, string>; byPlace: Map<string, string[]> } {
   const byEntry = new Map<TimelineEntry, string>();
-  const byPlace = new Map<string, string>();
+  const byPlace = new Map<string, string[]>();
   let n = 0;
   const mark = (e: TimelineEntry) => {
     if (!e.placeId) return;
-    const label = e.kind === 'lodging' || (e.kind === 'start' && isLodging(e.placeId)) ? '宿' : e.kind === 'flight' ? '機' : e.kind === 'start' ? '起' : String(++n);
+    const label = String(n++);
     byEntry.set(e, label);
-    const prev = byPlace.get(e.placeId);
-    byPlace.set(e.placeId, prev && prev !== label ? `${prev}・${label}` : label);
+    byPlace.set(e.placeId, [...(byPlace.get(e.placeId) ?? []), label]);
   };
   for (const e of day?.entries ?? []) {
     if (e.groups) for (const g of e.groups) for (const x of g.entries) if (x.kind !== 'meet') mark(x);
     mark(e);
   }
   return { byEntry, byPlace };
+}
+
+/**
+ * 地圖標記上寫的號碼（第五輪 §9.2）。marks 是這個點的所有號碼（stopMarks 的 byPlace）：
+ * day：起終點同一點（有 0）→ 0，其他多個號碼用「・」連起來；
+ * leg：這段的終點 → 最大的號碼、起點 → 最小的號碼，不在這段上的照 day；
+ * trip：住宿是隔天的起點，呼叫的人傳隔天的 marks，規則同 day（有 0 就是 0）
+ */
+export function mapMark(marks: string[], scope: 'day' | 'leg' | 'trip', leg?: { from: string; to: string } | null, placeId?: string): string {
+  if (scope === 'leg' && leg && placeId && marks.length) {
+    const nums = marks.map(Number);
+    if (placeId === leg.to) return String(Math.max(...nums));
+    if (placeId === leg.from) return String(Math.min(...nums));
+  }
+  return marks.includes('0') ? '0' : marks.join('・');
+}
+
+const TYPE_LETTERS: Record<PlaceType | 'airport', string> = { lodging: '宿', spot: '景', restaurant: '餐', station: '站', airport: '機' };
+
+/** 資料卡左邊類型色塊上的字：宿、景、餐、站、機；使用者加的點和其他是「點」 */
+export function cardTypeLetter(type: PlaceType | 'airport' | null): string {
+  return (type && TYPE_LETTERS[type]) ?? '點';
+}
+
+// --- 交通卡的步驟、等待、班次、距離 -------------------------------------------
+
+/** 交通卡展開後的一步：節點（出發點、上下車的站、轉乘站，wait 是在這裡等車的分鐘）、步行、搭車（index 是第幾程） */
+export type LegStep =
+  | { kind: 'node'; time: string; name: string; wait?: number }
+  | { kind: 'walk'; minutes: number }
+  | { kind: 'ride'; index: number; mode: TransitRide['mode']; line: string; depart: string; arrive: string; minutes: number };
+
+/**
+ * 大眾運輸的步驟，由上到下（第五輪 §3.2）：出發點 → 步行 → 上車站（等車）→ 搭車 → 轉乘站（等車）→ 搭車 … → 下車站 → 步行 → 終點。
+ * 步行 0 分就省略，出發點、終點就是車站時和上下車站合成一個節點（名稱用 fromName／toName）。沒有搭車（步行、計程車）回傳 []
+ */
+export function legSteps(leg: Leg, fromName: string, toName: string, nameOf: (id: string) => string): LegStep[] {
+  const rides = leg.rides;
+  if (!rides.length) return [];
+  const out: LegStep[] = [];
+  const node = (time: string, name: string, wait: number) => out.push(wait > 0 ? { kind: 'node', time, name, wait } : { kind: 'node', time, name });
+  const before = leg.walkBefore ?? 0;
+  const after = leg.walkAfter ?? 0;
+  const ready0 = leg.ready?.[0] ?? leg.depart;
+  if (before > 0) {
+    node(leg.depart, fromName, 0);
+    out.push({ kind: 'walk', minutes: before });
+  }
+  node(ready0, before > 0 ? nameOf(rides[0].from) : fromName, toMinutes(rides[0].depart) - toMinutes(ready0));
+  rides.forEach((r, index) => {
+    out.push({ kind: 'ride', index, mode: r.mode, line: r.line, depart: r.depart, arrive: r.arrive, minutes: toMinutes(r.arrive) - toMinutes(r.depart) });
+    const next = rides[index + 1];
+    if (next) node(r.arrive, nameOf(r.to), toMinutes(next.depart) - toMinutes(r.arrive));
+  });
+  const last = rides[rides.length - 1];
+  if (after > 0) {
+    node(last.arrive, nameOf(last.to), 0);
+    out.push({ kind: 'walk', minutes: after });
+    node(leg.arrive, toName, 0);
+  } else node(last.arrive, toName, 0);
+  return out;
+}
+
+const MEAL_LABELS: Partial<Record<NonNullable<TimelineEntry['mealTag']>, string>> = { lunch: '午餐 ', dinner: '晚餐 ' };
+
+/**
+ * 交通卡下面「到了要等」的那條（第五輪 §2）：有 📌 寫「午餐 📌 12:00 才開始」；
+ * 沒有 📌 的造訪是等開門（引擎只會因為營業時間延後，開始時間就是開門時間）；不是造訪（自由時間的指定時間）不寫原因。不用等回傳 null
+ */
+export function waitNote(entry: TimelineEntry, item: VisitItem | null, _place: Place | undefined): string | null {
+  if (entry.waitMinutes <= 0) return null;
+  const head = `⏳ ${entry.arrive} 到，等 ${entry.waitMinutes} 分`;
+  if (item?.start) return `${head}（${(entry.mealTag && MEAL_LABELS[entry.mealTag]) || ''}📌 ${item.start} 才開始）`;
+  if (item) return `${head}（${entry.start} 才開門）`;
+  return head;
+}
+
+/** 班次表、選班次的一列：搭不到（發車早於走到上車站）、搭得到、選定的那班（搭不到時 missedSelected）；wait 是走到站之後等幾分，搭不到是 null */
+export type DepartureRow = RideDeparture & { state: 'missed' | 'ok' | 'selected'; wait: number | null; missedSelected?: boolean };
+
+/** 一程的所有班次分成搭不到、搭得到、選定（readyAt：走到上車站／轉乘完的時間，Leg.ready） */
+export function departureRows(deps: RideDeparture[], readyAt: string, selectedTripId: string | null): DepartureRow[] {
+  const ready = toMinutes(readyAt);
+  return deps.map((d) => {
+    const wait = toMinutes(d.depart) - ready;
+    const missed = wait < 0;
+    if (d.tripId === selectedTripId) return missed ? { ...d, state: 'selected', wait: null, missedSelected: true } : { ...d, state: 'selected', wait };
+    return missed ? { ...d, state: 'missed', wait: null } : { ...d, state: 'ok', wait };
+  });
+}
+
+/** 走路、開車的路線快取（routing.ts 的 roads） */
+export interface RoadCache {
+  cachedMeters(p: 'foot' | 'car', a: LonLat, b: LonLat): number | null;
+}
+
+/**
+ * 交通卡的距離（第五輪 §3.5）：步行用 foot、計程車和其他車用 car 的路線快取；大眾運輸用地圖上那條路徑的長度（ridePathMeters）；
+ * 都沒有（還沒查到、交通未定）→ 直線距離、straight
+ */
+export function legDistance(leg: Leg, from: Place, to: Place, roads: RoadCache, ridePathMeters: number | null): { meters: number; straight: boolean } {
+  const m = leg.mode;
+  const meters =
+    m === 'walk'
+      ? roads.cachedMeters('foot', from.coords, to.coords)
+      : m === 'taxi' || m === 'charter' || m === 'car' || m === 'other'
+        ? roads.cachedMeters('car', from.coords, to.coords)
+        : m === 'train' || m === 'bus' || m === 'ferry' || m === 'transit'
+          ? ridePathMeters
+          : null;
+  return meters != null ? { meters, straight: false } : { meters: haversineMeters(from.coords, to.coords), straight: true };
 }
 
 export const METHOD_LABELS: Record<string, string> = {

@@ -8,12 +8,34 @@ import { dayLabel, hoursKeys, timetableDayType, tripDates } from '../src/lib/tri
 import { EMPTY_FILTER, filterChips, matchesFilter, matchesQuery } from '../src/lib/filter.ts';
 import { closedDaysLabel, rowForDate } from '../src/lib/hours.ts';
 import { nearbyPlaces } from '../src/lib/nearby.ts';
-import { DAY_PALETTE, deltaE, hueOf, labOf, placeVisual, wallPlaces } from '../src/lib/visual.ts';
+import { DAY_PALETTE, dayColor, deltaE, labOf, placeVisual, wallPlaces } from '../src/lib/visual.ts';
 import { copyText } from '../src/lib/labels.ts';
 import { TYPE_COLORS } from '../src/lib/typeStyle.ts';
 import { dayStops, placeDays } from '../src/lib/itinerary.ts';
 import { itin } from './helpers.ts';
-import { cardTime, dayBar, daySummary, editorModeOf, showMinutesInput, formatStay, formatDistance, legMapsUrl, legTargetOf, legText, optionRows, rideLines, shownWarnings, specWithTrip, stopMarks } from '../src/lib/planView.ts';
+import {
+  cardTime,
+  cardTypeLetter,
+  dayBar,
+  daySummary,
+  departureRows,
+  editorModeOf,
+  showMinutesInput,
+  formatStay,
+  formatDistance,
+  legDistance,
+  legMapsUrl,
+  legSteps,
+  legTargetOf,
+  legText,
+  mapMark,
+  optionRows,
+  rideLines,
+  shownWarnings,
+  specWithTrip,
+  stopMarks,
+  waitNote,
+} from '../src/lib/planView.ts';
 import { explorePlaces, typeCounts } from '../src/lib/explore.ts';
 import type { DayPlan, TimelineEntry } from '@travel-helper/engine';
 import type { Area, Place, StationTimetable } from '../src/data/types.ts';
@@ -219,7 +241,23 @@ const entry = (kind: TimelineEntry['kind'], placeId: string | null, extra: Parti
   ...extra,
 });
 
-test('stopMarks：住宿是「宿」、機場是「機」，其他依序編號；分組先編各組再編會合點', () => {
+test('stopMarks：起點 0、回住宿接著編', () => {
+  // 2/3 的形狀：出發住宿 0、橫山展望台 1、La Mer 2、回住宿 3
+  const day = { entries: [entry('start', 'hotel'), entry('visit', 'yokoyama'), entry('visit', 'lamer'), entry('lodging', 'hotel')] } as unknown as DayPlan;
+  const { byPlace, byEntry } = stopMarks(day, (id) => id === 'hotel');
+  assert.deepEqual(day.entries.map((e) => byEntry.get(e)), ['0', '1', '2', '3']);
+  assert.deepEqual(byPlace.get('hotel'), ['0', '3']);
+  assert.deepEqual(byPlace.get('yokoyama'), ['1']);
+});
+
+test('stopMarks：航班、分組', () => {
+  // 起點是航班抵達（機場）→ 0；出發的航班是最後一個號碼
+  const flights = { entries: [entry('flight', 'kix'), entry('visit', 'y'), entry('flight', 'kix2')] } as unknown as DayPlan;
+  assert.deepEqual([...stopMarks(flights, () => false).byPlace], [['kix', ['0']], ['y', ['1']], ['kix2', ['2']]]);
+  // 起點不是住宿也是 0
+  const other = { entries: [entry('start', 'somewhere'), entry('visit', 'y')] } as unknown as DayPlan;
+  assert.deepEqual([...stopMarks(other, () => false).byPlace], [['somewhere', ['0']], ['y', ['1']]]);
+  // 分組：先各組的點、再會合點，連續編
   const split = entry('meet', 'meet-pt', {
     groups: [
       { id: 'g1', name: 'A', entries: [entry('visit', 'ga'), entry('meet', 'meet-pt')] },
@@ -228,16 +266,209 @@ test('stopMarks：住宿是「宿」、機場是「機」，其他依序編號�
   });
   const day = { entries: [entry('start', 'hotel-1'), entry('visit', 'x'), split, entry('visit', 'x'), entry('lodging', 'hotel-2')] } as unknown as DayPlan;
   const { byPlace, byEntry } = stopMarks(day, (id) => id.startsWith('hotel'));
-  assert.equal(byPlace.get('hotel-1'), '宿');
-  assert.equal(byPlace.get('ga'), '2');
-  assert.equal(byPlace.get('gb'), '3');
-  assert.equal(byPlace.get('meet-pt'), '4');
+  assert.deepEqual(byPlace.get('hotel-1'), ['0']);
+  assert.deepEqual(byPlace.get('ga'), ['2']);
+  assert.deepEqual(byPlace.get('gb'), ['3']);
+  assert.deepEqual(byPlace.get('meet-pt'), ['4']);
   // 同一個點去兩次
-  assert.equal(byPlace.get('x'), '1・5');
-  assert.equal(byPlace.get('hotel-2'), '宿');
-  assert.equal(byEntry.get(day.entries[0]), '宿');
-  const flights = { entries: [entry('flight', 'kix'), entry('visit', 'y')] } as unknown as DayPlan;
-  assert.deepEqual([...stopMarks(flights, () => false).byPlace], [['kix', '機'], ['y', '1']]);
+  assert.deepEqual(byPlace.get('x'), ['1', '5']);
+  assert.deepEqual(byPlace.get('hotel-2'), ['6']);
+  assert.equal(byEntry.get(day.entries[0]), '0');
+});
+
+test('mapMark：起終點同一點', () => {
+  assert.equal(mapMark(['0', '3'], 'day'), '0');
+  assert.equal(mapMark(['0', '3'], 'leg', { from: 'x', to: 'h' }, 'h'), '3');
+  assert.equal(mapMark(['0', '3'], 'leg', { from: 'h', to: 'x' }, 'h'), '0');
+  assert.equal(mapMark(['1', '4'], 'day'), '1・4');
+  assert.equal(mapMark(['2'], 'day'), '2');
+  assert.equal(mapMark([], 'day'), '');
+  // 不在這段上的點照整天的規則
+  assert.equal(mapMark(['1', '4'], 'leg', { from: 'a', to: 'b' }, 'x'), '1・4');
+  // 整趟：住宿傳隔天的 marks，是隔天的起點
+  assert.equal(mapMark(['0'], 'trip'), '0');
+});
+
+test('cardTypeLetter：類型色塊上的字', () => {
+  assert.equal(cardTypeLetter('lodging'), '宿');
+  assert.equal(cardTypeLetter('spot'), '景');
+  assert.equal(cardTypeLetter('restaurant'), '餐');
+  assert.equal(cardTypeLetter('station'), '站');
+  assert.equal(cardTypeLetter('airport'), '機');
+  assert.equal(cardTypeLetter(null), '點');
+});
+
+const busLeg = {
+  mode: 'transit' as const,
+  from: 'izawa',
+  to: 'daiozaki',
+  depart: '15:01',
+  arrive: '16:56',
+  minutes: 115,
+  walkMinutes: 22,
+  waitMinutes: 43,
+  walkBefore: 14,
+  walkAfter: 8,
+  ready: ['15:15'],
+  rides: [{ mode: 'bus' as const, line: '御座線（往御座港）', from: 'kawabe', to: 'daiozaki-bus', depart: '15:58', arrive: '16:48' }],
+  specified: false,
+  basis: '',
+};
+
+test('legSteps：步行→等車→巴士→步行', () => {
+  const names: Record<string, string> = { kawabe: '川辺', 'daiozaki-bus': '大王埼灯台' };
+  const s = legSteps(busLeg, '伊雜宮', '大王埼燈塔', (id) => names[id] ?? id);
+  assert.deepEqual(s.map((x) => x.kind), ['node', 'walk', 'node', 'ride', 'node', 'walk', 'node']);
+  assert.deepEqual(s, [
+    { kind: 'node', time: '15:01', name: '伊雜宮' },
+    { kind: 'walk', minutes: 14 },
+    { kind: 'node', time: '15:15', name: '川辺', wait: 43 },
+    { kind: 'ride', index: 0, mode: 'bus', line: '御座線（往御座港）', depart: '15:58', arrive: '16:48', minutes: 50 },
+    { kind: 'node', time: '16:48', name: '大王埼灯台' },
+    { kind: 'walk', minutes: 8 },
+    { kind: 'node', time: '16:56', name: '大王埼燈塔' },
+  ]);
+});
+
+test('legSteps：轉乘站寫到站時間和等的分鐘；起點、終點就是車站時合成一個節點', () => {
+  const l = {
+    ...busLeg,
+    depart: '10:00',
+    arrive: '10:45',
+    walkBefore: 0,
+    walkAfter: 0,
+    ready: ['10:00', '10:38'],
+    rides: [
+      { mode: 'train' as const, line: '特急', from: 'toba', to: 'ujiyamada', depart: '10:12', arrive: '10:30' },
+      { mode: 'bus' as const, line: '三重交通', from: 'ujiyamada', to: 'geku', depart: '10:40', arrive: '10:45' },
+    ],
+  };
+  const s = legSteps(l, '鳥羽駅', '外宮', (id) => id);
+  assert.deepEqual(s, [
+    { kind: 'node', time: '10:00', name: '鳥羽駅', wait: 12 },
+    { kind: 'ride', index: 0, mode: 'train', line: '特急', depart: '10:12', arrive: '10:30', minutes: 18 },
+    { kind: 'node', time: '10:30', name: 'ujiyamada', wait: 10 },
+    { kind: 'ride', index: 1, mode: 'bus', line: '三重交通', depart: '10:40', arrive: '10:45', minutes: 5 },
+    { kind: 'node', time: '10:45', name: '外宮' },
+  ]);
+});
+
+test('legSteps：計程車沒有步驟', () => {
+  assert.deepEqual(legSteps(leg('10:00', 12), 'a', 'b', (x) => x), []);
+});
+
+test('waitNote：📌 午餐、開門、其他', () => {
+  const visit = { id: 'v', type: 'visit' as const, options: [{ place: 'r' }], selected: 0 };
+  const e = entry('visit', 'r', { arrive: '10:53', start: '12:00', waitMinutes: 67, mealTag: 'lunch' });
+  assert.equal(waitNote(e, { ...visit, start: '12:00' }, place('r')), '⏳ 10:53 到，等 67 分（午餐 📌 12:00 才開始）');
+  assert.equal(waitNote({ ...e, mealTag: 'dinner' }, { ...visit, start: '12:00' }, place('r')), '⏳ 10:53 到，等 67 分（晚餐 📌 12:00 才開始）');
+  assert.equal(waitNote({ ...e, mealTag: null }, { ...visit, start: '12:00' }, place('r')), '⏳ 10:53 到，等 67 分（📌 12:00 才開始）');
+  // 沒有 📌 的造訪：等開門
+  const open = entry('visit', 'r', { arrive: '09:40', start: '10:00', waitMinutes: 20 });
+  assert.equal(waitNote(open, visit, place('r')), '⏳ 09:40 到，等 20 分（10:00 才開門）');
+  // 不是造訪（自由時間的指定時間）：不寫原因
+  assert.equal(waitNote(open, null, undefined), '⏳ 09:40 到，等 20 分');
+  assert.equal(waitNote(entry('visit', 'r'), visit, place('r')), null);
+});
+
+test('dayBar：類型色段落、交通、等待', () => {
+  // 2/3 的形狀：出發住宿 → 橫山展望台（景點）→ La Mer（餐廳，📌 等）→ 回住宿
+  const day = {
+    entries: [
+      entry('start', 'hotel', { start: '09:30', end: '09:30' }),
+      entry('visit', 'yokoyama', { itemId: 'v1', travel: leg('09:30', 11), arrive: '09:41', start: '09:41', end: '10:41' }),
+      entry('visit', 'lamer', { itemId: 'v2', travel: leg('10:41', 12), arrive: '10:53', start: '12:00', end: '13:30' }),
+      entry('lodging', 'hotel', { itemId: null, travel: leg('13:30', 16), arrive: '13:46', start: '13:46', end: '13:46' }),
+    ],
+  } as unknown as DayPlan;
+  const types: Record<string, 'spot' | 'restaurant' | 'lodging'> = { hotel: 'lodging', yokoyama: 'spot', lamer: 'restaurant' };
+  const bar = dayBar(day, (id) => (id ? (types[id] ?? null) : null));
+  assert.deepEqual(bar.map((s) => s.kind), ['travel', 'spot', 'travel', 'wait', 'restaurant', 'travel']);
+  assert.deepEqual(bar.map((s) => s.mark), [null, '1', null, null, '2', null]);
+  assert.deepEqual(bar.map((s) => [s.from, s.to]), [
+    ['09:30', '09:41'],
+    ['09:41', '10:41'],
+    ['10:41', '10:53'],
+    ['10:53', '12:00'],
+    ['12:00', '13:30'],
+    ['13:30', '13:46'],
+  ]);
+});
+
+test('dayBar：交通卡裡的等車切成 wait 段；不是景點、餐廳的停留是 other；分組每組一條 lane', () => {
+  const transit = { ...busLeg, depart: '10:00', arrive: '11:00', ready: ['10:10'], rides: [{ ...busLeg.rides[0], depart: '10:30', arrive: '10:52' }] };
+  const split = entry('meet', 'm', {
+    itemId: 's',
+    arrive: '12:00',
+    start: '12:00',
+    end: '12:00',
+    groups: [
+      { id: 'g1', name: 'A', entries: [entry('visit', 'ga', { itemId: 'ga', travel: leg('11:30', 20), arrive: '11:50', start: '11:50', end: '11:55' })] },
+      { id: 'g2', name: 'B', entries: [entry('visit', 'gb', { itemId: 'gb', travel: leg('11:30', 10), arrive: '11:40', start: '11:45', end: '11:50' })] },
+    ],
+  });
+  const day = {
+    entries: [entry('start', 'h', { start: '10:00', end: '10:00' }), entry('visit', 'st', { itemId: 'v1', travel: transit, arrive: '11:00', start: '11:00', end: '11:30' }), split],
+  } as unknown as DayPlan;
+  const bar = dayBar(day, (id) => (id === 'st' ? 'station' : 'spot'));
+  assert.deepEqual(bar.filter((s) => s.lane === 0).map((s) => [s.kind, s.from, s.to, s.itemId]), [
+    ['travel', '10:00', '10:10', 'v1'],
+    ['wait', '10:10', '10:30', 'v1'],
+    ['travel', '10:30', '11:00', 'v1'],
+    ['other', '11:00', '11:30', 'v1'],
+  ]);
+  assert.deepEqual(bar.filter((s) => s.lane === 2).map((s) => [s.kind, s.from, s.to, s.mark]), [
+    ['travel', '11:30', '11:40', null],
+    ['wait', '11:40', '11:45', null],
+    ['spot', '11:45', '11:50', '3'],
+  ]);
+});
+
+const deps = [
+  { tripId: 't1', line: '御座線', depart: '13:28', arrive: '14:18' },
+  { tripId: 't2', line: '御座線', depart: '15:58', arrive: '16:48' },
+  { tripId: 't3', line: '御座線', depart: '17:08', arrive: '17:58' },
+];
+
+test('departureRows：搭不到、搭得到、選定', () => {
+  assert.deepEqual(
+    departureRows(deps, '15:15', 't2').map((r) => [r.depart, r.state, r.wait, r.missedSelected]),
+    [
+      ['13:28', 'missed', null, undefined],
+      ['15:58', 'selected', 43, undefined],
+      ['17:08', 'ok', 113, undefined],
+    ],
+  );
+  assert.equal(departureRows(deps, '15:15', null)[1].state, 'ok');
+  // 剛好走到時發車搭得到
+  assert.equal(departureRows(deps, '15:58', null)[1].wait, 0);
+});
+
+test('departureRows：選定的那班搭不到', () => {
+  const r = departureRows(deps, '16:00', 't2')[1];
+  assert.equal(r.state, 'selected');
+  assert.equal(r.missedSelected, true);
+  assert.equal(r.wait, null);
+});
+
+test('legDistance：步行、計程車用路線快取，大眾運輸用路徑長度，沒有時直線', () => {
+  const a = place('a', { coords: [136.8, 34.4] });
+  const b = place('b', { coords: [136.81, 34.4] });
+  const calls: string[] = [];
+  const roads = (m: number | null) => ({
+    cachedMeters: (p: 'foot' | 'car') => {
+      calls.push(p);
+      return m;
+    },
+  });
+  assert.deepEqual(legDistance(legWith({ mode: 'walk' }), a, b, roads(1234), null), { meters: 1234, straight: false });
+  assert.deepEqual(legDistance(legWith({ mode: 'taxi' }), a, b, roads(2345), null), { meters: 2345, straight: false });
+  assert.deepEqual(calls, ['foot', 'car']);
+  assert.deepEqual(legDistance(legWith({ mode: 'transit' }), a, b, roads(999), 5000), { meters: 5000, straight: false });
+  const straight = legDistance(legWith({ mode: 'walk' }), a, b, roads(null), null);
+  assert.equal(straight.straight, true);
+  assert.ok(Math.abs(straight.meters - 917) < 5, `直線約 917 公尺，得到 ${straight.meters}`);
+  assert.equal(legDistance(legWith({ mode: 'bus' }), a, b, roads(999), null).straight, true);
 });
 
 test('explorePlaces：不列車站；依評分、❤️ 排序時同分保留推薦的順序；可以只看畫面裡的', () => {
@@ -282,30 +513,6 @@ const leg = (depart: string, minutes: number): NonNullable<TimelineEntry['travel
   rides: [],
   specified: false,
   basis: '',
-});
-
-test('dayBar：交通、停留、等待各一段；分組的時段每組一條 lane', () => {
-  const split = entry('meet', 'm', {
-    itemId: 's',
-    arrive: '12:00',
-    start: '12:00',
-    end: '12:00',
-    groups: [
-      { id: 'g1', name: 'A', entries: [entry('visit', 'ga', { itemId: 'ga', travel: leg('10:00', 20), arrive: '10:20', start: '10:20', end: '11:30' })] },
-      { id: 'g2', name: 'B', entries: [entry('visit', 'gb', { itemId: 'gb', travel: leg('10:00', 10), arrive: '10:10', start: '10:30', end: '11:00' })] },
-    ],
-  });
-  const day = { entries: [entry('start', 'h', { start: '09:30', end: '09:30' }), entry('visit', 'a', { travel: leg('09:30', 10), arrive: '09:40', start: '09:40', end: '10:00', meal: null }), split] } as unknown as DayPlan;
-  const bar = dayBar(day);
-  assert.deepEqual(bar.filter((s) => s.lane === 0).map((s) => [s.kind, s.from, s.to]), [
-    ['travel', '09:30', '09:40'],
-    ['visit', '09:40', '10:00'],
-  ]);
-  assert.deepEqual(bar.filter((s) => s.lane === 2).map((s) => [s.kind, s.from, s.to]), [
-    ['travel', '10:00', '10:10'],
-    ['idle', '10:10', '10:30'],
-    ['visit', '10:30', '11:00'],
-  ]);
 });
 
 test('daySummary：出發、回住宿、交通總分鐘（含各組、不含緩衝）、警告數（不算 info）', () => {
@@ -357,11 +564,10 @@ test('editorModeOf：舊的方式對到新選單', () => {
   assert.equal(editorModeOf({ mode: 'other' }), 'legacy');
 });
 
-test('formatStay', () => {
-  assert.equal(formatStay(45), '45 分');
-  assert.equal(formatStay(60), '1 小時');
-  assert.equal(formatStay(150), '2.5 小時');
-  assert.equal(formatStay(80), '1 小時 20 分');
+test('formatStay：X小時MM分', () => {
+  assert.equal(formatStay(45), '0小時45分');
+  assert.equal(formatStay(60), '1小時00分');
+  assert.equal(formatStay(315), '5小時15分');
 });
 
 test('多點卡片的清單：主要的排第一、走路分鐘是 null，其他照 anchors 或直線估算', () => {
@@ -435,23 +641,17 @@ test('cardTime：起點、終點只寫一個時間；其他寫開始–結束', 
   assert.deepEqual(cardTime(entry('visit', 'a', { start: '09:42', end: '09:42' })), { text: '09:42', stay: null });
 });
 
-test('每天的色盤：12 色、不重複、避開類型色', () => {
-  assert.equal(DAY_PALETTE.length, 12);
-  assert.equal(new Set(DAY_PALETTE).size, 12);
-  for (const c of DAY_PALETTE) {
-    const a = hueOf(c);
-    if (a.s < 0.15) continue; // 灰色不算撞色
-    for (const t of Object.values(TYPE_COLORS)) {
-      const b = hueOf(t);
-      const d = Math.min(Math.abs(a.h - b.h), 360 - Math.abs(a.h - b.h));
-      assert.ok(d >= 25, `${c} 和類型色 ${t} 太像（色相差 ${d.toFixed(0)}°）`);
-    }
-  }
-  assert.ok(DAY_PALETTE.filter((c) => hueOf(c).s < 0.15).length <= 1, '灰色最多一個');
+test('DAY_PALETTE：4 色彼此、和類型色分得出來', () => {
+  assert.deepEqual(DAY_PALETTE, ['#c2255c', '#0b7285', '#343a40', '#8b5a2b']);
   for (const c of DAY_PALETTE) assert.ok(labOf(c)[0] <= 70, `${c} 太淺，畫在淺色地圖上看不清楚`);
   for (const [i, a] of DAY_PALETTE.entries()) {
     for (const b of DAY_PALETTE.slice(i + 1)) assert.ok(deltaE(a, b) >= 20, `${a} 和 ${b} 太像（ΔE ${deltaE(a, b).toFixed(0)}）`);
+    for (const t of Object.values(TYPE_COLORS)) assert.ok(deltaE(a, t) >= 20, `${a} 和類型色 ${t} 太像（ΔE ${deltaE(a, t).toFixed(0)}）`);
   }
+  // 照日期順序輪流
+  const dates = ['2027-02-02', '2027-02-03', '2027-02-04', '2027-02-05', '2027-02-06'];
+  assert.equal(dayColor(dates, '2027-02-06'), '#c2255c');
+  assert.equal(dayColor(dates, '2027-02-03'), '#0b7285');
 });
 
 test('copyText：日文名稱優先，沒有用中文', () => {

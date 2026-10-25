@@ -3478,22 +3478,25 @@ body.dragging-place [data-drop-ai].drop-over {
   min-width: 2px;
 }
 
-.seg-visit {
-  background: var(--day, var(--accent));
+/* 停留用類型色（typeStyle.ts 的 TYPE_COLORS）；第五輪 Task 8 重畫 */
+.seg-spot {
+  background: #1a7f37;
 }
 
-.seg-meal {
-  background: #f08c00;
+.seg-restaurant {
+  background: #d1501a;
+}
+
+.seg-other {
+  background: #6e7781;
 }
 
 .seg-travel {
   background: repeating-linear-gradient(90deg, #8c959f 0 3px, transparent 3px 5px);
 }
 
-.seg-idle {
-  background: transparent;
-  outline: 1px dashed #8c959f;
-  outline-offset: -1px;
+.seg-wait {
+  background: repeating-linear-gradient(45deg, #f2c94c 0 3px, #fff4cc 3px 6px);
 }
 
 .day-bar-scale {

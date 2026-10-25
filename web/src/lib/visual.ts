@@ -44,22 +44,9 @@ function popularity(p: Place): number {
   return Math.max(...['googleReviews', 'tabelogReviews', 'rakutenReviews', 'jalanReviews'].map((k) => (typeof r[k] === 'number' ? (r[k] as number) : 0)));
 }
 
-// 每天一種顏色（interaction-design §3）。避開四種類型色（藍、綠、紫、橘）的色相，
-// 才不會把「這天」和「這種地方」搞混；test/lib.test.ts 檢查：色相差至少 25°，12 色彼此 CIELAB ΔE 至少 20；畫在淺色地圖上，不用太淺的色
-export const DAY_PALETTE = ['#495057', '#3bbd0f', '#bd0fbd', '#bd0f3b', '#9c840d', '#0fbda0', '#6a1b5d', '#2e6a1b', '#7f9410', '#bd0f74', '#0d909c', '#6a1b2e'];
-
-/** #rrggbb → 色相 h（度）、飽和度 s、亮度 l（0～1） */
-export function hueOf(hex: string): { h: number; s: number; l: number } {
-  const [r, g, b] = [1, 3, 5].map((i) => parseInt(hex.slice(i, i + 2), 16) / 255);
-  const mx = Math.max(r, g, b);
-  const mn = Math.min(r, g, b);
-  const d = mx - mn;
-  const l = (mx + mn) / 2;
-  if (!d) return { h: 0, s: 0, l };
-  const s = d / (1 - Math.abs(2 * l - 1));
-  const h = mx === r ? ((g - b) / d) % 6 : mx === g ? (b - r) / d + 2 : (r - g) / d + 4;
-  return { h: (h * 60 + 360) % 360, s, l };
-}
+// 每天一種顏色（第五輪 §9.1）：4 色照日期順序輪流，只畫地圖上的路線、日期旁的小圓點（時間條用類型色）。
+// test/lib.test.ts 檢查：4 色彼此、和類型色（TYPE_COLORS）的 CIELAB ΔE 至少 20；畫在淺色地圖上，不用太淺的色
+export const DAY_PALETTE = ['#c2255c', '#0b7285', '#343a40', '#8b5a2b'];
 
 /** #rrggbb → CIELAB（D65） */
 export function labOf(hex: string): [number, number, number] {

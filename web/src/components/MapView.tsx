@@ -10,7 +10,7 @@ import { DESKTOP_QUERY, useApp, useCanHover, useData, usePlan, useShared, useUi 
 import { voteCounts } from '../sharedStore.ts';
 import { initialExtent } from '../lib/areas.ts';
 import { TYPE_COLORS } from '../lib/typeStyle.ts';
-import { stopMarks } from '../lib/planView.ts';
+import { mapMark, stopMarks } from '../lib/planView.ts';
 import { dayPlanOf } from '../planStore.ts';
 import { addMapIcons } from './mapIcons.ts';
 import { placeVisual } from '../lib/visual.ts';
@@ -39,7 +39,7 @@ const PULSE_OFF = ['all', ['!=', ['get', 'mark'], ''], ['==', ['get', 'id'], '']
 
 const typeColorExpr = ['match', ['get', 'type'], ...PLACE_TYPES.flatMap((t) => [t, TYPE_COLORS[t]]), '#555'];
 
-/** marks：選定那天的編號（宿、1、2…，planView.stopMarks）；有編號的點畫成類型色的編號圓 */
+/** marks：選定那天的編號（0、1、2…，planView.stopMarks、mapMark）；有編號的點畫成類型色的編號圓 */
 function featureCollection(places: Place[], marks: Map<string, string>): FeatureCollection {
   const { filter, query, day, mode } = appStore.getState();
   const { days } = dataStore.getState();
@@ -401,7 +401,8 @@ export function MapView() {
   // 資料點、篩選、選定的天、行程 → 重畫
   useEffect(() => {
     if (!loaded) return;
-    const marks = day === 'all' ? new Map<string, string>() : stopMarks(dayPlanOf(plan, day), (id) => byId.get(id)?.type === 'lodging').byPlace;
+    const marks = new Map<string, string>();
+    if (day !== 'all') for (const [id, list] of stopMarks(dayPlanOf(plan, day)).byPlace) marks.set(id, mapMark(list, 'day'));
     (mapRef.current!.getSource('places') as GeoJSONSource).setData(featureCollection(places, marks));
   }, [loaded, places, filter, query, day, days, plan, byId, mode, votes]);
 
