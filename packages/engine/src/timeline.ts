@@ -137,6 +137,7 @@ function groupChecks(rec: PlaceRecord, itemId: string, ctx: RunContext, tags: re
   if (rec.type === 'restaurant') {
     const g = rec.group ?? {};
     const res = rec.reservation?.accepted ?? 'unknown';
+    // 標了「分組」（大家分開在附近吃）只免 15 人座位和全員預約；一組 4～6 人也坐不下照樣警告
     if (ctx.whole && !tags.includes('groups')) {
       const ok = g.fit15 === 'yes' || !!g.confirmed15;
       if (!ok) {
@@ -145,8 +146,8 @@ function groupChecks(rec: PlaceRecord, itemId: string, ctx: RunContext, tags: re
       }
       if (res === 'no') warn(ctx, { code: 'no-reservation', level: 'error', itemId, placeId, message: '全員用餐一定要預約，這家不接受預約（§5.6）' });
       else if (res === 'unknown') warn(ctx, { code: 'no-reservation', level: 'warning', itemId, placeId, message: '全員用餐要預約，這家能不能預約不確定' });
-    } else if (!ctx.whole && g.fitSubgroup === 'no') {
-      warn(ctx, { code: 'group-seats', level: 'error', itemId, placeId, message: `這組 ${party.size} 人坐不下` });
+    } else if (g.fitSubgroup === 'no') {
+      warn(ctx, { code: 'group-seats', level: 'error', itemId, placeId, message: ctx.whole ? '標了分組，但一組 4～6 人也坐不下' : `這組 ${party.size} 人坐不下` });
     }
     const allowed = rec.kids?.allowed;
     if (party.kids > 0 && (allowed === 'no' || allowed === 'age-limit')) {

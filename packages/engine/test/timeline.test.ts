@@ -431,3 +431,13 @@ test('餐廳標 groups 不發 group-seats、no-reservation；kids-not-allowed �
   assert.ok(!tagged.includes('group-seats') && !tagged.includes('no-reservation'));
   assert.ok(tagged.includes('kids-not-allowed'));
 });
+
+test('餐廳標 groups：分組也坐不下（fitSubgroup: no）照發 group-seats', () => {
+  const tiny = with_(R, { group: { fit15: 'no', fitSubgroup: 'no' }, reservation: { accepted: 'no' } });
+  const w = (tags?: string[]) => plan(build([visit('r', tags ? { tags } : {})]), fake([H, tiny])).warnings;
+  const tagged = w(['groups']);
+  assert.ok(tagged.some((x) => x.code === 'group-seats' && x.level === 'error'));
+  assert.ok(!tagged.some((x) => x.code === 'no-reservation'));
+  // 沒標：照全員的 15 人檢查發一則，不重複
+  assert.equal(w().filter((x) => x.code === 'group-seats').length, 1);
+});
