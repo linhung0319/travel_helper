@@ -307,7 +307,7 @@ travel_helper/
 - **只有一份確定的行程**（2026-10-21）：12 天，一開始就放好航班當固定項目；不做方案。家人的建議、投票、使用者加的點不放在行程裡，另外存在資料庫（[architecture.md](architecture.md) §3.6、[interaction-design.md](interaction-design.md) §6）；「整趟」的建議取代原本草稿的 `wishlist`。
 - **時間一律是日本時間**：日期寫 `YYYY-MM-DD`、時間寫 `HH:MM` 字串（過了午夜寫 `25:00`），程式不轉成 `Date`、不做時區換算（architecture §3.8）。
 - 型別在 `packages/engine/src/types.ts`，操作、檢查在 `packages/engine`（T15、T16 共用）。存進資料庫的只有下面這份 JSON；交通、抵達和出發時間、空檔、警告都是引擎算出來的，**不存**。
-- 一開始的行程用 `createItinerary()` 產生；改行程一律用引擎的操作（`addItem`、`removeItem`、`moveItemToDay`、`moveItem`、`setStay`、`selectOption`、`addOption`、`removeOption`、`setStart`、`setTravel`、`setLegTravel`、`setMeal`、`setDining`、`setLodging`），不要直接改 JSON；收到外部的 JSON（PUT、匯入）先跑 `validateItinerary()`。
+- 一開始的行程用 `createItinerary()` 產生；改行程一律用引擎的操作（`addItem`、`removeItem`、`moveItemToDay`、`moveItem`、`setStay`、`selectOption`、`addOption`、`removeOption`、`setStart`、`setTravel`、`setLegTravel`、`setTags`、`setLodging`），不要直接改 JSON；讀到舊存檔先跑 `upgradeItinerary()`（舊的 `meal`、`dining` 轉成 tags）；收到外部的 JSON（PUT、匯入）先跑 `validateItinerary()`。
 
 ```jsonc
 {

@@ -343,6 +343,49 @@ test('pickMeal', () => {
   assert.equal(pickMeal(['rest'], null), null);
   assert.equal(pickMeal(undefined, 'dinner'), 'dinner');
 });
+function withTravel(spec: TravelSpec): Itinerary {
+  let it = createItinerary();
+  it = setLodging(it, '2027-02-04', 'h');
+  it = setLodging(it, D, 'h');
+  it = addItem(it, D, visit('a')).itinerary;
+  const b = addItem(it, D, visit('b'));
+  return setLegTravel(b.itinerary, { itemId: b.itemId }, spec);
+}
+
+test('舊的 bufferMinutes 忽略、舊的方式照樣算', () => {
+  const it = withTravel({ mode: 'charter', minutes: 20, bufferMinutes: 10 } as TravelSpec);
+  assert.deepEqual(validateItinerary(it), []);
+  const data = fake([lodging('h', at(0)), spot('a', at(400)), spot('b', at(3000))]);
+  const day = planItinerary(it, data).days.find((d) => d.date === D)!;
+  const leg = day.entries[2].travel!;
+  assert.equal(leg.mode, 'charter');
+  assert.equal(leg.minutes, 20);
+  assert.equal(toMinutes(day.entries[2].arrive), toMinutes(leg.depart) + 20);
+  // 舊的方式都還合法
+  for (const mode of ['train', 'bus', 'ferry', 'charter', 'car', 'other'] as const) assert.deepEqual(validateItinerary(withTravel({ mode })), []);
+});
+
+test('validateItinerary：mode transit 合法、trip 要有 id 和 HH:MM 的 depart', () => {
+  assert.deepEqual(validateItinerary(withTravel({ mode: 'transit' })), []);
+  assert.deepEqual(validateItinerary(withTravel({ mode: 'transit', trip: { id: 't1', depart: '10:35', arrive: '10:45', from: 'a', to: 'b' } })), []);
+  const errs = validateItinerary(withTravel({ mode: 'transit', trip: { id: '', depart: '9:5' } as TripRef }));
+  assert.equal(errs.length, 2, errs.join('；'));
+  assert.ok(errs.some((e) => e.includes('trip.id')));
+  assert.ok(errs.some((e) => e.includes('trip.depart')));
+  assert.ok(validateItinerary(withTravel({ trip: { id: 't1', depart: '10:35', arrive: 'x', from: 'a', to: 'b' } })).some((e) => e.includes('trip.arrive')));
+});
+
+test('validateItinerary：trip.rides 是每一程的 tripId（字串陣列）', () => {
+  const trip = { id: '1-1963', depart: '11:14', arrive: '11:41', from: 'a', to: 'b' };
+  assert.deepEqual(validateItinerary(withTravel({ mode: 'transit', trip: { ...trip, rides: ['1-1963', '1-3799'] } })), []);
+  assert.deepEqual(validateItinerary(withTravel({ mode: 'transit', trip: { ...trip, rides: null } })), []);
+  assert.deepEqual(validateItinerary(withTravel({ mode: 'transit', trip: { ...trip, rides: ['1-1963', '1-3799'], via: 'toba' } })), []);
+  assert.deepEqual(validateItinerary(withTravel({ mode: 'transit', trip: { ...trip, via: null } })), []);
+  assert.ok(validateItinerary(withTravel({ trip: { ...trip, via: 3 as unknown as string } })).some((e) => e.includes('trip.via')));
+  assert.ok(validateItinerary(withTravel({ trip: { ...trip, rides: '1-1963' as unknown as string[] } })).some((e) => e.includes('trip.rides')));
+  assert.ok(validateItinerary(withTravel({ trip: { ...trip, rides: [1] as unknown as string[] } })).some((e) => e.includes('trip.rides')));
+});
+
 // --- 合併、拆開、搬移備卡 ---------------------------------------------------
 
 const typeOf = (id: string) => (id.startsWith('h') ? 'lodging' : id.startsWith('r') ? 'restaurant' : 'spot');
