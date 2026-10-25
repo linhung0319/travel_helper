@@ -47,11 +47,16 @@ export function timetableDayType(date: string): 'weekday' | 'holiday' {
   return wd === 0 || wd === 6 || JP_HOLIDAYS.has(date) ? 'holiday' : 'weekday';
 }
 
+/** 紅字日期：週六、週日、國定假日（只用在日期的顏色，畫面不寫「假日」） */
+export function isRedDay(date: string): boolean {
+  const wd = weekdayIndex(date);
+  return wd === 0 || wd === 6 || JP_HOLIDAYS.has(date);
+}
+
 /** 分頁上的標籤，例如「2/5（五）」 */
 export function dayLabel(date: string): string {
   const [, mo, d] = parse(date);
-  const holiday = JP_HOLIDAYS.has(date) ? '・假日' : '';
-  return `${mo}/${d}（${WEEKDAY_ZH[weekdayIndex(date)]}${holiday}）`;
+  return `${mo}/${d}（${WEEKDAY_ZH[weekdayIndex(date)]}）`;
 }
 
 export function shortDayLabel(date: string): string {

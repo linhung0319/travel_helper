@@ -112,7 +112,7 @@ test('旅程日期：12 天、星期、國定假日、時刻表的日別', () =>
   assert.equal(dates[0], '2027-02-02');
   assert.equal(dates[11], '2027-02-13');
   assert.equal(dayLabel('2027-02-02'), '2/2（二）');
-  assert.equal(dayLabel('2027-02-11'), '2/11（四・假日）');
+  assert.equal(dayLabel('2027-02-11'), '2/11（四）');
   assert.deepEqual(hoursKeys('2027-02-11'), ['holiday', 'thu']);
   assert.equal(timetableDayType('2027-02-05'), 'weekday');
   assert.equal(timetableDayType('2027-02-06'), 'holiday'); // 週六
