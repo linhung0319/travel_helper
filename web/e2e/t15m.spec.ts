@@ -317,12 +317,12 @@ const CROWN_ON = /(^| )on( |$)/;
 
 const tlRow = (page: Page, item: string) => page.getByTestId('timeline').locator(`[data-testid="tl-row"][data-item="${item}"]`);
 
-test('第四輪：一般模式只看；合併卡片換著看、設為主要、標吃法、拿出來放回候選', async ({ page }) => {
+test('第四輪：一般模式只看；合併卡片換著看、設為主要、標「分組」、拿出來放回候選', async ({ page }) => {
   await ready(page);
   await showDay(page, '2027-02-05');
   // 一般模式：午餐 tag、＋1、頭像；沒有 −／＋、⋯
   const lunch = tlRow(page, 'i-7');
-  await expect(lunch.getByTestId('tag-meal')).toHaveText('午餐');
+  await expect(lunch.getByTestId('item-tag')).toHaveText(['午餐']);
   await expect(lunch.getByTestId('stay-minus')).toHaveCount(0);
   await expect(lunch.getByTestId('item-menu')).toHaveCount(0);
   await expect(lunch.getByTestId('tag-edit')).toHaveCount(0);
@@ -352,10 +352,12 @@ test('第四輪：一般模式只看；合併卡片換著看、設為主要、�
   await lunch.getByTestId('option-make-main').click();
   await expect(lunch).toHaveAttribute('data-place', 'toba-kazuei');
 
-  // 標吃法：點 tag 那一排 → 分開吃
+  // 標籤：點 tag 那一排 → 分組（Esc 關彈窗）
   await lunch.getByTestId('tag-edit').click();
-  await lunch.getByTestId('tag-dining-separate').click();
-  await expect(lunch.getByTestId('tag-dining')).toHaveText('分開吃');
+  await page.getByTestId('tag-popover').getByTestId('tag-opt-groups').click();
+  await expect(lunch.getByTestId('item-tag')).toHaveText(['午餐', '分組']);
+  await page.keyboard.press('Escape');
+  await expect(page.getByTestId('tag-popover')).toHaveCount(0);
 
   // 看漣 → 拿出來：回到這天的候選，卡片不再疊；提示可以復原
   await expect(stack).toHaveAttribute('data-main', 'true');
@@ -366,7 +368,7 @@ test('第四輪：一般模式只看；合併卡片換著看、設為主要、�
   await expect(page.getByTestId('toast-undo')).toBeVisible();
 });
 
-test('第四輪：住宿卡片的含餐 tag；沒有「換住宿」，想去的住宿沒有「設為住宿」', async ({ page }) => {
+test('第四輪：住宿卡片的方案 tag（照資料是一泊二食）；沒有「換住宿」，想去的住宿沒有「設為住宿」', async ({ page }) => {
   await ready(page);
   // 先 ❤️ 一間住宿，想去才有它
   await openDetail(page, 'toba-kokusai-hotel');
@@ -374,7 +376,7 @@ test('第四輪：住宿卡片的含餐 tag；沒有「換住宿」，想去的�
   await closeDetail(page);
   await showDay(page, DAY);
   const lodging = page.getByTestId('timeline').locator('.tl-lodging');
-  await expect(lodging.getByTestId('lodging-meal')).toHaveText(['含晚餐', '含早餐']);
+  await expect(lodging.getByTestId('lodging-plan-tag')).toHaveText('一泊二食');
   await enterPlanning(page);
   await expect(page.getByTestId('timeline').getByTestId('lodging-change')).toHaveCount(0);
   const list = await openWish(page, 'toba-kokusai-hotel');
@@ -636,7 +638,7 @@ test('第四輪：編輯中把候選拖到兩張卡片之間 → 時間軸多一
 });
 
 /** 第四輪完成條件：加到 2/5 → 編輯中 ↑ 排進 → 標午餐和分開吃 → 交通改計程車 → 復原快照 */
-test('第四輪完成條件：排進、標午餐和分開吃、交通改計程車、復原快照', async ({ page }) => {
+test('第四輪完成條件：排進、標午餐和分組、交通改計程車、復原快照', async ({ page }) => {
   const D = '2027-02-05';
   await ready(page);
   const before = (await th(page, '__th.dataStore.getState().itinerary')) as { days: unknown };
@@ -656,15 +658,17 @@ test('第四輪完成條件：排進、標午餐和分開吃、交通改計程�
   const row = page.getByTestId('timeline').locator(`[data-testid="tl-row"][data-place="${PLACE}"]`);
   await expect(row).toBeVisible();
 
-  // 3. 水族館標「午餐」；漣那張（餐廳）標「分開吃」（吃法只有餐廳有）
+  // 3. 水族館標「午餐」；漣那張標「分組」
   const aquarium = tlRow(page, 'i-6');
   await aquarium.getByTestId('tag-edit').click();
-  await aquarium.getByTestId('tag-meal-lunch').click();
-  await expect(aquarium.getByTestId('tag-meal')).toHaveText('午餐');
+  await page.getByTestId('tag-popover').getByTestId('tag-opt-lunch').click();
+  await expect(aquarium.getByTestId('item-tag')).toHaveText(['午餐']);
+  await page.keyboard.press('Escape');
   const lunch = tlRow(page, 'i-7');
   await lunch.getByTestId('tag-edit').click();
-  await lunch.getByTestId('tag-dining-separate').click();
-  await expect(lunch.getByTestId('tag-dining')).toHaveText('分開吃');
+  await page.getByTestId('tag-popover').getByTestId('tag-opt-groups').click();
+  await expect(lunch.getByTestId('item-tag')).toHaveText(['午餐', '分組']);
+  await page.keyboard.press('Escape');
 
   // 4. 第一段交通改計程車
   const leg = page.getByTestId('timeline').getByTestId('tl-leg').first();
@@ -780,7 +784,7 @@ test('第五輪：資料卡右上角的編號——2/3 依序 0（出發的住�
   const tl = page.getByTestId('timeline');
   await expect(tl.getByTestId('tl-mark')).toHaveText(['0', '1', '2', '3']);
   // 類型色塊：住宿、景點、餐廳、住宿
-  await expect(tl.getByTestId('tl-card-type')).toHaveText(['宿', '景', '餐', '宿']);
+  await expect(tl.getByTestId('item-type')).toHaveText(['宿', '景', '餐', '宿']);
 });
 
 test('第五輪：點交通卡距離不變（步行、計程車平常就用道路路線的距離；OSRM 用假的回應）', async ({ page }) => {
@@ -927,4 +931,87 @@ test('第五輪：地圖彈窗在日期列上面（靠近上緣的點，彈窗�
   expect(y).toBeLessThan(Math.min(c.y + c.height, bar.y + bar.height));
   const onTop = await page.evaluate(([x, y]) => !!document.elementFromPoint(x, y)?.closest('[data-testid="preview-card"]'), [x, y]);
   expect(onTop).toBe(true);
+});
+
+// 第六輪 §2.1、§2.2：標籤彈窗（多選、立刻存、點外面關）、資料卡四欄對齊、這晚的方案
+test('標籤：多選、再點取消、點外面關', async ({ page }) => {
+  await ready(page);
+  await showDay(page, '2027-02-03');
+  const lamer = tlRow(page, 'i-3');
+  const tags = lamer.getByTestId('item-tag');
+  await expect(tags).toHaveText(['午餐']);
+  await expect(lamer.getByTestId('tag-edit')).toHaveCount(0);
+  await enterPlanning(page);
+  await lamer.getByTestId('tag-edit').click();
+  const pop = page.getByTestId('tag-popover');
+  await expect(pop).toBeVisible();
+  expect(await pop.evaluate((el) => el.parentElement === document.body)).toBe(true);
+  // La Mer 是餐廳：三組都有
+  await expect(pop.getByRole('menuitemcheckbox')).toHaveCount(10);
+  await pop.getByTestId('tag-opt-breakfast').click();
+  await expect(tags).toHaveText(['早餐', '午餐']);
+  await expect(pop.getByTestId('tag-opt-breakfast')).toHaveAttribute('aria-checked', 'true');
+  await pop.getByTestId('tag-opt-lunch').click();
+  await expect(tags).toHaveText(['早餐']);
+  await expect(pop.getByTestId('tag-opt-lunch')).toHaveAttribute('aria-checked', 'false');
+  await pop.getByTestId('tag-opt-groups').click();
+  await expect(tags).toHaveText(['早餐', '分組']);
+  await pop.getByTestId('tag-opt-all').click();
+  await expect(tags).toHaveText(['早餐', '全員']);
+  await expect.poll(() => th(page, `__th.dataStore.getState().itinerary.days.find((d) => d.date === '2027-02-03').items.find((x) => x.id === 'i-3').tags`)).toEqual(['breakfast', 'all']);
+  // 點地圖空白處：彈窗關掉
+  const map = (await page.locator('.maplibregl-canvas').boundingBox())!;
+  await page.mouse.click(map.x + 40, map.y + map.height / 2);
+  await expect(pop).toHaveCount(0);
+  // 沒有標籤時是「＋ 標籤」
+  const spot = tlRow(page, 'i-2');
+  await expect(spot.getByTestId('tag-edit')).toHaveText('＋ 標籤');
+});
+
+test('資料卡：宿、景、餐的類型色塊左緣對齊，⋯ 都在右邊', async ({ page }) => {
+  await ready(page);
+  await showDay(page, '2027-02-03');
+  const tl = page.getByTestId('timeline');
+  const xs = (l: Locator) => l.evaluateAll((els) => els.map((e) => Math.round(e.getBoundingClientRect().x)));
+  await expect(tl.getByTestId('item-type')).toHaveCount(4);
+  expect(new Set(await xs(tl.getByTestId('item-type'))).size).toBe(1);
+  await enterPlanning(page);
+  await expect(tl.getByTestId('item-type')).toHaveCount(4);
+  expect(new Set(await xs(tl.getByTestId('item-type'))).size).toBe(1);
+  // 出發的住宿沒有 ⋯；景、餐、回住宿的 ⋯ 在同一條直線上，也在編號下面
+  const menus = tl.getByTestId('item-menu');
+  await expect(menus).toHaveCount(3);
+  expect(new Set(await xs(menus)).size).toBe(1);
+  const lodging = tl.locator('.tl-lodging');
+  const no = (await lodging.getByTestId('tl-mark').boundingBox())!;
+  const menu = (await lodging.getByTestId('item-menu').boundingBox())!;
+  expect(menu.y).toBeGreaterThanOrEqual(no.y + no.height - 1);
+});
+
+test('回住宿的卡：這晚的方案三選一，再點取消', async ({ page }) => {
+  await ready(page);
+  await showDay(page, DAY);
+  const lodging = page.getByTestId('timeline').locator('.tl-lodging');
+  const tag = lodging.getByTestId('lodging-plan-tag');
+  // 這晚沒選：照住宿資料（一泊二食），淡色
+  await expect(tag).toHaveText('一泊二食');
+  await expect(tag).toHaveAttribute('data-from', 'data');
+  await enterPlanning(page);
+  await lodging.getByTestId('tag-edit').click();
+  const pop = page.getByTestId('lodging-plan-popover');
+  await expect(pop.getByRole('menuitemradio')).toHaveText(['一泊二食', '只含早餐', '素泊']);
+  await pop.getByTestId('lodging-plan-breakfast').click();
+  await expect(tag).toHaveText('只含早餐');
+  await expect(tag).toHaveAttribute('data-from', 'day');
+  await expect(pop.getByTestId('lodging-plan-breakfast')).toHaveAttribute('aria-checked', 'true');
+  await pop.getByTestId('lodging-plan-none').click();
+  await expect(tag).toHaveText('素泊');
+  await pop.getByTestId('lodging-plan-none').click();
+  await expect(tag).toHaveText('一泊二食');
+  await expect(tag).toHaveAttribute('data-from', 'data');
+  const day = (await th(page, `__th.dataStore.getState().itinerary.days.find((d) => d.date === '${DAY}')`)) as { lodging: string; lodgingMeals: unknown };
+  expect(day.lodging).toBe('futami-oishiya');
+  expect(day.lodgingMeals ?? null).toBeNull();
+  await page.keyboard.press('Escape');
+  await expect(pop).toHaveCount(0);
 });

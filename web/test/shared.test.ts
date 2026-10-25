@@ -4,6 +4,7 @@ import { tagGroupsFor, toggleLodgingPlan, toggleTag } from '../src/shared/tagOpt
 import { cardActions } from '../src/shared/cardActions.ts';
 import { askAiPrompts } from '../src/shared/askAiPrompts.ts';
 import { dayLabel, isRedDay } from '../src/lib/trip.ts';
+import { placePopover } from '../src/lib/popover.ts';
 
 test('toggleTag：全員、分組互斥', () => {
   assert.deepEqual(toggleTag(['groups', 'lunch'], 'all'), ['lunch', 'all']);
@@ -41,3 +42,14 @@ test('isRedDay', () => {
   assert.equal(isRedDay('2027-02-10'), false);
 });
 test('dayLabel 不寫假日', () => assert.equal(dayLabel('2027-02-11'), '2/11（四）'));
+test('placePopover：靠右下角時往上、往左翻', () => {
+  const p = placePopover({ left: 1180, top: 760, right: 1260, bottom: 790, width: 80, height: 30 }, { w: 300, h: 200 }, { w: 1280, h: 800 });
+  assert.ok(p.left + 300 <= 1280 - 8);
+  assert.ok(p.top + 200 <= 760);
+});
+test('placePopover：預設在下面、左緣對齊', () => {
+  assert.deepEqual(placePopover({ left: 100, top: 100, right: 180, bottom: 130, width: 80, height: 30 }, { w: 300, h: 200 }, { w: 1280, h: 800 }), { left: 100, top: 136 });
+});
+test('placePopover：比視窗還大時夾在離邊緣 8px 的地方', () => {
+  assert.deepEqual(placePopover({ left: 2, top: 2, right: 20, bottom: 20, width: 18, height: 18 }, { w: 300, h: 900 }, { w: 400, h: 800 }), { left: 8, top: 8 });
+});

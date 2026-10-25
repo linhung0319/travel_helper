@@ -1,86 +1,76 @@
-// 時間軸卡片名稱下面那一排 tag（設計 §7）：用餐（早餐／午餐／晚餐／點心）在前、吃法（全員／分組）在後、預約狀態最後。
-// tag 都是使用者自己標的（引擎猜的用餐不顯示）。編輯中點那一排（或 ⋯ 選單的「標用餐」「標吃法」）跳出選單改；一般模式只看。
-// 暫時版（第六輪 Task 1）：只求能編譯，每次切換一個標籤；整個重做是 Task 3。
+// 時間軸卡片名稱下面那一排標籤（設計 §2.1）：照 visit.tags 依分組（用餐、誰去、安排）畫小圓角膠囊，預約狀態放最後。
+// 編輯中點那一排（沒有標籤時是「＋ 標籤」，⋯ 選單的「🏷 標籤」也一樣）打開 TagPopover：每組一列、可以多選，點了立刻存、彈窗不關。
+// 回住宿那張宿的卡用「這晚的方案」（LodgingPlanPopover，三選一、再點取消＝照住宿資料）；照資料時字是淡色。
+// 出發那張宿的卡只顯示前一晚的方案（唯讀）。一般模式標籤只看、不能點。分組、互斥、哪種卡有哪幾組寫在 shared/tagOptions.ts。
 
-import { useEffect, useRef } from 'react';
-import { setTags, type MealKind, type TagId } from '@travel-helper/engine';
-import type { VisitItem } from '@travel-helper/engine/types';
+import { useRef, type CSSProperties } from 'react';
+import { setLodging, setTags, type LodgingMeals, type TagId } from '@travel-helper/engine';
+import type { ItineraryDay, VisitItem } from '@travel-helper/engine/types';
 import { shared } from '../appShared.ts';
 import { useApp, useData } from '../hooks.ts';
+import { findItemRef } from '../lib/planView.ts';
+import { shortDayLabel } from '../lib/trip.ts';
+import { LODGING_PLANS, TAG_GROUPS, TAG_LABELS, tagGroupsFor, toggleLodgingPlan, toggleTag, type TagCardKind, type TagGroup } from '../shared/tagOptions.ts';
+import type { Place } from '../data/types.ts';
+import { Popover } from './Popover.tsx';
 import { ReservationTag } from './Reservations.tsx';
 
-export const MEAL_LABELS: Record<MealKind, string> = { breakfast: '早餐', lunch: '午餐', dinner: '晚餐', snack: '點心' };
-export const DINING_LABELS: Record<'all' | 'groups', string> = { all: '全員', groups: '分組' };
-const MEALS: MealKind[] = ['breakfast', 'lunch', 'dinner', 'snack'];
-const DININGS: ('all' | 'groups')[] = ['all', 'groups'];
-
-
-/** 這張卡片有沒有餐廳（有才能標吃法） */
-export function useHasRestaurant(visit: VisitItem | null): boolean {
-  return useData((s) => !!visit?.options.some((o) => s.byId.get(o.place)?.type === 'restaurant'));
+/** 地點類型 → 標籤用的卡片種類（景、餐、站以外都當自訂的點） */
+export function tagKindOf(type: Place['type'] | null | undefined): TagCardKind {
+  return type === 'spot' || type === 'restaurant' || type === 'station' ? type : 'custom';
 }
 
-/** 用餐、吃法的選單；選了就存（後面的時間不受影響） */
-function TagMenu({ visit, mealTags, onClose }: { visit: VisitItem; mealTags: MealKind[]; onClose: () => void }) {
-  const ref = useRef<HTMLSpanElement>(null);
-  const hasRestaurant = useHasRestaurant(visit);
+/** 分組的顏色變數（膠囊、彈窗裡選了的按鈕都用） */
+const groupStyle = (g: TagGroup) => ({ '--tag-bg': g.bg, '--tag-fg': g.fg }) as CSSProperties;
+
+const groupOf = (t: TagId) => TAG_GROUPS.find((g) => g.tags.includes(t))!;
+
+/** 標籤彈窗：每組一列膠囊按鈕（多選；誰去互斥）。點了立刻存，彈窗不關 */
+export function TagPopover({ visit, kind, anchor, onClose }: { visit: VisitItem; kind: TagCardKind; anchor: HTMLElement | null; onClose: () => void }) {
   const have = visit.tags ?? [];
-  useEffect(() => {
-    const close = (e: PointerEvent) => {
-      if (!ref.current?.parentElement?.contains(e.target as Node)) onClose();
-    };
-    document.addEventListener('pointerdown', close);
-    return () => document.removeEventListener('pointerdown', close);
-  }, [onClose]);
-  /** 切換一個標籤（用餐、吃法各只留一個） */
-  const toggle = (id: TagId | null, group: readonly string[], label: string) => {
-    onClose();
-    const on = id != null && have.includes(id);
-    const rest = have.filter((t) => !group.includes(t));
-    const next = id == null || on ? rest : [...rest, id];
-    void shared.changeItinerary((it) => setTags(it, visit.id, next), id == null || on ? `不標${label}` : `標成${id in DINING_LABELS ? DINING_LABELS[id as 'all' | 'groups'] : MEAL_LABELS[id as MealKind]}`);
+  /** 切換一個標籤；用存的當下的行程算，連點兩下也不會用到舊的 */
+  const toggle = (tag: TagId) => {
+    const on = have.includes(tag);
+    void shared.changeItinerary(
+      (it) => {
+        const ref = findItemRef(it, visit.id);
+        const cur = ref?.item.type === 'visit' ? (ref.item.tags ?? []) : [];
+        return setTags(it, visit.id, toggleTag(cur, tag));
+      },
+      on ? `取消${TAG_LABELS[tag]}` : `標成${TAG_LABELS[tag]}`,
+    );
   };
-  const option = (label: string, on: boolean, onClick: () => void, testId: string) => (
-    <button key={label} type="button" role="menuitemradio" aria-checked={on} className={`pill small-pill ${on ? 'on' : ''}`} onClick={onClick} data-testid={testId}>
-      {label}
-    </button>
-  );
   return (
-    <span className="menu tag-menu" role="menu" ref={ref} data-testid="tag-menu">
-      <span className="tag-menu-group">
-        <span className="muted small">用餐</span>
-        {MEALS.map((m) => option(MEAL_LABELS[m], mealTags.includes(m), () => toggle(m, MEALS, '用餐'), `tag-meal-${m}`))}
-        {option('不標', !mealTags.length, () => toggle(null, MEALS, '用餐'), 'tag-meal-none')}
-      </span>
-      {hasRestaurant && (
-        <span className="tag-menu-group">
-          <span className="muted small">吃法</span>
-          {DININGS.map((d) => option(DINING_LABELS[d], have.includes(d), () => toggle(d, DININGS, '吃法'), `tag-dining-${d}`))}
-          {option('不標', !DININGS.some((d) => have.includes(d)), () => toggle(null, DININGS, '吃法'), 'tag-dining-none')}
-        </span>
-      )}
-    </span>
+    <Popover anchor={anchor} open onClose={onClose} testId="tag-popover">
+      <div className="tag-popover" role="menu" aria-label="標籤">
+        {tagGroupsFor(kind).map((g) => (
+          <div key={g.id} className="tag-popover-group" role="group" aria-label={g.title} style={groupStyle(g)}>
+            <span className="tag-popover-title">
+              {g.icon} {g.title}
+            </span>
+            <span className="tag-popover-opts">
+              {g.tags.map((t) => (
+                <button key={t} type="button" role="menuitemcheckbox" aria-checked={have.includes(t)} className={`tag-opt ${have.includes(t) ? 'on' : ''}`} onClick={() => toggle(t)} data-testid={`tag-opt-${t}`}>
+                  {TAG_LABELS[t]}
+                </button>
+              ))}
+            </span>
+          </div>
+        ))}
+      </div>
+    </Popover>
   );
 }
 
-/** 名稱下面的 tag 那一排。open／onOpenChange 由卡片管（⋯ 選單也會打開） */
-export function ItemTags({ visit, mealTags, date, placeId, open, onOpenChange }: { visit: VisitItem; mealTags: MealKind[]; date: string; placeId: string | null; open: boolean; onOpenChange: (open: boolean) => void }) {
+/** 名稱下面的標籤那一排。open／onOpenChange 由卡片管（⋯ 選單也會打開） */
+export function ItemTags({ visit, kind, date, placeId, open, onOpenChange }: { visit: VisitItem; kind: TagCardKind; date: string; placeId: string | null; open: boolean; onOpenChange: (open: boolean) => void }) {
   const planning = useApp((s) => s.planning);
-  const dinings = DININGS.filter((d) => visit.tags?.includes(d));
-  const tags = (
-    <>
-      {mealTags.map((m) => (
-        <span key={m} className="badge tag-meal" data-testid="tag-meal">
-          {MEAL_LABELS[m]}
-        </span>
-      ))}
-      {dinings.map((d) => (
-        <span key={d} className="badge tag-dining" data-testid="tag-dining">
-          {DINING_LABELS[d]}
-        </span>
-      ))}
-    </>
-  );
+  const anchor = useRef<HTMLSpanElement>(null);
+  const tags = (visit.tags ?? []).map((t) => (
+    <span key={t} className="badge item-tag" style={groupStyle(groupOf(t))} data-tag={t} data-testid="item-tag">
+      {TAG_LABELS[t]}
+    </span>
+  ));
   const reservation = placeId ? <ReservationTag date={date} placeId={placeId} /> : null;
   if (!planning) {
     // 沒有 tag 時這一排是空的（CSS 的 :empty 藏起來）
@@ -92,13 +82,83 @@ export function ItemTags({ visit, mealTags, date, placeId, open, onOpenChange }:
     );
   }
   return (
-    <span className="item-tags editable" data-testid="item-tags">
-      <button type="button" className="tag-edit" aria-expanded={open} aria-label="改用餐、吃法的標籤" onClick={() => onOpenChange(!open)} data-testid="tag-edit">
-        {tags}
-        {!mealTags.length && !dinings.length && <span className="muted small">＋ 標籤</span>}
+    <span className="item-tags editable" data-testid="item-tags" ref={anchor}>
+      <button type="button" className="tag-edit" aria-haspopup="menu" aria-expanded={open} aria-label={tags.length ? '改標籤' : undefined} onClick={() => onOpenChange(!open)} data-testid="tag-edit">
+        {tags.length ? tags : <span className="muted small">＋ 標籤</span>}
       </button>
       {reservation}
-      {open && <TagMenu visit={visit} mealTags={mealTags} onClose={() => onOpenChange(false)} />}
+      {open && <TagPopover visit={visit} kind={kind} anchor={anchor.current} onClose={() => onOpenChange(false)} />}
+    </span>
+  );
+}
+
+/** 這晚的方案：lodgingMeals 有填用它（from day），沒填照住宿資料的 meals（from data）；「看方案」、不知道就沒有 */
+export function lodgingPlanShown(day: ItineraryDay | undefined, p: Place | undefined): { value: LodgingMeals; label: string; from: 'day' | 'data' } | null {
+  const own = day?.lodgingMeals ?? null;
+  const value = (own ?? p?.raw.meals ?? null) as LodgingMeals | 'varies' | null;
+  const plan = LODGING_PLANS.find((x) => x.value === value);
+  return plan ? { value: plan.value, label: plan.label, from: own ? 'day' : 'data' } : null;
+}
+
+/** 「這晚的方案」彈窗：三選一，再點選了的那個＝回到照住宿資料（null）。住宿本身不變 */
+export function LodgingPlanPopover({ date, anchor, onClose }: { date: string; anchor: HTMLElement | null; onClose: () => void }) {
+  const cur = useData((s) => s.itinerary?.days.find((d) => d.date === date)?.lodgingMeals ?? null);
+  /** 選一個方案（再點一次取消）；用存的當下的行程算 */
+  const pick = (v: LodgingMeals) => {
+    const next = toggleLodgingPlan(cur, v);
+    void shared.changeItinerary(
+      (it) => {
+        const d = it.days.find((x) => x.date === date)!;
+        return setLodging(it, date, d.lodging, toggleLodgingPlan(d.lodgingMeals ?? null, v));
+      },
+      `${shortDayLabel(date)} 這晚的方案：${next ? LODGING_PLANS.find((x) => x.value === next)!.label : '照住宿資料'}`,
+    );
+  };
+  return (
+    <Popover anchor={anchor} open onClose={onClose} testId="lodging-plan-popover">
+      <div className="tag-popover" role="menu" aria-label="這晚的方案">
+        <div className="tag-popover-group tag-lodging-group" role="group" aria-label="這晚的方案">
+          <span className="tag-popover-title">🛏 這晚的方案</span>
+          <span className="tag-popover-opts">
+            {LODGING_PLANS.map((x) => (
+              <button key={x.value} type="button" role="menuitemradio" aria-checked={cur === x.value} className={`tag-opt ${cur === x.value ? 'on' : ''}`} onClick={() => pick(x.value)} data-testid={`lodging-plan-${x.value}`}>
+                {x.label}
+              </button>
+            ))}
+          </span>
+        </div>
+      </div>
+    </Popover>
+  );
+}
+
+/**
+ * 宿的卡的標籤那一排：這晚的方案＋預約狀態。
+ * editable（回住宿那張、編輯中）時點那一排打開 LodgingPlanPopover；出發那張傳前一晚的 day，唯讀、不畫預約
+ */
+export function LodgingTags({ day, place, reservationDate, editable, open, onOpenChange }: { day: ItineraryDay | undefined; place: Place | undefined; reservationDate: string | null; editable: boolean; open: boolean; onOpenChange: (open: boolean) => void }) {
+  const anchor = useRef<HTMLSpanElement>(null);
+  const shown = lodgingPlanShown(day, place);
+  const tag = shown && (
+    <span className={`badge tag-lodging ${shown.from === 'data' ? 'from-data' : ''}`} data-from={shown.from} title={shown.from === 'data' ? '照住宿資料' : undefined} data-testid="lodging-plan-tag">
+      {shown.label}
+    </span>
+  );
+  const reservation = place && reservationDate ? <ReservationTag date={reservationDate} placeId={place.id} /> : null;
+  if (!editable || !day)
+    return (
+      <span className="item-tags">
+        {tag}
+        {reservation}
+      </span>
+    );
+  return (
+    <span className="item-tags editable" ref={anchor}>
+      <button type="button" className="tag-edit" aria-haspopup="menu" aria-expanded={open} aria-label={tag ? '改這晚的方案' : undefined} onClick={() => onOpenChange(!open)} data-testid="tag-edit">
+        {tag || <span className="muted small">＋ 標籤</span>}
+      </button>
+      {reservation}
+      {open && <LodgingPlanPopover date={day.date} anchor={anchor.current} onClose={() => onOpenChange(false)} />}
     </span>
   );
 }

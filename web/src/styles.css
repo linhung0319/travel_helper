@@ -18,6 +18,8 @@
   --radius: 12px;
   --shadow: 0 4px 16px rgba(0, 0, 0, 0.18);
   --tap: 44px; /* 長輩也要點得到（interaction-design §0） */
+  /* 浮動層（標籤彈窗、⋯ 選單，Popover.tsx）：高過地圖、日期列、浮動列、編輯藍條、對話框，只比提示（toast 120）低 */
+  --z-popover: 110;
   font-family: system-ui, -apple-system, 'Segoe UI', 'Noto Sans TC', 'Hiragino Sans', 'Microsoft JhengHei', sans-serif;
   font-size: 16px;
   line-height: 1.5;
@@ -453,6 +455,7 @@ a {
  *   16 .map-top（日期列、右上工具列、編輯中條）
  *   18 .timetable-pop（班次表）
  *   19 .preview-card.anchored（地圖彈窗，第五輪 §10：永遠在最上層，靠近上緣時蓋在日期列上）
+ *   --z-popover（110）.popover（標籤彈窗、⋯ 選單；portal 到 body，比上面全部都高）
  * 手機的拉起面板（.sheet 8、.map-panel／.timetable-pop 50）不算：彈窗在手機是固定在下方的 docked，留在面板下面。
  */
 .preview-card {
@@ -1904,12 +1907,36 @@ button.edit-toggle {
   margin-left: 0;
 }
 
-.tag-dining {
-  background: var(--soft);
-  border: 1px solid var(--line);
+/* 標籤：小圓角膠囊，顏色照分組（ItemTags.tsx 用 --tag-bg／--tag-fg 傳進來；設計 §2.1） */
+.item-tag {
+  border-radius: 999px;
+  padding: 0 8px;
+  background: var(--tag-bg);
+  color: var(--tag-fg);
 }
 
-/* 編輯：點 tag 那一排改 */
+/* 這晚的方案（宿的卡）：紫色；照住宿資料（這晚沒選）時用淡色虛框 */
+.tag-lodging,
+.tag-lodging-group {
+  --tag-bg: #efe7fb;
+  --tag-fg: #5b3a9c;
+}
+
+.tag-lodging {
+  border-radius: 999px;
+  padding: 0 8px;
+  background: var(--tag-bg);
+  color: var(--tag-fg);
+  border: 1px solid transparent;
+}
+
+.tag-lodging.from-data {
+  background: none;
+  color: #9a86c4;
+  border: 1px dashed #d3c6ef;
+}
+
+/* 編輯：點標籤那一排打開標籤彈窗 */
 .tag-edit {
   display: inline-flex;
   align-items: center;
@@ -1926,38 +1953,67 @@ button.edit-toggle {
   margin-left: 0;
 }
 
-/* 選單放在 tag 那一排下面（不浮出去，手機也不會超出畫面） */
-.menu.tag-menu {
-  position: static;
-  flex: 0 0 100%;
-  min-width: 0;
-  max-width: 320px;
-  gap: 8px;
-  padding: 8px;
+/* 浮動層（Popover.tsx）：portal 到 body、position: fixed，位置由 placePopover 算 */
+.popover {
+  position: fixed;
+  z-index: var(--z-popover);
+  background: var(--bg);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  max-width: calc(100vw - 16px);
+  max-height: calc(100vh - 16px);
+  overflow-y: auto;
 }
 
-.tag-menu-group {
+/* 標籤彈窗：每組一列（分組標題有 emoji），膠囊按鈕；選了的用分組的顏色 */
+.tag-popover {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 10px 12px;
+  width: 300px;
+  max-width: 100%;
+}
+
+.tag-popover-group {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.tag-popover-title {
+  font-size: 0.8rem;
+  color: var(--muted);
+}
+
+.tag-popover-opts {
   display: flex;
   flex-wrap: wrap;
-  align-items: center;
   gap: 6px;
 }
 
-.tag-menu-group > .muted {
-  flex: 0 0 100%;
-}
-
-.menu .tag-menu-group button.pill {
+.tag-opt {
   border: 1px solid var(--line);
   border-radius: 999px;
-  min-height: 36px;
+  background: var(--bg);
+  color: var(--fg);
+  min-height: 32px;
   padding: 2px 12px;
+  font: inherit;
+  font-size: 0.88rem;
+  cursor: pointer;
 }
 
-.menu .tag-menu-group button.pill.on {
-  background: var(--fg);
-  color: #fff;
-  border-color: var(--fg);
+.tag-opt:hover {
+  border-color: var(--tag-fg);
+}
+
+.tag-opt.on {
+  background: var(--tag-bg);
+  color: var(--tag-fg);
+  border-color: var(--tag-fg);
+  font-weight: 600;
 }
 
 .menu-note {
@@ -3697,7 +3753,6 @@ body.dragging-place [data-drop-ai].drop-over {
 
 .tl-card.movable {
   position: relative;
-  padding-left: 22px;
   cursor: grab;
 }
 
@@ -4907,8 +4962,31 @@ button.option-crown {
   padding-left: 44px;
 }
 
+/*
+ * 資料卡四欄（第六輪 §2.2）：把手欄（padding-left，把手是 absolute）、類型色塊＋內容（第一格）、右邊動作欄（編號、⋯）。
+ * 編輯中每張卡都留把手欄（宿的卡沒有把手，一樣留白）；不在編輯中每張卡都不留。
+ */
 .tl-row.tl-card {
-  padding-right: 38px;
+  grid-template-columns: minmax(0, 1fr) 32px;
+  gap: 6px;
+  padding-right: 6px;
+}
+
+.tl-row.tl-card.editing {
+  padding-left: 22px;
+}
+
+.tl-card-actions {
+  grid-column: 2;
+  grid-row: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+
+.tl-card-actions .item-menu {
+  margin: 0;
 }
 
 .tl-card-inner {
@@ -4936,11 +5014,8 @@ button.option-crown {
   justify-content: center;
 }
 
-/* 右上角的編號：類型色的實心圓、白字 */
+/* 動作欄上面的編號：類型色的實心圓、白字 */
 .tl-card-no {
-  position: absolute;
-  top: 6px;
-  right: 8px;
   min-width: 22px;
   height: 22px;
   padding: 0 4px;

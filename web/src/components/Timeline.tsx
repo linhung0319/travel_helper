@@ -1,15 +1,15 @@
 // 這一天的時間軸（interaction-design §3、§6、第五輪 §2）：引擎算好的項目、相鄰兩點之間的交通、等待、警告。
 // 手機是直的清單，電腦放在地圖下方。左邊一條虛線從一張資料卡串到下一張，交通卡在虛線右邊（右緣和資料卡對齊）。
 // 點項目地圖跳過去；到了要等（📌、還沒開門）時交通卡下面一條黃色虛框的「⏳ 幾點到，等 N 分（原因）」，點了看附近的景點。
-// 資料卡只顯示要看的（設計 §6）：左邊類型色塊（宿／景／餐／站／機／點）、右上角編號（類型色的實心圓）、
-// 時間（開始–結束）、停留時間（X小時MM分）、名稱、tag、❤️ 頭像、⚠ 數。
+// 資料卡只顯示要看的（設計 §6）：左邊類型色塊（宿／景／餐／站／機／點）、時間（開始–結束）、停留時間（X小時MM分）、名稱、標籤、❤️ 頭像、⚠ 數。
+// 資料卡固定四欄（第六輪 §2.2）：把手欄（編輯中每張卡都留，宿的卡也是）、類型色塊、內容、右邊動作欄（上面編號、下面 ⋯），所以色塊、⋯ 上下對齊。
 // 卡片底色是類型的淡色；起點、終點的住宿和造訪是同樣的卡片（只寫一個時間）。有備卡的卡片疊著淡色卡、右上角 👑、‹ n/m › 換著看。
-// 編輯中才有：停留時間 −／＋、點時間固定開始（📌）、⋯ 選單（刪除、移到第 _ 天、移進／移出分組、標用餐、標吃法）、
+// 編輯中才有：停留時間 −／＋、點時間固定開始（📌）、⋯ 選單（刪除、移到第 _ 天、移進／移出分組、🏷 標籤）、點標籤那一排開標籤彈窗（ItemTags.tsx）、
 // 拖卡片（電腦版拖、手機長按後拖）：放在卡片中間合併、邊緣換順序；看備卡時拖的是那張備卡；看備卡時的「設為主要」「拿出來」。
 // 看備卡時預約 tag、警告跟著那張備卡，⋯ 選單收起來（裡面的刪除是刪整張卡片）。
 
 import { useCallback, useEffect, useRef, useState, type ReactNode } from 'react';
-import { moveItemTo, removeItem, selectOption, setLodging, fromMinutes, setStart, setStay, toMinutes, type DayPlan, type EngineWarning, type Gap, type LodgingMeals, type TimelineEntry } from '@travel-helper/engine';
+import { moveItemTo, removeItem, selectOption, setLodging, fromMinutes, setStart, setStay, toMinutes, type DayPlan, type EngineWarning, type Gap, type TimelineEntry } from '@travel-helper/engine';
 import type { ItineraryDay, ItineraryItem, VisitItem } from '@travel-helper/engine/types';
 import { appStore } from '../store.ts';
 import { commands } from '../appCommands.ts';
@@ -24,8 +24,7 @@ import { TYPE_COLORS } from '../lib/typeStyle.ts';
 import type { Place } from '../data/types.ts';
 import { AvatarStack, PlaceChip } from './common.tsx';
 import { LegRow } from './LegRow.tsx';
-import { ReservationTag } from './Reservations.tsx';
-import { ItemTags, useHasRestaurant } from './ItemTags.tsx';
+import { ItemTags, LodgingTags, tagKindOf } from './ItemTags.tsx';
 import { useLiked } from './Wishlist.tsx';
 import { pulseMark } from '../lib/mapPulse.ts';
 
@@ -45,13 +44,13 @@ function typeColor(type: Place['type'] | null | undefined): string {
 /** 資料卡（和候選卡）左邊的類型色塊：宿、景、餐、站、機、點 */
 export function CardType({ type }: { type: Place['type'] | 'airport' | null }) {
   return (
-    <span className="tl-card-type" style={{ background: typeColor(type === 'airport' ? null : type) }} aria-hidden data-testid="tl-card-type">
+    <span className="tl-card-type" style={{ background: typeColor(type === 'airport' ? null : type) }} aria-hidden data-testid="item-type">
       {cardTypeLetter(type)}
     </span>
   );
 }
 
-/** 資料卡右上角的編號（和地圖同一個號碼），類型色的實心圓、白字 */
+/** 資料卡右邊動作欄上面的編號（和地圖同一個號碼），類型色的實心圓、白字 */
 function CardNo({ entry, marks }: { entry: TimelineEntry; marks: Marks }) {
   const byId = useData((s) => s.byId);
   const label = marks.byEntry.get(entry);
@@ -60,6 +59,16 @@ function CardNo({ entry, marks }: { entry: TimelineEntry; marks: Marks }) {
   return (
     <span className="tl-card-no" style={{ background: typeColor(type) }} data-testid="tl-mark">
       {label}
+    </span>
+  );
+}
+
+/** 資料卡右邊的動作欄：上面編號、下面 ⋯（children）；每張卡同一個位置 */
+function CardActions({ entry, marks, children }: { entry: TimelineEntry; marks: Marks; children?: ReactNode }) {
+  return (
+    <span className="tl-card-actions">
+      <CardNo entry={entry} marks={marks} />
+      {children}
     </span>
   );
 }
@@ -97,7 +106,7 @@ function Warnings({ list }: { list: EngineWarning[] | undefined }) {
   );
 }
 
-/** 編輯中的手動選單；onTags：打開 tag 那一排的選單（造訪的卡片才有） */
+/** 編輯中的手動選單；onTags：打開標籤彈窗（造訪的卡片才有） */
 function ItemMenu({ itemId, item, onTags }: { itemId: string; item: ItineraryItem; onTags?: () => void }) {
   const [open, setOpen] = useState(false);
   const [confirm, setConfirm] = useState(false);
@@ -119,7 +128,6 @@ function ItemMenu({ itemId, item, onTags }: { itemId: string; item: ItineraryIte
       ? []
       : dayItems.flatMap((x) => (x.type === 'split' ? x.groups.filter((g) => g.id !== ref?.split?.group || x.id !== ref?.split?.id).map((g) => ({ splitId: x.id, groupId: g.id, name: g.name })) : []));
   const outIndex = ref?.split ? dayItems.findIndex((x) => x.id === ref.split!.id) + 1 : 0;
-  const hasRestaurant = useHasRestaurant(item.type === 'visit' ? item : null);
   return (
     <span className="item-menu">
       <button type="button" className="icon-button small" aria-label={`${label} 的選單`} aria-expanded={open} onClick={() => setOpen(!open)} data-testid="item-menu">
@@ -148,32 +156,17 @@ function ItemMenu({ itemId, item, onTags }: { itemId: string; item: ItineraryIte
             📅 移到第 _ 天
           </button>
           {item.type === 'visit' && onTags && (
-            <>
-              <button
-                type="button"
-                role="menuitem"
-                onClick={() => {
-                  setOpen(false);
-                  onTags();
-                }}
-                data-testid="menu-tag-meal"
-              >
-                🍱 標用餐
-              </button>
-              {hasRestaurant && (
-                <button
-                  type="button"
-                  role="menuitem"
-                  onClick={() => {
-                    setOpen(false);
-                    onTags();
-                  }}
-                  data-testid="menu-tag-dining"
-                >
-                  👥 標吃法
-                </button>
-              )}
-            </>
+            <button
+              type="button"
+              role="menuitem"
+              onClick={() => {
+                setOpen(false);
+                onTags();
+              }}
+              data-testid="menu-tags"
+            >
+              🏷 標籤
+            </button>
           )}
           {!confirm ? (
             <button type="button" role="menuitem" className="danger" onClick={() => setConfirm(true)} data-testid="item-delete">
@@ -192,16 +185,8 @@ function ItemMenu({ itemId, item, onTags }: { itemId: string; item: ItineraryIte
 
 const name = (p: Place | undefined) => (p ? p.name.zh || p.name.ja : '（不明）');
 
-/** 住宿這晚含的餐：照 lodgingMeals，沒填照住宿資料的 meals；「看方案」（varies）不顯示 */
-function lodgingMealTags(day: ItineraryDay, p: Place | undefined): string[] {
-  const meals = (day.lodgingMeals ?? p?.raw.meals ?? null) as LodgingMeals | 'varies' | null;
-  if (meals === 'dinner+breakfast') return ['含晚餐', '含早餐'];
-  if (meals === 'breakfast') return ['含早餐'];
-  return [];
-}
-
-/** 住宿卡片的 ⋯ 選單：清掉這晚的住宿 */
-function LodgingMenu({ date }: { date: string }) {
+/** 回住宿那張卡的 ⋯ 選單：這晚的方案（打開方案彈窗）、清掉這晚的住宿 */
+function LodgingMenu({ date, onPlan }: { date: string; onPlan: () => void }) {
   const [open, setOpen] = useState(false);
   return (
     <span className="item-menu">
@@ -210,6 +195,17 @@ function LodgingMenu({ date }: { date: string }) {
       </button>
       {open && (
         <span className="menu" role="menu">
+          <button
+            type="button"
+            role="menuitem"
+            onClick={() => {
+              setOpen(false);
+              onPlan();
+            }}
+            data-testid="menu-lodging-plan"
+          >
+            🏷 這晚的方案
+          </button>
           <button
             type="button"
             role="menuitem"
@@ -360,9 +356,15 @@ function EntryRow({ entry, day, warnings, plan, marks }: { entry: TimelineEntry;
   const likedMap = useLiked();
   const [tagsOpen, setTagsOpen] = useState(false);
 
+  // 編輯中每張資料卡都留把手欄（宿的卡沒有把手，也留空白），類型色塊才對齊
+  const editing = planning ? 'editing' : '';
+
   if (entry.kind === 'start') {
+    // 出發的住宿：只顯示前一晚的方案（唯讀）
+    const dayIndex = itinerary?.days.findIndex((d) => d.date === day.date) ?? -1;
+    const prevNight = dayIndex > 0 ? itinerary!.days[dayIndex - 1] : undefined;
     return (
-      <li className={`tl-row tl-card tl-start ${typeClass(p)}`} data-testid="tl-start" data-place={entry.placeId ?? ''}>
+      <li className={`tl-row tl-card tl-start ${typeClass(p)} ${editing}`} data-testid="tl-start" data-place={entry.placeId ?? ''}>
         <span className="tl-card-inner">
           <CardType type={p?.type ?? null} />
           <span className="tl-body">
@@ -378,9 +380,10 @@ function EntryRow({ entry, day, warnings, plan, marks }: { entry: TimelineEntry;
                 <span className="muted">上一站</span>
               )}
             </span>
+            {p?.type === 'lodging' && <LodgingTags day={prevNight} place={p} reservationDate={null} editable={false} open={false} onOpenChange={() => {}} />}
           </span>
         </span>
-        <CardNo entry={entry} marks={marks} />
+        <CardActions entry={entry} marks={marks} />
       </li>
     );
   }
@@ -434,7 +437,7 @@ function EntryRow({ entry, day, warnings, plan, marks }: { entry: TimelineEntry;
       <>
         <LegRow entry={entry} date={day.date} />
         <WaitRow entry={entry} item={null} plan={plan} />
-        <li className={`tl-row tl-card tl-lodging ${typeClass(p)}`} data-testid="tl-row" data-place={entry.placeId ?? ''}>
+        <li className={`tl-row tl-card tl-lodging ${typeClass(p)} ${editing}`} data-testid="tl-row" data-place={entry.placeId ?? ''}>
           <span className="tl-card-inner">
             <CardType type={p?.type ?? 'lodging'} />
             <span className="tl-body">
@@ -445,19 +448,13 @@ function EntryRow({ entry, day, warnings, plan, marks }: { entry: TimelineEntry;
                 <button type="button" className="link-button tl-name" onClick={() => focusPlace(entry.placeId)}>
                   {p ? name(p) : entry.placeId}
                 </button>
-                {planning && <LodgingMenu date={day.date} />}
               </span>
-              <span className="item-tags">
-                {lodgingMealTags(day, p).map((t) => (
-                  <span key={t} className="badge tag-meal" data-testid="lodging-meal">
-                    {t}
-                  </span>
-                ))}
-                {p && <ReservationTag date={day.date} placeId={p.id} />}
-              </span>
+              <LodgingTags day={day} place={p} reservationDate={day.date} editable={planning} open={tagsOpen} onOpenChange={setTagsOpen} />
             </span>
           </span>
-          <CardNo entry={entry} marks={marks} />
+          <CardActions entry={entry} marks={marks}>
+            {planning && <LodgingMenu date={day.date} onPlan={() => setTagsOpen(true)} />}
+          </CardActions>
         </li>
       </>
     );
@@ -494,10 +491,9 @@ function EntryRow({ entry, day, warnings, plan, marks }: { entry: TimelineEntry;
             </button>
             {visit && liked && <AvatarStack ids={liked.likes} dislikes={liked.dislikes} />}
             <WarnToggle list={shownWarns} open={warnOpen} onToggle={() => setWarnOpen(!warnOpen)} />
-            {planning && item && item.type !== 'flight' && !backup && <ItemMenu itemId={item.id} item={item} onTags={visit ? () => setTagsOpen(true) : undefined} />}
           </span>
           <span className="tl-meta">
-            {visit && <ItemTags visit={visit} mealTags={entry.mealTags ?? []} date={day.date} placeId={shownPlace} open={tagsOpen} onOpenChange={setTagsOpen} />}
+            {visit && <ItemTags visit={visit} kind={tagKindOf(p?.type)} date={day.date} placeId={shownPlace} open={tagsOpen} onOpenChange={setTagsOpen} />}
             {v?.switcher}
           </span>
           {v?.actions}
@@ -514,7 +510,7 @@ function EntryRow({ entry, day, warnings, plan, marks }: { entry: TimelineEntry;
       <LegRow entry={entry} date={day.date} />
       <WaitRow entry={entry} item={visit} plan={plan} />
       <li
-        className={`tl-row tl-card tl-${entry.kind} ${typeClass(p)} ${stacked ? `stacked stacked-${stacked}` : ''} ${hovered && hovered === entry.placeId ? 'flash' : ''} ${movable ? 'movable' : ''}`}
+        className={`tl-row tl-card tl-${entry.kind} ${typeClass(p)} ${editing} ${stacked ? `stacked stacked-${stacked}` : ''} ${hovered && hovered === entry.placeId ? 'flash' : ''} ${movable ? 'movable' : ''}`}
         data-testid="tl-row"
         data-item={entry.itemId ?? ''}
         data-place={entry.placeId ?? ''}
@@ -533,7 +529,10 @@ function EntryRow({ entry, day, warnings, plan, marks }: { entry: TimelineEntry;
         ) : (
           content()
         )}
-        <CardNo entry={entry} marks={marks} />
+        <CardActions entry={entry} marks={marks}>
+          {/* 看備卡時 ⋯ 收起來（裡面的刪除是刪整張卡片） */}
+          {planning && item && item.type !== 'flight' && backup == null && <ItemMenu itemId={item.id} item={item} onTags={visit ? () => setTagsOpen(true) : undefined} />}
+        </CardActions>
       </li>
     </>
   );
