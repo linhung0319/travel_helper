@@ -28,7 +28,8 @@ import { closeMapPanel, closeTimetable, uiStore } from '../uiStore.ts';
 
 setWorkerUrl(maplibreWorkerUrl);
 
-const STYLE_URL = 'https://tiles.openfreemap.org/styles/liberty';
+/** 地圖的樣式（手機版詳情的小地圖也用） */
+export const STYLE_URL = 'https://tiles.openfreemap.org/styles/liberty';
 /** 放大到這裡以上，小點換成類別圖標（像 Google Maps） */
 export const ICON_ZOOM = 12;
 /** 這個縮放以上才顯示每個點的 ❤️ 數字 */

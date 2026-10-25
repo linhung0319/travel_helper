@@ -825,3 +825,299 @@
 .m-wish-add .day-picker-day {
   min-height: var(--tap);
 }
+
+/* ---------- 整頁詳情（§3.3） ---------- */
+
+/* 蓋住分頁內容，底部分頁留著（點了換分頁＝關掉詳情） */
+.m-detail {
+  bottom: calc(var(--m-tabbar-h) + env(safe-area-inset-bottom));
+}
+
+.m-detail-scroll {
+  flex: 1;
+  min-height: 0;
+  overflow-x: hidden;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+}
+
+/* 左上角「‹」：浮在照片上，捲下去也一直在 */
+.m-detail-back {
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  z-index: 2;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.85);
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.25);
+  color: #222;
+}
+
+.m-detail-hero {
+  position: relative;
+  background: var(--soft);
+}
+
+/* 大照片：左右滑，一次停一張 */
+.m-detail-photos {
+  display: flex;
+  overflow-x: auto;
+  overflow-y: hidden;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+  height: 260px;
+}
+
+.m-detail-photos::-webkit-scrollbar {
+  display: none;
+}
+
+.m-detail-slide {
+  flex: 0 0 100%;
+  margin: 0;
+  scroll-snap-align: start;
+  min-width: 0;
+}
+
+.m-detail-slide .photo,
+.m-detail-photos > .m-thumb {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.m-detail-photos > .m-thumb-fallback {
+  flex: 1;
+  height: 100%;
+  font-size: 3rem;
+}
+
+.m-detail-slide .photo-fallback {
+  display: grid;
+  place-items: center;
+}
+
+.m-detail-dots {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 8px;
+  display: flex;
+  justify-content: center;
+  gap: 5px;
+  pointer-events: none;
+}
+
+.m-detail-dots span {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.6);
+  box-shadow: 0 0 2px rgba(0, 0, 0, 0.4);
+}
+
+.m-detail-dots span.on {
+  background: #fff;
+}
+
+.m-detail-credit {
+  position: absolute;
+  right: 6px;
+  bottom: 4px;
+  max-width: 60%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  color: #fff;
+  font-size: 0.62rem;
+  text-shadow: 0 0 3px rgba(0, 0, 0, 0.8);
+}
+
+.m-detail-head {
+  padding: 10px 12px 4px;
+  min-width: 0;
+}
+
+.m-detail-title {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  min-width: 0;
+}
+
+.m-detail-title .m-h2 {
+  flex: 0 1 auto;
+}
+
+.m-detail-type {
+  flex: 0 0 auto;
+  display: grid;
+  place-items: center;
+  width: 24px;
+  height: 24px;
+  border-radius: 6px;
+  color: #fff;
+  font-size: 0.8rem;
+  font-weight: 800;
+}
+
+.m-detail-sub {
+  margin: 2px 0 0;
+  overflow-wrap: anywhere;
+}
+
+/* ❤️ 想去 N、👎 N：放大的按鈕 */
+.m-detail-votes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 10px;
+}
+
+.m-big-vote {
+  flex: 1 1 0;
+  min-width: 0;
+  min-height: var(--tap);
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: var(--bg);
+  font: inherit;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.m-big-vote.on {
+  border-color: #f3b4bd;
+  background: #fde8eb;
+}
+
+.m-detail-add {
+  flex: 1 1 100%;
+  min-width: 0;
+}
+
+.m-detail-add .add-to-day > .button {
+  width: 100%;
+  min-height: var(--tap);
+}
+
+.m-detail-add .day-picker-grid {
+  max-width: none;
+  grid-template-columns: repeat(7, minmax(0, 1fr));
+}
+
+.m-detail-add .day-picker-day {
+  min-height: var(--tap);
+}
+
+/* 分頁：捲下去時黏在最上面（左邊讓出「‹」的位置） */
+.m-detail-tabs {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  display: flex;
+  padding-left: 52px;
+  border-bottom: 1px solid var(--line);
+  background: var(--bg);
+}
+
+.m-detail-tabs button {
+  flex: 1 1 0;
+  min-width: 0;
+  min-height: var(--tap);
+  border: 0;
+  border-bottom: 2px solid transparent;
+  background: none;
+  font: inherit;
+  color: var(--muted);
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+.m-detail-tabs button.on {
+  border-bottom-color: var(--fg);
+  color: var(--fg);
+  font-weight: 700;
+}
+
+.m-detail-body {
+  padding: 4px 12px 24px;
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+.m-detail-body .link-button,
+.m-detail-body .text-button {
+  min-height: var(--tap);
+}
+
+.m-detail-dl .row {
+  padding: 6px 0;
+}
+
+.m-detail-access {
+  display: block;
+}
+
+/* 交通分頁的小地圖：不能互動，整塊是一個按鈕 */
+.m-minimap {
+  position: relative;
+  height: 160px;
+  margin: 12px 0 4px;
+  border-radius: var(--radius);
+  overflow: hidden;
+  background: var(--soft);
+}
+
+.m-minimap-map {
+  position: absolute;
+  inset: 0;
+}
+
+.m-minimap-hit {
+  position: absolute;
+  inset: 0;
+  border: 0;
+  background: none;
+  cursor: pointer;
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  padding: 8px;
+}
+
+.m-minimap-label {
+  padding: 4px 10px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.92);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.25);
+  font-size: 0.8rem;
+  font-weight: 700;
+}
+
+/* 問 AI（AskAiBox，網頁版共用）：手機上點的範圍至少 44px */
+.m-app .ask-ai-prompt,
+.m-app .ask-ai-input,
+.m-app .ask-ai-send {
+  min-height: var(--tap);
+}
+
+.m-app .ask-ai-send {
+  min-width: var(--tap);
+}
+
+/* 小地圖的版權字縮小，不蓋住地圖（展開／收起的按鈕被整塊按鈕擋住，拿掉） */
+.m-minimap .maplibregl-ctrl-attrib {
+  font-size: 9px;
+  line-height: 1.3;
+}
+
+.m-minimap .maplibregl-ctrl-attrib-button {
+  display: none !important;
+}
+
+.m-minimap .maplibregl-ctrl-attrib.maplibregl-compact {
+  min-height: 0;
+  padding: 1px 4px;
+}

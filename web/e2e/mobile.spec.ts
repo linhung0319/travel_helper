@@ -252,3 +252,132 @@ test('沒有照片的點顯示類型色塊', async ({ page }) => {
   await expect(fb).toBeVisible();
   await expect(fb).toHaveText(/^[景餐宿站點]$/);
 });
+
+/** 探索往下捲到 y，點一張整張在畫面裡的（點左上角，避開右下角的票），回傳那張的 id */
+async function openFromFeed(page: import('@playwright/test').Page, y: number) {
+  await goTab(page, 'explore');
+  await expect(page.getByTestId('m-feed-item').nth(3)).toBeVisible();
+  await page.locator('.m-page').evaluate((el, y) => el.scrollTo(0, y), y);
+  await expect.poll(() => page.locator('.m-page').evaluate((el) => Math.round(el.scrollTop))).toBe(y);
+  // 第一張整張都在畫面裡的（篩選、黏在上面的摘要、底部分頁都不擋）
+  const id = await page.evaluate(() => {
+    const el = [...document.querySelectorAll('[data-testid="m-feed-item"]')].find((e) => {
+      const r = e.getBoundingClientRect();
+      return r.top >= 80 && r.bottom <= window.innerHeight - 80;
+    });
+    return el?.getAttribute('data-id') ?? null;
+  });
+  expect(id).not.toBeNull();
+  const tile = page.locator(`[data-testid="m-feed-item"][data-id="${id}"]`);
+  await tile.click({ position: { x: 20, y: 20 } });
+  await expect(page.getByTestId('m-detail')).toHaveAttribute('data-id', id!);
+  return id!;
+}
+
+test('詳情：整頁、返回後捲動位置不變', async ({ page }) => {
+  await ready(page);
+  await openFromFeed(page, 800);
+  const detail = page.getByTestId('m-detail');
+  // 照片在最上面，下面是名稱、大按鈕 ❤️／👎；從探索打開沒有「加到某天」
+  await expect(detail.getByTestId('m-detail-photos')).toBeVisible();
+  await expect(detail.getByTestId('m-detail-name')).toBeVisible();
+  expect((await detail.getByTestId('m-detail-like').boundingBox())!.height).toBeGreaterThanOrEqual(44);
+  expect((await detail.getByTestId('m-detail-dislike').boundingBox())!.height).toBeGreaterThanOrEqual(44);
+  await expect(detail.getByTestId('m-detail-add')).toHaveCount(0);
+  // 分頁：簡介、交通、評論、留言
+  for (const t of ['intro', 'transport', 'reviews', 'comments']) await expect(detail.getByTestId(`m-detail-tab-${t}`)).toBeVisible();
+  // 探索沒有被卸載，只是蓋住
+  await expect(page.getByTestId('m-feed')).toHaveCount(1);
+  expect(await scrollsSideways(page)).toBe(false);
+  await detail.getByTestId('m-detail-back').click();
+  await expect(detail).toHaveCount(0);
+  const top = await page.locator('.m-page').evaluate((el) => el.scrollTop);
+  expect(Math.abs(top - 800)).toBeLessThan(5);
+});
+
+test('詳情：瀏覽器上一頁也能關', async ({ page }) => {
+  await ready(page);
+  await openFromFeed(page, 600);
+  await page.goBack();
+  await expect(page.getByTestId('m-detail')).toHaveCount(0);
+  expect((await mobileState(page)).tab).toBe('explore');
+  const top = await page.locator('.m-page').evaluate((el) => el.scrollTop);
+  expect(Math.abs(top - 600)).toBeLessThan(5);
+});
+
+test('詳情：有問 AI、點小地圖跳到行程', async ({ page }) => {
+  await ready(page);
+  const id = await openFromFeed(page, 0);
+  const detail = page.getByTestId('m-detail');
+  const box = detail.getByTestId('ask-ai-box');
+  await expect(box).toBeVisible();
+  // 問 AI 的膠囊、輸入框、送出鍵：點的範圍至少 44px
+  expect((await box.getByTestId('ask-ai-prompt').first().boundingBox())!.height).toBeGreaterThanOrEqual(44);
+  expect((await box.getByTestId('ask-ai-input').boundingBox())!.height).toBeGreaterThanOrEqual(44);
+  expect((await box.locator('.ask-ai-send').boundingBox())!.height).toBeGreaterThanOrEqual(44);
+  // 點建議問題：這個點帶進聊天（選取）
+  await box.getByTestId('ask-ai-prompt').first().click();
+  expect(await page.evaluate(() => (window as any).__th.appStore.getState().selection)).toContain(id);
+
+  await detail.getByTestId('m-detail-tab-transport').click();
+  const mini = detail.getByTestId('m-detail-minimap');
+  await expect(mini).toBeVisible();
+  await mini.click();
+  await expect(page.getByTestId('m-detail')).toHaveCount(0);
+  await expect(page.getByTestId('m-tab-trip')).toHaveAttribute('aria-current', 'page');
+  await expect(page.getByTestId('map')).toBeVisible();
+  // 地圖框住這個點
+  await expect
+    .poll(() =>
+      page.evaluate((id) => {
+        const th = (window as any).__th;
+        const [lon, lat] = th.dataStore.getState().byId.get(id).coords;
+        const c = th.map.getCenter();
+        return Math.hypot(c.lng - lon, c.lat - lat);
+      }, id),
+    )
+    .toBeLessThan(0.02);
+});
+
+test('詳情：從想去打開多一個「加到某天」，可以投票、留言', async ({ page }) => {
+  await ready(page);
+  await goTab(page, 'wish');
+  const first = page.getByTestId('m-wish-item').first();
+  const id = await first.getAttribute('data-id');
+  await first.locator('.m-wish-name').click();
+  const detail = page.getByTestId('m-detail');
+  await expect(detail).toHaveAttribute('data-id', id!);
+  await expect(detail.getByTestId('m-detail-add').getByTestId('add-to-day')).toBeVisible();
+  const like = detail.getByTestId('m-detail-like');
+  const was = await like.getAttribute('aria-pressed');
+  await like.click();
+  await expect(like).toHaveAttribute('aria-pressed', was === 'true' ? 'false' : 'true');
+  await like.click();
+  await expect(like).toHaveAttribute('aria-pressed', was!);
+  await detail.getByTestId('m-detail-tab-comments').click();
+  await expect(detail.getByTestId('comment-input')).toBeVisible();
+});
+
+test('詳情：很長的名稱一行省略，沒有橫向捲動', async ({ page }) => {
+  await ready(page);
+  await page.evaluate(() => (window as any).__thMobile.getState().openPlace('shima-la-mer', 'explore'));
+  const name = page.getByTestId('m-detail-name');
+  await expect(name).toBeVisible();
+  const h = await name.evaluate((el) => ({ sw: el.scrollWidth, cw: el.clientWidth, h: el.getBoundingClientRect().height }));
+  expect(h.h).toBeLessThan(40);
+  expect(await scrollsSideways(page)).toBe(false);
+});
+
+test('手機上預約列打開的詳情是整頁詳情', async ({ page }) => {
+  await ready(page);
+  await goTab(page, 'me');
+  await page.getByTestId('m-me-reservations').click();
+  const row = page.getByTestId('note-row').first();
+  const id = await row.getAttribute('data-place');
+  await row.locator('.link-button').first().click();
+  await expect(page.getByTestId('m-detail')).toHaveAttribute('data-id', id!);
+  const s = await mobileState(page);
+  expect(s.page).toBeNull();
+  expect(s.detail?.from).toBe('me');
+  expect(await page.evaluate(() => (window as any).__th.appStore.getState().detailId)).toBeNull();
+});

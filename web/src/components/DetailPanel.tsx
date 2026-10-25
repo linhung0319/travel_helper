@@ -1,3 +1,5 @@
+// 資料點的詳情。網頁版：右欄的 DetailPanel（總覽、詳細、附近・連結、圖片四頁）。
+// 各分頁的內容抽成可以單獨 import 的元件（PlaceIntro、PlaceFacts、PlaceReviews、NearbySection、LinksSection、SourcesSection），手機版整頁詳情（mobile/PlaceDetailPage）自己排版面。
 import { useMemo, useState, type ReactNode } from 'react';
 import { CopyName } from './CopyName.tsx';
 import { appStore } from '../store.ts';
@@ -336,7 +338,8 @@ function RatingsBox({ place }: { place: Place }) {
   );
 }
 
-function LinksSection({ place }: { place: Place }) {
+/** 連結（官網、訂位頁…） */
+export function LinksSection({ place }: { place: Place }) {
   const links = Object.entries({ ...place.links, ...obj(place.raw.bookingLinks) }).filter(([, v]) => typeof v === 'string' && v);
   if (links.length === 0) return null;
   return (
@@ -358,18 +361,20 @@ function LinksSection({ place }: { place: Place }) {
   );
 }
 
-function NearbySection({ place }: { place: Place }) {
+/** 附近的點。電腦版：點名稱地圖移過去；onPick（手機版）：點名稱改做這件事（例如打開它的詳情） */
+export function NearbySection({ place, onPick }: { place: Place; onPick?(id: string): void }) {
   const places = useData((s) => s.places);
   const groups = useMemo(() => nearbyPlaces(place, places), [place, places]);
   if (groups.size === 0) return null;
   // 點了地圖移到那個點、點會閃；要看它的介紹，再點地圖上的點（到探索的卡片）
   const find = (id: string) => {
+    if (onPick) return onPick(id);
     commands.focus(id);
     appStore.getState().hover(id);
   };
   return (
     <Section title="附近">
-      <p className="muted small">點名稱，地圖會移到那裡；再點地圖上的點看它的介紹。</p>
+      <p className="muted small">{onPick ? '點名稱看它的介紹。' : '點名稱，地圖會移到那裡；再點地圖上的點看它的介紹。'}</p>
       {[...groups.entries()].map(([type, items]) => (
         <div key={type} className="nearby-group">
           <h4>{TYPE_LABELS[type]}</h4>
@@ -398,7 +403,8 @@ function NearbySection({ place }: { place: Place }) {
   );
 }
 
-function SourcesSection({ place }: { place: Place }) {
+/** 資料來源 */
+export function SourcesSection({ place }: { place: Place }) {
   return (
     <section className="detail-section sources">
       <h3>來源（{place.sources.length}）</h3>
@@ -463,8 +469,8 @@ function TierMedal({ tier }: { tier: Place['tier'] }) {
   );
 }
 
-/** 這個點排在哪幾天（想去卡片上也標「已排」） */
-function PlaceInTrip({ place }: { place: Place }) {
+/** 這個點排在哪幾天（想去卡片上也標「已排」）；點日期選那天（onDay：手機版另外切到行程分頁） */
+function PlaceInTrip({ place, onDay }: { place: Place; onDay?(date: string): void }) {
   const itinerary = useData((s) => s.itinerary);
   const refs = itemsWithPlace(itinerary, place.id);
   const lodgingDays = itinerary?.days.filter((d) => d.lodging === place.id).map((d) => d.date) ?? [];
@@ -474,7 +480,7 @@ function PlaceInTrip({ place }: { place: Place }) {
       <p className="small">
         📅 已排：
         {refs.map((r, i) => (
-          <button key={r.item.id} type="button" className="link-button" onClick={() => commands.selectDay(r.date)}>
+          <button key={r.item.id} type="button" className="link-button" onClick={() => (onDay ? onDay(r.date) : commands.selectDay(r.date))}>
             {i > 0 && '、'}
             {r.item.type === 'visit' && r.item.options[r.item.selected]?.place !== place.id ? '備選 ' : ''}
             {shortDayLabel(r.date)}
@@ -512,6 +518,84 @@ function Tags({ place }: { place: Place }) {
   );
 }
 
+/**
+ * 介紹：簡介（優缺點、標籤）、問 AI、車站時刻表、價格、排在哪幾天。
+ * 網頁版的「總覽」分頁、手機版整頁詳情的「簡介」分頁共用（onDay 見 PlaceInTrip）
+ */
+export function PlaceIntro({ place, fromTrip, onDay }: { place: Place; fromTrip: boolean; onDay?(date: string): void }) {
+  return (
+    <>
+      {place.summary && (
+        <section className="detail-summary">
+          <p>
+            {place.summary.text}
+            {editedOf(place, 'summary') && <EditedMark {...editedOf(place, 'summary')!} />}
+          </p>
+          {!!place.summary.pros?.length && (
+            <ul className="pros">
+              {place.summary.pros.map((t) => (
+                <li key={t}>{t}</li>
+              ))}
+            </ul>
+          )}
+          {!!place.summary.cons?.length && (
+            <ul className="cons">
+              {place.summary.cons.map((t) => (
+                <li key={t}>{t}</li>
+              ))}
+            </ul>
+          )}
+          <Tags place={place} />
+        </section>
+      )}
+      <AskAiBox place={place} fromTrip={fromTrip} />
+      {place.type === 'station' && <StationTimetablePanel place={place} />}
+      <PriceSection place={place} />
+      <PlaceInTrip place={place} onDay={onDay} />
+    </>
+  );
+}
+
+/** 詳細：住宿、團體、長輩小孩、營業時間（標出選的那天，沒選就用行程排到的第一天）。網頁版「詳細」分頁、手機版「簡介」分頁的下半 */
+export function PlaceFacts({ place }: { place: Place }) {
+  const day = useApp((s) => s.day);
+  const days = useData((s) => s.days);
+  const date = day !== 'all' ? day : (days.get(place.id)?.[0]?.date ?? null);
+  const raw = place.raw;
+  return (
+    <>
+      {place.type === 'lodging' && (
+        <Section title="住宿">
+          <dl>
+            <Row k="餐食" v={label(MEALS_LABELS, raw.meals)} />
+            <Row k="入住／退房" v={raw.checkIn || raw.checkOut ? `${text(raw.checkIn) ?? '?'}／${text(raw.checkOut) ?? '?'}` : null} />
+            <Row k="接送" v={text(raw.pickup)} />
+            <Row k="行李" v={text(raw.luggage)} />
+          </dl>
+        </Section>
+      )}
+      {place.type !== 'station' && <GroupSection place={place} />}
+      <ElderKidsSection place={place} />
+      {place.type !== 'station' && (
+        <Section title="營業時間" edited={editedOf(place, 'hours', 'closedNote', 'febNote', 'closures')}>
+          <HoursTable place={place} date={date} />
+        </Section>
+      )}
+    </>
+  );
+}
+
+/** 評論：各網站的評分全部列出來，加上我們自己的五項評分（手機版「評論」分頁；網頁版的 RatingsBox 是收起來的版本） */
+export function PlaceReviews({ place }: { place: Place }) {
+  const all = ratingsOf(place);
+  return (
+    <section className="detail-section">
+      <div className="ratings-box">{all.length ? all.map((r) => <RatingChip key={r.key} r={r} />) : <span className="muted small">還沒有網站評分</span>}</div>
+      <ScoreBars place={place} />
+    </section>
+  );
+}
+
 type DetailTab = 'overview' | 'detail' | 'more' | 'photos';
 const DETAIL_TABS: DetailTab[] = ['overview', 'detail', 'more', 'photos'];
 const DETAIL_TAB_LABELS: Record<DetailTab, string> = { overview: '總覽', detail: '詳細', more: '附近・連結', photos: '圖片' };
@@ -522,15 +606,11 @@ const DETAIL_TAB_LABELS: Record<DetailTab, string> = { overview: '總覽', detai
  * 一打開不用捲就看得到介紹。
  */
 export function DetailPanel({ place, back }: { place: Place; back?: { label: string; onClick(): void } }) {
-  const day = useApp((s) => s.day);
   // 行程分頁（mode＝map）打開的詳情＝從行程來，問 AI 多一個「這天排它會不會太趕？」
   const fromTrip = useApp((s) => s.mode) === 'map';
   const planning = useApp((s) => s.planning);
   const selection = useApp((s) => s.selection);
-  const days = useData((s) => s.days);
   const areas = useData((s) => s.areas);
-  // 營業時間要標出的那天：選了某一天就用那天，否則用行程排到的第一天
-  const date = day !== 'all' ? day : (days.get(place.id)?.[0]?.date ?? null);
   const area = areas.find((a) => a.id === place.area);
   const region = area?.regions?.find((r) => r.id === place.region);
   const raw = place.raw;
@@ -607,57 +687,11 @@ export function DetailPanel({ place, back }: { place: Place; back?: { label: str
             {/* 車站沒有照片，不放替代圖 */}
             {(place.type !== 'station' || place.photos.length > 0) && <HeroPhoto place={place} onMore={() => go('photos')} />}
             {place.type !== 'station' && <RatingsBox place={place} />}
-            {place.summary && (
-              <section className="detail-summary">
-                <p>
-                  {place.summary.text}
-                  {editedOf(place, 'summary') && <EditedMark {...editedOf(place, 'summary')!} />}
-                </p>
-                {!!place.summary.pros?.length && (
-                  <ul className="pros">
-                    {place.summary.pros.map((t) => (
-                      <li key={t}>{t}</li>
-                    ))}
-                  </ul>
-                )}
-                {!!place.summary.cons?.length && (
-                  <ul className="cons">
-                    {place.summary.cons.map((t) => (
-                      <li key={t}>{t}</li>
-                    ))}
-                  </ul>
-                )}
-                <Tags place={place} />
-              </section>
-            )}
-            <AskAiBox place={place} fromTrip={fromTrip} />
-            {place.type === 'station' && <StationTimetablePanel place={place} />}
-            <PriceSection place={place} />
-            <PlaceInTrip place={place} />
+            <PlaceIntro place={place} fromTrip={fromTrip} />
           </>
         )}
 
-        {tab === 'detail' && (
-          <>
-            {place.type === 'lodging' && (
-              <Section title="住宿">
-                <dl>
-                  <Row k="餐食" v={label(MEALS_LABELS, raw.meals)} />
-                  <Row k="入住／退房" v={raw.checkIn || raw.checkOut ? `${text(raw.checkIn) ?? '?'}／${text(raw.checkOut) ?? '?'}` : null} />
-                  <Row k="接送" v={text(raw.pickup)} />
-                  <Row k="行李" v={text(raw.luggage)} />
-                </dl>
-              </Section>
-            )}
-            {place.type !== 'station' && <GroupSection place={place} />}
-            <ElderKidsSection place={place} />
-            {place.type !== 'station' && (
-              <Section title="營業時間" edited={editedOf(place, 'hours', 'closedNote', 'febNote', 'closures')}>
-                <HoursTable place={place} date={date} />
-              </Section>
-            )}
-          </>
-        )}
+        {tab === 'detail' && <PlaceFacts place={place} />}
 
         {tab === 'more' && (
           <>
