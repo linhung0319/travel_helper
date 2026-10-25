@@ -265,14 +265,16 @@ export interface BarSegment {
   lane: number;
   /** 停留段的卡片編號（stopMarks），給段落裡寫字用；交通、等待是 null */
   mark: string | null;
+  /** 交通段、交通卡裡的等車段：那張交通卡的 key（legKeyOf）；其他是 null */
+  legKey: string | null;
 }
 
 /** 這天按時間比例的橫條：每段交通、等待、停留各一段（出發到回住宿）；交通卡裡的等車（走到上車站到第一程發車）切成等待 */
 export function dayBar(day: DayPlan, typeOf: (placeId: string | null) => PlaceType | null): BarSegment[] {
   const out: BarSegment[] = [];
   const { byEntry } = stopMarks(day);
-  const push = (kind: BarSegment['kind'], from: string, to: string, e: TimelineEntry, lane: number, mark: string | null = null) => {
-    if (to > from) out.push({ kind, from, to, itemId: e.itemId, lane, mark });
+  const push = (kind: BarSegment['kind'], from: string, to: string, e: TimelineEntry, lane: number, mark: string | null = null, leg = false) => {
+    if (to > from) out.push({ kind, from, to, itemId: e.itemId, lane, mark, legKey: leg ? legKeyOf(e, day.date) : null });
   };
   const walk = (entries: TimelineEntry[], lane: number) => {
     for (const e of entries) {
@@ -282,10 +284,10 @@ export function dayBar(day: DayPlan, typeOf: (placeId: string | null) => PlaceTy
         const ready = t.ready?.[0];
         const board = t.rides[0]?.depart;
         if (ready && board && board > ready) {
-          push('travel', t.depart, ready, e, lane);
-          push('wait', ready, board, e, lane);
-          push('travel', board, e.arrive, e, lane);
-        } else push('travel', t.depart, e.arrive, e, lane);
+          push('travel', t.depart, ready, e, lane, null, true);
+          push('wait', ready, board, e, lane, null, true);
+          push('travel', board, e.arrive, e, lane, null, true);
+        } else push('travel', t.depart, e.arrive, e, lane, null, true);
       }
       if (e.groups) {
         e.groups.forEach((g, i) => walk(g.entries.filter((x) => x.kind !== 'meet'), i + 1));
@@ -310,6 +312,40 @@ export function daySummary(day: DayPlan): { start: string | null; back: string |
     travelMinutes: sum(day.entries),
     warnings: day.warnings.filter((w) => w.level !== 'info').length,
   };
+}
+
+/** 時間條上的整點刻度：從 t0 到 t1（分鐘）每個整點一個，pct 是在條上的位置（0～100），label 是「10」這種小時數 */
+export function hourTicks(t0: number, t1: number): { label: string; pct: number }[] {
+  const span = Math.max(1, t1 - t0);
+  const out: { label: string; pct: number }[] = [];
+  for (let m = Math.ceil(t0 / 60) * 60; m <= t1; m += 60) out.push({ label: String(Math.floor(m / 60)), pct: ((m - t0) / span) * 100 });
+  return out;
+}
+
+/** 時間條摘要的交通總時間：不到 60 分寫「39 分」，之後照停留的寫法「1小時05分」 */
+export function formatTravelTotal(minutes: number): string {
+  return minutes < 60 ? `${minutes} 分` : formatStay(minutes);
+}
+
+/** 時間條上的某一段是不是目前點的那張卡：交通段看交通卡的 key，其他看項目 ID */
+export function isBarSelected(seg: BarSegment, selected: string | null | undefined): boolean {
+  if (!selected) return false;
+  return seg.legKey ? seg.legKey === selected : seg.itemId === selected;
+}
+
+/** 目前點的卡片：開著的交通卡優先，不然是詳情面板開著的那個點在這天的第一張卡（回項目 ID，沒有就 null） */
+export function selectedBarKey(day: DayPlan | null, legOpen: string | null, detailId: string | null): string | null {
+  if (legOpen && legOpen.startsWith(`${day?.date}:`)) return legOpen;
+  if (!day || !detailId) return null;
+  const find = (entries: TimelineEntry[]): string | null => {
+    for (const e of entries) {
+      if (e.placeId === detailId && e.itemId && e.kind !== 'start') return e.itemId;
+      const g = (e.groups ?? []).map((x) => find(x.entries)).find(Boolean);
+      if (g) return g;
+    }
+    return null;
+  };
+  return find(day.entries);
 }
 
 /** 停留時間的標籤，分鐘補零：0小時45分、1小時00分、5小時15分（資料卡停留、時間條摘要的交通總時間） */

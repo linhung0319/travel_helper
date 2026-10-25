@@ -22,6 +22,10 @@ import {
   editorModeOf,
   showMinutesInput,
   formatStay,
+  formatTravelTotal,
+  hourTicks,
+  isBarSelected,
+  selectedBarKey,
   formatDistance,
   legDistance,
   legMapsUrl,
@@ -742,4 +746,30 @@ test('specWithRide：換後面那程，id、depart 照目前，到站換成這�
     to: 'daiozaki',
     rides: ['t3'],
   });
+});
+
+test('hourTicks：整點刻度的位置（百分比）', () => {
+  const ticks = hourTicks(9 * 60 + 30, 13 * 60 + 30);
+  assert.deepEqual(ticks.map((t) => t.label), ['10', '11', '12', '13']);
+  assert.deepEqual(ticks.map((t) => t.pct), [12.5, 37.5, 62.5, 87.5]);
+  assert.deepEqual(hourTicks(600, 600).map((t) => t.label), ['10']);
+});
+
+test('formatTravelTotal：不到 60 分寫分鐘，之後寫小時', () => {
+  assert.equal(formatTravelTotal(39), '39 分');
+  assert.equal(formatTravelTotal(60), '1小時00分');
+  assert.equal(formatTravelTotal(125), '2小時05分');
+});
+
+test('isBarSelected、selectedBarKey：交通段看 legKey，停留看項目 ID', () => {
+  const travel = { kind: 'travel', from: '09:00', to: '09:10', itemId: 'v1', lane: 0, mark: null, legKey: '2027-02-03:visit:v1' } as const;
+  const stay = { ...travel, kind: 'spot', legKey: null } as const;
+  assert.equal(isBarSelected(travel, '2027-02-03:visit:v1'), true);
+  assert.equal(isBarSelected(travel, 'v1'), false);
+  assert.equal(isBarSelected(stay, 'v1'), true);
+  assert.equal(isBarSelected(stay, null), false);
+  const day = { date: '2027-02-03', entries: [entry('start', 'h', {}), entry('visit', 'a', { itemId: 'v1' })] } as unknown as DayPlan;
+  assert.equal(selectedBarKey(day, '2027-02-03:visit:v1', 'a'), '2027-02-03:visit:v1');
+  assert.equal(selectedBarKey(day, '2027-02-04:lodging', 'a'), 'v1');
+  assert.equal(selectedBarKey(day, null, null), null);
 });

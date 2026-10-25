@@ -3523,19 +3523,16 @@ body.dragging-place [data-drop-ai].drop-over {
   border-radius: 3px;
   cursor: pointer;
   min-width: 2px;
+  color: #fff;
+  font-size: 0.7rem;
+  font-weight: 600;
+  line-height: 1;
+  overflow: hidden;
 }
 
-/* 停留用類型色（typeStyle.ts 的 TYPE_COLORS）；第五輪 Task 8 重畫 */
-.seg-spot {
-  background: #1a7f37;
-}
-
-.seg-restaurant {
-  background: #d1501a;
-}
-
+/* 停留用類型色（Timeline.tsx 用 TYPE_COLORS 設 background）；等待斜紋、交通細點線、其他灰 */
 .seg-other {
-  background: #6e7781;
+  background: #8c959f;
 }
 
 .seg-travel {
@@ -3543,7 +3540,43 @@ body.dragging-place [data-drop-ai].drop-over {
 }
 
 .seg-wait {
-  background: repeating-linear-gradient(45deg, #f2c94c 0 3px, #fff4cc 3px 6px);
+  background: repeating-linear-gradient(45deg, #f6d55c 0 4px, #fff7d6 4px 8px);
+}
+
+/* 目前點的卡片對應的那一段 */
+.day-bar-seg.selected {
+  outline: 2px solid #1a73e8;
+  outline-offset: 1px;
+  z-index: 1;
+}
+
+.day-bar-ticks {
+  position: relative;
+  height: 12px;
+  margin-top: 2px;
+}
+
+.day-bar-tick {
+  position: absolute;
+  top: 0;
+  transform: translateX(-50%);
+  padding-top: 4px;
+  font-size: 0.65rem;
+  line-height: 1;
+  color: var(--muted);
+}
+
+.day-bar-tick::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 50%;
+  height: 3px;
+  border-left: 1px solid var(--muted);
+}
+
+.tl-leg.flash .tl-leg-card {
+  background: var(--warn-bg);
 }
 
 .day-bar-scale {

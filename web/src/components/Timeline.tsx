@@ -18,7 +18,7 @@ import { useApp, useData, useIsDesktop } from '../hooks.ts';
 import { dragSourceProps, dropOnCardProps, dropOnEndProps, putBackOption, useLongPressDrag } from './planDrag.ts';
 import type { DragSource } from '../lib/dropIntent.ts';
 import { openDialog } from '../uiStore.ts';
-import { cardTime, cardTypeLetter, dayBar, daySummary, findItemRef, formatStay, shownWarnings, stopMarks, timelineRows, waitNote, WARNING_ICONS, warningsByItem, type BarSegment } from '../lib/planView.ts';
+import { cardTime, cardTypeLetter, dayBar, daySummary, findItemRef, formatStay, formatTravelTotal, hourTicks, isBarSelected, shownWarnings, stopMarks, timelineRows, waitNote, WARNING_ICONS, warningsByItem, type BarSegment } from '../lib/planView.ts';
 import { shortDayLabel } from '../lib/trip.ts';
 import { TYPE_COLORS } from '../lib/typeStyle.ts';
 import type { Place } from '../data/types.ts';
@@ -700,12 +700,13 @@ export function Timeline({ plan, day }: { plan: DayPlan; day: ItineraryDay }) {
   );
 }
 
-/** 標題的一行：幾點出發、幾點回住宿、交通總分鐘（含等車）、警告數 */
+/** 標題的一行：09:30 出發 → 13:46 回住宿・交通 1小時05分、警告數 */
 export function DaySummaryLine({ plan, warnOpen, onWarn, reminders = 0 }: { plan: DayPlan; warnOpen?: boolean; onWarn?: () => void; reminders?: number }) {
   const s = daySummary(plan);
+  const times = [s.start && `${s.start} 出發`, s.back && `${s.back} 回住宿`].filter(Boolean).join(' → ');
   return (
     <span className="day-stats small" data-testid="day-summary">
-      {[s.start && `${s.start} 出發`, s.back && `${s.back} 回住宿`, s.travelMinutes > 0 && `交通 ${formatStay(s.travelMinutes)}`].filter(Boolean).join('・')}
+      {[times, s.travelMinutes > 0 && `交通 ${formatTravelTotal(s.travelMinutes)}`].filter(Boolean).join('・')}
       {onWarn && reminders > 0 ? (
         <button type="button" className={`badge warn-button ${s.warnings > 0 ? 'badge-warn' : ''}`} aria-expanded={!!warnOpen} onClick={onWarn} data-testid="day-warn-toggle">
           {s.warnings > 0 ? '⚠' : WARNING_ICONS.info} {reminders} {warnOpen ? '▴' : '▾'}
@@ -719,38 +720,79 @@ export function DaySummaryLine({ plan, warnOpen, onWarn, reminders = 0 }: { plan
 }
 
 const BAR_LABELS: Record<BarSegment['kind'], string> = { spot: '景點', restaurant: '用餐', other: '停留', travel: '交通', wait: '等待' };
+const BAR_HEIGHT = 22;
+const MARK_MIN_PX = 18;
 
-/** 按時間比例的橫條：一眼看出哪裡緊、哪裡空；分組的時段每組一條細線。點一段捲到那張卡片 */
-export function DayBar({ plan, color, thin }: { plan: DayPlan; color: string; thin?: boolean }) {
+/** 捲到那張卡（交通卡或資料卡）並閃一下 */
+function jumpToCard(seg: BarSegment) {
+  const sel = seg.legKey ? `[data-testid="tl-leg"][data-leg="${CSS.escape(seg.legKey)}"]` : seg.itemId ? `[data-testid="tl-row"][data-item="${CSS.escape(seg.itemId)}"]` : null;
+  const el = sel ? document.querySelector<HTMLElement>(sel) : null;
+  if (!el) return;
+  el.scrollIntoView({ block: 'center', behavior: 'smooth' });
+  el.classList.add('flash');
+  window.setTimeout(() => el.classList.remove('flash'), 1600);
+}
+
+/**
+ * 按時間比例的橫條（高 22px）：景點、餐廳用類型色並寫卡片編號，交通是細灰點線，等待是黃色斜紋，其他停留是灰色；
+ * 分組的時段每組一條細條（總高度不變）。下面每個整點一個刻度，兩端寫出發、回住宿時間。
+ * 點一段捲到那張卡並閃一下；selected（目前點的卡片的項目 ID 或交通卡 key）那段加藍框
+ */
+export function DayBar({ plan, selected }: { plan: DayPlan; selected?: string | null }) {
   const byId = useData((s) => s.byId);
+  const trackRef = useRef<HTMLDivElement>(null);
+  const [width, setWidth] = useState(0);
+  useEffect(() => {
+    const el = trackRef.current;
+    if (!el) return;
+    setWidth(el.clientWidth);
+    if (typeof ResizeObserver === 'undefined') return;
+    const ro = new ResizeObserver(() => setWidth(el.clientWidth));
+    ro.observe(el);
+    return () => ro.disconnect();
+  });
   const segs = dayBar(plan, (id) => (id ? (byId.get(id)?.type ?? null) : null));
   if (!segs.length) return null;
   const t0 = Math.min(...segs.map((s) => toMinutes(s.from)));
   const t1 = Math.max(...segs.map((s) => toMinutes(s.to)));
   const span = Math.max(1, t1 - t0);
   const lanes = Math.max(...segs.map((s) => s.lane));
-  const jump = (itemId: string | null) => {
-    if (!itemId) return;
-    document.querySelector<HTMLElement>(`[data-testid="tl-row"][data-item="${CSS.escape(itemId)}"]`)?.scrollIntoView({ block: 'center', behavior: 'smooth' });
-  };
+  const laneH = lanes ? BAR_HEIGHT / lanes : BAR_HEIGHT;
   return (
-    <div className="day-bar" data-testid="day-bar" style={{ ['--day' as string]: color }}>
-      <div className="day-bar-track" style={{ height: thin ? (lanes ? 6 + lanes * 4 : 6) : lanes ? 10 + lanes * 6 : 10 }}>
-        {segs.map((s, i) => (
-          <button
-            key={i}
-            type="button"
-            className={`day-bar-seg seg-${s.kind}`}
-            style={{
-              left: `${((toMinutes(s.from) - t0) / span) * 100}%`,
-              width: `${((toMinutes(s.to) - toMinutes(s.from)) / span) * 100}%`,
-              top: s.lane ? (thin ? 6 + (s.lane - 1) * 4 : 10 + (s.lane - 1) * 6) : 0,
-              height: s.lane ? (thin ? 3 : 5) : thin ? 6 : 10,
-            }}
-            title={`${BAR_LABELS[s.kind]} ${s.from}–${s.to}`}
-            aria-label={`${BAR_LABELS[s.kind]} ${s.from}–${s.to}`}
-            onClick={() => jump(s.itemId)}
-          />
+    <div className="day-bar" data-testid="day-bar">
+      <div className="day-bar-track" ref={trackRef} style={{ height: BAR_HEIGHT }}>
+        {segs.map((s, i) => {
+          const w = ((toMinutes(s.to) - toMinutes(s.from)) / span) * 100;
+          const lane = s.lane > 0;
+          const h = s.kind === 'travel' ? 6 : lane ? laneH - 1 : BAR_HEIGHT;
+          const top = lane ? (s.lane - 1) * laneH + (s.kind === 'travel' ? (laneH - 6) / 2 : 0) : s.kind === 'travel' ? (BAR_HEIGHT - 6) / 2 : 0;
+          return (
+            <button
+              key={i}
+              type="button"
+              className={`day-bar-seg seg-${s.kind} ${isBarSelected(s, selected) ? 'selected' : ''}`}
+              style={{
+                left: `${((toMinutes(s.from) - t0) / span) * 100}%`,
+                width: `${w}%`,
+                top,
+                height: h,
+                ...(s.kind === 'spot' || s.kind === 'restaurant' ? { background: TYPE_COLORS[s.kind] } : {}),
+              }}
+              title={`${BAR_LABELS[s.kind]} ${s.from}–${s.to}`}
+              aria-label={`${BAR_LABELS[s.kind]} ${s.from}–${s.to}`}
+              data-testid="day-bar-seg"
+              onClick={() => jumpToCard(s)}
+            >
+              {s.mark && !lane && (w / 100) * width >= MARK_MIN_PX ? s.mark : null}
+            </button>
+          );
+        })}
+      </div>
+      <div className="day-bar-ticks" aria-hidden>
+        {hourTicks(t0, t1).map((t) => (
+          <span key={t.label} className="day-bar-tick" style={{ left: `${t.pct}%` }}>
+            {t.label}
+          </span>
         ))}
       </div>
       <div className="day-bar-scale small muted">

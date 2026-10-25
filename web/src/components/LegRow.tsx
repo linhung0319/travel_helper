@@ -352,7 +352,7 @@ export function LegRow({ entry, date }: { entry: TimelineEntry; date: string }) 
     uiStore.setState({ legOpen: open ? null : key });
   };
   return (
-    <li className={`tl-leg mode-${leg.mode} ${open ? 'open' : ''} ${editing ? 'editing' : ''}`} data-testid="tl-leg" {...dropOnLegProps(entry.itemId, date, planning)}>
+    <li className={`tl-leg mode-${leg.mode} ${open ? 'open' : ''} ${editing ? 'editing' : ''}`} data-testid="tl-leg" data-leg={key} {...dropOnLegProps(entry.itemId, date, planning)}>
       <div className="tl-leg-card" onClick={toggle}>
         <div className="tl-leg-head">
           <ModeIcon mode={mode} size="l" />

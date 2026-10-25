@@ -1,15 +1,15 @@
 // 「行程」分頁（interaction-design §3、§6），兩層，像探索的清單和詳情：
 // 選「全部」是整趟的總覽（每天排了什麼、幾個候選、警告）；選了某一天，編輯中最上面是藍條（說明、快照、完成），接著一列「← 整趟、日期 ‹ ›、問 AI、✏️ 編輯這天」，
-// 下面是摘要列（⚠ 點了展開提醒）、細的比例橫條、時間軸（資料卡是類型的淡底色，起點、終點的住宿也是卡片）、這天的候選（想去「加到某天」的點）。💬 討論、📋 預約、⬇ 下載在地圖區右上角（TopBar.tsx 的 AccountBar，和帳號頭像一起）。
+// 下面是摘要列（⚠ 點了展開提醒）、比例橫條（時間條）、時間軸（資料卡是類型的淡底色，起點、終點的住宿也是卡片）、這天的候選（想去「加到某天」的點）。💬 討論、📋 預約、⬇ 下載在地圖區右上角（TopBar.tsx 的 AccountBar，和帳號頭像一起）。
 
 import { useState } from 'react';
 import { appStore } from '../store.ts';
 import { commands } from '../appCommands.ts';
-import { useApp, useData, usePlan, useShared } from '../hooks.ts';
+import { useApp, useData, usePlan, useShared, useUi } from '../hooks.ts';
 import { dayPlanOf } from '../planStore.ts';
 import { dayLabel, tripDates } from '../lib/trip.ts';
 import { stopsOn } from '../lib/itinerary.ts';
-import { WARNING_ICONS, warningsByItem } from '../lib/planView.ts';
+import { selectedBarKey, WARNING_ICONS, warningsByItem } from '../lib/planView.ts';
 import { dayColor } from '../lib/visual.ts';
 import { DayBar, DaySummaryLine, Timeline } from './Timeline.tsx';
 import { DayCandidates } from './Wishlist.tsx';
@@ -116,6 +116,9 @@ export function DayPanel() {
   const planError = usePlan((s) => s.error);
   const plan = usePlan((s) => (day === 'all' ? null : dayPlanOf(s.plan, day)));
   const [warnOpen, setWarnOpen] = useState(false);
+  const legOpen = useUi((s) => s.legOpen);
+  const detailId = useApp((s) => s.detailId);
+  const selectedKey = selectedBarKey(plan, legOpen, detailId);
   if (day === 'all') return <Overview />;
   const itDay = itinerary?.days.find((d) => d.date === day) ?? null;
   const { day: dayWarnings } = warningsByItem(plan);
@@ -137,7 +140,7 @@ export function DayPanel() {
           ))}
         </ul>
       )}
-      {plan && <DayBar plan={plan} color={dayColor(DATES, day)} thin />}
+      {plan && <DayBar plan={plan} selected={selectedKey} />}
       {!itDay && <p className="muted">行程裡沒有這一天。</p>}
       {itDay && planStatus === 'loading' && <p className="muted">計算時間軸中…</p>}
       {planStatus === 'error' && <p className="warn">時間軸算不出來：{planError}</p>}
