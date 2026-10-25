@@ -47,14 +47,15 @@ async function run(name, viewport, mobile) {
   await page.getByTestId('planning-toggle').click();
   await page.getByTestId('planning-confirm').click();
   const lunch = row(page, 'i-7');
-  await lunch.getByTestId('options-toggle').click();
-  await lunch.getByTestId('options-list').scrollIntoViewIfNeeded();
+  // 第四輪起沒有「＋N」展開（改成 ‹ › 換著看），第五輪起規劃模式叫「編輯」：只換成現在的按鈕，讓舊腳本跑得完
+  await lunch.getByTestId('option-next').click();
+  await lunch.scrollIntoViewIfNeeded();
   await shot(page, `${name}-2-day-planning-options`);
   const leg = page.getByTestId('timeline').getByTestId('tl-leg').first();
   await leg.getByRole('button').first().click();
   await leg.scrollIntoViewIfNeeded();
   await shot(page, `${name}-3-day-planning-leg`);
-  await page.getByTestId('planning-bar').getByRole('button', { name: /退出/ }).click().catch(() => {});
+  await page.getByTestId('planning-done').click();
 
   // 留言視窗、預約筆記（日期列的 💬 📋，窄螢幕在 ⋯ 裡）
   await page.getByTestId('toolbar-comments').click().catch(async () => {

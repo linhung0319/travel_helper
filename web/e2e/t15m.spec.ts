@@ -1,10 +1,12 @@
 // T15m 完成條件（PLAN）：手機和電腦尺寸各跑一次，用假後端。
-// 按 ❤️ → 想去分頁出現、留言 → 換人看得到、改不了別人的留言 → 加到某天 → 這天的候選
-// → 進入規劃模式按 ↑ 排進 → 時間軸出現、有交通卡 → 停留時間 ＋15 → 復原快照後回到原狀。
-// 第四輪：沒有緩衝、沒有「換住宿」「併到…」，交通卡不收合（規劃模式原地改），討論、預約、下載在右上角，探索沒有加到某天；
+// 按 ❤️ → 想去分頁出現、留言 → 換人看得到、改不了別人的留言 → 加到某天 → 候選
+// → 按「✏️ 編輯這天」按 ↑ 排進 → 時間軸出現、有交通卡 → 停留時間 ＋15 → 復原快照後回到原狀。
+// 第四輪：沒有緩衝、沒有「換住宿」「併到…」，討論、預約、下載在右上角，探索沒有加到某天；
 // 拖曳放在同類型卡片中間＝合併（可以復原）、放在卡片之間＝排進。
+// 第五輪：「規劃模式」改成「編輯」（藍條、完成）；交通卡平常收起，大眾運輸點了展開步驟、班次表；
+// 等待合成交通卡下面的一條（沒有「空檔」）；資料卡右上角的編號從 0 起；地圖彈窗在日期列上面。
 import { test, type Locator, type Page } from '@playwright/test';
-import { centerOn, expect, isMobile, ready, tapOrClick } from './helpers.ts';
+import { centerOn, expect, findPlaceId, isMobile, ready, tapOrClick, waitIdle } from './helpers.ts';
 
 const DAY = '2027-02-07';
 const PLACE = 'toba-seahorse';
@@ -49,7 +51,7 @@ async function enterPlanning(page: Page) {
   await expect(page.getByTestId('planning-bar')).toBeVisible();
 }
 
-test('T15m：❤️ 想去 → 留言 → 加到某天 → 規劃模式按 ↑ 排進 → 停留時間 → 復原快照', async ({ page }) => {
+test('T15m：❤️ 想去 → 留言 → 加到某天 → 編輯中按 ↑ 排進 → 停留時間 → 復原快照', async ({ page }) => {
   await ready(page);
 
   // 1. 按 ❤️（只表示喜歡，不問哪天）
@@ -78,12 +80,12 @@ test('T15m：❤️ 想去 → 留言 → 加到某天 → 規劃模式按 ↑ �
   await wish(list).getByTestId(`day-picker-${DAY}`).click();
   await expect(wish(list).getByTestId('card-status-tag')).toContainText('候選 2/7');
 
-  // 4. 行程分頁：這天的候選有它；一般模式沒有 ↑
+  // 4. 行程分頁：候選有它；一般模式沒有 ↑
   await showDay(page, DAY);
   await expect(cand(page)).toBeVisible();
   await expect(cand(page).getByTestId('cand-up')).toHaveCount(0);
 
-  // 5. 規劃模式按 ↑：插在這天最順路的位置，候選少一筆
+  // 5. 編輯中按 ↑：插在這天最順路的位置，候選少一筆
   await enterPlanning(page);
   const before = (await th(page, '__th.dataStore.getState().itinerary')) as { days: unknown };
   await cand(page).getByTestId('cand-up').click();
@@ -234,7 +236,7 @@ test('T15m：想去的卡片點了看詳情，返回想去（電腦版）', asyn
   await expect(page.getByTestId('side-tab-wish')).toHaveAttribute('aria-selected', 'true');
 });
 
-test('T15m：規劃模式拖曳換順序（電腦版）', async ({ page }) => {
+test('T15m：編輯中拖曳換順序（電腦版）', async ({ page }) => {
   test.skip(await isMobile(page), '手機用長按，Playwright 不好模擬');
   await page.setViewportSize({ width: 1600, height: 1200 });
   await ready(page);
@@ -341,7 +343,7 @@ test('第四輪：一般模式只看；合併卡片換著看、設為主要、�
   await stack.getByTestId('option-prev').click();
   await expect(stack).toHaveAttribute('data-shown', '0');
 
-  // 規劃模式：看一榮 → 設為主要 → 卡片換成一榮
+  // 編輯中：看一榮 → 設為主要 → 卡片換成一榮
   await enterPlanning(page);
   await expect(lunch.getByTestId('item-menu')).toHaveCount(1);
   await stack.getByTestId('option-next').click();
@@ -380,17 +382,20 @@ test('第四輪：住宿卡片的含餐 tag；沒有「換住宿」，想去的�
   await expect(wish(list, 'toba-kokusai-hotel').getByTestId('wish-set-lodging')).toHaveCount(0);
 });
 
-test('第四輪：交通卡不收合、點了地圖畫那一段；規劃模式原地改方式、備註', async ({ page }) => {
+test('第五輪：交通卡平常收起，計程車點了只畫那一段、不展開；編輯中原地改方式、備註', async ({ page }) => {
   await ready(page);
   await showDay(page, '2027-02-05');
   const legs = page.getByTestId('timeline').getByTestId('tl-leg');
   await expect(legs.nth(1)).toBeVisible();
   const first = legs.first();
-  // 一般模式：內容一直顯示（Google Maps 小圖示），沒有緩衝、沒有編輯；點了地圖畫一條路線
+  // 一般模式：標題（SVG 圖示、方式＋分鐘）、Google Maps 小圖示，沒有緩衝、沒有編輯；點了地圖畫一條路線，計程車沒有步驟可以展開
   await expect(first.getByTestId('leg-maps')).toHaveAttribute('href', /google\.com\/maps\/dir\/.*travelmode=/);
+  await expect(first.locator('.tl-leg-head').getByRole('img', { name: '計程車' })).toBeVisible();
+  await expect(first.locator('.tl-leg-title')).toHaveText(/^計程車 \d+ 分$/);
   await expect(first).not.toContainText('緩衝');
   await first.getByRole('button').first().click();
   await expect(first.getByTestId('leg-editor')).toHaveCount(0);
+  await expect(first.getByTestId('leg-steps')).toHaveCount(0);
   await expect.poll(() => th(page, '__th.appStore.getState().routes.length')).toBe(1);
   // 一次只選一段：點第二段
   await legs.nth(1).getByRole('button').first().click();
@@ -401,16 +406,18 @@ test('第四輪：交通卡不收合、點了地圖畫那一段；規劃模式�
   await legs.nth(1).getByRole('button').first().click();
   await expect.poll(() => th(page, '__th.appStore.getState().routes.length')).toBe(0);
 
-  // 規劃模式：點了原地變成編輯狀態；方式只有四種；選計程車
+  // 編輯中：收起時右邊寫「改 ›」，點了原地變成編輯狀態；方式只有四種，「自動」寫出它選了什麼；選計程車
   await enterPlanning(page);
+  await expect(first.locator('.tl-leg-chev')).toHaveText('改 ›');
   await first.getByRole('button').first().click();
   const editor = first.getByTestId('leg-editor');
   await expect(editor).toBeVisible();
   await expect(editor.getByTestId('leg-mode')).toHaveCount(4);
+  await expect(editor.locator('[data-testid="leg-mode"][data-mode="auto"]')).toHaveText('自動（計程車）');
   await expect(editor.getByTestId('leg-buffer-plus')).toHaveCount(0);
   await editor.locator('[data-testid="leg-mode"][data-mode="taxi"]').click();
   await expect(first.locator('[data-testid="leg-mode"][data-mode="taxi"]')).toHaveAttribute('aria-pressed', 'true');
-  await expect(first).toContainText('🚕');
+  await expect(first.locator('.tl-leg-title')).toContainText('計程車');
   // 算得出時間、沒自己填過分鐘：沒有分鐘欄
   await expect(first.getByTestId('leg-minutes')).toHaveCount(0);
   await first.getByTestId('leg-note').fill('在飯店大廳集合');
@@ -568,7 +575,7 @@ async function dragOnto(source: Locator, target: Locator, frac: number) {
   await source.dragTo(target, { targetPosition: { x: Math.min(200, box.width / 2), y: box.height * frac } });
 }
 
-test('第四輪：規劃模式把餐廳拖到另一間餐廳的中間 → 合併、👑；按復原回到兩張卡片（電腦版）', async ({ page }) => {
+test('第四輪：編輯中把餐廳拖到另一間餐廳的中間 → 合併、👑；按復原回到兩張卡片（電腦版）', async ({ page }) => {
   test.skip(await isMobile(page), '手機用長按，Playwright 不好模擬');
   await page.setViewportSize({ width: 1600, height: 1200 });
   await ready(page);
@@ -603,7 +610,7 @@ test('第四輪：規劃模式把餐廳拖到另一間餐廳的中間 → 合併
   await expect(rows).toHaveCount(n);
 });
 
-test('第四輪：規劃模式把候選拖到兩張卡片之間 → 時間軸多一站、候選少一筆（電腦版）', async ({ page }) => {
+test('第四輪：編輯中把候選拖到兩張卡片之間 → 時間軸多一站、候選少一筆（電腦版）', async ({ page }) => {
   test.skip(await isMobile(page), '手機用長按，Playwright 不好模擬');
   await page.setViewportSize({ width: 1600, height: 1200 });
   await ready(page);
@@ -628,13 +635,13 @@ test('第四輪：規劃模式把候選拖到兩張卡片之間 → 時間軸多
   await expect(cand(page, C)).toBeVisible();
 });
 
-/** 第四輪完成條件：加到 2/5 → 規劃模式 ↑ 排進 → 標午餐和分開吃 → 交通改計程車 → 復原快照 */
+/** 第四輪完成條件：加到 2/5 → 編輯中 ↑ 排進 → 標午餐和分開吃 → 交通改計程車 → 復原快照 */
 test('第四輪完成條件：排進、標午餐和分開吃、交通改計程車、復原快照', async ({ page }) => {
   const D = '2027-02-05';
   await ready(page);
   const before = (await th(page, '__th.dataStore.getState().itinerary')) as { days: unknown };
 
-  // 1. 把點加到 2/5（想去的卡片「加到某天」；先按 ❤️）→ 進入規劃模式
+  // 1. 把點加到 2/5（想去的卡片「加到某天」；先按 ❤️）→ 開始編輯
   await openDetail(page, PLACE);
   await page.getByTestId('vote-like').click();
   const list = await openWish(page);
@@ -663,7 +670,8 @@ test('第四輪完成條件：排進、標午餐和分開吃、交通改計程�
   const leg = page.getByTestId('timeline').getByTestId('tl-leg').first();
   await leg.getByRole('button').first().click();
   await leg.locator('[data-testid="leg-mode"][data-mode="taxi"]').click();
-  await expect(leg).toContainText('🚕');
+  await expect(leg.locator('.tl-leg-title')).toContainText('計程車');
+  await expect(leg.locator('.tl-leg-head').getByRole('img', { name: '計程車' })).toBeVisible();
 
   // 5. 復原快照 → 回到原狀
   await page.getByTestId('snapshots-button').click();
@@ -673,4 +681,221 @@ test('第四輪完成條件：排進、標午餐和分開吃、交通改計程�
   await expect(page.getByTestId('snapshots-dialog')).toHaveCount(0);
   const after = (await th(page, '__th.dataStore.getState().itinerary')) as { days: unknown };
   expect(after.days).toEqual(before.days);
+});
+
+// ───────── 第五輪 ─────────
+
+test('第五輪：編輯入口——日期列的「✏️ 編輯這天」，確認後出現藍條，「完成」回到平常；切到全部就結束編輯', async ({ page }) => {
+  await ready(page);
+  await showDay(page, '2027-02-05');
+  const toggle = page.getByTestId('planning-toggle');
+  await expect(toggle).toHaveText('✏️ 編輯這天');
+  await expect(page.getByTestId('day-nav').getByTestId('planning-toggle')).toBeVisible();
+  await expect(page.getByTestId('planning-bar')).toHaveCount(0);
+
+  // 進入前確認：「開始編輯？」／「開始編輯」，畫面上沒有「規劃模式」
+  await toggle.click();
+  const dialog = page.getByTestId('planning-dialog');
+  await expect(dialog).toContainText('開始編輯？');
+  await expect(page.getByTestId('planning-confirm')).toHaveText('開始編輯');
+  await expect(page.locator('body')).not.toContainText('規劃模式');
+  await page.getByTestId('planning-confirm').click();
+
+  // 編輯中：面板最上面的藍條、藍框；日期列不放「✏️ 編輯這天」
+  const bar = page.getByTestId('planning-bar');
+  await expect(bar).toBeVisible();
+  await expect(bar).toContainText('✏️ 編輯中');
+  await expect(page.getByTestId('day-panel')).toHaveClass(/editing/);
+  await expect(toggle).toHaveCount(0);
+  await expect(page.getByTestId('planning-done')).toHaveText('完成');
+
+  // 完成：回到平常
+  await page.getByTestId('planning-done').click();
+  await expect(bar).toHaveCount(0);
+  await expect(toggle).toBeVisible();
+  expect(await th(page, '__th.appStore.getState().planning')).toBe(false);
+
+  // 換到別天照樣在編輯；選「全部」就結束編輯（全部沒有這天的時間軸，也沒有「✏️ 編輯這天」）
+  await enterPlanning(page);
+  await page.getByTestId('day-next').click();
+  await expect(page.getByTestId('planning-bar')).toBeVisible();
+  await page.evaluate(() => (window as any).__th.commands.selectDay('all'));
+  await expect.poll(() => th(page, '__th.appStore.getState().planning')).toBe(false);
+  await expect(page.getByTestId('planning-bar')).toHaveCount(0);
+  await expect(page.getByTestId('planning-strip')).toHaveCount(0);
+  await expect(page.getByTestId('planning-toggle')).toHaveCount(0);
+});
+
+test('第五輪：2/3 的等待只出現一次——交通卡下面一條「⏳ … 到，等 N 分（午餐 📌 12:00 才開始）」，沒有「空檔」', async ({ page }) => {
+  await ready(page);
+  await showDay(page, '2027-02-03');
+  const tl = page.getByTestId('timeline');
+  await expect(tl.getByTestId('tl-row').first()).toBeVisible();
+  // 等多久看路線（OSRM、計程車速度），這裡只看結構
+  const wait = tl.getByTestId('tl-wait');
+  await expect(wait).toHaveCount(1);
+  await expect(wait).toHaveText(/^⏳ \d\d:\d\d 到，等 \d+ 分（午餐 📌 12:00 才開始）$/);
+  await expect(tl).not.toContainText('空檔');
+  await expect(tl.getByTestId('tl-gap')).toHaveCount(0);
+  // 位置：交通卡下面、La Mer 上面；La Mer 卡上不再寫「等 N 分」
+  const order = await tl.evaluate((el) => [...el.children].map((c) => (c as HTMLElement).dataset.testid + (c.getAttribute('data-item') ? `:${c.getAttribute('data-item')}` : '')));
+  const at = order.indexOf('tl-wait');
+  expect(order[at - 1]).toBe('tl-leg');
+  expect(order[at + 1]).toBe('tl-row:i-3');
+  await expect(tlRow(page, 'i-3')).not.toContainText(/等 \d+ 分/);
+});
+
+test('第五輪：資料卡右上角的編號——2/3 依序 0（出發的住宿）、1、2、3（回住宿）', async ({ page }) => {
+  await ready(page);
+  await showDay(page, '2027-02-03');
+  const tl = page.getByTestId('timeline');
+  await expect(tl.getByTestId('tl-mark')).toHaveText(['0', '1', '2', '3']);
+  // 類型色塊：住宿、景點、餐廳、住宿
+  await expect(tl.getByTestId('tl-card-type')).toHaveText(['宿', '景', '餐', '宿']);
+});
+
+test('第五輪：點交通卡距離不變（步行、計程車平常就用道路路線的距離；OSRM 用假的回應）', async ({ page }) => {
+  await ready(page);
+  // ready 先擋掉 OSRM；這裡後註冊，優先。距離一律回 18.2 公里，查到後卡片從「（直線）」換成路線距離
+  await page.route('**/routing.openstreetmap.de/**', (route) => {
+    const m = /\/([\d.]+),([\d.]+);([\d.]+),([\d.]+)/.exec(route.request().url())!;
+    const a = [Number(m[1]), Number(m[2])];
+    const b = [Number(m[3]), Number(m[4])];
+    const mid = [(a[0] + b[0]) / 2 + 0.00123, (a[1] + b[1]) / 2];
+    return route.fulfill({ json: { code: 'Ok', routes: [{ distance: 18200, duration: 1500, geometry: { coordinates: [a, mid, b] } }], waypoints: [{ distance: 0 }, { distance: 0 }] } });
+  });
+  await showDay(page, '2027-02-04');
+  const leg = page.getByTestId('timeline').getByTestId('tl-leg').nth(1);
+  const sub = leg.locator('.tl-leg-sub');
+  await expect(sub).toContainText('18.2 公里', { timeout: 20000 });
+  await expect(sub).not.toContainText('直線');
+  const before = await sub.innerText();
+  // 點開（地圖只畫這一段）、收起：距離都一樣
+  await leg.getByRole('button').first().click();
+  await expect(leg.getByRole('button').first()).toHaveAttribute('aria-pressed', 'true');
+  await expect.poll(() => th(page, '__th.appStore.getState().routes.length')).toBe(1);
+  await page.waitForTimeout(500);
+  await expect(sub).toHaveText(before);
+  await leg.getByRole('button').first().click();
+  await expect(leg.getByRole('button').first()).toHaveAttribute('aria-pressed', 'false');
+  await expect(sub).toHaveText(before);
+});
+
+/** 2/4 伊雜宮 → 大王埼燈塔改成大眾運輸（種子資料「自動」挑的是計程車）；回傳那張交通卡，還在編輯中、編輯狀態開著 */
+async function transitLeg(page: Page): Promise<Locator> {
+  await showDay(page, '2027-02-04');
+  await enterPlanning(page);
+  const leg = page.getByTestId('timeline').locator('[data-testid="tl-leg"][data-leg="2027-02-04:visit:i-5"]');
+  await leg.getByRole('button').first().click();
+  await leg.locator('[data-testid="leg-mode"][data-mode="transit"]').click();
+  await expect(leg.locator('[data-testid="leg-mode"][data-mode="transit"]')).toHaveAttribute('aria-pressed', 'true');
+  await expect(leg.getByTestId('leg-ride-select').first()).toBeVisible();
+  return leg;
+}
+
+test('第五輪：大眾運輸的交通卡點了展開步驟（等車、御座線），點搭車那一行開班次表（搭不到、選定）', async ({ page }) => {
+  await ready(page);
+  const leg = await transitLeg(page);
+  await leg.getByTestId('leg-done').click();
+  await page.getByTestId('planning-done').click();
+
+  // 收起：標題「大眾運輸 N 分」、第二行含等車，右邊 ▸；沒有步驟
+  await expect(leg.locator('.tl-leg-title')).toHaveText(/^大眾運輸 \d+ 分$/);
+  await expect(leg.locator('.tl-leg-sub')).toContainText(/含等車 \d+ 分/);
+  await expect(leg.locator('.tl-leg-chev')).toHaveText('▸');
+  await expect(leg.getByTestId('leg-steps')).toHaveCount(0);
+  const sub = await leg.locator('.tl-leg-sub').innerText();
+
+  // 點了展開：節點、步行、等車、搭車那一行（巴士圖示＋路線名＋「HH:MM 發」＋「› 班次」）；距離不變
+  await leg.getByRole('button').first().click();
+  const steps = leg.getByTestId('leg-steps');
+  await expect(steps).toBeVisible();
+  await expect(steps.getByTestId('leg-step-wait')).toHaveText(/^⏳ 等 \d+ 分$/);
+  const ride = steps.getByTestId('leg-ride');
+  await expect(ride).toContainText('御座線');
+  await expect(ride).toContainText(/\d\d:\d\d 發/);
+  await expect(ride.getByRole('img', { name: '巴士' })).toBeVisible();
+  await expect(steps).toContainText('步行');
+  await expect(leg.locator('.tl-leg-sub')).toHaveText(sub);
+
+  // 點搭車那一行：地圖那側的班次表；一般模式只能看（沒有可以點的班次）
+  await ride.click();
+  const tt = page.getByTestId('timetable');
+  await expect(tt).toBeVisible();
+  await expect(tt).toContainText('御座線');
+  await expect(tt.getByTestId('timetable-ready')).toContainText('走到');
+  await expect(tt.locator('[data-testid="timetable-row"][data-state="missed"]').first()).toContainText('搭不到');
+  await expect(tt.locator('[data-testid="timetable-row"][data-state="selected"]')).toContainText('選定');
+  await expect(tt.locator('.timetable-row.pickable')).toHaveCount(0);
+  await expect(tt.getByTestId('timetable-source')).toContainText('時刻表來源');
+
+  // 再點交通卡收起：步驟、班次表都關掉
+  await leg.getByRole('button').first().click();
+  await expect(leg.getByTestId('leg-steps')).toHaveCount(0);
+  await expect(tt).toHaveCount(0);
+});
+
+test('第五輪：編輯中的班次下拉沒有搭不到的班；換了班次時間軸跟著變', async ({ page }) => {
+  await ready(page);
+  const leg = await transitLeg(page);
+  const select = leg.getByTestId('leg-ride-select').first();
+  // 走到上車站的時間＝有「⏳ 等」的那個節點的時間
+  const readyAt = await leg.getByTestId('leg-step').filter({ has: page.getByTestId('leg-step-wait') }).first().locator('.leg-step-tm').innerText();
+  expect(readyAt).toMatch(/^\d\d:\d\d$/);
+  const options = () => select.evaluate((s: HTMLSelectElement) => [...s.options].map((o) => ({ value: o.value, text: o.text, disabled: o.disabled })));
+  let opts = await options();
+  const pickable = opts.filter((o) => !o.disabled);
+  expect(pickable.length).toBeGreaterThan(1);
+  for (const o of pickable) {
+    expect(o.text).toMatch(/^\d\d:\d\d 發 → \d\d:\d\d 到・等 \d+ 分$/);
+    expect(o.text.slice(0, 5) >= readyAt).toBe(true);
+  }
+  // 搭不到的收成一行灰字、不能選
+  const missed = opts.filter((o) => o.disabled);
+  expect(missed).toHaveLength(1);
+  expect(missed[0].text).toMatch(new RegExp(`^${readyAt} 以前的 \\d+ 班搭不到$`));
+
+  // 換成下一班：存下來、等車跟著變長、清單照樣只有搭得到的
+  const chosen = pickable[1];
+  const waitBefore = await leg.getByTestId('leg-step-wait').first().innerText();
+  await select.selectOption(chosen.value);
+  await expect(select).toHaveValue(chosen.value);
+  await expect(leg.getByTestId('leg-step-wait').first()).not.toHaveText(waitBefore);
+  opts = await options();
+  for (const o of opts.filter((x) => !x.disabled)) expect(o.text.slice(0, 5) >= readyAt).toBe(true);
+});
+
+test('第五輪：地圖彈窗在日期列上面（靠近上緣的點，彈窗蓋住日期列）', async ({ page }) => {
+  test.skip(await isMobile(page), '手機的彈窗固定在地圖下方');
+  await ready(page);
+  const id = await findPlaceId(page, 'restaurant', 'B');
+  const card = page.getByTestId('preview-card');
+  // 先 hover 一次量彈窗的高度
+  let p = await centerOn(page, id);
+  await page.mouse.move(p.x, p.y);
+  await expect(card).toBeVisible();
+  const h = (await card.boundingBox())!.height;
+  await page.mouse.move(5, 5);
+  await expect(card).toHaveCount(0);
+  // 把點移到日期列正下方：彈窗放在點上方時，上緣落在日期列裡
+  const bar = (await page.locator('.day-float').boundingBox())!;
+  const target = { x: bar.x + Math.min(bar.width / 2, 200), y: bar.y + bar.height / 2 + 18 + h };
+  await page.evaluate(([dx, dy]) => (window as any).__th.map.panBy([dx, dy], { duration: 0 }), [p.x - target.x, p.y - target.y]);
+  await waitIdle(page);
+  p = await page.evaluate((id) => {
+    const t = (window as any).__th;
+    const pt = t.map.project(t.dataStore.getState().byId.get(id).coords);
+    const r = t.map.getCanvas().getBoundingClientRect();
+    return { x: r.left + pt.x, y: r.top + pt.y };
+  }, id);
+  await page.mouse.move(p.x, p.y);
+  await expect(card).toBeVisible();
+  const c = (await card.boundingBox())!;
+  // 彈窗和日期列重疊的地方，最上面的是彈窗
+  const x = Math.max(c.x, bar.x) + 10;
+  const y = Math.max(c.y, bar.y) + 5;
+  expect(x).toBeLessThan(Math.min(c.x + c.width, bar.x + bar.width));
+  expect(y).toBeLessThan(Math.min(c.y + c.height, bar.y + bar.height));
+  const onTop = await page.evaluate(([x, y]) => !!document.elementFromPoint(x, y)?.closest('[data-testid="preview-card"]'), [x, y]);
+  expect(onTop).toBe(true);
 });

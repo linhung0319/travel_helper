@@ -1,5 +1,7 @@
 # 時間軸版面、交通卡步驟、班次表、編輯入口、時間條、顏色（設計，T15m 第五輪）
 
+> **已實作**（計畫：`docs/superpowers/plans/2026-10-25-itinerary-round5.md`）。
+
 > 2026-10-25 👤 用過第四輪（[2026-10-25-itinerary-round4-design.md](2026-10-25-itinerary-round4-design.md)）後的回饋，和 Claude 用草圖逐項討論後整理（草圖在 `.superpowers/brainstorm/34286-1792907602/content/`，不進 git：`timeline-look-v2.html`、`transit-card.html`、`edit-entry.html`、`bar-candidates-popup.html`、`timetable.html`、`day-palette.html`、`icons-everywhere.html`）。
 > 這份接在第四輪後面：沒提到的照舊，衝突的地方以這份為準。
 > 標「Claude 決定」的是 👤 沒有明講、由 Claude 先定的地方，👤 看過可以推翻。
