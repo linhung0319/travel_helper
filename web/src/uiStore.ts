@@ -1,4 +1,4 @@
-// 對話框（T15m）：進入編輯的確認、快照、排進行程、移到別天、修改紀錄、拿掉別人加的候選；展開中的交通卡、地圖那側的班次表。
+// 對話框（T15m）：進入編輯的確認、快照、排進行程、移到別天（卡片、自己加的候選）、修改紀錄、拿掉別人加的候選；展開中的交通卡、地圖那側的班次表。
 // 一次只開一個；從哪裡打開都走這裡（詳情面板、時間軸、編輯藍條），App 底下的 <Dialogs /> 負責畫。
 
 import { createStore } from 'zustand/vanilla';
@@ -9,6 +9,7 @@ export type DialogState =
   | { kind: 'snapshots' }
   | { kind: 'add'; placeId: string; day?: string }
   | { kind: 'move'; itemId: string }
+  | { kind: 'move-candidate'; candidateId: number }
   | { kind: 'reject'; candidateId: number }
   | { kind: 'history'; placeId: string; field?: string };
 

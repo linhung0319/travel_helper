@@ -312,12 +312,9 @@ test('預約筆記：打了備註不按 Enter 直接按狀態，兩個都存得�
   await expect(again.getByTestId('note-text')).toHaveValue(TEXT2);
 });
 
-/** 👑 亮著（class 有 on；不能只寫 /on/，option-crown 本身就含 on） */
-const CROWN_ON = /(^| )on( |$)/;
-
 const tlRow = (page: Page, item: string) => page.getByTestId('timeline').locator(`[data-testid="tl-row"][data-item="${item}"]`);
 
-test('第四輪：一般模式只看；合併卡片換著看、設為主要、標「分組」、拿出來放回候選', async ({ page }) => {
+test('第四輪：一般模式只看；合併卡片換著看、⋯ 的主要、標「分組」、備卡拖回候選', async ({ page }) => {
   await ready(page);
   await showDay(page, '2027-02-05');
   // 一般模式：午餐 tag、＋1、頭像；沒有 −／＋、⋯
@@ -331,25 +328,26 @@ test('第四輪：一般模式只看；合併卡片換著看、設為主要、�
   await aquarium.getByTestId('avatar-stack').click();
   await expect(aquarium.getByTestId('avatar-list')).toContainText('媽媽');
 
-  // 合併卡片：疊層、👑 亮著（看的是主卡）；‹ › 換著看備卡，一般模式不能改，地圖上那個點亮起來
+  // 合併卡片：疊層、看的是主卡；‹ › 換著看備卡，一般模式不能改，地圖上那個點亮起來（第六輪：卡片上沒有 👑）
   const stack = lunch.getByTestId('option-stack');
   await expect(stack).toHaveAttribute('data-shown', '0');
-  await expect(stack.getByTestId('option-crown')).toHaveClass(CROWN_ON);
+  await expect(stack).toHaveAttribute('data-main', 'true');
+  await expect(lunch.getByTestId('option-crown')).toHaveCount(0);
   await stack.getByTestId('option-next').click();
   await expect(stack).toHaveAttribute('data-shown', '1');
-  await expect(stack.getByTestId('option-crown')).not.toHaveClass(CROWN_ON);
-  await expect(lunch.getByTestId('option-make-main')).toHaveCount(0);
+  await expect(stack).toHaveAttribute('data-main', 'false');
   await expect.poll(() => th(page, '__th.appStore.getState().highlights.primary')).toEqual(['toba-kazuei']);
   await stack.getByTestId('option-prev').click();
   await expect(stack).toHaveAttribute('data-shown', '0');
 
-  // 編輯中：看一榮 → 設為主要 → 卡片換成一榮
+  // 編輯中：看一榮 → ⋯ → 主要 → 卡片換成一榮（看主卡時「主要」不能點）
   await enterPlanning(page);
-  await expect(lunch.getByTestId('item-menu')).toHaveCount(1);
+  await lunch.getByTestId('item-menu').click();
+  await expect(page.getByTestId('action-menu').getByTestId('action-main')).toBeDisabled();
+  await page.keyboard.press('Escape');
   await stack.getByTestId('option-next').click();
-  // 看備卡時沒有 ⋯ 選單（裡面的刪除是刪整張卡片）
-  await expect(lunch.getByTestId('item-menu')).toHaveCount(0);
-  await lunch.getByTestId('option-make-main').click();
+  await lunch.getByTestId('item-menu').click();
+  await page.getByTestId('action-menu').getByTestId('action-main').click();
   await expect(lunch).toHaveAttribute('data-place', 'toba-kazuei');
 
   // 標籤：點 tag 那一排 → 分組（Esc 關彈窗）
@@ -359,10 +357,12 @@ test('第四輪：一般模式只看；合併卡片換著看、設為主要、�
   await page.keyboard.press('Escape');
   await expect(page.getByTestId('tag-popover')).toHaveCount(0);
 
-  // 看漣 → 拿出來：回到這天的候選，卡片不再疊；提示可以復原
+  // 看漣 → 拖到候選區：回到這天的候選，卡片不再疊；提示可以復原（手機用長按，Playwright 不好模擬）
+  if (await isMobile(page)) return;
+  await page.setViewportSize({ width: 1600, height: 1200 });
   await expect(stack).toHaveAttribute('data-main', 'true');
   await stack.getByTestId('option-next').click();
-  await lunch.getByTestId('option-takeout').click();
+  await dragOnto(lunch, page.getByTestId('day-candidates'), 0.5);
   await expect(lunch.getByTestId('option-stack')).toHaveCount(0);
   await expect(cand(page, 'toba-sazanami')).toBeVisible();
   await expect(page.getByTestId('toast-undo')).toBeVisible();
@@ -577,7 +577,7 @@ async function dragOnto(source: Locator, target: Locator, frac: number) {
   await source.dragTo(target, { targetPosition: { x: Math.min(200, box.width / 2), y: box.height * frac } });
 }
 
-test('第四輪：編輯中把餐廳拖到另一間餐廳的中間 → 合併、👑；按復原回到兩張卡片（電腦版）', async ({ page }) => {
+test('第四輪：編輯中把餐廳拖到另一間餐廳的中間 → 合併；按復原回到兩張卡片（電腦版）', async ({ page }) => {
   test.skip(await isMobile(page), '手機用長按，Playwright 不好模擬');
   await page.setViewportSize({ width: 1600, height: 1200 });
   await ready(page);
@@ -597,9 +597,7 @@ test('第四輪：編輯中把餐廳拖到另一間餐廳的中間 → 合併、
 
   await dragOnto(src, target, 0.5);
   await expect(target.getByTestId('option-stack')).toBeVisible();
-  await expect(target.getByTestId('option-crown')).toContainText('👑');
-  // 合併後看的是主卡（原本那間）：👑 亮著
-  await expect(target.getByTestId('option-crown')).toHaveClass(CROWN_ON);
+  // 合併後看的是主卡（原本那間）
   await expect(target.getByTestId('option-stack')).toHaveAttribute('data-main', 'true');
   await expect(src).toHaveCount(0);
   await expect(rows).toHaveCount(n - 1);
@@ -1004,8 +1002,11 @@ test('回住宿的卡：這晚的方案三選一，再點取消', async ({ page 
   await expect(tag).toHaveText('只含早餐');
   await expect(tag).toHaveAttribute('data-from', 'day');
   await expect(pop.getByTestId('lodging-plan-breakfast')).toHaveAttribute('aria-checked', 'true');
+  await expect.poll(() => th(page, '__th.shared.store.getState().saving')).toBe(false);
   await pop.getByTestId('lodging-plan-none').click();
   await expect(tag).toHaveText('素泊');
+  // 畫面先改、後端還在存（假後端 150ms）時再點會被擋（「還在儲存上一個修改」）：等存好再點
+  await expect.poll(() => th(page, '__th.shared.store.getState().saving')).toBe(false);
   await pop.getByTestId('lodging-plan-none').click();
   await expect(tag).toHaveText('一泊二食');
   await expect(tag).toHaveAttribute('data-from', 'data');
@@ -1014,4 +1015,199 @@ test('回住宿的卡：這晚的方案三選一，再點取消', async ({ page 
   expect(day.lodgingMeals ?? null).toBeNull();
   await page.keyboard.press('Escape');
   await expect(pop).toHaveCount(0);
+});
+
+// 第六輪 §2.3：「⋯」動作選單（只在編輯中、portal 到 body）、撤下回候選、重疊卡的主要和拿出、候選的 ⋯
+const menuOf = (row: Locator) => row.getByTestId('item-menu');
+const actionMenu = (page: Page) => page.getByTestId('action-menu');
+const candCount = (page: Page) => page.getByTestId('day-candidates').getByTestId('cand-item').count();
+/** 共用 store 裡這天這個點的候選 */
+const storeCands = (page: Page, placeId: string, day: string) =>
+  page.evaluate(
+    ([p, d]) =>
+      (window as any).__th.shared.store
+        .getState()
+        .candidates.filter((c: any) => c.placeId === p && c.day === d)
+        .map((c: any) => ({ id: c.id, addedBy: c.addedBy })),
+    [placeId, day],
+  );
+const itemStart = (page: Page, day: string, id: string) =>
+  page.evaluate(([d, i]) => (window as any).__th.dataStore.getState().itinerary.days.find((x: any) => x.date === d).items.find((x: any) => x.id === i).start ?? null, [day, id]);
+
+test('⋯：不在編輯中沒有，編輯中有；一般卡沒有刪除', async ({ page }) => {
+  await ready(page);
+  await showDay(page, '2027-02-03');
+  const tl = page.getByTestId('timeline');
+  await expect(tl.getByTestId('item-menu')).toHaveCount(0);
+  await enterPlanning(page);
+  const lamer = tlRow(page, 'i-3');
+  await menuOf(lamer).click();
+  const menu = actionMenu(page);
+  await expect(menu).toBeVisible();
+  expect(await menu.evaluate((el) => el.parentElement === document.body)).toBe(true);
+  await expect(menu.getByTestId('action-withdraw')).toHaveText('↩ 撤下（回候選）');
+  await expect(menu.getByText('🗑 刪除')).toHaveCount(0);
+  await expect(menu.getByTestId('action-delete')).toHaveCount(0);
+  // 照 cardActions 的順序：標籤、釘選（La Mer 有 📌 12:00）、移到第幾天｜撤下；網頁版沒有「改停留時間」
+  await expect(menu.getByRole('menuitem')).toHaveText(['🏷 標籤', '📌 解除釘選', '📅 移到第幾天…', '↩ 撤下（回候選）']);
+  await expect(menu.getByRole('separator')).toHaveCount(1);
+  // 出發住宿那張沒有 ⋯
+  await expect(tl.getByTestId('tl-start').getByTestId('item-menu')).toHaveCount(0);
+  // Esc 只關選單，地圖的小卡片不會跟著關
+  await page.evaluate(() => (window as any).__th.appStore.getState().openPreview('shima-la-mer'));
+  await expect(actionMenu(page)).toBeVisible();
+  await page.keyboard.press('Escape');
+  await expect(actionMenu(page)).toHaveCount(0);
+  expect(await th(page, '__th.appStore.getState().previewId')).toBe('shima-la-mer');
+  await page.evaluate(() => (window as any).__th.appStore.getState().openPreview(null));
+  // 🏷 標籤：打開標籤彈窗
+  await menuOf(lamer).click();
+  await actionMenu(page).getByTestId('action-tags').click();
+  await expect(actionMenu(page)).toHaveCount(0);
+  await expect(page.getByTestId('tag-popover')).toBeVisible();
+  // 開著標籤彈窗結束編輯（閒置自動結束也一樣，不經過點外面），再進來：標籤彈窗不會自己打開
+  await page.evaluate(() => (window as any).__th.appStore.getState().setPlanning(false));
+  await expect(page.getByTestId('tag-popover')).toHaveCount(0);
+  await enterPlanning(page);
+  // 卡片重畫一次（hover），彈窗的 anchor 才接得上
+  await page.evaluate(() => (window as any).__th.appStore.getState().hover('shima-la-mer'));
+  await expect(lamer).toHaveClass(/flash/);
+  await expect(page.getByTestId('tag-popover')).toHaveCount(0);
+});
+
+test('⋯：釘選、解除釘選', async ({ page }) => {
+  await ready(page);
+  await showDay(page, '2027-02-03');
+  await enterPlanning(page);
+  const spot = tlRow(page, 'i-2');
+  const start = (await spot.getByTestId('fix-start').innerText()).slice(0, 5);
+  await menuOf(spot).click();
+  await actionMenu(page).getByTestId('action-pin').click();
+  await expect.poll(() => itemStart(page, '2027-02-03', 'i-2')).toBe(start);
+  await menuOf(spot).click();
+  await actionMenu(page).getByTestId('action-unpin').click();
+  await expect.poll(() => itemStart(page, '2027-02-03', 'i-2')).toBeNull();
+});
+
+test('撤下：卡片變成這天的候選，可以復原', async ({ page }) => {
+  await ready(page);
+  await showDay(page, '2027-02-03');
+  await enterPlanning(page);
+  const rows = page.getByTestId('timeline').getByTestId('tl-row');
+  const n = await rows.count();
+  const c = await candCount(page);
+  await menuOf(tlRow(page, 'i-2')).click();
+  await actionMenu(page).getByTestId('action-withdraw').click();
+  await expect(rows).toHaveCount(n - 1);
+  await expect(cand(page, 'shima-yokoyama-observatory')).toBeVisible();
+  expect(await candCount(page)).toBe(c + 1);
+  await expect(page.getByTestId('toast')).toContainText('已撤下・');
+  await page.getByTestId('toast-undo').click();
+  await expect(rows).toHaveCount(n);
+  await expect(rows.first()).toHaveAttribute('data-item', 'i-2');
+  await expect(cand(page, 'shima-yokoyama-observatory')).toHaveCount(0);
+  expect(await candCount(page)).toBe(c);
+
+  // 這天原本沒有候選的點（La Mer）：撤下時用我的名字加一筆，復原時刪掉
+  await menuOf(tlRow(page, 'i-3')).click();
+  await actionMenu(page).getByTestId('action-withdraw').click();
+  await expect(cand(page, 'shima-la-mer')).toBeVisible();
+  expect(await storeCands(page, 'shima-la-mer', '2027-02-03')).toEqual([expect.objectContaining({ addedBy: 'dev-baba' })]);
+  await page.getByTestId('toast-undo').click();
+  await expect(tlRow(page, 'i-3')).toBeVisible();
+  await expect.poll(() => storeCands(page, 'shima-la-mer', '2027-02-03')).toEqual([]);
+});
+
+test('撤下：已經有候選時復原不刪別人的候選', async ({ page }) => {
+  await ready(page);
+  // 阿公先把 La Mer 加成 2/3 的候選
+  await page.getByTestId('me-button').click();
+  await page.locator('[data-member="dev-agong"]').click();
+  await page.evaluate(() => (window as any).__th.shared.addCandidate('shima-la-mer', '2027-02-03'));
+  await page.getByTestId('me-button').click();
+  await page.locator('[data-member="dev-baba"]').click();
+  const theirs = await storeCands(page, 'shima-la-mer', '2027-02-03');
+  expect(theirs).toEqual([expect.objectContaining({ addedBy: 'dev-agong' })]);
+  await showDay(page, '2027-02-03');
+  await enterPlanning(page);
+  await menuOf(tlRow(page, 'i-3')).click();
+  await actionMenu(page).getByTestId('action-withdraw').click();
+  await expect(cand(page, 'shima-la-mer')).toBeVisible();
+  expect(await storeCands(page, 'shima-la-mer', '2027-02-03')).toEqual(theirs);
+  await page.getByTestId('toast-undo').click();
+  await expect(tlRow(page, 'i-3')).toBeVisible();
+  await expect(cand(page, 'shima-la-mer')).toHaveCount(0);
+  expect(await storeCands(page, 'shima-la-mer', '2027-02-03')).toEqual(theirs);
+});
+
+test('重疊卡：主要、拿出', async ({ page }) => {
+  await ready(page);
+  await showDay(page, '2027-02-05');
+  await enterPlanning(page);
+  const lunch = tlRow(page, 'i-7');
+  const stack = lunch.getByTestId('option-stack');
+  // 卡片上沒有 👑、設為主要、拿出來的按鈕；‹ 1/2 › 還在
+  await expect(lunch.getByTestId('option-crown')).toHaveCount(0);
+  await expect(lunch.getByTestId('option-make-main')).toHaveCount(0);
+  await expect(lunch.getByTestId('option-takeout')).toHaveCount(0);
+  await stack.getByTestId('option-next').click();
+  await expect(stack).toHaveAttribute('data-shown', '1');
+  // 看備卡時也有 ⋯；最上面一組是主要、拿出
+  await menuOf(lunch).click();
+  await expect(actionMenu(page).getByRole('menuitem').first()).toHaveText('👑 主要');
+  await actionMenu(page).getByTestId('action-main').click();
+  await expect(lunch).toHaveAttribute('data-place', 'toba-kazuei');
+
+  // 看漣（現在是備卡）→ 拿出：時間軸多一張單獨的卡（排在一榮後面），候選數量不變
+  const rows = page.getByTestId('timeline').getByTestId('tl-row');
+  const n = await rows.count();
+  const c = await candCount(page);
+  await stack.getByTestId('option-next').click();
+  await menuOf(lunch).click();
+  await actionMenu(page).getByTestId('action-detach').click();
+  await expect(rows).toHaveCount(n + 1);
+  await expect(lunch.getByTestId('option-stack')).toHaveCount(0);
+  const ids = await rows.evaluateAll((els) => els.map((e) => e.getAttribute('data-place')));
+  expect(ids[ids.indexOf('toba-kazuei') + 1]).toBe('toba-sazanami');
+  expect(await candCount(page)).toBe(c);
+});
+
+test('候選的 ⋯：排進這天、刪除', async ({ page }) => {
+  await ready(page);
+  await showDay(page, '2027-02-05');
+  const cruise = cand(page, 'toba-bay-cruise-irukajima');
+  await expect(cruise.getByTestId('item-menu')).toHaveCount(0);
+  await enterPlanning(page);
+  // 媽媽加的：有排進這天、刪除，沒有移到第幾天
+  await cruise.getByTestId('item-menu').click();
+  const menu = actionMenu(page);
+  await expect(menu.getByRole('menuitem')).toHaveText(['📅 排進這天', '🗑 刪除']);
+  await expect(menu.getByTestId('action-move')).toHaveCount(0);
+  // 刪別人加的：開拿掉的對話框（要寫理由）
+  await menu.getByTestId('action-delete').click();
+  await expect(page.getByTestId('reject-dialog')).toBeVisible();
+  await page.keyboard.press('Escape');
+  await expect(page.getByTestId('reject-dialog')).toHaveCount(0);
+  // 排進這天：時間軸多一張、候選少一筆
+  await cruise.getByTestId('item-menu').click();
+  await actionMenu(page).getByTestId('action-schedule').click();
+  await expect(cruise).toHaveCount(0);
+  await expect(page.getByTestId('timeline').locator('[data-testid="tl-row"][data-place="toba-bay-cruise-irukajima"]')).toBeVisible();
+
+  // 自己加的候選（2/6 燒貝いろは是爸爸加的）：有移到第幾天，移過去之後在那天的候選
+  await showDay(page, '2027-02-06');
+  const iroha = cand(page, 'toba-yakigai-iroha');
+  await iroha.getByTestId('item-menu').click();
+  await expect(actionMenu(page).getByRole('menuitem')).toHaveText(['📅 排進這天', '📅 移到第幾天…', '🗑 刪除']);
+  await actionMenu(page).getByTestId('action-move').click();
+  await page.getByTestId('move-dialog').locator('[data-pick-day="2027-02-08"]').click();
+  await expect(page.getByTestId('move-dialog')).toHaveCount(0);
+  await expect.poll(() => storeCands(page, 'toba-yakigai-iroha', '2027-02-08')).toEqual([expect.objectContaining({ addedBy: 'dev-baba' })]);
+  expect(await storeCands(page, 'toba-yakigai-iroha', '2027-02-06')).toEqual([]);
+  // 自己加的直接刪
+  await showDay(page, '2027-02-08');
+  const moved = cand(page, 'toba-yakigai-iroha');
+  await moved.getByTestId('item-menu').click();
+  await actionMenu(page).getByTestId('action-delete').click();
+  await expect(moved).toHaveCount(0);
 });

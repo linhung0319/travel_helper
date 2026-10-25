@@ -2020,6 +2020,45 @@ button.edit-toggle {
   padding: 8px 10px;
 }
 
+/* 「⋯」動作選單（ActionMenu.tsx，放在 .popover 裡）：一列一個動作，組與組之間一條線 */
+.action-menu {
+  display: flex;
+  flex-direction: column;
+  min-width: 200px;
+  padding: 4px;
+}
+
+.action-menu button {
+  border: 0;
+  background: none;
+  color: inherit;
+  font: inherit;
+  text-align: left;
+  min-height: 40px;
+  padding: 0 10px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.action-menu button:hover:not(:disabled) {
+  background: var(--soft);
+}
+
+.action-menu button:disabled {
+  color: var(--muted);
+  cursor: default;
+}
+
+.action-menu button.danger {
+  color: var(--bad);
+}
+
+.action-menu-sep {
+  border: 0;
+  border-top: 1px solid var(--line);
+  margin: 4px 6px;
+}
+
 .tl-gap {
   margin: 2px 0;
 }
@@ -4783,32 +4822,7 @@ button.leg-ride-more {
 
 .option-stack {
   position: relative;
-  padding-right: 1.8em;
   touch-action: pan-y;
-}
-
-.option-crown {
-  position: absolute;
-  top: -2px;
-  right: -2px;
-  border: 0;
-  background: none;
-  padding: 0;
-  font-size: 1.1rem;
-  line-height: 1;
-  filter: grayscale(1);
-  opacity: 0.45;
-}
-
-.option-crown.on {
-  filter: none;
-  opacity: 1;
-}
-
-button.option-crown {
-  cursor: pointer;
-  min-width: 28px;
-  min-height: 28px;
 }
 
 .option-switch {
@@ -4828,14 +4842,6 @@ button.option-crown {
   line-height: 1;
   cursor: pointer;
   color: inherit;
-}
-
-.option-actions {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 4px 8px;
-  margin-top: 4px;
 }
 
 /* ---------- 探索、想去卡片：類型淡底色（和時間軸卡片同一組變數）、名稱旁的複製鍵、❤️ 稍微加強 ---------- */

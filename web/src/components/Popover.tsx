@@ -1,6 +1,6 @@
 // 網頁版的浮動層（設計 §2.1、§2.3）：標籤彈窗、⋯ 選單共用。用 portal 掛到 document.body，
 // position: fixed、z-index 是 --z-popover（比地圖、日期列、浮動列、編輯藍條都高），不會被下一張卡或地圖蓋住。
-// 位置照 placePopover（下面放不下翻上面、右邊超出靠右）；捲動、resize 時重新算。點外面（不在浮動層或 anchor 裡）或按 Esc 就關。
+// 位置照 placePopover（下面放不下翻上面、右邊超出靠右）；捲動、resize 時重新算。點外面（不在浮動層或 anchor 裡）或按 Esc 就關（Esc 只關這一層）。
 
 import { useCallback, useEffect, useLayoutEffect, useRef, useState, type ReactNode } from 'react';
 import { createPortal } from 'react-dom';
@@ -34,16 +34,19 @@ export function Popover({ anchor, open, onClose, testId, children }: { anchor: H
       if (ref.current?.contains(t) || anchor?.contains(t)) return;
       closeRef.current();
     };
+    // Esc 只關浮動層：在 window 的捕獲階段攔下來（同 common.tsx 的 Dialog），App 的 Esc（關詳情、小卡片）收不到
     const esc = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') closeRef.current();
+      if (e.key !== 'Escape') return;
+      e.stopPropagation();
+      closeRef.current();
     };
     document.addEventListener('pointerdown', outside, true);
-    document.addEventListener('keydown', esc);
+    window.addEventListener('keydown', esc, true);
     window.addEventListener('scroll', place, true);
     window.addEventListener('resize', place);
     return () => {
       document.removeEventListener('pointerdown', outside, true);
-      document.removeEventListener('keydown', esc);
+      window.removeEventListener('keydown', esc, true);
       window.removeEventListener('scroll', place, true);
       window.removeEventListener('resize', place);
     };

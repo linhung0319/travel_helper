@@ -1,7 +1,7 @@
 // 想去（interaction-design §6）：❤️ 就是想去。「❤️ 想去」分頁照搬探索（Explore.tsx 的 source="wish"），
 // 每張卡片底下多了「📅 加到某天」（小月曆，DayPicker.tsx）、留言（只有一層，收起來）；❤️／👎 數在照片右上角。
 // 加到某天的點變成那天的「候選」，放在行程分頁時間軸的下面，樣子和資料卡一樣（類型淡底色、類型色塊），
-// 用虛線框、沒有編號表示還沒排進去，下面一行「加的人」。編輯中左邊 ⠿、右邊「↑ 排進」（插在最順路的位置），
+// 用虛線框、沒有編號表示還沒排進去，下面一行「加的人」。編輯中左邊 ⠿、右邊「↑ 排進」（插在最順路的位置）和「⋯」選單（設計 §2.3），
 // 或拖到時間軸（卡片中間＝合併成那張卡片的備卡、卡片之間＝排在那裡；planDrag.ts）。備卡也可以拖回候選區。
 // 這天、整趟的留言（Comments）放在地圖區的視窗（MapPanel）。
 
@@ -20,6 +20,7 @@ import { AddToDay } from './DayPicker.tsx';
 import { dragSourceProps, dropOnCandidatesProps, useLongPressDrag } from './planDrag.ts';
 import type { DragSource } from '../lib/dropIntent.ts';
 import { CardType } from './Timeline.tsx';
+import { ActionMenu } from './ActionMenu.tsx';
 
 /** 有人 ❤️ 的點（想去分頁的內容）；地圖、分頁的數字也用這個 */
 export function useLiked() {
@@ -130,7 +131,7 @@ export function WishExtras({ placeId }: { placeId: string }) {
   );
 }
 
-/** 候選的一筆：類型色塊、名稱、❤️ 頭像，下面一行「加的人」。編輯中左邊 ⠿ 可以拖進時間軸（住宿不行）、右邊「↑ 排進」 */
+/** 候選的一筆：類型色塊、名稱、❤️ 頭像，下面一行「加的人」。編輯中左邊 ⠿ 可以拖進時間軸（住宿不行）、右邊「↑ 排進」、「⋯」（排進這天、移到第幾天、刪除） */
 function CandidateRow({ c, date }: { c: Candidate; date: string }) {
   const me = useShared((s) => s.me?.id);
   const p = useData((s) => s.byId.get(c.placeId));
@@ -201,6 +202,14 @@ function CandidateRow({ c, date }: { c: Candidate; date: string }) {
             拿掉
           </button>
         )
+      )}
+      {planning && (
+        <ActionMenu
+          ctx={{ kind: 'candidate', mine, surface: 'desktop' }}
+          target={{ date, candidateId: c.id, placeId: c.placeId }}
+          ui={{ openTags: () => {}, openLodgingPlan: () => {}, openMove: () => openDialog({ kind: 'move-candidate', candidateId: c.id }) }}
+          label={name}
+        />
       )}
     </li>
   );

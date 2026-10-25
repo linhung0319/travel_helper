@@ -4,7 +4,7 @@ import { useEffect } from 'react';
 import { shared } from '../appShared.ts';
 import { useShared, useUi } from '../hooks.ts';
 import { RejectDialog } from './Wishlist.tsx';
-import { AddToDayDialog, MoveDialog, PlanningConfirmDialog, SnapshotsDialog } from './Planning.tsx';
+import { AddToDayDialog, MoveCandidateDialog, MoveDialog, PlanningConfirmDialog, SnapshotsDialog } from './Planning.tsx';
 import { HistoryDialog } from './EditHistory.tsx';
 
 export function Dialogs() {
@@ -19,6 +19,8 @@ export function Dialogs() {
       return <AddToDayDialog placeId={d.placeId} day={d.day} />;
     case 'move':
       return <MoveDialog itemId={d.itemId} />;
+    case 'move-candidate':
+      return <MoveCandidateDialog candidateId={d.candidateId} />;
     case 'reject':
       return <RejectDialog candidateId={d.candidateId} />;
     case 'history':

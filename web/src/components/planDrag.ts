@@ -5,13 +5,14 @@
 // - 放在同類型卡片的中間＝合併（亮藍框「放開＝合併到這張」）；卡片上下邊緣、最後的放置區＝排在這裡（插入線）；
 //   放在交通卡上＝排在這段通往的卡片前面（不合併；回住宿那段＝這天的最後）；
 //   備卡放到候選區＝放回候選。拖曳開始時，不能合併的卡片變淡（drop-nomerge）。
-// - 合併、換順序、拆開、排進、放回候選都可以復原（changeItinerary 的 undo）；候選的增減在 settle 裡做完才跳復原提示。放回原位不存檔。
+// - 「⋯」的撤下（withdrawItem）：整張卡回這天的候選，也在這裡。
+// - 合併、換順序、拆開、排進、放回候選、撤下都可以復原（changeItinerary 的 undo）；候選的增減在 settle 裡做完才跳復原提示。放回原位不存檔。
 // 放置區：卡片 data-drop-item（data-drop-type、data-drop-flight）、交通卡 data-drop-leg（data-drop-date）、
 // 最後的放置區 data-drop-end、候選區 data-drop-candidates。
 // 同時放 application/x-travel-place，拖到聊天室也能問 AI（askAi.ts）。
 
 import { useEffect, useRef, type DragEvent } from 'react';
-import { addOption, detachOption, ItineraryError, mergeItems, moveItemTo, moveOption, removeOption } from '@travel-helper/engine';
+import { addOption, detachOption, ItineraryError, mergeItems, moveItemTo, moveOption, removeItem, removeOption } from '@travel-helper/engine';
 import type { Itinerary } from '@travel-helper/engine/types';
 import { shared } from '../appShared.ts';
 import { dataStore } from '../dataStore.ts';
@@ -72,7 +73,35 @@ async function dropCandidate(placeId: string, date: string, existed: boolean) {
   if (c) await shared.removeCandidate(c.id, undefined, true);
 }
 
-/** 備卡放回這天的候選（看備卡時的「拿出來」、備卡拖到候選區），可以復原 */
+/** 拿掉這次加的候選（撤下的復原、撤下失敗時） */
+async function dropAdded(ids: number[]) {
+  for (const id of ids) await shared.removeCandidate(id, undefined, true);
+}
+
+/**
+ * 撤下（「⋯」的 ↩ 撤下）：整張卡（所有選項）拿掉，地點用我的名字加成這天的候選，可以復原。
+ * 先加候選（這天已經有的跳過、不記）、再拿掉卡片；復原時卡片回原位，只刪這次新加的候選。拿不掉卡片時也刪掉剛加的
+ */
+export async function withdrawItem(itemId: string, date: string): Promise<void> {
+  const it = dataStore.getState().itinerary;
+  const item = it ? findItemRef(it, itemId)?.item : null;
+  if (item?.type !== 'visit') return;
+  const label = placeName(item.options[item.selected]?.place);
+  const added: number[] = [];
+  for (const placeId of new Set(item.options.map((o) => o.place))) {
+    if (shared.store.getState().candidates.some((c) => c.placeId === placeId && c.day === date)) continue;
+    const r = await shared.addCandidate(placeId, date);
+    // 加不起來時 addCandidate 自己會跳錯誤提示；卡片不動，剛加的收回
+    if (!r.ok) return dropAdded(added);
+    added.push(r.value.id);
+  }
+  const r = await shared.changeItinerary((x) => removeItem(x, itemId), `${label} 撤下（回候選）`, {
+    undo: { text: `已撤下・${label}`, after: () => dropAdded(added) },
+  });
+  if (!r.ok) await dropAdded(added);
+}
+
+/** 備卡放回這天的候選（備卡拖到候選區），可以復原 */
 export async function putBackOption(itemId: string, index: number, date: string) {
   const it = dataStore.getState().itinerary;
   const placeId = it ? optionPlace(it, itemId, index) : null;

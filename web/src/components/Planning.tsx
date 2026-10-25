@@ -1,5 +1,5 @@
 // 編輯（interaction-design §6、§11、第五輪設計 §5）：「✏️ 編輯這天」按鈕、進入前確認、時間軸面板最上面的藍條、第一次的提示、閒置自動結束；
-// 快照列表與復原、「排進行程」、「移到第 _ 天」、別人改過了的提示。
+// 快照列表與復原、「排進行程」、「移到第 _ 天」（卡片、自己加的候選）、別人改過了的提示。
 
 import { useCallback, useEffect, useState, useSyncExternalStore } from 'react';
 import { describeChanges, diffItinerary, moveItemToDay } from '@travel-helper/engine';
@@ -397,6 +397,37 @@ export function MoveDialog({ itemId }: { itemId: string }) {
         ))}
       </div>
       <p className="muted small">放在那天的最後，順序可以再調。</p>
+    </Dialog>
+  );
+}
+
+/** 候選「⋯」的「移到第幾天」（只有自己加的）：在那天加成候選、這天的拿掉 */
+export function MoveCandidateDialog({ candidateId }: { candidateId: number }) {
+  const c = useShared((s) => s.candidates.find((x) => x.id === candidateId));
+  const itinerary = useData((s) => s.itinerary);
+  const [busy, setBusy] = useState(false);
+  if (!c) return null;
+  const move = async (date: string) => {
+    setBusy(true);
+    const r = await shared.addCandidate(c.placeId, date);
+    if (r.ok) await shared.removeCandidate(c.id, undefined, true);
+    setBusy(false);
+    if (r.ok) closeDialog();
+  };
+  return (
+    <Dialog title="移到第幾天" onClose={closeDialog} testId="move-dialog">
+      <p>
+        <PlaceChip id={c.placeId} />（現在是 {shortDayLabel(c.day)} 的候選）
+      </p>
+      <div className="day-picker">
+        {DATES.filter((d) => d !== c.day).map((d) => (
+          <button key={d} type="button" className="day-pick" disabled={busy} onClick={() => void move(d)} data-pick-day={d}>
+            <span>{dayLabel(d)}</span>
+            <span className="muted small">{stopsOn(itinerary, d).filter((s) => s.kind !== 'lodging' && s.kind !== 'flight').length} 個點</span>
+          </button>
+        ))}
+      </div>
+      <p className="muted small">變成那天的候選。</p>
     </Dialog>
   );
 }

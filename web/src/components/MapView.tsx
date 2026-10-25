@@ -393,6 +393,7 @@ export function MapView() {
         appStore,
         dataStore,
         uiStore,
+        shared,
         commands,
         visual: (id: string) => {
           const p = dataStore.getState().byId.get(id);

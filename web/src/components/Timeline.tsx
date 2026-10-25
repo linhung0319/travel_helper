@@ -3,28 +3,31 @@
 // 點項目地圖跳過去；到了要等（📌、還沒開門）時交通卡下面一條黃色虛框的「⏳ 幾點到，等 N 分（原因）」，點了看附近的景點。
 // 資料卡只顯示要看的（設計 §6）：左邊類型色塊（宿／景／餐／站／機／點）、時間（開始–結束）、停留時間（X小時MM分）、名稱、標籤、❤️ 頭像、⚠ 數。
 // 資料卡固定四欄（第六輪 §2.2）：把手欄（編輯中每張卡都留，宿的卡也是）、類型色塊、內容、右邊動作欄（上面編號、下面 ⋯），所以色塊、⋯ 上下對齊。
-// 卡片底色是類型的淡色；起點、終點的住宿和造訪是同樣的卡片（只寫一個時間）。有備卡的卡片疊著淡色卡、右上角 👑、‹ n/m › 換著看。
-// 編輯中才有：停留時間 −／＋、點時間固定開始（📌）、⋯ 選單（刪除、移到第 _ 天、移進／移出分組、🏷 標籤）、點標籤那一排開標籤彈窗（ItemTags.tsx）、
-// 拖卡片（電腦版拖、手機長按後拖）：放在卡片中間合併、邊緣換順序；看備卡時拖的是那張備卡；看備卡時的「設為主要」「拿出來」。
-// 看備卡時預約 tag、警告跟著那張備卡，⋯ 選單收起來（裡面的刪除是刪整張卡片）。
+// 卡片底色是類型的淡色；起點、終點的住宿和造訪是同樣的卡片（只寫一個時間）。有備卡的卡片（重疊卡）疊著淡色卡、‹ n/m › 換著看。
+// 編輯中才有：停留時間 −／＋、點時間固定開始（📌）、點標籤那一排開標籤彈窗（ItemTags.tsx）、
+// 「⋯」動作選單（ActionMenu.tsx，動作照 shared/cardActions.ts：重疊卡的主要、拿出，標籤、釘選、移到第幾天、移進／移出分組、撤下；
+// 回住宿的這晚的方案、清掉住宿；自由時間、分組的刪除）。出發的住宿、航班沒有「⋯」；有地點的卡沒有刪除（要先撤下回候選）。
+// 拖卡片（電腦版拖、手機長按後拖）：放在卡片中間合併、邊緣換順序；看備卡時拖的是那張備卡。
+// 看備卡時預約 tag、警告跟著那張備卡；「⋯」的主要、拿出作用在那張備卡，其他動作作用在整張卡片。
 
 import { useCallback, useEffect, useRef, useState, type ReactNode } from 'react';
-import { moveItemTo, removeItem, selectOption, setLodging, fromMinutes, setStart, setStay, toMinutes, type DayPlan, type EngineWarning, type Gap, type TimelineEntry } from '@travel-helper/engine';
+import { fromMinutes, setStart, setStay, toMinutes, type DayPlan, type EngineWarning, type Gap, type TimelineEntry } from '@travel-helper/engine';
 import type { ItineraryDay, ItineraryItem, VisitItem } from '@travel-helper/engine/types';
 import { appStore } from '../store.ts';
 import { commands } from '../appCommands.ts';
 import { shared } from '../appShared.ts';
 import { useApp, useData, useIsDesktop } from '../hooks.ts';
-import { dragSourceProps, dropOnCardProps, dropOnEndProps, putBackOption, useLongPressDrag } from './planDrag.ts';
+import { dragSourceProps, dropOnCardProps, dropOnEndProps, useLongPressDrag } from './planDrag.ts';
 import type { DragSource } from '../lib/dropIntent.ts';
 import { openDialog } from '../uiStore.ts';
 import { cardTime, cardTypeLetter, dayBar, daySummary, findItemRef, formatStay, formatTravelTotal, hourTicks, isBarSelected, shownWarnings, stopMarks, timelineRows, waitNote, WARNING_ICONS, warningsByItem, type BarSegment } from '../lib/planView.ts';
-import { shortDayLabel } from '../lib/trip.ts';
 import { TYPE_COLORS } from '../lib/typeStyle.ts';
 import type { Place } from '../data/types.ts';
 import { AvatarStack, PlaceChip } from './common.tsx';
 import { LegRow } from './LegRow.tsx';
 import { ItemTags, LodgingTags, tagKindOf } from './ItemTags.tsx';
+import { ActionMenu } from './ActionMenu.tsx';
+import { groupTargetsOf } from './cardActionRun.ts';
 import { useLiked } from './Wishlist.tsx';
 import { pulseMark } from '../lib/mapPulse.ts';
 
@@ -106,123 +109,10 @@ function Warnings({ list }: { list: EngineWarning[] | undefined }) {
   );
 }
 
-/** 編輯中的手動選單；onTags：打開標籤彈窗（造訪的卡片才有） */
-function ItemMenu({ itemId, item, onTags }: { itemId: string; item: ItineraryItem; onTags?: () => void }) {
-  const [open, setOpen] = useState(false);
-  const [confirm, setConfirm] = useState(false);
-  const byId = useData((s) => s.byId);
-  const run = async (fn: Parameters<typeof shared.changeItinerary>[0], reason: string) => {
-    setOpen(false);
-    setConfirm(false);
-    await shared.changeItinerary(fn, reason);
-  };
-  const label = item.type === 'visit' ? name(byId.get(item.options[item.selected]?.place ?? '')) : item.type === 'split' ? '分組' : '項目';
-  // 分組的日子：可以移進某一組（放在那組的最前面）或移出分組（放在分組後面）
-  const itinerary = useData((s) => s.itinerary);
-  const ref = findItemRef(itinerary, itemId);
-  const date = ref?.date ?? '';
-  const dayItems = itinerary?.days.find((d) => d.date === date)?.items ?? [];
-  const inGroup = !!ref?.split;
-  const groupMoves =
-    item.type === 'split'
-      ? []
-      : dayItems.flatMap((x) => (x.type === 'split' ? x.groups.filter((g) => g.id !== ref?.split?.group || x.id !== ref?.split?.id).map((g) => ({ splitId: x.id, groupId: g.id, name: g.name })) : []));
-  const outIndex = ref?.split ? dayItems.findIndex((x) => x.id === ref.split!.id) + 1 : 0;
-  return (
-    <span className="item-menu">
-      <button type="button" className="icon-button small" aria-label={`${label} 的選單`} aria-expanded={open} onClick={() => setOpen(!open)} data-testid="item-menu">
-        ⋯
-      </button>
-      {open && (
-        <span className="menu" role="menu">
-          {groupMoves.map((g) => (
-            <button key={`${g.splitId}:${g.groupId}`} type="button" role="menuitem" onClick={() => void run((it) => moveItemTo(it, itemId, date, 0, { id: g.splitId, group: g.groupId }), `${label} 移到${g.name}`)}>
-              👥 移到{g.name}
-            </button>
-          ))}
-          {inGroup && (
-            <button type="button" role="menuitem" onClick={() => void run((it) => moveItemTo(it, itemId, date, outIndex), `${label} 移出分組`)}>
-              👥 移出分組（全員一起）
-            </button>
-          )}
-          <button
-            type="button"
-            role="menuitem"
-            onClick={() => {
-              setOpen(false);
-              openDialog({ kind: 'move', itemId });
-            }}
-          >
-            📅 移到第 _ 天
-          </button>
-          {item.type === 'visit' && onTags && (
-            <button
-              type="button"
-              role="menuitem"
-              onClick={() => {
-                setOpen(false);
-                onTags();
-              }}
-              data-testid="menu-tags"
-            >
-              🏷 標籤
-            </button>
-          )}
-          {!confirm ? (
-            <button type="button" role="menuitem" className="danger" onClick={() => setConfirm(true)} data-testid="item-delete">
-              🗑 刪除
-            </button>
-          ) : (
-            <button type="button" role="menuitem" className="danger" onClick={() => void run((it) => removeItem(it, itemId), `－${label}`)} data-testid="item-delete-confirm">
-              🗑 確定刪除（會先存快照）
-            </button>
-          )}
-        </span>
-      )}
-    </span>
-  );
-}
-
 const name = (p: Place | undefined) => (p ? p.name.zh || p.name.ja : '（不明）');
 
-/** 回住宿那張卡的 ⋯ 選單：這晚的方案（打開方案彈窗）、清掉這晚的住宿 */
-function LodgingMenu({ date, onPlan }: { date: string; onPlan: () => void }) {
-  const [open, setOpen] = useState(false);
-  return (
-    <span className="item-menu">
-      <button type="button" className="icon-button small" aria-label="住宿的選單" aria-expanded={open} onClick={() => setOpen(!open)} data-testid="item-menu">
-        ⋯
-      </button>
-      {open && (
-        <span className="menu" role="menu">
-          <button
-            type="button"
-            role="menuitem"
-            onClick={() => {
-              setOpen(false);
-              onPlan();
-            }}
-            data-testid="menu-lodging-plan"
-          >
-            🏷 這晚的方案
-          </button>
-          <button
-            type="button"
-            role="menuitem"
-            className="danger"
-            onClick={() => {
-              setOpen(false);
-              void shared.changeItinerary((it) => setLodging(it, date, null), `清掉 ${shortDayLabel(date)} 的住宿`);
-            }}
-            data-testid="lodging-clear"
-          >
-            🗑 清掉這晚的住宿
-          </button>
-        </span>
-      )}
-    </span>
-  );
-}
+/** ⋯ 選單用不到的子畫面 */
+const NO_UI = { openTags: () => {}, openMove: () => {}, openLodgingPlan: () => {} };
 
 const typeClass = (p: Place | undefined) => `type-${p?.type ?? 'other'}`;
 
@@ -234,19 +124,14 @@ interface ShownOption {
   stayMinutes: number | null;
   /** tag 那一排右邊的 ‹ n/m › */
   switcher: ReactNode;
-  /** 編輯中、看備卡時的「設為主要」「拿出來」 */
-  actions: ReactNode;
 }
 
 /**
  * 有備卡的卡片（visit.options 超過一個）：本地 state shown 是「看的是第幾個」，只是看，不改主卡。
- * 右上角 👑 在看主卡時亮、看備卡時灰；‹ n/m › 或手機左右滑換卡；看備卡時地圖上那個點亮起來。
- * 編輯看備卡：「設為主要」（selectOption）、「拿出來」（放回這天的候選，可復原）。
- * onShown：看的備卡換了就告訴卡片（看主卡是 null），拖卡片時拖的就是那張備卡。
+ * ‹ n/m › 或手機左右滑換卡；看備卡時地圖上那個點亮起來。主要、拿出在「⋯」選單裡（作用在正在看的那張）。
+ * onShown：看的備卡換了就告訴卡片（看主卡是 null），拖卡片、⋯ 選單用的就是那張備卡。
  */
-function OptionStack({ visit, date, onShown, children }: { visit: VisitItem; date: string; onShown: (index: number | null) => void; children: (v: ShownOption) => ReactNode }) {
-  const byId = useData((s) => s.byId);
-  const planning = useApp((s) => s.planning);
+function OptionStack({ visit, onShown, children }: { visit: VisitItem; onShown: (index: number | null) => void; children: (v: ShownOption) => ReactNode }) {
   const n = visit.options.length;
   const [shown, setShown] = useState(visit.selected);
   // 主卡換了、備卡被拿掉時，回到看主卡
@@ -270,8 +155,6 @@ function OptionStack({ visit, date, onShown, children }: { visit: VisitItem; dat
 
   const go = (d: number) => setShown((index + d + n) % n);
   const start = useRef<{ x: number; y: number } | null>(null);
-  const label = name(byId.get(placeId));
-  const makeMain = () => void shared.changeItinerary((it) => selectOption(it, visit.id, index), `${label} 設為主要`);
   const switcher = (
     <span className="option-switch small" data-testid="option-switch">
       <button type="button" aria-label="上一個" onClick={() => go(-1)} data-testid="option-prev">
@@ -285,17 +168,6 @@ function OptionStack({ visit, date, onShown, children }: { visit: VisitItem; dat
       </button>
     </span>
   );
-  const actions =
-    planning && !isMain ? (
-      <span className="option-actions">
-        <button type="button" className="button small" onClick={makeMain} data-testid="option-make-main">
-          👑 設為主要
-        </button>
-        <button type="button" className="text-button small" onClick={() => void putBackOption(visit.id, index, date)} data-testid="option-takeout">
-          拿出來
-        </button>
-      </span>
-    ) : null;
   return (
     <div
       className="option-stack"
@@ -316,16 +188,7 @@ function OptionStack({ visit, date, onShown, children }: { visit: VisitItem; dat
         start.current = null;
       }}
     >
-      {isMain || !planning ? (
-        <span className={`option-crown ${isMain ? 'on' : ''}`} aria-label={isMain ? '主要' : '備案'} title={isMain ? '主要' : '備案'} data-testid="option-crown">
-          👑
-        </span>
-      ) : (
-        <button type="button" className="option-crown" aria-label="設為主要" title="設為主要" onClick={makeMain} data-testid="option-crown">
-          👑
-        </button>
-      )}
-      {children({ placeId, isMain, stayMinutes: option.stayMinutes ?? null, switcher, actions })}
+      {children({ placeId, isMain, stayMinutes: option.stayMinutes ?? null, switcher })}
     </div>
   );
 }
@@ -355,6 +218,10 @@ function EntryRow({ entry, day, warnings, plan, marks }: { entry: TimelineEntry;
   const pressRef = useLongPressDrag<HTMLLIElement>(dragSrc, !desktop);
   const likedMap = useLiked();
   const [tagsOpen, setTagsOpen] = useState(false);
+  // 結束編輯時關掉標籤彈窗：不然下次進編輯會自己打開
+  useEffect(() => {
+    if (!planning) setTagsOpen(false);
+  }, [planning]);
 
   // 編輯中每張資料卡都留把手欄（宿的卡沒有把手，也留空白），類型色塊才對齊
   const editing = planning ? 'editing' : '';
@@ -394,7 +261,7 @@ function EntryRow({ entry, day, warnings, plan, marks }: { entry: TimelineEntry;
         <li className="tl-split" data-testid="tl-split">
           <div className="tl-split-head">
             <span>👥 分組行動</span>
-            {planning && item && <ItemMenu itemId={item.id} item={item} />}
+            {planning && item && <ActionMenu ctx={{ kind: 'split', surface: 'desktop' }} target={{ date: day.date, itemId: item.id }} ui={{ ...NO_UI, openMove: () => openDialog({ kind: 'move', itemId: item.id }) }} label="分組" />}
           </div>
           <div className="tl-groups">
             {entry.groups.map((g) => {
@@ -453,7 +320,7 @@ function EntryRow({ entry, day, warnings, plan, marks }: { entry: TimelineEntry;
             </span>
           </span>
           <CardActions entry={entry} marks={marks}>
-            {planning && <LodgingMenu date={day.date} onPlan={() => setTagsOpen(true)} />}
+            {planning && <ActionMenu ctx={{ kind: 'lodging-end', surface: 'desktop' }} target={{ date: day.date, placeId: entry.placeId ?? undefined }} ui={{ ...NO_UI, openLodgingPlan: () => setTagsOpen(true) }} label="住宿" />}
           </CardActions>
         </li>
       </>
@@ -462,11 +329,14 @@ function EntryRow({ entry, day, warnings, plan, marks }: { entry: TimelineEntry;
 
   const visit = item?.type === 'visit' ? item : null;
   const flight = item?.type === 'flight' ? item : null;
+  const free = item?.type === 'free' ? item : null;
   const time = cardTime(entry);
   // 編輯：電腦版拖曳、手機長按後拖（航班不能動）
   const movable = !!dragSrc;
   const itemWarnings = entry.itemId ? warnings.get(entry.itemId) : undefined;
   const stacked = visit && visit.options.length > 1 ? Math.min(visit.options.length - 1, 2) : 0;
+  // ⋯ 選單的主要、拿出作用在正在看的那張（不是重疊卡、或看主卡時是主卡）
+  const shownIndex = visit ? (stacked && backup != null && backup < visit.options.length ? backup : visit.selected) : undefined;
 
   // 卡片的內容；有備卡時 v 是現在看的那個選項（名稱、類型圖示、❤️ 頭像、停留時間換成它）
   const content = (v?: ShownOption) => {
@@ -474,7 +344,7 @@ function EntryRow({ entry, day, warnings, plan, marks }: { entry: TimelineEntry;
     const liked = likedMap.get(v?.placeId ?? entry.placeId ?? '');
     const backup = !!v && !v.isMain;
     const stay = backup ? v.stayMinutes : time.stay;
-    // 看備卡時：預約 tag、警告跟著那張備卡；⋯ 選單（刪除是刪整張卡片）收起來
+    // 看備卡時：預約 tag、警告跟著那張備卡
     const shownPlace = v?.placeId ?? entry.placeId;
     const shownWarns = shownWarnings(itemWarnings, shownPlace, !backup);
     return (
@@ -483,7 +353,7 @@ function EntryRow({ entry, day, warnings, plan, marks }: { entry: TimelineEntry;
         <span className="tl-body">
           <span className="tl-timeline">
             {backup ? <span className="tl-start-time">{entry.start}</span> : <StartTime entry={entry} visit={visit} flight={flight} text={time.text} />}
-            {!flight && stay != null && stay > 0 && <StayChip itemId={visit?.id ?? null} minutes={stay} readOnly={backup} />}
+            {!flight && stay != null && stay > 0 && <StayChip itemId={visit?.id ?? free?.id ?? null} minutes={stay} readOnly={backup} />}
           </span>
           <span className="tl-title">
             <button type="button" className="link-button tl-name" onClick={() => focusPlace(v?.placeId ?? entry.placeId)} onMouseEnter={() => appStore.getState().hover(v?.placeId ?? entry.placeId)} onMouseLeave={() => appStore.getState().hover(null)}>
@@ -496,7 +366,6 @@ function EntryRow({ entry, day, warnings, plan, marks }: { entry: TimelineEntry;
             {visit && <ItemTags visit={visit} kind={tagKindOf(p?.type)} date={day.date} placeId={shownPlace} open={tagsOpen} onOpenChange={setTagsOpen} />}
             {v?.switcher}
           </span>
-          {v?.actions}
           {flight?.note && <span className="muted small">{flight.note}（{flight.depart} 起飛 → {flight.arrive} 抵達）</span>}
           {visit?.note && <span className="tl-note small">📝 {visit.note}</span>}
           {warnOpen && <Warnings list={shownWarns} />}
@@ -523,15 +392,35 @@ function EntryRow({ entry, day, warnings, plan, marks }: { entry: TimelineEntry;
           </span>
         )}
         {visit && stacked ? (
-          <OptionStack visit={visit} date={day.date} onShown={setBackup}>
+          <OptionStack visit={visit} onShown={setBackup}>
             {(v) => content(v)}
           </OptionStack>
         ) : (
           content()
         )}
         <CardActions entry={entry} marks={marks}>
-          {/* 看備卡時 ⋯ 收起來（裡面的刪除是刪整張卡片） */}
-          {planning && item && item.type !== 'flight' && backup == null && <ItemMenu itemId={item.id} item={item} onTags={visit ? () => setTagsOpen(true) : undefined} />}
+          {planning && item && (visit || free) && (
+            <ActionMenu
+              ctx={{
+                kind: visit ? 'visit' : 'free',
+                overlap: !!stacked,
+                pinned: !!visit?.start,
+                groupTargets: groupTargetsOf(itinerary, item.id),
+                inGroup: !!ref?.split,
+                surface: 'desktop',
+              }}
+              target={{ date: day.date, itemId: item.id, optionIndex: shownIndex, placeId: entry.placeId ?? undefined, start: entry.start }}
+              ui={{
+                ...NO_UI,
+                openTags: () => setTagsOpen(true),
+                openMove: () => openDialog({ kind: 'move', itemId: item.id }),
+                // 網頁版：停留時間在卡片上原地 −／＋，把焦點移到 ＋
+                openStay: () => pressRef.current?.querySelector<HTMLElement>('[data-testid="stay-plus"]')?.focus(),
+              }}
+              label={visit ? name(byId.get(visit.options[shownIndex!]?.place ?? '')) : '自由時間'}
+              disabled={visit && shownIndex === visit.selected ? ['main'] : []}
+            />
+          )}
         </CardActions>
       </li>
     </>
