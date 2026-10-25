@@ -1,0 +1,718 @@
+[
+  {
+    "fromLine": "kintetsu",
+    "toLine": null,
+    "from": "osaka-namba",
+    "to": "nankai-namba",
+    "walkMin": 11,
+    "walkMinBasis": "official",
+    "elevator": true,
+    "elevatorRoute": "近鐵 B3 月台 → 西改札口內電梯 → 西改札口（B2）→ 出站後電梯 B2→B1（なんばウォーク，22 號）→ なんばウォーク地下街約 170 m → 經御堂筋線なんば駅 北西・北東改札前 → 約 230 m（含多段斜坡，有扶手）→ 電梯 B1→1F → 電梯 1F→3F（都是「通り抜け型」，從對面的門出）→ 南海なんば 3F 北改札口（月台同層）。反方向同一路線。",
+    "elevatorWalkMin": 17,
+    "exitGates": true,
+    "note": "walkMin 11 是近鐵官方「月台中央 → 東改札口 → 南海なんば駅」到南海剪票口的分鐘，走東改札（有樓梯、手扶梯），不含南海剪票口到月台。電梯路線：大阪市實測北改札口 ↔ 近鐵西改札口 734 m、13 分（剪票口到剪票口），再加兩端月台到剪票口推估約 4 分 → elevatorWalkMin 17（推估）。路線長、要換 4 次電梯（每台一次只能載幾個人加行李），15 人＋大行李箱建議分 3～4 組、各組帶 1 位熟路的人，至少預留 30 分鐘。近鐵官方：段差なし路線請用西改札口；東改札口一帶沒有電梯。南海側 2F 中央改札、南改札到月台沒有電梯。南海 3F 北改札一帶 11:00～20:00 很擠。",
+    "sources": [
+      {
+        "type": "official",
+        "url": "https://www.kintetsu.co.jp/soukatsu/kounai/nanba.html",
+        "retrieved": "2026-10-26",
+        "note": "近鐵 大阪難波駅構內圖、のりかえ案内（月台中央到他社最近剪票口的標準分鐘）"
+      },
+      {
+        "type": "official",
+        "url": "https://www.city.osaka.lg.jp/toshikeikaku/cmsfiles/contents/0000369/369380/nanba(202508).docx",
+        "retrieved": "2026-10-26",
+        "note": "大阪市 難波地區 無障礙資訊文字版（2025-08 現地調查）：轉乘路線距離、分鐘、電梯"
+      },
+      {
+        "type": "official",
+        "url": "https://www.city.osaka.lg.jp/toshikeikaku/cmsfiles/contents/0000369/369380/nanba05-2(202606).pdf",
+        "retrieved": "2026-10-26",
+        "note": "大阪市 難波地區 轉乘路線圖（2026-06）"
+      },
+      {
+        "type": "other",
+        "url": "https://www.ecomo-rakuraku.jp/ja/station/%E5%A4%A7%E9%98%AA%E9%9B%A3%E6%B3%A2/",
+        "retrieved": "2026-10-26",
+        "note": "らくらくおでかけネット 大阪難波：西改札口，經なんばウォーク內電梯"
+      },
+      {
+        "type": "other",
+        "url": "https://www.ecomo-rakuraku.jp/ja/station/%E5%8D%97%E6%B5%B7%E9%9B%A3%E6%B3%A2/",
+        "retrieved": "2026-10-26",
+        "note": "らくらくおでかけネット 南海難波：輪椅從北口搭電梯到 3F 月台層"
+      }
+    ]
+  },
+  {
+    "fromLine": "kintetsu-namba-osaka",
+    "toLine": "metro-midosuji",
+    "from": "osaka-namba",
+    "to": "metro-namba",
+    "walkMin": 5,
+    "walkMinBasis": "official",
+    "elevator": true,
+    "elevatorRoute": "近鐵 B3 月台 → 西改札口內電梯 → 西改札口（B2）→ 約 28 m → 電梯 B2→B1 → なんばウォーク約 240 m → 御堂筋線なんば駅 北西改札（304 m）或北東改札（334 m）→ 改札內電梯到月台。",
+    "elevatorWalkMin": 8,
+    "exitGates": true,
+    "note": "walkMin 5 是近鐵官方「月台中央 → 東改札口 → 地下鉄（御堂筋線）」到 Metro 剪票口的分鐘（東改札有樓梯、手扶梯，不含 Metro 剪票口到月台）。電梯路線：大阪市實測 西改札口 ↔ 北西改札 304 m、5 分（北東改札 334 m、6 分），加兩端月台↔剪票口推估約 3 分 → 8 分（推估）。",
+    "sources": [
+      {
+        "type": "official",
+        "url": "https://www.kintetsu.co.jp/soukatsu/kounai/nanba.html",
+        "retrieved": "2026-10-26",
+        "note": "近鐵 大阪難波駅構內圖、のりかえ案内（月台中央到他社最近剪票口的標準分鐘）"
+      },
+      {
+        "type": "official",
+        "url": "https://www.city.osaka.lg.jp/toshikeikaku/cmsfiles/contents/0000369/369380/nanba(202508).docx",
+        "retrieved": "2026-10-26",
+        "note": "大阪市 難波地區 無障礙資訊文字版（2025-08 現地調查）：轉乘路線距離、分鐘、電梯"
+      },
+      {
+        "type": "official",
+        "url": "https://subway.osakametro.co.jp/station_guide/M/m20/index.php",
+        "retrieved": "2026-10-26",
+        "note": "Osaka Metro なんば駅（バリアフリールート，含往南海なんば 3F）"
+      }
+    ]
+  },
+  {
+    "fromLine": null,
+    "toLine": "metro-midosuji",
+    "from": "nankai-namba",
+    "to": "metro-namba",
+    "oneWay": true,
+    "walkMin": 6,
+    "walkMinBasis": "estimate",
+    "elevator": true,
+    "elevatorRoute": "南海 3F 北改札口 → 約 60 m → 電梯 3F→1F → 約 25 m → 電梯 1F→B1（なんばCITY 側，通り抜け型）→ 多段斜坡（有扶手）→ 御堂筋線なんば駅 南北改札（乘車專用）→ 改札內電梯到月台。Metro 官網也列出：月台 → 電梯 → 中改札／南北改札／南南改札 → 1 號或 10、13 號出入口電梯 → 地面 → 南海なんば 1F 電梯 → 3F 剪票口層。",
+    "elevatorWalkMin": 7,
+    "exitGates": true,
+    "note": "大阪市實測 南海北改札口 → 御堂筋線南北改札 233 m、4 分（剪票口到剪票口），加月台段推估 → 7 分。一般路線（南海 2F 中央改札 → 手扶梯／樓梯 → 御堂筋線南改札）沒有官方分鐘，6 分是推估。南北改札是乘車專用、南南改札是下車專用，回程方向見下一筆。",
+    "sources": [
+      {
+        "type": "official",
+        "url": "https://www.city.osaka.lg.jp/toshikeikaku/cmsfiles/contents/0000369/369380/nanba(202508).docx",
+        "retrieved": "2026-10-26",
+        "note": "大阪市 難波地區 無障礙資訊文字版（2025-08 現地調查）：轉乘路線距離、分鐘、電梯"
+      },
+      {
+        "type": "official",
+        "url": "https://subway.osakametro.co.jp/station_guide/M/m20/index.php",
+        "retrieved": "2026-10-26",
+        "note": "Osaka Metro なんば駅（バリアフリールート，含往南海なんば 3F）"
+      },
+      {
+        "type": "other",
+        "url": "https://www.ecomo-rakuraku.jp/ja/station/%E5%8D%97%E6%B5%B7%E9%9B%A3%E6%B3%A2/",
+        "retrieved": "2026-10-26",
+        "note": "らくらくおでかけネット 南海難波：輪椅從北口搭電梯到 3F 月台層"
+      }
+    ]
+  },
+  {
+    "fromLine": "metro-midosuji",
+    "toLine": null,
+    "from": "metro-namba",
+    "to": "nankai-namba",
+    "oneWay": true,
+    "walkMin": 6,
+    "walkMinBasis": "estimate",
+    "elevator": true,
+    "elevatorRoute": "御堂筋線月台 → 改札內電梯 → 南南改札（下車專用，B1）→ 約 45 m → 多段斜坡往上（有扶手）→ 電梯 B1→1F → 約 30 m → 電梯 1F→3F（通り抜け型）→ 約 60 m → 南海 3F 北改札口（月台同層）。",
+    "elevatorWalkMin": 6,
+    "exitGates": true,
+    "note": "大阪市實測 南南改札 → 南海北改札口 190 m、3 分（剪票口到剪票口），加月台段推估 → 6 分。往關西機場的ラピート、空港急行都從南海 3F 月台出發，北改札口和月台同層，不用再換樓層。",
+    "sources": [
+      {
+        "type": "official",
+        "url": "https://www.city.osaka.lg.jp/toshikeikaku/cmsfiles/contents/0000369/369380/nanba(202508).docx",
+        "retrieved": "2026-10-26",
+        "note": "大阪市 難波地區 無障礙資訊文字版（2025-08 現地調查）：轉乘路線距離、分鐘、電梯"
+      },
+      {
+        "type": "official",
+        "url": "https://subway.osakametro.co.jp/station_guide/M/m20/index.php",
+        "retrieved": "2026-10-26",
+        "note": "Osaka Metro なんば駅（バリアフリールート，含往南海なんば 3F）"
+      }
+    ]
+  },
+  {
+    "fromLine": "kintetsu",
+    "toLine": "jr-osaka-loop",
+    "from": "tsuruhashi",
+    "to": "jr-tsuruhashi",
+    "walkMin": 4,
+    "walkMinBasis": "official",
+    "elevator": true,
+    "elevatorRoute": "近鐵 2F 月台 → 5 號電梯（名古屋・奈良方面月台）或 6 號電梯（大阪難波・上本町方面月台）→ 近鐵西改札口（1F，出站）→ 高架下往北約 50 m → JR 中央改札口（1F，進站）→ 3 號電梯（京橋・大阪方面月台）或 4 號電梯（天王寺・弁天町方面月台）→ JR 3F 月台。",
+    "elevatorWalkMin": 7,
+    "exitGates": true,
+    "note": "walkMin 4 是近鐵官方「月台 → JR（環狀線）京橋・大阪方面」4 分（天王寺・新今宮方面 3 分），走 3F 的站內乘換改札口，不用出站但全程樓梯。乘換改札口沒有電梯（JR、近鐵、大阪市三方都這樣寫），無障礙路線要兩邊都出站（exitGates true 指這條）。電梯路線的剪票口間約 50 m（大阪市地圖比例尺），加 4 段電梯推估 7 分。出站再進站要各自刷卡或用車票出站、進站（JR、近鐵本來就分開計費）；持近鐵特急券時要先問站員出站方式。",
+    "sources": [
+      {
+        "type": "official",
+        "url": "https://www.kintetsu.co.jp/soukatsu/kounai/tsuruhashi.html",
+        "retrieved": "2026-10-26",
+        "note": "近鐵 鶴橋駅構內圖、のりかえ案内"
+      },
+      {
+        "type": "official",
+        "url": "https://eki.jr-odekake.net/premises?id=0610508",
+        "retrieved": "2026-10-26",
+        "note": "JR 鶴橋駅構內圖（2026-05-20 時點）：近鐵乘換改札口沒有電梯"
+      },
+      {
+        "type": "official",
+        "url": "https://www.city.osaka.lg.jp/toshikeikaku/cmsfiles/contents/0000369/369380/tsuruhashi02(202606).pdf",
+        "retrieved": "2026-10-26",
+        "note": "大阪市 鶴橋地區無障礙地圖（2026-06）：JR⇔近鐵無障礙轉乘要走地面、電梯編號、比例尺"
+      }
+    ]
+  },
+  {
+    "fromLine": "jr-osaka-loop",
+    "toLine": "metro-midosuji",
+    "from": "jr-tennoji",
+    "to": "metro-tennoji",
+    "walkMin": 5,
+    "walkMinBasis": "estimate",
+    "elevator": true,
+    "elevatorRoute": "JR 東口改札（1F）→ 電梯下 B1 → 斜坡 14 m → 御堂筋線 東改札（113 m、2 分）→ 月台電梯；或 JR 中央口改札 → 約 60 m → 電梯下 B1 → 約 40 m → 御堂筋線 西改札（約 100 m）。JR 環狀線（11 番のりば以後）要先搭電梯到 1F 剪票口；阪和線・關空快速的 1～9 番のりば和剪票口同層，不用電梯。",
+    "elevatorWalkMin": 6,
+    "exitGates": true,
+    "note": "大阪市實測 JR 東口改札 ↔ 御堂筋線東改札 113 m、2 分（官方，剪票口到剪票口）；中央口 ↔ 西改札約 102 m（依大阪市逐段距離加總）。walkMin、elevatorWalkMin 含月台段，都是推估。JR 1～9 番のりば（阪和線、關空快速）沒有高低差，對帶行李的人比環狀線月台輕鬆。",
+    "sources": [
+      {
+        "type": "official",
+        "url": "https://www.city.osaka.lg.jp/toshikeikaku/cmsfiles/contents/0000369/369380/tennouji(202409).docx",
+        "retrieved": "2026-10-26",
+        "note": "大阪市 天王寺・阿倍野地區 無障礙資訊文字版（2024-09 現地調查）"
+      },
+      {
+        "type": "official",
+        "url": "https://eki.jr-odekake.net/barrierfree?id=0620831",
+        "retrieved": "2026-10-26",
+        "note": "JR 天王寺駅 無障礙資訊（1～9 番のりば不需電梯、11 番以後有電梯）"
+      },
+      {
+        "type": "official",
+        "url": "https://subway.osakametro.co.jp/station_guide/M/m23/index.php",
+        "retrieved": "2026-10-26",
+        "note": "Osaka Metro 天王寺駅（御堂筋線）"
+      }
+    ]
+  },
+  {
+    "fromLine": "jr-osaka-loop",
+    "toLine": "metro-tanimachi",
+    "from": "jr-tennoji",
+    "to": "metro-tennoji",
+    "walkMin": 7,
+    "walkMinBasis": "estimate",
+    "elevator": true,
+    "elevatorRoute": "JR 中央口改札（1F）→ 斜坡 → 過有號誌的斑馬線（15 m）→ 電梯下 B2 → 谷町線 北改札（250 m、5 分）→ 月台。另一條：進御堂筋線西改札後，用站內「御堂筋線のりかえ連絡通路」的電梯轉谷町線（Metro 官方無障礙轉乘路線）。",
+    "elevatorWalkMin": 8,
+    "exitGates": true,
+    "note": "大阪市實測 JR 中央口改札 → 谷町線北改札 250 m、5 分（官方，含 1 處號誌路口）；加月台段推估。谷町線比御堂筋線遠，帶行李時先進御堂筋線再在站內轉谷町線也可以（站內轉乘分鐘不明）。",
+    "sources": [
+      {
+        "type": "official",
+        "url": "https://www.city.osaka.lg.jp/toshikeikaku/cmsfiles/contents/0000369/369380/tennouji(202409).docx",
+        "retrieved": "2026-10-26",
+        "note": "大阪市 天王寺・阿倍野地區 無障礙資訊文字版（2024-09 現地調查）"
+      },
+      {
+        "type": "official",
+        "url": "https://eki.jr-odekake.net/barrierfree?id=0620831",
+        "retrieved": "2026-10-26",
+        "note": "JR 天王寺駅 無障礙資訊（1～9 番のりば不需電梯、11 番以後有電梯）"
+      },
+      {
+        "type": "official",
+        "url": "https://subway.osakametro.co.jp/station_guide/T/t27/index.php",
+        "retrieved": "2026-10-26",
+        "note": "Osaka Metro 天王寺駅（谷町線）"
+      },
+      {
+        "type": "official",
+        "url": "https://subway.osakametro.co.jp/station_guide/M/m23/index.php",
+        "retrieved": "2026-10-26",
+        "note": "Osaka Metro 天王寺駅（御堂筋線）"
+      }
+    ]
+  },
+  {
+    "fromLine": "jr-osaka-loop",
+    "toLine": "metro-midosuji",
+    "from": "jr-osaka",
+    "to": "metro-umeda",
+    "walkMin": 7,
+    "walkMinBasis": "estimate",
+    "elevator": true,
+    "elevatorRoute": "JR 月台 → 電梯 → 御堂筋口改札（1F）→ 出站約 20 m → 電梯 1F→B1 → 御堂筋線 中北東改札（205 m、4 分）→ 改札內電梯 → 1 番線（なかもず方面，往なんば・天王寺）。往千里中央方面的 2 番線用中北西改札或南改札（南改札：御堂筋口出站後過有號誌斑馬線，238 m、4 分）。",
+    "elevatorWalkMin": 9,
+    "exitGates": true,
+    "note": "大阪市實測 JR 御堂筋口改札 ↔ 御堂筋線中北東改札 205 m、4 分（官方，剪票口到剪票口）；加 JR 月台↔剪票口、Metro 剪票口↔月台推估。御堂筋口的無障礙通道是有人通道（沒有自動剪票機）。JR 大阪駅每個月台都有電梯到御堂筋口。通勤尖峰時段很擠，帶行李盡量避開（非官方說法）。",
+    "sources": [
+      {
+        "type": "official",
+        "url": "https://www.city.osaka.lg.jp/toshikeikaku/cmsfiles/contents/0000369/369380/umeda(202509).docx",
+        "retrieved": "2026-10-26",
+        "note": "大阪市 梅田地區 無障礙資訊文字版（2025-09 現地調查）：轉乘路線距離、分鐘"
+      },
+      {
+        "type": "official",
+        "url": "https://eki.jr-odekake.net/barrierfree?id=0610130",
+        "retrieved": "2026-10-26",
+        "note": "JR 大阪駅 無障礙資訊（各月台到剪票口有電梯）"
+      },
+      {
+        "type": "official",
+        "url": "https://subway.osakametro.co.jp/station_guide/M/m16/index.php",
+        "retrieved": "2026-10-26",
+        "note": "Osaka Metro 梅田駅（バリアフリー出入口ルート）"
+      }
+    ]
+  },
+  {
+    "fromLine": "metro-midosuji",
+    "toLine": "metro-tanimachi",
+    "from": "metro-umeda",
+    "to": "metro-higashi-umeda",
+    "walkMin": 7,
+    "walkMinBasis": "estimate",
+    "elevator": true,
+    "elevatorRoute": "御堂筋線月台 → 電梯 → 南改札（B1，出站）→ 斜坡（有扶手）→ 梅田地下街約 250 m → 谷町線東梅田駅 中西改札（273 m、5 分）→ 電梯 → 2 番線；往 1 番線（天王寺方面）用東梅田南改札（326 m、6 分）。",
+    "elevatorWalkMin": 8,
+    "exitGates": true,
+    "note": "大阪市實測 御堂筋線南改札 ↔ 東梅田中西改札 273 m、5 分（南改札 326 m、6 分；中東改札 294 m、5 分），剪票口到剪票口；加月台段推估。要出剪票口走地下街，轉乘車票規定未查。",
+    "sources": [
+      {
+        "type": "official",
+        "url": "https://www.city.osaka.lg.jp/toshikeikaku/cmsfiles/contents/0000369/369380/umeda(202509).docx",
+        "retrieved": "2026-10-26",
+        "note": "大阪市 梅田地區 無障礙資訊文字版（2025-09 現地調查）：轉乘路線距離、分鐘"
+      },
+      {
+        "type": "official",
+        "url": "https://subway.osakametro.co.jp/station_guide/M/m16/index.php",
+        "retrieved": "2026-10-26",
+        "note": "Osaka Metro 梅田駅（バリアフリー出入口ルート）"
+      },
+      {
+        "type": "official",
+        "url": "https://subway.osakametro.co.jp/station_guide/T/t20/index.php",
+        "retrieved": "2026-10-26",
+        "note": "Osaka Metro 東梅田駅"
+      }
+    ]
+  },
+  {
+    "fromLine": "jr-osaka-loop",
+    "toLine": "jr-yumesaki",
+    "from": "jr-nishikujo",
+    "to": "jr-nishikujo",
+    "walkMin": 1,
+    "walkMinBasis": "estimate",
+    "elevator": true,
+    "elevatorRoute": "同一個島式月台對面換車，不用上下樓：從大阪方向來（內回り，4 番のりば）→ 對面 3 番のりば（ゆめ咲線）；從天王寺・弁天町方向來（外回り，1 番のりば）→ 對面 2 番のりば（ゆめ咲線）。",
+    "elevatorWalkMin": null,
+    "exitGates": false,
+    "note": "依 JR 構內圖：1・2 番、3・4 番各是一座島式月台（3F）。有從大阪環狀線直通ユニバーサルシティ的列車，搭到直通車就不用轉。下車的月台號碼依列車可能不同，以現場顯示為準。",
+    "sources": [
+      {
+        "type": "official",
+        "url": "https://eki.jr-odekake.net/premises?id=0610503",
+        "retrieved": "2026-10-26",
+        "note": "JR 西九条駅構內圖、のりば案内（2026-06-01 時點）"
+      }
+    ]
+  },
+  {
+    "fromLine": "jr-osaka-loop",
+    "toLine": "metro-chuo",
+    "from": "jr-morinomiya",
+    "to": "metro-morinomiya",
+    "walkMin": null,
+    "walkMinBasis": null,
+    "elevator": true,
+    "elevatorRoute": "JR 2F 月台 → 電梯 → 北口（1F，出站）→ 地面 → Metro 3-C 號或 7-A 號出口電梯（地上 ↔ B1 東コンコース）→ 東改札口 → c 電梯（中央線 1・2 番線）／ f 電梯（中央線 3 番線）／ g 電梯（長堀鶴見緑地線）。",
+    "elevatorWalkMin": null,
+    "exitGates": true,
+    "note": "JR 北口到地面、Metro 東改札到地面都有無障礙路線（官方），但兩站之間的地面段沒有官方路線圖，距離、段差未確認，分鐘填 null。Metro 5、6 號出口標示「JR 環状線（森ノ宮）」，是一般（樓梯）路線。",
+    "sources": [
+      {
+        "type": "official",
+        "url": "https://eki.jr-odekake.net/premises?id=0610510",
+        "retrieved": "2026-10-26",
+        "note": "JR 森ノ宮駅構內圖（2025-11-14 時點）"
+      },
+      {
+        "type": "official",
+        "url": "https://subway.osakametro.co.jp/station_guide/C/c19/index.php",
+        "retrieved": "2026-10-26",
+        "note": "Osaka Metro 森ノ宮駅（中央線）"
+      },
+      {
+        "type": "official",
+        "url": "https://subway.osakametro.co.jp/station/C19_%E6%A3%AE%E3%83%8E%E5%AE%AE_%E6%A7%8B%E5%86%85%E5%9B%B3.pdf",
+        "retrieved": "2026-10-26",
+        "note": "Osaka Metro 森ノ宮駅構內圖 PDF（沒有比例尺）"
+      },
+      {
+        "type": "other",
+        "url": "https://www.ecomo-rakuraku.jp/ja/station/%E6%A3%AE%E3%83%8E%E5%AE%AE/",
+        "retrieved": "2026-10-26",
+        "note": "らくらくおでかけネット 森ノ宮"
+      }
+    ]
+  },
+  {
+    "fromLine": "metro-chuo",
+    "toLine": "metro-nagahori-tsurumi-ryokuchi",
+    "from": "metro-morinomiya",
+    "to": "metro-morinomiya",
+    "walkMin": null,
+    "walkMinBasis": null,
+    "elevator": true,
+    "elevatorRoute": "中央線 1・2 番線月台 → c 電梯（3 番線月台用 f 電梯）→ 東コンコース階 → g 電梯 → 長堀鶴見緑地線 1・2 番線月台。站內轉乘，不用出剪票口。",
+    "elevatorWalkMin": null,
+    "exitGates": false,
+    "note": "Metro 官方的バリアフリーのりかえルート。構內圖沒有比例尺，分鐘不明；圖上電梯都集中在東側，路線不長。",
+    "sources": [
+      {
+        "type": "official",
+        "url": "https://subway.osakametro.co.jp/station_guide/C/c19/index.php",
+        "retrieved": "2026-10-26",
+        "note": "Osaka Metro 森ノ宮駅（中央線）"
+      },
+      {
+        "type": "official",
+        "url": "https://subway.osakametro.co.jp/station_guide/N/n20/index.php",
+        "retrieved": "2026-10-26",
+        "note": "Osaka Metro 森ノ宮駅（長堀鶴見緑地線）"
+      },
+      {
+        "type": "official",
+        "url": "https://subway.osakametro.co.jp/station/C19_%E6%A3%AE%E3%83%8E%E5%AE%AE_%E6%A7%8B%E5%86%85%E5%9B%B3.pdf",
+        "retrieved": "2026-10-26",
+        "note": "Osaka Metro 森ノ宮駅構內圖 PDF（沒有比例尺）"
+      }
+    ]
+  },
+  {
+    "fromLine": "metro-midosuji",
+    "toLine": "metro-chuo",
+    "from": "metro-hommachi",
+    "to": "metro-hommachi",
+    "walkMin": null,
+    "walkMinBasis": null,
+    "elevator": true,
+    "elevatorRoute": "御堂筋線 1・2 番線月台 → 電梯 → 連絡通路 → 電梯 → 中央線 1・2 番線月台（Metro 官方バリアフリーのりかえルート；反方向同）。站內轉乘。",
+    "elevatorWalkMin": null,
+    "exitGates": false,
+    "note": "構內圖沒有比例尺，分鐘不明；中央線月台和御堂筋線月台分開，要走連絡通路，圖上距離不短。構內圖在御堂筋線月台的幾座電梯旁標「（エレベーターご利用の際に階段があります）」，代表那幾座電梯路線中途有階梯，實際能不能完全不走階梯要現場確認。站內男女廁、多機能廁所 2026-10-04～11 月中旬整修關閉（2027-02 應已完成）。",
+    "sources": [
+      {
+        "type": "official",
+        "url": "https://subway.osakametro.co.jp/station_guide/M/m18/index.php",
+        "retrieved": "2026-10-26",
+        "note": "Osaka Metro 本町駅（バリアフリーのりかえルート）"
+      },
+      {
+        "type": "official",
+        "url": "https://subway.osakametro.co.jp/station_guide/C/c16/index.php",
+        "retrieved": "2026-10-26",
+        "note": "Osaka Metro 本町駅（中央線）"
+      },
+      {
+        "type": "official",
+        "url": "https://subway.osakametro.co.jp/station/M18_%E6%9C%AC%E7%94%BA_%E6%A7%8B%E5%86%85%E5%9B%B3.pdf",
+        "retrieved": "2026-10-26",
+        "note": "Osaka Metro 本町駅構內圖 PDF（沒有比例尺）"
+      }
+    ]
+  },
+  {
+    "fromLine": "nankai-airport-express",
+    "toLine": "jr-osaka-loop",
+    "from": "nankai-shin-imamiya",
+    "to": "jr-shin-imamiya",
+    "walkMin": 4,
+    "walkMinBasis": "estimate",
+    "elevator": true,
+    "elevatorRoute": "南海 4F 月台 → 1 號或 2 號電梯 → 南海 1F 改札（出站）→ 地面沿高架往東約 250 m → 斜坡 → JR 通天閣口（東口）改札（1F，進站）→ 4 號電梯（天王寺方面月台）或 5 號電梯（弁天町方面月台）→ JR 2F 月台。",
+    "elevatorWalkMin": 9,
+    "exitGates": true,
+    "note": "一般路線：南海 4F 改札 ↔ JR 西口（3F）相鄰，JR 月台在 2F，靠樓梯、手扶梯，4 分是依構內圖推估。JR 月台 ↔ 西口之間只有昇降機（輪椅用，7:00～8:30 不能用），所以大阪市的無障礙轉乘路線要繞到 JR 東口、走地面。電梯路線距離依大阪市地圖比例尺推估約 250 m，加電梯 → 9 分（推估）。高架下地面段有路口，帶行李要注意車。",
+    "sources": [
+      {
+        "type": "official",
+        "url": "https://www.city.osaka.lg.jp/toshikeikaku/cmsfiles/contents/0000369/369380/shinimamiya02(202606).pdf",
+        "retrieved": "2026-10-26",
+        "note": "大阪市 新今宮地區無障礙地圖（2026-06）：JR、南海、Metro 動物園前 電梯與無障礙轉乘路線、比例尺"
+      },
+      {
+        "type": "official",
+        "url": "https://eki.jr-odekake.net/barrierfree?id=0620506",
+        "retrieved": "2026-10-26",
+        "note": "JR 新今宮駅 無障礙資訊：西口沒有到地面的無障礙設備、月台↔西口用昇降機（7:00～8:30 不可用）"
+      }
+    ]
+  },
+  {
+    "fromLine": "jr-osaka-loop",
+    "toLine": "metro-midosuji",
+    "from": "jr-shin-imamiya",
+    "to": "metro-dobutsuen-mae",
+    "walkMin": 4,
+    "walkMinBasis": "estimate",
+    "elevator": true,
+    "elevatorRoute": "JR 2F 月台 → 4／5 號電梯 → 通天閣口（東口）改札（1F，出站）→ 斜坡 → 過路口 → Metro 6 號電梯（地上 ↔ 北改札 B1 ↔ 御堂筋線 天王寺・なかもず方面月台）。往なんば・梅田方面月台：北改札 → 7 號電梯到堺筋線月台 → 8 號電梯到御堂筋線（なんば方面）月台；或用東改札（11 號電梯地上 ↔ 東改札、9 號電梯東改札 ↔ なんば方面月台）。",
+    "elevatorWalkMin": 6,
+    "exitGates": true,
+    "note": "大阪市地圖：JR 東口改札 ↔ Metro 北改札 段差無し，剪票口間約 80 m（依比例尺推估）。分鐘都是推估。Metro 堺筋線也在同一站（北改札 → 7 號電梯）。",
+    "sources": [
+      {
+        "type": "official",
+        "url": "https://www.city.osaka.lg.jp/toshikeikaku/cmsfiles/contents/0000369/369380/shinimamiya02(202606).pdf",
+        "retrieved": "2026-10-26",
+        "note": "大阪市 新今宮地區無障礙地圖（2026-06）：JR、南海、Metro 動物園前 電梯與無障礙轉乘路線、比例尺"
+      },
+      {
+        "type": "official",
+        "url": "https://eki.jr-odekake.net/barrierfree?id=0620506",
+        "retrieved": "2026-10-26",
+        "note": "JR 新今宮駅 無障礙資訊：西口沒有到地面的無障礙設備、月台↔西口用昇降機（7:00～8:30 不可用）"
+      },
+      {
+        "type": "official",
+        "url": "https://subway.osakametro.co.jp/station_guide/M/m22/index.php",
+        "retrieved": "2026-10-26",
+        "note": "Osaka Metro 動物園前駅（御堂筋線）"
+      },
+      {
+        "type": "official",
+        "url": "https://subway.osakametro.co.jp/station_guide/K/k19/index.php",
+        "retrieved": "2026-10-26",
+        "note": "Osaka Metro 動物園前駅（堺筋線）"
+      }
+    ]
+  },
+  {
+    "fromLine": "kintetsu-namba-osaka",
+    "toLine": "metro-tanimachi",
+    "from": "osaka-uehommachi",
+    "to": "metro-tanimachi-9chome",
+    "walkMin": 7,
+    "walkMinBasis": "official",
+    "elevator": true,
+    "elevatorRoute": "近鐵地下月台（B3，難波線）→ 7／8 號電梯 → 地下中央改札口（B2，出站）→ 地下通路往西約 200 m → Metro 中改札（B2）→ 2 號電梯（天王寺・八尾南方面月台）；往東梅田方面月台要走西改札（1 號電梯）。千日前線：中改札 → 4 號電梯 → B3 月台。",
+    "elevatorWalkMin": 8,
+    "exitGates": true,
+    "note": "walkMin 7 是近鐵官方「地下ホーム → 地下中央改札口 → 地下鉄（谷町線）」到 Metro 剪票口的分鐘（千日前線 6 分）。近鐵地上月台（大阪線，1F）↔ 地下月台 官方 6 分。近鐵地下西改札口、Metro 東改札都沒有到月台的電梯（大阪市地圖註明）。電梯路線距離依大阪市地圖比例尺推估。",
+    "sources": [
+      {
+        "type": "official",
+        "url": "https://www.kintetsu.co.jp/soukatsu/kounai/uehonmachi.html",
+        "retrieved": "2026-10-26",
+        "note": "近鐵 大阪上本町駅構內圖、のりかえ案内"
+      },
+      {
+        "type": "official",
+        "url": "https://www.city.osaka.lg.jp/toshikeikaku/cmsfiles/contents/0000369/369380/nihonbashi02(202606).pdf",
+        "retrieved": "2026-10-26",
+        "note": "大阪市 日本橋、上本町・谷町九丁目地區無障礙地圖（2026-06）第 2 頁：上本町⇔谷町九丁目 無障礙路線、比例尺"
+      },
+      {
+        "type": "official",
+        "url": "https://subway.osakametro.co.jp/station_guide/T/t25/index.php",
+        "retrieved": "2026-10-26",
+        "note": "Osaka Metro 谷町九丁目駅"
+      }
+    ]
+  },
+  {
+    "fromLine": "metro-tanimachi",
+    "toLine": "metro-chuo",
+    "from": "metro-tanimachi-4chome",
+    "to": "metro-tanimachi-4chome",
+    "walkMin": null,
+    "walkMinBasis": null,
+    "elevator": true,
+    "elevatorRoute": "谷町線月台 → 電梯 → 中央線月台（直接連通）；也可以經南改札階換電梯。反方向同。",
+    "elevatorWalkMin": null,
+    "exitGates": false,
+    "note": "Metro 官方バリアフリーのりかえルート；らくらくおでかけネット註明谷町線（天王寺方面）↔ 中央線（森ノ宮方面）月台可搭電梯轉乘。 構內圖沒有比例尺，分鐘不明。",
+    "sources": [
+      {
+        "type": "official",
+        "url": "https://subway.osakametro.co.jp/station_guide/T/t23/index.php",
+        "retrieved": "2026-10-26",
+        "note": "Osaka Metro 谷町四丁目駅（谷町線）"
+      },
+      {
+        "type": "official",
+        "url": "https://subway.osakametro.co.jp/station_guide/C/c18/index.php",
+        "retrieved": "2026-10-26",
+        "note": "Osaka Metro 谷町四丁目駅（中央線）"
+      },
+      {
+        "type": "other",
+        "url": "https://www.ecomo-rakuraku.jp/ja/station/%E8%B0%B7%E7%94%BA%E5%9B%9B%E4%B8%81%E7%9B%AE/",
+        "retrieved": "2026-10-26",
+        "note": "らくらくおでかけネット 谷町四丁目：谷町線（天王寺方面）月台 ↔ 中央線（森ノ宮方面）月台可搭電梯轉乘"
+      }
+    ]
+  },
+  {
+    "fromLine": "metro-sakaisuji",
+    "toLine": "metro-nagahori-tsurumi-ryokuchi",
+    "from": "metro-nagahoribashi",
+    "to": "metro-nagahoribashi",
+    "walkMin": null,
+    "walkMinBasis": null,
+    "elevator": true,
+    "elevatorRoute": "堺筋線月台 → 電梯 → 北コンコース階（北中階）→ 電梯 → 長堀鶴見緑地線月台。反方向同。",
+    "elevatorWalkMin": null,
+    "exitGates": false,
+    "note": "Metro 官方バリアフリーのりかえルート。 構內圖沒有比例尺，分鐘不明。",
+    "sources": [
+      {
+        "type": "official",
+        "url": "https://subway.osakametro.co.jp/station_guide/K/k16/index.php",
+        "retrieved": "2026-10-26",
+        "note": "Osaka Metro 長堀橋駅（堺筋線）"
+      },
+      {
+        "type": "official",
+        "url": "https://subway.osakametro.co.jp/station_guide/N/n16/index.php",
+        "retrieved": "2026-10-26",
+        "note": "Osaka Metro 長堀橋駅（長堀鶴見緑地線）"
+      }
+    ]
+  },
+  {
+    "fromLine": "metro-sakaisuji",
+    "toLine": "metro-chuo",
+    "from": "metro-sakaisuji-hommachi",
+    "to": "metro-sakaisuji-hommachi",
+    "walkMin": null,
+    "walkMinBasis": null,
+    "elevator": true,
+    "elevatorRoute": "堺筋線月台 → 電梯 → 中央線月台（直接連通）。反方向同。",
+    "elevatorWalkMin": null,
+    "exitGates": false,
+    "note": "Metro 官方バリアフリーのりかえルート。 構內圖沒有比例尺，分鐘不明。",
+    "sources": [
+      {
+        "type": "official",
+        "url": "https://subway.osakametro.co.jp/station_guide/K/k15/index.php",
+        "retrieved": "2026-10-26",
+        "note": "Osaka Metro 堺筋本町駅（堺筋線）"
+      },
+      {
+        "type": "official",
+        "url": "https://subway.osakametro.co.jp/station_guide/C/c17/index.php",
+        "retrieved": "2026-10-26",
+        "note": "Osaka Metro 堺筋本町駅（中央線）"
+      }
+    ]
+  },
+  {
+    "fromLine": "metro-midosuji",
+    "toLine": "metro-sakaisuji",
+    "from": "metro-dobutsuen-mae",
+    "to": "metro-dobutsuen-mae",
+    "walkMin": null,
+    "walkMinBasis": null,
+    "elevator": true,
+    "elevatorRoute": "御堂筋線 1 番線（天王寺方面）月台 → G 階段旁電梯 → 堺筋線月台；御堂筋線 2 番線（なんば方面）月台 → 斜坡 → 電梯 → 堺筋線月台。從堺筋線：G 階段電梯 → 御堂筋線 1 番線；電梯 → 連絡通路 → 御堂筋線 2 番線。",
+    "elevatorWalkMin": null,
+    "exitGates": false,
+    "note": "Metro 官方バリアフリーのりかえルート；大阪市新今宮地圖的 8 號電梯（堺筋線月台 B2 ↔ 御堂筋線なんば方面月台）。 構內圖沒有比例尺，分鐘不明。",
+    "sources": [
+      {
+        "type": "official",
+        "url": "https://subway.osakametro.co.jp/station_guide/M/m22/index.php",
+        "retrieved": "2026-10-26",
+        "note": "Osaka Metro 動物園前駅（御堂筋線）"
+      },
+      {
+        "type": "official",
+        "url": "https://subway.osakametro.co.jp/station_guide/K/k19/index.php",
+        "retrieved": "2026-10-26",
+        "note": "Osaka Metro 動物園前駅（堺筋線）"
+      },
+      {
+        "type": "official",
+        "url": "https://www.city.osaka.lg.jp/toshikeikaku/cmsfiles/contents/0000369/369380/shinimamiya02(202606).pdf",
+        "retrieved": "2026-10-26",
+        "note": "大阪市 新今宮地區無障礙地圖（2026-06）：JR、南海、Metro 動物園前 電梯與無障礙轉乘路線、比例尺"
+      }
+    ]
+  },
+  {
+    "fromLine": "metro-midosuji",
+    "toLine": "metro-nagahori-tsurumi-ryokuchi",
+    "from": "metro-shinsaibashi",
+    "to": "metro-shinsaibashi",
+    "walkMin": null,
+    "walkMinBasis": null,
+    "elevator": true,
+    "elevatorRoute": "御堂筋線 1・2 番線月台 → B 階段旁電梯 → 電梯 → 長堀鶴見緑地線 1・2 番線月台。反方向：電梯 → B 階段旁電梯 → 御堂筋線月台。",
+    "elevatorWalkMin": null,
+    "exitGates": false,
+    "note": "Metro 官方バリアフリーのりかえルート。站內設備有電動步道（ムービングウォーク），位置未確認。 構內圖沒有比例尺，分鐘不明。",
+    "sources": [
+      {
+        "type": "official",
+        "url": "https://subway.osakametro.co.jp/station_guide/M/m19/index.php",
+        "retrieved": "2026-10-26",
+        "note": "Osaka Metro 心斎橋駅"
+      },
+      {
+        "type": "official",
+        "url": "https://subway.osakametro.co.jp/station_guide/N/n15/index.php",
+        "retrieved": "2026-10-26",
+        "note": "Osaka Metro 心斎橋駅（長堀鶴見緑地線）"
+      }
+    ]
+  },
+  {
+    "fromLine": "metro-sakaisuji",
+    "toLine": "metro-tanimachi",
+    "from": "metro-tenjimbashisuji-6chome",
+    "to": "metro-tenjimbashisuji-6chome",
+    "walkMin": null,
+    "walkMinBasis": null,
+    "elevator": true,
+    "elevatorRoute": null,
+    "elevatorWalkMin": null,
+    "exitGates": false,
+    "note": "Metro 官網兩條線都只列出到地面的電梯路線（月台 → 電梯 → 北改札 → 住まいの情報センタービル內電梯 → 地上），沒有列站內轉乘的無障礙路線；らくらくおでかけネット標示「各ホーム間（自社線）有輪椅可移動的路線」，所以 elevator 填 true，但走法不明，要問站員。分鐘不明。",
+    "sources": [
+      {
+        "type": "official",
+        "url": "https://subway.osakametro.co.jp/station_guide/K/k11/index.php",
+        "retrieved": "2026-10-26",
+        "note": "Osaka Metro 天神橋筋六丁目駅（堺筋線）"
+      },
+      {
+        "type": "official",
+        "url": "https://subway.osakametro.co.jp/station_guide/T/t18/index.php",
+        "retrieved": "2026-10-26",
+        "note": "Osaka Metro 天神橋筋六丁目駅（谷町線）"
+      },
+      {
+        "type": "other",
+        "url": "https://www.ecomo-rakuraku.jp/ja/station/%E5%A4%A9%E7%A5%9E%E6%A9%8B%E7%AD%8B%E5%85%AD%E4%B8%81%E7%9B%AE/",
+        "retrieved": "2026-10-26",
+        "note": "らくらくおでかけネット 天神橋筋六丁目：Metro 各ホーム間（自社線）有輪椅可移動路線"
+      }
+    ]
+  }
+]

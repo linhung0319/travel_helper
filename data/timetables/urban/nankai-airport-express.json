@@ -1,0 +1,150 @@
+{
+  "id": "nankai-airport-express",
+  "mode": "private",
+  "operator": "南海電鉄",
+  "name": {
+    "ja": "南海線・空港線 空港急行",
+    "zh": "南海 機場急行"
+  },
+  "serviceType": "空港急行",
+  "stops": [
+    {
+      "id": "nankai-namba",
+      "min": 0,
+      "note": null
+    },
+    {
+      "id": "nankai-shin-imamiya",
+      "min": 3,
+      "note": "可轉 JR 環狀線"
+    },
+    {
+      "id": "izumisano",
+      "min": 36,
+      "note": null
+    },
+    {
+      "id": "rinku-town",
+      "min": 40,
+      "note": null
+    },
+    {
+      "id": "kansai-airport",
+      "min": 46,
+      "note": "直通第 1 航廈"
+    }
+  ],
+  "loop": false,
+  "loopMin": null,
+  "service": {
+    "weekday": {
+      "first": "05:45",
+      "last": "23:02",
+      "headway": [
+        {
+          "from": "05:15",
+          "to": "06:00",
+          "min": 15
+        },
+        {
+          "from": "06:00",
+          "to": "08:00",
+          "min": 20
+        },
+        {
+          "from": "08:00",
+          "to": "17:00",
+          "min": 15
+        },
+        {
+          "from": "17:00",
+          "to": "19:00",
+          "min": 30
+        },
+        {
+          "from": "19:00",
+          "to": "22:00",
+          "min": 20
+        },
+        {
+          "from": "22:00",
+          "to": "23:05",
+          "min": 30
+        }
+      ],
+      "note": "駅探的站別時刻表（2024-12-21 現在，平日）推算：なんば發往關西空港的空港急行 05:15～23:02，白天 :08、:23、:38、:53 每 15 分；關西空港發往なんば 05:45～23:55，白天 :09、:26、:39、:56。17～19 時下行空港急行每小時只有 2 班，另有往關西空港的普通車（16:49、17:20、17:46 等）和ラピート補足。首班取較晚的（關西空港 05:45 發）、末班取較早的（なんば 23:02 發）。"
+    },
+    "saturday": null,
+    "holiday": {
+      "first": null,
+      "last": null,
+      "headway": null,
+      "note": "土休日的時刻沒查到：南海官網的站別時刻表、運賃檢索都在 kensaku.nankai.co.jp，它的 robots.txt 禁止 ClaudeBot，沒有使用；駅探不帶查詢參數的網址只顯示平日。南海通常是「土休日」一套，白天大概也是每 15 分（未確認）。"
+    }
+  },
+  "fares": {
+    "currency": "JPY",
+    "adult": {
+      "nankai-namba": {
+        "kansai-airport": 970
+      }
+    },
+    "child": {
+      "nankai-namba": {
+        "kansai-airport": 490
+      }
+    },
+    "note": "なんば→關西空港 大人 970、兒童 490 円（含空港線加算運賃；車票與 IC 同價；來源是駅探與 repo 的 data/access/kix.json，南海官方運賃檢索在 kensaku.nankai.co.jp 未使用）。新今宮、泉佐野、りんくうタウン之間的票價：不明。南海兒童運賃為大人半價、10 円未滿進位（970→490 符合）。空港急行不需要特急券。"
+  },
+  "passes": {
+    "kintetsu-rail-pass-5day": false,
+    "kintetsu-rail-pass-5day-plus": false
+  },
+  "notes": "站間分鐘是用上行（關西空港 → なんば）的站別時刻推回去的：關西空港 :09 發 → りんくうタウン :15 → 泉佐野 :19 → 新今宮 :52 → なんば :55（約 46 分；kix-side.md 也記錄 13:09 → 新今宮 13:52 → なんば 13:55）。下行各站分鐘沒有直接核對，可能差 1～2 分。空港急行是一般車廂（長椅），沒有行李架以外的大件行李區（官方未寫），尖峰時段可能很擠；帶大行李的 15 人建議搭ラピート或避開尖峰。輪椅：沒有專用座位（kix-side.md，三重縣舊資料）。",
+  "validFrom": "2024-12-21",
+  "retrieved": "2026-10-26",
+  "sources": [
+    {
+      "type": "other",
+      "url": "https://ekitan.com/timetable/railway/line-station/306-0/d1",
+      "retrieved": "2026-10-26",
+      "note": "駅探 難波(南海) 南海本線 和歌山市・關西空港方面 時刻表（平日，2024-12-21 現在）：下行空港急行班次、首末班"
+    },
+    {
+      "type": "other",
+      "url": "https://ekitan.com/timetable/railway/line-station/311-2/d1",
+      "retrieved": "2026-10-26",
+      "note": "駅探 關西空港 南海空港線 泉佐野方面 時刻表（平日）：上行空港急行班次、首末班"
+    },
+    {
+      "type": "other",
+      "url": "https://ekitan.com/timetable/railway/line-station/306-1/d1",
+      "retrieved": "2026-10-26",
+      "note": "駅探 新今宮 南海本線 難波方面（平日）：上行到新今宮的時刻"
+    },
+    {
+      "type": "other",
+      "url": "https://ekitan.com/timetable/railway/line-station/306-27/d1",
+      "retrieved": "2026-10-26",
+      "note": "駅探 泉佐野 南海本線 難波方面（平日）"
+    },
+    {
+      "type": "other",
+      "url": "https://ekitan.com/timetable/railway/line-station/311-1/d1",
+      "retrieved": "2026-10-26",
+      "note": "駅探 りんくうタウン 南海空港線（平日）"
+    },
+    {
+      "type": "other",
+      "url": "https://ekitan.com/transit/fare/sf-5130/st-4104",
+      "retrieved": "2026-10-26",
+      "note": "駅探 關西空港出發的運賃：關西空港→難波(南海) 970／490 円"
+    },
+    {
+      "type": "official",
+      "url": "https://www.nankai.co.jp/traffic/jikoku-na.html",
+      "retrieved": "2026-10-26",
+      "note": "南海官網 站別時刻表入口：連到 kensaku.nankai.co.jp（robots.txt 禁止 ClaudeBot，未使用）"
+    }
+  ]
+}

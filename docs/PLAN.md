@@ -109,7 +109,7 @@
 | T27b | 大阪：住宿 | S | T27a | 3 | 🌐 大量 | ⬜ |
 | T27c | 大阪：餐廳（候選和詳細資料一起做） | M | T27a | 3 | 🌐 大量 | ⬜ |
 | T27d | 大阪：收尾、摘要與評分、代表照片（自動排序）、匯入 | S | T27b、T27c | 3 | | ⬜ |
-| T28 | 大阪交通：近鐵 大阪 ↔ 伊勢志摩的特急（北上回大阪、第一天南下志摩）、市區路線的所需時間和班距、大站轉乘的步行時間和電梯 | M | — | 3 | | ⬜ |
+| T28 | 大阪交通：近鐵 大阪 ↔ 伊勢志摩的特急（北上回大阪、第一天南下志摩）、市區路線的所需時間和班距、大站轉乘的步行時間和電梯 | M | — | 3 | | ✅ |
 | T29 | engine：班距型路線（市區鐵道）、轉乘步行；車站面板顯示班距 | S | T28（格式定好就可以開始） | 3 | 🌐 少量 | ⬜ |
 | T30 | 👤 部署到 Cloudflare：正式的 D1 和 secret、網站和 Worker、正式環境第一次匯入、LINE 改用正式網址、LINE 內建瀏覽器實測 | S | T25、👤 資料和 schema 定案（邀請家人之前） | 4 | 🌐 少量 | ⬜ |
 
@@ -896,6 +896,7 @@ T7c → T7d → T7e → T7f → T7g → T8a → T8b → T8c → T8d → T7i → 
 - **車站**加進 `stations.json`（例外允許，見 CONVENTIONS §2），ID 規則見 CONVENTIONS §1.5；`accessibility` 記電梯、無障礙廁所。
 - 要改 schema（班距型路線、轉乘）、validate 的路徑時，本任務直接改（例外允許），補測試、在 commit 訊息說明。
 - 寫 `data/stations.json`（大阪的車站）、`data/timetables/kintetsu/_travel-times.json`（大阪的特急）、`data/timetables/urban/`、`data/raw/access/osaka.md`、`schema/`（新格式）、`scripts/validate.mjs`。
+- **完成（2026-10-26）**：結果和沒查到的見 `data/raw/access/osaka.md`。gtfs-data.jp、ODPT 都沒有大阪的鐵道資料，全部讀官網。班距型路線 10 條（Osaka Metro 5 線含谷町線、JR 環状線・ゆめ咲線、南海空港急行・ラピート、近鐵難波線市區段），轉乘 22 筆，大阪車站 31 站。格式：`schema/urban-route.schema.json`、`urban-transfers.schema.json`（CONVENTIONS §3）。近鐵特急的大阪側停站用 `scripts/kintetsu-osaka.mjs` 補（T1 的腳本重跑後要再跑）。給 T29：環狀線 `stops` 是内回り順、`loopMin` 45；Osaka Metro 站內換線的 `walkMin` 多是 null（要有預設值）；南海空港急行的 `holiday` 整段 null。
 
 ### T29 engine：班距型路線 〔S〕
 - 先讀 [architecture.md](architecture.md)。T28 定好 `data/timetables/urban/` 的格式就可以開始（可以先用 2～3 條線的資料寫測試）。

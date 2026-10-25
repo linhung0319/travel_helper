@@ -1,0 +1,246 @@
+{
+  "id": "metro-nagahori-tsurumi-ryokuchi",
+  "mode": "metro",
+  "operator": "Osaka Metro",
+  "name": {
+    "ja": "長堀鶴見緑地線",
+    "zh": "長堀鶴見綠地線"
+  },
+  "serviceType": null,
+  "stops": [
+    {
+      "id": "metro-shinsaibashi",
+      "min": 0
+    },
+    {
+      "id": "metro-nagahoribashi",
+      "min": 1
+    },
+    {
+      "id": "metro-morinomiya",
+      "min": 8
+    },
+    {
+      "id": "metro-osaka-business-park",
+      "min": 10
+    }
+  ],
+  "loop": false,
+  "loopMin": null,
+  "service": {
+    "weekday": {
+      "first": "05:23",
+      "last": "24:08",
+      "headway": [
+        {
+          "from": "05:23",
+          "to": "06:00",
+          "min": 10
+        },
+        {
+          "from": "06:00",
+          "to": "07:00",
+          "min": 7
+        },
+        {
+          "from": "07:00",
+          "to": "08:00",
+          "min": 5
+        },
+        {
+          "from": "08:00",
+          "to": "09:00",
+          "min": 3.5
+        },
+        {
+          "from": "09:00",
+          "to": "10:00",
+          "min": 5
+        },
+        {
+          "from": "10:00",
+          "to": "17:00",
+          "min": 7
+        },
+        {
+          "from": "17:00",
+          "to": "19:00",
+          "min": 4
+        },
+        {
+          "from": "19:00",
+          "to": "20:00",
+          "min": 6.5
+        },
+        {
+          "from": "20:00",
+          "to": "22:00",
+          "min": 7
+        },
+        {
+          "from": "22:00",
+          "to": "23:00",
+          "min": 9
+        },
+        {
+          "from": "23:00",
+          "to": "24:08",
+          "min": 10.5
+        }
+      ],
+      "note": "取長堀橋站兩方向較稀的一方；離峰每小時 9 班（約 6.7 分），記為 7"
+    },
+    "saturday": null,
+    "holiday": {
+      "first": "05:23",
+      "last": "24:08",
+      "headway": [
+        {
+          "from": "05:23",
+          "to": "07:00",
+          "min": 10
+        },
+        {
+          "from": "07:00",
+          "to": "08:00",
+          "min": 7
+        },
+        {
+          "from": "08:00",
+          "to": "09:00",
+          "min": 5
+        },
+        {
+          "from": "09:00",
+          "to": "17:00",
+          "min": 7
+        },
+        {
+          "from": "17:00",
+          "to": "19:00",
+          "min": 6
+        },
+        {
+          "from": "19:00",
+          "to": "22:00",
+          "min": 7
+        },
+        {
+          "from": "22:00",
+          "to": "23:00",
+          "min": 9
+        },
+        {
+          "from": "23:00",
+          "to": "24:08",
+          "min": 10.5
+        }
+      ],
+      "note": "取長堀橋站兩方向較稀的一方；離峰每小時 9 班（約 6.7 分），記為 7；官網時刻表土曜與日祝同一張（土・日・休日）"
+    }
+  },
+  "fares": {
+    "currency": "JPY",
+    "adult": {
+      "metro-shinsaibashi": {
+        "metro-nagahoribashi": 190,
+        "metro-morinomiya": 240,
+        "metro-osaka-business-park": 240
+      },
+      "metro-nagahoribashi": {
+        "metro-morinomiya": 240,
+        "metro-osaka-business-park": 240
+      },
+      "metro-morinomiya": {
+        "metro-osaka-business-park": 190
+      }
+    },
+    "child": {
+      "metro-shinsaibashi": {
+        "metro-nagahoribashi": 100,
+        "metro-morinomiya": 120,
+        "metro-osaka-business-park": 120
+      },
+      "metro-nagahoribashi": {
+        "metro-morinomiya": 120,
+        "metro-osaka-business-park": 120
+      },
+      "metro-morinomiya": {
+        "metro-osaka-business-park": 100
+      }
+    },
+    "note": "依最短經路距離分區：1區190円（3km以下）、2區240円（～7km）、3區290円（～13km），含鐵道站無障礙費10円。兒童（6～未滿12歲、含小學生）依官網運賃表：1區100、2區120、3區150円。團體票要 25 人以上，15 人不適用。"
+  },
+  "passes": {
+    "kintetsu-rail-pass-5day": false,
+    "kintetsu-rail-pass-5day-plus": false,
+    "osaka-metro-enjoy-eco": true,
+    "osaka-amazing-pass": true,
+    "osaka-metro-yookoshi-30h": true
+  },
+  "notes": "站號已確認：心斎橋 N15、長堀橋 N16、森ノ宮 N20、大阪ビジネスパーク N21。時刻表推算分鐘為 0/2/9/11（官網經路檢索 0/1/8/10）。 首末班：列出的站之中、兩方向可搭乘的出發時刻取保守值（首班取最晚、末班取最早），平日與土日祝相同。長輩：官網說 2010 年起各站都有一條「月台→地面」的電梯路線（ワンルート），但電梯可能只在某個出口，帶長輩時要先查各站構內圖；電梯點檢／更新時會暫停（官網「各駅エレベーターの点検日」）。",
+  "validFrom": "2025-10-14",
+  "retrieved": "2026-10-26",
+  "sources": [
+    {
+      "type": "official",
+      "url": "https://kensaku.osakametro.co.jp/timetable/ja/subway/dia/station/25981/1025/1/",
+      "retrieved": "2026-10-26",
+      "note": "心斎橋 N15 方向1 站別時刻表（平日／土・日・休日，標示「2025年10月14日現在」）：班距、首末班、站間分鐘交叉比對"
+    },
+    {
+      "type": "official",
+      "url": "https://kensaku.osakametro.co.jp/timetable/ja/subway/dia/station/25981/1025/2/",
+      "retrieved": "2026-10-26",
+      "note": "心斎橋 N15 方向2 站別時刻表（平日／土・日・休日，標示「2025年10月14日現在」）：班距、首末班、站間分鐘交叉比對"
+    },
+    {
+      "type": "official",
+      "url": "https://kensaku.osakametro.co.jp/timetable/ja/subway/dia/station/26096/1025/1/",
+      "retrieved": "2026-10-26",
+      "note": "長堀橋 N16 方向1 站別時刻表（平日／土・日・休日，標示「2025年10月14日現在」）：班距、首末班、站間分鐘交叉比對"
+    },
+    {
+      "type": "official",
+      "url": "https://kensaku.osakametro.co.jp/timetable/ja/subway/dia/station/26096/1025/2/",
+      "retrieved": "2026-10-26",
+      "note": "長堀橋 N16 方向2 站別時刻表（平日／土・日・休日，標示「2025年10月14日現在」）：班距、首末班、站間分鐘交叉比對"
+    },
+    {
+      "type": "official",
+      "url": "https://kensaku.osakametro.co.jp/route/ja/web/dia/",
+      "retrieved": "2026-10-26",
+      "note": "經路・運賃檢索（搭乘日設 2027-02-11 10:00 出發）：各站間的大人票價、區數、乘車距離與所要分鐘；stops 的 min 取自這裡（從第一站查到各站）"
+    },
+    {
+      "type": "official",
+      "url": "https://subway.osakametro.co.jp/guide/fare/fare/price.php",
+      "retrieved": "2026-10-26",
+      "note": "普通運賃表：1區190円/小兒100円、2區240/120、3區290/150、4區340/170、5區390/200（依最短經路距離）；兒童票價依此由區數換算"
+    },
+    {
+      "type": "official",
+      "url": "https://subway.osakametro.co.jp/guide/fare/various_fares/child_fare/josya-ryokin_child.php",
+      "retrieved": "2026-10-26",
+      "note": "小兒＝6歲以上未滿12歲（含12歲小學生）；幼兒（1～6歲）單獨乘車時收小兒票"
+    },
+    {
+      "type": "official",
+      "url": "https://subway.osakametro.co.jp/guide/fare/card_tickets/benri-joshaken.php",
+      "retrieved": "2026-10-26",
+      "note": "エンジョイエコカード：Osaka Metro（夢洲站除外）＋大阪シティバス全線一日乘到飽，大人平日820円・土日祝620円、小兒310円"
+    },
+    {
+      "type": "official",
+      "url": "https://subway.osakametro.co.jp/guide/fare/category_digital_tickets/index.php",
+      "retrieved": "2026-10-26",
+      "note": "數位票券：大阪周遊パス（Osaka Metro 全線可搭，大人3,500円，無兒童票）、ようおこし30hパス（大人1,200円／小兒600円）等"
+    },
+    {
+      "type": "official",
+      "url": "https://subway.osakametro.co.jp/barriafree/subway/barriar_free_top.php",
+      "retrieved": "2026-10-26",
+      "note": "2010 年已在各站整備「從月台到地面以電梯連通的一條路線（ワンルート）」"
+    }
+  ]
+}

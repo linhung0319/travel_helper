@@ -57,7 +57,7 @@ travel_helper/
 
 ## 1.5 Schema 與驗證（T0 建立）
 
-- JSON Schema 放在 `schema/`：`common`（共同欄位）、`station`、`spot`、`lodging`、`restaurant`、`area`、`timetable-kintetsu`、`kintetsu-travel-times`、`passes`、`access`、`candidate`（`raw/<area>/candidates/*.json`），以及格式還沒定的檔案共用的 `sourced-document`（目前只有 `timetables/bus/*.json`：只要求最外層是物件、有 `sources`，T10 定好格式後到 `docs/requests.md` 提出）。
+- JSON Schema 放在 `schema/`：`common`（共同欄位）、`station`、`spot`、`lodging`、`restaurant`、`area`、`timetable-kintetsu`、`kintetsu-travel-times`、`urban-route`、`urban-transfers`（T28）、`passes`、`access`、`candidate`（`raw/<area>/candidates/*.json`），以及格式還沒定的檔案共用的 `sourced-document`（目前只有 `timetables/bus/*.json`：只要求最外層是物件、有 `sources`，T10 定好格式後到 `docs/requests.md` 提出）。
 - 驗證：`npm run validate`（或 `node scripts/validate.mjs`；bash 下可以直接跑 `scripts/validate`）。第一次使用前要先 `npm install`。
   - 檢查：符合 schema、資料點 ID 全專案唯一、座標在伊勢志摩範圍內（`access/`、`kix` 區域放寬到關西、中部）、引用的 ID 存在（`nearestStation`、`access.from`、`anchors`、`transfers`、`group.nearbyCombos`、`areas.json` 的 `stations`）、`region` 在該區域的 `regions` 裡、候選清單的 key 不重複而且 `pointId` 存在、有 `assessment` 時 `tier` 和推薦度一致、檔案在規定的位置。
   - 座標不在所屬區域的 `bbox` 內只會警告（bbox 是大致範圍）。
@@ -307,28 +307,30 @@ travel_helper/
 - `trainNo` 是近鐵時刻表網站的列車編號（例如 `1-3896`），同一班車在各站相同，可以對到 `_travel-times.json` 的 `trains`。
 - 各站之間的車程和每班車的停站時刻存在 `data/timetables/kintetsu/_travel-times.json`（格式見 `schema/kintetsu-travel-times.schema.json`）。
 
-### 班距型路線（`timetables/urban/<route-id>.json`，大阪，2026-10-26 草稿，T28 定案）
-大阪的地鐵、JR 環狀線幾分鐘一班，存完整時刻表沒有意義，所以只記**所需時間和班距**。近鐵特急（伊勢 ↔ 大阪）一小時一班，照舊用時刻表（`_travel-times.json`）。
+### 班距型路線（`timetables/urban/<route-id>.json`，大阪，2026-10-26 T28 定案）
+大阪的地鐵、JR 環狀線幾分鐘一班，存完整時刻表沒有意義，所以只記**所需時間和班距**。近鐵特急（伊勢 ↔ 大阪）一小時一班，照舊用時刻表（`_travel-times.json`，T28 已經補上大阪側的停站）。格式見 `schema/urban-route.schema.json`，檔名要和 `id` 相同。
 ```jsonc
 {
   "id": "metro-midosuji",
   "mode": "metro",                       // metro | jr | private
   "operator": "Osaka Metro",
   "name": { "ja": "御堂筋線", "zh": "御堂筋線" },
-  "stops": [                             // 依路線順序；min 是從第一站起算的車上分鐘
+  "serviceType": null,                   // 快慢車混跑的線記哪一種（"空港急行"）；全部都停填 null
+  "stops": [                             // 依路線順序（大阪環状線依内回り：大阪 → 西九条 → 天王寺 → 鶴橋 → 京橋）；只列資料點會用到的站；min 是從第一站起算的車上分鐘
     { "id": "metro-umeda", "min": 0 },
     { "id": "metro-namba", "min": 8 }
   ],
-  "loop": false,                         // 環狀線填 true（最後一站接回第一站，另外寫 loopMin）
+  "loop": false, "loopMin": null,        // 環狀線：loop true，loopMin 是繞一圈的分鐘（最後一站接回第一站）
   "service": {                           // 兩個方向取比較保守的值：首班取較晚的、末班取較早的
     "weekday":  { "first": "05:00", "last": "24:00",
                   "headway": [ { "from": "07:00", "to": "09:30", "min": 3 }, { "from": "09:30", "to": "17:00", "min": 5 } ] },
     "saturday": null,                    // 和 holiday 相同時填 null
     "holiday":  { "first": "05:00", "last": "24:00", "headway": [ { "from": "05:00", "to": "24:00", "min": 5 } ] }
   },
-  "fares": { "adult": { "metro-umeda": { "metro-namba": 240 } } },   // 同 bus 路線檔的形狀；只填資料點附近的站之間
-  "fareNote": "兒童半價（10 円未滿進位）",
-  "passes": { "kintetsu5day": false },
+  "fares": { "currency": "JPY", "adult": { "metro-umeda": { "metro-namba": 240 } }, "child": { … }, "note": "兒童半價（10 円未滿進位）" },
+                                         // 同 bus 路線檔的形狀；只填資料點附近的站之間；child 可以是表、說明字串或 null
+  "passes": { "kintetsu-rail-pass-5day": false, "osaka-metro-enjoy-eco": true },   // 鍵是 passes.json 的票券 ID 或本檔 notes 說明的票券
+  "notes": "…", "validFrom": "2025-xx-xx",
   "retrieved": "2026-10-xx",
   "sources": [ { "type": "official", "url": "https://...", "retrieved": "2026-10-xx" } ]
 }
@@ -336,22 +338,28 @@ travel_helper/
 - 快車、慢車混跑的線（JR、南海）：只記會用到的那一種（例如南海的空港急行），特急（ラピート）另外一筆 `id`。
 - 日別照巴士的 `weekday`／`saturday`／`holiday`（2/11 國定假日算 holiday）。
 - 不知道的班距、首末班填 `null`，不要猜。
+- validate 另外檢查：停站和票價的車站在 `stations.json`、第一站 min 是 0 而且依序不減少、停站不重複、環狀線的 `loopMin` 大於最後一站、班距時段 from < to。
 
 ### 轉乘（`timetables/urban/_transfers.json`）
-大站的站內轉乘常常要走 10 分鐘以上，對長輩影響比班次大，所以另外記。
+大站的站內轉乘常常要走 10 分鐘以上，對長輩影響比班次大，所以另外記。格式見 `schema/urban-transfers.schema.json`。
 ```jsonc
 [
   {
     "from": "osaka-namba", "to": "nankai-namba",
-    "walkMin": 8,                        // 係數 1 的分鐘數，使用時才乘團體係數（§5.4）
-    "elevator": true,                    // 整段有電梯可以走（不用樓梯、手扶梯）
-    "elevatorRoute": "近鐵 東改札 → 電梯 → …",   // 有電梯的走法，和一般路線不同時寫
+    "fromLine": null, "toLine": null,    // 同一個車站 ID 裡換線（本町 御堂筋線 ↔ 中央線）時 from、to 相同，這兩個必填（班距型路線 ID，近鐵特急寫 kintetsu）
+    "walkMin": 11,                       // 月台到月台，係數 1 的分鐘數，使用時才乘團體係數（§5.4）；不知道 null
+    "walkMinBasis": "official",          // official（官方寫的）| estimate（依構內圖距離推估）
+    "elevator": true,                    // 整段有電梯可以走（不用樓梯、手扶梯）；不知道 null
+    "elevatorRoute": "近鐵 西改札 → なんばウォーク 22 號電梯 → …",   // 有電梯的走法，和一般路線不同時寫
+    "elevatorWalkMin": 18,               // 電梯路線的分鐘（和 walkMin 不同時）
+    "exitGates": false,                  // 要不要出剪票口再進站
     "note": "行李多時建議走…",
     "sources": [ { "type": "official", "url": "https://...", "retrieved": "2026-10-xx" } ]
   }
 ]
 ```
-- 一筆代表兩個方向；兩個方向不同時拆成兩筆。
+- 一筆代表兩個方向；兩個方向不同時拆成兩筆，各加 `"oneWay": true`。
+- validate 檢查：車站存在、同站換線要寫不同的 fromLine/toLine、fromLine/toLine 是存在的路線、同一組不重複。
 
 ### 行程（`itinerary-v1`，T14 訂定，2026-10-22）
 - **只有一份確定的行程**（2026-10-21）：12 天，一開始就放好航班當固定項目；不做方案。家人的建議、投票、使用者加的點不放在行程裡，另外存在資料庫（[architecture.md](architecture.md) §3.6、[interaction-design.md](interaction-design.md) §6）；「整趟」的建議取代原本草稿的 `wishlist`。

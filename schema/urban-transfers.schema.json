@@ -1,0 +1,27 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://travel-helper.local/schema/urban-transfers.schema.json",
+  "title": "站內轉乘（data/timetables/urban/_transfers.json）",
+  "description": "T28 定的格式（2026-10-26）。大站的站內轉乘步行時間、電梯路線。一筆代表兩個方向；兩個方向不同時拆成兩筆（加 oneWay: true）。同一個車站 ID 裡換線（例如 Osaka Metro 本町站 御堂筋線 ↔ 中央線）時 from、to 相同，用 fromLine、toLine 區分。見 CONVENTIONS §3「轉乘」。",
+  "type": "array",
+  "items": {
+    "type": "object",
+    "properties": {
+      "from": { "$ref": "common.schema.json#/$defs/id" },
+      "to": { "$ref": "common.schema.json#/$defs/id" },
+      "fromLine": { "description": "from 的路線（班距型路線 ID，或近鐵特急寫 kintetsu）；同站換線時必填", "$ref": "common.schema.json#/$defs/nullableString" },
+      "toLine": { "$ref": "common.schema.json#/$defs/nullableString" },
+      "oneWay": { "description": "只代表 from → to 這個方向", "type": "boolean" },
+      "walkMin": { "description": "月台到月台的步行分鐘（係數 1，使用時才乘團體係數 §5.4）；不知道填 null", "type": ["number", "null"], "minimum": 0 },
+      "walkMinBasis": { "description": "walkMin 怎麼來的：official（官方寫的分鐘）、estimate（依距離、構內圖推估）", "enum": ["official", "estimate", null] },
+      "elevator": { "description": "整段有電梯可以走（不用樓梯、手扶梯）；不知道填 null", "$ref": "common.schema.json#/$defs/nullableBoolean" },
+      "elevatorRoute": { "description": "有電梯的走法（和一般路線不同時寫）", "$ref": "common.schema.json#/$defs/nullableString" },
+      "elevatorWalkMin": { "description": "走電梯路線的分鐘（和 walkMin 不同時寫）", "type": ["number", "null"], "minimum": 0 },
+      "exitGates": { "description": "要不要出剪票口再進站（例如鶴橋 JR ↔ 近鐵的無障礙路線）", "$ref": "common.schema.json#/$defs/nullableBoolean" },
+      "note": { "$ref": "common.schema.json#/$defs/nullableString" },
+      "sources": { "$ref": "common.schema.json#/$defs/sources" }
+    },
+    "required": ["from", "to", "walkMin", "elevator", "sources"],
+    "additionalProperties": false
+  }
+}
