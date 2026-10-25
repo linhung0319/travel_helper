@@ -9,18 +9,22 @@
 // 回住宿的這晚的方案、清掉住宿；自由時間、分組的刪除）。出發的住宿、航班沒有「⋯」；有地點的卡沒有刪除（要先撤下回候選）。
 // 拖卡片（電腦版拖、手機長按後拖）：放在卡片中間合併、邊緣換順序；看備卡時拖的是那張備卡。
 // 看備卡時預約 tag、警告跟著那張備卡；「⋯」的主要、拿出作用在那張備卡，其他動作作用在整張卡片。
+// 資料準備（項目、警告、編號、候選）在 useDayTimeline，手機版的行程（mobile/DaySheet.tsx）也用；時間條 DayBar 手機版用 compact（變矮）。
 
-import { useCallback, useEffect, useRef, useState, type ReactNode } from 'react';
+import { useCallback, useEffect, useMemo, useRef, useState, type ReactNode } from 'react';
 import { fromMinutes, setStart, setStay, toMinutes, type DayPlan, type EngineWarning, type Gap, type TimelineEntry } from '@travel-helper/engine';
 import type { ItineraryDay, ItineraryItem, VisitItem } from '@travel-helper/engine/types';
 import { appStore } from '../store.ts';
 import { commands } from '../appCommands.ts';
 import { shared } from '../appShared.ts';
-import { useApp, useData, useIsDesktop } from '../hooks.ts';
+import { useApp, useData, useIsDesktop, usePlan, useShared } from '../hooks.ts';
+import { dayPlanOf, type PlanState } from '../planStore.ts';
+import { dayCandidates } from '../lib/wishlist.ts';
+import type { Candidate } from '../backend/types.ts';
 import { dragSourceProps, dropOnCardProps, dropOnEndProps, useLongPressDrag } from './planDrag.ts';
 import type { DragSource } from '../lib/dropIntent.ts';
 import { openDialog } from '../uiStore.ts';
-import { cardTime, cardTypeLetter, dayBar, daySummary, findItemRef, formatStay, formatTravelTotal, hourTicks, isBarSelected, shownWarnings, stopMarks, timelineRows, waitNote, WARNING_ICONS, warningsByItem, type BarSegment } from '../lib/planView.ts';
+import { cardTime, cardTypeLetter, dayBar, daySummary, findItemRef, formatStay, formatTravelTotal, hourTicks, isBarSelected, shownWarnings, stopMarks, timelineRows, waitNote, WARNING_ICONS, warningsByItem, type BarSegment, type TimelineRow } from '../lib/planView.ts';
 import { TYPE_COLORS } from '../lib/typeStyle.ts';
 import type { Place } from '../data/types.ts';
 import { AvatarStack, PlaceChip } from './common.tsx';
@@ -32,7 +36,7 @@ import { useLiked } from '../shared/placeLists.ts';
 import { pulseMark } from '../lib/mapPulse.ts';
 
 /** 地圖上同一個編號（0、1、2…）；顏色是那個點的類型色 */
-interface Marks {
+export interface Marks {
   byEntry: Map<TimelineEntry, string>;
 }
 
@@ -544,14 +548,43 @@ function WaitRow({ entry, item }: { entry: TimelineEntry; item: VisitItem | null
   );
 }
 
-export function Timeline({ plan, day }: { plan: DayPlan; day: ItineraryDay }) {
+/** 一天的時間軸要畫的東西（網頁版、手機版共用）：行程的那天、引擎算好的時間軸、一列一列（項目和空檔）、每個項目的警告、這天的警告、編號、這天的候選 */
+export interface DayTimeline {
+  /** 行程裡的那天；選「全部」或行程沒有這天是 null */
+  itDay: ItineraryDay | null;
+  plan: DayPlan | null;
+  status: PlanState['status'];
+  error: string | null;
+  rows: TimelineRow[];
+  byItem: Map<string, EngineWarning[]>;
+  dayWarnings: EngineWarning[];
+  marks: Marks;
+  candidates: Candidate[];
+}
+
+/** 某一天（'all' 時全部是空的）的時間軸資料準備；時間軸、警告、編號只在引擎重算時重新整理 */
+export function useDayTimeline(date: string): DayTimeline {
+  const itinerary = useData((s) => s.itinerary);
+  const status = usePlan((s) => s.status);
+  const error = usePlan((s) => s.error);
+  const plan = usePlan((s) => (date === 'all' ? null : dayPlanOf(s.plan, date)));
+  const all = useShared((s) => s.candidates);
+  const derived = useMemo(() => {
+    const { byItem, day } = warningsByItem(plan);
+    return { rows: plan ? timelineRows(plan) : [], byItem, dayWarnings: day, marks: { byEntry: stopMarks(plan).byEntry } };
+  }, [plan]);
+  const candidates = useMemo(() => (date === 'all' ? [] : dayCandidates(all, date, itinerary)), [all, date, itinerary]);
+  const itDay = date === 'all' ? null : (itinerary?.days.find((d) => d.date === date) ?? null);
+  return { itDay, plan, status, error: error ?? null, ...derived, candidates };
+}
+
+export function Timeline({ tl }: { tl: DayTimeline & { plan: DayPlan; itDay: ItineraryDay } }) {
   const planning = useApp((s) => s.planning);
-  const { byItem } = warningsByItem(plan);
-  const marks: Marks = { byEntry: stopMarks(plan).byEntry };
+  const { plan, itDay: day, byItem, marks } = tl;
   return (
     <ol className="tl tl-rail" data-testid="timeline">
       {/* 用項目 ID 當 key：上面的卡片增減時，備卡看第幾張、警告展開這些本地 state 不會跑到別張卡片 */}
-      {timelineRows(plan).map((row, i) =>
+      {tl.rows.map((row, i) =>
         row.kind === 'gap' ? (
           <GapRow key={`g:${row.gap.afterItemId ?? ''}:${row.gap.kind}:${i}`} gap={row.gap} plan={plan} />
         ) : (
@@ -588,11 +621,17 @@ export function DaySummaryLine({ plan, warnOpen, onWarn, reminders = 0 }: { plan
 
 const BAR_LABELS: Record<BarSegment['kind'], string> = { spot: '景點', restaurant: '用餐', other: '停留', travel: '交通', wait: '等待' };
 const BAR_HEIGHT = 22;
+/** 手機版的時間條（compact）比較矮 */
+const BAR_HEIGHT_COMPACT = 14;
 const MARK_MIN_PX = 18;
 
-/** 捲到那張卡（交通卡或資料卡）並閃一下 */
+/** 捲到那張卡（交通卡或資料卡；網頁版 tl-*、手機版 m-*）並閃一下 */
 function jumpToCard(seg: BarSegment) {
-  const sel = seg.legKey ? `[data-testid="tl-leg"][data-leg="${CSS.escape(seg.legKey)}"]` : seg.itemId ? `[data-testid="tl-row"][data-item="${CSS.escape(seg.itemId)}"]` : null;
+  const sel = seg.legKey
+    ? `:is([data-testid="tl-leg"], [data-testid="m-leg"])[data-leg="${CSS.escape(seg.legKey)}"]`
+    : seg.itemId
+      ? `:is([data-testid="tl-row"], [data-testid="m-card"])[data-item="${CSS.escape(seg.itemId)}"]`
+      : null;
   const el = sel ? document.querySelector<HTMLElement>(sel) : null;
   if (!el) return;
   el.scrollIntoView({ block: 'center', behavior: 'smooth' });
@@ -603,9 +642,10 @@ function jumpToCard(seg: BarSegment) {
 /**
  * 按時間比例的橫條（高 22px）：景點、餐廳用類型色並寫卡片編號，交通是細灰點線，等待是黃色斜紋，其他停留是灰色；
  * 分組的時段每組一條細條（總高度不變）。下面每個整點一個刻度，兩端寫出發、回住宿時間。
- * 點一段捲到那張卡並閃一下；selected（目前點的卡片的項目 ID 或交通卡 key）那段加藍框
+ * 點一段捲到那張卡並閃一下；selected（目前點的卡片的項目 ID 或交通卡 key）那段加藍框。compact：手機版，高度變矮
  */
-export function DayBar({ plan, selected }: { plan: DayPlan; selected?: string | null }) {
+export function DayBar({ plan, selected, compact = false }: { plan: DayPlan; selected?: string | null; compact?: boolean }) {
+  const BAR_H = compact ? BAR_HEIGHT_COMPACT : BAR_HEIGHT;
   const byId = useData((s) => s.byId);
   const [width, setWidth] = useState(0);
   // callback ref：橫條出現時量一次寬度並開始看它變寬變窄，拿掉時停止（不是每次重畫都重建 ResizeObserver）
@@ -623,15 +663,15 @@ export function DayBar({ plan, selected }: { plan: DayPlan; selected?: string | 
   const t1 = Math.max(...segs.map((s) => toMinutes(s.to)));
   const span = Math.max(1, t1 - t0);
   const lanes = Math.max(...segs.map((s) => s.lane));
-  const laneH = lanes ? BAR_HEIGHT / lanes : BAR_HEIGHT;
+  const laneH = lanes ? BAR_H / lanes : BAR_H;
   return (
-    <div className="day-bar" data-testid="day-bar">
-      <div className="day-bar-track" ref={trackRef} style={{ height: BAR_HEIGHT }}>
+    <div className={compact ? 'day-bar compact' : 'day-bar'} data-testid="day-bar">
+      <div className="day-bar-track" ref={trackRef} style={{ height: BAR_H }}>
         {segs.map((s, i) => {
           const w = ((toMinutes(s.to) - toMinutes(s.from)) / span) * 100;
           const lane = s.lane > 0;
-          const h = s.kind === 'travel' ? 6 : lane ? laneH - 1 : BAR_HEIGHT;
-          const top = lane ? (s.lane - 1) * laneH + (s.kind === 'travel' ? (laneH - 6) / 2 : 0) : s.kind === 'travel' ? (BAR_HEIGHT - 6) / 2 : 0;
+          const h = s.kind === 'travel' ? 6 : lane ? laneH - 1 : BAR_H;
+          const top = lane ? (s.lane - 1) * laneH + (s.kind === 'travel' ? (laneH - 6) / 2 : 0) : s.kind === 'travel' ? (BAR_H - 6) / 2 : 0;
           return (
             <button
               key={i}

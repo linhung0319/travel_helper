@@ -1,5 +1,5 @@
 // 手機版「我」分頁（第六輪 §3.7）：帳號（MeMenu，dev 時可以切換使用者）、💬 討論（整趟留言）、📋 預約、⬇ 下載。
-// 討論、預約點了是整頁（MePageView），內容和網頁版地圖區的視窗一樣（Comments、ReservationNotes）。行程頁地圖右上角的小圖示（之後的任務）也打開這裡。
+// 討論、預約點了是整頁（MePageView），內容和網頁版地圖區的視窗一樣（Comments、ReservationNotes）。行程頁地圖右上角的小圖示（TripPage）也打開這裡、用同樣的數字。
 
 import { useData, usePlan, useShared } from '../hooks.ts';
 import { TRIP_TARGET } from '../backend/types.ts';
@@ -12,7 +12,7 @@ import { ReservationNotes } from '../components/Reservations.tsx';
 import { mobileStore, useMobile } from './mobileStore.ts';
 
 /** 整趟還沒訂位的筆數 */
-function usePendingCount(): number {
+export function usePendingCount(): number {
   const itinerary = useData((s) => s.itinerary);
   const byId = useData((s) => s.byId);
   const plan = usePlan((s) => s.plan);

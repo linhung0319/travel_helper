@@ -18,9 +18,10 @@ export interface CameraRequest {
   zoom?: number;
 }
 
-/** 標示的樣式：主要（黃）、注意（紅）、次要（灰） */
+/** 標示的樣式（AI 的 highlight 指令可以用的）：主要（黃）、注意（紅）、次要（灰） */
 export const HIGHLIGHT_STYLES = ['primary', 'warning', 'muted'] as const;
-export type HighlightStyle = (typeof HIGHLIGHT_STYLES)[number];
+/** focus：手機行程選到的那張卡（黑框、圖釘放大、其他路線變淡），只有畫面自己設，AI 的指令不能用 */
+export type HighlightStyle = (typeof HIGHLIGHT_STYLES)[number] | 'focus';
 
 /** 路線的一端：資料點（place）或座標 */
 export interface RouteEnd {

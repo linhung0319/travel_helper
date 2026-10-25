@@ -6,7 +6,7 @@
 // 編輯中，點開的那張就在原地變成編輯狀態（藍框）：自動（目前的方式）／步行／計程車／大眾運輸、
 // 大眾運輸的步驟一定展開，膠囊換成只列搭得到的班次的下拉（selectRideTrip）；
 // 算不出來（交通未定、指定的方式找不到班次）或已經填過分鐘時才出現「自己填分鐘」（清空＝回到自動）；備註、「完成」收起來。
-// 一次只開一段（uiStore.legOpen）；這張卡不見了（換天、回整趟、換分頁）時也收起來，地圖的行程線才會恢復。
+// 資料準備在 useLegView（手機版的一行交通也用），步驟 LegSteps 也給手機版用。一次只開一段（uiStore.legOpen）；這張卡不見了（換天、回整趟、換分頁）時也收起來，地圖的行程線才會恢復。
 // 編輯中交通卡也是放置區：拖到這裡＝排在這段通往的那張卡片前面（planDrag.dropOnLegProps）。
 
 import { useEffect, useRef, useState, type MouseEvent, type ReactNode } from 'react';
@@ -111,7 +111,7 @@ function RailLine({ line, part }: { line: Line; part: 'full' | 'top' | 'bottom' 
 }
 
 /** 大眾運輸的步驟（第五輪 §3.2）；編輯中搭車那一行是班次下拉 */
-function LegSteps({ steps, leg, date, legKey, target, editing, saving }: { steps: LegStep[]; leg: Leg; date: string; legKey: string; target: LegTarget | null; editing: boolean; saving: boolean }) {
+export function LegSteps({ steps, leg, date, legKey, target, editing, saving }: { steps: LegStep[]; leg: Leg; date: string; legKey: string; target: LegTarget | null; editing: boolean; saving: boolean }) {
   const openRide = (rideIndex: number) => openTimetable({ date, legKey, rideIndex });
   return (
     <ol className="leg-steps" data-testid="leg-steps">
@@ -276,8 +276,11 @@ function LegEditor({ target, spec, leg, children }: { target: LegTarget; spec: T
   );
 }
 
-/** 時間軸上的一段交通（交通卡）；date 是這天的日期 */
-export function LegRow({ entry, date }: { entry: TimelineEntry; date: string }) {
+/**
+ * 一段交通要畫的東西（網頁版的交通卡、手機版的一行都用）：方式、距離、步驟、點開了沒有、編輯中的設定。
+ * 點開時地圖只畫這一段（效果在這裡）；不用顯示（不用移動、0 分）時回 null
+ */
+export function useLegView(entry: TimelineEntry, date: string) {
   const leg = entry.travel;
   const byId = useData((s) => s.byId);
   const itinerary = useData((s) => s.itinerary);
@@ -340,12 +343,22 @@ export function LegRow({ entry, date }: { entry: TimelineEntry; date: string }) 
   const sub = legSubParts(leg, distance);
   const steps = legSteps(leg, from ? nameOf(from.id) : '', to ? nameOf(to.id) : '', nameOf);
   const transit = steps.length > 0;
-  const stepList = open && transit ? <LegSteps steps={steps} leg={leg} date={date} legKey={key} target={target} editing={editing} saving={saving} /> : null;
   const note = spec?.note && !editing ? spec.note : null;
+  /** 點開／收起這段（一次只開一段） */
+  const toggleOpen = () => uiStore.setState({ legOpen: open ? null : key });
+  return { leg, key, open, editing, planning, saving, target, spec, from, to, mode, sub, steps, transit, note, toggleOpen };
+}
+
+/** 時間軸上的一段交通（交通卡）；date 是這天的日期 */
+export function LegRow({ entry, date }: { entry: TimelineEntry; date: string }) {
+  const v = useLegView(entry, date);
+  if (!v) return null;
+  const { leg, key, open, editing, planning, saving, target, spec, from, to, mode, sub, steps, transit, note } = v;
+  const stepList = open && transit ? <LegSteps steps={steps} leg={leg} date={date} legKey={key} target={target} editing={editing} saving={saving} /> : null;
   // 點卡片上任何地方都切換（編輯區、地圖連結、搭車膠囊、下拉裡的點擊不算）；鍵盤用標題的按鈕
   const toggle = (e: MouseEvent) => {
     if ((e.target as HTMLElement).closest('a, select, .leg-edit, .leg-ride')) return;
-    uiStore.setState({ legOpen: open ? null : key });
+    v.toggleOpen();
   };
   return (
     <li className={`tl-leg mode-${leg.mode} ${open ? 'open' : ''} ${editing ? 'editing' : ''}`} data-testid="tl-leg" data-leg={key} {...dropOnLegProps(entry.itemId, date, planning)}>

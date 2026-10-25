@@ -73,7 +73,8 @@ function CompareBar() {
 function MarksBar() {
   const highlights = useApp((s) => s.highlights);
   const routes = useApp((s) => s.routes);
-  const marked = Object.values(highlights).reduce((n, ids) => n + (ids?.length ?? 0), 0);
+  // 手機行程選到的那張卡（focus）不是地圖指令標的，不算
+  const marked = Object.entries(highlights).reduce((n, [style, ids]) => n + (style === 'focus' ? 0 : (ids?.length ?? 0)), 0);
   if (marked === 0 && routes.length === 0) return null;
   return (
     <div className="command-bar marks-bar" data-testid="marks-bar">

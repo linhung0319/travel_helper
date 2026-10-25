@@ -171,7 +171,7 @@ export function createCommands(app: StoreApi<AppStore>, data: StoreApi<DataState
   }
 
   function highlight(ids: string[] | string, style: HighlightStyle = 'primary'): CommandResult<{ ids: string[]; unknown?: string[] }> {
-    if (!HIGHLIGHT_STYLES.includes(style)) return { ok: false, error: `highlight：樣式要是 ${HIGHLIGHT_STYLES.join('、')}` };
+    if (!(HIGHLIGHT_STYLES as readonly string[]).includes(style)) return { ok: false, error: `highlight：樣式要是 ${HIGHLIGHT_STYLES.join('、')}` };
     const r = resolveIds(ids);
     if (!r) return { ok: false, error: 'highlight：ids 要是資料點 ID 的陣列' };
     if (!r.places.length && r.unknown.length) return { ok: false, error: `highlight：找不到資料點 ${r.unknown.join('、')}` };

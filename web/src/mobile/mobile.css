@@ -1121,3 +1121,586 @@
   min-height: 0;
   padding: 1px 4px;
 }
+
+/* ---------- 行程（§3.5）：地圖＋可以拉的面板 ---------- */
+
+/* 面板的三個高度：低＝只露出把手和天數列；中＝可用高度的比例（地圖約佔上面 1/3）；高＝地圖只露出一小條。
+   地圖只畫在面板上面那塊（多蓋 12px 到面板的圓角底下），飛到的點才在看得到的地方 */
+.m-app {
+  --m-sheet-low: 100px;
+  --m-sheet-mid: 0.67;
+  --m-map-min: 48px;
+  --m-sheet-overlap: 12px;
+}
+
+.m-app[data-tab='trip'][data-snap='low'] .m-map {
+  bottom: calc(var(--m-tabbar-h) + env(safe-area-inset-bottom) + var(--m-sheet-low) - var(--m-sheet-overlap));
+}
+
+.m-app[data-tab='trip'][data-snap='mid'] .m-map {
+  bottom: calc(var(--m-tabbar-h) + env(safe-area-inset-bottom) + (100% - var(--m-tabbar-h) - env(safe-area-inset-bottom)) * var(--m-sheet-mid) - var(--m-sheet-overlap));
+}
+
+.m-app[data-tab='trip'][data-snap='high'] .m-map {
+  bottom: calc(100% - var(--m-map-min) - var(--m-sheet-overlap));
+}
+
+.m-trip-sheet {
+  position: absolute;
+  z-index: 5;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  background: var(--bg);
+  border-radius: 16px 16px 0 0;
+  box-shadow: 0 -4px 14px rgba(0, 0, 0, 0.12);
+  transition: height 0.2s ease;
+}
+
+.m-trip-sheet[data-snap='low'] {
+  height: var(--m-sheet-low);
+}
+
+.m-trip-sheet[data-snap='mid'] {
+  height: calc(100% * var(--m-sheet-mid));
+}
+
+.m-trip-sheet[data-snap='high'] {
+  height: calc(100% - var(--m-map-min));
+}
+
+/* 拖的時候跟著手指，不要動畫 */
+.m-trip-sheet.dragging {
+  transition: none;
+}
+
+.m-trip-grab {
+  flex: 0 0 auto;
+  height: 24px;
+  display: grid;
+  place-items: center;
+  touch-action: none;
+  cursor: grab;
+}
+
+.m-trip-grab > span {
+  width: 40px;
+  height: 5px;
+  border-radius: 3px;
+  background: #c4cbd3;
+}
+
+.m-trip-body {
+  flex: 1;
+  min-height: 0;
+  overflow-x: hidden;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  padding: 0 12px 16px;
+}
+
+/* 天數列：獨佔一整行，左右滑 */
+.m-day-strip {
+  position: relative;
+  flex: 0 0 auto;
+  display: flex;
+  gap: 6px;
+  padding: 2px 12px 10px;
+  overflow-x: auto;
+  overflow-y: hidden;
+  scrollbar-width: none;
+}
+
+.m-day-strip::-webkit-scrollbar {
+  display: none;
+}
+
+.m-day {
+  flex: 0 0 auto;
+  min-width: 52px;
+  min-height: 52px;
+  padding: 4px 6px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: var(--bg);
+  color: var(--fg);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  line-height: 1.15;
+  cursor: pointer;
+}
+
+.m-day b {
+  font-size: 1rem;
+}
+
+.m-day small {
+  font-size: 0.72rem;
+  color: var(--muted);
+}
+
+.m-day.red-day,
+.m-day.red-day small {
+  color: var(--red-day);
+}
+
+.m-day[aria-current='true'] {
+  background: var(--fg);
+  border-color: var(--fg);
+  color: #fff;
+}
+
+.m-day[aria-current='true'] small {
+  color: #e6e8eb;
+}
+
+.m-day.red-day[aria-current='true'],
+.m-day.red-day[aria-current='true'] small {
+  color: #ffb4ab;
+}
+
+.m-day-all {
+  font-weight: 700;
+}
+
+/* 地圖上的小圖示：右上 💬、📋（在縮放鈕左邊），右下 ⛶ */
+.m-map-buttons {
+  position: absolute;
+  z-index: 4;
+  top: 10px;
+  right: 52px;
+  display: flex;
+  gap: 6px;
+}
+
+.m-map-button {
+  position: relative;
+  min-width: var(--tap);
+  min-height: var(--tap);
+  padding: 0 8px;
+  border: 0;
+  border-radius: 12px;
+  background: var(--bg);
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.25);
+  font-size: 1.1rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+  cursor: pointer;
+}
+
+.m-map-count {
+  font-size: 0.75rem;
+  font-weight: 700;
+}
+
+.m-map-count.warn {
+  color: var(--warn);
+}
+
+.m-map-full {
+  position: absolute;
+  z-index: 4;
+  right: 10px;
+  bottom: calc(100% * var(--m-sheet-mid) + 10px);
+}
+
+/* 這天的標題：2/3（三）第 2 天、✨、✏️ 編輯 */
+.m-dayhead {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  min-width: 0;
+}
+
+.m-dayhead-title {
+  flex: 1;
+  min-width: 0;
+  margin: 0;
+  font-size: 1.05rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.m-dayhead-title.red-day {
+  color: var(--red-day);
+}
+
+.m-icon-button,
+.m-edit-button {
+  flex: 0 0 auto;
+  min-width: var(--tap);
+  min-height: var(--tap);
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: var(--bg);
+  font-size: 0.95rem;
+  cursor: pointer;
+}
+
+.m-edit-button {
+  padding: 0 14px;
+  border-color: var(--accent);
+  background: var(--accent);
+  color: #fff;
+  font-weight: 700;
+}
+
+.m-daysum {
+  margin: 2px 0;
+}
+
+.m-daysum .day-stats {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  align-items: center;
+}
+
+/* 時間條：手機版變矮 */
+.m-dayview .day-bar.compact {
+  margin: 4px 0 6px;
+}
+
+.m-dayview .day-bar.compact .day-bar-seg {
+  font-size: 0.6rem;
+}
+
+/* 時間軸：卡片、交通、等待 */
+.m-tl {
+  list-style: none;
+  margin: 6px 0 0;
+  padding: 0;
+  min-width: 0;
+}
+
+/* 四欄：把手、縮圖＋內容（點了找地圖）、⋯；被選的那張多一行「詳細資料 ›」 */
+.m-card {
+  display: grid;
+  grid-template-columns: 8px minmax(0, 1fr) 24px;
+  align-items: center;
+  column-gap: 4px;
+  min-width: 0;
+  margin: 0;
+  border: 1px solid transparent;
+  border-radius: 12px;
+  background: var(--type-other-bg);
+}
+
+.m-card.type-spot {
+  background: var(--type-spot-bg);
+}
+
+.m-card.type-restaurant {
+  background: var(--type-restaurant-bg);
+}
+
+.m-card.type-lodging {
+  background: var(--type-lodging-bg);
+}
+
+.m-card.focused {
+  border-color: var(--fg);
+  box-shadow: 0 0 0 1px var(--fg);
+}
+
+.m-card.flash {
+  box-shadow: 0 0 0 3px var(--warn-bg);
+}
+
+/* 把手欄（編輯中才有把手，Task 11） */
+.m-card-grip {
+  align-self: stretch;
+}
+
+.m-card-main {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  min-width: 0;
+  min-height: 70px;
+  padding: 8px 0;
+  cursor: pointer;
+}
+
+.m-card-thumb {
+  position: relative;
+  flex: 0 0 auto;
+  width: 54px;
+  height: 54px;
+}
+
+.m-card-thumb .m-thumb-fallback {
+  font-size: 1.3rem;
+}
+
+/* 編號：縮圖左上角的小圓，類型色 */
+.m-card-no {
+  position: absolute;
+  top: -5px;
+  left: -5px;
+  min-width: 20px;
+  height: 20px;
+  padding: 0 4px;
+  border-radius: 10px;
+  border: 2px solid #fff;
+  color: #fff;
+  font-size: 0.72rem;
+  font-weight: 700;
+  line-height: 16px;
+  text-align: center;
+}
+
+.m-card-body {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.m-card-time {
+  display: flex;
+  align-items: baseline;
+  gap: 4px;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  font-size: 0.9rem;
+}
+
+.m-card-stay {
+  font-weight: 400;
+  color: var(--muted);
+  font-size: 0.75rem;
+}
+
+.m-card-name {
+  font-weight: 600;
+}
+
+.m-card-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  align-items: center;
+  min-width: 0;
+  font-size: 0.75rem;
+}
+
+.m-card-meta .item-tags:empty {
+  display: none;
+}
+
+.m-card-warn {
+  color: var(--warn);
+  font-weight: 700;
+}
+
+.m-card-more {
+  align-self: stretch;
+}
+
+.m-card-detail {
+  grid-column: 2 / 4;
+  justify-self: start;
+  min-height: var(--tap);
+  margin: -6px 0 0 64px;
+  padding: 0 4px;
+  border: 0;
+  background: none;
+  color: var(--accent);
+  font-weight: 700;
+  cursor: pointer;
+}
+
+/* 候選：虛線框 */
+.m-card.m-card-cand {
+  margin-top: 8px;
+  background: var(--bg);
+  border: 1px dashed #8c959f;
+}
+
+.m-card.m-card-cand.focused {
+  border-style: solid;
+  border-color: var(--fg);
+}
+
+/* 交通：一行，虛線接在兩張卡中間 */
+.m-leg {
+  margin-left: 30px;
+  padding-left: 12px;
+  border-left: 2px dashed #bbb;
+  min-width: 0;
+}
+
+.m-leg-row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  min-width: 0;
+}
+
+.m-leg-text {
+  flex: 1;
+  min-width: 0;
+  min-height: var(--tap);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: var(--fg);
+  font-size: 0.85rem;
+  text-align: left;
+  cursor: pointer;
+}
+
+.m-leg-note {
+  color: var(--muted);
+}
+
+.m-leg-chev {
+  flex: 0 0 auto;
+  color: var(--muted);
+  transition: transform 0.15s;
+}
+
+.m-leg-chev.open {
+  transform: rotate(90deg);
+}
+
+.m-leg-maps {
+  flex: 0 0 auto;
+  min-height: var(--tap);
+  display: inline-flex;
+  align-items: center;
+  color: var(--accent);
+  font-size: 0.8rem;
+  white-space: nowrap;
+}
+
+.m-leg.flash .m-leg-row {
+  background: var(--warn-bg);
+}
+
+.m-leg .leg-steps {
+  margin: 0 0 6px;
+}
+
+/* 等待：交通下面一行純文字 */
+.m-wait {
+  margin-left: 30px;
+  padding: 2px 0 6px 12px;
+  border-left: 2px dashed #bbb;
+  color: var(--warn);
+  font-size: 0.8rem;
+}
+
+.m-gap {
+  padding: 8px 4px;
+  color: var(--muted);
+  font-size: 0.85rem;
+}
+
+/* 分組 */
+.m-split {
+  margin: 8px 0;
+  padding: 8px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+}
+
+.m-split-head {
+  font-weight: 700;
+}
+
+.m-group + .m-group {
+  margin-top: 8px;
+}
+
+.m-group-name {
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+.m-trip-empty {
+  padding: 12px 4px;
+}
+
+/* 這天的候選 */
+.m-cands {
+  margin-top: 16px;
+}
+
+.m-cands-head {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+  margin: 0;
+  font-size: 0.95rem;
+}
+
+/* 整趟：一天一列 */
+.m-overview {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.m-overview-day {
+  width: 100%;
+  min-height: 56px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 6px 2px;
+  border: 0;
+  border-bottom: 1px solid var(--line);
+  background: none;
+  color: var(--fg);
+  text-align: left;
+  cursor: pointer;
+}
+
+.m-ov-date {
+  flex: 0 0 44px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  line-height: 1.15;
+}
+
+.m-ov-date small {
+  color: var(--muted);
+}
+
+.m-ov-date.red-day,
+.m-ov-date.red-day small {
+  color: var(--red-day);
+}
+
+.m-ov-mid {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.m-ov-sub {
+  color: var(--muted);
+  font-size: 0.8rem;
+}
+
+.m-ov-thumbs {
+  flex: 0 0 auto;
+  display: flex;
+  gap: 3px;
+}

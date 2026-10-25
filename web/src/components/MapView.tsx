@@ -6,7 +6,7 @@ import type { FeatureCollection } from 'geojson';
 import 'maplibre-gl/dist/maplibre-gl.css';
 import { appStore } from '../store.ts';
 import { dataStore } from '../dataStore.ts';
-import { DESKTOP_QUERY, useApp, useCanHover, useData, usePlan, useShared, useUi } from '../hooks.ts';
+import { DESKTOP_QUERY, useApp, useCanHover, useData, useIsDesktop, usePlan, useShared, useUi } from '../hooks.ts';
 import { voteCounts } from '../sharedStore.ts';
 import { initialExtent } from '../lib/areas.ts';
 import { TYPE_COLORS } from '../lib/typeStyle.ts';
@@ -25,6 +25,8 @@ import { showInExplore } from './Explore.tsx';
 import { shared } from '../appShared.ts';
 import { likedPlaces } from '../lib/wishlist.ts';
 import { closeMapPanel, closeTimetable, uiStore } from '../uiStore.ts';
+import { dayPlanOf, planStore } from '../planStore.ts';
+import { focusKeyForPlace, mobileStore } from '../mobile/mobileStore.ts';
 
 setWorkerUrl(maplibreWorkerUrl);
 
@@ -89,6 +91,7 @@ export function MapView() {
   const [loaded, setLoaded] = useState(false);
   const [, setTick] = useState(0); // 地圖移動時重畫小卡片的位置
   const canHover = useCanHover();
+  const desktop = useIsDesktop();
   const canHoverRef = useRef(canHover);
   canHoverRef.current = canHover;
   const hideTimer = useRef<number | null>(null);
@@ -117,20 +120,23 @@ export function MapView() {
   const legOpen = useUi((s) => s.legOpen);
   const tripFocusDay = useApp((s) => s.tripFocusDay);
 
-  // 點了一個點：電腦版右側切到探索、捲到那張卡片（再點卡片開詳情）；觸控先出小卡片，同一點再點一次開詳情
+  // 點了一個點：電腦版右側切到探索、捲到那張卡片（再點卡片開詳情）。
+  // 手機版（第六輪 §3.5）不出彈窗：點到這天時間軸上的點＝選那張卡（focusItem，清單捲到那張）；不在這天的點開整頁詳情；點空白處取消
   const pick = (id: string | null) => {
     const s = appStore.getState();
-    if (!id) {
-      s.openPreview(null);
-      return;
-    }
     if (window.matchMedia(DESKTOP_QUERY).matches) {
-      showInExplore(id);
+      if (!id) s.openPreview(null);
+      else showInExplore(id);
       return;
     }
-    if (s.previewId === id) s.openDetail(id);
-    else s.openPreview(id);
-    s.hover(id);
+    const m = mobileStore.getState();
+    if (!id) {
+      m.focusItem(null);
+      return;
+    }
+    const key = s.day === 'all' ? null : focusKeyForPlace(dayPlanOf(planStore.getState().plan, s.day), id);
+    if (key) m.focusItem(key);
+    else s.openDetail(id);
   };
   const pickRef = useRef(pick);
   pickRef.current = pick;
@@ -512,15 +518,24 @@ export function MapView() {
     (map.getSource(OVERLAY_SOURCES.proposalLines) as GeoJSONSource).setData(f.lines);
   }, [loaded, proposal, itinerary]);
 
-  // 點開某一段交通時，其他行程路線變淡（只亮那一段）；收起來還原
+  // 點開某一段交通、手機選了一張卡（focus）時，其他行程路線變淡（只亮那一段、那個點）；收起來還原
+  const focusId = highlights.focus?.[0] ?? '';
   useEffect(() => {
     if (!loaded) return;
     const map = mapRef.current!;
-    const dim = legOpen != null;
+    const dim = legOpen != null || focusId !== '';
     map.setPaintProperty('itinerary-line', 'line-opacity', dim ? 0.1 : ITINERARY_LINE_OPACITY);
     map.setPaintProperty('itinerary-casing', 'line-opacity', dim ? 0.1 : ITINERARY_CASING_OPACITY);
     map.setPaintProperty('itinerary-arrow', 'icon-opacity', dim ? 0.15 : 1);
-  }, [loaded, legOpen]);
+  }, [loaded, legOpen, focusId]);
+
+  // 手機選了一張卡：那個編號圓放大（黑框是 highlight-ring 的 focus 樣式）
+  useEffect(() => {
+    if (!loaded) return;
+    // 縮放的 interpolate 一定要在最外層：每個停的縮放各自看是不是選到的點
+    const r = (base: number) => (focusId ? ['case', ['==', ['get', 'id'], focusId], base * 1.35, base] : base);
+    mapRef.current!.setPaintProperty('places-mark', 'circle-radius', ['interpolate', ['linear'], ['zoom'], 8, r(10), 14, r(13)] as never);
+  }, [loaded, focusId]);
 
   const routesVersion = useApp((s) => s.routesVersion);
   // 確定的行程（T15m）：每天的路線、備選的空心圈、選定那天的交通標籤
@@ -618,7 +633,8 @@ export function MapView() {
     mapRef.current?.resize();
   }, [mode]);
 
-  const previewPlace = previewId && !detailId ? dataStore.getState().byId.get(previewId) : null;
+  // 小卡片（照片彈窗）只有電腦版：手機版點圖釘是選卡片（第六輪 §3.5）
+  const previewPlace = previewId && !detailId && desktop ? dataStore.getState().byId.get(previewId) : null;
   const previewPos = previewPlace && mapRef.current ? mapRef.current.project(previewPlace.coords) : null;
 
   return (

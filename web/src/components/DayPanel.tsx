@@ -8,9 +8,9 @@ import { useApp, useData, usePlan, useShared, useUi } from '../hooks.ts';
 import { dayPlanOf } from '../planStore.ts';
 import { dayLabel, isRedDay, tripDates } from '../lib/trip.ts';
 import { stopsOn } from '../lib/itinerary.ts';
-import { selectedBarKey, WARNING_ICONS, warningsByItem } from '../lib/planView.ts';
+import { selectedBarKey, WARNING_ICONS } from '../lib/planView.ts';
 import { dayColor } from '../lib/visual.ts';
-import { DayBar, DaySummaryLine, Timeline } from './Timeline.tsx';
+import { DayBar, DaySummaryLine, Timeline, useDayTimeline } from './Timeline.tsx';
 import { DayCandidates } from './Wishlist.tsx';
 import { dayCandidates } from '../lib/wishlist.ts';
 import { EditHint, PlanningBar, PlanningToggle } from './Planning.tsx';
@@ -109,17 +109,13 @@ function DayHead({ day }: { day: string }) {
 export function DayPanel() {
   const day = useApp((s) => s.day);
   const planning = useApp((s) => s.planning);
-  const itinerary = useData((s) => s.itinerary);
-  const planStatus = usePlan((s) => s.status);
-  const planError = usePlan((s) => s.error);
-  const plan = usePlan((s) => (day === 'all' ? null : dayPlanOf(s.plan, day)));
+  const tl = useDayTimeline(day);
+  const { plan, itDay, status: planStatus, error: planError, dayWarnings } = tl;
   const [warnOpen, setWarnOpen] = useState(false);
   const legOpen = useUi((s) => s.legOpen);
   const detailId = useApp((s) => s.detailId);
   const selectedKey = selectedBarKey(plan, legOpen, detailId);
   if (day === 'all') return <Overview />;
-  const itDay = itinerary?.days.find((d) => d.date === day) ?? null;
-  const { day: dayWarnings } = warningsByItem(plan);
   return (
     <div className={`day-panel ${planning ? 'editing' : ''}`} data-testid="day-panel">
       <PlanningBar />
@@ -143,7 +139,7 @@ export function DayPanel() {
       {itDay && planStatus === 'loading' && <p className="muted">計算時間軸中…</p>}
       {planStatus === 'error' && <p className="warn">時間軸算不出來：{planError}</p>}
       <EditHint />
-      {itDay && plan && <Timeline plan={plan} day={itDay} />}
+      {itDay && plan && <Timeline tl={{ ...tl, itDay, plan }} />}
       {itDay && plan && itDay.items.length === 0 && (
         <p className="muted small" data-testid="day-empty">
           這天還沒排。到 ❤️ 想去把想去的點加到這天{' '}

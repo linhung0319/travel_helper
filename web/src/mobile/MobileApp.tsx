@@ -1,7 +1,8 @@
 // 手機版的殼（第六輪 §3.1、§4）：寬度 < 900px 時 App.tsx 畫這個。上面是分頁內容，最下面是 5 個分頁（TabBar）。
 // 地圖一直掛著（e2e 的 ready() 和行程頁都要它）：不在行程分頁時用 visibility: hidden 藏起來，不卸載；切回行程時重新算大小。
 // 整頁的東西（詳情 PlaceDetailPage、討論、預約）蓋在最上面，一次只有一層；分頁本身不卸載，返回時捲動位置不變。共用元件用 appStore.openDetail 開的詳情，這裡改開整頁詳情。
-// 探索（ExploreFeed）、想去（WishlistPage）做好了；行程、AI 先放佔位，之後的任務補上。
+// 探索（ExploreFeed）、想去（WishlistPage）、行程（TripPage：地圖上蓋一張可以拉的面板）做好了；AI 先放佔位，之後的任務補上。
+// 行程面板停的高度（tripSnap）寫在 data-snap：mobile.css 照它算面板高度和地圖露出的範圍（地圖只畫在面板上面那塊，飛過去的點才不會被蓋住）。
 
 import { useEffect } from 'react';
 import { useApp } from '../hooks.ts';
@@ -14,6 +15,7 @@ import { MePage, MePageView } from './MePage.tsx';
 import { ExploreFeed } from './ExploreFeed.tsx';
 import { WishlistPage } from './WishlistPage.tsx';
 import { PlaceDetailPage } from './PlaceDetailPage.tsx';
+import { TripPage } from './TripPage.tsx';
 import './mobile.css';
 
 const PLACEHOLDER: Record<Exclude<MobileTab, 'me' | 'trip' | 'explore' | 'wish'>, string> = {
@@ -34,13 +36,14 @@ function TabContent({ tab }: { tab: MobileTab }) {
   if (tab === 'me') return <MePage />;
   if (tab === 'explore') return <ExploreFeed />;
   if (tab === 'wish') return <WishlistPage />;
-  if (tab === 'trip') return <div className="m-trip" data-testid="m-trip" />;
+  if (tab === 'trip') return <TripPage />;
   return <Placeholder tab={tab} />;
 }
 
 export function MobileApp() {
   const tab = useMobile((s) => s.tab);
   const planning = useApp((s) => s.planning);
+  const snap = useMobile((s) => s.tripSnap);
 
   // 共用的元件（地圖觸控點第二下、預約列的名稱…）用 appStore.openDetail 開詳情：手機版改開整頁詳情（from＝現在的分頁）
   useEffect(
@@ -60,7 +63,7 @@ export function MobileApp() {
   }, [tab]);
 
   return (
-    <div className={`m-app ${planning ? 'editing' : ''}`} data-tab={tab}>
+    <div className={`m-app ${planning ? 'editing' : ''}`} data-tab={tab} data-snap={snap}>
       {/* 每個分頁自己的捲動位置：換分頁時從最上面開始（不然會留著上一個分頁捲到的位置） */}
       <main key={tab} className={`m-page m-page-${tab}`}>
         <TabContent tab={tab} />

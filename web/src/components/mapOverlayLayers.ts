@@ -13,7 +13,7 @@ export const OVERLAY_SOURCES = {
   itineraryAlts: 'overlay-itinerary-alts',
 } as const;
 
-const HIGHLIGHT_COLORS: Record<string, string> = { primary: '#d4a72c', warning: '#cf222e', muted: '#8c959f' };
+const HIGHLIGHT_COLORS: Record<string, string> = { primary: '#d4a72c', warning: '#cf222e', muted: '#8c959f', focus: '#24292f' };
 const COMPARE_COLOR = '#8250df';
 const PROPOSAL_ADDED_COLOR = '#1a7f37';
 /** 步行藍、電車黑、巴士橘、船青綠，其他（計程車、包車）紫 */
