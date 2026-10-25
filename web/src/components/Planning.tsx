@@ -389,7 +389,7 @@ export function MoveDialog({ itemId }: { itemId: string }) {
           {ref.split ? `・${ref.split.groupName}，移過去會變成全員一起` : ''}）
         </p>
       )}
-      <DayGrid current={ref.date} disabled={busy} onPick={(d) => void move(d)} sub={(d) => `${stopsOn(itinerary, d).filter((s) => s.kind !== 'lodging' && s.kind !== 'flight').length} 個點`} />
+      <DayGrid current={ref.date} disabled={busy} onPick={(d) => void move(d)} />
       <p className="muted small">放在那天的最後，順序可以再調。</p>
     </Dialog>
   );
@@ -398,7 +398,6 @@ export function MoveDialog({ itemId }: { itemId: string }) {
 /** 候選「⋯」的「移到第幾天」（只有自己加的）：在那天加成候選、這天的拿掉 */
 export function MoveCandidateDialog({ candidateId }: { candidateId: number }) {
   const c = useShared((s) => s.candidates.find((x) => x.id === candidateId));
-  const itinerary = useData((s) => s.itinerary);
   const [busy, setBusy] = useState(false);
   if (!c) return null;
   const move = async (date: string) => {
@@ -413,7 +412,7 @@ export function MoveCandidateDialog({ candidateId }: { candidateId: number }) {
       <p>
         <PlaceChip id={c.placeId} />（現在是 {shortDayLabel(c.day)} 的候選）
       </p>
-      <DayGrid current={c.day} disabled={busy} onPick={(d) => void move(d)} sub={(d) => `${stopsOn(itinerary, d).filter((s) => s.kind !== 'lodging' && s.kind !== 'flight').length} 個點`} />
+      <DayGrid current={c.day} disabled={busy} onPick={(d) => void move(d)} />
       <p className="muted small">變成那天的候選。</p>
     </Dialog>
   );
