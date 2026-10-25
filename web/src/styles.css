@@ -3768,7 +3768,7 @@ body.dragging-plan .tl-row.tl-card.drop-merge {
   }
 }
 
-/* 交通卡（第四輪 §5.1、§5.2）：和資料卡一樣的圓角、淺灰底，內容一直顯示；規劃模式點開＝原地編輯 */
+/* 交通卡（第五輪 §3）：白底圓角卡片，平常只有標題（圖示、兩行字、右邊地圖連結和 ▸）；大眾運輸點了展開步驟；編輯中藍框 */
 .tl-leg {
   margin: 4px 0;
   font-size: 0.85rem;
@@ -3778,8 +3778,9 @@ body.dragging-plan .tl-row.tl-card.drop-merge {
 .tl-leg-card {
   border: 1px solid var(--line);
   border-radius: 10px;
-  padding: 4px 8px;
-  background: var(--soft);
+  padding: 6px 8px;
+  background: var(--bg);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.06);
   cursor: pointer;
 }
 
@@ -3788,15 +3789,24 @@ body.dragging-plan .tl-row.tl-card.drop-merge {
   box-shadow: 0 0 0 1px var(--accent);
 }
 
+.tl-leg.editing .tl-leg-card {
+  border: 2px solid var(--accent);
+  box-shadow: none;
+  padding: 5px 7px;
+}
+
 .tl-leg-head {
   display: flex;
-  flex-wrap: wrap;
-  align-items: baseline;
-  gap: 2px 8px;
+  align-items: center;
+  gap: 8px;
 }
 
 button.tl-leg-text {
-  padding: 2px 0;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  flex: 1;
+  padding: 0;
   border: 0;
   background: none;
   color: var(--fg);
@@ -3805,23 +3815,197 @@ button.tl-leg-text {
   cursor: pointer;
 }
 
+.tl-leg-title {
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+}
+
+.tl-leg-sub {
+  font-size: 0.75rem;
+  color: var(--muted);
+  font-variant-numeric: tabular-nums;
+}
+
 .tl-leg-note {
   color: var(--fg);
 }
 
 .leg-maps {
-  margin-left: auto;
+  flex: none;
   text-decoration: none;
 }
 
-.leg-rides {
-  list-style: none;
-  margin: 0 0 2px;
-  padding: 0;
+/* 右邊的 ▸（展開時轉向下）、編輯中的「改 ›」 */
+.tl-leg-chev {
+  flex: none;
+  color: var(--muted);
+  transition: transform 0.15s;
 }
 
-.leg-transfer {
-  padding-left: 1.5em;
+.tl-leg-chev.open {
+  transform: rotate(90deg);
+}
+
+.tl-leg-chev.edit {
+  color: var(--accent);
+  font-weight: 600;
+  font-size: 0.75rem;
+}
+
+/* 展開的步驟：左邊時間欄、中間細線和節點圓圈、右邊文字 */
+.leg-steps {
+  list-style: none;
+  margin: 8px 0 0;
+  padding: 6px 0 0;
+  border-top: 1px solid var(--line);
+  color: var(--fg);
+}
+
+.leg-step {
+  display: grid;
+  grid-template-columns: 44px 18px 1fr;
+  align-items: stretch;
+}
+
+.leg-step-tm {
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  padding-top: 1px;
+}
+
+.leg-step-rail {
+  position: relative;
+}
+
+.leg-step-ln {
+  position: absolute;
+  left: 8px;
+  top: 0;
+  bottom: 0;
+  width: 0;
+}
+
+.leg-step-ln.top {
+  bottom: auto;
+  height: 9px;
+}
+
+.leg-step-ln.bottom {
+  top: 9px;
+}
+
+.leg-step-ln.walk {
+  border-left: 2px dotted #8a94a0;
+}
+
+.leg-step-ln.ride {
+  left: 6px;
+  border-left: 5px solid #8a94a0;
+}
+
+.leg-step-dot {
+  position: absolute;
+  left: 4px;
+  top: 4px;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--bg);
+  border: 2px solid #555;
+  box-sizing: border-box;
+}
+
+.leg-step-tx {
+  padding: 1px 0 8px 4px;
+  min-width: 0;
+}
+
+.leg-step.node .leg-step-tx {
+  font-weight: 600;
+}
+
+.leg-step.walk .leg-step-tx,
+.leg-step.ride .leg-step-tx {
+  color: var(--muted);
+}
+
+.leg-step-walk {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.leg-step-wait {
+  display: inline-block;
+  margin-left: 6px;
+  padding: 0 6px;
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: #8a6d00;
+  background: #fff7d6;
+  border: 1px dashed #e0c25a;
+  border-radius: 6px;
+}
+
+/* 搭車那一行的膠囊：點了在地圖那側開班次表；編輯中裡面是班次下拉 */
+.leg-ride {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  max-width: 100%;
+  padding: 3px 8px 3px 4px;
+  border: 1px solid #80cbc4;
+  border-radius: 8px;
+  background: #e0f2f1;
+  color: #004d52;
+  font: inherit;
+  font-weight: 600;
+  text-align: left;
+  cursor: pointer;
+}
+
+/* 路線名太長時在膠囊裡換行，圖示和「› 班次」不換行 */
+.leg-ride > * {
+  flex: none;
+}
+
+.leg-ride > span:not([class]) {
+  flex: 0 1 auto;
+  min-width: 0;
+}
+
+.leg-ride.editing {
+  flex-wrap: wrap;
+  background: var(--bg);
+  border: 2px solid var(--accent);
+  color: var(--fg);
+  cursor: auto;
+}
+
+.leg-ride-more {
+  font-weight: 400;
+  color: #00838f;
+}
+
+button.leg-ride-more {
+  padding: 0;
+  border: 0;
+  background: none;
+  font: inherit;
+  color: var(--accent);
+  cursor: pointer;
+}
+
+.leg-ride-select {
+  max-width: 100%;
+  font: inherit;
+  font-variant-numeric: tabular-nums;
+}
+
+.leg-ride-min {
+  display: block;
+  margin-top: 3px;
+  font-variant-numeric: tabular-nums;
 }
 
 .leg-edit {
@@ -3846,8 +4030,7 @@ button.tl-leg-text {
   color: var(--muted);
 }
 
-.leg-modes,
-.leg-trip-nav {
+.leg-modes {
   display: flex;
   flex-wrap: wrap;
   gap: 4px;
@@ -3867,12 +4050,6 @@ button.tl-leg-text {
 
 .leg-modes .chip:disabled {
   opacity: 0.45;
-}
-
-.leg-trip-list {
-  list-style: none;
-  margin: 0 0 4px;
-  padding: 0;
 }
 
 .leg-minutes {

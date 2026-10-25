@@ -1,4 +1,4 @@
-// 對話框（T15m）：進入規劃模式的確認、快照、排進行程、移到別天、修改紀錄、拿掉別人加的候選。
+// 對話框（T15m）：進入規劃模式的確認、快照、排進行程、移到別天、修改紀錄、拿掉別人加的候選；展開中的交通卡、地圖那側的班次表。
 // 一次只開一個；從哪裡打開都走這裡（詳情面板、時間軸、規劃列），App 底下的 <Dialogs /> 負責畫。
 
 import { createStore } from 'zustand/vanilla';
@@ -20,6 +20,13 @@ export interface MapPanelState {
   focus?: { date: string; placeId: string };
 }
 
+/** 班次表開在哪一程 */
+export interface TimetableState {
+  date: string;
+  legKey: string;
+  rideIndex: number;
+}
+
 export interface UiState {
   dialog: DialogState | null;
   mapPanel: MapPanelState | null;
@@ -27,12 +34,18 @@ export interface UiState {
   idleMinutes: number;
   /** 展開中的交通細列（日期:項目 ID 或 lodging）；一次只展開一段 */
   legOpen: string | null;
+  /** 地圖那側的班次表（第五輪 §4）：哪天、哪段交通（legKey 和交通卡的 key 同格式）、第幾程 */
+  timetable: TimetableState | null;
 }
 
-export const uiStore = createStore<UiState>()(() => ({ dialog: null, mapPanel: null, idleMinutes: 10, legOpen: null }));
+export const uiStore = createStore<UiState>()(() => ({ dialog: null, mapPanel: null, idleMinutes: 10, legOpen: null, timetable: null }));
 
 export const openDialog = (dialog: DialogState) => uiStore.setState({ dialog });
 export const closeDialog = () => uiStore.setState({ dialog: null });
+
+/** 打開地圖那側的班次表（交通卡步驟裡搭車那一行的「› 班次」） */
+export const openTimetable = (timetable: TimetableState) => uiStore.setState({ timetable });
+export const closeTimetable = () => uiStore.setState({ timetable: null });
 
 
 /** 打開地圖區的視窗；範圍照目前選的天（選「全部」或 focus 的那列不在這天時是整趟） */

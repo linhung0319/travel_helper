@@ -1,28 +1,48 @@
-// 兩張資料卡中間的交通卡（第四輪設計 §5.1、§5.2）：圓角卡片，內容一直顯示，不收合——
-// 第一行是方式、分鐘、計程車台數、等車、距離、📝 備註和 Google Maps 小圖示；搭電車、巴士、船時下面每一程一行。
+// 兩張資料卡中間的交通卡（第五輪 §3）：平常收起，只有標題——左邊交通圖示，第一行方式＋分鐘，
+// 第二行距離（路線距離，還沒查到才寫直線）、計程車台數、含等車、📝 備註；右邊 Google Maps 小圖示，大眾運輸加 ▸。
 // 點卡片：地圖只畫這一段（commands.drawRoute，搭車的照班次的站畫），每一程上下車的站亮起來；再點一次或點別段就恢復。
-// 規劃模式下，點開的那張就在原地變成編輯狀態（不跳視窗）：自動／步行／計程車／大眾運輸、前一班後一班、備註；
-// 算不出來（交通未定、指定的方式找不到班次）或已經填過分鐘時才出現「自己填分鐘」（清空＝回到自動）。按「完成」收起來。
+// 大眾運輸點了就展開步驟（legSteps）：左邊時間、中間細線（步行點線、搭車用圖示色的粗實線、節點小圓圈）、右邊文字；
+// 搭車那一行是膠囊，點了在地圖那側開班次表（uiStore.openTimetable，一般模式只能看）。步行、計程車沒有步驟，不展開。
+// 規劃模式下，點開的那張就在原地變成編輯狀態（藍框）：自動（目前的方式）／步行／計程車／大眾運輸、
+// 大眾運輸的步驟一定展開，膠囊換成只列搭得到的班次的下拉（selectRideTrip）；
+// 算不出來（交通未定、指定的方式找不到班次）或已經填過分鐘時才出現「自己填分鐘」（清空＝回到自動）；備註、「完成」收起來。
 // 一次只開一段（uiStore.legOpen）；這張卡不見了（換天、回整趟、換分頁）時也收起來，地圖的行程線才會恢復。
 // 規劃模式下交通卡也是放置區：拖到這裡＝排在這段通往的那張卡片前面（planDrag.dropOnLegProps）。
 
-import { useEffect, useRef, useState, type MouseEvent } from 'react';
-import { getLegTravel, setLegTravel, type Itinerary, type Leg, type LegTarget, type TimelineEntry, type TravelSpec } from '@travel-helper/engine';
-import type { TravelMode, TripRef } from '@travel-helper/engine/types';
-import { commands, itineraryPathOf } from '../appCommands.ts';
+import { useEffect, useRef, useState, type MouseEvent, type ReactNode } from 'react';
+import { getLegTravel, rideDepartures, setLegTravel, type Itinerary, type Leg, type LegTarget, type RideDeparture, type TimelineEntry, type TravelSpec } from '@travel-helper/engine';
+import type { TravelMode } from '@travel-helper/engine/types';
+import { commands, itineraryPathOf, roadRouter } from '../appCommands.ts';
 import { dataStore } from '../dataStore.ts';
 import { shared } from '../appShared.ts';
+import { currentEngineData, engineConfig } from '../planStore.ts';
 import { useApp, useData, useShared, useUi } from '../hooks.ts';
-import { EDITOR_MODES, editorModeOf, formatDistance, legDetail, legMapsUrl, legTargetOf, legText, rideLines, showMinutesInput, specWithTrip, type EditorMode } from '../lib/planView.ts';
-import { rideStations } from '../lib/routing.ts';
-import { haversineMeters } from '../lib/geo/distance.ts';
-import { uiStore } from '../uiStore.ts';
+import {
+  EDITOR_MODES,
+  departureChoices,
+  departureRows,
+  editorModeOf,
+  legDistance,
+  legMapsUrl,
+  legModeName,
+  legSteps,
+  legSubParts,
+  legTargetOf,
+  legTitle,
+  rideReadyAt,
+  showMinutesInput,
+  specWithRide,
+  type EditorMode,
+  type LegStep,
+} from '../lib/planView.ts';
+import { lineMeters, rideStations } from '../lib/routing.ts';
+import { MODE_ICON, modeIconKey } from '../lib/modeIcon.ts';
+import { openTimetable, uiStore } from '../uiStore.ts';
+import { ModeIcon } from './ModeIcon.tsx';
 import { dropOnLegProps } from './planDrag.ts';
 
-/** 方式選單的字 */
-const EDITOR_LABELS: Record<EditorMode, string> = { auto: '自動', walk: '🚶 步行', taxi: '🚕 計程車', transit: '🚃 大眾運輸' };
-/** 選單不再提供的舊方式（卡片照原名寫） */
-const LEGACY_LABELS: Partial<Record<TravelMode, string>> = { charter: '包車', car: '自駕', other: '其他' };
+/** 方式選單的字（自動另外接上目前的方式） */
+const EDITOR_LABELS: Record<EditorMode, string> = { auto: '自動', walk: '步行', taxi: '計程車', transit: '大眾運輸' };
 
 const isRide = (mode: Leg['mode']) => mode === 'train' || mode === 'bus' || mode === 'ferry';
 
@@ -36,13 +56,139 @@ function readSpec(it: Itinerary | null, target: LegTarget | null): TravelSpec | 
   }
 }
 
-/** 舊的包車、自駕、其他：第一行接上原名（例如「・包車」），其他是空字串 */
-function legacyLabel(spec: TravelSpec | null): string {
-  return editorModeOf(spec) === 'legacy' && spec?.mode ? `・${LEGACY_LABELS[spec.mode] ?? spec.mode}` : '';
+/**
+ * 選某一程的班次（交通卡的下拉、地圖那側的班次表都用）：寫進這段的 TravelSpec.trip，方式照舊、轉乘站 via 照舊。
+ * 後面那程接不上時引擎改成接得上的最早一班
+ */
+export function selectRideTrip(target: LegTarget, leg: Leg, rideIndex: number, dep: RideDeparture): void {
+  void shared.changeItinerary((it) => setLegTravel(it, target, specWithRide(getLegTravel(it, target), leg, rideIndex, dep)), '換班次');
 }
 
-/** 規劃模式的編輯狀態：方式、班次、（算不出來時）分鐘、備註、完成 */
-function LegEditor({ target, spec, leg }: { target: LegTarget; spec: TravelSpec | null; leg: Leg }) {
+/** 這一程那天、同一對站的所有班次；時刻表還沒載入時是 [] */
+function departuresOf(date: string, ride: Leg['rides'][number]): RideDeparture[] {
+  const data = currentEngineData();
+  return data ? rideDepartures(data, engineConfig, date, ride) : [];
+}
+
+/** 編輯中搭車那一行的班次下拉：只列搭得到的（和選定的那班），搭不到的收成一行不能選的說明 */
+function RideSelect({ leg, index, date, target, disabled }: { leg: Leg; index: number; date: string; target: LegTarget; disabled: boolean }) {
+  const ride = leg.rides[index];
+  const readyAt = rideReadyAt(leg, index);
+  const selectedId = ride.tripId ?? '';
+  const { missedNote, options } = departureChoices(departureRows(departuresOf(date, ride), readyAt, selectedId || null), readyAt);
+  // 時刻表查不到目前這班（資料缺、還在載入）：照樣列出目前這班，只是不能從清單換回來
+  const list = options.some((o) => o.tripId === selectedId) ? options : [{ tripId: selectedId, label: `${ride.depart} 發 → ${ride.arrive} 到` }, ...options];
+  const pick = (tripId: string) => {
+    const o = options.find((x) => x.tripId === tripId);
+    if (o && tripId !== selectedId) selectRideTrip(target, leg, index, o.row);
+  };
+  return (
+    <select
+      className="leg-ride-select"
+      aria-label={`第 ${index + 1} 程的班次`}
+      value={selectedId}
+      disabled={disabled || options.length === 0}
+      onChange={(e) => pick(e.target.value)}
+      data-testid="leg-ride-select"
+    >
+      {missedNote && (
+        <option disabled value="__missed">
+          {missedNote}
+        </option>
+      )}
+      {list.map((o) => (
+        <option key={o.tripId} value={o.tripId}>
+          {o.label}
+        </option>
+      ))}
+    </select>
+  );
+}
+
+/** 一步左邊的細線：步行點線、搭車用圖示色的粗實線 */
+type Line = { kind: 'walk' } | { kind: 'ride'; color: string } | null;
+const lineOf = (s: LegStep | undefined): Line => (s?.kind === 'walk' ? { kind: 'walk' } : s?.kind === 'ride' ? { kind: 'ride', color: MODE_ICON[modeIconKey(s.mode)].bg } : null);
+
+/** 細線的一段：full＝整格，top／bottom＝節點圓圈的上半、下半 */
+function RailLine({ line, part }: { line: Line; part: 'full' | 'top' | 'bottom' }) {
+  if (!line) return null;
+  return <span className={`leg-step-ln ${line.kind} ${part}`} style={line.kind === 'ride' ? { borderLeftColor: line.color } : undefined} />;
+}
+
+/** 大眾運輸的步驟（第五輪 §3.2）；編輯中搭車那一行是班次下拉 */
+function LegSteps({ steps, leg, date, legKey, target, editing, saving }: { steps: LegStep[]; leg: Leg; date: string; legKey: string; target: LegTarget | null; editing: boolean; saving: boolean }) {
+  const openRide = (rideIndex: number) => openTimetable({ date, legKey, rideIndex });
+  return (
+    <ol className="leg-steps" data-testid="leg-steps">
+      {steps.map((s, i) => {
+        if (s.kind === 'node') {
+          const above = lineOf(steps[i - 1]);
+          const below = lineOf(steps[i + 1]);
+          const ride = below?.kind === 'ride' ? below : above?.kind === 'ride' ? above : null;
+          return (
+            <li key={i} className="leg-step node" data-testid="leg-step">
+              <span className="leg-step-tm">{s.time}</span>
+              <span className="leg-step-rail">
+                <RailLine line={above} part="top" />
+                <RailLine line={below} part="bottom" />
+                <span className="leg-step-dot" style={ride ? { borderColor: ride.color } : undefined} />
+              </span>
+              <span className="leg-step-tx">
+                {s.name}
+                {s.wait ? (
+                  <span className="leg-step-wait" data-testid="leg-step-wait">
+                    ⏳ 等 {s.wait} 分
+                  </span>
+                ) : null}
+              </span>
+            </li>
+          );
+        }
+        return (
+          <li key={i} className={`leg-step ${s.kind}`} data-testid="leg-step">
+            <span className="leg-step-tm" />
+            <span className="leg-step-rail">
+              <RailLine line={lineOf(s)} part="full" />
+            </span>
+            <span className="leg-step-tx">
+              {s.kind === 'walk' ? (
+                <span className="leg-step-walk">
+                  <ModeIcon mode="walk" size="s" /> 步行 {s.minutes} 分
+                </span>
+              ) : editing && target ? (
+                <>
+                  <span className="leg-ride editing" data-testid="leg-ride">
+                    <ModeIcon mode={s.mode} size="s" />
+                    <span>{s.line}</span>
+                    <RideSelect leg={leg} index={s.index} date={date} target={target} disabled={saving} />
+                    <button type="button" className="leg-ride-more" onClick={() => openRide(s.index)} data-testid="leg-ride-timetable">
+                      › 班次
+                    </button>
+                  </span>
+                  <span className="leg-ride-min">{s.minutes} 分</span>
+                </>
+              ) : (
+                <>
+                  <button type="button" className="leg-ride" onClick={() => openRide(s.index)} data-testid="leg-ride">
+                    <ModeIcon mode={s.mode} size="s" />
+                    <span>
+                      {s.line} {s.depart} 發
+                    </span>
+                    <span className="leg-ride-more">› 班次</span>
+                  </button>
+                  <span className="leg-ride-min">{s.minutes} 分</span>
+                </>
+              )}
+            </span>
+          </li>
+        );
+      })}
+    </ol>
+  );
+}
+
+/** 規劃模式的編輯狀態，由上到下：方式、步驟（children，大眾運輸的班次在這裡選）、（算不出來時）分鐘、備註、完成 */
+function LegEditor({ target, spec, leg, children }: { target: LegTarget; spec: TravelSpec | null; leg: Leg; children?: ReactNode }) {
   const saving = useShared((s) => s.saving);
   // 每次都從最新的行程讀目前的設定再改
   const change = (fn: (cur: TravelSpec | null) => TravelSpec | null, label = '調整交通') => void shared.changeItinerary((it) => setLegTravel(it, target, fn(getLegTravel(it, target))), label);
@@ -54,7 +200,6 @@ function LegEditor({ target, spec, leg }: { target: LegTarget; spec: TravelSpec 
     if (m === current) return;
     change((cur) => ({ ...(m === 'auto' ? {} : { mode: m }), ...(cur?.note ? { note: cur.note } : {}) }));
   };
-  const pickTrip = (trip: TripRef) => change((cur) => specWithTrip(cur, trip), '換班次');
   const commitMinutes = () => {
     const n = minutes.trim() === '' ? null : Number(minutes);
     if (n != null && !(Number.isFinite(n) && n >= 0)) return setMinutes(spec?.minutes != null ? String(spec.minutes) : '');
@@ -65,10 +210,8 @@ function LegEditor({ target, spec, leg }: { target: LegTarget; spec: TravelSpec 
     if (v !== (spec?.note ?? null)) change((cur) => ({ ...cur, note: v }));
   };
   const noTransit = leg.transitAvailable === false;
-  const showTrips = current === 'transit' || isRide(leg.mode);
-  // 清單的形狀（之後換 RAPTOR 會有好幾條候選），這一輪只有目前這班
-  const trips = leg.trip ? [leg.trip] : [];
-  const transfers = Math.max(0, leg.rides.length - 1);
+  // 「自動」寫出它選了什麼（第五輪 §3.4）；指定了別的方式時只寫「自動」（不知道自動會選什麼）
+  const label = (m: EditorMode) => (m === 'auto' && current === 'auto' ? `自動（${legModeName(leg.mode)}）` : EDITOR_LABELS[m]);
   return (
     <div className="leg-edit" data-testid="leg-editor">
       <div className="leg-edit-row">
@@ -84,7 +227,7 @@ function LegEditor({ target, spec, leg }: { target: LegTarget; spec: TravelSpec 
               data-testid="leg-mode"
               data-mode={m}
             >
-              {EDITOR_LABELS[m]}
+              {label(m)}
             </button>
           ))}
         </span>
@@ -94,33 +237,8 @@ function LegEditor({ target, spec, leg }: { target: LegTarget; spec: TravelSpec 
           </span>
         )}
       </div>
-      {showTrips && (
-        <div className="leg-trips">
-          <ul className="leg-trip-list">
-            {trips.map((t) => (
-              <li key={t.id} className="leg-trip" aria-current="true" data-testid="leg-trip">
-                <b>
-                  {t.depart} → {t.arrive}
-                </b>
-                <span className="muted small">
-                  {' '}
-                  {transfers ? `轉乘 ${transfers} 次` : '直達'}
-                  {leg.rides.length > 0 && `・${leg.rides.map((r) => r.line).join(' → ')}`}
-                </span>
-              </li>
-            ))}
-            {trips.length === 0 && <li className="muted small">找不到班次</li>}
-          </ul>
-          <div className="leg-trip-nav">
-            <button type="button" className="chip" disabled={saving || !leg.prevTrip} onClick={() => leg.prevTrip && pickTrip(leg.prevTrip)} data-testid="leg-prev-trip">
-              ‹ 前一班
-            </button>
-            <button type="button" className="chip" disabled={saving || !leg.nextTrip} onClick={() => leg.nextTrip && pickTrip(leg.nextTrip)} data-testid="leg-next-trip">
-              後一班 ›
-            </button>
-          </div>
-        </div>
-      )}
+      {current === 'transit' && leg.rides.length === 0 && <div className="muted small">找不到班次</div>}
+      {children}
       {showMinutesInput(leg, spec) && (
         <div className="leg-edit-row">
           <span className="leg-edit-label">時間</span>
@@ -169,11 +287,13 @@ export function LegRow({ entry, date }: { entry: TimelineEntry; date: string }) 
   const byId = useData((s) => s.byId);
   const itinerary = useData((s) => s.itinerary);
   const planning = useApp((s) => s.planning);
+  const saving = useShared((s) => s.saving);
+  // 道路路線查到時（地圖的行程線跟著更新）重畫，距離從直線換成路線
+  useApp((s) => s.routesVersion);
   const target = legTargetOf(entry, date);
-  // 每一段交通有自己的 key（起點、會合這類不能改的也可以點，但不會開到別段）
+  // 每一段交通有自己的 key（起點、會合這類不能改的也可以點，但不會開到別段）；班次表的 legKey 也是這個
   const key = `${date}:${entry.kind === 'lodging' ? 'lodging' : `${entry.kind}:${entry.itemId ?? entry.placeId ?? ''}`}`;
   const open = useUi((s) => s.legOpen) === key;
-  const routes = useApp((s) => s.routes);
   const spec = readSpec(itinerary, target);
   // 使用者設定過的（包含分鐘填 0）或有備註的不能藏起來，否則改不回來
   const userSet = !!leg?.specified || !!spec;
@@ -213,51 +333,63 @@ export function LegRow({ entry, date }: { entry: TimelineEntry; date: string }) 
   }, [open, key]);
 
   if (hidden || !leg) return null;
-  const detail = legDetail(leg);
   const editing = open && planning && !!target;
   const from = fromId ? byId.get(fromId) : undefined;
   const to = toId ? byId.get(toId) : undefined;
-  const rides = rideLines(leg, nameOf);
-  // 距離：這段畫在地圖上的路線查到了就用（沿道路），否則直線距離
-  const drawn = routes.find((r) => r.from.place === fromId && r.to.place === toId && r.meters != null && r.source !== 'pending');
-  const straight = from && to ? haversineMeters(from.coords, to.coords) : null;
-  const distance = drawn?.meters != null ? (drawn.source === 'straight' ? `${formatDistance(drawn.meters)}（直線）` : formatDistance(drawn.meters)) : straight != null ? `${formatDistance(straight)}（直線）` : null;
-  // 點卡片上任何地方都切換（編輯區、地圖連結裡的點擊不算）；鍵盤用第一行的按鈕
+  // 距離（第五輪 §3.5）：步行、計程車用道路路線的快取，搭車用照班次的站畫的路徑長度；
+  // 不看點開後畫在地圖上的那條，點開前後同一個數字
+  const ridePath = from && to && isRide(leg.mode) && leg.rides.length ? itineraryPathOf(from, to, mode, leg.rides) : null;
+  const distance = from && to ? legDistance(leg, from, to, roadRouter, ridePath ? lineMeters(ridePath) : null) : null;
+  const sub = legSubParts(leg, distance);
+  const steps = legSteps(leg, from ? nameOf(from.id) : '', to ? nameOf(to.id) : '', nameOf);
+  const transit = steps.length > 0;
+  const stepList = open && transit ? <LegSteps steps={steps} leg={leg} date={date} legKey={key} target={target} editing={editing} saving={saving} /> : null;
+  const note = spec?.note && !editing ? spec.note : null;
+  // 點卡片上任何地方都切換（編輯區、地圖連結、搭車膠囊、下拉裡的點擊不算）；鍵盤用標題的按鈕
   const toggle = (e: MouseEvent) => {
-    if ((e.target as HTMLElement).closest('a, .leg-edit')) return;
+    if ((e.target as HTMLElement).closest('a, select, .leg-edit, .leg-ride')) return;
     uiStore.setState({ legOpen: open ? null : key });
   };
   return (
-    <li className={`tl-leg mode-${leg.mode} ${open ? 'open' : ''}`} data-testid="tl-leg" {...dropOnLegProps(entry.itemId, date, planning)}>
+    <li className={`tl-leg mode-${leg.mode} ${open ? 'open' : ''} ${editing ? 'editing' : ''}`} data-testid="tl-leg" {...dropOnLegProps(entry.itemId, date, planning)}>
       <div className="tl-leg-card" onClick={toggle}>
         <div className="tl-leg-head">
-          <button type="button" className="tl-leg-text" aria-pressed={open}>
-            {legText(leg) || '交通 0 分'}
-            {legacyLabel(spec)}
-            {distance && `・${distance}`}
-            {detail.length > 0 && <span className="small">（{detail.join('、')}）</span>}
+          <ModeIcon mode={mode} size="l" />
+          <button type="button" className="tl-leg-text" aria-pressed={open} aria-expanded={transit ? open : undefined}>
+            <span className="tl-leg-title">{legTitle(leg) || '交通 0 分'}</span>
+            {(sub.length > 0 || note) && (
+              <span className="tl-leg-sub">
+                {sub.join('・')}
+                {note && (
+                  <span className="tl-leg-note" data-testid="leg-note-text">
+                    {sub.length > 0 && '・'}📝 {note}
+                  </span>
+                )}
+              </span>
+            )}
           </button>
-          {spec?.note && !editing && (
-            <span className="tl-leg-note" data-testid="leg-note-text">
-              📝 {spec.note}
-            </span>
-          )}
           {from && to && (
             <a className="leg-maps" href={legMapsUrl(from, to, mode)} target="_blank" rel="noreferrer" aria-label="在 Google Maps 開路線" title="在 Google Maps 開路線" data-testid="leg-maps">
               🗺️
             </a>
           )}
+          {planning && target && !open ? (
+            <span className="tl-leg-chev edit" aria-hidden="true">
+              改 ›
+            </span>
+          ) : transit && !editing ? (
+            <span className={`tl-leg-chev ${open ? 'open' : ''}`} aria-hidden="true">
+              ▸
+            </span>
+          ) : null}
         </div>
-        {rides.length > 0 && (
-          <ul className="leg-rides">
-            {rides.map((line, i) => (
-              <li key={i} className={line.startsWith('轉乘') ? 'leg-transfer' : ''} data-testid="leg-ride">
-                {line}
-              </li>
-            ))}
-          </ul>
+        {editing && target ? (
+          <LegEditor key={JSON.stringify(spec)} target={target} spec={spec} leg={leg}>
+            {stepList}
+          </LegEditor>
+        ) : (
+          stepList
         )}
-        {editing && target && <LegEditor key={JSON.stringify(spec)} target={target} spec={spec} leg={leg} />}
       </div>
     </li>
   );

@@ -2,7 +2,7 @@
 // 「這一天」的時間軸、地圖上的交通標籤、空檔、警告都讀這一份。
 
 import { createStore, type StoreApi } from 'zustand/vanilla';
-import { placeLookup, planItinerary, type DayPlan, type EngineData, type ItineraryPlan, type KintetsuTimes, type PlaceRecord, type RouteTimetable } from '@travel-helper/engine';
+import { placeLookup, planItinerary, resolveConfig, type DayPlan, type EngineConfig, type EngineData, type ItineraryPlan, type KintetsuTimes, type PlaceRecord, type RouteTimetable } from '@travel-helper/engine';
 import type { DataState } from './dataStore.ts';
 import type { DataSource } from './data/source.ts';
 import type { LonLat } from './data/types.ts';
@@ -18,6 +18,9 @@ export const planStore = createStore<PlanState>()(() => ({ status: 'loading', er
 let lastEngineData: EngineData | null = null;
 /** 最後一次算時間軸用的資料（「＋ 排進」算最順路的位置用）；時刻表還沒載入時是 null */
 export const currentEngineData = () => lastEngineData;
+
+/** 算時間軸用的設定（班次表、選班次列一程的所有班次也用這一份） */
+export const engineConfig: EngineConfig = resolveConfig();
 
 export interface RoadCache {
   cachedMeters(profile: 'foot' | 'car', from: LonLat, to: LonLat): number | null;
@@ -52,7 +55,7 @@ export function startPlanner(data: StoreApi<DataState>, source: DataSource, road
     }
     try {
       lastEngineData = buildEngineData(d, timetables, roads);
-      store.setState({ status: 'ready', error: null, plan: planItinerary(d.itinerary, lastEngineData) });
+      store.setState({ status: 'ready', error: null, plan: planItinerary(d.itinerary, lastEngineData, engineConfig) });
     } catch (e) {
       store.setState({ status: 'error', error: e instanceof Error ? e.message : String(e) });
     }

@@ -3,29 +3,47 @@
 
 import type { DayPlan, EngineWarning, Itinerary, ItineraryItem, Leg, LegTarget, RideDeparture, TimelineEntry, TransitRide, TravelMode, TravelSpec, TripRef, VisitItem } from '@travel-helper/engine';
 import { toMinutes } from '@travel-helper/engine';
-import { MODE_ICONS } from './routing.ts';
 import { displayMinutes, estimateWalk } from './geo/walk.ts';
 import { haversineMeters } from './geo/distance.ts';
 import type { LonLat, Place, PlaceType } from '../data/types.ts';
 
-/**
- * 交通卡的第一行（距離由元件接在後面），例如「🚶 8 分」「🚕 12 分・大型 2 台或 4 台」「🚃 34 分・等 11 分」。
- * 搭車的每一程另外一行一行列（rideLines）
- */
-export function legText(leg: Leg): string {
-  if (leg.mode === 'none') return '';
-  if (leg.mode === 'unknown') return `❓ 交通未定 ${leg.minutes} 分`;
-  const cars = leg.taxi ? `・${leg.taxi.jumboCars ? `大型 ${leg.taxi.jumboCars} 台或 ` : ''}${leg.taxi.cars} 台` : '';
-  const wait = leg.waitMinutes ? `・等 ${leg.waitMinutes} 分` : '';
-  return `${MODE_ICONS[leg.mode]} ${leg.minutes} 分${cars}${wait}`;
+/** 交通方式的中文名（交通卡標題、「自動（…）」）：電車、巴士、船都叫大眾運輸 */
+export function legModeName(mode: Leg['mode']): string {
+  switch (mode) {
+    case 'walk':
+      return '步行';
+    case 'taxi':
+      return '計程車';
+    case 'train':
+    case 'bus':
+    case 'ferry':
+    case 'transit':
+      return '大眾運輸';
+    case 'charter':
+      return '包車';
+    case 'car':
+      return '自駕';
+    case 'other':
+      return '其他';
+    case 'unknown':
+      return '交通未定';
+    default:
+      return '不用移動';
+  }
 }
 
-/** 交通卡的補充：走到車站、計程車費用、手動指定（等車寫在第一行） */
-export function legDetail(leg: Leg): string[] {
+/** 交通卡標題第一行（第五輪 §3.1）：方式＋分鐘，例如「計程車 12 分」「大眾運輸 115 分」；none 是空字串 */
+export function legTitle(leg: Leg): string {
+  return leg.mode === 'none' ? '' : `${legModeName(leg.mode)} ${leg.minutes} 分`;
+}
+
+/** 交通卡標題第二行（小字）：距離（查不到路線時加「（直線）」）、計程車台數、每台費用、大眾運輸的「含等車 N 分」；備註由元件接 */
+export function legSubParts(leg: Leg, distance: { meters: number; straight: boolean } | null): string[] {
   const out: string[] = [];
-  if (leg.walkMinutes && leg.rides.length) out.push(`含步行 ${leg.walkMinutes} 分`);
+  if (distance) out.push(`${formatDistance(distance.meters)}${distance.straight ? '（直線）' : ''}`);
+  if (leg.taxi) out.push(`${leg.taxi.jumboCars ? `大型 ${leg.taxi.jumboCars} 台或 ` : ''}${leg.taxi.cars} 台`);
   if (leg.taxi?.fareEstimateYen) out.push(`每台約 ${leg.taxi.fareEstimateYen.toLocaleString()} 円`);
-  if (leg.specified) out.push('手動指定');
+  if (leg.waitMinutes) out.push(`含等車 ${leg.waitMinutes} 分`);
   return out;
 }
 
@@ -33,8 +51,25 @@ export function legDetail(leg: Leg): string[] {
 export const EDITOR_MODES = ['auto', 'walk', 'taxi', 'transit'] as const;
 export type EditorMode = (typeof EDITOR_MODES)[number];
 
-/** 前一班／後一班：只換 trip，方式照原樣（自動的段落還是自動，引擎用 trip 不需要 mode） */
-export function specWithTrip(cur: TravelSpec | null | undefined, trip: TripRef): TravelSpec {
+/**
+ * 選某一程的班次（第五輪 §3.3）：只換 trip，方式照原樣（自動的段落還是自動）。
+ * rideIndex 0：id、depart 換成這班，rides 第 0 個換掉、後面保留（接不上由引擎改成接得上的最早一班）；
+ * rideIndex > 0：id、depart 照目前的班次，rides[rideIndex] 換成這班。from／to 是這段的起訖，via（近鐵轉乘站）照舊
+ */
+export function specWithRide(cur: TravelSpec | null | undefined, leg: Pick<Leg, 'from' | 'to' | 'rides' | 'trip' | 'arrive'>, rideIndex: number, dep: RideDeparture): TravelSpec {
+  const rides = leg.rides.map((r, i) => r.tripId ?? leg.trip?.rides?.[i] ?? '');
+  rides[rideIndex] = dep.tripId;
+  const first = leg.rides[0];
+  const last = rideIndex === leg.rides.length - 1;
+  const trip: TripRef = {
+    id: rideIndex === 0 ? dep.tripId : (leg.trip?.id ?? rides[0]),
+    depart: rideIndex === 0 ? dep.depart : (leg.trip?.depart ?? first?.depart ?? dep.depart),
+    arrive: last ? dep.arrive : (leg.trip?.arrive ?? leg.arrive),
+    from: leg.from,
+    to: leg.to,
+    rides,
+    ...(leg.trip?.via ? { via: leg.trip.via } : {}),
+  };
   return { ...cur, trip };
 }
 
@@ -58,17 +93,6 @@ export function showMinutesInput(leg: Pick<Leg, 'mode' | 'basis'>, spec: TravelS
 /** 距離的寫法：850 公尺、1.2 公里 */
 export function formatDistance(meters: number): string {
   return meters < 1000 ? `${Math.round(meters)} 公尺` : `${(meters / 1000).toFixed(1)} 公里`;
-}
-
-/** 交通卡上列出每一程，例如「10:12 近鐵 鳥羽 → 宇治山田 10:30」，兩程之間「轉乘 8 分」；nameOf 把站名裡的資料點 ID 換成名稱 */
-export function rideLines(leg: Leg, nameOf: (id: string) => string): string[] {
-  const out: string[] = [];
-  leg.rides.forEach((r, i) => {
-    const prev = leg.rides[i - 1];
-    if (prev) out.push(`轉乘 ${toMinutes(r.depart) - toMinutes(prev.arrive)} 分`);
-    out.push(`${r.depart} ${r.line} ${nameOf(r.from)} → ${nameOf(r.to)} ${r.arrive}`);
-  });
-  return out;
 }
 
 /** 這一列的交通是設定在哪裡（setLegTravel 的對象）；起點、會合沒有可設的交通 */
@@ -383,6 +407,20 @@ export function departureRows(deps: RideDeparture[], readyAt: string, selectedTr
     if (d.tripId === selectedTripId) return missed ? { ...d, state: 'selected', wait: null, missedSelected: true } : { ...d, state: 'selected', wait };
     return missed ? { ...d, state: 'missed', wait: null } : { ...d, state: 'ok', wait };
   });
+}
+
+/** 第 i 程「走到上車站／轉乘完」的時間（Leg.ready）；舊的計算結果沒有 ready 時第一程用出發時間、之後用前一程到站 */
+export function rideReadyAt(leg: Pick<Leg, 'ready' | 'depart' | 'rides'>, i: number): string {
+  return leg.ready?.[i] ?? (i === 0 ? leg.depart : (leg.rides[i - 1]?.arrive ?? leg.depart));
+}
+
+/** 編輯中卡片裡的班次下拉：搭不到的收成一行（「15:15 以前的 2 班搭不到」，沒有是 null），選項只有搭得到的和選定的那班 */
+export function departureChoices(rows: DepartureRow[], readyAt: string): { missedNote: string | null; options: { tripId: string; label: string; row: DepartureRow }[] } {
+  const missed = rows.filter((r) => r.state === 'missed').length;
+  const options = rows
+    .filter((r) => r.state !== 'missed')
+    .map((row) => ({ tripId: row.tripId, row, label: `${row.depart} 發 → ${row.arrive} 到・${row.wait != null ? `等 ${row.wait} 分` : '搭不到'}` }));
+  return { missedNote: missed ? `${readyAt} 以前的 ${missed} 班搭不到` : null, options };
 }
 
 /** 走路、開車的路線快取（routing.ts 的 roads） */
