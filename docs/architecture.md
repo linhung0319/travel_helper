@@ -300,7 +300,7 @@ npm run db:import -- --apply data/cache/import/<時間>-all.json   # 2. 👤 看
 - **除了登入和 LINE 的通知，所有 API 都要先登入。**
 - **環境**：本機用 `wrangler dev`（本機的 D1），正式環境部署到 Cloudflare。用 GitHub Actions 自動部署是之後的事，一開始手動 `wrangler deploy` 就好。
 - **本機接 LINE：用 ngrok 通道**（2026-10-23 👤 決定）：LINE 的 webhook 是從外面連進來，手機的 LINE 也連不到電腦的 `localhost`，所以本機開發要開一個公開的 HTTPS 網址。
-  - 用 ngrok 免費帳號的**固定網域**（`xxxx.ngrok-free.app`）：LINE Developers 的 Webhook URL、Callback URL 貼一次就好，重開不用改。不用 Cloudflare 的臨時通道（每次網址都換）。
+  - 用 ngrok 免費帳號的**固定網域**（`xxxx.ngrok-free.dev`）：LINE Developers 的 Webhook URL、Callback URL 貼一次就好，重開不用改。不用 Cloudflare 的臨時通道（每次網址都換）。
   - `npm run dev:tunnel`：啟動 `wrangler dev`，再用 npm 套件 `@ngrok/ngrok` 開通道，在 terminal 印出要貼到 LINE Developers 的兩個網址（`<網址>/line/webhook`、`<網址>/auth/line/callback`）。`npm run dev:worker` 照舊不開通道。
   - 開不開通道看跑哪個指令，不在 `.env` 放開關；`wrangler deploy` 不會執行這支腳本，正式環境不會用到 ngrok。
   - 免費版 ngrok 用瀏覽器第一次打開時會先出現一頁警告，要按 Visit；webhook 不受影響。所以在 LINE 內建瀏覽器實測版面、登入要用部署後的正式網址。
@@ -375,7 +375,7 @@ npm run db:import -- --apply data/cache/import/<時間>-all.json   # 2. 👤 看
 
 ### 設定
 - 在 LINE Developers 開一個 provider，底下開兩個 channel：
-  - **LINE Login**：給網站登入用，要切成「公開」狀態，否則只有管理員和測試人員能登入。
+  - **LINE Login**：給網站登入用，App type 選 Web app，要切成「Published」狀態，否則只有管理員和測試人員能登入。還在「Developing」時，其他人登入只會看到「錯誤 無法正常執行」，沒有說明原因（T23）。用 email（商用帳號）登入 LINE Developers 的話，自己手機上的 LINE 帳號也不算管理員，一樣會被擋。
   - **Messaging API**：一個免費的 LINE 官方帳號（機器人）。
 - **兩個 channel 一定要在同一個 provider 底下**：同一個人在兩邊的 userId 才會一樣，網站才能拿登入的人去比對群組成員。
 - 把機器人邀進家人的 LINE 群組。機器人被加進群組時，Worker 會收到 `join` 通知，從裡面記下群組 ID（存成設定）。機器人不發訊息。
@@ -391,17 +391,24 @@ npm run db:import -- --apply data/cache/import/<時間>-all.json   # 2. 👤 看
 
 ### 為什麼這樣做
 - 不用「選你的名字」：直接用 LINE 的名字和大頭照，投票和修改紀錄都對得到真人，也不能冒用別人的名字。
-- 在 LINE 群組裡貼網址，點開會用 LINE 內建的瀏覽器，通常點一下「同意」就登入了，長輩不用打帳號密碼。
+- 在 LINE 群組裡貼網址，點開會用 LINE 內建的瀏覽器，點一下「同意」就登入了，長輩不用打帳號密碼。用 Safari 登入時會跳到 LINE app 確認再跳回來，也不用打密碼（T23，iPhone）。
 - 有人退出群組，下次檢查就進不來了。
 
 ### 要注意的地方（T23 實驗確認）
-- **「一次列出全部群組成員」的 API 只有認證過或付費的官方帳號能用**，所以改成登入時只查「這一個人」在不在群組裡。查單一成員的 API，SDK 文件寫明連沒加機器人好友的人都查得到；官方文件裡沒查到它有沒有帳號類型的限制，**要用免費帳號實際測過**。
+- **T23 結論：群組檢查可行**（2026-10-25 用免費官方帳號、測試群組實測）：
+  - 查單一成員 `GET /v2/bot/group/{groupId}/member/{userId}`：群組成員（有加機器人好友）200；群組成員、**沒加**機器人好友 200；不在群組的人 404（`{"message":"Not found"}`）。同一個人加入群組後再登入，就從 404 變成 200。
+  - **「一次列出全部群組成員」**（`members/ids`）免費帳號是 403（`Access to this API is not available for your account`），所以只能登入時查「這一個人」。
+  - 群組資訊（`summary`）、群組人數（`members/count`）免費帳號可以用（200）。
+  - LINE Login 拿到的 userId，和 webhook 通知裡的 userId 一樣（同一個 provider）。
+  - webhook：機器人被邀進群組時收到 `join`（帶群組 ID）；有人加入群組時收到 `memberJoined`，`joined.members` 裡帶 userId。退出群組（`memberLeft`）沒有實測。
+  - 只測了 iPhone（LINE 內建瀏覽器、Safari），Android 沒有測，T25 部署後再看。
+- **用手機的瀏覽器打開**：網址加上 `?openExternalBrowser=1`，從 LINE 點開會改用手機的預設瀏覽器（LINE 的功能，T23 沒有逐項確認）。好處是可以加到主畫面、登入狀態比較不會被清掉；登入狀態是各瀏覽器分開存的，換瀏覽器要再登入一次。要不要在群組裡貼這種網址，T25 決定。
 - **使用者要同意分享個人資料**：LINE 規定機器人要拿到使用者的資料，使用者得先同意。手機版 LINE 在一開始使用時就同意了；**只用電腦版 LINE 的人沒辦法同意**，查不到。
 - 群組裡會多一個機器人。
 
 ### 備案：白名單
 - `members` 表可以手動加人（`source = 'allowlist'`）。萬一群組檢查行不通，或者要給不在群組裡的人用，就靠白名單。
-- 如果 T23 證實群組檢查行不通，就**只用白名單**：照樣用 LINE 登入，第一次登入的人顯示「等待核准」，由 👤 在管理頁核准。
+- T23 證實群組檢查可行，所以白名單只當備案。原本的打算是：如果群組檢查行不通，就**只用白名單**：照樣用 LINE 登入，第一次登入的人顯示「等待核准」，由 👤 在管理頁核准。
 
 ---
 
@@ -453,4 +460,5 @@ npm run db:import -- --apply data/cache/import/<時間>-all.json   # 2. 👤 看
 - Cloudflare：[Workers Limits](https://developers.cloudflare.com/workers/platform/limits/)、[D1 Limits](https://developers.cloudflare.com/d1/platform/limits/)、[D1 Pricing](https://developers.cloudflare.com/d1/platform/pricing/)：§4「免費額度」的數字（2026-10-22 取得）
 - LINE Developers：[Getting user IDs](https://developers.line.biz/en/docs/messaging-api/getting-user-ids/)：同一個 provider 底下，不同 channel 的 userId 相同；列出群組全部成員的 API 只限認證過或付費的帳號；成員加入、發言時的通知裡會帶 userId
 - LINE Developers：[Consent on getting user profile information](https://developers.line.biz/en/docs/messaging-api/user-consent/)：使用者要同意才拿得到資料；只用電腦版 LINE 的人無法同意
+- T23 實測（2026-10-25）：§5「要注意的地方」的狀態碼和 webhook 事件
 - [LINE Messaging API SDK for Python（PyPI）](https://pypi.org/project/line-bot-sdk/1.4.0)：查群組成員資料的 API，可以查沒加機器人好友或封鎖機器人的人

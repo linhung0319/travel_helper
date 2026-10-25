@@ -101,7 +101,7 @@
 | T21 | 代表照片：每個資料點挑一張最能代表的照片，排到 `photos` 第一張 | M | T13、T13b | 3 | | ✅ |
 | T20 | 匯出給 Claude app：最終行程、分組和資料整理成 claude.ai Project 用的檔案 | S | T15、行程定案 | 6 | | ⬜ |
 | T22 | monorepo 調整：npm workspaces（`packages/engine`、`web`、`worker`、`scripts`） | S | — | 3 | | ✅ |
-| T23 | 👤 LINE 登入小實驗：免費官方帳號能不能查單一群組成員 | S | — | 3 | | ⬜ |
+| T23 | 👤 LINE 登入小實驗：免費官方帳號能不能查單一群組成員 | S | — | 3 | | ✅ |
 | T24 | 資料庫與匯入：D1 資料表、匯入腳本（比對、衝突、下架）、資料與修改的 API | M | T22、T13 | 3 | | ✅ |
 | T25 | Worker：LINE 登入、群組檢查、白名單、部署到 Cloudflare | M | T23、T24 | 4 | 🌐 少量 | ⬜ |
 
