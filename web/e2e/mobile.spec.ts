@@ -592,3 +592,200 @@ test('交通開著時點卡片：黑框和路線變淡還在', async ({ page }) 
   expect(await page.evaluate(() => (window as any).__th.appStore.getState().highlights.focus)).toEqual(['shima-la-mer']);
   expect(await page.evaluate(() => (window as any).__th.map.getPaintProperty('itinerary-line', 'line-opacity'))).toBe(0.1);
 });
+
+// --- 行程：編輯中（§3.5）：藍條、把手、⋯ 底部動作面板、標籤、移到第幾天、長按拖曳 ---
+
+type P = import('@playwright/test').Page;
+
+/** 選某天、進編輯（✏️ 編輯 → 開始編輯） */
+async function editDay(page: P, date = '2027-02-03') {
+  await ready(page);
+  await pickDay(page, date);
+  await page.getByTestId('m-trip-edit').click();
+  await page.getByTestId('planning-confirm').click();
+  await expect(page.getByTestId('planning-bar')).toBeVisible();
+}
+
+const mCard = (page: P, item: string) => page.locator(`[data-testid="m-card"][data-item="${item}"]`);
+
+/** 打開某張卡的 ⋯ 動作面板 */
+async function openActions(page: P, item: string) {
+  await mCard(page, item).getByTestId('m-card-menu').click();
+  await expect(page.getByTestId('m-action-sheet')).toBeVisible();
+}
+
+test('編輯：藍條、分頁藏起來、⋯ 開底部面板', async ({ page }) => {
+  await ready(page);
+  await pickDay(page, '2027-02-03');
+  // 不在編輯中：沒有 ⋯、沒有把手
+  await expect(page.getByTestId('m-card-menu')).toHaveCount(0);
+  await expect(page.getByTestId('m-card-handle')).toHaveCount(0);
+  await page.getByTestId('m-trip-edit').click();
+  await page.getByTestId('planning-confirm').click();
+  // 藍條：「✏️ 編輯 2/3（三）」加「完成」；面板拉到高；底部分頁藏起來
+  const bar = page.getByTestId('planning-bar');
+  await expect(bar).toContainText('✏️ 編輯 2/3（三）');
+  await expect(bar.getByTestId('planning-done')).toBeVisible();
+  expect((await bar.getByTestId('planning-done').boundingBox())!.height).toBeGreaterThanOrEqual(44);
+  await expect(page.getByTestId('m-sheet')).toHaveAttribute('data-snap', 'high');
+  await expect(page.getByTestId('m-tab-trip')).toHaveCount(0);
+  // 把手 ⋮⋮（出發的宿沒有）
+  await expect(mCard(page, 'i-2').getByTestId('m-card-handle')).toHaveText('⋮⋮');
+  await expect(mCard(page, 'start').getByTestId('m-card-handle')).toHaveCount(0);
+  // ⋯ 只有圖示，點的範圍 44px
+  const menu = mCard(page, 'i-2').getByTestId('m-card-menu');
+  await expect(menu).toHaveText('⋯');
+  expect((await menu.boundingBox())!.height).toBeGreaterThanOrEqual(44);
+  await openActions(page, 'i-2');
+  const sheet = page.getByTestId('m-action-sheet');
+  // 最上面一列是縮圖加名稱
+  await expect(sheet.getByTestId('m-action-head')).toContainText('橫山展望台');
+  await expect(sheet.getByTestId('m-action-head').locator('img, [data-testid="m-thumb-fallback"]')).toHaveCount(1);
+  await expect(sheet.getByTestId('m-action-withdraw')).toBeVisible();
+  await expect(sheet.getByTestId('m-action-delete')).toHaveCount(0);
+  const items = sheet.getByRole('menuitem');
+  await expect(items).toHaveText(['🏷 標籤', /⏱ 改停留時間/, '📌 釘選時間', '📅 移到第幾天…', '↩ 撤下（回候選）']);
+  for (const el of await items.all()) expect((await el.boundingBox())!.height).toBeGreaterThanOrEqual(44);
+  expect(await scrollsSideways(page)).toBe(false);
+  // 點暗處就關
+  await page.getByTestId('m-sheet-dim').click({ position: { x: 20, y: 20 } });
+  await expect(sheet).toHaveCount(0);
+  // 往下拉也關
+  await openActions(page, 'i-2');
+  const g = (await sheet.getByTestId('m-action-grab').boundingBox())!;
+  await page.mouse.move(g.x + g.width / 2, g.y + g.height / 2);
+  await page.mouse.down();
+  await page.mouse.move(g.x + g.width / 2, g.y + 200, { steps: 6 });
+  await page.mouse.up();
+  await expect(sheet).toHaveCount(0);
+});
+
+test('編輯：標籤子畫面多選', async ({ page }) => {
+  await editDay(page);
+  await openActions(page, 'i-2');
+  const sheet = page.getByTestId('m-action-sheet');
+  await sheet.getByTestId('m-action-tags').click();
+  // 同一個面板換內容：分組標題、膠囊
+  await expect(sheet.getByTestId('m-action-tags')).toHaveCount(0);
+  await expect(sheet.getByTestId('m-tag-sheet')).toContainText('🍴 用餐');
+  for (const t of ['lunch', 'breakfast']) {
+    await sheet.getByTestId(`tag-opt-${t}`).click();
+    await expect(sheet.getByTestId(`tag-opt-${t}`)).toHaveAttribute('aria-checked', 'true');
+  }
+  for (const el of await sheet.locator('[data-testid^="tag-opt-"]').all()) expect((await el.boundingBox())!.height).toBeGreaterThanOrEqual(44);
+  // 卡上兩個
+  await expect(mCard(page, 'i-2').locator('[data-testid="item-tag"][data-tag="lunch"]')).toBeVisible();
+  await expect(mCard(page, 'i-2').locator('[data-testid="item-tag"][data-tag="breakfast"]')).toBeVisible();
+  // ‹ 回清單
+  await sheet.getByTestId('m-sheet-back').click();
+  await expect(sheet.getByTestId('m-action-tags')).toBeVisible();
+});
+
+test('編輯：改停留時間（−／＋ 15 分）', async ({ page }) => {
+  await editDay(page);
+  await openActions(page, 'i-2');
+  const sheet = page.getByTestId('m-action-sheet');
+  await sheet.getByTestId('m-action-stay').click();
+  const now = sheet.getByTestId('m-stay-now');
+  await expect(now).toHaveText(/小時/);
+  const before = await now.innerText();
+  await sheet.getByTestId('m-stay-plus').click();
+  await expect(now).not.toHaveText(before);
+  await sheet.getByTestId('m-stay-minus').click();
+  await expect(now).toHaveText(before);
+});
+
+test('編輯：移到第幾天', async ({ page }) => {
+  await editDay(page);
+  const n = await page.getByTestId('m-card').count();
+  await openActions(page, 'i-2');
+  const sheet = page.getByTestId('m-action-sheet');
+  await sheet.getByTestId('m-action-move').click();
+  // 4×3，現在那天不能點，紅字
+  const grid = sheet.getByTestId('day-grid');
+  await expect(grid.locator('button')).toHaveCount(12);
+  expect(await grid.evaluate((el) => getComputedStyle(el).gridTemplateColumns.split(' ').length)).toBe(4);
+  await expect(sheet.getByTestId('m-move-2027-02-03')).toBeDisabled();
+  await expect(sheet.getByTestId('m-move-2027-02-06')).toHaveClass(/red-day/);
+  for (const el of await grid.locator('button').all()) expect((await el.boundingBox())!.height).toBeGreaterThanOrEqual(44);
+  await sheet.getByTestId('m-move-2027-02-04').click();
+  await expect(sheet).toHaveCount(0);
+  await expect(mCard(page, 'i-2')).toHaveCount(0);
+  await expect(page.getByTestId('m-card')).toHaveCount(n - 1);
+  await expect(page.getByTestId('toast')).toContainText('2/4');
+});
+
+test('編輯：交通那一行展開改方式', async ({ page }) => {
+  await editDay(page);
+  const leg = page.getByTestId('m-leg').first();
+  await leg.locator('.m-leg-text').click();
+  await expect(leg.getByTestId('leg-editor')).toBeVisible();
+  for (const el of await leg.getByTestId('leg-mode').all()) expect((await el.boundingBox())!.height).toBeGreaterThanOrEqual(44);
+  expect(await scrollsSideways(page)).toBe(false);
+  await leg.getByTestId('leg-done').click();
+  await expect(leg.getByTestId('leg-editor')).toHaveCount(0);
+});
+
+test('編輯：長按把卡片拖到另一張的上緣＝換順序', async ({ page }) => {
+  await editDay(page);
+  const order = () =>
+    page.evaluate(() => (window as any).__th.dataStore.getState().itinerary.days.find((d: any) => d.date === '2027-02-03').items.map((x: any) => x.id) as string[]);
+  const before = await order();
+  expect(before.indexOf('i-3')).toBeGreaterThan(before.indexOf('i-2'));
+  const src = (await mCard(page, 'i-3').getByTestId('m-card-handle').boundingBox())!;
+  const dst = (await mCard(page, 'i-2').boundingBox())!;
+  // Playwright 沒有長按拖曳：用 CDP 送觸控事件（按住 0.6 秒再移動）
+  const cdp = await page.context().newCDPSession(page);
+  const touch = (type: string, x?: number, y?: number) => cdp.send('Input.dispatchTouchEvent', { type: type as 'touchStart', touchPoints: x == null ? [] : [{ x, y: y!, id: 1 }] });
+  const x0 = src.x + src.width / 2;
+  const y0 = src.y + src.height / 2;
+  const x1 = dst.x + dst.width / 2;
+  const y1 = dst.y + 4;
+  await touch('touchStart', x0, y0);
+  await page.waitForTimeout(600);
+  for (let i = 1; i <= 8; i++) await touch('touchMove', x0 + ((x1 - x0) * i) / 8, y0 + ((y1 - y0) * i) / 8);
+  await touch('touchEnd');
+  await expect.poll(async () => (await order()).indexOf('i-3') < (await order()).indexOf('i-2')).toBe(true);
+});
+
+test('編輯：回住宿的這晚的方案、候選的 ⋯', async ({ page }) => {
+  await editDay(page);
+  await openActions(page, 'lodging');
+  const sheet = page.getByTestId('m-action-sheet');
+  await expect(sheet.getByRole('menuitem')).toHaveText(['🏷 這晚的方案', '🗑 清掉這晚的住宿']);
+  await sheet.getByTestId('m-action-lodging-plan').click();
+  await sheet.getByTestId('lodging-plan-breakfast').click();
+  await expect(sheet.getByTestId('lodging-plan-breakfast')).toHaveAttribute('aria-checked', 'true');
+  await expect(mCard(page, 'lodging').getByTestId('lodging-plan-tag')).toHaveText('只含早餐');
+  await page.getByTestId('m-sheet-dim').click({ position: { x: 20, y: 20 } });
+  // 別人加的候選（2/5）：排進這天、刪除
+  await pickDay(page, '2027-02-05');
+  await page.getByTestId('m-cand').first().getByTestId('m-card-menu').click();
+  await expect(sheet.getByRole('menuitem')).toHaveText(['📅 排進這天', '🗑 刪除']);
+  for (const el of await sheet.getByRole('menuitem').all()) expect((await el.boundingBox())!.height).toBeGreaterThanOrEqual(44);
+});
+
+test('編輯：完成以後分頁回來', async ({ page }) => {
+  await editDay(page);
+  await expect(page.getByTestId('m-tab-trip')).toHaveCount(0);
+  await page.getByTestId('planning-done').click();
+  await expect(page.getByTestId('m-tab-trip')).toBeVisible();
+  await expect(page.getByTestId('m-card-menu')).toHaveCount(0);
+  await expect(page.getByTestId('planning-bar')).toHaveCount(0);
+});
+
+test('編輯：別人改過了的提示在手機上也看得到', async ({ page }) => {
+  await editDay(page);
+  await page.evaluate(() => (window as any).__th.shared.store.setState({ conflict: { version: 99 } }));
+  await expect(page.getByTestId('conflict-bar')).toBeInViewport();
+});
+
+test('編輯中打開詳情：底部沒有空白（分頁藏起來時不留位置）', async ({ page }) => {
+  await editDay(page);
+  await mCard(page, 'i-2').getByTestId('m-card-name').click();
+  await mCard(page, 'i-2').getByTestId('m-card-detail').click();
+  const d = page.getByTestId('m-detail');
+  await expect(d).toBeVisible();
+  const box = (await d.boundingBox())!;
+  expect(Math.round(box.y + box.height)).toBe(page.viewportSize()!.height);
+});

@@ -96,8 +96,11 @@ export function EditingStrip() {
   );
 }
 
-/** 編輯中，時間軸面板最上面的藍條：說明、儲存狀態、快照、完成（白底） */
-export function PlanningBar() {
+/**
+ * 編輯中，時間軸面板最上面的藍條：說明、儲存狀態、快照、完成（白底）。
+ * 手機版（第六輪 §3.5）傳 title（「✏️ 編輯 2/3（三）」）、className、compact（只留標題和完成）
+ */
+export function PlanningBar({ title, className = '', compact = false }: { title?: string; className?: string; compact?: boolean } = {}) {
   const planning = useApp((s) => s.planning);
   const saving = useShared((s) => s.saving);
   const version = useShared((s) => s.version);
@@ -113,13 +116,15 @@ export function PlanningBar() {
   }, []);
   if (!planning) return null;
   return (
-    <div className="planning-bar" data-testid="planning-bar" ref={watch}>
-      <strong>✏️ 編輯中・改了會自動存，大家都看得到</strong>
-      <span className="planning-bar-status">{saving ? '儲存中…' : `第 ${version} 版`}</span>
+    <div className={`planning-bar ${className}`} data-testid="planning-bar" ref={watch}>
+      <strong>{title ?? '✏️ 編輯中・改了會自動存，大家都看得到'}</strong>
+      {!compact && <span className="planning-bar-status">{saving ? '儲存中…' : `第 ${version} 版`}</span>}
       <span className="planning-bar-actions">
-        <button type="button" className="text-button" onClick={() => openDialog({ kind: 'snapshots' })} data-testid="snapshots-button">
-          🕘 快照
-        </button>
+        {!compact && (
+          <button type="button" className="text-button" onClick={() => openDialog({ kind: 'snapshots' })} data-testid="snapshots-button">
+            🕘 快照
+          </button>
+        )}
         <button type="button" className="planning-done" data-testid="planning-done" onClick={() => appStore.getState().setPlanning(false)}>
           完成
         </button>

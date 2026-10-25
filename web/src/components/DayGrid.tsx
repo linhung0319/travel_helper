@@ -4,8 +4,8 @@ import { tripDates, isRedDay, weekdayZh } from '../lib/trip.ts';
 
 const DATES = tripDates();
 
-/** 12 格日期：current 是現在那天（不能點）；每格兩行：日期、星期（現在那天第二行寫「現在」） */
-export function DayGrid({ current, disabled, onPick }: { current?: string; disabled?: boolean; onPick: (date: string) => void }) {
+/** 12 格日期：current 是現在那天（不能點）；每格兩行：日期、星期（現在那天第二行寫「現在」）。testId：每格的 testid（手機版是 m-move-日期） */
+export function DayGrid({ current, disabled, onPick, testId }: { current?: string; disabled?: boolean; onPick: (date: string) => void; testId?: (date: string) => string }) {
   return (
     <div className="day-grid" data-testid="day-grid">
       {DATES.map((d) => {
@@ -19,7 +19,7 @@ export function DayGrid({ current, disabled, onPick }: { current?: string; disab
             disabled={disabled || now}
             onClick={() => onPick(d)}
             data-pick-day={d}
-            data-testid="move-day"
+            data-testid={testId ? testId(d) : 'move-day'}
           >
             <span className="day-cell-date">
               {Number(mo)}/{Number(day)}

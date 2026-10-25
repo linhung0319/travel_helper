@@ -6,7 +6,7 @@
 // 編輯中，點開的那張就在原地變成編輯狀態（藍框）：自動（目前的方式）／步行／計程車／大眾運輸、
 // 大眾運輸的步驟一定展開，膠囊換成只列搭得到的班次的下拉（selectRideTrip）；
 // 算不出來（交通未定、指定的方式找不到班次）或已經填過分鐘時才出現「自己填分鐘」（清空＝回到自動）；備註、「完成」收起來。
-// 資料準備在 useLegView（手機版的一行交通也用），步驟 LegSteps 也給手機版用。一次只開一段（uiStore.legOpen）；這張卡不見了（換天、回整趟、換分頁）時也收起來，地圖的行程線才會恢復。
+// 資料準備在 useLegView（手機版的一行交通也用），步驟 LegSteps、編輯狀態 LegEditor 也給手機版用（排成一欄）。一次只開一段（uiStore.legOpen）；這張卡不見了（換天、回整趟、換分頁）時也收起來，地圖的行程線才會恢復。
 // 編輯中交通卡也是放置區：拖到這裡＝排在這段通往的那張卡片前面（planDrag.dropOnLegProps）。
 
 import { useEffect, useRef, useState, type MouseEvent, type ReactNode } from 'react';
@@ -183,7 +183,7 @@ export function LegSteps({ steps, leg, date, legKey, target, editing, saving }: 
 }
 
 /** 編輯中的編輯狀態，由上到下：方式、步驟（children，大眾運輸的班次在這裡選）、（算不出來時）分鐘、備註、完成 */
-function LegEditor({ target, spec, leg, children }: { target: LegTarget; spec: TravelSpec | null; leg: Leg; children?: ReactNode }) {
+export function LegEditor({ target, spec, leg, children }: { target: LegTarget; spec: TravelSpec | null; leg: Leg; children?: ReactNode }) {
   const saving = useShared((s) => s.saving);
   // 每次都從最新的行程讀目前的設定再改
   const change = (fn: (cur: TravelSpec | null) => TravelSpec | null, label = '調整交通') => void shared.changeItinerary((it) => setLegTravel(it, target, fn(getLegTravel(it, target))), label);

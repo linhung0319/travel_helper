@@ -2,6 +2,7 @@
 // 地圖右上角是 💬 討論、📋 預約兩個小圖示（有數字就顯示，點了是整頁），右下角「⛶」把面板放到低的位置。
 // 選了一張卡（mobileStore.focusItem，點卡片或地圖上的圖釘）：地圖飛到那個點，圖釘放大、加黑框（highlight 的 focus 樣式，MapView 畫），
 // 這天其他的路線變淡；取消（null）、換天時全部恢復。網頁版的照片彈窗、小卡片在手機版不出現（MapView）。
+// 編輯中「⋯」打開的底部動作面板（ActionSheet）也掛在這裡，蓋在地圖和面板上面。
 
 import { useEffect, useRef } from 'react';
 import { appStore } from '../store.ts';
@@ -16,6 +17,7 @@ import { uiStore } from '../uiStore.ts';
 import { findFocusEntry, mobileStore, useMobile } from './mobileStore.ts';
 import { usePendingCount } from './MePage.tsx';
 import { DaySheet } from './DaySheet.tsx';
+import { ActionSheet } from './ActionSheet.tsx';
 
 /** 選到的卡是哪個點（時間軸的卡、或這天的候選 cand:ID）；找不到是 null */
 function useFocusedPlace(): string | null {
@@ -84,6 +86,7 @@ export function TripPage() {
     <div className="m-trip" data-testid="m-trip">
       <MapButtons />
       <DaySheet />
+      <ActionSheet />
     </div>
   );
 }

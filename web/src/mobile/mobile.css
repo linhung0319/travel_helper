@@ -1705,3 +1705,381 @@
   display: flex;
   gap: 3px;
 }
+
+/* ---------- 行程：編輯中（§3.5）：藍條、把手、⋯、放置區 ---------- */
+
+/* 面板最上面的藍條（網頁版的 planning-bar）和別人改過了的提示 */
+.m-edit-top {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 0 12px 6px;
+}
+
+.m-edit-top:empty {
+  display: none;
+}
+
+.m-edit-top .planning-bar {
+  margin: 0;
+  flex-wrap: nowrap;
+  min-width: 0;
+  border-radius: 10px;
+}
+
+.m-edit-top .planning-bar strong {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.m-edit-top button.planning-done {
+  min-height: var(--tap);
+  border-radius: 999px;
+  padding: 0 16px;
+}
+
+.m-edit-top .conflict-bar .button {
+  min-height: var(--tap);
+}
+
+/* 編輯中：把手欄變寬（⋮⋮），⋯ 欄 44px */
+.m-card.editing {
+  grid-template-columns: 18px minmax(0, 1fr) var(--tap);
+  -webkit-user-select: none;
+  user-select: none;
+  -webkit-touch-callout: none;
+}
+
+.m-card-handle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  color: #999;
+  letter-spacing: -2px;
+}
+
+.m-card-grip {
+  display: flex;
+  align-items: center;
+}
+
+.m-card-more {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+}
+
+.m-card-menu {
+  flex: 0 0 auto;
+  width: var(--tap);
+  height: var(--tap);
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: none;
+  color: var(--fg);
+  font-size: 1.3rem;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.m-split-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* 拖曳：插入線（全域的 drop-before／after）、合併亮框、不能合併的變淡、放置區 */
+.m-card.drag-source {
+  opacity: 0.5;
+}
+
+body.dragging-plan .m-card.drop-merge {
+  outline: 2px solid var(--accent);
+  outline-offset: 1px;
+  background: var(--info-bg);
+}
+
+.m-card.drop-nomerge:not(.drag-source) {
+  opacity: 0.55;
+}
+
+.m-leg.drop-leg-over .m-leg-row {
+  background: var(--info-bg);
+  box-shadow: inset 0 0 0 2px var(--accent);
+  border-radius: 8px;
+}
+
+.m-dropend {
+  display: none;
+  margin-top: 8px;
+  padding: 12px;
+  border: 1px dashed var(--line);
+  border-radius: 12px;
+  text-align: center;
+}
+
+body.dragging-plan .m-dropend {
+  display: block;
+}
+
+.m-dropend.drop-end-over {
+  border-color: var(--accent);
+  background: var(--info-bg);
+  color: var(--accent);
+}
+
+.m-cands.drop-cand-over {
+  outline: 2px dashed var(--accent);
+  outline-offset: 2px;
+  border-radius: 12px;
+}
+
+/* 交通：編輯中右邊「改 ›」；展開的編輯狀態排成一欄，點的範圍 44px */
+.m-leg-edit {
+  flex: 0 0 auto;
+  color: var(--accent);
+  font-weight: 600;
+  font-size: 0.8rem;
+}
+
+.m-leg.editing {
+  border-left-color: var(--accent);
+}
+
+.m-leg .leg-edit {
+  margin: 0 0 8px;
+}
+
+.m-leg .leg-edit-row {
+  flex-direction: column;
+  align-items: stretch;
+}
+
+.m-leg .leg-modes .chip,
+.m-leg .leg-edit .chip,
+.m-leg .leg-edit input,
+.m-leg .leg-ride-select,
+.m-leg .leg-ride-more {
+  min-height: var(--tap);
+}
+
+.m-leg .leg-note,
+.m-leg .leg-minutes {
+  width: 100%;
+  min-width: 0;
+}
+
+.m-leg .leg-ride.editing {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 4px;
+}
+
+/* ---------- 「⋯」底部動作面板 ---------- */
+
+.m-asheet-root {
+  position: absolute;
+  inset: 0;
+  z-index: 50;
+  pointer-events: auto;
+}
+
+/* 上方是暗的：點了就關 */
+.m-sheet-dim {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.35);
+}
+
+.m-asheet {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  min-width: 0;
+  max-height: 85%;
+  box-shadow: 0 -4px 14px rgba(0, 0, 0, 0.18);
+  transition: transform 0.15s ease;
+}
+
+/* 往下拉關掉的把手 */
+.m-asheet-grab {
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 28px;
+  touch-action: none;
+  cursor: grab;
+}
+
+.m-asheet-grab span {
+  width: 40px;
+  height: 4px;
+  border-radius: 2px;
+  background: #c4c4c4;
+}
+
+.m-asheet-head {
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-width: 0;
+  min-height: var(--tap);
+  padding: 0 16px 8px;
+  border-bottom: 1px solid var(--line);
+}
+
+.m-asheet-head .m-back {
+  margin-left: -12px;
+}
+
+.m-asheet-sub {
+  flex: 1;
+  text-align: right;
+}
+
+.m-asheet-nothumb {
+  width: 36px;
+  height: 36px;
+  background: #6e7781;
+}
+
+.m-asheet-body {
+  flex: 1;
+  min-height: 0;
+  overflow-x: hidden;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  padding: 4px 0 12px;
+}
+
+.m-action {
+  width: 100%;
+  min-height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 0 16px;
+  border: 0;
+  background: none;
+  color: var(--fg);
+  font: inherit;
+  font-size: 1rem;
+  text-align: left;
+  cursor: pointer;
+}
+
+.m-action:active {
+  background: var(--soft);
+}
+
+.m-action.danger {
+  color: var(--bad);
+}
+
+.m-action:disabled {
+  opacity: 0.45;
+}
+
+.m-action-note {
+  flex: 0 0 auto;
+  color: var(--muted);
+}
+
+.m-action-sep {
+  margin: 4px 16px;
+  border: 0;
+  border-top: 1px solid var(--line);
+}
+
+/* 標籤子畫面：每組一列大顆膠囊，選了是那組的顏色 */
+.m-tag-sheet {
+  padding: 8px 16px;
+}
+
+.m-tag-group + .m-tag-group {
+  margin-top: 12px;
+}
+
+.m-tag-title {
+  margin-bottom: 6px;
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+.m-tag-opts {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.m-tag-opt {
+  min-height: var(--tap);
+  padding: 0 16px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: var(--bg);
+  color: var(--fg);
+  font: inherit;
+  cursor: pointer;
+}
+
+.m-tag-opt.on {
+  border-color: var(--tag-fg);
+  background: var(--tag-bg);
+  color: var(--tag-fg);
+  font-weight: 700;
+}
+
+/* 移到第幾天：網頁版的 4×3 格子，點的範圍 44px 以上 */
+.m-move-sheet {
+  padding: 8px 16px;
+}
+
+.m-move-sheet .day-grid {
+  max-width: none;
+}
+
+.m-move-sheet .day-cell {
+  min-height: 52px;
+}
+
+/* 改停留時間：−／＋，中間是現在的停留時間 */
+.m-stay {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  padding: 16px;
+}
+
+.m-stay-step {
+  width: 64px;
+  height: 48px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: var(--bg);
+  color: var(--fg);
+  font-size: 1.4rem;
+  cursor: pointer;
+}
+
+.m-stay-step:disabled {
+  opacity: 0.45;
+}
+
+.m-stay-now {
+  min-width: 7em;
+  text-align: center;
+  font-size: 1.2rem;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+}

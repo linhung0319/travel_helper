@@ -2,11 +2,14 @@
 // 低（只露出天數列）、中（預設，地圖約佔上面 1/3）、高（地圖剩一小條）。拖把手換高度：放開時停在最近的高度，快速往上／往下滑就往那邊切一格。
 // 面板裡由上到下：把手、天數列（DayStrip）、選「全部」時是整趟（TripOverview），選某天時是這天的標題（✨、✏️ 編輯）、摘要、時間條（變矮）、
 // 時間軸（MobileCard、MobileLeg，資料準備和網頁版共用 Timeline.tsx 的 useDayTimeline）、這天的候選（候選樣式的 MobileCard）。
-// 選了一張卡（focusItem）：清單捲到那張卡。編輯中（藍條、把手、⋯ 動作面板）是 Task 11；✨ 的半屏聊天是 Task 12。
+// 選了一張卡（focusItem）：清單捲到那張卡。✨ 的半屏聊天是 Task 12。
+// 編輯中：面板拉到高、最上面是藍色的編輯條（網頁版第五輪的 PlanningBar，手機用 m-edit-bar：「✏️ 編輯 2/3（三）」加「完成」）和別人改過了的提示（ConflictBar）；
+// 每張卡有把手（長按拖曳）、⋯（底部動作面板 ActionSheet，動作的 ctx 在這裡算），時間軸最後多一個放置區，候選區收拖回來的備卡。
+// 結束編輯、換天時關掉動作面板；結束編輯時面板回到中間。
 
 import { Fragment, useEffect, useRef, type PointerEvent as ReactPointerEvent } from 'react';
 import type { EngineWarning, TimelineEntry, VisitItem } from '@travel-helper/engine';
-import { useApp, useData, useUi } from '../hooks.ts';
+import { useApp, useData, useShared, useUi } from '../hooks.ts';
 import { openDialog } from '../uiStore.ts';
 import { cardTime, findItemRef, formatStay, shownWarnings, type TimelineRow } from '../lib/planView.ts';
 import { dayLabel, isRedDay, tripDates } from '../lib/trip.ts';
@@ -14,7 +17,11 @@ import type { Place } from '../data/types.ts';
 import { DayBar, DaySummaryLine, useDayTimeline, type DayTimeline } from '../components/Timeline.tsx';
 import { ItemTags, LodgingTags, tagKindOf } from '../components/ItemTags.tsx';
 import { MemberName } from '../components/common.tsx';
-import { focusKeyOf, mobileStore, useMobile, type TripSnap } from './mobileStore.ts';
+import { ConflictBar, PlanningBar } from '../components/Planning.tsx';
+import { groupTargetsOf } from '../components/cardActionRun.ts';
+import { dropOnCandidatesProps, dropOnEndProps } from '../components/planDrag.ts';
+import type { DragSource } from '../lib/dropIntent.ts';
+import { focusKeyOf, mobileStore, useMobile, type ActionSheetSpec, type ActionView, type TripSnap } from './mobileStore.ts';
 import { DayStrip } from './DayStrip.tsx';
 import { MobileCard } from './MobileCard.tsx';
 import { MobileLeg, MobileWait } from './MobileLeg.tsx';
@@ -94,7 +101,10 @@ function EntryRows({ entry, ctx }: { entry: TimelineEntry; ctx: RowCtx }) {
   const { itDay: day } = tl;
   const byId = useData((s) => s.byId);
   const itinerary = useData((s) => s.itinerary);
+  const planning = useApp((s) => s.planning);
   if (!day) return null;
+  /** 標籤那一排（編輯中）打開動作面板的某個子畫面 */
+  const openSub = (menu: ActionSheetSpec, view: ActionView) => (open: boolean) => open && mobileStore.getState().openActions({ ...menu, view });
   const p = entry.placeId ? byId.get(entry.placeId) : undefined;
   const key = focusKeyOf(entry);
   const mark = tl.marks.byEntry.get(entry) ?? null;
@@ -125,6 +135,8 @@ function EntryRows({ entry, ctx }: { entry: TimelineEntry; ctx: RowCtx }) {
   }
 
   if (entry.kind === 'lodging') {
+    const name = p ? nameOf(p) : (entry.placeId ?? '');
+    const menu: ActionSheetSpec = { ctx: { kind: 'lodging-end', surface: 'mobile' }, target: { date: day.date, placeId: entry.placeId ?? undefined }, name, placeId: entry.placeId };
     return (
       <>
         {leg}
@@ -133,9 +145,10 @@ function EntryRows({ entry, ctx }: { entry: TimelineEntry; ctx: RowCtx }) {
           place={p}
           mark={mark}
           time={{ text: cardTime(entry).text }}
-          name={p ? nameOf(p) : (entry.placeId ?? '')}
-          tags={<LodgingTags day={day} place={p} reservationDate={day.date} editable={false} open={false} onOpenChange={() => {}} />}
+          name={name}
+          tags={<LodgingTags day={day} place={p} reservationDate={day.date} editable={planning} open={false} onOpenChange={openSub(menu, 'lodging-plan')} />}
           focused={focused === key}
+          menu={menu}
         />
       </>
     );
@@ -146,7 +159,21 @@ function EntryRows({ entry, ctx }: { entry: TimelineEntry; ctx: RowCtx }) {
     return (
       <>
         <li className="m-split" data-testid="m-split">
-          <div className="m-split-head">👥 分組行動</div>
+          <div className="m-split-head">
+            <span>👥 分組行動</span>
+            {planning && split && (
+              <button
+                type="button"
+                className="m-card-menu"
+                aria-label="分組的動作"
+                aria-haspopup="menu"
+                onClick={() => mobileStore.getState().openActions({ ctx: { kind: 'split', surface: 'mobile' }, target: { date: day.date, itemId: split.id }, name: '分組行動', placeId: null })}
+                data-testid="m-split-menu"
+              >
+                ⋯
+              </button>
+            )}
+          </div>
           {entry.groups.map((g) => {
             const sg = split?.groups.find((x) => x.id === g.id);
             return (
@@ -174,7 +201,22 @@ function EntryRows({ entry, ctx }: { entry: TimelineEntry; ctx: RowCtx }) {
   const flight = item?.type === 'flight' ? item : null;
   const time = cardTime(entry);
   const shownTime = flight ? (flight.direction === 'arrive' ? flight.arrive : flight.depart) : time.text;
+  const free = item?.type === 'free' ? item : null;
   const name = flight ? `${flight.direction === 'arrive' ? '抵達' : '起飛'} ${nameOf(p)}` : entry.kind === 'free' ? `自由時間${p ? `：${nameOf(p)}` : ''}` : nameOf(p);
+  const ref = item ? findItemRef(itinerary, item.id) : null;
+  const overlap = !!visit && visit.options.length > 1;
+  // 動作面板：造訪、自由時間才有（航班沒有）；手機版只看主卡，主要、拿出作用在主卡
+  const menu: ActionSheetSpec | null =
+    item && (visit || free)
+      ? {
+          ctx: { kind: visit ? 'visit' : 'free', overlap, pinned: !!visit?.start, groupTargets: groupTargetsOf(itinerary, item.id), inGroup: !!ref?.split, surface: 'mobile' },
+          target: { date: day.date, itemId: item.id, optionIndex: visit?.selected, placeId: entry.placeId ?? undefined, start: entry.start },
+          name,
+          placeId: entry.placeId,
+          disabled: overlap ? ['main'] : [],
+        }
+      : null;
+  const drag: DragSource | null = item && (visit || free) ? { kind: 'item', itemId: item.id, placeType: visit ? (p?.type ?? null) : null, options: visit?.options.length ?? 1 } : null;
   return (
     <>
       {leg}
@@ -182,10 +224,13 @@ function EntryRows({ entry, ctx }: { entry: TimelineEntry; ctx: RowCtx }) {
         itemKey={key}
         place={p}
         fallbackType={flight ? 'airport' : null}
+        menu={menu}
+        drag={drag}
+        drop={drag && item ? { kind: 'card', itemId: item.id, placeType: visit ? (p?.type ?? null) : null, isFlight: false } : null}
         mark={mark}
         time={{ text: shownTime, pinned: !!visit?.start, stay: !flight && time.stay ? formatStay(time.stay) : null }}
         name={name}
-        tags={visit ? <ItemTags visit={visit} kind={tagKindOf(p?.type)} date={day.date} placeId={entry.placeId} open={false} onOpenChange={() => {}} /> : null}
+        tags={visit ? <ItemTags visit={visit} kind={tagKindOf(p?.type)} date={day.date} placeId={entry.placeId} open={false} onOpenChange={menu ? openSub(menu, 'tags') : () => {}} /> : null}
         warnings={warnCount(shownWarnings(entry.itemId ? tl.byItem.get(entry.itemId) : undefined, entry.placeId, true))}
         focused={focused === key}
       />
@@ -254,6 +299,11 @@ function DayView({ date }: { date: string }) {
               </Fragment>
             ),
           )}
+          {planning && (
+            <li className="m-dropend small muted" data-testid="m-dropend" {...dropOnEndProps(date, true)}>
+              拖到這裡：放在這天的最後
+            </li>
+          )}
         </ol>
       )}
       {itDay && plan && itDay.items.length === 0 && (
@@ -268,8 +318,11 @@ function DayView({ date }: { date: string }) {
 
 /** 這天的候選：放在時間軸下面，虛線框、寫加的人 */
 function Candidates({ tl, focused, byId }: { tl: DayTimeline; focused: string | null; byId: Map<string, Place> }) {
+  const planning = useApp((s) => s.planning);
+  const me = useShared((s) => s.me?.id);
+  const date = tl.itDay?.date ?? '';
   return (
-    <section className="m-cands" data-testid="m-cands">
+    <section className="m-cands" data-testid="m-cands" {...dropOnCandidatesProps(date, planning)}>
       <h3 className="m-cands-head">
         候選{tl.candidates.length > 0 && <span className="m-count">{tl.candidates.length}</span>}
       </h3>
@@ -280,7 +333,11 @@ function Candidates({ tl, focused, byId }: { tl: DayTimeline; focused: string | 
           {tl.candidates.map((c) => {
             const key = `cand:${c.id}`;
             const p = byId.get(c.placeId);
-            return <MobileCard key={c.id} itemKey={key} place={p} name={p ? nameOf(p) : c.placeId} addedBy={<MemberName id={c.addedBy} />} focused={focused === key} />;
+            const name = p ? nameOf(p) : c.placeId;
+            // 候選的 ⋯：排進這天、（自己加的）移到第幾天、刪除；住宿的候選不能拖（會換掉那晚的住宿，要用 ⋯ 的排進這天確認）
+            const menu: ActionSheetSpec = { ctx: { kind: 'candidate', mine: c.addedBy === me, surface: 'mobile' }, target: { date, candidateId: c.id, placeId: c.placeId }, name, placeId: c.placeId };
+            const drag: DragSource | null = p?.type === 'lodging' ? null : { kind: 'candidate', candidateId: c.id, placeId: c.placeId, placeType: p?.type ?? null };
+            return <MobileCard key={c.id} itemKey={key} place={p} name={name} addedBy={<MemberName id={c.addedBy} />} focused={focused === key} menu={menu} drag={drag} />;
           })}
         </ul>
       )}
@@ -288,9 +345,40 @@ function Candidates({ tl, focused, byId }: { tl: DayTimeline; focused: string | 
   );
 }
 
+/** 編輯中最上面的藍條（網頁版第五輪的 PlanningBar：「✏️ 編輯 2/3（三）」加「完成」）和別人改過了的提示 */
+function EditBar({ day }: { day: string }) {
+  return (
+    <div className="m-edit-top">
+      <PlanningBar title={day === 'all' ? '✏️ 編輯中' : `✏️ 編輯 ${dayLabel(day)}`} className="m-edit-bar" compact />
+      <ConflictBar />
+    </div>
+  );
+}
+
+/** 進編輯：面板拉到高；結束編輯：關掉動作面板、面板回到中間；換天：關掉動作面板 */
+function useEditingSheet() {
+  const planning = useApp((s) => s.planning);
+  const day = useApp((s) => s.day);
+  const first = useRef(true);
+  useEffect(() => {
+    const m = mobileStore.getState();
+    if (planning) m.setSnap('high');
+    else {
+      m.closeActions();
+      // 第一次掛上（本來就不在編輯中）不動面板
+      if (!first.current) m.setSnap('mid');
+    }
+    first.current = false;
+  }, [planning]);
+  useEffect(() => {
+    mobileStore.getState().closeActions();
+  }, [day]);
+}
+
 export function DaySheet() {
   const day = useApp((s) => s.day);
   const snap = useMobile((s) => s.tripSnap);
+  useEditingSheet();
   const focused = useMobile((s) => s.focused);
   const sheetRef = useRef<HTMLElement>(null);
   const bodyRef = useRef<HTMLDivElement>(null);
@@ -316,6 +404,7 @@ export function DaySheet() {
       <div className="m-trip-grab" data-testid="m-sheet-grab" aria-label="拖動調整高度" {...drag}>
         <span aria-hidden />
       </div>
+      <EditBar day={day} />
       <DayStrip />
       <div className="m-trip-body" ref={bodyRef}>
         {day === 'all' ? <TripOverview /> : <DayView date={day} />}

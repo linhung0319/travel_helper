@@ -2,6 +2,7 @@
 // 編輯中點那一排（沒有標籤時是「＋ 標籤」，⋯ 選單的「🏷 標籤」也一樣）打開 TagPopover：每組一列、可以多選，點了立刻存、彈窗不關。
 // 回住宿那張宿的卡用「這晚的方案」（LodgingPlanPopover，三選一、再點取消＝照住宿資料）；照資料時字是淡色。
 // 出發那張宿的卡只顯示前一晚的方案（唯讀）。一般模式標籤只看、不能點。分組、互斥、哪種卡有哪幾組寫在 shared/tagOptions.ts。
+// 存檔的 toggleVisitTag、pickLodgingPlan 也給手機版的標籤面板（mobile/TagSheet.tsx）用。
 
 import { useRef, type CSSProperties } from 'react';
 import { setLodging, setTags, type LodgingMeals, type TagId } from '@travel-helper/engine';
@@ -25,21 +26,35 @@ const groupStyle = (g: TagGroup) => ({ '--tag-bg': g.bg, '--tag-fg': g.fg }) as 
 
 const groupOf = (t: TagId) => TAG_GROUPS.find((g) => g.tags.includes(t))!;
 
+/** 切換卡片的一個標籤（網頁版彈窗、手機版面板共用）；用存的當下的行程算，連點兩下也不會用到舊的 */
+export function toggleVisitTag(visit: VisitItem, tag: TagId) {
+  const on = (visit.tags ?? []).includes(tag);
+  void shared.changeItinerary(
+    (it) => {
+      const ref = findItemRef(it, visit.id);
+      const cur = ref?.item.type === 'visit' ? (ref.item.tags ?? []) : [];
+      return setTags(it, visit.id, toggleTag(cur, tag));
+    },
+    on ? `取消${TAG_LABELS[tag]}` : `標成${TAG_LABELS[tag]}`,
+  );
+}
+
+/** 選這晚的方案（再點選了的那個＝回到照住宿資料）；cur 是畫面上現在的值，只用在存檔的說明 */
+export function pickLodgingPlan(date: string, cur: LodgingMeals | null, v: LodgingMeals) {
+  const next = toggleLodgingPlan(cur, v);
+  void shared.changeItinerary(
+    (it) => {
+      const d = it.days.find((x) => x.date === date)!;
+      return setLodging(it, date, d.lodging, toggleLodgingPlan(d.lodgingMeals ?? null, v));
+    },
+    `${shortDayLabel(date)} 這晚的方案：${next ? LODGING_PLANS.find((x) => x.value === next)!.label : '照住宿資料'}`,
+  );
+}
+
 /** 標籤彈窗：每組一列膠囊按鈕（多選；誰去互斥）。點了立刻存，彈窗不關 */
 export function TagPopover({ visit, kind, anchor, onClose }: { visit: VisitItem; kind: TagCardKind; anchor: HTMLElement | null; onClose: () => void }) {
   const have = visit.tags ?? [];
-  /** 切換一個標籤；用存的當下的行程算，連點兩下也不會用到舊的 */
-  const toggle = (tag: TagId) => {
-    const on = have.includes(tag);
-    void shared.changeItinerary(
-      (it) => {
-        const ref = findItemRef(it, visit.id);
-        const cur = ref?.item.type === 'visit' ? (ref.item.tags ?? []) : [];
-        return setTags(it, visit.id, toggleTag(cur, tag));
-      },
-      on ? `取消${TAG_LABELS[tag]}` : `標成${TAG_LABELS[tag]}`,
-    );
-  };
+  const toggle = (tag: TagId) => toggleVisitTag(visit, tag);
   return (
     <Popover anchor={anchor} open onClose={onClose} testId="tag-popover">
       <div className="tag-popover" role="menu" aria-label="標籤">
@@ -103,17 +118,7 @@ export function lodgingPlanShown(day: ItineraryDay | undefined, p: Place | undef
 /** 「這晚的方案」彈窗：三選一，再點選了的那個＝回到照住宿資料（null）。住宿本身不變 */
 export function LodgingPlanPopover({ date, anchor, onClose }: { date: string; anchor: HTMLElement | null; onClose: () => void }) {
   const cur = useData((s) => s.itinerary?.days.find((d) => d.date === date)?.lodgingMeals ?? null);
-  /** 選一個方案（再點一次取消）；用存的當下的行程算 */
-  const pick = (v: LodgingMeals) => {
-    const next = toggleLodgingPlan(cur, v);
-    void shared.changeItinerary(
-      (it) => {
-        const d = it.days.find((x) => x.date === date)!;
-        return setLodging(it, date, d.lodging, toggleLodgingPlan(d.lodgingMeals ?? null, v));
-      },
-      `${shortDayLabel(date)} 這晚的方案：${next ? LODGING_PLANS.find((x) => x.value === next)!.label : '照住宿資料'}`,
-    );
-  };
+  const pick = (v: LodgingMeals) => pickLodgingPlan(date, cur, v);
   return (
     <Popover anchor={anchor} open onClose={onClose} testId="lodging-plan-popover">
       <div className="tag-popover" role="menu" aria-label="這晚的方案">
