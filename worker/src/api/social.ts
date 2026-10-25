@@ -19,6 +19,7 @@
 //   GET    /api/me、GET /api/members
 //   GET    /api/sync                        各種資料最後更新的時間：前端每 30 秒只打這一支，有變才重抓
 
+import { isAdmin } from '../auth.ts';
 import type { Ctx } from '../env.ts';
 import { badRequest, forbidden, json, notFound, nowIso, readBody } from '../lib/http.ts';
 import { resolveId } from './places.ts';
@@ -256,8 +257,8 @@ export async function deleteConversation({ db, member }: Ctx, params: Record<str
 
 // ---- 成員、同步 ----
 
-export async function me({ member }: Ctx): Promise<Response> {
-  return json({ member });
+export async function me({ member, env }: Ctx): Promise<Response> {
+  return json({ member, isAdmin: isAdmin(env, member) });
 }
 
 export async function listMembers({ db }: Ctx): Promise<Response> {
