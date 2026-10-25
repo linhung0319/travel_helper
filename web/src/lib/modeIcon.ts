@@ -10,7 +10,7 @@ export interface ModeIconSpec {
 }
 
 /** 色塊（bg）、圖（fg）、path；船、自駕的顏色避開類型色（景點綠、住宿紫、餐廳橘、車站藍）和其他交通色 */
-export const MODE_ICON: Record<'walk' | 'taxi' | 'bus' | 'train' | 'ferry' | 'car', ModeIconSpec> = {
+export const MODE_ICON: Record<'walk' | 'taxi' | 'bus' | 'train' | 'ferry' | 'car' | 'unknown', ModeIconSpec> = {
   walk: {
     bg: '#5f6b7a',
     fg: '#ffffff',
@@ -41,14 +41,20 @@ export const MODE_ICON: Record<'walk' | 'taxi' | 'bus' | 'train' | 'ferry' | 'ca
     fg: '#ffffff',
     path: 'M18.92 6.01C18.72 5.42 18.16 5 17.5 5h-11c-.66 0-1.21.42-1.42 1.01L3 12v8c0 .55.45 1 1 1h1c.55 0 1-.45 1-1v-1h12v1c0 .55.45 1 1 1h1c.55 0 1-.45 1-1v-8l-2.08-5.99zM6.5 16c-.83 0-1.5-.67-1.5-1.5S5.67 13 6.5 13s1.5.67 1.5 1.5S7.33 16 6.5 16zm11 0c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5zM5 11l1.5-4.5h11L19 11H5z',
   },
+  // 交通未定：灰底問號（Material help_outline），不要讓人以為是開車
+  unknown: {
+    bg: '#9e9e9e',
+    fg: '#ffffff',
+    path: 'M11 18h2v-2h-2v2zm1-16C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm0-14c-2.21 0-4 1.79-4 4h2c0-1.1.9-2 2-2s2 .9 2 2c0 2-3 1.75-3 5h2c0-2.25 3-2.5 3-5 0-2.21-1.79-4-4-4z',
+  },
 };
 
 export type ModeIconKey = keyof typeof MODE_ICON;
 
 /** 圖示 aria-label 用的方式中文名 */
-export const MODE_NAME: Record<ModeIconKey, string> = { walk: '步行', taxi: '計程車', bus: '巴士', train: '電車', ferry: '船', car: '車' };
+export const MODE_NAME: Record<ModeIconKey, string> = { walk: '步行', taxi: '計程車', bus: '巴士', train: '電車', ferry: '船', car: '車', unknown: '交通未定' };
 
-/** 方式 → 圖示；包車、自駕、其他、未知用 car；transit 沒給第一程的方式就用 bus（呼叫的人要把 transit 換成第一程的方式） */
+/** 方式 → 圖示；交通未定（unknown）用灰色問號；包車、自駕、其他用 car；transit 沒給第一程的方式就用 bus（呼叫的人要把 transit 換成第一程的方式） */
 export function modeIconKey(mode: Leg['mode'] | TransitRide['mode'] | 'transit'): ModeIconKey {
   switch (mode) {
     case 'walk':
@@ -59,6 +65,8 @@ export function modeIconKey(mode: Leg['mode'] | TransitRide['mode'] | 'transit')
       return mode;
     case 'transit':
       return 'bus';
+    case 'unknown':
+      return 'unknown';
     default:
       return 'car';
   }

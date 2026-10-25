@@ -1,7 +1,7 @@
 // 編輯（interaction-design §6、§11、第五輪設計 §5）：「✏️ 編輯這天」按鈕、進入前確認、時間軸面板最上面的藍條、第一次的提示、閒置自動結束；
 // 快照列表與復原、「排進行程」、「移到第 _ 天」、別人改過了的提示。
 
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState, useSyncExternalStore } from 'react';
 import { describeChanges, diffItinerary, moveItemToDay } from '@travel-helper/engine';
 import { appStore } from '../store.ts';
 import { shared } from '../appShared.ts';
@@ -64,9 +64,26 @@ export function PlanningConfirmDialog() {
   );
 }
 
-/** 編輯中但時間軸面板不在畫面上（探索、想去、聊天、詳情）：浮在地圖上方的精簡藍條，只有「完成」 */
+// 面板上的藍條有沒有捲出畫面（IntersectionObserver 看的）。藍條不用 sticky：手機的拉起面板裡
+// sticky 加上面板高度動畫，Chrome 會在地圖上畫出白色殘影（見 styles.css 的 .layout.mobile .detail-head），
+// 所以改成藍條捲出去（或面板收在最低被裁掉）時，地圖上方顯示精簡的「編輯中・完成」條。
+let barOut = false;
+const barListeners = new Set<() => void>();
+function setBarOut(v: boolean) {
+  if (barOut === v) return;
+  barOut = v;
+  for (const l of barListeners) l();
+}
+function subscribeBarOut(l: () => void) {
+  barListeners.add(l);
+  return () => barListeners.delete(l);
+}
+const getBarOut = () => barOut;
+
+/** 編輯中但時間軸面板不在畫面上（探索、想去、聊天、詳情），或面板上的藍條捲出畫面：浮在地圖上方的精簡藍條，只有「完成」 */
 export function EditingStrip({ desktop }: { desktop: boolean }) {
-  const show = useApp((s) => s.planning && !dayPanelShowing(s, desktop));
+  const out = useSyncExternalStore(subscribeBarOut, getBarOut);
+  const show = useApp((s) => s.planning && (out || !dayPanelShowing(s, desktop)));
   if (!show) return null;
   return (
     <div className="planning-bar planning-strip" data-testid="planning-strip">
@@ -85,9 +102,19 @@ export function PlanningBar() {
   const planning = useApp((s) => s.planning);
   const saving = useShared((s) => s.saving);
   const version = useShared((s) => s.version);
+  // callback ref：藍條出現時開始看它在不在畫面上，拿掉時停止並當作「在」（交給 dayPanelShowing 判斷）
+  const watch = useCallback((el: HTMLDivElement | null) => {
+    if (!el || typeof IntersectionObserver === 'undefined') return;
+    const io = new IntersectionObserver(([e]) => setBarOut(!e.isIntersecting));
+    io.observe(el);
+    return () => {
+      io.disconnect();
+      setBarOut(false);
+    };
+  }, []);
   if (!planning) return null;
   return (
-    <div className="planning-bar" data-testid="planning-bar">
+    <div className="planning-bar" data-testid="planning-bar" ref={watch}>
       <strong>✏️ 編輯中・改了會自動存，大家都看得到</strong>
       <span className="planning-bar-status">{saving ? '儲存中…' : `第 ${version} 版`}</span>
       <span className="planning-bar-actions">

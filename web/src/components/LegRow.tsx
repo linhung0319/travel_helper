@@ -10,12 +10,12 @@
 // 編輯中交通卡也是放置區：拖到這裡＝排在這段通往的那張卡片前面（planDrag.dropOnLegProps）。
 
 import { useEffect, useRef, useState, type MouseEvent, type ReactNode } from 'react';
-import { getLegTravel, rideDepartures, setLegTravel, type Itinerary, type Leg, type LegTarget, type RideDeparture, type TimelineEntry, type TravelSpec } from '@travel-helper/engine';
+import { getLegTravel, setLegTravel, type Itinerary, type Leg, type LegTarget, type RideDeparture, type TimelineEntry, type TravelSpec } from '@travel-helper/engine';
 import type { TravelMode } from '@travel-helper/engine/types';
 import { commands, itineraryPathOf, roadRouter } from '../appCommands.ts';
 import { dataStore } from '../dataStore.ts';
 import { shared } from '../appShared.ts';
-import { currentEngineData, engineConfig } from '../planStore.ts';
+import { departuresOf } from '../planStore.ts';
 import { useApp, useData, useShared, useUi } from '../hooks.ts';
 import {
   EDITOR_MODES,
@@ -63,12 +63,6 @@ function readSpec(it: Itinerary | null, target: LegTarget | null): TravelSpec | 
  */
 export function selectRideTrip(target: LegTarget, leg: Leg, rideIndex: number, dep: RideDeparture): void {
   void shared.changeItinerary((it) => setLegTravel(it, target, specWithRide(getLegTravel(it, target), leg, rideIndex, dep)), '換班次');
-}
-
-/** 這一程那天、同一對站的所有班次；時刻表還沒載入時是 [] */
-function departuresOf(date: string, ride: Leg['rides'][number]): RideDeparture[] {
-  const data = currentEngineData();
-  return data ? rideDepartures(data, engineConfig, date, ride) : [];
 }
 
 /** 編輯中搭車那一行的班次下拉：只列搭得到的（和選定的那班），搭不到的收成一行不能選的說明 */
@@ -302,7 +296,9 @@ export function LegRow({ entry, date }: { entry: TimelineEntry; date: string }) 
   const nameOf = (id: string) => byId.get(id)?.name.zh || byId.get(id)?.name.ja || id;
   const fromId = leg?.from ?? null;
   const toId = leg?.to ?? null;
+  // 畫線、查路徑用的方式（交通未定、不用移動都當 other）；圖示另外用 leg.mode，交通未定才會是問號
   const mode: TravelMode = leg && leg.mode !== 'none' && leg.mode !== 'unknown' ? leg.mode : 'other';
+  const unknown = leg?.mode === 'unknown';
   const minutes = leg?.minutes ?? 0;
   const ridesKey = leg ? leg.rides.map((r) => `${r.mode}:${r.from}>${r.to}`).join('|') : '';
   // 班次本身放 ref：時間軸重算時陣列換了但站一樣，不用重畫
@@ -319,11 +315,11 @@ export function LegRow({ entry, date }: { entry: TimelineEntry; date: string }) 
     const a = byId.get(fromId);
     const b = byId.get(toId);
     const geometry = rides.length && a && b && isRide(mode) ? itineraryPathOf(a, b, mode, rides) : null;
-    commands.drawRoute(fromId, toId, mode, { minutes, geometry });
+    commands.drawRoute(fromId, toId, mode, { minutes, geometry, unknown });
     const stations = rideStations(rides).filter((id) => byId.has(id));
     if (stations.length) commands.highlight(stations);
     return () => void commands.clearHighlights();
-  }, [open, fromId, toId, mode, minutes, ridesKey]);
+  }, [open, fromId, toId, mode, unknown, minutes, ridesKey]);
 
   // 這張卡不見了（換天、回整趟、換分頁）或換成別段時，開著的是這段就收起來，否則地圖的行程線一直是淡的
   useEffect(() => {
@@ -355,7 +351,7 @@ export function LegRow({ entry, date }: { entry: TimelineEntry; date: string }) 
     <li className={`tl-leg mode-${leg.mode} ${open ? 'open' : ''} ${editing ? 'editing' : ''}`} data-testid="tl-leg" data-leg={key} {...dropOnLegProps(entry.itemId, date, planning)}>
       <div className="tl-leg-card" onClick={toggle}>
         <div className="tl-leg-head">
-          <ModeIcon mode={mode} size="l" />
+          <ModeIcon mode={leg.mode} size="l" />
           <button type="button" className="tl-leg-text" aria-pressed={open} aria-expanded={transit ? open : undefined}>
             <span className="tl-leg-title">{legTitle(leg) || '交通 0 分'}</span>
             {(sub.length > 0 || note) && (

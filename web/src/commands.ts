@@ -41,6 +41,8 @@ export interface DrawRouteOptions {
   label?: string | null;
   /** 已經有的路徑（例如之後 T15 從別處拿到的）；給了就不查 */
   geometry?: LonLat[] | null;
+  /** 交通未定：線照 mode 畫，標籤的圖示改成問號 */
+  unknown?: boolean;
 }
 
 /** 給 AI 的畫面狀態（interaction-design §5）：每次對話帶上 */
@@ -208,6 +210,7 @@ export function createCommands(app: StoreApi<AppStore>, data: StoreApi<DataState
       geometry,
       meters: null,
       source: geometry ? 'given' : 'pending',
+      ...(opts.unknown ? { unknown: true } : {}),
     });
     return { ok: true, routeId };
   }

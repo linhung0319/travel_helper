@@ -5,11 +5,11 @@
 // 電腦版浮在地圖區左上（不蓋右邊的時間軸），手機是下方面板；✕、點地圖、換天、交通卡收起、這段不見了都關掉。
 
 import { useEffect, useState } from 'react';
-import { rideDepartures, toMinutes, type Leg, type TransitRide } from '@travel-helper/engine';
+import { toMinutes, type Leg, type TransitRide } from '@travel-helper/engine';
 import { appStore } from '../store.ts';
 import { commands } from '../appCommands.ts';
 import { dataStore } from '../dataStore.ts';
-import { currentEngineData, dayPlanOf, engineConfig } from '../planStore.ts';
+import { currentEngineData, dayPlanOf, departuresOf, engineConfig } from '../planStore.ts';
 import { useApp, useData, usePlan, useShared, useUi } from '../hooks.ts';
 import { closeTimetable, type TimetableState } from '../uiStore.ts';
 import { departureRows, findLegEntry, legTargetOf, rideReadyAt } from '../lib/planView.ts';
@@ -73,7 +73,7 @@ function TimetableBody({ tt, leg, ride, target }: { tt: TimetableState; leg: Leg
 
   const data = currentEngineData();
   const readyAt = rideReadyAt(leg, tt.rideIndex);
-  const rows = data ? departureRows(rideDepartures(data, engineConfig, tt.date, ride), readyAt, ride.tripId ?? null) : [];
+  const rows = data ? departureRows(departuresOf(tt.date, ride), readyAt, ride.tripId ?? null) : [];
   const shown = timetableWindow(rows, readyAt, showAll);
   const source = data ? timetableSource(ride, data, tt.date, engineConfig.holidays) : null;
   const minutes = toMinutes(ride.arrive) - toMinutes(ride.depart);

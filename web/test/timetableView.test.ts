@@ -44,8 +44,8 @@ test('departureLabel：搭不到、等 N 分、1 小時以上、選定', () => {
   const row = (state: DepartureRow['state'], wait: number | null, missedSelected?: boolean) => ({ tripId: 'x', line: '', depart: '10:00', arrive: '10:30', state, wait, ...(missedSelected ? { missedSelected } : {}) }) as DepartureRow;
   assert.deepEqual(departureLabel(row('missed', null)), { text: '搭不到', long: false });
   assert.deepEqual(departureLabel(row('ok', 43)), { text: '等 43 分', long: false });
-  assert.deepEqual(departureLabel(row('ok', 113)), { text: '等 1小時53分', long: true });
-  assert.deepEqual(departureLabel(row('ok', 60)), { text: '等 1小時00分', long: true });
+  assert.deepEqual(departureLabel(row('ok', 113)), { text: '等 113 分', long: true });
+  assert.deepEqual(departureLabel(row('ok', 60)), { text: '等 60 分', long: true });
   assert.deepEqual(departureLabel(row('selected', 43)), { text: '等 43 分・選定', long: false });
   assert.deepEqual(departureLabel(row('selected', null, true)), { text: '搭不到・選定', long: false });
 });

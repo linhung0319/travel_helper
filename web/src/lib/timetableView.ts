@@ -2,7 +2,7 @@
 // 純函式；班次本身是引擎的 rideDepartures，搭不到／搭得到／選定是 planView 的 departureRows。
 
 import { busDayType, kintetsuDayType, toMinutes, type KintetsuTimes, type Leg, type RouteTimetable, type TransitRide } from '@travel-helper/engine';
-import { formatStay, rideReadyAt, type DepartureRow } from './planView.ts';
+import { rideReadyAt, type DepartureRow } from './planView.ts';
 
 /** 班次超過幾班才收起來 */
 export const TIMETABLE_FOLD = 8;
@@ -33,7 +33,7 @@ export function timetableWindow(rows: DepartureRow[], readyAt: string, showAll =
 export function departureLabel(row: DepartureRow): { text: string; long: boolean } {
   if (row.wait == null) return { text: row.state === 'selected' ? '搭不到・選定' : '搭不到', long: false };
   const long = row.wait >= 60;
-  const wait = `等 ${long ? formatStay(row.wait) : `${row.wait} 分`}`;
+  const wait = `等 ${row.wait} 分`; // 和卡片、下拉一樣寫「等 N 分」；1 小時以上只改顏色（long）
   return { text: row.state === 'selected' ? `${wait}・選定` : wait, long };
 }
 

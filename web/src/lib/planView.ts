@@ -380,14 +380,20 @@ export function stopMarks(day: DayPlan | null, _isLodging?: (placeId: string) =>
 /**
  * 地圖標記上寫的號碼（第五輪 §9.2）。marks 是這個點的所有號碼（stopMarks 的 byPlace）：
  * day：起終點同一點（有 0）→ 0，其他多個號碼用「・」連起來；
- * leg：這段的終點 → 最大的號碼、起點 → 最小的號碼，不在這段上的照 day；
+ * leg：這段的兩端寫這段兩張卡的號碼（leg.fromMark／toMark；同一點一天去兩次時才不會寫錯），
+ *   沒給號碼時退回終點 → 最大、起點 → 最小；不在這段上的照 day；
  * trip：住宿是隔天的起點，呼叫的人傳隔天的 marks，規則同 day（有 0 就是 0）
  */
-export function mapMark(marks: string[], scope: 'day' | 'leg' | 'trip', leg?: { from: string; to: string } | null, placeId?: string): string {
+export function mapMark(
+  marks: string[],
+  scope: 'day' | 'leg' | 'trip',
+  leg?: { from: string; to: string; fromMark?: string | null; toMark?: string | null } | null,
+  placeId?: string,
+): string {
   if (scope === 'leg' && leg && placeId && marks.length) {
     const nums = marks.map(Number);
-    if (placeId === leg.to) return String(Math.max(...nums));
-    if (placeId === leg.from) return String(Math.min(...nums));
+    if (placeId === leg.to) return leg.toMark ?? String(Math.max(...nums));
+    if (placeId === leg.from) return leg.fromMark ?? String(Math.min(...nums));
   }
   return marks.includes('0') ? '0' : marks.join('・');
 }

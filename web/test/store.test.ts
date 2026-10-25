@@ -78,10 +78,14 @@ test('tripFocusDay：整趟點了某天的路線；換天清掉', () => {
 
 test('dayPanelShowing：時間軸面板不在畫面上時才要顯示精簡的編輯中條', async () => {
   const { dayPanelShowing } = await import('../src/lib/editing.ts');
-  const s = { mode: 'map' as const, detailId: null, sheet: { tab: 'day' } };
+  const s = { mode: 'map' as const, detailId: null, sheet: { tab: 'day', snap: 'half' } };
   assert.equal(dayPanelShowing(s, true), true);
   assert.equal(dayPanelShowing(s, false), true);
   assert.equal(dayPanelShowing({ ...s, mode: 'explore' }, true), false);
-  assert.equal(dayPanelShowing({ ...s, sheet: { tab: 'wish' } }, false), false);
+  assert.equal(dayPanelShowing({ ...s, sheet: { tab: 'wish', snap: 'half' } }, false), false);
+  // 手機：行程分頁但面板收在 peek，藍條看不到，要顯示精簡條；電腦版不看 snap
+  assert.equal(dayPanelShowing({ ...s, sheet: { tab: 'day', snap: 'peek' } }, false), false);
+  assert.equal(dayPanelShowing({ ...s, sheet: { tab: 'day', snap: 'full' } }, false), true);
+  assert.equal(dayPanelShowing({ ...s, sheet: { tab: 'day', snap: 'peek' } }, true), true);
   assert.equal(dayPanelShowing({ ...s, detailId: 'x' }, true), false);
 });

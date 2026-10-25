@@ -2,7 +2,7 @@
 // 「這一天」的時間軸、地圖上的交通標籤、空檔、警告都讀這一份。
 
 import { createStore, type StoreApi } from 'zustand/vanilla';
-import { placeLookup, planItinerary, resolveConfig, type DayPlan, type EngineConfig, type EngineData, type ItineraryPlan, type KintetsuTimes, type PlaceRecord, type RouteTimetable } from '@travel-helper/engine';
+import { placeLookup, planItinerary, resolveConfig, rideDepartures, type DayPlan, type EngineConfig, type EngineData, type ItineraryPlan, type KintetsuTimes, type PlaceRecord, type RideDeparture, type RouteTimetable, type TransitRide } from '@travel-helper/engine';
 import type { DataState } from './dataStore.ts';
 import type { DataSource } from './data/source.ts';
 import type { LonLat } from './data/types.ts';
@@ -21,6 +21,22 @@ export const currentEngineData = () => lastEngineData;
 
 /** 算時間軸用的設定（班次表、選班次列一程的所有班次也用這一份） */
 export const engineConfig: EngineConfig = resolveConfig();
+
+// 一程那天的所有班次（交通卡的下拉、班次表每次重畫都要）：照引擎資料（換了就整個重算）、日期、方式、上下車站、路線記住
+const departuresCache = new WeakMap<EngineData, Map<string, RideDeparture[]>>();
+const NO_DEPARTURES: RideDeparture[] = [];
+
+/** 這一程那天、同一對站的所有班次（引擎的 rideDepartures，記住結果）；時刻表還沒載入時是 [] */
+export function departuresOf(date: string, ride: TransitRide): RideDeparture[] {
+  const data = lastEngineData;
+  if (!data) return NO_DEPARTURES;
+  let byKey = departuresCache.get(data);
+  if (!byKey) departuresCache.set(data, (byKey = new Map()));
+  const key = [date, ride.mode, ride.from, ride.to, ride.routeId ?? ''].join('|');
+  let hit = byKey.get(key);
+  if (!hit) byKey.set(key, (hit = rideDepartures(data, engineConfig, date, ride)));
+  return hit;
+}
 
 export interface RoadCache {
   cachedMeters(profile: 'foot' | 'car', from: LonLat, to: LonLat): number | null;

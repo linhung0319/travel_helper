@@ -83,7 +83,7 @@ export function routeLabels(routes: MapRoute[]): RouteLabel[] {
   return routes.map((r) => ({
     id: r.id,
     coords: lineMidpoint(r.geometry ?? [r.from.coords, r.to.coords]),
-    mode: r.mode,
+    mode: r.unknown ? 'unknown' : r.mode,
     minutes: r.minutes,
     text: labelText(r.minutes, r.label, r.source === 'pending'),
   }));
@@ -235,17 +235,19 @@ export function itineraryFeatures(
   return { lines: collection(lines), alts: collection(alts), legs };
 }
 
-/** 這段交通（legKeyOf）的兩端：to 是那張卡的點，from 是時間軸上前一個點（分組裡第一個點從分組前的點出發）；找不到是 null */
-function legEnds(day: DayPlan, legKey: string): { from: string; to: string } | null {
-  const walk = (entries: DayPlan['entries'], before: string | null): { from: string; to: string } | null => {
+type Entry = DayPlan['entries'][number];
+
+/** 這段交通（legKeyOf）的兩端卡片：to 是那張卡，from 是時間軸上前一個有點的卡（分組裡第一個點從分組前的點出發）；找不到是 null */
+function legEnds(day: DayPlan, legKey: string): { from: Entry; to: Entry } | null {
+  const walk = (entries: DayPlan['entries'], before: Entry | null): { from: Entry; to: Entry } | null => {
     let prev = before;
     for (const e of entries) {
       for (const g of e.groups ?? []) {
         const hit = walk(g.entries, prev);
         if (hit) return hit;
       }
-      if (e.placeId && prev && legKeyOf(e, day.date) === legKey) return { from: prev, to: e.placeId };
-      if (e.placeId) prev = e.placeId;
+      if (e.placeId && prev && legKeyOf(e, day.date) === legKey) return { from: prev, to: e };
+      if (e.placeId) prev = e;
     }
     return null;
   };
@@ -264,8 +266,11 @@ export function itineraryMarks(plan: { days: DayPlan[] } | null, day: string, le
   if (day !== 'all') {
     const dp = days.find((d) => d.date === day);
     if (!dp) return out;
-    const leg = legOpen?.startsWith(`${day}:`) ? legEnds(dp, legOpen) : null;
-    for (const [id, list] of stopMarks(dp).byPlace) out.set(id, leg ? mapMark(list, 'leg', leg, id) : mapMark(list, 'day'));
+    const ends = legOpen?.startsWith(`${day}:`) ? legEnds(dp, legOpen) : null;
+    const { byEntry, byPlace } = stopMarks(dp);
+    // 兩端寫這兩張卡自己的號碼（同一點去兩次時，不是單純取最小、最大）
+    const leg = ends && { from: ends.from.placeId!, to: ends.to.placeId!, fromMark: byEntry.get(ends.from) ?? null, toMark: byEntry.get(ends.to) ?? null };
+    for (const [id, list] of byPlace) out.set(id, leg ? mapMark(list, 'leg', leg, id) : mapMark(list, 'day'));
     return out;
   }
   const marks = days.map((d) => stopMarks(d).byPlace);

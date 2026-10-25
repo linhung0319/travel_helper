@@ -726,6 +726,35 @@ test('第五輪：編輯入口——日期列的「✏️ 編輯這天」，確�
   await expect(page.getByTestId('planning-toggle')).toHaveCount(0);
 });
 
+test('第五輪：編輯中藍條捲出畫面（或手機面板收到最低）時，地圖上方出現精簡的「編輯中・完成」', async ({ page }) => {
+  await ready(page);
+  // 2/3 的時間軸夠長，面板捲得動
+  await showDay(page, '2027-02-03');
+  await enterPlanning(page);
+  const strip = page.getByTestId('planning-strip');
+  await expect(strip).toHaveCount(0);
+  // 捲時間軸面板，藍條捲出去 → 精簡條出現；捲回來 → 消失
+  const scrollBar = (top: number) =>
+    page.getByTestId('planning-bar').evaluate((el, y) => {
+      let p = el.parentElement;
+      while (p && !(p.scrollHeight > p.clientHeight && /auto|scroll/.test(getComputedStyle(p).overflowY))) p = p.parentElement;
+      if (p) p.scrollTop = y;
+      return !!p;
+    }, top);
+  expect(await scrollBar(5000)).toBe(true);
+  await expect(strip).toBeVisible();
+  await scrollBar(0);
+  await expect(strip).toHaveCount(0);
+  if (await isMobile(page)) {
+    // 手機：還在「行程」分頁，但面板收到最低，藍條看不到 → 精簡條，按「完成」結束編輯
+    await page.evaluate(() => (window as any).__th.appStore.getState().setSheet({ snap: 'peek' }));
+    await expect(strip).toBeVisible();
+    await page.getByTestId('planning-strip-done').click();
+    await expect.poll(() => th(page, '__th.appStore.getState().planning')).toBe(false);
+    await expect(strip).toHaveCount(0);
+  }
+});
+
 test('第五輪：2/3 的等待只出現一次——交通卡下面一條「⏳ … 到，等 N 分（午餐 📌 12:00 才開始）」，沒有「空檔」', async ({ page }) => {
   await ready(page);
   await showDay(page, '2027-02-03');

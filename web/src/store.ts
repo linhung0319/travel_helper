@@ -48,6 +48,8 @@ export interface MapRoute {
   geometry: LonLat[] | null;
   /** 路徑的距離（公尺）；直線時是直線距離 */
   meters: number | null;
+  /** 交通未定（行程卡上的「交通未定」）：標籤用問號圖示 */
+  unknown?: boolean;
   /** pending：還在查；osrm：沿道路；rail：沿鐵路的車站；straight：直線（查不到或船）；given：呼叫者給的 */
   source: 'pending' | 'osrm' | 'rail' | 'straight' | 'given';
 }

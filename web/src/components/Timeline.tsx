@@ -8,7 +8,7 @@
 // 拖卡片（電腦版拖、手機長按後拖）：放在卡片中間合併、邊緣換順序；看備卡時拖的是那張備卡；看備卡時的「設為主要」「拿出來」。
 // 看備卡時預約 tag、警告跟著那張備卡，⋯ 選單收起來（裡面的刪除是刪整張卡片）。
 
-import { useEffect, useRef, useState, type ReactNode } from 'react';
+import { useCallback, useEffect, useRef, useState, type ReactNode } from 'react';
 import { moveItemTo, removeItem, selectOption, setLodging, fromMinutes, setStart, setStay, toMinutes, type DayPlan, type EngineWarning, type Gap, type LodgingMeals, type TimelineEntry } from '@travel-helper/engine';
 import type { ItineraryDay, ItineraryItem, VisitItem } from '@travel-helper/engine/types';
 import { appStore } from '../store.ts';
@@ -740,17 +740,16 @@ function jumpToCard(seg: BarSegment) {
  */
 export function DayBar({ plan, selected }: { plan: DayPlan; selected?: string | null }) {
   const byId = useData((s) => s.byId);
-  const trackRef = useRef<HTMLDivElement>(null);
   const [width, setWidth] = useState(0);
-  useEffect(() => {
-    const el = trackRef.current;
+  // callback ref：橫條出現時量一次寬度並開始看它變寬變窄，拿掉時停止（不是每次重畫都重建 ResizeObserver）
+  const trackRef = useCallback((el: HTMLDivElement | null) => {
     if (!el) return;
     setWidth(el.clientWidth);
     if (typeof ResizeObserver === 'undefined') return;
     const ro = new ResizeObserver(() => setWidth(el.clientWidth));
     ro.observe(el);
     return () => ro.disconnect();
-  });
+  }, []);
   const segs = dayBar(plan, (id) => (id ? (byId.get(id)?.type ?? null) : null));
   if (!segs.length) return null;
   const t0 = Math.min(...segs.map((s) => toMinutes(s.from)));
