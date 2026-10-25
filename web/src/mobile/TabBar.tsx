@@ -1,6 +1,6 @@
 // 手機版底部的 5 個分頁（第六輪 §3.1）：🔍 探索、❤️ 想去（顯示數字）、🗓 行程、✨ AI、👤 我。固定在最下面，編輯中藏起來（MobileApp 決定）。
 
-import { useLiked } from '../components/Wishlist.tsx';
+import { useLiked } from '../shared/placeLists.ts';
 import { mobileStore, useMobile, type MobileTab } from './mobileStore.ts';
 
 const TABS: { tab: MobileTab; icon: string; label: string }[] = [

@@ -14,8 +14,9 @@ test('底部 5 個分頁，切換', async ({ page }) => {
   }
 });
 
-test('每個分頁都沒有橫向捲動（360px）', async ({ page }) => {
-  await page.setViewportSize({ width: 360, height: 800 });
+test('每個分頁都沒有橫向捲動（390px、360px）', async ({ page }, testInfo) => {
+  // 每個 project 用自己的尺寸：mobile 390×844、mobile-small 360×800
+  expect(page.viewportSize()!.width).toBe(testInfo.project.name === 'mobile-small' ? 360 : 390);
   await ready(page);
   for (const t of TABS) {
     await goTab(page, t);
@@ -113,4 +114,106 @@ test('詳情整頁：打開推一筆 history，瀏覽器上一頁關掉', async 
   await page.evaluate(() => (window as any).__thMobile.getState().openPlace('toba-aquarium', 'explore'));
   await page.getByTestId('m-detail-back').click();
   await expect(page.getByTestId('m-detail')).toHaveCount(0);
+});
+
+test('探索：兩欄圖片牆、沒有地圖、可以按 ❤️ 不開詳情', async ({ page }) => {
+  await ready(page);
+  await goTab(page, 'explore');
+  const items = page.getByTestId('m-feed-item');
+  await expect(items.nth(3)).toBeVisible();
+  // 兩欄（CSS columns 先排滿左欄再排右欄）：畫面最上面那一排有兩張、x 不同
+  const tops = await items.evaluateAll((els) => els.map((e) => e.getBoundingClientRect()).map((r) => ({ x: Math.round(r.x), y: Math.round(r.y), w: r.width })));
+  const xs = new Set(tops.map((t) => t.x));
+  expect(xs.size).toBe(2);
+  const firstRow = tops.filter((t) => t.y === tops[0].y);
+  expect(firstRow.length).toBe(2);
+  expect(firstRow[0].x).not.toBe(firstRow[1].x);
+  await expect(page.getByTestId('map')).toBeHidden();
+  // 找一張自己還沒按 ❤️ 的，按了票數 +1，不開詳情
+  const item = page.locator('[data-testid="m-feed-item"]:has([data-testid="m-feed-like"][aria-pressed="false"])').first();
+  const id = await item.getAttribute('data-id');
+  const tile = page.locator(`[data-testid="m-feed-item"][data-id="${id}"]`);
+  const count = async () => Number((await tile.getByTestId('m-feed-like-count').textContent()) || 0);
+  const before = await count();
+  await tile.getByTestId('m-feed-like').click();
+  await expect(tile.getByTestId('m-feed-like')).toHaveAttribute('aria-pressed', 'true');
+  expect(await count()).toBe(before + 1);
+  await expect(page.getByTestId('m-detail')).toHaveCount(0);
+  // 按鈕點的範圍至少 44px
+  expect((await tile.getByTestId('m-feed-like').boundingBox())!.height).toBeGreaterThanOrEqual(44);
+  // 點圖片本身才開詳情
+  await tile.click({ position: { x: 20, y: 60 } });
+  await expect(page.getByTestId('m-detail')).toHaveAttribute('data-id', id!);
+  expect((await mobileState(page)).detail?.from).toBe('explore');
+});
+
+test('探索：類型篩選', async ({ page }) => {
+  await ready(page);
+  await goTab(page, 'explore');
+  await page.getByTestId('m-feed-type-restaurant').click();
+  await expect(page.getByTestId('m-feed-type-restaurant')).toHaveAttribute('aria-pressed', 'true');
+  const types = await page.getByTestId('m-feed-item').evaluateAll((els) => els.map((e) => e.getAttribute('data-type')));
+  expect(types.length).toBeGreaterThan(0);
+  expect(new Set(types)).toEqual(new Set(['restaurant']));
+  // 15 人的快速篩選：只剩可容納 15 人的
+  await page.getByTestId('m-feed-quick-fit15:yes').click();
+  const n = await page.getByTestId('m-feed-item').count();
+  expect(n).toBeGreaterThan(0);
+  expect(n).toBeLessThan(types.length);
+  // ⚙ 篩選從底部面板打開
+  await page.getByTestId('m-feed-more').click();
+  await expect(page.getByTestId('m-feed-sheet')).toBeVisible();
+  await page.getByTestId('m-feed-sheet-done').click();
+  await expect(page.getByTestId('m-feed-sheet')).toHaveCount(0);
+});
+
+test('探索：往下滑時篩選收成一行，黏在最上面', async ({ page }) => {
+  await ready(page);
+  await goTab(page, 'explore');
+  await expect(page.getByTestId('m-feed-compact')).toHaveCount(0);
+  await page.locator('.m-page').evaluate((el) => el.scrollTo(0, 1200));
+  const compact = page.getByTestId('m-feed-compact');
+  await expect(compact).toBeVisible();
+  expect((await compact.boundingBox())!.y).toBeLessThan(4);
+  // 點了回到上面、篩選整個展開
+  await compact.click();
+  await expect(page.getByTestId('m-feed-compact')).toHaveCount(0);
+});
+
+test('想去：分段切換、加到某天', async ({ page }) => {
+  await ready(page);
+  await goTab(page, 'wish');
+  await expect(page.getByTestId('m-wish-item').first()).toBeVisible();
+  await page.getByTestId('m-wish-type-spot').click();
+  await expect(page.getByTestId('m-wish-type-spot')).toHaveAttribute('aria-pressed', 'true');
+  const types = await page.getByTestId('m-wish-item').evaluateAll((els) => els.map((e) => e.getAttribute('data-type')));
+  expect(types.length).toBeGreaterThan(0);
+  expect(new Set(types)).toEqual(new Set(['spot']));
+  const first = page.getByTestId('m-wish-item').first();
+  await first.getByTestId('add-to-day').click();
+  await expect(first.getByTestId('day-picker')).toBeVisible();
+  await expect(page.getByTestId('m-detail')).toHaveCount(0);
+  // 清單檢視：卡片還是有加到某天
+  await page.getByTestId('m-wish-view-list').click();
+  await expect(page.getByTestId('m-wish-item').first().getByTestId('add-to-day')).toBeVisible();
+  // 點卡片開詳情
+  const id = await page.getByTestId('m-wish-item').first().getAttribute('data-id');
+  await page.getByTestId('m-wish-item').first().locator('.m-wish-name').click();
+  await expect(page.getByTestId('m-detail')).toHaveAttribute('data-id', id!);
+  expect((await mobileState(page)).detail?.from).toBe('wish');
+});
+
+test('沒有照片的點顯示類型色塊', async ({ page }) => {
+  await ready(page);
+  await goTab(page, 'explore');
+  const id = (await page.getByTestId('m-feed-item').first().getAttribute('data-id'))!;
+  await page.evaluate((id) => {
+    const ds = (window as any).__th.dataStore;
+    const s = ds.getState();
+    const places = s.places.map((p: any) => (p.id === id ? { ...p, photos: [] } : p));
+    ds.setState({ places, byId: new Map(places.map((p: any) => [p.id, p])) });
+  }, id);
+  const fb = page.locator(`[data-testid="m-feed-item"][data-id="${id}"]`).getByTestId('m-thumb-fallback');
+  await expect(fb).toBeVisible();
+  await expect(fb).toHaveText(/^[景餐宿站點]$/);
 });

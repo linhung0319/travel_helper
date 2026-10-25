@@ -3,16 +3,17 @@
 // 加到某天的點變成那天的「候選」，放在行程分頁時間軸的下面，樣子和資料卡一樣（類型淡底色、類型色塊），
 // 用虛線框、沒有編號表示還沒排進去，下面一行「加的人」。編輯中左邊 ⠿、右邊「↑ 排進」（插在最順路的位置）和「⋯」選單（設計 §2.3），
 // 或拖到時間軸（卡片中間＝合併成那張卡片的備卡、卡片之間＝排在那裡；planDrag.ts）。備卡也可以拖回候選區。
-// 這天、整趟的留言（Comments）放在地圖區的視窗（MapPanel）。
+// 這天、整趟的留言（Comments）放在地圖區的視窗（MapPanel）。有人 ❤️ 的點、留言數的 hook 在 shared/placeLists.ts（手機版也用）。
 
-import { useMemo, useState } from 'react';
+import { useState } from 'react';
 import { appStore } from '../store.ts';
 import { commands } from '../appCommands.ts';
 import { shared } from '../appShared.ts';
 import { useApp, useData, useIsDesktop, useShared } from '../hooks.ts';
 import { closeDialog, openDialog } from '../uiStore.ts';
 import type { Candidate, Comment } from '../backend/types.ts';
-import { dayCandidates, likedPlaces } from '../lib/wishlist.ts';
+import { dayCandidates } from '../lib/wishlist.ts';
+import { useComments, useLiked } from '../shared/placeLists.ts';
 import { shortDayLabel } from '../lib/trip.ts';
 import { Avatar, AvatarStack, Dialog, MemberName, stamp } from './common.tsx';
 import { addPlaceToDay } from './addToDay.ts';
@@ -22,23 +23,7 @@ import type { DragSource } from '../lib/dropIntent.ts';
 import { CardType } from './Timeline.tsx';
 import { ActionMenu } from './ActionMenu.tsx';
 
-/** 有人 ❤️ 的點（想去分頁的內容）；地圖、分頁的數字也用這個 */
-export function useLiked() {
-  const votes = useShared((s) => s.votes);
-  return useMemo(() => likedPlaces(votes), [votes]);
-}
-
 const KIND_TAGS: Record<Comment['kind'], string | null> = { normal: null, planner: '規劃', decline: '不採用' };
-
-function useComments(target: string) {
-  const comments = useShared((s) => s.comments);
-  return useMemo(() => comments.filter((c) => c.target === target && !c.deletedAt).sort((a, b) => a.createdAt.localeCompare(b.createdAt)), [comments, target]);
-}
-
-/** 這個 target（地點、某一天 dayTarget、整趟 TRIP_TARGET）的留言數 */
-export function useCommentCount(target: string): number {
-  return useComments(target).length;
-}
 
 /** 留言：預設收起來（open＝true 時一開始就展開）；只有一層；自己的可以改、可以刪。編輯中留的標〔規劃〕 */
 export function Comments({ target, label = '留言', placeholder = '留言…', open: openAtStart = false }: { target: string; label?: string; placeholder?: string; open?: boolean }) {

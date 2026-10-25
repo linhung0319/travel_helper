@@ -28,7 +28,7 @@ import { LegRow } from './LegRow.tsx';
 import { ItemTags, LodgingTags, tagKindOf } from './ItemTags.tsx';
 import { ActionMenu } from './ActionMenu.tsx';
 import { groupTargetsOf } from './cardActionRun.ts';
-import { useLiked } from './Wishlist.tsx';
+import { useLiked } from '../shared/placeLists.ts';
 import { pulseMark } from '../lib/mapPulse.ts';
 
 /** 地圖上同一個編號（0、1、2…）；顏色是那個點的類型色 */

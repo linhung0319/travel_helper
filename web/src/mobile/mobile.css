@@ -285,3 +285,531 @@
   padding: 32px 16px;
   text-align: center;
 }
+
+/* ---------- 晶片、分段、下拉（探索、想去共用） ---------- */
+
+/* 一排晶片：太多時這一排自己左右滑，不撐出整頁的橫向捲動 */
+.m-chips {
+  display: flex;
+  gap: 6px;
+  padding: 4px 12px;
+  overflow-x: auto;
+  scrollbar-width: none;
+  min-width: 0;
+}
+
+.m-chips::-webkit-scrollbar {
+  display: none;
+}
+
+.m-chips.wrap {
+  flex-wrap: wrap;
+  overflow-x: visible;
+  padding: 0;
+}
+
+.m-chip {
+  flex: 0 0 auto;
+  min-height: var(--tap);
+  padding: 0 14px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background-color: var(--bg);
+  color: var(--fg);
+  font: inherit;
+  font-size: 0.9rem;
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+.m-chip.on {
+  background-color: var(--fg);
+  border-color: var(--fg);
+  color: #fff;
+}
+
+/* 下拉（地區、排序）：樣子和晶片一樣，右邊畫一個小三角 */
+.m-select {
+  max-width: 11em;
+  appearance: none;
+  -webkit-appearance: none;
+  padding-right: 28px;
+  background-image: linear-gradient(45deg, transparent 50%, currentColor 50%), linear-gradient(135deg, currentColor 50%, transparent 50%);
+  background-position: right 15px center, right 10px center;
+  background-size: 5px 5px;
+  background-repeat: no-repeat;
+  text-overflow: ellipsis;
+}
+
+.m-text-btn {
+  min-height: var(--tap);
+  padding: 0 10px;
+  border: 0;
+  background: none;
+  color: var(--accent);
+  font: inherit;
+  cursor: pointer;
+}
+
+.m-text-btn.strong {
+  font-weight: 700;
+}
+
+.m-segmented {
+  display: flex;
+  margin: 4px 12px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+.m-segmented button {
+  flex: 1 1 0;
+  min-width: 0;
+  min-height: var(--tap);
+  border: 0;
+  background: var(--bg);
+  color: var(--fg);
+  font: inherit;
+  font-size: 0.9rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  cursor: pointer;
+}
+
+.m-segmented button.on {
+  background: var(--fg);
+  color: #fff;
+  font-weight: 700;
+}
+
+.m-view-toggle {
+  display: inline-flex;
+  gap: 4px;
+  flex: 0 0 auto;
+}
+
+.m-view-toggle .m-chip {
+  min-width: var(--tap);
+  padding: 0 10px;
+}
+
+.m-empty {
+  padding: 24px 16px;
+  text-align: center;
+}
+
+/* ---------- 縮圖（Thumb）：照片或類型色塊加一個字 ---------- */
+
+.m-thumb {
+  display: block;
+  overflow: hidden;
+  background: var(--soft);
+}
+
+.m-thumb-square {
+  flex: 0 0 auto;
+  border-radius: 8px;
+}
+
+.m-thumb-square .photo {
+  width: 100%;
+  height: 100%;
+}
+
+/* 圖片牆：高度照原圖比例，太高或太扁的裁到 120～260px */
+.m-thumb-fill .photo {
+  width: 100%;
+  height: auto;
+  min-height: 120px;
+  max-height: 260px;
+  object-fit: cover;
+}
+
+.m-thumb-fill .photo-fallback {
+  height: 140px;
+}
+
+.m-thumb-fallback {
+  display: grid;
+  place-items: center;
+  color: #fff;
+  font-weight: 800;
+  font-size: 1.4rem;
+}
+
+.m-thumb-fill.m-thumb-fallback {
+  height: 140px;
+  font-size: 2.4rem;
+}
+
+/* 有照片時左上角的類型色塊（景、餐、宿） */
+.m-type-chip {
+  position: absolute;
+  top: 6px;
+  left: 6px;
+  display: grid;
+  place-items: center;
+  width: 24px;
+  height: 24px;
+  border-radius: 6px;
+  color: #fff;
+  font-size: 0.8rem;
+  font-weight: 800;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+}
+
+/* ---------- 探索：搜尋、篩選、兩欄圖片牆 ---------- */
+
+.m-feed {
+  position: relative;
+  min-width: 0;
+  padding-bottom: 16px;
+}
+
+.m-feed-filters {
+  padding-top: 8px;
+  min-width: 0;
+}
+
+.m-search {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0 12px 4px;
+  padding: 0 12px;
+  min-height: var(--tap);
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: var(--soft);
+}
+
+.m-search input {
+  flex: 1;
+  min-width: 0;
+  border: 0;
+  background: none;
+  font: inherit;
+  /* 16px 以上 iOS 才不會自動放大 */
+  font-size: 1rem;
+  outline: none;
+}
+
+/* 收成一行的摘要：高度 0 的 sticky 外框，摘要疊在清單上面，不推動清單 */
+.m-feed-sticky {
+  position: sticky;
+  top: 0;
+  z-index: 5;
+  height: 0;
+}
+
+.m-feed-compact {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-height: var(--tap);
+  padding: 0 14px;
+  border: 0;
+  border-bottom: 1px solid var(--line);
+  background: var(--bg);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+  color: var(--fg);
+  font: inherit;
+  font-size: 0.9rem;
+  text-align: left;
+  cursor: pointer;
+}
+
+.m-feed-compact .m-ellipsis {
+  flex: 1;
+}
+
+.m-feed-compact-count {
+  flex: 0 0 auto;
+  color: var(--muted);
+}
+
+/* Pinterest 式兩欄：CSS columns，一張不拆到兩欄 */
+.m-feed-wall {
+  columns: 2;
+  column-gap: 8px;
+  padding: 8px 8px 0;
+}
+
+.m-feed-item {
+  display: block;
+  break-inside: avoid;
+  margin-bottom: 8px;
+  min-width: 0;
+  border-radius: 12px;
+  overflow: hidden;
+  background: var(--soft);
+  cursor: pointer;
+}
+
+.m-feed-item.type-spot,
+.m-wish-item.type-spot {
+  background: var(--type-spot-bg);
+}
+
+.m-feed-item.type-restaurant,
+.m-wish-item.type-restaurant {
+  background: var(--type-restaurant-bg);
+}
+
+.m-feed-item.type-lodging,
+.m-wish-item.type-lodging {
+  background: var(--type-lodging-bg);
+}
+
+.m-feed-photo,
+.m-wish-photo {
+  position: relative;
+  display: block;
+}
+
+.m-feed-text {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  padding: 6px 8px 8px;
+  min-width: 0;
+}
+
+.m-feed-name {
+  display: block;
+  font-weight: 700;
+  font-size: 0.92rem;
+}
+
+.m-feed-name .tier,
+.m-wish-name .tier {
+  margin-right: 4px;
+  font-size: 0.75rem;
+}
+
+.m-feed-meta {
+  display: block;
+  color: var(--muted);
+  font-size: 0.78rem;
+}
+
+/* 圖片右下角的 🤍／❤️、👎：點的範圍 44px，白色圓底比點的範圍小 */
+.m-votes {
+  position: absolute;
+  right: 2px;
+  bottom: 2px;
+  display: flex;
+}
+
+.m-vote {
+  min-width: var(--tap);
+  height: var(--tap);
+  padding: 0 4px;
+  border: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1px;
+  font-size: 1.05rem;
+  cursor: pointer;
+  background: none;
+  position: relative;
+  isolation: isolate;
+}
+
+/* 看得到的白色膠囊（包住數字），比點的範圍小一圈 */
+.m-vote::before {
+  content: '';
+  position: absolute;
+  inset: 6px 2px;
+  z-index: -1;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.92);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+.m-vote-count {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--fg);
+}
+
+.m-vote-count:empty {
+  display: none;
+}
+
+/* ---------- ⚙ 篩選的底部面板 ---------- */
+
+.m-sheet-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  background: rgba(0, 0, 0, 0.35);
+  display: flex;
+  align-items: flex-end;
+}
+
+.m-sheet {
+  width: 100%;
+  max-height: 80dvh;
+  display: flex;
+  flex-direction: column;
+  border-radius: 16px 16px 0 0;
+  background: var(--bg);
+  padding-bottom: env(safe-area-inset-bottom);
+}
+
+.m-sheet-head {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 6px 8px 6px 16px;
+  border-bottom: 1px solid var(--line);
+}
+
+.m-sheet-head .m-h2 {
+  flex: 1;
+}
+
+.m-sheet-body {
+  overflow-y: auto;
+  padding: 8px 16px 16px;
+}
+
+.m-sheet-group + .m-sheet-group {
+  margin-top: 12px;
+}
+
+.m-sheet-h {
+  margin: 0 0 6px;
+  font-size: 0.9rem;
+  color: var(--muted);
+}
+
+/* ---------- 想去 ---------- */
+
+.m-wish {
+  min-width: 0;
+  padding-bottom: 16px;
+}
+
+.m-wish-title {
+  padding: 10px 16px 2px;
+}
+
+.m-wish-list {
+  list-style: none;
+  margin: 0;
+  padding: 8px 12px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.m-wish-item {
+  min-width: 0;
+  border-radius: 12px;
+  overflow: hidden;
+  background: var(--soft);
+  cursor: pointer;
+}
+
+.m-wish-item.view-list {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 10px;
+}
+
+.m-wish-photo .m-thumb-fill .photo {
+  max-height: 200px;
+}
+
+.m-wish-tags {
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  right: 100px;
+}
+
+.m-wish-text {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.m-wish-item.view-photo .m-wish-text {
+  padding: 8px 12px 4px;
+}
+
+.m-wish-name {
+  display: block;
+  width: 100%;
+  min-height: 32px;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: var(--fg);
+  font: inherit;
+  font-weight: 700;
+  text-align: left;
+  cursor: pointer;
+}
+
+.m-wish-ja,
+.m-wish-meta {
+  display: block;
+  color: var(--muted);
+}
+
+.m-wish-trip {
+  color: var(--accent);
+}
+
+.m-wish-summary {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.m-wish-list-tags .day-status {
+  box-shadow: none;
+  background: var(--info-bg);
+}
+
+.m-wish-foot {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: var(--tap);
+}
+
+.m-wish-foot .m-votes {
+  position: static;
+}
+
+.m-wish-comments {
+  color: var(--accent);
+}
+
+.m-wish-add .add-to-day {
+  padding: 0 0 6px;
+}
+
+.m-wish-add .day-picker-grid {
+  max-width: none;
+  grid-template-columns: repeat(7, minmax(0, 1fr));
+}
+
+.m-wish-add .day-picker-day {
+  min-height: var(--tap);
+}

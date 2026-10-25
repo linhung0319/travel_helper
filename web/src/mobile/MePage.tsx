@@ -6,7 +6,8 @@ import { TRIP_TARGET } from '../backend/types.ts';
 import { noteRows } from '../lib/reservations.ts';
 import { exportJson } from '../shared/exportJson.ts';
 import { MeMenu } from '../components/MeMenu.tsx';
-import { Comments, useCommentCount } from '../components/Wishlist.tsx';
+import { Comments } from '../components/Wishlist.tsx';
+import { useCommentCount } from '../shared/placeLists.ts';
 import { ReservationNotes } from '../components/Reservations.tsx';
 import { mobileStore, useMobile } from './mobileStore.ts';
 

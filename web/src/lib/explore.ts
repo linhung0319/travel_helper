@@ -1,7 +1,7 @@
-// 右側「探索」分頁的清單：符合篩選和搜尋的點，依推薦、評分或 ❤️ 排好；可以只列地圖畫面裡的。
-// 參考 Google Maps 的搜尋結果、食べログ的排行：一列一個點，點了地圖移過去。
+// 探索的清單：符合篩選和搜尋的點，依推薦、評分或 ❤️ 排好。電腦版可以只列地圖畫面裡的（bounds）；手機版不看範圍（bounds 給 null）。
+// 參考 Google Maps 的搜尋結果、食べログ的排行：一列一個點，點了地圖移過去。手機探索自己的篩選（Feed）也在這裡換成 Filter。
 
-import { matchesFilter, matchesQuery, type Filter } from './filter.ts';
+import { EMPTY_FILTER, matchesFilter, matchesQuery, type Filter, type FilterKey } from './filter.ts';
 import { inBbox } from './areas.ts';
 import { wallPlaces } from './visual.ts';
 import type { Bbox, Place, PlaceType } from '../data/types.ts';
@@ -44,4 +44,49 @@ export function typeCounts(places: Place[], filter: Filter, bounds: Bbox | null,
     if (matchesFilter(p, { ...filter, types: [] }) && matchesQuery(p, query)) out[p.type] += 1;
   }
   return out;
+}
+
+/**
+ * 手機探索的篩選（mobileStore 的 feed，第六輪 §3.2）：手機自己一份，不看地圖範圍、不動 store 的 filter。
+ * quick 是快速篩選和 ⚙ 篩選選的條件，寫成 "欄位:值"（例如 "fit15:yes"），欄位是 Filter 的欄位。
+ */
+export interface Feed {
+  type: 'all' | PlaceType;
+  area: string | null;
+  quick: string[];
+  sort: ExploreSort;
+  query: string;
+}
+
+export const EMPTY_FEED: Feed = { type: 'all', area: null, quick: [], sort: 'recommend', query: '' };
+
+/** feed.quick 裡的一個條件 */
+export const feedToken = (key: FilterKey, value: string) => `${key}:${value}`;
+
+/**
+ * 快速篩選的晶片（對照 FilterPanel 現有的條件）：👥 15 人＝group.fit15 是 yes。
+ * 設計提的「👴 長輩可」「☔ 室內」篩選裡沒有對應的欄位，先不做；另外放網頁版常用的 ❤️ 大家喜歡的、S 級。
+ */
+export const FEED_QUICK: { token: string; label: string }[] = [
+  { token: feedToken('fit15', 'yes'), label: '👥 15 人' },
+  { token: feedToken('votes', 'popular'), label: '❤️ 大家喜歡的' },
+  { token: feedToken('tiers', 'S'), label: 'S 級' },
+];
+
+/** 手機探索的篩選換成 Filter（explorePlaces 用）；認不得的條件略過 */
+export function feedFilter(feed: Pick<Feed, 'type' | 'area' | 'quick'>): Filter {
+  const f: Filter = { ...EMPTY_FILTER, types: feed.type === 'all' ? [] : [feed.type], areas: feed.area ? [feed.area] : [] };
+  const lists = f as unknown as Record<string, string[]>;
+  for (const t of feed.quick) {
+    const i = t.indexOf(':');
+    const key = t.slice(0, i);
+    if (i <= 0 || key === 'types' || key === 'areas' || !(key in EMPTY_FILTER)) continue;
+    lists[key] = [...lists[key], t.slice(i + 1)];
+  }
+  return f;
+}
+
+/** 想去的篩選：一次一類，加上地區 */
+export function wishFilter(type: ExploreType, area: string | null): Filter {
+  return { ...EMPTY_FILTER, types: [type], areas: area ? [area] : [] };
 }

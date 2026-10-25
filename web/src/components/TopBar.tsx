@@ -5,7 +5,7 @@ import { dayTarget, TRIP_TARGET } from '../backend/types.ts';
 import { noteRows } from '../lib/reservations.ts';
 import { exportJson } from '../shared/exportJson.ts';
 import { openMapPanel } from '../uiStore.ts';
-import { useCommentCount } from './Wishlist.tsx';
+import { useCommentCount } from '../shared/placeLists.ts';
 import { filterChips, matchesFilter, matchesQuery } from '../lib/filter.ts';
 import { shortDayLabel, tripDates, weekdayZh, isRedDay } from '../lib/trip.ts';
 import { ConflictBar, EditingStrip } from './Planning.tsx';

@@ -45,7 +45,7 @@ import {
   timelineRows,
   waitNote,
 } from '../src/lib/planView.ts';
-import { explorePlaces, typeCounts } from '../src/lib/explore.ts';
+import { EMPTY_FEED, explorePlaces, feedFilter, typeCounts, wishFilter } from '../src/lib/explore.ts';
 import type { DayPlan, TimelineEntry } from '@travel-helper/engine';
 import type { Area, Place, StationTimetable } from '../src/data/types.ts';
 
@@ -595,6 +595,26 @@ test('explorePlaces：不列車站；依評分、❤️ 排序時同分保留推
   assert.deepEqual(ids(explorePlaces(ps, EMPTY_FILTER, null, 'likes', (id) => (id === 'r3' ? 2 : 0))), ['r3', 'r1', 'r2']);
   assert.deepEqual(ids(explorePlaces(ps, EMPTY_FILTER, [136.7, 34.3, 136.9, 34.5], 'recommend', () => 0)), ['r1', 'r2']);
   assert.deepEqual(typeCounts(ps, { ...EMPTY_FILTER, types: ['lodging'] }, null), { restaurant: 3, lodging: 0, spot: 0 });
+});
+
+test('feedFilter：手機探索的類型、地區、快速篩選換成 Filter；認不得的條件略過；不看地圖範圍', () => {
+  assert.deepEqual(feedFilter(EMPTY_FEED), EMPTY_FILTER);
+  assert.deepEqual(feedFilter({ type: 'restaurant', area: 'toba', quick: ['fit15:yes', 'tiers:S', 'tiers:A', 'votes:popular', 'regions:toba-x'] }), {
+    ...EMPTY_FILTER,
+    types: ['restaurant'],
+    areas: ['toba'],
+    fit15: ['yes'],
+    tiers: ['S', 'A'],
+    votes: ['popular'],
+    regions: ['toba-x'],
+  });
+  // 類型、地區只看 type、area；壞掉的條件略過
+  assert.deepEqual(feedFilter({ type: 'all', area: null, quick: ['types:spot', 'areas:ise', 'nope:1', 'bad', ':x'] }), EMPTY_FILTER);
+  assert.deepEqual(wishFilter('spot', null), { ...EMPTY_FILTER, types: ['spot'] });
+  assert.deepEqual(wishFilter('lodging', 'ise'), { ...EMPTY_FILTER, types: ['lodging'], areas: ['ise'] });
+  // 全部類型：車站照樣不列；bounds 給 null＝不看範圍
+  const ps = [place('s1', { type: 'station' }), place('a', { type: 'spot', coords: [140, 40] }), place('b', { type: 'restaurant' })];
+  assert.deepEqual(explorePlaces(ps, feedFilter(EMPTY_FEED), null, 'recommend', () => 0).map((p) => p.id).sort(), ['a', 'b']);
 });
 
 test('matchesQuery：中文、日文、假名、英文都找得到；不分大小寫、全形半形；空字串都符合', () => {

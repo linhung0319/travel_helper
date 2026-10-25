@@ -6,21 +6,21 @@
 // 探索的類型寫在篩選裡（地圖跟著變淡），回到「行程」時拿掉（showItinerary）。
 // 「❤️ 想去」分頁是同一個元件（source="wish"）：只列有人 ❤️ 的點，卡片底下多了留言（Wishlist.tsx 的 WishExtras）；只有想去的卡片有「📅 加到某天」（探索只有 ❤️，流程是先 ❤️ 再到想去加到某天）。
 // 卡片照片右上角是 ❤️／👎 數（CardVotes），左上角是類型和行程狀態（候選、已排）的 tag。
+// 清單的計算（篩選、排序、每一類的數量、想去的範圍）在 shared/placeLists.ts 的 usePlaceList，手機版也用。
 
-import { useEffect, useMemo, useRef, useState, type ReactNode } from 'react';
+import { useEffect, useRef, useState, type ReactNode } from 'react';
 import { appStore } from '../store.ts';
 import { dataStore } from '../dataStore.ts';
 import { shared } from '../appShared.ts';
 import { likedPlaces } from '../lib/wishlist.ts';
 import { commands } from '../appCommands.ts';
-import { useApp, useData, useShared } from '../hooks.ts';
+import { useApp, useData } from '../hooks.ts';
 import { displayName } from '../data/normalize.ts';
 import { CONTEXT_LABELS, EMPTY_FILTER, TYPE_LABELS, VOTE_FILTER_LABELS, filterChips, isFilterEmpty, matchesFilter, matchesQuery, type FilterKey } from '../lib/filter.ts';
 import { SearchBox } from './SearchBox.tsx';
 import { AreaFilter } from './AreaFilter.tsx';
-import { EXPLORE_SORTS, EXPLORE_SORT_LABELS, EXPLORE_TYPES, explorePlaces, typeCounts, type ExploreSort, type ExploreType } from '../lib/explore.ts';
+import { EXPLORE_SORTS, EXPLORE_SORT_LABELS, EXPLORE_TYPES, type ExploreSort, type ExploreType } from '../lib/explore.ts';
 import { placeBadges } from '../lib/badges.ts';
-import { voteCounts } from '../sharedStore.ts';
 import { shortDayLabel } from '../lib/trip.ts';
 import { TYPE_COLORS, TYPE_ICONS } from '../lib/typeStyle.ts';
 import type { Place } from '../data/types.ts';
@@ -31,7 +31,8 @@ import { CardVotes } from './Votes.tsx';
 import { DayStatusTag } from './DayPicker.tsx';
 import { FilterPanel } from './FilterPanel.tsx';
 import { dragPlaceProps } from './askAi.ts';
-import { useLiked, WishExtras } from './Wishlist.tsx';
+import { WishExtras } from './Wishlist.tsx';
+import { usePlaceList } from '../shared/placeLists.ts';
 
 export type ListSource = 'explore' | 'wish';
 
@@ -195,14 +196,10 @@ export function ExplorePanel({ source = 'explore' }: { source?: ListSource }) {
   const bounds = useApp((s) => s.view?.bounds ?? null);
   const hoveredId = useApp((s) => s.hoveredId);
   const target = useApp((s) => s.exploreTarget);
-  const allPlaces = useData((s) => s.places);
   const areas = useData((s) => s.areas);
-  const votes = useShared((s) => s.votes);
   const [view, setView] = useState<View>(loadView);
   // 想去預設依 ❤️ 多排
   const [sort, setSort] = useState<ExploreSort>(source === 'wish' ? 'likes' : 'recommend');
-  const liked = useLiked();
-  const pool = useMemo(() => (source === 'wish' ? allPlaces.filter((p) => liked.has(p.id)) : allPlaces), [source, allPlaces, liked]);
   const [inView, setInView] = useState(false);
   const [more, setMore] = useState(false);
   const ref = useRef<HTMLOListElement>(null);
@@ -234,12 +231,8 @@ export function ExplorePanel({ source = 'explore' }: { source?: ListSource }) {
     if (filter.types.length !== 1 || filter.types[0] !== type) appStore.getState().setFilter({ types: [type] });
   }, [filter.types, type]);
 
-  const likes = useMemo(() => {
-    const c = voteCounts(votes);
-    return (id: string) => c.get(id)?.like ?? 0;
-  }, [votes]);
-  const list = useMemo(() => explorePlaces(pool, filter, inView ? bounds : null, sort, likes, query), [pool, filter, inView, bounds, sort, likes, query]);
-  const counts = useMemo(() => typeCounts(pool, filter, inView ? bounds : null, query), [pool, filter, inView, bounds, query]);
+  // 清單的計算在 shared/placeLists.ts（手機版也用）
+  const { pool, list, counts } = usePlaceList(source, filter, query, sort, inView ? bounds : null);
 
   // 地圖上點了某個點：清單直接跳到那張卡片（清單可能很長，平滑捲動會在半路被照片載入打斷）
   useEffect(() => {

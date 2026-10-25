@@ -6,7 +6,7 @@ import { useApp, useData } from '../hooks.ts';
 import { DayPanel } from './DayPanel.tsx';
 import { DetailPanel } from './DetailPanel.tsx';
 import { ExplorePanel, showItinerary } from './Explore.tsx';
-import { useLiked } from './Wishlist.tsx';
+import { useLiked } from '../shared/placeLists.ts';
 
 /** 從詳情回到探索或想去：清單重新出現，捲回剛剛那張卡片 */
 function back(id: string) {
