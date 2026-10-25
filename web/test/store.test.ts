@@ -1,6 +1,6 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { createAppStore, initialState } from '../src/store.ts';
+import { createAppStore } from '../src/store.ts';
 import { EMPTY_FILTER } from '../src/lib/filter.ts';
 
 test('store 的初始狀態', () => {
@@ -10,7 +10,6 @@ test('store 的初始狀態', () => {
   assert.equal(s.mode, 'map');
   assert.equal(s.planning, false);
   assert.deepEqual(s.selection, []);
-  assert.deepEqual(s.sheet, initialState.sheet);
 });
 
 test('篩選：toggle 加上、再 toggle 取消；clearFilter 全部清掉', () => {
@@ -25,19 +24,14 @@ test('篩選：toggle 加上、再 toggle 取消；clearFilter 全部清掉', ()
   assert.deepEqual(store.getState().filter, EMPTY_FILTER);
 });
 
-test('開詳情：小卡片收起、收起的面板拉到一半；關詳情不動面板', () => {
+test('開詳情：小卡片收起；關詳情', () => {
   const store = createAppStore();
   store.getState().openPreview('a');
   store.getState().openDetail('a');
   assert.equal(store.getState().previewId, null);
   assert.equal(store.getState().detailId, 'a');
-  assert.equal(store.getState().sheet.snap, 'half');
-  store.getState().setSheet({ snap: 'full' });
-  store.getState().openDetail('b');
-  assert.equal(store.getState().sheet.snap, 'full');
   store.getState().closeDetail();
   assert.equal(store.getState().detailId, null);
-  assert.equal(store.getState().sheet.snap, 'full');
 });
 
 test('選取（問 AI）不重複；移動地圖的請求每次 seq 加 1', () => {
@@ -78,14 +72,9 @@ test('tripFocusDay：整趟點了某天的路線；換天清掉', () => {
 
 test('dayPanelShowing：時間軸面板不在畫面上時才要顯示精簡的編輯中條', async () => {
   const { dayPanelShowing } = await import('../src/lib/editing.ts');
-  const s = { mode: 'map' as const, detailId: null, sheet: { tab: 'day', snap: 'half' } };
-  assert.equal(dayPanelShowing(s, true), true);
-  assert.equal(dayPanelShowing(s, false), true);
-  assert.equal(dayPanelShowing({ ...s, mode: 'explore' }, true), false);
-  assert.equal(dayPanelShowing({ ...s, sheet: { tab: 'wish', snap: 'half' } }, false), false);
-  // 手機：行程分頁但面板收在 peek，藍條看不到，要顯示精簡條；電腦版不看 snap
-  assert.equal(dayPanelShowing({ ...s, sheet: { tab: 'day', snap: 'peek' } }, false), false);
-  assert.equal(dayPanelShowing({ ...s, sheet: { tab: 'day', snap: 'full' } }, false), true);
-  assert.equal(dayPanelShowing({ ...s, sheet: { tab: 'day', snap: 'peek' } }, true), true);
-  assert.equal(dayPanelShowing({ ...s, detailId: 'x' }, true), false);
+  const s = { mode: 'map' as const, detailId: null };
+  assert.equal(dayPanelShowing(s), true);
+  assert.equal(dayPanelShowing({ ...s, mode: 'explore' }), false);
+  assert.equal(dayPanelShowing({ ...s, mode: 'wish' }), false);
+  assert.equal(dayPanelShowing({ ...s, detailId: 'x' }), false);
 });

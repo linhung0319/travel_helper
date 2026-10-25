@@ -3,7 +3,6 @@
 // 下面是摘要列（⚠ 點了展開提醒）、比例橫條（時間條）、時間軸（資料卡是類型的淡底色，起點、終點的住宿也是卡片）、這天的候選（想去「加到某天」的點）。💬 討論、📋 預約、⬇ 下載在地圖區右上角（TopBar.tsx 的 AccountBar，和帳號頭像一起）。
 
 import { useState } from 'react';
-import { appStore } from '../store.ts';
 import { commands } from '../appCommands.ts';
 import { useApp, useData, usePlan, useShared, useUi } from '../hooks.ts';
 import { dayPlanOf } from '../planStore.ts';
@@ -72,10 +71,9 @@ function Overview() {
   );
 }
 
-/** 去想去分頁（手機是下方面板的想去分頁） */
+/** 去想去分頁 */
 function goWish() {
   showList('wish');
-  appStore.getState().setSheet({ tab: 'wish' });
 }
 
 /** 某一天最上面一列：← 整趟、日期 ‹ ›、問 AI（淡的文字按鈕）、✏️ 編輯這天（藍色實心） */

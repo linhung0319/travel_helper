@@ -1,4 +1,5 @@
-/* 地圖網站 v1（T11）。手機優先；900px 以上換成電腦版（hooks.ts 的 DESKTOP_QUERY） */
+/* 地圖網站 v1（T11）的網頁版（900px 以上，hooks.ts 的 DESKTOP_QUERY）。第六輪起手機版的樣式在 mobile/mobile.css（class 用 m- 開頭）；
+   這裡沒有手機才用的規則，只有兩邊共用的元件（對話框、彈窗、照片等）的基本樣式。 */
 
 :root {
   --red-day: #d32f2f;
@@ -84,18 +85,6 @@ a {
   height: 100dvh;
 }
 
-.layout.mobile {
-  flex-direction: column;
-}
-
-.stage {
-  position: relative;
-  flex: 1;
-  min-height: 0;
-  display: flex;
-  flex-direction: column;
-}
-
 .map-wrap {
   position: relative;
   flex: 1;
@@ -105,16 +94,6 @@ a {
 .map {
   position: absolute;
   inset: 0;
-}
-
-/* 手機的探索模式：地圖縮成上方一小塊，下面是圖片牆 */
-.layout.mobile .stage.mode-explore .map-wrap {
-  flex: 0 0 34%;
-}
-
-.layout.mobile .stage.mode-explore .explore-wall {
-  flex: 1;
-  padding-bottom: 72px; /* 讓出收起來的面板 */
 }
 
 /* 電腦版 */
@@ -131,24 +110,6 @@ a {
 }
 
 /* ---------- 上方列 ---------- */
-
-.top-bar {
-  position: relative;
-  z-index: 10;
-  background: var(--bg);
-  border-bottom: 1px solid var(--line);
-  padding: 6px 8px;
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-}
-
-.top-row {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  min-width: 0;
-}
 
 .day-tabs {
   display: flex;
@@ -192,22 +153,6 @@ a {
 
 .day-tab[aria-selected='true'] .day-tab-wd {
   color: #d0d7de;
-}
-
-.toggle {
-  flex: 0 0 auto;
-  min-height: 40px;
-  padding: 0 12px;
-  border: 1px solid var(--line);
-  border-radius: 999px;
-  background: var(--bg);
-  white-space: nowrap;
-}
-
-.toggle.on {
-  background: var(--info-bg);
-  border-color: var(--accent);
-  color: var(--accent);
 }
 
 .segmented {
@@ -453,7 +398,6 @@ a {
  *   18 .timetable-pop（班次表）
  *   19 .preview-card.anchored（地圖彈窗，第五輪 §10：永遠在最上層，靠近上緣時蓋在日期列上）
  *   --z-popover（110）.popover（標籤彈窗、⋯ 選單；portal 到 body，比上面全部都高）
- * 手機的拉起面板（.sheet 8、.map-panel／.timetable-pop 50）不算：彈窗在手機是固定在下方的 docked，留在面板下面。
  */
 .preview-card {
   position: absolute;
@@ -626,85 +570,6 @@ a {
   color: #fff;
 }
 
-/* ---------- 手機的拉起面板 ---------- */
-
-.sheet {
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  z-index: 8;
-  background: var(--bg);
-  border-radius: 16px 16px 0 0;
-  box-shadow: 0 -2px 14px rgba(0, 0, 0, 0.18);
-  display: flex;
-  flex-direction: column;
-  transition: height 0.2s ease;
-  padding-bottom: env(safe-area-inset-bottom);
-}
-
-.sheet.dragging {
-  transition: none;
-}
-
-.sheet.snap-peek {
-  height: 64px;
-}
-
-.sheet.snap-half {
-  height: 50%;
-}
-
-.sheet.snap-full {
-  height: 100%;
-  border-radius: 0;
-}
-
-.sheet-handle {
-  flex: 0 0 22px;
-  display: grid;
-  place-items: center;
-  touch-action: none;
-  cursor: grab;
-}
-
-.grip {
-  width: 44px;
-  height: 5px;
-  border-radius: 3px;
-  background: var(--line);
-}
-
-.sheet-tabs {
-  display: flex;
-  gap: 4px;
-  padding: 0 8px;
-}
-
-.sheet-tabs button {
-  flex: 1;
-  border: 0;
-  background: none;
-  min-height: 38px;
-  border-bottom: 2px solid transparent;
-}
-
-.sheet-tabs button[aria-selected='true'] {
-  border-bottom-color: var(--fg);
-  font-weight: 600;
-}
-
-.sheet-body {
-  flex: 1;
-  overflow-y: auto;
-  min-height: 0;
-  overscroll-behavior: contain;
-}
-
-.sheet.snap-peek .sheet-body {
-  display: none;
-}
-
 /* ---------- 聊天、這一天（先放位置） ---------- */
 
 .chat-panel {
@@ -761,12 +626,6 @@ a {
   align-items: center;
   gap: 12px;
   padding: 6px 0 10px;
-}
-
-/* 手機的拉起面板裡不黏在上面：sticky 加上面板的高度動畫，Chrome 會在地圖上畫出一塊白色殘影
-   （面板上方的分頁一直看得到，可以離開詳情） */
-.layout.mobile .detail-head {
-  position: static;
 }
 
 .detail-title {
@@ -1048,97 +907,6 @@ dl {
   color: var(--tier-s);
   border-bottom: 2px solid var(--tier-s);
   padding: 0;
-}
-
-/* ---------- 探索模式（圖片牆） ---------- */
-
-.explore-wall {
-  overflow-y: auto;
-  min-height: 0;
-  padding: 6px 8px 12px;
-  background: var(--soft);
-}
-
-.wall-count {
-  margin: 2px 2px 6px;
-}
-
-/* 不規則排列：S 大一倍、A 正常、B 小張（interaction-design §7） */
-.wall-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  grid-auto-rows: 52px;
-  grid-auto-flow: dense;
-  gap: 6px;
-}
-
-@media (min-width: 1200px) {
-  .wall-grid {
-    grid-template-columns: repeat(3, 1fr);
-  }
-}
-
-.wall-item {
-  position: relative;
-  border: 0;
-  padding: 0;
-  border-radius: 10px;
-  overflow: hidden;
-  background: #fff;
-  grid-row: span 3;
-}
-
-.wall-item.size-S {
-  grid-column: span 2;
-  grid-row: span 5;
-}
-
-.wall-item.size-B {
-  grid-row: span 2;
-}
-
-.wall-item.dim {
-  opacity: 0.35;
-}
-
-.wall-item.flash {
-  outline: 4px solid #ffd33d;
-  outline-offset: -4px;
-}
-
-.wall-caption {
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  padding: 16px 8px 6px;
-  background: linear-gradient(transparent, rgba(0, 0, 0, 0.65));
-  color: #fff;
-  text-align: left;
-  display: flex;
-  align-items: center;
-  font-size: 0.9rem;
-}
-
-.wall-name {
-  flex: 1;
-  min-width: 0;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-}
-
-.wall-order {
-  font-weight: 700;
-}
-
-/* 地圖控制項不要被上方列、面板擋住 */
-.maplibregl-ctrl-bottom-left {
-  margin-bottom: 70px;
-}
-
-.layout.desktop .maplibregl-ctrl-bottom-left {
-  margin-bottom: 0;
 }
 
 /* ---------- 地圖指令（T12）：提議、比較、標示、路線 ---------- */
@@ -1509,15 +1277,6 @@ dl {
   width: 28px;
   height: 28px;
   border-radius: 999px;
-}
-
-/* 手機上只放頭像 */
-.layout.mobile .me-name {
-  display: none;
-}
-
-.layout.mobile .me-button {
-  padding: 0 4px;
 }
 
 .dev-menu {
@@ -2662,28 +2421,6 @@ button.edited {
   opacity: 0.92;
 }
 
-.layout.mobile .desktop-only {
-  display: none;
-}
-
-.layout.mobile .planning-bar {
-  flex-wrap: wrap;
-  font-size: 0.9rem;
-  padding-left: 8px;
-}
-
-.layout.mobile .planning-bar-status {
-  display: none;
-}
-
-.layout.mobile .planning-bar-actions {
-  flex-wrap: nowrap;
-}
-
-.layout.mobile .planning-bar .text-button {
-  padding: 2px 4px;
-}
-
 /* ======================================================================
    電腦版三欄（T15m 版面調整，參考 puma.taipei/heart-island）：
    左聊天室、中地圖（日期等浮在上方）、右側行程／探索／詳情共用一欄
@@ -2761,10 +2498,6 @@ button.edited {
 .me-float {
   margin-left: auto;
   flex: 0 0 auto;
-}
-
-.me-float .toggle {
-  min-height: 38px;
 }
 
 .map-top .planning-strip,
@@ -3212,7 +2945,7 @@ button.edited {
   overflow-x: auto;
 }
 
-/* 電腦版：捲下去分頁還在上面（手機的拉起面板不黏，見 .layout.mobile .detail-head 的說明） */
+/* 電腦版：捲下去分頁還在上面 */
 .side-detail .detail-tabs {
   position: sticky;
   top: 0;
@@ -3571,42 +3304,6 @@ body.dragging-place [data-drop-ai].drop-over {
   cursor: pointer;
 }
 
-/* 手機：照片上的「＋ AI」、聊天分頁上帶了幾個點 */
-.wall-ask {
-  position: absolute;
-  top: 6px;
-  left: 6px;
-  border-radius: 999px;
-  background: rgba(255, 255, 255, 0.9);
-  color: var(--accent);
-  font-size: 0.75rem;
-  font-weight: 700;
-  padding: 0 10px;
-  min-height: 30px;
-  display: grid;
-  place-items: center;
-  cursor: pointer;
-}
-
-.wall-ask.on {
-  background: var(--accent);
-  color: #fff;
-}
-
-.tab-count {
-  display: inline-grid;
-  place-items: center;
-  min-width: 1.4em;
-  height: 1.4em;
-  margin-left: 4px;
-  padding: 0 4px;
-  border-radius: 999px;
-  background: var(--accent);
-  color: #fff;
-  font-size: 0.75rem;
-  font-weight: 700;
-}
-
 /* 搜尋欄（探索、想去清單） */
 .search-box { position: relative; display: flex; align-items: center; margin: 0 0 8px; }
 .search-box input { flex: 1; min-width: 0; padding: 7px 30px 7px 32px; border: 1px solid var(--line); border-radius: 999px; font: inherit; background: var(--bg); color: inherit; }
@@ -3954,8 +3651,7 @@ body.dragging-plan .tl-row.tl-card.drop-merge {
 }
 
 /* 地圖區的討論、預約彈窗（.map-panel）：電腦版浮在地圖上，左右留 --panel-gap-x、下面留 --panel-gap-y；
-   上緣在浮動列（MapTopBar 量出的 --bar-bottom，規劃列、篩選 chips 會讓它變高）下方 8px，至少留 --panel-gap-y。
-   手機從下方拉起 80dvh（不支援 dvh 的退回 80vh）。變數放在 .map-column 方便調 */
+   上緣在浮動列（MapTopBar 量出的 --bar-bottom，規劃列、篩選 chips 會讓它變高）下方 8px，至少留 --panel-gap-y。變數放在 .map-column 方便調 */
 .map-column {
   --panel-gap-x: 15%;
   --panel-gap-y: 48px;
@@ -3975,22 +3671,6 @@ body.dragging-plan .tl-row.tl-card.drop-merge {
   gap: 8px;
   padding: 12px;
   min-height: 0;
-}
-
-.layout.mobile .map-panel {
-  position: fixed;
-  inset: auto 0 0 0;
-  height: 80vh;
-  height: 80dvh;
-  border-radius: 14px 14px 0 0;
-  z-index: 50;
-  animation: map-panel-in 0.18s ease-out;
-}
-
-@keyframes map-panel-in {
-  from {
-    transform: translateY(100%);
-  }
 }
 
 .map-panel-head {
@@ -4016,7 +3696,7 @@ body.dragging-plan .tl-row.tl-card.drop-merge {
 }
 
 /* 地圖那側的班次表（第五輪 §4，TimetablePopup）：電腦版浮在地圖區左上，上緣在浮動列下方，
-   z-index 高過日期列（.map-top 16）；手機和討論、預約一樣從下方拉起，只是高度照內容（最多 70dvh） */
+   z-index 高過日期列（.map-top 16） */
 .timetable-pop {
   position: absolute;
   top: calc(max(var(--panel-gap-y), var(--bar-bottom)) + 8px);
@@ -4030,17 +3710,6 @@ body.dragging-plan .tl-row.tl-card.drop-merge {
   border-radius: 12px;
   box-shadow: 0 6px 24px rgba(0, 0, 0, 0.28);
   min-height: 0;
-}
-
-.layout.mobile .timetable-pop {
-  position: fixed;
-  inset: auto 0 0 0;
-  width: auto;
-  max-height: 70vh;
-  max-height: 70dvh;
-  border-radius: 14px 14px 0 0;
-  z-index: 50;
-  animation: map-panel-in 0.18s ease-out;
 }
 
 .timetable-head {
@@ -4708,26 +4377,6 @@ button.leg-ride-more {
 
 .day-picker-mark {
   font-size: 0.7rem;
-}
-
-/* 手機圖片牆：左上 AI、下面是行程狀態；右上 ❤️／👎、下面是加到某天 */
-.wall-tags {
-  position: absolute;
-  left: 6px;
-  top: 42px;
-  right: 50px;
-  z-index: 1;
-  overflow: hidden;
-}
-
-.wall-tags .day-status-tags {
-  flex-wrap: nowrap;
-}
-
-.wall-tags .day-status {
-  white-space: nowrap;
-  font-size: 0.72rem;
-  padding: 1px 6px;
 }
 
 /* ---------- 時間軸的資料卡：類型的淡底色、起終點和造訪同樣的卡片、合併卡片的疊層（T15m 第四輪） ---------- */

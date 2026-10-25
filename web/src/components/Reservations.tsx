@@ -1,5 +1,5 @@
 // 預約筆記（PLAN T15m 第三輪 §5）：每晚的住宿，加上行程裡接受訂位的餐廳、體驗；每列記「未訂位／已訂位／不訂位」和一行備註，
-// 大家共用。放在地圖區的視窗（MapPanel）裡；時間軸的 tag（ReservationTag）點了會打開這裡並捲到那一列。
+// 大家共用。網頁版放在地圖區的視窗（MapPanel）裡，手機版在「我」的整頁預約（mobile/MePage.tsx）；時間軸的 tag（ReservationTag）點了會打開這裡並捲到那一列。
 
 import { useEffect, useRef, useState } from 'react';
 import type { ReservationStatus } from '../backend/types.ts';

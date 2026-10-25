@@ -65,9 +65,7 @@ export function PlanningConfirmDialog() {
   );
 }
 
-// 面板上的藍條有沒有捲出畫面（IntersectionObserver 看的）。藍條不用 sticky：手機的拉起面板裡
-// sticky 加上面板高度動畫，Chrome 會在地圖上畫出白色殘影（見 styles.css 的 .layout.mobile .detail-head），
-// 所以改成藍條捲出去（或面板收在最低被裁掉）時，地圖上方顯示精簡的「編輯中・完成」條。
+// 面板上的藍條有沒有捲出畫面（IntersectionObserver 看的）。藍條捲出去時，地圖上方顯示精簡的「編輯中・完成」條。
 let barOut = false;
 const barListeners = new Set<() => void>();
 function setBarOut(v: boolean) {
@@ -81,10 +79,10 @@ function subscribeBarOut(l: () => void) {
 }
 const getBarOut = () => barOut;
 
-/** 編輯中但時間軸面板不在畫面上（探索、想去、聊天、詳情），或面板上的藍條捲出畫面：浮在地圖上方的精簡藍條，只有「完成」 */
-export function EditingStrip({ desktop }: { desktop: boolean }) {
+/** 編輯中但時間軸面板不在畫面上（探索、想去、詳情），或面板上的藍條捲出畫面：浮在地圖上方的精簡藍條，只有「完成」 */
+export function EditingStrip() {
   const out = useSyncExternalStore(subscribeBarOut, getBarOut);
-  const show = useApp((s) => s.planning && (out || !dayPanelShowing(s, desktop)));
+  const show = useApp((s) => s.planning && (out || !dayPanelShowing(s)));
   if (!show) return null;
   return (
     <div className="planning-bar planning-strip" data-testid="planning-strip">

@@ -70,6 +70,14 @@ function featureCollection(places: Place[], marks: Map<string, string>): Feature
 /** 可以點的圖層（點的時候都要查） */
 const PICK_LAYERS = ['places-circle', 'places-icon', 'places-mark', 'places-pin'];
 
+/** 畫面上那一張地圖（整個網站只有一張） */
+let currentMap: MapLibreMap | null = null;
+
+/** 地圖重新算大小：手機版從別的分頁切回行程時呼叫（藏起來的時候版面可能變過） */
+export function resizeMap() {
+  currentMap?.resize();
+}
+
 export function MapView() {
   const containerRef = useRef<HTMLDivElement>(null);
   const mapRef = useRef<MapLibreMap | null>(null);
@@ -160,6 +168,7 @@ export function MapView() {
     });
     map.touchZoomRotate.disableRotation();
     mapRef.current = map;
+    currentMap = map;
     map.addControl(new NavigationControl({ showCompass: false }), 'top-right');
     map.addControl(new ScaleControl({ unit: 'metric' }), 'bottom-left');
 
@@ -412,6 +421,7 @@ export function MapView() {
       badgesRef.current.clear();
       map.remove();
       mapRef.current = null;
+      if (currentMap === map) currentMap = null;
     };
   }, []);
 

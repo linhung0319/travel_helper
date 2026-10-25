@@ -1,4 +1,4 @@
-// T15m 完成條件（PLAN）：手機和電腦尺寸各跑一次，用假後端。
+// T15m 完成條件（PLAN）：電腦版，用假後端（第六輪起手機版在 mobile*.spec.ts）。
 // 按 ❤️ → 想去分頁出現、留言 → 換人看得到、改不了別人的留言 → 加到某天 → 候選
 // → 按「✏️ 編輯這天」按 ↑ 排進 → 時間軸出現、有交通卡 → 停留時間 ＋15 → 復原快照後回到原狀。
 // 第四輪：沒有緩衝、沒有「換住宿」「併到…」，討論、預約、下載在右上角，探索沒有加到某天；
@@ -6,7 +6,7 @@
 // 第五輪：「規劃模式」改成「編輯」（藍條、完成）；交通卡平常收起，大眾運輸點了展開步驟、班次表；
 // 等待合成交通卡下面的一條（沒有「空檔」）；資料卡右上角的編號從 0 起；地圖彈窗在日期列上面。
 import { test, type Locator, type Page } from '@playwright/test';
-import { centerOn, expect, findPlaceId, isMobile, ready, tapOrClick, waitIdle } from './helpers.ts';
+import { centerOn, expect, findPlaceId, ready, waitIdle } from './helpers.ts';
 
 const DAY = '2027-02-07';
 const PLACE = 'toba-seahorse';
@@ -16,24 +16,19 @@ const th = (page: Page, fn: string) => page.evaluate(fn);
 
 async function showDay(page: Page, day: string) {
   await page.evaluate((d) => (window as any).__th.commands.selectDay(d), day);
-  if (await isMobile(page)) await page.evaluate(() => (window as any).__th.appStore.getState().setSheet({ tab: 'day', snap: 'full' }));
-  else await page.getByTestId('side-tab-day').click();
+  await page.getByTestId('side-tab-day').click();
 }
 
 async function openDetail(page: Page, id: string) {
   await page.evaluate((x) => (window as any).__th.appStore.getState().openDetail(x), id);
-  if (await isMobile(page)) await page.evaluate(() => (window as any).__th.appStore.getState().setSheet({ snap: 'full' }));
 }
 
 const closeDetail = (page: Page) => th(page, '__th.appStore.getState().closeDetail()');
 
-/** 想去：電腦版右欄的「❤️ 想去」分頁，手機是下方面板的「❤️ 想去」分頁。切到那個點的類型，才看得到它的卡片 */
+/** 想去：電腦版右欄的「❤️ 想去」分頁。切到那個點的類型，才看得到它的卡片 */
 async function openWish(page: Page, id = PLACE): Promise<Locator> {
   await closeDetail(page);
-  if (await isMobile(page)) {
-    await page.getByTestId('sheet-tab-wish').click();
-    await page.evaluate(() => (window as any).__th.appStore.getState().setSheet({ snap: 'full' }));
-  } else await page.getByTestId('side-tab-wish').click();
+  await page.getByTestId('side-tab-wish').click();
   await page.evaluate((x) => {
     const s = (window as any).__th;
     s.appStore.getState().setFilter({ types: [s.dataStore.getState().byId.get(x).type] });
@@ -191,13 +186,11 @@ test('第四輪：討論、預約、下載在右上角；彈窗開著時這幾�
   await expect(page.getByTestId('export-json')).toBeVisible();
   await expect(page.getByTestId('export-json')).toBeEnabled();
   await expect(page.getByTestId('toolbar-comments')).toContainText('討論');
-  if (!(await isMobile(page))) {
-    await page.getByTestId('toolbar-comments').click();
-    await expect(page.getByTestId('map-panel')).toHaveAttribute('data-kind', 'comments');
-    // 工具列在彈窗上面，沒被蓋住：直接換成預約
-    await page.getByTestId('toolbar-reservations').click();
-    await expect(page.getByTestId('map-panel')).toHaveAttribute('data-kind', 'reservations');
-  }
+  await page.getByTestId('toolbar-comments').click();
+  await expect(page.getByTestId('map-panel')).toHaveAttribute('data-kind', 'comments');
+  // 工具列在彈窗上面，沒被蓋住：直接換成預約
+  await page.getByTestId('toolbar-reservations').click();
+  await expect(page.getByTestId('map-panel')).toHaveAttribute('data-kind', 'reservations');
 });
 
 /** 地圖畫面上一個沒被彈窗、面板蓋住的點（點下去就是點到地圖） */
@@ -221,12 +214,11 @@ test('第四輪：點 💬 討論 → 彈窗；點彈窗外面的地圖 → 彈�
   await expect(page.getByTestId('map-panel')).toBeVisible();
   await expect(page.getByTestId('map-panel').locator('h2')).toContainText('討論');
   const { x, y } = await openMapPoint(page);
-  await tapOrClick(page, x, y);
+  await page.mouse.click(x, y);
   await expect(page.getByTestId('map-panel')).toHaveCount(0);
 });
 
 test('T15m：想去的卡片點了看詳情，返回想去（電腦版）', async ({ page }) => {
-  test.skip(await isMobile(page), '手機的詳情在下方面板，沒有返回鈕');
   await ready(page);
   const list = await openWish(page, 'toba-aquarium');
   await wish(list, 'toba-aquarium').getByTestId('wish-open').click();
@@ -237,7 +229,6 @@ test('T15m：想去的卡片點了看詳情，返回想去（電腦版）', asyn
 });
 
 test('T15m：編輯中拖曳換順序（電腦版）', async ({ page }) => {
-  test.skip(await isMobile(page), '手機用長按，Playwright 不好模擬');
   await page.setViewportSize({ width: 1600, height: 1200 });
   await ready(page);
   await showDay(page, '2027-02-05');
@@ -357,8 +348,7 @@ test('第四輪：一般模式只看；合併卡片換著看、⋯ 的主要、�
   await page.keyboard.press('Escape');
   await expect(page.getByTestId('tag-popover')).toHaveCount(0);
 
-  // 看漣 → 拖到候選區：回到這天的候選，卡片不再疊；提示可以復原（手機用長按，Playwright 不好模擬）
-  if (await isMobile(page)) return;
+  // 看漣 → 拖到候選區：回到這天的候選，卡片不再疊；提示可以復原
   await page.setViewportSize({ width: 1600, height: 1200 });
   await expect(stack).toHaveAttribute('data-main', 'true');
   await stack.getByTestId('option-next').click();
@@ -476,7 +466,7 @@ test('最後檢查：選了交通卡後換到下一天，地圖的行程線恢�
   expect(normal).not.toBe('0.1');
 });
 
-test('最後檢查：預約筆記點名稱打開詳情（手機先關掉視窗）', async ({ page }) => {
+test('最後檢查：預約筆記點名稱打開詳情', async ({ page }) => {
   await ready(page);
   await showDay(page, '2027-02-05');
   await page.getByTestId('toolbar-reservations').click();
@@ -487,9 +477,8 @@ test('最後檢查：預約筆記點名稱打開詳情（手機先關掉視窗�
   await row.locator('.link-button').first().click();
   await expect(page.getByTestId('detail-panel')).toBeVisible();
   expect(await th(page, '__th.appStore.getState().detailId')).toBe(placeId);
-  // 手機：視窗蓋住整個畫面，要關掉才看得到詳情；電腦版視窗還在
-  if (await isMobile(page)) await expect(page.getByTestId('map-panel')).toHaveCount(0);
-  else await expect(page.getByTestId('map-panel')).toBeVisible();
+  // 電腦版視窗還在
+  await expect(page.getByTestId('map-panel')).toBeVisible();
 });
 
 test('第三輪：選了某一天，地圖上那天的行程線改沿道路畫（OSRM 用假的回應）', async ({ page }) => {
@@ -523,20 +512,12 @@ test('第三輪：選了某一天，地圖上那天的行程線改沿道路畫�
   expect(errors).toEqual([]);
 });
 
-/** 探索分頁（手機是圖片牆）裡那個點的卡片 */
+/** 探索分頁裡那個點的卡片 */
 async function exploreCard(page: Page, id: string): Promise<Locator> {
   const type = (await th(page, `__th.dataStore.getState().byId.get('${id}').type`)) as string;
-  let card: Locator;
-  if (await isMobile(page)) {
-    await page.getByRole('button', { name: '探索' }).click();
-    await expect(page.getByTestId('explore-wall')).toBeVisible();
-    await centerOn(page, id, 14);
-    card = page.locator(`[data-testid="wall-item"][data-id="${id}"]`);
-  } else {
-    await page.getByTestId('side-tab-explore').click();
-    await page.evaluate((t) => (window as any).__th.appStore.getState().setFilter({ types: [t] }), type);
-    card = page.locator(`li:has([data-testid="explore-item"][data-id="${id}"])`);
-  }
+  await page.getByTestId('side-tab-explore').click();
+  await page.evaluate((t) => (window as any).__th.appStore.getState().setFilter({ types: [t] }), type);
+  const card = page.locator(`li:has([data-testid="explore-item"][data-id="${id}"])`);
   await card.scrollIntoViewIfNeeded();
   return card;
 }
@@ -578,7 +559,6 @@ async function dragOnto(source: Locator, target: Locator, frac: number) {
 }
 
 test('第四輪：編輯中把餐廳拖到另一間餐廳的中間 → 合併；按復原回到兩張卡片（電腦版）', async ({ page }) => {
-  test.skip(await isMobile(page), '手機用長按，Playwright 不好模擬');
   await page.setViewportSize({ width: 1600, height: 1200 });
   await ready(page);
   const D = '2027-02-10';
@@ -611,7 +591,6 @@ test('第四輪：編輯中把餐廳拖到另一間餐廳的中間 → 合併；
 });
 
 test('第四輪：編輯中把候選拖到兩張卡片之間 → 時間軸多一站、候選少一筆（電腦版）', async ({ page }) => {
-  test.skip(await isMobile(page), '手機用長按，Playwright 不好模擬');
   await page.setViewportSize({ width: 1600, height: 1200 });
   await ready(page);
   const D = '2027-02-05';
@@ -728,7 +707,7 @@ test('第五輪：編輯入口——日期列的「✏️ 編輯這天」，確�
   await expect(page.getByTestId('planning-toggle')).toHaveCount(0);
 });
 
-test('第五輪：編輯中藍條捲出畫面（或手機面板收到最低）時，地圖上方出現精簡的「編輯中・完成」', async ({ page }) => {
+test('第五輪：編輯中藍條捲出畫面時，地圖上方出現精簡的「編輯中・完成」', async ({ page }) => {
   await ready(page);
   // 2/3 的時間軸夠長，面板捲得動
   await showDay(page, '2027-02-03');
@@ -747,14 +726,6 @@ test('第五輪：編輯中藍條捲出畫面（或手機面板收到最低）�
   await expect(strip).toBeVisible();
   await scrollBar(0);
   await expect(strip).toHaveCount(0);
-  if (await isMobile(page)) {
-    // 手機：還在「行程」分頁，但面板收到最低，藍條看不到 → 精簡條，按「完成」結束編輯
-    await page.evaluate(() => (window as any).__th.appStore.getState().setSheet({ snap: 'peek' }));
-    await expect(strip).toBeVisible();
-    await page.getByTestId('planning-strip-done').click();
-    await expect.poll(() => th(page, '__th.appStore.getState().planning')).toBe(false);
-    await expect(strip).toHaveCount(0);
-  }
 });
 
 test('第五輪：2/3 的等待只出現一次——交通卡下面一條「⏳ … 到，等 N 分（午餐 📌 12:00 才開始）」，沒有「空檔」', async ({ page }) => {
@@ -897,7 +868,6 @@ test('第五輪：編輯中的班次下拉沒有搭不到的班；換了班次�
 });
 
 test('第五輪：地圖彈窗在日期列上面（靠近上緣的點，彈窗蓋住日期列）', async ({ page }) => {
-  test.skip(await isMobile(page), '手機的彈窗固定在地圖下方');
   await ready(page);
   const id = await findPlaceId(page, 'restaurant', 'B');
   const card = page.getByTestId('preview-card');
@@ -1261,7 +1231,6 @@ test('日期列：週六、週日、假日紅字', async ({ page }) => {
 });
 
 test('詳情的問 AI：點建議問題，聊天欄出現那句', async ({ page }) => {
-  test.skip(await isMobile(page), '手機版的詳情在第 9 項');
   await ready(page);
   await page.evaluate(() => (window as any).__th.appStore.getState().setMode('explore'));
   await openDetail(page, 'shima-yokoyama');
@@ -1279,7 +1248,6 @@ test('詳情的問 AI：點建議問題，聊天欄出現那句', async ({ page 
 });
 
 test('從行程打開的詳情多「這天排它會不會太趕？」', async ({ page }) => {
-  test.skip(await isMobile(page), '手機版的詳情在第 9 項');
   await ready(page);
   await page.getByTestId('side-tab-day').click();
   await openDetail(page, 'shima-yokoyama');

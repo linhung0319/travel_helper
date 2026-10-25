@@ -1,11 +1,9 @@
 import { useEffect } from 'react';
 import { appStore } from './store.ts';
 import { loadData } from './dataStore.ts';
-import { useApp, useData, useIsDesktop } from './hooks.ts';
+import { useData, useIsDesktop } from './hooks.ts';
 import { MapView } from './components/MapView.tsx';
-import { MapTopBar, TopBar } from './components/TopBar.tsx';
-import { ExploreWall } from './components/ExploreWall.tsx';
-import { BottomSheet } from './components/BottomSheet.tsx';
+import { MapTopBar } from './components/TopBar.tsx';
 import { ChatPanel } from './components/Panels.tsx';
 import { dropAiProps } from './components/askAi.ts';
 import { SidePanel } from './components/SidePanel.tsx';
@@ -13,6 +11,7 @@ import { MapPanel } from './components/MapPanel.tsx';
 import { TimetablePopup } from './components/TimetablePopup.tsx';
 import { Dialogs, Toast } from './components/Dialogs.tsx';
 import { usePlanningIdle } from './components/Planning.tsx';
+import { MobileApp } from './mobile/MobileApp.tsx';
 import './styles.css';
 
 /**
@@ -35,23 +34,6 @@ function DesktopLayout() {
       <aside className="side-column">
         <SidePanel />
       </aside>
-    </div>
-  );
-}
-
-/** 手機：全螢幕地圖＋拉起的面板；探索模式時地圖縮成上方一小塊、下面是圖片牆 */
-function MobileLayout() {
-  const mode = useApp((s) => s.mode);
-  return (
-    <div className="layout mobile">
-      <TopBar />
-      <MapPanel />
-      <TimetablePopup />
-      <div className={`stage mode-${mode}`}>
-        <MapView />
-        {mode === 'explore' && <ExploreWall />}
-        <BottomSheet />
-      </div>
     </div>
   );
 }
@@ -80,9 +62,11 @@ export default function App() {
 
   if (status === 'loading') return <div className="splash">載入中…</div>;
   if (status === 'error') return <div className="splash">資料載入失敗：{error}</div>;
+  // 只在最外層分一次（第六輪 §4）：手機版是 mobile/ 底下自己的一套，對話框、提示也由它畫
+  if (!desktop) return <MobileApp />;
   return (
     <>
-      {desktop ? <DesktopLayout /> : <MobileLayout />}
+      <DesktopLayout />
       <Dialogs />
       <Toast />
     </>

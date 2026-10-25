@@ -2,7 +2,7 @@
 // 另外看標示、路線（OSRM 用假的回應）、比較、AI 的提議畫得出來。
 // 設 TH_SHOTS=<目錄> 時順便拍截圖（手機 390px、電腦）。
 import { test, type Page } from '@playwright/test';
-import { expect, isMobile, ready, waitIdle } from './helpers.ts';
+import { expect, ready, waitIdle } from './helpers.ts';
 
 const DAY = '2027-02-05';
 
@@ -30,7 +30,7 @@ async function shot(page: Page, name: string) {
   const dir = process.env.TH_SHOTS;
   if (!dir) return;
   await waitIdle(page);
-  await page.screenshot({ path: `${dir}/${name}-${(await isMobile(page)) ? 'mobile' : 'desktop'}.png` });
+  await page.screenshot({ path: `${dir}/${name}-desktop.png` });
 }
 
 /** MapView 放進圖層來源的資料（querySourceFeatures 會因為圖磚重複或缺），和畫出來的不重複的點 */
@@ -52,43 +52,20 @@ const run = (page: Page, fn: string, ...args: unknown[]) =>
 
 test('用指令重現 T11 的手動操作：切天數、篩選、聚焦，畫面一樣', async ({ page }) => {
   await ready(page);
-  if (!(await isMobile(page))) {
-    // 電腦版：篩選在右側的「探索」分頁。點天數、切到探索、選餐廳和 S 級、點地區「鳥羽」（篩選加上鳥羽、地圖移過去）
-    await page.locator(`.day-float [data-day="${DAY}"]`).click();
-    await page.getByTestId('side-tab-explore').click();
-    await page.locator('.ex-types [data-type="restaurant"]').click();
-    await page.locator('.ex-quick').getByRole('button', { name: 'S 級' }).click();
-    await page.locator('.ex-areas [data-area="toba"]').click();
-    const manual = await snapshot(page);
-    await ready(page);
-    expect((await run(page, 'selectDay', DAY)).ok).toBe(true);
-    await page.evaluate(() => (window as any).__th.appStore.getState().setMode('explore'));
-    expect((await run(page, 'setFilter', { types: ['restaurant'], tiers: ['S'], areas: ['toba'] })).ok).toBe(true);
-    expect((await run(page, 'focus', { area: 'toba' })).ok).toBe(true);
-    expect(await snapshot(page)).toEqual(manual);
-    await expect(page.locator(`.day-float [data-day="${DAY}"]`)).toHaveAttribute('aria-selected', 'true');
-    return;
-  }
-  // 手動：點天數分頁、在篩選面板選餐廳和 S 級、跳到鳥羽
-  await page.locator(`[data-day="${DAY}"]`).click();
-  await page.getByTestId('filter-button').click();
-  const panel = page.getByTestId('filter-panel');
-  await panel.getByRole('button', { name: /^餐廳/ }).click();
-  await panel.getByRole('button', { name: /^S 級/ }).click();
-  const area = await page.evaluate(() => (window as any).__th.dataStore.getState().areas.find((a: any) => a.id === 'toba'));
-  await panel.getByRole('button', { name: area.name.zh ?? area.name.ja, exact: true }).last().click();
+  // 電腦版：篩選在右側的「探索」分頁。點天數、切到探索、選餐廳和 S 級、點地區「鳥羽」（篩選加上鳥羽、地圖移過去）
+  await page.locator(`.day-float [data-day="${DAY}"]`).click();
+  await page.getByTestId('side-tab-explore').click();
+  await page.locator('.ex-types [data-type="restaurant"]').click();
+  await page.locator('.ex-quick').getByRole('button', { name: 'S 級' }).click();
+  await page.locator('.ex-areas [data-area="toba"]').click();
   const manual = await snapshot(page);
-
-  // 指令：重新整理後用同樣的指令做一次
   await ready(page);
   expect((await run(page, 'selectDay', DAY)).ok).toBe(true);
-  expect((await run(page, 'setFilter', { types: ['restaurant'], tiers: ['S'] })).ok).toBe(true);
+  await page.evaluate(() => (window as any).__th.appStore.getState().setMode('explore'));
+  expect((await run(page, 'setFilter', { types: ['restaurant'], tiers: ['S'], areas: ['toba'] })).ok).toBe(true);
   expect((await run(page, 'focus', { area: 'toba' })).ok).toBe(true);
-  const byCommand = await snapshot(page);
-
-  expect(byCommand).toEqual(manual);
-  expect(manual.chips).toContain('餐廳');
-  await expect(page.locator(`[data-day="${DAY}"]`)).toHaveAttribute('aria-selected', 'true');
+  expect(await snapshot(page)).toEqual(manual);
+  await expect(page.locator(`.day-float [data-day="${DAY}"]`)).toHaveAttribute('aria-selected', 'true');
 });
 
 test('聚焦一個點：地圖移過去、點會閃；篩選標籤可以取消（和 AI 套的是同一份）', async ({ page }) => {
@@ -147,7 +124,7 @@ test('標示、路線（沿道路）、比較：畫在地圖上，可以清掉',
   await shot(page, 'compare');
   await bar.locator('.compare-card').first().click();
   await expect(page.getByTestId('detail-panel')).toBeVisible();
-  await page.getByTestId((await isMobile(page)) ? 'detail-close' : 'detail-back').click();
+  await page.getByTestId('detail-back').click();
 
   await page.getByTestId('marks-bar').getByRole('button', { name: '清掉 ✕' }).click();
   await expect(label).toHaveCount(0);
@@ -200,6 +177,5 @@ test('畫面狀態讀得出來（給 AI 的脈絡）', async ({ page }) => {
   expect(v.visibleCount).toBeGreaterThan(0);
   expect(v.dayStops.map((s: any) => s.place)).toContain('toba-aquarium');
   expect(v.selection[0]).toMatchObject({ id: 'toba-aquarium', type: 'spot' });
-  if (await isMobile(page)) await page.getByRole('tab', { name: '💬 聊天' }).click();
   await expect(page.getByTestId('chat-panel').getByRole('button', { name: /取消選取/ })).toBeVisible();
 });

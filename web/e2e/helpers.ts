@@ -11,10 +11,6 @@ export async function ready(page: Page) {
   });
 }
 
-export async function isMobile(page: Page): Promise<boolean> {
-  return (page.viewportSize()?.width ?? 1000) < 900;
-}
-
 /** 找一個 B 級（地圖上只是小點、沒有照片標記）的資料點 */
 export async function findPlaceId(page: Page, type: string, tier: string | null): Promise<string> {
   return page.evaluate(
@@ -59,11 +55,6 @@ export async function waitIdle(page: Page) {
         map.once('idle', () => setTimeout(resolve, 100));
       }),
   );
-}
-
-export async function tapOrClick(page: Page, x: number, y: number) {
-  if (await isMobile(page)) await page.touchscreen.tap(x, y);
-  else await page.mouse.click(x, y);
 }
 
 export { expect };

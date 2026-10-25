@@ -10,9 +10,6 @@ import type { Change } from '@travel-helper/engine';
 /** 'all'＝全部的天；否則是 YYYY-MM-DD */
 export type DaySelection = 'all' | string;
 
-export type SheetTab = 'chat' | 'day' | 'wish';
-export type SheetSnap = 'peek' | 'half' | 'full';
-
 /** 叫地圖移動的請求：MapView 看到 seq 變了就移過去（使用者自己拖地圖不會產生請求） */
 export interface CameraRequest {
   seq: number;
@@ -86,7 +83,6 @@ export interface AppState {
   exploreTarget: { id: string; seq: number } | null;
   /** 「問 AI」選取的點（interaction-design §5；T12、T16 接上） */
   selection: string[];
-  sheet: { tab: SheetTab; snap: SheetSnap };
   /** 車站面板的指定時間；null＝預設 */
   stationTime: string | null;
   camera: CameraRequest | null;
@@ -118,7 +114,6 @@ export interface AppActions {
   revealInExplore(id: string): void;
   addToSelection(id: string): void;
   removeFromSelection(id: string): void;
-  setSheet(patch: Partial<AppState['sheet']>): void;
   setStationTime(time: string | null): void;
   moveCamera(req: Omit<CameraRequest, 'seq'>): void;
   setSelection(ids: string[]): void;
@@ -147,7 +142,6 @@ export const initialState: AppState = {
   detailId: null,
   exploreTarget: null,
   selection: [],
-  sheet: { tab: 'chat', snap: 'peek' },
   stationTime: null,
   camera: null,
   highlights: {},
@@ -175,14 +169,12 @@ export function createAppStore(init: Partial<AppState> = {}) {
     setPlanning: (planning) => set({ planning }),
     hover: (hoveredId) => set({ hoveredId }),
     openPreview: (previewId) => set({ previewId }),
-    // 打開詳情時小卡片收起；手機的面板拉到一半，地圖還看得到
-    openDetail: (detailId) =>
-      set((s) => ({ detailId, previewId: null, sheet: { ...s.sheet, snap: s.sheet.snap === 'peek' ? 'half' : s.sheet.snap } })),
+    // 打開詳情時小卡片收起
+    openDetail: (detailId) => set({ detailId, previewId: null }),
     closeDetail: () => set({ detailId: null }),
     revealInExplore: (id) => set((s) => ({ exploreTarget: { id, seq: (s.exploreTarget?.seq ?? 0) + 1 } })),
     addToSelection: (id) => set((s) => (s.selection.includes(id) ? s : { selection: [...s.selection, id] })),
     removeFromSelection: (id) => set((s) => ({ selection: s.selection.filter((x) => x !== id) })),
-    setSheet: (patch) => set((s) => ({ sheet: { ...s.sheet, ...patch } })),
     setStationTime: (stationTime) => set({ stationTime }),
     moveCamera: (req) => set((s) => ({ camera: { ...req, seq: (s.camera?.seq ?? 0) + 1 } })),
     setSelection: (ids) => set({ selection: [...new Set(ids)] }),
