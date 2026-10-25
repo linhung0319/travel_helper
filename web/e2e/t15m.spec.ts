@@ -1259,3 +1259,29 @@ test('日期列：週六、週日、假日紅字', async ({ page }) => {
   for (const d of ['02-06', '02-07', '02-11', '02-13']) await expect(page.locator(`.day-tab[data-day="2027-${d}"]`)).toHaveClass(/red-day/);
   await expect(page.locator('.day-tab[data-day="2027-02-10"]')).not.toHaveClass(/red-day/);
 });
+
+test('詳情的問 AI：點建議問題，聊天欄出現那句', async ({ page }) => {
+  test.skip(await isMobile(page), '手機版的詳情在第 9 項');
+  await ready(page);
+  await page.evaluate(() => (window as any).__th.appStore.getState().setMode('explore'));
+  await openDetail(page, 'shima-yokoyama');
+  const box = page.getByTestId('ask-ai-box');
+  await expect(box).toBeVisible();
+  expect(await box.getByTestId('ask-ai-prompt').count()).toBeGreaterThanOrEqual(4);
+  await expect(box.getByTestId('ask-ai-prompt').filter({ hasText: '這天排它會不會太趕？' })).toHaveCount(0);
+  const first = box.getByTestId('ask-ai-prompt').first();
+  const q = (await first.textContent())!;
+  await first.click();
+  await expect(page.getByTestId('chat-panel')).toContainText(q);
+  await box.getByTestId('ask-ai-input').fill('自己問的');
+  await box.getByTestId('ask-ai-input').press('Enter');
+  await expect(page.getByTestId('chat-panel')).toContainText('自己問的');
+});
+
+test('從行程打開的詳情多「這天排它會不會太趕？」', async ({ page }) => {
+  test.skip(await isMobile(page), '手機版的詳情在第 9 項');
+  await ready(page);
+  await page.getByTestId('side-tab-day').click();
+  await openDetail(page, 'shima-yokoyama');
+  await expect(page.getByTestId('ask-ai-box').getByTestId('ask-ai-prompt').first()).toHaveText('這天排它會不會太趕？');
+});

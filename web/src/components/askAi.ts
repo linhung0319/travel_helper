@@ -9,6 +9,7 @@ import { commands } from '../appCommands.ts';
 import { shared } from '../appShared.ts';
 import { stopsOn } from '../lib/itinerary.ts';
 import { TYPE_COLORS, TYPE_ICONS } from '../lib/typeStyle.ts';
+import { setAddToChat } from '../uiStore.ts';
 
 const MIME = 'application/x-travel-place';
 
@@ -18,6 +19,8 @@ export function askAi(id: string) {
   if (!commands.select(id).ok) return;
   shared.notify(`已帶進聊天（${appStore.getState().selection.length} 個點）`);
 }
+
+setAddToChat(askAi); // uiStore 的 askAboutPlace 用這個把地點放進選取
 
 /** 行程分頁的「🤖 問 AI」：把這天的點全部加進選取（已經在裡面的不動） */
 export function askAiAboutDay(date: string) {

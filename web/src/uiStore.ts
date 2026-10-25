@@ -37,9 +37,11 @@ export interface UiState {
   legOpen: string | null;
   /** 地圖那側的班次表（第五輪 §4）：哪天、哪段交通（legKey 和交通卡的 key 同格式）、第幾程 */
   timetable: TimetableState | null;
+  /** 詳情「問 AI」帶進聊天的草稿（第六輪） */
+  chatDraft: ChatDraft | null;
 }
 
-export const uiStore = createStore<UiState>()(() => ({ dialog: null, mapPanel: null, idleMinutes: 10, legOpen: null, timetable: null }));
+export const uiStore = createStore<UiState>()(() => ({ dialog: null, mapPanel: null, idleMinutes: 10, legOpen: null, timetable: null, chatDraft: null }));
 
 export const openDialog = (dialog: DialogState) => uiStore.setState({ dialog });
 export const closeDialog = () => uiStore.setState({ dialog: null });
@@ -58,3 +60,31 @@ export const openMapPanel = (kind: MapPanelState['kind'], opts?: { focus: { date
 export const closeMapPanel = () => uiStore.setState({ mapPanel: null });
 /** 視窗裡切換「這天／整趟」 */
 export const setMapPanelScope = (scope: MapPanelState['scope']) => uiStore.setState((s) => (s.mapPanel ? { mapPanel: { ...s.mapPanel, scope } } : s));
+
+/** 從詳情「問 AI」帶進聊天的一句話；seq 每次加 1，手機的 store 看 seq 變了就切到聊天 */
+export interface ChatDraft {
+  seq: number;
+  text: string;
+  placeId: string | null;
+  /** 問的當下選的那天；選「全部」是 null */
+  date: string | null;
+  /** 詳情是從行程打開的（trip）還是別處（other） */
+  from: 'trip' | 'other';
+}
+
+/**
+ * 把地點放進選取的做法：askAi.ts 載入時換成 askAi（會檢查資料點、提示「已帶進聊天」）。
+ * 這裡不直接 import，因為 askAi.ts 連到 appCommands（Vite 專用），單元測試在 node 底下載不起來。
+ */
+let addToChat: (id: string) => void = (id) => appStore.getState().addToSelection(id);
+export const setAddToChat = (fn: (id: string) => void) => {
+  addToChat = fn;
+};
+
+/** 問 AI：寫入 chatDraft、把地點放進選取（畫面怎麼切由各平台的 store 監聽 chatDraft.seq） */
+export function askAboutPlace(placeId: string, text: string, from: 'trip' | 'other') {
+  const day = appStore.getState().day;
+  const seq = (uiStore.getState().chatDraft?.seq ?? 0) + 1;
+  uiStore.setState({ chatDraft: { seq, text, placeId, date: day === 'all' ? null : day, from } });
+  addToChat(placeId);
+}

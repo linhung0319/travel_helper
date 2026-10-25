@@ -32,6 +32,7 @@ import { StationTimetablePanel } from './StationTimetable.tsx';
 import { EditedMark, editedOf } from './EditHistory.tsx';
 import { VoteButtons } from './Votes.tsx';
 import { openDialog } from '../uiStore.ts';
+import { AskAiBox } from './AskAiBox.tsx';
 import { itemsWithPlace } from '../lib/planView.ts';
 import { dragPlaceProps, toggleAskAi } from './askAi.ts';
 
@@ -522,6 +523,8 @@ const DETAIL_TAB_LABELS: Record<DetailTab, string> = { overview: '總覽', detai
  */
 export function DetailPanel({ place, back }: { place: Place; back?: { label: string; onClick(): void } }) {
   const day = useApp((s) => s.day);
+  // 行程分頁（mode＝map）打開的詳情＝從行程來，問 AI 多一個「這天排它會不會太趕？」
+  const fromTrip = useApp((s) => s.mode) === 'map';
   const planning = useApp((s) => s.planning);
   const selection = useApp((s) => s.selection);
   const days = useData((s) => s.days);
@@ -627,6 +630,7 @@ export function DetailPanel({ place, back }: { place: Place; back?: { label: str
                 <Tags place={place} />
               </section>
             )}
+            <AskAiBox place={place} fromTrip={fromTrip} />
             {place.type === 'station' && <StationTimetablePanel place={place} />}
             <PriceSection place={place} />
             <PlaceInTrip place={place} />
