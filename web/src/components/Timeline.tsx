@@ -1,6 +1,6 @@
 // 這一天的時間軸（interaction-design §3、§6、第五輪 §2）：引擎算好的項目、相鄰兩點之間的交通、等待、警告。
 // 手機是直的清單，電腦放在地圖下方。左邊一條虛線從一張資料卡串到下一張，交通卡在虛線右邊（右緣和資料卡對齊）。
-// 點項目地圖跳過去；到了要等（📌、還沒開門）時交通卡下面一條黃色虛框的「⏳ 幾點到，等 N 分（原因）」，點了看附近的景點。
+// 點項目地圖跳過去；到了要等（📌、還沒開門）時交通卡下面一條黃色虛框的「⏳ 幾點到，等 N 分（原因）」，純文字、不能點。
 // 資料卡只顯示要看的（設計 §6）：左邊類型色塊（宿／景／餐／站／機／點）、時間（開始–結束）、停留時間（X小時MM分）、名稱、標籤、❤️ 頭像、⚠ 數。
 // 資料卡固定四欄（第六輪 §2.2）：把手欄（編輯中每張卡都留，宿的卡也是）、類型色塊、內容、右邊動作欄（上面編號、下面 ⋯），所以色塊、⋯ 上下對齊。
 // 卡片底色是類型的淡色；起點、終點的住宿和造訪是同樣的卡片（只寫一個時間）。有備卡的卡片（重疊卡）疊著淡色卡、‹ n/m › 換著看。
@@ -303,7 +303,7 @@ function EntryRow({ entry, day, warnings, plan, marks }: { entry: TimelineEntry;
     return (
       <>
         <LegRow entry={entry} date={day.date} />
-        <WaitRow entry={entry} item={null} plan={plan} />
+        <WaitRow entry={entry} item={null} />
         <li className={`tl-row tl-card tl-lodging ${typeClass(p)} ${editing}`} data-testid="tl-row" data-place={entry.placeId ?? ''}>
           <span className="tl-card-inner">
             <CardType type={p?.type ?? 'lodging'} />
@@ -377,7 +377,7 @@ function EntryRow({ entry, day, warnings, plan, marks }: { entry: TimelineEntry;
   return (
     <>
       <LegRow entry={entry} date={day.date} />
-      <WaitRow entry={entry} item={visit} plan={plan} />
+      <WaitRow entry={entry} item={visit} />
       <li
         className={`tl-row tl-card tl-${entry.kind} ${typeClass(p)} ${editing} ${stacked ? `stacked stacked-${stacked}` : ''} ${hovered && hovered === entry.placeId ? 'flash' : ''} ${movable ? 'movable' : ''}`}
         data-testid="tl-row"
@@ -493,7 +493,7 @@ function StayChip({ itemId, minutes, readOnly = false }: { itemId: string | null
 
 const GAP_ACTIONS: Record<Gap['kind'], { icon: string; look: string; types: ('restaurant' | 'spot' | 'lodging')[] }> = {
   lodging: { icon: '🏨', look: '看住宿', types: ['lodging'] },
-  idle: { icon: '⏳', look: '看附近的景點', types: ['spot'] },
+  idle: { icon: '⏳', look: '', types: [] },
 };
 
 /** 空檔（「住宿（未排）」這類，不是等待）：點了展開——看住宿（篩選＋地圖框住前後兩站） */
@@ -530,37 +530,16 @@ function GapRow({ gap, plan }: { gap: Gap; plan: DayPlan }) {
 }
 
 /**
- * 交通卡下面、資料卡上面「到了要等」的那條（第五輪 §2）：文字是 waitNote；點了展開——看附近的景點（篩選＋地圖框住前後兩站）。
+ * 交通卡下面、資料卡上面「到了要等」的那條（第五輪 §2）：只有一行文字 waitNote，不能點、不能展開（第六輪）。
  * 不用等就不畫；會合那列自己寫「最早到的組等 N 分」
  */
-function WaitRow({ entry, item, plan }: { entry: TimelineEntry; item: VisitItem | null; plan: DayPlan }) {
-  const [open, setOpen] = useState(false);
+function WaitRow({ entry, item }: { entry: TimelineEntry; item: VisitItem | null }) {
   const byId = useData((s) => s.byId);
   const text = waitNote(entry, item, entry.placeId ? byId.get(entry.placeId) : undefined);
   if (!text) return null;
-  const a = GAP_ACTIONS.idle;
-  // 前一站：交通的起點，沒有交通時找時間軸上的前一列
-  const prev = entry.travel?.from ?? plan.entries[plan.entries.indexOf(entry) - 1]?.placeId ?? null;
-  const around = [prev, entry.placeId].filter((x): x is string => !!x);
   return (
     <li className="tl-wait-row" data-testid="tl-wait">
-      <button type="button" className="tl-wait" aria-expanded={open} onClick={() => setOpen(!open)}>
-        {text}
-      </button>
-      {open && (
-        <span className="tl-gap-actions">
-          <button
-            type="button"
-            className="text-button"
-            onClick={() => {
-              commands.setFilter({ types: a.types, contexts: [] });
-              if (around.length) commands.focus(around);
-            }}
-          >
-            🔎 {a.look}
-          </button>
-        </span>
-      )}
+      <span className="tl-wait">{text}</span>
     </li>
   );
 }

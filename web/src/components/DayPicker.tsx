@@ -6,7 +6,7 @@ import { useState } from 'react';
 import { shared } from '../appShared.ts';
 import { useApp, useData, useShared } from '../hooks.ts';
 import { placeDayStatus } from '../lib/wishlist.ts';
-import { shortDayLabel, tripDates, weekdayZh } from '../lib/trip.ts';
+import { isRedDay, shortDayLabel, tripDates, weekdayZh } from '../lib/trip.ts';
 import { openDialog } from '../uiStore.ts';
 import { castVote } from './Votes.tsx';
 
@@ -68,7 +68,7 @@ export function DayPicker({ placeId, onClose }: { placeId: string; onClose: () =
             <button
               key={d}
               type="button"
-              className={`day-picker-day ${cand ? 'cand' : ''} ${scheduled ? 'scheduled' : ''}`}
+              className={`day-picker-day ${cand ? 'cand' : ''} ${scheduled ? 'scheduled' : ''} ${isRedDay(d) ? 'red-day' : ''}`}
               aria-pressed={cand}
               disabled={busy || scheduled || others}
               title={others ? '別人加的候選，編輯時才能拿掉' : scheduled ? `${shortDayLabel(d)} 已排進行程` : cand ? `${shortDayLabel(d)} 的候選（再點取消）` : `加到 ${shortDayLabel(d)} 的候選`}

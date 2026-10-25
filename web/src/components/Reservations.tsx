@@ -7,7 +7,7 @@ import { appStore } from '../store.ts';
 import { commands } from '../appCommands.ts';
 import { DESKTOP_QUERY, useData, usePlan, useShared, useUi } from '../hooks.ts';
 import { noteRows, linkLabel, reservationFor, type NoteRow } from '../lib/reservations.ts';
-import { dayLabel } from '../lib/trip.ts';
+import { dayLabel, isRedDay } from '../lib/trip.ts';
 import { closeMapPanel, openMapPanel } from '../uiStore.ts';
 import { AvatarStack, stamp } from './common.tsx';
 import { shared, sharedStore } from '../appShared.ts';
@@ -157,7 +157,7 @@ export function ReservationNotes({ date }: { scope?: 'day' | 'trip'; date: strin
           lastDate = r.date;
           return (
             <div key={rowKey(r)}>
-              {head && <h4 className="reservation-day">{dayLabel(r.date)}</h4>}
+              {head && <h4 className={`reservation-day ${isRedDay(r.date) ? 'red-day' : ''}`}>{dayLabel(r.date)}</h4>}
               <Row row={r} />
             </div>
           );

@@ -1211,3 +1211,47 @@ test('候選的 ⋯：排進這天、刪除', async ({ page }) => {
   await actionMenu(page).getByTestId('action-delete').click();
   await expect(moved).toHaveCount(0);
 });
+
+// ---------- 第六輪 Task 5：Google Map 文字、等待卡、移到第幾天 4×3、紅字日期 ----------
+
+test('交通卡是「Google Map」文字', async ({ page }) => {
+  await ready(page);
+  await showDay(page, '2027-02-05');
+  await expect(page.getByTestId('leg-maps').first()).toHaveText('Google Map');
+});
+
+test('等待卡不能點、沒有看附近', async ({ page }) => {
+  await ready(page);
+  await showDay(page, '2027-02-03');
+  const wait = page.getByTestId('timeline').getByTestId('tl-wait');
+  await expect(wait).toHaveCount(1);
+  await expect(wait.locator('button')).toHaveCount(0);
+  await wait.click();
+  await expect(page.getByText('看附近')).toHaveCount(0);
+  await expect(page.getByTestId('timeline').locator('.tl-gap-actions')).toHaveCount(0);
+});
+
+test('移到第幾天：4×3 格子、紅字、沒有「假日」', async ({ page }) => {
+  await ready(page);
+  await showDay(page, '2027-02-03');
+  await enterPlanning(page);
+  await menuOf(tlRow(page, 'i-3')).click();
+  await actionMenu(page).getByTestId('action-move').click();
+  const dlg = page.getByTestId('move-dialog');
+  const cells = dlg.getByTestId('move-day');
+  await expect(cells).toHaveCount(12);
+  const cols = await dlg.getByTestId('day-grid').evaluate((el) => getComputedStyle(el).gridTemplateColumns.split(' ').length);
+  expect(cols).toBe(4);
+  for (const d of ['02-06', '02-07', '02-11', '02-13']) await expect(dlg.locator(`[data-pick-day="2027-${d}"]`)).toHaveClass(/red-day/);
+  await expect(dlg.locator('[data-pick-day="2027-02-10"]')).not.toHaveClass(/red-day/);
+  const cur = dlg.locator('[data-pick-day="2027-02-03"]');
+  await expect(cur).toBeDisabled();
+  await expect(cur).toContainText('現在');
+  await expect(page.getByText('假日')).toHaveCount(0);
+});
+
+test('日期列：週六、週日、假日紅字', async ({ page }) => {
+  await ready(page);
+  for (const d of ['02-06', '02-07', '02-11', '02-13']) await expect(page.locator(`.day-tab[data-day="2027-${d}"]`)).toHaveClass(/red-day/);
+  await expect(page.locator('.day-tab[data-day="2027-02-10"]')).not.toHaveClass(/red-day/);
+});

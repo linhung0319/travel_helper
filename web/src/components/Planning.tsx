@@ -8,7 +8,8 @@ import { shared } from '../appShared.ts';
 import { backend } from '../backend/index.ts';
 import { useApp, useData, useShared, useUi } from '../hooks.ts';
 import { closeDialog, openDialog, uiStore } from '../uiStore.ts';
-import { dayLabel, shortDayLabel, tripDates } from '../lib/trip.ts';
+import { DayGrid } from './DayGrid.tsx';
+import { dayLabel, isRedDay, shortDayLabel, tripDates } from '../lib/trip.ts';
 import { findItemRef, itemsWithPlace } from '../lib/planView.ts';
 import { stopsOn } from '../lib/itinerary.ts';
 import type { Snapshot } from '../backend/types.ts';
@@ -349,7 +350,7 @@ export function AddToDayDialog({ placeId, day: initialDay }: { placeId: string; 
             const lodge = dayData?.lodging ? byId.get(dayData.lodging) : null;
             const lodgeName = lodge ? lodge.name.zh || lodge.name.ja : (dayData?.lodging ?? null);
             return (
-              <button key={d} type="button" className={`day-pick ${d === day ? 'on' : ''}`} aria-pressed={d === day} onClick={() => setDay(d)} data-pick-day={d}>
+              <button key={d} type="button" className={`day-pick ${d === day ? 'on' : ''} ${isRedDay(d) ? 'red-day' : ''}`} aria-pressed={d === day} onClick={() => setDay(d)} data-pick-day={d}>
                 <span>
                   {dayLabel(d)}
                   {candDays.has(d) ? '・候選' : ''}
@@ -388,14 +389,7 @@ export function MoveDialog({ itemId }: { itemId: string }) {
           {ref.split ? `・${ref.split.groupName}，移過去會變成全員一起` : ''}）
         </p>
       )}
-      <div className="day-picker">
-        {DATES.filter((d) => d !== ref.date).map((d) => (
-          <button key={d} type="button" className="day-pick" disabled={busy} onClick={() => void move(d)} data-pick-day={d}>
-            <span>{dayLabel(d)}</span>
-            <span className="muted small">{stopsOn(itinerary, d).filter((s) => s.kind !== 'lodging' && s.kind !== 'flight').length} 個點</span>
-          </button>
-        ))}
-      </div>
+      <DayGrid current={ref.date} disabled={busy} onPick={(d) => void move(d)} sub={(d) => `${stopsOn(itinerary, d).filter((s) => s.kind !== 'lodging' && s.kind !== 'flight').length} 個點`} />
       <p className="muted small">放在那天的最後，順序可以再調。</p>
     </Dialog>
   );
@@ -419,14 +413,7 @@ export function MoveCandidateDialog({ candidateId }: { candidateId: number }) {
       <p>
         <PlaceChip id={c.placeId} />（現在是 {shortDayLabel(c.day)} 的候選）
       </p>
-      <div className="day-picker">
-        {DATES.filter((d) => d !== c.day).map((d) => (
-          <button key={d} type="button" className="day-pick" disabled={busy} onClick={() => void move(d)} data-pick-day={d}>
-            <span>{dayLabel(d)}</span>
-            <span className="muted small">{stopsOn(itinerary, d).filter((s) => s.kind !== 'lodging' && s.kind !== 'flight').length} 個點</span>
-          </button>
-        ))}
-      </div>
+      <DayGrid current={c.day} disabled={busy} onPick={(d) => void move(d)} sub={(d) => `${stopsOn(itinerary, d).filter((s) => s.kind !== 'lodging' && s.kind !== 'flight').length} 個點`} />
       <p className="muted small">變成那天的候選。</p>
     </Dialog>
   );

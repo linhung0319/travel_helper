@@ -1,6 +1,7 @@
 /* 地圖網站 v1（T11）。手機優先；900px 以上換成電腦版（hooks.ts 的 DESKTOP_QUERY） */
 
 :root {
+  --red-day: #d32f2f;
   --bg: #ffffff;
   --fg: #1f2328;
   --muted: #59636e;
@@ -181,10 +182,6 @@ a {
 .day-tab-wd {
   font-size: 0.7rem;
   color: var(--muted);
-}
-
-.day-tab.holiday .day-tab-wd {
-  color: var(--tier-s);
 }
 
 .day-tab[aria-selected='true'] {
@@ -5063,11 +5060,6 @@ button.leg-ride-more {
   border: 1px dashed #e0c25a;
   border-radius: 8px;
   padding: 3px 8px;
-  cursor: pointer;
-}
-
-.tl-wait-row .tl-gap-actions {
-  padding: 4px 0;
 }
 
 /* 候選：和資料卡同一套外觀（類型淡底色、類型色塊），虛線框、沒有編號 */
@@ -5156,4 +5148,51 @@ button.cand-up {
 
 button.cand-up:disabled {
   opacity: 0.5;
+}
+
+/* 紅字日期（週六、週日、國定假日）：放在最後，同樣只有一個 class 的規則比不過它；選取、候選這些狀態色（兩個 class）仍然優先 */
+.red-day,
+.day-tab.red-day .day-tab-wd {
+  color: var(--red-day);
+}
+
+/* 移到第幾天：4 欄 × 3 列（網頁版彈窗、手機的 MoveDaySheet 共用） */
+.day-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 6px;
+}
+
+.day-cell {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: var(--tap);
+  padding: 6px 4px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--bg);
+  color: var(--fg);
+  font: inherit;
+  cursor: pointer;
+}
+
+.day-cell-date {
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+}
+
+.day-cell.red-day {
+  color: var(--red-day);
+}
+
+.day-cell:disabled {
+  background: var(--soft);
+  color: var(--muted);
+  cursor: default;
+}
+
+.day-tab[aria-selected='true'].red-day .day-tab-wd {
+  color: #ffb4b4;
 }

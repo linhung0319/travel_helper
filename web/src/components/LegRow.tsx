@@ -367,7 +367,7 @@ export function LegRow({ entry, date }: { entry: TimelineEntry; date: string }) 
           </button>
           {from && to && (
             <a className="leg-maps" href={legMapsUrl(from, to, mode)} target="_blank" rel="noreferrer" aria-label="在 Google Maps 開路線" title="在 Google Maps 開路線" data-testid="leg-maps">
-              🗺️
+              Google Map
             </a>
           )}
           {planning && target && !open ? (

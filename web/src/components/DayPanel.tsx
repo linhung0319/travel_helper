@@ -7,7 +7,7 @@ import { appStore } from '../store.ts';
 import { commands } from '../appCommands.ts';
 import { useApp, useData, usePlan, useShared, useUi } from '../hooks.ts';
 import { dayPlanOf } from '../planStore.ts';
-import { dayLabel, tripDates } from '../lib/trip.ts';
+import { dayLabel, isRedDay, tripDates } from '../lib/trip.ts';
 import { stopsOn } from '../lib/itinerary.ts';
 import { selectedBarKey, WARNING_ICONS, warningsByItem } from '../lib/planView.ts';
 import { dayColor } from '../lib/visual.ts';
@@ -54,7 +54,7 @@ function Overview() {
             <li key={d}>
               <button type="button" className="overview-day" onClick={() => commands.selectDay(d)} data-overview-day={d}>
                 <span className="overview-dot" style={{ background: dayColor(DATES, d) }} />
-                <span className="overview-date">{dayLabel(d)}</span>
+                <span className={`overview-date ${isRedDay(d) ? 'red-day' : ''}`}>{dayLabel(d)}</span>
                 <span className="overview-stops">
                   {stops.length ? stops.map((s) => byId.get(s.place)?.name.zh || byId.get(s.place)?.name.ja || s.place).join(' → ') : <span className="muted">還沒排</span>}
                   {lp && <span className="muted small">　🏨 {lp.name.zh || lp.name.ja}</span>}
@@ -88,7 +88,7 @@ function DayHead({ day }: { day: string }) {
       </button>
       <h3>
         <span className="overview-dot" style={{ background: dayColor(DATES, day) }} />
-        {dayLabel(day)}
+        <span className={isRedDay(day) ? 'red-day' : ''}>{dayLabel(day)}</span>
       </h3>
       <span className="day-step">
         <button type="button" className="text-button" aria-label="前一天" disabled={i <= 0} onClick={() => commands.selectDay(DATES[i - 1])} data-testid="day-prev">

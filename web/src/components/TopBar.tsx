@@ -10,7 +10,7 @@ import { exportFileName } from '../lib/planView.ts';
 import { openMapPanel } from '../uiStore.ts';
 import { useCommentCount } from './Wishlist.tsx';
 import { filterChips, isFilterEmpty, matchesFilter, matchesQuery } from '../lib/filter.ts';
-import { shortDayLabel, tripDates, weekdayZh, JP_HOLIDAYS } from '../lib/trip.ts';
+import { shortDayLabel, tripDates, weekdayZh, isRedDay } from '../lib/trip.ts';
 import { ConflictBar, EditingStrip } from './Planning.tsx';
 import { MeMenu } from './MeMenu.tsx';
 import { FilterPanel } from './FilterPanel.tsx';
@@ -96,7 +96,7 @@ function DayTabs({ onSelect }: { onSelect?: () => void }) {
           type="button"
           role="tab"
           aria-selected={day === d}
-          className={`day-tab ${JP_HOLIDAYS.has(d) ? 'holiday' : ''}`}
+          className={`day-tab ${isRedDay(d) ? 'red-day' : ''}`}
           data-day={d}
           onClick={() => select(d)}
         >
