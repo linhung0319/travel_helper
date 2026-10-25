@@ -13,6 +13,7 @@ import { findItemRef, itemsWithPlace } from '../lib/planView.ts';
 import { stopsOn } from '../lib/itinerary.ts';
 import type { Snapshot } from '../backend/types.ts';
 import { Dialog, MemberName, PlaceChip, stamp } from './common.tsx';
+import { dayPanelShowing } from '../lib/editing.ts';
 import { addPlaceToDay } from './addToDay.ts';
 
 const DATES = tripDates();
@@ -60,6 +61,22 @@ export function PlanningConfirmDialog() {
         <li>{idle} 分鐘沒有動作會自動結束編輯。</li>
       </ul>
     </Dialog>
+  );
+}
+
+/** 編輯中但時間軸面板不在畫面上（探索、想去、聊天、詳情）：浮在地圖上方的精簡藍條，只有「完成」 */
+export function EditingStrip({ desktop }: { desktop: boolean }) {
+  const show = useApp((s) => s.planning && !dayPanelShowing(s, desktop));
+  if (!show) return null;
+  return (
+    <div className="planning-bar planning-strip" data-testid="planning-strip">
+      <strong>✏️ 編輯中</strong>
+      <span className="planning-bar-actions">
+        <button type="button" className="planning-done" data-testid="planning-strip-done" onClick={() => appStore.getState().setPlanning(false)}>
+          完成
+        </button>
+      </span>
+    </div>
   );
 }
 

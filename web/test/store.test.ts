@@ -64,3 +64,13 @@ test('編輯中換天照樣在編輯；選「全部」就結束編輯', () => {
   assert.equal(store.getState().day, 'all');
   assert.equal(store.getState().planning, false);
 });
+
+test('dayPanelShowing：時間軸面板不在畫面上時才要顯示精簡的編輯中條', async () => {
+  const { dayPanelShowing } = await import('../src/lib/editing.ts');
+  const s = { mode: 'map' as const, detailId: null, sheet: { tab: 'day' } };
+  assert.equal(dayPanelShowing(s, true), true);
+  assert.equal(dayPanelShowing(s, false), true);
+  assert.equal(dayPanelShowing({ ...s, mode: 'explore' }, true), false);
+  assert.equal(dayPanelShowing({ ...s, sheet: { tab: 'wish' } }, false), false);
+  assert.equal(dayPanelShowing({ ...s, detailId: 'x' }, true), false);
+});

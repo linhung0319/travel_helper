@@ -11,7 +11,7 @@ import { openMapPanel } from '../uiStore.ts';
 import { useCommentCount } from './Wishlist.tsx';
 import { filterChips, isFilterEmpty, matchesFilter, matchesQuery } from '../lib/filter.ts';
 import { shortDayLabel, tripDates, weekdayZh, JP_HOLIDAYS } from '../lib/trip.ts';
-import { ConflictBar } from './Planning.tsx';
+import { ConflictBar, EditingStrip } from './Planning.tsx';
 import { MeMenu } from './MeMenu.tsx';
 import { FilterPanel } from './FilterPanel.tsx';
 import { showItinerary } from './Explore.tsx';
@@ -170,6 +170,7 @@ export function TopBar() {
           </button>
         </div>
       </div>
+      <EditingStrip desktop={false} />
       <ConflictBar />
       {filterOpen && <FilterPanel onClose={() => setFilterOpen(false)} />}
     </div>
@@ -207,6 +208,7 @@ export function MapTopBar() {
           <AccountBar />
         </div>
       </div>
+      <EditingStrip desktop />
       <ConflictBar />
       {/* 探索分頁裡已經看得到篩選，不重複 */}
       {mode !== 'explore' && <FilterChips />}

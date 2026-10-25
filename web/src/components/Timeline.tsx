@@ -97,7 +97,7 @@ function Warnings({ list }: { list: EngineWarning[] | undefined }) {
   );
 }
 
-/** 編輯的手動選單；onTags：打開 tag 那一排的選單（造訪的卡片才有） */
+/** 編輯中的手動選單；onTags：打開 tag 那一排的選單（造訪的卡片才有） */
 function ItemMenu({ itemId, item, onTags }: { itemId: string; item: ItineraryItem; onTags?: () => void }) {
   const [open, setOpen] = useState(false);
   const [confirm, setConfirm] = useState(false);
@@ -238,7 +238,7 @@ interface ShownOption {
   stayMinutes: number | null;
   /** tag 那一排右邊的 ‹ n/m › */
   switcher: ReactNode;
-  /** 編輯、看備卡時的「設為主要」「拿出來」 */
+  /** 編輯中、看備卡時的「設為主要」「拿出來」 */
   actions: ReactNode;
 }
 
