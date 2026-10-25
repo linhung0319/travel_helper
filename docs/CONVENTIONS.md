@@ -28,7 +28,8 @@ travel_helper/
 │  │  ├─ kintetsu/<station-id>.json
 │  │  ├─ bus/<route-id>.json
 │  │  ├─ jr/<station-id>.json
-│  │  └─ ferry/<route-id>.json
+│  │  ├─ ferry/<route-id>.json
+│  │  └─ urban/<route-id>.json   大阪市區的班距型路線、`_transfers.json`（T28）
 │  ├─ raw/<area-id>/         研究筆記（怎麼存見 §4「研究筆記怎麼存」）
 │  │  ├─ README.md           區域的現況、決定、給後續的建議（開工先讀這個）
 │  │  ├─ candidates/         候選清單 JSON（含沒納入、被排除的）
@@ -48,7 +49,7 @@ travel_helper/
 
 `packages/engine`、`scripts`、`web`、`worker` 是 npm workspaces：在根目錄跑一次 `npm install` 就裝好全部，只有根目錄有 `package-lock.json`（見 [architecture.md](architecture.md) §1）。
 
-區域 ID：`ise`、`futami`、`toba`、`shima`、`kix`（關西機場周邊，只有住宿和晚餐）
+區域 ID：`ise`、`futami`、`toba`、`shima`、`kix`（關西機場周邊，只有住宿和晚餐）、`osaka`（最後 1～2 天，2026-10-26 加入；做法見 §4「大阪（都市區）的做法」）
 
 每個區域在 `areas.json` 有**子地區**（`regions`），是搜尋、缺漏檢查、地圖篩選的單位；資料點的 `region` 填子地區 ID。
 
@@ -65,6 +66,7 @@ travel_helper/
 
 ### ID 規則
 - 近鐵車站：站名的羅馬字（`toba`、`ugata`、`kashikojima`、`shima-isobe`）；JR 車站加 `jr-` 前綴（`jr-toba`、`jr-futaminoura`）。同一站的近鐵、JR 用 `transfers` 互相連結。關西機場周邊（JR・南海共用、或只有南海）的車站用站名的羅馬字、不加前綴，`operator: "other"`、`lines` 寫各業者的線名（`kansai-airport`、`rinku-town`、`izumisano`、`hagurazaki`；2026-10-21 T13）。
+- 大阪的車站（2026-10-26，T28）：近鐵用站名的羅馬字、不加前綴（`osaka-namba`、`osaka-uehommachi`、`tsuruhashi`，`passes.json` 已經用 `osaka-namba`）；其他業者加前綴：JR `jr-`（`jr-tsuruhashi`、`jr-universal-city`）、Osaka Metro `metro-`（`metro-namba`、`metro-tanimachi-4chome`）、南海 `nankai-`（`nankai-namba`）、阪神 `hanshin-`。同名、相連的站用 `transfers` 互相連結（例如 `osaka-namba`、`metro-namba`、`nankai-namba`），站內轉乘的步行時間另外記（§3「轉乘」）。
 - 區域 ID 是另一個命名空間，可以和車站 ID 相同（區域 `toba`、車站 `toba`）。
 - 其他資料點建議以區域開頭，例如 `toba-aquarium`。
 - **第一次正式匯入資料庫（T24、T25）之後，已經匯入的 ID 不改名**：ID 是連接預設資料、使用者的修改、行程、投票的關鍵。合併重複的點時保留一個 ID，被合併的記成轉址（`data/redirects.json`，格式由 T24 定）。見 [architecture.md](architecture.md) §3.5。
@@ -83,11 +85,13 @@ travel_helper/
 | 檔案 | 誰可以寫 |
 |---|---|
 | `schema/`、`data/areas.json`、`data/stations.json` | 只有 T0、T7 |
-| `data/areas.json` 裡**自己區域的 `regions`** | 負責該區的任務（T7b～T7g、T8a、T9a、T19）；其他欄位仍然只有 T0、T7 |
-| `data/timetables/kintetsu/`、`data/passes.json` | T1 |
-| `data/access/`、`data/raw/access/` | T1b（機場往返交通） |
+| `data/areas.json` 裡**自己區域的 `regions`** | 負責該區的任務（T7b～T7g、T8a、T9a、T19、T27a）；其他欄位仍然只有 T0、T7。例外：T27a 新增 `osaka` 這一整筆，T28 補它的 `stations` |
+| `data/timetables/kintetsu/`、`data/passes.json` | T1。例外：T28 在 `_travel-times.json` 加往返大阪的特急 |
+| `data/access/`、`data/raw/access/` | T1b（機場往返交通）。例外：T28 新增 `data/raw/access/osaka.md` |
 | `data/timetables/bus/`、`jr/`、`ferry/` | T10（`passes.json` 的巴士部分也由 T10 補充） |
-| `data/areas/<area>/`、`data/raw/<area>/` | 負責該區的任務（鳥羽 T2～T4c、T7b～T7h；伊勢 T8a～T8f；志摩 T9a～T9f；關西機場周邊 T19）。例外：T7i 改鳥羽、伊勢、二見 `lodging.json` 的 `ratings`、`sources`（不和 T8e 同時做） |
+| `data/timetables/urban/` | T28（班距型路線、轉乘） |
+| `data/stations.json` 裡大阪的車站 | T28（例外允許；其他車站仍然只有 T0、T7）。T28 也可以為了班距型路線、轉乘改 `schema/`、`scripts/validate.mjs`（補測試） |
+| `data/areas/<area>/`、`data/raw/<area>/` | 負責該區的任務（鳥羽 T2～T4c、T7b～T7h；伊勢 T8a～T8f；志摩 T9a～T9f；關西機場周邊 T19；大阪 T27a～T27d）。例外：T7i 改鳥羽、伊勢、二見 `lodging.json` 的 `ratings`、`sources`（不和 T8e 同時做） |
 | `docs/CONVENTIONS.md` 的「口コミ、Google 評論」一節 | T8e 補「還沒確認的」實測結果和選擇器的修正；其他部分照舊由 👤 討論後修改 |
 | `data/cache/` | 任何任務都可以新增，不可以刪除別人的檔案 |
 | `data/derived/` | 只由腳本產生（例如評分的一致性檢查），不要手改 |
@@ -302,6 +306,52 @@ travel_helper/
 - 方向鍵只有兩個：`for-kashikojima`（南下，往鳥羽、賢島；伊勢市站終點是宇治山田、鳥羽的車也算這邊，實際終點看 `to`）和 `for-ise-nakagawa`（北上，往伊勢中川、名古屋、大阪）。
 - `trainNo` 是近鐵時刻表網站的列車編號（例如 `1-3896`），同一班車在各站相同，可以對到 `_travel-times.json` 的 `trains`。
 - 各站之間的車程和每班車的停站時刻存在 `data/timetables/kintetsu/_travel-times.json`（格式見 `schema/kintetsu-travel-times.schema.json`）。
+
+### 班距型路線（`timetables/urban/<route-id>.json`，大阪，2026-10-26 草稿，T28 定案）
+大阪的地鐵、JR 環狀線幾分鐘一班，存完整時刻表沒有意義，所以只記**所需時間和班距**。近鐵特急（伊勢 ↔ 大阪）一小時一班，照舊用時刻表（`_travel-times.json`）。
+```jsonc
+{
+  "id": "metro-midosuji",
+  "mode": "metro",                       // metro | jr | private
+  "operator": "Osaka Metro",
+  "name": { "ja": "御堂筋線", "zh": "御堂筋線" },
+  "stops": [                             // 依路線順序；min 是從第一站起算的車上分鐘
+    { "id": "metro-umeda", "min": 0 },
+    { "id": "metro-namba", "min": 8 }
+  ],
+  "loop": false,                         // 環狀線填 true（最後一站接回第一站，另外寫 loopMin）
+  "service": {                           // 兩個方向取比較保守的值：首班取較晚的、末班取較早的
+    "weekday":  { "first": "05:00", "last": "24:00",
+                  "headway": [ { "from": "07:00", "to": "09:30", "min": 3 }, { "from": "09:30", "to": "17:00", "min": 5 } ] },
+    "saturday": null,                    // 和 holiday 相同時填 null
+    "holiday":  { "first": "05:00", "last": "24:00", "headway": [ { "from": "05:00", "to": "24:00", "min": 5 } ] }
+  },
+  "fares": { "adult": { "metro-umeda": { "metro-namba": 240 } } },   // 同 bus 路線檔的形狀；只填資料點附近的站之間
+  "fareNote": "兒童半價（10 円未滿進位）",
+  "passes": { "kintetsu5day": false },
+  "retrieved": "2026-10-xx",
+  "sources": [ { "type": "official", "url": "https://...", "retrieved": "2026-10-xx" } ]
+}
+```
+- 快車、慢車混跑的線（JR、南海）：只記會用到的那一種（例如南海的空港急行），特急（ラピート）另外一筆 `id`。
+- 日別照巴士的 `weekday`／`saturday`／`holiday`（2/11 國定假日算 holiday）。
+- 不知道的班距、首末班填 `null`，不要猜。
+
+### 轉乘（`timetables/urban/_transfers.json`）
+大站的站內轉乘常常要走 10 分鐘以上，對長輩影響比班次大，所以另外記。
+```jsonc
+[
+  {
+    "from": "osaka-namba", "to": "nankai-namba",
+    "walkMin": 8,                        // 係數 1 的分鐘數，使用時才乘團體係數（§5.4）
+    "elevator": true,                    // 整段有電梯可以走（不用樓梯、手扶梯）
+    "elevatorRoute": "近鐵 東改札 → 電梯 → …",   // 有電梯的走法，和一般路線不同時寫
+    "note": "行李多時建議走…",
+    "sources": [ { "type": "official", "url": "https://...", "retrieved": "2026-10-xx" } ]
+  }
+]
+```
+- 一筆代表兩個方向；兩個方向不同時拆成兩筆。
 
 ### 行程（`itinerary-v1`，T14 訂定，2026-10-22）
 - **只有一份確定的行程**（2026-10-21）：12 天，一開始就放好航班當固定項目；不做方案。家人的建議、投票、使用者加的點不放在行程裡，另外存在資料庫（[architecture.md](architecture.md) §3.6、[interaction-design.md](interaction-design.md) §6）；「整趟」的建議取代原本草稿的 `wishlist`。
@@ -626,6 +676,7 @@ T7c～T8d 在自動模式下反覆用到、沒有被 👤 改掉的判斷，整�
 
 ### 深入調查（部落格心得）
 2026-10-18 決定：鄉下小店的部落格心得很少，蒐集階段每家都搜尋，搜尋次數用掉很多卻幾乎找不到。所以蒐集階段的心得只靠口コミ、Google 評論，**部落格心得等各區評分完成後，只對前幾名找**，找到的補進筆記，再對有新資訊的那幾筆重新打分（補丁式）。
+- **大阪不做**（2026-10-26）：三區的第一輪找不到心得的比例很高，分數幾乎沒動（見「大阪（都市區）的做法」）。
 - **時機**：
   - 第一輪：該區的摘要與評分（T7g／T7h、T8f、T9f）完成後。
   - 第二輪：行程大致定下來後（T15 前後），對行程選中、但第一輪沒做過的資料點再做一次。
@@ -706,6 +757,46 @@ T7c～T8d 每一批都在 session 的 scratchpad 重寫同樣的抽取程式、�
 | 11 深入調查（另開 session） | 照「深入調查」挑前幾名、開 sub；收回後重寫有新資訊那幾筆的 `summary`、`assessment`、`tier` | 部落格、中文心得（每筆 WebSearch 2～3 次） | 筆記、三個資料檔 |
 
 每一步結束時：跑 `scripts/validate`、commit；更新 `README.md`（現況、決定、給下一步的建議），過程寫在 `log/<任務 ID>.md`。
+
+### 大阪（都市區）的做法（2026-10-26 👤 決定）
+上面的標準作業流程是為伊勢志摩（鄉下、店少、分散）設計的。大阪的問題剛好相反：店和資料都很多，真正稀少的是**能坐 15 人、能訂位的店**。照前三區的經驗，效果不好的步驟在大阪不做，範圍只收會去的子地區。任務見 PLAN.md 的 T27a～T27d、T28、T29。
+
+**不做的**（和前三區的差別）：
+| 步驟 | 前三區的經驗 | 大阪 |
+|---|---|---|
+| 深入調查（步驟 11）、g 任務 | T7j、T8g、T9g 共 82 筆、WebSearch 約 232 次；57 筆一篇有效心得都沒有，星數有變的只有 5、6 筆；T7h 補心得 32 筆，推薦度、tier 都沒變 | **不做**。行程定了以後，排進行程的點想多了解再個別補 |
+| 先自動做、事後再檢討 | 伊勢、二見加的新規則，鳥羽、志摩事後要補套；志摩光待確認的決定就 67 項 | 手動執行，要 👤 決定的當場問；評分一開始就照最新的 §5.1 和各區共用的補充 |
+| 餐廳 D 規則、每天的缺漏檢查（`restaurant-gaps.mjs`）、離島便當、數量控制 | 為了店太少設計的 | **不做**。範圍靠子地區和下面的目標家數控制 |
+| `ig-notes.md` | 五區 253 行，程式和網站都沒有讀 | **不記**（`links.instagram` 有順手拿到的照填） |
+| じゃらん | WebFetch 亂碼、重跑 `build-lodging` 會清掉分數；kix 只多找到 1 間 | **不跑**（楽天沒有、又值得收的那幾間，人工記評分） |
+| 代表照片逐張看圖（T21） | 154 筆只換了 37 筆 | 照來源順序自動排：官網 → 楽天 → Wikimedia → Google 主圖；`photo-check.mjs` 打不開的往後排 |
+
+**照舊做的**：每筆的 `sources`、讀文 subagent 和筆記（餐廳來源少的 3 家合一個）、Google 星數和評論數（Chrome）、`questions.md`（只記錄，不去確認）、摘要與評分（同一步，只用已蒐集的資料）、validate。
+
+**景點**
+- 來源：大阪觀光局（OSAKA-INFO）、各設施官網、Google；不用觀光三重的腳本。
+- 不讀口コミ、Google 評論（筆記心得不到 2 篇的例外）。
+- 票價依日期變動的（USJ）：記查得到的最近同期價格當參考，note 寫查詢日期和「出發前要再查」。
+
+**住宿**
+- 楽天只查兩晚當價格的代表：**2027-02-11（四，國定假日，隔天平日 → 平日價）**、**2027-02-12（五，隔天週六 → 休前日價）**。城市飯店大多是 2 人房，組合要加 `8x2`（`--party 16`）。
+- `extra.rakutenVacancy` 照腳本產生，**只當參考**：它是查詢當天楽天上的庫存，不是即時空房，不拿來判斷 `groupFit`（同 T7g 的決定）；能不能住 15 人看房數、房型、包棟、團體方案。網站不提供訂房，也不把它顯示成「有空房」。
+- 包棟只收頁面上有合法登記（旅館業許可或民泊届出番号）的。
+
+**餐廳納入標準**（取代 A～F，目標 30～40 家）
+| # | 條件 | 目標 |
+|---|---|---|
+| G 全員 | 食べログ 3.10 以上、口コミ 15 則以上，而且列表顯示個室或貸切可以容納 15 人以上（候選 `note` 抄人數）；或官網明寫 15 人以上的團體、宴會 | 8～10 家，集中在住宿據點的子地區（難波），其他子地區各 1～2 家 |
+| S 分組 | 大阪名物（たこ焼き、お好み焼き、串カツ、てっちり 等）和平價的店：食べログ 3.30 以上、口コミ 50 則以上，或 Google 4.0 以上、評論 300 則以上；不用預約的優先 | 每個子地區 3～5 家，超過時依口コミ數取 |
+- USJ 子地區不收餐廳（園內吃）。
+- 排除條件照前三區（便利商店、連鎖速食、バー、閉店、只限住客、旅程期間不營業）。
+- 不寫 D、E、F 的保底；某個子地區真的找不到全員用的店，寫在 README，不放寬門檻。
+
+**評分**
+- 打分前就在 `data/raw/toba/assessment-notes.md` 加「大阪」一節，先試算、訂好這一區的門檻（§5.1「數字門檻依區調整」），之後不事後調整。
+- 餐廳 `localFlavor` 的「在地」改成大阪名物：たこ焼き、お好み焼き、串カツ、てっちり、きつねうどん 等的專門店 → 4～5；一般和食、洋食 → 2；連鎖 → 1。
+- 景點 `accessEase`：地鐵、JR 站步行 10 分內 → 5；要轉乘 2 次以上或站內轉乘步行 10 分以上 → 3。
+- `winterFit`、`elderFit`、`kidsFit`、`groupFit` 照 §5.1。
 
 ### 研究筆記怎麼存
 鳥羽的 `restaurants.md` 長到 97 KB：一半是候選表，四分之一是貼上的腳本輸出，其他是各任務一路追加的過程紀錄。之後每個 session 都要讀它，會越來越吃 context。所以**依內容的性質分開存**：
