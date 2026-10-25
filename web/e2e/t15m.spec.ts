@@ -39,6 +39,9 @@ async function openWish(page: Page, id = PLACE): Promise<Locator> {
 const wish = (scope: Locator, id = PLACE) => scope.locator(`[data-testid="wish-item"][data-id="${id}"]`);
 const cand = (page: Page, id = PLACE) => page.getByTestId('day-candidates').locator(`[data-testid="cand-item"][data-id="${id}"]`);
 
+/** 等存檔結束（假後端存一次 150ms；存檔中再改會被擋下來） */
+const waitSaved = (page: Page) => expect.poll(() => th(page, '__th.shared.store.getState().saving')).toBe(false);
+
 async function enterPlanning(page: Page) {
   await page.getByTestId('planning-toggle').click();
   await expect(page.getByTestId('planning-dialog')).toBeVisible();
@@ -919,13 +922,18 @@ test('標籤：多選、再點取消、點外面關', async ({ page }) => {
   await pop.getByTestId('tag-opt-breakfast').click();
   await expect(tags).toHaveText(['早餐', '午餐']);
   await expect(pop.getByTestId('tag-opt-breakfast')).toHaveAttribute('aria-checked', 'true');
+  // 存檔中按鈕不能點（同手機版）；存好再點下一個
+  await waitSaved(page);
   await pop.getByTestId('tag-opt-lunch').click();
   await expect(tags).toHaveText(['早餐']);
   await expect(pop.getByTestId('tag-opt-lunch')).toHaveAttribute('aria-checked', 'false');
+  await waitSaved(page);
   await pop.getByTestId('tag-opt-groups').click();
   await expect(tags).toHaveText(['早餐', '分組']);
+  await waitSaved(page);
   await pop.getByTestId('tag-opt-all').click();
   await expect(tags).toHaveText(['早餐', '全員']);
+  await waitSaved(page);
   await expect.poll(() => th(page, `__th.dataStore.getState().itinerary.days.find((d) => d.date === '2027-02-03').items.find((x) => x.id === 'i-3').tags`)).toEqual(['breakfast', 'all']);
   // 點地圖空白處：彈窗關掉
   const map = (await page.locator('.maplibregl-canvas').boundingBox())!;
@@ -972,11 +980,11 @@ test('回住宿的卡：這晚的方案三選一，再點取消', async ({ page 
   await expect(tag).toHaveText('只含早餐');
   await expect(tag).toHaveAttribute('data-from', 'day');
   await expect(pop.getByTestId('lodging-plan-breakfast')).toHaveAttribute('aria-checked', 'true');
-  await expect.poll(() => th(page, '__th.shared.store.getState().saving')).toBe(false);
+  await waitSaved(page);
   await pop.getByTestId('lodging-plan-none').click();
   await expect(tag).toHaveText('素泊');
   // 畫面先改、後端還在存（假後端 150ms）時再點會被擋（「還在儲存上一個修改」）：等存好再點
-  await expect.poll(() => th(page, '__th.shared.store.getState().saving')).toBe(false);
+  await waitSaved(page);
   await pop.getByTestId('lodging-plan-none').click();
   await expect(tag).toHaveText('一泊二食');
   await expect(tag).toHaveAttribute('data-from', 'data');
@@ -1163,6 +1171,7 @@ test('候選的 ⋯：排進這天、刪除', async ({ page }) => {
   await actionMenu(page).getByTestId('action-schedule').click();
   await expect(cruise).toHaveCount(0);
   await expect(page.getByTestId('timeline').locator('[data-testid="tl-row"][data-place="toba-bay-cruise-irukajima"]')).toBeVisible();
+  await waitSaved(page);
 
   // 自己加的候選（2/6 燒貝いろは是爸爸加的）：有移到第幾天，移過去之後在那天的候選
   await showDay(page, '2027-02-06');
@@ -1180,6 +1189,36 @@ test('候選的 ⋯：排進這天、刪除', async ({ page }) => {
   await moved.getByTestId('item-menu').click();
   await actionMenu(page).getByTestId('action-delete').click();
   await expect(moved).toHaveCount(0);
+});
+
+test('排進這天：存檔中換到別天，存好後不會被拉回去', async ({ page }) => {
+  await ready(page);
+  await showDay(page, '2027-02-05');
+  await enterPlanning(page);
+  const cruise = cand(page, 'toba-bay-cruise-irukajima');
+  await cruise.getByTestId('item-menu').click();
+  await actionMenu(page).getByTestId('action-schedule').click();
+  // 假後端存一次 150ms：還在存的時候換天
+  await page.evaluate(() => (window as any).__th.commands.selectDay('2027-02-06'));
+  await waitSaved(page);
+  await page.waitForTimeout(200);
+  expect(await th(page, '__th.appStore.getState().day')).toBe('2027-02-06');
+  expect(await storeCands(page, 'toba-bay-cruise-irukajima', '2027-02-05')).toEqual([]);
+});
+
+test('移到第幾天：留在原本那天、可以復原（同手機版）', async ({ page }) => {
+  await ready(page);
+  await showDay(page, '2027-02-03');
+  await enterPlanning(page);
+  await menuOf(tlRow(page, 'i-3')).click();
+  await actionMenu(page).getByTestId('action-move').click();
+  await page.getByTestId('move-dialog').locator('[data-pick-day="2027-02-04"]').click();
+  await expect(page.getByTestId('move-dialog')).toHaveCount(0);
+  await expect(tlRow(page, 'i-3')).toHaveCount(0);
+  expect(await th(page, '__th.appStore.getState().day')).toBe('2027-02-03');
+  await expect(page.getByTestId('toast')).toContainText('已移到 2/4');
+  await page.getByTestId('toast-undo').click();
+  await expect(tlRow(page, 'i-3')).toBeVisible();
 });
 
 // ---------- 第六輪 Task 5：Google Map 文字、等待卡、移到第幾天 4×3、紅字日期 ----------

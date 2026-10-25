@@ -14,7 +14,7 @@ import { cardTypeLetter } from '../lib/planView.ts';
 import { TYPE_COLORS } from '../lib/typeStyle.ts';
 import type { DragSource, DropTargetInfo } from '../lib/dropIntent.ts';
 import { dropOnCardProps, useLongPressDrag } from '../components/planDrag.ts';
-import { menuGroups } from '../components/cardActionRun.ts';
+import { cardActions } from '../shared/cardActions.ts';
 import { Thumb } from './Thumb.tsx';
 import { mobileStore, type ActionSheetSpec } from './mobileStore.ts';
 
@@ -80,7 +80,7 @@ export function MobileCard({ itemKey, place, fallbackType, mark, time, name, tag
   const candidate = addedBy != null;
   const src = planning ? drag : null;
   const pressRef = useLongPressDrag<HTMLLIElement>(src, true);
-  const hasMenu = planning && !!menu && menuGroups(menu.ctx).length > 0;
+  const hasMenu = planning && !!menu && cardActions(menu.ctx).length > 0;
   // 編輯中選卡片不把面板降到中間（編輯要看清單）
   const focus = () => mobileStore.getState().focusItem(itemKey, planning);
   // 點標籤那一排（編輯中打開標籤面板）不算點卡片

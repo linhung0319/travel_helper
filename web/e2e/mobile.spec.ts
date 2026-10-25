@@ -117,6 +117,25 @@ test('詳情整頁：打開推一筆 history，瀏覽器上一頁關掉', async 
   await expect(page.getByTestId('m-detail')).toHaveCount(0);
 });
 
+test('討論、預約整頁：打開推一筆 history，瀏覽器上一頁（手機的返回鍵）關掉、還在網站裡', async ({ page }) => {
+  await ready(page);
+  await goTab(page, 'me');
+  const url = page.url();
+  await page.getByTestId('m-me-comments').click();
+  await expect(page.getByTestId('m-page-comments')).toBeVisible();
+  await page.goBack();
+  await expect(page.getByTestId('m-page-comments')).toHaveCount(0);
+  expect(page.url()).toBe(url);
+  const s = await mobileState(page);
+  expect(s.page).toBeNull();
+  expect(s.tab).toBe('me');
+  // 「‹」關掉時把那筆退回去：再按一次上一頁不會留在一筆空的 history 上
+  await page.getByTestId('m-me-reservations').click();
+  await page.getByTestId('m-page-reservations').getByTestId('m-page-back').click();
+  await expect(page.getByTestId('m-page-reservations')).toHaveCount(0);
+  await expect.poll(() => page.evaluate(() => !!(window.history.state as any)?.thMobileDetail)).toBe(false);
+});
+
 test('探索：兩欄圖片牆、沒有地圖、可以按 ❤️ 不開詳情', async ({ page }) => {
   await ready(page);
   await goTab(page, 'explore');
@@ -805,6 +824,60 @@ test('編輯：重疊卡 ‹ n/m › 換著看、⋯ 的主要、拿出作用在
   await expect(lunch.getByTestId('m-option-switch')).toHaveCount(0);
   const places = await page.getByTestId('m-timeline').getByTestId('m-card').evaluateAll((els) => els.map((e) => e.getAttribute('data-place')));
   expect(places[places.indexOf('toba-kazuei') + 1]).toBe('toba-sazanami');
+});
+
+test('編輯：看重疊卡的備卡時，⋯ 的「⏱ 改停留時間」不能點（只改得到主卡）', async ({ page }) => {
+  await editDay(page, '2027-02-05');
+  const lunch = mCard(page, 'i-7');
+  const sheet = page.getByTestId('m-action-sheet');
+  // 看主卡：可以改
+  await openActions(page, 'i-7');
+  await expect(sheet.getByTestId('m-action-stay')).toBeEnabled();
+  await page.getByTestId('m-sheet-dim').click({ position: { x: 20, y: 20 } });
+  // 看備卡：不能點
+  await lunch.getByTestId('m-option-switch').getByTestId('option-next').click();
+  await expect(lunch).toHaveAttribute('data-place', 'toba-kazuei');
+  await openActions(page, 'i-7');
+  await expect(sheet.getByTestId('m-action-stay')).toBeDisabled();
+  await expect(sheet.getByTestId('m-action-main')).toBeEnabled();
+});
+
+test('編輯：移到第幾天可以復原，留在原本那天', async ({ page }) => {
+  await editDay(page);
+  await openActions(page, 'i-2');
+  const sheet = page.getByTestId('m-action-sheet');
+  await sheet.getByTestId('m-action-move').click();
+  await sheet.getByTestId('m-move-2027-02-04').click();
+  await expect(mCard(page, 'i-2')).toHaveCount(0);
+  expect(await page.evaluate(() => (window as any).__th.appStore.getState().day)).toBe('2027-02-03');
+  const toast = page.getByTestId('toast');
+  await expect(toast).toContainText('已移到 2/4');
+  await page.getByTestId('toast-undo').click();
+  await expect(mCard(page, 'i-2')).toBeVisible();
+});
+
+test('自由時間的子畫面標題是「⏱ 改時間長度」', async ({ page }) => {
+  await editDay(page);
+  await page.evaluate(() => {
+    const th = (window as any).__th;
+    const it = structuredClone(th.dataStore.getState().itinerary);
+    return th.shared.changeItinerary(() => {
+      it.days.find((d: any) => d.date === '2027-02-03').items.push({ id: 'free-e2e', type: 'free', minutes: 60 });
+      return it;
+    }, '加自由時間（e2e）');
+  });
+  await openActions(page, 'free-e2e');
+  const sheet = page.getByTestId('m-action-sheet');
+  await sheet.getByTestId('m-action-free-length').click();
+  await expect(sheet.getByTestId('m-action-head')).toContainText('⏱ 改時間長度');
+});
+
+test('編輯中從行程打開的詳情沒有問 AI（半屏聊天藏起來）', async ({ page }) => {
+  await editDay(page);
+  await mCard(page, 'i-2').getByTestId('m-card-name').click();
+  await mCard(page, 'i-2').getByTestId('m-card-detail').click();
+  await expect(page.getByTestId('m-detail')).toBeVisible();
+  await expect(page.getByTestId('m-detail').getByTestId('ask-ai-box')).toHaveCount(0);
 });
 
 test('編輯：完成以後分頁回來', async ({ page }) => {

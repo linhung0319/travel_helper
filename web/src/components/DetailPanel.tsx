@@ -520,9 +520,9 @@ function Tags({ place }: { place: Place }) {
 
 /**
  * 介紹：簡介（優缺點、標籤）、問 AI、車站時刻表、價格、排在哪幾天。
- * 網頁版的「總覽」分頁、手機版整頁詳情的「簡介」分頁共用（onDay 見 PlaceInTrip）
+ * 網頁版的「總覽」分頁、手機版整頁詳情的「簡介」分頁共用（onDay 見 PlaceInTrip；askAi false 時不畫問 AI）
  */
-export function PlaceIntro({ place, fromTrip, onDay }: { place: Place; fromTrip: boolean; onDay?(date: string): void }) {
+export function PlaceIntro({ place, fromTrip, onDay, askAi = true }: { place: Place; fromTrip: boolean; onDay?(date: string): void; askAi?: boolean }) {
   return (
     <>
       {place.summary && (
@@ -548,7 +548,7 @@ export function PlaceIntro({ place, fromTrip, onDay }: { place: Place; fromTrip:
           <Tags place={place} />
         </section>
       )}
-      <AskAiBox place={place} fromTrip={fromTrip} />
+      {askAi && <AskAiBox place={place} fromTrip={fromTrip} />}
       {place.type === 'station' && <StationTimetablePanel place={place} />}
       <PriceSection place={place} />
       <PlaceInTrip place={place} onDay={onDay} />

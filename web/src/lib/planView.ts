@@ -447,13 +447,15 @@ export function legSteps(leg: Leg, fromName: string, toName: string, nameOf: (id
 const MEAL_LABELS: Partial<Record<MealKind, string>> = { lunch: '午餐 ', dinner: '晚餐 ' };
 
 /**
- * 交通卡下面「到了要等」的那條（第五輪 §2）：有 📌 寫「午餐 📌 12:00 才開始」；
+ * 交通卡下面「到了要等」的那條（第五輪 §2）：有 📌 寫「午餐 📌 12:00 才開始」（標了用餐才寫，那一餐是引擎的 entry.meal）；
  * 沒有 📌 的造訪是等開門（引擎只會因為營業時間延後，開始時間就是開門時間）；不是造訪（自由時間的指定時間）不寫原因。不用等回傳 null
  */
 export function waitNote(entry: TimelineEntry, item: VisitItem | null, _place: Place | undefined): string | null {
   if (entry.waitMinutes <= 0) return null;
   const head = `⏳ ${entry.arrive} 到，等 ${entry.waitMinutes} 分`;
-  if (item?.start) return `${head}（${(entry.mealTags?.[0] && MEAL_LABELS[entry.mealTags[0]]) || ''}📌 ${item.start} 才開始）`;
+  // 那一餐照引擎用的（entry.meal，設計 §2.1）；使用者沒標用餐（mealTags 空）就不寫
+  const meal = entry.mealTags?.length && entry.meal ? (MEAL_LABELS[entry.meal] ?? '') : '';
+  if (item?.start) return `${head}（${meal}📌 ${item.start} 才開始）`;
   if (item) return `${head}（${entry.start} 才開門）`;
   return head;
 }

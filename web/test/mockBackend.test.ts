@@ -194,3 +194,31 @@ test('sync：各種資料的版本', async () => {
   await b.putReservation({ date: '2027-02-05', placeId: 'x', status: 'booked' });
   assert.notEqual(s3.reservations, (await b.sync()).reservations);
 });
+
+test('讀 storage：舊格式（meal、dining）的行程和快照轉成 tags', async () => {
+  const mem = new Map<string, string>();
+  const storage = { getItem: (k: string) => mem.get(k) ?? null, setItem: (k: string, v: string) => void mem.set(k, v), removeItem: (k: string) => void mem.delete(k) };
+  const b1 = createMockBackend(SEED, { now, storage });
+  await b1.putItinerary(1, (await b1.getItinerary()).data!, '存一次，留一份快照');
+  // 把存檔改成舊格式：visit 有 meal、dining，沒有 tags
+  const key = [...mem.keys()][0];
+  const st = JSON.parse(mem.get(key)!);
+  const old = (it: { days: { items: Record<string, unknown>[] }[] }) => {
+    const v = it.days[0].items[0];
+    delete v.tags;
+    v.meal = 'lunch';
+    v.dining = 'separate';
+  };
+  old(st.itinerary.data);
+  old(st.snapshots[0].data);
+  mem.set(key, JSON.stringify(st));
+  const b2 = createMockBackend(SEED, { now, storage });
+  const v = (await b2.getItinerary()).data!.days[0].items[0] as unknown as Record<string, unknown>;
+  assert.deepEqual(v.tags, ['lunch', 'groups']);
+  assert.equal(v.meal, undefined);
+  assert.equal(v.dining, undefined);
+  const [meta] = await b2.listSnapshots();
+  const snap = (await b2.getSnapshot(meta.id)).data.days[0].items[0] as unknown as Record<string, unknown>;
+  assert.deepEqual(snap.tags, ['lunch', 'groups']);
+  assert.equal(snap.meal, undefined);
+});

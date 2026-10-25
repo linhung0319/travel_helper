@@ -494,15 +494,15 @@ function StayChip({ itemId, minutes, readOnly = false }: { itemId: string | null
   );
 }
 
-
-const GAP_ACTIONS: Record<Gap['kind'], { icon: string; look: string; types: ('restaurant' | 'spot' | 'lodging')[] }> = {
+/** 空檔的圖示和「看…」：只剩「住宿（未排）」（idle 是等待，planView 不放進時間軸的列） */
+const GAP_ACTIONS: Record<Exclude<Gap['kind'], 'idle'>, { icon: string; look: string; types: ('restaurant' | 'spot' | 'lodging')[] }> = {
   lodging: { icon: '🏨', look: '看住宿', types: ['lodging'] },
-  idle: { icon: '⏳', look: '', types: [] },
 };
 
 /** 空檔（「住宿（未排）」這類，不是等待）：點了展開——看住宿（篩選＋地圖框住前後兩站） */
 function GapRow({ gap, plan }: { gap: Gap; plan: DayPlan }) {
   const [open, setOpen] = useState(false);
+  if (gap.kind === 'idle') return null;
   const a = GAP_ACTIONS[gap.kind];
   const around = [gap.afterItemId, gap.beforeItemId]
     .map((id) => plan.entries.find((e) => e.itemId === id)?.placeId)

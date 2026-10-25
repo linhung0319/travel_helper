@@ -433,9 +433,12 @@ test('legSteps：計程車沒有步驟', () => {
 
 test('waitNote：📌 午餐、開門、其他', () => {
   const visit = { id: 'v', type: 'visit' as const, options: [{ place: 'r' }], selected: 0 };
-  const e = entry('visit', 'r', { arrive: '10:53', start: '12:00', waitMinutes: 67, mealTags: ['lunch'] });
+  const e = entry('visit', 'r', { arrive: '10:53', start: '12:00', waitMinutes: 67, meal: 'lunch', mealTags: ['lunch'] });
   assert.equal(waitNote(e, { ...visit, start: '12:00' }, place('r')), '⏳ 10:53 到，等 67 分（午餐 📌 12:00 才開始）');
-  assert.equal(waitNote({ ...e, mealTags: ['dinner'] }, { ...visit, start: '12:00' }, place('r')), '⏳ 10:53 到，等 67 分（晚餐 📌 12:00 才開始）');
+  assert.equal(waitNote({ ...e, meal: 'dinner', mealTags: ['dinner'] }, { ...visit, start: '12:00' }, place('r')), '⏳ 10:53 到，等 67 分（晚餐 📌 12:00 才開始）');
+  // 標了早餐＋午餐的 12:00：寫引擎用的那一餐（entry.meal），不是第一個標籤
+  assert.equal(waitNote({ ...e, meal: 'lunch', mealTags: ['breakfast', 'lunch'] }, { ...visit, start: '12:00' }, place('r')), '⏳ 10:53 到，等 67 分（午餐 📌 12:00 才開始）');
+  // 沒標用餐：引擎猜了午餐也不寫
   assert.equal(waitNote({ ...e, mealTags: [] }, { ...visit, start: '12:00' }, place('r')), '⏳ 10:53 到，等 67 分（📌 12:00 才開始）');
   // 沒有 📌 的造訪：等開門
   const open = entry('visit', 'r', { arrive: '09:40', start: '10:00', waitMinutes: 20 });

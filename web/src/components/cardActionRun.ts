@@ -1,15 +1,16 @@
 // 「⋯」動作選單每個動作要做的事（設計 §2.3）。沒有版面：網頁版的 ActionMenu、手機版的動作面板都呼叫 runCardAction。
 // 要開子畫面的動作（標籤、移到第幾天、這晚的方案、改停留時間）交給呼叫的人（ui）；其他直接改行程或候選。
 // 撤下是 planDrag.ts 的 withdrawItem；排進這天用 addToDay.ts 的 addPlaceToDay；刪別人加的候選開 RejectDialog（要寫理由）。
+// 選單畫什麼（menuItems：順序、組名、紅字）和「移到第幾天」的兩個動作（moveItemToDayAction、moveCandidateToDay）也在這裡，兩邊共用。
 
-import { detachOption, moveItemTo, removeItem, selectOption, setLodging, setStart } from '@travel-helper/engine';
+import { detachOption, moveItemTo, moveItemToDay, removeItem, selectOption, setLodging, setStart } from '@travel-helper/engine';
 import type { Itinerary } from '@travel-helper/engine/types';
 import { shared } from '../appShared.ts';
 import { dataStore } from '../dataStore.ts';
 import { openDialog } from '../uiStore.ts';
 import { findItemRef } from '../lib/planView.ts';
-import { shortDayLabel } from '../lib/trip.ts';
-import { cardActions, type ActionId, type CardActionContext } from '../shared/cardActions.ts';
+import { dayLabel, shortDayLabel } from '../lib/trip.ts';
+import { ACTION_LABELS, cardActions, type ActionId, type CardActionContext } from '../shared/cardActions.ts';
 import { addPlaceToDay } from './addToDay.ts';
 import { withdrawItem } from './planDrag.ts';
 
@@ -45,9 +46,34 @@ export function groupTargetsOf(it: Itinerary | null, itemId: string): { splitId:
   );
 }
 
-/** 選單要畫的動作：cardActions，分組的「分組動作」展開成移到第幾天、刪除（現在分組的動作） */
-export function menuGroups(ctx: CardActionContext): ActionId[][] {
-  return ctx.kind === 'split' ? [['move'], ['delete']] : cardActions(ctx);
+/** 紅字的動作（刪掉東西的） */
+const DANGER = new Set<ActionId>(['delete', 'lodging-clear']);
+
+/** 選單的一項：網頁版的 ActionMenu、手機版的動作清單都照這個畫 */
+export interface MenuItem {
+  id: ActionId;
+  /** React 的 key（「👥 移到{組名}」每組一項，要加上組） */
+  key: string;
+  text: string;
+  /** 這一項作用在哪（group-in 帶著那一組） */
+  target: ActionTarget;
+  danger: boolean;
+  /** group-in 的那一組（data-group） */
+  group?: string;
+}
+
+/** 選單要畫的項目，分好組（照 cardActions）；每個 group-in 和 ctx.groupTargets 照位置對上 */
+export function menuItems(ctx: CardActionContext, target: ActionTarget): MenuItem[][] {
+  const targets = ctx.groupTargets ?? [];
+  let nth = 0; // 第幾個 group-in
+  return cardActions(ctx).map((group) =>
+    group.map((id) => {
+      const g = id === 'group-in' ? targets[nth++] : undefined;
+      const danger = DANGER.has(id);
+      if (!g) return { id, key: id, text: ACTION_LABELS[id], target, danger };
+      return { id, key: `${id}:${g.splitId}:${g.groupId}`, text: `👥 移到${g.name}`, target: { ...target, split: { id: g.splitId, group: g.groupId, name: g.name } }, danger, group: g.groupId };
+    }),
+  );
 }
 
 /** 這張卡在行程裡的位置：那天（或那一組）的第幾個 */
@@ -96,6 +122,31 @@ function deleteCandidate(id: number) {
   openDialog({ kind: 'reject', candidateId: id });
 }
 
+/** 卡片（造訪、自由時間、分組）移到別天：放到那天的最後，留在原本那天，跳可以復原的「已移到 …」提示（網頁版、手機版共用） */
+export async function moveItemToDayAction(itemId: string, date: string): Promise<boolean> {
+  const label = itemLabel(itemId);
+  const r = await shared.changeItinerary((it) => moveItemToDay(it, itemId, date), `${label} 移到 ${dayLabel(date)}`, { undo: { text: `已移到 ${dayLabel(date)}・${label}` } });
+  return r.ok;
+}
+
+/**
+ * 自己加的候選移到別天（網頁版、手機版共用）：先在那天加成候選，成功了才拿掉這天的。
+ * 拿不掉這天的：把剛加的拿掉（那天本來就有的不動），跳錯誤提示
+ */
+export async function moveCandidateToDay(candidateId: number, date: string): Promise<boolean> {
+  const s = shared.store.getState();
+  const c = s.candidates.find((x) => x.id === candidateId);
+  if (!c) return false;
+  const existed = s.candidates.some((x) => x.placeId === c.placeId && x.day === date);
+  const added = await shared.addCandidate(c.placeId, date);
+  if (!added.ok) return false;
+  const removed = await shared.removeCandidate(c.id, undefined, true);
+  if (removed.ok) return true;
+  if (!existed) await shared.removeCandidate(added.value.id, undefined, true);
+  shared.notifyError(`沒有移到 ${shortDayLabel(date)}：${removed.error}`);
+  return false;
+}
+
 /** 執行「⋯」選單的一個動作 */
 export async function runCardAction(id: ActionId, target: ActionTarget, ui: ActionUi): Promise<void> {
   const { date, itemId } = target;
@@ -127,8 +178,6 @@ export async function runCardAction(id: ActionId, target: ActionTarget, ui: Acti
         const label = itemLabel(itemId);
         await shared.changeItinerary((it) => removeItem(it, itemId), `－${label}`, { undo: { text: `已刪除・${label}` } });
       }
-      return;
-    case 'split-actions':
       return;
   }
   if (!itemId) return;

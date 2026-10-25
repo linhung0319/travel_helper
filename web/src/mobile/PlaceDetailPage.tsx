@@ -1,12 +1,12 @@
 // 手機版的資料點詳情（第六輪 §3.3）：像點進 IG 的帳號，整頁蓋在分頁上面（原本的分頁不卸載，返回時捲動位置不變）。
 // 最上面是大照片，左右滑（CSS scroll-snap），下面有小圓點；左上角「‹」返回（瀏覽器上一頁也一樣，見 mobileStore）。
 // 照片下面：類型色塊、名稱、等級；日文名、★、地區；❤️ 想去 N、👎 N 兩個大按鈕（從想去打開多一個「📅 加到某天」）。
-// 再下面是分頁：簡介（介紹、問 AI、團體、長輩小孩、營業時間、連結、來源）、交通（小地圖、地址、最近的車站、附近）、評論（各網站評分）、留言 N。
+// 再下面是分頁：簡介（介紹、問 AI（編輯中從行程打開的不畫）、團體、長輩小孩、營業時間、連結、來源）、交通（小地圖、地址、最近的車站、附近）、評論（各網站評分）、留言 N。
 // 分頁的內容用網頁版 DetailPanel 抽出來的元件，版面自己排。小地圖是另開的一張不能互動的 MapLibre；點了切到行程分頁的地圖、框住這個點。
 
 import { useEffect, useRef, useState } from 'react';
 import { Map as MapLibreMap, Marker } from 'maplibre-gl';
-import { useData } from '../hooks.ts';
+import { useApp, useData } from '../hooks.ts';
 import { commands } from '../appCommands.ts';
 import { displayName } from '../data/normalize.ts';
 import { TYPE_LABELS } from '../lib/filter.ts';
@@ -181,6 +181,8 @@ function DetailContent({ place, from }: { place: Place; from: MobileTab }) {
   const areas = useData((s) => s.areas);
   const comments = useCommentCount(place.id);
   const [tab, setTab] = useState<Tab>('intro');
+  // 編輯中行程頁的半屏聊天藏起來（ChatSheet），從行程打開的詳情按問 AI 會沒有反應：先不畫問 AI
+  const askAiHidden = useApp((s) => s.planning) && from === 'trip';
   const name = place.name.zh || place.name.ja;
   const sub = [place.name.zh && place.name.ja !== place.name.zh ? place.name.ja : null, starText(place), placeAreaLabel(place, areas)].filter(Boolean).join('・');
   // 排在哪天：選那天、切到行程分頁
@@ -217,7 +219,7 @@ function DetailContent({ place, from }: { place: Place; from: MobileTab }) {
       <div className="m-detail-body" role="tabpanel">
         {tab === 'intro' && (
           <>
-            <PlaceIntro place={place} fromTrip={from === 'trip'} onDay={onDay} />
+            <PlaceIntro place={place} fromTrip={from === 'trip'} onDay={onDay} askAi={!askAiHidden} />
             <PlaceFacts place={place} />
             <LinksSection place={place} />
             <SourcesSection place={place} />

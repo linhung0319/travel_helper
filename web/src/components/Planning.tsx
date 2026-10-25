@@ -2,7 +2,7 @@
 // 快照列表與復原、「排進行程」、「移到第 _ 天」（卡片、自己加的候選）、別人改過了的提示。
 
 import { useCallback, useEffect, useState, useSyncExternalStore } from 'react';
-import { describeChanges, diffItinerary, moveItemToDay } from '@travel-helper/engine';
+import { describeChanges, diffItinerary } from '@travel-helper/engine';
 import { appStore } from '../store.ts';
 import { shared } from '../appShared.ts';
 import { backend } from '../backend/index.ts';
@@ -16,6 +16,7 @@ import type { Snapshot } from '../backend/types.ts';
 import { Dialog, MemberName, PlaceChip, stamp } from './common.tsx';
 import { dayPanelShowing } from '../lib/editing.ts';
 import { addPlaceToDay } from './addToDay.ts';
+import { moveCandidateToDay, moveItemToDayAction } from './cardActionRun.ts';
 
 const DATES = tripDates();
 
@@ -368,7 +369,7 @@ export function AddToDayDialog({ placeId, day: initialDay }: { placeId: string; 
   );
 }
 
-/** 手動選單的「移到第 _ 天」 */
+/** 手動選單的「移到第 _ 天」：放到那天的最後、留在這天，跳可以復原的提示（moveItemToDayAction，手機版同一個） */
 export function MoveDialog({ itemId }: { itemId: string }) {
   const itinerary = useData((s) => s.itinerary);
   const ref = findItemRef(itinerary, itemId);
@@ -377,12 +378,9 @@ export function MoveDialog({ itemId }: { itemId: string }) {
   const place = ref.item.type === 'visit' ? ref.item.options[ref.item.selected]?.place : null;
   const move = async (date: string) => {
     setBusy(true);
-    const r = await shared.changeItinerary((it) => moveItemToDay(it, itemId, date), `移到 ${shortDayLabel(date)}`);
+    const ok = await moveItemToDayAction(itemId, date);
     setBusy(false);
-    if (r.ok) {
-      appStore.getState().selectDay(date);
-      closeDialog();
-    }
+    if (ok) closeDialog();
   };
   return (
     <Dialog title="移到第幾天" onClose={closeDialog} testId="move-dialog">
@@ -398,17 +396,16 @@ export function MoveDialog({ itemId }: { itemId: string }) {
   );
 }
 
-/** 候選「⋯」的「移到第幾天」（只有自己加的）：在那天加成候選、這天的拿掉 */
+/** 候選「⋯」的「移到第幾天」（只有自己加的）：在那天加成候選、這天的拿掉（moveCandidateToDay，手機版同一個） */
 export function MoveCandidateDialog({ candidateId }: { candidateId: number }) {
   const c = useShared((s) => s.candidates.find((x) => x.id === candidateId));
   const [busy, setBusy] = useState(false);
   if (!c) return null;
   const move = async (date: string) => {
     setBusy(true);
-    const r = await shared.addCandidate(c.placeId, date);
-    if (r.ok) await shared.removeCandidate(c.id, undefined, true);
+    const ok = await moveCandidateToDay(c.id, date);
     setBusy(false);
-    if (r.ok) closeDialog();
+    if (ok) closeDialog();
   };
   return (
     <Dialog title="移到第幾天" onClose={closeDialog} testId="move-dialog">

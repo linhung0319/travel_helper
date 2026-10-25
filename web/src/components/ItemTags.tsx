@@ -1,5 +1,5 @@
 // 時間軸卡片名稱下面那一排標籤（設計 §2.1）：照 visit.tags 依分組（用餐、誰去、安排）畫小圓角膠囊，預約狀態放最後。
-// 編輯中點那一排（沒有標籤時是「＋ 標籤」，⋯ 選單的「🏷 標籤」也一樣）打開 TagPopover：每組一列、可以多選，點了立刻存、彈窗不關。
+// 編輯中點那一排（沒有標籤時是「＋ 標籤」，⋯ 選單的「🏷 標籤」也一樣）打開 TagPopover：每組一列、可以多選，點了立刻存、彈窗不關（存檔中按鈕先不能點）。
 // 回住宿那張宿的卡用「這晚的方案」（LodgingPlanPopover，三選一、再點取消＝照住宿資料）；照資料時字是淡色。
 // 出發那張宿的卡只顯示前一晚的方案（唯讀）。一般模式標籤只看、不能點。分組、互斥、哪種卡有哪幾組寫在 shared/tagOptions.ts。
 // 存檔的 toggleVisitTag、pickLodgingPlan 也給手機版的標籤面板（mobile/TagSheet.tsx）用。
@@ -8,7 +8,7 @@ import { useRef, type CSSProperties } from 'react';
 import { setLodging, setTags, type LodgingMeals, type TagId } from '@travel-helper/engine';
 import type { ItineraryDay, VisitItem } from '@travel-helper/engine/types';
 import { shared } from '../appShared.ts';
-import { useApp, useData } from '../hooks.ts';
+import { useApp, useData, useShared } from '../hooks.ts';
 import { findItemRef } from '../lib/planView.ts';
 import { shortDayLabel } from '../lib/trip.ts';
 import { LODGING_PLANS, TAG_GROUPS, TAG_LABELS, tagGroupsFor, toggleLodgingPlan, toggleTag, type TagCardKind, type TagGroup } from '../shared/tagOptions.ts';
@@ -55,6 +55,8 @@ export function pickLodgingPlan(date: string, cur: LodgingMeals | null, v: Lodgi
 export function TagPopover({ visit, kind, anchor, onClose }: { visit: VisitItem; kind: TagCardKind; anchor: HTMLElement | null; onClose: () => void }) {
   const have = visit.tags ?? [];
   const toggle = (tag: TagId) => toggleVisitTag(visit, tag);
+  // 存檔中再點會被擋下來（還在儲存上一個修改）：先不能點（同手機版的 TagSheet）
+  const saving = useShared((s) => s.saving);
   return (
     <Popover anchor={anchor} open onClose={onClose} testId="tag-popover">
       <div className="tag-popover" role="menu" aria-label="標籤">
@@ -65,7 +67,7 @@ export function TagPopover({ visit, kind, anchor, onClose }: { visit: VisitItem;
             </span>
             <span className="tag-popover-opts">
               {g.tags.map((t) => (
-                <button key={t} type="button" role="menuitemcheckbox" aria-checked={have.includes(t)} className={`tag-opt ${have.includes(t) ? 'on' : ''}`} onClick={() => toggle(t)} data-testid={`tag-opt-${t}`}>
+                <button key={t} type="button" role="menuitemcheckbox" aria-checked={have.includes(t)} className={`tag-opt ${have.includes(t) ? 'on' : ''}`} disabled={saving} onClick={() => toggle(t)} data-testid={`tag-opt-${t}`}>
                   {TAG_LABELS[t]}
                 </button>
               ))}
@@ -119,6 +121,7 @@ export function lodgingPlanShown(day: ItineraryDay | undefined, p: Place | undef
 export function LodgingPlanPopover({ date, anchor, onClose }: { date: string; anchor: HTMLElement | null; onClose: () => void }) {
   const cur = useData((s) => s.itinerary?.days.find((d) => d.date === date)?.lodgingMeals ?? null);
   const pick = (v: LodgingMeals) => pickLodgingPlan(date, cur, v);
+  const saving = useShared((s) => s.saving);
   return (
     <Popover anchor={anchor} open onClose={onClose} testId="lodging-plan-popover">
       <div className="tag-popover" role="menu" aria-label="這晚的方案">
@@ -126,7 +129,7 @@ export function LodgingPlanPopover({ date, anchor, onClose }: { date: string; an
           <span className="tag-popover-title">🛏 這晚的方案</span>
           <span className="tag-popover-opts">
             {LODGING_PLANS.map((x) => (
-              <button key={x.value} type="button" role="menuitemradio" aria-checked={cur === x.value} className={`tag-opt ${cur === x.value ? 'on' : ''}`} onClick={() => pick(x.value)} data-testid={`lodging-plan-${x.value}`}>
+              <button key={x.value} type="button" role="menuitemradio" aria-checked={cur === x.value} className={`tag-opt ${cur === x.value ? 'on' : ''}`} disabled={saving} onClick={() => pick(x.value)} data-testid={`lodging-plan-${x.value}`}>
                 {x.label}
               </button>
             ))}

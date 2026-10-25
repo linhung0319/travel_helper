@@ -1,5 +1,5 @@
 // 「移到第幾天」的 4 欄 × 3 列格子（12 天）：現在那天灰掉、寫「現在」，週六日、國定假日紅字。
-// 只有格子本身（不含彈窗外框），網頁版的 MoveDialog、MoveCandidateDialog 和手機的 MoveDaySheet 共用。
+// 只有格子本身（不含彈窗外框），網頁版的 MoveDialog、MoveCandidateDialog 和手機的 MoveDaySheet 共用（移的動作在 cardActionRun.ts）。
 import { tripDates, isRedDay, weekdayZh } from '../lib/trip.ts';
 
 const DATES = tripDates();

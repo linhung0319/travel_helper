@@ -233,7 +233,7 @@ function EntryRows({ entry, ctx }: { entry: TimelineEntry; ctx: RowCtx }) {
       </button>
     </span>
   ) : null;
-  // 動作面板：造訪、自由時間才有（航班沒有）；看主卡時「👑 主要」不能點
+  // 動作面板：造訪、自由時間才有（航班沒有）；看主卡時「👑 主要」不能點，看備卡時「⏱ 改停留時間」不能點（只改得到主卡，同網頁版備卡的停留唯讀）
   const menu: ActionSheetSpec | null =
     item && (visit || free)
       ? {
@@ -241,7 +241,7 @@ function EntryRows({ entry, ctx }: { entry: TimelineEntry; ctx: RowCtx }) {
           target: { date: day.date, itemId: item.id, optionIndex: index, placeId: shownPlace ?? undefined, start: entry.start },
           name: shownName,
           placeId: shownPlace,
-          disabled: overlap && !backup ? ['main'] : [],
+          disabled: overlap ? [backup ? 'stay' : 'main'] : [],
         }
       : null;
   // 拖的東西：看備卡時是那張備卡，不然整張卡（同網頁版）

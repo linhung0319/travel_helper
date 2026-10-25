@@ -42,9 +42,11 @@ export async function addPlaceToDay(
       return addItem(it, date, item, index == null ? {} : { index }).itinerary;
     };
   }
+  // 存檔要一點時間：存好時還停在按下去那時的那天才跳到排進去的那天，這段時間使用者自己換了天就不拉回去
+  const shownDay = appStore.getState().day;
   // 候選在跳「復原」提示之前就拿掉：馬上按復原時，復原的 after 才看得到候選已經不在、加得回去
   const removeCandidates = async () => {
-    appStore.getState().selectDay(date);
+    if (appStore.getState().day === shownDay) appStore.getState().selectDay(date);
     for (const c of shared.store.getState().candidates.filter((x) => x.placeId === placeId && x.day === date)) await shared.removeCandidate(c.id, undefined, true);
     await settle?.();
   };

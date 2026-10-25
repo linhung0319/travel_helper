@@ -99,3 +99,33 @@ test('一次只有一層整頁：開詳情關掉討論／預約，開討論／�
   await settle();
   assert.equal(mobileStore.getState().page, 'comments');
 });
+
+test('討論／預約整頁也推一筆 history：上一頁（手機的返回鍵）關掉，‹（setPage(null)）把那筆退回去', async () => {
+  const before = index;
+  mobileStore.getState().setPage('comments');
+  assert.equal(index, before + 1);
+  window.history.back();
+  await settle();
+  assert.equal(mobileStore.getState().page, null);
+  assert.equal(index, before);
+  mobileStore.getState().setPage('reservations');
+  await settle();
+  mobileStore.getState().setPage(null);
+  await settle();
+  assert.equal(mobileStore.getState().page, null);
+  assert.equal(index, before);
+});
+
+test('詳情換成討論頁：只佔一筆 history，上一頁一次就回到分頁', async () => {
+  const before = index;
+  mobileStore.getState().openPlace('a', 'me');
+  mobileStore.getState().setPage('comments');
+  assert.equal(index, before + 1);
+  await settle();
+  assert.equal(mobileStore.getState().page, 'comments');
+  window.history.back();
+  await settle();
+  assert.equal(mobileStore.getState().page, null);
+  assert.equal(mobileStore.getState().detail, null);
+  assert.equal(index, before);
+});

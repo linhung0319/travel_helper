@@ -5,7 +5,7 @@ export type CardKind = 'visit' | 'lodging-start' | 'lodging-end' | 'free' | 'fli
 
 export type ActionId =
   | 'main' | 'detach' | 'tags' | 'stay' | 'pin' | 'unpin' | 'move' | 'group-in' | 'group-out'
-  | 'withdraw' | 'lodging-plan' | 'lodging-clear' | 'free-length' | 'delete' | 'schedule' | 'split-actions';
+  | 'withdraw' | 'lodging-plan' | 'lodging-clear' | 'free-length' | 'delete' | 'schedule';
 
 export interface CardActionContext {
   kind: CardKind;
@@ -38,7 +38,8 @@ export function cardActions(ctx: CardActionContext): ActionId[][] {
     case 'free':
       return [['free-length', 'move'], ['delete']];
     case 'split':
-      return [['split-actions']];
+      // 分組：照現在分組的動作（移到第幾天、刪除），只是搬進「⋯」
+      return [['move'], ['delete']];
     case 'candidate':
       return [ctx.mine ? ['schedule', 'move'] : ['schedule'], ['delete']];
     case 'lodging-start':
@@ -63,5 +64,4 @@ export const ACTION_LABELS: Record<ActionId, string> = {
   'free-length': '⏱ 改時間長度',
   delete: '🗑 刪除',
   schedule: '📅 排進這天',
-  'split-actions': '分組動作',
 };

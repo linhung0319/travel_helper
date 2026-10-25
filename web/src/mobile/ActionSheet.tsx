@@ -1,6 +1,6 @@
 // 手機版編輯中的「⋯」底部動作面板（第六輪 §2.3、§3.5）：mobileStore.actions 有值就畫，蓋在行程頁最上面（一次只有一層，§3.0）。
 // 上方是暗的（m-sheet-dim），點暗處或把面板往下拉就關。最上面一列是這張卡的縮圖和名稱，下面每個動作一列（至少 44px，testid m-action-{id}），
-// 動作照 shared/cardActions.ts（surface 'mobile'，多一個 ⏱ 改停留時間），組與組之間一條分隔線；「👥 移到{組名}」每組一列，和 ctx.groupTargets 照位置對上。
+// 動作照 cardActionRun.ts 的 menuItems（順序是 shared/cardActions.ts，surface 'mobile' 多一個 ⏱ 改停留時間；和網頁版的 ⋯ 選單同一份），組與組之間一條分隔線；「👥 移到{組名}」每組一列。
 // 點了交給 runCardAction（components/cardActionRun.ts）；要開子畫面的（標籤、移到第幾天、這晚的方案、改停留時間）在同一個面板裡換內容，
 // 左上角「‹」回到動作清單。改停留時間是 −／＋（一次 15 分，最少 15 分，照網頁版），旁邊寫現在的停留時間。
 
@@ -11,14 +11,11 @@ import { useData, usePlan, useShared } from '../hooks.ts';
 import { dayPlanOf } from '../planStore.ts';
 import { cardTime, formatStay } from '../lib/planView.ts';
 import { ACTION_LABELS, type ActionId } from '../shared/cardActions.ts';
-import { menuGroups, runCardAction, type ActionTarget } from '../components/cardActionRun.ts';
+import { menuItems, runCardAction, type ActionTarget } from '../components/cardActionRun.ts';
 import { Thumb } from './Thumb.tsx';
 import { mobileStore, useMobile, type ActionSheetSpec, type ActionView } from './mobileStore.ts';
 import { TagSheet, LodgingPlanSheet } from './TagSheet.tsx';
 import { MoveDaySheet } from './MoveDaySheet.tsx';
-
-/** 紅字的動作（刪掉東西的） */
-const DANGER = new Set<ActionId>(['delete', 'lodging-clear']);
 
 /** 在同一個面板裡換內容的動作 → 子畫面 */
 const SUB_VIEWS: Partial<Record<ActionId, Exclude<ActionView, 'list'>>> = {
@@ -42,6 +39,9 @@ const VIEW_TITLES: Record<Exclude<ActionView, 'list'>, string> = {
   'lodging-plan': '🛏 這晚的方案',
   stay: '⏱ 改停留時間',
 };
+
+/** 子畫面的標題：自由時間的長度是「⏱ 改時間長度」（ACTION_LABELS），不是改停留時間 */
+const viewTitle = (view: Exclude<ActionView, 'list'>, spec: ActionSheetSpec) => (view === 'stay' && spec.ctx.kind === 'free' ? ACTION_LABELS['free-length'] : VIEW_TITLES[view]);
 
 const close = () => mobileStore.getState().closeActions();
 
@@ -92,9 +92,7 @@ function StaySheet({ target }: { target: ActionTarget }) {
 /** 動作清單：每組之間一條分隔線 */
 function ActionList({ spec, onView }: { spec: ActionSheetSpec; onView: (v: Exclude<ActionView, 'list'>) => void }) {
   const stay = useStayMinutes(spec.target);
-  const groups = menuGroups(spec.ctx);
-  const targets = spec.ctx.groupTargets ?? [];
-  let nth = 0; // 第幾個 group-in
+  const groups = menuItems(spec.ctx, spec.target);
   const run = (id: ActionId, t: ActionTarget) => {
     const view = SUB_VIEWS[id];
     if (view) return onView(view);
@@ -106,26 +104,21 @@ function ActionList({ spec, onView }: { spec: ActionSheetSpec; onView: (v: Exclu
       {groups.map((group, gi) => (
         <Fragment key={gi}>
           {gi > 0 && <hr className="m-action-sep" />}
-          {group.map((id) => {
-            const g = id === 'group-in' ? targets[nth++] : null;
-            const text = g ? `👥 移到${g.name}` : ACTION_LABELS[id];
-            const t = g ? { ...spec.target, split: { id: g.splitId, group: g.groupId, name: g.name } } : spec.target;
-            return (
-              <button
-                key={g ? `${id}:${g.splitId}:${g.groupId}` : id}
-                type="button"
-                role="menuitem"
-                className={`m-action ${DANGER.has(id) ? 'danger' : ''}`}
-                disabled={spec.disabled?.includes(id)}
-                onClick={() => run(id, t)}
-                data-testid={`m-action-${id}`}
-                {...(g ? { 'data-group': g.groupId } : {})}
-              >
-                <span className="m-ellipsis">{text}</span>
-                {(id === 'stay' || id === 'free-length') && stay != null && <small className="m-action-note">{formatStay(stay)}</small>}
-              </button>
-            );
-          })}
+          {group.map((m) => (
+            <button
+              key={m.key}
+              type="button"
+              role="menuitem"
+              className={`m-action ${m.danger ? 'danger' : ''}`}
+              disabled={spec.disabled?.includes(m.id)}
+              onClick={() => run(m.id, m.target)}
+              data-testid={`m-action-${m.id}`}
+              {...(m.group ? { 'data-group': m.group } : {})}
+            >
+              <span className="m-ellipsis">{m.text}</span>
+              {(m.id === 'stay' || m.id === 'free-length') && stay != null && <small className="m-action-note">{formatStay(stay)}</small>}
+            </button>
+          ))}
         </Fragment>
       ))}
     </div>
@@ -138,7 +131,7 @@ function SubView({ view, spec }: { view: Exclude<ActionView, 'list'>; spec: Acti
   if (view === 'tags') return target.itemId ? <TagSheet itemId={target.itemId} /> : null;
   if (view === 'lodging-plan') return <LodgingPlanSheet date={target.date} />;
   if (view === 'stay') return <StaySheet target={target} />;
-  return <MoveDaySheet itemId={target.candidateId == null ? target.itemId : undefined} candidateId={target.candidateId} label={spec.name} onDone={close} />;
+  return <MoveDaySheet itemId={target.candidateId == null ? target.itemId : undefined} candidateId={target.candidateId} onDone={close} />;
 }
 
 /** 往下拉面板就關：跟著手指往下移，放開時超過 CLOSE_DRAG 就關，不然彈回去 */
@@ -188,7 +181,7 @@ function Sheet({ spec }: { spec: ActionSheetSpec }) {
             <button type="button" className="m-back" aria-label="回到動作清單" onClick={() => setView('list')} data-testid="m-sheet-back">
               ‹
             </button>
-            <strong className="m-ellipsis">{VIEW_TITLES[view]}</strong>
+            <strong className="m-ellipsis">{viewTitle(view, spec)}</strong>
             <span className="m-asheet-sub muted small m-ellipsis">{spec.name}</span>
           </div>
         )}
