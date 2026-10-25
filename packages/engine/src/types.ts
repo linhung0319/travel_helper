@@ -73,6 +73,8 @@ export interface TripRef {
   arrive: TimeString;
   from: string | null;
   to: string | null;
+  /** 每一程的 tripId（依序）；沒有＝只指定第一程（id）。後面那程接不上時引擎改成同一對站接得上的最早一班 */
+  rides?: string[] | null;
 }
 
 /**
@@ -207,6 +209,8 @@ export interface TransitRide {
   /** 近鐵的 trainNo、巴士的 trip id */
   tripId?: string | null;
   fareAdult?: number | null;
+  /** 巴士、船、JR 的路線時刻表 id（列同一對站的班次用）；近鐵是 null */
+  routeId?: string | null;
 }
 
 export interface TaxiInfo {
@@ -234,6 +238,12 @@ export interface Leg {
   /** 等車的分鐘（含在 minutes 裡） */
   waitMinutes: number;
   rides: TransitRide[];
+  /** 大眾運輸：走到第一個上車點的分鐘（已進位）；不是大眾運輸時沒有 */
+  walkBefore?: number;
+  /** 大眾運輸：最後下車走到終點的分鐘（已進位）；不是大眾運輸時沒有 */
+  walkAfter?: number;
+  /** 大眾運輸：每一程「走到上車站／轉乘完」的時間，和 rides 等長（第一程＝出發＋walkBefore，之後＝前一程到站＋minTransfer） */
+  ready?: TimeString[];
   /** 這段實際用的班次；不是電車、巴士、船時是 null */
   trip?: TripRef | null;
   /** 同一對上下車點的前一班、後一班（規劃模式的 ‹ ›）；沒有是 null */

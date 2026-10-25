@@ -1,14 +1,15 @@
 // 兩點之間：依 CONVENTIONS §5.4 選交通方式，算時間（不加緩衝）。
 // 步行 ≤ 單段上限 → 走路；否則找近鐵、巴士、定期船（巴士要等 20 分內、不是 1 小時以上才一班）；
 // 都不行 → 計程車（有 OSRM 開車時間用它，沒有照距離估算）。離島只能搭船。
-// 指定 transit：一定搭大眾運輸；指定班次（TravelSpec.trip）：用那班，趕不上就警告。
+// 指定 transit：一定搭大眾運輸；指定班次（TravelSpec.trip）：用那班，趕不上就警告；trip.rides 指定轉乘後每一程的班次（接不上改最早接得上的）。
+// rideDepartures：一程（同一對站）那天的所有班次，給班次表、選班次用。
 
 import type { EngineConfig } from './config.ts';
 import type { EngineData, PlaceRecord, RouteTimetable } from './data.ts';
 import { estimateWalk, haversineMeters, isLonLat, minutesForMeters, nearestStations } from './geo.ts';
 import { anyTrainThatDay, departuresFrom, directTrains, earliestTrain, routeRides, type RouteRide, type TrainQuery, type TrainRide } from './transit.ts';
 import { fromMinutes, toMinutes } from './time.ts';
-import type { DateString, EngineWarning, Leg, LonLat, PartyProfile, TaxiInfo, TransitRide, TravelMode, TravelSpec, TripRef } from './types.ts';
+import type { DateString, EngineWarning, Leg, LonLat, PartyProfile, TaxiInfo, TimeString, TransitRide, TravelMode, TravelSpec, TripRef } from './types.ts';
 
 export interface Endpoint {
   id: string | null;
@@ -71,9 +72,10 @@ interface Candidate {
   mode: 'train' | 'bus' | 'ferry';
   /** 到達終點的時間（分鐘，含下車後走路） */
   arrive: number;
-  walk: number;
   /** 走到第一個上車點的分鐘（已進位） */
   access: number;
+  /** 最後下車走到終點的分鐘（已進位） */
+  egress: number;
   /** 第一程發車（分鐘） */
   dep: number;
   /** 從搜尋的出發時間算起要等的分鐘 */
@@ -83,6 +85,8 @@ interface Candidate {
   basis: string;
   /** 近鐵：上下車站和兩端走路（已套係數、未進位），找前一班、後一班時只查這對車站 */
   pair?: { from: string; to: string; walkFrom: number; walkTo: number };
+  /** 近鐵：每一程的列車（換後面那程的班次時用） */
+  trains?: TrainRide[];
 }
 
 /** 端點附近的近鐵車站（走得到的），附步行分鐘（已套係數） */
@@ -122,24 +126,49 @@ function trainCandidate(legs: TrainRide[], pair: NonNullable<Candidate['pair']>,
   return {
     mode: 'train',
     arrive: last.arr + round(pair.walkTo),
-    walk: pair.walkFrom + pair.walkTo,
     access: round(pair.walkFrom),
+    egress: round(pair.walkTo),
     dep: legs[0].dep,
     wait: legs[0].dep - after,
     rides: legs.map((r: TrainRide) => ({
       mode: 'train' as const,
-      line: `${r.type}（往${stationName(r.to, ctx.data)}）`,
+      line: trainLine(r, ctx.data),
       from: r.from,
       to: r.alight,
       depart: fromMinutes(r.dep),
       arrive: fromMinutes(r.arr),
       tripId: r.trainNo,
       fareAdult: null,
+      routeId: null,
     })),
     headway: null,
     basis: '近鐵時刻表',
     pair,
+    trains: legs,
   };
+}
+
+/** 近鐵一程的車種和終點，例如「特急（往賢島）」 */
+const trainLine = (r: TrainRide, data: EngineData) => `${r.type}（往${stationName(r.to, data)}）`;
+
+/** 近鐵 from → to 那天的直達車（不轉乘、不含固定停駛的），after 以後發車，依發車排序 */
+function directOn(from: string, to: string, after: number, ctx: Pick<LegContext, 'date' | 'data' | 'cfg'>): TrainRide[] {
+  const tt = ctx.data.kintetsu;
+  if (!tt) return [];
+  return directTrains(tt, { from, to, date: ctx.date, after, holidays: ctx.cfg.holidays, allowExpress: ctx.cfg.transit.allowExpress }).filter((r) => !r.off);
+}
+
+/**
+ * 第一程之後的每一程換成 wanted 指定的那班（同一對站）；那班接不上（發車 < 前一程到站＋minTransfer）或找不到，
+ * 改成同一對站接得上的最早一班；同一對站都接不上就留原本的。前面那程不會被後面改
+ */
+function chainTrains(legs: TrainRide[], wanted: readonly string[], ctx: LegContext): TrainRide[] {
+  const out = [legs[0]];
+  for (let i = 1; i < legs.length; i++) {
+    const deps = directOn(legs[i].from, legs[i].alight, out[i - 1].arr + ctx.cfg.transit.minTransfer, ctx);
+    out.push(deps.find((r) => r.trainNo === wanted[i]) ?? deps[0] ?? legs[i]);
+  }
+  return out;
 }
 
 function trainCandidates(a: Endpoint, b: Endpoint, ctx: LegContext, factor: number, readyAt: ReadyAt): { cands: Candidate[]; missedLast: boolean } {
@@ -168,6 +197,42 @@ function trainCandidates(a: Endpoint, b: Endpoint, ctx: LegContext, factor: numb
     }
   }
   return { cands, missedLast: !cands.length && anyDay };
+}
+
+/**
+ * 近鐵轉乘一次、第一程固定搭 first 的走法（選了晚一班的第一程，earliestTrain 不會挑它時用）。
+ * 轉乘站：second 那班接得上的站優先（同樣早到取第一程先到的站，和 earliestTrain 一樣）；
+ * 都接不上時取改搭最早一班後最早到的站（同樣早到取第一程最後到的站：通常就是原本的轉乘站）
+ */
+function transferWith(a: Endpoint, b: Endpoint, ctx: LegContext, factor: number, first: string, second: string, after: number): Candidate | null {
+  const order = ctx.data.kintetsu?.stationOrder ?? [];
+  if (!order.length || crossesSea(a, b, ctx.cfg)) return null;
+  let found: { legs: TrainRide[]; hit: boolean; arrive: number; pair: NonNullable<Candidate['pair']> } | null = null;
+  for (const sa of kintetsuAccess(a, ctx, factor)) {
+    for (const sb of kintetsuAccess(b, ctx, factor)) {
+      if (sa.station === sb.station) continue;
+      for (const x of order) {
+        if (x === sa.station || x === sb.station) continue;
+        const r1 = directOn(sa.station, x, 0, ctx).find((r) => r.trainNo === first);
+        if (!r1) continue;
+        const deps = directOn(x, sb.station, r1.arr + ctx.cfg.transit.minTransfer, ctx);
+        const r2 = deps.find((r) => r.trainNo === second) ?? deps[0];
+        if (!r2) continue;
+        const cand = { legs: [r1, r2], hit: r2.trainNo === second, arrive: r2.arr + round(sb.walk), pair: { from: sa.station, to: sb.station, walkFrom: sa.walk, walkTo: sb.walk } };
+        const better =
+          !found ||
+          (cand.hit !== found.hit
+            ? cand.hit
+            : cand.arrive !== found.arrive
+              ? cand.arrive < found.arrive
+              : cand.hit
+                ? r1.arr < found.legs[0].arr
+                : r1.arr > found.legs[0].arr);
+        if (better) found = cand;
+      }
+    }
+  }
+  return found && trainCandidate(found.legs, found.pair, after, ctx);
 }
 
 /** 端點對應的停留所：near 裡有這個 ID 的；沒有的話用座標找 accessMaxMeters 內的 */
@@ -210,8 +275,8 @@ function routeCandidates(a: Endpoint, b: Endpoint, ctx: LegContext, factor: numb
     cands.push({
       mode,
       arrive: toMinutes(r.arr) + round(walkOf(r.toMeters)),
-      walk: walkOf(r.fromMeters) + walkOf(r.toMeters),
       access: round(walkOf(r.fromMeters)),
+      egress: round(walkOf(r.toMeters)),
       dep: toMinutes(r.dep),
       wait: toMinutes(r.dep) - ready,
       rides: [
@@ -224,6 +289,7 @@ function routeCandidates(a: Endpoint, b: Endpoint, ctx: LegContext, factor: numb
           arrive: r.arr,
           tripId: r.tripId,
           fareAdult: r.fareAdult,
+          routeId: r.routeId,
         },
       ],
       headway: next ? toMinutes(next.dep) - toMinutes(r.dep) : null,
@@ -274,7 +340,45 @@ function transitExists(a: Endpoint, b: Endpoint, ctx: LegContext, factor: number
 }
 
 function toTrip(c: Candidate, a: Endpoint, b: Endpoint): TripRef {
-  return { id: c.rides[0].tripId ?? '', depart: c.rides[0].depart, arrive: c.rides[c.rides.length - 1].arrive, from: a.id, to: b.id };
+  return {
+    id: c.rides[0].tripId ?? '',
+    depart: c.rides[0].depart,
+    arrive: c.rides[c.rides.length - 1].arrive,
+    from: a.id,
+    to: b.id,
+    rides: c.rides.map((r) => r.tripId ?? ''),
+  };
+}
+
+export interface RideDeparture {
+  tripId: string;
+  /** 路線或車種，例如「特急（往賢島）」「伊勢鳥羽線（往鳥羽バスセンター）」 */
+  line: string;
+  depart: TimeString;
+  /** 這一程下車站的到站時間 */
+  arrive: TimeString;
+}
+
+/**
+ * 一程（ride.from → ride.to）那天的所有班次，依發車排序（班次表、選班次用）。只列同一對站：
+ * 近鐵是兩站間的直達車（不轉乘、不含固定停駛的しまかぜ）；巴士、船、JR 是 ride.routeId 那條路線、同一個上下車停留所的班次。
+ * 查不到回傳 []
+ */
+export function rideDepartures(data: EngineData, cfg: EngineConfig, date: DateString, ride: TransitRide): RideDeparture[] {
+  if (ride.routeId) {
+    const doc = (data.routes ?? []).find((r) => r.id === ride.routeId);
+    if (!doc) return [];
+    return routeRides([doc], ride.from, ride.to, date, '00:00', cfg.holidays)
+      .filter((r) => r.fromStopName === ride.from && r.toStopName === ride.to)
+      .map((r) => ({ tripId: r.tripId, line: `${r.line}（往${r.headsign}）`, depart: r.dep, arrive: r.arr }));
+  }
+  if (ride.mode !== 'train') return [];
+  return directOn(ride.from, ride.to, 0, { date, data, cfg }).map((r) => ({
+    tripId: r.trainNo,
+    line: trainLine(r, data),
+    depart: fromMinutes(r.dep),
+    arrive: fromMinutes(r.arr),
+  }));
 }
 
 /** 同一對上下車點（同一種車、同一個上車點、同一個下車點） */
@@ -379,9 +483,13 @@ function fromCandidate(c: Candidate, a: Endpoint, b: Endpoint, ctx: LegContext, 
       mode: c.mode,
       // c.arrive − c.dep＝車程＋下車後走路
       minutes: wait >= 0 ? c.arrive - ctx.depart : c.access + (c.arrive - c.dep),
-      walkMinutes: round(c.walk),
+      // 合計＝兩段步行（各自進位）的和，和畫面上分開寫的一致
+      walkMinutes: c.access + c.egress,
       waitMinutes: Math.max(0, wait),
       rides: c.rides,
+      walkBefore: c.access,
+      walkAfter: c.egress,
+      ready: c.rides.map((_, i) => fromMinutes(i === 0 ? ctx.depart + c.access : toMinutes(c.rides[i - 1].arrive) + ctx.cfg.transit.minTransfer)),
       trip: toTrip(c, a, b),
       prevTrip: prev && toTrip(prev, a, b),
       nextTrip: next && toTrip(next, a, b),
@@ -419,7 +527,8 @@ export function planLeg(a: Endpoint, b: Endpoint, ctx: LegContext, spec?: Travel
   // 只填分鐘：方式自動，時間用填的
   if (spec?.minutes != null) {
     const auto: LegWarning[] = [];
-    const l = autoLeg(a, b, ctx, walk, factor, same, auto);
+    // 自動那段的步驟資料（walkBefore、walkAfter、ready）也不帶
+    const { walkBefore: _wb, walkAfter: _wa, ready: _r, ...l } = autoLeg(a, b, ctx, walk, factor, same, auto);
     const minutes = round(spec.minutes);
     // 時間是使用者填的：不帶自動那段的班次，步行分鐘看最後的方式，也不再報「算不出交通」
     const walkMinutes = l.mode === 'walk' ? minutes : 0;
@@ -433,13 +542,23 @@ export function planLeg(a: Endpoint, b: Endpoint, ctx: LegContext, spec?: Travel
   return done(autoLeg(a, b, ctx, walk, factor, same, warnings));
 }
 
-/** 用選定的班次（第一程 tripId 相同）；時刻表裡找不到回傳 null（當作沒選）。趕不上照樣用，加 missed-trip 警告 */
+/**
+ * 用選定的班次（第一程 tripId 相同）；時刻表裡找不到回傳 null（當作沒選）。趕不上照樣用，加 missed-trip 警告。
+ * trip.rides 有第 2 程以後的（近鐵轉乘）：後面每一程換成指定的那班，接不上改同一對站接得上的最早一班（chainTrains）
+ */
 function tripLeg(a: Endpoint, b: Endpoint, ctx: LegContext, trip: TripRef, factor: number, warnings: LegWarning[], keep: (c: Candidate) => boolean): Leg | null {
   if (typeof trip.id !== 'string' || !trip.id || typeof trip.depart !== 'string') return null;
   const at = toMinutes(trip.depart);
   if (!Number.isFinite(at)) return null;
-  const c = best(searchTransit(a, b, ctx, factor, () => at).cands.filter((x) => x.rides[0].tripId === trip.id && keep(x)));
+  const wanted = Array.isArray(trip.rides) && trip.rides.length > 1 ? trip.rides : null;
+  let c = best(searchTransit(a, b, ctx, factor, () => at).cands.filter((x) => x.rides[0].tripId === trip.id && keep(x) && (!wanted || !x.trains || x.trains.length > 1)));
+  // 選的第一程不是那個時間最早到的走法（例如換了晚一班）：用第一程那班自己找轉乘站
+  if (!c && wanted) {
+    const t = transferWith(a, b, ctx, factor, trip.id, wanted[1], at);
+    if (t && keep(t)) c = t;
+  }
   if (!c) return null;
+  if (wanted && c.trains && c.pair && c.trains.length > 1) c = trainCandidate(chainTrains(c.trains, wanted, ctx), c.pair, at, ctx);
   if (c.dep < ctx.depart + c.access) warnings.push({ code: 'missed-trip', level: 'warning', message: `趕不上 ${c.rides[0].depart} 這班` });
   busCrowd(c, ctx, warnings);
   return fromCandidate(c, a, b, ctx, factor);

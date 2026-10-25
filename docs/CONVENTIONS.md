@@ -348,6 +348,8 @@ travel_helper/
                          //   舊資料的 train | bus | ferry | charter | car | other 照樣合法、照樣算（畫面的選單不再提供）
                          // trip：選定的班次 { "id": "1-375", "depart": "09:13", "arrive": "09:42", "from": "toba", "to": "kashikojima" }
                          //   id＝第一程的 tripId（近鐵的 trainNo、巴士的 trip id），depart＝第一程發車，arrive＝最後一程到達，from／to＝選的時候這段起訖的地點 ID
+                         //   rides：每一程的 tripId（依序，例如 ["1-1963", "1-3799"]），選了第二程以後的班次才有；沒有＝只指定第一程
+                         //     接不上時（發車早於前一程到站＋轉乘時間，或時刻表裡找不到）引擎改成同一對站接得上的最早一班；前面那程不會被後面改。只有一程的（巴士、船）忽略第 1 個以後的
                          //   mode 沒寫或是 transit（舊的 train／bus／ferry）時用；起訖點和 from／to 不同（換了順序）＝當作沒選，照規則挑
                          //   等車寫在交通的 waitMinutes；趕不上那班照樣用（時間照走到車站後搭同一程算），警告 missed-trip（「趕不上 10:32 這班」）
                          // 舊資料的 bufferMinutes 忽略（緩衝 2026-10-25 拿掉）
