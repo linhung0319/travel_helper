@@ -35,11 +35,16 @@ T15、T16 接上 Worker 之前，`npm run dev` 用假後端（`src/backend/mock.
 - **重設假資料**／**重設成只有航班的行程**。
 - **編輯閒置**：改成 1 分鐘可以試自動結束編輯。
 
-給 👤 檢視的截圖：先 `npm run dev -- --port 5191`，再 `node web/e2e/shots.mjs`，手機和電腦各一組放在 `data/cache/work/t15m/`；電腦版版面（1600、1280 寬）用 `node web/e2e/shots-layout.mjs`，放在 `data/cache/work/t15m-layout/`；第三輪（這一天一般／規劃模式、多點卡片、交通細列、留言、預約筆記、想去的卡片和月曆，1600、1280、390 寬）用 `node web/e2e/shots-round3.mjs`，放在 `data/cache/work/t15m-round3/`；第四輪用 `node web/e2e/shots-round4.mjs`，放在 `data/cache/work/t15m-round4/`；**第五輪**（2/3 時間軸、時間條、編輯中的藍條、2/4 交通卡編輯／班次下拉／收起／展開、班次表、候選一般／編輯中、地圖彈窗、整趟 4 色和點某天的路線，1600、1280、390 寬）用 `node web/e2e/shots-round5.mjs`，放在 `data/cache/work/t15m-round5/`。第三、四輪的腳本只改到跑得完，畫面以第五輪為準。截圖腳本和 e2e 一樣擋掉 OSRM（距離是直線），種子資料的 2/4 伊雜宮 → 大王埼燈塔「自動」是計程車，腳本先在編輯中改成大眾運輸。
+給 👤 檢視的截圖：先 `npm run dev -- --port 5191`，再 `node web/e2e/shots.mjs`，手機和電腦各一組放在 `data/cache/work/t15m/`；電腦版版面（1600、1280 寬）用 `node web/e2e/shots-layout.mjs`，放在 `data/cache/work/t15m-layout/`；第三輪（這一天一般／規劃模式、多點卡片、交通細列、留言、預約筆記、想去的卡片和月曆，1600、1280、390 寬）用 `node web/e2e/shots-round3.mjs`，放在 `data/cache/work/t15m-round3/`；第四輪用 `node web/e2e/shots-round4.mjs`，放在 `data/cache/work/t15m-round4/`；**第五輪**（2/3 時間軸、時間條、編輯中的藍條、2/4 交通卡編輯／班次下拉／收起／展開、班次表、候選一般／編輯中、地圖彈窗、整趟 4 色和點某天的路線，1600、1280、390 寬）用 `node web/e2e/shots-round5.mjs`，放在 `data/cache/work/t15m-round5/`。**第六輪**（網頁版 1280：標籤彈窗、⋯ 選單、重疊卡選單、移到第幾天、詳情的問 AI；手機 390：探索、詳情、想去、行程中間高度、點卡片、編輯的動作面板、AI 分頁、半屏聊天、整趟、我）用 `node web/e2e/shots-round6.mjs`，放在 `data/cache/work/t15m-round6/`。第三、四輪的腳本只改到跑得完，畫面以第五輪為準；第六輪重做了手機版，舊腳本（含第五輪）的手機部分不一定跑得完，手機畫面以第六輪為準。截圖腳本和 e2e 一樣擋掉 OSRM（距離是直線），種子資料的 2/4 伊雜宮 → 大王埼燈塔「自動」是計程車，腳本先在編輯中改成大眾運輸。
 
 ## 畫面
 
-- **手機**（900px 以下）：上方是日期列（天數分頁，右邊 💬 📋 ⋯ 三個按鈕和「我」）、篩選、地圖／探索；全螢幕地圖；下面是可以拉起的面板，分頁「聊天｜想去｜行程」（詳情蓋在面板上）。探索的圖片牆和電腦版的探索清單上面都有搜尋欄（名稱，中日英都可以）。
+- **手機**（900px 以下，第六輪重做，設計見 [2026-10-25-itinerary-round6-mobile-design.md](../docs/superpowers/specs/2026-10-25-itinerary-round6-mobile-design.md)）：`App.tsx` 用 `useIsDesktop()` 分一次，手機畫 `src/mobile/MobileApp.tsx`。底部 5 個分頁「探索｜想去｜行程｜AI｜我」（`TabBar`）；沒有上方列和拉起面板。地圖（`MapView`）一直掛著，只有行程分頁看得到（其他分頁用 `visibility: hidden` 藏起來）。詳情、討論、預約是蓋在最上面的整頁（一次一層，打開時推一筆 history，上一頁就是關掉）。
+  - 探索（`ExploreFeed`、`FeedFilters`）：兩欄圖片牆；想去（`WishlistPage`）；詳情（`PlaceDetailPage`）；我（`MePage`：討論、預約、下載 JSON）。
+  - 行程（`TripPage`）：地圖上蓋一張可以拉的面板（`DaySheet`，低／中／高，`data-snap`），天數列 `DayStrip`、整趟 `TripOverview`、卡片 `MobileCard`、交通 `MobileLeg`。點卡片到中間高度、地圖飛過去；編輯中卡片的「⋯」開底部動作面板（`ActionSheet`，子畫面 `TagSheet`、`MoveDaySheet`）。
+  - AI：`ChatPage`（分頁）和 `ChatSheet`（行程頁的半屏），共用 `ChatView`；內容先是 `chatDemo.ts` 的假訊息，T16m 接上。詳情的「問 AI」透過 `uiStore.chatDraft` 帶進來。
+  - 手機版自己的狀態在 `mobile/mobileStore.ts`，樣式在 `mobile.css`、`chat.css`（class 都用 `m-` 開頭）。
+  - `src/shared/`：網頁版、手機版共用的純函式（有單元測試）：`tagOptions`（標籤分組）、`cardActions`（卡片的動作清單）、`askAiPrompts`（問 AI 的建議問題）、`placeLists`、`exportJson`。
 - **電腦**：三欄（參考 puma.taipei/heart-island）。聊天室在左（T16 才做，先留位置）；中間是地圖，日期列、「我」浮在地圖上方，篩選標籤在日期下面；右側一欄頂到最上面，分頁「探索｜想去｜行程」，點了探索的卡片，詳情蓋在這一欄上（「← 返回」）。判斷電腦版用 `DESKTOP_QUERY`（`hooks.ts`，900px）。
 - **日期列（第三輪）**：「全部」和每一天的分頁，右邊是整趟的工具：💬 留言、📋 預約筆記（旁邊的數字是還沒訂位的筆數）、⋯（匯出 JSON）。💬、📋 打開地圖區的視窗（`MapPanel`，`uiStore.mapPanel`），上面可切「這天｜整趟」，視窗開著時日期列的按鈕還按得到。整趟的留言是對 `trip` 這個目標的留言；預約筆記每列有「未訂位／已訂位／不訂位」、備註（打完字按 Enter 或移開就存，不會蓋掉狀態），住宿多一個晚數。時間軸上的預約 tag（未訂位橘色、已訂位 ✓ 綠色、不訂位不顯示）點了回到那一列。
 - **地圖**：像 Google Maps 的類別圖標（車站藍🚃、景點綠📷、住宿紫🛏、餐廳橘🍴）；縮小時是小點，放大到 12 以上換成圖標、13 以上寫名稱；S 級明顯大、B 級小。選中的點（打開詳情、點了跳到探索卡片的那個）換成水滴形的大圖釘。選了某一天，那天的點換成那天顏色的編號圓（起點、終點的住宿「宿」、機場「機」、其他 1、2、3…，和時間軸的編號一樣），路線有方向箭頭；其他天的點變淡（不隱藏），不符合篩選的也變淡。
@@ -82,7 +87,9 @@ web/
 │  ├─ itineraryRoutes.ts  地圖上的行程線沿道路和鐵路畫（選定那天的段落向 roadRouter 要路徑）
 │  ├─ data/               資料存取的介面、本機實作、型別、整理資料的函式
 │  ├─ lib/                純邏輯（篩選、區域、照片、時刻表、日期、附近…），有單元測試
-│  ├─ components/         地圖、上方列、篩選、小卡片、詳情、車站、圖片牆、拉起面板
+│  ├─ components/         網頁版：地圖、日期列、篩選、小卡片、詳情、車站、圖片牆（MapView 兩邊共用）
+│  ├─ mobile/             手機版（第六輪）：殼、分頁、行程面板、動作面板、聊天，自己的 mobile.css、chat.css
+│  ├─ shared/             兩邊共用的純函式：標籤分組、卡片動作、問 AI 的建議問題…
 │  ├─ dev-fixtures/       開發用的假資料（v0 的假資料點、假行程）
 │  ├─ v0/                 資料檢查頁（T5）
 │  └─ lib/geo/            地理工具（T6）

@@ -107,6 +107,14 @@ travel_helper/
 
 設定函式（同步、不檢查輸入；UI 和 AI 要用下面的地圖指令）：`setView`、`selectDay`、`setFilter(patch)`、`toggleFilter(key, value)`、`clearFilter`、`setMode`、`setPlanning`、`hover`、`openPreview`、`openDetail`（小卡片收起、收起的面板拉到一半）、`closeDetail`、`revealInExplore(id)`、`addToSelection`、`removeFromSelection`、`setSheet`、`setStationTime`、`moveCamera`；T12 加 `setSelection`、`setHighlight(style, ids)`、`addRoute`、`updateRoute`、`setCompare`、`clearHighlights`（標示、路線、比較一起清）、`setProposal`。
 
+### 手機版的殼、mobileStore、shared（T15m 第六輪，2026-10-25）
+
+- **分界**：`App.tsx` 只在最外層用 `useIsDesktop()`（`DESKTOP_QUERY`，900px）分一次：電腦畫 `web/src/components/` 的三欄，手機畫 `web/src/mobile/MobileApp.tsx`。手機版元件全在 `mobile/`，自己的 `mobile.css`、`chat.css`（class 用 `m-` 開頭）。上面的 `sheet`（拉起面板）是舊手機版的欄位，電腦版和地圖指令還在用，手機版不再用它。
+- **殼**：底部 5 個分頁（探索、想去、行程、AI、我）。`MapView` 一直掛著，不在行程分頁時用 CSS（`visibility: hidden`）藏起來，不卸載（T12 的地圖指令、e2e 的 `ready()` 都要用到）。詳情、討論、預約是蓋在最上面的整頁，一次只有一層。
+- **`mobile/mobileStore.ts`**（vanilla Zustand，dev 時掛在 `window.__thMobile`）：手機版自己的畫面狀態，不放進 `store.ts`——現在的分頁（`tab`）、行程面板的高度（`tripSnap`：low／mid／high，`setSnap`）、行程選到的卡（`focused`，`focusItem` 設定）、編輯中打開的「⋯」動作面板（`actions`）、整頁詳情（`detail`）和討論／預約（`page`）、行程頁的半屏聊天（`chatSheet`）、探索的篩選、想去的設定。打開詳情時推一筆 history。
+- **`uiStore.chatDraft`**：「問 AI」的草稿 `{ seq, text, placeId, date, from }`，由 `askAboutPlace(placeId, text, from)` 寫入並把地點放進選取；畫面怎麼切由各平台的 store 監聽 `seq`：電腦版放進左邊的聊天欄；手機版從行程打開的詳情回行程、打開半屏聊天，其他地方打開的跳到 AI 分頁。AI 的內容先是 `mobile/chatDemo.ts` 的假訊息，T16m 接上。
+- **`web/src/shared/`**：網頁版、手機版共用的純函式，有單元測試（`web/test/shared.test.ts` 等）：`tagOptions`（標籤的分組、顏色、互斥的 `toggleTag`）、`cardActions`（卡片的「⋯」動作清單，兩邊用同一份）、`askAiPrompts`（問 AI 的建議問題）、`placeLists`（探索、想去的清單計算的 hook，兩邊共用）、`exportJson`（下載行程 JSON）。引擎的 visit 用 `tags` 取代 `meal`、`dining`（CONVENTIONS §3）。
+
 ### 地圖指令（T12，2026-10-22）
 
 **UI 和 AI（T16）都透過 `web/src/commands.ts` 的指令操作地圖**，改的是上面同一份 store；網站共用的一份是 `web/src/appCommands.ts` 的 `commands`（dev server 下也在 `window.__th.commands`）。每個指令都檢查輸入，回傳 `{ ok: true, … }` 或 `{ ok: false, error }`（失敗時狀態不變），AI 可以讀結果決定下一步。

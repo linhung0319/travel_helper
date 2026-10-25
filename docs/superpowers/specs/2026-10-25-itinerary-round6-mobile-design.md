@@ -1,3 +1,5 @@
+> **已實作**（計畫：`docs/superpowers/plans/2026-10-25-itinerary-round6-mobile.md`）。
+
 # 標籤、動作選單、手機版重新設計（設計，T15m 第六輪）
 
 > 2026-10-25 👤 看過第五輪（[2026-10-25-itinerary-round5-design.md](2026-10-25-itinerary-round5-design.md)）後的回饋，和 Claude 用草圖討論後整理。草圖在主 repo 的 `.superpowers/brainstorm/38070-1792929968/content/t15m-mobile-v1.html`（不進 git）。

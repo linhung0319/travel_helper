@@ -1,3 +1,4 @@
+// 歷史紀錄：這支截圖腳本對應第六輪以前的手機版面（上方列、拉起面板），第六輪重寫手機版後不一定跑得完；現在的畫面以 shots-round6.mjs 為準。
 // 探索收合、把卡片拖到聊天室、手機「＋ AI」的截圖，放在 data/cache/work/t15m-layout/（不進 git）。
 // 用法：先 `npm run dev -- --port 5191`，再 `node web/e2e/shots-drag.mjs [網址]`。
 import { chromium } from '@playwright/test';

@@ -1,3 +1,4 @@
+// 歷史紀錄：這支截圖腳本對應第六輪以前的手機版面（上方列、拉起面板），第六輪重寫手機版後不一定跑得完；現在的畫面以 shots-round6.mjs 為準。
 // 2/5 的行程線沿道路畫的截圖，放在 data/cache/work/t15m-round3/（不進 git）。會連公開的 OSRM。
 // 用法：先 `npm run dev -- --port 5191`，再 `node web/e2e/shots-routes.mjs [網址]`。
 import { chromium } from '@playwright/test';

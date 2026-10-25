@@ -1,3 +1,4 @@
+// 歷史紀錄：這支截圖腳本對應第六輪以前的手機版面（上方列、拉起面板），第六輪重寫手機版後不一定跑得完；現在的畫面以 shots-round6.mjs 為準。
 // T15m：給 👤 檢視用的截圖（手機、電腦各一組），放在 data/cache/work/t15m/（不進 git）。
 // 用法：先 `npm run dev -- --port 5191`，再 `node web/e2e/shots.mjs [網址]`。
 import { chromium } from '@playwright/test';
