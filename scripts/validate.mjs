@@ -58,6 +58,8 @@ const ROUTES = [
   { re: /^timetables\/kintetsu\/_[a-z0-9-]+\.json$/, schema: 'sourced-document', kind: 'doc' },
   { re: /^timetables\/kintetsu\/[a-z0-9-]+\.json$/, schema: 'timetable-kintetsu', kind: 'timetable' },
   { re: /^timetables\/(bus|ferry|jr)\/[a-z0-9-]+\.json$/, schema: 'sourced-document', kind: 'doc' }, // T10：格式見 docs/requests.md，正式 schema 由 T7 補
+  { re: /^timetables\/urban\/_transfers\.json$/, schema: 'urban-transfers', kind: 'urban-transfers' }, // T28：大阪的站內轉乘
+  { re: /^timetables\/urban\/[a-z0-9-]+\.json$/, schema: 'urban-route', kind: 'urban-route' }, // T28：大阪的班距型路線
   { re: /^passes\.json$/, schema: 'passes', kind: 'doc' },
   { re: /^access\/[a-z0-9-]+\.json$/, schema: 'access', kind: 'doc', range: 'access' },
   { re: /^cache\//, schema: null, kind: 'cache' },
@@ -229,6 +231,9 @@ function main() {
         if (areas.has(a.id)) err(shown, `區域 ID「${a.id}」重複`);
         else areas.set(a.id, a);
       }
+    } else if (route.kind === 'urban-route') {
+      const expected = path.basename(rel, '.json');
+      if (data?.id && data.id !== expected) err(shown, `id 是「${data.id}」，但檔名是 ${expected}.json`);
     } else if (route.kind === 'timetable') {
       const expected = path.basename(rel, '.json');
       if (data?.station && data.station !== expected) {
@@ -352,6 +357,8 @@ function main() {
     }
   }
 
+  checkUrban(loaded, points, err);
+
   // 近鐵：_travel-times.json 的停站都在 stations.json；各站時刻表的 trainNo 都在 trains 裡，而且發車時刻一致
   const tt = loaded.find((l) => l.route.kind === 'travel-times');
   if (tt?.data?.trains) {
@@ -407,6 +414,65 @@ function main() {
     process.exit(1);
   }
   console.log('驗證通過。');
+}
+
+const toMin = (t) => Number(t.slice(0, 2)) * 60 + Number(t.slice(3));
+
+/** 班距型路線、站內轉乘（T28）：車站存在、停站順序、環狀線、班距時段、換線的路線 ID、轉乘重複 */
+function checkUrban(loaded, points, err) {
+  const isStation = (id) => !points.size || points.get(id)?.record.type === 'station';
+  const routes = loaded.filter((l) => l.route.kind === 'urban-route' && l.data && typeof l.data === 'object');
+  const routeIds = new Set(routes.map((r) => r.data.id));
+  for (const { shown, data } of routes) {
+    const stops = Array.isArray(data.stops) ? data.stops : [];
+    const seen = new Set();
+    stops.forEach((s, i) => {
+      if (!s?.id) return;
+      if (!isStation(s.id)) err(shown, `stops 的「${s.id}」不在 stations.json`);
+      if (seen.has(s.id)) err(shown, `停站「${s.id}」重複`);
+      seen.add(s.id);
+      if (i === 0 && s.min !== 0) err(shown, '第一站的 min 要是 0');
+      if (i > 0 && typeof s.min === 'number' && typeof stops[i - 1]?.min === 'number' && s.min < stops[i - 1].min) {
+        err(shown, `stops[${i}]「${s.id}」的 min 比前一站小`);
+      }
+    });
+    const lastMin = stops.at(-1)?.min ?? 0;
+    if (data.loop === true && !(typeof data.loopMin === 'number' && data.loopMin > lastMin)) err(shown, '環狀線的 loopMin 要大於最後一站的 min');
+    if (data.loop === false && data.loopMin != null) err(shown, '不是環狀線，loopMin 要是 null');
+    for (const kind of ['adult', 'child']) {
+      const table = data.fares?.[kind];
+      if (!table || typeof table !== 'object') continue;
+      for (const [a, row] of Object.entries(table)) {
+        if (!isStation(a)) err(shown, `fares.${kind} 的「${a}」不在 stations.json`);
+        for (const b of Object.keys(row ?? {})) if (!isStation(b)) err(shown, `fares.${kind} 的「${b}」不在 stations.json`);
+      }
+    }
+    for (const [day, svc] of Object.entries(data.service ?? {})) {
+      (svc?.headway ?? []).forEach((h, i) => {
+        if (h?.from && h?.to && toMin(h.from) >= toMin(h.to)) err(shown, `service.${day}.headway[${i}] 的時段 ${h.from}～${h.to} 不對（from 要早於 to）`);
+      });
+    }
+  }
+
+  const tr = loaded.find((l) => l.route.kind === 'urban-transfers');
+  if (!tr || !Array.isArray(tr.data)) return;
+  const pairs = new Set();
+  tr.data.forEach((t, i) => {
+    if (!t?.from || !t?.to) return;
+    const where = `[${i}] ${t.from} → ${t.to}`;
+    for (const f of ['from', 'to']) if (!isStation(t[f])) err(tr.shown, `${where}：${f}「${t[f]}」不在 stations.json`);
+    for (const f of ['fromLine', 'toLine']) {
+      if (t[f] && t[f] !== 'kintetsu' && !routeIds.has(t[f])) err(tr.shown, `${where}：${f}「${t[f]}」不是班距型路線（timetables/urban/）的 ID，也不是 kintetsu`);
+    }
+    if (t.from === t.to && (!t.fromLine || !t.toLine || t.fromLine === t.toLine)) {
+      err(tr.shown, `${where}：from、to 都是「${t.from}」：同站換線要寫不同的 fromLine、toLine`);
+    }
+    const a = `${t.from}|${t.fromLine ?? ''}`;
+    const b = `${t.to}|${t.toLine ?? ''}`;
+    const key = t.oneWay ? `${a}>${b}` : [a, b].sort().join('<>');
+    if (pairs.has(key)) err(tr.shown, `${where}：${[t.from, t.to].sort().join(' ↔ ')} 重複`);
+    pairs.add(key);
+  });
 }
 
 // 直接執行才跑（測試會 import expandBbox 等函式）

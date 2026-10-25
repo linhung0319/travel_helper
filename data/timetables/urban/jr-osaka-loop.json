@@ -1,0 +1,264 @@
+{
+  "id": "jr-osaka-loop",
+  "mode": "jr",
+  "operator": "JR西日本",
+  "name": {
+    "ja": "大阪環状線",
+    "zh": "大阪環狀線"
+  },
+  "serviceType": null,
+  "stops": [
+    {
+      "id": "jr-osaka",
+      "min": 0,
+      "note": "大阪發車前停約 2 分"
+    },
+    {
+      "id": "jr-nishikujo",
+      "min": 7,
+      "note": "轉 JR ゆめ咲線（往ユニバーサルシティ）"
+    },
+    {
+      "id": "jr-shin-imamiya",
+      "min": 19,
+      "note": null
+    },
+    {
+      "id": "jr-tennoji",
+      "min": 21,
+      "note": "天王寺到站；繼續繞圈的車在天王寺停 0～1 分"
+    },
+    {
+      "id": "jr-tsuruhashi",
+      "min": 27,
+      "note": "轉近鐵"
+    },
+    {
+      "id": "jr-morinomiya",
+      "min": 32,
+      "note": null
+    },
+    {
+      "id": "jr-osakajokoen",
+      "min": 34,
+      "note": "大阪城公園 → 京橋 → 大阪約 9 分＋大阪停車 2 分"
+    }
+  ],
+  "loop": true,
+  "loopMin": 45,
+  "service": {
+    "weekday": {
+      "first": "05:15",
+      "last": "23:48",
+      "headway": [
+        {
+          "from": "05:00",
+          "to": "06:00",
+          "min": 15
+        },
+        {
+          "from": "06:00",
+          "to": "07:00",
+          "min": 7
+        },
+        {
+          "from": "07:00",
+          "to": "08:00",
+          "min": 5
+        },
+        {
+          "from": "08:00",
+          "to": "09:00",
+          "min": 4
+        },
+        {
+          "from": "09:00",
+          "to": "10:00",
+          "min": 5
+        },
+        {
+          "from": "10:00",
+          "to": "17:00",
+          "min": 4
+        },
+        {
+          "from": "17:00",
+          "to": "20:00",
+          "min": 3
+        },
+        {
+          "from": "20:00",
+          "to": "21:00",
+          "min": 4
+        },
+        {
+          "from": "21:00",
+          "to": "22:00",
+          "min": 5
+        },
+        {
+          "from": "22:00",
+          "to": "23:00",
+          "min": 6
+        },
+        {
+          "from": "23:00",
+          "to": "24:20",
+          "min": 10
+        }
+      ],
+      "note": "2026-10-27（週二）的區間時刻表推算：每小時取兩個方向、大阪與鶴橋兩站之中班次最少的那個（列出的站有停的所有列車），60 ÷ 班數取整。首班 05:15 是內回り新今宮的第一班（其他站約 04:50～05:05 就有車）；末班 23:48 是內回り天王寺最後一班，其他站到 24:00～24:19 還有車，但深夜很多車只開到半路（京橋、天王寺、森ノ宮等），要個別確認。"
+    },
+    "saturday": null,
+    "holiday": {
+      "first": "05:15",
+      "last": "23:48",
+      "headway": [
+        {
+          "from": "05:00",
+          "to": "07:00",
+          "min": 12
+        },
+        {
+          "from": "07:00",
+          "to": "10:00",
+          "min": 5
+        },
+        {
+          "from": "10:00",
+          "to": "17:00",
+          "min": 4
+        },
+        {
+          "from": "17:00",
+          "to": "21:00",
+          "min": 3
+        },
+        {
+          "from": "21:00",
+          "to": "22:00",
+          "min": 5
+        },
+        {
+          "from": "22:00",
+          "to": "23:00",
+          "min": 7
+        },
+        {
+          "from": "23:00",
+          "to": "24:20",
+          "min": 10
+        }
+      ],
+      "note": "JR 是「土休日」一套時刻：用 2026-11-01（週日）推算，2026-10-31（週六）班次幾乎相同。2/11 國定假日用這套。"
+    }
+  },
+  "fares": {
+    "currency": "JPY",
+    "adult": {
+      "jr-osaka": {
+        "jr-nishikujo": 180,
+        "jr-shin-imamiya": 200,
+        "jr-tennoji": 240,
+        "jr-tsuruhashi": 200,
+        "jr-morinomiya": 180,
+        "jr-osakajokoen": 180
+      },
+      "jr-tennoji": {
+        "jr-shin-imamiya": 150,
+        "jr-tsuruhashi": 150,
+        "jr-morinomiya": 180,
+        "jr-osakajokoen": 180,
+        "jr-nishikujo": 200
+      },
+      "jr-tsuruhashi": {
+        "jr-morinomiya": 150,
+        "jr-osakajokoen": 150,
+        "jr-shin-imamiya": 180
+      },
+      "jr-nishikujo": {
+        "jr-shin-imamiya": 200
+      }
+    },
+    "child": {
+      "jr-osaka": {
+        "jr-nishikujo": 90,
+        "jr-shin-imamiya": 100,
+        "jr-tennoji": 120,
+        "jr-tsuruhashi": 100,
+        "jr-morinomiya": 90,
+        "jr-osakajokoen": 90
+      },
+      "jr-tennoji": {
+        "jr-shin-imamiya": 70,
+        "jr-tsuruhashi": 70,
+        "jr-morinomiya": 90,
+        "jr-osakajokoen": 90,
+        "jr-nishikujo": 100
+      },
+      "jr-tsuruhashi": {
+        "jr-morinomiya": 70,
+        "jr-osakajokoen": 70,
+        "jr-shin-imamiya": 90
+      },
+      "jr-nishikujo": {
+        "jr-shin-imamiya": 100
+      }
+    },
+    "note": "2025-04-01 起的「電車特定区間」普通運賃（含鐵道駅バリアフリー料金）：1～3 km 150、4～6 km 180、7～10 km 200、11～15 km 240 円（JR 西日本官方 PDF 別紙 1）。營業キロ取 Wikipedia 的站間距離，環狀線走較短的一邊、1 km 未滿進位後套表推算；大阪→天王寺 240／120、天王寺→新今宮 150／70 已用駅探確認一致。兒童為大人半價、10 円未滿捨去（JR 規則，150→70）。兩個方向同價。IC 卡與車票同價（駅探顯示）。"
+  },
+  "passes": {
+    "kintetsu-rail-pass-5day": false,
+    "kintetsu-rail-pass-5day-plus": false,
+    "jr-kansai-area-pass": true,
+    "jr-kansai-mini-pass": null,
+    "jr-kansai-wide-area-pass": true
+  },
+  "notes": "【站序注意】依任務指定的順序（大阪 → 西九条 → 天王寺 → 鶴橋 → 京橋 → 大阪）排列，這個方向在 JR 官方叫「內回り」（區間時刻表 2861「大阪環状線 内回り」；駅探也標「大阪環状線(内回り)」），不是外回り；schema 寫「依外回り」，請 T28 確認要不要改說明或反轉順序。站間分鐘取內回り普通車 1345 列車（平日 07:19 天王寺發，繞一圈 45 分）；外回り（反方向）各站間分鐘大致相同。\n【直通列車】大和路快速、関空快速、紀州路快速、区間快速、直通快速在環狀線西半邊（大阪～西九条～新今宮～天王寺）會停本檔列出的大阪、西九条、新今宮、天王寺（快速跳過野田、芦原橋、今宮等小站），関空快速、紀州路快速另外停京橋、天満、桜ノ宮後在京橋折返；這些快速都不走東半邊，東半邊（天王寺～鶴橋～森ノ宮～大阪城公園～京橋）只有普通車。上面的班距把西半邊的快速也算進去（每個站實際能搭的車），東半邊只算普通車，兩邊白天都是約 4 分一班。部分普通車在大阪改成大和路快速、或轉進ゆめ咲線，上車前看行先。\n【長輩】月台與車廂的間隙、月台門設置狀況：官方資料沒查（不明）。\n時刻表是 2026-03-14 改正版，2027-02 若未改點可沿用，出發前再查。",
+  "validFrom": "2026-03-14",
+  "retrieved": "2026-10-26",
+  "sources": [
+    {
+      "type": "official",
+      "url": "https://timetable.jr-odekake.net/line-timetable/2861",
+      "retrieved": "2026-10-26",
+      "note": "JR おでかけネット 區間時刻表 大阪環状線 内回り（天王寺～京橋～大阪～天王寺），?date=20261027／20261031／20261101；站間分鐘、班距、首末班"
+    },
+    {
+      "type": "official",
+      "url": "https://timetable.jr-odekake.net/line-timetable/2863",
+      "retrieved": "2026-10-26",
+      "note": "JR おでかけネット 區間時刻表 大阪環状線 外回り（天王寺～大阪～京橋～天王寺），同上三天；反方向的班距、首末班、直通快速停站"
+    },
+    {
+      "type": "official",
+      "url": "https://www.westjr.co.jp/press/article/items/240515_00_press_keihanshin_unchin.pdf",
+      "retrieved": "2026-10-26",
+      "note": "JR 西日本 2024-05-15 新聞稿「京阪神都市圏における運賃体系の見直しについて」別紙 1：2025-04-01 起電車特定区間普通運賃（含バリアフリー料金）"
+    },
+    {
+      "type": "wikipedia",
+      "url": "https://ja.wikipedia.org/wiki/大阪環状線",
+      "retrieved": "2026-10-26",
+      "note": "各站營業キロ（推算運賃用）"
+    },
+    {
+      "type": "other",
+      "url": "https://ekitan.com/transit/fare/sf-5006/st-5638",
+      "retrieved": "2026-10-26",
+      "note": "駅探 大阪→天王寺 運賃 240／120 円（核對推算值）"
+    },
+    {
+      "type": "other",
+      "url": "https://ekitan.com/transit/fare/sf-5638/st-5427",
+      "retrieved": "2026-10-26",
+      "note": "駅探 天王寺→新今宮 運賃 150／70 円（核對兒童捨去規則）"
+    },
+    {
+      "type": "official",
+      "url": "https://www.westjr.co.jp/travel-information/tc/tickets-passes/jrwest-rail-pass/",
+      "retrieved": "2026-10-26",
+      "note": "JR 西日本 外國旅客周遊券一覽（關西地區鐵路周遊券 2026-09-30 停售；關西廣域鐵路周遊券）"
+    }
+  ]
+}

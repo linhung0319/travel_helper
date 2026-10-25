@@ -1,0 +1,200 @@
+{
+  "id": "jr-yumesaki",
+  "mode": "jr",
+  "operator": "JR西日本",
+  "name": {
+    "ja": "JRゆめ咲線（桜島線）",
+    "zh": "JR 夢咲線（櫻島線）"
+  },
+  "serviceType": null,
+  "stops": [
+    {
+      "id": "jr-nishikujo",
+      "min": 0,
+      "note": "環狀線轉乘站"
+    },
+    {
+      "id": "jr-universal-city",
+      "min": 6,
+      "note": "日本環球影城（USJ）最近站"
+    }
+  ],
+  "loop": false,
+  "loopMin": null,
+  "service": {
+    "weekday": {
+      "first": "05:19",
+      "last": "24:02",
+      "headway": [
+        {
+          "from": "05:00",
+          "to": "06:00",
+          "min": 30
+        },
+        {
+          "from": "06:00",
+          "to": "07:00",
+          "min": 10
+        },
+        {
+          "from": "07:00",
+          "to": "10:00",
+          "min": 7.5
+        },
+        {
+          "from": "10:00",
+          "to": "16:00",
+          "min": 15
+        },
+        {
+          "from": "16:00",
+          "to": "21:00",
+          "min": 7.5
+        },
+        {
+          "from": "21:00",
+          "to": "22:00",
+          "min": 9
+        },
+        {
+          "from": "22:00",
+          "to": "23:00",
+          "min": 10
+        },
+        {
+          "from": "23:00",
+          "to": "24:15",
+          "min": 30
+        }
+      ],
+      "note": "2026-10-27（週二）推算；首班 05:19 是西九条往桜島的第一班（ユニバーサルシティ往西九条 05:09），末班 24:02 是ユニバーサルシティ往西九条最後一班（西九条往桜島到 24:14）。"
+    },
+    "saturday": null,
+    "holiday": {
+      "first": "05:19",
+      "last": "24:02",
+      "headway": [
+        {
+          "from": "05:00",
+          "to": "06:00",
+          "min": 30
+        },
+        {
+          "from": "06:00",
+          "to": "07:00",
+          "min": 15
+        },
+        {
+          "from": "07:00",
+          "to": "08:00",
+          "min": 10
+        },
+        {
+          "from": "08:00",
+          "to": "10:00",
+          "min": 7.5
+        },
+        {
+          "from": "10:00",
+          "to": "11:00",
+          "min": 10
+        },
+        {
+          "from": "11:00",
+          "to": "16:00",
+          "min": 15
+        },
+        {
+          "from": "16:00",
+          "to": "21:00",
+          "min": 8
+        },
+        {
+          "from": "21:00",
+          "to": "23:00",
+          "min": 9
+        },
+        {
+          "from": "23:00",
+          "to": "24:15",
+          "min": 20
+        }
+      ],
+      "note": "土休日一套：用 2026-11-01（週日）推算，週六相同。2/11 用這套。"
+    }
+  },
+  "fares": {
+    "currency": "JPY",
+    "adult": {
+      "jr-nishikujo": {
+        "jr-universal-city": 180
+      },
+      "jr-osaka": {
+        "jr-universal-city": 200
+      },
+      "jr-tennoji": {
+        "jr-universal-city": 240
+      },
+      "jr-tsuruhashi": {
+        "jr-universal-city": 240
+      }
+    },
+    "child": {
+      "jr-nishikujo": {
+        "jr-universal-city": 90
+      },
+      "jr-osaka": {
+        "jr-universal-city": 100
+      },
+      "jr-tennoji": {
+        "jr-universal-city": 120
+      },
+      "jr-tsuruhashi": {
+        "jr-universal-city": 120
+      }
+    },
+    "note": "jr-osaka、jr-tennoji、jr-tsuruhashi 出發的票價是「環狀線＋ゆめ咲線」合算的通算運賃（JR 同一張票），寫在本檔。依電車特定区間運賃表推算：西九条→ユニバーサルシティ 3.2 km（4 km 帶 180）、大阪→ユニバーサルシティ 6.8 km（7 km 帶 200）、天王寺→ 10.6 km（11 km 帶 240）、鶴橋→（經天王寺）13.6 km（240）。營業キロ取 Wikipedia，兒童半價 10 円未滿捨去。"
+  },
+  "passes": {
+    "kintetsu-rail-pass-5day": false,
+    "kintetsu-rail-pass-5day-plus": false,
+    "jr-kansai-area-pass": true,
+    "jr-kansai-mini-pass": null,
+    "jr-kansai-wide-area-pass": true
+  },
+  "notes": "大阪、天王寺方面直通ユニバーサルシティ（往桜島）的列車：平日 06 時 1 班、08:30～10:00 約每 15 分、16～20 時約每 15 分；土休日 07～10 時、16～22 時每 15 分。白天（約 10:30～16:00）沒有直通車，要在西九条轉乘（西九条～桜島的接駁車每 15 分一班）。直通車從大阪到ユニバーサルシティ約 12～14 分；天王寺發的直通車走環狀線東半邊（天王寺 → 鶴橋 → 京橋 → 大阪 → 西九条），天王寺→ユニバーサルシティ約 42 分（例：平日 2391E 天王寺 09:04 → ユニバーサルシティ 09:46）。西九条 → ユニバーサルシティ 5～6 分（上行 5 分）。時刻表 2026-03-14 改正版。",
+  "validFrom": "2026-03-14",
+  "retrieved": "2026-10-26",
+  "sources": [
+    {
+      "type": "official",
+      "url": "https://timetable.jr-odekake.net/line-timetable/2278",
+      "retrieved": "2026-10-26",
+      "note": "JR おでかけネット 區間時刻表 大阪環状線・JRゆめ咲線（天王寺～西九条～桜島）下り，?date=20261027／20261031／20261101"
+    },
+    {
+      "type": "official",
+      "url": "https://timetable.jr-odekake.net/line-timetable/2279",
+      "retrieved": "2026-10-26",
+      "note": "JR おでかけネット 區間時刻表 JRゆめ咲線・大阪環状線（桜島～西九条～天王寺）上り，同上三天"
+    },
+    {
+      "type": "official",
+      "url": "https://www.westjr.co.jp/press/article/items/240515_00_press_keihanshin_unchin.pdf",
+      "retrieved": "2026-10-26",
+      "note": "JR 西日本 電車特定区間普通運賃表（2025-04-01 起，別紙 1）"
+    },
+    {
+      "type": "wikipedia",
+      "url": "https://ja.wikipedia.org/wiki/桜島線",
+      "retrieved": "2026-10-26",
+      "note": "西九条起點營業キロ（安治川口 2.4、ユニバーサルシティ 3.2、桜島 4.1）；直通運轉時段說明"
+    },
+    {
+      "type": "wikipedia",
+      "url": "https://ja.wikipedia.org/wiki/大阪環状線",
+      "retrieved": "2026-10-26",
+      "note": "環狀線營業キロ"
+    }
+  ]
+}
