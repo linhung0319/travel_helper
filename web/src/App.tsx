@@ -10,6 +10,7 @@ import { ChatPanel } from './components/Panels.tsx';
 import { dropAiProps } from './components/askAi.ts';
 import { SidePanel } from './components/SidePanel.tsx';
 import { MapPanel } from './components/MapPanel.tsx';
+import { TimetablePopup } from './components/TimetablePopup.tsx';
 import { Dialogs, Toast } from './components/Dialogs.tsx';
 import { usePlanningIdle } from './components/Planning.tsx';
 import './styles.css';
@@ -29,6 +30,7 @@ function DesktopLayout() {
         <MapView />
         <MapTopBar />
         <MapPanel />
+        <TimetablePopup />
       </main>
       <aside className="side-column">
         <SidePanel />
@@ -44,6 +46,7 @@ function MobileLayout() {
     <div className="layout mobile">
       <TopBar />
       <MapPanel />
+      <TimetablePopup />
       <div className={`stage mode-${mode}`}>
         <MapView />
         {mode === 'explore' && <ExploreWall />}

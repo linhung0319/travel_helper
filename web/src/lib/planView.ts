@@ -102,6 +102,27 @@ export function legTargetOf(entry: TimelineEntry, date: string): LegTarget | nul
   return null;
 }
 
+/** 交通卡的 key（uiStore.legOpen、班次表的 legKey）：日期:lodging 或 日期:種類:項目 ID（沒有用點 ID） */
+export function legKeyOf(entry: TimelineEntry, date: string): string {
+  return `${date}:${entry.kind === 'lodging' ? 'lodging' : `${entry.kind}:${entry.itemId ?? entry.placeId ?? ''}`}`;
+}
+
+/** 用 legKey 在這天的時間軸（含分組裡的）找那一段交通的資料卡；找不到或那張卡沒有交通回傳 null */
+export function findLegEntry(day: DayPlan | null, legKey: string): TimelineEntry | null {
+  if (!day) return null;
+  const walk = (entries: TimelineEntry[]): TimelineEntry | null => {
+    for (const e of entries) {
+      if (e.travel && legKeyOf(e, day.date) === legKey) return e;
+      for (const g of e.groups ?? []) {
+        const hit = walk(g.entries);
+        if (hit) return hit;
+      }
+    }
+    return null;
+  };
+  return walk(day.entries);
+}
+
 /** 在 Google Maps 開這段路線（起訖座標、交通方式） */
 export function legMapsUrl(from: Place, to: Place, mode: TravelMode): string {
   const travelmode = mode === 'walk' ? 'walking' : mode === 'train' || mode === 'bus' || mode === 'ferry' || mode === 'transit' ? 'transit' : 'driving';

@@ -23,6 +23,7 @@ import {
   departureRows,
   editorModeOf,
   legDistance,
+  legKeyOf,
   legMapsUrl,
   legModeName,
   legSteps,
@@ -292,7 +293,7 @@ export function LegRow({ entry, date }: { entry: TimelineEntry; date: string }) 
   useApp((s) => s.routesVersion);
   const target = legTargetOf(entry, date);
   // 每一段交通有自己的 key（起點、會合這類不能改的也可以點，但不會開到別段）；班次表的 legKey 也是這個
-  const key = `${date}:${entry.kind === 'lodging' ? 'lodging' : `${entry.kind}:${entry.itemId ?? entry.placeId ?? ''}`}`;
+  const key = legKeyOf(entry, date);
   const open = useUi((s) => s.legOpen) === key;
   const spec = readSpec(itinerary, target);
   // 使用者設定過的（包含分鐘填 0）或有備註的不能藏起來，否則改不回來

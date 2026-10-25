@@ -43,8 +43,8 @@ export const uiStore = createStore<UiState>()(() => ({ dialog: null, mapPanel: n
 export const openDialog = (dialog: DialogState) => uiStore.setState({ dialog });
 export const closeDialog = () => uiStore.setState({ dialog: null });
 
-/** 打開地圖那側的班次表（交通卡步驟裡搭車那一行的「› 班次」） */
-export const openTimetable = (timetable: TimetableState) => uiStore.setState({ timetable });
+/** 打開地圖那側的班次表（交通卡步驟裡搭車那一行的「› 班次」）；和討論、預約的視窗同一個位置，一次開一個 */
+export const openTimetable = (timetable: TimetableState) => uiStore.setState({ timetable, mapPanel: null });
 export const closeTimetable = () => uiStore.setState({ timetable: null });
 
 
@@ -52,7 +52,7 @@ export const closeTimetable = () => uiStore.setState({ timetable: null });
 export const openMapPanel = (kind: MapPanelState['kind'], opts?: { focus: { date: string; placeId: string } }) => {
   const day = appStore.getState().day;
   const scope = day === 'all' || (opts && opts.focus.date !== day) ? 'trip' : 'day';
-  uiStore.setState({ mapPanel: { kind, scope, ...(opts ? { focus: opts.focus } : {}) } });
+  uiStore.setState({ mapPanel: { kind, scope, ...(opts ? { focus: opts.focus } : {}) }, timetable: null });
 };
 export const closeMapPanel = () => uiStore.setState({ mapPanel: null });
 /** 視窗裡切換「這天／整趟」 */

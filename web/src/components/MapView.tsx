@@ -26,7 +26,7 @@ import { MapCommandBars } from './MapCommandBars.tsx';
 import { showInExplore } from './Explore.tsx';
 import { shared } from '../appShared.ts';
 import { likedPlaces } from '../lib/wishlist.ts';
-import { closeMapPanel, uiStore } from '../uiStore.ts';
+import { closeMapPanel, closeTimetable, uiStore } from '../uiStore.ts';
 
 setWorkerUrl(maplibreWorkerUrl);
 
@@ -342,6 +342,7 @@ export function MapView() {
       };
       map.on('click', (e: MapMouseEvent) => {
         closeMapPanel();
+        closeTimetable();
         pickRef.current(placeAt(e.point));
       });
       map.on('mousemove', PICK_LAYERS, (e) => {
