@@ -1,8 +1,9 @@
 // 手機探索上方的搜尋和篩選（第六輪 §3.2）：搜尋框、類型晶片（全部、景點、餐廳、住宿）、地區 ▾、⚙ 篩選、快速篩選晶片、排序 ▾。
-// 狀態放在 mobileStore 的 feed（手機自己一份，不看地圖範圍、不動地圖的篩選）。⚙ 篩選是底部面板，條件照 FilterPanel（情境、團體、投票、分級，選了地區再加小區域）。
+// 狀態放在 mobileStore 的 feed（手機自己一份，不看地圖範圍、不動地圖的篩選）。⚙ 篩選是底部面板（portal 到 body，蓋過底部分頁），條件照 FilterPanel（情境、團體、投票、分級，選了地區再加小區域）。
 // 往下滑時 ExploreFeed 改畫一行的摘要（FeedSummary），點了捲回最上面。
 
 import { useState } from 'react';
+import { createPortal } from 'react-dom';
 import { useData } from '../hooks.ts';
 import { displayName } from '../data/normalize.ts';
 import { CONTEXTS, TIERS, type Area } from '../data/types.ts';
@@ -66,7 +67,8 @@ function FeedSheet({ onClose }: { onClose(): void }) {
       </div>
     </section>
   );
-  return (
+  // 掛到 body：畫在分頁內容（.m-page 自己一層）裡會被底部分頁蓋住
+  return createPortal(
     <div className="m-sheet-backdrop" onClick={onClose}>
       <div className="m-sheet" role="dialog" aria-label="篩選" data-testid="m-feed-sheet" onClick={(e) => e.stopPropagation()}>
         <header className="m-sheet-head">
@@ -86,7 +88,8 @@ function FeedSheet({ onClose }: { onClose(): void }) {
           {group('分級', TIERS.map((t) => ({ token: feedToken('tiers', t), label: `${t} 級` })))}
         </div>
       </div>
-    </div>
+    </div>,
+    document.body,
   );
 }
 

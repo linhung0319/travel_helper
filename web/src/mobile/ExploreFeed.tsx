@@ -1,9 +1,9 @@
-// 手機版「探索」分頁（第六輪 §3.2）：沒有地圖，像 Pinterest 的兩欄圖片牆（CSS columns），往下滑一直出現。
+// 手機版「探索」分頁（第六輪 §3.2）：沒有地圖，像 Pinterest 的兩欄圖片牆（兩個 flex 欄，第 i 張放第 i % 2 欄，每排照排名），往下滑一批一批（60 張）出現。
 // 每張：左上角類型色塊（景、餐、宿），右下角 🤍／❤️、👎 直接按（castVote，不開詳情），下面是名稱、地區、❤️ 數。點圖片 → 整頁詳情（openPlace）。
 // 上方是搜尋和篩選（FeedFilters）；往下滑到篩選看不到時，最上面黏一行摘要（m-feed-compact），點了捲回最上面。
 // 清單的計算和網頁版共用 shared/placeLists.ts（useExploreList），篩選用 mobileStore 的 feed，不看地圖範圍。探索不放「加到某天」。
 
-import { useEffect, useMemo, useRef, useState } from 'react';
+import { memo, useEffect, useMemo, useRef, useState } from 'react';
 import { useData, useShared } from '../hooks.ts';
 import { displayName } from '../data/normalize.ts';
 import { voteCounts } from '../sharedStore.ts';
@@ -46,31 +46,34 @@ export function placeAreaLabel(place: Place, areas: Area[]): string {
 }
 
 /** 圖片上的 🤍／❤️、👎：按的是自己的票，再按一次收回；不開詳情 */
-export function FeedVotes({ placeId, votes }: { placeId: string; votes: VoteState }) {
+export function FeedVotes({ placeId, like, dislike, mine }: { placeId: string } & VoteState) {
   const toggle = (e: React.MouseEvent, value: VoteValue) => {
     e.stopPropagation();
-    void castVote(placeId, votes.mine === value ? null : value);
+    void castVote(placeId, mine === value ? null : value);
   };
-  const likeOn = votes.mine === 'like';
-  const dislikeOn = votes.mine === 'dislike';
+  const likeOn = mine === 'like';
+  const dislikeOn = mine === 'dislike';
   return (
     <span className="m-votes">
       <button type="button" className={`m-vote ${likeOn ? 'on' : ''}`} aria-pressed={likeOn} aria-label={likeOn ? '收回 ❤️' : '按 ❤️ 想去'} onClick={(e) => toggle(e, 'like')} data-testid="m-feed-like">
         {likeOn ? '❤️' : '🤍'}
         <span className="m-vote-count" data-testid="m-feed-like-count">
-          {votes.like || ''}
+          {like || ''}
         </span>
       </button>
       <button type="button" className={`m-vote ${dislikeOn ? 'on' : ''}`} aria-pressed={dislikeOn} aria-label={dislikeOn ? '收回 👎' : '按 👎 不想去'} onClick={(e) => toggle(e, 'dislike')} data-testid="m-feed-dislike">
         👎
-        <span className="m-vote-count">{votes.dislike || ''}</span>
+        <span className="m-vote-count">{dislike || ''}</span>
       </button>
     </span>
   );
 }
 
-/** 圖片牆的一張：整張可以點（開詳情），票的按鈕自己擋掉 */
-function FeedItem({ place, votes, areas }: { place: Place; votes: VoteState; areas: Area[] }) {
+/**
+ * 圖片牆的一張：整張可以點（開詳情），票的按鈕自己擋掉。
+ * memo＋票數用基本型別傳：按一個票、打一個字時，只有變了的那幾張重畫
+ */
+const FeedItem = memo(function FeedItem({ place, rank, like, dislike, mine, areas }: { place: Place; rank: number; areas: Area[] } & VoteState) {
   const name = place.name.zh || place.name.ja;
   const open = () => mobileStore.getState().openPlace(place.id, 'explore');
   const area = placeAreaLabel(place, areas);
@@ -83,6 +86,7 @@ function FeedItem({ place, votes, areas }: { place: Place; votes: VoteState; are
       data-testid="m-feed-item"
       data-id={place.id}
       data-type={place.type}
+      data-rank={rank}
       onClick={open}
       onKeyDown={(e) => {
         if (e.target !== e.currentTarget || (e.key !== 'Enter' && e.key !== ' ')) return;
@@ -98,7 +102,7 @@ function FeedItem({ place, votes, areas }: { place: Place; votes: VoteState; are
             {cardTypeLetter(place.type)}
           </span>
         )}
-        <FeedVotes placeId={place.id} votes={votes} />
+        <FeedVotes placeId={place.id} like={like} dislike={dislike} mine={mine} />
       </span>
       <span className="m-feed-text">
         <span className="m-feed-name m-ellipsis">
@@ -106,12 +110,15 @@ function FeedItem({ place, votes, areas }: { place: Place; votes: VoteState; are
           {name}
         </span>
         <span className="m-feed-meta m-ellipsis">
-          {[area, votes.like ? `❤️ ${votes.like}` : ''].filter(Boolean).join(' ・ ')}
+          {[area, like ? `❤️ ${like}` : ''].filter(Boolean).join(' ・ ')}
         </span>
       </span>
     </div>
   );
-}
+});
+
+/** 一次多畫幾張（往下滑到底再畫下一批） */
+const BATCH = 60;
 
 /** 探索分頁 */
 export function ExploreFeed() {
@@ -124,6 +131,30 @@ export function ExploreFeed() {
   const rootRef = useRef<HTMLDivElement>(null);
   const sentinelRef = useRef<HTMLDivElement>(null);
   const [collapsed, setCollapsed] = useState(false);
+  const moreRef = useRef<HTMLDivElement>(null);
+  const [shown, setShown] = useState(BATCH);
+
+  // 換了篩選、搜尋、排序：從第一批重新開始（按票不算，不然滑到下面按一下就縮回去）
+  useEffect(() => setShown(BATCH), [filter, feed.query, feed.sort]);
+
+  // 底部的標記快要進畫面時多畫一批
+  useEffect(() => {
+    const scroller = rootRef.current?.closest('.m-page');
+    const mark = moreRef.current;
+    if (!scroller || !mark) return;
+    const io = new IntersectionObserver((entries) => {
+      if (entries.some((e) => e.isIntersecting)) setShown((n) => n + BATCH);
+    }, { root: scroller, rootMargin: '800px 0px' });
+    io.observe(mark);
+    return () => io.disconnect();
+  }, [shown, list.length]);
+
+  // 兩欄：第 i 張放在第 i % 2 欄，每一排照排名從左到右（CSS columns 會先排滿左欄，順序就亂了）
+  const columns = useMemo(() => {
+    const out: { place: Place; rank: number }[][] = [[], []];
+    list.slice(0, shown).forEach((place, i) => out[i % 2].push({ place, rank: i + 1 }));
+    return out;
+  }, [list, shown]);
 
   // 篩選整個捲出畫面時收成一行；捲回來時展開（摘要黏在上面，不推動清單，捲動位置不會跳）
   useEffect(() => {
@@ -154,11 +185,16 @@ export function ExploreFeed() {
       </div>
       <FeedFilters />
       <div ref={sentinelRef} aria-hidden />
-      <div className="m-feed-wall">
-        {list.map((p) => (
-          <FeedItem key={p.id} place={p} votes={voteOf(p.id)} areas={areas} />
+      <div className="m-feed-wall" data-count={list.length} data-testid="m-feed-wall">
+        {columns.map((col, c) => (
+          <div key={c} className="m-feed-col">
+            {col.map(({ place, rank }) => (
+              <FeedItem key={place.id} place={place} rank={rank} {...voteOf(place.id)} areas={areas} />
+            ))}
+          </div>
         ))}
       </div>
+      {shown < list.length && <div ref={moreRef} className="m-feed-next" aria-hidden />}
       {list.length === 0 && <p className="muted m-empty">沒有符合的地點，取消一些篩選看看。</p>}
     </div>
   );

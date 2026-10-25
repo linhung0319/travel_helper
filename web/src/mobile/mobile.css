@@ -534,17 +534,29 @@
   color: var(--muted);
 }
 
-/* Pinterest 式兩欄：CSS columns，一張不拆到兩欄 */
+/* Pinterest 式兩欄：兩個 flex 欄（第 i 張在第 i % 2 欄，每排照排名），每欄自己往下疊 */
 .m-feed-wall {
-  columns: 2;
-  column-gap: 8px;
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
   padding: 8px 8px 0;
+}
+
+.m-feed-col {
+  flex: 1 1 0;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+/* 往下滑到這裡就多畫一批 */
+.m-feed-next {
+  height: 1px;
 }
 
 .m-feed-item {
   display: block;
-  break-inside: avoid;
-  margin-bottom: 8px;
   min-width: 0;
   border-radius: 12px;
   overflow: hidden;

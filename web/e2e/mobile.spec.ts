@@ -121,13 +121,22 @@ test('探索：兩欄圖片牆、沒有地圖、可以按 ❤️ 不開詳情', 
   await goTab(page, 'explore');
   const items = page.getByTestId('m-feed-item');
   await expect(items.nth(3)).toBeVisible();
-  // 兩欄（CSS columns 先排滿左欄再排右欄）：畫面最上面那一排有兩張、x 不同
-  const tops = await items.evaluateAll((els) => els.map((e) => e.getBoundingClientRect()).map((r) => ({ x: Math.round(r.x), y: Math.round(r.y), w: r.width })));
-  const xs = new Set(tops.map((t) => t.x));
-  expect(xs.size).toBe(2);
-  const firstRow = tops.filter((t) => t.y === tops[0].y);
-  expect(firstRow.length).toBe(2);
-  expect(firstRow[0].x).not.toBe(firstRow[1].x);
+  // 兩欄、每排照排名：排名第 1、2 的並排在最上面（第 1 張在左），第 3 張在左欄、第 1 張的下面
+  const box = async (rank: number) => (await page.locator(`[data-testid="m-feed-item"][data-rank="${rank}"]`).boundingBox())!;
+  const [b1, b2, b3, b4] = [await box(1), await box(2), await box(3), await box(4)];
+  expect(Math.round(b1.y)).toBe(Math.round(b2.y));
+  expect(b1.x).toBeLessThan(b2.x);
+  expect(Math.round(b3.x)).toBe(Math.round(b1.x));
+  expect(b3.y).toBeGreaterThan(b1.y);
+  expect(Math.round(b4.x)).toBe(Math.round(b2.x));
+  // 一批一批畫：一開始最多 60 張，滑到底再多畫
+  const total = Number(await page.getByTestId('m-feed-wall').getAttribute('data-count'));
+  expect(total).toBeGreaterThan(60);
+  await expect(items).toHaveCount(60);
+  await page.locator('.m-page').evaluate((el) => el.scrollTo(0, el.scrollHeight));
+  await expect.poll(() => items.count()).toBeGreaterThan(60);
+  await page.locator('.m-page').evaluate((el) => el.scrollTo(0, 0));
+
   await expect(page.getByTestId('map')).toBeHidden();
   // 找一張自己還沒按 ❤️ 的，按了票數 +1，不開詳情
   const item = page.locator('[data-testid="m-feed-item"]:has([data-testid="m-feed-like"][aria-pressed="false"])').first();
@@ -155,16 +164,42 @@ test('探索：類型篩選', async ({ page }) => {
   const types = await page.getByTestId('m-feed-item').evaluateAll((els) => els.map((e) => e.getAttribute('data-type')));
   expect(types.length).toBeGreaterThan(0);
   expect(new Set(types)).toEqual(new Set(['restaurant']));
+  const all = Number(await page.getByTestId('m-feed-wall').getAttribute('data-count'));
   // 15 人的快速篩選：只剩可容納 15 人的
   await page.getByTestId('m-feed-quick-fit15:yes').click();
-  const n = await page.getByTestId('m-feed-item').count();
+  const n = Number(await page.getByTestId('m-feed-wall').getAttribute('data-count'));
   expect(n).toBeGreaterThan(0);
-  expect(n).toBeLessThan(types.length);
+  expect(n).toBeLessThan(all);
   // ⚙ 篩選從底部面板打開
   await page.getByTestId('m-feed-more').click();
   await expect(page.getByTestId('m-feed-sheet')).toBeVisible();
   await page.getByTestId('m-feed-sheet-done').click();
   await expect(page.getByTestId('m-feed-sheet')).toHaveCount(0);
+});
+
+test('探索：⚙ 篩選的底部面板蓋過底部分頁，最下面的晶片點得到', async ({ page }) => {
+  await ready(page);
+  await goTab(page, 'explore');
+  await page.getByTestId('m-feed-more').click();
+  const sheet = page.getByTestId('m-feed-sheet');
+  await expect(sheet).toBeVisible();
+  // 分級的最後一個晶片：畫面上那一點最上面的元素就是它（沒有被底部分頁蓋住）
+  const chip = sheet.locator('.m-sheet-group').last().locator('.m-chip').last();
+  await chip.scrollIntoViewIfNeeded();
+  const b = (await chip.boundingBox())!;
+  const hit = await page.evaluate(([x, y]) => {
+    const el = document.elementFromPoint(x, y);
+    return !!el?.closest('[data-testid="m-feed-sheet"] .m-sheet-group:last-child .m-chip:last-child');
+  }, [b.x + b.width / 2, b.y + b.height / 2] as const);
+  expect(hit).toBe(true);
+  await chip.click();
+  await expect(chip).toHaveAttribute('aria-pressed', 'true');
+  // 背景蓋住底部分頁：點底部分頁的位置是關掉面板，不會換分頁
+  const tab = (await page.getByTestId('m-tab-me').boundingBox())!;
+  const onTab = await page.evaluate(([x, y]) => !!document.elementFromPoint(x, y)?.closest('[data-testid="m-tabbar"]'), [tab.x + tab.width / 2, tab.y + tab.height / 2] as const);
+  expect(onTab).toBe(false);
+  await page.getByTestId('m-feed-sheet-done').click();
+  await expect(sheet).toHaveCount(0);
 });
 
 test('探索：往下滑時篩選收成一行，黏在最上面', async ({ page }) => {

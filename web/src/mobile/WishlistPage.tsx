@@ -49,7 +49,7 @@ function WishItem({ place, view, votes }: { place: Place; view: WishView['view']
             <DayStatusTag placeId={place.id} />
           </span>
           <span onClick={stop}>
-            <FeedVotes placeId={place.id} votes={votes} />
+            <FeedVotes placeId={place.id} {...votes} />
           </span>
         </span>
       ) : (
@@ -82,7 +82,7 @@ function WishItem({ place, view, votes }: { place: Place; view: WishView['view']
           <span className="m-wish-comments small">💬 {comments ? `${comments} 則留言` : '留言'}</span>
           {view === 'list' && (
             <span onClick={stop}>
-              <FeedVotes placeId={place.id} votes={votes} />
+              <FeedVotes placeId={place.id} {...votes} />
             </span>
           )}
         </span>
