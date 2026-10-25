@@ -5,7 +5,7 @@
 
 import { createStore, type StoreApi } from 'zustand/vanilla';
 import type { Itinerary } from '@travel-helper/engine/types';
-import { ItineraryError } from '@travel-helper/engine';
+import { ItineraryError, removeItem } from '@travel-helper/engine';
 import {
   isVersionConflict,
   type Backend,
@@ -24,6 +24,7 @@ import {
 import type { DataState } from './dataStore.ts';
 import { mergePlaceEdits } from './data/merge.ts';
 import { placeDays } from './lib/itinerary.ts';
+import { findItemRef } from './lib/planView.ts';
 import { shortDayLabel } from './lib/trip.ts';
 
 export interface Toast {
@@ -284,6 +285,59 @@ export function createShared(getBackend: () => Backend, data: StoreApi<DataState
   }
 
   /**
+   * 撤下、放回候選用：這天還沒有這個點的候選才用我的名字加。先問後端（本機可能還沒同步到別人加的），
+   * created 是「這次加的」：復原時只能刪這種。後端的 createCandidate 是 upsert，回來的不是我加的也不算
+   */
+  async function ensureCandidate(placeId: string, day: string): Promise<Result<{ id: number; created: boolean }>> {
+    let list: Candidate[];
+    try {
+      list = await getBackend().listCandidates();
+    } catch (e) {
+      return fail(e);
+    }
+    set({ candidates: list });
+    const old = list.find((x) => x.placeId === placeId && x.day === day && !x.deletedAt);
+    if (old) return { ok: true, value: { id: old.id, created: false } } as Result<{ id: number; created: boolean }>;
+    const r = await addCandidate(placeId, day);
+    if (!r.ok) return r;
+    return { ok: true, value: { id: r.value.id, created: r.value.addedBy === store.getState().me?.id } } as Result<{ id: number; created: boolean }>;
+  }
+
+  /** 拿掉這次加的候選（撤下、放回候選的復原，或拿不掉卡片時） */
+  async function dropCreated(ids: number[]) {
+    for (const id of ids) await removeCandidate(id, undefined, true);
+  }
+
+  /**
+   * 撤下（「⋯」的 ↩ 撤下）：整張卡（所有選項）拿掉，地點用我的名字加成這天的候選，可以復原。
+   * 先加候選（ensureCandidate：這天已經有的跳過、不記）、再拿掉卡片；復原時卡片回原位，只刪這次新加的候選。
+   * 加不起來或拿不掉卡片時，也刪掉剛加的
+   */
+  async function withdrawItem(itemId: string, date: string): Promise<Result> {
+    const item = findItemRef(data.getState().itinerary, itemId)?.item;
+    if (item?.type !== 'visit') return fail(new Error('只有地點的卡片能撤下'));
+    const p = data.getState().byId.get(item.options[item.selected]?.place ?? '');
+    const label = p ? p.name.zh || p.name.ja : (item.options[item.selected]?.place ?? '項目');
+    const created: number[] = [];
+    for (const placeId of new Set(item.options.map((o) => o.place))) {
+      const r = await ensureCandidate(placeId, date);
+      if (!r.ok) {
+        await dropCreated(created);
+        return r;
+      }
+      if (r.value.created) created.push(r.value.id);
+    }
+    const r = await changeItinerary((x) => removeItem(x, itemId), `${label} 撤下（回候選）`, {
+      undo: { text: `已撤下・${label}`, after: () => dropCreated(created) },
+    });
+    if (!r.ok) {
+      await dropCreated(created);
+      return r;
+    }
+    return { ok: true };
+  }
+
+  /**
    * 從候選拿掉。自己加的直接撤回；別人加的要寫理由（編輯），理由變成那個點的一則不採用留言。
    * 排進行程後也用這個拿掉（自己的操作，不用理由：placed）。
    */
@@ -375,6 +429,9 @@ export function createShared(getBackend: () => Backend, data: StoreApi<DataState
     deleteComment,
     addCandidate,
     removeCandidate,
+    ensureCandidate,
+    dropCreated,
+    withdrawItem,
     setReservation,
     revertEdit,
     syncOnce,

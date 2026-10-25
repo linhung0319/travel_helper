@@ -264,3 +264,57 @@ test('changeItinerary 的復原：行程之後又被改過就不復原，顯示�
   assert.equal(shared.store.getState().toast?.kind, 'error');
   assert.equal(shared.store.getState().toast?.text, '行程已經被改過，不能復原');
 });
+
+// 第六輪：撤下（⋯ 的 ↩ 撤下）、放回候選。後端的 createCandidate 是 upsert：別人加的、本機還沒同步到的那筆不能算「這次加的」
+async function otherAdds(backend: ReturnType<typeof createMockBackend>, placeId: string, day: string) {
+  backend.setMe('m-b');
+  const c = await backend.createCandidate({ placeId, day });
+  backend.setMe('m-a');
+  return c;
+}
+
+test('撤下：卡片回這天的候選；復原時卡片回原位、刪掉這次加的候選', async () => {
+  const { data, shared } = await setup();
+  const before = data.getState().itinerary;
+  const r = await shared.withdrawItem('2027-02-03:x', '2027-02-03');
+  assert.ok(r.ok);
+  assert.deepEqual(data.getState().itinerary!.days[0].items.map((x) => x.id), ['2027-02-03:y']);
+  const mine = shared.store.getState().candidates.filter((c) => c.placeId === 'x' && c.day === '2027-02-03');
+  assert.deepEqual(mine.map((c) => c.addedBy), ['m-a']);
+  assert.match(shared.store.getState().toast!.text, /已撤下・x/);
+  await shared.store.getState().toast!.action!.run();
+  assert.deepEqual(data.getState().itinerary, before);
+  assert.equal(shared.store.getState().candidates.length, 0);
+});
+
+test('撤下：別人加的候選只在後端（本機還沒同步）→ 撤下 → 復原 → 那筆還在', async () => {
+  const { backend, data, shared } = await setup();
+  const theirs = await otherAdds(backend, 'x', '2027-02-03');
+  assert.equal(shared.store.getState().candidates.length, 0, '本機還沒同步到');
+  const before = data.getState().itinerary;
+  const r = await shared.withdrawItem('2027-02-03:x', '2027-02-03');
+  assert.ok(r.ok);
+  assert.deepEqual(
+    shared.store.getState().candidates.map((c) => c.id),
+    [theirs.id],
+    '沒有另外加一筆',
+  );
+  await shared.store.getState().toast!.action!.run();
+  assert.deepEqual(data.getState().itinerary, before);
+  assert.deepEqual(
+    (await backend.listCandidates()).map((c) => ({ id: c.id, addedBy: c.addedBy })),
+    [{ id: theirs.id, addedBy: 'm-b' }],
+  );
+});
+
+test('ensureCandidate：後端已經有別人加的（本機沒同步）→ 不算這次加的；沒有才新加', async () => {
+  const { backend, shared } = await setup();
+  const theirs = await otherAdds(backend, 'y', '2027-02-05');
+  const a = await shared.ensureCandidate('y', '2027-02-05');
+  assert.ok(a.ok);
+  assert.deepEqual(a.value, { id: theirs.id, created: false });
+  const b = await shared.ensureCandidate('x', '2027-02-05');
+  assert.ok(b.ok);
+  assert.equal(b.value.created, true);
+  assert.equal(shared.store.getState().candidates.find((c) => c.id === b.value.id)?.addedBy, 'm-a');
+});

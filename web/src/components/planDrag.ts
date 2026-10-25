@@ -12,7 +12,7 @@
 // 同時放 application/x-travel-place，拖到聊天室也能問 AI（askAi.ts）。
 
 import { useEffect, useRef, type DragEvent } from 'react';
-import { addOption, detachOption, ItineraryError, mergeItems, moveItemTo, moveOption, removeItem, removeOption } from '@travel-helper/engine';
+import { addOption, detachOption, ItineraryError, mergeItems, moveItemTo, moveOption, removeOption } from '@travel-helper/engine';
 import type { Itinerary } from '@travel-helper/engine/types';
 import { shared } from '../appShared.ts';
 import { dataStore } from '../dataStore.ts';
@@ -66,58 +66,29 @@ async function mergeItemInto(it: Itinerary, itemId: string, targetId: string) {
   );
 }
 
-/** 復原「放回候選」：把剛放進候選的那筆撤回（原本就有的不動） */
-async function dropCandidate(placeId: string, date: string, existed: boolean) {
-  if (existed) return;
-  const c = shared.store.getState().candidates.find((x) => x.placeId === placeId && x.day === date);
-  if (c) await shared.removeCandidate(c.id, undefined, true);
-}
-
-/** 拿掉這次加的候選（撤下的復原、撤下失敗時） */
-async function dropAdded(ids: number[]) {
-  for (const id of ids) await shared.removeCandidate(id, undefined, true);
-}
-
 /**
- * 撤下（「⋯」的 ↩ 撤下）：整張卡（所有選項）拿掉，地點用我的名字加成這天的候選，可以復原。
- * 先加候選（這天已經有的跳過、不記）、再拿掉卡片；復原時卡片回原位，只刪這次新加的候選。拿不掉卡片時也刪掉剛加的
+ * 撤下（「⋯」的 ↩ 撤下）：整張卡回這天的候選，可以復原（做法在 sharedStore 的 withdrawItem：
+ * 這天已經有的候選不加也不記，復原時只刪這次加的，連本機還沒同步到的別人的候選也不會刪到）
  */
 export async function withdrawItem(itemId: string, date: string): Promise<void> {
-  const it = dataStore.getState().itinerary;
-  const item = it ? findItemRef(it, itemId)?.item : null;
-  if (item?.type !== 'visit') return;
-  const label = placeName(item.options[item.selected]?.place);
-  const added: number[] = [];
-  for (const placeId of new Set(item.options.map((o) => o.place))) {
-    if (shared.store.getState().candidates.some((c) => c.placeId === placeId && c.day === date)) continue;
-    const r = await shared.addCandidate(placeId, date);
-    // 加不起來時 addCandidate 自己會跳錯誤提示；卡片不動，剛加的收回
-    if (!r.ok) return dropAdded(added);
-    added.push(r.value.id);
-  }
-  const r = await shared.changeItinerary((x) => removeItem(x, itemId), `${label} 撤下（回候選）`, {
-    undo: { text: `已撤下・${label}`, after: () => dropAdded(added) },
-  });
-  if (!r.ok) await dropAdded(added);
+  await shared.withdrawItem(itemId, date);
 }
 
-/** 備卡放回這天的候選（備卡拖到候選區），可以復原 */
+/** 備卡放回這天的候選（備卡拖到候選區），可以復原；復原時只刪這次加的候選（ensureCandidate 的 created） */
 export async function putBackOption(itemId: string, index: number, date: string) {
   const it = dataStore.getState().itinerary;
   const placeId = it ? optionPlace(it, itemId, index) : null;
   if (!placeId) return;
   const label = placeName(placeId);
-  const existed = shared.store.getState().candidates.some((c) => c.placeId === placeId && c.day === date);
   // 先放回候選、再從卡片拿掉：「已放回候選」的復原提示要最後出現（共用一個提示位置）
-  // 這天已經有這個候選就不用再加，照樣從卡片拿掉；加不起來時 addCandidate 自己會跳錯誤提示
-  if (!existed) {
-    const added = await shared.addCandidate(placeId, date);
-    if (!added.ok) return;
-  }
+  // 這天已經有這個候選就不用再加，照樣從卡片拿掉；加不起來時 ensureCandidate 自己會跳錯誤提示
+  const c = await shared.ensureCandidate(placeId, date);
+  if (!c.ok) return;
+  const created = c.value.created ? [c.value.id] : [];
   const r = await shared.changeItinerary((x) => removeOption(x, itemId, index), `${label} 從卡片拿出來`, {
-    undo: { text: `已放回候選・${label}`, after: () => dropCandidate(placeId, date, existed) },
+    undo: { text: `已放回候選・${label}`, after: () => shared.dropCreated(created) },
   });
-  if (!r.ok) await dropCandidate(placeId, date, existed);
+  if (!r.ok) await shared.dropCreated(created);
 }
 
 /** 放開時要做的事：合併到某張卡、排在某個位置、放回某天的候選 */
