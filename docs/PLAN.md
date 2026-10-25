@@ -105,7 +105,7 @@
 | T24 | 資料庫與匯入：D1 資料表、匯入腳本（比對、衝突、下架）、資料與修改的 API | M | T22、T13 | 3 | | ✅ |
 | T25 | Worker：LINE 登入、群組檢查、白名單、管理頁（本機可以完整跑；部署拆到 T30） | M | T23、T24 | 4 | 🌐 少量 | ✅ |
 | T26 | 👤 Places 照片備案：資料點對應 place ID；主照片失效、或詳情往下捲時，透過 Worker 即時向 Places API 取照片（不存照片） | M | T25 | 4 | | ⬜ |
-| T27a | 👤 大阪：子地區與景點（含 USJ） | S | — | 3 | 🌐 大量 | ⬜ |
+| T27a | 👤 大阪：子地區與景點（含 USJ） | S | — | 3 | 🌐 大量 | ✅ |
 | T27b | 大阪：住宿 | S | T27a | 3 | 🌐 大量 | ⬜ |
 | T27c | 大阪：餐廳（候選和詳細資料一起做） | M | T27a | 3 | 🌐 大量 | ⬜ |
 | T27d | 大阪：收尾、摘要與評分、代表照片（自動排序）、匯入 | S | T27b、T27c | 3 | | ⬜ |
@@ -853,6 +853,7 @@ T7c → T7d → T7e → T7f → T7g → T8a → T8b → T8c → T8d → T7i → 
   - 園內餐廳不另外收進 `restaurants.json`。
 - 子地區、景點清單定案前先和 👤 確認（T8a、T9a 的做法）。
 - 寫 `areas.json`（`osaka` 這一筆）、`data/areas/osaka/spots.json`、`data/raw/osaka/`（README、candidates、dossiers、questions、log）。
+- **完成（2026-10-26）**：子地區 6 個（含梅田，👤 完整收）、景點 14 筆；Google 評論不讀（👤）。`nearestStation` 先填 null（T28 的車站還沒進 master），預定 ID 在 `data/raw/osaka/log/T27a.md`，T28 先 merge 由 T27a、否則由 T27d 補。
 
 #### T27b 住宿 〔S〕（Chrome）
 - 照 T19 的做法（`data/raw/kix/log/T19.md`）：`scripts/rakuten.mjs` 用子地區中心查候選、`party` 查 15 人的房型組合、`detail` 拿細項評分和照片。

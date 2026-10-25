@@ -1,0 +1,214 @@
+[
+  {
+    "key": "osaka-dotonbori",
+    "name": {
+      "ja": "道頓堀"
+    },
+    "region": "namba",
+    "category": "繁華街・運河",
+    "status": "included",
+    "reason": null,
+    "pointId": "osaka-dotonbori",
+    "note": "含とんぼりリバークルーズ；心斎橋筋商店街、法善寺横丁寫進 note"
+  },
+  {
+    "key": "osaka-kuromon-market",
+    "name": {
+      "ja": "黒門市場"
+    },
+    "region": "namba",
+    "category": "市場",
+    "status": "included",
+    "reason": null,
+    "pointId": "osaka-kuromon-market",
+    "note": null
+  },
+  {
+    "key": "osaka-castle-tenshukaku",
+    "name": {
+      "ja": "大阪城天守閣"
+    },
+    "region": "osaka-castle",
+    "category": "城・博物館",
+    "status": "included",
+    "reason": null,
+    "pointId": "osaka-castle-tenshukaku",
+    "note": null
+  },
+  {
+    "key": "osaka-castle-plum-grove",
+    "name": {
+      "ja": "大阪城公園 梅林"
+    },
+    "region": "osaka-castle",
+    "category": "公園・花",
+    "status": "included",
+    "reason": null,
+    "pointId": "osaka-castle-plum-grove",
+    "note": "2 月是賞梅季"
+  },
+  {
+    "key": "osaka-tsutenkaku",
+    "name": {
+      "ja": "通天閣"
+    },
+    "region": "tennoji",
+    "category": "展望台",
+    "status": "included",
+    "reason": null,
+    "pointId": "osaka-tsutenkaku",
+    "note": "含新世界"
+  },
+  {
+    "key": "osaka-harukas300",
+    "name": {
+      "ja": "あべのハルカス300（展望台）"
+    },
+    "region": "tennoji",
+    "category": "展望台",
+    "status": "included",
+    "reason": null,
+    "pointId": "osaka-harukas300",
+    "note": null
+  },
+  {
+    "key": "osaka-tennoji-zoo",
+    "name": {
+      "ja": "天王寺動物園"
+    },
+    "region": "tennoji",
+    "category": "動物園",
+    "status": "included",
+    "reason": null,
+    "pointId": "osaka-tennoji-zoo",
+    "note": null
+  },
+  {
+    "key": "osaka-shitennoji",
+    "name": {
+      "ja": "四天王寺"
+    },
+    "region": "tennoji",
+    "category": "寺社",
+    "status": "included",
+    "reason": null,
+    "pointId": "osaka-shitennoji",
+    "note": null
+  },
+  {
+    "key": "osaka-kaiyukan",
+    "name": {
+      "ja": "海遊館"
+    },
+    "region": "osaka-bay",
+    "category": "水族館",
+    "status": "included",
+    "reason": null,
+    "pointId": "osaka-kaiyukan",
+    "note": null
+  },
+  {
+    "key": "osaka-tempozan-ferris-wheel",
+    "name": {
+      "ja": "天保山大観覧車"
+    },
+    "region": "osaka-bay",
+    "category": "觀景",
+    "status": "included",
+    "reason": null,
+    "pointId": "osaka-tempozan-ferris-wheel",
+    "note": null
+  },
+  {
+    "key": "osaka-legoland-discovery",
+    "name": {
+      "ja": "レゴランド・ディスカバリー・センター大阪"
+    },
+    "region": "osaka-bay",
+    "category": "室內遊樂",
+    "status": "included",
+    "reason": null,
+    "pointId": "osaka-legoland-discovery",
+    "note": "適合 6～10 歲；大人要有小孩同行"
+  },
+  {
+    "key": "osaka-usj",
+    "name": {
+      "ja": "ユニバーサル・スタジオ・ジャパン"
+    },
+    "region": "usj",
+    "category": "主題樂園",
+    "status": "included",
+    "reason": null,
+    "pointId": "osaka-usj",
+    "note": "照任務卡另外記（票價月曆、身高限制、快速通關）"
+  },
+  {
+    "key": "osaka-umeda-sky-building",
+    "name": {
+      "ja": "梅田スカイビル 空中庭園展望台"
+    },
+    "region": "umeda",
+    "category": "展望台",
+    "status": "included",
+    "reason": null,
+    "pointId": "osaka-umeda-sky-building",
+    "note": null
+  },
+  {
+    "key": "osaka-konjyakukan",
+    "name": {
+      "ja": "大阪くらしの今昔館"
+    },
+    "region": "umeda",
+    "category": "博物館",
+    "status": "included",
+    "reason": null,
+    "pointId": "osaka-konjyakukan",
+    "note": "天神橋筋六丁目，離梅田 2 站"
+  },
+  {
+    "key": "osaka-shinsaibashi-suji",
+    "name": {
+      "ja": "心斎橋筋商店街"
+    },
+    "region": "namba",
+    "category": "商店街",
+    "status": "not-included",
+    "reason": "購物街，寫進道頓堀的 note（👤 2026-10-26 確認清單）",
+    "pointId": null
+  },
+  {
+    "key": "osaka-hozenji-yokocho",
+    "name": {
+      "ja": "法善寺横丁"
+    },
+    "region": "namba",
+    "category": "街道",
+    "status": "not-included",
+    "reason": "範圍小，寫進道頓堀的 note（👤 2026-10-26）",
+    "pointId": null
+  },
+  {
+    "key": "osaka-castle-gozabune",
+    "name": {
+      "ja": "大阪城御座船"
+    },
+    "region": "osaka-castle",
+    "category": "遊船",
+    "status": "not-included",
+    "reason": "票價高、2 月是否運航未確認（👤 2026-10-26）",
+    "pointId": null
+  },
+  {
+    "key": "osaka-hep-five",
+    "name": {
+      "ja": "HEP FIVE 観覧車"
+    },
+    "region": "umeda",
+    "category": "觀景",
+    "status": "not-included",
+    "reason": "和天保山大観覧車重複（👤 2026-10-26）",
+    "pointId": null
+  }
+]
