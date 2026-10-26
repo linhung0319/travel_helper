@@ -1,5 +1,6 @@
 // 手機版的縮圖（第六輪 §3.2、Review Focus 4）：探索圖片牆、想去、行程卡都用。
 // 有照片就用 Photo（打不開時它自己換下一張、最後變成類型色塊）；沒有照片就是類型色塊加一個字（景、餐、宿、站、點），不會是破圖或空白。
+// 照片還沒載完（外站的原圖很大）時，底下是淡淡的類型色，不會是一格空白。
 
 import { photoCandidates } from '../lib/photos.ts';
 import { cardTypeLetter } from '../lib/planView.ts';
@@ -21,7 +22,7 @@ export function Thumb({ place, size }: { place: Place; size: number | 'fill' }) 
     );
   }
   return (
-    <span className={cls} style={square}>
+    <span className={cls} style={{ ...square, background: `color-mix(in srgb, ${TYPE_COLORS[place.type]} 28%, white)` }}>
       <Photo place={place} width={typeof size === 'number' ? Math.max(200, size * 3) : 500} />
     </span>
   );

@@ -38,6 +38,60 @@ async function openWish(page: Page, id = PLACE): Promise<Locator> {
   return page.getByTestId('wish-panel');
 }
 
+test('編輯後地圖還框著這天：縮放、中心不變，路線還在', async ({ page }) => {
+  await ready(page);
+  await showDay(page, '2027-02-05');
+  await waitIdle(page);
+  const view = () =>
+    page.evaluate(() => {
+      const m = (window as any).__th.map;
+      const c = m.getCenter();
+      return { zoom: m.getZoom(), lng: c.lng, lat: c.lat, lines: m.queryRenderedFeatures({ layers: ['itinerary-line'] }).length };
+    });
+  const before = await view();
+  expect(before.lines).toBeGreaterThan(0);
+  await enterPlanning(page);
+  await waitIdle(page);
+  await page.waitForTimeout(1500);
+  const after = await view();
+  expect(after.zoom).toBeCloseTo(before.zoom, 1);
+  expect(after.lng).toBeCloseTo(before.lng, 2);
+  expect(after.lat).toBeCloseTo(before.lat, 2);
+  expect(after.lines).toBeGreaterThan(0);
+});
+
+test('交通時間的小標籤不蓋住選中水滴的名稱、也不蓋住編號', async ({ page }) => {
+  await ready(page);
+  await showDay(page, '2027-02-03');
+  await waitIdle(page);
+  // 這天每一個點都選一次：看得見的交通標籤不和名稱重疊
+  const stops = await page.evaluate(() => {
+    const it = (window as any).__th.dataStore.getState().itinerary;
+    return it.days.find((d: any) => d.date === '2027-02-03').items.flatMap((i: any) => (i.type === 'visit' ? [i.options[i.selected].place] : []));
+  });
+  for (const id of stops) {
+    await page.evaluate((x) => (window as any).__th.appStore.getState().select(x), id);
+    await page.waitForTimeout(700);
+    const overlaps = await page.evaluate(() => {
+      const name = document.querySelector('.map-selected .ms-name')?.getBoundingClientRect();
+      if (!name) return -1;
+      const hit = (a: DOMRect) => a.left < name.right && a.right > name.left && a.top < name.bottom && a.bottom > name.top;
+      return [...document.querySelectorAll('.leg-label:not(.leg-label-hidden)')].filter((el) => hit(el.getBoundingClientRect())).length;
+    });
+    expect(overlaps, id).toBe(0);
+  }
+});
+
+test('選整趟時每天的路線都畫在地圖上', async ({ page }) => {
+  await ready(page);
+  await page.getByTestId('side-tab-day').click();
+  await page.locator('.side-column').getByTestId('m-day-all').click();
+  await waitIdle(page);
+  const dates = await page.evaluate(() => new Set((window as any).__th.map.getSource('overlay-itinerary-lines').serialize().data.features.map((f: any) => f.properties.date)).size);
+  // 有排點的每一天都有線（12 天裡至少 8 天）
+  expect(dates).toBeGreaterThanOrEqual(8);
+});
+
 const wish = (scope: Locator, id = PLACE) => scope.locator(`[data-testid="wish-item"][data-id="${id}"]`);
 const cand = (page: Page, id = PLACE) => page.getByTestId('day-candidates').locator(`[data-testid="cand-item"][data-id="${id}"]`);
 

@@ -114,6 +114,15 @@ travel_helper/
 - **`uiStore.chatDraft`**：「問 AI」的草稿 `{ seq, text, placeId, date, from }`，由 `askAboutPlace(placeId, text, from)` 寫入並把地點放進選取；畫面怎麼切由各平台的 store 監聽 `seq`：電腦版放進左邊的聊天欄；手機版從行程打開的詳情回行程、打開半屏聊天，其他地方打開的跳到 AI 分頁。AI 的內容先是 `mobile/chatDemo.ts` 的假訊息，T16m 接上。
 - **`web/src/shared/`**：網頁版、手機版共用的純函式，有單元測試（`web/test/shared.test.ts` 等）：`tagOptions`（標籤的分組、顏色、互斥的 `toggleTag`）、`cardActions`（卡片的「⋯」動作清單，兩邊用同一份）、`askAiPrompts`（問 AI 的建議問題）、`placeLists`（探索、想去的清單計算的 hook，兩邊共用）、`exportJson`（下載行程 JSON）。引擎的 visit 用 `tags` 取代 `meal`、`dining`（CONVENTIONS §3）。
 
+### 共用元件、圖示、地圖鏡頭（T15m 第七輪，2026-10-26）
+
+- **樣式 token**：`web/src/styles.css` 的 `:root`（`--ink`、`--indigo`、`--wash`、類型色 `--t-spot` 等），手機版的 `mobile.css` 也用同一組。字型（Noto Serif TC、Noto Sans TC、Bodoni Moda）從 Google Fonts 載入，有系統字 fallback。
+- **`web/src/components/Icon.tsx`**：線條圖示（24×24、`currentColor`），`<Icon name="heart" />`，圖示的 path 在同一個檔案；功能圖示不用 emoji。
+- **`web/src/shared/ui/`**：兩邊共用的 React 元件（有 `ui.css`）。小的有 `Chip`、`Button`、`TypeLabel`、`TierMark`、`VoteHeart`、`DayGrid12`（4×3 日期格）；清單有 `PlaceRow`、`PlaceTile`、`PlaceWall`、`WishList`；篩選有 `FilterBar`、`FilterSheet`；行程有 `DayStrip`（日期列）、`TripCard`（時間軸卡片）、`LegLine`（交通一行）、`ReorderPanel`（調整順序）；詳情有 `PlaceDetail`、`PhotoViewer`。元件只收 props，不分手機或網頁；版面（抽屜或底部面板）由外層決定。
+- **`web/src/shared/`** 純函式新增：`filterOptions`（篩選和排序的設定與字）、`wishSections`（想去分成還沒排、候選、已排）、`dayGrid`、`rowHighlights`（清單列的重點膠囊）。
+- **`web/src/lib/mapCamera.ts`**：`selectCamera` 算「選中一個點時地圖要不要動、怎麼動」（可見範圍扣掉手機行程面板、網頁浮在地圖上的詳情）；`MapView` 只執行結果。地圖標示只有指到、選中（DOM 的數字水滴）、AI 三種（`MapView.tsx`、`mapOverlayLayers.ts`）；交通時間標籤重疊編號或水滴名稱時藏起來。
+- **拖曳**：`components/planDrag.ts`（`usePlanDrag`）用 `pointerType` 分手指（按把手）和滑鼠（整張卡）；`lib/dropIntent.ts` 判斷放在哪裡（合併或排進，停留 `dwellMerge` 之後才合併）。
+
 ### 地圖指令（T12，2026-10-22）
 
 **UI 和 AI（T16）都透過 `web/src/commands.ts` 的指令操作地圖**，改的是上面同一份 store；網站共用的一份是 `web/src/appCommands.ts` 的 `commands`（dev server 下也在 `window.__th.commands`）。每個指令都檢查輸入，回傳 `{ ok: true, … }` 或 `{ ok: false, error }`（失敗時狀態不變），AI 可以讀結果決定下一步。

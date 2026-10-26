@@ -25,7 +25,7 @@ import { ActionMenu } from './ActionMenu.tsx';
 
 const KIND_TAGS: Record<Comment['kind'], string | null> = { normal: null, planner: '規劃', decline: '不採用' };
 
-/** 留言：預設收起來（open＝true 時一開始就展開；bare＝詳情的留言分頁，沒有收合鈕、一直展開）；只有一層；自己的可以改、可以刪。編輯中留的標〔規劃〕 */
+/** 留言：預設收起來（open＝true 時一開始就展開；bare＝詳情的留言分頁，沒有收合鈕、一直展開，沒有留言時寫一句說明）；只有一層；自己的可以改、可以刪。編輯中留的標〔規劃〕 */
 export function Comments({ target, label = '留言', placeholder = '留言…', open: openAtStart = false, bare = false }: { target: string; label?: string; placeholder?: string; open?: boolean; bare?: boolean }) {
   const list = useComments(target);
   const [openState, setOpen] = useState(openAtStart);
@@ -50,6 +50,11 @@ export function Comments({ target, label = '留言', placeholder = '留言…', 
       )}
       {open && (
         <div className="wish-comment-list">
+          {bare && list.length === 0 && (
+            <p className="muted small" data-testid="wish-comments-empty">
+              還沒有人留言，寫下第一則吧
+            </p>
+          )}
           {list.map((c) => (
             <div key={c.id} className={`wish-comment kind-${c.kind}`} data-testid="wish-comment">
               <Avatar id={c.author} />

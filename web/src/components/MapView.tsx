@@ -666,6 +666,34 @@ export function MapView() {
     });
   }, [loaded, itinerary, plan, byId, day, routesVersion, tripFocusDay, mode]);
 
+  // 交通時間的小標籤（在路線中點）不蓋住編號：和編號的圈、選中水滴旁邊的名稱重疊的，先藏起來（地圖移動、縮放時重算）
+  useEffect(() => {
+    if (!loaded) return;
+    const map = mapRef.current!;
+    const run = () => {
+      const base = map.getContainer().getBoundingClientRect();
+      const hit = (a: DOMRect, b: { left: number; right: number; top: number; bottom: number }) => a.left < b.right && a.right > b.left && a.top < b.bottom && a.bottom > b.top;
+      // 編號的圈（半徑約 14px）
+      const circles = [...marks.keys()].flatMap((id) => {
+        const p = byId.get(id);
+        if (!p) return [];
+        const pt = map.project(p.coords);
+        return [{ left: base.left + pt.x - 14, right: base.left + pt.x + 14, top: base.top + pt.y - 14, bottom: base.top + pt.y + 14 }];
+      });
+      const name = dropRef.current?.getElement().querySelector('.ms-name')?.getBoundingClientRect();
+      for (const m of legLabelsRef.current) {
+        const el = m.getElement();
+        const r = el.getBoundingClientRect();
+        el.classList.toggle('leg-label-hidden', circles.some((c) => hit(r, c)) || (!!name && hit(r, name)));
+      }
+    };
+    run();
+    map.on('move', run);
+    return () => {
+      map.off('move', run);
+    };
+  }, [loaded, itinerary, plan, byId, day, routesVersion, tripFocusDay, mode, marks, selectedId]);
+
   // 每個點的想去數（放大到 BADGE_ZOOM 才顯示）
   useEffect(() => {
     if (!loaded) return;

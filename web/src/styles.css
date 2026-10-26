@@ -2284,6 +2284,11 @@ button.edited {
   opacity: 0.92;
 }
 
+/* 蓋到編號或選中水滴的名稱時先藏起來（MapView 算） */
+.leg-label-hidden {
+  visibility: hidden;
+}
+
 /* ---------- 地圖：選中的數字水滴（第七輪 §8.1；MapView 的 DOM 標記，尖端在點上，大小不隨縮放變） ---------- */
 
 /* MapLibre 的標記是 position: absolute（不要蓋掉）；水滴蓋在交通時間標籤、想去數上面 */

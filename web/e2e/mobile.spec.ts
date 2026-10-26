@@ -101,6 +101,63 @@ test('我：討論、預約整頁打開', async ({ page }) => {
   expect((await mobileState(page)).page).toBeNull();
 });
 
+test('討論整頁：標題只有一個，沒有留言時有說明', async ({ page }) => {
+  await ready(page);
+  await goTab(page, 'me');
+  await page.getByTestId('m-me-comments').click();
+  const comments = page.getByTestId('m-page-comments');
+  await expect(comments).toBeVisible();
+  // 標題只有頁首的「整趟的討論」一個，沒有再畫一個可收合的標題
+  await expect(comments.getByText('整趟的討論')).toHaveCount(1);
+  await expect(comments.getByTestId('wish-comments')).toHaveCount(0);
+  const n = await comments.getByTestId('wish-comment').count();
+  if (n === 0) await expect(comments).toContainText('還沒有人留言，寫下第一則吧');
+  await expect(comments.getByTestId('comment-input')).toBeVisible();
+});
+
+test('整趟清單每天有縮圖就畫得出來', async ({ page }) => {
+  await ready(page);
+  await page.getByTestId('m-day-all').click();
+  const rows = page.getByTestId('m-overview-day');
+  await expect(rows).toHaveCount(12);
+  // 有點的天（第 2～12 天裡排了景點或餐廳的）：縮圖是 img（載得到）或類型色塊，不是空白
+  for (const date of ['2027-02-04', '2027-02-06']) {
+    const row = page.locator(`[data-testid="m-overview-day"][data-date="${date}"]`);
+    await row.scrollIntoViewIfNeeded();
+    const thumbs = row.locator('.m-thumb');
+    expect(await thumbs.count(), date).toBeGreaterThanOrEqual(1);
+    for (let i = 0; i < (await thumbs.count()); i++) {
+      const box = (await thumbs.nth(i).boundingBox())!;
+      expect(box.width, date).toBeGreaterThan(20);
+      expect(box.height, date).toBeGreaterThan(20);
+    }
+    await expect.poll(() => row.locator('img').evaluateAll((els) => els.filter((e) => (e as HTMLImageElement).naturalWidth > 0).length), { timeout: 15000 }).toBeGreaterThanOrEqual(1);
+  }
+});
+
+test('編輯後地圖還框著這天：縮放、中心不變，路線還在', async ({ page }) => {
+  await ready(page);
+  await pickDay(page, '2027-02-05');
+  await page.waitForTimeout(2000);
+  const view = () =>
+    page.evaluate(() => {
+      const m = (window as any).__th.map;
+      const c = m.getCenter();
+      return { zoom: m.getZoom(), lng: c.lng, lat: c.lat, lines: m.queryRenderedFeatures({ layers: ['itinerary-line'] }).length };
+    });
+  const before = await view();
+  expect(before.lines).toBeGreaterThan(0);
+  await page.getByTestId('m-trip-edit').click();
+  await page.getByTestId('planning-confirm').click();
+  await expect(page.getByTestId('planning-bar')).toBeVisible();
+  await page.waitForTimeout(2000);
+  const after = await view();
+  expect(after.zoom).toBeCloseTo(before.zoom, 1);
+  expect(after.lng).toBeCloseTo(before.lng, 2);
+  expect(after.lat).toBeCloseTo(before.lat, 2);
+  expect(after.lines).toBeGreaterThan(0);
+});
+
 test('詳情整頁：打開推一筆 history，瀏覽器上一頁關掉', async ({ page }) => {
   await ready(page);
   await goTab(page, 'explore');

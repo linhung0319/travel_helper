@@ -1,3 +1,5 @@
+> **狀態：已實作**（T15m 第七輪，Task 1～11；文件已寫回 [interaction-design.md](../../interaction-design.md)、[architecture.md](../../architecture.md)）。
+
 # 統一樣式、去掉重複入口、篩選、想去、詳情、拖曳、地圖標示（設計，T15m 第七輪）
 
 > 2026-10-26 Claude 把手機（390×844）和網頁（1440、1280、1024）各走一輪，👤 和 Claude 用草圖逐項討論後整理。

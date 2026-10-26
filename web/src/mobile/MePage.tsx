@@ -86,7 +86,7 @@ export function MePageView() {
       </header>
       <div className="m-full-body">
         {page === 'comments' ? (
-          <Comments target={TRIP_TARGET} label="整趟的討論" placeholder="例如：第一天大家都累，晚餐簡單吃" open />
+          <Comments target={TRIP_TARGET} label="整趟的討論" placeholder="例如：第一天大家都累，晚餐簡單吃" bare />
         ) : (
           <ReservationNotes scope="trip" date={null} />
         )}
