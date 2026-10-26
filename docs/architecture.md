@@ -11,13 +11,13 @@
 |---|---|
 | 語言 | 全部用 TypeScript（Node 22）；不用 Python |
 | 專案結構 | npm workspaces 的 monorepo：`packages/engine`、`web`、`worker`、`scripts` |
-| 前端 | Vite + React + MapLibre GL + Zustand，靜態的單頁應用（SPA），不用 Next.js；**手機優先**，操作以 AI 對話為主，不做拖拉 |
+| 前端 | Vite + React + MapLibre GL + Zustand，靜態的單頁應用（SPA），不用 Next.js；**手機優先**，操作以 AI 對話為主；編輯行程可以拖曳（手指按把手、滑鼠按整張卡），也有「調整順序」按鈕 |
 | 部署 | Cloudflare：Workers 靜態資源（網站）＋Worker（API）＋D1（資料庫） |
 | 參考資料 | git 裡的 JSON 是**匯入的來源**；匯入 D1 的「預設資料層」後才是正式資料 |
 | 使用者的修改 | 另存一層（修改層），**全員共用**，記錄誰改的，可以復原；不直接改預設資料 |
 | 時刻表 | 不放進資料庫，維持靜態檔案 |
 | 登入 | LINE 登入＋檢查是否為家人 LINE 群組的成員；另有白名單備案 |
-| 行程與編輯 | 只有**一份確定的行程**；家人在每一天留**建議**（只有寫的人能刪）；任何人進入**規劃模式**後才能改行程（防止誤按的開關，不是權限控管）；資料點的修改直接生效，有紀錄、可以復原。見 interaction-design §6、§11 |
+| 行程與編輯 | 只有**一份確定的行程**；家人在每一天留**建議**（只有寫的人能刪）；任何人按「編輯」（原「規劃模式」）後才能改行程（防止誤按的開關，不是權限控管）；資料點的修改直接生效，有紀錄、可以復原。見 interaction-design §6、§11 |
 | AI（T16） | 工具在瀏覽器執行；Worker 只負責轉發，並加上 Claude API key；聊天紀錄存在 D1，只有自己看得到 |
 | 時間 | 一律是日本時間，存成日期（`YYYY-MM-DD`）＋`HH:MM` 字串，不做時區換算（§3.8） |
 
@@ -67,8 +67,8 @@ travel_helper/
 
 - 沿用 v0 的 Vite + React + TypeScript + MapLibre GL，圖磚用 OpenFreeMap。
 - **手機優先**（interaction-design §1）：手機是全螢幕地圖加上可以拉起的面板；電腦是聊天室在左、地圖在右。同一套元件，用螢幕寬度切換版面。家人多半是在 LINE 內建瀏覽器打開，要在 iOS、Android 的 LINE 裡實測。
-- **狀態**：用 Zustand。地圖範圍、選定的天、篩選、選取的點、規劃模式放在同一個 store；UI 和 AI 指令改的是同一份狀態。**store 的形狀在 T11 開頭就定**，T12 再補上動作 API。
-- **不做拖拉**：排行程交給 AI，或用規劃模式的手動選單（interaction-design §11）。
+- **狀態**：用 Zustand。地圖範圍、選定的天、篩選、選取的點、編輯狀態（`planning`）放在同一個 store；UI 和 AI 指令改的是同一份狀態。**store 的形狀在 T11 開頭就定**，T12 再補上動作 API。
+- **拖曳**（第七輪）：編輯中可以拖卡片排順序、合併成備選；不拖也行，用「調整順序」或手動選單（interaction-design §6、§11）。
 - **語音輸入**：靠手機鍵盤的麥克風，網站不另外做語音辨識。
 - **不需要伺服器端渲染**：不需要 SEO，打包成靜態檔案，由 Cloudflare 提供。
 - **資料存取包在一層介面後面**（`web/src/data/`），有兩種實作：
@@ -89,7 +89,7 @@ travel_helper/
 | `day` | `'all' \| 'YYYY-MM-DD'` | 選定的天；不是 `all` 時其他天的點變淡 |
 | `filter` | `{ areas, regions, types, contexts, tiers, fit15 }` | 都是陣列，空陣列＝不篩；`fit15` 是餐廳的 `group.fit15`（「可容納 15 人」，T12 加）；各項之間是「且」、同一項裡是「或」。不符合的點變淡，圖片牆不放 |
 | `mode` | `'map' \| 'explore' \| 'wish'` | 電腦版右欄的分頁：行程（`map`）、探索、想去（第二輪加 `wish`；右欄順序探索｜想去｜行程） |
-| `planning` | `boolean` | 編輯中（第五輪前叫「規劃模式」，欄位名照舊）：日期列的「✏️ 編輯這天」確認後打開、藍條的「完成」關掉、閒置自動結束；整個 app 一個值，換到別天照樣在編輯，選「全部」（`selectDay('all')`）就結束 |
+| `planning` | `boolean` | 編輯中（第五輪前叫「規劃模式」，欄位名照舊）：「編輯」按鈕確認後打開、藍條的「完成」關掉、閒置自動結束；整個 app 一個值，換到別天照樣在編輯，選「整趟」（`selectDay('all')`）就結束 |
 | `tripFocusDay` | `string \| null` | 整趟（`day` 是 `all`）時點了某天的路線：那天亮、其他天變淡（第五輪 §9.1）；`selectDay` 時清掉，`setTripFocusDay` 設定 |
 | `hoveredId` | `string \| null` | 地圖上要閃的點（滑鼠移過去、圖片牆點了、聊天室的地點標籤） |
 | `previewId` | `string \| null` | 小卡片 |
@@ -138,7 +138,7 @@ travel_helper/
 | `setFilter(patch)`／`clearFilter()` | 給的那幾項整個取代，沒給的不動；值從 areas.json 和常數檢查。回傳篩選標籤和筆數。地圖上方出現可以取消的篩選標籤 |
 | `select(ids)`／`unselect(ids?)` | 「問 AI」的選取：累加、不重複；`unselect()` 全部取消 |
 | `showProposal(itinerary, { summary? })`／`clearProposal()` | 顯示 AI 提議的行程：和確定的行程比出改動的天，只有一天時切到那天、框住提議的點。採用由 T15／T16 用 engine 的操作寫進行程，再 `clearProposal` |
-| `getViewState()` | 給 AI 的畫面狀態（interaction-design §5）：地圖範圍、畫面裡符合篩選的點數、選定的天和那天的點、篩選和標籤、模式、規劃模式、選取的點、打開的詳情、標示、比較、路線、提議。可以直接 JSON 化 |
+| `getViewState()` | 給 AI 的畫面狀態（interaction-design §5）：地圖範圍、畫面裡符合篩選的點數、選定的天和那天的點、篩選和標籤、模式、是否在編輯、選取的點、打開的詳情、標示、比較、路線、提議。可以直接 JSON 化 |
 
 UI 的天數分頁、篩選標籤的 ✕、「跳到區域」、詳情的「問 AI」、聊天室選取標籤的 ✕、「這一天」的項目都改走這些指令。篩選面板的切換按鈕直接用 store 的 `toggleFilter`（同一份狀態）。
 
@@ -170,12 +170,12 @@ T15m 先用假後端把畫面做出來，T15 只換後端的實作，畫面的�
   - 修改紀錄在瀏覽器合併：`data/merge.ts` 直接用 Worker 的 `worker/src/lib/merge.ts`，`place.edited` 是「欄位 → 最新那筆修改（`editId`、誰、何時、原本的值）」。
 - **`web/src/planStore.ts`：行程引擎在瀏覽器跑**。行程或資料點變了就重算整份（12 天約 15 ms）。引擎要的時刻表從 `DataSource.loadEngineTimetables()` 讀（近鐵 `_travel-times.json`、巴士、船、JR 的路線檔，約 1.3 MB，第一次算時才載入）；`walkMeters`、`driveMeters` 接 `roadRouter.cachedMeters`。T15 的 API 實作要從 `build:static` 的輸出讀這些檔案。
 - **`web/src/uiStore.ts`：對話框和地圖區的視窗**，對話框一次只開一個（開始編輯的確認、快照、排進行程、移到別天、拿掉別人加的候選、修改紀錄、需要預約），`components/Dialogs.tsx` 負責畫；另有編輯的閒置分鐘（預設 10）、`mapPanel`（電腦版地圖區右上角 💬 討論、📋 預約打開的彈窗：浮在地圖上、四周留地圖，點彈窗外的地圖就關掉；手機版不用它，💬／📋 打開的是 `mobileStore.page` 的整頁；`{ kind: 'comments' | 'reservations', scope: 'day' | 'trip', focus? }`，`openMapPanel`／`closeMapPanel`／`setMapPanelScope`；時間軸的預約 tag 用 `focus` 帶到那一列）、`legOpen`（點開的交通卡，一次一段，key 是 `legKeyOf`（`日期:visit:項目 ID` 這類）：交通卡平常收起，點了地圖只畫那一段（`commands.drawRoute`），大眾運輸展開步驟，編輯中就在原地變成編輯狀態（方式、每一程的班次下拉、備註）；點開前後距離一樣（第五輪 §3.5）；卡片不見了也清掉）、`timetable`（地圖那側的班次表 `TimetablePopup`：`{ date, legKey, rideIndex }`，交通卡步驟裡搭車那一行的「› 班次」用 `openTimetable` 打開，和 `mapPanel` 互斥；✕、點地圖、換天、那張交通卡收起或換別段、這一程不見了就關掉；編輯中點搭得到的班＝選它）。
-- **篩選加 `votes`**（`'popular'`：❤️ 2 人以上、`'mine'`：我按了 ❤️）。投票不在資料點裡，`appShared` 用 `setVoteLookup` 註冊查詢，`matchesFilter` 的呼叫者不用改；T12 的 `setFilter` 也認得。**搜尋**不放進 `Filter`（`setFilter` 的格式都是陣列）：`appStore.query`＋`matchesQuery`，探索、想去、地圖共用。
-- **編輯**（第五輪前叫規劃模式）：`appStore.planning` 還是唯一的開關；「✏️ 編輯這天」（`PlanningToggle`，「這一天」面板的日期列，編輯中不顯示）、進入前確認（「開始編輯？」）、時間軸面板最上面的藍條（`PlanningBar`：快照、「完成」）、面板不在畫面上時浮在地圖上方的精簡條（`EditingStrip`）、第一次的提示（`EditHint`，記在 localStorage）、閒置結束（`usePlanningIdle`）。Worker 不檢查規劃模式（§3.6）。**想去**是 `appStore.mode === 'wish'`：電腦版右欄的分頁（順序探索｜想去｜行程），內容是 `ExplorePanel source="wish"`（只列有人 ❤️ 的點，卡片底下是 `Wishlist.tsx` 的 `WishExtras`）；地圖在這個模式把沒人 ❤️ 的點變淡。手機版的想去是底部的分頁（`mobile/WishlistPage.tsx`，設定在 `mobileStore.wish`），不用 `appStore.mode`。行程分頁時間軸下面是這天的候選（`DayCandidates`，規劃模式下 ↑ 排進）和這天的留言（`DayComments`，`target` 是 `day:<日期>`）。排進行程走 `components/addToDay.ts`：引擎的 `bestInsertIndex` 找最順路的位置（`planStore.currentEngineData()` 給引擎資料），`proposedBy` 記按 ❤️ 的人。排進後那天的候選自動拿掉。拖曳在 `components/planDrag.ts`（電腦版 HTML5 拖放，手機長按 0.4 秒後拖；放開的結果由 `lib/dropIntent.ts` 算）：時間軸的卡片、合併卡片正在看的備卡、這天的候選都能拖；放在同類型卡片中間＝合併（`mergeItems`／`addOption`／`moveOption`），卡片上下邊緣、交通卡、最後的放置區＝排在那裡（`moveItemTo`／`addItem`／`detachOption`），備卡放到候選區＝放回候選；放回原位不存檔。這些都經過 `changeItinerary` 的 `undo` 跳「復原」提示（候選的增減在 `settle` 裡做完才跳提示；行程之後又被改過就不復原）。
-- **交通的時間和班次**：引擎不加緩衝（第四輪拿掉 `config.buffer`、`Leg.bufferMinutes`；舊資料的 `TravelSpec.bufferMinutes` 忽略），`leg.arrive`＝出發＋`minutes`，等車含在 `minutes` 裡、另外寫在 `waitMinutes`（前一站的時間不變）。計程車用 `EngineData.driveMinutes`（OSRM 開車時間），沒有時用距離 ÷ `taxi.kmPerHour`（`taxi.overheadMinutes` 預設 0）。搭車的段落 `Leg.trip` 是用的那班（`TripRef`），`prevTrip`／`nextTrip` 是同一對上下車點的前一班、後一班，`transitAvailable` 是出發後時刻表裡還有沒有這兩點之間的班次（不管等多久；false 時規劃模式的「大眾運輸」灰掉）。每段交通可以設定（`TravelSpec`：`mode`（含 `transit`：一定搭大眾運輸）、`minutes`、`trip`（選定的班次；`trip.from`／`to` 和這段的起訖點不同時當作沒選，趕不上照樣用、警告 `missed-trip`，時間照走到上車點後搭同一程算）、`note`，都可省略；一天最後回住宿的那段放在 `ItineraryDay.returnTravel`，航班在 `FlightItem.travel`）：`setLegTravel`／`getLegTravel`。標籤是 `VisitItem.tags`（`setTags`；舊的 `meal`、`dining` 用 `upgradeItinerary` 轉），用餐標籤在時間軸上是 `TimelineEntry.mealTags`，引擎不再自動產生用餐的空檔。
+- **篩選加 `votes`**（`'popular'`＝大家想去的：想去 2 人以上、`'mine'`＝只看我按的）。投票不在資料點裡，`appShared` 用 `setVoteLookup` 註冊查詢，`matchesFilter` 的呼叫者不用改；T12 的 `setFilter` 也認得。**搜尋**不放進 `Filter`（`setFilter` 的格式都是陣列）：`appStore.query`＋`matchesQuery`，探索、想去、地圖共用。
+- **編輯**（第五輪前叫規劃模式）：`appStore.planning` 還是唯一的開關；「編輯」按鈕（`PlanningToggle`，這天的標題右邊，編輯中換成墨色編輯條）、進入前確認（「開始編輯？」）、時間軸面板最上面的藍條（`PlanningBar`：快照、「完成」）、面板不在畫面上時浮在地圖上方的精簡條（`EditingStrip`）、第一次的提示（`EditHint`，記在 localStorage）、閒置結束（`usePlanningIdle`）。Worker 不檢查規劃模式（§3.6）。**想去**是 `appStore.mode === 'wish'`：電腦版右欄的分頁（順序探索｜想去｜行程），內容是 `ExplorePanel source="wish"`（只列有人 ❤️ 的點，卡片底下是 `Wishlist.tsx` 的 `WishExtras`）；地圖在這個模式把沒人 ❤️ 的點變淡。手機版的想去是底部的分頁（`mobile/WishlistPage.tsx`，設定在 `mobileStore.wish`），不用 `appStore.mode`。行程分頁時間軸下面是這天的候選（`DayCandidates`，規劃模式下 ↑ 排進）和這天的留言（`DayComments`，`target` 是 `day:<日期>`）。排進行程走 `components/addToDay.ts`：引擎的 `bestInsertIndex` 找最順路的位置（`planStore.currentEngineData()` 給引擎資料），`proposedBy` 記按 ❤️ 的人。排進後那天的候選自動拿掉。拖曳在 `components/planDrag.ts`（兩邊都用 pointer 事件，手指按把手、滑鼠按整張卡，看 `pointerType`；放開的結果由 `lib/dropIntent.ts` 算，停在同類型卡中間 `dwellMerge` 之後才合併）：時間軸的卡片、合併卡片正在看的備卡、這天的候選都能拖；放在同類型卡片中間＝合併（`mergeItems`／`addOption`／`moveOption`），卡片上下邊緣、交通卡、最後的放置區＝排在那裡（`moveItemTo`／`addItem`／`detachOption`），備卡放到候選區＝放回候選；放回原位不存檔。這些都經過 `changeItinerary` 的 `undo` 跳「復原」提示（候選的增減在 `settle` 裡做完才跳提示；行程之後又被改過就不復原）。
+- **交通的時間和班次**：引擎不加緩衝（第四輪拿掉 `config.buffer`、`Leg.bufferMinutes`；舊資料的 `TravelSpec.bufferMinutes` 忽略），`leg.arrive`＝出發＋`minutes`，等車含在 `minutes` 裡、另外寫在 `waitMinutes`（前一站的時間不變）。計程車用 `EngineData.driveMinutes`（OSRM 開車時間），沒有時用距離 ÷ `taxi.kmPerHour`（`taxi.overheadMinutes` 預設 0）。搭車的段落 `Leg.trip` 是用的那班（`TripRef`），`prevTrip`／`nextTrip` 是同一對上下車點的前一班、後一班，`transitAvailable` 是出發後時刻表裡還有沒有這兩點之間的班次（不管等多久；false 時編輯的「大眾運輸」灰掉）。每段交通可以設定（`TravelSpec`：`mode`（含 `transit`：一定搭大眾運輸）、`minutes`、`trip`（選定的班次；`trip.from`／`to` 和這段的起訖點不同時當作沒選，趕不上照樣用、警告 `missed-trip`，時間照走到上車點後搭同一程算）、`note`，都可省略；一天最後回住宿的那段放在 `ItineraryDay.returnTravel`，航班在 `FlightItem.travel`）：`setLegTravel`／`getLegTravel`。標籤是 `VisitItem.tags`（`setTags`；舊的 `meal`、`dining` 用 `upgradeItinerary` 轉），用餐標籤在時間軸上是 `TimelineEntry.mealTags`，引擎不再自動產生用餐的空檔。
 - **預約筆記的假後端**（第三輪）：`Backend.listReservations()`、`putReservation({ date, placeId, status, note?, nights? })`；`Reservation` 是 `{ date, placeId, status: 'pending' | 'booked' | 'skip', note, nights, updatedBy, updatedAt }`，同一個 `(date, placeId)` 只有一筆（住宿的 `date` 是入住那晚），`putReservation` 整筆取代，`updatedBy`、`updatedAt` 由後端填。`sync` 多回一個 `reservations` 時間戳，`sharedStore.reservations` 跟著換；`putReservation` 在畫面上先改、失敗退回。整趟的留言是 `target` 為 `TRIP_TARGET`（`'trip'`）的留言，和地點（ID）、某一天（`day:<日期>`）並列。假後端的 localStorage key 升到 `travel-helper:mockBackend:v4`。狀態和時間軸 tag 的對應在 `lib/reservations.ts`（住宿換了入住日、項目移到別天就回到未訂位）。
 - **地圖**（`lib/overlays.ts` 的 `itineraryFeatures`、`placeBadges`）：每天顏色的路線（直線，照時間軸的順序）、選了某一天時那天的交通標籤、時段備案的備選是那天顏色的空心圈、每個點的 ❤️ 數（放大到 10 以上）。
-- **電腦版三欄**（T15m 版面調整，參考 puma.taipei/heart-island）：`App.tsx` 的 `DesktopLayout` 是聊天室｜地圖｜右欄。地圖上方浮著 `TopBar.tsx` 的 `MapTopBar`（日期、待處理、規劃模式、我、篩選標籤）；右欄是 `SidePanel.tsx`，分頁用 `appStore.mode`（`map`＝行程、`explore`＝探索），`detailId` 有值時詳情蓋在右欄上。探索是 `Explore.tsx`（清單邏輯在 `lib/explore.ts`），類型寫在 `filter.types`，從探索切回行程時拿掉（`showItinerary`）。點地圖上的點走 `showInExplore`：切到探索、換成那一類（目前的篩選看不到它就只留類型和地區）、捲到卡片；再點卡片才開詳情。詳情面板（`DetailPanel.tsx`）分成總覽、詳細、附近・連結、圖片四頁。探索上方的類型分頁是 sticky；篩選捲出畫面時（看 `.side-body` 的捲動）收合成一列摘要，疊在清單上、不推動清單。
+- **電腦版三欄**（T15m 版面調整，參考 puma.taipei/heart-island）：`App.tsx` 的 `DesktopLayout` 是聊天室｜地圖｜右欄。地圖上只有縮放鈕（第七輪拿掉浮動列）；日期列（`shared/ui/DayStrip`）和頭像選單（討論、預約、下載、切換使用者）在右欄頂端；右欄是 `SidePanel.tsx`，分頁用 `appStore.mode`，從探索、想去打開的詳情在右欄，從行程打開的浮在地圖上（`DetailFloat`）。探索是 `Explore.tsx`（清單邏輯在 `lib/explore.ts`），類型寫在 `filter.types`，從探索切回行程時拿掉（`showItinerary`）。點地圖上的點走 `showInExplore`：切到探索、換成那一類（目前的篩選看不到它就只留類型和地區）、捲到卡片；再點卡片才開詳情。詳情是兩邊共用的 `shared/ui/PlaceDetail`（簡介、交通、評論、留言四個分頁）。探索上方的類型分頁是 sticky；篩選捲出畫面時（看 `.side-body` 的捲動）收合成一列摘要，疊在清單上、不推動清單。
 - **問 AI**（`components/askAi.ts`）：電腦版的探索卡片、詳情標題用 HTML 的拖放（`dragPlaceProps`，資料型別 `application/x-travel-place`），放到聊天欄（`dropAiProps`，`data-drop-ai`）就 `commands.select(id)` 並提示「已帶進聊天」。電腦版詳情標題的「＋ 問 AI」（`toggleAskAi`）也是加進選取。手機沒有拖曳：整頁詳情的「✨ 問 AI」（`AskAiBox`）送出後，從行程打開的回到行程開半屏聊天、其他的跳到 AI 分頁（`mobileStore`；編輯中從行程打開的詳情不畫問 AI，因為編輯中半屏聊天藏起來）。地圖上的點不做拖曳（和拖地圖衝突）。T16 的聊天室把選取帶進對話，AI 就知道要問哪幾個點（例如兩點的距離）；之後再加輸入框的 `@` 選地點、自動帶入正在看的點。
 - **地圖的點**（`MapView.tsx`、`mapIcons.ts`）：照片標記拿掉，改成 Google Maps 那種類別圖標（canvas 畫的 `icon-<type>`），`ICON_ZOOM`（12）以下是小點。選了某一天，那天的點換成編號圓（`places-mark`），編號由 `lib/planView.ts` 的 `stopMarks` 照時間軸算（住宿「宿」、機場「機」、其他 1、2、3…；分組先編各組再編會合點），時間軸用同一份；那天的路線加方向箭頭（`itinerary-arrow`，分組時每組各一條）。選中的點（`detailId`，或探索分頁的 `exploreTarget`）畫成水滴圖釘（`pin-<type>`、`places-pin` 圖層），原本的圖標藏起來；只有小卡片時才用圓框（`places-focus`）。點的時候查 `places-circle`、`places-icon`、`places-mark`、`places-pin` 四層。探索分頁時不因為「不在那天」變淡。
 - **`data-day` 只給天數分頁用**（e2e 靠它找分頁）；其他選日子的按鈕用 `data-pick-day`、`data-overview-day`。
@@ -300,10 +300,10 @@ npm run db:import -- --apply data/cache/import/<時間>-all.json   # 2. 👤 看
 設計見 interaction-design §6、§11。
 
 - **確定的行程只有一份**：整份存成一個 JSON 文件（格式由 T14 定），帶一個 `version` 號碼。一開始就放好航班當固定項目。不做「方案」。
-- **只有規劃模式能改行程**：規劃模式是前端的開關，Worker 只檢查有沒有登入，不另外做權限。每次改動記下是誰改的。
+- **只有編輯中能改行程**：編輯（原規劃模式）是前端的開關，Worker 只檢查有沒有登入，不另外做權限。每次改動記下是誰改的。
 - **同時編輯**：存檔時送出自己手上的 `version`。和資料庫的不一樣，就表示有人先改過，提示「別人改過了」，讓使用者重新載入再改。15 人的規模不做即時協作（CRDT、Durable Objects）。
 - **快照**：每次改行程前自動存一份（包括採用 AI 的提議），可以復原；復原本身也是一次修改，會再存快照。
-- **建議**：存一則一列（`suggestions`）。寫的人可以改、可以刪（軟刪除）；規劃模式下的人只能改狀態（已採用／不採用＋一句話）。採用時記下對應的行程項目，行程項目也記「誰提的」。
+- **建議**：存一則一列（`suggestions`）。寫的人可以改、可以刪（軟刪除）；編輯中的人只能改狀態（已採用／不採用＋一句話）。採用時記下對應的行程項目，行程項目也記「誰提的」。
 - **投票**：一人對一個點一筆（❤️／👎＋備註），見 interaction-design §9。
 - **2026-10-24 改成想去清單**（T15m，設計見 `docs/superpowers/specs/2026-10-24-wishlist-planning-design.md`）：❤️ 就是想去，投票拿掉備註；建議拿掉，換成**留言**（`comments`：`target` 是地點 ID 或某一天 `day:<日期>`，`kind` 是 `normal`／`planner`／`decline`，只有作者能改刪）和**候選**（`candidates`：哪個點、哪天、誰加的；同一天同一個點只有一筆，誰都能拿掉，拿掉別人加的由畫面另外留一則 `decline` 留言）。上面「建議」那兩條和 §4 的建議 API、D1 的 `suggestions` 是 T24 做的舊版，**T15 串接時改成這裡的形狀**（假後端 `web/src/backend/mock.ts` 是規則的參考）。
 - 行程裡的點可能是預設資料、自己加的點，或已下架的點，引擎都要能處理。
@@ -420,7 +420,7 @@ npm run db:import -- --apply data/cache/import/<時間>-all.json   # 2. 👤 看
 | `GET/PUT /api/itinerary` | PUT 帶 `version`，和資料庫不同回 409（`details.current`）；改之前自動存快照 |
 | `GET /api/itinerary/snapshots`、`/:id`、`POST /:id/restore` | 復原也是一次修改，會再存快照 |
 | `GET/POST /api/suggestions`、`PATCH/DELETE /api/suggestions/:id` | 只有寫的人能改、能刪；`day` 是日期或 `trip` |
-| `PATCH /api/suggestions/:id/status` | `{ status, note?, adoptedItemIds? }`：誰都能標（規劃模式是前端的開關） |
+| `PATCH /api/suggestions/:id/status` | `{ status, note?, adoptedItemIds? }`：誰都能標（編輯是前端的開關） |
 | `GET /api/votes`、`PUT/DELETE /api/votes/:placeId` | `{ value: 'like' | 'dislike', note? }`，只能投、收回自己的 |
 | `GET /api/chats`、`GET/POST/DELETE /api/chats/:conversationId` | 只看得到自己的 |
 | `GET /api/me`、`GET /api/members` | |
@@ -497,7 +497,7 @@ npm run db:import -- --apply data/cache/import/<時間>-all.json   # 2. 👤 看
 - **地圖指令本來就一定要在瀏覽器執行**（`focus`、`showProposal`）；查資料、跑引擎也在瀏覽器，因為資料和引擎已經在那裡了。
 - Worker 只負責轉發，不用載入資料、不用跑引擎，所以不會碰到 Worker 的 CPU 時間限制。
 - **AI 是主要的操作方式**（interaction-design §0、§11），所以工具要涵蓋：查資料（中文名、日文名、別名模糊搜尋）、篩選與地圖指令、寫建議的草稿、提議行程的修改、提議資料點的修改、自己加地點。
-- **兩種模式給不同的工具**：一般模式只能產生建議的草稿和資料點修改的提議；規劃模式才有改行程的工具。每種改動都要使用者按確認才寫進去。
+- **兩種模式給不同的工具**：一般模式只能產生建議的草稿和資料點修改的提議；編輯中才有改行程的工具。每種改動都要使用者按確認才寫進去。
 - **聊天紀錄**存在 D1（`chat_messages`），只有自己看得到；同一個人換裝置（手機、電腦）也接得上。AI 對話時帶上目前的建議和投票，避免重複提一樣的東西。
 - **防止用掉太多額度**：只有登入的人能呼叫；Worker 依使用者記錄用量（`ai_usage`），設每天的上限。15 人都會用，T16 開工時先估算費用，再定上限和模型。
 
@@ -525,7 +525,7 @@ npm run db:import -- --apply data/cache/import/<時間>-all.json   # 2. 👤 看
 ## 8. 測試與完成條件
 
 - **引擎、匯入、Worker 的邏輯**：單元測試（`node --test`），每個任務卡列的規則都要有測試。
-- **UI**：用 Playwright 跑幾條主要流程，例如「點資料點 → 看詳情 → 按 ❤️」「按 ❤️ → 加到某天 → 進入規劃模式 → ↑ 排進 → 時間軸出現」。手機尺寸和電腦尺寸各跑一次。畫面好不好看用 Claude in Chrome 看，或交給 👤 看。
+- **UI**：用 Playwright 跑幾條主要流程，例如「點資料點 → 看詳情 → 按想去」「按想去 → 加到某天 → 按編輯 → ↑ 排進 → 時間軸出現」。手機尺寸和電腦尺寸各跑一次。畫面好不好看用 Claude in Chrome 看，或交給 👤 看。
 - **每張任務卡都列「完成條件」**，做完逐條確認，結果寫在回報裡。
 
 ---
