@@ -577,7 +577,12 @@ async function dragOnto(source: Locator, target: Locator, frac: number, dwell = 
   await page.mouse.down();
   const box = (await target.boundingBox())!;
   await page.mouse.move(box.x + Math.min(200, box.width / 2), box.y + box.height * frac, { steps: 8 });
-  if (dwell) await page.waitForTimeout(dwell);
+  if (dwell) {
+    // 經過上緣時前面會讓出空位（卡片往下移）：跟著看得到的那張卡，指到它的正中間再停
+    const card = (await target.getByTestId('trip-card').boundingBox())!;
+    await page.mouse.move(card.x + Math.min(200, card.width / 2), card.y + card.height / 2, { steps: 2 });
+    await page.waitForTimeout(dwell);
+  }
   await page.mouse.up();
 }
 
@@ -641,7 +646,7 @@ test('網頁：滑鼠拖整張卡換順序；停 0.6 秒才合併', async ({ pag
   await src.hover();
   expect(await src.evaluate((el) => getComputedStyle(el).cursor)).toBe('grab');
 
-  // 拖到向井酒の店的正中間、立刻放開：只是經過，換順序、不合併
+  // 經過向井酒の店的下緣（後面讓出空位）再回到它的正中間、立刻放開：只是經過，換順序（排在它後面）、不合併
   const from = await grabPoint(src);
   await page.mouse.move(from.x, from.y);
   await page.mouse.down();
@@ -650,7 +655,13 @@ test('網頁：滑鼠拖整張卡換順序；停 0.6 秒才合併', async ({ pag
   await expect(page.locator('.drag-float')).toHaveCount(1);
   await expect(src).toHaveClass(/drag-source/);
   const box = (await target.boundingBox())!;
-  await page.mouse.move(box.x + 200, box.y + box.height / 2, { steps: 6 });
+  await page.mouse.move(box.x + 200, box.y + box.height - 4, { steps: 6 });
+  // 經過上緣時前面讓出了空位（卡片往下移）：跟著看得到的那張卡，移到它的下緣
+  const seen = (await target.getByTestId('trip-card').boundingBox())!;
+  await page.mouse.move(seen.x + 200, seen.y + seen.height - 4, { steps: 2 });
+  await expect(target).toHaveClass(/drop-after/);
+  const mid = (await target.getByTestId('trip-card').boundingBox())!;
+  await page.mouse.move(mid.x + 200, mid.y + mid.height / 2, { steps: 2 });
   await page.mouse.up();
   await expect(page.locator('.drag-float')).toHaveCount(0);
   await expect.poll(order).not.toEqual(before);
@@ -667,11 +678,47 @@ test('網頁：滑鼠拖整張卡換順序；停 0.6 秒才合併', async ({ pag
   await page.mouse.down();
   const box2 = (await target.boundingBox())!;
   await page.mouse.move(box2.x + 200, box2.y + box2.height / 2, { steps: 6 });
+  const mid2 = (await target.getByTestId('trip-card').boundingBox())!;
+  await page.mouse.move(mid2.x + 200, mid2.y + mid2.height / 2, { steps: 2 });
   await expect(target).toHaveClass(/drop-merge/);
   await expect(target).toHaveAttribute('data-drop-label', /^放開＝和「.+」合併成備選$/);
   await page.mouse.up();
   await expect(target.getByTestId('option-switch')).toBeVisible();
   await expect(rows).toHaveCount(n - 1);
+});
+
+test('網頁：讓出的空位上停著不合併；只是經過邊緣不算停留，進到卡片中間才開始算 0.6 秒', async ({ page }) => {
+  await page.setViewportSize({ width: 1600, height: 1200 });
+  await ready(page);
+  await showDay(page, '2027-02-10');
+  await enterPlanning(page);
+  await cand(page, 'ise-tofuya').getByTestId('cand-up').click();
+  const src = page.getByTestId('timeline').locator('[data-testid="tl-row"][data-place="ise-tofuya"]');
+  await expect(src).toBeVisible();
+  const target = tlRow(page, 'i-19');
+  const from = await grabPoint(src);
+  await page.mouse.move(from.x, from.y);
+  await page.mouse.down();
+  // 移到目標的上緣：前面讓出空位
+  const box = (await target.boundingBox())!;
+  await page.mouse.move(box.x + 200, box.y + 6, { steps: 8 });
+  await expect(target).toHaveClass(/drop-before/);
+  // 指在空位（虛線框「放開＝排在這裡」）上停 0.7 秒：還是排在這裡，不合併
+  const pad = await target.evaluate((el) => parseFloat(getComputedStyle(el).paddingTop));
+  expect(pad).toBeGreaterThan(40);
+  const gap = (await target.boundingBox())!;
+  await page.mouse.move(gap.x + 200, gap.y + pad / 2, { steps: 2 });
+  await page.waitForTimeout(700);
+  await expect(target).toHaveClass(/drop-before/);
+  await expect(target).not.toHaveClass(/drop-merge/);
+  // 移到看得到的那張卡的正中間：剛進中間區，還不合併；停 0.6 秒以上才變合併
+  const card = (await target.getByTestId('trip-card').boundingBox())!;
+  await page.mouse.move(card.x + 200, card.y + card.height / 2, { steps: 2 });
+  expect(await target.evaluate((el) => el.classList.contains('drop-merge'))).toBe(false);
+  await expect(target).toHaveClass(/drop-merge/);
+  await page.keyboard.press('Escape');
+  await page.mouse.up();
+  await expect(target.getByTestId('option-switch')).toHaveCount(0);
 });
 
 test('網頁：沒移動就放開＝點；拖到左邊的聊天室＝問 AI', async ({ page }) => {

@@ -1971,6 +1971,15 @@ body.dragging-plan .tc-li.drop-after {
   padding-bottom: 60px;
 }
 
+/* 停夠了變合併：空位留著（收起來卡片會跳開指標），只是不畫虛線框 */
+body.dragging-plan .tc-li.keep-gap-before {
+  padding-top: 60px;
+}
+
+body.dragging-plan .tc-li.keep-gap-after {
+  padding-bottom: 60px;
+}
+
 body.dragging-plan .tc-li.drop-before::before,
 body.dragging-plan .tc-li.drop-after::after {
   content: '放開＝排在這裡';

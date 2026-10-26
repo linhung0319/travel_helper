@@ -42,7 +42,8 @@ test('cardActions：出發住宿、航班沒有選單', () => {
   assert.equal(cardActions({ kind: 'lodging-start', surface: 'desktop' }).length, 0);
   assert.equal(cardActions({ kind: 'flight', surface: 'mobile' }).length, 0);
 });
-test('cardActions：分組是移到第幾天、刪除', () => assert.deepEqual(cardActions({ kind: 'split', surface: 'desktop' }), [['move'], ['delete']]));
+test('cardActions：分組是調整順序、移到第幾天、刪除', () => assert.deepEqual(cardActions({ kind: 'split', surface: 'desktop' }), [['reorder', 'move'], ['delete']]));
+test('cardActions：自由時間也能調整順序，在 move 前面', () => assert.deepEqual(cardActions({ kind: 'free', surface: 'mobile' }), [['free-length', 'reorder', 'move'], ['delete']]));
 test('cardActions：別人的候選不能移天', () => assert.ok(!cardActions({ kind: 'candidate', mine: false, surface: 'desktop' }).flat().includes('move')));
 test('askAiPrompts：行程打開多一題、其他類型用景點', () => {
   assert.equal(askAiPrompts('restaurant', true)[0], '這天排它會不會太趕？');

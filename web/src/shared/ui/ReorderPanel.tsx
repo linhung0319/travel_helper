@@ -1,6 +1,6 @@
 // 「⋯ → 調整順序」的子畫面（第七輪 §6.4，網頁的 ⋯ 選單、手機的動作面板共用）：不拖也能換順序、合併成備選。
 // 上一列寫「第 n 站（共 m 站）」；上移、下移可以連按（存好之前先不能按，免得兩下算成同一個位置）；
-// 「和哪一張合併成備選…」打開清單（同一天、同一組裡同類型的卡），選了就合併、關掉（onDone）。
+// 「和哪一張合併成備選…」打開清單（同一天、同一組裡同類型的卡），選了就合併、關掉（onDone）；自由時間、分組沒有這一項（只能上移下移）。
 // 動作在 cardActionRun.ts（reorderStep、mergeItemAction），行程的位置照 lib/dropIntent.ts 的 reorderInfo。
 
 import { useState } from 'react';
@@ -36,10 +36,12 @@ export function ReorderPanel({ itemId, onDone }: { itemId: string; onDone: () =>
         </span>
         <span>下移</span>
       </button>
-      <button type="button" className="reorder-btn" disabled={!r.merge.length} aria-expanded={picking} onClick={() => setPicking(!picking)} data-testid="reorder-merge">
-        <Icon name="list" size={20} />
-        <span>和哪一張合併成備選…</span>
-      </button>
+      {r.mergeable && (
+        <button type="button" className="reorder-btn" disabled={!r.merge.length} aria-expanded={picking} onClick={() => setPicking(!picking)} data-testid="reorder-merge">
+          <Icon name="list" size={20} />
+          <span>和哪一張合併成備選…</span>
+        </button>
+      )}
       {picking && (
         <ul className="reorder-targets" data-testid="reorder-targets">
           {r.merge.map((m) => (
@@ -51,7 +53,7 @@ export function ReorderPanel({ itemId, onDone }: { itemId: string; onDone: () =>
           ))}
         </ul>
       )}
-      {!r.merge.length && <p className="muted small">這天沒有同類型的卡可以合併。</p>}
+      {r.mergeable && !r.merge.length && <p className="muted small">這天沒有同類型的卡可以合併。</p>}
     </div>
   );
 }

@@ -38,10 +38,11 @@ export function cardActions(ctx: CardActionContext): ActionId[][] {
     case 'lodging-end':
       return [['lodging-plan'], ['lodging-clear']];
     case 'free':
-      return [['free-length', 'move'], ['delete']];
+      // 自由時間也能調整順序（上移、下移；不能合併）
+      return [['free-length', 'reorder', 'move'], ['delete']];
     case 'split':
-      // 分組：照現在分組的動作（移到第幾天、刪除），只是搬進「⋯」
-      return [['move'], ['delete']];
+      // 分組：調整順序（整個分組上移、下移）、移到第幾天、刪除
+      return [['reorder', 'move'], ['delete']];
     case 'candidate':
       return [ctx.mine ? ['schedule', 'move'] : ['schedule'], ['delete']];
     case 'lodging-start':

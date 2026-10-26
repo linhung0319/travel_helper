@@ -153,10 +153,14 @@ export async function moveCandidateToDay(candidateId: number, date: string): Pro
 
 const typeOf = (id: string) => dataStore.getState().byId.get(id)?.type;
 
-/** 調整順序的子畫面要的東西：第幾張、能不能上移下移、可以合併過去的卡（ID 和名稱）；找不到卡是 null */
+/**
+ * 調整順序的子畫面要的東西：第幾張、能不能上移下移、可以合併過去的卡（ID 和名稱）；
+ * mergeable：只有造訪能合併成備選（自由時間、分組只有上移下移）。找不到卡是 null
+ */
 export function reorderState(it: Itinerary | null, itemId: string) {
   const r = it ? reorderInfo(it, itemId, typeOf) : null;
-  return r && { ...r, merge: r.merge.map((id) => ({ itemId: id, name: itemLabel(id) })) };
+  const mergeable = findItemRef(it, itemId)?.item.type === 'visit';
+  return r && { ...r, mergeable, merge: r.merge.map((id) => ({ itemId: id, name: itemLabel(id) })) };
 }
 
 /** 上移（dir＝-1）或下移（1）一張：留在同一天、同一組，可以復原；到頭了不動 */

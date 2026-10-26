@@ -166,17 +166,21 @@ function hitOf(start: Element | null): Hit | null {
 }
 
 /**
- * 放開的結果。卡片的位置扣掉讓位的空白（drop-before／after 的 padding）：
- * 讓出空位時卡片變高，但上下緣、中間的判斷照原本卡片的大小，不會因為讓位就跳來跳去
+ * 放開的結果。卡片的位置只算看得到的那張卡（扣掉讓位的空白：drop-before／after 的 padding）：
+ * 指標在上面的空位裡＝before、下面的空位裡＝after；上下緣、中間照卡片本身算，指著卡片正中間就是那張卡的中間區
  */
 function intentAt(src: DragSource, hit: Hit, clientY: number, merging: boolean): DropIntent {
   const r = hit.el.getBoundingClientRect();
+  let top = r.top;
   let height = r.height;
   if (hit.target.kind === 'card') {
     const cs = getComputedStyle(hit.el);
-    height -= (parseFloat(cs.paddingTop) || 0) + (parseFloat(cs.paddingBottom) || 0);
+    const pt = parseFloat(cs.paddingTop) || 0;
+    const pb = parseFloat(cs.paddingBottom) || 0;
+    top += pt;
+    height -= pt + pb;
   }
-  return dropIntent(src, hit.target, { top: r.top, height }, clientY, merging);
+  return dropIntent(src, hit.target, { top, height }, clientY, merging);
 }
 
 /** 放開的結果換成要做的事 */
@@ -189,7 +193,7 @@ function resolve(hit: Hit, intent: DropIntent): Resolved | null {
   return { kind: 'candidates', date: hit.el.dataset.dropCandidates! };
 }
 
-const MARKS = ['drop-before', 'drop-after', 'drop-merge', 'drop-leg-over', 'drop-end-over', 'drop-cand-over'];
+const MARKS = ['drop-before', 'drop-after', 'drop-merge', 'keep-gap-before', 'keep-gap-after', 'drop-leg-over', 'drop-end-over', 'drop-cand-over'];
 
 function clearMarks() {
   document.querySelectorAll<HTMLElement>(MARKS.map((c) => `.${c}`).join(', ')).forEach((el) => {
@@ -292,8 +296,10 @@ interface Session {
   y: number;
   startX: number;
   startY: number;
-  /** 停在哪張卡上、從什麼時候開始（合併要停 MERGE_DWELL_MS） */
+  /** 停在哪張卡的中間區、從什麼時候開始（合併要停 MERGE_DWELL_MS） */
   over: { itemId: string; since: number } | null;
+  /** 這張卡的空位開在哪一邊（中間區還沒停夠時照這個，不換邊） */
+  side: 'before' | 'after' | null;
   scroller: HTMLElement;
   raf: number;
   started: boolean;
@@ -304,6 +310,9 @@ interface Session {
 }
 
 let session: Session | null = null;
+
+/** 已經被某個拖曳來源接手的 pointerdown（巢狀的來源只讓最裡面的那個開始；不用 stopPropagation） */
+const claimed = new WeakSet<Event>();
 
 /** 往上找會捲的那一層（手機的行程面板、網頁的右欄）；找不到用整頁 */
 function scrollParent(el: HTMLElement): HTMLElement {
@@ -336,13 +345,25 @@ function evaluate(s: Session) {
   const hit = hitOf(under);
   const chat = s.opts.askPlace ? (under?.closest<HTMLElement>('[data-drop-ai]') ?? null) : null;
   const now = performance.now();
-  const card = hit?.target.kind === 'card' ? hit.target.itemId : null;
-  if (!card) s.over = null;
-  else if (s.over?.itemId !== card) s.over = { itemId: card, since: now };
-  const intent = hit && !chat ? intentAt(s.src, hit, s.y, dwellMerge(s.over, now)) : 'none';
   const l = s.last;
+  // 換了一張卡：空位從頭決定
+  if (l.hit?.el !== hit?.el) s.side = null;
+  // 這個位置在哪一區（照可以合併的分法：上緣、下緣、中間區 merge）
+  const zone = hit && !chat ? intentAt(s.src, hit, s.y, true) : 'none';
+  // 只是經過不合併：指標進到這張卡的中間區才開始計時，離開中間區就重來
+  const center = zone === 'merge' && hit?.target.kind === 'card' ? hit.target.itemId : null;
+  if (!center) s.over = null;
+  else if (s.over?.itemId !== center) s.over = { itemId: center, since: now };
+  let intent: DropIntent = zone;
+  if (zone === 'merge' && !dwellMerge(s.over, now)) {
+    // 還沒停夠：空位留在原本那一邊（換邊會讓卡片上下跳 60px，指標就跑到別區去）；剛進來時照上下半
+    intent = s.side ?? intentAt(s.src, hit!, s.y, false);
+  }
+  if (intent === 'before' || intent === 'after') s.side = intent;
   if (l.hit?.el !== hit?.el || l.intent !== intent || l.chat !== chat) clearMarks();
   mark(hit, intent, chat);
+  // 合併時空位不收（收了卡片會跳），只是不畫「放開＝排在這裡」
+  if (hit && intent === 'merge' && s.side) hit.el.classList.add(s.side === 'before' ? 'keep-gap-before' : 'keep-gap-after');
   s.el.classList.add('drag-source');
   for (const el of s.nomerge) el.classList.add('drop-nomerge');
   // 要合併時複本縮小（以指標為中心），看得到底下那張的亮框和提示
@@ -390,6 +411,7 @@ function startSession(src: DragSource, el: HTMLElement, pointerType: string, x: 
     startX: x,
     startY: y,
     over: null,
+    side: null,
     scroller: scrollParent(el),
     raf: 0,
     started: false,
@@ -497,16 +519,17 @@ export function usePlanDrag<T extends HTMLElement>(src: DragSource | null, enabl
       const t = e.target as Element;
       if (e.pointerType === 'mouse') {
         if (e.button !== 0 || (t.closest(NO_DRAG) && !t.closest(DRAG_OK))) return;
-        // 裡面還有別的拖曳來源（不會發生，保險）：交給最裡面的那個
-        e.stopPropagation();
+        // 裡面還有別的拖曳來源時交給最裡面的那個：做記號，不擋冒泡（usePlanningIdle、點外面關掉的彈窗都要聽到 pointerdown）
+        if (claimed.has(e)) return;
+        claimed.add(e);
         pending = { x: e.clientX, y: e.clientY, id: e.pointerId };
         attach();
         return;
       }
       const handle = t.closest(HANDLE);
       const s = srcRef.current;
-      if (!handle || !el.contains(handle) || !s) return;
-      e.stopPropagation();
+      if (!handle || !el.contains(handle) || !s || claimed.has(e)) return;
+      claimed.add(e);
       startSession(s, el, e.pointerType, e.clientX, e.clientY, optsRef.current);
       navigator.vibrate?.(15);
       attach();
