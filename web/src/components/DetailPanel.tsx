@@ -39,7 +39,7 @@ import { VoteButtons } from './Votes.tsx';
 import { openDialog } from '../uiStore.ts';
 import { AskAiBox } from './AskAiBox.tsx';
 import { itemsWithPlace } from '../lib/planView.ts';
-import { dragPlaceProps, toggleAskAi } from './askAi.ts';
+import { dragPlaceProps } from './askAi.ts';
 
 type Obj = Record<string, unknown>;
 const obj = (v: unknown): Obj => (v && typeof v === 'object' && !Array.isArray(v) ? (v as Obj) : {});
@@ -601,12 +601,10 @@ export function DetailPanel({ place, back }: { place: Place; back?: { label: str
   // 行程分頁（mode＝map）打開的詳情＝從行程來，問 AI 多一個「這天排它會不會太趕？」
   const fromTrip = useApp((s) => s.mode) === 'map';
   const planning = useApp((s) => s.planning);
-  const selection = useApp((s) => s.selection);
   const areas = useData((s) => s.areas);
   const area = areas.find((a) => a.id === place.area);
   const region = area?.regions?.find((r) => r.id === place.region);
   const raw = place.raw;
-  const selected = selection.includes(place.id);
   // 換了地點回到「總覽」
   const [picked, setPicked] = useState<{ id: string; tab: DetailTab }>({ id: place.id, tab: 'overview' });
   const tabs = DETAIL_TABS.filter((t) => t !== 'photos' || place.photos.length > 0);
@@ -629,14 +627,6 @@ export function DetailPanel({ place, back }: { place: Place; back?: { label: str
               <Icon name="calendar" size={16} /> {place.type === 'lodging' ? '設成住宿' : '排進行程'}
             </button>
           )}
-          <button
-            type="button"
-            className={`action small-action ${selected ? 'on' : ''}`}
-            onClick={() => toggleAskAi(place.id)}
-            data-testid="detail-ask"
-          >
-            {selected ? '✓ 已帶進聊天' : '＋ 問 AI'}
-          </button>
           {!back && (
             <button type="button" className="icon-button" aria-label="關閉詳情" data-testid="detail-close" onClick={() => appStore.getState().closeDetail()}>
               ✕

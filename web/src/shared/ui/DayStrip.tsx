@@ -1,0 +1,54 @@
+// 日期列（第七輪 Task 3）：「整趟」加 12 天，每格兩行（日期用 Bodoni 數字、下面只寫星期），選到的塗墨色，週末、國定假日紅字（isRedDay）。
+// 網頁右欄（variant='side'）和手機面板頂端（variant='sheet'）共用這一份：
+// - side：寬度固定在右欄裡，13 格平分，一定放得下，不用捲。
+// - sheet：每格至少 52px，左右滑；選到的那格自己捲進畫面。
+// 換天用 commands.selectDay（地圖框住那天）。testid 兩邊都是 m-day-{date}、m-day-all，另外有 data-day 給 e2e 用。
+
+import { useEffect, useRef } from 'react';
+import { commands } from '../../appCommands.ts';
+import { useApp } from '../../hooks.ts';
+import { isRedDay, shortDayLabel, tripDates, weekdayZh } from '../../lib/trip.ts';
+
+const DATES = tripDates();
+
+/** variant 決定版面（side 平分、sheet 可左右滑） */
+export function DayStrip({ variant }: { variant: 'side' | 'sheet' }) {
+  const day = useApp((s) => s.day);
+  const ref = useRef<HTMLDivElement>(null);
+
+  // 選到的那格捲進畫面（只捲這一列，不動外面）
+  useEffect(() => {
+    const strip = ref.current;
+    const el = strip?.querySelector<HTMLElement>('[aria-current="true"]');
+    if (!strip || !el) return;
+    const pad = 8;
+    const left = el.offsetLeft;
+    const right = left + el.offsetWidth;
+    if (left - pad < strip.scrollLeft) strip.scrollTo({ left: Math.max(0, left - pad), behavior: 'smooth' });
+    else if (right + pad > strip.scrollLeft + strip.clientWidth) strip.scrollTo({ left: right + pad - strip.clientWidth, behavior: 'smooth' });
+  }, [day]);
+
+  return (
+    <div className={`ui-days ${variant}`} ref={ref} data-testid="m-day-strip" role="tablist" aria-label="天數">
+      <button type="button" role="tab" className="ui-day all" aria-current={day === 'all' ? 'true' : undefined} aria-selected={day === 'all'} onClick={() => commands.selectDay('all')} data-testid="m-day-all">
+        整趟
+      </button>
+      {DATES.map((d) => (
+        <button
+          key={d}
+          type="button"
+          role="tab"
+          className={`ui-day ${isRedDay(d) ? 'red-day' : ''}`}
+          aria-current={day === d ? 'true' : undefined}
+          aria-selected={day === d}
+          onClick={() => commands.selectDay(d)}
+          data-day={d}
+          data-testid={`m-day-${d}`}
+        >
+          <b>{shortDayLabel(d)}</b>
+          <small>{weekdayZh(d)}</small>
+        </button>
+      ))}
+    </div>
+  );
+}

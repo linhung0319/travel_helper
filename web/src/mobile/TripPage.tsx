@@ -1,5 +1,5 @@
 // 手機版「行程」分頁（第六輪 §3.5）：上面是地圖（MobileApp 一直掛著的 MapView），下面是可以拉的面板（DaySheet）。
-// 地圖右上角是 💬 討論、📋 預約兩個小圖示（有數字就顯示，點了是整頁），右下角「⛶」把面板放到低的位置。
+// 地圖上只有右下角的「放大地圖」（⛶，把面板放到低的位置）；討論、預約在「我」分頁，縮放用兩指（MapView 手機不加 NavigationControl）。
 // 選了一張卡（mobileStore.focusItem，點卡片或地圖上的圖釘）：地圖飛到那個點，圖釘放大、加黑框（highlight 的 focus 樣式，MapView 畫），
 // 這天其他的路線變淡；取消（null）、換天時全部恢復。網頁版的照片彈窗、小卡片在手機版不出現（MapView）。
 // 編輯中「⋯」打開的底部動作面板（ActionSheet）也掛在這裡，蓋在地圖和面板上面。
@@ -12,12 +12,9 @@ import { commands } from '../appCommands.ts';
 import { useApp, useData, usePlan, useShared } from '../hooks.ts';
 import { dayPlanOf } from '../planStore.ts';
 import { dayCandidates } from '../lib/wishlist.ts';
-import { TRIP_TARGET } from '../backend/types.ts';
-import { useCommentCount } from '../shared/placeLists.ts';
 import { resizeMap } from '../components/MapView.tsx';
 import { uiStore } from '../uiStore.ts';
 import { findFocusEntry, mobileStore, useMobile } from './mobileStore.ts';
-import { usePendingCount } from './MePage.tsx';
 import { DaySheet } from './DaySheet.tsx';
 import { ActionSheet } from './ActionSheet.tsx';
 import { ChatSheet } from './ChatSheet.tsx';
@@ -58,30 +55,14 @@ function useFocusOnMap() {
   }, [placeId]);
 }
 
-/** 地圖上的小圖示：💬 討論、📋 預約（右上），⛶ 面板放低（右下） */
+/** 地圖上的小圖示：只有「放大地圖」（面板在中間高度時才出現） */
 function MapButtons() {
-  const comments = useCommentCount(TRIP_TARGET);
-  const pending = usePendingCount();
   const snap = useMobile((s) => s.tripSnap);
-  const open = (page: 'comments' | 'reservations') => mobileStore.getState().setPage(page);
+  if (snap !== 'mid') return null;
   return (
-    <>
-      <div className="m-map-buttons">
-        <button type="button" className="m-map-button" onClick={() => open('comments')} aria-label="整趟的討論" data-testid="m-trip-comments">
-          <Icon name="chat" size={20} />
-          {comments > 0 && <span className="m-map-count">{comments}</span>}
-        </button>
-        <button type="button" className="m-map-button" onClick={() => open('reservations')} aria-label="預約" data-testid="m-trip-reservations">
-          <Icon name="clipboard" size={20} />
-          {pending > 0 && <span className="m-map-count warn">{pending}</span>}
-        </button>
-      </div>
-      {snap === 'mid' && (
-        <button type="button" className="m-map-button m-map-full" onClick={() => mobileStore.getState().setSnap('low')} aria-label="全螢幕地圖" data-testid="m-trip-full">
-          ⛶
-        </button>
-      )}
-    </>
+    <button type="button" className="m-map-button m-map-full" onClick={() => mobileStore.getState().setSnap('low')} aria-label="放大地圖" data-testid="m-trip-full">
+      <Icon name="expand" size={20} />
+    </button>
   );
 }
 

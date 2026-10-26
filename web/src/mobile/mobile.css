@@ -1151,89 +1151,16 @@
   padding: 0 12px 16px;
 }
 
-/* 天數列：獨佔一整行，左右滑 */
-.m-day-strip {
-  position: relative;
-  flex: 0 0 auto;
-  display: flex;
-  gap: 6px;
-  padding: 2px 12px 10px;
-  overflow-x: auto;
-  overflow-y: hidden;
-  scrollbar-width: none;
-}
+/* 天數列見 shared/ui/ui.css（DayStrip sheet） */
 
-.m-day-strip::-webkit-scrollbar {
-  display: none;
-}
-
-.m-day {
-  flex: 0 0 auto;
-  min-width: 52px;
-  min-height: 52px;
-  padding: 4px 6px;
-  border: 1px solid var(--line);
-  border-radius: 10px;
-  background: var(--bg);
-  color: var(--fg);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  line-height: 1.15;
-  cursor: pointer;
-}
-
-.m-day b {
-  font-size: 1rem;
-}
-
-.m-day small {
-  font-size: 0.72rem;
-  color: var(--muted);
-}
-
-.m-day.red-day,
-.m-day.red-day small {
-  color: var(--red-day);
-}
-
-.m-day[aria-current='true'] {
-  background: var(--fg);
-  border-color: var(--fg);
-  color: var(--paper);
-}
-
-.m-day[aria-current='true'] small {
-  color: var(--line);
-}
-
-.m-day.red-day[aria-current='true'],
-.m-day.red-day[aria-current='true'] small {
-  color: var(--bad-soft);
-}
-
-.m-day-all {
-  font-weight: 700;
-}
-
-/* 地圖上的小圖示：右上 💬、📋（在縮放鈕左邊），右下 ⛶ */
-.m-map-buttons {
-  position: absolute;
-  z-index: 4;
-  top: 10px;
-  right: 52px;
-  display: flex;
-  gap: 6px;
-}
-
+/* 地圖上的小圖示：只有右下「放大地圖」 */
 .m-map-button {
   position: relative;
   min-width: var(--tap);
   min-height: var(--tap);
   padding: 0 8px;
   border: 0;
-  border-radius: 12px;
+  border-radius: 999px;
   background: var(--bg);
   box-shadow: 0 1px 4px var(--shade-2);
   font-size: 1.1rem;
@@ -1242,15 +1169,6 @@
   justify-content: center;
   gap: 2px;
   cursor: pointer;
-}
-
-.m-map-count {
-  font-size: 0.75rem;
-  font-weight: 700;
-}
-
-.m-map-count.warn {
-  color: var(--warn);
 }
 
 .m-map-full {

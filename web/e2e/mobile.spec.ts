@@ -441,7 +441,8 @@ test('行程：天數列一整行、每格寬、紅字', async ({ page }) => {
   expect(box.width).toBeGreaterThanOrEqual(52);
   expect(box.height).toBeGreaterThanOrEqual(44);
   await expect(page.getByTestId('m-day-2027-02-03')).toContainText('2/3');
-  await expect(page.getByTestId('m-day-2027-02-03')).toContainText('三・2');
+  await expect(page.getByTestId('m-day-2027-02-03')).toContainText('三');
+  await expect(page.getByTestId('m-day-all')).toHaveText('整趟');
   await expect(page.getByTestId('m-day-2027-02-07')).toHaveClass(/red-day/);
   await expect(page.getByTestId('m-day-2027-02-11')).toHaveClass(/red-day/);
   await expect(page.getByTestId('m-day-2027-02-03')).not.toHaveClass(/red-day/);
@@ -565,7 +566,7 @@ test('航班的日子（2/2）、空的日子能正常顯示', async ({ page }) 
   expect(errors).toEqual([]);
 });
 
-test('行程：地圖右上討論、預約，右下 ⛶ 把面板放低；拖把手換高度', async ({ page }) => {
+test('行程：地圖右下 ⛶ 把面板放低；拖把手換高度', async ({ page }) => {
   await ready(page);
   await pickDay(page, '2027-02-03');
   const sheet = page.getByTestId('m-sheet');
@@ -582,16 +583,6 @@ test('行程：地圖右上討論、預約，右下 ⛶ 把面板放低；拖把
   await page.mouse.move(g.x + g.width / 2, g.y - 300, { steps: 8 });
   await page.mouse.up();
   await expect(sheet).not.toHaveAttribute('data-snap', 'low');
-  for (const [id, p] of [
-    ['m-trip-comments', 'm-page-comments'],
-    ['m-trip-reservations', 'm-page-reservations'],
-  ] as const) {
-    expect((await page.getByTestId(id).boundingBox())!.height).toBeGreaterThanOrEqual(44);
-    await page.getByTestId(id).click();
-    await expect(page.getByTestId(p)).toBeVisible();
-    await page.getByTestId(p).getByTestId('m-page-back').click();
-    await expect(page.getByTestId(p)).toHaveCount(0);
-  }
 });
 
 test('行程卡：沒有照片的點顯示類型色塊', async ({ page }) => {
@@ -1046,10 +1037,6 @@ test('手機地圖上的提議列：不被討論、預約蓋住、「不看提�
   const hit = (sel: string, b: { x: number; y: number; width: number; height: number }) =>
     page.evaluate(([sel, x, y]) => !!document.elementFromPoint(x as number, y as number)?.closest(sel as string), [sel, b.x + b.width / 2, b.y + b.height / 2] as const);
   expect(await hit('.proposal-bar .link-button', box)).toBe(true);
-  // 💬、📋 也還點得到
-  for (const id of ['m-trip-comments', 'm-trip-reservations']) {
-    expect(await hit(`[data-testid="${id}"]`, (await page.getByTestId(id).boundingBox())!), id).toBe(true);
-  }
   expect(await scrollsSideways(page)).toBe(false);
   const proposal = () => page.evaluate(() => (window as any).__th.appStore.getState().proposal);
   // 關掉半屏：提議一起清掉
@@ -1063,4 +1050,18 @@ test('手機地圖上的提議列：不被討論、預約蓋住、「不看提�
   await page.getByTestId('m-chat-sheet-expand').click();
   await expect(page.getByTestId('m-tab-ai')).toHaveAttribute('aria-current', 'page');
   await expect.poll(proposal).toBeNull();
+});
+
+test('第七輪：行程地圖上沒有討論、預約、縮放鈕', async ({ page }) => {
+  await ready(page);
+  await goTab(page, 'trip');
+  await expect(page.getByTestId('m-trip-comments')).toHaveCount(0);
+  await expect(page.getByTestId('m-trip-reservations')).toHaveCount(0);
+  await expect(page.locator('.maplibregl-ctrl-zoom-in')).toHaveCount(0);
+});
+
+test('第七輪：日期晶片第二行只有星期', async ({ page }) => {
+  await ready(page);
+  await goTab(page, 'trip');
+  await expect(page.getByTestId('m-day-2027-02-05')).toHaveText(/^2\/5\s*五$/);
 });

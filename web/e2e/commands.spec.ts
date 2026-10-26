@@ -53,7 +53,7 @@ const run = (page: Page, fn: string, ...args: unknown[]) =>
 test('用指令重現 T11 的手動操作：切天數、篩選、聚焦，畫面一樣', async ({ page }) => {
   await ready(page);
   // 電腦版：篩選在右側的「探索」分頁。點天數、切到探索、選餐廳和 S 級、點地區「鳥羽」（篩選加上鳥羽、地圖移過去）
-  await page.locator(`.day-float [data-day="${DAY}"]`).click();
+  await page.locator(`.side-column [data-day="${DAY}"]`).click();
   await page.getByTestId('side-tab-explore').click();
   await page.locator('.ex-types [data-type="restaurant"]').click();
   await page.locator('.ex-quick').getByRole('button', { name: 'S 級' }).click();
@@ -65,7 +65,8 @@ test('用指令重現 T11 的手動操作：切天數、篩選、聚焦，畫面
   expect((await run(page, 'setFilter', { types: ['restaurant'], tiers: ['S'], areas: ['toba'] })).ok).toBe(true);
   expect((await run(page, 'focus', { area: 'toba' })).ok).toBe(true);
   expect(await snapshot(page)).toEqual(manual);
-  await expect(page.locator(`.day-float [data-day="${DAY}"]`)).toHaveAttribute('aria-selected', 'true');
+  await page.getByTestId('side-tab-day').click();
+  await expect(page.locator(`.side-column [data-day="${DAY}"]`)).toHaveAttribute('aria-selected', 'true');
 });
 
 test('聚焦一個點：地圖移過去、點會閃；篩選標籤可以取消（和 AI 套的是同一份）', async ({ page }) => {

@@ -1,10 +1,15 @@
 // 電腦版的右側：探索、想去、行程共用一欄（順序是使用的順序），頂到最上面。點了探索或想去的卡片，詳情蓋在這一欄上，「← 返回」回到原本的分頁。
-// 想去是只放有人 ❤️ 的點的探索（Explore.tsx 的 source="wish"）。AI 沒有自己的分頁：地圖和這三個分頁就是 AI 操作的東西（T16）。
+// 想去是只放有人 ❤️ 的點的探索（Explore.tsx 的 source="wish"）。
+// 頂端（第七輪）：三個分頁加右上的頭像選單（討論、預約、下載行程）；行程分頁下面是日期列，再下面是編輯中、衝突提示、篩選條件。AI 沒有自己的分頁：地圖和這三個分頁就是 AI 操作的東西（T16）。
 
 import { appStore } from '../store.ts';
 import { useApp, useData } from '../hooks.ts';
 import { DayPanel } from './DayPanel.tsx';
 import { Icon, type IconName } from './Icon.tsx';
+import { AccountMenu } from './MeMenu.tsx';
+import { ConflictBar, EditingStrip } from './Planning.tsx';
+import { FilterChips } from './TopBar.tsx';
+import { DayStrip } from '../shared/ui/DayStrip.tsx';
 import { DetailPanel } from './DetailPanel.tsx';
 import { ExplorePanel, showItinerary } from './Explore.tsx';
 import { useLiked } from '../shared/placeLists.ts';
@@ -43,6 +48,16 @@ export function SidePanel() {
         {tab('search', '探索', mode === 'explore' && !place, () => showList('explore'), 'side-tab-explore')}
         {tab('heart', `想去${liked ? ` ${liked}` : ''}`, mode === 'wish' && !place, () => showList('wish'), 'side-tab-wish')}
         {tab('calendar', '行程', mode === 'map' && !place, showItinerary, 'side-tab-day')}
+        <span className="side-tabs-end">
+          <AccountMenu />
+        </span>
+      </div>
+      {mode === 'map' && !place && <DayStrip variant="side" />}
+      <div className="side-notices">
+        <EditingStrip />
+        <ConflictBar />
+        {/* 探索分頁裡已經看得到篩選，不重複 */}
+        {mode !== 'explore' && <FilterChips />}
       </div>
       {place ? (
         <div className="side-body side-detail">

@@ -36,9 +36,9 @@ for (const size of SIZES) {
   const th = (fn, arg) => page.evaluate(fn, arg);
 
   await shot('01-overview');
-  await page.locator('.day-float [data-day="2027-02-05"]').click();
+  await page.locator('.side-column [data-day="2027-02-05"]').click();
   await shot('02-day-0205');
-  await page.locator('.day-float [data-day="2027-02-10"]').click();
+  await page.locator('.side-column [data-day="2027-02-10"]').click();
   await shot('03-day-0210-split');
   // 放大看類別圖標
   await page.locator('.day-float [role="tab"]').first().click();
@@ -86,7 +86,7 @@ for (const size of SIZES) {
   await shot('10-explore-lodging');
   // 規劃模式的浮動列
   await page.getByTestId('side-tab-day').click();
-  await page.locator('.day-float [data-day="2027-02-05"]').click();
+  await page.locator('.side-column [data-day="2027-02-05"]').click();
   await page.getByTestId('planning-toggle').click();
   await page.getByTestId('planning-confirm').click();
   await shot('11-planning');

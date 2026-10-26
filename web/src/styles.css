@@ -162,50 +162,6 @@ a {
 
 /* ---------- 上方列 ---------- */
 
-.day-tabs {
-  display: flex;
-  gap: 4px;
-  overflow-x: auto;
-  flex: 1;
-  min-width: 0;
-  scrollbar-width: none;
-  -webkit-overflow-scrolling: touch;
-}
-
-.day-tabs::-webkit-scrollbar {
-  display: none;
-}
-
-.day-tab {
-  flex: 0 0 auto;
-  min-height: 40px;
-  min-width: 48px;
-  padding: 2px 10px;
-  border: 1px solid var(--line);
-  border-radius: 999px;
-  background: var(--bg);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  line-height: 1.1;
-}
-
-.day-tab-wd {
-  font-size: 0.7rem;
-  color: var(--muted);
-}
-
-.day-tab[aria-selected='true'] {
-  background: var(--fg);
-  color: var(--paper);
-  border-color: var(--fg);
-}
-
-.day-tab[aria-selected='true'] .day-tab-wd {
-  color: var(--line);
-}
-
 .segmented {
   display: flex;
   margin-left: auto;
@@ -416,9 +372,8 @@ a {
  * 浮在地圖上的東西的 z-index（由下到上）：
  *   4  .command-bars（比較列、提議列）
  *   15 .map-panel（討論、預約）
- *   16 .map-top（日期列、右上工具列、編輯中條）
  *   18 .timetable-pop（班次表）
- *   19 .preview-card.anchored（地圖彈窗，第五輪 §10：永遠在最上層，靠近上緣時蓋在日期列上）
+ *   19 .preview-card.anchored（地圖彈窗，第五輪 §10：永遠在最上層）
  *   --z-popover（110）.popover（標籤彈窗、⋯ 選單；portal 到 body，比上面全部都高）
  */
 .preview-card {
@@ -2459,7 +2414,7 @@ button.edited {
 }
 
 .side-column {
-  flex: 0 0 clamp(400px, 32vw, 520px);
+  flex: 0 0 440px; /* 固定寬度，日期列 13 格一定放得下（第七輪） */
   border-left: 1px solid var(--line);
   display: flex;
   flex-direction: column;
@@ -2468,65 +2423,6 @@ button.edited {
 }
 
 /* 浮在地圖上方的日期、我 */
-.map-top {
-  position: absolute;
-  top: 10px;
-  left: 10px;
-  right: 10px;
-  z-index: 16;
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-  pointer-events: none;
-}
-
-.map-top > * {
-  pointer-events: auto;
-}
-
-.map-top-row {
-  display: flex;
-  align-items: flex-start;
-  gap: 8px;
-  flex-wrap: wrap;
-  pointer-events: none;
-}
-
-.float-bar {
-  pointer-events: auto;
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  background: var(--veil);
-  border-radius: 999px;
-  box-shadow: 0 2px 10px var(--shade-1);
-  padding: 4px;
-}
-
-.day-float {
-  min-width: 0;
-  flex: 0 1 auto;
-}
-
-.day-float .day-tab {
-  border-color: transparent;
-  min-height: 38px;
-  min-width: 40px;
-  padding: 2px 6px;
-}
-
-.me-float {
-  margin-left: auto;
-  flex: 0 0 auto;
-}
-
-.map-top .planning-strip,
-.map-top .conflict-bar {
-  box-shadow: 0 2px 10px var(--shade-1);
-  align-self: flex-start;
-  max-width: 100%;
-}
-
 /* 地圖的縮放鈕移到右下角，讓出上方的浮動列 */
 .layout.desktop .maplibregl-ctrl-top-right {
   top: auto;
@@ -2562,6 +2458,83 @@ button.edited {
 .side-tab.on {
   color: var(--fg);
   border-bottom-color: var(--fg);
+}
+
+.side-tabs-end {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  padding-bottom: 4px;
+}
+
+/* 頭像選單的按鈕：頭像加小箭頭，44px 高 */
+.account-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  min-height: var(--tap);
+  min-width: var(--tap);
+  padding: 0 8px 0 4px;
+  border: 0;
+  border-radius: 999px;
+  background: none;
+  color: var(--ink-2);
+  cursor: pointer;
+}
+
+.account-button img {
+  width: 30px;
+  height: 30px;
+  border-radius: 999px;
+}
+
+.account-button[aria-expanded='true'] {
+  background: var(--wash);
+}
+
+.account-popover {
+  width: 300px;
+}
+
+.account-popover .account-name {
+  font-weight: 700;
+  margin: 4px 8px 6px;
+}
+
+.account-sub,
+.account-n {
+  margin-left: auto;
+  font-size: 0.8125rem;
+  color: var(--ink-3);
+}
+
+.account-sub + .account-n {
+  margin-left: 6px;
+}
+
+.account-n {
+  padding: 0 8px;
+  border-radius: 999px;
+  background: var(--wash);
+  color: var(--ink-2);
+}
+
+.account-n.warn {
+  background: var(--warn-bg);
+  color: var(--warn);
+}
+
+/* 日期列下面的提示（編輯中、別人改過了、篩選條件）：沒有內容時不佔位 */
+.side-notices {
+  flex: 0 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 0 12px;
+}
+
+.side-notices:empty {
+  display: none;
 }
 
 .side-body {
@@ -2850,16 +2823,6 @@ button.edited {
 }
 
 /* 篩選標籤（AI 套的或探索留下的）：浮在日期列下面，可以一個一個取消 */
-.map-top .chips {
-  align-self: flex-start;
-  max-width: 100%;
-  flex-wrap: wrap;
-  background: var(--veil);
-  border-radius: 999px;
-  box-shadow: 0 2px 10px var(--shade-1);
-  padding: 4px 6px 4px 12px;
-}
-
 /* ---------- 詳情（T15m 重新設計）：上方一列、標題、分頁 ---------- */
 
 .detail-bar {
@@ -3567,65 +3530,7 @@ body.dragging-plan .tl-row.tl-card.drop-merge {
 /* ---------- 第三輪：日期列的工具、地圖區的視窗、行程分頁的標題列 ---------- */
 
 /* 日期列：分頁可以橫向捲，右端的工具固定不動 */
-.day-bar-wrap {
-  display: flex;
-  align-items: center;
-  gap: 4px;
-  flex: 1;
-  min-width: 0;
-}
-
 /* 右上角：整趟工具＋帳號 */
-.account-bar {
-  flex: 0 0 auto;
-  display: flex;
-  align-items: center;
-  gap: 4px;
-}
-
-.trip-tools {
-  display: flex;
-  align-items: center;
-  gap: 2px;
-}
-
-.day-tool {
-  min-height: 38px;
-  min-width: 38px;
-  padding: 0 6px;
-  border: 0;
-  border-radius: 999px;
-  background: none;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 3px;
-  font-size: 0.9rem;
-  cursor: pointer;
-  white-space: nowrap;
-}
-
-.day-tool:disabled {
-  opacity: 0.4;
-  cursor: default;
-}
-
-.day-tool-n {
-  font-size: 0.72rem;
-  background: var(--soft);
-  border-radius: 999px;
-  padding: 0 6px;
-}
-
-.day-tool-n.warn {
-  background: var(--warn-bg);
-  color: var(--warn);
-}
-
-.day-float .day-bar-wrap {
-  max-width: min(60vw, 720px);
-}
-
 /* 地圖區的討論、預約彈窗（.map-panel）：電腦版浮在地圖上，左右留 --panel-gap-x、下面留 --panel-gap-y；
    上緣在浮動列（MapTopBar 量出的 --bar-bottom，規劃列、篩選 chips 會讓它變高）下方 8px，至少留 --panel-gap-y。變數放在 .map-column 方便調 */
 .map-column {
@@ -3672,7 +3577,7 @@ body.dragging-plan .tl-row.tl-card.drop-merge {
 }
 
 /* 地圖那側的班次表（第五輪 §4，TimetablePopup）：電腦版浮在地圖區左上，上緣在浮動列下方，
-   z-index 高過日期列（.map-top 16） */
+   z-index 高過彈窗（.map-panel 15） */
 .timetable-pop {
   position: absolute;
   top: calc(max(var(--panel-gap-y), var(--bar-bottom)) + 8px);
@@ -4656,14 +4561,8 @@ button.cand-up:disabled {
 }
 
 /* 紅字日期（週六、週日、國定假日）：放在最後，同樣只有一個 class 的規則比不過它；選取、候選這些狀態色（兩個 class）仍然優先 */
-.red-day,
-.day-tab.red-day .day-tab-wd {
+.red-day {
   color: var(--red-day);
-}
-
-/* 移到第幾天：4 欄 × 3 列（網頁版彈窗、手機的 MoveDaySheet 共用） */
-.day-tab[aria-selected='true'].red-day .day-tab-wd {
-  color: var(--bad-soft);
 }
 
 /* ---------- 詳情的「問 AI」（電腦、手機共用） ---------- */
@@ -4745,4 +4644,8 @@ button.cand-up:disabled {
   align-self: flex-start;
   background: var(--wash);
   color: var(--muted);
+}
+
+.account-button svg {
+  transform: rotate(90deg);
 }

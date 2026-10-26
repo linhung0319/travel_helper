@@ -6,7 +6,7 @@
 // 第五輪：「規劃模式」改成「編輯」（藍條、完成）；交通卡平常收起，大眾運輸點了展開步驟、班次表；
 // 等待合成交通卡下面的一條（沒有「空檔」）；資料卡右上角的編號從 0 起；地圖彈窗在日期列上面。
 import { test, type Locator, type Page } from '@playwright/test';
-import { centerOn, expect, findPlaceId, ready, waitIdle } from './helpers.ts';
+import { centerOn, expect, openAccountItem, switchUser, findPlaceId, ready, waitIdle } from './helpers.ts';
 
 const DAY = '2027-02-07';
 const PLACE = 'toba-seahorse';
@@ -68,8 +68,7 @@ test('T15m：想去 → 留言 → 加到某天 → 編輯中按 ↑ 排進 → 
   await expect(wish(list).getByTestId('wish-comments')).toContainText('1 則留言');
 
   // 3. 換成阿公：看得到、改不了別人的留言；把它加到 2/7
-  await page.getByTestId('me-button').click();
-  await page.locator('[data-member="dev-agong"]').click();
+  await switchUser(page, 'dev-agong');
   list = await openWish(page);
   await wish(list).getByTestId('wish-comments').click();
   await expect(wish(list).getByTestId('wish-comment')).toContainText(TEXT);
@@ -113,7 +112,7 @@ test('T15m：想去 → 留言 → 加到某天 → 編輯中按 ↑ 排進 → 
 
 test('T15m：別人改過了 → 存不了、提示重新載入', async ({ page }) => {
   await ready(page);
-  await page.getByTestId('me-button').click();
+  await page.getByTestId('account-menu').click();
   await page.getByTestId('dev-other-edit').click();
   await showDay(page, '2027-02-05');
   await enterPlanning(page);
@@ -181,21 +180,22 @@ test('T15m：自己加的候選可以撤回；這天的討論', async ({ page })
   await expect(iroha).toHaveCount(0);
 
   await showDay(page, '2027-02-07');
-  await page.getByTestId('toolbar-comments').click();
+  await openAccountItem(page, 'comments');
   const box = page.getByTestId('map-panel');
   await expect(box.getByTestId('wish-comments')).toContainText('2 則這天的討論');
   await expect(box.getByTestId('wish-comment').first()).toContainText('泡湯');
 });
 
-test('第四輪：討論、預約、下載在右上角；彈窗開著時這幾個按鈕還按得到', async ({ page }) => {
+test('第七輪：討論、預約、下載在右欄的頭像選單；彈窗開著時選單還按得到', async ({ page }) => {
   await ready(page);
-  await expect(page.getByTestId('export-json')).toBeVisible();
-  await expect(page.getByTestId('export-json')).toBeEnabled();
-  await expect(page.getByTestId('toolbar-comments')).toContainText('討論');
-  await page.getByTestId('toolbar-comments').click();
+  await page.getByTestId('account-menu').click();
+  await expect(page.getByTestId('account-export')).toBeVisible();
+  await expect(page.getByTestId('account-export')).toBeEnabled();
+  await expect(page.getByTestId('account-comments')).toContainText('討論');
+  await page.getByTestId('account-comments').click();
   await expect(page.getByTestId('map-panel')).toHaveAttribute('data-kind', 'comments');
-  // 工具列在彈窗上面，沒被蓋住：直接換成預約
-  await page.getByTestId('toolbar-reservations').click();
+  // 頭像選單在右欄，彈窗沒蓋住：直接換成預約
+  await openAccountItem(page, 'reservations');
   await expect(page.getByTestId('map-panel')).toHaveAttribute('data-kind', 'reservations');
 });
 
@@ -216,7 +216,7 @@ async function openMapPoint(page: Page): Promise<{ x: number; y: number }> {
 
 test('第四輪：點討論 → 彈窗；點彈窗外面的地圖 → 彈窗關掉', async ({ page }) => {
   await ready(page);
-  await page.getByTestId('toolbar-comments').click();
+  await openAccountItem(page, 'comments');
   await expect(page.getByTestId('map-panel')).toBeVisible();
   await expect(page.getByTestId('map-panel').locator('h2')).toContainText('討論');
   const { x, y } = await openMapPoint(page);
@@ -255,7 +255,7 @@ test('預約筆記：改成已訂位、時間軸 tag 跟著變', async ({ page }
   const BOOK_NOTE = '用電話訂了 18:00（e2e）';
   await ready(page);
   await showDay(page, '2027-02-05');
-  await page.getByTestId('toolbar-reservations').click();
+  await openAccountItem(page, 'reservations');
   const panel = page.getByTestId('map-panel');
   await expect(panel).toBeVisible();
   const row = panel.getByTestId('note-row').first();
@@ -283,9 +283,8 @@ test('預約筆記：改成已訂位、時間軸 tag 跟著變', async ({ page }
   await page.getByTestId('map-panel-close').click();
 
   // 換人：同一個狀態和備註
-  await page.getByTestId('me-button').click();
-  await page.locator('[data-member="dev-agong"]').click();
-  await page.getByTestId('toolbar-reservations').click();
+  await switchUser(page, 'dev-agong');
+  await openAccountItem(page, 'reservations');
   const again = page.getByTestId('map-panel').locator(`[data-testid="note-row"][data-place="${placeId}"][data-status="booked"]`).first();
   await expect(again).toBeVisible();
   await expect(again.getByTestId('note-text')).toHaveValue(BOOK_NOTE);
@@ -295,15 +294,14 @@ test('預約筆記：打了備註不按 Enter 直接按狀態，兩個都存得�
   const TEXT2 = '先打字再按狀態（e2e）';
   await ready(page);
   await showDay(page, '2027-02-05');
-  await page.getByTestId('toolbar-reservations').click();
+  await openAccountItem(page, 'reservations');
   const row = page.getByTestId('map-panel').getByTestId('note-row').first();
   const placeId = (await row.getAttribute('data-place'))!;
   await row.getByTestId('note-text').fill(TEXT2);
   await row.getByTestId('note-status-booked').click();
   await page.getByTestId('map-panel-close').click();
-  await page.getByTestId('me-button').click();
-  await page.locator('[data-member="dev-agong"]').click();
-  await page.getByTestId('toolbar-reservations').click();
+  await switchUser(page, 'dev-agong');
+  await openAccountItem(page, 'reservations');
   const again = page.getByTestId('map-panel').locator(`[data-testid="note-row"][data-place="${placeId}"]`).first();
   await expect(again).toHaveAttribute('data-status', 'booked');
   await expect(again.getByTestId('note-text')).toHaveValue(TEXT2);
@@ -475,7 +473,7 @@ test('最後檢查：選了交通卡後換到下一天，地圖的行程線恢�
 test('最後檢查：預約筆記點名稱打開詳情', async ({ page }) => {
   await ready(page);
   await showDay(page, '2027-02-05');
-  await page.getByTestId('toolbar-reservations').click();
+  await openAccountItem(page, 'reservations');
   const panel = page.getByTestId('map-panel');
   await expect(panel).toBeVisible();
   const row = panel.getByTestId('note-row').first();
@@ -881,8 +879,9 @@ test('第五輪：地圖彈窗在日期列上面（靠近上緣的點，彈窗�
   await page.mouse.move(5, 5);
   await expect(card).toHaveCount(0);
   // 把點移到日期列正下方：彈窗放在點上方時，上緣落在日期列裡
-  const bar = (await page.locator('.day-float').boundingBox())!;
-  const target = { x: bar.x + Math.min(bar.width / 2, 200), y: bar.y + bar.height / 2 + 18 + h };
+  // （日期列已搬到右欄，改用地圖上緣）
+  const bar = (await page.locator('.map-column').boundingBox())!;
+  const target = { x: bar.x + Math.min(bar.width / 2, 200), y: bar.y + 10 + h };
   await page.evaluate(([dx, dy]) => (window as any).__th.map.panBy([dx, dy], { duration: 0 }), [p.x - target.x, p.y - target.y]);
   await waitIdle(page);
   p = await page.evaluate((id) => {
@@ -1098,11 +1097,9 @@ test('撤下：卡片變成這天的候選，可以復原', async ({ page }) => 
 test('撤下：已經有候選時復原不刪別人的候選', async ({ page }) => {
   await ready(page);
   // 阿公先把 La Mer 加成 2/3 的候選
-  await page.getByTestId('me-button').click();
-  await page.locator('[data-member="dev-agong"]').click();
+  await switchUser(page, 'dev-agong');
   await page.evaluate(() => (window as any).__th.shared.addCandidate('shima-la-mer', '2027-02-03'));
-  await page.getByTestId('me-button').click();
-  await page.locator('[data-member="dev-baba"]').click();
+  await switchUser(page, 'dev-baba');
   const theirs = await storeCands(page, 'shima-la-mer', '2027-02-03');
   expect(theirs).toEqual([expect.objectContaining({ addedBy: 'dev-agong' })]);
   await showDay(page, '2027-02-03');
@@ -1264,8 +1261,8 @@ test('移到第幾天：4×3 格子、紅字、沒有「假日」', async ({ pag
 
 test('日期列：週六、週日、假日紅字', async ({ page }) => {
   await ready(page);
-  for (const d of ['02-06', '02-07', '02-11', '02-13']) await expect(page.locator(`.day-tab[data-day="2027-${d}"]`)).toHaveClass(/red-day/);
-  await expect(page.locator('.day-tab[data-day="2027-02-10"]')).not.toHaveClass(/red-day/);
+  for (const d of ['02-06', '02-07', '02-11', '02-13']) await expect(page.locator(`.side-column [data-day="2027-${d}"]`)).toHaveClass(/red-day/);
+  await expect(page.locator('.side-column [data-day="2027-02-10"]')).not.toHaveClass(/red-day/);
 });
 
 test('詳情的問 AI：點建議問題，聊天欄出現那句', async ({ page }) => {
@@ -1321,4 +1318,67 @@ test('加到某天（DayGrid12 多選）：已排寫「已排」不能點、已�
   await page.getByTestId('day-picker-done').click();
   await expect(wish(list, AQ).getByTestId('card-status-tag')).not.toContainText('2/8');
   await expect(wish(list, AQ).getByTestId('card-status-tag')).toContainText('2/9');
+});
+
+// ---------- 第七輪 Task 3：拿掉重複的入口 ----------
+
+test('第七輪：地圖上沒有浮動列，日期列在右欄、放得下 12 天', async ({ page }) => {
+  await ready(page);
+  await expect(page.locator('.map-column [data-testid="m-day-strip"]')).toHaveCount(0);
+  await expect(page.locator('.map-column [data-testid="account-menu"]')).toHaveCount(0);
+  await expect(page.locator('.map-top')).toHaveCount(0);
+  await expect(page.locator('.side-column').getByTestId('m-day-all')).toBeInViewport({ ratio: 1 });
+  for (const d of ['2027-02-02', '2027-02-13']) await expect(page.locator('.side-column').getByTestId(`m-day-${d}`)).toBeInViewport({ ratio: 1 });
+});
+
+test.describe('1024 寬', () => {
+  test.use({ viewport: { width: 1024, height: 800 } });
+  test('第七輪：日期列在右欄、放得下 12 天', async ({ page }) => {
+    await ready(page);
+    for (const d of ['2027-02-02', '2027-02-13']) await expect(page.locator('.side-column').getByTestId(`m-day-${d}`)).toBeInViewport({ ratio: 1 });
+    await expect(page.locator('.map-column [data-testid="toolbar-comments"]')).toHaveCount(0);
+  });
+});
+
+test('第七輪：日期列只在行程分頁，點日期切到那天', async ({ page }) => {
+  await ready(page);
+  await page.getByTestId('side-tab-explore').click();
+  await expect(page.locator('.side-column').getByTestId('m-day-2027-02-05')).toHaveCount(0);
+  await page.getByTestId('side-tab-day').click();
+  await page.locator('.side-column').getByTestId('m-day-2027-02-05').click();
+  await expect(page.locator('.side-column').getByTestId('m-day-2027-02-05')).toHaveAttribute('aria-selected', 'true');
+  await expect(page.locator('.side-column').getByTestId('m-day-2027-02-06')).toHaveClass(/red-day/);
+  await expect(page.locator('.side-column').getByTestId('m-day-all')).toHaveText('整趟');
+});
+
+test('第七輪：頭像選單打開討論、預約；Esc 關掉', async ({ page }) => {
+  await ready(page);
+  await openAccountItem(page, 'comments');
+  await expect(page.getByTestId('map-panel')).toBeVisible();
+  await page.keyboard.press('Escape');
+  await expect(page.getByTestId('map-panel')).toHaveCount(0);
+  await openAccountItem(page, 'reservations');
+  await expect(page.getByTestId('map-panel')).toHaveAttribute('data-kind', 'reservations');
+  await page.keyboard.press('Escape');
+  await expect(page.getByTestId('map-panel')).toHaveCount(0);
+});
+
+test('第七輪：頭像選單有使用者、討論、預約、下載、切換使用者；Esc 收起', async ({ page }) => {
+  await ready(page);
+  await page.getByTestId('account-menu').click();
+  const menu = page.getByTestId('account-popover');
+  await expect(menu).toBeVisible();
+  await expect(menu).toContainText('討論');
+  await expect(menu).toContainText('預約');
+  await expect(menu).toContainText('下載行程');
+  await expect(menu).toContainText('切換使用者');
+  await page.keyboard.press('Escape');
+  await expect(menu).toHaveCount(0);
+});
+
+test('第七輪：詳情沒有「＋問 AI」按鈕', async ({ page }) => {
+  await ready(page);
+  await openDetail(page, PLACE);
+  await expect(page.getByTestId('detail-panel')).toBeVisible();
+  await expect(page.getByTestId('detail-ask')).toHaveCount(0);
 });

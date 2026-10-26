@@ -58,3 +58,15 @@ export async function waitIdle(page: Page) {
 }
 
 export { expect };
+
+/** 電腦版：打開右欄右上的頭像選單，點其中一項（討論、預約、下載行程）；選單點完會收起來 */
+export async function openAccountItem(page: Page, item: 'comments' | 'reservations' | 'export') {
+  await page.getByTestId('account-menu').click();
+  await page.getByTestId(`account-${item}`).click();
+}
+
+/** 電腦版（開發用）：從頭像選單切換使用者 */
+export async function switchUser(page: Page, memberId: string) {
+  await page.getByTestId('account-menu').click();
+  await page.locator(`[data-member="${memberId}"]`).click();
+}

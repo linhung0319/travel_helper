@@ -39,7 +39,7 @@ test('切換天數：選的那天的點正常，其他天變淡；回到全部',
   expect(await visual('toba-aquarium')).toMatchObject({ dim: false, order: 2 });
   expect(await visual('ise-naiku')).toMatchObject({ dim: true });
   await expect(page.getByTestId('day-panel')).toContainText('鳥羽水族館');
-  await page.getByRole('tab', { name: '全部' }).click();
+  await page.getByRole('tab', { name: '整趟' }).click();
   expect(await visual('ise-naiku')).toMatchObject({ dim: false });
 });
 
@@ -151,5 +151,4 @@ test('問 AI：把探索卡片、詳情標題拖到聊天室', async ({ page }) 
   await second.click();
   await page.getByTestId('detail-panel').locator('.detail-head').dragTo(page.locator('.chat-column'));
   await expect.poll(selection).toEqual([id, id2]);
-  await expect(page.getByTestId('detail-ask')).toContainText('已帶進聊天');
 });

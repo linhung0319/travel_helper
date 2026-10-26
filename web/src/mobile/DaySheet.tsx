@@ -1,6 +1,6 @@
 // 手機版行程的面板（第六輪 §3.5）：蓋在地圖下半部，可以拉，停在三個高度（mobileStore.tripSnap；高度在 mobile.css 的 CSS 變數）：
 // 低（只露出天數列）、中（預設，地圖約佔上面 1/3）、高（地圖剩一小條）。拖把手換高度：放開時停在最近的高度，快速往上／往下滑就往那邊切一格。
-// 面板裡由上到下：把手、天數列（DayStrip）、選「全部」時是整趟（TripOverview），選某天時是這天的標題（✨、✏️ 編輯）、摘要、時間條（變矮）、
+// 面板裡由上到下：把手、天數列（DayStrip）、選「整趟」時是整趟（TripOverview），選某天時是這天的標題（✨、✏️ 編輯）、摘要、時間條（變矮）、
 // 時間軸（MobileCard、MobileLeg，資料準備和網頁版共用 Timeline.tsx 的 useDayTimeline）、這天的候選（候選樣式的 MobileCard）。
 // 選了一張卡（focusItem）：清單捲到那張卡。✨ 的半屏聊天是 Task 12。
 // 編輯中：面板拉到高、最上面是藍色的編輯條（網頁版第五輪的 PlanningBar，手機用 m-edit-bar：「✏️ 編輯 2/3（三）」加「完成」）和別人改過了的提示（ConflictBar）；
@@ -24,7 +24,7 @@ import { groupTargetsOf } from '../components/cardActionRun.ts';
 import { dropOnCandidatesProps, dropOnEndProps } from '../components/planDrag.ts';
 import type { DragSource } from '../lib/dropIntent.ts';
 import { focusKeyOf, mobileStore, useMobile, type ActionSheetSpec, type ActionView, type TripSnap } from './mobileStore.ts';
-import { DayStrip } from './DayStrip.tsx';
+import { DayStrip } from '../shared/ui/DayStrip.tsx';
 import { MobileCard } from './MobileCard.tsx';
 import { MobileLeg, MobileWait } from './MobileLeg.tsx';
 import { TripOverview } from './TripOverview.tsx';
@@ -444,7 +444,7 @@ export function DaySheet() {
         <span aria-hidden />
       </div>
       <EditBar day={day} />
-      <DayStrip />
+      <DayStrip variant="sheet" />
       <div className="m-trip-body" ref={bodyRef}>
         {day === 'all' ? <TripOverview /> : <DayView date={day} />}
       </div>

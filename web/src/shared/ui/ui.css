@@ -342,3 +342,105 @@
   background: var(--veil);
   box-shadow: 0 1px 3px var(--shade-2);
 }
+
+/* ---------- 日期列（DayStrip）：網頁右欄 side 平分、手機面板 sheet 可左右滑 ---------- */
+.ui-days {
+  display: flex;
+  gap: 2px;
+  scrollbar-width: none;
+}
+
+.ui-days::-webkit-scrollbar {
+  display: none;
+}
+
+.ui-day {
+  flex: 0 0 auto;
+  min-height: 52px;
+  padding: 4px 6px;
+  border: 0;
+  border-radius: 14px;
+  background: none;
+  color: var(--ink);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1px;
+  line-height: 1.15;
+  cursor: pointer;
+}
+
+.ui-day b {
+  font-family: var(--font-num);
+  font-style: italic;
+  font-weight: 500;
+  font-size: 1rem;
+}
+
+.ui-day small {
+  font-size: 0.8125rem;
+  color: var(--ink-3);
+}
+
+.ui-day.all {
+  font-weight: 700;
+  font-size: 0.8125rem;
+}
+
+.ui-day.red-day,
+.ui-day.red-day small {
+  color: var(--red-day);
+}
+
+.ui-day[aria-current='true'] {
+  background: var(--ink);
+  color: var(--paper);
+}
+
+.ui-day[aria-current='true'] small {
+  color: rgba(255, 255, 255, 0.72);
+}
+
+.ui-day.red-day[aria-current='true'] {
+  color: var(--bad-soft);
+}
+
+.ui-day.red-day[aria-current='true'] small {
+  color: var(--bad-soft);
+}
+
+.ui-days.sheet {
+  position: relative;
+  flex: 0 0 auto;
+  gap: 6px;
+  padding: 2px 12px 10px;
+  overflow-x: auto;
+  overflow-y: hidden;
+}
+
+.ui-days.sheet .ui-day {
+  min-width: 52px;
+  border: 1px solid var(--line);
+  background: var(--paper);
+}
+
+.ui-days.sheet .ui-day[aria-current='true'] {
+  background: var(--ink);
+  border-color: var(--ink);
+}
+
+/* 右欄：13 格平分，點的範圍高度 52px */
+.ui-days.side {
+  padding: 8px 8px 4px;
+}
+
+.ui-days.side .ui-day {
+  flex: 1 1 0;
+  min-width: 0;
+  padding: 4px 0;
+}
+
+.ui-days.side .ui-day b {
+  font-size: 0.9375rem;
+}
