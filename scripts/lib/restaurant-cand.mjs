@@ -67,3 +67,26 @@ export function roomMax(room) {
   const all = [...nums, ...range];
   return all.length ? Math.max(...all) : null;
 }
+
+// 大阪（CONVENTIONS §4「大阪（都市區）的做法」，T27c 加）：G 全員、S 分組，取代 A～F。
+// S 的「大阪名物和平價」（👤 2026-10-26）：類別第一項是名物，或昼的預算上限 1,999 円以下（沒有昼就看夜）；甜點、咖啡不算。
+// 只看第一項：「フレンチ、シーフード、串揚げ」這種不算串カツ店。
+export const OSAKA_MEIBUTSU = ['たこ焼き', 'お好み焼き', 'もんじゃ焼き', '串揚げ', 'ふぐ', 'うどん', 'うどんすき', 'ホルモン', '肉まん'];
+export const isMeibutsu = (genre) => OSAKA_MEIBUTSU.includes(firstGenre(genre));
+// 列表的預算字樣「1000～1999」「～999」→ 上限（円）；空 → null
+export const budgetMax = (s) => {
+  const m = String(s ?? '').replace(/[￥,]/g, '').match(/(\d+)\s*$/);
+  return m ? Number(m[1]) : null;
+};
+export function criteriaOsaka(shop, { gScore = 3.1, gReviews = 15, sScore = 3.3, sReviews = 50, cheapMax = 1999 } = {}) {
+  const out = [];
+  const s = shop.score ?? 0;
+  const n = shop.reviews ?? 0;
+  const max = roomMax(shop.room);
+  if (s >= gScore && n >= gReviews && max != null && max >= 15) out.push('G');
+  const meibutsu = isMeibutsu(shop.genre);
+  const budget = budgetMax(shop.lunch) ?? budgetMax(shop.dinner);
+  const cheap = budget != null && budget <= cheapMax && typeOf(shop.genre) !== '咖啡・甜點';
+  if (s >= sScore && n >= sReviews && (meibutsu || cheap)) out.push('S');
+  return out;
+}

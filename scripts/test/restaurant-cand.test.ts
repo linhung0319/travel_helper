@@ -1,7 +1,7 @@
 // scripts/lib/restaurant-cand.mjs、candidates-add.mjs、restaurant-candidates.mjs 的測試（T9c）。執行：npm test
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { typeOf, contextsOf, autoExclusion, criteriaAC, roomMax } from '../lib/restaurant-cand.mjs';
+import { typeOf, contextsOf, autoExclusion, criteriaAC, criteriaOsaka, budgetMax, roomMax } from '../lib/restaurant-cand.mjs';
 import { addCandidates } from '../lib/candidates-add.mjs';
 import { build, mergeLists, sourceKinds } from '../restaurant-candidates.mjs';
 
@@ -102,6 +102,62 @@ test('build：onlyRegions 只輸出指定的子地區', () => {
 test('build：檔名不對、沒讀完就停', () => {
   assert.throws(() => mergeLists([{ name: 'ugata-1.txt', text: page('x', []) }]), /檔名/);
   assert.throws(() => mergeLists([{ name: 'ugata-rt-1.txt', text: '#P|x|1-1/1|0\n' }]), /沒有讀完/);
+});
+
+test('大阪 G／S（T27c）：G 要個室 15 人以上；S 要名物或昼 1,999 円以下，甜點不算', () => {
+  assert.equal(budgetMax('1000～1999'), 1999);
+  assert.equal(budgetMax('～999'), 999);
+  assert.equal(budgetMax(null), null);
+  assert.deepEqual(criteriaOsaka({ score: 3.58, reviews: 2408, genre: 'うどん、うどんすき', lunch: '1000～1999', room: '完全個室有(2〜20人可)' }), ['G', 'S']);
+  assert.deepEqual(criteriaOsaka({ score: 3.12, reviews: 20, genre: '居酒屋', dinner: '3000～3999', room: '個室有(4〜8人可)' }), []);
+  assert.deepEqual(criteriaOsaka({ score: 3.12, reviews: 20, genre: '居酒屋', dinner: '3000～3999', room: '個室有(10〜20人可)' }), ['G']);
+  assert.deepEqual(criteriaOsaka({ score: 3.7, reviews: 2000, genre: 'ラーメン', lunch: '～999' }), ['S']);
+  assert.deepEqual(criteriaOsaka({ score: 3.7, reviews: 2000, genre: 'フレンチ', dinner: '10000～14999' }), []);
+  assert.deepEqual(criteriaOsaka({ score: 3.64, reviews: 1883, genre: '喫茶店、パンケーキ', lunch: '～999' }), []);
+  assert.deepEqual(criteriaOsaka({ score: 3.49, reviews: 3242, genre: 'たこ焼き', lunch: '～999' }), ['S']);
+  assert.deepEqual(criteriaOsaka({ score: 3.49, reviews: 40, genre: 'たこ焼き', lunch: '～999' }), []);
+});
+
+test('build（大阪）：area 對子地區、G 依口コミ數取、超過 G 上限的進 S、S 名物優先', () => {
+  const { shops } = mergeLists([{ name: 'namba_rvcn-room-1.txt', text: page('難波', [
+    '1|今井|うどん、うどんすき|3.58|2408||1000～1999|1000～1999||完全個室有(2〜20人可)||A2701-A270202|',
+    '2|はつせ|お好み焼き、鉄板焼き|3.49|520||1000～1999|1000～1999||個室有(2〜30人可)||A2701-A270202|',
+    '3|焼肉|焼肉|3.44|637||4000～4999|||完全個室有(2〜30人可)||A2701-A270202|',
+    '4|ラーメン|ラーメン|3.7|3000||～999|～999||||A2701-A270202|',
+    '5|わなか|たこ焼き|3.49|900||～999|～999||||A2701-A270202|',
+    '6|梅田の店|居酒屋|3.4|300||3000～3999|||個室有(2〜30人可)||A2701-A270101|',
+  ]) }]);
+  const out = build(shops, {
+    scheme: 'osaka',
+    minScore: 3.1,
+    regions: [{ area: 'A270202', region: 'namba' }, { area: 'A270101', region: 'umeda' }],
+    caps: { G: { namba: 1, default: 2 }, S: { default: 2 } },
+  });
+  const by = Object.fromEntries(out.map((c) => [c.key, c]));
+  assert.equal(by['tabelog-6'].region, 'umeda');
+  assert.equal(by['tabelog-1'].status, 'included'); // G 第 1
+  assert.deepEqual(by['tabelog-1'].criteria, ['G', 'S']);
+  assert.equal(by['tabelog-3'].status, 'over-limit'); // G 第 2、不符合 S
+  assert.equal(by['tabelog-2'].status, 'included'); // G 超過上限 → S（名物）
+  assert.equal(by['tabelog-5'].status, 'included'); // S 名物
+  assert.equal(by['tabelog-4'].status, 'over-limit'); // 平價但不是名物，排在名物後
+  assert.match(by['tabelog-4'].reason, /上限外/);
+  assert.equal(by['tabelog-1'].links.tabelog, 'https://tabelog.com/osaka/A2701/A270202/1/');
+});
+
+test('build（大阪）：S 同類型上限、名物只看類別第一項', () => {
+  const { shops } = mergeLists([{ name: 'umeda_rvcn-rt-1.txt', text: page('梅田', [
+    '1|うどんA|うどん、天ぷら|3.7|3000||～999|～999||||A2701-A270101|',
+    '2|うどんB|うどんすき|3.7|2900||～999|～999||||A2701-A270101|',
+    '3|うどんC|うどん|3.7|2800||～999|～999||||A2701-A270101|',
+    '4|ラーメン|ラーメン|3.7|100||～999|～999||||A2701-A270101|',
+    '5|フレンチ|フレンチ、シーフード、串揚げ|3.4|5000||10000～14999|3000～3999||||A2701-A270101|',
+  ]) }]);
+  const out = build(shops, { scheme: 'osaka', minScore: 3.1, regions: [{ area: 'A270101', region: 'umeda' }], caps: { S: { default: 3 }, sameType: 2 } });
+  const by = Object.fromEntries(out.map((c) => [c.key, c]));
+  assert.equal(by['tabelog-3'].status, 'over-limit');
+  assert.equal(by['tabelog-4'].status, 'included');
+  assert.equal(by['tabelog-5'].status, 'not-included');
 });
 
 test('candidates add：衝突、取代', () => {
