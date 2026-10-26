@@ -1017,6 +1017,13 @@ function autoLeg(a: Endpoint, b: Endpoint, ctx: LegContext, walk: { minutes: num
 
   // 有車但不合規則：寫進理由
   const rejected = found.cands.find((c) => c.arrive < walkArrive) ?? null;
+  // 太遠不能搭計程車（例如伊勢市 → 大阪，特急一小時一班）：不合等車規則也照樣搭，不當成「找不到交通」
+  const tooFar = !isLonLat(a.coords) || !isLonLat(b.coords) || haversineMeters(a.coords, b.coords) / 1000 > cfg.taxi.maxKm;
+  if (rejected && tooFar) {
+    busCrowd(rejected, ctx, warnings);
+    warnings.push({ code: 'long-wait', level: 'info', message: `等${name(rejected)} ${rejected.wait} 分（太遠，不能改搭計程車）` });
+    return fromCandidate(rejected, a, b, ctx, factor, warnings, found.cands);
+  }
   if (rejected) {
     const why =
       firstBus(rejected) && rejected.wait <= cfg.transit.busMaxWait ? '1 小時以上才一班' : `要等 ${rejected.wait} 分`;
@@ -1025,7 +1032,7 @@ function autoLeg(a: Endpoint, b: Endpoint, ctx: LegContext, walk: { minutes: num
   if (found.missedLast) {
     warnings.push({ code: 'missed-last', level: 'warning', message: '這個時間以後沒有電車或巴士了（錯過末班車），改搭計程車' });
   }
-  if (!isLonLat(a.coords) || !isLonLat(b.coords) || haversineMeters(a.coords, b.coords) / 1000 > cfg.taxi.maxKm) {
+  if (tooFar || !isLonLat(a.coords) || !isLonLat(b.coords)) {
     warnings.push({ code: 'travel-unknown', level: 'error', message: '距離太遠，找不到時刻表裡的交通方式；請用 travel 指定（參考 data/access/）' });
     return leg({ mode: 'unknown', minutes: 0, basis: '找不到交通方式' }, a, b, ctx.depart);
   }
