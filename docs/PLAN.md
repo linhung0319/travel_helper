@@ -110,7 +110,8 @@
 | T27c | 大阪：餐廳（候選和詳細資料一起做） | M | T27a | 3 | 🌐 大量 | ✅ |
 | T27d | 大阪：收尾、摘要與評分、代表照片（自動排序）、匯入 | S | T27b、T27c | 3 | | ✅ |
 | T28 | 大阪交通：近鐵 大阪 ↔ 伊勢志摩的特急（北上回大阪、第一天南下志摩）、市區路線的所需時間和班距、大站轉乘的步行時間和電梯 | M | — | 3 | | ✅ |
-| T29 | engine：班距型路線（市區鐵道）、轉乘步行；車站面板顯示班距 | S | T28（格式定好就可以開始） | 3 | 🌐 少量 | ⬜ |
+| T29 | engine：大眾運輸改用 RAPTOR（近鐵、巴士、船、JR、大阪班距型路線、轉乘步行），候選走法、錯過的話 | M | T28 | 3 | — | ⬜ |
+| T29b | web：交通卡顯示走法、切換走法、班次只能看、拿掉選班次；車站面板顯示班距 | S | T29、T15m merge 後 | 4 | 🌐 少量 | ⬜ |
 | T30 | 👤 部署到 Cloudflare：正式的 D1 和 secret、網站和 Worker、正式環境第一次匯入、LINE 改用正式網址、LINE 內建瀏覽器實測 | S | T25、👤 資料和 schema 定案（邀請家人之前） | 4 | 🌐 少量 | ⬜ |
 
 ---
@@ -240,14 +241,14 @@ T7j → T8g → T9g → T13 → T21 → T11、T14、T24（並行）→ T12 → T
 ```
 T27a（👤 子地區）──┬──► T27b 住宿 ──► T27c 餐廳 ──► T27d 收尾、評分、匯入
                    │   （兩個都用 Chrome，依序；T27c 只依賴 T27a，T27b 卡住時可以先做）
-T28 大阪交通 ──────┴──► T29 engine 班距型路線（T28 格式定好就可以開始，和 T27c 同時做）
+T28 大阪交通 ──────┴──► T29 engine RAPTOR ──► T29b 交通卡（T15m merge 後）
 ```
 
 - **照前三區的經驗縮小範圍**（討論見 2026-10-26 的 session；做法寫在 CONVENTIONS §4「大阪（都市區）的做法」）：不做深入調查和 g 任務、不做 D 規則和每天的缺漏檢查、不做數量控制、不記 IG、不跑じゃらん、代表照片照來源自動排序（不逐張看圖）。評分一開始就照最新的 §5.1 和各區共用的補充，門檻打分前就訂好。
 - **手動執行，不進指揮 session**：份量小（約 4 個 session），要 👤 決定的（子地區、USJ 的範圍、邊界判斷）當場問，不累積到 decisions-pending 再開 g 任務。
 - **T27a 和 T28 同時開始**：T28 的路線範圍照 T27a 預定的子地區（難波、大阪城、天王寺、海遊館、USJ、梅田）先抓，T27a 定案後再補。
 - **T27b、T27c 都用 Chrome，不同時跑**：T27b 先（份量小）。
-- **和介面任務不衝突**：區域不寫死（T11、T12、T24 已經處理），新區域的資料只要 validate 通過、重新匯入、重新 build 就會出現。T29 改 `packages/engine`，和 T15m、T16m 同時做時先講好介面。
+- **和介面任務不衝突**：區域不寫死（T11、T12、T24 已經處理），新區域的資料只要 validate 通過、重新匯入、重新 build 就會出現。T29 只改 `packages/engine` 和資料載入，`Leg` 只加欄位；交通卡、車站面板的畫面拆成 T29b，等 T15m merge 後做。
 
 ### 同時可以開幾個 session
 
@@ -905,15 +906,17 @@ T7c → T7d → T7e → T7f → T7g → T8a → T8b → T8c → T8d → T7i → 
 - 寫 `data/stations.json`（大阪的車站）、`data/timetables/kintetsu/_travel-times.json`（大阪的特急）、`data/timetables/urban/`、`data/raw/access/osaka.md`、`schema/`（新格式）、`scripts/validate.mjs`。
 - **完成（2026-10-26）**：結果和沒查到的見 `data/raw/access/osaka.md`。gtfs-data.jp、ODPT 都沒有大阪的鐵道資料，全部讀官網。班距型路線 10 條（Osaka Metro 5 線含谷町線、JR 環状線・ゆめ咲線、南海空港急行・ラピート、近鐵難波線市區段），轉乘 22 筆，大阪車站 31 站。格式：`schema/urban-route.schema.json`、`urban-transfers.schema.json`（CONVENTIONS §3）。近鐵特急的大阪側停站用 `scripts/kintetsu-osaka.mjs` 補（T1 的腳本重跑後要再跑）。給 T29：環狀線 `stops` 是内回り順、`loopMin` 45；Osaka Metro 站內換線的 `walkMin` 多是 null（要有預設值）；南海空港急行的 `holiday` 整段 null。
 
-### T29 engine：班距型路線 〔S〕
-- 先讀 [architecture.md](architecture.md)。T28 定好 `data/timetables/urban/` 的格式就可以開始（可以先用 2～3 條線的資料寫測試）。
-- `packages/engine`：
-  - `EngineData` 加班距型路線和轉乘；`data.ts` 讀檔的部分照 `routes` 的做法。
-  - 搭車時間＝等車（班距的一半；全員時取整個班距，比較保守）＋車上分鐘＋轉乘步行（套 §5.4 的團體係數）。首班前、末班後不能搭，照現有的「錯過末班車」警告。
-  - 交通方式判斷：大阪的兩點之間，步行超過上限時先找班距型路線，再考慮計程車（§5.4）；近鐵特急照現有的時刻表算。
-  - 測試：等車和轉乘的計算、首末班、全員和分組的係數差別、伊勢 → 大阪難波 → 住宿的一段、第一天南下的一段（なんば → 近鐵大阪難波 步行轉乘 → 鵜方，結果和 `data/access/kix.json` 的 16:10 → 18:35 一致）。
-- **靜態資料的 build**（T24 的腳本，architecture §3.7）加上 `urban/`；**車站面板**（`web/`）對班距型路線顯示「約 N 分一班、首末班」，不列班次。改別人的程式要在 commit 訊息說明。
-- 完成條件：`npm test`、`npm run typecheck` 通過；假行程排一天大阪（難波 → 大阪城 → 天王寺 → 難波），時間軸和警告合理；手機尺寸看一次車站面板（🌐 少量）。
+### T29 engine：大眾運輸改用 RAPTOR 〔M〕
+- 設計見 [specs/2026-10-26-transit-raptor-design.md](superpowers/specs/2026-10-26-transit-raptor-design.md)（2026-10-26 和 👤 討論：選走法、不選班次；近鐵特急到車站才買）。先讀 [architecture.md](architecture.md)。
+- `packages/engine`：RAPTOR 涵蓋近鐵、巴士、船、JR 和 `data/timetables/urban/` 的班距型路線、轉乘步行；等車＝班距的一半（全員取整個班距）；首班前、末班後不能搭。`Leg` 只加欄位（`alternatives`、`transfers`、班距型那一程的班距和首末班、每一程的 `ifMissed`），現在的畫面照常能用；`TravelSpec.path` 記走法。過渡期保留舊的選班次（`trip`）路徑，T29b 拿掉。
+- 讀檔：`scripts/build-static.mjs`、`web/src/data/local.ts` 等載入 `routes` 的地方加上 `urban/`（只動資料載入，不動元件；改別人的程式要在 commit 訊息說明）。
+- 測試：等車和轉乘的計算、首末班、全員和分組的係數差別、伊勢 → 大阪難波 → 住宿、第一天南下（なんば → 近鐵大阪難波 步行轉乘 → 鵜方，和 `data/access/kix.json` 的 16:10 → 18:35 一致）、大阪一天的假行程（難波 → 大阪城 → 天王寺 → 難波）；現有測試和 `perf.test.ts` 照樣通過。
+- 完成條件：`npm test`、`npm run typecheck`、`npm run validate` 通過。
+
+### T29b web：交通卡的走法、車站面板的班距 〔S〕
+- 等 T15m merge 後做（T15m 在改 `LegRow.tsx`、`planView.ts`、`MobileLeg.tsx`）。照設計文件 §7：收合時第二行顯示走法、可以切換候選走法（存 `TravelSpec.path`）、轉乘步行和電梯資訊、班次表只能看並寫「錯過的話：下一班 …，晚 N 分到」、班距型寫「約 N 分一班・首末班」；拿掉 ‹ › 和班次下拉，舊的 `trip` 忽略，引擎刪掉過渡期的 `trip` 路徑。車站面板對班距型路線顯示「約 N 分一班、首末班」。
+- **快取（T29 最終審查留下的）**：`web/src/planStore.ts` 的 `buildEngineData` 每次重算都新建 `stations` 陣列（`records.filter(...)`），引擎的網路、搜尋快取認陣列，所以網站每次編輯都重建，11 天的行程約 0.7 秒（舊版約 0.05 秒）。照 `d.places` 存起來重用；加一個用網站的方式（每次新的 EngineData、同一份資料）測重算時間的測試。
+- 完成條件：`npm test`、`npm run typecheck` 通過；手機尺寸看一次交通卡和車站面板（🌐 少量）。
 
 ---
 

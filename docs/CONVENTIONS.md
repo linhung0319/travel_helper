@@ -410,6 +410,10 @@ travel_helper/
                          //   via：近鐵轉乘時的轉乘站 ID（例如 "toba"，引擎寫的）；換班次時照這個站組兩程，轉乘站不會變。沒有 via 的舊資料照第一程重新找
                          //   mode 沒寫或是 transit（舊的 train／bus／ferry）時用；起訖點和 from／to 不同（換了順序）＝當作沒選，照規則挑
                          //   等車寫在交通的 waitMinutes；趕不上那班照樣用（時間照走到車站後搭同一程算），警告 missed-trip（「趕不上 10:32 這班」）
+                         // path：選定的走法（T29） { "rides": [{ "line": "kintetsu", "from": "toba", "to": "kashikojima" }], "from": "toba", "to": "kashikojima" }
+                         //   rides：每一程的 line（近鐵 "kintetsu"、路線檔和班距型路線是它的 routeId）、from／to（網路的停靠點 ID）；from／to（外層）＝選的時候這段起訖的地點 ID
+                         //   照走法依序搭每一程最早接得上的班，不套等車、班距的規則；比 trip 優先。mode 沒寫或是 transit 而且沒填 minutes 時用
+                         //   起訖點和 from／to 不同＝當作沒選；那天沒車＝照自動算，警告 path-unavailable（「選的走法這時間沒有車，改用 …」）
                          // 舊資料的 bufferMinutes 忽略（緩衝 2026-10-25 拿掉）
   "proposedBy": ["<member id>"],   // 誰提的（建議的作者）
   "addedBy": "<member id>",

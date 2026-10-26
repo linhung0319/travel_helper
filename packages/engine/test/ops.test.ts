@@ -33,6 +33,7 @@ import {
   toMinutes,
   type Itinerary,
   type TravelSpec,
+  type PathRef,
   type TripRef,
   type VisitItem,
 } from '../src/index.ts';
@@ -463,4 +464,18 @@ test('moveOption：類型看被搬的那個選項，不是來源卡的主卡', (
   const { it, target, source } = mergeSetup();
   const mixed = addOption(it, source, { place: 's9' });
   assert.throws(() => moveOption(mixed, source, 1, target, typeOf), /只有同類型的點能合併/);
+});
+
+test('validateItinerary：path 合法不報錯，rides 的 line 是空字串要報錯', () => {
+  const path = { rides: [{ line: 'kintetsu', from: 'toba', to: 'kashikojima' }], from: 'toba', to: 'kashikojima' };
+  assert.deepEqual(validateItinerary(withTravel({ path })), []);
+  const errs = validateItinerary(withTravel({ path: { rides: [{ line: '' }], from: null, to: null } as unknown as PathRef }));
+  assert.ok(errs.some((e) => e.includes('path.rides')), errs.join('；'));
+});
+
+test('setLegTravel：只有 path 也算有設定，getLegTravel 拿得回來', () => {
+  const { it, ids: [a] } = threeItems();
+  const path = { rides: [{ line: 'kintetsu', from: 'toba', to: 'kashikojima' }], from: 'x', to: 'y' };
+  const one = setLegTravel(it, { itemId: a }, { path });
+  assert.deepEqual(getLegTravel(one, { itemId: a }), { path });
 });

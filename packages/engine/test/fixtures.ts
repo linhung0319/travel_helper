@@ -2,12 +2,12 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { placeLookup, type EngineData, type KintetsuTimes, type PlaceRecord, type RouteTimetable } from '../src/index.ts';
+import { placeLookup, type EngineData, type KintetsuTimes, type PlaceRecord, type RouteTimetable, type UrbanRoute, type UrbanTransfer } from '../src/index.ts';
 
 export const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../../..');
 const read = (p: string) => JSON.parse(fs.readFileSync(path.join(ROOT, p), 'utf8').replace(/^﻿/, ''));
 
-let cached: { places: PlaceRecord[]; stations: PlaceRecord[]; kintetsu: KintetsuTimes; routes: RouteTimetable[]; needsCar: Record<string, boolean> } | null = null;
+let cached: { places: PlaceRecord[]; stations: PlaceRecord[]; kintetsu: KintetsuTimes; routes: RouteTimetable[]; urban: UrbanRoute[]; urbanTransfers: UrbanTransfer[]; needsCar: Record<string, boolean> } | null = null;
 
 function load() {
   if (cached) return cached;
@@ -27,9 +27,16 @@ function load() {
       if (doc.stops && doc.trips) routes.push(doc);
     }
   }
+  const urban: UrbanRoute[] = [];
+  let urbanTransfers: UrbanTransfer[] = [];
+  for (const f of fs.readdirSync(path.join(ROOT, 'data/timetables/urban')).filter((x) => x.endsWith('.json'))) {
+    const doc = read(`data/timetables/urban/${f}`);
+    if (f === '_transfers.json') urbanTransfers = doc;
+    else urban.push(doc);
+  }
   const needsCar: Record<string, boolean> = {};
   for (const a of read('data/areas.json')) for (const r of a.regions ?? []) needsCar[r.id] = !!r.needsCar;
-  cached = { places, stations, kintetsu: read('data/timetables/kintetsu/_travel-times.json'), routes, needsCar };
+  cached = { places, stations, kintetsu: read('data/timetables/kintetsu/_travel-times.json'), routes, urban, urbanTransfers, needsCar };
   return cached;
 }
 
@@ -41,6 +48,8 @@ export function realData(opts: { users?: PlaceRecord[]; retired?: string[] } = {
     stations: d.stations,
     kintetsu: d.kintetsu,
     routes: d.routes,
+    urban: d.urban,
+    urbanTransfers: d.urbanTransfers,
     regionNeedsCar: d.needsCar,
   };
 }

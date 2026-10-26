@@ -39,6 +39,18 @@ export interface EngineConfig {
     allowExpress: boolean;
     /** 離島的子地區：上島、下島只能搭船 */
     islandRegions: string[];
+    /** 一段公共交通最多搭幾程（RAPTOR 的輪數） */
+    maxRides: number;
+    /** 最多給幾條走法 */
+    maxAlternatives: number;
+    /** 大阪轉乘表的 walkMin 是 null、或同站換線沒記錄時的分鐘（係數 1） */
+    urbanTransferDefault: number;
+    /** 停留所、車站之間可以當成步行轉乘的直線距離（公尺） */
+    transferMaxMeters: number;
+    /** 挑預設走法時，每多一程加的分鐘（只用來挑，不加到時間上） */
+    transferPenalty: number;
+    /** 自動選的時候，搭 2 程以上的走法比計程車晚超過這個分鐘到就不搭（計程車叫得到時）；只搭 1 程的不比 */
+    transitMaxLateVsTaxi: number;
   };
 
   taxi: {
@@ -129,6 +141,12 @@ export const DEFAULT_CONFIG: EngineConfig = {
     minTransfer: 3,
     allowExpress: true,
     islandRegions: ['toshijima', 'sugashima', 'kamishima'],
+    maxRides: 4,
+    maxAlternatives: 3,
+    urbanTransferDefault: 5,
+    transferMaxMeters: 300,
+    transferPenalty: 10,
+    transitMaxLateVsTaxi: 30,
   },
   taxi: {
     carCapacity: 4,

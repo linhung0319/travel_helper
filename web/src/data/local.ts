@@ -1,7 +1,7 @@
 // 本機的實作：build 時直接讀 data/（Vite 的 import.meta.glob）。
 // 只讀網站要用的檔案（areas/、stations.json、areas.json、時刻表），研究筆記（raw/）、cache/、derived/ 不打包。
 
-import type { KintetsuTimes, RouteTimetable } from '@travel-helper/engine';
+import type { KintetsuTimes, RouteTimetable, UrbanRoute, UrbanTransfer } from '@travel-helper/engine';
 import { normalizeAreas, normalizePlaceList } from './normalize.ts';
 import type { DataSource } from './source.ts';
 import type { StationTimetable } from './types.ts';
@@ -26,6 +26,9 @@ const routeModules = import.meta.glob<unknown>(['../../../data/timetables/bus/*.
   import: 'default',
 });
 
+// 大阪的班距型路線；_transfers.json 是轉乘表，其他是路線
+const urbanModules = import.meta.glob<unknown>('../../../data/timetables/urban/*.json', { import: 'default' });
+
 function timetableLoader(stationId: string) {
   for (const [path, load] of Object.entries(timetableModules)) {
     if (path.endsWith(`/${stationId}.json`)) return load;
@@ -48,11 +51,14 @@ export const localSource: DataSource = {
     return content && typeof content === 'object' && 'directions' in content ? content : null;
   },
   async loadEngineTimetables() {
-    const [kintetsu, ...routes] = await Promise.all([
+    const [kintetsu, routes, urbanDocs] = await Promise.all([
       Object.values(kintetsuTimesModule)[0]?.() ?? Promise.resolve(null),
-      ...Object.values(routeModules).map((load) => load()),
+      Promise.all(Object.values(routeModules).map((load) => load())),
+      Promise.all(Object.entries(urbanModules).map(async ([p, load]) => ({ isTransfers: p.endsWith('/_transfers.json'), doc: await load() }))),
     ]);
     return {
+      urban: urbanDocs.filter((u) => !u.isTransfers).map((u) => u.doc as UrbanRoute),
+      urbanTransfers: urbanDocs.filter((u) => u.isTransfers).flatMap((u) => u.doc as UrbanTransfer[]),
       kintetsu: (kintetsu as KintetsuTimes | null) ?? null,
       routes: routes.filter((r): r is RouteTimetable => !!r && typeof r === 'object' && 'stops' in r && 'trips' in r),
     };

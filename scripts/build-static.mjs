@@ -13,6 +13,8 @@
 //   timetables/jr/<車站或路線>.json、bus/<路線>.json、ferry/<路線>.json   照原樣，一個路線一個檔案
 //   timetables/index.json                          每個檔案有什麼：車站、路線名、停留所（給地圖、找附近的班次），
 //                                                  以及 byPlace：資料點 ID → 附近有停的路線（停留所的 near）
+//   timetables/urban/<路線>.json、_transfers.json  大阪的班距型路線和轉乘表，照原樣；index.json 的 urban 列路線：
+//                                                  [{ id, name, mode, stops: 站 ID[], file }]
 //   manifest.json                                  產生時間、git commit、每個檔案的 sha256（前 12 碼，快取用）
 //
 // 用到時才載入：網站先讀 manifest.json、timetables/index.json，選了車站或路線再載入那一個檔案。
@@ -83,7 +85,7 @@ export function build({ data, out }) {
   for (const f of ['areas.json', 'passes.json']) if (fs.existsSync(path.join(data, f))) put(f, readJson(path.join(data, f)));
   for (const f of jsonFiles(path.join(data, 'access'))) put(`access/${f}`, readJson(path.join(data, 'access', f)));
 
-  const index = { kintetsu: [], jr: [], routes: [], byPlace: {} };
+  const index = { kintetsu: [], jr: [], routes: [], urban: [], byPlace: {} };
 
   const kdir = path.join(data, 'timetables/kintetsu');
   const tt = fs.existsSync(path.join(kdir, '_travel-times.json')) ? readJson(path.join(kdir, '_travel-times.json')) : null;
@@ -117,6 +119,14 @@ export function build({ data, out }) {
         }
       }
     }
+  }
+  // 班距型路線（大阪）：_transfers.json 照原樣輸出，不列進 index.urban
+  for (const f of jsonFiles(path.join(data, 'timetables/urban'))) {
+    const doc = readJson(path.join(data, 'timetables/urban', f));
+    const rel = `timetables/urban/${f}`;
+    put(rel, doc);
+    if (f.startsWith('_')) continue;
+    index.urban.push({ id: doc.id, name: doc.name?.ja ?? null, mode: doc.mode, stops: (doc.stops ?? []).map((s) => s.id), file: rel });
   }
   for (const list of Object.values(index.byPlace)) list.sort((a, b) => a.meters - b.meters);
   put('timetables/index.json', index);
