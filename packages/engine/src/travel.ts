@@ -13,7 +13,7 @@ import { anyTrainThatDay, departuresFrom, directTrains, earliestTrain, routeRide
 import { fromMinutes, kintetsuDayType, toMinutes } from './time.ts';
 import type { DateString, EngineWarning, Leg, LegAlternative, LegTransfer, LonLat, PartyProfile, PathRef, TaxiInfo, TimeString, TransitRide, TravelMode, TravelSpec, TripRef } from './types.ts';
 import { buildNetwork, KINTETSU, routeFare, type Network } from './raptor/network.ts';
-import { earliestRide, indexOf, searchJourneys, type Access, type Journey, type JourneyRide, type SearchQuery } from './raptor/search.ts';
+import { egressSet, nextDeparture, searchJourneys, type Access, type Journey, type JourneyRide, type SearchQuery } from './raptor/search.ts';
 import { evaluatePath, ifMissed, pathOf } from './raptor/path.ts';
 
 export interface Endpoint {
@@ -327,8 +327,15 @@ function legacySearchTransit(a: Endpoint, b: Endpoint, ctx: LegContext, factor: 
 
 // --- RAPTOR（T29，spec §6.2～§6.4） --------------------------------------------
 
-// 同一個網路、同一個端點、同樣的係數只找一次上下車點（每段交通要查好幾次）
-const accessMemo = new WeakMap<Network, Map<string, Access[]>>();
+// 同一個網路、同一個端點、同樣的係數只找一次上下車點（每段交通要查好幾次）。
+// 步行分鐘用到 getPlace（車站的 anchors）、walkMeters（OSRM 快取），這兩個函式換了（網站每次編輯都建新的 EngineData）就重找；
+// 端點的資料（e.record）換了也重找
+interface AccessMemo {
+  getPlace: EngineData['getPlace'];
+  walkMeters: EngineData['walkMeters'];
+  byKey: Map<string, { record: PlaceRecord | null; out: Access[] }>;
+}
+const accessMemo = new WeakMap<Network, AccessMemo>();
 
 /** 路線檔的停留所在網路裡的 ID（照 network.ts：加路線 ID 當前綴；JR 的停留所 ID 是車站 ID 的照用） */
 const netStopId = (net: Network, doc: RouteTimetable, stop: string) => (doc.mode === 'jr' && net.stops.get(stop)?.stationId ? stop : `${doc.id}/${stop}`);
@@ -343,10 +350,14 @@ function accessStops(e: Endpoint, ctx: LegContext, factor: number, net: Network)
   const { cfg } = ctx;
   const max = legWalkMax(ctx.whole, cfg);
   const key = [e.id ?? '', e.coords?.join(',') ?? '', factor, max, cfg.walk.accessMaxMeters, cfg.walk.metersPerMinute, cfg.walk.detourFactor].join('|');
-  let byKey = accessMemo.get(net);
-  if (!byKey) accessMemo.set(net, (byKey = new Map()));
-  let out = byKey.get(key);
-  if (!out) byKey.set(key, (out = findAccess(e, ctx, factor, net, max)));
+  let m = accessMemo.get(net);
+  if (!m || m.getPlace !== ctx.data.getPlace || m.walkMeters !== ctx.data.walkMeters) {
+    accessMemo.set(net, (m = { getPlace: ctx.data.getPlace, walkMeters: ctx.data.walkMeters, byKey: new Map() }));
+  }
+  const hit = m.byKey.get(key);
+  if (hit && hit.record === e.record) return hit.out;
+  const out = findAccess(e, ctx, factor, net, max);
+  m.byKey.set(key, { record: e.record, out });
   return out;
 }
 
@@ -439,7 +450,7 @@ function raptorCandidates(
   if (!base) return { cands: [], missedLast: false };
   const q = only ? { ...base, exclude: groupsNot(net, only) } : base;
   const js = searchJourneys(net, q, ctx.cfg);
-  const cands = byDefault(js, ctx.cfg).map((j) => journeyCandidate(j, net, departMinutes, ctx, factor));
+  const cands = byDefault(js, ctx.cfg).map((j) => journeyCandidate(j, net, departMinutes, ctx, factor, q.targets));
   const missedLast = !cands.length && searchJourneys(net, { ...q, depart: 0 }, ctx.cfg).length > 0;
   return { cands, missedLast };
 }
@@ -451,13 +462,15 @@ function groupsNot(net: Network, mode: 'train' | 'bus' | 'ferry'): string[] {
   return [...out];
 }
 
-/** 最多再找幾次（只在預設那幾條都不合規則時才找） */
+/** 最多再找幾次（只在預設那幾條都不合規則時才找）：每個上車點各一次、不搭某條線的各自算 */
 const FALLBACK_MAX = 12;
+const EXCLUDE_MAX = 6;
 
 /**
  * 預設那幾條都不合規則（ok）時再找別的：RAPTOR 每種程數只給最早到的一條，舊的寫法每對上下車點、每個路線檔各有候選，
  * 晚一點到但等得短的會被蓋掉（例如最近那站要等 40 分、遠一點那站或另一條線只要等 10 分）。
- * 1. 每個上車點各找一次；2. 不搭不合規則那條的第一程那條線（group），最多 FALLBACK_MAX 次。
+ * 1. 每個上車點各找一次（最多 FALLBACK_MAX 次）；2. 不搭不合規則那條的第一程那條線（group），至少 EXCLUDE_MAX 次
+ *（分開算：上車點多的時候（例如伊勢市駅前一帶 10 幾個停留所），第 1 步會用完次數，不搭那條線就沒機會找）。
  * 回傳第一條合規則的（依 pickDefault 的值）和找到的所有走法
  */
 function fallbackCandidates(a: Endpoint, b: Endpoint, ctx: LegContext, factor: number, tried: readonly Candidate[], ok: (c: Candidate) => boolean): { chosen: Candidate | null; cands: Candidate[] } {
@@ -473,7 +486,7 @@ function fallbackCandidates(a: Endpoint, b: Endpoint, ctx: LegContext, factor: n
     runs++;
     const found = byDefault(searchJourneys(net, sub, ctx.cfg), ctx.cfg)
       .filter((j) => !seen.has(sig(j)))
-      .map((j) => (seen.add(sig(j)), journeyCandidate(j, net, ctx.depart, ctx, factor)));
+      .map((j) => (seen.add(sig(j)), journeyCandidate(j, net, ctx.depart, ctx, factor, q.targets)));
     all.push(...found);
     return found.find(ok) ?? null;
   };
@@ -487,7 +500,9 @@ function fallbackCandidates(a: Endpoint, b: Endpoint, ctx: LegContext, factor: n
     if (hit) return { chosen: hit, cands: pick() };
   }
   const exclude: string[] = [];
-  while (runs < FALLBACK_MAX) {
+  // 第 1 步沒用完的次數也給第 2 步，至少 EXCLUDE_MAX 次
+  const budget = Math.max(EXCLUDE_MAX, FALLBACK_MAX - runs);
+  for (let n = 0; n < budget; n++) {
     // 不合規則、依 pickDefault 最前面那條的第一程那條線
     const bad = pick().find((c) => !ok(c) && c.journey && !exclude.includes(c.journey.rides[0].route.group));
     if (!bad?.journey) break;
@@ -511,13 +526,13 @@ function placeName(id: string, net: Network, data: EngineData): string {
   return name?.zh ?? name?.ja ?? net.stops.get(id)?.name ?? id;
 }
 
-// 路線檔的 ID → 檔案（每份資料整理一次）
-const docsMemo = new WeakMap<EngineData, Map<string, RouteTimetable>>();
+// 路線檔的 ID → 檔案（每份路線檔整理一次）
+const docsMemo = new WeakMap<readonly RouteTimetable[], Map<string, RouteTimetable>>();
 
 function routeDoc(data: EngineData, id: string | null): RouteTimetable | null {
-  if (id == null) return null;
-  let m = docsMemo.get(data);
-  if (!m) docsMemo.set(data, (m = new Map((data.routes ?? []).map((d) => [d.id, d]))));
+  if (id == null || !data.routes) return null;
+  let m = docsMemo.get(data.routes);
+  if (!m) docsMemo.set(data.routes, (m = new Map(data.routes.map((d) => [d.id, d]))));
   return m.get(id) ?? null;
 }
 
@@ -576,8 +591,11 @@ function legTransfer(walk: number, t: UrbanTransfer | null, factor: number): Leg
   };
 }
 
-/** RAPTOR 的走法 → 候選。只有舊的 tripLeg 解讀得了的（近鐵 1～2 程同站轉乘、單一路線檔 1 程）才帶 pair／trains、legacy */
-function journeyCandidate(j: Journey, net: Network, departMinutes: number, ctx: LegContext, factor: number): Candidate {
+/**
+ * RAPTOR 的走法 → 候選。只有舊的 tripLeg 解讀得了的（近鐵 1～2 程同站轉乘、單一路線檔 1 程）才帶 pair／trains、legacy。
+ * targets：搜尋的下車點（巴士班距用）
+ */
+function journeyCandidate(j: Journey, net: Network, departMinutes: number, ctx: LegContext, factor: number, targets: readonly Access[]): Candidate {
   const { data, cfg } = ctx;
   const first = j.rides[0];
   const ferry = j.rides.some((r) => r.route.kind === 'timetable' && r.route.mode === 'ferry');
@@ -586,11 +604,13 @@ function journeyCandidate(j: Journey, net: Network, departMinutes: number, ctx: 
   const egress = j.target.walk;
   const transfers = j.transfers.map((t) => legTransfer(t.walk, t.transfer, factor));
   const ready = j.rides.map((_, i) => (i === 0 ? departMinutes + access : j.rides[i - 1].arr + Math.max(cfg.transit.minTransfer, transfers[i - 1].walkMinutes)));
-  // 第一程是巴士：同一對站下一班的發車差（不是 1 小時以上才一班才搭）；班距型用班距
+  // 第一程是巴士：同一條路線、同一個上車停留所、到得了任一個下車點（或這程的下車點）的下一班的發車差
+  // （照舊的 routeCandidates；不是 1 小時以上才一班才搭）；班距型用班距
   let headway: number | null = null;
   if (first.route.kind === 'timetable' && first.route.mode === 'bus') {
-    const next = earliestRide(net, indexOf(net), first.route.group, first.from, first.to, first.dep, ctx.whole, first.dep);
-    headway = next ? next.dep - first.dep : null;
+    const alight = egressSet(net, targets).add(first.to);
+    const next = nextDeparture(net, first.route.group, first.from, first.dep, alight);
+    headway = next != null ? next - first.dep : null;
   } else if (first.headway) {
     headway = first.headway.min;
   }
@@ -657,6 +677,25 @@ function summaryOf(j: Journey, net: Network, data: EngineData): string {
 
 /** 這段的步行：走到上車點＋下車走到終點＋所有轉乘步行（spec §6.4） */
 const totalWalk = (c: Candidate) => c.access + c.egress + (c.transfers ?? []).reduce((s, t) => s + t.walkMinutes, 0);
+
+/**
+ * 給畫面的候選走法：c 放第一個，其他照 alts 的順序；同一條走法（每一程的線、上下車點一樣，pathOf）、
+ * 摘要一樣的只留前面那條（例如 pathLeg 選的那條，raptorCandidates 又找到一次；不同上車點搭同一條線），最多 maxAlternatives 條
+ */
+function distinctAlternatives(c: Candidate, alts: readonly Candidate[], ctx: LegContext): Candidate[] {
+  const out: Candidate[] = [];
+  const seen = new Set<string>();
+  for (const x of [c, ...alts]) {
+    const { journey: j, net } = x;
+    if (!j || !net) continue;
+    const keys = [pathOf(j).map((r) => `${r.line}:${r.from}:${r.to}`).join('|'), `summary:${summaryOf(j, net, ctx.data)}`];
+    if (keys.some((k) => seen.has(k))) continue;
+    for (const k of keys) seen.add(k);
+    out.push(x);
+    if (out.length >= ctx.cfg.transit.maxAlternatives) break;
+  }
+  return out;
+}
 
 function alternativeOf(c: Candidate, rides: TransitRide[], a: Endpoint, b: Endpoint, ctx: LegContext): LegAlternative | null {
   const { journey: j, net } = c;
@@ -822,12 +861,7 @@ function fromCandidate(c: Candidate, a: Endpoint, b: Endpoint, ctx: LegContext, 
   // 轉乘步行不受單段步行上限管（站內轉乘躲不掉），超過時提醒
   for (const t of transfers) if (t.walkMinutes > max) warnings.push({ code: 'transfer-walk', level: 'info', message: `轉乘要走 ${t.walkMinutes} 分` });
   const rides = withMissed(c, ctx, factor);
-  const alternatives = c.journey
-    ? [c, ...alts.filter((x) => x !== c)]
-        .slice(0, ctx.cfg.transit.maxAlternatives)
-        .map((x) => alternativeOf(x, x === c ? rides : withMissed(x, ctx, factor), a, b, ctx))
-        .filter((x): x is LegAlternative => !!x)
-    : undefined;
+  const alternatives = c.journey ? distinctAlternatives(c, alts, ctx).map((x) => alternativeOf(x, x === c ? rides : withMissed(x, ctx, factor), a, b, ctx) as LegAlternative) : undefined;
   return leg(
     {
       mode: c.mode,
@@ -921,14 +955,15 @@ function pathLeg(a: Endpoint, b: Endpoint, ctx: LegContext, path: PathRef, facto
   const net = buildNetwork(ctx.data, ctx.cfg, ctx.date);
   const q = { whole: ctx.whole, factor };
   let j: Journey | null = null;
+  const targets = accessStops(b, ctx, factor, net);
   for (const o of accessStops(a, ctx, factor, net)) {
-    for (const t of accessStops(b, ctx, factor, net)) {
+    for (const t of targets) {
       const x = evaluatePath(net, path.rides, o, t, ctx.depart, q, ctx.cfg);
       if (x && (!j || x.arr < j.arr)) j = x;
     }
   }
   if (!j) return null;
-  const c = journeyCandidate(j, net, ctx.depart, ctx, factor);
+  const c = journeyCandidate(j, net, ctx.depart, ctx, factor, targets);
   busCrowd(c, ctx, warnings);
   return fromCandidate(c, a, b, ctx, factor, warnings, raptorCandidates(a, b, ctx, factor, ctx.depart).cands);
 }
@@ -995,13 +1030,29 @@ function autoLeg(a: Endpoint, b: Endpoint, ctx: LegContext, walk: { minutes: num
   // 中間轉乘的等車不另外設限；預設那條不合規則時，照 pickDefault 的順序看下一條
   const walkArrive = ctx.depart + round(walk.minutes);
   const firstBus = (c: Candidate) => c.rides[0]?.mode === 'bus';
+  // 太遠不能搭計程車（例如伊勢市 → 大阪，特急一小時一班）：不合等車規則也照樣搭，不當成「找不到交通」
+  const tooFar = !isLonLat(a.coords) || !isLonLat(b.coords) || haversineMeters(a.coords, b.coords) / 1000 > cfg.taxi.maxKm;
+  // 計程車叫得到時，計程車幾點到（要用到才算）：搭 2 程以上的走法比它晚超過 transitMaxLateVsTaxi 分就不搭
+  // （例如志摩的鄉下巴士 → 特急 → 巴士 14:33 才到，計程車 12:03 就到）；只搭 1 程的照舊不比，直達的電車、巴士不受影響。
+  // 只比鄉下（每一程都是時刻表的）：含班距型那程的是大阪市內，照 spec §6.3 先搭地鐵、環狀線，不和計程車比
+  let taxiArrive: number | null | undefined;
+  const taxiAt = () => {
+    if (taxiArrive === undefined) taxiArrive = tooFar ? null : ctx.depart + round(drive(a.coords as LonLat, b.coords as LonLat, ctx).minutes);
+    return taxiArrive;
+  };
+  const lateVsTaxi = (c: Candidate) => {
+    if (c.rides.length < 2 || c.rides.some((r) => r.kind === 'headway')) return 0;
+    const t = taxiAt();
+    return t == null ? 0 : c.arrive - t;
+  };
   const ok = (c: Candidate) => {
     const wait = c.ruleWait ?? c.wait;
     return (
       c.arrive < walkArrive &&
       (firstBus(c)
         ? wait <= cfg.transit.busMaxWait && c.headway != null && c.headway < cfg.transit.busMinHeadwayInfrequent
-        : wait <= cfg.transit.trainMaxWait)
+        : wait <= cfg.transit.trainMaxWait) &&
+      lateVsTaxi(c) <= cfg.transit.transitMaxLateVsTaxi
     );
   };
   let chosen = found.cands.find(ok) ?? null;
@@ -1017,17 +1068,22 @@ function autoLeg(a: Endpoint, b: Endpoint, ctx: LegContext, walk: { minutes: num
 
   // 有車但不合規則：寫進理由
   const rejected = found.cands.find((c) => c.arrive < walkArrive) ?? null;
-  // 太遠不能搭計程車（例如伊勢市 → 大阪，特急一小時一班）：不合等車規則也照樣搭，不當成「找不到交通」
-  const tooFar = !isLonLat(a.coords) || !isLonLat(b.coords) || haversineMeters(a.coords, b.coords) / 1000 > cfg.taxi.maxKm;
   if (rejected && tooFar) {
     busCrowd(rejected, ctx, warnings);
     warnings.push({ code: 'long-wait', level: 'info', message: `等${name(rejected)} ${rejected.wait} 分（太遠，不能改搭計程車）` });
     return fromCandidate(rejected, a, b, ctx, factor, warnings, found.cands);
   }
   if (rejected) {
-    const why =
-      firstBus(rejected) && rejected.wait <= cfg.transit.busMaxWait ? '1 小時以上才一班' : `要等 ${rejected.wait} 分`;
-    warnings.push({ code: firstBus(rejected) ? 'bus-infrequent' : 'long-wait', level: 'info', message: `${name(rejected)}${why}，改搭計程車` });
+    const wait = rejected.ruleWait ?? rejected.wait;
+    const waitOk = firstBus(rejected) ? wait <= cfg.transit.busMaxWait : wait <= cfg.transit.trainMaxWait;
+    const headwayOk = !firstBus(rejected) || (rejected.headway != null && rejected.headway < cfg.transit.busMinHeadwayInfrequent);
+    const late = lateVsTaxi(rejected);
+    if (waitOk && headwayOk && late > cfg.transit.transitMaxLateVsTaxi) {
+      warnings.push({ code: 'transit-slow', level: 'info', message: `${name(rejected)}要轉 ${rejected.rides.length - 1} 次、比計程車晚 ${late} 分到，改搭計程車` });
+    } else {
+      const why = firstBus(rejected) && wait <= cfg.transit.busMaxWait ? '1 小時以上才一班' : `要等 ${rejected.wait} 分`;
+      warnings.push({ code: firstBus(rejected) ? 'bus-infrequent' : 'long-wait', level: 'info', message: `${name(rejected)}${why}，改搭計程車` });
+    }
   }
   if (found.missedLast) {
     warnings.push({ code: 'missed-last', level: 'warning', message: '這個時間以後沒有電車或巴士了（錯過末班車），改搭計程車' });

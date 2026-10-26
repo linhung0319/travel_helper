@@ -4,8 +4,8 @@
 import type { EngineConfig } from '../config.ts';
 import type { PathRide } from '../types.ts';
 import { toMinutes } from '../time.ts';
-import { KINTETSU, type Footpath, type Network } from './network.ts';
-import { earliestRide, indexOf, type Access, type Indexed, type Journey, type JourneyRide, type JourneyTransfer } from './search.ts';
+import { KINTETSU, pickFootpath, type Footpath, type Network } from './network.ts';
+import { earliestRide, indexOf, laterDeparture, type Access, type Indexed, type Journey, type JourneyRide, type JourneyTransfer } from './search.ts';
 
 export function pathOf(j: Journey): PathRide[] {
   return j.rides.map((r) => ({ line: r.route.group, from: r.from, to: r.to }));
@@ -19,11 +19,9 @@ interface Ctx {
   minTransfer: number;
 }
 
-/** from → to 的 footpath（同一對站有好幾筆時取最短的） */
-function footpath(net: Network, from: string, to: string): Footpath | null {
-  let best: Footpath | null = null;
-  for (const fp of net.footpaths.get(from) ?? []) if (fp.to === to && (!best || fp.walk < best.walk)) best = fp;
-  return best;
+/** from → to 的 footpath：合下車那條線（fromGroup）、要上的線（toGroup）的最短的；null 是起點走過去、下車走到終點（同 search.ts） */
+function footpath(net: Network, from: string, to: string, fromGroup: string | null, toGroup: string | null): Footpath | null {
+  return pickFootpath(net.footpaths.get(from), to, fromGroup, toGroup);
 }
 
 /** 上一程下車到這一程上車：可以上車的時刻、步行；站不同又沒有 footpath 回傳 null */
@@ -35,7 +33,7 @@ function connect(c: Ctx, prev: JourneyRide, p: PathRide): { ready: number; trans
     const walk = g === p.line ? 0 : Math.ceil(Math.max(c.minTransfer, ch.walk * c.factor));
     return { ready: prev.arr + Math.max(c.minTransfer, walk), transfer: { walk, transfer: g === p.line ? null : ch.transfer } };
   }
-  const fp = footpath(c.net, prev.to, p.from);
+  const fp = footpath(c.net, prev.to, p.from, prev.route.group, p.line);
   if (!fp) return null;
   const walk = Math.max(c.minTransfer, Math.ceil(fp.walk * c.factor));
   return { ready: prev.arr + walk, transfer: { walk, transfer: fp.transfer } };
@@ -63,7 +61,8 @@ function finish(c: Ctx, rides: JourneyRide[], transfers: JourneyTransfer[], rest
   const last = rides[rides.length - 1];
   let end = target;
   if (last.to !== target.stop) {
-    const fp = footpath(c.net, last.to, target.stop);
+    // 下車走到終點：和 search.ts 的 egress 一樣不看線，取最短的
+    const fp = footpath(c.net, last.to, target.stop, null, null);
     if (!fp) return null;
     end = { stop: last.to, walk: target.walk + Math.ceil(fp.walk * c.factor) };
   }
@@ -85,13 +84,15 @@ export function evaluatePath(
   // 第一程的上車點和起點不同：起點先走一段 footpath（步行算在 origin，不套 minTransfer）
   let start = origin;
   if (rides[0].from !== origin.stop) {
-    const fp = footpath(net, origin.stop, rides[0].from);
+    const fp = footpath(net, origin.stop, rides[0].from, null, rides[0].line);
     if (!fp) return null;
     start = { stop: rides[0].from, walk: origin.walk + Math.ceil(fp.walk * q.factor) };
   }
   const first = board(c, rides[0], depart + start.walk);
   if (!first) return null;
-  return finish(c, [first], [], rides.slice(1), start, target);
+  const j = finish(c, [first], [], rides.slice(1), start, target);
+  // 到達一樣時往後挪發車（和搜尋一樣，search.ts 的 laterDeparture），選了畫面上的走法不會變成早一班
+  return j && laterDeparture(net, c.ix, j, c.minTransfer, q.whole);
 }
 
 /**

@@ -406,3 +406,77 @@ test('ifMissed：當天末班錯過回傳 null', () => {
   assert.equal(ifMissed(net, j, 0, q1, DEFAULT_CONFIG), null);
   assert.equal(ifMissed(net, j, 5, q1, DEFAULT_CONFIG), null);
 });
+
+// --- 最終審查的修正 -----------------------------------------------------------
+
+test('buildNetwork：新的 EngineData（{ ...data }）陣列一樣照樣用快取，陣列換了才重建', () => {
+  const d = realData();
+  const net = buildNetwork(d, DEFAULT_CONFIG, '2027-02-12');
+  // 網站每次編輯都建新的 EngineData，getPlace、walkMeters 也是新的函式
+  assert.equal(buildNetwork({ ...d, getPlace: (id) => d.getPlace(id), walkMeters: () => null }, DEFAULT_CONFIG, '2027-02-12'), net);
+  assert.equal(buildNetwork(realData(), DEFAULT_CONFIG, '2027-02-12'), net);
+  assert.notEqual(buildNetwork({ ...d, urbanTransfers: [...(d.urbanTransfers ?? [])] }, DEFAULT_CONFIG, '2027-02-12'), net);
+  assert.notEqual(buildNetwork({ ...d, routes: [...(d.routes ?? [])] }, DEFAULT_CONFIG, '2027-02-12'), net);
+});
+
+test('buildNetwork：路線檔有指定日期的班次時網路分日期（掃路線檔的結果有快取，照樣分得出來）', () => {
+  const d = realData();
+  const doc = d.routes?.[0];
+  assert.ok(doc);
+  const trips = doc.trips.weekday ?? [];
+  assert.ok(trips.length);
+  // 第一班只在 2/3 開
+  const dated = { ...doc, trips: { ...doc.trips, weekday: [{ ...trips[0], dates: ['2027-02-03'] }, ...trips.slice(1)] } };
+  const data = { ...d, routes: [dated, ...(d.routes ?? []).slice(1)] };
+  const has = (date: string) => buildNetwork(data, DEFAULT_CONFIG, date).routes.some((r) => r.kind === 'timetable' && r.trips.some((t) => t.tripId === trips[0].id));
+  assert.equal(has('2027-02-03'), true);
+  assert.equal(has('2027-02-04'), false);
+  assert.equal(has('2027-02-03'), true);
+});
+
+test('footpath 照線挑：JR 天王寺 → 地鐵天王寺，換御堂筋線 5 分、谷町線 7 分（搜尋、照走法都一樣）', () => {
+  const net = buildNetwork(realData(), DEFAULT_CONFIG, '2027-02-12');
+  const tani = [
+    { line: 'jr-osaka-loop', from: 'jr-tsuruhashi', to: 'jr-tennoji' },
+    { line: 'metro-tanimachi', from: 'metro-tennoji', to: 'metro-shitennojimae-yuhigaoka' },
+  ];
+  const a = evaluatePath(net, tani, { stop: 'jr-tsuruhashi', walk: 0 }, { stop: 'metro-shitennojimae-yuhigaoka', walk: 0 }, 600, q1, DEFAULT_CONFIG);
+  assert.ok(a);
+  assert.equal(a.transfers[0].walk, Math.ceil(7 * 1.4));
+  assert.equal(a.transfers[0].transfer?.toLine, 'metro-tanimachi');
+  const mido = [tani[0], { line: 'metro-midosuji', from: 'metro-tennoji', to: 'metro-dobutsuen-mae' }];
+  const b = evaluatePath(net, mido, { stop: 'jr-tsuruhashi', walk: 0 }, { stop: 'metro-dobutsuen-mae', walk: 0 }, 600, q1, DEFAULT_CONFIG);
+  assert.ok(b);
+  assert.equal(b.transfers[0].walk, Math.ceil(5 * 1.4));
+  assert.equal(b.transfers[0].transfer?.toLine, 'metro-midosuji');
+  // 搜尋：坐環狀線到天王寺、走到地鐵天王寺換谷町線的那條，轉乘也是 7 分那筆
+  const js = searchJourneys(net, q0('jr-tsuruhashi', 'metro-shitennojimae-yuhigaoka', 600, { exclude: ['kintetsu', 'kintetsu-namba-osaka'] }), DEFAULT_CONFIG);
+  const j = js.find((x) => x.rides.some((r) => r.to === 'jr-tennoji') && x.rides.some((r) => r.from === 'metro-tennoji'));
+  assert.ok(j, js.map((x) => pathOf(x).map((r) => `${r.line}:${r.from}>${r.to}`).join(' ')).join(' | '));
+  const i = j.rides.findIndex((r) => r.from === 'metro-tennoji');
+  assert.equal(j.rides[i].route.group, 'metro-tanimachi');
+  assert.equal(j.transfers[i - 1].walk, Math.ceil(7 * 1.4));
+  assert.equal(j.transfers[i - 1].transfer?.toLine, 'metro-tanimachi');
+  // 照走法重算和搜尋一樣
+  const again = evaluatePath(net, pathOf(j), j.origin, j.target, 600, q1, DEFAULT_CONFIG);
+  assert.equal(again?.arr, j.arr);
+  assert.deepEqual(again?.transfers, j.transfers);
+});
+
+test('footpath 的線只用來挑，不擋：近鐵特急到大阪難波，照樣走到地鐵なんば（轉乘表記的是近鐵難波線）', () => {
+  const net = buildNetwork(realData(), DEFAULT_CONFIG, '2027-02-12');
+  const path = [{ line: 'kintetsu', from: 'ujiyamada', to: 'osaka-namba' }, { line: 'metro-midosuji', from: 'metro-namba', to: 'metro-shinsaibashi' }];
+  const j = evaluatePath(net, path, { stop: 'ujiyamada', walk: 0 }, { stop: 'metro-shinsaibashi', walk: 0 }, 600, q1, DEFAULT_CONFIG);
+  assert.ok(j);
+  assert.equal(j.transfers[0].walk, Math.ceil(5 * 1.4));
+});
+
+test('evaluatePath 和搜尋一樣往後挪：到達一樣取晚出發的班（選畫面上的走法不會變成早一班）', () => {
+  const net = buildNetwork(realData(), DEFAULT_CONFIG, '2027-02-11');
+  // 五十鈴川 → 鳥羽 → 中之郷：早一班的特急到鳥羽也是接同一班巴士
+  const j = searchJourneys(net, q0('isuzugawa', 'nakanogo', 700), DEFAULT_CONFIG).find((x) => x.rides.length === 2);
+  assert.ok(j);
+  const again = evaluatePath(net, pathOf(j), { stop: 'isuzugawa', walk: 0 }, { stop: 'nakanogo', walk: 0 }, 700, q1, DEFAULT_CONFIG);
+  assert.ok(again);
+  assert.deepEqual(again.rides.map((r) => [r.dep, r.arr]), j.rides.map((r) => [r.dep, r.arr]));
+});

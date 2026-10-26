@@ -6,7 +6,7 @@ import type { EngineConfig } from '../config.ts';
 import type { UrbanTransfer } from '../data.ts';
 import type { TimeString } from '../types.ts';
 import { toMinutes } from '../time.ts';
-import { headwayWait, KINTETSU, type Footpath, type HeadwayRoute, type Network, type NetRoute, type TimedTrip } from './network.ts';
+import { headwayWait, KINTETSU, lineFits, pickFootpath, type Footpath, type HeadwayRoute, type Network, type NetRoute, type TimedTrip } from './network.ts';
 
 /** 上下車點和走到那裡的分鐘（已套係數、已進位） */
 export interface Access {
@@ -302,7 +302,7 @@ function search(net: Network, q: SearchQuery, cfg: EngineConfig): Journey[] {
     let fromRide = 0;
     let readyLeave = 0;
     const ready = (p: number, group: string): number => {
-      let t = prev.foot[p];
+      let t = footTo(net, ix, rounds, k - 1, p, group, f, minTransfer).t;
       fromRide = 0;
       readyLeave = prev.fLeave[p];
       if (prev.ride[p] < Infinity) {
@@ -396,7 +396,10 @@ function search(net: Network, q: SearchQuery, cfg: EngineConfig): Journey[] {
 
     // footpath：到達＋係數後的步行（坐車之後的轉乘至少 minTransfer）
     for (const s of rideMarked) {
+      const g = routes[cur.rRoute[s]].group;
       for (const { to, fp } of ix.out[s]) {
+        // 同一對站有好幾筆（轉乘表照線記的）：只用合下車那條線的（pickFootpath；都不合的照樣用）
+        if (!lineFits(fp.fromLine, g) && pickFootpath(net.footpaths.get(ix.ids[s]), fp.to, g, null) !== fp) continue;
         const at = cur.ride[s] + Math.max(minTransfer, walkOf(fp));
         const tie = at === cur.foot[to] && cur.rLeave[s] > cur.fLeave[to];
         if (at >= bestFoot[to] && !tie) continue;
@@ -425,6 +428,24 @@ function search(net: Network, q: SearchQuery, cfg: EngineConfig): Journey[] {
   }
   // 程數越多到得越早；依到達排序
   return results.reverse();
+}
+
+/**
+ * 第 r 輪走 footpath 到 p、要上 group 的車的時刻和用的那筆 footpath（沒走 footpath 的是 null）。
+ * 標記記的那筆限定要上別條線的（toLine，例如 JR 天王寺 → 地鐵天王寺的御堂筋線 5 分），從同一個起點改用合的那筆再算（谷町線 7 分）；
+ * （pickFootpath；都不合的用最短的那筆）
+ */
+function footTo(net: Network, ix: Indexed, rounds: Round[], r: number, p: number, group: string, factor: number, minTransfer: number): { t: number; fp: Footpath | null } {
+  const R = rounds[r];
+  const fp = R.fFp[p];
+  if (!fp || lineFits(fp.toLine, group)) return { t: R.foot[p], fp };
+  const src = R.fFrom[p];
+  if (src < 0) return { t: Infinity, fp: null };
+  // 第 0 輪是從起點走過去（沒有下車的線、不套 minTransfer）
+  const alt = pickFootpath(net.footpaths.get(ix.ids[src]), ix.ids[p], r === 0 ? null : net.routes[R.rRoute[src]].group, group);
+  if (!alt) return { t: R.foot[p], fp };
+  const w = Math.ceil(alt.walk * factor);
+  return { t: r === 0 ? R.foot[src] + w : R.ride[src] + Math.max(minTransfer, w), fp: alt };
 }
 
 function headwayOf(route: HeadwayRoute, min: number): JourneyRide['headway'] {
@@ -457,11 +478,11 @@ function rebuild(net: Network, ix: Indexed, rounds: Round[], k: number, s: numbe
       transfers.unshift(g === route.group ? { walk: 0, transfer: null } : { walk: Math.ceil(Math.max(minTransfer, c.walk * q.factor)), transfer: c.transfer });
       stop = board;
     } else if (r > 1) {
-      const fp = P.fFp[board] as Footpath;
+      const fp = footTo(net, ix, rounds, r - 1, board, route.group, q.factor, minTransfer).fp as Footpath;
       transfers.unshift({ walk: Math.max(minTransfer, Math.ceil(fp.walk * q.factor)), transfer: fp.transfer });
       stop = P.fFrom[board];
     } else {
-      origin = { stop: ix.ids[board], walk: P.foot[board] - q.depart };
+      origin = { stop: ix.ids[board], walk: footTo(net, ix, rounds, 0, board, route.group, q.factor, minTransfer).t - q.depart };
     }
   }
   const last = rides[rides.length - 1];
@@ -506,11 +527,63 @@ export function earliestRide(net: Network, ix: Indexed, group: string, from: str
   return best;
 }
 
+/** 下車點（targets）和走一段 footpath 就到下車點的停靠點（和 search 的 egress 一樣） */
+export function egressSet(net: Network, targets: readonly Access[]): Set<string> {
+  const out = new Set<string>();
+  const ix = indexOf(net);
+  for (const a of targets) {
+    out.add(a.stop);
+    const s = ix.idx.get(a.stop);
+    if (s != null) for (const { from } of ix.into[s]) out.add(ix.ids[from]);
+  }
+  return out;
+}
+
+/**
+ * group 從 from 發車晚於 after、之後會停 alight 裡任一站的下一班的發車；沒有回傳 null。
+ * 巴士「1 小時以上才一班」用（照舊的 routeCandidates：同一條路線、同一個上車停留所、到得了任一個下車點的下一班）
+ */
+export function nextDeparture(net: Network, group: string, from: string, after: number, alight: ReadonlySet<string>): number | null {
+  const ix = indexOf(net);
+  const a = ix.idx.get(from);
+  if (a == null) return null;
+  let best: number | null = null;
+  for (const { route: ri, index: i } of ix.at[a]) {
+    const route = net.routes[ri];
+    if (route.group !== group || route.kind !== 'timetable') continue;
+    if (!route.stops.slice(i + 1).some((s) => alight.has(s))) continue;
+    const e = firstTrip(route.trips, i, after + 1e-9);
+    if (e < route.trips.length && (best == null || route.trips[e].dep[i] < best)) best = route.trips[e].dep[i];
+  }
+  return best;
+}
+
 /**
  * 到達一樣取晚出發（照 earliestTrain）：同一條走法的第一程試後面的班，
  * 後面幾程照樣接最早的，仍然同時到就換成晚的。第一程是班距型的不用試。
+ * 照走法重算（path.ts 的 evaluatePath）也用這個，選了畫面上那條走法時班次和搜尋的一樣
  */
-function laterDeparture(net: Network, ix: Indexed, j: Journey, minTransfer: number, whole: boolean): Journey {
+export function laterDeparture(net: Network, ix: Indexed, j: Journey, minTransfer: number, whole: boolean): Journey {
+  return sameArrivalLater(net, ix, laterFirst(net, ix, j, minTransfer, whole), minTransfer, whole);
+}
+
+/**
+ * 第 2 程以後：同一條線（group）同一對站、同時到的班有好幾班（例如不同停站的巴士），換成晚出發的（照 earliestRide，
+ * 和照走法重算一樣；RAPTOR 掃的時候上的是最早那班）。到達不變，只是轉乘時少等一點
+ */
+function sameArrivalLater(net: Network, ix: Indexed, j: Journey, minTransfer: number, whole: boolean): Journey {
+  let rides: JourneyRide[] | null = null;
+  for (let i = 1; i < j.rides.length; i++) {
+    const p = j.rides[i];
+    if (!p.trip) continue;
+    const prev = (rides ?? j.rides)[i - 1];
+    const r = earliestRide(net, ix, p.route.group, p.from, p.to, prev.arr + Math.max(minTransfer, j.transfers[i - 1].walk), whole);
+    if (r && r.trip && r.arr === p.arr && r.dep > p.dep) (rides ??= [...j.rides])[i] = r;
+  }
+  return rides ? { ...j, rides } : j;
+}
+
+function laterFirst(net: Network, ix: Indexed, j: Journey, minTransfer: number, whole: boolean): Journey {
   const first = j.rides[0];
   if (first.route.kind !== 'timetable') return laterHeadway(j, minTransfer);
   const egress = j.target.walk;

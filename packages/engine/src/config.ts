@@ -49,6 +49,8 @@ export interface EngineConfig {
     transferMaxMeters: number;
     /** 挑預設走法時，每多一程加的分鐘（只用來挑，不加到時間上） */
     transferPenalty: number;
+    /** 自動選的時候，搭 2 程以上的走法比計程車晚超過這個分鐘到就不搭（計程車叫得到時）；只搭 1 程的不比 */
+    transitMaxLateVsTaxi: number;
   };
 
   taxi: {
@@ -144,6 +146,7 @@ export const DEFAULT_CONFIG: EngineConfig = {
     urbanTransferDefault: 5,
     transferMaxMeters: 300,
     transferPenalty: 10,
+    transitMaxLateVsTaxi: 30,
   },
   taxi: {
     carCapacity: 4,

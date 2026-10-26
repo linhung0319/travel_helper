@@ -49,6 +49,31 @@ export interface Footpath {
   /** 係數 1 的分鐘 */
   walk: number;
   transfer: UrbanTransfer | null;
+  /**
+   * 轉乘表記的線（這個方向的）：從哪條線（group）下車、要上哪條線；null 是哪條都可以。
+   * 例如 JR 天王寺 → 地鐵天王寺，換御堂筋線 5 分、谷町線 7 分（lineFits）
+   */
+  fromLine: string | null;
+  toLine: string | null;
+}
+
+/** 轉乘表的線和實際的線（group）合不合：記的是 null、或不知道實際是哪條（起點走過去、下車走到終點）都算合 */
+export const lineFits = (line: string | null, group: string | null) => line == null || group == null || line === group;
+
+/**
+ * from → to 的 footpath 裡，合 fromGroup（下車那條線）、toGroup（要上的線）的最短的；都不合的話取最短的那筆
+ *（線只用來挑同一對站的哪一筆，不拿來擋：例如近鐵大阪難波 → 地鐵なんば記的是近鐵難波線，近鐵的特急下車也走同一條路）。
+ * from → to 沒有 footpath 回傳 null
+ */
+export function pickFootpath(list: readonly Footpath[] | undefined, to: string, fromGroup: string | null, toGroup: string | null): Footpath | null {
+  let fit: Footpath | null = null;
+  let any: Footpath | null = null;
+  for (const fp of list ?? []) {
+    if (fp.to !== to) continue;
+    if (!any || fp.walk < any.walk) any = fp;
+    if (lineFits(fp.fromLine, fromGroup) && lineFits(fp.toLine, toGroup) && (!fit || fp.walk < fit.walk)) fit = fp;
+  }
+  return fit ?? any;
 }
 
 export interface NetStop {
@@ -92,8 +117,42 @@ export function headwayWait(service: UrbanService | null, t: number, whole: bool
 
 // --- 建網路 -------------------------------------------------------------------
 
-// 同一份資料、同一種日子、同樣的設定只整理一次（每段交通都要查好幾次）
-const built = new WeakMap<EngineData, Map<string, Network>>();
+// 同一份資料、同一種日子、同樣的設定只整理一次（每段交通都要查好幾次）。
+// 網路只用到 stations、kintetsu、routes、urban、urbanTransfers（不用 getPlace、walkMeters 這些函式），
+// 所以快取掛在這幾個陣列上，不掛在 EngineData：網站每次編輯都建新的 EngineData（{ ...data }），陣列還是同一份，照樣用快取
+interface Built {
+  kintetsu: EngineData['kintetsu'];
+  routes: EngineData['routes'];
+  urban: EngineData['urban'];
+  urbanTransfers: EngineData['urbanTransfers'];
+  byKey: Map<string, Network>;
+}
+const built = new WeakMap<object, Built[]>();
+/** 同一份 stations 最多記幾組（其他資料換了的） */
+const BUILT_MAX = 4;
+
+function builtFor(data: EngineData): Map<string, Network> {
+  let list = built.get(data.stations);
+  if (!list) built.set(data.stations, (list = []));
+  let b = list.find((x) => x.kintetsu === data.kintetsu && x.routes === data.routes && x.urban === data.urban && x.urbanTransfers === data.urbanTransfers);
+  if (!b) {
+    if (list.length >= BUILT_MAX) list.shift();
+    list.push((b = { kintetsu: data.kintetsu, routes: data.routes, urban: data.urban, urbanTransfers: data.urbanTransfers, byKey: new Map() }));
+  }
+  return b.byKey;
+}
+
+// 路線檔有沒有那天才有的班次、還沒生效的（有的話網路要分日期）：每份路線檔、每個日期只看一次
+const byDateMemo = new WeakMap<readonly RouteTimetable[], Map<string, boolean>>();
+
+function routesByDate(routes: readonly RouteTimetable[] | undefined, date: DateString, bd: 'weekday' | 'saturday' | 'holiday'): boolean {
+  if (!routes?.length) return false;
+  let m = byDateMemo.get(routes);
+  if (!m) byDateMemo.set(routes, (m = new Map()));
+  let v = m.get(`${date}|${bd}`);
+  if (v == null) m.set(`${date}|${bd}`, (v = routes.some((doc) => date < doc.validFrom || (doc.trips[bd] ?? []).some((t) => t.dates))));
+  return v;
+}
 
 export function buildNetwork(data: EngineData, cfg: EngineConfig, date: DateString): Network {
   const kd = kintetsuDayType(date, cfg.holidays);
@@ -102,7 +161,7 @@ export function buildNetwork(data: EngineData, cfg: EngineConfig, date: DateStri
   // しまかぜ固定停駛看星期，不看日別：只把當天停駛的種類放進 key
   const off = Object.keys(SHIMAKAZE_OFF).filter((k) => SHIMAKAZE_OFF[k] === dayOfWeek(date));
   // 有指定日期的班次、還沒生效的路線檔，結果會因日期不同，才把日期放進 key
-  const byDate = (data.routes ?? []).some((doc) => date < doc.validFrom || (doc.trips[bd] ?? []).some((t) => t.dates));
+  const byDate = routesByDate(data.routes, date, bd);
   const { walk, transit } = cfg;
   const key = [
     kd,
@@ -116,8 +175,7 @@ export function buildNetwork(data: EngineData, cfg: EngineConfig, date: DateStri
     transit.urbanTransferDefault,
     transit.transferMaxMeters,
   ].join('|');
-  let byKey = built.get(data);
-  if (!byKey) built.set(data, (byKey = new Map()));
+  const byKey = builtFor(data);
   let net = byKey.get(key);
   if (!net) byKey.set(key, (net = build(data, cfg, date, kd, bd, new Set(off))));
   return net;
@@ -317,16 +375,16 @@ function headwayRoutes(u: UrbanRoute, bd: 'weekday' | 'saturday' | 'holiday'): H
  * 1. 轉乘表 from !== to 的（oneWay 只加一個方向，walkMin 是 null 用 urbanTransferDefault）；
  * 2. stations.json 的 transfers 沒在轉乘表的：直線 × detourFactor ÷ 步速；
  * 3. 有座標的停靠點之間 transferMaxMeters 內的：同樣直線估算。
- * 同一對站同方向，前面的有了就不再加後面的；轉乘表同一對站有好幾筆（不同線）的都留著。
+ * 同一對站同方向，前面的有了就不再加後面的；轉乘表同一對站有好幾筆（不同線）的都留著，搭的時候照線挑（pickFootpath）。
  */
 function buildFootpaths(data: EngineData, cfg: EngineConfig, stops: Map<string, NetStop>): Map<string, Footpath[]> {
   const out = new Map<string, Footpath[]>();
   const seen = new Set<string>();
-  const add = (from: string, to: string, walk: number, transfer: UrbanTransfer | null) => {
+  const add = (from: string, to: string, walk: number, transfer: UrbanTransfer | null, fromLine: string | null = null, toLine: string | null = null) => {
     if (from === to) return;
     let list = out.get(from);
     if (!list) out.set(from, (list = []));
-    list.push({ to, walk, transfer });
+    list.push({ to, walk, transfer, fromLine, toLine });
     seen.add(`${from}\n${to}`);
   };
   const has = (from: string, to: string) => seen.has(`${from}\n${to}`);
@@ -335,8 +393,9 @@ function buildFootpaths(data: EngineData, cfg: EngineConfig, stops: Map<string, 
   for (const t of data.urbanTransfers ?? []) {
     if (t.from === t.to) continue;
     const walk = t.walkMin ?? cfg.transit.urbanTransferDefault;
-    add(t.from, t.to, walk, t);
-    if (!t.oneWay) add(t.to, t.from, walk, t);
+    // 反方向：下車、上車的線對調
+    add(t.from, t.to, walk, t, t.fromLine ?? null, t.toLine ?? null);
+    if (!t.oneWay) add(t.to, t.from, walk, t, t.toLine ?? null, t.fromLine ?? null);
   }
 
   for (const s of data.stations) {

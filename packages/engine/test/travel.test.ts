@@ -730,3 +730,100 @@ test('path：from 和 a.id 不同 → 照自動', () => {
   const r = planLeg(dc, tn, c, { path: { ...alt.path, from: 'other' } });
   assert.deepEqual(r, auto);
 });
+
+// --- 最終審查的修正 -----------------------------------------------------------
+
+const SUB = { size: 5, elders: 2, kids: 1 };
+
+test('transitMaxLateVsTaxi 預設 30', () => {
+  assert.equal(cfg.transit.transitMaxLateVsTaxi, 30);
+});
+
+test('鄉下轉乘比計程車晚超過 30 分 → 計程車：一葉（志摩）→ 鳥羽 久兵衛 11:16 全員', () => {
+  // 巴士 → 特急 → 巴士要 14:33 才到；計程車 12:03
+  const { leg, warnings } = planLeg(P('shima-ichiyo'), P('toba-umino-shokudo-kyubei'), ctx(real, { date: '2027-02-04', depart: 11 * 60 + 16 }));
+  assert.equal(leg.mode, 'taxi');
+  assert.equal(leg.arrive, '12:03');
+  assert.ok(warnings.some((w) => w.code === 'transit-slow' && /比計程車晚 \d+ 分到/.test(w.message)), warnings.map((w) => w.message).join(' / '));
+});
+
+test('鄉下轉乘比計程車晚超過 30 分 → 計程車：かき秋 はなれ（伊勢）→ 志摩 ocean villa 9:37 分組', () => {
+  // 巴士 3 程要 12:06 才到；計程車 10:24
+  const { leg } = planLeg(P('ise-kakiaki-hanare'), P('shima-ocean-villa-wa'), ctx(real, { date: '2027-02-04', depart: 9 * 60 + 37, party: SUB, whole: false }));
+  assert.equal(leg.mode, 'taxi');
+  assert.equal(leg.arrive, '10:24');
+});
+
+test('比計程車晚的規則只管搭 2 程以上的：直達的電車照舊（伊勢市 → 大阪難波太遠，計程車叫不到也照樣搭）', () => {
+  const { leg } = planLeg(P('iseshi'), P('osaka-namba'), ctx(real, { depart: 10 * 60 }));
+  assert.equal(leg.mode, 'train');
+  assert.equal(leg.rides.length, 1);
+});
+
+test('指定 transit 不和計程車比：一葉 → 久兵衛 照樣搭大眾運輸', () => {
+  const { leg } = planLeg(P('shima-ichiyo'), P('toba-umino-shokudo-kyubei'), ctx(real, { date: '2027-02-04', depart: 11 * 60 + 16 }), { mode: 'transit' });
+  assert.ok(leg.rides.length >= 2);
+});
+
+test('巴士班距照舊：同一條路線、同一個上車停留所、到得了任一個下車點的下一班（宿屋 五十鈴 → 月讀宮 8:00 分組搭巴士）', () => {
+  const { leg } = planLeg(P('ise-yadoya-isuzu'), P('ise-tsukiyomi-no-miya-geku'), ctx(real, { date: '2027-02-03', depart: 8 * 60, party: SUB, whole: false }));
+  assert.equal(leg.mode, 'bus');
+  assert.equal(leg.rides[0].from, '浦田町');
+  assert.equal(leg.rides[0].depart, '08:10');
+  assert.equal(leg.arrive, '08:31');
+});
+
+test('巴士班距照舊：とら丸 → 五十鈴茶屋 10:12 全員搭 51 系統，不是「1 小時以上才一班」改計程車', () => {
+  // 舊的寫法：外宮內宮線 51 系統 伊勢市駅前 10:43 → 内宮前（A 線最近那班 1 小時一班，換一條線找）
+  const { leg, warnings } = planLeg(P('ise-toramaru'), P('ise-isuzu-chaya-honten'), ctx(real, { date: '2027-02-06', depart: 10 * 60 + 12 }));
+  assert.equal(leg.mode, 'bus');
+  assert.equal(leg.rides[0].routeId, 'sanco-gaiku-naiku-chokokan');
+  assert.ok(toMinutes(leg.arrive) <= toMinutes('11:14'), leg.arrive);
+  assert.ok(!warnings.some((w) => w.code === 'bus-infrequent'));
+});
+
+test('alternatives 沒有重複的走法、摘要：梅田 Sky → 海遊館（自動、照走法都一樣）', () => {
+  const c = ctx(real, { date: '2027-02-11', depart: 12 * 60 + 23 });
+  const auto = planLeg(P('osaka-umeda-sky-building'), P('osaka-kaiyukan'), c).leg;
+  const check = (alts: typeof auto.alternatives) => {
+    assert.ok(alts && alts.length >= 1);
+    const paths = alts.map((x) => JSON.stringify(x.path.rides));
+    assert.equal(new Set(paths).size, paths.length, paths.join(' | '));
+    const sums = alts.map((x) => x.summary);
+    assert.equal(new Set(sums).size, sums.length, sums.join(' | '));
+  };
+  check(auto.alternatives);
+  for (const alt of auto.alternatives ?? []) {
+    const p = planLeg(P('osaka-umeda-sky-building'), P('osaka-kaiyukan'), c, { path: alt.path }).leg;
+    check(p.alternatives);
+    assert.deepEqual(p.alternatives?.[0].path, alt.path);
+  }
+});
+
+test('選畫面上的走法：班次和畫面上那條一樣（五十鈴川 → 中之郷 11:40，早一班的特急不會被選）', () => {
+  const c = ctx(real, { date: '2027-02-11', depart: 11 * 60 + 40 });
+  const auto = planLeg(P('isuzugawa'), P('nakanogo'), c).leg;
+  assert.ok(auto.alternatives?.length);
+  for (const alt of auto.alternatives ?? []) {
+    const p = planLeg(P('isuzugawa'), P('nakanogo'), c, { path: alt.path }).leg;
+    assert.deepEqual(
+      p.rides.map((r) => [r.depart, r.arrive]),
+      alt.rides.map((r) => [r.depart, r.arrive]),
+      alt.summary,
+    );
+  }
+});
+
+test('太遠不能搭計程車 → 照樣搭要等很久的電車（伊勢市 10:00 → 大阪難波，特急 10:49）', () => {
+  const { leg, warnings } = planLeg(P('iseshi'), P('osaka-namba'), ctx(real, { depart: 10 * 60 }));
+  assert.equal(leg.mode, 'train');
+  assert.equal(leg.rides[0].depart, '10:49');
+  assert.ok(warnings.some((w) => w.code === 'long-wait' && w.message.includes('太遠，不能改搭計程車')));
+  assert.ok(!warnings.some((w) => w.code === 'travel-unknown'));
+});
+
+test('近的、電車要等很久 → 照舊改計程車（伊勢市 10:00 → 朝熊，要等 39 分）', () => {
+  const { leg, warnings } = planLeg(P('iseshi'), P('asama'), ctx(real, { depart: 10 * 60 }));
+  assert.equal(leg.mode, 'taxi');
+  assert.ok(warnings.some((w) => w.code === 'long-wait' && w.message.includes('改搭計程車')));
+});

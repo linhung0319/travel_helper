@@ -31,10 +31,16 @@ test('效能：11 天 ~90 段近鐵，第一次規劃、編輯後重算都夠快
   t = performance.now();
   planItinerary(edited, data);
   const again = performance.now() - t;
-  console.log(`11 天規劃：第一次 ${first.toFixed(0)} ms，編輯後重算 ${again.toFixed(0)} ms`);
+  // 網站每次編輯都建新的 EngineData（陣列同一份、getPlace 等函式是新的）：快取照樣要用得到
+  const edited2 = addItem(edited, '2027-02-09', { type: 'visit', options: [{ place: 'toba', stayMinutes: 30 }] }, { index: 2 }).itinerary;
+  t = performance.now();
+  planItinerary(edited2, { ...data, getPlace: (id) => data.getPlace(id) });
+  const fresh = performance.now() - t;
+  console.log(`11 天規劃：第一次 ${first.toFixed(0)} ms，編輯後重算 ${again.toFixed(0)} ms，新的 EngineData 重算 ${fresh.toFixed(0)} ms`);
   // 界線放很寬（測試平行跑會互搶 CPU）；舊的寫法兩個都在 2 秒以上
   assert.ok(first < 4000, `第一次規劃 ${first.toFixed(0)} ms`);
   assert.ok(again < 800, `編輯後重算 ${again.toFixed(0)} ms`);
+  assert.ok(fresh < 800, `新的 EngineData 重算 ${fresh.toFixed(0)} ms`);
 });
 
 // 大阪（T29 spec §6.7）：伊勢志摩 9 天＋大阪 2 天＋回程那天，大阪每天 7 個景點＋回住宿 8 段，大多是班距型路線；
@@ -61,7 +67,9 @@ function twelveDays(): Itinerary {
 }
 
 test('效能：12 天裡有 2 天大阪、每天 8 段', () => {
-  const data = realData();
+  // 網路的快取掛在資料的陣列上（同一個程序裡 realData() 的陣列是同一份）：換一份 stations，第一次規劃才是重新整理網路
+  const real = realData();
+  const data = { ...real, stations: [...real.stations] };
   const it = twelveDays();
   let t = performance.now();
   const plan = planItinerary(it, data);
@@ -82,7 +90,12 @@ test('效能：12 天裡有 2 天大阪、每天 8 段', () => {
   t = performance.now();
   planItinerary(edited, data);
   const again = performance.now() - t;
-  console.log(`12 天（含大阪 2 天）規劃：第一次 ${first.toFixed(0)} ms，編輯後重算 ${again.toFixed(0)} ms`);
+  const edited2 = addItem(edited, '2027-02-11', { type: 'visit', options: [{ place: 'osaka-kuromon-market', stayMinutes: 30 }] }, { index: 1 }).itinerary;
+  t = performance.now();
+  planItinerary(edited2, { ...data, getPlace: (id) => data.getPlace(id) });
+  const fresh = performance.now() - t;
+  console.log(`12 天（含大阪 2 天）規劃：第一次 ${first.toFixed(0)} ms，編輯後重算 ${again.toFixed(0)} ms，新的 EngineData 重算 ${fresh.toFixed(0)} ms`);
   assert.ok(first < 4000, `第一次規劃 ${first.toFixed(0)} ms`);
   assert.ok(again < 800, `編輯後重算 ${again.toFixed(0)} ms`);
+  assert.ok(fresh < 800, `新的 EngineData 重算 ${fresh.toFixed(0)} ms`);
 });
