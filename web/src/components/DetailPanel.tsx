@@ -37,6 +37,7 @@ import { StationTimetablePanel } from './StationTimetable.tsx';
 import { EditedMark, editedOf } from './EditHistory.tsx';
 import { VoteButtons } from './Votes.tsx';
 import { openDialog } from '../uiStore.ts';
+import { Comments } from './Wishlist.tsx';
 import { AskAiBox } from './AskAiBox.tsx';
 import { itemsWithPlace } from '../lib/planView.ts';
 import { dragPlaceProps } from './askAi.ts';
@@ -670,6 +671,8 @@ export function DetailPanel({ place, back }: { place: Place; back?: { label: str
             {(place.type !== 'station' || place.photos.length > 0) && <HeroPhoto place={place} onMore={() => go('photos')} />}
             {place.type !== 'station' && <RatingsBox place={place} />}
             <PlaceIntro place={place} fromTrip={fromTrip} />
+            {/* 暫時放在總覽最下面：想去的卡片不再展開留言，Task 7 改成詳情的「留言」分頁 */}
+            <Comments target={place.id} />
           </>
         )}
 

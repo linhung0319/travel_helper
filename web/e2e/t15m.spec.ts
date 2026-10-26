@@ -6,7 +6,7 @@
 // 第五輪：「規劃模式」改成「編輯」（藍條、完成）；交通卡平常收起，大眾運輸點了展開步驟、班次表；
 // 等待合成交通卡下面的一條（沒有「空檔」）；資料卡右上角的編號從 0 起；地圖彈窗在日期列上面。
 import { test, type Locator, type Page } from '@playwright/test';
-import { centerOn, expect, openAccountItem, switchUser, findPlaceId, ready, waitIdle } from './helpers.ts';
+import { centerOn, expect, openAccountItem, switchUser, findPlaceId, ready, waitIdle, likeMany } from './helpers.ts';
 
 const DAY = '2027-02-07';
 const PLACE = 'toba-seahorse';
@@ -32,6 +32,8 @@ async function openWish(page: Page, id = PLACE): Promise<Locator> {
   await page.evaluate((x) => {
     const s = (window as any).__th;
     s.appStore.getState().setFilter({ types: [s.dataStore.getState().byId.get(x).type] });
+    // 已排的段落預設收合、每段先 8 個：把這個點露出來
+    s.appStore.getState().revealInExplore(x);
   }, id);
   return page.getByTestId('wish-panel');
 }
@@ -57,26 +59,30 @@ test('T15m：想去 → 留言 → 加到某天 → 編輯中按 ↑ 排進 → 
   await page.getByTestId('vote-like').click();
   await expect(page.getByTestId('vote-like')).toHaveAttribute('aria-pressed', 'true');
 
-  // 2. 想去分頁有這張卡片；留一則留言，收起來後顯示「1 則留言」
+  // 2. 在詳情留一則留言；想去分頁有這一列，最新留言那一行寫著它
+  const detail = page.getByTestId('detail-panel');
+  await detail.getByTestId('wish-comments').click();
+  await detail.getByTestId('comment-input').fill(TEXT);
+  await detail.getByTestId('comment-input').press('Enter');
+  await expect(detail.getByTestId('wish-comment')).toContainText(TEXT);
   let list = await openWish(page);
   await expect(wish(list)).toBeVisible();
-  await wish(list).getByTestId('wish-comments').click();
-  await wish(list).getByTestId('comment-input').fill(TEXT);
-  await wish(list).getByTestId('comment-input').press('Enter');
-  await expect(wish(list).getByTestId('wish-comment')).toContainText(TEXT);
-  await wish(list).getByTestId('wish-comments').click();
-  await expect(wish(list).getByTestId('wish-comments')).toContainText('1 則留言');
+  await expect(wish(list).getByTestId('wish-last-comment')).toContainText(TEXT);
 
   // 3. 換成阿公：看得到、改不了別人的留言；把它加到 2/7
   await switchUser(page, 'dev-agong');
   list = await openWish(page);
-  await wish(list).getByTestId('wish-comments').click();
-  await expect(wish(list).getByTestId('wish-comment')).toContainText(TEXT);
-  await expect(wish(list).getByTestId('wish-comment').getByRole('button', { name: '改' })).toHaveCount(0);
-  await wish(list).getByTestId('add-to-day').click();
+  await expect(wish(list).getByTestId('wish-last-comment')).toContainText(TEXT);
+  await wish(list).getByTestId('wish-last-comment').click();
+  await detail.getByTestId('wish-comments').click();
+  await expect(detail.getByTestId('wish-comment')).toContainText(TEXT);
+  await expect(detail.getByTestId('wish-comment').getByRole('button', { name: '改' })).toHaveCount(0);
+  await page.getByTestId('detail-back').click();
+  list = page.getByTestId('wish-panel');
+  await wish(list).getByTestId('wish-add').click();
   await page.getByTestId(`day-picker-${DAY}`).click();
   await page.getByTestId('day-picker-done').click();
-  await expect(wish(list).getByTestId('card-status-tag')).toContainText('候選 2/7');
+  await expect(wish(list).getByTestId('place-caps')).toContainText('候選 2/7');
 
   // 4. 行程分頁：候選有它；一般模式沒有 ↑
   await showDay(page, DAY);
@@ -147,11 +153,11 @@ test('T15m：拿掉別人加的候選要寫理由，理由變成那個點的留�
   await expect(cruise.getByTestId('cand-reject')).toHaveCount(0);
   // 日期格裡別人加的候選，一般模式點不了（不會開拿掉的對話框）
   const wishList = await openWish(page, 'toba-bay-cruise-irukajima');
-  await wish(wishList, 'toba-bay-cruise-irukajima').getByTestId('add-to-day').click();
+  await wish(wishList, 'toba-bay-cruise-irukajima').getByTestId('wish-add').click();
   await expect(page.getByTestId('day-picker-2027-02-05')).toBeDisabled();
   await expect(page.getByTestId('reject-dialog')).toHaveCount(0);
   await page.keyboard.press('Escape');
-  await expect(page.getByTestId('day-picker')).toHaveCount(0);
+  await expect(page.getByTestId('wish-add-pop')).toHaveCount(0);
   await showDay(page, '2027-02-05');
   await enterPlanning(page);
   await cruise.getByTestId('cand-reject').click();
@@ -162,9 +168,13 @@ test('T15m：拿掉別人加的候選要寫理由，理由變成那個點的留�
 
   const list = await openWish(page, 'toba-bay-cruise-irukajima');
   const card = wish(list, 'toba-bay-cruise-irukajima');
-  await card.getByTestId('wish-comments').click();
-  await expect(card.getByTestId('wish-comment').last()).toContainText('這天排不下');
-  await expect(card.getByTestId('wish-comment').last()).toContainText('不採用');
+  await expect(card.getByTestId('wish-last-comment')).toContainText('這天排不下');
+  await card.getByTestId('wish-last-comment').click();
+  const detail = page.getByTestId('detail-panel');
+  await detail.getByTestId('wish-comments').click();
+  await expect(detail.getByTestId('wish-comment').last()).toContainText('這天排不下');
+  await expect(detail.getByTestId('wish-comment').last()).toContainText('不採用');
+  await page.getByTestId('detail-back').click();
 
   // 類型是篩選的一個條件（打開想去時帶著那個點的類型）：先拿掉，搜尋才找得到別類的店
   await page.getByTestId('filter-applied').first().locator('.ui-chip-x').click();
@@ -539,7 +549,7 @@ test('第四輪：探索的卡片沒有加到某天；按想去就到想去', as
   await expect(card.getByTestId('card-like')).toContainText('1');
   // 想去有它，加到某天在想去的卡片上
   const list = await openWish(page);
-  await expect(wish(list).getByTestId('add-to-day')).toBeVisible();
+  await expect(wish(list).getByTestId('wish-add')).toBeVisible();
 });
 
 test('探索：愛心一直都在，按了再按就收回；卡片上沒有不想去', async ({ page }) => {
@@ -625,7 +635,7 @@ test('第四輪完成條件：排進、標午餐和分組、交通改計程車�
   await openDetail(page, PLACE);
   await page.getByTestId('vote-like').click();
   const list = await openWish(page);
-  await wish(list).getByTestId('add-to-day').click();
+  await wish(list).getByTestId('wish-add').click();
   await page.getByTestId(`day-picker-${D}`).click();
   await page.getByTestId('day-picker-done').click();
   await showDay(page, D);
@@ -1295,8 +1305,8 @@ test('加到某天（DayGrid12 多選）：已排寫「已排」不能點、已�
   await ready(page);
   const AQ = 'toba-aquarium';
   const list = await openWish(page, AQ);
-  await wish(list, AQ).getByTestId('add-to-day').click();
-  const dlg = page.getByTestId('day-picker');
+  await wish(list, AQ).getByTestId('wish-add').click();
+  const dlg = page.getByTestId('wish-add-pop');
   const sched = page.getByTestId('day-picker-2027-02-05');
   await expect(sched).toContainText('已排');
   await expect(sched).toBeDisabled();
@@ -1311,15 +1321,15 @@ test('加到某天（DayGrid12 多選）：已排寫「已排」不能點、已�
   await expect(page.getByTestId('day-picker-count')).toHaveText(`已選 ${n0 + 2} 天`);
   await page.getByTestId('day-picker-done').click();
   await expect(dlg).toHaveCount(0);
-  await expect(wish(list, AQ).getByTestId('card-status-tag')).toContainText('2/8');
+  await expect(wish(list, AQ).getByTestId('place-caps')).toContainText('2/8');
   // 再開一次：取消自己加的 2/8，按「好」就拿掉
-  await wish(list, AQ).getByTestId('add-to-day').click();
+  await wish(list, AQ).getByTestId('wish-add').click();
   await expect(page.getByTestId('day-picker-2027-02-08')).toHaveAttribute('aria-pressed', 'true');
   await page.getByTestId('day-picker-2027-02-08').click();
   await expect(page.getByTestId('day-picker-count')).toHaveText(`已選 ${n0 + 1} 天`);
   await page.getByTestId('day-picker-done').click();
-  await expect(wish(list, AQ).getByTestId('card-status-tag')).not.toContainText('2/8');
-  await expect(wish(list, AQ).getByTestId('card-status-tag')).toContainText('2/9');
+  await expect(wish(list, AQ).getByTestId('place-caps')).not.toContainText('2/8');
+  await expect(wish(list, AQ).getByTestId('place-caps')).toContainText('2/9');
 });
 
 // ---------- 第七輪 Task 3：拿掉重複的入口 ----------
@@ -1445,4 +1455,79 @@ test('網頁探索是兩欄', async ({ page }) => {
   const [a, b] = [(await item(1).boundingBox())!, (await item(2).boundingBox())!];
   expect(Math.abs(a.y - b.y)).toBeLessThan(40);
   expect(Math.round(a.x)).not.toBe(Math.round(b.x));
+});
+
+// ---------- 第七輪 Task 6：想去分三段 ----------
+test('想去：三段、已排預設收合、跳轉', async ({ page }) => {
+  await ready(page);
+  await likeMany(page, 12);
+  await page.getByTestId('side-tab-wish').click();
+  const panel = page.getByTestId('wish-panel');
+  await expect(panel.getByTestId('wish-section-scheduled')).toHaveAttribute('aria-expanded', 'false');
+  await expect(panel.getByTestId('wish-section-candidate')).toHaveAttribute('aria-expanded', 'true');
+  await expect(panel.getByTestId('wish-section-unscheduled')).toHaveAttribute('aria-expanded', 'true');
+  // 收合的段落不畫列；點標題展開
+  await expect(panel.locator('[data-section="scheduled"] [data-testid="wish-item"]')).toHaveCount(0);
+  await panel.getByTestId('wish-section-scheduled').click();
+  await expect(panel.locator('[data-section="scheduled"] [data-testid="wish-item"]').first()).toBeVisible();
+  await panel.getByTestId('wish-section-scheduled').click();
+  await expect(panel.getByTestId('wish-section-scheduled')).toHaveAttribute('aria-expanded', 'false');
+  // 跳轉：點「已是候選」，那一段的標題黏在跳轉列下面，晶片變成現在這段
+  await panel.getByTestId('wish-jump-candidate').click();
+  await expect(panel.getByTestId('wish-jump-candidate')).toHaveAttribute('aria-current', 'true');
+  await expect
+    .poll(async () => {
+      const jump = await panel.getByTestId('wish-jump-candidate').boundingBox();
+      const head = await panel.getByTestId('wish-section-candidate').boundingBox();
+      return head!.y - (jump!.y + jump!.height);
+    })
+    .toBeLessThan(24);
+  // 收合的狀態記住
+  await page.reload();
+  await page.waitForFunction(() => (window as any).__th?.dataStore.getState().status === 'ready');
+  await page.getByTestId('side-tab-wish').click();
+  await expect(page.getByTestId('wish-section-scheduled')).toHaveAttribute('aria-expanded', 'false');
+});
+
+test('想去：每段先 8 個，再顯示 15 個', async ({ page }) => {
+  await ready(page);
+  await likeMany(page, 12);
+  await page.getByTestId('side-tab-wish').click();
+  const panel = page.getByTestId('wish-panel');
+  const rows = panel.locator('[data-section="unscheduled"] [data-testid="wish-item"]');
+  const total = Number(((await panel.getByTestId('wish-jump-unscheduled').locator('.ui-chip-count').textContent()) ?? '').trim());
+  expect(total).toBeGreaterThanOrEqual(12);
+  await expect(rows).toHaveCount(8);
+  await panel.getByTestId('wish-more-unscheduled').click();
+  await expect(rows).toHaveCount(Math.min(total, 23));
+});
+
+test('想去：點最新留言開詳情', async ({ page }) => {
+  await ready(page);
+  const [id] = await likeMany(page, 1);
+  await page.evaluate((id) => (window as any).__th.shared.comment(id, '這裡晚上很漂亮。要早點去', 'normal'), id);
+  await page.getByTestId('side-tab-wish').click();
+  const row = page.locator(`[data-testid="wish-item"][data-id="${id}"]`);
+  await row.scrollIntoViewIfNeeded();
+  await expect(row.getByTestId('wish-last-comment')).toHaveText('這裡晚上很漂亮。');
+  await row.getByTestId('wish-last-comment').click();
+  await expect(page.getByTestId('detail-panel')).toBeVisible();
+  await expect(page.getByTestId('detail-panel').getByTestId('wish-comment')).toHaveCount(0); // 留言收著；Task 7 改成留言分頁
+});
+
+test('網頁想去：日曆鈕加到某天', async ({ page }) => {
+  await ready(page);
+  const [id] = await likeMany(page, 1);
+  await page.getByTestId('side-tab-wish').click();
+  const row = page.locator(`[data-section="unscheduled"] [data-testid="wish-item"][data-id="${id}"]`);
+  await row.scrollIntoViewIfNeeded();
+  await row.getByTestId('wish-add').click();
+  await expect(page.getByTestId('wish-add-pop')).toBeVisible();
+  await page.getByTestId('day-picker-2027-02-06').click();
+  await page.getByTestId('day-picker-done').click();
+  await expect(page.getByTestId('wish-add-pop')).toHaveCount(0);
+  const moved = page.locator(`[data-section="candidate"] [data-testid="wish-item"][data-id="${id}"]`);
+  await expect(moved).toHaveCount(1);
+  await expect(moved.getByTestId('place-caps')).toContainText('候選 2/6');
+  await expect(page.locator(`[data-section="unscheduled"] [data-id="${id}"]`)).toHaveCount(0);
 });

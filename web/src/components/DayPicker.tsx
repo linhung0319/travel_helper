@@ -15,8 +15,8 @@ import { Icon } from './Icon.tsx';
 import { Button } from '../shared/ui/Button.tsx';
 import { DayGrid12 } from '../shared/ui/DayGrid12.tsx';
 
-/** 日期格彈窗：candidate 預先選好、已排的寫「已排」（不能點）；別人加的候選鎖住；按「好」才存。onClose 是關掉 */
-export function DayPicker({ placeId, onClose }: { placeId: string; onClose: () => void }) {
+/** 日期格彈窗：candidate 預先選好、已排的寫「已排」（不能點）；別人加的候選鎖住；按「好」才存。onClose 是關掉；testId 預設 day-picker（想去列的日曆鈕用 wish-add-pop） */
+export function DayPicker({ placeId, onClose, testId = 'day-picker' }: { placeId: string; onClose: () => void; testId?: string }) {
   const candidates = useShared((s) => s.candidates);
   const me = useShared((s) => s.me?.id);
   const itinerary = useData((s) => s.itinerary);
@@ -50,7 +50,7 @@ export function DayPicker({ placeId, onClose }: { placeId: string; onClose: () =
     <Dialog
       title="加到某天"
       onClose={onClose}
-      testId="day-picker"
+      testId={testId}
       footer={
         <>
           <span className="muted day-picker-count" data-testid="day-picker-count">

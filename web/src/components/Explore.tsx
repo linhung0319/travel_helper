@@ -3,9 +3,9 @@
 // 清單可以切換照片牆（兩欄，PlaceTile）或清單列（PlaceRow，88px），都是兩邊共用的元件；滑鼠移上去呼叫 appStore.hover（地圖的指到），點了地圖移過去、打開詳情。
 // 反過來，點地圖上的點：切到探索、捲到那張卡片（showInExplore），再點卡片才開詳情（手機沒有 hover，所以用點的）。
 // 探索的類型寫在篩選裡（地圖跟著變淡），回到「行程」時拿掉（showItinerary）。
-// 「想去」分頁是同一個元件（source="wish"）：只列有人按想去的點，卡片底下多了留言（Wishlist.tsx 的 WishExtras）；只有想去的卡片有「加到某天」（探索只有愛心，流程是先按想去再到想去加到某天）。
-// 卡片照片右下角是想去的愛心（VoteHeart），左上角是類型；重點膠囊（已排、候選、15 人、預約）在名稱下面。
-// 想去分頁仍是單欄（每張下面多留言）；探索的照片牆是兩欄。
+// 「想去」分頁是同一個元件（source="wish"）：只列有人按想去的點，清單換成 shared/ui/WishList（分成還沒排、已是候選、已排三段，列右邊有 ❤ 和日曆鈕「加到某天」）；
+// 探索只有愛心，流程是先按想去再到想去加到某天。想去的顯示方式（清單、照片牆）記在 mobileStore.wish.view，和探索各自記。
+// 卡片照片右下角是想去的愛心（VoteHeart），左上角是類型；重點膠囊（已排、候選、15 人、預約）在名稱下面。探索的照片牆是兩欄。
 // 清單的計算（篩選、排序、數量、想去的範圍）在 shared/placeLists.ts 的 usePlaceList，手機版也用。
 
 import { useEffect, useRef, useState } from 'react';
@@ -20,12 +20,12 @@ import { EXPLORE_TYPES, type ExploreSort } from '../lib/explore.ts';
 import type { Place } from '../data/types.ts';
 import { FilterBar, type FilterModel } from '../shared/ui/FilterBar.tsx';
 import { dragPlaceProps } from './askAi.ts';
-import { DayStatusTag } from './DayPicker.tsx';
-import { WishExtras } from './Wishlist.tsx';
 import { usePlaceList } from '../shared/placeLists.ts';
 import { PlaceRow, useDayStatus, type DayStatus } from '../shared/ui/PlaceRow.tsx';
 import { PlaceTile } from '../shared/ui/PlaceTile.tsx';
 import { PlaceWall } from '../shared/ui/PlaceWall.tsx';
+import { WishList } from '../shared/ui/WishList.tsx';
+import { mobileStore, useMobile } from '../mobile/mobileStore.ts';
 
 export type ListSource = 'explore' | 'wish';
 
@@ -53,29 +53,19 @@ function open(id: string) {
   appStore.getState().openDetail(id);
 }
 
-/** 一張卡片（照片牆）或一列（清單）；想去分頁多一塊留言（WishExtras） */
-function Item({ place, rank, view, hot, source, status }: { place: Place; rank: number; view: View; hot: boolean; source: ListSource; status: DayStatus }) {
-  const wish = source === 'wish';
+/** 探索的一張卡片（照片牆）或一列（清單）；想去分頁的列在 shared/ui/WishList */
+function Item({ place, rank, view, hot, status }: { place: Place; rank: number; view: View; hot: boolean; status: DayStatus }) {
   const props = {
     place,
     status,
     rank,
     hot,
-    testId: wish ? 'wish-open' : 'explore-item',
+    testId: 'explore-item',
     onOpen: () => open(place.id),
     // 拖到左邊的聊天室＝問 AI
     rootProps: { ...dragPlaceProps(place.id), title: '點了看詳情；拖到左邊的聊天室可以問 AI' },
   };
-  const body = view === 'list' ? <PlaceRow {...props} /> : <PlaceTile {...props} />;
-  if (!wish) return body;
-  return (
-    <li className={`wish-card view-${view} type-${place.type} ${hot ? 'flash' : ''}`} data-testid="wish-item" data-id={place.id}>
-      {body}
-      {/* 完整的候選／已排日期（膠囊只放得下一個）；想去分頁 Task 6 重做時再換 */}
-      <DayStatusTag placeId={place.id} />
-      <WishExtras placeId={place.id} />
-    </li>
-  );
+  return view === 'list' ? <PlaceRow {...props} /> : <PlaceTile {...props} />;
 }
 
 /** 面板裡點一個選項：地區一次一個（選了地圖跳過去，小區域也是），其他是開關 */
@@ -98,7 +88,11 @@ export function ExplorePanel({ source = 'explore' }: { source?: ListSource }) {
   const bounds = useApp((s) => s.view?.bounds ?? null);
   const hoveredId = useApp((s) => s.hoveredId);
   const target = useApp((s) => s.exploreTarget);
-  const [view, setView] = useState<View>(loadView);
+  const [exploreView, setExploreView] = useState<View>(loadView);
+  const wishView = useMobile((s) => s.wish.view);
+  const wish = source === 'wish';
+  // 探索、想去各自記住上次的顯示方式
+  const view: View = wish ? wishView : exploreView;
   // 想去預設依 ❤️ 多排
   const [sort, setSort] = useState<ExploreSort>(source === 'wish' ? 'likes' : 'recommend');
   const [inView, setInView] = useState(false);
@@ -111,7 +105,9 @@ export function ExplorePanel({ source = 'explore' }: { source?: ListSource }) {
   // 地圖上點了某個點：清單直接跳到那張卡片（清單可能很長，平滑捲動會在半路被照片載入打斷）
   useEffect(() => {
     if (!target) return;
-    ref.current?.querySelector<HTMLElement>(`[data-id="${CSS.escape(target.id)}"]`)?.scrollIntoView({ block: 'center' });
+    // 想去的清單要先把它那段展開、多顯示到它（WishList 的 revealId），等畫完再捲
+    const id = requestAnimationFrame(() => ref.current?.querySelector<HTMLElement>(`[data-id="${CSS.escape(target.id)}"]`)?.scrollIntoView({ block: 'center' }));
+    return () => cancelAnimationFrame(id);
   }, [target]);
 
   const model: FilterModel = {
@@ -122,7 +118,11 @@ export function ExplorePanel({ source = 'explore' }: { source?: ListSource }) {
     setSort,
     view,
     setView: (v) => {
-      setView(v);
+      if (wish) {
+        mobileStore.getState().setWish({ view: v });
+        return;
+      }
+      setExploreView(v);
       saveView(v);
     },
     inView,
@@ -138,18 +138,25 @@ export function ExplorePanel({ source = 'explore' }: { source?: ListSource }) {
     <div className={`explore-panel source-${source}`} data-testid={source === 'wish' ? 'wish-panel' : 'explore-panel'}>
       <FilterBar source={source} surface="desktop" model={model} count={list.length} />
       <div className={`ex-list view-${view} source-${source}`} ref={ref}>
-        {source === 'explore' && view === 'photo' ? (
-          <PlaceWall items={list} render={(p, i) => <Item place={p} rank={i + 1} view={view} hot={hoveredId === p.id || target?.id === p.id} source={source} status={statusOf(p.id)} />} />
+        {wish ? (
+          <WishList
+            surface="desktop"
+            places={list}
+            view={view}
+            onOpen={open}
+            // 詳情的留言分頁在 Task 7 才有；現在先開詳情
+            onOpenComments={open}
+            hotId={hoveredId ?? target?.id ?? null}
+            revealId={target?.id ?? null}
+          />
+        ) : view === 'photo' ? (
+          <PlaceWall items={list} render={(p, i) => <Item place={p} rank={i + 1} view={view} hot={hoveredId === p.id || target?.id === p.id} status={statusOf(p.id)} />} />
         ) : (
           <ol className="ex-items">
             {list.map((p, i) => (
-              source === 'wish' ? (
-                <Item key={p.id} place={p} rank={i + 1} view={view} hot={hoveredId === p.id || target?.id === p.id} source={source} status={statusOf(p.id)} />
-              ) : (
-                <li key={p.id}>
-                  <Item place={p} rank={i + 1} view={view} hot={hoveredId === p.id || target?.id === p.id} source={source} status={statusOf(p.id)} />
-                </li>
-              )
+              <li key={p.id}>
+                <Item place={p} rank={i + 1} view={view} hot={hoveredId === p.id || target?.id === p.id} status={statusOf(p.id)} />
+              </li>
             ))}
           </ol>
         )}

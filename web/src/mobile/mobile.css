@@ -437,22 +437,9 @@
   padding: 0 16px;
 }
 
-.m-wish-item.type-spot {
-  background: var(--type-spot-bg);
-}
 
-.m-wish-item.type-restaurant {
-  background: var(--type-restaurant-bg);
-}
 
-.m-wish-item.type-lodging {
-  background: var(--type-lodging-bg);
-}
 
-.m-wish-photo {
-  position: relative;
-  display: block;
-}
 
 /* 往下滑到這裡就多畫一批 */
 .m-feed-next {
@@ -488,107 +475,21 @@
   padding: 10px 16px 2px;
 }
 
-.m-wish-list {
-  list-style: none;
-  margin: 0;
-  padding: 8px 12px 0;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
 
-.m-wish-item {
-  min-width: 0;
-  border-radius: 12px;
-  overflow: hidden;
-  background: var(--soft);
-  cursor: pointer;
-}
 
-.m-wish-item.view-list {
-  display: flex;
-  align-items: flex-start;
-  gap: 10px;
-  padding: 10px;
-}
 
-.m-wish-photo .m-thumb-fill .photo {
-  max-height: 200px;
-}
 
-.m-wish-tags {
-  position: absolute;
-  top: 8px;
-  left: 8px;
-  right: 100px;
-}
 
-.m-wish-text {
-  flex: 1;
-  min-width: 0;
-  display: flex;
-  flex-direction: column;
-  gap: 2px;
-}
 
-.m-wish-item.view-photo .m-wish-text {
-  padding: 8px 12px 4px;
-}
 
-.m-wish-name {
-  display: block;
-  width: 100%;
-  min-height: 32px;
-  padding: 0;
-  border: 0;
-  background: none;
-  color: var(--fg);
-  font: inherit;
-  font-weight: 700;
-  text-align: left;
-  cursor: pointer;
-}
 
-.m-wish-ja,
-.m-wish-meta {
-  display: block;
-  color: var(--muted);
-}
 
-.m-wish-trip {
-  color: var(--accent);
-}
 
-.m-wish-summary {
-  display: -webkit-box;
-  -webkit-line-clamp: 2;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
-}
 
-.m-wish-list-tags .day-status {
-  box-shadow: none;
-  background: var(--info-bg);
-}
 
-.m-wish-foot {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  min-height: var(--tap);
-}
 
-.m-wish-foot .m-votes {
-  position: static;
-}
 
-.m-wish-comments {
-  color: var(--accent);
-}
 
-.m-wish-add .add-to-day {
-  padding: 0 0 6px;
-}
 
 /* ---------- 整頁詳情（§3.3） ---------- */
 

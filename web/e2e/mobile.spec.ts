@@ -1,7 +1,7 @@
 // 手機版（第六輪 §3）：底部 5 個分頁、我、地圖一直掛著、探索、想去、詳情、行程。mobile（390×844）、mobile-small（360×800）兩個 project 都跑。
 import { test } from '@playwright/test';
 import { expect, goTab, mobileState, ready, scrollsSideways, TABS } from './mobileHelpers.ts';
-import { centerOn } from './helpers.ts';
+import { centerOn, likeMany } from './helpers.ts';
 
 test('底部 5 個分頁，切換', async ({ page }) => {
   await ready(page);
@@ -233,18 +233,12 @@ test('想去：分段切換、加到某天', async ({ page }) => {
   const types = await page.getByTestId('m-wish-item').evaluateAll((els) => els.map((e) => e.getAttribute('data-type')));
   expect(types.length).toBeGreaterThan(0);
   expect(new Set(types)).toEqual(new Set(['spot']));
-  const first = page.getByTestId('m-wish-item').first();
-  await first.getByTestId('add-to-day').click();
-  await expect(page.getByTestId('day-picker')).toBeVisible();
-  await page.keyboard.press('Escape');
-  await expect(page.getByTestId('day-picker')).toHaveCount(0);
-  await expect(page.getByTestId('m-detail')).toHaveCount(0);
-  // 清單檢視：卡片還是有加到某天
+  // 清單檢視：每列都能左滑加到某天（滑的測試在「想去：左滑加到某天」）
   await page.getByTestId('view-list').click();
-  await expect(page.getByTestId('m-wish-item').first().getByTestId('add-to-day')).toBeVisible();
-  // 點卡片開詳情
+  await expect(page.getByTestId('m-wish-item').first().getByTestId('wish-swipe-add')).toHaveCount(1);
+  // 點列開詳情
   const id = await page.getByTestId('m-wish-item').first().getAttribute('data-id');
-  await page.getByTestId('m-wish-item').first().locator('.m-wish-name').click();
+  await page.getByTestId('m-wish-item').first().getByTestId('m-wish-open').click();
   await expect(page.getByTestId('m-detail')).toHaveAttribute('data-id', id!);
   expect((await mobileState(page)).detail?.from).toBe('wish');
 });
@@ -364,7 +358,7 @@ test('詳情：從想去打開多一個「加到某天」，可以投票、留�
   await goTab(page, 'wish');
   const first = page.getByTestId('m-wish-item').first();
   const id = await first.getAttribute('data-id');
-  await first.locator('.m-wish-name').click();
+  await first.getByTestId('m-wish-open').click();
   const detail = page.getByTestId('m-detail');
   await expect(detail).toHaveAttribute('data-id', id!);
   await expect(detail.getByTestId('m-detail-add').getByTestId('add-to-day')).toBeVisible();
@@ -1091,4 +1085,81 @@ test('手機探索有清單：切過去出現 88px 的列，❤ 位置固定，�
   await page.goBack();
   await page.getByTestId('view-photo').click();
   await expect(page.getByTestId('m-feed-item').first()).toBeVisible();
+});
+
+// ---------- 第七輪 Task 6：想去分三段 ----------
+
+test('想去：三段、已排預設收合、跳轉', async ({ page }) => {
+  await ready(page);
+  await likeMany(page, 12);
+  await goTab(page, 'wish');
+  await expect(page.getByTestId('wish-section-scheduled')).toHaveAttribute('aria-expanded', 'false');
+  await expect(page.getByTestId('wish-section-candidate')).toHaveAttribute('aria-expanded', 'true');
+  await page.getByTestId('wish-jump-candidate').click();
+  await expect(page.getByTestId('wish-jump-candidate')).toHaveAttribute('aria-current', 'true');
+  await expect
+    .poll(async () => {
+      const jump = await page.getByTestId('wish-jump-candidate').boundingBox();
+      const head = await page.getByTestId('wish-section-candidate').boundingBox();
+      return head!.y - (jump!.y + jump!.height);
+    })
+    .toBeLessThan(24);
+  expect(await scrollsSideways(page)).toBe(false);
+});
+
+test('想去：每段先 8 個，再顯示 15 個', async ({ page }) => {
+  await ready(page);
+  await likeMany(page, 12);
+  await goTab(page, 'wish');
+  // 類型是一次一類：用景點
+  await page.getByTestId('m-wish-type-spot').click();
+  const rows = page.locator('[data-section="unscheduled"] [data-testid="m-wish-item"]');
+  const total = Number(((await page.getByTestId('wish-jump-unscheduled').locator('.ui-chip-count').textContent()) ?? '').trim());
+  expect(total).toBeGreaterThanOrEqual(12);
+  await expect(rows).toHaveCount(8);
+  await page.getByTestId('wish-more-unscheduled').click();
+  await expect(rows).toHaveCount(Math.min(total, 23));
+});
+
+test('想去：點最新留言開詳情的留言分頁', async ({ page }) => {
+  await ready(page);
+  const [id] = await likeMany(page, 1);
+  await page.evaluate((id) => (window as any).__th.shared.comment(id, '這裡晚上很漂亮。要早點去', 'normal'), id);
+  await goTab(page, 'wish');
+  await page.getByTestId('m-wish-type-spot').click();
+  const row = page.locator(`[data-testid="m-wish-item"][data-id="${id}"]`);
+  await row.scrollIntoViewIfNeeded();
+  await expect(row.getByTestId('wish-last-comment')).toHaveText('這裡晚上很漂亮。');
+  await row.getByTestId('wish-last-comment').click();
+  await expect(page.getByTestId('m-detail')).toHaveAttribute('data-id', id);
+  await expect(page.getByTestId('m-detail-tab-comments')).toHaveAttribute('aria-selected', 'true');
+});
+
+test('想去：左滑加到某天', async ({ page }) => {
+  await page.addInitScript(() => localStorage.setItem('th.wishSwipeHint', '1'));
+  await ready(page);
+  await goTab(page, 'wish');
+  const row = page.getByTestId('m-wish-item').first();
+  await row.scrollIntoViewIfNeeded();
+  const box = (await row.boundingBox())!;
+  const y = box.y + 30;
+  await page.mouse.move(box.x + box.width - 20, y);
+  await page.mouse.down();
+  await page.mouse.move(box.x + box.width - 80, y, { steps: 4 });
+  await page.mouse.move(box.x + box.width - 140, y, { steps: 4 });
+  await page.mouse.up();
+  const add = row.getByTestId('wish-swipe-add');
+  await expect(add).toBeVisible();
+  await expect(page.getByTestId('m-detail')).toHaveCount(0); // 滑完放手不算點
+  await add.click();
+  await expect(page.getByTestId('day-picker')).toBeVisible();
+  await expect(page.getByTestId('day-grid')).toBeVisible();
+  await page.keyboard.press('Escape');
+  expect(await scrollsSideways(page)).toBe(false);
+});
+
+test('想去：第一次打開，第一列自己滑一下提示，只提示一次', async ({ page }) => {
+  await ready(page);
+  await goTab(page, 'wish');
+  await expect.poll(() => page.evaluate(() => localStorage.getItem('th.wishSwipeHint'))).toBe('1');
 });

@@ -15,6 +15,7 @@ import type { ActionId, CardActionContext } from '../shared/cardActions.ts';
 import type { ActionTarget } from '../components/cardActionRun.ts';
 import { uiStore } from '../uiStore.ts';
 import { appStore } from '../store.ts';
+import type { SectionId } from '../shared/wishSections.ts';
 import { EMPTY_FEED, type ExploreSort, type ExploreType, type Feed } from '../lib/explore.ts';
 
 export type MobileTab = 'explore' | 'wish' | 'trip' | 'ai' | 'me';
@@ -35,7 +36,7 @@ export interface ActionSheetSpec {
   view?: ActionView;
 }
 
-/** 想去分頁的設定：哪一類（null＝還沒選，打開時挑有東西的那類）、地區、面板選的條件（quick，寫法同 Feed.quick）、搜尋、排序、大圖或清單 */
+/** 想去分頁的設定：哪一類（null＝還沒選，打開時挑有東西的那類）、地區、面板選的條件（quick，寫法同 Feed.quick）、搜尋、排序、大圖或清單（記在 localStorage）、三段哪幾段收起來（記在 localStorage，網頁版也用這份） */
 export interface WishView {
   type: ExploreType | null;
   area: string | null;
@@ -43,6 +44,7 @@ export interface WishView {
   query: string;
   sort: ExploreSort;
   view: 'photo' | 'list';
+  collapsed: Record<SectionId, boolean>;
 }
 
 export interface MobileState {
@@ -50,7 +52,7 @@ export interface MobileState {
   /** 行程頁的時間軸面板停在哪（低：多看地圖；中；高：只看清單） */
   tripSnap: TripSnap;
   /** 整頁詳情：哪個點、從哪個分頁打開（返回時回到那裡） */
-  detail: { placeId: string; from: MobileTab } | null;
+  detail: { placeId: string; from: MobileTab; /** 一打開就選哪個分頁（想去列點最新留言：comments；Task 7 的詳情分頁沿用） */ tab?: 'comments' } | null;
   /** 行程頁上的半屏聊天（ChatSheet）；只在行程分頁有效，換分頁就變回 false */
   chatSheet: boolean;
   /** 行程頁選到的那張卡（focusKeyOf 的 key；地圖飛過去、清單捲到那張） */
@@ -74,7 +76,7 @@ export interface MobileActions {
   /** 打開、關掉「⋯」動作面板 */
   openActions(spec: ActionSheetSpec): void;
   closeActions(): void;
-  openPlace(placeId: string, from: NonNullable<MobileState['detail']>['from']): void;
+  openPlace(placeId: string, from: NonNullable<MobileState['detail']>['from'], tab?: 'comments'): void;
   closePlace(): void;
   setPage(page: MobileState['page']): void;
   /** 切到行程分頁、打開半屏聊天 */
@@ -143,12 +145,45 @@ export function setMobileActive(active: boolean) {
 
 const FEED_VIEW_KEY = 'travel-helper:feedView';
 
-/** 探索上次的顯示方式（照片牆或清單）；讀不到就是照片牆 */
+/** 探索上次的顯示方式（照片牆或清單）；讀不到就是清單（三段的列有誰想去、最新留言，預設用清單） */
 function loadFeedView(): Feed['view'] {
   try {
     return localStorage.getItem(FEED_VIEW_KEY) === 'list' ? 'list' : 'photo';
   } catch {
     return 'photo';
+  }
+}
+
+const WISH_VIEW_KEY = 'travel-helper:wishView';
+const WISH_COLLAPSED_KEY = 'th.wishCollapsed';
+
+/** 想去上次的顯示方式；讀不到就是清單（三段的列有誰想去、最新留言，預設用清單） */
+function loadWishView(): WishView['view'] {
+  try {
+    return localStorage.getItem(WISH_VIEW_KEY) === 'photo' ? 'photo' : 'list';
+  } catch {
+    return 'list';
+  }
+}
+
+/** 三段的收合狀態；沒存過或讀不到：只有「已排」收起來 */
+function loadWishCollapsed(): WishView['collapsed'] {
+  const base: WishView['collapsed'] = { unscheduled: false, candidate: false, scheduled: true };
+  try {
+    const o = JSON.parse(localStorage.getItem(WISH_COLLAPSED_KEY) ?? 'null') as Partial<Record<SectionId, unknown>> | null;
+    if (o) for (const k of Object.keys(base) as SectionId[]) if (typeof o[k] === 'boolean') base[k] = o[k] as boolean;
+  } catch {
+    // 讀不到：用預設
+  }
+  return base;
+}
+
+function saveWish(w: WishView) {
+  try {
+    localStorage.setItem(WISH_VIEW_KEY, w.view);
+    localStorage.setItem(WISH_COLLAPSED_KEY, JSON.stringify(w.collapsed));
+  } catch {
+    // 私密視窗等存不了：只是下次回到預設
   }
 }
 
@@ -170,7 +205,7 @@ export const mobileStore = createStore<MobileStore>()((set, get) => ({
   actions: null,
   page: null,
   feed: { ...EMPTY_FEED, view: loadFeedView() },
-  wish: { type: null, area: null, quick: [], query: '', sort: 'likes', view: 'photo' },
+  wish: { type: null, area: null, quick: [], query: '', sort: 'likes', view: loadWishView(), collapsed: loadWishCollapsed() },
   // 換分頁：整頁的東西、半屏聊天都關掉
   setTab: (tab) => {
     const had = layerOpen(get());
@@ -182,10 +217,10 @@ export const mobileStore = createStore<MobileStore>()((set, get) => ({
   focusItem: (focused, keepSnap = false) => set(focused ? { focused, ...(keepSnap ? {} : { tripSnap: 'mid' as const }) } : { focused: null }),
   openActions: (actions) => set({ actions }),
   closeActions: () => set({ actions: null }),
-  openPlace: (placeId, from) => {
+  openPlace: (placeId, from, tab) => {
     // 已經開著詳情（或討論／預約）時換過去不再推一筆，上一頁直接回到分頁
     beforeOpenLayer(get());
-    set({ detail: { placeId, from }, page: null });
+    set({ detail: tab ? { placeId, from, tab } : { placeId, from }, page: null });
   },
   closePlace: () => {
     if (!get().detail) return;
@@ -223,7 +258,11 @@ export const mobileStore = createStore<MobileStore>()((set, get) => ({
     const q = get().wish.quick;
     set({ wish: { ...get().wish, quick: q.includes(token) ? q.filter((t) => t !== token) : [...q, token] } });
   },
-  setWish: (patch) => set({ wish: { ...get().wish, ...patch } }),
+  setWish: (patch) => {
+    const wish = { ...get().wish, ...patch };
+    set({ wish });
+    if (patch.view || patch.collapsed) saveWish(wish);
+  },
 }));
 
 if (typeof window !== 'undefined') {

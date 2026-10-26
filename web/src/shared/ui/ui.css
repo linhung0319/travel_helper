@@ -980,3 +980,236 @@
   text-overflow: ellipsis;
   white-space: nowrap;
 }
+
+/* ---------- 想去的清單（WishList）：跳轉列、段落標題、列、左滑 ---------- */
+.wl {
+  --wl-top: 0px;
+  --wl-jump: 0px;
+  min-width: 0;
+  /* 最後一段也能捲到最上面（跳轉晶片點了真的捲到那一段） */
+  padding-bottom: 40vh;
+}
+
+.wl-ell {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* 跳轉晶片一排：黏在篩選列下面 */
+.wl-jump {
+  position: sticky;
+  top: var(--wl-top);
+  z-index: 2;
+  display: flex;
+  gap: 8px;
+  padding: 8px 0;
+  background: var(--paper);
+  overflow-x: auto;
+}
+
+.wl-jump .ui-chip {
+  flex: 0 0 auto;
+}
+
+.wl-section {
+  scroll-margin-top: calc(var(--wl-top) + var(--wl-jump));
+}
+
+/* 段落標題：黏在跳轉列下面，點了收合 */
+.wl-head {
+  position: sticky;
+  top: calc(var(--wl-top) + var(--wl-jump));
+  z-index: 1;
+  margin: 0;
+  background: var(--paper);
+  border-bottom: 1px solid var(--line);
+  font-size: 1rem;
+}
+
+.wl-head button {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+  min-height: 44px;
+  padding: 0;
+  border: 0;
+  background: none;
+  font: inherit;
+  font-family: var(--font-serif, inherit);
+  font-weight: 700;
+  color: var(--ink);
+  text-align: left;
+  cursor: pointer;
+}
+
+.wl-head-n {
+  font-family: var(--font-num);
+  font-style: italic;
+  font-weight: 400;
+  color: var(--ink-3);
+}
+
+.wl-sub {
+  margin: 12px 0 0;
+  font-size: 0.8125rem;
+  font-weight: 700;
+  color: var(--ink-2);
+}
+
+.wl-items,
+.wl-tile {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.wl-item {
+  min-width: 0;
+}
+
+.wl-more {
+  display: block;
+  width: 100%;
+  min-height: 44px;
+  margin: 8px 0 4px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: var(--paper);
+  font: inherit;
+  color: var(--ink-2);
+  cursor: pointer;
+}
+
+/* 列的第二行：誰想去（頭像＋名字）／膠囊＋頭像 */
+.wl-who,
+.wl-status {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  min-width: 0;
+  font-size: 0.8125rem;
+  color: var(--ink-2);
+}
+
+.wl-avatars {
+  display: inline-flex;
+  flex: 0 0 auto;
+}
+
+.wl-avatars .avatar {
+  width: 20px;
+  height: 20px;
+  font-size: 0.6875rem;
+  border: 1px solid var(--paper);
+}
+
+.wl-avatars .avatar + .avatar {
+  margin-left: -6px;
+}
+
+.wl-status .pr-caps {
+  min-width: 0;
+}
+
+/* 第三行：最新一則留言的第一句（點了開詳情的留言分頁）；點的範圍往上下多 12px */
+.wl-comment {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  min-width: 0;
+  padding: 0;
+  border: 0;
+  background: none;
+  font: inherit;
+  font-size: 0.8125rem;
+  color: var(--indigo);
+  text-align: left;
+  cursor: pointer;
+}
+
+.wl-comment::after {
+  content: '';
+  position: absolute;
+  inset: -12px 0;
+}
+
+.wl-comment.none {
+  color: var(--ink-3);
+}
+
+.wl-comment .icon {
+  flex: 0 0 auto;
+}
+
+/* 網頁：❤ 加日曆鈕 */
+.wl .pr-right {
+  width: auto;
+}
+
+.wl-right {
+  display: flex;
+  align-items: center;
+}
+
+.wl-add {
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  border: 0;
+  border-radius: 999px;
+  background: none;
+  color: var(--indigo);
+  cursor: pointer;
+}
+
+.wl-add:hover {
+  background: var(--indigo-wash);
+}
+
+/* 手機：整列往左滑露出「加到某天」 */
+.wl-swipe {
+  position: relative;
+  overflow: hidden;
+}
+
+.wl-swipe-add {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  border: 0;
+  background: var(--indigo);
+  color: #fff;
+  font: inherit;
+  font-size: 0.8125rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.wl-swipe-fg {
+  position: relative;
+  background: var(--paper);
+  touch-action: pan-y;
+  transition: transform 0.2s ease;
+}
+
+.wl-swipe-fg.dragging {
+  transition: none;
+}
+
+/* 手機：左右留 16px（網頁的右欄自己有邊距） */
+.wl[data-surface='mobile'] {
+  padding-left: 16px;
+  padding-right: 16px;
+}

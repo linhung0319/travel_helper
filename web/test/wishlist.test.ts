@@ -2,6 +2,7 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { dayCandidates, likedPlaces, placeDayStatus } from '../src/lib/wishlist.ts';
+import { wishSections } from '../src/shared/wishSections.ts';
 import type { Candidate, Vote } from '../src/backend/types.ts';
 import { itin } from './helpers.ts';
 
@@ -56,4 +57,30 @@ test('placeDayStatus：兩天候選、一天已排，日期排序；已排的那
   assert.deepEqual(placeDayStatus('x', list, it), { candidate: ['2027-02-05', '2027-02-08'], scheduled: ['2027-02-04'] });
   assert.deepEqual(placeDayStatus('z', list, it), { candidate: [], scheduled: [] });
   assert.deepEqual(placeDayStatus('x', list, null), { candidate: ['2027-02-04', '2027-02-05', '2027-02-08'], scheduled: [] });
+});
+
+test('wishSections：已排優先，其他天的候選不重複列', () => {
+  // A 排在 2/12、又是 2/6、2/10 的候選；B 是 2/6、2/11 的候選；C 都不是
+  const it = itin({ '2027-02-12': ['A'] });
+  const cands = [cand('A', '2027-02-06'), cand('A', '2027-02-10'), cand('B', '2027-02-11'), cand('B', '2027-02-06')];
+  const s = wishSections(['A', 'B', 'C'], cands, it, () => 1);
+  assert.deepEqual(s.map((x) => [x.id, x.count]), [['unscheduled', 1], ['candidate', 1], ['scheduled', 1]]);
+  assert.deepEqual(s[0].groups, [{ date: null, ids: ['C'] }]);
+  assert.deepEqual(s[1].groups, [{ date: '2027-02-06', ids: ['B'] }]);
+  assert.deepEqual(s[2].groups, [{ date: '2027-02-12', ids: ['A'] }]);
+});
+
+test('wishSections：候選、已排按日期分組，同時排在幾天的放最早那天', () => {
+  const it = itin({ '2027-02-09': ['x', 'y'], '2027-02-05': ['y'] });
+  const cands = [cand('c1', '2027-02-08'), cand('c2', '2027-02-06'), cand('c1', '2027-02-06')];
+  const s = wishSections(['x', 'y', 'c1', 'c2'], cands, it, () => 0);
+  assert.deepEqual(s[2].groups, [{ date: '2027-02-05', ids: ['y'] }, { date: '2027-02-09', ids: ['x'] }]);
+  assert.deepEqual(s[1].groups, [{ date: '2027-02-06', ids: ['c1', 'c2'] }]);
+});
+
+test('wishSections：還沒排照 ❤ 多到少，同數照原本的順序', () => {
+  const n: Record<string, number> = { C1: 3, C2: 1, C3: 2, C4: 2 };
+  const s = wishSections(['C2', 'C4', 'C1', 'C3'], [], null, (id) => n[id]);
+  assert.deepEqual(s[0].groups, [{ date: null, ids: ['C1', 'C4', 'C3', 'C2'] }]);
+  assert.deepEqual(s[1].groups, []);
 });

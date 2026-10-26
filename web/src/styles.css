@@ -1856,45 +1856,13 @@ button.edit-toggle {
 
 /* ---------- 想去（❤️ 就是想去；探索的卡片＋頭像、留言、加到某天）、這天的候選 ---------- */
 
-.wish-card {
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-}
 
-.wish-card.view-photo {
-  border: 1px solid var(--line);
-  border-radius: var(--radius);
-  overflow: hidden;
-  background: var(--bg);
-}
 
-.wish-card.view-photo > .pt {
-  border: 0;
-  border-radius: 0;
-  box-shadow: none;
-}
 
-.wish-card.view-list {
-  border-bottom: 1px solid var(--line);
-  padding-bottom: 6px;
-}
 
-.wish-card.view-list > .pr {
-  border-bottom: 0;
-}
 
-.wish-card.flash {
-  border-color: var(--fg);
-}
 
-.wish-extras {
-  padding: 0 12px 8px;
-}
 
-.wish-card.view-list .wish-extras {
-  padding: 0 8px 0 40px;
-}
 
 .wish-days {
   display: flex;
@@ -3801,9 +3769,6 @@ button.leg-ride-more {
   padding: 4px 0 6px;
 }
 
-.wish-extras .add-to-day {
-  padding: 4px 0 6px;
-}
 
 .day-picker {
   margin-top: 6px;
@@ -3926,22 +3891,9 @@ button.leg-ride-more {
 
 /* ---------- 探索、想去卡片：類型淡底色（和時間軸卡片同一組變數）、名稱旁的複製鍵、❤️ 稍微加強 ---------- */
 
-.wish-card.type-spot {
-  background: var(--type-spot-bg);
-}
 
-.wish-card.type-restaurant {
-  background: var(--type-restaurant-bg);
-}
 
-.wish-card.type-lodging {
-  background: var(--type-lodging-bg);
-}
 
-.wish-card.type-station,
-.wish-card.type-other {
-  background: var(--type-station-bg);
-}
 
 .copy-name {
   display: inline-grid;

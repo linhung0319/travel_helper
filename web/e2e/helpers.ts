@@ -78,3 +78,22 @@ export async function pickFilter(page: Page, ...opts: string[]) {
   await page.getByTestId('filter-done').click();
   await expect(page.getByTestId('filter-sheet')).toHaveCount(0);
 }
+
+/** 以目前使用者對 n 個「還沒排、沒有候選、還沒人 ❤」的點按想去（預設景點），回傳它們的 id */
+export async function likeMany(page: Page, n: number, type = 'spot'): Promise<string[]> {
+  return page.evaluate(
+    async ([n, type]) => {
+      const th = (window as any).__th;
+      const ds = th.dataStore.getState();
+      const sh = th.shared.store.getState();
+      const taken = new Set<string>([...sh.votes.map((v: any) => v.placeId), ...sh.candidates.map((c: any) => c.placeId)]);
+      const ids = (ds.places as any[])
+        .filter((p) => p.type === type && !taken.has(p.id) && !(ds.days.get(p.id)?.length ?? 0))
+        .slice(0, n as number)
+        .map((p) => p.id as string);
+      for (const id of ids) await th.shared.vote(id, 'like');
+      return ids;
+    },
+    [n, type] as const,
+  );
+}

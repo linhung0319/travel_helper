@@ -183,7 +183,7 @@ function BigVotes({ place, fromWish }: { place: Place; fromWish: boolean }) {
 function DetailContent({ place, from }: { place: Place; from: MobileTab }) {
   const areas = useData((s) => s.areas);
   const comments = useCommentCount(place.id);
-  const [tab, setTab] = useState<Tab>('intro');
+  const [tab, setTab] = useState<Tab>(() => mobileStore.getState().detail?.tab ?? 'intro');
   // 編輯中行程頁的半屏聊天藏起來（ChatSheet），從行程打開的詳情按問 AI 會沒有反應：先不畫問 AI
   const askAiHidden = useApp((s) => s.planning) && from === 'trip';
   const name = place.name.zh || place.name.ja;

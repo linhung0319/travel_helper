@@ -1,5 +1,5 @@
-// 想去（interaction-design §6）：❤️ 就是想去。「❤️ 想去」分頁照搬探索（Explore.tsx 的 source="wish"），
-// 每張卡片底下多了「📅 加到某天」（小月曆，DayPicker.tsx）、留言（只有一層，收起來）；❤️／👎 數在照片右上角。
+// 想去（interaction-design §6）：❤️ 就是想去。「想去」分頁是 Explore.tsx 的 source="wish"，清單在 shared/ui/WishList（三段、日曆鈕「加到某天」開 DayPicker）；
+// 留言（Comments，只有一層）不再在卡片上展開，放在詳情裡，清單上只有最新一則的第一句，點了開詳情。
 // 加到某天的點變成那天的「候選」，放在行程分頁時間軸的下面，樣子和資料卡一樣（類型淡底色、類型色塊），
 // 用虛線框、沒有編號表示還沒排進去，下面一行「加的人」。編輯中左邊 ⠿、右邊「↑ 排進」（插在最順路的位置）和「⋯」選單（設計 §2.3），
 // 或拖到時間軸（卡片中間＝合併成那張卡片的備卡、卡片之間＝排在那裡；planDrag.ts）。備卡也可以拖回候選區。
@@ -18,7 +18,6 @@ import { shortDayLabel } from '../lib/trip.ts';
 import { Avatar, AvatarStack, Dialog, MemberName, stamp } from './common.tsx';
 import { addPlaceToDay } from './addToDay.ts';
 import { Icon } from './Icon.tsx';
-import { AddToDay } from './DayPicker.tsx';
 import { dragSourceProps, dropOnCandidatesProps, useLongPressDrag } from './planDrag.ts';
 import type { DragSource } from '../lib/dropIntent.ts';
 import { CardType } from './Timeline.tsx';
@@ -105,16 +104,6 @@ export function Comments({ target, label = '留言', placeholder = '留言…', 
           </form>
         </div>
       )}
-    </div>
-  );
-}
-
-/** 想去卡片底下：加到某天（月曆）、留言。❤️／👎 數和候選、已排的 tag 在卡片的照片上 */
-export function WishExtras({ placeId }: { placeId: string }) {
-  return (
-    <div className="wish-extras">
-      <AddToDay placeId={placeId} />
-      <Comments target={placeId} />
     </div>
   );
 }
