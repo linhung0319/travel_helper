@@ -633,11 +633,19 @@ async function dragOnto(source: Locator, target: Locator, frac: number, dwell = 
   await page.mouse.move(box.x + Math.min(200, box.width / 2), box.y + box.height * frac, { steps: 8 });
   if (dwell) {
     // 經過上緣時前面會讓出空位（卡片往下移）：跟著看得到的那張卡，指到它的正中間再停
-    const card = (await target.getByTestId('trip-card').boundingBox())!;
+    const card = (await (await settled(target)).boundingBox())!;
     await page.mouse.move(card.x + Math.min(200, card.width / 2), card.y + card.height / 2, { steps: 2 });
     await page.waitForTimeout(dwell);
   }
   await page.mouse.up();
+}
+
+/** 讓位的 padding 動畫（0.12 秒）停下來（0 或 60px）才量卡片的位置；回傳卡片本體 trip-card */
+async function settled(target: Locator) {
+  await expect
+    .poll(() => target.evaluate((el) => [getComputedStyle(el).paddingTop, getComputedStyle(el).paddingBottom].every((p) => [0, 60].includes(Math.round(parseFloat(p))))))
+    .toBe(true);
+  return target.getByTestId('trip-card');
 }
 
 /** 滑鼠按的地方：卡片的名稱（候選是名稱按鈕），不是 ⋯、−／＋ */
@@ -711,10 +719,10 @@ test('網頁：滑鼠拖整張卡換順序；停 0.6 秒才合併', async ({ pag
   const box = (await target.boundingBox())!;
   await page.mouse.move(box.x + 200, box.y + box.height - 4, { steps: 6 });
   // 經過上緣時前面讓出了空位（卡片往下移）：跟著看得到的那張卡，移到它的下緣
-  const seen = (await target.getByTestId('trip-card').boundingBox())!;
+  const seen = (await (await settled(target)).boundingBox())!;
   await page.mouse.move(seen.x + 200, seen.y + seen.height - 4, { steps: 2 });
   await expect(target).toHaveClass(/drop-after/);
-  const mid = (await target.getByTestId('trip-card').boundingBox())!;
+  const mid = (await (await settled(target)).boundingBox())!;
   await page.mouse.move(mid.x + 200, mid.y + mid.height / 2, { steps: 2 });
   await page.mouse.up();
   await expect(page.locator('.drag-float')).toHaveCount(0);
@@ -732,7 +740,7 @@ test('網頁：滑鼠拖整張卡換順序；停 0.6 秒才合併', async ({ pag
   await page.mouse.down();
   const box2 = (await target.boundingBox())!;
   await page.mouse.move(box2.x + 200, box2.y + box2.height / 2, { steps: 6 });
-  const mid2 = (await target.getByTestId('trip-card').boundingBox())!;
+  const mid2 = (await (await settled(target)).boundingBox())!;
   await page.mouse.move(mid2.x + 200, mid2.y + mid2.height / 2, { steps: 2 });
   await expect(target).toHaveClass(/drop-merge/);
   await expect(target).toHaveAttribute('data-drop-label', /^放開＝和「.+」合併成備選$/);
@@ -758,15 +766,17 @@ test('網頁：讓出的空位上停著不合併；只是經過邊緣不算停�
   await page.mouse.move(box.x + 200, box.y + 6, { steps: 8 });
   await expect(target).toHaveClass(/drop-before/);
   // 指在空位（虛線框「放開＝排在這裡」）上停 0.7 秒：還是排在這裡，不合併
-  const pad = await target.evaluate((el) => parseFloat(getComputedStyle(el).paddingTop));
-  expect(pad).toBeGreaterThan(40);
+  // 空位有 0.12 秒的 padding 動畫：等它撐開到 60px 再量（拖的時候不再因為指到別張卡而重畫，class 一出現就量會量到動畫的一半）
+  const padTop = () => target.evaluate((el) => parseFloat(getComputedStyle(el).paddingTop));
+  await expect.poll(padTop).toBe(60);
+  const pad = await padTop();
   const gap = (await target.boundingBox())!;
   await page.mouse.move(gap.x + 200, gap.y + pad / 2, { steps: 2 });
   await page.waitForTimeout(700);
   await expect(target).toHaveClass(/drop-before/);
   await expect(target).not.toHaveClass(/drop-merge/);
   // 移到看得到的那張卡的正中間：剛進中間區，還不合併；停 0.6 秒以上才變合併
-  const card = (await target.getByTestId('trip-card').boundingBox())!;
+  const card = (await (await settled(target)).boundingBox())!;
   await page.mouse.move(card.x + 200, card.y + card.height / 2, { steps: 2 });
   expect(await target.evaluate((el) => el.classList.contains('drop-merge'))).toBe(false);
   await expect(target).toHaveClass(/drop-merge/);
