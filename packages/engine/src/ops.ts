@@ -380,7 +380,7 @@ export function setTravel(it: Itinerary, itemId: string, travel: TravelSpec | nu
 export type LegTarget = { itemId: string } | { lodging: DateString };
 
 /** 欄位全空的交通設定視為沒設定 */
-const isEmptySpec = (s: TravelSpec) => s.mode == null && s.minutes == null && s.trip == null && s.note == null;
+const isEmptySpec = (s: TravelSpec) => s.mode == null && s.minutes == null && s.trip == null && s.path == null && s.note == null;
 
 /** 設定某一段交通（方式、分鐘、班次、備註可以只填一部分）；spec 是 null 或欄位全空：清掉。split 項目本身不能設 */
 export function setLegTravel(it: Itinerary, to: LegTarget, spec: TravelSpec | null): Itinerary {
@@ -476,6 +476,12 @@ export function validateItinerary(it: unknown): string[] {
       if (t.trip.arrive != null && !isTime(t.trip.arrive)) errs.push(`${where}：travel.trip.arrive 要是 HH:MM`);
       if (t.trip.rides != null && !(Array.isArray(t.trip.rides) && t.trip.rides.every((r) => typeof r === 'string'))) errs.push(`${where}：travel.trip.rides 要是 tripId 的陣列`);
       if (t.trip.via != null && (typeof t.trip.via !== 'string' || !t.trip.via)) errs.push(`${where}：travel.trip.via 要是車站 ID`);
+    }
+    if (t.path != null) {
+      const pa = t.path;
+      if (!Array.isArray(pa.rides)) errs.push(`${where}：travel.path.rides 要是陣列`);
+      else if (!pa.rides.every((r) => r && ['line', 'from', 'to'].every((k) => typeof (r as unknown as Record<string, unknown>)[k] === 'string' && (r as unknown as Record<string, string>)[k]))) errs.push(`${where}：travel.path.rides 每一程要有非空字串的 line、from、to`);
+      for (const k of ['from', 'to'] as const) if (pa[k] != null && typeof pa[k] !== 'string') errs.push(`${where}：travel.path.${k} 要是字串或 null`);
     }
   };
   const checkItem = (i: ItineraryItem | GroupItem, where: string, inGroup: boolean) => {

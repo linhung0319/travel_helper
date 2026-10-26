@@ -692,3 +692,41 @@ test('第一程是班距型：上車往後挪，等車移到起點，到達不�
   assert.deepEqual([leg.rides[1].tripId, leg.rides[1].depart, leg.rides[1].arrive], ['1-382', '16:10', '18:35']);
   assert.equal(leg.arrive, '18:35');
 });
+
+// --- 選定的走法（TravelSpec.path） ---
+
+// 大阪裡有 2 條以上走法的一對（osaka-dotonbori → osaka-castle-tenshukaku 只有 1 條）
+const PA = 'osaka-tsutenkaku', PB = 'osaka-dynamic-kitchen-san-obp';
+
+test('path：照選的走法搭；出發晚 90 分同一條走法、arrive 變晚', () => {
+  const dc = P(PA), tn = P(PB);
+  const base = ctx(real, { date: '2027-02-12', depart: 8 * 60 });
+  const alts = planLeg(dc, tn, base).leg.alternatives ?? [];
+  const pick = alts.length > 1 ? alts[1] : null;
+  assert.ok(pick, '大阪這一對要有 2 條以上的走法');
+  const l1 = planLeg(dc, tn, base, { path: pick.path }).leg;
+  assert.equal(l1.rides.length, pick.ridesCount);
+  assert.equal(l1.specified, true);
+  assert.equal(l1.arrive, pick.arrive);
+  const l2 = planLeg(dc, tn, ctx(real, { date: '2027-02-12', depart: 8 * 60 + 90 }), { path: pick.path }).leg;
+  assert.equal(l2.rides.length, pick.ridesCount);
+  assert.ok(toMinutes(l2.arrive) > toMinutes(l1.arrive));
+});
+
+test('path：那天不能搭的線 → path-unavailable，改自動', () => {
+  const dc = P(PA), tn = P(PB);
+  const path = { rides: [{ line: 'no-such-line', from: 'x', to: 'y' }], from: dc.id, to: tn.id };
+  const { leg, warnings } = planLeg(dc, tn, ctx(real, { date: '2027-02-11', depart: 10 * 60 }), { path });
+  assert.ok(warnings.some((w) => w.code === 'path-unavailable' && w.level === 'info' && w.message.startsWith('選的走法這時間沒有車，改用')));
+  assert.notEqual(leg.mode, 'unknown');
+});
+
+test('path：from 和 a.id 不同 → 照自動', () => {
+  const dc = P(PA), tn = P(PB);
+  const c = ctx(real, { date: '2027-02-12', depart: 8 * 60 });
+  const auto = planLeg(dc, tn, c);
+  const alt = auto.leg.alternatives?.[1];
+  assert.ok(alt);
+  const r = planLeg(dc, tn, c, { path: { ...alt.path, from: 'other' } });
+  assert.deepEqual(r, auto);
+});

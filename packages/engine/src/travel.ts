@@ -11,10 +11,10 @@ import type { EngineData, PlaceRecord, RouteTimetable, UrbanTransfer } from './d
 import { estimateWalk, haversineMeters, isLonLat, minutesForMeters, nearestStations } from './geo.ts';
 import { anyTrainThatDay, departuresFrom, directTrains, earliestTrain, routeRides, type RouteRide, type TrainRide } from './transit.ts';
 import { fromMinutes, kintetsuDayType, toMinutes } from './time.ts';
-import type { DateString, EngineWarning, Leg, LegAlternative, LegTransfer, LonLat, PartyProfile, TaxiInfo, TimeString, TransitRide, TravelMode, TravelSpec, TripRef } from './types.ts';
+import type { DateString, EngineWarning, Leg, LegAlternative, LegTransfer, LonLat, PartyProfile, PathRef, TaxiInfo, TimeString, TransitRide, TravelMode, TravelSpec, TripRef } from './types.ts';
 import { buildNetwork, KINTETSU, routeFare, type Network } from './raptor/network.ts';
 import { earliestRide, indexOf, searchJourneys, type Access, type Journey, type JourneyRide, type SearchQuery } from './raptor/search.ts';
-import { ifMissed, pathOf } from './raptor/path.ts';
+import { evaluatePath, ifMissed, pathOf } from './raptor/path.ts';
 
 export interface Endpoint {
   id: string | null;
@@ -874,9 +874,23 @@ export function planLeg(a: Endpoint, b: Endpoint, ctx: LegContext, spec?: Travel
   const same = !!((a.id && a.id === b.id) || (a.id == null && b.id == null && a.coords && b.coords && haversineMeters(a.coords, b.coords) < 1));
   // 出發後還有沒有電車、巴士、船（不管等多久）：沒有時規劃模式的「大眾運輸」灰掉
   const transitAvailable = !same && transitExists(a, b, ctx, factor);
-  const done = (l: Leg) => ({ leg: { ...l, transitAvailable }, warnings });
+  // 走到 done 時，有 path 就是選的走法這時間沒有車（pathLeg 成功會先 return）：照自動算，說明改用哪條
+  let pathMissed = false;
+  const done = (l: Leg) => {
+    if (pathMissed) warnings.push({ code: 'path-unavailable', level: 'info', message: `選的走法這時間沒有車，改用 ${l.alternatives?.[0]?.summary ?? l.basis}` });
+    return { leg: { ...l, transitAvailable }, warnings };
+  };
   // 選定的班次：起訖點和選的時候一樣才用；換了順序（起訖點不同）就當作沒選
   const trip = spec?.trip && spec.trip.from === a.id && spec.trip.to === b.id ? spec.trip : null;
+
+  // 選定的走法（T29）：起訖點和選的時候一樣、方式沒寫或是 transit、時間不是使用者填的才用；比 trip 優先，不套等車、班距規則
+  const path =
+    !same && spec?.path && spec.path.from === a.id && spec.path.to === b.id && (!spec.mode || spec.mode === 'transit') && spec.minutes == null ? spec.path : null;
+  if (path) {
+    const l = pathLeg(a, b, ctx, path, factor, warnings);
+    if (l) return done({ ...l, specified: true });
+    pathMissed = true;
+  }
 
   if (spec?.mode) return done(specifiedLeg(a, b, ctx, { ...spec, mode: spec.mode }, trip, walk?.minutes ?? null, factor, warnings));
   // 只填分鐘：方式自動，時間用填的
@@ -895,6 +909,28 @@ export function planLeg(a: Endpoint, b: Endpoint, ctx: LegContext, spec?: Travel
     if (l) return done({ ...l, specified: true });
   }
   return done(autoLeg(a, b, ctx, walk, factor, same, warnings));
+}
+
+/**
+ * 照選定的走法（PathRef）算：每一程搭最早接得上的班，不套等車、班距規則。
+ * 起訖的上下車點用 accessStops（和自動算一樣），每種組合各算一次取最早到的；那天沒車、站不在網路裡回傳 null（當作沒選）。
+ * 其他走法（自動算的）接在 alternatives 後面，選的放第一個
+ */
+function pathLeg(a: Endpoint, b: Endpoint, ctx: LegContext, path: PathRef, factor: number, warnings: LegWarning[]): Leg | null {
+  if (!Array.isArray(path.rides) || !path.rides.length) return null;
+  const net = buildNetwork(ctx.data, ctx.cfg, ctx.date);
+  const q = { whole: ctx.whole, factor };
+  let j: Journey | null = null;
+  for (const o of accessStops(a, ctx, factor, net)) {
+    for (const t of accessStops(b, ctx, factor, net)) {
+      const x = evaluatePath(net, path.rides, o, t, ctx.depart, q, ctx.cfg);
+      if (x && (!j || x.arr < j.arr)) j = x;
+    }
+  }
+  if (!j) return null;
+  const c = journeyCandidate(j, net, ctx.depart, ctx, factor);
+  busCrowd(c, ctx, warnings);
+  return fromCandidate(c, a, b, ctx, factor, warnings, raptorCandidates(a, b, ctx, factor, ctx.depart).cands);
 }
 
 /**
