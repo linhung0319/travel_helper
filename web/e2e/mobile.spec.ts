@@ -1367,8 +1367,20 @@ test('詳情頂端列：捲過照片才出現，不蓋住分頁', async ({ page 
   expect(tab.y).toBeGreaterThanOrEqual(barBox.y + barBox.height - 1); // 分頁列接在頂端列下面
   expect(tab.y + tab.height).toBeLessThanOrEqual(vp.height);
   expect(await scrollsSideways(page)).toBe(false);
-  // ‹ 在頂端列裡，點了返回
-  await bar.getByTestId('m-detail-bar-back').click();
+  // ‹ 在頂端列裡，點了返回。頂端列滑進來的動畫停了再點那個位置：locator.click 會先把捲動容器捲回去（頂端列又藏起來、點到照片）
+  const back = bar.getByTestId('m-detail-bar-back');
+  let last = '';
+  await expect
+    .poll(async () => {
+      const b = await back.boundingBox();
+      const now = JSON.stringify(b && [Math.round(b.x), Math.round(b.y)]);
+      const same = now === last;
+      last = now;
+      return same;
+    })
+    .toBe(true);
+  const b = (await back.boundingBox())!;
+  await page.mouse.click(b.x + b.width / 2, b.y + b.height / 2);
   await expect(detail).toHaveCount(0);
 });
 
