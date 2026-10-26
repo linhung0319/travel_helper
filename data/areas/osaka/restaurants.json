@@ -113,7 +113,7 @@
       "instagram": null
     },
     "tags": [],
-    "tier": null,
+    "tier": "A",
     "sources": [
       {
         "type": "tabelog",
@@ -246,7 +246,46 @@
       "note": null
     },
     "smoking": "全席禁煙",
-    "extra": {}
+    "extra": {},
+    "summary": {
+      "text": "森ノ宮、玉造站步行約 5 分的烏龍麵居酒屋，28 席。中午是粗麵有嚼勁的烏龍麵，晚上是居酒屋，有うどんすき鍋的飲み放題コース（4,500～5,500 円、2～25 名），20 人以下可以包場。有兒童餐。午 ～999 円、晚 2,000～2,999 円。",
+      "pros": [
+        "食べログ 3.69（618 則）、Google 4.2，大阪城一帶分數最高的烏龍麵",
+        "20 人以下可以包場，晚上有うどんすき鍋的團體コース（電話訂）",
+        "有兒童餐、全席禁菸"
+      ],
+      "cons": [
+        "週日公休；烏龍麵賣完就打烊",
+        "午間不能訂位、常排隊（14 點前後較容易進）",
+        "店小（28 席），25 人以上包場要電話談；混雜時 2 小時制"
+      ],
+      "basedOn": [
+        "https://mugiudn0507.amebaownd.com",
+        "https://tabelog.com/osaka/A2701/A270107/27013801/",
+        "https://tabelog.com/osaka/A2701/A270107/27013801/party/",
+        "https://maps.google.com/?cid=2494808786237497396"
+      ],
+      "generated": "2026-10-26"
+    },
+    "assessment": {
+      "rubric": "restaurant-v1",
+      "scores": {
+        "recommend": 4,
+        "localFlavor": 4,
+        "groupFit": 5,
+        "elderFit": 4,
+        "kidsFit": 5
+      },
+      "rationale": {
+        "recommend": "食べログ 3.69（618 則）、Google 4.2（291 則）→ 大阪門檻的 4；5 要 1,000 則以上",
+        "localFlavor": "うどんすき鍋的烏龍麵居酒屋（大阪名物）→ 4",
+        "groupFit": "fit15 yes：貸切 20 人以下、可預約（晚上）→ 5",
+        "elderFit": "有桌席；午間要排隊，團體晚上訂位不用排 → 4",
+        "kidsFit": "子供可、有兒童餐 → 5"
+      },
+      "confidence": "medium",
+      "assessed": "2026-10-26"
+    }
   },
   {
     "id": "osaka-garb-dressing-kyobashi",
@@ -336,7 +375,7 @@
       "instagram": "@garb_dressing"
     },
     "tags": [],
-    "tier": null,
+    "tier": "B",
     "sources": [
       {
         "type": "tabelog",
@@ -481,7 +520,48 @@
       "note": null
     },
     "smoking": "全席禁煙",
-    "extra": {}
+    "extra": {},
+    "summary": {
+      "text": "京阪京橋站高架下的大型義式餐廳，250 席，有 10～30 人以上的包廂、可以整層包場；90 分飲み放題付コース 4,500～6,500 円（4～99 名）。帶小孩會被安排到包廂，輪椅可入店。但 Google 只有 3.5，低分集中在服務。",
+      "pros": [
+        "包廂 10～30 人以上、可包場，15 人一定坐得下",
+        "輪椅可入店、桌席和沙發；口コミ說團體、帶小孩都好用",
+        "無休，午 ～999 円、晚 3,000～3,999 円"
+      ],
+      "cons": [
+        "Google 3.5（839 則）；1 星集中在服務：點單漏掉、上菜等很久、店員態度差（4 則，約 2024～2025）",
+        "週末 11:30 午餐要排隊；預約桌位卻被帶到吧台（1 則）",
+        "在京橋（大阪城公園北側），離天守閣有一段距離"
+      ],
+      "basedOn": [
+        "http://www.garb-dressing.com/",
+        "http://www.garb-dressing.com/shop/",
+        "http://www.garb-dressing.com/party/",
+        "https://tabelog.com/osaka/A2701/A270107/27001127/",
+        "https://tabelog.com/osaka/A2701/A270107/27001127/party/",
+        "https://maps.google.com/?cid=1824497545878585091"
+      ],
+      "generated": "2026-10-26"
+    },
+    "assessment": {
+      "rubric": "restaurant-v1",
+      "scores": {
+        "recommend": 2,
+        "localFlavor": 2,
+        "groupFit": 5,
+        "elderFit": 4,
+        "kidsFit": 4
+      },
+      "rationale": {
+        "recommend": "Google 3.5（839 則，Google 3.5 以下）→ 2；服務負評已經反映在 3.5，不再往下調",
+        "localFlavor": "一般義式洋食 → 2",
+        "groupFit": "fit15 yes：包廂最多 30 人以上、可包場 → 5",
+        "elderFit": "車椅子で入店可、桌席和沙發 → 4",
+        "kidsFit": "子供可、有兒童椅，口コミ說帶小孩被安排到包廂；兒童餐沒有來源 → 4"
+      },
+      "confidence": "high",
+      "assessed": "2026-10-26"
+    }
   },
   {
     "id": "osaka-dynamic-kitchen-san-obp",
@@ -606,7 +686,7 @@
       "instagram": "@sun_obp_twintower"
     },
     "tags": [],
-    "tier": null,
+    "tier": "B",
     "sources": [
       {
         "type": "tabelog",
@@ -755,6 +835,47 @@
       "conflicts": [
         "包場上限：官網 /space/ 寫 48 人、/outline/ 寫 80～100 人（讀文）"
       ]
+    },
+    "summary": {
+      "text": "大阪ビジネスパーク ツイン21 MID タワー 38 樓的和食居酒屋，窗外看得到大阪城。124 席，最大著席 40 人，有 17～20 人的半個室和大阪城側的窗邊包廂，全是桌席和沙發（沒有座敷）。午間定食附鯛めし吃到飽（1,000～1,999 円），午間團體方案 6,000 円起（飲み放題付、2～40 名）。",
+      "pros": [
+        "38 樓看得到大阪城，Google 4.6（3,833 則）",
+        "最大著席 40 人、全桌席沙發，輪椅可入店，長輩坐椅子",
+        "兒童餐、兒童椅（要事先預約）；無休"
+      ],
+      "cons": [
+        "1 星集中在服務：預約了沒安排窗邊、上菜收盤慢、叫人不來（6 則，約 2025～2026）",
+        "晚上每人約 6,000～7,999 円；午餐建議預約",
+        "半個室隔壁團體很吵（2 則）"
+      ],
+      "basedOn": [
+        "https://www.dynacjapan.com/brands/sun/shops/obp-twintower/",
+        "https://www.dynacjapan.com/brands/sun/shops/obp-twintower/space/",
+        "https://www.dynacjapan.com/brands/sun/shops/obp-twintower/outline/",
+        "https://tabelog.com/osaka/A2701/A270107/27002146/",
+        "https://tabelog.com/osaka/A2701/A270107/27002146/party/",
+        "https://maps.google.com/?cid=16607187488572098340"
+      ],
+      "generated": "2026-10-26"
+    },
+    "assessment": {
+      "rubric": "restaurant-v1",
+      "scores": {
+        "recommend": 2,
+        "localFlavor": 2,
+        "groupFit": 5,
+        "elderFit": 5,
+        "kidsFit": 5
+      },
+      "rationale": {
+        "recommend": "食べログ 3.49、Google 4.6 → 照數字 3（4 要食べログ 3.55），Google 低分集中在服務（6 則，約 2025～2026）→ 負評往下調一級",
+        "localFlavor": "一般和食居酒屋（大阪城景觀是加分，但料理不是名物）→ 2",
+        "groupFit": "fit15 yes：最大予約 40 人、半個室 17～20 人 → 5",
+        "elderFit": "全桌席、沙發，車椅子で入店可，大樓電梯直達、可預約 → 5",
+        "kidsFit": "子供可、兒童餐（事先預約）、兒童椅 → 5"
+      },
+      "confidence": "high",
+      "assessed": "2026-10-26"
     }
   },
   {
@@ -839,7 +960,7 @@
       "instagram": null
     },
     "tags": [],
-    "tier": null,
+    "tier": "B",
     "sources": [
       {
         "type": "tabelog",
@@ -958,6 +1079,44 @@
       "conflicts": [
         "關西ウォーカー地址寫「野田町3-2-18」，與主 session 的「東野田町3-2-18」不同"
       ]
+    },
+    "summary": {
+      "text": "京橋站附近 14 席只有吧台的內臟燒肉（ホルモン），不能訂位，赤身三種盛り受歡迎，每人約 2,000～2,999 円。只適合 2～4 人的小組。",
+      "pros": [
+        "食べログ 3.55（661 則），平價的大阪ホルモン",
+        "全席禁菸、可帶小孩（含嬰兒車）",
+        "12:00 起營業（食べログ），午餐也能吃燒肉"
+      ],
+      "cons": [
+        "14 席只有吧台、不能訂位，只適合 2～4 人",
+        "營業時間、公休只有食べログ（非店舗会員），舊報導寫 13:00～23:00、週四公休，要再確認",
+        "官網沒找到"
+      ],
+      "basedOn": [
+        "https://tabelog.com/osaka/A2701/A270107/27055508/",
+        "https://www.walkerplus.com/article/141903/amp/",
+        "https://maps.google.com/?cid=17803306765947503235"
+      ],
+      "generated": "2026-10-26"
+    },
+    "assessment": {
+      "rubric": "restaurant-v1",
+      "scores": {
+        "recommend": 3,
+        "localFlavor": 4,
+        "groupFit": 1,
+        "elderFit": 3,
+        "kidsFit": 4
+      },
+      "rationale": {
+        "recommend": "食べログ 3.55（661 則）、Google 4.1 → 大阪門檻的 3（4 要 Google 4.2）",
+        "localFlavor": "ホルモン專門（大阪名物）→ 4",
+        "groupFit": "fit15 no：14 席、予約不可 → 1",
+        "elderFit": "只有吧台 → 3",
+        "kidsFit": "子供可、燒肉是熟食 → 4"
+      },
+      "confidence": "medium",
+      "assessed": "2026-10-26"
     }
   },
   {
@@ -1047,7 +1206,7 @@
       "instagram": "@matsu_i27"
     },
     "tags": [],
-    "tier": null,
+    "tier": "B",
     "sources": [
       {
         "type": "tabelog",
@@ -1178,6 +1337,46 @@
       "conflicts": [
         "營業時間：食べログ 08:00～22:00，官網 1F 8:00～23:00（採官網）"
       ]
+    },
+    "summary": {
+      "text": "京橋站北口旁的串カツ、どて焼き立飲老店，1 樓站著吃（8:00 起）、全席可吸菸，2 樓有座位、可以電話訂。串カツ 200～300 円、どて焼き 450 円，每人約 1,000～1,999 円。",
+      "pros": [
+        "Google 4.3（1,055 則），京橋的大眾串カツ老店",
+        "串カツ一支 200～300 円起，便宜",
+        "無休，1 樓早上 8 點就開"
+      ],
+      "cons": [
+        "1 樓站著吃、全席可吸菸，長輩和小孩不適合；2 樓 17:00 起（週末 11:00 起），電梯沒有來源",
+        "只有 2 樓可以電話訂，1 樓不能訂",
+        "兒童規定沒有來源"
+      ],
+      "basedOn": [
+        "https://shubou-matsui.com/shop_kyobashi/",
+        "https://shubou-matsui.com/menu/",
+        "https://shubou-matsui.com",
+        "https://tabelog.com/osaka/A2701/A270107/27004037/",
+        "https://maps.google.com/?cid=6288444141618846713"
+      ],
+      "generated": "2026-10-26"
+    },
+    "assessment": {
+      "rubric": "restaurant-v1",
+      "scores": {
+        "recommend": 3,
+        "localFlavor": 5,
+        "groupFit": 2,
+        "elderFit": 2,
+        "kidsFit": 3
+      },
+      "rationale": {
+        "recommend": "食べログ 3.49、Google 4.3 → 大阪門檻的 3（4 要食べログ 3.55）",
+        "localFlavor": "串カツ、どて焼き的立飲老店（大阪名物、老店）→ 5",
+        "groupFit": "fit15 unknown：2 樓可電話預約，席數 25（含 1 樓立飲）→ 2",
+        "elderFit": "1 樓站著吃，2 樓要爬樓梯 → 2",
+        "kidsFit": "兒童規定沒有來源，串カツ是熟食 → 3（全席可吸菸只記在 smoking）"
+      },
+      "confidence": "medium",
+      "assessed": "2026-10-26"
     }
   },
   {
@@ -1263,7 +1462,7 @@
       "instagram": "@doutonbori.imai"
     },
     "tags": [],
-    "tier": null,
+    "tier": "A",
     "sources": [
       {
         "type": "tabelog",
@@ -1425,7 +1624,48 @@
       "note": null
     },
     "smoking": "全席禁煙",
-    "extra": {}
+    "extra": {},
+    "summary": {
+      "text": "道頓堀的きつねうどん老舗（きつねうどん 980 円），138 席，個室 2～20 人、20 人以下可以包場（更多人可以整層包，要問本店）。預約只收前一天以前、以寄せ鍋等コース（5,500～7,000 円）訂。座位是座敷和掘りごたつ，輪椅可入店。",
+      "pros": [
+        "食べログ 3.58（2,408 則）、Google 4.3，大阪きつねうどん的代表老舗",
+        "個室最多 20 人、可包場；10 月中旬～5 月有うどん寄せ鍋、鴨ねぎすき鍋コース",
+        "道頓堀正中央，住難波時走得到"
+      ],
+      "cons": [
+        "週三公休（遇假日營業：2/10 休）、第 4 週二公休（2027-02 是 2/23，大阪那幾天不受影響）",
+        "午間不能訂位，要在店外的自動受付機取號，週末中午約 20 分到 24 組",
+        "座位是座敷、掘りごたつ（沒有一般桌席）"
+      ],
+      "basedOn": [
+        "https://www.d-imai.com/",
+        "https://www.d-imai.com/shops/honten/",
+        "https://www.d-imai.com/menu",
+        "https://tabelog.com/osaka/A2701/A270202/27001289/",
+        "https://tabelog.com/osaka/A2701/A270202/27001289/party/",
+        "https://maps.google.com/?cid=18399770083682177411"
+      ],
+      "generated": "2026-10-26"
+    },
+    "assessment": {
+      "rubric": "restaurant-v1",
+      "scores": {
+        "recommend": 4,
+        "localFlavor": 5,
+        "groupFit": 5,
+        "elderFit": 3,
+        "kidsFit": 4
+      },
+      "rationale": {
+        "recommend": "食べログ 3.58（2,408 則）、Google 4.3 → 大阪門檻的 4；5 要食べログ 3.70；1 星主題分散、多為 2021～2025，不調",
+        "localFlavor": "きつねうどん老舗（大阪名物、老舗）→ 5",
+        "groupFit": "fit15 yes：個室最多 20 人、貸切 20 人以下，前一天以前用コース預約 → 5",
+        "elderFit": "座敷、掘りごたつ（車椅子で入店可，但座位不是椅子）→ 3",
+        "kidsFit": "子供可、ベビーカー可，烏龍麵 → 4"
+      },
+      "confidence": "high",
+      "assessed": "2026-10-26"
+    }
   },
   {
     "id": "osaka-551-horai-honten",
@@ -1504,7 +1744,7 @@
       "instagram": null
     },
     "tags": [],
-    "tier": null,
+    "tier": "B",
     "sources": [
       {
         "type": "tabelog",
@@ -1641,6 +1881,45 @@
       "conflicts": [
         "公休：食べログ寫週二，官網寫第 1、3 週二（採官網）"
       ]
+    },
+    "summary": {
+      "text": "大阪名物豚まん（2 個 400 円）的本店，1 樓外帶、2～3 樓是中華餐廳（120 席，桌席、圓桌），3 樓可以包場（50 人以上）。用餐的隊伍比外帶短。午 1,000～1,999 円、晚 2,000～2,999 円。",
+      "pros": [
+        "大阪名物豚まん的本店，1 樓外帶可以分批買",
+        "2～3 樓有圓桌、桌席，平日中午、晚上幾乎不用等",
+        "難波站步行約 2 分"
+      ],
+      "cons": [
+        "1 星集中在料理品質：味道變差、豚まん冷掉、內餡變少（6 則，約 2025～2026）",
+        "週二公休：官網寫第 1、3 週二（2/9 是第 2 週二），食べログ寫每週二，2027 年 2 月的日期未公布；週末用餐排 10～50 分",
+        "餐廳在 2～3 樓，電梯沒有來源；包場要 50 人以上，15 人要問半個室"
+      ],
+      "basedOn": [
+        "https://www.551horai.co.jp/shop/list/13/",
+        "https://www.551horai.co.jp/",
+        "https://tabelog.com/osaka/A2701/A270202/27001312/",
+        "https://maps.google.com/?cid=2120556066066794875"
+      ],
+      "generated": "2026-10-26"
+    },
+    "assessment": {
+      "rubric": "restaurant-v1",
+      "scores": {
+        "recommend": 2,
+        "localFlavor": 5,
+        "groupFit": 4,
+        "elderFit": 3,
+        "kidsFit": 4
+      },
+      "rationale": {
+        "recommend": "食べログ 3.48、Google 4.2 → 照數字 3，Google 低分集中在料理品質（6 則，約 2025～2026）→ 負評往下調一級",
+        "localFlavor": "豚まん的本店（大阪名物）→ 5",
+        "groupFit": "fit15 yes 但依據是 3 樓包場（50 人以上），15 人坐法要問 → 4",
+        "elderFit": "桌席、圓桌；在 2～3 樓、電梯沒有來源 → 3",
+        "kidsFit": "子供可，豚まん、中華是熟食 → 4"
+      },
+      "confidence": "high",
+      "assessed": "2026-10-26"
     }
   },
   {
@@ -1766,7 +2045,7 @@
       "instagram": "@horie_bleu"
     },
     "tags": [],
-    "tier": null,
+    "tier": "B",
     "sources": [
       {
         "type": "tabelog",
@@ -1917,7 +2196,47 @@
       "note": null
     },
     "smoking": "全席禁煙",
-    "extra": {}
+    "extra": {},
+    "summary": {
+      "text": "道頓堀川邊（キャナルテラス堀江 2F）的點心中華，72 席，最大著席 80 人，可以整層包場；團體方案 4,000 円起（飲み放題、25～60 名），點心コース 3,960 円（2～40 名）。午間點心御膳附沙拉吧、中國茶喝到飽（2,079 円起）。",
+      "pros": [
+        "最大著席 80 人、個室 2～30 人以上，15 人坐得下",
+        "川邊氣氛好；午間點心御膳 2,079 円起",
+        "帶小孩會被安排進裡面的個室（口コミ）"
+      ],
+      "cons": [
+        "1 星集中在料理和衛生：菜冷掉、冷凍感、和照片不符，個室和取盤髒污（6 則，約 2024～2026）",
+        "在 2F，電梯沒有來源；指定座位要從官方 TableCheck 訂",
+        "電話打不通、服務放著不管（2 則，約 2025）"
+      ],
+      "basedOn": [
+        "https://tabelog.com/osaka/A2701/A270202/27019090/",
+        "https://tabelog.com/osaka/A2701/A270202/27019090/party/",
+        "https://www.tablecheck.com/ja/horie-bleu",
+        "https://www.hotpepper.jp/strJ000717686/",
+        "https://maps.google.com/?cid=1989608608917323740"
+      ],
+      "generated": "2026-10-26"
+    },
+    "assessment": {
+      "rubric": "restaurant-v1",
+      "scores": {
+        "recommend": 2,
+        "localFlavor": 2,
+        "groupFit": 5,
+        "elderFit": 3,
+        "kidsFit": 4
+      },
+      "rationale": {
+        "recommend": "食べログ 3.49、Google 3.9 → 照數字 3，Google 低分集中在料理品質和衛生（6 則，約 2024～2026）→ 負評往下調一級",
+        "localFlavor": "點心中華，和大阪名物無關 → 2",
+        "groupFit": "fit15 yes：最大予約 80 人、可包場 → 5",
+        "elderFit": "吧台、沙發（有椅子）；在 2F、電梯沒有來源 → 3",
+        "kidsFit": "子供可、ベビーカー可，口コミ說帶小孩被安排到個室 → 4"
+      },
+      "confidence": "high",
+      "assessed": "2026-10-26"
+    }
   },
   {
     "id": "osaka-tsurutontan-soemoncho",
@@ -2001,7 +2320,7 @@
       "instagram": "@tsurutontan_official"
     },
     "tags": [],
-    "tier": null,
+    "tier": "B",
     "sources": [
       {
         "type": "tabelog",
@@ -2150,7 +2469,46 @@
       "note": null
     },
     "smoking": "全席禁煙",
-    "extra": {}
+    "extra": {},
+    "summary": {
+      "text": "大碗創作烏龍麵的宗右衛門町店，營業到清晨。80 席，座敷個室 2～60 名、掘りごたつ個室 4～8 名，最大著席 60 人；會席和鍋的宴會 4,500～7,500 円，食べログ網路只訂到 10 名，15 人要電話。",
+      "pros": [
+        "座敷個室最多 60 人、可包場，15 人坐得下",
+        "年中無休、營業到隔天清晨，晚上很晚也能吃",
+        "日本橋駅步行約 4 分"
+      ],
+      "cons": [
+        "1 星集中在服務：店員態度差、對外國客不友善、上錯菜（5 則，約 2025～2026）",
+        "開店前、晚上 17:30～18:00 店外排隊（觀光客多）；點餐機沒有中文",
+        "15 人要電話訂（網路只到 10 名）；座位是座敷、掘りごたつ"
+      ],
+      "basedOn": [
+        "https://www.tsurutontan.co.jp/shop/soemoncho/",
+        "https://tabelog.com/osaka/A2701/A270202/27000374/",
+        "https://tabelog.com/osaka/A2701/A270202/27000374/party/",
+        "https://maps.google.com/?cid=12563860394098208989"
+      ],
+      "generated": "2026-10-26"
+    },
+    "assessment": {
+      "rubric": "restaurant-v1",
+      "scores": {
+        "recommend": 2,
+        "localFlavor": 2,
+        "groupFit": 5,
+        "elderFit": 3,
+        "kidsFit": 4
+      },
+      "rationale": {
+        "recommend": "食べログ 3.39、Google 4.0 → 照數字 3，Google 低分集中在服務（5 則，約 2025～2026）→ 負評往下調一級",
+        "localFlavor": "大阪發祥的創作烏龍麵連鎖，不是きつね、うどんすき這類名物 → 2",
+        "groupFit": "fit15 yes：最大予約 60 人、可包場（15 人要電話）→ 5",
+        "elderFit": "座敷、掘りごたつ、吧台 → 3",
+        "kidsFit": "子供可（乳兒、小學生可），烏龍麵 → 4"
+      },
+      "confidence": "high",
+      "assessed": "2026-10-26"
+    }
   },
   {
     "id": "osaka-aquarium-italian-lime",
@@ -2275,7 +2633,7 @@
       "instagram": "@aquarium_lime"
     },
     "tags": [],
-    "tier": null,
+    "tier": "B",
     "sources": [
       {
         "type": "tabelog",
@@ -2422,7 +2780,46 @@
       "note": null
     },
     "smoking": "全席禁煙",
-    "extra": {}
+    "extra": {},
+    "summary": {
+      "text": "クロスホテル大阪 B1F 的水族館義式餐廳，9 面大水槽、約 1 萬條熱帶魚。170 席，最大著席 100 人，另有 30～150 人的包場派對室；小團體宴會 5,000 円（3～14 名）、フォカッチャ吃到飽コース 3,500 円起。輪椅可入店。",
+      "pros": [
+        "水槽環繞的座位，小孩、長輩都會喜歡",
+        "最大著席 100 人、可包場，全是沙發座位、輪椅可入店",
+        "心斎橋，地鐵なんば駅步行約 6 分"
+      ],
+      "cons": [
+        "2026 年 6 月有 3 則評論寫同一件事：吃到飽的麵包裡有蟑螂；料理品質下降（3 則，約 2026）",
+        "食べログ訂位不能指定座位，可能坐到看不到水槽的位子（指定要走官方 TableCheck）",
+        "混雜時午餐 90 分、晚餐 2 小時制"
+      ],
+      "basedOn": [
+        "https://www.opefac.com/restaurant/s_lime/",
+        "https://tabelog.com/osaka/A2701/A270202/27058889/",
+        "https://tabelog.com/osaka/A2701/A270202/27058889/party/",
+        "https://maps.google.com/?cid=1736486201511043367"
+      ],
+      "generated": "2026-10-26"
+    },
+    "assessment": {
+      "rubric": "restaurant-v1",
+      "scores": {
+        "recommend": 2,
+        "localFlavor": 2,
+        "groupFit": 5,
+        "elderFit": 4,
+        "kidsFit": 4
+      },
+      "rationale": {
+        "recommend": "食べログ 3.49、Google 4.2 → 照數字 3，Google 低分集中在料理品質（3 則，約 2026，另有同一件蟑螂事件 3 則）→ 負評往下調一級",
+        "localFlavor": "一般義式 → 2",
+        "groupFit": "fit15 yes：最大予約 100 人、可包場 → 5",
+        "elderFit": "沙發座位、車椅子で入店可；在 B1F、電梯沒有來源 → 4",
+        "kidsFit": "子供可（乳兒、小學生可），熟食；兒童餐沒有來源 → 4"
+      },
+      "confidence": "high",
+      "assessed": "2026-10-26"
+    }
   },
   {
     "id": "osaka-moulin-namba",
@@ -2512,7 +2909,7 @@
       "instagram": null
     },
     "tags": [],
-    "tier": null,
+    "tier": "B",
     "sources": [
       {
         "type": "tabelog",
@@ -2660,7 +3057,47 @@
       "note": null
     },
     "smoking": "分煙",
-    "extra": {}
+    "extra": {},
+    "summary": {
+      "text": "道頓堀川邊（キャナルテラス堀江 1F）的大型義式炭火餐廳，200 席（店內 102、テラス 98），有 30 人以上的包場派對室；4 人以上才能訂位、最多 80 人。輪椅可入店、在 1 樓。早餐 9:00 起、無休。",
+      "pros": [
+        "1 樓、輪椅可入店、沙發座位，長輩方便",
+        "有 20～30 人以上的派對室、可包場",
+        "無休，早餐到晚餐都開；午 ～999 円"
+      ],
+      "cons": [
+        "1 星集中在料理和服務：味道、肉質變差（3 則）、店員態度、出菜慢（3 則，約 2025～2026）",
+        "2 月沒有テラス的ビアガーデン方案；分煙（テラス可吸菸）",
+        "取消、改人數要 2 天前，之後收餐費；訂位時間起 90 分"
+      ],
+      "basedOn": [
+        "http://www.moulin715.com/",
+        "http://www.moulin715.com/party/",
+        "https://tabelog.com/osaka/A2701/A270202/27017005/",
+        "https://tabelog.com/osaka/A2701/A270202/27017005/party/",
+        "https://maps.google.com/?cid=10762577323102454255"
+      ],
+      "generated": "2026-10-26"
+    },
+    "assessment": {
+      "rubric": "restaurant-v1",
+      "scores": {
+        "recommend": 2,
+        "localFlavor": 2,
+        "groupFit": 5,
+        "elderFit": 5,
+        "kidsFit": 4
+      },
+      "rationale": {
+        "recommend": "食べログ 3.48、Google 3.9 → 照數字 3，Google 低分集中在料理和服務（味道 3＋服務 3，約 2025～2026）→ 負評往下調一級",
+        "localFlavor": "一般義式洋食 → 2",
+        "groupFit": "fit15 yes：派對室 20～30 人以上、可包場 → 5",
+        "elderFit": "1 樓、沙發、車椅子で入店可、可預約 → 5",
+        "kidsFit": "子供可、ベビーカー可，熟食；兒童餐沒有來源 → 4"
+      },
+      "confidence": "high",
+      "assessed": "2026-10-26"
+    }
   },
   {
     "id": "osaka-harijyu-dotonbori",
@@ -2776,7 +3213,7 @@
       "instagram": "@harijyu_dotonbori"
     },
     "tags": [],
-    "tier": null,
+    "tier": "B",
     "sources": [
       {
         "type": "tabelog",
@@ -2930,7 +3367,48 @@
       "note": null
     },
     "smoking": "全席禁煙",
-    "extra": {}
+    "extra": {},
+    "summary": {
+      "text": "道頓堀創業百年的黑毛和牛老舗，すき焼き、しゃぶしゃぶ，女中在包廂裡幫忙煮。200 席、個室 2～30 人以上，不能包場；食べログ網路訂位只到 4 名，15 人要電話。晚上每人 8,000～9,999 円（すき焼き 8,800 円起），午 6,600 円起。",
+      "pros": [
+        "老舗的すき焼き，建築有老店氣氛",
+        "個室 2～30 人以上，15 人可以同一間",
+        "可帶小孩（嬰兒車放玄關）"
+      ],
+      "cons": [
+        "1 星集中在服務態度：接待輕慢、電話應對差、女中言行失禮（5 則，約 2024～2026）",
+        "入口後要爬樓梯到 2 樓的座敷房間，沒有椅子",
+        "週二公休（遇假日營業）；15 人要電話訂；2026/11 起部分調價"
+      ],
+      "basedOn": [
+        "http://www.harijyu.co.jp/shop-info/2173/",
+        "https://www.harijyu.co.jp/",
+        "https://www.harijyu.co.jp/menu/category/party/",
+        "https://tabelog.com/osaka/A2701/A270202/27001250/",
+        "https://tabelog.com/osaka/A2701/A270202/27001250/party/",
+        "https://maps.google.com/?cid=6129541567121181724"
+      ],
+      "generated": "2026-10-26"
+    },
+    "assessment": {
+      "rubric": "restaurant-v1",
+      "scores": {
+        "recommend": 2,
+        "localFlavor": 2,
+        "groupFit": 5,
+        "elderFit": 2,
+        "kidsFit": 4
+      },
+      "rationale": {
+        "recommend": "食べログ 3.55、Google 4.1 → 照數字 3（4 要 Google 4.2），Google 低分集中在服務態度（5 則，約 2024～2026）→ 負評往下調一級",
+        "localFlavor": "和牛すき焼き的和食老舗，不是大阪名物 → 2",
+        "groupFit": "fit15 yes：個室最多 30 人以上（15 人要電話）→ 5",
+        "elderFit": "只有座敷、要爬樓梯到 2 樓（電梯沒有來源）→ 2",
+        "kidsFit": "子供可，すき焼き是熟食 → 4"
+      },
+      "confidence": "high",
+      "assessed": "2026-10-26"
+    }
   },
   {
     "id": "osaka-wanaka-sennichimae",
@@ -3019,7 +3497,7 @@
       "instagram": "@wanaka_takoyaki"
     },
     "tags": [],
-    "tier": null,
+    "tier": "B",
     "sources": [
       {
         "type": "tabelog",
@@ -3141,7 +3619,45 @@
       "note": null
     },
     "smoking": "全席禁煙",
-    "extra": {}
+    "extra": {},
+    "summary": {
+      "text": "大阪代表性的章魚燒老店（千日前本店），可以內用（1 樓 20、2 樓 60 席），每人 ～999 円。不能訂位，付款現金或 PayPay；年中無休。",
+      "pros": [
+        "Google 4.3（4,464 則），大阪章魚燒的代表老店",
+        "2 樓有 60 席可以內用，也可以外帶分批買",
+        "年中無休，週末 9:30 就開"
+      ],
+      "cons": [
+        "不能訂位，人多時要排隊",
+        "只收現金或 PayPay",
+        "座位以吧台為主"
+      ],
+      "basedOn": [
+        "http://takoyaki-wanaka.com/tenpo-sennichimae.html",
+        "https://tabelog.com/osaka/A2701/A270202/27002320/",
+        "https://maps.google.com/?cid=14307774044429847286"
+      ],
+      "generated": "2026-10-26"
+    },
+    "assessment": {
+      "rubric": "restaurant-v1",
+      "scores": {
+        "recommend": 3,
+        "localFlavor": 5,
+        "groupFit": 3,
+        "elderFit": 3,
+        "kidsFit": 4
+      },
+      "rationale": {
+        "recommend": "食べログ 3.49（3,242 則）、Google 4.3 → 大阪門檻的 3（4 要食べログ 3.55）",
+        "localFlavor": "たこ焼き老店（大阪名物）→ 5",
+        "groupFit": "予約不可，但章魚燒可以外帶分批買 → 3",
+        "elderFit": "吧台為主 → 3",
+        "kidsFit": "子供可，章魚燒 → 4"
+      },
+      "confidence": "medium",
+      "assessed": "2026-10-26"
+    }
   },
   {
     "id": "osaka-fukutaro",
@@ -3231,7 +3747,7 @@
       "instagram": "@fukutaro_2951"
     },
     "tags": [],
-    "tier": null,
+    "tier": "S",
     "sources": [
       {
         "type": "tabelog",
@@ -3366,7 +3882,46 @@
       "note": null
     },
     "smoking": "全席禁煙",
-    "extra": {}
+    "extra": {},
+    "summary": {
+      "text": "日本橋的ねぎ焼き、お好み焼き名店，76 席（吧台 26、桌 28、座敷 22）。豚玉 1,080 円、すじねぎ焼き 1,580 円，晚上每人約 2,000～2,999 円。現在不接受預約，平日 17:00 才開。",
+      "pros": [
+        "食べログ 3.71（2,801 則）、Google 4.2（3,862 則），大阪門檻的 S",
+        "ねぎ焼き、お好み焼きの名店，有吧台、桌、座敷",
+        "年中無休（正月除外）、全席禁菸"
+      ],
+      "cons": [
+        "平日只開晚上（17:00～），週末、假日 12:00 起；2/11（假日）中午有開",
+        "不接受預約，15 人要分組現場候位",
+        "兒童規定沒有來源"
+      ],
+      "basedOn": [
+        "https://2951.jp/",
+        "https://2951.jp/menu.html",
+        "https://tabelog.com/osaka/A2701/A270202/27002665/",
+        "https://maps.google.com/?cid=806559085317412531"
+      ],
+      "generated": "2026-10-26"
+    },
+    "assessment": {
+      "rubric": "restaurant-v1",
+      "scores": {
+        "recommend": 5,
+        "localFlavor": 4,
+        "groupFit": 1,
+        "elderFit": 3,
+        "kidsFit": 3
+      },
+      "rationale": {
+        "recommend": "食べログ 3.71（2,801 則）、Google 4.2（3,862 則）→ 大阪門檻的 5",
+        "localFlavor": "ねぎ焼き、お好み焼き專門（大阪名物）→ 4",
+        "groupFit": "予約不可 → 1",
+        "elderFit": "有桌席，但不能訂位要排隊 → 3",
+        "kidsFit": "兒童規定沒有來源，熟食 → 3"
+      },
+      "confidence": "medium",
+      "assessed": "2026-10-26"
+    }
   },
   {
     "id": "osaka-chitose",
@@ -3440,7 +3995,7 @@
       "instagram": null
     },
     "tags": [],
-    "tier": null,
+    "tier": "B",
     "sources": [
       {
         "type": "tabelog",
@@ -3570,6 +4125,45 @@
         "公休：官網本店頁寫週二、五；食べログ只寫週二（採官網）",
         "開店時間：官網首頁 10:30、本店頁 10:00（採 10:30）"
       ]
+    },
+    "summary": {
+      "text": "「肉吸い」（牛肉清湯，900 円）的發祥店，18 席（4 人桌 2、6 人桌 1、2 人桌 1），混雜時併桌、不能訂位，只開午餐（10:30～14:30），賣完就打烊。",
+      "pros": [
+        "肉吸い的發祥店，食べログ 3.72（2,313 則）",
+        "一碗 900 円，便宜；玉子かけご飯 200 円起",
+        "南海なんば駅步行約 6 分"
+      ],
+      "cons": [
+        "官網寫週二、週五公休（食べログ只寫週二）：2027-02-12（五）不能去",
+        "只有 18 席、不能訂位、混雜時併桌，15 人只能分組輪流",
+        "只開午餐、賣完就打烊"
+      ],
+      "basedOn": [
+        "http://www.chitose-nikusui.com/chitose/",
+        "http://www.chitose-nikusui.com/chitose/honten.html",
+        "https://tabelog.com/osaka/A2701/A270202/27002763/",
+        "https://maps.google.com/?cid=4741825626377761725"
+      ],
+      "generated": "2026-10-26"
+    },
+    "assessment": {
+      "rubric": "restaurant-v1",
+      "scores": {
+        "recommend": 3,
+        "localFlavor": 5,
+        "groupFit": 1,
+        "elderFit": 3,
+        "kidsFit": 4
+      },
+      "rationale": {
+        "recommend": "食べログ 3.72（2,313 則）但 Google 4.1 → 大阪門檻的 3（4、5 都要 Google 4.2）",
+        "localFlavor": "肉吸い發祥店（大阪名物）→ 5",
+        "groupFit": "予約不可、18 席 → 1",
+        "elderFit": "桌席，但要排隊、併桌 → 3",
+        "kidsFit": "子供可，熱湯、蛋拌飯是熟食 → 4"
+      },
+      "confidence": "medium",
+      "assessed": "2026-10-26"
     }
   },
   {
@@ -3655,7 +4249,7 @@
       "instagram": "@ajinoya1965"
     },
     "tags": [],
-    "tier": null,
+    "tier": "A",
     "sources": [
       {
         "type": "tabelog",
@@ -3785,7 +4379,45 @@
       "note": null
     },
     "smoking": "全席禁煙",
-    "extra": {}
+    "extra": {},
+    "summary": {
+      "text": "1965 年創業的お好み焼き老舗，米其林 Bib Gourmand 連續入選，國產高麗菜蓬鬆的口感。50 席、在 2 樓，預約走 TableCheck，開店前就排隊（可以付費買ファストパス，還是要等 15～30 分）。午 1,000～1,999 円、晚 3,000～3,999 円。",
+      "pros": [
+        "食べログ 3.59（1,788 則）、Google 4.2（4,003 則），ふわふわ的お好み焼き",
+        "米其林 Bib Gourmand 連續入選",
+        "可以訂位（TableCheck），有兒童用餐具"
+      ],
+      "cons": [
+        "週一公休；大排長龍，開店前 30 分就排第 10 位",
+        "1 星集中在等候和觀光客化（7 則，約 2025～2026）；買了ファストパス還是要等",
+        "50 席、在 2 樓，15 人要分批"
+      ],
+      "basedOn": [
+        "http://www.ajinoya-okonomiyaki.com/",
+        "https://tabelog.com/osaka/A2701/A270202/27001439/",
+        "https://maps.google.com/?cid=13558371125293422542"
+      ],
+      "generated": "2026-10-26"
+    },
+    "assessment": {
+      "rubric": "restaurant-v1",
+      "scores": {
+        "recommend": 4,
+        "localFlavor": 5,
+        "groupFit": 3,
+        "elderFit": 2,
+        "kidsFit": 4
+      },
+      "rationale": {
+        "recommend": "食べログ 3.59（1,788 則）、Google 4.2 → 大阪門檻的 4；等候不算品質負評，不調",
+        "localFlavor": "お好み焼き老舗（大阪名物，1965 年創業）→ 5",
+        "groupFit": "fit15 split：可預約、50 席，沒寫一次能接 15 人 → 3",
+        "elderFit": "吧台（鐵板）為主、在 2 樓，要排隊 → 2",
+        "kidsFit": "子供可、有兒童用餐具，熟食 → 4"
+      },
+      "confidence": "high",
+      "assessed": "2026-10-26"
+    }
   },
   {
     "id": "osaka-nishiya",
@@ -3875,7 +4507,7 @@
       "instagram": "@nishiya_minami"
     },
     "tags": [],
-    "tier": null,
+    "tier": "B",
     "sources": [
       {
         "type": "tabelog",
@@ -4025,7 +4657,46 @@
       "note": null
     },
     "smoking": "全席禁煙",
-    "extra": {}
+    "extra": {},
+    "summary": {
+      "text": "心斎橋的うどんちり（烏龍麵海鮮鍋）本家，昭和 32 年創業。180 席，最大著席 70 人，個室分 8 人以下桌席、10～20 人、20～60 人座敷；うどんちりコース 5,000～7,000 円（2～99 名），超過 10 人要電話預約。有中文菜單。",
+      "pros": [
+        "うどんちり本家（註冊商標），大阪的烏龍麵鍋",
+        "最大著席 70 人、個室 10～60 人，15 人可以同一間",
+        "有繁體中文菜單；地鐵心斎橋駅步行約 4 分"
+      ],
+      "cons": [
+        "1 星集中在料理品質：麵沒有嚼勁、天ぷら濕軟、味道不穩定（5 則，約 2023～2025）",
+        "大的個室是座敷、掘りごたつ；桌席個室只到 8 人",
+        "不定休；超過 10 人要打電話（官網 050-5385-3448）"
+      ],
+      "basedOn": [
+        "https://udonchiri.nishiya.co.jp/",
+        "https://tabelog.com/osaka/A2701/A270201/27000825/",
+        "https://tabelog.com/osaka/A2701/A270201/27000825/party/",
+        "https://maps.google.com/?cid=5828690122982257258"
+      ],
+      "generated": "2026-10-26"
+    },
+    "assessment": {
+      "rubric": "restaurant-v1",
+      "scores": {
+        "recommend": 2,
+        "localFlavor": 5,
+        "groupFit": 5,
+        "elderFit": 3,
+        "kidsFit": 4
+      },
+      "rationale": {
+        "recommend": "食べログ 3.59、Google 4.1 → 照數字 3（4 要 Google 4.2），Google 低分集中在料理品質（5 則，約 2023～2025）→ 負評往下調一級",
+        "localFlavor": "うどんちり本家（大阪的烏龍麵鍋，老舗）→ 5",
+        "groupFit": "fit15 yes：最大予約 70 人、個室 10～60 人 → 5",
+        "elderFit": "座敷、掘りごたつ（8 人以下有桌席個室）→ 3",
+        "kidsFit": "子供可（乳兒、小學生可）、ベビーカー可，熟食 → 4"
+      },
+      "confidence": "high",
+      "assessed": "2026-10-26"
+    }
   },
   {
     "id": "osaka-kizetsu-minamisemba",
@@ -4115,7 +4786,7 @@
       "instagram": "@kitan_yakiniku"
     },
     "tags": [],
-    "tier": null,
+    "tier": "B",
     "sources": [
       {
         "type": "tabelog",
@@ -4244,7 +4915,46 @@
       "note": null
     },
     "smoking": "全席禁煙",
-    "extra": {}
+    "extra": {},
+    "summary": {
+      "text": "南船場的全室個室熟成和牛燒肉，50 席，最大著席 16 人；大皿飲み放題付特別コース 10,000～13,000 円（5～15 名）。有兒童餐（烏龍麵、咖哩、雞塊等）和小孩的免費贈品。只營業晚上，每人約 8,000～9,999 円。",
+      "pros": [
+        "全室個室，最大著席 16 人，15 人剛好一間",
+        "有兒童餐和小孩的免費贈品",
+        "店內乾淨安靜（口コミ，約 2025～2026）"
+      ],
+      "cons": [
+        "只營業晚上（17:30～），午餐已停止；不定休",
+        "1 星集中在服務和價格：外國客只能點英文套餐、店員冷淡、價格不值（5 則，約 2024～2026）",
+        "個室是座敷、掘りごたつ；コース要前一天以前訂、2 小時制"
+      ],
+      "basedOn": [
+        "https://tabelog.com/osaka/A2701/A270201/27111285/",
+        "https://tabelog.com/osaka/A2701/A270201/27111285/party/",
+        "https://hitosara.com/0006129749/",
+        "https://maps.google.com/?cid=13781951506293969153"
+      ],
+      "generated": "2026-10-26"
+    },
+    "assessment": {
+      "rubric": "restaurant-v1",
+      "scores": {
+        "recommend": 3,
+        "localFlavor": 2,
+        "groupFit": 5,
+        "elderFit": 3,
+        "kidsFit": 5
+      },
+      "rationale": {
+        "recommend": "食べログ 3.55、Google 4.0 → 大阪門檻的 3；負評是服務和價格混在一起，不算同一主題 3 則，不調",
+        "localFlavor": "熟成和牛燒肉，不是大阪名物 → 2",
+        "groupFit": "fit15 yes：最大予約 16 人、全室個室 → 5",
+        "elderFit": "座敷、掘りごたつ → 3",
+        "kidsFit": "子供可、有兒童餐 → 5"
+      },
+      "confidence": "high",
+      "assessed": "2026-10-26"
+    }
   },
   {
     "id": "osaka-yaekatsu",
@@ -4323,7 +5033,7 @@
       "instagram": null
     },
     "tags": [],
-    "tier": null,
+    "tier": "B",
     "sources": [
       {
         "type": "tabelog",
@@ -4444,7 +5154,45 @@
       "note": null
     },
     "smoking": "全席禁煙",
-    "extra": {}
+    "extra": {},
+    "summary": {
+      "text": "新世界ジャンジャン横丁的串カツ名店，49 席只有吧台，不能訂位、常排隊。牛串、どて焼き是招牌，每人約 1,000～1,999 円。",
+      "pros": [
+        "Google 3,944 則，新世界串カツ的人氣老店",
+        "便宜，每人約 1,000～1,999 円",
+        "動物園前駅步行約 4 分，可以和通天閣、動物園排在一起"
+      ],
+      "cons": [
+        "週四公休（食べログ；第三方的營業時間不同，要再確認）",
+        "49 席只有吧台、不能訂位、常排隊，15 人要分組",
+        "官網沒找到"
+      ],
+      "basedOn": [
+        "https://tabelog.com/osaka/A2701/A270206/27000443/",
+        "https://newt.net/jpn/osaka/mag-052423342199",
+        "https://maps.google.com/?cid=5223555477227955972"
+      ],
+      "generated": "2026-10-26"
+    },
+    "assessment": {
+      "rubric": "restaurant-v1",
+      "scores": {
+        "recommend": 3,
+        "localFlavor": 5,
+        "groupFit": 1,
+        "elderFit": 2,
+        "kidsFit": 4
+      },
+      "rationale": {
+        "recommend": "食べログ 3.49、Google 4.0 → 大阪門檻的 3",
+        "localFlavor": "新世界的串カツ老店（大阪名物＋新世界）→ 5",
+        "groupFit": "予約不可 → 1",
+        "elderFit": "只有吧台、要排隊 → 2",
+        "kidsFit": "子供可，串カツ是熟食 → 4"
+      },
+      "confidence": "medium",
+      "assessed": "2026-10-26"
+    }
   },
   {
     "id": "osaka-daruma-shinsekai",
@@ -4534,7 +5282,7 @@
       "instagram": null
     },
     "tags": [],
-    "tier": null,
+    "tier": "B",
     "sources": [
       {
         "type": "tabelog",
@@ -4653,7 +5401,46 @@
       "note": null
     },
     "smoking": "全席禁煙",
-    "extra": {}
+    "extra": {},
+    "summary": {
+      "text": "串カツ「醬汁不能沾兩次」的元祖，新世界總本店只有 12 席吧台、不能訂位、只收現金；每人要點 1 杯飲料（小學生以下除外）。官網說附近的ジャンジャン店可以預約，團體去那裡比較實際。",
+      "pros": [
+        "元祖串かつ，新世界的代表",
+        "全年無休，週末 10:30 就開",
+        "動物園前駅步行約 7 分"
+      ],
+      "cons": [
+        "總本店只有 12 席吧台、不能訂位，常排隊；15 人要去可以預約的ジャンジャン店",
+        "只收現金；每人要點 1 杯飲料",
+        "兒童規定沒有來源，沒有兒童餐記載"
+      ],
+      "basedOn": [
+        "https://www.kushikatu-daruma.com/location/shinsekai",
+        "http://kushikatu-daruma.com",
+        "https://tabelog.com/osaka/A2701/A270206/27004260/",
+        "https://maps.google.com/?cid=17209588581346616951"
+      ],
+      "generated": "2026-10-26"
+    },
+    "assessment": {
+      "rubric": "restaurant-v1",
+      "scores": {
+        "recommend": 3,
+        "localFlavor": 5,
+        "groupFit": 1,
+        "elderFit": 2,
+        "kidsFit": 3
+      },
+      "rationale": {
+        "recommend": "食べログ 3.48、Google 4.1 → 大阪門檻的 3",
+        "localFlavor": "串カツ元祖（大阪名物＋新世界）→ 5",
+        "groupFit": "fit15 no：12 席、予約不可 → 1",
+        "elderFit": "只有 12 席吧台、要排隊 → 2",
+        "kidsFit": "兒童規定沒有來源（飲料規定排除小學生以下），熟食 → 3"
+      },
+      "confidence": "medium",
+      "assessed": "2026-10-26"
+    }
   },
   {
     "id": "osaka-marufuku-shinimamiya",
@@ -4743,7 +5530,7 @@
       "instagram": null
     },
     "tags": [],
-    "tier": null,
+    "tier": "B",
     "sources": [
       {
         "type": "tabelog",
@@ -4865,6 +5652,44 @@
       "conflicts": [
         "hotpepper 預算欄 500～1000 與 1501～2000 日圓互相矛盾"
       ]
+    },
+    "summary": {
+      "text": "動物園前站旁的內臟燒立飲，20～25 席都是站著的吧台、全席可吸菸，不能訂位。內臟一串 120 円起、豚足煮込み 200 円，每人 ～999 円，早上 8 點就開。",
+      "pros": [
+        "非常便宜，內臟一串 120 円起",
+        "無休，8:00～22:30",
+        "新今宮、動物園前一帶的在地立飲體驗"
+      ],
+      "cons": [
+        "全部站著吃、全席可吸菸，長輩和小孩不適合",
+        "不能訂位、20 席左右，只適合 2～3 人",
+        "價格是 2021 年以前的資訊"
+      ],
+      "basedOn": [
+        "https://tabelog.com/osaka/A2701/A270206/27042773/",
+        "https://www.hotpepper.jp/strJ000828466/",
+        "https://maps.google.com/?cid=13347552002433716625"
+      ],
+      "generated": "2026-10-26"
+    },
+    "assessment": {
+      "rubric": "restaurant-v1",
+      "scores": {
+        "recommend": 3,
+        "localFlavor": 4,
+        "groupFit": 1,
+        "elderFit": 1,
+        "kidsFit": 3
+      },
+      "rationale": {
+        "recommend": "食べログ 3.49、Google 4.1 → 大阪門檻的 3",
+        "localFlavor": "ホルモン立飲（大阪名物）→ 4",
+        "groupFit": "予約不可、站著的吧台 → 1",
+        "elderFit": "全部站著吃 → 1",
+        "kidsFit": "「お子様連れも歓迎」，但站著吃、內臟為主 → 3（全席可吸菸只記在 smoking）"
+      },
+      "confidence": "medium",
+      "assessed": "2026-10-26"
     }
   },
   {
@@ -4949,7 +5774,7 @@
       "instagram": null
     },
     "tags": [],
-    "tier": null,
+    "tier": "B",
     "sources": [
       {
         "type": "tabelog",
@@ -5089,6 +5914,46 @@
       "conflicts": [
         "macaro-ni 營業時間分午晚，與旅色 12:00～22:00 不同（未直讀）"
       ]
+    },
+    "summary": {
+      "text": "朝潮橋的天然河豚老舗（昭和 4 年創業、3 代目），用東シナ海的天然とらふぐ，2 月正是季節。35 席、個室 6 室，可以包場 20～50 人；てっちりコース 25,300 円，每人約 2～3 萬円，完全預約制。小學生以上才能進。",
+      "pros": [
+        "天然河豚老舗，2 月是季節；てっさ、てっちり、白子評價高",
+        "個室最多 20 人、可包場 20～50 人",
+        "曾列入米其林（現況未確認）"
+      ],
+      "cons": [
+        "每人約 2～3 萬円，有人覺得不值（3 則，約 2021～2026）；改期不接受、收 100% 取消費",
+        "小學生以上才能進；座敷、掘りごたつ",
+        "朝潮橋站（不在 stations.json）步行 5～10 分，離海遊館約 2.5 km"
+      ],
+      "basedOn": [
+        "https://tabelog.com/osaka/A2701/A270402/27041365/",
+        "https://tabelog.com/osaka/A2701/A270402/27041365/party/",
+        "https://tabiiro.jp/gourmet/s/303725-osaka-takoyasu/",
+        "https://restaurant.ikyu.com/112780/highlights",
+        "https://maps.google.com/?cid=7124313462990660454"
+      ],
+      "generated": "2026-10-26"
+    },
+    "assessment": {
+      "rubric": "restaurant-v1",
+      "scores": {
+        "recommend": 3,
+        "localFlavor": 5,
+        "groupFit": 5,
+        "elderFit": 3,
+        "kidsFit": 3
+      },
+      "rationale": {
+        "recommend": "食べログ 3.70 但只有 150 則（4 要 200 則以上）、Google 4.3（133 則）→ 3；價格負評不算品質",
+        "localFlavor": "てっちり（天然河豚）老舗，大阪名物 → 5",
+        "groupFit": "fit15 yes：個室最多 20 人、貸切 20～50 人 → 5",
+        "elderFit": "座敷、掘りごたつ → 3",
+        "kidsFit": "小學生以上（年齡限制擋 6 歲以下），生魚片和鍋 → 3"
+      },
+      "confidence": "medium",
+      "assessed": "2026-10-26"
     }
   },
   {
@@ -5201,7 +6066,7 @@
       "instagram": "@beehive_master"
     },
     "tags": [],
-    "tier": null,
+    "tier": "B",
     "sources": [
       {
         "type": "tabelog",
@@ -5362,6 +6227,48 @@
       "conflicts": [
         "官網首頁（亂碼）午11:00～14:00／晚17:00～20:00 與 hotpepper 午至15:00／晚至21:00 不同"
       ]
+    },
+    "summary": {
+      "text": "大阪港站 1 號出口步行 1～2 分、1951 年創業的老字號洋食，72 席全桌席，最大宴會約 30 人、可以包場；大皿パーティープラン 3,380～4,780 円（4 名～）。輪椅可入店，從海遊館回來帶小孩吃很方便。",
+      "pros": [
+        "全桌席、最大宴會 30 人、可包場；輪椅可入店",
+        "懷舊口味的ハンバーグ、白身フライ，小孩愛吃",
+        "大阪港站步行 1～2 分，海遊館的回程順路"
+      ],
+      "cons": [
+        "週日公休、週六和國定假日不定休，2/11 只開午餐；店長療養中可能臨時休業，要電話確認",
+        "午間低消 2,500 円、全時段單點低消 3,500 円；個室另收 660 円",
+        "入口和廁所有 5～10 cm 段差；網路訂位要 3 營業日前"
+      ],
+      "basedOn": [
+        "https://beehive1951.sakura.ne.jp",
+        "https://beehive1951.sakura.ne.jp/shopinfo.html",
+        "https://beehive1951.sakura.ne.jp/menu.html",
+        "https://tabelog.com/osaka/A2701/A270402/27002743/",
+        "https://tabelog.com/osaka/A2701/A270402/27002743/party/",
+        "https://www.hotpepper.jp/strJ000109363/",
+        "https://maps.google.com/?cid=16714513389759500366"
+      ],
+      "generated": "2026-10-26"
+    },
+    "assessment": {
+      "rubric": "restaurant-v1",
+      "scores": {
+        "recommend": 3,
+        "localFlavor": 2,
+        "groupFit": 5,
+        "elderFit": 4,
+        "kidsFit": 4
+      },
+      "rationale": {
+        "recommend": "食べログ 3.41（92 則）、Google 4.0（209 則）→ 評論數上限 3",
+        "localFlavor": "老字號洋食，不是大阪名物 → 2",
+        "groupFit": "fit15 yes：最大予約 30 人、可包場 → 5",
+        "elderFit": "全桌席、車椅子で入店可；入口有 5～10 cm 段差 → 4",
+        "kidsFit": "子供可、ベビーカー可，口コミ說帶小孩店員親切；兒童餐沒有來源 → 4"
+      },
+      "confidence": "medium",
+      "assessed": "2026-10-26"
     }
   },
   {
@@ -5436,7 +6343,7 @@
       "instagram": null
     },
     "tags": [],
-    "tier": null,
+    "tier": "A",
     "sources": [
       {
         "type": "tabelog",
@@ -5556,6 +6463,44 @@
       "conflicts": [
         "給定官網 URL 回傳 404"
       ]
+    },
+    "summary": {
+      "text": "大阪港站步行約 5 分、復古大樓一角的自助式烏龍麵，42 席，自家製出汁評價高，鶏天うどん是定番，每人約 1,000～1,999 円。不能訂位，只開平日白天。",
+      "pros": [
+        "食べログ 3.60（434 則）、Google 4.2，大阪港一帶的人氣烏龍麵",
+        "自助式、出餐快，適合海遊館前後的午餐",
+        "子供可"
+      ],
+      "cons": [
+        "週六、日、國定假日公休：2/11（假日）、2/13（六）不能去，只有 2/12（五）有開",
+        "不能訂位，42 席，15 人要分批",
+        "官網 404，營業時間只有食べログ（Retty 寫到 19:30）"
+      ],
+      "basedOn": [
+        "https://tabelog.com/osaka/A2701/A270402/27081824/",
+        "https://retty.me/theme/101360900/",
+        "https://maps.google.com/?cid=13546943019628679382"
+      ],
+      "generated": "2026-10-26"
+    },
+    "assessment": {
+      "rubric": "restaurant-v1",
+      "scores": {
+        "recommend": 4,
+        "localFlavor": 3,
+        "groupFit": 1,
+        "elderFit": 3,
+        "kidsFit": 4
+      },
+      "rationale": {
+        "recommend": "食べログ 3.60（434 則）、Google 4.2（721 則）→ 大阪門檻的 4",
+        "localFlavor": "自家製出汁的烏龍麵，不是きつね、うどんすき這類名物專門 → 3",
+        "groupFit": "予約不可 → 1",
+        "elderFit": "吧台為主、自助取餐 → 3",
+        "kidsFit": "子供可，烏龍麵 → 4"
+      },
+      "confidence": "medium",
+      "assessed": "2026-10-26"
     }
   },
   {
@@ -5668,7 +6613,7 @@
       "instagram": null
     },
     "tags": [],
-    "tier": null,
+    "tier": "B",
     "sources": [
       {
         "type": "tabelog",
@@ -5780,7 +6725,44 @@
       "note": null
     },
     "smoking": "全席禁煙",
-    "extra": {}
+    "extra": {},
+    "summary": {
+      "text": "大阪港站步行 3 分的拉麵、餃子店，13 席，不能訂位，每人約 1,000～1,999 円。只適合 2～4 人。",
+      "pros": [
+        "大阪港站步行 3 分，海遊館附近的平價選擇",
+        "午晚都開（週一公休）",
+        "子供可"
+      ],
+      "cons": [
+        "13 席、不能訂位，只適合 2～4 人",
+        "週一公休（遇國定假日改隔天）",
+        "Google 3.9、食べログ 3.36，分數普通；官網沒有"
+      ],
+      "basedOn": [
+        "https://tabelog.com/osaka/A2701/A270402/27043541/",
+        "https://maps.google.com/?cid=11186189863016813430"
+      ],
+      "generated": "2026-10-26"
+    },
+    "assessment": {
+      "rubric": "restaurant-v1",
+      "scores": {
+        "recommend": 3,
+        "localFlavor": 2,
+        "groupFit": 1,
+        "elderFit": 3,
+        "kidsFit": 4
+      },
+      "rationale": {
+        "recommend": "食べログ 3.36、Google 3.9 → 大阪門檻的 3",
+        "localFlavor": "一般拉麵、餃子 → 2",
+        "groupFit": "fit15 no：13 席、予約不可 → 1",
+        "elderFit": "只有吧台 → 3",
+        "kidsFit": "子供可，熟食 → 4"
+      },
+      "confidence": "low",
+      "assessed": "2026-10-26"
+    }
   },
   {
     "id": "osaka-hahaha-hayashirice",
@@ -5859,7 +6841,7 @@
       "instagram": "@matatabiworks"
     },
     "tags": [],
-    "tier": null,
+    "tier": "B",
     "sources": [
       {
         "type": "tabelog",
@@ -5986,7 +6968,45 @@
       "note": null
     },
     "smoking": "全席禁煙",
-    "extra": {}
+    "extra": {},
+    "summary": {
+      "text": "海遊館附近、大正時代的レトロ天満屋ビル 2 樓的オムハヤシ咖啡洋食，34 席（桌 26、テラス 8），可以預約，20～50 人可以包場。只營業白天，每人約 1,000～1,999 円。",
+      "pros": [
+        "海遊館附近的人氣オムハヤシ，復古大樓氣氛好",
+        "可以預約，20～50 人可以包場",
+        "歡迎小孩，有繪本"
+      ],
+      "cons": [
+        "在 2 樓，入口樓梯很陡、嬰兒車上不去",
+        "週二、三公休，只開白天；週末午間幾乎客滿",
+        "候位系統混亂、店主當面責罵店員（4 則，但都在 2021～2024）"
+      ],
+      "basedOn": [
+        "https://tabelog.com/osaka/A2701/A270402/27015830/",
+        "https://tabelog.com/osaka/A2701/A270402/27015830/party/",
+        "https://maps.google.com/?cid=1586621127852316259"
+      ],
+      "generated": "2026-10-26"
+    },
+    "assessment": {
+      "rubric": "restaurant-v1",
+      "scores": {
+        "recommend": 3,
+        "localFlavor": 2,
+        "groupFit": 4,
+        "elderFit": 2,
+        "kidsFit": 4
+      },
+      "rationale": {
+        "recommend": "食べログ 3.43（175 則）、Google 4.1 → 大阪門檻的 3；負評在 2021～2024，不調",
+        "localFlavor": "咖啡洋食，不是大阪名物 → 2",
+        "groupFit": "fit15 yes，但 34 席要包場才坐得下 → 4",
+        "elderFit": "2 樓、入口樓梯很陡 → 2",
+        "kidsFit": "子供可、有繪本，オムハヤシ是熟食；口コミ有小孩不吃偏酸的 → 4"
+      },
+      "confidence": "medium",
+      "assessed": "2026-10-26"
+    }
   },
   {
     "id": "osaka-yatagarasu-udon",
@@ -6065,7 +7085,7 @@
       "instagram": "@yatagarasu_udon"
     },
     "tags": [],
-    "tier": null,
+    "tier": "A",
     "sources": [
       {
         "type": "tabelog",
@@ -6168,7 +7188,44 @@
       "note": null
     },
     "smoking": "全席禁煙",
-    "extra": {}
+    "extra": {},
+    "summary": {
+      "text": "谷町四丁目站步行 1 分的烏龍麵（うどん百名店 2024），24 席全桌席（4 人桌 4、10 人桌 1、2 人桌 1），不能訂位，只開中午（11:00～14:00）。開店～13 時左右不接受國中生以下的小孩。",
+      "pros": [
+        "食べログ 3.66（655 則）、Google 4.2，うどん百名店",
+        "全桌席，有 10 人桌",
+        "谷町四丁目站 1 分，大阪城天守閣的出發站"
+      ],
+      "cons": [
+        "週日、國定假日公休、週六不定休：2/11（假日）不能去",
+        "開店～13 時左右不接受國中生以下的小孩，有小孩的組要 13 時以後",
+        "只開中午、不能訂位"
+      ],
+      "basedOn": [
+        "https://tabelog.com/osaka/A2701/A270104/27104366/",
+        "https://maps.google.com/?cid=8979607896889183357"
+      ],
+      "generated": "2026-10-26"
+    },
+    "assessment": {
+      "rubric": "restaurant-v1",
+      "scores": {
+        "recommend": 4,
+        "localFlavor": 3,
+        "groupFit": 1,
+        "elderFit": 4,
+        "kidsFit": 2
+      },
+      "rationale": {
+        "recommend": "食べログ 3.66（655 則）、Google 4.2（296 則）→ 大阪門檻的 4",
+        "localFlavor": "烏龍麵百名店，不是きつね、うどんすき這類名物專門 → 3",
+        "groupFit": "予約不可 → 1",
+        "elderFit": "全桌席 → 4",
+        "kidsFit": "13 時以前不接受國中生以下（有例外時段）→ 2"
+      },
+      "confidence": "low",
+      "assessed": "2026-10-26"
+    }
   },
   {
     "id": "osaka-gojoya",
@@ -6247,7 +7304,7 @@
       "instagram": null
     },
     "tags": [],
-    "tier": null,
+    "tier": "A",
     "sources": [
       {
         "type": "tabelog",
@@ -6367,7 +7424,46 @@
       "note": null
     },
     "smoking": "全席禁煙",
-    "extra": {}
+    "extra": {},
+    "summary": {
+      "text": "天満橋的創作串カツ，18 席（吧台 12、桌 6），可以電話預約、不收信用卡。只營業晚上，每人約 4,000～4,999 円。",
+      "pros": [
+        "食べログ 3.66（615 則）、Google 4.5，創作和傳統串カツ",
+        "可以電話預約",
+        "全席禁菸"
+      ],
+      "cons": [
+        "週日、國定假日公休：2/11（假日）不能去；只營業晚上（17:00～）",
+        "18 席，只適合 2～6 人的小組",
+        "不收信用卡；兒童規定沒有來源"
+      ],
+      "basedOn": [
+        "http://94katu5jyoya.com/",
+        "https://tabelog.com/osaka/A2701/A270104/27011721/",
+        "https://tabelog.com/osaka/A2701/A270104/27011721/party/",
+        "https://maps.google.com/?cid=3128080239414944233"
+      ],
+      "generated": "2026-10-26"
+    },
+    "assessment": {
+      "rubric": "restaurant-v1",
+      "scores": {
+        "recommend": 4,
+        "localFlavor": 4,
+        "groupFit": 2,
+        "elderFit": 4,
+        "kidsFit": 3
+      },
+      "rationale": {
+        "recommend": "食べログ 3.66（615 則）、Google 4.5（280 則）→ 大阪門檻的 4",
+        "localFlavor": "串カツ專門（大阪名物，創作）→ 4",
+        "groupFit": "fit15 unknown：可預約但只有 18 席 → 2",
+        "elderFit": "有桌席 6、吧台 12 → 4",
+        "kidsFit": "兒童規定沒有來源，串カツ是熟食 → 3"
+      },
+      "confidence": "low",
+      "assessed": "2026-10-26"
+    }
   },
   {
     "id": "osaka-tenhashi",
@@ -6492,7 +7588,7 @@
       "instagram": "@sakananomeshiya_tenhashi"
     },
     "tags": [],
-    "tier": null,
+    "tier": "A",
     "sources": [
       {
         "type": "tabelog",
@@ -6615,7 +7711,45 @@
       "note": null
     },
     "smoking": "全席禁煙",
-    "extra": {}
+    "extra": {},
+    "summary": {
+      "text": "あべのキューズモール一角的海鮮居酒屋（大阪中央市場魚屋經營，2024 年開幕），刺身厚、新鮮，本鮪とろたく巻き是名物。57 席，最大著席 57 人、50 人以上可以包場；晚上要 1～3 週前預約，午間要早上取整理券。",
+      "pros": [
+        "食べログ 3.55（1,237 則）、Google 4.3，魚屋直營的海鮮",
+        "最大著席 57 人、個室 10～20 人，晚上可以電話訂",
+        "天王寺站步行約 6 分，ハルカス 4 分"
+      ],
+      "cons": [
+        "午間不能訂位，要早上取整理券，等 1～2 小時；限定午餐會賣完",
+        "晚上要 1～3 週前預約",
+        "1 星集中在等候：記名後等 1.5～2 小時、店員態度（7 則，約 2024～2026）"
+      ],
+      "basedOn": [
+        "https://tabelog.com/osaka/A2701/A270203/27140502/",
+        "https://r.gnavi.co.jp/kd5d515/",
+        "https://maps.google.com/?cid=3342911224368940344"
+      ],
+      "generated": "2026-10-26"
+    },
+    "assessment": {
+      "rubric": "restaurant-v1",
+      "scores": {
+        "recommend": 4,
+        "localFlavor": 2,
+        "groupFit": 5,
+        "elderFit": 4,
+        "kidsFit": 3
+      },
+      "rationale": {
+        "recommend": "食べログ 3.55（1,237 則）、Google 4.3 → 大阪門檻的 4；負評主要是等候，不調",
+        "localFlavor": "海鮮居酒屋，不是大阪名物 → 2",
+        "groupFit": "fit15 yes：最大予約 57 人、可包場 → 5",
+        "elderFit": "有桌席和沙發；晚上訂位不用排 → 4",
+        "kidsFit": "口コミ有帶小孩的午餐（3 則），但生魚片為主 → 3"
+      },
+      "confidence": "high",
+      "assessed": "2026-10-26"
+    }
   },
   {
     "id": "osaka-aoi-napoli-tenshiba",
@@ -6705,7 +7839,7 @@
       "instagram": "@aoinapoli_itp"
     },
     "tags": [],
-    "tier": null,
+    "tier": "B",
     "sources": [
       {
         "type": "tabelog",
@@ -6859,7 +7993,48 @@
       "note": null
     },
     "smoking": "分煙",
-    "extra": {}
+    "extra": {},
+    "summary": {
+      "text": "てんしば公園裡的窯烤披薩，200 席（店內 90、テラス 110），個室 10～30 人以上、可以包場；有兒童餐、兒童椅，可推嬰兒車入座，就在天王寺動物園旁。年中無休。",
+      "pros": [
+        "在天王寺動物園旁，帶小孩方便：兒童餐、兒童椅、可推嬰兒車",
+        "個室 10～30 人以上、可包場，輪椅可入店",
+        "年中無休"
+      ],
+      "cons": [
+        "Google 3.6（1,266 則）；1 星集中在服務：店員冷淡、手機點餐難用、出菜慢（5 則，約 2025～2026）",
+        "2 月可用的團體套餐沒寫（コース多是季節限定）；コース 3 天前取消收 100%",
+        "國定假日中午要寫名字候位；分煙"
+      ],
+      "basedOn": [
+        "https://www.aoinapoli-inthepark.jp",
+        "https://www.aoinapoli-inthepark.jp/party/",
+        "https://www.aoinapoli-inthepark.jp/restaurant/",
+        "https://tabelog.com/osaka/A2701/A270203/27088242/",
+        "https://tabelog.com/osaka/A2701/A270203/27088242/party/",
+        "https://maps.google.com/?cid=800364185476808233"
+      ],
+      "generated": "2026-10-26"
+    },
+    "assessment": {
+      "rubric": "restaurant-v1",
+      "scores": {
+        "recommend": 2,
+        "localFlavor": 2,
+        "groupFit": 5,
+        "elderFit": 4,
+        "kidsFit": 5
+      },
+      "rationale": {
+        "recommend": "Google 3.6 而且心得有負評（服務 5 則，約 2025～2026）→ 2，不再往下調",
+        "localFlavor": "窯烤披薩，不是大阪名物 → 2",
+        "groupFit": "fit15 yes：個室最多 30 人以上、可包場 → 5",
+        "elderFit": "車椅子で入店可、沙發和桌席 → 4",
+        "kidsFit": "子供可、兒童餐、兒童椅、可推嬰兒車 → 5"
+      },
+      "confidence": "high",
+      "assessed": "2026-10-26"
+    }
   },
   {
     "id": "osaka-yamachan",
@@ -6955,7 +8130,7 @@
       "instagram": "@abenotakoyakiyamachan"
     },
     "tags": [],
-    "tier": null,
+    "tier": "B",
     "sources": [
       {
         "type": "tabelog",
@@ -7065,7 +8240,45 @@
       "note": null
     },
     "smoking": "全席禁煙",
-    "extra": {}
+    "extra": {},
+    "summary": {
+      "text": "阿倍野的章魚燒名店，近鐵阿部野橋站步行 1 分；本店目前不開放內用，只能外帶，每人 ～999 円。",
+      "pros": [
+        "食べログ 3.49（1,426 則），阿倍野的章魚燒名店",
+        "近鐵阿部野橋站步行 1 分，可以外帶分批買",
+        "可以電話預約"
+      ],
+      "cons": [
+        "本店目前不開放內用，只能外帶",
+        "Google 3.9；不定休",
+        "附近要另外找地方吃"
+      ],
+      "basedOn": [
+        "https://takoyaki-yamachan.net/shoplist/%e6%9c%ac%e5%ba%97/",
+        "https://tabelog.com/osaka/A2701/A270203/27002750/",
+        "https://maps.google.com/?cid=14310328804541557959"
+      ],
+      "generated": "2026-10-26"
+    },
+    "assessment": {
+      "rubric": "restaurant-v1",
+      "scores": {
+        "recommend": 3,
+        "localFlavor": 4,
+        "groupFit": 3,
+        "elderFit": 3,
+        "kidsFit": 4
+      },
+      "rationale": {
+        "recommend": "食べログ 3.49、Google 3.9 → 大阪門檻的 3",
+        "localFlavor": "たこ焼き專門（大阪名物）→ 4",
+        "groupFit": "只能外帶，可以分批買 → 3",
+        "elderFit": "只外帶、沒有座位 → 3",
+        "kidsFit": "子供可，章魚燒 → 4"
+      },
+      "confidence": "medium",
+      "assessed": "2026-10-26"
+    }
   },
   {
     "id": "osaka-abeton",
@@ -7155,7 +8368,7 @@
       "instagram": null
     },
     "tags": [],
-    "tier": null,
+    "tier": "B",
     "sources": [
       {
         "type": "tabelog",
@@ -7279,6 +8492,44 @@
       "conflicts": [
         "給定官網 avetika-abeton.com 已是域名出售頁"
       ]
+    },
+    "summary": {
+      "text": "天王寺站地下街（アベノ地下街）的「元祖モダン ねぎ焼き」，46 席（桌 9、吧台 10），可以預約（繁忙期不行），每人約 1,000～1,999 円。",
+      "pros": [
+        "Google 4.2（1,196 則），天王寺站地下街、不用淋雨",
+        "可以預約（電話）",
+        "無休（依アベノ地下街）、全席禁菸"
+      ],
+      "cons": [
+        "46 席，15 人要分批",
+        "年末年始等繁忙期不能預約",
+        "官網網域已停用；兒童規定沒有來源"
+      ],
+      "basedOn": [
+        "https://tabelog.com/osaka/A2701/A270203/27017208/",
+        "https://www.avetika-abeton.com/",
+        "https://maps.google.com/?cid=16109547723224331216"
+      ],
+      "generated": "2026-10-26"
+    },
+    "assessment": {
+      "rubric": "restaurant-v1",
+      "scores": {
+        "recommend": 3,
+        "localFlavor": 5,
+        "groupFit": 3,
+        "elderFit": 4,
+        "kidsFit": 3
+      },
+      "rationale": {
+        "recommend": "食べログ 3.49、Google 4.2 → 大阪門檻的 3（4 要食べログ 3.55）",
+        "localFlavor": "元祖モダン ねぎ焼き（大阪名物、元祖）→ 5",
+        "groupFit": "fit15 split：可預約、46 席 → 3",
+        "elderFit": "有桌席、在車站地下街 → 4",
+        "kidsFit": "兒童規定沒有來源，熟食 → 3"
+      },
+      "confidence": "medium",
+      "assessed": "2026-10-26"
     }
   },
   {
@@ -7369,7 +8620,7 @@
       "instagram": "@meigetsukan_honten"
     },
     "tags": [],
-    "tier": null,
+    "tier": "B",
     "sources": [
       {
         "type": "tabelog",
@@ -7491,7 +8742,45 @@
       "note": null
     },
     "smoking": "全席禁煙",
-    "extra": {}
+    "extra": {},
+    "summary": {
+      "text": "1969 年創業的鶴橋代表性燒肉老舗，124～158 席（桌 40、座敷 84），個室 2～30 人以上，宴會 4～100 人、50 人以上可以包場；口コミ有 35 人團體用每人 1 萬円的飲み放題コース。午間燒肉套餐到 15:00。",
+      "pros": [
+        "鶴橋的老舗燒肉，個室最多 30 人以上，宴會 4～100 人",
+        "有桌席 40，輪椅可入店；免費停車 6 台",
+        "午 1,000～1,999 円，晚上每人約 6,000～7,999 円"
+      ],
+      "cons": [
+        "1 星集中在服務：電話應對、接待態度、小孩跟店員說話被忽視（5 則，約 2023～2026）",
+        "2 樓是座敷；晚上熱門時段預約難、不能指定個室",
+        "午間不預約要等近 1 小時（三連休）；不定休"
+      ],
+      "basedOn": [
+        "http://meigetsukan.com/meigetsukan-uehonmachi/",
+        "https://tabelog.com/osaka/A2701/A270205/27002882/",
+        "https://maps.google.com/?cid=8960707651630148517"
+      ],
+      "generated": "2026-10-26"
+    },
+    "assessment": {
+      "rubric": "restaurant-v1",
+      "scores": {
+        "recommend": 3,
+        "localFlavor": 3,
+        "groupFit": 5,
+        "elderFit": 4,
+        "kidsFit": 4
+      },
+      "rationale": {
+        "recommend": "食べログ 3.61、Google 4.3 → 照數字 4，Google 低分集中在服務（5 則，約 2023～2026）→ 負評往下調一級",
+        "localFlavor": "燒肉（2）＋鶴橋コリアタウン的老舗（地點本身是大阪體驗）→ 3",
+        "groupFit": "fit15 yes：個室最多 30 人以上、宴會 4～100 人 → 5",
+        "elderFit": "有桌席、車椅子で入店可；2 樓是座敷 → 4",
+        "kidsFit": "子供可、ベビーカー可，燒肉 → 4"
+      },
+      "confidence": "high",
+      "assessed": "2026-10-26"
+    }
   },
   {
     "id": "osaka-hakuuntai-tsuruhashi",
@@ -7616,7 +8905,7 @@
       "instagram": "@hakuundai_tsuruhashi"
     },
     "tags": [],
-    "tier": null,
+    "tier": "B",
     "sources": [
       {
         "type": "tabelog",
@@ -7764,6 +9053,47 @@
       "conflicts": [
         "席數：首頁「最大 90 人」vs 店頁 88 席，大致一致，非實質衝突"
       ]
+    },
+    "summary": {
+      "text": "鶴橋站出口步行 1 分的燒肉，88～90 席（桌 28～30、座敷 60），石焼ビビンパ的發祥店之一；飲み放題付プラン 5,800～8,600 円（3～36 名）。個室全是座敷（2～4 人、8～10 人），另有 15～20 人的半個室。",
+      "pros": [
+        "鶴橋站出口 1 分、不淋雨",
+        "團體方案 3～36 名，有 15～20 人的半個室",
+        "午間定食便宜量多（1,000～1,999 円）"
+      ],
+      "cons": [
+        "個室全是座敷；桌席只有 28～30 席",
+        "午間熱門定食 14 點後賣完，開店前就排隊（預約客優先）",
+        "1 星有店員態度、用餐限 2 小時（3 則）、湯裡有小蒼蠅（1 則）"
+      ],
+      "basedOn": [
+        "https://www.hakuundai-tsuruhashi.com/",
+        "https://www.hakuundai-tsuruhashi.com/tsuruhashi",
+        "https://www.hakuundai-tsuruhashi.com/party",
+        "https://tabelog.com/osaka/A2701/A270205/27006730/",
+        "https://tabelog.com/osaka/A2701/A270205/27006730/party/",
+        "https://maps.google.com/?cid=12485286075232686059"
+      ],
+      "generated": "2026-10-26"
+    },
+    "assessment": {
+      "rubric": "restaurant-v1",
+      "scores": {
+        "recommend": 3,
+        "localFlavor": 3,
+        "groupFit": 5,
+        "elderFit": 3,
+        "kidsFit": 4
+      },
+      "rationale": {
+        "recommend": "食べログ 3.52、Google 4.2 → 大阪門檻的 3；服務 3 則裡 1 則是用餐時間規定，不算明確 3 則，不調",
+        "localFlavor": "燒肉（2）＋鶴橋（地點本身是大阪體驗）→ 3",
+        "groupFit": "fit15 yes：貸切可、半個室 15～20 人、プラン 3～36 名 → 5",
+        "elderFit": "有桌席，但團體用的個室是座敷 → 3",
+        "kidsFit": "子供可，燒肉、石焼ビビンパ → 4"
+      },
+      "confidence": "high",
+      "assessed": "2026-10-26"
     }
   },
   {
@@ -7889,7 +9219,7 @@
       "instagram": "@lawrys_the_prime_rib.osaka"
     },
     "tags": [],
-    "tier": null,
+    "tier": "B",
     "sources": [
       {
         "type": "tabelog",
@@ -8026,7 +9356,46 @@
       "note": null
     },
     "smoking": "全席禁煙",
-    "extra": {}
+    "extra": {},
+    "summary": {
+      "text": "ハービスPLAZA ENT 5F 的美式プライムリブ，在桌邊切肉。217 席，2 間個室各 15～30 人（合併最多 50 人），15 人剛好包一間；有兒童菜單。晚上每人約 1～1.5 萬円，午間プライムリブ＋沙拉甜點自助 7,000～7,500 円。食べログ網路訂位到 8 名，15 人要電話。",
+      "pros": [
+        "個室 15～30 人，15 人可以包一間",
+        "有兒童菜單（午、晚）",
+        "JR 大阪駅步行約 6 分，インターゲート 3 分"
+      ],
+      "cons": [
+        "1 星集中在服務：推銷大份量、上菜時機不對、詢問份量時態度差（5 則，約 2024～2026）",
+        "晚上每人約 1～1.5 萬円，午間也要 7,000 円以上",
+        "15 人要電話訂（網路到 8 名）；不定休（依ハービスENT）"
+      ],
+      "basedOn": [
+        "http://www.lawrys.jp/osaka/",
+        "https://tabelog.com/osaka/A2701/A270101/27018310/",
+        "https://tabelog.com/osaka/A2701/A270101/27018310/party/",
+        "https://maps.google.com/?cid=13238592357491827090"
+      ],
+      "generated": "2026-10-26"
+    },
+    "assessment": {
+      "rubric": "restaurant-v1",
+      "scores": {
+        "recommend": 3,
+        "localFlavor": 1,
+        "groupFit": 5,
+        "elderFit": 4,
+        "kidsFit": 5
+      },
+      "rationale": {
+        "recommend": "食べログ 3.60、Google 4.4 → 照數字 4，Google 低分集中在服務（5 則，約 2024～2026）→ 負評往下調一級",
+        "localFlavor": "美國連鎖的プライムリブ，和大阪無關 → 1",
+        "groupFit": "fit15 yes：個室最多 30 人以上（15 人要電話）→ 5",
+        "elderFit": "沙發座位，在商場 5F（電梯沒有來源）→ 4",
+        "kidsFit": "子供可、有兒童菜單 → 5"
+      },
+      "confidence": "high",
+      "assessed": "2026-10-26"
+    }
   },
   {
     "id": "osaka-minsei-hilton-plaza",
@@ -8142,7 +9511,7 @@
       "instagram": null
     },
     "tags": [],
-    "tier": null,
+    "tier": "B",
     "sources": [
       {
         "type": "tabelog",
@@ -8292,6 +9661,46 @@
       "conflicts": [
         "公休：hotpepper 寫祝前日休，食べログ（店舗会員）沒寫"
       ]
+    },
+    "summary": {
+      "text": "西梅田站幾乎直通的百名店廣東料理，名物イカの天ぷら、ミンチのレタス包み。92 席，桌席個室 2～20 人，最大宴會約 90 人（hotpepper）；季節の特選コース 6,050 円、飲み放題付 6,600～13,200 円，網路訂位到 12 名，15 人要電話。",
+      "pros": [
+        "百名店的廣東料理，名物イカの天ぷら",
+        "桌席個室最多 20 人；西梅田站幾乎直通",
+        "午 1,000～1,999 円"
+      ],
+      "cons": [
+        "1 星集中在服務：店員態度、半個室狹窄、不讓拍照（4 則），味道變差（3 則，約 2025～2026）",
+        "午間大排長龍（開店前 30 人），只有點コース才能訂午餐",
+        "15 人要電話（網路到 12 名）；hotpepper 寫祝前日休，要確認"
+      ],
+      "basedOn": [
+        "https://tabelog.com/osaka/A2701/A270101/27006463/",
+        "https://tabelog.com/osaka/A2701/A270101/27006463/party/",
+        "https://www.hotpepper.jp/strJ000014628/",
+        "https://r.gnavi.co.jp/k065430/",
+        "https://maps.google.com/?cid=15984969024665548245"
+      ],
+      "generated": "2026-10-26"
+    },
+    "assessment": {
+      "rubric": "restaurant-v1",
+      "scores": {
+        "recommend": 2,
+        "localFlavor": 2,
+        "groupFit": 5,
+        "elderFit": 4,
+        "kidsFit": 4
+      },
+      "rationale": {
+        "recommend": "食べログ 3.68、Google 4.1 → 照數字 3（4 要 Google 4.2），Google 低分集中在服務和料理（服務 4＋味道 3，約 2025～2026）→ 負評往下調一級",
+        "localFlavor": "廣東料理，不是大阪名物 → 2",
+        "groupFit": "fit15 yes：桌席個室最多 20 人、貸切可（15 人要電話）→ 5",
+        "elderFit": "桌席個室、沙發；車站幾乎直通，團體訂位不用排 → 4",
+        "kidsFit": "子供可，中華是熟食 → 4"
+      },
+      "confidence": "high",
+      "assessed": "2026-10-26"
     }
   },
   {
@@ -8382,7 +9791,7 @@
       "instagram": "@menya_takei"
     },
     "tags": [],
-    "tier": null,
+    "tier": "B",
     "sources": [
       {
         "type": "tabelog",
@@ -8508,7 +9917,46 @@
       "note": null
     },
     "smoking": "全席禁煙",
-    "extra": {}
+    "extra": {},
+    "summary": {
+      "text": "阪急大阪梅田站 2F 中央改札內的京都系沾麵（豚骨魚介），20 席只有吧台，不能訂位，每人約 1,000～1,999 円。只為了吃要買入場券才能進改札。",
+      "pros": [
+        "食べログ 3.70（3,683 則），濃郁的豚骨魚介沾麵",
+        "無休、11:00～22:30",
+        "在阪急梅田站裡"
+      ],
+      "cons": [
+        "在阪急的改札內，不搭阪急要買入場券",
+        "20 席只有吧台、不能訂位，只適合 2～4 人",
+        "Google 3.8（1,946 則），比食べログ低很多"
+      ],
+      "basedOn": [
+        "https://menya-takei.com/shop/",
+        "https://menya-takei.com/",
+        "https://tabelog.com/osaka/A2701/A270101/27092383/",
+        "https://maps.google.com/?cid=6808824734576960675"
+      ],
+      "generated": "2026-10-26"
+    },
+    "assessment": {
+      "rubric": "restaurant-v1",
+      "scores": {
+        "recommend": 3,
+        "localFlavor": 2,
+        "groupFit": 1,
+        "elderFit": 3,
+        "kidsFit": 4
+      },
+      "rationale": {
+        "recommend": "食べログ 3.70（3,683 則）但 Google 3.8 → 大阪門檻的 3",
+        "localFlavor": "京都系沾麵，不是大阪名物 → 2",
+        "groupFit": "予約不可 → 1",
+        "elderFit": "只有吧台 → 3",
+        "kidsFit": "子供可，麵類 → 4"
+      },
+      "confidence": "medium",
+      "assessed": "2026-10-26"
+    }
   },
   {
     "id": "osaka-hanadako",
@@ -8597,7 +10045,7 @@
       "instagram": null
     },
     "tags": [],
-    "tier": null,
+    "tier": "B",
     "sources": [
       {
         "type": "tabelog",
@@ -8707,7 +10155,45 @@
       "note": null
     },
     "smoking": "全席禁煙",
-    "extra": {}
+    "extra": {},
+    "summary": {
+      "text": "JR 大阪站旁新梅田食道街 1F 的章魚燒，6 席吧台、以站著吃為主，不能訂位、標明大人數不可，每人 ～999 円。10:00～21:45 無休。",
+      "pros": [
+        "Google 4.2（4,650 則），梅田最多人評論的章魚燒",
+        "無休，早到晚都能吃",
+        "JR 大阪駅步行約 4 分，可以外帶"
+      ],
+      "cons": [
+        "6 席吧台、站著吃為主，不能訂位",
+        "標明大人數不可，只適合 2～3 人或外帶",
+        "兒童規定沒有來源"
+      ],
+      "basedOn": [
+        "http://shinume.com/shop/%E3%81%AF%E3%81%AA%E3%81%A0%E3%81%93/",
+        "https://tabelog.com/osaka/A2701/A270101/27012248/",
+        "https://maps.google.com/?cid=11352409233880323705"
+      ],
+      "generated": "2026-10-26"
+    },
+    "assessment": {
+      "rubric": "restaurant-v1",
+      "scores": {
+        "recommend": 3,
+        "localFlavor": 4,
+        "groupFit": 3,
+        "elderFit": 2,
+        "kidsFit": 3
+      },
+      "rationale": {
+        "recommend": "食べログ 3.50、Google 4.2 → 大阪門檻的 3（4 要食べログ 3.55）",
+        "localFlavor": "たこ焼き專門（大阪名物）→ 4",
+        "groupFit": "fit15 no（6 席），但可以外帶分批買 → 3",
+        "elderFit": "6 席吧台、以站著吃為主 → 2",
+        "kidsFit": "兒童規定沒有來源，章魚燒 → 3"
+      },
+      "confidence": "medium",
+      "assessed": "2026-10-26"
+    }
   },
   {
     "id": "osaka-udonbo",
@@ -8807,7 +10293,7 @@
       "instagram": "@udonya.sg"
     },
     "tags": [],
-    "tier": null,
+    "tier": "S",
     "sources": [
       {
         "type": "tabelog",
@@ -8926,7 +10412,45 @@
       "note": null
     },
     "smoking": "全席禁煙",
-    "extra": {}
+    "extra": {},
+    "summary": {
+      "text": "大阪駅前第 3 ビル B2F 的讃岐烏龍麵，19 席（吧台 7、桌 12），不能訂位，麵賣完就打烊。午 ～999 円、晚 1,000～1,999 円；冬季有オリーブ牛すき（外帶要 3 營業日前訂）。",
+      "pros": [
+        "食べログ 3.77（2,979 則）、Google 4.2，大阪門檻的 S",
+        "有桌席 12、全席禁菸，子供可",
+        "東梅田駅步行約 6 分"
+      ],
+      "cons": [
+        "週一公休，另有不定休（官網每月公告）；週末、假日只開午餐",
+        "19 席、不能訂位，15 人要分組",
+        "麵賣完就打烊"
+      ],
+      "basedOn": [
+        "http://www.udonbo.co.jp/",
+        "https://tabelog.com/osaka/A2701/A270101/27003766/",
+        "https://maps.google.com/?cid=16152100255681806047"
+      ],
+      "generated": "2026-10-26"
+    },
+    "assessment": {
+      "rubric": "restaurant-v1",
+      "scores": {
+        "recommend": 5,
+        "localFlavor": 2,
+        "groupFit": 1,
+        "elderFit": 3,
+        "kidsFit": 4
+      },
+      "rationale": {
+        "recommend": "食べログ 3.77（2,979 則）、Google 4.2（1,106 則）→ 大阪門檻的 5",
+        "localFlavor": "讃岐烏龍麵，不是大阪名物 → 2",
+        "groupFit": "予約不可 → 1",
+        "elderFit": "有桌席，但不能訂位要排隊、在 B2F → 3",
+        "kidsFit": "子供可，烏龍麵 → 4"
+      },
+      "confidence": "medium",
+      "assessed": "2026-10-26"
+    }
   },
   {
     "id": "osaka-odoru-udon-umeda",
@@ -9029,7 +10553,7 @@
       "instagram": null
     },
     "tags": [],
-    "tier": null,
+    "tier": "S",
     "sources": [
       {
         "type": "tabelog",
@@ -9145,6 +10669,44 @@
       "conflicts": [
         "Time Out 寫步行 2 分，另一清單寫 3 分；nap-camp 地址寫在ルクアイーレ，疑為誤植"
       ]
+    },
+    "summary": {
+      "text": "大阪駅前第 3 ビル B2F 的讃岐烏龍麵（食べログ烏龍麵百名店），2004 年開店，32 席（吧台 20＋桌），不能訂位，每人 ～999 円。食べログ寫有バリアフリー。",
+      "pros": [
+        "食べログ 3.76（2,780 則）、Google 4.2，大阪門檻的 S",
+        "每人 ～999 円，平價",
+        "バリアフリー（食べログ）、全席禁菸"
+      ],
+      "cons": [
+        "週三公休；麵賣完就結束",
+        "不能訂位，32 席，15 人要分組",
+        "兒童規定沒有來源"
+      ],
+      "basedOn": [
+        "https://tabelog.com/osaka/A2701/A270101/27015312/",
+        "https://www.timeout.jp/osaka/ja/レストラン/odoru-udon-umeda",
+        "https://maps.google.com/?cid=4417655131636738290"
+      ],
+      "generated": "2026-10-26"
+    },
+    "assessment": {
+      "rubric": "restaurant-v1",
+      "scores": {
+        "recommend": 5,
+        "localFlavor": 2,
+        "groupFit": 1,
+        "elderFit": 4,
+        "kidsFit": 3
+      },
+      "rationale": {
+        "recommend": "食べログ 3.76（2,780 則）、Google 4.2（1,151 則）→ 大阪門檻的 5",
+        "localFlavor": "讃岐烏龍麵，不是大阪名物 → 2",
+        "groupFit": "予約不可 → 1",
+        "elderFit": "有桌席、食べログ寫バリアフリー → 4",
+        "kidsFit": "兒童規定沒有來源，烏龍麵 → 3"
+      },
+      "confidence": "medium",
+      "assessed": "2026-10-26"
     }
   },
   {
@@ -9225,7 +10787,7 @@
       "instagram": null
     },
     "tags": [],
-    "tier": null,
+    "tier": "B",
     "sources": [
       {
         "type": "tabelog",
@@ -9352,6 +10914,44 @@
         "吸菸：食べログ 全席禁煙，新梅田食道街官網 全席可吸菸",
         "營業時間：食べログ 11:45～21:15，官網 11:30～21:30（採食べログ）"
       ]
+    },
+    "summary": {
+      "text": "新梅田食道街的お好み焼き老店，23 席（吧台 7、桌 16），不能訂位、標明大人數不可。すじ玉 870 円、もだん焼 830 円（未稅），每人約 1,000～1,999 円。",
+      "pros": [
+        "食べログ 3.66（2,212 則），梅田的お好み焼き老店",
+        "有桌席 16，子供可",
+        "地鐵梅田駅步行約 1 分"
+      ],
+      "cons": [
+        "週日公休",
+        "不能訂位、標明大人數不可，15 人要分成 2～4 人的小組",
+        "Google 3.7（1,506 則）；吸菸資訊來源不一（食べログ全席禁菸、讀文筆記寫全席可吸菸）"
+      ],
+      "basedOn": [
+        "http://shinume.com/shop/%E3%81%8D%E3%81%98/",
+        "https://tabelog.com/osaka/A2701/A270101/27000297/",
+        "https://maps.google.com/?cid=15610395227269825778"
+      ],
+      "generated": "2026-10-26"
+    },
+    "assessment": {
+      "rubric": "restaurant-v1",
+      "scores": {
+        "recommend": 3,
+        "localFlavor": 5,
+        "groupFit": 1,
+        "elderFit": 3,
+        "kidsFit": 4
+      },
+      "rationale": {
+        "recommend": "食べログ 3.66 但 Google 3.7（1,506 則）→ 上限 3（沒有讀評論，不打 2）",
+        "localFlavor": "お好み焼き老店（大阪名物、老舗）→ 5",
+        "groupFit": "予約不可、大人數不可 → 1",
+        "elderFit": "有桌席，但不能訂位要排隊 → 3",
+        "kidsFit": "子供可，お好み焼き是熟食 → 4"
+      },
+      "confidence": "medium",
+      "assessed": "2026-10-26"
     }
   }
 ]

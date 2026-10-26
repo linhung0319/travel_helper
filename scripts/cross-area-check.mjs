@@ -28,7 +28,7 @@ const toStdout = process.argv.includes('--stdout');
 const writeTags = process.argv.includes('--write-tags');
 const read = (p) => JSON.parse(fs.readFileSync(path.join(ROOT, p), 'utf8').replace(/^﻿/, ''));
 
-const AREAS = ['shima', 'toba', 'futami', 'ise', 'kix'];
+const AREAS = ['shima', 'toba', 'futami', 'ise', 'kix', 'osaka'];
 const FILES = { spot: 'spots', lodging: 'lodging', restaurant: 'restaurants' };
 const TAGS = ['室內', '雨天備案', '親子', '長輩友善', '長階梯', '展望', '神社寺院', '海邊', '體驗', '溫泉', '包棟', '無障礙'];
 const CUISINE = ['海鮮丼', '壽司', '浜焼き・貝', '牡蠣', '伊勢海老・高級海鮮', '定食・食堂', '和食・割烹', '烏龍麵・蕎麥', '燒肉・肉料理', '洋食・義式', '咖啡・甜點', '居酒屋', '其他'];

@@ -1,6 +1,6 @@
 # 跨區整理檢查（T13，scripts/cross-area-check.mjs）
 
-產生：2026-10-22。資料點：景點 82、住宿 145、餐廳 292。
+產生：2026-10-26。資料點：景點 96、住宿 168、餐廳 333。
 
 ## 1. 重複候選（1）
 
@@ -43,6 +43,9 @@ A 以上的比例超過約 25% 要看門檻（§5.1「數字門檻依區調整�
 | ise | restaurant | 108 | 2 | 19 | 87 | 0 | 19% |
 | kix | lodging | 10 | 0 | 3 | 7 | 0 | 30% |
 | kix | restaurant | 5 | 0 | 0 | 5 | 0 | 0% |
+| osaka | spot | 14 | 2 | 2 | 10 | 0 | 29% ⚠️ |
+| osaka | lodging | 23 | 1 | 6 | 16 | 0 | 30% ⚠️ |
+| osaka | restaurant | 41 | 3 | 7 | 31 | 0 | 24% |
 
 ## 5. 車站
 
@@ -82,6 +85,37 @@ A 以上的比例超過約 25% 要看門檻（§5.1「數字門檻依區調整�
 | rinku-town りんくうタウン | kix | 1 | 1 | 1 | 0 | 0 | 5 |
 | izumisano 泉佐野 | kix | 3 | 2 | 3 | 2 | 0 | 3 |
 | hagurazaki 羽倉崎 | kix | **0** | **0** | **0** | 0 | 0 | 1 |
+| osaka-namba 大阪難波 | osaka | 2 | 2 | 2 | 2 | 0 | 2 |
+| osaka-uehommachi 大阪上本町 | osaka | **0** | **0** | **0** | 0 | 0 | 2 |
+| tsuruhashi 鶴橋 | osaka | **0** | **0** | **0** | 0 | 0 | 0 |
+| nankai-namba なんば | osaka | 1 | 1 | **0** | 0 | 0 | 2 |
+| nankai-shin-imamiya 新今宮 | osaka | **0** | **0** | **0** | 0 | 0 | 0 |
+| jr-osaka 大阪 | osaka | 3 | 2 | 2 | 2 | 0 | 2 |
+| jr-nishikujo 西九条 | osaka | **0** | **0** | **0** | 0 | 0 | 1 |
+| jr-universal-city ユニバーサルシティ | osaka | 1 | 1 | 1 | 1 | 1 | 5 |
+| jr-shin-imamiya 新今宮 | osaka | **0** | **0** | **0** | 0 | 0 | 0 |
+| jr-tennoji 天王寺 | osaka | **0** | **0** | **0** | 0 | 0 | 0 |
+| jr-tsuruhashi 鶴橋 | osaka | 2 | 2 | 2 | 2 | 0 | 0 |
+| jr-morinomiya 森ノ宮 | osaka | 1 | 1 | 1 | 1 | 0 | 0 |
+| jr-osakajokoen 大阪城公園 | osaka | **0** | **0** | **0** | 0 | 1 | 0 |
+| metro-umeda 梅田 | osaka | 2 | 2 | 2 | 0 | 1 | 1 |
+| metro-higashi-umeda 東梅田 | osaka | 2 | 1 | 2 | 0 | 0 | 1 |
+| metro-hommachi 本町 | osaka | **0** | **0** | **0** | 0 | 0 | 0 |
+| metro-shinsaibashi 心斎橋 | osaka | 2 | 1 | 2 | 2 | 0 | 1 |
+| metro-namba なんば | osaka | 6 | 4 | 4 | 4 | 1 | 2 |
+| metro-dobutsuen-mae 動物園前 | osaka | 3 | 3 | 3 | 0 | 1 | 0 |
+| metro-tennoji 天王寺 | osaka | 4 | 3 | 3 | 2 | 1 | 0 |
+| metro-sakaisuji-hommachi 堺筋本町 | osaka | **0** | **0** | **0** | 0 | 0 | 0 |
+| metro-tanimachi-4chome 谷町四丁目 | osaka | 2 | 1 | 1 | 0 | 1 | 0 |
+| metro-morinomiya 森ノ宮 | osaka | **0** | **0** | **0** | 0 | 0 | 0 |
+| metro-osakako 大阪港 | osaka | 4 | 4 | 2 | 2 | 3 | 0 |
+| metro-nagahoribashi 長堀橋 | osaka | **0** | **0** | **0** | 0 | 0 | 1 |
+| metro-osaka-business-park 大阪ビジネスパーク | osaka | 4 | 4 | 4 | 2 | 0 | 0 |
+| metro-tenjimbashisuji-6chome 天神橋筋六丁目 | osaka | **0** | **0** | **0** | 0 | 1 | 0 |
+| metro-nippombashi 日本橋 | osaka | 2 | 2 | 2 | 1 | 1 | 3 |
+| metro-ebisucho 恵美須町 | osaka | **0** | **0** | **0** | 0 | 1 | 0 |
+| metro-tanimachi-9chome 谷町九丁目 | osaka | **0** | **0** | **0** | 0 | 0 | 0 |
+| metro-shitennojimae-yuhigaoka 四天王寺前夕陽ヶ丘 | osaka | **0** | **0** | **0** | 0 | 1 | 0 |
 
 ## 6. 子地區
 
@@ -124,10 +158,16 @@ A 以上的比例超過約 25% 要看門檻（§5.1「數字門檻依區調整�
 | kix | kix-island 関西空港（空港島） |  | 0 | 1 | 1 |
 | kix | rinku りんくうタウン |  | 0 | 6 | 1 |
 | kix | izumisano 泉佐野 |  | 0 | 3 | 3 |
+| osaka | namba 難波・道頓堀 |  | 2 | 13 | 15 |
+| osaka | osaka-castle 大阪城 |  | 2 | 0 | 7 |
+| osaka | tennoji 天王寺・新世界 |  | 4 | 0 | 7 |
+| osaka | osaka-bay 海遊館・天保山 |  | 3 | 0 | 5 |
+| osaka | usj ユニバーサルシティ |  | 1 | 6 | **0** |
+| osaka | umeda 梅田 |  | 2 | 4 | 7 |
 
 ## 7. 可信度
 
-### S、A 但 confidence low（8）
+### S、A 但 confidence low（10）
 
 | tier | ID | 名稱 | 推薦度理由 |
 |---|---|---|---|
@@ -139,6 +179,8 @@ A 以上的比例超過約 25% 要看門檻（§5.1「數字門檻依區調整�
 | A | ise-bon-vivant | ボン・ヴィヴァン | 食べログ 3.71（155 則）、Google 4.5（147 則）→ 伊勢的第 1 條（3.55／150 則＋Google 4.1）；米其林 2019、Gault&Millau 掲載，觀光三重、まっぷる 推薦 |
 | A | ise-dandelion-chocolate-geku | ダンデライオン・チョコレート 伊勢外宮店 | 食べログ 3.59（414 則）、Google 4.1（535 則）→ 伊勢的第 1 條（3.55／150 則＋Google 4.1）；觀光三重、Walkerplus、Time Out 介紹 |
 | A | ise-kaki-no-tomo | 牡蠣の朋 | 食べログ 3.55（178 則）、Google 4.5（296 則）→ 伊勢的第 1 條（3.55／150 則＋Google 4.1）；介紹只有 TikTok／IG 轉載 |
+| A | osaka-yatagarasu-udon | やたがらす UDON | 食べログ 3.66（655 則）、Google 4.2（296 則）→ 大阪門檻的 4 |
+| A | osaka-gojoya | 五條家 | 食べログ 3.66（615 則）、Google 4.5（280 則）→ 大阪門檻的 4 |
 
 ### 2 月營業或營業狀態沒確認的景點（11）
 

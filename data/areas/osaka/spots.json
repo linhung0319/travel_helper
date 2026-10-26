@@ -46,10 +46,7 @@
       "instagram": null,
       "googleMaps": "https://maps.google.com/?cid=13311254180582368656"
     },
-    "tags": [
-      "夜景",
-      "散步"
-    ],
+    "tags": [],
     "tier": "A",
     "nearestStation": {
       "id": "metro-namba",
@@ -248,10 +245,7 @@
       "instagram": null,
       "googleMaps": "https://maps.google.com/?cid=12402117845945925953"
     },
-    "tags": [
-      "市場",
-      "邊走邊吃"
-    ],
+    "tags": [],
     "tier": "B",
     "nearestStation": {
       "id": "metro-nippombashi",
@@ -465,8 +459,6 @@
       "googleMaps": "https://maps.google.com/?cid=4831865609044200129"
     },
     "tags": [
-      "歷史",
-      "城",
       "室內",
       "雨天備案",
       "長階梯"
@@ -674,11 +666,7 @@
       "instagram": "@osaka_castle_park",
       "googleMaps": "https://maps.google.com/?cid=12782986985188393020"
     },
-    "tags": [
-      "花",
-      "冬季限定",
-      "散步"
-    ],
+    "tags": [],
     "tier": "B",
     "nearestStation": {
       "id": "jr-osakajokoen",
@@ -897,8 +885,7 @@
       "googleMaps": "https://maps.google.com/?cid=16558556426972448087"
     },
     "tags": [
-      "展望台",
-      "夜景",
+      "展望",
       "室內",
       "雨天備案",
       "親子"
@@ -1164,8 +1151,7 @@
       "googleMaps": "https://maps.google.com/?cid=17457951089637678730"
     },
     "tags": [
-      "展望台",
-      "夜景",
+      "展望",
       "室內",
       "雨天備案"
     ],
@@ -1385,7 +1371,6 @@
       "googleMaps": "https://maps.google.com/?cid=1909807467663893139"
     },
     "tags": [
-      "動物",
       "親子"
     ],
     "tier": "B",
@@ -1606,8 +1591,7 @@
       "googleMaps": "https://maps.google.com/?cid=13162475560152948781"
     },
     "tags": [
-      "寺社",
-      "歷史"
+      "神社寺院"
     ],
     "tier": "B",
     "nearestStation": {
@@ -1830,7 +1814,6 @@
       "googleMaps": "https://maps.google.com/?cid=8035482904308493516"
     },
     "tags": [
-      "水族館",
       "親子",
       "室內",
       "雨天備案"
@@ -2083,8 +2066,7 @@
       "googleMaps": "https://maps.google.com/?cid=18337499502386135590"
     },
     "tags": [
-      "觀景",
-      "夜景"
+      "展望"
     ],
     "tier": "B",
     "nearestStation": {
@@ -2490,7 +2472,6 @@
       "googleMaps": "https://maps.google.com/?cid=3892796888607511210"
     },
     "tags": [
-      "主題樂園",
       "親子"
     ],
     "tier": "S",
@@ -2786,8 +2767,7 @@
       "googleMaps": "https://maps.google.com/?cid=5170383595001406343"
     },
     "tags": [
-      "展望台",
-      "夜景",
+      "展望",
       "室內",
       "雨天備案"
     ],
@@ -3041,7 +3021,6 @@
       "googleMaps": "https://maps.google.com/?cid=10674462834411964257"
     },
     "tags": [
-      "博物館",
       "體驗",
       "室內",
       "雨天備案"
