@@ -33,6 +33,7 @@
   --food-wash: #fbeee5;
   --stay-wash: #f0ecf8;
   --stay-line: #d3c9e6;
+  --stay-mid: #9a86c4;
   --teal: #1f6f78;
   --teal-wash: #e3f1f1;
   --teal-line: #9fcfcb;
@@ -1735,7 +1736,7 @@ button.edit-toggle {
 
 .tag-lodging.from-data {
   background: none;
-  color: var(--stay-line);
+  color: var(--stay-mid);
   border: 1px dashed var(--stay-line);
 }
 
