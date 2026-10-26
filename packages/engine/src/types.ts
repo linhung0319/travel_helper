@@ -80,6 +80,20 @@ export interface TripRef {
   via?: string | null;
 }
 
+/** 走法的一程（T29）：line 是 NetRoute 的 group（近鐵 kintetsu、路線檔 routeId、班距型 routeId），from／to 是停靠點 ID */
+export interface PathRide {
+  line: string;
+  from: string;
+  to: string;
+}
+
+/** 選定的走法：每一程搭哪條線、哪兩站；from／to 是選的時候起訖的地點 ID，和現在不同時引擎當作沒選（同 TripRef） */
+export interface PathRef {
+  rides: PathRide[];
+  from: string | null;
+  to: string | null;
+}
+
 /**
  * 使用者指定的交通（從上一站到這一項）。
  * mode 沒寫：方式自動；minutes 是 null：時間照規則算；trip：選定的班次（mode 沒寫或是大眾運輸時用）。
@@ -89,6 +103,8 @@ export interface TravelSpec {
   mode?: TravelMode | null;
   minutes?: number | null;
   trip?: TripRef | null;
+  /** 選定的走法（T29）：照這個走法依序搭每一程最早接得上的班 */
+  path?: PathRef | null;
   note?: string | null;
 }
 

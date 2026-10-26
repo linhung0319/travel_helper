@@ -62,7 +62,7 @@ export const OSAKA_KINTETSU = ['osaka-namba', 'osaka-uehommachi', 'tsuruhashi'];
 // --- 網路的索引 ---------------------------------------------------------------
 
 // 停靠點換成整數，搜尋時用陣列不用 Map；同一個網路只整理一次
-interface Indexed {
+export interface Indexed {
   ids: string[];
   idx: Map<string, number>;
   /** 每個 route 的停靠點（整數） */
@@ -78,7 +78,7 @@ interface Indexed {
 
 const indexed = new WeakMap<Network, Indexed>();
 
-function indexOf(net: Network): Indexed {
+export function indexOf(net: Network): Indexed {
   let ix = indexed.get(net);
   if (ix) return ix;
   const ids = [...net.stops.keys()];
@@ -470,7 +470,7 @@ function rebuild(net: Network, ix: Indexed, rounds: Round[], k: number, s: numbe
 }
 
 /** group 裡停 from 再停 to 的 route，ready 以後最早到 to 的那一程；沒有回傳 null */
-function earliestRide(net: Network, ix: Indexed, group: string, from: string, to: string, ready: number, whole: boolean, after = -Infinity): JourneyRide | null {
+export function earliestRide(net: Network, ix: Indexed, group: string, from: string, to: string, ready: number, whole: boolean, after = -Infinity): JourneyRide | null {
   const a = ix.idx.get(from);
   const b = ix.idx.get(to);
   if (a == null || b == null) return null;

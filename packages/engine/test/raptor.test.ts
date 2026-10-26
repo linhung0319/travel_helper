@@ -1,8 +1,9 @@
 // RAPTOR 公共交通搜尋（T29）：資料讀檔、一天的網路
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { DEFAULT_CONFIG, earliestTrain, toMinutes, type UrbanService } from '../src/index.ts';
+import { DEFAULT_CONFIG, departuresFrom, earliestTrain, toMinutes, type UrbanService } from '../src/index.ts';
 import { buildNetwork, headwayWait, type HeadwayRoute, type TimedRoute } from '../src/raptor/network.ts';
+import { evaluatePath, ifMissed, pathOf } from '../src/raptor/path.ts';
 import { pickDefault, searchJourneys, type Journey, type SearchQuery } from '../src/raptor/search.ts';
 import { realData } from './fixtures.ts';
 
@@ -318,4 +319,88 @@ test('pickDefault 照轉乘懲罰', () => {
   const [f, g] = [mk(1, 700), mk(2, 690)];
   assert.equal(pickDefault([g, f], DEFAULT_CONFIG), f);
   assert.equal(pickDefault([], DEFAULT_CONFIG), null);
+});
+
+// --- 照走法重算、錯過的話（path.ts） -----------------------------------------
+
+const q1 = { whole: true, factor: 1.4 };
+
+test('pathOf 再 evaluatePath 得到同樣的到達', () => {
+  const net = buildNetwork(realData(), DEFAULT_CONFIG, '2027-02-12');
+  const j = searchJourneys(net, q0('metro-namba', 'metro-tanimachi-4chome', 600), DEFAULT_CONFIG)[0];
+  const path = pathOf(j);
+  assert.equal(path.length, j.rides.length);
+  assert.deepEqual(path[0], { line: j.rides[0].route.group, from: j.rides[0].from, to: j.rides[0].to });
+  const again = evaluatePath(net, path, j.origin, j.target, 600, q1, DEFAULT_CONFIG);
+  assert.ok(again);
+  assert.equal(again.arr, j.arr);
+  assert.equal(again.dep, j.dep);
+  assert.deepEqual(again.transfers, j.transfers);
+  // depart + 60 還找得到，到達晚約 60 分
+  const later = evaluatePath(net, path, j.origin, j.target, 660, q1, DEFAULT_CONFIG);
+  assert.ok(later);
+  assert.ok(Math.abs(later.arr - j.arr - 60) <= 8, `晚 ${later.arr - j.arr}`);
+});
+
+test('evaluatePath：有時刻表的近鐵走法和搜尋一樣', () => {
+  const net = buildNetwork(realData(), DEFAULT_CONFIG, TUE);
+  const j = searchJourneys(net, q0('toba', 'kashikojima', 600), DEFAULT_CONFIG).find((x) => x.rides.length === 1);
+  assert.ok(j);
+  const again = evaluatePath(net, pathOf(j), j.origin, j.target, 600, q1, DEFAULT_CONFIG);
+  assert.equal(again?.arr, j.arr);
+  assert.equal(again?.rides[0].trip?.tripId, j.rides[0].trip?.tripId);
+});
+
+test('evaluatePath：那天不能搭的線回傳 null', () => {
+  const net = buildNetwork(realData(), DEFAULT_CONFIG, '2027-02-11');
+  const path = [{ line: 'nankai-airport-express', from: 'kansai-airport', to: 'nankai-namba' }];
+  assert.equal(evaluatePath(net, path, { stop: 'kansai-airport', walk: 0 }, { stop: 'nankai-namba', walk: 0 }, 600, q1, DEFAULT_CONFIG), null);
+  assert.equal(evaluatePath(net, [], { stop: 'a', walk: 0 }, { stop: 'b', walk: 0 }, 600, q1, DEFAULT_CONFIG), null);
+});
+
+test('evaluatePath：接不上的走法回傳 null', () => {
+  const net = buildNetwork(realData(), DEFAULT_CONFIG, TUE);
+  const path = [{ line: 'kintetsu', from: 'toba', to: 'kashikojima' }, { line: 'kintetsu', from: 'ugata', to: 'iseshi' }];
+  assert.equal(evaluatePath(net, path, { stop: 'toba', walk: 0 }, { stop: 'iseshi', walk: 0 }, 600, q1, DEFAULT_CONFIG), null);
+});
+
+test('evaluatePath：近鐵不在大阪市內短程搭', () => {
+  const net = buildNetwork(realData(), DEFAULT_CONFIG, '2027-02-12');
+  const path = [{ line: 'kintetsu', from: 'osaka-namba', to: 'tsuruhashi' }];
+  assert.equal(evaluatePath(net, path, { stop: 'osaka-namba', walk: 0 }, { stop: 'tsuruhashi', walk: 0 }, 600, q1, DEFAULT_CONFIG), null);
+});
+
+test('ifMissed：近鐵鳥羽 → 賢島，錯過第 0 程改搭下一班', () => {
+  const net = buildNetwork(realData(), DEFAULT_CONFIG, TUE);
+  const j = searchJourneys(net, q0('toba', 'kashikojima', 600), DEFAULT_CONFIG).find((x) => x.rides.length === 1);
+  assert.ok(j);
+  const m = ifMissed(net, j, 0, q1, DEFAULT_CONFIG);
+  assert.ok(m);
+  assert.ok(m.depart > j.dep);
+  assert.ok(m.lateMinutes > 0);
+  assert.equal(m.arrive, j.arr + m.lateMinutes);
+});
+
+test('ifMissed：班距型那程晚約一個班距', () => {
+  const net = buildNetwork(realData(), DEFAULT_CONFIG, '2027-02-12');
+  const j = searchJourneys(net, q0('metro-namba', 'metro-tanimachi-4chome', 600), DEFAULT_CONFIG)[0];
+  for (let i = 0; i < j.rides.length; i++) {
+    const m = ifMissed(net, j, i, q1, DEFAULT_CONFIG);
+    assert.ok(m, `第 ${i} 程`);
+    assert.ok(m.lateMinutes > 0, `第 ${i} 程晚 ${m.lateMinutes}`);
+  }
+  const m0 = ifMissed(net, j, 0, q1, DEFAULT_CONFIG);
+  assert.ok(m0 && Math.abs(m0.lateMinutes - (j.rides[0].headway as { min: number }).min) <= 1);
+  assert.equal(m0.depart, j.dep + Math.ceil((j.rides[0].headway as { min: number }).min));
+});
+
+test('ifMissed：當天末班錯過回傳 null', () => {
+  const d = realData();
+  const net = buildNetwork(d, DEFAULT_CONFIG, TUE);
+  const deps = departuresFrom(d.kintetsu!, { from: 'toba', date: TUE, holidays: DEFAULT_CONFIG.holidays });
+  const last = deps[deps.length - 1];
+  const j = searchJourneys(net, q0('toba', 'iseshi', last), DEFAULT_CONFIG).find((x) => x.rides.length === 1 && x.rides[0].route.group === 'kintetsu');
+  assert.ok(j);
+  assert.equal(ifMissed(net, j, 0, q1, DEFAULT_CONFIG), null);
+  assert.equal(ifMissed(net, j, 5, q1, DEFAULT_CONFIG), null);
 });
