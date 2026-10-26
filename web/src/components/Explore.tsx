@@ -1,8 +1,8 @@
 // 電腦版右側的「探索」分頁：最上面是篩選列（shared/ui/FilterBar：搜尋、篩選、排序、照片牆／清單，套用的條件變成小晶片），一直黏在上面；
 // 「篩選」打開的抽屜蓋住整個右欄（FilterSheet），類型、地區、團體、情境、想去、等級、只看地圖畫面裡的都在裡面。
-// 清單可以切換照片牆（兩欄，PlaceTile）或清單列（PlaceRow，88px），都是兩邊共用的元件；滑鼠移上去呼叫 appStore.hover（地圖的指到），點了地圖移過去、打開詳情。
-// 反過來，點地圖上的點：切到探索、捲到那張卡片（showInExplore），再點卡片才開詳情（手機沒有 hover，所以用點的）。
-// 探索的類型寫在篩選裡（地圖跟著變淡），回到「行程」時拿掉（showItinerary）。
+// 清單可以切換照片牆（兩欄，PlaceTile）或清單列（PlaceRow，88px），都是兩邊共用的元件；滑鼠移上去呼叫 appStore.hover（地圖的指到），點了選中（地圖照「能不動就不動」）、打開詳情。
+// 反過來，在探索、想去分頁點地圖上的點（mapPick.ts）：清單裡有它就捲到那張卡片並選中（showInExplore），沒有就直接開詳情；不改類型、篩選（第七輪 §8.3）。
+// 清單標出的卡：選中的點、和滑鼠在地圖上指到的點（卡片自己被指到時不回頭標自己）。
 // 「想去」分頁是同一個元件（source="wish"）：只列有人按想去的點，清單換成 shared/ui/WishList（分成還沒排、已是候選、已排三段，列右邊有 ❤ 和日曆鈕「加到某天」）；
 // 探索只有愛心，流程是先按想去再到想去加到某天。想去的顯示方式（清單、照片牆）記在 mobileStore.wish.view，和探索各自記。
 // 卡片照片右下角是想去的愛心（VoteHeart），左上角是類型；重點膠囊（已排、候選、15 人、預約）在名稱下面。探索的照片牆是兩欄。
@@ -15,8 +15,8 @@ import { shared } from '../appShared.ts';
 import { likedPlaces } from '../lib/wishlist.ts';
 import { commands } from '../appCommands.ts';
 import { useApp } from '../hooks.ts';
-import { EMPTY_FILTER, matchesFilter, matchesQuery, type FilterKey } from '../lib/filter.ts';
-import { EXPLORE_TYPES, type ExploreSort } from '../lib/explore.ts';
+import type { FilterKey } from '../lib/filter.ts';
+import { explorePlaces, type ExploreSort } from '../lib/explore.ts';
 import type { Place } from '../data/types.ts';
 import { FilterBar, type FilterModel } from '../shared/ui/FilterBar.tsx';
 import { dragPlaceProps } from './askAi.ts';
@@ -48,7 +48,7 @@ function saveView(v: View) {
   }
 }
 
-/** 點清單的一張卡：地圖移過去，詳情蓋在右欄（tab＝一打開就選的分頁，例如想去列的最新留言開留言分頁） */
+/** 點清單的一張卡：選中（openDetail 會選）、地圖照移動規則，詳情蓋在右欄（tab＝一打開就選的分頁，例如想去列的最新留言開留言分頁） */
 function open(id: string, tab?: DetailTabId) {
   commands.focus(id);
   const s = appStore.getState();
@@ -88,7 +88,10 @@ export function ExplorePanel({ source = 'explore' }: { source?: ListSource }) {
   const filter = useApp((s) => s.filter);
   const query = useApp((s) => s.query);
   const bounds = useApp((s) => s.view?.bounds ?? null);
-  const hoveredId = useApp((s) => s.hoveredId);
+  // 標出的卡：選中的點、地圖上指到的點
+  const selectedId = useApp((s) => s.selectedId);
+  const mapHovered = useApp((s) => (s.hoverFromMap ? s.hoveredId : null));
+  const hotOf = (id: string) => id === selectedId || id === mapHovered;
   const target = useApp((s) => s.exploreTarget);
   const [exploreView, setExploreView] = useState<View>(loadView);
   const wishView = useMobile((s) => s.wish.view);
@@ -147,17 +150,17 @@ export function ExplorePanel({ source = 'explore' }: { source?: ListSource }) {
             view={view}
             onOpen={(id) => open(id)}
             onOpenComments={(id) => open(id, 'comments')}
-            hotId={hoveredId ?? target?.id ?? null}
+            hotId={mapHovered ?? selectedId ?? null}
             revealId={target?.id ?? null}
             revealSeq={target?.seq}
           />
         ) : view === 'photo' ? (
-          <PlaceWall items={list} render={(p, i) => <Item place={p} rank={i + 1} view={view} hot={hoveredId === p.id || target?.id === p.id} status={statusOf(p.id)} />} />
+          <PlaceWall items={list} render={(p, i) => <Item place={p} rank={i + 1} view={view} hot={hotOf(p.id)} status={statusOf(p.id)} />} />
         ) : (
           <ol className="ex-items">
             {list.map((p, i) => (
               <li key={p.id}>
-                <Item place={p} rank={i + 1} view={view} hot={hoveredId === p.id || target?.id === p.id} status={statusOf(p.id)} />
+                <Item place={p} rank={i + 1} view={view} hot={hotOf(p.id)} status={statusOf(p.id)} />
               </li>
             ))}
           </ol>
@@ -171,26 +174,32 @@ export function ExplorePanel({ source = 'explore' }: { source?: ListSource }) {
 }
 
 
+/** 這個點在不在現在的探索（或想去）清單裡：照目前的篩選、搜尋（不看「只看地圖畫面裡的」：點得到的點本來就在畫面裡） */
+function inPlaceList(p: Place, source: ListSource): boolean {
+  const s = appStore.getState();
+  if (source === 'wish' && !likedPlaces(shared.store.getState().votes).has(p.id)) return false;
+  return explorePlaces([p], s.filter, null, 'recommend', () => 0, s.query).length > 0;
+}
+
 /**
- * 電腦版點了地圖上的點：右側切到探索（在想去分頁、而且這個點有人 ❤️ 時留在想去）、換成那一類、捲到那張卡片，點會閃。
- * 目前的篩選看不到它時，改成只篩那一類和那個地區。車站不在探索裡，直接開詳情。
+ * 網頁在探索、想去分頁點了地圖上的點（第七輪 §8.3）：清單裡有它＝關掉詳情、捲到那張卡片並選中；沒有（篩選掉了、車站）＝直接開詳情。
+ * 不改類型、篩選、搜尋
  */
 export function showInExplore(id: string) {
   const s = appStore.getState();
   const p = dataStore.getState().byId.get(id);
   if (!p) return;
   s.openPreview(null);
-  if (!(EXPLORE_TYPES as readonly string[]).includes(p.type)) {
-    s.openDetail(id);
+  const source: ListSource = s.mode === 'wish' ? 'wish' : 'explore';
+  if (!inPlaceList(p, source)) {
+    s.openDetail(id, source);
+    commands.focus(id);
     return;
   }
   s.closeDetail();
-  s.setMode(s.mode === 'wish' && likedPlaces(shared.store.getState().votes).has(id) ? 'wish' : 'explore');
-  const keep = { ...s.filter, types: [p.type] };
-  s.setFilter(matchesFilter(p, keep) ? keep : { ...EMPTY_FILTER, types: [p.type], areas: p.area ? [p.area] : [] });
-  if (!matchesQuery(p, s.query)) s.setQuery('');
-  s.hover(id);
+  s.select(id);
   s.revealInExplore(id);
+  commands.focus(id);
 }
 
 /** 右側切回「行程」：關掉詳情；從探索、想去切回來時拿掉探索加上的類型 */

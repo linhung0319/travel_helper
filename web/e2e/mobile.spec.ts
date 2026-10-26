@@ -340,17 +340,9 @@ test('詳情：有問 AI、點小地圖跳到行程', async ({ page }) => {
   await expect(page.getByTestId('m-detail')).toHaveCount(0);
   await expect(page.getByTestId('m-tab-trip')).toHaveAttribute('aria-current', 'page');
   await expect(page.getByTestId('map')).toBeVisible();
-  // 地圖框住這個點
-  await expect
-    .poll(() =>
-      page.evaluate((id) => {
-        const th = (window as any).__th;
-        const [lon, lat] = th.dataStore.getState().byId.get(id).coords;
-        const c = th.map.getCenter();
-        return Math.hypot(c.lng - lon, c.lat - lat);
-      }, id),
-    )
-    .toBeLessThan(0.02);
+  // 選中這個點，地圖上看得到它（第七輪 §8.3）
+  await expect.poll(() => page.evaluate(() => (window as any).__th.appStore.getState().selectedId)).toBe(id);
+  await expect.poll(() => visibleOnMap(page, id!), { timeout: 10_000 }).toBe(true);
 });
 
 test('詳情：從想去打開多一個「加到某天」，可以投票、留言', async ({ page }) => {
@@ -404,16 +396,13 @@ async function pickDay(page: import('@playwright/test').Page, date: string) {
   await expect(page.getByTestId(`m-day-${date}`)).toHaveAttribute('aria-current', 'true');
 }
 
-/** 地圖中心到某個點的距離（公尺） */
-const centerMeters = (page: import('@playwright/test').Page, id: string) =>
+/** 這個點在地圖看得到的範圍裡（扣掉行程面板，第七輪 §8.2） */
+const visibleOnMap = (page: import('@playwright/test').Page, id: string) =>
   page.evaluate((id) => {
     const th = (window as any).__th;
-    const [lon, lat] = th.dataStore.getState().byId.get(id).coords;
-    const c = th.map.getCenter();
-    const r = Math.PI / 180;
-    const x = (c.lng - lon) * r * Math.cos(((c.lat + lat) / 2) * r);
-    const y = (c.lat - lat) * r;
-    return Math.hypot(x, y) * 6371000;
+    const pt = th.map.project(th.dataStore.getState().byId.get(id).coords);
+    const v = th.visibleRect();
+    return pt.x >= v.left && pt.x <= v.right && pt.y >= v.top && pt.y <= v.bottom;
   }, id);
 
 test('行程：天數列一整行、每格寬、紅字', async ({ page }) => {
@@ -472,7 +461,7 @@ test('行程：卡片有縮圖和編號', async ({ page }) => {
   expect(await cand.evaluate((el) => getComputedStyle(el).borderStyle)).toBe('dashed');
 });
 
-test('點卡片：面板高度不變、地圖飛到那個點、不跳彈窗', async ({ page }) => {
+test('點卡片：面板高度不變、選中（數字水滴）、被面板蓋住才移地圖、不跳彈窗', async ({ page }) => {
   await ready(page);
   await pickDay(page, '2027-02-03');
   await page.evaluate(() => (window as any).__thMobile.getState().setSnap('high'));
@@ -481,10 +470,12 @@ test('點卡片：面板高度不變、地圖飛到那個點、不跳彈窗', as
   await card.getByTestId('trip-card-name').click();
   await expect(page.getByTestId('m-sheet')).toHaveAttribute('data-snap', 'high');
   await expect(card).toHaveAttribute('aria-current', 'true');
-  await expect.poll(() => centerMeters(page, 'shima-yokoyama-observatory'), { timeout: 10_000 }).toBeLessThan(300);
-  // 那個點加黑框（focus），這天其他路線變淡
-  expect(await page.evaluate(() => (window as any).__th.appStore.getState().highlights.focus)).toEqual(['shima-yokoyama-observatory']);
-  expect(await page.evaluate(() => (window as any).__th.map.getPaintProperty('itinerary-line', 'line-opacity'))).toBe(0.1);
+  // 面板拉高、點被蓋住：地圖移到看得到的地方
+  await expect.poll(() => visibleOnMap(page, 'shima-yokoyama-observatory'), { timeout: 10_000 }).toBe(true);
+  // 選中：數字水滴寫那張卡的編號；路線不變淡
+  await expect(page.getByTestId('map-selected')).toHaveAttribute('data-id', 'shima-yokoyama-observatory');
+  await expect(page.getByTestId('map-selected')).toHaveAttribute('data-label', await card.getByTestId('trip-card-no').innerText());
+  expect(await page.evaluate(() => (window as any).__th.map.getPaintProperty('itinerary-line', 'line-opacity'))).not.toBe(0.1);
   await expect(page.locator('.maplibregl-popup')).toHaveCount(0);
   await expect(page.getByTestId('preview-card')).toHaveCount(0);
   // 只有展開的那張有「詳細資料」
@@ -504,22 +495,29 @@ test('點地圖上的圖釘：清單捲到那張卡', async ({ page }) => {
   await page.touchscreen.tap(pt.x, pt.y);
   await expect(card).toHaveAttribute('aria-current', 'true');
   await expect(card).toBeInViewport();
+  await expect(card.getByTestId('trip-card-expand')).toBeVisible();
+  await expect(page.getByTestId('map-selected')).toHaveAttribute('data-id', 'shima-la-mer');
   await expect(page.getByTestId('preview-card')).toHaveCount(0);
   // 點地圖空白處取消
   const empty = await page.evaluate(() => {
     // 找一個附近沒有點的地方（避開左下的比例尺、右上的按鈕）
     const map = (window as any).__th.map;
     const r = map.getCanvas().getBoundingClientRect();
-    const layers = ['places-circle', 'places-icon', 'places-mark', 'places-pin'].filter((l) => map.getLayer(l));
+    const layers = ['places-circle', 'places-icon', 'places-mark'].filter((l) => map.getLayer(l));
+    const drop = document.querySelector('[data-testid="map-selected"]')?.getBoundingClientRect();
     for (let y = 70; y < r.height - 40; y += 20)
       for (let x = 20; x < r.width - 20; x += 20) {
-        if (!map.queryRenderedFeatures([[x - 16, y - 16], [x + 16, y + 16]], { layers }).length) return { x: r.left + x, y: r.top + y };
+        const px = r.left + x;
+        const py = r.top + y;
+        const onDrop = drop && px > drop.left - 16 && px < drop.right + 120 && py > drop.top - 16 && py < drop.bottom + 16;
+        if (!onDrop && !map.queryRenderedFeatures([[x - 16, y - 16], [x + 16, y + 16]], { layers }).length) return { x: px, y: py };
       }
     return null;
   });
   expect(empty).not.toBeNull();
   await page.touchscreen.tap(empty!.x, empty!.y);
   await expect(page.locator('[data-testid="m-card"][aria-current="true"]')).toHaveCount(0);
+  await expect(page.getByTestId('map-selected')).toHaveCount(0);
 });
 
 test('全部：一天一列，點了跳到那天', async ({ page }) => {
@@ -581,7 +579,7 @@ test('行程卡：沒有照片的點顯示類型色塊', async ({ page }) => {
   await expect(fb).toHaveText('景');
 });
 
-test('交通開著時點卡片：黑框和路線變淡還在', async ({ page }) => {
+test('交通開著時點卡片：交通收起、路線恢復，選中那張卡', async ({ page }) => {
   await ready(page);
   await pickDay(page, '2027-02-03');
   await page.getByTestId('m-leg').first().getByTestId('leg-line-text').click();
@@ -590,11 +588,12 @@ test('交通開著時點卡片：黑框和路線變淡還在', async ({ page }) 
   await card.getByTestId('trip-card-name').click();
   await expect(card).toHaveAttribute('aria-current', 'true');
   await expect.poll(() => page.evaluate(() => (window as any).__th.uiStore.getState().legOpen)).toBeNull();
-  await expect.poll(() => page.evaluate(() => (window as any).__th.appStore.getState().highlights.focus)).toEqual(['shima-la-mer']);
-  // 再等一下：交通卡收起來的清理跑完之後，黑框、變淡都還在
+  await expect.poll(() => page.evaluate(() => (window as any).__th.appStore.getState().selectedId)).toBe('shima-la-mer');
+  // 再等一下：交通卡收起來的清理跑完之後，選中還在、交通的路線清掉、路線不再變淡（選中不讓路線變淡）
   await page.waitForTimeout(500);
-  expect(await page.evaluate(() => (window as any).__th.appStore.getState().highlights.focus)).toEqual(['shima-la-mer']);
-  expect(await page.evaluate(() => (window as any).__th.map.getPaintProperty('itinerary-line', 'line-opacity'))).toBe(0.1);
+  expect(await page.evaluate(() => (window as any).__th.appStore.getState().selectedId)).toBe('shima-la-mer');
+  expect(await page.evaluate(() => (window as any).__th.appStore.getState().legRoute)).toBeNull();
+  expect(await page.evaluate(() => (window as any).__th.map.getPaintProperty('itinerary-line', 'line-opacity'))).not.toBe(0.1);
 });
 
 // --- 行程：編輯中（§3.5）：藍條、把手、⋯ 底部動作面板、標籤、移到第幾天、長按拖曳 ---
@@ -1345,9 +1344,10 @@ test('點時間軸的卡：原地展開，沒有地圖小卡片，再點收起',
   await expect(open).toBeVisible();
   await expect(open.locator('.tc-photo')).toHaveCount(3);
   await expect(page.getByTestId('preview-card')).toHaveCount(0);
-  // 面板高度不變，地圖飛到那個點
+  // 面板高度不變，選中那個點，地圖上看得到它（看得到就不動）
   await expect(page.getByTestId('m-sheet')).toHaveAttribute('data-snap', 'mid');
-  await expect.poll(() => centerMeters(page, 'shima-yokoyama-observatory'), { timeout: 10_000 }).toBeLessThan(300);
+  await expect(page.getByTestId('map-selected')).toHaveAttribute('data-id', 'shima-yokoyama-observatory');
+  await expect.poll(() => visibleOnMap(page, 'shima-yokoyama-observatory'), { timeout: 10_000 }).toBe(true);
   // 點別張：這張收起
   const next = page.locator('[data-testid="m-card"][data-item="i-3"]');
   await next.getByTestId('trip-card').click();
@@ -1457,4 +1457,39 @@ test('編輯條是墨色、有快照；編輯中沒有日期列和 ✦；「改�
   expect(await edit.evaluate((e) => parseFloat(getComputedStyle(e, '::after').height))).toBeGreaterThanOrEqual(44);
   expect(await edit.evaluate((e) => parseFloat(getComputedStyle(e, '::after').width))).toBeGreaterThanOrEqual(44);
   expect(await scrollsSideways(page)).toBe(false);
+});
+
+// ---------- 第七輪 Task 10：選中（數字水滴）、在地圖上看、換分頁取消 ----------
+
+test('詳情的「在地圖上看」：排在某天的點 → 選那天、選中那張卡（展開）', async ({ page }) => {
+  await ready(page);
+  await page.evaluate(() => (window as any).__thMobile.getState().openPlace('shima-la-mer', 'trip'));
+  const detail = page.getByTestId('m-detail');
+  await detail.getByTestId('detail-tab-transport').click();
+  await detail.getByTestId('m-detail-minimap').click();
+  await expect(page.getByTestId('m-detail')).toHaveCount(0);
+  await expect(page.getByTestId('m-day-2027-02-03')).toHaveAttribute('aria-current', 'true');
+  const card = page.locator('[data-testid="m-card"][data-item="i-3"]');
+  await expect(card).toHaveAttribute('aria-current', 'true');
+  await expect(card.getByTestId('trip-card-expand')).toBeVisible();
+  await expect(page.getByTestId('map-selected')).toHaveAttribute('data-id', 'shima-la-mer');
+});
+
+test('詳情的「在地圖上看」：沒排的點 → 整趟、選中；換分頁取消選中', async ({ page }) => {
+  await ready(page);
+  const id = await page.evaluate(() => {
+    const ds = (window as any).__th.dataStore.getState();
+    return ds.places.find((p: any) => p.type === 'spot' && !ds.days.has(p.id)).id;
+  });
+  await page.evaluate((x) => (window as any).__thMobile.getState().openPlace(x, 'explore'), id);
+  const detail = page.getByTestId('m-detail');
+  await detail.getByTestId('detail-tab-transport').click();
+  await detail.getByTestId('m-detail-minimap').click();
+  await expect(page.getByTestId('m-tab-trip')).toHaveAttribute('aria-current', 'page');
+  await expect(page.getByTestId('m-day-all')).toHaveAttribute('aria-current', 'true');
+  await expect(page.getByTestId('map-selected')).toHaveAttribute('data-id', id);
+  await expect(page.getByTestId('map-selected')).toHaveAttribute('data-label', '');
+  await goTab(page, 'explore');
+  expect(await page.evaluate(() => (window as any).__th.appStore.getState().selectedId)).toBeNull();
+  await expect(page.getByTestId('map-selected')).toHaveCount(0);
 });

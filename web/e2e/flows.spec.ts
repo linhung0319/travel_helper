@@ -15,19 +15,17 @@ test('找到一個點 → 小卡片 → 詳情 → 關掉', async ({ page }) => 
   }, id);
   const { x, y } = await centerOn(page, id);
   const card = page.getByTestId('preview-card');
-  // 電腦：滑鼠移上去出小卡片；點下去右側切到探索、捲到那張卡片，再點卡片開詳情
+  // 電腦：滑鼠移上去出小卡片；在行程分頁點下去（不在這天）＝選中、開詳情，浮在地圖上（第七輪 §8.3），不切到探索
   await page.mouse.move(x, y);
   await expect(card).toContainText(name);
   await page.mouse.click(x, y);
-  const item = page.locator(`[data-testid="explore-item"][data-id="${id}"]`);
-  await expect(item).toBeInViewport();
-  await expect(page.getByTestId('detail-panel')).toHaveCount(0);
-  await item.click();
-  const detail = page.getByTestId('detail-panel');
+  const detail = page.getByTestId('detail-float').getByTestId('detail-panel');
   await expect(detail).toBeVisible();
   await expect(detail.locator('h2')).toContainText(name);
   await expect(card).toHaveCount(0);
-  await detail.getByTestId('detail-back').click();
+  expect(await page.evaluate(() => (window as any).__th.appStore.getState().mode)).toBe('map');
+  await expect(page.getByTestId('map-selected')).toHaveAttribute('data-id', id);
+  await detail.getByTestId('detail-close').click();
   await expect(detail).toHaveCount(0);
 });
 

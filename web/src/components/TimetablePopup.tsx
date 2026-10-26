@@ -51,7 +51,7 @@ function TimetableBody({ tt, leg, ride, target }: { tt: TimetableState; leg: Leg
   const nameOf = (id: string) => byId.get(id)?.name.zh || byId.get(id)?.name.ja || id;
   const editing = planning && !!target;
 
-  // 打開時（或換到別程）地圖框住這一程、上車站亮起來；關掉時把交通卡亮的站換回來（交通卡已經收起、清掉的就不動）
+  // 打開時（或換到別程）地圖框住這一程、上車站亮起來（點開的交通 legRoute 的站，不是 AI 的標示）；關掉時把交通卡亮的站換回來（交通卡已經收起的就不動）
   const board = ride.from;
   const alight = ride.to;
   useEffect(() => {
@@ -61,12 +61,13 @@ function TimetableBody({ tt, leg, ride, target }: { tt: TimetableState; leg: Leg
       const ys = coords.map((c) => c[1]);
       commands.focus({ bbox: [Math.min(...xs), Math.min(...ys), Math.max(...xs), Math.max(...ys)] });
     }
-    if (!dataStore.getState().byId.has(board)) return;
-    const prev = appStore.getState().highlights.primary ?? [];
-    commands.highlight([board]);
+    const leg = appStore.getState().legRoute;
+    if (!leg || !dataStore.getState().byId.has(board)) return;
+    const prev = leg.stations;
+    appStore.setState({ legRoute: { ...leg, stations: [board] } });
     return () => {
-      const now = appStore.getState().highlights.primary;
-      if (now?.length === 1 && now[0] === board) appStore.getState().setHighlight('primary', prev);
+      const now = appStore.getState().legRoute;
+      if (now?.id === leg.id && now.stations.length === 1 && now.stations[0] === board) appStore.setState({ legRoute: { ...now, stations: prev } });
     };
     // 時間軸重算時 ride 換了物件但站一樣，不用重做
   }, [board, alight]);

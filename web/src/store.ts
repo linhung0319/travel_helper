@@ -16,18 +16,21 @@ export type DetailFrom = 'map' | 'explore' | 'wish';
 /** 'all'＝全部的天；否則是 YYYY-MM-DD */
 export type DaySelection = 'all' | string;
 
-/** 叫地圖移動的請求：MapView 看到 seq 變了就移過去（使用者自己拖地圖不會產生請求） */
+/**
+ * 叫地圖移動的請求：MapView 看到 seq 變了就移過去（使用者自己拖地圖不會產生請求）。
+ * reveal：選中一個點，地圖照 lib/mapCamera.selectCamera 讓它看得到（能不動就不動、平移、太遠才拉到 13）
+ */
 export interface CameraRequest {
   seq: number;
   bbox?: Bbox;
   center?: LonLat;
   zoom?: number;
+  reveal?: LonLat;
 }
 
 /** 標示的樣式（AI 的 highlight 指令可以用的）：主要（黃）、注意（紅）、次要（灰） */
 export const HIGHLIGHT_STYLES = ['primary', 'warning', 'muted'] as const;
-/** focus：手機行程選到的那張卡（黑框、圖釘放大、其他路線變淡），只有畫面自己設，AI 的指令不能用 */
-export type HighlightStyle = (typeof HIGHLIGHT_STYLES)[number] | 'focus';
+export type HighlightStyle = (typeof HIGHLIGHT_STYLES)[number];
 
 /** 路線的一端：資料點（place）或座標 */
 export interface RouteEnd {
@@ -58,6 +61,9 @@ export interface MapRoute {
   source: 'pending' | 'osrm' | 'rail' | 'straight' | 'given';
 }
 
+/** 時間軸點開的那段交通畫在地圖上的路線（不是 AI 的 routes，「清掉」不算它）；stations＝每一程上下車的站 */
+export type LegRoute = MapRoute & { stations: string[] };
+
 /** AI 提議的行程（showProposal）：地圖用虛線、半透明畫，採用前不改確定的行程 */
 export interface Proposal {
   itinerary: Itinerary;
@@ -80,8 +86,14 @@ export interface AppState {
   mode: 'map' | 'explore' | 'wish';
   /** 編輯中（進入前確認、閒置結束）；選「全部」時一定結束 */
   planning: boolean;
-  /** 滑鼠移過去、或在圖片牆點了的點：地圖上會閃 */
+  /** 指到（只有網頁，§8.1）：滑鼠在卡片、清單列、時間軸卡片、地圖的點上；地圖上那個點放大、加淡灰光圈 */
   hoveredId: string | null;
+  /** 指到是從地圖的點來的（只有這種才在清單、時間軸標出那張卡，卡片自己的 hover 不回頭標自己） */
+  hoverFromMap: boolean;
+  /** 選中（§8.1）：地圖上的數字水滴，同一時間只有一個；換分頁、換天、點地圖空白處清掉 */
+  selectedId: string | null;
+  /** 每選一次加 1（再選同一個也加）：水滴再跳一次 */
+  selectSeq: number;
   /** 小卡片 */
   previewId: string | null;
   /** 詳情面板（車站的詳情面板裡有時刻表） */
@@ -90,7 +102,7 @@ export interface AppState {
   detailFrom: DetailFrom | null;
   /** 詳情一打開就選哪個分頁（想去列點最新留言：comments）；null＝簡介 */
   detailTab: DetailTabId | null;
-  /** 電腦版點了地圖上的點：探索清單捲到那張卡片（seq 讓同一個點再點一次也會捲） */
+  /** 電腦版點了地圖上的點、從詳情返回：探索清單捲到那張卡片（seq 讓同一個點再點一次也會捲）；不改篩選 */
   exploreTarget: { id: string; seq: number } | null;
   /** 「問 AI」選取的點（interaction-design §5；T12、T16 接上） */
   selection: string[];
@@ -101,6 +113,8 @@ export interface AppState {
   highlights: Partial<Record<HighlightStyle, string[]>>;
   /** drawRoute 畫的路線 */
   routes: MapRoute[];
+  /** 時間軸點開的那段交通（useLegView 設，收起來清掉） */
+  legRoute: LegRoute | null;
   /** 行程線的道路路徑查到一批就加一，地圖看到變了就重畫（itineraryRoutes.ts） */
   routesVersion: number;
   /** compare：比較中的點（地圖標 A、B、C，上方出現比較列） */
@@ -118,7 +132,9 @@ export interface AppActions {
   setQuery(query: string): void;
   setMode(mode: AppState['mode']): void;
   setPlanning(on: boolean): void;
-  hover(id: string | null): void;
+  /** 拖曳行程中（body.dragging-plan）不理；from='map'：從地圖的點來的 */
+  hover(id: string | null, from?: 'map'): void;
+  select(id: string | null): void;
   openPreview(id: string | null): void;
   /** from 沒給＝現在的分頁（行程分頁打開的在網頁浮在地圖上）；tab＝一打開就選的分頁 */
   openDetail(id: string, from?: DetailFrom, tab?: DetailTabId): void;
@@ -132,9 +148,11 @@ export interface AppActions {
   setHighlight(style: HighlightStyle, ids: string[]): void;
   /** 回傳新路線的 ID */
   addRoute(route: Omit<MapRoute, 'id'>): string;
+  /** routes 和 legRoute 都找 */
   updateRoute(id: string, patch: Partial<Omit<MapRoute, 'id'>>): void;
+  setLegRoute(route: Omit<LegRoute, 'id'> | null): void;
   setCompare(ids: string[]): void;
-  /** 清掉標示、路線、比較（不動提議、不動手機選到的卡 focus） */
+  /** 清掉 AI 的標示、路線、比較（不動提議、交通的路線、選中） */
   clearHighlights(): void;
   setProposal(proposal: Proposal | null): void;
 }
@@ -150,6 +168,9 @@ export const initialState: AppState = {
   mode: 'map',
   planning: false,
   hoveredId: null,
+  hoverFromMap: false,
+  selectedId: null,
+  selectSeq: 0,
   previewId: null,
   detailId: null,
   detailFrom: null,
@@ -160,6 +181,7 @@ export const initialState: AppState = {
   camera: null,
   highlights: {},
   routes: [],
+  legRoute: null,
   routesVersion: 0,
   compare: [],
   proposal: null,
@@ -171,20 +193,27 @@ export function createAppStore(init: Partial<AppState> = {}) {
     ...initialState,
     ...init,
     setView: (view) => set({ view }),
-    // 換天照樣在編輯；選「全部」（整趟總覽）就結束編輯。換天時整趟點亮的那天清掉
-    selectDay: (day) => set(day === 'all' ? { day, planning: false, tripFocusDay: null } : { day, tripFocusDay: null }),
+    // 換天照樣在編輯；選「全部」（整趟總覽）就結束編輯。換天時整趟點亮的那天、選中清掉
+    selectDay: (day) =>
+      set((s) => ({ day, tripFocusDay: null, ...(day === 'all' ? { planning: false } : {}), ...(day !== s.day ? { selectedId: null } : {}) })),
     setTripFocusDay: (tripFocusDay) => set({ tripFocusDay }),
     setFilter: (patch) => set((s) => ({ filter: { ...s.filter, ...patch } })),
     toggleFilter: (key, value) =>
       set((s) => ({ filter: { ...s.filter, [key]: toggleValue(s.filter[key] as string[], value) } })),
     clearFilter: () => set({ filter: EMPTY_FILTER }),
     setQuery: (query) => set({ query }),
-    setMode: (mode) => set({ mode }),
+    // 換分頁取消選中
+    setMode: (mode) => set((s) => (mode === s.mode ? { mode } : { mode, selectedId: null })),
     setPlanning: (planning) => set({ planning }),
-    hover: (hoveredId) => set({ hoveredId }),
+    hover: (hoveredId, from) => {
+      if (dragging()) return;
+      set({ hoveredId, hoverFromMap: !!hoveredId && from === 'map' });
+    },
+    select: (selectedId) => set((s) => ({ selectedId, selectSeq: s.selectSeq + 1 })),
     openPreview: (previewId) => set({ previewId }),
-    // 打開詳情時小卡片收起
-    openDetail: (detailId, from, tab) => set((s) => ({ detailId, detailFrom: from ?? s.mode, detailTab: tab ?? null, previewId: null })),
+    // 打開詳情時小卡片收起；那個點就是選中的點
+    openDetail: (detailId, from, tab) =>
+      set((s) => ({ detailId, detailFrom: from ?? s.mode, detailTab: tab ?? null, previewId: null, selectedId: detailId, selectSeq: s.selectSeq + (s.selectedId === detailId ? 0 : 1) })),
     closeDetail: () => set({ detailId: null, detailFrom: null, detailTab: null }),
     revealInExplore: (id) => set((s) => ({ exploreTarget: { id, seq: (s.exploreTarget?.seq ?? 0) + 1 } })),
     addToSelection: (id) => set((s) => (s.selection.includes(id) ? s : { selection: [...s.selection, id] })),
@@ -204,13 +233,17 @@ export function createAppStore(init: Partial<AppState> = {}) {
       set((s) => ({ routes: [...s.routes, { ...route, id }] }));
       return id;
     },
-    updateRoute: (id, patch) => set((s) => ({ routes: s.routes.map((r) => (r.id === id ? { ...r, ...patch } : r)) })),
+    updateRoute: (id, patch) =>
+      set((s) => ({ routes: s.routes.map((r) => (r.id === id ? { ...r, ...patch } : r)), legRoute: s.legRoute?.id === id ? { ...s.legRoute, ...patch } : s.legRoute })),
+    setLegRoute: (route) => set({ legRoute: route && { ...route, id: `leg${++routeSeq}` } }),
     setCompare: (ids) => set({ compare: [...new Set(ids)] }),
-    // 手機行程選到的那張卡（focus）是畫面自己的狀態，不跟著清（點開交通卡、AI 清標示時，選到的卡的黑框還在）
-    clearHighlights: () => set((s) => ({ highlights: s.highlights.focus ? { focus: s.highlights.focus } : {}, routes: [], compare: [] })),
+    clearHighlights: () => set({ highlights: {}, routes: [], compare: [] }),
     setProposal: (proposal) => set({ proposal }),
   }));
 }
+
+/** 正在拖行程的卡（planDrag.ts 在 body 加 dragging-plan）：這時的 hover 不算 */
+const dragging = () => typeof document !== 'undefined' && document.body?.classList.contains('dragging-plan');
 
 /** 整個網站共用的一份 */
 export const appStore = createAppStore();

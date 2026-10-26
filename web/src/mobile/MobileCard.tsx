@@ -3,7 +3,7 @@
 // 名稱、標籤那一排、⚠ 數；編輯中左邊把手欄（44px）有把手（按把手就拖、不用長按，planDrag.ts 的 usePlanDrag；拖的時候面板暫時拉滿、放開回到原本高度；
 // 卡片其他地方照常捲動；宿、航班沒有把手但欄位照留）、
 // 右邊 ⋯（只在編輯中、這張卡有動作時才有，點了打開底部動作面板 ActionSheet）。編輯中時間軸上的卡也是放置區（dropOnCardProps）。
-// 點卡片＝原地展開（mobileStore.expandItem，一次一張，點同一張收起）並在地圖上找到它（focusItem，不改面板高度）：
+// 點卡片＝原地展開（mobileStore.expandItem，一次一張，點同一張收起）並選中它（focusItem → TripPage 的 appStore.select，地圖的數字水滴；不改面板高度）：
 // 三張照片、介紹前兩句、「詳細資料」（整頁詳情）、「問 AI」（半屏聊天）。被選的那張底色是 --wash（aria-current）。
 // 重疊卡（同一時段有備選）：標籤那一排後面是 ‹ n/m ›（按鈕 44px），換著看備卡（縮圖、名稱、時間由 DaySheet 換成那張）。
 // 候選卡：虛線框，寫「誰 加的」，沒有編號。
@@ -17,6 +17,7 @@ import { cardActions } from '../shared/cardActions.ts';
 import { Icon } from '../components/Icon.tsx';
 import { DragHandle, TripCard, askAboutCardPlace } from '../shared/ui/TripCard.tsx';
 import { mobileStore, useMobile, type ActionSheetSpec, type TripSnap } from './mobileStore.ts';
+import { appStore } from '../store.ts';
 
 /** 縮圖邊長（手機 56px） */
 const THUMB = 56;
@@ -73,12 +74,15 @@ export function MobileCard({ itemKey, place, fallbackType, mark, time, name, tag
   const src = planning ? drag : null;
   const pressRef = usePlanDrag<HTMLLIElement>(src, true, { onStart: liftSheet, onEnd: dropSheet });
   const hasMenu = planning && !!menu && cardActions(menu.ctx).length > 0;
-  // 點卡片：展開（再點收起）；展開時地圖找到它（面板高度不變）
+  // 點卡片：展開（再點收起）；展開時選中它（面板高度不變）。再點一次同一張，地圖的水滴再跳一次
   const toggle = () => {
     const m = mobileStore.getState();
     const open = m.expanded !== itemKey;
     m.expandItem(itemKey);
-    if (open) m.focusItem(itemKey);
+    // 已經是選到的卡（點同一張）：選中不變，水滴再跳；不然展開時換成選這張（TripPage 選中、移地圖）
+    if (m.focused === itemKey) {
+      if (place) appStore.getState().select(place.id);
+    } else if (open) m.focusItem(itemKey);
   };
   return (
     <TripCard

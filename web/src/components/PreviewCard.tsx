@@ -5,7 +5,7 @@ import { CONTEXT_LABELS, TYPE_LABELS } from '../lib/filter.ts';
 import type { Place } from '../data/types.ts';
 import { Photo } from './Photo.tsx';
 import { TierMark } from '../shared/ui/TierMark.tsx';
-import { showInExplore } from './Explore.tsx';
+import { pickPlace } from './mapPick.ts';
 import { CardType } from './Timeline.tsx';
 
 interface Props {
@@ -23,7 +23,7 @@ const TOP_MARGIN = 4;
 /**
  * 地圖彈窗（第五輪 §10）：寬 340 的直式卡片，上面照片（右下 1 / N），下面類型色塊＋名稱、tag 一排、摘要約三行。
  * 在地圖上所有浮動的東西（日期列、工具列、比較列、班次表）上面，靠近上緣時可以蓋在日期列上。
- * 手機點一下開詳情；電腦版和點地圖上的點一樣，捲到探索的卡片
+ * 手機點一下開詳情；電腦版和點地圖上的點一樣（mapPick.ts）
  */
 export function PreviewCard({ place, anchor, onEnter, onLeave }: Props) {
   const ref = useRef<HTMLDivElement>(null);
@@ -34,7 +34,7 @@ export function PreviewCard({ place, anchor, onEnter, onLeave }: Props) {
     if (anchorY == null || !ref.current) return;
     setBelow(anchorY - GAP - ref.current.offsetHeight < TOP_MARGIN);
   }, [anchorY, place.id]);
-  const open = () => (anchor ? showInExplore(place.id) : appStore.getState().openDetail(place.id));
+  const open = () => (anchor ? pickPlace(place.id) : appStore.getState().openDetail(place.id));
   const style = anchor ? { left: anchor.x, top: anchor.y } : undefined;
   const name = place.name.zh || place.name.ja;
   // tag 一排：和詳情一樣的標章、情境、料理（放不下的被切掉）

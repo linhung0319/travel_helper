@@ -73,8 +73,8 @@ export function SidePanel() {
       <div className="side-notices">
         <EditingStrip />
         <ConflictBar />
-        {/* 探索分頁裡已經看得到篩選，不重複 */}
-        {mode !== 'explore' && <FilterChips />}
+        {/* 探索分頁裡已經看得到篩選，不重複；行程分頁的地圖不套探索的篩選，也不放篩選膠囊（第七輪 §8.4） */}
+        {mode === 'wish' && <FilterChips />}
       </div>
       {place ? (
         <div className="side-body side-detail">

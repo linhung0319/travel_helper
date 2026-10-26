@@ -1,35 +1,58 @@
 // 手機版的資料點詳情（第六輪 §3.3，第七輪 §7）：像點進 IG 的帳號，整頁蓋在分頁上面（原本的分頁不卸載，返回時捲動位置不變）。
 // 內容（照片輪播、名稱、動作列、簡介／交通／評論／留言四個分頁）是兩邊共用的 shared/ui/PlaceDetail；這裡只管：整頁的外框、返回（瀏覽器上一頁也一樣，見 mobileStore）、
-// 交通分頁的小地圖（另開的一張不能互動的 MapLibre；點了切到行程分頁的地圖、框住這個點）、附近的點換成那個點的詳情。
+// 交通分頁的小地圖（另開的一張不能互動的 MapLibre，標記是選中的數字水滴的樣子）：點了「在地圖上看」切到行程（第七輪 §8.3）——
+// 排在某天＝選那天、選中那張卡；沒排＝整趟、選中這個點。附近的點換成那個點的詳情。
 // 捲過照片後出現白色頂端列（‹、名稱、❤），分頁列接在它下面。
 
 import { useEffect, useRef } from 'react';
 import { Map as MapLibreMap, Marker } from 'maplibre-gl';
 import { useApp, useData } from '../hooks.ts';
 import { commands } from '../appCommands.ts';
-import { TYPE_COLORS } from '../lib/typeStyle.ts';
 import type { Place } from '../data/types.ts';
-import type { DetailTabId } from '../store.ts';
+import { appStore, type DetailTabId } from '../store.ts';
 import { Icon } from '../components/Icon.tsx';
-import { STYLE_URL } from '../components/MapView.tsx';
+import { STYLE_URL, selectedDropHtml } from '../components/MapView.tsx';
+import { dayPlanOf, planStore } from '../planStore.ts';
+import { tripDates } from '../lib/trip.ts';
 import { PlaceDetail } from '../shared/ui/PlaceDetail.tsx';
 // askAi.ts 載入時才把「放進選取」接給 uiStore.askAboutPlace（問 AI 要帶地點），手機版這裡一定要載入
 import '../components/askAi.ts';
-import { mobileStore, useMobile, type MobileTab } from './mobileStore.ts';
+import { focusKeyForPlace, mobileStore, useMobile, type MobileTab } from './mobileStore.ts';
 
-/** 交通分頁的小地圖：不能拖、不能縮放；點了到行程分頁的地圖、框住這個點 */
+/** 「在地圖上看」：切到行程。排在某天（現在選的那天優先）＝選那天、選中那張卡（展開）；沒排＝整趟、選中這個點 */
+export function showOnTripMap(placeId: string) {
+  const plan = planStore.getState().plan;
+  const current = appStore.getState().day;
+  const keyOn = (date: string) => focusKeyForPlace(dayPlanOf(plan, date), placeId);
+  const date = current !== 'all' && keyOn(current) ? current : tripDates().find((d) => keyOn(d));
+  const m = mobileStore.getState();
+  m.setTab('trip');
+  if (date) {
+    commands.selectDay(date);
+    const key = keyOn(date)!;
+    m.focusItem(key);
+    if (mobileStore.getState().expanded !== key) m.expandItem(key);
+    return;
+  }
+  commands.selectDay('all');
+  appStore.getState().select(placeId);
+  commands.focus(placeId);
+}
+
+/** 交通分頁的小地圖：不能拖、不能縮放，標記是數字水滴的樣子（類型圖示）；點了到行程分頁的地圖（showOnTripMap） */
 function MiniMap({ place }: { place: Place }) {
   const ref = useRef<HTMLDivElement>(null);
   const [lon, lat] = place.coords;
   useEffect(() => {
     const map = new MapLibreMap({ container: ref.current!, style: STYLE_URL, center: [lon, lat], zoom: 14, interactive: false, attributionControl: { compact: true } });
-    new Marker({ color: TYPE_COLORS[place.type] }).setLngLat([lon, lat]).addTo(map);
+    const el = document.createElement('div');
+    el.className = 'map-selected mini';
+    el.innerHTML = selectedDropHtml(place, '');
+    new Marker({ element: el, anchor: 'bottom', offset: [0, 2] }).setLngLat([lon, lat]).addTo(map);
     return () => map.remove();
-  }, [lon, lat, place.type]);
-  const toTrip = () => {
-    mobileStore.getState().setTab('trip');
-    commands.focus(place.id);
-  };
+    // eslint-disable-next-line react-hooks/exhaustive-deps -- 只看位置、類型、名稱（資料重載換了物件不重建小地圖）
+  }, [lon, lat, place.type, place.name.zh, place.name.ja]);
+  const toTrip = () => showOnTripMap(place.id);
   return (
     <div className="m-minimap">
       <div ref={ref} className="m-minimap-map" aria-hidden />

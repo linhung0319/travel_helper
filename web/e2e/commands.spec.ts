@@ -67,20 +67,45 @@ test('用指令重現 T11 的手動操作：切天數、篩選、聚焦，畫面
   await expect(page.locator(`.side-column [data-day="${DAY}"]`)).toHaveAttribute('aria-selected', 'true');
 });
 
-test('聚焦一個點：地圖移過去、點會閃；篩選標籤可以取消（和 AI 套的是同一份）', async ({ page }) => {
+test('聚焦一個點：看得到就不動、太遠才拉到 13（不閃、不拉到 15）；篩選標籤可以取消（和 AI 套的是同一份）', async ({ page }) => {
   await ready(page);
+  const seen = () =>
+    page.evaluate(() => {
+      const th = (window as any).__th;
+      const pt = th.map.project(th.dataStore.getState().byId.get('toba-aquarium').coords);
+      const v = th.visibleRect();
+      return pt.x >= v.left + 24 && pt.x <= v.right - 24 && pt.y >= v.top + 24 && pt.y <= v.bottom - 24;
+    });
+  const st0 = await page.evaluate(() => (window as any).__th.map.getZoom());
+  const seen0 = await seen();
   await run(page, 'focus', 'toba-aquarium');
   await waitIdle(page);
   const st = await page.evaluate(() => {
     const th = (window as any).__th;
     const p = th.dataStore.getState().byId.get('toba-aquarium');
-    const c = th.map.getCenter();
-    return { hovered: th.appStore.getState().hoveredId, d: Math.hypot(c.lng - p.coords[0], c.lat - p.coords[1]), zoom: th.map.getZoom() };
+    const pt = th.map.project(p.coords);
+    const v = th.visibleRect();
+    return { hovered: th.appStore.getState().hoveredId, visible: pt.x >= v.left && pt.x <= v.right && pt.y >= v.top && pt.y <= v.bottom, zoom: th.map.getZoom() };
   });
-  expect(st.hovered).toBe('toba-aquarium');
-  expect(st.d).toBeLessThan(0.001);
-  expect(Math.round(st.zoom)).toBe(15);
+  expect(st.hovered).toBeNull();
+  expect(st.visible).toBe(true);
+  // 本來就看得到：不動；看不到而且縮放小於 12：拉到 13；不然縮放不變
+  expect(Math.round(st.zoom * 10) / 10).toBe(!seen0 && st0 < 12 ? 13 : Math.round(st0 * 10) / 10);
+  // 移到看不到的地方再聚焦：縮放小於 12 → 拉到 13
+  await page.evaluate(() => (window as any).__th.map.jumpTo({ center: [135.5, 34.7], zoom: 10 }));
+  await waitIdle(page);
+  await run(page, 'focus', 'toba-aquarium');
+  await waitIdle(page);
+  expect(Math.round(await page.evaluate(() => (window as any).__th.map.getZoom()))).toBe(13);
+  expect(await seen()).toBe(true);
+  // 已經看得到：再聚焦一次地圖不動
+  const c1 = await page.evaluate(() => (window as any).__th.map.getCenter().toArray());
+  await run(page, 'focus', 'toba-aquarium');
+  await waitIdle(page);
+  expect(await page.evaluate(() => (window as any).__th.map.getCenter().toArray())).toEqual(c1);
 
+  // 篩選標籤在想去分頁（行程分頁不放膠囊，第七輪 §8.4）
+  await page.getByTestId('side-tab-wish').click();
   await run(page, 'setFilter', { types: ['restaurant'], fit15: ['yes'] });
   const chips = page.getByTestId('filter-chips');
   await expect(chips.getByRole('button', { name: '取消篩選 可容納 15 人' })).toBeVisible();

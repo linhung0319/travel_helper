@@ -216,6 +216,8 @@ export const mobileStore = createStore<MobileStore>()((set, get) => ({
   setTab: (tab) => {
     const had = layerOpen(get());
     if (tab !== 'trip') clearProposal();
+    // 換分頁取消選中（第七輪 §8.3）
+    if (tab !== get().tab) appStore.getState().select(null);
     // 換到別的分頁才收起展開的卡（半屏聊天開著時 setTab('trip') 是同一個分頁，卡片留著）
     set({ tab, detail: null, page: null, actions: null, chatSheet: false, ...(tab === get().tab ? {} : { expanded: null }) });
     if (had) afterCloseLayer();
@@ -272,6 +274,15 @@ export const mobileStore = createStore<MobileStore>()((set, get) => ({
     if (patch.view || patch.collapsed) saveWish(wish);
   },
 }));
+
+// 換天：取消選到的卡、收起展開的卡（同步做，「在地圖上看」換天後馬上選卡才不會被清掉）
+let lastDay = appStore.getState().day;
+appStore.subscribe((s) => {
+  if (s.day === lastDay) return;
+  lastDay = s.day;
+  const m = mobileStore.getState();
+  if (m.focused || m.expanded) mobileStore.setState({ focused: null, expanded: null });
+});
 
 if (typeof window !== 'undefined') {
   // 手機的返回鍵、瀏覽器上一頁：關掉整頁（詳情、討論／預約）

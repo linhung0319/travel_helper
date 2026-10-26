@@ -20,9 +20,9 @@ export type CommandResult<T extends object = object> = ({ ok: true } & T) | { ok
 
 /**
  * focus 的目標：
- * - 資料點 ID，或好幾個 ID（地圖框住全部）
+ * - 資料點 ID：地圖照 selectCamera 讓它看得到（能不動就不動，第七輪 §8.2）；好幾個 ID：地圖框住全部
  * - { area }、{ region }：區域、子地區（從 areas.json 讀，不寫死）
- * - { day }：那一天排的點
+ * - { day }：那一天排的點；{ day: 'all' }：整趟
  * - { bbox }、{ center, zoom }
  */
 export type FocusTarget =
@@ -72,7 +72,7 @@ export interface ViewState {
 }
 
 const MAX_COMPARE = 6;
-/** 單一個點的 focus：放大到這裡（S、A 級會出現照片） */
+/** 子地區只有一個點時放大到這裡 */
 const FOCUS_ZOOM = 15;
 /** 框住好幾個點時最多放大到這裡，避免只有一兩個點時貼太近 */
 const FIT_MAX_ZOOM = 15;
@@ -118,9 +118,10 @@ export function createCommands(app: StoreApi<AppStore>, data: StoreApi<DataState
       const r = resolveIds(target);
       if (!r) return { ok: false, error: 'focus：目標要是資料點 ID 或 ID 的陣列' };
       if (!r.places.length) return { ok: false, error: `focus：找不到資料點 ${r.unknown.join('、')}` };
-      const bbox = moveTo(r.places.map((p) => p.coords));
-      // 一個點時讓它閃一下，看得出是哪個
-      if (r.places.length === 1) app.getState().hover(r.places[0].id);
+      // 一個點：MapView 照 selectCamera 決定不動、平移、還是拉近（不固定拉到 15）
+      const one = r.places.length === 1 ? r.places[0].coords : null;
+      if (one) app.getState().moveCamera({ reveal: one });
+      const bbox = one ? ([one[0], one[1], one[0], one[1]] as Bbox) : moveTo(r.places.map((p) => p.coords));
       return { ok: true, bbox, ...(r.unknown.length ? { unknown: r.unknown } : {}) };
     }
     if (!target || typeof target !== 'object') return { ok: false, error: 'focus：不認得的目標' };
@@ -139,6 +140,20 @@ export function createCommands(app: StoreApi<AppStore>, data: StoreApi<DataState
       if (!coords.length && center) coords.push(center);
       const bbox = moveTo(coords);
       return bbox ? { ok: true, bbox } : { ok: false, error: `focus：子地區 ${target.region} 沒有資料點` };
+    }
+    if ('day' in target && target.day === 'all') {
+      // 整趟：每天排的點（含分組裡的點）和住宿
+      const { byId, itinerary } = data.getState();
+      const ids = (itinerary?.days ?? []).flatMap((d) => [
+        ...stopsOn(itinerary, d.date).map((x) => x.place),
+        ...(d.lodging ? [d.lodging] : []),
+        ...d.items.flatMap((i) => (i.type === 'split' ? i.groups.flatMap((g) => g.items.flatMap((x) => (x.type === 'visit' ? [x.options[x.selected]?.place] : []))) : [])),
+      ]);
+      const coords = ids.map((id) => (id ? byId.get(id)?.coords : undefined)).filter((c): c is LonLat => !!c);
+      if (!coords.length) return { ok: true, bbox: null };
+      const ext = extentOf(coords)!;
+      app.getState().moveCamera({ bbox: ext, zoom: DAY_MAX_ZOOM });
+      return { ok: true, bbox: ext };
     }
     if ('day' in target) {
       if (!dates().includes(target.day)) return { ok: false, error: `focus：${target.day} 不在旅程的日期裡` };
@@ -244,11 +259,14 @@ export function createCommands(app: StoreApi<AppStore>, data: StoreApi<DataState
     return { ok: true };
   }
 
-  /** 切換天數；選了某一天時地圖移到那天排的點（沒排東西就不動） */
+  /** 切換天數；選了某一天時地圖移到那天排的點（沒排東西就不動）；選整趟框住整趟 */
   function selectDay(day: DaySelection): CommandResult<{ day: DaySelection; stops: number }> {
     if (day !== 'all' && !dates().includes(day)) return { ok: false, error: `selectDay：要是 all 或 ${dates()[0]}～${dates().at(-1)} 的日期` };
     app.getState().selectDay(day);
-    if (day === 'all') return { ok: true, day, stops: 0 };
+    if (day === 'all') {
+      focus({ day: 'all' });
+      return { ok: true, day, stops: 0 };
+    }
     const f = focus({ day });
     const stops = stopsOn(data.getState().itinerary, day).length;
     return f.ok ? { ok: true, day, stops } : f;

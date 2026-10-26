@@ -191,9 +191,10 @@ function TransportTab({ place, locator, onPick }: { place: Place; locator?: Reac
   };
   const mode = (m: unknown) => (typeof m === 'string' ? (MODE_NAME[m as ModeIconKey] ?? m) : '');
   const access = Array.isArray(raw.access) ? (raw.access as Obj[]) : [];
+  // 「在地圖上找到它」：選中（數字水滴），地圖看得到就不動
   const find = () => {
+    appStore.getState().select(place.id);
     commands.focus(place.id);
-    appStore.getState().hover(place.id);
   };
   return (
     <>

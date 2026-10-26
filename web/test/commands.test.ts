@@ -48,13 +48,13 @@ function setup(itinerary: Itinerary | null = itin({ '2027-02-05': ['a', 'b'] }))
   return { app, data, cmd: createCommands(app, data) };
 }
 
-test('focus：一個點 → 移到那裡、閃一下；好幾個點 → 框住；找不到 → 錯誤、狀態不變', () => {
+test('focus：一個點 → 請地圖照 selectCamera 讓它看得到（不固定拉到 15）；好幾個點 → 框住；找不到 → 錯誤、狀態不變', () => {
   const { app, cmd } = setup();
   const r = cmd.focus('a');
   assert.ok(r.ok);
-  assert.deepEqual(app.getState().camera?.center, [136.8, 34.5]);
-  assert.equal(app.getState().camera?.zoom, 15);
-  assert.equal(app.getState().hoveredId, 'a');
+  assert.deepEqual(app.getState().camera?.reveal, [136.8, 34.5]);
+  assert.equal(app.getState().camera?.zoom, undefined);
+  assert.equal(app.getState().camera?.center, undefined);
 
   cmd.focus(['a', 'c', 'nope']);
   assert.deepEqual(app.getState().camera?.bbox, [136.8, 34.3, 136.8, 34.5]);
@@ -63,6 +63,19 @@ test('focus：一個點 → 移到那裡、閃一下；好幾個點 → 框住�
   const bad = cmd.focus('nope');
   assert.equal(bad.ok, false);
   assert.equal(app.getState().camera?.seq, seq);
+});
+
+test('focus(id) 不再改 hoveredId', () => {
+  const { app, cmd } = setup();
+  cmd.focus('a');
+  assert.equal(app.getState().hoveredId, null);
+});
+
+test("focus({ day: 'all' })：框住整趟（每天的點和住宿）", () => {
+  const { app, cmd } = setup(itin({ '2027-02-05': ['a'], '2027-02-06': ['c'] }, { '2027-02-05': 'b' }));
+  const r = cmd.focus({ day: 'all' });
+  assert.ok(r.ok);
+  assert.deepEqual(app.getState().camera?.bbox, [136.8, 34.3, 136.82, 34.51]);
 });
 
 test('focus：區域、子地區從 areas.json 來；天數、bbox、center', () => {
@@ -151,6 +164,8 @@ test('selectDay：切換、地圖移到那天；all 不動地圖；不在旅程�
   assert.equal(app.getState().camera?.seq, seq);
   cmd.selectDay('all');
   assert.equal(app.getState().day, 'all');
+  // 選整趟：框住整趟（§8.2）
+  assert.deepEqual(app.getState().camera?.bbox, [136.8, 34.5, 136.82, 34.51]);
   assert.equal(cmd.selectDay('2030-01-01').ok, false);
   assert.equal(app.getState().day, 'all');
 });

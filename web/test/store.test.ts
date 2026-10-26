@@ -78,3 +78,40 @@ test('dayPanelShowing：時間軸面板不在畫面上時才要顯示精簡的�
   assert.equal(dayPanelShowing({ ...s, mode: 'wish' }), false);
   assert.equal(dayPanelShowing({ ...s, detailId: 'x' }), false);
 });
+
+test('選中（§8.1）：同一時間一個；再選同一個 selectSeq 加 1（水滴再跳）；換分頁、換天清掉', () => {
+  const store = createAppStore();
+  store.getState().select('a');
+  assert.equal(store.getState().selectedId, 'a');
+  const seq = store.getState().selectSeq;
+  store.getState().select('a');
+  assert.equal(store.getState().selectSeq, seq + 1);
+  store.getState().select('b');
+  assert.equal(store.getState().selectedId, 'b');
+  store.getState().setMode('explore');
+  assert.equal(store.getState().selectedId, null);
+  store.getState().select('b');
+  store.getState().setMode('explore'); // 同一個分頁：不清
+  assert.equal(store.getState().selectedId, 'b');
+  store.getState().selectDay('2027-02-05');
+  assert.equal(store.getState().selectedId, null);
+  store.getState().select('c');
+  store.getState().select(null);
+  assert.equal(store.getState().selectedId, null);
+});
+
+test('打開詳情＝選中那個點', () => {
+  const store = createAppStore();
+  store.getState().openDetail('x', 'map');
+  assert.equal(store.getState().selectedId, 'x');
+});
+
+test('交通的路線（legRoute）不是 AI 的 routes，clearHighlights 不清', () => {
+  const store = createAppStore();
+  store.getState().setLegRoute({ from: { place: 'a', coords: [1, 2] }, to: { place: 'b', coords: [3, 4] }, mode: 'walk', minutes: 5, minutesGiven: true, label: null, geometry: null, meters: null, source: 'pending', stations: [] });
+  assert.equal(store.getState().routes.length, 0);
+  store.getState().clearHighlights();
+  assert.equal(store.getState().legRoute?.mode, 'walk');
+  store.getState().setLegRoute(null);
+  assert.equal(store.getState().legRoute, null);
+});

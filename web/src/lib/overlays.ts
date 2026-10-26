@@ -26,7 +26,8 @@ const line = (coords: LonLat[], properties: Record<string, unknown>): Feature<Li
 });
 const collection = <G extends Point | LineString>(features: Feature<G>[]): FeatureCollection<G> => ({ type: 'FeatureCollection', features });
 
-export function highlightFeatures(highlights: Partial<Record<HighlightStyle, string[]>>, byId: Map<string, Place>): FeatureCollection<Point> {
+/** 標示的點：每種樣式一組（AI 的 primary／warning／muted，和點開的交通上下車的站 leg） */
+export function highlightFeatures(highlights: Partial<Record<HighlightStyle | 'leg', string[]>>, byId: Map<string, Place>): FeatureCollection<Point> {
   return collection(
     Object.entries(highlights).flatMap(([style, ids]) =>
       (ids ?? []).flatMap((id) => {

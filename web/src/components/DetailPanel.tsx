@@ -339,11 +339,11 @@ export function NearbySection({ place, onPick }: { place: Place; onPick?(id: str
   const places = useData((s) => s.places);
   const groups = useMemo(() => nearbyPlaces(place, places), [place, places]);
   if (groups.size === 0) return null;
-  // 點了地圖移到那個點、點會閃；要看它的介紹，再點地圖上的點（到探索的卡片）
+  // 點了選中那個點（地圖的數字水滴，看得到就不動）；要看它的介紹，再點地圖上的點
   const find = (id: string) => {
     if (onPick) return onPick(id);
+    appStore.getState().select(id);
     commands.focus(id);
-    appStore.getState().hover(id);
   };
   return (
     <Section title="附近">

@@ -1,6 +1,7 @@
 // 兩張資料卡中間的交通（第五輪 §3，第七輪 Task 8 改成一行）：資料準備在 useLegView（網頁 LegRow、手機 MobileLeg 都用），畫出來的一行是 shared/ui/LegLine.tsx
 // （線條圖示、方式＋分鐘、距離、計程車台數、含等車、備註；右邊「地圖 ↗」；編輯中多一顆「改」）。
-// 點那一行：地圖只畫這一段（commands.drawRoute，搭車的照班次的站畫），每一程上下車的站亮起來；再點一次或點別段就恢復。
+// 點那一行：地圖只畫這一段（appStore.legRoute，不是 AI 的 routes，所以不出現「清掉」；搭車的照班次的站畫），每一程上下車的站亮起來，
+// 地圖框住這段的兩端；再點一次或點別段就恢復，收起來時地圖回到打開前的範圍（中間被別的操作移過就不回去）（第七輪 §8.2）。
 // 大眾運輸點了就展開步驟（legSteps）：左邊時間、中間細線（步行點線、搭車用細線、節點小圓圈）、右邊文字；
 // 搭車那一行是膠囊，點了在地圖那側開班次表（uiStore.openTimetable，一般模式只能看）。步行、計程車沒有步驟，不展開。
 // 編輯：編輯中每段右邊有「改」，按了才打開交通編輯器（uiStore.legEdit；網頁在這一行下面，手機是底部面板 m-leg-sheet，見 mobile/MobileLeg.tsx）：
@@ -12,7 +13,9 @@
 import { useEffect, useRef, useState, type ReactNode } from 'react';
 import { getLegTravel, setLegTravel, type Itinerary, type Leg, type LegTarget, type RideDeparture, type TimelineEntry, type TravelSpec } from '@travel-helper/engine';
 import type { TravelMode } from '@travel-helper/engine/types';
-import { commands, itineraryPathOf, roadRouter } from '../appCommands.ts';
+import { itineraryPathOf, roadRouter } from '../appCommands.ts';
+import { appStore } from '../store.ts';
+import { extentOf } from '../lib/areas.ts';
 import { dataStore } from '../dataStore.ts';
 import { shared } from '../appShared.ts';
 import { departuresOf } from '../planStore.ts';
@@ -279,6 +282,28 @@ export function LegEditor({ target, spec, leg, children }: { target: LegTarget; 
   );
 }
 
+/** 打開交通前的地圖範圍，和打開時框住兩端那次的請求（seq）：收起來時地圖還停在那次的結果才回去 */
+let beforeLeg: { center: [number, number]; zoom: number; seq: number } | null = null;
+
+/** 打開一段交通：框住兩端（第一次打開時記下原本的範圍，換成別段時不覆蓋） */
+function frameLeg(a: [number, number], b: [number, number]) {
+  const s = appStore.getState();
+  const view = beforeLeg ? { center: beforeLeg.center, zoom: beforeLeg.zoom } : s.view && { center: s.view.center, zoom: s.view.zoom };
+  s.moveCamera({ bbox: extentOf([a, b])!, zoom: 16 });
+  beforeLeg = view ? { ...view, seq: appStore.getState().camera!.seq } : null;
+}
+
+/** 收起交通：沒有接著打開別段、地圖也沒被別的操作移過（換天、選中別的點）時，回到打開前的範圍 */
+function unframeLeg() {
+  queueMicrotask(() => {
+    const saved = beforeLeg;
+    if (!saved || uiStore.getState().legOpen) return;
+    beforeLeg = null;
+    const s = appStore.getState();
+    if (s.camera?.seq === saved.seq) s.moveCamera({ center: saved.center, zoom: saved.zoom });
+  });
+}
+
 /**
  * 一段交通要畫的東西（網頁版的交通卡、手機版的一行都用）：方式、距離、步驟、點開了沒有、編輯中的設定。
  * 點開時地圖只畫這一段（效果在這裡）；不用顯示（不用移動、0 分）時回 null
@@ -313,21 +338,45 @@ export function useLegView(entry: TimelineEntry, date: string) {
   const ridesRef = useRef(leg?.rides ?? []);
   ridesRef.current = leg?.rides ?? [];
 
-  // 點開時地圖只畫這一段，每一程上下車的站亮起來；收起來（或換成別段、離開）就清掉
+  // 點開時地圖只畫這一段（legRoute），每一程上下車的站亮起來；收起來（或換成別段、離開）就清掉
   useEffect(() => {
     if (!open || !fromId || !toId) return;
-    commands.clearHighlights();
     const rides = ridesRef.current;
     // 搭車的照班次的站畫（和地圖上整天的行程線一樣）；其他交給 routeResolver 查
     const byId = dataStore.getState().byId;
     const a = byId.get(fromId);
     const b = byId.get(toId);
-    const geometry = rides.length && a && b && isRide(mode) ? itineraryPathOf(a, b, mode, rides) : null;
-    commands.drawRoute(fromId, toId, mode, { minutes, geometry, unknown });
+    if (!a || !b) return;
+    const geometry = rides.length && isRide(mode) ? itineraryPathOf(a, b, mode, rides) : null;
     const stations = rideStations(rides).filter((id) => byId.has(id));
-    if (stations.length) commands.highlight(stations);
-    return () => void commands.clearHighlights();
+    appStore.getState().setLegRoute({
+      from: { place: a.id, coords: a.coords },
+      to: { place: b.id, coords: b.coords },
+      mode,
+      minutes,
+      minutesGiven: true,
+      label: null,
+      geometry: geometry && geometry.length >= 2 ? geometry : null,
+      meters: null,
+      source: geometry && geometry.length >= 2 ? 'given' : 'pending',
+      ...(unknown ? { unknown: true } : {}),
+      stations,
+    });
+    return () => {
+      if (appStore.getState().legRoute?.from.place === a.id && appStore.getState().legRoute?.to.place === b.id) appStore.getState().setLegRoute(null);
+    };
   }, [open, fromId, toId, mode, unknown, minutes, ridesKey]);
+
+  // 打開時地圖框住兩端；收起來回到原本的範圍（只看打開、收起，交通重算不重新框）
+  useEffect(() => {
+    if (!open || !fromId || !toId) return;
+    const byId = dataStore.getState().byId;
+    const a = byId.get(fromId);
+    const b = byId.get(toId);
+    if (!a || !b) return;
+    frameLeg(a.coords, b.coords);
+    return unframeLeg;
+  }, [open, fromId, toId]);
 
   // 這張卡不見了（換天、回整趟、換分頁）或換成別段時，開著的是這段就收起來，否則地圖的行程線一直是淡的
   useEffect(() => {

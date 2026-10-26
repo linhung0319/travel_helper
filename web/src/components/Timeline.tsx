@@ -1,6 +1,7 @@
 // 這一天的時間軸（interaction-design §3、§6、第五輪 §2；第七輪 Task 8 改成共用的卡片）：引擎算好的項目、相鄰兩點之間的交通、等待、警告。
 // 資料卡是 shared/ui/TripCard.tsx（網頁、手機共用）：白底，縮圖 48px（左上角墨色編號圓；沒有照片是類型色底加一個字）、時間（開始–結束）、停留時間（X小時MM分）、名稱、標籤、❤️ 頭像、⚠ 數。
-// 點卡片＝地圖飛過去，這張卡原地展開（uiStore.expandedItem，一次一張，點同一張收起）：三張照片、介紹前兩句、「詳細資料」（詳情浮在地圖右邊）、「問 AI」。
+// 點卡片＝選中（地圖的數字水滴，地圖能不動就不動），這張卡原地展開（uiStore.expandedItem，一次一張，點同一張收起）：三張照片、介紹前兩句、「詳細資料」（詳情浮在地圖右邊）、「問 AI」。
+// 滑鼠移到卡片上＝地圖的指到；只有從地圖指到的點，卡片才加 flash 框（卡片自己被指到時不回頭標自己）。
 // 交通是一行細字（shared/ui/LegLine.tsx，LegRow.tsx）：圖示、方式、時間、距離，右邊「地圖 ↗」；到了要等（指定開始時間、還沒開門）時下面一條黃色虛框的「幾點到，等 N 分（原因）」，純文字、不能點。
 // 編輯中才有：停留時間 −／＋、點時間固定開始（釘子）、有標籤的卡點標籤那一排開標籤彈窗（ItemTags.tsx；沒有標籤的從 ⋯ 加）、
 // 「⋯」動作選單（ActionMenu.tsx，動作照 shared/cardActions.ts：重疊卡的主要、拿出，標籤、釘選、調整順序、移到第幾天、移進／移出分組、撤下；
@@ -104,7 +105,7 @@ interface ShownOption {
 
 /**
  * 有備卡的卡片（visit.options 超過一個）：本地 state shown 是「看的是第幾個」，只是看，不改主卡。
- * ‹ n/m › 或手機左右滑換卡；看備卡時地圖上那個點亮起來。主要、拿出在「⋯」選單裡（作用在正在看的那張）。
+ * ‹ n/m › 或手機左右滑換卡；看備卡時選中那個點（地圖的數字水滴，不是 AI 的標示）。主要、拿出在「⋯」選單裡（作用在正在看的那張）。
  * onShown：看的備卡換了就告訴卡片（看主卡是 null），拖卡片、⋯ 選單用的就是那張備卡。
  */
 function OptionStack({ visit, onShown, children }: { visit: VisitItem; onShown: (index: number | null) => void; children: (v: ShownOption) => ReactNode }) {
@@ -118,16 +119,16 @@ function OptionStack({ visit, onShown, children }: { visit: VisitItem; onShown: 
   const placeId = option.place;
   useEffect(() => onShown(isMain ? null : index), [isMain, index]);
 
-  // 看備卡時地圖上那個點亮起來；換回主卡或卸載時清掉自己亮的
+  // 看備卡時選中那個點；換回主卡時選中主卡的點（選中的本來就是這張的點才換）
   const lit = isMain ? '' : placeId;
+  const mainPlace = visit.options[visit.selected]?.place;
   useEffect(() => {
     if (!lit) return;
-    commands.highlight([lit]);
+    appStore.getState().select(lit);
     return () => {
-      const now = appStore.getState().highlights.primary ?? [];
-      if (now.length === 1 && now[0] === lit) commands.highlight([]);
+      if (appStore.getState().selectedId === lit) appStore.getState().select(mainPlace ?? null);
     };
-  }, [lit]);
+  }, [lit, mainPlace]);
 
   const go = (d: number) => setShown((index + d + n) % n);
   const start = useRef<{ x: number; y: number } | null>(null);
@@ -164,11 +165,14 @@ function OptionStack({ visit, onShown, children }: { visit: VisitItem; onShown: 
   return <>{children({ placeId, isMain, stayMinutes: option.stayMinutes ?? null, switcher, stackProps })}</>;
 }
 
-/** 網頁版點時間軸的卡：地圖飛過去，這張卡原地展開（再點一次收起）。key 是項目 ID（出發、回住宿是 start、lodging） */
+/** 網頁版點時間軸的卡：選中那個點（再點一次水滴再跳）、地圖照移動規則，這張卡原地展開（再點一次收起）。key 是項目 ID（出發、回住宿是 start、lodging） */
 function useCardExpand(key: string, placeId: string | null | undefined) {
   const expanded = useUi((s) => s.expandedItem) === key;
   const toggle = () => {
-    if (!expanded && placeId) commands.focus(placeId);
+    if (placeId) {
+      appStore.getState().select(placeId);
+      commands.focus(placeId);
+    }
     toggleExpandedItem(key);
   };
   // 「詳細資料」：浮在地圖右邊（右欄的時間軸不動）
@@ -183,7 +187,8 @@ function EntryRow({ entry, day, warnings, plan, marks }: { entry: TimelineEntry;
   const byId = useData((s) => s.byId);
   const itinerary = useData((s) => s.itinerary);
   const planning = useApp((s) => s.planning);
-  const hovered = useApp((s) => s.hoveredId);
+  // 只有從地圖指到的點才標出這張卡
+  const hovered = useApp((s) => (s.hoverFromMap ? s.hoveredId : null));
   const [warnOpen, setWarnOpen] = useState(false);
   const ref = entry.itemId ? findItemRef(itinerary, entry.itemId) : null;
   const item = ref?.item ?? null;

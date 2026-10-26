@@ -1,4 +1,4 @@
-// 地圖上的類別圖標（像 Google Maps：類別色的圓、白色的圖示）、選中的點的水滴圖釘、路線的方向箭頭。
+// 地圖上的類別圖標（像 Google Maps：類別色的圓、白色的圖示）、想去分頁候選的虛線圓、路線的方向箭頭。
 // 用 canvas 畫好再 addImage，不必另外放圖檔；圖示的座標以 24×24 為單位。
 
 import type { Map as MapLibreMap } from 'maplibre-gl';
@@ -114,46 +114,20 @@ function typeIcon(type: PlaceType): ImageData {
   return c.getImageData(0, 0, el.width, el.height);
 }
 
-/** 選中的點：水滴形的大圖釘（像 Google Maps 選中的地點），尖端在圖的底部中間 */
-const PIN_W = 40;
-const PIN_H = 50;
+/** 想去分頁「已是候選」的點：白底、藍染色（--indigo）的虛線圓（circle 圖層畫不出虛線，所以畫成圖） */
+const WISH_RING = 22;
 
-function pinPath(c: Ctx, cx: number, cy: number, r: number, tipY: number) {
-  const phi = Math.acos(r / (tipY - cy));
+function wishRingIcon(): ImageData {
+  const [el, c] = canvas(WISH_RING);
+  const r = WISH_RING / 2;
+  c.fillStyle = '#ffffff';
+  circle(c, r, r, 7.5);
+  c.strokeStyle = '#24366e';
+  c.lineWidth = 2.4;
+  c.setLineDash([3.2, 2.4]);
   c.beginPath();
-  c.moveTo(cx, tipY);
-  c.arc(cx, cy, r, Math.PI / 2 + phi, Math.PI / 2 - phi);
-  c.closePath();
-  c.fill();
-}
-
-function pinIcon(type: PlaceType): ImageData {
-  const el = document.createElement('canvas');
-  el.width = PIN_W * RATIO;
-  el.height = PIN_H * RATIO;
-  const c = el.getContext('2d')!;
-  c.scale(RATIO, RATIO);
-  const bg = TYPE_COLORS[type];
-  const cx = PIN_W / 2;
-  const cy = 19;
-  const tip = PIN_H - 2;
-  c.save();
-  c.shadowColor = 'rgba(0, 0, 0, 0.35)';
-  c.shadowBlur = 3;
-  c.shadowOffsetY = 1;
-  c.fillStyle = '#fff';
-  pinPath(c, cx, cy, 17, tip);
-  c.restore();
-  c.fillStyle = bg;
-  pinPath(c, cx, cy, 14.5, tip - 3.5);
-  // 圖示畫在圓的中間 20×20
-  c.save();
-  c.translate(cx - 10, cy - 10);
-  c.scale(20 / 24, 20 / 24);
-  c.fillStyle = '#fff';
-  c.strokeStyle = '#fff';
-  GLYPHS[type](c, bg);
-  c.restore();
+  c.arc(r, r, 7.5, 0, Math.PI * 2);
+  c.stroke();
   return c.getImageData(0, 0, el.width, el.height);
 }
 
@@ -171,11 +145,11 @@ function arrowIcon(): ImageData {
   return c.getImageData(0, 0, el.width, el.height);
 }
 
-/** 圖片名稱：icon-<類型>（圓形圖標）、pin-<類型>（選中的水滴圖釘）、route-arrow */
+/** 圖片名稱：icon-<類型>（圓形圖標）、wish-candidate（想去的候選）、route-arrow。選中的數字水滴是 DOM 標記（MapView） */
 export function addMapIcons(map: MapLibreMap) {
   for (const t of PLACE_TYPES) {
     if (!map.hasImage(`icon-${t}`)) map.addImage(`icon-${t}`, typeIcon(t), { pixelRatio: RATIO });
-    if (!map.hasImage(`pin-${t}`)) map.addImage(`pin-${t}`, pinIcon(t), { pixelRatio: RATIO });
   }
+  if (!map.hasImage('wish-candidate')) map.addImage('wish-candidate', wishRingIcon(), { pixelRatio: RATIO });
   if (!map.hasImage('route-arrow')) map.addImage('route-arrow', arrowIcon(), { pixelRatio: RATIO, sdf: true });
 }

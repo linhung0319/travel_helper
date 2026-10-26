@@ -343,7 +343,7 @@ test('第四輪：一般模式只看；合併卡片換著看、⋯ 的主要、�
   await stack.getByTestId('option-next').click();
   await expect(stack).toHaveAttribute('data-shown', '1');
   await expect(stack).toHaveAttribute('data-main', 'false');
-  await expect.poll(() => th(page, '__th.appStore.getState().highlights.primary')).toEqual(['toba-kazuei']);
+  await expect.poll(() => th(page, '__th.appStore.getState().selectedId')).toBe('toba-kazuei');
   await stack.getByTestId('option-prev').click();
   await expect(stack).toHaveAttribute('data-shown', '0');
 
@@ -404,15 +404,15 @@ test('第五輪：交通卡平常收起，計程車點了只畫那一段、不�
   await first.getByRole('button').first().click();
   await expect(first.getByTestId('leg-editor')).toHaveCount(0);
   await expect(first.getByTestId('leg-steps')).toHaveCount(0);
-  await expect.poll(() => th(page, '__th.appStore.getState().routes.length')).toBe(1);
+  await expect.poll(() => th(page, '__th.appStore.getState().legRoute ? 1 : 0')).toBe(1);
   // 一次只選一段：點第二段
   await legs.nth(1).getByRole('button').first().click();
   await expect(legs.nth(1).getByRole('button').first()).toHaveAttribute('aria-pressed', 'true');
   await expect(first.getByRole('button').first()).toHaveAttribute('aria-pressed', 'false');
-  await expect.poll(() => th(page, '__th.appStore.getState().routes.length')).toBe(1);
+  await expect.poll(() => th(page, '__th.appStore.getState().legRoute ? 1 : 0')).toBe(1);
   // 再點一次 → 路線清掉
   await legs.nth(1).getByRole('button').first().click();
-  await expect.poll(() => th(page, '__th.appStore.getState().routes.length')).toBe(0);
+  await expect.poll(() => th(page, '__th.appStore.getState().legRoute ? 1 : 0')).toBe(0);
 
   // 編輯中：收起時右邊寫「改 ›」，點了原地變成編輯狀態；方式只有四種，「自動」寫出它選了什麼；選計程車
   await enterPlanning(page);
@@ -952,7 +952,7 @@ test('第五輪：點交通卡距離不變（步行、計程車平常就用道�
   // 點開（地圖只畫這一段）、收起：距離都一樣
   await leg.getByRole('button').first().click();
   await expect(leg.getByRole('button').first()).toHaveAttribute('aria-pressed', 'true');
-  await expect.poll(() => th(page, '__th.appStore.getState().routes.length')).toBe(1);
+  await expect.poll(() => th(page, '__th.appStore.getState().legRoute ? 1 : 0')).toBe(1);
   await page.waitForTimeout(500);
   await expect(sub).toHaveText(before);
   await leg.getByRole('button').first().click();
@@ -1224,7 +1224,7 @@ test('⋯：不在編輯中沒有，編輯中有；一般卡沒有刪除', async
   await expect(page.getByTestId('tag-popover')).toHaveCount(0);
   await enterPlanning(page);
   // 卡片重畫一次（hover），彈窗的 anchor 才接得上
-  await page.evaluate(() => (window as any).__th.appStore.getState().hover('shima-la-mer'));
+  await page.evaluate(() => (window as any).__th.appStore.getState().hover('shima-la-mer', 'map'));
   await expect(lamer).toHaveClass(/flash/);
   await expect(page.getByTestId('tag-popover')).toHaveCount(0);
 });
@@ -1937,4 +1937,208 @@ test('編輯條：墨色底，「編輯 2/3（三）」、快照、完成；編�
   await expect(page.getByTestId('m-day-strip')).toHaveCount(0);
   await page.getByTestId('planning-done').click();
   await expect(page.getByTestId('m-day-strip')).toBeVisible();
+});
+
+// ---------- 第七輪 Task 10：地圖只有指到、選中（數字水滴）、AI 三種標示；能不動就不動 ----------
+
+/** 地圖上這個點在頁面上的座標（要先在畫面裡） */
+async function pointOf(page: Page, id: string): Promise<{ x: number; y: number }> {
+  return page.evaluate((x) => {
+    const t = (window as any).__th;
+    const pt = t.map.project(t.dataStore.getState().byId.get(x).coords);
+    const r = t.map.getCanvas().getBoundingClientRect();
+    return { x: r.left + pt.x, y: r.top + pt.y };
+  }, id);
+}
+
+/** 這些點都在地圖現在的範圍裡 */
+const inBounds = (page: Page, ids: string[]) =>
+  page.evaluate((xs) => {
+    const t = (window as any).__th;
+    const b = t.map.getBounds();
+    return xs.every((x: string) => b.contains(t.dataStore.getState().byId.get(x).coords));
+  }, ids);
+
+test('點時間軸的卡：地圖上一個水滴寫著編號；地圖看得到就不動', async ({ page }) => {
+  await ready(page);
+  await showDay(page, '2027-02-03');
+  await waitIdle(page);
+  const row = tlRow(page, 'i-2');
+  const no = await row.getByTestId('trip-card-no').innerText();
+  const placeId = (await row.getAttribute('data-place'))!;
+  const name = await page.evaluate((x) => {
+    const p = (window as any).__th.dataStore.getState().byId.get(x);
+    return p.name.zh || p.name.ja;
+  }, placeId);
+  const before = await page.evaluate(() => (window as any).__th.map.getCenter().toArray());
+  await row.getByTestId('trip-card').click();
+  const drop = page.getByTestId('map-selected');
+  await expect(drop).toHaveCount(1);
+  await expect(drop).toHaveAttribute('data-label', no);
+  await expect(drop).toHaveAttribute('data-id', placeId);
+  await expect(drop).toContainText(name);
+  // 那天框住的範圍裡本來就看得到：地圖不動（不再拉到 15）
+  await waitIdle(page);
+  expect(await page.evaluate(() => (window as any).__th.map.getCenter().toArray())).toEqual(before);
+  // 再點別張卡：還是只有一個水滴
+  await tlRow(page, 'i-3').getByTestId('trip-card').click();
+  await expect(drop).toHaveCount(1);
+  await expect(drop).not.toHaveAttribute('data-label', no);
+  // 選中不讓行程路線變淡
+  expect(await page.evaluate(() => (window as any).__th.map.getPaintProperty('itinerary-line', 'line-opacity'))).not.toBe(0.1);
+});
+
+test('換分頁後地圖上沒有選中標示；黃色閃圈、編號跳一下、黑框的圖層都拿掉了', async ({ page }) => {
+  await ready(page);
+  await showDay(page, '2027-02-03');
+  await tlRow(page, 'i-2').getByTestId('trip-card').click();
+  await expect(page.getByTestId('map-selected')).toHaveCount(1);
+  await page.getByTestId('side-tab-explore').click();
+  await expect(page.getByTestId('map-selected')).toHaveCount(0);
+  const layers = await page.evaluate(() => ['places-flash', 'places-mark-pulse', 'places-focus', 'places-pin'].map((l) => (window as any).__th.map.getLayer(l) ?? null));
+  expect(layers).toEqual([null, null, null, null]);
+  expect(await page.evaluate(() => !!(window as any).__th.map.getLayer('places-hover'))).toBe(true);
+});
+
+test('選整趟：地圖框住整趟', async ({ page }) => {
+  await ready(page);
+  await showDay(page, '2027-02-05');
+  await waitIdle(page);
+  const dayZoom = await page.evaluate(() => (window as any).__th.map.getZoom());
+  await page.locator('.side-column').getByTestId('m-day-all').click();
+  await waitIdle(page);
+  const zoom = await page.evaluate(() => (window as any).__th.map.getZoom());
+  expect(zoom).toBeLessThan(dayZoom);
+  // 2/2、2/12 的點都在範圍裡
+  const ends = await page.evaluate(() => {
+    const days: Map<string, { date: string }[]> = (window as any).__th.dataStore.getState().days;
+    const on = (d: string) => [...days].filter(([, ds]) => ds.some((x) => x.date === d)).map(([id]) => id);
+    return [...on('2027-02-02'), ...on('2027-02-12')];
+  });
+  expect(ends.length).toBeGreaterThan(1);
+  expect(await inBounds(page, ends)).toBe(true);
+});
+
+test('網頁點地圖上的點不改篩選：探索篩餐廳，點一個景點 → 篩選不變，右欄是那個景點的詳情', async ({ page }) => {
+  await ready(page);
+  await page.getByTestId('side-tab-explore').click();
+  await page.evaluate(() => (window as any).__th.appStore.getState().setFilter({ types: ['restaurant'] }));
+  const spot = await findPlaceId(page, 'spot', 'S');
+  const pt = await centerOn(page, spot, 15);
+  await page.mouse.click(pt.x, pt.y);
+  await expect.poll(() => th(page, '__th.appStore.getState().filter.types')).toEqual(['restaurant']);
+  await expect.poll(() => th(page, '__th.appStore.getState().detailId')).toBe(spot);
+  await expect(page.locator('.side-column').getByTestId('detail-panel')).toBeVisible();
+  await expect(page.getByTestId('map-selected')).toHaveAttribute('data-id', spot);
+  expect(await th(page, '__th.appStore.getState().mode')).toBe('explore');
+});
+
+test('網頁點地圖上的點：清單裡有它 → 捲到那張卡並選中（不開詳情）', async ({ page }) => {
+  await ready(page);
+  await page.getByTestId('side-tab-explore').click();
+  const spot = await findPlaceId(page, 'spot', 'S');
+  const pt = await centerOn(page, spot, 15);
+  await page.mouse.click(pt.x, pt.y);
+  await expect.poll(() => th(page, '__th.appStore.getState().selectedId')).toBe(spot);
+  expect(await th(page, '__th.appStore.getState().detailId')).toBeNull();
+  await expect(page.getByTestId('explore-panel').locator(`[data-id="${spot}"]`).first()).toBeInViewport();
+});
+
+test('行程分頁點地圖上這天的點：選中那張卡（展開）；點空白處取消選中', async ({ page }) => {
+  await ready(page);
+  await showDay(page, '2027-02-03');
+  await waitIdle(page);
+  const row = tlRow(page, 'i-2');
+  const placeId = (await row.getAttribute('data-place'))!;
+  const pt = await pointOf(page, placeId);
+  await page.mouse.click(pt.x, pt.y);
+  await expect(row.getByTestId('trip-card-expand')).toBeVisible();
+  await expect(page.getByTestId('map-selected')).toHaveAttribute('data-id', placeId);
+  expect(await th(page, '__th.appStore.getState().detailId')).toBeNull();
+  const map = (await page.locator('.maplibregl-canvas').boundingBox())!;
+  await page.mouse.click(map.x + 30, map.y + map.height - 80);
+  await expect(page.getByTestId('map-selected')).toHaveCount(0);
+});
+
+test('打開交通：框住兩端，不出現「清掉」；收起回到原本的範圍', async ({ page }) => {
+  await ready(page);
+  await showDay(page, '2027-02-05');
+  await waitIdle(page);
+  const before = await page.evaluate(() => (window as any).__th.map.getZoom());
+  const leg = page.getByTestId('timeline').getByTestId('tl-leg').nth(1);
+  await leg.getByTestId('leg-line').getByRole('button').first().click();
+  await expect.poll(() => th(page, '!!__th.appStore.getState().legRoute')).toBe(true);
+  await waitIdle(page);
+  const ends = await page.evaluate(() => {
+    const r = (window as any).__th.appStore.getState().legRoute;
+    return [r.from.place, r.to.place];
+  });
+  expect(await inBounds(page, ends)).toBe(true);
+  await expect(page.getByTestId('map-command-clear')).toHaveCount(0);
+  expect(await th(page, '__th.appStore.getState().routes.length')).toBe(0);
+  // 其他路線變淡
+  expect(await page.evaluate(() => (window as any).__th.map.getPaintProperty('itinerary-line', 'line-opacity'))).toBe(0.1);
+  await leg.getByTestId('leg-line').getByRole('button').first().click();
+  await expect.poll(() => th(page, '__th.appStore.getState().legRoute')).toBeNull();
+  await waitIdle(page);
+  expect(Math.abs((await page.evaluate(() => (window as any).__th.map.getZoom())) - before)).toBeLessThan(0.05);
+});
+
+test('指到：滑鼠在清單卡片上 → 地圖那個點有光圈，卡片自己不加框；拖曳中不算', async ({ page }) => {
+  await ready(page);
+  await page.getByTestId('side-tab-explore').click();
+  const item = page.getByTestId('explore-item').first();
+  const id = (await item.getAttribute('data-id'))!;
+  await item.hover();
+  await expect.poll(() => th(page, '__th.appStore.getState().hoveredId')).toBe(id);
+  expect(await page.evaluate(() => JSON.stringify((window as any).__th.map.getFilter('places-hover')))).toContain(id);
+  await expect(item).not.toHaveClass(/flash/);
+  await page.mouse.move(5, 5);
+  await expect.poll(() => th(page, '__th.appStore.getState().hoveredId')).toBeNull();
+  // 拖曳中（body.dragging-plan）的 hover 不理
+  await page.evaluate(() => document.body.classList.add('dragging-plan'));
+  await page.evaluate((x) => (window as any).__th.appStore.getState().hover(x), id);
+  expect(await th(page, '__th.appStore.getState().hoveredId')).toBeNull();
+  await page.evaluate(() => document.body.classList.remove('dragging-plan'));
+});
+
+test('時間軸的卡：滑鼠移上去，卡片自己不加黃框；從地圖指到時才加', async ({ page }) => {
+  await ready(page);
+  await showDay(page, '2027-02-03');
+  const row = tlRow(page, 'i-2');
+  const placeId = (await row.getAttribute('data-place'))!;
+  await row.hover();
+  await expect.poll(() => th(page, '__th.appStore.getState().hoveredId')).toBe(placeId);
+  await expect(row).not.toHaveClass(/flash/);
+  await page.evaluate((x) => (window as any).__th.appStore.getState().hover(x, 'map'), placeId);
+  await expect(row).toHaveClass(/flash/);
+});
+
+test('想去分頁的地圖：只畫想去的點、三種樣子、左下角圖例；行程分頁沒有篩選膠囊、地圖不套篩選', async ({ page }) => {
+  await ready(page);
+  await likeMany(page, 3);
+  await page.getByTestId('side-tab-wish').click();
+  await expect(page.getByTestId('map-wish-legend')).toBeVisible();
+  await expect(page.getByTestId('map-wish-legend')).toContainText('還沒排');
+  await waitIdle(page);
+  const got = await page.evaluate(() => {
+    const t = (window as any).__th;
+    const fs = t.map.getSource('places').serialize().data.features;
+    const liked = new Set(t.shared.store.getState().votes.filter((v: any) => v.value === 'like' && !v.deletedAt).map((v: any) => v.placeId));
+    return { n: fs.length, liked: liked.size, kinds: [...new Set(fs.map((f: any) => f.properties.wish))] };
+  });
+  expect(got.n).toBe(got.liked);
+  expect(got.kinds.every((k) => ['unscheduled', 'candidate', 'scheduled'].includes(k as string))).toBe(true);
+  // 行程分頁：篩選還在，但地圖不套、沒有膠囊
+  await page.evaluate(() => (window as any).__th.appStore.getState().setFilter({ tiers: ['S'] }));
+  await page.getByTestId('side-tab-day').click();
+  await expect(page.getByTestId('map-wish-legend')).toHaveCount(0);
+  await expect(page.getByTestId('filter-chips')).toHaveCount(0);
+  await waitIdle(page);
+  const b = await findPlaceId(page, 'spot', 'B');
+  const st = await page.evaluate((x) => {
+    const t = (window as any).__th;
+    return { dim: t.map.getSource('places').serialize().data.features.find((f: any) => f.properties.id === x).properties.dim, scheduled: t.dataStore.getState().days.has(x) };
+  }, b);
+  expect(st.dim).toBe(st.scheduled ? 0 : 1);
 });

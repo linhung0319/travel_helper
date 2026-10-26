@@ -12,6 +12,8 @@
   --line: #e6e8ee;
   --wash: #f4f5f8;
   --indigo: #24366e;
+  /* 地圖想去圖例「已排」的例子：第一天的顏色（lib/visual.ts DAY_PALETTE[0]） */
+  --day-sample: #c2255c;
   --indigo-wash: #eaedf6;
   --indigo-line: #c9d1ea;
   --love: #e0475b;
@@ -2280,6 +2282,135 @@ button.edited {
 .leg-label {
   font-size: 0.8rem;
   opacity: 0.92;
+}
+
+/* ---------- 地圖：選中的數字水滴（第七輪 §8.1；MapView 的 DOM 標記，尖端在點上，大小不隨縮放變） ---------- */
+
+.map-selected {
+  position: relative;
+  z-index: 3;
+  width: 34px;
+  height: 44px;
+  cursor: pointer;
+}
+
+.map-selected .ms-drop {
+  display: block;
+  filter: drop-shadow(0 3px 4px var(--shade-2));
+  transform-origin: 50% 100%;
+}
+
+/* 旁邊的名稱變粗（白色描邊，壓在地圖上也看得清楚） */
+.map-selected .ms-name {
+  position: absolute;
+  left: 34px;
+  top: 8px;
+  font-weight: 700;
+  font-size: 13px;
+  line-height: 1.2;
+  color: var(--ink);
+  white-space: nowrap;
+  pointer-events: none;
+  text-shadow:
+    0 0 2px var(--paper),
+    0 0 2px var(--paper),
+    0 0 3px var(--paper),
+    0 0 4px var(--paper);
+}
+
+/* 詳情小地圖的水滴只是樣子：不擋「在地圖上看」的按鈕 */
+.map-selected.mini {
+  pointer-events: none;
+  cursor: default;
+}
+
+.map-selected.mini .ms-name {
+  display: none;
+}
+
+/* 跳 3 下就停：往上彈、落下，幅度漸小（約 1.5 秒）；減少動態時不跳 */
+@keyframes ms-bounce {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  14% {
+    transform: translateY(-16px);
+  }
+  30% {
+    transform: translateY(0);
+  }
+  44% {
+    transform: translateY(-8px);
+  }
+  58% {
+    transform: translateY(0);
+  }
+  70% {
+    transform: translateY(-3px);
+  }
+  80% {
+    transform: translateY(0);
+  }
+}
+
+.map-selected .ms-drop.bounce {
+  animation: ms-bounce 1.5s ease-out 1;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .map-selected .ms-drop.bounce {
+    animation: none;
+  }
+}
+
+/* 想去分頁的地圖圖例（左下角，比例尺上面）：還沒排、已是候選、已排（§5.3） */
+.map-legend {
+  position: absolute;
+  z-index: 2;
+  left: 10px;
+  bottom: 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 8px 12px;
+  background: var(--paper);
+  border-radius: 14px;
+  box-shadow: 0 1px 4px var(--shade-2);
+  font-size: 13px;
+  color: var(--ink-2);
+  pointer-events: none;
+}
+
+.map-legend span {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.map-legend .lg-dot {
+  display: inline-block;
+  width: 14px;
+  height: 14px;
+  border-radius: 999px;
+  box-sizing: border-box;
+}
+
+.map-legend .lg-unscheduled {
+  background: var(--paper);
+  border: 2px solid var(--ink);
+}
+
+.map-legend .lg-candidate {
+  background: var(--paper);
+  border: 2px dashed var(--indigo);
+}
+
+/* 已排是那天的顏色：圖例用第一天的顏色當例子（lib/visual.ts 的 DAY_PALETTE[0]） */
+.map-legend .lg-scheduled {
+  background: var(--day-sample);
+  border: 1.5px solid var(--paper);
+  box-shadow: 0 0 0 1px var(--line);
 }
 
 /* ======================================================================

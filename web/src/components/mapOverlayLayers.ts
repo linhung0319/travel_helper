@@ -1,4 +1,5 @@
-// 地圖指令（T12）的圖層：標示、比較、路線、AI 的提議。線畫在資料點下面，框、字畫在上面。
+// 地圖指令（T12）的圖層：標示、比較、路線、AI 的提議，和時間軸點開的那段交通（路線、上下車的站）。線畫在資料點下面，框、字畫在上面。
+// 顏色是設計 §2 的 token 值（MapLibre 讀不到 CSS 變數，所以寫成字串）。
 // 資料由 MapView 依 store 的狀態 setData（lib/overlays.ts 產生 GeoJSON）。
 
 import type { Map as MapLibreMap } from 'maplibre-gl';
@@ -13,11 +14,13 @@ export const OVERLAY_SOURCES = {
   itineraryAlts: 'overlay-itinerary-alts',
 } as const;
 
-const HIGHLIGHT_COLORS: Record<string, string> = { primary: '#d4a72c', warning: '#cf222e', muted: '#8c959f', focus: '#24292f' };
-const COMPARE_COLOR = '#8250df';
-const PROPOSAL_ADDED_COLOR = '#1a7f37';
-/** 步行藍、電車黑、巴士橘、船青綠，其他（計程車、包車）紫 */
-const ROUTE_COLOR = ['match', ['get', 'mode'], 'walk', '#0969da', 'train', '#24292f', 'bus', '#bc4c00', 'ferry', '#1b7c83', '#6e40c9'];
+/** AI 的標示（主要、注意、次要）和點開的交通上下車的站（leg）；顏色是設計 §2 的 token：--warn、--red-day、--ink-3、--ink-2 */
+const HIGHLIGHT_COLORS: Record<string, string> = { primary: '#a86a12', warning: '#c0392b', muted: '#8a90a0', leg: '#4b5262' };
+/** 比較的 A、B、C：--indigo */
+const COMPARE_COLOR = '#24366e';
+const PROPOSAL_ADDED_COLOR = '#2f7a5b';
+/** 步行藍（--t-station）、電車墨（--ink）、巴士橘（--t-food）、船藍染（--indigo），其他（計程車、包車）紫（--t-stay） */
+const ROUTE_COLOR = ['match', ['get', 'mode'], 'walk', '#3b6ea8', 'train', '#161a22', 'bus', '#c46a3a', 'ferry', '#24366e', '#6e5ba8'];
 
 /** 行程線、白底的透明度：整趟點了某天時其他天（dim）0.25（第五輪 §9.1）；MapView 收起交通卡時還原成這個 */
 export const ITINERARY_LINE_OPACITY = ['case', ['==', ['get', 'dim'], true], 0.25, ['==', ['get', 'active'], 1], 0.85, 0.15] as never;
@@ -138,9 +141,9 @@ export function addOverlayLayers(map: MapLibreMap, below = 'places-circle') {
     filter: ['==', ['get', 'status'], 'removed'],
     paint: {
       'circle-radius': ['interpolate', ['linear'], ['zoom'], 8, 7, 14, 12],
-      'circle-color': '#8c959f',
+      'circle-color': '#8a90a0',
       'circle-opacity': 0.55,
-      'circle-stroke-color': '#57606a',
+      'circle-stroke-color': '#4b5262',
       'circle-stroke-width': 1.5,
     },
   });
@@ -150,7 +153,7 @@ export function addOverlayLayers(map: MapLibreMap, below = 'places-circle') {
     source: OVERLAY_SOURCES.proposalPoints,
     filter: ['==', ['get', 'status'], 'removed'],
     layout: { 'text-field': '×', 'text-font': ['Noto Sans Bold'], 'text-size': 18, 'text-allow-overlap': true },
-    paint: { 'text-color': '#ffffff', 'text-halo-color': '#57606a', 'text-halo-width': 1.5 },
+    paint: { 'text-color': '#ffffff', 'text-halo-color': '#4b5262', 'text-halo-width': 1.5 },
   });
   // 提議的點：半透明的白底、那天顏色的框
   map.addLayer({

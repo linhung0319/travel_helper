@@ -17,6 +17,7 @@ import { addOption, detachOption, ItineraryError, mergeItems, moveItemTo, moveOp
 import type { Itinerary } from '@travel-helper/engine/types';
 import { shared } from '../appShared.ts';
 import { dataStore } from '../dataStore.ts';
+import { appStore } from '../store.ts';
 import { findItemRef } from '../lib/planView.ts';
 import { canMerge, dropIntent, dropTarget, dwellMerge, samePosition, type DragSource, type DropAt, type DropIntent, type DropTargetInfo } from '../lib/dropIntent.ts';
 import { autoScrollSpeed } from '../lib/dragScroll.ts';
@@ -221,6 +222,8 @@ function mark(hit: Hit | null, intent: DropIntent, chat: HTMLElement | null) {
 
 /** 開始拖：不能合併的卡片變淡（回傳那些卡，拖的時候每一格補回 class） */
 function beginDrag(src: DragSource): HTMLElement[] {
+  // 拖的時候不算指到（appStore.hover 在 dragging-plan 時不理）：先把現在的指到拿掉
+  appStore.getState().hover(null);
   document.body.classList.add('dragging-plan');
   return [...document.querySelectorAll<HTMLElement>('[data-drop-item]')].filter((el) => {
     const hit = hitOf(el);

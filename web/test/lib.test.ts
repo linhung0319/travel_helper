@@ -882,3 +882,24 @@ test('這天的標題：日期、週幾、第幾天、最常出現的地區', as
   assert.deepEqual(dayTitle('2027-02-05', '鳥羽'), { date: '2/5', sub: '週五 · 第 4 天 · 鳥羽' });
   assert.deepEqual(dayTitle('2027-02-02', null), { date: '2/2', sub: '週二 · 第 1 天' });
 });
+
+// T15m 第七輪 §8.2：選中一個點時地圖能不動就不動
+import { selectCamera, visibleArea } from '../src/lib/mapCamera.ts';
+
+const R = { left: 0, top: 0, right: 800, bottom: 600 };
+test('selectCamera：看得到就不動', () => assert.deepEqual(selectCamera({ x: 200, y: 200 }, R, 14), { kind: 'stay' }));
+test('selectCamera：被面板蓋住算看不到', () => assert.deepEqual(selectCamera({ x: 200, y: 700 }, { left: 0, top: 0, right: 390, bottom: 330 }, 14), { kind: 'pan' }));
+test('selectCamera：太遠才拉到 13', () => assert.deepEqual(selectCamera({ x: 900, y: 200 }, R, 10), { kind: 'zoom', zoom: 13 }));
+test('selectCamera：貼著邊（24px 內）算看不到；縮放 12 以上只平移', () => {
+  assert.deepEqual(selectCamera({ x: 790, y: 300 }, R, 12), { kind: 'pan' });
+  assert.deepEqual(selectCamera({ x: 776, y: 300 }, R, 11), { kind: 'stay' });
+});
+test('visibleArea：扣掉蓋在地圖上的東西（下面的面板、右邊的浮動詳情），只扣蓋到的那一邊', () => {
+  const box = { left: 0, top: 0, right: 1000, bottom: 800 };
+  // 右邊浮動的詳情（上下留一點空）
+  assert.deepEqual(visibleArea(box, [{ left: 600, top: 16, right: 984, bottom: 784 }]), { left: 0, top: 0, right: 600, bottom: 800 });
+  // 下面的面板
+  assert.deepEqual(visibleArea(box, [{ left: 0, top: 500, right: 1000, bottom: 900 }]), { left: 0, top: 0, right: 1000, bottom: 500 });
+  // 沒蓋到地圖的不算
+  assert.deepEqual(visibleArea(box, [{ left: 1100, top: 0, right: 1300, bottom: 800 }]), box);
+});
