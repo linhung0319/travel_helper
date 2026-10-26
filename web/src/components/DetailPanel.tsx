@@ -1,8 +1,7 @@
-// 資料點的詳情。網頁版：右欄的 DetailPanel（總覽、詳細、附近・連結、圖片四頁）。
-// 各分頁的內容抽成可以單獨 import 的元件（PlaceIntro、PlaceFacts、PlaceReviews、NearbySection、LinksSection、SourcesSection），手機版整頁詳情（mobile/PlaceDetailPage）自己排版面。
-import { useMemo, useState, type ReactNode } from 'react';
-import { CopyName } from './CopyName.tsx';
-import { appStore } from '../store.ts';
+// 資料點的詳情。網頁版：DetailPanel（右欄或浮在地圖上），版面是 shared/ui/PlaceDetail（兩邊共用的照片、動作列、四個分頁）。
+// 各分頁裡的區塊抽成可以單獨 import 的元件（PlaceIntro、PlaceFacts、PlaceReviews、NearbySection、LinksSection、SourcesSection），PlaceDetail 排版面。
+import { useMemo, type ReactNode } from 'react';
+import { appStore, type DetailFrom } from '../store.ts';
 import { commands } from '../appCommands.ts';
 import { useApp, useData } from '../hooks.ts';
 import { displayName } from '../data/normalize.ts';
@@ -15,7 +14,6 @@ import {
   KIDS_ALLOWED_LABELS,
   KIDS_FRIENDLY_LABELS,
   LINK_LABELS,
-  LODGING_KIND_LABELS,
   MEALS_LABELS,
   METHOD_LABELS,
   RESERVATION_LABELS,
@@ -24,23 +22,16 @@ import {
   label,
 } from '../lib/labels.ts';
 import { nearbyPlaces } from '../lib/nearby.ts';
-import { photoCredit } from '../lib/photos.ts';
 import { dayLabel, shortDayLabel } from '../lib/trip.ts';
 import { TYPE_COLORS } from '../lib/typeStyle.ts';
 import { Icon } from './Icon.tsx';
-import { TierMark } from '../shared/ui/TierMark.tsx';
-import { TypeLabel } from '../shared/ui/TypeLabel.tsx';
 import { placeBadges } from '../lib/badges.ts';
 import type { Place } from '../data/types.ts';
-import { Photo } from './Photo.tsx';
 import { StationTimetablePanel } from './StationTimetable.tsx';
 import { EditedMark, editedOf } from './EditHistory.tsx';
-import { VoteButtons } from './Votes.tsx';
-import { openDialog } from '../uiStore.ts';
-import { Comments } from './Wishlist.tsx';
 import { AskAiBox } from './AskAiBox.tsx';
 import { itemsWithPlace } from '../lib/planView.ts';
-import { dragPlaceProps } from './askAi.ts';
+import { PlaceDetail } from '../shared/ui/PlaceDetail.tsx';
 
 type Obj = Record<string, unknown>;
 const obj = (v: unknown): Obj => (v && typeof v === 'object' && !Array.isArray(v) ? (v as Obj) : {});
@@ -320,30 +311,6 @@ function RatingChip({ r }: { r: Rating }) {
   );
 }
 
-/**
- * 評分：平常只看到 Google、食べログ（沒有的話換成其他網站的）；
- * 展開才看其他網站和我們自己的五項評分。
- */
-function RatingsBox({ place }: { place: Place }) {
-  const all = ratingsOf(place);
-  const main = all.filter((r) => r.key === 'google' || r.key === 'tabelog');
-  const shown = main.length ? main : all.slice(0, 2);
-  const rest = all.filter((r) => !shown.includes(r));
-  const more = rest.length > 0 || !!place.assessment;
-  const chips = shown.length ? shown.map((r) => <RatingChip key={r.key} r={r} />) : <span className="muted small">還沒有網站評分</span>;
-  if (!more) return <div className="ratings-box">{chips}</div>;
-  return (
-    <details className="ratings-box">
-      <summary>
-        {chips}
-        <span className="ratings-more muted small">{place.assessment ? '我們的評分' : '更多'}</span>
-      </summary>
-      {rest.length > 0 && <div className="ratings-rest">{rest.map((r) => <RatingChip key={r.key} r={r} />)}</div>}
-      <ScoreBars place={place} />
-    </details>
-  );
-}
-
 /** 連結（官網、訂位頁…） */
 export function LinksSection({ place }: { place: Place }) {
   const links = Object.entries({ ...place.links, ...obj(place.raw.bookingLinks) }).filter(([, v]) => typeof v === 'string' && v);
@@ -429,36 +396,6 @@ export function SourcesSection({ place }: { place: Place }) {
         ))}
       </ul>
     </section>
-  );
-}
-
-/** 總覽的首張照片：類別標籤、照片張數（點了到「圖片」分頁） */
-function HeroPhoto({ place, onMore }: { place: Place; onMore(): void }) {
-  const first = place.photos[0];
-  return (
-    <figure className="detail-hero">
-      <Photo place={place} showName />
-      <TypeLabel type={place.type} onPhoto />
-      {place.photos.length > 1 && (
-        <button type="button" className="hero-more" onClick={onMore}>
-          <Icon name="image" size={16} /> {place.photos.length} 張
-        </button>
-      )}
-      {first && photoCredit(first) && <figcaption>{photoCredit(first)}</figcaption>}
-    </figure>
-  );
-}
-
-function PhotoGrid({ place }: { place: Place }) {
-  return (
-    <div className="photo-grid" aria-label="照片">
-      {place.photos.map((ph, i) => (
-        <figure key={ph.url} className="photo-grid-item">
-          <Photo place={place} index={i} only showName />
-          {photoCredit(ph) && <figcaption>{photoCredit(ph)}</figcaption>}
-        </figure>
-      ))}
-    </div>
   );
 }
 
@@ -589,113 +526,28 @@ export function PlaceReviews({ place }: { place: Place }) {
   );
 }
 
-type DetailTab = 'overview' | 'detail' | 'more' | 'photos';
-const DETAIL_TABS: DetailTab[] = ['overview', 'detail', 'more', 'photos'];
-const DETAIL_TAB_LABELS: Record<DetailTab, string> = { overview: '總覽', detail: '詳細', more: '附近・連結', photos: '圖片' };
-
 /**
- * 詳情面板（interaction-design §4）：標題列（分級、名稱、❤️／👎）下面分成四頁——
- * 總覽（首張照片、評分、介紹、價格）、詳細（團體、長輩小孩、營業時間）、附近・連結（附近、連結、來源）、圖片。
- * 一打開不用捲就看得到介紹。
+ * 網頁版的詳情面板（interaction-design §4）：上方一列（返回或 ✕）、下面是兩邊共用的 PlaceDetail（照片、名稱、動作列、四個分頁）。
+ * 放在右欄（從探索、想去打開，有「← 返回」）或浮在地圖上（從行程打開，✕ 關掉）。
  */
-export function DetailPanel({ place, back }: { place: Place; back?: { label: string; onClick(): void } }) {
-  // 行程分頁（mode＝map）打開的詳情＝從行程來，問 AI 多一個「這天排它會不會太趕？」
-  const fromTrip = useApp((s) => s.mode) === 'map';
-  const planning = useApp((s) => s.planning);
-  const areas = useData((s) => s.areas);
-  const area = areas.find((a) => a.id === place.area);
-  const region = area?.regions?.find((r) => r.id === place.region);
-  const raw = place.raw;
-  // 換了地點回到「總覽」
-  const [picked, setPicked] = useState<{ id: string; tab: DetailTab }>({ id: place.id, tab: 'overview' });
-  const tabs = DETAIL_TABS.filter((t) => t !== 'photos' || place.photos.length > 0);
-  const tab = picked.id === place.id && tabs.includes(picked.tab) ? picked.tab : 'overview';
-  const go = (t: DetailTab) => setPicked({ id: place.id, tab: t });
+export function DetailPanel({ place, from, back }: { place: Place; from: DetailFrom; back?: { label: string; onClick(): void } }) {
+  const tab = useApp((s) => s.detailTab);
   const name = place.name.zh || place.name.ja;
-
   return (
     <article className="detail" data-testid="detail-panel" aria-label={`${name} 的詳情`}>
-      {/* 上方一列：返回（電腦版）、問 AI；編輯多一個「排進行程」。手機沒有返回，右邊是 ✕；想去用標題旁的愛心 */}
       <div className="detail-bar">
         {back && (
           <button type="button" className="detail-back" onClick={back.onClick} data-testid="detail-back">
             ← {back.label}
           </button>
         )}
-        <span className="detail-bar-actions">
-          {planning && place.type !== 'station' && (
-            <button type="button" className="action small-action primary" data-testid="detail-add" onClick={() => openDialog({ kind: 'add', placeId: place.id })}>
-              <Icon name="calendar" size={16} /> {place.type === 'lodging' ? '設成住宿' : '排進行程'}
-            </button>
-          )}
-          {!back && (
-            <button type="button" className="icon-button" aria-label="關閉詳情" data-testid="detail-close" onClick={() => appStore.getState().closeDetail()}>
-              ✕
-            </button>
-          )}
-        </span>
-      </div>
-
-      {/* 電腦版：標題可以拖到左邊的聊天室問 AI */}
-      <header className={`detail-head ${back ? 'draggable' : ''}`} {...dragPlaceProps(place.id, !!back)} title={back ? '拖到左邊的聊天室可以問 AI' : undefined}>
-        <TierMark tier={place.tier} />
-        <div className="detail-title">
-          <div className="detail-name-row">
-            <h2>{name}</h2>
-            <CopyName place={place} />
-          </div>
-          <p className="muted small">
-            {place.type === 'lodging' && raw.kind ? `${label(LODGING_KIND_LABELS, raw.kind)}・` : ''}
-            {place.name.zh && place.name.ja !== place.name.zh ? `${place.name.ja}・` : ''}
-            {[area && displayName(area.name), region && displayName(region.name)].filter(Boolean).join(' ')}
-          </p>
-        </div>
-        <div className="detail-votes">
-          <VoteButtons placeId={place.id} />
-        </div>
-      </header>
-
-      <div className="detail-tabs" role="tablist" aria-label="詳情分頁">
-        {tabs.map((t) => (
-          <button key={t} type="button" role="tab" aria-selected={t === tab} className={t === tab ? 'on' : ''} onClick={() => go(t)} data-tab={t}>
-            {DETAIL_TAB_LABELS[t]}
-            {t === 'photos' && <span className="detail-tab-count">{place.photos.length}</span>}
+        {!back && (
+          <button type="button" className="icon-button detail-close" aria-label="關閉詳情" data-testid="detail-close" onClick={() => appStore.getState().closeDetail()}>
+            <Icon name="close" size={20} />
           </button>
-        ))}
-      </div>
-
-      <div className="detail-body" role="tabpanel">
-        {tab === 'overview' && (
-          <>
-            {/* 車站沒有照片，不放替代圖 */}
-            {(place.type !== 'station' || place.photos.length > 0) && <HeroPhoto place={place} onMore={() => go('photos')} />}
-            {place.type !== 'station' && <RatingsBox place={place} />}
-            <PlaceIntro place={place} fromTrip={fromTrip} />
-            {/* 暫時放在總覽最下面：想去的卡片不再展開留言，Task 7 改成詳情的「留言」分頁 */}
-            <Comments target={place.id} />
-          </>
         )}
-
-        {tab === 'detail' && <PlaceFacts place={place} />}
-
-        {tab === 'more' && (
-          <>
-            <NearbySection place={place} />
-            <LinksSection place={place} />
-            <SourcesSection place={place} />
-          </>
-        )}
-
-        {tab === 'photos' && <PhotoGrid place={place} />}
       </div>
-
-      {usesRakuten(place) && (
-        <p className="credit small">
-          <a href="https://webservice.rakuten.co.jp/" target="_blank" rel="noreferrer">
-            Supported by Rakuten Developers
-          </a>
-        </p>
-      )}
+      <PlaceDetail key={place.id} place={place} surface="desktop" from={from} initialTab={tab} />
     </article>
   );
 }

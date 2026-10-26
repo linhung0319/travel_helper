@@ -1,4 +1,4 @@
-// 電腦版的右側：探索、想去、行程共用一欄（順序是使用的順序），頂到最上面。點了探索或想去的卡片，詳情蓋在這一欄上，「← 返回」回到原本的分頁。
+// 電腦版的右側：探索、想去、行程共用一欄（順序是使用的順序），頂到最上面。點了探索或想去的卡片，詳情蓋在這一欄上，「← 返回」回到原本的分頁；從行程打開的詳情浮在地圖上（DetailFloat）。
 // 想去是只放有人 ❤️ 的點的探索（Explore.tsx 的 source="wish"）。
 // 頂端（第七輪）：三個分頁加右上的頭像選單（討論、預約、下載行程）；行程分頁下面是日期列，再下面是編輯中、衝突提示、篩選條件。AI 沒有自己的分頁：地圖和這三個分頁就是 AI 操作的東西（T16）。
 
@@ -30,12 +30,27 @@ export function showList(mode: 'explore' | 'wish') {
   s.setMode(mode);
 }
 
+/** 從行程打開的詳情：浮在地圖右邊（地圖那一欄裡），右欄的時間軸不動；✕ 或 Esc 關掉 */
+export function DetailFloat() {
+  const detailId = useApp((s) => s.detailId);
+  const from = useApp((s) => s.detailFrom);
+  const place = useData((s) => (detailId ? s.byId.get(detailId) : undefined));
+  if (!place || from !== 'map') return null;
+  return (
+    <div className="detail-float" data-testid="detail-float">
+      <DetailPanel place={place} from="map" />
+    </div>
+  );
+}
+
 export function SidePanel() {
   const mode = useApp((s) => s.mode);
   const detailId = useApp((s) => s.detailId);
+  const detailFrom = useApp((s) => s.detailFrom);
   const byId = useData((s) => s.byId);
   const liked = useLiked().size;
-  const place = detailId ? byId.get(detailId) : null;
+  // 從行程打開的詳情浮在地圖上（DetailFloat），右欄不換
+  const place = detailId && detailFrom !== 'map' ? byId.get(detailId) : null;
   const tab = (icon: IconName, label: string, on: boolean, onClick: () => void, testId: string) => (
     <button type="button" role="tab" aria-selected={on} className={`side-tab ${on ? 'on' : ''}`} onClick={onClick} data-testid={testId}>
       <Icon name={icon} size={20} />
@@ -61,7 +76,7 @@ export function SidePanel() {
       </div>
       {place ? (
         <div className="side-body side-detail">
-          <DetailPanel place={place} back={{ label: BACK_LABELS[mode], onClick: () => back(place.id) }} />
+          <DetailPanel place={place} from={detailFrom ?? mode} back={{ label: BACK_LABELS[detailFrom ?? mode], onClick: () => back(place.id) }} />
         </div>
       ) : (
         <div className="side-body">{mode === 'map' ? <DayPanel /> : <ExplorePanel key={mode} source={mode} />}</div>

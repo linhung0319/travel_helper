@@ -15,6 +15,7 @@ import type { ActionId, CardActionContext } from '../shared/cardActions.ts';
 import type { ActionTarget } from '../components/cardActionRun.ts';
 import { uiStore } from '../uiStore.ts';
 import { appStore } from '../store.ts';
+import type { DetailTabId } from '../store.ts';
 import type { SectionId } from '../shared/wishSections.ts';
 import { EMPTY_FEED, type ExploreSort, type ExploreType, type Feed } from '../lib/explore.ts';
 
@@ -52,7 +53,7 @@ export interface MobileState {
   /** 行程頁的時間軸面板停在哪（低：多看地圖；中；高：只看清單） */
   tripSnap: TripSnap;
   /** 整頁詳情：哪個點、從哪個分頁打開（返回時回到那裡） */
-  detail: { placeId: string; from: MobileTab; /** 一打開就選哪個分頁（想去列點最新留言：comments；Task 7 的詳情分頁沿用） */ tab?: 'comments' } | null;
+  detail: { placeId: string; from: MobileTab; /** 一打開就選哪個分頁（想去列點最新留言：comments） */ tab?: DetailTabId } | null;
   /** 行程頁上的半屏聊天（ChatSheet）；只在行程分頁有效，換分頁就變回 false */
   chatSheet: boolean;
   /** 行程頁選到的那張卡（focusKeyOf 的 key；地圖飛過去、清單捲到那張） */
@@ -76,7 +77,7 @@ export interface MobileActions {
   /** 打開、關掉「⋯」動作面板 */
   openActions(spec: ActionSheetSpec): void;
   closeActions(): void;
-  openPlace(placeId: string, from: NonNullable<MobileState['detail']>['from'], tab?: 'comments'): void;
+  openPlace(placeId: string, from: NonNullable<MobileState['detail']>['from'], tab?: DetailTabId): void;
   closePlace(): void;
   setPage(page: MobileState['page']): void;
   /** 切到行程分頁、打開半屏聊天 */

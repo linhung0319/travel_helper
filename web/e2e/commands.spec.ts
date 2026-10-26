@@ -123,7 +123,7 @@ test('標示、路線（沿道路）、比較：畫在地圖上，可以清掉',
   await shot(page, 'compare');
   await bar.locator('.compare-card').first().click();
   await expect(page.getByTestId('detail-panel')).toBeVisible();
-  await page.getByTestId('detail-back').click();
+  await page.getByTestId('detail-close').click();
 
   await page.getByTestId('marks-bar').getByRole('button', { name: '清掉 ✕' }).click();
   await expect(label).toHaveCount(0);

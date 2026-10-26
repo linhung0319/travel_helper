@@ -5,7 +5,7 @@ import { useData, useIsDesktop } from './hooks.ts';
 import { MapView } from './components/MapView.tsx';
 import { ChatPanel } from './components/Panels.tsx';
 import { dropAiProps } from './components/askAi.ts';
-import { SidePanel } from './components/SidePanel.tsx';
+import { DetailFloat, SidePanel } from './components/SidePanel.tsx';
 import { MapPanel } from './components/MapPanel.tsx';
 import { TimetablePopup } from './components/TimetablePopup.tsx';
 import { closeMapPanel, uiStore } from './uiStore.ts';
@@ -27,6 +27,7 @@ function DesktopLayout() {
       </aside>
       <main className="map-column">
         <MapView />
+        <DetailFloat />
         <MapPanel />
         <TimetablePopup />
       </main>

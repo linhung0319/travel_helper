@@ -56,12 +56,12 @@ test('T15m：想去 → 留言 → 加到某天 → 編輯中按 ↑ 排進 → 
 
   // 1. 按 ❤️（只表示喜歡，不問哪天）
   await openDetail(page, PLACE);
-  await page.getByTestId('vote-like').click();
-  await expect(page.getByTestId('vote-like')).toHaveAttribute('aria-pressed', 'true');
+  await page.getByTestId('detail-like').click();
+  await expect(page.getByTestId('detail-like')).toHaveAttribute('aria-pressed', 'true');
 
   // 2. 在詳情留一則留言；想去分頁有這一列，最新留言那一行寫著它
   const detail = page.getByTestId('detail-panel');
-  await detail.getByTestId('wish-comments').click();
+  await detail.getByTestId('detail-tab-comments').click();
   await detail.getByTestId('comment-input').fill(TEXT);
   await detail.getByTestId('comment-input').press('Enter');
   await expect(detail.getByTestId('wish-comment')).toContainText(TEXT);
@@ -74,7 +74,7 @@ test('T15m：想去 → 留言 → 加到某天 → 編輯中按 ↑ 排進 → 
   list = await openWish(page);
   await expect(wish(list).getByTestId('wish-last-comment')).toContainText(TEXT);
   await wish(list).getByTestId('wish-last-comment').click();
-  await detail.getByTestId('wish-comments').click();
+  await expect(detail.getByTestId('detail-tab-comments')).toHaveAttribute('aria-selected', 'true'); // 最新留言直接開留言分頁
   await expect(detail.getByTestId('wish-comment')).toContainText(TEXT);
   await expect(detail.getByTestId('wish-comment').getByRole('button', { name: '改' })).toHaveCount(0);
   await page.getByTestId('detail-back').click();
@@ -131,7 +131,7 @@ test('T15m：別人改過了 → 存不了、提示重新載入', async ({ page 
 test('T15m：想去和「大家想去的」篩選', async ({ page }) => {
   await ready(page);
   await openDetail(page, 'toba-kokusai-hotel');
-  const like = page.getByTestId('vote-like');
+  const like = page.getByTestId('detail-like');
   await like.click();
   await expect(like).toHaveAttribute('aria-pressed', 'true');
   await like.click();
@@ -171,7 +171,6 @@ test('T15m：拿掉別人加的候選要寫理由，理由變成那個點的留�
   await expect(card.getByTestId('wish-last-comment')).toContainText('這天排不下');
   await card.getByTestId('wish-last-comment').click();
   const detail = page.getByTestId('detail-panel');
-  await detail.getByTestId('wish-comments').click();
   await expect(detail.getByTestId('wish-comment').last()).toContainText('這天排不下');
   await expect(detail.getByTestId('wish-comment').last()).toContainText('不採用');
   await page.getByTestId('detail-back').click();
@@ -378,7 +377,7 @@ test('第四輪：住宿卡片的方案 tag（照資料是一泊二食）；沒�
   await ready(page);
   // 先 ❤️ 一間住宿，想去才有它
   await openDetail(page, 'toba-kokusai-hotel');
-  await page.getByTestId('vote-like').click();
+  await page.getByTestId('detail-like').click();
   await closeDetail(page);
   await showDay(page, DAY);
   const lodging = page.getByTestId('timeline').locator('.tl-lodging');
@@ -633,7 +632,7 @@ test('第四輪完成條件：排進、標午餐和分組、交通改計程車�
 
   // 1. 把點加到 2/5（想去的卡片「加到某天」；先按 ❤️）→ 開始編輯
   await openDetail(page, PLACE);
-  await page.getByTestId('vote-like').click();
+  await page.getByTestId('detail-like').click();
   const list = await openWish(page);
   await wish(list).getByTestId('wish-add').click();
   await page.getByTestId(`day-picker-${D}`).click();
@@ -1512,7 +1511,8 @@ test('想去：點最新留言開詳情', async ({ page }) => {
   await expect(row.getByTestId('wish-last-comment')).toHaveText('這裡晚上很漂亮。');
   await row.getByTestId('wish-last-comment').click();
   await expect(page.getByTestId('detail-panel')).toBeVisible();
-  await expect(page.getByTestId('detail-panel').getByTestId('wish-comment')).toHaveCount(0); // 留言收著；Task 7 改成留言分頁
+  await expect(page.getByTestId('detail-panel').getByTestId('detail-tab-comments')).toHaveAttribute('aria-selected', 'true');
+  await expect(page.getByTestId('detail-panel').getByTestId('wish-comment')).toContainText('這裡晚上很漂亮。要早點去');
 });
 
 test('網頁想去：日曆鈕加到某天', async ({ page }) => {
@@ -1554,4 +1554,110 @@ test('網頁想去：收合的段落不會因為地圖點擊或投票被改掉�
   await expect(page.getByTestId('wish-section-scheduled')).toHaveAttribute('aria-expanded', 'false');
   await page.evaluate(() => (window as any).__th.shared.comment('toba-aquarium', '新留言', 'normal'));
   await expect(page.getByTestId('wish-section-scheduled')).toHaveAttribute('aria-expanded', 'false');
+});
+
+// ---------- 第七輪 Task 7：詳情的分頁、動作列、浮在地圖上、放大照片 ----------
+
+test('詳情分頁：簡介、交通、評論、留言', async ({ page }) => {
+  await ready(page);
+  await openDetail(page, 'ise-naiku');
+  const detail = page.getByTestId('detail-panel');
+  const tabs = detail.locator('[data-testid^="detail-tab-"]');
+  await expect(tabs).toHaveCount(4);
+  await expect(tabs).toHaveText([/簡介/, /交通/, /評論/, /留言/]);
+  await detail.getByTestId('detail-tab-transport').click();
+  await expect(detail).toContainText('伊勢市宇治館町1');
+  await expect(detail.getByTestId('detail-find-on-map')).toBeVisible();
+  await detail.getByTestId('detail-tab-reviews').click();
+  await expect(detail.locator('.ratings-box')).toBeVisible();
+  await detail.getByTestId('detail-tab-comments').click();
+  await expect(detail.getByTestId('comment-input')).toBeVisible();
+  // 簡介沒有暫時放的留言
+  await detail.getByTestId('detail-tab-intro').click();
+  await expect(detail.getByTestId('comment-input')).toHaveCount(0);
+});
+
+test('詳情：車站只有簡介和交通', async ({ page }) => {
+  await ready(page);
+  const id = await page.evaluate(() => [...(window as any).__th.dataStore.getState().byId.values()].find((p: any) => p.type === 'station').id);
+  await openDetail(page, id);
+  await expect(page.getByTestId('detail-panel').locator('[data-testid^="detail-tab-"]')).toHaveCount(2);
+});
+
+test('詳情：留言分頁可以留言', async ({ page }) => {
+  await ready(page);
+  await openDetail(page, PLACE);
+  const detail = page.getByTestId('detail-panel');
+  await detail.getByTestId('detail-tab-comments').click();
+  await detail.getByTestId('comment-input').fill('分頁留言（e2e）');
+  await detail.getByTestId('comment-input').press('Enter');
+  await expect(detail.getByTestId('wish-comment')).toContainText('分頁留言（e2e）');
+});
+
+test('詳情動作列：想去 N 點了看是誰、不想去、加到某天；頂端只有愛心', async ({ page }) => {
+  await ready(page);
+  await openDetail(page, PLACE);
+  const detail = page.getByTestId('detail-panel');
+  await expect(detail.getByTestId('vote-like')).toHaveCount(0);
+  await expect(detail.locator('.detail-head').getByTestId('card-like')).toHaveCount(1);
+  await expect(detail.locator('.detail-head').getByTestId('detail-dislike')).toHaveCount(0);
+  const like = detail.getByTestId('detail-like');
+  await like.click();
+  await expect(like).toHaveAttribute('aria-pressed', 'true');
+  await detail.getByTestId('detail-who').click();
+  await expect(detail.getByTestId('avatar-list')).toContainText('我');
+  const dislike = detail.getByTestId('detail-dislike');
+  await dislike.click();
+  await expect(dislike).toHaveAttribute('aria-pressed', 'true');
+  await expect(like).toHaveAttribute('aria-pressed', 'false');
+  await detail.getByTestId('detail-add').getByTestId('add-to-day').click();
+  await expect(page.getByTestId('day-picker')).toBeVisible();
+});
+
+test('詳情：編輯中從行程打開有「排進這天」，從探索打開沒有', async ({ page }) => {
+  await ready(page);
+  await showDay(page, '2027-02-05');
+  await enterPlanning(page);
+  await page.evaluate(() => (window as any).__th.appStore.getState().openDetail('toba-seahorse', 'map'));
+  await expect(page.getByTestId('detail-float').getByTestId('detail-schedule')).toContainText('排進這天');
+  await page.evaluate(() => (window as any).__th.appStore.getState().openDetail('toba-kokusai-hotel', 'map'));
+  await expect(page.getByTestId('detail-float').getByTestId('detail-schedule')).toContainText('設成這晚的住宿');
+  await page.evaluate(() => (window as any).__th.appStore.getState().openDetail('toba-seahorse', 'explore'));
+  await expect(page.getByTestId('detail-schedule')).toHaveCount(0);
+});
+
+test('從行程打開詳情：浮在地圖上，時間軸還在', async ({ page }) => {
+  await ready(page);
+  await showDay(page, '2027-02-05');
+  await expect(page.getByTestId('timeline')).toBeVisible();
+  await page.evaluate(() => (window as any).__th.appStore.getState().openDetail('toba-aquarium', 'map'));
+  const float = page.getByTestId('detail-float');
+  await expect(float).toBeVisible();
+  await expect(page.getByTestId('timeline')).toBeVisible();
+  // 浮在地圖那一欄裡，不在右欄
+  expect(await float.evaluate((el) => !!el.closest('.map-column'))).toBe(true);
+  await expect(page.getByTestId('side-tab-day')).toHaveAttribute('aria-selected', 'true');
+  await page.keyboard.press('Escape');
+  await expect(float).toHaveCount(0);
+  // 從探索打開的詳情照舊在右欄
+  await page.evaluate(() => (window as any).__th.appStore.getState().openDetail('toba-aquarium', 'explore'));
+  await expect(page.getByTestId('detail-float')).toHaveCount(0);
+  await expect(page.locator('.side-column').getByTestId('detail-panel')).toBeVisible();
+});
+
+test('點照片放大，左右切換，Esc 關', async ({ page }) => {
+  await ready(page);
+  const id = await page.evaluate(() => [...(window as any).__th.dataStore.getState().byId.values()].find((p: any) => p.type !== 'station' && p.photos.length >= 3).id);
+  await openDetail(page, id);
+  await page.getByTestId('detail-panel').getByTestId('detail-photo').first().click();
+  const viewer = page.getByTestId('photo-viewer');
+  await expect(viewer).toBeVisible();
+  await expect(viewer.getByTestId('photo-viewer-count')).toHaveText(/^1 \/ \d+$/);
+  await page.keyboard.press('ArrowRight');
+  await expect(viewer.getByTestId('photo-viewer-count')).toHaveText(/^2 \/ \d+$/);
+  await page.keyboard.press('ArrowLeft');
+  await expect(viewer.getByTestId('photo-viewer-count')).toHaveText(/^1 \/ \d+$/);
+  await page.keyboard.press('Escape');
+  await expect(viewer).toHaveCount(0);
+  await expect(page.getByTestId('detail-panel')).toBeVisible(); // Esc 只關放大，詳情還在
 });

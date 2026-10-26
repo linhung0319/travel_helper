@@ -507,215 +507,9 @@
 }
 
 /* 左上角「‹」：浮在照片上，捲下去也一直在 */
-.m-detail-back {
-  position: absolute;
-  top: 8px;
-  left: 8px;
-  z-index: 2;
-  border-radius: 50%;
-  background: var(--veil);
-  box-shadow: 0 1px 4px var(--shade-2);
-  color: var(--ink);
-}
-
-.m-detail-hero {
-  position: relative;
-  background: var(--soft);
-}
-
 /* 大照片：左右滑，一次停一張 */
-.m-detail-photos {
-  display: flex;
-  overflow-x: auto;
-  overflow-y: hidden;
-  scroll-snap-type: x mandatory;
-  scrollbar-width: none;
-  height: 260px;
-}
-
-.m-detail-photos::-webkit-scrollbar {
-  display: none;
-}
-
-.m-detail-slide {
-  flex: 0 0 100%;
-  margin: 0;
-  scroll-snap-align: start;
-  min-width: 0;
-}
-
-.m-detail-slide .photo,
-.m-detail-photos > .m-thumb {
-  display: block;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-.m-detail-photos > .m-thumb-fallback {
-  flex: 1;
-  height: 100%;
-  font-size: 3rem;
-}
-
-.m-detail-slide .photo-fallback {
-  display: grid;
-  place-items: center;
-}
-
-.m-detail-dots {
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: 8px;
-  display: flex;
-  justify-content: center;
-  gap: 5px;
-  pointer-events: none;
-}
-
-.m-detail-dots span {
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  background: var(--veil-2);
-  box-shadow: 0 0 2px var(--shade-2);
-}
-
-.m-detail-dots span.on {
-  background: var(--paper);
-}
-
-.m-detail-credit {
-  position: absolute;
-  right: 6px;
-  bottom: 4px;
-  max-width: 60%;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  color: var(--paper);
-  font-size: 0.62rem;
-  text-shadow: 0 0 3px var(--shade-3);
-}
-
-.m-detail-head {
-  padding: 10px 12px 4px;
-  min-width: 0;
-}
-
-.m-detail-title {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  min-width: 0;
-}
-
-.m-detail-title .m-h2 {
-  flex: 0 1 auto;
-}
-
-.m-detail-type {
-  flex: 0 0 auto;
-  display: grid;
-  place-items: center;
-  width: 24px;
-  height: 24px;
-  border-radius: 6px;
-  color: var(--paper);
-  font-size: 0.8rem;
-  font-weight: 800;
-}
-
-.m-detail-sub {
-  margin: 2px 0 0;
-  overflow-wrap: anywhere;
-}
-
 /* ❤️ 想去 N、👎 N：放大的按鈕 */
-.m-detail-votes {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-  margin-top: 10px;
-}
-
-.m-big-vote {
-  flex: 1 1 0;
-  min-width: 0;
-  min-height: var(--tap);
-  border: 1px solid var(--line);
-  border-radius: 999px;
-  background: var(--bg);
-  font: inherit;
-  font-weight: 700;
-  cursor: pointer;
-}
-
-.m-big-vote.on {
-  border-color: var(--love-line);
-  background: var(--love-wash);
-}
-
-.m-detail-add {
-  flex: 1 1 100%;
-  min-width: 0;
-}
-
-.m-detail-add .add-to-day > .ui-btn {
-  width: 100%;
-  min-height: var(--tap);
-}
-
 /* 分頁：捲下去時黏在最上面（左邊讓出「‹」的位置） */
-.m-detail-tabs {
-  position: sticky;
-  top: 0;
-  z-index: 1;
-  display: flex;
-  padding-left: 52px;
-  border-bottom: 1px solid var(--line);
-  background: var(--bg);
-}
-
-.m-detail-tabs button {
-  flex: 1 1 0;
-  min-width: 0;
-  min-height: var(--tap);
-  border: 0;
-  border-bottom: 2px solid transparent;
-  background: none;
-  font: inherit;
-  color: var(--muted);
-  white-space: nowrap;
-  cursor: pointer;
-}
-
-.m-detail-tabs button.on {
-  border-bottom-color: var(--fg);
-  color: var(--fg);
-  font-weight: 700;
-}
-
-.m-detail-body {
-  padding: 4px 12px 24px;
-  min-width: 0;
-  overflow-wrap: anywhere;
-}
-
-.m-detail-body .link-button,
-.m-detail-body .text-button {
-  min-height: var(--tap);
-}
-
-.m-detail-dl .row {
-  padding: 6px 0;
-}
-
-.m-detail-access {
-  display: block;
-}
-
 /* 交通分頁的小地圖：不能互動，整塊是一個按鈕 */
 .m-minimap {
   position: relative;
@@ -1671,4 +1465,81 @@ body.dragging-plan .m-dropend {
   color: var(--fg);
   font-size: 1.2rem;
   cursor: pointer;
+}
+
+/* ---------- 詳情（第七輪 §7）：內容是 shared/ui/PlaceDetail，這裡只有手機才有的部分 ---------- */
+.m-detail-scroll .pd-photos {
+  height: 260px;
+}
+
+/* 照片左上角的「‹」：跟著照片捲走（不再浮在分頁列上） */
+.m-detail-back {
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  z-index: 2;
+  border-radius: 50%;
+  background: var(--veil);
+  box-shadow: 0 1px 4px var(--shade-2);
+  color: var(--ink);
+  display: grid;
+  place-items: center;
+}
+
+/* 白色頂端列（‹、名稱、❤）：捲過照片才出現，黏在最上面；分頁列接在它下面 */
+.m-detail-bar {
+  position: sticky;
+  top: 0;
+  z-index: 4;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  height: 48px;
+  margin-bottom: -48px;
+  padding: 0 4px;
+  background: var(--paper);
+  border-bottom: 1px solid var(--line);
+  transition: transform 0.15s ease;
+}
+
+.m-detail-bar[data-shown='false'] {
+  transform: translateY(-100%);
+  visibility: hidden;
+}
+
+.m-detail-bar .m-back {
+  display: grid;
+  place-items: center;
+}
+
+.m-detail-bar-name {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-family: var(--font-serif);
+  font-weight: 700;
+}
+
+.m-detail-scroll .pd-tabs {
+  top: 48px;
+}
+
+.m-detail-scroll .pd-head,
+.m-detail-scroll .pd-actions {
+  padding-left: 12px;
+  padding-right: 12px;
+}
+
+.m-detail-scroll .pd-body {
+  padding: 4px 12px 24px;
+}
+
+.m-detail-scroll .pd-name {
+  font-size: 1.2rem;
+}
+
+.m-detail-scroll .avatar-list.pd-who-inline {
+  margin: 0 12px 6px;
 }

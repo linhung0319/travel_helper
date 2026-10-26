@@ -291,11 +291,11 @@ test('詳情：整頁、返回後捲動位置不變', async ({ page }) => {
   // 照片在最上面，下面是名稱、大按鈕想去／不想去；從探索打開沒有「加到某天」
   await expect(detail.getByTestId('m-detail-photos')).toBeVisible();
   await expect(detail.getByTestId('m-detail-name')).toBeVisible();
-  expect((await detail.getByTestId('m-detail-like').boundingBox())!.height).toBeGreaterThanOrEqual(44);
-  expect((await detail.getByTestId('m-detail-dislike').boundingBox())!.height).toBeGreaterThanOrEqual(44);
-  await expect(detail.getByTestId('m-detail-add')).toHaveCount(0);
+  expect((await detail.getByTestId('detail-like').boundingBox())!.height).toBeGreaterThanOrEqual(44);
+  expect((await detail.getByTestId('detail-dislike').boundingBox())!.height).toBeGreaterThanOrEqual(44);
+  await expect(detail.getByTestId('detail-add').getByTestId('add-to-day')).toBeVisible(); // 動作列的主要按鈕，從哪打開都有
   // 分頁：簡介、交通、評論、留言
-  for (const t of ['intro', 'transport', 'reviews', 'comments']) await expect(detail.getByTestId(`m-detail-tab-${t}`)).toBeVisible();
+  for (const t of ['intro', 'transport', 'reviews', 'comments']) await expect(detail.getByTestId(`detail-tab-${t}`)).toBeVisible();
   // 探索沒有被卸載，只是蓋住
   await expect(page.getByTestId('m-feed')).toHaveCount(1);
   expect(await scrollsSideways(page)).toBe(false);
@@ -333,7 +333,7 @@ test('詳情：有問 AI、點小地圖跳到行程', async ({ page }) => {
   await expect(detail).toHaveCount(0);
   await page.evaluate((id) => (window as any).__thMobile.getState().openPlace(id, 'ai'), id);
 
-  await detail.getByTestId('m-detail-tab-transport').click();
+  await detail.getByTestId('detail-tab-transport').click();
   const mini = detail.getByTestId('m-detail-minimap');
   await expect(mini).toBeVisible();
   await mini.click();
@@ -361,14 +361,14 @@ test('詳情：從想去打開多一個「加到某天」，可以投票、留�
   await first.getByTestId('m-wish-open').click();
   const detail = page.getByTestId('m-detail');
   await expect(detail).toHaveAttribute('data-id', id!);
-  await expect(detail.getByTestId('m-detail-add').getByTestId('add-to-day')).toBeVisible();
-  const like = detail.getByTestId('m-detail-like');
+  await expect(detail.getByTestId('detail-add').getByTestId('add-to-day')).toBeVisible();
+  const like = detail.getByTestId('detail-like');
   const was = await like.getAttribute('aria-pressed');
   await like.click();
   await expect(like).toHaveAttribute('aria-pressed', was === 'true' ? 'false' : 'true');
   await like.click();
   await expect(like).toHaveAttribute('aria-pressed', was!);
-  await detail.getByTestId('m-detail-tab-comments').click();
+  await detail.getByTestId('detail-tab-comments').click();
   await expect(detail.getByTestId('comment-input')).toBeVisible();
 });
 
@@ -1130,7 +1130,7 @@ test('想去：點最新留言開詳情的留言分頁', async ({ page }) => {
   await expect(row.getByTestId('wish-last-comment')).toHaveText('這裡晚上很漂亮。');
   await row.getByTestId('wish-last-comment').click();
   await expect(page.getByTestId('m-detail')).toHaveAttribute('data-id', id);
-  await expect(page.getByTestId('m-detail-tab-comments')).toHaveAttribute('aria-selected', 'true');
+  await expect(page.getByTestId('detail-tab-comments')).toHaveAttribute('aria-selected', 'true');
 });
 
 test('想去：左滑加到某天', async ({ page }) => {
@@ -1185,3 +1185,64 @@ test('想去：照片牆的卡片有誰想去，沒有留言也沒有加到某�
   await expect(card.getByTestId('wish-last-comment')).toHaveCount(0);
   await expect(card.getByTestId('wish-swipe-add')).toHaveCount(0);
 });
+
+// ---------- 第七輪 Task 7：詳情的頂端列、複製日文名、留言分頁 ----------
+
+test('詳情分頁：簡介、交通、評論、留言（兩邊同一組 testid）', async ({ page }) => {
+  await ready(page);
+  await page.evaluate(() => (window as any).__thMobile.getState().openPlace('ise-naiku', 'explore'));
+  const detail = page.getByTestId('m-detail');
+  const tabs = detail.locator('[data-testid^="detail-tab-"]');
+  await expect(tabs).toHaveText([/簡介/, /交通/, /評論/, /留言/]);
+  await detail.getByTestId('detail-tab-transport').click();
+  await expect(detail).toContainText('伊勢市宇治館町1');
+});
+
+test('詳情：留言分頁可以留言', async ({ page }) => {
+  await ready(page);
+  await page.evaluate(() => (window as any).__thMobile.getState().openPlace('toba-seahorse', 'explore'));
+  const detail = page.getByTestId('m-detail');
+  await detail.getByTestId('detail-tab-comments').click();
+  await detail.getByTestId('comment-input').fill('分頁留言（e2e）');
+  await detail.getByTestId('comment-input').press('Enter');
+  await expect(detail.getByTestId('wish-comment')).toContainText('分頁留言（e2e）');
+});
+
+test('詳情頂端列：捲過照片才出現，不蓋住分頁', async ({ page }) => {
+  await ready(page);
+  await page.evaluate(() => (window as any).__thMobile.getState().openPlace('toba-seahorse', 'explore'));
+  const detail = page.getByTestId('m-detail');
+  const bar = detail.getByTestId('m-detail-bar');
+  await expect(bar).toBeHidden(); // 還在照片上時沒有頂端列
+  await detail.locator('.m-detail-scroll').evaluate((el) => el.scrollTo(0, 400));
+  await expect(bar).toBeVisible();
+  await expect(bar.getByTestId('card-like')).toBeVisible();
+  const barBox = (await bar.boundingBox())!;
+  const tab = (await detail.getByTestId('detail-tab-comments').boundingBox())!;
+  const vp = page.viewportSize()!;
+  expect(tab.x).toBeGreaterThanOrEqual(0);
+  expect(tab.x + tab.width).toBeLessThanOrEqual(vp.width);
+  expect(tab.y).toBeGreaterThanOrEqual(barBox.y + barBox.height - 1); // 分頁列接在頂端列下面
+  expect(tab.y + tab.height).toBeLessThanOrEqual(vp.height);
+  expect(await scrollsSideways(page)).toBe(false);
+  // ‹ 在頂端列裡，點了返回
+  await bar.getByTestId('m-detail-bar-back').click();
+  await expect(detail).toHaveCount(0);
+});
+
+test('詳情：複製日文名', async ({ page }) => {
+  await ready(page);
+  await page.evaluate(() => (window as any).__thMobile.getState().openPlace('toba-seahorse', 'explore'));
+  await expect(page.getByTestId('m-detail').getByTestId('copy-name')).toBeVisible();
+});
+
+test('詳情：想去 N 點了看是誰；編輯中從行程打開有「排進這天」', async ({ page }) => {
+  await ready(page);
+  await page.evaluate(() => (window as any).__thMobile.getState().openPlace('toba-seahorse', 'explore'));
+  const detail = page.getByTestId('m-detail');
+  await detail.getByTestId('detail-like').click();
+  await detail.getByTestId('detail-who').click();
+  await expect(detail.getByTestId('avatar-list')).toContainText('我');
+  await expect(detail.getByTestId('detail-schedule')).toHaveCount(0);
+});
+

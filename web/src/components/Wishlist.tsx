@@ -25,10 +25,11 @@ import { ActionMenu } from './ActionMenu.tsx';
 
 const KIND_TAGS: Record<Comment['kind'], string | null> = { normal: null, planner: '規劃', decline: '不採用' };
 
-/** 留言：預設收起來（open＝true 時一開始就展開）；只有一層；自己的可以改、可以刪。編輯中留的標〔規劃〕 */
-export function Comments({ target, label = '留言', placeholder = '留言…', open: openAtStart = false }: { target: string; label?: string; placeholder?: string; open?: boolean }) {
+/** 留言：預設收起來（open＝true 時一開始就展開；bare＝詳情的留言分頁，沒有收合鈕、一直展開）；只有一層；自己的可以改、可以刪。編輯中留的標〔規劃〕 */
+export function Comments({ target, label = '留言', placeholder = '留言…', open: openAtStart = false, bare = false }: { target: string; label?: string; placeholder?: string; open?: boolean; bare?: boolean }) {
   const list = useComments(target);
-  const [open, setOpen] = useState(openAtStart);
+  const [openState, setOpen] = useState(openAtStart);
+  const open = bare || openState;
   const [text, setText] = useState('');
   const [editing, setEditing] = useState<{ id: number; text: string } | null>(null);
   const me = useShared((s) => s.me?.id);
@@ -40,11 +41,13 @@ export function Comments({ target, label = '留言', placeholder = '留言…', 
   };
   return (
     <div className="wish-comments">
-      <button type="button" className="text-button small" aria-expanded={open} onClick={() => setOpen(!open)} data-testid="wish-comments">
-        <Icon name="chat" size={16} /> {list.length ? `${list.length} 則${label}` : label} <span className={`chev ${open ? 'up' : ''}`}>
-          <Icon name="chevron" size={16} />
-        </span>
-      </button>
+      {!bare && (
+        <button type="button" className="text-button small" aria-expanded={open} onClick={() => setOpen(!open)} data-testid="wish-comments">
+          <Icon name="chat" size={16} /> {list.length ? `${list.length} 則${label}` : label} <span className={`chev ${open ? 'up' : ''}`}>
+            <Icon name="chevron" size={16} />
+          </span>
+        </button>
+      )}
       {open && (
         <div className="wish-comment-list">
           {list.map((c) => (

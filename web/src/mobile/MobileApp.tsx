@@ -47,9 +47,9 @@ export function MobileApp() {
     () =>
       appStore.subscribe((s) => {
         if (!s.detailId) return;
-        const id = s.detailId;
+        const { detailId: id, detailTab } = s;
         appStore.getState().closeDetail();
-        mobileStore.getState().openPlace(id, mobileStore.getState().tab);
+        mobileStore.getState().openPlace(id, mobileStore.getState().tab, detailTab ?? undefined);
       }),
     [],
   );

@@ -7,6 +7,12 @@ import type { Bbox, LonLat } from './data/types.ts';
 import type { Itinerary, TravelMode } from '@travel-helper/engine/types';
 import type { Change } from '@travel-helper/engine';
 
+/** 詳情的分頁（簡介、交通、評論、留言；車站只有前兩個） */
+export type DetailTabId = 'intro' | 'transport' | 'reviews' | 'comments';
+
+/** 詳情從哪裡打開：map＝行程（網頁浮在地圖上）、explore／wish＝右欄的清單（返回回到清單） */
+export type DetailFrom = 'map' | 'explore' | 'wish';
+
 /** 'all'＝全部的天；否則是 YYYY-MM-DD */
 export type DaySelection = 'all' | string;
 
@@ -80,6 +86,10 @@ export interface AppState {
   previewId: string | null;
   /** 詳情面板（車站的詳情面板裡有時刻表） */
   detailId: string | null;
+  /** 詳情從哪裡打開（detailId 是 null 時也是 null）；網頁：map 浮在地圖右邊、explore／wish 蓋在右欄 */
+  detailFrom: DetailFrom | null;
+  /** 詳情一打開就選哪個分頁（想去列點最新留言：comments）；null＝簡介 */
+  detailTab: DetailTabId | null;
   /** 電腦版點了地圖上的點：探索清單捲到那張卡片（seq 讓同一個點再點一次也會捲） */
   exploreTarget: { id: string; seq: number } | null;
   /** 「問 AI」選取的點（interaction-design §5；T12、T16 接上） */
@@ -110,7 +120,8 @@ export interface AppActions {
   setPlanning(on: boolean): void;
   hover(id: string | null): void;
   openPreview(id: string | null): void;
-  openDetail(id: string): void;
+  /** from 沒給＝現在的分頁（行程分頁打開的在網頁浮在地圖上）；tab＝一打開就選的分頁 */
+  openDetail(id: string, from?: DetailFrom, tab?: DetailTabId): void;
   closeDetail(): void;
   revealInExplore(id: string): void;
   addToSelection(id: string): void;
@@ -141,6 +152,8 @@ export const initialState: AppState = {
   hoveredId: null,
   previewId: null,
   detailId: null,
+  detailFrom: null,
+  detailTab: null,
   exploreTarget: null,
   selection: [],
   stationTime: null,
@@ -171,8 +184,8 @@ export function createAppStore(init: Partial<AppState> = {}) {
     hover: (hoveredId) => set({ hoveredId }),
     openPreview: (previewId) => set({ previewId }),
     // 打開詳情時小卡片收起
-    openDetail: (detailId) => set({ detailId, previewId: null }),
-    closeDetail: () => set({ detailId: null }),
+    openDetail: (detailId, from, tab) => set((s) => ({ detailId, detailFrom: from ?? s.mode, detailTab: tab ?? null, previewId: null })),
+    closeDetail: () => set({ detailId: null, detailFrom: null, detailTab: null }),
     revealInExplore: (id) => set((s) => ({ exploreTarget: { id, seq: (s.exploreTarget?.seq ?? 0) + 1 } })),
     addToSelection: (id) => set((s) => (s.selection.includes(id) ? s : { selection: [...s.selection, id] })),
     removeFromSelection: (id) => set((s) => ({ selection: s.selection.filter((x) => x !== id) })),

@@ -9,7 +9,7 @@
 // 清單的計算（篩選、排序、數量、想去的範圍）在 shared/placeLists.ts 的 usePlaceList，手機版也用。
 
 import { useEffect, useRef, useState } from 'react';
-import { appStore } from '../store.ts';
+import { appStore, type DetailTabId } from '../store.ts';
 import { dataStore } from '../dataStore.ts';
 import { shared } from '../appShared.ts';
 import { likedPlaces } from '../lib/wishlist.ts';
@@ -48,9 +48,11 @@ function saveView(v: View) {
   }
 }
 
-function open(id: string) {
+/** 點清單的一張卡：地圖移過去，詳情蓋在右欄（tab＝一打開就選的分頁，例如想去列的最新留言開留言分頁） */
+function open(id: string, tab?: DetailTabId) {
   commands.focus(id);
-  appStore.getState().openDetail(id);
+  const s = appStore.getState();
+  s.openDetail(id, s.mode === 'wish' ? 'wish' : 'explore', tab);
 }
 
 /** 探索的一張卡片（照片牆）或一列（清單）；想去分頁的列在 shared/ui/WishList */
@@ -143,9 +145,8 @@ export function ExplorePanel({ source = 'explore' }: { source?: ListSource }) {
             surface="desktop"
             places={list}
             view={view}
-            onOpen={open}
-            // 詳情的留言分頁在 Task 7 才有；現在先開詳情
-            onOpenComments={open}
+            onOpen={(id) => open(id)}
+            onOpenComments={(id) => open(id, 'comments')}
             hotId={hoveredId ?? target?.id ?? null}
             revealId={target?.id ?? null}
             revealSeq={target?.seq}
