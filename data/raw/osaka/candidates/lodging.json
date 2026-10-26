@@ -1,0 +1,728 @@
+[
+  {
+    "key": "osaka-hotel-nikko",
+    "name": {
+      "ja": "ホテル日航大阪"
+    },
+    "region": "namba",
+    "category": "hotel",
+    "status": "included",
+    "criteria": [],
+    "reason": null,
+    "pointId": "osaka-hotel-nikko",
+    "ratings": {
+      "rakuten": 4.5,
+      "rakutenReviews": 5752,
+      "google": 4.2,
+      "googleReviews": 6636,
+      "jalan": null,
+      "jalanReviews": null
+    },
+    "links": {},
+    "note": "楽天 167"
+  },
+  {
+    "key": "osaka-swissotel-nankai",
+    "name": {
+      "ja": "スイスホテル南海大阪"
+    },
+    "region": "namba",
+    "category": "hotel",
+    "status": "included",
+    "criteria": [],
+    "reason": null,
+    "pointId": "osaka-swissotel-nankai",
+    "ratings": {
+      "rakuten": 4.43,
+      "rakutenReviews": 2145,
+      "google": 4.3,
+      "googleReviews": 5994,
+      "jalan": null,
+      "jalanReviews": null
+    },
+    "links": {},
+    "note": "楽天 1181"
+  },
+  {
+    "key": "osaka-holiday-inn-namba",
+    "name": {
+      "ja": "ホリデイ・イン大阪難波"
+    },
+    "region": "namba",
+    "category": "hotel",
+    "status": "included",
+    "criteria": [],
+    "reason": null,
+    "pointId": "osaka-holiday-inn-namba",
+    "ratings": {
+      "rakuten": 4.78,
+      "rakutenReviews": 2137,
+      "google": 4,
+      "googleReviews": 2588,
+      "jalan": null,
+      "jalanReviews": null
+    },
+    "links": {},
+    "note": "楽天 75192"
+  },
+  {
+    "key": "osaka-monterey-grasmere",
+    "name": {
+      "ja": "ホテルモントレ グラスミア大阪"
+    },
+    "region": "namba",
+    "category": "hotel",
+    "status": "included",
+    "criteria": [],
+    "reason": null,
+    "pointId": "osaka-monterey-grasmere",
+    "ratings": {
+      "rakuten": 4.44,
+      "rakutenReviews": 3811,
+      "google": 4.2,
+      "googleReviews": 4580,
+      "jalan": null,
+      "jalanReviews": null
+    },
+    "links": {},
+    "note": "楽天 76887"
+  },
+  {
+    "key": "osaka-yamatoya-honten",
+    "name": {
+      "ja": "大和屋本店"
+    },
+    "region": "namba",
+    "category": "ryokan",
+    "status": "included",
+    "criteria": [],
+    "reason": null,
+    "pointId": "osaka-yamatoya-honten",
+    "ratings": {
+      "rakuten": 4.36,
+      "rakutenReviews": 850,
+      "google": 3.8,
+      "googleReviews": 859,
+      "jalan": null,
+      "jalanReviews": null
+    },
+    "links": {},
+    "note": "楽天 1985"
+  },
+  {
+    "key": "osaka-dormy-inn-namba",
+    "name": {
+      "ja": "ドーミーインPREMIUMなんば"
+    },
+    "region": "namba",
+    "category": "hotel",
+    "status": "included",
+    "criteria": [],
+    "reason": null,
+    "pointId": "osaka-dormy-inn-namba",
+    "ratings": {
+      "rakuten": 4.41,
+      "rakutenReviews": 1677,
+      "google": 4.2,
+      "googleReviews": 2454,
+      "jalan": null,
+      "jalanReviews": null
+    },
+    "links": {},
+    "note": "楽天 143240"
+  },
+  {
+    "key": "osaka-fraser-residence-nankai",
+    "name": {
+      "ja": "フレイザーレジデンス南海大阪"
+    },
+    "region": "namba",
+    "category": "other",
+    "status": "included",
+    "criteria": [],
+    "reason": null,
+    "pointId": "osaka-fraser-residence-nankai",
+    "ratings": {
+      "rakuten": 4.67,
+      "rakutenReviews": 265,
+      "google": 4.5,
+      "googleReviews": 1015,
+      "jalan": null,
+      "jalanReviews": null
+    },
+    "links": {},
+    "note": "楽天 108949"
+  },
+  {
+    "key": "osaka-hotel-k6-namba",
+    "name": {
+      "ja": "ホテルK6 大阪なんば店"
+    },
+    "region": "namba",
+    "category": "hotel",
+    "status": "included",
+    "criteria": [],
+    "reason": null,
+    "pointId": "osaka-hotel-k6-namba",
+    "ratings": {
+      "rakuten": 4.57,
+      "rakutenReviews": 157,
+      "google": 4.7,
+      "googleReviews": 323,
+      "jalan": null,
+      "jalanReviews": null
+    },
+    "links": {},
+    "note": "楽天 189168"
+  },
+  {
+    "key": "osaka-grids-premium-namba",
+    "name": {
+      "ja": "グリッズプレミアムホテル大阪なんば"
+    },
+    "region": "namba",
+    "category": "hotel",
+    "status": "included",
+    "criteria": [],
+    "reason": null,
+    "pointId": "osaka-grids-premium-namba",
+    "ratings": {
+      "rakuten": 4.46,
+      "rakutenReviews": 302,
+      "google": 4.2,
+      "googleReviews": 807,
+      "jalan": null,
+      "jalanReviews": null
+    },
+    "links": {},
+    "note": "楽天 180698"
+  },
+  {
+    "key": "osaka-apa-namba-ekimae-tower",
+    "name": {
+      "ja": "アパホテル＆リゾート〈大阪なんば駅前タワー〉"
+    },
+    "region": "namba",
+    "category": "hotel",
+    "status": "included",
+    "criteria": [],
+    "reason": null,
+    "pointId": "osaka-apa-namba-ekimae-tower",
+    "ratings": {
+      "rakuten": 4.35,
+      "rakutenReviews": 2748,
+      "google": 4,
+      "googleReviews": 3214,
+      "jalan": null,
+      "jalanReviews": null
+    },
+    "links": {},
+    "note": "楽天 191842"
+  },
+  {
+    "key": "osaka-super-hotel-namba-nippombashi",
+    "name": {
+      "ja": "スーパーホテルなんば・日本橋"
+    },
+    "region": "namba",
+    "category": "hotel",
+    "status": "included",
+    "criteria": [],
+    "reason": null,
+    "pointId": "osaka-super-hotel-namba-nippombashi",
+    "ratings": {
+      "rakuten": 4.29,
+      "rakutenReviews": 3086,
+      "google": 4.2,
+      "googleReviews": 1214,
+      "jalan": null,
+      "jalanReviews": null
+    },
+    "links": {},
+    "note": "楽天 29775"
+  },
+  {
+    "key": "osaka-daiwa-roynet-uehommachi",
+    "name": {
+      "ja": "ダイワロイネットホテル大阪上本町"
+    },
+    "region": "namba",
+    "category": "hotel",
+    "status": "included",
+    "criteria": [],
+    "reason": null,
+    "pointId": "osaka-daiwa-roynet-uehommachi",
+    "ratings": {
+      "rakuten": 4.32,
+      "rakutenReviews": 3507,
+      "google": 4.1,
+      "googleReviews": 1087,
+      "jalan": null,
+      "jalanReviews": null
+    },
+    "links": {},
+    "note": "楽天 106197"
+  },
+  {
+    "key": "osaka-sheraton-miyako",
+    "name": {
+      "ja": "シェラトン都ホテル大阪"
+    },
+    "region": "namba",
+    "category": "hotel",
+    "status": "included",
+    "criteria": [],
+    "reason": null,
+    "pointId": "osaka-sheraton-miyako",
+    "ratings": {
+      "rakuten": 4.41,
+      "rakutenReviews": 6024,
+      "google": 4.1,
+      "googleReviews": 5454,
+      "jalan": null,
+      "jalanReviews": null
+    },
+    "links": {},
+    "note": "楽天 1144"
+  },
+  {
+    "key": "osaka-hankyu-respire",
+    "name": {
+      "ja": "ホテル阪急レスパイア大阪"
+    },
+    "region": "umeda",
+    "category": "hotel",
+    "status": "included",
+    "criteria": [],
+    "reason": null,
+    "pointId": "osaka-hankyu-respire",
+    "ratings": {
+      "rakuten": 4.32,
+      "rakutenReviews": 2583,
+      "google": 4.3,
+      "googleReviews": 4530,
+      "jalan": null,
+      "jalanReviews": null
+    },
+    "links": {},
+    "note": "楽天 176713"
+  },
+  {
+    "key": "osaka-granvia",
+    "name": {
+      "ja": "ホテルグランヴィア大阪"
+    },
+    "region": "umeda",
+    "category": "hotel",
+    "status": "included",
+    "criteria": [],
+    "reason": null,
+    "pointId": "osaka-granvia",
+    "ratings": {
+      "rakuten": 4.2,
+      "rakutenReviews": 11322,
+      "google": 4,
+      "googleReviews": 3454,
+      "jalan": null,
+      "jalanReviews": null
+    },
+    "links": {},
+    "note": "楽天 1731"
+  },
+  {
+    "key": "osaka-intergate-umeda",
+    "name": {
+      "ja": "ホテルインターゲート大阪 梅田"
+    },
+    "region": "umeda",
+    "category": "hotel",
+    "status": "included",
+    "criteria": [],
+    "reason": null,
+    "pointId": "osaka-intergate-umeda",
+    "ratings": {
+      "rakuten": 4.51,
+      "rakutenReviews": 1460,
+      "google": 4.3,
+      "googleReviews": 1414,
+      "jalan": null,
+      "jalanReviews": null
+    },
+    "links": {},
+    "note": "楽天 181403"
+  },
+  {
+    "key": "osaka-apa-umeda-tower",
+    "name": {
+      "ja": "アパホテル＆リゾート〈大阪梅田駅タワー〉"
+    },
+    "region": "umeda",
+    "category": "hotel",
+    "status": "included",
+    "criteria": [],
+    "reason": null,
+    "pointId": "osaka-apa-umeda-tower",
+    "ratings": {
+      "rakuten": 4.28,
+      "rakutenReviews": 4295,
+      "google": 4,
+      "googleReviews": 3652,
+      "jalan": null,
+      "jalanReviews": null
+    },
+    "links": {},
+    "note": "楽天 184030"
+  },
+  {
+    "key": "osaka-keihan-universal-tower",
+    "name": {
+      "ja": "ホテル京阪 ユニバーサル・タワー"
+    },
+    "region": "usj",
+    "category": "hotel",
+    "status": "included",
+    "criteria": [],
+    "reason": null,
+    "pointId": "osaka-keihan-universal-tower",
+    "ratings": {
+      "rakuten": 4.59,
+      "rakutenReviews": 9839,
+      "google": 4.3,
+      "googleReviews": 5453,
+      "jalan": null,
+      "jalanReviews": null
+    },
+    "links": {},
+    "note": "楽天 71921"
+  },
+  {
+    "key": "osaka-liber-hotel",
+    "name": {
+      "ja": "リーベルホテル大阪"
+    },
+    "region": "usj",
+    "category": "hotel",
+    "status": "included",
+    "criteria": [],
+    "reason": null,
+    "pointId": "osaka-liber-hotel",
+    "ratings": {
+      "rakuten": 4.72,
+      "rakutenReviews": 7273,
+      "google": 4.5,
+      "googleReviews": 3354,
+      "jalan": null,
+      "jalanReviews": null
+    },
+    "links": {},
+    "note": "楽天 172378"
+  },
+  {
+    "key": "osaka-universal-port",
+    "name": {
+      "ja": "ホテル ユニバーサル ポート"
+    },
+    "region": "usj",
+    "category": "hotel",
+    "status": "included",
+    "criteria": [],
+    "reason": null,
+    "pointId": "osaka-universal-port",
+    "ratings": {
+      "rakuten": 4.63,
+      "rakutenReviews": 13760,
+      "google": 4.5,
+      "googleReviews": 6200,
+      "jalan": null,
+      "jalanReviews": null
+    },
+    "links": {},
+    "note": "楽天 38281"
+  },
+  {
+    "key": "osaka-kintetsu-universal-city",
+    "name": {
+      "ja": "ホテル近鉄ユニバーサル・シティ"
+    },
+    "region": "usj",
+    "category": "hotel",
+    "status": "included",
+    "criteria": [],
+    "reason": null,
+    "pointId": "osaka-kintetsu-universal-city",
+    "ratings": {
+      "rakuten": 4.55,
+      "rakutenReviews": 14028,
+      "google": 4.2,
+      "googleReviews": 2133,
+      "jalan": null,
+      "jalanReviews": null
+    },
+    "links": {},
+    "note": "楽天 16654"
+  },
+  {
+    "key": "osaka-park-front-usj",
+    "name": {
+      "ja": "ザ パーク フロント ホテル アット ユニバーサル・スタジオ・ジャパン"
+    },
+    "region": "usj",
+    "category": "hotel",
+    "status": "included",
+    "criteria": [],
+    "reason": null,
+    "pointId": "osaka-park-front-usj",
+    "ratings": {
+      "rakuten": 4.57,
+      "rakutenReviews": 4275,
+      "google": 4.4,
+      "googleReviews": 4712,
+      "jalan": null,
+      "jalanReviews": null
+    },
+    "links": {},
+    "note": "楽天 147805"
+  },
+  {
+    "key": "osaka-shikanjima-house",
+    "name": {
+      "ja": "四貫島戸建て"
+    },
+    "region": "usj",
+    "category": "rental-house",
+    "status": "included",
+    "criteria": [],
+    "reason": null,
+    "pointId": "osaka-shikanjima-house",
+    "ratings": {
+      "rakuten": null,
+      "rakutenReviews": null,
+      "google": null,
+      "googleReviews": null,
+      "jalan": null,
+      "jalanReviews": null
+    },
+    "links": {},
+    "note": "沒上楽天；ACO 房源頁 https://www.aco.co.jp/id/66982.html"
+  },
+  {
+    "key": "osaka-konjakuso-dotonbori",
+    "name": {
+      "ja": "今昔荘 大阪 道頓堀（寄合・書肆・合薬屋）"
+    },
+    "region": "namba",
+    "category": "rental-house",
+    "status": "not-included",
+    "criteria": [],
+    "reason": "包棟候選：同一棟分層包租（2–3F 寄合 14 人、4F 書肆 8 人、5F 合薬屋 4 人；15 人要租兩層）。官網、特定商取引法頁、楽天、じゃらん都找不到旅館業許可／届出／特区認定番號，照 CONVENTIONS「包棟只收頁面上有合法登記的」不收（👤 2026-10-26）",
+    "pointId": null,
+    "ratings": {
+      "rakuten": null,
+      "rakutenReviews": null,
+      "google": 4.7,
+      "googleReviews": 46,
+      "jalan": null,
+      "jalanReviews": null
+    },
+    "links": {},
+    "note": "楽天 170047（評分不公開）；官網 https://konjakuso.jp/site/dotonbori ；楽天 1 間 10 人 2027-02-11 336,400 円；筆記內容寫在這裡，不留 dossier"
+  },
+  {
+    "key": "osaka-group-stay-classe",
+    "name": {
+      "ja": "Group STAY CLASSE（グループ ステイ クラッセ）"
+    },
+    "region": "namba",
+    "category": "rental-house",
+    "status": "not-included",
+    "criteria": [],
+    "reason": "包棟候選：日本橋2-6-16，01、02 兩室，各住幾人、能不能合住 15 人都沒寫；楽天、voyabay（403）都沒有登記番號，不收（👤 2026-10-26）",
+    "pointId": null,
+    "ratings": {
+      "rakuten": 4,
+      "rakutenReviews": 9,
+      "google": 4.5,
+      "googleReviews": null,
+      "jalan": null,
+      "jalanReviews": null
+    },
+    "links": {},
+    "note": "楽天 166321（4.0／9 則）；Google 01：4.5、02：4.1"
+  },
+  {
+    "key": "osaka-crewso",
+    "name": {
+      "ja": "CREWSO｜Private Villa Osaka"
+    },
+    "region": "umeda",
+    "category": "rental-house",
+    "status": "not-included",
+    "criteria": [],
+    "reason": "包棟候選：西淀川区柏里1-18-7，287㎡、最多 16 人（洋室 3＋和室 1）、JR 塚本駅步行 5～6 分；官網 4 頁、WebSearch 都找不到登記番號，不收（👤 2026-10-26）",
+    "pointId": null,
+    "ratings": {
+      "rakuten": null,
+      "rakutenReviews": null,
+      "google": 4.7,
+      "googleReviews": 261,
+      "jalan": null,
+      "jalanReviews": null
+    },
+    "links": {},
+    "note": "官網 https://villa-crewso.com/ ；電話 06-6476-5666"
+  },
+  {
+    "key": "osaka-konjakuso-tengachaya",
+    "name": {
+      "ja": "今昔荘 大阪 天下茶屋 - 日本茶 -"
+    },
+    "region": "namba",
+    "category": "rental-house",
+    "status": "not-included",
+    "criteria": [],
+    "reason": "包棟候選：一棟 147㎡ 但最多 12 人（官網），住不下 15 人；官網也沒有登記番號",
+    "pointId": null,
+    "ratings": {
+      "rakuten": null,
+      "rakutenReviews": null,
+      "google": 4.9,
+      "googleReviews": 17,
+      "jalan": null,
+      "jalanReviews": null
+    },
+    "links": {},
+    "note": "楽天 189825；天下茶屋駅步行 3 分（南海、堺筋線）"
+  },
+  {
+    "key": "osaka-cross-hotel",
+    "name": {
+      "ja": "クロスホテル大阪"
+    },
+    "region": "namba",
+    "category": "hotel",
+    "status": "not-included",
+    "criteria": [],
+    "reason": "👤 確認的清單外（候補）：15 人組合只有 8x2",
+    "pointId": null,
+    "ratings": {
+      "rakuten": null,
+      "rakutenReviews": null,
+      "google": null,
+      "googleReviews": null,
+      "jalan": null,
+      "jalanReviews": null
+    },
+    "links": {},
+    "note": "楽天 7801，4.58／1,908"
+  },
+  {
+    "key": "osaka-namba-oriental",
+    "name": {
+      "ja": "なんばオリエンタルホテル"
+    },
+    "region": "namba",
+    "category": "hotel",
+    "status": "not-included",
+    "criteria": [],
+    "reason": "👤 確認的清單外（候補）",
+    "pointId": null,
+    "ratings": {
+      "rakuten": null,
+      "rakutenReviews": null,
+      "google": null,
+      "googleReviews": null,
+      "jalan": null,
+      "jalanReviews": null
+    },
+    "links": {},
+    "note": "楽天 554，4.31／6,151；15 人組合 5x3"
+  },
+  {
+    "key": "osaka-tokyu-stay-mercure-namba",
+    "name": {
+      "ja": "東急ステイ メルキュール 大阪なんば"
+    },
+    "region": "namba",
+    "category": "hotel",
+    "status": "not-included",
+    "criteria": [],
+    "reason": "👤 確認的清單外（候補，公寓式）",
+    "pointId": null,
+    "ratings": {
+      "rakuten": null,
+      "rakutenReviews": null,
+      "google": null,
+      "googleReviews": null,
+      "jalan": null,
+      "jalanReviews": null
+    },
+    "links": {},
+    "note": "楽天 184561，4.33／170；5x3/4x4/8x2"
+  },
+  {
+    "key": "osaka-wellstay-namba",
+    "name": {
+      "ja": "ＷＥＬＬＳＴＡＹ難波"
+    },
+    "region": "namba",
+    "category": "other",
+    "status": "not-included",
+    "criteria": [],
+    "reason": "👤 確認的清單外（候補，公寓式）；在大国町一帶",
+    "pointId": null,
+    "ratings": {
+      "rakuten": null,
+      "rakutenReviews": null,
+      "google": null,
+      "googleReviews": null,
+      "jalan": null,
+      "jalanReviews": null
+    },
+    "links": {},
+    "note": "楽天 179867，4.24／331；5x3/4x4/3x5"
+  },
+  {
+    "key": "osaka-zentis",
+    "name": {
+      "ja": "Ｚｅｎｔｉｓ　Ｏｓａｋａ（ゼンティス大阪）"
+    },
+    "region": "umeda",
+    "category": "hotel",
+    "status": "not-included",
+    "criteria": [],
+    "reason": "👤 確認的清單外（梅田第 5 間候補）；堂島，離大阪站約 0.8 km",
+    "pointId": null,
+    "ratings": {
+      "rakuten": null,
+      "rakutenReviews": null,
+      "google": null,
+      "googleReviews": null,
+      "jalan": null,
+      "jalanReviews": null
+    },
+    "links": {},
+    "note": "楽天 180526，4.73／209；四種組合都有"
+  },
+  {
+    "key": "osaka-wagyu-house",
+    "name": {
+      "ja": "和牛ハウス（旧 粉もんハウス）"
+    },
+    "region": "usj",
+    "category": "rental-house",
+    "status": "not-included",
+    "criteria": [],
+    "reason": "包棟：最多 14 人（ACO 列表），住不下 15 人",
+    "pointId": null,
+    "ratings": {
+      "rakuten": null,
+      "rakutenReviews": null,
+      "google": null,
+      "googleReviews": null,
+      "jalan": null,
+      "jalanReviews": null
+    },
+    "links": {},
+    "note": "ACO https://www.aco.co.jp/id/66972.html ；此花区、千鳥橋駅步行 4 分、2 泊以上"
+  }
+]

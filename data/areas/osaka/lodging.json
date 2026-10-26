@@ -1,0 +1,4834 @@
+[
+  {
+    "id": "osaka-hotel-nikko",
+    "type": "lodging",
+    "name": {
+      "ja": "ホテル日航大阪",
+      "zh": "大阪日航酒店"
+    },
+    "area": "osaka",
+    "region": "namba",
+    "kind": "hotel",
+    "coords": [
+      135.4997573,
+      34.6738852
+    ],
+    "coordsSource": "other",
+    "address": "大阪府大阪市中央区西心斎橋1-3-3",
+    "hours": null,
+    "closedNote": null,
+    "febNote": null,
+    "closures": [],
+    "photos": [
+      {
+        "url": "https://img.travel.rakuten.co.jp/share/HOTEL/167/167.jpg",
+        "page": "https://travel.rakuten.co.jp/HOTEL/167/167.html",
+        "kind": "rakuten",
+        "credit": "楽天トラベル（施設提供）",
+        "license": null
+      },
+      {
+        "url": "https://img.travel.rakuten.co.jp/share/HOTEL/167/167_lob.jpg",
+        "page": "https://travel.rakuten.co.jp/HOTEL/167/167.html",
+        "kind": "rakuten",
+        "credit": "楽天トラベル（施設提供）",
+        "license": null
+      },
+      {
+        "url": "https://lh3.googleusercontent.com/grass-cs/AABkmLe7_oums85cpCBk92fA3y1afaAaji-FN0JlZqorcI3nuT0389msvw8DnESAYRKJFZU2RzFyhBA8Z_WiQnVCIkzLbMgZPzrO8rAnnkbGfIr_JVYFqBmxLOUCI6MnpRJ1qz0Jcaq6Dw=w800",
+        "page": "https://maps.google.com/?cid=16895646082966114071",
+        "kind": "google",
+        "credit": "Google マップ（施設或使用者上傳）",
+        "license": null
+      }
+    ],
+    "links": {
+      "official": "https://www.hno.co.jp/",
+      "googleMaps": "https://maps.google.com/?cid=16895646082966114071"
+    },
+    "tags": [],
+    "tier": null,
+    "nearestStation": {
+      "id": "metro-shinsaibashi",
+      "mode": "walk",
+      "minutes": 3,
+      "note": "官網：心斎橋駅 8 號出口直結，南改札步行 3 分；OSRM 3 分"
+    },
+    "pickup": null,
+    "meals": "varies",
+    "priceRange": "每人約 12,180～16,000 円（素泊；詳見 prices）",
+    "prices": [
+      {
+        "plan": "素泊 楽天 15 人組合最低價（【早期でお得】90日前までの予約がお得！素泊まりプラン）",
+        "unit": "per-person",
+        "adult": 12180,
+        "child": null,
+        "currency": "JPY",
+        "season": "2027-02-11（四）1 泊，5 間 × 3 人（大人）有空房時的最低價",
+        "note": "房型：スタンダードツイン・トリプル【禁煙】。楽天 API 空室検索（查詢 2026-10-26），含稅、不含入湯稅等。這天有空房的組合：5x3。",
+        "source": "rakuten-api",
+        "url": "https://hotel.travel.rakuten.co.jp/hotelinfo/plan/167?f_nen1=2027&f_tuki1=2&f_hi1=11&f_nen2=2027&f_tuki2=2&f_hi2=12&f_heya_su=5&f_otona_su=3&f_s1=0&f_s2=0&f_y1=0&f_y2=0&f_y3=0&f_y4=0",
+        "retrieved": "2026-10-26"
+      },
+      {
+        "plan": "素泊 楽天 15 人組合最低價（【早期でお得】90日前までの予約がお得！素泊まりプラン）",
+        "unit": "per-person",
+        "adult": 12180,
+        "child": null,
+        "currency": "JPY",
+        "season": "2027-02-12（五）1 泊，5 間 × 3 人（大人）有空房時的最低價",
+        "note": "房型：スタンダードツイン・トリプル【禁煙】。楽天 API 空室検索（查詢 2026-10-26），含稅、不含入湯稅等。這天有空房的組合：5x3。",
+        "source": "rakuten-api",
+        "url": "https://hotel.travel.rakuten.co.jp/hotelinfo/plan/167?f_nen1=2027&f_tuki1=2&f_hi1=12&f_nen2=2027&f_tuki2=2&f_hi2=13&f_heya_su=5&f_otona_su=3&f_s1=0&f_s2=0&f_y1=0&f_y2=0&f_y3=0&f_y4=0",
+        "retrieved": "2026-10-26"
+      },
+      {
+        "plan": "素泊 大人 3＋小學生高年級 1（1 室）最低價（【SAVER】シンプルステイ＿素泊まりプラン）",
+        "unit": "per-person",
+        "adult": 16000,
+        "child": null,
+        "currency": "JPY",
+        "season": "2027-02-11（四）1 泊，1 間 大人 3＋小學生高年級 1",
+        "note": "房型：デラックスファミリールーム【禁煙】。一間總價 64,000 円；API 的小學生價和大人相同（可能以房計價或兒童同價），兒童價不推算。楽天 API（查詢 2026-10-26）。",
+        "source": "rakuten-api",
+        "url": "https://hotel.travel.rakuten.co.jp/hotelinfo/plan/167?f_nen1=2027&f_tuki1=2&f_hi1=11&f_nen2=2027&f_tuki2=2&f_hi2=12&f_heya_su=1&f_otona_su=3&f_s1=1&f_s2=0&f_y1=0&f_y2=0&f_y3=0&f_y4=0",
+        "retrieved": "2026-10-26"
+      }
+    ],
+    "luggage": null,
+    "checkIn": "15:00",
+    "checkOut": "11:00",
+    "rakutenHotelNo": 167,
+    "dinnerAccess": null,
+    "group": {
+      "totalRooms": 605,
+      "roomTypes": [],
+      "maxGuests": null,
+      "wholeRental": false,
+      "pickupCapacity": null,
+      "nearbyCombos": [],
+      "note": null
+    },
+    "ratings": {
+      "rakuten": 4.5,
+      "rakutenReviews": 5752,
+      "jalan": null,
+      "jalanReviews": null,
+      "booking": null,
+      "google": 4.2,
+      "googleReviews": 6636,
+      "rakutenService": 4.58,
+      "rakutenLocation": 4.58,
+      "rakutenRoom": 4.53,
+      "rakutenEquipment": 4.45,
+      "rakutenBath": 4.41,
+      "rakutenMeal": 4.47,
+      "note": null
+    },
+    "accessibility": {
+      "elevator": null,
+      "beds": "全室床（房型未載）",
+      "stairs": null,
+      "kids": null,
+      "note": "605 室；3 人以上房型官網未載（2014 年新聞稿提過增設トリプル，太舊沒採用）"
+    },
+    "reservation": {
+      "methods": [
+        "rakuten",
+        "phone"
+      ],
+      "phone": "06-6244-1111",
+      "url": "https://www.hno.co.jp/",
+      "groupNote": null
+    },
+    "bookingLinks": {
+      "rakuten": "https://travel.rakuten.co.jp/HOTEL/167/167.html"
+    },
+    "sources": [
+      {
+        "type": "booking-site",
+        "url": "https://travel.rakuten.co.jp/HOTEL/167/167.html",
+        "retrieved": "2026-10-26",
+        "note": "楽天トラベル API（SimpleHotelSearch、HotelDetailSearch、VacantHotelSearch，scripts/rakuten.mjs）：評分、細項評分、房數、check-in/out、照片、2027-02-11／2027-02-12 的空房與價格"
+      },
+      {
+        "type": "google-maps",
+        "url": "https://maps.google.com/?cid=16895646082966114071",
+        "retrieved": "2026-10-26",
+        "note": "Google 地圖「ホテル日航大阪」：星數、評論數、座標、照片"
+      },
+      {
+        "type": "official",
+        "url": "https://www.hno.co.jp/",
+        "retrieved": "2026-10-26",
+        "note": "地址電話、心斎橋駅 8 號出口直結"
+      }
+    ],
+    "verified": false,
+    "extra": {
+      "conflicts": [
+        "早餐有料／含早餐方案免費說法不一（方案差異）"
+      ],
+      "breakfast": "和食ビュッフェ（だし風味），價格 null（楽天 2026-10 頁面）",
+      "stationAccess": "Osaka Metro 御堂筋線・長堀鶴見緑地線 心斎橋駅 8 號出口直結，南改札步行 3 分（官網）",
+      "rakutenVacancy": {
+        "retrieved": "2026-10-26",
+        "dates": [
+          "2027-02-11",
+          "2027-02-12"
+        ],
+        "combos": [
+          "8x2",
+          "5x3",
+          "4x4",
+          "3x5"
+        ],
+        "available": {
+          "2027-02-11": [
+            "5x3"
+          ],
+          "2027-02-12": [
+            "5x3"
+          ]
+        },
+        "note": "15 人（全部以大人計）分 N 間同住的組合，有空房的列出；只代表查詢當天楽天上的庫存"
+      }
+    },
+    "summary": null,
+    "assessment": null
+  },
+  {
+    "id": "osaka-swissotel-nankai",
+    "type": "lodging",
+    "name": {
+      "ja": "スイスホテル南海大阪",
+      "zh": "大阪南海瑞士酒店"
+    },
+    "area": "osaka",
+    "region": "namba",
+    "kind": "hotel",
+    "coords": [
+      135.5015075,
+      34.6638892
+    ],
+    "coordsSource": "other",
+    "address": "大阪府大阪市中央区難波5-1-60",
+    "hours": null,
+    "closedNote": null,
+    "febNote": null,
+    "closures": [],
+    "photos": [
+      {
+        "url": "https://img.travel.rakuten.co.jp/share/HOTEL/1181/1181.jpg",
+        "page": "https://travel.rakuten.co.jp/HOTEL/1181/1181.html",
+        "kind": "rakuten",
+        "credit": "楽天トラベル（施設提供）",
+        "license": null
+      },
+      {
+        "url": "https://img.travel.rakuten.co.jp/share/HOTEL/1181/1181_s.jpg",
+        "page": "https://travel.rakuten.co.jp/HOTEL/1181/1181.html",
+        "kind": "rakuten",
+        "credit": "楽天トラベル（施設提供）",
+        "license": null
+      },
+      {
+        "url": "https://lh3.googleusercontent.com/grass-cs/AABkmLcRIbD-4ysD-0Xe60OCnGJ-SbGyZAL3C1rcgWGvoNWJj-fmQCxZo7GfC2fKBBsw-QRp1VIUZ_fe_iaKvBP7V2RYKFA2kzITRAl-Bu0FySxs-HeC1tdJXbK2TWFqOpRfP827cSfSberIiNYF=w800",
+        "page": "https://maps.google.com/?cid=5181044893444391229",
+        "kind": "google",
+        "credit": "Google マップ（施設或使用者上傳）",
+        "license": null
+      }
+    ],
+    "links": {
+      "official": "https://www.swissotel.com/hotels/nankai-osaka/",
+      "googleMaps": "https://maps.google.com/?cid=5181044893444391229"
+    },
+    "tags": [],
+    "tier": null,
+    "nearestStation": {
+      "id": "nankai-namba",
+      "mode": "walk",
+      "minutes": 4,
+      "note": "楽天：南海なんば駅直結；OSRM 4 分"
+    },
+    "pickup": "南海なんば駅直結，空港特急ラピート到關西機場約 40 分（楽天）",
+    "meals": "varies",
+    "priceRange": "每人約 17,100 円（素泊；詳見 prices）",
+    "prices": [
+      {
+        "plan": "素泊 楽天 15 人組合最低價（【早割プラン】21日前まで受付）",
+        "unit": "per-person",
+        "adult": 17100,
+        "child": null,
+        "currency": "JPY",
+        "season": "2027-02-11（四）1 泊，5 間 × 3 人（大人）有空房時的最低價",
+        "note": "房型：スイス アドバンテージ ルーム ツイン【禁煙】。楽天 API 空室検索（查詢 2026-10-26），含稅、不含入湯稅等。這天有空房的組合：5x3。",
+        "source": "rakuten-api",
+        "url": "https://hotel.travel.rakuten.co.jp/hotelinfo/plan/1181?f_nen1=2027&f_tuki1=2&f_hi1=11&f_nen2=2027&f_tuki2=2&f_hi2=12&f_heya_su=5&f_otona_su=3&f_s1=0&f_s2=0&f_y1=0&f_y2=0&f_y3=0&f_y4=0",
+        "retrieved": "2026-10-26"
+      },
+      {
+        "plan": "素泊 楽天 15 人組合最低價（【早割プラン】21日前まで受付）",
+        "unit": "per-person",
+        "adult": 17100,
+        "child": null,
+        "currency": "JPY",
+        "season": "2027-02-12（五）1 泊，5 間 × 3 人（大人）有空房時的最低價",
+        "note": "房型：スイス アドバンテージ ルーム ツイン【禁煙】。楽天 API 空室検索（查詢 2026-10-26），含稅、不含入湯稅等。這天有空房的組合：5x3。",
+        "source": "rakuten-api",
+        "url": "https://hotel.travel.rakuten.co.jp/hotelinfo/plan/1181?f_nen1=2027&f_tuki1=2&f_hi1=12&f_nen2=2027&f_tuki2=2&f_hi2=13&f_heya_su=5&f_otona_su=3&f_s1=0&f_s2=0&f_y1=0&f_y2=0&f_y3=0&f_y4=0",
+        "retrieved": "2026-10-26"
+      }
+    ],
+    "luggage": "事先聯絡可由ベルデスク保管至到達（楽天）",
+    "checkIn": "15:00",
+    "checkOut": "11:00",
+    "rakutenHotelNo": 1181,
+    "dinnerAccess": null,
+    "group": {
+      "totalRooms": 546,
+      "roomTypes": [
+        "Swiss Advantage／Swiss Select 32㎡ シングルベッド 2 台 定員 3 名（travelist 搜尋摘要，未確認）"
+      ],
+      "maxGuests": null,
+      "wholeRental": false,
+      "pickupCapacity": null,
+      "nearbyCombos": [],
+      "note": null
+    },
+    "ratings": {
+      "rakuten": 4.43,
+      "rakutenReviews": 2145,
+      "jalan": null,
+      "jalanReviews": null,
+      "booking": null,
+      "google": 4.3,
+      "googleReviews": 5994,
+      "rakutenService": 4.5,
+      "rakutenLocation": 4.62,
+      "rakutenRoom": 4.39,
+      "rakutenEquipment": 4.41,
+      "rakutenBath": 4.17,
+      "rakutenMeal": 4.35,
+      "note": null
+    },
+    "accessibility": {
+      "elevator": null,
+      "beds": "床；32㎡ 房型可住 3 人（搜尋摘要，未確認）",
+      "stairs": null,
+      "kids": "12 歲以下與大人同床免加價；添寢ツイン最多 2 名、クイーン／キング 1 名；嬰兒床 2 歲以下 15kg 內需事先聯絡（楽天 2026-10 頁面）",
+      "note": "バリアフリールーム、貸出車椅子（楽天）"
+    },
+    "reservation": {
+      "methods": [
+        "rakuten",
+        "phone"
+      ],
+      "phone": "06-6646-1111",
+      "url": "https://www.swissotel.com/hotels/nankai-osaka/",
+      "groupNote": null
+    },
+    "bookingLinks": {
+      "rakuten": "https://travel.rakuten.co.jp/HOTEL/1181/1181.html"
+    },
+    "sources": [
+      {
+        "type": "booking-site",
+        "url": "https://travel.rakuten.co.jp/HOTEL/1181/1181.html",
+        "retrieved": "2026-10-26",
+        "note": "楽天トラベル API（SimpleHotelSearch、HotelDetailSearch、VacantHotelSearch，scripts/rakuten.mjs）：評分、細項評分、房數、check-in/out、照片、2027-02-11／2027-02-12 的空房與價格"
+      },
+      {
+        "type": "google-maps",
+        "url": "https://maps.google.com/?cid=5181044893444391229",
+        "retrieved": "2026-10-26",
+        "note": "Google 地圖「スイスホテル南海大阪」：星數、評論數、座標、照片"
+      },
+      {
+        "type": "official",
+        "url": "https://www.swissotel.com/hotels/nankai-osaka/",
+        "retrieved": "2026-10-26",
+        "note": "546 室、南海なんば駅上方、電話"
+      },
+      {
+        "type": "other",
+        "url": "https://travelist.jp/hotel/detail/4023577",
+        "retrieved": "2026-10-26",
+        "note": "房型定員 3 名（搜尋摘要）"
+      }
+    ],
+    "verified": false,
+    "extra": {
+      "breakfast": "Table36 自助早餐，價格 null（官網）",
+      "stationAccess": "南海なんば駅直結，地鐵なんば駅即達，關西機場空港特急約 40 分，JR 新大阪約 15 分（楽天）",
+      "rakutenVacancy": {
+        "retrieved": "2026-10-26",
+        "dates": [
+          "2027-02-11",
+          "2027-02-12"
+        ],
+        "combos": [
+          "8x2",
+          "5x3",
+          "4x4",
+          "3x5"
+        ],
+        "available": {
+          "2027-02-11": [
+            "5x3"
+          ],
+          "2027-02-12": [
+            "5x3"
+          ]
+        },
+        "note": "15 人（全部以大人計）分 N 間同住的組合，有空房的列出；只代表查詢當天楽天上的庫存"
+      }
+    },
+    "summary": null,
+    "assessment": null
+  },
+  {
+    "id": "osaka-holiday-inn-namba",
+    "type": "lodging",
+    "name": {
+      "ja": "ホリデイ・イン大阪難波",
+      "zh": "大阪難波假日酒店"
+    },
+    "area": "osaka",
+    "region": "namba",
+    "kind": "hotel",
+    "coords": [
+      135.503646,
+      34.6697691
+    ],
+    "coordsSource": "other",
+    "address": "大阪府大阪市中央区宗右衛門町5-15",
+    "hours": null,
+    "closedNote": null,
+    "febNote": null,
+    "closures": [],
+    "photos": [
+      {
+        "url": "https://img.travel.rakuten.co.jp/share/HOTEL/75192/75192.jpg",
+        "page": "https://travel.rakuten.co.jp/HOTEL/75192/75192.html",
+        "kind": "rakuten",
+        "credit": "楽天トラベル（施設提供）",
+        "license": null
+      },
+      {
+        "url": "https://img.travel.rakuten.co.jp/share/HOTEL/75192/75192_sin.jpg",
+        "page": "https://travel.rakuten.co.jp/HOTEL/75192/75192.html",
+        "kind": "rakuten",
+        "credit": "楽天トラベル（施設提供）",
+        "license": null
+      },
+      {
+        "url": "https://lh3.googleusercontent.com/grass-cs/AABkmLcEgSMYwj-U8dx1JKqL2Fh5YZ0uz1hS-0zeBLS9pXm5IfO7g4u6UACBV8U5tYXO8CiDawUdsoD5UyxQrKJF2zXF64Jc-5o_Asb7a_JTilm_OU606a4opyfUlTN7H6BLsyO0bJ2s=w800",
+        "page": "https://maps.google.com/?cid=11597669690148730669",
+        "kind": "google",
+        "credit": "Google マップ（施設或使用者上傳）",
+        "license": null
+      }
+    ],
+    "links": {
+      "official": "https://www.ihg.com/holidayinn/hotels/jp/ja/osaka/osana/hoteldetail",
+      "googleMaps": "https://maps.google.com/?cid=11597669690148730669"
+    },
+    "tags": [],
+    "tier": null,
+    "nearestStation": {
+      "id": "metro-nippombashi",
+      "mode": "walk",
+      "minutes": 8,
+      "note": "楽天：なんば駅 徒歩 7 分、なんばウォーク B20 出口 3 分；OSRM 到日本橋站 8 分"
+    },
+    "pickup": null,
+    "meals": "varies",
+    "priceRange": "每人約 8,150～15,500 円（スーペリアトリプル＋ソファベッド／素泊；詳見 prices）",
+    "prices": [
+      {
+        "plan": "スーペリアトリプル＋ソファベッド",
+        "unit": "per-person",
+        "adult": 15500,
+        "child": null,
+        "currency": "JPY",
+        "season": "不明",
+        "note": "じゃらん摘要，大人 1 名稅込起價，未確認",
+        "source": "jalan",
+        "url": "https://www.jalan.net/yad395776/",
+        "retrieved": "2026-10-26"
+      },
+      {
+        "plan": "素泊 楽天 15 人組合最低價（【90日前までの早期予約＆事前決済でお得】Book Early ＆ Save（変更返金不可）食事なし）",
+        "unit": "per-person",
+        "adult": 8533,
+        "child": null,
+        "currency": "JPY",
+        "season": "2027-02-11（四）1 泊，5 間 × 3 人（大人）有空房時的最低價",
+        "note": "房型：【禁煙】スタンダードトリプル（20平米）。楽天 API 空室検索（查詢 2026-10-26），含稅、不含入湯稅等。這天有空房的組合：8x2、5x3。",
+        "source": "rakuten-api",
+        "url": "https://hotel.travel.rakuten.co.jp/hotelinfo/plan/75192?f_nen1=2027&f_tuki1=2&f_hi1=11&f_nen2=2027&f_tuki2=2&f_hi2=12&f_heya_su=5&f_otona_su=3&f_s1=0&f_s2=0&f_y1=0&f_y2=0&f_y3=0&f_y4=0",
+        "retrieved": "2026-10-26"
+      },
+      {
+        "plan": "素泊 楽天 15 人組合最低價（【90日前までの早期予約＆事前決済でお得】Book Early ＆ Save（変更返金不可）食事なし）",
+        "unit": "per-person",
+        "adult": 8400,
+        "child": null,
+        "currency": "JPY",
+        "season": "2027-02-12（五）1 泊，5 間 × 3 人（大人）有空房時的最低價",
+        "note": "房型：【禁煙】スタンダードトリプル（20平米）。楽天 API 空室検索（查詢 2026-10-26），含稅、不含入湯稅等。這天有空房的組合：8x2、5x3。",
+        "source": "rakuten-api",
+        "url": "https://hotel.travel.rakuten.co.jp/hotelinfo/plan/75192?f_nen1=2027&f_tuki1=2&f_hi1=12&f_nen2=2027&f_tuki2=2&f_hi2=13&f_heya_su=5&f_otona_su=3&f_s1=0&f_s2=0&f_y1=0&f_y2=0&f_y3=0&f_y4=0",
+        "retrieved": "2026-10-26"
+      },
+      {
+        "plan": "素泊 大人 3＋小學生高年級 1（1 室）最低價（【90日前までの早期予約＆事前決済でお得】Book Early ＆ Save（変更返金不可）食事なし）",
+        "unit": "per-person",
+        "adult": 8150,
+        "child": null,
+        "currency": "JPY",
+        "season": "2027-02-11（四）1 泊，1 間 大人 3＋小學生高年級 1",
+        "note": "房型：【禁煙】スーペリアトリプル＋ソファベッド（25.5平米）。一間總價 32,600 円；API 的小學生價和大人相同（可能以房計價或兒童同價），兒童價不推算。楽天 API（查詢 2026-10-26）。",
+        "source": "rakuten-api",
+        "url": "https://hotel.travel.rakuten.co.jp/hotelinfo/plan/75192?f_nen1=2027&f_tuki1=2&f_hi1=11&f_nen2=2027&f_tuki2=2&f_hi2=12&f_heya_su=1&f_otona_su=3&f_s1=1&f_s2=0&f_y1=0&f_y2=0&f_y3=0&f_y4=0",
+        "retrieved": "2026-10-26"
+      }
+    ],
+    "luggage": null,
+    "checkIn": "15:00",
+    "checkOut": "11:00",
+    "rakutenHotelNo": 75192,
+    "dinnerAccess": null,
+    "group": {
+      "totalRooms": 314,
+      "roomTypes": [
+        "スーペリアトリプル＋ソファベッド 25.5㎡ ベッド 4 台 最多 4 人（じゃらん摘要）",
+        "スタンダードトリプル 20㎡（じゃらん摘要）"
+      ],
+      "maxGuests": null,
+      "wholeRental": false,
+      "pickupCapacity": null,
+      "nearbyCombos": [],
+      "note": null
+    },
+    "ratings": {
+      "rakuten": 4.78,
+      "rakutenReviews": 2137,
+      "jalan": null,
+      "jalanReviews": null,
+      "booking": null,
+      "google": 4,
+      "googleReviews": 2588,
+      "rakutenService": null,
+      "rakutenLocation": null,
+      "rakutenRoom": null,
+      "rakutenEquipment": null,
+      "rakutenBath": null,
+      "rakutenMeal": null,
+      "note": null
+    },
+    "accessibility": {
+      "elevator": null,
+      "beds": "スーペリアトリプル＋ソファベッド 最多 4 人（じゃらん摘要）",
+      "stairs": null,
+      "kids": null,
+      "note": "バリアフリールーム（楽天）；官網 403 讀不到"
+    },
+    "reservation": {
+      "methods": [
+        "rakuten",
+        "phone"
+      ],
+      "phone": "06-6212-7999",
+      "url": "https://www.ihg.com/holidayinn/hotels/jp/ja/osaka/osana/hoteldetail",
+      "groupNote": null
+    },
+    "bookingLinks": {
+      "rakuten": "https://travel.rakuten.co.jp/HOTEL/75192/75192.html"
+    },
+    "sources": [
+      {
+        "type": "booking-site",
+        "url": "https://travel.rakuten.co.jp/HOTEL/75192/75192.html",
+        "retrieved": "2026-10-26",
+        "note": "楽天トラベル API（SimpleHotelSearch、HotelDetailSearch、VacantHotelSearch，scripts/rakuten.mjs）：評分、細項評分、房數、check-in/out、照片、2027-02-11／2027-02-12 的空房與價格"
+      },
+      {
+        "type": "google-maps",
+        "url": "https://maps.google.com/?cid=11597669690148730669",
+        "retrieved": "2026-10-26",
+        "note": "Google 地圖「Holiday Inn Osaka Namba by IHG」：星數、評論數、座標、照片"
+      },
+      {
+        "type": "booking-site",
+        "url": "https://www.jalan.net/yad395776/",
+        "retrieved": "2026-10-26",
+        "note": "房型與起價（搜尋摘要）"
+      }
+    ],
+    "verified": false,
+    "extra": {
+      "breakfast": "自助（楽天）；有來源稱コンチネンタル 7:00-10:00 有料，價格 null",
+      "stationAccess": "地下鉄御堂筋・四ツ橋・千日前線、近鉄、南海なんば駅 徒歩 7 分（なんばウォーク B20 出口 3 分）（楽天）",
+      "rakutenVacancy": {
+        "retrieved": "2026-10-26",
+        "dates": [
+          "2027-02-11",
+          "2027-02-12"
+        ],
+        "combos": [
+          "8x2",
+          "5x3",
+          "4x4",
+          "3x5"
+        ],
+        "available": {
+          "2027-02-11": [
+            "8x2",
+            "5x3"
+          ],
+          "2027-02-12": [
+            "8x2",
+            "5x3"
+          ]
+        },
+        "note": "15 人（全部以大人計）分 N 間同住的組合，有空房的列出；只代表查詢當天楽天上的庫存"
+      }
+    },
+    "summary": null,
+    "assessment": null
+  },
+  {
+    "id": "osaka-monterey-grasmere",
+    "type": "lodging",
+    "name": {
+      "ja": "ホテルモントレ グラスミア大阪",
+      "zh": "大阪格拉斯麥爾蒙特利酒店"
+    },
+    "area": "osaka",
+    "region": "namba",
+    "kind": "hotel",
+    "coords": [
+      135.4963495,
+      34.667047
+    ],
+    "coordsSource": "other",
+    "address": "大阪府大阪市浪速区湊町1-2-3",
+    "hours": null,
+    "closedNote": null,
+    "febNote": null,
+    "closures": [],
+    "photos": [
+      {
+        "url": "https://img.travel.rakuten.co.jp/share/HOTEL/76887/76887.jpg",
+        "page": "https://travel.rakuten.co.jp/HOTEL/76887/76887.html",
+        "kind": "rakuten",
+        "credit": "楽天トラベル（施設提供）",
+        "license": null
+      },
+      {
+        "url": "https://img.travel.rakuten.co.jp/share/HOTEL/76887/76887_sin.jpg",
+        "page": "https://travel.rakuten.co.jp/HOTEL/76887/76887.html",
+        "kind": "rakuten",
+        "credit": "楽天トラベル（施設提供）",
+        "license": null
+      },
+      {
+        "url": "https://lh3.googleusercontent.com/grass-cs/AABkmLd0_IHPKH2ljabC1qIRrjITvicpSs6tQRlDypMxtcxCT4-Djs8PHAHhvKVTdfuZY6sVR5jqQ0GnOMfBNgaVl8OnxarT8appYIq6BXhX6XiTuw4TYJ_6oIQNkHULHJ0JZf348PqEtw=w800",
+        "page": "https://maps.google.com/?cid=11801764483374970226",
+        "kind": "google",
+        "credit": "Google マップ（施設或使用者上傳）",
+        "license": null
+      }
+    ],
+    "links": {
+      "official": "https://www.hotelmonterey.co.jp/grasmere_osaka/",
+      "instagram": "@hotelmonterey",
+      "googleMaps": "https://maps.google.com/?cid=11801764483374970226"
+    },
+    "tags": [],
+    "tier": null,
+    "nearestStation": {
+      "id": "osaka-namba",
+      "mode": "walk",
+      "minutes": 4,
+      "note": "官網：四つ橋線なんば 30 號出口直結、近鉄・阪神大阪難波 西改札約 1 分、JR 難波約 1 分；OSRM 到近鐵大阪難波 4 分"
+    },
+    "pickup": "和 OCAT（大阪城市航空總站）相鄰：關西機場直達巴士約 48 分（官網）",
+    "meals": "varies",
+    "priceRange": "每人約 2,000～11,930 円（朝食／素泊；詳見 prices）",
+    "prices": [
+      {
+        "plan": "朝食 和洋ブッフェ 大人",
+        "unit": "per-person",
+        "adult": 4500,
+        "child": null,
+        "currency": "JPY",
+        "season": null,
+        "note": "2026-10 頁面",
+        "source": "official",
+        "url": "https://www.hotelmonterey.co.jp/grasmere_osaka/stay/breakfast/",
+        "retrieved": "2026-10-26"
+      },
+      {
+        "plan": "朝食 小學生",
+        "unit": "per-person",
+        "adult": 2000,
+        "child": null,
+        "currency": "JPY",
+        "season": null,
+        "note": "2026-10 頁面",
+        "source": "official",
+        "url": "https://www.hotelmonterey.co.jp/grasmere_osaka/stay/breakfast/",
+        "retrieved": "2026-10-26"
+      },
+      {
+        "plan": "素泊 楽天 15 人組合最低價（【返金不可】事前決済限定のご予約でお得に宿泊プラン＜素泊まり＞）",
+        "unit": "per-person",
+        "adult": 10872,
+        "child": null,
+        "currency": "JPY",
+        "season": "2027-02-11（四）1 泊，5 間 × 3 人（大人）有空房時的最低價",
+        "note": "房型：トリプルルーム【禁煙】２６平米。楽天 API 空室検索（查詢 2026-10-26），含稅、不含入湯稅等。這天有空房的組合：5x3。",
+        "source": "rakuten-api",
+        "url": "https://hotel.travel.rakuten.co.jp/hotelinfo/plan/76887?f_nen1=2027&f_tuki1=2&f_hi1=11&f_nen2=2027&f_tuki2=2&f_hi2=12&f_heya_su=5&f_otona_su=3&f_s1=0&f_s2=0&f_y1=0&f_y2=0&f_y3=0&f_y4=0",
+        "retrieved": "2026-10-26"
+      },
+      {
+        "plan": "素泊 楽天 15 人組合最低價（【返金不可】事前決済限定のご予約でお得に宿泊プラン＜素泊まり＞）",
+        "unit": "per-person",
+        "adult": 10872,
+        "child": null,
+        "currency": "JPY",
+        "season": "2027-02-12（五）1 泊，5 間 × 3 人（大人）有空房時的最低價",
+        "note": "房型：トリプルルーム【禁煙】２６平米。楽天 API 空室検索（查詢 2026-10-26），含稅、不含入湯稅等。這天有空房的組合：5x3。",
+        "source": "rakuten-api",
+        "url": "https://hotel.travel.rakuten.co.jp/hotelinfo/plan/76887?f_nen1=2027&f_tuki1=2&f_hi1=12&f_nen2=2027&f_tuki2=2&f_hi2=13&f_heya_su=5&f_otona_su=3&f_s1=0&f_s2=0&f_y1=0&f_y2=0&f_y3=0&f_y4=0",
+        "retrieved": "2026-10-26"
+      },
+      {
+        "plan": "素泊 大人 3＋小學生高年級 1（1 室）最低價（【返金不可】事前決済限定のご予約でお得に宿泊プラン＜素泊まり＞）",
+        "unit": "per-person",
+        "adult": 11930,
+        "child": null,
+        "currency": "JPY",
+        "season": "2027-02-11（四）1 泊，1 間 大人 3＋小學生高年級 1",
+        "note": "房型：【夜景確約】コーナーツインルーム ファミリーフォース。一間總價 47,720 円；API 的小學生價和大人相同（可能以房計價或兒童同價），兒童價不推算。楽天 API（查詢 2026-10-26）。",
+        "source": "rakuten-api",
+        "url": "https://hotel.travel.rakuten.co.jp/hotelinfo/plan/76887?f_nen1=2027&f_tuki1=2&f_hi1=11&f_nen2=2027&f_tuki2=2&f_hi2=12&f_heya_su=1&f_otona_su=3&f_s1=1&f_s2=0&f_y1=0&f_y2=0&f_y3=0&f_y4=0",
+        "retrieved": "2026-10-26"
+      }
+    ],
+    "luggage": "官網未記載寄放；楽天僅列宅配服務",
+    "checkIn": "15:00",
+    "checkOut": "11:00",
+    "rakutenHotelNo": 76887,
+    "dinnerAccess": null,
+    "group": {
+      "totalRooms": 348,
+      "roomTypes": [
+        "トリプル 26㎡ ベッド120×203 ＋エキストラベッド110×188 3人",
+        "ジュニアスイート 59㎡ ベッド138×203 ＋エキストラベッド 最大4人"
+      ],
+      "maxGuests": null,
+      "wholeRental": false,
+      "pickupCapacity": null,
+      "nearbyCombos": [],
+      "note": "官網未寫團體規定；需電話洽詢"
+    },
+    "ratings": {
+      "rakuten": 4.44,
+      "rakutenReviews": 3811,
+      "jalan": null,
+      "jalanReviews": null,
+      "booking": null,
+      "google": 4.2,
+      "googleReviews": 4580,
+      "rakutenService": 4.47,
+      "rakutenLocation": 4.46,
+      "rakutenRoom": 4.39,
+      "rakutenEquipment": 4.34,
+      "rakutenBath": 4.25,
+      "rakutenMeal": 4.66,
+      "note": null
+    },
+    "accessibility": {
+      "elevator": null,
+      "beds": "トリプル 為寬雙床＋加床；ジュニアスイート 最多 4 人",
+      "stairs": null,
+      "kids": "未就學兒添寢免費（1床1名）；小學生以上大人價；客室有嬰兒床（官網客室頁、楽天）",
+      "note": "輪椅出借、無障礙客房（楽天）；上客房要在 22F 大廳轉電梯（評論）"
+    },
+    "reservation": {
+      "methods": [
+        "rakuten",
+        "phone"
+      ],
+      "phone": "06-6645-7111",
+      "url": "https://www.hotelmonterey.co.jp/grasmere_osaka/",
+      "groupNote": "官網未寫團體規定；需電話洽詢"
+    },
+    "bookingLinks": {
+      "rakuten": "https://travel.rakuten.co.jp/HOTEL/76887/76887.html"
+    },
+    "sources": [
+      {
+        "type": "booking-site",
+        "url": "https://travel.rakuten.co.jp/HOTEL/76887/76887.html",
+        "retrieved": "2026-10-26",
+        "note": "楽天トラベル API（SimpleHotelSearch、HotelDetailSearch、VacantHotelSearch，scripts/rakuten.mjs）：評分、細項評分、房數、check-in/out、照片、2027-02-11／2027-02-12 的空房與價格"
+      },
+      {
+        "type": "google-maps",
+        "url": "https://maps.google.com/?cid=11801764483374970226",
+        "retrieved": "2026-10-26",
+        "note": "Google 地圖「ホテルモントレ グラスミア大阪」：星數、評論數、座標、照片"
+      },
+      {
+        "type": "official",
+        "url": "https://www.hotelmonterey.co.jp/grasmere_osaka/",
+        "retrieved": "2026-10-26",
+        "note": "電話地址、OCAT"
+      },
+      {
+        "type": "official",
+        "url": "https://www.hotelmonterey.co.jp/grasmere_osaka/stay/",
+        "retrieved": "2026-10-26",
+        "note": "房型一覽、check-in/out"
+      },
+      {
+        "type": "official",
+        "url": "https://www.hotelmonterey.co.jp/grasmere_osaka/stay/room/985d60b8b0e936d.html",
+        "retrieved": "2026-10-26",
+        "note": "トリプル規格"
+      },
+      {
+        "type": "official",
+        "url": "https://www.hotelmonterey.co.jp/grasmere_osaka/stay/room/155db93053d003b.html",
+        "retrieved": "2026-10-26",
+        "note": "ジュニアスイート規格"
+      },
+      {
+        "type": "official",
+        "url": "https://www.hotelmonterey.co.jp/grasmere_osaka/stay/breakfast/",
+        "retrieved": "2026-10-26",
+        "note": "早餐價格"
+      },
+      {
+        "type": "official",
+        "url": "https://www.hotelmonterey.co.jp/grasmere_osaka/access/",
+        "retrieved": "2026-10-26",
+        "note": "交通、機場巴士"
+      }
+    ],
+    "verified": false,
+    "extra": {
+      "breakfast": "和洋ブッフェ 大人4,500円、小学生2,000円、未就學免費；6:30～10:00（LO 9:30）；會場為宴會廳（楽天）（官網 breakfast 頁）",
+      "stationAccess": "JR難波駅步行約1分；Osaka Metro四つ橋線なんば北改札30號出口直結；千日前線西改札約1分；御堂筋線約5分；近鉄・阪神大阪難波西改札約1分（官網 access 頁）",
+      "rakutenVacancy": {
+        "retrieved": "2026-10-26",
+        "dates": [
+          "2027-02-11",
+          "2027-02-12"
+        ],
+        "combos": [
+          "8x2",
+          "5x3",
+          "4x4",
+          "3x5"
+        ],
+        "available": {
+          "2027-02-11": [
+            "5x3"
+          ],
+          "2027-02-12": [
+            "5x3"
+          ]
+        },
+        "note": "15 人（全部以大人計）分 N 間同住的組合，有空房的列出；只代表查詢當天楽天上的庫存"
+      }
+    },
+    "summary": null,
+    "assessment": null
+  },
+  {
+    "id": "osaka-yamatoya-honten",
+    "type": "lodging",
+    "name": {
+      "ja": "大和屋本店",
+      "zh": "大和屋本店"
+    },
+    "area": "osaka",
+    "region": "namba",
+    "kind": "ryokan",
+    "coords": [
+      135.5064597,
+      34.669222
+    ],
+    "coordsSource": "other",
+    "address": "大阪府大阪市中央区島之内2-17-4",
+    "hours": null,
+    "closedNote": null,
+    "febNote": null,
+    "closures": [],
+    "photos": [
+      {
+        "url": "https://img.travel.rakuten.co.jp/share/HOTEL/1985/1985.jpg",
+        "page": "https://travel.rakuten.co.jp/HOTEL/1985/1985.html",
+        "kind": "rakuten",
+        "credit": "楽天トラベル（施設提供）",
+        "license": null
+      },
+      {
+        "url": "https://img.travel.rakuten.co.jp/share/HOTEL/1985/1985_heya.jpg",
+        "page": "https://travel.rakuten.co.jp/HOTEL/1985/1985.html",
+        "kind": "rakuten",
+        "credit": "楽天トラベル（施設提供）",
+        "license": null
+      },
+      {
+        "url": "https://lh3.googleusercontent.com/grass-cs/AABkmLcsLg2LJ3BpBe6eTn0th0Y6ihlgM0Uw6HPXlTiQMDlKFJw_HXx0n3T8DxJHJmqByr6i6r01mojMSlmQ1hlr0zgj_qvzLxUrMrxat0m8tihLkDdos4rt553wTyhe1WCSOBLT_zJy=w800",
+        "page": "https://maps.google.com/?cid=11144228903270476576",
+        "kind": "google",
+        "credit": "Google マップ（施設或使用者上傳）",
+        "license": null
+      }
+    ],
+    "links": {
+      "official": "https://www.yamatoyahonten.co.jp/",
+      "instagram": "@yamatoya_honten",
+      "googleMaps": "https://maps.google.com/?cid=11144228903270476576"
+    },
+    "tags": [],
+    "tier": null,
+    "nearestStation": {
+      "id": "metro-nippombashi",
+      "mode": "walk",
+      "minutes": 4,
+      "note": "楽天：日本橋駅 6 號出口步行 3 分；OSRM 4 分"
+    },
+    "pickup": null,
+    "meals": "varies",
+    "priceRange": "每人約 6,160～22,000 円（團體／一泊二食／素泊；詳見 prices）",
+    "prices": [
+      {
+        "plan": "團體 おおきにコース 一泊二食",
+        "unit": "per-person",
+        "adult": 16500,
+        "child": null,
+        "currency": "JPY",
+        "season": "平日（休前日19,800）",
+        "note": "2026-10 頁面 含稅",
+        "source": "official",
+        "url": "https://www.yamatoyahonten.co.jp/banquet/",
+        "retrieved": "2026-10-26"
+      },
+      {
+        "plan": "團體 てんこもりコース 一泊二食",
+        "unit": "per-person",
+        "adult": 22000,
+        "child": null,
+        "currency": "JPY",
+        "season": "平日（休前日25,300）",
+        "note": "2026-10 頁面 含稅",
+        "source": "official",
+        "url": "https://www.yamatoyahonten.co.jp/banquet/",
+        "retrieved": "2026-10-26"
+      },
+      {
+        "plan": "團體 ふぐ鍋フルコース 一泊二食",
+        "unit": "per-person",
+        "adult": 17600,
+        "child": null,
+        "currency": "JPY",
+        "season": "平日（休前日20,900）",
+        "note": "2026-10 頁面 含稅",
+        "source": "official",
+        "url": "https://www.yamatoyahonten.co.jp/banquet/",
+        "retrieved": "2026-10-26"
+      },
+      {
+        "plan": "團體 くえ鍋フルコース（冬限定）一泊二食",
+        "unit": "per-person",
+        "adult": 22000,
+        "child": null,
+        "currency": "JPY",
+        "season": "平日（休前日25,300）",
+        "note": "2026-10 頁面 含稅",
+        "source": "official",
+        "url": "https://www.yamatoyahonten.co.jp/banquet/",
+        "retrieved": "2026-10-26"
+      },
+      {
+        "plan": "一泊二食 楽天 15 人組合最低價（関西の選りすぐり！うまいもん会席まいど コース）",
+        "unit": "per-person",
+        "adult": 15950,
+        "child": null,
+        "currency": "JPY",
+        "season": "2027-02-11（四）1 泊，3 間 × 5 人（大人）有空房時的最低價",
+        "note": "房型：【禁煙室】高層階5階以上道頓堀川側指定。楽天 API 空室検索（查詢 2026-10-26），含稅、不含入湯稅等。這天有空房的組合：8x2、5x3、4x4、3x5。",
+        "source": "rakuten-api",
+        "url": "https://hotel.travel.rakuten.co.jp/hotelinfo/plan/1985?f_nen1=2027&f_tuki1=2&f_hi1=11&f_nen2=2027&f_tuki2=2&f_hi2=12&f_heya_su=3&f_otona_su=5&f_s1=0&f_s2=0&f_y1=0&f_y2=0&f_y3=0&f_y4=0",
+        "retrieved": "2026-10-26"
+      },
+      {
+        "plan": "素泊 楽天 15 人組合最低價（【早割10％OFF／素泊まり】　和室で寛ぐ♪素泊りご宿泊プラン）",
+        "unit": "per-person",
+        "adult": 6160,
+        "child": null,
+        "currency": "JPY",
+        "season": "2027-02-11（四）1 泊，4 間 × 4 人（大人）有空房時的最低價",
+        "note": "房型：【禁煙室】和室。楽天 API 空室検索（查詢 2026-10-26），含稅、不含入湯稅等。這天有空房的組合：8x2、5x3、4x4、3x5。",
+        "source": "rakuten-api",
+        "url": "https://hotel.travel.rakuten.co.jp/hotelinfo/plan/1985?f_nen1=2027&f_tuki1=2&f_hi1=11&f_nen2=2027&f_tuki2=2&f_hi2=12&f_heya_su=4&f_otona_su=4&f_s1=0&f_s2=0&f_y1=0&f_y2=0&f_y3=0&f_y4=0",
+        "retrieved": "2026-10-26"
+      },
+      {
+        "plan": "一泊二食 楽天 15 人組合最低價（関西の選りすぐり！うまいもん会席まいど コース）",
+        "unit": "per-person",
+        "adult": 15950,
+        "child": null,
+        "currency": "JPY",
+        "season": "2027-02-12（五）1 泊，3 間 × 5 人（大人）有空房時的最低價",
+        "note": "房型：【禁煙室】高層階5階以上道頓堀川側指定。楽天 API 空室検索（查詢 2026-10-26），含稅、不含入湯稅等。這天有空房的組合：8x2、5x3、4x4、3x5。",
+        "source": "rakuten-api",
+        "url": "https://hotel.travel.rakuten.co.jp/hotelinfo/plan/1985?f_nen1=2027&f_tuki1=2&f_hi1=12&f_nen2=2027&f_tuki2=2&f_hi2=13&f_heya_su=3&f_otona_su=5&f_s1=0&f_s2=0&f_y1=0&f_y2=0&f_y3=0&f_y4=0",
+        "retrieved": "2026-10-26"
+      },
+      {
+        "plan": "素泊 楽天 15 人組合最低價（【早割10％OFF／素泊まり】　和室で寛ぐ♪素泊りご宿泊プラン）",
+        "unit": "per-person",
+        "adult": 6160,
+        "child": null,
+        "currency": "JPY",
+        "season": "2027-02-12（五）1 泊，4 間 × 4 人（大人）有空房時的最低價",
+        "note": "房型：【禁煙室】和室。楽天 API 空室検索（查詢 2026-10-26），含稅、不含入湯稅等。這天有空房的組合：8x2、5x3、4x4、3x5。",
+        "source": "rakuten-api",
+        "url": "https://hotel.travel.rakuten.co.jp/hotelinfo/plan/1985?f_nen1=2027&f_tuki1=2&f_hi1=12&f_nen2=2027&f_tuki2=2&f_hi2=13&f_heya_su=4&f_otona_su=4&f_s1=0&f_s2=0&f_y1=0&f_y2=0&f_y3=0&f_y4=0",
+        "retrieved": "2026-10-26"
+      },
+      {
+        "plan": "素泊 大人 3＋小學生高年級 1（1 室）最低價（【早割10％OFF／素泊まり】　和室で寛ぐ♪素泊りご宿泊プラン）",
+        "unit": "per-person",
+        "adult": 6160,
+        "child": null,
+        "currency": "JPY",
+        "season": "2027-02-11（四）1 泊，1 間 大人 3＋小學生高年級 1",
+        "note": "房型：【禁煙室】和室。一間總價 24,640 円；API 的小學生價和大人相同（可能以房計價或兒童同價），兒童價不推算。楽天 API（查詢 2026-10-26）。",
+        "source": "rakuten-api",
+        "url": "https://hotel.travel.rakuten.co.jp/hotelinfo/plan/1985?f_nen1=2027&f_tuki1=2&f_hi1=11&f_nen2=2027&f_tuki2=2&f_hi2=12&f_heya_su=1&f_otona_su=3&f_s1=1&f_s2=0&f_y1=0&f_y2=0&f_y3=0&f_y4=0",
+        "retrieved": "2026-10-26"
+      }
+    ],
+    "luggage": "入住前免費寄放；退房後付費置物櫃；可收宅配（官網 FAQ）",
+    "checkIn": "15:00",
+    "checkOut": "10:00",
+    "rakutenHotelNo": 1985,
+    "dinnerAccess": null,
+    "group": {
+      "totalRooms": 39,
+      "roomTypes": [
+        "小型和室 6/7.5/8帖 1～4人",
+        "中型和室 10/12.5帖 最多8人",
+        "大部屋 最多11人（無浴室廁所）",
+        "和洋室 和室12/10帖＋ツインベッド（定員未記）"
+      ],
+      "maxGuests": null,
+      "wholeRental": false,
+      "pickupCapacity": null,
+      "nearbyCombos": [],
+      "note": "15 人以上可訂一泊二食團體方案（房間由旅館分配，3～8 人一間，可能沒有房內浴廁）；大部屋最多 11 人（官網），楽天寫 6～8 人可洽詢"
+    },
+    "ratings": {
+      "rakuten": 4.36,
+      "rakutenReviews": 850,
+      "jalan": null,
+      "jalanReviews": null,
+      "booking": null,
+      "google": 3.8,
+      "googleReviews": 859,
+      "rakutenService": 4.43,
+      "rakutenLocation": 4.32,
+      "rakutenRoom": 4.32,
+      "rakutenEquipment": 4.19,
+      "rakutenBath": 4.25,
+      "rakutenMeal": null,
+      "note": null
+    },
+    "accessibility": {
+      "elevator": null,
+      "beds": "和室鋪布團；和洋室有雙床",
+      "stairs": null,
+      "kids": "小學高年級大人80%、小學低年級～幼兒60%、不要餐與布團幼兒設施費2,200日圓含稅；部分方案不同；女浴場有嬰兒床（官網 FAQ）",
+      "note": "可輪椅入住，客房廁所、大浴場有扶手，可備長者餐（楽天）"
+    },
+    "reservation": {
+      "methods": [
+        "rakuten",
+        "phone"
+      ],
+      "phone": "06-6211-3587",
+      "url": "https://www.yamatoyahonten.co.jp/",
+      "groupNote": "15 人以上可訂一泊二食團體方案（房間由旅館分配，3～8 人一間，可能沒有房內浴廁）；大部屋最多 11 人（官網），楽天寫 6～8 人可洽詢"
+    },
+    "bookingLinks": {
+      "rakuten": "https://travel.rakuten.co.jp/HOTEL/1985/1985.html"
+    },
+    "sources": [
+      {
+        "type": "booking-site",
+        "url": "https://travel.rakuten.co.jp/HOTEL/1985/1985.html",
+        "retrieved": "2026-10-26",
+        "note": "楽天トラベル API（SimpleHotelSearch、HotelDetailSearch、VacantHotelSearch，scripts/rakuten.mjs）：評分、細項評分、房數、check-in/out、照片、2027-02-11／2027-02-12 的空房與價格"
+      },
+      {
+        "type": "google-maps",
+        "url": "https://maps.google.com/?cid=11144228903270476576",
+        "retrieved": "2026-10-26",
+        "note": "Google 地圖「大和屋本店」：星數、評論數、座標、照片"
+      },
+      {
+        "type": "official",
+        "url": "https://www.yamatoyahonten.co.jp/",
+        "retrieved": "2026-10-26",
+        "note": "電話地址、IG、USJ 25 分"
+      },
+      {
+        "type": "official",
+        "url": "https://www.yamatoyahonten.co.jp/room/",
+        "retrieved": "2026-10-26",
+        "note": "房型"
+      },
+      {
+        "type": "official",
+        "url": "https://www.yamatoyahonten.co.jp/banquet/",
+        "retrieved": "2026-10-26",
+        "note": "團體方案與價格"
+      },
+      {
+        "type": "official",
+        "url": "https://www.yamatoyahonten.co.jp/faq/",
+        "retrieved": "2026-10-26",
+        "note": "兒童價、行李、check-in/out"
+      },
+      {
+        "type": "official",
+        "url": "https://www.yamatoyahonten.co.jp/facilities/",
+        "retrieved": "2026-10-26",
+        "note": "大浴場、嬰兒床"
+      }
+    ],
+    "verified": false,
+    "extra": {
+      "conflicts": [
+        "幼兒設施費：官網 2,200 日圓含稅 vs 楽天 2,000 日圓未稅",
+        "楽天寫可洽詢 6～8 人包一間房，官網寫大部屋最多 11 人"
+      ],
+      "breakfast": "有早餐方案（官網首頁方案），價格在 489ban 訂房頁；餐點在廣間",
+      "stationAccess": "Osaka Metro 日本橋站 6 號出口北行步行 3 分（楽天）",
+      "rakutenVacancy": {
+        "retrieved": "2026-10-26",
+        "dates": [
+          "2027-02-11",
+          "2027-02-12"
+        ],
+        "combos": [
+          "8x2",
+          "5x3",
+          "4x4",
+          "3x5"
+        ],
+        "available": {
+          "2027-02-11": [
+            "8x2",
+            "5x3",
+            "4x4",
+            "3x5"
+          ],
+          "2027-02-12": [
+            "8x2",
+            "5x3",
+            "4x4",
+            "3x5"
+          ]
+        },
+        "note": "15 人（全部以大人計）分 N 間同住的組合，有空房的列出；只代表查詢當天楽天上的庫存"
+      }
+    },
+    "summary": null,
+    "assessment": null
+  },
+  {
+    "id": "osaka-dormy-inn-namba",
+    "type": "lodging",
+    "name": {
+      "ja": "ドーミーインPREMIUMなんば",
+      "zh": "Dormy Inn PREMIUM 難波"
+    },
+    "area": "osaka",
+    "region": "namba",
+    "kind": "hotel",
+    "coords": [
+      135.5065461,
+      34.6709842
+    ],
+    "coordsSource": "other",
+    "address": "大阪府大阪市中央区島之内2-14-23",
+    "hours": null,
+    "closedNote": null,
+    "febNote": null,
+    "closures": [],
+    "photos": [
+      {
+        "url": "https://img.travel.rakuten.co.jp/share/HOTEL/143240/143240.jpg",
+        "page": "https://travel.rakuten.co.jp/HOTEL/143240/143240.html",
+        "kind": "rakuten",
+        "credit": "楽天トラベル（施設提供）",
+        "license": null
+      },
+      {
+        "url": "https://img.travel.rakuten.co.jp/share/HOTEL/143240/143240_kya.jpg",
+        "page": "https://travel.rakuten.co.jp/HOTEL/143240/143240.html",
+        "kind": "rakuten",
+        "credit": "楽天トラベル（施設提供）",
+        "license": null
+      },
+      {
+        "url": "https://lh3.googleusercontent.com/grass-cs/AABkmLeIQKzGyW-U7KaGucLlur9c-ymyNhU7b88XTwJwWYP4kZtodB6sr-6SZc_Tbdha_8jvydOo1u9fat3sAZ06PQoQ_TQH9egvz-5yyv7NEPtYpFX-WJVl5hofovXDFS0WIsM4cLrwPQ=w800",
+        "page": "https://maps.google.com/?cid=5528601248257082478",
+        "kind": "google",
+        "credit": "Google マップ（施設或使用者上傳）",
+        "license": null
+      }
+    ],
+    "links": {
+      "official": "https://dormy-hotels.com/dormyinn/hotels/premium_nanba/",
+      "instagram": "@dormyinn.official",
+      "googleMaps": "https://maps.google.com/?cid=5528601248257082478"
+    },
+    "tags": [],
+    "tier": null,
+    "nearestStation": {
+      "id": "metro-nagahoribashi",
+      "mode": "walk",
+      "minutes": 6,
+      "note": "官網：長堀橋駅 7 號出口步行 5 分、日本橋駅 6 號出口步行 5 分；OSRM 到長堀橋 6 分"
+    },
+    "pickup": null,
+    "meals": "varies",
+    "priceRange": "每人約 1,200～12,769 円（朝食／素泊；詳見 prices）",
+    "prices": [
+      {
+        "plan": "朝食 大人",
+        "unit": "per-person",
+        "adult": 2500,
+        "child": null,
+        "currency": "JPY",
+        "season": null,
+        "note": "2026-10 頁面 含稅",
+        "source": "official",
+        "url": "https://dormy-hotels.com/dormyinn/hotels/premium_nanba/breakfast/",
+        "retrieved": "2026-10-26"
+      },
+      {
+        "plan": "朝食 3歲～小學生",
+        "unit": "per-person",
+        "adult": 1200,
+        "child": null,
+        "currency": "JPY",
+        "season": null,
+        "note": "2026-10 頁面 含稅",
+        "source": "official",
+        "url": "https://dormy-hotels.com/dormyinn/hotels/premium_nanba/breakfast/",
+        "retrieved": "2026-10-26"
+      },
+      {
+        "plan": "素泊 楽天 15 人組合最低價（【大浴場×サウナでととのう！】ドーミーインスタンダードプラン!!＜素泊まり＞）",
+        "unit": "per-person",
+        "adult": 10424,
+        "child": null,
+        "currency": "JPY",
+        "season": "2027-02-11（四）1 泊，4 間 × 4 人（大人）有空房時的最低價",
+        "note": "房型：禁煙和洋室(2ベッドタイプ) 。楽天 API 空室検索（查詢 2026-10-26），含稅、不含入湯稅等。這天有空房的組合：8x2、5x3、4x4。",
+        "source": "rakuten-api",
+        "url": "https://hotel.travel.rakuten.co.jp/hotelinfo/plan/143240?f_nen1=2027&f_tuki1=2&f_hi1=11&f_nen2=2027&f_tuki2=2&f_hi2=12&f_heya_su=4&f_otona_su=4&f_s1=0&f_s2=0&f_y1=0&f_y2=0&f_y3=0&f_y4=0",
+        "retrieved": "2026-10-26"
+      },
+      {
+        "plan": "素泊 楽天 15 人組合最低價（【大浴場×サウナでととのう！】ドーミーインスタンダードプラン!!＜素泊まり＞）",
+        "unit": "per-person",
+        "adult": 10424,
+        "child": null,
+        "currency": "JPY",
+        "season": "2027-02-12（五）1 泊，4 間 × 4 人（大人）有空房時的最低價",
+        "note": "房型：禁煙和洋室(2ベッドタイプ) 。楽天 API 空室検索（查詢 2026-10-26），含稅、不含入湯稅等。這天有空房的組合：8x2、5x3、4x4。",
+        "source": "rakuten-api",
+        "url": "https://hotel.travel.rakuten.co.jp/hotelinfo/plan/143240?f_nen1=2027&f_tuki1=2&f_hi1=12&f_nen2=2027&f_tuki2=2&f_hi2=13&f_heya_su=4&f_otona_su=4&f_s1=0&f_s2=0&f_y1=0&f_y2=0&f_y3=0&f_y4=0",
+        "retrieved": "2026-10-26"
+      },
+      {
+        "plan": "素泊 大人 3＋小學生高年級 1（1 室）最低價（【大浴場×サウナでととのう！】ドーミーインスタンダードプラン!!＜素泊まり＞）",
+        "unit": "per-person",
+        "adult": 12769,
+        "child": 3000,
+        "currency": "JPY",
+        "season": "2027-02-11（四）1 泊，1 間 大人 3＋小學生高年級 1",
+        "note": "房型：禁煙トリプルルーム(3ベッドタイプ) 。一間總價 41,307 円；小學生（高學年）3,000 円＝大人的 23%。楽天 API（查詢 2026-10-26）。",
+        "source": "rakuten-api",
+        "url": "https://hotel.travel.rakuten.co.jp/hotelinfo/plan/143240?f_nen1=2027&f_tuki1=2&f_hi1=11&f_nen2=2027&f_tuki2=2&f_hi2=12&f_heya_su=1&f_otona_su=3&f_s1=1&f_s2=0&f_y1=0&f_y2=0&f_y3=0&f_y4=0",
+        "retrieved": "2026-10-26"
+      }
+    ],
+    "luggage": "宅配可；入住前/退房後寄放限旅館事先同意的行李（官網 FAQ）",
+    "checkIn": "15:00",
+    "checkOut": "11:00",
+    "rakutenHotelNo": 143240,
+    "dinnerAccess": null,
+    "group": {
+      "totalRooms": 229,
+      "roomTypes": [
+        "トリプル 26㎡ 3人（床尺寸未記）",
+        "和洋室（ユニットバス）27㎡ ベッド900×1950 最多4人"
+      ],
+      "maxGuests": null,
+      "wholeRental": false,
+      "pickupCapacity": null,
+      "nearbyCombos": [],
+      "note": "官網未寫團體規定"
+    },
+    "ratings": {
+      "rakuten": 4.41,
+      "rakutenReviews": 1677,
+      "jalan": null,
+      "jalanReviews": null,
+      "booking": null,
+      "google": 4.2,
+      "googleReviews": 2454,
+      "rakutenService": 4.44,
+      "rakutenLocation": 4.29,
+      "rakutenRoom": 4.37,
+      "rakutenEquipment": 4.36,
+      "rakutenBath": 4.42,
+      "rakutenMeal": 4.53,
+      "note": null
+    },
+    "accessibility": {
+      "elevator": null,
+      "beds": "床；和洋室 27㎡ 最多 4 人",
+      "stairs": null,
+      "kids": "0～2歲1床1名添寢免費；3歲～小學生1床1名3,000円；國中生以上同大人價（官網 FAQ）",
+      "note": "天然溫泉大浴場「夕霧の湯」；非完全無障礙，有段差少的房間、輪椅免費借（官網 FAQ）"
+    },
+    "reservation": {
+      "methods": [
+        "rakuten",
+        "phone"
+      ],
+      "phone": "06-6214-5489",
+      "url": "https://dormy-hotels.com/dormyinn/hotels/premium_nanba/",
+      "groupNote": "官網未寫團體規定"
+    },
+    "bookingLinks": {
+      "rakuten": "https://travel.rakuten.co.jp/HOTEL/143240/143240.html"
+    },
+    "sources": [
+      {
+        "type": "booking-site",
+        "url": "https://travel.rakuten.co.jp/HOTEL/143240/143240.html",
+        "retrieved": "2026-10-26",
+        "note": "楽天トラベル API（SimpleHotelSearch、HotelDetailSearch、VacantHotelSearch，scripts/rakuten.mjs）：評分、細項評分、房數、check-in/out、照片、2027-02-11／2027-02-12 的空房與價格"
+      },
+      {
+        "type": "google-maps",
+        "url": "https://maps.google.com/?cid=5528601248257082478",
+        "retrieved": "2026-10-26",
+        "note": "Google 地圖「ドーミーインPREMIUMなんば」：星數、評論數、座標、照片"
+      },
+      {
+        "type": "official",
+        "url": "https://dormy-hotels.com/dormyinn/hotels/premium_nanba/",
+        "retrieved": "2026-10-26",
+        "note": "電話地址、大浴場、IG"
+      },
+      {
+        "type": "official",
+        "url": "https://dormy-hotels.com/dormyinn/hotels/premium_nanba/rooms/",
+        "retrieved": "2026-10-26",
+        "note": "房型規格"
+      },
+      {
+        "type": "official",
+        "url": "https://dormy-hotels.com/dormyinn/hotels/premium_nanba/breakfast/",
+        "retrieved": "2026-10-26",
+        "note": "早餐"
+      },
+      {
+        "type": "official",
+        "url": "https://dormy-hotels.com/dormyinn/hotels/premium_nanba/faq/",
+        "retrieved": "2026-10-26",
+        "note": "添寢、行李、無障礙"
+      },
+      {
+        "type": "official",
+        "url": "https://dormy-hotels.com/dormyinn/hotels/premium_nanba/access/",
+        "retrieved": "2026-10-26",
+        "note": "交通"
+      }
+    ],
+    "verified": false,
+    "extra": {
+      "conflicts": [
+        "長堀橋站出口：官網 7 號 vs 楽天 6 號"
+      ],
+      "breakfast": "和洋自助 大人2,500円、3歲～小學1,200円、2歲以下免費；2F レストラン 6:30～9:30（最終入店9:00）（官網 breakfast 頁）",
+      "stationAccess": "Osaka Metro 千日前線日本橋駅 6 號出口步行 5 分；堺筋線長堀橋駅 7 號出口步行 5 分（官網 access 頁）",
+      "rakutenVacancy": {
+        "retrieved": "2026-10-26",
+        "dates": [
+          "2027-02-11",
+          "2027-02-12"
+        ],
+        "combos": [
+          "8x2",
+          "5x3",
+          "4x4",
+          "3x5"
+        ],
+        "available": {
+          "2027-02-11": [
+            "8x2",
+            "5x3",
+            "4x4"
+          ],
+          "2027-02-12": [
+            "8x2",
+            "5x3",
+            "4x4"
+          ]
+        },
+        "note": "15 人（全部以大人計）分 N 間同住的組合，有空房的列出；只代表查詢當天楽天上的庫存"
+      }
+    },
+    "summary": null,
+    "assessment": null
+  },
+  {
+    "id": "osaka-fraser-residence-nankai",
+    "type": "lodging",
+    "name": {
+      "ja": "フレイザーレジデンス南海大阪",
+      "zh": "輝盛閣國際公寓 南海大阪"
+    },
+    "area": "osaka",
+    "region": "namba",
+    "kind": "other",
+    "coords": [
+      135.5005243,
+      34.6631281
+    ],
+    "coordsSource": "other",
+    "address": "大阪府大阪市浪速区難波中1-17-11",
+    "hours": null,
+    "closedNote": null,
+    "febNote": null,
+    "closures": [],
+    "photos": [
+      {
+        "url": "https://img.travel.rakuten.co.jp/share/HOTEL/108949/108949.jpg",
+        "page": "https://travel.rakuten.co.jp/HOTEL/108949/108949.html",
+        "kind": "rakuten",
+        "credit": "楽天トラベル（施設提供）",
+        "license": null
+      },
+      {
+        "url": "https://img.travel.rakuten.co.jp/share/HOTEL/108949/108949_sta.jpg",
+        "page": "https://travel.rakuten.co.jp/HOTEL/108949/108949.html",
+        "kind": "rakuten",
+        "credit": "楽天トラベル（施設提供）",
+        "license": null
+      },
+      {
+        "url": "https://lh3.googleusercontent.com/grass-cs/AABkmLenlG_z9Aoeo1OTQMtmFk49StqiWDLeeiOZddhoUAaaOtPrz2ZlBLXYgG-rZavsPz7uRt5OsfKtsQqiRJ9v-O2zJcYTMIVgM9bIc-xAsV8bMFWp74aTprng6I693tk8huPX8fzOXw=w800",
+        "page": "https://maps.google.com/?cid=3249159869669586094",
+        "kind": "google",
+        "credit": "Google マップ（施設或使用者上傳）",
+        "license": null
+      }
+    ],
+    "links": {
+      "official": "https://www.frasershospitality.com/ja/japan/osaka/fraser-residence-nankai-osaka/",
+      "googleMaps": "https://maps.google.com/?cid=3249159869669586094"
+    },
+    "tags": [],
+    "tier": null,
+    "nearestStation": {
+      "id": "nankai-namba",
+      "mode": "walk",
+      "minutes": 4,
+      "note": "楽天：南海なんば駅步行約 3 分；OSRM 4 分"
+    },
+    "pickup": "付費機場接送，要事先申請（官網）",
+    "meals": "varies",
+    "priceRange": "每人約 15,750～16,350 円（附早餐；詳見 prices）",
+    "prices": [
+      {
+        "plan": "附早餐 楽天 15 人組合最低價（【早割・朝食付】早めのご予約でお得にご滞在を！！全室キッチン・ドラム式洗濯乾燥機完備※キャンセル不可）",
+        "unit": "per-person",
+        "adult": 15750,
+        "child": null,
+        "currency": "JPY",
+        "season": "2027-02-11（四）1 泊，5 間 × 3 人（大人）有空房時的最低價",
+        "note": "房型：1ベッドルーム デラックス ダブル。楽天 API 空室検索（查詢 2026-10-26），含稅、不含入湯稅等。這天有空房的組合：5x3、4x4。",
+        "source": "rakuten-api",
+        "url": "https://hotel.travel.rakuten.co.jp/hotelinfo/plan/108949?f_nen1=2027&f_tuki1=2&f_hi1=11&f_nen2=2027&f_tuki2=2&f_hi2=12&f_heya_su=5&f_otona_su=3&f_s1=0&f_s2=0&f_y1=0&f_y2=0&f_y3=0&f_y4=0",
+        "retrieved": "2026-10-26"
+      },
+      {
+        "plan": "附早餐 楽天 15 人組合最低價（【早割・朝食付】早めのご予約でお得にご滞在を！！全室キッチン・ドラム式洗濯乾燥機完備※キャンセル不可）",
+        "unit": "per-person",
+        "adult": 16350,
+        "child": null,
+        "currency": "JPY",
+        "season": "2027-02-12（五）1 泊，5 間 × 3 人（大人）有空房時的最低價",
+        "note": "房型：1ベッドルーム デラックス ダブル。楽天 API 空室検索（查詢 2026-10-26），含稅、不含入湯稅等。這天有空房的組合：5x3、4x4。",
+        "source": "rakuten-api",
+        "url": "https://hotel.travel.rakuten.co.jp/hotelinfo/plan/108949?f_nen1=2027&f_tuki1=2&f_hi1=12&f_nen2=2027&f_tuki2=2&f_hi2=13&f_heya_su=5&f_otona_su=3&f_s1=0&f_s2=0&f_y1=0&f_y2=0&f_y3=0&f_y4=0",
+        "retrieved": "2026-10-26"
+      }
+    ],
+    "luggage": "入住前可事先寄送到館，不接受長期保管，貴重品易碎品生鮮不收，寄前先聯絡（官網）",
+    "checkIn": "15:00",
+    "checkOut": "11:00",
+    "rakutenHotelNo": 108949,
+    "dinnerAccess": null,
+    "group": {
+      "totalRooms": 114,
+      "roomTypes": [
+        "Studio／1ベッドルーム／2ベッドルーム（Deluxe・Executive）全室キッチン付き；面積・最多人數未載"
+      ],
+      "maxGuests": null,
+      "wholeRental": false,
+      "pickupCapacity": null,
+      "nearbyCombos": [],
+      "note": null
+    },
+    "ratings": {
+      "rakuten": 4.67,
+      "rakutenReviews": 265,
+      "jalan": null,
+      "jalanReviews": null,
+      "booking": null,
+      "google": 4.5,
+      "googleReviews": 1015,
+      "rakutenService": null,
+      "rakutenLocation": null,
+      "rakutenRoom": null,
+      "rakutenEquipment": null,
+      "rakutenBath": null,
+      "rakutenMeal": null,
+      "note": null
+    },
+    "accessibility": {
+      "elevator": null,
+      "beds": "公寓式：Studio、1～2 ベッドルーム，全室有廚房（面積、人數未載）",
+      "stairs": null,
+      "kids": "未成年入住需同意書每位 1 張（楽天 2026-10 頁面）；兒童價、添寢未載",
+      "note": "電梯、無障礙未載"
+    },
+    "reservation": {
+      "methods": [
+        "rakuten",
+        "phone"
+      ],
+      "phone": "06-6635-7111",
+      "url": "https://www.frasershospitality.com/ja/japan/osaka/fraser-residence-nankai-osaka/",
+      "groupNote": null
+    },
+    "bookingLinks": {
+      "rakuten": "https://travel.rakuten.co.jp/HOTEL/108949/108949.html"
+    },
+    "sources": [
+      {
+        "type": "booking-site",
+        "url": "https://travel.rakuten.co.jp/HOTEL/108949/108949.html",
+        "retrieved": "2026-10-26",
+        "note": "楽天トラベル API（SimpleHotelSearch、HotelDetailSearch、VacantHotelSearch，scripts/rakuten.mjs）：評分、細項評分、房數、check-in/out、照片、2027-02-11／2027-02-12 的空房與價格"
+      },
+      {
+        "type": "google-maps",
+        "url": "https://maps.google.com/?cid=3249159869669586094",
+        "retrieved": "2026-10-26",
+        "note": "Google 地圖「フレイザーレジデンス南海大阪」：星數、評論數、座標、照片"
+      },
+      {
+        "type": "official",
+        "url": "https://www.frasershospitality.com/ja/japan/osaka/fraser-residence-nankai-osaka/",
+        "retrieved": "2026-10-26",
+        "note": "114 室、全室廚房、地址電話、行李、機場接送"
+      }
+    ],
+    "verified": false,
+    "extra": {
+      "conflicts": [
+        "Metro なんば駅步行：楽天 3 分、官網 5 分"
+      ],
+      "stationAccess": "南海なんば駅步行約 3 分；Osaka Metro なんば駅 5 號出口步行 3 分（楽天）／約 5 分（官網）",
+      "rakutenVacancy": {
+        "retrieved": "2026-10-26",
+        "dates": [
+          "2027-02-11",
+          "2027-02-12"
+        ],
+        "combos": [
+          "8x2",
+          "5x3",
+          "4x4",
+          "3x5"
+        ],
+        "available": {
+          "2027-02-11": [
+            "5x3",
+            "4x4"
+          ],
+          "2027-02-12": [
+            "5x3",
+            "4x4"
+          ]
+        },
+        "note": "15 人（全部以大人計）分 N 間同住的組合，有空房的列出；只代表查詢當天楽天上的庫存"
+      }
+    },
+    "summary": null,
+    "assessment": null
+  },
+  {
+    "id": "osaka-hotel-k6-namba",
+    "type": "lodging",
+    "name": {
+      "ja": "ホテルK6 大阪なんば店",
+      "zh": "K6 酒店 大阪難波店"
+    },
+    "area": "osaka",
+    "region": "namba",
+    "kind": "hotel",
+    "coords": [
+      135.4977422,
+      34.6684851
+    ],
+    "coordsSource": "other",
+    "address": "大阪府大阪市中央区道頓堀2-5-15",
+    "hours": null,
+    "closedNote": null,
+    "febNote": null,
+    "closures": [],
+    "photos": [
+      {
+        "url": "https://img.travel.rakuten.co.jp/share/HOTEL/189168/189168.jpg",
+        "page": "https://travel.rakuten.co.jp/HOTEL/189168/189168.html",
+        "kind": "rakuten",
+        "credit": "楽天トラベル（施設提供）",
+        "license": null
+      },
+      {
+        "url": "https://lh3.googleusercontent.com/grass-proxy/AIM7gW11R2Kfo-NB9juL1ANXMaBmHRu90V_QjJB-fxfGG10RgrXLcLuMvYjlOL_kLEcRfV1EgJP1fsuE_Z_eOit7hqDZE4AOrLlw68tnCuAs4VMtT4DlTK-oYqTlTvcxNwwQVkmyX3v-ryHJRTI2ng3qTiDG_rN_eGgqv4NNCcyEnPJWALVH7Zh99gY=w800",
+        "page": "https://maps.google.com/?cid=6849136511213410708",
+        "kind": "google",
+        "credit": "Google マップ（施設或使用者上傳）",
+        "license": null
+      }
+    ],
+    "links": {
+      "official": "https://www.hotel-k6.jp/",
+      "googleMaps": "https://maps.google.com/?cid=6849136511213410708"
+    },
+    "tags": [],
+    "tier": null,
+    "nearestStation": {
+      "id": "osaka-namba",
+      "mode": "walk",
+      "minutes": 3,
+      "note": "官網：JR なんば駅 26-C 出口步行約 3 分；OSRM 到近鐵大阪難波 3 分"
+    },
+    "pickup": null,
+    "meals": "breakfast",
+    "priceRange": "每人約 12,400～14,500 円（附早餐；詳見 prices）",
+    "prices": [
+      {
+        "plan": "附早餐 楽天 15 人組合最低價（【超得！U29】全員29歳以下なら20％OFF！）",
+        "unit": "per-person",
+        "adult": 12400,
+        "child": null,
+        "currency": "JPY",
+        "season": "2027-02-11（四）1 泊，4 間 × 4 人（大人）有空房時的最低價",
+        "note": "房型：カジュアル4/キングベッド+クイーンベッド/27平米(禁煙)。楽天 API 空室検索（查詢 2026-10-26），含稅、不含入湯稅等。這天有空房的組合：8x2、5x3、4x4。",
+        "source": "rakuten-api",
+        "url": "https://hotel.travel.rakuten.co.jp/hotelinfo/plan/189168?f_nen1=2027&f_tuki1=2&f_hi1=11&f_nen2=2027&f_tuki2=2&f_hi2=12&f_heya_su=4&f_otona_su=4&f_s1=0&f_s2=0&f_y1=0&f_y2=0&f_y3=0&f_y4=0",
+        "retrieved": "2026-10-26"
+      },
+      {
+        "plan": "附早餐 楽天 15 人組合最低價（【二府四県＆愛知県に在住or勤務の方限定】大人1名につき2000円引き＆小学生以下のお子様は宿泊無料）",
+        "unit": "per-person",
+        "adult": 13500,
+        "child": null,
+        "currency": "JPY",
+        "season": "2027-02-12（五）1 泊，4 間 × 4 人（大人）有空房時的最低價",
+        "note": "房型：カジュアル4/キングベッド+クイーンベッド/27平米(禁煙)。楽天 API 空室検索（查詢 2026-10-26），含稅、不含入湯稅等。這天有空房的組合：8x2、5x3、4x4。",
+        "source": "rakuten-api",
+        "url": "https://hotel.travel.rakuten.co.jp/hotelinfo/plan/189168?f_nen1=2027&f_tuki1=2&f_hi1=12&f_nen2=2027&f_tuki2=2&f_hi2=13&f_heya_su=4&f_otona_su=4&f_s1=0&f_s2=0&f_y1=0&f_y2=0&f_y3=0&f_y4=0",
+        "retrieved": "2026-10-26"
+      },
+      {
+        "plan": "附早餐 大人 3＋小學生高年級 1（1 室）最低價（【二府四県＆愛知県に在住or勤務の方限定】大人1名につき2000円引き＆小学生以下のお子様は宿泊無料）",
+        "unit": "per-person",
+        "adult": 14500,
+        "child": null,
+        "currency": "JPY",
+        "season": "2027-02-11（四）1 泊，1 間 大人 3＋小學生高年級 1",
+        "note": "房型：カジュアル4/キングベッド+クイーンベッド/27平米(禁煙)。一間總價 43,500 円；API 的小學生價是 0（可能不佔床或不另收），兒童價不推算。楽天 API（查詢 2026-10-26）。",
+        "source": "rakuten-api",
+        "url": "https://hotel.travel.rakuten.co.jp/hotelinfo/plan/189168?f_nen1=2027&f_tuki1=2&f_hi1=11&f_nen2=2027&f_tuki2=2&f_hi2=12&f_heya_su=1&f_otona_su=3&f_s1=1&f_s2=0&f_y1=0&f_y2=0&f_y3=0&f_y4=0",
+        "retrieved": "2026-10-26"
+      }
+    ],
+    "luggage": "check-in 當天與 check-out 當天 24 時前免費寄放（楽天）",
+    "checkIn": "15:00",
+    "checkOut": "11:00",
+    "rakutenHotelNo": 189168,
+    "dinnerAccess": null,
+    "group": {
+      "totalRooms": 53,
+      "roomTypes": [
+        "トリプル〜4ベッドのお部屋あり；面積・最多人數未載"
+      ],
+      "maxGuests": null,
+      "wholeRental": false,
+      "pickupCapacity": null,
+      "nearbyCombos": [],
+      "note": null
+    },
+    "ratings": {
+      "rakuten": 4.57,
+      "rakutenReviews": 157,
+      "jalan": null,
+      "jalanReviews": null,
+      "booking": null,
+      "google": 4.7,
+      "googleReviews": 323,
+      "rakutenService": 4.57,
+      "rakutenLocation": 4.36,
+      "rakutenRoom": 4.5,
+      "rakutenEquipment": 4.57,
+      "rakutenBath": 4.53,
+      "rakutenMeal": 4.22,
+      "note": null
+    },
+    "accessibility": {
+      "elevator": null,
+      "beds": "トリプル～4 床房（面積未載）",
+      "stairs": null,
+      "kids": "兒童遊戲區、兒童備品與租借品；添寢未載",
+      "note": "有兒童遊戲區、兒童備品；多則評論說是レジャーホテル改的家庭旅館"
+    },
+    "reservation": {
+      "methods": [
+        "rakuten",
+        "phone"
+      ],
+      "phone": "0120-728-246",
+      "url": "https://www.hotel-k6.jp/",
+      "groupNote": null
+    },
+    "bookingLinks": {
+      "rakuten": "https://travel.rakuten.co.jp/HOTEL/189168/189168.html"
+    },
+    "sources": [
+      {
+        "type": "booking-site",
+        "url": "https://travel.rakuten.co.jp/HOTEL/189168/189168.html",
+        "retrieved": "2026-10-26",
+        "note": "楽天トラベル API（SimpleHotelSearch、HotelDetailSearch、VacantHotelSearch，scripts/rakuten.mjs）：評分、細項評分、房數、check-in/out、照片、2027-02-11／2027-02-12 的空房與價格"
+      },
+      {
+        "type": "google-maps",
+        "url": "https://maps.google.com/?cid=6849136511213410708",
+        "retrieved": "2026-10-26",
+        "note": "Google 地圖「ホテルK6 大阪なんば店」：星數、評論數、座標、照片"
+      },
+      {
+        "type": "official",
+        "url": "https://www.hotel-k6.jp/",
+        "retrieved": "2026-10-26",
+        "note": "53 室、早餐、兒童遊戲區、交通"
+      }
+    ],
+    "verified": false,
+    "extra": {
+      "breakfast": "全方案附早餐，7:00〜11:00 1 樓大廳自助免費（官網、楽天 2026-10 頁面）",
+      "stationAccess": "JR なんば駅 26-C 出口步行約 3 分；Metro なんば駅 25 號出口步行約 5 分（官網）",
+      "rakutenVacancy": {
+        "retrieved": "2026-10-26",
+        "dates": [
+          "2027-02-11",
+          "2027-02-12"
+        ],
+        "combos": [
+          "8x2",
+          "5x3",
+          "4x4",
+          "3x5"
+        ],
+        "available": {
+          "2027-02-11": [
+            "8x2",
+            "5x3",
+            "4x4"
+          ],
+          "2027-02-12": [
+            "8x2",
+            "5x3",
+            "4x4"
+          ]
+        },
+        "note": "15 人（全部以大人計）分 N 間同住的組合，有空房的列出；只代表查詢當天楽天上的庫存"
+      }
+    },
+    "summary": null,
+    "assessment": null
+  },
+  {
+    "id": "osaka-grids-premium-namba",
+    "type": "lodging",
+    "name": {
+      "ja": "グリッズプレミアムホテル大阪なんば",
+      "zh": "GRIDS PREMIUM 大阪難波"
+    },
+    "area": "osaka",
+    "region": "namba",
+    "kind": "hotel",
+    "coords": [
+      135.4986094,
+      34.6646172
+    ],
+    "coordsSource": "other",
+    "address": "大阪府大阪市浪速区難波中1-7-7",
+    "hours": null,
+    "closedNote": null,
+    "febNote": null,
+    "closures": [],
+    "photos": [
+      {
+        "url": "https://img.travel.rakuten.co.jp/share/HOTEL/180698/180698.jpg",
+        "page": "https://travel.rakuten.co.jp/HOTEL/180698/180698.html",
+        "kind": "rakuten",
+        "credit": "楽天トラベル（施設提供）",
+        "license": null
+      },
+      {
+        "url": "https://lh3.googleusercontent.com/grass-proxy/AIM7gW2e6lxaGQmVkxmBHKK_HxzXGAPBeEkvlgh8m7fMKOWHYJqPDMRreKFZ3eQVfo6jT3oDwnBi5d6E5Zt6tu_y3ZOCUOxjIm0pJHBCqU3wb2mzY2uvNjCEWTvlo_eMGdrs3XA31ldGyDujWSMKH3B_HHEv6ZQRddjYx2ph9_qswH-6Ne7veMtq3lrCAQ=w800",
+        "page": "https://maps.google.com/?cid=569538214132908498",
+        "kind": "google",
+        "credit": "Google マップ（施設或使用者上傳）",
+        "license": null
+      }
+    ],
+    "links": {
+      "official": "https://gridshotel.com/osaka-namba/",
+      "googleMaps": "https://maps.google.com/?cid=569538214132908498"
+    },
+    "tags": [],
+    "tier": null,
+    "nearestStation": {
+      "id": "metro-namba",
+      "mode": "walk",
+      "minutes": 4,
+      "note": "官網：御堂筋線・千日前線 なんば駅 6 號出口步行約 1 分；OSRM 4 分"
+    },
+    "pickup": null,
+    "meals": "varies",
+    "priceRange": "每人約 10,162 円（素泊；詳見 prices）",
+    "prices": [
+      {
+        "plan": "素泊 楽天 15 人組合最低價（【さき楽60】60日前までのご予約で15％OFF〈素泊まり〉）",
+        "unit": "per-person",
+        "adult": 10162,
+        "child": null,
+        "currency": "JPY",
+        "season": "2027-02-11（四）1 泊，4 間 × 4 人（大人）有空房時的最低價",
+        "note": "房型：ファミリーハリウッドツイン【禁煙】【バス・トイレ別々】。楽天 API 空室検索（查詢 2026-10-26），含稅、不含入湯稅等。這天有空房的組合：8x2、5x3、4x4。",
+        "source": "rakuten-api",
+        "url": "https://hotel.travel.rakuten.co.jp/hotelinfo/plan/180698?f_nen1=2027&f_tuki1=2&f_hi1=11&f_nen2=2027&f_tuki2=2&f_hi2=12&f_heya_su=4&f_otona_su=4&f_s1=0&f_s2=0&f_y1=0&f_y2=0&f_y3=0&f_y4=0",
+        "retrieved": "2026-10-26"
+      },
+      {
+        "plan": "素泊 楽天 15 人組合最低價（【さき楽60】60日前までのご予約で15％OFF〈素泊まり〉）",
+        "unit": "per-person",
+        "adult": 10162,
+        "child": null,
+        "currency": "JPY",
+        "season": "2027-02-12（五）1 泊，4 間 × 4 人（大人）有空房時的最低價",
+        "note": "房型：ファミリーハリウッドツイン【禁煙】【バス・トイレ別々】。楽天 API 空室検索（查詢 2026-10-26），含稅、不含入湯稅等。這天有空房的組合：8x2、5x3、4x4。",
+        "source": "rakuten-api",
+        "url": "https://hotel.travel.rakuten.co.jp/hotelinfo/plan/180698?f_nen1=2027&f_tuki1=2&f_hi1=12&f_nen2=2027&f_tuki2=2&f_hi2=13&f_heya_su=4&f_otona_su=4&f_s1=0&f_s2=0&f_y1=0&f_y2=0&f_y3=0&f_y4=0",
+        "retrieved": "2026-10-26"
+      },
+      {
+        "plan": "素泊 大人 3＋小學生高年級 1（1 室）最低價（【さき楽60】60日前までのご予約で15％OFF〈素泊まり〉）",
+        "unit": "per-person",
+        "adult": 10162,
+        "child": null,
+        "currency": "JPY",
+        "season": "2027-02-11（四）1 泊，1 間 大人 3＋小學生高年級 1",
+        "note": "房型：ファミリーハリウッドツイン【禁煙】【バス・トイレ別々】。一間總價 40,648 円；API 的小學生價和大人相同（可能以房計價或兒童同價），兒童價不推算。楽天 API（查詢 2026-10-26）。",
+        "source": "rakuten-api",
+        "url": "https://hotel.travel.rakuten.co.jp/hotelinfo/plan/180698?f_nen1=2027&f_tuki1=2&f_hi1=11&f_nen2=2027&f_tuki2=2&f_hi2=12&f_heya_su=1&f_otona_su=3&f_s1=1&f_s2=0&f_y1=0&f_y2=0&f_y3=0&f_y4=0",
+        "retrieved": "2026-10-26"
+      }
+    ],
+    "luggage": "未載（僅宅配服務）",
+    "checkIn": "15:00",
+    "checkOut": "11:00",
+    "rakutenHotelNo": 180698,
+    "dinnerAccess": null,
+    "group": {
+      "totalRooms": 141,
+      "roomTypes": [
+        "Premium Double／Family Twin／Universal Twin／Hollywood Moderate Twin；面積・定員未載"
+      ],
+      "maxGuests": null,
+      "wholeRental": false,
+      "pickupCapacity": null,
+      "nearbyCombos": [],
+      "note": null
+    },
+    "ratings": {
+      "rakuten": 4.46,
+      "rakutenReviews": 302,
+      "jalan": null,
+      "jalanReviews": null,
+      "booking": null,
+      "google": 4.2,
+      "googleReviews": 807,
+      "rakutenService": 4.32,
+      "rakutenLocation": 4.21,
+      "rakutenRoom": 4.5,
+      "rakutenEquipment": 4.33,
+      "rakutenBath": 4.2,
+      "rakutenMeal": null,
+      "note": null
+    },
+    "accessibility": {
+      "elevator": null,
+      "beds": "Family Twin 等（定員未載）",
+      "stairs": null,
+      "kids": "未載",
+      "note": "輪椅可、無障礙廁所、無障礙房（楽天）"
+    },
+    "reservation": {
+      "methods": [
+        "rakuten",
+        "phone"
+      ],
+      "phone": "06-6641-5801",
+      "url": "https://gridshotel.com/osaka-namba/",
+      "groupNote": null
+    },
+    "bookingLinks": {
+      "rakuten": "https://travel.rakuten.co.jp/HOTEL/180698/180698.html"
+    },
+    "sources": [
+      {
+        "type": "booking-site",
+        "url": "https://travel.rakuten.co.jp/HOTEL/180698/180698.html",
+        "retrieved": "2026-10-26",
+        "note": "楽天トラベル API（SimpleHotelSearch、HotelDetailSearch、VacantHotelSearch，scripts/rakuten.mjs）：評分、細項評分、房數、check-in/out、照片、2027-02-11／2027-02-12 的空房與價格"
+      },
+      {
+        "type": "google-maps",
+        "url": "https://maps.google.com/?cid=569538214132908498",
+        "retrieved": "2026-10-26",
+        "note": "Google 地圖「グリッズプレミアムホテル大阪なんば」：星數、評論數、座標、照片"
+      },
+      {
+        "type": "official",
+        "url": "https://gridshotel.com/osaka-namba/",
+        "retrieved": "2026-10-26",
+        "note": "房型名、床墊、交通、電話"
+      }
+    ],
+    "verified": false,
+    "extra": {
+      "breakfast": "餐廳自助早餐，金額未載（官網、楽天 2026-10 頁面）",
+      "stationAccess": "Metro 御堂筋線・千日前線 なんば駅 6 號出口步行約 1 分；5 號出口 3 分（有手扶梯）；四つ橋線 31 號出口 1 分；南海なんば駅約 2 分（官網、楽天）",
+      "rakutenVacancy": {
+        "retrieved": "2026-10-26",
+        "dates": [
+          "2027-02-11",
+          "2027-02-12"
+        ],
+        "combos": [
+          "8x2",
+          "5x3",
+          "4x4",
+          "3x5"
+        ],
+        "available": {
+          "2027-02-11": [
+            "8x2",
+            "5x3",
+            "4x4"
+          ],
+          "2027-02-12": [
+            "8x2",
+            "5x3",
+            "4x4"
+          ]
+        },
+        "note": "15 人（全部以大人計）分 N 間同住的組合，有空房的列出；只代表查詢當天楽天上的庫存"
+      }
+    },
+    "summary": null,
+    "assessment": null
+  },
+  {
+    "id": "osaka-apa-namba-ekimae-tower",
+    "type": "lodging",
+    "name": {
+      "ja": "アパホテル＆リゾート〈大阪なんば駅前タワー〉",
+      "zh": "APA 酒店＆度假村 大阪難波站前塔"
+    },
+    "area": "osaka",
+    "region": "namba",
+    "kind": "hotel",
+    "coords": [
+      135.4959719,
+      34.6660567
+    ],
+    "coordsSource": "other",
+    "address": "大阪府大阪市浪速区湊町1-2-13",
+    "hours": null,
+    "closedNote": null,
+    "febNote": null,
+    "closures": [],
+    "photos": [
+      {
+        "url": "https://img.travel.rakuten.co.jp/share/HOTEL/191842/191842.jpg",
+        "page": "https://travel.rakuten.co.jp/HOTEL/191842/191842.html",
+        "kind": "rakuten",
+        "credit": "楽天トラベル（施設提供）",
+        "license": null
+      },
+      {
+        "url": "https://lh3.googleusercontent.com/grass-cs/AABkmLfCL2GrDP4L6zD99VzZ-IlJ1lKKCcvSO23PQU_ZzKfyGTVtTQ8CwhVE5Z62LSI2uPeHW50yAkSTu16Xuz_FteYiu3iX6JsLLKELRnJhK91EjWBsuqNifv9DUlKLA5P3UlTwG7Ez_41M3Wai=w800",
+        "page": "https://maps.google.com/?cid=14096027177771112911",
+        "kind": "google",
+        "credit": "Google マップ（施設或使用者上傳）",
+        "license": null
+      }
+    ],
+    "links": {
+      "official": "https://www.apahotel.com/resort/osaka-namba-ekimae-tower/",
+      "googleMaps": "https://maps.google.com/?cid=14096027177771112911"
+    },
+    "tags": [],
+    "tier": null,
+    "nearestStation": {
+      "id": "metro-namba",
+      "mode": "walk",
+      "minutes": 5,
+      "note": "楽天：なんば駅 30 號出口步行約 2 分、JR 難波約 1 分；OSRM 5 分"
+    },
+    "pickup": null,
+    "meals": "varies",
+    "priceRange": "每人約 4,860～7,830 円（一泊二食／素泊；詳見 prices）",
+    "prices": [
+      {
+        "plan": "一泊二食 楽天 15 人組合最低價（【ディナー付き】2室コネクトルーム○2階17CLUB）",
+        "unit": "per-person",
+        "adult": 7830,
+        "child": null,
+        "currency": "JPY",
+        "season": "2027-02-11（四）1 泊，4 間 × 4 人（大人）有空房時的最低價",
+        "note": "房型：【ダブル×ダブル】コネクトルーム22平米4名利用2ベッド。楽天 API 空室検索（查詢 2026-10-26），含稅、不含入湯稅等。這天有空房的組合：8x2、5x3、4x4。",
+        "source": "rakuten-api",
+        "url": "https://hotel.travel.rakuten.co.jp/hotelinfo/plan/191842?f_nen1=2027&f_tuki1=2&f_hi1=11&f_nen2=2027&f_tuki2=2&f_hi2=12&f_heya_su=4&f_otona_su=4&f_s1=0&f_s2=0&f_y1=0&f_y2=0&f_y3=0&f_y4=0",
+        "retrieved": "2026-10-26"
+      },
+      {
+        "plan": "素泊 楽天 15 人組合最低價（【素泊まり】2室コネクトルーム●テレビもバス・トイレもそれぞれの客室に完備）",
+        "unit": "per-person",
+        "adult": 4860,
+        "child": null,
+        "currency": "JPY",
+        "season": "2027-02-11（四）1 泊，4 間 × 4 人（大人）有空房時的最低價",
+        "note": "房型：【ダブル×ダブル】コネクトルーム22平米4名利用2ベッド。楽天 API 空室検索（查詢 2026-10-26），含稅、不含入湯稅等。這天有空房的組合：8x2、5x3、4x4。",
+        "source": "rakuten-api",
+        "url": "https://hotel.travel.rakuten.co.jp/hotelinfo/plan/191842?f_nen1=2027&f_tuki1=2&f_hi1=11&f_nen2=2027&f_tuki2=2&f_hi2=12&f_heya_su=4&f_otona_su=4&f_s1=0&f_s2=0&f_y1=0&f_y2=0&f_y3=0&f_y4=0",
+        "retrieved": "2026-10-26"
+      },
+      {
+        "plan": "一泊二食 楽天 15 人組合最低價（【ディナー付き】2室コネクトルーム○2階17CLUB）",
+        "unit": "per-person",
+        "adult": 7830,
+        "child": null,
+        "currency": "JPY",
+        "season": "2027-02-12（五）1 泊，4 間 × 4 人（大人）有空房時的最低價",
+        "note": "房型：【ダブル×ダブル】コネクトルーム22平米4名利用2ベッド。楽天 API 空室検索（查詢 2026-10-26），含稅、不含入湯稅等。這天有空房的組合：8x2、5x3、4x4。",
+        "source": "rakuten-api",
+        "url": "https://hotel.travel.rakuten.co.jp/hotelinfo/plan/191842?f_nen1=2027&f_tuki1=2&f_hi1=12&f_nen2=2027&f_tuki2=2&f_hi2=13&f_heya_su=4&f_otona_su=4&f_s1=0&f_s2=0&f_y1=0&f_y2=0&f_y3=0&f_y4=0",
+        "retrieved": "2026-10-26"
+      },
+      {
+        "plan": "素泊 楽天 15 人組合最低價（【素泊まり】2室コネクトルーム●テレビもバス・トイレもそれぞれの客室に完備）",
+        "unit": "per-person",
+        "adult": 4860,
+        "child": null,
+        "currency": "JPY",
+        "season": "2027-02-12（五）1 泊，4 間 × 4 人（大人）有空房時的最低價",
+        "note": "房型：【ダブル×ダブル】コネクトルーム22平米4名利用2ベッド。楽天 API 空室検索（查詢 2026-10-26），含稅、不含入湯稅等。這天有空房的組合：8x2、5x3、4x4。",
+        "source": "rakuten-api",
+        "url": "https://hotel.travel.rakuten.co.jp/hotelinfo/plan/191842?f_nen1=2027&f_tuki1=2&f_hi1=12&f_nen2=2027&f_tuki2=2&f_hi2=13&f_heya_su=4&f_otona_su=4&f_s1=0&f_s2=0&f_y1=0&f_y2=0&f_y3=0&f_y4=0",
+        "retrieved": "2026-10-26"
+      },
+      {
+        "plan": "素泊 大人 3＋小學生高年級 1（1 室）最低價（【素泊まり】2室コネクトルーム●テレビもバス・トイレもそれぞれの客室に完備）",
+        "unit": "per-person",
+        "adult": 4860,
+        "child": null,
+        "currency": "JPY",
+        "season": "2027-02-11（四）1 泊，1 間 大人 3＋小學生高年級 1",
+        "note": "房型：【ダブル×ダブル】コネクトルーム22平米4名利用2ベッド。一間總價 19,440 円；API 的小學生價和大人相同（可能以房計價或兒童同價），兒童價不推算。楽天 API（查詢 2026-10-26）。",
+        "source": "rakuten-api",
+        "url": "https://hotel.travel.rakuten.co.jp/hotelinfo/plan/191842?f_nen1=2027&f_tuki1=2&f_hi1=11&f_nen2=2027&f_tuki2=2&f_hi2=12&f_heya_su=1&f_otona_su=3&f_s1=1&f_s2=0&f_y1=0&f_y2=0&f_y3=0&f_y4=0",
+        "retrieved": "2026-10-26"
+      }
+    ],
+    "luggage": null,
+    "checkIn": "15:00",
+    "checkOut": "10:00",
+    "rakutenHotelNo": 191842,
+    "dinnerAccess": null,
+    "group": {
+      "totalRooms": 2055,
+      "roomTypes": [],
+      "maxGuests": null,
+      "wholeRental": false,
+      "pickupCapacity": null,
+      "nearbyCombos": [],
+      "note": "15 名以上取消規定可能不同（楽天）"
+    },
+    "ratings": {
+      "rakuten": 4.35,
+      "rakutenReviews": 2748,
+      "jalan": null,
+      "jalanReviews": null,
+      "booking": null,
+      "google": 4,
+      "googleReviews": 3214,
+      "rakutenService": 4.31,
+      "rakutenLocation": 4.33,
+      "rakutenRoom": 4.33,
+      "rakutenEquipment": 4.34,
+      "rakutenBath": 4.41,
+      "rakutenMeal": 4.46,
+      "note": null
+    },
+    "accessibility": {
+      "elevator": null,
+      "beds": "房型定員未載（評論：房間很小）",
+      "stairs": null,
+      "kids": "未就學兒童每床 1 名免費添い寝（楽天頁）",
+      "note": "4F 大浴場「玄要の湯」；無障礙客房、輪椅出借（楽天）"
+    },
+    "reservation": {
+      "methods": [
+        "rakuten",
+        "phone"
+      ],
+      "phone": "0570-010-711",
+      "url": "https://www.apahotel.com/resort/osaka-namba-ekimae-tower/",
+      "groupNote": "15 名以上取消規定可能不同（楽天）"
+    },
+    "bookingLinks": {
+      "rakuten": "https://travel.rakuten.co.jp/HOTEL/191842/191842.html"
+    },
+    "sources": [
+      {
+        "type": "booking-site",
+        "url": "https://travel.rakuten.co.jp/HOTEL/191842/191842.html",
+        "retrieved": "2026-10-26",
+        "note": "楽天トラベル API（SimpleHotelSearch、HotelDetailSearch、VacantHotelSearch，scripts/rakuten.mjs）：評分、細項評分、房數、check-in/out、照片、2027-02-11／2027-02-12 的空房與價格"
+      },
+      {
+        "type": "google-maps",
+        "url": "https://maps.google.com/?cid=14096027177771112911",
+        "retrieved": "2026-10-26",
+        "note": "Google 地圖「アパホテル＆リゾート〈大阪なんば駅前タワー〉」：星數、評論數、座標、照片"
+      }
+    ],
+    "verified": false,
+    "extra": {
+      "breakfast": "餐廳自助（バイキング），價格 null（楽天頁）",
+      "stationAccess": "JR 難波站步行約 1 分；Osaka Metro 御堂筋線・四つ橋線・千日前線 難波站 30 號出口步行約 2 分（楽天頁）",
+      "rakutenVacancy": {
+        "retrieved": "2026-10-26",
+        "dates": [
+          "2027-02-11",
+          "2027-02-12"
+        ],
+        "combos": [
+          "8x2",
+          "5x3",
+          "4x4",
+          "3x5"
+        ],
+        "available": {
+          "2027-02-11": [
+            "8x2",
+            "5x3",
+            "4x4"
+          ],
+          "2027-02-12": [
+            "8x2",
+            "5x3",
+            "4x4"
+          ]
+        },
+        "note": "15 人（全部以大人計）分 N 間同住的組合，有空房的列出；只代表查詢當天楽天上的庫存"
+      }
+    },
+    "summary": null,
+    "assessment": null
+  },
+  {
+    "id": "osaka-super-hotel-namba-nippombashi",
+    "type": "lodging",
+    "name": {
+      "ja": "スーパーホテルなんば・日本橋",
+      "zh": "Super Hotel 難波・日本橋"
+    },
+    "area": "osaka",
+    "region": "namba",
+    "kind": "hotel",
+    "coords": [
+      135.5058515,
+      34.6659557
+    ],
+    "coordsSource": "other",
+    "address": "大阪府大阪市中央区日本橋1-20-5　",
+    "hours": null,
+    "closedNote": null,
+    "febNote": null,
+    "closures": [],
+    "photos": [
+      {
+        "url": "https://img.travel.rakuten.co.jp/share/HOTEL/29775/29775.jpg",
+        "page": "https://travel.rakuten.co.jp/HOTEL/29775/29775.html",
+        "kind": "rakuten",
+        "credit": "楽天トラベル（施設提供）",
+        "license": null
+      },
+      {
+        "url": "https://img.travel.rakuten.co.jp/share/HOTEL/29775/29775_sin.jpg",
+        "page": "https://travel.rakuten.co.jp/HOTEL/29775/29775.html",
+        "kind": "rakuten",
+        "credit": "楽天トラベル（施設提供）",
+        "license": null
+      },
+      {
+        "url": "https://lh3.googleusercontent.com/grass-cs/AABkmLciPx4jOcJNlKOFsZPlqPIfwSGQfv3zeQ9NaSiunCadpXVo0C5CXG0KMdwL8A1GymNaGKzaisSIEXK1alPc7f7w4zKUyjeV4FvAD5a-o4pPcDWCrIbR52w6z8cNzRZUv392npDE=w800",
+        "page": "https://maps.google.com/?cid=11642578833593431150",
+        "kind": "google",
+        "credit": "Google マップ（施設或使用者上傳）",
+        "license": null
+      }
+    ],
+    "links": {
+      "official": "https://www.superhotel.co.jp/s_hotels/nihonbashi/",
+      "googleMaps": "https://maps.google.com/?cid=11642578833593431150"
+    },
+    "tags": [],
+    "tier": null,
+    "nearestStation": {
+      "id": "metro-nippombashi",
+      "mode": "walk",
+      "minutes": 2,
+      "note": "官網：日本橋駅 5 號出口步行 1 分；OSRM 2 分"
+    },
+    "pickup": null,
+    "meals": "breakfast",
+    "priceRange": "每人約 4,940～7,630 円（一泊二食／附早餐；詳見 prices）",
+    "prices": [
+      {
+        "plan": "各方案起價",
+        "unit": "per-room",
+        "price": 3491,
+        "currency": "JPY",
+        "season": null,
+        "note": "2026-10 頁面「3,491円～」，上限約 6,800；單位與人數條件頁面未明",
+        "source": "official",
+        "url": "https://www.superhotel.co.jp/s_hotels/nihonbashi/",
+        "retrieved": "2026-10-26"
+      },
+      {
+        "plan": "一泊二食 楽天 15 人組合最低價（【朝夕2食セット】1000円分RegionPAYクーポン券/人数☆焼きたてパン朝食付き）",
+        "unit": "per-person",
+        "adult": 6100,
+        "child": null,
+        "currency": "JPY",
+        "season": "2027-02-11（四）1 泊，5 間 × 3 人（大人）有空房時的最低價",
+        "note": "房型：【禁煙】スーパールーム◆上下型ツイン◆定員１〜3名乳幼児含む。楽天 API 空室検索（查詢 2026-10-26），含稅、不含入湯稅等。這天有空房的組合：8x2、5x3、3x5。",
+        "source": "rakuten-api",
+        "url": "https://hotel.travel.rakuten.co.jp/hotelinfo/plan/29775?f_nen1=2027&f_tuki1=2&f_hi1=11&f_nen2=2027&f_tuki2=2&f_hi2=12&f_heya_su=5&f_otona_su=3&f_s1=0&f_s2=0&f_y1=0&f_y2=0&f_y3=0&f_y4=0",
+        "retrieved": "2026-10-26"
+      },
+      {
+        "plan": "附早餐 楽天 15 人組合最低價（【オンライン決済限定】返金不可プラン☆焼きたてパン朝食ビュッフェ付）",
+        "unit": "per-person",
+        "adult": 4940,
+        "child": null,
+        "currency": "JPY",
+        "season": "2027-02-11（四）1 泊，5 間 × 3 人（大人）有空房時的最低價",
+        "note": "房型：【禁煙】スーパールーム◆上下型ツイン◆定員１〜3名乳幼児含む。楽天 API 空室検索（查詢 2026-10-26），含稅、不含入湯稅等。這天有空房的組合：8x2、5x3、3x5。",
+        "source": "rakuten-api",
+        "url": "https://hotel.travel.rakuten.co.jp/hotelinfo/plan/29775?f_nen1=2027&f_tuki1=2&f_hi1=11&f_nen2=2027&f_tuki2=2&f_hi2=12&f_heya_su=5&f_otona_su=3&f_s1=0&f_s2=0&f_y1=0&f_y2=0&f_y3=0&f_y4=0",
+        "retrieved": "2026-10-26"
+      },
+      {
+        "plan": "一泊二食 楽天 15 人組合最低價（【朝夕2食セット】1000円分RegionPAYクーポン券/人数☆焼きたてパン朝食付き）",
+        "unit": "per-person",
+        "adult": 6440,
+        "child": null,
+        "currency": "JPY",
+        "season": "2027-02-12（五）1 泊，5 間 × 3 人（大人）有空房時的最低價",
+        "note": "房型：【禁煙】スーパールーム◆上下型ツイン◆定員１〜3名乳幼児含む。楽天 API 空室検索（查詢 2026-10-26），含稅、不含入湯稅等。這天有空房的組合：8x2、5x3、3x5。",
+        "source": "rakuten-api",
+        "url": "https://hotel.travel.rakuten.co.jp/hotelinfo/plan/29775?f_nen1=2027&f_tuki1=2&f_hi1=12&f_nen2=2027&f_tuki2=2&f_hi2=13&f_heya_su=5&f_otona_su=3&f_s1=0&f_s2=0&f_y1=0&f_y2=0&f_y3=0&f_y4=0",
+        "retrieved": "2026-10-26"
+      },
+      {
+        "plan": "附早餐 楽天 15 人組合最低價（【オンライン決済限定】返金不可プラン☆焼きたてパン朝食ビュッフェ付）",
+        "unit": "per-person",
+        "adult": 5280,
+        "child": null,
+        "currency": "JPY",
+        "season": "2027-02-12（五）1 泊，5 間 × 3 人（大人）有空房時的最低價",
+        "note": "房型：【禁煙】スーパールーム◆上下型ツイン◆定員１〜3名乳幼児含む。楽天 API 空室検索（查詢 2026-10-26），含稅、不含入湯稅等。這天有空房的組合：8x2、5x3、3x5。",
+        "source": "rakuten-api",
+        "url": "https://hotel.travel.rakuten.co.jp/hotelinfo/plan/29775?f_nen1=2027&f_tuki1=2&f_hi1=12&f_nen2=2027&f_tuki2=2&f_hi2=13&f_heya_su=5&f_otona_su=3&f_s1=0&f_s2=0&f_y1=0&f_y2=0&f_y3=0&f_y4=0",
+        "retrieved": "2026-10-26"
+      },
+      {
+        "plan": "附早餐 大人 3＋小學生高年級 1（1 室）最低價（【オンライン決済限定】返金不可プラン☆焼きたてパン朝食ビュッフェ付）",
+        "unit": "per-person",
+        "adult": 7630,
+        "child": null,
+        "currency": "JPY",
+        "season": "2027-02-11（四）1 泊，1 間 大人 3＋小學生高年級 1",
+        "note": "房型：【禁煙・同フロア3室確約】3〜6名様向け。一間總價 30,520 円；API 的小學生價和大人相同（可能以房計價或兒童同價），兒童價不推算。楽天 API（查詢 2026-10-26）。",
+        "source": "rakuten-api",
+        "url": "https://hotel.travel.rakuten.co.jp/hotelinfo/plan/29775?f_nen1=2027&f_tuki1=2&f_hi1=11&f_nen2=2027&f_tuki2=2&f_hi2=12&f_heya_su=1&f_otona_su=3&f_s1=1&f_s2=0&f_y1=0&f_y2=0&f_y3=0&f_y4=0",
+        "retrieved": "2026-10-26"
+      }
+    ],
+    "luggage": "入住當天可前台寄存；退房後限當日取回者，需先電話確認（官網）",
+    "checkIn": "15:00",
+    "checkOut": "10:00",
+    "rakutenHotelNo": 29775,
+    "dinnerAccess": null,
+    "group": {
+      "totalRooms": 136,
+      "roomTypes": [],
+      "maxGuests": null,
+      "wholeRental": false,
+      "pickupCapacity": null,
+      "nearbyCombos": [],
+      "note": "頁面未載；添寢房需電話分店"
+    },
+    "ratings": {
+      "rakuten": 4.29,
+      "rakutenReviews": 3086,
+      "jalan": null,
+      "jalanReviews": null,
+      "booking": null,
+      "google": 4.2,
+      "googleReviews": 1214,
+      "rakutenService": 4.4,
+      "rakutenLocation": 4.23,
+      "rakutenRoom": 4.23,
+      "rakutenEquipment": 4.16,
+      "rakutenBath": 4.03,
+      "rakutenMeal": 4.27,
+      "note": null
+    },
+    "accessibility": {
+      "elevator": null,
+      "beds": "3 人以上房型未載",
+      "stairs": null,
+      "kids": "學齡前兒童免費添い寢但計入人數；兒童睡衣無（官網）",
+      "note": null
+    },
+    "reservation": {
+      "methods": [
+        "rakuten",
+        "phone"
+      ],
+      "phone": "06-4397-9000",
+      "url": "https://www.superhotel.co.jp/s_hotels/nihonbashi/",
+      "groupNote": "頁面未載；添寢房需電話分店"
+    },
+    "bookingLinks": {
+      "rakuten": "https://travel.rakuten.co.jp/HOTEL/29775/29775.html"
+    },
+    "sources": [
+      {
+        "type": "booking-site",
+        "url": "https://travel.rakuten.co.jp/HOTEL/29775/29775.html",
+        "retrieved": "2026-10-26",
+        "note": "楽天トラベル API（SimpleHotelSearch、HotelDetailSearch、VacantHotelSearch，scripts/rakuten.mjs）：評分、細項評分、房數、check-in/out、照片、2027-02-11／2027-02-12 的空房與價格"
+      },
+      {
+        "type": "google-maps",
+        "url": "https://maps.google.com/?cid=11642578833593431150",
+        "retrieved": "2026-10-26",
+        "note": "Google 地圖「スーパーホテルなんば・日本橋」：星數、評論數、座標、照片"
+      },
+      {
+        "type": "official",
+        "url": "https://www.superhotel.co.jp/s_hotels/nihonbashi/",
+        "retrieved": "2026-10-26",
+        "note": "早餐、添寢、交通、行李、check-in/out"
+      }
+    ],
+    "verified": false,
+    "extra": {
+      "breakfast": "免費自助早餐 6:30～9:00（官網）",
+      "stationAccess": "Osaka Metro 堺筋線・千日前線、近鐵 日本橋站 5 號出口步行 1 分；難波站步行約 10 分（官網）",
+      "rakutenVacancy": {
+        "retrieved": "2026-10-26",
+        "dates": [
+          "2027-02-11",
+          "2027-02-12"
+        ],
+        "combos": [
+          "8x2",
+          "5x3",
+          "4x4",
+          "3x5"
+        ],
+        "available": {
+          "2027-02-11": [
+            "8x2",
+            "5x3",
+            "3x5"
+          ],
+          "2027-02-12": [
+            "8x2",
+            "5x3",
+            "3x5"
+          ]
+        },
+        "note": "15 人（全部以大人計）分 N 間同住的組合，有空房的列出；只代表查詢當天楽天上的庫存"
+      }
+    },
+    "summary": null,
+    "assessment": null
+  },
+  {
+    "id": "osaka-daiwa-roynet-uehommachi",
+    "type": "lodging",
+    "name": {
+      "ja": "ダイワロイネットホテル大阪上本町",
+      "zh": "Daiwa Roynet 大阪上本町"
+    },
+    "area": "osaka",
+    "region": "namba",
+    "kind": "hotel",
+    "coords": [
+      135.5185505,
+      34.6644673
+    ],
+    "coordsSource": "other",
+    "address": "大阪府大阪市天王寺区上本町6-7-5",
+    "hours": null,
+    "closedNote": null,
+    "febNote": null,
+    "closures": [],
+    "photos": [
+      {
+        "url": "https://img.travel.rakuten.co.jp/share/HOTEL/106197/106197.jpg",
+        "page": "https://travel.rakuten.co.jp/HOTEL/106197/106197.html",
+        "kind": "rakuten",
+        "credit": "楽天トラベル（施設提供）",
+        "license": null
+      },
+      {
+        "url": "https://img.travel.rakuten.co.jp/share/HOTEL/106197/106197_sin.jpg",
+        "page": "https://travel.rakuten.co.jp/HOTEL/106197/106197.html",
+        "kind": "rakuten",
+        "credit": "楽天トラベル（施設提供）",
+        "license": null
+      },
+      {
+        "url": "https://lh3.googleusercontent.com/grass-cs/AABkmLedX63TIqRJ-Z_6PNuCK0vm0T9FwtUTShjfN4BQ1hyXcRW494gyXT8hek9cwdfJUopCLaC4g6H9LnR5BKEMZyyCp5VQvw0_oijxYFRYAHOpVNkr-z7JHWjhFobyTHvMGdxJctwH=w800",
+        "page": "https://maps.google.com/?cid=4784206586142191742",
+        "kind": "google",
+        "credit": "Google マップ（施設或使用者上傳）",
+        "license": null
+      }
+    ],
+    "links": {
+      "official": "https://www.daiwaroynet.jp/osaka-uehonmachi/",
+      "googleMaps": "https://maps.google.com/?cid=4784206586142191742"
+    },
+    "tags": [],
+    "tier": null,
+    "nearestStation": {
+      "id": "osaka-uehommachi",
+      "mode": "walk",
+      "minutes": 4,
+      "note": "官網：近鐵大阪上本町駅 14 號出口步行約 2 分；OSRM 4 分"
+    },
+    "pickup": null,
+    "meals": "varies",
+    "priceRange": "每人約 6,300～6,750 円（素泊；詳見 prices）",
+    "prices": [
+      {
+        "plan": "素泊 楽天 15 人組合最低價（【早期割90】素泊まりプラン）",
+        "unit": "per-person",
+        "adult": 6300,
+        "child": null,
+        "currency": "JPY",
+        "season": "2027-02-11（四）1 泊，8 間 × 2 人（大人）有空房時的最低價",
+        "note": "房型：◆喫煙◆スタンダードダブルルーム【18.2平米】。楽天 API 空室検索（查詢 2026-10-26），含稅、不含入湯稅等。這天有空房的組合：8x2、5x3、4x4。",
+        "source": "rakuten-api",
+        "url": "https://hotel.travel.rakuten.co.jp/hotelinfo/plan/106197?f_nen1=2027&f_tuki1=2&f_hi1=11&f_nen2=2027&f_tuki2=2&f_hi2=12&f_heya_su=8&f_otona_su=2&f_s1=0&f_s2=0&f_y1=0&f_y2=0&f_y3=0&f_y4=0",
+        "retrieved": "2026-10-26"
+      },
+      {
+        "plan": "素泊 楽天 15 人組合最低價（【早期割90】素泊まりプラン）",
+        "unit": "per-person",
+        "adult": 6750,
+        "child": null,
+        "currency": "JPY",
+        "season": "2027-02-12（五）1 泊，8 間 × 2 人（大人）有空房時的最低價",
+        "note": "房型：◆喫煙◆スタンダードダブルルーム【18.2平米】。楽天 API 空室検索（查詢 2026-10-26），含稅、不含入湯稅等。這天有空房的組合：8x2、5x3、4x4。",
+        "source": "rakuten-api",
+        "url": "https://hotel.travel.rakuten.co.jp/hotelinfo/plan/106197?f_nen1=2027&f_tuki1=2&f_hi1=12&f_nen2=2027&f_tuki2=2&f_hi2=13&f_heya_su=8&f_otona_su=2&f_s1=0&f_s2=0&f_y1=0&f_y2=0&f_y3=0&f_y4=0",
+        "retrieved": "2026-10-26"
+      }
+    ],
+    "luggage": null,
+    "checkIn": "14:00",
+    "checkOut": "11:00",
+    "rakutenHotelNo": 106197,
+    "dinnerAccess": null,
+    "group": {
+      "totalRooms": 222,
+      "roomTypes": [
+        "以 18㎡ 以上雙人房為主，3 人以上房型頁面未載"
+      ],
+      "maxGuests": null,
+      "wholeRental": false,
+      "pickupCapacity": null,
+      "nearbyCombos": [],
+      "note": null
+    },
+    "ratings": {
+      "rakuten": 4.32,
+      "rakutenReviews": 3507,
+      "jalan": null,
+      "jalanReviews": null,
+      "booking": null,
+      "google": 4.1,
+      "googleReviews": 1087,
+      "rakutenService": 4.35,
+      "rakutenLocation": 4.33,
+      "rakutenRoom": 4.36,
+      "rakutenEquipment": 4.3,
+      "rakutenBath": 4.21,
+      "rakutenMeal": 4.1,
+      "note": null
+    },
+    "accessibility": {
+      "elevator": null,
+      "beds": "以 18㎡ 以上雙人房為主，3 人以上房型未載",
+      "stairs": null,
+      "kids": "小學 6 年級以下免費添い寢；兒童可用早餐（官網）",
+      "note": "沒有大浴場"
+    },
+    "reservation": {
+      "methods": [
+        "rakuten",
+        "phone"
+      ],
+      "phone": "06-4305-1955",
+      "url": "https://www.daiwaroynet.jp/osaka-uehonmachi/",
+      "groupNote": null
+    },
+    "bookingLinks": {
+      "rakuten": "https://travel.rakuten.co.jp/HOTEL/106197/106197.html"
+    },
+    "sources": [
+      {
+        "type": "booking-site",
+        "url": "https://travel.rakuten.co.jp/HOTEL/106197/106197.html",
+        "retrieved": "2026-10-26",
+        "note": "楽天トラベル API（SimpleHotelSearch、HotelDetailSearch、VacantHotelSearch，scripts/rakuten.mjs）：評分、細項評分、房數、check-in/out、照片、2027-02-11／2027-02-12 的空房與價格"
+      },
+      {
+        "type": "google-maps",
+        "url": "https://maps.google.com/?cid=4784206586142191742",
+        "retrieved": "2026-10-26",
+        "note": "Google 地圖「ダイワロイネットホテル 大阪上本町」：星數、評論數、座標、照片"
+      },
+      {
+        "type": "official",
+        "url": "https://www.daiwaroynet.jp/osaka-uehonmachi/",
+        "retrieved": "2026-10-26",
+        "note": "房型、添寢、交通、早餐、check-in/out"
+      }
+    ],
+    "verified": false,
+    "extra": {
+      "conflicts": [
+        "谷町九丁目站距離兩處說法不一"
+      ],
+      "breakfast": "1 樓「カフェテラスRoy」和洋自助，價格 null（官網）",
+      "stationAccess": "近鐵 大阪上本町站 14 號出口步行約 2 分；Osaka Metro 谷町線・千日前線 谷町九丁目站步行約 5 分（官網 FAQ 寫 14 號出口約 2 分，說法不一）",
+      "rakutenVacancy": {
+        "retrieved": "2026-10-26",
+        "dates": [
+          "2027-02-11",
+          "2027-02-12"
+        ],
+        "combos": [
+          "8x2",
+          "5x3",
+          "4x4",
+          "3x5"
+        ],
+        "available": {
+          "2027-02-11": [
+            "8x2",
+            "5x3",
+            "4x4"
+          ],
+          "2027-02-12": [
+            "8x2",
+            "5x3",
+            "4x4"
+          ]
+        },
+        "note": "15 人（全部以大人計）分 N 間同住的組合，有空房的列出；只代表查詢當天楽天上的庫存"
+      }
+    },
+    "summary": null,
+    "assessment": null
+  },
+  {
+    "id": "osaka-sheraton-miyako",
+    "type": "lodging",
+    "name": {
+      "ja": "シェラトン都ホテル大阪",
+      "zh": "大阪都喜來登酒店"
+    },
+    "area": "osaka",
+    "region": "namba",
+    "kind": "hotel",
+    "coords": [
+      135.520678,
+      34.6656366
+    ],
+    "coordsSource": "other",
+    "address": "大阪府大阪市天王寺区上本町6-1-55",
+    "hours": null,
+    "closedNote": null,
+    "febNote": null,
+    "closures": [],
+    "photos": [
+      {
+        "url": "https://img.travel.rakuten.co.jp/share/HOTEL/1144/1144.jpg",
+        "page": "https://travel.rakuten.co.jp/HOTEL/1144/1144.html",
+        "kind": "rakuten",
+        "credit": "楽天トラベル（施設提供）",
+        "license": null
+      },
+      {
+        "url": "https://img.travel.rakuten.co.jp/share/HOTEL/1144/1144_room.jpg",
+        "page": "https://travel.rakuten.co.jp/HOTEL/1144/1144.html",
+        "kind": "rakuten",
+        "credit": "楽天トラベル（施設提供）",
+        "license": null
+      },
+      {
+        "url": "https://lh3.googleusercontent.com/grass-cs/AABkmLexeuu-YFL8r8Mgn8_Idbt0mwT3DJylxXigjSUrD38KSnUWavUV-LLQrqc9tcYui6TCHsx-Ti1DmKxlq77KPMf3D4OPKB0KWd_lOqynHBGOlsaEMarxPJnouWBsLkFKe6NeT7J5Zge4ORx2=w800",
+        "page": "https://maps.google.com/?cid=9592866325423537757",
+        "kind": "google",
+        "credit": "Google マップ（施設或使用者上傳）",
+        "license": null
+      }
+    ],
+    "links": {
+      "official": "https://www.miyakohotels.ne.jp/osaka/",
+      "googleMaps": "https://maps.google.com/?cid=9592866325423537757"
+    },
+    "tags": [],
+    "tier": null,
+    "nearestStation": {
+      "id": "osaka-uehommachi",
+      "mode": "walk",
+      "minutes": 1,
+      "note": "官網：近鐵大阪上本町駅直結；OSRM 繞外面算出 6 分，直結所以寫 1 分"
+    },
+    "pickup": "飯店前有關西機場、伊丹機場的機場巴士（官網）",
+    "meals": "varies",
+    "priceRange": null,
+    "prices": [],
+    "luggage": null,
+    "checkIn": "15:00",
+    "checkOut": "12:00",
+    "rakutenHotelNo": 1144,
+    "dinnerAccess": null,
+    "group": {
+      "totalRooms": 574,
+      "roomTypes": [],
+      "maxGuests": null,
+      "wholeRental": false,
+      "pickupCapacity": null,
+      "nearbyCombos": [
+        "osaka-daiwa-roynet-uehommachi"
+      ],
+      "note": null
+    },
+    "ratings": {
+      "rakuten": 4.41,
+      "rakutenReviews": 6024,
+      "jalan": null,
+      "jalanReviews": null,
+      "booking": null,
+      "google": 4.1,
+      "googleReviews": 5454,
+      "rakutenService": 4.45,
+      "rakutenLocation": 4.48,
+      "rakutenRoom": 4.33,
+      "rakutenEquipment": 4.22,
+      "rakutenBath": 4.24,
+      "rakutenMeal": 4.51,
+      "note": null
+    },
+    "accessibility": {
+      "elevator": null,
+      "beds": "房型、兒童未載（要電話問）",
+      "stairs": null,
+      "kids": null,
+      "note": "574 室"
+    },
+    "reservation": {
+      "methods": [
+        "rakuten",
+        "phone"
+      ],
+      "phone": "06-6773-1111",
+      "url": "https://www.miyakohotels.ne.jp/osaka/",
+      "groupNote": null
+    },
+    "bookingLinks": {
+      "rakuten": "https://travel.rakuten.co.jp/HOTEL/1144/1144.html"
+    },
+    "sources": [
+      {
+        "type": "booking-site",
+        "url": "https://travel.rakuten.co.jp/HOTEL/1144/1144.html",
+        "retrieved": "2026-10-26",
+        "note": "楽天トラベル API（SimpleHotelSearch、HotelDetailSearch、VacantHotelSearch，scripts/rakuten.mjs）：評分、細項評分、房數、check-in/out、照片、2027-02-11／2027-02-12 的空房與價格"
+      },
+      {
+        "type": "google-maps",
+        "url": "https://maps.google.com/?cid=9592866325423537757",
+        "retrieved": "2026-10-26",
+        "note": "Google 地圖「Sheraton Miyako Hotel Osaka」：星數、評論數、座標、照片"
+      },
+      {
+        "type": "official",
+        "url": "https://www.miyakohotels.ne.jp/osaka/",
+        "retrieved": "2026-10-26",
+        "note": "直結、機場巴士、check-in/out"
+      }
+    ],
+    "verified": false,
+    "extra": {
+      "breakfast": "有早餐方案，內容價格 null",
+      "stationAccess": "近鐵 大阪上本町站直結，難波 2 站約 3 分；Osaka Metro 谷町九丁目站步行約 5 分（官網、楽天）",
+      "rakutenVacancy": {
+        "retrieved": "2026-10-26",
+        "dates": [
+          "2027-02-11",
+          "2027-02-12"
+        ],
+        "combos": [
+          "8x2",
+          "5x3",
+          "4x4",
+          "3x5"
+        ],
+        "available": {
+          "2027-02-11": [],
+          "2027-02-12": []
+        },
+        "note": "15 人（全部以大人計）分 N 間同住的組合，有空房的列出；只代表查詢當天楽天上的庫存"
+      }
+    },
+    "summary": null,
+    "assessment": null
+  },
+  {
+    "id": "osaka-hankyu-respire",
+    "type": "lodging",
+    "name": {
+      "ja": "ホテル阪急レスパイア大阪",
+      "zh": "大阪阪急 Respire 酒店"
+    },
+    "area": "osaka",
+    "region": "umeda",
+    "kind": "hotel",
+    "coords": [
+      135.4961366,
+      34.7046132
+    ],
+    "coordsSource": "other",
+    "address": "大阪府大阪市北区大深町1-1",
+    "hours": null,
+    "closedNote": null,
+    "febNote": null,
+    "closures": [],
+    "photos": [
+      {
+        "url": "https://img.travel.rakuten.co.jp/share/HOTEL/176713/176713.jpg",
+        "page": "https://travel.rakuten.co.jp/HOTEL/176713/176713.html",
+        "kind": "rakuten",
+        "credit": "楽天トラベル（施設提供）",
+        "license": null
+      },
+      {
+        "url": "https://lh3.googleusercontent.com/grass-cs/AABkmLfOcylEYxODTPEHv8KKWpbHGJxDCw_T3-3A21_x11yZKssS27wpgznBP-VsDTdwgX2XADXpXIb178yLKO_emTl4yx0eZQvS43rvRDopt5CcvYQDHODDiSXe7Kd2cilvY0M2iea5=w800",
+        "page": "https://maps.google.com/?cid=4548582871689473998",
+        "kind": "google",
+        "credit": "Google マップ（施設或使用者上傳）",
+        "license": null
+      }
+    ],
+    "links": {
+      "official": "https://www.hankyu-hotel.com/hotel/respire/osaka",
+      "instagram": "@respire_osaka",
+      "googleMaps": "https://maps.google.com/?cid=4548582871689473998"
+    },
+    "tags": [],
+    "tier": null,
+    "nearestStation": {
+      "id": "metro-umeda",
+      "mode": "walk",
+      "minutes": 4,
+      "note": "楽天：JR 大阪駅 3F 連絡橋口步行約 3 分、御堂筋線梅田約 5 分；OSRM 到梅田站 4 分"
+    },
+    "pickup": "關西機場、伊丹機場巴士站步行約 3 分",
+    "meals": "varies",
+    "priceRange": "每人約 12,430～13,750 円（素泊；詳見 prices）",
+    "prices": [
+      {
+        "plan": "素泊 楽天 15 人組合最低價（【基本プラン】JR「大阪駅」から徒歩約3分♪梅田の中心に位置し旅行の拠点におすすめ（食事なし））",
+        "unit": "per-person",
+        "adult": 12430,
+        "child": null,
+        "currency": "JPY",
+        "season": "2027-02-11（四）1 泊，5 間 × 3 人（大人）有空房時的最低價",
+        "note": "房型：＜12〜23階＞スタンダードトリプル【禁煙】。楽天 API 空室検索（查詢 2026-10-26），含稅、不含入湯稅等。這天有空房的組合：8x2、5x3、4x4、3x5。",
+        "source": "rakuten-api",
+        "url": "https://hotel.travel.rakuten.co.jp/hotelinfo/plan/176713?f_nen1=2027&f_tuki1=2&f_hi1=11&f_nen2=2027&f_tuki2=2&f_hi2=12&f_heya_su=5&f_otona_su=3&f_s1=0&f_s2=0&f_y1=0&f_y2=0&f_y3=0&f_y4=0",
+        "retrieved": "2026-10-26"
+      },
+      {
+        "plan": "素泊 楽天 15 人組合最低價（【基本プラン】JR「大阪駅」から徒歩約3分♪梅田の中心に位置し旅行の拠点におすすめ（食事なし））",
+        "unit": "per-person",
+        "adult": 13750,
+        "child": null,
+        "currency": "JPY",
+        "season": "2027-02-12（五）1 泊，5 間 × 3 人（大人）有空房時的最低價",
+        "note": "房型：＜12〜23階＞スタンダードトリプル【禁煙】。楽天 API 空室検索（查詢 2026-10-26），含稅、不含入湯稅等。這天有空房的組合：8x2、5x3、4x4、3x5。",
+        "source": "rakuten-api",
+        "url": "https://hotel.travel.rakuten.co.jp/hotelinfo/plan/176713?f_nen1=2027&f_tuki1=2&f_hi1=12&f_nen2=2027&f_tuki2=2&f_hi2=13&f_heya_su=5&f_otona_su=3&f_s1=0&f_s2=0&f_y1=0&f_y2=0&f_y3=0&f_y4=0",
+        "retrieved": "2026-10-26"
+      }
+    ],
+    "luggage": "可先寄到 9 樓櫃台；有宅配服務",
+    "checkIn": "15:00",
+    "checkOut": "12:00",
+    "rakutenHotelNo": 176713,
+    "dinnerAccess": null,
+    "group": {
+      "totalRooms": 1030,
+      "roomTypes": [
+        "標準三人房",
+        "豪華三人房 33㎡",
+        "四人房（兩個洗面台）",
+        "通用三人房（淋浴間，輪椅對應）",
+        "連通房 最多 5 人"
+      ],
+      "maxGuests": null,
+      "wholeRental": false,
+      "pickupCapacity": null,
+      "nearbyCombos": [],
+      "note": "官網僅餐廳團體方案；住宿預約專線 06-6372-0480；大型車輛亦洽此線"
+    },
+    "ratings": {
+      "rakuten": 4.32,
+      "rakutenReviews": 2583,
+      "jalan": null,
+      "jalanReviews": null,
+      "booking": null,
+      "google": 4.3,
+      "googleReviews": 4530,
+      "rakutenService": 4.3,
+      "rakutenLocation": 4.48,
+      "rakutenRoom": 4.33,
+      "rakutenEquipment": 4.25,
+      "rakutenBath": 4.27,
+      "rakutenMeal": 4.36,
+      "note": null
+    },
+    "accessibility": {
+      "elevator": null,
+      "beds": "三人房、四人房、連通房最多 5 人",
+      "stairs": null,
+      "kids": "0-6 歲可添寢，使用床位與大人同價（楽天）；官網有「幼児（布団・食事不要）」選項",
+      "note": "通用三人房 10 間（只有淋浴間）；9F 無障礙廁所"
+    },
+    "reservation": {
+      "methods": [
+        "rakuten",
+        "phone"
+      ],
+      "phone": "06-6372-8006（預約 06-6372-0480）",
+      "url": "https://www.hankyu-hotel.com/hotel/respire/osaka",
+      "groupNote": "官網僅餐廳團體方案；住宿預約專線 06-6372-0480；大型車輛亦洽此線"
+    },
+    "bookingLinks": {
+      "rakuten": "https://travel.rakuten.co.jp/HOTEL/176713/176713.html"
+    },
+    "sources": [
+      {
+        "type": "booking-site",
+        "url": "https://travel.rakuten.co.jp/HOTEL/176713/176713.html",
+        "retrieved": "2026-10-26",
+        "note": "楽天トラベル API（SimpleHotelSearch、HotelDetailSearch、VacantHotelSearch，scripts/rakuten.mjs）：評分、細項評分、房數、check-in/out、照片、2027-02-11／2027-02-12 的空房與價格"
+      },
+      {
+        "type": "google-maps",
+        "url": "https://maps.google.com/?cid=4548582871689473998",
+        "retrieved": "2026-10-26",
+        "note": "Google 地圖「ホテル阪急レスパイア大阪」：星數、評論數、座標、照片"
+      },
+      {
+        "type": "official",
+        "url": "https://www.hankyu-hotel.com/hotel/respire/osaka",
+        "retrieved": "2026-10-26",
+        "note": "房型、交通、電話"
+      }
+    ],
+    "verified": false,
+    "extra": {
+      "conflicts": [
+        "官網公告部分預約功能暫停"
+      ],
+      "breakfast": "9 樓「グリリアート クオッカ」自助 7:00-10:00（楽天）",
+      "stationAccess": "JR 大阪站 3 樓連絡橋口 步行約 3 分；阪急梅田、Osaka Metro 御堂筋線梅田 約 5 分",
+      "rakutenVacancy": {
+        "retrieved": "2026-10-26",
+        "dates": [
+          "2027-02-11",
+          "2027-02-12"
+        ],
+        "combos": [
+          "8x2",
+          "5x3",
+          "4x4",
+          "3x5"
+        ],
+        "available": {
+          "2027-02-11": [
+            "8x2",
+            "5x3",
+            "4x4",
+            "3x5"
+          ],
+          "2027-02-12": [
+            "8x2",
+            "5x3",
+            "4x4",
+            "3x5"
+          ]
+        },
+        "note": "15 人（全部以大人計）分 N 間同住的組合，有空房的列出；只代表查詢當天楽天上的庫存"
+      }
+    },
+    "summary": null,
+    "assessment": null
+  },
+  {
+    "id": "osaka-granvia",
+    "type": "lodging",
+    "name": {
+      "ja": "ホテルグランヴィア大阪",
+      "zh": "大阪格蘭比亞大酒店"
+    },
+    "area": "osaka",
+    "region": "umeda",
+    "kind": "hotel",
+    "coords": [
+      135.4959928,
+      34.701707
+    ],
+    "coordsSource": "other",
+    "address": "大阪府大阪市北区梅田3-1-1",
+    "hours": null,
+    "closedNote": null,
+    "febNote": null,
+    "closures": [],
+    "photos": [
+      {
+        "url": "https://img.travel.rakuten.co.jp/share/HOTEL/1731/1731.jpg",
+        "page": "https://travel.rakuten.co.jp/HOTEL/1731/1731.html",
+        "kind": "rakuten",
+        "credit": "楽天トラベル（施設提供）",
+        "license": null
+      },
+      {
+        "url": "https://img.travel.rakuten.co.jp/share/HOTEL/1731/1731_re.jpg",
+        "page": "https://travel.rakuten.co.jp/HOTEL/1731/1731.html",
+        "kind": "rakuten",
+        "credit": "楽天トラベル（施設提供）",
+        "license": null
+      },
+      {
+        "url": "https://lh3.googleusercontent.com/grass-cs/AABkmLcYygPYpgPS3_jDXXctw6G3_w2uJmSbEFuTT92ediz8iLZzLwnpaz5C7WPrgfVveQJGyFGYYCM3HDLEnxoiq5Ak0G4-PcdO_evhVeof4IlCD3xK2ICjrr7pG19S7TtMEbHt_Z_F=w800",
+        "page": "https://maps.google.com/?cid=6804507185547097229",
+        "kind": "google",
+        "credit": "Google マップ（施設或使用者上傳）",
+        "license": null
+      }
+    ],
+    "links": {
+      "official": "https://jrwest-hotels.jp/granvia-osaka/",
+      "instagram": "@hotel_granvia_osaka",
+      "googleMaps": "https://maps.google.com/?cid=6804507185547097229"
+    },
+    "tags": [],
+    "tier": null,
+    "nearestStation": {
+      "id": "jr-osaka",
+      "mode": "walk",
+      "minutes": 2,
+      "note": "官網：JR 大阪駅直結（中央改札出て右）；OSRM 2 分"
+    },
+    "pickup": "機場巴士站步行約 5 分",
+    "meals": "varies",
+    "priceRange": "每人約 7,700～12,500 円（素泊り／朝食付／早期得割（30／素泊；詳見 prices）",
+    "prices": [
+      {
+        "plan": "素泊り",
+        "unit": "per-person",
+        "adult": 8000,
+        "child": null,
+        "currency": "JPY",
+        "season": "2 人使用起",
+        "note": "2026-10 頁面",
+        "source": "rakuten",
+        "url": "https://travel.rakuten.co.jp/HOTEL/1731/1731.html",
+        "retrieved": "2026-10-26"
+      },
+      {
+        "plan": "朝食付",
+        "unit": "per-person",
+        "adult": 11900,
+        "child": null,
+        "currency": "JPY",
+        "season": "2 人使用起",
+        "note": "2026-10 頁面",
+        "source": "rakuten",
+        "url": "https://travel.rakuten.co.jp/HOTEL/1731/1731.html",
+        "retrieved": "2026-10-26"
+      },
+      {
+        "plan": "早期得割（30 天前）",
+        "unit": "per-person",
+        "adult": 7700,
+        "child": null,
+        "currency": "JPY",
+        "season": "2 人使用起",
+        "note": "2026-10 頁面",
+        "source": "rakuten",
+        "url": "https://travel.rakuten.co.jp/HOTEL/1731/1731.html",
+        "retrieved": "2026-10-26"
+      },
+      {
+        "plan": "素泊 楽天 15 人組合最低價（【早期プラン】60日前までのご予約でお得にご宿泊 さき楽（朝食なし））",
+        "unit": "per-person",
+        "adult": 12500,
+        "child": null,
+        "currency": "JPY",
+        "season": "2027-02-11（四）1 泊，5 間 × 3 人（大人）有空房時的最低價",
+        "note": "房型：【スタンダードフロア】スタンダードトリプル 喫煙。楽天 API 空室検索（查詢 2026-10-26），含稅、不含入湯稅等。這天有空房的組合：8x2、5x3。",
+        "source": "rakuten-api",
+        "url": "https://hotel.travel.rakuten.co.jp/hotelinfo/plan/1731?f_nen1=2027&f_tuki1=2&f_hi1=11&f_nen2=2027&f_tuki2=2&f_hi2=12&f_heya_su=5&f_otona_su=3&f_s1=0&f_s2=0&f_y1=0&f_y2=0&f_y3=0&f_y4=0",
+        "retrieved": "2026-10-26"
+      },
+      {
+        "plan": "素泊 楽天 15 人組合最低價（【早期プラン】60日前までのご予約でお得にご宿泊 さき楽（朝食なし））",
+        "unit": "per-person",
+        "adult": 12500,
+        "child": null,
+        "currency": "JPY",
+        "season": "2027-02-12（五）1 泊，5 間 × 3 人（大人）有空房時的最低價",
+        "note": "房型：【スタンダードフロア】スタンダードトリプル 喫煙。楽天 API 空室検索（查詢 2026-10-26），含稅、不含入湯稅等。這天有空房的組合：8x2、5x3。",
+        "source": "rakuten-api",
+        "url": "https://hotel.travel.rakuten.co.jp/hotelinfo/plan/1731?f_nen1=2027&f_tuki1=2&f_hi1=12&f_nen2=2027&f_tuki2=2&f_hi2=13&f_heya_su=5&f_otona_su=3&f_s1=0&f_s2=0&f_y1=0&f_y2=0&f_y3=0&f_y4=0",
+        "retrieved": "2026-10-26"
+      }
+    ],
+    "luggage": "素泊方案可入住前、退房後寄放",
+    "checkIn": "15:00",
+    "checkOut": "12:00",
+    "rakutenHotelNo": 1731,
+    "dinnerAccess": null,
+    "group": {
+      "totalRooms": 726,
+      "roomTypes": [
+        "コンフォートシングル",
+        "カジュアルツイン",
+        "コンフォートツイン",
+        "ICOCAルーム",
+        "グランヴィアフロア（3 人以上房型頁面未見）"
+      ],
+      "maxGuests": null,
+      "wholeRental": false,
+      "pickupCapacity": null,
+      "nearbyCombos": [],
+      "note": "官網僅宴會、法人契約、教育旅行連結；無團體住宿說明"
+    },
+    "ratings": {
+      "rakuten": 4.2,
+      "rakutenReviews": 11322,
+      "jalan": null,
+      "jalanReviews": null,
+      "booking": null,
+      "google": 4,
+      "googleReviews": 3454,
+      "rakutenService": 4.32,
+      "rakutenLocation": 4.35,
+      "rakutenRoom": 4.11,
+      "rakutenEquipment": 4.1,
+      "rakutenBath": 4.04,
+      "rakutenMeal": 4.38,
+      "note": null
+    },
+    "accessibility": {
+      "elevator": null,
+      "beds": "3 人以上房型官網未見",
+      "stairs": null,
+      "kids": "官網預約表單有「小学生受け入れなし」；添寢規定未載；官網預約表單寫「小学生受け入れなし」，和 6～10 歲小孩衝突，要電話確認",
+      "note": null
+    },
+    "reservation": {
+      "methods": [
+        "rakuten",
+        "phone"
+      ],
+      "phone": "0570-06-1235",
+      "url": "https://jrwest-hotels.jp/granvia-osaka/",
+      "groupNote": "官網僅宴會、法人契約、教育旅行連結；無團體住宿說明"
+    },
+    "bookingLinks": {
+      "rakuten": "https://travel.rakuten.co.jp/HOTEL/1731/1731.html"
+    },
+    "sources": [
+      {
+        "type": "booking-site",
+        "url": "https://travel.rakuten.co.jp/HOTEL/1731/1731.html",
+        "retrieved": "2026-10-26",
+        "note": "楽天トラベル API（SimpleHotelSearch、HotelDetailSearch、VacantHotelSearch，scripts/rakuten.mjs）：評分、細項評分、房數、check-in/out、照片、2027-02-11／2027-02-12 的空房與價格"
+      },
+      {
+        "type": "google-maps",
+        "url": "https://maps.google.com/?cid=6804507185547097229",
+        "retrieved": "2026-10-26",
+        "note": "Google 地圖「ホテルグランヴィア大阪」：星數、評論數、座標、照片"
+      },
+      {
+        "type": "official",
+        "url": "https://jrwest-hotels.jp/granvia-osaka/",
+        "retrieved": "2026-10-26",
+        "note": "電話、直結、小学生受け入れなし"
+      }
+    ],
+    "verified": false,
+    "extra": {
+      "conflicts": [
+        "「小学生受け入れなし」與旅客含 6-10 歲小孩衝突，需電話確認",
+        "官網預約表單寫「小学生受け入れなし」，和 6～10 歲小孩衝突，要電話確認"
+      ],
+      "breakfast": "19 樓自助 7:00-9:30（楽天）",
+      "stationAccess": "JR 大阪站直結（中央改札出て右手すぐ）",
+      "rakutenVacancy": {
+        "retrieved": "2026-10-26",
+        "dates": [
+          "2027-02-11",
+          "2027-02-12"
+        ],
+        "combos": [
+          "8x2",
+          "5x3",
+          "4x4",
+          "3x5"
+        ],
+        "available": {
+          "2027-02-11": [
+            "8x2",
+            "5x3"
+          ],
+          "2027-02-12": [
+            "8x2",
+            "5x3"
+          ]
+        },
+        "note": "15 人（全部以大人計）分 N 間同住的組合，有空房的列出；只代表查詢當天楽天上的庫存"
+      }
+    },
+    "summary": null,
+    "assessment": null
+  },
+  {
+    "id": "osaka-intergate-umeda",
+    "type": "lodging",
+    "name": {
+      "ja": "ホテルインターゲート大阪 梅田",
+      "zh": "Intergate 大阪梅田"
+    },
+    "area": "osaka",
+    "region": "umeda",
+    "kind": "hotel",
+    "coords": [
+      135.49326,
+      34.6982414
+    ],
+    "coordsSource": "other",
+    "address": "大阪府大阪市北区梅田2丁目5番2号",
+    "hours": null,
+    "closedNote": null,
+    "febNote": null,
+    "closures": [],
+    "photos": [
+      {
+        "url": "https://img.travel.rakuten.co.jp/share/HOTEL/181403/181403.jpg",
+        "page": "https://travel.rakuten.co.jp/HOTEL/181403/181403.html",
+        "kind": "rakuten",
+        "credit": "楽天トラベル（施設提供）",
+        "license": null
+      },
+      {
+        "url": "https://lh3.googleusercontent.com/grass-cs/AABkmLeT9G-6_50V8pl41WMObTDOyiOB1s64GlfBc-aOhmessEdSZ5IftI-njwupzN7oWBBUazNmQSmp83AKLCOrZpwxHfR-ruJw978zJ_hd0WY9fXrp4cy-MNzeZGeUXx8GZ2Hv_p22kA=w800",
+        "page": "https://maps.google.com/?cid=14871117072028200801",
+        "kind": "google",
+        "credit": "Google マップ（施設或使用者上傳）",
+        "license": null
+      }
+    ],
+    "links": {
+      "official": "https://www.intergatehotels.jp/osaka-umeda/",
+      "instagram": "@intergate_osaka_umeda",
+      "googleMaps": "https://maps.google.com/?cid=14871117072028200801"
+    },
+    "tags": [],
+    "tier": null,
+    "nearestStation": {
+      "id": "jr-osaka",
+      "mode": "walk",
+      "minutes": 8,
+      "note": "官網：西梅田駅步行約 3 分、JR 大阪駅桜橋口約 5 分；西梅田站不在 stations.json，OSRM 到 JR 大阪 8 分"
+    },
+    "pickup": "機場巴士「ハービス大阪」站步行約 3 分",
+    "meals": "varies",
+    "priceRange": "每人約 8,800～11,600 円（素泊；詳見 prices）",
+    "prices": [
+      {
+        "plan": "素泊 楽天 15 人組合最低價（【さき楽90｜キャンセル・返金不可】20％OFF！90日前までのご予約でお得に宿泊＜素泊まり＞）",
+        "unit": "per-person",
+        "adult": 8800,
+        "child": null,
+        "currency": "JPY",
+        "season": "2027-02-11（四）1 泊，5 間 × 3 人（大人）有空房時的最低價",
+        "note": "房型：デラックスキング ｜ 3名利用（禁煙）23平米。楽天 API 空室検索（查詢 2026-10-26），含稅、不含入湯稅等。這天有空房的組合：8x2、5x3。",
+        "source": "rakuten-api",
+        "url": "https://hotel.travel.rakuten.co.jp/hotelinfo/plan/181403?f_nen1=2027&f_tuki1=2&f_hi1=11&f_nen2=2027&f_tuki2=2&f_hi2=12&f_heya_su=5&f_otona_su=3&f_s1=0&f_s2=0&f_y1=0&f_y2=0&f_y3=0&f_y4=0",
+        "retrieved": "2026-10-26"
+      },
+      {
+        "plan": "素泊 楽天 15 人組合最低價（【さき楽90｜キャンセル・返金不可】20％OFF！90日前までのご予約でお得に宿泊＜素泊まり＞）",
+        "unit": "per-person",
+        "adult": 9064,
+        "child": null,
+        "currency": "JPY",
+        "season": "2027-02-12（五）1 泊，5 間 × 3 人（大人）有空房時的最低價",
+        "note": "房型：デラックスキング ｜ 3名利用（禁煙）23平米。楽天 API 空室検索（查詢 2026-10-26），含稅、不含入湯稅等。這天有空房的組合：8x2、5x3、4x4。",
+        "source": "rakuten-api",
+        "url": "https://hotel.travel.rakuten.co.jp/hotelinfo/plan/181403?f_nen1=2027&f_tuki1=2&f_hi1=12&f_nen2=2027&f_tuki2=2&f_hi2=13&f_heya_su=5&f_otona_su=3&f_s1=0&f_s2=0&f_y1=0&f_y2=0&f_y3=0&f_y4=0",
+        "retrieved": "2026-10-26"
+      },
+      {
+        "plan": "素泊 大人 3＋小學生高年級 1（1 室）最低價（【さき楽90｜キャンセル・返金不可】20％OFF！90日前までのご予約でお得に宿泊＜素泊まり＞）",
+        "unit": "per-person",
+        "adult": 11600,
+        "child": null,
+        "currency": "JPY",
+        "season": "2027-02-11（四）1 泊，1 間 大人 3＋小學生高年級 1",
+        "note": "房型：コーナーデラックスツイン（禁煙）40平米。一間總價 46,400 円；API 的小學生價和大人相同（可能以房計價或兒童同價），兒童價不推算。楽天 API（查詢 2026-10-26）。",
+        "source": "rakuten-api",
+        "url": "https://hotel.travel.rakuten.co.jp/hotelinfo/plan/181403?f_nen1=2027&f_tuki1=2&f_hi1=11&f_nen2=2027&f_tuki2=2&f_hi2=12&f_heya_su=1&f_otona_su=3&f_s1=1&f_s2=0&f_y1=0&f_y2=0&f_y3=0&f_y4=0",
+        "retrieved": "2026-10-26"
+      }
+    ],
+    "luggage": "2 樓櫃台 24 小時宅配，可先寄；寄物櫃有限",
+    "checkIn": "15:00",
+    "checkOut": "11:00",
+    "rakutenHotelNo": 181403,
+    "dinnerAccess": null,
+    "group": {
+      "totalRooms": 386,
+      "roomTypes": [],
+      "maxGuests": null,
+      "wholeRental": false,
+      "pickupCapacity": null,
+      "nearbyCombos": [],
+      "note": null
+    },
+    "ratings": {
+      "rakuten": 4.51,
+      "rakutenReviews": 1460,
+      "jalan": null,
+      "jalanReviews": null,
+      "booking": null,
+      "google": 4.3,
+      "googleReviews": 1414,
+      "rakutenService": 4.49,
+      "rakutenLocation": 4.42,
+      "rakutenRoom": 4.56,
+      "rakutenEquipment": 4.51,
+      "rakutenBath": 4.47,
+      "rakutenMeal": 4.48,
+      "note": null
+    },
+    "accessibility": {
+      "elevator": null,
+      "beds": "3 人以上房型未載",
+      "stairs": null,
+      "kids": "僅雙人／雙床房可讓未就學兒童添寢；嬰兒床 2,420 円（含稅）；床圍免費（楽天）",
+      "note": "無障礙房只有 1 間"
+    },
+    "reservation": {
+      "methods": [
+        "rakuten",
+        "phone"
+      ],
+      "phone": null,
+      "url": "https://www.intergatehotels.jp/osaka-umeda/",
+      "groupNote": null
+    },
+    "bookingLinks": {
+      "rakuten": "https://travel.rakuten.co.jp/HOTEL/181403/181403.html"
+    },
+    "sources": [
+      {
+        "type": "booking-site",
+        "url": "https://travel.rakuten.co.jp/HOTEL/181403/181403.html",
+        "retrieved": "2026-10-26",
+        "note": "楽天トラベル API（SimpleHotelSearch、HotelDetailSearch、VacantHotelSearch，scripts/rakuten.mjs）：評分、細項評分、房數、check-in/out、照片、2027-02-11／2027-02-12 的空房與價格"
+      },
+      {
+        "type": "google-maps",
+        "url": "https://maps.google.com/?cid=14871117072028200801",
+        "retrieved": "2026-10-26",
+        "note": "Google 地圖「ホテルインターゲート大阪 梅田」：星數、評論數、座標、照片"
+      },
+      {
+        "type": "official",
+        "url": "https://www.intergatehotels.jp/osaka-umeda/",
+        "retrieved": "2026-10-26",
+        "note": "早餐、Instagram"
+      }
+    ],
+    "verified": false,
+    "extra": {
+      "breakfast": "和洋自助「焼きたてパンとごちそう野菜の朝ごはん」（價格未載）",
+      "stationAccess": "Osaka Metro 四つ橋線 西梅田站 步行約 3 分；JR 大阪站桜橋口 約 5 分",
+      "rakutenVacancy": {
+        "retrieved": "2026-10-26",
+        "dates": [
+          "2027-02-11",
+          "2027-02-12"
+        ],
+        "combos": [
+          "8x2",
+          "5x3",
+          "4x4",
+          "3x5"
+        ],
+        "available": {
+          "2027-02-11": [
+            "8x2",
+            "5x3"
+          ],
+          "2027-02-12": [
+            "8x2",
+            "5x3",
+            "4x4"
+          ]
+        },
+        "note": "15 人（全部以大人計）分 N 間同住的組合，有空房的列出；只代表查詢當天楽天上的庫存"
+      }
+    },
+    "summary": null,
+    "assessment": null
+  },
+  {
+    "id": "osaka-apa-umeda-tower",
+    "type": "lodging",
+    "name": {
+      "ja": "アパホテル＆リゾート〈大阪梅田駅タワー〉",
+      "zh": "APA 酒店＆度假村 大阪梅田站塔"
+    },
+    "area": "osaka",
+    "region": "umeda",
+    "kind": "hotel",
+    "coords": [
+      135.5015911,
+      34.6998961
+    ],
+    "coordsSource": "other",
+    "address": "大阪府大阪市北区曽根崎2-8-32",
+    "hours": null,
+    "closedNote": null,
+    "febNote": null,
+    "closures": [],
+    "photos": [
+      {
+        "url": "https://img.travel.rakuten.co.jp/share/HOTEL/184030/184030.jpg",
+        "page": "https://travel.rakuten.co.jp/HOTEL/184030/184030.html",
+        "kind": "rakuten",
+        "credit": "楽天トラベル（施設提供）",
+        "license": null
+      },
+      {
+        "url": "https://lh3.googleusercontent.com/grass-cs/AABkmLci7NdB7ooIL2nwQ5CpQKqLaHGIwwUEiDwDr_2rl_OhpIOdWVa1biusJ56BM-StW8ooYzA4FGkPP4_3Nd-7snJZI9a_tPWqaeasObjAH5rQbr4DUCzuWkLQi2LYiCwhEGbuH-50mQ=w800",
+        "page": "https://maps.google.com/?cid=15038991131274406226",
+        "kind": "google",
+        "credit": "Google マップ（施設或使用者上傳）",
+        "license": null
+      }
+    ],
+    "links": {
+      "official": "https://www.apahotel.com/hotel/kansai/osaka/osaka-umeda-eki-tower/",
+      "googleMaps": "https://maps.google.com/?cid=15038991131274406226"
+    },
+    "tags": [],
+    "tier": null,
+    "nearestStation": {
+      "id": "metro-higashi-umeda",
+      "mode": "walk",
+      "minutes": 6,
+      "note": "官網：東梅田駅 4 號出口步行 3 分；OSRM 6 分"
+    },
+    "pickup": null,
+    "meals": "varies",
+    "priceRange": "每人約 5,400～10,890 円（一泊二食／素泊；詳見 prices）",
+    "prices": [
+      {
+        "plan": "一泊二食 楽天 15 人組合最低價（【夕食付き】50種類のディナービュッフェプラン　3階レストラン「ラ・ベランダ プレミア」）",
+        "unit": "per-person",
+        "adult": 9540,
+        "child": null,
+        "currency": "JPY",
+        "season": "2027-02-11（四）1 泊，4 間 × 4 人（大人）有空房時的最低價",
+        "note": "房型：【ダブル×ダブル】コネクトルーム22平米4名利用2ベッド。楽天 API 空室検索（查詢 2026-10-26），含稅、不含入湯稅等。這天有空房的組合：8x2、5x3、4x4。",
+        "source": "rakuten-api",
+        "url": "https://hotel.travel.rakuten.co.jp/hotelinfo/plan/184030?f_nen1=2027&f_tuki1=2&f_hi1=11&f_nen2=2027&f_tuki2=2&f_hi2=12&f_heya_su=4&f_otona_su=4&f_s1=0&f_s2=0&f_y1=0&f_y2=0&f_y3=0&f_y4=0",
+        "retrieved": "2026-10-26"
+      },
+      {
+        "plan": "素泊 楽天 15 人組合最低價（【楽パック★スペシャル】【素泊まり】〇大浴殿・露天風呂完備〇東梅田駅から徒歩3分〇）",
+        "unit": "per-person",
+        "adult": 5400,
+        "child": null,
+        "currency": "JPY",
+        "season": "2027-02-11（四）1 泊，8 間 × 2 人（大人）有空房時的最低價",
+        "note": "房型：スタンダードルーム（2名利用） 禁煙室 【眺望なし】。楽天 API 空室検索（查詢 2026-10-26），含稅、不含入湯稅等。這天有空房的組合：8x2、5x3、4x4。",
+        "source": "rakuten-api",
+        "url": "https://hotel.travel.rakuten.co.jp/hotelinfo/plan/184030?f_nen1=2027&f_tuki1=2&f_hi1=11&f_nen2=2027&f_tuki2=2&f_hi2=12&f_heya_su=8&f_otona_su=2&f_s1=0&f_s2=0&f_y1=0&f_y2=0&f_y3=0&f_y4=0",
+        "retrieved": "2026-10-26"
+      },
+      {
+        "plan": "一泊二食 楽天 15 人組合最低價（【和牛食べ放題ビュッフェ】夕食付きプラン 3階「ラ・ベランダ プレミア」）",
+        "unit": "per-person",
+        "adult": 10890,
+        "child": null,
+        "currency": "JPY",
+        "season": "2027-02-12（五）1 泊，4 間 × 4 人（大人）有空房時的最低價",
+        "note": "房型：ファミリーツインルーム 禁煙室。楽天 API 空室検索（查詢 2026-10-26），含稅、不含入湯稅等。這天有空房的組合：8x2、5x3、4x4。",
+        "source": "rakuten-api",
+        "url": "https://hotel.travel.rakuten.co.jp/hotelinfo/plan/184030?f_nen1=2027&f_tuki1=2&f_hi1=12&f_nen2=2027&f_tuki2=2&f_hi2=13&f_heya_su=4&f_otona_su=4&f_s1=0&f_s2=0&f_y1=0&f_y2=0&f_y3=0&f_y4=0",
+        "retrieved": "2026-10-26"
+      },
+      {
+        "plan": "素泊 楽天 15 人組合最低價（【楽パック★スペシャル】【素泊まり】〇大浴殿・露天風呂完備〇東梅田駅から徒歩3分〇）",
+        "unit": "per-person",
+        "adult": 5940,
+        "child": null,
+        "currency": "JPY",
+        "season": "2027-02-12（五）1 泊，4 間 × 4 人（大人）有空房時的最低價",
+        "note": "房型：ファミリーツインルーム 禁煙室。楽天 API 空室検索（查詢 2026-10-26），含稅、不含入湯稅等。這天有空房的組合：8x2、5x3、4x4。",
+        "source": "rakuten-api",
+        "url": "https://hotel.travel.rakuten.co.jp/hotelinfo/plan/184030?f_nen1=2027&f_tuki1=2&f_hi1=12&f_nen2=2027&f_tuki2=2&f_hi2=13&f_heya_su=4&f_otona_su=4&f_s1=0&f_s2=0&f_y1=0&f_y2=0&f_y3=0&f_y4=0",
+        "retrieved": "2026-10-26"
+      },
+      {
+        "plan": "素泊 大人 3＋小學生高年級 1（1 室）最低價（【楽パック★スペシャル】【素泊まり】〇大浴殿・露天風呂完備〇東梅田駅から徒歩3分〇）",
+        "unit": "per-person",
+        "adult": 5940,
+        "child": null,
+        "currency": "JPY",
+        "season": "2027-02-11（四）1 泊，1 間 大人 3＋小學生高年級 1",
+        "note": "房型：【ダブル×ダブル】コネクトルーム22平米4名利用2ベッド。一間總價 23,760 円；API 的小學生價和大人相同（可能以房計價或兒童同價），兒童價不推算。楽天 API（查詢 2026-10-26）。",
+        "source": "rakuten-api",
+        "url": "https://hotel.travel.rakuten.co.jp/hotelinfo/plan/184030?f_nen1=2027&f_tuki1=2&f_hi1=11&f_nen2=2027&f_tuki2=2&f_hi2=12&f_heya_su=1&f_otona_su=3&f_s1=1&f_s2=0&f_y1=0&f_y2=0&f_y3=0&f_y4=0",
+        "retrieved": "2026-10-26"
+      }
+    ],
+    "luggage": "僅當日於櫃台代管；電腦、易碎物不收",
+    "checkIn": "15:00",
+    "checkOut": "10:00",
+    "rakutenHotelNo": 184030,
+    "dinnerAccess": null,
+    "group": {
+      "totalRooms": 1704,
+      "roomTypes": [],
+      "maxGuests": null,
+      "wholeRental": false,
+      "pickupCapacity": null,
+      "nearbyCombos": [],
+      "note": null
+    },
+    "ratings": {
+      "rakuten": 4.28,
+      "rakutenReviews": 4295,
+      "jalan": null,
+      "jalanReviews": null,
+      "booking": null,
+      "google": 4,
+      "googleReviews": 3652,
+      "rakutenService": 4.27,
+      "rakutenLocation": 4.27,
+      "rakutenRoom": 4.28,
+      "rakutenEquipment": 4.26,
+      "rakutenBath": 4.31,
+      "rakutenMeal": 4.27,
+      "note": null
+    },
+    "accessibility": {
+      "elevator": null,
+      "beds": "房型定員未載（評論：房間很小）",
+      "stairs": null,
+      "kids": "未就學兒童與大人添寢每房 1 名免費",
+      "note": "頁面僅寫各館無障礙設備不同，未載具體"
+    },
+    "reservation": {
+      "methods": [
+        "rakuten",
+        "phone"
+      ],
+      "phone": "0570-070-411",
+      "url": "https://www.apahotel.com/hotel/kansai/osaka/osaka-umeda-eki-tower/",
+      "groupNote": null
+    },
+    "bookingLinks": {
+      "rakuten": "https://travel.rakuten.co.jp/HOTEL/184030/184030.html"
+    },
+    "sources": [
+      {
+        "type": "booking-site",
+        "url": "https://travel.rakuten.co.jp/HOTEL/184030/184030.html",
+        "retrieved": "2026-10-26",
+        "note": "楽天トラベル API（SimpleHotelSearch、HotelDetailSearch、VacantHotelSearch，scripts/rakuten.mjs）：評分、細項評分、房數、check-in/out、照片、2027-02-11／2027-02-12 的空房與價格"
+      },
+      {
+        "type": "google-maps",
+        "url": "https://maps.google.com/?cid=15038991131274406226",
+        "retrieved": "2026-10-26",
+        "note": "Google 地圖「アパホテル＆リゾート〈大阪梅田駅タワー〉」：星數、評論數、座標、照片"
+      },
+      {
+        "type": "official",
+        "url": "https://www.apahotel.com/hotel/kansai/osaka/osaka-umeda-eki-tower/",
+        "retrieved": "2026-10-26",
+        "note": "添寢、check-in/out、行李、交通"
+      }
+    ],
+    "verified": false,
+    "extra": {
+      "breakfast": "餐廳自助（價格未載）",
+      "stationAccess": "Osaka Metro 谷町線 東梅田站 4 號出口 步行 3 分",
+      "rakutenVacancy": {
+        "retrieved": "2026-10-26",
+        "dates": [
+          "2027-02-11",
+          "2027-02-12"
+        ],
+        "combos": [
+          "8x2",
+          "5x3",
+          "4x4",
+          "3x5"
+        ],
+        "available": {
+          "2027-02-11": [
+            "8x2",
+            "5x3",
+            "4x4"
+          ],
+          "2027-02-12": [
+            "8x2",
+            "5x3",
+            "4x4"
+          ]
+        },
+        "note": "15 人（全部以大人計）分 N 間同住的組合，有空房的列出；只代表查詢當天楽天上的庫存"
+      }
+    },
+    "summary": null,
+    "assessment": null
+  },
+  {
+    "id": "osaka-keihan-universal-tower",
+    "type": "lodging",
+    "name": {
+      "ja": "ホテル京阪 ユニバーサル・タワー",
+      "zh": "京阪環球塔酒店"
+    },
+    "area": "osaka",
+    "region": "usj",
+    "kind": "hotel",
+    "coords": [
+      135.4375075,
+      34.6674845
+    ],
+    "coordsSource": "other",
+    "address": "大阪府大阪市此花区島屋6-2-45",
+    "hours": null,
+    "closedNote": null,
+    "febNote": null,
+    "closures": [],
+    "photos": [
+      {
+        "url": "https://img.travel.rakuten.co.jp/share/HOTEL/71921/71921.jpg",
+        "page": "https://travel.rakuten.co.jp/HOTEL/71921/71921.html",
+        "kind": "rakuten",
+        "credit": "楽天トラベル（施設提供）",
+        "license": null
+      },
+      {
+        "url": "https://img.travel.rakuten.co.jp/share/HOTEL/71921/71921_kan.jpg",
+        "page": "https://travel.rakuten.co.jp/HOTEL/71921/71921.html",
+        "kind": "rakuten",
+        "credit": "楽天トラベル（施設提供）",
+        "license": null
+      },
+      {
+        "url": "https://lh3.googleusercontent.com/grass-cs/AABkmLfBsjqlyFwV_N16aYB6Nu6sBT0zeVBNPDQ_Kh4AgSbLcE9YWbHTLzZIHoPw_IGTLtx2mdGFH9ZUKfnBXth4aAptmMLbUiuxQjHFDbFMGFGJSDismx8C5kl2nmbUCFWmKuE1pAqZ=w800",
+        "page": "https://maps.google.com/?cid=17005376825464339244",
+        "kind": "google",
+        "credit": "Google マップ（施設或使用者上傳）",
+        "license": null
+      }
+    ],
+    "links": {
+      "official": "https://hotelkeihan.co.jp/tower/",
+      "googleMaps": "https://maps.google.com/?cid=17005376825464339244"
+    },
+    "tags": [],
+    "tier": null,
+    "nearestStation": {
+      "id": "jr-universal-city",
+      "mode": "walk",
+      "minutes": 1,
+      "note": "楽天：ユニバーサルシティ駅、USJ 步行可達；OSRM 1 分"
+    },
+    "pickup": null,
+    "meals": "varies",
+    "priceRange": "每人約 7,300～11,800 円（素泊；詳見 prices）",
+    "prices": [
+      {
+        "plan": "素泊 楽天 15 人組合最低價（【さき楽】90日前までの早めの旅行計画で賢くステイ！＜食事なし＞）",
+        "unit": "per-person",
+        "adult": 8400,
+        "child": null,
+        "currency": "JPY",
+        "season": "2027-02-11（四）1 泊，5 間 × 3 人（大人）有空房時的最低價",
+        "note": "房型：スタンダードルーム（25平米）。楽天 API 空室検索（查詢 2026-10-26），含稅、不含入湯稅等。這天有空房的組合：8x2、5x3、4x4、3x5。",
+        "source": "rakuten-api",
+        "url": "https://hotel.travel.rakuten.co.jp/hotelinfo/plan/71921?f_nen1=2027&f_tuki1=2&f_hi1=11&f_nen2=2027&f_tuki2=2&f_hi2=12&f_heya_su=5&f_otona_su=3&f_s1=0&f_s2=0&f_y1=0&f_y2=0&f_y3=0&f_y4=0",
+        "retrieved": "2026-10-26"
+      },
+      {
+        "plan": "素泊 楽天 15 人組合最低價（【さき楽】90日前までの早めの旅行計画で賢くステイ！＜食事なし＞）",
+        "unit": "per-person",
+        "adult": 11800,
+        "child": null,
+        "currency": "JPY",
+        "season": "2027-02-12（五）1 泊，5 間 × 3 人（大人）有空房時的最低價",
+        "note": "房型：【ローベッド】スタンダードトリプル（25平米）。楽天 API 空室検索（查詢 2026-10-26），含稅、不含入湯稅等。這天有空房的組合：8x2、5x3、4x4、3x5。",
+        "source": "rakuten-api",
+        "url": "https://hotel.travel.rakuten.co.jp/hotelinfo/plan/71921?f_nen1=2027&f_tuki1=2&f_hi1=12&f_nen2=2027&f_tuki2=2&f_hi2=13&f_heya_su=5&f_otona_su=3&f_s1=0&f_s2=0&f_y1=0&f_y2=0&f_y3=0&f_y4=0",
+        "retrieved": "2026-10-26"
+      },
+      {
+        "plan": "素泊 大人 3＋小學生高年級 1（1 室）最低價（【さき楽】90日前までの早めの旅行計画で賢くステイ！＜食事なし＞）",
+        "unit": "per-person",
+        "adult": 7300,
+        "child": null,
+        "currency": "JPY",
+        "season": "2027-02-11（四）1 泊，1 間 大人 3＋小學生高年級 1",
+        "note": "房型：【バンクベッド】スタンダードルーム（25平米）。一間總價 29,200 円；API 的小學生價和大人相同（可能以房計價或兒童同價），兒童價不推算。楽天 API（查詢 2026-10-26）。",
+        "source": "rakuten-api",
+        "url": "https://hotel.travel.rakuten.co.jp/hotelinfo/plan/71921?f_nen1=2027&f_tuki1=2&f_hi1=11&f_nen2=2027&f_tuki2=2&f_hi2=12&f_heya_su=1&f_otona_su=3&f_s1=1&f_s2=0&f_y1=0&f_y2=0&f_y3=0&f_y4=0",
+        "retrieved": "2026-10-26"
+      }
+    ],
+    "luggage": "入住前放 4 樓置物櫃、退房後 3 樓，免費（樂天頁）",
+    "checkIn": "15:00",
+    "checkOut": "11:00",
+    "rakutenHotelNo": 71921,
+    "dinnerAccess": null,
+    "group": {
+      "totalRooms": 641,
+      "roomTypes": [
+        "標準房與高級房連通房（中門相連）適合 5～7 人，需電話預約"
+      ],
+      "maxGuests": null,
+      "wholeRental": false,
+      "pickupCapacity": null,
+      "nearbyCombos": [],
+      "note": "連通房需電話預約；官網維修中"
+    },
+    "ratings": {
+      "rakuten": 4.59,
+      "rakutenReviews": 9839,
+      "jalan": null,
+      "jalanReviews": null,
+      "booking": null,
+      "google": 4.3,
+      "googleReviews": 5453,
+      "rakutenService": 4.56,
+      "rakutenLocation": 4.62,
+      "rakutenRoom": 4.62,
+      "rakutenEquipment": 4.57,
+      "rakutenBath": 4.42,
+      "rakutenMeal": 4.43,
+      "note": null
+    },
+    "accessibility": {
+      "elevator": null,
+      "beds": "標準房、高級房有連通房（5～7 人，要電話預約）",
+      "stairs": null,
+      "kids": "學齡前兒童共床免費（每位大人限 1 名）；小學生以上需每人一床收費（樂天頁）",
+      "note": "大浴場另外收費（評論）"
+    },
+    "reservation": {
+      "methods": [
+        "rakuten",
+        "phone"
+      ],
+      "phone": "06-6465-1001",
+      "url": "https://hotelkeihan.co.jp/tower/",
+      "groupNote": "連通房需電話預約；官網維修中"
+    },
+    "bookingLinks": {
+      "rakuten": "https://travel.rakuten.co.jp/HOTEL/71921/71921.html"
+    },
+    "sources": [
+      {
+        "type": "booking-site",
+        "url": "https://travel.rakuten.co.jp/HOTEL/71921/71921.html",
+        "retrieved": "2026-10-26",
+        "note": "楽天トラベル API（SimpleHotelSearch、HotelDetailSearch、VacantHotelSearch，scripts/rakuten.mjs）：評分、細項評分、房數、check-in/out、照片、2027-02-11／2027-02-12 的空房與價格"
+      },
+      {
+        "type": "google-maps",
+        "url": "https://maps.google.com/?cid=17005376825464339244",
+        "retrieved": "2026-10-26",
+        "note": "Google 地圖「ホテル京阪 ユニバーサル・タワー」：星數、評論數、座標、照片"
+      },
+      {
+        "type": "official",
+        "url": "https://hotelkeihan.co.jp/tower/",
+        "retrieved": "2026-10-26",
+        "note": "維修中，只有電話"
+      }
+    ],
+    "verified": false,
+    "extra": {
+      "breakfast": "自助早餐 06:30～10:00，成人 3,300、7～12 歲 1,980、4～6 歲 1,320 日圓（樂天頁）",
+      "stationAccess": "JR ユニバーサルシティ駅、USJ 步行可達（分鐘未載）；大阪駅電車約 11 分（樂天頁）",
+      "rakutenVacancy": {
+        "retrieved": "2026-10-26",
+        "dates": [
+          "2027-02-11",
+          "2027-02-12"
+        ],
+        "combos": [
+          "8x2",
+          "5x3",
+          "4x4",
+          "3x5"
+        ],
+        "available": {
+          "2027-02-11": [
+            "8x2",
+            "5x3",
+            "4x4",
+            "3x5"
+          ],
+          "2027-02-12": [
+            "8x2",
+            "5x3",
+            "4x4",
+            "3x5"
+          ]
+        },
+        "note": "15 人（全部以大人計）分 N 間同住的組合，有空房的列出；只代表查詢當天楽天上的庫存"
+      }
+    },
+    "summary": null,
+    "assessment": null
+  },
+  {
+    "id": "osaka-liber-hotel",
+    "type": "lodging",
+    "name": {
+      "ja": "リーベルホテル大阪",
+      "zh": "大阪利伯飯店"
+    },
+    "area": "osaka",
+    "region": "usj",
+    "kind": "hotel",
+    "coords": [
+      135.4323838,
+      34.6614789
+    ],
+    "coordsSource": "other",
+    "address": "大阪府大阪市此花区桜島1丁目1番35号",
+    "hours": null,
+    "closedNote": null,
+    "febNote": null,
+    "closures": [],
+    "photos": [
+      {
+        "url": "https://img.travel.rakuten.co.jp/share/HOTEL/172378/172378.jpg",
+        "page": "https://travel.rakuten.co.jp/HOTEL/172378/172378.html",
+        "kind": "rakuten",
+        "credit": "楽天トラベル（施設提供）",
+        "license": null
+      },
+      {
+        "url": "https://lh3.googleusercontent.com/grass-cs/AABkmLfYZYuTSyy_oKYsBXRRH4HWQX-Sx3TN2TTQ1stTrBdVUf2UIxddz6ZPZX47r75jZfsMkbGwB5b1e6-NN5lKhgkk7DvuvxDuqqFaGiECKjMQ_4_kChMiJ1p_wpdA2FZpxpHBDe4UgZ5JOlI_=w800",
+        "page": "https://maps.google.com/?cid=15910772696149825880",
+        "kind": "google",
+        "credit": "Google マップ（施設或使用者上傳）",
+        "license": null
+      }
+    ],
+    "links": {
+      "official": "https://www.hotel-liber.jp/",
+      "instagram": "@liber_hotel",
+      "googleMaps": "https://maps.google.com/?cid=15910772696149825880"
+    },
+    "tags": [],
+    "tier": null,
+    "nearestStation": {
+      "id": "jr-universal-city",
+      "mode": "walk",
+      "minutes": 13,
+      "note": "楽天：JR ゆめ咲線 桜島駅步行 1 分、USJ 步行約 13 分；桜島站不在 stations.json，OSRM 到ユニバーサルシティ 13 分"
+    },
+    "pickup": null,
+    "meals": "varies",
+    "priceRange": "每人約 6,500～7,500 円（素泊；詳見 prices）",
+    "prices": [
+      {
+        "plan": "素泊 楽天 15 人組合最低價（【初秋の特別企画】秋の大阪を満喫！友人・家族とゆったり楽しむホテルステイ【素泊まり】）",
+        "unit": "per-person",
+        "adult": 6500,
+        "child": null,
+        "currency": "JPY",
+        "season": "2027-02-11（四）1 泊，4 間 × 4 人（大人）有空房時的最低價",
+        "note": "房型：スーペリアツイン【禁煙】。楽天 API 空室検索（查詢 2026-10-26），含稅、不含入湯稅等。這天有空房的組合：8x2、5x3、4x4、3x5。",
+        "source": "rakuten-api",
+        "url": "https://hotel.travel.rakuten.co.jp/hotelinfo/plan/172378?f_nen1=2027&f_tuki1=2&f_hi1=11&f_nen2=2027&f_tuki2=2&f_hi2=12&f_heya_su=4&f_otona_su=4&f_s1=0&f_s2=0&f_y1=0&f_y2=0&f_y3=0&f_y4=0",
+        "retrieved": "2026-10-26"
+      },
+      {
+        "plan": "素泊 楽天 15 人組合最低價（【初秋の特別企画】秋の大阪を満喫！友人・家族とゆったり楽しむホテルステイ【素泊まり】）",
+        "unit": "per-person",
+        "adult": 7500,
+        "child": null,
+        "currency": "JPY",
+        "season": "2027-02-12（五）1 泊，4 間 × 4 人（大人）有空房時的最低價",
+        "note": "房型：スーペリアツイン【禁煙】。楽天 API 空室検索（查詢 2026-10-26），含稅、不含入湯稅等。這天有空房的組合：8x2、5x3、4x4、3x5。",
+        "source": "rakuten-api",
+        "url": "https://hotel.travel.rakuten.co.jp/hotelinfo/plan/172378?f_nen1=2027&f_tuki1=2&f_hi1=12&f_nen2=2027&f_tuki2=2&f_hi2=13&f_heya_su=4&f_otona_su=4&f_s1=0&f_s2=0&f_y1=0&f_y2=0&f_y3=0&f_y4=0",
+        "retrieved": "2026-10-26"
+      },
+      {
+        "plan": "素泊 大人 3＋小學生高年級 1（1 室）最低價（【初秋の特別企画】秋の大阪を満喫！友人・家族とゆったり楽しむホテルステイ【素泊まり】）",
+        "unit": "per-person",
+        "adult": 6500,
+        "child": null,
+        "currency": "JPY",
+        "season": "2027-02-11（四）1 泊，1 間 大人 3＋小學生高年級 1",
+        "note": "房型：スーペリアツイン【禁煙】。一間總價 26,000 円；API 的小學生價和大人相同（可能以房計價或兒童同價），兒童價不推算。楽天 API（查詢 2026-10-26）。",
+        "source": "rakuten-api",
+        "url": "https://hotel.travel.rakuten.co.jp/hotelinfo/plan/172378?f_nen1=2027&f_tuki1=2&f_hi1=11&f_nen2=2027&f_tuki2=2&f_hi2=12&f_heya_su=1&f_otona_su=3&f_s1=1&f_s2=0&f_y1=0&f_y2=0&f_y3=0&f_y4=0",
+        "retrieved": "2026-10-26"
+      }
+    ],
+    "luggage": "入住前任何時間可寄放前台（樂天頁）",
+    "checkIn": "14:00",
+    "checkOut": "11:00",
+    "rakutenHotelNo": 172378,
+    "dinnerAccess": null,
+    "group": {
+      "totalRooms": 760,
+      "roomTypes": [
+        "スーペリアツイン 33㎡ 最多 4 人",
+        "スタンダードツイン 26㎡ 最多 3 人",
+        "DELUXE 最多 4 人（鋪榻榻米）"
+      ],
+      "maxGuests": null,
+      "wholeRental": false,
+      "pickupCapacity": null,
+      "nearbyCombos": [],
+      "note": null
+    },
+    "ratings": {
+      "rakuten": 4.72,
+      "rakutenReviews": 7273,
+      "jalan": null,
+      "jalanReviews": null,
+      "booking": null,
+      "google": 4.5,
+      "googleReviews": 3354,
+      "rakutenService": 4.69,
+      "rakutenLocation": 4.72,
+      "rakutenRoom": 4.73,
+      "rakutenEquipment": 4.71,
+      "rakutenBath": 4.72,
+      "rakutenMeal": 4.71,
+      "note": null
+    },
+    "accessibility": {
+      "elevator": null,
+      "beds": "スーペリアツイン 33㎡ 最多 4 人、DELUXE 最多 4 人（榻榻米）",
+      "stairs": null,
+      "kids": "同寢兒童有兒童備品（樂天頁）；兒童價未載",
+      "note": "3F 大浴場 RIVERSIDE SPA；免費借輪椅、看護用浴椅"
+    },
+    "reservation": {
+      "methods": [
+        "rakuten",
+        "phone"
+      ],
+      "phone": "06-6462-3333（預約 06-6462-2222）",
+      "url": "https://www.hotel-liber.jp/",
+      "groupNote": null
+    },
+    "bookingLinks": {
+      "rakuten": "https://travel.rakuten.co.jp/HOTEL/172378/172378.html"
+    },
+    "sources": [
+      {
+        "type": "booking-site",
+        "url": "https://travel.rakuten.co.jp/HOTEL/172378/172378.html",
+        "retrieved": "2026-10-26",
+        "note": "楽天トラベル API（SimpleHotelSearch、HotelDetailSearch、VacantHotelSearch，scripts/rakuten.mjs）：評分、細項評分、房數、check-in/out、照片、2027-02-11／2027-02-12 的空房與價格"
+      },
+      {
+        "type": "google-maps",
+        "url": "https://maps.google.com/?cid=15910772696149825880",
+        "retrieved": "2026-10-26",
+        "note": "Google 地圖「リーベルホテル大阪」：星數、評論數、座標、照片"
+      },
+      {
+        "type": "official",
+        "url": "https://www.hotel-liber.jp/",
+        "retrieved": "2026-10-26",
+        "note": "電話、地址、IG"
+      },
+      {
+        "type": "official",
+        "url": "https://hotel-liber.jp/room/",
+        "retrieved": "2026-10-26",
+        "note": "房型"
+      }
+    ],
+    "verified": false,
+    "extra": {
+      "breakfast": "自助式；成人（國中以上）4,400 日圓（樂天頁）",
+      "stationAccess": "JR ゆめ咲線 桜島駅 步行 1 分；USJ 步行約 13 分；大阪駅最快 14 分（樂天頁）",
+      "rakutenVacancy": {
+        "retrieved": "2026-10-26",
+        "dates": [
+          "2027-02-11",
+          "2027-02-12"
+        ],
+        "combos": [
+          "8x2",
+          "5x3",
+          "4x4",
+          "3x5"
+        ],
+        "available": {
+          "2027-02-11": [
+            "8x2",
+            "5x3",
+            "4x4",
+            "3x5"
+          ],
+          "2027-02-12": [
+            "8x2",
+            "5x3",
+            "4x4",
+            "3x5"
+          ]
+        },
+        "note": "15 人（全部以大人計）分 N 間同住的組合，有空房的列出；只代表查詢當天楽天上的庫存"
+      }
+    },
+    "summary": null,
+    "assessment": null
+  },
+  {
+    "id": "osaka-universal-port",
+    "type": "lodging",
+    "name": {
+      "ja": "ホテル ユニバーサル ポート",
+      "zh": "環球港灣飯店"
+    },
+    "area": "osaka",
+    "region": "usj",
+    "kind": "hotel",
+    "coords": [
+      135.4377019,
+      34.6661735
+    ],
+    "coordsSource": "other",
+    "address": "大阪府大阪市此花区桜島1-1-111",
+    "hours": null,
+    "closedNote": null,
+    "febNote": null,
+    "closures": [],
+    "photos": [
+      {
+        "url": "https://img.travel.rakuten.co.jp/share/HOTEL/38281/38281.jpg",
+        "page": "https://travel.rakuten.co.jp/HOTEL/38281/38281.html",
+        "kind": "rakuten",
+        "credit": "楽天トラベル（施設提供）",
+        "license": null
+      },
+      {
+        "url": "https://img.travel.rakuten.co.jp/share/HOTEL/38281/38281_su.jpg",
+        "page": "https://travel.rakuten.co.jp/HOTEL/38281/38281.html",
+        "kind": "rakuten",
+        "credit": "楽天トラベル（施設提供）",
+        "license": null
+      },
+      {
+        "url": "https://lh3.googleusercontent.com/grass-cs/AABkmLcxHYgmIOQmLib18OLD899OtwSOxuqLLsDb-GAkmEAhI7YP3Nx-djmoVTXkUP5gR1Ss7R_aAb2PGyXWFQVZCt8sRtr3Zxn2ImtqNGlnYuy79HwnQc4TBeWVZcvcA2iKosMgFIT4Ip_ES_s=w800",
+        "page": "https://maps.google.com/?cid=15398724847078069765",
+        "kind": "google",
+        "credit": "Google マップ（施設或使用者上傳）",
+        "license": null
+      }
+    ],
+    "links": {
+      "official": "https://universalport.orixhotelsandresorts.com/",
+      "instagram": "@universalport",
+      "googleMaps": "https://maps.google.com/?cid=15398724847078069765"
+    },
+    "tags": [],
+    "tier": null,
+    "nearestStation": {
+      "id": "jr-universal-city",
+      "mode": "walk",
+      "minutes": 4,
+      "note": "楽天：ユニバーサルシティ駅步行 3 分；OSRM 4 分"
+    },
+    "pickup": null,
+    "meals": "varies",
+    "priceRange": "每人約 8,200～18,600 円（一泊二食／素泊；詳見 prices）",
+    "prices": [
+      {
+        "plan": "一泊二食 楽天 15 人組合最低價（【期間限定】VITAの新ディナービュッフェ リニューアル記念♪ 幼児夕食無料！1泊2食付き）",
+        "unit": "per-person",
+        "adult": 16600,
+        "child": null,
+        "currency": "JPY",
+        "season": "2027-02-11（四）1 泊，4 間 × 4 人（大人）有空房時的最低價",
+        "note": "房型：デラックスルーム【禁煙】。楽天 API 空室検索（查詢 2026-10-26），含稅、不含入湯稅等。這天有空房的組合：5x3、4x4。",
+        "source": "rakuten-api",
+        "url": "https://hotel.travel.rakuten.co.jp/hotelinfo/plan/38281?f_nen1=2027&f_tuki1=2&f_hi1=11&f_nen2=2027&f_tuki2=2&f_hi2=12&f_heya_su=4&f_otona_su=4&f_s1=0&f_s2=0&f_y1=0&f_y2=0&f_y3=0&f_y4=0",
+        "retrieved": "2026-10-26"
+      },
+      {
+        "plan": "素泊 楽天 15 人組合最低價（【またきてな関西旅】シンプルステイ（素泊まり））",
+        "unit": "per-person",
+        "adult": 8200,
+        "child": null,
+        "currency": "JPY",
+        "season": "2027-02-11（四）1 泊，4 間 × 4 人（大人）有空房時的最低價",
+        "note": "房型：デラックスルーム【禁煙】。楽天 API 空室検索（查詢 2026-10-26），含稅、不含入湯稅等。這天有空房的組合：5x3、4x4。",
+        "source": "rakuten-api",
+        "url": "https://hotel.travel.rakuten.co.jp/hotelinfo/plan/38281?f_nen1=2027&f_tuki1=2&f_hi1=11&f_nen2=2027&f_tuki2=2&f_hi2=12&f_heya_su=4&f_otona_su=4&f_s1=0&f_s2=0&f_y1=0&f_y2=0&f_y3=0&f_y4=0",
+        "retrieved": "2026-10-26"
+      },
+      {
+        "plan": "一泊二食 楽天 15 人組合最低價（【期間限定】VITAの新ディナービュッフェ リニューアル記念♪ 幼児夕食無料！1泊2食付き）",
+        "unit": "per-person",
+        "adult": 18600,
+        "child": null,
+        "currency": "JPY",
+        "season": "2027-02-12（五）1 泊，4 間 × 4 人（大人）有空房時的最低價",
+        "note": "房型：デラックスルーム【禁煙】。楽天 API 空室検索（查詢 2026-10-26），含稅、不含入湯稅等。這天有空房的組合：5x3、4x4。",
+        "source": "rakuten-api",
+        "url": "https://hotel.travel.rakuten.co.jp/hotelinfo/plan/38281?f_nen1=2027&f_tuki1=2&f_hi1=12&f_nen2=2027&f_tuki2=2&f_hi2=13&f_heya_su=4&f_otona_su=4&f_s1=0&f_s2=0&f_y1=0&f_y2=0&f_y3=0&f_y4=0",
+        "retrieved": "2026-10-26"
+      },
+      {
+        "plan": "素泊 楽天 15 人組合最低價（【またきてな関西旅】シンプルステイ（素泊まり））",
+        "unit": "per-person",
+        "adult": 10200,
+        "child": null,
+        "currency": "JPY",
+        "season": "2027-02-12（五）1 泊，4 間 × 4 人（大人）有空房時的最低價",
+        "note": "房型：デラックスルーム【禁煙】。楽天 API 空室検索（查詢 2026-10-26），含稅、不含入湯稅等。這天有空房的組合：5x3、4x4。",
+        "source": "rakuten-api",
+        "url": "https://hotel.travel.rakuten.co.jp/hotelinfo/plan/38281?f_nen1=2027&f_tuki1=2&f_hi1=12&f_nen2=2027&f_tuki2=2&f_hi2=13&f_heya_su=4&f_otona_su=4&f_s1=0&f_s2=0&f_y1=0&f_y2=0&f_y3=0&f_y4=0",
+        "retrieved": "2026-10-26"
+      },
+      {
+        "plan": "素泊 大人 3＋小學生高年級 1（1 室）最低價（【またきてな関西旅】シンプルステイ（素泊まり））",
+        "unit": "per-person",
+        "adult": 8200,
+        "child": null,
+        "currency": "JPY",
+        "season": "2027-02-11（四）1 泊，1 間 大人 3＋小學生高年級 1",
+        "note": "房型：デラックスルーム【禁煙】。一間總價 32,800 円；API 的小學生價和大人相同（可能以房計價或兒童同價），兒童價不推算。楽天 API（查詢 2026-10-26）。",
+        "source": "rakuten-api",
+        "url": "https://hotel.travel.rakuten.co.jp/hotelinfo/plan/38281?f_nen1=2027&f_tuki1=2&f_hi1=11&f_nen2=2027&f_tuki2=2&f_hi2=12&f_heya_su=1&f_otona_su=3&f_s1=1&f_s2=0&f_y1=0&f_y2=0&f_y3=0&f_y4=0",
+        "retrieved": "2026-10-26"
+      }
+    ],
+    "luggage": "入住前寄放前台；1 樓投幣置物櫃限住客",
+    "checkIn": "15:00",
+    "checkOut": "11:00",
+    "rakutenHotelNo": 38281,
+    "dinnerAccess": null,
+    "group": {
+      "totalRooms": 600,
+      "roomTypes": [
+        "標準客房、Collaboration Concept 客房、最高層客房（定員未載）"
+      ],
+      "maxGuests": null,
+      "wholeRental": false,
+      "pickupCapacity": null,
+      "nearbyCombos": [],
+      "note": null
+    },
+    "ratings": {
+      "rakuten": 4.63,
+      "rakutenReviews": 13760,
+      "jalan": null,
+      "jalanReviews": null,
+      "booking": null,
+      "google": 4.5,
+      "googleReviews": 6200,
+      "rakutenService": 4.64,
+      "rakutenLocation": 4.65,
+      "rakutenRoom": 4.69,
+      "rakutenEquipment": 4.59,
+      "rakutenBath": 4.55,
+      "rakutenMeal": 4.55,
+      "note": null
+    },
+    "accessibility": {
+      "elevator": null,
+      "beds": "有 2 段床房（同寢兒童只能睡下鋪）",
+      "stairs": null,
+      "kids": "同寢限每位付費住客 1 名學齡前兒童；ホリデー・キッズフリー・パス（指定方案、出示當日有效 USJ 票）每位大人 1 名小學生以下免住宿費",
+      "note": "無障礙房（楽天）；ホリデー・キッズフリー・パス：指定方案、出示當日 USJ 票，每位大人 1 名小學生以下免住宿費"
+    },
+    "reservation": {
+      "methods": [
+        "rakuten",
+        "phone"
+      ],
+      "phone": "050-1792-7748",
+      "url": "https://universalport.orixhotelsandresorts.com/",
+      "groupNote": null
+    },
+    "bookingLinks": {
+      "rakuten": "https://travel.rakuten.co.jp/HOTEL/38281/38281.html"
+    },
+    "sources": [
+      {
+        "type": "booking-site",
+        "url": "https://travel.rakuten.co.jp/HOTEL/38281/38281.html",
+        "retrieved": "2026-10-26",
+        "note": "楽天トラベル API（SimpleHotelSearch、HotelDetailSearch、VacantHotelSearch，scripts/rakuten.mjs）：評分、細項評分、房數、check-in/out、照片、2027-02-11／2027-02-12 的空房與價格"
+      },
+      {
+        "type": "google-maps",
+        "url": "https://maps.google.com/?cid=15398724847078069765",
+        "retrieved": "2026-10-26",
+        "note": "Google 地圖「ホテル ユニバーサル ポート」：星數、評論數、座標、照片"
+      },
+      {
+        "type": "official",
+        "url": "https://universalport.orixhotelsandresorts.com/",
+        "retrieved": "2026-10-26",
+        "note": "USJ 福利、4 分"
+      }
+    ],
+    "verified": false,
+    "extra": {
+      "breakfast": "自助式，價格未載",
+      "stationAccess": "USJ 步行約 4 分（官網）；ユニバーサルシティ駅步行 3 分（樂天頁）",
+      "rakutenVacancy": {
+        "retrieved": "2026-10-26",
+        "dates": [
+          "2027-02-11",
+          "2027-02-12"
+        ],
+        "combos": [
+          "8x2",
+          "5x3",
+          "4x4",
+          "3x5"
+        ],
+        "available": {
+          "2027-02-11": [
+            "5x3",
+            "4x4"
+          ],
+          "2027-02-12": [
+            "5x3",
+            "4x4"
+          ]
+        },
+        "note": "15 人（全部以大人計）分 N 間同住的組合，有空房的列出；只代表查詢當天楽天上的庫存"
+      }
+    },
+    "summary": null,
+    "assessment": null
+  },
+  {
+    "id": "osaka-kintetsu-universal-city",
+    "type": "lodging",
+    "name": {
+      "ja": "ホテル近鉄ユニバーサル・シティ",
+      "zh": "近鐵環球影城飯店"
+    },
+    "area": "osaka",
+    "region": "usj",
+    "kind": "hotel",
+    "coords": [
+      135.4368603,
+      34.6684094
+    ],
+    "coordsSource": "other",
+    "address": "大阪府大阪市此花区島屋6-2-68",
+    "hours": null,
+    "closedNote": null,
+    "febNote": null,
+    "closures": [],
+    "photos": [
+      {
+        "url": "https://img.travel.rakuten.co.jp/share/HOTEL/16654/16654.jpg",
+        "page": "https://travel.rakuten.co.jp/HOTEL/16654/16654.html",
+        "kind": "rakuten",
+        "credit": "楽天トラベル（施設提供）",
+        "license": null
+      },
+      {
+        "url": "https://img.travel.rakuten.co.jp/share/HOTEL/16654/16654_room.jpg",
+        "page": "https://travel.rakuten.co.jp/HOTEL/16654/16654.html",
+        "kind": "rakuten",
+        "credit": "楽天トラベル（施設提供）",
+        "license": null
+      },
+      {
+        "url": "https://lh3.googleusercontent.com/grass-cs/AABkmLepRM7ASAfdcDxGXyY4wUyo9ewUuixdOHBNm8aKJjzu_8EUsUNgNlUAaaskS1hc8XIUtm8tvOrC00IyinjjGfXMmJuW6W9SQo2uz6HVQ8cJpw_sq0vZquw9RIt9XnzB6gR3_Q=w800",
+        "page": "https://maps.google.com/?cid=1786575868613620952",
+        "kind": "google",
+        "credit": "Google マップ（施設或使用者上傳）",
+        "license": null
+      }
+    ],
+    "links": {
+      "official": "https://www.miyakohotels.ne.jp/hotel-kintetsu/",
+      "instagram": "@hotelkintetsu_universalcity",
+      "googleMaps": "https://maps.google.com/?cid=1786575868613620952"
+    },
+    "tags": [],
+    "tier": null,
+    "nearestStation": {
+      "id": "jr-universal-city",
+      "mode": "walk",
+      "minutes": 3,
+      "note": "官網：ユニバーサルシティ駅步行約 2 分、USJ 約 1 分；OSRM 3 分"
+    },
+    "pickup": null,
+    "meals": "varies",
+    "priceRange": "每人約 7,600～38,100 円（一泊二食／素泊；詳見 prices）",
+    "prices": [
+      {
+        "plan": "一泊二食 楽天 15 人組合最低價（【お得de評判♪】実演メニューが大人気の夕食ブッフェ☆朝食もホテルで《1泊2食付》）",
+        "unit": "per-person",
+        "adult": 38100,
+        "child": null,
+        "currency": "JPY",
+        "season": "2027-02-11（四）1 泊，5 間 × 3 人（大人）有空房時的最低價",
+        "note": "房型：【禁煙】カジュアルツインルーム。楽天 API 空室検索（查詢 2026-10-26），含稅、不含入湯稅等。這天有空房的組合：5x3。",
+        "source": "rakuten-api",
+        "url": "https://hotel.travel.rakuten.co.jp/hotelinfo/plan/16654?f_nen1=2027&f_tuki1=2&f_hi1=11&f_nen2=2027&f_tuki2=2&f_hi2=12&f_heya_su=5&f_otona_su=3&f_s1=0&f_s2=0&f_y1=0&f_y2=0&f_y3=0&f_y4=0",
+        "retrieved": "2026-10-26"
+      },
+      {
+        "plan": "素泊 楽天 15 人組合最低價（ホテルを出たらすぐゲート☆パークまで徒歩1分の好立地！＜食事なし＞）",
+        "unit": "per-person",
+        "adult": 7600,
+        "child": null,
+        "currency": "JPY",
+        "season": "2027-02-11（四）1 泊，5 間 × 3 人（大人）有空房時的最低價",
+        "note": "房型：【禁煙】カジュアルツインルーム。楽天 API 空室検索（查詢 2026-10-26），含稅、不含入湯稅等。這天有空房的組合：5x3。",
+        "source": "rakuten-api",
+        "url": "https://hotel.travel.rakuten.co.jp/hotelinfo/plan/16654?f_nen1=2027&f_tuki1=2&f_hi1=11&f_nen2=2027&f_tuki2=2&f_hi2=12&f_heya_su=5&f_otona_su=3&f_s1=0&f_s2=0&f_y1=0&f_y2=0&f_y3=0&f_y4=0",
+        "retrieved": "2026-10-26"
+      },
+      {
+        "plan": "一泊二食 楽天 15 人組合最低價（【お得de評判♪】実演メニューが大人気の夕食ブッフェ☆朝食もホテルで《1泊2食付》）",
+        "unit": "per-person",
+        "adult": 34100,
+        "child": null,
+        "currency": "JPY",
+        "season": "2027-02-12（五）1 泊，3 間 × 5 人（大人）有空房時的最低價",
+        "note": "房型：禁煙コーナーファミリールーム 最大５名。楽天 API 空室検索（查詢 2026-10-26），含稅、不含入湯稅等。這天有空房的組合：5x3、4x4、3x5。",
+        "source": "rakuten-api",
+        "url": "https://hotel.travel.rakuten.co.jp/hotelinfo/plan/16654?f_nen1=2027&f_tuki1=2&f_hi1=12&f_nen2=2027&f_tuki2=2&f_hi2=13&f_heya_su=3&f_otona_su=5&f_s1=0&f_s2=0&f_y1=0&f_y2=0&f_y3=0&f_y4=0",
+        "retrieved": "2026-10-26"
+      },
+      {
+        "plan": "素泊 楽天 15 人組合最低價（ホテルを出たらすぐゲート☆パークまで徒歩1分の好立地！＜食事なし＞）",
+        "unit": "per-person",
+        "adult": 9600,
+        "child": null,
+        "currency": "JPY",
+        "season": "2027-02-12（五）1 泊，3 間 × 5 人（大人）有空房時的最低價",
+        "note": "房型：禁煙コーナーファミリールーム 最大５名。楽天 API 空室検索（查詢 2026-10-26），含稅、不含入湯稅等。這天有空房的組合：5x3、4x4、3x5。",
+        "source": "rakuten-api",
+        "url": "https://hotel.travel.rakuten.co.jp/hotelinfo/plan/16654?f_nen1=2027&f_tuki1=2&f_hi1=12&f_nen2=2027&f_tuki2=2&f_hi2=13&f_heya_su=3&f_otona_su=5&f_s1=0&f_s2=0&f_y1=0&f_y2=0&f_y3=0&f_y4=0",
+        "retrieved": "2026-10-26"
+      },
+      {
+        "plan": "素泊 大人 3＋小學生高年級 1（1 室）最低價（ホテルを出たらすぐゲート☆パークまで徒歩1分の好立地！＜食事なし＞）",
+        "unit": "per-person",
+        "adult": 8700,
+        "child": null,
+        "currency": "JPY",
+        "season": "2027-02-11（四）1 泊，1 間 大人 3＋小學生高年級 1",
+        "note": "房型：コーナーファミリールーム（エナジーポップ）。一間總價 34,800 円；API 的小學生價和大人相同（可能以房計價或兒童同價），兒童價不推算。楽天 API（查詢 2026-10-26）。",
+        "source": "rakuten-api",
+        "url": "https://hotel.travel.rakuten.co.jp/hotelinfo/plan/16654?f_nen1=2027&f_tuki1=2&f_hi1=11&f_nen2=2027&f_tuki2=2&f_hi2=12&f_heya_su=1&f_otona_su=3&f_s1=1&f_s2=0&f_y1=0&f_y2=0&f_y3=0&f_y4=0",
+        "retrieved": "2026-10-26"
+      }
+    ],
+    "luggage": "入住前、退房後都可寄放（樂天頁）",
+    "checkIn": "15:00",
+    "checkOut": "11:00",
+    "rakutenHotelNo": 16654,
+    "dinnerAccess": null,
+    "group": {
+      "totalRooms": 456,
+      "roomTypes": [
+        "角落家庭房 38㎡ 最多 5 人",
+        "家庭房 31㎡ 2～4 人",
+        "Superior 31㎡ 2～4 人",
+        "Deluxe Corner 38㎡ 2～4 人",
+        "Energy pop 房（上下鋪）31㎡ 2～4 人"
+      ],
+      "maxGuests": null,
+      "wholeRental": false,
+      "pickupCapacity": null,
+      "nearbyCombos": [],
+      "note": "官網首頁稱有連通房；團體規定未載"
+    },
+    "ratings": {
+      "rakuten": 4.55,
+      "rakutenReviews": 14028,
+      "jalan": null,
+      "jalanReviews": null,
+      "booking": null,
+      "google": 4.2,
+      "googleReviews": 2133,
+      "rakutenService": 4.54,
+      "rakutenLocation": 4.6,
+      "rakutenRoom": 4.55,
+      "rakutenEquipment": 4.45,
+      "rakutenBath": 4.29,
+      "rakutenMeal": 4.52,
+      "note": null
+    },
+    "accessibility": {
+      "elevator": null,
+      "beds": "角落家庭房 38㎡ 最多 5 人；家庭房、Superior 2～4 人；上下鋪房",
+      "stairs": null,
+      "kids": "兒童優惠須專用方案（4 歲～小學生）；加床依房型（樂天頁）",
+      "note": "有連通房（官網首頁）"
+    },
+    "reservation": {
+      "methods": [
+        "rakuten",
+        "phone"
+      ],
+      "phone": "06-6465-6000",
+      "url": "https://www.miyakohotels.ne.jp/hotel-kintetsu/",
+      "groupNote": "官網首頁稱有連通房；團體規定未載"
+    },
+    "bookingLinks": {
+      "rakuten": "https://travel.rakuten.co.jp/HOTEL/16654/16654.html"
+    },
+    "sources": [
+      {
+        "type": "booking-site",
+        "url": "https://travel.rakuten.co.jp/HOTEL/16654/16654.html",
+        "retrieved": "2026-10-26",
+        "note": "楽天トラベル API（SimpleHotelSearch、HotelDetailSearch、VacantHotelSearch，scripts/rakuten.mjs）：評分、細項評分、房數、check-in/out、照片、2027-02-11／2027-02-12 的空房與價格"
+      },
+      {
+        "type": "google-maps",
+        "url": "https://maps.google.com/?cid=1786575868613620952",
+        "retrieved": "2026-10-26",
+        "note": "Google 地圖「ホテル近鉄ユニバーサル･シティ」：星數、評論數、座標、照片"
+      },
+      {
+        "type": "official",
+        "url": "https://www.miyakohotels.ne.jp/hotel-kintetsu/",
+        "retrieved": "2026-10-26",
+        "note": "電話、地址、IG、交通"
+      },
+      {
+        "type": "official",
+        "url": "https://www.miyakohotels.ne.jp/hotel-kintetsu/stay/",
+        "retrieved": "2026-10-26",
+        "note": "房型定員"
+      }
+    ],
+    "verified": false,
+    "extra": {
+      "breakfast": "餐廳イーポック自助 6:30～10:00，不可預約；成人 3,300、小學生 1,650、4～6 歲 990、3 歲以下免費（樂天頁）",
+      "stationAccess": "JR ユニバーサルシティ駅 步行約 2 分；USJ 步行約 1 分；大阪駅約 12 分",
+      "rakutenVacancy": {
+        "retrieved": "2026-10-26",
+        "dates": [
+          "2027-02-11",
+          "2027-02-12"
+        ],
+        "combos": [
+          "8x2",
+          "5x3",
+          "4x4",
+          "3x5"
+        ],
+        "available": {
+          "2027-02-11": [
+            "5x3"
+          ],
+          "2027-02-12": [
+            "5x3",
+            "4x4",
+            "3x5"
+          ]
+        },
+        "note": "15 人（全部以大人計）分 N 間同住的組合，有空房的列出；只代表查詢當天楽天上的庫存"
+      }
+    },
+    "summary": null,
+    "assessment": null
+  },
+  {
+    "id": "osaka-park-front-usj",
+    "type": "lodging",
+    "name": {
+      "ja": "ザ パーク フロント ホテル アット ユニバーサル・スタジオ・ジャパン",
+      "zh": "環球影城公園前飯店"
+    },
+    "area": "osaka",
+    "region": "usj",
+    "kind": "hotel",
+    "coords": [
+      135.4371403,
+      34.6677396
+    ],
+    "coordsSource": "other",
+    "address": "大阪府大阪市此花区島屋6-2-52",
+    "hours": null,
+    "closedNote": null,
+    "febNote": null,
+    "closures": [],
+    "photos": [
+      {
+        "url": "https://img.travel.rakuten.co.jp/share/HOTEL/147805/147805.jpg",
+        "page": "https://travel.rakuten.co.jp/HOTEL/147805/147805.html",
+        "kind": "rakuten",
+        "credit": "楽天トラベル（施設提供）",
+        "license": null
+      },
+      {
+        "url": "https://img.travel.rakuten.co.jp/share/HOTEL/147805/147805_room.jpg",
+        "page": "https://travel.rakuten.co.jp/HOTEL/147805/147805.html",
+        "kind": "rakuten",
+        "credit": "楽天トラベル（施設提供）",
+        "license": null
+      },
+      {
+        "url": "https://lh3.googleusercontent.com/grass-cs/AABkmLc24tMTsc_aeo5L72OSn1nFuCri30OyMVZ6n7CiIkEiVNL2CuI2DmHWJXni8JUNdnxIl8Rh_bDF4HNf6oRNDsOCXoQ3CMtE2K-47N9yDS9e2504Rez3LGnJQEuKVd1JFlBdLg6FdA=w800",
+        "page": "https://maps.google.com/?cid=13724326979961057332",
+        "kind": "google",
+        "credit": "Google マップ（施設或使用者上傳）",
+        "license": null
+      }
+    ],
+    "links": {
+      "official": "https://parkfront-hotel.com/",
+      "instagram": "@the_park_front_hotel",
+      "googleMaps": "https://maps.google.com/?cid=13724326979961057332"
+    },
+    "tags": [],
+    "tier": null,
+    "nearestStation": {
+      "id": "jr-universal-city",
+      "mode": "walk",
+      "minutes": 2,
+      "note": "楽天：ユニバーサルシティ駅步行約 1 分；OSRM 2 分"
+    },
+    "pickup": null,
+    "meals": "varies",
+    "priceRange": "每人約 10,500～16,500 円（素泊；詳見 prices）",
+    "prices": [
+      {
+        "plan": "素泊 楽天 15 人組合最低價（【早期割90】スタンダードプラン（食事なし））",
+        "unit": "per-person",
+        "adult": 10500,
+        "child": null,
+        "currency": "JPY",
+        "season": "2027-02-11（四）1 泊，4 間 × 4 人（大人）有空房時的最低價",
+        "note": "房型：スタンダードフロア　デラックスルーム【禁煙】。楽天 API 空室検索（查詢 2026-10-26），含稅、不含入湯稅等。這天有空房的組合：8x2、5x3、4x4。",
+        "source": "rakuten-api",
+        "url": "https://hotel.travel.rakuten.co.jp/hotelinfo/plan/147805?f_nen1=2027&f_tuki1=2&f_hi1=11&f_nen2=2027&f_tuki2=2&f_hi2=12&f_heya_su=4&f_otona_su=4&f_s1=0&f_s2=0&f_y1=0&f_y2=0&f_y3=0&f_y4=0",
+        "retrieved": "2026-10-26"
+      },
+      {
+        "plan": "素泊 楽天 15 人組合最低價（【早期割90】スタンダードプラン（食事なし））",
+        "unit": "per-person",
+        "adult": 16500,
+        "child": null,
+        "currency": "JPY",
+        "season": "2027-02-12（五）1 泊，4 間 × 4 人（大人）有空房時的最低價",
+        "note": "房型：スーペリアフロア　パークビュールーム【禁煙】。楽天 API 空室検索（查詢 2026-10-26），含稅、不含入湯稅等。這天有空房的組合：8x2、5x3、4x4。",
+        "source": "rakuten-api",
+        "url": "https://hotel.travel.rakuten.co.jp/hotelinfo/plan/147805?f_nen1=2027&f_tuki1=2&f_hi1=12&f_nen2=2027&f_tuki2=2&f_hi2=13&f_heya_su=4&f_otona_su=4&f_s1=0&f_s2=0&f_y1=0&f_y2=0&f_y3=0&f_y4=0",
+        "retrieved": "2026-10-26"
+      },
+      {
+        "plan": "素泊 大人 3＋小學生高年級 1（1 室）最低價（【早期割90】スタンダードプラン（食事なし））",
+        "unit": "per-person",
+        "adult": 10500,
+        "child": null,
+        "currency": "JPY",
+        "season": "2027-02-11（四）1 泊，1 間 大人 3＋小學生高年級 1",
+        "note": "房型：スタンダードフロア　デラックスルーム【禁煙】。一間總價 42,000 円；API 的小學生價和大人相同（可能以房計價或兒童同價），兒童價不推算。楽天 API（查詢 2026-10-26）。",
+        "source": "rakuten-api",
+        "url": "https://hotel.travel.rakuten.co.jp/hotelinfo/plan/147805?f_nen1=2027&f_tuki1=2&f_hi1=11&f_nen2=2027&f_tuki2=2&f_hi2=12&f_heya_su=1&f_otona_su=3&f_s1=1&f_s2=0&f_y1=0&f_y2=0&f_y3=0&f_y4=0",
+        "retrieved": "2026-10-26"
+      }
+    ],
+    "luggage": "入住前用 2 樓置物櫃，退房後交行李台；可事先寄送（須寫全名片假名與住宿日）",
+    "checkIn": "15:00",
+    "checkOut": "12:00",
+    "rakutenHotelNo": 147805,
+    "dinnerAccess": null,
+    "group": {
+      "totalRooms": 598,
+      "roomTypes": [
+        "標準城景房（4～7 樓，定員未載）"
+      ],
+      "maxGuests": null,
+      "wholeRental": false,
+      "pickupCapacity": null,
+      "nearbyCombos": [],
+      "note": null
+    },
+    "ratings": {
+      "rakuten": 4.57,
+      "rakutenReviews": 4275,
+      "jalan": null,
+      "jalanReviews": null,
+      "booking": null,
+      "google": 4.4,
+      "googleReviews": 4712,
+      "rakutenService": 4.6,
+      "rakutenLocation": 4.64,
+      "rakutenRoom": 4.57,
+      "rakutenEquipment": 4.5,
+      "rakutenBath": 4.51,
+      "rakutenMeal": 4.59,
+      "note": null
+    },
+    "accessibility": {
+      "elevator": null,
+      "beds": "房型人數未載；4 人房有 2 張是沙發（評論）",
+      "stairs": null,
+      "kids": "6 歲以下學齡前兒童免費添寢，每床限 1 人；小學生以大人計（樂天頁）",
+      "note": "無障礙房只有 1 間（2 人）"
+    },
+    "reservation": {
+      "methods": [
+        "rakuten",
+        "phone"
+      ],
+      "phone": "06-6460-0109",
+      "url": "https://parkfront-hotel.com/",
+      "groupNote": null
+    },
+    "bookingLinks": {
+      "rakuten": "https://travel.rakuten.co.jp/HOTEL/147805/147805.html"
+    },
+    "sources": [
+      {
+        "type": "booking-site",
+        "url": "https://travel.rakuten.co.jp/HOTEL/147805/147805.html",
+        "retrieved": "2026-10-26",
+        "note": "楽天トラベル API（SimpleHotelSearch、HotelDetailSearch、VacantHotelSearch，scripts/rakuten.mjs）：評分、細項評分、房數、check-in/out、照片、2027-02-11／2027-02-12 的空房與價格"
+      },
+      {
+        "type": "google-maps",
+        "url": "https://maps.google.com/?cid=13724326979961057332",
+        "retrieved": "2026-10-26",
+        "note": "Google 地圖「ザ パーク フロント ホテル アット ユニバーサル・スタジオ・ジャパン」：星數、評論數、座標、照片"
+      },
+      {
+        "type": "official",
+        "url": "https://parkfront-hotel.com/",
+        "retrieved": "2026-10-26",
+        "note": "電話、地址、IG"
+      }
+    ],
+    "verified": false,
+    "extra": {
+      "breakfast": "自助餐廳，價格未載",
+      "stationAccess": "ユニバーサルシティ駅 步行約 1 分（樂天頁）",
+      "rakutenVacancy": {
+        "retrieved": "2026-10-26",
+        "dates": [
+          "2027-02-11",
+          "2027-02-12"
+        ],
+        "combos": [
+          "8x2",
+          "5x3",
+          "4x4",
+          "3x5"
+        ],
+        "available": {
+          "2027-02-11": [
+            "8x2",
+            "5x3",
+            "4x4"
+          ],
+          "2027-02-12": [
+            "8x2",
+            "5x3",
+            "4x4"
+          ]
+        },
+        "note": "15 人（全部以大人計）分 N 間同住的組合，有空房的列出；只代表查詢當天楽天上的庫存"
+      }
+    },
+    "summary": null,
+    "assessment": null
+  },
+  {
+    "id": "osaka-shikanjima-house",
+    "type": "lodging",
+    "name": {
+      "ja": "四貫島戸建て",
+      "zh": "四貫島獨棟（包棟）"
+    },
+    "area": "osaka",
+    "region": "usj",
+    "kind": "rental-house",
+    "coords": [
+      135.455185,
+      34.684425
+    ],
+    "coordsSource": "geocoder",
+    "address": "大阪府大阪市此花区四貫島2-7-12",
+    "hours": null,
+    "closedNote": null,
+    "febNote": null,
+    "closures": [],
+    "photos": [],
+    "links": {
+      "official": null,
+      "googleMaps": "https://www.google.com/maps/search/?api=1&query=34.684425,135.455185"
+    },
+    "tags": [
+      "包棟"
+    ],
+    "tier": null,
+    "nearestStation": {
+      "id": "jr-nishikujo",
+      "mode": "walk",
+      "minutes": 15,
+      "note": "ACO 房源頁：阪神なんば線 千鳥橋駅步行 5 分（另一處寫 九条駅 7 分）；兩站都不在 stations.json，OSRM 到 JR 西九条 15 分"
+    },
+    "pickup": null,
+    "meals": "none",
+    "priceRange": "每間（棟）約 19,000～30,000 円（詳見 prices）",
+    "prices": [
+      {
+        "plan": "基本宿泊費",
+        "unit": "per-house",
+        "price": 19000,
+        "currency": "JPY",
+        "season": "每泊（含稅）",
+        "note": "2026-10 頁面；與見積例不一致",
+        "source": "aco",
+        "url": "https://www.aco.co.jp/id/66982.html",
+        "retrieved": "2026-10-26"
+      },
+      {
+        "plan": "見積例",
+        "unit": "per-house",
+        "price": 30000,
+        "currency": "JPY",
+        "season": "每泊，旺季加 10,000 円",
+        "note": "2026-10 頁面",
+        "source": "aco",
+        "url": "https://www.aco.co.jp/id/66982.html",
+        "retrieved": "2026-10-26"
+      },
+      {
+        "plan": "清掃費",
+        "unit": "per-house",
+        "price": 25000,
+        "currency": "JPY",
+        "season": "一次性（含稅）",
+        "note": "2026-10 頁面",
+        "source": "aco",
+        "url": "https://www.aco.co.jp/id/66982.html",
+        "retrieved": "2026-10-26"
+      }
+    ],
+    "luggage": null,
+    "checkIn": "15:00",
+    "checkOut": "10:00",
+    "rakutenHotelNo": null,
+    "dinnerAccess": null,
+    "group": {
+      "totalRooms": 3,
+      "roomTypes": [
+        "一戸建て 寝室3（ダブルベッド 140x200 計8台：①2台 ②2台 ③4台）最多 16 人（適正 10 人）"
+      ],
+      "maxGuests": 16,
+      "wholeRental": true,
+      "pickupCapacity": null,
+      "nearbyCombos": [],
+      "note": "2 泊以上限定；適正 10 人，12 人以上人數計費方式另列；入住需全員提供照片與身分證明"
+    },
+    "ratings": {
+      "rakuten": null,
+      "rakutenReviews": null,
+      "jalan": null,
+      "jalanReviews": null,
+      "booking": null,
+      "google": null,
+      "googleReviews": null,
+      "note": "無評分（ACO 房源頁沒有評分、Google 地圖找不到）"
+    },
+    "accessibility": {
+      "elevator": null,
+      "beds": "雙人床 8 張（140x200），布團未列（僅有布團套）",
+      "stairs": "臥室 2 樓，客廳／廚房／浴室 1 樓；樓梯細節未載、電梯無記載",
+      "kids": "未滿 2 歲免費（ACO 房源頁 2026-10）",
+      "note": "臥室都在 2 樓；廁所數未標"
+    },
+    "reservation": {
+      "methods": [
+        "aco"
+      ],
+      "phone": null,
+      "url": "https://www.aco.co.jp/id/66982.html",
+      "groupNote": "2 泊以上；入住要全員照片、身分證明"
+    },
+    "bookingLinks": {
+      "aco": "https://www.aco.co.jp/id/66982.html"
+    },
+    "sources": [
+      {
+        "type": "booking-site",
+        "url": "https://www.aco.co.jp/1-theme-oog/region-osaka.html",
+        "retrieved": "2026-10-26",
+        "note": "列表：16 名迄、2 泊以上、千鳥橋駅徒步 5 分、房源連結 /id/66982.html"
+      },
+      {
+        "type": "booking-site",
+        "url": "https://www.aco.co.jp/id/66982.html",
+        "retrieved": "2026-10-26",
+        "note": "寢室、價格、登記番號、check-in/out、規則"
+      }
+    ],
+    "verified": false,
+    "extra": {
+      "registration": {
+        "text": "大阪市指令 大保環第23－2730号",
+        "page": "https://www.aco.co.jp/id/66982.html",
+        "note": "頁面未標明是旅館業或特区民泊"
+      },
+      "conflicts": [
+        "基本 19,000 円 vs 見積例 30,000 円／泊",
+        "千鳥橋駅 5 分 vs 九条駅 7 分"
+      ],
+      "stationAccess": "阪神なんば線 千鳥橋駅 徒步 5 分（頁面另處寫 九条駅 徒步 7 分）；停車 1 台（ACO 房源頁）",
+      "googleMapsNote": "Google 地圖找不到這間（2026-10-26），links.googleMaps 用座標搜尋連結"
+    },
+    "summary": null,
+    "assessment": null
+  }
+]
