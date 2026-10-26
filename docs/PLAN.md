@@ -915,6 +915,7 @@ T7c → T7d → T7e → T7f → T7g → T8a → T8b → T8c → T8d → T7i → 
 
 ### T29b web：交通卡的走法、車站面板的班距 〔S〕
 - 等 T15m merge 後做（T15m 在改 `LegRow.tsx`、`planView.ts`、`MobileLeg.tsx`）。照設計文件 §7：收合時第二行顯示走法、可以切換候選走法（存 `TravelSpec.path`）、轉乘步行和電梯資訊、班次表只能看並寫「錯過的話：下一班 …，晚 N 分到」、班距型寫「約 N 分一班・首末班」；拿掉 ‹ › 和班次下拉，舊的 `trip` 忽略，引擎刪掉過渡期的 `trip` 路徑。車站面板對班距型路線顯示「約 N 分一班、首末班」。
+- **快取（T29 最終審查留下的）**：`web/src/planStore.ts` 的 `buildEngineData` 每次重算都新建 `stations` 陣列（`records.filter(...)`），引擎的網路、搜尋快取認陣列，所以網站每次編輯都重建，11 天的行程約 0.7 秒（舊版約 0.05 秒）。照 `d.places` 存起來重用；加一個用網站的方式（每次新的 EngineData、同一份資料）測重算時間的測試。
 - 完成條件：`npm test`、`npm run typecheck` 通過；手機尺寸看一次交通卡和車站面板（🌐 少量）。
 
 ---
