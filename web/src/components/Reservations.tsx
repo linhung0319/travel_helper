@@ -12,6 +12,7 @@ import { closeMapPanel, openMapPanel } from '../uiStore.ts';
 import { AvatarStack, stamp } from './common.tsx';
 import { Icon } from './Icon.tsx';
 import { shared, sharedStore } from '../appShared.ts';
+import { Chip } from '../shared/ui/Chip.tsx';
 
 const ROLE_LABELS = { main: '', other: '這個時段也可以去', lodging: '住宿' } as const;
 const STATUS_LABELS: Record<ReservationStatus, string> = { pending: '未訂位', booked: '已訂位', skip: '不訂位' };
@@ -150,9 +151,12 @@ export function ReservationNotes({ date }: { scope?: 'day' | 'trip'; date: strin
   let lastDate = '';
   return (
     <div data-testid="reservations-view">
-      <label className="small only-pending">
-        <input type="checkbox" checked={onlyPending} onChange={(e) => setOnlyPending(e.target.checked)} data-testid="only-pending" /> 只看未訂位
-      </label>
+      {/* 晶片開關（不用原生勾選框，設計 §2.3） */}
+      <div className="only-pending">
+        <Chip on={onlyPending} onClick={() => setOnlyPending(!onlyPending)} testId="only-pending">
+          只看未訂位
+        </Chip>
+      </div>
       {rows.length === 0 && <p className="muted">{onlyPending ? '沒有未訂位的了。' : '行程裡還沒有要預約的。'}</p>}
       <div className="reservation-list" ref={listRef}>
         {rows.map((r) => {

@@ -3,14 +3,14 @@ import { appStore } from '../store.ts';
 import { useApp, useData } from '../hooks.ts';
 import { dataSource } from '../data/index.ts';
 import { departuresAround, googleTransitUrl, jorudanUrl, terminusName } from '../lib/timetable.ts';
-import { dayLabel, timetableDayType, tripDates, TRIP_START } from '../lib/trip.ts';
+import { timetableDayType, TRIP_START } from '../lib/trip.ts';
 import { stopsOn } from '../lib/itinerary.ts';
 import type { Place, StationTimetable } from '../data/types.ts';
+import { DayGrid12 } from '../shared/ui/DayGrid12.tsx';
 
-const DATES = tripDates();
 export const DEFAULT_STATION_TIME = '09:00';
 
-/** 車站面板：指定時間前後的班次（上下行）、外部查詢連結（PLAN T11） */
+/** 車站面板：哪一天（12 天的日期格）、指定時間前後的班次（上下行）、外部查詢連結（PLAN T11） */
 export function StationTimetablePanel({ place }: { place: Place }) {
   const day = useApp((s) => s.day);
   const stationTime = useApp((s) => s.stationTime);
@@ -44,17 +44,11 @@ export function StationTimetablePanel({ place }: { place: Place }) {
   return (
     <section className="detail-section station" data-testid="station-panel">
       <h3>時刻表</h3>
+      {/* 日期用 12 天的日期格（和「移到第幾天」同一個元件，不用原生下拉，設計 §2.3） */}
+      <div className="station-days">
+        <DayGrid12 mode="single" picked={[date]} onChange={([d]) => d && setDate(d)} testId={(d) => `station-day-${d}`} />
+      </div>
       <div className="station-controls">
-        <label>
-          日期
-          <select value={date} onChange={(e) => setDate(e.target.value)}>
-            {DATES.map((d) => (
-              <option key={d} value={d}>
-                {dayLabel(d)}
-              </option>
-            ))}
-          </select>
-        </label>
         <label>
           時間
           <input

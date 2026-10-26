@@ -108,6 +108,16 @@ test('車站面板：指定時間前後的班次', async ({ page }) => {
   const firstAfter = await panel.locator('.direction').first().locator('tr:not(.past):not(.now-line) .dep').first().textContent();
   expect(firstAfter! >= '14:00').toBe(true);
   await expect(panel.getByRole('link', { name: 'Google Maps 路線' })).toHaveAttribute('href', /travelmode=transit/);
+  // 日期是 12 天的日期格（不用原生下拉，設計 §2.3）：點週六換成土休日班次
+  await expect(panel.locator('select')).toHaveCount(0);
+  await expect(panel.locator('.ui-dg-cell.picked')).toHaveCount(1);
+  await panel.getByTestId('station-day-2027-02-03').click();
+  await expect(panel.getByTestId('station-day-2027-02-03')).toHaveClass(/picked/);
+  await expect(panel).toContainText('平日班次');
+  await panel.getByTestId('station-day-2027-02-06').click();
+  await expect(panel.getByTestId('station-day-2027-02-06')).toHaveClass(/picked/);
+  await expect(panel.getByTestId('station-day-2027-02-03')).not.toHaveClass(/picked/);
+  await expect(panel).toContainText('土休日班次');
 });
 
 test('照片打不開時顯示替代圖', async ({ page }) => {

@@ -5,7 +5,7 @@
 // 大眾運輸點了就展開步驟（legSteps）：左邊時間、中間細線（步行點線、搭車用細線、節點小圓圈）、右邊文字；
 // 搭車那一行是膠囊，點了在地圖那側開班次表（uiStore.openTimetable，一般模式只能看）。步行、計程車沒有步驟，不展開。
 // 編輯：編輯中每段右邊有「改」，按了才打開交通編輯器（uiStore.legEdit；網頁在這一行下面，手機是底部面板 m-leg-sheet，見 mobile/MobileLeg.tsx）：
-// 自動（目前的方式）／步行／計程車／大眾運輸、大眾運輸的步驟一定展開，膠囊換成只列搭得到的班次的下拉（selectRideTrip）；
+// 自動（目前的方式）／步行／計程車／大眾運輸、大眾運輸的步驟一定展開，膠囊換成只列搭得到的班次的一排選項（selectRideTrip）；
 // 算不出來（交通未定、指定的方式找不到班次）或已經填過分鐘時才出現「自己填分鐘」（清空＝回到自動）；備註、「完成」收起來。
 // 一次只開一段（uiStore.legOpen）；這一行不見了（換天、回整趟、換分頁）時也收起來，地圖的行程線才會恢復。
 // 編輯中交通也是放置區：拖到這裡＝排在這段通往的那張卡片前面（planDrag.dropOnLegProps）。
@@ -63,14 +63,14 @@ function readSpec(it: Itinerary | null, target: LegTarget | null): TravelSpec | 
 }
 
 /**
- * 選某一程的班次（交通卡的下拉、地圖那側的班次表都用）：寫進這段的 TravelSpec.trip，方式照舊、轉乘站 via 照舊。
+ * 選某一程的班次（交通卡的班次選項、地圖那側的班次表都用）：寫進這段的 TravelSpec.trip，方式照舊、轉乘站 via 照舊。
  * 後面那程接不上時引擎改成接得上的最早一班
  */
 export function selectRideTrip(target: LegTarget, leg: Leg, rideIndex: number, dep: RideDeparture): void {
   void shared.changeItinerary((it) => setLegTravel(it, target, specWithRide(getLegTravel(it, target), leg, rideIndex, dep)), '換班次');
 }
 
-/** 編輯中搭車那一行的班次下拉：只列搭得到的（和選定的那班），搭不到的收成一行不能選的說明 */
+/** 編輯中搭車那一行的班次：一排可以點的選項（單選，不用原生下拉，設計 §2.3）；只列搭得到的（和選定的那班），搭不到的收成一行灰字 */
 function RideSelect({ leg, index, date, target, disabled }: { leg: Leg; index: number; date: string; target: LegTarget; disabled: boolean }) {
   const ride = leg.rides[index];
   const readyAt = rideReadyAt(leg, index);
@@ -83,25 +83,31 @@ function RideSelect({ leg, index, date, target, disabled }: { leg: Leg; index: n
     if (o && tripId !== selectedId) selectRideTrip(target, leg, index, o.row);
   };
   return (
-    <select
-      className="leg-ride-select"
-      aria-label={`第 ${index + 1} 程的班次`}
-      value={selectedId}
-      disabled={disabled || options.length === 0}
-      onChange={(e) => pick(e.target.value)}
-      data-testid="leg-ride-select"
-    >
+    <span className="leg-ride-select" role="radiogroup" aria-label={`第 ${index + 1} 程的班次`} data-testid="leg-ride-select">
       {missedNote && (
-        <option disabled value="__missed">
+        <span className="leg-ride-missed" data-testid="leg-ride-missed">
           {missedNote}
-        </option>
+        </span>
       )}
-      {list.map((o) => (
-        <option key={o.tripId} value={o.tripId}>
-          {o.label}
-        </option>
-      ))}
-    </select>
+      {list.map((o) => {
+        const on = o.tripId === selectedId;
+        return (
+          <button
+            key={o.tripId}
+            type="button"
+            role="radio"
+            aria-checked={on}
+            className={`ui-chip leg-ride-option ${on ? 'on' : ''}`}
+            disabled={disabled || options.length === 0}
+            onClick={() => pick(o.tripId)}
+            data-trip={o.tripId}
+            data-testid="leg-ride-option"
+          >
+            {o.label}
+          </button>
+        );
+      })}
+    </span>
   );
 }
 
@@ -115,7 +121,7 @@ function RailLine({ line, part }: { line: Line; part: 'full' | 'top' | 'bottom' 
   return <span className={`leg-step-ln ${line.kind} ${part}`} style={line.kind === 'ride' ? { borderLeftColor: line.color } : undefined} />;
 }
 
-/** 大眾運輸的步驟（第五輪 §3.2）；編輯中搭車那一行是班次下拉 */
+/** 大眾運輸的步驟（第五輪 §3.2）；編輯中搭車那一行是班次選項 */
 export function LegSteps({ steps, leg, date, legKey, target, editing, saving }: { steps: LegStep[]; leg: Leg; date: string; legKey: string; target: LegTarget | null; editing: boolean; saving: boolean }) {
   const openRide = (rideIndex: number) => openTimetable({ date, legKey, rideIndex });
   return (

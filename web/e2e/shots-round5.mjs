@@ -72,10 +72,9 @@ async function run(name, viewport, mobile) {
   await leg.getByTestId('leg-ride-select').first().waitFor();
   await leg.scrollIntoViewIfNeeded();
   await shot(page, `${name}-04-leg-editing`);
-  // 班次下拉打開的樣子（原生下拉截不到，改用 size 攤開）
-  await leg.getByTestId('leg-ride-select').first().evaluate((s) => s.setAttribute('size', String(Math.min(s.options.length, 8))));
+  // 班次的選項（第七輪起是一排晶片，不是原生下拉）
+  await leg.getByTestId('leg-ride-select').first().scrollIntoViewIfNeeded();
   await shot(page, `${name}-05-leg-ride-select`);
-  await leg.getByTestId('leg-ride-select').first().evaluate((s) => s.removeAttribute('size'));
   await leg.getByTestId('leg-done').click();
   await finishEditing();
   // 收起

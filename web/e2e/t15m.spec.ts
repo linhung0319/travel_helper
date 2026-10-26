@@ -331,10 +331,13 @@ test('預約筆記：改成已訂位、時間軸 tag 跟著變', async ({ page }
   await row.getByTestId('note-text').fill(BOOK_NOTE);
   await row.getByTestId('note-text').press('Enter');
 
-  // 只看未訂位：這列不見了
-  await panel.getByTestId('only-pending').check();
+  // 只看未訂位（晶片開關，不用原生勾選框）：這列不見了
+  await expect(panel.locator('input[type="checkbox"]')).toHaveCount(0);
+  await panel.getByTestId('only-pending').click();
+  await expect(panel.getByTestId('only-pending')).toHaveAttribute('aria-pressed', 'true');
   await expect(panel.locator(`[data-testid="note-row"][data-place="${placeId}"][data-status="booked"]`)).toHaveCount(0);
-  await panel.getByTestId('only-pending').uncheck();
+  await panel.getByTestId('only-pending').click();
+  await expect(panel.getByTestId('only-pending')).toHaveAttribute('aria-pressed', 'false');
 
   // 關掉：那張卡片的 tag 寫已訂位
   await page.getByTestId('map-panel-close').click();
@@ -1078,34 +1081,36 @@ test('第五輪：大眾運輸的交通卡點了展開步驟（等車、御座�
   await expect(tt).toHaveCount(0);
 });
 
-test('第五輪：編輯中的班次下拉沒有搭不到的班；換了班次時間軸跟著變', async ({ page }) => {
+test('第五輪：編輯中的班次選項沒有搭不到的班；換了班次時間軸跟著變', async ({ page }) => {
   await ready(page);
   const leg = await transitLeg(page);
+  // 班次是一排可以點的選項（不用原生下拉，設計 §2.3）
   const select = leg.getByTestId('leg-ride-select').first();
+  await expect(leg.locator('select')).toHaveCount(0);
   // 走到上車站的時間＝有「⏳ 等」的那個節點的時間
   const readyAt = await leg.getByTestId('leg-step').filter({ has: page.getByTestId('leg-step-wait') }).first().locator('.leg-step-tm').innerText();
   expect(readyAt).toMatch(/^\d\d:\d\d$/);
-  const options = () => select.evaluate((s: HTMLSelectElement) => [...s.options].map((o) => ({ value: o.value, text: o.text, disabled: o.disabled })));
+  const options = () =>
+    select.getByTestId('leg-ride-option').evaluateAll((bs) => bs.map((b) => ({ value: b.getAttribute('data-trip')!, text: b.textContent!.trim(), on: b.getAttribute('aria-checked') === 'true' })));
   let opts = await options();
-  const pickable = opts.filter((o) => !o.disabled);
-  expect(pickable.length).toBeGreaterThan(1);
-  for (const o of pickable) {
+  expect(opts.length).toBeGreaterThan(1);
+  for (const o of opts) {
     expect(o.text).toMatch(/^\d\d:\d\d 發 → \d\d:\d\d 到・等 \d+ 分$/);
     expect(o.text.slice(0, 5) >= readyAt).toBe(true);
   }
-  // 搭不到的收成一行灰字、不能選
-  const missed = opts.filter((o) => o.disabled);
-  expect(missed).toHaveLength(1);
-  expect(missed[0].text).toMatch(new RegExp(`^${readyAt} 以前的 \\d+ 班搭不到$`));
+  expect(opts.filter((o) => o.on)).toHaveLength(1);
+  // 搭不到的收成一行灰字、不能點
+  await expect(select.getByTestId('leg-ride-missed')).toHaveText(new RegExp(`^${readyAt} 以前的 \\d+ 班搭不到$`));
 
-  // 換成下一班：存下來、等車跟著變長、清單照樣只有搭得到的
-  const chosen = pickable[1];
+  // 換成別班：存下來、等車跟著變、清單照樣只有搭得到的
+  const chosen = opts.find((o) => !o.on)!;
+  const option = select.locator(`[data-testid="leg-ride-option"][data-trip="${chosen.value}"]`);
   const waitBefore = await leg.getByTestId('leg-step-wait').first().innerText();
-  await select.selectOption(chosen.value);
-  await expect(select).toHaveValue(chosen.value);
+  await option.click();
+  await expect(option).toHaveAttribute('aria-checked', 'true');
   await expect(leg.getByTestId('leg-step-wait').first()).not.toHaveText(waitBefore);
   opts = await options();
-  for (const o of opts.filter((x) => !x.disabled)) expect(o.text.slice(0, 5) >= readyAt).toBe(true);
+  for (const o of opts) expect(o.text.slice(0, 5) >= readyAt).toBe(true);
 });
 
 test('第五輪：地圖彈窗在日期列上面（靠近上緣的點，彈窗蓋住日期列）', async ({ page }) => {
