@@ -25,13 +25,15 @@ export function FilterSheet({ source, surface, model, count, host, onClose }: { 
   const { filter } = model;
   const area = filter.areas.length === 1 ? areas.find((a) => a.id === filter.areas[0]) : undefined;
 
-  // Esc 關掉
+  // Esc 只關面板：捕獲階段先攔下，App 的 Esc（關詳情）收不到
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') onClose();
+      if (e.key !== 'Escape') return;
+      e.stopPropagation();
+      onClose();
     };
-    window.addEventListener('keydown', onKey);
-    return () => window.removeEventListener('keydown', onKey);
+    window.addEventListener('keydown', onKey, true);
+    return () => window.removeEventListener('keydown', onKey, true);
   }, [onClose]);
 
   const group = (id: string, title: string, items: { key: FilterKey | 'bounds'; value: string; label: string; on: boolean }[]): ReactNode => (

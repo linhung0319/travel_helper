@@ -128,8 +128,18 @@ function ActionRow({ place, desktop, schedule }: { place: Place; desktop: boolea
     const close = (e: PointerEvent) => {
       if (!wrap.current?.contains(e.target as Node)) setWho(false);
     };
+    // Esc 只關這個小視窗：捕獲階段先攔下，App 的 Esc（關詳情）收不到
+    const esc = (e: KeyboardEvent) => {
+      if (e.key !== 'Escape') return;
+      e.stopPropagation();
+      setWho(false);
+    };
     document.addEventListener('pointerdown', close);
-    return () => document.removeEventListener('pointerdown', close);
+    window.addEventListener('keydown', esc, true);
+    return () => {
+      document.removeEventListener('pointerdown', close);
+      window.removeEventListener('keydown', esc, true);
+    };
   }, [who, desktop]);
   const toggle = (value: VoteValue) => void castVote(place.id, mine === value ? null : value);
   const lodging = place.type === 'lodging';

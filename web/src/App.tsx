@@ -38,6 +38,12 @@ function DesktopLayout() {
   );
 }
 
+/** 焦點在輸入框、文字框、可編輯的區塊上 */
+function isEditable(t: EventTarget | null): boolean {
+  if (!(t instanceof HTMLElement)) return false;
+  return t.isContentEditable || t.tagName === 'TEXTAREA' || (t.tagName === 'INPUT' && !['checkbox', 'radio', 'button', 'submit'].includes((t as HTMLInputElement).type)) || t.tagName === 'SELECT';
+}
+
 export default function App() {
   const status = useData((s) => s.status);
   const error = useData((s) => s.error);
@@ -48,10 +54,11 @@ export default function App() {
     void loadData();
   }, []);
 
-  // Esc 依序關掉：討論／預約的視窗、詳情、小卡片（對話框開著時由對話框自己處理）
+  // Esc 依序關掉：討論／預約的視窗、詳情、小卡片。對話框、誰想去的小視窗、頭像選單、照片檢視、篩選面板開著時由它們自己關（捕獲階段先攔下）；
+  // 正在輸入（留言框等、輸入法選字中）時不理，草稿不會跟著詳情一起不見
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
-      if (e.key !== 'Escape') return;
+      if (e.key !== 'Escape' || e.isComposing || isEditable(e.target)) return;
       const s = appStore.getState();
       const ui = uiStore.getState();
       if (ui.mapPanel && !ui.dialog) closeMapPanel();

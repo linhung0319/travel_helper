@@ -2360,3 +2360,35 @@ test('選中的點不畫指到的光圈；點地圖空白處也收起展開的�
   await expect(row.getByTestId('trip-card-expand')).toHaveCount(0);
   expect(await th(page, '__th.uiStore.getState().expandedItem')).toBeNull();
 });
+
+test('Esc：在留言框打字時按 Esc 不關詳情、草稿還在；誰想去的小視窗、頭像選單先自己關', async ({ page }) => {
+  await ready(page);
+  const [id] = await likeMany(page, 1);
+  await page.getByTestId('side-tab-explore').click();
+  await page.evaluate((x) => (window as any).__th.appStore.getState().openDetail(x, 'explore'), id);
+  const detail = page.getByTestId('detail-panel');
+  await expect(detail).toBeVisible();
+  await detail.getByTestId('detail-tab-comments').click();
+  const input = detail.getByTestId('comment-input');
+  await input.fill('想在這裡吃午餐');
+  await input.press('Escape');
+  await expect(detail).toBeVisible();
+  await expect(input).toHaveValue('想在這裡吃午餐');
+  // 誰想去的小視窗：Esc 只關它
+  await detail.getByTestId('detail-tab-intro').click();
+  await detail.locator('.pd-like-count').click();
+  await expect(detail.locator('.pd-who')).toBeVisible();
+  await page.keyboard.press('Escape');
+  await expect(detail.locator('.pd-who')).toHaveCount(0);
+  await expect(detail).toBeVisible();
+  // 頭像選單：Esc 只關選單
+  await page.getByTestId('account-menu').click();
+  await expect(page.getByTestId('account-menu')).toHaveAttribute('aria-expanded', 'true');
+  await page.keyboard.press('Escape');
+  await expect(page.getByTestId('account-menu')).toHaveAttribute('aria-expanded', 'false');
+  await expect(detail).toBeVisible();
+  // 沒有別的東西開著：Esc 關詳情
+  await page.evaluate(() => (document.activeElement as HTMLElement | null)?.blur());
+  await page.keyboard.press('Escape');
+  await expect(detail).toHaveCount(0);
+});
