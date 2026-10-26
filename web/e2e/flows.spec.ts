@@ -59,7 +59,8 @@ test('套用、取消篩選', async ({ page }) => {
   await page.getByTestId('filter-applied').filter({ hasText: 'S 級' }).locator('.ui-chip-x').click();
   expect((await filter()).tiers).toEqual([]);
   await page.getByTestId('side-tab-day').click();
-  expect((await filter()).types).toEqual([]);
+  // 回到行程：篩選留著（行程分頁的地圖不套、也不放膠囊）
+  expect((await filter()).types).toEqual(['restaurant']);
   await expect(page.getByTestId('filter-chips')).toHaveCount(0);
 });
 

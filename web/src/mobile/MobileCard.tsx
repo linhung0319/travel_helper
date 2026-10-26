@@ -18,6 +18,7 @@ import { Icon } from '../components/Icon.tsx';
 import { DragHandle, TripCard, askAboutCardPlace } from '../shared/ui/TripCard.tsx';
 import { mobileStore, useMobile, type ActionSheetSpec, type TripSnap } from './mobileStore.ts';
 import { appStore } from '../store.ts';
+import { commands } from '../appCommands.ts';
 
 /** 縮圖邊長（手機 56px） */
 const THUMB = 56;
@@ -81,7 +82,11 @@ export function MobileCard({ itemKey, place, fallbackType, mark, time, name, tag
     m.expandItem(itemKey);
     // 已經是選到的卡（點同一張）：選中不變，水滴再跳；不然展開時換成選這張（TripPage 選中、移地圖）
     if (m.focused === itemKey) {
-      if (place) appStore.getState().select(place.id);
+      if (place) {
+        appStore.getState().select(place.id);
+        // 地圖被移開了也照移動規則讓它看得到（§8.2）
+        commands.focus(place.id);
+      }
     } else if (open) m.focusItem(itemKey);
   };
   return (

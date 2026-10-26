@@ -202,11 +202,9 @@ export function showInExplore(id: string) {
   commands.focus(id);
 }
 
-/** 右側切回「行程」：關掉詳情；從探索、想去切回來時拿掉探索加上的類型 */
+/** 右側切回「行程」：關掉詳情（篩選留著，行程分頁的地圖本來就不套篩選，第七輪 §8.4） */
 export function showItinerary() {
   const s = appStore.getState();
-  const leaving = s.mode === 'explore' || s.mode === 'wish';
   s.closeDetail();
   s.setMode('map');
-  if (leaving && s.filter.types.length) s.setFilter({ types: [] });
 }

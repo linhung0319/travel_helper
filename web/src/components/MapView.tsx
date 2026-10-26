@@ -650,11 +650,11 @@ export function MapView() {
   }, [loaded, legOpen]);
 
   const routesVersion = useApp((s) => s.routesVersion);
-  // 確定的行程（T15m）：每天的路線、備選的空心圈、選定那天的交通標籤（在每段路線的中點）
+  // 確定的行程（T15m）：每天的路線、備選的空心圈、選定那天的交通標籤（在每段路線的中點）。想去分頁只畫想去的點（§5.3），不畫行程
   useEffect(() => {
     if (!loaded) return;
     const map = mapRef.current!;
-    const f = itineraryFeatures(itinerary, plan, byId, DATES, day, itineraryPathOf, tripFocusDay);
+    const f = itineraryFeatures(mode === 'wish' ? null : itinerary, plan, byId, DATES, day, itineraryPathOf, tripFocusDay);
     (map.getSource(OVERLAY_SOURCES.itineraryLines) as GeoJSONSource).setData(f.lines);
     (map.getSource(OVERLAY_SOURCES.itineraryAlts) as GeoJSONSource).setData(f.alts);
     legLabelsRef.current.forEach((m) => m.remove());
@@ -664,7 +664,7 @@ export function MapView() {
       el.innerHTML = routeLabelHtml(l.mode, l.text);
       return new Marker({ element: el }).setLngLat(l.coords).addTo(map);
     });
-  }, [loaded, itinerary, plan, byId, day, routesVersion, tripFocusDay]);
+  }, [loaded, itinerary, plan, byId, day, routesVersion, tripFocusDay, mode]);
 
   // 每個點的想去數（放大到 BADGE_ZOOM 才顯示）
   useEffect(() => {

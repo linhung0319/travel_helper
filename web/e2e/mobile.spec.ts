@@ -1493,3 +1493,15 @@ test('詳情的「在地圖上看」：沒排的點 → 整趟、選中；換分
   expect(await page.evaluate(() => (window as any).__th.appStore.getState().selectedId)).toBeNull();
   await expect(page.getByTestId('map-selected')).toHaveCount(0);
 });
+
+test('再點同一張卡：地圖被移開了也移回看得到的地方', async ({ page }) => {
+  await ready(page);
+  await pickDay(page, '2027-02-03');
+  const card = page.locator('[data-testid="m-card"][data-item="i-2"]');
+  await card.getByTestId('trip-card-name').click();
+  await expect(page.getByTestId('map-selected')).toHaveAttribute('data-id', 'shima-yokoyama-observatory');
+  await page.evaluate(() => (window as any).__th.map.jumpTo({ center: [135.5, 34.7], zoom: 13 }));
+  expect(await visibleOnMap(page, 'shima-yokoyama-observatory')).toBe(false);
+  await card.getByTestId('trip-card-name').click();
+  await expect.poll(() => visibleOnMap(page, 'shima-yokoyama-observatory'), { timeout: 10_000 }).toBe(true);
+});

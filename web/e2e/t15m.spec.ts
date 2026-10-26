@@ -6,7 +6,7 @@
 // 第五輪：「規劃模式」改成「編輯」（藍條、完成）；交通卡平常收起，大眾運輸點了展開步驟、班次表；
 // 等待合成交通卡下面的一條（沒有「空檔」）；資料卡右上角的編號從 0 起；地圖彈窗在日期列上面。
 import { test, type Locator, type Page } from '@playwright/test';
-import { centerOn, expect, openAccountItem, switchUser, findPlaceId, ready, waitIdle, likeMany } from './helpers.ts';
+import { centerOn, expect, openAccountItem, switchUser, findPlaceId, ready, waitIdle, likeMany, pickFilter } from './helpers.ts';
 
 const DAY = '2027-02-07';
 const PLACE = 'toba-seahorse';
@@ -2141,4 +2141,44 @@ test('想去分頁的地圖：只畫想去的點、三種樣子、左下角圖�
     return { dim: t.map.getSource('places').serialize().data.features.find((f: any) => f.properties.id === x).properties.dim, scheduled: t.dataStore.getState().days.has(x) };
   }, b);
   expect(st.dim).toBe(st.scheduled ? 0 : 1);
+});
+
+test('探索選餐廳 → 到行程 → 回探索：餐廳還在（切回行程不清篩選）', async ({ page }) => {
+  await ready(page);
+  await page.getByTestId('side-tab-explore').click();
+  await pickFilter(page, 'type-restaurant');
+  expect(await th(page, '__th.appStore.getState().filter.types')).toEqual(['restaurant']);
+  await page.getByTestId('side-tab-day').click();
+  await expect(page.getByTestId('filter-chips')).toHaveCount(0);
+  await page.getByTestId('side-tab-explore').click();
+  expect(await th(page, '__th.appStore.getState().filter.types')).toEqual(['restaurant']);
+  await expect(page.getByTestId('filter-applied').filter({ hasText: '餐廳' })).toBeVisible();
+});
+
+test('選中時水滴跳一下（bounce）；減少動態時不跳', async ({ page }) => {
+  await ready(page);
+  await showDay(page, '2027-02-03');
+  await waitIdle(page);
+  await tlRow(page, 'i-2').getByTestId('trip-card').click();
+  await expect(page.locator('[data-testid="map-selected"] .ms-drop')).toHaveClass(/bounce/);
+  // 水滴蓋在交通時間標籤上面
+  expect(await page.locator('[data-testid="map-selected"]').evaluate((el) => getComputedStyle(el).zIndex)).toBe('5');
+  expect(await page.locator('[data-testid="map-selected"]').evaluate((el) => getComputedStyle(el).position)).toBe('absolute');
+  await page.emulateMedia({ reducedMotion: 'reduce' });
+  await tlRow(page, 'i-3').getByTestId('trip-card').click();
+  await expect(page.getByTestId('map-selected')).toHaveAttribute('data-label', await tlRow(page, 'i-3').getByTestId('trip-card-no').innerText());
+  await page.waitForTimeout(300);
+  await expect(page.locator('[data-testid="map-selected"] .ms-drop')).not.toHaveClass(/bounce/);
+});
+
+test('想去分頁的地圖不畫行程的路線', async ({ page }) => {
+  await ready(page);
+  await showDay(page, '2027-02-05');
+  await waitIdle(page);
+  const lines = () => page.evaluate(() => (window as any).__th.map.getSource('overlay-itinerary-lines').serialize().data.features.length);
+  expect(await lines()).toBeGreaterThan(0);
+  await page.getByTestId('side-tab-wish').click();
+  await expect.poll(lines).toBe(0);
+  await page.getByTestId('side-tab-day').click();
+  await expect.poll(lines).toBeGreaterThan(0);
 });
