@@ -108,7 +108,7 @@
 | T27a | 👤 大阪：子地區與景點（含 USJ） | S | — | 3 | 🌐 大量 | ✅ |
 | T27b | 大阪：住宿 | S | T27a | 3 | 🌐 大量 | ✅ |
 | T27c | 大阪：餐廳（候選和詳細資料一起做） | M | T27a | 3 | 🌐 大量 | ✅ |
-| T27d | 大阪：收尾、摘要與評分、代表照片（自動排序）、匯入 | S | T27b、T27c | 3 | | ⬜ |
+| T27d | 大阪：收尾、摘要與評分、代表照片（自動排序）、匯入 | S | T27b、T27c | 3 | | ✅ |
 | T28 | 大阪交通：近鐵 大阪 ↔ 伊勢志摩的特急（北上回大阪、第一天南下志摩）、市區路線的所需時間和班距、大站轉乘的步行時間和電梯 | M | — | 3 | | ✅ |
 | T29 | engine：班距型路線（市區鐵道）、轉乘步行；車站面板顯示班距 | S | T28（格式定好就可以開始） | 3 | 🌐 少量 | ⬜ |
 | T30 | 👤 部署到 Cloudflare：正式的 D1 和 secret、網站和 Worker、正式環境第一次匯入、LINE 改用正式網址、LINE 內建瀏覽器實測 | S | T25、👤 資料和 schema 定案（邀請家人之前） | 4 | 🌐 少量 | ⬜ |
@@ -888,6 +888,7 @@ T7c → T7d → T7e → T7f → T7g → T8a → T8b → T8c → T8d → T7i → 
 - **代表照片**：照 CONVENTIONS §4「大阪」的來源順序自動排第一張，`photo-check.mjs` 打不開的往後排；不逐張看圖。
 - validate 通過後，用 T24 的匯入腳本匯入 `osaka`（全部是新 ID，只會新增），重新 build 網站確認地圖上出現。
 - 更新 `data/raw/osaka/README.md`（現況、決定、給排行程的人看的限制）。
+- **完成（2026-10-26）**：景點 nearestStation（OSRM）、餐廳 anchors、住宿 dinnerAccess（USJ 5 間 car，👤 維持）。評分門檻（👤）：景點 5＝Google 4.5／5 萬則、4＝4.4／2 萬則（A 以上 29%）；住宿照伊勢調整版、承認 30%；餐廳 5 改成只看數字（食べログ 3.70／1,000＋Google 4.2／1,000），A 以上 24%，負評往下調 11 家。`cross-area-check.mjs` 加 osaka；景點 tags 改固定清單。代表照片 78 筆都不用換。本機 D1 匯入 osaka 109 筆、build 後地圖有大阪。過程在 `data/raw/osaka/log/T27d.md`。
 
 ### T28 大阪交通 〔M〕
 - **近鐵 大阪 ↔ 伊勢志摩**：把大阪難波、大阪上本町、鶴橋（ID `osaka-namba`、`osaka-uehommachi`、`tsuruhashi`，`passes.json` 已經用 `osaka-namba`）加進 `stations.json`，往返大阪的特急加進 `data/timetables/kintetsu/_travel-times.json`（格式不變，只收往返大阪的特急；大阪側的停站加進各班的 `stops`、`stationOrder`），兩個方向都要：
