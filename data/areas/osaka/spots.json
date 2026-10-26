@@ -50,7 +50,7 @@
       "夜景",
       "散步"
     ],
-    "tier": null,
+    "tier": "A",
     "nearestStation": {
       "id": "metro-namba",
       "mode": "walk",
@@ -161,8 +161,46 @@
         "googleReviews": 20068
       }
     },
-    "summary": null,
-    "assessment": null
+    "summary": {
+      "text": "難波的運河兩岸，グリコサイン、巨大招牌和小吃店集中，是大阪最有代表性的街景。全天開放、免費，地鐵なんば駅出站即到；とんぼりリバークルーズ（約 20 分）可以坐船看兩岸。晚上燈光最熱鬧，住難波的晚上可以順路逛。",
+      "pros": [
+        "Google 4.4（8.7 萬則），大阪評論數僅次於 USJ 的代表街景",
+        "地鐵なんば駅出站即到，平地、免費，住難波時晚上隨時能去",
+        "リバークルーズ 大人 2,000 円、小學生 500 円，坐著看街景，長輩不用走"
+      ],
+      "cons": [
+        "人潮很多，15 人容易走散，要分組、約好集合點（戎橋的グリコサイン前）",
+        "戶外，2 月晚上河邊風冷；クルーズ船上不能撐傘、沒有廁所",
+        "クルーズ網路票是定時班次、不能改退，當日券額滿就上不了；15 人同一班要事先買或用團體申請書"
+      ],
+      "basedOn": [
+        "https://www.ipponmatsu.co.jp/cruise/tombori.html",
+        "https://cloud-pass.jp/get/tombori-rivercruise_202610_202703",
+        "https://osaka-info.jp/spot/dotonbori/",
+        "https://osaka-info.jp/spot/tombori-river-cruise/",
+        "https://maps.google.com/?cid=13311254180582368656"
+      ],
+      "generated": "2026-10-26"
+    },
+    "assessment": {
+      "rubric": "spot-v1",
+      "scores": {
+        "recommend": 4,
+        "winterFit": 3,
+        "elderFit": 4,
+        "kidsFit": 3,
+        "accessEase": 5
+      },
+      "rationale": {
+        "recommend": "Google 4.4（87,136 則）→ 大阪門檻的 4（4.4 以上、2 萬則以上）；5 要 4.5 以上、5 萬則",
+        "winterFit": "戶外街道，2 月照常；晚上河邊冷，冬天沒有加分",
+        "elderFit": "平地的街道、可以坐クルーズ；人潮多、休息座位沒有來源 → 4",
+        "kidsFit": "kids.friendly medium（招牌街景、20 分的船）→ 3",
+        "accessEase": "地鐵なんば駅出站即到（OSRM 5 分）→ 5"
+      },
+      "confidence": "medium",
+      "assessed": "2026-10-26"
+    }
   },
   {
     "id": "osaka-kuromon-market",
@@ -214,7 +252,7 @@
       "市場",
       "邊走邊吃"
     ],
-    "tier": null,
+    "tier": "B",
     "nearestStation": {
       "id": "metro-nippombashi",
       "mode": "walk",
@@ -292,8 +330,45 @@
         "店數：約 170 店（體驗頁） vs 約 150 店（特輯）"
       ]
     },
-    "summary": null,
-    "assessment": null
+    "summary": {
+      "text": "日本橋站旁約 580 m 的有頂棚市場，海鮮串燒、水果、和牛串可以邊走邊吃，是難波一帶的觀光市場。免費、平地、下雨也能逛；通道窄、人多，15 人分組逛比較好。",
+      "pros": [
+        "地鐵日本橋駅步行約 2 分，住難波時走得到",
+        "有頂棚的平地商店街，2 月、雨天都能逛",
+        "小孩可以吃現榨果汁、霜淇淋，各組自己挑"
+      ],
+      "cons": [
+        "通道窄、觀光客多，15 人不能一起走，要分組",
+        "公休說法不一（OSAKA-INFO 一頁寫週一定休、一頁寫依店家），各店營業時間沒查到",
+        "休息座位、廁所沒有來源；邊走邊吃的價格偏觀光客取向（沒有讀評論，未確認）"
+      ],
+      "basedOn": [
+        "https://kuromon.com/",
+        "https://osaka-info.jp/experience/ja/osaka/spot/208",
+        "https://osaka-info.jp/special/coolosaka/cool-move/1265/",
+        "https://maps.google.com/?cid=12402117845945925953"
+      ],
+      "generated": "2026-10-26"
+    },
+    "assessment": {
+      "rubric": "spot-v1",
+      "scores": {
+        "recommend": 3,
+        "winterFit": 4,
+        "elderFit": 4,
+        "kidsFit": 3,
+        "accessEase": 5
+      },
+      "rationale": {
+        "recommend": "Google 4.1（21,338 則）→ 大阪門檻的 3（4 要 4.4 以上）",
+        "winterFit": "有頂棚的商店街，冬天、下雨也能逛 → 4",
+        "elderFit": "約 580 m 平地；通道窄、人多，休息座位沒有來源 → 4",
+        "kidsFit": "kids.friendly medium（邊走邊吃）→ 3",
+        "accessEase": "地鐵日本橋駅約 2 分（OSRM 3 分）→ 5"
+      },
+      "confidence": "medium",
+      "assessed": "2026-10-26"
+    }
   },
   {
     "id": "osaka-castle-tenshukaku",
@@ -396,7 +471,7 @@
       "雨天備案",
       "長階梯"
     ],
-    "tier": null,
+    "tier": "B",
     "nearestStation": {
       "id": "metro-tanimachi-4chome",
       "mode": "walk",
@@ -513,8 +588,48 @@
         "ロードトレイン：OSAKA-INFO 每趟 300 円 vs 旅遊網站大人 400／小孩 200 円、每月第 1 週四停駛"
       ]
     },
-    "summary": null,
-    "assessment": null
+    "summary": {
+      "text": "大阪城的天守閣，館內是豐臣秀吉和大坂夏の陣的展示，8F 是展望台。2 月 9:00～18:00、國中生以下免費、大人 1,200 円。問題在交通：各站到天守閣都要在戶外走 1.4 km 以上的上坡，最平的是谷町四丁目駅 11 號出口（電梯）的路線。",
+      "pros": [
+        "大阪的地標，館內室內展示＋8F 展望台；國中生以下免費",
+        "付費 15 人以上有團體價（大人 1,080 円），可以官網預購 Web 入館券",
+        "輪椅或步行困難者可以搭館內電梯到各樓層（8F 可到）；有館外電梯"
+      ],
+      "cons": [
+        "車站到天守閣約 1.4 km 上坡（谷町四丁目駅 OSRM 20 分），極楽橋那一側有一段沒有扶手的急坡",
+        "一般遊客館內電梯只上不下、只到 5F，5F→8F 和下樓都要走樓梯",
+        "館內禁止嬰兒車；65 歲以上免費只限大阪市民，長輩付大人票；小孩要付費的 11 人才算團體人數"
+      ],
+      "basedOn": [
+        "https://www.osakacastle.net/guide/",
+        "https://www.osakacastle.net/exhibition/",
+        "https://www.osakacastle.net/access/",
+        "https://osakacastle.net/pdf/access/bf_map_jp.pdf",
+        "https://osaka-info.jp/experience/ja/osaka/spot/200",
+        "https://www.walkerplus.com/spot/ar0727s46839/price.html",
+        "https://maps.google.com/?cid=4831865609044200129"
+      ],
+      "generated": "2026-10-26"
+    },
+    "assessment": {
+      "rubric": "spot-v1",
+      "scores": {
+        "recommend": 3,
+        "winterFit": 4,
+        "elderFit": 2,
+        "kidsFit": 3,
+        "accessEase": 3
+      },
+      "rationale": {
+        "recommend": "Google 4.5 但只有 5,908 則（大阪城的評論多半在公園、城本身的地點）→ 大阪門檻的 3（4 要 2 萬則以上）",
+        "winterFit": "館內是室內展示，2 月照常；但到天守閣要在戶外走 1.4 km → 4",
+        "elderFit": "1.4 km 上坡＋館內樓梯（行動不便者可以搭電梯）→ 2",
+        "kidsFit": "kids.friendly medium（微縮人偶、影像、展望台）→ 3",
+        "accessEase": "谷町四丁目駅 OSRM 20 分、上坡 → 3"
+      },
+      "confidence": "medium",
+      "assessed": "2026-10-26"
+    }
   },
   {
     "id": "osaka-castle-plum-grove",
@@ -564,7 +679,7 @@
       "冬季限定",
       "散步"
     ],
-    "tier": null,
+    "tier": "B",
     "nearestStation": {
       "id": "jr-osakajokoen",
       "mode": "walk",
@@ -653,8 +768,46 @@
         "活動期間：MATCHA 寫 2026-02-06～03-15，官網只寫 2 月初～3 月中旬"
       ]
     },
-    "summary": null,
-    "assessment": null
+    "summary": {
+      "text": "大阪城公園內堀東側約 1.7 ha 的梅林，約 1,245 棵、105 品種。2 月中旬是賞梅季最熱鬧的時候（早開品種 12 月下旬起、晚開的到 3 月中旬），2026 年 2 月初～3 月中旬有キッチンカー。戶外，從 JR 大阪城公園駅或森ノ宮駅走約 14 分，可以和天守閣排在同一天。",
+      "pros": [
+        "2 月剛好是花季，冬天才有的景色",
+        "公園一般免費入園（梅林有沒有收費官方頁沒寫）",
+        "附近有無障礙廁所；可以和天守閣（約 0.5～0.8 km）一起排"
+      ],
+      "cons": [
+        "全程戶外，2 月冷；花況看天氣，早去或晚去可能只開一部分",
+        "玉造口一帶有樓梯段，從森ノ宮進公園要照「バリアフリールート」看板繞行",
+        "車站到梅林約 14 分（OSRM），休息處沒有來源"
+      ],
+      "basedOn": [
+        "https://www.osakacastlepark.jp/flower/plum_grove.html",
+        "https://www.osakacastlepark.jp/flower/plum_grove2026.html",
+        "https://osakacastle.net/pdf/access/bf_map_jp.pdf",
+        "https://matcha-jp.com/jp/23913",
+        "https://maps.google.com/?cid=12782986985188393020"
+      ],
+      "generated": "2026-10-26"
+    },
+    "assessment": {
+      "rubric": "spot-v1",
+      "scores": {
+        "recommend": 3,
+        "winterFit": 5,
+        "elderFit": 3,
+        "kidsFit": 2,
+        "accessEase": 4
+      },
+      "rationale": {
+        "recommend": "Google 4.3（1,596 則）→ 大阪門檻的 3",
+        "winterFit": "2 月中旬是賞梅季最熱鬧的時候（冬季才有）→ 5",
+        "elderFit": "戶外步行、附近有樓梯段要繞無障礙路線 → 3",
+        "kidsFit": "kids.friendly null；官方頁只有「找 6～9 片花瓣的梅花」→ 2",
+        "accessEase": "JR 大阪城公園駅 OSRM 14 分（官方沒寫分鐘）→ 4"
+      },
+      "confidence": "medium",
+      "assessed": "2026-10-26"
+    }
   },
   {
     "id": "osaka-tsutenkaku",
@@ -750,7 +903,7 @@
       "雨天備案",
       "親子"
     ],
-    "tier": null,
+    "tier": "B",
     "nearestStation": {
       "id": "metro-ebisucho",
       "mode": "walk",
@@ -880,8 +1033,49 @@
         "特別屋外展望台最後入場：官網 21:35 vs OSAKA-INFO 21:45"
       ]
     },
-    "summary": null,
-    "assessment": null
+    "summary": {
+      "text": "新世界的地標展望塔，5F 有金色ビリケン像，TOWER SLIDER 可以從塔上滑到 B1（約 10 秒，120 cm 以上）。一般展望台 大人 1,500 円、5～14 歲 800 円，開到晚上 9 點多；周邊就是新世界的串カツ街。",
+      "pros": [
+        "TOWER SLIDER 7～14 歲、120 cm 以上可以玩（600 円），小孩會喜歡",
+        "室內展望台，2 月、雨天照常；開到 21:15 最後入場",
+        "恵美須町駅 3 號出口 3 分，周邊新世界的串カツ店可以接著吃"
+      ],
+      "cons": [
+        "團體預約目前停止受理，15 人要和一般客一起排；所有票都要指定入場時間，傍晚後可能售完",
+        "2F→3F 有螺旋樓梯；特別屋外展望台要走樓梯，行動不便、輪椅者官網寫「安全上御遠慮」",
+        "Google 4.1，評價比其他展望台低（沒有讀評論，原因未確認）"
+      ],
+      "basedOn": [
+        "https://www.tsutenkaku.co.jp/",
+        "https://www.tsutenkaku.co.jp/annai/index.html",
+        "https://www.tsutenkaku.co.jp/tour/index.html",
+        "https://www.tsutenkaku.co.jp/tour/tower-slider.html",
+        "https://www.tsutenkaku.co.jp/tour/tenbo-paradise.html",
+        "https://www.tsutenkaku.co.jp/access/index.html",
+        "https://osaka-info.jp/spot/tsutenkaku/",
+        "https://osaka-info.jp/spot/shinsekai/"
+      ],
+      "generated": "2026-10-26"
+    },
+    "assessment": {
+      "rubric": "spot-v1",
+      "scores": {
+        "recommend": 3,
+        "winterFit": 4,
+        "elderFit": 4,
+        "kidsFit": 5,
+        "accessEase": 5
+      },
+      "rationale": {
+        "recommend": "Google 4.1（44,245 則）→ 大阪門檻的 3（4 要 4.4 以上）",
+        "winterFit": "室內展望台，2 月照常；特別屋外展望台遇雨、強風會關 → 4",
+        "elderFit": "電梯到展望台、2F→3F 有一段螺旋樓梯 → 4",
+        "kidsFit": "kids.friendly high（TOWER SLIDER、ビリケン）→ 5",
+        "accessEase": "恵美須町駅 3 號出口 3 分（OSRM 5 分）→ 5"
+      },
+      "confidence": "medium",
+      "assessed": "2026-10-26"
+    }
   },
   {
     "id": "osaka-harukas300",
@@ -975,7 +1169,7 @@
       "室內",
       "雨天備案"
     ],
-    "tier": null,
+    "tier": "A",
     "nearestStation": {
       "id": "metro-tennoji",
       "mode": "walk",
@@ -1068,8 +1262,45 @@
         "官網 abenoharukas-300.jp 回 403，官方數字都沒確認"
       ]
     },
-    "summary": null,
-    "assessment": null
+    "summary": {
+      "text": "あべのハルカス（300 m）頂樓 58～60F 的展望台，360 度玻璃，60F 有玻璃地板區。16F 售票後搭直達電梯約 45 秒到 60F，和天王寺站、近鐵大阪阿部野橋駅直結。官網讀不到，票價只有 OSAKA-INFO（2025-03）和るるぶ：當日券大人 1,800～2,000 円、小學生 700 円，出發前要再查。",
+      "pros": [
+        "Google 4.6（2.4 萬則），大阪景點裡星數最高",
+        "天王寺站直結、直達電梯，長輩幾乎不用走",
+        "室內，2 月、雨天照常；有日時指定券"
+      ],
+      "cons": [
+        "官網讀不到：營業時間、票價、團體折扣條件都要出發前再查",
+        "展望台樓層間的動線、輪椅出借沒有來源",
+        "大人 1,800～2,000 円，比通天閣、空中庭園略貴"
+      ],
+      "basedOn": [
+        "https://www.abenoharukas-300.jp/",
+        "https://osaka-info.jp/local_journey/stopby-osaka/abenoharukas/",
+        "https://rurubu.jp/andmore/spot/80028030",
+        "https://maps.google.com/?cid=17457951089637678730"
+      ],
+      "generated": "2026-10-26"
+    },
+    "assessment": {
+      "rubric": "spot-v1",
+      "scores": {
+        "recommend": 4,
+        "winterFit": 5,
+        "elderFit": 4,
+        "kidsFit": 3,
+        "accessEase": 5
+      },
+      "rationale": {
+        "recommend": "Google 4.6（23,995 則）→ 大阪門檻的 4（4.4 以上、2 萬則以上）；5 要 5 萬則",
+        "winterFit": "全室內展望台、全年無休 → 5",
+        "elderFit": "車站直結、直達電梯；樓層間動線沒有來源 → 4",
+        "kidsFit": "kids.friendly medium（玻璃地板）→ 3",
+        "accessEase": "天王寺站即到（OSRM 3 分）→ 5"
+      },
+      "confidence": "medium",
+      "assessed": "2026-10-26"
+    }
   },
   {
     "id": "osaka-tennoji-zoo",
@@ -1157,7 +1388,7 @@
       "動物",
       "親子"
     ],
-    "tier": null,
+    "tier": "B",
     "nearestStation": {
       "id": "metro-dobutsuen-mae",
       "mode": "walk",
@@ -1236,8 +1467,44 @@
         "官網 2026-10-26 回 503，出入口、團體料金、無障礙待確認"
       ]
     },
-    "summary": null,
-    "assessment": null
+    "summary": {
+      "text": "天王寺公園裡約 11 ha 的動物園，有獅子、北極熊、企鵝、海獅、爬蟲類館和日本唯一的鬼狒。大人 800 円、小中學生 200 円，便宜；週一休（2027-02-08、02-15），2/11 假日有開。大多是戶外展示，冬天冷。",
+      "pros": [
+        "小孩喜歡的動物多；小中學生 200 円、未就學兒免費",
+        "2/11（假日）開園，從新世界ゲート到動物園前駅約 5 分",
+        "和通天閣、ハルカス 在同一區，可以排在同一天"
+      ],
+      "cons": [
+        "週一休：2/8、2/15；12/29～1/1 也休",
+        "大多是戶外展示，2 月冷；園區約 11 ha，坡道、休息處、輪椅出借沒有來源（官網當天 503）",
+        "65 歲以上免費只限大阪市民，長輩付大人票"
+      ],
+      "basedOn": [
+        "https://www.tennojizoo.jp/",
+        "https://osaka-info.jp/spot/osaka-tennoji-zoo/",
+        "https://maps.google.com/?cid=1909807467663893139"
+      ],
+      "generated": "2026-10-26"
+    },
+    "assessment": {
+      "rubric": "spot-v1",
+      "scores": {
+        "recommend": 3,
+        "winterFit": 3,
+        "elderFit": 3,
+        "kidsFit": 5,
+        "accessEase": 5
+      },
+      "rationale": {
+        "recommend": "Google 4.1（17,509 則）→ 大阪門檻的 3",
+        "winterFit": "2 月照常開園（週一休），大多戶外 → 3",
+        "elderFit": "約 11 ha 戶外園區，步行長；坡道、休息處沒有來源 → 3",
+        "kidsFit": "kids.friendly high（獅子、北極熊、企鵝）→ 5",
+        "accessEase": "OSAKA-INFO：動物園前駅 5 分（OSRM 13 分是到園區中心）→ 5"
+      },
+      "confidence": "medium",
+      "assessed": "2026-10-26"
+    }
   },
   {
     "id": "osaka-shitennoji",
@@ -1342,7 +1609,7 @@
       "寺社",
       "歷史"
     ],
-    "tier": null,
+    "tier": "B",
     "nearestStation": {
       "id": "metro-shitennojimae-yuhigaoka",
       "mode": "walk",
@@ -1435,8 +1702,46 @@
         "OSAKA-INFO 英文頁中心伽藍 300 円（舊價）"
       ]
     },
-    "summary": null,
-    "assessment": null
+    "summary": {
+      "text": "聖德太子創建、日本最早的官寺之一，五重塔、金堂排成一直線的「四天王寺式伽藍」。境內免費，中心伽藍 大人 500 円、小中學生免費；10～3 月 8:30～16:00。2/3 節分有星祭大護摩供，每月 21 日大師会有露店。",
+      "pros": [
+        "Google 4.4（1.3 萬則），大阪代表性的古寺",
+        "境內免費，中心伽藍小中學生免費、可以登五重塔",
+        "2/3 節分、2/21 大師会（露店、中心伽藍免費）有活動"
+      ],
+      "cons": [
+        "2 月中心伽藍 16:00 就關，要排在白天",
+        "階梯、無障礙在官網和 OSAKA-INFO 都沒寫；戶外",
+        "沒有兒童設施，小孩會無聊；團體價要 30 人以上"
+      ],
+      "basedOn": [
+        "https://www.shitennoji.or.jp/admission.html",
+        "https://www.shitennoji.or.jp/access.html",
+        "https://www.shitennoji.or.jp/event/2/",
+        "https://osaka-info.jp/spot/shitennoji/",
+        "https://maps.google.com/?cid=13162475560152948781"
+      ],
+      "generated": "2026-10-26"
+    },
+    "assessment": {
+      "rubric": "spot-v1",
+      "scores": {
+        "recommend": 3,
+        "winterFit": 3,
+        "elderFit": null,
+        "kidsFit": 2,
+        "accessEase": 5
+      },
+      "rationale": {
+        "recommend": "Google 4.4 但 13,343 則 → 大阪門檻的 3（4 要 2 萬則以上）",
+        "winterFit": "戶外寺院，2 月照常（16:00 關）；節分、大師会是活動不是冬季景色 → 3",
+        "elderFit": "階梯、坡道完全沒有來源 → null",
+        "kidsFit": "kids.friendly low（沒有兒童設施）→ 2",
+        "accessEase": "官網：四天王寺前夕陽ヶ丘駅 往南 5 分（OSRM 9 分）→ 5"
+      },
+      "confidence": "medium",
+      "assessed": "2026-10-26"
+    }
   },
   {
     "id": "osaka-kaiyukan",
@@ -1530,7 +1835,7 @@
       "室內",
       "雨天備案"
     ],
-    "tier": null,
+    "tier": "S",
     "nearestStation": {
       "id": "metro-osakako",
       "mode": "walk",
@@ -1647,8 +1952,49 @@
         "官網 2026-10 沒有シニア票"
       ]
     },
-    "summary": null,
-    "assessment": null
+    "summary": {
+      "text": "大阪港的大型水族館，中央大水槽有鯨鯊，沿著坡道從上往下繞一圈。變動票價：大人 2,700～3,200 円、小中學生 1,400～1,650 円；建議買指定日期時段的 e チケット。館內幾乎都是坡道、輪椅可以參觀；訪日外國人 15 人以上可以團體預約（沒有折扣、全部時間指定）。",
+      "pros": [
+        "Google 4.5（6.3 萬則），大阪評論數第三多，小孩會很喜歡",
+        "全室內、坡道為主，輪椅出借，有休息的咖啡廳和多目的廁所",
+        "訪日外國人 15 人可以團體預約（來館 1 年前～2 週前 email 申請）"
+      ],
+      "cons": [
+        "票價依日期 2,700～3,200 円；大人 3,200 円的日子團體只能訂 15:00 以後，3,500 円的日子不收團體",
+        "館內不能集合拍照、設集合點；不可再入館",
+        "2027-02 每天的營業時間、休館日要看官網行事曆（讀不到）"
+      ],
+      "basedOn": [
+        "https://www.kaiyukan.com/",
+        "https://www.kaiyukan.com/info/group/",
+        "https://www.kaiyukan.com/info/ticket/kaiyukan/",
+        "https://www.kaiyukan.com/info/area/barrierfree/",
+        "https://www.kaiyukan.com/info/area/",
+        "https://www.kaiyukan.com/info/access/",
+        "https://www.kaiyukan.com/info/faq/",
+        "https://osaka-info.jp/spot/osaka-aquarium-kaiyukan/"
+      ],
+      "generated": "2026-10-26"
+    },
+    "assessment": {
+      "rubric": "spot-v1",
+      "scores": {
+        "recommend": 5,
+        "winterFit": 5,
+        "elderFit": 4,
+        "kidsFit": 5,
+        "accessEase": 5
+      },
+      "rationale": {
+        "recommend": "Google 4.5（62,627 則）→ 大阪門檻的 5（4.5 以上、5 萬則以上），大阪的代表景點",
+        "winterFit": "全室內，2 月照常（休館日在 1 月）→ 5",
+        "elderFit": "坡道為主、輪椅可參觀、有休息處；館內步行約 2 小時 → 4",
+        "kidsFit": "kids.friendly high（鯨鯊、餵食時間）→ 5",
+        "accessEase": "官網：大阪港駅 1 號出口約 5 分（OSRM 9 分）→ 5"
+      },
+      "confidence": "medium",
+      "assessed": "2026-10-26"
+    }
   },
   {
     "id": "osaka-tempozan-ferris-wheel",
@@ -1740,7 +2086,7 @@
       "觀景",
       "夜景"
     ],
-    "tier": null,
+    "tier": "B",
     "nearestStation": {
       "id": "metro-osakako",
       "mode": "walk",
@@ -1835,8 +2181,46 @@
         "官網連線被拒未讀到"
       ]
     },
-    "summary": null,
-    "assessment": null
+    "summary": {
+      "text": "海遊館旁的大摩天輪，一圈約 15 分，可以看大阪港和大阪市區。3 歲以上同價 1,000 円，60 台車廂裡 8 台全透明、3 台可以坐輪椅直接上。和海遊館、LEGOLAND 在同一處（天保山）。",
+      "pros": [
+        "Google 4.5（1.1 萬則），坐著就能看景，長輩不用走",
+        "有 3 台無障礙車廂，可以坐輪椅直接上",
+        "在海遊館旁，可以排在同一天"
+      ],
+      "cons": [
+        "天候不佳、檢修時停駛（不定休）",
+        "一車坐幾人沒寫，15 人要分幾車不明；團體價要 20 人以上",
+        "營業時間來源不一（OSAKA-INFO 10:00～22:00 vs 營運公司）"
+      ],
+      "basedOn": [
+        "https://tempozan-kanransya.com/",
+        "https://osaka-info.jp/experience/ja/osaka/spot/345",
+        "https://www.gltjp.com/ja/directory/item/11624/",
+        "https://happyell.co.jp/spot/tenpouzan",
+        "https://maps.google.com/?cid=18337499502386135590"
+      ],
+      "generated": "2026-10-26"
+    },
+    "assessment": {
+      "rubric": "spot-v1",
+      "scores": {
+        "recommend": 3,
+        "winterFit": 4,
+        "elderFit": 5,
+        "kidsFit": 3,
+        "accessEase": 5
+      },
+      "rationale": {
+        "recommend": "Google 4.5 但 11,003 則 → 大阪門檻的 3（4 要 2 萬則以上）",
+        "winterFit": "坐在車廂內，不太受冷；天候不佳停駛 → 4",
+        "elderFit": "坐著 15 分、無障礙車廂可以坐輪椅上 → 5",
+        "kidsFit": "kids.friendly medium（透明車廂）→ 3",
+        "accessEase": "大阪港駅約 5 分（OSRM 8 分）→ 5"
+      },
+      "confidence": "medium",
+      "assessed": "2026-10-26"
+    }
   },
   {
     "id": "osaka-legoland-discovery",
@@ -1890,7 +2274,7 @@
       "室內",
       "雨天備案"
     ],
-    "tier": null,
+    "tier": "B",
     "nearestStation": {
       "id": "metro-osakako",
       "mode": "walk",
@@ -2001,8 +2385,49 @@
         "首頁「¥2,200 起」 vs 票價頁最低 2,240（平日午後）／2,900 円（日時指定）"
       ]
     },
-    "summary": null,
-    "assessment": null
+    "summary": {
+      "text": "天保山マーケットプレース 3 樓的室內 LEGO 遊樂設施，對象 3～10 歲，有小型遊樂設施、4D 電影和積木區。只有大人不能入場；日時指定票 2,900～3,300 円（3 歲以上同價），只在網路賣。和海遊館、摩天輪在同一處。",
+      "pros": [
+        "對象剛好是 3～10 歲，6～10 歲的小孩大多能玩（部分設施有身高、陪同規定）",
+        "全室內、無障礙，雨天、2 月都適合",
+        "在海遊館旁，可以讓有小孩的組和長輩分開行動"
+      ],
+      "cons": [
+        "只有大人不能入場；大人也要付 2,900～3,300 円",
+        "票只在網路賣（當日票也是），不能退、可以改期；團體要 email 事先預約，價格沒寫",
+        "營業時間、休館日官網讀不到（首頁 2026-10-26 顯示 10:00～18:00）"
+      ],
+      "basedOn": [
+        "https://www.legolanddiscoverycenter.com/osaka/",
+        "https://www.legolanddiscoverycenter.com/osaka/tickets-passes/",
+        "https://www.legolanddiscoverycenter.com/osaka/plan/information/faqs/facility/",
+        "https://www.legolanddiscoverycenter.com/osaka/plan/information/faqs/tickets/",
+        "https://www.legolanddiscoverycenter.com/osaka/plan/information/faqs/school-groups/",
+        "https://www.legolanddiscoverycenter.com/osaka/plan/before-you-visit/how-to-get-here/",
+        "https://www.legolanddiscoverycenter.com/osaka/what-s-inside/attraction-overview/",
+        "https://maps.google.com/?cid=17130195051236383444"
+      ],
+      "generated": "2026-10-26"
+    },
+    "assessment": {
+      "rubric": "spot-v1",
+      "scores": {
+        "recommend": 3,
+        "winterFit": 5,
+        "elderFit": 5,
+        "kidsFit": 5,
+        "accessEase": 5
+      },
+      "rationale": {
+        "recommend": "Google 4.2（6,046 則）→ 大阪門檻的 3",
+        "winterFit": "全室內 → 5",
+        "elderFit": "無障礙、通道平坦 → 5（長輩要陪小孩才能進）",
+        "kidsFit": "kids.friendly high（3～10 歲為對象）→ 5",
+        "accessEase": "官網：大阪港駅 5 分（OSRM 8 分）→ 5"
+      },
+      "confidence": "medium",
+      "assessed": "2026-10-26"
+    }
   },
   {
     "id": "osaka-usj",
@@ -2068,7 +2493,7 @@
       "主題樂園",
       "親子"
     ],
-    "tier": null,
+    "tier": "S",
     "nearestStation": {
       "id": "jr-universal-city",
       "mode": "walk",
@@ -2222,8 +2647,49 @@
         "1 日券最低價：OSAKA-INFO 大人 8,200～／兒童 5,400～（舊價） vs 2026 年 8,400～／5,500～"
       ]
     },
-    "summary": null,
-    "assessment": null
+    "summary": {
+      "text": "ユニバーサル・スタジオ・ジャパン，有任天堂世界、哈利波特、小小兵等區域，玩一整天。2027-02 的價格月曆還沒公布：2026 年的最低價 大人 8,400 円～、4～11 歲 5,500 円～、65 歲以上 7,600 円～，買得越早越便宜，出發前要再查。6～10 歲的小孩大多數設施能玩（身高限制整理在 kids.note）。JR ユニバーサルシティ駅下車。",
+      "pros": [
+        "Google 4.5（15.7 萬則），大阪評論數最多的景點",
+        "6～10 歲能玩的設施多（マリオカート、ヨッシー、ミニオン、ヒッポグリフ 等）",
+        "園區旁有官方合作飯店（京阪、近鉄、ユニバーサルポート 等），住一晚可以早進園"
+      ],
+      "cons": [
+        "票價依日期變動、Express Pass 11,800～21,800 円會賣完；2/11（假日）預期人多",
+        "整天在戶外走動、排隊，2 月冷；輪椅出租 1 台 500 円、數量有限不能預約，電動代步車官網沒看到",
+        "團體票要 25 人以上、只透過旅行社，15 人各自買 1 日券；任天堂世界可能要 App 抽整理券"
+      ],
+      "basedOn": [
+        "https://www.usj.co.jp/web/ja/jp/attractions/requirements/height-restriction",
+        "https://www.usj.co.jp/web/ja/jp/tickets/buy/price-calendar",
+        "https://www.usj.co.jp/web/ja/jp/tickets/lineup/group/grouppass",
+        "https://www.usj.co.jp/web/ja/jp/tickets/lineup/expresspass",
+        "https://www.usj.co.jp/web/ja/jp/tickets/guide/numbered-ticket",
+        "https://www.usj.co.jp/web/ja/jp/areas/super-nintendo-world",
+        "https://www.usj.co.jp/web/ja/jp/service-guide/wheelchair",
+        "https://www.usj.co.jp/web/ja/jp/service-guide/barrier-free"
+      ],
+      "generated": "2026-10-26"
+    },
+    "assessment": {
+      "rubric": "spot-v1",
+      "scores": {
+        "recommend": 5,
+        "winterFit": 3,
+        "elderFit": 2,
+        "kidsFit": 5,
+        "accessEase": 4
+      },
+      "rationale": {
+        "recommend": "Google 4.5（156,808 則）→ 大阪門檻的 5，大阪評論數最多的代表景點",
+        "winterFit": "2 月照常營業，戶外排隊多、冬季活動到 1/17 → 3",
+        "elderFit": "整天園內步行、排隊，輪椅出租有限 → 2（可以安排中途休息或提早離園）",
+        "kidsFit": "kids.friendly high（6～10 歲能玩的設施多）→ 5",
+        "accessEase": "JR ユニバーサルシティ駅 OSRM 11 分（到園區中心，園門較近）；從難波要轉 1～2 次 → 4"
+      },
+      "confidence": "medium",
+      "assessed": "2026-10-26"
+    }
   },
   {
     "id": "osaka-umeda-sky-building",
@@ -2325,7 +2791,7 @@
       "室內",
       "雨天備案"
     ],
-    "tier": null,
+    "tier": "B",
     "nearestStation": {
       "id": "metro-umeda",
       "mode": "walk",
@@ -2436,8 +2902,48 @@
         "一則旅遊網站寫 1,500／700 円（舊價）"
       ]
     },
-    "summary": null,
-    "assessment": null
+    "summary": {
+      "text": "梅田スカイビル 39F 的空中庭園展望台，頂樓是 360 度露天的迴廊，35F→39F 搭透明手扶梯。大人 2,000 円、4 歲～小學生 500 円，10 人以上有團體價（1,800／450 円，asoview 預約）。JR 大阪駅步行約 7 分（官網），有含地下道的無障礙路線。",
+      "pros": [
+        "Google 4.4（1.4 萬則），梅田的代表展望台、夜景",
+        "10 人以上就有團體價，15 人用得到",
+        "坐輪椅可以搭塔東的高層電梯；JR 大阪駅有無障礙路線"
+      ],
+      "cons": [
+        "頂樓迴廊是露天的，2 月風大，天候不佳可能上不去",
+        "大樓在梅田北側，從 JR 大阪駅、地鐵梅田駅走 7～9 分（OSRM 13～16 分，要過鐵路）",
+        "休息處、廁所沒有來源；設備檢查日會縮短營業（2027-02 沒有公告）"
+      ],
+      "basedOn": [
+        "https://www.skybldg.co.jp/",
+        "https://www.skybldg.co.jp/observatory/information/",
+        "https://www.skybldg.co.jp/access/",
+        "https://www.skybldg.co.jp/group/",
+        "https://www.skybldg.co.jp/observatory/",
+        "https://osaka-info.jp/spot/umeda-sky-building/",
+        "https://maps.google.com/?cid=5170383595001406343"
+      ],
+      "generated": "2026-10-26"
+    },
+    "assessment": {
+      "rubric": "spot-v1",
+      "scores": {
+        "recommend": 3,
+        "winterFit": 4,
+        "elderFit": 4,
+        "kidsFit": 3,
+        "accessEase": 5
+      },
+      "rationale": {
+        "recommend": "Google 4.4 但 14,363 則 → 大阪門檻的 3（4 要 2 萬則以上）",
+        "winterFit": "室內展望台＋露天迴廊，2 月風大 → 4",
+        "elderFit": "高層電梯、無障礙路線；從車站要走 7～9 分 → 4",
+        "kidsFit": "kids.friendly medium（透明手扶梯、露天展望）→ 3",
+        "accessEase": "官網：地鐵梅田駅 5 號出口 9 分、JR 大阪駅 7 分（OSRM 13～16 分）→ 5"
+      },
+      "confidence": "medium",
+      "assessed": "2026-10-26"
+    }
   },
   {
     "id": "osaka-konjyakukan",
@@ -2540,7 +3046,7 @@
       "室內",
       "雨天備案"
     ],
-    "tier": null,
+    "tier": "B",
     "nearestStation": {
       "id": "metro-tenjimbashisuji-6chome",
       "mode": "walk",
@@ -2657,7 +3163,48 @@
         "和服體驗：官網 1,000 円、先到先得 100 名 vs 舊文章 300 円、300 名，All About（2026-05）寫要預約"
       ]
     },
-    "summary": null,
-    "assessment": null
+    "summary": {
+      "text": "天神橋筋六丁目站直結大樓 8～9F 的生活史博物館，9F 是實物大的江戶時代大阪街道，可以穿和服逛（1,000 円，110 cm 以上）。一般 600 円、中學生以下免費。2026-09～2027-01-05 改修休館，2027-01-06 重新開館；週二休（2027-02-09）。",
+      "pros": [
+        "地鐵站 3 號出口直結大樓，電梯上 8F，輪椅、嬰兒車出借",
+        "全室內，雨天、2 月都適合；中學生以下免費",
+        "和服體驗 30 分、不用預約（110 cm 以上），小孩也能穿"
+      ],
+      "cons": [
+        "週二休（2/9）；改修後 2027-01-06 才重新開館，出發前確認",
+        "和服體驗當天先到先得 100 名、只收現金",
+        "10 人以上要事先用團體申請書郵寄或傳真；團體價要 20 人以上"
+      ],
+      "basedOn": [
+        "https://www.osaka-angenet.jp/konjyakukan",
+        "https://www.osaka-angenet.jp/konjyakukan/guide",
+        "https://www.osaka-angenet.jp/konjyakukan/exhibition/9f",
+        "https://www.osaka-angenet.jp/konjyakukan/access",
+        "https://www.osaka-angenet.jp/konjyakukan/floor",
+        "https://www.osaka-angenet.jp/konjyakukan/viewing/general",
+        "https://www.osaka-angenet.jp/konjyakukan/faq",
+        "https://osaka-info.jp/experience/ja/osaka/spot/241"
+      ],
+      "generated": "2026-10-26"
+    },
+    "assessment": {
+      "rubric": "spot-v1",
+      "scores": {
+        "recommend": 3,
+        "winterFit": 4,
+        "elderFit": 4,
+        "kidsFit": 3,
+        "accessEase": 5
+      },
+      "rationale": {
+        "recommend": "Google 4.2（8,321 則）→ 大阪門檻的 3",
+        "winterFit": "全室內，但週二休 → 4（照鳥羽「室內但有週休」）",
+        "elderFit": "車站直結、電梯、輪椅出借；8F、9F 之間有沒有樓梯未寫 → 4",
+        "kidsFit": "kids.friendly medium（江戶街道、和服體驗）→ 3",
+        "accessEase": "天神橋筋六丁目駅 3 號出口直結 → 5"
+      },
+      "confidence": "medium",
+      "assessed": "2026-10-26"
+    }
   }
 ]
