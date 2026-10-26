@@ -1,8 +1,9 @@
 // RAPTOR 公共交通搜尋（T29）：資料讀檔、一天的網路
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { DEFAULT_CONFIG, toMinutes, type UrbanService } from '../src/index.ts';
+import { DEFAULT_CONFIG, earliestTrain, toMinutes, type UrbanService } from '../src/index.ts';
 import { buildNetwork, headwayWait, type HeadwayRoute, type TimedRoute } from '../src/raptor/network.ts';
+import { pickDefault, searchJourneys, type Journey, type SearchQuery } from '../src/raptor/search.ts';
 import { realData } from './fixtures.ts';
 
 test('realData 讀得到班距型路線和轉乘', () => {
@@ -200,4 +201,121 @@ test('buildNetwork：國定假日空港急行沒有服務', () => {
   assert.ok(r);
   assert.equal(r.service?.headway ?? null, null);
   assert.equal(headwayWait(r.service, 600, true), null);
+});
+
+// --- 多輪搜尋（search.ts） ----------------------------------------------------
+
+const TUE = '2027-02-02';
+const q0 = (from: string, to: string, depart: number, over: Partial<SearchQuery> = {}): SearchQuery => ({
+  origins: [{ stop: from, walk: 0 }],
+  targets: [{ stop: to, walk: 0 }],
+  depart,
+  whole: true,
+  factor: 1.4,
+  ...over,
+});
+
+test('近鐵 1 程：鳥羽 → 賢島 和 earliestTrain 一樣', () => {
+  const d = realData();
+  const js = searchJourneys(buildNetwork(d, DEFAULT_CONFIG, TUE), q0('toba', 'kashikojima', 600), DEFAULT_CONFIG);
+  const want = earliestTrain(d.kintetsu!, { from: 'toba', to: 'kashikojima', date: TUE, after: 600, holidays: DEFAULT_CONFIG.holidays });
+  assert.ok(want && js.length > 0);
+  const j = js.find((x) => x.rides.length === 1) ?? js[0];
+  assert.equal(j.arr, want[want.length - 1].arr);
+  assert.equal(j.rides[0].trip?.tripId, want[0].trainNo);
+  assert.equal(j.dep, want[0].dep);
+  assert.equal(j.rides[0].headway, null);
+  assert.deepEqual(j.transfers, []);
+});
+
+test('近鐵轉 1 次的到達和 earliestTrain 一樣', () => {
+  // transit.test.ts 的 TRAIN_CASES 都是直達；用 earliestTrain 要轉乘的 伊勢市 → 志摩横山 等。
+  // 只放近鐵（全部的網路會找到更早的巴士，例如伊勢市 → 志摩横山 搭御座線）
+  const d = { ...realData(), routes: [], urban: [], urbanTransfers: [] };
+  const net = buildNetwork(d, DEFAULT_CONFIG, TUE);
+  for (const [from, to] of [['iseshi', 'shima-yokoyama'], ['ugata', 'ikenoura'], ['iseshi', 'kaminogo']]) {
+    const want = earliestTrain(d.kintetsu!, { from, to, date: TUE, after: 600, holidays: DEFAULT_CONFIG.holidays });
+    assert.equal(want?.length, 2);
+    const j = searchJourneys(net, q0(from, to, 600), DEFAULT_CONFIG)[0];
+    assert.equal(j.arr, want[1].arr, `${from} → ${to} 到達`);
+    assert.equal(j.dep, want[0].dep, `${from} → ${to} 第一程發車`);
+    assert.equal(j.rides.length, 2);
+    assert.equal(j.transfers.length, 1);
+    // 同站同 group 換車的步行是 0，但上車至少隔 minTransfer
+    assert.equal(j.transfers[0].walk, 0);
+    assert.ok(j.rides[1].dep >= j.rides[0].arr + DEFAULT_CONFIG.transit.minTransfer);
+  }
+});
+
+test('班距型：難波 → 大阪城 會轉乘', () => {
+  const net = buildNetwork(realData(), DEFAULT_CONFIG, '2027-02-12');
+  const whole = searchJourneys(net, q0('metro-namba', 'metro-tanimachi-4chome', 600), DEFAULT_CONFIG);
+  assert.ok(whole.length > 0);
+  const j = whole[0];
+  assert.ok(j.rides.length >= 2);
+  for (const r of j.rides) assert.ok(r.headway && r.trip === null && r.route.kind === 'headway');
+  assert.equal(j.transfers.length, j.rides.length - 1);
+  // 第一程：發車＝到站＋等車（全員等整個班距）
+  assert.equal(j.rides[0].dep, 600 + Math.ceil(j.rides[0].headway!.min));
+  const sub = searchJourneys(net, q0('metro-namba', 'metro-tanimachi-4chome', 600, { whole: false, factor: 1.2 }), DEFAULT_CONFIG);
+  assert.ok(sub.length > 0);
+  assert.ok(whole[0].arr > sub[0].arr);
+  // 依到達排序；程數越多到得越早（Pareto）
+  for (let i = 1; i < whole.length; i++) assert.ok(whole[i].arr > whole[i - 1].arr && whole[i].rides.length < whole[i - 1].rides.length);
+});
+
+test('轉乘步行套團體係數', () => {
+  const d = realData();
+  const net = buildNetwork(d, DEFAULT_CONFIG, TUE);
+  // 起點 南海なんば：走到近鐵大阪難波再上車（起點的步行算 access）
+  for (const [factor, walk] of [[1.4, Math.ceil(11 * 1.4)], [1.2, Math.ceil(11 * 1.2)]]) {
+    const js = searchJourneys(net, q0('nankai-namba', 'ugata', 600, { factor }), DEFAULT_CONFIG);
+    const j = js.find((x) => x.origin.stop === 'osaka-namba');
+    assert.ok(j, `factor ${factor}`);
+    assert.equal(j.origin.walk, walk);
+    assert.equal(j.dep >= 600 + walk, true);
+  }
+  // 中途：關西機場 → 南海なんば → 步行 → 近鐵大阪難波
+  for (const [factor, walk] of [[1.4, 16], [1.2, 14]]) {
+    const js = searchJourneys(net, q0('kansai-airport', 'ugata', 600, { factor }), DEFAULT_CONFIG);
+    const hit = js.flatMap((j) => j.transfers.map((t, i) => ({ t, a: j.rides[i], b: j.rides[i + 1] }))).find((x) => x.a.to === 'nankai-namba' && x.b.from === 'osaka-namba');
+    assert.ok(hit, `factor ${factor}`);
+    assert.equal(hit.t.walk, walk);
+    assert.equal(hit.t.transfer?.from === 'osaka-namba' || hit.t.transfer?.from === 'nankai-namba', true);
+    assert.ok(hit.b.dep >= hit.a.arr + walk);
+  }
+});
+
+test('近鐵特急不在大阪市內短程搭', () => {
+  const net = buildNetwork(realData(), DEFAULT_CONFIG, '2027-02-12');
+  const js = searchJourneys(net, q0('osaka-namba', 'tsuruhashi', 600), DEFAULT_CONFIG);
+  assert.ok(js.length > 0);
+  for (const j of js) assert.ok(j.rides.every((r) => r.route.group !== 'kintetsu'));
+});
+
+test('同樣的查詢回傳同一個結果', () => {
+  const net = buildNetwork(realData(), DEFAULT_CONFIG, TUE);
+  assert.equal(searchJourneys(net, q0('toba', 'kashikojima', 600), DEFAULT_CONFIG), searchJourneys(net, q0('toba', 'kashikojima', 600), DEFAULT_CONFIG));
+});
+
+test('requireFerry：只收有船那程的', () => {
+  const net = buildNetwork(realData(), DEFAULT_CONFIG, TUE);
+  const ferry = net.routes.find((r): r is TimedRoute => r.kind === 'timetable' && r.mode === 'ferry');
+  assert.ok(ferry);
+  const [a, b] = [ferry.stops[0], ferry.stops[ferry.stops.length - 1]];
+  const js = searchJourneys(net, q0(a, b, 360, { requireFerry: true }), DEFAULT_CONFIG);
+  assert.ok(js.length > 0);
+  for (const j of js) assert.ok(j.rides.some((r) => r.route.kind === 'timetable' && r.route.mode === 'ferry'));
+});
+
+test('pickDefault 照轉乘懲罰', () => {
+  const mk = (n: number, arr: number) => ({ rides: Array.from({ length: n }), arr }) as unknown as Journey;
+  const [a, b] = [mk(1, 700), mk(3, 692)];
+  assert.equal(pickDefault([b, a], DEFAULT_CONFIG), a);
+  const [c, e] = [mk(1, 700), mk(2, 680)];
+  assert.equal(pickDefault([c, e], DEFAULT_CONFIG), e);
+  // 同值取程數少的
+  const [f, g] = [mk(1, 700), mk(2, 690)];
+  assert.equal(pickDefault([g, f], DEFAULT_CONFIG), f);
+  assert.equal(pickDefault([], DEFAULT_CONFIG), null);
 });
