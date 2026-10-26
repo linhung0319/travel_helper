@@ -142,3 +142,11 @@ test('網頁的探索、想去各自一份篩選和搜尋（最終 review #3）�
   s().setMode('wish');
   assert.deepEqual(s().filter.tiers, []);
 });
+
+test('打開詳情：指到的光圈拿掉（最終 review #8）', () => {
+  const store = createAppStore();
+  store.getState().hover('a', 'map');
+  store.getState().openDetail('b');
+  assert.equal(store.getState().hoveredId, null);
+  assert.equal(store.getState().hoverFromMap, false);
+});

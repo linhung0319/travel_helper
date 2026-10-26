@@ -2,7 +2,9 @@
 // 想去是只放有人 ❤️ 的點的探索（Explore.tsx 的 source="wish"）。
 // 頂端（第七輪）：三個分頁加右上的頭像選單（討論、預約、下載行程）；行程分頁下面是日期列，再下面是編輯中、衝突提示（套用的篩選條件只在探索、想去的篩選列下面那排，行程分頁不放，第七輪 §8.4）。AI 沒有自己的分頁：地圖和這三個分頁就是 AI 操作的東西（T16）。
 
+import { useEffect } from 'react';
 import { appStore } from '../store.ts';
+import { commands } from '../appCommands.ts';
 import { useApp, useData } from '../hooks.ts';
 import { DayPanel } from './DayPanel.tsx';
 import { Icon, type IconName } from './Icon.tsx';
@@ -29,11 +31,16 @@ export function showList(mode: 'explore' | 'wish') {
   s.setMode(mode);
 }
 
-/** 從行程打開的詳情：浮在地圖右邊（地圖那一欄裡），右欄的時間軸不動；✕ 或 Esc 關掉 */
+/** 從行程打開的詳情：浮在地圖右邊（地圖那一欄裡），右欄的時間軸不動；✕ 或 Esc 關掉。畫出來之後地圖再照移動規則讓開它（選中的點不被蓋住） */
 export function DetailFloat() {
   const detailId = useApp((s) => s.detailId);
   const from = useApp((s) => s.detailFrom);
   const place = useData((s) => (detailId ? s.byId.get(detailId) : undefined));
+  const shown = place && from === 'map' ? place.id : null;
+  // 浮動詳情已經在 DOM 裡：MapView 算可見範圍時扣掉它（.detail-float），點被蓋住就平移
+  useEffect(() => {
+    if (shown) commands.focus(shown);
+  }, [shown]);
   if (!place || from !== 'map') return null;
   return (
     <div className="detail-float" data-testid="detail-float">

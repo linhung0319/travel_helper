@@ -226,9 +226,9 @@ export function createAppStore(init: Partial<AppState> = {}) {
     },
     select: (selectedId) => set((s) => ({ selectedId, selectSeq: s.selectSeq + 1 })),
     openPreview: (previewId) => set({ previewId }),
-    // 打開詳情時小卡片收起；那個點就是選中的點
+    // 打開詳情時小卡片收起、指到的光圈拿掉；那個點就是選中的點
     openDetail: (detailId, from, tab) =>
-      set((s) => ({ detailId, detailFrom: from ?? s.mode, detailTab: tab ?? null, previewId: null, selectedId: detailId, selectSeq: s.selectSeq + (s.selectedId === detailId ? 0 : 1) })),
+      set((s) => ({ detailId, detailFrom: from ?? s.mode, detailTab: tab ?? null, previewId: null, hoveredId: null, hoverFromMap: false, selectedId: detailId, selectSeq: s.selectSeq + (s.selectedId === detailId ? 0 : 1) })),
     closeDetail: () => set({ detailId: null, detailFrom: null, detailTab: null }),
     revealInExplore: (id) => set((s) => ({ exploreTarget: { id, seq: (s.exploreTarget?.seq ?? 0) + 1 } })),
     addToSelection: (id) => set((s) => (s.selection.includes(id) ? s : { selection: [...s.selection, id] })),

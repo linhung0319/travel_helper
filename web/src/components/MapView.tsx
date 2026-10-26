@@ -574,7 +574,8 @@ export function MapView() {
   useEffect(() => {
     if (!loaded) return;
     const map = mapRef.current!;
-    const id = canHover ? (hoveredId ?? '') : '';
+    // 選中的點換成水滴了，光圈不畫在它身上
+    const id = canHover && hoveredId && hoveredId !== selectedId ? hoveredId : '';
     map.setFilter('places-hover', ['==', ['get', 'id'], id]);
     const big = (base: unknown, k: number) => (id ? ['case', ['==', ['get', 'id'], id], ['*', base, k], base] : base);
     // 縮放的 interpolate 一定要在最外層：每個停的縮放各自看是不是指到的點
@@ -590,7 +591,7 @@ export function MapView() {
     map.setPaintProperty('places-mark', 'circle-radius', ['interpolate', ['linear'], ['zoom'], 8, big(10, 1.2), 14, big(13, 1.2)] as never);
     map.setPaintProperty('wish-dot', 'circle-radius', ['interpolate', ['linear'], ['zoom'], 8, big(5.5, 1.3), 14, big(8, 1.3)] as never);
     map.setLayoutProperty('places-icon', 'icon-size', big(['match', ['get', 'tier'], 'S', 1.2, 'A', 0.9, 0.72], 1.2) as never);
-  }, [loaded, hoveredId, canHover]);
+  }, [loaded, hoveredId, canHover, selectedId]);
 
   // 地圖指令（T12）：標示、比較；點開的交通，上下車的站也用同一層（leg 的樣式）
   useEffect(() => {

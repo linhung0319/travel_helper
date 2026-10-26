@@ -2269,3 +2269,94 @@ test('探索、想去各自一份篩選和搜尋：想去的「只看我按的�
   await page.getByTestId('side-tab-explore').click();
   expect(await th(page, '__th.appStore.getState().filter.types')).toEqual(['restaurant']);
 });
+
+/** 把這個點平移到地圖畫面的某個 x（地圖容器的座標，負數＝從右邊算）、垂直置中 */
+async function placeAtX(page: Page, id: string, x: number) {
+  await page.evaluate(
+    ([id, x]) => {
+      const t = (window as any).__th;
+      const c = t.map.getContainer();
+      const want = x < 0 ? c.clientWidth + x : x;
+      const cur = t.map.project(t.dataStore.getState().byId.get(id).coords);
+      t.map.panBy([cur.x - want, cur.y - c.clientHeight / 2], { duration: 0 });
+    },
+    [id, x] as const,
+  );
+  await waitIdle(page);
+}
+
+/** 選中的點在畫面上的位置：在地圖裡、不在浮動詳情底下 */
+const selectedClear = (page: Page) =>
+  page.evaluate(() => {
+    const t = (window as any).__th;
+    const id = t.appStore.getState().selectedId;
+    const float = document.querySelector('.detail-float');
+    if (!id || !float || t.map.isMoving()) return 'moving';
+    const pt = t.map.project(t.dataStore.getState().byId.get(id).coords);
+    const m = t.map.getCanvas().getBoundingClientRect();
+    const f = float.getBoundingClientRect();
+    const x = m.left + pt.x;
+    const y = m.top + pt.y;
+    const inMap = x > m.left && x < m.right && y > m.top && y < m.bottom;
+    const underFloat = x >= f.left && x <= f.right && y >= f.top && y <= f.bottom;
+    return inMap && !underFloat ? 'clear' : `covered x=${Math.round(x)} float=${Math.round(f.left)}–${Math.round(f.right)}`;
+  });
+
+for (const width of [1280, 1024]) {
+  test(`行程卡的「詳細資料」（${width} 寬）：浮動詳情不蓋住選中的點，地圖讓開`, async ({ page }) => {
+    await page.setViewportSize({ width, height: 800 });
+    await ready(page);
+    await showDay(page, '2027-02-03');
+    const row = tlRow(page, 'i-3');
+    await row.getByTestId('trip-card').click();
+    await expect(row.getByTestId('trip-card-expand')).toBeVisible();
+    const id = (await row.getAttribute('data-place'))!;
+    await waitIdle(page);
+    // 先把點放到地圖右邊（等一下浮動詳情會在的地方）
+    await placeAtX(page, id, -40);
+    await row.getByTestId('trip-card-detail').click();
+    await expect(page.getByTestId('detail-float')).toBeVisible();
+    // 浮動詳情最多佔地圖欄的 60%
+    const fw = await page.evaluate(() => document.querySelector('.detail-float')!.getBoundingClientRect().width / document.querySelector('.map-column')!.getBoundingClientRect().width);
+    expect(fw).toBeLessThanOrEqual(0.61);
+    await expect.poll(() => selectedClear(page), { timeout: 5000 }).toBe('clear');
+  });
+}
+
+test('浮動詳情開著時點地圖上這天的另一個點：詳情關掉、選中那張卡', async ({ page }) => {
+  await ready(page);
+  await showDay(page, '2027-02-03');
+  await tlRow(page, 'i-3').getByTestId('trip-card').click();
+  await tlRow(page, 'i-3').getByTestId('trip-card-detail').click();
+  await expect(page.getByTestId('detail-float')).toBeVisible();
+  await waitIdle(page);
+  const other = (await tlRow(page, 'i-2').getAttribute('data-place'))!;
+  await placeAtX(page, other, 40);
+  const pt = await pointOf(page, other);
+  await page.mouse.click(pt.x, pt.y);
+  await expect(page.getByTestId('detail-float')).toHaveCount(0);
+  await expect(tlRow(page, 'i-2').getByTestId('trip-card-expand')).toBeVisible();
+  await expect(page.getByTestId('map-selected')).toHaveAttribute('data-id', other);
+});
+
+test('選中的點不畫指到的光圈；點地圖空白處也收起展開的卡', async ({ page }) => {
+  await ready(page);
+  await showDay(page, '2027-02-03');
+  await waitIdle(page);
+  const row = tlRow(page, 'i-2');
+  const placeId = (await row.getAttribute('data-place'))!;
+  const pt = await pointOf(page, placeId);
+  // 滑鼠移到點上：指到（光圈）；點下去：選中，光圈拿掉（滑鼠還在點上）
+  await page.mouse.move(pt.x, pt.y);
+  await expect.poll(() => page.evaluate(() => (window as any).__th.map.getFilter('places-hover'))).toEqual(['==', ['get', 'id'], placeId]);
+  await page.mouse.click(pt.x, pt.y);
+  await expect(page.getByTestId('map-selected')).toHaveAttribute('data-id', placeId);
+  await expect(row.getByTestId('trip-card-expand')).toBeVisible();
+  await expect.poll(() => page.evaluate(() => (window as any).__th.map.getFilter('places-hover'))).toEqual(['==', ['get', 'id'], '']);
+  // 空白處：取消選中、卡片收起
+  const map = (await page.locator('.maplibregl-canvas').boundingBox())!;
+  await page.mouse.click(map.x + 30, map.y + map.height - 80);
+  await expect(page.getByTestId('map-selected')).toHaveCount(0);
+  await expect(row.getByTestId('trip-card-expand')).toHaveCount(0);
+  expect(await th(page, '__th.uiStore.getState().expandedItem')).toBeNull();
+});

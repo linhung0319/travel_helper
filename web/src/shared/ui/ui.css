@@ -1583,7 +1583,8 @@
   right: 12px;
   bottom: 12px;
   z-index: 14;
-  width: min(420px, calc(100% - 24px));
+  /* 最多佔地圖欄的 60%：1024～1280 寬時左邊還留一條看得到選中點的地圖 */
+  width: min(360px, 60%);
   overflow-y: auto;
   border-radius: 20px;
   background: var(--paper);
