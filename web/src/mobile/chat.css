@@ -73,7 +73,7 @@
 
 .m-chat-msg.me {
   background: var(--accent);
-  color: #fff;
+  color: var(--paper);
 }
 
 /* 照片卡輪播：左右滑，不撐出整頁的橫向捲動 */
@@ -171,7 +171,7 @@
 }
 
 .m-chat-proposal-line.remove {
-  color: #cf222e;
+  color: var(--bad);
   text-decoration: line-through;
 }
 
@@ -195,7 +195,7 @@
 .m-chat-button.primary {
   border-color: var(--accent);
   background: var(--accent);
-  color: #fff;
+  color: var(--paper);
 }
 
 /* 輸入框：上面是上下文小標 */
@@ -250,7 +250,7 @@
   border: none;
   border-radius: 999px;
   background: var(--accent);
-  color: #fff;
+  color: var(--paper);
   cursor: pointer;
 }
 
@@ -274,7 +274,7 @@
   padding-bottom: env(safe-area-inset-bottom);
   border-radius: 16px 16px 0 0;
   background: var(--bg);
-  box-shadow: 0 -4px 14px rgba(0, 0, 0, 0.18);
+  box-shadow: 0 -4px 14px var(--shade-2);
 }
 
 /* 把手：往上拉變全螢幕 */

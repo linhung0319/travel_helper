@@ -2,31 +2,80 @@
    這裡沒有手機才用的規則，只有兩邊共用的元件（對話框、彈窗、照片等）的基本樣式。 */
 
 :root {
-  --red-day: #d32f2f;
-  --bg: #ffffff;
-  --fg: #1f2328;
-  --muted: #59636e;
-  --line: #d1d9e0;
-  --soft: #f6f8fa;
-  --accent: #0969da;
-  --warn: #9a6700;
-  --warn-bg: #fff8c5;
-  --good: #1a7f37;
-  --good-bg: #dafbe1;
-  --info-bg: #ddf4ff;
-  --tier-s: #cf222e;
-  --tier-a: #bc4c00;
-  --tier-b: #6e7781;
-  --radius: 12px;
+  /* 第七輪 token（設計 §2.1）：顏色只在這裡寫，其他地方一律用變數 */
+  --ink: #161a22;
+  --ink-2: #4b5262;
+  --ink-3: #8a90a0;
+  --ink-4: #c3c7d1;
+  --paper: #ffffff;
+  --line: #e6e8ee;
+  --wash: #f4f5f8;
+  --indigo: #24366e;
+  --indigo-wash: #eaedf6;
+  --indigo-line: #c9d1ea;
+  --love: #e0475b;
+  --love-wash: #fde8eb;
+  --love-line: #f1b5be;
+  --red-day: #c0392b;
+  --warn: #a86a12;
+  --warn-bg: #fbf3e2;
+  --warn-line: #e6cf95;
+  --star: #d9a21b;
+  --good: #2f7a5b;
+  --good-bg: #e6f2ec;
+  --bad: #b3261e;
+  --bad-bg: #fdecea;
+  --bad-soft: #ffb4ab;
+  --t-spot: #3f7a5a;
+  --t-food: #c46a3a;
+  --t-stay: #6e5ba8;
+  --t-station: #3b6ea8;
+  --food-wash: #fbeee5;
+  --stay-wash: #f0ecf8;
+  --stay-line: #d3c9e6;
+  --teal: #1f6f78;
+  --teal-wash: #e3f1f1;
+  --teal-line: #9fcfcb;
+  /* 陰影、遮罩、光暈 */
   --shadow: 0 4px 16px rgba(0, 0, 0, 0.18);
+  --shade-1: rgba(0, 0, 0, 0.12);
+  --shade-2: rgba(0, 0, 0, 0.28);
+  --shade-3: rgba(0, 0, 0, 0.8);
+  --dim: rgba(0, 0, 0, 0.5);
+  --veil: rgba(255, 255, 255, 0.92);
+  --veil-2: rgba(255, 255, 255, 0.6);
+  --halo: rgba(255, 255, 255, 0.6);
+  /* 前三名獎牌（舊的 S／A／B 徽章，之後的任務會拿掉） */
+  --medal-gold: linear-gradient(145deg, #fbe08a, #d4a017);
+  --medal-silver: linear-gradient(145deg, #f1f4f7, #a3b0bd);
+  --medal-bronze: linear-gradient(145deg, #f3cba8, #b47040);
+  --medal-gold2: linear-gradient(145deg, #fff3c4 0%, #f2c94c 38%, #c99712 72%, #f6d77a 100%);
+  --medal-silver2: linear-gradient(145deg, #ffffff 0%, #dde3ea 38%, #9eabb8 72%, #e6ebf0 100%);
+  --medal-bronze2: linear-gradient(145deg, #ffe6cf 0%, #e3a574 38%, #a8622f 72%, #ecb98f 100%);
+  --medal-gold-ink: #5b3a00;
+  --medal-silver-ink: #2f3a45;
+  --medal-bronze-ink: #4a2508;
+  /* 舊變數名：指向新 token，之後逐步換掉 */
+  --bg: var(--paper);
+  --fg: var(--ink);
+  --muted: var(--ink-2);
+  --soft: var(--wash);
+  --accent: var(--indigo);
+  --info-bg: var(--indigo-wash);
+  --tier-s: var(--indigo);
+  --tier-a: var(--ink-2);
+  --tier-b: var(--ink-2);
+  --radius: 14px;
   --tap: 44px; /* 長輩也要點得到（interaction-design §0） */
   /* 浮動層（標籤彈窗、⋯ 選單，Popover.tsx）：高過地圖、日期列、浮動列、編輯藍條、對話框，只比提示（toast 120）低 */
   --z-popover: 110;
-  font-family: system-ui, -apple-system, 'Segoe UI', 'Noto Sans TC', 'Hiragino Sans', 'Microsoft JhengHei', sans-serif;
+  --font-serif: 'Noto Serif TC', 'Songti TC', 'Noto Serif CJK TC', serif;
+  --font-num: 'Bodoni Moda', 'Didot', 'Noto Serif TC', serif;
+  font-family: 'Noto Sans TC', system-ui, -apple-system, 'Segoe UI', 'Hiragino Sans', 'Microsoft JhengHei', sans-serif;
   font-size: 16px;
   line-height: 1.5;
-  color: var(--fg);
-  background: var(--bg);
+  color: var(--ink);
+  background: var(--paper);
   -webkit-text-size-adjust: 100%;
 }
 
@@ -147,12 +196,12 @@ a {
 
 .day-tab[aria-selected='true'] {
   background: var(--fg);
-  color: #fff;
+  color: var(--paper);
   border-color: var(--fg);
 }
 
 .day-tab[aria-selected='true'] .day-tab-wd {
-  color: #d0d7de;
+  color: var(--line);
 }
 
 .segmented {
@@ -173,7 +222,7 @@ a {
 
 .segmented button[aria-pressed='true'] {
   background: var(--fg);
-  color: #fff;
+  color: var(--paper);
 }
 
 .chips {
@@ -260,7 +309,7 @@ a {
 
 .pill.on {
   background: var(--fg);
-  color: #fff;
+  color: var(--paper);
   border-color: var(--fg);
 }
 
@@ -299,25 +348,25 @@ a {
   border-radius: 6px;
   font-family: Georgia, 'Times New Roman', serif;
   font-weight: 800;
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.55), 0 1px 2px rgba(0, 0, 0, 0.2);
+  box-shadow: inset 0 1px 0 var(--veil-2), 0 1px 2px var(--shade-2);
   font-size: 0.85em;
   margin-right: 6px;
   vertical-align: 0.1em;
 }
 
 .tier-S {
-  background: linear-gradient(145deg, #fbe08a, #d4a017);
-  color: #5b3a00;
+  background: var(--medal-gold);
+  color: var(--medal-gold-ink);
 }
 
 .tier-A {
-  background: linear-gradient(145deg, #f1f4f7, #a3b0bd);
-  color: #2f3a45;
+  background: var(--medal-silver);
+  color: var(--medal-silver-ink);
 }
 
 .tier-B {
-  background: linear-gradient(145deg, #f3cba8, #b47040);
-  color: #4a2508;
+  background: var(--medal-bronze);
+  color: var(--medal-bronze-ink);
 }
 
 .badges {
@@ -372,7 +421,7 @@ a {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  color: #fff;
+  color: var(--paper);
   gap: 4px;
   opacity: 0.85;
   text-align: center;
@@ -414,7 +463,7 @@ a {
   z-index: 19;
   width: 340px;
   border-radius: 12px;
-  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.28);
+  box-shadow: 0 6px 24px var(--shade-2);
   transform: translate(-50%, calc(-100% - 18px));
 }
 
@@ -474,8 +523,8 @@ a {
   position: absolute;
   right: 8px;
   bottom: 8px;
-  background: rgba(0, 0, 0, 0.5);
-  color: #fff;
+  background: var(--dim);
+  color: var(--paper);
   border-radius: 10px;
   font-size: 11px;
   padding: 1px 7px;
@@ -566,8 +615,8 @@ a {
   width: 28px;
   height: 28px;
   border-radius: 50%;
-  background: rgba(0, 0, 0, 0.5);
-  color: #fff;
+  background: var(--dim);
+  color: var(--paper);
 }
 
 /* ---------- 聊天、這一天（先放位置） ---------- */
@@ -982,8 +1031,8 @@ dl {
   width: 24px;
   height: 24px;
   border-radius: 50%;
-  background: #8250df;
-  color: #fff;
+  background: var(--t-stay);
+  color: var(--paper);
   font-weight: 700;
   display: grid;
   place-items: center;
@@ -1003,7 +1052,7 @@ dl {
 .route-label {
   background: var(--bg);
   border-radius: 999px;
-  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.25);
+  box-shadow: 0 1px 4px var(--shade-2);
   padding: 2px 8px;
   font-size: 0.85rem;
   white-space: nowrap;
@@ -1015,10 +1064,8 @@ dl {
    ====================================================================== */
 
 :root {
-  --bad: #cf222e;
-  --bad-bg: #ffebe9;
-  --plan: #9a6700;
-  --plan-bg: #fff8c5;
+  --plan: var(--warn);
+  --plan-bg: var(--warn-bg);
 }
 
 /* ---------- 按鈕、表單 ---------- */
@@ -1035,7 +1082,7 @@ dl {
 .action.primary {
   background: var(--accent);
   border-color: var(--accent);
-  color: #fff;
+  color: var(--paper);
 }
 
 .text-button {
@@ -1125,7 +1172,7 @@ dl {
 .dialog-backdrop {
   position: fixed;
   inset: 0;
-  background: rgba(0, 0, 0, 0.35);
+  background: var(--dim);
   z-index: 100;
   display: flex;
   align-items: flex-end;
@@ -1191,7 +1238,7 @@ dl {
   border-radius: 999px;
   box-shadow: var(--shadow);
   background: var(--fg);
-  color: #fff;
+  color: var(--paper);
   font-size: 0.9rem;
 }
 
@@ -1250,7 +1297,7 @@ dl {
   height: 28px;
   border-radius: 999px;
   background: var(--accent);
-  color: #fff;
+  color: var(--paper);
   font-size: 0.85rem;
   flex: 0 0 auto;
 }
@@ -1346,7 +1393,7 @@ dl {
   gap: 8px;
   flex-wrap: wrap;
   background: var(--accent);
-  color: #fff;
+  color: var(--paper);
   border-radius: 8px;
   padding: 4px 6px 4px 10px;
   margin-bottom: 6px;
@@ -1361,7 +1408,7 @@ dl {
 button.planning-done {
   border: 0;
   border-radius: 6px;
-  background: #fff;
+  background: var(--paper);
   color: var(--accent);
   font: inherit;
   font-weight: 600;
@@ -1375,7 +1422,7 @@ button.edit-toggle {
   border: 0;
   border-radius: 8px;
   background: var(--accent);
-  color: #fff;
+  color: var(--paper);
   font: inherit;
   font-weight: 600;
   padding: 4px 12px;
@@ -1412,7 +1459,7 @@ button.edit-toggle {
   left: 6px;
   top: 50%;
   transform: translateY(-50%);
-  color: #999;
+  color: var(--ink-3);
   cursor: grab;
 }
 
@@ -1423,7 +1470,7 @@ button.edit-toggle {
 }
 
 .planning-bar .text-button {
-  color: #fff;
+  color: var(--paper);
 }
 
 .count {
@@ -1431,14 +1478,14 @@ button.edit-toggle {
   place-items: center;
   min-width: 1.5em;
   border-radius: 999px;
-  background: rgba(0, 0, 0, 0.08);
+  background: var(--shade-1);
   font-size: 0.8rem;
   padding: 0 4px;
 }
 
 .count.hot {
   background: var(--plan);
-  color: #fff;
+  color: var(--paper);
 }
 
 .conflict-bar {
@@ -1674,8 +1721,8 @@ button.edit-toggle {
 /* 這晚的方案（宿的卡）：紫色；照住宿資料（這晚沒選）時用淡色虛框 */
 .tag-lodging,
 .tag-lodging-group {
-  --tag-bg: #efe7fb;
-  --tag-fg: #5b3a9c;
+  --tag-bg: var(--stay-wash);
+  --tag-fg: var(--t-stay);
 }
 
 .tag-lodging {
@@ -1688,8 +1735,8 @@ button.edit-toggle {
 
 .tag-lodging.from-data {
   background: none;
-  color: #9a86c4;
-  border: 1px dashed #d3c6ef;
+  color: var(--stay-line);
+  border: 1px dashed var(--stay-line);
 }
 
 /* 編輯：點標籤那一排打開標籤彈窗 */
@@ -2395,8 +2442,8 @@ button.edited {
 }
 
 .reservation-tag.tag-booked {
-  background: #dafbe1;
-  color: #1a7f37;
+  background: var(--good-bg);
+  color: var(--good);
 }
 
 /* ---------- 地圖：💬／❤️ 數字、行程的交通標籤 ---------- */
@@ -2405,7 +2452,7 @@ button.edited {
   display: none;
   background: var(--bg);
   border-radius: 999px;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 1px 3px var(--shade-2);
   padding: 0 6px;
   font-size: 0.75rem;
   white-space: nowrap;
@@ -2477,9 +2524,9 @@ button.edited {
   display: flex;
   align-items: center;
   gap: 6px;
-  background: rgba(255, 255, 255, 0.96);
+  background: var(--veil);
   border-radius: 999px;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.16);
+  box-shadow: 0 2px 10px var(--shade-1);
   padding: 4px;
 }
 
@@ -2502,7 +2549,7 @@ button.edited {
 
 .map-top .planning-strip,
 .map-top .conflict-bar {
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.16);
+  box-shadow: 0 2px 10px var(--shade-1);
   align-self: flex-start;
   max-width: 100%;
 }
@@ -2562,12 +2609,12 @@ button.edited {
   height: 1.6em;
   padding: 0 4px;
   border-radius: 999px;
-  color: #fff;
+  color: var(--paper);
   font-weight: 700;
   font-size: 0.8rem;
   margin-right: 6px;
-  border: 2px solid #fff;
-  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.12);
+  border: 2px solid var(--paper);
+  box-shadow: 0 0 0 1px var(--shade-1);
   vertical-align: middle;
   flex: 0 0 auto;
 }
@@ -2688,7 +2735,7 @@ button.edited {
 .ex-card:hover,
 .ex-card.flash {
   border-color: var(--fg);
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.12);
+  box-shadow: 0 2px 10px var(--shade-1);
 }
 
 .ex-photo {
@@ -2718,20 +2765,20 @@ button.edited {
 }
 
 .ex-type {
-  color: #fff;
+  color: var(--paper);
   border-radius: 999px;
   padding: 2px 10px;
   font-size: 0.8rem;
   font-weight: 700;
-  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 1px 4px var(--shade-2);
 }
 
 .ex-rank-badge {
   position: absolute;
   left: 8px;
   bottom: 8px;
-  background: rgba(0, 0, 0, 0.65);
-  color: #fff;
+  background: var(--dim);
+  color: var(--paper);
   border-radius: 8px;
   min-width: 28px;
   padding: 0 6px;
@@ -2817,8 +2864,8 @@ button.edited {
   display: grid;
   place-items: center;
   font-size: 0.9rem;
-  border: 2px solid #fff;
-  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.12);
+  border: 2px solid var(--paper);
+  box-shadow: 0 0 0 1px var(--shade-1);
 }
 
 /* 地圖指令的提議、比較列放到地圖下方（上方是浮動列） */
@@ -2833,9 +2880,9 @@ button.edited {
   align-self: flex-start;
   max-width: 100%;
   flex-wrap: wrap;
-  background: rgba(255, 255, 255, 0.96);
+  background: var(--veil);
   border-radius: 999px;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.16);
+  box-shadow: 0 2px 10px var(--shade-1);
   padding: 4px 6px 4px 12px;
 }
 
@@ -2900,9 +2947,9 @@ button.edited {
   align-items: center;
   justify-content: center;
   box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, 0.7),
-    inset 0 -2px 0 rgba(0, 0, 0, 0.12),
-    0 2px 6px rgba(0, 0, 0, 0.18);
+    inset 0 1px 0 var(--veil-2),
+    inset 0 -2px 0 var(--shade-1),
+    0 2px 6px var(--shade-2);
 }
 
 .tier-medal-letter {
@@ -2910,7 +2957,7 @@ button.edited {
   font-weight: 800;
   font-size: 1.75rem;
   line-height: 1;
-  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
+  text-shadow: 0 1px 0 var(--halo);
 }
 
 .tier-medal-word {
@@ -2922,18 +2969,18 @@ button.edited {
 }
 
 .tier-medal-S {
-  background: linear-gradient(145deg, #fff3c4 0%, #f2c94c 38%, #c99712 72%, #f6d77a 100%);
-  color: #5b3a00;
+  background: var(--medal-gold2);
+  color: var(--medal-gold-ink);
 }
 
 .tier-medal-A {
-  background: linear-gradient(145deg, #ffffff 0%, #dde3ea 38%, #9eabb8 72%, #e6ebf0 100%);
-  color: #2f3a45;
+  background: var(--medal-silver2);
+  color: var(--medal-silver-ink);
 }
 
 .tier-medal-B {
-  background: linear-gradient(145deg, #ffe6cf 0%, #e3a574 38%, #a8622f 72%, #ecb98f 100%);
-  color: #4a2508;
+  background: var(--medal-bronze2);
+  color: var(--medal-bronze-ink);
 }
 
 .detail-tabs {
@@ -3004,8 +3051,8 @@ button.edited {
   bottom: 8px;
   border: 0;
   border-radius: 999px;
-  background: rgba(0, 0, 0, 0.62);
-  color: #fff;
+  background: var(--dim);
+  color: var(--paper);
   padding: 3px 10px;
   font-size: 0.8rem;
   cursor: pointer;
@@ -3016,8 +3063,8 @@ button.edited {
   position: absolute;
   left: 0;
   bottom: 0;
-  background: rgba(0, 0, 0, 0.5);
-  color: #fff;
+  background: var(--dim);
+  color: var(--paper);
   font-size: 0.7rem;
   padding: 1px 6px;
   border-top-right-radius: 6px;
@@ -3079,7 +3126,7 @@ div.ratings-box,
 }
 
 .rate-star {
-  color: #e3a008;
+  color: var(--star);
   font-size: 0.9rem;
 }
 
@@ -3094,18 +3141,18 @@ div.ratings-box,
 }
 
 .rate-google .rate-src {
-  background: #e8f0fe;
-  color: #1a56b8;
+  background: var(--indigo-wash);
+  color: var(--indigo);
 }
 
 .rate-tabelog .rate-src {
-  background: #fff1e6;
-  color: #b4410e;
+  background: var(--warn-bg);
+  color: var(--warn);
 }
 
 .rate-tabelog .rate-star,
 .rate-tabelog .rate-score {
-  color: #c2410c;
+  color: var(--warn);
 }
 
 .ratings-rest {
@@ -3180,7 +3227,7 @@ div.ratings-box,
   top: 100%;
   background: var(--bg);
   border-bottom: 1px solid var(--line);
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 4px 10px var(--shade-1);
 }
 
 .ex-compact .ex-bar {
@@ -3244,7 +3291,7 @@ div.ratings-box,
   padding: 4px 12px 4px 4px;
   border-radius: 999px;
   background: var(--bg);
-  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.25);
+  box-shadow: 0 6px 18px var(--shade-2);
   font-weight: 600;
   font-size: 0.9rem;
 }
@@ -3257,7 +3304,7 @@ div.ratings-box,
   display: grid;
   place-items: center;
   font-size: 0.85rem;
-  border: 2px solid #fff;
+  border: 2px solid var(--paper);
 }
 
 .place-ghost-name {
@@ -3292,7 +3339,7 @@ body.dragging-place .chat-column .placeholder {
 body.dragging-place [data-drop-ai].drop-over {
   outline-style: solid;
   outline-width: 3px;
-  background: #b6e3ff;
+  background: var(--indigo-wash);
 }
 
 .detail-head.draggable {
@@ -3421,7 +3468,7 @@ body.dragging-place [data-drop-ai].drop-over {
   border-radius: 3px;
   cursor: pointer;
   min-width: 2px;
-  color: #fff;
+  color: var(--paper);
   font-size: 0.7rem;
   font-weight: 600;
   line-height: 1;
@@ -3430,20 +3477,20 @@ body.dragging-place [data-drop-ai].drop-over {
 
 /* 停留用類型色（Timeline.tsx 用 TYPE_COLORS 設 background）；等待斜紋、交通細點線、其他灰 */
 .seg-other {
-  background: #8c959f;
+  background: var(--ink-3);
 }
 
 .seg-travel {
-  background: repeating-linear-gradient(90deg, #8c959f 0 3px, transparent 3px 5px);
+  background: repeating-linear-gradient(90deg, var(--ink-3) 0 3px, transparent 3px 5px);
 }
 
 .seg-wait {
-  background: repeating-linear-gradient(45deg, #f6d55c 0 4px, #fff7d6 4px 8px);
+  background: repeating-linear-gradient(45deg, var(--warn-line) 0 4px, var(--warn-bg) 4px 8px);
 }
 
 /* 目前點的卡片對應的那一段 */
 .day-bar-seg.selected {
-  outline: 2px solid #1a73e8;
+  outline: 2px solid var(--indigo);
   outline-offset: 1px;
   z-index: 1;
 }
@@ -3549,7 +3596,7 @@ body.dragging-plan .tl-row.tl-card.drop-merge {
   padding: 1px 8px;
   border-radius: 999px;
   background: var(--accent);
-  color: #fff;
+  color: var(--paper);
   font-size: 0.75rem;
   font-weight: 600;
   pointer-events: none;
@@ -3642,8 +3689,8 @@ body.dragging-plan .tl-row.tl-card.drop-merge {
 }
 
 .day-tool-n.warn {
-  background: #fde7c8;
-  color: #9a5b00;
+  background: var(--warn-bg);
+  color: var(--warn);
 }
 
 .day-float .day-bar-wrap {
@@ -3663,7 +3710,7 @@ body.dragging-plan .tl-row.tl-card.drop-merge {
   inset: calc(max(var(--panel-gap-y), var(--bar-bottom)) + 8px) var(--panel-gap-x) var(--panel-gap-y) var(--panel-gap-x);
   border: 1px solid var(--line);
   border-radius: 14px;
-  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.28);
+  box-shadow: 0 8px 28px var(--shade-2);
   z-index: 15;
   background: var(--bg);
   display: flex;
@@ -3708,7 +3755,7 @@ body.dragging-plan .tl-row.tl-card.drop-merge {
   flex-direction: column;
   background: var(--bg);
   border-radius: 12px;
-  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.28);
+  box-shadow: 0 6px 24px var(--shade-2);
   min-height: 0;
 }
 
@@ -3744,8 +3791,8 @@ body.dragging-plan .tl-row.tl-card.drop-merge {
   padding: 4px 8px;
   border-radius: 6px;
   font-size: 0.8rem;
-  background: #e8f0fe;
-  color: #1a56c4;
+  background: var(--indigo-wash);
+  color: var(--indigo);
 }
 
 .timetable-body {
@@ -3805,8 +3852,8 @@ button.timetable-row-in {
 }
 
 .timetable-row.missed {
-  background: #f1f3f5;
-  color: #9aa0a6;
+  background: var(--wash);
+  color: var(--ink-3);
 }
 
 .timetable-row.missed .timetable-dep {
@@ -3814,33 +3861,33 @@ button.timetable-row-in {
 }
 
 .timetable-row.missed .timetable-arr {
-  color: #9aa0a6;
+  color: var(--ink-3);
 }
 
 .timetable-row.ok {
-  background: #e6f4ea;
+  background: var(--good-bg);
 }
 
 .timetable-row.ok .timetable-wait {
-  color: #1e7e34;
+  color: var(--good);
 }
 
 .timetable-row.ok.long .timetable-wait {
-  color: #b26a00;
+  color: var(--warn);
 }
 
 .timetable-row.pickable:hover {
-  box-shadow: inset 0 0 0 2px #1e7e34;
+  box-shadow: inset 0 0 0 2px var(--good);
 }
 
 .timetable-row.selected {
-  background: #1a73e8;
-  color: #fff;
+  background: var(--indigo);
+  color: var(--paper);
 }
 
 .timetable-row.selected .timetable-arr,
 .timetable-row.selected .timetable-wait {
-  color: #e3edff;
+  color: var(--indigo-wash);
 }
 
 .timetable-all {
@@ -3916,7 +3963,7 @@ button.timetable-row-in {
   border-radius: 10px;
   padding: 6px 8px;
   background: var(--bg);
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.06);
+  box-shadow: 0 1px 2px var(--shade-1);
   cursor: pointer;
 }
 
@@ -4031,12 +4078,12 @@ button.tl-leg-text {
 }
 
 .leg-step-ln.walk {
-  border-left: 2px dotted #8a94a0;
+  border-left: 2px dotted var(--ink-3);
 }
 
 .leg-step-ln.ride {
   left: 6px;
-  border-left: 5px solid #8a94a0;
+  border-left: 5px solid var(--ink-3);
 }
 
 .leg-step-dot {
@@ -4047,7 +4094,7 @@ button.tl-leg-text {
   height: 10px;
   border-radius: 50%;
   background: var(--bg);
-  border: 2px solid #555;
+  border: 2px solid var(--ink-2);
   box-sizing: border-box;
 }
 
@@ -4077,9 +4124,9 @@ button.tl-leg-text {
   padding: 0 6px;
   font-size: 0.75rem;
   font-weight: 500;
-  color: #8a6d00;
-  background: #fff7d6;
-  border: 1px dashed #e0c25a;
+  color: var(--warn);
+  background: var(--warn-bg);
+  border: 1px dashed var(--warn-line);
   border-radius: 6px;
 }
 
@@ -4090,10 +4137,10 @@ button.tl-leg-text {
   gap: 6px;
   max-width: 100%;
   padding: 3px 8px 3px 4px;
-  border: 1px solid #80cbc4;
+  border: 1px solid var(--teal-line);
   border-radius: 8px;
-  background: #e0f2f1;
-  color: #004d52;
+  background: var(--teal-wash);
+  color: var(--teal);
   font: inherit;
   font-weight: 600;
   text-align: left;
@@ -4120,7 +4167,7 @@ button.tl-leg-text {
 
 .leg-ride-more {
   font-weight: 400;
-  color: #00838f;
+  color: var(--teal);
 }
 
 button.leg-ride-more {
@@ -4181,7 +4228,7 @@ button.leg-ride-more {
 
 .leg-modes .chip[aria-pressed='true'] {
   background: var(--accent);
-  color: #fff;
+  color: var(--paper);
 }
 
 .leg-modes .chip:disabled {
@@ -4213,7 +4260,7 @@ button.leg-ride-more {
   padding: 1px 8px;
   border-radius: 999px;
   background: var(--accent);
-  color: #fff;
+  color: var(--paper);
   font-size: 0.75rem;
   font-weight: 600;
   pointer-events: none;
@@ -4229,7 +4276,7 @@ button.leg-ride-more {
   display: inline-flex;
   align-items: center;
   gap: 2px;
-  background: rgba(255, 255, 255, 0.92);
+  background: var(--veil);
   border-radius: 999px;
   padding: 0 4px;
   color: var(--tier-s);
@@ -4300,9 +4347,9 @@ button.leg-ride-more {
   font-weight: 700;
   padding: 1px 8px;
   border-radius: 999px;
-  background: rgba(255, 255, 255, 0.92);
+  background: var(--veil);
   color: var(--accent);
-  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.25);
+  box-shadow: 0 1px 4px var(--shade-2);
 }
 
 .day-status.scheduled {
@@ -4382,11 +4429,11 @@ button.leg-ride-more {
 /* ---------- 時間軸的資料卡：類型的淡底色、起終點和造訪同樣的卡片、合併卡片的疊層（T15m 第四輪） ---------- */
 
 :root {
-  --type-spot-bg: #eaf7ed;
-  --type-restaurant-bg: #fff0e5;
-  --type-lodging-bg: #f2ecfc;
-  --type-station-bg: #eef0f3;
-  --type-other-bg: #eef0f3;
+  --type-spot-bg: var(--good-bg);
+  --type-restaurant-bg: var(--food-wash);
+  --type-lodging-bg: var(--stay-wash);
+  --type-station-bg: var(--wash);
+  --type-other-bg: var(--wash);
 }
 
 .tl-row.tl-card {
@@ -4526,7 +4573,7 @@ button.leg-ride-more {
   height: 22px;
   margin-left: 4px;
   border-radius: 6px;
-  color: var(--muted, #667);
+  color: var(--muted);
   font-size: 0.85rem;
   line-height: 1;
   cursor: pointer;
@@ -4536,7 +4583,7 @@ button.leg-ride-more {
 
 .copy-name:hover,
 .copy-name:focus-visible {
-  background: rgba(0, 0, 0, 0.08);
+  background: var(--shade-1);
   color: inherit;
 }
 
@@ -4595,7 +4642,7 @@ button.leg-ride-more {
   left: 25px;
   top: 20px;
   bottom: 20px;
-  border-left: 2px dashed #9aa3ad;
+  border-left: 2px dashed var(--ink-4);
 }
 
 .tl-rail > li {
@@ -4658,7 +4705,7 @@ button.leg-ride-more {
   width: 34px;
   height: 34px;
   border-radius: 8px;
-  color: #fff;
+  color: var(--paper);
   font-weight: 700;
   font-size: 1rem;
   display: flex;
@@ -4672,15 +4719,15 @@ button.leg-ride-more {
   height: 22px;
   padding: 0 4px;
   border-radius: 11px;
-  color: #fff;
+  color: var(--paper);
   font-weight: 700;
   font-size: 0.75rem;
   display: flex;
   align-items: center;
   justify-content: center;
   font-variant-numeric: tabular-nums;
-  border: 2px solid #fff;
-  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.15);
+  border: 2px solid var(--paper);
+  box-shadow: 0 0 0 1px var(--shade-1);
   box-sizing: border-box;
 }
 
@@ -4704,9 +4751,9 @@ button.leg-ride-more {
   font: inherit;
   font-size: 0.8rem;
   font-variant-numeric: tabular-nums;
-  color: #8a6d00;
-  background: #fff7d6;
-  border: 1px dashed #e0c25a;
+  color: var(--warn);
+  background: var(--warn-bg);
+  border: 1px dashed var(--warn-line);
   border-radius: 8px;
   padding: 3px 8px;
 }
@@ -4726,7 +4773,7 @@ button.leg-ride-more {
 .cand {
   flex-wrap: nowrap;
   gap: 10px;
-  border: 1.5px dashed rgba(0, 0, 0, 0.18);
+  border: 1.5px dashed var(--shade-2);
   padding: 8px 10px;
 }
 
@@ -4775,7 +4822,7 @@ button.leg-ride-more {
 }
 
 .cand-handle {
-  color: #999;
+  color: var(--ink-3);
   cursor: grab;
   flex: none;
 }
@@ -4848,7 +4895,7 @@ button.cand-up:disabled {
 }
 
 .day-tab[aria-selected='true'].red-day .day-tab-wd {
-  color: #ffb4b4;
+  color: var(--bad-soft);
 }
 
 /* ---------- 詳情的「問 AI」（電腦、手機共用） ---------- */
@@ -4856,8 +4903,8 @@ button.cand-up:disabled {
 .ask-ai-box {
   margin-top: 12px;
   padding: 10px 12px;
-  background: #eaf3ff;
-  border: 1px solid #c5dcf7;
+  background: var(--indigo-wash);
+  border: 1px solid var(--indigo-line);
   border-radius: var(--radius);
 }
 
@@ -4873,8 +4920,8 @@ button.cand-up:disabled {
 }
 
 .ask-ai-prompt {
-  border: 1px solid #c5dcf7;
-  background: #fff;
+  border: 1px solid var(--indigo-line);
+  background: var(--paper);
   border-radius: 999px;
   padding: 6px 12px;
   font: inherit;
@@ -4892,7 +4939,7 @@ button.cand-up:disabled {
   flex: 1;
   min-width: 0;
   min-height: 36px;
-  border: 1px solid #c5dcf7;
+  border: 1px solid var(--indigo-line);
   border-radius: var(--radius);
   padding: 0 10px;
   font: inherit;
@@ -4902,8 +4949,8 @@ button.cand-up:disabled {
   min-width: 36px;
   border: 0;
   border-radius: var(--radius);
-  background: #2f7de1;
-  color: #fff;
+  background: var(--indigo);
+  color: var(--paper);
   cursor: pointer;
 }
 
@@ -4922,12 +4969,12 @@ button.cand-up:disabled {
 
 .chat-msg.me {
   align-self: flex-end;
-  background: #2f7de1;
-  color: #fff;
+  background: var(--indigo);
+  color: var(--paper);
 }
 
 .chat-msg.ai {
   align-self: flex-start;
-  background: #f1f3f5;
+  background: var(--wash);
   color: var(--muted);
 }
