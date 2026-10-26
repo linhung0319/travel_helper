@@ -8,6 +8,7 @@ import { editedUnder } from '../data/merge.ts';
 import type { FieldEdit, Place } from '../data/types.ts';
 import type { PlaceEdit } from '../backend/types.ts';
 import { Dialog, MemberName, stamp } from './common.tsx';
+import { Icon } from './Icon.tsx';
 
 /** 欄位的顯示名稱（沒列的直接顯示路徑） */
 const FIELD_LABELS: Record<string, string> = {
@@ -112,7 +113,7 @@ export function HistoryDialog({ placeId, field }: { placeId: string; field?: str
             </div>
             {e.author === me && !e.revertedAt && !e.closedAt && (
               <button type="button" className="text-button" onClick={() => void shared.revertEdit(e.id)} data-testid="history-revert">
-                ↩︎ 復原我的這筆修改
+                <Icon name="undo" size={16} /> 復原我的這筆修改
               </button>
             )}
           </li>

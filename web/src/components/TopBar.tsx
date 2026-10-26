@@ -1,4 +1,5 @@
 import { useEffect, useMemo, useRef } from 'react';
+import { Icon } from './Icon.tsx';
 import { commands } from '../appCommands.ts';
 import { useApp, useData, usePlan, useShared } from '../hooks.ts';
 import { dayTarget, TRIP_TARGET } from '../backend/types.ts';
@@ -14,7 +15,7 @@ import { showItinerary } from './Explore.tsx';
 
 const DATES = tripDates();
 
-/** 右上角的整趟工具：💬 討論、📋 預約筆記（數字是選的那天，選「全部」是整趟）、⬇ 下載行程 JSON */
+/** 右上角的整趟工具：討論、預約筆記（數字是選的那天，選「整趟」是整趟）、下載行程 JSON */
 function TripTools() {
   const day = useApp((s) => s.day);
   const itinerary = useData((s) => s.itinerary);
@@ -26,16 +27,16 @@ function TripTools() {
   return (
     <div className="trip-tools">
       <button type="button" className="day-tool" onClick={() => openMapPanel('comments')} aria-label="討論" data-testid="toolbar-comments">
-        💬 <span className="day-tool-text">討論</span>
+        <Icon name="chat" /> <span className="day-tool-text">討論</span>
         {comments > 0 && <span className="day-tool-n">{comments}</span>}
       </button>
       <button type="button" className="day-tool" onClick={() => openMapPanel('reservations')} aria-label="預約筆記" data-testid="toolbar-reservations">
-        📋 <span className="day-tool-text">預約</span>
+        <Icon name="clipboard" /> <span className="day-tool-text">預約</span>
         {pending > 0 && <span className="day-tool-n warn">{pending}</span>}
       </button>
       <span className="day-tool-menu" data-testid="toolbar-more">
         <button type="button" className="day-tool" aria-label="下載行程 JSON" title="下載行程 JSON" disabled={!itinerary} onClick={exportJson} data-testid="export-json">
-          ⬇
+          <Icon name="download" />
         </button>
       </span>
     </div>

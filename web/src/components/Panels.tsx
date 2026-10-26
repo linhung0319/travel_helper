@@ -4,7 +4,7 @@ import { commands } from '../appCommands.ts';
 import { useStore } from 'zustand';
 import { useApp, useData } from '../hooks.ts';
 import { uiStore } from '../uiStore.ts';
-import { TYPE_ICONS } from '../lib/typeStyle.ts';
+import { Icon } from './Icon.tsx';
 
 export function ChatPanel() {
   const selection = useApp((s) => s.selection);
@@ -13,8 +13,10 @@ export function ChatPanel() {
   return (
     <div className="chat-panel" data-testid="chat-panel">
       <div className="placeholder">
-        <p>💬 AI 聊天（T16 接上）</p>
-        <p className="muted small">之後可以在這裡用說的找地點、按 ❤️、排行程。</p>
+        <p className="ic-text">
+          <Icon name="chat" size={20} /> AI 聊天（T16 接上）
+        </p>
+        <p className="muted small">之後可以在這裡用說的找地點、按想去、排行程。</p>
       </div>
       {draft && (
         <>
@@ -30,7 +32,7 @@ export function ChatPanel() {
             const p = byId.get(id);
             return (
               <button key={id} type="button" className="chip" onClick={() => commands.unselect(id)} aria-label={`取消選取 ${p?.name.zh ?? id}`}>
-                {p ? `${TYPE_ICONS[p.type]} ${p.name.zh || p.name.ja}` : id} ✕
+                {p ? p.name.zh || p.name.ja : id} <Icon name="close" size={16} />
               </button>
             );
           })}

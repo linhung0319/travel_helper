@@ -1,6 +1,6 @@
 // 「行程」分頁（interaction-design §3、§6），兩層，像探索的清單和詳情：
-// 選「全部」是整趟的總覽（每天排了什麼、幾個候選、警告）；選了某一天，編輯中最上面是藍條（說明、快照、完成），接著一列「← 整趟、日期 ‹ ›、問 AI、✏️ 編輯這天」，
-// 下面是摘要列（⚠ 點了展開提醒）、比例橫條（時間條）、時間軸（資料卡是類型的淡底色，起點、終點的住宿也是卡片）、這天的候選（想去「加到某天」的點）。💬 討論、📋 預約、⬇ 下載在地圖區右上角（TopBar.tsx 的 AccountBar，和帳號頭像一起）。
+// 選「整趟」是整趟的總覽（每天排了什麼、幾個候選、警告）；選了某一天，編輯中最上面是藍條（說明、快照、完成），接著一列「← 整趟、日期 ‹ ›、問 AI、編輯」，
+// 下面是摘要列（⚠ 點了展開提醒）、比例橫條（時間條）、時間軸（資料卡是類型的淡底色，起點、終點的住宿也是卡片）、這天的候選（想去「加到某天」的點）。討論、預約、下載在地圖區右上角（TopBar.tsx 的 AccountBar，和帳號頭像一起）。
 
 import { useState } from 'react';
 import { commands } from '../appCommands.ts';
@@ -17,6 +17,7 @@ import { EditHint, PlanningBar, PlanningToggle } from './Planning.tsx';
 import { MemberName, stamp } from './common.tsx';
 import { askAiAboutDay } from './askAi.ts';
 import { showList } from './SidePanel.tsx';
+import { Icon } from './Icon.tsx';
 
 const DATES = tripDates();
 
@@ -38,7 +39,7 @@ function Overview() {
       </div>
       {plan?.warnings.map((w, i) => (
         <p key={i} className={`small warning-${w.level}`}>
-          {WARNING_ICONS[w.level]} {w.message}
+          <Icon name={WARNING_ICONS[w.level]} size={16} /> {w.message}
         </p>
       ))}
       <ol className="overview">
@@ -56,11 +57,23 @@ function Overview() {
                 <span className={`overview-date ${isRedDay(d) ? 'red-day' : ''}`}>{dayLabel(d)}</span>
                 <span className="overview-stops">
                   {stops.length ? stops.map((s) => byId.get(s.place)?.name.zh || byId.get(s.place)?.name.ja || s.place).join(' → ') : <span className="muted">還沒排</span>}
-                  {lp && <span className="muted small">　🏨 {lp.name.zh || lp.name.ja}</span>}
+                  {lp && (
+                    <span className="muted small ic-text">
+                      <Icon name="bed" size={16} /> {lp.name.zh || lp.name.ja}
+                    </span>
+                  )}
                 </span>
                 <span className="overview-flags">
-                  {cands > 0 && <span className="badge">📅 {cands}</span>}
-                  {warn > 0 && <span className="badge badge-warn">⚠️ {warn}</span>}
+                  {cands > 0 && (
+                    <span className="badge ic-text">
+                      <Icon name="calendar" size={16} /> {cands}
+                    </span>
+                  )}
+                  {warn > 0 && (
+                    <span className="badge badge-warn ic-text">
+                      <Icon name="warn" size={16} /> {warn}
+                    </span>
+                  )}
                 </span>
               </button>
             </li>
@@ -90,15 +103,15 @@ function DayHead({ day }: { day: string }) {
       </h3>
       <span className="day-step">
         <button type="button" className="text-button" aria-label="前一天" disabled={i <= 0} onClick={() => commands.selectDay(DATES[i - 1])} data-testid="day-prev">
-          ‹
+          <Icon name="back" size={20} />
         </button>
         <button type="button" className="text-button" aria-label="後一天" disabled={i < 0 || i >= DATES.length - 1} onClick={() => commands.selectDay(DATES[i + 1])} data-testid="day-next">
-          ›
+          <Icon name="chevron" size={20} />
         </button>
       </span>
       <span className="day-nav-actions">
         <button type="button" className="text-button ask-ai-quiet" onClick={() => askAiAboutDay(day)} data-testid="day-ask-ai">
-          🤖 問 AI
+          <Icon name="spark" size={20} /> 問 AI
         </button>
         <PlanningToggle />
       </span>
@@ -129,7 +142,7 @@ export function DayPanel() {
         <ul className="tl-warnings day-warnings" data-testid="day-warnings">
           {dayWarnings.map((w, i) => (
             <li key={i} className={`warning-${w.level}`}>
-              {WARNING_ICONS[w.level]} {w.message}
+              <Icon name={WARNING_ICONS[w.level]} size={16} /> {w.message}
             </li>
           ))}
         </ul>
@@ -142,7 +155,7 @@ export function DayPanel() {
       {itDay && plan && <Timeline tl={{ ...tl, itDay, plan }} />}
       {itDay && plan && itDay.items.length === 0 && (
         <p className="muted small" data-testid="day-empty">
-          這天還沒排。到 ❤️ 想去把想去的點加到這天{' '}
+          這天還沒排。到「想去」把想去的點加到這天{' '}
           <button type="button" className="button small" onClick={goWish} data-testid="day-go-wish">
             去想去
           </button>

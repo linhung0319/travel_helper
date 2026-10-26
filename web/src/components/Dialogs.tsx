@@ -6,6 +6,7 @@ import { useShared, useUi } from '../hooks.ts';
 import { RejectDialog } from './Wishlist.tsx';
 import { AddToDayDialog, MoveCandidateDialog, MoveDialog, PlanningConfirmDialog, SnapshotsDialog } from './Planning.tsx';
 import { HistoryDialog } from './EditHistory.tsx';
+import { Icon } from './Icon.tsx';
 
 export function Dialogs() {
   const d = useUi((s) => s.dialog);
@@ -40,7 +41,7 @@ export function Toast() {
   if (!toast) return null;
   return (
     <div className={`toast toast-${toast.kind}`} role={toast.kind === 'error' ? 'alert' : 'status'} data-testid="toast" onClick={() => shared.clearToast()}>
-      {toast.kind === 'error' ? '⚠️ ' : '✓ '}
+      {toast.kind === 'error' ? <Icon name="warn" size={16} /> : <Icon name="check" size={16} />}{' '}
       {toast.text}
       {toast.action && (
         <button

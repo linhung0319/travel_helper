@@ -6,6 +6,7 @@ import { useState, type FormEvent } from 'react';
 import type { Place } from '../data/types.ts';
 import { askAiPrompts } from '../shared/askAiPrompts.ts';
 import { askAboutPlace } from '../uiStore.ts';
+import { Icon } from './Icon.tsx';
 
 export function AskAiBox({ place, fromTrip }: { place: Place; fromTrip: boolean }) {
   const [value, setValue] = useState('');
@@ -22,7 +23,9 @@ export function AskAiBox({ place, fromTrip }: { place: Place; fromTrip: boolean 
   };
   return (
     <section className="ask-ai-box" data-testid="ask-ai-box">
-      <h3 className="ask-ai-title">✨ 問 AI 關於「{place.name.zh || place.name.ja}」</h3>
+      <h3 className="ask-ai-title ic-text">
+        <Icon name="spark" size={20} />問 AI 關於「{place.name.zh || place.name.ja}」
+      </h3>
       <div className="ask-ai-prompts">
         {askAiPrompts(place.type, fromTrip).map((q) => (
           <button key={q} type="button" className="ask-ai-prompt" data-testid="ask-ai-prompt" onClick={() => send(q)}>

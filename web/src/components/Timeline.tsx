@@ -1,10 +1,10 @@
 // 這一天的時間軸（interaction-design §3、§6、第五輪 §2）：引擎算好的項目、相鄰兩點之間的交通、等待、警告。
 // 手機是直的清單，電腦放在地圖下方。左邊一條虛線從一張資料卡串到下一張，交通卡在虛線右邊（右緣和資料卡對齊）。
-// 點項目地圖跳過去；到了要等（📌、還沒開門）時交通卡下面一條黃色虛框的「⏳ 幾點到，等 N 分（原因）」，純文字、不能點。
+// 點項目地圖跳過去；到了要等（指定開始時間、還沒開門）時交通卡下面一條黃色虛框的「幾點到，等 N 分（原因）」，純文字、不能點。
 // 資料卡只顯示要看的（設計 §6）：左邊類型色塊（宿／景／餐／站／機／點）、時間（開始–結束）、停留時間（X小時MM分）、名稱、標籤、❤️ 頭像、⚠ 數。
 // 資料卡固定四欄（第六輪 §2.2）：把手欄（編輯中每張卡都留，宿的卡也是）、類型色塊、內容、右邊動作欄（上面編號、下面 ⋯），所以色塊、⋯ 上下對齊。
 // 卡片底色是類型的淡色；起點、終點的住宿和造訪是同樣的卡片（只寫一個時間）。有備卡的卡片（重疊卡）疊著淡色卡、‹ n/m › 換著看。
-// 編輯中才有：停留時間 −／＋、點時間固定開始（📌）、點標籤那一排開標籤彈窗（ItemTags.tsx）、
+// 編輯中才有：停留時間 −／＋、點時間固定開始（釘子）、點標籤那一排開標籤彈窗（ItemTags.tsx）、
 // 「⋯」動作選單（ActionMenu.tsx，動作照 shared/cardActions.ts：重疊卡的主要、拿出，標籤、釘選、移到第幾天、移進／移出分組、撤下；
 // 回住宿的這晚的方案、清掉住宿；自由時間、分組的刪除）。出發的住宿、航班沒有「⋯」；有地點的卡沒有刪除（要先撤下回候選）。
 // 拖卡片（電腦版拖、手機長按後拖）：放在卡片中間合併、邊緣換順序；看備卡時拖的是那張備卡。
@@ -31,6 +31,7 @@ import { AvatarStack, PlaceChip } from './common.tsx';
 import { LegRow } from './LegRow.tsx';
 import { ItemTags, LodgingTags, tagKindOf } from './ItemTags.tsx';
 import { ActionMenu } from './ActionMenu.tsx';
+import { Icon, type IconName } from './Icon.tsx';
 import { groupTargetsOf } from './cardActionRun.ts';
 import { useLiked } from '../shared/placeLists.ts';
 import { pulseMark } from '../lib/mapPulse.ts';
@@ -106,7 +107,7 @@ function Warnings({ list }: { list: EngineWarning[] | undefined }) {
     <ul className="tl-warnings">
       {list.map((w, i) => (
         <li key={i} className={`warning-${w.level}`}>
-          {WARNING_ICONS[w.level]} {w.message}
+          <Icon name={WARNING_ICONS[w.level]} size={16} /> {w.message}
         </li>
       ))}
     </ul>
@@ -264,7 +265,9 @@ function EntryRow({ entry, day, warnings, plan, marks }: { entry: TimelineEntry;
       <>
         <li className="tl-split" data-testid="tl-split">
           <div className="tl-split-head">
-            <span>👥 分組行動</span>
+            <span className="ic-text">
+              <Icon name="users" size={16} /> 分組行動
+            </span>
             {planning && item && <ActionMenu ctx={{ kind: 'split', surface: 'desktop' }} target={{ date: day.date, itemId: item.id }} ui={{ ...NO_UI, openMove: () => openDialog({ kind: 'move', itemId: item.id }) }} label="分組" />}
           </div>
           <div className="tl-groups">
@@ -294,7 +297,7 @@ function EntryRow({ entry, day, warnings, plan, marks }: { entry: TimelineEntry;
           <span className="tl-body">
             <span className="tl-title">
               <Mark entry={entry} marks={marks} />
-              🤝 會合：{entry.placeId ? <PlaceChip id={entry.placeId} /> : '（未定）'}
+              <Icon name="users" size={16} /> 會合：{entry.placeId ? <PlaceChip id={entry.placeId} /> : '（未定）'}
             </span>
             {entry.waitMinutes > 0 && <span className="muted small">（最早到的組等 {entry.waitMinutes} 分）</span>}
           </span>
@@ -371,7 +374,9 @@ function EntryRow({ entry, day, warnings, plan, marks }: { entry: TimelineEntry;
             {v?.switcher}
           </span>
           {flight?.note && <span className="muted small">{flight.note}（{flight.depart} 起飛 → {flight.arrive} 抵達）</span>}
-          {visit?.note && <span className="tl-note small">📝 {visit.note}</span>}
+          {visit?.note && <span className="tl-note small ic-text">
+              <Icon name="pen" size={16} /> {visit.note}
+            </span>}
           {warnOpen && <Warnings list={shownWarns} />}
         </span>
       </span>
@@ -437,12 +442,12 @@ function WarnToggle({ list, open, onToggle }: { list: EngineWarning[] | undefine
   const level = list.some((w) => w.level === 'error') ? 'error' : list.some((w) => w.level === 'warning') ? 'warning' : 'info';
   return (
     <button type="button" className={`warn-toggle level-${level}`} aria-expanded={open} onClick={onToggle} data-testid="warn-toggle" title={list.map((w) => w.message).join('\n')}>
-      {WARNING_ICONS[level]} {list.length}
+      <Icon name={WARNING_ICONS[level]} size={16} /> {list.length}
     </button>
   );
 }
 
-/** 時間（大字，造訪是「開始–結束」）；固定時間（訂位、表演）標 📌。編輯中點了切換固定／不固定 */
+/** 時間（大字，造訪是「開始–結束」）；固定時間（訂位、表演）標釘子。編輯中點了切換固定／不固定 */
 function StartTime({ entry, visit, flight, text }: { entry: TimelineEntry; visit: VisitItem | null; flight: Extract<ItineraryItem, { type: 'flight' }> | null; text: string }) {
   const planning = useApp((s) => s.planning);
   const time = flight ? (flight.direction === 'arrive' ? flight.arrive : flight.depart) : text;
@@ -450,7 +455,11 @@ function StartTime({ entry, visit, flight, text }: { entry: TimelineEntry; visit
   if (!planning || !visit)
     return (
       <span className="tl-start-time">
-        {fixed && <span title="指定的開始時間（訂位、表演）">📌</span>}
+        {fixed && (
+          <span title="指定的開始時間（訂位、表演）">
+            <Icon name="pin" size={16} />
+          </span>
+        )}
         {time}
       </span>
     );
@@ -463,7 +472,7 @@ function StartTime({ entry, visit, flight, text }: { entry: TimelineEntry; visit
       data-testid="fix-start"
       onClick={() => void shared.changeItinerary((it) => setStart(it, visit.id, fixed ? null : entry.start), fixed ? `取消固定 ${visit.start} 開始` : `固定 ${entry.start} 開始`)}
     >
-      {fixed ? '📌' : ''}
+      {fixed ? <Icon name="pin" size={16} /> : null}
       {time}
     </button>
   );
@@ -495,8 +504,8 @@ function StayChip({ itemId, minutes, readOnly = false }: { itemId: string | null
 }
 
 /** 空檔的圖示和「看…」：只剩「住宿（未排）」（idle 是等待，planView 不放進時間軸的列） */
-const GAP_ACTIONS: Record<Exclude<Gap['kind'], 'idle'>, { icon: string; look: string; types: ('restaurant' | 'spot' | 'lodging')[] }> = {
-  lodging: { icon: '🏨', look: '看住宿', types: ['lodging'] },
+const GAP_ACTIONS: Record<Exclude<Gap['kind'], 'idle'>, { icon: IconName; look: string; types: ('restaurant' | 'spot' | 'lodging')[] }> = {
+  lodging: { icon: 'bed', look: '看住宿', types: ['lodging'] },
 };
 
 /** 空檔（「住宿（未排）」這類，不是等待）：點了展開——看住宿（篩選＋地圖框住前後兩站） */
@@ -511,8 +520,8 @@ function GapRow({ gap, plan }: { gap: Gap; plan: DayPlan }) {
     <li className={`tl-gap gap-${gap.kind}`} data-testid="tl-gap">
       <button type="button" className="tl-gap-button" aria-expanded={open} onClick={() => setOpen(!open)}>
         <span className="tl-time">{gap.from && gap.to ? `${gap.from}–${gap.to}` : ''}</span>
-        <span>
-          {a.icon} {gap.label}
+        <span className="ic-text">
+          <Icon name={a.icon} size={16} /> {gap.label}
         </span>
       </button>
       {open && (
@@ -525,7 +534,7 @@ function GapRow({ gap, plan }: { gap: Gap; plan: DayPlan }) {
               if (around.length) commands.focus(around);
             }}
           >
-            🔎 {a.look}
+            <Icon name="search" size={16} /> {a.look}
           </button>
         </span>
       )}
@@ -543,7 +552,10 @@ function WaitRow({ entry, item }: { entry: TimelineEntry; item: VisitItem | null
   if (!text) return null;
   return (
     <li className="tl-wait-row" data-testid="tl-wait">
-      <span className="tl-wait">{text}</span>
+      <span className="tl-wait ic-text">
+        <Icon name="clock" size={16} />
+        {text}
+      </span>
     </li>
   );
 }
@@ -609,10 +621,17 @@ export function DaySummaryLine({ plan, warnOpen, onWarn, reminders = 0 }: { plan
       {[times, s.travelMinutes > 0 && `交通 ${formatTravelTotal(s.travelMinutes)}`].filter(Boolean).join('・')}
       {onWarn && reminders > 0 ? (
         <button type="button" className={`badge warn-button ${s.warnings > 0 ? 'badge-warn' : ''}`} aria-expanded={!!warnOpen} onClick={onWarn} data-testid="day-warn-toggle">
-          {s.warnings > 0 ? '⚠' : WARNING_ICONS.info} {reminders} {warnOpen ? '▴' : '▾'}
+          <Icon name={s.warnings > 0 ? 'warn' : WARNING_ICONS.info} size={16} /> {reminders}{' '}
+          <span className={`chev ${warnOpen ? 'up' : ''}`}>
+            <Icon name="chevron" size={16} />
+          </span>
         </button>
       ) : (
-        s.warnings > 0 && <span className="badge badge-warn">⚠ {s.warnings}</span>
+        s.warnings > 0 && (
+          <span className="badge badge-warn ic-text">
+            <Icon name="warn" size={16} /> {s.warnings}
+          </span>
+        )
       )}
       {plan.stats.tiring && <span className="badge badge-warn">累</span>}
     </span>

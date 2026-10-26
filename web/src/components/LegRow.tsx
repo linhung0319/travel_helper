@@ -37,9 +37,10 @@ import {
   type LegStep,
 } from '../lib/planView.ts';
 import { lineMeters, rideStations } from '../lib/routing.ts';
-import { MODE_ICON, modeIconKey } from '../lib/modeIcon.ts';
+import { MODE_LINE_COLOR } from '../lib/modeIcon.ts';
 import { openTimetable, uiStore } from '../uiStore.ts';
 import { ModeIcon } from './ModeIcon.tsx';
+import { Icon } from './Icon.tsx';
 import { dropOnLegProps } from './planDrag.ts';
 
 /** 方式選單的字（自動另外接上目前的方式） */
@@ -102,7 +103,7 @@ function RideSelect({ leg, index, date, target, disabled }: { leg: Leg; index: n
 
 /** 一步左邊的細線：步行點線、搭車用圖示色的粗實線 */
 type Line = { kind: 'walk' } | { kind: 'ride'; color: string } | null;
-const lineOf = (s: LegStep | undefined): Line => (s?.kind === 'walk' ? { kind: 'walk' } : s?.kind === 'ride' ? { kind: 'ride', color: MODE_ICON[modeIconKey(s.mode)].bg } : null);
+const lineOf = (s: LegStep | undefined): Line => (s?.kind === 'walk' ? { kind: 'walk' } : s?.kind === 'ride' ? { kind: 'ride', color: MODE_LINE_COLOR } : null);
 
 /** 細線的一段：full＝整格，top／bottom＝節點圓圈的上半、下半 */
 function RailLine({ line, part }: { line: Line; part: 'full' | 'top' | 'bottom' }) {
@@ -131,8 +132,9 @@ export function LegSteps({ steps, leg, date, legKey, target, editing, saving }: 
               <span className="leg-step-tx">
                 {s.name}
                 {s.wait ? (
-                  <span className="leg-step-wait" data-testid="leg-step-wait">
-                    ⏳ 等 {s.wait} 分
+                  <span className="leg-step-wait ic-text" data-testid="leg-step-wait">
+                    <Icon name="clock" size={16} />
+                    等 {s.wait} 分
                   </span>
                 ) : null}
               </span>
@@ -372,7 +374,8 @@ export function LegRow({ entry, date }: { entry: TimelineEntry; date: string }) 
                 {sub.join('・')}
                 {note && (
                   <span className="tl-leg-note" data-testid="leg-note-text">
-                    {sub.length > 0 && '・'}📝 {note}
+                    {sub.length > 0 && '・'}
+                    <Icon name="pen" size={16} /> {note}
                   </span>
                 )}
               </span>

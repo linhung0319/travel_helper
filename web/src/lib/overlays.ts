@@ -286,12 +286,12 @@ export function itineraryMarks(plan: { days: DayPlan[] } | null, day: string, le
   return out;
 }
 
-/** 地圖上每個點的小標記：❤️ 數（想去的人數，interaction-design §3、§9） */
+/** 地圖上每個點的小標記：想去數（前面的愛心由 MapView 畫）（想去的人數，interaction-design §3、§9） */
 export function placeBadges(byId: Map<string, Place>, likes: Map<string, number>): { id: string; coords: LonLat; text: string }[] {
   const out: { id: string; coords: LonLat; text: string }[] = [];
   for (const [id, n] of likes) {
     const p = byId.get(id);
-    if (p && n > 0) out.push({ id, coords: p.coords, text: `❤️${n}` });
+    if (p && n > 0) out.push({ id, coords: p.coords, text: `${n}` });
   }
   return out;
 }

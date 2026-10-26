@@ -8,7 +8,8 @@ import { dataStore } from '../dataStore.ts';
 import { commands } from '../appCommands.ts';
 import { shared } from '../appShared.ts';
 import { stopsOn } from '../lib/itinerary.ts';
-import { TYPE_COLORS, TYPE_ICONS } from '../lib/typeStyle.ts';
+import { TYPE_COLORS, TYPE_ICON_NAMES } from '../lib/typeStyle.ts';
+import { iconSvg } from '../lib/icons.ts';
 import { setAddToChat } from '../uiStore.ts';
 
 const MIME = 'application/x-travel-place';
@@ -22,7 +23,7 @@ export function askAi(id: string) {
 
 setAddToChat(askAi); // uiStore 的 askAboutPlace 用這個把地點放進選取
 
-/** 行程分頁的「🤖 問 AI」：把這天的點全部加進選取（已經在裡面的不動） */
+/** 行程分頁的「問 AI」：把這天的點全部加進選取（已經在裡面的不動） */
 export function askAiAboutDay(date: string) {
   const ids = [...new Set(stopsOn(dataStore.getState().itinerary, date).map((s) => s.place))];
   const fresh = ids.filter((id) => !appStore.getState().selection.includes(id));
@@ -46,7 +47,7 @@ function ghost(id: string): HTMLElement | null {
   const dot = document.createElement('span');
   dot.className = 'place-ghost-dot';
   dot.style.background = TYPE_COLORS[p.type];
-  dot.textContent = TYPE_ICONS[p.type];
+  dot.innerHTML = iconSvg(TYPE_ICON_NAMES[p.type], 16);
   const name = document.createElement('span');
   name.className = 'place-ghost-name';
   name.textContent = p.name.zh || p.name.ja;

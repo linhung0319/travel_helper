@@ -5,7 +5,8 @@ import { appStore } from '../store.ts';
 import { commands } from '../appCommands.ts';
 import { useData, useShared } from '../hooks.ts';
 import { memberName } from '../sharedStore.ts';
-import { TYPE_ICONS } from '../lib/typeStyle.ts';
+import { TYPE_COLORS } from '../lib/typeStyle.ts';
+import { Icon } from './Icon.tsx';
 
 /** 對話框：手機從下面滑上來、電腦在中間。Esc、點背景關掉 */
 export function Dialog({ title, onClose, children, footer, testId }: { title: string; onClose: () => void; children: ReactNode; footer?: ReactNode; testId?: string }) {
@@ -56,7 +57,8 @@ export function PlaceChip({ id, onRemove }: { id: string; onRemove?: () => void 
           }
         }}
       >
-        {p ? TYPE_ICONS[p.type] : '❓'} {name}
+        {p && <i className="ui-type-dot" style={{ background: TYPE_COLORS[p.type] }} aria-hidden="true" />}
+        {name}
       </button>
       {onRemove && (
         <button type="button" className="place-chip-x" aria-label={`拿掉 ${name}`} onClick={onRemove}>
@@ -91,7 +93,7 @@ export function Avatar({ id }: { id: string }) {
 
 /**
  * 疊在一起的頭像（像 FB）：最多 max 個，其他寫「+N」。點了跳出名單；
- * 給了 dislikes 時名單分「❤️ 誰」「👎 誰」兩行（頭像只畫 ids）。
+ * 給了 dislikes 時名單分「想去誰」「不想去誰」兩行（頭像只畫 ids）。
  */
 export function AvatarStack({ ids, max = 4, dislikes }: { ids: string[]; max?: number; dislikes?: string[] }) {
   const members = useShared((s) => s.members);
@@ -115,7 +117,7 @@ export function AvatarStack({ ids, max = 4, dislikes }: { ids: string[]; max?: n
         type="button"
         className="avatar-stack-button"
         aria-expanded={open}
-        aria-label={`${dislikes ? '❤️ ' : ''}${names(ids)}`}
+        aria-label={`${dislikes ? '想去 ' : ''}${names(ids)}`}
         onClick={(e) => {
           e.stopPropagation();
           setOpen(!open);
@@ -145,8 +147,16 @@ export function NameList({ ids, dislikes, className = '' }: { ids: string[]; dis
     <span className={`avatar-list small ${className}`} role="dialog" aria-label="名單" data-testid="avatar-list" onClick={(e) => e.stopPropagation()}>
       {dislikes ? (
         <>
-          {ids.length > 0 && <span>❤️ {names(ids)}</span>}
-          {dislikes.length > 0 && <span>👎 {names(dislikes)}</span>}
+          {ids.length > 0 && (
+            <span className="ic-text">
+              <Icon name="heart" size={16} filled /> {names(ids)}
+            </span>
+          )}
+          {dislikes.length > 0 && (
+            <span className="ic-text">
+              <Icon name="thumb-down" size={16} /> {names(dislikes)}
+            </span>
+          )}
         </>
       ) : (
         <span>{names(ids)}</span>

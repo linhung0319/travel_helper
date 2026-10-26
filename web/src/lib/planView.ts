@@ -6,6 +6,7 @@ import { toMinutes } from '@travel-helper/engine';
 import { displayMinutes, estimateWalk } from './geo/walk.ts';
 import { haversineMeters } from './geo/distance.ts';
 import type { LonLat, Place, PlaceType } from '../data/types.ts';
+import type { IconName } from './icons.ts';
 
 /** 交通方式的中文名（交通卡標題、「自動（…）」）：電車、巴士、船都叫大眾運輸 */
 export function legModeName(mode: Leg['mode']): string {
@@ -221,7 +222,8 @@ export function shownWarnings(list: EngineWarning[] | undefined, placeId: string
   return out.length ? out : undefined;
 }
 
-export const WARNING_ICONS: Record<EngineWarning['level'], string> = { error: '⚠️', warning: '⚠️', info: 'ℹ️' };
+/** 提醒前面的線條圖示 */
+export const WARNING_ICONS: Record<EngineWarning['level'], IconName> = { error: 'warn', warning: 'warn', info: 'info' };
 
 /** 時間軸上的一列：項目（含交通）或空檔（「住宿（未排）」這類），依時間排好 */
 export type TimelineRow = { kind: 'entry'; entry: TimelineEntry } | { kind: 'gap'; gap: DayPlan['gaps'][number] };
@@ -447,15 +449,15 @@ export function legSteps(leg: Leg, fromName: string, toName: string, nameOf: (id
 const MEAL_LABELS: Partial<Record<MealKind, string>> = { lunch: '午餐 ', dinner: '晚餐 ' };
 
 /**
- * 交通卡下面「到了要等」的那條（第五輪 §2）：有 📌 寫「午餐 📌 12:00 才開始」（標了用餐才寫，那一餐是引擎的 entry.meal）；
- * 沒有 📌 的造訪是等開門（引擎只會因為營業時間延後，開始時間就是開門時間）；不是造訪（自由時間的指定時間）不寫原因。不用等回傳 null
+ * 交通卡下面「到了要等」的那條（第五輪 §2）：有指定開始時間寫「午餐 12:00 才開始」（標了用餐才寫，那一餐是引擎的 entry.meal）；
+ * 沒有指定開始時間的造訪是等開門（引擎只會因為營業時間延後，開始時間就是開門時間）；不是造訪（自由時間的指定時間）不寫原因。不用等回傳 null
  */
 export function waitNote(entry: TimelineEntry, item: VisitItem | null, _place: Place | undefined): string | null {
   if (entry.waitMinutes <= 0) return null;
-  const head = `⏳ ${entry.arrive} 到，等 ${entry.waitMinutes} 分`;
+  const head = `${entry.arrive} 到，等 ${entry.waitMinutes} 分`;
   // 那一餐照引擎用的（entry.meal，設計 §2.1）；使用者沒標用餐（mealTags 空）就不寫
   const meal = entry.mealTags?.length && entry.meal ? (MEAL_LABELS[entry.meal] ?? '') : '';
-  if (item?.start) return `${head}（${meal}📌 ${item.start} 才開始）`;
+  if (item?.start) return `${head}（${meal}${item.start} 才開始）`;
   if (item) return `${head}（${entry.start} 才開門）`;
   return head;
 }

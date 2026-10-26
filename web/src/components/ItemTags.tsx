@@ -14,6 +14,7 @@ import { shortDayLabel } from '../lib/trip.ts';
 import { LODGING_PLANS, TAG_GROUPS, TAG_LABELS, tagGroupsFor, toggleLodgingPlan, toggleTag, type TagCardKind, type TagGroup } from '../shared/tagOptions.ts';
 import type { Place } from '../data/types.ts';
 import { Popover } from './Popover.tsx';
+import { Icon } from './Icon.tsx';
 import { ReservationTag } from './Reservations.tsx';
 
 /** 地點類型 → 標籤用的卡片種類（景、餐、站以外都當自訂的點） */
@@ -63,7 +64,7 @@ export function TagPopover({ visit, kind, anchor, onClose }: { visit: VisitItem;
         {tagGroupsFor(kind).map((g) => (
           <div key={g.id} className="tag-popover-group" role="group" aria-label={g.title} style={groupStyle(g)}>
             <span className="tag-popover-title">
-              {g.icon} {g.title}
+              <Icon name={g.icon} size={16} /> {g.title}
             </span>
             <span className="tag-popover-opts">
               {g.tags.map((t) => (
@@ -126,7 +127,9 @@ export function LodgingPlanPopover({ date, anchor, onClose }: { date: string; an
     <Popover anchor={anchor} open onClose={onClose} testId="lodging-plan-popover">
       <div className="tag-popover" role="menu" aria-label="這晚的方案">
         <div className="tag-popover-group tag-lodging-group" role="group" aria-label="這晚的方案">
-          <span className="tag-popover-title">🛏 這晚的方案</span>
+          <span className="tag-popover-title ic-text">
+            <Icon name="bed" size={16} /> 這晚的方案
+          </span>
           <span className="tag-popover-opts">
             {LODGING_PLANS.map((x) => (
               <button key={x.value} type="button" role="menuitemradio" aria-checked={cur === x.value} className={`tag-opt ${cur === x.value ? 'on' : ''}`} disabled={saving} onClick={() => pick(x.value)} data-testid={`lodging-plan-${x.value}`}>

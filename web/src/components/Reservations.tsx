@@ -10,6 +10,7 @@ import { noteRows, linkLabel, reservationFor, type NoteRow } from '../lib/reserv
 import { dayLabel, isRedDay } from '../lib/trip.ts';
 import { closeMapPanel, openMapPanel } from '../uiStore.ts';
 import { AvatarStack, stamp } from './common.tsx';
+import { Icon } from './Icon.tsx';
 import { shared, sharedStore } from '../appShared.ts';
 
 const ROLE_LABELS = { main: '', other: '這個時段也可以去', lodging: '住宿' } as const;
@@ -89,10 +90,12 @@ function Row({ row }: { row: NoteRow }) {
       </div>
       {row.nightsChanged && <p className="small warn">晚數變了，請確認</p>}
       <div className="reservation-how small">
-        {row.phone && <a href={`tel:${row.phone}`}>📞 {row.phone}</a>}
+        {row.phone && <a href={`tel:${row.phone}`} className="ic-text">
+            <Icon name="phone" size={16} /> {row.phone}
+          </a>}
         {row.url && place && (
-          <a href={row.url} target="_blank" rel="noreferrer">
-            🔗 {linkLabel(row.url, place)}
+          <a href={row.url} target="_blank" rel="noreferrer" className="ic-text">
+            <Icon name="link" size={16} /> {linkLabel(row.url, place)}
           </a>
         )}
         {row.leadDays != null && <span>{row.leadDays} 天前要訂</span>}

@@ -42,7 +42,7 @@ export function TripOverview() {
               <span className="m-ov-mid">
                 <b className="m-ellipsis">{regions.length ? regions.join(' → ') : stops.length ? stops.map(nameOf).join(' → ') : '還沒排'}</b>
                 <span className="m-ov-sub m-ellipsis">
-                  {[`${stops.length} 個點`, warn > 0 && `⚠ ${warn}`, lodging && `住 ${nameOf(lodging)}`].filter(Boolean).join('・')}
+                  {[`${stops.length} 個點`, warn > 0 && `提醒 ${warn}`, lodging && `住 ${nameOf(lodging)}`].filter(Boolean).join('・')}
                 </span>
               </span>
               <span className="m-ov-thumbs">

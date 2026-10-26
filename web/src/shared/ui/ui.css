@@ -1,0 +1,336 @@
+/* 第七輪共用元件的樣式（Chip、Button、VoteHeart、TypeLabel、TierMark、DayGrid12）。顏色全部用 styles.css :root 的 token；
+   styles.css 一開頭 @import 這個檔，手機也載入 styles.css。圓角只有 999px（晶片、按鈕）、14px（卡片）。 */
+
+/* ---------- 晶片 ---------- */
+.ui-chip,
+.ui-chip-x {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  flex: 0 0 auto;
+  min-height: 36px;
+  padding: 0 14px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: var(--paper);
+  color: var(--ink-2);
+  font: inherit;
+  font-size: 0.9rem;
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+/* 視覺 36px，點的範圍補到 44px */
+.ui-chip::after,
+.ui-chip-x::after {
+  content: '';
+  position: absolute;
+  inset: -4px 0;
+}
+
+.ui-chip.on {
+  background: var(--ink);
+  border-color: var(--ink);
+  color: var(--paper);
+}
+
+.ui-chip.applied {
+  background: var(--indigo-wash);
+  border-color: var(--indigo-line);
+  color: var(--indigo);
+}
+
+.ui-chip-count {
+  font-family: var(--font-num);
+  font-style: italic;
+  opacity: 0.8;
+}
+
+.ui-chip-wrap {
+  display: inline-flex;
+  align-items: center;
+  flex: 0 0 auto;
+}
+
+.ui-chip.has-x {
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+  border-right: 0;
+}
+
+.ui-chip-x {
+  padding: 0 8px 0 4px;
+  border-color: var(--indigo-line);
+  border-left: 0;
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+  background: var(--indigo-wash);
+  color: var(--indigo);
+}
+
+/* ---------- 按鈕 ---------- */
+.ui-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  min-height: var(--tap);
+  padding: 0 18px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: var(--paper);
+  color: var(--ink);
+  font: inherit;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.ui-btn-sm {
+  min-height: 36px;
+  padding: 0 14px;
+  font-size: 0.9rem;
+}
+
+.ui-btn-primary {
+  background: var(--ink);
+  border-color: var(--ink);
+  color: var(--paper);
+}
+
+.ui-btn-icon {
+  width: var(--tap);
+  padding: 0;
+  color: var(--ink-2);
+}
+
+.ui-btn:disabled {
+  opacity: 0.45;
+  cursor: default;
+}
+
+/* ---------- 想去的愛心 ---------- */
+.ui-heart {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  min-width: var(--tap);
+  min-height: var(--tap);
+  color: var(--ink-3);
+  cursor: pointer;
+}
+
+/* sm 只是圖示小一點；點的範圍一樣 44px */
+.ui-heart-sm {
+  gap: 2px;
+}
+
+.ui-heart.on {
+  color: var(--love);
+}
+
+.ui-heart-count {
+  font-family: var(--font-num);
+  font-style: italic;
+  font-size: 0.95rem;
+  color: var(--ink-2);
+}
+
+/* ---------- 類型 ---------- */
+.ui-type {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.8rem;
+  color: var(--ink-2);
+}
+
+.ui-type-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  flex: 0 0 auto;
+}
+
+.ui-type.on-photo {
+  padding: 3px 10px;
+  border-radius: 999px;
+  background: var(--veil);
+  color: var(--ink);
+}
+
+/* ---------- 等級 ---------- */
+.ui-tier {
+  display: inline-grid;
+  place-items: center;
+  min-width: 1.5em;
+  height: 1.5em;
+  padding: 0 0.25em;
+  border: 1px solid var(--ink-4);
+  border-radius: 6px;
+  font-family: var(--font-num);
+  font-style: italic;
+  font-weight: 600;
+  font-size: 0.9rem;
+  line-height: 1;
+  color: var(--ink);
+  margin-right: 6px;
+  vertical-align: 0.1em;
+}
+
+.ui-tier-S {
+  color: var(--indigo);
+  border-color: var(--indigo);
+}
+
+/* ---------- 12 天日期格 ---------- */
+.ui-dg {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 6px;
+}
+
+.ui-dg-cell {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: var(--tap);
+  padding: 6px 4px;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  background: var(--paper);
+  color: var(--ink);
+  font: inherit;
+  cursor: pointer;
+}
+
+.ui-dg-date {
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+}
+
+.ui-dg-wd {
+  font-size: 0.8rem;
+  color: var(--ink-3);
+}
+
+.ui-dg-cell.red-day,
+.ui-dg-cell.red-day .ui-dg-wd {
+  color: var(--red-day);
+}
+
+.ui-dg-cell.picked {
+  background: var(--ink);
+  border-color: var(--ink);
+  color: var(--paper);
+}
+
+.ui-dg-cell.picked .ui-dg-wd,
+.ui-dg-cell.picked.red-day,
+.ui-dg-cell.picked.red-day .ui-dg-wd {
+  color: var(--paper);
+}
+
+.ui-dg-cell.scheduled,
+.ui-dg-cell.current {
+  background: var(--wash);
+  color: var(--ink-3);
+  cursor: default;
+}
+
+.ui-dg-cell.scheduled {
+  border-color: var(--good);
+}
+
+.ui-dg-cell.scheduled .ui-dg-wd {
+  color: var(--good);
+}
+
+.ui-dg-cell.current.red-day,
+.ui-dg-cell.scheduled.red-day {
+  color: var(--ink-3);
+}
+
+.day-picker-count {
+  margin-right: auto;
+}
+
+/* ---------- 圖示配字（第七輪把 emoji 換成線條圖示後，圖示和字並排） ---------- */
+.action-menu button {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.m-action > svg {
+  flex: 0 0 auto;
+}
+
+.m-action .m-ellipsis {
+  flex: 1;
+  text-align: left;
+}
+
+.ic-text {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.chev {
+  display: inline-flex;
+  transform: rotate(90deg);
+}
+
+.chev.up {
+  transform: rotate(-90deg);
+}
+
+.ic-text > svg {
+  flex: 0 0 auto;
+}
+
+/* 詳情的首張照片：類型標在左上角、張數在右下角 */
+.detail-hero .ui-type {
+  position: absolute;
+  left: 8px;
+  top: 8px;
+}
+
+.hero-more {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.ex-tags .ui-type {
+  box-shadow: 0 1px 4px var(--shade-2);
+}
+
+/* 照片右上角的愛心 */
+.ex-photo > .ui-heart {
+  position: absolute;
+  right: 6px;
+  top: 6px;
+  z-index: 2;
+  background: var(--veil);
+  border-radius: 999px;
+}
+
+/* 手機圖片牆右下角的愛心：白色圓底比點的範圍小一圈 */
+.m-votes .ui-heart {
+  position: relative;
+  isolation: isolate;
+}
+
+.m-votes .ui-heart::before {
+  content: '';
+  position: absolute;
+  inset: 6px 2px;
+  z-index: -1;
+  border-radius: 999px;
+  background: var(--veil);
+  box-shadow: 0 1px 3px var(--shade-2);
+}

@@ -1,6 +1,6 @@
 // 手機版編輯中的「⋯」底部動作面板（第六輪 §2.3、§3.5）：mobileStore.actions 有值就畫，蓋在行程頁最上面（一次只有一層，§3.0）。
 // 上方是暗的（m-sheet-dim），點暗處或把面板往下拉就關。最上面一列是這張卡的縮圖和名稱，下面每個動作一列（至少 44px，testid m-action-{id}），
-// 動作照 cardActionRun.ts 的 menuItems（順序是 shared/cardActions.ts，surface 'mobile' 多一個 ⏱ 改停留時間；和網頁版的 ⋯ 選單同一份），組與組之間一條分隔線；「👥 移到{組名}」每組一列。
+// 動作照 cardActionRun.ts 的 menuItems（順序是 shared/cardActions.ts，surface 'mobile' 多一個「改停留時間」；和網頁版的 ⋯ 選單同一份），組與組之間一條分隔線；「移到{組名}」每組一列。
 // 點了交給 runCardAction（components/cardActionRun.ts）；要開子畫面的（標籤、移到第幾天、這晚的方案、改停留時間）在同一個面板裡換內容，
 // 左上角「‹」回到動作清單。改停留時間是 −／＋（一次 15 分，最少 15 分，照網頁版），旁邊寫現在的停留時間。
 
@@ -10,8 +10,9 @@ import { shared } from '../appShared.ts';
 import { useData, usePlan, useShared } from '../hooks.ts';
 import { dayPlanOf } from '../planStore.ts';
 import { cardTime, formatStay } from '../lib/planView.ts';
-import { ACTION_LABELS, type ActionId } from '../shared/cardActions.ts';
+import { ACTION_ICONS, ACTION_LABELS, type ActionId } from '../shared/cardActions.ts';
 import { menuItems, runCardAction, type ActionTarget } from '../components/cardActionRun.ts';
+import { Icon, type IconName } from '../components/Icon.tsx';
 import { Thumb } from './Thumb.tsx';
 import { mobileStore, useMobile, type ActionSheetSpec, type ActionView } from './mobileStore.ts';
 import { TagSheet, LodgingPlanSheet } from './TagSheet.tsx';
@@ -34,13 +35,16 @@ const STAY_STEP = 15;
 
 /** 子畫面的標題 */
 const VIEW_TITLES: Record<Exclude<ActionView, 'list'>, string> = {
-  tags: '🏷 標籤',
-  move: '📅 移到第幾天',
-  'lodging-plan': '🛏 這晚的方案',
-  stay: '⏱ 改停留時間',
+  tags: ACTION_LABELS.tags,
+  move: '移到第幾天',
+  'lodging-plan': ACTION_LABELS['lodging-plan'],
+  stay: ACTION_LABELS.stay,
 };
 
-/** 子畫面的標題：自由時間的長度是「⏱ 改時間長度」（ACTION_LABELS），不是改停留時間 */
+/** 子畫面標題前面的圖示 */
+const VIEW_ICONS: Record<Exclude<ActionView, 'list'>, IconName> = { tags: 'tag', move: 'calendar-move', 'lodging-plan': 'bed', stay: 'clock' };
+
+/** 子畫面的標題：自由時間的長度是「改時間長度」（ACTION_LABELS），不是改停留時間 */
 const viewTitle = (view: Exclude<ActionView, 'list'>, spec: ActionSheetSpec) => (view === 'stay' && spec.ctx.kind === 'free' ? ACTION_LABELS['free-length'] : VIEW_TITLES[view]);
 
 const close = () => mobileStore.getState().closeActions();
@@ -115,6 +119,7 @@ function ActionList({ spec, onView }: { spec: ActionSheetSpec; onView: (v: Exclu
               data-testid={`m-action-${m.id}`}
               {...(m.group ? { 'data-group': m.group } : {})}
             >
+              <Icon name={ACTION_ICONS[m.id]} size={20} />
               <span className="m-ellipsis">{m.text}</span>
               {(m.id === 'stay' || m.id === 'free-length') && stay != null && <small className="m-action-note">{formatStay(stay)}</small>}
             </button>
@@ -179,8 +184,9 @@ function Sheet({ spec }: { spec: ActionSheetSpec }) {
         ) : (
           <div className="m-asheet-head" data-testid="m-action-head">
             <button type="button" className="m-back" aria-label="回到動作清單" onClick={() => setView('list')} data-testid="m-sheet-back">
-              ‹
+              <Icon name="back" size={20} />
             </button>
+            <Icon name={VIEW_ICONS[view]} size={20} />
             <strong className="m-ellipsis">{viewTitle(view, spec)}</strong>
             <span className="m-asheet-sub muted small m-ellipsis">{spec.name}</span>
           </div>

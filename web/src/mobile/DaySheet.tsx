@@ -11,6 +11,7 @@
 import { Fragment, useEffect, useRef, useState, type PointerEvent as ReactPointerEvent } from 'react';
 import type { EngineWarning, TimelineEntry, VisitItem } from '@travel-helper/engine';
 import { useApp, useData, useShared, useUi } from '../hooks.ts';
+import { Icon } from '../components/Icon.tsx';
 import { openDialog } from '../uiStore.ts';
 import { cardTime, findItemRef, formatStay, shownWarnings, type TimelineRow } from '../lib/planView.ts';
 import { dayLabel, isRedDay, tripDates } from '../lib/trip.ts';
@@ -166,7 +167,9 @@ function EntryRows({ entry, ctx }: { entry: TimelineEntry; ctx: RowCtx }) {
       <>
         <li className="m-split" data-testid="m-split">
           <div className="m-split-head">
-            <span>👥 分組行動</span>
+            <span className="ic-text">
+              <Icon name="users" size={16} /> 分組行動
+            </span>
             {planning && split && (
               <button
                 type="button"
@@ -199,7 +202,7 @@ function EntryRows({ entry, ctx }: { entry: TimelineEntry; ctx: RowCtx }) {
             );
           })}
         </li>
-        <MobileCard itemKey={key} place={p} mark={mark} time={{ text: entry.start }} name={`🤝 會合：${p ? nameOf(p) : '（未定）'}`} focused={focused === key} />
+        <MobileCard itemKey={key} place={p} mark={mark} time={{ text: entry.start }} name={`會合：${p ? nameOf(p) : '（未定）'}`} focused={focused === key} />
       </>
     );
   }
@@ -284,7 +287,7 @@ function GapRow({ row }: { row: Extract<TimelineRow, { kind: 'gap' }> }) {
   if (row.gap.kind === 'idle') return null;
   return (
     <li className="m-gap" data-testid="tl-gap">
-      🏨 {row.gap.label}
+      <Icon name="bed" size={16} /> {row.gap.label}
     </li>
   );
 }
@@ -305,13 +308,13 @@ function DayView({ date }: { date: string }) {
         <h2 className={`m-dayhead-title ${isRedDay(date) ? 'red-day' : ''}`} data-testid="m-trip-title">
           {dayLabel(date)}第 {DATES.indexOf(date) + 1} 天
         </h2>
-        {/* ✨ 半屏聊天（ChatSheet） */}
+        {/* 半屏聊天（ChatSheet） */}
         <button type="button" className="m-icon-button" aria-label="問 AI 這天" onClick={() => mobileStore.getState().openChatSheet()} data-testid="m-trip-ai">
-          ✨
+          <Icon name="spark" size={20} />
         </button>
         {!planning && (
           <button type="button" className="m-edit-button" onClick={() => openDialog({ kind: 'planning' })} data-testid="m-trip-edit">
-            ✏️ 編輯
+            <Icon name="pen" size={16} /> 編輯
           </button>
         )}
       </div>
@@ -344,7 +347,7 @@ function DayView({ date }: { date: string }) {
       )}
       {itDay && plan && itDay.items.length === 0 && (
         <p className="muted small m-trip-empty" data-testid="m-trip-empty">
-          這天還沒排。到 ❤️ 想去把想去的點加到這天。
+          這天還沒排。到「想去」把想去的點加到這天。
         </p>
       )}
       {itDay && <Candidates tl={tl} focused={focused} byId={byId} />}
@@ -381,11 +384,11 @@ function Candidates({ tl, focused, byId }: { tl: DayTimeline; focused: string | 
   );
 }
 
-/** 編輯中最上面的藍條（網頁版第五輪的 PlanningBar：「✏️ 編輯 2/3（三）」加「完成」）和別人改過了的提示 */
+/** 編輯中最上面的藍條（網頁版第五輪的 PlanningBar：「編輯 2/3（三）」加「完成」）和別人改過了的提示 */
 function EditBar({ day }: { day: string }) {
   return (
     <div className="m-edit-top">
-      <PlanningBar title={day === 'all' ? '✏️ 編輯中' : `✏️ 編輯 ${dayLabel(day)}`} className="m-edit-bar" compact />
+      <PlanningBar title={day === 'all' ? '編輯中' : `編輯 ${dayLabel(day)}`} className="m-edit-bar" compact />
       <ConflictBar />
     </div>
   );

@@ -2,18 +2,19 @@
 
 import { appStore } from '../store.ts';
 import { useApp } from '../hooks.ts';
+import { Icon } from './Icon.tsx';
 
 export function SearchBox() {
   const query = useApp((s) => s.query);
   return (
     <div className="search-box">
       <span className="search-icon" aria-hidden>
-        🔍
+        <Icon name="search" size={20} />
       </span>
       <input type="search" value={query} placeholder="搜尋名稱（中文、日文、英文）" aria-label="搜尋名稱" onChange={(e) => appStore.getState().setQuery(e.target.value)} data-testid="search" />
       {query && (
         <button type="button" className="search-clear" aria-label="清除搜尋" onClick={() => appStore.getState().setQuery('')}>
-          ✕
+          <Icon name="close" size={16} />
         </button>
       )}
     </div>

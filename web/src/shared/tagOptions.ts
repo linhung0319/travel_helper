@@ -2,6 +2,7 @@
 // 標籤 id 來自引擎的 TAG_IDS；這裡只決定怎麼分組、哪組互斥、哪種卡片有哪些組。
 
 import type { LodgingMeals, TagId } from '@travel-helper/engine';
+import type { IconName } from '../lib/icons.ts';
 
 /** visit 的地點類型。住宿、航班、自由時間不用這個檔 */
 export type TagCardKind = 'spot' | 'restaurant' | 'station' | 'custom';
@@ -9,7 +10,7 @@ export type TagCardKind = 'spot' | 'restaurant' | 'station' | 'custom';
 export interface TagGroup {
   id: 'meal' | 'who' | 'plan';
   title: string;
-  icon: string;
+  icon: IconName;
   tags: TagId[];
   /** 同組只能選一個 */
   exclusive: boolean;
@@ -18,9 +19,9 @@ export interface TagGroup {
 }
 
 export const TAG_GROUPS: TagGroup[] = [
-  { id: 'meal', title: '用餐', icon: '🍴', tags: ['breakfast', 'lunch', 'dinner', 'snack'], exclusive: false, bg: '#fff1e0', fg: '#a14a00' },
-  { id: 'who', title: '誰去', icon: '👥', tags: ['all', 'groups'], exclusive: true, bg: '#e3efff', fg: '#174ea6' },
-  { id: 'plan', title: '安排', icon: '📌', tags: ['must', 'skippable', 'rainplan', 'rest'], exclusive: false, bg: '#eceff1', fg: '#37474f' },
+  { id: 'meal', title: '用餐', icon: 'fork', tags: ['breakfast', 'lunch', 'dinner', 'snack'], exclusive: false, bg: '#fff1e0', fg: '#a14a00' },
+  { id: 'who', title: '誰去', icon: 'users', tags: ['all', 'groups'], exclusive: true, bg: '#e3efff', fg: '#174ea6' },
+  { id: 'plan', title: '安排', icon: 'pin', tags: ['must', 'skippable', 'rainplan', 'rest'], exclusive: false, bg: '#eceff1', fg: '#37474f' },
 ];
 
 export const TAG_LABELS: Record<TagId, string> = {

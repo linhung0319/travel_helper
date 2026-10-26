@@ -1,5 +1,5 @@
-// 手機探索上方的搜尋和篩選（第六輪 §3.2）：搜尋框、類型晶片（全部、景點、餐廳、住宿）、地區 ▾、⚙ 篩選、快速篩選晶片、排序 ▾。
-// 狀態放在 mobileStore 的 feed（手機自己一份，不看地圖範圍、不動地圖的篩選）。⚙ 篩選是底部面板（portal 到 body，蓋過底部分頁），條件照 FilterPanel（情境、團體、投票、分級，選了地區再加小區域）。
+// 手機探索上方的搜尋和篩選（第六輪 §3.2）：搜尋框、類型晶片（全部、景點、餐廳、住宿）、地區、篩選、快速篩選晶片、排序。
+// 狀態放在 mobileStore 的 feed（手機自己一份，不看地圖範圍、不動地圖的篩選）。篩選是底部面板（portal 到 body，蓋過底部分頁），條件照 FilterPanel（情境、團體、投票、分級，選了地區再加小區域）。
 // 往下滑時 ExploreFeed 改畫一行的摘要（FeedSummary），點了捲回最上面。
 
 import { useState } from 'react';
@@ -9,22 +9,14 @@ import { displayName } from '../data/normalize.ts';
 import { CONTEXTS, TIERS, type Area } from '../data/types.ts';
 import { CONTEXT_LABELS, FIT15_LABELS, TYPE_LABELS, VOTE_FILTER_LABELS, VOTE_FILTER_VALUES } from '../lib/filter.ts';
 import { EXPLORE_SORTS, EXPLORE_SORT_LABELS, FEED_QUICK, feedToken, type ExploreSort, type Feed } from '../lib/explore.ts';
-import { TYPE_ICONS } from '../lib/typeStyle.ts';
+import { Chip } from '../shared/ui/Chip.tsx';
+import { Icon } from '../components/Icon.tsx';
 import { mobileStore, useMobile } from './mobileStore.ts';
 
 const TYPE_CHIPS: { type: Feed['type']; label: string }[] = [
   { type: 'all', label: '全部' },
-  ...(['spot', 'restaurant', 'lodging'] as const).map((t) => ({ type: t, label: `${TYPE_ICONS[t]} ${TYPE_LABELS[t]}` })),
+  ...(['spot', 'restaurant', 'lodging'] as const).map((t) => ({ type: t, label: TYPE_LABELS[t] })),
 ];
-
-/** 晶片按鈕 */
-function Chip({ on, onClick, testId, children }: { on: boolean; onClick(): void; testId?: string; children: React.ReactNode }) {
-  return (
-    <button type="button" className={`m-chip ${on ? 'on' : ''}`} aria-pressed={on} onClick={onClick} data-testid={testId}>
-      {children}
-    </button>
-  );
-}
 
 /** 篩選摘要的字（收成一行時、底部面板的標題用）：類型・地區・條件・「搜尋字」 */
 export function useFeedSummary(): string {
@@ -35,7 +27,7 @@ export function useFeedSummary(): string {
   return [feed.type === 'all' ? '全部' : TYPE_LABELS[feed.type], area ? displayName(area.name, area.id) : '全部地區', ...quick, ...(feed.query.trim() ? [`「${feed.query.trim()}」`] : [])].join('・');
 }
 
-/** ⚙ 篩選裡條件的名稱 */
+/** 篩選裡條件的名稱 */
 function tokenLabel(token: string, areas: Area[]): string {
   const [key, value] = [token.slice(0, token.indexOf(':')), token.slice(token.indexOf(':') + 1)];
   if (key === 'contexts') return CONTEXT_LABELS[value as keyof typeof CONTEXT_LABELS] ?? value;
@@ -49,7 +41,7 @@ function tokenLabel(token: string, areas: Area[]): string {
   return value;
 }
 
-/** ⚙ 篩選的底部面板：一組一排晶片，點了馬上套用；「完成」關掉 */
+/** 篩選的底部面板：一組一排晶片，點了馬上套用；「完成」關掉 */
 function FeedSheet({ onClose }: { onClose(): void }) {
   const feed = useMobile((s) => s.feed);
   const areas = useData((s) => s.areas);
@@ -99,12 +91,12 @@ export function FeedFilters() {
   const areas = useData((s) => s.areas);
   const [sheet, setSheet] = useState(false);
   const { setFeed, toggleFeedQuick } = mobileStore.getState();
-  // ⚙ 的 ●：選了快速晶片以外的條件
+  // 篩選的 ●：選了快速晶片以外的條件
   const extra = feed.quick.some((t) => !FEED_QUICK.some((q) => q.token === t));
   return (
     <div className="m-feed-filters" data-testid="m-feed-filters">
       <label className="m-search">
-        <span aria-hidden>🔍</span>
+        <Icon name="search" size={20} />
         <input type="search" value={feed.query} placeholder="搜尋景點、餐廳、住宿" aria-label="搜尋名稱" onChange={(e) => setFeed({ query: e.target.value })} data-testid="m-feed-search" />
       </label>
       <div className="m-chips">
@@ -131,7 +123,7 @@ export function FeedFilters() {
           ))}
         </select>
         <Chip on={sheet} onClick={() => setSheet(true)} testId="m-feed-more">
-          ⚙ 篩選{extra ? ' ●' : ''}
+          <Icon name="sliders" size={16} /> 篩選{extra ? ' ●' : ''}
         </Chip>
         <select className="m-chip m-select" value={feed.sort} aria-label="排序" onChange={(e) => setFeed({ sort: e.target.value as ExploreSort })} data-testid="m-feed-sort">
           {EXPLORE_SORTS.map((s) => (

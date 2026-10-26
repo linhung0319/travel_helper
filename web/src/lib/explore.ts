@@ -12,7 +12,7 @@ export type ExploreType = (typeof EXPLORE_TYPES)[number];
 
 export const EXPLORE_SORTS = ['recommend', 'rating', 'likes'] as const;
 export type ExploreSort = (typeof EXPLORE_SORTS)[number];
-export const EXPLORE_SORT_LABELS: Record<ExploreSort, string> = { recommend: '推薦', rating: '評分', likes: '❤️ 多' };
+export const EXPLORE_SORT_LABELS: Record<ExploreSort, string> = { recommend: '推薦', rating: '評分', likes: '想去多' };
 
 const WORLD: Bbox = [-180, -90, 180, 90];
 
@@ -68,8 +68,8 @@ export const feedToken = (key: FilterKey, value: string) => `${key}:${value}`;
  * 設計提的「👴 長輩可」「☔ 室內」篩選裡沒有對應的欄位，先不做；另外放網頁版常用的 ❤️ 大家喜歡的、S 級。
  */
 export const FEED_QUICK: { token: string; label: string }[] = [
-  { token: feedToken('fit15', 'yes'), label: '👥 15 人' },
-  { token: feedToken('votes', 'popular'), label: '❤️ 大家喜歡的' },
+  { token: feedToken('fit15', 'yes'), label: '15 人' },
+  { token: feedToken('votes', 'popular'), label: '大家想去的' },
   { token: feedToken('tiers', 'S'), label: 'S 級' },
 ];
 

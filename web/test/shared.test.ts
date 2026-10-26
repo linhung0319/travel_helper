@@ -3,7 +3,8 @@ import assert from 'node:assert/strict';
 import { tagGroupsFor, toggleLodgingPlan, toggleTag } from '../src/shared/tagOptions.ts';
 import { cardActions } from '../src/shared/cardActions.ts';
 import { askAiPrompts } from '../src/shared/askAiPrompts.ts';
-import { dayLabel, isRedDay } from '../src/lib/trip.ts';
+import { dayLabel, isRedDay, tripDates } from '../src/lib/trip.ts';
+import { dayGridCells } from '../src/shared/dayGrid.ts';
 import { placePopover } from '../src/lib/popover.ts';
 
 test('toggleTag：全員、分組互斥', () => {
@@ -53,4 +54,14 @@ test('placePopover：預設在下面、左緣對齊', () => {
 });
 test('placePopover：比視窗還大時夾在離邊緣 8px 的地方', () => {
   assert.deepEqual(placePopover({ left: 2, top: 2, right: 20, bottom: 20, width: 18, height: 18 }, { w: 300, h: 900 }, { w: 400, h: 800 }), { left: 8, top: 8 });
+});
+
+test('dayGridCells：已排不能取消、現在灰掉、週末紅字', () => {
+  const c = dayGridCells(tripDates(), { picked: ['2027-02-06'], scheduled: ['2027-02-05'], current: '2027-02-02' });
+  assert.equal(c.length, 12);
+  assert.equal(c.find((x) => x.date === '2027-02-05')!.state, 'scheduled');
+  assert.equal(c.find((x) => x.date === '2027-02-02')!.state, 'current');
+  assert.equal(c.find((x) => x.date === '2027-02-06')!.state, 'picked');
+  assert.deepEqual(c.filter((x) => x.red).map((x) => x.date), ['2027-02-06', '2027-02-07', '2027-02-11', '2027-02-13']);
+  assert.equal(c[0].label, '2/2'); assert.equal(c[0].weekday, '二');
 });

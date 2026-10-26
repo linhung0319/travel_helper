@@ -6,6 +6,7 @@ import { TRIP_TARGET } from '../backend/types.ts';
 import { noteRows } from '../lib/reservations.ts';
 import { exportJson } from '../shared/exportJson.ts';
 import { MeMenu } from '../components/MeMenu.tsx';
+import { Icon } from '../components/Icon.tsx';
 import { Comments } from '../components/Wishlist.tsx';
 import { useCommentCount } from '../shared/placeLists.ts';
 import { ReservationNotes } from '../components/Reservations.tsx';
@@ -36,31 +37,31 @@ export function MePage() {
         <li>
           <button type="button" className="m-row" onClick={() => open('comments')} data-testid="m-me-comments">
             <span className="m-row-icon" aria-hidden>
-              💬
+              <Icon name="chat" size={20} />
             </span>
             <span className="m-row-text">討論（整趟的留言）</span>
             {comments > 0 && <span className="m-count">{comments}</span>}
             <span className="m-row-more" aria-hidden>
-              ›
+              <Icon name="chevron" size={20} />
             </span>
           </button>
         </li>
         <li>
           <button type="button" className="m-row" onClick={() => open('reservations')} data-testid="m-me-reservations">
             <span className="m-row-icon" aria-hidden>
-              📋
+              <Icon name="clipboard" size={20} />
             </span>
             <span className="m-row-text">預約</span>
             {pending > 0 && <span className="m-count warn">{pending} 未訂</span>}
             <span className="m-row-more" aria-hidden>
-              ›
+              <Icon name="chevron" size={20} />
             </span>
           </button>
         </li>
         <li>
           <button type="button" className="m-row" disabled={!itinerary} onClick={exportJson} data-testid="m-me-export">
             <span className="m-row-icon" aria-hidden>
-              ⬇
+              <Icon name="download" size={20} />
             </span>
             <span className="m-row-text">下載行程 JSON</span>
           </button>

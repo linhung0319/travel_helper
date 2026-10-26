@@ -8,7 +8,8 @@ import { shared } from '../appShared.ts';
 import { backend } from '../backend/index.ts';
 import { useApp, useData, useShared, useUi } from '../hooks.ts';
 import { closeDialog, openDialog, uiStore } from '../uiStore.ts';
-import { DayGrid } from './DayGrid.tsx';
+import { DayGrid12 } from '../shared/ui/DayGrid12.tsx';
+import { Icon } from './Icon.tsx';
 import { dayLabel, isRedDay, shortDayLabel, tripDates } from '../lib/trip.ts';
 import { findItemRef, itemsWithPlace } from '../lib/planView.ts';
 import { stopsOn } from '../lib/itinerary.ts';
@@ -20,13 +21,13 @@ import { moveCandidateToDay, moveItemToDayAction } from './cardActionRun.ts';
 
 const DATES = tripDates();
 
-/** 日期列上的藍色實心按鈕「✏️ 編輯這天」：點了先確認；編輯中不顯示（離開用藍條的「完成」） */
+/** 日期列上的實心按鈕「編輯」：點了先確認；編輯中不顯示（離開用藍條的「完成」） */
 export function PlanningToggle() {
   const planning = useApp((s) => s.planning);
   if (planning) return null;
   return (
     <button type="button" className="edit-toggle" data-testid="planning-toggle" onClick={() => openDialog({ kind: 'planning' })}>
-      ✏️ 編輯這天
+      <Icon name="pen" size={16} /> 編輯
     </button>
   );
 }
@@ -87,7 +88,9 @@ export function EditingStrip() {
   if (!show) return null;
   return (
     <div className="planning-bar planning-strip" data-testid="planning-strip">
-      <strong>✏️ 編輯中</strong>
+      <strong className="ic-text">
+        <Icon name="pen" size={16} /> 編輯中
+      </strong>
       <span className="planning-bar-actions">
         <button type="button" className="planning-done" data-testid="planning-strip-done" onClick={() => appStore.getState().setPlanning(false)}>
           完成
@@ -99,7 +102,7 @@ export function EditingStrip() {
 
 /**
  * 編輯中，時間軸面板最上面的藍條：說明、儲存狀態、快照、完成（白底）。
- * 手機版（第六輪 §3.5）傳 title（「✏️ 編輯 2/3（三）」）、className、compact（只留標題和完成）
+ * 手機版（第六輪 §3.5）傳 title（「編輯 2/3（三）」）、className、compact（只留標題和完成）
  */
 export function PlanningBar({ title, className = '', compact = false }: { title?: string; className?: string; compact?: boolean } = {}) {
   const planning = useApp((s) => s.planning);
@@ -118,12 +121,14 @@ export function PlanningBar({ title, className = '', compact = false }: { title?
   if (!planning) return null;
   return (
     <div className={`planning-bar ${className}`} data-testid="planning-bar" ref={watch}>
-      <strong>{title ?? '✏️ 編輯中・改了會自動存，大家都看得到'}</strong>
+      <strong className="ic-text">
+        <Icon name="pen" size={16} /> {title ?? '編輯中・改了會自動存，大家都看得到'}
+      </strong>
       {!compact && <span className="planning-bar-status">{saving ? '儲存中…' : `第 ${version} 版`}</span>}
       <span className="planning-bar-actions">
         {!compact && (
           <button type="button" className="text-button" onClick={() => openDialog({ kind: 'snapshots' })} data-testid="snapshots-button">
-            🕘 快照
+            <Icon name="history" size={16} /> 快照
           </button>
         )}
         <button type="button" className="planning-done" data-testid="planning-done" onClick={() => appStore.getState().setPlanning(false)}>
@@ -179,7 +184,9 @@ export function ConflictBar() {
   if (!conflict) return null;
   return (
     <div className="conflict-bar" role="alert" data-testid="conflict-bar">
-      <span>⚠️ 別人剛改過行程，你這次的修改沒有存。重新載入最新的行程後再改。</span>
+      <span className="ic-text">
+        <Icon name="warn" size={16} /> 別人剛改過行程，你這次的修改沒有存。重新載入最新的行程後再改。
+      </span>
       <button
         type="button"
         className="button primary"
@@ -261,7 +268,7 @@ export function SnapshotsDialog() {
                 </button>
                 {planning && confirm !== s.id && (
                   <button type="button" className="text-button" onClick={() => setConfirm(s.id)} data-testid="snapshot-restore">
-                    ↩︎ 復原到這一版
+                    <Icon name="undo" size={16} /> 復原到這一版
                   </button>
                 )}
                 {planning && confirm === s.id && (
@@ -390,7 +397,7 @@ export function MoveDialog({ itemId }: { itemId: string }) {
           {ref.split ? `・${ref.split.groupName}，移過去會變成全員一起` : ''}）
         </p>
       )}
-      <DayGrid current={ref.date} disabled={busy} onPick={(d) => void move(d)} />
+      <DayGrid12 mode="single" picked={[]} current={ref.date} disabled={busy} onChange={([d]) => void move(d)} />
       <p className="muted small">放在那天的最後，順序可以再調。</p>
     </Dialog>
   );
@@ -412,7 +419,7 @@ export function MoveCandidateDialog({ candidateId }: { candidateId: number }) {
       <p>
         <PlaceChip id={c.placeId} />（現在是 {shortDayLabel(c.day)} 的候選）
       </p>
-      <DayGrid current={c.day} disabled={busy} onPick={(d) => void move(d)} />
+      <DayGrid12 mode="single" picked={[]} current={c.day} disabled={busy} onChange={([d]) => void move(d)} />
       <p className="muted small">變成那天的候選。</p>
     </Dialog>
   );

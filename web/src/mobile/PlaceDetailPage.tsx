@@ -17,7 +17,8 @@ import { TYPE_COLORS } from '../lib/typeStyle.ts';
 import type { Place } from '../data/types.ts';
 import type { VoteValue } from '../backend/types.ts';
 import { Photo } from '../components/Photo.tsx';
-import { TierBadge } from '../components/TierBadge.tsx';
+import { TierMark } from '../shared/ui/TierMark.tsx';
+import { Icon } from '../components/Icon.tsx';
 import { AddToDay } from '../components/DayPicker.tsx';
 import { castVote } from '../components/Votes.tsx';
 import { Comments } from '../components/Wishlist.tsx';
@@ -99,7 +100,9 @@ function MiniMap({ place }: { place: Place }) {
     <div className="m-minimap">
       <div ref={ref} className="m-minimap-map" aria-hidden />
       <button type="button" className="m-minimap-hit" onClick={toTrip} data-testid="m-detail-minimap" aria-label="在行程的地圖上看">
-        <span className="m-minimap-label">🗺 在行程的地圖上看 ›</span>
+        <span className="m-minimap-label ic-text">
+          <Icon name="map" size={16} /> 在行程的地圖上看 <Icon name="chevron" size={16} />
+        </span>
       </button>
     </div>
   );
@@ -155,17 +158,17 @@ function TransportTab({ place }: { place: Place }) {
   );
 }
 
-/** 名稱下面的大按鈕：❤️ 想去 N、👎 N；從想去打開多一個「📅 加到某天」 */
+/** 名稱下面的大按鈕：想去 N、不想去 N；從想去打開多一個「加到某天」 */
 function BigVotes({ place, fromWish }: { place: Place; fromWish: boolean }) {
   const { like, dislike, mine } = useVoteIndex()(place.id);
   const toggle = (value: VoteValue) => void castVote(place.id, mine === value ? null : value);
   return (
     <div className="m-detail-votes">
       <button type="button" className={`m-big-vote ${mine === 'like' ? 'on' : ''}`} aria-pressed={mine === 'like'} onClick={() => toggle('like')} data-testid="m-detail-like">
-        {mine === 'like' ? '❤️' : '🤍'} 想去 {like}
+        <Icon name="heart" size={20} filled={mine === 'like'} /> 想去 {like}
       </button>
       <button type="button" className={`m-big-vote ${mine === 'dislike' ? 'on' : ''}`} aria-pressed={mine === 'dislike'} onClick={() => toggle('dislike')} data-testid="m-detail-dislike">
-        👎 {dislike}
+        <Icon name="thumb-down" size={20} filled={mine === 'dislike'} /> {dislike}
       </button>
       {fromWish && (
         <span className="m-detail-add" data-testid="m-detail-add">
@@ -203,7 +206,7 @@ function DetailContent({ place, from }: { place: Place; from: MobileTab }) {
           <h2 className="m-h2 m-ellipsis" data-testid="m-detail-name">
             {name}
           </h2>
-          <TierBadge tier={place.tier} />
+          <TierMark tier={place.tier} />
         </div>
         {sub && <p className="m-detail-sub muted small">{sub}</p>}
         <BigVotes place={place} fromWish={from === 'wish'} />

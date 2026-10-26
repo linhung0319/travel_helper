@@ -17,6 +17,7 @@ import { useComments, useLiked } from '../shared/placeLists.ts';
 import { shortDayLabel } from '../lib/trip.ts';
 import { Avatar, AvatarStack, Dialog, MemberName, stamp } from './common.tsx';
 import { addPlaceToDay } from './addToDay.ts';
+import { Icon } from './Icon.tsx';
 import { AddToDay } from './DayPicker.tsx';
 import { dragSourceProps, dropOnCandidatesProps, useLongPressDrag } from './planDrag.ts';
 import type { DragSource } from '../lib/dropIntent.ts';
@@ -41,7 +42,9 @@ export function Comments({ target, label = '留言', placeholder = '留言…', 
   return (
     <div className="wish-comments">
       <button type="button" className="text-button small" aria-expanded={open} onClick={() => setOpen(!open)} data-testid="wish-comments">
-        💬 {list.length ? `${list.length} 則${label}` : label} {open ? '▴' : '▾'}
+        <Icon name="chat" size={16} /> {list.length ? `${list.length} 則${label}` : label} <span className={`chev ${open ? 'up' : ''}`}>
+          <Icon name="chevron" size={16} />
+        </span>
       </button>
       {open && (
         <div className="wish-comment-list">

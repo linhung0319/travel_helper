@@ -315,6 +315,12 @@
   cursor: pointer;
 }
 
+/* 共用的 Chip（shared/ui）在手機和下拉晶片一樣高 */
+.m-chips .ui-chip,
+.m-sheet-group .ui-chip {
+  min-height: var(--tap);
+}
+
 .m-chip.on {
   background-color: var(--fg);
   border-color: var(--fg);
@@ -592,51 +598,18 @@
   font-size: 0.92rem;
 }
 
-.m-feed-name .tier,
-.m-wish-name .tier {
-  margin-right: 4px;
-  font-size: 0.75rem;
-}
-
 .m-feed-meta {
   display: block;
   color: var(--muted);
   font-size: 0.78rem;
 }
 
-/* 圖片右下角的 🤍／❤️、👎：點的範圍 44px，白色圓底比點的範圍小 */
+/* 圖片右下角的想去愛心（VoteHeart）：點的範圍 44px */
 .m-votes {
   position: absolute;
   right: 2px;
   bottom: 2px;
   display: flex;
-}
-
-.m-vote {
-  min-width: var(--tap);
-  height: var(--tap);
-  padding: 0 4px;
-  border: 0;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 1px;
-  font-size: 1.05rem;
-  cursor: pointer;
-  background: none;
-  position: relative;
-  isolation: isolate;
-}
-
-/* 看得到的白色膠囊（包住數字），比點的範圍小一圈 */
-.m-vote::before {
-  content: '';
-  position: absolute;
-  inset: 6px 2px;
-  z-index: -1;
-  border-radius: 999px;
-  background: var(--veil);
-  box-shadow: 0 1px 3px var(--shade-2);
 }
 
 .m-vote-count {
@@ -810,15 +783,6 @@
   padding: 0 0 6px;
 }
 
-.m-wish-add .day-picker-grid {
-  max-width: none;
-  grid-template-columns: repeat(7, minmax(0, 1fr));
-}
-
-.m-wish-add .day-picker-day {
-  min-height: var(--tap);
-}
-
 /* ---------- 整頁詳情（§3.3） ---------- */
 
 /* 蓋住分頁內容，底部分頁留著（點了換分頁＝關掉詳情） */
@@ -990,17 +954,8 @@
   min-width: 0;
 }
 
-.m-detail-add .add-to-day > .button {
+.m-detail-add .add-to-day > .ui-btn {
   width: 100%;
-  min-height: var(--tap);
-}
-
-.m-detail-add .day-picker-grid {
-  max-width: none;
-  grid-template-columns: repeat(7, minmax(0, 1fr));
-}
-
-.m-detail-add .day-picker-day {
   min-height: var(--tap);
 }
 
@@ -2033,16 +1988,12 @@ body.dragging-plan .m-dropend {
 }
 
 /* 移到第幾天：網頁版的 4×3 格子，點的範圍 44px 以上 */
+.m-move-sheet .ui-dg-cell {
+  min-height: 52px;
+}
+
 .m-move-sheet {
   padding: 8px 16px;
-}
-
-.m-move-sheet .day-grid {
-  max-width: none;
-}
-
-.m-move-sheet .day-cell {
-  min-height: 52px;
 }
 
 /* 改停留時間：−／＋，中間是現在的停留時間 */

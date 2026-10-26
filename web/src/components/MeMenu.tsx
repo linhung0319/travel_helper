@@ -8,6 +8,7 @@ import { appStore } from '../store.ts';
 import { useShared, useUi } from '../hooks.ts';
 import { setIdleMinutes } from './Planning.tsx';
 import { initial } from './common.tsx';
+import { Icon } from './Icon.tsx';
 
 export function MeMenu() {
   const me = useShared((s) => s.me);
@@ -38,7 +39,7 @@ export function MeMenu() {
       </button>
       {import.meta.env.DEV && open && mock && (
         <div className="dev-menu" role="menu" data-testid="dev-menu">
-          <p className="dev-title">🧪 開發用（正式版是 LINE 登入）</p>
+          <p className="dev-title">開發用（正式版是 LINE 登入）</p>
           <p className="muted small">切換使用者</p>
           {members.map((m) => (
             <button key={m.id} type="button" role="menuitemradio" aria-checked={m.id === me.id} className={m.id === me.id ? 'on' : ''} onClick={() => void switchTo(m.id)} data-member={m.id}>
@@ -54,13 +55,13 @@ export function MeMenu() {
             }}
             data-testid="dev-other-edit"
           >
-            👥 假裝別人改了行程（下次存檔會「別人改過了」）
+            <Icon name="users" size={16} /> 假裝別人改了行程（下次存檔會「別人改過了」）
           </button>
           <button type="button" onClick={() => void reset('full')}>
-            ♻️ 重設假資料
+            <Icon name="undo" size={16} /> 重設假資料
           </button>
           <button type="button" onClick={() => void reset('flights-only')}>
-            ✈️ 重設成只有航班的行程
+            <Icon name="plane" size={16} /> 重設成只有航班的行程
           </button>
           <label className="small">
             編輯閒置

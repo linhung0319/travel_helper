@@ -6,6 +6,7 @@
 // 這天的 ✨ 打開的半屏聊天（ChatSheet，portal 到 body，蓋在分頁列上面）也掛在這裡。
 
 import { useEffect, useRef } from 'react';
+import { Icon } from '../components/Icon.tsx';
 import { appStore } from '../store.ts';
 import { commands } from '../appCommands.ts';
 import { useApp, useData, usePlan, useShared } from '../hooks.ts';
@@ -67,10 +68,12 @@ function MapButtons() {
     <>
       <div className="m-map-buttons">
         <button type="button" className="m-map-button" onClick={() => open('comments')} aria-label="整趟的討論" data-testid="m-trip-comments">
-          💬{comments > 0 && <span className="m-map-count">{comments}</span>}
+          <Icon name="chat" size={20} />
+          {comments > 0 && <span className="m-map-count">{comments}</span>}
         </button>
         <button type="button" className="m-map-button" onClick={() => open('reservations')} aria-label="預約" data-testid="m-trip-reservations">
-          📋{pending > 0 && <span className="m-map-count warn">{pending}</span>}
+          <Icon name="clipboard" size={20} />
+          {pending > 0 && <span className="m-map-count warn">{pending}</span>}
         </button>
       </div>
       {snap === 'mid' && (

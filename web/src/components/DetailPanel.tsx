@@ -26,7 +26,10 @@ import {
 import { nearbyPlaces } from '../lib/nearby.ts';
 import { photoCredit } from '../lib/photos.ts';
 import { dayLabel, shortDayLabel } from '../lib/trip.ts';
-import { TYPE_COLORS, TYPE_ICONS } from '../lib/typeStyle.ts';
+import { TYPE_COLORS } from '../lib/typeStyle.ts';
+import { Icon } from './Icon.tsx';
+import { TierMark } from '../shared/ui/TierMark.tsx';
+import { TypeLabel } from '../shared/ui/TypeLabel.tsx';
 import { placeBadges } from '../lib/badges.ts';
 import type { Place } from '../data/types.ts';
 import { Photo } from './Photo.tsx';
@@ -117,7 +120,9 @@ function HoursTable({ place, date }: { place: Place; date: string | null }) {
       ) : (
         <p className="muted">營業時間不明</p>
       )}
-      {closure && <p className="warn">⚠️ {dayLabel(date!)} 休業：{closure.note ?? `${closure.from}～${closure.to}`}</p>}
+      {closure && <p className="warn ic-text">
+          <Icon name="warn" size={16} /> {dayLabel(date!)} 休業：{closure.note ?? `${closure.from}～${closure.to}`}
+        </p>}
       <dl>
         <Row k="最後入場" v={Array.isArray(h?.lastEntry) ? h!.lastEntry.filter(Boolean).join('、') : text(h?.lastEntry)} />
         <Row k="說明" v={text(h?.note)} />
@@ -388,10 +393,10 @@ export function NearbySection({ place, onPick }: { place: Place; onPick?(id: str
                   onClick={() => find(it.place.id)}
                   onMouseEnter={() => appStore.getState().hover(it.place.id)}
                 >
-                  {TYPE_ICONS[type]} {displayName(it.place.name, it.place.id)}
+                  <i className="ui-type-dot" style={{ background: TYPE_COLORS[type] }} aria-hidden="true" /> {displayName(it.place.name, it.place.id)}
                 </button>
-                <span className="muted small">
-                  🚶 {it.minutes} 分{it.estimated ? '（估算）' : ''}
+                <span className="muted small ic-text">
+                  <Icon name="walk" size={16} /> {it.minutes} 分{it.estimated ? '（估算）' : ''}
                 </span>
               </li>
             ))}
@@ -432,12 +437,10 @@ function HeroPhoto({ place, onMore }: { place: Place; onMore(): void }) {
   return (
     <figure className="detail-hero">
       <Photo place={place} showName />
-      <span className="ex-type" style={{ background: TYPE_COLORS[place.type] }}>
-        {TYPE_ICONS[place.type]} {TYPE_LABELS[place.type]}
-      </span>
+      <TypeLabel type={place.type} onPhoto />
       {place.photos.length > 1 && (
         <button type="button" className="hero-more" onClick={onMore}>
-          🖼 {place.photos.length} 張
+          <Icon name="image" size={16} /> {place.photos.length} 張
         </button>
       )}
       {first && photoCredit(first) && <figcaption>{photoCredit(first)}</figcaption>}
@@ -458,17 +461,6 @@ function PhotoGrid({ place }: { place: Place }) {
   );
 }
 
-/** 地點的分級：S 金、A 銀、B 銅的徽章 */
-function TierMedal({ tier }: { tier: Place['tier'] }) {
-  if (!tier) return null;
-  return (
-    <span className={`tier-medal tier-medal-${tier}`} title={`${tier} 級`} aria-label={`${tier} 級`}>
-      <span className="tier-medal-letter">{tier}</span>
-      <span className="tier-medal-word">RANK</span>
-    </span>
-  );
-}
-
 /** 這個點排在哪幾天（想去卡片上也標「已排」）；點日期選那天（onDay：手機版另外切到行程分頁） */
 function PlaceInTrip({ place, onDay }: { place: Place; onDay?(date: string): void }) {
   const itinerary = useData((s) => s.itinerary);
@@ -478,7 +470,7 @@ function PlaceInTrip({ place, onDay }: { place: Place; onDay?(date: string): voi
   return (
     <section className="detail-section in-trip" data-testid="in-trip">
       <p className="small">
-        📅 已排：
+        <Icon name="calendar" size={16} /> 已排：
         {refs.map((r, i) => (
           <button key={r.item.id} type="button" className="link-button" onClick={() => (onDay ? onDay(r.date) : commands.selectDay(r.date))}>
             {i > 0 && '、'}
@@ -624,7 +616,7 @@ export function DetailPanel({ place, back }: { place: Place; back?: { label: str
 
   return (
     <article className="detail" data-testid="detail-panel" aria-label={`${name} 的詳情`}>
-      {/* 上方一列：返回（電腦版）、問 AI；編輯多一個「排進行程」。手機沒有返回，右邊是 ✕；想去用標題旁的 ❤️ */}
+      {/* 上方一列：返回（電腦版）、問 AI；編輯多一個「排進行程」。手機沒有返回，右邊是 ✕；想去用標題旁的愛心 */}
       <div className="detail-bar">
         {back && (
           <button type="button" className="detail-back" onClick={back.onClick} data-testid="detail-back">
@@ -634,7 +626,7 @@ export function DetailPanel({ place, back }: { place: Place; back?: { label: str
         <span className="detail-bar-actions">
           {planning && place.type !== 'station' && (
             <button type="button" className="action small-action primary" data-testid="detail-add" onClick={() => openDialog({ kind: 'add', placeId: place.id })}>
-              📅 {place.type === 'lodging' ? '設成住宿' : '排進行程'}
+              <Icon name="calendar" size={16} /> {place.type === 'lodging' ? '設成住宿' : '排進行程'}
             </button>
           )}
           <button
@@ -655,7 +647,7 @@ export function DetailPanel({ place, back }: { place: Place; back?: { label: str
 
       {/* 電腦版：標題可以拖到左邊的聊天室問 AI */}
       <header className={`detail-head ${back ? 'draggable' : ''}`} {...dragPlaceProps(place.id, !!back)} title={back ? '拖到左邊的聊天室可以問 AI' : undefined}>
-        <TierMedal tier={place.tier} />
+        <TierMark tier={place.tier} />
         <div className="detail-title">
           <div className="detail-name-row">
             <h2>{name}</h2>

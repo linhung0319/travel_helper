@@ -4,7 +4,7 @@ import { placeBadges } from '../lib/badges.ts';
 import { CONTEXT_LABELS, TYPE_LABELS } from '../lib/filter.ts';
 import type { Place } from '../data/types.ts';
 import { Photo } from './Photo.tsx';
-import { TierBadge } from './TierBadge.tsx';
+import { TierMark } from '../shared/ui/TierMark.tsx';
 import { showInExplore } from './Explore.tsx';
 import { CardType } from './Timeline.tsx';
 
@@ -61,7 +61,7 @@ export function PreviewCard({ place, anchor, onEnter, onLeave }: Props) {
           <span className="preview-title">
             <CardType type={place.type} />
             <strong>{name}</strong>
-            <TierBadge tier={place.tier} />
+            <TierMark tier={place.tier} />
           </span>
           <span className="preview-sub">
             {TYPE_LABELS[place.type]}

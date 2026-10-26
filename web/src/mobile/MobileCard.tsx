@@ -15,6 +15,7 @@ import { TYPE_COLORS } from '../lib/typeStyle.ts';
 import type { DragSource, DropTargetInfo } from '../lib/dropIntent.ts';
 import { dropOnCardProps, useLongPressDrag } from '../components/planDrag.ts';
 import { cardActions } from '../shared/cardActions.ts';
+import { Icon } from '../components/Icon.tsx';
 import { Thumb } from './Thumb.tsx';
 import { mobileStore, type ActionSheetSpec } from './mobileStore.ts';
 
@@ -117,7 +118,11 @@ export function MobileCard({ itemKey, place, fallbackType, mark, time, name, tag
         <span className="m-card-body">
           {time && (
             <span className="m-card-time">
-              {time.pinned && <span title="指定的開始時間（訂位、表演）">📌</span>}
+              {time.pinned && (
+                <span title="指定的開始時間（訂位、表演）">
+                  <Icon name="pin" size={16} />
+                </span>
+              )}
               <span>{time.text}</span>
               {time.stay && <small className="m-card-stay">{time.stay}</small>}
             </span>
@@ -131,7 +136,7 @@ export function MobileCard({ itemKey, place, fallbackType, mark, time, name, tag
               {switcher}
               {warnings > 0 && (
                 <span className="m-card-warn" data-testid="m-card-warn">
-                  ⚠ {warnings}
+                  <Icon name="warn" size={16} /> {warnings}
                 </span>
               )}
               {candidate && <span className="m-card-by muted">{addedBy} 加的</span>}

@@ -8,6 +8,7 @@ import { useApp, useData, useUi } from '../hooks.ts';
 import { dayLabel } from '../lib/trip.ts';
 import type { Place } from '../data/types.ts';
 import { castVote } from '../components/Votes.tsx';
+import { Icon } from '../components/Icon.tsx';
 import { placeAreaLabel, useVoteIndex } from './ExploreFeed.tsx';
 import { Thumb } from './Thumb.tsx';
 import { mobileStore } from './mobileStore.ts';
@@ -49,11 +50,11 @@ function PlaceCard({ place, like }: { place: Place; like: { mine: string | null;
           type="button"
           className={`m-chat-place-like ${on ? 'on' : ''}`}
           aria-pressed={on}
-          aria-label={on ? `收回 ❤️ ${name}` : `按 ❤️ 想去 ${name}`}
+          aria-label={on ? `收回想去 ${name}` : `按想去 ${name}`}
           onClick={() => void castVote(place.id, on ? null : 'like')}
           data-testid="m-chat-place-like"
         >
-          {on ? '❤️' : '🤍'}
+          <Icon name="heart" size={20} filled={on} />
           {like.like > 0 && <span className="m-vote-count">{like.like}</span>}
         </button>
         <button type="button" className="m-chat-place-detail" onClick={() => mobileStore.getState().openPlace(place.id, 'ai')} data-testid="m-chat-place-detail">
@@ -97,7 +98,7 @@ function ProposalCard({ proposal }: { proposal: NonNullable<ChatMessage['proposa
       ))}
       <div className="m-chat-proposal-actions">
         <button type="button" className="m-chat-button" onClick={viewDemoProposal} data-testid="m-chat-proposal-view">
-          🗺 在行程上看
+          <Icon name="map" size={16} /> 在行程上看
         </button>
         <button type="button" className="m-chat-button primary" onClick={proposalTodo} data-testid="m-chat-proposal-apply">
           套用
@@ -110,7 +111,7 @@ function ProposalCard({ proposal }: { proposal: NonNullable<ChatMessage['proposa
   );
 }
 
-/** 上下文小標：📍 關於：地點／📍 正在看：這天，✕ 拿掉 */
+/** 上下文小標：關於：地點／正在看：這天，✕ 拿掉 */
 function ContextChip() {
   const placeId = useUi((s) => s.chatDraft?.placeId ?? null);
   const day = useApp((s) => s.day);
@@ -118,7 +119,7 @@ function ContextChip() {
   const off = useChatDemo((s) => s.contextOff);
   if (!placeId && off) return null;
   const place = placeId ? byId.get(placeId) : undefined;
-  const text = placeId ? `📍 關於：${place ? place.name.zh || place.name.ja : placeId}` : `📍 正在看：${day === 'all' ? '整趟' : dayLabel(day)}`;
+  const text = placeId ? `關於：${place ? place.name.zh || place.name.ja : placeId}` : `正在看：${day === 'all' ? '整趟' : dayLabel(day)}`;
   return (
     <div className="m-chat-context" data-testid="m-chat-context">
       <span className="m-ellipsis">{text}</span>

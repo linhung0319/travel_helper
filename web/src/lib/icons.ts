@@ -6,7 +6,7 @@ export const ICON_NAMES = [
   'pen', 'history', 'more', 'tag', 'clock', 'pin', 'star', 'out', 'undo', 'trash',
   'warn', 'walk', 'car', 'train', 'bus', 'ferry', 'sliders', 'sort', 'grid', 'list',
   'back', 'close', 'check', 'grip', 'expand', 'send', 'chevron', 'plus', 'minus', 'copy',
-  'map', 'fork', 'users', 'bed',
+  'map', 'fork', 'users', 'bed', 'info', 'phone', 'link', 'plane', 'image', 'help',
 ] as const;
 
 export type IconName = (typeof ICON_NAMES)[number];
@@ -57,6 +57,12 @@ export const ICON_PATHS: Record<IconName, string> = {
   fork: 'M7 3.5v6.5a2.5 2.5 0 0 0 5 0V3.5M9.5 3.5v17M17 20.5v-17c-2 1.2-3 3.7-3 7h3',
   users: 'M9 5a3.2 3.2 0 1 0 0 6.4A3.2 3.2 0 0 0 9 5zM3 19.5c.5-3.2 2.8-5 6-5s5.5 1.8 6 5M16 5.5a3 3 0 0 1 0 5.8M17.5 14.8c1.8.6 3 2.2 3.3 4.7',
   bed: 'M3.5 6v13M3.5 16h17v3M3.5 12.5h17V16M7 9.5h4a1.5 1.5 0 0 1 1.5 1.5v1.5H7zM12.5 12.5V10.5a2 2 0 0 1 2-2H18a2.5 2.5 0 0 1 2.5 2.5v1.5',
+  info: 'M12 4a8 8 0 1 0 0 16 8 8 0 0 0 0-16zM12 11v5M12 8h.01',
+  phone: 'M6 4h3l1.5 4-2 1.2a10 10 0 0 0 4.3 4.3l1.2-2 4 1.5v3a2 2 0 0 1-2 2A13 13 0 0 1 4 6a2 2 0 0 1 2-2z',
+  link: 'M10 14a4 4 0 0 0 5.7 0l3-3a4 4 0 0 0-5.7-5.7l-1 1M14 10a4 4 0 0 0-5.7 0l-3 3a4 4 0 0 0 5.7 5.7l1-1',
+  plane: 'M3.5 13.5l7-2.5-3-6 1.5-.5 6 5 5-1.8a1.6 1.6 0 0 1 1 3L14.5 14l.5 6-1.5.5-3-5.5-5 1.8z',
+  image: 'M4.5 5.5h15v13h-15zM4.5 15l4.5-4.5 4 4 2.5-2.5 4 4M9 9h.01',
+  help: 'M12 4a8 8 0 1 0 0 16 8 8 0 0 0 0-16zM9.7 9.6a2.4 2.4 0 1 1 3.4 2.2c-.7.4-1.1.9-1.1 1.7M12 16.5h.01',
 };
 
 /** 行內 SVG 字串（給地圖的 DOM 標記用）；React 畫面請用 components/Icon.tsx */

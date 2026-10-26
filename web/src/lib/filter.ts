@@ -19,8 +19,8 @@ export const VOTE_FILTER_VALUES = ['popular', 'mine'] as const;
 export type VoteFilter = (typeof VOTE_FILTER_VALUES)[number];
 
 export const VOTE_FILTER_LABELS: Record<VoteFilter, string> = {
-  popular: '❤️ 大家喜歡的',
-  mine: '❤️ 我喜歡的',
+  popular: '大家想去的',
+  mine: '只看我按的',
 };
 
 /** 「大家喜歡的」至少幾個 ❤️ */

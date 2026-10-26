@@ -19,6 +19,7 @@ import { PreviewCard } from './PreviewCard.tsx';
 import { addOverlayLayers, ITINERARY_CASING_OPACITY, ITINERARY_LINE_OPACITY, OVERLAY_SOURCES } from './mapOverlayLayers.ts';
 import { compareFeatures, highlightFeatures, itineraryFeatures, itineraryMarks, placeBadges, proposalFeatures, routeFeatures, routeLabels } from '../lib/overlays.ts';
 import { commands, itineraryPathOf } from '../appCommands.ts';
+import { iconSvg } from '../lib/icons.ts';
 import { routeLabelHtml } from '../lib/modeIcon.ts';
 import { MapCommandBars } from './MapCommandBars.tsx';
 import { showInExplore } from './Explore.tsx';
@@ -34,7 +35,7 @@ setWorkerUrl(maplibreWorkerUrl);
 export const STYLE_URL = 'https://tiles.openfreemap.org/styles/liberty';
 /** 放大到這裡以上，小點換成類別圖標（像 Google Maps） */
 export const ICON_ZOOM = 12;
-/** 這個縮放以上才顯示每個點的 ❤️ 數字 */
+/** 這個縮放以上才顯示每個點的想去數 */
 const BADGE_ZOOM = 10;
 const DATES = tripDates();
 const PULSE_OFF = ['all', ['!=', ['get', 'mark'], ''], ['==', ['get', 'id'], '']] as never;
@@ -45,7 +46,7 @@ const typeColorExpr = ['match', ['get', 'type'], ...PLACE_TYPES.flatMap((t) => [
 function featureCollection(places: Place[], marks: Map<string, string>): FeatureCollection {
   const { filter, query, day, mode } = appStore.getState();
   const { days } = dataStore.getState();
-  // 探索、想去時不因為「不在那天」變淡（找的是那天還沒排的點），只看篩選；想去時沒人 ❤️ 的點也變淡
+  // 探索、想去時不因為「不在那天」變淡（找的是那天還沒排的點），只看篩選；想去時沒人想去的點也變淡
   const dimDay = mode === 'explore' || mode === 'wish' ? 'all' : day;
   const liked = mode === 'wish' ? likedPlaces(shared.store.getState().votes) : null;
   return {
@@ -85,7 +86,7 @@ export function MapView() {
   const containerRef = useRef<HTMLDivElement>(null);
   const mapRef = useRef<MapLibreMap | null>(null);
   const routeLabelsRef = useRef<Map<string, Marker>>(new Map());
-  // 確定的行程的交通標籤、每個點的 💬／❤️（T15m）
+  // 確定的行程的交通標籤、每個點的留言、想去數（T15m）
   const legLabelsRef = useRef<Marker[]>([]);
   const badgesRef = useRef<Map<string, Marker>>(new Map());
   const [loaded, setLoaded] = useState(false);
@@ -554,7 +555,7 @@ export function MapView() {
     });
   }, [loaded, itinerary, plan, byId, day, routesVersion, tripFocusDay]);
 
-  // 每個點的 ❤️ 數（放大到 BADGE_ZOOM 才顯示）
+  // 每個點的想去數（放大到 BADGE_ZOOM 才顯示）
   useEffect(() => {
     if (!loaded) return;
     const map = mapRef.current!;
@@ -576,7 +577,7 @@ export function MapView() {
         badgesRef.current.set(b.id, m);
       }
       m.setLngLat(b.coords);
-      m.getElement().textContent = b.text;
+      m.getElement().innerHTML = `${iconSvg('heart', 16, true)}<span>${b.text}</span>`;
     }
   }, [loaded, votes, byId]);
 

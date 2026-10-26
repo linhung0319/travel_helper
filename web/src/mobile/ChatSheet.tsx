@@ -7,6 +7,7 @@ import { useRef } from 'react';
 import { createPortal } from 'react-dom';
 import { useApp } from '../hooks.ts';
 import { dayLabel } from '../lib/trip.ts';
+import { Icon } from '../components/Icon.tsx';
 import { mobileStore, useMobile } from './mobileStore.ts';
 import { ChatView, useKeyboardInset } from './ChatView.tsx';
 
@@ -48,9 +49,10 @@ export function ChatSheet() {
       >
         <span className="m-chat-sheet-handle" aria-hidden />
         <div className="m-chat-sheet-head">
-          <b className="m-ellipsis">✨ AI ・ {day === 'all' ? '整趟' : dayLabel(day)}</b>
+          <b className="m-ellipsis ic-text">
+            <Icon name="spark" size={16} /> AI ・ {day === 'all' ? '整趟' : dayLabel(day)}</b>
           <button type="button" className="m-icon-button" onClick={expandChat} aria-label="全螢幕" data-testid="m-chat-sheet-expand">
-            ⤢
+            <Icon name="expand" size={20} />
           </button>
           <button type="button" className="m-icon-button" onClick={closeChatSheet} aria-label="關掉聊天" data-testid="m-chat-sheet-close">
             ✕

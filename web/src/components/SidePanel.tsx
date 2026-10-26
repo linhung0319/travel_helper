@@ -4,6 +4,7 @@
 import { appStore } from '../store.ts';
 import { useApp, useData } from '../hooks.ts';
 import { DayPanel } from './DayPanel.tsx';
+import { Icon, type IconName } from './Icon.tsx';
 import { DetailPanel } from './DetailPanel.tsx';
 import { ExplorePanel, showItinerary } from './Explore.tsx';
 import { useLiked } from '../shared/placeLists.ts';
@@ -30,17 +31,18 @@ export function SidePanel() {
   const byId = useData((s) => s.byId);
   const liked = useLiked().size;
   const place = detailId ? byId.get(detailId) : null;
-  const tab = (label: string, on: boolean, onClick: () => void, testId: string) => (
+  const tab = (icon: IconName, label: string, on: boolean, onClick: () => void, testId: string) => (
     <button type="button" role="tab" aria-selected={on} className={`side-tab ${on ? 'on' : ''}`} onClick={onClick} data-testid={testId}>
+      <Icon name={icon} size={20} />
       {label}
     </button>
   );
   return (
     <div className="side-panel">
       <div className="side-tabs" role="tablist" aria-label="右側">
-        {tab('🔎 探索', mode === 'explore' && !place, () => showList('explore'), 'side-tab-explore')}
-        {tab(`❤️ 想去${liked ? ` ${liked}` : ''}`, mode === 'wish' && !place, () => showList('wish'), 'side-tab-wish')}
-        {tab('📅 行程', mode === 'map' && !place, showItinerary, 'side-tab-day')}
+        {tab('search', '探索', mode === 'explore' && !place, () => showList('explore'), 'side-tab-explore')}
+        {tab('heart', `想去${liked ? ` ${liked}` : ''}`, mode === 'wish' && !place, () => showList('wish'), 'side-tab-wish')}
+        {tab('calendar', '行程', mode === 'map' && !place, showItinerary, 'side-tab-day')}
       </div>
       {place ? (
         <div className="side-body side-detail">

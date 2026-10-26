@@ -52,7 +52,7 @@ const DANGER = new Set<ActionId>(['delete', 'lodging-clear']);
 /** 選單的一項：網頁版的 ActionMenu、手機版的動作清單都照這個畫 */
 export interface MenuItem {
   id: ActionId;
-  /** React 的 key（「👥 移到{組名}」每組一項，要加上組） */
+  /** React 的 key（「移到{組名}」每組一項，要加上組） */
   key: string;
   text: string;
   /** 這一項作用在哪（group-in 帶著那一組） */
@@ -71,7 +71,7 @@ export function menuItems(ctx: CardActionContext, target: ActionTarget): MenuIte
       const g = id === 'group-in' ? targets[nth++] : undefined;
       const danger = DANGER.has(id);
       if (!g) return { id, key: id, text: ACTION_LABELS[id], target, danger };
-      return { id, key: `${id}:${g.splitId}:${g.groupId}`, text: `👥 移到${g.name}`, target: { ...target, split: { id: g.splitId, group: g.groupId, name: g.name } }, danger, group: g.groupId };
+      return { id, key: `${id}:${g.splitId}:${g.groupId}`, text: `移到${g.name}`, target: { ...target, split: { id: g.splitId, group: g.groupId, name: g.name } }, danger, group: g.groupId };
     }),
   );
 }

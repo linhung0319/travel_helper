@@ -4,8 +4,8 @@
 // 清單可以切換大照片（像 IG）或只有文字；滑鼠移上去地圖上的點會閃，點了地圖移過去、打開詳情。
 // 反過來，點地圖上的點：切到探索、捲到那張卡片（showInExplore），再點卡片才開詳情（手機沒有 hover，所以用點的）。
 // 探索的類型寫在篩選裡（地圖跟著變淡），回到「行程」時拿掉（showItinerary）。
-// 「❤️ 想去」分頁是同一個元件（source="wish"）：只列有人 ❤️ 的點，卡片底下多了留言（Wishlist.tsx 的 WishExtras）；只有想去的卡片有「📅 加到某天」（探索只有 ❤️，流程是先 ❤️ 再到想去加到某天）。
-// 卡片照片右上角是 ❤️／👎 數（CardVotes），左上角是類型和行程狀態（候選、已排）的 tag。
+// 「想去」分頁是同一個元件（source="wish"）：只列有人按想去的點，卡片底下多了留言（Wishlist.tsx 的 WishExtras）；只有想去的卡片有「加到某天」（探索只有愛心，流程是先按想去再到想去加到某天）。
+// 卡片照片右上角是想去的愛心（VoteHeart），左上角是類型和行程狀態（候選、已排）的 tag。
 // 清單的計算（篩選、排序、每一類的數量、想去的範圍）在 shared/placeLists.ts 的 usePlaceList，手機版也用。
 
 import { useEffect, useRef, useState, type ReactNode } from 'react';
@@ -22,12 +22,14 @@ import { AreaFilter } from './AreaFilter.tsx';
 import { EXPLORE_SORTS, EXPLORE_SORT_LABELS, EXPLORE_TYPES, type ExploreSort, type ExploreType } from '../lib/explore.ts';
 import { placeBadges } from '../lib/badges.ts';
 import { shortDayLabel } from '../lib/trip.ts';
-import { TYPE_COLORS, TYPE_ICONS } from '../lib/typeStyle.ts';
+import { TYPE_COLORS, TYPE_ICON_NAMES } from '../lib/typeStyle.ts';
 import type { Place } from '../data/types.ts';
 import { Photo } from './Photo.tsx';
 import { CopyName } from './CopyName.tsx';
-import { TierBadge } from './TierBadge.tsx';
-import { CardVotes } from './Votes.tsx';
+import { TierMark } from '../shared/ui/TierMark.tsx';
+import { TypeLabel } from '../shared/ui/TypeLabel.tsx';
+import { VoteHeart } from '../shared/ui/VoteHeart.tsx';
+import { Icon } from './Icon.tsx';
 import { DayStatusTag } from './DayPicker.tsx';
 import { FilterPanel } from './FilterPanel.tsx';
 import { dragPlaceProps } from './askAi.ts';
@@ -94,7 +96,9 @@ function Meta({ place }: { place: Place }) {
   return (
     <span className="ex-meta small">
       {parts.join('・')}
-      {inTrip?.length ? <span className="ex-trip">📅 {inTrip.map((d) => shortDayLabel(d.date)).join('、')}</span> : null}
+      {inTrip?.length ? <span className="ex-trip ic-text">
+          <Icon name="calendar" size={16} /> {inTrip.map((d) => shortDayLabel(d.date)).join('、')}
+        </span> : null}
     </span>
   );
 }
@@ -114,11 +118,7 @@ function Badges({ place }: { place: Place }) {
 }
 
 function TypeTag({ place }: { place: Place }) {
-  return (
-    <span className="ex-type" style={{ background: TYPE_COLORS[place.type] }}>
-      {TYPE_ICONS[place.type]} {TYPE_LABELS[place.type]}
-    </span>
-  );
+  return <TypeLabel type={place.type} onPhoto />;
 }
 
 function Item({ place, rank, view, hot, source }: { place: Place; rank: number; view: View; hot: boolean; source: ListSource }) {
@@ -149,14 +149,14 @@ function Item({ place, rank, view, hot, source }: { place: Place; rank: number; 
         <button {...common} className={`ex-row type-${place.type} ${hot ? 'flash' : ''}`}>
           <span className="ex-rank">{rank}</span>
           <span className="ex-dot" style={{ background: TYPE_COLORS[place.type] }} aria-hidden>
-            {TYPE_ICONS[place.type]}
+            <Icon name={TYPE_ICON_NAMES[place.type]} size={16} />
           </span>
           <span className="ex-text">
             <span className="ex-name">
-              <TierBadge tier={place.tier} />
+              <TierMark tier={place.tier} />
               {name}
               <CopyName place={place} />
-              <CardVotes placeId={place.id} inline />
+              <VoteHeart placeId={place.id} size="sm" />
               <DayStatusTag placeId={place.id} />
             </span>
             <Meta place={place} />
@@ -172,12 +172,12 @@ function Item({ place, rank, view, hot, source }: { place: Place; rank: number; 
             <TypeTag place={place} />
             <DayStatusTag placeId={place.id} />
           </span>
-          <CardVotes placeId={place.id} />
+          <VoteHeart placeId={place.id} />
           <span className="ex-rank-badge">{rank}</span>
         </span>
         <span className="ex-text">
           <span className="ex-name">
-            <TierBadge tier={place.tier} />
+            <TierMark tier={place.tier} />
             {name}
             <CopyName place={place} />
             {place.name.zh && place.name.ja !== place.name.zh && <span className="muted small ex-ja">{place.name.ja}</span>}
@@ -272,7 +272,7 @@ export function ExplorePanel({ source = 'explore' }: { source?: ListSource }) {
           只列地圖畫面裡的
         </button>
         <button type="button" className={`pill small-pill ${more ? 'on' : ''}`} aria-expanded={more} onClick={() => setMore(!more)} data-testid="filter-button">
-          ⚙ 更多篩選{!isFilterEmpty(extra) ? ' ●' : ''}
+          <Icon name="sliders" size={16} /> 更多篩選{!isFilterEmpty(extra) ? ' ●' : ''}
         </button>
       </div>
       {more && <FilterPanel embedded onClose={() => setMore(false)} />}
@@ -298,7 +298,7 @@ export function ExplorePanel({ source = 'explore' }: { source?: ListSource }) {
             saveView('photo');
           }}
         >
-          🖼
+          <Icon name="grid" size={20} />
         </button>
         <button
           type="button"
@@ -309,7 +309,7 @@ export function ExplorePanel({ source = 'explore' }: { source?: ListSource }) {
             saveView('list');
           }}
         >
-          ☰
+          <Icon name="list" size={20} />
         </button>
       </span>
     </>
@@ -330,7 +330,7 @@ export function ExplorePanel({ source = 'explore' }: { source?: ListSource }) {
               onClick={() => appStore.getState().setFilter({ types: [t], contexts: t === 'restaurant' ? filter.contexts : [], fit15: t === 'restaurant' ? filter.fit15 : [] })}
               data-type={t}
             >
-              {TYPE_ICONS[t]} {TYPE_LABELS[t]} <span className="pill-count">{counts[t]}</span>
+              <i className="ui-type-dot" style={{ background: TYPE_COLORS[t] }} aria-hidden="true" /> {TYPE_LABELS[t]} <span className="pill-count">{counts[t]}</span>
             </button>
           ))}
         </div>
@@ -338,9 +338,13 @@ export function ExplorePanel({ source = 'explore' }: { source?: ListSource }) {
           <div className="ex-compact">
             <div className="ex-bar small">
               <button type="button" className={`ex-filtersum ${open ? 'on' : ''}`} aria-expanded={open} onClick={() => setOpen(!open)} data-testid="ex-summary">
-                <span className="ex-filtersum-icon">⚙</span>
+                <span className="ex-filtersum-icon">
+                  <Icon name="sliders" size={16} />
+                </span>
                 <span className="ex-filtersum-text">{summary.length ? summary.join('・') : '全部地區'}</span>
-                <span aria-hidden>{open ? '▴' : '▾'}</span>
+                <span aria-hidden className={`chev ${open ? 'up' : ''}`}>
+                  <Icon name="chevron" size={16} />
+                </span>
               </button>
               {bar}
             </div>
@@ -356,7 +360,7 @@ export function ExplorePanel({ source = 'explore' }: { source?: ListSource }) {
           <Item key={p.id} place={p} rank={i + 1} view={view} hot={hoveredId === p.id || target?.id === p.id} source={source} />
         ))}
         {list.length === 0 && (
-          <li className="muted ex-empty">{source === 'wish' && pool.length === 0 ? '還沒有人按 ❤️。在探索或詳情按 ❤️，就會出現在這裡。' : '沒有符合的地點，取消一些篩選看看。'}</li>
+          <li className="muted ex-empty">{source === 'wish' && pool.length === 0 ? '還沒有人按想去。在探索或詳情按想去，就會出現在這裡。' : '沒有符合的地點，取消一些篩選看看。'}</li>
         )}
       </ol>
     </div>

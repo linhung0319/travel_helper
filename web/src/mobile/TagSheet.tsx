@@ -4,6 +4,7 @@
 
 import type { CSSProperties } from 'react';
 import { useData, useShared } from '../hooks.ts';
+import { Icon } from '../components/Icon.tsx';
 import { findItemRef } from '../lib/planView.ts';
 import { LODGING_PLANS, TAG_LABELS, tagGroupsFor, type TagGroup } from '../shared/tagOptions.ts';
 import { pickLodgingPlan, tagKindOf, toggleVisitTag } from '../components/ItemTags.tsx';
@@ -30,7 +31,7 @@ export function TagSheet({ itemId }: { itemId: string }) {
       {tagGroupsFor(tagKindOf(type)).map((g) => (
         <div key={g.id} className="m-tag-group" role="group" aria-label={g.title} style={groupStyle(g)}>
           <div className="m-tag-title">
-            {g.icon} {g.title}
+            <Icon name={g.icon} size={16} /> {g.title}
           </div>
           <div className="m-tag-opts">
             {g.tags.map((t) => (
@@ -52,7 +53,9 @@ export function LodgingPlanSheet({ date }: { date: string }) {
   return (
     <div className="m-tag-sheet" data-testid="m-lodging-plan-sheet" role="menu" aria-label="這晚的方案">
       <div className="m-tag-group" role="group" aria-label="這晚的方案" style={groupStyle(LODGING_COLORS)}>
-        <div className="m-tag-title">🛏 這晚的方案</div>
+        <div className="m-tag-title ic-text">
+          <Icon name="bed" size={16} /> 這晚的方案
+        </div>
         <div className="m-tag-opts">
           {LODGING_PLANS.map((x) => (
             <button key={x.value} type="button" role="menuitemradio" aria-checked={cur === x.value} className={`m-tag-opt ${cur === x.value ? 'on' : ''}`} disabled={saving} onClick={() => pickLodgingPlan(date, cur, x.value)} data-testid={`lodging-plan-${x.value}`}>

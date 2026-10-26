@@ -10,6 +10,7 @@ import { useData } from '../hooks.ts';
 import { legMapsUrl, legTitle, waitNote } from '../lib/planView.ts';
 import { LegEditor, LegSteps, useLegView } from '../components/LegRow.tsx';
 import { ModeIcon } from '../components/ModeIcon.tsx';
+import { Icon } from '../components/Icon.tsx';
 import { dropOnLegProps } from '../components/planDrag.ts';
 import { mobileStore } from './mobileStore.ts';
 
@@ -37,7 +38,10 @@ export function MobileLeg({ entry, date }: { entry: TimelineEntry; date: string 
           <ModeIcon mode={leg.mode} size="s" />
           <span className="m-ellipsis">
             {text}
-            {note && <span className="m-leg-note"> 📝 {note}</span>}
+            {note && <span className="m-leg-note ic-text">
+          {' '}
+          <Icon name="pen" size={16} /> {note}
+        </span>}
           </span>
           {editable && !open ? (
             <span className="m-leg-edit">改 ›</span>
@@ -66,7 +70,7 @@ export function MobileLeg({ entry, date }: { entry: TimelineEntry; date: string 
   );
 }
 
-/** 到了要等（📌、還沒開門）：交通下面一行純文字；不用等就不畫 */
+/** 到了要等（指定開始時間、還沒開門）：交通下面一行純文字；不用等就不畫 */
 export function MobileWait({ entry, visit }: { entry: TimelineEntry; visit: VisitItem | null }) {
   const byId = useData((s) => s.byId);
   const text = waitNote(entry, visit, entry.placeId ? byId.get(entry.placeId) : undefined);

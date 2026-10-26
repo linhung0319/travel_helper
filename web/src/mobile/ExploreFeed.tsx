@@ -12,8 +12,9 @@ import { TYPE_LABELS } from '../lib/filter.ts';
 import { photoCandidates } from '../lib/photos.ts';
 import { cardTypeLetter } from '../lib/planView.ts';
 import { TYPE_COLORS } from '../lib/typeStyle.ts';
-import { castVote } from '../components/Votes.tsx';
-import { TierBadge } from '../components/TierBadge.tsx';
+import { TierMark } from '../shared/ui/TierMark.tsx';
+import { Icon } from '../components/Icon.tsx';
+import { VoteHeart } from '../shared/ui/VoteHeart.tsx';
 import { useExploreList } from '../shared/placeLists.ts';
 import type { VoteValue } from '../backend/types.ts';
 import type { Area, Place } from '../data/types.ts';
@@ -45,26 +46,11 @@ export function placeAreaLabel(place: Place, areas: Area[]): string {
   return [area && displayName(area.name, area.id), region && displayName(region.name, region.id)].filter(Boolean).join('・');
 }
 
-/** 圖片上的 🤍／❤️、👎：按的是自己的票，再按一次收回；不開詳情 */
-export function FeedVotes({ placeId, like, dislike, mine }: { placeId: string } & VoteState) {
-  const toggle = (e: React.MouseEvent, value: VoteValue) => {
-    e.stopPropagation();
-    void castVote(placeId, mine === value ? null : value);
-  };
-  const likeOn = mine === 'like';
-  const dislikeOn = mine === 'dislike';
+/** 圖片右下角的想去愛心（shared/ui/VoteHeart）：按的是自己的票，再按一次收回；不開詳情 */
+export function FeedVotes({ placeId }: { placeId: string }) {
   return (
     <span className="m-votes">
-      <button type="button" className={`m-vote ${likeOn ? 'on' : ''}`} aria-pressed={likeOn} aria-label={likeOn ? '收回 ❤️' : '按 ❤️ 想去'} onClick={(e) => toggle(e, 'like')} data-testid="m-feed-like">
-        {likeOn ? '❤️' : '🤍'}
-        <span className="m-vote-count" data-testid="m-feed-like-count">
-          {like || ''}
-        </span>
-      </button>
-      <button type="button" className={`m-vote ${dislikeOn ? 'on' : ''}`} aria-pressed={dislikeOn} aria-label={dislikeOn ? '收回 👎' : '按 👎 不想去'} onClick={(e) => toggle(e, 'dislike')} data-testid="m-feed-dislike">
-        👎
-        <span className="m-vote-count">{dislike || ''}</span>
-      </button>
+      <VoteHeart placeId={placeId} size="sm" />
     </span>
   );
 }
@@ -73,7 +59,7 @@ export function FeedVotes({ placeId, like, dislike, mine }: { placeId: string } 
  * 圖片牆的一張：整張可以點（開詳情），票的按鈕自己擋掉。
  * memo＋票數用基本型別傳：按一個票、打一個字時，只有變了的那幾張重畫
  */
-const FeedItem = memo(function FeedItem({ place, rank, like, dislike, mine, areas }: { place: Place; rank: number; areas: Area[] } & VoteState) {
+const FeedItem = memo(function FeedItem({ place, rank, like, areas }: { place: Place; rank: number; areas: Area[]; like: number }) {
   const name = place.name.zh || place.name.ja;
   const open = () => mobileStore.getState().openPlace(place.id, 'explore');
   const area = placeAreaLabel(place, areas);
@@ -102,15 +88,15 @@ const FeedItem = memo(function FeedItem({ place, rank, like, dislike, mine, area
             {cardTypeLetter(place.type)}
           </span>
         )}
-        <FeedVotes placeId={place.id} like={like} dislike={dislike} mine={mine} />
+        <FeedVotes placeId={place.id} />
       </span>
       <span className="m-feed-text">
         <span className="m-feed-name m-ellipsis">
-          <TierBadge tier={place.tier} />
+          <TierMark tier={place.tier} />
           {name}
         </span>
         <span className="m-feed-meta m-ellipsis">
-          {[area, like ? `❤️ ${like}` : ''].filter(Boolean).join(' ・ ')}
+          {[area, like ? `想去 ${like}` : ''].filter(Boolean).join(' ・ ')}
         </span>
       </span>
     </div>
@@ -176,10 +162,12 @@ export function ExploreFeed() {
       <div className="m-feed-sticky">
         {collapsed && (
           <button type="button" className="m-feed-compact" onClick={toTop} data-testid="m-feed-compact">
-            <span aria-hidden>🔍</span>
+            <Icon name="search" size={20} />
             <span className="m-ellipsis">{summary}</span>
             <span className="m-feed-compact-count">{list.length} 個</span>
-            <span aria-hidden>▴</span>
+            <span aria-hidden className="chev up">
+              <Icon name="chevron" size={16} />
+            </span>
           </button>
         )}
       </div>
@@ -189,7 +177,7 @@ export function ExploreFeed() {
         {columns.map((col, c) => (
           <div key={c} className="m-feed-col">
             {col.map(({ place, rank }) => (
-              <FeedItem key={place.id} place={place} rank={rank} {...voteOf(place.id)} areas={areas} />
+              <FeedItem key={place.id} place={place} rank={rank} like={voteOf(place.id).like} areas={areas} />
             ))}
           </div>
         ))}

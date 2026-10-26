@@ -431,20 +431,20 @@ test('legSteps：計程車沒有步驟', () => {
   assert.deepEqual(legSteps(leg('10:00', 12), 'a', 'b', (x) => x), []);
 });
 
-test('waitNote：📌 午餐、開門、其他', () => {
+test('waitNote：指定開始時間、午餐、開門、其他', () => {
   const visit = { id: 'v', type: 'visit' as const, options: [{ place: 'r' }], selected: 0 };
   const e = entry('visit', 'r', { arrive: '10:53', start: '12:00', waitMinutes: 67, meal: 'lunch', mealTags: ['lunch'] });
-  assert.equal(waitNote(e, { ...visit, start: '12:00' }, place('r')), '⏳ 10:53 到，等 67 分（午餐 📌 12:00 才開始）');
-  assert.equal(waitNote({ ...e, meal: 'dinner', mealTags: ['dinner'] }, { ...visit, start: '12:00' }, place('r')), '⏳ 10:53 到，等 67 分（晚餐 📌 12:00 才開始）');
+  assert.equal(waitNote(e, { ...visit, start: '12:00' }, place('r')), '10:53 到，等 67 分（午餐 12:00 才開始）');
+  assert.equal(waitNote({ ...e, meal: 'dinner', mealTags: ['dinner'] }, { ...visit, start: '12:00' }, place('r')), '10:53 到，等 67 分（晚餐 12:00 才開始）');
   // 標了早餐＋午餐的 12:00：寫引擎用的那一餐（entry.meal），不是第一個標籤
-  assert.equal(waitNote({ ...e, meal: 'lunch', mealTags: ['breakfast', 'lunch'] }, { ...visit, start: '12:00' }, place('r')), '⏳ 10:53 到，等 67 分（午餐 📌 12:00 才開始）');
+  assert.equal(waitNote({ ...e, meal: 'lunch', mealTags: ['breakfast', 'lunch'] }, { ...visit, start: '12:00' }, place('r')), '10:53 到，等 67 分（午餐 12:00 才開始）');
   // 沒標用餐：引擎猜了午餐也不寫
-  assert.equal(waitNote({ ...e, mealTags: [] }, { ...visit, start: '12:00' }, place('r')), '⏳ 10:53 到，等 67 分（📌 12:00 才開始）');
-  // 沒有 📌 的造訪：等開門
+  assert.equal(waitNote({ ...e, mealTags: [] }, { ...visit, start: '12:00' }, place('r')), '10:53 到，等 67 分（12:00 才開始）');
+  // 沒有指定開始時間的造訪：等開門
   const open = entry('visit', 'r', { arrive: '09:40', start: '10:00', waitMinutes: 20 });
-  assert.equal(waitNote(open, visit, place('r')), '⏳ 09:40 到，等 20 分（10:00 才開門）');
+  assert.equal(waitNote(open, visit, place('r')), '09:40 到，等 20 分（10:00 才開門）');
   // 不是造訪（自由時間的指定時間）：不寫原因
-  assert.equal(waitNote(open, null, undefined), '⏳ 09:40 到，等 20 分');
+  assert.equal(waitNote(open, null, undefined), '09:40 到，等 20 分');
   assert.equal(waitNote(entry('visit', 'r'), visit, place('r')), null);
 });
 

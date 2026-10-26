@@ -37,22 +37,10 @@ export function routeProfile(mode: TravelMode): RouteProfile {
   }
 }
 
-export const MODE_ICONS: Record<TravelMode, string> = {
-  walk: '🚶',
-  train: '🚃',
-  bus: '🚌',
-  ferry: '⛴️',
-  taxi: '🚕',
-  charter: '🚐',
-  car: '🚗',
-  other: '➡️',
-  transit: '🚃',
-};
-
-/** 路線中間的標籤，例如「🚶 8 分」（分鐘無條件進位，和引擎一樣）；沒有分鐘時只有圖示 */
-export function routeLabel(mode: TravelMode, minutes: number | null, label: string | null = null): string {
-  if (label) return `${MODE_ICONS[mode]} ${label}`;
-  return minutes != null ? `${MODE_ICONS[mode]} ${Math.max(1, Math.ceil(minutes - 1e-9))} 分` : MODE_ICONS[mode];
+/** 路線中間標籤的字，例如「14 分」（分鐘無條件進位，和引擎一樣）；有 label 用 label；都沒有是「…」（圖示由 modeIconHtml 畫在字前面） */
+export function routeLabel(_mode: TravelMode, minutes: number | null, label: string | null = null): string {
+  if (label) return label;
+  return minutes != null ? `${Math.max(1, Math.ceil(minutes - 1e-9))} 分` : '…';
 }
 
 /**

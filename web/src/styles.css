@@ -1,3 +1,4 @@
+@import url('./shared/ui/ui.css');
 /* 地圖網站 v1（T11）的網頁版（900px 以上，hooks.ts 的 DESKTOP_QUERY）。第六輪起手機版的樣式在 mobile/mobile.css（class 用 m- 開頭）；
    這裡沒有手機才用的規則，只有兩邊共用的元件（對話框、彈窗、照片等）的基本樣式。 */
 
@@ -339,35 +340,6 @@ a {
   padding: 4px 0;
   text-align: left;
   min-height: 36px;
-}
-
-.tier {
-  display: inline-grid;
-  place-items: center;
-  min-width: 1.6em;
-  height: 1.6em;
-  border-radius: 6px;
-  font-family: Georgia, 'Times New Roman', serif;
-  font-weight: 800;
-  box-shadow: inset 0 1px 0 var(--veil-2), 0 1px 2px var(--shade-2);
-  font-size: 0.85em;
-  margin-right: 6px;
-  vertical-align: 0.1em;
-}
-
-.tier-S {
-  background: var(--medal-gold);
-  color: var(--medal-gold-ink);
-}
-
-.tier-A {
-  background: var(--medal-silver);
-  color: var(--medal-silver-ink);
-}
-
-.tier-B {
-  background: var(--medal-bronze);
-  color: var(--medal-bronze-ink);
 }
 
 .badges {
@@ -2866,6 +2838,7 @@ button.edited {
   place-items: center;
   font-size: 0.9rem;
   border: 2px solid var(--paper);
+  color: var(--paper);
   box-shadow: 0 0 0 1px var(--shade-1);
 }
 
@@ -2938,52 +2911,6 @@ button.edited {
 }
 
 /* 分級徽章：S 金、A 銀、B 銅 */
-.tier-medal {
-  flex: 0 0 auto;
-  width: 46px;
-  height: 50px;
-  border-radius: 12px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  box-shadow:
-    inset 0 1px 0 var(--veil-2),
-    inset 0 -2px 0 var(--shade-1),
-    0 2px 6px var(--shade-2);
-}
-
-.tier-medal-letter {
-  font-family: Georgia, 'Times New Roman', serif;
-  font-weight: 800;
-  font-size: 1.75rem;
-  line-height: 1;
-  text-shadow: 0 1px 0 var(--halo);
-}
-
-.tier-medal-word {
-  font-size: 0.5rem;
-  font-weight: 700;
-  letter-spacing: 0.18em;
-  margin-top: 3px;
-  opacity: 0.75;
-}
-
-.tier-medal-S {
-  background: var(--medal-gold2);
-  color: var(--medal-gold-ink);
-}
-
-.tier-medal-A {
-  background: var(--medal-silver2);
-  color: var(--medal-silver-ink);
-}
-
-.tier-medal-B {
-  background: var(--medal-bronze2);
-  color: var(--medal-bronze-ink);
-}
-
 .detail-tabs {
   display: flex;
   margin: 0 -14px;
@@ -3306,6 +3233,7 @@ div.ratings-box,
   place-items: center;
   font-size: 0.85rem;
   border: 2px solid var(--paper);
+  color: var(--paper);
 }
 
 .place-ghost-name {
@@ -4268,75 +4196,8 @@ button.leg-ride-more {
   white-space: nowrap;
 }
 
-/* 卡片照片右上角的 ❤️／👎（CardVotes）；只有文字的卡片放在名稱後面（inline） */
-.card-votes {
-  position: absolute;
-  top: 6px;
-  right: 6px;
-  z-index: 2;
-  display: inline-flex;
-  align-items: center;
-  gap: 2px;
-  background: var(--veil);
-  border-radius: 999px;
-  padding: 0 4px;
-  color: var(--tier-s);
-}
-
-.card-votes.inline {
-  position: relative;
-  top: auto;
-  right: auto;
-  background: var(--soft);
-}
-
-.card-vote,
-.card-vote-more {
-  display: inline-flex;
-  align-items: center;
-  gap: 2px;
-  min-height: 34px;
-  padding: 0 6px;
-  cursor: pointer;
-  border-radius: 999px;
-}
-
-.card-votes.inline .card-vote,
-.card-votes.inline .card-vote-more {
-  min-height: 28px;
-}
-
-.card-vote.on {
-  background: var(--info-bg);
-}
-
-.card-vote.empty {
-  opacity: 0.45;
-  filter: grayscale(1);
-}
-
-.card-vote-more {
-  padding: 0 4px;
-  color: var(--muted);
-  font-size: 0.75rem;
-}
-
-.card-vote-count {
-  font-size: 0.8rem;
-  font-weight: 700;
-  color: var(--fg);
-}
-
-.card-vote-list {
-  right: 0;
-  left: auto;
-  min-width: 150px;
-  color: var(--fg);
-  text-align: left;
-  font-weight: 400;
-}
-
-/* 行程狀態 tag：📅 候選 2/5、✓ 已排 2/5 */
+/* 卡片的想去愛心見 shared/ui/ui.css（VoteHeart） */
+/* 行程狀態 tag：候選 2/5、已排 2/5 */
 .day-status-tags {
   display: inline-flex;
   flex-wrap: wrap;
@@ -4381,50 +4242,6 @@ button.leg-ride-more {
   flex-direction: column;
   align-items: flex-start;
   gap: 4px;
-}
-
-.day-picker-grid {
-  display: grid;
-  grid-template-columns: repeat(7, minmax(36px, 1fr));
-  gap: 4px;
-  width: 100%;
-  max-width: 320px;
-}
-
-.day-picker-week {
-  text-align: center;
-}
-
-.day-picker-day {
-  display: grid;
-  place-items: center;
-  min-height: 40px;
-  padding: 2px;
-  border: 1px solid var(--line);
-  border-radius: 8px;
-  background: var(--bg);
-  color: var(--fg);
-  font: inherit;
-  cursor: pointer;
-  line-height: 1.1;
-}
-
-.day-picker-day.cand {
-  border-color: var(--accent);
-  background: var(--info-bg);
-  color: var(--accent);
-  font-weight: 700;
-}
-
-.day-picker-day.scheduled {
-  background: var(--soft);
-  color: var(--good);
-  font-weight: 700;
-  cursor: default;
-}
-
-.day-picker-mark {
-  font-size: 0.7rem;
 }
 
 /* ---------- 時間軸的資料卡：類型的淡底色、起終點和造訪同樣的卡片、合併卡片的疊層（T15m 第四輪） ---------- */
@@ -4599,27 +4416,18 @@ button.leg-ride-more {
 }
 
 /* 探索卡片上 ❤️ 是最主要的按鈕：圖示大一點、有邊框 */
-.ex-card .card-votes,
-.ex-row .card-votes {
-  box-shadow: 0 0 0 1px var(--tier-s);
-}
-
-.card-vote[data-testid='card-like'] {
-  font-size: 1.05rem;
-}
-
 /* 交通圖示（ModeIcon、地圖路線標籤） */
 .mode-icon {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  border-radius: 6px;
+  border-radius: 50%;
   flex: none;
   vertical-align: middle;
 }
 
 .mode-icon-s {
-  border-radius: 4px;
+  border-radius: 50%;
 }
 
 .route-label {
@@ -4854,47 +4662,6 @@ button.cand-up:disabled {
 }
 
 /* 移到第幾天：4 欄 × 3 列（網頁版彈窗、手機的 MoveDaySheet 共用） */
-.day-grid {
-  display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 6px;
-}
-
-.day-cell {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  min-height: var(--tap);
-  padding: 6px 4px;
-  border: 1px solid var(--line);
-  border-radius: 8px;
-  background: var(--bg);
-  color: var(--fg);
-  font: inherit;
-  cursor: pointer;
-}
-
-.day-cell-date {
-  font-weight: 700;
-  font-variant-numeric: tabular-nums;
-}
-
-.day-cell-weekday {
-  color: var(--muted);
-}
-
-.day-cell.red-day,
-.day-cell.red-day .day-cell-weekday {
-  color: var(--red-day);
-}
-
-.day-cell:disabled {
-  background: var(--soft);
-  color: var(--muted);
-  cursor: default;
-}
-
 .day-tab[aria-selected='true'].red-day .day-tab-wd {
   color: var(--bad-soft);
 }

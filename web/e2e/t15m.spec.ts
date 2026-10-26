@@ -25,7 +25,7 @@ async function openDetail(page: Page, id: string) {
 
 const closeDetail = (page: Page) => th(page, '__th.appStore.getState().closeDetail()');
 
-/** 想去：電腦版右欄的「❤️ 想去」分頁。切到那個點的類型，才看得到它的卡片 */
+/** 想去：電腦版右欄的「想去」分頁。切到那個點的類型，才看得到它的卡片 */
 async function openWish(page: Page, id = PLACE): Promise<Locator> {
   await closeDetail(page);
   await page.getByTestId('side-tab-wish').click();
@@ -49,7 +49,7 @@ async function enterPlanning(page: Page) {
   await expect(page.getByTestId('planning-bar')).toBeVisible();
 }
 
-test('T15m：❤️ 想去 → 留言 → 加到某天 → 編輯中按 ↑ 排進 → 停留時間 → 復原快照', async ({ page }) => {
+test('T15m：想去 → 留言 → 加到某天 → 編輯中按 ↑ 排進 → 停留時間 → 復原快照', async ({ page }) => {
   await ready(page);
 
   // 1. 按 ❤️（只表示喜歡，不問哪天）
@@ -75,7 +75,8 @@ test('T15m：❤️ 想去 → 留言 → 加到某天 → 編輯中按 ↑ 排�
   await expect(wish(list).getByTestId('wish-comment')).toContainText(TEXT);
   await expect(wish(list).getByTestId('wish-comment').getByRole('button', { name: '改' })).toHaveCount(0);
   await wish(list).getByTestId('add-to-day').click();
-  await wish(list).getByTestId(`day-picker-${DAY}`).click();
+  await page.getByTestId(`day-picker-${DAY}`).click();
+  await page.getByTestId('day-picker-done').click();
   await expect(wish(list).getByTestId('card-status-tag')).toContainText('候選 2/7');
 
   // 4. 行程分頁：候選有它；一般模式沒有 ↑
@@ -122,7 +123,7 @@ test('T15m：別人改過了 → 存不了、提示重新載入', async ({ page 
   await expect(page.getByTestId('conflict-bar')).toHaveCount(0);
 });
 
-test('T15m：❤️ 和「大家喜歡的」篩選', async ({ page }) => {
+test('T15m：想去和「大家想去的」篩選', async ({ page }) => {
   await ready(page);
   await openDetail(page, 'toba-kokusai-hotel');
   const like = page.getByTestId('vote-like');
@@ -145,11 +146,13 @@ test('T15m：拿掉別人加的候選要寫理由，理由變成那個點的留�
   const cruise = cand(page, 'toba-bay-cruise-irukajima');
   await expect(cruise).toBeVisible();
   await expect(cruise.getByTestId('cand-reject')).toHaveCount(0);
-  // 月曆裡別人加的候選，一般模式點不了（不會開拿掉的對話框）
+  // 日期格裡別人加的候選，一般模式點不了（不會開拿掉的對話框）
   const wishList = await openWish(page, 'toba-bay-cruise-irukajima');
   await wish(wishList, 'toba-bay-cruise-irukajima').getByTestId('add-to-day').click();
   await expect(page.getByTestId('day-picker-2027-02-05')).toBeDisabled();
   await expect(page.getByTestId('reject-dialog')).toHaveCount(0);
+  await page.keyboard.press('Escape');
+  await expect(page.getByTestId('day-picker')).toHaveCount(0);
   await showDay(page, '2027-02-05');
   await enterPlanning(page);
   await cruise.getByTestId('cand-reject').click();
@@ -211,7 +214,7 @@ async function openMapPoint(page: Page): Promise<{ x: number; y: number }> {
   return pt!;
 }
 
-test('第四輪：點 💬 討論 → 彈窗；點彈窗外面的地圖 → 彈窗關掉', async ({ page }) => {
+test('第四輪：點討論 → 彈窗；點彈窗外面的地圖 → 彈窗關掉', async ({ page }) => {
   await ready(page);
   await page.getByTestId('toolbar-comments').click();
   await expect(page.getByTestId('map-panel')).toBeVisible();
@@ -525,34 +528,29 @@ async function exploreCard(page: Page, id: string): Promise<Locator> {
   return card;
 }
 
-test('第四輪：探索的卡片沒有加到某天；按 ❤️ 就到想去', async ({ page }) => {
+test('第四輪：探索的卡片沒有加到某天；按想去就到想去', async ({ page }) => {
   await ready(page);
   const card = await exploreCard(page, PLACE);
   await expect(card.getByTestId('add-to-day')).toHaveCount(0);
-  // 還沒人 ❤️：照片上是空心的 ♡
+  // 還沒人按想去：照片上是空心的愛心
   await expect(card.getByTestId('card-like')).toHaveAttribute('aria-pressed', 'false');
   await card.getByTestId('card-like').click();
   await expect(card.getByTestId('card-like')).toHaveAttribute('aria-pressed', 'true');
-  await expect(card.getByTestId('card-votes')).toContainText('1');
-  // 點 ▾ 看是誰按的
-  await card.getByTestId('card-votes-more').click();
-  await expect(card.getByTestId('avatar-list')).toContainText('❤️');
+  await expect(card.getByTestId('card-like')).toContainText('1');
   // 想去有它，加到某天在想去的卡片上
   const list = await openWish(page);
   await expect(wish(list).getByTestId('add-to-day')).toBeVisible();
 });
 
-test('探索：原本是 👎，按 ❤️ 會換掉 👎；兩個按鈕一直都在', async ({ page }) => {
+test('探索：愛心一直都在，按了再按就收回；卡片上沒有不想去', async ({ page }) => {
   await ready(page);
   const card = await exploreCard(page, PLACE);
   await expect(card.getByTestId('card-like')).toBeVisible();
-  await card.getByTestId('card-dislike').click();
-  await expect(card.getByTestId('card-dislike')).toHaveAttribute('aria-pressed', 'true');
-  // 只有 👎 時，❤️ 的按鈕還在、按得動
-  await expect(card.getByTestId('card-like')).toHaveAttribute('aria-pressed', 'false');
+  await expect(card.getByTestId('card-dislike')).toHaveCount(0);
   await card.getByTestId('card-like').click();
   await expect(card.getByTestId('card-like')).toHaveAttribute('aria-pressed', 'true');
-  await expect(card.getByTestId('card-dislike')).toHaveAttribute('aria-pressed', 'false');
+  await card.getByTestId('card-like').click();
+  await expect(card.getByTestId('card-like')).toHaveAttribute('aria-pressed', 'false');
 });
 
 /** 電腦版的 HTML5 拖曳：放在目標的第 frac 高度（0.5＝中間＝合併；靠上下邊緣＝插入） */
@@ -628,7 +626,8 @@ test('第四輪完成條件：排進、標午餐和分組、交通改計程車�
   await page.getByTestId('vote-like').click();
   const list = await openWish(page);
   await wish(list).getByTestId('add-to-day').click();
-  await wish(list).getByTestId(`day-picker-${D}`).click();
+  await page.getByTestId(`day-picker-${D}`).click();
+  await page.getByTestId('day-picker-done').click();
   await showDay(page, D);
   await enterPlanning(page);
   await expect(cand(page)).toBeVisible();
@@ -669,11 +668,11 @@ test('第四輪完成條件：排進、標午餐和分組、交通改計程車�
 
 // ───────── 第五輪 ─────────
 
-test('第五輪：編輯入口——日期列的「✏️ 編輯這天」，確認後出現藍條，「完成」回到平常；切到全部就結束編輯', async ({ page }) => {
+test('第五輪：編輯入口——日期列的「編輯」，確認後出現藍條，「完成」回到平常；切到全部就結束編輯', async ({ page }) => {
   await ready(page);
   await showDay(page, '2027-02-05');
   const toggle = page.getByTestId('planning-toggle');
-  await expect(toggle).toHaveText('✏️ 編輯這天');
+  await expect(toggle).toHaveText('編輯');
   await expect(page.getByTestId('day-nav').getByTestId('planning-toggle')).toBeVisible();
   await expect(page.getByTestId('planning-bar')).toHaveCount(0);
 
@@ -688,7 +687,7 @@ test('第五輪：編輯入口——日期列的「✏️ 編輯這天」，確�
   // 編輯中：面板最上面的藍條、藍框；日期列不放「✏️ 編輯這天」
   const bar = page.getByTestId('planning-bar');
   await expect(bar).toBeVisible();
-  await expect(bar).toContainText('✏️ 編輯中');
+  await expect(bar).toContainText('編輯中');
   await expect(page.getByTestId('day-panel')).toHaveClass(/editing/);
   await expect(toggle).toHaveCount(0);
   await expect(page.getByTestId('planning-done')).toHaveText('完成');
@@ -731,7 +730,7 @@ test('第五輪：編輯中藍條捲出畫面時，地圖上方出現精簡的�
   await expect(strip).toHaveCount(0);
 });
 
-test('第五輪：2/3 的等待只出現一次——交通卡下面一條「⏳ … 到，等 N 分（午餐 📌 12:00 才開始）」，沒有「空檔」', async ({ page }) => {
+test('第五輪：2/3 的等待只出現一次——交通卡下面一條「… 到，等 N 分（午餐 12:00 才開始）」，沒有「空檔」', async ({ page }) => {
   await ready(page);
   await showDay(page, '2027-02-03');
   const tl = page.getByTestId('timeline');
@@ -739,7 +738,7 @@ test('第五輪：2/3 的等待只出現一次——交通卡下面一條「⏳ 
   // 等多久看路線（OSRM、計程車速度），這裡只看結構
   const wait = tl.getByTestId('tl-wait');
   await expect(wait).toHaveCount(1);
-  await expect(wait).toHaveText(/^⏳ \d\d:\d\d 到，等 \d+ 分（午餐 📌 12:00 才開始）$/);
+  await expect(wait).toHaveText(/^\d\d:\d\d 到，等 \d+ 分（午餐 12:00 才開始）$/);
   await expect(tl).not.toContainText('空檔');
   await expect(tl.getByTestId('tl-gap')).toHaveCount(0);
   // 位置：交通卡下面、La Mer 上面；La Mer 卡上不再寫「等 N 分」
@@ -815,7 +814,7 @@ test('第五輪：大眾運輸的交通卡點了展開步驟（等車、御座�
   await leg.getByRole('button').first().click();
   const steps = leg.getByTestId('leg-steps');
   await expect(steps).toBeVisible();
-  await expect(steps.getByTestId('leg-step-wait')).toHaveText(/^⏳ 等 \d+ 分$/);
+  await expect(steps.getByTestId('leg-step-wait')).toHaveText(/^等 \d+ 分$/);
   const ride = steps.getByTestId('leg-ride');
   await expect(ride).toContainText('御座線');
   await expect(ride).toContainText(/\d\d:\d\d 發/);
@@ -1023,11 +1022,11 @@ test('⋯：不在編輯中沒有，編輯中有；一般卡沒有刪除', async
   const menu = actionMenu(page);
   await expect(menu).toBeVisible();
   expect(await menu.evaluate((el) => el.parentElement === document.body)).toBe(true);
-  await expect(menu.getByTestId('action-withdraw')).toHaveText('↩ 撤下（回候選）');
-  await expect(menu.getByText('🗑 刪除')).toHaveCount(0);
+  await expect(menu.getByTestId('action-withdraw')).toHaveText('撤下（回候選）');
+  await expect(menu.getByText('刪除', { exact: true })).toHaveCount(0);
   await expect(menu.getByTestId('action-delete')).toHaveCount(0);
   // 照 cardActions 的順序：標籤、釘選（La Mer 有 📌 12:00）、移到第幾天｜撤下；網頁版沒有「改停留時間」
-  await expect(menu.getByRole('menuitem')).toHaveText(['🏷 標籤', '📌 解除釘選', '📅 移到第幾天…', '↩ 撤下（回候選）']);
+  await expect(menu.getByRole('menuitem')).toHaveText(['標籤', '解除釘選', '移到第幾天…', '撤下（回候選）']);
   await expect(menu.getByRole('separator')).toHaveCount(1);
   // 出發住宿那張沒有 ⋯
   await expect(tl.getByTestId('tl-start').getByTestId('item-menu')).toHaveCount(0);
@@ -1132,7 +1131,7 @@ test('重疊卡：主要、拿出', async ({ page }) => {
   await expect(stack).toHaveAttribute('data-shown', '1');
   // 看備卡時也有 ⋯；最上面一組是主要、拿出
   await menuOf(lunch).click();
-  await expect(actionMenu(page).getByRole('menuitem').first()).toHaveText('👑 主要');
+  await expect(actionMenu(page).getByRole('menuitem').first()).toHaveText('主要');
   await actionMenu(page).getByTestId('action-main').click();
   await expect(lunch).toHaveAttribute('data-place', 'toba-kazuei');
 
@@ -1159,7 +1158,7 @@ test('候選的 ⋯：排進這天、刪除', async ({ page }) => {
   // 媽媽加的：有排進這天、刪除，沒有移到第幾天
   await cruise.getByTestId('item-menu').click();
   const menu = actionMenu(page);
-  await expect(menu.getByRole('menuitem')).toHaveText(['📅 排進這天', '🗑 刪除']);
+  await expect(menu.getByRole('menuitem')).toHaveText(['排進這天', '刪除']);
   await expect(menu.getByTestId('action-move')).toHaveCount(0);
   // 刪別人加的：開拿掉的對話框（要寫理由）
   await menu.getByTestId('action-delete').click();
@@ -1177,7 +1176,7 @@ test('候選的 ⋯：排進這天、刪除', async ({ page }) => {
   await showDay(page, '2027-02-06');
   const iroha = cand(page, 'toba-yakigai-iroha');
   await iroha.getByTestId('item-menu').click();
-  await expect(actionMenu(page).getByRole('menuitem')).toHaveText(['📅 排進這天', '📅 移到第幾天…', '🗑 刪除']);
+  await expect(actionMenu(page).getByRole('menuitem')).toHaveText(['排進這天', '移到第幾天…', '刪除']);
   await actionMenu(page).getByTestId('action-move').click();
   await page.getByTestId('move-dialog').locator('[data-pick-day="2027-02-08"]').click();
   await expect(page.getByTestId('move-dialog')).toHaveCount(0);
@@ -1255,8 +1254,8 @@ test('移到第幾天：4×3 格子、紅字、沒有「假日」', async ({ pag
   await expect(dlg.locator('[data-pick-day="2027-02-10"]')).not.toHaveClass(/red-day/);
   await expect(dlg.locator('[data-pick-day="2027-02-06"]')).toContainText('六');
   await expect(dlg.locator('[data-pick-day="2027-02-10"]')).toContainText('三');
-  await expect(dlg.locator('[data-pick-day="2027-02-06"] .day-cell-weekday')).toHaveCSS('color', 'rgb(192, 57, 43)');
-  await expect(dlg.locator('[data-pick-day="2027-02-10"] .day-cell-weekday')).not.toHaveCSS('color', 'rgb(192, 57, 43)');
+  await expect(dlg.locator('[data-pick-day="2027-02-06"] .ui-dg-wd')).toHaveCSS('color', 'rgb(192, 57, 43)');
+  await expect(dlg.locator('[data-pick-day="2027-02-10"] .ui-dg-wd')).not.toHaveCSS('color', 'rgb(192, 57, 43)');
   const cur = dlg.locator('[data-pick-day="2027-02-03"]');
   await expect(cur).toBeDisabled();
   await expect(cur).toContainText('現在');

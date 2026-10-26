@@ -1,6 +1,7 @@
 import { useMemo, useState } from 'react';
 import { photoCandidates } from '../lib/photos.ts';
-import { TYPE_COLORS, TYPE_ICONS } from '../lib/typeStyle.ts';
+import { TYPE_COLORS, TYPE_ICON_NAMES } from '../lib/typeStyle.ts';
+import { Icon } from './Icon.tsx';
 import type { Place } from '../data/types.ts';
 
 interface Props {
@@ -29,7 +30,9 @@ export function Photo({ place, index = 0, width = 800, className, showName, only
   if (!url) {
     return (
       <div className={`photo photo-fallback ${className ?? ''}`} style={{ background: TYPE_COLORS[place.type] }} data-testid="photo-fallback">
-        <span className="photo-fallback-icon">{TYPE_ICONS[place.type]}</span>
+        <span className="photo-fallback-icon">
+          <Icon name={TYPE_ICON_NAMES[place.type]} size={24} />
+        </span>
         {showName && <span className="photo-fallback-name">{place.name.zh || place.name.ja}</span>}
       </div>
     );

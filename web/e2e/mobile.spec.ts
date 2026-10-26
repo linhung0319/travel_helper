@@ -136,7 +136,7 @@ test('討論、預約整頁：打開推一筆 history，瀏覽器上一頁（手
   await expect.poll(() => page.evaluate(() => !!(window.history.state as any)?.thMobileDetail)).toBe(false);
 });
 
-test('探索：兩欄圖片牆、沒有地圖、可以按 ❤️ 不開詳情', async ({ page }) => {
+test('探索：兩欄圖片牆、沒有地圖、可以按想去不開詳情', async ({ page }) => {
   await ready(page);
   await goTab(page, 'explore');
   const items = page.getByTestId('m-feed-item');
@@ -158,18 +158,18 @@ test('探索：兩欄圖片牆、沒有地圖、可以按 ❤️ 不開詳情', 
   await page.locator('.m-page').evaluate((el) => el.scrollTo(0, 0));
 
   await expect(page.getByTestId('map')).toBeHidden();
-  // 找一張自己還沒按 ❤️ 的，按了票數 +1，不開詳情
-  const item = page.locator('[data-testid="m-feed-item"]:has([data-testid="m-feed-like"][aria-pressed="false"])').first();
+  // 找一張自己還沒按想去的，按了票數 +1，不開詳情
+  const item = page.locator('[data-testid="m-feed-item"]:has([data-testid="card-like"][aria-pressed="false"])').first();
   const id = await item.getAttribute('data-id');
   const tile = page.locator(`[data-testid="m-feed-item"][data-id="${id}"]`);
-  const count = async () => Number((await tile.getByTestId('m-feed-like-count').textContent()) || 0);
+  const count = async () => ((await tile.locator('.ui-heart-count').count()) ? Number(await tile.locator('.ui-heart-count').textContent()) : 0);
   const before = await count();
-  await tile.getByTestId('m-feed-like').click();
-  await expect(tile.getByTestId('m-feed-like')).toHaveAttribute('aria-pressed', 'true');
+  await tile.getByTestId('card-like').click();
+  await expect(tile.getByTestId('card-like')).toHaveAttribute('aria-pressed', 'true');
   expect(await count()).toBe(before + 1);
   await expect(page.getByTestId('m-detail')).toHaveCount(0);
   // 按鈕點的範圍至少 44px
-  expect((await tile.getByTestId('m-feed-like').boundingBox())!.height).toBeGreaterThanOrEqual(44);
+  expect((await tile.getByTestId('card-like').boundingBox())!.height).toBeGreaterThanOrEqual(44);
   // 點圖片本身才開詳情
   await tile.click({ position: { x: 20, y: 60 } });
   await expect(page.getByTestId('m-detail')).toHaveAttribute('data-id', id!);
@@ -197,19 +197,19 @@ test('探索：類型篩選', async ({ page }) => {
   await expect(page.getByTestId('m-feed-sheet')).toHaveCount(0);
 });
 
-test('探索：⚙ 篩選的底部面板蓋過底部分頁，最下面的晶片點得到', async ({ page }) => {
+test('探索：篩選的底部面板蓋過底部分頁，最下面的晶片點得到', async ({ page }) => {
   await ready(page);
   await goTab(page, 'explore');
   await page.getByTestId('m-feed-more').click();
   const sheet = page.getByTestId('m-feed-sheet');
   await expect(sheet).toBeVisible();
   // 分級的最後一個晶片：畫面上那一點最上面的元素就是它（沒有被底部分頁蓋住）
-  const chip = sheet.locator('.m-sheet-group').last().locator('.m-chip').last();
+  const chip = sheet.locator('.m-sheet-group').last().locator('.ui-chip').last();
   await chip.scrollIntoViewIfNeeded();
   const b = (await chip.boundingBox())!;
   const hit = await page.evaluate(([x, y]) => {
     const el = document.elementFromPoint(x, y);
-    return !!el?.closest('[data-testid="m-feed-sheet"] .m-sheet-group:last-child .m-chip:last-child');
+    return !!el?.closest('[data-testid="m-feed-sheet"] .m-sheet-group:last-child .ui-chip:last-child');
   }, [b.x + b.width / 2, b.y + b.height / 2] as const);
   expect(hit).toBe(true);
   await chip.click();
@@ -246,7 +246,9 @@ test('想去：分段切換、加到某天', async ({ page }) => {
   expect(new Set(types)).toEqual(new Set(['spot']));
   const first = page.getByTestId('m-wish-item').first();
   await first.getByTestId('add-to-day').click();
-  await expect(first.getByTestId('day-picker')).toBeVisible();
+  await expect(page.getByTestId('day-picker')).toBeVisible();
+  await page.keyboard.press('Escape');
+  await expect(page.getByTestId('day-picker')).toHaveCount(0);
   await expect(page.getByTestId('m-detail')).toHaveCount(0);
   // 清單檢視：卡片還是有加到某天
   await page.getByTestId('m-wish-view-list').click();
@@ -278,7 +280,8 @@ async function openFromFeed(page: import('@playwright/test').Page, y: number) {
   await goTab(page, 'explore');
   await expect(page.getByTestId('m-feed-item').nth(3)).toBeVisible();
   await page.locator('.m-page').evaluate((el, y) => el.scrollTo(0, y), y);
-  await expect.poll(() => page.locator('.m-page').evaluate((el) => Math.round(el.scrollTop))).toBe(y);
+  // 篩選收成一行時版面會動，捲動位置差 1px 以內都算到了
+  await expect.poll(() => page.locator('.m-page').evaluate((el, y) => Math.abs(el.scrollTop - y) <= 1, y)).toBe(true);
   // 第一張整張都在畫面裡的（篩選、黏在上面的摘要、底部分頁都不擋）
   const id = await page.evaluate(() => {
     const el = [...document.querySelectorAll('[data-testid="m-feed-item"]')].find((e) => {
@@ -298,7 +301,7 @@ test('詳情：整頁、返回後捲動位置不變', async ({ page }) => {
   await ready(page);
   await openFromFeed(page, 800);
   const detail = page.getByTestId('m-detail');
-  // 照片在最上面，下面是名稱、大按鈕 ❤️／👎；從探索打開沒有「加到某天」
+  // 照片在最上面，下面是名稱、大按鈕想去／不想去；從探索打開沒有「加到某天」
   await expect(detail.getByTestId('m-detail-photos')).toBeVisible();
   await expect(detail.getByTestId('m-detail-name')).toBeVisible();
   expect((await detail.getByTestId('m-detail-like').boundingBox())!.height).toBeGreaterThanOrEqual(44);
@@ -558,7 +561,7 @@ test('航班的日子（2/2）、空的日子能正常顯示', async ({ page }) 
   expect(errors).toEqual([]);
 });
 
-test('行程：地圖右上 💬、📋，右下 ⛶ 把面板放低；拖把手換高度', async ({ page }) => {
+test('行程：地圖右上討論、預約，右下 ⛶ 把面板放低；拖把手換高度', async ({ page }) => {
   await ready(page);
   await pickDay(page, '2027-02-03');
   const sheet = page.getByTestId('m-sheet');
@@ -620,7 +623,7 @@ test('交通開著時點卡片：黑框和路線變淡還在', async ({ page }) 
 
 type P = import('@playwright/test').Page;
 
-/** 選某天、進編輯（✏️ 編輯 → 開始編輯） */
+/** 選某天、進編輯（編輯 → 開始編輯） */
 async function editDay(page: P, date = '2027-02-03') {
   await ready(page);
   await pickDay(page, date);
@@ -647,7 +650,7 @@ test('編輯：藍條、分頁藏起來、⋯ 開底部面板', async ({ page })
   await page.getByTestId('planning-confirm').click();
   // 藍條：「✏️ 編輯 2/3（三）」加「完成」；面板拉到高；底部分頁藏起來
   const bar = page.getByTestId('planning-bar');
-  await expect(bar).toContainText('✏️ 編輯 2/3（三）');
+  await expect(bar).toContainText('編輯 2/3（三）');
   await expect(bar.getByTestId('planning-done')).toBeVisible();
   expect((await bar.getByTestId('planning-done').boundingBox())!.height).toBeGreaterThanOrEqual(44);
   await expect(page.getByTestId('m-sheet')).toHaveAttribute('data-snap', 'high');
@@ -667,7 +670,7 @@ test('編輯：藍條、分頁藏起來、⋯ 開底部面板', async ({ page })
   await expect(sheet.getByTestId('m-action-withdraw')).toBeVisible();
   await expect(sheet.getByTestId('m-action-delete')).toHaveCount(0);
   const items = sheet.getByRole('menuitem');
-  await expect(items).toHaveText(['🏷 標籤', /⏱ 改停留時間/, '📌 釘選時間', '📅 移到第幾天…', '↩ 撤下（回候選）']);
+  await expect(items).toHaveText(['標籤', /改停留時間/, '釘選時間', '移到第幾天…', '撤下（回候選）']);
   for (const el of await items.all()) expect((await el.boundingBox())!.height).toBeGreaterThanOrEqual(44);
   expect(await scrollsSideways(page)).toBe(false);
   // 點暗處就關
@@ -690,7 +693,7 @@ test('編輯：標籤子畫面多選', async ({ page }) => {
   await sheet.getByTestId('m-action-tags').click();
   // 同一個面板換內容：分組標題、膠囊
   await expect(sheet.getByTestId('m-action-tags')).toHaveCount(0);
-  await expect(sheet.getByTestId('m-tag-sheet')).toContainText('🍴 用餐');
+  await expect(sheet.getByTestId('m-tag-sheet')).toContainText('用餐');
   for (const t of ['lunch', 'breakfast']) {
     await sheet.getByTestId(`tag-opt-${t}`).click();
     await expect(sheet.getByTestId(`tag-opt-${t}`)).toHaveAttribute('aria-checked', 'true');
@@ -775,7 +778,7 @@ test('編輯：回住宿的這晚的方案、候選的 ⋯', async ({ page }) =>
   await editDay(page);
   await openActions(page, 'lodging');
   const sheet = page.getByTestId('m-action-sheet');
-  await expect(sheet.getByRole('menuitem')).toHaveText(['🏷 這晚的方案', '🗑 清掉這晚的住宿']);
+  await expect(sheet.getByRole('menuitem')).toHaveText(['這晚的方案', '清掉這晚的住宿']);
   await sheet.getByTestId('m-action-lodging-plan').click();
   await sheet.getByTestId('lodging-plan-breakfast').click();
   await expect(sheet.getByTestId('lodging-plan-breakfast')).toHaveAttribute('aria-checked', 'true');
@@ -784,7 +787,7 @@ test('編輯：回住宿的這晚的方案、候選的 ⋯', async ({ page }) =>
   // 別人加的候選（2/5）：排進這天、刪除
   await pickDay(page, '2027-02-05');
   await page.getByTestId('m-cand').first().getByTestId('m-card-menu').click();
-  await expect(sheet.getByRole('menuitem')).toHaveText(['📅 排進這天', '🗑 刪除']);
+  await expect(sheet.getByRole('menuitem')).toHaveText(['排進這天', '刪除']);
   for (const el of await sheet.getByRole('menuitem').all()) expect((await el.boundingBox())!.height).toBeGreaterThanOrEqual(44);
 });
 
@@ -798,7 +801,7 @@ test('編輯：重疊卡 ‹ n/m › 換著看、⋯ 的主要、拿出作用在
   // 看主卡：👑 主要不能點
   await openActions(page, 'i-7');
   const sheet = page.getByTestId('m-action-sheet');
-  await expect(sheet.getByRole('menuitem').first()).toHaveText('👑 主要');
+  await expect(sheet.getByRole('menuitem').first()).toHaveText('主要');
   await expect(sheet.getByTestId('m-action-main')).toBeDisabled();
   await page.getByTestId('m-sheet-dim').click({ position: { x: 20, y: 20 } });
   // 換到第 2 個：縮圖、名稱換成一榮，點了不會選卡片
@@ -826,7 +829,7 @@ test('編輯：重疊卡 ‹ n/m › 換著看、⋯ 的主要、拿出作用在
   expect(places[places.indexOf('toba-kazuei') + 1]).toBe('toba-sazanami');
 });
 
-test('編輯：看重疊卡的備卡時，⋯ 的「⏱ 改停留時間」不能點（只改得到主卡）', async ({ page }) => {
+test('編輯：看重疊卡的備卡時，⋯ 的「改停留時間」不能點（只改得到主卡）', async ({ page }) => {
   await editDay(page, '2027-02-05');
   const lunch = mCard(page, 'i-7');
   const sheet = page.getByTestId('m-action-sheet');
@@ -856,7 +859,7 @@ test('編輯：移到第幾天可以復原，留在原本那天', async ({ page 
   await expect(mCard(page, 'i-2')).toBeVisible();
 });
 
-test('自由時間的子畫面標題是「⏱ 改時間長度」', async ({ page }) => {
+test('自由時間的子畫面標題是「改時間長度」', async ({ page }) => {
   await editDay(page);
   await page.evaluate(() => {
     const th = (window as any).__th;
@@ -869,7 +872,7 @@ test('自由時間的子畫面標題是「⏱ 改時間長度」', async ({ page
   await openActions(page, 'free-e2e');
   const sheet = page.getByTestId('m-action-sheet');
   await sheet.getByTestId('m-action-free-length').click();
-  await expect(sheet.getByTestId('m-action-head')).toContainText('⏱ 改時間長度');
+  await expect(sheet.getByTestId('m-action-head')).toContainText('改時間長度');
 });
 
 test('編輯中從行程打開的詳情沒有問 AI（半屏聊天藏起來）', async ({ page }) => {
@@ -914,12 +917,12 @@ test('AI 分頁：假訊息有照片卡和提議卡', async ({ page }) => {
   await expect(chat).toBeVisible();
   expect(await chat.getByTestId('m-chat-place').count()).toBeGreaterThanOrEqual(3);
   await expect(chat.getByTestId('m-chat-proposal')).toBeVisible();
-  // 照片卡上有 ❤️ 和「詳情」，點的範圍至少 44px
+  // 照片卡上有想去和「詳情」，點的範圍至少 44px
   const card = chat.getByTestId('m-chat-place').first();
   expect((await card.getByTestId('m-chat-place-like').boundingBox())!.height).toBeGreaterThanOrEqual(44);
   expect((await card.getByTestId('m-chat-place-detail').boundingBox())!.height).toBeGreaterThanOrEqual(44);
   // 上下文小標：沒有地點時是這天
-  await expect(chat.getByTestId('m-chat-context')).toContainText('📍 正在看：');
+  await expect(chat.getByTestId('m-chat-context')).toContainText('正在看：');
   // 送出：「我」的訊息加進對話，再一則佔位回覆
   const before = await chat.getByTestId('m-chat-msg').count();
   await chat.getByTestId('m-chat-input').fill('有沒有雨天備案？');
@@ -939,7 +942,7 @@ test('AI 分頁：假訊息有照片卡和提議卡', async ({ page }) => {
   expect(await scrollsSideways(page)).toBe(false);
 });
 
-test('行程頁 ✨：半屏聊天、上面看得到地圖', async ({ page }) => {
+test('行程頁 AI：半屏聊天、上面看得到地圖', async ({ page }) => {
   await ready(page);
   await pickDay(page, '2027-02-05');
   await page.getByTestId('m-trip-ai').click();
@@ -957,7 +960,7 @@ test('行程頁 ✨：半屏聊天、上面看得到地圖', async ({ page }) =>
   expect(await page.evaluate(([x, y]) => !!document.elementFromPoint(x, y)?.closest('.m-map'), [20, box.y / 2])).toBe(true);
   // 同一個聊天元件：輸入框、上下文小標
   await expect(sheet.getByTestId('m-chat-input')).toBeVisible();
-  await expect(sheet.getByTestId('m-chat-context')).toContainText('📍 正在看：');
+  await expect(sheet.getByTestId('m-chat-context')).toContainText('正在看：');
   expect((await page.getByTestId('m-chat-sheet-close').boundingBox())!.height).toBeGreaterThanOrEqual(44);
   await page.getByTestId('m-chat-sheet-close').click();
   await expect(sheet).toHaveCount(0);
@@ -1003,7 +1006,7 @@ test('探索詳情的問 AI → AI 分頁；行程詳情的問 AI → 半屏', a
   await expect(page.getByTestId('m-detail')).toHaveCount(0);
   await expect(page.getByTestId('m-tab-ai')).toHaveAttribute('aria-current', 'page');
   const chat = page.getByTestId('m-chat-page');
-  await expect(chat.getByTestId('m-chat-context')).toContainText('📍 關於：');
+  await expect(chat.getByTestId('m-chat-context')).toContainText('關於：');
   await expect(chat.getByTestId('m-chat-context')).toContainText(name.slice(0, 2));
   // 問的問題變成「我」的訊息
   await expect(chat.locator('[data-testid="m-chat-msg"][data-who="me"]').last()).toBeVisible();
@@ -1023,10 +1026,10 @@ test('探索詳情的問 AI → AI 分頁；行程詳情的問 AI → 半屏', a
   await expect(page.getByTestId('m-tab-trip')).toHaveAttribute('aria-current', 'page');
   const sheet = page.getByTestId('m-chat-sheet');
   await expect(sheet).toBeVisible();
-  await expect(sheet.getByTestId('m-chat-context')).toContainText('📍 關於：橫山展望台');
+  await expect(sheet.getByTestId('m-chat-context')).toContainText('關於：橫山展望台');
 });
 
-test('手機地圖上的提議列：不被 💬／📋 蓋住、「不看提議」44px；關掉半屏、離開行程時清掉提議', async ({ page }) => {
+test('手機地圖上的提議列：不被討論、預約蓋住、「不看提議」44px；關掉半屏、離開行程時清掉提議', async ({ page }) => {
   await ready(page);
   await goTab(page, 'ai');
   await page.getByTestId('m-chat-proposal-view').click();

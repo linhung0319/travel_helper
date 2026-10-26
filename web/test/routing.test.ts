@@ -34,16 +34,16 @@ test('分鐘：步行用路徑距離 ÷ 80 m/分 × 全員係數（不再乘繞�
   const taxi = minutesFromMeters('taxi', 6000, PARTY)!;
   assert.ok(taxi >= 12 && taxi < 20, String(taxi)); // 6 km、30 km/h 是 12 分，加上叫車的時間
   assert.equal(minutesFromMeters('train', 6000, PARTY), null);
-  assert.equal(routeLabel('walk', 13.2), '🚶 14 分');
-  assert.equal(routeLabel('train', null), '🚃');
-  assert.equal(routeLabel('train', 12, '特急 10:05 發'), '🚃 特急 10:05 發');
+  assert.equal(routeLabel('walk', 13.2), '14 分');
+  assert.equal(routeLabel('train', null), '…');
+  assert.equal(routeLabel('train', 12, '特急 10:05 發'), '特急 10:05 發');
 });
 
 test('minutesFromMeters：計程車有路線時間時用它（再由 routeLabel 進位）', () => {
   const cfg = DEFAULT_CONFIG;
   const m = minutesFromMeters('taxi', 4200, PARTY, cfg, 9.6)!;
   assert.equal(m, 9.6 + cfg.taxi.overheadMinutes);
-  assert.equal(routeLabel('taxi', m), '🚕 10 分');
+  assert.equal(routeLabel('taxi', m), '10 分');
   assert.equal(minutesFromMeters('walk', 800, PARTY, cfg, 99), 14); // 步行不受影響
 });
 

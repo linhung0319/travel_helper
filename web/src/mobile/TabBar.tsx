@@ -1,14 +1,15 @@
-// 手機版底部的 5 個分頁（第六輪 §3.1）：🔍 探索、❤️ 想去（顯示數字）、🗓 行程、✨ AI、👤 我。固定在最下面，編輯中藏起來（MobileApp 決定）。
+// 手機版底部的 5 個分頁（第六輪 §3.1）：探索、想去（顯示數字）、行程、AI、我。固定在最下面，編輯中藏起來（MobileApp 決定）。
 
+import { Icon, type IconName } from '../components/Icon.tsx';
 import { useLiked } from '../shared/placeLists.ts';
 import { mobileStore, useMobile, type MobileTab } from './mobileStore.ts';
 
-const TABS: { tab: MobileTab; icon: string; label: string }[] = [
-  { tab: 'explore', icon: '🔍', label: '探索' },
-  { tab: 'wish', icon: '❤️', label: '想去' },
-  { tab: 'trip', icon: '🗓', label: '行程' },
-  { tab: 'ai', icon: '✨', label: 'AI' },
-  { tab: 'me', icon: '👤', label: '我' },
+const TABS: { tab: MobileTab; icon: IconName; label: string }[] = [
+  { tab: 'explore', icon: 'search', label: '探索' },
+  { tab: 'wish', icon: 'heart', label: '想去' },
+  { tab: 'trip', icon: 'calendar', label: '行程' },
+  { tab: 'ai', icon: 'spark', label: 'AI' },
+  { tab: 'me', icon: 'user', label: '我' },
 ];
 
 /** 底部分頁列：選到的那個 aria-current="page" */
@@ -27,7 +28,7 @@ export function TabBar() {
           data-testid={`m-tab-${tab}`}
         >
           <span className="m-tab-icon" aria-hidden>
-            {icon}
+            <Icon name={icon} size={24} />
           </span>
           <span className="m-tab-label">
             {label}
