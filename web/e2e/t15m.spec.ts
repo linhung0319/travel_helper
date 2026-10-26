@@ -1291,3 +1291,34 @@ test('從行程打開的詳情多「這天排它會不會太趕？」', async ({
   await openDetail(page, 'shima-yokoyama');
   await expect(page.getByTestId('ask-ai-box').getByTestId('ask-ai-prompt').first()).toHaveText('這天排它會不會太趕？');
 });
+
+test('加到某天（DayGrid12 多選）：已排寫「已排」不能點、已選 N 天會變、取消自己的候選按「好」就拿掉', async ({ page }) => {
+  await ready(page);
+  const AQ = 'toba-aquarium';
+  const list = await openWish(page, AQ);
+  await wish(list, AQ).getByTestId('add-to-day').click();
+  const dlg = page.getByTestId('day-picker');
+  const sched = page.getByTestId('day-picker-2027-02-05');
+  await expect(sched).toContainText('已排');
+  await expect(sched).toBeDisabled();
+  const n0 = Number(((await page.getByTestId('day-picker-count').textContent()) ?? '').replace(/\D/g, ''));
+  const c8 = page.getByTestId('day-picker-2027-02-08');
+  await expect(c8).toHaveAttribute('aria-pressed', 'false');
+  await c8.click();
+  await expect(c8).toHaveAttribute('aria-pressed', 'true');
+  await expect(c8.locator('svg')).toBeVisible(); // 選中的角落有勾
+  await expect(page.getByTestId('day-picker-count')).toHaveText(`已選 ${n0 + 1} 天`);
+  await page.getByTestId('day-picker-2027-02-09').click();
+  await expect(page.getByTestId('day-picker-count')).toHaveText(`已選 ${n0 + 2} 天`);
+  await page.getByTestId('day-picker-done').click();
+  await expect(dlg).toHaveCount(0);
+  await expect(wish(list, AQ).getByTestId('card-status-tag')).toContainText('2/8');
+  // 再開一次：取消自己加的 2/8，按「好」就拿掉
+  await wish(list, AQ).getByTestId('add-to-day').click();
+  await expect(page.getByTestId('day-picker-2027-02-08')).toHaveAttribute('aria-pressed', 'true');
+  await page.getByTestId('day-picker-2027-02-08').click();
+  await expect(page.getByTestId('day-picker-count')).toHaveText(`已選 ${n0 + 1} 天`);
+  await page.getByTestId('day-picker-done').click();
+  await expect(wish(list, AQ).getByTestId('card-status-tag')).not.toContainText('2/8');
+  await expect(wish(list, AQ).getByTestId('card-status-tag')).toContainText('2/9');
+});

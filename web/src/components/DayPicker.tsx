@@ -6,22 +6,20 @@
 import { useState } from 'react';
 import { createPortal } from 'react-dom';
 import { shared } from '../appShared.ts';
-import { useApp, useData, useShared } from '../hooks.ts';
+import { useData, useShared } from '../hooks.ts';
 import { placeDayStatus } from '../lib/wishlist.ts';
 import { shortDayLabel } from '../lib/trip.ts';
-import { openDialog } from '../uiStore.ts';
 import { castVote } from './Votes.tsx';
 import { Dialog } from './common.tsx';
 import { Icon } from './Icon.tsx';
 import { Button } from '../shared/ui/Button.tsx';
 import { DayGrid12 } from '../shared/ui/DayGrid12.tsx';
 
-/** 日期格彈窗：candidate 預先選好、已排的寫「已排」（不能點）；按「好」才存。onClose 是關掉 */
+/** 日期格彈窗：candidate 預先選好、已排的寫「已排」（不能點）；別人加的候選鎖住；按「好」才存。onClose 是關掉 */
 export function DayPicker({ placeId, onClose }: { placeId: string; onClose: () => void }) {
   const candidates = useShared((s) => s.candidates);
   const me = useShared((s) => s.me?.id);
   const itinerary = useData((s) => s.itinerary);
-  const planning = useApp((s) => s.planning);
   const status = placeDayStatus(placeId, candidates, itinerary);
   const [busy, setBusy] = useState(false);
   const [draft, setDraft] = useState<string[]>(status.candidate);
@@ -30,8 +28,8 @@ export function DayPicker({ placeId, onClose }: { placeId: string; onClose: () =
     const list = candidates.filter((x) => x.placeId === placeId && x.day === date && !x.deletedAt);
     return list.find((x) => x.addedBy === me) ?? list[0];
   };
-  // 別人加的候選：不在編輯時拿不掉（編輯時要寫理由，見 save）
-  const locked = status.candidate.filter((d) => !planning && candidateOn(d)?.addedBy !== me);
+  // 別人加的候選：在格子裡一律鎖住，只能從候選卡的「拿掉」（要寫理由）處理
+  const locked = status.candidate.filter((d) => candidateOn(d)?.addedBy !== me);
   const change = (next: string[]) => setDraft(next);
   const save = async () => {
     setBusy(true);
@@ -41,16 +39,12 @@ export function DayPicker({ placeId, onClose }: { placeId: string; onClose: () =
     for (const d of add) if ((await shared.addCandidate(placeId, d)).ok) added++;
     // 加進候選＝想去：自己還沒按想去就按（每人對每個點只有一個狀態，原本是不想去的會換成想去）
     if (added > 0 && !shared.store.getState().votes.some((v) => v.placeId === placeId && v.memberId === me && v.value === 'like' && !v.deletedAt)) await castVote(placeId, 'like');
-    let reject: number | null = null;
     for (const d of remove) {
       const c = candidateOn(d);
-      if (!c) continue;
-      if (c.addedBy === me) await shared.removeCandidate(c.id);
-      else reject ??= c.id; // 別人加的：編輯時才能拿掉，要寫理由
+      if (c?.addedBy === me) await shared.removeCandidate(c.id);
     }
     setBusy(false);
     onClose();
-    if (reject != null) openDialog({ kind: 'reject', candidateId: reject });
   };
   return (
     <Dialog

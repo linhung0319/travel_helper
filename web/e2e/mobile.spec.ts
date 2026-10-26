@@ -279,9 +279,13 @@ test('沒有照片的點顯示類型色塊', async ({ page }) => {
 async function openFromFeed(page: import('@playwright/test').Page, y: number) {
   await goTab(page, 'explore');
   await expect(page.getByTestId('m-feed-item').nth(3)).toBeVisible();
+  // 圖片牆的高度照原圖比例：照片一張張載入時版面會動，瀏覽器的 scroll anchoring 會把捲動位置調個幾 px（甚至讓 Playwright 的 click 再捲一次）。
+  // 所以先等畫面上已經在載的照片載完，再捲、再量。
+  const settle = () => page.waitForFunction(() => [...document.querySelectorAll('[data-testid="m-feed-item"] img')].every((i) => (i as HTMLImageElement).complete), null, { timeout: 8000 }).catch(() => {});
+  await settle();
   await page.locator('.m-page').evaluate((el, y) => el.scrollTo(0, y), y);
-  // 篩選收成一行時版面會動，捲動位置差 1px 以內都算到了
-  await expect.poll(() => page.locator('.m-page').evaluate((el, y) => Math.abs(el.scrollTop - y) <= 1, y)).toBe(true);
+  await settle();
+  await expect.poll(() => page.locator('.m-page').evaluate((el, y) => Math.abs(el.scrollTop - y) <= 2, y)).toBe(true);
   // 第一張整張都在畫面裡的（篩選、黏在上面的摘要、底部分頁都不擋）
   const id = await page.evaluate(() => {
     const el = [...document.querySelectorAll('[data-testid="m-feed-item"]')].find((e) => {

@@ -1,6 +1,7 @@
 // 12 天的日期格（4 欄 × 3 列）：「加到某天」（多選）和「移到第幾天」（單選）共用，網頁版彈窗和手機底部面板都用這個。
 // 已排（scheduled）的格子寫「已排」、不能取消；現在那天（current）灰掉、寫「現在」；週末、國定假日紅字。樣式在 ui.css。
 
+import { Icon } from '../../components/Icon.tsx';
 import { tripDates } from '../../lib/trip.ts';
 import { dayGridCells } from '../dayGrid.ts';
 
@@ -24,6 +25,11 @@ export function DayGrid12({ mode, picked, scheduled = [], current, onChange, dis
           data-testid={testId ? testId(c.date) : 'move-day'}
         >
           <span className="ui-dg-date">{c.label}</span>
+          {c.state === 'picked' && mode === 'multi' && (
+            <span className="ui-dg-check">
+              <Icon name="check" size={16} />
+            </span>
+          )}
           <span className="ui-dg-wd">{c.state === 'current' ? '現在' : c.state === 'scheduled' ? '已排' : c.weekday}</span>
         </button>
       ))}
