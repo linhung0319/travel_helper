@@ -45,6 +45,7 @@ export function DetailFloat() {
 
 export function SidePanel() {
   const mode = useApp((s) => s.mode);
+  const planning = useApp((s) => s.planning);
   const detailId = useApp((s) => s.detailId);
   const detailFrom = useApp((s) => s.detailFrom);
   const byId = useData((s) => s.byId);
@@ -67,7 +68,8 @@ export function SidePanel() {
           <AccountMenu />
         </span>
       </div>
-      {mode === 'map' && !place && <DayStrip variant="side" />}
+      {/* 編輯中編輯條取代日期列：編輯中不能換天（§6.3） */}
+      {mode === 'map' && !place && !planning && <DayStrip variant="side" />}
       <div className="side-notices">
         <EditingStrip />
         <ConflictBar />

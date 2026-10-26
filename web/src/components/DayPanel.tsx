@@ -132,7 +132,7 @@ export function DayPanel() {
   if (day === 'all') return <Overview />;
   return (
     <div className={`day-panel ${planning ? 'editing' : ''}`} data-testid="day-panel">
-      <PlanningBar />
+      <PlanningBar title={`編輯 ${dayLabel(day)}`} />
       <DayHead day={day} />
       {plan && (
         <div className="day-head">

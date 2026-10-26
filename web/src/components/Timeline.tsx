@@ -53,7 +53,7 @@ function typeColor(type: Place['type'] | null | undefined): string {
 /** 資料卡（和候選卡）左邊的類型色塊：宿、景、餐、站、機、點 */
 export function CardType({ type }: { type: Place['type'] | 'airport' | null }) {
   return (
-    <span className="tl-card-type" style={{ background: typeColor(type === 'airport' ? null : type) }} aria-hidden data-testid="item-type">
+    <span className="tc-type-tile" style={{ background: typeColor(type === 'airport' ? null : type) }} aria-hidden data-testid="item-type">
       {cardTypeLetter(type)}
     </span>
   );

@@ -2082,3 +2082,38 @@ button.ll-main {
   border-bottom: 1px dashed var(--line);
   width: fit-content;
 }
+
+/* 候選列、小卡片標題前面的類型小色塊（沒有縮圖的地方）：類型色底加一個字 */
+.tc-type-tile {
+  flex: none;
+  display: inline-grid;
+  place-items: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 14px;
+  color: var(--paper);
+  font-weight: 700;
+  font-size: 1rem;
+}
+
+.preview-title .tc-type-tile {
+  width: 22px;
+  height: 22px;
+  border-radius: 999px;
+  font-size: 0.75rem;
+}
+
+/* 手機「改」：看起來是小膠囊，點的範圍至少 44×44 */
+.m-leg .ll-edit {
+  position: relative;
+}
+
+.m-leg .ll-edit::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: max(100%, 44px);
+  height: 44px;
+  transform: translate(-50%, -50%);
+}

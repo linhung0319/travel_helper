@@ -10,6 +10,7 @@ import { useApp, useData, useShared, useUi } from '../hooks.ts';
 import { closeDialog, openDialog, uiStore } from '../uiStore.ts';
 import { DayGrid12 } from '../shared/ui/DayGrid12.tsx';
 import { Icon } from './Icon.tsx';
+import { Button } from '../shared/ui/Button.tsx';
 import { dayLabel, isRedDay, shortDayLabel, tripDates } from '../lib/trip.ts';
 import { findItemRef, itemsWithPlace } from '../lib/planView.ts';
 import { stopsOn } from '../lib/itinerary.ts';
@@ -26,9 +27,9 @@ export function PlanningToggle() {
   const planning = useApp((s) => s.planning);
   if (planning) return null;
   return (
-    <button type="button" className="edit-toggle" data-testid="planning-toggle" onClick={() => openDialog({ kind: 'planning' })}>
-      <Icon name="pen" size={16} /> 編輯
-    </button>
+    <Button kind="primary" size="sm" icon="pen" data-testid="planning-toggle" onClick={() => openDialog({ kind: 'planning' })}>
+      編輯
+    </Button>
   );
 }
 
@@ -102,13 +103,13 @@ export function EditingStrip() {
 
 /**
  * 編輯中，時間軸面板最上面的藍條：說明、儲存狀態、快照、完成（白底）。
- * 手機版（第六輪 §3.5）傳 title（「編輯 2/3（三）」）、className、compact（只留標題和完成）
+ * 兩邊同一個樣子（§6.3）：墨色底，「編輯 2/3（三）」、快照、完成；compact（手機）不寫「第 N 版」
  */
 export function PlanningBar({ title, className = '', compact = false }: { title?: string; className?: string; compact?: boolean } = {}) {
   const planning = useApp((s) => s.planning);
   const saving = useShared((s) => s.saving);
   const version = useShared((s) => s.version);
-  // callback ref：藍條出現時開始看它在不在畫面上，拿掉時停止並當作「在」（交給 dayPanelShowing 判斷）
+  // callback ref：編輯條出現時開始看它在不在畫面上，拿掉時停止並當作「在」（交給 dayPanelShowing 判斷）
   const watch = useCallback((el: HTMLDivElement | null) => {
     if (!el || typeof IntersectionObserver === 'undefined') return;
     const io = new IntersectionObserver(([e]) => setBarOut(!e.isIntersecting));
@@ -126,11 +127,9 @@ export function PlanningBar({ title, className = '', compact = false }: { title?
       </strong>
       {!compact && <span className="planning-bar-status">{saving ? '儲存中…' : `第 ${version} 版`}</span>}
       <span className="planning-bar-actions">
-        {!compact && (
-          <button type="button" className="text-button" onClick={() => openDialog({ kind: 'snapshots' })} data-testid="snapshots-button">
-            <Icon name="history" size={16} /> 快照
-          </button>
-        )}
+        <button type="button" className="text-button" onClick={() => openDialog({ kind: 'snapshots' })} data-testid="snapshots-button">
+          <Icon name="history" size={16} /> 快照
+        </button>
         <button type="button" className="planning-done" data-testid="planning-done" onClick={() => appStore.getState().setPlanning(false)}>
           完成
         </button>

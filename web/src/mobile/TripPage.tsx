@@ -49,7 +49,7 @@ function useFocusOnMap() {
     if (!placeId) return;
     // 面板高度變了，地圖先重新算大小再飛（不然飛到的中心會被面板蓋住）
     resizeMap();
-    if (uiStore.getState().legOpen) uiStore.setState({ legOpen: null });
+    if (uiStore.getState().legOpen || uiStore.getState().legEdit) uiStore.setState({ legOpen: null, legEdit: null });
     commands.focus(placeId);
     appStore.getState().setHighlight('focus', [placeId]);
     return () => appStore.getState().setHighlight('focus', []);

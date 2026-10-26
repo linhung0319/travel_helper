@@ -315,12 +315,14 @@ function DayView({ date }: { date: string }) {
           <span className="m-dayhead-date">{title.date}</span>
           <span className="m-dayhead-sub">{title.sub}</span>
         </h2>
-        {/* 半屏聊天（ChatSheet）：手機只有 ✦ */}
-        <Button kind="icon" icon="spark" aria-label="問 AI 這天" onClick={() => mobileStore.getState().openChatSheet()} data-testid="m-trip-ai" />
+        {/* 半屏聊天（ChatSheet）：手機只有 ✦；編輯中 ✦ 和編輯都不放（聊天在編輯中不出現） */}
         {!planning && (
-          <Button kind="primary" size="sm" icon="pen" onClick={() => openDialog({ kind: 'planning' })} data-testid="m-trip-edit">
-            編輯
-          </Button>
+          <>
+            <Button kind="icon" icon="spark" aria-label="問 AI 這天" onClick={() => mobileStore.getState().openChatSheet()} data-testid="m-trip-ai" />
+            <Button kind="primary" size="sm" icon="pen" onClick={() => openDialog({ kind: 'planning' })} data-testid="m-trip-edit">
+              編輯
+            </Button>
+          </>
         )}
       </div>
       {plan && (

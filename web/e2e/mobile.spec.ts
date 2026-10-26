@@ -1356,3 +1356,23 @@ test('展開的卡：「問 AI」開半屏聊天、「詳細資料」開整頁�
   await expect(page.getByTestId('m-detail-name')).toContainText('橫山展望台');
   expect((await mobileState(page)).detail?.from).toBe('trip');
 });
+
+test('編輯條是墨色、有快照；編輯中沒有日期列和 ✦；「改」點的範圍 44px', async ({ page }) => {
+  await ready(page);
+  await pickDay(page, '2027-02-03');
+  await expect(page.getByTestId('m-trip-ai')).toBeVisible();
+  await page.getByTestId('m-trip-edit').click();
+  await page.getByTestId('planning-confirm').click();
+  const bar = page.getByTestId('planning-bar');
+  const ink = await page.evaluate(() => { const d = document.createElement('i'); d.style.background = 'var(--ink)'; document.body.append(d); const c = getComputedStyle(d).backgroundColor; d.remove(); return c; });
+  expect(await bar.evaluate((e) => getComputedStyle(e).backgroundColor)).toBe(ink);
+  await expect(bar).toContainText('編輯 2/3（三）');
+  await expect(bar.getByTestId('snapshots-button')).toBeVisible();
+  await expect(bar.getByTestId('planning-done')).toBeVisible();
+  await expect(page.getByTestId('m-day-strip')).toHaveCount(0);
+  await expect(page.getByTestId('m-trip-ai')).toHaveCount(0);
+  const edit = page.getByTestId('m-leg').first().getByTestId('leg-edit');
+  expect(await edit.evaluate((e) => parseFloat(getComputedStyle(e, '::after').height))).toBeGreaterThanOrEqual(44);
+  expect(await edit.evaluate((e) => parseFloat(getComputedStyle(e, '::after').width))).toBeGreaterThanOrEqual(44);
+  expect(await scrollsSideways(page)).toBe(false);
+});

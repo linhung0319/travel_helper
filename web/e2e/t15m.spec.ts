@@ -479,7 +479,7 @@ test('最後檢查：選了交通卡後換到下一天，地圖的行程線恢�
   await leg.getByRole('button').first().click();
   await expect(leg.getByRole('button').first()).toHaveAttribute('aria-pressed', 'true');
   await expect.poll(opacity).toBe('0.1');
-  await page.getByTestId('m-day-2027-02-06').click();
+  await page.evaluate(() => (window as any).__th.commands.selectDay('2027-02-06'));
   await expect.poll(() => th(page, '__th.uiStore.getState().legOpen')).toBe(null);
   await expect.poll(opacity).toBe(normal);
   expect(normal).not.toBe('0.1');
@@ -702,7 +702,7 @@ test('第五輪：編輯入口——日期列的「編輯」，確認後出現�
   // 編輯中：面板最上面的藍條、藍框；日期列不放「編輯」
   const bar = page.getByTestId('planning-bar');
   await expect(bar).toBeVisible();
-  await expect(bar).toContainText('編輯中');
+  await expect(bar).toContainText('編輯 2/5（五）');
   await expect(page.getByTestId('day-panel')).toHaveClass(/editing/);
   await expect(toggle).toHaveCount(0);
   await expect(page.getByTestId('planning-done')).toHaveText('完成');
@@ -715,7 +715,7 @@ test('第五輪：編輯入口——日期列的「編輯」，確認後出現�
 
   // 換到別天照樣在編輯；選「整趟」就結束編輯（整趟沒有這天的時間軸，也沒有「編輯」）
   await enterPlanning(page);
-  await page.getByTestId('m-day-2027-02-06').click();
+  await page.evaluate(() => (window as any).__th.commands.selectDay('2027-02-06'));
   await expect(page.getByTestId('planning-bar')).toBeVisible();
   await page.evaluate(() => (window as any).__th.commands.selectDay('all'));
   await expect.poll(() => th(page, '__th.appStore.getState().planning')).toBe(false);
@@ -1759,4 +1759,22 @@ test('這天的標題：Bodoni 大日期和「週三 · 第 2 天 · 地區」�
   await expect(page.getByTestId('day-ask-ai')).toBeVisible();
   await expect(page.getByTestId('planning-toggle')).toHaveText('編輯');
   await expect(page.getByTestId('day-summary')).toContainText('出發');
+});
+
+test('編輯條：墨色底，「編輯 2/3（三）」、快照、完成；編輯中日期列換成編輯條、不能換天；編輯按鈕是墨色主要按鈕', async ({ page }) => {
+  await ready(page);
+  await showDay(page, '2027-02-03');
+  const rgb = (el: Locator) => el.evaluate((e) => getComputedStyle(e).backgroundColor);
+  const ink = await page.evaluate(() => { const d = document.createElement('i'); d.style.background = 'var(--ink)'; document.body.append(d); const c = getComputedStyle(d).backgroundColor; d.remove(); return c; });
+  expect(await rgb(page.getByTestId('planning-toggle'))).toBe(ink);
+  await expect(page.getByTestId('m-day-strip')).toBeVisible();
+  await enterPlanning(page);
+  const bar = page.getByTestId('planning-bar');
+  expect(await rgb(bar)).toBe(ink);
+  await expect(bar).toContainText('編輯 2/3（三）');
+  await expect(bar.getByTestId('snapshots-button')).toBeVisible();
+  await expect(bar.getByTestId('planning-done')).toBeVisible();
+  await expect(page.getByTestId('m-day-strip')).toHaveCount(0);
+  await page.getByTestId('planning-done').click();
+  await expect(page.getByTestId('m-day-strip')).toBeVisible();
 });
