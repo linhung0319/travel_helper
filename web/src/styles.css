@@ -49,6 +49,10 @@
   --veil: rgba(255, 255, 255, 0.92);
   --veil-2: rgba(255, 255, 255, 0.6);
   --halo: rgba(255, 255, 255, 0.6);
+  /* 深底上的次要字（DayGrid 選中那天的小字）、照片檢視的底、拖曳中卡片的影子 */
+  --on-ink-2: rgba(255, 255, 255, 0.72);
+  --viewer-bg: rgba(10, 12, 18, 0.92);
+  --shadow-lift: 0 12px 28px rgba(22, 26, 34, 0.22), 0 2px 6px rgba(22, 26, 34, 0.12);
   /* 前三名獎牌（舊的 S／A／B 徽章，之後的任務會拿掉） */
   --medal-gold: linear-gradient(145deg, #fbe08a, #d4a017);
   --medal-silver: linear-gradient(145deg, #f1f4f7, #a3b0bd);
@@ -185,20 +189,7 @@ a {
   color: var(--paper);
 }
 
-.chips {
-  display: flex;
-  gap: 4px;
-  align-items: center;
-  overflow-x: auto;
-  min-width: 0;
-  scrollbar-width: none;
-}
 
-.chips-label {
-  font-size: 0.85rem;
-  color: var(--muted);
-  white-space: nowrap;
-}
 
 .chip {
   flex: 0 0 auto;
@@ -212,15 +203,6 @@ a {
   white-space: nowrap;
 }
 
-.chip-clear {
-  background: var(--bg);
-}
-
-.pills {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 6px;
-}
 
 .pill {
   border: 1px solid var(--line);
@@ -234,12 +216,6 @@ a {
   background: var(--fg);
   color: var(--paper);
   border-color: var(--fg);
-}
-
-.pill-count {
-  margin-left: 6px;
-  font-size: 0.8rem;
-  opacity: 0.7;
 }
 
 /* ---------- 按鈕、標章 ---------- */
@@ -263,6 +239,24 @@ a {
   min-height: 36px;
 }
 
+/* 按鈕裡的線條圖示（關掉的 close、送出的 send）：和字對齊；只有圖示的按鈕置中 */
+.command-bar .link-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.icon-button,
+.place-chip-x,
+.ask-ai-send,
+.map-panel-head .text-button,
+.timetable-pop .text-button,
+[data-testid='edit-hint-close'] {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
 .badges {
   display: flex;
   flex-wrap: wrap;
@@ -270,7 +264,7 @@ a {
 }
 
 .badge {
-  border-radius: 6px;
+  border-radius: 999px;
   padding: 1px 6px;
   font-size: 0.8rem;
   margin-left: 6px;
@@ -296,7 +290,7 @@ a {
   font-size: 0.75rem;
   background: var(--warn-bg);
   color: var(--warn);
-  border-radius: 4px;
+  border-radius: 999px;
   padding: 0 4px;
 }
 
@@ -355,7 +349,7 @@ a {
 .preview-card.anchored {
   z-index: 19;
   width: 340px;
-  border-radius: 12px;
+  border-radius: 14px;
   box-shadow: 0 6px 24px var(--shade-2);
   transform: translate(-50%, calc(-100% - 18px));
 }
@@ -418,7 +412,7 @@ a {
   bottom: 8px;
   background: var(--dim);
   color: var(--paper);
-  border-radius: 10px;
+  border-radius: 999px;
   font-size: 11px;
   padding: 1px 7px;
 }
@@ -530,8 +524,13 @@ a {
   justify-content: center;
 }
 
-.chips.selection {
+/* 聊天欄「問 AI」選取的點 */
+.selection-chips {
+  display: flex;
   flex-wrap: wrap;
+  gap: 4px;
+  align-items: center;
+  min-width: 0;
 }
 
 .chat-input {
@@ -563,20 +562,6 @@ a {
   padding: 6px 0 10px;
 }
 
-.detail-title {
-  flex: 1;
-  min-width: 0;
-}
-
-.detail-title h2 {
-  margin: 0;
-  font-size: 1.3rem;
-  line-height: 1.3;
-}
-
-.detail-title p {
-  margin: 2px 0 0;
-}
 
 .detail-actions {
   display: flex;
@@ -663,7 +648,7 @@ dl {
 .score-bar {
   height: 8px;
   background: var(--soft);
-  border-radius: 4px;
+  border-radius: 999px;
   overflow: hidden;
 }
 
@@ -794,7 +779,7 @@ dl {
   min-height: 38px;
   padding: 0 6px;
   border: 1px solid var(--line);
-  border-radius: 8px;
+  border-radius: 999px;
   background: var(--bg);
 }
 
@@ -907,7 +892,7 @@ dl {
   max-width: 220px;
   min-height: var(--tap);
   border: 1px solid var(--line);
-  border-radius: 8px;
+  border-radius: 14px;
   background: var(--soft);
   padding: 4px 8px;
 }
@@ -977,7 +962,7 @@ dl {
   color: var(--accent);
   min-height: 36px;
   padding: 2px 6px;
-  border-radius: 8px;
+  border-radius: 999px;
 }
 
 .text-button:hover {
@@ -1018,7 +1003,7 @@ dl {
   font: inherit;
   min-height: var(--tap);
   border: 1px solid var(--line);
-  border-radius: 8px;
+  border-radius: 999px;
   padding: 6px 10px;
   background: var(--bg);
   color: var(--fg);
@@ -1237,7 +1222,7 @@ dl {
   text-align: left;
   min-height: 40px;
   padding: 4px 8px;
-  border-radius: 8px;
+  border-radius: 999px;
 }
 
 .dev-menu button:hover,
@@ -1302,20 +1287,6 @@ button.planning-done {
   cursor: pointer;
 }
 
-/* 日期列上最顯眼的藍色實心「✏️ 編輯這天」 */
-button.edit-toggle {
-  border: 0;
-  border-radius: 8px;
-  background: var(--accent);
-  color: var(--paper);
-  font: inherit;
-  font-weight: 600;
-  padding: 4px 12px;
-  min-height: 34px;
-  cursor: pointer;
-  white-space: nowrap;
-}
-
 /* 🤖 問 AI 退成比較淡的文字按鈕 */
 .ask-ai-quiet {
   color: var(--muted);
@@ -1324,7 +1295,7 @@ button.edit-toggle {
 /* 編輯中：面板 2px 藍框；資料卡左邊 ⠿ */
 .day-panel.editing {
   box-shadow: inset 0 0 0 2px var(--accent);
-  border-radius: 10px;
+  border-radius: 14px;
 }
 
 .edit-hint {
@@ -1334,7 +1305,7 @@ button.edit-toggle {
   gap: 8px;
   margin: 4px 0 8px;
   padding: 2px 4px 2px 10px;
-  border-radius: 8px;
+  border-radius: 999px;
   background: var(--info-bg);
   color: var(--accent);
 }
@@ -1372,7 +1343,7 @@ button.edit-toggle {
   background: var(--bad-bg);
   color: var(--bad);
   border: 1px solid var(--bad);
-  border-radius: 8px;
+  border-radius: 14px;
   padding: 6px 10px;
   font-size: 0.9rem;
 }
@@ -1398,13 +1369,6 @@ button.edit-toggle {
 
 .day-stats {
   color: var(--muted);
-}
-
-.panel-actions {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 2px;
-  margin: 0 -6px 4px;
 }
 
 .day-section {
@@ -1485,7 +1449,7 @@ button.edit-toggle {
   grid-template-columns: 5.6em 1fr;
   gap: 8px;
   padding: 4px 0;
-  border-radius: 8px;
+  border-radius: 14px;
 }
 
 .tl-row.flash {
@@ -1553,16 +1517,8 @@ button.edit-toggle {
 
 .day-warnings {
   background: var(--soft);
-  border-radius: 8px;
+  border-radius: 14px;
   padding: 6px 10px;
-}
-
-/* 停留時間和 tag 同一排，在名稱下面 */
-.tl-meta {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 4px 8px;
 }
 
 .item-tags {
@@ -1618,7 +1574,7 @@ button.edit-toggle {
   min-height: 32px;
   padding: 0 6px;
   border: 1px dashed var(--plan);
-  border-radius: 8px;
+  border-radius: 999px;
   background: none;
   cursor: pointer;
 }
@@ -1690,10 +1646,6 @@ button.edit-toggle {
   font-weight: 600;
 }
 
-.menu-note {
-  padding: 8px 10px;
-}
-
 /* 「⋯」動作選單（ActionMenu.tsx，放在 .popover 裡）：一列一個動作，組與組之間一條線 */
 .action-menu {
   display: flex;
@@ -1710,7 +1662,7 @@ button.edit-toggle {
   text-align: left;
   min-height: 40px;
   padding: 0 10px;
-  border-radius: 8px;
+  border-radius: 14px;
   cursor: pointer;
 }
 
@@ -1745,7 +1697,7 @@ button.edit-toggle {
   text-align: left;
   border: 1.5px dashed var(--line);
   background: var(--soft);
-  border-radius: 8px;
+  border-radius: 14px;
   min-height: var(--tap);
   align-items: center;
   padding: 0;
@@ -1790,7 +1742,7 @@ button.edit-toggle {
 
 .tl-group {
   background: var(--soft);
-  border-radius: 8px;
+  border-radius: 14px;
   padding: 4px 8px;
 }
 
@@ -1828,7 +1780,7 @@ button.edit-toggle {
   text-align: left;
   min-height: 40px;
   padding: 0 10px;
-  border-radius: 8px;
+  border-radius: 14px;
 }
 
 .menu button:hover {
@@ -1836,13 +1788,6 @@ button.edit-toggle {
 }
 
 /* ---------- 想去（❤️ 就是想去；探索的卡片＋頭像、留言、加到某天）、這天的候選 ---------- */
-
-.wish-days {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 4px;
-  margin: 4px 0;
-}
 
 .cand-list {
   list-style: none;
@@ -1859,7 +1804,7 @@ button.edit-toggle {
   flex-wrap: wrap;
   gap: 4px 8px;
   border: 1px dashed var(--line);
-  border-radius: 10px;
+  border-radius: 14px;
   padding: 6px 10px;
   background: var(--bg);
 }
@@ -1879,21 +1824,9 @@ button.edit-toggle {
   cursor: pointer;
 }
 
-.cand-meta {
-  margin-left: auto;
-}
-
 .day-candidates h4 {
   margin: 0 0 6px;
   font-size: 0.95rem;
-}
-
-.wish-meta {
-  display: flex;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 6px;
-  margin-top: 4px;
 }
 
 .wish-reactions {
@@ -1964,23 +1897,11 @@ button.edit-toggle {
   padding: 6px 10px;
   background: var(--bg);
   border: 1px solid var(--line);
-  border-radius: 8px;
+  border-radius: 14px;
   box-shadow: var(--shadow);
   white-space: normal;
 }
 
-.hope-chip.scheduled {
-  background: var(--soft);
-  color: var(--fg);
-}
-
-.hope-chip {
-  font-size: 0.78rem;
-  padding: 1px 8px;
-  border-radius: 999px;
-  background: var(--info-bg);
-  color: var(--accent);
-}
 
 .tag {
   font-size: 0.78rem;
@@ -2053,7 +1974,7 @@ button.edit-toggle {
   min-width: 0;
   padding: 4px 8px;
   border: 1px solid var(--line);
-  border-radius: 8px;
+  border-radius: 999px;
   font: inherit;
   background: var(--bg);
   color: inherit;
@@ -2112,7 +2033,7 @@ button.edit-toggle {
   flex-direction: column;
   align-items: flex-start;
   border: 1px solid var(--line);
-  border-radius: 8px;
+  border-radius: 999px;
   background: var(--bg);
   padding: 6px 10px;
   min-height: var(--tap);
@@ -2176,7 +2097,7 @@ button.edited {
 
 .in-trip {
   background: var(--soft);
-  border-radius: 8px;
+  border-radius: 14px;
   padding: 4px 10px;
   margin: 4px 0 8px;
 }
@@ -2605,12 +2526,6 @@ button.edited {
   flex-direction: column;
 }
 
-.small-pill {
-  min-height: 32px;
-  padding: 2px 10px;
-  font-size: 0.85rem;
-}
-
 .ex-list {
   padding: 10px 12px 24px;
 }
@@ -2744,18 +2659,11 @@ div.ratings-box,
   color: var(--warn);
 }
 
-.ratings-rest {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-  margin-top: 8px;
-}
-
 .ratings-box .scores {
   margin-top: 8px;
   padding: 6px 10px;
   background: var(--soft);
-  border-radius: 10px;
+  border-radius: 14px;
 }
 
 /* 總覽：介紹 */
@@ -2770,15 +2678,6 @@ div.ratings-box,
 
 .detail-tags {
   margin: 8px 0 0;
-}
-
-.ex-filtersum-text {
-  flex: 1;
-  min-width: 0;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  font-weight: 600;
 }
 
 /* 把探索卡片、詳情標題拖到聊天室（askAi.ts）：跟著游標的小標籤、聊天室亮起來 */
@@ -2854,12 +2753,6 @@ body.dragging-plan [data-drop-ai].drop-over {
   cursor: grab;
 }
 
-.panel-actions .planning-toggle {
-  order: 2;
-  margin-left: auto;
-  align-self: center;
-}
-
 .stay-chip {
   display: inline-flex;
   align-items: center;
@@ -2918,14 +2811,14 @@ body.dragging-plan [data-drop-ai].drop-over {
 .day-bar-track {
   position: relative;
   background: var(--soft);
-  border-radius: 4px;
+  border-radius: 999px;
 }
 
 .day-bar-seg {
   position: absolute;
   border: 0;
   padding: 0;
-  border-radius: 3px;
+  border-radius: 999px;
   cursor: pointer;
   min-width: 2px;
   color: var(--paper);
@@ -3092,7 +2985,7 @@ body.dragging-plan .tl-dropend {
   display: flex;
   flex-direction: column;
   background: var(--bg);
-  border-radius: 12px;
+  border-radius: 20px;
   box-shadow: 0 6px 24px var(--shade-2);
   min-height: 0;
 }
@@ -3127,7 +3020,7 @@ body.dragging-plan .tl-dropend {
   gap: 6px;
   margin: 8px 12px 4px;
   padding: 4px 8px;
-  border-radius: 6px;
+  border-radius: 999px;
   font-size: 0.8rem;
   background: var(--indigo-wash);
   color: var(--indigo);
@@ -3151,7 +3044,7 @@ body.dragging-plan .tl-dropend {
 
 /* 一列：一般模式是 div（游標不變），編輯中搭得到的那幾列是按鈕 */
 .timetable-row {
-  border-radius: 8px;
+  border-radius: 14px;
 }
 
 .timetable-row-in {
@@ -3161,7 +3054,7 @@ body.dragging-plan .tl-dropend {
   width: 100%;
   padding: 6px 8px;
   border: 0;
-  border-radius: 8px;
+  border-radius: 14px;
   background: transparent;
   color: inherit;
   font: inherit;
@@ -3256,10 +3149,6 @@ button.timetable-row-in {
   align-items: center;
   gap: 6px;
   margin: 0;
-}
-
-.day-step {
-  display: inline-flex;
 }
 
 .day-nav-actions {
@@ -3386,7 +3275,7 @@ button.timetable-row-in {
   color: var(--warn);
   background: var(--warn-bg);
   border: 1px dashed var(--warn-line);
-  border-radius: 6px;
+  border-radius: 999px;
 }
 
 /* 搭車那一行的膠囊：點了在地圖那側開班次表；編輯中裡面是班次下拉 */
@@ -3397,7 +3286,7 @@ button.timetable-row-in {
   max-width: 100%;
   padding: 3px 8px 3px 4px;
   border: 1px solid var(--teal-line);
-  border-radius: 8px;
+  border-radius: 999px;
   background: var(--teal-wash);
   color: var(--teal);
   font: inherit;
@@ -3552,18 +3441,6 @@ button.leg-ride-more {
   --type-other-bg: var(--wash);
 }
 
-/* 時間（開始–結束）後面接停留時間 */
-.tl-timeline {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 2px 8px;
-}
-
-.option-stack {
-  position: relative;
-  touch-action: pan-y;
-}
 
 .option-switch {
   margin-left: auto;
@@ -3592,7 +3469,7 @@ button.leg-ride-more {
   width: 22px;
   height: 22px;
   margin-left: 4px;
-  border-radius: 6px;
+  border-radius: 999px;
   color: var(--muted);
   font-size: 0.85rem;
   line-height: 1;
@@ -3607,15 +3484,6 @@ button.leg-ride-more {
   color: inherit;
 }
 
-.detail-name-row {
-  display: flex;
-  align-items: center;
-  gap: 4px;
-}
-
-.detail-name-row h2 {
-  margin: 0;
-}
 
 /* 探索卡片上 ❤️ 是最主要的按鈕：圖示大一點、有邊框 */
 /* 交通圖示（ModeIcon、地圖路線標籤） */
@@ -3662,7 +3530,7 @@ button.leg-ride-more {
   color: var(--warn);
   background: var(--warn-bg);
   border: 1px dashed var(--warn-line);
-  border-radius: 8px;
+  border-radius: 14px;
   padding: 3px 8px;
 }
 

@@ -17,6 +17,7 @@ import { departureLabel, readyHint, timetableSource, timetableWindow } from '../
 import type { LonLat } from '../data/types.ts';
 import { ModeIcon } from './ModeIcon.tsx';
 import { selectRideTrip } from './LegRow.tsx';
+import { Icon } from './Icon.tsx';
 
 /** 一程上下車站的座標：車站是資料點；巴士、船的停留所用路線檔裡的座標（用站名對） */
 function stopCoords(ride: TransitRide, id: string): LonLat | null {
@@ -92,7 +93,7 @@ function TimetableBody({ tt, leg, ride, target }: { tt: TimetableState; leg: Leg
           </div>
         </div>
         <button type="button" className="text-button" onClick={closeTimetable} aria-label="關掉" data-testid="timetable-close">
-          ✕
+          <Icon name="close" size={20} />
         </button>
       </header>
       <div className="timetable-ready" data-testid="timetable-ready">

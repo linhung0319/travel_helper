@@ -55,7 +55,7 @@ export function ChatSheet() {
             <Icon name="expand" size={20} />
           </button>
           <button type="button" className="m-icon-button" onClick={closeChatSheet} aria-label="關掉聊天" data-testid="m-chat-sheet-close">
-            ✕
+            <Icon name="close" size={20} />
           </button>
         </div>
       </div>

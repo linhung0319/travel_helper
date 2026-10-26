@@ -1155,7 +1155,7 @@ test('手機地圖上的提議列：不被討論、預約蓋住、「不看提�
   await page.getByTestId('m-chat-proposal-view').click();
   const bar = page.getByTestId('proposal-bar');
   await expect(bar).toBeVisible();
-  const dismiss = bar.getByRole('button', { name: '不看提議 ✕' });
+  const dismiss = bar.getByRole('button', { name: '不看提議', exact: true });
   const box = (await dismiss.boundingBox())!;
   expect(box.height).toBeGreaterThanOrEqual(44);
   // 點得到：中心點最上面的就是這個按鈕

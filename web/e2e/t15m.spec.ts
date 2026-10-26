@@ -2197,7 +2197,7 @@ test('想去分頁的地圖：只畫想去的點、三種樣子、左下角圖�
   await page.evaluate(() => (window as any).__th.appStore.getState().setFilter({ tiers: ['S'] }));
   await page.getByTestId('side-tab-day').click();
   await expect(page.getByTestId('map-wish-legend')).toHaveCount(0);
-  await expect(page.getByTestId('filter-chips')).toHaveCount(0);
+  await expect(page.getByTestId('filter-applied-row')).toHaveCount(0);
   await waitIdle(page);
   const b = await findPlaceId(page, 'spot', 'B');
   const st = await page.evaluate((x) => {
@@ -2213,7 +2213,7 @@ test('探索選餐廳 → 到行程 → 回探索：餐廳還在（切回行程�
   await pickFilter(page, 'type-restaurant');
   expect(await th(page, '__th.appStore.getState().filter.types')).toEqual(['restaurant']);
   await page.getByTestId('side-tab-day').click();
-  await expect(page.getByTestId('filter-chips')).toHaveCount(0);
+  await expect(page.getByTestId('filter-applied-row')).toHaveCount(0);
   await page.getByTestId('side-tab-explore').click();
   expect(await th(page, '__th.appStore.getState().filter.types')).toEqual(['restaurant']);
   await expect(page.getByTestId('filter-applied').filter({ hasText: '餐廳' })).toBeVisible();

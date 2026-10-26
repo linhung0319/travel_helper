@@ -36,7 +36,7 @@ export function AskAiBox({ place, fromTrip }: { place: Place; fromTrip: boolean 
       <form className="ask-ai-form" onSubmit={submit}>
         <input className="ask-ai-input" data-testid="ask-ai-input" value={value} onChange={(e) => setValue(e.target.value)} placeholder="或自己問…" aria-label="問 AI" />
         <button type="submit" className="ask-ai-send" aria-label="送出" disabled={!value.trim()}>
-          ➤
+          <Icon name="send" size={20} />
         </button>
       </form>
     </section>

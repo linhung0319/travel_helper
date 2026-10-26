@@ -61,7 +61,7 @@ test('套用、取消篩選', async ({ page }) => {
   await page.getByTestId('side-tab-day').click();
   // 回到行程：篩選留著（行程分頁的地圖不套、也不放膠囊）
   expect((await filter()).types).toEqual(['restaurant']);
-  await expect(page.getByTestId('filter-chips')).toHaveCount(0);
+  await expect(page.getByTestId('filter-applied-row')).toHaveCount(0);
 });
 
 test('探索：只列地圖畫面裡的點，移動地圖跟著換', async ({ page }) => {
@@ -140,7 +140,7 @@ test('問 AI：把探索卡片、詳情標題拖到聊天室', async ({ page }) 
   await first.dragTo(page.locator('.chat-column'));
   await expect.poll(selection).toEqual([id]);
   await expect(page.getByTestId('toast')).toContainText('1 個點');
-  await expect(page.getByTestId('chat-panel').locator('.chips.selection button')).toHaveCount(1);
+  await expect(page.getByTestId('chat-panel').locator('.selection-chips button')).toHaveCount(1);
   // 拖曳不算點了一下：沒有開詳情
   await expect(page.getByTestId('detail-panel')).toHaveCount(0);
 

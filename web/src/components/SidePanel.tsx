@@ -1,6 +1,6 @@
 // 電腦版的右側：探索、想去、行程共用一欄（順序是使用的順序），頂到最上面。點了探索或想去的卡片，詳情蓋在這一欄上，「← 返回」回到原本的分頁；從行程打開的詳情浮在地圖上（DetailFloat）。
 // 想去是只放有人 ❤️ 的點的探索（Explore.tsx 的 source="wish"）。
-// 頂端（第七輪）：三個分頁加右上的頭像選單（討論、預約、下載行程）；行程分頁下面是日期列，再下面是編輯中、衝突提示、篩選條件。AI 沒有自己的分頁：地圖和這三個分頁就是 AI 操作的東西（T16）。
+// 頂端（第七輪）：三個分頁加右上的頭像選單（討論、預約、下載行程）；行程分頁下面是日期列，再下面是編輯中、衝突提示（套用的篩選條件只在探索、想去的篩選列下面那排，行程分頁不放，第七輪 §8.4）。AI 沒有自己的分頁：地圖和這三個分頁就是 AI 操作的東西（T16）。
 
 import { appStore } from '../store.ts';
 import { useApp, useData } from '../hooks.ts';
@@ -8,7 +8,6 @@ import { DayPanel } from './DayPanel.tsx';
 import { Icon, type IconName } from './Icon.tsx';
 import { AccountMenu } from './MeMenu.tsx';
 import { ConflictBar, EditingStrip } from './Planning.tsx';
-import { FilterChips } from './TopBar.tsx';
 import { DayStrip } from '../shared/ui/DayStrip.tsx';
 import { DetailPanel } from './DetailPanel.tsx';
 import { ExplorePanel, showItinerary } from './Explore.tsx';
@@ -73,8 +72,6 @@ export function SidePanel() {
       <div className="side-notices">
         <EditingStrip />
         <ConflictBar />
-        {/* 探索分頁裡已經看得到篩選，不重複；行程分頁的地圖不套探索的篩選，也不放篩選膠囊（第七輪 §8.4） */}
-        {mode === 'wish' && <FilterChips />}
       </div>
       {place ? (
         <div className="side-body side-detail">

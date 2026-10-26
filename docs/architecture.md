@@ -304,7 +304,7 @@ npm run db:import -- --apply data/cache/import/<時間>-all.json   # 2. 👤 看
 - **同時編輯**：存檔時送出自己手上的 `version`。和資料庫的不一樣，就表示有人先改過，提示「別人改過了」，讓使用者重新載入再改。15 人的規模不做即時協作（CRDT、Durable Objects）。
 - **快照**：每次改行程前自動存一份（包括採用 AI 的提議），可以復原；復原本身也是一次修改，會再存快照。
 - **建議**：存一則一列（`suggestions`）。寫的人可以改、可以刪（軟刪除）；編輯中的人只能改狀態（已採用／不採用＋一句話）。採用時記下對應的行程項目，行程項目也記「誰提的」。
-- **投票**：一人對一個點一筆（❤️／👎＋備註），見 interaction-design §9。
+- **投票**：一人對一個點一筆（想去／不喜歡，不寫備註），見 interaction-design §9。
 - **2026-10-24 改成想去清單**（T15m，設計見 `docs/superpowers/specs/2026-10-24-wishlist-planning-design.md`）：❤️ 就是想去，投票拿掉備註；建議拿掉，換成**留言**（`comments`：`target` 是地點 ID 或某一天 `day:<日期>`，`kind` 是 `normal`／`planner`／`decline`，只有作者能改刪）和**候選**（`candidates`：哪個點、哪天、誰加的；同一天同一個點只有一筆，誰都能拿掉，拿掉別人加的由畫面另外留一則 `decline` 留言）。上面「建議」那兩條和 §4 的建議 API、D1 的 `suggestions` 是 T24 做的舊版，**T15 串接時改成這裡的形狀**（假後端 `web/src/backend/mock.ts` 是規則的參考）。
 - 行程裡的點可能是預設資料、自己加的點，或已下架的點，引擎都要能處理。
 

@@ -28,7 +28,7 @@ export function Dialog({ title, onClose, children, footer, testId }: { title: st
         <header className="dialog-head">
           <h2>{title}</h2>
           <button type="button" className="icon-button" aria-label="關閉" onClick={onClose}>
-            ✕
+            <Icon name="close" size={20} />
           </button>
         </header>
         <div className="dialog-body">{children}</div>
@@ -62,7 +62,7 @@ export function PlaceChip({ id, onRemove }: { id: string; onRemove?: () => void 
       </button>
       {onRemove && (
         <button type="button" className="place-chip-x" aria-label={`拿掉 ${name}`} onClick={onRemove}>
-          ✕
+          <Icon name="close" size={16} />
         </button>
       )}
     </span>

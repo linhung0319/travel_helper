@@ -124,7 +124,7 @@ function ContextChip() {
     <div className="m-chat-context" data-testid="m-chat-context">
       <span className="m-ellipsis">{text}</span>
       <button type="button" className="m-chat-context-clear" onClick={clearChatContext} aria-label="拿掉上下文" data-testid="m-chat-context-clear">
-        ✕
+        <Icon name="close" size={16} />
       </button>
     </div>
   );
@@ -183,7 +183,7 @@ export function ChatView({ variant }: { variant: 'page' | 'sheet' }) {
             data-testid="m-chat-input"
           />
           <button type="submit" className="m-chat-send" aria-label="送出" disabled={!text.trim()} data-testid="m-chat-send">
-            ➤
+            <Icon name="send" size={20} />
           </button>
         </form>
       </div>

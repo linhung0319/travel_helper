@@ -272,7 +272,7 @@
   flex-direction: column;
   min-width: 0;
   padding-bottom: env(safe-area-inset-bottom);
-  border-radius: 16px 16px 0 0;
+  border-radius: 20px 20px 0 0;
   background: var(--bg);
   box-shadow: 0 -4px 14px var(--shade-2);
 }
@@ -289,7 +289,7 @@
   width: 40px;
   height: 4px;
   margin: 6px auto 0;
-  border-radius: 2px;
+  border-radius: 999px;
   background: var(--line);
 }
 

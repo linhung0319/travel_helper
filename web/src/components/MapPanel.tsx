@@ -7,6 +7,7 @@ import { dayLabel } from '../lib/trip.ts';
 import { closeMapPanel, setMapPanelScope } from '../uiStore.ts';
 import { Comments } from './Wishlist.tsx';
 import { ReservationNotes } from './Reservations.tsx';
+import { Icon } from './Icon.tsx';
 
 export function MapPanel() {
   const panel = useUi((s) => s.mapPanel);
@@ -22,7 +23,7 @@ export function MapPanel() {
       <header className="map-panel-head">
         <h2>{title}</h2>
         <button type="button" className="text-button" onClick={closeMapPanel} aria-label="關掉" data-testid="map-panel-close">
-          ✕
+          <Icon name="close" size={20} />
         </button>
       </header>
       <div className="segmented map-panel-scope" role="group" aria-label="範圍" data-testid="map-panel-scope">

@@ -170,7 +170,7 @@ export function EditHint() {
           }
         }}
       >
-        ✕
+        <Icon name="close" size={16} />
       </button>
     </p>
   );

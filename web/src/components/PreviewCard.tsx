@@ -7,6 +7,7 @@ import { Photo } from './Photo.tsx';
 import { TierMark } from '../shared/ui/TierMark.tsx';
 import { pickPlace } from './mapPick.ts';
 import { CardType } from './Timeline.tsx';
+import { Icon } from './Icon.tsx';
 
 interface Props {
   place: Place;
@@ -80,7 +81,7 @@ export function PreviewCard({ place, anchor, onEnter, onLeave }: Props) {
         </span>
       </button>
       <button type="button" className="icon-button preview-close" aria-label="關閉小卡片" onClick={() => appStore.getState().openPreview(null)}>
-        ✕
+        <Icon name="close" size={20} />
       </button>
     </div>
   );

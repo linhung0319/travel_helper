@@ -27,7 +27,7 @@ export function ChatPanel() {
         </>
       )}
       {selection.length > 0 && (
-        <div className="chips selection">
+        <div className="selection-chips">
           {selection.map((id) => {
             const p = byId.get(id);
             return (

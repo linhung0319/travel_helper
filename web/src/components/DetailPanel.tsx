@@ -515,7 +515,7 @@ export function PlaceFacts({ place }: { place: Place }) {
   );
 }
 
-/** 評論：各網站的評分全部列出來，加上我們自己的五項評分（手機版「評論」分頁；網頁版的 RatingsBox 是收起來的版本） */
+/** 評論：各網站的評分全部列出來，加上我們自己的五項評分（詳情的「評論」分頁，手機、網頁共用 shared/ui/PlaceDetail） */
 export function PlaceReviews({ place }: { place: Place }) {
   const all = ratingsOf(place);
   return (

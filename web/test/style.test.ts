@@ -1,4 +1,4 @@
-// 第七輪樣式的防退步測試：圖示都有 path、三個 CSS 檔不寫死顏色、類型色是新的。
+// 第七輪樣式的防退步測試：圖示都有 path、四個 CSS 檔不寫死顏色、圓角只有 999px／14px／20px、類型色是新的。
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync, readdirSync } from 'node:fs';
@@ -32,6 +32,22 @@ test('mobile.css、chat.css 沒有寫死的顏色（:root 以外）', () => {
   for (const f of ['src/mobile/mobile.css', 'src/mobile/chat.css']) assert.deepEqual(hardcodedColors(read(f)), [], f);
 });
 test('styles.css 只有 :root 裡寫死顏色', () => assert.deepEqual(hardcodedColors(read('src/styles.css')), []));
+test('shared/ui/ui.css 沒有寫死的顏色', () => assert.deepEqual(hardcodedColors(read('src/shared/ui/ui.css')), []));
+
+/** 去掉註解和 :root 後，border-radius 用了 999px、14px、20px（和 0、圓形的 50%、var(--radius)）以外的值的地方（行號:值） */
+function offSpecRadii(css: string): string[] {
+  const blank = (m: string) => m.replace(/[^\n]/g, ' ');
+  const body = css.replace(/\/\*[\s\S]*?\*\//g, blank).replace(/:root\s*\{[^}]*\}/g, blank);
+  const out: string[] = [];
+  body.split('\n').forEach((line, i) => {
+    const m = line.match(/border(?:-[a-z-]+)?-radius\s*:\s*([^;]+)/);
+    if (m && !m[1].trim().split(/\s+/).every((v) => /^(999px|14px|20px|50%|0|var\(--radius\))$/.test(v))) out.push(`${i + 1}:${m[1].trim()}`);
+  });
+  return out;
+}
+test('圓角只有 999px、14px、20px（設計 §2.3；圓形可以 50%）', () => {
+  for (const f of ['src/styles.css', 'src/mobile/mobile.css', 'src/mobile/chat.css', 'src/shared/ui/ui.css']) assert.deepEqual(offSpecRadii(read(f)), [], f);
+});
 test('TYPE_COLORS 是新的類型色', () => assert.deepEqual(TYPE_COLORS, { spot: '#3f7a5a', restaurant: '#c46a3a', lodging: '#6e5ba8', station: '#3b6ea8' }));
 
 /** 去掉註解後，畫面程式（components、mobile、shared、lib）裡 emoji 的出現處（檔名:行）；示範對話、dev-fixtures、v0 除外 */
@@ -57,3 +73,20 @@ function emojiInJsx(): string[] {
   return out;
 }
 test('畫面上沒有 emoji 當圖示', () => assert.deepEqual(emojiInJsx(), []));
+
+/** 去掉註解後，畫面程式裡用 ✕、➤ 字元當關掉、送出鈕的地方（檔名:行）；設計 §2.4 要用 close、send 圖示 */
+function glyphButtons(): string[] {
+  const root = fileURLToPath(new URL('../src/', import.meta.url));
+  const out: string[] = [];
+  for (const dir of ['components', 'mobile', 'shared', 'shared/ui']) {
+    for (const e of readdirSync(join(root, dir), { withFileTypes: true })) {
+      if (!e.isFile() || !/\.tsx$/.test(e.name)) continue;
+      const text = readFileSync(join(root, dir, e.name), 'utf8').replace(/\/\*[\s\S]*?\*\//g, (m) => m.replace(/[^\n]/g, ' '));
+      text.split('\n').forEach((line, i) => {
+        if (/[✕➤]/.test(line.replace(/(^|[^:])\/\/.*$/, '$1'))) out.push(`${dir}/${e.name}:${i + 1}`);
+      });
+    }
+  }
+  return out;
+}
+test('關掉、送出鈕用線條圖示，不用 ✕、➤ 字元', () => assert.deepEqual(glyphButtons(), []));

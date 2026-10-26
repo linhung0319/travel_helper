@@ -9,6 +9,7 @@ import { describeChanges } from '../lib/overlays.ts';
 import { placeBadges } from '../lib/badges.ts';
 import { TierMark } from '../shared/ui/TierMark.tsx';
 import { TYPE_COLORS } from '../lib/typeStyle.ts';
+import { Icon } from './Icon.tsx';
 
 function ProposalBar() {
   const proposal = useApp((s) => s.proposal);
@@ -24,7 +25,7 @@ function ProposalBar() {
       <div className="command-bar-head">
         <strong>AI 的提議（虛線）</strong>
         <button type="button" className="link-button" onClick={() => commands.clearProposal()}>
-          不看提議 ✕
+          不看提議 <Icon name="close" size={16} />
         </button>
       </div>
       {proposal.summary && <p className="small">{proposal.summary}</p>}
@@ -47,7 +48,7 @@ function CompareBar() {
       <div className="command-bar-head">
         <strong>比較</strong>
         <button type="button" className="link-button" onClick={() => appStore.getState().setCompare([])}>
-          結束比較 ✕
+          結束比較 <Icon name="close" size={16} />
         </button>
       </div>
       <div className="compare-cards">
@@ -84,7 +85,7 @@ function MarksBar() {
         {routes.length > 0 && `路線 ${routes.length} 條`}
       </span>
       <button type="button" className="link-button" onClick={() => commands.clearHighlights()} data-testid="map-command-clear">
-        清掉 ✕
+        清掉 <Icon name="close" size={16} />
       </button>
     </div>
   );

@@ -22,7 +22,7 @@ async function snapshot(page: Page) {
       dims: ['toba-aquarium', 'ise-naiku', 'toba-sazanami'].map((id) => th.visual(id)),
     };
   });
-  const chips = await page.getByTestId('filter-chips').count() ? await page.getByTestId('filter-chips').innerText() : '';
+  const chips = await page.getByTestId('filter-applied-row').count() ? await page.getByTestId('filter-applied-row').innerText() : '';
   return { ...state, chips };
 }
 
@@ -107,11 +107,13 @@ test('聚焦一個點：看得到就不動、太遠才拉到 13（不閃、不�
   // 篩選標籤在想去分頁（行程分頁不放膠囊，第七輪 §8.4）
   await page.getByTestId('side-tab-wish').click();
   await run(page, 'setFilter', { types: ['restaurant'], fit15: ['yes'] });
-  const chips = page.getByTestId('filter-chips');
-  await expect(chips.getByRole('button', { name: '取消篩選 可容納 15 人' })).toBeVisible();
-  await chips.getByRole('button', { name: '取消篩選 可容納 15 人' }).click();
+  // 套用的條件只出現一次（篩選列下面那排），沒有另外一排重複的
+  const applied = page.getByTestId('filter-applied');
+  await expect(applied.filter({ hasText: '可容納 15 人' })).toHaveCount(1);
+  await expect(page.getByTestId('filter-applied-row')).toHaveCount(1);
+  await applied.filter({ hasText: '可容納 15 人' }).locator('.ui-chip-x').click();
   expect(await page.evaluate(() => (window as any).__th.appStore.getState().filter.fit15)).toEqual([]);
-  await expect(chips.getByRole('button', { name: '取消篩選 餐廳' })).toBeVisible();
+  await expect(applied.filter({ hasText: '餐廳' })).toHaveCount(1);
 });
 
 test('標示、路線（沿道路）、比較：畫在地圖上，可以清掉', async ({ page }) => {
@@ -150,7 +152,7 @@ test('標示、路線（沿道路）、比較：畫在地圖上，可以清掉',
   await expect(page.getByTestId('detail-panel')).toBeVisible();
   await page.getByTestId('detail-close').click();
 
-  await page.getByTestId('marks-bar').getByRole('button', { name: '清掉 ✕' }).click();
+  await page.getByTestId('marks-bar').getByRole('button', { name: '清掉', exact: true }).click();
   await expect(label).toHaveCount(0);
   await expect(bar).toHaveCount(0);
   expect(await page.evaluate(() => (window as any).__th.appStore.getState().highlights)).toEqual({});
@@ -181,7 +183,7 @@ test('AI 的提議：切到那天、虛線和摘要；不看提議就清掉；�
   expect((await overlay(page, 'overlay-proposal-lines', 'proposal-line')).rendered).toBe(1);
   await shot(page, 'proposal');
 
-  await bar.getByRole('button', { name: '不看提議 ✕' }).click();
+  await bar.getByRole('button', { name: '不看提議', exact: true }).click();
   await expect(bar).toHaveCount(0);
   const stillThere = await page.evaluate(
     (day) => JSON.stringify((window as any).__th.dataStore.getState().itinerary.days.find((x: any) => x.date === day)).includes('toba-sazanami'),
