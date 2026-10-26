@@ -99,7 +99,7 @@
     "checkIn": "15:00",
     "checkOut": "11:00",
     "rakutenHotelNo": 167,
-    "dinnerAccess": null,
+    "dinnerAccess": "walk",
     "group": {
       "totalRooms": 605,
       "roomTypes": [],
@@ -192,7 +192,8 @@
           ]
         },
         "note": "15 人（全部以大人計）分 N 間同住的組合，有空房的列出；只代表查詢當天楽天上的庫存"
-      }
+      },
+      "dinnerAccessNote": "步行 20 分內的晚餐店 8 家以上（只查最近 8 家）：にし家 本店 4 分、焼肉㐂舌 南船場 7 分、アクアリウムイタリアン心斎橋ライム 7 分 等（選素泊、朝食付方案時；OSRM，scripts/lodging-dinner-access.mjs，2026-10-26）"
     },
     "summary": null,
     "assessment": null
@@ -285,7 +286,7 @@
     "checkIn": "15:00",
     "checkOut": "11:00",
     "rakutenHotelNo": 1181,
-    "dinnerAccess": null,
+    "dinnerAccess": "walk",
     "group": {
       "totalRooms": 546,
       "roomTypes": [
@@ -383,7 +384,8 @@
           ]
         },
         "note": "15 人（全部以大人計）分 N 間同住的組合，有空房的列出；只代表查詢當天楽天上的庫存"
-      }
+      },
+      "dinnerAccessNote": "步行 20 分內的晚餐店 8 家以上（只查最近 8 家）：福太郎 本店 8 分、味乃家 本店 11 分、はり重 道頓堀本店 12 分 等（選素泊、朝食付方案時；OSRM，scripts/lodging-dinner-access.mjs，2026-10-26）"
     },
     "summary": null,
     "assessment": null
@@ -500,7 +502,7 @@
     "checkIn": "15:00",
     "checkOut": "11:00",
     "rakutenHotelNo": 75192,
-    "dinnerAccess": null,
+    "dinnerAccess": "walk",
     "group": {
       "totalRooms": 314,
       "roomTypes": [
@@ -595,7 +597,8 @@
           ]
         },
         "note": "15 人（全部以大人計）分 N 間同住的組合，有空房的列出；只代表查詢當天楽天上的庫存"
-      }
+      },
+      "dinnerAccessNote": "步行 20 分內的晚餐店 8 家以上（只查最近 8 家）：道頓堀 今井 本店 3 分、麺匠の心つくし つるとんたん 宗右衛門町店 5 分、アクアリウムイタリアン心斎橋ライム 5 分 等（選素泊、朝食付方案時；OSRM，scripts/lodging-dinner-access.mjs，2026-10-26）"
     },
     "summary": null,
     "assessment": null
@@ -725,7 +728,7 @@
     "checkIn": "15:00",
     "checkOut": "11:00",
     "rakutenHotelNo": 76887,
-    "dinnerAccess": null,
+    "dinnerAccess": "walk",
     "group": {
       "totalRooms": 348,
       "roomTypes": [
@@ -848,7 +851,8 @@
           ]
         },
         "note": "15 人（全部以大人計）分 N 間同住的組合，有空房的列出；只代表查詢當天楽天上的庫存"
-      }
+      },
+      "dinnerAccessNote": "步行 20 分內的晚餐店 8 家以上（只查最近 8 家）：ムーラン 5 分、小籠包と本格中華 堀江ブルー 5 分、はり重 道頓堀本店 8 分 等（選素泊、朝食付方案時；OSRM，scripts/lodging-dinner-access.mjs，2026-10-26）"
     },
     "summary": null,
     "assessment": null
@@ -1026,7 +1030,7 @@
     "checkIn": "15:00",
     "checkOut": "10:00",
     "rakutenHotelNo": 1985,
-    "dinnerAccess": null,
+    "dinnerAccess": "walk",
     "group": {
       "totalRooms": 39,
       "roomTypes": [
@@ -1155,7 +1159,8 @@
           ]
         },
         "note": "15 人（全部以大人計）分 N 間同住的組合，有空房的列出；只代表查詢當天楽天上的庫存"
-      }
+      },
+      "dinnerAccessNote": "步行 20 分內的晚餐店 8 家以上（只查最近 8 家）：麺匠の心つくし つるとんたん 宗右衛門町店 1 分、道頓堀 今井 本店 6 分、福太郎 本店 8 分 等（選素泊、朝食付方案時；OSRM，scripts/lodging-dinner-access.mjs，2026-10-26）"
     },
     "summary": null,
     "assessment": null
@@ -1285,7 +1290,7 @@
     "checkIn": "15:00",
     "checkOut": "11:00",
     "rakutenHotelNo": 143240,
-    "dinnerAccess": null,
+    "dinnerAccess": "walk",
     "group": {
       "totalRooms": 229,
       "roomTypes": [
@@ -1409,7 +1414,8 @@
           ]
         },
         "note": "15 人（全部以大人計）分 N 間同住的組合，有空房的列出；只代表查詢當天楽天上的庫存"
-      }
+      },
+      "dinnerAccessNote": "步行 20 分內的晚餐店 8 家以上（只查最近 8 家）：麺匠の心つくし つるとんたん 宗右衛門町店 4 分、道頓堀 今井 本店 8 分、にし家 本店 9 分 等（選素泊、朝食付方案時；OSRM，scripts/lodging-dinner-access.mjs，2026-10-26）"
     },
     "summary": null,
     "assessment": null
@@ -1502,7 +1508,7 @@
     "checkIn": "15:00",
     "checkOut": "11:00",
     "rakutenHotelNo": 108949,
-    "dinnerAccess": null,
+    "dinnerAccess": "walk",
     "group": {
       "totalRooms": 114,
       "roomTypes": [
@@ -1598,7 +1604,8 @@
           ]
         },
         "note": "15 人（全部以大人計）分 N 間同住的組合，有空房的列出；只代表查詢當天楽天上的庫存"
-      }
+      },
+      "dinnerAccessNote": "步行 20 分內的晚餐店 8 家以上（只查最近 8 家）：福太郎 本店 8 分、味乃家 本店 10 分、はり重 道頓堀本店 10 分 等（選素泊、朝食付方案時；OSRM，scripts/lodging-dinner-access.mjs，2026-10-26）"
     },
     "summary": null,
     "assessment": null
@@ -1696,7 +1703,7 @@
     "checkIn": "15:00",
     "checkOut": "11:00",
     "rakutenHotelNo": 189168,
-    "dinnerAccess": null,
+    "dinnerAccess": "walk",
     "group": {
       "totalRooms": 53,
       "roomTypes": [
@@ -1792,7 +1799,8 @@
           ]
         },
         "note": "15 人（全部以大人計）分 N 間同住的組合，有空房的列出；只代表查詢當天楽天上的庫存"
-      }
+      },
+      "dinnerAccessNote": "步行 20 分內的晚餐店 8 家以上（只查最近 8 家）：ムーラン 4 分、小籠包と本格中華 堀江ブルー 4 分、はり重 道頓堀本店 5 分 等（OSRM，scripts/lodging-dinner-access.mjs，2026-10-26）"
     },
     "summary": null,
     "assessment": null
@@ -1890,7 +1898,7 @@
     "checkIn": "15:00",
     "checkOut": "11:00",
     "rakutenHotelNo": 180698,
-    "dinnerAccess": null,
+    "dinnerAccess": "walk",
     "group": {
       "totalRooms": 141,
       "roomTypes": [
@@ -1986,7 +1994,8 @@
           ]
         },
         "note": "15 人（全部以大人計）分 N 間同住的組合，有空房的列出；只代表查詢當天楽天上的庫存"
-      }
+      },
+      "dinnerAccessNote": "步行 20 分內的晚餐店 8 家以上（只查最近 8 家）：味乃家 本店 8 分、はり重 道頓堀本店 8 分、福太郎 本店 9 分 等（選素泊、朝食付方案時；OSRM，scripts/lodging-dinner-access.mjs，2026-10-26）"
     },
     "summary": null,
     "assessment": null
@@ -2108,7 +2117,7 @@
     "checkIn": "15:00",
     "checkOut": "10:00",
     "rakutenHotelNo": 191842,
-    "dinnerAccess": null,
+    "dinnerAccess": "walk",
     "group": {
       "totalRooms": 2055,
       "roomTypes": [],
@@ -2196,7 +2205,8 @@
           ]
         },
         "note": "15 人（全部以大人計）分 N 間同住的組合，有空房的列出；只代表查詢當天楽天上的庫存"
-      }
+      },
+      "dinnerAccessNote": "步行 20 分內的晚餐店 8 家以上（只查最近 8 家）：ムーラン 6 分、小籠包と本格中華 堀江ブルー 7 分、はり重 道頓堀本店 9 分 等（選素泊、朝食付方案時；OSRM，scripts/lodging-dinner-access.mjs，2026-10-26）"
     },
     "summary": null,
     "assessment": null
@@ -2336,7 +2346,7 @@
     "checkIn": "15:00",
     "checkOut": "10:00",
     "rakutenHotelNo": 29775,
-    "dinnerAccess": null,
+    "dinnerAccess": "walk",
     "group": {
       "totalRooms": 136,
       "roomTypes": [],
@@ -2430,7 +2440,8 @@
           ]
         },
         "note": "15 人（全部以大人計）分 N 間同住的組合，有空房的列出；只代表查詢當天楽天上的庫存"
-      }
+      },
+      "dinnerAccessNote": "步行 20 分內的晚餐店 8 家以上（只查最近 8 家）：福太郎 本店 3 分、麺匠の心つくし つるとんたん 宗右衛門町店 5 分、道頓堀 今井 本店 8 分 等（OSRM，scripts/lodging-dinner-access.mjs，2026-10-26）"
     },
     "summary": null,
     "assessment": null
@@ -2523,7 +2534,7 @@
     "checkIn": "14:00",
     "checkOut": "11:00",
     "rakutenHotelNo": 106197,
-    "dinnerAccess": null,
+    "dinnerAccess": "walk",
     "group": {
       "totalRooms": 222,
       "roomTypes": [
@@ -2622,7 +2633,8 @@
           ]
         },
         "note": "15 人（全部以大人計）分 N 間同住的組合，有空房的列出；只代表查詢當天楽天上的庫存"
-      }
+      },
+      "dinnerAccessNote": "步行 20 分內的晚餐店 2 家：明月館 上本町本店 11 分、焼肉 白雲台 鶴橋駅前店 16 分（選素泊、朝食付方案時；OSRM，scripts/lodging-dinner-access.mjs，2026-10-26）"
     },
     "summary": null,
     "assessment": null
@@ -2690,7 +2702,7 @@
     "checkIn": "15:00",
     "checkOut": "12:00",
     "rakutenHotelNo": 1144,
-    "dinnerAccess": null,
+    "dinnerAccess": "walk",
     "group": {
       "totalRooms": 574,
       "roomTypes": [],
@@ -2778,7 +2790,8 @@
           "2027-02-12": []
         },
         "note": "15 人（全部以大人計）分 N 間同住的組合，有空房的列出；只代表查詢當天楽天上的庫存"
-      }
+      },
+      "dinnerAccessNote": "步行 20 分內的晚餐店 2 家：明月館 上本町本店 7 分、焼肉 白雲台 鶴橋駅前店 12 分（選素泊、朝食付方案時；OSRM，scripts/lodging-dinner-access.mjs，2026-10-26）"
     },
     "summary": null,
     "assessment": null
@@ -2865,7 +2878,7 @@
     "checkIn": "15:00",
     "checkOut": "12:00",
     "rakutenHotelNo": 176713,
-    "dinnerAccess": null,
+    "dinnerAccess": "walk",
     "group": {
       "totalRooms": 1030,
       "roomTypes": [
@@ -2970,7 +2983,8 @@
           ]
         },
         "note": "15 人（全部以大人計）分 N 間同住的組合，有空房的列出；只代表查詢當天楽天上的庫存"
-      }
+      },
+      "dinnerAccessNote": "步行 20 分內的晚餐店 6 家：京都 麺屋たけ井 阪急梅田店 4 分、お好み焼 きじ 本店 5 分、廣東料理 民生 ヒルトンプラザウエスト店 11 分 等（選素泊、朝食付方案時；OSRM，scripts/lodging-dinner-access.mjs，2026-10-26）"
     },
     "summary": null,
     "assessment": null
@@ -3100,7 +3114,7 @@
     "checkIn": "15:00",
     "checkOut": "12:00",
     "rakutenHotelNo": 1731,
-    "dinnerAccess": null,
+    "dinnerAccess": "walk",
     "group": {
       "totalRooms": 726,
       "roomTypes": [
@@ -3202,7 +3216,8 @@
           ]
         },
         "note": "15 人（全部以大人計）分 N 間同住的組合，有空房的列出；只代表查詢當天楽天上的庫存"
-      }
+      },
+      "dinnerAccessNote": "步行 20 分內的晚餐店 6 家：廣東料理 民生 ヒルトンプラザウエスト店 6 分、お好み焼 きじ 本店 6 分、ロウリーズ・ザ・プライムリブ 大阪 7 分 等（選素泊、朝食付方案時；OSRM，scripts/lodging-dinner-access.mjs，2026-10-26）"
     },
     "summary": null,
     "assessment": null
@@ -3301,7 +3316,7 @@
     "checkIn": "15:00",
     "checkOut": "11:00",
     "rakutenHotelNo": 181403,
-    "dinnerAccess": null,
+    "dinnerAccess": "walk",
     "group": {
       "totalRooms": 386,
       "roomTypes": [],
@@ -3394,7 +3409,8 @@
           ]
         },
         "note": "15 人（全部以大人計）分 N 間同住的組合，有空房的列出；只代表查詢當天楽天上的庫存"
-      }
+      },
+      "dinnerAccessNote": "步行 20 分內的晚餐店 6 家：ロウリーズ・ザ・プライムリブ 大阪 3 分、廣東料理 民生 ヒルトンプラザウエスト店 5 分、うどん棒 大阪本店 11 分 等（選素泊、朝食付方案時；OSRM，scripts/lodging-dinner-access.mjs，2026-10-26）"
     },
     "summary": null,
     "assessment": null
@@ -3516,7 +3532,7 @@
     "checkIn": "15:00",
     "checkOut": "10:00",
     "rakutenHotelNo": 184030,
-    "dinnerAccess": null,
+    "dinnerAccess": "walk",
     "group": {
       "totalRooms": 1704,
       "roomTypes": [],
@@ -3610,7 +3626,8 @@
           ]
         },
         "note": "15 人（全部以大人計）分 N 間同住的組合，有空房的列出；只代表查詢當天楽天上的庫存"
-      }
+      },
+      "dinnerAccessNote": "步行 20 分內的晚餐店 6 家：うどん棒 大阪本店 8 分、廣東料理 民生 ヒルトンプラザウエスト店 9 分、踊るうどん 梅田店 10 分 等（選素泊、朝食付方案時；OSRM，scripts/lodging-dinner-access.mjs，2026-10-26）"
     },
     "summary": null,
     "assessment": null
@@ -3715,7 +3732,7 @@
     "checkIn": "15:00",
     "checkOut": "11:00",
     "rakutenHotelNo": 71921,
-    "dinnerAccess": null,
+    "dinnerAccess": "car",
     "group": {
       "totalRooms": 641,
       "roomTypes": [
@@ -3813,7 +3830,8 @@
           ]
         },
         "note": "15 人（全部以大人計）分 N 間同住的組合，有空房的列出；只代表查詢當天楽天上的庫存"
-      }
+      },
+      "dinnerAccessNote": "步行 20 分內沒有晚餐店（最近：丹頂 33 分），要搭車（scripts/lodging-dinner-access.mjs，2026-10-26） USJ 子地區照 T27c 的範圍不收餐廳（園內、ユニバーサル・シティウォーク 吃），步行圈的店沒有收錄，所以算成 car；實際上飯店周邊有 CityWalk（一般知識，未讀來源）。"
     },
     "summary": null,
     "assessment": null
@@ -3912,7 +3930,7 @@
     "checkIn": "14:00",
     "checkOut": "11:00",
     "rakutenHotelNo": 172378,
-    "dinnerAccess": null,
+    "dinnerAccess": "car",
     "group": {
       "totalRooms": 760,
       "roomTypes": [
@@ -4018,7 +4036,8 @@
           ]
         },
         "note": "15 人（全部以大人計）分 N 間同住的組合，有空房的列出；只代表查詢當天楽天上的庫存"
-      }
+      },
+      "dinnerAccessNote": "步行 20 分內沒有晚餐店（最近：丹頂 22 分），要搭車（scripts/lodging-dinner-access.mjs，2026-10-26） USJ 子地區照 T27c 的範圍不收餐廳（園內、ユニバーサル・シティウォーク 吃），步行圈的店沒有收錄，所以算成 car；實際上飯店周邊有 CityWalk（一般知識，未讀來源）。"
     },
     "summary": null,
     "assessment": null
@@ -4148,7 +4167,7 @@
     "checkIn": "15:00",
     "checkOut": "11:00",
     "rakutenHotelNo": 38281,
-    "dinnerAccess": null,
+    "dinnerAccess": "car",
     "group": {
       "totalRooms": 600,
       "roomTypes": [
@@ -4242,7 +4261,8 @@
           ]
         },
         "note": "15 人（全部以大人計）分 N 間同住的組合，有空房的列出；只代表查詢當天楽天上的庫存"
-      }
+      },
+      "dinnerAccessNote": "步行 20 分內沒有晚餐店（最近：丹頂 31 分），要搭車（scripts/lodging-dinner-access.mjs，2026-10-26） USJ 子地區照 T27c 的範圍不收餐廳（園內、ユニバーサル・シティウォーク 吃），步行圈的店沒有收錄，所以算成 car；實際上飯店周邊有 CityWalk（一般知識，未讀來源）。"
     },
     "summary": null,
     "assessment": null
@@ -4372,7 +4392,7 @@
     "checkIn": "15:00",
     "checkOut": "11:00",
     "rakutenHotelNo": 16654,
-    "dinnerAccess": null,
+    "dinnerAccess": "car",
     "group": {
       "totalRooms": 456,
       "roomTypes": [
@@ -4476,7 +4496,8 @@
           ]
         },
         "note": "15 人（全部以大人計）分 N 間同住的組合，有空房的列出；只代表查詢當天楽天上的庫存"
-      }
+      },
+      "dinnerAccessNote": "步行 20 分內沒有晚餐店（最近：丹頂 36 分），要搭車（scripts/lodging-dinner-access.mjs，2026-10-26） USJ 子地區照 T27c 的範圍不收餐廳（園內、ユニバーサル・シティウォーク 吃），步行圈的店沒有收錄，所以算成 car；實際上飯店周邊有 CityWalk（一般知識，未讀來源）。"
     },
     "summary": null,
     "assessment": null
@@ -4582,7 +4603,7 @@
     "checkIn": "15:00",
     "checkOut": "12:00",
     "rakutenHotelNo": 147805,
-    "dinnerAccess": null,
+    "dinnerAccess": "car",
     "group": {
       "totalRooms": 598,
       "roomTypes": [
@@ -4678,7 +4699,8 @@
           ]
         },
         "note": "15 人（全部以大人計）分 N 間同住的組合，有空房的列出；只代表查詢當天楽天上的庫存"
-      }
+      },
+      "dinnerAccessNote": "步行 20 分內沒有晚餐店（最近：丹頂 33 分），要搭車（scripts/lodging-dinner-access.mjs，2026-10-26） USJ 子地區照 T27c 的範圍不收餐廳（園內、ユニバーサル・シティウォーク 吃），步行圈的店沒有收錄，所以算成 car；實際上飯店周邊有 CityWalk（一般知識，未讀來源）。"
     },
     "summary": null,
     "assessment": null
@@ -4760,7 +4782,7 @@
     "checkIn": "15:00",
     "checkOut": "10:00",
     "rakutenHotelNo": null,
-    "dinnerAccess": null,
+    "dinnerAccess": "car",
     "group": {
       "totalRooms": 3,
       "roomTypes": [
@@ -4826,7 +4848,8 @@
         "千鳥橋駅 5 分 vs 九条駅 7 分"
       ],
       "stationAccess": "阪神なんば線 千鳥橋駅 徒步 5 分（頁面另處寫 九条駅 徒步 7 分）；停車 1 台（ACO 房源頁）",
-      "googleMapsNote": "Google 地圖找不到這間（2026-10-26），links.googleMaps 用座標搜尋連結"
+      "googleMapsNote": "Google 地圖找不到這間（2026-10-26），links.googleMaps 用座標搜尋連結",
+      "dinnerAccessNote": "步行 20 分內沒有晚餐店（直線 1.6 km 內沒有），要搭車（scripts/lodging-dinner-access.mjs，2026-10-26）"
     },
     "summary": null,
     "assessment": null

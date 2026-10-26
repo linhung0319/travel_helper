@@ -141,7 +141,23 @@
       }
     ],
     "verified": false,
-    "anchors": [],
+    "anchors": [
+      {
+        "id": "jr-morinomiya",
+        "walkMinutes": 8,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "osaka-castle-plum-grove",
+        "walkMinutes": 21,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "osaka-sheraton-miyako",
+        "walkMinutes": 31,
+        "walkSource": "osrm"
+      }
+    ],
     "contexts": [
       "lunch",
       "dinner"
@@ -360,7 +376,23 @@
       }
     ],
     "verified": false,
-    "anchors": [],
+    "anchors": [
+      {
+        "id": "metro-osaka-business-park",
+        "walkMinutes": 7,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "osaka-castle-plum-grove",
+        "walkMinutes": 17,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "osaka-apa-umeda-tower",
+        "walkMinutes": 37,
+        "walkSource": "osrm"
+      }
+    ],
     "contexts": [
       "lunch",
       "dinner"
@@ -614,7 +646,18 @@
       }
     ],
     "verified": false,
-    "anchors": [],
+    "anchors": [
+      {
+        "id": "metro-osaka-business-park",
+        "walkMinutes": 3,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "osaka-castle-plum-grove",
+        "walkMinutes": 14,
+        "walkSource": "osrm"
+      }
+    ],
     "contexts": [
       "lunch",
       "dinner"
@@ -818,7 +861,23 @@
       }
     ],
     "verified": false,
-    "anchors": [],
+    "anchors": [
+      {
+        "id": "metro-osaka-business-park",
+        "walkMinutes": 13,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "osaka-castle-plum-grove",
+        "walkMinutes": 24,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "osaka-apa-umeda-tower",
+        "walkMinutes": 43,
+        "walkSource": "osrm"
+      }
+    ],
     "contexts": [
       "lunch",
       "dinner"
@@ -1022,7 +1081,23 @@
       }
     ],
     "verified": false,
-    "anchors": [],
+    "anchors": [
+      {
+        "id": "metro-osaka-business-park",
+        "walkMinutes": 12,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "osaka-castle-plum-grove",
+        "walkMinutes": 23,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "osaka-apa-umeda-tower",
+        "walkMinutes": 41,
+        "walkSource": "osrm"
+      }
+    ],
     "contexts": [
       "lunch",
       "dinner"
@@ -1228,7 +1303,43 @@
       }
     ],
     "verified": false,
-    "anchors": [],
+    "anchors": [
+      {
+        "id": "metro-namba",
+        "walkMinutes": 7,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "osaka-dotonbori",
+        "walkMinutes": 2,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "osaka-kuromon-market",
+        "walkMinutes": 9,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "osaka-holiday-inn-namba",
+        "walkMinutes": 3,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "osaka-yamatoya-honten",
+        "walkMinutes": 6,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "osaka-hotel-k6-namba",
+        "walkMinutes": 7,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "osaka-super-hotel-namba-nippombashi",
+        "walkMinutes": 8,
+        "walkSource": "osrm"
+      }
+    ],
     "contexts": [
       "lunch",
       "dinner"
@@ -1421,7 +1532,33 @@
       }
     ],
     "verified": false,
-    "anchors": [],
+    "anchors": [
+      {
+        "id": "metro-namba",
+        "walkMinutes": 2,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "osaka-dotonbori",
+        "walkMinutes": 4,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "osaka-kuromon-market",
+        "walkMinutes": 8,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "osaka-grids-premium-namba",
+        "walkMinutes": 6,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "osaka-fraser-residence-nankai",
+        "walkMinutes": 7,
+        "walkSource": "osrm"
+      }
+    ],
     "contexts": [
       "snack"
     ],
@@ -1663,7 +1800,33 @@
       }
     ],
     "verified": false,
-    "anchors": [],
+    "anchors": [
+      {
+        "id": "osaka-namba",
+        "walkMinutes": 5,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "osaka-dotonbori",
+        "walkMinutes": 8,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "osaka-hotel-k6-namba",
+        "walkMinutes": 4,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "osaka-monterey-grasmere",
+        "walkMinutes": 5,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "osaka-super-hotel-namba-nippombashi",
+        "walkMinutes": 16,
+        "walkSource": "osrm"
+      }
+    ],
     "contexts": [
       "lunch",
       "dinner"
@@ -1866,7 +2029,43 @@
       }
     ],
     "verified": false,
-    "anchors": [],
+    "anchors": [
+      {
+        "id": "metro-nippombashi",
+        "walkMinutes": 4,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "osaka-kuromon-market",
+        "walkMinutes": 6,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "osaka-dotonbori",
+        "walkMinutes": 7,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "osaka-yamatoya-honten",
+        "walkMinutes": 1,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "osaka-dormy-inn-namba",
+        "walkMinutes": 4,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "osaka-hotel-k6-namba",
+        "walkMinutes": 11,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "osaka-super-hotel-namba-nippombashi",
+        "walkMinutes": 5,
+        "walkSource": "osrm"
+      }
+    ],
     "contexts": [
       "lunch",
       "dinner"
@@ -2104,7 +2303,38 @@
       }
     ],
     "verified": false,
-    "anchors": [],
+    "anchors": [
+      {
+        "id": "metro-namba",
+        "walkMinutes": 6,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "osaka-dotonbori",
+        "walkMinutes": 3,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "osaka-kuromon-market",
+        "walkMinutes": 13,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "osaka-holiday-inn-namba",
+        "walkMinutes": 5,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "osaka-hotel-k6-namba",
+        "walkMinutes": 6,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "osaka-super-hotel-namba-nippombashi",
+        "walkMinutes": 12,
+        "walkSource": "osrm"
+      }
+    ],
     "contexts": [
       "lunch",
       "dinner"
@@ -2316,7 +2546,33 @@
       }
     ],
     "verified": false,
-    "anchors": [],
+    "anchors": [
+      {
+        "id": "osaka-namba",
+        "walkMinutes": 5,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "osaka-dotonbori",
+        "walkMinutes": 7,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "osaka-hotel-k6-namba",
+        "walkMinutes": 4,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "osaka-monterey-grasmere",
+        "walkMinutes": 5,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "osaka-super-hotel-namba-nippombashi",
+        "walkMinutes": 16,
+        "walkSource": "osrm"
+      }
+    ],
     "contexts": [
       "lunch",
       "dinner"
@@ -2560,7 +2816,38 @@
       }
     ],
     "verified": false,
-    "anchors": [],
+    "anchors": [
+      {
+        "id": "metro-namba",
+        "walkMinutes": 4,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "osaka-dotonbori",
+        "walkMinutes": 2,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "osaka-kuromon-market",
+        "walkMinutes": 11,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "osaka-hotel-k6-namba",
+        "walkMinutes": 5,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "osaka-holiday-inn-namba",
+        "walkMinutes": 6,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "osaka-super-hotel-namba-nippombashi",
+        "walkMinutes": 10,
+        "walkSource": "osrm"
+      }
+    ],
     "contexts": [
       "lunch",
       "dinner"
@@ -2754,7 +3041,33 @@
       }
     ],
     "verified": false,
-    "anchors": [],
+    "anchors": [
+      {
+        "id": "metro-namba",
+        "walkMinutes": 6,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "osaka-kuromon-market",
+        "walkMinutes": 4,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "osaka-dotonbori",
+        "walkMinutes": 8,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "osaka-super-hotel-namba-nippombashi",
+        "walkMinutes": 5,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "osaka-swissotel-nankai",
+        "walkMinutes": 7,
+        "walkSource": "osrm"
+      }
+    ],
     "contexts": [
       "snack"
     ],
@@ -2946,7 +3259,38 @@
       }
     ],
     "verified": false,
-    "anchors": [],
+    "anchors": [
+      {
+        "id": "metro-nippombashi",
+        "walkMinutes": 4,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "osaka-kuromon-market",
+        "walkMinutes": 3,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "osaka-dotonbori",
+        "walkMinutes": 9,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "osaka-super-hotel-namba-nippombashi",
+        "walkMinutes": 3,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "osaka-swissotel-nankai",
+        "walkMinutes": 8,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "osaka-hotel-k6-namba",
+        "walkMinutes": 12,
+        "walkSource": "osrm"
+      }
+    ],
     "contexts": [
       "lunch",
       "dinner"
@@ -3124,7 +3468,33 @@
       }
     ],
     "verified": false,
-    "anchors": [],
+    "anchors": [
+      {
+        "id": "nankai-namba",
+        "walkMinutes": 6,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "osaka-kuromon-market",
+        "walkMinutes": 5,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "osaka-dotonbori",
+        "walkMinutes": 10,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "osaka-swissotel-nankai",
+        "walkMinutes": 6,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "osaka-super-hotel-namba-nippombashi",
+        "walkMinutes": 6,
+        "walkSource": "osrm"
+      }
+    ],
     "contexts": [
       "lunch"
     ],
@@ -3307,7 +3677,38 @@
       }
     ],
     "verified": false,
-    "anchors": [],
+    "anchors": [
+      {
+        "id": "metro-namba",
+        "walkMinutes": 4,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "osaka-dotonbori",
+        "walkMinutes": 2,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "osaka-kuromon-market",
+        "walkMinutes": 10,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "osaka-hotel-k6-namba",
+        "walkMinutes": 5,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "osaka-holiday-inn-namba",
+        "walkMinutes": 6,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "osaka-super-hotel-namba-nippombashi",
+        "walkMinutes": 9,
+        "walkSource": "osrm"
+      }
+    ],
     "contexts": [
       "lunch",
       "dinner"
@@ -3502,7 +3903,38 @@
       }
     ],
     "verified": false,
-    "anchors": [],
+    "anchors": [
+      {
+        "id": "metro-shinsaibashi",
+        "walkMinutes": 4,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "osaka-dotonbori",
+        "walkMinutes": 9,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "osaka-hotel-nikko",
+        "walkMinutes": 4,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "osaka-holiday-inn-namba",
+        "walkMinutes": 8,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "osaka-hotel-k6-namba",
+        "walkMinutes": 13,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "osaka-super-hotel-namba-nippombashi",
+        "walkMinutes": 16,
+        "walkSource": "osrm"
+      }
+    ],
     "contexts": [
       "lunch",
       "dinner"
@@ -3711,7 +4143,28 @@
       }
     ],
     "verified": false,
-    "anchors": [],
+    "anchors": [
+      {
+        "id": "metro-shinsaibashi",
+        "walkMinutes": 7,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "osaka-dotonbori",
+        "walkMinutes": 15,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "osaka-hotel-nikko",
+        "walkMinutes": 7,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "osaka-hotel-k6-namba",
+        "walkMinutes": 13,
+        "walkSource": "osrm"
+      }
+    ],
     "contexts": [
       "dinner"
     ],
@@ -3892,7 +4345,28 @@
       }
     ],
     "verified": false,
-    "anchors": [],
+    "anchors": [
+      {
+        "id": "metro-dobutsuen-mae",
+        "walkMinutes": 4,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "osaka-tsutenkaku",
+        "walkMinutes": 5,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "osaka-tennoji-zoo",
+        "walkMinutes": 12,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "osaka-harukas300",
+        "walkMinutes": 12,
+        "walkSource": "osrm"
+      }
+    ],
     "contexts": [
       "lunch",
       "dinner"
@@ -4088,7 +4562,28 @@
       }
     ],
     "verified": false,
-    "anchors": [],
+    "anchors": [
+      {
+        "id": "metro-dobutsuen-mae",
+        "walkMinutes": 7,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "osaka-tsutenkaku",
+        "walkMinutes": 2,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "osaka-tennoji-zoo",
+        "walkMinutes": 13,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "osaka-harukas300",
+        "walkMinutes": 15,
+        "walkSource": "osrm"
+      }
+    ],
     "contexts": [
       "lunch",
       "dinner"
@@ -4270,7 +4765,23 @@
       }
     ],
     "verified": false,
-    "anchors": [],
+    "anchors": [
+      {
+        "id": "metro-dobutsuen-mae",
+        "walkMinutes": 3,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "osaka-tsutenkaku",
+        "walkMinutes": 10,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "osaka-harukas300",
+        "walkMinutes": 14,
+        "walkSource": "osrm"
+      }
+    ],
     "contexts": [
       "lunch",
       "dinner"
@@ -4472,7 +4983,23 @@
       }
     ],
     "verified": false,
-    "anchors": [],
+    "anchors": [
+      {
+        "id": "jr-universal-city",
+        "walkMinutes": 25,
+        "walkSource": "estimate"
+      },
+      {
+        "id": "osaka-tempozan-ferris-wheel",
+        "walkMinutes": 34,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "osaka-universal-port",
+        "walkMinutes": 57,
+        "walkSource": "osrm"
+      }
+    ],
     "contexts": [
       "lunch",
       "dinner"
@@ -4720,7 +5247,28 @@
       }
     ],
     "verified": false,
-    "anchors": [],
+    "anchors": [
+      {
+        "id": "metro-osakako",
+        "walkMinutes": 4,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "osaka-tempozan-ferris-wheel",
+        "walkMinutes": 6,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "osaka-legoland-discovery",
+        "walkMinutes": 6,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "osaka-kaiyukan",
+        "walkMinutes": 7,
+        "walkSource": "osrm"
+      }
+    ],
     "contexts": [
       "lunch",
       "dinner"
@@ -4910,7 +5458,28 @@
       }
     ],
     "verified": false,
-    "anchors": [],
+    "anchors": [
+      {
+        "id": "metro-osakako",
+        "walkMinutes": 6,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "osaka-kaiyukan",
+        "walkMinutes": 5,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "osaka-legoland-discovery",
+        "walkMinutes": 7,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "osaka-tempozan-ferris-wheel",
+        "walkMinutes": 8,
+        "walkSource": "osrm"
+      }
+    ],
     "contexts": [
       "lunch"
     ],
@@ -5115,7 +5684,28 @@
       }
     ],
     "verified": false,
-    "anchors": [],
+    "anchors": [
+      {
+        "id": "metro-osakako",
+        "walkMinutes": 4,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "osaka-legoland-discovery",
+        "walkMinutes": 4,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "osaka-tempozan-ferris-wheel",
+        "walkMinutes": 5,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "osaka-kaiyukan",
+        "walkMinutes": 6,
+        "walkSource": "osrm"
+      }
+    ],
     "contexts": [
       "lunch",
       "dinner"
@@ -5291,7 +5881,28 @@
       }
     ],
     "verified": false,
-    "anchors": [],
+    "anchors": [
+      {
+        "id": "metro-osakako",
+        "walkMinutes": 6,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "osaka-kaiyukan",
+        "walkMinutes": 5,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "osaka-legoland-discovery",
+        "walkMinutes": 8,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "osaka-tempozan-ferris-wheel",
+        "walkMinutes": 8,
+        "walkSource": "osrm"
+      }
+    ],
     "contexts": [
       "lunch"
     ],
@@ -5470,7 +6081,23 @@
       }
     ],
     "verified": false,
-    "anchors": [],
+    "anchors": [
+      {
+        "id": "metro-tanimachi-4chome",
+        "walkMinutes": 3,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "osaka-castle-tenshukaku",
+        "walkMinutes": 20,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "osaka-dormy-inn-namba",
+        "walkMinutes": 28,
+        "walkSource": "osrm"
+      }
+    ],
     "contexts": [
       "lunch"
     ],
@@ -5648,7 +6275,23 @@
       }
     ],
     "verified": false,
-    "anchors": [],
+    "anchors": [
+      {
+        "id": "metro-tanimachi-4chome",
+        "walkMinutes": 13,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "osaka-castle-tenshukaku",
+        "walkMinutes": 23,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "osaka-apa-umeda-tower",
+        "walkMinutes": 30,
+        "walkSource": "osrm"
+      }
+    ],
     "contexts": [
       "dinner"
     ],
@@ -5871,7 +6514,23 @@
       }
     ],
     "verified": false,
-    "anchors": [],
+    "anchors": [
+      {
+        "id": "metro-tennoji",
+        "walkMinutes": 6,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "osaka-harukas300",
+        "walkMinutes": 4,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "osaka-tennoji-zoo",
+        "walkMinutes": 14,
+        "walkSource": "osrm"
+      }
+    ],
     "contexts": [
       "lunch",
       "dinner"
@@ -6086,7 +6745,28 @@
       }
     ],
     "verified": false,
-    "anchors": [],
+    "anchors": [
+      {
+        "id": "metro-tennoji",
+        "walkMinutes": 7,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "osaka-harukas300",
+        "walkMinutes": 5,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "osaka-tennoji-zoo",
+        "walkMinutes": 8,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "osaka-tsutenkaku",
+        "walkMinutes": 12,
+        "walkSource": "osrm"
+      }
+    ],
     "contexts": [
       "lunch",
       "dinner"
@@ -6297,7 +6977,23 @@
       }
     ],
     "verified": false,
-    "anchors": [],
+    "anchors": [
+      {
+        "id": "metro-tennoji",
+        "walkMinutes": 6,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "osaka-harukas300",
+        "walkMinutes": 4,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "osaka-tennoji-zoo",
+        "walkMinutes": 15,
+        "walkSource": "osrm"
+      }
+    ],
     "contexts": [
       "snack"
     ],
@@ -6481,7 +7177,28 @@
       }
     ],
     "verified": false,
-    "anchors": [],
+    "anchors": [
+      {
+        "id": "metro-tennoji",
+        "walkMinutes": 7,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "osaka-harukas300",
+        "walkMinutes": 5,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "osaka-tennoji-zoo",
+        "walkMinutes": 10,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "osaka-shitennoji",
+        "walkMinutes": 12,
+        "walkSource": "osrm"
+      }
+    ],
     "contexts": [
       "lunch",
       "dinner"
@@ -6674,7 +7391,28 @@
       }
     ],
     "verified": false,
-    "anchors": [],
+    "anchors": [
+      {
+        "id": "jr-tsuruhashi",
+        "walkMinutes": 7,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "osaka-kuromon-market",
+        "walkMinutes": 25,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "osaka-sheraton-miyako",
+        "walkMinutes": 7,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "osaka-daiwa-roynet-uehommachi",
+        "walkMinutes": 11,
+        "walkSource": "osrm"
+      }
+    ],
     "contexts": [
       "lunch",
       "dinner"
@@ -6918,7 +7656,23 @@
       }
     ],
     "verified": false,
-    "anchors": [],
+    "anchors": [
+      {
+        "id": "jr-tsuruhashi",
+        "walkMinutes": 1,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "osaka-shitennoji",
+        "walkMinutes": 27,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "osaka-sheraton-miyako",
+        "walkMinutes": 12,
+        "walkSource": "osrm"
+      }
+    ],
     "contexts": [
       "lunch",
       "dinner"
@@ -7163,7 +7917,28 @@
       }
     ],
     "verified": false,
-    "anchors": [],
+    "anchors": [
+      {
+        "id": "jr-osaka",
+        "walkMinutes": 6,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "osaka-umeda-sky-building",
+        "walkMinutes": 14,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "osaka-intergate-umeda",
+        "walkMinutes": 3,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "osaka-granvia",
+        "walkMinutes": 7,
+        "walkSource": "osrm"
+      }
+    ],
     "contexts": [
       "lunch",
       "dinner"
@@ -7401,7 +8176,28 @@
       }
     ],
     "verified": false,
-    "anchors": [],
+    "anchors": [
+      {
+        "id": "jr-osaka",
+        "walkMinutes": 5,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "osaka-umeda-sky-building",
+        "walkMinutes": 13,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "osaka-intergate-umeda",
+        "walkMinutes": 5,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "osaka-granvia",
+        "walkMinutes": 6,
+        "walkSource": "osrm"
+      }
+    ],
     "contexts": [
       "lunch",
       "dinner"
@@ -7614,7 +8410,28 @@
       }
     ],
     "verified": false,
-    "anchors": [],
+    "anchors": [
+      {
+        "id": "metro-umeda",
+        "walkMinutes": 4,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "osaka-umeda-sky-building",
+        "walkMinutes": 11,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "osaka-hankyu-respire",
+        "walkMinutes": 4,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "osaka-granvia",
+        "walkMinutes": 10,
+        "walkSource": "osrm"
+      }
+    ],
     "contexts": [
       "lunch",
       "dinner"
@@ -7802,7 +8619,28 @@
       }
     ],
     "verified": false,
-    "anchors": [],
+    "anchors": [
+      {
+        "id": "jr-osaka",
+        "walkMinutes": 4,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "osaka-umeda-sky-building",
+        "walkMinutes": 17,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "osaka-granvia",
+        "walkMinutes": 7,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "osaka-hankyu-respire",
+        "walkMinutes": 9,
+        "walkSource": "osrm"
+      }
+    ],
     "contexts": [
       "snack"
     ],
@@ -7991,7 +8829,28 @@
       }
     ],
     "verified": false,
-    "anchors": [],
+    "anchors": [
+      {
+        "id": "metro-higashi-umeda",
+        "walkMinutes": 6,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "osaka-umeda-sky-building",
+        "walkMinutes": 20,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "osaka-apa-umeda-tower",
+        "walkMinutes": 8,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "osaka-granvia",
+        "walkMinutes": 9,
+        "walkSource": "osrm"
+      }
+    ],
     "contexts": [
       "lunch",
       "dinner"
@@ -8192,7 +9051,28 @@
       }
     ],
     "verified": false,
-    "anchors": [],
+    "anchors": [
+      {
+        "id": "metro-higashi-umeda",
+        "walkMinutes": 7,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "osaka-umeda-sky-building",
+        "walkMinutes": 21,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "osaka-apa-umeda-tower",
+        "walkMinutes": 10,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "osaka-granvia",
+        "walkMinutes": 11,
+        "walkSource": "osrm"
+      }
+    ],
     "contexts": [
       "dinner"
     ],
@@ -8367,7 +9247,28 @@
       }
     ],
     "verified": false,
-    "anchors": [],
+    "anchors": [
+      {
+        "id": "metro-umeda",
+        "walkMinutes": 1,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "osaka-umeda-sky-building",
+        "walkMinutes": 13,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "osaka-hankyu-respire",
+        "walkMinutes": 5,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "osaka-granvia",
+        "walkMinutes": 6,
+        "walkSource": "osrm"
+      }
+    ],
     "contexts": [
       "lunch",
       "dinner"

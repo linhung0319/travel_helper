@@ -51,8 +51,32 @@
       "散步"
     ],
     "tier": null,
-    "nearestStation": null,
-    "access": [],
+    "nearestStation": {
+      "id": "metro-namba",
+      "mode": "walk",
+      "minutes": 5,
+      "note": "OSAKA-INFO：なんば駅 出站即到；OSRM 5 分（到道頓堀的地點座標）"
+    },
+    "access": [
+      {
+        "from": "metro-namba",
+        "mode": "walk",
+        "minutes": 5,
+        "note": "OSAKA-INFO：なんば駅 出站即到；OSRM 5 分（到道頓堀的地點座標）"
+      },
+      {
+        "from": "osaka-namba",
+        "mode": "walk",
+        "minutes": 7,
+        "note": "OSRM"
+      },
+      {
+        "from": "nankai-namba",
+        "mode": "walk",
+        "minutes": 11,
+        "note": "OSRM"
+      }
+    ],
     "admission": "街道免費；とんぼりリバークルーズ 大人 2,000 円、中學生以上學生 1,000 円、小學生 500 円。",
     "phone": "06-6211-4542",
     "stayMinutes": 60,
@@ -126,7 +150,6 @@
     "verified": false,
     "extra": {
       "stationAccess": "Osaka Metro 御堂筋線・千日前線・四つ橋線、近鐵、南海 なんば駅 出站即到（OSAKA-INFO）；クルーズ乘船處 難波、心斎橋、日本橋站步行 5～10 分。",
-      "stationTodo": "車站 ID 等 T28（大阪車站）進 master 後補，預定 ID 見 data/raw/osaka/log/T27a.md",
       "nearby": "心斎橋筋商店街：道頓堀往北的有頂棚購物街，到心斎橋站約 600 m。法善寺横丁：道頓堀南側的石板小巷，有苔蘚覆蓋的水掛不動。（一般知識，未讀來源）",
       "conflicts": [
         "官網 dotonbori.or.jp 憑證過期、一本松海運官網維護中，クルーズ票價只來自 OSAKA-INFO"
@@ -192,8 +215,20 @@
       "邊走邊吃"
     ],
     "tier": null,
-    "nearestStation": null,
-    "access": [],
+    "nearestStation": {
+      "id": "metro-nippombashi",
+      "mode": "walk",
+      "minutes": 3,
+      "note": "OSAKA-INFO：約 2 分；OSRM 3 分"
+    },
+    "access": [
+      {
+        "from": "metro-nippombashi",
+        "mode": "walk",
+        "minutes": 3,
+        "note": "OSAKA-INFO：約 2 分；OSRM 3 分"
+      }
+    ],
     "admission": "免費（各店消費）",
     "phone": "06-6631-0007",
     "stayMinutes": 60,
@@ -251,7 +286,6 @@
     "verified": false,
     "extra": {
       "stationAccess": "Osaka Metro 千日前線・堺筋線 日本橋駅 出站即到、步行約 2 分（OSAKA-INFO）；出口未寫。",
-      "stationTodo": "車站 ID 等 T28（大阪車站）進 master 後補，預定 ID 見 data/raw/osaka/log/T27a.md",
       "indoorNote": "有頂棚的半室內商店街",
       "conflicts": [
         "公休：OSAKA-INFO 體驗頁「週一定休」 vs 特輯「依店家而異」",
@@ -363,8 +397,32 @@
       "長階梯"
     ],
     "tier": null,
-    "nearestStation": null,
-    "access": [],
+    "nearestStation": {
+      "id": "metro-tanimachi-4chome",
+      "mode": "walk",
+      "minutes": 20,
+      "note": "11 號出口（電梯）；官方無障礙地圖約 1.4 km 上坡，最平的路線；OSRM 20 分"
+    },
+    "access": [
+      {
+        "from": "metro-tanimachi-4chome",
+        "mode": "walk",
+        "minutes": 20,
+        "note": "11 號出口（電梯）；官方無障礙地圖約 1.4 km 上坡，最平的路線；OSRM 20 分"
+      },
+      {
+        "from": "metro-morinomiya",
+        "mode": "walk",
+        "minutes": 18,
+        "note": "OSRM；要走バリアフリールート"
+      },
+      {
+        "from": "jr-osakajokoen",
+        "mode": "walk",
+        "minutes": 20,
+        "note": "OSAKA-INFO：約 20 分；OSRM 20 分；JO-TERRACE 電梯"
+      }
+    ],
     "admission": "大人 1,200 円、高中・大學生 600 円、國中生以下免費。",
     "phone": "06-6941-3044",
     "stayMinutes": 60,
@@ -450,7 +508,6 @@
     "verified": false,
     "extra": {
       "stationAccess": "最平：Osaka Metro 中央線 谷町四丁目駅 11 號出口（電梯）或谷町線 1-A 出口（電梯），約 1.4 km 上坡。JR 大阪城公園駅（JO-TERRACE 電梯）約 1.7 km；天満橋駅、森ノ宮駅約 1.6 km（官方無障礙地圖）。OSAKA-INFO：JR 大阪城公園駅、森ノ宮駅各步行約 20 分。",
-      "stationTodo": "車站 ID 等 T28（大阪車站）進 master 後補，預定 ID 見 data/raw/osaka/log/T27a.md",
       "conflicts": [
         "OSAKA-INFO：大人 600 円、9:00～17:00（舊）；官網 2026-10：1,200 円、9:00～18:00",
         "ロードトレイン：OSAKA-INFO 每趟 300 円 vs 旅遊網站大人 400／小孩 200 円、每月第 1 週四停駛"
@@ -508,8 +565,26 @@
       "散步"
     ],
     "tier": null,
-    "nearestStation": null,
-    "access": [],
+    "nearestStation": {
+      "id": "jr-osakajokoen",
+      "mode": "walk",
+      "minutes": 14,
+      "note": "官方沒寫分鐘（往青屋門）；OSRM 14 分（到梅林中心）"
+    },
+    "access": [
+      {
+        "from": "jr-osakajokoen",
+        "mode": "walk",
+        "minutes": 14,
+        "note": "官方沒寫分鐘（往青屋門）；OSRM 14 分（到梅林中心）"
+      },
+      {
+        "from": "metro-morinomiya",
+        "mode": "walk",
+        "minutes": 14,
+        "note": "OSRM"
+      }
+    ],
     "admission": "官方頁沒寫入園費（大阪城公園一般免費入園，未確認）。",
     "phone": "06-6755-4146",
     "stayMinutes": 45,
@@ -573,7 +648,6 @@
     "verified": false,
     "extra": {
       "stationAccess": "JR 大阪環状線 大阪城公園駅（JO-TERRACE 電梯，往青屋門）最近；JR／Osaka Metro 森ノ宮駅也近（要走バリアフリールート）。步行分鐘官方沒寫。",
-      "stationTodo": "車站 ID 等 T28（大阪車站）進 master 後補，預定 ID 見 data/raw/osaka/log/T27a.md",
       "conflicts": [
         "棵數：官網約 1,245 棵 vs 大阪市舊資料約 1,270 棵",
         "活動期間：MATCHA 寫 2026-02-06～03-15，官網只寫 2 月初～3 月中旬"
@@ -677,8 +751,32 @@
       "親子"
     ],
     "tier": null,
-    "nearestStation": null,
-    "access": [],
+    "nearestStation": {
+      "id": "metro-ebisucho",
+      "mode": "walk",
+      "minutes": 5,
+      "note": "官網：3 號出口 3 分；OSRM 5 分"
+    },
+    "access": [
+      {
+        "from": "metro-ebisucho",
+        "mode": "walk",
+        "minutes": 5,
+        "note": "官網：3 號出口 3 分；OSRM 5 分"
+      },
+      {
+        "from": "metro-dobutsuen-mae",
+        "mode": "walk",
+        "minutes": 8,
+        "note": "官網：1 號出口 6 分；OSRM 8 分"
+      },
+      {
+        "from": "jr-shin-imamiya",
+        "mode": "walk",
+        "minutes": 9,
+        "note": "官網：東口 6 分；OSRM 9 分"
+      }
+    ],
     "admission": "一般展望台 大人 1,500 円、5～14 歲 800 円；TOWER SLIDER 另付。",
     "phone": "06-6641-9555",
     "stayMinutes": 45,
@@ -776,7 +874,6 @@
     "verified": false,
     "extra": {
       "stationAccess": "Osaka Metro 堺筋線 恵美須町駅 3 號出口 步行 3 分；御堂筋線 動物園前駅 1 號出口 6 分；JR 新今宮駅 東口 6 分（官網）。",
-      "stationTodo": "車站 ID 等 T28（大阪車站）進 master 後補，預定 ID 見 data/raw/osaka/log/T27a.md",
       "nearby": "新世界：通天閣腳下的老街，串カツ店集中（ジャンジャン横丁）。",
       "indoorNote": "展望台室內；特別屋外展望台是露天",
       "conflicts": [
@@ -879,8 +976,26 @@
       "雨天備案"
     ],
     "tier": null,
-    "nearestStation": null,
-    "access": [],
+    "nearestStation": {
+      "id": "metro-tennoji",
+      "mode": "walk",
+      "minutes": 3,
+      "note": "OSAKA-INFO：即到（近鉄 大阪阿部野橋駅 直結，不在 stations.json）；OSRM 3 分"
+    },
+    "access": [
+      {
+        "from": "metro-tennoji",
+        "mode": "walk",
+        "minutes": 3,
+        "note": "OSAKA-INFO：即到（近鉄 大阪阿部野橋駅 直結，不在 stations.json）；OSRM 3 分"
+      },
+      {
+        "from": "jr-tennoji",
+        "mode": "walk",
+        "minutes": 5,
+        "note": "OSAKA-INFO：約 2 分；OSRM 5 分"
+      }
+    ],
     "admission": "當日券 大人 1,800～2,000 円（來源不一）、小學生 700 円。",
     "phone": "06-6621-0300",
     "stayMinutes": 60,
@@ -948,7 +1063,6 @@
     "verified": false,
     "extra": {
       "stationAccess": "近鉄南大阪線 大阪阿部野橋駅 直結；JR 天王寺駅 步行約 2 分；Osaka Metro 天王寺駅 即到（OSAKA-INFO、るるぶ）。",
-      "stationTodo": "車站 ID 等 T28（大阪車站）進 master 後補，預定 ID 見 data/raw/osaka/log/T27a.md",
       "conflicts": [
         "大人當日價：OSAKA-INFO（2025-03）1,800 円 vs るるぶ 2,000 円",
         "官網 abenoharukas-300.jp 回 403，官方數字都沒確認"
@@ -1044,8 +1158,26 @@
       "親子"
     ],
     "tier": null,
-    "nearestStation": null,
-    "access": [],
+    "nearestStation": {
+      "id": "metro-dobutsuen-mae",
+      "mode": "walk",
+      "minutes": 13,
+      "note": "OSAKA-INFO：5 分（新世界ゲート）；OSRM 13 分是到園區中心的座標"
+    },
+    "access": [
+      {
+        "from": "metro-dobutsuen-mae",
+        "mode": "walk",
+        "minutes": 13,
+        "note": "OSAKA-INFO：5 分（新世界ゲート）；OSRM 13 分是到園區中心的座標"
+      },
+      {
+        "from": "metro-tennoji",
+        "mode": "walk",
+        "minutes": 15,
+        "note": "OSAKA-INFO：10 分（てんしば口）；OSRM 15 分到園區中心"
+      }
+    ],
     "admission": "大人 800 円、小中學生 200 円、未就學兒免費。",
     "phone": "06-6771-8401",
     "stayMinutes": 120,
@@ -1099,7 +1231,6 @@
     "verified": false,
     "extra": {
       "stationAccess": "Osaka Metro 動物園前駅 步行 5 分；堺筋線 恵美須町駅 5 分；天王寺駅（Metro・JR）10 分（OSAKA-INFO）。出入口（てんしば口・新世界ゲート）未確認。",
-      "stationTodo": "車站 ID 等 T28（大阪車站）進 master 後補，預定 ID 見 data/raw/osaka/log/T27a.md",
       "conflicts": [
         "部分 OSAKA-INFO 頁寫高中生以上 500 円（舊價）",
         "官網 2026-10-26 回 503，出入口、團體料金、無障礙待確認"
@@ -1212,8 +1343,20 @@
       "歷史"
     ],
     "tier": null,
-    "nearestStation": null,
-    "access": [],
+    "nearestStation": {
+      "id": "metro-shitennojimae-yuhigaoka",
+      "mode": "walk",
+      "minutes": 9,
+      "note": "官網：往南 5 分；OSRM 9 分（到中心伽藍的座標）"
+    },
+    "access": [
+      {
+        "from": "metro-shitennojimae-yuhigaoka",
+        "mode": "walk",
+        "minutes": 9,
+        "note": "官網：往南 5 分；OSRM 9 分（到中心伽藍的座標）"
+      }
+    ],
     "admission": "境內免費；中心伽藍 大人 500 円、高中生 300 円、小中學生免費。",
     "phone": "06-6771-0066",
     "stayMinutes": 45,
@@ -1287,7 +1430,6 @@
     "verified": false,
     "extra": {
       "stationAccess": "Osaka Metro 谷町線 四天王寺前夕陽ヶ丘駅 往南步行 5 分；天王寺駅（JR・Metro）往北 12 分；近鉄 大阪阿部野橋駅 14 分（官網）。",
-      "stationTodo": "車站 ID 等 T28（大阪車站）進 master 後補，預定 ID 見 data/raw/osaka/log/T27a.md",
       "indoorNote": "境內戶外，堂內參觀",
       "conflicts": [
         "OSAKA-INFO 英文頁中心伽藍 300 円（舊價）"
@@ -1389,8 +1531,20 @@
       "雨天備案"
     ],
     "tier": null,
-    "nearestStation": null,
-    "access": [],
+    "nearestStation": {
+      "id": "metro-osakako",
+      "mode": "walk",
+      "minutes": 9,
+      "note": "官網：1 號出口約 5 分；OSRM 9 分"
+    },
+    "access": [
+      {
+        "from": "metro-osakako",
+        "mode": "walk",
+        "minutes": 9,
+        "note": "官網：1 號出口約 5 分；OSRM 9 分"
+      }
+    ],
     "admission": "依日期變動：大人 2,700～3,200 円、小中學生 1,400～1,650 円、3 歲以上幼兒 700～800 円。",
     "phone": "06-6576-5501",
     "stayMinutes": 120,
@@ -1488,7 +1642,6 @@
     "verified": false,
     "extra": {
       "stationAccess": "Osaka Metro 中央線 大阪港駅 1 號出口 步行約 5 分（官網）；車站電梯未寫。",
-      "stationTodo": "車站 ID 等 T28（大阪車站）進 master 後補，預定 ID 見 data/raw/osaka/log/T27a.md",
       "conflicts": [
         "營業時間只有 OSAKA-INFO 的 10:00～20:00（季節變動）",
         "官網 2026-10 沒有シニア票"
@@ -1588,8 +1741,20 @@
       "夜景"
     ],
     "tier": null,
-    "nearestStation": null,
-    "access": [],
+    "nearestStation": {
+      "id": "metro-osakako",
+      "mode": "walk",
+      "minutes": 8,
+      "note": "HAPPYELL：約 5 分；OSRM 8 分"
+    },
+    "access": [
+      {
+        "from": "metro-osakako",
+        "mode": "walk",
+        "minutes": 8,
+        "note": "HAPPYELL：約 5 分；OSRM 8 分"
+      }
+    ],
     "admission": "1,000 円（3 歲以上）。",
     "phone": "06-6576-6222",
     "stayMinutes": 30,
@@ -1663,7 +1828,6 @@
     "verified": false,
     "extra": {
       "stationAccess": "Osaka Metro 中央線 大阪港駅 1 號出口 步行約 5 分（HAPPYELL）。",
-      "stationTodo": "車站 ID 等 T28（大阪車站）進 master 後補，預定 ID 見 data/raw/osaka/log/T27a.md",
       "stayNote": "一圈約 15 分，加排隊抓 30 分",
       "conflicts": [
         "票價 1,000 円（HAPPYELL、GLTJP） vs 800 円（OSAKA-INFO）",
@@ -1727,8 +1891,20 @@
       "雨天備案"
     ],
     "tier": null,
-    "nearestStation": null,
-    "access": [],
+    "nearestStation": {
+      "id": "metro-osakako",
+      "mode": "walk",
+      "minutes": 8,
+      "note": "官網：5 分（天保山マーケットプレース 3 樓）；OSRM 8 分"
+    },
+    "access": [
+      {
+        "from": "metro-osakako",
+        "mode": "walk",
+        "minutes": 8,
+        "note": "官網：5 分（天保山マーケットプレース 3 樓）；OSRM 8 分"
+      }
+    ],
     "admission": "日時指定票 2,900～3,300 円（3 歲以上同價）；只有大人不能入場。",
     "phone": null,
     "stayMinutes": 150,
@@ -1820,7 +1996,6 @@
     "verified": false,
     "extra": {
       "stationAccess": "Osaka Metro 中央線 大阪港駅 步行 5 分（官網），在天保山マーケットプレース 3 樓。",
-      "stationTodo": "車站 ID 等 T28（大阪車站）進 master 後補，預定 ID 見 data/raw/osaka/log/T27a.md",
       "elderNote": "只有大人不能入場：長輩不陪小孩進去的話，可以在天保山マーケットプレース或海遊館等",
       "conflicts": [
         "首頁「¥2,200 起」 vs 票價頁最低 2,240（平日午後）／2,900 円（日時指定）"
@@ -1894,8 +2069,20 @@
       "親子"
     ],
     "tier": null,
-    "nearestStation": null,
-    "access": [],
+    "nearestStation": {
+      "id": "jr-universal-city",
+      "mode": "walk",
+      "minutes": 11,
+      "note": "官網沒寫到園門的分鐘；OSRM 11 分是到園區中心的座標，到園門較近"
+    },
+    "access": [
+      {
+        "from": "jr-universal-city",
+        "mode": "walk",
+        "minutes": 11,
+        "note": "官網沒寫到園門的分鐘；OSRM 11 分是到園區中心的座標，到園門較近"
+      }
+    ],
     "admission": "1デイ・スタジオ・パス 依日期變動：大人 8,400 円～、兒童（4～11 歲）5,500 円～、65 歲以上 7,600 円～（2026 年的最低價，出發前要再查）。",
     "phone": "0570-20-0606",
     "stayMinutes": 540,
@@ -2029,7 +2216,6 @@
     "verified": false,
     "extra": {
       "stationAccess": "JR ゆめ咲線 ユニバーサルシティ駅（西九条から約 5 分、大阪駅から約 11 分、天王寺・大阪難波から約 13 分；官網）；車站到園門步行分鐘未寫。",
-      "stationTodo": "車站 ID 等 T28（大阪車站）進 master 後補，預定 ID 見 data/raw/osaka/log/T27a.md",
       "stayNote": "整天（約 9 小時）；開園、閉園時間依日期",
       "parkRestaurants": "園內餐廳不收進 restaurants.json（PLAN T27a）",
       "conflicts": [
@@ -2140,8 +2326,26 @@
       "雨天備案"
     ],
     "tier": null,
-    "nearestStation": null,
-    "access": [],
+    "nearestStation": {
+      "id": "metro-umeda",
+      "mode": "walk",
+      "minutes": 13,
+      "note": "官網：5 號出口（電梯）9 分；OSRM 13 分"
+    },
+    "access": [
+      {
+        "from": "metro-umeda",
+        "mode": "walk",
+        "minutes": 13,
+        "note": "官網：5 號出口（電梯）9 分；OSRM 13 分"
+      },
+      {
+        "from": "jr-osaka",
+        "mode": "walk",
+        "minutes": 16,
+        "note": "官網：ルクア電梯 7 分；OSRM 16 分（繞過鐵路）"
+      }
+    ],
     "admission": "大人 2,000 円、4 歲～小學生 500 円。",
     "phone": "06-6440-3855",
     "stayMinutes": 60,
@@ -2227,7 +2431,6 @@
     "verified": false,
     "extra": {
       "stationAccess": "JR 大阪駅 步行 7 分（ルクア電梯）；阪急 大阪梅田駅 9 分；Osaka Metro 梅田駅 9 分（5 號出口電梯）（官網）。",
-      "stationTodo": "車站 ID 等 T28（大阪車站）進 master 後補，預定 ID 見 data/raw/osaka/log/T27a.md",
       "indoorNote": "39F 室內，屋頂迴廊露天",
       "conflicts": [
         "一則旅遊網站寫 1,500／700 円（舊價）"
@@ -2338,8 +2541,20 @@
       "雨天備案"
     ],
     "tier": null,
-    "nearestStation": null,
-    "access": [],
+    "nearestStation": {
+      "id": "metro-tenjimbashisuji-6chome",
+      "mode": "walk",
+      "minutes": 1,
+      "note": "官網：3 號出口（B1）直結大樓；OSRM 2 分"
+    },
+    "access": [
+      {
+        "from": "metro-tenjimbashisuji-6chome",
+        "mode": "walk",
+        "minutes": 1,
+        "note": "官網：3 號出口（B1）直結大樓；OSRM 2 分"
+      }
+    ],
     "admission": "一般 600 円、高中・大學生 300 円、中學生以下免費；和服體驗另收 1,000 円。",
     "phone": "06-6242-1170",
     "stayMinutes": 90,
@@ -2437,7 +2652,6 @@
     "verified": false,
     "extra": {
       "stationAccess": "Osaka Metro 谷町線・堺筋線／阪急 天神橋筋六丁目駅 3 號出口（B1）直結大樓；JR 天満駅 往北 650 m（官網）。",
-      "stationTodo": "車站 ID 等 T28（大阪車站）進 master 後補，預定 ID 見 data/raw/osaka/log/T27a.md",
       "googleClosed": "2026-10-26 Google 顯示「臨時休業」（改修休館中，2027-01-06 重開）",
       "conflicts": [
         "和服體驗：官網 1,000 円、先到先得 100 名 vs 舊文章 300 円、300 名，All About（2026-05）寫要預約"
