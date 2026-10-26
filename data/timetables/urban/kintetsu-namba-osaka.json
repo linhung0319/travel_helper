@@ -1,0 +1,212 @@
+{
+  "id": "kintetsu-namba-osaka",
+  "mode": "private",
+  "operator": "近畿日本鉄道",
+  "name": {
+    "ja": "近鉄難波線・奈良線（大阪難波～鶴橋）",
+    "zh": "近鐵 難波線（大阪難波～鶴橋）"
+  },
+  "serviceType": null,
+  "stops": [
+    {
+      "id": "osaka-namba",
+      "min": 0,
+      "note": null
+    },
+    {
+      "id": "osaka-uehommachi",
+      "min": 3,
+      "note": "停地下月台（難波線 1・2 號線）；B3F 月台有電梯到 B2F 剪票口"
+    },
+    {
+      "id": "tsuruhashi",
+      "min": 5,
+      "note": "近鐵月台在 2F，西改札口（1F）有電梯；轉 JR 環狀線"
+    }
+  ],
+  "loop": false,
+  "loopMin": null,
+  "service": {
+    "weekday": {
+      "first": "05:19",
+      "last": "23:59",
+      "headway": [
+        {
+          "from": "05:13",
+          "to": "06:00",
+          "min": 12
+        },
+        {
+          "from": "06:00",
+          "to": "07:00",
+          "min": 5.5
+        },
+        {
+          "from": "07:00",
+          "to": "09:00",
+          "min": 3.5
+        },
+        {
+          "from": "09:00",
+          "to": "20:00",
+          "min": 4
+        },
+        {
+          "from": "20:00",
+          "to": "22:00",
+          "min": 4.5
+        },
+        {
+          "from": "22:00",
+          "to": "23:00",
+          "min": 5.5
+        },
+        {
+          "from": "23:00",
+          "to": "24:05",
+          "min": 6
+        }
+      ],
+      "note": "班距算所有不用特急券的列車（普通、区間準急、準急、急行、快速急行；大阪難波發往東的列車全部經過上本町（地下）、鶴橋，各站都停）。每小時取兩個方向較少的班數：往東看大阪難波發車（平日白天每小時 15 班），往西看鶴橋發往大阪難波・神戸三宮方向（每小時 14～15 班）。首班：往東 大阪難波 05:13 → 上本町 05:16 → 鶴橋 05:18／05:19 發；往西 鶴橋 05:17 → 大阪難波 05:23，取較晚的 05:19。末班：往西 鶴橋 23:59 發（大阪難波 24:05 著）；往東 大阪難波 24:05 發（往東花園），取較早的 23:59。"
+    },
+    "saturday": null,
+    "holiday": {
+      "first": "05:19",
+      "last": "23:59",
+      "headway": [
+        {
+          "from": "05:13",
+          "to": "06:00",
+          "min": 15
+        },
+        {
+          "from": "06:00",
+          "to": "07:00",
+          "min": 6
+        },
+        {
+          "from": "07:00",
+          "to": "08:00",
+          "min": 4.5
+        },
+        {
+          "from": "08:00",
+          "to": "09:00",
+          "min": 3.5
+        },
+        {
+          "from": "09:00",
+          "to": "19:00",
+          "min": 4
+        },
+        {
+          "from": "19:00",
+          "to": "22:00",
+          "min": 5
+        },
+        {
+          "from": "22:00",
+          "to": "23:00",
+          "min": 5.5
+        },
+        {
+          "from": "23:00",
+          "to": "24:05",
+          "min": 7.5
+        }
+      ],
+      "note": "近鐵是「土休日」一套（2/11 用這套）。首末班與平日相同。"
+    }
+  },
+  "fares": {
+    "currency": "JPY",
+    "adult": {
+      "osaka-namba": {
+        "osaka-uehommachi": 180,
+        "tsuruhashi": 240
+      },
+      "osaka-uehommachi": {
+        "tsuruhashi": 180
+      }
+    },
+    "child": {
+      "osaka-namba": {
+        "osaka-uehommachi": 90,
+        "tsuruhashi": 120
+      },
+      "osaka-uehommachi": {
+        "tsuruhashi": 90
+      }
+    },
+    "note": "駅探的運賃（車票與 IC 同價）：大阪難波→大阪上本町 2.0 km 180／90、大阪難波→鶴橋 3.1 km 240／120、大阪上本町→鶴橋 1.1 km 180／90。近鐵官方運賃檢索沒找到可用的頁面。用近鐵 5 日券時不用另付。"
+  },
+  "passes": {
+    "kintetsu-rail-pass-5day": true,
+    "kintetsu-rail-pass-5day-plus": true
+  },
+  "notes": "這段奈良線（難波線直通）的普通、区間準急、準急、快速急行、急行都經過，特急（含ひのとり、しまかぜ、あをによし）要特急券，不算在班距裡。大阪線的急行、快速急行大多只到大阪上本町「地上月台」（不進難波線），鶴橋往上本町方向可以搭，但到不了大阪難波；本檔的班距只算經過難波線的車。站間分鐘取平日首班普通 1-5102（大阪難波 05:13 → 大阪上本町 05:16 → 鶴橋 05:18）；往西約 6～7 分（鶴橋 05:17 → 大阪難波 05:23）。長輩：鶴橋 JR 轉乘口（3F）沒有到近鐵月台的電梯，無障礙動線要走地面（JR 中央改札 ⇔ 近鐵西改札）（見 data/raw/access/kintetsu-osaka.md）。時刻表頁寫「2026年3月14日現在」。",
+  "validFrom": "2026-03-14",
+  "retrieved": "2026-10-26",
+  "sources": [
+    {
+      "type": "official",
+      "url": "https://eki.kintetsu.co.jp/norikae/T5?USR=PC&slCode=350-0&d=1&dw=0",
+      "retrieved": "2026-10-26",
+      "note": "近鐵時刻表 大阪難波 往近鉄奈良・名古屋・賢島方面（平日）"
+    },
+    {
+      "type": "official",
+      "url": "https://eki.kintetsu.co.jp/norikae/T5?USR=PC&slCode=350-0&d=1&dw=1",
+      "retrieved": "2026-10-26",
+      "note": "近鐵時刻表 大阪難波 往近鉄奈良・名古屋・賢島方面（土休日）"
+    },
+    {
+      "type": "official",
+      "url": "https://eki.kintetsu.co.jp/norikae/T5?USR=PC&slCode=350-3&d=1&dw=0",
+      "retrieved": "2026-10-26",
+      "note": "近鐵時刻表 鶴橋 奈良線 往大阪難波・神戸三宮方面（平日）"
+    },
+    {
+      "type": "official",
+      "url": "https://eki.kintetsu.co.jp/norikae/T5?USR=PC&slCode=350-3&d=1&dw=1",
+      "retrieved": "2026-10-26",
+      "note": "近鐵時刻表 鶴橋 奈良線 往大阪難波・神戸三宮方面（土休日）"
+    },
+    {
+      "type": "official",
+      "url": "https://eki.kintetsu.co.jp/norikae/T7?sf=5213&tx=1-5102&dw=0",
+      "retrieved": "2026-10-26",
+      "note": "近鐵列車停站頁 1-5102（站間分鐘）"
+    },
+    {
+      "type": "official",
+      "url": "https://eki.kintetsu.co.jp/norikae/T7?sf=5622&tx=1-2&dw=0",
+      "retrieved": "2026-10-26",
+      "note": "近鐵列車停站頁 1-2（往西首班）"
+    },
+    {
+      "type": "official",
+      "url": "https://eki.kintetsu.co.jp/norikae/T7?sf=5622&tx=1-496&dw=0",
+      "retrieved": "2026-10-26",
+      "note": "近鐵列車停站頁 1-496（往西末班 鶴橋 23:59）"
+    },
+    {
+      "type": "other",
+      "url": "https://ekitan.com/transit/fare/sf-5213/st-5622",
+      "retrieved": "2026-10-26",
+      "note": "駅探 大阪難波→鶴橋 運賃 240／120 円"
+    },
+    {
+      "type": "other",
+      "url": "https://ekitan.com/transit/fare/sf-5213/st-4937",
+      "retrieved": "2026-10-26",
+      "note": "駅探 大阪難波→大阪上本町 運賃 180／90 円"
+    },
+    {
+      "type": "other",
+      "url": "https://ekitan.com/transit/fare/sf-4937/st-5622",
+      "retrieved": "2026-10-26",
+      "note": "駅探 大阪上本町→鶴橋 運賃 180／90 円"
+    }
+  ]
+}

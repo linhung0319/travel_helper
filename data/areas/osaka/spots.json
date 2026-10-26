@@ -1,0 +1,2449 @@
+[
+  {
+    "id": "osaka-dotonbori",
+    "type": "spot",
+    "name": {
+      "ja": "道頓堀",
+      "kana": "どうとんぼり",
+      "zh": "道頓堀",
+      "en": "Dotonbori"
+    },
+    "area": "osaka",
+    "region": "namba",
+    "coords": [
+      135.5012971,
+      34.6687234
+    ],
+    "coordsSource": "google-maps-url",
+    "address": "大阪府大阪市中央区道頓堀1丁目",
+    "hours": {
+      "mon": null,
+      "tue": null,
+      "wed": null,
+      "thu": null,
+      "fri": null,
+      "sat": null,
+      "sun": null,
+      "holiday": null,
+      "always": true,
+      "note": "街道全天開放，店家各自營業。とんぼりリバークルーズ 11:00～21:00，每小時 00、30 分出航，約 20 分（OSAKA-INFO）。"
+    },
+    "closedNote": "街道無公休。クルーズ沒有固定停駛日，天候、潮位、水門、河川工事或活動時可能停駛（小雨照開）。",
+    "febNote": "2 月照常；クルーズ 2026-10～2027-03 的班次已開放預約。戶外，晚上河邊風冷；船上禁止撐傘、沒有廁所。",
+    "closures": [],
+    "events": [],
+    "photos": [
+      {
+        "url": "https://lh3.googleusercontent.com/grass-cs/AABkmLd1cixXfvX4cGG8-WVMfimh8u1RodREcnH-Qk2nUGtNaG-7bU4t2f2crrPSoDQsTg0nXYUxlB_2wyb2b2HRBzvCdrE99M4VyPOLKxpTm7Kpsp_SMJpvPX7OkMYNcur_4S0ZXmDp=w800",
+        "page": "https://maps.google.com/?cid=13311254180582368656",
+        "kind": "google",
+        "credit": "Google マップ（店家或使用者上傳）",
+        "license": null
+      }
+    ],
+    "links": {
+      "official": "http://www.dotonbori.or.jp/ja/",
+      "instagram": null,
+      "googleMaps": "https://maps.google.com/?cid=13311254180582368656"
+    },
+    "tags": [
+      "夜景",
+      "散步"
+    ],
+    "tier": null,
+    "nearestStation": null,
+    "access": [],
+    "admission": "街道免費；とんぼりリバークルーズ 大人 2,000 円、中學生以上學生 1,000 円、小學生 500 円。",
+    "phone": "06-6211-4542",
+    "stayMinutes": 60,
+    "indoor": false,
+    "fares": {
+      "adult": "街道免費。クルーズ 2,000 円",
+      "child": "クルーズ 小學生 500 円；中學生以上學生 1,000 円（要學生證）；每位大人可帶 1 名未就學兒坐腿上免費",
+      "senior": null,
+      "group": "クルーズ有「一般団体用予約申請書」（官網維護中未讀到），包船、團體折扣不明",
+      "note": "2026-10 OSAKA-INFO 頁面的價格（一本松海運官網維護中，未能對照）。クルーズ網路票是定時班次，3 個月前同日 9:00 開賣、不能改退；當日券在乘船處，額滿就上不了。"
+    },
+    "group": {
+      "reservation": "クルーズ 15 人要同一班時建議事先網路買票或用團體申請書（太左衛門橋船着場，受理在ドン・キホーテ道頓堀店 1 樓）",
+      "contact": {
+        "phone": "050-1807-4118",
+        "url": "https://www.ipponmatsu.co.jp/cruise/tombori.html",
+        "note": "一本松海運（9:00～17:00），日文"
+      },
+      "note": "街道人潮多，15 人走散的風險高，建議分組並約定集合點（グリコサイン前的戎橋）。"
+    },
+    "accessibility": {
+      "walkInsideMinutes": null,
+      "stairs": null,
+      "slope": null,
+      "restAreas": null,
+      "toilets": null,
+      "barrierFree": null,
+      "note": "平地的街道；クルーズ乘船處的階梯未查到。"
+    },
+    "kids": {
+      "friendly": "medium",
+      "note": "グリコサイン、大型招牌的街景；クルーズ約 20 分。"
+    },
+    "ratings": {
+      "google": 4.4,
+      "googleReviews": 87136,
+      "note": null
+    },
+    "sources": [
+      {
+        "type": "tourism",
+        "url": "https://osaka-info.jp/spot/dotonbori/",
+        "retrieved": "2026-10-26",
+        "note": "道頓堀概要、營業時間各店不同、なんば駅すぐ、商店会電話"
+      },
+      {
+        "type": "tourism",
+        "url": "https://osaka-info.jp/spot/tombori-river-cruise/",
+        "retrieved": "2026-10-26",
+        "note": "クルーズ 11:00～21:00 每 30 分、約 20 分、大人 2,000／學生 1,000／小孩 500 円、乘船處"
+      },
+      {
+        "type": "official",
+        "url": "https://www.ipponmatsu.co.jp/cruise/tombori.html",
+        "retrieved": "2026-10-26",
+        "note": "網站維護暫停中，只有預約連結、團體申請書、電話"
+      },
+      {
+        "type": "official",
+        "url": "https://cloud-pass.jp/get/tombori-rivercruise_202610_202703",
+        "retrieved": "2026-10-26",
+        "note": "2026-10～2027-03 預約、定時出航、停駛條件、未就學兒規定、船上無廁所"
+      },
+      {
+        "type": "google-maps",
+        "url": "https://maps.google.com/?cid=13311254180582368656",
+        "retrieved": "2026-10-26",
+        "note": "星數、評論數、座標、照片（Google 名稱：道頓堀）"
+      }
+    ],
+    "verified": false,
+    "extra": {
+      "stationAccess": "Osaka Metro 御堂筋線・千日前線・四つ橋線、近鐵、南海 なんば駅 出站即到（OSAKA-INFO）；クルーズ乘船處 難波、心斎橋、日本橋站步行 5～10 分。",
+      "stationTodo": "車站 ID 等 T28（大阪車站）進 master 後補，預定 ID 見 data/raw/osaka/log/T27a.md",
+      "nearby": "心斎橋筋商店街：道頓堀往北的有頂棚購物街，到心斎橋站約 600 m。法善寺横丁：道頓堀南側的石板小巷，有苔蘚覆蓋的水掛不動。（一般知識，未讀來源）",
+      "conflicts": [
+        "官網 dotonbori.or.jp 憑證過期、一本松海運官網維護中，クルーズ票價只來自 OSAKA-INFO"
+      ],
+      "googleAlt": {
+        "name": "グリコサイン",
+        "url": "https://maps.google.com/?cid=6582327784679221695",
+        "google": 4.5,
+        "googleReviews": 20068
+      }
+    },
+    "summary": null,
+    "assessment": null
+  },
+  {
+    "id": "osaka-kuromon-market",
+    "type": "spot",
+    "name": {
+      "ja": "黒門市場",
+      "kana": "くろもんいちば",
+      "zh": "黑門市場",
+      "en": "Kuromon Market"
+    },
+    "area": "osaka",
+    "region": "namba",
+    "coords": [
+      135.5062417,
+      34.6653511
+    ],
+    "coordsSource": "google-maps-url",
+    "address": "大阪府大阪市中央区日本橋2-4-1",
+    "hours": {
+      "mon": null,
+      "tue": null,
+      "wed": null,
+      "thu": null,
+      "fri": null,
+      "sat": null,
+      "sun": null,
+      "holiday": null,
+      "note": "依店家而異；多數店的開關時間未查到（官網擋讀取）。"
+    },
+    "closedNote": "衝突：OSAKA-INFO 體驗頁寫週一定休，特輯頁寫依店家而異。",
+    "febNote": "有頂棚的商店街，冬天、下雨也能逛。",
+    "closures": [],
+    "events": [],
+    "photos": [
+      {
+        "url": "https://lh3.googleusercontent.com/grass-cs/AABkmLfxGFYs4CzXLXDXvg0Pc7UtgtSiZqGqj0qHScmxtT8Mbze-yn2XPiZh5TjEvePDDPnnVTMgtfyGP0eHqNjc6j9EDuN5VPsXkeKGm1g7zk3xLO68WoqcaBdZVzUxgAI47fMCeCkEUesndFfW=w800",
+        "page": "https://maps.google.com/?cid=12402117845945925953",
+        "kind": "google",
+        "credit": "Google マップ（店家或使用者上傳）",
+        "license": null
+      }
+    ],
+    "links": {
+      "official": "https://kuromon.com/",
+      "instagram": null,
+      "googleMaps": "https://maps.google.com/?cid=12402117845945925953"
+    },
+    "tags": [
+      "市場",
+      "邊走邊吃"
+    ],
+    "tier": null,
+    "nearestStation": null,
+    "access": [],
+    "admission": "免費（各店消費）",
+    "phone": "06-6631-0007",
+    "stayMinutes": 60,
+    "indoor": null,
+    "fares": null,
+    "group": {
+      "reservation": "不需預約（各店自營）",
+      "contact": null,
+      "note": "通道窄、人多，15 人建議分組逛。"
+    },
+    "accessibility": {
+      "walkInsideMinutes": null,
+      "stairs": null,
+      "slope": null,
+      "restAreas": null,
+      "toilets": null,
+      "barrierFree": null,
+      "note": "約 580 m 有頂棚的商店街（平地）；休息座位、廁所未查到。"
+    },
+    "kids": {
+      "friendly": "medium",
+      "note": "邊走邊吃：海鮮串燒、水果店現榨果汁、抹茶霜淇淋。"
+    },
+    "ratings": {
+      "google": 4.1,
+      "googleReviews": 21338,
+      "note": null
+    },
+    "sources": [
+      {
+        "type": "tourism",
+        "url": "https://osaka-info.jp/experience/ja/osaka/spot/208",
+        "retrieved": "2026-10-26",
+        "note": "約 580m、約 170 店、週一定休、日本橋駅步行約 2 分、邊走邊吃項目"
+      },
+      {
+        "type": "tourism",
+        "url": "https://osaka-info.jp/special/coolosaka/cool-move/1265/",
+        "retrieved": "2026-10-26",
+        "note": "營業時間、公休依店家而異；拱廊下食べ歩き；日本橋駅すぐ（無發布日期）"
+      },
+      {
+        "type": "official",
+        "url": "https://kuromon.com/",
+        "retrieved": "2026-10-26",
+        "note": "WebFetch 回 403，未讀到內容"
+      },
+      {
+        "type": "google-maps",
+        "url": "https://maps.google.com/?cid=12402117845945925953",
+        "retrieved": "2026-10-26",
+        "note": "星數、評論數、座標、照片（Google 名稱：黒門市場）"
+      }
+    ],
+    "verified": false,
+    "extra": {
+      "stationAccess": "Osaka Metro 千日前線・堺筋線 日本橋駅 出站即到、步行約 2 分（OSAKA-INFO）；出口未寫。",
+      "stationTodo": "車站 ID 等 T28（大阪車站）進 master 後補，預定 ID 見 data/raw/osaka/log/T27a.md",
+      "indoorNote": "有頂棚的半室內商店街",
+      "conflicts": [
+        "公休：OSAKA-INFO 體驗頁「週一定休」 vs 特輯「依店家而異」",
+        "店數：約 170 店（體驗頁） vs 約 150 店（特輯）"
+      ]
+    },
+    "summary": null,
+    "assessment": null
+  },
+  {
+    "id": "osaka-castle-tenshukaku",
+    "type": "spot",
+    "name": {
+      "ja": "大阪城天守閣",
+      "kana": "おおさかじょうてんしゅかく",
+      "zh": "大阪城天守閣",
+      "en": "Osaka Castle Main Tower"
+    },
+    "area": "osaka",
+    "region": "osaka-castle",
+    "coords": [
+      135.5258605,
+      34.6872962
+    ],
+    "coordsSource": "google-maps-url",
+    "address": "〒540-0002 大阪府大阪市中央区大阪城1-1",
+    "hours": {
+      "mon": [
+        [
+          "09:00",
+          "18:00"
+        ]
+      ],
+      "tue": [
+        [
+          "09:00",
+          "18:00"
+        ]
+      ],
+      "wed": [
+        [
+          "09:00",
+          "18:00"
+        ]
+      ],
+      "thu": [
+        [
+          "09:00",
+          "18:00"
+        ]
+      ],
+      "fri": [
+        [
+          "09:00",
+          "18:00"
+        ]
+      ],
+      "sat": [
+        [
+          "09:00",
+          "18:00"
+        ]
+      ],
+      "sun": [
+        [
+          "09:00",
+          "18:00"
+        ]
+      ],
+      "holiday": [
+        [
+          "09:00",
+          "18:00"
+        ]
+      ],
+      "lastEntry": "17:30",
+      "note": "最後入館 17:30（排隊多時可能提早截止售票）。"
+    },
+    "closedNote": "12/28～1/1 休館。",
+    "febNote": "2 月照常 9:00～18:00。館內以室內展示為主，但從車站到天守閣要在戶外走 1.4 km 以上。",
+    "closures": [],
+    "events": [],
+    "photos": [
+      {
+        "url": "https://www.osakacastle.net/sns.jpg",
+        "page": "https://www.osakacastle.net/",
+        "kind": "official",
+        "credit": "大阪城天守閣",
+        "license": null
+      },
+      {
+        "url": "https://lh3.googleusercontent.com/grass-cs/AABkmLeEXogko0EwVOcgq8bVPPFkw18tt2cQkCGV9PcXyihk-wDUujdAsfu-sOt0fR3pV49adjy85JSfs1W9c39ob6ThKEALSCMB22y1ZD-xwhcimecY2OR7h1sGuG09BnnvBDsFBt8h2g=w800",
+        "page": "https://maps.google.com/?cid=4831865609044200129",
+        "kind": "google",
+        "credit": "Google マップ（店家或使用者上傳）",
+        "license": null
+      }
+    ],
+    "links": {
+      "official": "https://www.osakacastle.net/",
+      "instagram": null,
+      "googleMaps": "https://maps.google.com/?cid=4831865609044200129"
+    },
+    "tags": [
+      "歷史",
+      "城",
+      "室內",
+      "雨天備案",
+      "長階梯"
+    ],
+    "tier": null,
+    "nearestStation": null,
+    "access": [],
+    "admission": "大人 1,200 円、高中・大學生 600 円、國中生以下免費。",
+    "phone": "06-6941-3044",
+    "stayMinutes": 60,
+    "indoor": true,
+    "fares": {
+      "adult": "1,200 円",
+      "child": "國中生以下免費（要證明）；高中・大學生 600 円",
+      "senior": "65 歲以上免費只限大阪市民（觀光客付大人票）",
+      "group": "付費人數 15 人以上：大人 1,080 円（小孩免費不算人數，這團付費約 11 人，可能用不到）",
+      "note": "2026-10 官網頁面（OSAKA-INFO 還是舊的 600 円）。可在官網預購 Web 入館券。"
+    },
+    "group": {
+      "reservation": "不接受入館預約；團體要事先打電話告知日期和人數，當天帶團體觀覽申込書（不收傳真）",
+      "contact": {
+        "phone": "06-6941-3044",
+        "url": "https://www.osakacastle.net/",
+        "note": "天守閣事務所 9:00～18:00，日文"
+      },
+      "note": null
+    },
+    "accessibility": {
+      "walkInsideMinutes": null,
+      "stairs": "多",
+      "slope": "各站到天守閣全程鋪裝的上坡：最平的是谷町四丁目駅 → 大手門 → 桜門 → 天守閣，約 1.1 km＋0.3 km、高低差約 15 m。極楽橋 → 天守閣有一段急坡、沒有扶手。",
+      "restAreas": null,
+      "toilets": true,
+      "barrierFree": "館內電梯一般遊客只上不下、直達 5F，5F→8F 和下樓要走樓梯；輪椅或步行困難者可以搭電梯到各樓層（8F 展望台輪椅可到）。輪椅 5 台（館內用，不能預約）；天守閣前有館外電梯（館員引導）。",
+      "note": "館內禁止嬰兒車（入口免費寄放）；沒有置物櫃，售票處寄放每件 100 円。園內ロードトレイン（森ノ宮 → 極楽橋）的票價說法不一、2 月是否運行待確認。"
+    },
+    "kids": {
+      "friendly": "medium",
+      "note": "5F 大坂夏の陣 微縮人偶和影像、3F 黃金茶室複製、8F 展望台。"
+    },
+    "ratings": {
+      "google": 4.5,
+      "googleReviews": 5908,
+      "note": null
+    },
+    "sources": [
+      {
+        "type": "official",
+        "url": "https://www.osakacastle.net/guide/",
+        "retrieved": "2026-10-26",
+        "note": "開館時間、休館、票價、團體、電梯與輪椅"
+      },
+      {
+        "type": "official",
+        "url": "https://www.osakacastle.net/exhibition/",
+        "retrieved": "2026-10-26",
+        "note": "各樓層展示與 8F 展望台"
+      },
+      {
+        "type": "official",
+        "url": "https://www.osakacastle.net/access/",
+        "retrieved": "2026-10-26",
+        "note": "地址、各站出口、停車場"
+      },
+      {
+        "type": "official",
+        "url": "https://osakacastle.net/pdf/access/bf_map_jp.pdf",
+        "retrieved": "2026-10-26",
+        "note": "各站到天守閣的距離、高低差、推薦無障礙路線"
+      },
+      {
+        "type": "tourism",
+        "url": "https://osaka-info.jp/experience/ja/osaka/spot/200",
+        "retrieved": "2026-10-26",
+        "note": "步行約 20 分弱、ロードトレイン 300 円（票價與時間為舊資料）"
+      },
+      {
+        "type": "other",
+        "url": "https://www.walkerplus.com/spot/ar0727s46839/price.html",
+        "retrieved": "2026-10-26",
+        "note": "WebSearch 摘要：ロードトレイン大人 400／小孩 200 円（未直接讀取）"
+      },
+      {
+        "type": "google-maps",
+        "url": "https://maps.google.com/?cid=4831865609044200129",
+        "retrieved": "2026-10-26",
+        "note": "星數、評論數、座標、照片（Google 名稱：大阪城天守閣）"
+      }
+    ],
+    "verified": false,
+    "extra": {
+      "stationAccess": "最平：Osaka Metro 中央線 谷町四丁目駅 11 號出口（電梯）或谷町線 1-A 出口（電梯），約 1.4 km 上坡。JR 大阪城公園駅（JO-TERRACE 電梯）約 1.7 km；天満橋駅、森ノ宮駅約 1.6 km（官方無障礙地圖）。OSAKA-INFO：JR 大阪城公園駅、森ノ宮駅各步行約 20 分。",
+      "stationTodo": "車站 ID 等 T28（大阪車站）進 master 後補，預定 ID 見 data/raw/osaka/log/T27a.md",
+      "conflicts": [
+        "OSAKA-INFO：大人 600 円、9:00～17:00（舊）；官網 2026-10：1,200 円、9:00～18:00",
+        "ロードトレイン：OSAKA-INFO 每趟 300 円 vs 旅遊網站大人 400／小孩 200 円、每月第 1 週四停駛"
+      ]
+    },
+    "summary": null,
+    "assessment": null
+  },
+  {
+    "id": "osaka-castle-plum-grove",
+    "type": "spot",
+    "name": {
+      "ja": "大阪城公園 梅林",
+      "kana": "おおさかじょうこうえん ばいりん",
+      "zh": "大阪城公園 梅林",
+      "en": "Osaka Castle Park Plum Grove"
+    },
+    "area": "osaka",
+    "region": "osaka-castle",
+    "coords": [
+      135.5284884,
+      34.6866905
+    ],
+    "coordsSource": "google-maps-url",
+    "address": "大阪府大阪市中央区大阪城2",
+    "hours": null,
+    "closedNote": null,
+    "febNote": "2 月是賞梅季：早開品種 12 月下旬起，中期品種 1 月下旬起陸續開，2 月中旬最熱鬧，晚開的 2 月下旬～3 月中旬（花況看天氣）。2026 年 2 月初～3 月中旬有キッチンカー（壞天氣停）。",
+    "closures": [],
+    "events": [],
+    "photos": [
+      {
+        "url": "https://www.osakacastlepark.jp/images/flowers/plum_grove/img_plum_grove1.jpg",
+        "page": "https://www.osakacastlepark.jp/flower/plum_grove.html",
+        "kind": "official",
+        "credit": "大阪城公園",
+        "license": null
+      },
+      {
+        "url": "https://lh3.googleusercontent.com/grass-cs/AABkmLfpDFRfJ5MgkMjRs2yCIj-qqRJRtJxnAcsVqv8IrcbmEbzhjsefqcv0VKVV-cgAO5qtL6KTKKNRi7ViO9ghkgP5L3vKyh2f8jB8lNSGHa0j--d604Hvw0rNYdu8ilSfR57zCzHnVh-SlYeB=w800",
+        "page": "https://maps.google.com/?cid=12782986985188393020",
+        "kind": "google",
+        "credit": "Google マップ（店家或使用者上傳）",
+        "license": null
+      }
+    ],
+    "links": {
+      "official": "https://www.osakacastlepark.jp/flower/plum_grove.html",
+      "instagram": "@osaka_castle_park",
+      "googleMaps": "https://maps.google.com/?cid=12782986985188393020"
+    },
+    "tags": [
+      "花",
+      "冬季限定",
+      "散步"
+    ],
+    "tier": null,
+    "nearestStation": null,
+    "access": [],
+    "admission": "官方頁沒寫入園費（大阪城公園一般免費入園，未確認）。",
+    "phone": "06-6755-4146",
+    "stayMinutes": 45,
+    "indoor": false,
+    "fares": null,
+    "group": {
+      "reservation": "不需要",
+      "contact": null,
+      "note": null
+    },
+    "accessibility": {
+      "walkInsideMinutes": null,
+      "stairs": null,
+      "slope": null,
+      "restAreas": null,
+      "toilets": true,
+      "barrierFree": null,
+      "note": "約 1.7 ha 的戶外梅林（內堀東側），約 1,245 棵、105 品種；附近（玉造口一帶）有樓梯段，從森ノ宮進公園要照「バリアフリールート」看板繞行；無障礙地圖上附近有無障礙廁所。梅林到天守閣約 0.5～0.8 km（地圖估計）。"
+    },
+    "kids": {
+      "friendly": null,
+      "note": "官方頁邀請找花瓣 6～9 片的梅花（一般 5 片）。"
+    },
+    "ratings": {
+      "google": 4.3,
+      "googleReviews": 1596,
+      "note": null
+    },
+    "sources": [
+      {
+        "type": "official",
+        "url": "https://www.osakacastlepark.jp/flower/plum_grove.html",
+        "retrieved": "2026-10-26",
+        "note": "1.7ha、約 1,245 棵 105 品種，內堀東側"
+      },
+      {
+        "type": "official",
+        "url": "https://www.osakacastlepark.jp/flower/plum_grove2026.html",
+        "retrieved": "2026-10-26",
+        "note": "探梅・賞梅・送梅時期，2 月中旬最熱鬧，キッチンカー"
+      },
+      {
+        "type": "official",
+        "url": "https://osakacastle.net/pdf/access/bf_map_jp.pdf",
+        "retrieved": "2026-10-26",
+        "note": "梅林位置、附近樓梯與無障礙路線"
+      },
+      {
+        "type": "media",
+        "url": "https://matcha-jp.com/jp/23913",
+        "retrieved": "2026-10-26",
+        "note": "早咲き 57 棵品種、2026 年活動期間 2/6～3/15"
+      },
+      {
+        "type": "google-maps",
+        "url": "https://maps.google.com/?cid=12782986985188393020",
+        "retrieved": "2026-10-26",
+        "note": "星數、評論數、座標、照片（Google 名稱：大阪城 梅林）"
+      }
+    ],
+    "verified": false,
+    "extra": {
+      "stationAccess": "JR 大阪環状線 大阪城公園駅（JO-TERRACE 電梯，往青屋門）最近；JR／Osaka Metro 森ノ宮駅也近（要走バリアフリールート）。步行分鐘官方沒寫。",
+      "stationTodo": "車站 ID 等 T28（大阪車站）進 master 後補，預定 ID 見 data/raw/osaka/log/T27a.md",
+      "conflicts": [
+        "棵數：官網約 1,245 棵 vs 大阪市舊資料約 1,270 棵",
+        "活動期間：MATCHA 寫 2026-02-06～03-15，官網只寫 2 月初～3 月中旬"
+      ]
+    },
+    "summary": null,
+    "assessment": null
+  },
+  {
+    "id": "osaka-tsutenkaku",
+    "type": "spot",
+    "name": {
+      "ja": "通天閣",
+      "kana": "つうてんかく",
+      "zh": "通天閣",
+      "en": "Tsutenkaku Tower"
+    },
+    "area": "osaka",
+    "region": "tennoji",
+    "coords": [
+      135.5063058,
+      34.6524992
+    ],
+    "coordsSource": "google-maps-url",
+    "address": "〒556-0002 大阪府大阪市浪速区恵美須東1-18-6",
+    "hours": {
+      "mon": [
+        [
+          "09:00",
+          "21:45"
+        ]
+      ],
+      "tue": [
+        [
+          "09:00",
+          "21:45"
+        ]
+      ],
+      "wed": [
+        [
+          "09:00",
+          "21:45"
+        ]
+      ],
+      "thu": [
+        [
+          "09:00",
+          "21:45"
+        ]
+      ],
+      "fri": [
+        [
+          "09:00",
+          "21:45"
+        ]
+      ],
+      "sat": [
+        [
+          "09:00",
+          "21:45"
+        ]
+      ],
+      "sun": [
+        [
+          "09:00",
+          "21:45"
+        ]
+      ],
+      "holiday": [
+        [
+          "09:00",
+          "21:45"
+        ]
+      ],
+      "lastEntry": "21:15",
+      "note": "一般展望台最後入場 21:15；特別屋外展望台最後入場 21:35（OSAKA-INFO 寫 21:45）；TOWER SLIDER 9:30～20:30（受理到 20:00）。"
+    },
+    "closedNote": "無休（臨時變更在官方 X 公告）。",
+    "febNote": "2 月照常；特別屋外展望台遇雨、強風、濃霧不預告關閉。",
+    "closures": [],
+    "events": [],
+    "photos": [
+      {
+        "url": "https://lh3.googleusercontent.com/grass-cs/AABkmLfWfaC5OqdXNA_ERFZajbTAAgYKvUpQWBN9hkeY_1Fwy3GQeiqrpLjk5xmUef4WcoeWN2T6VwLdJ7Ov6dDi8Ydts83gJ8gawH_OkVaSuSh91aA3qcE9Mvfqef1pSYkHMDyfJKKIs0uhhvC1=w800",
+        "page": "https://maps.google.com/?cid=16558556426972448087",
+        "kind": "google",
+        "credit": "Google マップ（店家或使用者上傳）",
+        "license": null
+      }
+    ],
+    "links": {
+      "official": "https://www.tsutenkaku.co.jp/",
+      "instagram": "@tsutenkaku_official",
+      "googleMaps": "https://maps.google.com/?cid=16558556426972448087"
+    },
+    "tags": [
+      "展望台",
+      "夜景",
+      "室內",
+      "雨天備案",
+      "親子"
+    ],
+    "tier": null,
+    "nearestStation": null,
+    "access": [],
+    "admission": "一般展望台 大人 1,500 円、5～14 歲 800 円；TOWER SLIDER 另付。",
+    "phone": "06-6641-9555",
+    "stayMinutes": 45,
+    "indoor": true,
+    "fares": {
+      "adult": "一般展望台 1,500 円（15 歲以上）；TOWER SLIDER 1 次 1,100 円（15～65 歲）",
+      "child": "5～14 歲 800 円；TOWER SLIDER 7～14 歲 600 円；4 歲以下未寫",
+      "senior": "沒有長輩優惠",
+      "group": "10 人以上 1,400／700 円，但目前停止受理團體預約，要和一般客一起排隊（團體價只在現場窗口）",
+      "note": "2026-10 官網頁面。特別屋外展望台只能買套票（價格未寫）。網路票有折扣、要預約入場時間（傍晚後可能售完）。"
+    },
+    "group": {
+      "reservation": "所有票都要指定入場時間，建議線上先買",
+      "contact": {
+        "phone": "06-6641-9555",
+        "url": "https://www.tsutenkaku.co.jp/",
+        "note": "日文"
+      },
+      "note": null
+    },
+    "accessibility": {
+      "walkInsideMinutes": null,
+      "stairs": "少",
+      "slope": null,
+      "restAreas": null,
+      "toilets": null,
+      "barrierFree": "圓形電梯到 2F，再搭展望電梯到展望台；2F→3F 有螺旋樓梯。",
+      "note": "特別屋外展望台要走樓梯，行動不便、輪椅者官網寫「安全上御遠慮」。"
+    },
+    "kids": {
+      "friendly": "high",
+      "note": "TOWER SLIDER 約 60 m、10 秒滑到 B1：7～65 歲、身高 120 cm 以上；5F 金色ビリケン像；B1 零食旗艦店。"
+    },
+    "ratings": {
+      "google": 4.1,
+      "googleReviews": 44245,
+      "note": null
+    },
+    "sources": [
+      {
+        "type": "official",
+        "url": "https://www.tsutenkaku.co.jp/",
+        "retrieved": "2026-10-26",
+        "note": "首頁：電話、地址、IG、2026-03 起改時間、04 起改價的公告"
+      },
+      {
+        "type": "official",
+        "url": "https://www.tsutenkaku.co.jp/annai/index.html",
+        "retrieved": "2026-10-26",
+        "note": "營業時間、票價、團體預約停止、入場時間預約"
+      },
+      {
+        "type": "official",
+        "url": "https://www.tsutenkaku.co.jp/tour/index.html",
+        "retrieved": "2026-10-26",
+        "note": "各樓層內容、電梯與階梯動線"
+      },
+      {
+        "type": "official",
+        "url": "https://www.tsutenkaku.co.jp/tour/tower-slider.html",
+        "retrieved": "2026-10-26",
+        "note": "溜滑梯時間、價格、年齡身高限制"
+      },
+      {
+        "type": "official",
+        "url": "https://www.tsutenkaku.co.jp/tour/tenbo-paradise.html",
+        "retrieved": "2026-10-26",
+        "note": "特別屋外展望台時間、天候關閉、需走階梯"
+      },
+      {
+        "type": "official",
+        "url": "https://www.tsutenkaku.co.jp/access/index.html",
+        "retrieved": "2026-10-26",
+        "note": "各站出口與步行分鐘"
+      },
+      {
+        "type": "tourism",
+        "url": "https://osaka-info.jp/spot/tsutenkaku/",
+        "retrieved": "2026-10-26",
+        "note": "營業時間、無休、通常料金 1,500 円"
+      },
+      {
+        "type": "tourism",
+        "url": "https://osaka-info.jp/spot/shinsekai/",
+        "retrieved": "2026-10-26",
+        "note": "新世界與ジャンジャン横丁串カツ街簡介"
+      },
+      {
+        "type": "google-maps",
+        "url": "https://maps.google.com/?cid=16558556426972448087",
+        "retrieved": "2026-10-26",
+        "note": "星數、評論數、座標、照片（Google 名稱：通天閣）"
+      }
+    ],
+    "verified": false,
+    "extra": {
+      "stationAccess": "Osaka Metro 堺筋線 恵美須町駅 3 號出口 步行 3 分；御堂筋線 動物園前駅 1 號出口 6 分；JR 新今宮駅 東口 6 分（官網）。",
+      "stationTodo": "車站 ID 等 T28（大阪車站）進 master 後補，預定 ID 見 data/raw/osaka/log/T27a.md",
+      "nearby": "新世界：通天閣腳下的老街，串カツ店集中（ジャンジャン横丁）。",
+      "indoorNote": "展望台室內；特別屋外展望台是露天",
+      "conflicts": [
+        "特別屋外展望台最後入場：官網 21:35 vs OSAKA-INFO 21:45"
+      ]
+    },
+    "summary": null,
+    "assessment": null
+  },
+  {
+    "id": "osaka-harukas300",
+    "type": "spot",
+    "name": {
+      "ja": "あべのハルカス300（展望台）",
+      "kana": "あべのはるかす さんびゃく",
+      "zh": "阿倍野 HARUKAS 300 展望台",
+      "en": "Harukas 300 Observatory"
+    },
+    "area": "osaka",
+    "region": "tennoji",
+    "coords": [
+      135.5133091,
+      34.6463062
+    ],
+    "coordsSource": "google-maps-url",
+    "address": "大阪府大阪市阿倍野区阿倍野筋1丁目1-43",
+    "hours": {
+      "mon": [
+        [
+          "09:00",
+          "22:00"
+        ]
+      ],
+      "tue": [
+        [
+          "09:00",
+          "22:00"
+        ]
+      ],
+      "wed": [
+        [
+          "09:00",
+          "22:00"
+        ]
+      ],
+      "thu": [
+        [
+          "09:00",
+          "22:00"
+        ]
+      ],
+      "fri": [
+        [
+          "09:00",
+          "22:00"
+        ]
+      ],
+      "sat": [
+        [
+          "09:00",
+          "22:00"
+        ]
+      ],
+      "sun": [
+        [
+          "09:00",
+          "22:00"
+        ]
+      ],
+      "holiday": [
+        [
+          "09:00",
+          "22:00"
+        ]
+      ],
+      "note": "當日券 8:50～21:30（るるぶ）；官網讀不到，未確認。"
+    },
+    "closedNote": "全年無休（OSAKA-INFO 2025-03）。",
+    "febNote": "室內展望台，2 月照常（依全年無休推定）。",
+    "closures": [],
+    "events": [],
+    "photos": [
+      {
+        "url": "https://lh3.googleusercontent.com/grass-cs/AABkmLcb_jhHV_cF9JbixFZcrnqYNpyIfZIxPPtCZQgLgwStYcQ_HcWS7su-39fVoy5jtwS2aUr69wkEM5JcaGZaXDTwhyuyvDktFOvryM4dz4Jtx95p5v-aGerUyRTCktlvN45IDqeqAg=w800",
+        "page": "https://maps.google.com/?cid=17457951089637678730",
+        "kind": "google",
+        "credit": "Google マップ（店家或使用者上傳）",
+        "license": null
+      }
+    ],
+    "links": {
+      "official": "https://www.abenoharukas-300.jp/",
+      "instagram": null,
+      "googleMaps": "https://maps.google.com/?cid=17457951089637678730"
+    },
+    "tags": [
+      "展望台",
+      "夜景",
+      "室內",
+      "雨天備案"
+    ],
+    "tier": null,
+    "nearestStation": null,
+    "access": [],
+    "admission": "當日券 大人 1,800～2,000 円（來源不一）、小學生 700 円。",
+    "phone": "06-6621-0300",
+    "stayMinutes": 60,
+    "indoor": true,
+    "fares": {
+      "adult": "當日券 1,800 円（OSAKA-INFO 2025-03）或 2,000 円（るるぶ，日期不明）；日時指定券 2,000 円",
+      "child": "中高生 1,200 円、小學生 700 円、幼兒（4 歲以上）500 円；日時指定券 1,700／1,200／1,000 円",
+      "senior": null,
+      "group": "有團體折扣，條件未查到",
+      "note": "官網擋讀取，價格只來自 OSAKA-INFO（2025-03）和るるぶ，出發前要再查。ヘリポートツアー 500 円另計（4 歲以上）。"
+    },
+    "group": {
+      "reservation": "有日時指定券；當日券也可以現場買",
+      "contact": {
+        "phone": "06-6621-0300",
+        "url": "https://www.abenoharukas-300.jp/",
+        "note": "日文（電話來自 Google）"
+      },
+      "note": null
+    },
+    "accessibility": {
+      "walkInsideMinutes": null,
+      "stairs": null,
+      "slope": null,
+      "restAreas": null,
+      "toilets": null,
+      "barrierFree": "16F 售票後搭直達電梯約 45 秒到 60F。",
+      "note": "展望台樓層間動線、輪椅出借未查到（官網讀不到）。"
+    },
+    "kids": {
+      "friendly": "medium",
+      "note": "60F 天上回廊有玻璃地板區；ヘリポートツアー 4 歲以上。"
+    },
+    "ratings": {
+      "google": 4.6,
+      "googleReviews": 23995,
+      "note": null
+    },
+    "sources": [
+      {
+        "type": "official",
+        "url": "https://www.abenoharukas-300.jp/",
+        "retrieved": "2026-10-26",
+        "note": "HTTP 403，未能讀取"
+      },
+      {
+        "type": "tourism",
+        "url": "https://osaka-info.jp/local_journey/stopby-osaka/abenoharukas/",
+        "retrieved": "2026-10-26",
+        "note": "2025-03-26 文章：時間、票價、日時指定券、樓層介紹、交通"
+      },
+      {
+        "type": "media",
+        "url": "https://rurubu.jp/andmore/spot/80028030",
+        "retrieved": "2026-10-26",
+        "note": "當日券價格、販售時間、交通"
+      },
+      {
+        "type": "google-maps",
+        "url": "https://maps.google.com/?cid=17457951089637678730",
+        "retrieved": "2026-10-26",
+        "note": "星數、評論數、座標、照片（Google 名稱：ハルカス300（展望台））"
+      }
+    ],
+    "verified": false,
+    "extra": {
+      "stationAccess": "近鉄南大阪線 大阪阿部野橋駅 直結；JR 天王寺駅 步行約 2 分；Osaka Metro 天王寺駅 即到（OSAKA-INFO、るるぶ）。",
+      "stationTodo": "車站 ID 等 T28（大阪車站）進 master 後補，預定 ID 見 data/raw/osaka/log/T27a.md",
+      "conflicts": [
+        "大人當日價：OSAKA-INFO（2025-03）1,800 円 vs るるぶ 2,000 円",
+        "官網 abenoharukas-300.jp 回 403，官方數字都沒確認"
+      ]
+    },
+    "summary": null,
+    "assessment": null
+  },
+  {
+    "id": "osaka-tennoji-zoo",
+    "type": "spot",
+    "name": {
+      "ja": "天王寺動物園",
+      "kana": "てんのうじどうぶつえん",
+      "zh": "天王寺動物園",
+      "en": "Tennoji Zoo"
+    },
+    "area": "osaka",
+    "region": "tennoji",
+    "coords": [
+      135.5084344,
+      34.6510957
+    ],
+    "coordsSource": "google-maps-url",
+    "address": "〒543-0063 大阪府大阪市天王寺区茶臼山町1-108",
+    "hours": {
+      "mon": [],
+      "tue": [
+        [
+          "09:30",
+          "17:00"
+        ]
+      ],
+      "wed": [
+        [
+          "09:30",
+          "17:00"
+        ]
+      ],
+      "thu": [
+        [
+          "09:30",
+          "17:00"
+        ]
+      ],
+      "fri": [
+        [
+          "09:30",
+          "17:00"
+        ]
+      ],
+      "sat": [
+        [
+          "09:30",
+          "17:00"
+        ]
+      ],
+      "sun": [
+        [
+          "09:30",
+          "17:00"
+        ]
+      ],
+      "holiday": [
+        [
+          "09:30",
+          "17:00"
+        ]
+      ],
+      "lastEntry": "16:00",
+      "note": "週一休（遇國定假日改隔天休）。冬季時間有沒有縮短未查到（官網讀不到）。"
+    },
+    "closedNote": "週一（遇國定假日改隔天）、12/29～1/1。2027-02 休 2/8、2/15；2/11（假日）開園。",
+    "febNote": "2 月照常開園（週一休）。大多是戶外展示，冬天冷。",
+    "closures": [],
+    "events": [],
+    "photos": [
+      {
+        "url": "https://lh3.googleusercontent.com/grass-cs/AABkmLfui5myvi_4WKSLYH0IwjDC66fg0cILCrDVtyIacPr9u-5NEBuuiRmiDuwKQeI3IRCi8o1pmixOGFh2VDcUY8LhxTcEqBhHJfYzrIz4SMW3rRzPVQrfg24yedzQr8hU7lwbL7wsZnRnZDhI=w800",
+        "page": "https://maps.google.com/?cid=1909807467663893139",
+        "kind": "google",
+        "credit": "Google マップ（店家或使用者上傳）",
+        "license": null
+      }
+    ],
+    "links": {
+      "official": "https://www.tennojizoo.jp/",
+      "instagram": null,
+      "googleMaps": "https://maps.google.com/?cid=1909807467663893139"
+    },
+    "tags": [
+      "動物",
+      "親子"
+    ],
+    "tier": null,
+    "nearestStation": null,
+    "access": [],
+    "admission": "大人 800 円、小中學生 200 円、未就學兒免費。",
+    "phone": "06-6771-8401",
+    "stayMinutes": 120,
+    "indoor": false,
+    "fares": {
+      "adult": "800 円",
+      "child": "小中學生 200 円；未就學兒免費",
+      "senior": "65 歲以上免費只限大阪市內居民（觀光客付大人票）",
+      "group": null,
+      "note": "2026-10 OSAKA-INFO 日文頁（官網當天 503）。"
+    },
+    "group": null,
+    "accessibility": {
+      "walkInsideMinutes": null,
+      "stairs": null,
+      "slope": null,
+      "restAreas": null,
+      "toilets": null,
+      "barrierFree": null,
+      "note": "約 11 ha 戶外園區；坡道、輪椅出借、休息處未查到。"
+    },
+    "kids": {
+      "friendly": "high",
+      "note": "獅子、北極熊、企鵝・海獅、爬蟲類館、鳥館、日本唯一的鬼狒（ドリル）。"
+    },
+    "ratings": {
+      "google": 4.1,
+      "googleReviews": 17509,
+      "note": null
+    },
+    "sources": [
+      {
+        "type": "official",
+        "url": "https://www.tennojizoo.jp/",
+        "retrieved": "2026-10-26",
+        "note": "HTTP 503，未能讀取"
+      },
+      {
+        "type": "tourism",
+        "url": "https://osaka-info.jp/spot/osaka-tennoji-zoo/",
+        "retrieved": "2026-10-26",
+        "note": "營業時間、休園日、入園料（大人 800）、交通、介紹"
+      },
+      {
+        "type": "google-maps",
+        "url": "https://maps.google.com/?cid=1909807467663893139",
+        "retrieved": "2026-10-26",
+        "note": "星數、評論數、座標、照片（Google 名稱：天王寺動物園）"
+      }
+    ],
+    "verified": false,
+    "extra": {
+      "stationAccess": "Osaka Metro 動物園前駅 步行 5 分；堺筋線 恵美須町駅 5 分；天王寺駅（Metro・JR）10 分（OSAKA-INFO）。出入口（てんしば口・新世界ゲート）未確認。",
+      "stationTodo": "車站 ID 等 T28（大阪車站）進 master 後補，預定 ID 見 data/raw/osaka/log/T27a.md",
+      "conflicts": [
+        "部分 OSAKA-INFO 頁寫高中生以上 500 円（舊價）",
+        "官網 2026-10-26 回 503，出入口、團體料金、無障礙待確認"
+      ]
+    },
+    "summary": null,
+    "assessment": null
+  },
+  {
+    "id": "osaka-shitennoji",
+    "type": "spot",
+    "name": {
+      "ja": "四天王寺",
+      "kana": "してんのうじ",
+      "zh": "四天王寺",
+      "en": "Shitennoji Temple"
+    },
+    "area": "osaka",
+    "region": "tennoji",
+    "coords": [
+      135.5165239,
+      34.6544581
+    ],
+    "coordsSource": "google-maps-url",
+    "address": "〒543-0051 大阪府大阪市天王寺区四天王寺1-11-18",
+    "hours": {
+      "mon": [
+        [
+          "08:30",
+          "16:00"
+        ]
+      ],
+      "tue": [
+        [
+          "08:30",
+          "16:00"
+        ]
+      ],
+      "wed": [
+        [
+          "08:30",
+          "16:00"
+        ]
+      ],
+      "thu": [
+        [
+          "08:30",
+          "16:00"
+        ]
+      ],
+      "fri": [
+        [
+          "08:30",
+          "16:00"
+        ]
+      ],
+      "sat": [
+        [
+          "08:30",
+          "16:00"
+        ]
+      ],
+      "sun": [
+        [
+          "08:30",
+          "16:00"
+        ]
+      ],
+      "holiday": [
+        [
+          "08:30",
+          "16:00"
+        ]
+      ],
+      "note": "10～3 月：中心伽藍・庭園 8:30～16:00（每月 21 日 8:00～16:30）；4～9 月 8:30～16:30。門 24 小時開放，可在堂外參拜；六時堂 8:30～18:00。"
+    },
+    "closedNote": "年中無休（本坊庭園有臨時休園日）。",
+    "febNote": "2 月照 10～3 月的時間。2/3 節分（節分星祭大護摩供 10:00），每月 21 日大師会（露店、中心伽藍免費）、22 日太子会。",
+    "closures": [],
+    "events": [
+      {
+        "date": "2027-02-03",
+        "note": "節分星祭大護摩供（六時堂 10:00）、元三大師会（13:30）；官網頁面沒標年份，2027 年待確認"
+      },
+      {
+        "date": "2027-02-21",
+        "note": "大師会：露店、中心伽藍免費（每月）"
+      },
+      {
+        "date": "2027-02-22",
+        "note": "太子会：絵堂・中心伽藍免費（每月）"
+      }
+    ],
+    "photos": [
+      {
+        "url": "https://lh3.googleusercontent.com/grass-cs/AABkmLc6AA34eTFY3Ofs91cYoxcL9dK_f-E0op5tN-ct5G88kqt98aiFGrmHipU7wvD1lP82nfasOB_pFIgavaTd9pxCqzyjKqpU3V5Yej1oJF9wx0aaMCwlbbQYo9qisQ8RUC_T9I0=w800",
+        "page": "https://maps.google.com/?cid=13162475560152948781",
+        "kind": "google",
+        "credit": "Google マップ（店家或使用者上傳）",
+        "license": null
+      }
+    ],
+    "links": {
+      "official": "https://www.shitennoji.or.jp/",
+      "instagram": null,
+      "googleMaps": "https://maps.google.com/?cid=13162475560152948781"
+    },
+    "tags": [
+      "寺社",
+      "歷史"
+    ],
+    "tier": null,
+    "nearestStation": null,
+    "access": [],
+    "admission": "境內免費；中心伽藍 大人 500 円、高中生 300 円、小中學生免費。",
+    "phone": "06-6771-0066",
+    "stayMinutes": 45,
+    "indoor": null,
+    "fares": {
+      "adult": "中心伽藍 500 円、本坊庭園 300 円、宝物館 500 円",
+      "child": "中心伽藍・宝物館 小中學生免費；本坊庭園 小中學生 200 円；高中生 300／200／300 円",
+      "senior": null,
+      "group": "30 人以上才有團體價，15 人不適用",
+      "note": "2026-10 官網頁面（中心伽藍 2024-10-01 改價）。"
+    },
+    "group": {
+      "reservation": "不需預約",
+      "contact": {
+        "phone": "06-6771-0066",
+        "url": "https://www.shitennoji.or.jp/",
+        "note": "日文"
+      },
+      "note": null
+    },
+    "accessibility": {
+      "walkInsideMinutes": null,
+      "stairs": null,
+      "slope": null,
+      "restAreas": null,
+      "toilets": null,
+      "barrierFree": null,
+      "note": "階梯、無障礙在官網和 OSAKA-INFO 都沒寫。"
+    },
+    "kids": {
+      "friendly": "low",
+      "note": "小中學生中心伽藍免費，可登五重塔；沒有特別的兒童設施。"
+    },
+    "ratings": {
+      "google": 4.4,
+      "googleReviews": 13343,
+      "note": null
+    },
+    "sources": [
+      {
+        "type": "official",
+        "url": "https://www.shitennoji.or.jp/admission.html",
+        "retrieved": "2026-10-26",
+        "note": "拝観時間（季節別）、拝観料、團體 30 名以上"
+      },
+      {
+        "type": "official",
+        "url": "https://www.shitennoji.or.jp/access.html",
+        "retrieved": "2026-10-26",
+        "note": "住所、電話、各站步行分數、停車場"
+      },
+      {
+        "type": "official",
+        "url": "https://www.shitennoji.or.jp/event/2/",
+        "retrieved": "2026-10-26",
+        "note": "2 月行事：節分、大師会、太子会"
+      },
+      {
+        "type": "tourism",
+        "url": "https://osaka-info.jp/spot/shitennoji/",
+        "retrieved": "2026-10-26",
+        "note": "介紹、年中無休、六時堂時間、料金"
+      },
+      {
+        "type": "google-maps",
+        "url": "https://maps.google.com/?cid=13162475560152948781",
+        "retrieved": "2026-10-26",
+        "note": "星數、評論數、座標、照片（Google 名稱：四天王寺）"
+      }
+    ],
+    "verified": false,
+    "extra": {
+      "stationAccess": "Osaka Metro 谷町線 四天王寺前夕陽ヶ丘駅 往南步行 5 分；天王寺駅（JR・Metro）往北 12 分；近鉄 大阪阿部野橋駅 14 分（官網）。",
+      "stationTodo": "車站 ID 等 T28（大阪車站）進 master 後補，預定 ID 見 data/raw/osaka/log/T27a.md",
+      "indoorNote": "境內戶外，堂內參觀",
+      "conflicts": [
+        "OSAKA-INFO 英文頁中心伽藍 300 円（舊價）"
+      ]
+    },
+    "summary": null,
+    "assessment": null
+  },
+  {
+    "id": "osaka-kaiyukan",
+    "type": "spot",
+    "name": {
+      "ja": "海遊館",
+      "kana": "かいゆうかん",
+      "zh": "海遊館",
+      "en": "Osaka Aquarium Kaiyukan"
+    },
+    "area": "osaka",
+    "region": "osaka-bay",
+    "coords": [
+      135.4289645,
+      34.6545182
+    ],
+    "coordsSource": "google-maps-url",
+    "address": "〒552-0022 大阪府大阪市港区海岸通1-1-10",
+    "hours": {
+      "mon": [
+        [
+          "10:00",
+          "20:00"
+        ]
+      ],
+      "tue": [
+        [
+          "10:00",
+          "20:00"
+        ]
+      ],
+      "wed": [
+        [
+          "10:00",
+          "20:00"
+        ]
+      ],
+      "thu": [
+        [
+          "10:00",
+          "20:00"
+        ]
+      ],
+      "fri": [
+        [
+          "10:00",
+          "20:00"
+        ]
+      ],
+      "sat": [
+        [
+          "10:00",
+          "20:00"
+        ]
+      ],
+      "sun": [
+        [
+          "10:00",
+          "20:00"
+        ]
+      ],
+      "holiday": [
+        [
+          "10:00",
+          "20:00"
+        ]
+      ],
+      "note": "依季節變動，最後入館是閉館前 1 小時（OSAKA-INFO）；官網行事曆讀不到，2027-02 每天的時間待確認。"
+    },
+    "closedNote": "不定休（1 月有 2 天休館，OSAKA-INFO）。",
+    "febNote": "室內水族館，2 月照常（休館日在 1 月；官網行事曆未確認）。",
+    "closures": [],
+    "events": [],
+    "photos": [
+      {
+        "url": "https://lh3.googleusercontent.com/grass-cs/AABkmLf06KnTXEB1cbM3FuGTt1pPHkPzLvSTbY7YX796r9fn2kAtHeOKnV3768rg9hOF-h1BhLGMTleDoT6Pn5pyqYqJdJm9FA5B10m-P3jgyC01-NcSRYjagfOUEsxj269MnMtMNJZLzQ=w800",
+        "page": "https://maps.google.com/?cid=8035482904308493516",
+        "kind": "google",
+        "credit": "Google マップ（店家或使用者上傳）",
+        "license": null
+      }
+    ],
+    "links": {
+      "official": "https://www.kaiyukan.com/",
+      "instagram": "@kaiyukan_japan",
+      "googleMaps": "https://maps.google.com/?cid=8035482904308493516"
+    },
+    "tags": [
+      "水族館",
+      "親子",
+      "室內",
+      "雨天備案"
+    ],
+    "tier": null,
+    "nearestStation": null,
+    "access": [],
+    "admission": "依日期變動：大人 2,700～3,200 円、小中學生 1,400～1,650 円、3 歲以上幼兒 700～800 円。",
+    "phone": "06-6576-5501",
+    "stayMinutes": 120,
+    "indoor": true,
+    "fares": {
+      "adult": "2,700～3,200 円（16 歲以上，依日期；也有 3,500 円的日子）",
+      "child": "小中學生 1,400～1,650 円；3 歲以上 700～800 円；2 歲以下免費",
+      "senior": "沒有長輩票",
+      "group": "團體預約沒有折扣",
+      "note": "2026-10 官網頁面。建議買事先指定日期時段的 e チケット（當日票不保證想要的時段）。"
+    },
+    "group": {
+      "reservation": "訪日外國人 15 人以上可以團體預約（日本團體要 20 人）：來館 1 年前～2 週前用申請書 email 或 FAX，1 週內回覆；全部時間指定、沒有折扣、不可再入館",
+      "contact": {
+        "phone": "06-6576-5533",
+        "url": "https://www.kaiyukan.com/",
+        "note": "團體 10:00～17:00；group_booking@kaiyukan.com；日文"
+      },
+      "note": "大人 3,200 円的日子只能訂 15:00 以後，3,500 円的日子不收團體。館內不能集合拍照、設集合點。"
+    },
+    "accessibility": {
+      "walkInsideMinutes": null,
+      "stairs": "少",
+      "slope": "館內幾乎都是坡道，輪椅可以參觀，需要時工作人員帶去搭電梯。",
+      "restAreas": true,
+      "toilets": true,
+      "barrierFree": "輪椅出借（售票口旁案内所、エントランスビル 3 樓）；無障礙廁所在エントランスビル 2 樓和館內 6 樓。",
+      "note": "館內 cafe R.O.F 可以休息；有嬰兒室、授乳室。"
+    },
+    "kids": {
+      "friendly": "high",
+      "note": "大型水槽（鯨鯊）、生物餵食時間（お食事タイム）。"
+    },
+    "ratings": {
+      "google": 4.5,
+      "googleReviews": 62627,
+      "note": null
+    },
+    "sources": [
+      {
+        "type": "official",
+        "url": "https://www.kaiyukan.com/",
+        "retrieved": "2026-10-26",
+        "note": "首頁，Instagram 連結、お食事タイム"
+      },
+      {
+        "type": "official",
+        "url": "https://www.kaiyukan.com/info/group/",
+        "retrieved": "2026-10-26",
+        "note": "團體條件（外國人 15 人以上）、變動票價範圍、預約方式"
+      },
+      {
+        "type": "official",
+        "url": "https://www.kaiyukan.com/info/ticket/kaiyukan/",
+        "retrieved": "2026-10-26",
+        "note": "變動票價、建議買日時指定 e チケット、2 歲以下免費"
+      },
+      {
+        "type": "official",
+        "url": "https://www.kaiyukan.com/info/area/barrierfree/",
+        "retrieved": "2026-10-26",
+        "note": "坡道、輪椅出借、無障礙廁所"
+      },
+      {
+        "type": "official",
+        "url": "https://www.kaiyukan.com/info/area/",
+        "retrieved": "2026-10-26",
+        "note": "cafe R.O.F、ベビーケアルーム"
+      },
+      {
+        "type": "official",
+        "url": "https://www.kaiyukan.com/info/access/",
+        "retrieved": "2026-10-26",
+        "note": "地址、大阪港駅 1 號出口步行 5 分"
+      },
+      {
+        "type": "official",
+        "url": "https://www.kaiyukan.com/info/faq/",
+        "retrieved": "2026-10-26",
+        "note": "インフォメーション電話 06-6576-5501"
+      },
+      {
+        "type": "tourism",
+        "url": "https://osaka-info.jp/spot/osaka-aquarium-kaiyukan/",
+        "retrieved": "2026-10-26",
+        "note": "營業時間 10:00～20:00、1 月休館 2 天、所要 120 分"
+      },
+      {
+        "type": "google-maps",
+        "url": "https://maps.google.com/?cid=8035482904308493516",
+        "retrieved": "2026-10-26",
+        "note": "星數、評論數、座標、照片（Google 名稱：海遊館）"
+      }
+    ],
+    "verified": false,
+    "extra": {
+      "stationAccess": "Osaka Metro 中央線 大阪港駅 1 號出口 步行約 5 分（官網）；車站電梯未寫。",
+      "stationTodo": "車站 ID 等 T28（大阪車站）進 master 後補，預定 ID 見 data/raw/osaka/log/T27a.md",
+      "conflicts": [
+        "營業時間只有 OSAKA-INFO 的 10:00～20:00（季節變動）",
+        "官網 2026-10 沒有シニア票"
+      ]
+    },
+    "summary": null,
+    "assessment": null
+  },
+  {
+    "id": "osaka-tempozan-ferris-wheel",
+    "type": "spot",
+    "name": {
+      "ja": "天保山大観覧車",
+      "kana": "てんぽうざんだいかんらんしゃ",
+      "zh": "天保山大摩天輪",
+      "en": "Tempozan Giant Ferris Wheel"
+    },
+    "area": "osaka",
+    "region": "osaka-bay",
+    "coords": [
+      135.4309659,
+      34.6562679
+    ],
+    "coordsSource": "google-maps-url",
+    "address": "〒552-0022 大阪府大阪市港区海岸通1-1-10",
+    "hours": {
+      "mon": [
+        [
+          "10:00",
+          "21:00"
+        ]
+      ],
+      "tue": [
+        [
+          "10:00",
+          "21:00"
+        ]
+      ],
+      "wed": [
+        [
+          "10:00",
+          "21:00"
+        ]
+      ],
+      "thu": [
+        [
+          "10:00",
+          "21:00"
+        ]
+      ],
+      "fri": [
+        [
+          "10:00",
+          "21:00"
+        ]
+      ],
+      "sat": [
+        [
+          "10:00",
+          "22:00"
+        ]
+      ],
+      "sun": [
+        [
+          "10:00",
+          "22:00"
+        ]
+      ],
+      "holiday": [
+        [
+          "10:00",
+          "22:00"
+        ]
+      ],
+      "note": "售票到結束前 15 分（HAPPYELL）；OSAKA-INFO 寫每天 10:00～22:00、最後受理 21:30（衝突）。"
+    },
+    "closedNote": "不定休（檢修、天候）。",
+    "febNote": "2 月沒有特別說明；天候不佳時停駛。坐在車廂內，不太受冷。",
+    "closures": [],
+    "events": [],
+    "photos": [
+      {
+        "url": "https://lh3.googleusercontent.com/grass-cs/AABkmLfUza-UIptjghQHFUV7DNzKC5AhQ0fmw6iJxE1euw-RQJKNe8_TfuGTWSLyLOFyTmp7AfMId71M2cCBUUUjMdfbSTl4kw7WSStKoftMtvBE26dJDx8nnasKj8MT7GeRhs8rVD0=w800",
+        "page": "https://maps.google.com/?cid=18337499502386135590",
+        "kind": "google",
+        "credit": "Google マップ（店家或使用者上傳）",
+        "license": null
+      }
+    ],
+    "links": {
+      "official": "https://tempozan-kanransya.com/",
+      "instagram": null,
+      "googleMaps": "https://maps.google.com/?cid=18337499502386135590"
+    },
+    "tags": [
+      "觀景",
+      "夜景"
+    ],
+    "tier": null,
+    "nearestStation": null,
+    "access": [],
+    "admission": "1,000 円（3 歲以上）。",
+    "phone": "06-6576-6222",
+    "stayMinutes": 30,
+    "indoor": false,
+    "fares": {
+      "adult": "1,000 円",
+      "child": "3 歲以上 1,000 円（同價）",
+      "senior": null,
+      "group": "20 人以上 900 円，15 人不夠",
+      "note": "2026-10 HAPPYELL 頁面（OSAKA-INFO 寫 800 円，可能是舊價）。"
+    },
+    "group": {
+      "reservation": "不需預約",
+      "contact": {
+        "phone": "06-6576-6222",
+        "url": "https://tempozan-kanransya.com/",
+        "note": "日文"
+      },
+      "note": "一車坐幾人沒寫，15 人要分幾車不明。"
+    },
+    "accessibility": {
+      "walkInsideMinutes": null,
+      "stairs": null,
+      "slope": null,
+      "restAreas": null,
+      "toilets": null,
+      "barrierFree": "60 台中 3 台是無障礙車廂，可以坐輪椅直接上。",
+      "note": "一圈約 15 分，坐著不用走。"
+    },
+    "kids": {
+      "friendly": "medium",
+      "note": "60 台中 8 台是全透明車廂（シースルーゴンドラ）。"
+    },
+    "ratings": {
+      "google": 4.5,
+      "googleReviews": 11003,
+      "note": null
+    },
+    "sources": [
+      {
+        "type": "official",
+        "url": "https://tempozan-kanransya.com/",
+        "retrieved": "2026-10-26",
+        "note": "官網，連線被拒，未讀到內容"
+      },
+      {
+        "type": "other",
+        "url": "https://happyell.co.jp/spot/tenpouzan",
+        "retrieved": "2026-10-26",
+        "note": "營運公司設施頁：營業時間、1,000 円、團體 20 人以上 900 円、透明車廂"
+      },
+      {
+        "type": "tourism",
+        "url": "https://osaka-info.jp/experience/ja/osaka/spot/345",
+        "retrieved": "2026-10-26",
+        "note": "電話、10:00～22:00（最後 21:30）、800 円、一圈 15 分"
+      },
+      {
+        "type": "media",
+        "url": "https://www.gltjp.com/ja/directory/item/11624/",
+        "retrieved": "2026-10-26",
+        "note": "60 台中 3 台輪椅、8 台全透明、1,000 円（2026-09 更新）"
+      },
+      {
+        "type": "google-maps",
+        "url": "https://maps.google.com/?cid=18337499502386135590",
+        "retrieved": "2026-10-26",
+        "note": "星數、評論數、座標、照片（Google 名稱：天保山大観覧車）"
+      }
+    ],
+    "verified": false,
+    "extra": {
+      "stationAccess": "Osaka Metro 中央線 大阪港駅 1 號出口 步行約 5 分（HAPPYELL）。",
+      "stationTodo": "車站 ID 等 T28（大阪車站）進 master 後補，預定 ID 見 data/raw/osaka/log/T27a.md",
+      "stayNote": "一圈約 15 分，加排隊抓 30 分",
+      "conflicts": [
+        "票價 1,000 円（HAPPYELL、GLTJP） vs 800 円（OSAKA-INFO）",
+        "平日營業到 21:00（HAPPYELL） vs 每天到 22:00（OSAKA-INFO、GLTJP）",
+        "官網連線被拒未讀到"
+      ]
+    },
+    "summary": null,
+    "assessment": null
+  },
+  {
+    "id": "osaka-legoland-discovery",
+    "type": "spot",
+    "name": {
+      "ja": "レゴランド・ディスカバリー・センター大阪",
+      "kana": "れごらんど でぃすかばりー せんたー おおさか",
+      "zh": "大阪樂高探索中心",
+      "en": "LEGOLAND Discovery Center Osaka"
+    },
+    "area": "osaka",
+    "region": "osaka-bay",
+    "coords": [
+      135.4302448,
+      34.656179
+    ],
+    "coordsSource": "google-maps-url",
+    "address": "〒552-0022 大阪府大阪市港区海岸通1-1-10 天保山マーケットプレース 3階",
+    "hours": {
+      "mon": null,
+      "tue": null,
+      "wed": null,
+      "thu": null,
+      "fri": null,
+      "sat": null,
+      "sun": null,
+      "holiday": null,
+      "note": "2026-10-26 官網首頁顯示當天 10:00～18:00；營業時間頁讀不到，最後入場、休館日不明。"
+    },
+    "closedNote": null,
+    "febNote": "室內設施；2 月營業沒有特別說明。",
+    "closures": [],
+    "events": [],
+    "photos": [
+      {
+        "url": "https://lh3.googleusercontent.com/grass-cs/AABkmLeTuky5FqvSiI75wLAcMnk2lwJRkrMSVA7LXBQP8hjJsbWU9ffaC8McQXkIzPRi2wzjLAGme1kfcMsKXHFacdsYi0-SH0vAAdB25k2qvD5g5Iiu5Y2le27HFMiNvQ7ZFbRiRN0=w800",
+        "page": "https://maps.google.com/?cid=17130195051236383444",
+        "kind": "google",
+        "credit": "Google マップ（店家或使用者上傳）",
+        "license": null
+      }
+    ],
+    "links": {
+      "official": "https://www.legolanddiscoverycenter.com/osaka/",
+      "instagram": "@legoland_osaka",
+      "googleMaps": "https://maps.google.com/?cid=17130195051236383444"
+    },
+    "tags": [
+      "親子",
+      "體驗",
+      "室內",
+      "雨天備案"
+    ],
+    "tier": null,
+    "nearestStation": null,
+    "access": [],
+    "admission": "日時指定票 2,900～3,300 円（3 歲以上同價）；只有大人不能入場。",
+    "phone": null,
+    "stayMinutes": 150,
+    "indoor": true,
+    "fares": {
+      "adult": "日時指定 2,900～3,300 円；平日 14 時以後 2,240～2,800 円；當日票 2,800 円",
+      "child": "3 歲以上同價",
+      "senior": null,
+      "group": "團體要 email 事先預約，門檻和價格沒寫",
+      "note": "2026-10 官網票價頁（首頁寫「¥2,200 起」，對不上）。當日票也只在網路賣、窗口不賣；不能退、可以改期。"
+    },
+    "group": {
+      "reservation": "團體必須事先 email 預約（日期、人數、團體名、聯絡人）",
+      "contact": {
+        "phone": "0800-100-5346",
+        "url": "https://www.legolanddiscoverycenter.com/osaka/",
+        "note": "團體 平日 10:00～14:00，groupsales.osaka@legodiscoverycenter.com"
+      },
+      "note": null
+    },
+    "accessibility": {
+      "walkInsideMinutes": null,
+      "stairs": "無",
+      "slope": "通道平坦（部分坡道）",
+      "restAreas": null,
+      "toilets": null,
+      "barrierFree": "無障礙；可帶嬰兒車（不出借）。",
+      "note": "館內咖啡廳平日 11:00～17:00、週末假日 11:00～18:00。"
+    },
+    "kids": {
+      "friendly": "high",
+      "note": "對象 3～10 歲；不接受只有大人入場。キングダムクエスト 130 cm 未滿要中學生以上陪同；マーリン・アプレンティス 90 cm 以上（120 cm 未滿要大人陪同）；グレート レゴ® レース 100 cm 以上；シティ・プレイゾーン 90～150 cm。"
+    },
+    "ratings": {
+      "google": 4.2,
+      "googleReviews": 6046,
+      "note": null
+    },
+    "sources": [
+      {
+        "type": "official",
+        "url": "https://www.legolanddiscoverycenter.com/osaka/",
+        "retrieved": "2026-10-26",
+        "note": "本日營業 10:00～18:00、￥2,200 起、Instagram"
+      },
+      {
+        "type": "official",
+        "url": "https://www.legolanddiscoverycenter.com/osaka/tickets-passes/",
+        "retrieved": "2026-10-26",
+        "note": "各票種價格（變動）"
+      },
+      {
+        "type": "official",
+        "url": "https://www.legolanddiscoverycenter.com/osaka/plan/information/faqs/facility/",
+        "retrieved": "2026-10-26",
+        "note": "3～10 歲、大人不能單獨入場、2～3 小時、身高條件、無障礙"
+      },
+      {
+        "type": "official",
+        "url": "https://www.legolanddiscoverycenter.com/osaka/plan/information/faqs/tickets/",
+        "retrieved": "2026-10-26",
+        "note": "當日票只在網路賣、不可退票可改期"
+      },
+      {
+        "type": "official",
+        "url": "https://www.legolanddiscoverycenter.com/osaka/plan/information/faqs/school-groups/",
+        "retrieved": "2026-10-26",
+        "note": "團體須事先 email 預約、電話"
+      },
+      {
+        "type": "official",
+        "url": "https://www.legolanddiscoverycenter.com/osaka/plan/before-you-visit/how-to-get-here/",
+        "retrieved": "2026-10-26",
+        "note": "地址、大阪港駅步行 5 分"
+      },
+      {
+        "type": "official",
+        "url": "https://www.legolanddiscoverycenter.com/osaka/what-s-inside/attraction-overview/",
+        "retrieved": "2026-10-26",
+        "note": "主要遊樂設施名稱"
+      },
+      {
+        "type": "google-maps",
+        "url": "https://maps.google.com/?cid=17130195051236383444",
+        "retrieved": "2026-10-26",
+        "note": "星數、評論數、座標、照片（Google 名稱：レゴランド・ディスカバリー・センター大阪）"
+      }
+    ],
+    "verified": false,
+    "extra": {
+      "stationAccess": "Osaka Metro 中央線 大阪港駅 步行 5 分（官網），在天保山マーケットプレース 3 樓。",
+      "stationTodo": "車站 ID 等 T28（大阪車站）進 master 後補，預定 ID 見 data/raw/osaka/log/T27a.md",
+      "elderNote": "只有大人不能入場：長輩不陪小孩進去的話，可以在天保山マーケットプレース或海遊館等",
+      "conflicts": [
+        "首頁「¥2,200 起」 vs 票價頁最低 2,240（平日午後）／2,900 円（日時指定）"
+      ]
+    },
+    "summary": null,
+    "assessment": null
+  },
+  {
+    "id": "osaka-usj",
+    "type": "spot",
+    "name": {
+      "ja": "ユニバーサル・スタジオ・ジャパン",
+      "kana": "ゆにばーさる すたじお じゃぱん",
+      "zh": "日本環球影城",
+      "en": "Universal Studios Japan"
+    },
+    "area": "osaka",
+    "region": "usj",
+    "coords": [
+      135.4323185,
+      34.6656768
+    ],
+    "coordsSource": "google-maps-url",
+    "address": "〒554-0031 大阪府大阪市此花区桜島2-1-33",
+    "hours": {
+      "mon": null,
+      "tue": null,
+      "wed": null,
+      "thu": null,
+      "fri": null,
+      "sat": null,
+      "sun": null,
+      "holiday": null,
+      "note": "開園、閉園時間依日期變動；官網是行事曆元件，2027-02 未讀到，出發前查官網。"
+    },
+    "closedNote": "無休（營業時間依日期）。",
+    "febNote": "2027-02 的價格月曆、活動都還沒公布（2026-10 官網只到 2026-12）。冬季活動（ユニバーサル・ホリデー・ワンダーズ）到 2027-01-17，2 月不在期間內。戶外排隊多，冬天要保暖。2/11（國定假日）預期人多（從月曆等級推測，官方沒寫）。",
+    "closures": [],
+    "events": [],
+    "photos": [
+      {
+        "url": "https://www.usj.co.jp/contentdata/usj/ja/jp/files/images/gds-images/usj-gds-super-nintendo-world-2024-cf6-a.jpg",
+        "page": "https://www.usj.co.jp/web/ja/jp/tickets/guide/numbered-ticket",
+        "kind": "official",
+        "credit": "ユニバーサル・スタジオ・ジャパン",
+        "license": null
+      },
+      {
+        "url": "https://www.usj.co.jp/contentdata/usj/ja/jp/files/images/gds-images/usj-gds-the-wizarding-world-of-harry-potter-cf6-a.jpg",
+        "page": "https://www.usj.co.jp/web/ja/jp/tickets/guide/numbered-ticket",
+        "kind": "official",
+        "credit": "ユニバーサル・スタジオ・ジャパン",
+        "license": null
+      },
+      {
+        "url": "https://lh3.googleusercontent.com/grass-cs/AABkmLcorcGZRAR12WVFVUIvBRupQT9qO03ouQaWOzul8UxD9pCmGs34bokIML1on3w62o50TkgqibZSzaJwwIrLH4h_fW7vn6maXIMDRCm2Nt4qLW7Ng4GXjh-NvHGJBBJe814xbRiZ=w800",
+        "page": "https://maps.google.com/?cid=3892796888607511210",
+        "kind": "google",
+        "credit": "Google マップ（店家或使用者上傳）",
+        "license": null
+      }
+    ],
+    "links": {
+      "official": "https://www.usj.co.jp/web/ja/jp",
+      "instagram": null,
+      "googleMaps": "https://maps.google.com/?cid=3892796888607511210"
+    },
+    "tags": [
+      "主題樂園",
+      "親子"
+    ],
+    "tier": null,
+    "nearestStation": null,
+    "access": [],
+    "admission": "1デイ・スタジオ・パス 依日期變動：大人 8,400 円～、兒童（4～11 歲）5,500 円～、65 歲以上 7,600 円～（2026 年的最低價，出發前要再查）。",
+    "phone": "0570-20-0606",
+    "stayMinutes": 540,
+    "indoor": false,
+    "fares": {
+      "adult": "8,400 円～（12 歲以上；依日期變動）",
+      "child": "4～11 歲 5,500 円～；3 歲以下免費",
+      "senior": "65 歲以上 7,600 円～",
+      "group": "グループ・スタジオ・パス 要 25 人以上、只透過契約旅行社 → 15 人不適用，各自買 1 日券",
+      "note": "2026-10-26 查：2027-02 價格月曆未公布，記的是 2026 年的最低價（日本旅行 2026-03 頁面、デイリースポーツ 2026-06-30：2026-09-01 入場起新最低價大人 8,400 円），買得越早越便宜，出發前要再查。Express Pass 4／7 依庫存變價，2026-10 範例 11,800～21,800 円，約 2 個月前開賣、會賣完，只能官方或授權通路買。"
+    },
+    "group": {
+      "reservation": "入場券日期指定（官方 WEB チケットストア，QR 入場）；Express Pass、任天堂世界的エリア入場確約券要事先買",
+      "contact": {
+        "phone": "06-6465-3100",
+        "url": "https://www.usj.co.jp/web/ja/jp",
+        "note": "団体予約センター 平日 9:30～17:00（25 人以上的團體票用）"
+      },
+      "note": "任天堂世界視當天狀況要「エリア入場整理券／抽選券」（當天用官方 App 取，2026-01-05 起只限 App），或附在部分 Express Pass 的「エリア入場確約券」。"
+    },
+    "accessibility": {
+      "walkInsideMinutes": null,
+      "stairs": null,
+      "slope": null,
+      "restAreas": null,
+      "toilets": true,
+      "barrierFree": "輪椅出租 1 台 500 円（園內入口右側，數量有限、不能預約）；嬰兒車 1,100 円；身障手帳持有者可用ゲストサポート・パス（在隊伍外等候）。",
+      "note": "電動代步車（ECV）官網沒看到。園內步行距離、休息處沒寫；整天在園內走動、排隊，長輩可以安排中途休息或提早離園。"
+    },
+    "kids": {
+      "friendly": "high",
+      "note": "6～10 歲（約 115～140 cm）能玩：ヨッシー・アドベンチャー、フライト・オブ・ザ・ヒッポグリフ（92 cm）、ミニオン・ハチャメチャ・ライド（102 cm）、マリオカート、ドンキーコングのクレイジー・トロッコ、ジュラシック・パーク（107 cm，122 cm 未滿要大人陪同）、ユニバーサル・ワンダーランド。看身高：ハリー・ポッター・アンド・ザ・フォービドゥン・ジャーニー（122 cm，陪同也不能降）。多半不能玩：ハリウッド・ドリーム、ザ・フライング・ダイナソー（132 cm）。（官網身長制限頁 2026-04 更新）"
+    },
+    "ratings": {
+      "google": 4.5,
+      "googleReviews": 156808,
+      "note": null
+    },
+    "sources": [
+      {
+        "type": "official",
+        "url": "https://www.usj.co.jp/web/ja/jp/attractions/requirements/height-restriction",
+        "retrieved": "2026-10-26",
+        "note": "各設施身高限制與陪同條件（內容讀自 /contentdata/usj/ja/jp/.../index.html）"
+      },
+      {
+        "type": "official",
+        "url": "https://www.usj.co.jp/web/ja/jp/tickets/buy/price-calendar",
+        "retrieved": "2026-10-26",
+        "note": "價格月曆只到 2026-12，只有等級字母"
+      },
+      {
+        "type": "official",
+        "url": "https://www.usj.co.jp/web/ja/jp/tickets/lineup/group/grouppass",
+        "retrieved": "2026-10-26",
+        "note": "團體票限 25 人以上與價格"
+      },
+      {
+        "type": "official",
+        "url": "https://www.usj.co.jp/web/ja/jp/tickets/lineup/expresspass",
+        "retrieved": "2026-10-26",
+        "note": "Express Pass 種類、價格範例、約 2 個月前開賣、限量"
+      },
+      {
+        "type": "official",
+        "url": "https://www.usj.co.jp/web/ja/jp/tickets/guide/numbered-ticket",
+        "retrieved": "2026-10-26",
+        "note": "エリア入場整理券／確約券"
+      },
+      {
+        "type": "official",
+        "url": "https://www.usj.co.jp/web/ja/jp/areas/super-nintendo-world",
+        "retrieved": "2026-10-26",
+        "note": "整理券 2026-01-05 起只限 App"
+      },
+      {
+        "type": "official",
+        "url": "https://www.usj.co.jp/web/ja/jp/service-guide/wheelchair",
+        "retrieved": "2026-10-26",
+        "note": "輪椅出租 500 円、地點"
+      },
+      {
+        "type": "official",
+        "url": "https://www.usj.co.jp/web/ja/jp/service-guide/barrier-free",
+        "retrieved": "2026-10-26",
+        "note": "ゲストサポート・パス、オストメイト廁所、授乳室"
+      },
+      {
+        "type": "official",
+        "url": "https://www.usj.co.jp/web/ja/jp/access/train",
+        "retrieved": "2026-10-26",
+        "note": "各站到ユニバーサルシティ駅所需時間"
+      },
+      {
+        "type": "official",
+        "url": "https://www.usj.co.jp/web/ja/jp/park-guide/schedule/park-hour",
+        "retrieved": "2026-10-26",
+        "note": "營業時間為行事曆元件，未讀到"
+      },
+      {
+        "type": "official",
+        "url": "https://www.usj.co.jp/web/ja/jp/campaign/kids-free",
+        "retrieved": "2026-10-26",
+        "note": "冬活動期間、キッズフリー限國內居住者"
+      },
+      {
+        "type": "other",
+        "url": "https://www.nta.co.jp/kokunai/usj/ticket.htm",
+        "retrieved": "2026-10-26",
+        "note": "1 日券大人/子ども/シニア最低價，2026-03 現在"
+      },
+      {
+        "type": "media",
+        "url": "https://www.daily.co.jp/leisure/kansai/2026/06/30/0020536263.shtml",
+        "retrieved": "2026-10-26",
+        "note": "2026-09-01 起變動價格制度、最低 8,400 円"
+      },
+      {
+        "type": "tourism",
+        "url": "https://osaka-info.jp/spot/universal-studios-japan/",
+        "retrieved": "2026-10-26",
+        "note": "地址、電話、舊價"
+      },
+      {
+        "type": "google-maps",
+        "url": "https://maps.google.com/?cid=3892796888607511210",
+        "retrieved": "2026-10-26",
+        "note": "星數、評論數、座標、照片（Google 名稱：ユニバーサル・スタジオ・ジャパン）"
+      }
+    ],
+    "verified": false,
+    "extra": {
+      "stationAccess": "JR ゆめ咲線 ユニバーサルシティ駅（西九条から約 5 分、大阪駅から約 11 分、天王寺・大阪難波から約 13 分；官網）；車站到園門步行分鐘未寫。",
+      "stationTodo": "車站 ID 等 T28（大阪車站）進 master 後補，預定 ID 見 data/raw/osaka/log/T27a.md",
+      "stayNote": "整天（約 9 小時）；開園、閉園時間依日期",
+      "parkRestaurants": "園內餐廳不收進 restaurants.json（PLAN T27a）",
+      "conflicts": [
+        "1 日券最低價：OSAKA-INFO 大人 8,200～／兒童 5,400～（舊價） vs 2026 年 8,400～／5,500～"
+      ]
+    },
+    "summary": null,
+    "assessment": null
+  },
+  {
+    "id": "osaka-umeda-sky-building",
+    "type": "spot",
+    "name": {
+      "ja": "梅田スカイビル 空中庭園展望台",
+      "kana": "うめだすかいびる くうちゅうていえんてんぼうだい",
+      "zh": "梅田藍天大廈 空中庭園展望台",
+      "en": "Umeda Sky Building Kuchu Teien Observatory"
+    },
+    "area": "osaka",
+    "region": "umeda",
+    "coords": [
+      135.4903279,
+      34.7054375
+    ],
+    "coordsSource": "google-maps-url",
+    "address": "〒531-6039 大阪府大阪市北区大淀中1-1-88 梅田スカイビル",
+    "hours": {
+      "mon": [
+        [
+          "09:30",
+          "22:30"
+        ]
+      ],
+      "tue": [
+        [
+          "09:30",
+          "22:30"
+        ]
+      ],
+      "wed": [
+        [
+          "09:30",
+          "22:30"
+        ]
+      ],
+      "thu": [
+        [
+          "09:30",
+          "22:30"
+        ]
+      ],
+      "fri": [
+        [
+          "09:30",
+          "22:30"
+        ]
+      ],
+      "sat": [
+        [
+          "09:30",
+          "22:30"
+        ]
+      ],
+      "sun": [
+        [
+          "09:30",
+          "22:30"
+        ]
+      ],
+      "holiday": [
+        [
+          "09:30",
+          "22:30"
+        ]
+      ],
+      "lastEntry": "22:00",
+      "note": "營業時間可能不預告變更。"
+    },
+    "closedNote": "全年無休（設備檢查時縮短營業，例如 2026-11-08 到 19:00、2027-04-18 到 18:00）。",
+    "febNote": "2027-02 沒有縮短營業的公告。屋頂迴廊是露天的，2 月風大、天候不佳時可能上不去。",
+    "closures": [],
+    "events": [],
+    "photos": [
+      {
+        "url": "https://www.skybldg.co.jp/asset/img/cmn/ogp.jpg",
+        "page": "https://www.skybldg.co.jp/",
+        "kind": "official",
+        "credit": "梅田スカイビル",
+        "license": null
+      },
+      {
+        "url": "https://lh3.googleusercontent.com/grass-cs/AABkmLeKkEJB3Rk-2B35upQd4EriWGsjmCnt9Ste4L9SjYSHW-KcQ9QYJ-P_U71bnwof5XAonEpEMXl38XOvUyx8mYexg0aCsstYZ5HDkvu0K47zzkPnDkdWCJ7lPdBZo5WBw1lvdJU=w800",
+        "page": "https://maps.google.com/?cid=5170383595001406343",
+        "kind": "google",
+        "credit": "Google マップ（店家或使用者上傳）",
+        "license": null
+      }
+    ],
+    "links": {
+      "official": "https://www.skybldg.co.jp/",
+      "instagram": "@umeda_skybuilding",
+      "googleMaps": "https://maps.google.com/?cid=5170383595001406343"
+    },
+    "tags": [
+      "展望台",
+      "夜景",
+      "室內",
+      "雨天備案"
+    ],
+    "tier": null,
+    "nearestStation": null,
+    "access": [],
+    "admission": "大人 2,000 円、4 歲～小學生 500 円。",
+    "phone": "06-6440-3855",
+    "stayMinutes": 60,
+    "indoor": true,
+    "fares": {
+      "adult": "2,000 円",
+      "child": "4 歲～小學生 500 円；未滿 4 歲免費",
+      "senior": null,
+      "group": "10 人以上：大人 1,800 円、4 歲～小學生 450 円（asoview 預約）",
+      "note": "2026-10 官網頁面。"
+    },
+    "group": {
+      "reservation": "10 人以上的團體價用 asoview 預約；個人不需預約",
+      "contact": {
+        "phone": "06-6440-3855",
+        "url": "https://www.skybldg.co.jp/",
+        "note": "Fax 06-6440-3936，日文"
+      },
+      "note": null
+    },
+    "accessibility": {
+      "walkInsideMinutes": null,
+      "stairs": null,
+      "slope": null,
+      "restAreas": null,
+      "toilets": null,
+      "barrierFree": "坐輪椅者搭塔東 1F 的高層用電梯；35F→39F 是透明手扶梯。JR 大阪駅起有無障礙路線（含約 40 m 地下道）。",
+      "note": "休息處、廁所未寫。"
+    },
+    "kids": {
+      "friendly": "medium",
+      "note": "透明手扶梯、屋頂 360 度露天展望。"
+    },
+    "ratings": {
+      "google": 4.4,
+      "googleReviews": 14363,
+      "note": null
+    },
+    "sources": [
+      {
+        "type": "official",
+        "url": "https://www.skybldg.co.jp/",
+        "retrieved": "2026-10-26",
+        "note": "營業 9:30～22:30（最終入場 22:00）、og:image"
+      },
+      {
+        "type": "official",
+        "url": "https://www.skybldg.co.jp/observatory/information/",
+        "retrieved": "2026-10-26",
+        "note": "營業時間、特別／縮短營業、料金、輪椅用電梯、屋頂天候限制"
+      },
+      {
+        "type": "official",
+        "url": "https://www.skybldg.co.jp/access/",
+        "retrieved": "2026-10-26",
+        "note": "各站步行分鐘與電梯路線、住所"
+      },
+      {
+        "type": "official",
+        "url": "https://www.skybldg.co.jp/group/",
+        "retrieved": "2026-10-26",
+        "note": "10 人以上團體價、預約方式、電話"
+      },
+      {
+        "type": "official",
+        "url": "https://www.skybldg.co.jp/observatory/",
+        "retrieved": "2026-10-26",
+        "note": "Instagram 連結 @umeda_skybuilding"
+      },
+      {
+        "type": "tourism",
+        "url": "https://osaka-info.jp/spot/umeda-sky-building/",
+        "retrieved": "2026-10-26",
+        "note": "39F・40F・屋頂露天、透明手扶梯、料金、楽遊パス、電話"
+      },
+      {
+        "type": "google-maps",
+        "url": "https://maps.google.com/?cid=5170383595001406343",
+        "retrieved": "2026-10-26",
+        "note": "星數、評論數、座標、照片（Google 名稱：梅田スカイビル 空中庭園展望台）"
+      }
+    ],
+    "verified": false,
+    "extra": {
+      "stationAccess": "JR 大阪駅 步行 7 分（ルクア電梯）；阪急 大阪梅田駅 9 分；Osaka Metro 梅田駅 9 分（5 號出口電梯）（官網）。",
+      "stationTodo": "車站 ID 等 T28（大阪車站）進 master 後補，預定 ID 見 data/raw/osaka/log/T27a.md",
+      "indoorNote": "39F 室內，屋頂迴廊露天",
+      "conflicts": [
+        "一則旅遊網站寫 1,500／700 円（舊價）"
+      ]
+    },
+    "summary": null,
+    "assessment": null
+  },
+  {
+    "id": "osaka-konjyakukan",
+    "type": "spot",
+    "name": {
+      "ja": "大阪くらしの今昔館",
+      "kana": "おおさかくらしのこんじゃくかん",
+      "zh": "大阪生活今昔館",
+      "en": "Osaka Museum of Housing and Living"
+    },
+    "area": "osaka",
+    "region": "umeda",
+    "coords": [
+      135.5113276,
+      34.7103406
+    ],
+    "coordsSource": "google-maps-url",
+    "address": "〒530-0041 大阪府大阪市北区天神橋6丁目4-20 住まい情報センタービル8階",
+    "hours": {
+      "mon": [
+        [
+          "10:00",
+          "17:00"
+        ]
+      ],
+      "tue": [],
+      "wed": [
+        [
+          "10:00",
+          "17:00"
+        ]
+      ],
+      "thu": [
+        [
+          "10:00",
+          "17:00"
+        ]
+      ],
+      "fri": [
+        [
+          "10:00",
+          "17:00"
+        ]
+      ],
+      "sat": [
+        [
+          "10:00",
+          "17:00"
+        ]
+      ],
+      "sun": [
+        [
+          "10:00",
+          "17:00"
+        ]
+      ],
+      "holiday": [
+        [
+          "10:00",
+          "17:00"
+        ]
+      ],
+      "lastEntry": "16:30",
+      "note": "週二休（遇國定假日開館）。"
+    },
+    "closedNote": "週二（遇國定假日開館）、12/29～1/3。2027-02-09（週二）休館。",
+    "febNote": "2027-01-06 重新開館，2 月照常（週二休）。全室內。",
+    "closures": [
+      {
+        "from": "2026-09-01",
+        "to": "2027-01-05",
+        "note": "設備改修臨時休館（2027-01-06 重新開館）"
+      }
+    ],
+    "events": [],
+    "photos": [
+      {
+        "url": "https://www.osaka-angenet.jp/images/konjyakukan/exhibition/exhibition_9f_image_kimono_2024.png",
+        "page": "https://www.osaka-angenet.jp/konjyakukan/exhibition/9f",
+        "kind": "official",
+        "credit": "大阪くらしの今昔館",
+        "license": null
+      },
+      {
+        "url": "https://lh3.googleusercontent.com/grass-cs/AABkmLfKWuodN1t2tI6yC5BHqZ4BNcEH0pVldGXFWYV8OinAwfQ6h-CssQtpQ_cPGwL5ZeUzWbvdz0fdQ1sE6_ikAHVehRLcv3d9qO3EMHIb77CXx5fAB9eWWdHBbMKiB_Qo4u1ygYVb=w800",
+        "page": "https://maps.google.com/?cid=10674462834411964257",
+        "kind": "google",
+        "credit": "Google マップ（店家或使用者上傳）",
+        "license": null
+      }
+    ],
+    "links": {
+      "official": "https://www.osaka-angenet.jp/konjyakukan",
+      "instagram": "@osaka_kurashino_konjyakukan",
+      "googleMaps": "https://maps.google.com/?cid=10674462834411964257"
+    },
+    "tags": [
+      "博物館",
+      "體驗",
+      "室內",
+      "雨天備案"
+    ],
+    "tier": null,
+    "nearestStation": null,
+    "access": [],
+    "admission": "一般 600 円、高中・大學生 300 円、中學生以下免費；和服體驗另收 1,000 円。",
+    "phone": "06-6242-1170",
+    "stayMinutes": 90,
+    "indoor": true,
+    "fares": {
+      "adult": "600 円",
+      "child": "中學生以下免費；高中・大學生 300 円",
+      "senior": "65 歲以上免費只限大阪市內居民（觀光客付一般票）",
+      "group": "20 人以上才有團體價（一般 500 円），15 人不適用",
+      "note": "2026-10 官網頁面。和服體驗 1,000 円（只收現金），30 分，身高 110 cm 以上，只能在 9F 穿；不用預約，當天先到先得 100 名（受理 10:00～16:15）。"
+    },
+    "group": {
+      "reservation": "10 人以上要事先用團體觀覽申請書郵寄或傳真申請；當天代表在 8F 團體受付買全員的票，約 10 人一批入館",
+      "contact": {
+        "phone": "06-6242-1170",
+        "url": "https://www.osaka-angenet.jp/konjyakukan",
+        "note": "Fax 06-6354-8601，日文"
+      },
+      "note": null
+    },
+    "accessibility": {
+      "walkInsideMinutes": null,
+      "stairs": null,
+      "slope": null,
+      "restAreas": null,
+      "toilets": true,
+      "barrierFree": "輪椅、嬰兒車出借；多目的廁所。車站 3 號出口直結大樓，搭 1F 電梯上 8F。",
+      "note": "館內樓層移動（8F、9F 之間）有沒有樓梯未寫。置物櫃 100 円（退幣式）。"
+    },
+    "kids": {
+      "friendly": "medium",
+      "note": "9F 實物大的江戶時代街道；和服體驗（110 cm 以上）。"
+    },
+    "ratings": {
+      "google": 4.2,
+      "googleReviews": 8321,
+      "note": null
+    },
+    "sources": [
+      {
+        "type": "official",
+        "url": "https://www.osaka-angenet.jp/konjyakukan",
+        "retrieved": "2026-10-26",
+        "note": "2026-09-01～2027-01-05 休館公告、住所、Instagram 連結"
+      },
+      {
+        "type": "official",
+        "url": "https://www.osaka-angenet.jp/konjyakukan/guide",
+        "retrieved": "2026-10-26",
+        "note": "開館時間、週二休館、入館料與免費對象"
+      },
+      {
+        "type": "official",
+        "url": "https://www.osaka-angenet.jp/konjyakukan/exhibition/9f",
+        "retrieved": "2026-10-26",
+        "note": "和服體驗 1,000 円、100 名、身高 110cm 以上、規則"
+      },
+      {
+        "type": "official",
+        "url": "https://www.osaka-angenet.jp/konjyakukan/access",
+        "retrieved": "2026-10-26",
+        "note": "天神橋筋六丁目駅 3 號出口連通、JR 天満駅 650m"
+      },
+      {
+        "type": "official",
+        "url": "https://www.osaka-angenet.jp/konjyakukan/floor",
+        "retrieved": "2026-10-26",
+        "note": "8F～10F 構成、輪椅與嬰兒車出借、多目的廁所、置物櫃"
+      },
+      {
+        "type": "official",
+        "url": "https://www.osaka-angenet.jp/konjyakukan/viewing/general",
+        "retrieved": "2026-10-26",
+        "note": "10 人以上團體事先申請、流程、電話傳真"
+      },
+      {
+        "type": "official",
+        "url": "https://www.osaka-angenet.jp/konjyakukan/faq",
+        "retrieved": "2026-10-26",
+        "note": "3 號出口直結、團體需預約"
+      },
+      {
+        "type": "tourism",
+        "url": "https://osaka-info.jp/experience/ja/osaka/spot/241",
+        "retrieved": "2026-10-26",
+        "note": "開館時間、週二休、料金、天神橋筋六丁目駅下車即到"
+      },
+      {
+        "type": "google-maps",
+        "url": "https://maps.google.com/?cid=10674462834411964257",
+        "retrieved": "2026-10-26",
+        "note": "星數、評論數、座標、照片（Google 名稱：大阪市立住まいのミュージアム「大阪くらしの今昔館」）"
+      }
+    ],
+    "verified": false,
+    "extra": {
+      "stationAccess": "Osaka Metro 谷町線・堺筋線／阪急 天神橋筋六丁目駅 3 號出口（B1）直結大樓；JR 天満駅 往北 650 m（官網）。",
+      "stationTodo": "車站 ID 等 T28（大阪車站）進 master 後補，預定 ID 見 data/raw/osaka/log/T27a.md",
+      "googleClosed": "2026-10-26 Google 顯示「臨時休業」（改修休館中，2027-01-06 重開）",
+      "conflicts": [
+        "和服體驗：官網 1,000 円、先到先得 100 名 vs 舊文章 300 円、300 名，All About（2026-05）寫要預約"
+      ]
+    },
+    "summary": null,
+    "assessment": null
+  }
+]

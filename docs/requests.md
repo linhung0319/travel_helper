@@ -101,7 +101,7 @@
 - 要改的檔案：`data/stations.json`（只有在決定把大阪側車站加進來時）
 - 內容：目前 `stations.json` 沒有大阪難波、鶴橋、大阪上本町、伊勢中川。這些站的電梯資訊整理在 `data/access/kix.json` 的 `accessibility.stations` 和 `data/raw/access/kintetsu-osaka.md`。如果 T11 的地圖要顯示機場往返路線，再考慮新增（`passes.json` 已經用 `osaka-namba` 當 ID）。
 - 原因：長輩帶行李轉乘時，難波、鶴橋的無障礙路線和一般路線不同。
-- 狀態：保留（參考）：等 T11 決定要不要在地圖顯示機場往返路線
+- 狀態：已處理（T28，2026-10-26）：大阪難波（`osaka-namba`）、大阪上本町（`osaka-uehommachi`）、鶴橋（`tsuruhashi`）和大阪其他 28 站加進 `stations.json`（`area: osaka`），`accessibility` 記電梯、無障礙路線；難波、鶴橋的轉乘步行和電梯路線在 `data/timetables/urban/_transfers.json`。伊勢中川不在 T28 範圍，仍然不明（見 `data/raw/access/osaka.md` §7）
 
 ## [T4b] restaurant schema：常用的 extra 欄位升格
 - 要改的檔案：`schema/restaurant.schema.json`、`docs/CONVENTIONS.md` 的餐廳範例

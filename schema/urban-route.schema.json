@@ -1,0 +1,116 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://travel-helper.local/schema/urban-route.schema.json",
+  "title": "班距型路線（data/timetables/urban/<route-id>.json）",
+  "description": "T28 定的格式（2026-10-26）。大阪的地鐵、JR、南海幾分鐘一班，不存完整時刻表，只記站間所需分鐘、班距、首末班、票價。檔名要和 id 相同。見 CONVENTIONS §3「班距型路線」。",
+  "type": "object",
+  "properties": {
+    "id": { "$ref": "common.schema.json#/$defs/id" },
+    "mode": { "enum": ["metro", "jr", "private"] },
+    "operator": { "type": "string", "minLength": 1 },
+    "name": {
+      "type": "object",
+      "properties": {
+        "ja": { "type": "string", "minLength": 1 },
+        "zh": { "type": "string", "minLength": 1 }
+      },
+      "required": ["ja", "zh"],
+      "additionalProperties": false
+    },
+    "serviceType": { "description": "快車、慢車混跑的線只記一種（例如「空港急行」）；全部列車都停的線填 null", "$ref": "common.schema.json#/$defs/nullableString" },
+    "stops": {
+      "description": "依路線順序（大阪環状線依内回り：大阪 → 西九条 → 天王寺 → 鶴橋 → 京橋）；只列資料點會用到的站；min 是從第一站起算的車上分鐘（不含停車等待以外的時間）",
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": { "description": "stations.json 的車站 ID", "$ref": "common.schema.json#/$defs/id" },
+          "min": { "type": "number", "minimum": 0 },
+          "note": { "$ref": "common.schema.json#/$defs/nullableString" }
+        },
+        "required": ["id", "min"],
+        "additionalProperties": false
+      },
+      "minItems": 2
+    },
+    "loop": { "description": "環狀線：最後一站接回第一站", "type": "boolean" },
+    "loopMin": { "description": "環狀線繞一圈的分鐘（最後一站 → 第一站 = loopMin − 最後一站的 min）；不是環狀線填 null", "type": ["number", "null"], "exclusiveMinimum": 0 },
+    "service": {
+      "description": "日別照巴士：weekday、saturday、holiday（日曜、國定假日；2/11 算 holiday）。兩個方向取比較保守的值：首班取較晚的、末班取較早的",
+      "type": "object",
+      "properties": {
+        "weekday": { "$ref": "#/$defs/day" },
+        "saturday": { "description": "和 holiday 相同時填 null", "anyOf": [{ "$ref": "#/$defs/day" }, { "type": "null" }] },
+        "holiday": { "$ref": "#/$defs/day" }
+      },
+      "required": ["weekday", "saturday", "holiday"],
+      "additionalProperties": false
+    },
+    "fares": {
+      "description": "同 bus 路線檔的形狀：adult[A][B] = 日圓；只填資料點附近的站之間，兩個方向同價時只寫一邊也可以",
+      "type": "object",
+      "properties": {
+        "currency": { "const": "JPY" },
+        "adult": { "$ref": "#/$defs/fareTable" },
+        "child": { "anyOf": [{ "$ref": "#/$defs/fareTable" }, { "type": "string" }, { "type": "null" }] },
+        "note": { "$ref": "common.schema.json#/$defs/nullableString" }
+      },
+      "required": ["adult"],
+      "additionalProperties": false
+    },
+    "passes": {
+      "description": "鍵是 passes.json 的票券 ID（kintetsu-rail-pass-5day 等）或本檔自己說明的票券；true／false／null（不知道）",
+      "type": "object",
+      "additionalProperties": { "$ref": "common.schema.json#/$defs/nullableBoolean" }
+    },
+    "notes": { "$ref": "common.schema.json#/$defs/nullableString" },
+    "validFrom": { "anyOf": [{ "$ref": "common.schema.json#/$defs/date" }, { "type": "null" }] },
+    "retrieved": { "$ref": "common.schema.json#/$defs/date" },
+    "sources": { "$ref": "common.schema.json#/$defs/sources" },
+    "extra": { "type": "object" }
+  },
+  "required": ["id", "mode", "operator", "name", "stops", "loop", "loopMin", "service", "fares", "passes", "retrieved", "sources"],
+  "additionalProperties": false,
+  "$defs": {
+    "timeOrNull": { "anyOf": [{ "$ref": "common.schema.json#/$defs/time" }, { "type": "null" }] },
+    "day": {
+      "type": "object",
+      "properties": {
+        "first": { "description": "首班車（列出的站之中最晚的那個）；不知道填 null", "$ref": "#/$defs/timeOrNull" },
+        "last": { "description": "末班車（列出的站之中最早的那個）；過了午夜寫 24:xx", "$ref": "#/$defs/timeOrNull" },
+        "headway": {
+          "description": "時段與班距（分鐘）；不知道填 null",
+          "anyOf": [
+            {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "from": { "$ref": "common.schema.json#/$defs/time" },
+                  "to": { "$ref": "common.schema.json#/$defs/time" },
+                  "min": { "type": "number", "exclusiveMinimum": 0 }
+                },
+                "required": ["from", "to", "min"],
+                "additionalProperties": false
+              },
+              "minItems": 1
+            },
+            { "type": "null" }
+          ]
+        },
+        "note": { "$ref": "common.schema.json#/$defs/nullableString" }
+      },
+      "required": ["first", "last", "headway"],
+      "additionalProperties": false
+    },
+    "fareTable": {
+      "type": "object",
+      "propertyNames": { "pattern": "^[a-z0-9]+(-[a-z0-9]+)*$" },
+      "additionalProperties": {
+        "type": "object",
+        "propertyNames": { "pattern": "^[a-z0-9]+(-[a-z0-9]+)*$" },
+        "additionalProperties": { "type": "integer", "minimum": 0 }
+      }
+    }
+  }
+}

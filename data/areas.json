@@ -730,5 +730,150 @@
         "note": "りんくうタウン站的位置（center 是大致位置，T8b 用 Google Maps 確認）"
       }
     ]
+  },
+  {
+    "id": "osaka",
+    "type": "area",
+    "name": {
+      "ja": "大阪",
+      "kana": "おおさか",
+      "zh": "大阪",
+      "en": "Osaka"
+    },
+    "municipality": "大阪市",
+    "definition": "大阪市內會去的子地區（難波・道頓堀、大阪城、天王寺・新世界、海遊館・天保山、USJ、梅田）。行程最後 1～2 天；只蒐集這些子地區，不蒐集整個大阪市。",
+    "tripOrder": 4,
+    "center": [
+      135.48,
+      34.67
+    ],
+    "bbox": [
+      135.4,
+      34.6,
+      135.56,
+      34.73
+    ],
+    "stations": [
+      "osaka-namba",
+      "osaka-uehommachi",
+      "tsuruhashi",
+      "nankai-namba",
+      "nankai-shin-imamiya",
+      "jr-osaka",
+      "jr-nishikujo",
+      "jr-universal-city",
+      "jr-shin-imamiya",
+      "jr-tennoji",
+      "jr-tsuruhashi",
+      "jr-morinomiya",
+      "jr-osakajokoen",
+      "metro-umeda",
+      "metro-higashi-umeda",
+      "metro-hommachi",
+      "metro-shinsaibashi",
+      "metro-namba",
+      "metro-dobutsuen-mae",
+      "metro-tennoji",
+      "metro-sakaisuji-hommachi",
+      "metro-tanimachi-4chome",
+      "metro-morinomiya",
+      "metro-osakako",
+      "metro-nagahoribashi",
+      "metro-osaka-business-park",
+      "metro-tenjimbashisuji-6chome",
+      "metro-nippombashi",
+      "metro-ebisucho",
+      "metro-tanimachi-9chome",
+      "metro-shitennojimae-yuhigaoka"
+    ],
+    "notes": "2026-10-26 加入（T27a）。tripOrder 和 kix 同為 4：最後一晚住大阪或關西機場周邊，由排行程時選。stations 由 T28 補（T27a 之後不改）。做法見 CONVENTIONS §4「大阪（都市區）的做法」。子地區的 center 是大致位置（車站或代表景點），之後用 Google Maps 確認。",
+    "regions": [
+      {
+        "id": "namba",
+        "name": {
+          "ja": "難波・道頓堀",
+          "zh": "難波・道頓堀"
+        },
+        "center": [
+          135.501,
+          34.667
+        ],
+        "needsCar": false,
+        "note": "含心斎橋、日本橋、上本町。住宿的據點：近鐵（大阪難波、大阪上本町）、南海（なんば）、地鐵都到"
+      },
+      {
+        "id": "osaka-castle",
+        "name": {
+          "ja": "大阪城",
+          "zh": "大阪城"
+        },
+        "center": [
+          135.5259,
+          34.6873
+        ],
+        "needsCar": false,
+        "note": "大阪城公園一帶（天守閣、西の丸庭園），最近的站是 JR 大阪城公園、地鐵谷町四丁目・森ノ宮"
+      },
+      {
+        "id": "tennoji",
+        "name": {
+          "ja": "天王寺・新世界",
+          "zh": "天王寺・新世界"
+        },
+        "center": [
+          135.5105,
+          34.6495
+        ],
+        "needsCar": false,
+        "note": "天王寺站、あべのハルカス、天王寺動物園、新世界（通天閣）一帶"
+      },
+      {
+        "id": "osaka-bay",
+        "name": {
+          "ja": "海遊館・天保山",
+          "zh": "海遊館・天保山"
+        },
+        "center": [
+          135.429,
+          34.6545
+        ],
+        "needsCar": false,
+        "note": "海遊館、天保山大観覧車一帶，地鐵中央線大阪港站"
+      },
+      {
+        "id": "usj",
+        "name": {
+          "ja": "ユニバーサルシティ",
+          "zh": "環球影城（USJ）"
+        },
+        "center": [
+          135.437,
+          34.666
+        ],
+        "needsCar": false,
+        "note": "USJ 和官方合作飯店一帶，JR ゆめ咲線ユニバーサルシティ站；不收餐廳（園內吃）"
+      },
+      {
+        "id": "umeda",
+        "name": {
+          "ja": "梅田",
+          "zh": "梅田"
+        },
+        "center": [
+          135.4959,
+          34.7025
+        ],
+        "needsCar": false,
+        "note": "JR 大阪站、各線梅田站一帶（梅田スカイビル、HEP FIVE）"
+      }
+    ],
+    "sources": [
+      {
+        "type": "wikipedia",
+        "url": "https://ja.wikipedia.org/wiki/%E5%A4%A7%E9%98%AA%E5%B8%82",
+        "retrieved": "2026-10-26",
+        "note": "大阪市的範圍（bbox 是大致範圍，只用來檢查座標）"
+      }
+    ]
   }
 ]

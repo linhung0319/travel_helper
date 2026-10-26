@@ -20,9 +20,13 @@
     "test:geo": "node --experimental-strip-types --disable-warning=ExperimentalWarning --test \"scripts/test/*.test.ts\"",
     "db:import": "node --experimental-strip-types --disable-warning=ExperimentalWarning scripts/db-import.mjs",
     "db:migrate": "npm run db:migrate -w worker",
+    "db:migrate:remote": "npm run db:migrate:remote -w worker",
     "build:validators": "node scripts/build-validators.mjs",
     "build:static": "node scripts/build-static.mjs",
     "dev:worker": "npm run dev -w worker",
+    "dev:tunnel": "npm run dev:tunnel -w worker",
+    "build:site": "npm run build && npm run build:static && node worker/scripts/build-site.mjs",
+    "deploy": "npm run build:site && npm run deploy -w worker",
     "e2e": "npm run e2e -w web --"
   }
 }

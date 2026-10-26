@@ -1,0 +1,120 @@
+{
+  "id": "nankai-rapit",
+  "mode": "private",
+  "operator": "南海電鉄",
+  "name": {
+    "ja": "南海 特急ラピート",
+    "zh": "南海 特急 Rapi:t"
+  },
+  "serviceType": "特急ラピート",
+  "stops": [
+    {
+      "id": "nankai-namba",
+      "min": 0,
+      "note": null
+    },
+    {
+      "id": "nankai-shin-imamiya",
+      "min": 2,
+      "note": null
+    },
+    {
+      "id": "izumisano",
+      "min": 28,
+      "note": "α、β 都停泉佐野"
+    },
+    {
+      "id": "rinku-town",
+      "min": 31,
+      "note": null
+    },
+    {
+      "id": "kansai-airport",
+      "min": 36,
+      "note": "β 多停堺、岸和田，約 37 分"
+    }
+  ],
+  "loop": false,
+  "loopMin": null,
+  "service": {
+    "weekday": {
+      "first": "06:53",
+      "last": "22:00",
+      "headway": [
+        {
+          "from": "06:00",
+          "to": "23:00",
+          "min": 30
+        }
+      ],
+      "note": "官方時刻表（2024-12-21 改正）：なんば發 06:00～22:00 每 30 分（:00／:30，10 時以後多為 :05／:35）；關西空港發 06:53～23:00，約每 30 分（:05／:35）。首班取較晚的（關西空港 06:53）、末班取較早的（なんば 22:00）。"
+    },
+    "saturday": null,
+    "holiday": {
+      "first": "07:06",
+      "last": "22:00",
+      "headway": [
+        {
+          "from": "06:00",
+          "to": "23:00",
+          "min": 30
+        }
+      ],
+      "note": "土・休日一套：なんば發 06:00～22:00 每 30 分；關西空港發 07:06～22:55。2/11 用這套。"
+    }
+  },
+  "fares": {
+    "currency": "JPY",
+    "adult": {
+      "nankai-namba": {
+        "kansai-airport": 1670
+      }
+    },
+    "child": {
+      "nankai-namba": {
+        "kansai-airport": 840
+      }
+    },
+    "note": "運賃 970／490＋特急券レギュラーシート 700／350（官方，全區間同價）＝大人 1,670、兒童 840 円。スーパーシート特急券 910／560。車上買特急券加 300 円（兒童同）；「南海・特急チケットレスサービス」便宜 150 円（兒童為大人的半價）。「関空トク割 ラピートきっぷ」（なんば・新今宮・天下茶屋・堺 ～ 關西空港，乘車券＋レギュラー特急券）大人 1,560、兒童 780 円，比單買便宜 110／60 円。運賃 970／490 不是官方頁取得（見 nankai-airport-express）。其他站之間：不明。"
+  },
+  "passes": {
+    "kintetsu-rail-pass-5day": false,
+    "kintetsu-rail-pass-5day-plus": false,
+    "nankai-kanku-tokuwari-rapit": true
+  },
+  "notes": "全車對號座 6 節（官方）。車內有「車内持込用手荷物スペース」（行李放置區，容量官方未寫）、行李架（ハットラック）、輪椅空間、廁所、洗面台。レギュラーシート每排 4 席、座位間距 1,030 mm。15 人一起坐要事先用チケットレス或窗口買同一班的票（一次能買幾張：不明）。站間分鐘取下行 α 21 號（平日 12:05 なんば發：新今宮 12:07、泉佐野 12:33、りんくうタウン 12:36、關西空港 12:41）；β 多停堺、岸和田，到關西空港約 37 分。",
+  "validFrom": "2024-12-21",
+  "retrieved": "2026-10-26",
+  "sources": [
+    {
+      "type": "official",
+      "url": "https://www.nankai.co.jp/traffic/express/rapit.html",
+      "retrieved": "2026-10-26",
+      "note": "南海 ラピート介紹頁：特急券（レギュラー 700／350、スーパー 910／560）、車內設備（行李空間、輪椅空間）"
+    },
+    {
+      "type": "official",
+      "url": "https://www.nankai.co.jp/lib/traffic/express/rapit/pdf/rairt_down.pdf",
+      "retrieved": "2026-10-26",
+      "note": "南海 ラピート時刻表 下り（なんば→關西空港，平日／土休日，2024-12-21）"
+    },
+    {
+      "type": "official",
+      "url": "https://www.nankai.co.jp/lib/traffic/express/rapit/pdf/rairt_up.pdf",
+      "retrieved": "2026-10-26",
+      "note": "南海 ラピート時刻表 上り（關西空港→なんば，平日／土休日，2024-12-21）"
+    },
+    {
+      "type": "official",
+      "url": "https://www.nankai.co.jp/traffic/otoku/kankutokuwari.html",
+      "retrieved": "2026-10-26",
+      "note": "南海 関空トク割 ラピートきっぷ（1,560／780 円）"
+    },
+    {
+      "type": "other",
+      "url": "https://ekitan.com/transit/fare/sf-5130/st-4104",
+      "retrieved": "2026-10-26",
+      "note": "駅探：關西空港→難波(南海) 運賃 970／490 円"
+    }
+  ]
+}

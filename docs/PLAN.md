@@ -1,7 +1,7 @@
 # 伊勢志摩旅遊規劃網站：執行計畫
 
 > 旅程：2027-02-02 ～ 2027-02-13，使用近鐵 5 日券
-> 行程方向：從南邊的**志摩市**開始，往北到**鳥羽市**，最後到**伊勢市**
+> 行程方向：從南邊的**志摩市**開始，往北到**鳥羽市**、**伊勢市**，最後 1～2 天在**大阪**（2026-10-26 加入）；最後一晚住大阪或關西機場周邊，由使用者排行程時自己選
 > 人數：**15 人**（5 位約 70 歲的長輩、4 位 6～10 歲的小孩）；部分行程全員一起，部分分組（4～6 人一組）
 > 文件建立：2026-10-17
 > 資料格式與共同規則見 [CONVENTIONS.md](CONVENTIONS.md)；網站的互動設計見 [interaction-design.md](interaction-design.md)；技術選型、資料庫、部署、登入見 [architecture.md](architecture.md)（寫程式的任務開工前先讀）
@@ -101,9 +101,17 @@
 | T21 | 代表照片：每個資料點挑一張最能代表的照片，排到 `photos` 第一張 | M | T13、T13b | 3 | | ✅ |
 | T20 | 匯出給 Claude app：最終行程、分組和資料整理成 claude.ai Project 用的檔案 | S | T15、行程定案 | 6 | | ⬜ |
 | T22 | monorepo 調整：npm workspaces（`packages/engine`、`web`、`worker`、`scripts`） | S | — | 3 | | ✅ |
-| T23 | 👤 LINE 登入小實驗：免費官方帳號能不能查單一群組成員 | S | — | 3 | | ⬜ |
+| T23 | 👤 LINE 登入小實驗：免費官方帳號能不能查單一群組成員 | S | — | 3 | | ✅ |
 | T24 | 資料庫與匯入：D1 資料表、匯入腳本（比對、衝突、下架）、資料與修改的 API | M | T22、T13 | 3 | | ✅ |
-| T25 | Worker：LINE 登入、群組檢查、白名單、部署到 Cloudflare | M | T23、T24 | 4 | 🌐 少量 | ⬜ |
+| T25 | Worker：LINE 登入、群組檢查、白名單、管理頁（本機可以完整跑；部署拆到 T30） | M | T23、T24 | 4 | 🌐 少量 | ✅ |
+| T26 | 👤 Places 照片備案：資料點對應 place ID；主照片失效、或詳情往下捲時，透過 Worker 即時向 Places API 取照片（不存照片） | M | T25 | 4 | | ⬜ |
+| T27a | 👤 大阪：子地區與景點（含 USJ） | S | — | 3 | 🌐 大量 | ✅ |
+| T27b | 大阪：住宿 | S | T27a | 3 | 🌐 大量 | ⬜ |
+| T27c | 大阪：餐廳（候選和詳細資料一起做） | M | T27a | 3 | 🌐 大量 | ⬜ |
+| T27d | 大阪：收尾、摘要與評分、代表照片（自動排序）、匯入 | S | T27b、T27c | 3 | | ⬜ |
+| T28 | 大阪交通：近鐵 大阪 ↔ 伊勢志摩的特急（北上回大阪、第一天南下志摩）、市區路線的所需時間和班距、大站轉乘的步行時間和電梯 | M | — | 3 | | ✅ |
+| T29 | engine：班距型路線（市區鐵道）、轉乘步行；車站面板顯示班距 | S | T28（格式定好就可以開始） | 3 | 🌐 少量 | ⬜ |
+| T30 | 👤 部署到 Cloudflare：正式的 D1 和 secret、網站和 Worker、正式環境第一次匯入、LINE 改用正式網址、LINE 內建瀏覽器實測 | S | T25、👤 資料和 schema 定案（邀請家人之前） | 4 | 🌐 少量 | ⬜ |
 
 ---
 
@@ -170,12 +178,13 @@
   [T11 地圖 v1]   [T14 行程引擎]   [T24 資料庫與匯入]         │
        ▼               │                  └────────┬──────────┘
   [T12 地圖動作 API]   │                           ▼
-       │               │                  [T25 登入、部署]
+       │               │                  [T25 登入]
        ▼               ▼                           │
 階段 4 └───────┬───────┘                           │
                ├──► [T15m 行程與建議 UI 原型] ──► [T15 串接] ◄──┤（T15 需 T15m、T24、T25）
                └──► [T16m AI Agent UI 原型] ───► [T16 串接] ◄──┘（T16 需 T16m、T24、T25）
                     （T15m、T16m 並行，現在就能做；規劃模式的提議要用 T15m 的時間軸）
+                    [T30 部署]（T25 之後；👤 資料和 schema 定案、邀請家人之前）
                                       │
 階段 6                        [T20 匯出給 Claude app]（行程定案後）
 ```
@@ -215,6 +224,31 @@ T7j → T8g → T9g → T13 → T21 → T11、T14、T24（並行）→ T12 → T
 - **假的東西只在 dev server 有**（和 `dev-fixtures/fakeItinerary.ts` 一樣），正式 build 不帶。假後端照 T24 已有的 API 形狀（architecture §4「資料 API」）寫，串接時只換實作，畫面的程式不改。
 - **原型驗證不了的**：AI 回答的品質、等待時間、真的同時編輯。這些留到 T15、T16 串接時再看。
 
+2026-10-26 加上 **T26 Places 照片備案**（👤 決定）：
+
+- 資料裡約 330 個點用到 Google Maps 的照片網址（`googleusercontent`），其中 173 個點的代表照片就是它；這種網址沒有保證能用多久（2026-10-26 抽測：`gps-proxy` 格式的 2 張已經 403，其他格式正常）。Places API 的照片代號和網址依條款不能存，所以改成用到時才即時查。
+- **T26 在 T25 之後**：要用 Worker 的登入和 secret；和 T15、T16 可以同時做（T26 只改詳情的照片區）。
+
+2026-10-26 **T25 拆出部署（T30）**（👤 決定）：
+
+- 預設資料和 schema 還會變（大阪、介面任務），所以先不部署。T25 做到本機可以完整跑（`npm run dev:tunnel` 用真的 LINE 登入、群組檢查、管理頁），部署留給 T30。
+- **T30 在 👤 確定資料和 schema 之後、邀請家人之前做**：第一次正式匯入之後 ID 不改名（architecture §3.5）。在那之前不影響其他任務：T15、T16、T26 都可以在本機用 `dev:worker`、`dev:tunnel` 開發和測試。
+- LINE 內建瀏覽器的版面實測（接 T11）要用正式網址（ngrok 免費版有警告頁），跟著移到 T30。
+
+2026-10-26 加上**大阪**（👤 決定：最後 1～2 天在大阪）：
+
+```
+T27a（👤 子地區）──┬──► T27b 住宿 ──► T27c 餐廳 ──► T27d 收尾、評分、匯入
+                   │   （兩個都用 Chrome，依序；T27c 只依賴 T27a，T27b 卡住時可以先做）
+T28 大阪交通 ──────┴──► T29 engine 班距型路線（T28 格式定好就可以開始，和 T27c 同時做）
+```
+
+- **照前三區的經驗縮小範圍**（討論見 2026-10-26 的 session；做法寫在 CONVENTIONS §4「大阪（都市區）的做法」）：不做深入調查和 g 任務、不做 D 規則和每天的缺漏檢查、不做數量控制、不記 IG、不跑じゃらん、代表照片照來源自動排序（不逐張看圖）。評分一開始就照最新的 §5.1 和各區共用的補充，門檻打分前就訂好。
+- **手動執行，不進指揮 session**：份量小（約 4 個 session），要 👤 決定的（子地區、USJ 的範圍、邊界判斷）當場問，不累積到 decisions-pending 再開 g 任務。
+- **T27a 和 T28 同時開始**：T28 的路線範圍照 T27a 預定的子地區（難波、大阪城、天王寺、海遊館、USJ、梅田）先抓，T27a 定案後再補。
+- **T27b、T27c 都用 Chrome，不同時跑**：T27b 先（份量小）。
+- **和介面任務不衝突**：區域不寫死（T11、T12、T24 已經處理），新區域的資料只要 validate 通過、重新匯入、重新 build 就會出現。T29 改 `packages/engine`，和 T15m、T16m 同時做時先講好介面。
+
 ### 同時可以開幾個 session
 
 | 時間點 | 可同時進行 | 建議 session 數 |
@@ -228,7 +262,9 @@ T7j → T8g → T9g → T13 → T21 → T11、T14、T24（並行）→ T12 → T
 | 階段 3 最後 | T7j→T8g→T9g→T13→T21（依序，見上方「接下來的順序」） | 1 |
 | 階段 3 介面 | T22 先做；之後 T11、T14、T24 並行，T11 完成後接 T12，T24 完成後接 T25 | 2～3 |
 | 階段 4 原型 | T15m、T16m 並行（T15m 可拆成三個子任務，見任務說明）；同時 👤 做 T23，接著 T25 | 2～4 |
-| 階段 4 串接 | T15、T16 並行（需 T15m／T16m、T24、T25） | 2 |
+| 階段 4 串接 | T15、T16 並行（需 T15m／T16m、T24、T25）；T26 也在 T25 之後，可以同時做 | 2～3 |
+| 大阪 | T27a（🌐）＋T28 並行；之後 T27b → T27c（🌐，依序），T29 和 T27c 並行；最後 T27d。可以和階段 4 的介面任務同時做 | 2 |
+| 部署 | T30（👤 資料和 schema 定案後；不和改 `worker/wrangler.jsonc`、migration 的任務同時做） | 1 |
 | 階段 6 | T20 | 1 |
 
 ### 為什麼這樣排
@@ -585,7 +621,7 @@ T7c → T7d → T7e → T7f → T7g → T8a → T8b → T8c → T8d → T7i → 
 - **完成條件**：
   - 手機尺寸（約 390px 寬）和電腦尺寸都能完成：找到一個點 → 看小卡片 → 開詳情 → 關掉；切換天數；套用、取消篩選；切到探索模式，移動地圖時圖片牆跟著換。
   - 上面這些流程有 Playwright 測試（architecture §8）。
-  - 在手機的 LINE 內建瀏覽器打開過（👤 協助），沒有版面跑掉或點不到的地方。**（2026-10-22 👤 決定：移到 T25，部署後和 LINE 登入一起實測）**
+  - 在手機的 LINE 內建瀏覽器打開過（👤 協助），沒有版面跑掉或點不到的地方。**（2026-10-22 👤 決定：移到 T25，部署後和 LINE 登入一起實測；2026-10-26 部署拆到 T30，跟著移到 T30）**
 
 ### T12 地圖動作 API 〔S〕
 - 在 T11 的 store 上定義一組地圖指令，**UI 和 AI 都透過它操作地圖**：
@@ -687,7 +723,7 @@ T7c → T7d → T7e → T7f → T7g → T8a → T8b → T8c → T8d → T7i → 
 
 ### T16 AI Agent：串接 〔M〕
 - **把 T16m 的假 AI 換成 Claude API 的 tool use**；畫面和工具不改。
-- API key 不可以放在前端。T25 的 Worker 只負責轉發並加上 API key；只有登入的人能用，依使用者設每天的用量上限。開工時先估算 15 人使用的費用，再定上限和模型（[architecture.md](architecture.md) §6）。
+- API key 不可以放在前端。Worker 只負責轉發並加上 API key（`POST /api/claude/messages`，T25 沒做，在這裡做）；只有登入的人能用，依使用者設每天的用量上限。開工時先估算 15 人使用的費用，再定上限和模型（[architecture.md](architecture.md) §6）。
 - **系統提示詞和工具說明**：用 T16m 的對話腳本當測試案例，調到真的模型在這些情境下會呼叫對的工具。
 - **脈絡**、交通的路線連結、兩種模式的限制照 T16m 的說明，這裡確認真的模型做得到。
 - **聊天紀錄**改存 D1（`/api/chats`），只有自己看得到。
@@ -742,23 +778,139 @@ T7c → T7d → T7e → T7f → T7g → T8a → T8b → T8c → T8d → T7i → 
 - 要寫測試：合併規則、三方比對、下架、轉址。
 - 會在 T21 之後再匯入一次（照片順序變了），確認重跑沒有問題。
 
-### T25 Worker：登入與部署 〔M〕
+### T25 Worker：登入 〔M〕
+- **2026-10-26 👤 決定：部署拆到 T30**。T25 做到本機可以完整跑：`npm run dev:tunnel` 用真的 LINE 登入、群組檢查、管理頁。
 - 照 [architecture.md](architecture.md) §4、§5 做：
   - LINE 登入（OAuth、驗證 ID token）、群組成員檢查、白名單、登入憑證（HttpOnly cookie）、`GET /api/me`。
   - LINE 的通知：驗證簽章，記下群組 ID、成員加入、退出。
   - 除了登入和 LINE 的通知，所有 API 都要先登入。
-  - Claude API 代理（`POST /api/claude/messages`）和每人每天的用量上限；API key 存成 Worker secret。也可以留到 T16 再做。
-  - 部署到 Cloudflare：網站、Worker、D1 的正式環境；正式環境的 D1 第一次匯入（T24 的腳本）。
+  - ~~Claude API 代理~~：留到 T16。
+  - 部署的設定（`wrangler.jsonc` 的 `assets`、`npm run build:site`、`deploy`、匯入的 `--remote`）先做好，實際部署在 T30。
   - 白名單用的簡單管理頁（只有 👤 能看）。
-- 部署和 LINE 的設定需要 👤：Cloudflare 帳號、LINE channel 的 secret、ngrok 帳號（固定網域）。
+- LINE 的設定需要 👤：LINE channel 的 secret、ngrok 帳號（固定網域）。
 - **本機開發用 ngrok 通道**（2026-10-23 👤 決定，見 [architecture.md](architecture.md) §4「本機接 LINE」「設定值和 secret」）：
   - 加 `npm run dev:tunnel`：啟動 `wrangler dev`，用 `@ngrok/ngrok` 開固定網域的通道，在 terminal 印出要貼到 LINE Developers 的 Webhook URL、Callback URL。
-  - `PUBLIC_BASE_URL` 用來組 `redirect_uri`。
+  - `PUBLIC_BASE_URL` 用來組 `redirect_uri`（`dev:tunnel` 自動帶 ngrok 的網址）。
   - 本機的值放在 `worker/.env`，附一個 `worker/.env.example`（只有名稱、沒有值）。正式環境用 `wrangler secret put`。
-  - 部署前把 `wrangler.jsonc` 的 `DEV_AUTH` 改成只在本機生效。
+  - `DEV_AUTH` 從 `wrangler.jsonc` 拿掉：只有 `dev:worker` 傳 `"1"`，而且只認 localhost 的請求。
   - 變數名稱定案後更新 architecture §4 的表。
-- 在手機的 LINE 裡實際登入一次（🌐 少量：電腦上的流程可以用 Chrome 看）。
-- **LINE 內建瀏覽器實測（接 T11）**（2026-10-22 👤 決定）：登入時一併看地圖網站在 iOS、Android 的 LINE 內建瀏覽器有沒有版面跑掉或點不到的地方（天數分頁左右滑、拉起面板的把手、小卡片→詳情、iPhone 下緣的安全區域、外站照片能不能顯示），結果寫進 T25 的回報；有問題的另開任務修。
+- 在手機的 LINE 裡實際登入一次（🌐 少量：電腦上的流程可以用 Chrome 看）。2026-10-26 用 `dev:tunnel` 實測：👤 用 iPhone 登入（管理員）、在管理頁核准測試群組，都正常。
+- LINE 內建瀏覽器的版面實測移到 T30（要用正式網址）。
+
+### T30 👤 部署到 Cloudflare 〔S〕
+- **什麼時候做**：👤 確定預設資料和 schema 之後、邀請家人之前（2026-10-26 👤 決定）。第一次正式匯入之後 ID 不改名（[architecture.md](architecture.md) §3.5）；在那之前，正式環境的 D1 可以清空重建。
+- 步驟照 [architecture.md](architecture.md) §4「部署（T30）」：
+  1. 👤 註冊 Cloudflare（免費方案）、`npx wrangler login`；第一次用 Workers 要選帳號的子網域。
+  2. `npx wrangler d1 create travel-helper`，把 ID 填進 `worker/wrangler.jsonc` 的 `database_id`；`npm run db:migrate:remote`。
+  3. `npm run deploy`（`build:site` 加 `wrangler deploy`），拿到正式網址 `https://travel-helper.<子網域>.workers.dev`。
+  4. secret：LINE 的四個值、`ADMIN_LINE_USER_IDS` 和本機一樣；`SESSION_SECRET` 另外產生一組（不和本機共用）；`PUBLIC_BASE_URL` 是正式網址。用 `wrangler secret put`，不寫進檔案。
+  5. 正式環境第一次匯入：`npm run db:import -- --all --remote` 出報告，👤 看過再 `--apply … --remote`。
+  6. 👤 在 LINE Developers：Messaging API 的 Webhook URL 改成正式網址（只能填一個，之後本機的 `dev:tunnel` 就收不到通知）；LINE Login 的 Callback URL 加上正式網址（可以填多個，ngrok 的留著）。
+  7. 機器人已經在群組裡的話，在群組講一句話，正式環境才會記下這個群組；👤 在正式的 `/admin` 核准。
+- **決定群組裡貼的網址**：要不要加 `?openExternalBrowser=1`（用手機的預設瀏覽器打開，architecture §5「要注意的地方」），和 👤 一起試過再決定。
+- **LINE 內建瀏覽器實測（接 T11）**（2026-10-22 👤 決定）：登入時一併看地圖網站在 iOS、Android 的 LINE 內建瀏覽器有沒有版面跑掉或點不到的地方（天數分頁左右滑、拉起面板的把手、小卡片→詳情、iPhone 下緣的安全區域、外站照片能不能顯示）；Android 的 LINE 登入也一起測（T23 只測了 iPhone）。結果寫進 T30 的回報；有問題的另開任務修。
+- 完成條件：正式網址用 LINE 登入成功（iOS、Android）；不在群組的人被擋下、出現在管理頁的「等待核准」；`wrangler tail` 看得到 webhook 的通知；正式環境的 D1 有匯入紀錄。
+
+### T26 👤 Places 照片備案 〔M〕
+- 目的：主照片打不開、或想在詳情多看幾張照片時，用 Places API (New) 即時取得 Google Maps 上的照片。**照片代號和照片網址都不存**（Google 條款只允許長期保存 place ID），每次用到才查。
+- **做不到的**：API 回傳的照片沒有分類，分不出食物、菜單；每個地點最多 10 張。所以不拿來看菜單，菜單照舊用 `menu` 連結（CONVENTIONS §4「菜單」）。
+- 👤 要做的事：
+  - 開 GCP 專案、綁帳單帳戶、啟用 Places API (New)；API key 限制只能用 Places API。
+  - 在 GCP 設預算警示和每日用量上限。
+- 動工前先查最新的計價和每月免費額度（Place Details 只取 `photos`、Place Photo、Text Search），寫進 architecture.md，附來源和取得日期。
+- **資料點對應 place ID**（一次性腳本，可以重跑）：
+  - 現在 518 個資料點的 `links.googleMaps` 是 `?cid=…` 網址，沒有 place ID；Places API 不收 cid。
+  - 每個點用 Text Search 搜店名、限定在資料點座標附近，拿回的 `googleMapsUri` 裡的 cid 和我們的一樣才算對到；對不上或找到多個的列給 👤。
+  - place ID 存在哪個欄位由本任務決定；要改 schema 的話照 CONVENTIONS 的規則提出。之後查照片回 NOT_FOUND 時重新搜尋（place ID 偶爾會變）。
+- **Worker**：
+  - `GET /api/places/photos?point=<資料點 ID>`（要先登入）：用 Place Details（field mask 只有 `photos`）拿照片代號，再取每張的短期網址，連同上傳者名字回傳。
+  - API key 存成 Worker secret（名稱由本任務定，更新 architecture §4 的表）；key 不出現在網頁上。
+  - 每人每天的次數上限（同 T25 的 Claude API 用量上限）；不把照片代號、網址寫進 D1。
+- **介面**（詳情的照片區）：
+  - 使用者往下捲到照片區底部時才查，不在打開網站或打開詳情時就查。
+  - 主照片載入失敗時，改用 Places 的第一張。
+  - 照 Google 的規定顯示上傳者名字等標示。
+- 要寫測試：cid 比對、place ID 對應的結果分類（對到、對不上、多個）、Worker 的登入檢查和次數上限、照片區只在捲到時才查。
+- 完成條件：對應報告交給 👤 看過；手機尺寸實測「捲到才查」和「主照片失效改用 Places」；一天的用量在免費額度內（附估算）。
+
+### T27a～T27d 大阪
+- 區域 `osaka`，最後 1～2 天（2026-10-26 👤 決定）。最後一晚住大阪或關西機場周邊（`kix`）由使用者排行程時選，兩區的資料都保留，不互相取代。
+- **照 CONVENTIONS §4「大阪（都市區）的做法」**：它列出標準作業流程裡哪些步驟在大阪不做、哪些改了。其他照標準作業流程、讀文與筆記、§5 的規則。
+- **手動執行**（不進指揮 session），每個任務用自己的 worktree；要 👤 決定的當場問。開工先讀 `data/raw/osaka/README.md`（T27a 建立）。
+- 工具沿用（T19 已經把 `jalan.mjs`、`lib/tabelog-list.mjs`、`restaurant-anchors.mjs` 改成不限三重）；照舊不在 scratchpad 重寫。
+
+#### T27a 👤 子地區與景點 〔S〕（Chrome）
+- **`areas.json` 加區域 `osaka`**（例外允許，見 CONVENTIONS §2）：`name`、`municipality`、`definition`、`tripOrder`（排在伊勢之後，和 `kix` 同一個數字或下一個，由本任務決定）、`center`、`bbox`（大阪市＋USJ 一帶，只用來檢查座標）、`stations`（T28 新增的車站，T28 還沒完成就先留空、T28 補）。
+- **子地區**，預定（👤 確認、增減）：
+  - **難波・道頓堀**（含心齋橋、日本橋、上本町；住宿的據點，近鐵、南海都到）
+  - **大阪城**
+  - **天王寺・新世界**
+  - **海遊館・天保山**
+  - **ユニバーサルシティ（USJ）**
+  - **梅田**（可選）
+- **景點 10～15 筆**：來源用大阪觀光局（OSAKA-INFO）、各設施官網、Google 星數和評論數；不跑觀光三重的腳本（不適用）。照標準作業流程步驟 1～3：讀文 subagent 讀官網（營業、票價含兒童和團體、電梯、園內或館內步行、2 月營業），Chrome 查 Google Maps；景點不讀口コミ、Google 評論（大阪的景點資料多，筆記心得不到 2 篇的例外）。
+- **USJ** 是一筆景點，另外記：
+  - 票價依日期變動：2027 年 2 月的價格月曆還沒公布的話，記查得到的最近一個同期（或同星期幾）價格當參考，`fares` 的 note 寫查詢日期和「出發前要再查」。
+  - 身高限制：哪些設施 6～10 歲（約 115～140 cm）可以玩、哪些不行，記在 `kids.note` 或筆記。
+  - 長輩：輪椅、代步車出租，休息處；園內步行時間記在 `stayMinutes` 的 note。
+  - 快速通關（Express Pass）的價格範圍、要不要事先買；入場人數多的日子（2/11 國定假日）。
+  - 園內餐廳不另外收進 `restaurants.json`。
+- 子地區、景點清單定案前先和 👤 確認（T8a、T9a 的做法）。
+- 寫 `areas.json`（`osaka` 這一筆）、`data/areas/osaka/spots.json`、`data/raw/osaka/`（README、candidates、dossiers、questions、log）。
+- **完成（2026-10-26）**：子地區 6 個（含梅田，👤 完整收）、景點 14 筆；Google 評論不讀（👤）。`nearestStation` 先填 null（T28 的車站還沒進 master），預定 ID 在 `data/raw/osaka/log/T27a.md`，T28 先 merge 由 T27a、否則由 T27d 補。
+
+#### T27b 住宿 〔S〕（Chrome）
+- 照 T19 的做法（`data/raw/kix/log/T19.md`）：`scripts/rakuten.mjs` 用子地區中心查候選、`party` 查 15 人的房型組合、`detail` 拿細項評分和照片。
+  - **範圍**：難波一帶 10～15 間（含上本町、日本橋、心齋橋）；USJ 周邊 3～5 間（官方合作飯店多有 4～6 人的家庭房，適合排 USJ 那天）。
+  - **日期**：查 **2027-02-11（四，國定假日；隔天是平日，平日價）** 和 **2027-02-12（五，隔天是週六，休前日價）**，當成價格的代表，不查每一晚。
+  - **組合**：城市飯店大多是 2 人房，要查 `8x2`（`--combos 8x2 --party 16`），另外照常查 `5x3`、`4x4`、`3x5`。
+- 包棟（一棟住 15 人）另外找 3～5 間：照 §5.7 沒有評分的不排除、標「無評分」；只收有合法登記（旅館業或民泊的届出番号）寫在頁面上的。
+- 不跑じゃらん。Google 星數和評論數用 Chrome 的 `google-place.js`，而且**先跑 Google、拿到官網網址再開讀文 subagent**（T19 的建議）。
+- 讀口コミ、Google 評論：只讀 `party` 有 15 人組合、或包棟的那幾間。
+- 每間都要算 `dinnerAccess`（城市飯店大多不含晚餐），T27c 收完餐廳後由 T27d 重算。
+- 寫 `data/areas/osaka/lodging.json`、`data/raw/osaka/`。
+
+#### T27c 餐廳 〔M〕（Chrome）
+- **候選和詳細資料一起做**（店少，不拆成兩個任務）。照 CONVENTIONS §4「大阪（都市區）的做法」的納入標準，目標 **30～40 家**：
+  - **全員用（能坐 15 人、能訂位）8～10 家**，集中在難波（住宿的據點），其他子地區各 1～2 家：食べログ列表用個室、貸切篩選（T19 的 `tabelog-list.js` 做法），候選的 `note` 抄個室、貸切的人數。
+  - **分組用（4～6 人）每個子地區 3～5 家**：大阪名物（たこ焼き、お好み焼き、串カツ）和平價的店，不用預約的優先。
+  - USJ 子地區不收（園內吃）。
+- 照標準作業流程步驟 8 查食べログ、Google Maps（`candidates.mjs export` → `chrome-actions.mjs` → `build-restaurants.mjs`）；fit15 是 yes 或 split 的店看コース頁記團體套餐。
+- 讀口コミ、Google 評論只讀 fit15 是 yes 或 split 的店（T8e 的做法）。
+- 讀文 subagent 照舊（來源少的 3 家合一個）。
+- 寫 `data/areas/osaka/restaurants.json`、`data/raw/osaka/`。
+
+#### T27d 收尾、摘要與評分、匯入 〔S〕
+- `restaurant-anchors.mjs osaka`、`lodging-dinner-access.mjs`；不跑 `restaurant-gaps.mjs`（大阪不做缺漏檢查）。
+- **評分**：先在 `data/raw/toba/assessment-notes.md` 加「大阪」一節，**打分前**訂好這一區的數字門檻（試算 A 以上的比例，照「依區調整」），再照 §5.1 和各區共用的補充寫 `summary`、`assessment`、`tier`（三個類型各一批）。`localFlavor` 的「在地」換成大阪名物（見 CONVENTIONS）。跑 `assessment-check.mjs osaka`、`cross-area-check.mjs`。
+- **代表照片**：照 CONVENTIONS §4「大阪」的來源順序自動排第一張，`photo-check.mjs` 打不開的往後排；不逐張看圖。
+- validate 通過後，用 T24 的匯入腳本匯入 `osaka`（全部是新 ID，只會新增），重新 build 網站確認地圖上出現。
+- 更新 `data/raw/osaka/README.md`（現況、決定、給排行程的人看的限制）。
+
+### T28 大阪交通 〔M〕
+- **近鐵 大阪 ↔ 伊勢志摩**：把大阪難波、大阪上本町、鶴橋（ID `osaka-namba`、`osaka-uehommachi`、`tsuruhashi`，`passes.json` 已經用 `osaka-namba`）加進 `stations.json`，往返大阪的特急加進 `data/timetables/kintetsu/_travel-times.json`（格式不變，只收往返大阪的特急；大阪側的停站加進各班的 `stops`、`stationOrder`），兩個方向都要：
+  - **北上**（伊勢市、宇治山田、五十鈴川、鳥羽 → 大阪）：行程最後回大阪，2/9～2/13 平日、假日都要有。
+  - **南下**（大阪 → 鳥羽、志摩磯部、鵜方、賢島）：第一天從關西機場直接南下到志摩。2/2 是週二，收平日時刻。T1b 已經在 `data/access/kix.json` 手動列了 2/2 的 6 班（大阪難波 14:10～19:10 發），加進來後要對照，`trainNo` 要一致。來源和做法參考 `data/raw/access/kintetsu-osaka.md`（T1b 已經查過一部分），一併處理 `docs/requests.md`「[T1b] stations.json：大阪側轉乘站的無障礙資訊」。
+- **市區路線用班距表示**（格式見 CONVENTIONS §3「班距型路線」），不存完整時刻表：
+  - 預定的路線（照 T27a 的子地區增減）：Osaka Metro 御堂筋線、中央線、長堀鶴見緑地線（大阪城）、堺筋線（日本橋、天王寺）；JR 大阪環状線、ゆめ咲線（USJ）；南海（なんば ↔ 関西空港，和 `data/access/kix.json` 對照）；近鐵 難波線（大阪難波 ↔ 上本町 ↔ 鶴橋）。海遊館用地鐵中央線（大阪港）。
+  - 每條線記：站與站的所需分鐘、尖峰和離峰的班距、首班和末班車、大人和兒童票價、5 日券涵蓋哪一段。
+  - 先看 gtfs-data.jp、公共交通オープンデータセンター（ODPT）有沒有 Osaka Metro、JR 西日本、南海的開放資料，有的話用它算所需分鐘和班距（不存完整的 trips）；沒有就讀官網。照 robots.txt，被擋就停。
+- **轉乘**（大阪最影響長輩的部分）：難波（近鐵、南海、地鐵）、鶴橋（近鐵、JR）、天王寺、梅田、大阪城公園、西九条（JR 環状線 ↔ ゆめ咲線）這幾站，記站內轉乘的步行分鐘、有電梯的路線和出口、行李多時的走法，格式見 CONVENTIONS §3「轉乘」。
+- **票券比較**：Osaka Metro 的一日券（エンジョイエコカード 等）、大阪周遊パス 對 15 人（大人、兒童）划不划算，寫在 `data/raw/access/osaka.md`；計程車照 CONVENTIONS「團體（15 人）」記台數和估價規則（初乘、加算），不另外查包車。
+- **車站**加進 `stations.json`（例外允許，見 CONVENTIONS §2），ID 規則見 CONVENTIONS §1.5；`accessibility` 記電梯、無障礙廁所。
+- 要改 schema（班距型路線、轉乘）、validate 的路徑時，本任務直接改（例外允許），補測試、在 commit 訊息說明。
+- 寫 `data/stations.json`（大阪的車站）、`data/timetables/kintetsu/_travel-times.json`（大阪的特急）、`data/timetables/urban/`、`data/raw/access/osaka.md`、`schema/`（新格式）、`scripts/validate.mjs`。
+- **完成（2026-10-26）**：結果和沒查到的見 `data/raw/access/osaka.md`。gtfs-data.jp、ODPT 都沒有大阪的鐵道資料，全部讀官網。班距型路線 10 條（Osaka Metro 5 線含谷町線、JR 環状線・ゆめ咲線、南海空港急行・ラピート、近鐵難波線市區段），轉乘 22 筆，大阪車站 31 站。格式：`schema/urban-route.schema.json`、`urban-transfers.schema.json`（CONVENTIONS §3）。近鐵特急的大阪側停站用 `scripts/kintetsu-osaka.mjs` 補（T1 的腳本重跑後要再跑）。給 T29：環狀線 `stops` 是内回り順、`loopMin` 45；Osaka Metro 站內換線的 `walkMin` 多是 null（要有預設值）；南海空港急行的 `holiday` 整段 null。
+
+### T29 engine：班距型路線 〔S〕
+- 先讀 [architecture.md](architecture.md)。T28 定好 `data/timetables/urban/` 的格式就可以開始（可以先用 2～3 條線的資料寫測試）。
+- `packages/engine`：
+  - `EngineData` 加班距型路線和轉乘；`data.ts` 讀檔的部分照 `routes` 的做法。
+  - 搭車時間＝等車（班距的一半；全員時取整個班距，比較保守）＋車上分鐘＋轉乘步行（套 §5.4 的團體係數）。首班前、末班後不能搭，照現有的「錯過末班車」警告。
+  - 交通方式判斷：大阪的兩點之間，步行超過上限時先找班距型路線，再考慮計程車（§5.4）；近鐵特急照現有的時刻表算。
+  - 測試：等車和轉乘的計算、首末班、全員和分組的係數差別、伊勢 → 大阪難波 → 住宿的一段、第一天南下的一段（なんば → 近鐵大阪難波 步行轉乘 → 鵜方，結果和 `data/access/kix.json` 的 16:10 → 18:35 一致）。
+- **靜態資料的 build**（T24 的腳本，architecture §3.7）加上 `urban/`；**車站面板**（`web/`）對班距型路線顯示「約 N 分一班、首末班」，不列班次。改別人的程式要在 commit 訊息說明。
+- 完成條件：`npm test`、`npm run typecheck` 通過；假行程排一天大阪（難波 → 大阪城 → 天王寺 → 難波），時間軸和警告合理；手機尺寸看一次車站面板（🌐 少量）。
 
 ---
 
@@ -768,7 +920,7 @@ T7c → T7d → T7e → T7f → T7g → T8a → T8b → T8c → T8d → T7i → 
 - [x] 近鐵 5 日券用哪幾天：排完行程再決定，不夠可以再買一張，**蒐集資料時不用考慮**
 - [ ] 選 5 日券還是 **5 日券 Plus**（含奈良、三重的巴士）：同上，排完行程再決定
 - [x] 住宿預算：先不設上限，蒐集時把價格記錄下來
-- [ ] 12 天都待在伊勢志摩嗎？還是有幾天在大阪、京都、奈良、名古屋等其他地方？（會影響資料蒐集的範圍）
+- [x] 12 天都待在伊勢志摩嗎？（2026-10-26）最後 1～2 天在大阪（T27a～T29）；最後一晚住大阪或關西機場周邊由使用者自己選
 - [x] 住宿偏好：不住評價差的地方；民宿（傾向包棟）、一泊二食、旅館、飯店都可以
 - [x] 同行人數：15 人
 - [x] 組成：5 位長輩（約 70 歲）、4 位小孩（6～10 歲）
