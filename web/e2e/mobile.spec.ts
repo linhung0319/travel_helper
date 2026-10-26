@@ -1562,3 +1562,87 @@ test('再點同一張卡：地圖被移開了也移回看得到的地方', async
   await card.getByTestId('trip-card-name').click();
   await expect.poll(() => visibleOnMap(page, 'shima-yokoyama-observatory'), { timeout: 10_000 }).toBe(true);
 });
+
+// ---------- 第七輪最終 review：很長的名稱（360 寬也一樣）：省略、不橫向捲動、右邊的鈕不被推走 ----------
+
+const LONG = '伊勢志摩國立公園英虞灣展望台附近非常非常非常長的名稱示範用地點（測試用）';
+
+/** 把這個點的中文名稱改成很長的一串（只改畫面上的資料） */
+async function makeLong(page: import('@playwright/test').Page, id: string) {
+  await page.evaluate(
+    ([id, name]) => {
+      const ds = (window as any).__th.dataStore;
+      const s = ds.getState();
+      s.byId.get(id).name = { ...s.byId.get(id).name, zh: name };
+      ds.setState({ byId: new Map(s.byId), places: [...s.places] });
+    },
+    [id, LONG] as const,
+  );
+}
+
+/** 字被截掉了（一行省略：寬度不夠；多行截斷：高度不夠） */
+const truncated = (l: import('@playwright/test').Locator) => l.evaluate((el) => el.scrollWidth > el.clientWidth + 1 || el.scrollHeight > el.clientHeight + 1);
+/** 整個在畫面寬度裡 */
+const insideWidth = (l: import('@playwright/test').Locator) => l.evaluate((el) => { const r = el.getBoundingClientRect(); return r.left >= 0 && r.right <= window.innerWidth + 0.5; });
+
+test('很長的名稱：想去的列省略，❤ 在畫面裡，不橫向捲動', async ({ page }) => {
+  await ready(page);
+  const [id] = await likeMany(page, 3);
+  await makeLong(page, id);
+  await goTab(page, 'wish');
+  await page.getByTestId('view-list').click();
+  const row = page.locator(`[data-testid="m-wish-item"][data-id="${id}"]`);
+  await expect(row).toBeVisible();
+  await expect(row).toContainText(LONG.slice(0, 6));
+  expect(await truncated(row.locator('.pr-name-text'))).toBe(true);
+  expect(await insideWidth(row.getByTestId('card-like'))).toBe(true);
+  expect(await insideWidth(row)).toBe(true);
+  expect(await scrollsSideways(page)).toBe(false);
+});
+
+test('很長的名稱：探索照片牆的格子省略，兩欄一樣寬，不橫向捲動', async ({ page }) => {
+  await ready(page);
+  await goTab(page, 'explore');
+  await page.getByTestId('view-photo').click();
+  const tiles = page.getByTestId('m-feed-item');
+  await expect(tiles.nth(1)).toBeVisible();
+  const id = (await tiles.first().getAttribute('data-id'))!;
+  const before = (await tiles.first().boundingBox())!.width;
+  await makeLong(page, id);
+  const tile = page.locator(`[data-testid="m-feed-item"][data-id="${id}"]`);
+  await expect(tile).toContainText(LONG.slice(0, 6));
+  expect(await truncated(tile.locator('.pt-name-text'))).toBe(true);
+  expect(Math.round((await tile.boundingBox())!.width)).toBe(Math.round(before));
+  expect(await insideWidth(tile)).toBe(true);
+  expect(await scrollsSideways(page)).toBe(false);
+});
+
+test('很長的名稱：展開的行程卡省略，「詳細資料」「問 AI」在畫面裡', async ({ page }) => {
+  await ready(page);
+  await pickDay(page, '2027-02-03');
+  const card = page.locator('[data-testid="m-card"][data-item="i-3"]');
+  await makeLong(page, 'shima-la-mer');
+  await card.getByTestId('trip-card').click();
+  await expect(card.getByTestId('trip-card-expand')).toBeVisible();
+  await expect(card.getByTestId('trip-card-name')).toContainText(LONG.slice(0, 6));
+  expect(await truncated(card.getByTestId('trip-card-name'))).toBe(true);
+  expect(await insideWidth(card.getByTestId('trip-card-detail'))).toBe(true);
+  expect(await insideWidth(card.getByTestId('trip-card-ask'))).toBe(true);
+  expect(await insideWidth(card)).toBe(true);
+  expect(await scrollsSideways(page)).toBe(false);
+});
+
+test('很長的名稱：詳情的頂端列省略，返回和 ❤ 在畫面裡', async ({ page }) => {
+  await ready(page);
+  // 沒有照片的車站：頂端列一直在
+  const id = await page.evaluate(() => ((window as any).__th.dataStore.getState().places as any[]).find((p) => p.type === 'station' && p.photos.length === 0).id);
+  await makeLong(page, id);
+  await page.evaluate((x) => (window as any).__thMobile.getState().openPlace(x, 'explore'), id);
+  const bar = page.getByTestId('m-detail-bar');
+  await expect(bar).toHaveAttribute('data-shown', 'true');
+  await expect(bar).toContainText(LONG.slice(0, 6));
+  expect(await truncated(bar.locator('.m-detail-bar-name'))).toBe(true);
+  expect(await insideWidth(bar.getByTestId('m-detail-bar-back'))).toBe(true);
+  expect(await insideWidth(bar.getByTestId('card-like'))).toBe(true);
+  expect(await scrollsSideways(page)).toBe(false);
+});
