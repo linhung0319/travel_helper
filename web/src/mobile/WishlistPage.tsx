@@ -3,7 +3,6 @@
 // 清單是 shared/ui/WishList：分成還沒排、已是候選、已排三段，有跳轉晶片、收合、每段 8 個；列可以左滑露出「加到某天」。
 // 點列 → 整頁詳情（openPlace(id, 'wish')）；點最新留言 → 整頁詳情的留言分頁。清單的計算和網頁版共用 shared/placeLists.ts（useWishList）。
 
-import { useEffect } from 'react';
 import { TYPE_LABELS } from '../lib/filter.ts';
 import { EXPLORE_TYPES } from '../lib/explore.ts';
 import { TYPE_COLORS } from '../lib/typeStyle.ts';
@@ -17,14 +16,10 @@ import { mobileStore, useMobile } from './mobileStore.ts';
 export function WishlistPage() {
   const wish = useMobile((s) => s.wish);
   const { setWish } = mobileStore.getState();
-  // 還沒選過類型：先用餐廳算數量，再挑有東西的那一類（還沒人 ❤️ 餐廳時先看景點）
-  const type = wish.type ?? 'restaurant';
+  // 預設「全部」（記住上次選的類型）
+  const type = wish.type;
   const model = useWishModel(type);
   const { pool, list, counts } = useWishList(model.filter, wish.query, wish.sort);
-  useEffect(() => {
-    if (wish.type || !pool.length) return;
-    setWish({ type: EXPLORE_TYPES.find((t) => counts[t] > 0) ?? 'restaurant' });
-  }, [wish.type, pool.length, counts, setWish]);
 
   return (
     <div className="m-wish" data-testid="m-wish">
@@ -36,6 +31,9 @@ export function WishlistPage() {
         count={list.length}
         typeRow={
           <div className="m-segmented fb-segmented" role="tablist" aria-label="類型">
+            <button type="button" role="tab" aria-selected={type === 'all'} aria-pressed={type === 'all'} className={type === 'all' ? 'on' : ''} onClick={() => setWish({ type: 'all' })} data-testid="m-wish-type-all">
+              全部 {EXPLORE_TYPES.reduce((n, t) => n + counts[t], 0)}
+            </button>
             {EXPLORE_TYPES.map((t) => (
               <button key={t} type="button" role="tab" aria-selected={t === type} aria-pressed={t === type} className={t === type ? 'on' : ''} onClick={() => setWish({ type: t })} data-testid={`m-wish-type-${t}`}>
                 <i className="ui-type-dot" style={{ background: TYPE_COLORS[t] }} aria-hidden="true" /> {TYPE_LABELS[t]} {counts[t]}

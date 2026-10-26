@@ -83,6 +83,6 @@ export function feedFilter(feed: Pick<Feed, 'type' | 'area' | 'quick'>): Filter 
 }
 
 /** 想去的篩選：一次一類，加上地區和面板選的條件 */
-export function wishFilter(type: ExploreType, area: string | null, quick: string[] = []): Filter {
-  return addTokens({ ...EMPTY_FILTER, types: [type], areas: area ? [area] : [] }, quick);
+export function wishFilter(type: ExploreType | 'all', area: string | null, quick: string[] = []): Filter {
+  return addTokens({ ...EMPTY_FILTER, types: type === 'all' ? [] : [type], areas: area ? [area] : [] }, quick);
 }

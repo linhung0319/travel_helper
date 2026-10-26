@@ -98,19 +98,37 @@ function SwipeRow({ children, hint, onAdd }: { children: ReactNode; hint: boolea
   const st = useRef<{ x: number; y: number; base: number; active: boolean } | null>(null);
   const moved = useRef(false);
 
+  const rowRef = useRef<HTMLDivElement>(null);
+  const played = useRef(false);
+
+  // 提示只播一次：真的在畫面上、播完（彈回去）才記下來；中途被收掉就把位置歸零，下次再播
   useEffect(() => {
-    if (!hint) return;
+    if (!hint || played.current) return;
     try {
       if (localStorage.getItem(HINT_KEY)) return;
-      localStorage.setItem(HINT_KEY, '1');
     } catch {
       return;
     }
-    const a = setTimeout(() => setOffset(-40), 500);
-    const b = setTimeout(() => setOffset(0), 1100);
+    const a = setTimeout(() => {
+      const r = rowRef.current?.getBoundingClientRect();
+      if (!r || r.height === 0 || r.bottom < 0 || r.top > window.innerHeight || st.current) return;
+      setOffset(-40);
+    }, 500);
+    const b = setTimeout(() => {
+      const r = rowRef.current?.getBoundingClientRect();
+      if (!r || r.height === 0 || r.bottom < 0 || r.top > window.innerHeight) return;
+      played.current = true;
+      setOffset((o) => (o === -40 ? 0 : o));
+      try {
+        localStorage.setItem(HINT_KEY, '1');
+      } catch {
+        // 存不了：下次還會提示一次
+      }
+    }, 1100);
     return () => {
       clearTimeout(a);
       clearTimeout(b);
+      setOffset((o) => (o === -40 ? 0 : o));
     };
   }, [hint]);
 
@@ -127,7 +145,7 @@ function SwipeRow({ children, hint, onAdd }: { children: ReactNode; hint: boolea
   };
 
   return (
-    <div className="wl-swipe">
+    <div className="wl-swipe" ref={rowRef}>
       <button type="button" className="wl-swipe-add" style={{ width: SWIPE_W }} tabIndex={offset === -SWIPE_W ? 0 : -1} aria-hidden={offset !== -SWIPE_W} data-testid="wish-swipe-add" onClick={onAdd}>
         <Icon name="calendar" size={20} />
         加到某天
@@ -204,7 +222,7 @@ function WishItem({ place, status, section, surface, view, hot, hint, likes, las
     onOpen,
     rootProps: mobile ? undefined : { ...dragPlaceProps(place.id), title: '點了看詳情；拖到左邊的聊天室可以問 AI' },
   };
-  if (view === 'photo') return li(<PlaceTile {...common} />);
+  if (view === 'photo') return li(<PlaceTile {...common} extra={<Who ids={likes} />} />);
   const extra = (
     <>
       <SecondLine place={place} status={status} section={section} likes={likes} />
@@ -274,9 +292,11 @@ export interface WishListProps {
   hotId?: string | null;
   /** 要把這個點露出來（它那段展開、顯示到它） */
   revealId?: string | null;
+  /** 同一個點再被點到時也要再露出來（地圖點擊的流水號） */
+  revealSeq?: number;
 }
 
-export function WishList({ surface, places, view, onOpen, onOpenComments, hotId, revealId }: WishListProps) {
+export function WishList({ surface, places, view, onOpen, onOpenComments, hotId, revealId, revealSeq }: WishListProps) {
   const candidates = useShared((s) => s.candidates);
   const itinerary = useData((s) => s.itinerary);
   const likeCount = useLikeCount();
@@ -286,6 +306,8 @@ export function WishList({ surface, places, view, onOpen, onOpenComments, hotId,
   const collapsed = useMobile((s) => s.wish.collapsed);
   const [shown, setShown] = useState<Record<SectionId, number>>({ unscheduled: PAGE_FIRST, candidate: PAGE_FIRST, scheduled: PAGE_FIRST });
   const [current, setCurrent] = useState<SectionId>('unscheduled');
+  // 地圖點到而暫時展開的段落（不改記住的收合狀態）
+  const [forced, setForced] = useState<SectionId[]>([]);
   const root = useRef<HTMLDivElement>(null);
   const jump = useRef<HTMLDivElement>(null);
   useStickyOffsets(root, jump);
@@ -312,17 +334,30 @@ export function WishList({ surface, places, view, onOpen, onOpenComments, hotId,
   }, []);
 
   // 地圖點到的點在收合或還沒顯示的段落裡：展開、多顯示到它
+  // 只在 revealId（或 revealSeq）變了才做一次；展開只在這次畫面有效，不寫進記住的收合狀態
+  const sectionsRef = useRef(sections);
+  sectionsRef.current = sections;
+  const handled = useRef<string | null>(null);
   useEffect(() => {
     if (!revealId) return;
-    for (const sec of sections) {
+    const key = `${revealId}:${revealSeq ?? 0}`;
+    if (handled.current === key) return;
+    for (const sec of sectionsRef.current) {
       const i = sec.groups.flatMap((g) => g.ids).indexOf(revealId);
       if (i < 0) continue;
-      if (mobileStore.getState().wish.collapsed[sec.id]) setCollapsed(sec.id, false);
+      handled.current = key;
+      setForced((f) => (f.includes(sec.id) ? f : [...f, sec.id]));
       setShown((s) => (s[sec.id] > i ? s : { ...s, [sec.id]: i + 1 }));
     }
-  }, [revealId, sections]);
+  }, [revealId, revealSeq, sections]);
+
+  const toggle = (id: SectionId, open: boolean) => {
+    setForced((f) => f.filter((x) => x !== id));
+    setCollapsed(id, open);
+  };
 
   const goto = (id: SectionId) => {
+    setForced((f) => f.filter((x) => x !== id));
     if (collapsed[id]) setCollapsed(id, false);
     setCurrent(id);
     // 展開後再捲（收合的段落高度剛長出來）
@@ -360,13 +395,13 @@ export function WishList({ surface, places, view, onOpen, onOpenComments, hotId,
         ))}
       </div>
       {sections.map((sec) => {
-        const open = !collapsed[sec.id];
+        const open = !collapsed[sec.id] || forced.includes(sec.id);
         const groups = visibleGroups(sec.groups, shown[sec.id]);
         const rest = sec.count - groups.reduce((n, g) => n + g.ids.length, 0);
         return (
           <section key={sec.id} className="wl-section" data-section={sec.id}>
             <h3 className="wl-head">
-              <button type="button" aria-expanded={open} onClick={() => setCollapsed(sec.id, open)} data-testid={`wish-section-${sec.id}`}>
+              <button type="button" aria-expanded={open} onClick={() => toggle(sec.id, open)} data-testid={`wish-section-${sec.id}`}>
                 <span className={`chev ${open ? 'up' : ''}`}>
                   <Icon name="chevron" size={16} />
                 </span>

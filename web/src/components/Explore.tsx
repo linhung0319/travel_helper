@@ -148,6 +148,7 @@ export function ExplorePanel({ source = 'explore' }: { source?: ListSource }) {
             onOpenComments={open}
             hotId={hoveredId ?? target?.id ?? null}
             revealId={target?.id ?? null}
+            revealSeq={target?.seq}
           />
         ) : view === 'photo' ? (
           <PlaceWall items={list} render={(p, i) => <Item place={p} rank={i + 1} view={view} hot={hoveredId === p.id || target?.id === p.id} status={statusOf(p.id)} />} />

@@ -1112,7 +1112,6 @@ test('想去：每段先 8 個，再顯示 15 個', async ({ page }) => {
   await likeMany(page, 12);
   await goTab(page, 'wish');
   // 類型是一次一類：用景點
-  await page.getByTestId('m-wish-type-spot').click();
   const rows = page.locator('[data-section="unscheduled"] [data-testid="m-wish-item"]');
   const total = Number(((await page.getByTestId('wish-jump-unscheduled').locator('.ui-chip-count').textContent()) ?? '').trim());
   expect(total).toBeGreaterThanOrEqual(12);
@@ -1126,7 +1125,6 @@ test('想去：點最新留言開詳情的留言分頁', async ({ page }) => {
   const [id] = await likeMany(page, 1);
   await page.evaluate((id) => (window as any).__th.shared.comment(id, '這裡晚上很漂亮。要早點去', 'normal'), id);
   await goTab(page, 'wish');
-  await page.getByTestId('m-wish-type-spot').click();
   const row = page.locator(`[data-testid="m-wish-item"][data-id="${id}"]`);
   await row.scrollIntoViewIfNeeded();
   await expect(row.getByTestId('wish-last-comment')).toHaveText('這裡晚上很漂亮。');
@@ -1162,4 +1160,28 @@ test('想去：第一次打開，第一列自己滑一下提示，只提示一�
   await ready(page);
   await goTab(page, 'wish');
   await expect.poll(() => page.evaluate(() => localStorage.getItem('th.wishSwipeHint'))).toBe('1');
+});
+
+test('想去：打開時是「全部」，數字是各類加起來；記住選的類型', async ({ page }) => {
+  await ready(page);
+  await goTab(page, 'wish');
+  await expect(page.getByTestId('m-wish-type-all')).toHaveAttribute('aria-pressed', 'true');
+  const n = async (id: string) => Number(((await page.getByTestId(id).textContent()) ?? '').replace(/\D/g, ''));
+  const sum = (await n('m-wish-type-restaurant')) + (await n('m-wish-type-lodging')) + (await n('m-wish-type-spot'));
+  expect(await n('m-wish-type-all')).toBe(sum);
+  await page.getByTestId('m-wish-type-spot').click();
+  await goTab(page, 'trip');
+  await goTab(page, 'wish');
+  await expect(page.getByTestId('m-wish-type-spot')).toHaveAttribute('aria-pressed', 'true');
+});
+
+test('想去：照片牆的卡片有誰想去，沒有留言也沒有加到某天', async ({ page }) => {
+  await ready(page);
+  await goTab(page, 'wish');
+  await page.getByTestId('view-photo').click();
+  const card = page.getByTestId('m-wish-item').first();
+  await card.scrollIntoViewIfNeeded();
+  await expect(card.getByTestId('wish-who')).toBeVisible();
+  await expect(card.getByTestId('wish-last-comment')).toHaveCount(0);
+  await expect(card.getByTestId('wish-swipe-add')).toHaveCount(0);
 });

@@ -38,7 +38,7 @@ export interface ActionSheetSpec {
 
 /** 想去分頁的設定：哪一類（null＝還沒選，打開時挑有東西的那類）、地區、面板選的條件（quick，寫法同 Feed.quick）、搜尋、排序、大圖或清單（記在 localStorage）、三段哪幾段收起來（記在 localStorage，網頁版也用這份） */
 export interface WishView {
-  type: ExploreType | null;
+  type: ExploreType | 'all';
   area: string | null;
   quick: string[];
   query: string;
@@ -145,7 +145,7 @@ export function setMobileActive(active: boolean) {
 
 const FEED_VIEW_KEY = 'travel-helper:feedView';
 
-/** 探索上次的顯示方式（照片牆或清單）；讀不到就是清單（三段的列有誰想去、最新留言，預設用清單） */
+/** 探索上次的顯示方式（照片牆或清單）；讀不到就是照片牆 */
 function loadFeedView(): Feed['view'] {
   try {
     return localStorage.getItem(FEED_VIEW_KEY) === 'list' ? 'list' : 'photo';
@@ -205,7 +205,7 @@ export const mobileStore = createStore<MobileStore>()((set, get) => ({
   actions: null,
   page: null,
   feed: { ...EMPTY_FEED, view: loadFeedView() },
-  wish: { type: null, area: null, quick: [], query: '', sort: 'likes', view: loadWishView(), collapsed: loadWishCollapsed() },
+  wish: { type: 'all', area: null, quick: [], query: '', sort: 'likes', view: loadWishView(), collapsed: loadWishCollapsed() },
   // 換分頁：整頁的東西、半屏聊天都關掉
   setTab: (tab) => {
     const had = layerOpen(get());

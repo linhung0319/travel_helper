@@ -1531,3 +1531,27 @@ test('網頁想去：日曆鈕加到某天', async ({ page }) => {
   await expect(moved.getByTestId('place-caps')).toContainText('候選 2/6');
   await expect(page.locator(`[data-section="unscheduled"] [data-id="${id}"]`)).toHaveCount(0);
 });
+
+test('網頁想去：照片牆的卡片有誰想去，沒有留言', async ({ page }) => {
+  await ready(page);
+  await page.getByTestId('side-tab-wish').click();
+  await page.getByTestId('view-photo').click();
+  const card = page.getByTestId('wish-item').first();
+  await expect(card.getByTestId('wish-who')).toBeVisible();
+  await expect(card.getByTestId('wish-last-comment')).toHaveCount(0);
+});
+
+test('網頁想去：收合的段落不會因為地圖點擊或投票被改掉記住的狀態', async ({ page }) => {
+  await ready(page);
+  await page.getByTestId('side-tab-wish').click();
+  await expect(page.getByTestId('wish-section-scheduled')).toHaveAttribute('aria-expanded', 'false');
+  // 地圖點到已排的點：這次畫面展開，但不改記住的收合狀態
+  await page.evaluate(() => (window as any).__th.appStore.getState().revealInExplore('toba-aquarium'));
+  await expect(page.getByTestId('wish-section-scheduled')).toHaveAttribute('aria-expanded', 'true');
+  expect(await page.evaluate(() => JSON.parse(localStorage.getItem('th.wishCollapsed') ?? '{"scheduled":true}').scheduled)).toBe(true);
+  // 之後有人按想去（清單重算）不會再把使用者收起來的段落展開
+  await page.getByTestId('wish-section-scheduled').click();
+  await expect(page.getByTestId('wish-section-scheduled')).toHaveAttribute('aria-expanded', 'false');
+  await page.evaluate(() => (window as any).__th.shared.comment('toba-aquarium', '新留言', 'normal'));
+  await expect(page.getByTestId('wish-section-scheduled')).toHaveAttribute('aria-expanded', 'false');
+});

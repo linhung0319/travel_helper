@@ -2,7 +2,7 @@
 // 照片下面：名稱＋等級、地區・★、一行重點（已排、候選優先）。整張可以點；❤ 自己擋掉不開詳情。
 // 網頁：滑鼠移上去呼叫 appStore.hover(id)，移開 hover(null)。樣式在 ui.css。
 
-import type { HTMLAttributes } from 'react';
+import type { HTMLAttributes, ReactNode } from 'react';
 import { appStore } from '../../store.ts';
 import { useData } from '../../hooks.ts';
 import { Photo } from '../../components/Photo.tsx';
@@ -20,13 +20,15 @@ export interface PlaceTileProps {
   place: Place;
   status?: DayStatus;
   onOpen: () => void;
+  /** 重點膠囊下面多一行（想去用：誰想去） */
+  extra?: ReactNode;
   testId?: string;
   rank?: number;
   hot?: boolean;
   rootProps?: HTMLAttributes<HTMLDivElement>;
 }
 
-export function PlaceTile({ place, status, onOpen, testId, rank, hot, rootProps }: PlaceTileProps) {
+export function PlaceTile({ place, status, onOpen, extra, testId, rank, hot, rootProps }: PlaceTileProps) {
   const areas = useData((s) => s.areas);
   const name = place.name.zh || place.name.ja;
   const meta = placeMetaText(place, areas);
@@ -72,6 +74,7 @@ export function PlaceTile({ place, status, onOpen, testId, rank, hot, rootProps 
         </span>
         {meta && <span className="pt-meta">{meta}</span>}
         <Highlights list={rowHighlights(place, status ?? { candidate: [], scheduled: [] })} />
+        {extra}
       </span>
     </div>
   );

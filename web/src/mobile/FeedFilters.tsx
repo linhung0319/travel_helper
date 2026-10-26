@@ -43,7 +43,7 @@ export function useFeedModel(): FilterModel {
 }
 
 /** 想去的篩選列資料：wish 接成 FilterModel（類型是上面的分段，這裡固定一類） */
-export function useWishModel(type: ExploreType): FilterModel {
+export function useWishModel(type: ExploreType | 'all'): FilterModel {
   const wish = useMobile((s) => s.wish);
   const filter = useMemo(() => wishFilter(type, wish.area, wish.quick), [type, wish.area, wish.quick]);
   return {
