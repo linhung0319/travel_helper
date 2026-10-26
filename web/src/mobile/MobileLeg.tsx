@@ -1,70 +1,83 @@
-// 手機版時間軸上兩張卡中間的交通（第六輪 §3.5）：壓成一行「🚕 計程車 9 分・3.4km」，右邊是「Google Map」。
-// 資料準備和網頁版的交通卡一樣（LegRow.tsx 的 useLegView）：點了這段就展開（一次只開一段，地圖只畫這段）；
+// 手機版時間軸上兩張卡中間的交通（第六輪 §3.5，第七輪 Task 8）：一行細字（shared/ui/LegLine.tsx）「計程車 9 分・3.4km」，右邊「地圖 ↗」。
+// 資料準備和網頁版的交通一樣（LegRow.tsx 的 useLegView）：點了這段就展開（一次只開一段，地圖只畫這段）；
 // 大眾運輸展開後是步驟（LegRow 的 LegSteps，排成一欄）。等待那一行接在交通下面，是純文字、不能點（§2.4）。
 // 點交通時，選到的卡片取消（地圖只看這段）。
-// 編輯中：每段都能點（右邊寫「改 ›」），展開後是第五輪的編輯狀態（LegRow 的 LegEditor：方式、班次下拉、分鐘、備註、完成），在手機上排成一欄；
+// 編輯中：每段右邊有「改」；交通編輯器不會自己展開，按「改」才從下面升起來——底部面板 m-leg-sheet（和「⋯」動作面板同一種：上方暗的、點暗處或 Esc 關，
+// 第五輪的編輯狀態 LegEditor：方式、班次下拉、分鐘、備註、完成），只有一個「完成」；大眾運輸的步驟接在編輯器裡，這時時間軸上那一行下面不再重複。
 // 交通也是放置區（dropOnLegProps）：拖到這裡＝排在這段通往的那張卡前面。
 
+import { useEffect, type ReactNode } from 'react';
+import { createPortal } from 'react-dom';
 import type { TimelineEntry, VisitItem } from '@travel-helper/engine';
 import { useData } from '../hooks.ts';
 import { legMapsUrl, legTitle, waitNote } from '../lib/planView.ts';
 import { LegEditor, LegSteps, useLegView } from '../components/LegRow.tsx';
-import { ModeIcon } from '../components/ModeIcon.tsx';
-import { Icon } from '../components/Icon.tsx';
 import { dropOnLegProps } from '../components/planDrag.ts';
+import { uiStore } from '../uiStore.ts';
+import { LegLine } from '../shared/ui/LegLine.tsx';
 import { mobileStore } from './mobileStore.ts';
 
-/** 一段交通（一行，點了展開步驟；編輯中展開成編輯狀態）；不用移動時不畫 */
+const closeEditor = () => uiStore.setState({ legOpen: null, legEdit: null });
+
+/** 交通編輯器的底部面板：蓋在行程頁（.m-trip）上面，點暗處或 Esc 關 */
+function LegSheet({ title, children }: { title: string; children: ReactNode }) {
+  useEffect(() => {
+    const onKey = (e: KeyboardEvent) => e.key === 'Escape' && closeEditor();
+    window.addEventListener('keydown', onKey);
+    return () => window.removeEventListener('keydown', onKey);
+  }, []);
+  const host = document.querySelector('[data-testid="m-trip"]');
+  if (!host) return null;
+  return createPortal(
+    <div className="m-asheet-root">
+      <div className="m-sheet-dim" data-testid="m-sheet-dim" onClick={closeEditor} aria-hidden />
+      <section className="m-asheet m-leg-sheet" role="dialog" aria-label={title} data-testid="m-leg-sheet">
+        <div className="m-asheet-grab" aria-hidden>
+          <span />
+        </div>
+        <div className="m-asheet-head">
+          <strong className="m-ellipsis">{title}</strong>
+        </div>
+        <div className="m-asheet-body">{children}</div>
+      </section>
+    </div>,
+    host,
+  );
+}
+
+/** 一段交通（一行，點了展開步驟；編輯中按「改」打開底部面板）；不用移動時不畫 */
 export function MobileLeg({ entry, date }: { entry: TimelineEntry; date: string }) {
   const v = useLegView(entry, date);
   if (!v) return null;
-  const { leg, key, open, editing, planning, saving, target, spec, from, to, mode, sub, steps, transit, note } = v;
-  const text = [legTitle(leg) || '交通 0 分', ...sub].join('・');
+  const { leg, key, open, editing, editable, planning, saving, target, spec, from, to, mode, sub, steps, transit, note } = v;
   const stepList = open && transit ? <LegSteps steps={steps} leg={leg} date={date} legKey={key} target={target} editing={editing} saving={saving} /> : null;
-  const editable = planning && !!target;
+  const nameOf = (p: typeof from) => (p ? p.name.zh || p.name.ja : '');
   return (
-    <li className={`m-leg ${open ? 'open' : ''} ${editing ? 'editing' : ''}`} data-testid="m-leg" data-leg={key} {...dropOnLegProps(entry.itemId, date, planning)}>
-      <div className="m-leg-row">
-        <button
-          type="button"
-          className="m-leg-text"
-          aria-pressed={open}
-          aria-expanded={transit || editable ? open : undefined}
-          onClick={() => {
-            if (!open) mobileStore.getState().focusItem(null);
-            v.toggleOpen();
-          }}
-        >
-          <ModeIcon mode={leg.mode} size="s" />
-          <span className="m-ellipsis">
-            {text}
-            {note && <span className="m-leg-note ic-text">
-          {' '}
-          <Icon name="pen" size={16} /> {note}
-        </span>}
-          </span>
-          {editable && !open ? (
-            <span className="m-leg-edit">改 ›</span>
-          ) : (
-            (transit || editable) && (
-              <span className={`m-leg-chev ${open ? 'open' : ''}`} aria-hidden>
-                ▸
-              </span>
-            )
-          )}
-        </button>
-        {from && to && (
-          <a className="m-leg-maps" href={legMapsUrl(from, to, mode)} target="_blank" rel="noreferrer" data-testid="leg-maps">
-            Google Map
-          </a>
-        )}
-      </div>
-      {editing && target ? (
-        <LegEditor key={JSON.stringify(spec)} target={target} spec={spec} leg={leg}>
-          {stepList}
-        </LegEditor>
-      ) : (
-        stepList
+    <li className={`m-leg ll-li ${open ? 'open' : ''} ${editing ? 'editing' : ''}`} data-testid="m-leg" data-leg={key} {...dropOnLegProps(entry.itemId, date, planning)}>
+      <LegLine
+        mode={leg.mode}
+        text={[legTitle(leg) || '交通 0 分', ...sub].join('・')}
+        note={note}
+        mapsHref={from && to ? legMapsUrl(from, to, mode) : null}
+        onToggle={() => {
+          if (!open) mobileStore.getState().focusItem(null);
+          v.toggleOpen();
+        }}
+        open={open}
+        expandable={transit}
+        onEdit={editable && !editing ? () => {
+          mobileStore.getState().focusItem(null);
+          v.startEdit();
+        } : null}
+      >
+        {!editing && stepList}
+      </LegLine>
+      {editing && target && (
+        <LegSheet title={`交通：${nameOf(from) || '出發'} → ${nameOf(to) || '下一站'}`}>
+          <LegEditor key={JSON.stringify(spec)} target={target} spec={spec} leg={leg}>
+            {stepList}
+          </LegEditor>
+        </LegSheet>
       )}
     </li>
   );

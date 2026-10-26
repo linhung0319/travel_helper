@@ -335,7 +335,8 @@ test('第四輪：一般模式只看；合併卡片換著看、⋯ 的主要、�
   await expect(aquarium.getByTestId('avatar-list')).toContainText('媽媽');
 
   // 合併卡片：疊層、看的是主卡；‹ › 換著看備卡，一般模式不能改，地圖上那個點亮起來（第六輪：卡片上沒有 👑）
-  const stack = lunch.getByTestId('option-stack');
+  // 備卡的 data-shown／data-main 寫在卡片的 li 上
+  const stack = lunch;
   await expect(stack).toHaveAttribute('data-shown', '0');
   await expect(stack).toHaveAttribute('data-main', 'true');
   await expect(lunch.getByTestId('option-crown')).toHaveCount(0);
@@ -368,7 +369,7 @@ test('第四輪：一般模式只看；合併卡片換著看、⋯ 的主要、�
   await expect(stack).toHaveAttribute('data-main', 'true');
   await stack.getByTestId('option-next').click();
   await dragOnto(lunch, page.getByTestId('day-candidates'), 0.5);
-  await expect(lunch.getByTestId('option-stack')).toHaveCount(0);
+  await expect(lunch.getByTestId('option-switch')).toHaveCount(0);
   await expect(cand(page, 'toba-sazanami')).toBeVisible();
   await expect(page.getByTestId('toast-undo')).toBeVisible();
 });
@@ -397,8 +398,8 @@ test('第五輪：交通卡平常收起，計程車點了只畫那一段、不�
   const first = legs.first();
   // 一般模式：標題（SVG 圖示、方式＋分鐘）、Google Maps 小圖示，沒有緩衝、沒有編輯；點了地圖畫一條路線，計程車沒有步驟可以展開
   await expect(first.getByTestId('leg-maps')).toHaveAttribute('href', /google\.com\/maps\/dir\/.*travelmode=/);
-  await expect(first.locator('.tl-leg-head').getByRole('img', { name: '計程車' })).toBeVisible();
-  await expect(first.locator('.tl-leg-title')).toHaveText(/^計程車 \d+ 分$/);
+  await expect(first.getByTestId('leg-line').getByRole('img', { name: '計程車' })).toBeVisible();
+  await expect(first.locator('.ll-title')).toHaveText(/^計程車 \d+ 分/);
   await expect(first).not.toContainText('緩衝');
   await first.getByRole('button').first().click();
   await expect(first.getByTestId('leg-editor')).toHaveCount(0);
@@ -415,8 +416,11 @@ test('第五輪：交通卡平常收起，計程車點了只畫那一段、不�
 
   // 編輯中：收起時右邊寫「改 ›」，點了原地變成編輯狀態；方式只有四種，「自動」寫出它選了什麼；選計程車
   await enterPlanning(page);
-  await expect(first.locator('.tl-leg-chev')).toHaveText('改 ›');
+  await expect(first.getByTestId('leg-edit')).toHaveText('改');
+  // 點那一行不會自己開編輯器，按「改」才開
   await first.getByRole('button').first().click();
+  await expect(first.getByTestId('leg-editor')).toHaveCount(0);
+  await first.getByTestId('leg-edit').click();
   const editor = first.getByTestId('leg-editor');
   await expect(editor).toBeVisible();
   await expect(editor.getByTestId('leg-mode')).toHaveCount(4);
@@ -424,7 +428,7 @@ test('第五輪：交通卡平常收起，計程車點了只畫那一段、不�
   await expect(editor.getByTestId('leg-buffer-plus')).toHaveCount(0);
   await editor.locator('[data-testid="leg-mode"][data-mode="taxi"]').click();
   await expect(first.locator('[data-testid="leg-mode"][data-mode="taxi"]')).toHaveAttribute('aria-pressed', 'true');
-  await expect(first.locator('.tl-leg-title')).toContainText('計程車');
+  await expect(first.locator('.ll-title')).toContainText('計程車');
   // 算得出時間、沒自己填過分鐘：沒有分鐘欄
   await expect(first.getByTestId('leg-minutes')).toHaveCount(0);
   await first.getByTestId('leg-note').fill('在飯店大廳集合');
@@ -445,14 +449,14 @@ test('第四輪：交通卡自己填的分鐘改得動、清得掉；算得出�
   // 關西機場 → 賢島：假行程手動指定電車 165 分（時刻表裡找不到）
   const leg = page.getByTestId('timeline').getByTestId('tl-leg').first();
   const travel = () => th(page, "JSON.stringify(__th.dataStore.getState().itinerary.days.find((d) => d.date === '2027-02-02').items.find((i) => i.id === 'i-1').travel)");
-  await leg.getByRole('button').first().click();
+  await leg.getByTestId('leg-edit').click();
   const minutes = leg.getByTestId('leg-minutes');
   await expect(minutes).toHaveValue('165');
   // 改成 170：存下來、卡片跟著變，欄位還在
   await minutes.fill('170');
   await minutes.blur();
   await expect.poll(travel).toContain('"minutes":170');
-  await expect(leg.getByRole('button').first()).toContainText('170 分');
+  await expect(leg.getByTestId('leg-line-text')).toContainText('170 分');
   await expect(minutes).toHaveValue('170');
   // 清空：回到照規則算（minutes 是 null）；電車還是找不到班次，欄位留著可以再填
   await minutes.fill('');
@@ -475,7 +479,7 @@ test('最後檢查：選了交通卡後換到下一天，地圖的行程線恢�
   await leg.getByRole('button').first().click();
   await expect(leg.getByRole('button').first()).toHaveAttribute('aria-pressed', 'true');
   await expect.poll(opacity).toBe('0.1');
-  await page.getByTestId('day-next').click();
+  await page.getByTestId('m-day-2027-02-06').click();
   await expect.poll(() => th(page, '__th.uiStore.getState().legOpen')).toBe(null);
   await expect.poll(opacity).toBe(normal);
   expect(normal).not.toBe('0.1');
@@ -586,9 +590,9 @@ test('第四輪：編輯中把餐廳拖到另一間餐廳的中間 → 合併；
   const n = await rows.count();
 
   await dragOnto(src, target, 0.5);
-  await expect(target.getByTestId('option-stack')).toBeVisible();
+  await expect(target.getByTestId('option-switch')).toBeVisible();
   // 合併後看的是主卡（原本那間）
-  await expect(target.getByTestId('option-stack')).toHaveAttribute('data-main', 'true');
+  await expect(target).toHaveAttribute('data-main', 'true');
   await expect(src).toHaveCount(0);
   await expect(rows).toHaveCount(n - 1);
   await expect(page.getByTestId('toast')).toContainText('已合併到');
@@ -596,7 +600,7 @@ test('第四輪：編輯中把餐廳拖到另一間餐廳的中間 → 合併；
   // 復原：回到兩張卡片
   await page.getByTestId('toast-undo').click();
   await expect(src).toBeVisible();
-  await expect(target.getByTestId('option-stack')).toHaveCount(0);
+  await expect(target.getByTestId('option-switch')).toHaveCount(0);
   await expect(rows).toHaveCount(n);
 });
 
@@ -648,7 +652,9 @@ test('第四輪完成條件：排進、標午餐和分組、交通改計程車�
 
   // 3. 水族館標「午餐」；漣那張標「分組」
   const aquarium = tlRow(page, 'i-6');
-  await aquarium.getByTestId('tag-edit').click();
+  // 沒有標籤的卡沒有「＋ 標籤」：從 ⋯ 打開標籤彈窗
+  await aquarium.getByTestId('item-menu').click();
+  await page.getByTestId('action-menu').getByTestId('action-tags').click();
   await page.getByTestId('tag-popover').getByTestId('tag-opt-lunch').click();
   await expect(aquarium.getByTestId('item-tag')).toHaveText(['午餐']);
   await page.keyboard.press('Escape');
@@ -660,10 +666,10 @@ test('第四輪完成條件：排進、標午餐和分組、交通改計程車�
 
   // 4. 第一段交通改計程車
   const leg = page.getByTestId('timeline').getByTestId('tl-leg').first();
-  await leg.getByRole('button').first().click();
+  await leg.getByTestId('leg-edit').click();
   await leg.locator('[data-testid="leg-mode"][data-mode="taxi"]').click();
-  await expect(leg.locator('.tl-leg-title')).toContainText('計程車');
-  await expect(leg.locator('.tl-leg-head').getByRole('img', { name: '計程車' })).toBeVisible();
+  await expect(leg.locator('.ll-title')).toContainText('計程車');
+  await expect(leg.getByTestId('leg-line').getByRole('img', { name: '計程車' })).toBeVisible();
 
   // 5. 復原快照 → 回到原狀
   await page.getByTestId('snapshots-button').click();
@@ -709,7 +715,7 @@ test('第五輪：編輯入口——日期列的「編輯」，確認後出現�
 
   // 換到別天照樣在編輯；選「整趟」就結束編輯（整趟沒有這天的時間軸，也沒有「編輯」）
   await enterPlanning(page);
-  await page.getByTestId('day-next').click();
+  await page.getByTestId('m-day-2027-02-06').click();
   await expect(page.getByTestId('planning-bar')).toBeVisible();
   await page.evaluate(() => (window as any).__th.commands.selectDay('all'));
   await expect.poll(() => th(page, '__th.appStore.getState().planning')).toBe(false);
@@ -762,9 +768,9 @@ test('第五輪：資料卡右上角的編號——2/3 依序 0（出發的住�
   await ready(page);
   await showDay(page, '2027-02-03');
   const tl = page.getByTestId('timeline');
-  await expect(tl.getByTestId('tl-mark')).toHaveText(['0', '1', '2', '3']);
-  // 類型色塊：住宿、景點、餐廳、住宿
-  await expect(tl.getByTestId('item-type')).toHaveText(['宿', '景', '餐', '宿']);
+  await expect(tl.getByTestId('trip-card-no')).toHaveText(['0', '1', '2', '3']);
+  // 縮圖：每張卡都有（有照片是照片，沒有照片是類型色底加一個字）
+  await expect(tl.locator('.tc-thumb')).toHaveCount(4);
 });
 
 test('第五輪：點交通卡距離不變（步行、計程車平常就用道路路線的距離；OSRM 用假的回應）', async ({ page }) => {
@@ -779,7 +785,7 @@ test('第五輪：點交通卡距離不變（步行、計程車平常就用道�
   });
   await showDay(page, '2027-02-04');
   const leg = page.getByTestId('timeline').getByTestId('tl-leg').nth(1);
-  const sub = leg.locator('.tl-leg-sub');
+  const sub = leg.locator('.ll-title');
   await expect(sub).toContainText('18.2 公里', { timeout: 20000 });
   await expect(sub).not.toContainText('直線');
   const before = await sub.innerText();
@@ -799,7 +805,7 @@ async function transitLeg(page: Page): Promise<Locator> {
   await showDay(page, '2027-02-04');
   await enterPlanning(page);
   const leg = page.getByTestId('timeline').locator('[data-testid="tl-leg"][data-leg="2027-02-04:visit:i-5"]');
-  await leg.getByRole('button').first().click();
+  await leg.getByTestId('leg-edit').click();
   await leg.locator('[data-testid="leg-mode"][data-mode="transit"]').click();
   await expect(leg.locator('[data-testid="leg-mode"][data-mode="transit"]')).toHaveAttribute('aria-pressed', 'true');
   await expect(leg.getByTestId('leg-ride-select').first()).toBeVisible();
@@ -812,12 +818,12 @@ test('第五輪：大眾運輸的交通卡點了展開步驟（等車、御座�
   await leg.getByTestId('leg-done').click();
   await page.getByTestId('planning-done').click();
 
-  // 收起：標題「大眾運輸 N 分」、第二行含等車，右邊 ▸；沒有步驟
-  await expect(leg.locator('.tl-leg-title')).toHaveText(/^大眾運輸 \d+ 分$/);
-  await expect(leg.locator('.tl-leg-sub')).toContainText(/含等車 \d+ 分/);
-  await expect(leg.locator('.tl-leg-chev')).toHaveText('▸');
+  // 收起：一行「大眾運輸 N 分・…含等車」，右邊小箭頭；沒有步驟
+  await expect(leg.locator('.ll-title')).toHaveText(/^大眾運輸 \d+ 分/);
+  await expect(leg.locator('.ll-title')).toContainText(/含等車 \d+ 分/);
+  await expect(leg.locator('.ll-chev')).toBeVisible();
   await expect(leg.getByTestId('leg-steps')).toHaveCount(0);
-  const sub = await leg.locator('.tl-leg-sub').innerText();
+  const sub = await leg.locator('.ll-title').innerText();
 
   // 點了展開：節點、步行、等車、搭車那一行（巴士圖示＋路線名＋「HH:MM 發」＋「› 班次」）；距離不變
   await leg.getByRole('button').first().click();
@@ -829,7 +835,7 @@ test('第五輪：大眾運輸的交通卡點了展開步驟（等車、御座�
   await expect(ride).toContainText(/\d\d:\d\d 發/);
   await expect(ride.getByRole('img', { name: '巴士' })).toBeVisible();
   await expect(steps).toContainText('步行');
-  await expect(leg.locator('.tl-leg-sub')).toHaveText(sub);
+  await expect(leg.locator('.ll-title')).toHaveText(sub);
 
   // 點搭車那一行：地圖那側的班次表；一般模式只能看（沒有可以點的班次）
   await ride.click();
@@ -948,29 +954,30 @@ test('標籤：多選、再點取消、點外面關', async ({ page }) => {
   const map = (await page.locator('.maplibregl-canvas').boundingBox())!;
   await page.mouse.click(map.x + 40, map.y + map.height / 2);
   await expect(pop).toHaveCount(0);
-  // 沒有標籤時是「＋ 標籤」
+  // 沒有標籤的卡沒有「＋ 標籤」（要從 ⋯ 加）
   const spot = tlRow(page, 'i-2');
-  await expect(spot.getByTestId('tag-edit')).toHaveText('＋ 標籤');
+  await expect(spot.getByTestId('tag-edit')).toHaveCount(0);
+  await expect(spot).not.toContainText('＋ 標籤');
 });
 
-test('資料卡：宿、景、餐的類型色塊左緣對齊，⋯ 都在右邊', async ({ page }) => {
+test('資料卡：縮圖左緣對齊，⋯ 都在右邊', async ({ page }) => {
   await ready(page);
   await showDay(page, '2027-02-03');
   const tl = page.getByTestId('timeline');
   const xs = (l: Locator) => l.evaluateAll((els) => els.map((e) => Math.round(e.getBoundingClientRect().x)));
-  await expect(tl.getByTestId('item-type')).toHaveCount(4);
-  expect(new Set(await xs(tl.getByTestId('item-type'))).size).toBe(1);
+  await expect(tl.locator('.tc-thumb')).toHaveCount(4);
+  expect(new Set(await xs(tl.locator('.tc-thumb'))).size).toBe(1);
   await enterPlanning(page);
-  await expect(tl.getByTestId('item-type')).toHaveCount(4);
-  expect(new Set(await xs(tl.getByTestId('item-type'))).size).toBe(1);
-  // 出發的住宿沒有 ⋯；景、餐、回住宿的 ⋯ 在同一條直線上，也在編號下面
+  await expect(tl.locator('.tc-thumb')).toHaveCount(4);
+  expect(new Set(await xs(tl.locator('.tc-thumb'))).size).toBe(1);
+  // 出發的住宿沒有 ⋯；景、餐、回住宿的 ⋯ 在同一條直線上，也在縮圖右邊
   const menus = tl.getByTestId('item-menu');
   await expect(menus).toHaveCount(3);
   expect(new Set(await xs(menus)).size).toBe(1);
   const lodging = tl.locator('.tl-lodging');
-  const no = (await lodging.getByTestId('tl-mark').boundingBox())!;
+  const thumb = (await lodging.locator('.tc-thumb').boundingBox())!;
   const menu = (await lodging.getByTestId('item-menu').boundingBox())!;
-  expect(menu.y).toBeGreaterThanOrEqual(no.y + no.height - 1);
+  expect(menu.x).toBeGreaterThanOrEqual(thumb.x + thumb.width);
 });
 
 test('回住宿的卡：這晚的方案三選一，再點取消', async ({ page }) => {
@@ -1130,7 +1137,8 @@ test('重疊卡：主要、拿出', async ({ page }) => {
   await showDay(page, '2027-02-05');
   await enterPlanning(page);
   const lunch = tlRow(page, 'i-7');
-  const stack = lunch.getByTestId('option-stack');
+  // 備卡的 data-shown／data-main 寫在卡片的 li 上
+  const stack = lunch;
   // 卡片上沒有 👑、設為主要、拿出來的按鈕；‹ 1/2 › 還在
   await expect(lunch.getByTestId('option-crown')).toHaveCount(0);
   await expect(lunch.getByTestId('option-make-main')).toHaveCount(0);
@@ -1151,7 +1159,7 @@ test('重疊卡：主要、拿出', async ({ page }) => {
   await menuOf(lunch).click();
   await actionMenu(page).getByTestId('action-detach').click();
   await expect(rows).toHaveCount(n + 1);
-  await expect(lunch.getByTestId('option-stack')).toHaveCount(0);
+  await expect(lunch.getByTestId('option-switch')).toHaveCount(0);
   const ids = await rows.evaluateAll((els) => els.map((e) => e.getAttribute('data-place')));
   expect(ids[ids.indexOf('toba-kazuei') + 1]).toBe('toba-sazanami');
   expect(await candCount(page)).toBe(c);
@@ -1230,10 +1238,10 @@ test('移到第幾天：留在原本那天、可以復原（同手機版）', as
 
 // ---------- 第六輪 Task 5：Google Map 文字、等待卡、移到第幾天 4×3、紅字日期 ----------
 
-test('交通卡是「Google Map」文字', async ({ page }) => {
+test('交通那一行右邊是「地圖 ↗」文字', async ({ page }) => {
   await ready(page);
   await showDay(page, '2027-02-05');
-  await expect(page.getByTestId('leg-maps').first()).toHaveText('Google Map');
+  await expect(page.getByTestId('leg-maps').first()).toHaveText('地圖 ↗');
 });
 
 test('等待卡不能點、沒有看附近', async ({ page }) => {
@@ -1660,4 +1668,95 @@ test('點照片放大，左右切換，Esc 關', async ({ page }) => {
   await page.keyboard.press('Escape');
   await expect(viewer).toHaveCount(0);
   await expect(page.getByTestId('detail-panel')).toBeVisible(); // Esc 只關放大，詳情還在
+});
+
+// ---------- 第七輪 Task 8：時間軸的卡片、一行交通、原地展開 ----------
+
+test('點時間軸的卡：原地展開三張照片，沒有地圖小卡片；「詳細資料」浮在地圖上；再點收起', async ({ page }) => {
+  await ready(page);
+  await showDay(page, '2027-02-03');
+  const row = tlRow(page, 'i-2');
+  await expect(row.getByTestId('trip-card-expand')).toHaveCount(0);
+  await row.getByTestId('trip-card').click();
+  const open = row.getByTestId('trip-card-expand');
+  await expect(open).toBeVisible();
+  await expect(open.locator('.tc-photo')).toHaveCount(3);
+  await expect(open.getByTestId('trip-card-intro')).not.toBeEmpty();
+  await expect(page.getByTestId('preview-card')).toHaveCount(0);
+  await expect(page.locator('.maplibregl-popup')).toHaveCount(0);
+  // 一次只展開一張：點別張，這張收起來
+  await tlRow(page, 'i-3').getByTestId('trip-card').click();
+  await expect(open).toHaveCount(0);
+  await expect(tlRow(page, 'i-3').getByTestId('trip-card-expand')).toBeVisible();
+  // 「詳細資料」：詳情浮在地圖右邊，時間軸不動、卡片還是展開的
+  await tlRow(page, 'i-3').getByTestId('trip-card-detail').click();
+  await expect(page.getByTestId('detail-float')).toBeVisible();
+  await expect(page.getByTestId('timeline')).toBeVisible();
+  await expect(tlRow(page, 'i-3').getByTestId('trip-card-expand')).toBeVisible();
+  await page.keyboard.press('Escape');
+  // 再點同一張（點上面那一列，展開的區塊裡點空白處不收）收起
+  await tlRow(page, 'i-3').locator('.tc-row').click();
+  await expect(tlRow(page, 'i-3').getByTestId('trip-card-expand')).toHaveCount(0);
+});
+
+test('點展開的「問 AI」：把這個點帶進聊天', async ({ page }) => {
+  await ready(page);
+  await showDay(page, '2027-02-03');
+  await tlRow(page, 'i-2').getByTestId('trip-card').click();
+  await tlRow(page, 'i-2').getByTestId('trip-card-ask').click();
+  const draft = await page.evaluate(() => (window as any).__th.uiStore.getState().chatDraft);
+  expect(draft.placeId).toBe('shima-yokoyama-observatory');
+  expect(draft.from).toBe('trip');
+});
+
+test('網頁時間軸有縮圖、交通是一行', async ({ page }) => {
+  await ready(page);
+  await showDay(page, '2027-02-03');
+  const row = tlRow(page, 'i-2');
+  await expect(row.locator('.tc-thumb img, .tc-thumb [data-testid="item-type"]').first()).toBeVisible();
+  await expect(row.getByTestId('trip-card-no')).toBeVisible();
+  const lines = page.getByTestId('timeline').getByTestId('leg-line');
+  expect(await lines.count()).toBeGreaterThan(0);
+  for (let i = 0; i < (await lines.count()); i++) expect((await lines.nth(i).boundingBox())!.height, `leg ${i}`).toBeLessThan(40);
+  await expect(page.getByTestId('timeline').getByTestId('leg-maps').first()).toHaveText('地圖 ↗');
+  // 平常沒有「改」
+  await expect(page.getByTestId('leg-edit')).toHaveCount(0);
+});
+
+test('交通編輯器：編輯中點「改」才開', async ({ page }) => {
+  await ready(page);
+  await showDay(page, '2027-02-03');
+  await enterPlanning(page);
+  const leg = page.getByTestId('timeline').getByTestId('tl-leg').first();
+  await expect(leg.getByTestId('leg-editor')).toHaveCount(0);
+  // 點那一行只是展開，不開編輯器
+  await leg.getByTestId('leg-line-text').click();
+  await expect(leg.getByTestId('leg-editor')).toHaveCount(0);
+  await leg.getByTestId('leg-edit').click();
+  await expect(leg.getByTestId('leg-editor')).toBeVisible();
+  await expect(leg.getByTestId('leg-done')).toHaveCount(1);
+  await leg.getByTestId('leg-done').click();
+  await expect(leg.getByTestId('leg-editor')).toHaveCount(0);
+});
+
+test('編輯中：卡片上沒有「＋ 標籤」，沒有標籤的從 ⋯ 加', async ({ page }) => {
+  await ready(page);
+  await showDay(page, '2027-02-03');
+  await enterPlanning(page);
+  await expect(page.getByTestId('timeline').getByText('＋ 標籤')).toHaveCount(0);
+  const row = tlRow(page, 'i-2');
+  await expect(row.getByTestId('tag-edit')).toHaveCount(0);
+  await row.getByTestId('item-menu').click();
+  await page.getByTestId('action-menu').getByTestId('action-tags').click();
+  await expect(page.getByTestId('tag-popover')).toBeVisible();
+});
+
+test('這天的標題：Bodoni 大日期和「週三 · 第 2 天 · 地區」，右邊問 AI 和編輯', async ({ page }) => {
+  await ready(page);
+  await showDay(page, '2027-02-03');
+  await expect(page.getByTestId('day-title-date')).toHaveText('2/3');
+  await expect(page.getByTestId('day-title-sub')).toHaveText(/^週三 · 第 2 天 · .+/);
+  await expect(page.getByTestId('day-ask-ai')).toBeVisible();
+  await expect(page.getByTestId('planning-toggle')).toHaveText('編輯');
+  await expect(page.getByTestId('day-summary')).toContainText('出發');
 });

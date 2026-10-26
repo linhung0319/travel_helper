@@ -1,11 +1,12 @@
-// 手機版行程的面板（第六輪 §3.5）：蓋在地圖下半部，可以拉，停在三個高度（mobileStore.tripSnap；高度在 mobile.css 的 CSS 變數）：
+// 手機版行程的面板（第六輪 §3.5，第七輪 Task 8）：蓋在地圖下半部，可以拉，停在三個高度（mobileStore.tripSnap；高度在 mobile.css 的 CSS 變數）：
 // 低（只露出天數列）、中（預設，地圖約佔上面 1/3）、高（地圖剩一小條）。拖把手換高度：放開時停在最近的高度，快速往上／往下滑就往那邊切一格。
-// 面板裡由上到下：把手、天數列（DayStrip）、選「整趟」時是整趟（TripOverview），選某天時是這天的標題（✨、✏️ 編輯）、摘要、時間條（變矮）、
+// 面板裡由上到下：把手、日期列（DayStrip）固定在上面，往下捲也看得到；選「整趟」時是整趟（TripOverview），選某天時是這天的標題
+// （Bodoni 斜體的大日期加「週五 · 第 4 天 · 鳥羽」、✦ 問 AI、編輯；這一列也固定，position: sticky）、摘要、時間條（變矮）、
 // 時間軸（MobileCard、MobileLeg，資料準備和網頁版共用 Timeline.tsx 的 useDayTimeline）、這天的候選（候選樣式的 MobileCard）。
-// 選了一張卡（focusItem）：清單捲到那張卡。✨ 的半屏聊天是 Task 12。
-// 編輯中：面板拉到高、最上面是藍色的編輯條（網頁版第五輪的 PlanningBar，手機用 m-edit-bar：「✏️ 編輯 2/3（三）」加「完成」）和別人改過了的提示（ConflictBar）；
+// 選了一張卡（focusItem）：清單捲到那張卡（不改面板高度）。點卡片原地展開（mobileStore.expanded）。
+// 編輯中：最上面是墨色的編輯條（PlanningBar：「編輯 2/3（三）」加快照、「完成」）和別人改過了的提示（ConflictBar）；按「編輯」不改面板高度；
 // 每張卡有把手（長按拖曳）、⋯（底部動作面板 ActionSheet，動作的 ctx 在這裡算），時間軸最後多一個放置區，候選區收拖回來的備卡。
-// 結束編輯、換天時關掉動作面板；結束編輯時面板回到中間。
+// 結束編輯、換天時關掉動作面板。半屏聊天（ChatSheet）開著時，這個面板藏起來（高度不變），聊天關掉就回來。
 // 重疊卡（有備卡）用 ‹ n/m › 換著看（同網頁版）：看備卡時卡片顯示那張的縮圖、名稱、時間，⋯ 的主要、拿出和拖曳都作用在那張。
 
 import { Fragment, useEffect, useRef, useState, type PointerEvent as ReactPointerEvent } from 'react';
@@ -14,7 +15,9 @@ import { useApp, useData, useShared, useUi } from '../hooks.ts';
 import { Icon } from '../components/Icon.tsx';
 import { openDialog } from '../uiStore.ts';
 import { cardTime, findItemRef, formatStay, shownWarnings, type TimelineRow } from '../lib/planView.ts';
-import { dayLabel, isRedDay, tripDates } from '../lib/trip.ts';
+import { dayLabel, isRedDay } from '../lib/trip.ts';
+import { dayAreaName, dayTitle } from '../lib/dayTitle.ts';
+import { stopsOn } from '../lib/itinerary.ts';
 import type { Place } from '../data/types.ts';
 import { DayBar, DaySummaryLine, useDayTimeline, type DayTimeline } from '../components/Timeline.tsx';
 import { ItemTags, LodgingTags, tagKindOf } from '../components/ItemTags.tsx';
@@ -25,11 +28,11 @@ import { dropOnCandidatesProps, dropOnEndProps } from '../components/planDrag.ts
 import type { DragSource } from '../lib/dropIntent.ts';
 import { focusKeyOf, mobileStore, useMobile, type ActionSheetSpec, type ActionView, type TripSnap } from './mobileStore.ts';
 import { DayStrip } from '../shared/ui/DayStrip.tsx';
+import { Button } from '../shared/ui/Button.tsx';
 import { MobileCard } from './MobileCard.tsx';
 import { MobileLeg, MobileWait } from './MobileLeg.tsx';
 import { TripOverview } from './TripOverview.tsx';
 
-const DATES = tripDates();
 const SNAPS: TripSnap[] = ['low', 'mid', 'high'];
 /** 放開時手指的速度超過這個（px/ms）就算快速滑 */
 const FLING = 0.5;
@@ -299,6 +302,9 @@ function DayView({ date }: { date: string }) {
   const focused = useMobile((s) => s.focused);
   const legOpen = useUi((s) => s.legOpen);
   const byId = useData((s) => s.byId);
+  const itinerary = useData((s) => s.itinerary);
+  const areas = useData((s) => s.areas);
+  const title = dayTitle(date, dayAreaName(stopsOn(itinerary, date), byId, areas));
   const { itDay, plan } = tl;
   const ctx: RowCtx = { tl, focused };
   const barSelected = legOpen?.startsWith(`${date}:`) ? legOpen : focused;
@@ -306,16 +312,15 @@ function DayView({ date }: { date: string }) {
     <div className="m-dayview" data-testid="m-dayview">
       <div className="m-dayhead">
         <h2 className={`m-dayhead-title ${isRedDay(date) ? 'red-day' : ''}`} data-testid="m-trip-title">
-          {dayLabel(date)}第 {DATES.indexOf(date) + 1} 天
+          <span className="m-dayhead-date">{title.date}</span>
+          <span className="m-dayhead-sub">{title.sub}</span>
         </h2>
-        {/* 半屏聊天（ChatSheet） */}
-        <button type="button" className="m-icon-button" aria-label="問 AI 這天" onClick={() => mobileStore.getState().openChatSheet()} data-testid="m-trip-ai">
-          <Icon name="spark" size={20} />
-        </button>
+        {/* 半屏聊天（ChatSheet）：手機只有 ✦ */}
+        <Button kind="icon" icon="spark" aria-label="問 AI 這天" onClick={() => mobileStore.getState().openChatSheet()} data-testid="m-trip-ai" />
         {!planning && (
-          <button type="button" className="m-edit-button" onClick={() => openDialog({ kind: 'planning' })} data-testid="m-trip-edit">
-            <Icon name="pen" size={16} /> 編輯
-          </button>
+          <Button kind="primary" size="sm" icon="pen" onClick={() => openDialog({ kind: 'planning' })} data-testid="m-trip-edit">
+            編輯
+          </Button>
         )}
       </div>
       {plan && (
@@ -394,20 +399,12 @@ function EditBar({ day }: { day: string }) {
   );
 }
 
-/** 進編輯：面板拉到高；結束編輯：關掉動作面板、面板回到中間；換天：關掉動作面板 */
+/** 結束編輯、換天：關掉動作面板（按「編輯」不改面板高度） */
 function useEditingSheet() {
   const planning = useApp((s) => s.planning);
   const day = useApp((s) => s.day);
-  const first = useRef(true);
   useEffect(() => {
-    const m = mobileStore.getState();
-    if (planning) m.setSnap('high');
-    else {
-      m.closeActions();
-      // 第一次掛上（本來就不在編輯中）不動面板
-      if (!first.current) m.setSnap('mid');
-    }
-    first.current = false;
+    if (!planning) mobileStore.getState().closeActions();
   }, [planning]);
   useEffect(() => {
     mobileStore.getState().closeActions();
@@ -419,6 +416,9 @@ export function DaySheet() {
   const snap = useMobile((s) => s.tripSnap);
   useEditingSheet();
   const focused = useMobile((s) => s.focused);
+  // 半屏聊天開著（ChatSheet 一樣的條件：編輯中不出現）：面板藏起來，高度不變
+  const planning = useApp((s) => s.planning);
+  const covered = useMobile((s) => s.chatSheet && s.tab === 'trip') && !planning;
   const sheetRef = useRef<HTMLElement>(null);
   const bodyRef = useRef<HTMLDivElement>(null);
   const drag = useSheetDrag(sheetRef);
@@ -429,7 +429,9 @@ export function DaySheet() {
     if (!focused || !body) return;
     const card = body.querySelector<HTMLElement>(`[data-item="${CSS.escape(focused)}"]`);
     if (!card) return;
-    const top = card.getBoundingClientRect().top - body.getBoundingClientRect().top + body.scrollTop - 8;
+    // 固定在上面的標題那一列要讓出來
+    const head = body.querySelector<HTMLElement>('.m-dayhead')?.offsetHeight ?? 0;
+    const top = card.getBoundingClientRect().top - body.getBoundingClientRect().top + body.scrollTop - head - 8;
     body.scrollTo({ top: Math.max(0, top), behavior: 'smooth' });
   }, [focused]);
 
@@ -439,12 +441,13 @@ export function DaySheet() {
   }, [day]);
 
   return (
-    <section className="m-trip-sheet" ref={sheetRef} data-testid="m-sheet" data-snap={snap} aria-label="行程">
+    <section className="m-trip-sheet" ref={sheetRef} data-testid="m-sheet" data-snap={snap} data-covered={covered || undefined} aria-label="行程">
       <div className="m-trip-grab" data-testid="m-sheet-grab" aria-label="拖動調整高度" {...drag}>
         <span aria-hidden />
       </div>
       <EditBar day={day} />
-      <DayStrip variant="sheet" />
+      {/* 編輯中墨色編輯條取代日期列：編輯中不能換天 */}
+      {!planning && <DayStrip variant="sheet" />}
       <div className="m-trip-body" ref={bodyRef}>
         {day === 'all' ? <TripOverview /> : <DayView date={day} />}
       </div>

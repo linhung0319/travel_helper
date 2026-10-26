@@ -1,4 +1,4 @@
-// 手機版自己的畫面狀態（第六輪 §3、§6）：現在在哪個分頁、行程面板停在哪、行程選到的卡（focusItem）、編輯中打開的「⋯」動作面板（actions）、
+// 手機版自己的畫面狀態（第六輪 §3、§6）：現在在哪個分頁、行程面板停在哪、行程選到的卡（focusItem，不改面板高度）、原地展開的卡（expanded、expandItem）、編輯中打開的「⋯」動作面板（actions）、
 // 整頁詳情、聊天面板、整頁的討論／預約、探索的篩選與顯示方式（feed.view 記在 localStorage）、想去的設定。
 // 不放進 store.ts（地圖指令那層）；網頁版用不到。打開整頁（詳情、討論／預約）時推一筆 history，手機的返回鍵（瀏覽器上一頁）就是關掉那一頁；
 // 頁面左上角的「‹」（closePlace、setPage(null)）也是把那筆退回去（history.back）。
@@ -58,6 +58,8 @@ export interface MobileState {
   chatSheet: boolean;
   /** 行程頁選到的那張卡（focusKeyOf 的 key；地圖飛過去、清單捲到那張） */
   focused: string | null;
+  /** 原地展開的那張卡（同一個 key；一次只展開一張） */
+  expanded: string | null;
   /** 編輯中「⋯」打開的底部動作面板；null＝關著 */
   actions: ActionSheetSpec | null;
   /** 整頁打開的討論（整趟留言）或預約 */
@@ -72,8 +74,10 @@ export interface MobileActions {
   setTab(tab: MobileTab): void;
   /** 行程面板停在哪 */
   setSnap(snap: TripSnap): void;
-  /** 選一張卡（面板到中間，keepSnap 時不動；地圖飛過去、清單捲到那張由 TripPage 做）；null＝取消 */
-  focusItem(itemKey: string | null, keepSnap?: boolean): void;
+  /** 選一張卡（不改面板高度；地圖飛過去、清單捲到那張由 TripPage 做）；null＝取消 */
+  focusItem(itemKey: string | null): void;
+  /** 展開那張卡（點同一張收起、點別張換過去；null＝收起） */
+  expandItem(itemKey: string | null): void;
   /** 打開、關掉「⋯」動作面板 */
   openActions(spec: ActionSheetSpec): void;
   closeActions(): void;
@@ -203,6 +207,7 @@ export const mobileStore = createStore<MobileStore>()((set, get) => ({
   detail: null,
   chatSheet: false,
   focused: null,
+  expanded: null,
   actions: null,
   page: null,
   feed: { ...EMPTY_FEED, view: loadFeedView() },
@@ -211,11 +216,13 @@ export const mobileStore = createStore<MobileStore>()((set, get) => ({
   setTab: (tab) => {
     const had = layerOpen(get());
     if (tab !== 'trip') clearProposal();
-    set({ tab, detail: null, page: null, actions: null, chatSheet: false });
+    // 換到別的分頁才收起展開的卡（半屏聊天開著時 setTab('trip') 是同一個分頁，卡片留著）
+    set({ tab, detail: null, page: null, actions: null, chatSheet: false, ...(tab === get().tab ? {} : { expanded: null }) });
     if (had) afterCloseLayer();
   },
   setSnap: (tripSnap) => set({ tripSnap }),
-  focusItem: (focused, keepSnap = false) => set(focused ? { focused, ...(keepSnap ? {} : { tripSnap: 'mid' as const }) } : { focused: null }),
+  focusItem: (focused) => set({ focused }),
+  expandItem: (key) => set({ expanded: key && key !== get().expanded ? key : null }),
   openActions: (actions) => set({ actions }),
   closeActions: () => set({ actions: null }),
   openPlace: (placeId, from, tab) => {

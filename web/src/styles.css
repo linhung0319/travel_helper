@@ -453,13 +453,6 @@ a {
   white-space: nowrap;
 }
 
-.preview-title .tl-card-type {
-  width: 26px;
-  height: 26px;
-  font-size: 0.8rem;
-  border-radius: 6px;
-}
-
 .preview-sub {
   font-size: 0.8rem;
   color: var(--muted);
@@ -1344,15 +1337,6 @@ button.edit-toggle {
   color: var(--accent);
 }
 
-.tl-handle {
-  position: absolute;
-  left: 6px;
-  top: 50%;
-  transform: translateY(-50%);
-  color: var(--ink-3);
-  cursor: grab;
-}
-
 .planning-bar-actions {
   margin-left: auto;
   display: flex;
@@ -1538,13 +1522,8 @@ button.edit-toggle {
   margin-left: 0;
 }
 
-.tl-start .tl-body,
 .tl-meet .tl-body {
   padding-top: 6px;
-}
-
-.tl-lodging .tl-title {
-  padding-top: 2px;
 }
 
 .tl-note {
@@ -1855,14 +1834,6 @@ button.edit-toggle {
 }
 
 /* ---------- 想去（❤️ 就是想去；探索的卡片＋頭像、留言、加到某天）、這天的候選 ---------- */
-
-
-
-
-
-
-
-
 
 .wish-days {
   display: flex;
@@ -2747,37 +2718,6 @@ body.dragging-place [data-drop-ai].drop-over {
   align-self: center;
 }
 
-/* ---------- 時間軸改版（卡片、停留時間、比例橫條） ---------- */
-
-.tl-card {
-  border: 1px solid var(--line);
-  border-radius: 10px;
-  padding: 6px 8px;
-  background: var(--bg);
-}
-
-.tl-start-time {
-  font-size: 1.15rem;
-  font-weight: 700;
-  color: var(--fg);
-  border: 0;
-  background: none;
-  padding: 0;
-  font-variant-numeric: tabular-nums;
-  text-align: left;
-  font-family: inherit;
-}
-
-.tl-start-time.fixable {
-  cursor: pointer;
-  border-bottom: 1px dashed var(--line);
-  width: fit-content;
-}
-
-.tl-name {
-  font-size: 1.02rem;
-}
-
 .stay-chip {
   display: inline-flex;
   align-items: center;
@@ -2823,10 +2763,6 @@ body.dragging-place [data-drop-ai].drop-over {
 .warn-toggle.level-warning {
   border-color: var(--warn);
   color: var(--warn);
-}
-
-.tl-card .item-menu {
-  margin-left: 0;
 }
 
 .day-warnings {
@@ -2902,24 +2838,9 @@ body.dragging-place [data-drop-ai].drop-over {
   border-left: 1px solid var(--muted);
 }
 
-.tl-leg.flash .tl-leg-card {
-  background: var(--warn-bg);
-}
-
 .day-bar-scale {
   display: flex;
   justify-content: space-between;
-}
-
-/* ---------- 編輯的拖曳：卡片換順序、想去清單拖進時間軸 ---------- */
-
-.tl-card.movable {
-  position: relative;
-  cursor: grab;
-}
-
-.tl-card.movable .tl-name {
-  cursor: pointer;
 }
 
 .drop-before {
@@ -2950,21 +2871,6 @@ body.dragging-plan .tl-dropend {
   border-color: var(--accent);
   background: var(--info-bg);
   color: var(--accent);
-}
-
-body.dragging-plan .tl-card {
-  user-select: none;
-}
-
-/* 第四輪：放在卡片中間＝合併（亮藍框）、邊緣＝排在這裡（插入線）；不能合併的卡片變淡；候選可以拖、候選區收備卡 */
-body.dragging-plan .tl-row.tl-card.drop-merge {
-  outline: 2px solid var(--accent);
-  outline-offset: 1px;
-  background: var(--info-bg);
-}
-
-.tl-row.tl-card.drop-nomerge:not(.drag-source) {
-  opacity: 0.55;
 }
 
 .drop-merge .tl-body::after,
@@ -3271,88 +3177,9 @@ button.timetable-row-in {
   }
 }
 
-/* 交通卡（第五輪 §3）：白底圓角卡片，平常只有標題（圖示、兩行字、右邊地圖連結和 ▸）；大眾運輸點了展開步驟；編輯中藍框 */
-.tl-leg {
-  margin: 4px 0;
-  font-size: 0.85rem;
-  color: var(--muted);
-}
-
-.tl-leg-card {
-  border: 1px solid var(--line);
-  border-radius: 10px;
-  padding: 6px 8px;
-  background: var(--bg);
-  box-shadow: 0 1px 2px var(--shade-1);
-  cursor: pointer;
-}
-
-.tl-leg.open .tl-leg-card {
-  border-color: var(--accent);
-  box-shadow: 0 0 0 1px var(--accent);
-}
-
-.tl-leg.editing .tl-leg-card {
-  border: 2px solid var(--accent);
-  box-shadow: none;
-  padding: 5px 7px;
-}
-
-.tl-leg-head {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-
-button.tl-leg-text {
-  display: flex;
-  flex-direction: column;
-  min-width: 0;
-  flex: 1;
-  padding: 0;
-  border: 0;
-  background: none;
-  color: var(--fg);
-  font: inherit;
-  text-align: left;
-  cursor: pointer;
-}
-
-.tl-leg-title {
-  font-weight: 600;
-  font-variant-numeric: tabular-nums;
-}
-
-.tl-leg-sub {
-  font-size: 0.75rem;
-  color: var(--muted);
-  font-variant-numeric: tabular-nums;
-}
-
-.tl-leg-note {
-  color: var(--fg);
-}
-
 .leg-maps {
   flex: none;
   text-decoration: none;
-}
-
-/* 右邊的 ▸（展開時轉向下）、編輯中的「改 ›」 */
-.tl-leg-chev {
-  flex: none;
-  color: var(--muted);
-  transition: transform 0.15s;
-}
-
-.tl-leg-chev.open {
-  transform: rotate(90deg);
-}
-
-.tl-leg-chev.edit {
-  color: var(--accent);
-  font-weight: 600;
-  font-size: 0.75rem;
 }
 
 /* 展開的步驟：左邊時間欄、中間細線和節點圓圈、右邊文字 */
@@ -3564,29 +3391,6 @@ button.leg-ride-more {
   min-width: 10em;
 }
 
-/* 編輯拖到交通卡上：排在下一張卡片前面 */
-.tl-leg.drop-leg-over .tl-leg-card {
-  position: relative;
-  border-color: var(--accent);
-  background: var(--info-bg);
-}
-
-.tl-leg.drop-leg-over .tl-leg-card::after {
-  content: '放開＝排在下一站前面';
-  position: absolute;
-  right: 8px;
-  top: 50%;
-  transform: translateY(-50%);
-  padding: 1px 8px;
-  border-radius: 999px;
-  background: var(--accent);
-  color: var(--paper);
-  font-size: 0.75rem;
-  font-weight: 600;
-  pointer-events: none;
-  white-space: nowrap;
-}
-
 /* 卡片的想去愛心見 shared/ui/ui.css（VoteHeart） */
 /* 行程狀態 tag：候選 2/5、已排 2/5 */
 .day-status-tags {
@@ -3618,7 +3422,6 @@ button.leg-ride-more {
   padding: 4px 0 6px;
 }
 
-
 .day-picker {
   margin-top: 6px;
   display: flex;
@@ -3637,81 +3440,12 @@ button.leg-ride-more {
   --type-other-bg: var(--wash);
 }
 
-.tl-row.tl-card {
-  grid-template-columns: 1fr;
-  position: relative;
-  isolation: isolate;
-}
-
-.tl-card.type-spot {
-  background: var(--type-spot-bg);
-}
-
-.tl-card.type-restaurant {
-  background: var(--type-restaurant-bg);
-}
-
-.tl-card.type-lodging {
-  background: var(--type-lodging-bg);
-}
-
-.tl-card.type-station {
-  background: var(--type-station-bg);
-}
-
-.tl-card.type-other {
-  background: var(--type-other-bg);
-}
-
-/* 地圖上的點被指到時，時間軸的卡片閃一下（要贏過上面的類型底色） */
-.tl-row.tl-card.flash {
-  background: var(--warn-bg);
-}
-
 /* 時間（開始–結束）後面接停留時間 */
 .tl-timeline {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
   gap: 2px 8px;
-}
-
-/* 有備卡：卡片後面疊一層（1 張備卡）或兩層（2 張以上）淡色卡 */
-.tl-card.stacked {
-  margin-bottom: 10px;
-}
-
-.tl-card.stacked::before,
-.tl-card.stacked::after {
-  content: '';
-  position: absolute;
-  top: 12px;
-  border: 1px solid var(--line);
-  border-radius: 10px;
-  background: var(--soft);
-  z-index: -1;
-}
-
-.tl-card.stacked::before {
-  left: 6px;
-  right: 6px;
-  bottom: -5px;
-}
-
-.tl-card.stacked::after {
-  display: none;
-  left: 12px;
-  right: 12px;
-  bottom: -10px;
-  z-index: -2;
-}
-
-.tl-card.stacked-2::after {
-  display: block;
-}
-
-.tl-card.stacked-2 {
-  margin-bottom: 14px;
 }
 
 .option-stack {
@@ -3739,10 +3473,6 @@ button.leg-ride-more {
 }
 
 /* ---------- 探索、想去卡片：類型淡底色（和時間軸卡片同一組變數）、名稱旁的複製鍵、❤️ 稍微加強 ---------- */
-
-
-
-
 
 .copy-name {
   display: inline-grid;
@@ -3795,109 +3525,6 @@ button.leg-ride-more {
   align-items: center;
   gap: 4px;
   padding: 2px 8px 2px 3px;
-}
-
-/* ---------- 時間軸第五輪（§2、§7）：虛線、資料卡的類型色塊和編號、等待那條、候選 ---------- */
-
-/* 時間軸外層：左邊一條灰色虛線，x 對齊資料卡色塊的中心（卡片框 1px＋左內距 8px＋色塊一半 17px＝26px）。
-   卡片、分組框蓋在虛線上面，交通卡、等待那條縮排讓出虛線 */
-.tl-rail {
-  position: relative;
-}
-
-.tl-rail::before {
-  content: '';
-  position: absolute;
-  left: 25px;
-  top: 20px;
-  bottom: 20px;
-  border-left: 2px dashed var(--ink-4);
-}
-
-.tl-rail > li {
-  position: relative;
-}
-
-.tl-rail > .tl-split,
-.tl-rail > .tl-meet,
-.tl-rail > .tl-dropend {
-  background: var(--bg);
-}
-
-/* 交通卡：左邊縮排讓出虛線，右緣和資料卡對齊 */
-.tl-rail > .tl-leg,
-.tl-rail > .tl-wait-row {
-  padding-left: 44px;
-}
-
-/*
- * 資料卡四欄（第六輪 §2.2）：把手欄（padding-left，把手是 absolute）、類型色塊＋內容（第一格）、右邊動作欄（編號、⋯）。
- * 編輯中每張卡都留把手欄（宿的卡沒有把手，一樣留白）；不在編輯中每張卡都不留。
- */
-.tl-row.tl-card {
-  grid-template-columns: minmax(0, 1fr) 32px;
-  gap: 6px;
-  padding-right: 6px;
-}
-
-.tl-row.tl-card.editing {
-  padding-left: 22px;
-}
-
-.tl-card-actions {
-  grid-column: 2;
-  grid-row: 1;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 4px;
-}
-
-.tl-card-actions .item-menu {
-  margin: 0;
-}
-
-.tl-card-inner {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  min-width: 0;
-}
-
-.tl-card-inner > .tl-body {
-  flex: 1;
-}
-
-/* 類型色塊：宿、景、餐（類型色）；站、機、點（中性灰） */
-.tl-card-type {
-  flex: none;
-  width: 34px;
-  height: 34px;
-  border-radius: 8px;
-  color: var(--paper);
-  font-weight: 700;
-  font-size: 1rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-/* 動作欄上面的編號：類型色的實心圓、白字 */
-.tl-card-no {
-  min-width: 22px;
-  height: 22px;
-  padding: 0 4px;
-  border-radius: 11px;
-  color: var(--paper);
-  font-weight: 700;
-  font-size: 0.75rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-variant-numeric: tabular-nums;
-  border: 2px solid var(--paper);
-  box-shadow: 0 0 0 1px var(--shade-1);
-  box-sizing: border-box;
 }
 
 /* 停留時間：等寬數字、固定最小寬度，調時間時字不跳 */

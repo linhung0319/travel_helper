@@ -129,3 +129,46 @@ test('詳情換成討論頁：只佔一筆 history，上一頁一次就回到分
   assert.equal(mobileStore.getState().detail, null);
   assert.equal(index, before);
 });
+
+test('focusItem 不改面板高度', () => {
+  const s = mobileStore.getState();
+  s.setSnap('low');
+  s.focusItem('i-2');
+  assert.equal(mobileStore.getState().tripSnap, 'low');
+  assert.equal(mobileStore.getState().focused, 'i-2');
+  s.setSnap('mid');
+  s.focusItem('i-3');
+  assert.equal(mobileStore.getState().tripSnap, 'mid');
+  s.focusItem(null);
+});
+
+test('expandItem：點同一張收起，點別張換過去，null 收起', () => {
+  const s = mobileStore.getState();
+  s.expandItem(null);
+  s.expandItem('i-2');
+  assert.equal(mobileStore.getState().expanded, 'i-2');
+  s.expandItem('i-3');
+  assert.equal(mobileStore.getState().expanded, 'i-3');
+  s.expandItem('i-3');
+  assert.equal(mobileStore.getState().expanded, null);
+  s.expandItem('i-2');
+  s.expandItem(null);
+  assert.equal(mobileStore.getState().expanded, null);
+});
+
+test('換分頁：展開的卡收起來', () => {
+  mobileStore.getState().expandItem('i-2');
+  mobileStore.getState().setTab('explore');
+  assert.equal(mobileStore.getState().expanded, null);
+  mobileStore.getState().setTab('trip');
+});
+
+test('開半屏聊天不改行程面板高度', () => {
+  const s = mobileStore.getState();
+  s.setSnap('high');
+  s.openChatSheet();
+  assert.equal(mobileStore.getState().tripSnap, 'high');
+  s.closeChatSheet();
+  assert.equal(mobileStore.getState().tripSnap, 'high');
+  s.setSnap('mid');
+});

@@ -1,5 +1,5 @@
 // 時間軸卡片名稱下面那一排標籤（設計 §2.1）：照 visit.tags 依分組（用餐、誰去、安排）畫小圓角膠囊，預約狀態放最後。
-// 編輯中點那一排（沒有標籤時是「＋ 標籤」，⋯ 選單的「🏷 標籤」也一樣）打開 TagPopover：每組一列、可以多選，點了立刻存、彈窗不關（存檔中按鈕先不能點）。
+// 編輯中點那一排（有標籤才有；沒有標籤的從 ⋯ 選單的「標籤」加）打開 TagPopover：每組一列、可以多選，點了立刻存、彈窗不關（存檔中按鈕先不能點）。
 // 回住宿那張宿的卡用「這晚的方案」（LodgingPlanPopover，三選一、再點取消＝照住宿資料）；照資料時字是淡色。
 // 出發那張宿的卡只顯示前一晚的方案（唯讀）。一般模式標籤只看、不能點。分組、互斥、哪種卡有哪幾組寫在 shared/tagOptions.ts。
 // 存檔的 toggleVisitTag、pickLodgingPlan 也給手機版的標籤面板（mobile/TagSheet.tsx）用。
@@ -99,11 +99,14 @@ export function ItemTags({ visit, kind, date, placeId, open, onOpenChange }: { v
       </span>
     );
   }
+  // 已經有標籤的點標籤那一排打開標籤彈窗；沒有標籤的不畫「＋ 標籤」，從 ⋯ 加（彈窗照樣掛在這一排）
   return (
     <span className="item-tags editable" data-testid="item-tags" ref={anchor}>
-      <button type="button" className="tag-edit" aria-haspopup="menu" aria-expanded={open} aria-label={tags.length ? '改標籤' : undefined} onClick={() => onOpenChange(!open)} data-testid="tag-edit">
-        {tags.length ? tags : <span className="muted small">＋ 標籤</span>}
-      </button>
+      {tags.length > 0 && (
+        <button type="button" className="tag-edit" aria-haspopup="menu" aria-expanded={open} aria-label="改標籤" onClick={() => onOpenChange(!open)} data-testid="tag-edit">
+          {tags}
+        </button>
+      )}
       {reservation}
       {open && <TagPopover visit={visit} kind={kind} anchor={anchor.current} onClose={() => onOpenChange(false)} />}
     </span>
@@ -165,9 +168,11 @@ export function LodgingTags({ day, place, reservationDate, editable, open, onOpe
     );
   return (
     <span className="item-tags editable" ref={anchor}>
-      <button type="button" className="tag-edit" aria-haspopup="menu" aria-expanded={open} aria-label={tag ? '改這晚的方案' : undefined} onClick={() => onOpenChange(!open)} data-testid="tag-edit">
-        {tag || <span className="muted small">＋ 標籤</span>}
-      </button>
+      {tag && (
+        <button type="button" className="tag-edit" aria-haspopup="menu" aria-expanded={open} aria-label="改這晚的方案" onClick={() => onOpenChange(!open)} data-testid="tag-edit">
+          {tag}
+        </button>
+      )}
       {reservation}
       {open && <LodgingPlanPopover date={day.date} anchor={anchor.current} onClose={() => onOpenChange(false)} />}
     </span>

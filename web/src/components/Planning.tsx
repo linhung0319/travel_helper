@@ -156,7 +156,7 @@ export function EditHint() {
   if (!planning || seen) return null;
   return (
     <p className="edit-hint small" data-testid="edit-hint">
-      <span>拖 ⠿ 換順序；點交通卡改方式、班次</span>
+      <span>拖 ⋮⋮ 調整順序；交通那行按「改」改方式、班次</span>
       <button
         type="button"
         className="text-button"

@@ -1675,3 +1675,410 @@
     padding: 56px 8px;
   }
 }
+
+/* ---------- 時間軸的卡片（TripCard）和一行交通（LegLine），網頁、手機共用（第七輪 Task 8） ---------- */
+
+.tc-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  min-width: 0;
+}
+
+/* 三欄：把手欄（編輯中才有寬度）、卡片本體、右邊 ⋯（編輯中才有寬度）；Task 9 在把手欄加拖曳把手 */
+.tc-li {
+  --tc-grip: 0px;
+  --tc-more: 0px;
+  position: relative;
+  display: grid;
+  grid-template-columns: var(--tc-grip) minmax(0, 1fr) var(--tc-more);
+  column-gap: 4px;
+  align-items: start;
+  min-width: 0;
+  margin: 2px 0;
+  padding: 0 4px;
+  border: 1px solid transparent;
+  border-radius: 14px;
+  background: var(--paper);
+}
+
+.tc-li.editing {
+  --tc-grip: 22px;
+  --tc-more: 40px;
+  -webkit-user-select: none;
+  user-select: none;
+  -webkit-touch-callout: none;
+}
+
+.tc-li.selected {
+  background: var(--wash);
+}
+
+.tc-li.flash {
+  box-shadow: 0 0 0 3px var(--warn-bg);
+}
+
+.tc-li.dashed {
+  border: 1px dashed var(--ink-3);
+}
+
+.tc-li.dashed.selected {
+  border-style: solid;
+}
+
+.tc-grip {
+  align-self: stretch;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.tc-handle {
+  color: var(--ink-3);
+  font-size: 1rem;
+  letter-spacing: -0.15em;
+  cursor: grab;
+}
+
+.tc {
+  grid-column: 2;
+  min-width: 0;
+  padding: 8px 0;
+  cursor: pointer;
+  border-radius: 14px;
+}
+
+.tc:focus-visible {
+  outline: 2px solid var(--indigo);
+  outline-offset: 1px;
+}
+
+.tc-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-width: 0;
+}
+
+.tc-thumb {
+  position: relative;
+  flex: 0 0 auto;
+  border-radius: 14px;
+}
+
+.tc-thumb .photo,
+.tc-thumb-fallback {
+  width: 100%;
+  height: 100%;
+  border-radius: 14px;
+  object-fit: cover;
+}
+
+.tc-thumb-fallback {
+  display: grid;
+  place-items: center;
+  color: var(--paper);
+  font-weight: 700;
+  font-size: 1.2rem;
+}
+
+/* 編號：縮圖左上角的小圓，墨色 */
+.tc-no {
+  position: absolute;
+  top: -6px;
+  left: -6px;
+  box-sizing: border-box;
+  min-width: 22px;
+  height: 22px;
+  padding: 0 5px;
+  border: 2px solid var(--paper);
+  border-radius: 999px;
+  background: var(--ink);
+  color: var(--paper);
+  font-family: var(--font-num);
+  font-style: italic;
+  font-size: 0.75rem;
+  font-weight: 700;
+  line-height: 18px;
+  text-align: center;
+  font-variant-numeric: tabular-nums;
+}
+
+.tc-body {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.tc-time {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 4px 6px;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  font-size: 0.9rem;
+}
+
+.tc-stay {
+  font-weight: 400;
+  color: var(--ink-3);
+  font-size: 0.8125rem;
+}
+
+.tc-name {
+  font-weight: 600;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.tc-meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 4px 6px;
+  min-width: 0;
+  font-size: 0.8125rem;
+}
+
+.tc-meta .item-tags:empty {
+  display: none;
+}
+
+.tc-warn {
+  color: var(--warn);
+  font-weight: 700;
+}
+
+.tc-more {
+  grid-column: 3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  align-self: stretch;
+}
+
+/* 原地展開：三張照片、介紹前兩句、兩顆按鈕 */
+.tc-expand {
+  margin-top: 10px;
+  cursor: default;
+}
+
+.tc-photos {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: 1fr;
+  gap: 6px;
+}
+
+.tc-photo {
+  display: block;
+  aspect-ratio: 4 / 3;
+  min-width: 0;
+  overflow: hidden;
+  border-radius: 14px;
+}
+
+.tc-photo .photo {
+  width: 100%;
+  height: 100%;
+}
+
+.tc-intro {
+  margin: 8px 0 0;
+  color: var(--ink-2);
+  font-size: 0.875rem;
+  line-height: 1.55;
+}
+
+.tc-actions {
+  display: flex;
+  gap: 8px;
+  margin-top: 10px;
+}
+
+/* 拖曳（Task 9 會重做）：被拖的變淡、放在中間合併亮框、不能合併的變淡 */
+.tc-li.movable {
+  cursor: grab;
+}
+
+.tc-li.drag-source {
+  opacity: 0.5;
+}
+
+body.dragging-plan .tc-li.drop-merge {
+  outline: 2px solid var(--indigo);
+  outline-offset: 1px;
+  background: var(--indigo-wash);
+}
+
+.tc-li.drop-nomerge:not(.drag-source) {
+  opacity: 0.55;
+}
+
+/* 重疊卡（有備卡）：後面疊著淡色的卡 */
+.tc-li.stacked {
+  margin-bottom: 8px;
+  box-shadow: 4px 4px 0 -1px var(--wash), 4px 4px 0 0 var(--line);
+}
+
+.tc-li.stacked-2 {
+  box-shadow: 4px 4px 0 -1px var(--wash), 4px 4px 0 0 var(--line), 8px 8px 0 -1px var(--wash), 8px 8px 0 0 var(--line);
+  margin-bottom: 12px;
+}
+
+/* 一行交通：沒有外框，細字 */
+.ll-li {
+  list-style: none;
+  margin: 0;
+  padding: 0 4px 0 8px;
+  min-width: 0;
+}
+
+.ll {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
+  min-height: 32px;
+  color: var(--ink-2);
+  font-size: 0.8125rem;
+}
+
+.ll-main {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: inherit;
+  font: inherit;
+  text-align: left;
+}
+
+button.ll-main {
+  cursor: pointer;
+}
+
+.ll-text {
+  flex: 0 1 auto;
+  min-width: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0 8px;
+}
+
+.ll-title {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.ll-note {
+  color: var(--ink-3);
+}
+
+.ll-chev {
+  display: inline-flex;
+  color: var(--ink-3);
+  transition: transform 0.15s;
+}
+
+.ll.open .ll-chev {
+  transform: rotate(90deg);
+}
+
+.ll-maps {
+  flex: 0 0 auto;
+  color: var(--ink-2);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  white-space: nowrap;
+}
+
+.ll-edit {
+  flex: 0 0 auto;
+  min-height: 28px;
+  padding: 0 12px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: var(--paper);
+  color: var(--ink);
+  font: inherit;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.ll-li.flash .ll {
+  background: var(--warn-bg);
+  border-radius: 8px;
+}
+
+.ll-li.drop-leg-over .ll {
+  background: var(--indigo-wash);
+  box-shadow: inset 0 0 0 2px var(--indigo);
+  border-radius: 8px;
+}
+
+.ll-li .leg-steps {
+  margin: 0 0 6px;
+}
+
+.ll-li.editing {
+  background: var(--wash);
+  border-radius: 14px;
+}
+
+/* 這天的標題（網頁行程分頁，§6.1）：Bodoni 斜體的大日期，旁邊「週五 · 第 4 天 · 鳥羽」 */
+.day-title {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  margin: 0;
+  min-width: 0;
+}
+
+.day-title .overview-dot {
+  align-self: center;
+}
+
+.day-title-date {
+  font-family: var(--font-num);
+  font-style: italic;
+  font-size: 1.75rem;
+  font-weight: 600;
+  line-height: 1.1;
+}
+
+.day-title-date.red-day {
+  color: var(--red-day);
+}
+
+.day-title-sub {
+  color: var(--ink-2);
+  font-family: inherit;
+  font-size: 0.875rem;
+  font-weight: 400;
+}
+
+/* 卡片時間那一行裡的時間（點了固定開始時間的是按鈕） */
+.tc-time .tl-start-time {
+  border: 0;
+  background: none;
+  padding: 0;
+  color: inherit;
+  font: inherit;
+  text-align: left;
+}
+
+.tc-time .tl-start-time.fixable {
+  cursor: pointer;
+  border-bottom: 1px dashed var(--line);
+  width: fit-content;
+}

@@ -48,8 +48,8 @@ function emojiInJsx(): string[] {
       const text = readFileSync(p, 'utf8').replace(/\/\*[\s\S]*?\*\//g, (m) => m.replace(/[^\n]/g, ' '));
       text.split('\n').forEach((line, i) => {
         const code = line.replace(/(^|[^:])\/\/.*$/, '$1');
-        // © ® ™ 是版權、商標符號（資料出處的字），不算圖示
-        if (/(?![©®™])\p{Extended_Pictographic}/u.test(code)) out.push(`${rel}:${i + 1}`);
+        // © ® ™ 是版權、商標符號（資料出處的字），↗ 是「地圖 ↗」外部連結的文字箭頭（設計 §2.3），都不算圖示
+        if (/(?![©®™↗])\p{Extended_Pictographic}/u.test(code)) out.push(`${rel}:${i + 1}`);
       });
     }
   };

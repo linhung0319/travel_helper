@@ -35,13 +35,20 @@ export interface UiState {
   idleMinutes: number;
   /** 展開中的交通細列（日期:項目 ID 或 lodging）；一次只展開一段 */
   legOpen: string | null;
+  /** 正在編輯的交通（和 legOpen 同格式的 key）；只有按「改」才有值，一次一段 */
+  legEdit: string | null;
+  /** 網頁版時間軸原地展開的那張卡（項目 ID；出發、回住宿是 start、lodging）；一次一張，手機版用 mobileStore.expanded */
+  expandedItem: string | null;
   /** 地圖那側的班次表（第五輪 §4）：哪天、哪段交通（legKey 和交通卡的 key 同格式）、第幾程 */
   timetable: TimetableState | null;
   /** 詳情「問 AI」帶進聊天的草稿（第六輪） */
   chatDraft: ChatDraft | null;
 }
 
-export const uiStore = createStore<UiState>()(() => ({ dialog: null, mapPanel: null, idleMinutes: 10, legOpen: null, timetable: null, chatDraft: null }));
+export const uiStore = createStore<UiState>()(() => ({ dialog: null, mapPanel: null, idleMinutes: 10, legOpen: null, legEdit: null, expandedItem: null, timetable: null, chatDraft: null }));
+
+/** 點時間軸的卡：展開那張，點同一張收起（網頁版） */
+export const toggleExpandedItem = (key: string) => uiStore.setState((s) => ({ expandedItem: s.expandedItem === key ? null : key }));
 
 export const openDialog = (dialog: DialogState) => uiStore.setState({ dialog });
 export const closeDialog = () => uiStore.setState({ dialog: null });

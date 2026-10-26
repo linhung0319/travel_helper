@@ -3,7 +3,7 @@
 // 選了一張卡（mobileStore.focusItem，點卡片或地圖上的圖釘）：地圖飛到那個點，圖釘放大、加黑框（highlight 的 focus 樣式，MapView 畫），
 // 這天其他的路線變淡；取消（null）、換天時全部恢復。網頁版的照片彈窗、小卡片在手機版不出現（MapView）。
 // 編輯中「⋯」打開的底部動作面板（ActionSheet）也掛在這裡，蓋在地圖和面板上面。
-// 這天的 ✨ 打開的半屏聊天（ChatSheet，portal 到 body，蓋在分頁列上面）也掛在這裡。
+// 這天的 ✦ 打開的半屏聊天（ChatSheet，portal 到 body，蓋在分頁列上面）也掛在這裡；它開著時行程面板藏起來（DaySheet，高度不變），關掉就回來。
 
 import { useEffect, useRef } from 'react';
 import { Icon } from '../components/Icon.tsx';
@@ -43,6 +43,7 @@ function useFocusOnMap() {
     if (firstDay.current === day) return;
     firstDay.current = day;
     mobileStore.getState().focusItem(null);
+    mobileStore.getState().expandItem(null);
   }, [day]);
   useEffect(() => {
     if (!placeId) return;

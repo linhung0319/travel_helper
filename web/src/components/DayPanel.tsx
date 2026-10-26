@@ -2,11 +2,13 @@
 // 選「整趟」是整趟的總覽（每天排了什麼、幾個候選、警告）；選了某一天，編輯中最上面是藍條（說明、快照、完成），接著一列「← 整趟、日期 ‹ ›、問 AI、編輯」，
 // 下面是摘要列（⚠ 點了展開提醒）、比例橫條（時間條）、時間軸（資料卡是類型的淡底色，起點、終點的住宿也是卡片）、這天的候選（想去「加到某天」的點）。討論、預約、下載在地圖區右上角（TopBar.tsx 的 AccountBar，和帳號頭像一起）。
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { commands } from '../appCommands.ts';
+import { uiStore } from '../uiStore.ts';
 import { useApp, useData, usePlan, useShared, useUi } from '../hooks.ts';
 import { dayPlanOf } from '../planStore.ts';
 import { dayLabel, isRedDay, tripDates } from '../lib/trip.ts';
+import { dayAreaName, dayTitle } from '../lib/dayTitle.ts';
 import { stopsOn } from '../lib/itinerary.ts';
 import { selectedBarKey, WARNING_ICONS } from '../lib/planView.ts';
 import { dayColor } from '../lib/visual.ts';
@@ -89,26 +91,23 @@ function goWish() {
   showList('wish');
 }
 
-/** 某一天最上面一列：← 整趟、日期 ‹ ›、問 AI（淡的文字按鈕）、✏️ 編輯這天（藍色實心） */
+/** 某一天最上面一列（§6.1）：Bodoni 斜體的大日期，旁邊「週五 · 第 4 天 · 鳥羽」；右邊「問 AI」和主要按鈕「編輯」。換天用上面的日期列 */
 function DayHead({ day }: { day: string }) {
-  const i = DATES.indexOf(day);
+  const itinerary = useData((s) => s.itinerary);
+  const byId = useData((s) => s.byId);
+  const areas = useData((s) => s.areas);
+  const title = dayTitle(day, dayAreaName(stopsOn(itinerary, day), byId, areas));
   return (
     <div className="day-nav" data-testid="day-nav">
-      <button type="button" className="text-button" onClick={() => commands.selectDay('all')} data-testid="day-back">
-        ← 整趟
-      </button>
-      <h3>
+      <h3 className="day-title">
         <span className="overview-dot" style={{ background: dayColor(DATES, day) }} />
-        <span className={isRedDay(day) ? 'red-day' : ''}>{dayLabel(day)}</span>
+        <span className={`day-title-date ${isRedDay(day) ? 'red-day' : ''}`} data-testid="day-title-date">
+          {title.date}
+        </span>
+        <span className="day-title-sub" data-testid="day-title-sub">
+          {title.sub}
+        </span>
       </h3>
-      <span className="day-step">
-        <button type="button" className="text-button" aria-label="前一天" disabled={i <= 0} onClick={() => commands.selectDay(DATES[i - 1])} data-testid="day-prev">
-          <Icon name="back" size={20} />
-        </button>
-        <button type="button" className="text-button" aria-label="後一天" disabled={i < 0 || i >= DATES.length - 1} onClick={() => commands.selectDay(DATES[i + 1])} data-testid="day-next">
-          <Icon name="chevron" size={20} />
-        </button>
-      </span>
       <span className="day-nav-actions">
         <button type="button" className="text-button ask-ai-quiet" onClick={() => askAiAboutDay(day)} data-testid="day-ask-ai">
           <Icon name="spark" size={20} /> 問 AI
@@ -128,6 +127,8 @@ export function DayPanel() {
   const legOpen = useUi((s) => s.legOpen);
   const detailId = useApp((s) => s.detailId);
   const selectedKey = selectedBarKey(plan, legOpen, detailId);
+  // 換天、離開行程：展開的卡收起來
+  useEffect(() => () => uiStore.setState({ expandedItem: null }), [day]);
   if (day === 'all') return <Overview />;
   return (
     <div className={`day-panel ${planning ? 'editing' : ''}`} data-testid="day-panel">

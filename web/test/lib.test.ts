@@ -862,3 +862,23 @@ test('isBarSelected、selectedBarKey：交通段看 legKey，停留看項目 ID'
   assert.equal(selectedBarKey(day, '2027-02-04:lodging', 'a'), 'v1');
   assert.equal(selectedBarKey(day, null, null), null);
 });
+
+test('這天的標題：日期、週幾、第幾天、最常出現的地區', async () => {
+  const { dayAreaName, dayTitle } = await import('../src/lib/dayTitle.ts');
+  const byId = new Map([
+    ['a', { area: 'toba' }],
+    ['b', { area: 'toba' }],
+    ['c', { area: 'ise' }],
+    ['d', { area: null }],
+  ]) as never;
+  const areas = [
+    { id: 'ise', name: { ja: '伊勢', zh: '伊勢' } },
+    { id: 'toba', name: { ja: '鳥羽', zh: '鳥羽' } },
+  ] as never;
+  const stops = (ids: string[]) => ids.map((place) => ({ itemId: null, place, kind: 'visit', time: null })) as never;
+  assert.equal(dayAreaName(stops(['c', 'a', 'b']), byId, areas), '鳥羽');
+  assert.equal(dayAreaName(stops(['c', 'a']), byId, areas), '伊勢');
+  assert.equal(dayAreaName(stops(['d']), byId, areas), null);
+  assert.deepEqual(dayTitle('2027-02-05', '鳥羽'), { date: '2/5', sub: '週五 · 第 4 天 · 鳥羽' });
+  assert.deepEqual(dayTitle('2027-02-02', null), { date: '2/2', sub: '週二 · 第 1 天' });
+});

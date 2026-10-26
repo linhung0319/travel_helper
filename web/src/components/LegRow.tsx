@@ -1,15 +1,15 @@
-// 兩張資料卡中間的交通卡（第五輪 §3）：平常收起，只有標題——左邊交通圖示，第一行方式＋分鐘，
-// 第二行距離（路線距離，還沒查到才寫直線）、計程車台數、含等車、📝 備註；右邊 Google Maps 小圖示，大眾運輸加 ▸。
-// 點卡片：地圖只畫這一段（commands.drawRoute，搭車的照班次的站畫），每一程上下車的站亮起來；再點一次或點別段就恢復。
-// 大眾運輸點了就展開步驟（legSteps）：左邊時間、中間細線（步行點線、搭車用圖示色的粗實線、節點小圓圈）、右邊文字；
+// 兩張資料卡中間的交通（第五輪 §3，第七輪 Task 8 改成一行）：資料準備在 useLegView（網頁 LegRow、手機 MobileLeg 都用），畫出來的一行是 shared/ui/LegLine.tsx
+// （線條圖示、方式＋分鐘、距離、計程車台數、含等車、備註；右邊「地圖 ↗」；編輯中多一顆「改」）。
+// 點那一行：地圖只畫這一段（commands.drawRoute，搭車的照班次的站畫），每一程上下車的站亮起來；再點一次或點別段就恢復。
+// 大眾運輸點了就展開步驟（legSteps）：左邊時間、中間細線（步行點線、搭車用細線、節點小圓圈）、右邊文字；
 // 搭車那一行是膠囊，點了在地圖那側開班次表（uiStore.openTimetable，一般模式只能看）。步行、計程車沒有步驟，不展開。
-// 編輯中，點開的那張就在原地變成編輯狀態（藍框）：自動（目前的方式）／步行／計程車／大眾運輸、
-// 大眾運輸的步驟一定展開，膠囊換成只列搭得到的班次的下拉（selectRideTrip）；
+// 編輯：編輯中每段右邊有「改」，按了才打開交通編輯器（uiStore.legEdit；網頁在這一行下面，手機是底部面板 m-leg-sheet，見 mobile/MobileLeg.tsx）：
+// 自動（目前的方式）／步行／計程車／大眾運輸、大眾運輸的步驟一定展開，膠囊換成只列搭得到的班次的下拉（selectRideTrip）；
 // 算不出來（交通未定、指定的方式找不到班次）或已經填過分鐘時才出現「自己填分鐘」（清空＝回到自動）；備註、「完成」收起來。
-// 資料準備在 useLegView（手機版的一行交通也用），步驟 LegSteps、編輯狀態 LegEditor 也給手機版用（排成一欄）。一次只開一段（uiStore.legOpen）；這張卡不見了（換天、回整趟、換分頁）時也收起來，地圖的行程線才會恢復。
-// 編輯中交通卡也是放置區：拖到這裡＝排在這段通往的那張卡片前面（planDrag.dropOnLegProps）。
+// 一次只開一段（uiStore.legOpen）；這一行不見了（換天、回整趟、換分頁）時也收起來，地圖的行程線才會恢復。
+// 編輯中交通也是放置區：拖到這裡＝排在這段通往的那張卡片前面（planDrag.dropOnLegProps）。
 
-import { useEffect, useRef, useState, type MouseEvent, type ReactNode } from 'react';
+import { useEffect, useRef, useState, type ReactNode } from 'react';
 import { getLegTravel, setLegTravel, type Itinerary, type Leg, type LegTarget, type RideDeparture, type TimelineEntry, type TravelSpec } from '@travel-helper/engine';
 import type { TravelMode } from '@travel-helper/engine/types';
 import { commands, itineraryPathOf, roadRouter } from '../appCommands.ts';
@@ -40,6 +40,7 @@ import { lineMeters, rideStations } from '../lib/routing.ts';
 import { MODE_LINE_COLOR } from '../lib/modeIcon.ts';
 import { openTimetable, uiStore } from '../uiStore.ts';
 import { ModeIcon } from './ModeIcon.tsx';
+import { LegLine } from '../shared/ui/LegLine.tsx';
 import { Icon } from './Icon.tsx';
 import { dropOnLegProps } from './planDrag.ts';
 
@@ -270,7 +271,7 @@ export function LegEditor({ target, spec, leg, children }: { target: LegTarget; 
           onKeyDown={(e) => e.key === 'Enter' && e.currentTarget.blur()}
           data-testid="leg-note"
         />
-        <button type="button" className="chip" onClick={() => uiStore.setState({ legOpen: null })} data-testid="leg-done">
+        <button type="button" className="chip" onClick={() => uiStore.setState({ legOpen: null, legEdit: null })} data-testid="leg-done">
           完成
         </button>
       </div>
@@ -294,6 +295,8 @@ export function useLegView(entry: TimelineEntry, date: string) {
   // 每一段交通有自己的 key（起點、會合這類不能改的也可以點，但不會開到別段）；班次表的 legKey 也是這個
   const key = legKeyOf(entry, date);
   const open = useUi((s) => s.legOpen) === key;
+  // 編輯器只有按「改」才開（不會跟著展開自己出現）
+  const editOpen = useUi((s) => s.legEdit) === key;
   const spec = readSpec(itinerary, target);
   // 使用者設定過的（包含分鐘填 0）或有備註的不能藏起來，否則改不回來
   const userSet = !!leg?.specified || !!spec;
@@ -333,9 +336,18 @@ export function useLegView(entry: TimelineEntry, date: string) {
       if (uiStore.getState().legOpen === key) uiStore.setState({ legOpen: null });
     };
   }, [open, key]);
+  // 編輯器開著時結束編輯、這一行不見了：編輯器也關掉
+  useEffect(() => {
+    if (!editOpen) return;
+    if (!planning) uiStore.setState({ legEdit: null });
+    return () => {
+      if (uiStore.getState().legEdit === key) uiStore.setState({ legEdit: null });
+    };
+  }, [editOpen, planning, key]);
 
   if (hidden || !leg) return null;
-  const editing = open && planning && !!target;
+  const editing = open && editOpen && planning && !!target;
+  const editable = planning && !!target;
   const from = fromId ? byId.get(fromId) : undefined;
   const to = toId ? byId.get(toId) : undefined;
   // 距離（第五輪 §3.5）：步行、計程車用道路路線的快取，搭車用照班次的站畫的路徑長度；
@@ -347,55 +359,30 @@ export function useLegView(entry: TimelineEntry, date: string) {
   const transit = steps.length > 0;
   const note = spec?.note && !editing ? spec.note : null;
   /** 點開／收起這段（一次只開一段） */
-  const toggleOpen = () => uiStore.setState({ legOpen: open ? null : key });
-  return { leg, key, open, editing, planning, saving, target, spec, from, to, mode, sub, steps, transit, note, toggleOpen };
+  const toggleOpen = () => uiStore.setState({ legOpen: open ? null : key, legEdit: null });
+  /** 按「改」：打開這段和它的編輯器 */
+  const startEdit = () => uiStore.setState({ legOpen: key, legEdit: key });
+  return { leg, key, open, editing, editable, planning, saving, target, spec, from, to, mode, sub, steps, transit, note, toggleOpen, startEdit };
 }
 
-/** 時間軸上的一段交通（交通卡）；date 是這天的日期 */
+/** 時間軸上的一段交通（一行 LegLine）；date 是這天的日期 */
 export function LegRow({ entry, date }: { entry: TimelineEntry; date: string }) {
   const v = useLegView(entry, date);
   if (!v) return null;
-  const { leg, key, open, editing, planning, saving, target, spec, from, to, mode, sub, steps, transit, note } = v;
+  const { leg, key, open, editing, editable, planning, saving, target, spec, from, to, mode, sub, steps, transit, note } = v;
   const stepList = open && transit ? <LegSteps steps={steps} leg={leg} date={date} legKey={key} target={target} editing={editing} saving={saving} /> : null;
-  // 點卡片上任何地方都切換（編輯區、地圖連結、搭車膠囊、下拉裡的點擊不算）；鍵盤用標題的按鈕
-  const toggle = (e: MouseEvent) => {
-    if ((e.target as HTMLElement).closest('a, select, .leg-edit, .leg-ride')) return;
-    v.toggleOpen();
-  };
   return (
-    <li className={`tl-leg mode-${leg.mode} ${open ? 'open' : ''} ${editing ? 'editing' : ''}`} data-testid="tl-leg" data-leg={key} {...dropOnLegProps(entry.itemId, date, planning)}>
-      <div className="tl-leg-card" onClick={toggle}>
-        <div className="tl-leg-head">
-          <ModeIcon mode={leg.mode} size="l" />
-          <button type="button" className="tl-leg-text" aria-pressed={open} aria-expanded={transit ? open : undefined}>
-            <span className="tl-leg-title">{legTitle(leg) || '交通 0 分'}</span>
-            {(sub.length > 0 || note) && (
-              <span className="tl-leg-sub">
-                {sub.join('・')}
-                {note && (
-                  <span className="tl-leg-note" data-testid="leg-note-text">
-                    {sub.length > 0 && '・'}
-                    <Icon name="pen" size={16} /> {note}
-                  </span>
-                )}
-              </span>
-            )}
-          </button>
-          {from && to && (
-            <a className="leg-maps" href={legMapsUrl(from, to, mode)} target="_blank" rel="noreferrer" aria-label="在 Google Maps 開路線" title="在 Google Maps 開路線" data-testid="leg-maps">
-              Google Map
-            </a>
-          )}
-          {planning && target && !open ? (
-            <span className="tl-leg-chev edit" aria-hidden="true">
-              改 ›
-            </span>
-          ) : transit && !editing ? (
-            <span className={`tl-leg-chev ${open ? 'open' : ''}`} aria-hidden="true">
-              ▸
-            </span>
-          ) : null}
-        </div>
+    <li className={`tl-leg ll-li mode-${leg.mode} ${open ? 'open' : ''} ${editing ? 'editing' : ''}`} data-testid="tl-leg" data-leg={key} {...dropOnLegProps(entry.itemId, date, planning)}>
+      <LegLine
+        mode={leg.mode}
+        text={[legTitle(leg) || '交通 0 分', ...sub].join('・')}
+        note={note}
+        mapsHref={from && to ? legMapsUrl(from, to, mode) : null}
+        onToggle={v.toggleOpen}
+        open={open}
+        expandable={transit}
+        onEdit={editable && !editing ? v.startEdit : null}
+      >
         {editing && target ? (
           <LegEditor key={JSON.stringify(spec)} target={target} spec={spec} leg={leg}>
             {stepList}
@@ -403,7 +390,7 @@ export function LegRow({ entry, date }: { entry: TimelineEntry; date: string }) 
         ) : (
           stepList
         )}
-      </div>
+      </LegLine>
     </li>
   );
 }
