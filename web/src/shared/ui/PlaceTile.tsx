@@ -71,7 +71,7 @@ export function PlaceTile({ place, status, onOpen, testId, rank, hot, rootProps 
           <TierMark tier={place.tier} />
         </span>
         {meta && <span className="pt-meta">{meta}</span>}
-        <Highlights list={rowHighlights(place, status ?? { candidate: [], scheduled: [] }, 1)} />
+        <Highlights list={rowHighlights(place, status ?? { candidate: [], scheduled: [] })} />
       </span>
     </div>
   );
