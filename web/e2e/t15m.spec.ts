@@ -1,6 +1,6 @@
 // T15m 完成條件（PLAN）：電腦版，用假後端（第六輪起手機版在 mobile*.spec.ts）。
 // 按 ❤️ → 想去分頁出現、留言 → 換人看得到、改不了別人的留言 → 加到某天 → 候選
-// → 按「✏️ 編輯這天」按 ↑ 排進 → 時間軸出現、有交通卡 → 停留時間 ＋15 → 復原快照後回到原狀。
+// → 按「編輯」按 ↑ 排進 → 時間軸出現、有交通卡 → 停留時間 ＋15 → 復原快照後回到原狀。
 // 第四輪：沒有緩衝、沒有「換住宿」「併到…」，討論、預約、下載在右上角，探索沒有加到某天；
 // 拖曳放在同類型卡片中間＝合併（可以復原）、放在卡片之間＝排進。
 // 第五輪：「規劃模式」改成「編輯」（藍條、完成）；交通卡平常收起，大眾運輸點了展開步驟、班次表；
@@ -682,7 +682,7 @@ test('第五輪：編輯入口——日期列的「編輯」，確認後出現�
   await expect(page.locator('body')).not.toContainText('規劃模式');
   await page.getByTestId('planning-confirm').click();
 
-  // 編輯中：面板最上面的藍條、藍框；日期列不放「✏️ 編輯這天」
+  // 編輯中：面板最上面的藍條、藍框；日期列不放「編輯」
   const bar = page.getByTestId('planning-bar');
   await expect(bar).toBeVisible();
   await expect(bar).toContainText('編輯中');
@@ -696,7 +696,7 @@ test('第五輪：編輯入口——日期列的「編輯」，確認後出現�
   await expect(toggle).toBeVisible();
   expect(await th(page, '__th.appStore.getState().planning')).toBe(false);
 
-  // 換到別天照樣在編輯；選「全部」就結束編輯（全部沒有這天的時間軸，也沒有「✏️ 編輯這天」）
+  // 換到別天照樣在編輯；選「整趟」就結束編輯（整趟沒有這天的時間軸，也沒有「編輯」）
   await enterPlanning(page);
   await page.getByTestId('day-next').click();
   await expect(page.getByTestId('planning-bar')).toBeVisible();
@@ -1329,6 +1329,14 @@ test('第七輪：地圖上沒有浮動列，日期列在右欄、放得下 12 �
   await expect(page.locator('.map-top')).toHaveCount(0);
   await expect(page.locator('.side-column').getByTestId('m-day-all')).toBeInViewport({ ratio: 1 });
   for (const d of ['2027-02-02', '2027-02-13']) await expect(page.locator('.side-column').getByTestId(`m-day-${d}`)).toBeInViewport({ ratio: 1 });
+});
+
+test.describe('1440 寬', () => {
+  test.use({ viewport: { width: 1440, height: 900 } });
+  test('第七輪：日期列放得下 12 天', async ({ page }) => {
+    await ready(page);
+    for (const d of ['2027-02-02', '2027-02-13']) await expect(page.locator('.side-column').getByTestId(`m-day-${d}`)).toBeInViewport({ ratio: 1 });
+  });
 });
 
 test.describe('1024 寬', () => {

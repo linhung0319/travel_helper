@@ -91,7 +91,8 @@ async function run(name, viewport, mobile) {
 
   // 4. 討論彈窗（四周還看得到地圖）
   if (mobile) await page.evaluate(() => window.__th.appStore.getState().setSheet({ snap: 'peek' }));
-  await page.getByTestId('toolbar-comments').click();
+  await page.getByTestId('account-menu').click();
+  await page.getByTestId('account-comments').click();
   await page.getByTestId('map-panel').waitFor();
   await shot(page, `${name}-5-comments`);
   await page.getByTestId('map-panel-close').click();

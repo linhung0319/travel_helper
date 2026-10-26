@@ -432,7 +432,8 @@
 
 /* 右欄：13 格平分，點的範圍高度 52px */
 .ui-days.side {
-  padding: 8px 8px 4px;
+  padding: 8px 6px 4px;
+  gap: 1px;
 }
 
 .ui-days.side .ui-day {
@@ -442,5 +443,11 @@
 }
 
 .ui-days.side .ui-day b {
-  font-size: 0.9375rem;
+  font-size: 0.8125rem;
+  letter-spacing: -0.03em;
+}
+
+.ui-days.side .ui-day.all {
+  flex: 0 0 auto;
+  padding: 4px 6px;
 }

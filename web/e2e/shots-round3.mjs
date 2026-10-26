@@ -59,16 +59,12 @@ async function run(name, viewport, mobile) {
   await page.getByTestId('planning-done').click();
 
   // 留言視窗、預約筆記（日期列的 💬 📋，窄螢幕在 ⋯ 裡）
-  await page.getByTestId('toolbar-comments').click().catch(async () => {
-    await page.getByTestId('toolbar-more').click();
-    await page.getByTestId('toolbar-comments').click();
-  });
+  await page.getByTestId('account-menu').click();
+  await page.getByTestId('account-comments').click();
   await shot(page, `${name}-4-comments`);
   await page.getByTestId('map-panel-close').click();
-  await page.getByTestId('toolbar-reservations').click().catch(async () => {
-    await page.getByTestId('toolbar-more').click();
-    await page.getByTestId('toolbar-reservations').click();
-  });
+  await page.getByTestId('account-menu').click();
+  await page.getByTestId('account-reservations').click();
   await shot(page, `${name}-5-reservations`);
   await page.getByTestId('map-panel-close').click();
 
