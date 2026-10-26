@@ -94,12 +94,53 @@ export interface RouteTrip {
   stops: [string, TimeString | null, TimeString | null][];
 }
 
+/** 班距型路線（大阪都市區）的營運時段；schema/urban-route.schema.json */
+export interface UrbanService {
+  first: TimeString | null;
+  last: TimeString | null;
+  headway: { from: TimeString; to: TimeString; min: number | null }[] | null;
+  note?: string | null;
+}
+
+/** 班距型路線：只有首末班和班距，沒有逐班時刻（data/timetables/urban/<路線>.json） */
+export interface UrbanRoute {
+  id: string;
+  mode: string;
+  operator?: string;
+  name: { ja: string; zh?: string | null };
+  serviceType?: string | null;
+  stops: { id: string; min: number; note?: string | null }[];
+  loop: boolean;
+  loopMin: number | null;
+  service: { weekday: UrbanService | null; saturday: UrbanService | null; holiday: UrbanService | null };
+  fares?: { adult?: Record<string, Record<string, number>> | null } | null;
+}
+
+/** 大阪站內、站間的轉乘（data/timetables/urban/_transfers.json）；schema/urban-transfers.schema.json */
+export interface UrbanTransfer {
+  from: string;
+  to: string;
+  fromLine?: string | null;
+  toLine?: string | null;
+  walkMin: number | null;
+  elevator?: boolean | null;
+  elevatorRoute?: string | null;
+  elevatorWalkMin?: number | null;
+  exitGates?: boolean | null;
+  oneWay?: boolean;
+  note?: string | null;
+}
+
 export interface EngineData {
   /** 用 ID 查地點（預設資料、使用者加的點、車站）；查不到回傳 null */
   getPlace(id: string): ResolvedPlace | null;
   stations: PlaceRecord[];
   kintetsu?: KintetsuTimes | null;
   routes?: RouteTimetable[];
+  /** 大阪的班距型路線（地下鐵、JR 環狀線等） */
+  urban?: UrbanRoute[];
+  /** 大阪的轉乘表 */
+  urbanTransfers?: UrbanTransfer[];
   /** 子地區 ID → 是否大部分地點要搭車（areas.json 的 regions[].needsCar） */
   regionNeedsCar?: Record<string, boolean>;
   /**

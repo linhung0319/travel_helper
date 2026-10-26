@@ -2,9 +2,9 @@
 // 「這一天」的時間軸、地圖上的交通標籤、空檔、警告都讀這一份。
 
 import { createStore, type StoreApi } from 'zustand/vanilla';
-import { placeLookup, planItinerary, resolveConfig, rideDepartures, type DayPlan, type EngineConfig, type EngineData, type ItineraryPlan, type KintetsuTimes, type PlaceRecord, type RideDeparture, type RouteTimetable, type TransitRide } from '@travel-helper/engine';
+import { placeLookup, planItinerary, resolveConfig, rideDepartures, type DayPlan, type EngineConfig, type EngineData, type ItineraryPlan, type PlaceRecord, type RideDeparture, type TransitRide } from '@travel-helper/engine';
 import type { DataState } from './dataStore.ts';
-import type { DataSource } from './data/source.ts';
+import type { DataSource, EngineTimetables } from './data/source.ts';
 import type { LonLat } from './data/types.ts';
 
 export interface PlanState {
@@ -43,7 +43,7 @@ export interface RoadCache {
   cachedMinutes(profile: 'foot' | 'car', from: LonLat, to: LonLat): number | null;
 }
 
-export function buildEngineData(d: DataState, tt: { kintetsu: KintetsuTimes | null; routes: RouteTimetable[] }, roads?: RoadCache): EngineData {
+export function buildEngineData(d: DataState, tt: EngineTimetables, roads?: RoadCache): EngineData {
   const records = d.places.map((p) => p.raw as unknown as PlaceRecord);
   const needsCar: Record<string, boolean> = {};
   for (const a of d.areas) for (const r of a.regions ?? []) needsCar[r.id] = !!r.needsCar;
@@ -52,6 +52,8 @@ export function buildEngineData(d: DataState, tt: { kintetsu: KintetsuTimes | nu
     stations: records.filter((r) => r.type === 'station'),
     kintetsu: tt.kintetsu,
     routes: tt.routes,
+    urban: tt.urban,
+    urbanTransfers: tt.urbanTransfers,
     regionNeedsCar: needsCar,
     walkMeters: roads ? (a, b) => roads.cachedMeters('foot', a, b) : undefined,
     driveMeters: roads ? (a, b) => roads.cachedMeters('car', a, b) : undefined,
@@ -61,7 +63,7 @@ export function buildEngineData(d: DataState, tt: { kintetsu: KintetsuTimes | nu
 
 /** 開始算：讀時刻表，之後行程或資料點變了就重算 */
 export function startPlanner(data: StoreApi<DataState>, source: DataSource, roads?: RoadCache, store: StoreApi<PlanState> = planStore) {
-  let timetables: { kintetsu: KintetsuTimes | null; routes: RouteTimetable[] } | null = null;
+  let timetables: EngineTimetables | null = null;
   const compute = () => {
     const d = data.getState();
     if (!timetables || d.status !== 'ready') return;
