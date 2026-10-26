@@ -74,6 +74,10 @@ export interface Proposal {
   summary: string | null;
 }
 
+/** 篩選屬於哪一頁：想去自己一份，探索和行程共用一份（行程分頁的地圖不套篩選，時間軸空檔「找附近的…」設的篩選是給探索的） */
+export type FilterOwner = 'explore' | 'wish';
+const ownerOf = (mode: AppState['mode']): FilterOwner => (mode === 'wish' ? 'wish' : 'explore');
+
 export interface AppState {
   /** 地圖目前的範圍（地圖移動結束時更新）；給探索模式和 AI 當脈絡 */
   view: { center: LonLat; zoom: number; bounds: Bbox } | null;
@@ -81,8 +85,10 @@ export interface AppState {
   /** 整趟模式點了哪一天的路線：那天亮、其他天變淡（第五輪 §9.1）；點地圖空白處、換天清掉 */
   tripFocusDay: string | null;
   filter: Filter;
-  /** 搜尋欄（探索、想去、地圖共用；不放進 Filter） */
+  /** 搜尋欄（不放進 Filter）；filter、query 是現在這頁的（網頁探索、想去各一份，見 filterStash） */
   query: string;
+  /** 網頁的探索、想去各自一份篩選和搜尋（第七輪最終 review #3，和手機一樣）：filter、query 是現在那頁的，另一頁的收在這裡；行程分頁沿用探索那份 */
+  filterStash: Record<FilterOwner, { filter: Filter; query: string }>;
   mode: 'map' | 'explore' | 'wish';
   /** 編輯中（進入前確認、閒置結束）；選「全部」時一定結束 */
   planning: boolean;
@@ -165,6 +171,7 @@ export const initialState: AppState = {
   tripFocusDay: null,
   filter: EMPTY_FILTER,
   query: '',
+  filterStash: { explore: { filter: EMPTY_FILTER, query: '' }, wish: { filter: EMPTY_FILTER, query: '' } },
   mode: 'map',
   planning: false,
   hoveredId: null,
@@ -202,8 +209,16 @@ export function createAppStore(init: Partial<AppState> = {}) {
       set((s) => ({ filter: { ...s.filter, [key]: toggleValue(s.filter[key] as string[], value) } })),
     clearFilter: () => set({ filter: EMPTY_FILTER }),
     setQuery: (query) => set({ query }),
-    // 換分頁取消選中
-    setMode: (mode) => set((s) => (mode === s.mode ? { mode } : { mode, selectedId: null })),
+    // 換分頁取消選中；探索、想去的篩選、搜尋換成那頁自己的
+    setMode: (mode) =>
+      set((s) => {
+        if (mode === s.mode) return { mode };
+        const from = ownerOf(s.mode);
+        const to = ownerOf(mode);
+        if (from === to) return { mode, selectedId: null };
+        const filterStash = { ...s.filterStash, [from]: { filter: s.filter, query: s.query } };
+        return { mode, selectedId: null, filterStash, filter: filterStash[to].filter, query: filterStash[to].query };
+      }),
     setPlanning: (planning) => set({ planning }),
     hover: (hoveredId, from) => {
       if (dragging()) return;

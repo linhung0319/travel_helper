@@ -11,10 +11,12 @@ import { FilterBar } from '../shared/ui/FilterBar.tsx';
 import { WishList } from '../shared/ui/WishList.tsx';
 import { useWishModel } from './FeedFilters.tsx';
 import { mobileStore, useMobile } from './mobileStore.ts';
+import { useWishPrefs } from '../shared/wishPrefs.ts';
 
 /** 想去分頁 */
 export function WishlistPage() {
   const wish = useMobile((s) => s.wish);
+  const view = useWishPrefs((s) => s.view);
   const { setWish } = mobileStore.getState();
   // 預設「全部」（記住上次選的類型）
   const type = wish.type;
@@ -45,7 +47,7 @@ export function WishlistPage() {
       <WishList
         surface="mobile"
         places={list}
-        view={wish.view}
+        view={view}
         onOpen={(id) => mobileStore.getState().openPlace(id, 'wish')}
         onOpenComments={(id) => mobileStore.getState().openPlace(id, 'wish', 'comments')}
       />

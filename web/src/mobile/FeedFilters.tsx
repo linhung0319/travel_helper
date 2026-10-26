@@ -8,6 +8,7 @@ import { TYPE_LABELS, type FilterKey } from '../lib/filter.ts';
 import { Chip } from '../shared/ui/Chip.tsx';
 import { FilterBar, type FilterModel } from '../shared/ui/FilterBar.tsx';
 import { mobileStore, useMobile } from './mobileStore.ts';
+import { useWishPrefs, wishPrefs } from '../shared/wishPrefs.ts';
 
 const TYPE_CHIPS: { type: Feed['type']; label: string }[] = [
   { type: 'all', label: '全部' },
@@ -45,6 +46,7 @@ export function useFeedModel(): FilterModel {
 /** 想去的篩選列資料：wish 接成 FilterModel（類型是上面的分段，這裡固定一類） */
 export function useWishModel(type: ExploreType | 'all'): FilterModel {
   const wish = useMobile((s) => s.wish);
+  const wishView = useWishPrefs((s) => s.view);
   const filter = useMemo(() => wishFilter(type, wish.area, wish.quick), [type, wish.area, wish.quick]);
   return {
     filter,
@@ -52,8 +54,8 @@ export function useWishModel(type: ExploreType | 'all'): FilterModel {
     setQuery: (query) => mobileStore.getState().setWish({ query }),
     sort: wish.sort,
     setSort: (sort) => mobileStore.getState().setWish({ sort }),
-    view: wish.view,
-    setView: (view) => mobileStore.getState().setWish({ view }),
+    view: wishView,
+    setView: (view) => wishPrefs.getState().setView(view),
     inView: false,
     setInView: () => {},
     pick: (key: FilterKey, value: string) => {

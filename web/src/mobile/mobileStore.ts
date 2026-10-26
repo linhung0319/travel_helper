@@ -1,5 +1,5 @@
 // 手機版自己的畫面狀態（第六輪 §3、§6）：現在在哪個分頁、行程面板停在哪、行程選到的卡（focusItem，不改面板高度）、原地展開的卡（expanded、expandItem）、編輯中打開的「⋯」動作面板（actions）、
-// 整頁詳情、聊天面板、整頁的討論／預約、探索的篩選與顯示方式（feed.view 記在 localStorage）、想去的設定。
+// 整頁詳情、聊天面板、整頁的討論／預約、探索的篩選與顯示方式（feed.view 記在 localStorage）、想去的篩選、搜尋、排序（清單／照片牆、三段收合在 shared/wishPrefs.ts，網頁也用）。
 // 不放進 store.ts（地圖指令那層）；網頁版用不到。打開整頁（詳情、討論／預約）時推一筆 history，手機的返回鍵（瀏覽器上一頁）就是關掉那一頁；
 // 頁面左上角的「‹」（closePlace、setPage(null)）也是把那筆退回去（history.back）。
 // history.back() 是非同步的：關掉之後，退回去的 popstate 還沒到之前又開了整頁，要等它到了才推新的那筆（不然 popstate 會把新的關掉）。
@@ -16,7 +16,6 @@ import type { ActionTarget } from '../components/cardActionRun.ts';
 import { uiStore } from '../uiStore.ts';
 import { appStore } from '../store.ts';
 import type { DetailTabId } from '../store.ts';
-import type { SectionId } from '../shared/wishSections.ts';
 import { EMPTY_FEED, type ExploreSort, type ExploreType, type Feed } from '../lib/explore.ts';
 
 export type MobileTab = 'explore' | 'wish' | 'trip' | 'ai' | 'me';
@@ -37,15 +36,13 @@ export interface ActionSheetSpec {
   view?: ActionView;
 }
 
-/** 想去分頁的設定：哪一類（null＝還沒選，打開時挑有東西的那類）、地區、面板選的條件（quick，寫法同 Feed.quick）、搜尋、排序、大圖或清單（記在 localStorage）、三段哪幾段收起來（記在 localStorage，網頁版也用這份） */
+/** 想去分頁的設定：哪一類（null＝還沒選，打開時挑有東西的那類）、地區、面板選的條件（quick，寫法同 Feed.quick）、搜尋、排序。清單或照片牆、三段的收合在 shared/wishPrefs.ts（網頁版也用） */
 export interface WishView {
   type: ExploreType | 'all';
   area: string | null;
   quick: string[];
   query: string;
   sort: ExploreSort;
-  view: 'photo' | 'list';
-  collapsed: Record<SectionId, boolean>;
 }
 
 export interface MobileState {
@@ -159,39 +156,6 @@ function loadFeedView(): Feed['view'] {
   }
 }
 
-const WISH_VIEW_KEY = 'travel-helper:wishView';
-const WISH_COLLAPSED_KEY = 'th.wishCollapsed';
-
-/** 想去上次的顯示方式；讀不到就是清單（三段的列有誰想去、最新留言，預設用清單） */
-function loadWishView(): WishView['view'] {
-  try {
-    return localStorage.getItem(WISH_VIEW_KEY) === 'photo' ? 'photo' : 'list';
-  } catch {
-    return 'list';
-  }
-}
-
-/** 三段的收合狀態；沒存過或讀不到：只有「已排」收起來 */
-function loadWishCollapsed(): WishView['collapsed'] {
-  const base: WishView['collapsed'] = { unscheduled: false, candidate: false, scheduled: true };
-  try {
-    const o = JSON.parse(localStorage.getItem(WISH_COLLAPSED_KEY) ?? 'null') as Partial<Record<SectionId, unknown>> | null;
-    if (o) for (const k of Object.keys(base) as SectionId[]) if (typeof o[k] === 'boolean') base[k] = o[k] as boolean;
-  } catch {
-    // 讀不到：用預設
-  }
-  return base;
-}
-
-function saveWish(w: WishView) {
-  try {
-    localStorage.setItem(WISH_VIEW_KEY, w.view);
-    localStorage.setItem(WISH_COLLAPSED_KEY, JSON.stringify(w.collapsed));
-  } catch {
-    // 私密視窗等存不了：只是下次回到預設
-  }
-}
-
 function saveFeedView(v: Feed['view']) {
   try {
     localStorage.setItem(FEED_VIEW_KEY, v);
@@ -211,7 +175,7 @@ export const mobileStore = createStore<MobileStore>()((set, get) => ({
   actions: null,
   page: null,
   feed: { ...EMPTY_FEED, view: loadFeedView() },
-  wish: { type: 'all', area: null, quick: [], query: '', sort: 'likes', view: loadWishView(), collapsed: loadWishCollapsed() },
+  wish: { type: 'all', area: null, quick: [], query: '', sort: 'likes' },
   // 換分頁：整頁的東西、半屏聊天都關掉
   setTab: (tab) => {
     const had = layerOpen(get());
@@ -268,11 +232,7 @@ export const mobileStore = createStore<MobileStore>()((set, get) => ({
     const q = get().wish.quick;
     set({ wish: { ...get().wish, quick: q.includes(token) ? q.filter((t) => t !== token) : [...q, token] } });
   },
-  setWish: (patch) => {
-    const wish = { ...get().wish, ...patch };
-    set({ wish });
-    if (patch.view || patch.collapsed) saveWish(wish);
-  },
+  setWish: (patch) => set({ wish: { ...get().wish, ...patch } }),
 }));
 
 // 換天：取消選到的卡、收起展開的卡（同步做，「在地圖上看」換天後馬上選卡才不會被清掉）

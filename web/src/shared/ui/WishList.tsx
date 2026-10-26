@@ -1,6 +1,6 @@
 // 想去的清單（網頁右欄、手機想去分頁共用，設計 §5.3）：按「排了沒有」分三段（還沒排、已是候選、已排進行程）。
 // 最上面一排跳轉晶片（還沒排 N・已是候選 N・已排 N），點了捲到那一段，捲動時現在那段 aria-current；
-// 段落標題黏在清單頂端、點了收合（「已排進行程」預設收合，狀態記在 mobileStore.wish.collapsed → localStorage）；
+// 段落標題黏在清單頂端、點了收合（「已排進行程」預設收合，狀態記在 shared/wishPrefs.ts → localStorage）；
 // 每段先顯示 8 個，下面「再顯示 15 個」；候選、已排按日期分小段（2/5（五）· 3）。分段的計算在 shared/wishSections.ts。
 // 列是 PlaceRow 的變體：第二行是誰想去（頭像＋名字）或候選／已排膠囊＋頭像，第三行是最新一則留言的第一句（點了開詳情的留言分頁）。
 // 網頁：列右邊 ❤ 加日曆鈕（wish-add，開 DayPicker 小彈窗 wish-add-pop）。手機：列可以左滑露出「加到某天」（wish-swipe-add），
@@ -15,7 +15,7 @@ import { DayPicker } from '../../components/DayPicker.tsx';
 import { Avatar, MemberName } from '../../components/common.tsx';
 import { Icon } from '../../components/Icon.tsx';
 import { dragPlaceProps } from '../../components/askAi.ts';
-import { mobileStore, useMobile } from '../../mobile/mobileStore.ts';
+import { useWishPrefs, wishPrefs } from '../wishPrefs.ts';
 import { useLikeCount, useLiked } from '../placeLists.ts';
 import { rowHighlights } from '../rowHighlights.ts';
 import { PAGE_FIRST, PAGE_MORE, wishSections, type SectionId, type WishGroup } from '../wishSections.ts';
@@ -303,7 +303,7 @@ export function WishList({ surface, places, view, onOpen, onOpenComments, hotId,
   const liked = useLiked();
   const lastComments = useLastComments();
   const statusOf = useDayStatus();
-  const collapsed = useMobile((s) => s.wish.collapsed);
+  const collapsed = useWishPrefs((s) => s.collapsed);
   const [shown, setShown] = useState<Record<SectionId, number>>({ unscheduled: PAGE_FIRST, candidate: PAGE_FIRST, scheduled: PAGE_FIRST });
   const [current, setCurrent] = useState<SectionId>('unscheduled');
   // 地圖點到而暫時展開的段落（不改記住的收合狀態）
@@ -314,7 +314,7 @@ export function WishList({ surface, places, view, onOpen, onOpenComments, hotId,
 
   const byId = useMemo(() => new Map(places.map((p) => [p.id, p])), [places]);
   const sections = useMemo(() => wishSections(places.map((p) => p.id), candidates, itinerary, likeCount), [places, candidates, itinerary, likeCount]);
-  const setCollapsed = (id: SectionId, on: boolean) => mobileStore.getState().setWish({ collapsed: { ...mobileStore.getState().wish.collapsed, [id]: on } });
+  const setCollapsed = (id: SectionId, on: boolean) => wishPrefs.getState().setCollapsed(id, on);
 
   // 捲動時現在是哪一段：最後一個頂端已經過了跳轉列下緣的段落（任何捲動容器的 scroll 都收得到）
   useEffect(() => {

@@ -115,3 +115,30 @@ test('交通的路線（legRoute）不是 AI 的 routes，clearHighlights 不清
   store.getState().setLegRoute(null);
   assert.equal(store.getState().legRoute, null);
 });
+
+test('網頁的探索、想去各自一份篩選和搜尋（最終 review #3）：換分頁換成那頁的，行程分頁沿用探索的', () => {
+  const store = createAppStore();
+  const s = () => store.getState();
+  s().setMode('wish');
+  s().setFilter({ votes: ['mine'] });
+  s().setQuery('海女');
+  s().setMode('explore');
+  assert.deepEqual(s().filter, EMPTY_FILTER);
+  assert.equal(s().query, '');
+  s().toggleFilter('types', 'restaurant');
+  s().setQuery('うどん');
+  s().setMode('wish');
+  assert.deepEqual(s().filter.votes, ['mine']);
+  assert.deepEqual(s().filter.types, []);
+  assert.equal(s().query, '海女');
+  // 到行程：篩選換回探索那份（行程分頁的地圖不套篩選；從時間軸空檔「找附近的…」設的篩選是給探索的）
+  s().setMode('map');
+  assert.deepEqual(s().filter.types, ['restaurant']);
+  assert.equal(s().query, 'うどん');
+  s().setFilter({ tiers: ['S'] });
+  s().setMode('explore');
+  assert.deepEqual(s().filter.tiers, ['S']);
+  assert.deepEqual(s().filter.types, ['restaurant']);
+  s().setMode('wish');
+  assert.deepEqual(s().filter.tiers, []);
+});

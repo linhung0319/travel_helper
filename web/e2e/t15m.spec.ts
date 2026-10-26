@@ -2246,3 +2246,26 @@ test('想去分頁的地圖不畫行程的路線', async ({ page }) => {
   await page.getByTestId('side-tab-day').click();
   await expect.poll(lines).toBeGreaterThan(0);
 });
+
+// ---------- 第七輪最終 review 的修正 ----------
+
+test('探索、想去各自一份篩選和搜尋：想去的「只看我按的」、搜尋字不帶到探索', async ({ page }) => {
+  await ready(page);
+  await page.getByTestId('side-tab-wish').click();
+  await pickFilter(page, 'wish-mine');
+  await page.getByTestId('search').fill('海');
+  await expect(page.getByTestId('filter-applied').filter({ hasText: '只看我按的' })).toBeVisible();
+  await page.getByTestId('side-tab-explore').click();
+  await expect(page.getByTestId('filter-applied-row')).toHaveCount(0);
+  await expect(page.getByTestId('search')).toHaveValue('');
+  expect(await th(page, '__th.appStore.getState().filter.votes')).toEqual([]);
+  expect(await th(page, '__th.appStore.getState().query')).toBe('');
+  // 探索自己的條件也不帶到想去
+  await pickFilter(page, 'type-restaurant');
+  await page.getByTestId('side-tab-wish').click();
+  await expect(page.getByTestId('search')).toHaveValue('海');
+  await expect(page.getByTestId('filter-applied').filter({ hasText: '只看我按的' })).toBeVisible();
+  await expect(page.getByTestId('filter-applied').filter({ hasText: '餐廳' })).toHaveCount(0);
+  await page.getByTestId('side-tab-explore').click();
+  expect(await th(page, '__th.appStore.getState().filter.types')).toEqual(['restaurant']);
+});

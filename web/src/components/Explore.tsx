@@ -4,7 +4,8 @@
 // 反過來，在探索、想去分頁點地圖上的點（mapPick.ts）：清單裡有它就捲到那張卡片並選中（showInExplore），沒有就直接開詳情；不改類型、篩選（第七輪 §8.3）。
 // 清單標出的卡：選中的點、和滑鼠在地圖上指到的點（卡片自己被指到時不回頭標自己）。
 // 「想去」分頁是同一個元件（source="wish"）：只列有人按想去的點，清單換成 shared/ui/WishList（分成還沒排、已是候選、已排三段，列右邊有 ❤ 和日曆鈕「加到某天」）；
-// 探索只有愛心，流程是先按想去再到想去加到某天。想去的顯示方式（清單、照片牆）記在 mobileStore.wish.view，和探索各自記。
+// 探索只有愛心，流程是先按想去再到想去加到某天。想去的顯示方式（清單、照片牆）記在 shared/wishPrefs.ts（手機也用），和探索各自記。
+// 篩選、搜尋：探索、想去各自一份（appStore.filter／query 是現在這頁的，另一頁的收在 filterStash，第七輪最終 review #3）。
 // 卡片照片右下角是想去的愛心（VoteHeart），左上角是類型；重點膠囊（已排、候選、15 人、預約）在名稱下面。探索的照片牆是兩欄。
 // 清單的計算（篩選、排序、數量、想去的範圍）在 shared/placeLists.ts 的 usePlaceList，手機版也用。
 
@@ -25,7 +26,7 @@ import { PlaceRow, useDayStatus, type DayStatus } from '../shared/ui/PlaceRow.ts
 import { PlaceTile } from '../shared/ui/PlaceTile.tsx';
 import { PlaceWall } from '../shared/ui/PlaceWall.tsx';
 import { WishList } from '../shared/ui/WishList.tsx';
-import { mobileStore, useMobile } from '../mobile/mobileStore.ts';
+import { useWishPrefs, wishPrefs } from '../shared/wishPrefs.ts';
 
 export type ListSource = 'explore' | 'wish';
 
@@ -94,7 +95,7 @@ export function ExplorePanel({ source = 'explore' }: { source?: ListSource }) {
   const hotOf = (id: string) => id === selectedId || id === mapHovered;
   const target = useApp((s) => s.exploreTarget);
   const [exploreView, setExploreView] = useState<View>(loadView);
-  const wishView = useMobile((s) => s.wish.view);
+  const wishView = useWishPrefs((s) => s.view);
   const wish = source === 'wish';
   // 探索、想去各自記住上次的顯示方式
   const view: View = wish ? wishView : exploreView;
@@ -124,7 +125,7 @@ export function ExplorePanel({ source = 'explore' }: { source?: ListSource }) {
     view,
     setView: (v) => {
       if (wish) {
-        mobileStore.getState().setWish({ view: v });
+        wishPrefs.getState().setView(v);
         return;
       }
       setExploreView(v);
