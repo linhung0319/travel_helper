@@ -388,6 +388,8 @@ test('ifMissed：班距型那程晚約一個班距', () => {
     const m = ifMissed(net, j, i, q1, DEFAULT_CONFIG);
     assert.ok(m, `第 ${i} 程`);
     assert.ok(m.lateMinutes > 0, `第 ${i} 程晚 ${m.lateMinutes}`);
+    // depart 是錯過的那程的下一班（不是整段的第一程發車）
+    assert.ok(m.depart > j.rides[i].dep, `第 ${i} 程下一班 ${m.depart}`);
   }
   const m0 = ifMissed(net, j, 0, q1, DEFAULT_CONFIG);
   assert.ok(m0 && Math.abs(m0.lateMinutes - (j.rides[0].headway as { min: number }).min) <= 1);

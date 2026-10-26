@@ -22,7 +22,8 @@ test('效能：11 天 ~90 段近鐵，第一次規劃、編輯後重算都夠快
   let t = performance.now();
   const plan = planItinerary(it, data);
   const first = performance.now() - t;
-  const legs = plan.days.flatMap((d) => d.entries.map((e) => e.travel).filter((l) => l?.mode === 'train'));
+  // 電車段（T29 起第一天關西機場那段是南海空港急行＋近鐵，含班距型那程，照 spec §6.6 沒有前一班、後一班，不算在內）
+  const legs = plan.days.flatMap((d) => d.entries.map((e) => e.travel).filter((l) => l?.mode === 'train' && l.rides.every((r) => r.kind !== 'headway')));
   assert.ok(legs.length >= 80, `近鐵段數 ${legs.length}`);
   assert.ok(legs.every((l) => l?.trip && (l.prevTrip || l.nextTrip)));
   // 編輯一天（中間那天多一站）後整份重算

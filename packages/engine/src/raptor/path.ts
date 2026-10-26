@@ -95,7 +95,7 @@ export function evaluatePath(
 }
 
 /**
- * 第 i 程錯過（改搭發車晚於規劃那班的下一班）：整段到達、晚幾分；沒有下一班回傳 null。
+ * 第 i 程錯過（改搭發車晚於規劃那班的下一班）：那班的發車、整段到達、晚幾分；沒有下一班回傳 null。
  * 有時刻表的程：同一對站發車晚於規劃發車、到得最早的那班；班距型：規劃發車＋班距（仍受首末班限制）。
  * 前面幾程不變，後面照走法重算。
  */
@@ -131,5 +131,6 @@ export function ifMissed(
   rides.push(missed);
   const out = finish(c, rides, transfers, j.rides.slice(i + 1).map((r) => ({ line: r.route.group, from: r.from, to: r.to })), j.origin, j.target);
   if (!out) return null;
-  return { depart: out.dep, arrive: out.arr, lateMinutes: out.arr - j.arr };
+  // depart：錯過的那程的下一班（不是整段第一程的發車）
+  return { depart: missed.dep, arrive: out.arr, lateMinutes: out.arr - j.arr };
 }
