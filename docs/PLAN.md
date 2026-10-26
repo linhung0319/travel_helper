@@ -107,7 +107,7 @@
 | T26 | 👤 Places 照片備案：資料點對應 place ID；主照片失效、或詳情往下捲時，透過 Worker 即時向 Places API 取照片（不存照片） | M | T25 | 4 | | ⬜ |
 | T27a | 👤 大阪：子地區與景點（含 USJ） | S | — | 3 | 🌐 大量 | ✅ |
 | T27b | 大阪：住宿 | S | T27a | 3 | 🌐 大量 | ✅ |
-| T27c | 大阪：餐廳（候選和詳細資料一起做） | M | T27a | 3 | 🌐 大量 | ⬜ |
+| T27c | 大阪：餐廳（候選和詳細資料一起做） | M | T27a | 3 | 🌐 大量 | ✅ |
 | T27d | 大阪：收尾、摘要與評分、代表照片（自動排序）、匯入 | S | T27b、T27c | 3 | | ⬜ |
 | T28 | 大阪交通：近鐵 大阪 ↔ 伊勢志摩的特急（北上回大阪、第一天南下志摩）、市區路線的所需時間和班距、大站轉乘的步行時間和電梯 | M | — | 3 | | ✅ |
 | T29 | engine：班距型路線（市區鐵道）、轉乘步行；車站面板顯示班距 | S | T28（格式定好就可以開始） | 3 | 🌐 少量 | ⬜ |
@@ -880,6 +880,7 @@ T7c → T7d → T7e → T7f → T7g → T8a → T8b → T8c → T8d → T7i → 
 - 讀口コミ、Google 評論只讀 fit15 是 yes 或 split 的店（T8e 的做法）。
 - 讀文 subagent 照舊（來源少的 3 家合一個）。
 - 寫 `data/areas/osaka/restaurants.json`、`data/raw/osaka/`。
+- **完成（2026-10-26）**：餐廳 41 筆（G 18、S 23；namba 15、osaka-castle 7、tennoji 7、osaka-bay 5、umeda 7），候選 338 筆。👤 決定：`inclusion` 的 schema 加 G、S（T27c 改 schema、重產 validators）；S 的名物＝食べログ類別第一項、平價＝昼 1,999 円以下、同類每區最多 2 家（寫進 CONVENTIONS §4 大阪、`restaurant-candidates.mjs` 的 `scheme: osaka`）。列表用口コミ人数順。`anchors`、評分留給 T27d。過程在 `data/raw/osaka/log/T27c.md`。
 
 #### T27d 收尾、摘要與評分、匯入 〔S〕
 - `restaurant-anchors.mjs osaka`、`lodging-dinner-access.mjs`；不跑 `restaurant-gaps.mjs`（大阪不做缺漏檢查）。

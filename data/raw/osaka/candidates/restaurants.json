@@ -11,10 +11,12 @@
       "S"
     ],
     "reason": null,
-    "pointId": null,
+    "pointId": "osaka-bakusho",
     "ratings": {
       "tabelog": 3.69,
-      "tabelogReviews": 618
+      "tabelogReviews": 618,
+      "google": 4.2,
+      "googleReviews": 291
     },
     "links": {
       "tabelog": "https://tabelog.com/osaka/A2701/A270107/27013801/"
@@ -39,10 +41,12 @@
       "S"
     ],
     "reason": null,
-    "pointId": null,
+    "pointId": "osaka-garb-dressing-kyobashi",
     "ratings": {
       "tabelog": 3.47,
-      "tabelogReviews": 606
+      "tabelogReviews": 606,
+      "google": 3.5,
+      "googleReviews": 839
     },
     "links": {
       "tabelog": "https://tabelog.com/osaka/A2701/A270107/27001127/"
@@ -67,10 +71,12 @@
       "S"
     ],
     "reason": null,
-    "pointId": null,
+    "pointId": "osaka-dynamic-kitchen-san-obp",
     "ratings": {
       "tabelog": 3.49,
-      "tabelogReviews": 603
+      "tabelogReviews": 603,
+      "google": 4.6,
+      "googleReviews": 3833
     },
     "links": {
       "tabelog": "https://tabelog.com/osaka/A2701/A270107/27002146/"
@@ -720,10 +726,12 @@
       "S"
     ],
     "reason": null,
-    "pointId": null,
+    "pointId": "osaka-horumon-tokuichi",
     "ratings": {
       "tabelog": 3.55,
-      "tabelogReviews": 661
+      "tabelogReviews": 661,
+      "google": 4.1,
+      "googleReviews": 479
     },
     "links": {
       "tabelog": "https://tabelog.com/osaka/A2701/A270107/27055508/"
@@ -801,10 +809,12 @@
       "S"
     ],
     "reason": null,
-    "pointId": null,
+    "pointId": "osaka-matsui-kyobashi",
     "ratings": {
       "tabelog": 3.49,
-      "tabelogReviews": 588
+      "tabelogReviews": 588,
+      "google": 4.3,
+      "googleReviews": 1055
     },
     "links": {
       "tabelog": "https://tabelog.com/osaka/A2701/A270107/27004037/"
@@ -1254,10 +1264,12 @@
       "S"
     ],
     "reason": null,
-    "pointId": null,
+    "pointId": "osaka-dotonbori-imai",
     "ratings": {
       "tabelog": 3.58,
-      "tabelogReviews": 2408
+      "tabelogReviews": 2408,
+      "google": 4.3,
+      "googleReviews": 2711
     },
     "links": {
       "tabelog": "https://tabelog.com/osaka/A2701/A270202/27001289/"
@@ -1407,10 +1419,12 @@
       "S"
     ],
     "reason": null,
-    "pointId": null,
+    "pointId": "osaka-551-horai-honten",
     "ratings": {
       "tabelog": 3.48,
-      "tabelogReviews": 1923
+      "tabelogReviews": 1923,
+      "google": 4.2,
+      "googleReviews": 4594
     },
     "links": {
       "tabelog": "https://tabelog.com/osaka/A2701/A270202/27001312/"
@@ -1459,10 +1473,12 @@
       "S"
     ],
     "reason": null,
-    "pointId": null,
+    "pointId": "osaka-horie-blue",
     "ratings": {
       "tabelog": 3.49,
-      "tabelogReviews": 1209
+      "tabelogReviews": 1209,
+      "google": 3.9,
+      "googleReviews": 774
     },
     "links": {
       "tabelog": "https://tabelog.com/osaka/A2701/A270202/27019090/"
@@ -1487,10 +1503,12 @@
       "S"
     ],
     "reason": null,
-    "pointId": null,
+    "pointId": "osaka-tsurutontan-soemoncho",
     "ratings": {
       "tabelog": 3.39,
-      "tabelogReviews": 1003
+      "tabelogReviews": 1003,
+      "google": 4,
+      "googleReviews": 4948
     },
     "links": {
       "tabelog": "https://tabelog.com/osaka/A2701/A270202/27000374/"
@@ -1644,10 +1662,12 @@
       "S"
     ],
     "reason": null,
-    "pointId": null,
+    "pointId": "osaka-aquarium-italian-lime",
     "ratings": {
       "tabelog": 3.49,
-      "tabelogReviews": 805
+      "tabelogReviews": 805,
+      "google": 4.2,
+      "googleReviews": 1736
     },
     "links": {
       "tabelog": "https://tabelog.com/osaka/A2701/A270202/27058889/"
@@ -1672,10 +1692,12 @@
       "S"
     ],
     "reason": null,
-    "pointId": null,
+    "pointId": "osaka-moulin-namba",
     "ratings": {
       "tabelog": 3.48,
-      "tabelogReviews": 707
+      "tabelogReviews": 707,
+      "google": 3.9,
+      "googleReviews": 1752
     },
     "links": {
       "tabelog": "https://tabelog.com/osaka/A2701/A270202/27017005/"
@@ -1884,10 +1906,12 @@
       "G"
     ],
     "reason": null,
-    "pointId": null,
+    "pointId": "osaka-harijyu-dotonbori",
     "ratings": {
       "tabelog": 3.55,
-      "tabelogReviews": 736
+      "tabelogReviews": 736,
+      "google": 4.1,
+      "googleReviews": 397
     },
     "links": {
       "tabelog": "https://tabelog.com/osaka/A2701/A270202/27001250/"
@@ -2129,10 +2153,12 @@
       "S"
     ],
     "reason": null,
-    "pointId": null,
+    "pointId": "osaka-wanaka-sennichimae",
     "ratings": {
       "tabelog": 3.49,
-      "tabelogReviews": 3242
+      "tabelogReviews": 3242,
+      "google": 4.3,
+      "googleReviews": 4464
     },
     "links": {
       "tabelog": "https://tabelog.com/osaka/A2701/A270202/27002320/"
@@ -2155,10 +2181,12 @@
       "S"
     ],
     "reason": null,
-    "pointId": null,
+    "pointId": "osaka-fukutaro",
     "ratings": {
       "tabelog": 3.71,
-      "tabelogReviews": 2801
+      "tabelogReviews": 2801,
+      "google": 4.2,
+      "googleReviews": 3862
     },
     "links": {
       "tabelog": "https://tabelog.com/osaka/A2701/A270202/27002665/"
@@ -2284,17 +2312,18 @@
       "S"
     ],
     "reason": null,
-    "pointId": null,
+    "pointId": "osaka-chitose",
     "ratings": {
       "tabelog": 3.72,
-      "tabelogReviews": 2313
+      "tabelogReviews": 2313,
+      "google": 4.1,
+      "googleReviews": 1724
     },
     "links": {
       "tabelog": "https://tabelog.com/osaka/A2701/A270202/27002763/"
     },
     "contexts": [
-      "lunch",
-      "dinner"
+      "lunch"
     ],
     "mentions": [],
     "note": "類型：烏龍麵・蕎麥；定休（食べログ列表）：火曜日；預算（食べログ列表）：夜 ～999／昼 ～999"
@@ -2390,10 +2419,12 @@
       "S"
     ],
     "reason": null,
-    "pointId": null,
+    "pointId": "osaka-ajinoya",
     "ratings": {
       "tabelog": 3.59,
-      "tabelogReviews": 1788
+      "tabelogReviews": 1788,
+      "google": 4.2,
+      "googleReviews": 4003
     },
     "links": {
       "tabelog": "https://tabelog.com/osaka/A2701/A270202/27001439/"
@@ -2578,10 +2609,12 @@
       "S"
     ],
     "reason": null,
-    "pointId": null,
+    "pointId": "osaka-nishiya",
     "ratings": {
       "tabelog": 3.59,
-      "tabelogReviews": 1035
+      "tabelogReviews": 1035,
+      "google": 4.1,
+      "googleReviews": 1204
     },
     "links": {
       "tabelog": "https://tabelog.com/osaka/A2701/A270201/27000825/"
@@ -2633,16 +2666,17 @@
       "S"
     ],
     "reason": null,
-    "pointId": null,
+    "pointId": "osaka-kizetsu-minamisemba",
     "ratings": {
       "tabelog": 3.55,
-      "tabelogReviews": 891
+      "tabelogReviews": 891,
+      "google": 4,
+      "googleReviews": 551
     },
     "links": {
       "tabelog": "https://tabelog.com/osaka/A2701/A270201/27111285/"
     },
     "contexts": [
-      "lunch",
       "dinner"
     ],
     "mentions": [],
@@ -4094,16 +4128,19 @@
       "S"
     ],
     "reason": null,
-    "pointId": null,
+    "pointId": "osaka-yaekatsu",
     "ratings": {
       "tabelog": 3.49,
-      "tabelogReviews": 2078
+      "tabelogReviews": 2078,
+      "google": 4,
+      "googleReviews": 3944
     },
     "links": {
       "tabelog": "https://tabelog.com/osaka/A2701/A270206/27000443/"
     },
     "contexts": [
-      "lunch"
+      "lunch",
+      "dinner"
     ],
     "mentions": [],
     "note": "類型：居酒屋；定休（食べログ列表）：木曜日；預算（食べログ列表）：夜 -／昼 1000～1999"
@@ -4120,10 +4157,12 @@
       "S"
     ],
     "reason": null,
-    "pointId": null,
+    "pointId": "osaka-daruma-shinsekai",
     "ratings": {
       "tabelog": 3.48,
-      "tabelogReviews": 1262
+      "tabelogReviews": 1262,
+      "google": 4.1,
+      "googleReviews": 2176
     },
     "links": {
       "tabelog": "https://tabelog.com/osaka/A2701/A270206/27004260/"
@@ -4201,10 +4240,12 @@
       "S"
     ],
     "reason": null,
-    "pointId": null,
+    "pointId": "osaka-marufuku-shinimamiya",
     "ratings": {
       "tabelog": 3.49,
-      "tabelogReviews": 1051
+      "tabelogReviews": 1051,
+      "google": 4.1,
+      "googleReviews": 2065
     },
     "links": {
       "tabelog": "https://tabelog.com/osaka/A2701/A270206/27042773/"
@@ -4592,10 +4633,12 @@
       "S"
     ],
     "reason": null,
-    "pointId": null,
+    "pointId": "osaka-takoyasu",
     "ratings": {
       "tabelog": 3.7,
-      "tabelogReviews": 150
+      "tabelogReviews": 150,
+      "google": 4.3,
+      "googleReviews": 133
     },
     "links": {
       "tabelog": "https://tabelog.com/osaka/A2701/A270402/27041365/"
@@ -4620,10 +4663,12 @@
       "S"
     ],
     "reason": null,
-    "pointId": null,
+    "pointId": "osaka-beehive-minato",
     "ratings": {
       "tabelog": 3.41,
-      "tabelogReviews": 92
+      "tabelogReviews": 92,
+      "google": 4,
+      "googleReviews": 209
     },
     "links": {
       "tabelog": "https://tabelog.com/osaka/A2701/A270402/27002743/"
@@ -4924,17 +4969,18 @@
       "S"
     ],
     "reason": null,
-    "pointId": null,
+    "pointId": "osaka-chikko-menkobo",
     "ratings": {
       "tabelog": 3.6,
-      "tabelogReviews": 434
+      "tabelogReviews": 434,
+      "google": 4.2,
+      "googleReviews": 721
     },
     "links": {
       "tabelog": "https://tabelog.com/osaka/A2701/A270402/27081824/"
     },
     "contexts": [
-      "lunch",
-      "dinner"
+      "lunch"
     ],
     "mentions": [],
     "note": "類型：烏龍麵・蕎麥；定休（食べログ列表）：土曜日、日曜日、祝日；預算（食べログ列表）：夜 ～999／昼 1000～1999"
@@ -5001,10 +5047,12 @@
       "S"
     ],
     "reason": null,
-    "pointId": null,
+    "pointId": "osaka-tancho",
     "ratings": {
       "tabelog": 3.36,
-      "tabelogReviews": 252
+      "tabelogReviews": 252,
+      "google": 3.9,
+      "googleReviews": 546
     },
     "links": {
       "tabelog": "https://tabelog.com/osaka/A2701/A270402/27043541/"
@@ -5101,10 +5149,12 @@
       "S"
     ],
     "reason": null,
-    "pointId": null,
+    "pointId": "osaka-hahaha-hayashirice",
     "ratings": {
       "tabelog": 3.43,
-      "tabelogReviews": 175
+      "tabelogReviews": 175,
+      "google": 4.1,
+      "googleReviews": 209
     },
     "links": {
       "tabelog": "https://tabelog.com/osaka/A2701/A270402/27015830/"
@@ -6189,10 +6239,12 @@
       "S"
     ],
     "reason": null,
-    "pointId": null,
+    "pointId": "osaka-yatagarasu-udon",
     "ratings": {
       "tabelog": 3.66,
-      "tabelogReviews": 655
+      "tabelogReviews": 655,
+      "google": 4.2,
+      "googleReviews": 296
     },
     "links": {
       "tabelog": "https://tabelog.com/osaka/A2701/A270104/27104366/"
@@ -6215,10 +6267,12 @@
       "S"
     ],
     "reason": null,
-    "pointId": null,
+    "pointId": "osaka-gojoya",
     "ratings": {
       "tabelog": 3.66,
-      "tabelogReviews": 615
+      "tabelogReviews": 615,
+      "google": 4.5,
+      "googleReviews": 280
     },
     "links": {
       "tabelog": "https://tabelog.com/osaka/A2701/A270104/27011721/"
@@ -6320,10 +6374,12 @@
       "S"
     ],
     "reason": null,
-    "pointId": null,
+    "pointId": "osaka-tenhashi",
     "ratings": {
       "tabelog": 3.55,
-      "tabelogReviews": 1237
+      "tabelogReviews": 1237,
+      "google": 4.3,
+      "googleReviews": 469
     },
     "links": {
       "tabelog": "https://tabelog.com/osaka/A2701/A270203/27140502/"
@@ -6348,10 +6404,12 @@
       "S"
     ],
     "reason": null,
-    "pointId": null,
+    "pointId": "osaka-aoi-napoli-tenshiba",
     "ratings": {
       "tabelog": 3.48,
-      "tabelogReviews": 947
+      "tabelogReviews": 947,
+      "google": 3.6,
+      "googleReviews": 1266
     },
     "links": {
       "tabelog": "https://tabelog.com/osaka/A2701/A270203/27088242/"
@@ -6875,10 +6933,12 @@
       "S"
     ],
     "reason": null,
-    "pointId": null,
+    "pointId": "osaka-yamachan",
     "ratings": {
       "tabelog": 3.49,
-      "tabelogReviews": 1426
+      "tabelogReviews": 1426,
+      "google": 3.9,
+      "googleReviews": 1053
     },
     "links": {
       "tabelog": "https://tabelog.com/osaka/A2701/A270203/27002750/"
@@ -6928,10 +6988,12 @@
       "S"
     ],
     "reason": null,
-    "pointId": null,
+    "pointId": "osaka-abeton",
     "ratings": {
       "tabelog": 3.49,
-      "tabelogReviews": 1149
+      "tabelogReviews": 1149,
+      "google": 4.2,
+      "googleReviews": 1196
     },
     "links": {
       "tabelog": "https://tabelog.com/osaka/A2701/A270203/27017208/"
@@ -7303,10 +7365,12 @@
       "S"
     ],
     "reason": null,
-    "pointId": null,
+    "pointId": "osaka-meigetsukan-uehommachi",
     "ratings": {
       "tabelog": 3.61,
-      "tabelogReviews": 862
+      "tabelogReviews": 862,
+      "google": 4.3,
+      "googleReviews": 1520
     },
     "links": {
       "tabelog": "https://tabelog.com/osaka/A2701/A270205/27002882/"
@@ -7331,10 +7395,12 @@
       "S"
     ],
     "reason": null,
-    "pointId": null,
+    "pointId": "osaka-hakuuntai-tsuruhashi",
     "ratings": {
       "tabelog": 3.52,
-      "tabelogReviews": 838
+      "tabelogReviews": 838,
+      "google": 4.2,
+      "googleReviews": 1208
     },
     "links": {
       "tabelog": "https://tabelog.com/osaka/A2701/A270205/27006730/"
@@ -7846,10 +7912,12 @@
       "G"
     ],
     "reason": null,
-    "pointId": null,
+    "pointId": "osaka-lawrys",
     "ratings": {
       "tabelog": 3.6,
-      "tabelogReviews": 1741
+      "tabelogReviews": 1741,
+      "google": 4.4,
+      "googleReviews": 1211
     },
     "links": {
       "tabelog": "https://tabelog.com/osaka/A2701/A270101/27018310/"
@@ -7899,10 +7967,12 @@
       "S"
     ],
     "reason": null,
-    "pointId": null,
+    "pointId": "osaka-minsei-hilton-plaza",
     "ratings": {
       "tabelog": 3.68,
-      "tabelogReviews": 1418
+      "tabelogReviews": 1418,
+      "google": 4.1,
+      "googleReviews": 836
     },
     "links": {
       "tabelog": "https://tabelog.com/osaka/A2701/A270101/27006463/"
@@ -8388,10 +8458,12 @@
       "S"
     ],
     "reason": null,
-    "pointId": null,
+    "pointId": "osaka-menya-takei-umeda",
     "ratings": {
       "tabelog": 3.7,
-      "tabelogReviews": 3683
+      "tabelogReviews": 3683,
+      "google": 3.8,
+      "googleReviews": 1946
     },
     "links": {
       "tabelog": "https://tabelog.com/osaka/A2701/A270101/27092383/"
@@ -8442,10 +8514,12 @@
       "S"
     ],
     "reason": null,
-    "pointId": null,
+    "pointId": "osaka-hanadako",
     "ratings": {
       "tabelog": 3.5,
-      "tabelogReviews": 3070
+      "tabelogReviews": 3070,
+      "google": 4.2,
+      "googleReviews": 4650
     },
     "links": {
       "tabelog": "https://tabelog.com/osaka/A2701/A270101/27012248/"
@@ -8468,10 +8542,12 @@
       "S"
     ],
     "reason": null,
-    "pointId": null,
+    "pointId": "osaka-udonbo",
     "ratings": {
       "tabelog": 3.77,
-      "tabelogReviews": 2979
+      "tabelogReviews": 2979,
+      "google": 4.2,
+      "googleReviews": 1106
     },
     "links": {
       "tabelog": "https://tabelog.com/osaka/A2701/A270101/27003766/"
@@ -8495,10 +8571,12 @@
       "S"
     ],
     "reason": null,
-    "pointId": null,
+    "pointId": "osaka-odoru-udon-umeda",
     "ratings": {
       "tabelog": 3.76,
-      "tabelogReviews": 2780
+      "tabelogReviews": 2780,
+      "google": 4.2,
+      "googleReviews": 1151
     },
     "links": {
       "tabelog": "https://tabelog.com/osaka/A2701/A270101/27015312/"
@@ -8678,10 +8756,12 @@
       "S"
     ],
     "reason": null,
-    "pointId": null,
+    "pointId": "osaka-okonomiyaki-kiji",
     "ratings": {
       "tabelog": 3.66,
-      "tabelogReviews": 2211
+      "tabelogReviews": 2211,
+      "google": 3.7,
+      "googleReviews": 1506
     },
     "links": {
       "tabelog": "https://tabelog.com/osaka/A2701/A270101/27000297/"
