@@ -1067,3 +1067,28 @@ test('探索頂部兩列，往下捲剩一列', async ({ page }) => {
   expect((await bar.boundingBox())!.height).toBeLessThan(64);
   await expect(typeRow).not.toBeInViewport();
 });
+
+test('手機探索有清單：切過去出現 88px 的列，❤ 位置固定，重開還記得', async ({ page }) => {
+  await ready(page);
+  await goTab(page, 'explore');
+  await page.getByTestId('view-list').click();
+  await expect(page.getByTestId('view-list')).toHaveAttribute('aria-pressed', 'true');
+  const rows = page.getByTestId('place-row');
+  await expect(rows.first()).toBeVisible();
+  await page.getByTestId('m-feed-search').fill('Bayside');
+  await expect(rows.nth(1)).toBeVisible();
+  const hearts = [await rows.nth(0).getByTestId('card-like').boundingBox(), await rows.nth(1).getByTestId('card-like').boundingBox()];
+  expect(Math.round(hearts[0]!.x)).toBe(Math.round(hearts[1]!.x));
+  expect(Math.round((await rows.nth(0).boundingBox())!.height)).toBe(88);
+  expect(Math.round((await rows.nth(1).boundingBox())!.height)).toBe(88);
+  expect(await scrollsSideways(page)).toBe(false);
+  // 點列開詳情
+  await rows.first().click({ position: { x: 30, y: 40 } });
+  await expect(page.getByTestId('m-detail')).toBeVisible();
+  // 顯示方式記在 localStorage
+  expect(await page.evaluate(() => localStorage.getItem('travel-helper:feedView'))).toBe('list');
+  // 切回照片牆
+  await page.goBack();
+  await page.getByTestId('view-photo').click();
+  await expect(page.getByTestId('m-feed-item').first()).toBeVisible();
+});

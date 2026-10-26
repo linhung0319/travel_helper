@@ -420,22 +420,6 @@
   font-size: 2.4rem;
 }
 
-/* 有照片時左上角的類型色塊（景、餐、宿） */
-.m-type-chip {
-  position: absolute;
-  top: 6px;
-  left: 6px;
-  display: grid;
-  place-items: center;
-  width: 24px;
-  height: 24px;
-  border-radius: 6px;
-  color: var(--paper);
-  font-size: 0.8rem;
-  font-weight: 800;
-  box-shadow: 0 1px 3px var(--shade-2);
-}
-
 /* ---------- 探索：搜尋、篩選、兩欄圖片牆 ---------- */
 
 .m-feed {
@@ -444,75 +428,35 @@
   padding-bottom: 16px;
 }
 
-/* Pinterest 式兩欄：兩個 flex 欄（第 i 張在第 i % 2 欄，每排照排名），每欄自己往下疊 */
+/* 照片牆（shared/ui PlaceWall）和清單（PlaceRow）的外框 */
 .m-feed-wall {
-  display: flex;
-  align-items: flex-start;
-  gap: 8px;
   padding: 8px 8px 0;
 }
 
-.m-feed-col {
-  flex: 1 1 0;
-  min-width: 0;
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
+.m-feed-list {
+  padding: 0 16px;
 }
 
-/* 往下滑到這裡就多畫一批 */
-.m-feed-next {
-  height: 1px;
-}
-
-.m-feed-item {
-  display: block;
-  min-width: 0;
-  border-radius: 12px;
-  overflow: hidden;
-  background: var(--soft);
-  cursor: pointer;
-}
-
-.m-feed-item.type-spot,
 .m-wish-item.type-spot {
   background: var(--type-spot-bg);
 }
 
-.m-feed-item.type-restaurant,
 .m-wish-item.type-restaurant {
   background: var(--type-restaurant-bg);
 }
 
-.m-feed-item.type-lodging,
 .m-wish-item.type-lodging {
   background: var(--type-lodging-bg);
 }
 
-.m-feed-photo,
 .m-wish-photo {
   position: relative;
   display: block;
 }
 
-.m-feed-text {
-  display: flex;
-  flex-direction: column;
-  gap: 1px;
-  padding: 6px 8px 8px;
-  min-width: 0;
-}
-
-.m-feed-name {
-  display: block;
-  font-weight: 700;
-  font-size: 0.92rem;
-}
-
-.m-feed-meta {
-  display: block;
-  color: var(--muted);
-  font-size: 0.78rem;
+/* 往下滑到這裡就多畫一批 */
+.m-feed-next {
+  height: 1px;
 }
 
 /* 圖片右下角的想去愛心（VoteHeart）：點的範圍 44px */

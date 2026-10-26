@@ -523,7 +523,7 @@ async function exploreCard(page: Page, id: string): Promise<Locator> {
   const type = (await th(page, `__th.dataStore.getState().byId.get('${id}').type`)) as string;
   await page.getByTestId('side-tab-explore').click();
   await page.evaluate((t) => (window as any).__th.appStore.getState().setFilter({ types: [t] }), type);
-  const card = page.locator(`li:has([data-testid="explore-item"][data-id="${id}"])`);
+  const card = page.locator(`[data-testid="explore-item"][data-id="${id}"]`);
   await card.scrollIntoViewIfNeeded();
   return card;
 }
@@ -1419,4 +1419,30 @@ test('篩選：套用的條件變成晶片，點 ✕ 取消', async ({ page }) =
   await expect(page.getByTestId('filter-count')).toHaveText('2');
   await applied.first().locator('.ui-chip-x').click();
   await expect(applied).toHaveCount(1);
+});
+
+test('清單列：長名稱不推動 ❤ 的位置', async ({ page }) => {
+  await ready(page);
+  await page.getByTestId('side-tab-explore').click();
+  await page.getByTestId('view-list').click();
+  await page.getByTestId('search').fill('Bayside');
+  const rows = page.getByTestId('explore-item');
+  await expect(rows.nth(1)).toBeVisible();
+  const hearts = [await rows.nth(0).getByTestId('card-like').boundingBox(), await rows.nth(1).getByTestId('card-like').boundingBox()];
+  expect(Math.round(hearts[0]!.x)).toBe(Math.round(hearts[1]!.x));
+  expect(Math.round((await rows.nth(0).boundingBox())!.height)).toBe(88);
+  expect(Math.round((await rows.nth(1).boundingBox())!.height)).toBe(88);
+  expect(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth)).toBe(true);
+});
+
+test('網頁探索是兩欄', async ({ page }) => {
+  await ready(page);
+  await page.getByTestId('side-tab-explore').click();
+  await page.getByTestId('view-photo').click();
+  // DOM 順序是先左欄再右欄，所以用排名找第 1、2 張
+  const item = (rank: number) => page.locator(`[data-testid="explore-item"][data-rank="${rank}"]`);
+  await expect(item(2)).toBeVisible();
+  const [a, b] = [(await item(1).boundingBox())!, (await item(2).boundingBox())!];
+  expect(Math.abs(a.y - b.y)).toBeLessThan(40);
+  expect(Math.round(a.x)).not.toBe(Math.round(b.x));
 });

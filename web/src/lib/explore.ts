@@ -56,9 +56,11 @@ export interface Feed {
   quick: string[];
   sort: ExploreSort;
   query: string;
+  /** 照片牆或清單（mobileStore 記在 localStorage） */
+  view: 'photo' | 'list';
 }
 
-export const EMPTY_FEED: Feed = { type: 'all', area: null, quick: [], sort: 'recommend', query: '' };
+export const EMPTY_FEED: Feed = { type: 'all', area: null, quick: [], sort: 'recommend', query: '', view: 'photo' };
 
 /** feed.quick 裡的一個條件 */
 export const feedToken = (key: FilterKey, value: string) => `${key}:${value}`;

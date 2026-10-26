@@ -9,6 +9,8 @@ import { placePopover } from '../src/lib/popover.ts';
 import { FILTER_GROUPS, appliedChips } from '../src/shared/filterOptions.ts';
 import { EMPTY_FILTER } from '../src/lib/filter.ts';
 import type { Area } from '../src/data/types.ts';
+import { rowHighlights } from '../src/shared/rowHighlights.ts';
+import { placeWith } from './helpers.ts';
 
 test('toggleTag：全員、分組互斥', () => {
   assert.deepEqual(toggleTag(['groups', 'lunch'], 'all'), ['lunch', 'all']);
@@ -89,4 +91,16 @@ test('appliedChips：手機不含類型', () => {
   assert.equal(appliedChips(f, AREAS, { includeType: true }).length, 3);
   assert.equal(appliedChips(f, AREAS, { includeType: false }).length, 2);
   assert.equal(appliedChips(f, AREAS, { includeType: true })[0].key, 'types');
+});
+
+test('rowHighlights：已排、候選在前，最多兩個', () => {
+  const p = placeWith({ group: { fit15: 'yes' }, reservation: { required: true } });
+  assert.deepEqual(rowHighlights(p, { candidate: ['2027-02-10'], scheduled: ['2027-02-05'] }).map((h) => h.label), ['已排 2/5', '候選 2/10']);
+  assert.deepEqual(rowHighlights(p, { candidate: [], scheduled: [] }).map((h) => h.label), ['可坐 15 人', '要預約']);
+});
+test('rowHighlights：語氣、不能預約、週休、max', () => {
+  const p = placeWith({ group: { fit15: 'split' }, reservation: { accepted: 'no' } });
+  const all = rowHighlights(p, { candidate: ['2027-02-10'], scheduled: ['2027-02-05'] }, 9);
+  assert.deepEqual(all.map((h) => [h.label, h.tone]), [['已排 2/5', 'good'], ['候選 2/10', 'indigo'], ['15 人要分桌', 'plain'], ['不能預約', 'plain']]);
+  assert.deepEqual(rowHighlights(placeWith(), { candidate: [], scheduled: [] }), []);
 });

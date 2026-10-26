@@ -1,5 +1,5 @@
 // 手機版自己的畫面狀態（第六輪 §3、§6）：現在在哪個分頁、行程面板停在哪、行程選到的卡（focusItem）、編輯中打開的「⋯」動作面板（actions）、
-// 整頁詳情、聊天面板、整頁的討論／預約、探索的篩選、想去的設定。
+// 整頁詳情、聊天面板、整頁的討論／預約、探索的篩選與顯示方式（feed.view 記在 localStorage）、想去的設定。
 // 不放進 store.ts（地圖指令那層）；網頁版用不到。打開整頁（詳情、討論／預約）時推一筆 history，手機的返回鍵（瀏覽器上一頁）就是關掉那一頁；
 // 頁面左上角的「‹」（closePlace、setPage(null)）也是把那筆退回去（history.back）。
 // history.back() 是非同步的：關掉之後，退回去的 popstate 還沒到之前又開了整頁，要等它到了才推新的那筆（不然 popstate 會把新的關掉）。
@@ -141,6 +141,25 @@ export function setMobileActive(active: boolean) {
   mobileActive = active;
 }
 
+const FEED_VIEW_KEY = 'travel-helper:feedView';
+
+/** 探索上次的顯示方式（照片牆或清單）；讀不到就是照片牆 */
+function loadFeedView(): Feed['view'] {
+  try {
+    return localStorage.getItem(FEED_VIEW_KEY) === 'list' ? 'list' : 'photo';
+  } catch {
+    return 'photo';
+  }
+}
+
+function saveFeedView(v: Feed['view']) {
+  try {
+    localStorage.setItem(FEED_VIEW_KEY, v);
+  } catch {
+    // 私密視窗等存不了：只是下次回到預設
+  }
+}
+
 export const mobileStore = createStore<MobileStore>()((set, get) => ({
   // 打開網站先看行程（計畫的決定）
   tab: 'trip',
@@ -150,7 +169,7 @@ export const mobileStore = createStore<MobileStore>()((set, get) => ({
   focused: null,
   actions: null,
   page: null,
-  feed: EMPTY_FEED,
+  feed: { ...EMPTY_FEED, view: loadFeedView() },
   wish: { type: null, area: null, quick: [], query: '', sort: 'likes', view: 'photo' },
   // 換分頁：整頁的東西、半屏聊天都關掉
   setTab: (tab) => {
@@ -192,7 +211,10 @@ export const mobileStore = createStore<MobileStore>()((set, get) => ({
     set({ chatSheet: false });
   },
   expandChat: () => get().setTab('ai'),
-  setFeed: (patch) => set({ feed: { ...get().feed, ...patch } }),
+  setFeed: (patch) => {
+    if (patch.view) saveFeedView(patch.view);
+    set({ feed: { ...get().feed, ...patch } });
+  },
   toggleFeedQuick: (token) => {
     const q = get().feed.quick;
     set({ feed: { ...get().feed, quick: q.includes(token) ? q.filter((t) => t !== token) : [...q, token] } });

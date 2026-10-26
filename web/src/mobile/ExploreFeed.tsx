@@ -1,24 +1,23 @@
-// 手機版「探索」分頁（第六輪 §3.2）：沒有地圖，像 Pinterest 的兩欄圖片牆（兩個 flex 欄，第 i 張放第 i % 2 欄，每排照排名），往下滑一批一批（60 張）出現。
-// 每張：左上角類型色塊（景、餐、宿），右下角 🤍／❤️、👎 直接按（castVote，不開詳情），下面是名稱、地區、❤️ 數。點圖片 → 整頁詳情（openPlace）。
-// 上方是篩選列（FeedFilters → shared/ui/FilterBar）：第一列（搜尋、篩選、排序）黏在最上面，下面的類型和套用的條件跟著捲走。
+// 手機版「探索」分頁（第七輪 §5）：沒有地圖。顯示方式有兩種（feed.view，記在 localStorage）：
+// 照片牆＝兩欄瀑布（shared/ui/PlaceWall、PlaceTile），清單＝88px 的列（shared/ui/PlaceRow）；兩種都是往下滑一批一批（60 張）出現。
+// 想去的愛心（VoteHeart）直接按、不開詳情；點卡片或列 → 整頁詳情（openPlace）。
+// 上方是篩選列（FeedFilters → shared/ui/FilterBar）：第一列（搜尋、篩選、排序）黏在最上面，下面的類型、照片牆／清單切換和套用的條件跟著捲走。
 // 清單的計算和網頁版共用 shared/placeLists.ts（useExploreList），篩選用 mobileStore 的 feed，不看地圖範圍。探索不放「加到某天」。
+// 這個檔也留著手機其他頁用的 useVoteIndex、placeAreaLabel、FeedVotes。
 
-import { memo, useEffect, useMemo, useRef, useState } from 'react';
-import { useData, useShared } from '../hooks.ts';
+import { useEffect, useMemo, useRef, useState } from 'react';
+import { useShared } from '../hooks.ts';
 import { displayName } from '../data/normalize.ts';
 import { voteCounts } from '../sharedStore.ts';
 import { feedFilter } from '../lib/explore.ts';
-import { TYPE_LABELS } from '../lib/filter.ts';
-import { photoCandidates } from '../lib/photos.ts';
-import { cardTypeLetter } from '../lib/planView.ts';
-import { TYPE_COLORS } from '../lib/typeStyle.ts';
-import { TierMark } from '../shared/ui/TierMark.tsx';
 import { VoteHeart } from '../shared/ui/VoteHeart.tsx';
 import { useExploreList } from '../shared/placeLists.ts';
+import { PlaceRow, useDayStatus } from '../shared/ui/PlaceRow.tsx';
+import { PlaceTile } from '../shared/ui/PlaceTile.tsx';
+import { PlaceWall } from '../shared/ui/PlaceWall.tsx';
 import type { VoteValue } from '../backend/types.ts';
 import type { Area, Place } from '../data/types.ts';
 import { FeedFilters } from './FeedFilters.tsx';
-import { Thumb } from './Thumb.tsx';
 import { mobileStore, useMobile } from './mobileStore.ts';
 
 export interface VoteState {
@@ -54,67 +53,23 @@ export function FeedVotes({ placeId }: { placeId: string }) {
   );
 }
 
-/**
- * 圖片牆的一張：整張可以點（開詳情），票的按鈕自己擋掉。
- * memo＋票數用基本型別傳：按一個票、打一個字時，只有變了的那幾張重畫
- */
-const FeedItem = memo(function FeedItem({ place, rank, like, areas }: { place: Place; rank: number; areas: Area[]; like: number }) {
-  const name = place.name.zh || place.name.ja;
-  const open = () => mobileStore.getState().openPlace(place.id, 'explore');
-  const area = placeAreaLabel(place, areas);
-  return (
-    <div
-      className={`m-feed-item type-${place.type}`}
-      role="button"
-      tabIndex={0}
-      aria-label={name}
-      data-testid="m-feed-item"
-      data-id={place.id}
-      data-type={place.type}
-      data-rank={rank}
-      onClick={open}
-      onKeyDown={(e) => {
-        if (e.target !== e.currentTarget || (e.key !== 'Enter' && e.key !== ' ')) return;
-        e.preventDefault();
-        open();
-      }}
-    >
-      <span className="m-feed-photo">
-        <Thumb place={place} size="fill" />
-        {/* 沒有照片時整塊已經是類型色塊，不再疊一個 */}
-        {photoCandidates(place.photos).length > 0 && (
-          <span className="m-type-chip" style={{ background: TYPE_COLORS[place.type] }} aria-label={TYPE_LABELS[place.type]}>
-            {cardTypeLetter(place.type)}
-          </span>
-        )}
-        <FeedVotes placeId={place.id} />
-      </span>
-      <span className="m-feed-text">
-        <span className="m-feed-name m-ellipsis">
-          <TierMark tier={place.tier} />
-          {name}
-        </span>
-        <span className="m-feed-meta m-ellipsis">
-          {[area, like ? `想去 ${like}` : ''].filter(Boolean).join(' ・ ')}
-        </span>
-      </span>
-    </div>
-  );
-});
-
 /** 一次多畫幾張（往下滑到底再畫下一批） */
 const BATCH = 60;
+
+/** 點一張：整頁詳情 */
+const open = (id: string) => mobileStore.getState().openPlace(id, 'explore');
 
 /** 探索分頁 */
 export function ExploreFeed() {
   const feed = useMobile((s) => s.feed);
-  const areas = useData((s) => s.areas);
-  const filter = useMemo(() => feedFilter(feed), [feed]);
+  // 顯示方式（view）換了不用重算清單
+  const filter = useMemo(() => feedFilter(feed), [feed.type, feed.area, feed.quick]); // eslint-disable-line react-hooks/exhaustive-deps
   const { list } = useExploreList(filter, feed.query, feed.sort);
-  const voteOf = useVoteIndex();
+  const statusOf = useDayStatus();
   const rootRef = useRef<HTMLDivElement>(null);
   const moreRef = useRef<HTMLDivElement>(null);
   const [shown, setShown] = useState(BATCH);
+  const shownList = useMemo(() => list.slice(0, shown), [list, shown]);
 
   // 換了篩選、搜尋、排序：從第一批重新開始（按票不算，不然滑到下面按一下就縮回去）
   useEffect(() => setShown(BATCH), [filter, feed.query, feed.sort]);
@@ -131,25 +86,25 @@ export function ExploreFeed() {
     return () => io.disconnect();
   }, [shown, list.length]);
 
-  // 兩欄：第 i 張放在第 i % 2 欄，每一排照排名從左到右（CSS columns 會先排滿左欄，順序就亂了）
-  const columns = useMemo(() => {
-    const out: { place: Place; rank: number }[][] = [[], []];
-    list.slice(0, shown).forEach((place, i) => out[i % 2].push({ place, rank: i + 1 }));
-    return out;
-  }, [list, shown]);
-
   return (
     <div className="m-feed" ref={rootRef} data-testid="m-feed">
       <FeedFilters count={list.length} />
-      <div className="m-feed-wall" data-count={list.length} data-testid="m-feed-wall">
-        {columns.map((col, c) => (
-          <div key={c} className="m-feed-col">
-            {col.map(({ place, rank }) => (
-              <FeedItem key={place.id} place={place} rank={rank} like={voteOf(place.id).like} areas={areas} />
-            ))}
-          </div>
-        ))}
-      </div>
+      {feed.view === 'list' ? (
+        <div className="m-feed-list" data-count={list.length} data-testid="m-feed-wall">
+          {shownList.map((place, i) => (
+            <PlaceRow key={place.id} place={place} rank={i + 1} status={statusOf(place.id)} onOpen={() => open(place.id)} testId="place-row" />
+          ))}
+        </div>
+      ) : (
+        <div className="m-feed-wall">
+          <PlaceWall
+            items={shownList}
+            total={list.length}
+            testId="m-feed-wall"
+            render={(place, i) => <PlaceTile place={place} rank={i + 1} status={statusOf(place.id)} onOpen={() => open(place.id)} testId="m-feed-item" />}
+          />
+        </div>
+      )}
       {shown < list.length && <div ref={moreRef} className="m-feed-next" aria-hidden />}
       {list.length === 0 && <p className="muted m-empty">沒有符合的地點，取消一些篩選看看。</p>}
     </div>

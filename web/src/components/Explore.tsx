@@ -1,37 +1,31 @@
 // 電腦版右側的「探索」分頁：最上面是篩選列（shared/ui/FilterBar：搜尋、篩選、排序、照片牆／清單，套用的條件變成小晶片），一直黏在上面；
 // 「篩選」打開的抽屜蓋住整個右欄（FilterSheet），類型、地區、團體、情境、想去、等級、只看地圖畫面裡的都在裡面。
-// 清單可以切換大照片（像 IG）或只有文字；滑鼠移上去地圖上的點會閃，點了地圖移過去、打開詳情。
+// 清單可以切換照片牆（兩欄，PlaceTile）或清單列（PlaceRow，88px），都是兩邊共用的元件；滑鼠移上去呼叫 appStore.hover（地圖的指到），點了地圖移過去、打開詳情。
 // 反過來，點地圖上的點：切到探索、捲到那張卡片（showInExplore），再點卡片才開詳情（手機沒有 hover，所以用點的）。
 // 探索的類型寫在篩選裡（地圖跟著變淡），回到「行程」時拿掉（showItinerary）。
 // 「想去」分頁是同一個元件（source="wish"）：只列有人按想去的點，卡片底下多了留言（Wishlist.tsx 的 WishExtras）；只有想去的卡片有「加到某天」（探索只有愛心，流程是先按想去再到想去加到某天）。
-// 卡片照片右上角是想去的愛心（VoteHeart），左上角是類型和行程狀態（候選、已排）的 tag。
+// 卡片照片右下角是想去的愛心（VoteHeart），左上角是類型；重點膠囊（已排、候選、15 人、預約）在名稱下面。
+// 想去分頁仍是單欄（每張下面多留言）；探索的照片牆是兩欄。
 // 清單的計算（篩選、排序、數量、想去的範圍）在 shared/placeLists.ts 的 usePlaceList，手機版也用。
 
-import { useEffect, useRef, useState, type ReactNode } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { appStore } from '../store.ts';
 import { dataStore } from '../dataStore.ts';
 import { shared } from '../appShared.ts';
 import { likedPlaces } from '../lib/wishlist.ts';
 import { commands } from '../appCommands.ts';
-import { useApp, useData } from '../hooks.ts';
-import { displayName } from '../data/normalize.ts';
+import { useApp } from '../hooks.ts';
 import { EMPTY_FILTER, matchesFilter, matchesQuery, type FilterKey } from '../lib/filter.ts';
 import { EXPLORE_TYPES, type ExploreSort } from '../lib/explore.ts';
-import { placeBadges } from '../lib/badges.ts';
-import { shortDayLabel } from '../lib/trip.ts';
-import { TYPE_COLORS, TYPE_ICON_NAMES } from '../lib/typeStyle.ts';
 import type { Place } from '../data/types.ts';
-import { Photo } from './Photo.tsx';
-import { CopyName } from './CopyName.tsx';
-import { TierMark } from '../shared/ui/TierMark.tsx';
-import { TypeLabel } from '../shared/ui/TypeLabel.tsx';
-import { VoteHeart } from '../shared/ui/VoteHeart.tsx';
-import { Icon } from './Icon.tsx';
-import { DayStatusTag } from './DayPicker.tsx';
 import { FilterBar, type FilterModel } from '../shared/ui/FilterBar.tsx';
 import { dragPlaceProps } from './askAi.ts';
+import { DayStatusTag } from './DayPicker.tsx';
 import { WishExtras } from './Wishlist.tsx';
 import { usePlaceList } from '../shared/placeLists.ts';
+import { PlaceRow, useDayStatus, type DayStatus } from '../shared/ui/PlaceRow.tsx';
+import { PlaceTile } from '../shared/ui/PlaceTile.tsx';
+import { PlaceWall } from '../shared/ui/PlaceWall.tsx';
 
 export type ListSource = 'explore' | 'wish';
 
@@ -59,110 +53,28 @@ function open(id: string) {
   appStore.getState().openDetail(id);
 }
 
-function Meta({ place }: { place: Place }) {
-  const areas = useData((s) => s.areas);
-  const days = useData((s) => s.days);
-  const r = (place.raw.ratings ?? {}) as Record<string, unknown>;
-  const region = areas.find((a) => a.id === place.area)?.regions?.find((x) => x.id === place.region);
-  const parts: string[] = [];
-  if (typeof r.google === 'number') parts.push(`★ ${r.google}${typeof r.googleReviews === 'number' ? `（${r.googleReviews.toLocaleString('ja-JP')}）` : ''}`);
-  if (typeof r.tabelog === 'number') parts.push(`食べログ ${r.tabelog}`);
-  if (region) parts.push(displayName(region.name));
-  const inTrip = days.get(place.id);
-  return (
-    <span className="ex-meta small">
-      {parts.join('・')}
-      {inTrip?.length ? <span className="ex-trip ic-text">
-          <Icon name="calendar" size={16} /> {inTrip.map((d) => shortDayLabel(d.date)).join('、')}
-        </span> : null}
-    </span>
-  );
-}
-
-function Badges({ place }: { place: Place }) {
-  const list = placeBadges(place, 3);
-  if (!list.length) return null;
-  return (
-    <span className="badges">
-      {list.map((b) => (
-        <span key={b.label} className={`badge badge-${b.tone}`}>
-          {b.label}
-        </span>
-      ))}
-    </span>
-  );
-}
-
-function TypeTag({ place }: { place: Place }) {
-  return <TypeLabel type={place.type} onPhoto />;
-}
-
-function Item({ place, rank, view, hot, source }: { place: Place; rank: number; view: View; hot: boolean; source: ListSource }) {
-  const name = place.name.zh || place.name.ja;
+/** 一張卡片（照片牆）或一列（清單）；想去分頁多一塊留言（WishExtras） */
+function Item({ place, rank, view, hot, source, status }: { place: Place; rank: number; view: View; hot: boolean; source: ListSource; status: DayStatus }) {
   const wish = source === 'wish';
-  const common = {
-    type: 'button' as const,
-    'data-id': place.id,
-    'data-testid': wish ? 'wish-open' : 'explore-item',
-    onMouseEnter: () => appStore.getState().hover(place.id),
-    onMouseLeave: () => appStore.getState().hover(null),
-    onClick: () => open(place.id),
+  const props = {
+    place,
+    status,
+    rank,
+    hot,
+    testId: wish ? 'wish-open' : 'explore-item',
+    onOpen: () => open(place.id),
     // 拖到左邊的聊天室＝問 AI
-    ...dragPlaceProps(place.id),
-    title: '點了看詳情；拖到左邊的聊天室可以問 AI',
+    rootProps: { ...dragPlaceProps(place.id), title: '點了看詳情；拖到左邊的聊天室可以問 AI' },
   };
-  const li = (body: ReactNode) =>
-    wish ? (
-      <li className={`wish-card view-${view} type-${place.type} ${hot ? 'flash' : ''}`} data-testid="wish-item" data-id={place.id}>
-        {body}
-        <WishExtras placeId={place.id} />
-      </li>
-    ) : (
-      <li>{body}</li>
-    );
-  if (view === 'list') {
-    return li(
-        <button {...common} className={`ex-row type-${place.type} ${hot ? 'flash' : ''}`}>
-          <span className="ex-rank">{rank}</span>
-          <span className="ex-dot" style={{ background: TYPE_COLORS[place.type] }} aria-hidden>
-            <Icon name={TYPE_ICON_NAMES[place.type]} size={16} />
-          </span>
-          <span className="ex-text">
-            <span className="ex-name">
-              <TierMark tier={place.tier} />
-              {name}
-              <CopyName place={place} />
-              <VoteHeart placeId={place.id} size="sm" />
-              <DayStatusTag placeId={place.id} />
-            </span>
-            <Meta place={place} />
-          </span>
-        </button>,
-    );
-  }
-  return li(
-      <button {...common} className={`ex-card type-${place.type} ${hot ? 'flash' : ''}`}>
-        <span className="ex-photo">
-          <Photo place={place} width={600} />
-          <span className="ex-tags">
-            <TypeTag place={place} />
-            <DayStatusTag placeId={place.id} />
-          </span>
-          <VoteHeart placeId={place.id} />
-          <span className="ex-rank-badge">{rank}</span>
-        </span>
-        <span className="ex-text">
-          <span className="ex-name">
-            <TierMark tier={place.tier} />
-            {name}
-            <CopyName place={place} />
-            {place.name.zh && place.name.ja !== place.name.zh && <span className="muted small ex-ja">{place.name.ja}</span>}
-          </span>
-          <Meta place={place} />
-          {place.summary && <span className="ex-summary small">{place.summary.text}</span>}
-          <Badges place={place} />
-        </span>
-      </button>,
+  const body = view === 'list' ? <PlaceRow {...props} /> : <PlaceTile {...props} />;
+  if (!wish) return body;
+  return (
+    <li className={`wish-card view-${view} type-${place.type} ${hot ? 'flash' : ''}`} data-testid="wish-item" data-id={place.id}>
+      {body}
+      {/* 完整的候選／已排日期（膠囊只放得下一個）；想去分頁 Task 6 重做時再換 */}
+      <DayStatusTag placeId={place.id} />
+      <WishExtras placeId={place.id} />
+    </li>
   );
 }
 
@@ -190,7 +102,8 @@ export function ExplorePanel({ source = 'explore' }: { source?: ListSource }) {
   // 想去預設依 ❤️ 多排
   const [sort, setSort] = useState<ExploreSort>(source === 'wish' ? 'likes' : 'recommend');
   const [inView, setInView] = useState(false);
-  const ref = useRef<HTMLOListElement>(null);
+  const ref = useRef<HTMLDivElement>(null);
+  const statusOf = useDayStatus();
 
   // 清單的計算在 shared/placeLists.ts（手機版也用）；沒選類型就是三類都列
   const { pool, list } = usePlaceList(source, filter, query, sort, inView ? bounds : null);
@@ -224,14 +137,26 @@ export function ExplorePanel({ source = 'explore' }: { source?: ListSource }) {
   return (
     <div className={`explore-panel source-${source}`} data-testid={source === 'wish' ? 'wish-panel' : 'explore-panel'}>
       <FilterBar source={source} surface="desktop" model={model} count={list.length} />
-      <ol className={`ex-list view-${view}`} ref={ref}>
-        {list.map((p, i) => (
-          <Item key={p.id} place={p} rank={i + 1} view={view} hot={hoveredId === p.id || target?.id === p.id} source={source} />
-        ))}
-        {list.length === 0 && (
-          <li className="muted ex-empty">{source === 'wish' && pool.length === 0 ? '還沒有人按想去。在探索或詳情按想去，就會出現在這裡。' : '沒有符合的地點，取消一些篩選看看。'}</li>
+      <div className={`ex-list view-${view} source-${source}`} ref={ref}>
+        {source === 'explore' && view === 'photo' ? (
+          <PlaceWall items={list} render={(p, i) => <Item place={p} rank={i + 1} view={view} hot={hoveredId === p.id || target?.id === p.id} source={source} status={statusOf(p.id)} />} />
+        ) : (
+          <ol className="ex-items">
+            {list.map((p, i) => (
+              source === 'wish' ? (
+                <Item key={p.id} place={p} rank={i + 1} view={view} hot={hoveredId === p.id || target?.id === p.id} source={source} status={statusOf(p.id)} />
+              ) : (
+                <li key={p.id}>
+                  <Item place={p} rank={i + 1} view={view} hot={hoveredId === p.id || target?.id === p.id} source={source} status={statusOf(p.id)} />
+                </li>
+              )
+            ))}
+          </ol>
         )}
-      </ol>
+        {list.length === 0 && (
+          <p className="muted ex-empty">{source === 'wish' && pool.length === 0 ? '還沒有人按想去。在探索或詳情按想去，就會出現在這裡。' : '沒有符合的地點，取消一些篩選看看。'}</p>
+        )}
+      </div>
     </div>
   );
 }

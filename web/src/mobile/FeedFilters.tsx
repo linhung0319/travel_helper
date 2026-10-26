@@ -27,6 +27,8 @@ export function useFeedModel(): FilterModel {
     setQuery: (query) => mobileStore.getState().setFeed({ query }),
     sort: feed.sort,
     setSort: (sort) => mobileStore.getState().setFeed({ sort }),
+    view: feed.view,
+    setView: (view) => mobileStore.getState().setFeed({ view }),
     inView: false,
     setInView: () => {},
     pick: (key: FilterKey, value: string) => {

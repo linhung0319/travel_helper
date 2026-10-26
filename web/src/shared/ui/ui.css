@@ -313,20 +313,6 @@
   gap: 4px;
 }
 
-.ex-tags .ui-type {
-  box-shadow: 0 1px 4px var(--shade-2);
-}
-
-/* 照片右上角的愛心 */
-.ex-photo > .ui-heart {
-  position: absolute;
-  right: 6px;
-  top: 6px;
-  z-index: 2;
-  background: var(--veil);
-  border-radius: 999px;
-}
-
 /* 手機圖片牆右下角的愛心：白色圓底比點的範圍小一圈 */
 .m-votes .ui-heart {
   position: relative;
@@ -733,4 +719,264 @@
 
 .fs-foot .ui-btn-primary {
   flex: 1;
+}
+
+/* ---------- 清單列（PlaceRow）：固定 88px ---------- */
+.pr {
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  height: 88px;
+  padding: 12px 0;
+  border-bottom: 1px solid var(--line);
+  cursor: pointer;
+  min-width: 0;
+}
+
+.pr:hover,
+.pr.flash {
+  background: var(--wash);
+}
+
+.pr-thumb {
+  flex: 0 0 auto;
+  width: 64px;
+  height: 64px;
+  border-radius: 14px;
+  overflow: hidden;
+  background: var(--wash);
+}
+
+.pr-thumb .photo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.pr-thumb-fallback {
+  display: grid;
+  place-items: center;
+  color: var(--paper);
+  font-weight: 700;
+  font-size: 1.4rem;
+}
+
+.pr-text {
+  flex: 1 1 0;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.pr-name {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  min-width: 0;
+  font-weight: 700;
+  font-size: 0.95rem;
+}
+
+.pr-name-text {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.pr-name .ui-tier {
+  flex: 0 0 auto;
+}
+
+.pr-meta {
+  display: flex;
+  align-items: center;
+  min-width: 0;
+  font-size: 0.8125rem;
+  color: var(--ink-2);
+  white-space: nowrap;
+}
+
+.pr-meta .ui-type {
+  flex: 0 0 auto;
+}
+
+.pr-meta-text {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.pr-caps {
+  display: flex;
+  gap: 6px;
+  min-width: 0;
+  overflow: hidden;
+}
+
+.pr-cap {
+  flex: 0 1 auto;
+  min-width: 0;
+  padding: 1px 8px;
+  border-radius: 999px;
+  font-size: 0.8125rem;
+  line-height: 1.3;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  background: var(--wash);
+  color: var(--ink-2);
+}
+
+.pr-cap-good {
+  background: var(--good-bg);
+  color: var(--good);
+}
+
+.pr-cap-indigo {
+  background: var(--indigo-wash);
+  color: var(--indigo);
+}
+
+/* 右邊固定寬：愛心的位置不會被名稱或數字推動 */
+.pr-right {
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+  width: 56px;
+}
+
+.pr-right .ui-heart {
+  width: 56px;
+  min-width: 56px;
+}
+
+/* ---------- 照片牆（PlaceWall、PlaceTile） ---------- */
+.pw {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+}
+
+.pw-col {
+  flex: 1 1 0;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.pw-cell {
+  min-width: 0;
+}
+
+.pt {
+  display: block;
+  min-width: 0;
+  border-radius: 14px;
+  overflow: hidden;
+  background: var(--paper);
+  border: 1px solid var(--line);
+  cursor: pointer;
+}
+
+.pt:hover,
+.pt.flash {
+  border-color: var(--ink-3);
+  box-shadow: 0 2px 10px var(--shade-1);
+}
+
+.pt-photo {
+  position: relative;
+  display: block;
+  background: var(--wash);
+}
+
+/* 高度照原圖比例，太高或太扁的裁到 120～260px */
+.pt-photo .photo {
+  display: block;
+  width: 100%;
+  height: auto;
+  min-height: 120px;
+  max-height: 260px;
+  object-fit: cover;
+}
+
+.pt-photo .photo-fallback {
+  height: 140px;
+  display: grid;
+  place-items: center;
+}
+
+/* 沒有照片：整塊類型色加一個字 */
+.pt-fallback {
+  display: grid;
+  place-items: center;
+  height: 140px;
+  color: var(--paper);
+  font-weight: 700;
+  font-size: 2.4rem;
+}
+
+.pt-type {
+  position: absolute;
+  left: 6px;
+  top: 6px;
+}
+
+.pt-heart {
+  position: absolute;
+  right: 2px;
+  bottom: 2px;
+  display: flex;
+}
+
+/* 愛心的白色圓底比點的範圍小一圈 */
+.pt-heart .ui-heart {
+  position: relative;
+  isolation: isolate;
+}
+
+.pt-heart .ui-heart::before {
+  content: '';
+  position: absolute;
+  inset: 6px 2px;
+  z-index: -1;
+  border-radius: 999px;
+  background: var(--veil);
+  box-shadow: 0 1px 3px var(--shade-2);
+}
+
+.pt-text {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: 8px 10px 10px;
+  min-width: 0;
+}
+
+.pt-name {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  min-width: 0;
+  font-weight: 700;
+  font-size: 0.95rem;
+}
+
+.pt-name-text {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.pt-meta {
+  font-size: 0.8125rem;
+  color: var(--ink-2);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
