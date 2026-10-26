@@ -1,13 +1,12 @@
 // 手機版「想去」分頁（第六輪 §3.4）：網頁版右欄的「想去」整個搬進來，只列有人 ❤️ 的點。
-// 最上面是餐廳／住宿／景點的分段（數字是這一類有幾個），下面是地區 ▾、排序 ▾（預設依 ❤️ 多）、大圖／清單兩種檢視。
+// 最上面是篩選列（搜尋、篩選、排序（預設依想去多）；FeedFilters.tsx 的 useWishModel → shared/ui/FilterBar），下面是餐廳／住宿／景點的分段（數字是這一類有幾個），照片牆／清單兩種檢視在分段右邊。
 // 卡片照網頁版：類型、候選或已排的 tag（DayStatusTag）、想去愛心（FeedVotes）、名稱、★、地區、排在哪天、「加到某天」、留言數。
 // 點卡片 → 整頁詳情（openPlace(id, 'wish')）；票、加到某天點了不開詳情。清單的計算和網頁版共用 shared/placeLists.ts（useWishList）。
 
-import { useEffect, useMemo } from 'react';
+import { useEffect } from 'react';
 import { useData } from '../hooks.ts';
-import { displayName } from '../data/normalize.ts';
 import { TYPE_LABELS } from '../lib/filter.ts';
-import { EXPLORE_SORTS, EXPLORE_SORT_LABELS, EXPLORE_TYPES, wishFilter, type ExploreSort } from '../lib/explore.ts';
+import { EXPLORE_TYPES } from '../lib/explore.ts';
 import { placeBadges } from '../lib/badges.ts';
 import { shortDayLabel } from '../lib/trip.ts';
 import { TYPE_COLORS } from '../lib/typeStyle.ts';
@@ -16,7 +15,9 @@ import { TierMark } from '../shared/ui/TierMark.tsx';
 import { Icon } from '../components/Icon.tsx';
 import { useCommentCount, useWishList } from '../shared/placeLists.ts';
 import type { Place } from '../data/types.ts';
+import { FilterBar } from '../shared/ui/FilterBar.tsx';
 import { FeedVotes, placeAreaLabel } from './ExploreFeed.tsx';
+import { useWishModel } from './FeedFilters.tsx';
 import { Thumb } from './Thumb.tsx';
 import { mobileStore, useMobile, type WishView } from './mobileStore.ts';
 
@@ -101,12 +102,11 @@ function WishItem({ place, view }: { place: Place; view: WishView['view'] }) {
 /** 想去分頁 */
 export function WishlistPage() {
   const wish = useMobile((s) => s.wish);
-  const areas = useData((s) => s.areas);
   const { setWish } = mobileStore.getState();
   // 還沒選過類型：先用餐廳算數量，再挑有東西的那一類（還沒人 ❤️ 餐廳時先看景點）
   const type = wish.type ?? 'restaurant';
-  const filter = useMemo(() => wishFilter(type, wish.area), [type, wish.area]);
-  const { pool, list, counts } = useWishList(filter, '', wish.sort);
+  const model = useWishModel(type);
+  const { pool, list, counts } = useWishList(model.filter, wish.query, wish.sort);
   useEffect(() => {
     if (wish.type || !pool.length) return;
     setWish({ type: EXPLORE_TYPES.find((t) => counts[t] > 0) ?? 'restaurant' });
@@ -115,38 +115,21 @@ export function WishlistPage() {
   return (
     <div className="m-wish" data-testid="m-wish">
       <h2 className="m-h2 m-wish-title">想去</h2>
-      <div className="m-segmented" role="tablist" aria-label="類型">
-        {EXPLORE_TYPES.map((t) => (
-          <button key={t} type="button" role="tab" aria-selected={t === type} aria-pressed={t === type} className={t === type ? 'on' : ''} onClick={() => setWish({ type: t })} data-testid={`m-wish-type-${t}`}>
-            <i className="ui-type-dot" style={{ background: TYPE_COLORS[t] }} aria-hidden="true" /> {TYPE_LABELS[t]} {counts[t]}
-          </button>
-        ))}
-      </div>
-      <div className="m-chips">
-        <select className={`m-chip m-select ${wish.area ? 'on' : ''}`} value={wish.area ?? ''} aria-label="地區" onChange={(e) => setWish({ area: e.target.value || null })} data-testid="m-wish-area">
-          <option value="">全部地區</option>
-          {areas.map((a) => (
-            <option key={a.id} value={a.id}>
-              {displayName(a.name, a.id)}
-            </option>
-          ))}
-        </select>
-        <select className="m-chip m-select" value={wish.sort} aria-label="排序" onChange={(e) => setWish({ sort: e.target.value as ExploreSort })} data-testid="m-wish-sort">
-          {EXPLORE_SORTS.map((s) => (
-            <option key={s} value={s}>
-              依{EXPLORE_SORT_LABELS[s]}
-            </option>
-          ))}
-        </select>
-        <span className="m-view-toggle" role="group" aria-label="顯示方式">
-          <button type="button" className={`m-chip ${wish.view === 'photo' ? 'on' : ''}`} aria-pressed={wish.view === 'photo'} aria-label="大圖" onClick={() => setWish({ view: 'photo' })} data-testid="m-wish-view-photo">
-            ▦
-          </button>
-          <button type="button" className={`m-chip ${wish.view === 'list' ? 'on' : ''}`} aria-pressed={wish.view === 'list'} aria-label="清單" onClick={() => setWish({ view: 'list' })} data-testid="m-wish-view-list">
-            ☰
-          </button>
-        </span>
-      </div>
+      <FilterBar
+        source="wish"
+        surface="mobile"
+        model={model}
+        count={list.length}
+        typeRow={
+          <div className="m-segmented fb-segmented" role="tablist" aria-label="類型">
+            {EXPLORE_TYPES.map((t) => (
+              <button key={t} type="button" role="tab" aria-selected={t === type} aria-pressed={t === type} className={t === type ? 'on' : ''} onClick={() => setWish({ type: t })} data-testid={`m-wish-type-${t}`}>
+                <i className="ui-type-dot" style={{ background: TYPE_COLORS[t] }} aria-hidden="true" /> {TYPE_LABELS[t]} {counts[t]}
+              </button>
+            ))}
+          </div>
+        }
+      />
       <ol className={`m-wish-list view-${wish.view}`}>
         {list.map((p) => (
           <WishItem key={p.id} place={p} view={wish.view} />

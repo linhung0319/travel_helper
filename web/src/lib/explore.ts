@@ -48,7 +48,7 @@ export function typeCounts(places: Place[], filter: Filter, bounds: Bbox | null,
 
 /**
  * 手機探索的篩選（mobileStore 的 feed，第六輪 §3.2）：手機自己一份，不看地圖範圍、不動 store 的 filter。
- * quick 是快速篩選和 ⚙ 篩選選的條件，寫成 "欄位:值"（例如 "fit15:yes"），欄位是 Filter 的欄位。
+ * quick 是篩選面板（FilterSheet）選的條件，只由面板寫入，寫成 "欄位:值"（例如 "fit15:yes"），欄位是 Filter 的欄位。
  */
 export interface Feed {
   type: 'all' | PlaceType;
@@ -63,21 +63,10 @@ export const EMPTY_FEED: Feed = { type: 'all', area: null, quick: [], sort: 'rec
 /** feed.quick 裡的一個條件 */
 export const feedToken = (key: FilterKey, value: string) => `${key}:${value}`;
 
-/**
- * 快速篩選的晶片（對照 FilterPanel 現有的條件）：👥 15 人＝group.fit15 是 yes。
- * 設計提的「👴 長輩可」「☔ 室內」篩選裡沒有對應的欄位，先不做；另外放網頁版常用的 ❤️ 大家喜歡的、S 級。
- */
-export const FEED_QUICK: { token: string; label: string }[] = [
-  { token: feedToken('fit15', 'yes'), label: '15 人' },
-  { token: feedToken('votes', 'popular'), label: '大家想去的' },
-  { token: feedToken('tiers', 'S'), label: 'S 級' },
-];
-
-/** 手機探索的篩選換成 Filter（explorePlaces 用）；認不得的條件略過 */
-export function feedFilter(feed: Pick<Feed, 'type' | 'area' | 'quick'>): Filter {
-  const f: Filter = { ...EMPTY_FILTER, types: feed.type === 'all' ? [] : [feed.type], areas: feed.area ? [feed.area] : [] };
+/** 把 "欄位:值" 的條件加進 Filter；類型、地區另外存（types、areas），認不得的略過 */
+function addTokens(f: Filter, tokens: string[]): Filter {
   const lists = f as unknown as Record<string, string[]>;
-  for (const t of feed.quick) {
+  for (const t of tokens) {
     const i = t.indexOf(':');
     const key = t.slice(0, i);
     if (i <= 0 || key === 'types' || key === 'areas' || !(key in EMPTY_FILTER)) continue;
@@ -86,7 +75,12 @@ export function feedFilter(feed: Pick<Feed, 'type' | 'area' | 'quick'>): Filter 
   return f;
 }
 
-/** 想去的篩選：一次一類，加上地區 */
-export function wishFilter(type: ExploreType, area: string | null): Filter {
-  return { ...EMPTY_FILTER, types: [type], areas: area ? [area] : [] };
+/** 手機探索的篩選換成 Filter（explorePlaces 用）；認不得的條件略過 */
+export function feedFilter(feed: Pick<Feed, 'type' | 'area' | 'quick'>): Filter {
+  return addTokens({ ...EMPTY_FILTER, types: feed.type === 'all' ? [] : [feed.type], areas: feed.area ? [feed.area] : [] }, feed.quick);
+}
+
+/** 想去的篩選：一次一類，加上地區和面板選的條件 */
+export function wishFilter(type: ExploreType, area: string | null, quick: string[] = []): Filter {
+  return addTokens({ ...EMPTY_FILTER, types: [type], areas: area ? [area] : [] }, quick);
 }

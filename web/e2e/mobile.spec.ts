@@ -185,31 +185,33 @@ test('探索：類型篩選', async ({ page }) => {
   expect(types.length).toBeGreaterThan(0);
   expect(new Set(types)).toEqual(new Set(['restaurant']));
   const all = Number(await page.getByTestId('m-feed-wall').getAttribute('data-count'));
-  // 15 人的快速篩選：只剩可容納 15 人的
-  await page.getByTestId('m-feed-quick-fit15:yes').click();
+  // 篩選面板選「可容納 15 人」：只剩可容納 15 人的
+  await page.getByTestId('filter-open').click();
+  await page.getByTestId('filter-opt-group-yes').click();
+  await page.getByTestId('filter-done').click();
+  await expect(page.getByTestId('filter-count')).toHaveText('1');
   const n = Number(await page.getByTestId('m-feed-wall').getAttribute('data-count'));
   expect(n).toBeGreaterThan(0);
   expect(n).toBeLessThan(all);
-  // ⚙ 篩選從底部面板打開
-  await page.getByTestId('m-feed-more').click();
-  await expect(page.getByTestId('m-feed-sheet')).toBeVisible();
-  await page.getByTestId('m-feed-sheet-done').click();
-  await expect(page.getByTestId('m-feed-sheet')).toHaveCount(0);
+  // 套用的晶片點 ✕ 取消
+  await page.getByTestId('filter-applied').first().locator('.ui-chip-x').click();
+  await expect(page.getByTestId('filter-applied')).toHaveCount(0);
+  expect(Number(await page.getByTestId('m-feed-wall').getAttribute('data-count'))).toBe(all);
 });
 
 test('探索：篩選的底部面板蓋過底部分頁，最下面的晶片點得到', async ({ page }) => {
   await ready(page);
   await goTab(page, 'explore');
-  await page.getByTestId('m-feed-more').click();
-  const sheet = page.getByTestId('m-feed-sheet');
+  await page.getByTestId('filter-open').click();
+  const sheet = page.getByTestId('filter-sheet');
   await expect(sheet).toBeVisible();
   // 分級的最後一個晶片：畫面上那一點最上面的元素就是它（沒有被底部分頁蓋住）
-  const chip = sheet.locator('.m-sheet-group').last().locator('.ui-chip').last();
+  const chip = sheet.locator('.fs-group').last().locator('.ui-chip').last();
   await chip.scrollIntoViewIfNeeded();
   const b = (await chip.boundingBox())!;
   const hit = await page.evaluate(([x, y]) => {
     const el = document.elementFromPoint(x, y);
-    return !!el?.closest('[data-testid="m-feed-sheet"] .m-sheet-group:last-child .ui-chip:last-child');
+    return !!el?.closest('[data-testid="filter-sheet"] .fs-group:last-child .ui-chip:last-child');
   }, [b.x + b.width / 2, b.y + b.height / 2] as const);
   expect(hit).toBe(true);
   await chip.click();
@@ -218,21 +220,8 @@ test('探索：篩選的底部面板蓋過底部分頁，最下面的晶片點�
   const tab = (await page.getByTestId('m-tab-me').boundingBox())!;
   const onTab = await page.evaluate(([x, y]) => !!document.elementFromPoint(x, y)?.closest('[data-testid="m-tabbar"]'), [tab.x + tab.width / 2, tab.y + tab.height / 2] as const);
   expect(onTab).toBe(false);
-  await page.getByTestId('m-feed-sheet-done').click();
+  await page.getByTestId('filter-done').click();
   await expect(sheet).toHaveCount(0);
-});
-
-test('探索：往下滑時篩選收成一行，黏在最上面', async ({ page }) => {
-  await ready(page);
-  await goTab(page, 'explore');
-  await expect(page.getByTestId('m-feed-compact')).toHaveCount(0);
-  await page.locator('.m-page').evaluate((el) => el.scrollTo(0, 1200));
-  const compact = page.getByTestId('m-feed-compact');
-  await expect(compact).toBeVisible();
-  expect((await compact.boundingBox())!.y).toBeLessThan(4);
-  // 點了回到上面、篩選整個展開
-  await compact.click();
-  await expect(page.getByTestId('m-feed-compact')).toHaveCount(0);
 });
 
 test('想去：分段切換、加到某天', async ({ page }) => {
@@ -251,7 +240,7 @@ test('想去：分段切換、加到某天', async ({ page }) => {
   await expect(page.getByTestId('day-picker')).toHaveCount(0);
   await expect(page.getByTestId('m-detail')).toHaveCount(0);
   // 清單檢視：卡片還是有加到某天
-  await page.getByTestId('m-wish-view-list').click();
+  await page.getByTestId('view-list').click();
   await expect(page.getByTestId('m-wish-item').first().getByTestId('add-to-day')).toBeVisible();
   // 點卡片開詳情
   const id = await page.getByTestId('m-wish-item').first().getAttribute('data-id');
@@ -1064,4 +1053,17 @@ test('第七輪：日期晶片第二行只有星期', async ({ page }) => {
   await ready(page);
   await goTab(page, 'trip');
   await expect(page.getByTestId('m-day-2027-02-05')).toHaveText(/^2\/5\s*五$/);
+});
+
+test('探索頂部兩列，往下捲剩一列', async ({ page }) => {
+  await ready(page);
+  await goTab(page, 'explore');
+  const bar = page.getByTestId('filter-bar');
+  expect((await bar.boundingBox())!.height).toBeLessThan(120);
+  const typeRow = page.getByTestId('m-feed-type-all');
+  expect((await typeRow.boundingBox())!.y).toBeLessThan(160);
+  await page.locator('.m-page').evaluate((el) => el.scrollTo(0, 1500));
+  await expect(bar).toBeInViewport();
+  expect((await bar.boundingBox())!.height).toBeLessThan(64);
+  await expect(typeRow).not.toBeInViewport();
 });

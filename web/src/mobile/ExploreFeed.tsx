@@ -1,6 +1,6 @@
 // 手機版「探索」分頁（第六輪 §3.2）：沒有地圖，像 Pinterest 的兩欄圖片牆（兩個 flex 欄，第 i 張放第 i % 2 欄，每排照排名），往下滑一批一批（60 張）出現。
 // 每張：左上角類型色塊（景、餐、宿），右下角 🤍／❤️、👎 直接按（castVote，不開詳情），下面是名稱、地區、❤️ 數。點圖片 → 整頁詳情（openPlace）。
-// 上方是搜尋和篩選（FeedFilters）；往下滑到篩選看不到時，最上面黏一行摘要（m-feed-compact），點了捲回最上面。
+// 上方是篩選列（FeedFilters → shared/ui/FilterBar）：第一列（搜尋、篩選、排序）黏在最上面，下面的類型和套用的條件跟著捲走。
 // 清單的計算和網頁版共用 shared/placeLists.ts（useExploreList），篩選用 mobileStore 的 feed，不看地圖範圍。探索不放「加到某天」。
 
 import { memo, useEffect, useMemo, useRef, useState } from 'react';
@@ -13,12 +13,11 @@ import { photoCandidates } from '../lib/photos.ts';
 import { cardTypeLetter } from '../lib/planView.ts';
 import { TYPE_COLORS } from '../lib/typeStyle.ts';
 import { TierMark } from '../shared/ui/TierMark.tsx';
-import { Icon } from '../components/Icon.tsx';
 import { VoteHeart } from '../shared/ui/VoteHeart.tsx';
 import { useExploreList } from '../shared/placeLists.ts';
 import type { VoteValue } from '../backend/types.ts';
 import type { Area, Place } from '../data/types.ts';
-import { FeedFilters, useFeedSummary } from './FeedFilters.tsx';
+import { FeedFilters } from './FeedFilters.tsx';
 import { Thumb } from './Thumb.tsx';
 import { mobileStore, useMobile } from './mobileStore.ts';
 
@@ -113,10 +112,7 @@ export function ExploreFeed() {
   const filter = useMemo(() => feedFilter(feed), [feed]);
   const { list } = useExploreList(filter, feed.query, feed.sort);
   const voteOf = useVoteIndex();
-  const summary = useFeedSummary();
   const rootRef = useRef<HTMLDivElement>(null);
-  const sentinelRef = useRef<HTMLDivElement>(null);
-  const [collapsed, setCollapsed] = useState(false);
   const moreRef = useRef<HTMLDivElement>(null);
   const [shown, setShown] = useState(BATCH);
 
@@ -142,37 +138,9 @@ export function ExploreFeed() {
     return out;
   }, [list, shown]);
 
-  // 篩選整個捲出畫面時收成一行；捲回來時展開（摘要黏在上面，不推動清單，捲動位置不會跳）
-  useEffect(() => {
-    const scroller = rootRef.current?.closest('.m-page');
-    if (!scroller) return;
-    const check = () => {
-      const mark = sentinelRef.current?.getBoundingClientRect();
-      if (mark) setCollapsed(mark.top < scroller.getBoundingClientRect().top);
-    };
-    check();
-    scroller.addEventListener('scroll', check, { passive: true });
-    return () => scroller.removeEventListener('scroll', check);
-  }, []);
-
-  const toTop = () => rootRef.current?.closest('.m-page')?.scrollTo({ top: 0 });
-
   return (
     <div className="m-feed" ref={rootRef} data-testid="m-feed">
-      <div className="m-feed-sticky">
-        {collapsed && (
-          <button type="button" className="m-feed-compact" onClick={toTop} data-testid="m-feed-compact">
-            <Icon name="search" size={20} />
-            <span className="m-ellipsis">{summary}</span>
-            <span className="m-feed-compact-count">{list.length} 個</span>
-            <span aria-hidden className="chev up">
-              <Icon name="chevron" size={16} />
-            </span>
-          </button>
-        )}
-      </div>
-      <FeedFilters />
-      <div ref={sentinelRef} aria-hidden />
+      <FeedFilters count={list.length} />
       <div className="m-feed-wall" data-count={list.length} data-testid="m-feed-wall">
         {columns.map((col, c) => (
           <div key={c} className="m-feed-col">

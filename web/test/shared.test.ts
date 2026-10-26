@@ -6,6 +6,9 @@ import { askAiPrompts } from '../src/shared/askAiPrompts.ts';
 import { dayLabel, isRedDay, tripDates } from '../src/lib/trip.ts';
 import { dayGridCells } from '../src/shared/dayGrid.ts';
 import { placePopover } from '../src/lib/popover.ts';
+import { FILTER_GROUPS, appliedChips } from '../src/shared/filterOptions.ts';
+import { EMPTY_FILTER } from '../src/lib/filter.ts';
+import type { Area } from '../src/data/types.ts';
 
 test('toggleTag：全員、分組互斥', () => {
   assert.deepEqual(toggleTag(['groups', 'lunch'], 'all'), ['lunch', 'all']);
@@ -64,4 +67,26 @@ test('dayGridCells：已排不能取消、現在灰掉、週末紅字', () => {
   assert.equal(c.find((x) => x.date === '2027-02-06')!.state, 'picked');
   assert.deepEqual(c.filter((x) => x.red).map((x) => x.date), ['2027-02-06', '2027-02-07', '2027-02-11', '2027-02-13']);
   assert.equal(c[0].label, '2/2'); assert.equal(c[0].weekday, '二');
+});
+
+const AREAS = [
+  { id: 'toba', name: { ja: '鳥羽', zh: '鳥羽' }, tripOrder: 2, center: [136.8, 34.4], bbox: [136.7, 34.3, 136.9, 34.5] },
+] as unknown as Area[];
+
+test('FILTER_GROUPS：順序、想去組兩個分頁不一樣', () => {
+  assert.deepEqual(FILTER_GROUPS.map((g) => g.id), ['type', 'area', 'group', 'context', 'wish', 'tier', 'map']);
+  const wish = FILTER_GROUPS.find((g) => g.id === 'wish')!;
+  assert.deepEqual(wish.options([], 'explore').map((o) => o.label), ['大家想去的']);
+  assert.deepEqual(wish.options([], 'wish').map((o) => o.label), ['只看我按的']);
+  assert.deepEqual(wish.options([], 'wish').map((o) => o.value), ['mine']);
+  assert.equal(FILTER_GROUPS.find((g) => g.id === 'map')!.desktopOnly, true);
+});
+test('FILTER_GROUPS：地區選項從 areas 來', () => {
+  assert.deepEqual(FILTER_GROUPS.find((g) => g.id === 'area')!.options(AREAS, 'explore'), [{ value: 'toba', label: '鳥羽' }]);
+});
+test('appliedChips：手機不含類型', () => {
+  const f = { ...EMPTY_FILTER, types: ['restaurant' as const], areas: ['toba'], fit15: ['yes' as const] };
+  assert.equal(appliedChips(f, AREAS, { includeType: true }).length, 3);
+  assert.equal(appliedChips(f, AREAS, { includeType: false }).length, 2);
+  assert.equal(appliedChips(f, AREAS, { includeType: true })[0].key, 'types');
 });

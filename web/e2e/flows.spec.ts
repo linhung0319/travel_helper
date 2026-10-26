@@ -1,7 +1,7 @@
 // PLAN T11 的完成條件：找到一個點 → 看小卡片 → 開詳情 → 關掉；切換天數；套用、取消篩選；
 // 切到探索、只列地圖畫面裡的，移動地圖時清單跟著換（電腦版；手機版在 mobile*.spec.ts）。另外看車站面板和照片打不開時的替代圖。
 import { test } from '@playwright/test';
-import { centerOn, expect, findPlaceId, ready } from './helpers.ts';
+import { centerOn, expect, findPlaceId, pickFilter, ready } from './helpers.ts';
 
 test.beforeEach(async ({ page }) => {
   await ready(page);
@@ -53,12 +53,12 @@ test('套用、取消篩選', async ({ page }) => {
     });
   // 電腦版：探索分頁的類型、常用篩選；回到「行程」時拿掉探索的類型
   await page.getByTestId('side-tab-explore').click();
-  await page.locator('.ex-types [data-type="restaurant"]').click();
-  const s = page.locator('.ex-quick').getByRole('button', { name: 'S 級' });
-  await s.click();
-  await expect(s).toHaveAttribute('aria-pressed', 'true');
+  await pickFilter(page, 'type-restaurant', 'tier-S');
+  await expect(page.getByTestId('filter-count')).toHaveText('2');
+  expect((await filter()).tiers).toEqual(['S']);
   expect(await dimSpotNow()).toBe(true);
-  await s.click();
+  // 套用的晶片點 ✕ 取消
+  await page.getByTestId('filter-applied').filter({ hasText: 'S 級' }).locator('.ui-chip-x').click();
   expect((await filter()).tiers).toEqual([]);
   await page.getByTestId('side-tab-day').click();
   expect((await filter()).types).toEqual([]);
@@ -69,8 +69,7 @@ test('探索：只列地圖畫面裡的點，移動地圖跟著換', async ({ pa
   // 電腦版是右側「探索」分頁的清單：看景點、按「只列地圖畫面裡的」
   const itemId = 'explore-item';
   await page.getByTestId('side-tab-explore').click();
-  await page.locator('.ex-types [data-type="spot"]').click();
-  await page.getByTestId('ex-inview').click();
+  await pickFilter(page, 'type-spot', 'map-inView');
   const ids = () => page.getByTestId(itemId).evaluateAll((els) => els.map((e) => (e as HTMLElement).dataset.id!));
   const inView = () =>
     page.evaluate((itemId) => {
@@ -129,7 +128,8 @@ test('區域來自 areas.json：篩選的區域選項和 areas.json 一樣', asy
   const names = await page.evaluate(() => (window as any).__th.dataStore.getState().areas.map((a: any) => a.name.zh || a.name.ja));
   expect(names.length).toBeGreaterThan(0);
   await page.getByTestId('side-tab-explore').click();
-  const areas = page.locator('.ex-areas');
+  await page.getByTestId('filter-open').click();
+  const areas = page.getByTestId('filter-sheet').locator('[data-group="area"]');
   for (const n of names) await expect(areas.getByRole('button', { name: n, exact: true })).toBeVisible();
 });
 

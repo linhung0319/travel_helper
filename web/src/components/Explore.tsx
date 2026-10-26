@@ -1,12 +1,11 @@
-// 電腦版右側的「探索」分頁：原本的篩選和圖片牆合併成一份清單。
-// 餐廳／住宿／景點是最上層的分頁（一直黏在上面）；底下是地區、常用篩選、「更多篩選」。
-// 往下捲時篩選收合成一列摘要（例如「鳥羽・S 級」），點了在原地展開。
+// 電腦版右側的「探索」分頁：最上面是篩選列（shared/ui/FilterBar：搜尋、篩選、排序、照片牆／清單，套用的條件變成小晶片），一直黏在上面；
+// 「篩選」打開的抽屜蓋住整個右欄（FilterSheet），類型、地區、團體、情境、想去、等級、只看地圖畫面裡的都在裡面。
 // 清單可以切換大照片（像 IG）或只有文字；滑鼠移上去地圖上的點會閃，點了地圖移過去、打開詳情。
 // 反過來，點地圖上的點：切到探索、捲到那張卡片（showInExplore），再點卡片才開詳情（手機沒有 hover，所以用點的）。
 // 探索的類型寫在篩選裡（地圖跟著變淡），回到「行程」時拿掉（showItinerary）。
 // 「想去」分頁是同一個元件（source="wish"）：只列有人按想去的點，卡片底下多了留言（Wishlist.tsx 的 WishExtras）；只有想去的卡片有「加到某天」（探索只有愛心，流程是先按想去再到想去加到某天）。
 // 卡片照片右上角是想去的愛心（VoteHeart），左上角是類型和行程狀態（候選、已排）的 tag。
-// 清單的計算（篩選、排序、每一類的數量、想去的範圍）在 shared/placeLists.ts 的 usePlaceList，手機版也用。
+// 清單的計算（篩選、排序、數量、想去的範圍）在 shared/placeLists.ts 的 usePlaceList，手機版也用。
 
 import { useEffect, useRef, useState, type ReactNode } from 'react';
 import { appStore } from '../store.ts';
@@ -16,10 +15,8 @@ import { likedPlaces } from '../lib/wishlist.ts';
 import { commands } from '../appCommands.ts';
 import { useApp, useData } from '../hooks.ts';
 import { displayName } from '../data/normalize.ts';
-import { CONTEXT_LABELS, EMPTY_FILTER, TYPE_LABELS, VOTE_FILTER_LABELS, filterChips, isFilterEmpty, matchesFilter, matchesQuery, type FilterKey } from '../lib/filter.ts';
-import { SearchBox } from './SearchBox.tsx';
-import { AreaFilter } from './AreaFilter.tsx';
-import { EXPLORE_SORTS, EXPLORE_SORT_LABELS, EXPLORE_TYPES, type ExploreSort, type ExploreType } from '../lib/explore.ts';
+import { EMPTY_FILTER, matchesFilter, matchesQuery, type FilterKey } from '../lib/filter.ts';
+import { EXPLORE_TYPES, type ExploreSort } from '../lib/explore.ts';
 import { placeBadges } from '../lib/badges.ts';
 import { shortDayLabel } from '../lib/trip.ts';
 import { TYPE_COLORS, TYPE_ICON_NAMES } from '../lib/typeStyle.ts';
@@ -31,7 +28,7 @@ import { TypeLabel } from '../shared/ui/TypeLabel.tsx';
 import { VoteHeart } from '../shared/ui/VoteHeart.tsx';
 import { Icon } from './Icon.tsx';
 import { DayStatusTag } from './DayPicker.tsx';
-import { FilterPanel } from './FilterPanel.tsx';
+import { FilterBar, type FilterModel } from '../shared/ui/FilterBar.tsx';
 import { dragPlaceProps } from './askAi.ts';
 import { WishExtras } from './Wishlist.tsx';
 import { usePlaceList } from '../shared/placeLists.ts';
@@ -56,27 +53,6 @@ function saveView(v: View) {
     // 私密視窗等存不了：只是下次回到預設
   }
 }
-
-/** 每一類常用的篩選（其他在「更多篩選」） */
-const QUICK: Record<ExploreType, { key: FilterKey; value: string; label: string }[]> = {
-  restaurant: [
-    { key: 'contexts', value: 'lunch', label: CONTEXT_LABELS.lunch },
-    { key: 'contexts', value: 'dinner', label: CONTEXT_LABELS.dinner },
-    { key: 'fit15', value: 'yes', label: '可坐 15 人' },
-    { key: 'votes', value: 'popular', label: VOTE_FILTER_LABELS.popular },
-    { key: 'tiers', value: 'S', label: 'S 級' },
-  ],
-  lodging: [
-    { key: 'votes', value: 'popular', label: VOTE_FILTER_LABELS.popular },
-    { key: 'tiers', value: 'S', label: 'S 級' },
-    { key: 'tiers', value: 'A', label: 'A 級' },
-  ],
-  spot: [
-    { key: 'votes', value: 'popular', label: VOTE_FILTER_LABELS.popular },
-    { key: 'tiers', value: 'S', label: 'S 級' },
-    { key: 'tiers', value: 'A', label: 'A 級' },
-  ],
-};
 
 function open(id: string) {
   commands.focus(id);
@@ -190,49 +166,34 @@ function Item({ place, rank, view, hot, source }: { place: Place; rank: number; 
   );
 }
 
+/** 面板裡點一個選項：地區一次一個（選了地圖跳過去，小區域也是），其他是開關 */
+function pickOption(key: FilterKey, value: string) {
+  const s = appStore.getState();
+  if (key === 'areas') {
+    const on = s.filter.areas.includes(value);
+    s.setFilter({ areas: on ? [] : [value], regions: [] });
+    if (!on) commands.focus({ area: value });
+    return;
+  }
+  const was = (s.filter[key] as string[]).includes(value);
+  s.toggleFilter(key, value);
+  if (key === 'regions' && !was) commands.focus({ region: value });
+}
+
 export function ExplorePanel({ source = 'explore' }: { source?: ListSource }) {
   const filter = useApp((s) => s.filter);
   const query = useApp((s) => s.query);
   const bounds = useApp((s) => s.view?.bounds ?? null);
   const hoveredId = useApp((s) => s.hoveredId);
   const target = useApp((s) => s.exploreTarget);
-  const areas = useData((s) => s.areas);
   const [view, setView] = useState<View>(loadView);
   // 想去預設依 ❤️ 多排
   const [sort, setSort] = useState<ExploreSort>(source === 'wish' ? 'likes' : 'recommend');
   const [inView, setInView] = useState(false);
-  const [more, setMore] = useState(false);
   const ref = useRef<HTMLOListElement>(null);
-  const headRef = useRef<HTMLDivElement>(null);
-  const sentinelRef = useRef<HTMLDivElement>(null);
-  const [collapsed, setCollapsed] = useState(false);
-  const [open, setOpen] = useState(false);
 
-  // 篩選整個捲到上方那列底下時收合；捲回最上面時展開（收合時打開的下拉也關掉）
-  useEffect(() => {
-    const scroller = headRef.current?.closest('.side-body');
-    if (!scroller) return;
-    const check = () => {
-      const head = headRef.current?.getBoundingClientRect();
-      const mark = sentinelRef.current?.getBoundingClientRect();
-      if (!head || !mark) return;
-      const c = mark.top < head.bottom;
-      setCollapsed(c);
-      if (!c) setOpen(false);
-    };
-    check();
-    scroller.addEventListener('scroll', check, { passive: true });
-    return () => scroller.removeEventListener('scroll', check);
-  }, []);
-
-  // 類型一次看一種；從別處帶來的篩選沒有指定（或指定好幾種）時，先看餐廳
-  const type: ExploreType = filter.types.length === 1 && (EXPLORE_TYPES as readonly string[]).includes(filter.types[0]) ? (filter.types[0] as ExploreType) : 'restaurant';
-  useEffect(() => {
-    if (filter.types.length !== 1 || filter.types[0] !== type) appStore.getState().setFilter({ types: [type] });
-  }, [filter.types, type]);
-
-  // 清單的計算在 shared/placeLists.ts（手機版也用）
-  const { pool, list, counts } = usePlaceList(source, filter, query, sort, inView ? bounds : null);
+  // 清單的計算在 shared/placeLists.ts（手機版也用）；沒選類型就是三類都列
+  const { pool, list } = usePlaceList(source, filter, query, sort, inView ? bounds : null);
 
   // 地圖上點了某個點：清單直接跳到那張卡片（清單可能很長，平滑捲動會在半路被照片載入打斷）
   useEffect(() => {
@@ -240,121 +201,29 @@ export function ExplorePanel({ source = 'explore' }: { source?: ListSource }) {
     ref.current?.querySelector<HTMLElement>(`[data-id="${CSS.escape(target.id)}"]`)?.scrollIntoView({ block: 'center' });
   }, [target]);
 
-  // 搜尋時這一類沒有、別類有：直接切過去（打「水族」不用自己找在哪一類）；剛打開想去時也一樣（還沒人 ❤️ 餐廳時先看景點）
-  const opened = useRef(false);
-  useEffect(() => {
-    const first = source === 'wish' && !opened.current;
-    opened.current = true;
-    if ((!query.trim() && !first) || counts[type] > 0) return;
-    const other = EXPLORE_TYPES.find((t) => counts[t] > 0);
-    if (other) appStore.getState().setFilter({ types: [other] });
-  }, [query, counts, type, source]);
-
-  const quickOn = (q: { key: FilterKey; value: string }) =>(filter[q.key] as string[]).includes(q.value);
-  // 「更多篩選」的 ●：只算外面那排標籤沒有的條件
-  const extra = { ...filter, areas: [], regions: [], types: [] };
-  for (const q of QUICK[type]) (extra[q.key] as string[]) = (extra[q.key] as string[]).filter((v) => v !== q.value);
-
-  // 往下捲到篩選都看不到時，上方只留類型和一列摘要；點摘要展開篩選
-  const toggleQuick = (q: { key: FilterKey; value: string }) => appStore.getState().toggleFilter(q.key, q.value);
-  const summary = [...(query.trim() ? [`「${query.trim()}」`] : []), ...filterChips(filter, areas).filter((c) => c.key !== 'types').map((c) => c.label), ...(inView ? ['地圖畫面裡'] : [])];
-  const controls = (
-    <>
-      <SearchBox />
-      <AreaFilter />
-      <div className="ex-quick">
-        {QUICK[type].map((q) => (
-          <button key={`${q.key}:${q.value}`} type="button" className={`pill small-pill ${quickOn(q) ? 'on' : ''}`} aria-pressed={quickOn(q)} onClick={() => toggleQuick(q)}>
-            {q.label}
-          </button>
-        ))}
-        <button type="button" className={`pill small-pill ${inView ? 'on' : ''}`} aria-pressed={inView} onClick={() => setInView(!inView)} data-testid="ex-inview">
-          只列地圖畫面裡的
-        </button>
-        <button type="button" className={`pill small-pill ${more ? 'on' : ''}`} aria-expanded={more} onClick={() => setMore(!more)} data-testid="filter-button">
-          <Icon name="sliders" size={16} /> 更多篩選{!isFilterEmpty(extra) ? ' ●' : ''}
-        </button>
-      </div>
-      {more && <FilterPanel embedded onClose={() => setMore(false)} />}
-    </>
-  );
-  const bar = (
-    <>
-      <span className="muted ex-count">{list.length} 個</span>
-      <select value={sort} onChange={(e) => setSort(e.target.value as ExploreSort)} aria-label="排序">
-        {EXPLORE_SORTS.map((s) => (
-          <option key={s} value={s}>
-            依{EXPLORE_SORT_LABELS[s]}
-          </option>
-        ))}
-      </select>
-      <span className="segmented ex-view" role="group" aria-label="顯示方式">
-        <button
-          type="button"
-          aria-pressed={view === 'photo'}
-          title="大照片"
-          onClick={() => {
-            setView('photo');
-            saveView('photo');
-          }}
-        >
-          <Icon name="grid" size={20} />
-        </button>
-        <button
-          type="button"
-          aria-pressed={view === 'list'}
-          title="只有文字"
-          onClick={() => {
-            setView('list');
-            saveView('list');
-          }}
-        >
-          <Icon name="list" size={20} />
-        </button>
-      </span>
-    </>
-  );
+  const model: FilterModel = {
+    filter,
+    query,
+    setQuery: (q) => appStore.getState().setQuery(q),
+    sort,
+    setSort,
+    view,
+    setView: (v) => {
+      setView(v);
+      saveView(v);
+    },
+    inView,
+    setInView,
+    pick: pickOption,
+    clear: () => {
+      appStore.getState().clearFilter();
+      setInView(false);
+    },
+  };
 
   return (
     <div className={`explore-panel source-${source}`} data-testid={source === 'wish' ? 'wish-panel' : 'explore-panel'}>
-      {/* 黏在上面：餐廳／住宿／景點；收合時下面多一列摘要（疊在清單上，不推動清單） */}
-      <div className="ex-head" ref={headRef}>
-        <div className="segmented big ex-types" role="tablist" aria-label="類型">
-          {EXPLORE_TYPES.map((t) => (
-            <button
-              key={t}
-              type="button"
-              role="tab"
-              aria-selected={t === type}
-              aria-pressed={t === type}
-              onClick={() => appStore.getState().setFilter({ types: [t], contexts: t === 'restaurant' ? filter.contexts : [], fit15: t === 'restaurant' ? filter.fit15 : [] })}
-              data-type={t}
-            >
-              <i className="ui-type-dot" style={{ background: TYPE_COLORS[t] }} aria-hidden="true" /> {TYPE_LABELS[t]} <span className="pill-count">{counts[t]}</span>
-            </button>
-          ))}
-        </div>
-        {collapsed && (
-          <div className="ex-compact">
-            <div className="ex-bar small">
-              <button type="button" className={`ex-filtersum ${open ? 'on' : ''}`} aria-expanded={open} onClick={() => setOpen(!open)} data-testid="ex-summary">
-                <span className="ex-filtersum-icon">
-                  <Icon name="sliders" size={16} />
-                </span>
-                <span className="ex-filtersum-text">{summary.length ? summary.join('・') : '全部地區'}</span>
-                <span aria-hidden className={`chev ${open ? 'up' : ''}`}>
-                  <Icon name="chevron" size={16} />
-                </span>
-              </button>
-              {bar}
-            </div>
-            {open && <div className="ex-drop">{controls}</div>}
-          </div>
-        )}
-      </div>
-      <div className="ex-controls">{controls}</div>
-      <div className="ex-bar small">{bar}</div>
-      <div ref={sentinelRef} aria-hidden />
+      <FilterBar source={source} surface="desktop" model={model} count={list.length} />
       <ol className={`ex-list view-${view}`} ref={ref}>
         {list.map((p, i) => (
           <Item key={p.id} place={p} rank={i + 1} view={view} hot={hoveredId === p.id || target?.id === p.id} source={source} />

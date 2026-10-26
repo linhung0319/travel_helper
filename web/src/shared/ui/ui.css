@@ -451,3 +451,286 @@
   flex: 0 0 auto;
   padding: 4px 6px;
 }
+
+/* ---------- 篩選列（FilterBar）和篩選面板（FilterSheet） ---------- */
+.fb {
+  background: var(--paper);
+}
+
+.fb-row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  min-width: 0;
+}
+
+.fb-search {
+  position: relative;
+  flex: 1 1 0;
+  min-width: 0;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-height: var(--tap);
+  padding: 0 12px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: var(--wash);
+  color: var(--ink-3);
+}
+
+.fb-search input {
+  flex: 1;
+  min-width: 0;
+  border: 0;
+  background: none;
+  color: var(--ink);
+  font: inherit;
+  /* 16px 以上 iOS 才不會自動放大 */
+  font-size: 1rem;
+  outline: none;
+}
+
+.fb-search input::-webkit-search-cancel-button {
+  display: none;
+}
+
+.fb-search-clear {
+  display: inline-grid;
+  place-items: center;
+  width: 32px;
+  height: 32px;
+  margin-right: -8px;
+  border: 0;
+  background: none;
+  color: var(--ink-3);
+  cursor: pointer;
+}
+
+/* 篩選按鈕上的數字 */
+.fb-n {
+  display: inline-grid;
+  place-items: center;
+  min-width: 20px;
+  height: 20px;
+  padding: 0 5px;
+  border-radius: 999px;
+  background: var(--indigo);
+  color: var(--paper);
+  font-family: var(--font-num);
+  font-style: italic;
+  font-size: 0.8125rem;
+}
+
+.ui-chip.on .fb-n {
+  background: var(--paper);
+  color: var(--ink);
+}
+
+/* 排序選單 */
+.fb-sort {
+  position: relative;
+  flex: 0 0 auto;
+}
+
+.fb-menu {
+  position: absolute;
+  right: 0;
+  top: calc(100% + 6px);
+  z-index: 30;
+  min-width: 150px;
+  padding: 6px;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  background: var(--paper);
+  box-shadow: var(--shadow);
+}
+
+.fb-menu-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  width: 100%;
+  min-height: var(--tap);
+  padding: 0 12px;
+  border: 0;
+  border-radius: 999px;
+  background: none;
+  color: var(--ink-2);
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+
+.fb-menu-item.on {
+  background: var(--wash);
+  color: var(--ink);
+  font-weight: 700;
+}
+
+/* 照片牆／清單切換 */
+.fb-view {
+  display: inline-flex;
+  flex: 0 0 auto;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+.fb-view button {
+  display: inline-grid;
+  place-items: center;
+  width: var(--tap);
+  height: var(--tap);
+  border: 0;
+  background: var(--paper);
+  color: var(--ink-3);
+  cursor: pointer;
+}
+
+.fb-view button[aria-pressed='true'] {
+  background: var(--ink);
+  color: var(--paper);
+}
+
+/* 套用的條件：--indigo-wash 小晶片，點 ✕ 取消 */
+.fb-applied {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  padding-top: 8px;
+}
+
+.fb-applied-item {
+  display: inline-flex;
+}
+
+/* 網頁：整列黏在右欄上面 */
+.fb-desktop {
+  position: sticky;
+  top: 0;
+  z-index: 3;
+  padding: 10px 12px 10px;
+  border-bottom: 1px solid var(--line);
+}
+
+/* 手機：第一列黏在最上面，其餘跟著內容捲走 */
+.fb-mobile {
+  position: sticky;
+  top: 0;
+  z-index: 5;
+  padding: 6px 12px;
+  border-bottom: 1px solid var(--line);
+}
+
+.fb-below {
+  min-width: 0;
+  padding: 4px 12px 0;
+}
+
+.fb-typerow {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
+}
+
+.fb-types {
+  flex: 1 1 0;
+  min-width: 0;
+}
+
+.fb-types .m-chips {
+  padding: 4px 0;
+}
+
+.fb-types .m-segmented {
+  margin: 4px 0;
+}
+
+.fb-below .fb-applied {
+  padding: 4px 0 4px;
+}
+
+/* 篩選面板：頭固定、中間自己捲、腳固定 */
+.fs-panel {
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  background: var(--paper);
+}
+
+.fs-desktop {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 40;
+  border-top: 1px solid var(--line);
+}
+
+.fs-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  display: flex;
+  align-items: flex-end;
+  background: var(--dim);
+}
+
+.fs-mobile {
+  width: 100%;
+  max-height: 80dvh;
+  border-radius: 20px 20px 0 0;
+  padding-bottom: env(safe-area-inset-bottom);
+}
+
+.fs-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 6px 8px 6px 16px;
+  border-bottom: 1px solid var(--line);
+}
+
+.fs-title {
+  margin: 0;
+  font-family: var(--font-serif);
+  font-size: 1.125rem;
+}
+
+.fs-body {
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow-y: auto;
+  padding: 8px 16px 16px;
+}
+
+.fs-group + .fs-group {
+  margin-top: 14px;
+}
+
+.fs-h {
+  margin: 0 0 6px;
+  font-size: 0.8125rem;
+  font-weight: 500;
+  color: var(--ink-3);
+}
+
+.fs-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.fs-foot {
+  display: flex;
+  gap: 8px;
+  padding: 10px 16px;
+  border-top: 1px solid var(--line);
+}
+
+.fs-foot .ui-btn-primary {
+  flex: 1;
+}

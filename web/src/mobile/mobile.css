@@ -315,9 +315,10 @@
   cursor: pointer;
 }
 
-/* 共用的 Chip（shared/ui）在手機和下拉晶片一樣高 */
+/* 共用的 Chip（shared/ui）在手機一樣高 */
 .m-chips .ui-chip,
-.m-sheet-group .ui-chip {
+.fb-mobile .ui-chip,
+.fs-mobile .ui-chip {
   min-height: var(--tap);
 }
 
@@ -325,19 +326,6 @@
   background-color: var(--fg);
   border-color: var(--fg);
   color: var(--paper);
-}
-
-/* 下拉（地區、排序）：樣子和晶片一樣，右邊畫一個小三角 */
-.m-select {
-  max-width: 11em;
-  appearance: none;
-  -webkit-appearance: none;
-  padding-right: 28px;
-  background-image: linear-gradient(45deg, transparent 50%, currentColor 50%), linear-gradient(135deg, currentColor 50%, transparent 50%);
-  background-position: right 15px center, right 10px center;
-  background-size: 5px 5px;
-  background-repeat: no-repeat;
-  text-overflow: ellipsis;
 }
 
 .m-text-btn {
@@ -381,17 +369,6 @@
   background: var(--fg);
   color: var(--paper);
   font-weight: 700;
-}
-
-.m-view-toggle {
-  display: inline-flex;
-  gap: 4px;
-  flex: 0 0 auto;
-}
-
-.m-view-toggle .m-chip {
-  min-width: var(--tap);
-  padding: 0 10px;
 }
 
 .m-empty {
@@ -465,72 +442,6 @@
   position: relative;
   min-width: 0;
   padding-bottom: 16px;
-}
-
-.m-feed-filters {
-  padding-top: 8px;
-  min-width: 0;
-}
-
-.m-search {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  margin: 0 12px 4px;
-  padding: 0 12px;
-  min-height: var(--tap);
-  border: 1px solid var(--line);
-  border-radius: 999px;
-  background: var(--soft);
-}
-
-.m-search input {
-  flex: 1;
-  min-width: 0;
-  border: 0;
-  background: none;
-  font: inherit;
-  /* 16px 以上 iOS 才不會自動放大 */
-  font-size: 1rem;
-  outline: none;
-}
-
-/* 收成一行的摘要：高度 0 的 sticky 外框，摘要疊在清單上面，不推動清單 */
-.m-feed-sticky {
-  position: sticky;
-  top: 0;
-  z-index: 5;
-  height: 0;
-}
-
-.m-feed-compact {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  min-height: var(--tap);
-  padding: 0 14px;
-  border: 0;
-  border-bottom: 1px solid var(--line);
-  background: var(--bg);
-  box-shadow: 0 2px 6px var(--shade-1);
-  color: var(--fg);
-  font: inherit;
-  font-size: 0.9rem;
-  text-align: left;
-  cursor: pointer;
-}
-
-.m-feed-compact .m-ellipsis {
-  flex: 1;
-}
-
-.m-feed-compact-count {
-  flex: 0 0 auto;
-  color: var(--muted);
 }
 
 /* Pinterest 式兩欄：兩個 flex 欄（第 i 張在第 i % 2 欄，每排照排名），每欄自己往下疊 */
@@ -620,54 +531,6 @@
 
 .m-vote-count:empty {
   display: none;
-}
-
-/* ---------- ⚙ 篩選的底部面板 ---------- */
-
-.m-sheet-backdrop {
-  position: fixed;
-  inset: 0;
-  z-index: 50;
-  background: var(--dim);
-  display: flex;
-  align-items: flex-end;
-}
-
-.m-sheet {
-  width: 100%;
-  max-height: 80dvh;
-  display: flex;
-  flex-direction: column;
-  border-radius: 16px 16px 0 0;
-  background: var(--bg);
-  padding-bottom: env(safe-area-inset-bottom);
-}
-
-.m-sheet-head {
-  display: flex;
-  align-items: center;
-  gap: 4px;
-  padding: 6px 8px 6px 16px;
-  border-bottom: 1px solid var(--line);
-}
-
-.m-sheet-head .m-h2 {
-  flex: 1;
-}
-
-.m-sheet-body {
-  overflow-y: auto;
-  padding: 8px 16px 16px;
-}
-
-.m-sheet-group + .m-sheet-group {
-  margin-top: 12px;
-}
-
-.m-sheet-h {
-  margin: 0 0 6px;
-  font-size: 0.9rem;
-  color: var(--muted);
 }
 
 /* ---------- 想去 ---------- */

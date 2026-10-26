@@ -70,3 +70,11 @@ export async function switchUser(page: Page, memberId: string) {
   await page.getByTestId('account-menu').click();
   await page.locator(`[data-member="${memberId}"]`).click();
 }
+
+/** 電腦版：打開右欄的篩選抽屜，點幾個選項（例如 'type-restaurant'、'tier-S'、'area-toba'、'map-inView'），按「顯示 N 個」關掉 */
+export async function pickFilter(page: Page, ...opts: string[]) {
+  await page.getByTestId('filter-open').click();
+  for (const o of opts) await page.getByTestId(`filter-opt-${o}`).click();
+  await page.getByTestId('filter-done').click();
+  await expect(page.getByTestId('filter-sheet')).toHaveCount(0);
+}

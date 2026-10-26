@@ -35,10 +35,12 @@ export interface ActionSheetSpec {
   view?: ActionView;
 }
 
-/** 想去分頁的設定：哪一類（null＝還沒選，打開時挑有東西的那類）、地區、排序、大圖或清單 */
+/** 想去分頁的設定：哪一類（null＝還沒選，打開時挑有東西的那類）、地區、面板選的條件（quick，寫法同 Feed.quick）、搜尋、排序、大圖或清單 */
 export interface WishView {
   type: ExploreType | null;
   area: string | null;
+  quick: string[];
+  query: string;
   sort: ExploreSort;
   view: 'photo' | 'list';
 }
@@ -83,6 +85,7 @@ export interface MobileActions {
   setFeed(patch: Partial<Feed>): void;
   /** 探索的條件（"欄位:值"）有就拿掉、沒有就加上 */
   toggleFeedQuick(token: string): void;
+  toggleWishQuick(token: string): void;
   setWish(patch: Partial<WishView>): void;
 }
 
@@ -148,7 +151,7 @@ export const mobileStore = createStore<MobileStore>()((set, get) => ({
   actions: null,
   page: null,
   feed: EMPTY_FEED,
-  wish: { type: null, area: null, sort: 'likes', view: 'photo' },
+  wish: { type: null, area: null, quick: [], query: '', sort: 'likes', view: 'photo' },
   // 換分頁：整頁的東西、半屏聊天都關掉
   setTab: (tab) => {
     const had = layerOpen(get());
@@ -193,6 +196,10 @@ export const mobileStore = createStore<MobileStore>()((set, get) => ({
   toggleFeedQuick: (token) => {
     const q = get().feed.quick;
     set({ feed: { ...get().feed, quick: q.includes(token) ? q.filter((t) => t !== token) : [...q, token] } });
+  },
+  toggleWishQuick: (token) => {
+    const q = get().wish.quick;
+    set({ wish: { ...get().wish, quick: q.includes(token) ? q.filter((t) => t !== token) : [...q, token] } });
   },
   setWish: (patch) => set({ wish: { ...get().wish, ...patch } }),
 }));

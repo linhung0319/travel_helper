@@ -166,6 +166,8 @@ test('T15m：拿掉別人加的候選要寫理由，理由變成那個點的留�
   await expect(card.getByTestId('wish-comment').last()).toContainText('這天排不下');
   await expect(card.getByTestId('wish-comment').last()).toContainText('不採用');
 
+  // 類型是篩選的一個條件（打開想去時帶著那個點的類型）：先拿掉，搜尋才找得到別類的店
+  await page.getByTestId('filter-applied').first().locator('.ui-chip-x').click();
   await list.getByTestId('search').fill('いろは');
   await expect(list.getByTestId('wish-item')).toHaveCount(1);
   await expect(wish(list, 'toba-yakigai-iroha')).toBeVisible();
@@ -1389,4 +1391,32 @@ test('第七輪：詳情沒有「＋問 AI」按鈕', async ({ page }) => {
   await openDetail(page, PLACE);
   await expect(page.getByTestId('detail-panel')).toBeVisible();
   await expect(page.getByTestId('detail-ask')).toHaveCount(0);
+});
+
+test('篩選：往下捲也是同一列，打開的抽屜整個看得到', async ({ page }) => {
+  await ready(page);
+  await page.getByTestId('side-tab-explore').click();
+  await expect(page.getByTestId('explore-item').first()).toBeVisible();
+  await page.locator('.side-body').evaluate((el) => el.scrollTo(0, 1500));
+  await expect(page.getByTestId('filter-bar')).toBeInViewport();
+  await page.getByTestId('filter-open').click();
+  const sheet = page.getByTestId('filter-sheet');
+  await sheet.getByTestId('filter-opt-tier-S').scrollIntoViewIfNeeded();
+  await expect(sheet.getByTestId('filter-opt-tier-S')).toBeInViewport();
+  await expect(page.getByTestId('filter-done')).toBeInViewport();
+});
+
+test('篩選：套用的條件變成晶片，點 ✕ 取消', async ({ page }) => {
+  await ready(page);
+  await page.getByTestId('side-tab-explore').click();
+  await page.getByTestId('filter-open').click();
+  await page.getByTestId('filter-opt-area-toba').click();
+  await page.getByTestId('filter-opt-group-yes').click();
+  await page.getByTestId('filter-done').click();
+  await expect(page.getByTestId('filter-sheet')).toHaveCount(0);
+  const applied = page.getByTestId('filter-applied');
+  await expect(applied).toHaveCount(2);
+  await expect(page.getByTestId('filter-count')).toHaveText('2');
+  await applied.first().locator('.ui-chip-x').click();
+  await expect(applied).toHaveCount(1);
 });

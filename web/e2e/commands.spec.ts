@@ -2,7 +2,7 @@
 // 另外看標示、路線（OSRM 用假的回應）、比較、AI 的提議畫得出來。
 // 設 TH_SHOTS=<目錄> 時順便拍截圖（手機 390px、電腦）。
 import { test, type Page } from '@playwright/test';
-import { expect, ready, waitIdle } from './helpers.ts';
+import { expect, pickFilter, ready, waitIdle } from './helpers.ts';
 
 const DAY = '2027-02-05';
 
@@ -55,9 +55,7 @@ test('用指令重現 T11 的手動操作：切天數、篩選、聚焦，畫面
   // 電腦版：篩選在右側的「探索」分頁。點天數、切到探索、選餐廳和 S 級、點地區「鳥羽」（篩選加上鳥羽、地圖移過去）
   await page.locator(`.side-column [data-day="${DAY}"]`).click();
   await page.getByTestId('side-tab-explore').click();
-  await page.locator('.ex-types [data-type="restaurant"]').click();
-  await page.locator('.ex-quick').getByRole('button', { name: 'S 級' }).click();
-  await page.locator('.ex-areas [data-area="toba"]').click();
+  await pickFilter(page, 'type-restaurant', 'tier-S', 'area-toba');
   const manual = await snapshot(page);
   await ready(page);
   expect((await run(page, 'selectDay', DAY)).ok).toBe(true);
