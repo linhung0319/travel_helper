@@ -1,7 +1,8 @@
-// 拖曳放在哪：卡片中間合併、上下邊緣插入；不能合併時中間照上下半插入；拖到自己不動；候選區只收備卡
+// 拖曳放在哪：卡片中間合併（要停 0.6 秒）、上下邊緣插入；不能合併時中間照上下半插入；拖到自己不動；候選區只收備卡；靠邊自動捲
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { dropIntent, dropTarget, samePosition, type DragSource, type DropTargetInfo } from '../src/lib/dropIntent.ts';
+import { dropIntent, dropTarget, dwellMerge, MERGE_DWELL_MS, reorderInfo, samePosition, type DragSource, type DropTargetInfo } from '../src/lib/dropIntent.ts';
+import { autoScrollSpeed } from '../src/lib/dragScroll.ts';
 import { itin } from './helpers.ts';
 
 const rect = { top: 0, height: 100 };
@@ -81,4 +82,57 @@ test('samePosition：放回自己前後、通往自己的交通卡（＝排在�
   // 已經在最後的放到這天最後：原位
   const last = '2027-02-03:c';
   assert.equal(samePosition(it, last, dropTarget(it, { kind: 'end', date: '2027-02-03' }, last)!), true);
+});
+
+test('dwellMerge：經過不到 600ms 不合併', () => {
+  assert.equal(MERGE_DWELL_MS, 600);
+  assert.equal(dwellMerge({ itemId: 'i-3', since: 1000 }, 1599), false);
+  assert.equal(dwellMerge({ itemId: 'i-3', since: 1000 }, 1600), true);
+  assert.equal(dwellMerge(null, 5000), false);
+});
+
+test('dropIntent：沒有停留（merging=false）時中間區是換順序，不合併', () => {
+  const src = { kind: 'item', itemId: 'a', placeType: 'restaurant', options: 1 } as const;
+  const target = card('b', 'restaurant');
+  assert.equal(dropIntent(src, target, rect, 40, false), 'before');
+  assert.equal(dropIntent(src, target, rect, 60, false), 'after');
+  assert.equal(dropIntent(src, target, rect, 50, true), 'merge');
+  // 邊緣照樣是插入
+  assert.equal(dropIntent(src, target, rect, 10, true), 'before');
+  const cand: DragSource = { kind: 'candidate', candidateId: 1, placeId: 'p', placeType: 'spot' };
+  assert.equal(dropIntent(cand, card('b', 'spot'), rect, 45, false), 'before');
+});
+
+test('autoScrollSpeed：上緣往上、下緣往下，越近越快，中間不動', () => {
+  assert.equal(autoScrollSpeed(500, 0, 1000), 0);
+  assert.ok(autoScrollSpeed(990, 0, 1000) > autoScrollSpeed(950, 0, 1000));
+  assert.ok(autoScrollSpeed(950, 0, 1000) > 0);
+  assert.ok(autoScrollSpeed(10, 0, 1000) < 0);
+  assert.ok(autoScrollSpeed(10, 0, 1000) < autoScrollSpeed(50, 0, 1000));
+  assert.equal(autoScrollSpeed(0, 0, 1000), -18);
+  assert.equal(autoScrollSpeed(1000, 0, 1000), 18);
+  // 超出範圍不會更快
+  assert.equal(autoScrollSpeed(1200, 0, 1000), 18);
+  assert.equal(autoScrollSpeed(100, 100, 500, 50, 10), -10);
+  assert.equal(autoScrollSpeed(300, 100, 500), 0);
+});
+
+test('reorderInfo：上移、下移的位置；第一張不能上移、最後一張不能下移；航班擋住；同類型的才能合併', () => {
+  const it = itin({ '2027-02-03': ['r1', 's1', 'r2', 's2'] });
+  const type = (id: string) => (id.startsWith('r') ? 'restaurant' : 'spot');
+  const first = reorderInfo(it, '2027-02-03:r1', type)!;
+  assert.deepEqual([first.index, first.count, first.up, first.down], [0, 4, null, 1]);
+  assert.deepEqual(first.merge, ['2027-02-03:r2']);
+  const mid = reorderInfo(it, '2027-02-03:s1', type)!;
+  assert.deepEqual([mid.up, mid.down], [0, 2]);
+  assert.deepEqual(mid.merge, ['2027-02-03:s2']);
+  assert.equal(reorderInfo(it, '2027-02-03:s2', type)!.down, null);
+  assert.equal(reorderInfo(it, 'nope', type), null);
+  // 抵達航班在最前面：第一站不能再往上
+  const day = it.days[0];
+  day.items.unshift({ id: 'f', type: 'flight', direction: 'arrive' } as never);
+  assert.equal(reorderInfo(it, '2027-02-03:r1', type)!.up, null);
+  // 有備卡的卡片不能合併到別張
+  (day.items[1] as { options: unknown[] }).options.push({ place: 'r9' });
+  assert.deepEqual(reorderInfo(it, '2027-02-03:r1', type)!.merge, []);
 });

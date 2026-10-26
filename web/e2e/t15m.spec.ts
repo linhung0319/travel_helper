@@ -566,10 +566,26 @@ test('探索：愛心一直都在，按了再按就收回；卡片上沒有不�
   await expect(card.getByTestId('card-like')).toHaveAttribute('aria-pressed', 'false');
 });
 
-/** 電腦版的 HTML5 拖曳：放在目標的第 frac 高度（0.5＝中間＝合併；靠上下邊緣＝插入） */
-async function dragOnto(source: Locator, target: Locator, frac: number) {
+/**
+ * 電腦版的滑鼠拖曳（整張卡、移動超過 5px 才開始）：放在目標的第 frac 高度（靠上下邊緣＝插入；中間要停 dwell ms 以上才是合併）。
+ * 從來源的名稱按下去（不按在按鈕上）
+ */
+async function dragOnto(source: Locator, target: Locator, frac: number, dwell = 0) {
+  const page = source.page();
+  const from = await grabPoint(source);
+  await page.mouse.move(from.x, from.y);
+  await page.mouse.down();
   const box = (await target.boundingBox())!;
-  await source.dragTo(target, { targetPosition: { x: Math.min(200, box.width / 2), y: box.height * frac } });
+  await page.mouse.move(box.x + Math.min(200, box.width / 2), box.y + box.height * frac, { steps: 8 });
+  if (dwell) await page.waitForTimeout(dwell);
+  await page.mouse.up();
+}
+
+/** 滑鼠按的地方：卡片的名稱（候選是名稱按鈕），不是 ⋯、−／＋ */
+async function grabPoint(source: Locator) {
+  const name = source.locator('[data-testid="trip-card-name"], .cand-name').first();
+  const b = (await name.boundingBox())!;
+  return { x: b.x + Math.min(40, b.width / 2), y: b.y + b.height / 2 };
 }
 
 test('第四輪：編輯中把餐廳拖到另一間餐廳的中間 → 合併；按復原回到兩張卡片（電腦版）', async ({ page }) => {
@@ -589,7 +605,8 @@ test('第四輪：編輯中把餐廳拖到另一間餐廳的中間 → 合併；
   const rows = page.getByTestId('timeline').getByTestId('tl-row');
   const n = await rows.count();
 
-  await dragOnto(src, target, 0.5);
+  // 停 0.7 秒才放：合併
+  await dragOnto(src, target, 0.5, 700);
   await expect(target.getByTestId('option-switch')).toBeVisible();
   // 合併後看的是主卡（原本那間）
   await expect(target).toHaveAttribute('data-main', 'true');
@@ -602,6 +619,102 @@ test('第四輪：編輯中把餐廳拖到另一間餐廳的中間 → 合併；
   await expect(src).toBeVisible();
   await expect(target.getByTestId('option-switch')).toHaveCount(0);
   await expect(rows).toHaveCount(n);
+});
+
+test('網頁：滑鼠拖整張卡換順序；停 0.6 秒才合併', async ({ page }) => {
+  await page.setViewportSize({ width: 1600, height: 1200 });
+  await ready(page);
+  const D = '2027-02-10';
+  const SRC = 'ise-tofuya';
+  await showDay(page, D);
+  await enterPlanning(page);
+  await cand(page, SRC).getByTestId('cand-up').click();
+  const src = page.getByTestId('timeline').locator(`[data-testid="tl-row"][data-place="${SRC}"]`);
+  await expect(src).toBeVisible();
+  const target = tlRow(page, 'i-19');
+  const rows = page.getByTestId('timeline').getByTestId('tl-row');
+  const n = await rows.count();
+  const order = () => rows.evaluateAll((els) => els.map((e) => (e as HTMLElement).dataset.item));
+  const srcItem = (await src.getAttribute('data-item'))!;
+  const before = await order();
+  // 滑鼠移上去：手掌、--wash 底
+  await src.hover();
+  expect(await src.evaluate((el) => getComputedStyle(el).cursor)).toBe('grab');
+
+  // 拖到向井酒の店的正中間、立刻放開：只是經過，換順序、不合併
+  const from = await grabPoint(src);
+  await page.mouse.move(from.x, from.y);
+  await page.mouse.down();
+  // 拖的時候：有浮起來的複本，原來那張變淡（先在原地附近看，不要在目標上停太久）
+  await page.mouse.move(from.x + 20, from.y, { steps: 3 });
+  await expect(page.locator('.drag-float')).toHaveCount(1);
+  await expect(src).toHaveClass(/drag-source/);
+  const box = (await target.boundingBox())!;
+  await page.mouse.move(box.x + 200, box.y + box.height / 2, { steps: 6 });
+  await page.mouse.up();
+  await expect(page.locator('.drag-float')).toHaveCount(0);
+  await expect.poll(order).not.toEqual(before);
+  await expect(rows).toHaveCount(n);
+  await expect(target.getByTestId('option-switch')).toHaveCount(0);
+  const after = await order();
+  expect(Math.abs(after.indexOf(srcItem) - after.indexOf('i-19'))).toBe(1);
+  // 放開不算點：卡片沒有展開
+  await expect(src).not.toHaveClass(/expanded/);
+
+  // 再拖一次，停 0.7 秒：亮框寫「放開＝和「X」合併成備選」，放開才合併
+  const from2 = await grabPoint(src);
+  await page.mouse.move(from2.x, from2.y);
+  await page.mouse.down();
+  const box2 = (await target.boundingBox())!;
+  await page.mouse.move(box2.x + 200, box2.y + box2.height / 2, { steps: 6 });
+  await expect(target).toHaveClass(/drop-merge/);
+  await expect(target).toHaveAttribute('data-drop-label', /^放開＝和「.+」合併成備選$/);
+  await page.mouse.up();
+  await expect(target.getByTestId('option-switch')).toBeVisible();
+  await expect(rows).toHaveCount(n - 1);
+});
+
+test('網頁：沒移動就放開＝點；拖到左邊的聊天室＝問 AI', async ({ page }) => {
+  await page.setViewportSize({ width: 1600, height: 1200 });
+  await ready(page);
+  await showDay(page, '2027-02-05');
+  await enterPlanning(page);
+  const row = tlRow(page, 'i-6');
+  const p = await grabPoint(row);
+  await page.mouse.move(p.x, p.y);
+  await page.mouse.down();
+  await page.mouse.move(p.x + 3, p.y + 2);
+  await page.mouse.up();
+  await expect(row).toHaveClass(/expanded/);
+  await expect(page.locator('body')).not.toHaveClass(/dragging-plan/);
+  // 拖到聊天室
+  const chat = (await page.locator('.chat-column').boundingBox())!;
+  await page.mouse.move(p.x, p.y);
+  await page.mouse.down();
+  await page.mouse.move(chat.x + chat.width / 2, chat.y + chat.height / 2, { steps: 8 });
+  await expect(page.locator('.chat-column')).toHaveClass(/drop-over/);
+  await page.mouse.up();
+  await expect(page.getByTestId('toast')).toContainText('已帶進聊天');
+});
+
+test('網頁：⋯ → 調整順序，下移可以連按、上移', async ({ page }) => {
+  await page.setViewportSize({ width: 1600, height: 1200 });
+  await ready(page);
+  await showDay(page, '2027-02-05');
+  await enterPlanning(page);
+  const items = () => page.evaluate(() => (window as any).__th.dataStore.getState().itinerary.days.find((d: any) => d.date === '2027-02-05').items.map((x: any) => x.id) as string[]);
+  const i0 = (await items()).indexOf('i-6');
+  await menuOf(tlRow(page, 'i-6')).click();
+  const menu = actionMenu(page);
+  await menu.getByTestId('action-reorder').click();
+  await expect(menu.getByTestId('reorder-panel')).toBeVisible();
+  await menu.getByTestId('reorder-down').click();
+  await expect.poll(async () => (await items()).indexOf('i-6')).toBe(i0 + 1);
+  // 選單還開著，可以再按
+  await menu.getByTestId('reorder-down').click();
+  await expect.poll(async () => (await items()).indexOf('i-6')).toBe(i0 + 2);
+  await menu.getByTestId('reorder-up').click();
+  await expect.poll(async () => (await items()).indexOf('i-6')).toBe(i0 + 1);
 });
 
 test('第四輪：編輯中把候選拖到兩張卡片之間 → 時間軸多一站、候選少一筆（電腦版）', async ({ page }) => {
@@ -1042,8 +1155,8 @@ test('⋯：不在編輯中沒有，編輯中有；一般卡沒有刪除', async
   await expect(menu.getByTestId('action-withdraw')).toHaveText('撤下（回候選）');
   await expect(menu.getByText('刪除', { exact: true })).toHaveCount(0);
   await expect(menu.getByTestId('action-delete')).toHaveCount(0);
-  // 照 cardActions 的順序：標籤、釘選（La Mer 有 📌 12:00）、移到第幾天｜撤下；網頁版沒有「改停留時間」
-  await expect(menu.getByRole('menuitem')).toHaveText(['標籤', '解除釘選', '移到第幾天…', '撤下（回候選）']);
+  // 照 cardActions 的順序：標籤、釘選（La Mer 有 📌 12:00）、調整順序、移到第幾天｜撤下；網頁版沒有「改停留時間」
+  await expect(menu.getByRole('menuitem')).toHaveText(['標籤', '解除釘選', '調整順序', '移到第幾天…', '撤下（回候選）']);
   await expect(menu.getByRole('separator')).toHaveCount(1);
   // 出發住宿那張沒有 ⋯
   await expect(tl.getByTestId('tl-start').getByTestId('item-menu')).toHaveCount(0);

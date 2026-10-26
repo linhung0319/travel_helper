@@ -23,7 +23,7 @@ export type MobileTab = 'explore' | 'wish' | 'trip' | 'ai' | 'me';
 export type TripSnap = 'low' | 'mid' | 'high';
 
 /** 動作面板裡的子畫面（list＝動作清單） */
-export type ActionView = 'list' | 'tags' | 'move' | 'lodging-plan' | 'stay';
+export type ActionView = 'list' | 'tags' | 'move' | 'lodging-plan' | 'stay' | 'reorder';
 
 /** 「⋯」打開的動作面板：哪張卡、它的動作（cardActions 的 ctx）、作用在哪、最上面一列的縮圖和名稱、一開始的畫面 */
 export interface ActionSheetSpec {

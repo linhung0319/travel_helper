@@ -633,8 +633,8 @@ test('編輯：藍條、分頁藏起來、⋯ 開底部面板', async ({ page })
   expect((await bar.getByTestId('planning-done').boundingBox())!.height).toBeGreaterThanOrEqual(44);
   await expect(page.getByTestId('m-sheet')).toHaveAttribute('data-snap', 'mid');
   await expect(page.getByTestId('m-tab-trip')).toHaveCount(0);
-  // 把手 ⋮⋮（出發的宿沒有）
-  await expect(mCard(page, 'i-2').getByTestId('m-card-handle')).toHaveText('⋮⋮');
+  // 把手（grip 圖示；出發的宿沒有）
+  await expect(mCard(page, 'i-2').getByTestId('m-card-handle').locator('svg')).toHaveCount(1);
   await expect(mCard(page, 'start').getByTestId('m-card-handle')).toHaveCount(0);
   // ⋯ 只有圖示，點的範圍 44px
   const menu = mCard(page, 'i-2').getByTestId('m-card-menu');
@@ -648,7 +648,7 @@ test('編輯：藍條、分頁藏起來、⋯ 開底部面板', async ({ page })
   await expect(sheet.getByTestId('m-action-withdraw')).toBeVisible();
   await expect(sheet.getByTestId('m-action-delete')).toHaveCount(0);
   const items = sheet.getByRole('menuitem');
-  await expect(items).toHaveText(['標籤', /改停留時間/, '釘選時間', '移到第幾天…', '撤下（回候選）']);
+  await expect(items).toHaveText(['標籤', /改停留時間/, '釘選時間', '調整順序', '移到第幾天…', '撤下（回候選）']);
   for (const el of await items.all()) expect((await el.boundingBox())!.height).toBeGreaterThanOrEqual(44);
   expect(await scrollsSideways(page)).toBe(false);
   // 點暗處就關
@@ -731,29 +731,111 @@ test('編輯：交通那一行按「改」，底部面板裡改方式', async ({
   await expect(page.getByTestId('m-leg-sheet')).toHaveCount(0);
 });
 
-test('編輯：長按把卡片拖到另一張的上緣＝換順序', async ({ page }) => {
-  await editDay(page);
-  // 編輯不會自己拉高面板：自己拉高，兩張卡才都在畫面裡
-  await page.evaluate(() => (window as any).__thMobile.getState().setSnap('high'));
-  await expect(page.getByTestId('m-sheet')).toHaveAttribute('data-snap', 'high');
-  const order = () =>
-    page.evaluate(() => (window as any).__th.dataStore.getState().itinerary.days.find((d: any) => d.date === '2027-02-03').items.map((x: any) => x.id) as string[]);
-  const before = await order();
-  expect(before.indexOf('i-3')).toBeGreaterThan(before.indexOf('i-2'));
-  const src = (await mCard(page, 'i-3').getByTestId('m-card-handle').boundingBox())!;
-  const dst = (await mCard(page, 'i-2').boundingBox())!;
-  // Playwright 沒有長按拖曳：用 CDP 送觸控事件（按住 0.6 秒再移動）
+/** CDP 送觸控事件（真的手指：會捲動、會照 touch-action） */
+async function fingers(page: P) {
   const cdp = await page.context().newCDPSession(page);
-  const touch = (type: string, x?: number, y?: number) => cdp.send('Input.dispatchTouchEvent', { type: type as 'touchStart', touchPoints: x == null ? [] : [{ x, y: y!, id: 1 }] });
-  const x0 = src.x + src.width / 2;
-  const y0 = src.y + src.height / 2;
-  const x1 = dst.x + dst.width / 2;
-  const y1 = dst.y + 4;
-  await touch('touchStart', x0, y0);
-  await page.waitForTimeout(600);
-  for (let i = 1; i <= 8; i++) await touch('touchMove', x0 + ((x1 - x0) * i) / 8, y0 + ((y1 - y0) * i) / 8);
+  return (type: 'touchStart' | 'touchMove' | 'touchEnd', x?: number, y?: number) => cdp.send('Input.dispatchTouchEvent', { type, touchPoints: x == null ? [] : [{ x, y: y!, id: 1 }] });
+}
+
+const dayOrder = (page: P, date = '2027-02-03') =>
+  page.evaluate((d) => (window as any).__th.dataStore.getState().itinerary.days.find((x: any) => x.date === d).items.map((x: any) => x.id) as string[], date);
+
+test('手機：在卡片上捲動不會開始拖', async ({ page }) => {
+  await editDay(page);
+  await expect(page.getByTestId('m-sheet')).toHaveAttribute('data-snap', 'mid');
+  const body = page.locator('.m-trip-body');
+  const before = await body.evaluate((el) => el.scrollTop);
+  // 第一張有把手的卡（在面板裡看得到的地方），按在名稱上
+  const name = (await page.getByTestId('m-card').filter({ has: page.getByTestId('m-card-handle') }).first().getByTestId('trip-card-name').boundingBox())!;
+  const touch = await fingers(page);
+  const x = name.x + 20;
+  const y = name.y + name.height / 2;
+  await touch('touchStart', x, y);
+  let dragging = false;
+  for (let i = 1; i <= 10; i++) {
+    await touch('touchMove', x, y - 20 * i);
+    dragging ||= await page.evaluate(() => document.body.classList.contains('dragging-plan'));
+  }
   await touch('touchEnd');
-  await expect.poll(async () => (await order()).indexOf('i-3') < (await order()).indexOf('i-2')).toBe(true);
+  expect(dragging).toBe(false);
+  await expect.poll(() => body.evaluate((el) => el.scrollTop)).toBeGreaterThan(before);
+  await expect(page.locator('.drag-float')).toHaveCount(0);
+});
+
+test('手機：按把手拖到下面，順序變了；拖的時候面板拉滿，放開回到原本高度', async ({ page }) => {
+  const D = '2027-02-05';
+  // 2/5：出發的宿、i-20、i-6、i-7（重疊卡）、i-8
+  await editDay(page, '2027-02-05');
+  const sheet = page.getByTestId('m-sheet');
+  await expect(sheet).toHaveAttribute('data-snap', 'mid');
+  const before = await dayOrder(page, D);
+  const first = page.getByTestId('m-card').filter({ has: page.getByTestId('m-card-handle') }).first();
+  const id = (await first.getAttribute('data-item'))!;
+  const h = (await first.getByTestId('m-card-handle').boundingBox())!;
+  // 把手欄 44px 寬
+  expect(h.width).toBeGreaterThanOrEqual(44);
+  const touch = await fingers(page);
+  const x0 = h.x + h.width / 2;
+  const y0 = h.y + h.height / 2;
+  // 一按就拖（不用長按）
+  await touch('touchStart', x0, y0);
+  await touch('touchMove', x0, y0 + 10);
+  await expect(page.locator('body')).toHaveClass(/dragging-plan/);
+  await expect(page.locator('.drag-float')).toHaveCount(1);
+  await expect(sheet).toHaveAttribute('data-snap', 'high');
+  // 面板拉滿之後再量下面第二張（i-6；再下面的重疊卡已經在畫面底的自動捲範圍）的位置，移到它的下緣
+  const fourth = mCard(page, 'i-6');
+  const target = (await fourth.getAttribute('data-item'))!;
+  // 面板拉高有動畫：等位置停下來
+  let t = (await fourth.boundingBox())!;
+  await expect.poll(async () => {
+    const prev = t.y;
+    t = (await fourth.boundingBox())!;
+    return Math.abs(t.y - prev) < 0.5;
+  }).toBe(true);
+  const x1 = t.x + t.width / 2;
+  const y1 = t.y + t.height - 6;
+  for (let i = 1; i <= 8; i++) await touch('touchMove', x0 + ((x1 - x0) * i) / 8, y0 + 10 + ((y1 - y0 - 10) * i) / 8);
+  await touch('touchEnd');
+  await expect.poll(() => dayOrder(page, D)).not.toEqual(before);
+  const after = await dayOrder(page, D);
+  expect(after.indexOf(id)).toBeGreaterThan(after.indexOf(target));
+  await expect(sheet).toHaveAttribute('data-snap', 'mid');
+  await expect(page.locator('body')).not.toHaveClass(/dragging-plan/);
+});
+
+test('手機：拖到面板下緣會自動捲', async ({ page }) => {
+  await editDay(page, '2027-02-05');
+  const body = page.locator('.m-trip-body');
+  const h = (await mCard(page, 'i-20').getByTestId('m-card-handle').boundingBox())!;
+  const touch = await fingers(page);
+  await touch('touchStart', h.x + h.width / 2, h.y + h.height / 2);
+  await touch('touchMove', h.x + h.width / 2, h.y + h.height / 2 + 10);
+  await expect(page.getByTestId('m-sheet')).toHaveAttribute('data-snap', 'high');
+  const before = await body.evaluate((el) => el.scrollTop);
+  const vh = page.viewportSize()!.height;
+  await touch('touchMove', h.x + h.width / 2, vh - 6);
+  await expect.poll(() => body.evaluate((el) => el.scrollTop)).toBeGreaterThan(before + 20);
+  await touch('touchEnd');
+  await expect(page.locator('body')).not.toHaveClass(/dragging-plan/);
+});
+
+test('調整順序：下移', async ({ page }) => {
+  await editDay(page);
+  const before = await dayOrder(page);
+  const i0 = before.indexOf('i-2');
+  const no = await mCard(page, 'i-2').getByTestId('trip-card-no').textContent();
+  await openActions(page, 'i-2');
+  const sheet = page.getByTestId('m-action-sheet');
+  await sheet.getByTestId('m-action-reorder').click();
+  await expect(sheet).toHaveAttribute('data-view', 'reorder');
+  for (const b of ['reorder-up', 'reorder-down', 'reorder-merge']) expect((await sheet.getByTestId(b).boundingBox())!.height).toBeGreaterThanOrEqual(44);
+  await sheet.getByTestId('reorder-down').click();
+  await expect.poll(async () => (await dayOrder(page)).indexOf('i-2')).toBe(i0 + 1);
+  // 面板還開著；那張卡變成下一個編號
+  await expect(sheet).toBeVisible();
+  await expect(mCard(page, 'i-2').getByTestId('trip-card-no')).not.toHaveText(no!);
+  await expect(page.getByTestId('toast')).toContainText('下移');
 });
 
 test('編輯：回住宿的這晚的方案、候選的 ⋯', async ({ page }) => {

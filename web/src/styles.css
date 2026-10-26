@@ -2679,14 +2679,16 @@ div.ratings-box,
   text-overflow: ellipsis;
 }
 
-body.dragging-place [data-drop-ai] {
+body.dragging-place [data-drop-ai],
+body.dragging-plan [data-drop-ai].drop-over {
   position: relative;
   outline: 2px dashed var(--accent);
   outline-offset: -6px;
   background: var(--info-bg);
 }
 
-body.dragging-place .chat-column[data-drop-ai]::after {
+body.dragging-place .chat-column[data-drop-ai]::after,
+body.dragging-plan .chat-column[data-drop-ai].drop-over::after {
   content: '放到這裡問 AI';
   position: absolute;
   inset: 0;
@@ -2702,7 +2704,8 @@ body.dragging-place .chat-column .placeholder {
   visibility: hidden;
 }
 
-body.dragging-place [data-drop-ai].drop-over {
+body.dragging-place [data-drop-ai].drop-over,
+body.dragging-plan [data-drop-ai].drop-over {
   outline-style: solid;
   outline-width: 3px;
   background: var(--indigo-wash);
@@ -2843,21 +2846,10 @@ body.dragging-place [data-drop-ai].drop-over {
   justify-content: space-between;
 }
 
-.drop-before {
-  box-shadow: inset 0 3px 0 var(--accent);
-}
-
-.drop-after {
-  box-shadow: inset 0 -3px 0 var(--accent);
-}
-
-.drag-source {
-  opacity: 0.5;
-}
-
+/* 拖曳的讓位、合併亮框、浮起來的卡在 shared/ui/ui.css（tc-li、drag-float）；這裡是放置區 */
 .tl-dropend {
   border: 1px dashed var(--line);
-  border-radius: 10px;
+  border-radius: 14px;
   padding: 6px 10px;
   text-align: center;
   display: none;
@@ -2868,58 +2860,39 @@ body.dragging-plan .tl-dropend {
 }
 
 .tl-dropend.drop-end-over {
-  border-color: var(--accent);
-  background: var(--info-bg);
-  color: var(--accent);
-}
-
-.drop-merge .tl-body::after,
-.drop-before .tl-body::after,
-.drop-after .tl-body::after,
-.day-candidates.drop-cand-over::after {
-  position: absolute;
-  right: 8px;
-  z-index: 2;
-  padding: 1px 8px;
-  border-radius: 999px;
-  background: var(--accent);
-  color: var(--paper);
-  font-size: 0.75rem;
-  font-weight: 600;
-  pointer-events: none;
-  white-space: nowrap;
-}
-
-.drop-merge .tl-body::after {
-  content: '放開＝合併到這張';
-  top: 50%;
-  transform: translateY(-50%);
-}
-
-.drop-before .tl-body::after {
-  content: '放開＝排在這裡';
-  top: -10px;
-}
-
-.drop-after .tl-body::after {
-  content: '放開＝排在這裡';
-  bottom: -10px;
+  border-color: var(--indigo);
+  background: var(--indigo-wash);
+  color: var(--indigo);
 }
 
 .day-candidates.drop-cand-over {
   position: relative;
-  outline: 2px dashed var(--accent);
+  outline: 2px dashed var(--indigo);
   outline-offset: 2px;
-  border-radius: 10px;
+  border-radius: 14px;
 }
 
 .day-candidates.drop-cand-over::after {
   content: '放開＝放回候選';
+  position: absolute;
   top: 4px;
+  right: 8px;
+  z-index: 2;
+  padding: 1px 8px;
+  border-radius: 999px;
+  background: var(--indigo);
+  color: var(--paper);
+  font-size: 0.8125rem;
+  font-weight: 500;
+  pointer-events: none;
+  white-space: nowrap;
 }
 
-.cand[draggable='true'] {
-  cursor: grab;
+/* 候選：滑鼠整列都能拖 */
+@media (hover: hover) {
+  .cand.movable {
+    cursor: grab;
+  }
 }
 
 /* ---------- 第三輪：日期列的工具、地圖區的視窗、行程分頁的標題列 ---------- */
@@ -3621,6 +3594,7 @@ button.leg-ride-more {
   color: var(--ink-3);
   cursor: grab;
   flex: none;
+  touch-action: none; /* 手指從這裡拖（planDrag.ts） */
 }
 
 button.cand-up {

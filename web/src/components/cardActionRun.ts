@@ -1,5 +1,6 @@
 // 「⋯」動作選單每個動作要做的事（設計 §2.3）。沒有版面：網頁版的 ActionMenu、手機版的動作面板都呼叫 runCardAction。
-// 要開子畫面的動作（標籤、移到第幾天、這晚的方案、改停留時間）交給呼叫的人（ui）；其他直接改行程或候選。
+// 要開子畫面的動作（標籤、移到第幾天、這晚的方案、改停留時間、調整順序）交給呼叫的人（ui）；其他直接改行程或候選。
+// 調整順序子畫面的上移、下移（reorderStep）、合併（mergeItemInto，和拖曳同一份）也在這裡。
 // 撤下是 planDrag.ts 的 withdrawItem；排進這天用 addToDay.ts 的 addPlaceToDay；刪別人加的候選開 RejectDialog（要寫理由）。
 // 選單畫什麼（menuItems：順序、組名、紅字）和「移到第幾天」的兩個動作（moveItemToDayAction、moveCandidateToDay）也在這裡，兩邊共用。
 
@@ -12,7 +13,8 @@ import { findItemRef } from '../lib/planView.ts';
 import { dayLabel, shortDayLabel } from '../lib/trip.ts';
 import { ACTION_LABELS, cardActions, type ActionId, type CardActionContext } from '../shared/cardActions.ts';
 import { addPlaceToDay } from './addToDay.ts';
-import { withdrawItem } from './planDrag.ts';
+import { mergeItemInto, withdrawItem } from './planDrag.ts';
+import { reorderInfo } from '../lib/dropIntent.ts';
 
 /** 動作作用在哪張卡 */
 export interface ActionTarget {
@@ -34,6 +36,8 @@ export interface ActionUi {
   openMove: () => void;
   openLodgingPlan: () => void;
   openStay?: () => void;
+  /** 調整順序的子畫面（上移、下移、和哪一張合併） */
+  openReorder?: () => void;
 }
 
 /** 分組的日子：這張卡可以移進的組（自己這組以外，同一天所有分組的每一組） */
@@ -147,6 +151,32 @@ export async function moveCandidateToDay(candidateId: number, date: string): Pro
   return false;
 }
 
+const typeOf = (id: string) => dataStore.getState().byId.get(id)?.type;
+
+/** 調整順序的子畫面要的東西：第幾張、能不能上移下移、可以合併過去的卡（ID 和名稱）；找不到卡是 null */
+export function reorderState(it: Itinerary | null, itemId: string) {
+  const r = it ? reorderInfo(it, itemId, typeOf) : null;
+  return r && { ...r, merge: r.merge.map((id) => ({ itemId: id, name: itemLabel(id) })) };
+}
+
+/** 上移（dir＝-1）或下移（1）一張：留在同一天、同一組，可以復原；到頭了不動 */
+export async function reorderStep(itemId: string, dir: -1 | 1): Promise<void> {
+  const it = dataStore.getState().itinerary;
+  const ref = findItemRef(it, itemId);
+  const r = it ? reorderInfo(it, itemId, typeOf) : null;
+  const index = r && (dir < 0 ? r.up : r.down);
+  if (!ref || index == null) return;
+  const label = `${itemLabel(itemId)} ${dir < 0 ? '上移' : '下移'}`;
+  const split = ref.split ? { id: ref.split.id, group: ref.split.group } : undefined;
+  await shared.changeItinerary((x) => moveItemTo(x, itemId, ref.date, index, split), label, { undo: { text: label } });
+}
+
+/** 和另一張合併成備選（調整順序的「和哪一張合併成備選…」） */
+export async function mergeItemAction(itemId: string, targetId: string): Promise<void> {
+  const it = dataStore.getState().itinerary;
+  if (it) await mergeItemInto(it, itemId, targetId);
+}
+
 /** 執行「⋯」選單的一個動作 */
 export async function runCardAction(id: ActionId, target: ActionTarget, ui: ActionUi): Promise<void> {
   const { date, itemId } = target;
@@ -155,6 +185,8 @@ export async function runCardAction(id: ActionId, target: ActionTarget, ui: Acti
       return ui.openTags();
     case 'move':
       return ui.openMove();
+    case 'reorder':
+      return ui.openReorder?.();
     case 'lodging-plan':
       return ui.openLodgingPlan();
     case 'stay':

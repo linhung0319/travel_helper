@@ -29,7 +29,13 @@ test('cardActions：一般卡沒有 delete、有 withdraw', () => {
 });
 test('cardActions：手機版有 stay、分組動作', () => {
   const g = cardActions({ kind: 'visit', pinned: true, inGroup: true, groupTargets: [{ splitId: 's', groupId: 'g', name: 'A' }], surface: 'mobile' });
-  assert.deepEqual(g[0], ['tags', 'stay', 'unpin', 'move', 'group-in', 'group-out']);
+  assert.deepEqual(g[0], ['tags', 'stay', 'unpin', 'reorder', 'move', 'group-in', 'group-out']);
+});
+test('cardActions：visit 有 reorder，在 move 前面', () => {
+  const mid = cardActions({ kind: 'visit', surface: 'mobile' })[0];
+  assert.ok(mid.includes('reorder'));
+  assert.ok(mid.indexOf('reorder') < mid.indexOf('move'));
+  assert.ok(cardActions({ kind: 'visit', surface: 'desktop' })[0].includes('reorder'));
 });
 test('cardActions：重疊卡最上面是 main、detach', () => assert.deepEqual(cardActions({ kind: 'visit', overlap: true, surface: 'mobile' })[0], ['main', 'detach']));
 test('cardActions：出發住宿、航班沒有選單', () => {

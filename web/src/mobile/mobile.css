@@ -775,9 +775,9 @@
   min-width: 0;
 }
 
-/* 資料卡是 shared/ui/TripCard（ui.css 的 tc-*）：手機的縮圖 56px、把手欄 24px、⋯ 欄 44px */
+/* 資料卡是 shared/ui/TripCard（ui.css 的 tc-*）：手機的縮圖 56px、把手欄 44px（手指只能從把手拖）、⋯ 欄 44px */
 .m-app .tc-li.editing {
-  --tc-grip: 24px;
+  --tc-grip: var(--tap);
   --tc-more: var(--tap);
 }
 
@@ -981,7 +981,7 @@
   justify-content: space-between;
 }
 
-/* 拖曳：插入線（全域的 drop-before／after）、合併亮框、不能合併的變淡見 ui.css 的 tc-li；放置區 */
+/* 拖曳：讓位、合併亮框、不能合併的變淡、浮起來的卡見 ui.css 的 tc-li／drag-float；放置區 */
 .m-dropend {
   display: none;
   margin-top: 8px;

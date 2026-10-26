@@ -1,6 +1,7 @@
 // 手機版的資料卡（第六輪 §3.5，第七輪 Task 8 改成共用的 shared/ui/TripCard.tsx）：時間軸上的每一張卡（宿、景、餐、航班、自由時間、會合）和這天的候選都用這個。
 // 這裡只準備手機要的東西：縮圖 56px（photos 第一張；沒有照片是類型色底加一個字，左上角是墨色編號圓）、時間（📌 放最前面、停留時間）、
-// 名稱、標籤那一排、⚠ 數；編輯中左邊把手欄有把手 ⋮⋮（長按整張卡 0.4 秒後拖，planDrag.ts 的 useLongPressDrag；宿、航班沒有把手但欄位照留）、
+// 名稱、標籤那一排、⚠ 數；編輯中左邊把手欄（44px）有把手（按把手就拖、不用長按，planDrag.ts 的 usePlanDrag；拖的時候面板暫時拉滿、放開回到原本高度；
+// 卡片其他地方照常捲動；宿、航班沒有把手但欄位照留）、
 // 右邊 ⋯（只在編輯中、這張卡有動作時才有，點了打開底部動作面板 ActionSheet）。編輯中時間軸上的卡也是放置區（dropOnCardProps）。
 // 點卡片＝原地展開（mobileStore.expandItem，一次一張，點同一張收起）並在地圖上找到它（focusItem，不改面板高度）：
 // 三張照片、介紹前兩句、「詳細資料」（整頁詳情）、「問 AI」（半屏聊天）。被選的那張底色是 --wash（aria-current）。
@@ -11,11 +12,11 @@ import type { ReactNode } from 'react';
 import type { Place } from '../data/types.ts';
 import { useApp } from '../hooks.ts';
 import type { DragSource, DropTargetInfo } from '../lib/dropIntent.ts';
-import { dropOnCardProps, useLongPressDrag } from '../components/planDrag.ts';
+import { dropOnCardProps, usePlanDrag } from '../components/planDrag.ts';
 import { cardActions } from '../shared/cardActions.ts';
 import { Icon } from '../components/Icon.tsx';
-import { TripCard, askAboutCardPlace } from '../shared/ui/TripCard.tsx';
-import { mobileStore, useMobile, type ActionSheetSpec } from './mobileStore.ts';
+import { DragHandle, TripCard, askAboutCardPlace } from '../shared/ui/TripCard.tsx';
+import { mobileStore, useMobile, type ActionSheetSpec, type TripSnap } from './mobileStore.ts';
 
 /** 縮圖邊長（手機 56px） */
 const THUMB = 56;
@@ -48,13 +49,29 @@ export interface MobileCardProps {
   drop?: Extract<DropTargetInfo, { kind: 'card' }> | null;
 }
 
+/** 拖之前面板停在哪（拖的時候拉滿，放開回到這裡） */
+let snapBeforeDrag: TripSnap | null = null;
+
+/** 拖曳開始：面板暫時拉滿 */
+const liftSheet = () => {
+  const m = mobileStore.getState();
+  snapBeforeDrag = m.tripSnap;
+  m.setSnap('high');
+};
+
+/** 拖完：回到原本的高度 */
+const dropSheet = () => {
+  if (snapBeforeDrag) mobileStore.getState().setSnap(snapBeforeDrag);
+  snapBeforeDrag = null;
+};
+
 /** 一張資料卡（時間軸、候選） */
 export function MobileCard({ itemKey, place, fallbackType, mark, time, name, tags, warnings = 0, addedBy, focused, switcher = null, menu = null, drag = null, drop = null }: MobileCardProps) {
   const planning = useApp((s) => s.planning);
   const expanded = useMobile((s) => s.expanded) === itemKey;
   const candidate = addedBy != null;
   const src = planning ? drag : null;
-  const pressRef = useLongPressDrag<HTMLLIElement>(src, true);
+  const pressRef = usePlanDrag<HTMLLIElement>(src, true, { onStart: liftSheet, onEnd: dropSheet });
   const hasMenu = planning && !!menu && cardActions(menu.ctx).length > 0;
   // 點卡片：展開（再點收起）；展開時地圖找到它（面板高度不變）
   const toggle = () => {
@@ -106,15 +123,12 @@ export function MobileCard({ itemKey, place, fallbackType, mark, time, name, tag
       onAsk={place ? () => askAboutCardPlace(place) : undefined}
       thumb={THUMB}
       dashed={candidate}
+      movable={!!src}
       className={planning ? 'editing' : ''}
       liRef={pressRef}
       liProps={planning && drop ? dropOnCardProps(drop, true) : undefined}
       handle={
-        src ? (
-          <span className="tc-handle" data-testid="m-card-handle">
-            ⋮⋮
-          </span>
-        ) : null
+src ? <DragHandle testId="m-card-handle" /> : null
       }
       more={
         hasMenu ? (

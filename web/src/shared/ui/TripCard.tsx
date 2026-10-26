@@ -1,12 +1,14 @@
 // 時間軸的卡片（第七輪 Task 8，網頁、手機共用）：白底，靠縮圖、細線、留白分開；選到的卡用 --wash。
-// 一列：左邊「把手欄」（handle：編輯中的拖曳把手，沒有東西也留位置，Task 9 在這裡加）、縮圖（網頁 48px、手機 56px；左上角墨色編號圓，
+// 一列：左邊「把手欄」（handle：編輯中的拖曳把手 DragHandle，沒有東西也留位置；手機 44px 寬、手指只能從這裡拖）、縮圖（網頁 48px、手機 56px；左上角墨色編號圓，
 // 沒有照片是類型色底加一個字）、內容（time、名稱、meta＝標籤／切換備卡／⚠）、右邊 more（編輯中的「⋯」）。
 // 點卡片＝原地展開（expanded；一次一張，點同一張收起）：三張照片、介紹的前兩句、「詳細資料」「問 AI」兩顆按鈕。
 // 點裡面的按鈕、連結、輸入框（標籤、停留 −／＋、⚠、備卡切換）不算點卡片；展開的區塊裡點空白處也不收（要點上面那一列）。
-// 外面的 li 的 testid 由呼叫的人給（網頁 tl-row、手機 m-card），卡片本體固定是 trip-card（data-item）。拖曳的事件、ref 也從呼叫的人傳進來。
+// 外面的 li 的 testid 由呼叫的人給（網頁 tl-row、手機 m-card），卡片本體固定是 trip-card（data-item）。拖曳的 ref（planDrag.ts 的 usePlanDrag）也從呼叫的人傳進來；
+// 可以拖的卡加 movable：滑鼠移上去游標變手掌、底色 --wash、左邊一條灰線（ui.css）。
 
 import type { KeyboardEvent, MouseEvent, ReactNode, Ref } from 'react';
 import { Photo } from '../../components/Photo.tsx';
+import { Icon } from '../../components/Icon.tsx';
 import { askAboutPlace } from '../../uiStore.ts';
 import { askAiPrompts } from '../askAiPrompts.ts';
 import { cardTypeLetter } from '../../lib/planView.ts';
@@ -69,6 +71,8 @@ export interface TripCardProps {
   more?: ReactNode;
   /** 候選：虛線框 */
   dashed?: boolean;
+  /** 編輯中可以拖（滑鼠移上去的樣式） */
+  movable?: boolean;
   className?: string;
   testId: string;
   liRef?: Ref<HTMLLIElement>;
@@ -77,6 +81,15 @@ export interface TripCardProps {
   dataPlace?: string;
   /** 滑鼠移上去／移開（網頁：地圖的「指到」） */
   onHover?: (over: boolean) => void;
+}
+
+/** 拖曳把手（⋮⋮ grip 圖示）：手指只能從這裡拖（touch-action: none），滑鼠整張卡都能拖 */
+export function DragHandle({ testId }: { testId?: string }) {
+  return (
+    <span className="tc-handle" data-testid={testId} title="拖曳換順序" aria-hidden>
+      <Icon name="grip" size={20} />
+    </span>
+  );
 }
 
 /** 點到這些東西不算點卡片 */
@@ -143,7 +156,7 @@ function Expand({ place, onDetail, onAsk }: Pick<TripCardProps, 'place' | 'onDet
 }
 
 /** 一張時間軸的卡（行程、候選） */
-export function TripCard({ itemKey, place, fallbackType, mark, time, name, label, meta, below, expanded, onToggle, onDetail, onAsk, selected = false, thumb, handle = null, more = null, dashed = false, className = '', testId, liRef, liProps, dataPlace, onHover }: TripCardProps) {
+export function TripCard({ itemKey, place, fallbackType, mark, time, name, label, meta, below, expanded, onToggle, onDetail, onAsk, selected = false, thumb, handle = null, more = null, dashed = false, movable = false, className = '', testId, liRef, liProps, dataPlace, onHover }: TripCardProps) {
   const click = (e: MouseEvent<HTMLElement>) => {
     if ((e.target as HTMLElement).closest(INTERACTIVE)) return;
     onToggle();
@@ -159,7 +172,7 @@ export function TripCard({ itemKey, place, fallbackType, mark, time, name, label
     <li
       {...liProps}
       ref={liRef}
-      className={`tc-li ${selected ? 'selected' : ''} ${dashed ? 'dashed' : ''} ${expanded ? 'expanded' : ''} ${className}`}
+      className={`tc-li ${selected ? 'selected' : ''} ${dashed ? 'dashed' : ''} ${expanded ? 'expanded' : ''} ${movable ? 'movable' : ''} ${className}`}
       data-testid={testId}
       data-item={itemKey}
       data-place={dataPlace ?? place?.id ?? ''}

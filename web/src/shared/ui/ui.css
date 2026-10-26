@@ -1685,7 +1685,7 @@
   min-width: 0;
 }
 
-/* 三欄：把手欄（編輯中才有寬度）、卡片本體、右邊 ⋯（編輯中才有寬度）；Task 9 在把手欄加拖曳把手 */
+/* 三欄：把手欄（編輯中才有寬度；拖曳把手 DragHandle）、卡片本體、右邊 ⋯（編輯中才有寬度） */
 .tc-li {
   --tc-grip: 0px;
   --tc-more: 0px;
@@ -1733,11 +1733,17 @@
   justify-content: center;
 }
 
+/* 把手：整個把手欄都能按（手機 44px 寬），手指按下去就拖，不捲動 */
 .tc-handle {
+  align-self: stretch;
+  width: 100%;
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   color: var(--ink-3);
-  font-size: 1rem;
-  letter-spacing: -0.15em;
   cursor: grab;
+  touch-action: none;
 }
 
 .tc {
@@ -1900,23 +1906,189 @@
   margin-top: 10px;
 }
 
-/* 拖曳（Task 9 會重做）：被拖的變淡、放在中間合併亮框、不能合併的變淡 */
-.tc-li.movable {
-  cursor: grab;
+/* 拖曳（第七輪 §6.4，planDrag.ts）。
+   滑鼠移上去：游標變手掌、底色 --wash、左邊一條灰線（拖的時候不畫）。手指只能從把手拖：把手 touch-action: none，卡片其他地方照常捲動。 */
+@media (hover: hover) {
+  body:not(.dragging-plan) .tc-li.movable:hover {
+    cursor: grab;
+    background: var(--wash);
+  }
+
+  body:not(.dragging-plan) .tc-li.movable:hover::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 10px;
+    bottom: 10px;
+    width: 3px;
+    border-radius: 999px;
+    background: var(--ink-3);
+  }
 }
 
+body.dragging-plan,
+body.dragging-plan * {
+  cursor: grabbing !important;
+}
+
+/* 原來那張變淡（複本浮在指標下面） */
 .tc-li.drag-source {
-  opacity: 0.5;
+  opacity: 0.3;
 }
 
+/* 浮起來跟著指標的複本：陰影、微傾（translate 由 planDrag.ts 跟著指標改） */
+.drag-float {
+  position: fixed;
+  z-index: 1000;
+  margin: 0;
+  list-style: none;
+  pointer-events: none;
+  background: var(--paper);
+  border-radius: 14px;
+  box-shadow: 0 12px 28px rgba(22, 26, 34, 0.22), 0 2px 6px rgba(22, 26, 34, 0.12);
+  opacity: 0.96;
+  rotate: 1.5deg;
+  will-change: translate;
+  transition: scale 0.15s ease, opacity 0.15s ease;
+}
+
+/* 要合併（或放在聊天室）時縮小，看得到底下的亮框和提示 */
+.drag-float.merging {
+  scale: 0.5;
+  opacity: 0.8;
+}
+
+/* 讓位：要放的位置撐開一個空位（padding 在卡片裡面，指標還在這張卡上，不會跳來跳去），空位裡寫「放開＝排在這裡」 */
+body.dragging-plan .tc-li {
+  transition: padding 0.12s ease;
+}
+
+body.dragging-plan .tc-li.drop-before {
+  padding-top: 60px;
+}
+
+body.dragging-plan .tc-li.drop-after {
+  padding-bottom: 60px;
+}
+
+body.dragging-plan .tc-li.drop-before::before,
+body.dragging-plan .tc-li.drop-after::after {
+  content: '放開＝排在這裡';
+  position: absolute;
+  left: 4px;
+  right: 4px;
+  height: 48px;
+  display: grid;
+  place-items: center;
+  border: 2px dashed var(--ink-3);
+  border-radius: 14px;
+  color: var(--ink-2);
+  font-size: 0.8125rem;
+  pointer-events: none;
+}
+
+body.dragging-plan .tc-li.drop-before::before {
+  top: 6px;
+}
+
+body.dragging-plan .tc-li.drop-after::after {
+  bottom: 6px;
+}
+
+/* 停在同類型卡上 0.6 秒：--indigo 框、--indigo-wash 底、「放開＝和「X」合併成備選」（data-drop-label） */
 body.dragging-plan .tc-li.drop-merge {
-  outline: 2px solid var(--indigo);
-  outline-offset: 1px;
+  border-color: var(--indigo);
+  outline: 1px solid var(--indigo);
   background: var(--indigo-wash);
+}
+
+body.dragging-plan .tc-li.drop-merge::after {
+  content: attr(data-drop-label);
+  position: absolute;
+  right: 8px;
+  bottom: -12px;
+  z-index: 2;
+  max-width: calc(100% - 16px);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  padding: 2px 10px;
+  border-radius: 999px;
+  background: var(--indigo);
+  color: var(--paper);
+  font-size: 0.8125rem;
+  font-weight: 500;
+  white-space: nowrap;
+  pointer-events: none;
 }
 
 .tc-li.drop-nomerge:not(.drag-source) {
   opacity: 0.55;
+}
+
+/* 調整順序的子畫面（ReorderPanel：網頁 ⋯ 選單、手機動作面板） */
+.reorder {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 220px;
+}
+
+.reorder-pos {
+  margin: 4px 10px;
+}
+
+.reorder-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 44px;
+  padding: 0 12px;
+  border: 0;
+  border-radius: 999px;
+  background: none;
+  color: var(--ink);
+  font: inherit;
+  font-size: 0.9375rem;
+  text-align: left;
+  cursor: pointer;
+}
+
+.reorder-btn:hover:not(:disabled) {
+  background: var(--wash);
+}
+
+.reorder-btn:disabled {
+  color: var(--ink-3);
+  cursor: default;
+}
+
+.reorder-icon {
+  display: inline-flex;
+}
+
+.reorder-icon.up {
+  transform: rotate(-90deg);
+}
+
+.reorder-icon.down {
+  transform: rotate(90deg);
+}
+
+.reorder-targets {
+  list-style: none;
+  margin: 0 0 0 28px;
+  padding: 0;
+}
+
+.reorder-target {
+  width: 100%;
+}
+
+.action-menu-back {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-weight: 700;
 }
 
 /* 重疊卡（有備卡）：後面疊著淡色的卡 */

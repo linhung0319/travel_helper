@@ -3,9 +3,9 @@
 // 點卡片＝地圖飛過去，這張卡原地展開（uiStore.expandedItem，一次一張，點同一張收起）：三張照片、介紹前兩句、「詳細資料」（詳情浮在地圖右邊）、「問 AI」。
 // 交通是一行細字（shared/ui/LegLine.tsx，LegRow.tsx）：圖示、方式、時間、距離，右邊「地圖 ↗」；到了要等（指定開始時間、還沒開門）時下面一條黃色虛框的「幾點到，等 N 分（原因）」，純文字、不能點。
 // 編輯中才有：停留時間 −／＋、點時間固定開始（釘子）、有標籤的卡點標籤那一排開標籤彈窗（ItemTags.tsx；沒有標籤的從 ⋯ 加）、
-// 「⋯」動作選單（ActionMenu.tsx，動作照 shared/cardActions.ts：重疊卡的主要、拿出，標籤、釘選、移到第幾天、移進／移出分組、撤下；
+// 「⋯」動作選單（ActionMenu.tsx，動作照 shared/cardActions.ts：重疊卡的主要、拿出，標籤、釘選、調整順序、移到第幾天、移進／移出分組、撤下；
 // 回住宿的這晚的方案、清掉住宿；自由時間、分組的刪除）。出發的住宿、航班沒有「⋯」；有地點的卡沒有刪除（要先撤下回候選）。
-// 拖卡片（電腦版拖、手機長按後拖）：放在卡片中間合併、邊緣換順序；看備卡時拖的是那張備卡。
+// 拖卡片（滑鼠整張卡、手指按把手，planDrag.ts）：停在同類型卡片中間 0.6 秒合併、邊緣換順序；看備卡時拖的是那張備卡；拖到左邊聊天室＝問 AI。
 // 有備卡的卡片（重疊卡）疊著淡色卡、‹ n/m › 換著看；看備卡時預約 tag、警告跟著那張備卡，「⋯」的主要、拿出作用在那張備卡，其他動作作用在整張卡片。
 // 資料準備（項目、警告、編號、候選）在 useDayTimeline，手機版的行程（mobile/DaySheet.tsx）也用；時間條 DayBar 手機版用 compact（變矮）。
 
@@ -15,11 +15,11 @@ import type { ItineraryDay, ItineraryItem, VisitItem } from '@travel-helper/engi
 import { appStore } from '../store.ts';
 import { commands } from '../appCommands.ts';
 import { shared } from '../appShared.ts';
-import { useApp, useData, useIsDesktop, usePlan, useShared, useUi } from '../hooks.ts';
+import { useApp, useData, usePlan, useShared, useUi } from '../hooks.ts';
 import { dayPlanOf, type PlanState } from '../planStore.ts';
 import { dayCandidates } from '../lib/wishlist.ts';
 import type { Candidate } from '../backend/types.ts';
-import { dragSourceProps, dropOnCardProps, dropOnEndProps, useLongPressDrag } from './planDrag.ts';
+import { dropOnCardProps, dropOnEndProps, usePlanDrag } from './planDrag.ts';
 import type { DragSource } from '../lib/dropIntent.ts';
 import { openDialog, toggleExpandedItem } from '../uiStore.ts';
 import { cardTime, cardTypeLetter, dayBar, daySummary, findItemRef, formatStay, formatTravelTotal, hourTicks, isBarSelected, shownWarnings, stopMarks, timelineRows, waitNote, WARNING_ICONS, warningsByItem, type BarSegment, type TimelineRow } from '../lib/planView.ts';
@@ -32,7 +32,7 @@ import { ActionMenu } from './ActionMenu.tsx';
 import { Icon, type IconName } from './Icon.tsx';
 import { groupTargetsOf } from './cardActionRun.ts';
 import { useLiked } from '../shared/placeLists.ts';
-import { TripCard, askAboutCardPlace } from '../shared/ui/TripCard.tsx';
+import { DragHandle, TripCard, askAboutCardPlace } from '../shared/ui/TripCard.tsx';
 
 /** 地圖上同一個編號（0、1、2…）；顏色是那個點的類型色 */
 export interface Marks {
@@ -185,7 +185,6 @@ function EntryRow({ entry, day, warnings, plan, marks }: { entry: TimelineEntry;
   const planning = useApp((s) => s.planning);
   const hovered = useApp((s) => s.hoveredId);
   const [warnOpen, setWarnOpen] = useState(false);
-  const desktop = useIsDesktop();
   const ref = entry.itemId ? findItemRef(itinerary, entry.itemId) : null;
   const item = ref?.item ?? null;
   const p = entry.placeId ? byId.get(entry.placeId) : undefined;
@@ -200,8 +199,8 @@ function EntryRow({ entry, day, warnings, plan, marks }: { entry: TimelineEntry;
       : visitItem && backupPlace && backup !== visitItem.selected
         ? { kind: 'option', itemId: item.id, index: backup!, placeType: byId.get(backupPlace)?.type ?? null }
         : { kind: 'item', itemId: item.id, placeType: visitItem ? (p?.type ?? null) : null, options: visitItem?.options.length ?? 1 };
-  // 手機：長按後拖
-  const pressRef = useLongPressDrag<HTMLLIElement>(dragSrc, !desktop);
+  // 拖曳：滑鼠整張卡、手指按把手；放在左邊的聊天室＝問那個點（看備卡時是那張備卡）
+  const pressRef = usePlanDrag<HTMLLIElement>(dragSrc, true, { askPlace: dragSrc?.kind === 'option' ? (backupPlace ?? null) : (entry.placeId ?? null) });
   const likedMap = useLiked();
   const [tagsOpen, setTagsOpen] = useState(false);
   // 結束編輯時關掉標籤彈窗：不然下次進編輯會自己打開
@@ -317,7 +316,7 @@ function EntryRow({ entry, day, warnings, plan, marks }: { entry: TimelineEntry;
   const flight = item?.type === 'flight' ? item : null;
   const free = item?.type === 'free' ? item : null;
   const time = cardTime(entry);
-  // 編輯：電腦版拖曳、手機長按後拖（航班不能動）
+  // 編輯：滑鼠整張卡拖、手指按把手拖（航班不能動）
   const movable = !!dragSrc;
   const itemWarnings = entry.itemId ? warnings.get(entry.itemId) : undefined;
   const stacked = visit && visit.options.length > 1 ? Math.min(visit.options.length - 1, 2) : 0;
@@ -368,7 +367,7 @@ function EntryRow({ entry, day, warnings, plan, marks }: { entry: TimelineEntry;
           </>
         }
         thumb={THUMB}
-        className={`tl-${entry.kind} ${editing} ${stacked ? `stacked stacked-${stacked}` : ''} ${hovered && hovered === entry.placeId ? 'flash' : ''} ${movable ? 'movable' : ''}`}
+        className={`tl-${entry.kind} ${editing} ${stacked ? `stacked stacked-${stacked}` : ''} ${hovered && hovered === entry.placeId ? 'flash' : ''}`}
         selected={expand.expanded}
         expanded={expand.expanded}
         onToggle={expand.toggle}
@@ -377,10 +376,11 @@ function EntryRow({ entry, day, warnings, plan, marks }: { entry: TimelineEntry;
         onHover={hoverPlace(shownPlace)}
         liRef={pressRef}
         liProps={{
-          ...(movable && entry.itemId ? { ...(desktop ? dragSourceProps(dragSrc, dragSrc?.kind === 'option' ? (backupPlace ?? null) : entry.placeId) : {}), ...dropOnCardProps({ kind: 'card', itemId: entry.itemId, placeType: visit ? (p?.type ?? null) : null, isFlight: false }, true) } : {}),
+          ...(movable && entry.itemId ? dropOnCardProps({ kind: 'card', itemId: entry.itemId, placeType: visit ? (p?.type ?? null) : null, isFlight: false }, true) : {}),
           ...(v ? v.stackProps : {}),
         }}
-        handle={movable ? <span className="tc-handle">⋮⋮</span> : null}
+        handle={movable ? <DragHandle testId="tl-handle" /> : null}
+        movable={movable}
         more={
           planning && item && (visit || free) ? (
             <ActionMenu

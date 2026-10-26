@@ -6,7 +6,7 @@ import type { IconName } from '../lib/icons.ts';
 export type CardKind = 'visit' | 'lodging-start' | 'lodging-end' | 'free' | 'flight' | 'split' | 'candidate';
 
 export type ActionId =
-  | 'main' | 'detach' | 'tags' | 'stay' | 'pin' | 'unpin' | 'move' | 'group-in' | 'group-out'
+  | 'main' | 'detach' | 'tags' | 'stay' | 'pin' | 'unpin' | 'reorder' | 'move' | 'group-in' | 'group-out'
   | 'withdraw' | 'lodging-plan' | 'lodging-clear' | 'free-length' | 'delete' | 'schedule';
 
 export interface CardActionContext {
@@ -29,7 +29,7 @@ export function cardActions(ctx: CardActionContext): ActionId[][] {
       if (ctx.overlap) groups.push(['main', 'detach']);
       const mid: ActionId[] = ['tags'];
       if (ctx.surface === 'mobile') mid.push('stay'); // 網頁版卡片上本來就有 −／＋
-      mid.push(ctx.pinned ? 'unpin' : 'pin', 'move');
+      mid.push(ctx.pinned ? 'unpin' : 'pin', 'reorder', 'move'); // 調整順序：不拖也能上移、下移、合併（第七輪 §6.4）
       for (const _ of ctx.groupTargets ?? []) mid.push('group-in');
       if (ctx.inGroup) mid.push('group-out');
       groups.push(mid, ['withdraw']);
@@ -58,6 +58,7 @@ export const ACTION_LABELS: Record<ActionId, string> = {
   stay: '改停留時間',
   pin: '釘選時間',
   unpin: '解除釘選',
+  reorder: '調整順序',
   move: '移到第幾天…',
   'group-in': '移到組',
   'group-out': '移出分組',
@@ -77,6 +78,7 @@ export const ACTION_ICONS: Record<ActionId, IconName> = {
   stay: 'clock',
   pin: 'pin',
   unpin: 'pin',
+  reorder: 'sort',
   move: 'calendar-move',
   'group-in': 'users',
   'group-out': 'users',

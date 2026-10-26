@@ -2,14 +2,14 @@
 // 留言（Comments，只有一層）不再在卡片上展開，放在詳情裡，清單上只有最新一則的第一句，點了開詳情。
 // 加到某天的點變成那天的「候選」，放在行程分頁時間軸的下面，樣子和資料卡一樣（類型淡底色、類型色塊），
 // 用虛線框、沒有編號表示還沒排進去，下面一行「加的人」。編輯中左邊 ⠿、右邊「↑ 排進」（插在最順路的位置）和「⋯」選單（設計 §2.3），
-// 或拖到時間軸（卡片中間＝合併成那張卡片的備卡、卡片之間＝排在那裡；planDrag.ts）。備卡也可以拖回候選區。
+// 或拖到時間軸（滑鼠整列、手指按 ⠿；停在同類型卡片中間 0.6 秒＝合併成那張卡片的備卡、卡片之間＝排在那裡；planDrag.ts）。備卡也可以拖回候選區。
 // 這天、整趟的留言（Comments）放在地圖區的視窗（MapPanel）。有人 ❤️ 的點、留言數的 hook 在 shared/placeLists.ts（手機版也用）。
 
 import { useState } from 'react';
 import { appStore } from '../store.ts';
 import { commands } from '../appCommands.ts';
 import { shared } from '../appShared.ts';
-import { useApp, useData, useIsDesktop, useShared } from '../hooks.ts';
+import { useApp, useData, useShared } from '../hooks.ts';
 import { closeDialog, openDialog } from '../uiStore.ts';
 import type { Candidate, Comment } from '../backend/types.ts';
 import { dayCandidates } from '../lib/wishlist.ts';
@@ -18,7 +18,7 @@ import { shortDayLabel } from '../lib/trip.ts';
 import { Avatar, AvatarStack, Dialog, MemberName, stamp } from './common.tsx';
 import { addPlaceToDay } from './addToDay.ts';
 import { Icon } from './Icon.tsx';
-import { dragSourceProps, dropOnCandidatesProps, useLongPressDrag } from './planDrag.ts';
+import { dropOnCandidatesProps, usePlanDrag } from './planDrag.ts';
 import type { DragSource } from '../lib/dropIntent.ts';
 import { CardType } from './Timeline.tsx';
 import { ActionMenu } from './ActionMenu.tsx';
@@ -122,9 +122,9 @@ function CandidateRow({ c, date }: { c: Candidate; date: string }) {
   const name = p ? p.name.zh || p.name.ja : c.placeId;
   const mine = c.addedBy === me;
   const lodging = p?.type === 'lodging';
-  const desktop = useIsDesktop();
   const dragSrc: DragSource | null = planning && !lodging ? { kind: 'candidate', candidateId: c.id, placeId: c.placeId, placeType: p?.type ?? null } : null;
-  const pressRef = useLongPressDrag<HTMLLIElement>(dragSrc, !desktop);
+  // 滑鼠整列都能拖、手指按 ⠿；拖到左邊聊天室＝問 AI
+  const pressRef = usePlanDrag<HTMLLIElement>(dragSrc, true, { askPlace: c.placeId });
   const up = async () => {
     // 住宿會換掉那晚原本的住宿，用對話框確認
     if (lodging) return openDialog({ kind: 'add', placeId: c.placeId, day: date });
@@ -134,13 +134,12 @@ function CandidateRow({ c, date }: { c: Candidate; date: string }) {
   };
   return (
     <li
-      className={`cand type-${p?.type ?? 'other'} ${hovered === c.placeId ? 'hot' : ''}`}
+      className={`cand type-${p?.type ?? 'other'} ${hovered === c.placeId ? 'hot' : ''} ${dragSrc ? 'movable' : ''}`}
       data-testid="cand-item"
       data-id={c.placeId}
       onMouseEnter={() => appStore.getState().hover(c.placeId)}
       onMouseLeave={() => appStore.getState().hover(null)}
       ref={pressRef}
-      {...(desktop ? dragSourceProps(dragSrc, c.placeId) : {})}
     >
       {dragSrc && (
         <span className="cand-handle" aria-hidden title="拖到時間軸">

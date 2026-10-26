@@ -1,8 +1,9 @@
 // 手機版編輯中的「⋯」底部動作面板（第六輪 §2.3、§3.5）：mobileStore.actions 有值就畫，蓋在行程頁最上面（一次只有一層，§3.0）。
 // 上方是暗的（m-sheet-dim），點暗處或把面板往下拉就關。最上面一列是這張卡的縮圖和名稱，下面每個動作一列（至少 44px，testid m-action-{id}），
 // 動作照 cardActionRun.ts 的 menuItems（順序是 shared/cardActions.ts，surface 'mobile' 多一個「改停留時間」；和網頁版的 ⋯ 選單同一份），組與組之間一條分隔線；「移到{組名}」每組一列。
-// 點了交給 runCardAction（components/cardActionRun.ts）；要開子畫面的（標籤、移到第幾天、這晚的方案、改停留時間）在同一個面板裡換內容，
+// 點了交給 runCardAction（components/cardActionRun.ts）；要開子畫面的（標籤、移到第幾天、這晚的方案、改停留時間、調整順序）在同一個面板裡換內容，
 // 左上角「‹」回到動作清單。改停留時間是 −／＋（一次 15 分，最少 15 分，照網頁版），旁邊寫現在的停留時間。
+// 調整順序是 shared/ui/ReorderPanel.tsx（上移、下移可以連按，面板不關；合併好了才關）。
 
 import { Fragment, useEffect, useRef, useState, type PointerEvent as ReactPointerEvent } from 'react';
 import { setStay, type DayPlan, type TimelineEntry } from '@travel-helper/engine';
@@ -17,6 +18,7 @@ import { Thumb } from './Thumb.tsx';
 import { mobileStore, useMobile, type ActionSheetSpec, type ActionView } from './mobileStore.ts';
 import { TagSheet, LodgingPlanSheet } from './TagSheet.tsx';
 import { MoveDaySheet } from './MoveDaySheet.tsx';
+import { ReorderPanel } from '../shared/ui/ReorderPanel.tsx';
 
 /** 在同一個面板裡換內容的動作 → 子畫面 */
 const SUB_VIEWS: Partial<Record<ActionId, Exclude<ActionView, 'list'>>> = {
@@ -25,6 +27,7 @@ const SUB_VIEWS: Partial<Record<ActionId, Exclude<ActionView, 'list'>>> = {
   'lodging-plan': 'lodging-plan',
   stay: 'stay',
   'free-length': 'stay',
+  reorder: 'reorder',
 };
 
 /** 往下拉超過這個距離（px）就關 */
@@ -39,10 +42,11 @@ const VIEW_TITLES: Record<Exclude<ActionView, 'list'>, string> = {
   move: '移到第幾天',
   'lodging-plan': ACTION_LABELS['lodging-plan'],
   stay: ACTION_LABELS.stay,
+  reorder: ACTION_LABELS.reorder,
 };
 
 /** 子畫面標題前面的圖示 */
-const VIEW_ICONS: Record<Exclude<ActionView, 'list'>, IconName> = { tags: 'tag', move: 'calendar-move', 'lodging-plan': 'bed', stay: 'clock' };
+const VIEW_ICONS: Record<Exclude<ActionView, 'list'>, IconName> = { tags: 'tag', move: 'calendar-move', 'lodging-plan': 'bed', stay: 'clock', reorder: 'sort' };
 
 /** 子畫面的標題：自由時間的長度是「改時間長度」（ACTION_LABELS），不是改停留時間 */
 const viewTitle = (view: Exclude<ActionView, 'list'>, spec: ActionSheetSpec) => (view === 'stay' && spec.ctx.kind === 'free' ? ACTION_LABELS['free-length'] : VIEW_TITLES[view]);
@@ -136,6 +140,7 @@ function SubView({ view, spec }: { view: Exclude<ActionView, 'list'>; spec: Acti
   if (view === 'tags') return target.itemId ? <TagSheet itemId={target.itemId} /> : null;
   if (view === 'lodging-plan') return <LodgingPlanSheet date={target.date} />;
   if (view === 'stay') return <StaySheet target={target} />;
+  if (view === 'reorder') return target.itemId ? <ReorderPanel itemId={target.itemId} onDone={close} /> : null;
   return <MoveDaySheet itemId={target.candidateId == null ? target.itemId : undefined} candidateId={target.candidateId} onDone={close} />;
 }
 
