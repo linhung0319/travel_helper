@@ -2,7 +2,7 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { DEFAULT_CONFIG, earliestTrain, fromMinutes, planLeg, resolveConfig, rideDepartures, taxiEstimate, toMinutes, walkFactor, type Endpoint, type EngineData, type LegContext, type PlaceRecord, type RouteTimetable, type TripRef } from '../src/index.ts';
-import { at, fake, restaurant, spot } from './synthetic.ts';
+import { at, fake, restaurant, spot, station } from './synthetic.ts';
 import { realData } from './fixtures.ts';
 
 const cfg = resolveConfig();
@@ -611,4 +611,84 @@ test('近鐵段照舊有前一班、後一班', () => {
   assert.ok(leg.prevTrip || leg.nextTrip);
   assert.equal(leg.rides[0].kind, 'timetable');
   assert.ok((leg.rides[0].ifMissed?.lateMinutes ?? 0) > 0);
+});
+
+// --- T29 修正第 1 輪：預設那條不合規則時再找、舊方式只搭那種、不是舊路徑的沒有 trip、班距型第一程往後挪 ---
+
+/** 假的巴士路線：id、停留所前綴、發車、車程 */
+function busLine(id: string, deps: string[], ride: number): RouteTimetable {
+  const r = busRoute(deps, ride);
+  return { ...r, id, name: { ja: id, zh: id } };
+}
+
+test('預設那條不合規則（巴士要等 25 分）：再找另一個上車點的巴士，不改計程車', () => {
+  const a = spot('a', at(0));
+  const b = spot('b', at(4000));
+  // fast：10:27 發、5 分到（最早到，但要等 25 分）；slow：10:12 發、30 分到（等 10 分）
+  const data = fake([a, b], { routes: [busLine('fast', ['10:27', '10:57'], 5), busLine('slow', ['10:12', '10:42'], 30)] });
+  const r = planLeg(ep(a), ep(b), ctx(data));
+  assert.equal(r.leg.mode, 'bus');
+  assert.deepEqual(r.leg.rides.map((x) => [x.routeId, x.depart]), [['slow', '10:12']]);
+  assert.ok(!r.warnings.some((w) => w.code === 'taxi'));
+});
+
+test('預設那條不合規則（近鐵要等 40 分）：不搭那條線再找，車站旁的巴士可以搭', () => {
+  const sa = station('sa', at(0));
+  const sb = station('sb', at(4000));
+  const kintetsu = {
+    validFrom: '2026-01-01',
+    stationOrder: ['sa', 'sb'],
+    trains: { weekday: { k1: { type: '普通', note: null, to: 'sb', dir: 'down', stops: [['sa', null, '10:40'], ['sb', '10:50', null]] } }, holiday: {} },
+  } as EngineData['kintetsu'];
+  // 巴士停留所在車站旁 50 m（步行轉乘）；10:10 發、11:00 到，比近鐵晚到
+  const bus: RouteTimetable = {
+    ...busRoute(['10:10', '10:40'], 50),
+    stops: [
+      { id: 's1', name: 'A前', coords: at(50) },
+      { id: 's2', name: 'B前', coords: at(4050) },
+    ],
+  };
+  const data = fake([sa, sb], { kintetsu, routes: [bus] });
+  const r = planLeg(ep(sa), ep(sb), ctx(data));
+  assert.equal(r.leg.mode, 'bus');
+  assert.equal(r.leg.rides[0].depart, '10:10');
+  // 近鐵那條還在候選走法裡
+  assert.ok(r.leg.alternatives?.some((x) => x.rides[0].tripId === 'k1'));
+});
+
+test('舊方式 bus／train：每一程都是那種；近鐵接巴士不算 bus，也不算 train', () => {
+  const at8 = ctx(real, { depart: 8 * 60 });
+  const auto = planLeg(P('iseshi'), P('nakanogo'), at8, { mode: 'transit' }).leg;
+  assert.deepEqual(auto.rides.map((r) => r.mode), ['train', 'bus']);
+  const train = planLeg(P('iseshi'), P('nakanogo'), at8, { mode: 'train' }).leg;
+  assert.ok(train.rides.length >= 1 && train.rides.every((r) => r.mode === 'train'));
+  // 只搭電車：跟舊的近鐵搜尋一樣（不會因為近鐵接巴士比較早而只剩慢的直達）
+  assert.equal(train.arrive, legacyLeg('iseshi', 'nakanogo', 8 * 60).arrive);
+  const bus = planLeg(P('iseshi'), P('nakanogo'), at8, { mode: 'bus' });
+  assert.ok(bus.leg.rides.every((r) => r.mode === 'bus'));
+  assert.ok(!bus.leg.alternatives?.some((x) => x.rides.some((r) => r.mode !== 'bus')));
+});
+
+test('舊的 tripLeg 解讀不了的走法：trip、prevTrip、nextTrip 都是 null', () => {
+  const kix = planLeg(P('kansai-airport'), P('toba'), ctx(real, { depart: 14 * 60 })).leg;
+  assert.equal(kix.trip, null);
+  const osaka = planLeg(P('osaka-dotonbori'), P('osaka-castle-tenshukaku'), ctx(real, { date: '2027-02-12', depart: 10 * 60 })).leg;
+  assert.equal(osaka.trip, null);
+  const mixed = planLeg(P('iseshi'), P('nakanogo'), ctx(real, { depart: 8 * 60 }), { mode: 'transit' }).leg;
+  assert.deepEqual([mixed.trip, mixed.prevTrip, mixed.nextTrip], [null, null, null]);
+  // 近鐵一程照舊有
+  assert.equal(planLeg(P('toba'), P('kashikojima'), ctx(real, { depart: 9 * 60 })).leg.trip?.id, '1-375');
+});
+
+test('第一程是班距型：上車往後挪，等車移到起點，到達不變（關西機場 14:00 → 鵜方）', () => {
+  const day = ctx(real, { date: '2027-02-02', depart: 14 * 60 });
+  const { leg } = planLeg(P('kansai-airport'), P('ugata'), day);
+  assert.equal(leg.rides[0].kind, 'headway');
+  assert.equal(leg.rides.length, 2);
+  // 難波轉乘：到站＋轉乘步行之後，等近鐵不到 20 分
+  const transferWait = toMinutes(leg.rides[1].depart) - toMinutes(leg.ready![1]);
+  assert.ok(transferWait >= 0 && transferWait < 20, `難波等 ${transferWait} 分`);
+  // 到達和不挪的時候一樣：近鐵特急 1-382，16:10 → 18:35（data/access/kix.json）
+  assert.deepEqual([leg.rides[1].tripId, leg.rides[1].depart, leg.rides[1].arrive], ['1-382', '16:10', '18:35']);
+  assert.equal(leg.arrive, '18:35');
 });

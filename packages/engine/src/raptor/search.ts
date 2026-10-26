@@ -5,6 +5,7 @@
 import type { EngineConfig } from '../config.ts';
 import type { UrbanTransfer } from '../data.ts';
 import type { TimeString } from '../types.ts';
+import { toMinutes } from '../time.ts';
 import { headwayWait, KINTETSU, type Footpath, type HeadwayRoute, type Network, type NetRoute, type TimedTrip } from './network.ts';
 
 /** 上下車點和走到那裡的分鐘（已套係數、已進位） */
@@ -54,6 +55,8 @@ export interface SearchQuery {
   factor: number;
   /** 離島：只收至少有一程是船的 */
   requireFerry?: boolean;
+  /** 不搭這些 group（NetRoute.group）的車：指定舊的 train／bus／ferry、預設那條不合規則時再找別的用 */
+  exclude?: readonly string[];
 }
 
 /** 近鐵時刻表那一程上下車都在這幾站的不算（大阪市內用班距型的近鐵難波線，spec §6.2） */
@@ -127,6 +130,7 @@ export function searchJourneys(net: Network, q: SearchQuery, cfg: EngineConfig):
     q.whole,
     q.factor,
     !!q.requireFerry,
+    [...(q.exclude ?? [])].sort().join(','),
     t.maxRides,
     t.minTransfer,
   ].join('|');
@@ -205,6 +209,7 @@ function firstTrip(trips: TimedTrip[], i: number, t: number, hi = trips.length):
 
 function search(net: Network, q: SearchQuery, cfg: EngineConfig): Journey[] {
   const ix = indexOf(net);
+  const exclude = q.exclude?.length ? new Set(q.exclude) : null;
   const n = ix.ids.length;
   const { minTransfer, maxRides } = cfg.transit;
   const f = q.factor;
@@ -333,6 +338,7 @@ function search(net: Network, q: SearchQuery, cfg: EngineConfig): Journey[] {
       const start = queue[ri];
       queue[ri] = -1;
       const route = routes[ri];
+      if (exclude?.has(route.group)) continue;
       const st = ix.stops[ri];
       if (route.kind === 'timetable') {
         const trips = route.trips;
@@ -506,7 +512,7 @@ export function earliestRide(net: Network, ix: Indexed, group: string, from: str
  */
 function laterDeparture(net: Network, ix: Indexed, j: Journey, minTransfer: number, whole: boolean): Journey {
   const first = j.rides[0];
-  if (first.route.kind !== 'timetable') return j;
+  if (first.route.kind !== 'timetable') return laterHeadway(j, minTransfer);
   const egress = j.target.walk;
   let best = j;
   for (;;) {
@@ -524,4 +530,20 @@ function laterDeparture(net: Network, ix: Indexed, j: Journey, minTransfer: numb
     if (arr > j.arr) return best;
     best = { ...j, rides, dep: r0.dep, arr };
   }
+}
+
+/**
+ * 第一程是班距型的：上車往後挪（整數分鐘），只要還接得上第二程那班、而且在末班以前，到達就不變；
+ * 等車就從轉乘站移到起點（例如關西機場搭南海，不用在難波等近鐵等一個小時）。
+ * 只挪接有時刻表那程的：只有一程的、第二程也是班距型的不挪（第二程的發車跟著到站時間走，到達會變）
+ */
+function laterHeadway(j: Journey, minTransfer: number): Journey {
+  const first = j.rides[0];
+  if (j.rides.length < 2 || !first.headway || j.rides[1].route.kind !== 'timetable') return j;
+  const ready = first.arr + Math.max(minTransfer, j.transfers[0].walk);
+  const last = toMinutes(first.headway.last);
+  const shift = Math.floor(Math.min(j.rides[1].dep - ready, last - first.dep));
+  if (shift <= 0) return j;
+  const moved = { ...first, dep: first.dep + shift, arr: first.arr + shift };
+  return { ...j, rides: [moved, ...j.rides.slice(1)], dep: moved.dep };
 }
