@@ -1,6 +1,6 @@
 // 手機版「想去」分頁（第六輪 §3.4、第七輪 §5.3）：網頁版右欄的「想去」整個搬進來，只列有人 ❤️ 的點。
 // 最上面是篩選列（搜尋、篩選、排序（預設依想去多）；FeedFilters.tsx 的 useWishModel → shared/ui/FilterBar），下面是餐廳／住宿／景點的分段（數字是這一類有幾個），照片牆／清單兩種檢視在分段右邊（記在 localStorage）。
-// 清單是 shared/ui/WishList：分成還沒排、已是候選、已排三段，有跳轉晶片、收合、每段 8 個；列可以左滑露出「加到某天」。
+// 清單是 shared/ui/WishList：分成還沒排、已是候選、已排三段，段落標題有數字、可以收合、每段 8 個；列可以左滑露出「加到某天」。
 // 點列 → 整頁詳情（openPlace(id, 'wish')）；點最新留言 → 整頁詳情的留言分頁。清單的計算和網頁版共用 shared/placeLists.ts（useWishList）。
 
 import { TYPE_LABELS } from '../lib/filter.ts';

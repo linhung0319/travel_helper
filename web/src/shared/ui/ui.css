@@ -1043,13 +1043,10 @@
   white-space: nowrap;
 }
 
-/* ---------- 想去的清單（WishList）：跳轉列、段落標題、列、左滑 ---------- */
+/* ---------- 想去的清單（WishList）：段落標題、列、左滑 ---------- */
 .wl {
   --wl-top: 0px;
-  --wl-jump: 0px;
   min-width: 0;
-  /* 最後一段也能捲到最上面（跳轉晶片點了真的捲到那一段） */
-  padding-bottom: 40vh;
 }
 
 .wl-ell {
@@ -1059,30 +1056,14 @@
   white-space: nowrap;
 }
 
-/* 跳轉晶片一排：黏在篩選列下面 */
-.wl-jump {
-  position: sticky;
-  top: var(--wl-top);
-  z-index: 2;
-  display: flex;
-  gap: 8px;
-  padding: 8px 0;
-  background: var(--paper);
-  overflow-x: auto;
-}
-
-.wl-jump .ui-chip {
-  flex: 0 0 auto;
-}
-
 .wl-section {
-  scroll-margin-top: calc(var(--wl-top) + var(--wl-jump));
+  scroll-margin-top: var(--wl-top);
 }
 
-/* 段落標題：黏在跳轉列下面，點了收合 */
+/* 段落標題：黏在篩選列下面，點了收合；數字跟在名稱後面（「還沒排 · 6」，§13.7） */
 .wl-head {
   position: sticky;
-  top: calc(var(--wl-top) + var(--wl-jump));
+  top: var(--wl-top);
   z-index: 1;
   margin: 0;
   background: var(--paper);

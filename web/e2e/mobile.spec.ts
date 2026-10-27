@@ -1231,21 +1231,14 @@ test('手機探索有清單：切過去出現 88px 的列，❤ 位置固定，�
 
 // ---------- 第七輪 Task 6：想去分三段 ----------
 
-test('想去：三段、已排預設收合、跳轉', async ({ page }) => {
+test('想去：三段、已排預設收合；沒有跳轉晶片，數字在段落標題（§13.7）', async ({ page }) => {
   await ready(page);
   await likeMany(page, 12);
   await goTab(page, 'wish');
   await expect(page.getByTestId('wish-section-scheduled')).toHaveAttribute('aria-expanded', 'false');
   await expect(page.getByTestId('wish-section-candidate')).toHaveAttribute('aria-expanded', 'true');
-  await page.getByTestId('wish-jump-candidate').click();
-  await expect(page.getByTestId('wish-jump-candidate')).toHaveAttribute('aria-current', 'true');
-  await expect
-    .poll(async () => {
-      const jump = await page.getByTestId('wish-jump-candidate').boundingBox();
-      const head = await page.getByTestId('wish-section-candidate').boundingBox();
-      return head!.y - (jump!.y + jump!.height);
-    })
-    .toBeLessThan(24);
+  await expect(page.locator('[data-testid^="wish-jump-"]')).toHaveCount(0);
+  await expect(page.getByTestId('wish-section-count-candidate')).toHaveText(/^· [0-9]+$/);
   expect(await scrollsSideways(page)).toBe(false);
 });
 
@@ -1255,7 +1248,7 @@ test('想去：每段先 8 個，再顯示 15 個', async ({ page }) => {
   await goTab(page, 'wish');
   // 類型是一次一類：用景點
   const rows = page.locator('[data-section="unscheduled"] [data-testid="m-wish-item"]');
-  const total = Number(((await page.getByTestId('wish-jump-unscheduled').locator('.ui-chip-count').textContent()) ?? '').trim());
+  const total = Number(((await page.getByTestId('wish-section-count-unscheduled').textContent()) ?? '').replace('·', '').trim());
   expect(total).toBeGreaterThanOrEqual(12);
   await expect(rows).toHaveCount(8);
   await page.getByTestId('wish-more-unscheduled').click();

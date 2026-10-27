@@ -1699,7 +1699,7 @@ test('網頁探索是兩欄', async ({ page }) => {
 });
 
 // ---------- 第七輪 Task 6：想去分三段 ----------
-test('想去：三段、已排預設收合、跳轉', async ({ page }) => {
+test('想去：三段、已排預設收合；沒有跳轉晶片，數字在段落標題、跟著搜尋變（§13.7）', async ({ page }) => {
   await ready(page);
   await likeMany(page, 12);
   await page.getByTestId('side-tab-wish').click();
@@ -1713,16 +1713,14 @@ test('想去：三段、已排預設收合、跳轉', async ({ page }) => {
   await expect(panel.locator('[data-section="scheduled"] [data-testid="wish-item"]').first()).toBeVisible();
   await panel.getByTestId('wish-section-scheduled').click();
   await expect(panel.getByTestId('wish-section-scheduled')).toHaveAttribute('aria-expanded', 'false');
-  // 跳轉：點「已是候選」，那一段的標題黏在跳轉列下面，晶片變成現在這段
-  await panel.getByTestId('wish-jump-candidate').click();
-  await expect(panel.getByTestId('wish-jump-candidate')).toHaveAttribute('aria-current', 'true');
-  await expect
-    .poll(async () => {
-      const jump = await panel.getByTestId('wish-jump-candidate').boundingBox();
-      const head = await panel.getByTestId('wish-section-candidate').boundingBox();
-      return head!.y - (jump!.y + jump!.height);
-    })
-    .toBeLessThan(24);
+  // 第八輪 §13.7：沒有跳轉晶片，數字在段落標題上；搜尋之後數字跟著變
+  await expect(panel.locator('[data-testid^="wish-jump-"]')).toHaveCount(0);
+  const unscheduled = panel.getByTestId('wish-section-count-unscheduled');
+  await expect(unscheduled).toHaveText(/^· [0-9]+$/);
+  const before = await unscheduled.textContent();
+  await panel.getByTestId('search').fill('伊勢');
+  await expect(unscheduled).not.toHaveText(before!);
+  await panel.getByTestId('search').fill('');
   // 收合的狀態記住
   await page.reload();
   await page.waitForFunction(() => (window as any).__th?.dataStore.getState().status === 'ready');
@@ -1736,7 +1734,7 @@ test('想去：每段先 8 個，再顯示 15 個', async ({ page }) => {
   await page.getByTestId('side-tab-wish').click();
   const panel = page.getByTestId('wish-panel');
   const rows = panel.locator('[data-section="unscheduled"] [data-testid="wish-item"]');
-  const total = Number(((await panel.getByTestId('wish-jump-unscheduled').locator('.ui-chip-count').textContent()) ?? '').trim());
+  const total = Number(((await panel.getByTestId('wish-section-count-unscheduled').textContent()) ?? '').replace('·', '').trim());
   expect(total).toBeGreaterThanOrEqual(12);
   await expect(rows).toHaveCount(8);
   await panel.getByTestId('wish-more-unscheduled').click();
