@@ -1989,7 +1989,7 @@ test('點照片放大，左右切換，Esc 關', async ({ page }) => {
 
 // ---------- 第七輪 Task 8：時間軸的卡片、一行交通、原地展開 ----------
 
-test('點時間軸的卡：原地展開三張照片，沒有地圖小卡片；「詳細資料」浮在地圖上；再點收起', async ({ page }) => {
+test('點時間軸的卡：原地展開簡介、優缺點（第八輪不放照片），沒有地圖小卡片；「詳細資料」浮在地圖上；再點收起', async ({ page }) => {
   await ready(page);
   await showDay(page, '2027-02-03');
   const row = tlRow(page, 'i-2');
@@ -1997,8 +1997,9 @@ test('點時間軸的卡：原地展開三張照片，沒有地圖小卡片；�
   await row.getByTestId('trip-card').click();
   const open = row.getByTestId('trip-card-expand');
   await expect(open).toBeVisible();
-  await expect(open.locator('.tc-photo')).toHaveCount(3);
+  await expect(open.locator('.tc-photo')).toHaveCount(0);
   await expect(open.getByTestId('trip-card-intro')).not.toBeEmpty();
+  await expect(open.getByTestId('pros-cons').locator('li').first()).toBeVisible();
   await expect(page.getByTestId('preview-card')).toHaveCount(0);
   await expect(page.locator('.maplibregl-popup')).toHaveCount(0);
   // 一次只展開一張：點別張，這張收起來
@@ -2024,6 +2025,19 @@ test('點展開的「問 AI」：把這個點帶進聊天', async ({ page }) => 
   const draft = await page.evaluate(() => (window as any).__th.uiStore.getState().chatDraft);
   expect(draft.placeId).toBe('shima-yokoyama-observatory');
   expect(draft.from).toBe('trip');
+});
+
+test('第八輪：合併卡兩張斜斜地一前一後（前面往左斜、後面淡底往右斜），只畫兩張', async ({ page }) => {
+  await ready(page);
+  await showDay(page, '2027-02-05');
+  const lunch = tlRow(page, 'i-7');
+  await expect(lunch).toHaveClass(/stacked/);
+  await expect(lunch.getByTestId('trip-card-back')).toHaveCount(1);
+  const angle = (sel: string) => lunch.locator(sel).first().evaluate((el) => { const m = new DOMMatrix(getComputedStyle(el).transform); return Math.atan2(m.b, m.a) * 180 / Math.PI; });
+  expect(await angle('.tc')).toBeLessThan(0);
+  expect(await angle('.tc-back')).toBeGreaterThan(0);
+  // 沒有備選的卡不疊
+  await expect(page.getByTestId('timeline').getByTestId('trip-card-back')).toHaveCount(await page.getByTestId('timeline').locator('.tc-li.stacked').count());
 });
 
 test('網頁時間軸有縮圖；交通卡第一行方式＋分鐘、第二行距離，不換行（§13.6）', async ({ page }) => {

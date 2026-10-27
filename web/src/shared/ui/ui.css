@@ -2189,15 +2189,41 @@ body.dragging-plan .tc-li.drop-merge::after {
   font-weight: 700;
 }
 
-/* 重疊卡（有備卡）：後面疊著淡色的卡 */
+/* 合併卡（第八輪 §13.5，網頁、手機）：兩張斜斜地一前一後。前面主選白底、有框、微微往左斜（.tc），
+   後面淡底往右斜、錯開露出邊（.tc-back，和 .tc 同一格的位置）；不管幾個選擇都只畫兩張，張數看「‹ 1/2 ›」 */
 .tc-li.stacked {
-  margin-bottom: 8px;
-  box-shadow: 4px 4px 0 -1px var(--wash), 4px 4px 0 0 var(--line);
+  margin: 8px 0 14px;
 }
 
-.tc-li.stacked-2 {
-  box-shadow: 4px 4px 0 -1px var(--wash), 4px 4px 0 0 var(--line), 8px 8px 0 -1px var(--wash), 8px 8px 0 0 var(--line);
-  margin-bottom: 12px;
+.tc-li.stacked > .tc {
+  position: relative;
+  z-index: 1;
+  /* 框和左邊留白往外推（負的 margin），縮圖還是在時間軸連線上 */
+  margin-inline: -7px -4px;
+  padding: 8px 4px 8px 6px;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  background: var(--paper);
+  box-shadow: 0 2px 8px var(--shade-1);
+  transform: rotate(-0.8deg);
+}
+
+.tc-back {
+  position: absolute;
+  z-index: 0;
+  top: 0;
+  bottom: 0;
+  left: calc(1px + var(--tc-grip));
+  right: calc(4px + var(--tc-more));
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  background: var(--wash);
+  transform: rotate(2.4deg) translate(6px, 4px);
+  pointer-events: none;
+}
+
+body.dragging-plan .tc-li.stacked.drop-merge > .tc {
+  background: var(--indigo-wash);
 }
 
 /* 交通卡（第八輪 §13.6）：時間軸左邊一條連線（在資料卡小照片的中線，畫在時間軸清單上，白底的資料卡蓋住它），

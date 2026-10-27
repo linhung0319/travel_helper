@@ -233,6 +233,7 @@ function EntryRow({ entry, day, warnings, plan, marks }: { entry: TimelineEntry;
         label={p ? name(p) : '上一站'}
         meta={p?.type === 'lodging' ? <LodgingTags day={prevNight} place={p} reservationDate={null} editable={false} open={false} onOpenChange={() => {}} /> : null}
         thumb={THUMB}
+        surface="desktop"
         className={`tl-start ${editing}`}
         selected={expand.expanded}
         expanded={expand.expanded}
@@ -305,6 +306,7 @@ function EntryRow({ entry, day, warnings, plan, marks }: { entry: TimelineEntry;
           label={p ? name(p) : (entry.placeId ?? '住宿')}
           meta={<LodgingTags day={day} place={p} reservationDate={day.date} editable={planning} open={tagsOpen} onOpenChange={setTagsOpen} />}
           thumb={THUMB}
+        surface="desktop"
           className={`tl-lodging ${editing}`}
           selected={expand.expanded}
         expanded={expand.expanded}
@@ -324,7 +326,7 @@ function EntryRow({ entry, day, warnings, plan, marks }: { entry: TimelineEntry;
   // 編輯：滑鼠整張卡拖、手指按把手拖（航班不能動）
   const movable = !!dragSrc;
   const itemWarnings = entry.itemId ? warnings.get(entry.itemId) : undefined;
-  const stacked = visit && visit.options.length > 1 ? Math.min(visit.options.length - 1, 2) : 0;
+  const stacked = !!visit && visit.options.length > 1;
   // ⋯ 選單的主要、拿出作用在正在看的那張（不是重疊卡、或看主卡時是主卡）
   const shownIndex = visit ? (stacked && backup != null && backup < visit.options.length ? backup : visit.selected) : undefined;
 
@@ -372,7 +374,9 @@ function EntryRow({ entry, day, warnings, plan, marks }: { entry: TimelineEntry;
           </>
         }
         thumb={THUMB}
-        className={`tl-${entry.kind} ${editing} ${stacked ? `stacked stacked-${stacked}` : ''} ${hovered && hovered === entry.placeId ? 'flash' : ''}`}
+        surface="desktop"
+        stacked={!!stacked}
+        className={`tl-${entry.kind} ${editing} ${hovered && hovered === entry.placeId ? 'flash' : ''}`}
         selected={expand.expanded}
         expanded={expand.expanded}
         onToggle={expand.toggle}

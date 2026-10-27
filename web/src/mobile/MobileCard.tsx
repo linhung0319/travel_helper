@@ -131,6 +131,8 @@ export function MobileCard({ itemKey, place, fallbackType, mark, time, name, tag
       onDetail={place ? () => mobileStore.getState().openPlace(place.id, 'trip') : undefined}
       onAsk={place ? () => askAboutCardPlace(place) : undefined}
       thumb={THUMB}
+      // 有 ‹ 1/2 › 的就是合併卡（備選、分組）：後面疊一張斜的（第八輪 §13.5，手機也改）
+      stacked={!!switcher}
       dashed={candidate}
       movable={!!src}
       className={planning ? 'editing' : ''}

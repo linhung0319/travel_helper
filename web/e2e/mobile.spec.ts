@@ -916,6 +916,9 @@ test('編輯：重疊卡 ‹ n/m › 換著看、⋯ 的主要、拿出作用在
   const lunch = mCard(page, 'i-7');
   const sw = lunch.getByTestId('m-option-switch');
   await expect(sw).toContainText('1/2');
+  // 合併卡：後面斜斜地疊一張（第八輪 §13.5，手機也改）
+  await expect(lunch).toHaveClass(/stacked/);
+  await expect(lunch.getByTestId('trip-card-back')).toHaveCount(1);
   for (const b of ['option-prev', 'option-next']) expect((await sw.getByTestId(b).boundingBox())!.height).toBeGreaterThanOrEqual(44);
   await expect(lunch.getByTestId('trip-card-name')).toContainText('漣');
   // 看主卡：👑 主要不能點
