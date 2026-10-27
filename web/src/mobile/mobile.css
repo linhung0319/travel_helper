@@ -784,10 +784,13 @@
   margin-top: 8px;
 }
 
-/* 交通是共用的一行（ui.css 的 ll-*）；手機點的範圍 44px */
-.m-leg .ll {
-  min-height: var(--tap);
-  font-size: 0.8125rem;
+/* 交通卡是共用的（ui.css 的 ll-*）：手機縮圖 56px、編輯中把手欄 44px，連線跟著；點的範圍 44px */
+.m-app .tl-axis {
+  --ll-thumb: 56px;
+}
+
+.m-app .tl-axis.in-planning {
+  --ll-grip: var(--tap);
 }
 
 .m-leg .ll-main {

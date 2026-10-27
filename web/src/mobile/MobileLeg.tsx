@@ -1,4 +1,4 @@
-// 手機版時間軸上兩張卡中間的交通（第六輪 §3.5，第七輪 Task 8）：一行細字（shared/ui/LegLine.tsx）「計程車 9 分・3.4km」，右邊「地圖 ↗」。
+// 手機版時間軸上兩張卡中間的交通（第六輪 §3.5，第八輪 §13.6 改成交通卡）：shared/ui/LegLine.tsx「計程車 9 分」、下一行距離，右邊「map ↗」。
 // 資料準備和網頁版的交通一樣（LegRow.tsx 的 useLegView）：點了這段就展開（一次只開一段，地圖只畫這段）；
 // 大眾運輸展開後是步驟（LegRow 的 LegSteps，排成一欄）。等待那一行接在交通下面，是純文字、不能點（§2.4）。
 // 點交通時，選到的卡片取消（地圖只看這段）。
@@ -56,7 +56,8 @@ export function MobileLeg({ entry, date }: { entry: TimelineEntry; date: string 
     <li className={`m-leg ll-li ${open ? 'open' : ''} ${editing ? 'editing' : ''}`} data-testid="m-leg" data-leg={key} {...dropOnLegProps(entry.itemId, date, planning)}>
       <LegLine
         mode={leg.mode}
-        text={[legTitle(leg) || '交通 0 分', ...sub].join('・')}
+        title={legTitle(leg) || '交通 0 分'}
+        sub={sub}
         note={note}
         mapsHref={from && to ? legMapsUrl(from, to, mode) : null}
         onToggle={() => {

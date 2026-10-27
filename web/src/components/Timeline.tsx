@@ -588,7 +588,7 @@ export function Timeline({ tl }: { tl: DayTimeline & { plan: DayPlan; itDay: Iti
   const planning = useApp((s) => s.planning);
   const { plan, itDay: day, byItem, marks } = tl;
   return (
-    <ol className="tl tc-list" data-testid="timeline">
+    <ol className={`tl tc-list tl-axis ${planning ? 'in-planning' : ''}`} data-testid="timeline">
       {/* 用項目 ID 當 key：上面的卡片增減時，備卡看第幾張、警告展開這些本地 state 不會跑到別張卡片 */}
       {tl.rows.map((row, i) =>
         row.kind === 'gap' ? (

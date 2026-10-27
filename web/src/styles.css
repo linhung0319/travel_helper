@@ -10,6 +10,7 @@
   --ink-4: #c3c7d1;
   --paper: #ffffff;
   --line: #e6e8ee;
+  --rail: #d3d8e3; /* 時間軸串起卡片的連線、交通卡的方式圓點框（§13.6） */
   --wash: #f3f5fa;
   --indigo: #24468a;
   /* 地圖想去圖例「已排」的例子：第一天的顏色（lib/visual.ts DAY_PALETTE[0]） */
@@ -3312,7 +3313,8 @@ button.timetable-row-in {
   list-style: none;
   margin: 8px 0 0;
   padding: 6px 0 0;
-  border-top: 1px solid var(--line);
+  border-top: 1px dashed var(--line);
+  font-size: 0.875rem;
   color: var(--fg);
 }
 
@@ -3390,29 +3392,34 @@ button.timetable-row-in {
   gap: 4px;
 }
 
-.leg-step-wait {
-  display: inline-block;
-  margin-left: 6px;
-  padding: 0 6px;
-  font-size: 0.75rem;
+/* 等車、轉乘：站名下面淡黃底的一列（§13.6） */
+.leg-step-wait-row {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  width: fit-content;
+  max-width: 100%;
+  margin-top: 4px;
+  padding: 2px 8px;
+  border-radius: 14px;
+  background: var(--mustard-wash);
+  color: var(--mustard-ink);
+  font-size: 0.8125rem;
   font-weight: 500;
-  color: var(--warn);
-  background: var(--warn-bg);
-  border: 1px dashed var(--warn-line);
-  border-radius: 999px;
 }
 
 /* 搭車那一行的膠囊：點了在地圖那側開班次表；編輯中裡面是班次下拉 */
 .leg-ride {
+  --ride-c: var(--indigo);
   display: inline-flex;
   align-items: center;
   gap: 6px;
   max-width: 100%;
   padding: 3px 8px 3px 4px;
-  border: 1px solid var(--teal-line);
+  border: 1.5px solid var(--ride-c);
   border-radius: 999px;
-  background: var(--teal-wash);
-  color: var(--teal);
+  background: var(--paper);
+  color: var(--ride-c);
   font: inherit;
   font-weight: 600;
   text-align: left;
@@ -3439,7 +3446,7 @@ button.timetable-row-in {
 
 .leg-ride-more {
   font-weight: 400;
-  color: var(--teal);
+  color: var(--ink-2);
 }
 
 button.leg-ride-more {
@@ -3857,8 +3864,10 @@ button.cand-up:disabled {
 
 /* 網頁版用手指操作（iPad 橫拿，§1 平板）：拖曳把手、地圖縮放鈕至少 44px；滑鼠照舊 */
 @media (pointer: coarse) {
-  .layout.desktop .tc-li.editing {
+  .layout.desktop .tc-li.editing,
+  .layout.desktop .tl-axis.in-planning {
     --tc-grip: var(--tap);
+    --ll-grip: var(--tap);
   }
   .layout.desktop .maplibregl-ctrl-group button {
     width: var(--tap);

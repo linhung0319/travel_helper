@@ -663,7 +663,8 @@ async function grabPoint(source: Locator) {
 }
 
 test('第四輪：編輯中把餐廳拖到另一間餐廳的中間 → 合併；按復原回到兩張卡片（電腦版）', async ({ page }) => {
-  await page.setViewportSize({ width: 1600, height: 1200 });
+  // 交通卡（§13.6）讓一天的時間軸變長：要拖的兩張卡都要在畫面裡
+  await page.setViewportSize({ width: 1600, height: 1600 });
   await ready(page);
   const D = '2027-02-10';
   const SRC = 'ise-tofuya';
@@ -696,7 +697,8 @@ test('第四輪：編輯中把餐廳拖到另一間餐廳的中間 → 合併；
 });
 
 test('網頁：滑鼠拖整張卡換順序；停 0.6 秒才合併', async ({ page }) => {
-  await page.setViewportSize({ width: 1600, height: 1200 });
+  // 交通卡（§13.6）讓一天的時間軸變長：要拖的兩張卡都要在畫面裡
+  await page.setViewportSize({ width: 1600, height: 1600 });
   await ready(page);
   const D = '2027-02-10';
   const SRC = 'ise-tofuya';
@@ -757,7 +759,8 @@ test('網頁：滑鼠拖整張卡換順序；停 0.6 秒才合併', async ({ pag
 });
 
 test('網頁：讓出的空位上停著不合併；只是經過邊緣不算停留，進到卡片中間才開始算 0.6 秒', async ({ page }) => {
-  await page.setViewportSize({ width: 1600, height: 1200 });
+  // 交通卡（§13.6）讓一天的時間軸變長：要拖的兩張卡都要在畫面裡
+  await page.setViewportSize({ width: 1600, height: 1600 });
   await ready(page);
   await showDay(page, '2027-02-10');
   await enterPlanning(page);
@@ -836,7 +839,8 @@ test('網頁：⋯ → 調整順序，下移可以連按、上移', async ({ pag
 });
 
 test('第四輪：編輯中把候選拖到兩張卡片之間 → 時間軸多一站、候選少一筆（電腦版）', async ({ page }) => {
-  await page.setViewportSize({ width: 1600, height: 1200 });
+  // 交通卡（§13.6）讓一天的時間軸變長：要拖的兩張卡都要在畫面裡
+  await page.setViewportSize({ width: 1600, height: 1600 });
   await ready(page);
   const D = '2027-02-05';
   const C = 'toba-bay-cruise-irukajima';
@@ -1016,10 +1020,11 @@ test('第五輪：點交通卡距離不變（步行、計程車平常就用道�
   });
   await showDay(page, '2027-02-04');
   const leg = page.getByTestId('timeline').getByTestId('tl-leg').nth(1);
-  const sub = leg.locator('.ll-title');
+  const sub = leg.locator('.ll-text');
   await expect(sub).toContainText('18.2 公里', { timeout: 20000 });
   await expect(sub).not.toContainText('直線');
-  const before = await sub.innerText();
+  // 交通卡兩行（§13.6）：比 textContent（toHaveText 也是看它），不比 innerText 的換行
+  const before = (await sub.textContent())!;
   // 點開（地圖只畫這一段）、收起：距離都一樣
   await leg.getByRole('button').first().click();
   await expect(leg.getByRole('button').first()).toHaveAttribute('aria-pressed', 'true');
@@ -1051,10 +1056,10 @@ test('第五輪：大眾運輸的交通卡點了展開步驟（等車、御座�
 
   // 收起：一行「大眾運輸 N 分・…含等車」，右邊小箭頭；沒有步驟
   await expect(leg.locator('.ll-title')).toHaveText(/^大眾運輸 \d+ 分/);
-  await expect(leg.locator('.ll-title')).toContainText(/含等車 \d+ 分/);
+  await expect(leg.locator('.ll-text')).toContainText(/含等車 \d+ 分/);
   await expect(leg.locator('.ll-chev')).toBeVisible();
   await expect(leg.getByTestId('leg-steps')).toHaveCount(0);
-  const sub = await leg.locator('.ll-title').innerText();
+  const sub = (await leg.locator('.ll-text').textContent())!;
 
   // 點了展開：節點、步行、等車、搭車那一行（巴士圖示＋路線名＋「HH:MM 發」＋「› 班次」）；距離不變
   await leg.getByRole('button').first().click();
@@ -1066,7 +1071,7 @@ test('第五輪：大眾運輸的交通卡點了展開步驟（等車、御座�
   await expect(ride).toContainText(/\d\d:\d\d 發/);
   await expect(ride.getByRole('img', { name: '巴士' })).toBeVisible();
   await expect(steps).toContainText('步行');
-  await expect(leg.locator('.ll-title')).toHaveText(sub);
+  await expect(leg.locator('.ll-text')).toHaveText(sub);
 
   // 點搭車那一行：地圖那側的班次表；一般模式只能看（沒有可以點的班次）
   await ride.click();
@@ -1471,10 +1476,49 @@ test('移到第幾天：留在原本那天、可以復原（同手機版）', as
 
 // ---------- 第六輪 Task 5：Google Map 文字、等待卡、移到第幾天 4×3、紅字日期 ----------
 
-test('交通那一行右邊是「地圖 ↗」文字', async ({ page }) => {
+test('交通卡右邊是「map ↗」文字（§13.6）', async ({ page }) => {
   await ready(page);
   await showDay(page, '2027-02-05');
-  await expect(page.getByTestId('leg-maps').first()).toHaveText('地圖 ↗');
+  await expect(page.getByTestId('leg-maps').first()).toHaveText('map ↗');
+});
+
+test('第八輪：交通卡有框、比資料卡窄，方式圓點在連線上（小照片的中線）；第二行是距離；展開後等車淡黃一列、搭車外框是交通方式的顏色', async ({ page }) => {
+  await ready(page);
+  await showDay(page, '2027-02-10');
+  const tl = page.getByTestId('timeline');
+  const leg = tl.getByTestId('tl-leg').first();
+  const card = leg.locator('.ll-card');
+  await expect(card).toHaveCSS('border-top-width', '1px');
+  await expect(leg.locator('.ll-title')).toHaveText(/^計程車 \d+ 分$/);
+  await expect(leg.locator('.ll-sub')).toContainText('公尺');
+  // 圓點、連線、資料卡的小照片在同一條直線上；交通卡比資料卡窄（左邊縮進去）
+  const cx = async (sel: string) => tl.locator(sel).first().evaluate((el) => { const r = el.getBoundingClientRect(); return r.left + r.width / 2; });
+  const thumb = await cx('.tc-thumb');
+  const dot = await cx('.ll-dot');
+  expect(Math.abs(dot - thumb)).toBeLessThanOrEqual(1.5);
+  const line = await tl.evaluate((el) => el.getBoundingClientRect().left + parseFloat(getComputedStyle(el, '::before').left) + 1);
+  expect(Math.abs(line - thumb)).toBeLessThanOrEqual(1.5);
+  const cardBox = (await card.boundingBox())!;
+  const dataBox = (await tl.getByTestId('trip-card').first().boundingBox())!;
+  expect(cardBox.x).toBeGreaterThan(dataBox.x + 30);
+  // 大眾運輸展開：等車是淡黃一列，巴士的外框是巴士的顏色
+  const transit = tl.getByTestId('tl-leg').filter({ hasText: '大眾運輸' }).first();
+  await transit.getByRole('button').first().click();
+  const wait = transit.locator('.leg-step-wait-row').first();
+  await expect(wait).toBeVisible();
+  const [waitBg, mustardWash, rideBorder, busColor] = await page.evaluate(() => {
+    const probe = (v: string) => {
+      const s = document.createElement('span');
+      s.style.color = `var(${v})`;
+      document.body.append(s);
+      const c = getComputedStyle(s).color;
+      s.remove();
+      return c;
+    };
+    return [getComputedStyle(document.querySelector('.leg-step-wait-row')!).backgroundColor, probe('--mustard-wash'), getComputedStyle(document.querySelector('.leg-ride')!).borderTopColor, probe('--warn')];
+  });
+  expect(waitBg).toBe(mustardWash);
+  expect(rideBorder).toBe(busColor);
 });
 
 test('等待卡不能點、沒有看附近', async ({ page }) => {
@@ -1982,7 +2026,7 @@ test('點展開的「問 AI」：把這個點帶進聊天', async ({ page }) => 
   expect(draft.from).toBe('trip');
 });
 
-test('網頁時間軸有縮圖、交通是一行', async ({ page }) => {
+test('網頁時間軸有縮圖；交通卡第一行方式＋分鐘、第二行距離，不換行（§13.6）', async ({ page }) => {
   await ready(page);
   await showDay(page, '2027-02-03');
   const row = tlRow(page, 'i-2');
@@ -1990,8 +2034,9 @@ test('網頁時間軸有縮圖、交通是一行', async ({ page }) => {
   await expect(row.getByTestId('trip-card-no')).toBeVisible();
   const lines = page.getByTestId('timeline').getByTestId('leg-line');
   expect(await lines.count()).toBeGreaterThan(0);
-  for (let i = 0; i < (await lines.count()); i++) expect((await lines.nth(i).boundingBox())!.height, `leg ${i}`).toBeLessThan(40);
-  await expect(page.getByTestId('timeline').getByTestId('leg-maps').first()).toHaveText('地圖 ↗');
+  // 交通卡最多兩行（加框、上下留白約 64px 以內），標題、副標都不折行
+  for (let i = 0; i < (await lines.count()); i++) expect((await lines.nth(i).boundingBox())!.height, `leg ${i}`).toBeLessThan(64);
+  await expect(page.getByTestId('timeline').getByTestId('leg-maps').first()).toHaveText('map ↗');
   // 平常沒有「改」
   await expect(page.getByTestId('leg-edit')).toHaveCount(0);
 });

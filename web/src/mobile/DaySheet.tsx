@@ -194,7 +194,7 @@ function EntryRows({ entry, ctx }: { entry: TimelineEntry; ctx: RowCtx }) {
                   {g.name}
                   {sg && <span className="muted small"> {sg.size} 人</span>}
                 </div>
-                <ol className="m-tl">
+                <ol className={`m-tl tl-axis ${planning ? 'in-planning' : ''}`}>
                   {g.entries
                     .filter((e) => e.kind !== 'meet')
                     .map((e, i) => (
@@ -335,7 +335,7 @@ function DayView({ date }: { date: string }) {
       {itDay && tl.status === 'loading' && <p className="muted">計算時間軸中…</p>}
       {tl.status === 'error' && <p className="warn">時間軸算不出來：{tl.error}</p>}
       {itDay && plan && (
-        <ol className="m-tl" data-testid="m-timeline">
+        <ol className={`m-tl tl-axis ${planning ? 'in-planning' : ''}`} data-testid="m-timeline">
           {tl.rows.map((row, i) =>
             row.kind === 'gap' ? (
               <GapRow key={`g${i}`} row={row} />

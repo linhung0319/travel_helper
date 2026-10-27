@@ -499,10 +499,10 @@ test('行程：卡片有縮圖和編號', async ({ page }) => {
   }
   // 出發是 0
   await expect(cards.first().getByTestId('trip-card-no')).toHaveText('0');
-  // 卡片之間的交通一行，右邊是「地圖 ↗」
+  // 卡片之間的交通卡，右邊是「map ↗」（§13.6）
   const leg = page.getByTestId('m-leg').first();
   await expect(leg).toBeVisible();
-  await expect(leg.getByTestId('leg-maps')).toHaveText('地圖 ↗');
+  await expect(leg.getByTestId('leg-maps')).toHaveText('map ↗');
   // 標題、✨、✏️ 編輯、摘要、時間條
   await expect(page.getByTestId('m-trip-title')).toContainText('2/3週三 · 第 2 天');
   await expect(page.getByTestId('m-trip-ai')).toBeVisible();

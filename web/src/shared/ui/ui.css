@@ -2200,22 +2200,79 @@ body.dragging-plan .tc-li.drop-merge::after {
   margin-bottom: 12px;
 }
 
-/* 一行交通：沒有外框，細字 */
+/* 交通卡（第八輪 §13.6）：時間軸左邊一條連線（在資料卡小照片的中線，畫在時間軸清單上，白底的資料卡蓋住它），
+   交通方式的圓點在線上，卡片比資料卡窄、有框，縮在線的右邊。
+   --ll-axis 照資料卡的版面算：li 左邊 4px＋把手欄＋欄距 4px＋縮圖的一半（量過，多 1px）；把手欄、縮圖寬由時間軸清單給（.tl-axis） */
+.tl-axis {
+  --ll-grip: 0px;
+  --ll-thumb: 48px;
+  --ll-axis: calc(9px + var(--ll-grip) + var(--ll-thumb) / 2);
+  position: relative;
+}
+
+/* 編輯中資料卡多一欄把手：線跟著移 */
+.tl-axis.in-planning {
+  --ll-grip: 22px;
+}
+
+.tl-axis::before {
+  content: '';
+  position: absolute;
+  left: calc(var(--ll-axis) - 1px);
+  top: 32px;
+  bottom: 32px;
+  width: 2px;
+  background: var(--rail);
+}
+
 .ll-li {
+  --ll-axis: calc(9px + var(--ll-grip, 0px) + var(--ll-thumb, 48px) / 2);
+  position: relative;
   list-style: none;
   margin: 0;
-  padding: 0 4px 0 8px;
+  padding: 4px 4px 4px calc(var(--ll-axis) + 22px);
   min-width: 0;
 }
 
 .ll {
+  min-width: 0;
+  color: var(--ink-2);
+  font-size: 0.8125rem;
+}
+
+/* 線上的交通方式圓點：白底、連線色的框，蓋在線上 */
+.ll-dot {
+  position: absolute;
+  left: calc(var(--ll-axis) - 13px);
+  top: 50%;
+  margin-top: -13px;
+  display: grid;
+  place-items: center;
+  width: 26px;
+  height: 26px;
+  border: 2px solid var(--rail);
+  border-radius: 50%;
+  background: var(--paper);
+}
+
+.ll.open .ll-dot {
+  top: 10px;
+  margin-top: 0;
+}
+
+.ll-card {
+  min-width: 0;
+  padding: 6px 10px 6px 12px;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  background: var(--paper);
+}
+
+.ll-head {
   display: flex;
   align-items: center;
   gap: 8px;
   min-width: 0;
-  min-height: 32px;
-  color: var(--ink-2);
-  font-size: 0.8125rem;
 }
 
 .ll-main {
@@ -2240,11 +2297,21 @@ button.ll-main {
   flex: 0 1 auto;
   min-width: 0;
   display: flex;
-  flex-wrap: wrap;
-  gap: 0 8px;
+  flex-direction: column;
+  line-height: 1.35;
 }
 
+/* 字和資料卡的時間（tc-time）、副標（tc-meta）一樣大 */
 .ll-title {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  color: var(--ink);
+  font-size: 0.9rem;
+  font-weight: 700;
+}
+
+.ll-sub {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -2266,9 +2333,9 @@ button.ll-main {
 
 .ll-maps {
   flex: 0 0 auto;
-  color: var(--ink-2);
-  text-decoration: underline;
-  text-underline-offset: 2px;
+  color: var(--indigo);
+  text-decoration: none;
+  font-weight: 700;
   white-space: nowrap;
 }
 
@@ -2285,24 +2352,21 @@ button.ll-main {
   cursor: pointer;
 }
 
-.ll-li.flash .ll {
+.ll-li.flash .ll-card {
   background: var(--warn-bg);
-  border-radius: 14px;
 }
 
-.ll-li.drop-leg-over .ll {
+.ll-li.drop-leg-over .ll-card {
   background: var(--indigo-wash);
   box-shadow: inset 0 0 0 2px var(--indigo);
-  border-radius: 14px;
 }
 
 .ll-li .leg-steps {
   margin: 0 0 6px;
 }
 
-.ll-li.editing {
+.ll-li.editing .ll-card {
   background: var(--wash);
-  border-radius: 14px;
 }
 
 /* 這天的標題（網頁行程分頁，§6.1）：圓體的大日期，旁邊「週五 · 第 4 天 · 鳥羽」 */
