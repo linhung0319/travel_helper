@@ -289,10 +289,12 @@ test('第四輪：點討論 → 彈窗；點彈窗外面的地圖 → 彈窗關�
   await expect(page.getByTestId('map-panel')).toHaveCount(0);
 });
 
-test('T15m：想去的卡片點了看詳情，返回想去（電腦版）', async ({ page }) => {
+test('T15m：想去的卡片點了原地展開，按「詳細資料」看詳情，返回想去（電腦版）', async ({ page }) => {
   await ready(page);
   const list = await openWish(page, 'toba-aquarium');
   await wish(list, 'toba-aquarium').getByTestId('wish-open').click();
+  await expect(page.getByTestId('detail-panel')).toHaveCount(0);
+  await wish(list, 'toba-aquarium').getByTestId('place-open-detail').click();
   await expect(page.getByTestId('detail-back')).toHaveText('← 返回想去');
   await page.getByTestId('detail-back').click();
   await expect(page.getByTestId('wish-panel')).toBeVisible();
@@ -2255,6 +2257,42 @@ test('打開交通：框住兩端，不出現「清掉」；收起回到原本�
   await expect.poll(() => th(page, '__th.appStore.getState().legRoute')).toBeNull();
   await waitIdle(page);
   expect(Math.abs((await page.evaluate(() => (window as any).__th.map.getZoom())) - before)).toBeLessThan(0.05);
+});
+
+test('第八輪：探索的卡點了原地展開（照片牆橫跨兩欄、清單在原地），選中那個點；按「詳細資料」才開詳情；再點收起', async ({ page }) => {
+  await ready(page);
+  await page.getByTestId('side-tab-explore').click();
+  await page.getByTestId('view-photo').click();
+  const wall = page.getByTestId('explore-panel').locator('.pw').first();
+  // 照片牆兩欄的 DOM 順序不是排名順序，展開後位置會變：用 data-id 找
+  const id = (await page.getByTestId('explore-item').nth(1).getAttribute('data-id'))!;
+  const second = page.locator(`[data-testid="explore-item"][data-id="${id}"]`);
+  const narrow = (await second.boundingBox())!.width;
+  await second.click();
+  await expect(second).toHaveAttribute('aria-expanded', 'true');
+  await expect(second.getByTestId('place-open')).toBeVisible();
+  expect(await th(page, '__th.appStore.getState().selectedId')).toBe(id);
+  await expect(page.getByTestId('detail-panel')).toHaveCount(0);
+  // 橫跨兩欄：和照片牆一樣寬
+  const wide = (await second.boundingBox())!.width;
+  expect(wide).toBeGreaterThan(narrow * 1.8);
+  expect(Math.abs(wide - (await wall.boundingBox())!.width)).toBeLessThanOrEqual(2);
+  // 一次一張：點別張，這張收起
+  const firstId = (await page.locator('[data-testid="explore-item"][data-rank="1"]').getAttribute('data-id'))!;
+  const first = page.locator(`[data-testid="explore-item"][data-id="${firstId}"]`);
+  await first.click();
+  await expect(second).toHaveAttribute('aria-expanded', 'false');
+  await expect(first.getByTestId('place-open')).toBeVisible();
+  // 再點一次（照片那裡；點展開區塊的空白處不收）收起
+  await first.locator('.pt-photo').click({ position: { x: 20, y: 60 } });
+  await expect(first.getByTestId('place-open')).toHaveCount(0);
+  // 清單：在原地展開；「詳細資料」開詳情
+  await page.getByTestId('view-list').click();
+  const row = page.getByTestId('explore-item').first();
+  await row.click();
+  await expect(page.getByTestId('explore-panel').getByTestId('place-open')).toBeVisible();
+  await page.getByTestId('place-open-detail').click();
+  await expect(page.getByTestId('detail-panel')).toBeVisible();
 });
 
 test('指到：滑鼠在清單卡片上 → 地圖那個點有光圈，卡片自己不加框；拖曳中不算', async ({ page }) => {

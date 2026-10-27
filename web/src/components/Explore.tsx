@@ -1,6 +1,7 @@
 // 電腦版右側的「探索」分頁：最上面是篩選列（shared/ui/FilterBar：搜尋、篩選、排序、照片牆／清單，套用的條件變成小晶片），一直黏在上面；
 // 「篩選」打開的抽屜蓋住整個右欄（FilterSheet），類型、地區、團體、情境、想去、等級、只看地圖畫面裡的都在裡面。
-// 清單可以切換照片牆（兩欄，PlaceTile）或清單列（PlaceRow，88px），都是兩邊共用的元件；滑鼠移上去呼叫 appStore.hover（地圖的指到），點了選中（地圖照「能不動就不動」）、打開詳情。
+// 清單可以切換照片牆（兩欄，PlaceTile）或清單列（PlaceRow，88px），都是兩邊共用的元件；滑鼠移上去呼叫 appStore.hover（地圖的指到），
+// 點了原地展開（第八輪 §13.3：照片牆橫跨兩欄、清單在原地，介紹、優缺點、「詳細資料 ›」）並選中（地圖的水滴），再點一次收起；按「詳細資料」才開詳情。想去一樣。
 // 反過來，在探索、想去分頁點地圖上的點（mapPick.ts）：清單裡有它就捲到那張卡片並選中（showInExplore），沒有就直接開詳情；不改類型、篩選（第七輪 §8.3）。
 // 清單標出的卡：選中的點、和滑鼠在地圖上指到的點（卡片自己被指到時不回頭標自己）。
 // 「想去」分頁是同一個元件（source="wish"）：只列有人按想去的點，清單換成 shared/ui/WishList（分成還沒排、已是候選、已排三段，列右邊有 ❤ 和日曆鈕「加到某天」）；
@@ -27,6 +28,7 @@ import { PlaceTile } from '../shared/ui/PlaceTile.tsx';
 import { PlaceWall } from '../shared/ui/PlaceWall.tsx';
 import { WishList } from '../shared/ui/WishList.tsx';
 import { useWishPrefs, wishPrefs } from '../shared/wishPrefs.ts';
+import { PlaceOpenBody } from '../shared/ui/PlaceOpen.tsx';
 
 export type ListSource = 'explore' | 'wish';
 
@@ -49,24 +51,39 @@ function saveView(v: View) {
   }
 }
 
-/** 點清單的一張卡：選中（openDetail 會選）、地圖照移動規則，詳情蓋在右欄（tab＝一打開就選的分頁，例如想去列的最新留言開留言分頁） */
+/** 開詳情（「詳細資料」、想去列的最新留言）：選中（openDetail 會選）、地圖照移動規則（tab＝一打開就選的分頁，例如最新留言開留言分頁） */
 function open(id: string, tab?: DetailTabId) {
   commands.focus(id);
   const s = appStore.getState();
   s.openDetail(id, s.mode === 'wish' ? 'wish' : 'explore', tab);
 }
 
+/** 點清單的一張卡：原地展開、選中（地圖的水滴，照移動規則）；已經展開的再點一次收起、取消選中 */
+function toggleOpen(id: string, openId: string | null, setOpenId: (id: string | null) => void) {
+  const s = appStore.getState();
+  if (openId === id) {
+    setOpenId(null);
+    s.select(null);
+    return;
+  }
+  setOpenId(id);
+  s.select(id);
+  commands.focus(id);
+}
+
 /** 探索的一張卡片（照片牆）或一列（清單）；想去分頁的列在 shared/ui/WishList */
-function Item({ place, rank, view, hot, status }: { place: Place; rank: number; view: View; hot: boolean; status: DayStatus }) {
+function Item({ place, rank, view, hot, status, isOpen, onToggle }: { place: Place; rank: number; view: View; hot: boolean; status: DayStatus; isOpen: boolean; onToggle: () => void }) {
   const props = {
     place,
     status,
     rank,
     hot,
     testId: 'explore-item',
-    onOpen: () => open(place.id),
+    onOpen: onToggle,
+    open: isOpen,
+    below: <PlaceOpenBody place={place} onDetail={() => open(place.id)} />,
     // 拖到左邊的聊天室＝問 AI
-    rootProps: { ...dragPlaceProps(place.id), title: '點了看詳情；拖到左邊的聊天室可以問 AI' },
+    rootProps: { ...dragPlaceProps(place.id), title: '點了展開；拖到左邊的聊天室可以問 AI' },
   };
   return view === 'list' ? <PlaceRow {...props} /> : <PlaceTile {...props} />;
 }
@@ -104,6 +121,9 @@ export function ExplorePanel({ source = 'explore' }: { source?: ListSource }) {
   const [inView, setInView] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
   const statusOf = useDayStatus();
+  // 原地展開的那張（一次一張；換分頁時 ExplorePanel 換一個，自然收起）
+  const [openId, setOpenId] = useState<string | null>(null);
+  const toggle = (id: string) => toggleOpen(id, openId, setOpenId);
 
   // 清單的計算在 shared/placeLists.ts（手機版也用）；沒選類型就是三類都列
   const { pool, list } = usePlaceList(source, filter, query, sort, inView ? bounds : null);
@@ -149,19 +169,21 @@ export function ExplorePanel({ source = 'explore' }: { source?: ListSource }) {
             surface="desktop"
             places={list}
             view={view}
-            onOpen={(id) => open(id)}
+            onOpen={toggle}
+            openId={openId}
+            onDetail={(id) => open(id)}
             onOpenComments={(id) => open(id, 'comments')}
             hotId={mapHovered ?? selectedId ?? null}
             revealId={target?.id ?? null}
             revealSeq={target?.seq}
           />
         ) : view === 'photo' ? (
-          <PlaceWall items={list} render={(p, i) => <Item place={p} rank={i + 1} view={view} hot={hotOf(p.id)} status={statusOf(p.id)} />} />
+          <PlaceWall items={list} openId={openId} render={(p, i) => <Item place={p} rank={i + 1} view={view} hot={hotOf(p.id)} status={statusOf(p.id)} isOpen={openId === p.id} onToggle={() => toggle(p.id)} />} />
         ) : (
           <ol className="ex-items">
             {list.map((p, i) => (
               <li key={p.id}>
-                <Item place={p} rank={i + 1} view={view} hot={hotOf(p.id)} status={statusOf(p.id)} />
+                <Item place={p} rank={i + 1} view={view} hot={hotOf(p.id)} status={statusOf(p.id)} isOpen={openId === p.id} onToggle={() => toggle(p.id)} />
               </li>
             ))}
           </ol>

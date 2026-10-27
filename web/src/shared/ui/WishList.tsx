@@ -23,6 +23,7 @@ import type { Place } from '../../data/types.ts';
 import { Highlights, PlaceRow, useDayStatus, type DayStatus } from './PlaceRow.tsx';
 import { PlaceTile } from './PlaceTile.tsx';
 import { PlaceWall } from './PlaceWall.tsx';
+import { PlaceOpenBody } from './PlaceOpen.tsx';
 import { VoteHeart } from './VoteHeart.tsx';
 
 export type WishSurface = 'desktop' | 'mobile';
@@ -200,10 +201,13 @@ interface ItemProps {
   lastComment: string | undefined;
   onOpen: () => void;
   onOpenComments: () => void;
+  /** 網頁：原地展開了（below 是展開的內容） */
+  open?: boolean;
+  below?: ReactNode;
 }
 
 /** 一個點：列（清單）或卡（照片牆） */
-function WishItem({ place, status, section, surface, view, hot, hint, likes, lastComment, onOpen, onOpenComments }: ItemProps) {
+function WishItem({ place, status, section, surface, view, hot, hint, likes, lastComment, onOpen, onOpenComments, open, below }: ItemProps) {
   const [adding, setAdding] = useState(false);
   const mobile = surface === 'mobile';
   const picker = adding && createPortal(<DayPicker placeId={place.id} onClose={() => setAdding(false)} testId={mobile ? 'day-picker' : 'wish-add-pop'} />, document.body);
@@ -219,7 +223,9 @@ function WishItem({ place, status, section, surface, view, hot, hint, likes, las
     hot,
     testId: mobile ? 'm-wish-open' : 'wish-open',
     onOpen,
-    rootProps: mobile ? undefined : { ...dragPlaceProps(place.id), title: '點了看詳情；拖到左邊的聊天室可以問 AI' },
+    rootProps: mobile ? undefined : { ...dragPlaceProps(place.id), title: '點了展開；拖到左邊的聊天室可以問 AI' },
+    open,
+    below,
   };
   if (view === 'photo') return li(<PlaceTile {...common} extra={<Who ids={likes} />} />);
   const extra = (
@@ -283,6 +289,9 @@ export interface WishListProps {
   onOpen: (id: string) => void;
   /** 點最新留言：開詳情的留言分頁 */
   onOpenComments: (id: string) => void;
+  /** 網頁（第八輪 §13.3）：原地展開的那個點；onDetail 是展開後的「詳細資料」。手機不給，點了照舊開整頁詳情 */
+  openId?: string | null;
+  onDetail?: (id: string) => void;
   /** 地圖「指到」或被地圖點到的點（加底色） */
   hotId?: string | null;
   /** 要把這個點露出來（它那段展開、顯示到它） */
@@ -291,7 +300,7 @@ export interface WishListProps {
   revealSeq?: number;
 }
 
-export function WishList({ surface, places, view, onOpen, onOpenComments, hotId, revealId, revealSeq }: WishListProps) {
+export function WishList({ surface, places, view, onOpen, onOpenComments, hotId, revealId, revealSeq, openId = null, onDetail }: WishListProps) {
   const candidates = useShared((s) => s.candidates);
   const itinerary = useData((s) => s.itinerary);
   const likeCount = useLikeCount();
@@ -386,6 +395,8 @@ export function WishList({ surface, places, view, onOpen, onOpenComments, hotId,
                       lastComment={lastComments.get(p.id)}
                       onOpen={() => onOpen(p.id)}
                       onOpenComments={() => onOpenComments(p.id)}
+                      open={!!onDetail && openId === p.id}
+                      below={onDetail ? <PlaceOpenBody place={p} onDetail={() => onDetail(p.id)} /> : undefined}
                     />
                   );
                 };
@@ -396,7 +407,7 @@ export function WishList({ surface, places, view, onOpen, onOpenComments, hotId,
                         {shortDayLabel(g.date)}（{weekdayZh(g.date)}）· {total}
                       </h4>
                     )}
-                    {view === 'photo' ? <PlaceWall items={items} render={(p) => <ul className="wl-tile">{mk(p)}</ul>} /> : <ol className="wl-items">{items.map(mk)}</ol>}
+                    {view === 'photo' ? <PlaceWall items={items} openId={onDetail ? openId : null} render={(p) => <ul className="wl-tile">{mk(p)}</ul>} /> : <ol className="wl-items">{items.map(mk)}</ol>}
                   </div>
                 );
               })}

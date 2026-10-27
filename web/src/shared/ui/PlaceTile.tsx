@@ -1,6 +1,7 @@
 // 照片牆的一張卡（兩邊共用）：照片高度照原圖比例（限制在範圍內），左上類型（白底膠囊）、右下 ❤＋數字；
 // 照片下面：名稱＋等級、地區・★、一行重點（已排、候選優先）。整張可以點；❤ 自己擋掉不開詳情。
 // 網頁：滑鼠移上去呼叫 appStore.hover(id)，移開 hover(null)。樣式在 ui.css。
+// 網頁第八輪（§13.3）：點了原地展開（open，below 放 PlaceOpenBody），照片牆裡橫跨兩欄（PlaceWall 的 openId）。
 
 import type { HTMLAttributes, ReactNode } from 'react';
 import { appStore } from '../../store.ts';
@@ -26,16 +27,20 @@ export interface PlaceTileProps {
   rank?: number;
   hot?: boolean;
   rootProps?: HTMLAttributes<HTMLDivElement>;
+  /** 原地展開了（網頁）：below 接在文字下面 */
+  open?: boolean;
+  below?: ReactNode;
 }
 
-export function PlaceTile({ place, status, onOpen, extra, testId, rank, hot, rootProps }: PlaceTileProps) {
+export function PlaceTile({ place, status, onOpen, extra, testId, rank, hot, rootProps, open = false, below }: PlaceTileProps) {
   const areas = useData((s) => s.areas);
   const name = place.name.zh || place.name.ja;
   const meta = placeMetaText(place, areas);
   return (
     <div
       {...rootProps}
-      className={`pt type-${place.type} ${hot ? 'flash' : ''}`}
+      className={`pt type-${place.type} ${hot ? 'flash' : ''} ${open ? 'open' : ''}`}
+      aria-expanded={below !== undefined || open ? open : undefined}
       role="button"
       tabIndex={0}
       aria-label={name}
@@ -76,6 +81,7 @@ export function PlaceTile({ place, status, onOpen, extra, testId, rank, hot, roo
         <Highlights list={rowHighlights(place, status ?? { candidate: [], scheduled: [] })} />
         {extra}
       </span>
+      {open && below}
     </div>
   );
 }

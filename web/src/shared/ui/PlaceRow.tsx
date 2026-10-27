@@ -88,16 +88,20 @@ export interface PlaceRowProps {
   hot?: boolean;
   /** 其他屬性（例如拖到聊天室的 draggable） */
   rootProps?: HTMLAttributes<HTMLDivElement>;
+  /** 原地展開了（網頁）：below 接在列下面 */
+  open?: boolean;
+  below?: ReactNode;
 }
 
-export function PlaceRow({ place, status, extra, right, onOpen, testId, rank, hot, rootProps }: PlaceRowProps) {
+export function PlaceRow({ place, status, extra, right, onOpen, testId, rank, hot, rootProps, open = false, below }: PlaceRowProps) {
   const areas = useData((s) => s.areas);
   const name = place.name.zh || place.name.ja;
   const meta = placeMetaText(place, areas);
-  return (
+  const row = (
     <div
       {...rootProps}
-      className={`pr ${hot ? 'flash' : ''}`}
+      className={`pr ${hot ? 'flash' : ''} ${open ? 'open' : ''}`}
+      aria-expanded={below !== undefined || open ? open : undefined}
       role="button"
       tabIndex={0}
       aria-label={name}
@@ -131,6 +135,14 @@ export function PlaceRow({ place, status, extra, right, onOpen, testId, rank, ho
         )}
       </span>
       <span className="pr-right">{right ?? <VoteHeart placeId={place.id} />}</span>
+    </div>
+  );
+  // 原地展開（網頁第八輪 §13.3）：列的下面接 below
+  if (!open || !below) return row;
+  return (
+    <div className="pr-open">
+      {row}
+      {below}
     </div>
   );
 }
