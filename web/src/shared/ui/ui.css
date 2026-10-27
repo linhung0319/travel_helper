@@ -43,7 +43,6 @@
 
 .ui-chip-count {
   font-family: var(--font-num);
-  font-style: italic;
   opacity: 0.8;
 }
 
@@ -93,8 +92,8 @@
 }
 
 .ui-btn-primary {
-  background: var(--ink);
-  border-color: var(--ink);
+  background: var(--indigo);
+  border-color: var(--indigo);
   color: var(--paper);
 }
 
@@ -132,12 +131,11 @@
 
 .ui-heart-count {
   font-family: var(--font-num);
-  font-style: italic;
   font-size: 0.95rem;
   color: var(--ink-2);
 }
 
-/* ---------- 類型 ---------- */
+/* ---------- 類型圓章（interaction-design §12.2）：類型色的圓、一個漢字；芥子黃（食）上用墨色字 ---------- */
 .ui-type {
   display: inline-flex;
   align-items: center;
@@ -146,18 +144,56 @@
   color: var(--ink-2);
 }
 
-.ui-type-dot {
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
+.ui-seal {
+  --seal: var(--ink-2);
+  display: inline-grid;
+  place-items: center;
   flex: 0 0 auto;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: var(--seal);
+  color: var(--paper);
+  font-family: var(--font-round);
+  font-style: normal;
+  font-weight: 900;
+  font-size: 11px;
+  line-height: 1;
 }
 
-.ui-type.on-photo {
-  padding: 3px 10px;
-  border-radius: 999px;
-  background: var(--veil);
+.ui-seal.sm {
+  width: 16px;
+  height: 16px;
+  font-size: 9px;
+}
+
+.ui-seal.lg {
+  width: 28px;
+  height: 28px;
+  font-size: 14px;
+  box-shadow: 0 0 0 2px var(--paper);
+}
+
+.ui-seal[data-type='spot'] {
+  --seal: var(--t-spot);
+}
+
+.ui-seal[data-type='restaurant'] {
+  --seal: var(--t-food);
   color: var(--ink);
+}
+
+.ui-seal[data-type='lodging'] {
+  --seal: var(--t-stay);
+}
+
+.ui-seal[data-type='station'] {
+  --seal: var(--t-station);
+}
+
+/* 照片上只放圓章（白框） */
+.ui-type.on-photo {
+  display: inline-flex;
 }
 
 /* ---------- 等級 ---------- */
@@ -170,7 +206,6 @@
   border: 1px solid var(--ink-4);
   border-radius: 999px;
   font-family: var(--font-num);
-  font-style: italic;
   font-weight: 600;
   font-size: 0.9rem;
   line-height: 1;
@@ -229,16 +264,20 @@
   color: var(--red-day);
 }
 
+/* 選到的那天芥子黃（§12.4）；週末紅字照舊 */
 .ui-dg-cell.picked {
-  background: var(--ink);
-  border-color: var(--ink);
-  color: var(--paper);
+  background: var(--mustard);
+  border-color: var(--mustard);
+  color: var(--ink);
 }
 
-.ui-dg-cell.picked .ui-dg-wd,
+.ui-dg-cell.picked .ui-dg-wd {
+  color: var(--ink);
+}
+
 .ui-dg-cell.picked.red-day,
 .ui-dg-cell.picked.red-day .ui-dg-wd {
-  color: var(--paper);
+  color: var(--red-day);
 }
 
 .ui-dg-cell.scheduled,
@@ -347,14 +386,13 @@
 
 .ui-day b {
   font-family: var(--font-num);
-  font-style: italic;
-  font-weight: 500;
+  font-weight: 700;
   font-size: 1rem;
 }
 
 .ui-day small {
   font-size: 0.8125rem;
-  color: var(--ink-3);
+  color: var(--ink-2);
 }
 
 .ui-day.all {
@@ -367,41 +405,36 @@
   color: var(--red-day);
 }
 
+/* 選中的那天芥子黃（§12.4，芥子黃只代表「選中」）；週日、假日的紅字照舊 */
 .ui-day[aria-current='true'] {
-  background: var(--ink);
-  color: var(--paper);
+  background: var(--mustard);
+  color: var(--ink);
 }
 
 .ui-day[aria-current='true'] small {
-  color: var(--on-ink-2);
+  color: var(--ink);
 }
 
-.ui-day.red-day[aria-current='true'] {
-  color: var(--bad-soft);
-}
-
-.ui-day.red-day[aria-current='true'] small {
-  color: var(--bad-soft);
-}
-
+/* 手機面板頭：在靛藍色帶裡，晶片實心白底（§12.4） */
 .ui-days.sheet {
   position: relative;
   flex: 0 0 auto;
   gap: 6px;
-  padding: 2px 12px 10px;
+  padding: 2px 12px 12px;
   overflow-x: auto;
   overflow-y: hidden;
+  background: var(--band);
 }
 
 .ui-days.sheet .ui-day {
   min-width: 52px;
-  border: 1px solid var(--line);
+  border: 0;
   background: var(--paper);
 }
 
 .ui-days.sheet .ui-day[aria-current='true'] {
-  background: var(--ink);
-  border-color: var(--ink);
+  background: var(--mustard);
+  box-shadow: 0 0 0 2px var(--paper);
 }
 
 /* 右欄：13 格平分，點的範圍高度 52px */
@@ -410,10 +443,16 @@
   gap: 1px;
 }
 
+/* 網頁右欄的日期列在白底上：晶片淡底 */
 .ui-days.side .ui-day {
   flex: 1 1 0;
   min-width: 0;
   padding: 4px 0;
+  background: var(--wash);
+}
+
+.ui-days.side .ui-day[aria-current='true'] {
+  background: var(--mustard);
 }
 
 .ui-days.side .ui-day b {
@@ -492,7 +531,6 @@
   background: var(--indigo);
   color: var(--paper);
   font-family: var(--font-num);
-  font-style: italic;
   font-size: 0.8125rem;
 }
 
@@ -590,12 +628,31 @@
 }
 
 /* 手機：第一列黏在最上面，其餘跟著內容捲走 */
+/* 在靛藍色帶裡（§12.4）：搜尋框白底，篩選、排序是半透明白 */
 .fb-mobile {
   position: sticky;
   top: 0;
   z-index: 5;
-  padding: 6px 12px;
-  border-bottom: 1px solid var(--line);
+  padding: 8px 12px;
+  background: var(--band);
+}
+
+.fb-mobile .fb-search {
+  border-color: var(--paper);
+  background: var(--paper);
+}
+
+.fb-mobile .fb-row > .ui-chip,
+.fb-mobile .fb-sort > .ui-chip {
+  border-color: var(--on-band-line);
+  background: var(--on-band-wash);
+  color: var(--paper);
+}
+
+.fb-mobile .fb-row > .ui-chip.on {
+  border-color: var(--paper);
+  background: var(--paper);
+  color: var(--ink);
 }
 
 .fb-below {
@@ -1035,7 +1092,6 @@
 
 .wl-head-n {
   font-family: var(--font-num);
-  font-style: italic;
   font-weight: 400;
   color: var(--ink-3);
 }
@@ -1295,7 +1351,6 @@
   background: var(--dim);
   color: var(--paper);
   font-family: var(--font-num);
-  font-style: italic;
   font-size: 0.85rem;
   pointer-events: none;
 }
@@ -1419,7 +1474,6 @@
 .pd-like .pd-like-count {
   padding: 0 14px 0 6px;
   font-family: var(--font-num);
-  font-style: italic;
   font-size: 1rem;
 }
 
@@ -1494,7 +1548,7 @@
   min-width: 0;
   min-height: var(--tap);
   border: 0;
-  border-bottom: 2px solid transparent;
+  border-bottom: 4px solid transparent;
   background: none;
   font: inherit;
   color: var(--ink-3);
@@ -1503,7 +1557,7 @@
 }
 
 .pd-tabs button.on {
-  border-bottom-color: var(--indigo);
+  border-bottom-color: var(--mustard);
   color: var(--ink);
   font-weight: 700;
 }
@@ -1668,7 +1722,6 @@
 
 .pv-foot [data-testid='photo-viewer-count'] {
   font-family: var(--font-num);
-  font-style: italic;
 }
 
 @media (max-width: 899px) {
@@ -1803,7 +1856,6 @@
   background: var(--ink);
   color: var(--paper);
   font-family: var(--font-num);
-  font-style: italic;
   font-size: 0.75rem;
   font-weight: 700;
   line-height: 18px;
@@ -2217,7 +2269,7 @@ button.ll-main {
   border-radius: 14px;
 }
 
-/* 這天的標題（網頁行程分頁，§6.1）：Bodoni 斜體的大日期，旁邊「週五 · 第 4 天 · 鳥羽」 */
+/* 這天的標題（網頁行程分頁，§6.1）：圓體的大日期，旁邊「週五 · 第 4 天 · 鳥羽」 */
 .day-title {
   display: flex;
   align-items: baseline;
@@ -2232,9 +2284,9 @@ button.ll-main {
 
 .day-title-date {
   font-family: var(--font-num);
-  font-style: italic;
   font-size: 1.75rem;
-  font-weight: 600;
+  font-weight: 900;
+  color: var(--indigo);
   line-height: 1.1;
 }
 

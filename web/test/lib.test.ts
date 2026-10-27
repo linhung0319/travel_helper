@@ -366,8 +366,8 @@ test('itineraryFeatures：整趟點了某天，其他天的路線 dim', () => {
 test('cardTypeLetter：類型色塊上的字', () => {
   assert.equal(cardTypeLetter('lodging'), '宿');
   assert.equal(cardTypeLetter('spot'), '景');
-  assert.equal(cardTypeLetter('restaurant'), '餐');
-  assert.equal(cardTypeLetter('station'), '站');
+  assert.equal(cardTypeLetter('restaurant'), '食');
+  assert.equal(cardTypeLetter('station'), '駅');
   assert.equal(cardTypeLetter('airport'), '機');
   assert.equal(cardTypeLetter(null), '點');
 });

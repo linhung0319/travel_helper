@@ -3,40 +3,53 @@
    這裡沒有手機才用的規則，只有兩邊共用的元件（對話框、彈窗、照片等）的基本樣式。 */
 
 :root {
-  /* 第七輪 token（設計 §2.1）：顏色只在這裡寫，其他地方一律用變數 */
-  --ink: #161a22;
-  --ink-2: #4b5262;
-  --ink-3: #8a90a0;
+  /* 第七輪 token（設計 §2.1），2026-10-27 換成「幾何和柄」配色（interaction-design §12.1）：顏色只在這裡寫，其他地方一律用變數 */
+  --ink: #1c2840;
+  --ink-2: #5d6680;
+  --ink-3: #a3a9b8;
   --ink-4: #c3c7d1;
   --paper: #ffffff;
   --line: #e6e8ee;
-  --wash: #f4f5f8;
-  --indigo: #24366e;
+  --wash: #f3f5fa;
+  --indigo: #24468a;
   /* 地圖想去圖例「已排」的例子：第一天的顏色（lib/visual.ts DAY_PALETTE[0]） */
   --day-sample: #c2255c;
-  --indigo-wash: #eaedf6;
-  --indigo-line: #c9d1ea;
-  --love: #e0475b;
-  --love-wash: #fde8eb;
-  --love-line: #f1b5be;
-  --red-day: #c0392b;
+  --indigo-wash: #e9eef8;
+  --indigo-line: #cdd6ea;
+  /* 芥子黃：只代表「選中」（選中的日期、分頁底線）；淡底和框給 AI 提議卡 */
+  --mustard: #e3a92b;
+  --mustard-wash: #fcf3de;
+  --mustard-line: #efd08a;
+  --mustard-ink: #9a6a00;
+  /* 抹茶：優點的「＋」 */
+  --matcha: #5f8a3e;
+  --matcha-wash: #edf3e6;
+  /* 櫻：住宿的淡底（例如「一泊二食」膠囊） */
+  --sakura: #c8604f;
+  --sakura-wash: #fde9e5;
+  --sakura-ink: #a8483a;
+  --love: #d8453a;
+  --love-wash: #fde9e5;
+  --love-line: #f3b9ae;
+  --red-day: #d8453a;
   --warn: #a86a12;
   --warn-bg: #fbf3e2;
   --warn-line: #e6cf95;
   --star: #d9a21b;
-  --good: #2f7a5b;
-  --good-bg: #e6f2ec;
+  --good: var(--matcha);
+  --good-bg: var(--matcha-wash);
   --bad: #b3261e;
   --bad-bg: #fdecea;
   --bad-soft: #ffb4ab;
-  --t-spot: #3f7a5a;
-  --t-food: #c46a3a;
-  --t-stay: #6e5ba8;
-  --t-station: #3b6ea8;
-  --food-wash: #fbeee5;
-  --stay-wash: #f0ecf8;
-  --stay-line: #d3c9e6;
-  --stay-mid: #9a86c4;
+  /* 類型圓章（§12.2）：景＝抹茶、食＝芥子黃（字墨色）、宿＝櫻、駅＝靛藍；和 lib/typeStyle.ts 的 TYPE_COLORS 一樣 */
+  --t-spot: #5f8a3e;
+  --t-food: #e3a92b;
+  --t-stay: #c8604f;
+  --t-station: #24468a;
+  --food-wash: var(--mustard-wash);
+  --stay-wash: var(--sakura-wash);
+  --stay-line: #f3c4ba;
+  --stay-mid: #e08f80;
   --teal: #1f6f78;
   --teal-wash: #e3f1f1;
   --teal-line: #9fcfcb;
@@ -51,8 +64,13 @@
   --halo: rgba(255, 255, 255, 0.6);
   /* 深底上的次要字（DayGrid 選中那天的小字）、照片檢視的底、拖曳中卡片的影子 */
   --on-ink-2: rgba(255, 255, 255, 0.72);
+  /* 靛藍色帶（§12.4：每個畫面頂端）：底色、上面的次要字、半透明白的按鈕底和框 */
+  --band: var(--indigo);
+  --on-band-2: rgba(255, 255, 255, 0.78);
+  --on-band-wash: rgba(255, 255, 255, 0.14);
+  --on-band-line: rgba(255, 255, 255, 0.32);
   --viewer-bg: rgba(10, 12, 18, 0.92);
-  --shadow-lift: 0 12px 28px rgba(22, 26, 34, 0.22), 0 2px 6px rgba(22, 26, 34, 0.12);
+  --shadow-lift: 0 12px 28px rgba(28, 40, 64, 0.22), 0 2px 6px rgba(28, 40, 64, 0.12);
   /* 前三名獎牌（舊的 S／A／B 徽章，之後的任務會拿掉） */
   --medal-gold: linear-gradient(145deg, #fbe08a, #d4a017);
   --medal-silver: linear-gradient(145deg, #f1f4f7, #a3b0bd);
@@ -77,9 +95,12 @@
   --tap: 44px; /* 長輩也要點得到（interaction-design §0） */
   /* 浮動層（標籤彈窗、⋯ 選單，Popover.tsx）：高過地圖、日期列、浮動列、編輯藍條、對話框，只比提示（toast 120）低 */
   --z-popover: 110;
-  --font-serif: 'Noto Serif TC', 'Songti TC', 'Noto Serif CJK TC', serif;
-  --font-num: 'Bodoni Moda', 'Didot', 'Noto Serif TC', serif;
-  font-family: 'Noto Sans TC', system-ui, -apple-system, 'Segoe UI', 'Hiragino Sans', 'Microsoft JhengHei', sans-serif;
+  /* 字型（§12.3）：標題、日期、時間、數字用圓體 Zen Maru Gothic，內文 Zen Kaku Gothic New；日本字型缺的繁中字（例如「趟」）由 Noto Sans TC 補。
+     --font-serif、--font-num 是第七輪的名字（那時是明體、Bodoni），現在兩個都是圓體 */
+  --font-round: 'Zen Maru Gothic', 'Noto Sans TC', system-ui, -apple-system, 'Hiragino Maru Gothic ProN', 'Microsoft JhengHei', sans-serif;
+  --font-serif: var(--font-round);
+  --font-num: var(--font-round);
+  font-family: 'Zen Kaku Gothic New', 'Noto Sans TC', system-ui, -apple-system, 'Segoe UI', 'Hiragino Sans', 'Microsoft JhengHei', sans-serif;
   font-size: 16px;
   line-height: 1.5;
   color: var(--ink);
@@ -505,8 +526,23 @@ a {
   display: flex;
   flex-direction: column;
   gap: 8px;
-  padding: 12px;
+  padding: 0 12px 12px;
   height: 100%;
+}
+
+/* 頂端的靛藍色帶（§12.4）：「AI 助理」 */
+.chat-head {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  min-height: 54px;
+  margin: 0 -12px 4px;
+  padding: 0 16px;
+  background: var(--band);
+  color: var(--paper);
+  font-family: var(--font-round);
+  font-weight: 900;
+  font-size: 1.05rem;
 }
 
 .placeholder {
@@ -2258,38 +2294,84 @@ button.edited {
   display: none;
 }
 
-/* 跳 3 下就停：往上彈、落下，幅度漸小（約 1.5 秒）；減少動態時不跳 */
+/* 水滴底下的影子（尖端那裡的扁橢圓，壓在水滴後面）；跳起來時縮小變淡（interaction-design §12.5） */
+.map-selected .ms-shadow {
+  position: absolute;
+  left: 8px;
+  bottom: 0;
+  z-index: -1;
+  width: 18px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--ink);
+  opacity: 0.28;
+  pointer-events: none;
+}
+
+/* 跳 3 下就停：往上彈、落下時稍微壓扁，幅度漸小（約 1.5 秒）；減少動態時不跳 */
 @keyframes ms-bounce {
   0%,
+  83%,
   100% {
     transform: translateY(0);
   }
-  14% {
-    transform: translateY(-16px);
+  12% {
+    transform: translateY(-22px);
   }
-  30% {
+  25% {
+    transform: translateY(0) scale(1.08, 0.9);
+  }
+  32% {
     transform: translateY(0);
   }
   44% {
-    transform: translateY(-8px);
+    transform: translateY(-11px);
   }
-  58% {
+  56% {
+    transform: translateY(0) scale(1.04, 0.95);
+  }
+  63% {
     transform: translateY(0);
   }
-  70% {
-    transform: translateY(-3px);
+  73% {
+    transform: translateY(-4px);
   }
-  80% {
-    transform: translateY(0);
+}
+
+@keyframes ms-shadow {
+  0%,
+  25%,
+  56%,
+  83%,
+  100% {
+    transform: scale(1);
+    opacity: 0.28;
+  }
+  12% {
+    transform: scale(0.55);
+    opacity: 0.12;
+  }
+  44% {
+    transform: scale(0.72);
+    opacity: 0.18;
+  }
+  73% {
+    transform: scale(0.9);
+    opacity: 0.24;
   }
 }
 
 .map-selected .ms-drop.bounce {
-  animation: ms-bounce 1.5s ease-out 1;
+  animation: ms-bounce 1.5s ease-in-out 1;
+}
+
+.map-selected .ms-drop.bounce ~ .ms-shadow {
+  animation: ms-shadow 1.5s ease-in-out 1;
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .map-selected .ms-drop.bounce {
+  .map-selected .ms-drop.bounce,
+  .map-selected .ms-drop.bounce ~ .ms-shadow {
     animation: none;
   }
 }
@@ -2392,34 +2474,58 @@ button.edited {
   min-height: 0;
 }
 
+/* 分頁在靛藍色帶裡（§12.4）：白字，選中的分頁加芥子黃底線 */
 .side-tabs {
   display: flex;
   gap: 4px;
-  padding: 10px 12px 0;
-  border-bottom: 1px solid var(--line);
+  padding: 6px 12px 0;
+  background: var(--band);
   flex: 0 0 auto;
 }
 
 .side-tab {
+  position: relative;
   border: 0;
   background: none;
   padding: 8px 14px;
-  min-height: 42px;
-  border-bottom: 3px solid transparent;
-  font-weight: 600;
-  color: var(--muted);
+  min-height: 48px;
+  font-family: var(--font-round);
+  font-weight: 700;
+  color: var(--on-band-2);
 }
 
 .side-tab.on {
-  color: var(--fg);
-  border-bottom-color: var(--fg);
+  color: var(--paper);
+}
+
+.side-tab.on::after {
+  content: '';
+  position: absolute;
+  left: 10px;
+  right: 10px;
+  bottom: 6px;
+  height: 4px;
+  border-radius: 999px;
+  background: var(--mustard);
 }
 
 .side-tabs-end {
   margin-left: auto;
   display: flex;
   align-items: center;
-  padding-bottom: 4px;
+  padding-bottom: 6px;
+}
+
+.side-tabs .account-button {
+  color: var(--paper);
+}
+
+/* 色帶上的頭像用芥子黃底，和靛藍分得開 */
+.side-tabs .account-button .avatar {
+  background: var(--mustard);
+  color: var(--ink);
+  font-family: var(--font-round);
+  font-weight: 900;
 }
 
 /* 頭像選單的按鈕：頭像加小箭頭，44px 高 */

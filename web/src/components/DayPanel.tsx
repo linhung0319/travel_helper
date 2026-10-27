@@ -91,7 +91,7 @@ function goWish() {
   showList('wish');
 }
 
-/** 某一天最上面一列（§6.1）：Bodoni 斜體的大日期，旁邊「週五 · 第 4 天 · 鳥羽」；右邊「問 AI」和主要按鈕「編輯」。換天用上面的日期列 */
+/** 某一天最上面一列（§6.1）：圓體的大日期，旁邊「週五 · 第 4 天 · 鳥羽」；右邊「問 AI」和主要按鈕「編輯」。換天用上面的日期列 */
 function DayHead({ day }: { day: string }) {
   const itinerary = useData((s) => s.itinerary);
   const byId = useData((s) => s.byId);

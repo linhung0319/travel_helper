@@ -12,17 +12,17 @@ import { Icon } from '../../components/Icon.tsx';
 import { askAboutPlace } from '../../uiStore.ts';
 import { askAiPrompts } from '../askAiPrompts.ts';
 import { cardTypeLetter } from '../../lib/planView.ts';
-import { TYPE_COLORS } from '../../lib/typeStyle.ts';
+import { typeSwatch } from '../../lib/typeStyle.ts';
 import { photoCandidates } from '../../lib/photos.ts';
 import type { Place } from '../../data/types.ts';
 import { Button } from './Button.tsx';
 
 /** 車站、機場、使用者加的點：中性灰 */
-const NEUTRAL_COLOR = '#6e7781';
+const NEUTRAL_COLOR = '#5d6680';
 
-/** 沒有照片時縮圖的底色：景點、住宿、餐廳用類型色，其他中性灰（車站是藍底） */
-const fallbackColor = (type: Place['type'] | 'airport' | null | undefined) =>
-  type === 'spot' || type === 'lodging' || type === 'restaurant' || type === 'station' ? TYPE_COLORS[type] : NEUTRAL_COLOR;
+/** 沒有照片時縮圖的底色和字色：景點、住宿、餐廳、車站用類型色（餐廳的字是墨色），其他中性灰 */
+const fallbackSwatch = (type: Place['type'] | 'airport' | null | undefined) =>
+  type === 'spot' || type === 'lodging' || type === 'restaurant' || type === 'station' ? typeSwatch(type) : { background: NEUTRAL_COLOR, color: '#ffffff' };
 
 /** 介紹的前兩句（以。！？切；沒有句號就整段）；沒有介紹是空字串 */
 export function firstSentences(text: string | null | undefined, n = 2): string {
@@ -104,7 +104,7 @@ function CardThumb({ place, fallbackType, mark, size }: Pick<TripCardProps, 'pla
       {has && place ? (
         <Photo place={place} width={Math.max(200, size * 3)} />
       ) : (
-        <span className="tc-thumb-fallback" style={{ background: fallbackColor(type) }} data-testid="item-type" aria-hidden>
+        <span className="tc-thumb-fallback" style={fallbackSwatch(type)} data-testid="item-type" aria-hidden>
           {cardTypeLetter(type)}
         </span>
       )}

@@ -10,7 +10,7 @@ import { Photo } from '../../components/Photo.tsx';
 import { displayName } from '../../data/normalize.ts';
 import { photoCandidates } from '../../lib/photos.ts';
 import { cardTypeLetter } from '../../lib/planView.ts';
-import { TYPE_COLORS } from '../../lib/typeStyle.ts';
+import { typeSwatch } from '../../lib/typeStyle.ts';
 import { placeDayStatus } from '../../lib/wishlist.ts';
 import type { Area, Place } from '../../data/types.ts';
 import { rowHighlights, type RowHighlight } from '../rowHighlights.ts';
@@ -61,7 +61,7 @@ export function Highlights({ list }: { list: RowHighlight[] }) {
 function Square({ place }: { place: Place }) {
   if (!photoCandidates(place.photos).length) {
     return (
-      <span className="pr-thumb pr-thumb-fallback" style={{ background: TYPE_COLORS[place.type] }} data-testid="m-thumb-fallback" aria-hidden>
+      <span className="pr-thumb pr-thumb-fallback" style={typeSwatch(place.type)} data-testid="m-thumb-fallback" aria-hidden>
         {cardTypeLetter(place.type)}
       </span>
     );

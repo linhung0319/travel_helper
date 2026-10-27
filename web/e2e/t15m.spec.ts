@@ -1499,8 +1499,8 @@ test('移到第幾天：4×3 格子、紅字、沒有「假日」', async ({ pag
   await expect(dlg.locator('[data-pick-day="2027-02-10"]')).not.toHaveClass(/red-day/);
   await expect(dlg.locator('[data-pick-day="2027-02-06"]')).toContainText('六');
   await expect(dlg.locator('[data-pick-day="2027-02-10"]')).toContainText('三');
-  await expect(dlg.locator('[data-pick-day="2027-02-06"] .ui-dg-wd')).toHaveCSS('color', 'rgb(192, 57, 43)');
-  await expect(dlg.locator('[data-pick-day="2027-02-10"] .ui-dg-wd')).not.toHaveCSS('color', 'rgb(192, 57, 43)');
+  await expect(dlg.locator('[data-pick-day="2027-02-06"] .ui-dg-wd')).toHaveCSS('color', 'rgb(216, 69, 58)');
+  await expect(dlg.locator('[data-pick-day="2027-02-10"] .ui-dg-wd')).not.toHaveCSS('color', 'rgb(216, 69, 58)');
   const cur = dlg.locator('[data-pick-day="2027-02-03"]');
   await expect(cur).toBeDisabled();
   await expect(cur).toContainText('現在');
@@ -1990,12 +1990,13 @@ test('這天的標題：Bodoni 大日期和「週三 · 第 2 天 · 地區」�
   await expect(page.getByTestId('day-summary')).toContainText('出發');
 });
 
-test('編輯條：墨色底，「編輯 2/3（三）」、快照、完成；編輯中日期列換成編輯條、不能換天；編輯按鈕是墨色主要按鈕', async ({ page }) => {
+test('編輯條：墨色底，「編輯 2/3（三）」、快照、完成；編輯中日期列換成編輯條、不能換天；編輯按鈕是靛藍主要按鈕（interaction-design §12.4）', async ({ page }) => {
   await ready(page);
   await showDay(page, '2027-02-03');
   const rgb = (el: Locator) => el.evaluate((e) => getComputedStyle(e).backgroundColor);
   const ink = await page.evaluate(() => { const d = document.createElement('i'); d.style.background = 'var(--ink)'; document.body.append(d); const c = getComputedStyle(d).backgroundColor; d.remove(); return c; });
-  expect(await rgb(page.getByTestId('planning-toggle'))).toBe(ink);
+  const indigo = await page.evaluate(() => { const d = document.createElement('i'); d.style.background = 'var(--indigo)'; document.body.append(d); const c = getComputedStyle(d).backgroundColor; d.remove(); return c; });
+  expect(await rgb(page.getByTestId('planning-toggle'))).toBe(indigo);
   await expect(page.getByTestId('m-day-strip')).toBeVisible();
   await enterPlanning(page);
   const bar = page.getByTestId('planning-bar');

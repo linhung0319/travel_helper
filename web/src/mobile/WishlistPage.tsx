@@ -5,7 +5,7 @@
 
 import { TYPE_LABELS } from '../lib/filter.ts';
 import { EXPLORE_TYPES } from '../lib/explore.ts';
-import { TYPE_COLORS } from '../lib/typeStyle.ts';
+import { TypeSeal } from '../shared/ui/TypeLabel.tsx';
 import { useWishList } from '../shared/placeLists.ts';
 import { FilterBar } from '../shared/ui/FilterBar.tsx';
 import { WishList } from '../shared/ui/WishList.tsx';
@@ -38,7 +38,7 @@ export function WishlistPage() {
             </button>
             {EXPLORE_TYPES.map((t) => (
               <button key={t} type="button" role="tab" aria-selected={t === type} aria-pressed={t === type} className={t === type ? 'on' : ''} onClick={() => setWish({ type: t })} data-testid={`m-wish-type-${t}`}>
-                <i className="ui-type-dot" style={{ background: TYPE_COLORS[t] }} aria-hidden="true" /> {TYPE_LABELS[t]} {counts[t]}
+                <TypeSeal type={t} size="sm" /> {TYPE_LABELS[t]} {counts[t]}
               </button>
             ))}
           </div>

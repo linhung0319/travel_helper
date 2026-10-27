@@ -23,7 +23,7 @@ import {
 } from '../lib/labels.ts';
 import { nearbyPlaces } from '../lib/nearby.ts';
 import { dayLabel, shortDayLabel } from '../lib/trip.ts';
-import { TYPE_COLORS } from '../lib/typeStyle.ts';
+import { TypeSeal } from '../shared/ui/TypeLabel.tsx';
 import { Icon } from './Icon.tsx';
 import { placeBadges } from '../lib/badges.ts';
 import type { Place } from '../data/types.ts';
@@ -361,7 +361,7 @@ export function NearbySection({ place, onPick }: { place: Place; onPick?(id: str
                   onClick={() => find(it.place.id)}
                   onMouseEnter={() => appStore.getState().hover(it.place.id)}
                 >
-                  <i className="ui-type-dot" style={{ background: TYPE_COLORS[type] }} aria-hidden="true" /> {displayName(it.place.name, it.place.id)}
+                  <TypeSeal type={type} size="sm" /> {displayName(it.place.name, it.place.id)}
                 </button>
                 <span className="muted small ic-text">
                   <Icon name="walk" size={16} /> {it.minutes} 分{it.estimated ? '（估算）' : ''}

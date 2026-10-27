@@ -103,7 +103,7 @@
 }
 
 .m-tab.on {
-  color: var(--fg);
+  color: var(--indigo);
   font-weight: 700;
 }
 
@@ -620,11 +620,14 @@
 }
 
 /* 把手：看起來是一小條，點的範圍 44px 高 */
+/* 把手和日期列合起來是面板頂端的靛藍色帶（§12.4） */
 .m-trip-grab {
   flex: 0 0 auto;
   height: var(--tap);
   display: grid;
   place-items: center;
+  border-radius: 20px 20px 0 0;
+  background: var(--band);
   touch-action: none;
   cursor: grab;
 }
@@ -633,7 +636,7 @@
   width: 40px;
   height: 5px;
   border-radius: 999px;
-  background: var(--ink-4);
+  background: var(--on-band-2);
 }
 
 .m-trip-body {
@@ -672,7 +675,7 @@
   bottom: calc(100% * var(--m-sheet-mid) + 10px);
 }
 
-/* 這天的標題（固定在面板上面，往下捲也看得到）：Bodoni 斜體的大日期、「週五 · 第 4 天 · 鳥羽」、✦ 問 AI、編輯 */
+/* 這天的標題（固定在面板上面，往下捲也看得到）：圓體的大日期、「週五 · 第 4 天 · 鳥羽」、✦ 問 AI、編輯 */
 .m-dayhead {
   position: sticky;
   top: 0;
@@ -699,9 +702,9 @@
 .m-dayhead-date {
   flex: 0 0 auto;
   font-family: var(--font-num);
-  font-style: italic;
   font-size: 1.75rem;
-  font-weight: 600;
+  font-weight: 900;
+  color: var(--indigo);
   line-height: 1.1;
 }
 

@@ -24,7 +24,7 @@ import { dropOnCardProps, dropOnEndProps, usePlanDrag } from './planDrag.ts';
 import type { DragSource } from '../lib/dropIntent.ts';
 import { openDialog, toggleExpandedItem } from '../uiStore.ts';
 import { cardTime, cardTypeLetter, dayBar, daySummary, findItemRef, formatStay, formatTravelTotal, hourTicks, isBarSelected, shownWarnings, stopMarks, timelineRows, waitNote, WARNING_ICONS, warningsByItem, type BarSegment, type TimelineRow } from '../lib/planView.ts';
-import { TYPE_COLORS } from '../lib/typeStyle.ts';
+import { typeSwatch } from '../lib/typeStyle.ts';
 import type { Place } from '../data/types.ts';
 import { AvatarStack, PlaceChip } from './common.tsx';
 import { LegRow } from './LegRow.tsx';
@@ -41,20 +41,20 @@ export interface Marks {
 }
 
 /** 車站、機場、使用者加的點、沒有資料的點：中性灰 */
-const NEUTRAL_COLOR = '#6e7781';
+const NEUTRAL_COLOR = '#5d6680';
 
 /** 縮圖邊長（網頁 48px；手機 56px） */
 const THUMB = 48;
 
-/** 類型色塊、編號圓圈的顏色：景點、住宿、餐廳用類型色，其他中性灰 */
-function typeColor(type: Place['type'] | null | undefined): string {
-  return type === 'spot' || type === 'lodging' || type === 'restaurant' ? TYPE_COLORS[type] : NEUTRAL_COLOR;
+/** 類型色塊、編號圓圈的底色和字色：景點、住宿、餐廳、車站用類型色（餐廳的字是墨色），其他中性灰 */
+function typeColor(type: Place['type'] | null | undefined): { background: string; color: string } {
+  return type === 'spot' || type === 'lodging' || type === 'restaurant' || type === 'station' ? typeSwatch(type) : { background: NEUTRAL_COLOR, color: '#ffffff' };
 }
 
 /** 資料卡（和候選卡）左邊的類型色塊：宿、景、餐、站、機、點 */
 export function CardType({ type }: { type: Place['type'] | 'airport' | null }) {
   return (
-    <span className="tc-type-tile" style={{ background: typeColor(type === 'airport' ? null : type) }} aria-hidden data-testid="item-type">
+    <span className="tc-type-tile" style={typeColor(type === 'airport' ? null : type)} aria-hidden data-testid="item-type">
       {cardTypeLetter(type)}
     </span>
   );
@@ -67,7 +67,7 @@ function Mark({ entry, marks }: { entry: TimelineEntry; marks: Marks }) {
   if (!label) return null;
   const type = entry.placeId ? byId.get(entry.placeId)?.type : undefined;
   return (
-    <span className="tl-mark" style={{ background: typeColor(type) }} data-testid="tl-mark">
+    <span className="tl-mark" style={typeColor(type)} data-testid="tl-mark">
       {label}
     </span>
   );
@@ -695,7 +695,7 @@ export function DayBar({ plan, selected, compact = false }: { plan: DayPlan; sel
                 width: `${w}%`,
                 top,
                 height: h,
-                ...(s.kind === 'spot' || s.kind === 'restaurant' ? { background: TYPE_COLORS[s.kind] } : {}),
+                ...(s.kind === 'spot' || s.kind === 'restaurant' ? typeSwatch(s.kind) : {}),
               }}
               title={`${BAR_LABELS[s.kind]} ${s.from}–${s.to}`}
               aria-label={`${BAR_LABELS[s.kind]} ${s.from}–${s.to}`}

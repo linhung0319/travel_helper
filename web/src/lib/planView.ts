@@ -400,9 +400,9 @@ export function mapMark(
   return marks.includes('0') ? '0' : marks.join('・');
 }
 
-const TYPE_LETTERS: Record<PlaceType | 'airport', string> = { lodging: '宿', spot: '景', restaurant: '餐', station: '站', airport: '機' };
+const TYPE_LETTERS: Record<PlaceType | 'airport', string> = { lodging: '宿', spot: '景', restaurant: '食', station: '駅', airport: '機' };
 
-/** 資料卡左邊類型色塊上的字：宿、景、餐、站、機；使用者加的點和其他是「點」 */
+/** 資料卡左邊類型色塊上的字：宿、景、食、駅、機；使用者加的點和其他是「點」 */
 export function cardTypeLetter(type: PlaceType | 'airport' | null): string {
   return (type && TYPE_LETTERS[type]) ?? '點';
 }

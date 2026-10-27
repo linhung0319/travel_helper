@@ -1,4 +1,4 @@
-// 等級：細框裡一個 Bodoni 斜體字母（S 是 --indigo 色，其他墨色）。樣式在 ui.css。
+// 等級：細框裡一個 圓體字母（S 是 --indigo 色，其他墨色）。樣式在 ui.css。
 
 import type { Tier } from '../../data/types.ts';
 

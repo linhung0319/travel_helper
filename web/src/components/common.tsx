@@ -5,7 +5,7 @@ import { appStore } from '../store.ts';
 import { commands } from '../appCommands.ts';
 import { useData, useShared } from '../hooks.ts';
 import { memberName } from '../sharedStore.ts';
-import { TYPE_COLORS } from '../lib/typeStyle.ts';
+import { TypeSeal } from '../shared/ui/TypeLabel.tsx';
 import { Icon } from './Icon.tsx';
 
 /** 對話框：手機從下面滑上來、電腦在中間。Esc、點背景關掉 */
@@ -57,7 +57,7 @@ export function PlaceChip({ id, onRemove }: { id: string; onRemove?: () => void 
           }
         }}
       >
-        {p && <i className="ui-type-dot" style={{ background: TYPE_COLORS[p.type] }} aria-hidden="true" />}
+        {p && <TypeSeal type={p.type} size="sm" />}
         {name}
       </button>
       {onRemove && (

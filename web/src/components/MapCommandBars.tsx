@@ -8,7 +8,7 @@ import { useApp, useData } from '../hooks.ts';
 import { describeChanges } from '../lib/overlays.ts';
 import { placeBadges } from '../lib/badges.ts';
 import { TierMark } from '../shared/ui/TierMark.tsx';
-import { TYPE_COLORS } from '../lib/typeStyle.ts';
+import { TypeSeal } from '../shared/ui/TypeLabel.tsx';
 import { Icon } from './Icon.tsx';
 
 function ProposalBar() {
@@ -60,7 +60,7 @@ function CompareBar() {
               <span className="compare-letter">{String.fromCharCode(65 + i)}</span>
               <span className="compare-name">
                 <TierMark tier={p.tier} />
-                <i className="ui-type-dot" style={{ background: TYPE_COLORS[p.type] }} aria-hidden="true" /> {p.name.zh || p.name.ja}
+                <TypeSeal type={p.type} size="sm" /> {p.name.zh || p.name.ja}
               </span>
               <span className="compare-badges small">{placeBadges(p, 3).map((b) => b.label).join('・') || '—'}</span>
             </button>

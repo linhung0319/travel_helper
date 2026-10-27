@@ -14,15 +14,21 @@
   overflow: hidden;
 }
 
+/* 頂端的靛藍色帶（§12.4） */
 .m-chat-head {
   flex: 0 0 auto;
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 8px;
-  min-height: var(--tap);
+  min-height: 56px;
   padding: 4px 16px;
-  border-bottom: 1px solid var(--line);
+  background: var(--band);
+  color: var(--paper);
+}
+
+.m-chat-head .muted {
+  color: var(--on-band-2);
 }
 
 /* ---------- 共用：訊息列表＋輸入框 ---------- */
@@ -152,12 +158,13 @@
 }
 
 /* 提議卡：＋ 是藍色（地圖上新加的點也是藍色），－ 是紅色刪除線 */
+/* AI 提議卡：芥子黃淡底、框（§12.1） */
 .m-chat-proposal {
   align-self: stretch;
   padding: 10px 12px;
-  border: 1px solid var(--accent);
+  border: 1.5px solid var(--mustard-line);
   border-radius: var(--radius);
-  background: var(--info-bg);
+  background: var(--mustard-wash);
   min-width: 0;
 }
 
@@ -167,11 +174,12 @@
 }
 
 .m-chat-proposal-line.add {
-  color: var(--accent);
+  color: var(--matcha);
+  font-weight: 700;
 }
 
 .m-chat-proposal-line.remove {
-  color: var(--bad);
+  color: var(--ink-3);
   text-decoration: line-through;
 }
 
