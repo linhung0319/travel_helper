@@ -1800,30 +1800,41 @@ test('網頁想去：收合的段落不會因為地圖點擊或投票被改掉�
 
 // ---------- 第七輪 Task 7：詳情的分頁、動作列、浮在地圖上、放大照片 ----------
 
-test('詳情分頁：簡介、交通、評論、留言', async ({ page }) => {
+test('詳情分頁：簡介、位置、評論、留言；連結、來源在評論最後（§13.4）', async ({ page }) => {
   await ready(page);
   await openDetail(page, 'ise-naiku');
   const detail = page.getByTestId('detail-panel');
   const tabs = detail.locator('[data-testid^="detail-tab-"]');
   await expect(tabs).toHaveCount(4);
-  await expect(tabs).toHaveText([/簡介/, /交通/, /評論/, /留言/]);
-  await detail.getByTestId('detail-tab-transport').click();
+  await expect(tabs).toHaveText([/簡介/, /位置/, /評論/, /留言/]);
+  await detail.getByTestId('detail-tab-location').click();
   await expect(detail).toContainText('伊勢市宇治館町1');
   await expect(detail.getByTestId('detail-find-on-map')).toBeVisible();
   await detail.getByTestId('detail-tab-reviews').click();
   await expect(detail.locator('.ratings-box')).toBeVisible();
+  // 評分 → 我們的評分 → 連結 → 來源
+  await expect(detail.locator('.pd-body > section')).toHaveCount(3);
+  await expect(detail.locator('.pd-body > section').last()).toHaveClass(/sources/);
+  await expect(detail.locator('.pd-body h3').filter({ hasText: '連結' })).toBeVisible();
   await detail.getByTestId('detail-tab-comments').click();
   await expect(detail.getByTestId('comment-input')).toBeVisible();
   // 簡介沒有暫時放的留言
   await detail.getByTestId('detail-tab-intro').click();
   await expect(detail.getByTestId('comment-input')).toHaveCount(0);
+  // 簡介沒有連結、來源
+  await expect(detail.locator('.pd-body .sources')).toHaveCount(0);
+  await expect(detail.locator('.pd-body h3').filter({ hasText: /^連結/ })).toHaveCount(0);
 });
 
-test('詳情：車站只有簡介和交通', async ({ page }) => {
+test('詳情：車站只有簡介和位置，來源在位置最後', async ({ page }) => {
   await ready(page);
   const id = await page.evaluate(() => [...(window as any).__th.dataStore.getState().byId.values()].find((p: any) => p.type === 'station').id);
   await openDetail(page, id);
-  await expect(page.getByTestId('detail-panel').locator('[data-testid^="detail-tab-"]')).toHaveCount(2);
+  const detail = page.getByTestId('detail-panel');
+  await expect(detail.locator('[data-testid^="detail-tab-"]')).toHaveText([/簡介/, /位置/]);
+  await expect(detail.locator('.pd-body .sources')).toHaveCount(0);
+  await detail.getByTestId('detail-tab-location').click();
+  await expect(detail.locator('.pd-body > :last-child')).toHaveClass(/sources/);
 });
 
 test('詳情：留言分頁可以留言', async ({ page }) => {

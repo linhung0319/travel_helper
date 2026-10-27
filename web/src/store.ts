@@ -8,7 +8,7 @@ import type { Itinerary, TravelMode } from '@travel-helper/engine/types';
 import type { Change } from '@travel-helper/engine';
 
 /** 詳情的分頁（簡介、交通、評論、留言；車站只有前兩個） */
-export type DetailTabId = 'intro' | 'transport' | 'reviews' | 'comments';
+export type DetailTabId = 'intro' | 'location' | 'reviews' | 'comments';
 
 /** 詳情從哪裡打開：map＝行程（網頁浮在地圖上）、explore／wish＝右欄的清單（返回回到清單） */
 export type DetailFrom = 'map' | 'explore' | 'wish';

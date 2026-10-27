@@ -31,8 +31,8 @@ import { TierMark } from './TierMark.tsx';
 import { TypeLabel } from './TypeLabel.tsx';
 import { VoteHeart } from './VoteHeart.tsx';
 
-export const DETAIL_TABS = ['intro', 'transport', 'reviews', 'comments'] as const;
-export const DETAIL_TAB_LABELS: Record<DetailTabId, string> = { intro: '簡介', transport: '交通', reviews: '評論', comments: '留言' };
+export const DETAIL_TABS = ['intro', 'location', 'reviews', 'comments'] as const;
+export const DETAIL_TAB_LABELS: Record<DetailTabId, string> = { intro: '簡介', location: '位置', reviews: '評論', comments: '留言' };
 
 /** 圓點最多幾顆；超過改寫「3 / 12」 */
 const MAX_DOTS = 5;
@@ -190,8 +190,8 @@ function ActionRow({ place, desktop, schedule }: { place: Place; desktop: boolea
   );
 }
 
-/** 交通分頁：地址、最近的車站、怎麼去、附近的點；locator 是手機的小地圖，網頁沒給就畫「在地圖上找到它」 */
-function TransportTab({ place, locator, onPick }: { place: Place; locator?: ReactNode; onPick?(id: string): void }) {
+/** 位置分頁（第八輪前叫「交通」，§13.4）：地址、最近的車站、怎麼去、附近的點；locator 是手機的小地圖，網頁沒給就畫「在地圖上找到它」 */
+function LocationTab({ place, locator, onPick }: { place: Place; locator?: ReactNode; onPick?(id: string): void }) {
   const byId = useData((s) => s.byId);
   const raw = place.raw;
   const station = obj(raw.nearestStation);
@@ -259,9 +259,9 @@ export interface PlaceDetailProps {
   onDay?(date: string): void;
   /** 簡介要不要畫問 AI（手機編輯中從行程打開時藏起來） */
   askAi?: boolean;
-  /** 交通分頁的附近：點名稱改做這件事（手機：換成那個點的詳情）；沒給＝地圖移過去 */
+  /** 位置分頁的附近：點名稱改做這件事（手機：換成那個點的詳情）；沒給＝地圖移過去 */
   onPickNearby?(id: string): void;
-  /** 交通分頁最上面的東西（手機：小地圖）；沒給＝「在地圖上找到它」按鈕 */
+  /** 位置分頁最上面的東西（手機：小地圖）；沒給＝「在地圖上找到它」按鈕 */
   locator?: ReactNode;
   /** 手機：頂端列和照片上的「‹」 */
   onBack?(): void;
@@ -273,7 +273,7 @@ export function PlaceDetail({ place, surface, from, initialTab, onDay, askAi = t
   const areas = useData((s) => s.areas);
   const planning = useApp((s) => s.planning);
   const comments = useCommentCount(place.id);
-  const tabs = DETAIL_TABS.filter((t) => place.type !== 'station' || t === 'intro' || t === 'transport');
+  const tabs = DETAIL_TABS.filter((t) => place.type !== 'station' || t === 'intro' || t === 'location');
   const [tab, setTab] = useState<DetailTabId>(initialTab && tabs.includes(initialTab) ? initialTab : 'intro');
   const [viewer, setViewer] = useState<number | null>(null);
   const heroRef = useRef<HTMLDivElement>(null);
@@ -356,12 +356,23 @@ export function PlaceDetail({ place, surface, from, initialTab, onDay, askAi = t
             )}
             <PlaceIntro place={place} fromTrip={fromTrip} onDay={onDay} askAi={askAi} />
             <PlaceFacts place={place} />
+          </>
+        )}
+        {tab === 'location' && <LocationTab place={place} locator={locator} onPick={onPickNearby} />}
+        {/* 連結、來源在評論最後（§13.4）；車站沒有評論，放在位置最後 */}
+        {tab === 'location' && place.type === 'station' && (
+          <>
             <LinksSection place={place} />
             <SourcesSection place={place} />
           </>
         )}
-        {tab === 'transport' && <TransportTab place={place} locator={locator} onPick={onPickNearby} />}
-        {tab === 'reviews' && <PlaceReviews place={place} />}
+        {tab === 'reviews' && (
+          <>
+            <PlaceReviews place={place} />
+            <LinksSection place={place} />
+            <SourcesSection place={place} />
+          </>
+        )}
         {tab === 'comments' && <Comments target={place.id} bare />}
         {usesRakuten(place) && (
           <p className="credit small">

@@ -352,7 +352,7 @@ test('詳情：整頁、返回後捲動位置不變', async ({ page }) => {
   expect((await detail.getByTestId('detail-dislike').boundingBox())!.height).toBeGreaterThanOrEqual(44);
   await expect(detail.getByTestId('detail-add').getByTestId('add-to-day')).toBeVisible(); // 動作列的主要按鈕，從哪打開都有
   // 分頁：簡介、交通、評論、留言
-  for (const t of ['intro', 'transport', 'reviews', 'comments']) await expect(detail.getByTestId(`detail-tab-${t}`)).toBeVisible();
+  for (const t of ['intro', 'location', 'reviews', 'comments']) await expect(detail.getByTestId(`detail-tab-${t}`)).toBeVisible();
   // 探索沒有被卸載，只是蓋住
   await expect(page.getByTestId('m-feed')).toHaveCount(1);
   expect(await scrollsSideways(page)).toBe(false);
@@ -390,7 +390,7 @@ test('詳情：有問 AI、點小地圖跳到行程', async ({ page }) => {
   await expect(detail).toHaveCount(0);
   await page.evaluate((id) => (window as any).__thMobile.getState().openPlace(id, 'ai'), id);
 
-  await detail.getByTestId('detail-tab-transport').click();
+  await detail.getByTestId('detail-tab-location').click();
   const mini = detail.getByTestId('m-detail-minimap');
   await expect(mini).toBeVisible();
   await mini.click();
@@ -1330,13 +1330,13 @@ test('想去：照片牆的卡片有誰想去，沒有留言也沒有加到某�
 
 // ---------- 第七輪 Task 7：詳情的頂端列、複製日文名、留言分頁 ----------
 
-test('詳情分頁：簡介、交通、評論、留言（兩邊同一組 testid）', async ({ page }) => {
+test('詳情分頁：簡介、位置、評論、留言（兩邊同一組 testid）', async ({ page }) => {
   await ready(page);
   await page.evaluate(() => (window as any).__thMobile.getState().openPlace('ise-naiku', 'explore'));
   const detail = page.getByTestId('m-detail');
   const tabs = detail.locator('[data-testid^="detail-tab-"]');
-  await expect(tabs).toHaveText([/簡介/, /交通/, /評論/, /留言/]);
-  await detail.getByTestId('detail-tab-transport').click();
+  await expect(tabs).toHaveText([/簡介/, /位置/, /評論/, /留言/]);
+  await detail.getByTestId('detail-tab-location').click();
   await expect(detail).toContainText('伊勢市宇治館町1');
 });
 
@@ -1534,7 +1534,7 @@ test('詳情的「在地圖上看」：排在某天的點 → 選那天、選中
   await ready(page);
   await page.evaluate(() => (window as any).__thMobile.getState().openPlace('shima-la-mer', 'trip'));
   const detail = page.getByTestId('m-detail');
-  await detail.getByTestId('detail-tab-transport').click();
+  await detail.getByTestId('detail-tab-location').click();
   await detail.getByTestId('m-detail-minimap').click();
   await expect(page.getByTestId('m-detail')).toHaveCount(0);
   await expect(page.getByTestId('m-day-2027-02-03')).toHaveAttribute('aria-current', 'true');
@@ -1552,7 +1552,7 @@ test('詳情的「在地圖上看」：沒排的點 → 整趟、選中；換分
   });
   await page.evaluate((x) => (window as any).__thMobile.getState().openPlace(x, 'explore'), id);
   const detail = page.getByTestId('m-detail');
-  await detail.getByTestId('detail-tab-transport').click();
+  await detail.getByTestId('detail-tab-location').click();
   await detail.getByTestId('m-detail-minimap').click();
   await expect(page.getByTestId('m-tab-trip')).toHaveAttribute('aria-current', 'page');
   await expect(page.getByTestId('m-day-all')).toHaveAttribute('aria-current', 'true');

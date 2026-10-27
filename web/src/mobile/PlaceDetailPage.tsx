@@ -1,6 +1,6 @@
 // 手機版的資料點詳情（第六輪 §3.3，第七輪 §7）：像點進 IG 的帳號，整頁蓋在分頁上面（原本的分頁不卸載，返回時捲動位置不變）。
 // 內容（照片輪播、名稱、動作列、簡介／交通／評論／留言四個分頁）是兩邊共用的 shared/ui/PlaceDetail；這裡只管：整頁的外框、返回（瀏覽器上一頁也一樣，見 mobileStore）、
-// 交通分頁的小地圖（另開的一張不能互動的 MapLibre，標記是選中的數字水滴的樣子）：點了「在地圖上看」切到行程（第七輪 §8.3）——
+// 位置分頁的小地圖（另開的一張不能互動的 MapLibre，標記是選中的數字水滴的樣子）：點了「在地圖上看」切到行程（第七輪 §8.3）——
 // 排在某天＝選那天、選中那張卡；沒排＝整趟、選中這個點。附近的點換成那個點的詳情。
 // 捲過照片後出現白色頂端列（‹、名稱、❤），分頁列接在它下面。
 
@@ -39,7 +39,7 @@ export function showOnTripMap(placeId: string) {
   commands.focus(placeId);
 }
 
-/** 交通分頁的小地圖：不能拖、不能縮放，標記是數字水滴的樣子（類型圖示）；點了到行程分頁的地圖（showOnTripMap） */
+/** 位置分頁的小地圖：不能拖、不能縮放，標記是數字水滴的樣子（類型圖示）；點了到行程分頁的地圖（showOnTripMap） */
 function MiniMap({ place }: { place: Place }) {
   const ref = useRef<HTMLDivElement>(null);
   const [lon, lat] = place.coords;
