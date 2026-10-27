@@ -94,7 +94,8 @@ travel_helper/
 | `hoveredId` | `string \| null` | 地圖上要閃的點（滑鼠移過去、圖片牆點了、聊天室的地點標籤） |
 | `previewId` | `string \| null` | 小卡片 |
 | `detailId` | `string \| null` | 詳情面板（車站的詳情裡有時刻表） |
-| `exploreTarget` | `{ id, seq } \| null` | 電腦版點了地圖上的點：探索清單捲到那張卡片（`seq` 讓同一點再點也會捲） |
+| `detailAt`、`detailHistory` | `'map' \| 'side' \| null`、`string[]` | 網頁的詳情彈窗在哪裡（第八輪 §13.3：map＝蓋在地圖右側、side＝蓋住右欄）和原地換過的上一個…（「‹」一路退回，`detailBack`）；`openDetail(id, from, tab, at)` 開著時只換內容，`closeDetail` 全部清掉 |
+| `exploreTarget` | `{ id, seq } \| null` | `revealInExplore`：探索清單捲到那張卡片（`seq` 讓同一點再點也會捲）；第八輪起點地圖上的點改開詳情彈窗，不再用它 |
 | `selection` | `string[]` | 「問 AI」選取的點 |
 | `stationTime` | `string \| null` | 車站面板的指定時間（`HH:MM`），null 時用行程排到的時間或 09:00 |
 | `camera` | `{ seq, bbox?, center?, zoom? } \| null` | 叫地圖移動的請求：MapView 看到 `seq` 變了就移過去。使用者自己拖地圖不產生請求，只更新 `view` |
