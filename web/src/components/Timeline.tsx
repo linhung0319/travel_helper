@@ -175,8 +175,8 @@ function useCardExpand(key: string, placeId: string | null | undefined) {
     }
     toggleExpandedItem(key);
   };
-  // 「詳細資料」：浮在地圖右邊（右欄的時間軸不動）
-  const onDetail = placeId ? () => appStore.getState().openDetail(placeId, 'map') : undefined;
+  // 「詳細資料」：彈窗蓋在地圖右側（右欄的時間軸不動，§13.3 第 1 點）
+  const onDetail = placeId ? () => appStore.getState().openDetail(placeId, 'map', undefined, 'map') : undefined;
   return { expanded, toggle, onDetail };
 }
 
@@ -380,7 +380,7 @@ function EntryRow({ entry, day, warnings, plan, marks }: { entry: TimelineEntry;
         selected={expand.expanded}
         expanded={expand.expanded}
         onToggle={expand.toggle}
-        onDetail={sp ? () => appStore.getState().openDetail(sp.id, 'map') : undefined}
+        onDetail={sp ? () => appStore.getState().openDetail(sp.id, 'map', undefined, 'map') : undefined}
         onAsk={sp ? () => askAboutCardPlace(sp) : undefined}
         onHover={hoverPlace(shownPlace)}
         liRef={pressRef}

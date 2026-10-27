@@ -1,8 +1,10 @@
-// 電腦版的右側：探索、想去、行程共用一欄（順序是使用的順序），頂到最上面。點了探索或想去的卡片，詳情蓋在這一欄上，「← 返回」回到原本的分頁；從行程打開的詳情浮在地圖上（DetailFloat）。
+// 電腦版的右側：探索、想去、行程共用一欄（順序是使用的順序），頂到最上面。
 // 想去是只放有人 ❤️ 的點的探索（Explore.tsx 的 source="wish"）。
 // 頂端（第七輪）：三個分頁加右上的頭像選單（討論、預約、下載行程）；行程分頁下面是兩週月曆（第八輪 §13.2），再下面是編輯中、衝突提示（套用的篩選條件只在探索、想去的篩選列下面那排，行程分頁不放，第七輪 §8.4）。AI 沒有自己的分頁：地圖和這三個分頁就是 AI 操作的東西（T16）。
+// 詳情一律是彈窗（第八輪 §13.3）：開在你剛剛看的那一塊旁邊，不蓋住它——從右欄的卡開（appStore.detailAt＝map）蓋在地圖右側、貼著右欄（DetailFloat）；
+// 從地圖上的點開（side）蓋住整個右欄（DetailOverSide），右欄的內容照樣掛著，關掉後捲動位置、展開的卡、編輯中都不變。同時只有一個彈窗。
 
-import { useEffect } from 'react';
+import { useEffect, useRef } from 'react';
 import { appStore } from '../store.ts';
 import { commands } from '../appCommands.ts';
 import { useApp, useData } from '../hooks.ts';
@@ -15,15 +17,6 @@ import { DetailPanel } from './DetailPanel.tsx';
 import { ExplorePanel, showItinerary } from './Explore.tsx';
 import { useLiked } from '../shared/placeLists.ts';
 
-/** 從詳情回到探索或想去：清單重新出現，捲回剛剛那張卡片 */
-function back(id: string) {
-  const s = appStore.getState();
-  s.closeDetail();
-  if (s.mode === 'explore' || s.mode === 'wish') s.revealInExplore(id);
-}
-
-const BACK_LABELS = { map: '返回行程', explore: '返回探索', wish: '返回想去' } as const;
-
 /** 切到探索或想去（關掉詳情） */
 export function showList(mode: 'explore' | 'wish') {
   const s = appStore.getState();
@@ -31,20 +24,41 @@ export function showList(mode: 'explore' | 'wish') {
   s.setMode(mode);
 }
 
-/** 從行程打開的詳情：浮在地圖右邊（地圖那一欄裡），右欄的時間軸不動；✕ 或 Esc 關掉。畫出來之後地圖再照移動規則讓開它（選中的點不被蓋住） */
-export function DetailFloat() {
-  const detailId = useApp((s) => s.detailId);
+/** 正在開著、而且在 at 那裡的詳情；原地換成別的點時彈窗捲回最上面（看得到「‹ 上一個」） */
+function useDetailAt(at: 'map' | 'side') {
+  const detailId = useApp((s) => (s.detailAt === at ? s.detailId : null));
   const from = useApp((s) => s.detailFrom);
   const place = useData((s) => (detailId ? s.byId.get(detailId) : undefined));
-  const shown = place && from === 'map' ? place.id : null;
-  // 浮動詳情已經在 DOM 裡：MapView 算可見範圍時扣掉它（.detail-float），點被蓋住就平移
+  const ref = useRef<HTMLDivElement>(null);
+  useEffect(() => {
+    if (ref.current) ref.current.scrollTop = 0;
+  }, [detailId]);
+  return { place, from, ref };
+}
+
+/** 從右欄的卡開的詳情：蓋在地圖右側、貼著右欄（地圖那一欄裡），右欄不動；✕、Esc、點地圖空白處關掉。畫出來之後地圖再照移動規則讓開它（選中的點不被蓋住） */
+export function DetailFloat() {
+  const { place, from, ref } = useDetailAt('map');
+  const shown = place?.id ?? null;
+  // 彈窗已經在 DOM 裡：MapView 算可見範圍時扣掉它（.detail-float），點被蓋住就平移
   useEffect(() => {
     if (shown) commands.focus(shown);
   }, [shown]);
-  if (!place || from !== 'map') return null;
+  if (!place) return null;
   return (
-    <div className="detail-float" data-testid="detail-float">
-      <DetailPanel place={place} from="map" />
+    <div className="detail-float" data-testid="detail-float" data-at="map" ref={ref}>
+      <DetailPanel place={place} from={from ?? 'map'} />
+    </div>
+  );
+}
+
+/** 從地圖上的點開的詳情：蓋住整個右欄（四周留 8px），地圖完全不被擋 */
+function DetailOverSide() {
+  const { place, from, ref } = useDetailAt('side');
+  if (!place) return null;
+  return (
+    <div className="detail-float detail-over-side" data-testid="detail-float" data-at="side" ref={ref}>
+      <DetailPanel place={place} from={from ?? 'map'} />
     </div>
   );
 }
@@ -52,12 +66,8 @@ export function DetailFloat() {
 export function SidePanel() {
   const mode = useApp((s) => s.mode);
   const planning = useApp((s) => s.planning);
-  const detailId = useApp((s) => s.detailId);
-  const detailFrom = useApp((s) => s.detailFrom);
-  const byId = useData((s) => s.byId);
+  const covered = useApp((s) => !!s.detailId && s.detailAt === 'side');
   const liked = useLiked().size;
-  // 從行程打開的詳情浮在地圖上（DetailFloat），右欄不換
-  const place = detailId && detailFrom !== 'map' ? byId.get(detailId) : null;
   const tab = (icon: IconName, label: string, on: boolean, onClick: () => void, testId: string) => (
     <button type="button" role="tab" aria-selected={on} className={`side-tab ${on ? 'on' : ''}`} onClick={onClick} data-testid={testId}>
       <Icon name={icon} size={20} />
@@ -65,28 +75,26 @@ export function SidePanel() {
     </button>
   );
   return (
-    <div className="side-panel">
+    <div className={`side-panel ${covered ? 'covered' : ''}`}>
       <div className="side-tabs" role="tablist" aria-label="右側">
-        {tab('search', '探索', mode === 'explore' && !place, () => showList('explore'), 'side-tab-explore')}
-        {tab('heart', `想去${liked ? ` ${liked}` : ''}`, mode === 'wish' && !place, () => showList('wish'), 'side-tab-wish')}
-        {tab('calendar', '行程', mode === 'map' && !place, showItinerary, 'side-tab-day')}
+        {tab('search', '探索', mode === 'explore', () => showList('explore'), 'side-tab-explore')}
+        {tab('heart', `想去${liked ? ` ${liked}` : ''}`, mode === 'wish', () => showList('wish'), 'side-tab-wish')}
+        {tab('calendar', '行程', mode === 'map', showItinerary, 'side-tab-day')}
         <span className="side-tabs-end">
           <AccountMenu />
         </span>
       </div>
       {/* 編輯中編輯條取代日期列：編輯中不能換天（§6.3） */}
-      {mode === 'map' && !place && !planning && <DayCalendar />}
+      {mode === 'map' && !planning && <DayCalendar />}
       <div className="side-notices">
         <EditingStrip />
         <ConflictBar />
       </div>
-      {place ? (
-        <div className="side-body side-detail">
-          <DetailPanel place={place} from={detailFrom ?? mode} back={{ label: BACK_LABELS[detailFrom ?? mode], onClick: () => back(place.id) }} />
-        </div>
-      ) : (
-        <div className="side-body">{mode === 'map' ? <DayPanel /> : <ExplorePanel key={mode} source={mode} />}</div>
-      )}
+      {/* 右欄的內容一直掛著：蓋住右欄的彈窗關掉後原樣回來 */}
+      <div className="side-body" inert={covered || undefined}>
+        {mode === 'map' ? <DayPanel /> : <ExplorePanel key={mode} source={mode} />}
+      </div>
+      <DetailOverSide />
     </div>
   );
 }

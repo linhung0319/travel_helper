@@ -334,7 +334,10 @@ export function LinksSection({ place }: { place: Place }) {
   );
 }
 
-/** 附近的點。電腦版：點名稱地圖移過去；onPick（手機版）：點名稱改做這件事（例如打開它的詳情） */
+/**
+ * 附近的點。電腦版（第八輪 §13.3 第 5 點）：點一列＝地圖上那個點變成水滴、跳三下（選中它；詳情自己的點保持水滴但不跳，MapView 的 detail 水滴），彈窗不動；
+ * 列尾「詳情 ›」（或再點地圖上那個點）＝彈窗原地換成它。onPick（手機版）：點名稱改做這件事（例如打開它的詳情）
+ */
 export function NearbySection({ place, onPick }: { place: Place; onPick?(id: string): void }) {
   const places = useData((s) => s.places);
   const groups = useMemo(() => nearbyPlaces(place, places), [place, places]);
@@ -347,7 +350,7 @@ export function NearbySection({ place, onPick }: { place: Place; onPick?(id: str
   };
   return (
     <Section title="附近">
-      <p className="muted small">{onPick ? '點名稱看它的介紹。' : '點名稱，地圖會移到那裡；再點地圖上的點看它的介紹。'}</p>
+      <p className="muted small">{onPick ? '點名稱看它的介紹。' : '點名稱，地圖上那個點會跳出來；「詳情 ›」或再點地圖上的點看它的介紹。'}</p>
       {[...groups.entries()].map(([type, items]) => (
         <div key={type} className="nearby-group">
           <h4>{TYPE_LABELS[type]}</h4>
@@ -366,6 +369,11 @@ export function NearbySection({ place, onPick }: { place: Place; onPick?(id: str
                 <span className="muted small ic-text">
                   <Icon name="walk" size={16} /> {it.minutes} 分{it.estimated ? '（估算）' : ''}
                 </span>
+                {!onPick && (
+                  <button type="button" className="link-button nearby-detail" onClick={() => appStore.getState().openDetail(it.place.id)} data-testid="nearby-detail">
+                    詳情 ›
+                  </button>
+                )}
               </li>
             ))}
           </ul>
@@ -527,25 +535,26 @@ export function PlaceReviews({ place }: { place: Place }) {
 }
 
 /**
- * 網頁版的詳情面板（interaction-design §4）：上方一列（返回或 ✕）、下面是兩邊共用的 PlaceDetail（照片、名稱、動作列、四個分頁）。
- * 放在右欄（從探索、想去打開，有「← 返回」）或浮在地圖上（從行程打開，✕ 關掉）。
+ * 網頁版的詳情彈窗（interaction-design §4、第八輪 §13.3）：上方一列（左邊「‹ 上一個的名字」、右邊 ✕）、下面是兩邊共用的 PlaceDetail（照片、名稱、動作列、四個分頁）。
+ * 外框在 SidePanel.tsx：蓋在地圖右側（DetailFloat）或蓋住整個右欄（DetailOverSide）；同時只有一個，開著時換點是原地換內容（appStore.detailHistory）。
  */
-export function DetailPanel({ place, from, back }: { place: Place; from: DetailFrom; back?: { label: string; onClick(): void } }) {
+export function DetailPanel({ place, from }: { place: Place; from: DetailFrom }) {
   const tab = useApp((s) => s.detailTab);
+  const prevId = useApp((s) => s.detailHistory[s.detailHistory.length - 1] ?? null);
+  const prev = useData((s) => (prevId ? s.byId.get(prevId) : undefined));
   const name = place.name.zh || place.name.ja;
   return (
-    <article className="detail" data-testid="detail-panel" aria-label={`${name} 的詳情`}>
+    <article className="detail" data-testid="detail-panel" data-id={place.id} aria-label={`${name} 的詳情`}>
       <div className="detail-bar">
-        {back && (
-          <button type="button" className="detail-back" onClick={back.onClick} data-testid="detail-back">
-            ← {back.label}
+        {prev && (
+          <button type="button" className="detail-back" onClick={() => appStore.getState().detailBack()} data-testid="detail-back">
+            <Icon name="back" size={16} />
+            <span className="detail-back-name">{prev.name.zh || prev.name.ja}</span>
           </button>
         )}
-        {!back && (
-          <button type="button" className="icon-button detail-close" aria-label="關閉詳情" data-testid="detail-close" onClick={() => appStore.getState().closeDetail()}>
-            <Icon name="close" size={20} />
-          </button>
-        )}
+        <button type="button" className="icon-button detail-close" aria-label="關閉詳情" data-testid="detail-close" onClick={() => appStore.getState().closeDetail()}>
+          <Icon name="close" size={20} />
+        </button>
       </div>
       <PlaceDetail key={place.id} place={place} surface="desktop" from={from} initialTab={tab} />
     </article>

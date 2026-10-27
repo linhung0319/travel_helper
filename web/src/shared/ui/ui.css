@@ -1715,7 +1715,7 @@
   margin-left: auto;
 }
 
-/* 從行程打開的詳情：浮在地圖右邊（.map-column 裡），右欄的時間軸不動 */
+/* 詳情彈窗（第八輪 §13.3）：蓋在地圖右側、貼著右欄（.map-column 裡，data-at="map"），右欄不動 */
 .detail-float {
   position: absolute;
   top: 12px;
@@ -1729,6 +1729,21 @@
   border-radius: 20px;
   background: var(--paper);
   box-shadow: 0 8px 28px var(--shade-2);
+}
+
+/* 從地圖上的點開的：蓋住整個右欄（四周留 8px），底下的右欄照樣掛著、變淡 */
+.detail-float.detail-over-side {
+  top: 8px;
+  right: 8px;
+  bottom: 8px;
+  left: 8px;
+  z-index: 20;
+  width: auto;
+}
+
+.side-panel.covered > :not(.detail-over-side) {
+  opacity: 0.35;
+  filter: grayscale(0.4);
 }
 
 /* ---------- 放大看照片 ---------- */

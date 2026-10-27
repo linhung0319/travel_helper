@@ -131,7 +131,7 @@ test('T15m：想去 → 留言 → 加到某天 → 編輯中按 ↑ 排進 → 
   await expect(detail.getByTestId('detail-tab-comments')).toHaveAttribute('aria-selected', 'true'); // 最新留言直接開留言分頁
   await expect(detail.getByTestId('wish-comment')).toContainText(TEXT);
   await expect(detail.getByTestId('wish-comment').getByRole('button', { name: '改' })).toHaveCount(0);
-  await page.getByTestId('detail-back').click();
+  await page.getByTestId('detail-close').click();
   list = page.getByTestId('wish-panel');
   await wish(list).getByTestId('wish-add').click();
   await page.getByTestId(`day-picker-${DAY}`).click();
@@ -227,7 +227,7 @@ test('T15m：拿掉別人加的候選要寫理由，理由變成那個點的留�
   const detail = page.getByTestId('detail-panel');
   await expect(detail.getByTestId('wish-comment').last()).toContainText('這天排不下');
   await expect(detail.getByTestId('wish-comment').last()).toContainText('不採用');
-  await page.getByTestId('detail-back').click();
+  await page.getByTestId('detail-close').click();
 
   // 類型是篩選的一個條件（打開想去時帶著那個點的類型）：先拿掉，搜尋才找得到別類的店
   await page.getByTestId('filter-applied').first().locator('.ui-chip-x').click();
@@ -289,14 +289,16 @@ test('第四輪：點討論 → 彈窗；點彈窗外面的地圖 → 彈窗關�
   await expect(page.getByTestId('map-panel')).toHaveCount(0);
 });
 
-test('T15m：想去的卡片點了原地展開，按「詳細資料」看詳情，返回想去（電腦版）', async ({ page }) => {
+test('T15m：想去的卡片點了原地展開，按「詳細資料」開詳情彈窗（蓋在地圖右側），✕ 關掉後想去原樣（電腦版）', async ({ page }) => {
   await ready(page);
   const list = await openWish(page, 'toba-aquarium');
   await wish(list, 'toba-aquarium').getByTestId('wish-open').click();
   await expect(page.getByTestId('detail-panel')).toHaveCount(0);
   await wish(list, 'toba-aquarium').getByTestId('place-open-detail').click();
-  await expect(page.getByTestId('detail-back')).toHaveText('← 返回想去');
-  await page.getByTestId('detail-back').click();
+  await expect(page.getByTestId('detail-float')).toHaveAttribute('data-at', 'map');
+  await expect(page.getByTestId('wish-panel')).toBeVisible();
+  await page.getByTestId('detail-close').click();
+  await expect(wish(list, 'toba-aquarium').getByTestId('place-open')).toBeVisible();
   await expect(page.getByTestId('wish-panel')).toBeVisible();
   await expect(page.getByTestId('side-tab-wish')).toHaveAttribute('aria-selected', 'true');
 });
@@ -1949,11 +1951,13 @@ test('詳情：編輯中從行程打開有「排進這天」，從探索打開�
   await expect(page.getByTestId('detail-float').getByTestId('detail-schedule')).toContainText('排進這天');
   await page.evaluate(() => (window as any).__th.appStore.getState().openDetail('toba-kokusai-hotel', 'map'));
   await expect(page.getByTestId('detail-float').getByTestId('detail-schedule')).toContainText('設成這晚的住宿');
+  // 同時只有一個彈窗、原地換內容時「從哪裡開的」不變（第八輪 §13.3）：先關掉再從探索開
+  await page.evaluate(() => (window as any).__th.appStore.getState().closeDetail());
   await page.evaluate(() => (window as any).__th.appStore.getState().openDetail('toba-seahorse', 'explore'));
   await expect(page.getByTestId('detail-schedule')).toHaveCount(0);
 });
 
-test('從行程打開詳情：浮在地圖上，時間軸還在', async ({ page }) => {
+test('從行程打開詳情：彈窗蓋在地圖右側，時間軸還在', async ({ page }) => {
   await ready(page);
   await showDay(page, '2027-02-05');
   await expect(page.getByTestId('timeline')).toBeVisible();
@@ -1966,10 +1970,9 @@ test('從行程打開詳情：浮在地圖上，時間軸還在', async ({ page 
   await expect(page.getByTestId('side-tab-day')).toHaveAttribute('aria-selected', 'true');
   await page.keyboard.press('Escape');
   await expect(float).toHaveCount(0);
-  // 從探索打開的詳情照舊在右欄
-  await page.evaluate(() => (window as any).__th.appStore.getState().openDetail('toba-aquarium', 'explore'));
-  await expect(page.getByTestId('detail-float')).toHaveCount(0);
-  await expect(page.locator('.side-column').getByTestId('detail-panel')).toBeVisible();
+  // 第八輪 §13.3：從地圖上的點開的（at＝side）才蓋住右欄
+  await page.evaluate(() => (window as any).__th.appStore.getState().openDetail('toba-aquarium', 'map', undefined, 'side'));
+  await expect(page.locator('.side-column').getByTestId('detail-float')).toHaveAttribute('data-at', 'side');
 });
 
 test('點照片放大，左右切換，Esc 關', async ({ page }) => {
@@ -2208,15 +2211,14 @@ test('網頁點地圖上的點不改篩選：探索篩餐廳，點一個景點 �
   expect(await th(page, '__th.appStore.getState().mode')).toBe('explore');
 });
 
-test('網頁點地圖上的點：清單裡有它 → 捲到那張卡並選中（不開詳情）', async ({ page }) => {
+test('網頁探索分頁點地圖上的點：詳情彈窗蓋住右欄，不再捲到卡片（第八輪 §13.3）', async ({ page }) => {
   await ready(page);
   await page.getByTestId('side-tab-explore').click();
   const spot = await findPlaceId(page, 'spot', 'S');
   const pt = await centerOn(page, spot, 15);
   await page.mouse.click(pt.x, pt.y);
-  await expect.poll(() => th(page, '__th.appStore.getState().selectedId')).toBe(spot);
-  expect(await th(page, '__th.appStore.getState().detailId')).toBeNull();
-  await expect(page.getByTestId('explore-panel').locator(`[data-id="${spot}"]`).first()).toBeInViewport();
+  await expect.poll(() => th(page, '__th.appStore.getState().detailId')).toBe(spot);
+  await expect(page.getByTestId('detail-float')).toHaveAttribute('data-at', 'side');
 });
 
 test('行程分頁點地圖上這天的點：選中那張卡（展開）；點空白處取消選中', async ({ page }) => {
@@ -2470,7 +2472,7 @@ for (const [width, popW] of [[1280, 380], [1100, 340]] as const) {
   });
 }
 
-test('浮動詳情開著時點地圖上這天的另一個點：詳情關掉、選中那張卡', async ({ page }) => {
+test('詳情彈窗開著時點地圖上這天的另一個點：同一個彈窗原地換成那個點（第八輪 §13.3 第 3 點）', async ({ page }) => {
   await ready(page);
   await showDay(page, '2027-02-03');
   await tlRow(page, 'i-3').getByTestId('trip-card').click();
@@ -2481,8 +2483,8 @@ test('浮動詳情開著時點地圖上這天的另一個點：詳情關掉、�
   await placeAtX(page, other, 40);
   const pt = await pointOf(page, other);
   await page.mouse.click(pt.x, pt.y);
-  await expect(page.getByTestId('detail-float')).toHaveCount(0);
-  await expect(tlRow(page, 'i-2').getByTestId('trip-card-expand')).toBeVisible();
+  await expect(page.getByTestId('detail-float')).toHaveAttribute('data-at', 'map');
+  await expect(page.getByTestId('detail-panel')).toHaveAttribute('data-id', other);
   await expect(page.getByTestId('map-selected')).toHaveAttribute('data-id', other);
 });
 

@@ -12,6 +12,8 @@ export type DetailTabId = 'intro' | 'location' | 'reviews' | 'comments';
 
 /** 詳情從哪裡打開：map＝行程（網頁浮在地圖上）、explore／wish＝右欄的清單（返回回到清單） */
 export type DetailFrom = 'map' | 'explore' | 'wish';
+/** 網頁的詳情彈窗在哪裡（第八輪 §13.3）：map＝蓋在地圖右側、貼著右欄（從右欄的卡開）；side＝蓋住整個右欄（從地圖上的點開） */
+export type DetailAt = 'map' | 'side';
 
 /** 'all'＝全部的天；否則是 YYYY-MM-DD */
 export type DaySelection = 'all' | string;
@@ -104,8 +106,12 @@ export interface AppState {
   previewId: string | null;
   /** 詳情面板（車站的詳情面板裡有時刻表） */
   detailId: string | null;
-  /** 詳情從哪裡打開（detailId 是 null 時也是 null）；網頁：map 浮在地圖右邊、explore／wish 蓋在右欄 */
+  /** 詳情從哪個分頁打開（detailId 是 null 時也是 null）；map＝行程（決定編輯中有沒有「排進這天」） */
   detailFrom: DetailFrom | null;
+  /** 網頁的詳情彈窗在哪裡（第八輪 §13.3）；開著時再開別的點，位置不變、原地換內容 */
+  detailAt: DetailAt | null;
+  /** 彈窗原地換過的上一個、上上個…（「‹ 上一個的名字」一路退回）；關掉就清空 */
+  detailHistory: string[];
   /** 詳情一打開就選哪個分頁（想去列點最新留言：comments）；null＝簡介 */
   detailTab: DetailTabId | null;
   /** 電腦版點了地圖上的點、從詳情返回：探索清單捲到那張卡片（seq 讓同一個點再點一次也會捲）；不改篩選 */
@@ -143,8 +149,11 @@ export interface AppActions {
   select(id: string | null): void;
   openPreview(id: string | null): void;
   /** from 沒給＝現在的分頁（行程分頁打開的在網頁浮在地圖上）；tab＝一打開就選的分頁 */
-  openDetail(id: string, from?: DetailFrom, tab?: DetailTabId): void;
+  /** at：還沒有彈窗時開在哪裡（預設 map）；已經開著就原地換內容，原本那個記進 detailHistory */
+  openDetail(id: string, from?: DetailFrom, tab?: DetailTabId, at?: DetailAt): void;
   closeDetail(): void;
+  /** 彈窗的「‹」：回到上一個 */
+  detailBack(): void;
   revealInExplore(id: string): void;
   addToSelection(id: string): void;
   removeFromSelection(id: string): void;
@@ -181,6 +190,8 @@ export const initialState: AppState = {
   previewId: null,
   detailId: null,
   detailFrom: null,
+  detailAt: null,
+  detailHistory: [],
   detailTab: null,
   exploreTarget: null,
   selection: [],
@@ -227,9 +238,31 @@ export function createAppStore(init: Partial<AppState> = {}) {
     select: (selectedId) => set((s) => ({ selectedId, selectSeq: s.selectSeq + 1 })),
     openPreview: (previewId) => set({ previewId }),
     // 打開詳情時小卡片收起、指到的光圈拿掉；那個點就是選中的點
-    openDetail: (detailId, from, tab) =>
-      set((s) => ({ detailId, detailFrom: from ?? s.mode, detailTab: tab ?? null, previewId: null, hoveredId: null, hoverFromMap: false, selectedId: detailId, selectSeq: s.selectSeq + (s.selectedId === detailId ? 0 : 1) })),
-    closeDetail: () => set({ detailId: null, detailFrom: null, detailTab: null }),
+    openDetail: (detailId, from, tab, at) =>
+      set((s) => {
+        // 同時只有一個詳情彈窗（§13.3 第 3 點）：開著時原地換內容，位置、從哪個分頁開的都不變，原本那個記起來給「‹」
+        const open = !!s.detailId;
+        const detailHistory = open && s.detailId !== detailId ? [...s.detailHistory, s.detailId!] : open ? s.detailHistory : [];
+        return {
+          detailId,
+          detailFrom: open ? s.detailFrom : (from ?? s.mode),
+          detailAt: open ? s.detailAt : (at ?? 'map'),
+          detailHistory,
+          detailTab: tab ?? null,
+          previewId: null,
+          hoveredId: null,
+          hoverFromMap: false,
+          selectedId: detailId,
+          selectSeq: s.selectSeq + (s.selectedId === detailId ? 0 : 1),
+        };
+      }),
+    closeDetail: () => set({ detailId: null, detailFrom: null, detailAt: null, detailHistory: [], detailTab: null }),
+    detailBack: () =>
+      set((s) => {
+        const prev = s.detailHistory[s.detailHistory.length - 1];
+        if (!prev) return s;
+        return { detailId: prev, detailHistory: s.detailHistory.slice(0, -1), detailTab: null, selectedId: prev, selectSeq: s.selectSeq + 1 };
+      }),
     revealInExplore: (id) => set((s) => ({ exploreTarget: { id, seq: (s.exploreTarget?.seq ?? 0) + 1 } })),
     addToSelection: (id) => set((s) => (s.selection.includes(id) ? s : { selection: [...s.selection, id] })),
     removeFromSelection: (id) => set((s) => ({ selection: s.selection.filter((x) => x !== id) })),

@@ -133,9 +133,9 @@ const BASE_FILTERS: Record<string, unknown[]> = {
   'places-label': ['all', ['==', ['get', 'dim'], 0], ['==', ['get', 'mark'], '']],
 };
 
-/** 蓋在地圖上的東西：網頁從行程打開的浮動詳情、手機的行程面板（藏起來的不算） */
+/** 蓋在地圖上的東西：網頁蓋在地圖右側的詳情彈窗（蓋住右欄的不算）、手機的行程面板（藏起來的不算） */
 function mapObstructions(): DOMRect[] {
-  return [...document.querySelectorAll<HTMLElement>('.detail-float, .m-trip-sheet')]
+  return [...document.querySelectorAll<HTMLElement>('.detail-float[data-at="map"], .m-trip-sheet')]
     .filter((el) => el.getClientRects().length > 0 && getComputedStyle(el).visibility !== 'hidden')
     .map((el) => el.getBoundingClientRect());
 }
@@ -169,6 +169,7 @@ export function MapView() {
   const badgesRef = useRef<Map<string, Marker>>(new Map());
   // 選中的數字水滴；selectedRef 給地圖的事件讀（移動前後看它進入畫面沒有）
   const dropRef = useRef<Marker | null>(null);
+  const anchorRef = useRef<Marker | null>(null);
   const selectedRef = useRef<Place | null>(null);
   const bounceNext = useRef(false);
   const [loaded, setLoaded] = useState(false);
@@ -185,9 +186,10 @@ export function MapView() {
   const day = useApp((s) => s.day);
   const hoveredId = useApp((s) => s.hoveredId);
   const selectedId = useApp((s) => s.selectedId);
+  // 網頁詳情彈窗的那個點：選中的換成別的點（位置分頁點了「附近」的一列）時，它保持水滴但不跳（第八輪 §13.3 第 5 點）
+  const detailId = useApp((s) => s.detailId);
   const selectSeq = useApp((s) => s.selectSeq);
   const previewId = useApp((s) => s.previewId);
-  const detailId = useApp((s) => s.detailId);
   const camera = useApp((s) => s.camera);
   const mode = useApp((s) => s.mode);
   const highlights = useApp((s) => s.highlights);
@@ -524,13 +526,45 @@ export function MapView() {
     (mapRef.current!.getSource('places') as GeoJSONSource).setData(featureCollection(places, marks));
   }, [loaded, places, filter, query, day, days, plan, byId, mode, votes, candidates, itinerary, marks]);
 
-  // 選中的點：原本的點、名稱不畫（換成水滴）
+  const anchorId = desktop && detailId && detailId !== selectedId ? detailId : null;
+
+  // 選中的點（和詳情那個點的水滴）：原本的點、名稱不畫（換成水滴）
   useEffect(() => {
     if (!loaded) return;
     const map = mapRef.current!;
     const sel = selectedId ?? '';
-    for (const [layer, base] of Object.entries(BASE_FILTERS)) map.setFilter(layer, ['all', base, ['!=', ['get', 'id'], sel]] as never);
-  }, [loaded, selectedId]);
+    const anchor = anchorId ?? '';
+    for (const [layer, base] of Object.entries(BASE_FILTERS)) map.setFilter(layer, ['all', base, ['!=', ['get', 'id'], sel], ['!=', ['get', 'id'], anchor]] as never);
+  }, [loaded, selectedId, anchorId]);
+
+  // 詳情那個點的水滴（不跳）：選中的換成「附近」的點時才有
+  useEffect(() => {
+    if (!loaded) return;
+    const p = anchorId ? byId.get(anchorId) : undefined;
+    if (!p) {
+      anchorRef.current?.remove();
+      anchorRef.current = null;
+      return;
+    }
+    let m = anchorRef.current;
+    if (!m) {
+      const el = document.createElement('div');
+      el.className = 'map-selected map-detail-drop';
+      el.setAttribute('data-testid', 'map-detail-drop');
+      el.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const id = el.dataset.id;
+        if (id) pickPlace(id);
+      });
+      m = new Marker({ element: el, anchor: 'bottom', offset: [0, 2] }).setLngLat(p.coords).addTo(mapRef.current!);
+      anchorRef.current = m;
+    }
+    const mark = marks.get(p.id) ?? '';
+    const el = m.getElement();
+    el.dataset.id = p.id;
+    el.innerHTML = selectedDropHtml(p, mark);
+    m.setLngLat(p.coords);
+  }, [loaded, anchorId, byId, marks]);
 
   // 數字水滴（DOM 標記，大小不隨縮放變）：尖端在點上，頭裡寫編號或類型圖示，旁邊粗體的名稱。點水滴＝再點一次那個點
   useEffect(() => {
