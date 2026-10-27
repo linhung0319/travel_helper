@@ -1612,6 +1612,36 @@ test('第七輪：日期列只在行程分頁，點日期切到那天', async ({
   await expect(page.locator('.side-column').getByTestId('m-day-all')).toHaveText('整趟');
 });
 
+test('第八輪：右欄的日期是兩週月曆（整趟佔週日、週一，2/7 起第二列），格子 44px，有警告的那天有紅點', async ({ page }) => {
+  await ready(page);
+  await page.getByTestId('side-tab-day').click();
+  const side = page.locator('.side-column');
+  const box = async (id: string) => (await side.getByTestId(id).boundingBox())!;
+  const all = await box('m-day-all');
+  const d2 = await box('m-day-2027-02-02');
+  const d6 = await box('m-day-2027-02-06');
+  const d7 = await box('m-day-2027-02-07');
+  const d13 = await box('m-day-2027-02-13');
+  // 第一列：整趟（兩格寬）、2/2～2/6；第二列：2/7（週日，最左）～2/13（週六，最右）
+  expect(Math.round(all.y)).toBe(Math.round(d2.y));
+  expect(Math.round(d6.y)).toBe(Math.round(d2.y));
+  expect(all.width).toBeGreaterThan(d2.width * 1.8);
+  expect(d7.y).toBeGreaterThan(d2.y + d2.height - 1);
+  expect(Math.round(d7.x)).toBe(Math.round(all.x));
+  expect(Math.round(d13.x + d13.width)).toBe(Math.round(d6.x + d6.width));
+  expect(Math.round(d2.height)).toBe(44);
+  // 不用橫捲
+  expect(await side.getByTestId('m-day-strip').evaluate((el) => el.scrollWidth <= el.clientWidth)).toBe(true);
+  // 紅點：只畫在有警告（不算 info）的天
+  const warned = (await page.evaluate(() => {
+    const plan = (window as any).__th.planStore.getState().plan;
+    return plan.days.filter((d: any) => d.warnings.some((w: any) => w.level !== 'info')).map((d: any) => d.date);
+  })) as string[];
+  expect(warned.length).toBeGreaterThan(0);
+  await expect(side.getByTestId('day-warn-dot')).toHaveCount(warned.length);
+  await expect(side.getByTestId(`m-day-${warned[0]}`).getByTestId('day-warn-dot')).toHaveCount(1);
+});
+
 test('第七輪：頭像選單打開討論、預約；Esc 關掉', async ({ page }) => {
   await ready(page);
   await openAccountItem(page, 'comments');

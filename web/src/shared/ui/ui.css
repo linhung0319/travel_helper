@@ -356,7 +356,7 @@
   box-shadow: 0 1px 3px var(--shade-2);
 }
 
-/* ---------- 日期列（DayStrip）：網頁右欄 side 平分、手機面板 sheet 可左右滑 ---------- */
+/* ---------- 日期列（DayStrip）：手機面板，可左右滑；網頁右欄是下面的兩週月曆（DayCalendar） ---------- */
 .ui-days {
   display: flex;
   gap: 2px;
@@ -437,32 +437,69 @@
   box-shadow: 0 0 0 2px var(--paper);
 }
 
-/* 右欄：13 格平分，點的範圍高度 52px */
-.ui-days.side {
-  padding: 8px 6px 4px;
-  gap: 1px;
+/* ---------- 兩週月曆（DayCalendar，網頁右欄，§13.2）：7 欄，格子 44px，白底上淡底格子 ---------- */
+.ui-cal {
+  display: grid;
+  grid-template-columns: repeat(7, minmax(0, 1fr));
+  gap: 4px;
+  padding: 8px 12px 6px;
 }
 
-/* 網頁右欄的日期列在白底上：晶片淡底 */
-.ui-days.side .ui-day {
-  flex: 1 1 0;
+.ui-cal-wd {
+  text-align: center;
+  font-size: 0.75rem;
+  color: var(--ink-2);
+}
+
+.ui-cal-wd.red-day {
+  color: var(--red-day);
+}
+
+.ui-cal-day {
+  position: relative;
   min-width: 0;
-  padding: 4px 0;
+  height: var(--tap);
+  border: 0;
+  border-radius: 14px;
   background: var(--wash);
+  color: var(--ink);
+  font-family: var(--font-num);
+  font-weight: 700;
+  font-size: 0.875rem;
+  cursor: pointer;
 }
 
-.ui-days.side .ui-day[aria-current='true'] {
+.ui-cal-day.red-day {
+  color: var(--red-day);
+}
+
+.ui-cal-day.all {
+  border: 1px solid var(--line);
+  background: var(--paper);
+  font-size: 0.8125rem;
+}
+
+/* 選中的那天芥子黃（§12.4）；紅字照舊 */
+.ui-cal-day[aria-current='true'] {
+  border-color: var(--mustard);
   background: var(--mustard);
 }
 
-.ui-days.side .ui-day b {
-  font-size: 0.8125rem;
-  letter-spacing: -0.03em;
+.ui-cal-warn {
+  position: absolute;
+  left: 50%;
+  bottom: 5px;
+  width: 4px;
+  height: 4px;
+  margin-left: -2px;
+  border-radius: 50%;
+  background: var(--red-day); /* §12.1 警告數字的紅 */
 }
 
-.ui-days.side .ui-day.all {
-  flex: 0 0 auto;
-  padding: 4px 6px;
+@media (hover: hover) {
+  .ui-cal-day:not([aria-current='true']):hover {
+    background: var(--line);
+  }
 }
 
 /* ---------- 篩選列（FilterBar）和篩選面板（FilterSheet） ---------- */

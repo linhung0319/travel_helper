@@ -35,6 +35,7 @@ import { pickPlace } from './mapPick.ts';
 import { shared } from '../appShared.ts';
 import { likedPlaces, placeDayStatus } from '../lib/wishlist.ts';
 import { closeMapPanel, closeTimetable, uiStore } from '../uiStore.ts';
+import { planStore } from '../planStore.ts';
 
 setWorkerUrl(maplibreWorkerUrl);
 
@@ -490,6 +491,7 @@ export function MapView() {
         appStore,
         dataStore,
         uiStore,
+        planStore,
         shared,
         commands,
         visibleRect: () => visibleRect(map, mapObstructions()),

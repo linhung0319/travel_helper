@@ -449,7 +449,7 @@ export function DaySheet() {
       </div>
       <EditBar day={day} />
       {/* 編輯中墨色編輯條取代日期列：編輯中不能換天 */}
-      {!planning && <DayStrip variant="sheet" />}
+      {!planning && <DayStrip />}
       <div className="m-trip-body" ref={bodyRef}>
         {day === 'all' ? <TripOverview /> : <DayView date={day} />}
       </div>

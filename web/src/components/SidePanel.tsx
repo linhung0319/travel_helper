@@ -1,6 +1,6 @@
 // 電腦版的右側：探索、想去、行程共用一欄（順序是使用的順序），頂到最上面。點了探索或想去的卡片，詳情蓋在這一欄上，「← 返回」回到原本的分頁；從行程打開的詳情浮在地圖上（DetailFloat）。
 // 想去是只放有人 ❤️ 的點的探索（Explore.tsx 的 source="wish"）。
-// 頂端（第七輪）：三個分頁加右上的頭像選單（討論、預約、下載行程）；行程分頁下面是日期列，再下面是編輯中、衝突提示（套用的篩選條件只在探索、想去的篩選列下面那排，行程分頁不放，第七輪 §8.4）。AI 沒有自己的分頁：地圖和這三個分頁就是 AI 操作的東西（T16）。
+// 頂端（第七輪）：三個分頁加右上的頭像選單（討論、預約、下載行程）；行程分頁下面是兩週月曆（第八輪 §13.2），再下面是編輯中、衝突提示（套用的篩選條件只在探索、想去的篩選列下面那排，行程分頁不放，第七輪 §8.4）。AI 沒有自己的分頁：地圖和這三個分頁就是 AI 操作的東西（T16）。
 
 import { useEffect } from 'react';
 import { appStore } from '../store.ts';
@@ -10,7 +10,7 @@ import { DayPanel } from './DayPanel.tsx';
 import { Icon, type IconName } from './Icon.tsx';
 import { AccountMenu } from './MeMenu.tsx';
 import { ConflictBar, EditingStrip } from './Planning.tsx';
-import { DayStrip } from '../shared/ui/DayStrip.tsx';
+import { DayCalendar } from '../shared/ui/DayCalendar.tsx';
 import { DetailPanel } from './DetailPanel.tsx';
 import { ExplorePanel, showItinerary } from './Explore.tsx';
 import { useLiked } from '../shared/placeLists.ts';
@@ -75,7 +75,7 @@ export function SidePanel() {
         </span>
       </div>
       {/* 編輯中編輯條取代日期列：編輯中不能換天（§6.3） */}
-      {mode === 'map' && !place && !planning && <DayStrip variant="side" />}
+      {mode === 'map' && !place && !planning && <DayCalendar />}
       <div className="side-notices">
         <EditingStrip />
         <ConflictBar />
