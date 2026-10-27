@@ -425,6 +425,8 @@ test('第四輪：一般模式只看；合併卡片換著看、⋯ 的主要、�
   await page.setViewportSize({ width: 1600, height: 1200 });
   await expect(stack).toHaveAttribute('data-main', 'true');
   await stack.getByTestId('option-next').click();
+  // 右欄 400 寬時內容比較長：候選區先捲進畫面（午餐卡也還在畫面裡）
+  await page.getByTestId('day-candidates').scrollIntoViewIfNeeded();
   await dragOnto(lunch, page.getByTestId('day-candidates'), 0.5);
   await expect(lunch.getByTestId('option-switch')).toHaveCount(0);
   await expect(cand(page, 'toba-sazanami')).toBeVisible();
@@ -654,6 +656,8 @@ async function settled(target: Locator) {
 /** 滑鼠按的地方：卡片的名稱（候選是名稱按鈕），不是 ⋯、−／＋ */
 async function grabPoint(source: Locator) {
   const name = source.locator('[data-testid="trip-card-name"], .cand-name').first();
+  // 右欄 400 寬（第八輪）時一天的內容比較長，按了 ↑ 之後要拖的卡可能捲在畫面外
+  await name.scrollIntoViewIfNeeded();
   const b = (await name.boundingBox())!;
   return { x: b.x + Math.min(40, b.width / 2), y: b.y + b.height / 2 };
 }
@@ -1587,8 +1591,9 @@ test.describe('1440 寬', () => {
   });
 });
 
-test.describe('1024 寬', () => {
-  test.use({ viewport: { width: 1024, height: 800 } });
+// 1100～1279 是網頁版最窄的一段（iPad 橫拿，§1 平板；1024 以下改成手機版）
+test.describe('1100 寬', () => {
+  test.use({ viewport: { width: 1100, height: 800 } });
   test('第七輪：日期列在右欄、放得下 12 天', async ({ page }) => {
     await ready(page);
     for (const d of ['2027-02-02', '2027-02-13']) await expect(page.locator('.side-column').getByTestId(`m-day-${d}`)).toBeInViewport({ ratio: 1 });
@@ -2308,7 +2313,7 @@ const selectedClear = (page: Page) =>
     return inMap && !underFloat ? 'clear' : `covered x=${Math.round(x)} float=${Math.round(f.left)}–${Math.round(f.right)}`;
   });
 
-for (const width of [1280, 1024]) {
+for (const [width, popW] of [[1280, 380], [1100, 340]] as const) {
   test(`行程卡的「詳細資料」（${width} 寬）：浮動詳情不蓋住選中的點，地圖讓開`, async ({ page }) => {
     await page.setViewportSize({ width, height: 800 });
     await ready(page);
@@ -2322,9 +2327,9 @@ for (const width of [1280, 1024]) {
     await placeAtX(page, id, -40);
     await row.getByTestId('trip-card-detail').click();
     await expect(page.getByTestId('detail-float')).toBeVisible();
-    // 浮動詳情最多佔地圖欄的 60%
-    const fw = await page.evaluate(() => document.querySelector('.detail-float')!.getBoundingClientRect().width / document.querySelector('.map-column')!.getBoundingClientRect().width);
-    expect(fw).toBeLessThanOrEqual(0.61);
+    // 浮動詳情 380 寬（1100～1279 寬時 340），最多佔地圖欄的 70%（§13.3）
+    const [fw, mw] = await page.evaluate(() => ['.detail-float', '.map-column'].map((s) => document.querySelector(s)!.getBoundingClientRect().width));
+    expect(Math.round(fw)).toBe(Math.min(popW, Math.floor(mw * 0.7)));
     await expect.poll(() => selectedClear(page), { timeout: 5000 }).toBe('clear');
   });
 }

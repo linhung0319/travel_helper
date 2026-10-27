@@ -627,6 +627,23 @@
   border-bottom: 1px solid var(--line);
 }
 
+/* 網頁右欄只有 400（窄 360）：篩選、排序只留圖示（字給讀屏器、滑鼠移上去看 title），搜尋框才有地方（§13.1 草圖） */
+.fb-desktop .fb-row > .ui-chip,
+.fb-desktop .fb-sort > .ui-chip {
+  min-width: var(--tap);
+  justify-content: center;
+  padding-inline: 10px;
+}
+
+.fb-desktop .fb-label {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
 /* 手機：第一列黏在最上面，其餘跟著內容捲走 */
 /* 在靛藍色帶裡（§12.4）：搜尋框白底，篩選、排序是半透明白 */
 .fb-mobile {
@@ -1637,9 +1654,10 @@
   right: 12px;
   bottom: 12px;
   z-index: 14;
-  /* 最多佔地圖欄的 60%：1024～1280 寬時左邊還留一條看得到選中點的地圖 */
-  width: min(360px, 60%);
+  /* 380（1100～1279 寬時 340，§13.3）；最多佔地圖欄的 70%，左邊還留一條看得到選中點的地圖 */
+  width: min(var(--pop-w, 380px), 70%);
   overflow-y: auto;
+  scrollbar-gutter: stable;
   border-radius: 20px;
   background: var(--paper);
   box-shadow: 0 8px 28px var(--shade-2);
@@ -1724,7 +1742,7 @@
   font-family: var(--font-num);
 }
 
-@media (max-width: 899px) {
+@media (max-width: 1099px) {
   .pv-stage {
     padding: 56px 8px;
   }

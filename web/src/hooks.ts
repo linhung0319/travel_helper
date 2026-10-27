@@ -27,8 +27,8 @@ export function usePlan<T>(selector: (s: PlanState) => T): T {
   return useStore(planStore, selector);
 }
 
-/** 電腦版的寬度（interaction-design §1）：900px 以上左右分 */
-export const DESKTOP_QUERY = '(min-width: 900px)';
+/** 網頁版的寬度（interaction-design §1「平板」）：1100px 以上三欄。iPad 直拿（最寬 1024）是手機版、橫拿（最窄 1133）是網頁版 */
+export const DESKTOP_QUERY = '(min-width: 1100px)';
 
 export function useMediaQuery(query: string): boolean {
   const [match, setMatch] = useState(() => window.matchMedia(query).matches);

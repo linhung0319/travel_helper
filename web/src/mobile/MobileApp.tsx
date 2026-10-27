@@ -1,4 +1,4 @@
-// 手機版的殼（第六輪 §3.1、§4）：寬度 < 900px 時 App.tsx 畫這個。上面是分頁內容，最下面是 5 個分頁（TabBar）。
+// 手機版的殼（第六輪 §3.1、§4）：寬度 < 1100px 時 App.tsx 畫這個。上面是分頁內容，最下面是 5 個分頁（TabBar）。
 // 地圖一直掛著（e2e 的 ready() 和行程頁都要它）：不在行程分頁時用 visibility: hidden 藏起來，不卸載；切回行程時重新算大小。
 // 整頁的東西（詳情 PlaceDetailPage、討論、預約）蓋在最上面，一次只有一層；分頁本身不卸載，返回時捲動位置不變。共用元件用 appStore.openDetail 開的詳情，這裡改開整頁詳情。
 // 探索（ExploreFeed）、想去（WishlistPage）、行程（TripPage：地圖上蓋一張可以拉的面板）、AI（ChatPage：佔位對話，T16m 接上）。

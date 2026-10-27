@@ -108,7 +108,7 @@ travel_helper/
 
 ### 手機版的殼、mobileStore、shared（T15m 第六輪，2026-10-25）
 
-- **分界**：`App.tsx` 只在最外層用 `useIsDesktop()`（`DESKTOP_QUERY`，900px）分一次：電腦畫 `web/src/components/` 的三欄，手機畫 `web/src/mobile/MobileApp.tsx`。手機版元件全在 `mobile/`，自己的 `mobile.css`、`chat.css`（class 用 `m-` 開頭）。舊手機版的拉起面板（`sheet`、`setSheet`）第六輪已經從 `store.ts` 刪掉；手機版的分頁、面板高度、整頁都在 `mobileStore`。
+- **分界**：`App.tsx` 只在最外層用 `useIsDesktop()`（`DESKTOP_QUERY`，1100px，第八輪前是 900px）分一次：電腦畫 `web/src/components/` 的三欄，手機畫 `web/src/mobile/MobileApp.tsx`。轉向跨過界線時，`layoutSwitch.ts` 把開著的詳情、展開的卡、分頁帶到另一個版面（第八輪）。手機版元件全在 `mobile/`，自己的 `mobile.css`、`chat.css`（class 用 `m-` 開頭）。舊手機版的拉起面板（`sheet`、`setSheet`）第六輪已經從 `store.ts` 刪掉；手機版的分頁、面板高度、整頁都在 `mobileStore`。
 - **殼**：底部 5 個分頁（探索、想去、行程、AI、我）。`MapView` 一直掛著，不在行程分頁時用 CSS（`visibility: hidden`）藏起來，不卸載（T12 的地圖指令、e2e 的 `ready()` 都要用到）。詳情、討論、預約是蓋在最上面的整頁，一次只有一層。
 - **`mobile/mobileStore.ts`**（vanilla Zustand，dev 時掛在 `window.__thMobile`）：手機版自己的畫面狀態，不放進 `store.ts`——現在的分頁（`tab`）、行程面板的高度（`tripSnap`：low／mid／high，`setSnap`）、行程選到的卡（`focused`，`focusItem` 設定）、編輯中打開的「⋯」動作面板（`actions`）、整頁詳情（`detail`）和討論／預約（`page`）、行程頁的半屏聊天（`chatSheet`）、探索的篩選、想去的設定。打開整頁（詳情或討論／預約）時推一筆 history：手機的返回鍵關掉那一頁，頁面的「‹」也是退回那一筆（兩種整頁互換時共用一筆）。
 - **`uiStore.chatDraft`**：「問 AI」的草稿 `{ seq, text, placeId, date, from }`，由 `askAboutPlace(placeId, text, from)` 寫入並把地點放進選取；畫面怎麼切由各平台的 store 監聽 `seq`：電腦版放進左邊的聊天欄；手機版從行程打開的詳情回行程、打開半屏聊天，其他地方打開的跳到 AI 分頁。AI 的內容先是 `mobile/chatDemo.ts` 的假訊息，T16m 接上。

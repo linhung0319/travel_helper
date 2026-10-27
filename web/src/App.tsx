@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useLayoutEffect, useRef } from 'react';
 import { appStore } from './store.ts';
 import { loadData } from './dataStore.ts';
 import { useData, useIsDesktop } from './hooks.ts';
@@ -12,6 +12,7 @@ import { closeMapPanel, uiStore } from './uiStore.ts';
 import { Dialogs, Toast } from './components/Dialogs.tsx';
 import { usePlanningIdle } from './components/Planning.tsx';
 import { MobileApp } from './mobile/MobileApp.tsx';
+import { toDesktop, toMobile } from './layoutSwitch.ts';
 import './styles.css';
 
 /**
@@ -53,6 +54,21 @@ export default function App() {
   useEffect(() => {
     void loadData();
   }, []);
+
+  // 轉向跨過 DESKTOP_QUERY：開著的詳情、展開的卡、分頁帶到另一個版面（§1 平板）。
+  // 到手機版用 layout effect：網頁版的 effect 清理（DayPanel 收起展開的卡）還沒跑，狀態還在；
+  // 到網頁版用一般 effect：手機版的清理（MobileApp 把 openDetail 搶去開整頁的訂閱）已經跑完
+  const wasDesktop = useRef(desktop);
+  useLayoutEffect(() => {
+    if (desktop || wasDesktop.current === desktop) return;
+    wasDesktop.current = desktop;
+    toMobile();
+  }, [desktop]);
+  useEffect(() => {
+    if (!desktop || wasDesktop.current === desktop) return;
+    wasDesktop.current = desktop;
+    toDesktop();
+  }, [desktop]);
 
   // Esc 依序關掉：討論／預約的視窗、詳情、小卡片。對話框、誰想去的小視窗、頭像選單、照片檢視、篩選面板開著時由它們自己關（捕獲階段先攔下）；
   // 正在輸入（留言框等、輸入法選字中）時不理，草稿不會跟著詳情一起不見

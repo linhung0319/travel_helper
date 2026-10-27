@@ -1,5 +1,5 @@
 @import url('./shared/ui/ui.css');
-/* 地圖網站 v1（T11）的網頁版（900px 以上，hooks.ts 的 DESKTOP_QUERY）。第六輪起手機版的樣式在 mobile/mobile.css（class 用 m- 開頭）；
+/* 地圖網站 v1（T11）的網頁版（1100px 以上，hooks.ts 的 DESKTOP_QUERY）。第六輪起手機版的樣式在 mobile/mobile.css（class 用 m- 開頭）；
    這裡沒有手機才用的規則，只有兩邊共用的元件（對話框、彈窗、照片等）的基本樣式。 */
 
 :root {
@@ -1098,7 +1098,7 @@ dl {
   flex-direction: column;
 }
 
-@media (min-width: 900px) {
+@media (min-width: 1100px) {
   .dialog-backdrop {
     align-items: center;
   }
@@ -1773,7 +1773,7 @@ button.planning-done {
   gap: 8px;
 }
 
-@media (min-width: 900px) {
+@media (min-width: 1100px) {
   .tl-groups {
     grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
   }
@@ -2430,15 +2430,26 @@ button.edited {
    左聊天室、中地圖（日期等浮在上方）、右側行程／探索／詳情共用一欄
    ====================================================================== */
 
-/* 聊天室 300px；1200px 以下縮成 260px，讓地圖在固定 440px 的右欄旁邊還有地方 */
-.layout.desktop .chat-column {
-  flex: 0 0 300px;
+/* 三欄固定寬度（第八輪 §13.1）：AI 300、右欄 400，地圖拿剩下的；1100～1279（iPad 橫拿）AI 260、右欄 360。
+   min-width: 0：flex 子項預設 min-width: auto，照片的原始寬度會把欄撐開（1180 寬時地圖被擠成 0） */
+.layout.desktop {
+  --ai-w: 300px;
+  --side-w: 400px;
+  --pop-w: 380px;
 }
 
-@media (max-width: 1199px) {
-  .layout.desktop .chat-column {
-    flex: 0 0 260px;
+@media (max-width: 1279px) {
+  .layout.desktop {
+    --ai-w: 260px;
+    --side-w: 360px;
+    --pop-w: 340px;
   }
+}
+
+.layout.desktop .chat-column {
+  flex: 0 0 var(--ai-w);
+  width: var(--ai-w);
+  min-width: 0;
 }
 
 .map-column {
@@ -2450,7 +2461,11 @@ button.edited {
 }
 
 .side-column {
-  flex: 0 0 440px; /* 固定寬度，日期列 13 格一定放得下（第七輪） */
+  flex: 0 0 var(--side-w);
+  width: var(--side-w);
+  min-width: 0;
+  /* clip 不是 hidden：hidden 的元素還能被 scrollIntoView 捲，整欄（連分頁）會被捲上去 */
+  overflow: clip;
   border-left: 1px solid var(--line);
   display: flex;
   flex-direction: column;
@@ -2602,6 +2617,8 @@ button.edited {
   flex: 1;
   min-height: 0;
   overflow-y: auto;
+  /* Windows 的捲軸：內容長短不同的分頁切換時寬度不跳（§13.1） */
+  scrollbar-gutter: stable;
 }
 
 /* ---------- 時間軸和地圖共用的編號 ---------- */
@@ -3836,4 +3853,15 @@ button.cand-up:disabled {
 
 .account-button svg {
   transform: rotate(90deg);
+}
+
+/* 網頁版用手指操作（iPad 橫拿，§1 平板）：拖曳把手、地圖縮放鈕至少 44px；滑鼠照舊 */
+@media (pointer: coarse) {
+  .layout.desktop .tc-li.editing {
+    --tc-grip: var(--tap);
+  }
+  .layout.desktop .maplibregl-ctrl-group button {
+    width: var(--tap);
+    height: var(--tap);
+  }
 }
