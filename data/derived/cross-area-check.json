@@ -1,9 +1,9 @@
 {
-  "generated": "2026-10-22",
+  "generated": "2026-10-26",
   "counts": {
-    "spot": 82,
-    "lodging": 145,
-    "restaurant": 292
+    "spot": 96,
+    "lodging": 168,
+    "restaurant": 333
   },
   "dups": [
     {
@@ -167,6 +167,36 @@
       "B": 5,
       "none": 0,
       "aOrAbove": 0
+    },
+    {
+      "area": "osaka",
+      "type": "spot",
+      "total": 14,
+      "S": 2,
+      "A": 2,
+      "B": 10,
+      "none": 0,
+      "aOrAbove": 29
+    },
+    {
+      "area": "osaka",
+      "type": "lodging",
+      "total": 23,
+      "S": 1,
+      "A": 6,
+      "B": 16,
+      "none": 0,
+      "aOrAbove": 30
+    },
+    {
+      "area": "osaka",
+      "type": "restaurant",
+      "total": 41,
+      "S": 3,
+      "A": 7,
+      "B": 31,
+      "none": 0,
+      "aOrAbove": 24
     }
   ],
   "stations": [
@@ -521,6 +551,347 @@
       "fit15": 0,
       "spots": 0,
       "lodging": 1
+    },
+    {
+      "id": "osaka-namba",
+      "name": "大阪難波",
+      "area": "osaka",
+      "restaurants": 2,
+      "lunch": 2,
+      "dinner": 2,
+      "fit15": 2,
+      "spots": 0,
+      "lodging": 2
+    },
+    {
+      "id": "osaka-uehommachi",
+      "name": "大阪上本町",
+      "area": "osaka",
+      "restaurants": 0,
+      "lunch": 0,
+      "dinner": 0,
+      "fit15": 0,
+      "spots": 0,
+      "lodging": 2
+    },
+    {
+      "id": "tsuruhashi",
+      "name": "鶴橋",
+      "area": "osaka",
+      "restaurants": 0,
+      "lunch": 0,
+      "dinner": 0,
+      "fit15": 0,
+      "spots": 0,
+      "lodging": 0
+    },
+    {
+      "id": "nankai-namba",
+      "name": "なんば",
+      "area": "osaka",
+      "restaurants": 1,
+      "lunch": 1,
+      "dinner": 0,
+      "fit15": 0,
+      "spots": 0,
+      "lodging": 2
+    },
+    {
+      "id": "nankai-shin-imamiya",
+      "name": "新今宮",
+      "area": "osaka",
+      "restaurants": 0,
+      "lunch": 0,
+      "dinner": 0,
+      "fit15": 0,
+      "spots": 0,
+      "lodging": 0
+    },
+    {
+      "id": "jr-osaka",
+      "name": "大阪",
+      "area": "osaka",
+      "restaurants": 3,
+      "lunch": 2,
+      "dinner": 2,
+      "fit15": 2,
+      "spots": 0,
+      "lodging": 2
+    },
+    {
+      "id": "jr-nishikujo",
+      "name": "西九条",
+      "area": "osaka",
+      "restaurants": 0,
+      "lunch": 0,
+      "dinner": 0,
+      "fit15": 0,
+      "spots": 0,
+      "lodging": 1
+    },
+    {
+      "id": "jr-universal-city",
+      "name": "ユニバーサルシティ",
+      "area": "osaka",
+      "restaurants": 1,
+      "lunch": 1,
+      "dinner": 1,
+      "fit15": 1,
+      "spots": 1,
+      "lodging": 5
+    },
+    {
+      "id": "jr-shin-imamiya",
+      "name": "新今宮",
+      "area": "osaka",
+      "restaurants": 0,
+      "lunch": 0,
+      "dinner": 0,
+      "fit15": 0,
+      "spots": 0,
+      "lodging": 0
+    },
+    {
+      "id": "jr-tennoji",
+      "name": "天王寺",
+      "area": "osaka",
+      "restaurants": 0,
+      "lunch": 0,
+      "dinner": 0,
+      "fit15": 0,
+      "spots": 0,
+      "lodging": 0
+    },
+    {
+      "id": "jr-tsuruhashi",
+      "name": "鶴橋",
+      "area": "osaka",
+      "restaurants": 2,
+      "lunch": 2,
+      "dinner": 2,
+      "fit15": 2,
+      "spots": 0,
+      "lodging": 0
+    },
+    {
+      "id": "jr-morinomiya",
+      "name": "森ノ宮",
+      "area": "osaka",
+      "restaurants": 1,
+      "lunch": 1,
+      "dinner": 1,
+      "fit15": 1,
+      "spots": 0,
+      "lodging": 0
+    },
+    {
+      "id": "jr-osakajokoen",
+      "name": "大阪城公園",
+      "area": "osaka",
+      "restaurants": 0,
+      "lunch": 0,
+      "dinner": 0,
+      "fit15": 0,
+      "spots": 1,
+      "lodging": 0
+    },
+    {
+      "id": "metro-umeda",
+      "name": "梅田",
+      "area": "osaka",
+      "restaurants": 2,
+      "lunch": 2,
+      "dinner": 2,
+      "fit15": 0,
+      "spots": 1,
+      "lodging": 1
+    },
+    {
+      "id": "metro-higashi-umeda",
+      "name": "東梅田",
+      "area": "osaka",
+      "restaurants": 2,
+      "lunch": 1,
+      "dinner": 2,
+      "fit15": 0,
+      "spots": 0,
+      "lodging": 1
+    },
+    {
+      "id": "metro-hommachi",
+      "name": "本町",
+      "area": "osaka",
+      "restaurants": 0,
+      "lunch": 0,
+      "dinner": 0,
+      "fit15": 0,
+      "spots": 0,
+      "lodging": 0
+    },
+    {
+      "id": "metro-shinsaibashi",
+      "name": "心斎橋",
+      "area": "osaka",
+      "restaurants": 2,
+      "lunch": 1,
+      "dinner": 2,
+      "fit15": 2,
+      "spots": 0,
+      "lodging": 1
+    },
+    {
+      "id": "metro-namba",
+      "name": "なんば",
+      "area": "osaka",
+      "restaurants": 6,
+      "lunch": 4,
+      "dinner": 4,
+      "fit15": 4,
+      "spots": 1,
+      "lodging": 2
+    },
+    {
+      "id": "metro-dobutsuen-mae",
+      "name": "動物園前",
+      "area": "osaka",
+      "restaurants": 3,
+      "lunch": 3,
+      "dinner": 3,
+      "fit15": 0,
+      "spots": 1,
+      "lodging": 0
+    },
+    {
+      "id": "metro-tennoji",
+      "name": "天王寺",
+      "area": "osaka",
+      "restaurants": 4,
+      "lunch": 3,
+      "dinner": 3,
+      "fit15": 2,
+      "spots": 1,
+      "lodging": 0
+    },
+    {
+      "id": "metro-sakaisuji-hommachi",
+      "name": "堺筋本町",
+      "area": "osaka",
+      "restaurants": 0,
+      "lunch": 0,
+      "dinner": 0,
+      "fit15": 0,
+      "spots": 0,
+      "lodging": 0
+    },
+    {
+      "id": "metro-tanimachi-4chome",
+      "name": "谷町四丁目",
+      "area": "osaka",
+      "restaurants": 2,
+      "lunch": 1,
+      "dinner": 1,
+      "fit15": 0,
+      "spots": 1,
+      "lodging": 0
+    },
+    {
+      "id": "metro-morinomiya",
+      "name": "森ノ宮",
+      "area": "osaka",
+      "restaurants": 0,
+      "lunch": 0,
+      "dinner": 0,
+      "fit15": 0,
+      "spots": 0,
+      "lodging": 0
+    },
+    {
+      "id": "metro-osakako",
+      "name": "大阪港",
+      "area": "osaka",
+      "restaurants": 4,
+      "lunch": 4,
+      "dinner": 2,
+      "fit15": 2,
+      "spots": 3,
+      "lodging": 0
+    },
+    {
+      "id": "metro-nagahoribashi",
+      "name": "長堀橋",
+      "area": "osaka",
+      "restaurants": 0,
+      "lunch": 0,
+      "dinner": 0,
+      "fit15": 0,
+      "spots": 0,
+      "lodging": 1
+    },
+    {
+      "id": "metro-osaka-business-park",
+      "name": "大阪ビジネスパーク",
+      "area": "osaka",
+      "restaurants": 4,
+      "lunch": 4,
+      "dinner": 4,
+      "fit15": 2,
+      "spots": 0,
+      "lodging": 0
+    },
+    {
+      "id": "metro-tenjimbashisuji-6chome",
+      "name": "天神橋筋六丁目",
+      "area": "osaka",
+      "restaurants": 0,
+      "lunch": 0,
+      "dinner": 0,
+      "fit15": 0,
+      "spots": 1,
+      "lodging": 0
+    },
+    {
+      "id": "metro-nippombashi",
+      "name": "日本橋",
+      "area": "osaka",
+      "restaurants": 2,
+      "lunch": 2,
+      "dinner": 2,
+      "fit15": 1,
+      "spots": 1,
+      "lodging": 3
+    },
+    {
+      "id": "metro-ebisucho",
+      "name": "恵美須町",
+      "area": "osaka",
+      "restaurants": 0,
+      "lunch": 0,
+      "dinner": 0,
+      "fit15": 0,
+      "spots": 1,
+      "lodging": 0
+    },
+    {
+      "id": "metro-tanimachi-9chome",
+      "name": "谷町九丁目",
+      "area": "osaka",
+      "restaurants": 0,
+      "lunch": 0,
+      "dinner": 0,
+      "fit15": 0,
+      "spots": 0,
+      "lodging": 0
+    },
+    {
+      "id": "metro-shitennojimae-yuhigaoka",
+      "name": "四天王寺前夕陽ヶ丘",
+      "area": "osaka",
+      "restaurants": 0,
+      "lunch": 0,
+      "dinner": 0,
+      "fit15": 0,
+      "spots": 1,
+      "lodging": 0
     }
   ],
   "regions": [
@@ -856,6 +1227,60 @@
       "spot": 0,
       "lodging": 3,
       "restaurant": 3
+    },
+    {
+      "area": "osaka",
+      "region": "namba",
+      "name": "難波・道頓堀",
+      "needsCar": false,
+      "spot": 2,
+      "lodging": 13,
+      "restaurant": 15
+    },
+    {
+      "area": "osaka",
+      "region": "osaka-castle",
+      "name": "大阪城",
+      "needsCar": false,
+      "spot": 2,
+      "lodging": 0,
+      "restaurant": 7
+    },
+    {
+      "area": "osaka",
+      "region": "tennoji",
+      "name": "天王寺・新世界",
+      "needsCar": false,
+      "spot": 4,
+      "lodging": 0,
+      "restaurant": 7
+    },
+    {
+      "area": "osaka",
+      "region": "osaka-bay",
+      "name": "海遊館・天保山",
+      "needsCar": false,
+      "spot": 3,
+      "lodging": 0,
+      "restaurant": 5
+    },
+    {
+      "area": "osaka",
+      "region": "usj",
+      "name": "ユニバーサルシティ",
+      "needsCar": false,
+      "spot": 1,
+      "lodging": 6,
+      "restaurant": 0
+    },
+    {
+      "area": "osaka",
+      "region": "umeda",
+      "name": "梅田",
+      "needsCar": false,
+      "spot": 2,
+      "lodging": 4,
+      "restaurant": 7
     }
   ],
   "lowConfTop": [
@@ -906,6 +1331,18 @@
       "name": "牡蠣の朋",
       "tier": "A",
       "why": "食べログ 3.55（178 則）、Google 4.5（296 則）→ 伊勢的第 1 條（3.55／150 則＋Google 4.1）；介紹只有 TikTok／IG 轉載"
+    },
+    {
+      "id": "osaka-yatagarasu-udon",
+      "name": "やたがらす UDON",
+      "tier": "A",
+      "why": "食べログ 3.66（655 則）、Google 4.2（296 則）→ 大阪門檻的 4"
+    },
+    {
+      "id": "osaka-gojoya",
+      "name": "五條家",
+      "tier": "A",
+      "why": "食べログ 3.66（615 則）、Google 4.5（280 則）→ 大阪門檻的 4"
     }
   ],
   "winterUnsure": [

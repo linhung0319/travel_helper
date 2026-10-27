@@ -26,3 +26,20 @@
 - [ ] osaka-hotel-k6-namba：房型（トリプル～4 床房）的人數、床型；評論說是レジャーホテル型態
 - [ ] osaka-shikanjima-house：登記番號是旅館業還是特区民泊；價格 19,000 円／泊和見積例 30,000 円哪個對；樓梯、廁所數；1 泊可不可以（頁面寫 2 泊以上）
 - [ ] 各飯店：15 人（10 人以上）團體訂房要不要電話、取消規定（APA 寫 15 名以上取消規定不同）
+
+## 餐廳（T27c）
+- [ ] osaka-dotonbori-imai：15 人的寄せ鍋コース預約（前一天以前、電話 06-6211-0319）；個室在幾樓、有沒有電梯
+- [ ] osaka-551-horai-honten：3 樓包場的最少人數（食べログ寫 50 人以上）、15 人能不能用和洋個室；2027 年 2 月的公休日（第 1、3 週二）
+- [ ] osaka-tsurutontan-soemoncho：15 人座敷個室的預約（食べログ網路只到 10 名）；個室是座敷還是桌席
+- [ ] osaka-harijyu-dotonbori：15 人能不能同一間個室（食べログ網路只到 4 名）；2 樓房間的樓梯、有沒有椅子
+- [ ] osaka-nishiya：15 人的個室是座敷還是桌席（10～20 人那級）
+- [ ] osaka-lawrys：個室 15～30 人的包廂費、兒童菜單內容和價格（官網是 PDF）
+- [ ] osaka-minsei-hilton-plaza：祝前日是否公休（hotpepper）；15 人能不能用 20 人的桌席個室
+- [ ] osaka-aoi-napoli-tenshiba：2 月可用的團體方案（コース頁多是季節限定）、貸切 25～40 名的條件
+- [ ] osaka-hakuuntai-tsuruhashi：15～20 人半個室是座敷還是桌席（官網 /party 和食べログ說法不同）
+- [ ] osaka-beehive-minato：2/11（國定假日）有沒有營業（週六、祝日不定休、店長療養中）
+- [ ] osaka-takoyasu：15 人的個室、套餐和小孩的價格；完全預約制
+- [ ] osaka-chitose：週五是否公休（官網本店頁寫火・金，食べログ只寫火）
+- [ ] osaka-yamachan：本店恢復內用了沒（食べログ寫店內席暫停）
+- [ ] osaka-matsui-kyobashi：2 樓的席數、能不能帶小孩、吸菸
+- [ ] osaka-horumon-tokuichi：營業時間、公休（食べログ 12:00～22:00；舊報導 13:00～23:00、週四休）

@@ -1,0 +1,156 @@
+{
+  "area": "osaka",
+  "generated": "2026-10-26",
+  "script": "scripts/assessment-check.mjs",
+  "rules": {
+    "restaurant": {
+      "star5": {
+        "tabelogMin": 3.5,
+        "googleMin": 4
+      },
+      "star4": {
+        "tabelogMin": 3.3,
+        "googleMin": 3.8
+      },
+      "low": {
+        "maxStar": 2,
+        "tabelogHigh": 3.5,
+        "googleHigh": 4.4,
+        "googleReviewsMin": 100
+      },
+      "few": {
+        "minStar": 4,
+        "tabelogReviewsMax": 100,
+        "googleReviewsMax": 300
+      }
+    },
+    "spot": {
+      "star5": {
+        "googleMin": 4.2,
+        "googleReviewsMin": 500
+      },
+      "star4": {
+        "googleMin": 4
+      },
+      "low": {
+        "maxStar": 2,
+        "googleHigh": 4.4,
+        "googleReviewsMin": 200
+      },
+      "few": {
+        "minStar": 4,
+        "googleReviewsMax": 100
+      }
+    },
+    "lodging": {
+      "star5": {
+        "siteMin": 4.5,
+        "googleMin": 4.2
+      },
+      "star4": {
+        "siteMin": 4.2,
+        "googleMin": 3.9
+      },
+      "low": {
+        "maxStar": 2,
+        "siteHigh": 4.5,
+        "googleHigh": 4.3
+      },
+      "few": {
+        "minStar": 4,
+        "siteReviewsMax": 100,
+        "googleReviewsMax": 100
+      }
+    },
+    "common": {
+      "highConfidenceReviewsMin": 300
+    }
+  },
+  "counts": {
+    "spot": {
+      "total": 14,
+      "assessed": 14,
+      "notAssessed": [],
+      "flagged": 0,
+      "byStar": {
+        "3": 10,
+        "4": 2,
+        "5": 2
+      }
+    },
+    "lodging": {
+      "total": 23,
+      "assessed": 23,
+      "notAssessed": [],
+      "flagged": 0,
+      "byStar": {
+        "2": 1,
+        "3": 15,
+        "4": 6,
+        "5": 1
+      }
+    },
+    "restaurant": {
+      "total": 41,
+      "assessed": 41,
+      "notAssessed": [],
+      "flagged": 4,
+      "byStar": {
+        "2": 11,
+        "3": 20,
+        "4": 7,
+        "5": 3
+      }
+    }
+  },
+  "items": [
+    {
+      "type": "restaurant",
+      "id": "osaka-dynamic-kitchen-san-obp",
+      "name": "ダイナミックキッチン＆バー 燦 OBPツインタワー店",
+      "recommend": 2,
+      "tier": "B",
+      "confidence": "high",
+      "ratings": "食べログ 3.49（603 則）、Google 4.6（3833 則）",
+      "rule": "low-star-high-rating",
+      "message": "2 星但食べログ 3.5 以上或 Google 4.4 以上（100 則以上）",
+      "rationale": "食べログ 3.49、Google 4.6 → 照數字 3（4 要食べログ 3.55），Google 低分集中在服務（6 則，約 2025～2026）→ 負評往下調一級"
+    },
+    {
+      "type": "restaurant",
+      "id": "osaka-harijyu-dotonbori",
+      "name": "はり重 道頓堀本店",
+      "recommend": 2,
+      "tier": "B",
+      "confidence": "high",
+      "ratings": "食べログ 3.55（736 則）、Google 4.1（397 則）",
+      "rule": "low-star-high-rating",
+      "message": "2 星但食べログ 3.5 以上或 Google 4.4 以上（100 則以上）",
+      "rationale": "食べログ 3.55、Google 4.1 → 照數字 3（4 要 Google 4.2），Google 低分集中在服務態度（5 則，約 2024～2026）→ 負評往下調一級"
+    },
+    {
+      "type": "restaurant",
+      "id": "osaka-nishiya",
+      "name": "にし家 本店",
+      "recommend": 2,
+      "tier": "B",
+      "confidence": "high",
+      "ratings": "食べログ 3.59（1035 則）、Google 4.1（1204 則）",
+      "rule": "low-star-high-rating",
+      "message": "2 星但食べログ 3.5 以上或 Google 4.4 以上（100 則以上）",
+      "rationale": "食べログ 3.59、Google 4.1 → 照數字 3（4 要 Google 4.2），Google 低分集中在料理品質（5 則，約 2023～2025）→ 負評往下調一級"
+    },
+    {
+      "type": "restaurant",
+      "id": "osaka-minsei-hilton-plaza",
+      "name": "廣東料理 民生 ヒルトンプラザウエスト店",
+      "recommend": 2,
+      "tier": "B",
+      "confidence": "high",
+      "ratings": "食べログ 3.68（1418 則）、Google 4.1（836 則）",
+      "rule": "low-star-high-rating",
+      "message": "2 星但食べログ 3.5 以上或 Google 4.4 以上（100 則以上）",
+      "rationale": "食べログ 3.68、Google 4.1 → 照數字 3（4 要 Google 4.2），Google 低分集中在服務和料理（服務 4＋味道 3，約 2025～2026）→ 負評往下調一級"
+    }
+  ]
+}

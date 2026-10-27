@@ -80,6 +80,20 @@ export interface TripRef {
   via?: string | null;
 }
 
+/** 走法的一程（T29）：line 是 NetRoute 的 group（近鐵 kintetsu、路線檔 routeId、班距型 routeId），from／to 是停靠點 ID */
+export interface PathRide {
+  line: string;
+  from: string;
+  to: string;
+}
+
+/** 選定的走法：每一程搭哪條線、哪兩站；from／to 是選的時候起訖的地點 ID，和現在不同時引擎當作沒選（同 TripRef） */
+export interface PathRef {
+  rides: PathRide[];
+  from: string | null;
+  to: string | null;
+}
+
 /**
  * 使用者指定的交通（從上一站到這一項）。
  * mode 沒寫：方式自動；minutes 是 null：時間照規則算；trip：選定的班次（mode 沒寫或是大眾運輸時用）。
@@ -89,6 +103,8 @@ export interface TravelSpec {
   mode?: TravelMode | null;
   minutes?: number | null;
   trip?: TripRef | null;
+  /** 選定的走法（T29）：照這個走法依序搭每一程最早接得上的班 */
+  path?: PathRef | null;
   note?: string | null;
 }
 
@@ -210,8 +226,44 @@ export interface TransitRide {
   /** 近鐵的 trainNo、巴士的 trip id */
   tripId?: string | null;
   fareAdult?: number | null;
-  /** 巴士、船、JR 的路線時刻表 id（列同一對站的班次用）；近鐵是 null */
+  /** 巴士、船、JR 的路線時刻表 id（列同一對站的班次用）；近鐵是 null；班距型是班距型路線 ID */
   routeId?: string | null;
+  /** 有時刻表的班次（timetable）或大阪的班距型路線（headway，發車、到站是估的，tripId 是 null） */
+  kind?: 'timetable' | 'headway';
+  /** 班距型：用的班距（分）、首末班；有時刻表的是 null */
+  headwayMin?: number | null;
+  first?: TimeString | null;
+  last?: TimeString | null;
+  /** 業者（例如 kintetsu、Osaka Metro）；不知道是 null */
+  operator?: string | null;
+  /** 錯過這班的話：下一班發車、整段到達、晚幾分；沒有下一班（末班）是 null */
+  ifMissed?: { depart: TimeString; arrive: TimeString; lateMinutes: number } | null;
+}
+
+/** 第 i 程下車到第 i+1 程上車中間的轉乘步行（T29） */
+export interface LegTransfer {
+  /** 套係數、進位後的分鐘；同站同線換車是 0 */
+  walkMinutes: number;
+  /** 有沒有電梯路線；不知道是 null */
+  elevator: boolean | null;
+  /** 電梯路線的分鐘（套係數、進位，只給畫面看）；沒有是 null */
+  elevatorWalkMinutes: number | null;
+  note: string | null;
+}
+
+/** 一段交通的候選走法（T29） */
+export interface LegAlternative {
+  /** 要存進行程（TravelSpec.path）的走法 */
+  path: PathRef;
+  /** 例如「御堂筋線 → 本町 → 中央線」 */
+  summary: string;
+  arrive: TimeString;
+  minutes: number;
+  waitMinutes: number;
+  walkMinutes: number;
+  ridesCount: number;
+  rides: TransitRide[];
+  transfers: LegTransfer[];
 }
 
 export interface TaxiInfo {
@@ -234,7 +286,7 @@ export interface Leg {
   depart: TimeString;
   arrive: TimeString;
   minutes: number;
-  /** 這段裡走路的分鐘（含到車站、停留所），算一天累計步行用 */
+  /** 這段裡走路的分鐘（含到車站、停留所、轉乘步行），算一天累計步行用 */
   walkMinutes: number;
   /** 等車的分鐘（含在 minutes 裡） */
   waitMinutes: number;
@@ -243,13 +295,17 @@ export interface Leg {
   walkBefore?: number;
   /** 大眾運輸：最後下車走到終點的分鐘（已進位）；不是大眾運輸時沒有 */
   walkAfter?: number;
-  /** 大眾運輸：每一程「走到上車站／轉乘完」的時間，和 rides 等長（第一程＝出發＋walkBefore，之後＝前一程到站＋minTransfer） */
+  /** 大眾運輸：每一程「走到上車站／轉乘完」的時間，和 rides 等長（第一程＝出發＋walkBefore，之後＝前一程到站＋轉乘步行，至少 minTransfer） */
   ready?: TimeString[];
   /** 這段實際用的班次；不是電車、巴士、船時是 null */
   trip?: TripRef | null;
   /** 同一對上下車點的前一班、後一班（規劃模式的 ‹ ›）；沒有是 null */
   prevTrip?: TripRef | null;
   nextTrip?: TripRef | null;
+  /** 大眾運輸：轉乘步行，長度＝rides.length − 1（T29） */
+  transfers?: LegTransfer[];
+  /** 大眾運輸：候選走法，第一個是目前用的（T29） */
+  alternatives?: LegAlternative[];
   /** 出發後（加上走到上車點）時刻表裡還有沒有這兩點之間的班次（不管等多久）；false 時規劃模式的「大眾運輸」灰掉 */
   transitAvailable?: boolean;
   taxi?: TaxiInfo | null;

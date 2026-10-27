@@ -10,7 +10,7 @@ import { busDayType, dayOfWeek, kintetsuDayType, toMinutes } from './time.ts';
 
 const EXPRESS = new Set(['特急', 'しまかぜ']);
 // しまかぜ固定停駛的星期（next-train.mjs；另有檢修停駛日，要查官網運行日曆）
-const SHIMAKAZE_OFF: Record<string, number> = { 大阪難波発着: 2, 京都発着: 3, 近鉄名古屋発着: 4 };
+export const SHIMAKAZE_OFF: Record<string, number> = { 大阪難波発着: 2, 京都発着: 3, 近鉄名古屋発着: 4 };
 
 export interface TrainRide {
   trainNo: string;

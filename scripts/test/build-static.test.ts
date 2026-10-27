@@ -32,3 +32,16 @@ test('真的資料：每個近鐵車站一個檔案、index 和 manifest 列出�
   const toba = JSON.parse(fs.readFileSync(path.join(out, 'timetables/kintetsu/toba.json'), 'utf8'));
   for (const days of Object.values<any>(toba.directions)) for (const d of days.weekday) assert.ok(Array.isArray(d.next), d.trainNo);
 });
+
+test('班距型路線（大阪）：輸出 timetables/urban/*.json，index.json 的 urban 列出路線', () => {
+  const out = fs.mkdtempSync(path.join(os.tmpdir(), 'th-static-'));
+  const m = build({ data: path.join(ROOT, 'data'), out });
+  assert.ok(m.files['timetables/urban/metro-midosuji.json']);
+  assert.ok(m.files['timetables/urban/_transfers.json']);
+  const index = JSON.parse(fs.readFileSync(path.join(out, 'timetables/index.json'), 'utf8'));
+  const mido = index.urban.find((u: any) => u.id === 'metro-midosuji');
+  assert.ok(mido);
+  assert.equal(mido.file, 'timetables/urban/metro-midosuji.json');
+  assert.ok(Array.isArray(mido.stops) && typeof mido.stops[0] === 'string');
+  assert.ok(!index.urban.some((u: any) => u.id === undefined), '_transfers 不列進 urban');
+});

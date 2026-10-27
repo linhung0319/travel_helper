@@ -16,6 +16,11 @@
 //       "overrides": { "<店家 ID>": { "status", "criteria": ["D2"], "reason", "region", "note", "contexts" } },
 //       "mentions": { "<店家 ID>": [{ "type", "url", "title", "highlight", "retrieved" }] }
 //     }
+//   大阪（T27c）：rules 加 "scheme": "osaka" 改用 G 全員／S 分組（CONVENTIONS §4「大阪（都市區）的做法」，lib/restaurant-cand.mjs 的 criteriaOsaka），
+//       不算 B、不做同類型上限，改成每個子地區的家數上限 "caps": { "G": { "namba": 10, "default": 2 }, "S": { "default": 5 } }：
+//       G 依口コミ數取；超過 G 上限、但也符合 S 的店進 S 的名額。S 先取名物（OSAKA_MEIBUTSU）再取平價，同一類內依口コミ數；
+//       "sameType": 2 → S 裡同一類型（食べログ類別第一項，うどんすき算うどん）每區最多 2 家（👤 2026-10-26）。超過的標 over-limit。
+//       regions 的元素可以用 "area"（比對食べログ地區代碼，例如 "A270202"）代替 "re"（大阪的列表沒有住所）。
 //   B（2 種以上來源）由 mentions 的 type 種類自動算（tourism、media、blog-ja 算「日文媒體」一種，blog-zh 一種）。
 //   同類型上限：每個子地區、每個類型 12 家，依 A → F → B → C、同條件內口コミ數排序，超過的標 over-limit。
 
@@ -23,7 +28,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { parseLines, tabelogUrl } from './lib/tabelog-list.mjs';
-import { typeOf, contextsOf, autoExclusion, criteriaAC, roomMax } from './lib/restaurant-cand.mjs';
+import { typeOf, contextsOf, autoExclusion, criteriaAC, criteriaOsaka, isMeibutsu, firstGenre, roomMax } from './lib/restaurant-cand.mjs';
 
 const args = process.argv.slice(2);
 const opt = (k) => (args.includes(`--${k}`) ? args[args.indexOf(`--${k}`) + 1] : null);
@@ -73,20 +78,22 @@ export function build(shops, rules) {
   for (const s of shops.values()) {
     const own = rules.overrides?.[s.id] ?? {};
     if ((s.score ?? 0) < (rules.minScore ?? 0) && !rules.overrides?.[s.id]) continue;
-    const region = own.region ?? rules.regions?.find((r) => new RegExp(r.re).test(s.address ?? ''))?.region ?? null;
+    const region = own.region ?? rules.regions?.find((r) => (r.area ? new RegExp(r.area).test(s.area ?? '') : new RegExp(r.re).test(s.address ?? '')))?.region ?? null;
     if (rules.onlyRegions && !rules.onlyRegions.includes(region)) continue;
     // regionDefaults：整個子地區共用的判斷（例如スペイン村休園 → 全部 excluded）；店家自己的 override 優先
     const ov = { ...(rules.regionDefaults?.[region] ?? {}), ...own };
     const th = rules.thresholds?.[region] ?? {};
     const inFilter = s.filters.has('room') || s.filters.has('kashikiri');
     const max = roomMax(s.room);
-    const ac = criteriaAC(s, { ...th, inFilter, big15: max != null && max >= 15 });
+    const osaka = rules.scheme === 'osaka';
+    const ac = osaka ? criteriaOsaka(s, th) : criteriaAC(s, { ...th, inFilter, big15: max != null && max >= 15 });
     const mentions = rules.mentions?.[s.id] ?? [];
-    const b = sourceKinds(mentions).size >= 2 ? ['B'] : [];
+    const b = !osaka && sourceKinds(mentions).size >= 2 ? ['B'] : [];
     const criteria = [...new Set([...ac, ...b, ...(ov.criteria ?? [])])].sort((x, y) => ORDER.indexOf(x[0]) - ORDER.indexOf(y[0]) || x.localeCompare(y));
     const excl = autoExclusion(s);
     const status = ov.status ?? (excl ? 'excluded' : criteria.length ? 'included' : 'not-included');
     let reason = ov.reason ?? (status === 'excluded' ? excl : null);
+    if (!reason && status === 'not-included' && osaka) reason = '未符合 G／S';
     if (!reason && status === 'not-included') {
       const why = [];
       if (inFilter && (s.score ?? 0) >= 3.1 && (s.reviews ?? 0) < 15) why.push(`在${s.filters.has('room') ? '個室' : '貸切'}篩選裡但口コミ ${s.reviews ?? 0} 則（C 要 15 則）`);
@@ -119,6 +126,7 @@ export function build(shops, rules) {
       note,
     });
   }
+  if (rules.scheme === 'osaka') return applyOsakaCaps(out, rules.caps ?? {});
   // 同類型上限（每個子地區、每個類型 12 家）
   const groups = new Map();
   for (const c of out.filter((c) => c.status === 'included')) {
@@ -130,6 +138,39 @@ export function build(shops, rules) {
     for (const c of list.slice(12)) {
       c.status = 'over-limit';
       c.reason = '同類型上限（12 家）外';
+    }
+  }
+  return out;
+}
+
+// 大阪的家數上限（見檔案開頭）：G 先取，S 再從剩下的店取
+export function applyOsakaCaps(out, caps) {
+  const capOf = (k, region) => caps[k]?.[region] ?? caps[k]?.default ?? Infinity;
+  const reviews = (c) => c.ratings.tabelogReviews ?? 0;
+  const regions = new Set(out.map((c) => c.region));
+  for (const region of regions) {
+    const inc = out.filter((c) => c.region === region && c.status === 'included');
+    const g = inc.filter((c) => c.criteria.includes('G')).sort((a, b) => reviews(b) - reviews(a));
+    const gCap = capOf('G', region);
+    const gKept = new Set(g.slice(0, gCap));
+    const s = inc
+      .filter((c) => !gKept.has(c) && c.criteria.includes('S'))
+      .sort((a, b) => Number(isMeibutsu(b.category)) - Number(isMeibutsu(a.category)) || reviews(b) - reviews(a));
+    const sCap = capOf('S', region);
+    const sKept = new Set();
+    const perType = new Map();
+    const typeKey = (c) => firstGenre(c.category).replace(/^うどんすき$/, 'うどん');
+    for (const c of s) {
+      if (sKept.size >= sCap) break;
+      const k = typeKey(c);
+      if ((perType.get(k) ?? 0) >= (caps.sameType ?? Infinity)) continue;
+      perType.set(k, (perType.get(k) ?? 0) + 1);
+      sKept.add(c);
+    }
+    for (const c of inc) {
+      if (gKept.has(c) || sKept.has(c)) continue;
+      c.status = 'over-limit';
+      c.reason = `子地區上限外（${region}：G ${gCap} 家、S ${sCap} 家${caps.sameType ? `、S 同類型 ${caps.sameType} 家` : ''}，依口コミ數）`;
     }
   }
   return out;

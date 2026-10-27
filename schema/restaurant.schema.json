@@ -418,9 +418,9 @@
         ]
       },
       "inclusion": {
-        "description": "符合的納入條件（CONVENTIONS §4「餐廳候選納入標準」），和候選清單的 criteria 同樣寫法，例如 [\"A\", \"C\"]、[\"D1\"]、[\"F3\"]",
+        "description": "符合的納入條件（CONVENTIONS §4「餐廳候選納入標準」），和候選清單的 criteria 同樣寫法，例如 [\"A\", \"C\"]、[\"D1\"]、[\"F3\"]；大阪用 G（全員）、S（分組）（T27c）",
         "type": "array",
-        "items": { "type": "string", "pattern": "^[A-F][1-9]?$" },
+        "items": { "type": "string", "pattern": "^([A-F][1-9]?|G|S)$" },
         "uniqueItems": true
       },
       "tabelogOwner": {
