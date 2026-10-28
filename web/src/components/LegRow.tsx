@@ -4,7 +4,7 @@
 // 地圖框住這段的兩端；再點一次或點別段就恢復，收起來時地圖回到打開前的範圍（中間被別的操作移過就不回去）（第七輪 §8.2）。
 // 點開後（T29c spec §8.3、§8.4）：最上面補充資訊框（這段的警告文字、計程車起跳價、前一站可以多待；淡灰底，沒有就不畫），
 // 下面搭車的步驟（legView 的 compactSteps）：一個節點一行（左邊時間、中間細線和圓圈、右邊站名，同一行右邊「等 N 分」或「走 N 分 ↓」），一程一行
-// （交通方式顏色外框的膠囊＋發車時間、車程分鐘、右邊「錯過的話」的標籤）。上車站（名稱後面「›」）和標籤點了在地圖那側開那一程的班次表
+// （交通方式顏色外框的膠囊＋發車時間、右邊「錯過的話」的標籤；車程分鐘看前後節點的時間）。上車站（名稱後面「›」）和標籤點了在地圖那側開那一程的班次表
 // （uiStore.openTimetable，只能看）。買票太趕在上車站下面一行橘字；轉乘有說明、有電梯路線的另外一行，說明摺起來。
 // 計程車點開只有補充資訊框；步行沒有可以看的就不畫小箭頭。
 // 交通的警告（引擎標了 leg: true）只在交通卡（legWarnings），資料卡的 WarnToggle 不再顯示（planView 的 warningsByItem）。
@@ -163,12 +163,9 @@ export function LegSteps({ steps, leg, date, legKey }: { steps: CompactStep[]; l
             <span className="leg-step-tx">
               <span className="leg-ride" style={{ '--ride-c': RIDE_COLOR[s.mode] } as CSSProperties} data-testid="leg-ride">
                 <ModeIcon mode={s.mode} size="s" />
-                {/* 膠囊（短名稱＋發車）、標籤不縮；放不下時只有「N 分」省略 */}
+                {/* 膠囊（短名稱＋發車）、標籤都不縮；車程分鐘不寫（看前後節點的時間） */}
                 <span className="leg-ride-name">{s.name}</span>
                 {s.depart && <span className="leg-ride-dep">{s.depart}</span>}
-              </span>
-              <span className="leg-ride-min">
-                <span>{s.minutes} 分</span>
               </span>
               {s.badge && (
                 <button type="button" className={`leg-miss ${s.badge.tone}`} onClick={() => openRide(s.index)} data-testid="leg-miss">

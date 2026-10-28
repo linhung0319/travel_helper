@@ -667,6 +667,9 @@ test('T29c：大眾運輸的交通卡收合兩行（膠囊），點開一程一�
   await expect(steps.getByTestId('leg-ride').first()).not.toContainText('班次');
   // 膠囊（短名稱＋發車）、標籤完整，不被截
   await expect(steps.getByTestId('leg-ride').first()).toHaveText(/^外宮內宮線\s*\d\d:\d\d$/);
+  // 一程那一行只有膠囊和標籤（車程分鐘不寫）
+  const rideRow = steps.getByTestId('leg-step-ride').first().locator('.leg-step-tx > *');
+  expect(await rideRow.evaluateAll((els) => els.map((e) => (e as HTMLElement).dataset.testid))).toEqual(['leg-ride', 'leg-miss']);
   for (const id of ['leg-ride', 'leg-miss']) {
     expect(await steps.getByTestId(id).first().evaluate((el) => el.scrollWidth <= el.clientWidth), id).toBe(true);
   }

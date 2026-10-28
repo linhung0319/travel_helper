@@ -3505,8 +3505,8 @@ button.leg-step-board {
   font-size: 0.75rem;
 }
 
-/* 一程一行：膠囊（圖示＋短名稱＋發車）、車程分鐘、右邊錯過的標籤。
-   膠囊、標籤不縮；「N 分」的寬度從 0 起算（只吃剩下的空間，不夠就省略），所以只有膠囊＋標籤本身放不下時標籤才換到下一行 */
+/* 一程一行：膠囊（圖示＋短名稱＋發車）、右邊錯過的標籤（車程分鐘看前後節點的時間，不另外寫）。
+   兩個都不縮；萬一膠囊＋標籤放不下，標籤換到下一行而不是被切掉 */
 .leg-step.ride .leg-step-tx {
   display: flex;
   flex-wrap: wrap;
@@ -3541,31 +3541,6 @@ button.leg-step-board {
 .leg-ride-dep {
   flex: none;
   font-variant-numeric: tabular-nums;
-}
-
-/* 放不下時只有「N 分」讓出來；膠囊（短名稱＋發車）和錯過的標籤一定完整。
-   「N 分」整個放得下才顯示：放不下時字換到第二行，被固定一行的高度藏起來（前面寬度 0 的 ::before 佔住第一行），不會留下切一半的字 */
-.leg-ride-min {
-  flex: 1 1 0;
-  min-width: 0;
-  display: flex;
-  flex-wrap: wrap;
-  height: 1.4em;
-  overflow: hidden;
-  color: var(--ink-2);
-  font-size: 0.75rem;
-  line-height: 1.4;
-  font-variant-numeric: tabular-nums;
-}
-
-.leg-ride-min::before {
-  content: '';
-  width: 0;
-}
-
-.leg-ride-min > span {
-  flex: none;
-  white-space: nowrap;
 }
 
 /* 錯過的話（spec §8.5）：hot 橘底粗體、muted 淡灰、bad 紅底粗體；點了開那一程的班次表 */

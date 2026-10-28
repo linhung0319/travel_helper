@@ -1070,6 +1070,9 @@ test('T29c：大眾運輸的交通卡收合兩行（膠囊），點開一程一�
   await expect(ride.getByRole('img', { name: '巴士' })).toBeVisible();
   await expect(steps).toContainText(/走 \d+ 分/);
   await expect(steps.getByTestId('leg-miss')).toHaveText(/^(錯過 \+\d+ 分|約 \d+ 分一班|錯過 無下一班)$/);
+  // 一程那一行只有膠囊和標籤（車程分鐘不寫，看前後節點的時間）
+  const rideRow = steps.getByTestId('leg-step-ride').first().locator('.leg-step-tx > *');
+  expect(await rideRow.evaluateAll((els) => els.map((e) => (e as HTMLElement).dataset.testid))).toEqual(['leg-ride', 'leg-miss']);
   // 起點、上車站、下車站、終點各一行（伊雜宮 → 川辺 → 大王埼灯台 → 大王埼燈塔），比以前少了步行、搭車另佔的行
   await expect(steps.getByTestId('leg-step-node')).toHaveCount(4);
   await expect(leg.locator('.ll-text')).toHaveText(sub);
