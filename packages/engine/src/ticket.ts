@@ -3,12 +3,13 @@
 
 /** 判斷買票站要的欄位；TransitRide 直接符合（kind 沒寫當 timetable、operator 沒寫當 null） */
 export interface TicketRideInfo {
-  kind: 'timetable' | 'headway';
+  /** 沒寫當 timetable */
+  kind?: 'timetable' | 'headway';
   mode: 'train' | 'bus' | 'ferry';
   /** 路線或車種，例如「特急（往賢島）」 */
   line: string;
-  /** 業者；近鐵是 'kintetsu'，不知道是 null */
-  operator: string | null;
+  /** 業者；近鐵是 'kintetsu'，沒寫或不知道是 null */
+  operator?: string | null;
 }
 
 // 近鐵要另買特急券的車種（line 開頭）

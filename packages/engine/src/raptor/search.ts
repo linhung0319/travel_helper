@@ -584,18 +584,19 @@ function ticketInfo(r: JourneyRide): TicketRideInfo {
   };
 }
 
-/** 第 i 程（i ≥ 1）到站後到發車的空檔；不是買票站的是 Infinity */
-function ticketGap(rides: readonly JourneyRide[], transfers: readonly JourneyTransfer[], i: number, minTransfer: number): number {
-  if (!isTicketRide(rides.map(ticketInfo), i)) return Infinity;
-  return rides[i].dep - (rides[i - 1].arr + Math.max(minTransfer, transfers[i - 1].walk));
+/** 各程（i ≥ 1）到站後到發車的空檔；不是買票站的（和第一程）是 Infinity */
+function ticketGaps(rides: readonly JourneyRide[], transfers: readonly JourneyTransfer[], minTransfer: number): number[] {
+  const info = rides.map(ticketInfo);
+  return rides.map((r, i) =>
+    i > 0 && isTicketRide(info, i) ? r.dep - (rides[i - 1].arr + Math.max(minTransfer, transfers[i - 1].walk)) : Infinity,
+  );
 }
 
 /** 換成 next 的話，原本留得出 ticketMargin 的買票站（第 2 程以後）是不是仍留得出 */
 function keepsMargin(prev: readonly JourneyRide[], next: readonly JourneyRide[], transfers: readonly JourneyTransfer[], t: LaterRules): boolean {
-  for (let i = 1; i < prev.length; i++) {
-    if (ticketGap(prev, transfers, i, t.minTransfer) >= t.ticketMargin && ticketGap(next, transfers, i, t.minTransfer) < t.ticketMargin) return false;
-  }
-  return true;
+  const before = ticketGaps(prev, transfers, t.minTransfer);
+  const after = ticketGaps(next, transfers, t.minTransfer);
+  return before.every((g, i) => g < t.ticketMargin || after[i] >= t.ticketMargin);
 }
 
 /**
