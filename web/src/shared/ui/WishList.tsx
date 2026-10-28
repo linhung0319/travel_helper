@@ -172,11 +172,11 @@ function SwipeRow({ children, hint, onAdd }: { children: ReactNode; hint: boolea
         onPointerUp={end}
         onPointerCancel={end}
         onClickCapture={(e) => {
-          // 剛拖完放手的那一下不算點；露出按鈕時點列只是收回去
+          // 剛拖完放手的那一下不算點；按鈕整個露出來時點列只是收回去（提示動畫滑到一半時點＝照常打開）
           if (moved.current) {
             e.stopPropagation();
             e.preventDefault();
-          } else if (offset !== 0) {
+          } else if (offset === -SWIPE_W) {
             e.stopPropagation();
             e.preventDefault();
             setOffset(0);
