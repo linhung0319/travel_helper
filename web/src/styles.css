@@ -3717,9 +3717,10 @@ button.leg-ride-more {
   font-variant-numeric: tabular-nums;
 }
 
-/* 到了要等：交通卡下面、下一張資料卡上面，黃色虛框 */
+/* 到了要等：交通卡下面、下一張資料卡上面，黃色虛框；左邊和交通卡切齊（第九輪 §14.2，同 ui.css 的 .ll-li） */
 .tl-wait-row {
   margin: 4px 0;
+  padding: 0 4px 0 calc(var(--ll-axis) + 22px);
 }
 
 .tl-wait {

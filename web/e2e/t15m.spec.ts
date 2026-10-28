@@ -1525,11 +1525,14 @@ test('第八輪：交通卡有框、比資料卡窄，方式圓點在連線上�
   expect(rideBorder).toBe(busColor);
 });
 
-test('等待卡不能點、沒有看附近', async ({ page }) => {
+test('等待卡不能點、沒有看附近；左邊和交通卡切齊（第九輪 §14.2）', async ({ page }) => {
   await ready(page);
   await showDay(page, '2027-02-03');
   const wait = page.getByTestId('timeline').getByTestId('tl-wait');
   await expect(wait).toHaveCount(1);
+  const left = (await wait.locator('.tl-wait').boundingBox())!.x;
+  const legLeft = (await page.getByTestId('timeline').locator('.ll-card').first().boundingBox())!.x;
+  expect(Math.abs(left - legLeft)).toBeLessThanOrEqual(1);
   await expect(wait.locator('button')).toHaveCount(0);
   await wait.click();
   await expect(page.getByText('看附近')).toHaveCount(0);
@@ -1994,7 +1997,7 @@ test('點照片放大，左右切換，Esc 關', async ({ page }) => {
 
 // ---------- 第七輪 Task 8：時間軸的卡片、一行交通、原地展開 ----------
 
-test('點時間軸的卡：原地展開簡介、優缺點（第八輪不放照片），沒有地圖小卡片；「詳細資料」浮在地圖上；再點收起', async ({ page }) => {
+test('點時間軸的卡：原地展開，只放介紹（第九輪不放照片、優缺點），框變芥子黃；沒有地圖小卡片；「詳細資料」浮在地圖上；再點收起', async ({ page }) => {
   await ready(page);
   await showDay(page, '2027-02-03');
   const row = tlRow(page, 'i-2');
@@ -2002,9 +2005,12 @@ test('點時間軸的卡：原地展開簡介、優缺點（第八輪不放照�
   await row.getByTestId('trip-card').click();
   const open = row.getByTestId('trip-card-expand');
   await expect(open).toBeVisible();
-  await expect(open.locator('.tc-photo')).toHaveCount(0);
+  await expect(open.locator('img')).toHaveCount(0);
   await expect(open.getByTestId('trip-card-intro')).not.toBeEmpty();
-  await expect(open.getByTestId('pros-cons').locator('li').first()).toBeVisible();
+  await expect(open.getByTestId('pros-cons')).toHaveCount(0);
+  const mustard = await page.evaluate(() => getComputedStyle(document.documentElement).getPropertyValue('--mustard').trim());
+  const border = await row.getByTestId('trip-card').evaluate((el) => getComputedStyle(el).borderTopColor);
+  expect(border).toBe(await page.evaluate((c) => { const d = document.createElement('div'); d.style.color = c; document.body.append(d); const v = getComputedStyle(d).color; d.remove(); return v; }, mustard));
   await expect(page.getByTestId('preview-card')).toHaveCount(0);
   await expect(page.locator('.maplibregl-popup')).toHaveCount(0);
   // 一次只展開一張：點別張，這張收起來

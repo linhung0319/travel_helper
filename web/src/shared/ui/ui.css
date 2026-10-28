@@ -1875,7 +1875,6 @@
   padding: 0 4px;
   border: 1px solid transparent;
   border-radius: 14px;
-  background: var(--paper);
 }
 
 .tc-li.editing {
@@ -1886,7 +1885,31 @@
   -webkit-touch-callout: none;
 }
 
-.tc-li.selected {
+/* 一張卡（第九輪 §14.2）：白底、淡框、淡陰影，就是合併卡前面那張（不斜）；框和左邊留白往外推（負的 margin），縮圖還是在時間軸連線上。
+   選到、展開的卡框變芥子黃（芥子黃＝選中）。候選（dashed）不是卡，照舊虛線框 */
+.tc-li:not(.dashed) {
+  margin: 6px 0;
+}
+
+.tc-li:not(.dashed) > .tc {
+  margin-inline: -7px -4px;
+  padding: 8px 4px 8px 6px;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  background: var(--paper);
+  box-shadow: 0 2px 8px var(--shade-1);
+}
+
+.tc-li.selected:not(.dashed) > .tc,
+.tc-li.expanded:not(.dashed) > .tc {
+  border-color: var(--mustard);
+}
+
+.tc-li.dashed {
+  background: var(--paper);
+}
+
+.tc-li.dashed.selected {
   background: var(--wash);
 }
 
@@ -2042,30 +2065,10 @@
   align-self: stretch;
 }
 
-/* 原地展開：三張照片、介紹前兩句、兩顆按鈕 */
+/* 原地展開：介紹、兩顆按鈕 */
 .tc-expand {
   margin-top: 10px;
   cursor: default;
-}
-
-.tc-photos {
-  display: grid;
-  grid-auto-flow: column;
-  grid-auto-columns: 1fr;
-  gap: 6px;
-}
-
-.tc-photo {
-  display: block;
-  aspect-ratio: 4 / 3;
-  min-width: 0;
-  overflow: hidden;
-  border-radius: 14px;
-}
-
-.tc-photo .photo {
-  width: 100%;
-  height: 100%;
 }
 
 .tc-intro {
@@ -2086,6 +2089,9 @@
 @media (hover: hover) {
   body:not(.dragging-plan) .tc-li.movable:hover {
     cursor: grab;
+  }
+
+  body:not(.dragging-plan) .tc-li.movable:hover > .tc {
     background: var(--wash);
   }
 
@@ -2284,13 +2290,6 @@ body.dragging-plan .tc-li.drop-merge::after {
 .tc-li.stacked > .tc {
   position: relative;
   z-index: 1;
-  /* 框和左邊留白往外推（負的 margin），縮圖還是在時間軸連線上 */
-  margin-inline: -7px -4px;
-  padding: 8px 4px 8px 6px;
-  border: 1px solid var(--line);
-  border-radius: 14px;
-  background: var(--paper);
-  box-shadow: 0 2px 8px var(--shade-1);
   transform: rotate(-0.8deg);
 }
 

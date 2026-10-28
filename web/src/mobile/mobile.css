@@ -807,9 +807,9 @@
   min-height: 36px;
 }
 
-/* 等待：交通下面一行純文字 */
+/* 等待：交通下面一行純文字；左邊和交通卡切齊（第九輪 §14.2，同 ui.css 的 .ll-li） */
 .m-wait {
-  margin-left: 8px;
+  margin-left: calc(var(--ll-axis) + 22px);
   padding: 2px 0 6px 0;
   color: var(--warn);
   font-size: 0.8rem;

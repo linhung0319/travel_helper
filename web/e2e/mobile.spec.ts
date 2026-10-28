@@ -1399,7 +1399,7 @@ test('詳情：想去 N 點了看是誰；編輯中從行程打開有「排進�
 
 // ---------- 第七輪 Task 8：卡片原地展開、面板頭固定、編輯不拉高、交通面板、問 AI ----------
 
-test('點時間軸的卡：原地展開，沒有地圖小卡片，再點收起', async ({ page }) => {
+test('點時間軸的卡：原地展開（只放介紹，第九輪不放照片），沒有地圖小卡片，再點收起', async ({ page }) => {
   await ready(page);
   await pickDay(page, '2027-02-03');
   const card = page.locator('[data-testid="m-card"][data-item="i-2"]');
@@ -1407,7 +1407,8 @@ test('點時間軸的卡：原地展開，沒有地圖小卡片，再點收起',
   await card.getByTestId('trip-card').click();
   const open = card.getByTestId('trip-card-expand');
   await expect(open).toBeVisible();
-  await expect(open.locator('.tc-photo')).toHaveCount(3);
+  await expect(open.getByTestId('trip-card-intro')).not.toBeEmpty();
+  await expect(open.locator('img')).toHaveCount(0);
   await expect(page.getByTestId('preview-card')).toHaveCount(0);
   // 面板高度不變，選中那個點，地圖上看得到它（看得到就不動）
   await expect(page.getByTestId('m-sheet')).toHaveAttribute('data-snap', 'mid');

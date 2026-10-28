@@ -233,7 +233,6 @@ function EntryRow({ entry, day, warnings, plan, marks }: { entry: TimelineEntry;
         label={p ? name(p) : '上一站'}
         meta={p?.type === 'lodging' ? <LodgingTags day={prevNight} place={p} reservationDate={null} editable={false} open={false} onOpenChange={() => {}} /> : null}
         thumb={THUMB}
-        surface="desktop"
         className={`tl-start ${editing}`}
         selected={expand.expanded}
         expanded={expand.expanded}
@@ -306,7 +305,6 @@ function EntryRow({ entry, day, warnings, plan, marks }: { entry: TimelineEntry;
           label={p ? name(p) : (entry.placeId ?? '住宿')}
           meta={<LodgingTags day={day} place={p} reservationDate={day.date} editable={planning} open={tagsOpen} onOpenChange={setTagsOpen} />}
           thumb={THUMB}
-        surface="desktop"
           className={`tl-lodging ${editing}`}
           selected={expand.expanded}
         expanded={expand.expanded}
@@ -374,7 +372,6 @@ function EntryRow({ entry, day, warnings, plan, marks }: { entry: TimelineEntry;
           </>
         }
         thumb={THUMB}
-        surface="desktop"
         stacked={!!stacked}
         className={`tl-${entry.kind} ${editing} ${hovered && hovered === entry.placeId ? 'flash' : ''}`}
         selected={expand.expanded}
