@@ -1945,11 +1945,21 @@
 }
 
 .tc {
+  position: relative;
   grid-column: 2;
   min-width: 0;
   padding: 8px 0;
   cursor: pointer;
   border-radius: 14px;
+}
+
+/* 類型小圓章：有照片的卡右上角（第十輪；沒照片的縮圖本身就是類型色塊） */
+.tc-type {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  display: inline-flex;
+  pointer-events: none;
 }
 
 .tc:focus-visible {
@@ -2018,6 +2028,8 @@
 .tc-time {
   display: flex;
   flex-wrap: wrap;
+  /* 右上角的類型小圓章（.tc-type）讓出位置 */
+  padding-right: 28px;
   align-items: baseline;
   gap: 4px 6px;
   font-weight: 700;

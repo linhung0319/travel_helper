@@ -2267,6 +2267,33 @@ test('打開交通：框住兩端，不出現「清掉」；收起回到原本�
   expect(Math.abs((await page.evaluate(() => (window as any).__th.map.getZoom())) - before)).toBeLessThan(0.05);
 });
 
+test('第十輪：有照片的資料卡右上角有類型小圓章；沒照片的（縮圖就是類型色塊）不放', async ({ page }) => {
+  await ready(page);
+  await showDay(page, '2027-02-03');
+  const cards = page.getByTestId('timeline').getByTestId('trip-card');
+  const n = await cards.count();
+  let withPhoto = 0;
+  for (let i = 0; i < n; i++) {
+    const card = cards.nth(i);
+    const photo = (await card.locator('.tc-thumb img').count()) > 0;
+    await expect(card.getByTestId('trip-card-type')).toHaveCount(photo ? 1 : 0);
+    if (photo) {
+      withPhoto++;
+      // 在卡片右上角
+      const c = (await card.boundingBox())!;
+      const s = (await card.getByTestId('trip-card-type').boundingBox())!;
+      expect(c.x + c.width - (s.x + s.width)).toBeLessThan(16);
+      expect(s.y - c.y).toBeLessThan(16);
+    }
+  }
+  expect(withPhoto).toBeGreaterThan(0);
+  // 沒照片的：車站（2/2 賢島站）
+  await showDay(page, '2027-02-02');
+  const station = page.getByTestId('timeline').locator('[data-testid="tl-row"][data-place="kashikojima"]').getByTestId('trip-card');
+  await expect(station.getByTestId('item-type')).toBeVisible();
+  await expect(station.getByTestId('trip-card-type')).toHaveCount(0);
+});
+
 test('第九輪：展開的卡只放介紹、多一顆「加到某天」；展開後捲到卡的頂端貼著黏住的標題下面（§14.3）', async ({ page }) => {
   await ready(page);
   /** 捲動停了以後：卡（或它上面的日期小標）頂端和黏住的標題下緣的距離，和卡的下緣有沒有在看得到的範圍裡 */
