@@ -3151,14 +3151,14 @@ body.dragging-plan .tl-dropend {
   overflow-y: auto;
 }
 
-/* 地圖那側的班次表（第五輪 §4，TimetablePopup）：電腦版浮在地圖區左上，上緣離地圖上緣 --panel-gap-y + 8px，
-   z-index 高過彈窗（.map-panel 15） */
+/* 地圖那側的班次表（T29c §8.8，TimetablePopup）：網頁浮在地圖區左上，上緣離地圖上緣 --panel-gap-y + 8px，
+   寬約 440px（四欄）、最高地圖區的 60%，超過在格子那塊捲（標題列固定）；z-index 高過彈窗（.map-panel 15）。手機版的位置在 mobile.css */
 .timetable-pop {
   position: absolute;
   top: calc(var(--panel-gap-y) + 8px);
   left: 12px;
-  width: 320px;
-  max-height: calc(100% - var(--panel-gap-y) - 20px);
+  width: min(440px, calc(100% - 24px));
+  max-height: 60%;
   z-index: 18;
   display: flex;
   flex-direction: column;
@@ -3183,6 +3183,7 @@ body.dragging-plan .tl-dropend {
 
 .timetable-title h2 {
   font-size: 1rem;
+  line-height: 1.3;
   margin: 0;
 }
 
@@ -3192,108 +3193,104 @@ body.dragging-plan .tl-dropend {
   margin-top: 2px;
 }
 
-.timetable-ready {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  margin: 8px 12px 4px;
-  padding: 4px 8px;
-  border-radius: 999px;
-  font-size: 0.8rem;
-  background: var(--indigo-wash);
-  color: var(--indigo);
-}
-
 .timetable-body {
   flex: 1;
   min-height: 0;
   overflow-y: auto;
-  padding: 4px 8px 8px;
+  padding: 8px 10px 10px;
 }
 
-.timetable-list {
+/* 格子：一班一格，由左到右、由上到下；網頁四欄（手機三欄在 mobile.css） */
+.tt-grid {
   list-style: none;
   margin: 0;
   padding: 0;
-  display: flex;
-  flex-direction: column;
-  gap: 3px;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 5px;
 }
 
-/* 一列：一般模式是 div（游標不變），編輯中搭得到的那幾列是按鈕 */
-.timetable-row {
+.tt-cell {
+  border: 1px solid var(--line);
   border-radius: 14px;
-}
-
-.timetable-row-in {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  width: 100%;
-  padding: 6px 8px;
-  border: 0;
-  border-radius: 14px;
-  background: transparent;
-  color: inherit;
-  font: inherit;
-  text-align: left;
+  padding: 4px 6px;
+  line-height: 1.25;
   font-variant-numeric: tabular-nums;
-  cursor: default;
+  background: var(--paper);
 }
 
-.timetable-dep {
-  font-weight: 700;
-  width: 46px;
+.tt-time {
+  font-size: 0.84rem;
+  white-space: nowrap;
 }
 
-.timetable-arr {
-  flex: 1;
-  font-size: 0.8rem;
+.tt-time span {
   color: var(--muted);
 }
 
-.timetable-wait {
-  font-size: 0.8rem;
+.tt-kind {
+  display: flex;
+  gap: 4px;
+  font-size: 0.7rem;
+  color: var(--muted);
+  white-space: nowrap;
 }
 
-.timetable-row.missed {
+/* 特急：要另買特急券，靛藍字 */
+.tt-express {
+  color: var(--indigo);
+}
+
+/* 搭不到：灰底、時間劃線 */
+.tt-cell.gone {
   background: var(--wash);
+  border-color: var(--wash);
   color: var(--ink-3);
 }
 
-.timetable-row.missed .timetable-dep {
+.tt-cell.gone .tt-time {
   text-decoration: line-through;
 }
 
-.timetable-row.missed .timetable-arr {
+.tt-cell.gone .tt-time b {
+  font-weight: 400;
+}
+
+.tt-cell.gone .tt-time span,
+.tt-cell.gone .tt-kind,
+.tt-cell.gone .tt-express {
   color: var(--ink-3);
 }
 
-.timetable-row.ok {
-  background: var(--good-bg);
-}
-
-.timetable-row.ok .timetable-wait {
-  color: var(--good);
-}
-
-.timetable-row.ok.long .timetable-wait {
-  color: var(--warn);
-}
-
-.timetable-row.selected {
+/* 規劃那班：靛藍底白字（搭不到也一樣） */
+.tt-cell.plan {
   background: var(--indigo);
+  border-color: var(--indigo);
   color: var(--paper);
 }
 
-.timetable-row.selected .timetable-arr,
-.timetable-row.selected .timetable-wait {
-  color: var(--indigo-wash);
+.tt-cell.plan .tt-time span,
+.tt-cell.plan .tt-kind,
+.tt-cell.plan .tt-express {
+  color: var(--on-ink-2);
 }
 
-.timetable-all {
-  margin-top: 4px;
-  font-size: 0.85rem;
+/* 錯過規劃那班的下一班：橘底 */
+.tt-cell.next {
+  background: var(--warn-bg);
+  border-color: var(--warn-line);
+  color: var(--warn);
+}
+
+.tt-cell.next .tt-time span,
+.tt-cell.next .tt-kind {
+  color: var(--warn);
+}
+
+/* 班距型那一程：沒有格子，只有一行 */
+.tt-headway {
+  margin: 2px 2px 4px;
+  font-size: 0.9rem;
 }
 
 .timetable-src {

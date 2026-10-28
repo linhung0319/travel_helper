@@ -29,7 +29,8 @@ const listeners: (() => void)[] = [];
   },
 };
 
-const { mobileStore } = await import('../src/mobile/mobileStore.ts');
+const { mobileStore, setMobileActive, snapForTimetable } = await import('../src/mobile/mobileStore.ts');
+const { uiStore, openTimetable, closeTimetable } = await import('../src/uiStore.ts');
 
 /** 等非同步的 history.back() 跑完 */
 const settle = () => new Promise((r) => setTimeout(r, 20));
@@ -170,5 +171,33 @@ test('開半屏聊天不改行程面板高度', () => {
   assert.equal(mobileStore.getState().tripSnap, 'high');
   s.closeChatSheet();
   assert.equal(mobileStore.getState().tripSnap, 'high');
+  s.setSnap('mid');
+});
+
+test('snapForTimetable：行程在最高時降到中間，低、中不動', () => {
+  assert.equal(snapForTimetable('high'), 'mid');
+  assert.equal(snapForTimetable('mid'), 'mid');
+  assert.equal(snapForTimetable('low'), 'low');
+});
+
+test('手機打開班次表：行程在最高時降到中間，關掉不拉回；低、中不動；網頁版（手機版沒掛著）不動', () => {
+  const s = mobileStore.getState();
+  const tt = { date: '2027-02-10', legKey: '2027-02-10:visit:i-1', rideIndex: 0 };
+  setMobileActive(true);
+  s.setSnap('high');
+  openTimetable(tt);
+  assert.equal(mobileStore.getState().tripSnap, 'mid');
+  closeTimetable();
+  assert.equal(mobileStore.getState().tripSnap, 'mid');
+  s.setSnap('low');
+  openTimetable(tt);
+  assert.equal(mobileStore.getState().tripSnap, 'low');
+  closeTimetable();
+  setMobileActive(false);
+  s.setSnap('high');
+  openTimetable(tt);
+  assert.equal(mobileStore.getState().tripSnap, 'high');
+  closeTimetable();
+  assert.equal(uiStore.getState().timetable, null);
   s.setSnap('mid');
 });

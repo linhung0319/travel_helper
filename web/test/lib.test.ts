@@ -19,7 +19,6 @@ import {
   cardTypeLetter,
   dayBar,
   daySummary,
-  departureRows,
   editorModeOf,
   showMinutesInput,
   formatStay,
@@ -468,33 +467,6 @@ test('dayBar：交通卡裡的等車切成 wait 段；不是景點、餐廳的�
     ['wait', '11:40', '11:45', null],
     ['spot', '11:45', '11:50', '3'],
   ]);
-});
-
-const deps = [
-  { tripId: 't1', line: '御座線', depart: '13:28', arrive: '14:18' },
-  { tripId: 't2', line: '御座線', depart: '15:58', arrive: '16:48' },
-  { tripId: 't3', line: '御座線', depart: '17:08', arrive: '17:58' },
-];
-
-test('departureRows：搭不到、搭得到、選定', () => {
-  assert.deepEqual(
-    departureRows(deps, '15:15', 't2').map((r) => [r.depart, r.state, r.wait, r.missedSelected]),
-    [
-      ['13:28', 'missed', null, undefined],
-      ['15:58', 'selected', 43, undefined],
-      ['17:08', 'ok', 113, undefined],
-    ],
-  );
-  assert.equal(departureRows(deps, '15:15', null)[1].state, 'ok');
-  // 剛好走到時發車搭得到
-  assert.equal(departureRows(deps, '15:58', null)[1].wait, 0);
-});
-
-test('departureRows：選定的那班搭不到', () => {
-  const r = departureRows(deps, '16:00', 't2')[1];
-  assert.equal(r.state, 'selected');
-  assert.equal(r.missedSelected, true);
-  assert.equal(r.wait, null);
 });
 
 test('rideReadyAt：用引擎的 ready，沒有時第一程用出發、之後用前一程到站', () => {

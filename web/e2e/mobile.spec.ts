@@ -679,6 +679,43 @@ test('T29c：大眾運輸的交通卡收合兩行（膠囊），點開一程一�
   await expect.poll(() => page.evaluate(() => (window as any).__th.uiStore.getState().timetable?.rideIndex)).toBe(0);
 });
 
+test('T29c：手機的班次表是浮在地圖那塊的彈窗（三欄格子、不蓋行程）；行程在最高時打開降到中間，關掉不拉回', async ({ page }) => {
+  await ready(page);
+  await pickDay(page, '2027-02-10');
+  await page.evaluate(() => (window as any).__thMobile.getState().setSnap('high'));
+  const leg = page.getByTestId('m-leg').filter({ hasText: '大眾運輸' }).first();
+  await leg.getByTestId('leg-line-text').click();
+  await leg.getByTestId('leg-steps').getByTestId('leg-step-board').first().click();
+  const tt = page.getByTestId('timetable-popup');
+  await expect(tt).toBeVisible();
+  // 行程降到中間，讓出地圖
+  await expect.poll(() => page.evaluate(() => (window as any).__thMobile.getState().tripSnap)).toBe('mid');
+  // 格子三欄、規劃那班一格
+  const plan = tt.locator('[data-testid="tt-cell"][data-mark="plan"]');
+  await expect(plan).toHaveCount(1);
+  expect(await plan.evaluate((el) => getComputedStyle(el.parentElement!).gridTemplateColumns.split(' ').length)).toBe(3);
+  // 彈窗在地圖那塊裡面、在行程面板上面（不蓋行程）；等面板降下來
+  const sheet = page.locator('.m-trip-sheet');
+  await expect
+    .poll(async () => {
+      const box = (await tt.boundingBox())!;
+      const sheetTop = (await sheet.boundingBox())!.y;
+      return box.y >= 0 && box.y + box.height <= sheetTop;
+    })
+    .toBe(true);
+  const h = (await tt.boundingBox())!.height;
+  expect(h).toBeGreaterThan(150);
+  expect(await scrollsSideways(page)).toBe(false);
+  // 拉到低：高度固定，不跟著地圖變大
+  await page.evaluate(() => (window as any).__thMobile.getState().setSnap('low'));
+  await expect.poll(async () => Math.round((await tt.boundingBox())!.height)).toBe(Math.round(h));
+  await page.evaluate(() => (window as any).__thMobile.getState().setSnap('mid'));
+  // ✕ 關掉：行程不拉回最高
+  await tt.getByTestId('timetable-close').click();
+  await expect(tt).toHaveCount(0);
+  expect(await page.evaluate(() => (window as any).__thMobile.getState().tripSnap)).toBe('mid');
+});
+
 // --- 行程：編輯中（§3.5）：藍條、把手、⋯ 底部動作面板、標籤、移到第幾天、長按拖曳 ---
 
 type P = import('@playwright/test').Page;

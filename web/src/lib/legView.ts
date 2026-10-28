@@ -11,7 +11,7 @@ export const HOT_MISS_MINUTES = 30;
 const stripParens = (s: string) => s.replace(/（[^（）]*）/g, '').trim();
 
 /** 是不是近鐵（舊資料沒有 operator：電車、沒有 routeId、不是班距型的就是近鐵） */
-const isKintetsu = (r: TransitRide) => r.operator === 'kintetsu' || (r.operator == null && r.mode === 'train' && !r.routeId && r.kind !== 'headway');
+export const isKintetsu = (r: TransitRide) => r.operator === 'kintetsu' || (r.operator == null && r.mode === 'train' && !r.routeId && r.kind !== 'headway');
 
 /** 班距型的業者簡稱（沒列的照原名） */
 const OPERATOR_SHORT: Record<string, string> = {

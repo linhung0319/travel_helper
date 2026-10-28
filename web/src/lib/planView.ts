@@ -1,7 +1,7 @@
 // 「這一天」面板和地圖要的行程資訊（T15m）：交通的文字、等待說明、班次分類、編號、時間條段落、行程裡找項目、匯出。
 // 純函式：時間軸、交通時間、空檔、警告都是引擎（T14）算好的，這裡只整理成畫面要的樣子。
 
-import type { DayPlan, EngineWarning, Itinerary, ItineraryItem, Leg, LegTarget, MealKind, RideDeparture, TimelineEntry, TravelMode, TravelSpec, VisitItem } from '@travel-helper/engine';
+import type { DayPlan, EngineWarning, Itinerary, ItineraryItem, Leg, LegTarget, MealKind, TimelineEntry, TravelMode, TravelSpec, VisitItem } from '@travel-helper/engine';
 import { toMinutes } from '@travel-helper/engine';
 import { displayMinutes, estimateWalk } from './geo/walk.ts';
 import type { Place, PlaceType } from '../data/types.ts';
@@ -394,20 +394,6 @@ export function waitNote(entry: TimelineEntry, item: VisitItem | null, _place: P
   if (item?.start) return `${head}（${meal}${item.start} 才開始）`;
   if (item) return `${head}（${entry.start} 才開門）`;
   return head;
-}
-
-/** 班次表的一列：搭不到（發車早於走到上車站）、搭得到、規劃搭的那班（搭不到時 missedSelected）；wait 是走到站之後等幾分，搭不到是 null */
-export type DepartureRow = RideDeparture & { state: 'missed' | 'ok' | 'selected'; wait: number | null; missedSelected?: boolean };
-
-/** 一程的所有班次分成搭不到、搭得到、規劃搭的那班（readyAt：走到上車站／轉乘完的時間，Leg.ready） */
-export function departureRows(deps: RideDeparture[], readyAt: string, selectedTripId: string | null): DepartureRow[] {
-  const ready = toMinutes(readyAt);
-  return deps.map((d) => {
-    const wait = toMinutes(d.depart) - ready;
-    const missed = wait < 0;
-    if (d.tripId === selectedTripId) return missed ? { ...d, state: 'selected', wait: null, missedSelected: true } : { ...d, state: 'selected', wait };
-    return missed ? { ...d, state: 'missed', wait: null } : { ...d, state: 'ok', wait };
-  });
 }
 
 /** 第 i 程「走到上車站／轉乘完」的時間（Leg.ready）；舊的計算結果沒有 ready 時第一程用出發時間、之後用前一程到站 */

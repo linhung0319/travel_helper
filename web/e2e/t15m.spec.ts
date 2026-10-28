@@ -1079,9 +1079,9 @@ test('T29c：大眾運輸的交通卡收合兩行（膠囊），點開一程一�
 
   // 點錯過的標籤：開那一程的班次表
   await steps.getByTestId('leg-miss').click();
-  const tt = page.getByTestId('timetable');
+  const tt = page.getByTestId('timetable-popup');
   await expect(tt).toBeVisible();
-  await page.evaluate(() => (window as any).__th.uiStore.getState().timetable && (window as any).__th.uiStore.setState({ timetable: null }));
+  await tt.getByTestId('timetable-close').click();
   await expect(tt).toHaveCount(0);
 
   // 點上車站（名稱後面「›」）：地圖那側的班次表；一般模式只能看（沒有可以點的班次）
@@ -1090,12 +1090,25 @@ test('T29c：大眾運輸的交通卡收合兩行（膠囊），點開一程一�
   await expect(board).toContainText('›');
   await board.click();
   await expect(tt).toBeVisible();
-  await expect(tt).toContainText('御座線');
-  await expect(tt.getByTestId('timetable-ready')).toContainText('走到');
-  await expect(tt.locator('[data-testid="timetable-row"][data-state="missed"]').first()).toContainText('搭不到');
-  await expect(tt.locator('[data-testid="timetable-row"][data-state="selected"]')).toContainText('選定');
-  await expect(tt.locator('[data-testid="timetable-row"] button')).toHaveCount(0);
+  // 標題「上車站 → 下車站」，下一行「路線・往哪・日期（星期）・HH:MM 到站」
+  await expect(tt.locator('h2')).toContainText('→');
+  await expect(tt.getByTestId('timetable-sub')).toContainText('御座線');
+  await expect(tt.getByTestId('timetable-sub')).toContainText(/2\/4（四）・\d\d:\d\d 到站/);
+  // 格子：規劃那班只有一格；搭不到的灰底沒有字；只能看（只有 ✕ 一個按鈕）；舊的清單、藍底提示、「看全部」都沒了
+  const plan = tt.locator('[data-testid="tt-cell"][data-mark="plan"]');
+  await expect(plan).toHaveCount(1);
+  await expect(plan).toContainText('規劃');
+  await expect(tt.locator('[data-testid="tt-cell"][data-gone]').first()).not.toContainText(/規劃|末班|分/);
+  await expect(tt.locator('button')).toHaveCount(1);
+  await expect(tt.getByTestId('timetable-ready')).toHaveCount(0);
+  await expect(tt.getByTestId('timetable-all')).toHaveCount(0);
   await expect(tt.getByTestId('timetable-source')).toContainText('時刻表來源');
+  // 網頁：四欄、寬約 440px、高度不超過地圖區的 60%
+  expect(await plan.evaluate((el) => getComputedStyle(el.parentElement!).gridTemplateColumns.split(' ').length)).toBe(4);
+  const box = (await tt.boundingBox())!;
+  const mapBox = (await page.locator('.map-column').boundingBox())!;
+  expect(box.width).toBeLessThanOrEqual(460);
+  expect(box.height).toBeLessThanOrEqual(mapBox.height * 0.6 + 1);
 
   // 再點交通卡收起：步驟、班次表都關掉
   await leg.getByRole('button').first().click();
@@ -1109,9 +1122,9 @@ test('T29b：編輯中不能選班次，點上車站照樣開只能看的班次�
   await expect(leg.locator('select')).toHaveCount(0);
   await expect(leg.locator('[role="radiogroup"]')).toHaveCount(0);
   await leg.getByTestId('leg-step-board').first().click();
-  const tt = page.getByTestId('timetable');
+  const tt = page.getByTestId('timetable-popup');
   await expect(tt).toBeVisible();
-  await expect(tt.locator('[data-testid="timetable-row"] button')).toHaveCount(0);
+  await expect(tt.locator('[data-testid="tt-cell"] button')).toHaveCount(0);
 });
 
 test('第五輪：地圖彈窗在日期列上面（靠近上緣的點，彈窗蓋住日期列）', async ({ page }) => {

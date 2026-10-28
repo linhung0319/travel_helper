@@ -1,69 +1,8 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import type { DayPlan, KintetsuTimes, RouteTimetable, TimelineEntry } from '@travel-helper/engine';
-import { departureRows, findLegEntry, legKeyOf, type DepartureRow } from '../src/lib/planView.ts';
-import { departureLabel, readyHint, timetableSource, timetableWindow } from '../src/lib/timetableView.ts';
-
-const dep = (h: number, m: number, i: number) => {
-  const t = `${String(h).padStart(2, '0')}:${String(m).padStart(2, '0')}`;
-  return { tripId: `t${i}`, line: '普通', depart: t, arrive: t };
-};
-/** 每 20 分一班，08:00 起共 n 班 */
-const many = (n: number) => Array.from({ length: n }, (_, i) => dep(8 + Math.floor((i * 20) / 60), (i * 20) % 60, i));
-
-test('timetableWindow：8 班以內全列', () => {
-  const rows = departureRows(many(8), '09:00', null);
-  assert.deepEqual(timetableWindow(rows, '09:00'), { rows, hidden: 0 });
-});
-
-test('timetableWindow：超過 8 班列走到站之前 1 班、之後 4 班', () => {
-  const rows = departureRows(many(20), '09:10', null);
-  const w = timetableWindow(rows, '09:10');
-  // 09:10 之後第一班是 09:20
-  assert.deepEqual(w.rows.map((r) => r.depart), ['09:00', '09:20', '09:40', '10:00', '10:20']);
-  assert.equal(w.hidden, 15);
-  assert.equal(timetableWindow(rows, '09:10', true).hidden, 0);
-});
-
-test('timetableWindow：最早的一班之前、最後一班之後', () => {
-  const rows = departureRows(many(12), '07:00', null);
-  assert.deepEqual(timetableWindow(rows, '07:00').rows.map((r) => r.depart), ['08:00', '08:20', '08:40', '09:00']);
-  // 走到站時已經沒有班次：只列最後一班（搭不到）
-  assert.deepEqual(timetableWindow(rows, '23:00').rows.map((r) => r.depart), ['11:40']);
-});
-
-test('timetableWindow：選定的那班在範圍外時拉進來', () => {
-  const rows = departureRows(many(20), '09:10', 't15');
-  const w = timetableWindow(rows, '09:10');
-  assert.equal(w.rows[0].depart, '09:00');
-  assert.equal(w.rows.at(-1)!.tripId, 't15');
-  assert.equal(w.hidden, 20 - w.rows.length);
-});
-
-test('departureLabel：搭不到、等 N 分、1 小時以上、選定', () => {
-  const row = (state: DepartureRow['state'], wait: number | null, missedSelected?: boolean) => ({ tripId: 'x', line: '', depart: '10:00', arrive: '10:30', state, wait, ...(missedSelected ? { missedSelected } : {}) }) as DepartureRow;
-  assert.deepEqual(departureLabel(row('missed', null)), { text: '搭不到', long: false });
-  assert.deepEqual(departureLabel(row('ok', 43)), { text: '等 43 分', long: false });
-  assert.deepEqual(departureLabel(row('ok', 113)), { text: '等 113 分', long: true });
-  assert.deepEqual(departureLabel(row('ok', 60)), { text: '等 60 分', long: true });
-  assert.deepEqual(departureLabel(row('selected', 43)), { text: '等 43 分・選定', long: false });
-  assert.deepEqual(departureLabel(row('selected', null, true)), { text: '搭不到・選定', long: false });
-});
-
-test('readyHint：走到上車站、轉乘完', () => {
-  const names: Record<string, string> = { kawabe: '川辺', ujiyamada: '宇治山田' };
-  const nameOf = (id: string) => names[id] ?? id;
-  const leg = {
-    depart: '15:01',
-    ready: ['15:15', '16:53'],
-    rides: [
-      { mode: 'bus' as const, line: '御座線', from: 'kawabe', to: 'ujiyamada', depart: '15:58', arrive: '16:48' },
-      { mode: 'train' as const, line: '特急', from: 'ujiyamada', to: 'toba', depart: '17:00', arrive: '17:15' },
-    ],
-  };
-  assert.equal(readyHint(leg, 0, '伊雜宮', nameOf), '走到 川辺：15:15（伊雜宮 15:01 出發）');
-  assert.equal(readyHint(leg, 1, '伊雜宮', nameOf), '宇治山田 轉乘完：16:53（16:48 到站）');
-});
+import type { DayPlan, KintetsuTimes, RouteTimetable, TimelineEntry, TransitRide } from '@travel-helper/engine';
+import { findLegEntry, legKeyOf } from '../src/lib/planView.ts';
+import { headwayText, timetableSource, timetableSubtitle } from '../src/lib/timetableView.ts';
 
 test('timetableSource：路線檔、近鐵、沒有來源', () => {
   const route = {
@@ -112,4 +51,30 @@ test('legKeyOf、findLegEntry：用交通卡的 key 找那段交通（含分組�
   // 起點沒有交通
   assert.equal(findLegEntry(day, legKeyOf(day.entries[0], day.date)), null);
   assert.equal(findLegEntry(null, '2027-02-04:visit:v1'), null);
+});
+
+const ride = (r: Partial<TransitRide>): TransitRide => ({ mode: 'train', line: '', from: 'a', to: 'b', depart: '08:11', arrive: '08:26', ...r });
+
+test('timetableSubtitle：業者或路線・往哪・日期（星期）・到站時間；巴士加票價', () => {
+  // 2027-02-05 是週五
+  assert.equal(timetableSubtitle(ride({ line: '特急（往賢島）', operator: 'kintetsu', tripId: '1234' }), '2027-02-05', '08:00'), '近鐵・往賢島・2/5（五）・08:00 到站');
+  // 舊資料沒有 operator 的近鐵、沒寫往哪
+  assert.equal(timetableSubtitle(ride({ line: '急行' }), '2027-02-05', '08:00'), '近鐵・2/5（五）・08:00 到站');
+  assert.equal(
+    timetableSubtitle(ride({ mode: 'bus', line: '鷗巴士 5 號 鳥羽～國崎線（經相差）（往国崎）', routeId: 'kamome-5', fareAdult: 260 }), '2027-02-05', '08:29'),
+    '鷗巴士 5 號・往国崎・2/5（五）・08:29 到站・260 円',
+  );
+  // 巴士沒有票價：不寫
+  assert.equal(timetableSubtitle(ride({ mode: 'bus', line: '外宮內宮線', routeId: 'x', fareAdult: null }), '2027-02-10', '10:05'), '外宮內宮線・2/10（三）・10:05 到站');
+  // 班距型：業者簡稱＋線名
+  assert.equal(
+    timetableSubtitle(ride({ line: '大阪環狀線', operator: 'JR西日本', kind: 'headway', routeId: 'jr-loop', headwayMin: 5 }), '2027-02-12', '09:00'),
+    'JR 環狀線・2/12（五）・09:00 到站',
+  );
+});
+
+test('headwayText：約 N 分一班・首班／末班；沒查到的寫「沒查到」', () => {
+  assert.equal(headwayText(ride({ kind: 'headway', headwayMin: 15, first: '05:45', last: '23:02' })), '約 15 分一班・首班 05:45／末班 23:02');
+  assert.equal(headwayText(ride({ kind: 'headway', headwayMin: null, first: null, last: '23:02' })), '班距沒查到・首班 沒查到／末班 23:02');
+  assert.equal(headwayText(ride({ kind: 'headway' })), '班距沒查到・首班 沒查到／末班 沒查到');
 });

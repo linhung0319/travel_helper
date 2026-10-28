@@ -618,6 +618,21 @@
 
 /* 天數列見 shared/ui/ui.css（DayStrip sheet） */
 
+/* 班次表（T29c §8.8）：浮在地圖那塊的上面，高度固定＝行程在中間時露出的地圖（扣掉上下的空和面板圓角底下那 12px），
+   不跟著面板高度變；格子三欄，多了在裡面捲 */
+.m-app .timetable-pop {
+  top: 8px;
+  left: 8px;
+  right: 8px;
+  width: auto;
+  max-height: none;
+  height: calc((100dvh - var(--m-tabbar-h) - env(safe-area-inset-bottom)) * (1 - var(--m-sheet-mid)) - 16px);
+}
+
+.m-app .tt-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
 /* 地圖上的小圖示：只有右下「放大地圖」 */
 .m-map-button {
   position: relative;
