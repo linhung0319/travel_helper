@@ -63,6 +63,16 @@ export function legWarnings(day: DayPlan, entry: TimelineEntry): EngineWarning[]
   return byLevel(day.warnings.filter((w) => w.leg && (lodging ? !w.itemId : w.itemId === entry.itemId)));
 }
 
+/**
+ * 這段交通要不要藏起來（不用移動、0 分又沒搭車）：使用者設定過的（包含分鐘填 0、有備註）不藏，否則改不回來；
+ * 交通未定（unknown，例如缺座標時引擎給 0 分）或有這段的警告也不藏，否則警告看不到（資料卡不顯示交通的警告）
+ */
+export function legHidden(leg: Leg | null, userSet: boolean, ws: EngineWarning[]): boolean {
+  if (!leg) return true;
+  if (userSet || leg.mode === 'unknown' || ws.length > 0) return false;
+  return leg.mode === 'none' || (leg.minutes === 0 && !leg.rides.length);
+}
+
 /** 第一行「⚠ 數字」：只數 error、warning */
 export function warnCount(ws: EngineWarning[]): number {
   return ws.filter((w) => w.level === 'error' || w.level === 'warning').length;

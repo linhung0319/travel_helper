@@ -3517,10 +3517,10 @@ button.leg-step-board {
 }
 
 /* 一程一行：膠囊（圖示＋短名稱＋發車）、右邊錯過的標籤（車程分鐘看前後節點的時間，不另外寫）。
-   兩個都不縮；萬一膠囊＋標籤放不下，標籤換到下一行而不是被切掉 */
+   一定一行：放不下時先省略膠囊的名稱（至少留約 3.5 個字和發車時間；360 寬的手機剛好放得下「錯過 +N 分」），標籤不換行、不縮 */
 .leg-step.ride .leg-step-tx {
   display: flex;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
   align-items: center;
   gap: 2px 4px;
   padding: 3px 0 5px 2px;
@@ -3530,7 +3530,9 @@ button.leg-step-board {
   --ride-c: var(--indigo);
   display: inline-flex;
   align-items: center;
-  flex: none;
+  /* 放不下時縮名稱（名稱 min-width 3.5em，圖示、發車不縮） */
+  flex: 0 1 auto;
+  min-width: 0;
   gap: 3px;
   padding: 1px 6px 1px 2px;
   border: 1.5px solid var(--ride-c);
@@ -3546,6 +3548,9 @@ button.leg-step-board {
 }
 
 .leg-ride-name {
+  min-width: 3.5em;
+  overflow: hidden;
+  text-overflow: ellipsis;
   white-space: nowrap;
 }
 
@@ -3567,6 +3572,11 @@ button.leg-step-board {
   font-size: 0.75rem;
   white-space: nowrap;
   cursor: pointer;
+}
+
+/* 手機編輯器面板裡只能看（LegSteps readOnly）：標籤是 span */
+span.leg-miss {
+  cursor: default;
 }
 
 .leg-miss.hot {

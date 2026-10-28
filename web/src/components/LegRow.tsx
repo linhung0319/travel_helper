@@ -25,7 +25,7 @@ import { shared } from '../appShared.ts';
 import { useApp, useData, usePlan, useShared, useUi } from '../hooks.ts';
 import { dayPlanOf, engineConfig } from '../planStore.ts';
 import { EDITOR_MODES, editorModeOf, legKeyOf, legMapsUrl, legModeName, legTargetOf, legTitle, showMinutesInput, taxiCarsText, type EditorMode } from '../lib/planView.ts';
-import { compactSteps, infoLines, legChips, legWarnings, pathRows, slackHint, specAfterPickPath, ticketTightText, warnCount, type CompactStep } from '../lib/legView.ts';
+import { compactSteps, infoLines, legChips, legHidden, legWarnings, pathRows, slackHint, specAfterPickPath, ticketTightText, warnCount, type CompactStep } from '../lib/legView.ts';
 import { rideStations } from '../lib/routing.ts';
 import { RIDE_COLOR } from '../lib/modeIcon.ts';
 import { openTimetable, uiStore } from '../uiStore.ts';
@@ -80,9 +80,10 @@ function RailLine({ line, part }: { line: Line; part: 'full' | 'top' | 'bottom' 
 
 /**
  * 大眾運輸的步驟（T29c spec §8.4，一程一行）：節點一行（等車、走路寫在同一行右邊）、一程一行（膠囊、分鐘、錯過的標籤）、
- * 轉乘有說明或電梯路線時另外一行。上車站、標籤點了開那一程的班次表（只能看）
+ * 轉乘有說明或電梯路線時另外一行。上車站、標籤點了開那一程的班次表（只能看）；
+ * readOnly（手機編輯器的底部面板裡：班次表會被面板蓋住）時站名是純文字、標籤不能點
  */
-export function LegSteps({ steps, leg, date, legKey }: { steps: CompactStep[]; leg: Leg; date: string; legKey: string }) {
+export function LegSteps({ steps, leg, date, legKey, readOnly = false }: { steps: CompactStep[]; leg: Leg; date: string; legKey: string; readOnly?: boolean }) {
   const openRide = (rideIndex: number) => openTimetable({ date, legKey, rideIndex });
   return (
     <ol className="leg-steps" data-testid="leg-steps">
@@ -101,7 +102,7 @@ export function LegSteps({ steps, leg, date, legKey }: { steps: CompactStep[]; l
               </span>
               <span className="leg-step-tx">
                 <span className="leg-step-line">
-                  {s.board != null ? (
+                  {s.board != null && !readOnly ? (
                     <button type="button" className="leg-step-name leg-step-board" onClick={() => openRide(s.board!)} data-testid="leg-step-board">
                       <span className="leg-step-nm">{s.name}</span>
                       <span className="leg-step-tap" aria-hidden>
@@ -167,11 +168,16 @@ export function LegSteps({ steps, leg, date, legKey }: { steps: CompactStep[]; l
                 <span className="leg-ride-name">{s.name}</span>
                 {s.depart && <span className="leg-ride-dep">{s.depart}</span>}
               </span>
-              {s.badge && (
-                <button type="button" className={`leg-miss ${s.badge.tone}`} onClick={() => openRide(s.index)} data-testid="leg-miss">
-                  {s.badge.text}
-                </button>
-              )}
+              {s.badge &&
+                (readOnly ? (
+                  <span className={`leg-miss ${s.badge.tone}`} data-testid="leg-miss">
+                    {s.badge.text}
+                  </span>
+                ) : (
+                  <button type="button" className={`leg-miss ${s.badge.tone}`} onClick={() => openRide(s.index)} data-testid="leg-miss">
+                    {s.badge.text}
+                  </button>
+                ))}
             </span>
           </li>
         );
@@ -180,8 +186,8 @@ export function LegSteps({ steps, leg, date, legKey }: { steps: CompactStep[]; l
   );
 }
 
-/** 點開後的內容：補充資訊框（沒有行就不畫）、搭車的步驟 */
-export function LegDetail({ v, date }: { v: NonNullable<ReturnType<typeof useLegView>>; date: string }) {
+/** 點開後的內容：補充資訊框（沒有行就不畫）、搭車的步驟；readOnly 見 LegSteps */
+export function LegDetail({ v, date, readOnly = false }: { v: NonNullable<ReturnType<typeof useLegView>>; date: string; readOnly?: boolean }) {
   return (
     <>
       {v.info.length > 0 && (
@@ -191,7 +197,7 @@ export function LegDetail({ v, date }: { v: NonNullable<ReturnType<typeof useLeg
           ))}
         </div>
       )}
-      {v.transit && <LegSteps steps={v.steps} leg={v.leg} date={date} legKey={v.key} />}
+      {v.transit && <LegSteps steps={v.steps} leg={v.leg} date={date} legKey={v.key} readOnly={readOnly} />}
     </>
   );
 }
@@ -371,9 +377,10 @@ export function useLegView(entry: TimelineEntry, date: string) {
   // 編輯器只有按「改」才開（不會跟著展開自己出現）
   const editOpen = useUi((s) => s.legEdit) === key;
   const spec = readSpec(itinerary, target);
-  // 使用者設定過的（包含分鐘填 0）或有備註的不能藏起來，否則改不回來
-  const userSet = !!leg?.specified || !!spec;
-  const hidden = !leg || (!userSet && (leg.mode === 'none' || (leg.minutes === 0 && !leg.rides.length)));
+  // 這段的警告（引擎標了 leg: true 的；回住宿那段沒有 itemId）：第一行的 ⚠ 數字、補充資訊框
+  const warnings = plan && leg ? legWarnings(plan, entry) : [];
+  // 不用移動的藏起來；使用者設定過的（包含分鐘填 0）、有備註、交通未定、有警告的不藏（legHidden）
+  const hidden = legHidden(leg, !!leg?.specified || !!spec, warnings);
   const nameOf = (id: string) => byId.get(id)?.name.zh || byId.get(id)?.name.ja || id;
   const fromId = leg?.from ?? null;
   const toId = leg?.to ?? null;
@@ -452,8 +459,6 @@ export function useLegView(entry: TimelineEntry, date: string) {
   const chips = leg.rides.length ? legChips(leg, nameOf) : null;
   const taxi = taxiCarsText(leg);
   const sub = taxi ? [taxi] : [];
-  // 這段的警告（引擎標了 leg: true 的；回住宿那段沒有 itemId）：第一行的 ⚠ 數字、補充資訊框
-  const warnings = plan ? legWarnings(plan, entry) : [];
   const warns = warnCount(warnings);
   const info = infoLines(leg, warnings, slackHint(leg, margin));
   const steps = compactSteps(leg, from ? nameOf(from.id) : '', to ? nameOf(to.id) : '', nameOf, margin);

@@ -670,3 +670,15 @@ test('ticket-tight：到站 3 分就發船 → 警告「買票可能來不及」
   assert.equal(ok.leg.rides[0].depart, '10:40');
   assert.ok(!ok.warnings.some((x) => x.code === 'ticket-tight'));
 });
+
+test('ticket-tight（近鐵特急）：寫站名（placeName）和「買特急券」；伊勢市喫茶店 10:23 → 宇治山田 10:28 到、10:37 發', () => {
+  const run = (depart: number) => planLeg(P('ise-mori-kissa'), P('toba-kadoya'), ctx(real, { date: '2027-02-05', depart }));
+  const tight = run(10 * 60 + 23);
+  assert.equal(tight.leg.rides[0].operator, 'kintetsu');
+  assert.equal(tight.leg.rides[0].depart, '10:37');
+  const w = tight.warnings.filter((x) => x.code === 'ticket-tight');
+  assert.equal(w.length, 1);
+  assert.equal(w[0].message, '宇治山田到站 9 分就發車，買特急券可能來不及');
+  // 早 1 分出發：空檔 10 分＝ticketMargin，不警告
+  assert.ok(!run(10 * 60 + 22).warnings.some((x) => x.code === 'ticket-tight'));
+});

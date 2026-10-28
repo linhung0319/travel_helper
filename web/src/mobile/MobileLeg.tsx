@@ -3,7 +3,7 @@
 // 展開後是補充資訊框和步驟（LegRow 的 LegDetail，和網頁同一套）。等待那一行接在交通下面，是純文字、不能點（§2.4）。
 // 點交通時，選到的卡片取消（地圖只看這段）。
 // 編輯中：每段右邊有「改」；交通編輯器不會自己展開，按「改」才從下面升起來——底部面板 m-leg-sheet（和「⋯」動作面板同一種：上方暗的、點暗處或 Esc 關，
-// 第五輪的編輯狀態 LegEditor：方式、分鐘、備註、完成），只有一個「完成」；大眾運輸的步驟接在編輯器裡，這時時間軸上那一行下面不再重複。
+// 第五輪的編輯狀態 LegEditor：方式、分鐘、備註、完成），只有一個「完成」；大眾運輸的步驟接在編輯器裡（只能看：班次表會被面板蓋住，站名、標籤不能點），這時時間軸上那一行下面不再重複。
 // 交通也是放置區（dropOnLegProps）：拖到這裡＝排在這段通往的那張卡前面。
 
 import { useEffect, type ReactNode } from 'react';
@@ -78,7 +78,8 @@ export function MobileLeg({ entry, date }: { entry: TimelineEntry; date: string 
       {editing && target && (
         <LegSheet title={`交通：${nameOf(from) || '出發'} → ${nameOf(to) || '下一站'}`}>
           <LegEditor key={JSON.stringify(spec)} target={target} spec={spec} leg={leg}>
-            {detail}
+            {/* 面板蓋住地圖那側的班次表，步驟只能看（站名、標籤不能點） */}
+            <LegDetail v={v} date={date} readOnly />
           </LegEditor>
         </LegSheet>
       )}

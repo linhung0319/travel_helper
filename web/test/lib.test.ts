@@ -699,6 +699,26 @@ test('warningsByItem：交通的警告（leg: true）不掛到資料卡、也不
   assert.equal(daySummary({ ...day, entries: [] } as DayPlan).warnings, 4);
 });
 
+test('warningsByItem：分組各組走到會合點那段的交通警告（itemId 是分組）沒有交通卡，留在分組卡', () => {
+  const day = {
+    entries: [
+      { kind: 'visit', itemId: 'i1' },
+      { kind: 'meet', itemId: 's1', groups: [{ id: 'g1', name: 'A', entries: [{ kind: 'visit', itemId: 'g1a' }] }] },
+    ],
+    warnings: [
+      { code: 'travel-unknown', level: 'error' as const, message: '缺座標', itemId: 's1', groupId: 'g1', leg: true as const },
+      { code: 'meet-late', level: 'error' as const, message: '來不及', itemId: 's1', groupId: 'g1' },
+      // 組裡資料卡那段有交通卡：照舊不掛到資料卡
+      { code: 'bus-crowd', level: 'warning' as const, message: '擠不上', itemId: 'g1a', groupId: 'g1', leg: true as const },
+      { code: 'bus-crowd', level: 'warning' as const, message: '擠不上', itemId: 'i1', leg: true as const },
+    ],
+  } as unknown as DayPlan;
+  const { byItem } = warningsByItem(day);
+  assert.deepEqual(byItem.get('s1')?.map((w) => w.code), ['travel-unknown', 'meet-late']);
+  assert.equal(byItem.has('g1a'), false);
+  assert.equal(byItem.has('i1'), false);
+});
+
 test('hourTicks：整點刻度的位置（百分比）', () => {
   const ticks = hourTicks(9 * 60 + 30, 13 * 60 + 30);
   assert.deepEqual(ticks.map((t) => t.label), ['10', '11', '12', '13']);

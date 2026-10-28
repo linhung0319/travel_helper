@@ -781,14 +781,26 @@
   --ll-grip: var(--tap);
 }
 
-.m-leg .ll-main {
+/* 卡片頭至少 44px（ll-head 上下的 1fr 撐開，ll-main 跨整個格線所以整塊都能點） */
+.m-leg .ll-head {
   min-height: var(--tap);
 }
 
+/* map ↗ 只佔第一行的高度，點的範圍用 ::after 撐到 44px（同「改」，ui.css 的 .m-leg .ll-edit） */
 .m-leg .ll-maps {
+  position: relative;
   display: inline-flex;
   align-items: center;
-  min-height: var(--tap);
+}
+
+.m-leg .ll-maps::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: max(100%, 44px);
+  height: 44px;
+  transform: translate(-50%, -50%);
 }
 
 .m-leg .ll-edit {

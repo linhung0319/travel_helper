@@ -8,6 +8,7 @@ import {
   firstCellIndex,
   infoLines,
   legChips,
+  legHidden,
   legWarnings,
   missBadge,
   pathRows,
@@ -308,6 +309,20 @@ test('legWarnings：只取這段交通的（leg: true），回住宿那段取沒
   );
   assert.deepEqual(legWarnings(day, entry('visit', 'v9')), []);
   assert.deepEqual(legWarnings(day, entry('start', null)), []);
+});
+
+test('legHidden：不用移動、0 分沒搭車的藏起來；交通未定（缺座標，引擎給 unknown 0 分）或有警告的不藏；使用者設定過的不藏', () => {
+  const plain = { ...base, from: 'a', to: 'b', depart: '10:00', arrive: '10:00', rides: [], specified: false } as unknown as Leg;
+  assert.equal(legHidden({ ...plain, mode: 'none', minutes: 0 }, false, []), true);
+  assert.equal(legHidden({ ...plain, mode: 'walk', minutes: 0 }, false, []), true);
+  assert.equal(legHidden({ ...plain, mode: 'walk', minutes: 0 }, true, []), false);
+  // 引擎 autoLeg 缺座標：mode unknown、0 分、沒有班次，travel-unknown 錯誤標了 leg: true（資料卡不顯示）→ 不能藏
+  const unknown = { ...plain, mode: 'unknown', minutes: 0 } as Leg;
+  const err: EngineWarning = { code: 'travel-unknown', level: 'error', message: '缺座標，算不出交通時間', itemId: 'v1', leg: true };
+  assert.equal(legHidden(unknown, false, [err]), false);
+  assert.equal(legHidden(unknown, false, []), false);
+  assert.equal(legHidden({ ...plain, mode: 'walk', minutes: 0 }, false, [err]), false);
+  assert.equal(legHidden(null, false, []), true);
 });
 
 test('warnCount：只數 error、warning', () => {

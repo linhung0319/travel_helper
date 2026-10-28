@@ -1606,6 +1606,27 @@ test('交通編輯器：點「改」才開，是底部面板，只有一個完�
   await expect(page.getByTestId('m-leg-sheet')).toHaveCount(0);
 });
 
+test('交通編輯器（底部面板）裡的步驟只能看：上車站不是按鈕、錯過的標籤不能點（班次表會被面板蓋住）', async ({ page }) => {
+  await ready(page);
+  await pickDay(page, '2027-02-05');
+  await page.getByTestId('m-trip-edit').click();
+  await page.getByTestId('planning-confirm').click();
+  // 伊勢市的喫茶店 → toba-kadoya：近鐵特急 → 鷗巴士
+  const leg = page.locator('[data-testid="m-leg"][data-leg="2027-02-05:visit:i-21"]');
+  await leg.getByTestId('leg-edit').click();
+  const sheet = page.getByTestId('m-leg-sheet');
+  const steps = sheet.getByTestId('leg-steps');
+  await expect(steps).toBeVisible();
+  await expect(steps.getByTestId('leg-step-node')).not.toHaveCount(0);
+  await expect(steps).toContainText('宇治山田');
+  await expect(steps.getByTestId('leg-step-board')).toHaveCount(0);
+  await expect(steps.getByTestId('leg-miss')).not.toHaveCount(0);
+  await expect(steps.locator('button')).toHaveCount(0);
+  await expect(page.getByTestId('timetable-popup')).toHaveCount(0);
+  await sheet.getByTestId('leg-done').click();
+  await expect(sheet).toHaveCount(0);
+});
+
 test('問 AI 換掉行程面板，關掉回來、高度不變', async ({ page }) => {
   await ready(page);
   await pickDay(page, '2027-02-03');

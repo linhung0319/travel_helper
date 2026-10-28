@@ -172,13 +172,15 @@ const WARNING_TEXT: Record<string, string> = {
 
 /**
  * 引擎的警告，依項目分好；沒有項目的（整天的）放在 day。
- * 交通的警告（leg: true）不放：交通卡自己用 legView 的 legWarnings 顯示（T29c spec §8.2）；當天摘要的數字另外算（daySummary）
+ * 交通的警告（leg: true）不放：交通卡自己用 legView 的 legWarnings 顯示（T29c spec §8.2）；當天摘要的數字另外算（daySummary）。
+ * 例外：分組各組走到會合點那段沒有交通卡（itemId 是分組），那段的交通警告留在分組卡
  */
 export function warningsByItem(day: DayPlan | null): { byItem: Map<string, EngineWarning[]>; day: EngineWarning[] } {
   const byItem = new Map<string, EngineWarning[]>();
   const rest: EngineWarning[] = [];
+  const splits = new Set((day?.entries ?? []).filter((e) => e.kind === 'meet' && e.groups && e.itemId).map((e) => e.itemId!));
   for (const raw of day?.warnings ?? []) {
-    if (raw.leg || HIDDEN_WARNINGS.has(raw.code)) continue;
+    if ((raw.leg && !(raw.itemId && splits.has(raw.itemId))) || HIDDEN_WARNINGS.has(raw.code)) continue;
     const w = WARNING_TEXT[raw.code] ? { ...raw, message: WARNING_TEXT[raw.code] } : raw;
     if (w.itemId) byItem.set(w.itemId, [...(byItem.get(w.itemId) ?? []), w]);
     else rest.push(w);
