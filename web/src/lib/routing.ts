@@ -231,6 +231,8 @@ export function createRoadRouter(opts: RoadRouterOptions = {}) {
   let lastAt = -Infinity;
   let queue: Promise<unknown> = Promise.resolve();
   let calls = 0;
+  /** 查到新路線的次數：行程引擎靠它判斷道路快取有沒有新值（T29b） */
+  let version = 0;
 
   function cached(profile: 'foot' | 'car', from: LonLat, to: LonLat): RoadRoute | null {
     const key = roadKey(profile, from, to);
@@ -280,6 +282,7 @@ export function createRoadRouter(opts: RoadRouterOptions = {}) {
         if (!res.ok) throw new Error(`HTTP ${res.status}`);
         const r = parseOsrm(await res.json());
         memory.set(key, r);
+        version++;
         try {
           storage?.setItem(STORAGE_PREFIX + key, JSON.stringify(r));
         } catch {
@@ -312,6 +315,9 @@ export function createRoadRouter(opts: RoadRouterOptions = {}) {
     cachedPath: (profile: 'foot' | 'car', from: LonLat, to: LonLat): LonLat[] | null => cached(profile, from, to)?.geometry ?? null,
     get apiCalls() {
       return calls;
+    },
+    get version() {
+      return version;
     },
   };
 }

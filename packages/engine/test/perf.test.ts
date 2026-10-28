@@ -1,8 +1,8 @@
-// 效能護欄：11 天、每天 9 段近鐵的行程（真的 data/）。規劃在主執行緒、每次編輯都整份重算，
-// 每段大眾運輸都要附前一班、後一班，所以不能每段都重跑好幾次完整搜尋（舊的寫法第一次要 2 秒以上、之後每次也一樣）
+// 效能護欄：11 天、每天 9 段近鐵的行程（真的 data/）。規劃在主執行緒，每次編輯都要重算（網站用 PlanCache 只重算有改的那天，
+// 這裡測的是不用快取的整份重算）；不能每段都重跑好幾次完整搜尋（舊的寫法第一次要 2 秒以上、之後每次也一樣）
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { addItem, createItinerary, planItinerary, setLodging, type Itinerary } from '../src/index.ts';
+import { addItem, createItinerary, createPlanCache, planItinerary, resolveConfig, setLodging, type Itinerary } from '../src/index.ts';
 import { realData } from './fixtures.ts';
 
 const SEQ = ['kashikojima', 'ugata', 'shima-isobe', 'kamo', 'toba', 'isuzugawa', 'iseshi', 'toba', 'shima-isobe', 'kashikojima'];
@@ -16,16 +16,16 @@ function elevenDays(): Itinerary {
   return it;
 }
 
-test('效能：11 天 ~90 段近鐵，第一次規劃、編輯後重算都夠快，而且每段都有前一班、後一班', () => {
+test('效能：11 天 ~90 段近鐵，第一次規劃、編輯後重算都夠快', () => {
   const data = realData();
   const it = elevenDays();
   let t = performance.now();
   const plan = planItinerary(it, data);
   const first = performance.now() - t;
-  // 電車段（T29 起第一天關西機場那段是南海空港急行＋近鐵，含班距型那程，照 spec §6.6 沒有前一班、後一班，不算在內）
+  // 電車段（第一天關西機場那段是南海空港急行＋近鐵，含班距型那程，不算在內）
   const legs = plan.days.flatMap((d) => d.entries.map((e) => e.travel).filter((l) => l?.mode === 'train' && l.rides.every((r) => r.kind !== 'headway')));
   assert.ok(legs.length >= 80, `近鐵段數 ${legs.length}`);
-  assert.ok(legs.every((l) => l?.trip && (l.prevTrip || l.nextTrip)));
+  assert.ok(legs.every((l) => l?.rides.every((r) => r.ifMissed !== undefined)));
   // 編輯一天（中間那天多一站）後整份重算
   const edited = addItem(it, '2027-02-07', { type: 'visit', options: [{ place: 'toba', stayMinutes: 30 }] }, { index: 3 }).itinerary;
   t = performance.now();
@@ -83,8 +83,6 @@ test('效能：12 天裡有 2 天大阪、每天 8 段', () => {
     assert.equal(legs.length, 8, `${d.date} ${legs.length} 段`);
     assert.ok(legs.every((l) => l?.mode !== 'unknown'), `${d.date} ${legs.map((l) => l?.mode).join(',')}`);
   }
-  const trains = plan.days.flatMap((d) => d.entries.map((e) => e.travel).filter((l) => l?.mode === 'train' && l.rides.every((r) => r.kind !== 'headway')));
-  assert.ok(trains.every((l) => l?.trip && (l.prevTrip || l.nextTrip)));
   // 編輯大阪那天（多一站）後整份重算
   const edited = addItem(it, '2027-02-12', { type: 'visit', options: [{ place: 'osaka-kuromon-market', stayMinutes: 30 }] }, { index: 2 }).itinerary;
   t = performance.now();
@@ -98,4 +96,34 @@ test('效能：12 天裡有 2 天大阪、每天 8 段', () => {
   assert.ok(first < 4000, `第一次規劃 ${first.toFixed(0)} ms`);
   assert.ok(again < 800, `編輯後重算 ${again.toFixed(0)} ms`);
   assert.ok(fresh < 800, `新的 EngineData 重算 ${fresh.toFixed(0)} ms`);
+});
+
+// 網站的方式（T29b spec §7.4）：buildEngineData 沿用同一個 EngineData、planItinerary 帶 PlanCache，
+// 動一張卡只重算那一天（伊勢志摩、大阪的天都要測）；結果和整份重算一樣
+test('效能：網站的方式（同一個 EngineData＋PlanCache），動一張卡只重算那一天', () => {
+  const real = realData();
+  const data = { ...real, stations: [...real.stations] };
+  const cfg = resolveConfig();
+  const cache = createPlanCache();
+  let it = twelveDays();
+  let t = performance.now();
+  planItinerary(it, data, cfg, cache);
+  const first = performance.now() - t;
+  const times: number[] = [];
+  for (const [date, place, index] of [
+    ['2027-02-06', 'toba', 2],
+    ['2027-02-12', 'osaka-kuromon-market', 2],
+    ['2027-02-07', 'isuzugawa', 4],
+    ['2027-02-11', 'osaka-dotonbori', 1],
+  ] as const) {
+    it = addItem(it, date, { type: 'visit', options: [{ place, stayMinutes: 30 }] }, { index }).itinerary;
+    t = performance.now();
+    const plan = planItinerary(it, data, cfg, cache);
+    times.push(performance.now() - t);
+    assert.deepEqual(plan, planItinerary(it, data, cfg));
+  }
+  const max = Math.max(...times);
+  console.log(`網站的方式：第一次 ${first.toFixed(0)} ms，動一張卡後重算 ${times.map((x) => x.toFixed(1)).join('、')} ms`);
+  // 界線放寬（測試平行跑會互搶 CPU）；整份重算（新的 EngineData）約 100～200 ms
+  assert.ok(max < 100, `動一張卡後重算 ${max.toFixed(0)} ms`);
 });

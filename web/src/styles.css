@@ -3241,10 +3241,6 @@ body.dragging-plan .tl-dropend {
   cursor: default;
 }
 
-button.timetable-row-in {
-  cursor: pointer;
-}
-
 .timetable-dep {
   font-weight: 700;
   width: 46px;
@@ -3283,10 +3279,6 @@ button.timetable-row-in {
 
 .timetable-row.ok.long .timetable-wait {
   color: var(--warn);
-}
-
-.timetable-row.pickable:hover {
-  box-shadow: inset 0 0 0 2px var(--good);
 }
 
 .timetable-row.selected {
@@ -3506,50 +3498,9 @@ button.timetable-row-in {
   min-width: 0;
 }
 
-.leg-ride.editing {
-  flex-wrap: wrap;
-  background: var(--bg);
-  border: 2px solid var(--accent);
-  color: var(--fg);
-  cursor: auto;
-}
-
 .leg-ride-more {
   font-weight: 400;
   color: var(--ink-2);
-}
-
-button.leg-ride-more {
-  padding: 0;
-  border: 0;
-  background: none;
-  font: inherit;
-  color: var(--accent);
-  cursor: pointer;
-}
-
-/* 編輯中的班次：一排直的晶片（單選），太多時在裡面捲；搭不到的一行灰字 */
-.leg-ride-select {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 8px;
-  width: 100%;
-  max-height: 240px;
-  overflow-y: auto;
-  padding: 4px 0;
-  font-weight: 400;
-  font-variant-numeric: tabular-nums;
-}
-
-.leg-ride-missed {
-  font-size: 0.8125rem;
-  color: var(--ink-3);
-}
-
-.leg-ride-option:disabled {
-  cursor: default;
-  opacity: 0.6;
 }
 
 .leg-ride-min {

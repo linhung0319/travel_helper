@@ -380,12 +380,16 @@ export function setTravel(it: Itinerary, itemId: string, travel: TravelSpec | nu
 export type LegTarget = { itemId: string } | { lodging: DateString };
 
 /** 欄位全空的交通設定視為沒設定 */
-const isEmptySpec = (s: TravelSpec) => s.mode == null && s.minutes == null && s.trip == null && s.path == null && s.note == null;
+const isEmptySpec = (s: TravelSpec) => s.mode == null && s.minutes == null && s.path == null && s.note == null;
 
-/** 設定某一段交通（方式、分鐘、班次、備註可以只填一部分）；spec 是 null 或欄位全空：清掉。split 項目本身不能設 */
+/**
+ * 設定某一段交通（方式、分鐘、走法、備註可以只填一部分）；spec 是 null 或欄位全空：清掉。split 項目本身不能設。
+ * 舊的選定班次（trip）不寫（T29b 拿掉選班次）
+ */
 export function setLegTravel(it: Itinerary, to: LegTarget, spec: TravelSpec | null): Itinerary {
   const next = clone(it);
-  const value = spec && !isEmptySpec(spec) ? clone(spec) : null;
+  const { trip: _trip, ...rest } = spec ?? {};
+  const value = spec && !isEmptySpec(rest) ? clone(rest) : null;
   if ('lodging' in to) {
     next.days[dayIndexOf(next, to.lodging)].returnTravel = value;
     return next;
@@ -469,14 +473,7 @@ export function validateItinerary(it: unknown): string[] {
     if (t == null) return;
     if (t.mode != null && !(TRAVEL_MODES as readonly string[]).includes(t.mode)) errs.push(`${where}：travel.mode 不認得`);
     if (t.minutes != null && !(Number.isFinite(t.minutes) && t.minutes >= 0)) errs.push(`${where}：travel.minutes 要是 0 以上`);
-    // 舊資料的 bufferMinutes 忽略（緩衝拿掉了）
-    if (t.trip != null) {
-      if (typeof t.trip.id !== 'string' || !t.trip.id) errs.push(`${where}：travel.trip.id 要是非空字串`);
-      if (!isTime(t.trip.depart)) errs.push(`${where}：travel.trip.depart 要是 HH:MM`);
-      if (t.trip.arrive != null && !isTime(t.trip.arrive)) errs.push(`${where}：travel.trip.arrive 要是 HH:MM`);
-      if (t.trip.rides != null && !(Array.isArray(t.trip.rides) && t.trip.rides.every((r) => typeof r === 'string'))) errs.push(`${where}：travel.trip.rides 要是 tripId 的陣列`);
-      if (t.trip.via != null && (typeof t.trip.via !== 'string' || !t.trip.via)) errs.push(`${where}：travel.trip.via 要是車站 ID`);
-    }
+    // 舊資料的 bufferMinutes（緩衝拿掉了）、trip（選定的班次，T29b 拿掉）忽略
     if (t.path != null) {
       const pa = t.path;
       if (!Array.isArray(pa.rides)) errs.push(`${where}：travel.path.rides 要是陣列`);

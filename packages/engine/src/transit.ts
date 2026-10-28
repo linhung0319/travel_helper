@@ -151,11 +151,6 @@ function searchEarliest(tt: KintetsuTimes, q: TrainQuery): TrainRide[] | null {
   return best;
 }
 
-/** 這天 A → B 還有沒有任何車（用來分辨「錯過末班車」和「根本沒有車」） */
-export function anyTrainThatDay(tt: KintetsuTimes, q: Omit<TrainQuery, 'after'>): boolean {
-  return earliestTrain(tt, { ...q, after: 0 }) != null;
-}
-
 // --- 巴士、定期船、JR -------------------------------------------------------
 
 export interface RouteRide {

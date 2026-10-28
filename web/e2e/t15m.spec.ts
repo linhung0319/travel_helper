@@ -1046,7 +1046,7 @@ async function transitLeg(page: Page): Promise<Locator> {
   await leg.getByTestId('leg-edit').click();
   await leg.locator('[data-testid="leg-mode"][data-mode="transit"]').click();
   await expect(leg.locator('[data-testid="leg-mode"][data-mode="transit"]')).toHaveAttribute('aria-pressed', 'true');
-  await expect(leg.getByTestId('leg-ride-select').first()).toBeVisible();
+  await expect(leg.getByTestId('leg-steps')).toBeVisible();
   return leg;
 }
 
@@ -1083,7 +1083,7 @@ test('第五輪：大眾運輸的交通卡點了展開步驟（等車、御座�
   await expect(tt.getByTestId('timetable-ready')).toContainText('走到');
   await expect(tt.locator('[data-testid="timetable-row"][data-state="missed"]').first()).toContainText('搭不到');
   await expect(tt.locator('[data-testid="timetable-row"][data-state="selected"]')).toContainText('選定');
-  await expect(tt.locator('.timetable-row.pickable')).toHaveCount(0);
+  await expect(tt.locator('[data-testid="timetable-row"] button')).toHaveCount(0);
   await expect(tt.getByTestId('timetable-source')).toContainText('時刻表來源');
 
   // 再點交通卡收起：步驟、班次表都關掉
@@ -1092,36 +1092,15 @@ test('第五輪：大眾運輸的交通卡點了展開步驟（等車、御座�
   await expect(tt).toHaveCount(0);
 });
 
-test('第五輪：編輯中的班次選項沒有搭不到的班；換了班次時間軸跟著變', async ({ page }) => {
+test('T29b：編輯中不能選班次，搭車那一行照樣開只能看的班次表', async ({ page }) => {
   await ready(page);
   const leg = await transitLeg(page);
-  // 班次是一排可以點的選項（不用原生下拉，設計 §2.3）
-  const select = leg.getByTestId('leg-ride-select').first();
   await expect(leg.locator('select')).toHaveCount(0);
-  // 走到上車站的時間＝有「⏳ 等」的那個節點的時間
-  const readyAt = await leg.getByTestId('leg-step').filter({ has: page.getByTestId('leg-step-wait') }).first().locator('.leg-step-tm').innerText();
-  expect(readyAt).toMatch(/^\d\d:\d\d$/);
-  const options = () =>
-    select.getByTestId('leg-ride-option').evaluateAll((bs) => bs.map((b) => ({ value: b.getAttribute('data-trip')!, text: b.textContent!.trim(), on: b.getAttribute('aria-checked') === 'true' })));
-  let opts = await options();
-  expect(opts.length).toBeGreaterThan(1);
-  for (const o of opts) {
-    expect(o.text).toMatch(/^\d\d:\d\d 發 → \d\d:\d\d 到・等 \d+ 分$/);
-    expect(o.text.slice(0, 5) >= readyAt).toBe(true);
-  }
-  expect(opts.filter((o) => o.on)).toHaveLength(1);
-  // 搭不到的收成一行灰字、不能點
-  await expect(select.getByTestId('leg-ride-missed')).toHaveText(new RegExp(`^${readyAt} 以前的 \\d+ 班搭不到$`));
-
-  // 換成別班：存下來、等車跟著變、清單照樣只有搭得到的
-  const chosen = opts.find((o) => !o.on)!;
-  const option = select.locator(`[data-testid="leg-ride-option"][data-trip="${chosen.value}"]`);
-  const waitBefore = await leg.getByTestId('leg-step-wait').first().innerText();
-  await option.click();
-  await expect(option).toHaveAttribute('aria-checked', 'true');
-  await expect(leg.getByTestId('leg-step-wait').first()).not.toHaveText(waitBefore);
-  opts = await options();
-  for (const o of opts) expect(o.text.slice(0, 5) >= readyAt).toBe(true);
+  await expect(leg.locator('[role="radiogroup"]')).toHaveCount(0);
+  await leg.getByTestId('leg-ride').first().click();
+  const tt = page.getByTestId('timetable');
+  await expect(tt).toBeVisible();
+  await expect(tt.locator('[data-testid="timetable-row"] button')).toHaveCount(0);
 });
 
 test('第五輪：地圖彈窗在日期列上面（靠近上緣的點，彈窗蓋住日期列）', async ({ page }) => {

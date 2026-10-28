@@ -35,12 +35,10 @@ import {
   legModeName,
   legSubParts,
   legTitle,
-  departureChoices,
   rideReadyAt,
   mapMark,
   optionRows,
   shownWarnings,
-  specWithRide,
   stopMarks,
   timelineRows,
   waitNote,
@@ -543,20 +541,6 @@ test('departureRows：選定的那班搭不到', () => {
   assert.equal(r.wait, null);
 });
 
-test('departureChoices：搭不到的收成一行，選項是搭得到的和選定的', () => {
-  const c = departureChoices(departureRows(deps, '15:15', 't2'), '15:15');
-  assert.equal(c.missedNote, '15:15 以前的 1 班搭不到');
-  assert.deepEqual(
-    c.options.map((o) => o.label),
-    ['15:58 發 → 16:48 到・等 43 分', '17:08 發 → 17:58 到・等 113 分'],
-  );
-  // 選定的那班搭不到：照樣列出、標成搭不到
-  const late = departureChoices(departureRows(deps, '16:00', 't2'), '16:00');
-  assert.equal(late.missedNote, '16:00 以前的 1 班搭不到');
-  assert.deepEqual(late.options.map((o) => o.label), ['15:58 發 → 16:48 到・搭不到', '17:08 發 → 17:58 到・等 68 分']);
-  assert.equal(departureChoices(departureRows(deps, '10:00', null), '10:00').missedNote, null);
-});
-
 test('rideReadyAt：用引擎的 ready，沒有時第一程用出發、之後用前一程到站', () => {
   assert.equal(rideReadyAt(busLeg, 0), '15:15');
   const old = { depart: '10:00', rides: [{ arrive: '10:30' }, { arrive: '10:45' }] } as unknown as Parameters<typeof rideReadyAt>[0];
@@ -798,43 +782,6 @@ test('shownWarnings：看主卡是全部；看備卡只留指名那張備卡的'
   assert.deepEqual(shownWarnings(list, 'b', false), [list[2]]);
   assert.equal(shownWarnings(list, 'c', false), undefined);
   assert.equal(shownWarnings(undefined, 'b', false), undefined);
-});
-
-const twoRides = {
-  from: 'a',
-  to: 'b',
-  arrive: '11:20',
-  rides: [
-    { mode: 'train' as const, line: '特急', from: 'toba', to: 'ujiyamada', depart: '10:12', arrive: '10:30', tripId: 'k1' },
-    { mode: 'train' as const, line: '普通', from: 'ujiyamada', to: 'isuzugawa', depart: '10:40', arrive: '10:45', tripId: 'k2' },
-  ],
-  trip: { id: 'k1', depart: '10:12', arrive: '10:45', from: 'a', to: 'b', rides: ['k1', 'k2'], via: 'ujiyamada' },
-};
-
-test('specWithRide：換第一程，id、depart、rides[0] 換掉，後面保留，via 照舊，方式不變', () => {
-  const dep = { tripId: 'k9', line: '急行', depart: '10:20', arrive: '10:38' };
-  assert.deepEqual(specWithRide({ note: '備註' }, twoRides, 0, dep), {
-    note: '備註',
-    trip: { id: 'k9', depart: '10:20', arrive: '10:45', from: 'a', to: 'b', rides: ['k9', 'k2'], via: 'ujiyamada' },
-  });
-  // 自動的段落還是自動（不寫 mode）
-  assert.equal(specWithRide(null, twoRides, 0, dep).mode, undefined);
-  assert.equal(specWithRide({ mode: 'transit' }, twoRides, 0, dep).mode, 'transit');
-});
-
-test('specWithRide：換後面那程，id、depart 照目前，到站換成這班', () => {
-  const dep = { tripId: 'k5', line: '普通', depart: '10:50', arrive: '10:56' };
-  assert.deepEqual(specWithRide(null, twoRides, 1, dep).trip, { id: 'k1', depart: '10:12', arrive: '10:56', from: 'a', to: 'b', rides: ['k1', 'k5'], via: 'ujiyamada' });
-  // 只有一程、沒有 via
-  const one = { ...busLeg, rides: [{ ...busLeg.rides[0], tripId: 't2' }], trip: { id: 't2', depart: '15:58', arrive: '16:48', from: 'izawa', to: 'daiozaki' } };
-  assert.deepEqual(specWithRide(null, one, 0, { tripId: 't3', line: '御座線', depart: '17:08', arrive: '17:58' }).trip, {
-    id: 't3',
-    depart: '17:08',
-    arrive: '17:58',
-    from: 'izawa',
-    to: 'daiozaki',
-    rides: ['t3'],
-  });
 });
 
 test('hourTicks：整點刻度的位置（百分比）', () => {

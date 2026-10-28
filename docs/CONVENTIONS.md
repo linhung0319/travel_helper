@@ -399,22 +399,15 @@ travel_helper/
   "selected": 0,
   "start": null,         // 指定開始時間（訂位、表演、船班）；null＝到了就開始，沒開門會等到開門。到得比指定時間晚 → 衝突
   "tags": [],            // 標籤（省略或 [] ＝沒標）：breakfast | lunch | dinner | snack（用餐）、all | groups（全員／分組）、must | skippable | rainplan | rest（必去、可跳過、雨天備案、休息），照這個順序存；用餐標籤決定這張卡算哪一餐（沒標時引擎在餐廳的午餐、晚餐時段內自己猜，只用在休息、分組用餐的判斷）；groups 的餐廳不發全員用餐的座位、預約警告；rest 算休息
-  "travel": null,        // 指定從上一站怎麼來：{ "mode": "transit", "minutes": null, "trip": { … }, "note": "在車站前集合" }；null＝引擎依 §5.4 選
-                         // 每個欄位都可以省略：mode 沒寫＝方式自動（只改時間或只選班次）；minutes 沒填時引擎照方式估算；交通不加緩衝
+  "travel": null,        // 指定從上一站怎麼來：{ "mode": "transit", "minutes": null, "path": { … }, "note": "在車站前集合" }；null＝引擎依 §5.4 選
+                         // 每個欄位都可以省略：mode 沒寫＝方式自動（只改時間或只選走法）；minutes 沒填時引擎照方式估算；交通不加緩衝
                          // mode：walk | taxi | transit（一定搭電車、巴士或船，班次由引擎挑，不套等車、班距的規則；找不到班次＝交通未定）
                          //   舊資料的 train | bus | ferry | charter | car | other 照樣合法、照樣算（畫面的選單不再提供）
-                         // trip：選定的班次 { "id": "1-375", "depart": "09:13", "arrive": "09:42", "from": "toba", "to": "kashikojima" }
-                         //   id＝第一程的 tripId（近鐵的 trainNo、巴士的 trip id），depart＝第一程發車，arrive＝最後一程到達，from／to＝選的時候這段起訖的地點 ID
-                         //   rides：每一程的 tripId（依序，例如 ["1-1963", "1-3799"]），選了第二程以後的班次才有；沒有＝只指定第一程
-                         //     接不上時（發車早於前一程到站＋轉乘時間，或時刻表裡找不到）引擎改成同一對站接得上的最早一班；前面那程不會被後面改。只有一程的（巴士、船）忽略第 1 個以後的
-                         //   via：近鐵轉乘時的轉乘站 ID（例如 "toba"，引擎寫的）；換班次時照這個站組兩程，轉乘站不會變。沒有 via 的舊資料照第一程重新找
-                         //   mode 沒寫或是 transit（舊的 train／bus／ferry）時用；起訖點和 from／to 不同（換了順序）＝當作沒選，照規則挑
-                         //   等車寫在交通的 waitMinutes；趕不上那班照樣用（時間照走到車站後搭同一程算），警告 missed-trip（「趕不上 10:32 這班」）
                          // path：選定的走法（T29） { "rides": [{ "line": "kintetsu", "from": "toba", "to": "kashikojima" }], "from": "toba", "to": "kashikojima" }
                          //   rides：每一程的 line（近鐵 "kintetsu"、路線檔和班距型路線是它的 routeId）、from／to（網路的停靠點 ID）；from／to（外層）＝選的時候這段起訖的地點 ID
-                         //   照走法依序搭每一程最早接得上的班，不套等車、班距的規則；比 trip 優先。mode 沒寫或是 transit 而且沒填 minutes 時用
+                         //   照走法依序搭每一程最早接得上的班，不套等車、班距的規則。mode 沒寫或是 transit 而且沒填 minutes 時用
                          //   起訖點和 from／to 不同＝當作沒選；那天沒車＝照自動算，警告 path-unavailable（「選的走法這時間沒有車，改用 …」）
-                         // 舊資料的 bufferMinutes 忽略（緩衝 2026-10-25 拿掉）
+                         // 舊資料的 bufferMinutes 忽略（緩衝 2026-10-25 拿掉）；trip（選定的班次）忽略、validate 不檢查（選班次 2026-10-28 T29b 拿掉，改選走法 path）
   "proposedBy": ["<member id>"],   // 誰提的（建議的作者）
   "addedBy": "<member id>",
   "note": null
@@ -441,7 +434,7 @@ travel_helper/
 
 - **地點 ID** 用字串，不分預設資料或使用者加的點：引擎透過傳進來的 `getPlace` 查。使用者加的點只用座標估算交通，營業時間、團體條件標「未查」；已下架的點照常算，但發警告；查不到的點是錯誤。
 - **引擎的輸出**（`planItinerary(itinerary, data, config)`）：每天一個 `DayPlan`：
-  - `entries`：start（出發）、visit、flight、free、meet（分組，`groups` 是各組的 entries）、lodging（回住宿），各有 `arrive`／`start`／`end`、`waitMinutes`、`meal`（引擎猜的）、`mealTags`（使用者標的幾餐，畫面用）、`rest`（標了休息），和到這一項的交通 `travel`（方式、出發／抵達、步行與等車分鐘、班次 `rides`、用的班次 `trip` 和前一班／後一班 `prevTrip`／`nextTrip`、出發後還有沒有班次 `transitAvailable`、計程車台數和費用 `taxi`、怎麼算的 `basis`）。
+  - `entries`：start（出發）、visit、flight、free、meet（分組，`groups` 是各組的 entries）、lodging（回住宿），各有 `arrive`／`start`／`end`、`waitMinutes`、`meal`（引擎猜的）、`mealTags`（使用者標的幾餐，畫面用）、`rest`（標了休息），和到這一項的交通 `travel`（方式、出發／抵達、步行與等車分鐘、班次 `rides`（每一程的「錯過的話」`ifMissed`）、轉乘步行 `transfers`、候選走法 `alternatives`、出發後還有沒有班次 `transitAvailable`、計程車台數和費用 `taxi`、怎麼算的 `basis`）。
   - `gaps`：`lodging`「住宿（未排）」、`idle`「空檔 N 分」（不再產生午餐、晚餐的空檔），附建議插在哪兩個項目之間。
   - `warnings`：`code`、`level`（error／warning／info）、`itemId`、`groupId`、`message`；`stats`：全員步行累計、主要景點數、回住宿時間、累不累、自由時間。
   - 整趟的警告（連續兩天都累、沒有半天自由時間）在 `ItineraryPlan.warnings`。

@@ -3,7 +3,7 @@
 // 大眾運輸展開後是步驟（LegRow 的 LegSteps，排成一欄）。等待那一行接在交通下面，是純文字、不能點（§2.4）。
 // 點交通時，選到的卡片取消（地圖只看這段）。
 // 編輯中：每段右邊有「改」；交通編輯器不會自己展開，按「改」才從下面升起來——底部面板 m-leg-sheet（和「⋯」動作面板同一種：上方暗的、點暗處或 Esc 關，
-// 第五輪的編輯狀態 LegEditor：方式、班次下拉、分鐘、備註、完成），只有一個「完成」；大眾運輸的步驟接在編輯器裡，這時時間軸上那一行下面不再重複。
+// 第五輪的編輯狀態 LegEditor：方式、分鐘、備註、完成），只有一個「完成」；大眾運輸的步驟接在編輯器裡，這時時間軸上那一行下面不再重複。
 // 交通也是放置區（dropOnLegProps）：拖到這裡＝排在這段通往的那張卡前面。
 
 import { useEffect, type ReactNode } from 'react';
@@ -49,8 +49,8 @@ function LegSheet({ title, children }: { title: string; children: ReactNode }) {
 export function MobileLeg({ entry, date }: { entry: TimelineEntry; date: string }) {
   const v = useLegView(entry, date);
   if (!v) return null;
-  const { leg, key, open, editing, editable, planning, saving, target, spec, from, to, mode, sub, steps, transit, note } = v;
-  const stepList = open && transit ? <LegSteps steps={steps} leg={leg} date={date} legKey={key} target={target} editing={editing} saving={saving} /> : null;
+  const { leg, key, open, editing, editable, planning, target, spec, from, to, mode, sub, steps, transit, note } = v;
+  const stepList = open && transit ? <LegSteps steps={steps} date={date} legKey={key} /> : null;
   const nameOf = (p: typeof from) => (p ? p.name.zh || p.name.ja : '');
   return (
     <li className={`m-leg ll-li ${open ? 'open' : ''} ${editing ? 'editing' : ''}`} data-testid="m-leg" data-leg={key} {...dropOnLegProps(entry.itemId, date, planning)}>

@@ -65,8 +65,8 @@ export const TAG_IDS = ['breakfast', 'lunch', 'dinner', 'snack', 'all', 'groups'
 export type TagId = (typeof TAG_IDS)[number];
 
 /**
- * 選定的班次（電車、巴士、船）。id 是第一程的 tripId，depart 是第一程發車，arrive 是最後一程到達；
- * from／to 是選的時候這段起訖的地點 ID：和現在的起訖點不同（換了順序）時引擎當作沒選
+ * 舊格式：選定的班次（T29b 拿掉選班次，引擎忽略，validate 也不檢查；留著型別只是讓舊行程讀得進來）。
+ * id 是第一程的 tripId，depart 是第一程發車，arrive 是最後一程到達；from／to 是選的時候這段起訖的地點 ID
  */
 export interface TripRef {
   id: string;
@@ -74,9 +74,7 @@ export interface TripRef {
   arrive: TimeString;
   from: string | null;
   to: string | null;
-  /** 每一程的 tripId（依序）；沒有＝只指定第一程（id）。後面那程接不上時引擎改成同一對站接得上的最早一班 */
   rides?: string[] | null;
-  /** 近鐵兩程時的轉乘站 ID（引擎寫的）；換班次時照這個站組兩程，不重新推轉乘站。其他是 null 或沒有 */
   via?: string | null;
 }
 
@@ -96,12 +94,13 @@ export interface PathRef {
 
 /**
  * 使用者指定的交通（從上一站到這一項）。
- * mode 沒寫：方式自動；minutes 是 null：時間照規則算；trip：選定的班次（mode 沒寫或是大眾運輸時用）。
- * 舊資料的 bufferMinutes 忽略
+ * mode 沒寫：方式自動；minutes 是 null：時間照規則算；path：選定的走法（mode 沒寫或是大眾運輸時用）。
+ * 舊資料的 bufferMinutes、trip（選定的班次，T29b 拿掉）忽略
  */
 export interface TravelSpec {
   mode?: TravelMode | null;
   minutes?: number | null;
+  /** 舊格式，忽略（T29b） */
   trip?: TripRef | null;
   /** 選定的走法（T29）：照這個走法依序搭每一程最早接得上的班 */
   path?: PathRef | null;
@@ -297,11 +296,6 @@ export interface Leg {
   walkAfter?: number;
   /** 大眾運輸：每一程「走到上車站／轉乘完」的時間，和 rides 等長（第一程＝出發＋walkBefore，之後＝前一程到站＋轉乘步行，至少 minTransfer） */
   ready?: TimeString[];
-  /** 這段實際用的班次；不是電車、巴士、船時是 null */
-  trip?: TripRef | null;
-  /** 同一對上下車點的前一班、後一班（規劃模式的 ‹ ›）；沒有是 null */
-  prevTrip?: TripRef | null;
-  nextTrip?: TripRef | null;
   /** 大眾運輸：轉乘步行，長度＝rides.length − 1（T29） */
   transfers?: LegTransfer[];
   /** 大眾運輸：候選走法，第一個是目前用的（T29） */
