@@ -1300,13 +1300,14 @@ test('想去：第一次打開，第一列自己滑一下提示，只提示一�
   await expect.poll(() => page.evaluate(() => localStorage.getItem('th.wishSwipeHint'))).toBe('1');
 });
 
-test('想去：打開時是「全部」，數字是各類加起來；記住選的類型', async ({ page }) => {
+test('想去：打開時是「全部」；上面沒有「想去」標題，類型晶片和探索一樣（第十輪）；記住選的類型', async ({ page }) => {
   await ready(page);
+  await goTab(page, 'explore');
+  const explore = await page.getByTestId('m-feed-filters').locator('.ui-chip').allTextContents();
   await goTab(page, 'wish');
   await expect(page.getByTestId('m-wish-type-all')).toHaveAttribute('aria-pressed', 'true');
-  const n = async (id: string) => Number(((await page.getByTestId(id).textContent()) ?? '').replace(/\D/g, ''));
-  const sum = (await n('m-wish-type-restaurant')) + (await n('m-wish-type-lodging')) + (await n('m-wish-type-spot'));
-  expect(await n('m-wish-type-all')).toBe(sum);
+  await expect(page.getByTestId('m-wish').getByRole('heading', { name: '想去', exact: true })).toHaveCount(0);
+  expect(await page.getByTestId('m-wish').locator('.fb-types .ui-chip').allTextContents()).toEqual(explore);
   await page.getByTestId('m-wish-type-spot').click();
   await goTab(page, 'trip');
   await goTab(page, 'wish');

@@ -730,10 +730,6 @@
   padding: 4px 0;
 }
 
-.fb-types .m-segmented {
-  margin: 4px 0;
-}
-
 .fb-below .fb-applied {
   padding: 4px 0 4px;
 }
@@ -1350,12 +1346,6 @@
 .wl[data-surface='mobile'] {
   padding-left: 16px;
   padding-right: 16px;
-}
-
-/* 手機想去的類型分段（全部、餐廳、住宿、景點）：照字數分寬度，360 寬也不會被省略 */
-.fb-segmented button {
-  flex: 1 1 auto;
-  padding: 0 8px;
 }
 
 /* ---------- 詳情（PlaceDetail，兩邊共用；第七輪 §7） ---------- */

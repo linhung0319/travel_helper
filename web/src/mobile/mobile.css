@@ -329,35 +329,6 @@
 }
 
 
-.m-segmented {
-  display: flex;
-  margin: 4px 12px;
-  border: 1px solid var(--line);
-  border-radius: 999px;
-  overflow: hidden;
-}
-
-.m-segmented button {
-  flex: 1 1 0;
-  min-width: 0;
-  min-height: var(--tap);
-  border: 0;
-  background: var(--bg);
-  color: var(--fg);
-  font: inherit;
-  font-size: 0.9rem;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  cursor: pointer;
-}
-
-.m-segmented button.on {
-  background: var(--fg);
-  color: var(--paper);
-  font-weight: 700;
-}
-
 .m-empty {
   padding: 24px 16px;
   text-align: center;
@@ -458,9 +429,6 @@
   padding-bottom: 16px;
 }
 
-.m-wish-title {
-  padding: 10px 16px 2px;
-}
 
 
 
