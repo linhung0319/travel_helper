@@ -2456,7 +2456,8 @@ button.ll-main {
   white-space: nowrap;
 }
 
-/* 第二行：走法的膠囊（交通方式圖示＋短名稱，外框 RIDE_COLOR），兩程中間小字寫換車站；放不下時名稱省略，不換行 */
+/* 第二行：走法的膠囊（交通方式圖示＋短名稱，外框 RIDE_COLOR），兩程中間小字寫換車站；不換行。
+   放不下時（LegLine 量了寫 data-fit="nostops"）先拿掉換車站，膠囊名稱寫完整；還是放不下才省略最後一顆 */
 .ll-chips {
   display: flex;
   align-items: center;
@@ -2468,7 +2469,7 @@ button.ll-main {
 
 .ll-chip {
   --ride-c: var(--indigo);
-  flex: 0 1 auto;
+  flex: none;
   display: inline-flex;
   align-items: center;
   gap: 3px;
@@ -2479,6 +2480,11 @@ button.ll-main {
   background: var(--paper);
   color: var(--ink);
   font-size: 0.8125rem;
+}
+
+/* 只有最後一顆可以縮（名稱省略） */
+.ll-chip:last-child {
+  flex: 0 1 auto;
 }
 
 .ll-chip > .mode-icon {
@@ -2492,13 +2498,14 @@ button.ll-main {
 }
 
 .ll-chip-stop {
-  flex: 0 1 auto;
-  min-width: 0;
-  overflow: hidden;
-  text-overflow: ellipsis;
+  flex: none;
   white-space: nowrap;
   color: var(--ink-2);
   font-size: 0.75rem;
+}
+
+.ll-chips[data-fit='nostops'] .ll-chip-stop {
+  display: none;
 }
 
 .ll-note {

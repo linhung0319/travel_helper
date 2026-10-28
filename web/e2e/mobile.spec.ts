@@ -706,6 +706,11 @@ test('T29c：手機的班次表是浮在地圖那塊的彈窗（三欄格子、�
   const h = (await tt.boundingBox())!.height;
   expect(h).toBeGreaterThan(150);
   expect(await scrollsSideways(page)).toBe(false);
+  // 不蓋住地圖右下的版權列
+  const attrib = (await page.locator('.m-map .maplibregl-ctrl-attrib').boundingBox())!;
+  expect((await tt.boundingBox())!.y + h).toBeLessThanOrEqual(attrib.y);
+  // 打開時捲到的那列貼齊格子區上緣：上面沒有被切掉一半的格子
+  expect(await partlyHiddenCells(tt)).toBe(0);
   // 拉到低：高度固定，不跟著地圖變大
   await page.evaluate(() => (window as any).__thMobile.getState().setSnap('low'));
   await expect.poll(async () => Math.round((await tt.boundingBox())!.height)).toBe(Math.round(h));
@@ -714,6 +719,66 @@ test('T29c：手機的班次表是浮在地圖那塊的彈窗（三欄格子、�
   await tt.getByTestId('timetable-close').click();
   await expect(tt).toHaveCount(0);
   expect(await page.evaluate(() => (window as any).__thMobile.getState().tripSnap)).toBe('mid');
+});
+
+/** 班次表格子區上緣被切掉一部分的格子數（捲動後上面露出前一列的一小條） */
+const partlyHiddenCells = (tt: import('@playwright/test').Locator) =>
+  tt.locator('.timetable-body').evaluate((body) => {
+    const top = body.getBoundingClientRect().top;
+    return [...body.querySelectorAll('[data-testid="tt-cell"]')].filter((c) => {
+      const r = c.getBoundingClientRect();
+      return r.top < top - 1 && r.bottom > top + 1;
+    }).length;
+  });
+
+/** 在瀏覽器裡換掉幾天的行程（不存）：2/7 從相差的住宿到外宮（鷗巴士＋近鐵，膠囊多）、2/12 大阪城 → 海遊館（班距型） */
+async function injectTransitDays(page: import('@playwright/test').Page) {
+  await page.evaluate(() => {
+    const ds = (window as any).__th.dataStore;
+    const it = structuredClone(ds.getState().itinerary);
+    const v = (id: string, place: string) => ({ id, type: 'visit', options: [{ place, stayMinutes: null }], selected: 0, travel: { mode: 'transit' } });
+    it.days.find((d: any) => d.date === '2027-02-07').items = [v('x-1', 'ise-geku')];
+    it.days.find((d: any) => d.date === '2027-02-12').items = [v('x-4', 'osaka-castle-tenshukaku'), v('x-5', 'osaka-kaiyukan')];
+    ds.setState({ itinerary: it });
+  });
+}
+
+test('T29c：收合的交通卡膠囊放不下時先拿掉換車站，膠囊名稱寫完整，不換行；班距型的班次表照內容的高度', async ({ page }) => {
+  await ready(page);
+  await injectTransitDays(page);
+  await pickDay(page, '2027-02-07');
+  const chips = page.locator('[data-testid="m-leg"][data-leg="2027-02-07:visit:x-1"]').getByTestId('leg-chips');
+  await expect(chips.locator('.ll-chip')).not.toHaveCount(0);
+  await expect.poll(() => chips.locator('.ll-chip').count()).toBeGreaterThan(1);
+  const m = await chips.evaluate((row) => {
+    const names = [...row.querySelectorAll<HTMLElement>('.ll-chip-name')];
+    const stops = [...row.querySelectorAll<HTMLElement>('.ll-chip-stop')];
+    const chipsEls = [...row.querySelectorAll<HTMLElement>('.ll-chip')];
+    return {
+      fit: row.dataset.fit,
+      // 最後一顆以外都寫完整
+      cut: names.slice(0, -1).filter((n) => n.scrollWidth > n.clientWidth + 1).length,
+      stopsShown: stops.filter((s) => s.offsetWidth > 0).length,
+      stopsCount: stops.length,
+      overflow: row.scrollWidth > row.clientWidth + 1,
+      // 一行：每顆膠囊的上緣一樣
+      lines: new Set(chipsEls.map((c) => Math.round(c.getBoundingClientRect().top))).size,
+    };
+  });
+  expect(m.cut).toBe(0);
+  expect(m.overflow).toBe(false);
+  expect(m.lines).toBe(1);
+  // 拿掉換車站時一個都不留；放得下時全留
+  expect(m.stopsShown).toBe(m.fit === 'nostops' ? 0 : m.stopsCount);
+
+  // 班距型那一程：彈窗只有一行字，比有格子的固定高度矮
+  await pickDay(page, '2027-02-12');
+  const leg = page.locator('[data-testid="m-leg"][data-leg="2027-02-12:visit:x-5"]');
+  await leg.getByTestId('leg-line-text').click();
+  await leg.getByTestId('leg-step-board').first().click();
+  const tt = page.getByTestId('timetable-popup');
+  await expect(tt.getByTestId('tt-headway')).toHaveText(/^(約 \d+ 分一班|班距沒查到)・首班 .+／末班 .+$/);
+  expect((await tt.boundingBox())!.height).toBeLessThan(150);
 });
 
 // --- 行程：編輯中（§3.5）：藍條、把手、⋯ 底部動作面板、標籤、移到第幾天、長按拖曳 ---

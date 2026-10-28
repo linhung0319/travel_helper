@@ -78,7 +78,7 @@ function TimetableBody({ tt, leg, ride }: { tt: TimetableState; leg: Leg; ride: 
   const title = `${nameOf(board)} → ${nameOf(alight)}`;
 
   return (
-    <section className="timetable-pop" data-testid="timetable-popup" aria-label={`${title} 的班次`}>
+    <section className={`timetable-pop${headway ? ' headway' : ''}`} data-testid="timetable-popup" aria-label={`${title} 的班次`}>
       <header className="timetable-head">
         <ModeIcon mode={ride.mode} size="l" />
         <div className="timetable-title">
@@ -128,8 +128,10 @@ function CellGrid({ cells }: { cells: DepartureCell[] }) {
     const grid = gridRef.current;
     if (!body || !grid) return;
     const cols = getComputedStyle(grid).gridTemplateColumns.split(' ').filter(Boolean).length || 1;
-    const el = grid.children[firstCellIndex(cells, cols)] as HTMLElement | undefined;
-    if (el) body.scrollTop = el.offsetTop - grid.offsetTop;
+    const i = firstCellIndex(cells, cols);
+    const el = grid.children[i] as HTMLElement | undefined;
+    // 那格貼齊格子區的上緣（連 padding-top 一起捲掉，上面不會露出前一列的一小條）；第一列不用捲
+    if (el && i > 0) body.scrollTop += el.getBoundingClientRect().top - body.getBoundingClientRect().top;
     // 只在打開時捲一次（換一程是新的 TimetableBody）
   }, []);
   return (

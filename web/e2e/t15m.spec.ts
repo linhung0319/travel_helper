@@ -1109,6 +1109,12 @@ test('T29c：大眾運輸的交通卡收合兩行（膠囊），點開一程一�
   const mapBox = (await page.locator('.map-column').boundingBox())!;
   expect(box.width).toBeLessThanOrEqual(460);
   expect(box.height).toBeLessThanOrEqual(mapBox.height * 0.6 + 1);
+  // 打開時捲到的那列貼齊格子區上緣：上面沒有被切掉一半的格子
+  const cut = await tt.locator('.timetable-body').evaluate((body) => {
+    const top = body.getBoundingClientRect().top;
+    return [...body.querySelectorAll('[data-testid="tt-cell"]')].filter((c) => c.getBoundingClientRect().top < top - 1 && c.getBoundingClientRect().bottom > top + 1).length;
+  });
+  expect(cut).toBe(0);
 
   // 再點交通卡收起：步驟、班次表都關掉
   await leg.getByRole('button').first().click();
