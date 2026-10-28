@@ -1,7 +1,7 @@
 // 大阪的情境測試（T29 spec §6.7）：第一天南下、伊勢回大阪、大阪一天，都用真的 data/
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { addItem, createItinerary, planItinerary, planLeg, resolveConfig, setLodging, type Endpoint, type LegContext } from '../src/index.ts';
+import { addItem, createItinerary, planItinerary, planLeg, resolveConfig, setLodging, toMinutes, type Endpoint, type LegContext } from '../src/index.ts';
 import { realData } from './fixtures.ts';
 
 const cfg = resolveConfig();
@@ -25,6 +25,19 @@ test('第一天南下：關西機場 14:35 → 鵜方，搭近鐵 1-382 16:10 �
   const i = leg.rides.findIndex((r) => r.to === 'nankai-namba');
   assert.ok(i >= 0 && leg.rides[i + 1]?.from === 'osaka-namba');
   assert.equal(leg.transfers?.[i].walkMinutes, 16);
+});
+
+test('第一天南下：難波留得出買票時間', () => {
+  // T29c spec §8.6：到達一樣時優先挑買票站（近鐵特急）留得出 ticketMargin 的；只換前面的班次，到達不變
+  const { leg } = planLeg(P('kansai-airport'), P('ugata'), ctx({ date: '2027-02-02', depart: 14 * 60 + 35 }), { mode: 'transit' });
+  const i = leg.rides.length - 1;
+  const last = leg.rides[i];
+  assert.equal(last.tripId, '1-382');
+  assert.equal(last.arrive, '18:35');
+  const ready = leg.ready?.[i];
+  assert.ok(ready, 'ready');
+  assert.ok(toMinutes(last.depart) - toMinutes(ready) >= cfg.transit.ticketMargin, `${ready} → ${last.depart}`);
+  assert.equal(leg.arrive, '18:35');
 });
 
 test('伊勢 → 大阪難波 → 住宿', () => {

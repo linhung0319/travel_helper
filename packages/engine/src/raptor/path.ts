@@ -92,7 +92,7 @@ export function evaluatePath(
   if (!first) return null;
   const j = finish(c, [first], [], rides.slice(1), start, target);
   // 到達一樣時往後挪發車（和搜尋一樣，search.ts 的 laterDeparture），選了畫面上的走法不會變成早一班
-  return j && laterDeparture(net, c.ix, j, c.minTransfer, q.whole);
+  return j && laterDeparture(net, c.ix, j, cfg.transit, q.whole);
 }
 
 /**

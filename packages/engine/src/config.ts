@@ -51,6 +51,11 @@ export interface EngineConfig {
     transferPenalty: number;
     /** 自動選的時候，搭 2 程以上的走法比計程車晚超過這個分鐘到就不搭（計程車叫得到時）；只搭 1 程的不比 */
     transitMaxLateVsTaxi: number;
+    /**
+     * 買票站（ticket.ts）到站後至少留幾分買票（T29c spec §8.6）：不加進行程時間，
+     * 只用在挑班次（到達一樣時優先挑留得出的）、ticket-tight 警告、「前一站可以多待」
+     */
+    ticketMargin: number;
   };
 
   taxi: {
@@ -147,6 +152,7 @@ export const DEFAULT_CONFIG: EngineConfig = {
     transferMaxMeters: 300,
     transferPenalty: 10,
     transitMaxLateVsTaxi: 30,
+    ticketMargin: 10,
   },
   taxi: {
     carCapacity: 4,

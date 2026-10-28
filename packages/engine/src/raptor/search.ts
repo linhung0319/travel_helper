@@ -1,8 +1,10 @@
 // 多輪 RAPTOR 搜尋（T29，spec §6.2）：在一天的網路（network.ts）上找「坐 k 程最早幾點到」，
 // 回傳各程數的最早到達（Pareto：到達、程數）。照走法重算、錯過的話在 path.ts。
 // 規則照 transit.ts 的 earliestTrain：換車至少 minTransfer 分、到達一樣取晚出發的。
+// 到達一樣時優先挑買票站（ticket.ts）留得出 ticketMargin 的班次（T29c spec §8.6）。
 
 import type { EngineConfig } from '../config.ts';
+import { isTicketRide, type TicketRideInfo } from '../ticket.ts';
 import type { UrbanTransfer } from '../data.ts';
 import type { TimeString } from '../types.ts';
 import { toMinutes } from '../time.ts';
@@ -421,7 +423,7 @@ function search(net: Network, q: SearchQuery, cfg: EngineConfig): Journey[] {
     for (const c of cands) {
       const j = rebuild(net, ix, rounds, k, c.s, egress[c.s], q, cfg);
       if (q.requireFerry && !j.rides.some((r) => r.route.kind === 'timetable' && r.route.mode === 'ferry')) continue;
-      results.push(laterDeparture(net, ix, j, minTransfer, q.whole));
+      results.push(laterDeparture(net, ix, j, cfg.transit, q.whole));
       bestTarget = c.arr;
       break;
     }
@@ -558,64 +560,102 @@ export function nextDeparture(net: Network, group: string, from: string, after: 
   return best;
 }
 
+/** 挑班次要的設定：換車至少幾分、買票站留幾分 */
+export type LaterRules = Pick<EngineConfig['transit'], 'minTransfer' | 'ticketMargin'>;
+
 /**
  * 到達一樣取晚出發（照 earliestTrain）：同一條走法的第一程試後面的班，
  * 後面幾程照樣接最早的，仍然同時到就換成晚的。第一程是班距型的不用試。
+ * 買票站（ticket.ts）優先：原本留得出 ticketMargin 的，換成晚的那班也要留得出才換（T29c spec §8.6）。
+ * 只看第 2 程以後（到站時間算得出來的）；第一程上車前的空檔這裡不知道，只靠 ticket-tight 警告。
  * 照走法重算（path.ts 的 evaluatePath）也用這個，選了畫面上那條走法時班次和搜尋的一樣
  */
-export function laterDeparture(net: Network, ix: Indexed, j: Journey, minTransfer: number, whole: boolean): Journey {
-  return sameArrivalLater(net, ix, laterFirst(net, ix, j, minTransfer, whole), minTransfer, whole);
+export function laterDeparture(net: Network, ix: Indexed, j: Journey, t: LaterRules, whole: boolean): Journey {
+  return sameArrivalLater(net, ix, laterFirst(net, ix, j, t, whole), t, whole);
+}
+
+/** JourneyRide 換成 isTicketRide 要的欄位：近鐵 operator 是 'kintetsu'，其他用路線 ID 當業者 */
+function ticketInfo(r: JourneyRide): TicketRideInfo {
+  return {
+    kind: r.route.kind,
+    mode: r.route.kind === 'timetable' ? r.route.mode : 'train',
+    line: r.trip?.line ?? (r.route.kind === 'headway' ? r.route.line : ''),
+    operator: r.route.group === KINTETSU ? KINTETSU : r.route.routeId,
+  };
+}
+
+/** 第 i 程（i ≥ 1）到站後到發車的空檔；不是買票站的是 Infinity */
+function ticketGap(rides: readonly JourneyRide[], transfers: readonly JourneyTransfer[], i: number, minTransfer: number): number {
+  if (!isTicketRide(rides.map(ticketInfo), i)) return Infinity;
+  return rides[i].dep - (rides[i - 1].arr + Math.max(minTransfer, transfers[i - 1].walk));
+}
+
+/** 換成 next 的話，原本留得出 ticketMargin 的買票站（第 2 程以後）是不是仍留得出 */
+function keepsMargin(prev: readonly JourneyRide[], next: readonly JourneyRide[], transfers: readonly JourneyTransfer[], t: LaterRules): boolean {
+  for (let i = 1; i < prev.length; i++) {
+    if (ticketGap(prev, transfers, i, t.minTransfer) >= t.ticketMargin && ticketGap(next, transfers, i, t.minTransfer) < t.ticketMargin) return false;
+  }
+  return true;
 }
 
 /**
  * 第 2 程以後：同一條線（group）同一對站、同時到的班有好幾班（例如不同停站的巴士），換成晚出發的（照 earliestRide，
- * 和照走法重算一樣；RAPTOR 掃的時候上的是最早那班）。到達不變，只是轉乘時少等一點
+ * 和照走法重算一樣；RAPTOR 掃的時候上的是最早那班）。到達不變，只是轉乘時少等一點；買票站留不出空檔的不換
  */
-function sameArrivalLater(net: Network, ix: Indexed, j: Journey, minTransfer: number, whole: boolean): Journey {
+function sameArrivalLater(net: Network, ix: Indexed, j: Journey, t: LaterRules, whole: boolean): Journey {
   let rides: JourneyRide[] | null = null;
   for (let i = 1; i < j.rides.length; i++) {
     const p = j.rides[i];
     if (!p.trip) continue;
-    const prev = (rides ?? j.rides)[i - 1];
-    const r = earliestRide(net, ix, p.route.group, p.from, p.to, prev.arr + Math.max(minTransfer, j.transfers[i - 1].walk), whole);
-    if (r && r.trip && r.arr === p.arr && r.dep > p.dep) (rides ??= [...j.rides])[i] = r;
+    const cur: JourneyRide[] = rides ?? j.rides;
+    const prev = cur[i - 1];
+    const r = earliestRide(net, ix, p.route.group, p.from, p.to, prev.arr + Math.max(t.minTransfer, j.transfers[i - 1].walk), whole);
+    if (!r || !r.trip || r.arr !== p.arr || r.dep <= p.dep) continue;
+    const next: JourneyRide[] = [...cur];
+    next[i] = r;
+    if (keepsMargin(cur, next, j.transfers, t)) rides = next;
   }
   return rides ? { ...j, rides } : j;
 }
 
-function laterFirst(net: Network, ix: Indexed, j: Journey, minTransfer: number, whole: boolean): Journey {
+function laterFirst(net: Network, ix: Indexed, j: Journey, t: LaterRules, whole: boolean): Journey {
   const first = j.rides[0];
-  if (first.route.kind !== 'timetable') return laterHeadway(j, minTransfer);
+  if (first.route.kind !== 'timetable') return laterHeadway(j, t);
   const egress = j.target.walk;
   let best = j;
+  // 試過的第一程發車（買票站留不出空檔的跳過，繼續試後面的班）
+  let after = first.dep;
   for (;;) {
-    const r0 = earliestRide(net, ix, first.route.group, first.from, first.to, best.rides[0].dep, whole, best.rides[0].dep);
+    const r0 = earliestRide(net, ix, first.route.group, first.from, first.to, after, whole, after);
     if (!r0 || r0.dep > j.arr) return best;
+    after = r0.dep;
     const rides = [r0];
     for (let i = 1; i < j.rides.length && rides.length === i; i++) {
       const p = j.rides[i];
-      const ready = rides[i - 1].arr + Math.max(minTransfer, j.transfers[i - 1].walk);
+      const ready = rides[i - 1].arr + Math.max(t.minTransfer, j.transfers[i - 1].walk);
       const r = earliestRide(net, ix, p.route.group, p.from, p.to, ready, whole);
       if (r) rides.push(r);
     }
     if (rides.length < j.rides.length) return best;
     const arr = rides[rides.length - 1].arr + egress;
     if (arr > j.arr) return best;
-    best = { ...j, rides, dep: r0.dep, arr };
+    if (keepsMargin(best.rides, rides, j.transfers, t)) best = { ...j, rides, dep: r0.dep, arr };
   }
 }
 
 /**
  * 第一程是班距型的：上車往後挪（整數分鐘），只要還接得上第二程那班、而且在末班以前，到達就不變；
  * 等車就從轉乘站移到起點（例如關西機場搭南海，不用在難波等近鐵等一個小時）。
+ * 第二程是買票站的，挪到那裡還留 ticketMargin 為止（第一天南下：難波留 10 分買特急券）。
  * 只挪接有時刻表那程的：只有一程的、第二程也是班距型的不挪（第二程的發車跟著到站時間走，到達會變）
  */
-function laterHeadway(j: Journey, minTransfer: number): Journey {
+function laterHeadway(j: Journey, t: LaterRules): Journey {
   const first = j.rides[0];
   if (j.rides.length < 2 || !first.headway || j.rides[1].route.kind !== 'timetable') return j;
-  const ready = first.arr + Math.max(minTransfer, j.transfers[0].walk);
+  const ready = first.arr + Math.max(t.minTransfer, j.transfers[0].walk);
+  const margin = isTicketRide(j.rides.map(ticketInfo), 1) ? t.ticketMargin : 0;
   const last = toMinutes(first.headway.last);
-  const shift = Math.floor(Math.min(j.rides[1].dep - ready, last - first.dep));
+  const shift = Math.floor(Math.min(j.rides[1].dep - ready - margin, last - first.dep));
   if (shift <= 0) return j;
   const moved = { ...first, dep: first.dep + shift, arr: first.arr + shift };
   return { ...j, rides: [moved, ...j.rides.slice(1)], dep: moved.dep };
