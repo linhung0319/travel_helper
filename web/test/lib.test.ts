@@ -27,18 +27,16 @@ import {
   hourTicks,
   isBarSelected,
   selectedBarKey,
-  formatDistance,
-  legDistance,
   legMapsUrl,
-  legSteps,
   legTargetOf,
   legModeName,
-  legSubParts,
+  taxiCarsText,
   legTitle,
   rideReadyAt,
   mapMark,
   optionRows,
   shownWarnings,
+  warningsByItem,
   stopMarks,
   timelineRows,
   waitNote,
@@ -387,48 +385,6 @@ const busLeg = {
   basis: '',
 };
 
-test('legSteps：步行→等車→巴士→步行', () => {
-  const names: Record<string, string> = { kawabe: '川辺', 'daiozaki-bus': '大王埼灯台' };
-  const s = legSteps(busLeg, '伊雜宮', '大王埼燈塔', (id) => names[id] ?? id);
-  assert.deepEqual(s.map((x) => x.kind), ['node', 'walk', 'node', 'ride', 'node', 'walk', 'node']);
-  assert.deepEqual(s, [
-    { kind: 'node', time: '15:01', name: '伊雜宮' },
-    { kind: 'walk', minutes: 14 },
-    { kind: 'node', time: '15:15', name: '川辺', wait: 43 },
-    { kind: 'ride', index: 0, mode: 'bus', line: '御座線（往御座港）', depart: '15:58', arrive: '16:48', minutes: 50 },
-    { kind: 'node', time: '16:48', name: '大王埼灯台' },
-    { kind: 'walk', minutes: 8 },
-    { kind: 'node', time: '16:56', name: '大王埼燈塔' },
-  ]);
-});
-
-test('legSteps：轉乘站寫到站時間和等的分鐘；起點、終點就是車站時合成一個節點', () => {
-  const l = {
-    ...busLeg,
-    depart: '10:00',
-    arrive: '10:45',
-    walkBefore: 0,
-    walkAfter: 0,
-    ready: ['10:00', '10:38'],
-    rides: [
-      { mode: 'train' as const, line: '特急', from: 'toba', to: 'ujiyamada', depart: '10:12', arrive: '10:30' },
-      { mode: 'bus' as const, line: '三重交通', from: 'ujiyamada', to: 'geku', depart: '10:40', arrive: '10:45' },
-    ],
-  };
-  const s = legSteps(l, '鳥羽駅', '外宮', (id) => id);
-  assert.deepEqual(s, [
-    { kind: 'node', time: '10:00', name: '鳥羽駅', wait: 12 },
-    { kind: 'ride', index: 0, mode: 'train', line: '特急', depart: '10:12', arrive: '10:30', minutes: 18 },
-    { kind: 'node', time: '10:30', name: 'ujiyamada', wait: 10 },
-    { kind: 'ride', index: 1, mode: 'bus', line: '三重交通', depart: '10:40', arrive: '10:45', minutes: 5 },
-    { kind: 'node', time: '10:45', name: '外宮' },
-  ]);
-});
-
-test('legSteps：計程車沒有步驟', () => {
-  assert.deepEqual(legSteps(leg('10:00', 12), 'a', 'b', (x) => x), []);
-});
-
 test('waitNote：指定開始時間、午餐、開門、其他', () => {
   const visit = { id: 'v', type: 'visit' as const, options: [{ place: 'r' }], selected: 0 };
   const e = entry('visit', 'r', { arrive: '10:53', start: '12:00', waitMinutes: 67, meal: 'lunch', mealTags: ['lunch'] });
@@ -548,26 +504,6 @@ test('rideReadyAt：用引擎的 ready，沒有時第一程用出發、之後用
   assert.equal(rideReadyAt(old, 1), '10:30');
 });
 
-test('legDistance：步行、計程車用路線快取，大眾運輸用路徑長度，沒有時直線', () => {
-  const a = place('a', { coords: [136.8, 34.4] });
-  const b = place('b', { coords: [136.81, 34.4] });
-  const calls: string[] = [];
-  const roads = (m: number | null) => ({
-    cachedMeters: (p: 'foot' | 'car') => {
-      calls.push(p);
-      return m;
-    },
-  });
-  assert.deepEqual(legDistance(legWith({ mode: 'walk' }), a, b, roads(1234), null), { meters: 1234, straight: false });
-  assert.deepEqual(legDistance(legWith({ mode: 'taxi' }), a, b, roads(2345), null), { meters: 2345, straight: false });
-  assert.deepEqual(calls, ['foot', 'car']);
-  assert.deepEqual(legDistance(legWith({ mode: 'transit' }), a, b, roads(999), 5000), { meters: 5000, straight: false });
-  const straight = legDistance(legWith({ mode: 'walk' }), a, b, roads(null), null);
-  assert.equal(straight.straight, true);
-  assert.ok(Math.abs(straight.meters - 917) < 5, `直線約 917 公尺，得到 ${straight.meters}`);
-  assert.equal(legDistance(legWith({ mode: 'bus' }), a, b, roads(999), null).straight, true);
-});
-
 test('explorePlaces：不列車站；依評分、❤️ 排序時同分保留推薦的順序；可以只看畫面裡的', () => {
   const ps = [
     place('s1', { type: 'station' }),
@@ -659,14 +595,10 @@ test('legTitle：方式＋分鐘，電車、巴士、船都叫大眾運輸', () 
   assert.equal(legModeName('transit'), '大眾運輸');
 });
 
-test('legSubParts：距離（直線時標明）、台數、費用、含等車', () => {
-  assert.deepEqual(legSubParts(legWith({ mode: 'bus', waitMinutes: 43 }), { meters: 18240, straight: false }), ['18.2 公里', '含等車 43 分']);
-  assert.deepEqual(legSubParts(legWith({ mode: 'taxi', taxi: { cars: 4, jumboCars: 2, fareEstimateYen: 3200 } as never }), { meters: 850, straight: true }), [
-    '850 公尺（直線）',
-    '大型 2 台或 4 台',
-    '每台約 3,200 円',
-  ]);
-  assert.deepEqual(legSubParts(legWith({ mode: 'walk' }), null), []);
+test('taxiCarsText：計程車的台數（收合時第二行）；不是計程車是 null', () => {
+  assert.equal(taxiCarsText(legWith({ mode: 'taxi', taxi: { cars: 4, jumboCars: 2, fareEstimateYen: 3200 } as never })), '大型 2 台或一般 4 台');
+  assert.equal(taxiCarsText(legWith({ mode: 'taxi', taxi: { cars: 2, jumboCars: null } as never })), '2 台');
+  assert.equal(taxiCarsText(legWith({ mode: 'walk' })), null);
 });
 
 test('showMinutesInput：算不出來（交通未定、指定的方式找不到班次、缺座標）或填過分鐘才有分鐘欄', () => {
@@ -740,13 +672,6 @@ test('legMapsUrl：步行 walking、電車巴士船、大眾運輸 transit、其
   for (const m of ['taxi', 'charter', 'car', 'other'] as const) assert.equal(legMapsUrl(a, b, m), base + 'driving');
 });
 
-test('formatDistance：不到 1 公里寫公尺，其他寫公里一位小數', () => {
-  assert.equal(formatDistance(850), '850 公尺');
-  assert.equal(formatDistance(849.6), '850 公尺');
-  assert.equal(formatDistance(1200), '1.2 公里');
-  assert.equal(formatDistance(12345), '12.3 公里');
-});
-
 test('cardTime：起點、終點只寫一個時間；其他寫開始–結束', () => {
   assert.deepEqual(cardTime(entry('start', null, { start: '09:30', end: '09:30' })), { text: '09:30 出發', stay: null });
   assert.deepEqual(cardTime(entry('lodging', 'h', { arrive: '15:10', start: '15:10', end: '15:10' })), { text: '15:10 到住宿', stay: null });
@@ -782,6 +707,24 @@ test('shownWarnings：看主卡是全部；看備卡只留指名那張備卡的'
   assert.deepEqual(shownWarnings(list, 'b', false), [list[2]]);
   assert.equal(shownWarnings(list, 'c', false), undefined);
   assert.equal(shownWarnings(undefined, 'b', false), undefined);
+});
+
+test('warningsByItem：交通的警告（leg: true）不掛到資料卡、也不進整天的警告（交通卡自己顯示）；計程車台數照舊不列', () => {
+  const day = {
+    warnings: [
+      { code: 'closed', level: 'warning' as const, message: '公休', itemId: 'i1' },
+      { code: 'bus-crowd', level: 'warning' as const, message: '擠不上', itemId: 'i1', leg: true as const },
+      { code: 'ticket-tight', level: 'warning' as const, message: '買票', leg: true as const },
+      { code: 'taxi', level: 'info' as const, message: '台數', itemId: 'i2' },
+      { code: 'no-rest', level: 'warning' as const, message: '累' },
+    ],
+  } as unknown as DayPlan;
+  const { byItem, day: rest } = warningsByItem(day);
+  assert.deepEqual(byItem.get('i1')?.map((w) => w.code), ['closed']);
+  assert.equal(byItem.has('i2'), false);
+  assert.deepEqual(rest.map((w) => w.code), ['no-rest']);
+  // 當天摘要的數字照舊全部算
+  assert.equal(daySummary({ ...day, entries: [] } as DayPlan).warnings, 4);
 });
 
 test('hourTicks：整點刻度的位置（百分比）', () => {

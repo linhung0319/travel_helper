@@ -653,6 +653,22 @@ test('交通開著時點卡片：交通收起、路線恢復，選中那張卡',
   expect(await page.evaluate(() => (window as any).__th.map.getPaintProperty('itinerary-line', 'line-opacity'))).not.toBe(0.1);
 });
 
+test('T29c：大眾運輸的交通卡收合兩行（膠囊），點開一程一行的步驟，點上車站開班次表；不橫向捲動', async ({ page }) => {
+  await ready(page);
+  await pickDay(page, '2027-02-10');
+  const leg = page.getByTestId('m-leg').filter({ hasText: '大眾運輸' }).first();
+  await expect(leg.getByTestId('leg-chips')).toBeVisible();
+  await expect(leg.getByTestId('leg-steps')).toHaveCount(0);
+  await leg.getByTestId('leg-line-text').click();
+  const steps = leg.getByTestId('leg-steps');
+  await expect(steps).toBeVisible();
+  await expect(steps.getByTestId('leg-ride').first()).not.toContainText('班次');
+  await expect(steps.getByTestId('leg-miss').first()).toHaveText(/^(錯過 \+\d+ 分|約 \d+ 分一班|錯過 無下一班)$/);
+  expect(await scrollsSideways(page)).toBe(false);
+  await steps.getByTestId('leg-step-board').first().click();
+  await expect.poll(() => page.evaluate(() => (window as any).__th.uiStore.getState().timetable?.rideIndex)).toBe(0);
+});
+
 // --- 行程：編輯中（§3.5）：藍條、把手、⋯ 底部動作面板、標籤、移到第幾天、長按拖曳 ---
 
 type P = import('@playwright/test').Page;

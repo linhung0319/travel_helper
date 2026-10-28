@@ -2433,10 +2433,72 @@ button.ll-main {
   font-weight: 700;
 }
 
+/* 第一行：方式＋分鐘，有警告時後面「⚠ 數字」（T29c spec §8.2） */
+.ll-line1 {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  min-width: 0;
+}
+
+.ll-warn {
+  flex: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+  color: var(--warn);
+  font-weight: 700;
+}
+
 .ll-sub {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+}
+
+/* 第二行：走法的膠囊（交通方式圖示＋短名稱，外框 RIDE_COLOR），兩程中間小字寫換車站；放不下時名稱省略，不換行 */
+.ll-chips {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  min-width: 0;
+  margin-top: 3px;
+  overflow: hidden;
+}
+
+.ll-chip {
+  --ride-c: var(--indigo);
+  flex: 0 1 auto;
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  min-width: 0;
+  padding: 0 7px 0 2px;
+  border: 1.5px solid var(--ride-c);
+  border-radius: 999px;
+  background: var(--paper);
+  color: var(--ink);
+  font-size: 0.8125rem;
+}
+
+.ll-chip > .mode-icon {
+  flex: none;
+}
+
+.ll-chip-name {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.ll-chip-stop {
+  flex: 0 1 auto;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  color: var(--ink-2);
+  font-size: 0.75rem;
 }
 
 .ll-note {
