@@ -277,7 +277,9 @@ export function PlaceDetail({ place, surface, from, initialTab, onDay, askAi = t
   const [tab, setTab] = useState<DetailTabId>(initialTab && tabs.includes(initialTab) ? initialTab : 'intro');
   const [viewer, setViewer] = useState<number | null>(null);
   const heroRef = useRef<HTMLDivElement>(null);
-  const hasHero = place.type !== 'station' || place.photos.length > 0;
+  // 手機：車站沒照片時不放空的照片格；網頁一定有（沒照片的車站是矮的一條，頂端列的 ✕ 浮在上面，§14.1）
+  const noPhoto = place.type === 'station' && place.photos.length === 0;
+  const hasHero = desktop || !noPhoto;
   // 手機的頂端列：捲過照片才出現（沒有照片時一直在）
   const [scrolled, setScrolled] = useState(false);
   const onScroll = (e: React.UIEvent<HTMLDivElement>) => {
@@ -309,7 +311,7 @@ export function PlaceDetail({ place, surface, from, initialTab, onDay, askAi = t
         </div>
       )}
       {hasHero && (
-        <div className="pd-hero" ref={heroRef}>
+        <div className={`pd-hero ${noPhoto ? 'short' : ''}`} ref={heroRef}>
           <PhotoCarousel place={place} desktop={desktop} onOpen={setViewer} />
           {!desktop && onBack && (
             <button type="button" className="m-back m-detail-back" onClick={onBack} aria-label="返回" data-testid="m-detail-back">

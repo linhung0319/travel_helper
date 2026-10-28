@@ -1690,14 +1690,20 @@
   display: block;
 }
 
-/* 網頁：照片 16:9 圓角，名稱列右邊是愛心，分頁列貼著右欄頂 */
+/* 網頁：照片 16:9 頂到彈窗邊（第九輪 §14.1，彈窗的圓角切照片），名稱列右邊是愛心，分頁列黏在頂端列下面 */
 .pd-desktop .pd-hero {
-  border-radius: 14px;
+  margin: 0 -14px;
   overflow: hidden;
 }
 
 .pd-desktop .pd-photos {
   aspect-ratio: 16 / 9;
+}
+
+/* 沒有照片的車站：矮的一條類型色塊，✕ 一樣浮在上面，彈窗形狀不變 */
+.pd-desktop .pd-hero.short .pd-photos {
+  aspect-ratio: auto;
+  height: 72px;
 }
 
 .pd-desktop .pd-head {
@@ -1707,12 +1713,26 @@
 }
 
 .pd-desktop .pd-tabs {
+  top: 56px;
   margin: 0 -14px;
   padding: 0 14px;
 }
 
-.detail-close {
+/* ✕：照片右上的白色圓鈕（捲過照片後是白底列上的淡底圓鈕） */
+.detail-bar .detail-close {
   margin-left: auto;
+  width: 36px;
+  height: 36px;
+  min-width: 0;
+  min-height: 0;
+  border-radius: 50%;
+  background: var(--paper);
+  box-shadow: 0 1px 4px var(--shade-1);
+}
+
+.detail-bar.stuck .detail-close {
+  background: var(--wash);
+  box-shadow: none;
 }
 
 /* 詳情彈窗（第八輪 §13.3）：蓋在地圖右側、貼著右欄（.map-column 裡，data-at="map"），右欄不動 */
@@ -1725,7 +1745,8 @@
   /* 380（1100～1279 寬時 340，§13.3）；最多佔地圖欄的 70%，左邊還留一條看得到選中點的地圖 */
   width: min(var(--pop-w, 380px), 70%);
   overflow-y: auto;
-  scrollbar-gutter: stable;
+  /* 不畫捲軸（第九輪 §14.1）：照片頂到兩邊，右邊不留捲軸那一條；滾輪、觸控板照樣捲，分頁切換時寬度也不會跳 */
+  scrollbar-width: none;
   border-radius: 20px;
   background: var(--paper);
   box-shadow: 0 8px 28px var(--shade-2);

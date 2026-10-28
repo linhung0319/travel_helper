@@ -1,6 +1,6 @@
 // 資料點的詳情。網頁版：DetailPanel（右欄或浮在地圖上），版面是 shared/ui/PlaceDetail（兩邊共用的照片、動作列、四個分頁）。
 // 各分頁裡的區塊抽成可以單獨 import 的元件（PlaceIntro、PlaceFacts、PlaceReviews、NearbySection、LinksSection、SourcesSection），PlaceDetail 排版面。
-import { useMemo, type ReactNode } from 'react';
+import { useEffect, useMemo, useRef, useState, type ReactNode } from 'react';
 import { appStore, type DetailFrom } from '../store.ts';
 import { commands } from '../appCommands.ts';
 import { useApp, useData } from '../hooks.ts';
@@ -534,8 +534,12 @@ export function PlaceReviews({ place }: { place: Place }) {
   );
 }
 
+/** 頂端列的高度（ui.css 的 .detail-bar 一樣） */
+const BAR_H = 56;
+
 /**
- * 網頁版的詳情彈窗（interaction-design §4、第八輪 §13.3）：上方一列（左邊「‹ 上一個的名字」、右邊 ✕）、下面是兩邊共用的 PlaceDetail（照片、名稱、動作列、四個分頁）。
+ * 網頁版的詳情彈窗（interaction-design §4、第八輪 §13.3、第九輪 §14.1）：照片頂到彈窗邊，左上「‹ 上一個的名字」、右上 ✕ 浮在照片上；
+ * 往下捲過照片後兩顆按鈕黏在頂端，後面變白底（沒有上一個時左邊放這個點的名字，和手機的頂端列一樣）。沒照片的車站上面是矮的一條類型色塊（PlaceDetail）。下面是兩邊共用的 PlaceDetail（照片、名稱、動作列、四個分頁）。
  * 外框在 SidePanel.tsx：蓋在地圖右側（DetailFloat）或蓋住整個右欄（DetailOverSide）；同時只有一個，開著時換點是原地換內容（appStore.detailHistory）。
  */
 export function DetailPanel({ place, from }: { place: Place; from: DetailFrom }) {
@@ -543,14 +547,33 @@ export function DetailPanel({ place, from }: { place: Place; from: DetailFrom })
   const prevId = useApp((s) => s.detailHistory[s.detailHistory.length - 1] ?? null);
   const prev = useData((s) => (prevId ? s.byId.get(prevId) : undefined));
   const name = place.name.zh || place.name.ja;
+  const ref = useRef<HTMLElement>(null);
+  const [stuck, setStuck] = useState(false);
+  // 捲動的是外框（.detail-float）：捲過照片就把頂端列變白底
+  useEffect(() => {
+    const box = ref.current?.parentElement;
+    if (!box) return;
+    const on = () => {
+      const h = ref.current?.querySelector<HTMLElement>('.pd-hero')?.offsetHeight;
+      const past = !h || box.scrollTop > h - BAR_H;
+      setStuck((was) => (was === past ? was : past));
+    };
+    on();
+    box.addEventListener('scroll', on, { passive: true });
+    return () => box.removeEventListener('scroll', on);
+  }, [place.id]);
   return (
-    <article className="detail" data-testid="detail-panel" data-id={place.id} aria-label={`${name} 的詳情`}>
-      <div className="detail-bar">
-        {prev && (
+    <article className="detail" ref={ref} data-testid="detail-panel" data-id={place.id} aria-label={`${name} 的詳情`}>
+      <div className={`detail-bar ${stuck ? 'stuck' : ''}`} data-testid="detail-bar">
+        {prev ? (
           <button type="button" className="detail-back" onClick={() => appStore.getState().detailBack()} data-testid="detail-back">
             <Icon name="back" size={16} />
             <span className="detail-back-name">{prev.name.zh || prev.name.ja}</span>
           </button>
+        ) : (
+          <span className="detail-bar-name" aria-hidden>
+            {name}
+          </span>
         )}
         <button type="button" className="icon-button detail-close" aria-label="關閉詳情" data-testid="detail-close" onClick={() => appStore.getState().closeDetail()}>
           <Icon name="close" size={20} />

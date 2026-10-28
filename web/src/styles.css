@@ -2687,28 +2687,68 @@ button.edited {
 /* 篩選標籤（AI 套的或探索留下的）：浮在日期列下面，可以一個一個取消 */
 /* ---------- 詳情（T15m 重新設計）：上方一列、標題、分頁 ---------- */
 
+/* 網頁詳情彈窗的頂端列（第九輪 §14.1）：照片頂到彈窗邊，「‹ 上一個」和 ✕ 浮在照片上（列本身高 0 空間：往下負 margin 疊在照片上）；
+   一直黏在頂端，捲過照片（.stuck）才有白底，沒有上一個時左邊露出這個點的名字 */
 .detail-bar {
+  position: sticky;
+  top: 0;
+  z-index: 4;
   display: flex;
   align-items: center;
-  gap: 6px;
-  padding: 8px 0 2px;
+  gap: 8px;
+  height: 56px;
+  margin: 0 -14px -56px;
+  padding: 0 10px;
+  pointer-events: none;
+  transition: background 0.15s;
 }
 
-/* 彈窗左上角「‹ 上一個的名字」（第八輪 §13.3 第 3 點）：一路退回，名字太長就省略 */
+.detail-bar > * {
+  pointer-events: auto;
+}
+
+.detail-bar.stuck {
+  background: var(--paper);
+  box-shadow: 0 1px 0 var(--line);
+}
+
+.detail-bar-name {
+  flex: 1 1 auto;
+  min-width: 0;
+  padding-left: 4px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-weight: 700;
+  visibility: hidden;
+}
+
+.detail-bar.stuck .detail-bar-name {
+  visibility: visible;
+}
+
+/* 「‹ 上一個的名字」（第八輪 §13.3 第 3 點）：照片左上的白色膠囊，一路退回，名字太長就省略 */
 .detail-back {
   display: inline-flex;
   align-items: center;
   gap: 2px;
   min-width: 0;
   max-width: 70%;
+  height: 36px;
   border: 0;
-  background: none;
-  padding: 4px 8px 4px 0;
-  min-height: var(--tap);
+  border-radius: 999px;
+  background: var(--veil);
+  box-shadow: 0 1px 4px var(--shade-1);
+  padding: 0 14px 0 8px;
   font: inherit;
   font-weight: 700;
   color: var(--indigo);
   cursor: pointer;
+}
+
+.detail-bar.stuck .detail-back {
+  box-shadow: none;
+  background: var(--paper);
 }
 
 .detail-back-name {
@@ -3882,8 +3922,12 @@ button.cand-up:disabled {
     --tc-grip: var(--tap);
     --ll-grip: var(--tap);
   }
-  .layout.desktop .maplibregl-ctrl-group button {
+  .layout.desktop .maplibregl-ctrl-group button,
+  .layout.desktop .detail-close {
     width: var(--tap);
+    height: var(--tap);
+  }
+  .layout.desktop .detail-back {
     height: var(--tap);
   }
 }
