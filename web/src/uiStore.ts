@@ -47,6 +47,15 @@ export interface UiState {
 
 export const uiStore = createStore<UiState>()(() => ({ dialog: null, mapPanel: null, idleMinutes: 10, legOpen: null, legEdit: null, expandedItem: null, timetable: null, chatDraft: null }));
 
+// 換天、離開行程分頁：展開的卡收起來。看 store 不看 DayPanel 卸載：轉向回網頁版時（和 dev 的 StrictMode 重跑 effect）才不會把剛帶過來的展開清掉
+let lastView = { day: appStore.getState().day, mode: appStore.getState().mode };
+appStore.subscribe((s) => {
+  if (s.day === lastView.day && s.mode === lastView.mode) return;
+  const left = s.day !== lastView.day || s.mode !== 'map';
+  lastView = { day: s.day, mode: s.mode };
+  if (left && uiStore.getState().expandedItem) uiStore.setState({ expandedItem: null });
+});
+
 /** 點時間軸的卡：展開那張，點同一張收起（網頁版） */
 export const toggleExpandedItem = (key: string) => uiStore.setState((s) => ({ expandedItem: s.expandedItem === key ? null : key }));
 

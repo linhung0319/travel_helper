@@ -1,7 +1,7 @@
 // 整個網站的那一張地圖（MapLibre）：資料點、行程的路線和編號、AI 的標示，和三種標示（T15m 第七輪 §8.1）：
 // - 指到（只有網頁，hoveredId）：滑鼠在卡片、清單列、時間軸卡片、地圖的點上，那個點稍微放大、加一圈淡灰光圈（places-hover）；不閃
-// - 選中（selectedId，兩邊一樣）：墨色「數字水滴」（DOM 標記，尖端在點上，頭裡寫編號；沒有編號寫類型的線條圖示），旁邊的名稱變粗；
-//   選中時跳 2～3 下（CSS 的 bounce，1.5 秒；減少動態時不跳），再選一次、或地圖移動後它進入畫面時再跳
+// - 選中（selectedId，兩邊一樣）：類型色的水滴（DOM 標記，尖端在點上，頭裡寫編號；沒有編號寫類型圓章的字，interaction-design §12.5），旁邊的名稱變粗；
+//   選中時跳 3 下（CSS 的 bounce，1.5 秒，影子跟著縮放；減少動態時不跳），再選一次、或地圖移動後它進入畫面時再跳
 // - AI 指給你看：彩色圈、字母、AI 畫的路線（mapOverlayLayers.ts）
 // 地圖怎麼動（§8.2）：選中一個點照 lib/mapCamera.selectCamera（可見範圍扣掉手機的行程面板、網頁浮在地圖上的詳情）；框範圍也讓開它們。
 // 點地圖上的點照 §8.3（mapPick.ts）。行程分頁的地圖不套探索的篩選（§8.4）；想去分頁只畫想去的點，分還沒排、候選、已排三種樣子（§5.3），左下角圖例。
@@ -17,7 +17,7 @@ import { dataStore } from '../dataStore.ts';
 import { DESKTOP_QUERY, useApp, useCanHover, useData, useIsDesktop, usePlan, useShared, useUi } from '../hooks.ts';
 import { voteCounts } from '../sharedStore.ts';
 import { initialExtent } from '../lib/areas.ts';
-import { TYPE_COLORS, TYPE_ICON_NAMES } from '../lib/typeStyle.ts';
+import { TYPE_COLORS, TYPE_GLYPHS, TYPE_INK } from '../lib/typeStyle.ts';
 import { addMapIcons } from './mapIcons.ts';
 import { dayColor, placeVisual } from '../lib/visual.ts';
 import { tripDates } from '../lib/trip.ts';
@@ -27,7 +27,7 @@ import { PreviewCard } from './PreviewCard.tsx';
 import { addOverlayLayers, ITINERARY_CASING_OPACITY, ITINERARY_LINE_OPACITY, OVERLAY_SOURCES } from './mapOverlayLayers.ts';
 import { compareFeatures, highlightFeatures, itineraryFeatures, itineraryMarks, placeBadges, proposalFeatures, routeFeatures, routeLabels } from '../lib/overlays.ts';
 import { commands, itineraryPathOf } from '../appCommands.ts';
-import { ICON_PATHS, iconSvg } from '../lib/icons.ts';
+import { iconSvg } from '../lib/icons.ts';
 import { routeLabelHtml } from '../lib/modeIcon.ts';
 import { selectCamera, visibleArea, type ScreenRect } from '../lib/mapCamera.ts';
 import { MapCommandBars } from './MapCommandBars.tsx';
@@ -35,6 +35,7 @@ import { pickPlace } from './mapPick.ts';
 import { shared } from '../appShared.ts';
 import { likedPlaces, placeDayStatus } from '../lib/wishlist.ts';
 import { closeMapPanel, closeTimetable, uiStore } from '../uiStore.ts';
+import { planStore } from '../planStore.ts';
 
 setWorkerUrl(maplibreWorkerUrl);
 
@@ -46,23 +47,25 @@ export const ICON_ZOOM = 12;
 const BADGE_ZOOM = 10;
 const DATES = tripDates();
 /** 文字的墨色（--ink） */
-const INK = '#161a22';
+const INK = '#1c2840';
 /** 指到的光圈（--ink-3） */
-const HOVER_HALO = '#8a90a0';
+const HOVER_HALO = '#a3a9b8';
 
 const typeColorExpr = ['match', ['get', 'type'], ...PLACE_TYPES.flatMap((t) => [t, TYPE_COLORS[t]]), '#4b5262'];
 
-/** 數字水滴的外形（34×44，尖端在 (17, 42)；§草圖 九） */
+/** 水滴的外形（34×44，尖端在 (17, 42)；§草圖 九） */
 const DROP_PATH = 'M17 42s-14-13.5-14-24A14 14 0 0 1 31 18c0 10.5-14 24-14 24z';
 
-/** 數字水滴的 HTML：頭裡是編號（mark），沒有編號是類型的線條圖示；旁邊是粗體的名稱（手機詳情的小地圖也用） */
+/** 選中的水滴（interaction-design §12.5）：類型色，頭裡是編號（mark），沒有編號是類型圓章的字（餐廳的字墨色）；
+ *  底下的影子（ms-shadow）跟著跳縮放；旁邊是粗體的名稱（手機詳情的小地圖也用） */
 export function selectedDropHtml(place: Place, mark: string): string {
   const esc = (t: string) => t.replace(/[&<>"]/g, (c) => `&#${c.charCodeAt(0)};`);
-  const head = mark
-    ? `<text x="17" y="${mark.length > 2 ? 22 : 23.5}" text-anchor="middle" font-size="${mark.length > 2 ? 11 : 15}" font-weight="700" fill="#fff" font-family="'Noto Sans TC', system-ui, sans-serif">${esc(mark)}</text>`
-    : `<g transform="translate(10 11) scale(0.5833)"><path d="${ICON_PATHS[TYPE_ICON_NAMES[place.type]]}" fill="none" stroke="#fff" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></g>`;
+  const head = mark || TYPE_GLYPHS[place.type];
+  const small = head.length > 2;
   return (
-    `<svg class="ms-drop" width="34" height="44" viewBox="0 0 34 44" aria-hidden="true"><path d="${DROP_PATH}" fill="${INK}" stroke="#fff" stroke-width="2.5"/>${head}</svg>` +
+    `<svg class="ms-drop" width="34" height="44" viewBox="0 0 34 44" aria-hidden="true"><path d="${DROP_PATH}" fill="${TYPE_COLORS[place.type]}" stroke="#fff" stroke-width="2.5"/>` +
+    `<text x="17" y="${small ? 22 : 23.5}" text-anchor="middle" font-size="${small ? 11 : 15}" font-weight="900" fill="${TYPE_INK[place.type]}" font-family="'Zen Maru Gothic', 'Noto Sans TC', system-ui, sans-serif">${esc(head)}</text></svg>` +
+    `<span class="ms-shadow" aria-hidden="true"></span>` +
     `<span class="ms-name">${esc(place.name.zh || place.name.ja)}</span>`
   );
 }
@@ -106,6 +109,7 @@ function featureCollection(places: Place[], marks: Map<string, string>): Feature
           dim: dim ? 1 : 0,
           mark: liked ? '' : (marks.get(p.id) ?? ''),
           typeColor: TYPE_COLORS[p.type],
+          typeInk: TYPE_INK[p.type],
           wish,
           wishColor,
         },
@@ -129,9 +133,9 @@ const BASE_FILTERS: Record<string, unknown[]> = {
   'places-label': ['all', ['==', ['get', 'dim'], 0], ['==', ['get', 'mark'], '']],
 };
 
-/** 蓋在地圖上的東西：網頁從行程打開的浮動詳情、手機的行程面板（藏起來的不算） */
+/** 蓋在地圖上的東西：網頁蓋在地圖右側的詳情彈窗（蓋住右欄的不算）、手機的行程面板（藏起來的不算） */
 function mapObstructions(): DOMRect[] {
-  return [...document.querySelectorAll<HTMLElement>('.detail-float, .m-trip-sheet')]
+  return [...document.querySelectorAll<HTMLElement>('.detail-float[data-at="map"], .m-trip-sheet')]
     .filter((el) => el.getClientRects().length > 0 && getComputedStyle(el).visibility !== 'hidden')
     .map((el) => el.getBoundingClientRect());
 }
@@ -165,6 +169,7 @@ export function MapView() {
   const badgesRef = useRef<Map<string, Marker>>(new Map());
   // 選中的數字水滴；selectedRef 給地圖的事件讀（移動前後看它進入畫面沒有）
   const dropRef = useRef<Marker | null>(null);
+  const anchorRef = useRef<Marker | null>(null);
   const selectedRef = useRef<Place | null>(null);
   const bounceNext = useRef(false);
   const [loaded, setLoaded] = useState(false);
@@ -181,9 +186,10 @@ export function MapView() {
   const day = useApp((s) => s.day);
   const hoveredId = useApp((s) => s.hoveredId);
   const selectedId = useApp((s) => s.selectedId);
+  // 網頁詳情彈窗的那個點：選中的換成別的點（位置分頁點了「附近」的一列）時，它保持水滴但不跳（第八輪 §13.3 第 5 點）
+  const detailId = useApp((s) => s.detailId);
   const selectSeq = useApp((s) => s.selectSeq);
   const previewId = useApp((s) => s.previewId);
-  const detailId = useApp((s) => s.detailId);
   const camera = useApp((s) => s.camera);
   const mode = useApp((s) => s.mode);
   const highlights = useApp((s) => s.highlights);
@@ -362,7 +368,7 @@ export function MapView() {
           'text-allow-overlap': true,
           'text-ignore-placement': true,
         },
-        paint: { 'text-color': '#ffffff' },
+        paint: { 'text-color': ['get', 'typeInk'] },
       });
       // 選定那天的點一律寫名稱，看得出順序是哪幾個地方
       map.addLayer({
@@ -487,6 +493,7 @@ export function MapView() {
         appStore,
         dataStore,
         uiStore,
+        planStore,
         shared,
         commands,
         visibleRect: () => visibleRect(map, mapObstructions()),
@@ -519,13 +526,45 @@ export function MapView() {
     (mapRef.current!.getSource('places') as GeoJSONSource).setData(featureCollection(places, marks));
   }, [loaded, places, filter, query, day, days, plan, byId, mode, votes, candidates, itinerary, marks]);
 
-  // 選中的點：原本的點、名稱不畫（換成水滴）
+  const anchorId = desktop && detailId && detailId !== selectedId ? detailId : null;
+
+  // 選中的點（和詳情那個點的水滴）：原本的點、名稱不畫（換成水滴）
   useEffect(() => {
     if (!loaded) return;
     const map = mapRef.current!;
     const sel = selectedId ?? '';
-    for (const [layer, base] of Object.entries(BASE_FILTERS)) map.setFilter(layer, ['all', base, ['!=', ['get', 'id'], sel]] as never);
-  }, [loaded, selectedId]);
+    const anchor = anchorId ?? '';
+    for (const [layer, base] of Object.entries(BASE_FILTERS)) map.setFilter(layer, ['all', base, ['!=', ['get', 'id'], sel], ['!=', ['get', 'id'], anchor]] as never);
+  }, [loaded, selectedId, anchorId]);
+
+  // 詳情那個點的水滴（不跳）：選中的換成「附近」的點時才有
+  useEffect(() => {
+    if (!loaded) return;
+    const p = anchorId ? byId.get(anchorId) : undefined;
+    if (!p) {
+      anchorRef.current?.remove();
+      anchorRef.current = null;
+      return;
+    }
+    let m = anchorRef.current;
+    if (!m) {
+      const el = document.createElement('div');
+      el.className = 'map-selected map-detail-drop';
+      el.setAttribute('data-testid', 'map-detail-drop');
+      el.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const id = el.dataset.id;
+        if (id) pickPlace(id);
+      });
+      m = new Marker({ element: el, anchor: 'bottom', offset: [0, 2] }).setLngLat(p.coords).addTo(mapRef.current!);
+      anchorRef.current = m;
+    }
+    const mark = marks.get(p.id) ?? '';
+    const el = m.getElement();
+    el.dataset.id = p.id;
+    el.innerHTML = selectedDropHtml(p, mark);
+    m.setLngLat(p.coords);
+  }, [loaded, anchorId, byId, marks]);
 
   // 數字水滴（DOM 標記，大小不隨縮放變）：尖端在點上，頭裡寫編號或類型圖示，旁邊粗體的名稱。點水滴＝再點一次那個點
   useEffect(() => {

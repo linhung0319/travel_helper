@@ -2,9 +2,8 @@
 // 選「整趟」是整趟的總覽（每天排了什麼、幾個候選、警告）；選了某一天，編輯中最上面是藍條（說明、快照、完成），接著一列「← 整趟、日期 ‹ ›、問 AI、編輯」，
 // 下面是摘要列（⚠ 點了展開提醒）、比例橫條（時間條）、時間軸（資料卡是類型的淡底色，起點、終點的住宿也是卡片）、這天的候選（想去「加到某天」的點）。討論、預約、下載在右欄右上的頭像選單（MeMenu.tsx 的 AccountMenu）。
 
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { commands } from '../appCommands.ts';
-import { uiStore } from '../uiStore.ts';
 import { useApp, useData, usePlan, useShared, useUi } from '../hooks.ts';
 import { dayPlanOf } from '../planStore.ts';
 import { dayLabel, isRedDay, tripDates } from '../lib/trip.ts';
@@ -91,7 +90,7 @@ function goWish() {
   showList('wish');
 }
 
-/** 某一天最上面一列（§6.1）：Bodoni 斜體的大日期，旁邊「週五 · 第 4 天 · 鳥羽」；右邊「問 AI」和主要按鈕「編輯」。換天用上面的日期列 */
+/** 某一天最上面一列（§6.1）：圓體的大日期，旁邊「週五 · 第 4 天 · 鳥羽」；右邊「問 AI」和主要按鈕「編輯」。換天用上面的日期列 */
 function DayHead({ day }: { day: string }) {
   const itinerary = useData((s) => s.itinerary);
   const byId = useData((s) => s.byId);
@@ -127,8 +126,6 @@ export function DayPanel() {
   const legOpen = useUi((s) => s.legOpen);
   const detailId = useApp((s) => s.detailId);
   const selectedKey = selectedBarKey(plan, legOpen, detailId);
-  // 換天、離開行程：展開的卡收起來
-  useEffect(() => () => uiStore.setState({ expandedItem: null }), [day]);
   if (day === 'all') return <Overview />;
   return (
     <div className={`day-panel ${planning ? 'editing' : ''}`} data-testid="day-panel">

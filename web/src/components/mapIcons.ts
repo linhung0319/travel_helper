@@ -1,91 +1,23 @@
-// 地圖上的類別圖標（像 Google Maps：類別色的圓、白色的圖示）、想去分頁候選的虛線圓、路線的方向箭頭。
-// 用 canvas 畫好再 addImage，不必另外放圖檔；圖示的座標以 24×24 為單位。
+// 地圖上的類別圖標（類型圓章：類型色的圓、一個漢字，interaction-design §12.2）、想去分頁候選的虛線圓、路線的方向箭頭。
+// 用 canvas 畫好再 addImage，不必另外放圖檔。
 
 import type { Map as MapLibreMap } from 'maplibre-gl';
 import { PLACE_TYPES, type PlaceType } from '../data/types.ts';
-import { TYPE_COLORS } from '../lib/typeStyle.ts';
+import { TYPE_COLORS, TYPE_GLYPHS, TYPE_INK } from '../lib/typeStyle.ts';
 
 const RATIO = 2;
 /** 圖標的直徑（CSS 像素） */
 const SIZE = 28;
+/** 圓章的字型（和 --font-round 一樣；還沒載入時先用 Noto Sans TC 或系統字，載入後 addMapIcons 重畫） */
+const SEAL_FONT = "'Zen Maru Gothic', 'Noto Sans TC', system-ui, sans-serif";
 
 type Ctx = CanvasRenderingContext2D;
-
-function roundRect(c: Ctx, x: number, y: number, w: number, h: number, r: number) {
-  c.beginPath();
-  c.roundRect(x, y, w, h, r);
-  c.fill();
-}
 
 function circle(c: Ctx, x: number, y: number, r: number) {
   c.beginPath();
   c.arc(x, y, r, 0, Math.PI * 2);
   c.fill();
 }
-
-/** 白色的圖示；bg 是圓的顏色（挖空的地方用） */
-const GLYPHS: Record<PlaceType, (c: Ctx, bg: string) => void> = {
-  // 刀叉
-  restaurant: (c) => {
-    c.lineWidth = 1.4;
-    c.lineCap = 'round';
-    for (const x of [6.5, 8.5, 10.5]) {
-      c.beginPath();
-      c.moveTo(x, 4);
-      c.lineTo(x, 9);
-      c.stroke();
-    }
-    c.beginPath();
-    c.moveTo(5.8, 8.5);
-    c.lineTo(11.2, 8.5);
-    c.quadraticCurveTo(11.2, 11.5, 8.5, 11.8);
-    c.quadraticCurveTo(5.8, 11.5, 5.8, 8.5);
-    c.fill();
-    roundRect(c, 7.7, 11, 1.6, 9, 0.8);
-    c.beginPath();
-    c.moveTo(15, 4);
-    c.quadraticCurveTo(18.5, 6, 18.3, 12);
-    c.lineTo(16.6, 12);
-    c.lineTo(16.6, 20);
-    c.lineTo(15, 20);
-    c.closePath();
-    c.fill();
-  },
-  // 床
-  lodging: (c) => {
-    roundRect(c, 3.5, 6, 1.8, 12.5, 0.6);
-    roundRect(c, 3.5, 12.5, 17, 3, 0.6);
-    roundRect(c, 18.7, 14, 1.8, 4.5, 0.6);
-    circle(c, 8.2, 10.4, 1.9);
-    roundRect(c, 11, 8.8, 9.5, 4.2, 1.6);
-  },
-  // 相機
-  spot: (c, bg) => {
-    roundRect(c, 3.5, 7.5, 17, 11, 2.2);
-    roundRect(c, 8.5, 5.2, 5, 3.2, 1);
-    c.fillStyle = bg;
-    circle(c, 12, 13, 3.9);
-    c.fillStyle = '#fff';
-    circle(c, 12, 13, 2.2);
-  },
-  // 電車
-  station: (c, bg) => {
-    roundRect(c, 6, 3.5, 12, 13.5, 3);
-    c.fillStyle = bg;
-    roundRect(c, 8, 6, 8, 4.5, 1);
-    circle(c, 9.3, 14, 1.1);
-    circle(c, 14.7, 14, 1.1);
-    c.strokeStyle = '#fff';
-    c.lineWidth = 1.6;
-    c.lineCap = 'round';
-    c.beginPath();
-    c.moveTo(9.5, 17.5);
-    c.lineTo(7.5, 20.5);
-    c.moveTo(14.5, 17.5);
-    c.lineTo(16.5, 20.5);
-    c.stroke();
-  },
-};
 
 function canvas(size: number): [HTMLCanvasElement, Ctx] {
   const el = document.createElement('canvas');
@@ -95,22 +27,19 @@ function canvas(size: number): [HTMLCanvasElement, Ctx] {
   return [el, c];
 }
 
+/** 類型圓章（interaction-design §12.2）：白框、類型色的圓、裡面一個漢字（餐廳的字墨色） */
 function typeIcon(type: PlaceType): ImageData {
   const [el, c] = canvas(SIZE);
-  const bg = TYPE_COLORS[type];
   const r = SIZE / 2;
   c.fillStyle = '#fff';
   circle(c, r, r, r);
-  c.fillStyle = bg;
+  c.fillStyle = TYPE_COLORS[type];
   circle(c, r, r, r - 2);
-  // 圖示畫在中間 16×16
-  c.save();
-  c.translate(r - 8, r - 8);
-  c.scale(16 / 24, 16 / 24);
-  c.fillStyle = '#fff';
-  c.strokeStyle = '#fff';
-  GLYPHS[type](c, bg);
-  c.restore();
+  c.fillStyle = TYPE_INK[type];
+  c.font = `900 14px ${SEAL_FONT}`;
+  c.textAlign = 'center';
+  c.textBaseline = 'middle';
+  c.fillText(TYPE_GLYPHS[type], r, r + 1);
   return c.getImageData(0, 0, el.width, el.height);
 }
 
@@ -122,7 +51,7 @@ function wishRingIcon(): ImageData {
   const r = WISH_RING / 2;
   c.fillStyle = '#ffffff';
   circle(c, r, r, 7.5);
-  c.strokeStyle = '#24366e';
+  c.strokeStyle = '#24468a';
   c.lineWidth = 2.4;
   c.setLineDash([3.2, 2.4]);
   c.beginPath();
@@ -150,6 +79,13 @@ export function addMapIcons(map: MapLibreMap) {
   for (const t of PLACE_TYPES) {
     if (!map.hasImage(`icon-${t}`)) map.addImage(`icon-${t}`, typeIcon(t), { pixelRatio: RATIO });
   }
+  // 圓體字型下載完再重畫一次（canvas 不會自己等字型）
+  document.fonts
+    ?.load(`900 14px ${SEAL_FONT}`, Object.values(TYPE_GLYPHS).join(''))
+    .then(() => {
+      for (const t of PLACE_TYPES) if (map.hasImage(`icon-${t}`)) map.updateImage(`icon-${t}`, typeIcon(t));
+    })
+    .catch(() => {});
   if (!map.hasImage('wish-candidate')) map.addImage('wish-candidate', wishRingIcon(), { pixelRatio: RATIO });
   if (!map.hasImage('route-arrow')) map.addImage('route-arrow', arrowIcon(), { pixelRatio: RATIO, sdf: true });
 }

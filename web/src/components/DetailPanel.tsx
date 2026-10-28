@@ -1,6 +1,6 @@
 // 資料點的詳情。網頁版：DetailPanel（右欄或浮在地圖上），版面是 shared/ui/PlaceDetail（兩邊共用的照片、動作列、四個分頁）。
 // 各分頁裡的區塊抽成可以單獨 import 的元件（PlaceIntro、PlaceFacts、PlaceReviews、NearbySection、LinksSection、SourcesSection），PlaceDetail 排版面。
-import { useMemo, type ReactNode } from 'react';
+import { useEffect, useMemo, useRef, useState, type ReactNode } from 'react';
 import { appStore, type DetailFrom } from '../store.ts';
 import { commands } from '../appCommands.ts';
 import { useApp, useData } from '../hooks.ts';
@@ -23,7 +23,7 @@ import {
 } from '../lib/labels.ts';
 import { nearbyPlaces } from '../lib/nearby.ts';
 import { dayLabel, shortDayLabel } from '../lib/trip.ts';
-import { TYPE_COLORS } from '../lib/typeStyle.ts';
+import { TypeSeal } from '../shared/ui/TypeLabel.tsx';
 import { Icon } from './Icon.tsx';
 import { placeBadges } from '../lib/badges.ts';
 import type { Place } from '../data/types.ts';
@@ -334,7 +334,10 @@ export function LinksSection({ place }: { place: Place }) {
   );
 }
 
-/** 附近的點。電腦版：點名稱地圖移過去；onPick（手機版）：點名稱改做這件事（例如打開它的詳情） */
+/**
+ * 附近的點。電腦版（第八輪 §13.3 第 5 點）：點一列＝地圖上那個點變成水滴、跳三下（選中它；詳情自己的點保持水滴但不跳，MapView 的 detail 水滴），彈窗不動；
+ * 列尾「詳情 ›」（或再點地圖上那個點）＝彈窗原地換成它。onPick（手機版）：點名稱改做這件事（例如打開它的詳情）
+ */
 export function NearbySection({ place, onPick }: { place: Place; onPick?(id: string): void }) {
   const places = useData((s) => s.places);
   const groups = useMemo(() => nearbyPlaces(place, places), [place, places]);
@@ -347,7 +350,7 @@ export function NearbySection({ place, onPick }: { place: Place; onPick?(id: str
   };
   return (
     <Section title="附近">
-      <p className="muted small">{onPick ? '點名稱看它的介紹。' : '點名稱，地圖會移到那裡；再點地圖上的點看它的介紹。'}</p>
+      <p className="muted small">{onPick ? '點名稱看它的介紹。' : '點名稱，地圖上那個點會跳出來；「詳情 ›」或再點地圖上的點看它的介紹。'}</p>
       {[...groups.entries()].map(([type, items]) => (
         <div key={type} className="nearby-group">
           <h4>{TYPE_LABELS[type]}</h4>
@@ -361,11 +364,16 @@ export function NearbySection({ place, onPick }: { place: Place; onPick?(id: str
                   onClick={() => find(it.place.id)}
                   onMouseEnter={() => appStore.getState().hover(it.place.id)}
                 >
-                  <i className="ui-type-dot" style={{ background: TYPE_COLORS[type] }} aria-hidden="true" /> {displayName(it.place.name, it.place.id)}
+                  <TypeSeal type={type} size="sm" /> {displayName(it.place.name, it.place.id)}
                 </button>
                 <span className="muted small ic-text">
                   <Icon name="walk" size={16} /> {it.minutes} 分{it.estimated ? '（估算）' : ''}
                 </span>
+                {!onPick && (
+                  <button type="button" className="link-button nearby-detail" onClick={() => appStore.getState().openDetail(it.place.id)} data-testid="nearby-detail">
+                    詳情 ›
+                  </button>
+                )}
               </li>
             ))}
           </ul>
@@ -526,26 +534,50 @@ export function PlaceReviews({ place }: { place: Place }) {
   );
 }
 
+/** 頂端列的高度（ui.css 的 .detail-bar 一樣） */
+const BAR_H = 56;
+
 /**
- * 網頁版的詳情面板（interaction-design §4）：上方一列（返回或 ✕）、下面是兩邊共用的 PlaceDetail（照片、名稱、動作列、四個分頁）。
- * 放在右欄（從探索、想去打開，有「← 返回」）或浮在地圖上（從行程打開，✕ 關掉）。
+ * 網頁版的詳情彈窗（interaction-design §4、第八輪 §13.3、第九輪 §14.1）：照片頂到彈窗邊，左上「‹ 上一個的名字」、右上 ✕ 浮在照片上；
+ * 往下捲過照片後兩顆按鈕黏在頂端，後面變白底（沒有上一個時左邊放這個點的名字，和手機的頂端列一樣）。沒照片的車站上面是矮的一條類型色塊（PlaceDetail）。下面是兩邊共用的 PlaceDetail（照片、名稱、動作列、四個分頁）。
+ * 外框在 SidePanel.tsx：蓋在地圖右側（DetailFloat）或蓋住整個右欄（DetailOverSide）；同時只有一個，開著時換點是原地換內容（appStore.detailHistory）。
  */
-export function DetailPanel({ place, from, back }: { place: Place; from: DetailFrom; back?: { label: string; onClick(): void } }) {
+export function DetailPanel({ place, from }: { place: Place; from: DetailFrom }) {
   const tab = useApp((s) => s.detailTab);
+  const prevId = useApp((s) => s.detailHistory[s.detailHistory.length - 1] ?? null);
+  const prev = useData((s) => (prevId ? s.byId.get(prevId) : undefined));
   const name = place.name.zh || place.name.ja;
+  const ref = useRef<HTMLElement>(null);
+  const [stuck, setStuck] = useState(false);
+  // 捲動的是外框（.detail-float）：捲過照片就把頂端列變白底
+  useEffect(() => {
+    const box = ref.current?.parentElement;
+    if (!box) return;
+    const on = () => {
+      const h = ref.current?.querySelector<HTMLElement>('.pd-hero')?.offsetHeight;
+      const past = !h || box.scrollTop > h - BAR_H;
+      setStuck((was) => (was === past ? was : past));
+    };
+    on();
+    box.addEventListener('scroll', on, { passive: true });
+    return () => box.removeEventListener('scroll', on);
+  }, [place.id]);
   return (
-    <article className="detail" data-testid="detail-panel" aria-label={`${name} 的詳情`}>
-      <div className="detail-bar">
-        {back && (
-          <button type="button" className="detail-back" onClick={back.onClick} data-testid="detail-back">
-            ← {back.label}
+    <article className="detail" ref={ref} data-testid="detail-panel" data-id={place.id} aria-label={`${name} 的詳情`}>
+      <div className={`detail-bar ${stuck ? 'stuck' : ''}`} data-testid="detail-bar">
+        {prev ? (
+          <button type="button" className="detail-back" onClick={() => appStore.getState().detailBack()} data-testid="detail-back">
+            <Icon name="back" size={16} />
+            <span className="detail-back-name">{prev.name.zh || prev.name.ja}</span>
           </button>
+        ) : (
+          <span className="detail-bar-name" aria-hidden>
+            {name}
+          </span>
         )}
-        {!back && (
-          <button type="button" className="icon-button detail-close" aria-label="關閉詳情" data-testid="detail-close" onClick={() => appStore.getState().closeDetail()}>
-            <Icon name="close" size={20} />
-          </button>
-        )}
+        <button type="button" className="icon-button detail-close" aria-label="關閉詳情" data-testid="detail-close" onClick={() => appStore.getState().closeDetail()}>
+          <Icon name="close" size={20} />
+        </button>
       </div>
       <PlaceDetail key={place.id} place={place} surface="desktop" from={from} initialTab={tab} />
     </article>

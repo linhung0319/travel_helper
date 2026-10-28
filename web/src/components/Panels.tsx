@@ -12,6 +12,10 @@ export function ChatPanel() {
   const draft = useStore(uiStore, (s) => s.chatDraft);
   return (
     <div className="chat-panel" data-testid="chat-panel">
+      {/* 頂端的靛藍色帶（interaction-design §12.4） */}
+      <header className="chat-head">
+        <Icon name="spark" size={20} /> AI 助理
+      </header>
       <div className="placeholder">
         <p className="ic-text">
           <Icon name="chat" size={20} /> AI 聊天（T16 接上）

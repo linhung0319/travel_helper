@@ -76,7 +76,46 @@ test('dayPanelShowing：時間軸面板不在畫面上時才要顯示精簡的�
   assert.equal(dayPanelShowing(s), true);
   assert.equal(dayPanelShowing({ ...s, mode: 'explore' }), false);
   assert.equal(dayPanelShowing({ ...s, mode: 'wish' }), false);
-  assert.equal(dayPanelShowing({ ...s, detailId: 'x' }), false);
+  // 第八輪 §13.3：蓋住右欄的詳情彈窗才算蓋住；蓋在地圖右側的不算
+  assert.equal(dayPanelShowing({ ...s, detailId: 'x', detailAt: 'side' }), false);
+  assert.equal(dayPanelShowing({ ...s, detailId: 'x', detailAt: 'map' }), true);
+});
+
+test('詳情彈窗（第八輪 §13.3）：同時只有一個；開著時原地換內容、位置不變，「‹」一路退回，關掉清空', () => {
+  const store = createAppStore();
+  const st = () => store.getState();
+  // 沒開著：at 決定位置（預設蓋在地圖右側）
+  st().openDetail('a', 'explore');
+  assert.equal(st().detailAt, 'map');
+  st().closeDetail();
+  st().openDetail('a', 'explore', undefined, 'side');
+  assert.equal(st().detailAt, 'side');
+  assert.deepEqual(st().detailHistory, []);
+  // 開著時再開：位置、從哪裡開的都不變，原本的記起來；同一個點不重複記
+  st().openDetail('b', 'map', undefined, 'map');
+  st().openDetail('b');
+  st().openDetail('c');
+  assert.equal(st().detailId, 'c');
+  assert.equal(st().detailAt, 'side');
+  assert.equal(st().detailFrom, 'explore');
+  assert.deepEqual(st().detailHistory, ['a', 'b']);
+  assert.equal(st().selectedId, 'c');
+  // 「‹」：回到 b、再回到 a，選中跟著換
+  st().detailBack();
+  assert.equal(st().detailId, 'b');
+  assert.equal(st().selectedId, 'b');
+  st().detailBack();
+  assert.equal(st().detailId, 'a');
+  assert.deepEqual(st().detailHistory, []);
+  st().detailBack();
+  assert.equal(st().detailId, 'a');
+  // 關掉：位置、紀錄都清掉，下次重新決定位置
+  st().openDetail('d');
+  st().closeDetail();
+  assert.equal(st().detailAt, null);
+  assert.deepEqual(st().detailHistory, []);
+  st().openDetail('e');
+  assert.equal(st().detailAt, 'map');
 });
 
 test('選中（§8.1）：同一時間一個；再選同一個 selectSeq 加 1（水滴再跳）；換分頁、換天清掉', () => {

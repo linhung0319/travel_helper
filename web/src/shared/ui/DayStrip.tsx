@@ -1,7 +1,5 @@
-// 日期列（第七輪 Task 3）：「整趟」加 12 天，每格兩行（日期用 Bodoni 數字、下面只寫星期），選到的塗墨色，週末、國定假日紅字（isRedDay）。
-// 網頁右欄（variant='side'）和手機面板頂端（variant='sheet'）共用這一份：
-// - side：寬度固定在右欄裡，13 格平分，一定放得下，不用捲。
-// - sheet：每格至少 52px，左右滑；選到的那格自己捲進畫面。
+// 手機面板頂端的日期列（第七輪 Task 3）：「整趟」加 12 天，每格兩行（日期用圓體數字、下面只寫星期），實心白底，選到的塗芥子黃（§12.4），週末、國定假日紅字（isRedDay）。
+// 每格至少 52px，左右滑；選到的那格自己捲進畫面。網頁右欄第八輪改成兩週月曆（DayCalendar.tsx，§13.2）。
 // 換天用 commands.selectDay（地圖框住那天）。testid 兩邊都是 m-day-{date}、m-day-all，另外有 data-day 給 e2e 用。
 
 import { useEffect, useRef } from 'react';
@@ -11,8 +9,7 @@ import { isRedDay, shortDayLabel, tripDates, weekdayZh } from '../../lib/trip.ts
 
 const DATES = tripDates();
 
-/** variant 決定版面（side 平分、sheet 可左右滑） */
-export function DayStrip({ variant }: { variant: 'side' | 'sheet' }) {
+export function DayStrip() {
   const day = useApp((s) => s.day);
   const ref = useRef<HTMLDivElement>(null);
 
@@ -29,7 +26,7 @@ export function DayStrip({ variant }: { variant: 'side' | 'sheet' }) {
   }, [day]);
 
   return (
-    <div className={`ui-days ${variant}`} ref={ref} data-testid="m-day-strip" role="tablist" aria-label="天數">
+    <div className="ui-days sheet" ref={ref} data-testid="m-day-strip" role="tablist" aria-label="天數">
       <button type="button" role="tab" className="ui-day all" aria-current={day === 'all' ? 'true' : undefined} aria-selected={day === 'all'} onClick={() => commands.selectDay('all')} data-testid="m-day-all">
         整趟
       </button>

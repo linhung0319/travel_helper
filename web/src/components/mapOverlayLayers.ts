@@ -17,7 +17,7 @@ export const OVERLAY_SOURCES = {
 /** AI 的標示（主要、注意、次要）和點開的交通上下車的站（leg）；顏色是設計 §2 的 token：--warn、--red-day、--ink-3、--ink-2 */
 const HIGHLIGHT_COLORS: Record<string, string> = { primary: '#a86a12', warning: '#c0392b', muted: '#8a90a0', leg: '#4b5262' };
 /** 比較的 A、B、C：--indigo */
-const COMPARE_COLOR = '#24366e';
+const COMPARE_COLOR = '#24468a';
 const PROPOSAL_ADDED_COLOR = '#2f7a5b';
 /** 步行藍（--t-station）、電車墨（--ink）、巴士橘（--t-food）、船藍染（--indigo），其他（計程車、包車）紫（--t-stay） */
 const ROUTE_COLOR = ['match', ['get', 'mode'], 'walk', '#3b6ea8', 'train', '#161a22', 'bus', '#c46a3a', 'ferry', '#24366e', '#6e5ba8'];

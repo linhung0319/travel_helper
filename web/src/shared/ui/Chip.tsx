@@ -4,10 +4,10 @@ import type { ReactNode } from 'react';
 import { Icon } from '../../components/Icon.tsx';
 
 /** 晶片按鈕；applied＋onRemove 時右邊多一個 ✕（獨立的按鈕，點了只拿掉）；count 是後面的小數字 */
-export function Chip({ on = false, applied = false, onRemove, count, onClick, testId, children }: { on?: boolean; applied?: boolean; onRemove?: () => void; count?: number; onClick?: () => void; testId?: string; children: ReactNode }) {
+export function Chip({ on = false, applied = false, onRemove, count, onClick, testId, title, children }: { on?: boolean; applied?: boolean; onRemove?: () => void; count?: number; onClick?: () => void; testId?: string; title?: string; children: ReactNode }) {
   const cls = `ui-chip ${on ? 'on' : ''} ${applied ? 'applied' : ''}`;
   const main = (
-    <button type="button" className={cls} aria-pressed={on} onClick={onClick} data-testid={testId}>
+    <button type="button" className={cls} aria-pressed={on} onClick={onClick} data-testid={testId} title={title}>
       {children}
       {count != null && <span className="ui-chip-count">{count}</span>}
     </button>

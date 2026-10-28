@@ -48,7 +48,7 @@ function offSpecRadii(css: string): string[] {
 test('圓角只有 999px、14px、20px（設計 §2.3；圓形可以 50%）', () => {
   for (const f of ['src/styles.css', 'src/mobile/mobile.css', 'src/mobile/chat.css', 'src/shared/ui/ui.css']) assert.deepEqual(offSpecRadii(read(f)), [], f);
 });
-test('TYPE_COLORS 是新的類型色', () => assert.deepEqual(TYPE_COLORS, { spot: '#3f7a5a', restaurant: '#c46a3a', lodging: '#6e5ba8', station: '#3b6ea8' }));
+test('TYPE_COLORS 是幾何和柄的類型色（interaction-design §12.2）', () => assert.deepEqual(TYPE_COLORS, { spot: '#5f8a3e', restaurant: '#e3a92b', lodging: '#c8604f', station: '#24468a' }));
 
 /** 去掉註解後，畫面程式（components、mobile、shared、lib）裡 emoji 的出現處（檔名:行）；示範對話、dev-fixtures、v0 除外 */
 function emojiInJsx(): string[] {

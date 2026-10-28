@@ -24,7 +24,7 @@ import { dropOnCardProps, dropOnEndProps, usePlanDrag } from './planDrag.ts';
 import type { DragSource } from '../lib/dropIntent.ts';
 import { openDialog, toggleExpandedItem } from '../uiStore.ts';
 import { cardTime, cardTypeLetter, dayBar, daySummary, findItemRef, formatStay, formatTravelTotal, hourTicks, isBarSelected, shownWarnings, stopMarks, timelineRows, waitNote, WARNING_ICONS, warningsByItem, type BarSegment, type TimelineRow } from '../lib/planView.ts';
-import { TYPE_COLORS } from '../lib/typeStyle.ts';
+import { typeSwatch } from '../lib/typeStyle.ts';
 import type { Place } from '../data/types.ts';
 import { AvatarStack, PlaceChip } from './common.tsx';
 import { LegRow } from './LegRow.tsx';
@@ -41,20 +41,20 @@ export interface Marks {
 }
 
 /** 車站、機場、使用者加的點、沒有資料的點：中性灰 */
-const NEUTRAL_COLOR = '#6e7781';
+const NEUTRAL_COLOR = '#5d6680';
 
 /** 縮圖邊長（網頁 48px；手機 56px） */
 const THUMB = 48;
 
-/** 類型色塊、編號圓圈的顏色：景點、住宿、餐廳用類型色，其他中性灰 */
-function typeColor(type: Place['type'] | null | undefined): string {
-  return type === 'spot' || type === 'lodging' || type === 'restaurant' ? TYPE_COLORS[type] : NEUTRAL_COLOR;
+/** 類型色塊、編號圓圈的底色和字色：景點、住宿、餐廳、車站用類型色（餐廳的字是墨色），其他中性灰 */
+function typeColor(type: Place['type'] | null | undefined): { background: string; color: string } {
+  return type === 'spot' || type === 'lodging' || type === 'restaurant' || type === 'station' ? typeSwatch(type) : { background: NEUTRAL_COLOR, color: '#ffffff' };
 }
 
 /** 資料卡（和候選卡）左邊的類型色塊：宿、景、餐、站、機、點 */
 export function CardType({ type }: { type: Place['type'] | 'airport' | null }) {
   return (
-    <span className="tc-type-tile" style={{ background: typeColor(type === 'airport' ? null : type) }} aria-hidden data-testid="item-type">
+    <span className="tc-type-tile" style={typeColor(type === 'airport' ? null : type)} aria-hidden data-testid="item-type">
       {cardTypeLetter(type)}
     </span>
   );
@@ -67,7 +67,7 @@ function Mark({ entry, marks }: { entry: TimelineEntry; marks: Marks }) {
   if (!label) return null;
   const type = entry.placeId ? byId.get(entry.placeId)?.type : undefined;
   return (
-    <span className="tl-mark" style={{ background: typeColor(type) }} data-testid="tl-mark">
+    <span className="tl-mark" style={typeColor(type)} data-testid="tl-mark">
       {label}
     </span>
   );
@@ -175,8 +175,8 @@ function useCardExpand(key: string, placeId: string | null | undefined) {
     }
     toggleExpandedItem(key);
   };
-  // 「詳細資料」：浮在地圖右邊（右欄的時間軸不動）
-  const onDetail = placeId ? () => appStore.getState().openDetail(placeId, 'map') : undefined;
+  // 「詳細資料」：彈窗蓋在地圖右側（右欄的時間軸不動，§13.3 第 1 點）
+  const onDetail = placeId ? () => appStore.getState().openDetail(placeId, 'map', undefined, 'map') : undefined;
   return { expanded, toggle, onDetail };
 }
 
@@ -324,7 +324,7 @@ function EntryRow({ entry, day, warnings, plan, marks }: { entry: TimelineEntry;
   // 編輯：滑鼠整張卡拖、手指按把手拖（航班不能動）
   const movable = !!dragSrc;
   const itemWarnings = entry.itemId ? warnings.get(entry.itemId) : undefined;
-  const stacked = visit && visit.options.length > 1 ? Math.min(visit.options.length - 1, 2) : 0;
+  const stacked = !!visit && visit.options.length > 1;
   // ⋯ 選單的主要、拿出作用在正在看的那張（不是重疊卡、或看主卡時是主卡）
   const shownIndex = visit ? (stacked && backup != null && backup < visit.options.length ? backup : visit.selected) : undefined;
 
@@ -372,11 +372,12 @@ function EntryRow({ entry, day, warnings, plan, marks }: { entry: TimelineEntry;
           </>
         }
         thumb={THUMB}
-        className={`tl-${entry.kind} ${editing} ${stacked ? `stacked stacked-${stacked}` : ''} ${hovered && hovered === entry.placeId ? 'flash' : ''}`}
+        stacked={!!stacked}
+        className={`tl-${entry.kind} ${editing} ${hovered && hovered === entry.placeId ? 'flash' : ''}`}
         selected={expand.expanded}
         expanded={expand.expanded}
         onToggle={expand.toggle}
-        onDetail={sp ? () => appStore.getState().openDetail(sp.id, 'map') : undefined}
+        onDetail={sp ? () => appStore.getState().openDetail(sp.id, 'map', undefined, 'map') : undefined}
         onAsk={sp ? () => askAboutCardPlace(sp) : undefined}
         onHover={hoverPlace(shownPlace)}
         liRef={pressRef}
@@ -588,7 +589,7 @@ export function Timeline({ tl }: { tl: DayTimeline & { plan: DayPlan; itDay: Iti
   const planning = useApp((s) => s.planning);
   const { plan, itDay: day, byItem, marks } = tl;
   return (
-    <ol className="tl tc-list" data-testid="timeline">
+    <ol className={`tl tc-list tl-axis ${planning ? 'in-planning' : ''}`} data-testid="timeline">
       {/* 用項目 ID 當 key：上面的卡片增減時，備卡看第幾張、警告展開這些本地 state 不會跑到別張卡片 */}
       {tl.rows.map((row, i) =>
         row.kind === 'gap' ? (
@@ -695,7 +696,7 @@ export function DayBar({ plan, selected, compact = false }: { plan: DayPlan; sel
                 width: `${w}%`,
                 top,
                 height: h,
-                ...(s.kind === 'spot' || s.kind === 'restaurant' ? { background: TYPE_COLORS[s.kind] } : {}),
+                ...(s.kind === 'spot' || s.kind === 'restaurant' ? typeSwatch(s.kind) : {}),
               }}
               title={`${BAR_LABELS[s.kind]} ${s.from}–${s.to}`}
               aria-label={`${BAR_LABELS[s.kind]} ${s.from}–${s.to}`}

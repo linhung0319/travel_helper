@@ -103,7 +103,7 @@
 }
 
 .m-tab.on {
-  color: var(--fg);
+  color: var(--indigo);
   font-weight: 700;
 }
 
@@ -329,35 +329,6 @@
 }
 
 
-.m-segmented {
-  display: flex;
-  margin: 4px 12px;
-  border: 1px solid var(--line);
-  border-radius: 999px;
-  overflow: hidden;
-}
-
-.m-segmented button {
-  flex: 1 1 0;
-  min-width: 0;
-  min-height: var(--tap);
-  border: 0;
-  background: var(--bg);
-  color: var(--fg);
-  font: inherit;
-  font-size: 0.9rem;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  cursor: pointer;
-}
-
-.m-segmented button.on {
-  background: var(--fg);
-  color: var(--paper);
-  font-weight: 700;
-}
-
 .m-empty {
   padding: 24px 16px;
   text-align: center;
@@ -458,9 +429,6 @@
   padding-bottom: 16px;
 }
 
-.m-wish-title {
-  padding: 10px 16px 2px;
-}
 
 
 
@@ -497,7 +465,7 @@
 /* 大照片：左右滑，一次停一張 */
 /* ❤️ 想去 N、👎 N：放大的按鈕 */
 /* 分頁：捲下去時黏在最上面（左邊讓出「‹」的位置） */
-/* 交通分頁的小地圖：不能互動，整塊是一個按鈕 */
+/* 位置分頁的小地圖：不能互動，整塊是一個按鈕 */
 .m-minimap {
   position: relative;
   height: 160px;
@@ -620,11 +588,14 @@
 }
 
 /* 把手：看起來是一小條，點的範圍 44px 高 */
+/* 把手和日期列合起來是面板頂端的靛藍色帶（§12.4） */
 .m-trip-grab {
   flex: 0 0 auto;
   height: var(--tap);
   display: grid;
   place-items: center;
+  border-radius: 20px 20px 0 0;
+  background: var(--band);
   touch-action: none;
   cursor: grab;
 }
@@ -633,7 +604,7 @@
   width: 40px;
   height: 5px;
   border-radius: 999px;
-  background: var(--ink-4);
+  background: var(--on-band-2);
 }
 
 .m-trip-body {
@@ -672,7 +643,7 @@
   bottom: calc(100% * var(--m-sheet-mid) + 10px);
 }
 
-/* 這天的標題（固定在面板上面，往下捲也看得到）：Bodoni 斜體的大日期、「週五 · 第 4 天 · 鳥羽」、✦ 問 AI、編輯 */
+/* 這天的標題（固定在面板上面，往下捲也看得到）：圓體的大日期、「週五 · 第 4 天 · 鳥羽」、✦ 問 AI、編輯 */
 .m-dayhead {
   position: sticky;
   top: 0;
@@ -699,9 +670,9 @@
 .m-dayhead-date {
   flex: 0 0 auto;
   font-family: var(--font-num);
-  font-style: italic;
   font-size: 1.75rem;
-  font-weight: 600;
+  font-weight: 900;
+  color: var(--indigo);
   line-height: 1.1;
 }
 
@@ -781,10 +752,13 @@
   margin-top: 8px;
 }
 
-/* 交通是共用的一行（ui.css 的 ll-*）；手機點的範圍 44px */
-.m-leg .ll {
-  min-height: var(--tap);
-  font-size: 0.8125rem;
+/* 交通卡是共用的（ui.css 的 ll-*）：手機縮圖 56px、編輯中把手欄 44px，連線跟著；點的範圍 44px */
+.m-app .tl-axis {
+  --ll-thumb: 56px;
+}
+
+.m-app .tl-axis.in-planning {
+  --ll-grip: var(--tap);
 }
 
 .m-leg .ll-main {
@@ -801,9 +775,9 @@
   min-height: 36px;
 }
 
-/* 等待：交通下面一行純文字 */
+/* 等待：交通下面一行純文字；左邊和交通卡切齊（第九輪 §14.2，同 ui.css 的 .ll-li） */
 .m-wait {
-  margin-left: 8px;
+  margin-left: calc(var(--ll-axis) + 22px);
   padding: 2px 0 6px 0;
   color: var(--warn);
   font-size: 0.8rem;

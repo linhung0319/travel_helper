@@ -4,7 +4,7 @@
 
 import { photoCandidates } from '../lib/photos.ts';
 import { cardTypeLetter } from '../lib/planView.ts';
-import { TYPE_COLORS } from '../lib/typeStyle.ts';
+import { TYPE_COLORS, typeSwatch } from '../lib/typeStyle.ts';
 import { Photo } from '../components/Photo.tsx';
 import type { Place } from '../data/types.ts';
 
@@ -16,7 +16,7 @@ export function Thumb({ place, size }: { place: Place; size: number | 'fill' }) 
   const cls = `m-thumb ${square ? 'm-thumb-square' : 'm-thumb-fill'}`;
   if (!photoCandidates(place.photos).length) {
     return (
-      <span className={`${cls} m-thumb-fallback`} style={{ ...square, background: TYPE_COLORS[place.type] }} data-testid="m-thumb-fallback" aria-hidden>
+      <span className={`${cls} m-thumb-fallback`} style={{ ...square, ...typeSwatch(place.type) }} data-testid="m-thumb-fallback" aria-hidden>
         {cardTypeLetter(place.type)}
       </span>
     );

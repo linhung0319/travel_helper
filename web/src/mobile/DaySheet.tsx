@@ -1,7 +1,7 @@
 // 手機版行程的面板（第六輪 §3.5，第七輪 Task 8）：蓋在地圖下半部，可以拉，停在三個高度（mobileStore.tripSnap；高度在 mobile.css 的 CSS 變數）：
 // 低（只露出天數列）、中（預設，地圖約佔上面 1/3）、高（地圖剩一小條）。拖把手換高度：放開時停在最近的高度，快速往上／往下滑就往那邊切一格。
 // 面板裡由上到下：把手、日期列（DayStrip）固定在上面，往下捲也看得到；選「整趟」時是整趟（TripOverview），選某天時是這天的標題
-// （Bodoni 斜體的大日期加「週五 · 第 4 天 · 鳥羽」、✦ 問 AI、編輯；這一列也固定，position: sticky）、摘要、時間條（變矮）、
+// （圓體的大日期加「週五 · 第 4 天 · 鳥羽」、✦ 問 AI、編輯；這一列也固定，position: sticky）、摘要、時間條（變矮）、
 // 時間軸（MobileCard、MobileLeg，資料準備和網頁版共用 Timeline.tsx 的 useDayTimeline）、這天的候選（候選樣式的 MobileCard）。
 // 選了一張卡（focusItem）：清單捲到那張卡（不改面板高度）。點卡片原地展開（mobileStore.expanded）。
 // 編輯中：最上面是墨色的編輯條（PlanningBar：「編輯 2/3（三）」加快照、「完成」）和別人改過了的提示（ConflictBar）；按「編輯」不改面板高度；
@@ -194,7 +194,7 @@ function EntryRows({ entry, ctx }: { entry: TimelineEntry; ctx: RowCtx }) {
                   {g.name}
                   {sg && <span className="muted small"> {sg.size} 人</span>}
                 </div>
-                <ol className="m-tl">
+                <ol className={`m-tl tl-axis ${planning ? 'in-planning' : ''}`}>
                   {g.entries
                     .filter((e) => e.kind !== 'meet')
                     .map((e, i) => (
@@ -335,7 +335,7 @@ function DayView({ date }: { date: string }) {
       {itDay && tl.status === 'loading' && <p className="muted">計算時間軸中…</p>}
       {tl.status === 'error' && <p className="warn">時間軸算不出來：{tl.error}</p>}
       {itDay && plan && (
-        <ol className="m-tl" data-testid="m-timeline">
+        <ol className={`m-tl tl-axis ${planning ? 'in-planning' : ''}`} data-testid="m-timeline">
           {tl.rows.map((row, i) =>
             row.kind === 'gap' ? (
               <GapRow key={`g${i}`} row={row} />
@@ -449,7 +449,7 @@ export function DaySheet() {
       </div>
       <EditBar day={day} />
       {/* 編輯中墨色編輯條取代日期列：編輯中不能換天 */}
-      {!planning && <DayStrip variant="sheet" />}
+      {!planning && <DayStrip />}
       <div className="m-trip-body" ref={bodyRef}>
         {day === 'all' ? <TripOverview /> : <DayView date={day} />}
       </div>

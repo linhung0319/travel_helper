@@ -10,7 +10,7 @@ import { FilterBar, type FilterModel } from '../shared/ui/FilterBar.tsx';
 import { mobileStore, useMobile } from './mobileStore.ts';
 import { useWishPrefs, wishPrefs } from '../shared/wishPrefs.ts';
 
-const TYPE_CHIPS: { type: Feed['type']; label: string }[] = [
+const TYPE_CHIPS: { type: ExploreType | 'all'; label: string }[] = [
   { type: 'all', label: '全部' },
   ...(['spot', 'restaurant', 'lodging'] as const).map((t) => ({ type: t, label: TYPE_LABELS[t] })),
 ];
@@ -67,18 +67,23 @@ export function useWishModel(type: ExploreType | 'all'): FilterModel {
   };
 }
 
-/** 探索上方的篩選列：搜尋、篩選、排序（黏在上面），下面一列類型（全部、景點、餐廳、住宿）和套用的條件 */
-export function FeedFilters({ count }: { count: number }) {
-  const feed = useMobile((s) => s.feed);
-  const model = useFeedModel();
-  const typeRow = (
-    <div className="m-chips fb-chips" data-testid="m-feed-filters">
+/** 篩選列下面那一列類型晶片（全部、景點、餐廳、住宿）：探索、想去長得一樣（第十輪），testid 是 `${prefix}-type-<類型>` */
+export function TypeChips({ value, onPick, prefix, testId }: { value: Feed['type']; onPick: (type: ExploreType | 'all') => void; prefix: string; testId?: string }) {
+  return (
+    <div className="m-chips fb-chips" data-testid={testId}>
       {TYPE_CHIPS.map((c) => (
-        <Chip key={c.type} on={feed.type === c.type} onClick={() => mobileStore.getState().setFeed({ type: c.type })} testId={`m-feed-type-${c.type}`}>
+        <Chip key={c.type} on={value === c.type} onClick={() => onPick(c.type)} testId={`${prefix}-type-${c.type}`}>
           {c.label}
         </Chip>
       ))}
     </div>
   );
+}
+
+/** 探索上方的篩選列：搜尋、篩選、排序（黏在上面），下面一列類型（全部、景點、餐廳、住宿）和套用的條件 */
+export function FeedFilters({ count }: { count: number }) {
+  const feed = useMobile((s) => s.feed);
+  const model = useFeedModel();
+  const typeRow = <TypeChips value={feed.type} onPick={(type) => mobileStore.getState().setFeed({ type })} prefix="m-feed" testId="m-feed-filters" />;
   return <FilterBar source="explore" surface="mobile" model={model} count={count} typeRow={typeRow} />;
 }

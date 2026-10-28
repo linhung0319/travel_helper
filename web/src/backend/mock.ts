@@ -116,8 +116,8 @@ function fromSeed(seed: MockSeed, now: string): MockState {
 
 export function createMockBackend(seed: MockSeed, opts: MockOptions = {}): MockBackend {
   const storage = opts.storage ?? null;
-  // v4：2026-10-24 加了預約筆記，舊的存檔讀不進來
-  const key = opts.storageKey ?? 'travel-helper:mockBackend:v4';
+  // v4：2026-10-24 加了預約筆記，舊的存檔讀不進來；v5：2026-10-28 種子資料 2/10 的分組換成合併卡（§14.4），換 key 讓舊的存檔重來
+  const key = opts.storageKey ?? 'travel-helper:mockBackend:v5';
   const now = opts.now ?? (() => new Date().toISOString());
   let currentSeed = seed;
 

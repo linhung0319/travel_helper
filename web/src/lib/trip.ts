@@ -19,7 +19,7 @@ function parse(date: string): [number, number, number] {
   return [Number(m[1]), Number(m[2]), Number(m[3])];
 }
 
-function weekdayIndex(date: string): number {
+export function weekdayIndex(date: string): number {
   const [y, mo, d] = parse(date);
   return new Date(Date.UTC(y, mo - 1, d)).getUTCDay();
 }

@@ -92,9 +92,10 @@ test('探索：只列地圖畫面裡的點，移動地圖跟著換', async ({ pa
   expect(after).not.toEqual(before);
   expect(await inView()).toBe(true);
 
-  // 點了卡片開詳情
+  // 點了卡片原地展開，按「詳細資料」開詳情（第八輪 §13.3）
   const item = page.locator(`[data-testid="${itemId}"][data-id="ise-naiku"]`);
   await item.click();
+  await item.getByTestId('place-open-detail').click();
   await expect(page.getByTestId('detail-panel')).toBeVisible();
 });
 
@@ -155,9 +156,12 @@ test('問 AI：把探索卡片、詳情標題拖到聊天室', async ({ page }) 
   await expect(page.getByTestId('detail-panel')).toHaveCount(0);
 
   // 詳情的標題也可以拖
-  const second = page.getByTestId('explore-item').nth(1);
-  const id2 = (await second.getAttribute('data-id'))!;
+  // 照片牆兩欄的 DOM 順序不是排名順序，展開後位置會變：用 data-id 找
+  const id2 = (await page.getByTestId('explore-item').nth(1).getAttribute('data-id'))!;
+  const second = page.locator(`[data-testid="explore-item"][data-id="${id2}"]`);
+  // 第八輪：點卡片先原地展開，按「詳細資料」才開詳情
   await second.click();
+  await second.getByTestId('place-open-detail').click();
   await page.getByTestId('detail-panel').locator('.detail-head').dragTo(page.locator('.chat-column'));
   await expect.poll(selection).toEqual([id, id2]);
 });

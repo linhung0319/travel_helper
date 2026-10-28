@@ -43,7 +43,6 @@
 
 .ui-chip-count {
   font-family: var(--font-num);
-  font-style: italic;
   opacity: 0.8;
 }
 
@@ -93,8 +92,8 @@
 }
 
 .ui-btn-primary {
-  background: var(--ink);
-  border-color: var(--ink);
+  background: var(--indigo);
+  border-color: var(--indigo);
   color: var(--paper);
 }
 
@@ -132,12 +131,11 @@
 
 .ui-heart-count {
   font-family: var(--font-num);
-  font-style: italic;
   font-size: 0.95rem;
   color: var(--ink-2);
 }
 
-/* ---------- 類型 ---------- */
+/* ---------- 類型圓章（interaction-design §12.2）：類型色的圓、一個漢字；芥子黃（食）上用墨色字 ---------- */
 .ui-type {
   display: inline-flex;
   align-items: center;
@@ -146,18 +144,56 @@
   color: var(--ink-2);
 }
 
-.ui-type-dot {
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
+.ui-seal {
+  --seal: var(--ink-2);
+  display: inline-grid;
+  place-items: center;
   flex: 0 0 auto;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: var(--seal);
+  color: var(--paper);
+  font-family: var(--font-round);
+  font-style: normal;
+  font-weight: 900;
+  font-size: 11px;
+  line-height: 1;
 }
 
-.ui-type.on-photo {
-  padding: 3px 10px;
-  border-radius: 999px;
-  background: var(--veil);
+.ui-seal.sm {
+  width: 16px;
+  height: 16px;
+  font-size: 9px;
+}
+
+.ui-seal.lg {
+  width: 28px;
+  height: 28px;
+  font-size: 14px;
+  box-shadow: 0 0 0 2px var(--paper);
+}
+
+.ui-seal[data-type='spot'] {
+  --seal: var(--t-spot);
+}
+
+.ui-seal[data-type='restaurant'] {
+  --seal: var(--t-food);
   color: var(--ink);
+}
+
+.ui-seal[data-type='lodging'] {
+  --seal: var(--t-stay);
+}
+
+.ui-seal[data-type='station'] {
+  --seal: var(--t-station);
+}
+
+/* 照片上只放圓章（白框） */
+.ui-type.on-photo {
+  display: inline-flex;
 }
 
 /* ---------- 等級 ---------- */
@@ -170,7 +206,6 @@
   border: 1px solid var(--ink-4);
   border-radius: 999px;
   font-family: var(--font-num);
-  font-style: italic;
   font-weight: 600;
   font-size: 0.9rem;
   line-height: 1;
@@ -229,16 +264,20 @@
   color: var(--red-day);
 }
 
+/* 選到的那天芥子黃（§12.4）；週末紅字照舊 */
 .ui-dg-cell.picked {
-  background: var(--ink);
-  border-color: var(--ink);
-  color: var(--paper);
+  background: var(--mustard);
+  border-color: var(--mustard);
+  color: var(--ink);
 }
 
-.ui-dg-cell.picked .ui-dg-wd,
+.ui-dg-cell.picked .ui-dg-wd {
+  color: var(--ink);
+}
+
 .ui-dg-cell.picked.red-day,
 .ui-dg-cell.picked.red-day .ui-dg-wd {
-  color: var(--paper);
+  color: var(--red-day);
 }
 
 .ui-dg-cell.scheduled,
@@ -317,7 +356,7 @@
   box-shadow: 0 1px 3px var(--shade-2);
 }
 
-/* ---------- 日期列（DayStrip）：網頁右欄 side 平分、手機面板 sheet 可左右滑 ---------- */
+/* ---------- 日期列（DayStrip）：手機面板，可左右滑；網頁右欄是下面的兩週月曆（DayCalendar） ---------- */
 .ui-days {
   display: flex;
   gap: 2px;
@@ -347,14 +386,13 @@
 
 .ui-day b {
   font-family: var(--font-num);
-  font-style: italic;
-  font-weight: 500;
+  font-weight: 700;
   font-size: 1rem;
 }
 
 .ui-day small {
   font-size: 0.8125rem;
-  color: var(--ink-3);
+  color: var(--ink-2);
 }
 
 .ui-day.all {
@@ -367,63 +405,101 @@
   color: var(--red-day);
 }
 
+/* 選中的那天芥子黃（§12.4，芥子黃只代表「選中」）；週日、假日的紅字照舊 */
 .ui-day[aria-current='true'] {
-  background: var(--ink);
-  color: var(--paper);
+  background: var(--mustard);
+  color: var(--ink);
 }
 
 .ui-day[aria-current='true'] small {
-  color: var(--on-ink-2);
+  color: var(--ink);
 }
 
-.ui-day.red-day[aria-current='true'] {
-  color: var(--bad-soft);
-}
-
-.ui-day.red-day[aria-current='true'] small {
-  color: var(--bad-soft);
-}
-
+/* 手機面板頭：在靛藍色帶裡，晶片實心白底（§12.4） */
 .ui-days.sheet {
   position: relative;
   flex: 0 0 auto;
   gap: 6px;
-  padding: 2px 12px 10px;
+  padding: 2px 12px 12px;
   overflow-x: auto;
   overflow-y: hidden;
+  background: var(--band);
 }
 
 .ui-days.sheet .ui-day {
   min-width: 52px;
-  border: 1px solid var(--line);
+  border: 0;
   background: var(--paper);
 }
 
 .ui-days.sheet .ui-day[aria-current='true'] {
-  background: var(--ink);
-  border-color: var(--ink);
+  background: var(--mustard);
+  box-shadow: 0 0 0 2px var(--paper);
 }
 
-/* 右欄：13 格平分，點的範圍高度 52px */
-.ui-days.side {
-  padding: 8px 6px 4px;
-  gap: 1px;
+/* ---------- 兩週月曆（DayCalendar，網頁右欄，§13.2）：7 欄，格子 44px，白底上淡底格子 ---------- */
+.ui-cal {
+  display: grid;
+  grid-template-columns: repeat(7, minmax(0, 1fr));
+  gap: 4px;
+  padding: 8px 12px 6px;
 }
 
-.ui-days.side .ui-day {
-  flex: 1 1 0;
+.ui-cal-wd {
+  text-align: center;
+  font-size: 0.75rem;
+  color: var(--ink-2);
+}
+
+.ui-cal-wd.red-day {
+  color: var(--red-day);
+}
+
+.ui-cal-day {
+  position: relative;
   min-width: 0;
-  padding: 4px 0;
+  height: var(--tap);
+  border: 0;
+  border-radius: 14px;
+  background: var(--wash);
+  color: var(--ink);
+  font-family: var(--font-num);
+  font-weight: 700;
+  font-size: 0.875rem;
+  cursor: pointer;
 }
 
-.ui-days.side .ui-day b {
+.ui-cal-day.red-day {
+  color: var(--red-day);
+}
+
+.ui-cal-day.all {
+  border: 1px solid var(--line);
+  background: var(--paper);
   font-size: 0.8125rem;
-  letter-spacing: -0.03em;
 }
 
-.ui-days.side .ui-day.all {
-  flex: 0 0 auto;
-  padding: 4px 6px;
+/* 選中的那天芥子黃（§12.4）；紅字照舊 */
+.ui-cal-day[aria-current='true'] {
+  border-color: var(--mustard);
+  background: var(--mustard);
+}
+
+.ui-cal-warn {
+  position: absolute;
+  left: 50%;
+  bottom: 5px;
+  width: 4px;
+  height: 4px;
+  margin-left: -2px;
+  border-radius: 50%;
+  background: var(--red-day); /* §12.1 警告數字的紅 */
+}
+
+@media (hover: hover) {
+  .ui-cal-day:not([aria-current='true']):hover {
+    background: var(--line);
+  }
 }
 
 /* ---------- 篩選列（FilterBar）和篩選面板（FilterSheet） ---------- */
@@ -492,7 +568,6 @@
   background: var(--indigo);
   color: var(--paper);
   font-family: var(--font-num);
-  font-style: italic;
   font-size: 0.8125rem;
 }
 
@@ -589,13 +664,49 @@
   border-bottom: 1px solid var(--line);
 }
 
+/* 網頁右欄只有 400（窄 360）：篩選、排序只留圖示（字給讀屏器、滑鼠移上去看 title），搜尋框才有地方（§13.1 草圖） */
+.fb-desktop .fb-row > .ui-chip,
+.fb-desktop .fb-sort > .ui-chip {
+  min-width: var(--tap);
+  justify-content: center;
+  padding-inline: 10px;
+}
+
+.fb-desktop .fb-label {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
 /* 手機：第一列黏在最上面，其餘跟著內容捲走 */
+/* 在靛藍色帶裡（§12.4）：搜尋框白底，篩選、排序是半透明白 */
 .fb-mobile {
   position: sticky;
   top: 0;
   z-index: 5;
-  padding: 6px 12px;
-  border-bottom: 1px solid var(--line);
+  padding: 8px 12px;
+  background: var(--band);
+}
+
+.fb-mobile .fb-search {
+  border-color: var(--paper);
+  background: var(--paper);
+}
+
+.fb-mobile .fb-row > .ui-chip,
+.fb-mobile .fb-sort > .ui-chip {
+  border-color: var(--on-band-line);
+  background: var(--on-band-wash);
+  color: var(--paper);
+}
+
+.fb-mobile .fb-row > .ui-chip.on {
+  border-color: var(--paper);
+  background: var(--paper);
+  color: var(--ink);
 }
 
 .fb-below {
@@ -617,10 +728,6 @@
 
 .fb-types .m-chips {
   padding: 4px 0;
-}
-
-.fb-types .m-segmented {
-  margin: 4px 0;
 }
 
 .fb-below .fb-applied {
@@ -842,10 +949,64 @@
 }
 
 /* ---------- 照片牆（PlaceWall、PlaceTile） ---------- */
+/* 照片牆：一段一段往下排；每段是兩欄（.pw-cols），展開的卡自己一整段（.pw-wide，第八輪 §13.3） */
 .pw {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.pw-cols {
   display: flex;
   align-items: flex-start;
   gap: 8px;
+}
+
+/* 原地展開的卡（網頁探索、想去）：芥子黃框（選中），照片矮一點，下面是介紹、優缺點、詳細資料 */
+.pt.open,
+.pr-open {
+  border: 2px solid var(--mustard);
+  border-radius: 14px;
+}
+
+.pt.open .pt-photo .photo {
+  max-height: 180px;
+}
+
+.pr-open .pr {
+  border-bottom: 0;
+}
+
+.po-body {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 0 12px 12px;
+  cursor: auto;
+}
+
+.po-intro {
+  margin: 0;
+  font-size: 0.875rem;
+  line-height: 1.6;
+}
+
+.po-actions {
+  display: flex;
+  gap: 8px;
+}
+
+.po-actions > .ui-btn,
+.po-actions > .add-to-day {
+  flex: 1;
+}
+
+.po-actions > .add-to-day {
+  padding: 0;
+}
+
+.po-actions .add-to-day .ui-btn {
+  width: 100%;
 }
 
 .pw-col {
@@ -874,6 +1035,11 @@
 .pt.flash {
   border-color: var(--ink-3);
   box-shadow: 0 2px 10px var(--shade-1);
+}
+
+/* 展開的卡一定是選中的：框照樣芥子黃（§12.1 芥子黃＝選中） */
+.pt.open.flash {
+  border-color: var(--mustard);
 }
 
 .pt-photo {
@@ -969,13 +1135,10 @@
   white-space: nowrap;
 }
 
-/* ---------- 想去的清單（WishList）：跳轉列、段落標題、列、左滑 ---------- */
+/* ---------- 想去的清單（WishList）：段落標題、列、左滑 ---------- */
 .wl {
   --wl-top: 0px;
-  --wl-jump: 0px;
   min-width: 0;
-  /* 最後一段也能捲到最上面（跳轉晶片點了真的捲到那一段） */
-  padding-bottom: 40vh;
 }
 
 .wl-ell {
@@ -985,30 +1148,14 @@
   white-space: nowrap;
 }
 
-/* 跳轉晶片一排：黏在篩選列下面 */
-.wl-jump {
-  position: sticky;
-  top: var(--wl-top);
-  z-index: 2;
-  display: flex;
-  gap: 8px;
-  padding: 8px 0;
-  background: var(--paper);
-  overflow-x: auto;
-}
-
-.wl-jump .ui-chip {
-  flex: 0 0 auto;
-}
-
 .wl-section {
-  scroll-margin-top: calc(var(--wl-top) + var(--wl-jump));
+  scroll-margin-top: var(--wl-top);
 }
 
-/* 段落標題：黏在跳轉列下面，點了收合 */
+/* 段落標題：黏在篩選列下面，點了收合；數字跟在名稱後面（「還沒排 · 6」，§13.7） */
 .wl-head {
   position: sticky;
-  top: calc(var(--wl-top) + var(--wl-jump));
+  top: var(--wl-top);
   z-index: 1;
   margin: 0;
   background: var(--paper);
@@ -1035,7 +1182,6 @@
 
 .wl-head-n {
   font-family: var(--font-num);
-  font-style: italic;
   font-weight: 400;
   color: var(--ink-3);
 }
@@ -1202,12 +1348,6 @@
   padding-right: 16px;
 }
 
-/* 手機想去的類型分段（全部、餐廳、住宿、景點）：照字數分寬度，360 寬也不會被省略 */
-.fb-segmented button {
-  flex: 1 1 auto;
-  padding: 0 8px;
-}
-
 /* ---------- 詳情（PlaceDetail，兩邊共用；第七輪 §7） ---------- */
 .pd {
   min-width: 0;
@@ -1295,7 +1435,6 @@
   background: var(--dim);
   color: var(--paper);
   font-family: var(--font-num);
-  font-style: italic;
   font-size: 0.85rem;
   pointer-events: none;
 }
@@ -1419,7 +1558,6 @@
 .pd-like .pd-like-count {
   padding: 0 14px 0 6px;
   font-family: var(--font-num);
-  font-style: italic;
   font-size: 1rem;
 }
 
@@ -1494,7 +1632,7 @@
   min-width: 0;
   min-height: var(--tap);
   border: 0;
-  border-bottom: 2px solid transparent;
+  border-bottom: 4px solid transparent;
   background: none;
   font: inherit;
   color: var(--ink-3);
@@ -1503,7 +1641,7 @@
 }
 
 .pd-tabs button.on {
-  border-bottom-color: var(--indigo);
+  border-bottom-color: var(--mustard);
   color: var(--ink);
   font-weight: 700;
 }
@@ -1551,14 +1689,20 @@
   display: block;
 }
 
-/* 網頁：照片 16:9 圓角，名稱列右邊是愛心，分頁列貼著右欄頂 */
+/* 網頁：照片 16:9 頂到彈窗邊（第九輪 §14.1，彈窗的圓角切照片），名稱列右邊是愛心，分頁列黏在頂端列下面 */
 .pd-desktop .pd-hero {
-  border-radius: 14px;
+  margin: 0 -14px;
   overflow: hidden;
 }
 
 .pd-desktop .pd-photos {
   aspect-ratio: 16 / 9;
+}
+
+/* 沒有照片的車站：矮的一條類型色塊，✕ 一樣浮在上面，彈窗形狀不變 */
+.pd-desktop .pd-hero.short .pd-photos {
+  aspect-ratio: auto;
+  height: 72px;
 }
 
 .pd-desktop .pd-head {
@@ -1568,27 +1712,58 @@
 }
 
 .pd-desktop .pd-tabs {
+  top: 56px;
   margin: 0 -14px;
   padding: 0 14px;
 }
 
-.detail-close {
+/* ✕：照片右上的白色圓鈕（捲過照片後是白底列上的淡底圓鈕） */
+.detail-bar .detail-close {
   margin-left: auto;
+  width: 36px;
+  height: 36px;
+  min-width: 0;
+  min-height: 0;
+  border-radius: 50%;
+  background: var(--paper);
+  box-shadow: 0 1px 4px var(--shade-1);
 }
 
-/* 從行程打開的詳情：浮在地圖右邊（.map-column 裡），右欄的時間軸不動 */
+.detail-bar.stuck .detail-close {
+  background: var(--wash);
+  box-shadow: none;
+}
+
+/* 詳情彈窗（第八輪 §13.3）：蓋在地圖右側、貼著右欄（.map-column 裡，data-at="map"），右欄不動 */
 .detail-float {
   position: absolute;
   top: 12px;
   right: 12px;
   bottom: 12px;
   z-index: 14;
-  /* 最多佔地圖欄的 60%：1024～1280 寬時左邊還留一條看得到選中點的地圖 */
-  width: min(360px, 60%);
+  /* 380（1100～1279 寬時 340，§13.3）；最多佔地圖欄的 70%，左邊還留一條看得到選中點的地圖 */
+  width: min(var(--pop-w, 380px), 70%);
   overflow-y: auto;
+  /* 不畫捲軸（第九輪 §14.1）：照片頂到兩邊，右邊不留捲軸那一條；滾輪、觸控板照樣捲，分頁切換時寬度也不會跳 */
+  scrollbar-width: none;
   border-radius: 20px;
   background: var(--paper);
   box-shadow: 0 8px 28px var(--shade-2);
+}
+
+/* 從地圖上的點開的：蓋住整個右欄（四周留 8px），底下的右欄照樣掛著、變淡 */
+.detail-float.detail-over-side {
+  top: 8px;
+  right: 8px;
+  bottom: 8px;
+  left: 8px;
+  z-index: 20;
+  width: auto;
+}
+
+.side-panel.covered > :not(.detail-over-side) {
+  opacity: 0.35;
+  filter: grayscale(0.4);
 }
 
 /* ---------- 放大看照片 ---------- */
@@ -1668,10 +1843,9 @@
 
 .pv-foot [data-testid='photo-viewer-count'] {
   font-family: var(--font-num);
-  font-style: italic;
 }
 
-@media (max-width: 899px) {
+@media (max-width: 1099px) {
   .pv-stage {
     padding: 56px 8px;
   }
@@ -1700,7 +1874,6 @@
   padding: 0 4px;
   border: 1px solid transparent;
   border-radius: 14px;
-  background: var(--paper);
 }
 
 .tc-li.editing {
@@ -1711,7 +1884,31 @@
   -webkit-touch-callout: none;
 }
 
-.tc-li.selected {
+/* 一張卡（第九輪 §14.2）：白底、淡框、淡陰影，就是合併卡前面那張（不斜）；框和左邊留白往外推（負的 margin），縮圖還是在時間軸連線上。
+   選到、展開的卡框變芥子黃（芥子黃＝選中）。候選（dashed）不是卡，照舊虛線框 */
+.tc-li:not(.dashed) {
+  margin: 6px 0;
+}
+
+.tc-li:not(.dashed) > .tc {
+  margin-inline: -7px -4px;
+  padding: 8px 4px 8px 6px;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  background: var(--paper);
+  box-shadow: 0 2px 8px var(--shade-1);
+}
+
+.tc-li.selected:not(.dashed) > .tc,
+.tc-li.expanded:not(.dashed) > .tc {
+  border-color: var(--mustard);
+}
+
+.tc-li.dashed {
+  background: var(--paper);
+}
+
+.tc-li.dashed.selected {
   background: var(--wash);
 }
 
@@ -1748,11 +1945,21 @@
 }
 
 .tc {
+  position: relative;
   grid-column: 2;
   min-width: 0;
   padding: 8px 0;
   cursor: pointer;
   border-radius: 14px;
+}
+
+/* 類型小圓章：有照片的卡右上角（第十輪；沒照片的縮圖本身就是類型色塊） */
+.tc-type {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  display: inline-flex;
+  pointer-events: none;
 }
 
 .tc:focus-visible {
@@ -1803,7 +2010,6 @@
   background: var(--ink);
   color: var(--paper);
   font-family: var(--font-num);
-  font-style: italic;
   font-size: 0.75rem;
   font-weight: 700;
   line-height: 18px;
@@ -1822,6 +2028,8 @@
 .tc-time {
   display: flex;
   flex-wrap: wrap;
+  /* 右上角的類型小圓章（.tc-type）讓出位置 */
+  padding-right: 28px;
   align-items: baseline;
   gap: 4px 6px;
   font-weight: 700;
@@ -1868,30 +2076,10 @@
   align-self: stretch;
 }
 
-/* 原地展開：三張照片、介紹前兩句、兩顆按鈕 */
+/* 原地展開：介紹、兩顆按鈕 */
 .tc-expand {
   margin-top: 10px;
   cursor: default;
-}
-
-.tc-photos {
-  display: grid;
-  grid-auto-flow: column;
-  grid-auto-columns: 1fr;
-  gap: 6px;
-}
-
-.tc-photo {
-  display: block;
-  aspect-ratio: 4 / 3;
-  min-width: 0;
-  overflow: hidden;
-  border-radius: 14px;
-}
-
-.tc-photo .photo {
-  width: 100%;
-  height: 100%;
 }
 
 .tc-intro {
@@ -1912,6 +2100,9 @@
 @media (hover: hover) {
   body:not(.dragging-plan) .tc-li.movable:hover {
     cursor: grab;
+  }
+
+  body:not(.dragging-plan) .tc-li.movable:hover > .tc {
     background: var(--wash);
   }
 
@@ -2101,33 +2292,109 @@ body.dragging-plan .tc-li.drop-merge::after {
   font-weight: 700;
 }
 
-/* 重疊卡（有備卡）：後面疊著淡色的卡 */
+/* 合併卡（第八輪 §13.5，網頁、手機）：兩張斜斜地一前一後。前面主選白底、有框、微微往左斜（.tc），
+   後面淡底往右斜、錯開露出邊（.tc-back，和 .tc 同一格的位置）；不管幾個選擇都只畫兩張，張數看「‹ 1/2 ›」 */
 .tc-li.stacked {
-  margin-bottom: 8px;
-  box-shadow: 4px 4px 0 -1px var(--wash), 4px 4px 0 0 var(--line);
+  margin: 8px 0 14px;
 }
 
-.tc-li.stacked-2 {
-  box-shadow: 4px 4px 0 -1px var(--wash), 4px 4px 0 0 var(--line), 8px 8px 0 -1px var(--wash), 8px 8px 0 0 var(--line);
-  margin-bottom: 12px;
+.tc-li.stacked > .tc {
+  position: relative;
+  z-index: 1;
+  transform: rotate(-0.8deg);
 }
 
-/* 一行交通：沒有外框，細字 */
+.tc-back {
+  position: absolute;
+  z-index: 0;
+  top: 0;
+  bottom: 0;
+  left: calc(1px + var(--tc-grip));
+  right: calc(4px + var(--tc-more));
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  background: var(--wash);
+  transform: rotate(2.4deg) translate(6px, 4px);
+  pointer-events: none;
+}
+
+body.dragging-plan .tc-li.stacked.drop-merge > .tc {
+  background: var(--indigo-wash);
+}
+
+/* 交通卡（第八輪 §13.6）：時間軸左邊一條連線（在資料卡小照片的中線，畫在時間軸清單上，白底的資料卡蓋住它），
+   交通方式的圓點在線上，卡片比資料卡窄、有框，縮在線的右邊。
+   --ll-axis 照資料卡的版面算：li 左邊 4px＋把手欄＋欄距 4px＋縮圖的一半（量過，多 1px）；把手欄、縮圖寬由時間軸清單給（.tl-axis） */
+.tl-axis {
+  --ll-grip: 0px;
+  --ll-thumb: 48px;
+  --ll-axis: calc(9px + var(--ll-grip) + var(--ll-thumb) / 2);
+  position: relative;
+}
+
+/* 編輯中資料卡多一欄把手：線跟著移 */
+.tl-axis.in-planning {
+  --ll-grip: 22px;
+}
+
+.tl-axis::before {
+  content: '';
+  position: absolute;
+  left: calc(var(--ll-axis) - 1px);
+  top: 32px;
+  bottom: 32px;
+  width: 2px;
+  background: var(--rail);
+}
+
 .ll-li {
+  --ll-axis: calc(9px + var(--ll-grip, 0px) + var(--ll-thumb, 48px) / 2);
+  position: relative;
   list-style: none;
   margin: 0;
-  padding: 0 4px 0 8px;
+  padding: 4px 4px 4px calc(var(--ll-axis) + 22px);
   min-width: 0;
 }
 
 .ll {
+  min-width: 0;
+  color: var(--ink-2);
+  font-size: 0.8125rem;
+}
+
+/* 線上的交通方式圓點：白底、連線色的框，蓋在線上 */
+.ll-dot {
+  position: absolute;
+  left: calc(var(--ll-axis) - 13px);
+  top: 50%;
+  margin-top: -13px;
+  display: grid;
+  place-items: center;
+  width: 26px;
+  height: 26px;
+  border: 2px solid var(--rail);
+  border-radius: 50%;
+  background: var(--paper);
+}
+
+.ll.open .ll-dot {
+  top: 10px;
+  margin-top: 0;
+}
+
+.ll-card {
+  min-width: 0;
+  padding: 6px 10px 6px 12px;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  background: var(--paper);
+}
+
+.ll-head {
   display: flex;
   align-items: center;
   gap: 8px;
   min-width: 0;
-  min-height: 32px;
-  color: var(--ink-2);
-  font-size: 0.8125rem;
 }
 
 .ll-main {
@@ -2152,11 +2419,21 @@ button.ll-main {
   flex: 0 1 auto;
   min-width: 0;
   display: flex;
-  flex-wrap: wrap;
-  gap: 0 8px;
+  flex-direction: column;
+  line-height: 1.35;
 }
 
+/* 字和資料卡的時間（tc-time）、副標（tc-meta）一樣大 */
 .ll-title {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  color: var(--ink);
+  font-size: 0.9rem;
+  font-weight: 700;
+}
+
+.ll-sub {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -2178,9 +2455,9 @@ button.ll-main {
 
 .ll-maps {
   flex: 0 0 auto;
-  color: var(--ink-2);
-  text-decoration: underline;
-  text-underline-offset: 2px;
+  color: var(--indigo);
+  text-decoration: none;
+  font-weight: 700;
   white-space: nowrap;
 }
 
@@ -2197,27 +2474,24 @@ button.ll-main {
   cursor: pointer;
 }
 
-.ll-li.flash .ll {
+.ll-li.flash .ll-card {
   background: var(--warn-bg);
-  border-radius: 14px;
 }
 
-.ll-li.drop-leg-over .ll {
+.ll-li.drop-leg-over .ll-card {
   background: var(--indigo-wash);
   box-shadow: inset 0 0 0 2px var(--indigo);
-  border-radius: 14px;
 }
 
 .ll-li .leg-steps {
   margin: 0 0 6px;
 }
 
-.ll-li.editing {
+.ll-li.editing .ll-card {
   background: var(--wash);
-  border-radius: 14px;
 }
 
-/* 這天的標題（網頁行程分頁，§6.1）：Bodoni 斜體的大日期，旁邊「週五 · 第 4 天 · 鳥羽」 */
+/* 這天的標題（網頁行程分頁，§6.1）：圓體的大日期，旁邊「週五 · 第 4 天 · 鳥羽」 */
 .day-title {
   display: flex;
   align-items: baseline;
@@ -2232,9 +2506,9 @@ button.ll-main {
 
 .day-title-date {
   font-family: var(--font-num);
-  font-style: italic;
   font-size: 1.75rem;
-  font-weight: 600;
+  font-weight: 900;
+  color: var(--indigo);
   line-height: 1.1;
 }
 

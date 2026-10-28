@@ -1,42 +1,56 @@
 @import url('./shared/ui/ui.css');
-/* 地圖網站 v1（T11）的網頁版（900px 以上，hooks.ts 的 DESKTOP_QUERY）。第六輪起手機版的樣式在 mobile/mobile.css（class 用 m- 開頭）；
+/* 地圖網站 v1（T11）的網頁版（1100px 以上，hooks.ts 的 DESKTOP_QUERY）。第六輪起手機版的樣式在 mobile/mobile.css（class 用 m- 開頭）；
    這裡沒有手機才用的規則，只有兩邊共用的元件（對話框、彈窗、照片等）的基本樣式。 */
 
 :root {
-  /* 第七輪 token（設計 §2.1）：顏色只在這裡寫，其他地方一律用變數 */
-  --ink: #161a22;
-  --ink-2: #4b5262;
-  --ink-3: #8a90a0;
+  /* 第七輪 token（設計 §2.1），2026-10-27 換成「幾何和柄」配色（interaction-design §12.1）：顏色只在這裡寫，其他地方一律用變數 */
+  --ink: #1c2840;
+  --ink-2: #5d6680;
+  --ink-3: #a3a9b8;
   --ink-4: #c3c7d1;
   --paper: #ffffff;
   --line: #e6e8ee;
-  --wash: #f4f5f8;
-  --indigo: #24366e;
+  --rail: #d3d8e3; /* 時間軸串起卡片的連線、交通卡的方式圓點框（§13.6） */
+  --wash: #f3f5fa;
+  --indigo: #24468a;
   /* 地圖想去圖例「已排」的例子：第一天的顏色（lib/visual.ts DAY_PALETTE[0]） */
   --day-sample: #c2255c;
-  --indigo-wash: #eaedf6;
-  --indigo-line: #c9d1ea;
-  --love: #e0475b;
-  --love-wash: #fde8eb;
-  --love-line: #f1b5be;
-  --red-day: #c0392b;
+  --indigo-wash: #e9eef8;
+  --indigo-line: #cdd6ea;
+  /* 芥子黃：只代表「選中」（選中的日期、分頁底線）；淡底和框給 AI 提議卡 */
+  --mustard: #e3a92b;
+  --mustard-wash: #fcf3de;
+  --mustard-line: #efd08a;
+  --mustard-ink: #9a6a00;
+  /* 抹茶：優點的「＋」 */
+  --matcha: #5f8a3e;
+  --matcha-wash: #edf3e6;
+  /* 櫻：住宿的淡底（例如「一泊二食」膠囊） */
+  --sakura: #c8604f;
+  --sakura-wash: #fde9e5;
+  --sakura-ink: #a8483a;
+  --love: #d8453a;
+  --love-wash: #fde9e5;
+  --love-line: #f3b9ae;
+  --red-day: #d8453a;
   --warn: #a86a12;
   --warn-bg: #fbf3e2;
   --warn-line: #e6cf95;
   --star: #d9a21b;
-  --good: #2f7a5b;
-  --good-bg: #e6f2ec;
+  --good: var(--matcha);
+  --good-bg: var(--matcha-wash);
   --bad: #b3261e;
   --bad-bg: #fdecea;
   --bad-soft: #ffb4ab;
-  --t-spot: #3f7a5a;
-  --t-food: #c46a3a;
-  --t-stay: #6e5ba8;
-  --t-station: #3b6ea8;
-  --food-wash: #fbeee5;
-  --stay-wash: #f0ecf8;
-  --stay-line: #d3c9e6;
-  --stay-mid: #9a86c4;
+  /* 類型圓章（§12.2）：景＝抹茶、食＝芥子黃（字墨色）、宿＝櫻、駅＝靛藍；和 lib/typeStyle.ts 的 TYPE_COLORS 一樣 */
+  --t-spot: #5f8a3e;
+  --t-food: #e3a92b;
+  --t-stay: #c8604f;
+  --t-station: #24468a;
+  --food-wash: var(--mustard-wash);
+  --stay-wash: var(--sakura-wash);
+  --stay-line: #f3c4ba;
+  --stay-mid: #e08f80;
   --teal: #1f6f78;
   --teal-wash: #e3f1f1;
   --teal-line: #9fcfcb;
@@ -51,8 +65,13 @@
   --halo: rgba(255, 255, 255, 0.6);
   /* 深底上的次要字（DayGrid 選中那天的小字）、照片檢視的底、拖曳中卡片的影子 */
   --on-ink-2: rgba(255, 255, 255, 0.72);
+  /* 靛藍色帶（§12.4：每個畫面頂端）：底色、上面的次要字、半透明白的按鈕底和框 */
+  --band: var(--indigo);
+  --on-band-2: rgba(255, 255, 255, 0.78);
+  --on-band-wash: rgba(255, 255, 255, 0.14);
+  --on-band-line: rgba(255, 255, 255, 0.32);
   --viewer-bg: rgba(10, 12, 18, 0.92);
-  --shadow-lift: 0 12px 28px rgba(22, 26, 34, 0.22), 0 2px 6px rgba(22, 26, 34, 0.12);
+  --shadow-lift: 0 12px 28px rgba(28, 40, 64, 0.22), 0 2px 6px rgba(28, 40, 64, 0.12);
   /* 前三名獎牌（舊的 S／A／B 徽章，之後的任務會拿掉） */
   --medal-gold: linear-gradient(145deg, #fbe08a, #d4a017);
   --medal-silver: linear-gradient(145deg, #f1f4f7, #a3b0bd);
@@ -77,9 +96,12 @@
   --tap: 44px; /* 長輩也要點得到（interaction-design §0） */
   /* 浮動層（標籤彈窗、⋯ 選單，Popover.tsx）：高過地圖、日期列、浮動列、編輯藍條、對話框，只比提示（toast 120）低 */
   --z-popover: 110;
-  --font-serif: 'Noto Serif TC', 'Songti TC', 'Noto Serif CJK TC', serif;
-  --font-num: 'Bodoni Moda', 'Didot', 'Noto Serif TC', serif;
-  font-family: 'Noto Sans TC', system-ui, -apple-system, 'Segoe UI', 'Hiragino Sans', 'Microsoft JhengHei', sans-serif;
+  /* 字型（§12.3）：標題、日期、時間、數字用圓體 Zen Maru Gothic，內文 Zen Kaku Gothic New；日本字型缺的繁中字（例如「趟」）由 Noto Sans TC 補。
+     --font-serif、--font-num 是第七輪的名字（那時是明體、Bodoni），現在兩個都是圓體 */
+  --font-round: 'Zen Maru Gothic', 'Noto Sans TC', system-ui, -apple-system, 'Hiragino Maru Gothic ProN', 'Microsoft JhengHei', sans-serif;
+  --font-serif: var(--font-round);
+  --font-num: var(--font-round);
+  font-family: 'Zen Kaku Gothic New', 'Noto Sans TC', system-ui, -apple-system, 'Segoe UI', 'Hiragino Sans', 'Microsoft JhengHei', sans-serif;
   font-size: 16px;
   line-height: 1.5;
   color: var(--ink);
@@ -505,8 +527,23 @@ a {
   display: flex;
   flex-direction: column;
   gap: 8px;
-  padding: 12px;
+  padding: 0 12px 12px;
   height: 100%;
+}
+
+/* 頂端的靛藍色帶（§12.4）：「AI 助理」 */
+.chat-head {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  min-height: 54px;
+  margin: 0 -12px 4px;
+  padding: 0 16px;
+  background: var(--band);
+  color: var(--paper);
+  font-family: var(--font-round);
+  font-weight: 900;
+  font-size: 1.05rem;
 }
 
 .placeholder {
@@ -1062,7 +1099,7 @@ dl {
   flex-direction: column;
 }
 
-@media (min-width: 900px) {
+@media (min-width: 1100px) {
   .dialog-backdrop {
     align-items: center;
   }
@@ -1737,7 +1774,7 @@ button.planning-done {
   gap: 8px;
 }
 
-@media (min-width: 900px) {
+@media (min-width: 1100px) {
   .tl-groups {
     grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
   }
@@ -2258,38 +2295,84 @@ button.edited {
   display: none;
 }
 
-/* 跳 3 下就停：往上彈、落下，幅度漸小（約 1.5 秒）；減少動態時不跳 */
+/* 水滴底下的影子（尖端那裡的扁橢圓，壓在水滴後面）；跳起來時縮小變淡（interaction-design §12.5） */
+.map-selected .ms-shadow {
+  position: absolute;
+  left: 8px;
+  bottom: 0;
+  z-index: -1;
+  width: 18px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--ink);
+  opacity: 0.28;
+  pointer-events: none;
+}
+
+/* 跳 3 下就停：往上彈、落下時稍微壓扁，幅度漸小（約 1.5 秒）；減少動態時不跳 */
 @keyframes ms-bounce {
   0%,
+  83%,
   100% {
     transform: translateY(0);
   }
-  14% {
-    transform: translateY(-16px);
+  12% {
+    transform: translateY(-22px);
   }
-  30% {
+  25% {
+    transform: translateY(0) scale(1.08, 0.9);
+  }
+  32% {
     transform: translateY(0);
   }
   44% {
-    transform: translateY(-8px);
+    transform: translateY(-11px);
   }
-  58% {
+  56% {
+    transform: translateY(0) scale(1.04, 0.95);
+  }
+  63% {
     transform: translateY(0);
   }
-  70% {
-    transform: translateY(-3px);
+  73% {
+    transform: translateY(-4px);
   }
-  80% {
-    transform: translateY(0);
+}
+
+@keyframes ms-shadow {
+  0%,
+  25%,
+  56%,
+  83%,
+  100% {
+    transform: scale(1);
+    opacity: 0.28;
+  }
+  12% {
+    transform: scale(0.55);
+    opacity: 0.12;
+  }
+  44% {
+    transform: scale(0.72);
+    opacity: 0.18;
+  }
+  73% {
+    transform: scale(0.9);
+    opacity: 0.24;
   }
 }
 
 .map-selected .ms-drop.bounce {
-  animation: ms-bounce 1.5s ease-out 1;
+  animation: ms-bounce 1.5s ease-in-out 1;
+}
+
+.map-selected .ms-drop.bounce ~ .ms-shadow {
+  animation: ms-shadow 1.5s ease-in-out 1;
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .map-selected .ms-drop.bounce {
+  .map-selected .ms-drop.bounce,
+  .map-selected .ms-drop.bounce ~ .ms-shadow {
     animation: none;
   }
 }
@@ -2348,15 +2431,26 @@ button.edited {
    左聊天室、中地圖（日期等浮在上方）、右側行程／探索／詳情共用一欄
    ====================================================================== */
 
-/* 聊天室 300px；1200px 以下縮成 260px，讓地圖在固定 440px 的右欄旁邊還有地方 */
-.layout.desktop .chat-column {
-  flex: 0 0 300px;
+/* 三欄固定寬度（第八輪 §13.1）：AI 300、右欄 400，地圖拿剩下的；1100～1279（iPad 橫拿）AI 260、右欄 360。
+   min-width: 0：flex 子項預設 min-width: auto，照片的原始寬度會把欄撐開（1180 寬時地圖被擠成 0） */
+.layout.desktop {
+  --ai-w: 300px;
+  --side-w: 400px;
+  --pop-w: 380px;
 }
 
-@media (max-width: 1199px) {
-  .layout.desktop .chat-column {
-    flex: 0 0 260px;
+@media (max-width: 1279px) {
+  .layout.desktop {
+    --ai-w: 260px;
+    --side-w: 360px;
+    --pop-w: 340px;
   }
+}
+
+.layout.desktop .chat-column {
+  flex: 0 0 var(--ai-w);
+  width: var(--ai-w);
+  min-width: 0;
 }
 
 .map-column {
@@ -2368,7 +2462,11 @@ button.edited {
 }
 
 .side-column {
-  flex: 0 0 440px; /* 固定寬度，日期列 13 格一定放得下（第七輪） */
+  flex: 0 0 var(--side-w);
+  width: var(--side-w);
+  min-width: 0;
+  /* clip 不是 hidden：hidden 的元素還能被 scrollIntoView 捲，整欄（連分頁）會被捲上去 */
+  overflow: clip;
   border-left: 1px solid var(--line);
   display: flex;
   flex-direction: column;
@@ -2392,34 +2490,58 @@ button.edited {
   min-height: 0;
 }
 
+/* 分頁在靛藍色帶裡（§12.4）：白字，選中的分頁加芥子黃底線 */
 .side-tabs {
   display: flex;
   gap: 4px;
-  padding: 10px 12px 0;
-  border-bottom: 1px solid var(--line);
+  padding: 6px 12px 0;
+  background: var(--band);
   flex: 0 0 auto;
 }
 
 .side-tab {
+  position: relative;
   border: 0;
   background: none;
   padding: 8px 14px;
-  min-height: 42px;
-  border-bottom: 3px solid transparent;
-  font-weight: 600;
-  color: var(--muted);
+  min-height: 48px;
+  font-family: var(--font-round);
+  font-weight: 700;
+  color: var(--on-band-2);
 }
 
 .side-tab.on {
-  color: var(--fg);
-  border-bottom-color: var(--fg);
+  color: var(--paper);
+}
+
+.side-tab.on::after {
+  content: '';
+  position: absolute;
+  left: 10px;
+  right: 10px;
+  bottom: 6px;
+  height: 4px;
+  border-radius: 999px;
+  background: var(--mustard);
 }
 
 .side-tabs-end {
   margin-left: auto;
   display: flex;
   align-items: center;
-  padding-bottom: 4px;
+  padding-bottom: 6px;
+}
+
+.side-tabs .account-button {
+  color: var(--paper);
+}
+
+/* 色帶上的頭像用芥子黃底，和靛藍分得開 */
+.side-tabs .account-button .avatar {
+  background: var(--mustard);
+  color: var(--ink);
+  font-family: var(--font-round);
+  font-weight: 900;
 }
 
 /* 頭像選單的按鈕：頭像加小箭頭，44px 高 */
@@ -2496,6 +2618,8 @@ button.edited {
   flex: 1;
   min-height: 0;
   overflow-y: auto;
+  /* Windows 的捲軸：內容長短不同的分頁切換時寬度不跳（§13.1） */
+  scrollbar-gutter: stable;
 }
 
 /* ---------- 時間軸和地圖共用的編號 ---------- */
@@ -2563,20 +2687,73 @@ button.edited {
 /* 篩選標籤（AI 套的或探索留下的）：浮在日期列下面，可以一個一個取消 */
 /* ---------- 詳情（T15m 重新設計）：上方一列、標題、分頁 ---------- */
 
+/* 網頁詳情彈窗的頂端列（第九輪 §14.1）：照片頂到彈窗邊，「‹ 上一個」和 ✕ 浮在照片上（列本身高 0 空間：往下負 margin 疊在照片上）；
+   一直黏在頂端，捲過照片（.stuck）才有白底，沒有上一個時左邊露出這個點的名字 */
 .detail-bar {
+  position: sticky;
+  top: 0;
+  z-index: 4;
   display: flex;
   align-items: center;
-  gap: 6px;
-  padding: 8px 0 2px;
+  gap: 8px;
+  height: 56px;
+  margin: 0 -14px -56px;
+  padding: 0 10px;
+  pointer-events: none;
+  transition: background 0.15s;
 }
 
+.detail-bar > * {
+  pointer-events: auto;
+}
+
+.detail-bar.stuck {
+  background: var(--paper);
+  box-shadow: 0 1px 0 var(--line);
+}
+
+.detail-bar-name {
+  flex: 1 1 auto;
+  min-width: 0;
+  padding-left: 4px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-weight: 700;
+  visibility: hidden;
+}
+
+.detail-bar.stuck .detail-bar-name {
+  visibility: visible;
+}
+
+/* 「‹ 上一個的名字」（第八輪 §13.3 第 3 點）：照片左上的白色膠囊，一路退回，名字太長就省略 */
 .detail-back {
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+  min-width: 0;
+  max-width: 70%;
+  height: 36px;
   border: 0;
-  background: none;
-  padding: 4px 8px 4px 0;
-  min-height: 36px;
-  font-weight: 600;
-  color: var(--fg);
+  border-radius: 999px;
+  background: var(--veil);
+  box-shadow: 0 1px 4px var(--shade-1);
+  padding: 0 14px 0 8px;
+  font: inherit;
+  font-weight: 700;
+  color: var(--indigo);
+  cursor: pointer;
+}
+
+.detail-bar.stuck .detail-back {
+  box-shadow: none;
+  background: var(--paper);
+}
+
+.detail-back-name {
+  overflow: hidden;
+  text-overflow: ellipsis;
   white-space: nowrap;
 }
 
@@ -3145,6 +3322,23 @@ button.timetable-row-in {
   gap: 4px 8px;
 }
 
+/* 網頁：往下捲時這一列（日期、問 AI、編輯）黏在右欄上面，和手機的 .m-dayhead 一樣（第十輪）；
+   編輯中改成編輯條（planning-bar）黏著，「完成」一直看得到 */
+.layout.desktop .day-panel:not(.editing) .day-nav {
+  position: sticky;
+  top: 0;
+  z-index: 5;
+  margin: -8px -12px 0;
+  padding: 8px 12px 6px;
+  background: var(--paper);
+}
+
+.layout.desktop .day-panel.editing .planning-bar {
+  position: sticky;
+  top: 0;
+  z-index: 5;
+}
+
 .day-nav h3 {
   display: flex;
   align-items: center;
@@ -3189,7 +3383,8 @@ button.timetable-row-in {
   list-style: none;
   margin: 8px 0 0;
   padding: 6px 0 0;
-  border-top: 1px solid var(--line);
+  border-top: 1px dashed var(--line);
+  font-size: 0.875rem;
   color: var(--fg);
 }
 
@@ -3267,29 +3462,34 @@ button.timetable-row-in {
   gap: 4px;
 }
 
-.leg-step-wait {
-  display: inline-block;
-  margin-left: 6px;
-  padding: 0 6px;
-  font-size: 0.75rem;
+/* 等車、轉乘：站名下面淡黃底的一列（§13.6） */
+.leg-step-wait-row {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  width: fit-content;
+  max-width: 100%;
+  margin-top: 4px;
+  padding: 2px 8px;
+  border-radius: 14px;
+  background: var(--mustard-wash);
+  color: var(--mustard-ink);
+  font-size: 0.8125rem;
   font-weight: 500;
-  color: var(--warn);
-  background: var(--warn-bg);
-  border: 1px dashed var(--warn-line);
-  border-radius: 999px;
 }
 
 /* 搭車那一行的膠囊：點了在地圖那側開班次表；編輯中裡面是班次下拉 */
 .leg-ride {
+  --ride-c: var(--indigo);
   display: inline-flex;
   align-items: center;
   gap: 6px;
   max-width: 100%;
   padding: 3px 8px 3px 4px;
-  border: 1px solid var(--teal-line);
+  border: 1.5px solid var(--ride-c);
   border-radius: 999px;
-  background: var(--teal-wash);
-  color: var(--teal);
+  background: var(--paper);
+  color: var(--ride-c);
   font: inherit;
   font-weight: 600;
   text-align: left;
@@ -3316,7 +3516,7 @@ button.timetable-row-in {
 
 .leg-ride-more {
   font-weight: 400;
-  color: var(--teal);
+  color: var(--ink-2);
 }
 
 button.leg-ride-more {
@@ -3534,9 +3734,10 @@ button.leg-ride-more {
   font-variant-numeric: tabular-nums;
 }
 
-/* 到了要等：交通卡下面、下一張資料卡上面，黃色虛框 */
+/* 到了要等：交通卡下面、下一張資料卡上面，黃色虛框；左邊和交通卡切齊（第九輪 §14.2，同 ui.css 的 .ll-li） */
 .tl-wait-row {
   margin: 4px 0;
+  padding: 0 4px 0 calc(var(--ll-axis) + 22px);
 }
 
 .tl-wait {
@@ -3730,4 +3931,21 @@ button.cand-up:disabled {
 
 .account-button svg {
   transform: rotate(90deg);
+}
+
+/* 網頁版用手指操作（iPad 橫拿，§1 平板）：拖曳把手、地圖縮放鈕至少 44px；滑鼠照舊 */
+@media (pointer: coarse) {
+  .layout.desktop .tc-li.editing,
+  .layout.desktop .tl-axis.in-planning {
+    --tc-grip: var(--tap);
+    --ll-grip: var(--tap);
+  }
+  .layout.desktop .maplibregl-ctrl-group button,
+  .layout.desktop .detail-close {
+    width: var(--tap);
+    height: var(--tap);
+  }
+  .layout.desktop .detail-back {
+    height: var(--tap);
+  }
 }

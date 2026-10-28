@@ -1,6 +1,6 @@
 import { useMemo, useState } from 'react';
 import { photoCandidates } from '../lib/photos.ts';
-import { TYPE_COLORS, TYPE_ICON_NAMES } from '../lib/typeStyle.ts';
+import { TYPE_ICON_NAMES, typeSwatch } from '../lib/typeStyle.ts';
 import { Icon } from './Icon.tsx';
 import type { Place } from '../data/types.ts';
 
@@ -29,7 +29,7 @@ export function Photo({ place, index = 0, width = 800, className, showName, only
   const url = candidates[failed];
   if (!url) {
     return (
-      <div className={`photo photo-fallback ${className ?? ''}`} style={{ background: TYPE_COLORS[place.type] }} data-testid="photo-fallback">
+      <div className={`photo photo-fallback ${className ?? ''}`} style={typeSwatch(place.type)} data-testid="photo-fallback">
         <span className="photo-fallback-icon">
           <Icon name={TYPE_ICON_NAMES[place.type]} size={24} />
         </span>

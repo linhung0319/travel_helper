@@ -352,7 +352,7 @@ test('詳情：整頁、返回後捲動位置不變', async ({ page }) => {
   expect((await detail.getByTestId('detail-dislike').boundingBox())!.height).toBeGreaterThanOrEqual(44);
   await expect(detail.getByTestId('detail-add').getByTestId('add-to-day')).toBeVisible(); // 動作列的主要按鈕，從哪打開都有
   // 分頁：簡介、交通、評論、留言
-  for (const t of ['intro', 'transport', 'reviews', 'comments']) await expect(detail.getByTestId(`detail-tab-${t}`)).toBeVisible();
+  for (const t of ['intro', 'location', 'reviews', 'comments']) await expect(detail.getByTestId(`detail-tab-${t}`)).toBeVisible();
   // 探索沒有被卸載，只是蓋住
   await expect(page.getByTestId('m-feed')).toHaveCount(1);
   expect(await scrollsSideways(page)).toBe(false);
@@ -390,7 +390,7 @@ test('詳情：有問 AI、點小地圖跳到行程', async ({ page }) => {
   await expect(detail).toHaveCount(0);
   await page.evaluate((id) => (window as any).__thMobile.getState().openPlace(id, 'ai'), id);
 
-  await detail.getByTestId('detail-tab-transport').click();
+  await detail.getByTestId('detail-tab-location').click();
   const mini = detail.getByTestId('m-detail-minimap');
   await expect(mini).toBeVisible();
   await mini.click();
@@ -499,10 +499,10 @@ test('行程：卡片有縮圖和編號', async ({ page }) => {
   }
   // 出發是 0
   await expect(cards.first().getByTestId('trip-card-no')).toHaveText('0');
-  // 卡片之間的交通一行，右邊是「地圖 ↗」
+  // 卡片之間的交通卡，右邊是「map ↗」（§13.6）
   const leg = page.getByTestId('m-leg').first();
   await expect(leg).toBeVisible();
-  await expect(leg.getByTestId('leg-maps')).toHaveText('地圖 ↗');
+  await expect(leg.getByTestId('leg-maps')).toHaveText('map ↗');
   // 標題、✨、✏️ 編輯、摘要、時間條
   await expect(page.getByTestId('m-trip-title')).toContainText('2/3週三 · 第 2 天');
   await expect(page.getByTestId('m-trip-ai')).toBeVisible();
@@ -916,6 +916,9 @@ test('編輯：重疊卡 ‹ n/m › 換著看、⋯ 的主要、拿出作用在
   const lunch = mCard(page, 'i-7');
   const sw = lunch.getByTestId('m-option-switch');
   await expect(sw).toContainText('1/2');
+  // 合併卡：後面斜斜地疊一張（第八輪 §13.5，手機也改）
+  await expect(lunch).toHaveClass(/stacked/);
+  await expect(lunch.getByTestId('trip-card-back')).toHaveCount(1);
   for (const b of ['option-prev', 'option-next']) expect((await sw.getByTestId(b).boundingBox())!.height).toBeGreaterThanOrEqual(44);
   await expect(lunch.getByTestId('trip-card-name')).toContainText('漣');
   // 看主卡：👑 主要不能點
@@ -1231,21 +1234,14 @@ test('手機探索有清單：切過去出現 88px 的列，❤ 位置固定，�
 
 // ---------- 第七輪 Task 6：想去分三段 ----------
 
-test('想去：三段、已排預設收合、跳轉', async ({ page }) => {
+test('想去：三段、已排預設收合；沒有跳轉晶片，數字在段落標題（§13.7）', async ({ page }) => {
   await ready(page);
   await likeMany(page, 12);
   await goTab(page, 'wish');
   await expect(page.getByTestId('wish-section-scheduled')).toHaveAttribute('aria-expanded', 'false');
   await expect(page.getByTestId('wish-section-candidate')).toHaveAttribute('aria-expanded', 'true');
-  await page.getByTestId('wish-jump-candidate').click();
-  await expect(page.getByTestId('wish-jump-candidate')).toHaveAttribute('aria-current', 'true');
-  await expect
-    .poll(async () => {
-      const jump = await page.getByTestId('wish-jump-candidate').boundingBox();
-      const head = await page.getByTestId('wish-section-candidate').boundingBox();
-      return head!.y - (jump!.y + jump!.height);
-    })
-    .toBeLessThan(24);
+  await expect(page.locator('[data-testid^="wish-jump-"]')).toHaveCount(0);
+  await expect(page.getByTestId('wish-section-count-candidate')).toHaveText(/^· [0-9]+$/);
   expect(await scrollsSideways(page)).toBe(false);
 });
 
@@ -1255,7 +1251,7 @@ test('想去：每段先 8 個，再顯示 15 個', async ({ page }) => {
   await goTab(page, 'wish');
   // 類型是一次一類：用景點
   const rows = page.locator('[data-section="unscheduled"] [data-testid="m-wish-item"]');
-  const total = Number(((await page.getByTestId('wish-jump-unscheduled').locator('.ui-chip-count').textContent()) ?? '').trim());
+  const total = Number(((await page.getByTestId('wish-section-count-unscheduled').textContent()) ?? '').replace('·', '').trim());
   expect(total).toBeGreaterThanOrEqual(12);
   await expect(rows).toHaveCount(8);
   await page.getByTestId('wish-more-unscheduled').click();
@@ -1304,13 +1300,14 @@ test('想去：第一次打開，第一列自己滑一下提示，只提示一�
   await expect.poll(() => page.evaluate(() => localStorage.getItem('th.wishSwipeHint'))).toBe('1');
 });
 
-test('想去：打開時是「全部」，數字是各類加起來；記住選的類型', async ({ page }) => {
+test('想去：打開時是「全部」；上面沒有「想去」標題，類型晶片和探索一樣（第十輪）；記住選的類型', async ({ page }) => {
   await ready(page);
+  await goTab(page, 'explore');
+  const explore = await page.getByTestId('m-feed-filters').locator('.ui-chip').allTextContents();
   await goTab(page, 'wish');
   await expect(page.getByTestId('m-wish-type-all')).toHaveAttribute('aria-pressed', 'true');
-  const n = async (id: string) => Number(((await page.getByTestId(id).textContent()) ?? '').replace(/\D/g, ''));
-  const sum = (await n('m-wish-type-restaurant')) + (await n('m-wish-type-lodging')) + (await n('m-wish-type-spot'));
-  expect(await n('m-wish-type-all')).toBe(sum);
+  await expect(page.getByTestId('m-wish').getByRole('heading', { name: '想去', exact: true })).toHaveCount(0);
+  expect(await page.getByTestId('m-wish').locator('.fb-types .ui-chip').allTextContents()).toEqual(explore);
   await page.getByTestId('m-wish-type-spot').click();
   await goTab(page, 'trip');
   await goTab(page, 'wish');
@@ -1330,13 +1327,13 @@ test('想去：照片牆的卡片有誰想去，沒有留言也沒有加到某�
 
 // ---------- 第七輪 Task 7：詳情的頂端列、複製日文名、留言分頁 ----------
 
-test('詳情分頁：簡介、交通、評論、留言（兩邊同一組 testid）', async ({ page }) => {
+test('詳情分頁：簡介、位置、評論、留言（兩邊同一組 testid）', async ({ page }) => {
   await ready(page);
   await page.evaluate(() => (window as any).__thMobile.getState().openPlace('ise-naiku', 'explore'));
   const detail = page.getByTestId('m-detail');
   const tabs = detail.locator('[data-testid^="detail-tab-"]');
-  await expect(tabs).toHaveText([/簡介/, /交通/, /評論/, /留言/]);
-  await detail.getByTestId('detail-tab-transport').click();
+  await expect(tabs).toHaveText([/簡介/, /位置/, /評論/, /留言/]);
+  await detail.getByTestId('detail-tab-location').click();
   await expect(detail).toContainText('伊勢市宇治館町1');
 });
 
@@ -1403,7 +1400,7 @@ test('詳情：想去 N 點了看是誰；編輯中從行程打開有「排進�
 
 // ---------- 第七輪 Task 8：卡片原地展開、面板頭固定、編輯不拉高、交通面板、問 AI ----------
 
-test('點時間軸的卡：原地展開，沒有地圖小卡片，再點收起', async ({ page }) => {
+test('點時間軸的卡：原地展開（只放介紹，第九輪不放照片），沒有地圖小卡片，再點收起', async ({ page }) => {
   await ready(page);
   await pickDay(page, '2027-02-03');
   const card = page.locator('[data-testid="m-card"][data-item="i-2"]');
@@ -1411,7 +1408,8 @@ test('點時間軸的卡：原地展開，沒有地圖小卡片，再點收起',
   await card.getByTestId('trip-card').click();
   const open = card.getByTestId('trip-card-expand');
   await expect(open).toBeVisible();
-  await expect(open.locator('.tc-photo')).toHaveCount(3);
+  await expect(open.getByTestId('trip-card-intro')).not.toBeEmpty();
+  await expect(open.locator('img')).toHaveCount(0);
   await expect(page.getByTestId('preview-card')).toHaveCount(0);
   // 面板高度不變，選中那個點，地圖上看得到它（看得到就不動）
   await expect(page.getByTestId('m-sheet')).toHaveAttribute('data-snap', 'mid');
@@ -1534,7 +1532,7 @@ test('詳情的「在地圖上看」：排在某天的點 → 選那天、選中
   await ready(page);
   await page.evaluate(() => (window as any).__thMobile.getState().openPlace('shima-la-mer', 'trip'));
   const detail = page.getByTestId('m-detail');
-  await detail.getByTestId('detail-tab-transport').click();
+  await detail.getByTestId('detail-tab-location').click();
   await detail.getByTestId('m-detail-minimap').click();
   await expect(page.getByTestId('m-detail')).toHaveCount(0);
   await expect(page.getByTestId('m-day-2027-02-03')).toHaveAttribute('aria-current', 'true');
@@ -1552,7 +1550,7 @@ test('詳情的「在地圖上看」：沒排的點 → 整趟、選中；換分
   });
   await page.evaluate((x) => (window as any).__thMobile.getState().openPlace(x, 'explore'), id);
   const detail = page.getByTestId('m-detail');
-  await detail.getByTestId('detail-tab-transport').click();
+  await detail.getByTestId('detail-tab-location').click();
   await detail.getByTestId('m-detail-minimap').click();
   await expect(page.getByTestId('m-tab-trip')).toHaveAttribute('aria-current', 'page');
   await expect(page.getByTestId('m-day-all')).toHaveAttribute('aria-current', 'true');

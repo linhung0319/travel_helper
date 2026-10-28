@@ -67,12 +67,12 @@ export function DayPicker({ placeId, onClose, testId = 'day-picker' }: { placeId
   );
 }
 
-/** 卡片底部的「加到某天」按鈕，點了開日期格 */
-export function AddToDay({ placeId }: { placeId: string }) {
+/** 卡片底部的「加到某天」按鈕，點了開日期格（kind：詳情是主要按鈕，探索、想去展開的卡是次要的，§14.3） */
+export function AddToDay({ placeId, kind = 'primary', testId = 'add-to-day' }: { placeId: string; kind?: 'primary' | 'secondary'; testId?: string }) {
   const [open, setOpen] = useState(false);
   return (
     <div className="add-to-day">
-      <Button kind="primary" size="sm" icon="calendar" aria-expanded={open} onClick={() => setOpen(!open)} data-testid="add-to-day">
+      <Button kind={kind} size="sm" icon="calendar" aria-expanded={open} onClick={() => setOpen(!open)} data-testid={testId}>
         加到某天
       </Button>
       {open && createPortal(<DayPicker placeId={placeId} onClose={() => setOpen(false)} />, document.body)}

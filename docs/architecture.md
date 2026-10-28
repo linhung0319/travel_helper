@@ -94,7 +94,8 @@ travel_helper/
 | `hoveredId` | `string \| null` | 地圖上要閃的點（滑鼠移過去、圖片牆點了、聊天室的地點標籤） |
 | `previewId` | `string \| null` | 小卡片 |
 | `detailId` | `string \| null` | 詳情面板（車站的詳情裡有時刻表） |
-| `exploreTarget` | `{ id, seq } \| null` | 電腦版點了地圖上的點：探索清單捲到那張卡片（`seq` 讓同一點再點也會捲） |
+| `detailAt`、`detailHistory` | `'map' \| 'side' \| null`、`string[]` | 網頁的詳情彈窗在哪裡（第八輪 §13.3：map＝蓋在地圖右側、side＝蓋住右欄）和原地換過的上一個…（「‹」一路退回，`detailBack`）；`openDetail(id, from, tab, at)` 開著時只換內容，`closeDetail` 全部清掉 |
+| `exploreTarget` | `{ id, seq } \| null` | `revealInExplore`：探索清單捲到那張卡片（`seq` 讓同一點再點也會捲）；第八輪起點地圖上的點改開詳情彈窗，不再用它 |
 | `selection` | `string[]` | 「問 AI」選取的點 |
 | `stationTime` | `string \| null` | 車站面板的指定時間（`HH:MM`），null 時用行程排到的時間或 09:00 |
 | `camera` | `{ seq, bbox?, center?, zoom? } \| null` | 叫地圖移動的請求：MapView 看到 `seq` 變了就移過去。使用者自己拖地圖不產生請求，只更新 `view` |
@@ -108,7 +109,7 @@ travel_helper/
 
 ### 手機版的殼、mobileStore、shared（T15m 第六輪，2026-10-25）
 
-- **分界**：`App.tsx` 只在最外層用 `useIsDesktop()`（`DESKTOP_QUERY`，900px）分一次：電腦畫 `web/src/components/` 的三欄，手機畫 `web/src/mobile/MobileApp.tsx`。手機版元件全在 `mobile/`，自己的 `mobile.css`、`chat.css`（class 用 `m-` 開頭）。舊手機版的拉起面板（`sheet`、`setSheet`）第六輪已經從 `store.ts` 刪掉；手機版的分頁、面板高度、整頁都在 `mobileStore`。
+- **分界**：`App.tsx` 只在最外層用 `useIsDesktop()`（`DESKTOP_QUERY`，1100px，第八輪前是 900px）分一次：電腦畫 `web/src/components/` 的三欄，手機畫 `web/src/mobile/MobileApp.tsx`。轉向跨過界線時，`layoutSwitch.ts` 把開著的詳情、展開的卡、分頁帶到另一個版面（第八輪）。手機版元件全在 `mobile/`，自己的 `mobile.css`、`chat.css`（class 用 `m-` 開頭）。舊手機版的拉起面板（`sheet`、`setSheet`）第六輪已經從 `store.ts` 刪掉；手機版的分頁、面板高度、整頁都在 `mobileStore`。
 - **殼**：底部 5 個分頁（探索、想去、行程、AI、我）。`MapView` 一直掛著，不在行程分頁時用 CSS（`visibility: hidden`）藏起來，不卸載（T12 的地圖指令、e2e 的 `ready()` 都要用到）。詳情、討論、預約是蓋在最上面的整頁，一次只有一層。
 - **`mobile/mobileStore.ts`**（vanilla Zustand，dev 時掛在 `window.__thMobile`）：手機版自己的畫面狀態，不放進 `store.ts`——現在的分頁（`tab`）、行程面板的高度（`tripSnap`：low／mid／high，`setSnap`）、行程選到的卡（`focused`，`focusItem` 設定）、編輯中打開的「⋯」動作面板（`actions`）、整頁詳情（`detail`）和討論／預約（`page`）、行程頁的半屏聊天（`chatSheet`）、探索的篩選、想去的設定。打開整頁（詳情或討論／預約）時推一筆 history：手機的返回鍵關掉那一頁，頁面的「‹」也是退回那一筆（兩種整頁互換時共用一筆）。
 - **`uiStore.chatDraft`**：「問 AI」的草稿 `{ seq, text, placeId, date, from }`，由 `askAboutPlace(placeId, text, from)` 寫入並把地點放進選取；畫面怎麼切由各平台的 store 監聽 `seq`：電腦版放進左邊的聊天欄；手機版從行程打開的詳情回行程、打開半屏聊天，其他地方打開的跳到 AI 分頁。AI 的內容先是 `mobile/chatDemo.ts` 的假訊息，T16m 接上。
@@ -161,7 +162,7 @@ UI 的天數分頁、篩選標籤的 ✕、「跳到區域」、詳情的「問 
 T15m 先用假後端把畫面做出來，T15 只換後端的實作，畫面的程式不改。
 
 - **`web/src/backend/`：後端的介面**（`types.ts` 的 `Backend`）。形狀照 §4「資料 API」：行程（`version`、409 衝突）、快照、投票（❤️ 就是想去）、留言（地點或某一天）、候選（某天的候選）、修改紀錄、成員、`sync`。2026-10-24 拿掉建議、改成想去分頁和候選（設計見 `docs/superpowers/specs/2026-10-24-wishlist-planning-design.md`）；留言、候選 Worker 還沒有，T15 要補（§3.6）。錯誤是 `BackendError`（HTTP 狀態＋`error`、`message`、`details`）。
-  - `mock.ts`：假後端，規則和 Worker 一樣（只有寫的人能改刪、軟刪除、改行程前自動存快照、version 不對回 409），資料存在記憶體加 localStorage（`travel-helper:mockBackend:v2`）。種子資料在 `dev-fixtures/seed.ts`（4 位假家人、排了一半的行程：有時段備案、分組、空檔）。
+  - `mock.ts`：假後端，規則和 Worker 一樣（只有寫的人能改刪、軟刪除、改行程前自動存快照、version 不對回 409），資料存在記憶體加 localStorage（`travel-helper:mockBackend:v5`，種子資料改了就換 key）。種子資料在 `dev-fixtures/seed.ts`（4 位假家人、排了一半的行程：有時段備案、分組用的合併卡（2/10）、空檔）。
   - `index.ts`：dev server 用假後端；正式 build 先用「還沒接上」的版本（只能看、寫入都回 503）。**T15 在這裡換成呼叫 API 的實作**。假後端、種子資料、dev 選單都用 `import.meta.env.DEV` 包起來，不會進 `dist/`。
 - **`web/src/sharedStore.ts`（純邏輯）／`appShared.ts`（網站共用的一份）：大家共用的資料**。
   - 狀態：`me`、`members`、`version`（手上那份行程的）、`updatedBy`、`updatedAt`、`snapshots`、`votes`、`comments`、`wishes`、`edits`、`saving`、`conflict`（409 之後不能再改，按「重新載入」才清掉）、`toast`、`lastSync`。
@@ -175,7 +176,7 @@ T15m 先用假後端把畫面做出來，T15 只換後端的實作，畫面的�
 - **交通的時間和班次**：引擎不加緩衝（第四輪拿掉 `config.buffer`、`Leg.bufferMinutes`；舊資料的 `TravelSpec.bufferMinutes` 忽略），`leg.arrive`＝出發＋`minutes`，等車含在 `minutes` 裡、另外寫在 `waitMinutes`（前一站的時間不變）。計程車用 `EngineData.driveMinutes`（OSRM 開車時間），沒有時用距離 ÷ `taxi.kmPerHour`（`taxi.overheadMinutes` 預設 0）。搭車的段落 `Leg.trip` 是用的那班（`TripRef`），`prevTrip`／`nextTrip` 是同一對上下車點的前一班、後一班，`transitAvailable` 是出發後時刻表裡還有沒有這兩點之間的班次（不管等多久；false 時編輯的「大眾運輸」灰掉）。每段交通可以設定（`TravelSpec`：`mode`（含 `transit`：一定搭大眾運輸）、`minutes`、`trip`（選定的班次；`trip.from`／`to` 和這段的起訖點不同時當作沒選，趕不上照樣用、警告 `missed-trip`，時間照走到上車點後搭同一程算）、`note`，都可省略；一天最後回住宿的那段放在 `ItineraryDay.returnTravel`，航班在 `FlightItem.travel`）：`setLegTravel`／`getLegTravel`。標籤是 `VisitItem.tags`（`setTags`；舊的 `meal`、`dining` 用 `upgradeItinerary` 轉），用餐標籤在時間軸上是 `TimelineEntry.mealTags`，引擎不再自動產生用餐的空檔。
 - **預約筆記的假後端**（第三輪）：`Backend.listReservations()`、`putReservation({ date, placeId, status, note?, nights? })`；`Reservation` 是 `{ date, placeId, status: 'pending' | 'booked' | 'skip', note, nights, updatedBy, updatedAt }`，同一個 `(date, placeId)` 只有一筆（住宿的 `date` 是入住那晚），`putReservation` 整筆取代，`updatedBy`、`updatedAt` 由後端填。`sync` 多回一個 `reservations` 時間戳，`sharedStore.reservations` 跟著換；`putReservation` 在畫面上先改、失敗退回。整趟的留言是 `target` 為 `TRIP_TARGET`（`'trip'`）的留言，和地點（ID）、某一天（`day:<日期>`）並列。假後端的 localStorage key 升到 `travel-helper:mockBackend:v4`。狀態和時間軸 tag 的對應在 `lib/reservations.ts`（住宿換了入住日、項目移到別天就回到未訂位）。
 - **地圖**（`lib/overlays.ts` 的 `itineraryFeatures`、`placeBadges`）：每天顏色的路線（直線，照時間軸的順序）、選了某一天時那天的交通標籤、時段備案的備選是那天顏色的空心圈、每個點的 ❤️ 數（放大到 10 以上）。
-- **電腦版三欄**（T15m 版面調整，參考 puma.taipei/heart-island）：`App.tsx` 的 `DesktopLayout` 是聊天室｜地圖｜右欄。地圖上只有縮放鈕（第七輪拿掉浮動列）；日期列（`shared/ui/DayStrip`）和頭像選單（討論、預約、下載、切換使用者）在右欄頂端；右欄是 `SidePanel.tsx`，分頁用 `appStore.mode`，從探索、想去打開的詳情在右欄，從行程打開的浮在地圖上（`DetailFloat`）。探索是 `Explore.tsx`（清單邏輯在 `lib/explore.ts`），類型寫在 `filter.types`，從探索切回行程時拿掉（`showItinerary`）。點地圖上的點走 `showInExplore`：切到探索、換成那一類（目前的篩選看不到它就只留類型和地區）、捲到卡片；再點卡片才開詳情。詳情是兩邊共用的 `shared/ui/PlaceDetail`（簡介、交通、評論、留言四個分頁）。探索上方的類型分頁是 sticky；篩選捲出畫面時（看 `.side-body` 的捲動）收合成一列摘要，疊在清單上、不推動清單。
+- **電腦版三欄**（T15m 版面調整，參考 puma.taipei/heart-island）：`App.tsx` 的 `DesktopLayout` 是聊天室｜地圖｜右欄。地圖上只有縮放鈕（第七輪拿掉浮動列）；日期列（`shared/ui/DayStrip`）和頭像選單（討論、預約、下載、切換使用者）在右欄頂端；右欄是 `SidePanel.tsx`，分頁用 `appStore.mode`，從探索、想去打開的詳情在右欄，從行程打開的浮在地圖上（`DetailFloat`）。探索是 `Explore.tsx`（清單邏輯在 `lib/explore.ts`），類型寫在 `filter.types`，從探索切回行程時拿掉（`showItinerary`）。點地圖上的點走 `showInExplore`：切到探索、換成那一類（目前的篩選看不到它就只留類型和地區）、捲到卡片；再點卡片才開詳情。詳情是兩邊共用的 `shared/ui/PlaceDetail`（簡介、位置、評論、留言四個分頁；第八輪前「位置」叫「交通」）。探索上方的類型分頁是 sticky；篩選捲出畫面時（看 `.side-body` 的捲動）收合成一列摘要，疊在清單上、不推動清單。
 - **問 AI**（`components/askAi.ts`）：電腦版的探索卡片、詳情標題用 HTML 的拖放（`dragPlaceProps`，資料型別 `application/x-travel-place`），放到聊天欄（`dropAiProps`，`data-drop-ai`）就 `commands.select(id)` 並提示「已帶進聊天」。電腦版詳情標題的「＋ 問 AI」（`toggleAskAi`）也是加進選取。手機沒有拖曳：整頁詳情的「✨ 問 AI」（`AskAiBox`）送出後，從行程打開的回到行程開半屏聊天、其他的跳到 AI 分頁（`mobileStore`；編輯中從行程打開的詳情不畫問 AI，因為編輯中半屏聊天藏起來）。地圖上的點不做拖曳（和拖地圖衝突）。T16 的聊天室把選取帶進對話，AI 就知道要問哪幾個點（例如兩點的距離）；之後再加輸入框的 `@` 選地點、自動帶入正在看的點。
 - **地圖的點**（`MapView.tsx`、`mapIcons.ts`）：照片標記拿掉，改成 Google Maps 那種類別圖標（canvas 畫的 `icon-<type>`），`ICON_ZOOM`（12）以下是小點。選了某一天，那天的點換成編號圓（`places-mark`），編號由 `lib/planView.ts` 的 `stopMarks` 照時間軸算（住宿「宿」、機場「機」、其他 1、2、3…；分組先編各組再編會合點），時間軸用同一份；那天的路線加方向箭頭（`itinerary-arrow`，分組時每組各一條）。選中的點（`detailId`，或探索分頁的 `exploreTarget`）畫成水滴圖釘（`pin-<type>`、`places-pin` 圖層），原本的圖標藏起來；只有小卡片時才用圓框（`places-focus`）。點的時候查 `places-circle`、`places-icon`、`places-mark`、`places-pin` 四層。探索分頁時不因為「不在那天」變淡。
 - **`data-day` 只給天數分頁用**（e2e 靠它找分頁）；其他選日子的按鈕用 `data-pick-day`、`data-overview-day`。

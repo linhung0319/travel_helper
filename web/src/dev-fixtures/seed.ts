@@ -22,7 +22,7 @@ const visit = (id: string, places: string | string[], extra: Partial<VisitItem> 
 
 const day = (date: string, lodging: string | null, items: ItineraryItem[], note: string | null = null) => ({ date, lodging, lodgingMeals: null, start: null, note, items });
 
-/** 排了一半的行程：有時段備案（2/5 午餐）、分組（2/10）、空檔、沒排的天 */
+/** 排了一半的行程：有時段備案（2/5 午餐）、分組用的合併卡（2/10）、空檔、沒排的天 */
 export function seedItinerary(): Itinerary {
   return {
     format: 'itinerary-v1',
@@ -58,15 +58,8 @@ export function seedItinerary(): Itinerary {
       day('2027-02-10', 'ise-momijiken', [
         visit('i-14', 'ise-geku'),
         visit('i-15', 'ise-naiku'),
-        {
-          id: 's-1',
-          type: 'split',
-          groups: [
-            { id: 'g-1', name: '長輩組', size: 7, elders: 5, kids: 0, items: [visit('i-16', 'ise-isuzu-chaya-honten', { options: [{ place: 'ise-isuzu-chaya-honten', stayMinutes: 60 }] })] },
-            { id: 'g-2', name: '小孩組', size: 8, elders: 0, kids: 4, items: [visit('i-17', 'ise-akafuku-honten'), visit('i-18', 'ise-tofuan-yamanaka')] },
-          ],
-          meet: { place: 'ise-oharaimachi', time: '15:00' },
-        },
+        // 分組不另外做（interaction-design §6、§14.4）：和備案一樣是一張合併卡，卡上寫誰去哪家
+        visit('i-16', ['ise-isuzu-chaya-honten', 'ise-akafuku-honten', 'ise-tofuan-yamanaka'], { note: '分兩組：長輩在五十鈴茶屋坐著休息，小孩組去赤福、豆腐庵，15:00 在おはらい町會合' }),
         visit('i-19', 'ise-mukai-sakenomise', { start: '18:00', tags: ['dinner'] }),
       ]),
       day('2027-02-11', 'ise-momijiken', []),

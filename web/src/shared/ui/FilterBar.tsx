@@ -59,9 +59,9 @@ function SortMenu({ model }: { model: FilterModel }) {
   }, [open]);
   return (
     <span className="fb-sort" ref={ref}>
-      <Chip on={open} onClick={() => setOpen(!open)} testId="sort-open">
+      <Chip on={open} onClick={() => setOpen(!open)} testId="sort-open" title={`排序：${EXPLORE_SORT_LABELS[model.sort]}`}>
         <Icon name="sort" size={20} />
-        {EXPLORE_SORT_LABELS[model.sort]}
+        <span className="fb-label">{EXPLORE_SORT_LABELS[model.sort]}</span>
       </Chip>
       {open && (
         <div className="fb-menu" role="menu" aria-label="排序" data-testid="sort-menu">
@@ -145,9 +145,9 @@ export function FilterBar({ source, surface, model, count, typeRow }: { source: 
             </button>
           )}
         </label>
-        <Chip on={n > 0} onClick={() => setOpen(true)} testId="filter-open">
+        <Chip on={n > 0} onClick={() => setOpen(true)} testId="filter-open" title="篩選">
           <Icon name="sliders" size={20} />
-          篩選
+          <span className="fb-label">篩選</span>
           {n > 0 && (
             <span className="fb-n" data-testid="filter-count">
               {n}

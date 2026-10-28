@@ -1,6 +1,6 @@
 // 想去的清單（網頁右欄、手機想去分頁共用，設計 §5.3）：按「排了沒有」分三段（還沒排、已是候選、已排進行程）。
-// 最上面一排跳轉晶片（還沒排 N・已是候選 N・已排 N），點了捲到那一段，捲動時現在那段 aria-current；
-// 段落標題黏在清單頂端、點了收合（「已排進行程」預設收合，狀態記在 shared/wishPrefs.ts → localStorage）；
+// 第八輪 §13.7 拿掉了最上面那排跳轉晶片：每段的數字在段落標題上（「還沒排 · 6」）；
+// 段落標題黏在篩選列下面、點了收合（「已排進行程」預設收合，狀態記在 shared/wishPrefs.ts → localStorage）；
 // 每段先顯示 8 個，下面「再顯示 15 個」；候選、已排按日期分小段（2/5（五）· 3）。分段的計算在 shared/wishSections.ts。
 // 列是 PlaceRow 的變體：第二行是誰想去（頭像＋名字）或候選／已排膠囊＋頭像，第三行是最新一則留言的第一句（點了開詳情的留言分頁）。
 // 網頁：列右邊 ❤ 加日曆鈕（wish-add，開 DayPicker 小彈窗 wish-add-pop）。手機：列可以左滑露出「加到某天」（wish-swipe-add），
@@ -23,12 +23,12 @@ import type { Place } from '../../data/types.ts';
 import { Highlights, PlaceRow, useDayStatus, type DayStatus } from './PlaceRow.tsx';
 import { PlaceTile } from './PlaceTile.tsx';
 import { PlaceWall } from './PlaceWall.tsx';
+import { PlaceOpenBody } from './PlaceOpen.tsx';
 import { VoteHeart } from './VoteHeart.tsx';
 
 export type WishSurface = 'desktop' | 'mobile';
 
 const SECTION_LABELS: Record<SectionId, string> = { unscheduled: '還沒排', candidate: '已是候選', scheduled: '已排進行程' };
-const SECTION_IDS: SectionId[] = ['unscheduled', 'candidate', 'scheduled'];
 const SWIPE_W = 96;
 const HINT_KEY = 'th.wishSwipeHint';
 
@@ -172,11 +172,11 @@ function SwipeRow({ children, hint, onAdd }: { children: ReactNode; hint: boolea
         onPointerUp={end}
         onPointerCancel={end}
         onClickCapture={(e) => {
-          // 剛拖完放手的那一下不算點；露出按鈕時點列只是收回去
+          // 剛拖完放手的那一下不算點；按鈕整個露出來時點列只是收回去（提示動畫滑到一半時點＝照常打開）
           if (moved.current) {
             e.stopPropagation();
             e.preventDefault();
-          } else if (offset !== 0) {
+          } else if (offset === -SWIPE_W) {
             e.stopPropagation();
             e.preventDefault();
             setOffset(0);
@@ -201,10 +201,13 @@ interface ItemProps {
   lastComment: string | undefined;
   onOpen: () => void;
   onOpenComments: () => void;
+  /** 網頁：原地展開了（below 是展開的內容） */
+  open?: boolean;
+  below?: ReactNode;
 }
 
 /** 一個點：列（清單）或卡（照片牆） */
-function WishItem({ place, status, section, surface, view, hot, hint, likes, lastComment, onOpen, onOpenComments }: ItemProps) {
+function WishItem({ place, status, section, surface, view, hot, hint, likes, lastComment, onOpen, onOpenComments, open, below }: ItemProps) {
   const [adding, setAdding] = useState(false);
   const mobile = surface === 'mobile';
   const picker = adding && createPortal(<DayPicker placeId={place.id} onClose={() => setAdding(false)} testId={mobile ? 'day-picker' : 'wish-add-pop'} />, document.body);
@@ -220,7 +223,9 @@ function WishItem({ place, status, section, surface, view, hot, hint, likes, las
     hot,
     testId: mobile ? 'm-wish-open' : 'wish-open',
     onOpen,
-    rootProps: mobile ? undefined : { ...dragPlaceProps(place.id), title: '點了看詳情；拖到左邊的聊天室可以問 AI' },
+    rootProps: mobile ? undefined : { ...dragPlaceProps(place.id), title: '點了展開；拖到左邊的聊天室可以問 AI' },
+    open,
+    below,
   };
   if (view === 'photo') return li(<PlaceTile {...common} extra={<Who ids={likes} />} />);
   const extra = (
@@ -262,22 +267,18 @@ function WishItem({ place, status, section, surface, view, hot, hint, likes, las
   return li(mobile ? <SwipeRow hint={hint} onAdd={() => setAdding(true)}>{row}</SwipeRow> : row);
 }
 
-/** 量出黏住的篩選列高度，寫成 CSS 變數 --wl-top／--wl-jump（跳轉列黏在篩選列下面、段落標題黏在跳轉列下面） */
-function useStickyOffsets(root: RefObject<HTMLDivElement | null>, jump: RefObject<HTMLDivElement | null>) {
+/** 量出黏住的篩選列高度，寫成 CSS 變數 --wl-top（段落標題黏在篩選列下面） */
+function useStickyOffsets(root: RefObject<HTMLDivElement | null>) {
   useEffect(() => {
     const el = root.current;
     if (!el) return;
     const bar = el.closest('.explore-panel, .m-wish')?.querySelector<HTMLElement>('.fb-desktop, .fb-mobile');
-    const apply = () => {
-      el.style.setProperty('--wl-top', `${bar ? bar.getBoundingClientRect().height : 0}px`);
-      el.style.setProperty('--wl-jump', `${jump.current ? jump.current.getBoundingClientRect().height : 0}px`);
-    };
+    const apply = () => el.style.setProperty('--wl-top', `${bar ? bar.getBoundingClientRect().height : 0}px`);
     apply();
     const ro = new ResizeObserver(apply);
     if (bar) ro.observe(bar);
-    if (jump.current) ro.observe(jump.current);
     return () => ro.disconnect();
-  }, [root, jump]);
+  }, [root]);
 }
 
 export interface WishListProps {
@@ -288,6 +289,9 @@ export interface WishListProps {
   onOpen: (id: string) => void;
   /** 點最新留言：開詳情的留言分頁 */
   onOpenComments: (id: string) => void;
+  /** 網頁（第八輪 §13.3）：原地展開的那個點；onDetail 是展開後的「詳細資料」。手機不給，點了照舊開整頁詳情 */
+  openId?: string | null;
+  onDetail?: (id: string) => void;
   /** 地圖「指到」或被地圖點到的點（加底色） */
   hotId?: string | null;
   /** 要把這個點露出來（它那段展開、顯示到它） */
@@ -296,7 +300,7 @@ export interface WishListProps {
   revealSeq?: number;
 }
 
-export function WishList({ surface, places, view, onOpen, onOpenComments, hotId, revealId, revealSeq }: WishListProps) {
+export function WishList({ surface, places, view, onOpen, onOpenComments, hotId, revealId, revealSeq, openId = null, onDetail }: WishListProps) {
   const candidates = useShared((s) => s.candidates);
   const itinerary = useData((s) => s.itinerary);
   const likeCount = useLikeCount();
@@ -305,33 +309,14 @@ export function WishList({ surface, places, view, onOpen, onOpenComments, hotId,
   const statusOf = useDayStatus();
   const collapsed = useWishPrefs((s) => s.collapsed);
   const [shown, setShown] = useState<Record<SectionId, number>>({ unscheduled: PAGE_FIRST, candidate: PAGE_FIRST, scheduled: PAGE_FIRST });
-  const [current, setCurrent] = useState<SectionId>('unscheduled');
   // 地圖點到而暫時展開的段落（不改記住的收合狀態）
   const [forced, setForced] = useState<SectionId[]>([]);
   const root = useRef<HTMLDivElement>(null);
-  const jump = useRef<HTMLDivElement>(null);
-  useStickyOffsets(root, jump);
+  useStickyOffsets(root);
 
   const byId = useMemo(() => new Map(places.map((p) => [p.id, p])), [places]);
   const sections = useMemo(() => wishSections(places.map((p) => p.id), candidates, itinerary, likeCount), [places, candidates, itinerary, likeCount]);
   const setCollapsed = (id: SectionId, on: boolean) => wishPrefs.getState().setCollapsed(id, on);
-
-  // 捲動時現在是哪一段：最後一個頂端已經過了跳轉列下緣的段落（任何捲動容器的 scroll 都收得到）
-  useEffect(() => {
-    const onScroll = () => {
-      const el = root.current;
-      const line = (jump.current?.getBoundingClientRect().bottom ?? 0) + 16;
-      if (!el) return;
-      let now: SectionId = 'unscheduled';
-      for (const id of SECTION_IDS) {
-        const s = el.querySelector<HTMLElement>(`[data-section="${id}"]`);
-        if (s && s.getBoundingClientRect().top <= line) now = id;
-      }
-      setCurrent(now);
-    };
-    document.addEventListener('scroll', onScroll, true);
-    return () => document.removeEventListener('scroll', onScroll, true);
-  }, []);
 
   // 地圖點到的點在收合或還沒顯示的段落裡：展開、多顯示到它
   // 只在 revealId（或 revealSeq）變了才做一次；展開只在這次畫面有效，不寫進記住的收合狀態
@@ -356,14 +341,6 @@ export function WishList({ surface, places, view, onOpen, onOpenComments, hotId,
     setCollapsed(id, open);
   };
 
-  const goto = (id: SectionId) => {
-    setForced((f) => f.filter((x) => x !== id));
-    if (collapsed[id]) setCollapsed(id, false);
-    setCurrent(id);
-    // 展開後再捲（收合的段落高度剛長出來）
-    requestAnimationFrame(() => root.current?.querySelector<HTMLElement>(`[data-section="${id}"]`)?.scrollIntoView({ block: 'start' }));
-  };
-
   /** 這一段先顯示 limit 個：照分組順序切 */
   const visibleGroups = (groups: WishGroup[], limit: number): WishGroup[] => {
     const out: WishGroup[] = [];
@@ -379,21 +356,7 @@ export function WishList({ surface, places, view, onOpen, onOpenComments, hotId,
   let first = true;
   return (
     <div className="wl" ref={root} data-testid="wish-list" data-surface={surface}>
-      <div className="wl-jump" ref={jump} role="navigation" aria-label="跳到">
-        {sections.map((sec) => (
-          <button
-            key={sec.id}
-            type="button"
-            className={`ui-chip ${current === sec.id ? 'on' : ''}`}
-            aria-current={current === sec.id ? 'true' : undefined}
-            onClick={() => goto(sec.id)}
-            data-testid={`wish-jump-${sec.id}`}
-          >
-            {SECTION_LABELS[sec.id]}
-            <span className="ui-chip-count">{sec.count}</span>
-          </button>
-        ))}
-      </div>
+      {/* 第八輪 §13.7：拿掉跳轉晶片，數字放在段落標題上（「還沒排 · 6」），篩選了跟著變 */}
       {sections.map((sec) => {
         const open = !collapsed[sec.id] || forced.includes(sec.id);
         const groups = visibleGroups(sec.groups, shown[sec.id]);
@@ -406,7 +369,9 @@ export function WishList({ surface, places, view, onOpen, onOpenComments, hotId,
                   <Icon name="chevron" size={16} />
                 </span>
                 {SECTION_LABELS[sec.id]}
-                <span className="wl-head-n">{sec.count}</span>
+                <span className="wl-head-n" data-testid={`wish-section-count-${sec.id}`}>
+                  · {sec.count}
+                </span>
               </button>
             </h3>
             {open &&
@@ -430,6 +395,8 @@ export function WishList({ surface, places, view, onOpen, onOpenComments, hotId,
                       lastComment={lastComments.get(p.id)}
                       onOpen={() => onOpen(p.id)}
                       onOpenComments={() => onOpenComments(p.id)}
+                      open={!!onDetail && openId === p.id}
+                      below={onDetail ? <PlaceOpenBody place={p} onDetail={() => onDetail(p.id)} /> : undefined}
                     />
                   );
                 };
@@ -440,7 +407,7 @@ export function WishList({ surface, places, view, onOpen, onOpenComments, hotId,
                         {shortDayLabel(g.date)}（{weekdayZh(g.date)}）· {total}
                       </h4>
                     )}
-                    {view === 'photo' ? <PlaceWall items={items} render={(p) => <ul className="wl-tile">{mk(p)}</ul>} /> : <ol className="wl-items">{items.map(mk)}</ol>}
+                    {view === 'photo' ? <PlaceWall items={items} openId={onDetail ? openId : null} render={(p) => <ul className="wl-tile">{mk(p)}</ul>} /> : <ol className="wl-items">{items.map(mk)}</ol>}
                   </div>
                 );
               })}
