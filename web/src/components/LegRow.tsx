@@ -25,7 +25,7 @@ import { shared } from '../appShared.ts';
 import { useApp, useData, usePlan, useShared, useUi } from '../hooks.ts';
 import { dayPlanOf, engineConfig } from '../planStore.ts';
 import { EDITOR_MODES, editorModeOf, legKeyOf, legMapsUrl, legModeName, legTargetOf, legTitle, showMinutesInput, taxiCarsText, type EditorMode } from '../lib/planView.ts';
-import { compactSteps, infoLines, legChips, legWarnings, slackHint, warnCount, type CompactStep } from '../lib/legView.ts';
+import { compactSteps, infoLines, legChips, legWarnings, slackHint, ticketTightText, warnCount, type CompactStep } from '../lib/legView.ts';
 import { rideStations } from '../lib/routing.ts';
 import { RIDE_COLOR } from '../lib/modeIcon.ts';
 import { openTimetable, uiStore } from '../uiStore.ts';
@@ -91,8 +91,6 @@ export function LegSteps({ steps, leg, date, legKey }: { steps: CompactStep[]; l
           const above = lineAbove(steps, i);
           const below = lineBelow(steps, i);
           const ride = below?.kind === 'ride' ? below : above?.kind === 'ride' ? above : null;
-          // 近鐵特急要另買特急券，其他（JR、船）寫買票（和引擎 ticket-tight 的訊息一樣）
-          const ticket = s.board != null && leg.rides[s.board]?.operator === 'kintetsu' ? '特急券' : '票';
           return (
             <li key={i} className="leg-step node" data-testid="leg-step-node">
               <span className="leg-step-tm">{s.time}</span>
@@ -128,7 +126,7 @@ export function LegSteps({ steps, leg, date, legKey }: { steps: CompactStep[]; l
                 </span>
                 {s.ticketTight != null && (
                   <span className="leg-step-tight" data-testid="leg-ticket-tight">
-                    到站 {s.ticketTight} 分就發車，買{ticket}可能來不及
+                    {ticketTightText(leg.rides[s.board!], s.ticketTight)}
                   </span>
                 )}
               </span>
@@ -165,11 +163,13 @@ export function LegSteps({ steps, leg, date, legKey }: { steps: CompactStep[]; l
             <span className="leg-step-tx">
               <span className="leg-ride" style={{ '--ride-c': RIDE_COLOR[s.mode] } as CSSProperties} data-testid="leg-ride">
                 <ModeIcon mode={s.mode} size="s" />
-                {/* 窄的時候名稱省略，發車時間一定看得到 */}
+                {/* 膠囊（短名稱＋發車）、標籤不縮；放不下時只有「N 分」省略 */}
                 <span className="leg-ride-name">{s.name}</span>
                 {s.depart && <span className="leg-ride-dep">{s.depart}</span>}
               </span>
-              <span className="leg-ride-min">{s.minutes} 分</span>
+              <span className="leg-ride-min">
+                <span>{s.minutes} 分</span>
+              </span>
               {s.badge && (
                 <button type="button" className={`leg-miss ${s.badge.tone}`} onClick={() => openRide(s.index)} data-testid="leg-miss">
                   {s.badge.text}

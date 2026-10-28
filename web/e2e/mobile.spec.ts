@@ -658,11 +658,18 @@ test('T29c：大眾運輸的交通卡收合兩行（膠囊），點開一程一�
   await pickDay(page, '2027-02-10');
   const leg = page.getByTestId('m-leg').filter({ hasText: '大眾運輸' }).first();
   await expect(leg.getByTestId('leg-chips')).toBeVisible();
+  // 外宮 → 内宮的路線巴士：bus-crowd（warning）算進第一行的 ⚠ 數字
+  await expect(leg.getByTestId('leg-warn-count')).toHaveText('1');
   await expect(leg.getByTestId('leg-steps')).toHaveCount(0);
   await leg.getByTestId('leg-line-text').click();
   const steps = leg.getByTestId('leg-steps');
   await expect(steps).toBeVisible();
   await expect(steps.getByTestId('leg-ride').first()).not.toContainText('班次');
+  // 膠囊（短名稱＋發車）、標籤完整，不被截
+  await expect(steps.getByTestId('leg-ride').first()).toHaveText(/^外宮內宮線\s*\d\d:\d\d$/);
+  for (const id of ['leg-ride', 'leg-miss']) {
+    expect(await steps.getByTestId(id).first().evaluate((el) => el.scrollWidth <= el.clientWidth), id).toBe(true);
+  }
   await expect(steps.getByTestId('leg-miss').first()).toHaveText(/^(錯過 \+\d+ 分|約 \d+ 分一班|錯過 無下一班)$/);
   expect(await scrollsSideways(page)).toBe(false);
   await steps.getByTestId('leg-step-board').first().click();

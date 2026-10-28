@@ -181,6 +181,15 @@ export function compactSteps(leg: Leg, fromName: string, toName: string, nameOf:
 }
 
 /**
+ * 買票太趕那一行（spec §8.4、§8.6）：近鐵特急（line 開頭是特急、しまかぜ，和引擎 isTicketRide 一樣；舊資料沒有 operator 照 isKintetsu 猜）寫「買特急券」，
+ * 其他（JR、船）寫「買票」；gap 是到站到發車的分鐘（compactSteps 的 ticketTight）
+ */
+export function ticketTightText(ride: TransitRide, gap: number): string {
+  const express = isKintetsu(ride) && [...EXPRESS_KINDS].some((k) => ride.line.startsWith(k));
+  return `到站 ${gap} 分就發車，買${express ? '特急券' : '票'}可能來不及`;
+}
+
+/**
  * 前一站可以多待幾分（spec §8.7）：第一程有時刻表、有 ready 時，N＝發車 − ready[0]，第一個上車站是買票站再扣 margin；
  * N ≤ 0 或條件不合回傳 null
  */

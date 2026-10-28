@@ -12,6 +12,7 @@ import {
   missBadge,
   rideShortName,
   slackHint,
+  ticketTightText,
   warnCount,
   type DepartureCell,
 } from '../src/lib/legView.ts';
@@ -451,6 +452,16 @@ test('compactSteps：同一站換車（轉乘 0 分、沒有說明）合成一�
 });
 
 // --- 前一站可以多待 --------------------------------------------------------------
+
+test('ticketTightText：近鐵特急（含沒有 operator 的舊資料）寫買特急券，JR、船寫買票', () => {
+  const r = (over: Partial<TransitRide>) => ({ mode: 'train', line: '特急（往賢島）', from: 'a', to: 'b', depart: '10:00', arrive: '10:30', ...over }) as TransitRide;
+  assert.equal(ticketTightText(r({ operator: 'kintetsu' }), 0), '到站 0 分就發車，買特急券可能來不及');
+  assert.equal(ticketTightText(r({ operator: 'kintetsu', line: 'しまかぜ（往賢島）' }), 3), '到站 3 分就發車，買特急券可能來不及');
+  // 舊資料沒有 operator：照近鐵判斷（電車、沒有 routeId、不是班距型）
+  assert.equal(ticketTightText(r({}), 5), '到站 5 分就發車，買特急券可能來不及');
+  assert.equal(ticketTightText(r({ operator: 'jr-central', routeId: 'jr-sangu', line: '快速みえ' }), 4), '到站 4 分就發車，買票可能來不及');
+  assert.equal(ticketTightText(r({ mode: 'ferry', operator: 'toba-city', routeId: 'kamishima', line: '鳥羽市営定期船' }), 2), '到站 2 分就發車，買票可能來不及');
+});
 
 test('slackHint：鳥羽 → 賢島等 10 分、買票站扣 margin', () => {
   assert.equal(slackHint(kashikoLeg, 10), null);

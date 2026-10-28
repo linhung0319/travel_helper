@@ -3382,7 +3382,7 @@ body.dragging-plan .tl-dropend {
 
 .leg-step {
   display: grid;
-  grid-template-columns: 44px 18px 1fr;
+  grid-template-columns: 42px 16px 1fr;
   align-items: stretch;
 }
 
@@ -3479,6 +3479,7 @@ button.leg-step-board {
 
 .leg-step-walk {
   flex: none;
+  margin-left: auto;
   color: var(--ink-2);
   font-size: 0.75rem;
   white-space: nowrap;
@@ -3504,21 +3505,23 @@ button.leg-step-board {
   font-size: 0.75rem;
 }
 
-/* 一程一行：膠囊（圖示＋短名稱＋發車）、車程分鐘、右邊錯過的標籤 */
+/* 一程一行：膠囊（圖示＋短名稱＋發車）、車程分鐘、右邊錯過的標籤。
+   膠囊、標籤不縮；「N 分」的寬度從 0 起算（只吃剩下的空間，不夠就省略），所以只有膠囊＋標籤本身放不下時標籤才換到下一行 */
 .leg-step.ride .leg-step-tx {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
-  gap: 6px;
-  padding: 3px 0 5px 4px;
+  gap: 2px 4px;
+  padding: 3px 0 5px 2px;
 }
 
 .leg-ride {
   --ride-c: var(--indigo);
   display: inline-flex;
   align-items: center;
-  gap: 4px;
-  min-width: 0;
-  padding: 1px 7px 1px 3px;
+  flex: none;
+  gap: 3px;
+  padding: 1px 6px 1px 2px;
   border: 1.5px solid var(--ride-c);
   border-radius: 999px;
   background: var(--paper);
@@ -3532,8 +3535,6 @@ button.leg-step-board {
 }
 
 .leg-ride-name {
-  overflow: hidden;
-  text-overflow: ellipsis;
   white-space: nowrap;
 }
 
@@ -3542,11 +3543,28 @@ button.leg-step-board {
   font-variant-numeric: tabular-nums;
 }
 
+/* 放不下時只有「N 分」讓出來；膠囊（短名稱＋發車）和錯過的標籤一定完整。
+   「N 分」整個放得下才顯示：放不下時字換到第二行，被固定一行的高度藏起來（前面寬度 0 的 ::before 佔住第一行），不會留下切一半的字 */
 .leg-ride-min {
-  flex: none;
+  flex: 1 1 0;
+  min-width: 0;
+  display: flex;
+  flex-wrap: wrap;
+  height: 1.4em;
+  overflow: hidden;
   color: var(--ink-2);
   font-size: 0.75rem;
+  line-height: 1.4;
   font-variant-numeric: tabular-nums;
+}
+
+.leg-ride-min::before {
+  content: '';
+  width: 0;
+}
+
+.leg-ride-min > span {
+  flex: none;
   white-space: nowrap;
 }
 
@@ -3554,7 +3572,7 @@ button.leg-step-board {
 .leg-miss {
   flex: none;
   margin-left: auto;
-  padding: 0 7px;
+  padding: 0 6px;
   border: 1px solid var(--line);
   border-radius: 999px;
   background: var(--wash);
