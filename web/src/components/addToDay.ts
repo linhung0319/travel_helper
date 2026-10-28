@@ -24,6 +24,8 @@ export async function addPlaceToDay(
 ): Promise<Result> {
   const p = dataStore.getState().byId.get(placeId);
   const name = p ? p.name.zh || p.name.ja : placeId;
+  // 行程裡不放車站（T29c §8.10）：所有排進行程的入口（候選的 ↑、拖進時間軸、詳情）都走這裡
+  if (p?.type === 'station') return { ok: false, error: '車站不能排進行程，只會出現在地圖和交通卡' };
   const s = shared.store.getState();
   let reason: string;
   let fn: (it: Itinerary) => Itinerary;

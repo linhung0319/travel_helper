@@ -512,29 +512,49 @@ test('第五輪：交通卡平常收起，計程車點了只畫那一段、不�
   await expect(first.getByTestId('leg-note-text')).toContainText('在飯店大廳集合');
 });
 
-test('第四輪：交通卡自己填的分鐘改得動、清得掉；算得出時間就沒有分鐘欄', async ({ page }) => {
+test('T29c：2/5 伊勢市一帶 → 中之郷一帶有 2 條走法，編輯器選第二條，收合的膠囊跟著換', async ({ page }) => {
+  await ready(page);
+  await showDay(page, '2027-02-05');
+  await enterPlanning(page);
+  // 第二段（伊勢市的喫茶店 → 中之郷一帶的 toba-kadoya）：近鐵特急 → 鳥羽 → 鷗巴士
+  const leg = page.getByTestId('timeline').getByTestId('tl-leg').nth(1);
+  const chips = leg.getByTestId('leg-chips');
+  await expect(chips).toContainText('鷗巴士');
+  const before = (await chips.innerText()).replace(/\s+/g, ' ');
+  await leg.getByTestId('leg-edit').click();
+  const paths = leg.getByTestId('leg-path');
+  await expect(paths).toHaveCount(2);
+  await expect(paths.nth(0)).toHaveAttribute('aria-pressed', 'true');
+  await paths.nth(1).click();
+  // 存了 path：改成大眾運輸、第二條變成目前用的，收合的那一行換成別的走法
+  await expect.poll(() => th(page, "JSON.stringify(__th.dataStore.getState().itinerary.days.find((d) => d.date === '2027-02-05').items.find((i) => i.id === 'i-21').travel)")).toContain('"path"');
+  await expect(leg.getByTestId('leg-path').nth(0)).toHaveAttribute('aria-pressed', 'true');
+  await expect(chips).not.toContainText('鷗巴士');
+  expect((await chips.innerText()).replace(/\s+/g, ' ')).not.toBe(before);
+});
+
+test('T29c：新今宮車站面板列出班距型路線（約 4 分一班）；車站詳情沒有加到某天', async ({ page }) => {
+  await ready(page);
+  await openDetail(page, 'jr-shin-imamiya');
+  await expect(page.getByTestId('station-panel')).toBeVisible();
+  const lines = page.getByTestId('urban-line');
+  await expect(lines.filter({ hasText: '環狀線' })).toContainText('約 4 分一班');
+  await expect(lines.filter({ hasText: '環狀線' })).toContainText('首班 05:15／末班 23:48');
+  await expect(page.getByTestId('detail-add')).toHaveCount(0);
+  await expect(page.getByTestId('detail-schedule')).toHaveCount(0);
+});
+
+test('第四輪：算得出時間的交通卡沒有分鐘欄（2/2 關西機場 → 賢島一帶，T29c 起行程裡沒有車站，不再是指定分鐘）', async ({ page }) => {
   await ready(page);
   await showDay(page, '2027-02-02');
   await enterPlanning(page);
-  // 關西機場 → 賢島：假行程手動指定電車 165 分（時刻表裡找不到）
   const leg = page.getByTestId('timeline').getByTestId('tl-leg').first();
-  const travel = () => th(page, "JSON.stringify(__th.dataStore.getState().itinerary.days.find((d) => d.date === '2027-02-02').items.find((i) => i.id === 'i-1').travel)");
+  // 引擎算得出大眾運輸（南海＋近鐵），收合的那一行有膠囊
+  await expect(leg.getByTestId('leg-line')).toContainText('近鐵');
   await leg.getByTestId('leg-edit').click();
-  const minutes = leg.getByTestId('leg-minutes');
-  await expect(minutes).toHaveValue('165');
-  // 改成 170：存下來、卡片跟著變，欄位還在
-  await minutes.fill('170');
-  await minutes.blur();
-  await expect.poll(travel).toContain('"minutes":170');
-  await expect(leg.getByTestId('leg-line-text')).toContainText('170 分');
-  await expect(minutes).toHaveValue('170');
-  // 清空：回到照規則算（minutes 是 null）；電車還是找不到班次，欄位留著可以再填
-  await minutes.fill('');
-  await minutes.blur();
-  await expect.poll(travel).toContain('"minutes":null');
-  await expect(minutes).toBeVisible();
-  await expect(minutes).toHaveValue('');
-  // 改計程車：算得出時間，分鐘欄不見
+  await expect(leg.getByTestId('leg-editor')).toBeVisible();
+  await expect(leg.getByTestId('leg-minutes')).toHaveCount(0);
+  // 改計程車：照樣算得出時間，沒有分鐘欄
   await leg.locator('[data-testid="leg-mode"][data-mode="taxi"]').click();
   await expect(leg.locator('[data-testid="leg-mode"][data-mode="taxi"]')).toHaveAttribute('aria-pressed', 'true');
   await expect(leg.getByTestId('leg-minutes')).toHaveCount(0);
@@ -2336,11 +2356,7 @@ test('第十輪：有照片的資料卡右上角有類型小圓章；沒照片�
     }
   }
   expect(withPhoto).toBeGreaterThan(0);
-  // 沒照片的：車站（2/2 賢島站）
-  await showDay(page, '2027-02-02');
-  const station = page.getByTestId('timeline').locator('[data-testid="tl-row"][data-place="kashikojima"]').getByTestId('trip-card');
-  await expect(station.getByTestId('item-type')).toBeVisible();
-  await expect(station.getByTestId('trip-card-type')).toHaveCount(0);
+  // 行程裡沒有車站了（T29c §8.10）；沒照片的卡由上面的迴圈檢查（沒照片時沒有小圓章）
 });
 
 test('第九輪：展開的卡只放介紹、多一顆「加到某天」；展開後捲到卡的頂端貼著黏住的標題下面（§14.3）', async ({ page }) => {

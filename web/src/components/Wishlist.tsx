@@ -127,7 +127,8 @@ function CandidateRow({ c, date }: { c: Candidate; date: string }) {
   const name = p ? p.name.zh || p.name.ja : c.placeId;
   const mine = c.addedBy === me;
   const lodging = p?.type === 'lodging';
-  const dragSrc: DragSource | null = planning && !lodging ? { kind: 'candidate', candidateId: c.id, placeId: c.placeId, placeType: p?.type ?? null } : null;
+  const station = p?.type === 'station'; // 車站不能排進行程（T29c §8.10）：舊資料裡的車站候選不給拖、不給 ↑
+  const dragSrc: DragSource | null = planning && !lodging && !station ? { kind: 'candidate', candidateId: c.id, placeId: c.placeId, placeType: p?.type ?? null } : null;
   // 滑鼠整列都能拖、手指按 ⠿；拖到左邊聊天室＝問 AI
   const pressRef = usePlanDrag<HTMLLIElement>(dragSrc, true, { askPlace: c.placeId });
   const up = async () => {
@@ -171,7 +172,7 @@ function CandidateRow({ c, date }: { c: Candidate; date: string }) {
           加的人 <Avatar id={c.addedBy} />
         </span>
       </span>
-      {planning && (
+      {planning && !station && (
         <button type="button" className="cand-up" disabled={busy} onClick={() => void up()} title={lodging ? '設成這晚的住宿' : '插在這天最順路的位置'} data-testid="cand-up">
           {lodging ? '↑ 設為這晚的住宿' : '↑ 排進'}
         </button>

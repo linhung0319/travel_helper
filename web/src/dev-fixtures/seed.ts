@@ -32,8 +32,8 @@ export function seedItinerary(): Itinerary {
       day('2027-02-02', 'shima-kashikojima-harbor', [
         { id: 'f-1', type: 'flight', direction: 'arrive', airport: 'kansai-airport', depart: '08:20', arrive: '11:55', flightNo: null, people: null, note: '去程第一批' },
         { id: 'f-2', type: 'flight', direction: 'arrive', airport: 'kansai-airport', depart: '09:45', arrive: '13:20', flightNo: null, people: null, note: '去程第二批' },
-        // 引擎找不到關西機場到賢島的時刻表，手動指定（data/access/ 的參考時間）
-        visit('i-1', 'kashikojima', { travel: { mode: 'train', minutes: 165, note: '南海＋近鐵特急，難波轉乘' } }),
+        // 行程裡不放車站（T29c §8.10）：第一天從關西機場南下，終點放賢島站旁的遊覽船乘船處，交通卡照引擎算的大眾運輸
+        visit('i-1', 'shima-kashikojima-yuransen'),
       ]),
       day('2027-02-03', 'shima-kanko-classic', [
         visit('i-2', 'shima-yokoyama-observatory'),
@@ -41,8 +41,10 @@ export function seedItinerary(): Itinerary {
       ]),
       day('2027-02-04', 'shima-marusada', [visit('i-4', 'shima-izawanomiya'), visit('i-5', 'shima-daiozaki-lighthouse')]),
       day('2027-02-05', 'toba-kokusai-hotel', [
-        // 順序和 T11 的假行程一樣（e2e 用：水族館是第 2 個、漣在這天）
-        visit('i-20', 'toba'),
+        // 水族館是第 3 個、漣在這天（e2e 用；T11 的假行程水族館是第 2 個，T29c 車站卡換成喫茶店再多一站）
+        // 一早在伊勢市（外宮旁）的喫茶店吃早餐，再從伊勢市站出發，搭近鐵特急到鳥羽、轉鷗巴士到中之郷一帶（交通卡有 2 條走法；行程裡不放車站，T29c §8.10）
+        visit('i-20', 'ise-mori-kissa', { options: [{ place: 'ise-mori-kissa', stayMinutes: 20 }] }),
+        visit('i-21', 'toba-kadoya'),
         visit('i-6', 'toba-aquarium'),
         visit('i-7', ['toba-sazanami', 'toba-kazuei'], { tags: ['lunch'], note: '漣不能訂位，客滿就去一榮' }),
         visit('i-8', 'toba-mikimoto-pearl-island', { proposedBy: ['dev-mama'] }),

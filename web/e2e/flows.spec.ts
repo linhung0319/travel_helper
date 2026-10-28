@@ -33,8 +33,8 @@ test('切換天數：選的那天的點正常，其他天變淡；回到全部',
   const visual = (id: string) => page.evaluate((id) => (window as any).__th.visual(id), id);
   await page.locator('[data-day="2027-02-05"]').click();
   await expect(page.locator('[data-day="2027-02-05"]')).toHaveAttribute('aria-selected', 'true');
-  // 假行程：2/5 是鳥羽水族館、伊勢神宮內宮是 2/10
-  expect(await visual('toba-aquarium')).toMatchObject({ dim: false, order: 2 });
+  // 假行程：2/5 第 3 個是鳥羽水族館，伊勢神宮內宮是 2/10
+  expect(await visual('toba-aquarium')).toMatchObject({ dim: false, order: 3 });
   expect(await visual('ise-naiku')).toMatchObject({ dim: true });
   await expect(page.getByTestId('day-panel')).toContainText('鳥羽水族館');
   await page.getByRole('tab', { name: '整趟' }).click();

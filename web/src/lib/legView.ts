@@ -1,7 +1,7 @@
 // 交通卡、班次表要的整理（T29c spec §8.2～§8.8）：短名稱、膠囊、這段的警告、補充資訊、錯過的標籤、一程一行的步驟、可以多待、班次格子。
 // 純函式：時間、班次、錯過的話都是引擎算好的，這裡只整理成畫面要的樣子。缺 ready、transfers、ifMissed 的舊資料不當掉，缺的就不顯示。
 
-import type { DayPlan, EngineWarning, Leg, PathRef, RideDeparture, TimelineEntry, TransitRide, TravelSpec } from '@travel-helper/engine';
+import type { DayPlan, EngineWarning, Leg, PathRef, RideDeparture, TimelineEntry, TransitRide, TravelSpec, UrbanRoute } from '@travel-helper/engine';
 import { isTicketRide, toMinutes } from '@travel-helper/engine';
 
 /** 「錯過 +N 分」變橘色的門檻（分，spec §8.5） */
@@ -270,4 +270,23 @@ export function specAfterPickPath(cur: TravelSpec | null, leg: Leg, index: numbe
   if (!alt || index === 0) return undefined;
   const { minutes: _minutes, ...rest } = cur ?? {};
   return { ...rest, mode: 'transit', path: alt.path };
+}
+
+/**
+ * 車站面板的班距型路線（spec §8.11）：停這一站的每條線一筆。saturday 的 service 是 null 照 holiday（spec §5）；
+ * 班距取那天服務的時段裡總時數最長的那個（最常見的；時數一樣取較小的），時段裡 min 是 null 的不算；那天沒資料的欄位都是 null
+ */
+export function urbanLinesAt(stationId: string, urban: UrbanRoute[], dayType: 'weekday' | 'saturday' | 'holiday'): { line: string; headwayMin: number | null; first: string | null; last: string | null }[] {
+  return urban
+    .filter((r) => r.stops.some((s) => s.id === stationId))
+    .map((r) => {
+      const svc = dayType === 'saturday' ? (r.service.saturday ?? r.service.holiday) : r.service[dayType];
+      const hours = new Map<number, number>();
+      for (const h of svc?.headway ?? []) {
+        if (h.min == null) continue;
+        hours.set(h.min, (hours.get(h.min) ?? 0) + Math.max(0, toMinutes(h.to) - toMinutes(h.from)));
+      }
+      const best = [...hours.entries()].sort((a, b) => b[1] - a[1] || a[0] - b[0])[0];
+      return { line: r.name.zh || r.name.ja, headwayMin: best ? best[0] : null, first: svc?.first ?? null, last: svc?.last ?? null };
+    });
 }

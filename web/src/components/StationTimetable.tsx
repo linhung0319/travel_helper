@@ -3,7 +3,9 @@ import { appStore } from '../store.ts';
 import { useApp, useData } from '../hooks.ts';
 import { dataSource } from '../data/index.ts';
 import { departuresAround, googleTransitUrl, jorudanUrl, terminusName } from '../lib/timetable.ts';
-import { timetableDayType, TRIP_START } from '../lib/trip.ts';
+import { JP_HOLIDAYS, timetableDayType, TRIP_START } from '../lib/trip.ts';
+import { urbanLinesAt } from '../lib/legView.ts';
+import { busDayType, type UrbanRoute } from '@travel-helper/engine';
 import { stopsOn } from '../lib/itinerary.ts';
 import type { Place, StationTimetable } from '../data/types.ts';
 import { DayGrid12 } from '../shared/ui/DayGrid12.tsx';
@@ -36,6 +38,19 @@ export function StationTimetablePanel({ place }: { place: Place }) {
     };
   }, [place.id]);
 
+  // 班距型路線（大阪的地鐵、JR、南海）：有停這一站的每條線一行，不列班次（spec §8.11）
+  const [urban, setUrban] = useState<UrbanRoute[]>([]);
+  useEffect(() => {
+    let alive = true;
+    dataSource.loadEngineTimetables().then(
+      (t) => alive && setUrban(t.urban),
+      () => alive && setUrban([]),
+    );
+    return () => {
+      alive = false;
+    };
+  }, []);
+  const urbanLines = urbanLinesAt(place.id, urban, busDayType(date, [...JP_HOLIDAYS]));
   const itinerary = useData((s) => s.itinerary);
   const plannedTime = stopsOn(itinerary, date).find((s) => s.place === place.id)?.time ?? null;
   const time = stationTime ?? plannedTime ?? DEFAULT_STATION_TIME;
@@ -62,7 +77,19 @@ export function StationTimetablePanel({ place }: { place: Place }) {
         <span className="muted small">{dayType === 'holiday' ? '土休日' : '平日'}班次</span>
       </div>
       {tt === 'loading' && <p className="muted">載入中…</p>}
-      {tt === null && <p className="muted">這一站沒有時刻表資料，請用下面的連結查。</p>}
+      {urbanLines.length > 0 && (
+        <ul className="urban-lines" data-testid="urban-lines">
+          {urbanLines.map((l) => (
+            <li key={l.line} data-testid="urban-line">
+              <strong>{l.line}</strong>
+              <span className="muted small">
+                {l.headwayMin != null ? `約 ${l.headwayMin} 分一班` : '班距沒查到'}・首班 {l.first ?? '沒查到'}／末班 {l.last ?? '沒查到'}
+              </span>
+            </li>
+          ))}
+        </ul>
+      )}
+      {tt === null && urbanLines.length === 0 && <p className="muted">這一站沒有時刻表資料，請用下面的連結查。</p>}
       {tt && tt !== 'loading' && (
         <>
           <div className="directions">

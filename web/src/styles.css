@@ -796,6 +796,20 @@ dl {
 
 /* ---------- 車站面板 ---------- */
 
+/* 班距型路線：每條線一行，線名下一行寫班距和首末班（不列班次） */
+.urban-lines {
+  list-style: none;
+  margin: 8px 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.urban-lines li {
+  display: flex;
+  flex-direction: column;
+}
+
 .station-controls {
   display: flex;
   flex-wrap: wrap;

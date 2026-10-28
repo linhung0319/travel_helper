@@ -245,10 +245,12 @@ function WishItem({ place, status, section, surface, view, hot, hint, likes, las
       </button>
     </>
   );
+  // 車站不能排進行程（T29c §8.10）：不放日曆鈕、不能左滑
+  const canAdd = place.type !== 'station';
   const right = mobile ? undefined : (
     <span className="wl-right">
       <VoteHeart placeId={place.id} />
-      <button
+      {canAdd && <button
         type="button"
         className="wl-add"
         aria-label="加到某天"
@@ -260,11 +262,11 @@ function WishItem({ place, status, section, surface, view, hot, hint, likes, las
         }}
       >
         <Icon name="calendar" size={20} />
-      </button>
+      </button>}
     </span>
   );
   const row = <PlaceRow {...common} extra={extra} right={right} />;
-  return li(mobile ? <SwipeRow hint={hint} onAdd={() => setAdding(true)}>{row}</SwipeRow> : row);
+  return li(mobile && canAdd ? <SwipeRow hint={hint} onAdd={() => setAdding(true)}>{row}</SwipeRow> : row);
 }
 
 /** 量出黏住的篩選列高度，寫成 CSS 變數 --wl-top（段落標題黏在篩選列下面） */

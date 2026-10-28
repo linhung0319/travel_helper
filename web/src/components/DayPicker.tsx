@@ -70,6 +70,9 @@ export function DayPicker({ placeId, onClose, testId = 'day-picker' }: { placeId
 /** 卡片底部的「加到某天」按鈕，點了開日期格（kind：詳情是主要按鈕，探索、想去展開的卡是次要的，§14.3） */
 export function AddToDay({ placeId, kind = 'primary', testId = 'add-to-day' }: { placeId: string; kind?: 'primary' | 'secondary'; testId?: string }) {
   const [open, setOpen] = useState(false);
+  const isStation = useData((s) => s.byId.get(placeId)?.type === 'station');
+  // 車站不能排進行程（T29c §8.10）
+  if (isStation) return null;
   return (
     <div className="add-to-day">
       <Button kind={kind} size="sm" icon="calendar" aria-expanded={open} onClick={() => setOpen(!open)} data-testid={testId}>

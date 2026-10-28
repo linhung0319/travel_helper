@@ -948,7 +948,7 @@ test('手機：在卡片上捲動不會開始拖', async ({ page }) => {
 
 test('手機：按把手拖到下面，順序變了；拖的時候面板拉滿，放開回到原本高度', async ({ page }) => {
   const D = '2027-02-05';
-  // 2/5：出發的宿、i-20、i-6、i-7（重疊卡）、i-8
+  // 2/5：出發的宿、i-20、i-21、i-6、i-7（重疊卡）、i-8
   await editDay(page, '2027-02-05');
   const sheet = page.getByTestId('m-sheet');
   await expect(sheet).toHaveAttribute('data-snap', 'mid');
@@ -967,8 +967,8 @@ test('手機：按把手拖到下面，順序變了；拖的時候面板拉滿�
   await expect(page.locator('body')).toHaveClass(/dragging-plan/);
   await expect(page.locator('.drag-float')).toHaveCount(1);
   await expect(sheet).toHaveAttribute('data-snap', 'high');
-  // 面板拉滿之後再量下面第二張（i-6；再下面的重疊卡已經在畫面底的自動捲範圍）的位置，移到它的下緣
-  const fourth = mCard(page, 'i-6');
+  // 面板拉滿之後再量下面第二張（i-21；再下面的卡已經在畫面底的自動捲範圍）的位置，移到它的下緣
+  const fourth = mCard(page, 'i-21');
   const target = (await fourth.getAttribute('data-item'))!;
   // 面板拉高有動畫：等位置停下來
   let t = (await fourth.boundingBox())!;
