@@ -441,3 +441,27 @@ test('餐廳標 groups：分組也坐不下（fitSubgroup: no）照發 group-sea
   // 沒標：照全員的 15 人檢查發一則，不重複
   assert.equal(w().filter((x) => x.code === 'group-seats').length, 1);
 });
+
+test('交通的警告帶 leg: true；回住宿那段沒有 itemId；資料卡自己的警告沒有 leg', () => {
+  const FAR = spot('far', at(4000));
+  const d = plan(build([visit('far'), visit('nowhere')]), fake([...BASE, FAR]));
+  // far 的去程有 itemId；nowhere 沒座標，回住宿那段交通警告沒有 itemId
+  const taxi = d.warnings.filter((x) => x.code === 'taxi' || x.code === 'travel-unknown');
+  assert.ok(taxi.length >= 2, JSON.stringify(d.warnings));
+  assert.ok(taxi.every((x) => x.leg === true));
+  assert.ok(taxi.some((x) => x.itemId != null));
+  assert.ok(taxi.some((x) => x.itemId == null));
+  const missing = d.warnings.find((x) => x.code === 'place-missing');
+  assert.ok(missing);
+  assert.equal(missing.leg, undefined);
+});
+
+test('資料卡不能是車站：visit 選到 station → station-card 錯誤', () => {
+  const S = station('st', at(400, 300));
+  const d = plan(build([visit('st')]), fake([...BASE, S]));
+  const w = d.warnings.find((x) => x.code === 'station-card');
+  assert.ok(w);
+  assert.equal(w.level, 'error');
+  assert.equal(w.message, '資料卡不能是車站（st）');
+  assert.ok(!codes(plan(build([visit('a')]), fake(BASE))).includes('station-card'));
+});

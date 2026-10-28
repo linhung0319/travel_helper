@@ -80,7 +80,7 @@ const inWindow = (t: number, [a, b]: [string, string]) => t >= toMinutes(a) && t
 function travelTo(target: Endpoint, st: State, ctx: RunContext, spec: VisitItem['travel'], itemId: string | undefined): Leg | null {
   if (!st.loc || !st.started) return null;
   const { leg, warnings } = planLeg(st.loc, target, { date: ctx.date, depart: st.time, party: ctx.party, whole: ctx.whole, data: ctx.data, cfg: ctx.cfg }, spec);
-  for (const w of warnings) warn(ctx, itemId ? { ...w, itemId } : w);
+  for (const w of warnings) warn(ctx, itemId ? { ...w, itemId, leg: true } : { ...w, leg: true });
   if (leg.mode === 'ferry') ctx.tiring.value = true;
   return leg;
 }
@@ -92,6 +92,8 @@ function placeChecks(res: ResolvedPlace | null, placeId: string, itemId: string 
     warn(ctx, { code: 'place-missing', level: 'error', itemId, placeId, message: `找不到地點「${placeId}」` });
     return;
   }
+  // 車站不能當資料卡（車站是交通的端點，不是去玩的點）
+  if (res.record.type === 'station') warn(ctx, { code: 'station-card', level: 'error', itemId, placeId, message: `資料卡不能是車站（${placeId}）` });
   if (res.retired) warn(ctx, { code: 'place-retired', level: 'warning', itemId, placeId, message: '這個點已下架，資料可能過時' });
   if (res.origin === 'user') warn(ctx, { code: 'unchecked', level: 'info', itemId, placeId, message: '使用者加的點：營業時間、團體條件未查' });
 }

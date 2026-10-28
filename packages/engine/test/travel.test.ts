@@ -656,3 +656,17 @@ test('近的、電車要等很久 → 照舊改計程車（伊勢市 10:00 → �
   assert.equal(leg.mode, 'taxi');
   assert.ok(warnings.some((w) => w.code === 'long-wait' && w.message.includes('改搭計程車')));
 });
+
+test('ticket-tight：到站 3 分就發船 → 警告「買票可能來不及」；空檔 ≥ 10 分沒有', () => {
+  const sada = 'toba-sadahama-marine-terminal', kami = 'toba-port-kamishima';
+  const d = '2027-02-06';
+  const tight = planLeg(P(sada), P(kami), ctx(real, { date: d, depart: 10 * 60 + 36 }));
+  assert.equal(tight.leg.mode, 'ferry');
+  const w = tight.warnings.filter((x) => x.code === 'ticket-tight');
+  assert.equal(w.length, 1);
+  assert.equal(w[0].level, 'warning');
+  assert.match(w[0].message, /到站 3 分就發車，買票可能來不及$/);
+  const ok = planLeg(P(sada), P(kami), ctx(real, { date: d, depart: 10 * 60 + 20 }));
+  assert.equal(ok.leg.rides[0].depart, '10:40');
+  assert.ok(!ok.warnings.some((x) => x.code === 'ticket-tight'));
+});

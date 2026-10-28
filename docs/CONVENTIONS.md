@@ -386,6 +386,8 @@ travel_helper/
 }
 ```
 
+**資料卡不能是車站**（T29c）：`visit` 選項的地點 `type` 是 `station` 時，引擎報 `station-card` 錯誤（「資料卡不能是車站（{placeId}）」）；車站是交通的端點，不是去玩的點。檢查放在 `planItinerary` 的 `placeChecks`（`validateItinerary` 拿不到地點資料）。
+
 **項目**（`type` 有 4 種）。每個項目都有行程內唯一的 `id`（`i-<流水號>`、航班 `f-<流水號>`、分組裡的項目 `<分組 id>-<組 id>-<n>`），建議的 `adopted_item_ids` 指到這裡；ID 由引擎產生，不用亂數。
 
 ```jsonc
