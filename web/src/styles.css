@@ -3322,6 +3322,23 @@ button.timetable-row-in {
   gap: 4px 8px;
 }
 
+/* 網頁：往下捲時這一列（日期、問 AI、編輯）黏在右欄上面，和手機的 .m-dayhead 一樣（第十輪）；
+   編輯中改成編輯條（planning-bar）黏著，「完成」一直看得到 */
+.layout.desktop .day-panel:not(.editing) .day-nav {
+  position: sticky;
+  top: 0;
+  z-index: 5;
+  margin: -8px -12px 0;
+  padding: 8px 12px 6px;
+  background: var(--paper);
+}
+
+.layout.desktop .day-panel.editing .planning-bar {
+  position: sticky;
+  top: 0;
+  z-index: 5;
+}
+
 .day-nav h3 {
   display: flex;
   align-items: center;

@@ -963,14 +963,13 @@ test('第五輪：編輯入口——日期列的「編輯」，確認後出現�
   await expect(page.getByTestId('planning-toggle')).toHaveCount(0);
 });
 
-test('第五輪：編輯中藍條捲出畫面時，地圖上方出現精簡的「編輯中・完成」', async ({ page }) => {
+test('第五輪（第十輪改）：編輯中捲時間軸面板，藍條黏在上面不會捲出去，所以不出現精簡的「編輯中・完成」', async ({ page }) => {
   await ready(page);
   // 2/3 的時間軸夠長，面板捲得動
   await showDay(page, '2027-02-03');
   await enterPlanning(page);
   const strip = page.getByTestId('planning-strip');
   await expect(strip).toHaveCount(0);
-  // 捲時間軸面板，藍條捲出去 → 精簡條出現；捲回來 → 消失
   const scrollBar = (top: number) =>
     page.getByTestId('planning-bar').evaluate((el, y) => {
       let p = el.parentElement;
@@ -979,8 +978,7 @@ test('第五輪：編輯中藍條捲出畫面時，地圖上方出現精簡的�
       return !!p;
     }, top);
   expect(await scrollBar(5000)).toBe(true);
-  await expect(strip).toBeVisible();
-  await scrollBar(0);
+  await expect(page.getByTestId('planning-bar')).toBeInViewport();
   await expect(strip).toHaveCount(0);
 });
 
@@ -2265,6 +2263,25 @@ test('打開交通：框住兩端，不出現「清掉」；收起回到原本�
   await expect.poll(() => th(page, '__th.appStore.getState().legRoute')).toBeNull();
   await waitIdle(page);
   expect(Math.abs((await page.evaluate(() => (window as any).__th.map.getZoom())) - before)).toBeLessThan(0.05);
+});
+
+test('第十輪：行程往下捲，日期那列（問 AI、編輯）黏在右欄上面；編輯中是編輯條黏著', async ({ page }) => {
+  await ready(page);
+  await showDay(page, '2027-02-03');
+  const body = page.locator('.side-body');
+  const top = async () => (await body.boundingBox())!.y;
+  await body.evaluate((e) => e.scrollTo(0, 400));
+  await expect.poll(() => body.evaluate((e) => e.scrollTop)).toBeGreaterThan(100);
+  const nav = (await page.getByTestId('day-nav').boundingBox())!;
+  expect(Math.abs(nav.y - (await top()))).toBeLessThanOrEqual(1);
+  await expect(page.getByTestId('planning-toggle')).toBeInViewport();
+  await page.getByTestId('planning-toggle').click();
+  await page.getByTestId('planning-confirm').click();
+  await body.evaluate((e) => e.scrollTo(0, 400));
+  await expect.poll(() => body.evaluate((e) => e.scrollTop)).toBeGreaterThan(100);
+  const bar = (await page.getByTestId('planning-bar').boundingBox())!;
+  expect(Math.abs(bar.y - (await top()))).toBeLessThanOrEqual(1);
+  await expect(page.getByTestId('planning-done')).toBeInViewport();
 });
 
 test('第十輪：有照片的資料卡右上角有類型小圓章；沒照片的（縮圖就是類型色塊）不放', async ({ page }) => {

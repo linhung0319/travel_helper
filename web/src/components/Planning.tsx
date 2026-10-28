@@ -69,6 +69,7 @@ export function PlanningConfirmDialog() {
 }
 
 // 面板上的藍條有沒有捲出畫面（IntersectionObserver 看的）。藍條捲出去時，地圖上方顯示精簡的「編輯中・完成」條。
+// 第十輪起網頁的藍條黏在右欄上面（styles.css 的 .day-panel.editing .planning-bar），平常不會捲出去；留著當保險。
 let barOut = false;
 const barListeners = new Set<() => void>();
 function setBarOut(v: boolean) {
