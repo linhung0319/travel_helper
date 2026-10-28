@@ -227,6 +227,40 @@
 - `npm test`、`npm run typecheck`、`npm run validate` 通過。
 - dev server 打開一次行程，確認交通卡、班次表沒有當掉（🌐 少量）。
 
+### 7.8 交接結果：交通卡拿得到什麼（2026-10-28，真實資料、全員 15 人）
+
+T29b 做完時一段交通的 `Leg`（`packages/engine/src/types.ts`）。T29c 討論呈現方式從這裡開始。
+
+**每一段都有**：`mode`（walk／taxi／train／bus／ferry／…／unknown）、`depart`、`arrive`、`minutes`（含等車）、`waitMinutes`、`walkMinutes`（含轉乘步行）、`transitAvailable`（出發後還有沒有車）、`specified`（使用者設定過）、`basis`（怎麼算的，例如「近鐵時刻表＋kamome-5-kuzaki 時刻表」）。警告另外在時間軸的 `warnings`。
+
+**大眾運輸另外有**：
+- `walkBefore`、`walkAfter`：走到第一個上車點、最後下車走到終點的分鐘。
+- `ready[i]`：第 i 程「走到上車站／轉乘完」的時間。
+- `rides[i]`（每一程）：`line`（近鐵是「特急（往賢島）」、巴士是路線名＋往哪、班距型是線名「大阪環狀線」）、`operator`、`from`／`to`（近鐵、班距型是車站 ID；巴士、船、JR 是停留所名稱）、`depart`／`arrive`、`tripId`（班距型是 null）、`fareAdult`（巴士有，近鐵、多數班距型是 null）、`kind`（timetable／headway）、班距型的 `headwayMin`、`first`、`last`、`ifMissed`（`depart` 下一班、`arrive` 整段晚到幾點、`lateMinutes`；null＝照同一條走法已經沒有下一班）。
+- `transfers[i]`：第 i 程和第 i+1 程中間的轉乘：`walkMinutes`（已套係數）、`elevator`（有沒有電梯路線，多數 null）、`elevatorWalkMinutes`、`note`（`_transfers.json` 的說明，可能很長）。
+- `alternatives`（1～3 條，第一條是目前用的）：`summary`（例如「特急 → 鳥羽 → 鷗巴士 5 號 鳥羽～國崎線（經相差）」）、`arrive`、`minutes`、`waitMinutes`、`walkMinutes`、`ridesCount`、`rides`、`transfers`、`path`（選了就存 `TravelSpec.path`）。
+- 班次表另外用 `rideDepartures(data, cfg, date, ride)` 查同一對站那天的所有班次（班距型回傳 `[]`）。
+
+**計程車另外有**：`taxi`（`cars`、`jumboCars`、`fareFromYen`、`fareEstimateYen`（加算費率沒查到時 null）、`note`）。
+
+**五個例子**：
+
+| 段落 | 結果 | 候選走法 | 錯過的話 | 警告 |
+|---|---|---|---|---|
+| 伊勢市 8:00 → 中之郷（2/5） | 45 分（等 11、走 6）：特急 伊勢市 08:11 → 鳥羽 08:26，轉乘走 3 分，鷗巴士 5 號 08:30 → 08:42，走 3 分 | 2 條：上面那條、「普通」直達 09:31 到（等 67 分） | 兩程都是下一班 → 10:03 到，晚 78 分 | `bus-crowd` |
+| 鳥羽 10:00 → 賢島（2/5） | 39 分（等 10）：特急 10:10 → 10:39 | 1 條 | 10:29 發，晚 29 分 | — |
+| 通天閣 10:00 → SAN-OBP（2/12，大阪） | 45 分（走 11＋15、等 4）：大阪環狀線 新今宮 → 大阪城公園，約 4 分一班、05:15～23:48 | 1 條 | 10:19 發，晚 4 分 | — |
+| 關西機場 14:35 → 鵜方（2/2，第一天南下） | 240 分（等 33、轉乘走 16）：南海 機場急行（15 分一班）15:08 → なんば 15:54，轉乘走 16 分（有電梯路線約 24 分，`note` 很長），近鐵特急 1-382 16:10 → 18:35 | 1 條 | 兩程都是 null（見下面 1.） | `long-wait`、`transfer-walk` |
+| 伊勢市 10:00 → 朝熊（2/5） | 計程車 13 分：一般 4 台或大型 2 台，`fareEstimateYen` null | 沒有 | 沒有 | `long-wait`（電車要等 39 分，改搭計程車）、`taxi` |
+
+**T29c 要注意、引擎還沒給的**（T29b 不加）：
+1. **`ifMissed` 只照同一條走法重算**：16:10 是大阪難波直達鵜方的末班特急，所以錯過南海或錯過 16:10 都是 null，照 §8 會寫「這是末班」；但其實改搭 17:10 特急到伊勢市轉普通，20:13 還到得了。需要「錯過的話改用別條走法」的話，引擎要另外算。
+2. **候選走法常常只有 1 條**（RAPTOR 只留到達時間和程數互不輸的）：「切換走法」在很多段落沒東西可以切。
+3. **轉乘的 `note` 很長**（例如難波那段約 300 字），要摺起來或摘要。
+4. **巴士、船的 `from`／`to` 是停留所名稱，近鐵、班距型是車站 ID**：畫面要自己轉成名稱，而且巴士停留所沒有資料點可以點。
+5. **近鐵、班距型的 `fareAdult` 多是 null**，票價只有巴士比較完整。
+6. **計程車沒有候選**：計程車段落看不到「搭電車要等多久」，只有警告的文字（`long-wait` 寫了「電車要等 39 分」）。
+
 ## 8. T29c：交通卡和車站面板的畫面（T29b 之後）
 
 先和 👤 討論呈現方式（從 §7.6 的清單開始），定案後再做。以下是 2026-10-26 的初步想法，討論時可以改。

@@ -1,7 +1,7 @@
 // 「這一天」面板和地圖要的行程資訊（T15m）：交通的文字和步驟、等待說明、班次分類、距離、編號、時間條段落、行程裡找項目、匯出。
 // 純函式：時間軸、交通時間、空檔、警告都是引擎（T14）算好的，這裡只整理成畫面要的樣子。
 
-import type { DayPlan, EngineWarning, Itinerary, ItineraryItem, Leg, LegTarget, MealKind, RideDeparture, TimelineEntry, TransitRide, TravelMode, TravelSpec, TripRef, VisitItem } from '@travel-helper/engine';
+import type { DayPlan, EngineWarning, Itinerary, ItineraryItem, Leg, LegTarget, MealKind, RideDeparture, TimelineEntry, TransitRide, TravelMode, TravelSpec, VisitItem } from '@travel-helper/engine';
 import { toMinutes } from '@travel-helper/engine';
 import { displayMinutes, estimateWalk } from './geo/walk.ts';
 import { haversineMeters } from './geo/distance.ts';
@@ -51,28 +51,6 @@ export function legSubParts(leg: Leg, distance: { meters: number; straight: bool
 /** 編輯時的交通方式選單（auto：不寫 mode，由引擎挑） */
 export const EDITOR_MODES = ['auto', 'walk', 'taxi', 'transit'] as const;
 export type EditorMode = (typeof EDITOR_MODES)[number];
-
-/**
- * 選某一程的班次（第五輪 §3.3）：只換 trip，方式照原樣（自動的段落還是自動）。
- * rideIndex 0：id、depart 換成這班，rides 第 0 個換掉、後面保留（接不上由引擎改成接得上的最早一班）；
- * rideIndex > 0：id、depart 照目前的班次，rides[rideIndex] 換成這班。from／to 是這段的起訖，via（近鐵轉乘站）照舊
- */
-export function specWithRide(cur: TravelSpec | null | undefined, leg: Pick<Leg, 'from' | 'to' | 'rides' | 'trip' | 'arrive'>, rideIndex: number, dep: RideDeparture): TravelSpec {
-  const rides = leg.rides.map((r, i) => r.tripId ?? leg.trip?.rides?.[i] ?? '');
-  rides[rideIndex] = dep.tripId;
-  const first = leg.rides[0];
-  const last = rideIndex === leg.rides.length - 1;
-  const trip: TripRef = {
-    id: rideIndex === 0 ? dep.tripId : (leg.trip?.id ?? rides[0]),
-    depart: rideIndex === 0 ? dep.depart : (leg.trip?.depart ?? first?.depart ?? dep.depart),
-    arrive: last ? dep.arrive : (leg.trip?.arrive ?? leg.arrive),
-    from: leg.from,
-    to: leg.to,
-    rides,
-    ...(leg.trip?.via ? { via: leg.trip.via } : {}),
-  };
-  return { ...cur, trip };
-}
 
 /** 這段的設定在選單上亮哪個：舊的電車、巴士、船算大眾運輸；包車、自駕、其他是 legacy（選單都不亮，卡片照原名） */
 export function editorModeOf(spec: TravelSpec | null): EditorMode | 'legacy' {
@@ -462,10 +440,10 @@ export function waitNote(entry: TimelineEntry, item: VisitItem | null, _place: P
   return head;
 }
 
-/** 班次表、選班次的一列：搭不到（發車早於走到上車站）、搭得到、選定的那班（搭不到時 missedSelected）；wait 是走到站之後等幾分，搭不到是 null */
+/** 班次表的一列：搭不到（發車早於走到上車站）、搭得到、規劃搭的那班（搭不到時 missedSelected）；wait 是走到站之後等幾分，搭不到是 null */
 export type DepartureRow = RideDeparture & { state: 'missed' | 'ok' | 'selected'; wait: number | null; missedSelected?: boolean };
 
-/** 一程的所有班次分成搭不到、搭得到、選定（readyAt：走到上車站／轉乘完的時間，Leg.ready） */
+/** 一程的所有班次分成搭不到、搭得到、規劃搭的那班（readyAt：走到上車站／轉乘完的時間，Leg.ready） */
 export function departureRows(deps: RideDeparture[], readyAt: string, selectedTripId: string | null): DepartureRow[] {
   const ready = toMinutes(readyAt);
   return deps.map((d) => {
@@ -479,15 +457,6 @@ export function departureRows(deps: RideDeparture[], readyAt: string, selectedTr
 /** 第 i 程「走到上車站／轉乘完」的時間（Leg.ready）；舊的計算結果沒有 ready 時第一程用出發時間、之後用前一程到站 */
 export function rideReadyAt(leg: Pick<Leg, 'ready' | 'depart' | 'rides'>, i: number): string {
   return leg.ready?.[i] ?? (i === 0 ? leg.depart : (leg.rides[i - 1]?.arrive ?? leg.depart));
-}
-
-/** 編輯中卡片裡的班次下拉：搭不到的收成一行（「15:15 以前的 2 班搭不到」，沒有是 null），選項只有搭得到的和選定的那班 */
-export function departureChoices(rows: DepartureRow[], readyAt: string): { missedNote: string | null; options: { tripId: string; label: string; row: DepartureRow }[] } {
-  const missed = rows.filter((r) => r.state === 'missed').length;
-  const options = rows
-    .filter((r) => r.state !== 'missed')
-    .map((row) => ({ tripId: row.tripId, row, label: `${row.depart} 發 → ${row.arrive} 到・${row.wait != null ? `等 ${row.wait} 分` : '搭不到'}` }));
-  return { missedNote: missed ? `${readyAt} 以前的 ${missed} 班搭不到` : null, options };
 }
 
 /** 走路、開車的路線快取（routing.ts 的 roads） */

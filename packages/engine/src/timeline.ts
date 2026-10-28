@@ -452,9 +452,44 @@ function findGaps(day: Itinerary['days'][number], entries: TimelineEntry[], isLa
 
 // --- 整趟 -------------------------------------------------------------------
 
-export function planItinerary(it: Itinerary, data: EngineData, override: ConfigOverride | EngineConfig = {}): ItineraryPlan {
+/**
+ * 只重算有改的那一天（T29b spec §7.3）：一天的結果只看那天的內容、前一天的住宿（那天沒設 start 時當起點）、party、資料和設定。
+ * 每天的鑰匙是這幾樣轉成字串（行程的操作會深拷貝整份，不能比物件），一樣就沿用上次的 DayPlan。
+ * 資料（EngineData）或設定換了物件就整個作廢：網站在資料點、道路快取變了時才換 EngineData
+ */
+export interface PlanCache {
+  data: EngineData | null;
+  cfg: EngineConfig | null;
+  days: Map<string, DayPlan>;
+}
+
+export function createPlanCache(): PlanCache {
+  return { data: null, cfg: null, days: new Map() };
+}
+
+function dayKey(it: Itinerary, index: number): string {
+  const day = it.days[index];
+  const prev = day.start == null && index > 0 ? (it.days[index - 1].lodging ?? null) : null;
+  return JSON.stringify([day, prev, it.party]);
+}
+
+export function planItinerary(it: Itinerary, data: EngineData, override: ConfigOverride | EngineConfig = {}, cache?: PlanCache): ItineraryPlan {
   const cfg = 'trip' in override && 'walk' in override && 'holidays' in override ? (override as EngineConfig) : resolveConfig(override as ConfigOverride);
-  const days = it.days.map((_, i) => planDay(it, i, data, cfg));
+  let days: DayPlan[];
+  if (cache) {
+    const old = cache.data === data && cache.cfg === cfg ? cache.days : new Map<string, DayPlan>();
+    // 只留這次用到的，舊的不累積
+    const now = new Map<string, DayPlan>();
+    days = it.days.map((_, i) => {
+      const key = dayKey(it, i);
+      const day = old.get(key) ?? now.get(key) ?? planDay(it, i, data, cfg);
+      now.set(key, day);
+      return day;
+    });
+    Object.assign(cache, { data, cfg, days: now });
+  } else {
+    days = it.days.map((_, i) => planDay(it, i, data, cfg));
+  }
   const warnings: EngineWarning[] = [];
   for (let i = 1; i < days.length; i++) {
     if (days[i].stats.tiring && days[i - 1].stats.tiring) {

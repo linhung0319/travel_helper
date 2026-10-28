@@ -268,13 +268,16 @@ test('moveItemTo：移進分組、移出分組；分組不能放進分組；不�
   assert.deepEqual(ids(moveItemTo(it, b, last, 0), last)?.[0], b);
 });
 
-test('setLegTravel：只有 trip 也算有設定；全空存 null', () => {
+test('setLegTravel：只有 path 也算有設定；舊的 trip 不寫（T29b）；全空存 null', () => {
   const { it, ids: [a] } = threeItems();
-  const trip = { id: 't1', depart: '10:35', arrive: '10:45', from: 'x', to: 'y' };
-  const one = setLegTravel(it, { itemId: a }, { trip });
-  assert.deepEqual(getLegTravel(one, { itemId: a }), { trip });
+  const path = { rides: [{ line: 'kintetsu', from: 'toba', to: 'kashikojima' }], from: 'x', to: 'y' };
+  const one = setLegTravel(it, { itemId: a }, { path });
+  assert.deepEqual(getLegTravel(one, { itemId: a }), { path });
   assert.equal(getLegTravel(it, { itemId: a }), null);
-  const cleared = setLegTravel(one, { itemId: a }, { mode: null, minutes: null, trip: null, note: null });
+  const trip = { id: 't1', depart: '10:35', arrive: '10:45', from: 'x', to: 'y' };
+  assert.equal(getLegTravel(setLegTravel(it, { itemId: a }, { trip }), { itemId: a }), null);
+  assert.deepEqual(getLegTravel(setLegTravel(it, { itemId: a }, { mode: 'transit', trip }), { itemId: a }), { mode: 'transit' });
+  const cleared = setLegTravel(one, { itemId: a }, { mode: null, minutes: null, path: null, note: null });
   assert.equal((findItem(cleared, a)?.item as VisitItem).travel, null);
   const ret = setLegTravel(it, { lodging: D }, { mode: 'walk' });
   assert.deepEqual(ret.days.find((d) => d.date === D)?.returnTravel, { mode: 'walk' });
@@ -366,25 +369,13 @@ test('舊的 bufferMinutes 忽略、舊的方式照樣算', () => {
   for (const mode of ['train', 'bus', 'ferry', 'charter', 'car', 'other'] as const) assert.deepEqual(validateItinerary(withTravel({ mode })), []);
 });
 
-test('validateItinerary：mode transit 合法、trip 要有 id 和 HH:MM 的 depart', () => {
+test('validateItinerary：mode transit 合法；舊的 trip 忽略，格式不對也不報錯（T29b）', () => {
   assert.deepEqual(validateItinerary(withTravel({ mode: 'transit' })), []);
   assert.deepEqual(validateItinerary(withTravel({ mode: 'transit', trip: { id: 't1', depart: '10:35', arrive: '10:45', from: 'a', to: 'b' } })), []);
-  const errs = validateItinerary(withTravel({ mode: 'transit', trip: { id: '', depart: '9:5' } as TripRef }));
-  assert.equal(errs.length, 2, errs.join('；'));
-  assert.ok(errs.some((e) => e.includes('trip.id')));
-  assert.ok(errs.some((e) => e.includes('trip.depart')));
-  assert.ok(validateItinerary(withTravel({ trip: { id: 't1', depart: '10:35', arrive: 'x', from: 'a', to: 'b' } })).some((e) => e.includes('trip.arrive')));
-});
-
-test('validateItinerary：trip.rides 是每一程的 tripId（字串陣列）', () => {
+  assert.deepEqual(validateItinerary(withTravel({ mode: 'transit', trip: { id: '', depart: '9:5' } as TripRef })), []);
   const trip = { id: '1-1963', depart: '11:14', arrive: '11:41', from: 'a', to: 'b' };
-  assert.deepEqual(validateItinerary(withTravel({ mode: 'transit', trip: { ...trip, rides: ['1-1963', '1-3799'] } })), []);
-  assert.deepEqual(validateItinerary(withTravel({ mode: 'transit', trip: { ...trip, rides: null } })), []);
-  assert.deepEqual(validateItinerary(withTravel({ mode: 'transit', trip: { ...trip, rides: ['1-1963', '1-3799'], via: 'toba' } })), []);
-  assert.deepEqual(validateItinerary(withTravel({ mode: 'transit', trip: { ...trip, via: null } })), []);
-  assert.ok(validateItinerary(withTravel({ trip: { ...trip, via: 3 as unknown as string } })).some((e) => e.includes('trip.via')));
-  assert.ok(validateItinerary(withTravel({ trip: { ...trip, rides: '1-1963' as unknown as string[] } })).some((e) => e.includes('trip.rides')));
-  assert.ok(validateItinerary(withTravel({ trip: { ...trip, rides: [1] as unknown as string[] } })).some((e) => e.includes('trip.rides')));
+  assert.deepEqual(validateItinerary(withTravel({ trip: { ...trip, rides: ['1-1963', '1-3799'], via: 'toba' } })), []);
+  assert.deepEqual(validateItinerary(withTravel({ trip: { ...trip, via: 3 as unknown as string, rides: [1] as unknown as string[] } })), []);
 });
 
 // --- 合併、拆開、搬移備卡 ---------------------------------------------------

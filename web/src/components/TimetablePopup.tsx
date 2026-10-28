@@ -1,7 +1,7 @@
 // 地圖那側的班次表（第五輪 §4）：交通卡步驟裡搭車那一行的「› 班次」打開（uiStore.timetable）。
 // 標題是圖示＋路線名、下一行上下車站和車程；藍底提示是判斷搭不搭得到的時間（走到上車站／轉乘完）；
-// 清單一班一行：搭不到灰底劃線、搭得到綠底（等 1 小時以上橘字）、選定藍底。班很多時先列走到站前後幾班＋「看全部」。
-// 編輯中點綠色那班＝選它（selectRideTrip）；一般模式只能看。打開時地圖框住這一程、上車站亮起來。
+// 清單一班一行：搭不到灰底劃線、搭得到綠底（等 1 小時以上橘字）、規劃搭的那班藍底。班很多時先列走到站前後幾班＋「看全部」。
+// 只能看（T29b 拿掉選班次）。打開時地圖框住這一程、上車站亮起來。
 // 電腦版浮在地圖區左上（不蓋右邊的時間軸）；✕、點地圖、換天、交通卡收起、這段不見了都關掉。
 
 import { useEffect, useState } from 'react';
@@ -10,13 +10,12 @@ import { appStore } from '../store.ts';
 import { commands } from '../appCommands.ts';
 import { dataStore } from '../dataStore.ts';
 import { currentEngineData, dayPlanOf, departuresOf, engineConfig } from '../planStore.ts';
-import { useApp, useData, usePlan, useShared, useUi } from '../hooks.ts';
+import { useApp, useData, usePlan, useUi } from '../hooks.ts';
 import { closeTimetable, type TimetableState } from '../uiStore.ts';
-import { departureRows, findLegEntry, legTargetOf, rideReadyAt } from '../lib/planView.ts';
+import { departureRows, findLegEntry, rideReadyAt } from '../lib/planView.ts';
 import { departureLabel, readyHint, timetableSource, timetableWindow } from '../lib/timetableView.ts';
 import type { LonLat } from '../data/types.ts';
 import { ModeIcon } from './ModeIcon.tsx';
-import { selectRideTrip } from './LegRow.tsx';
 import { Icon } from './Icon.tsx';
 
 /** 一程上下車站的座標：車站是資料點；巴士、船的停留所用路線檔裡的座標（用站名對） */
@@ -41,16 +40,13 @@ export function TimetablePopup() {
     if (stale) closeTimetable();
   }, [stale]);
   if (!tt || !leg || !ride || stale) return null;
-  return <TimetableBody key={`${tt.legKey}#${tt.rideIndex}`} tt={tt} leg={leg} ride={ride} target={legTargetOf(entry!, tt.date)} />;
+  return <TimetableBody key={`${tt.legKey}#${tt.rideIndex}`} tt={tt} leg={leg} ride={ride} />;
 }
 
-function TimetableBody({ tt, leg, ride, target }: { tt: TimetableState; leg: Leg; ride: TransitRide; target: ReturnType<typeof legTargetOf> }) {
+function TimetableBody({ tt, leg, ride }: { tt: TimetableState; leg: Leg; ride: TransitRide }) {
   const byId = useData((s) => s.byId);
-  const planning = useApp((s) => s.planning);
-  const saving = useShared((s) => s.saving);
   const [showAll, setShowAll] = useState(false);
   const nameOf = (id: string) => byId.get(id)?.name.zh || byId.get(id)?.name.ja || id;
-  const editing = planning && !!target;
 
   // 打開時（或換到別程）地圖框住這一程、上車站亮起來（點開的交通 legRoute 的站，不是 AI 的標示）；關掉時把交通卡亮的站換回來（交通卡已經收起的就不動）
   const board = ride.from;
@@ -109,19 +105,11 @@ function TimetableBody({ tt, leg, ride, target }: { tt: TimetableState; leg: Leg
           <ol className="timetable-list">
             {shown.rows.map((r) => {
               const { text, long } = departureLabel(r);
-              const pickable = editing && r.state === 'ok' && !saving;
-              const cls = `timetable-row ${r.state}${long ? ' long' : ''}${pickable ? ' pickable' : ''}`;
               return (
-                <li key={r.tripId} className={cls} data-testid="timetable-row" data-state={r.state}>
-                  {pickable && target ? (
-                    <button type="button" className="timetable-row-in" onClick={() => selectRideTrip(target, leg, tt.rideIndex, r)} aria-label={`選 ${r.depart} 發的班次`}>
-                      <RowText depart={r.depart} arrive={r.arrive} text={text} />
-                    </button>
-                  ) : (
-                    <div className="timetable-row-in">
-                      <RowText depart={r.depart} arrive={r.arrive} text={text} />
-                    </div>
-                  )}
+                <li key={r.tripId} className={`timetable-row ${r.state}${long ? ' long' : ''}`} data-testid="timetable-row" data-state={r.state}>
+                  <div className="timetable-row-in">
+                    <RowText depart={r.depart} arrive={r.arrive} text={text} />
+                  </div>
                 </li>
               );
             })}

@@ -69,12 +69,9 @@ async function run(name, viewport, mobile) {
   await shot(page, `${name}-03-editing-bar`);
   await leg.getByRole('button').first().click();
   await leg.locator('[data-testid="leg-mode"][data-mode="transit"]').click();
-  await leg.getByTestId('leg-ride-select').first().waitFor();
+  await leg.getByTestId('leg-steps').first().waitFor();
   await leg.scrollIntoViewIfNeeded();
   await shot(page, `${name}-04-leg-editing`);
-  // 班次的選項（第七輪起是一排晶片，不是原生下拉）
-  await leg.getByTestId('leg-ride-select').first().scrollIntoViewIfNeeded();
-  await shot(page, `${name}-05-leg-ride-select`);
   await leg.getByTestId('leg-done').click();
   await finishEditing();
   // 收起

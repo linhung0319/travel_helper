@@ -984,9 +984,7 @@ body.dragging-plan .m-dropend {
 
 .m-leg-sheet .leg-modes .chip,
 .m-leg-sheet .leg-edit .chip,
-.m-leg-sheet .leg-edit input,
-.m-leg-sheet .leg-ride-select,
-.m-leg-sheet .leg-ride-more {
+.m-leg-sheet .leg-edit input {
   min-height: var(--tap);
 }
 
@@ -994,13 +992,6 @@ body.dragging-plan .m-dropend {
 .m-leg-sheet .leg-minutes {
   width: 100%;
   min-width: 0;
-}
-
-.m-leg-sheet .leg-ride.editing {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 4px;
 }
 
 /* ---------- 「⋯」底部動作面板 ---------- */
