@@ -10,7 +10,9 @@ import {
   legChips,
   legWarnings,
   missBadge,
+  pathRows,
   rideShortName,
+  specAfterPickPath,
   slackHint,
   ticketTightText,
   warnCount,
@@ -555,4 +557,37 @@ test('firstCellIndex：捲到規劃那列的前一列第一格', () => {
   const none = departureCells(iseDeps, { ...iseRide0, tripId: 'x', depart: '09:30' }, '08:40');
   assert.equal(firstCellIndex(none, 2), 2); // 08:43 index 5 → 第 2 列 → 第 1 列
   assert.equal(firstCellIndex([], 4), 0);
+});
+
+// 候選走法（T29c spec §8.9）：伊勢市 → 中之郷兩條
+const iseRide2: TransitRide = { ...iseRide0, line: '普通（往賢島）', depart: '08:24', arrive: '09:31', tripId: '1-4100', ifMissed: null, to: 'nakanogo' };
+const pathA = { rides: [], from: 'iseshi', to: 'nakanogo' };
+const pathB = { rides: [], from: 'iseshi', to: 'nakanogo', note: 'b' } as unknown as typeof pathA;
+const altLeg: Leg = {
+  ...iseLeg,
+  alternatives: [
+    { path: pathA, summary: '', arrive: '08:45', minutes: 45, waitMinutes: 11, walkMinutes: 6, ridesCount: 2, rides: [iseRide0, iseRide1], transfers: [] },
+    { path: pathB, summary: '', arrive: '09:31', minutes: 91, waitMinutes: 67, walkMinutes: 0, ridesCount: 1, rides: [iseRide2], transfers: [] },
+  ],
+};
+
+test('pathRows：兩條走法的標題和說明；少於兩條回空', () => {
+  const rows = pathRows(altLeg, nameOf);
+  assert.equal(rows.length, 2);
+  assert.equal(rows[0].title, '近鐵特急 → 鳥羽 → 鷗巴士 5 號');
+  assert.equal(rows[0].sub, '08:45 到・45 分・轉乘 1 次・等 11 分');
+  assert.equal(rows[0].current, true);
+  assert.equal(rows[1].title, '近鐵普通');
+  assert.equal(rows[1].sub, '09:31 到・91 分・不用轉乘・等 67 分');
+  assert.equal(rows[1].current, false);
+  assert.deepEqual(pathRows({ ...altLeg, alternatives: altLeg.alternatives!.slice(0, 1) }, nameOf), []);
+  assert.deepEqual(pathRows(iseLeg, nameOf), []);
+});
+
+test('specAfterPickPath：選別條存 path；選第一條只在有 path 時清掉', () => {
+  assert.deepEqual(specAfterPickPath({ note: 'n' }, altLeg, 1), { note: 'n', mode: 'transit', path: pathB });
+  assert.equal(specAfterPickPath(null, altLeg, 0), undefined);
+  assert.equal(specAfterPickPath({ mode: 'transit' }, altLeg, 0), undefined);
+  assert.deepEqual(specAfterPickPath({ mode: 'transit', path: pathB, note: 'n' }, altLeg, 0), { mode: 'transit', note: 'n' });
+  assert.equal(specAfterPickPath(null, altLeg, 5), undefined);
 });

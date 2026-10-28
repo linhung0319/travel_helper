@@ -25,7 +25,7 @@ import { shared } from '../appShared.ts';
 import { useApp, useData, usePlan, useShared, useUi } from '../hooks.ts';
 import { dayPlanOf, engineConfig } from '../planStore.ts';
 import { EDITOR_MODES, editorModeOf, legKeyOf, legMapsUrl, legModeName, legTargetOf, legTitle, showMinutesInput, taxiCarsText, type EditorMode } from '../lib/planView.ts';
-import { compactSteps, infoLines, legChips, legWarnings, slackHint, ticketTightText, warnCount, type CompactStep } from '../lib/legView.ts';
+import { compactSteps, infoLines, legChips, legWarnings, pathRows, slackHint, specAfterPickPath, ticketTightText, warnCount, type CompactStep } from '../lib/legView.ts';
 import { rideStations } from '../lib/routing.ts';
 import { RIDE_COLOR } from '../lib/modeIcon.ts';
 import { openTimetable, uiStore } from '../uiStore.ts';
@@ -221,24 +221,42 @@ export function LegEditor({ target, spec, leg, children }: { target: LegTarget; 
   const noTransit = leg.transitAvailable === false;
   // 「自動」寫出它選了什麼（第五輪 §3.4）；指定了別的方式時只寫「自動」（不知道自動會選什麼）
   const label = (m: EditorMode) => (m === 'auto' && current === 'auto' ? `自動（${legModeName(leg.mode)}）` : EDITOR_LABELS[m]);
+  const byId = useData((s) => s.byId);
+  const nameOf = (id: string) => byId.get(id)?.name.zh || byId.get(id)?.name.ja || id;
+  // 候選走法（只有選了大眾運輸或自動算出大眾運輸，而且有 2 條以上才有）
+  const paths = current === 'transit' || (current === 'auto' && isRide(leg.mode)) ? pathRows(leg, nameOf) : [];
+  const pickPath = (i: number) => {
+    const next = specAfterPickPath(spec, leg, i);
+    if (next !== undefined) change(() => next, '選交通走法');
+  };
   return (
     <div className="leg-edit" data-testid="leg-editor">
       <div className="leg-edit-row">
         <span className="leg-modes" role="group" aria-label="交通方式">
-          {EDITOR_MODES.map((m) => (
-            <button
-              key={m}
-              type="button"
-              className="chip"
-              aria-pressed={current === m}
-              disabled={saving || (m === 'transit' && noTransit)}
-              onClick={() => pickMode(m)}
-              data-testid="leg-mode"
-              data-mode={m}
-            >
-              {label(m)}
-            </button>
-          ))}
+          {EDITOR_MODES.map((m) => {
+            const on = current === m;
+            // 自動後面接目前算出的方式的小圖示；走路、車、電車只放圖示，選中的多寫名稱
+            const icon = m === 'auto' ? (current === 'auto' ? leg.mode : null) : m === 'transit' ? (isRide(leg.mode) ? leg.mode : 'train') : m;
+            const name = label(m);
+            return (
+              <button
+                key={m}
+                type="button"
+                className="seg-btn"
+                aria-pressed={on}
+                aria-label={name}
+                title={name}
+                disabled={saving || (m === 'transit' && noTransit)}
+                onClick={() => pickMode(m)}
+                data-testid="leg-mode"
+                data-mode={m}
+              >
+                {m === 'auto' && <span>自動</span>}
+                {icon && <ModeIcon mode={icon} size="s" />}
+                {m !== 'auto' && on && <span>{EDITOR_LABELS[m]}</span>}
+              </button>
+            );
+          })}
         </span>
         {noTransit && (
           <span className="muted small" data-testid="leg-no-transit">
@@ -247,6 +265,28 @@ export function LegEditor({ target, spec, leg, children }: { target: LegTarget; 
         )}
       </div>
       {current === 'transit' && leg.rides.length === 0 && <div className="muted small">找不到班次</div>}
+      {paths.length > 0 && (
+        <div className="leg-paths" role="group" aria-label="走法" data-testid="leg-paths">
+          <div className="leg-edit-label">走法</div>
+          {paths.map((p, i) => (
+            <button
+              key={i}
+              type="button"
+              aria-pressed={p.current}
+              className="leg-path"
+              disabled={saving}
+              onClick={() => pickPath(i)}
+              data-testid="leg-path"
+            >
+              <span className="leg-path-dot" aria-hidden="true" />
+              <span className="leg-path-text">
+                <span className="leg-path-title">{p.title}</span>
+                <span className="leg-path-sub">{p.sub}</span>
+              </span>
+            </button>
+          ))}
+        </div>
+      )}
       {children}
       {showMinutesInput(leg, spec) && (
         <div className="leg-edit-row">

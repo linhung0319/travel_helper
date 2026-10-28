@@ -3621,26 +3621,101 @@ button.leg-step-board {
   color: var(--muted);
 }
 
+/* 交通方式：一排四格的分段按鈕（T29c §8.9）；自動寫字＋小圖示，其他三格只放圖示，選中的多寫名稱 */
 .leg-modes {
   display: flex;
-  flex-wrap: wrap;
+  flex: 1;
+  min-width: 0;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  overflow: hidden;
+  background: var(--paper);
+}
+
+.seg-btn {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   gap: 4px;
+  min-height: 44px;
+  padding: 7px 4px;
+  border: 0;
+  border-left: 1px solid var(--line);
+  background: var(--paper);
+  color: var(--ink-2);
+  font: inherit;
+  font-size: 0.8125rem;
+  white-space: nowrap;
+  cursor: pointer;
 }
 
-/* 選中的方式填滿；沒選的白底 */
-.leg-modes .chip[aria-pressed='false'] {
-  background: var(--bg);
-  color: var(--fg);
-  border-color: var(--line);
+.seg-btn:first-child {
+  border-left: 0;
 }
 
-.leg-modes .chip[aria-pressed='true'] {
-  background: var(--accent);
+.seg-btn[aria-pressed='true'] {
+  background: var(--mustard);
   color: var(--paper);
+  font-weight: 700;
 }
 
-.leg-modes .chip:disabled {
+.seg-btn:disabled {
   opacity: 0.45;
+  cursor: default;
+}
+
+/* 候選走法（單選列） */
+.leg-paths {
+  display: grid;
+  gap: 6px;
+}
+
+.leg-path {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  padding: 7px 10px;
+  border: 1.5px solid var(--line);
+  border-radius: 14px;
+  background: var(--paper);
+  color: var(--fg);
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+
+.leg-path[aria-pressed='true'] {
+  border-color: var(--mustard);
+  background: var(--mustard-wash);
+}
+
+.leg-path-dot {
+  flex: 0 0 16px;
+  height: 16px;
+  margin-top: 3px;
+  border: 2px solid var(--ink-3);
+  border-radius: 50%;
+  box-sizing: border-box;
+}
+
+.leg-path[aria-pressed='true'] .leg-path-dot {
+  border: 5px solid var(--mustard);
+}
+
+.leg-path-text {
+  display: grid;
+  min-width: 0;
+}
+
+.leg-path-title {
+  font-weight: 700;
+  font-size: 0.875rem;
+}
+
+.leg-path-sub {
+  font-size: 0.78rem;
+  color: var(--ink-2);
 }
 
 .leg-minutes {

@@ -487,7 +487,14 @@ test('第五輪：交通卡平常收起，計程車點了只畫那一段、不�
   const editor = first.getByTestId('leg-editor');
   await expect(editor).toBeVisible();
   await expect(editor.getByTestId('leg-mode')).toHaveCount(4);
-  await expect(editor.locator('[data-testid="leg-mode"][data-mode="auto"]')).toHaveText('自動（計程車）');
+  // 四格分段按鈕：選中的那格有文字，其他三格只有圖示、有 aria-label
+  await expect(editor.locator('[data-testid="leg-mode"][data-mode="auto"]')).toHaveAttribute('aria-label', '自動（計程車）');
+  await expect(editor.locator('[data-testid="leg-mode"][data-mode="auto"]')).toHaveText('自動');
+  for (const [m, name] of [['walk', '步行'], ['taxi', '計程車'], ['transit', '大眾運輸']]) {
+    const b = editor.locator(`[data-testid="leg-mode"][data-mode="${m}"]`);
+    await expect(b).toHaveAttribute('aria-label', name);
+    await expect(b).toHaveText('');
+  }
   await expect(editor.getByTestId('leg-buffer-plus')).toHaveCount(0);
   await editor.locator('[data-testid="leg-mode"][data-mode="taxi"]').click();
   await expect(first.locator('[data-testid="leg-mode"][data-mode="taxi"]')).toHaveAttribute('aria-pressed', 'true');
@@ -908,7 +915,7 @@ test('第四輪完成條件：排進、標午餐和分組、交通改計程車�
   await leg.getByTestId('leg-edit').click();
   await leg.locator('[data-testid="leg-mode"][data-mode="taxi"]').click();
   await expect(leg.locator('.ll-title')).toContainText('計程車');
-  await expect(leg.getByTestId('leg-line').getByRole('img', { name: '計程車' })).toBeVisible();
+  await expect(leg.getByTestId('leg-line').getByRole('img', { name: '計程車' }).first()).toBeVisible();
 
   // 5. 復原快照 → 回到原狀
   await page.getByTestId('snapshots-button').click();
@@ -1131,6 +1138,22 @@ test('T29b：編輯中不能選班次，點上車站照樣開只能看的班次�
   const tt = page.getByTestId('timetable-popup');
   await expect(tt).toBeVisible();
   await expect(tt.locator('[data-testid="tt-cell"] button')).toHaveCount(0);
+});
+
+test('T29c：交通編輯器是四格分段按鈕（選中的有字、其他只有圖示）；有兩條以上走法時列出來可以選', async ({ page }) => {
+  await ready(page);
+  const leg = await transitLeg(page);
+  const modes = leg.getByTestId('leg-mode');
+  await expect(modes).toHaveCount(4);
+  await expect(leg.locator('[data-testid="leg-mode"][data-mode="transit"]')).toHaveText('大眾運輸');
+  for (const [m, name] of [['walk', '步行'], ['taxi', '計程車']]) {
+    const b = leg.locator(`[data-testid="leg-mode"][data-mode="${m}"]`);
+    await expect(b).toHaveAttribute('aria-label', name);
+    await expect(b).toHaveAttribute('title', name);
+    await expect(b).toHaveText('');
+  }
+  // 種子資料沒有兩條以上走法的交通：這時不列走法（列出和選走法由 legView.test.ts 的 pathRows、specAfterPickPath 測）
+  await expect(leg.getByTestId('leg-path')).toHaveCount(0);
 });
 
 test('第五輪：地圖彈窗在日期列上面（靠近上緣的點，彈窗蓋住日期列）', async ({ page }) => {

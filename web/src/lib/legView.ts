@@ -1,7 +1,7 @@
 // 交通卡、班次表要的整理（T29c spec §8.2～§8.8）：短名稱、膠囊、這段的警告、補充資訊、錯過的標籤、一程一行的步驟、可以多待、班次格子。
 // 純函式：時間、班次、錯過的話都是引擎算好的，這裡只整理成畫面要的樣子。缺 ready、transfers、ifMissed 的舊資料不當掉，缺的就不顯示。
 
-import type { DayPlan, EngineWarning, Leg, RideDeparture, TimelineEntry, TransitRide } from '@travel-helper/engine';
+import type { DayPlan, EngineWarning, Leg, PathRef, RideDeparture, TimelineEntry, TransitRide, TravelSpec } from '@travel-helper/engine';
 import { isTicketRide, toMinutes } from '@travel-helper/engine';
 
 /** 「錯過 +N 分」變橘色的門檻（分，spec §8.5） */
@@ -247,4 +247,31 @@ export function firstCellIndex(cells: DepartureCell[], cols: number): number {
   if (i < 0) i = cells.findIndex((c) => !c.gone);
   if (i < 0) return 0;
   return Math.max(0, (Math.floor(i / cols) - 1) * cols);
+}
+
+/** 編輯器的候選走法列（spec §8.9）：alternatives 少於 2 條回 []；current 是目前用的（第一條） */
+export function pathRows(leg: Leg, nameOf: (id: string) => string): { path: PathRef; title: string; sub: string; current: boolean }[] {
+  const alts = leg.alternatives ?? [];
+  if (alts.length < 2) return [];
+  return alts.map((a, i) => {
+    const title = a.rides.map((r, j) => (j < a.rides.length - 1 ? `${rideShortName(r)} → ${nameOf(r.to)}` : rideShortName(r))).join(' → ');
+    const transfers = Math.max(0, (a.ridesCount ?? a.rides.length) - 1);
+    const sub = `${a.arrive} 到・${a.minutes} 分・${transfers === 0 ? '不用轉乘' : `轉乘 ${transfers} 次`}・等 ${a.waitMinutes} 分`;
+    return { path: a.path, title, sub, current: i === 0 };
+  });
+}
+
+/**
+ * 選了第 index 條走法後這段的設定（spec §8.9）：第一條是目前用的，選它只是取消指定（spec 有 path 才清掉；沒有就不用改，回 undefined）；
+ * 選別條：改成大眾運輸並存 path
+ */
+export function specAfterPickPath(cur: TravelSpec | null, leg: Leg, index: number): TravelSpec | undefined {
+  const alt = leg.alternatives?.[index];
+  if (!alt) return undefined;
+  if (index === 0) {
+    if (!cur?.path) return undefined;
+    const { path: _path, ...rest } = cur;
+    return rest;
+  }
+  return { ...cur, mode: 'transit', path: alt.path };
 }
