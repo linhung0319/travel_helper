@@ -226,8 +226,8 @@ export function LegEditor({ target, spec, leg, children }: { target: LegTarget; 
   // 候選走法（只有選了大眾運輸或自動算出大眾運輸，而且有 2 條以上才有）
   const paths = current === 'transit' || (current === 'auto' && isRide(leg.mode)) ? pathRows(leg, nameOf) : [];
   const pickPath = (i: number) => {
-    const next = specAfterPickPath(spec, leg, i);
-    if (next !== undefined) change(() => next, '選交通走法');
+    if (i === 0) return;
+    change((cur) => specAfterPickPath(cur, leg, i) ?? cur, '選交通走法');
   };
   return (
     <div className="leg-edit" data-testid="leg-editor">

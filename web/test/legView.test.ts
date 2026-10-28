@@ -584,10 +584,11 @@ test('pathRows：兩條走法的標題和說明；少於兩條回空', () => {
   assert.deepEqual(pathRows(iseLeg, nameOf), []);
 });
 
-test('specAfterPickPath：選別條存 path；選第一條只在有 path 時清掉', () => {
+test('specAfterPickPath：選別條存 path 並清掉分鐘；選第一條（不論有沒有指定 path）不改', () => {
   assert.deepEqual(specAfterPickPath({ note: 'n' }, altLeg, 1), { note: 'n', mode: 'transit', path: pathB });
+  assert.deepEqual(specAfterPickPath({ mode: 'transit', minutes: 30, note: 'n' }, altLeg, 1), { mode: 'transit', note: 'n', path: pathB });
   assert.equal(specAfterPickPath(null, altLeg, 0), undefined);
   assert.equal(specAfterPickPath({ mode: 'transit' }, altLeg, 0), undefined);
-  assert.deepEqual(specAfterPickPath({ mode: 'transit', path: pathB, note: 'n' }, altLeg, 0), { mode: 'transit', note: 'n' });
+  assert.equal(specAfterPickPath({ mode: 'transit', path: pathB, note: 'n' }, altLeg, 0), undefined);
   assert.equal(specAfterPickPath(null, altLeg, 5), undefined);
 });

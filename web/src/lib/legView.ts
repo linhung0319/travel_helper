@@ -262,16 +262,12 @@ export function pathRows(leg: Leg, nameOf: (id: string) => string): { path: Path
 }
 
 /**
- * 選了第 index 條走法後這段的設定（spec §8.9）：第一條是目前用的，選它只是取消指定（spec 有 path 才清掉；沒有就不用改，回 undefined）；
- * 選別條：改成大眾運輸並存 path
+ * 選了第 index 條走法後這段的設定（spec §8.9）：第一條是目前用的（有指定 path 時引擎把指定的放第一個），選它不用改，回 undefined；
+ * 選別條：改成大眾運輸、存 path，並清掉自己填的分鐘（有分鐘時引擎不看 path）
  */
 export function specAfterPickPath(cur: TravelSpec | null, leg: Leg, index: number): TravelSpec | undefined {
   const alt = leg.alternatives?.[index];
-  if (!alt) return undefined;
-  if (index === 0) {
-    if (!cur?.path) return undefined;
-    const { path: _path, ...rest } = cur;
-    return rest;
-  }
-  return { ...cur, mode: 'transit', path: alt.path };
+  if (!alt || index === 0) return undefined;
+  const { minutes: _minutes, ...rest } = cur ?? {};
+  return { ...rest, mode: 'transit', path: alt.path };
 }
