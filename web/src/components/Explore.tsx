@@ -25,7 +25,7 @@ import { PlaceTile } from '../shared/ui/PlaceTile.tsx';
 import { PlaceWall } from '../shared/ui/PlaceWall.tsx';
 import { WishList } from '../shared/ui/WishList.tsx';
 import { useWishPrefs, wishPrefs } from '../shared/wishPrefs.ts';
-import { PlaceOpenBody } from '../shared/ui/PlaceOpen.tsx';
+import { PlaceOpenBody, useRevealOpen } from '../shared/ui/PlaceOpen.tsx';
 
 export type ListSource = 'explore' | 'wish';
 
@@ -121,6 +121,7 @@ export function ExplorePanel({ source = 'explore' }: { source?: ListSource }) {
   // 原地展開的那張（一次一張；換分頁時 ExplorePanel 換一個，自然收起）
   const [openId, setOpenId] = useState<string | null>(null);
   const toggle = (id: string) => toggleOpen(id, openId, setOpenId);
+  useRevealOpen(ref, openId);
 
   // 清單的計算在 shared/placeLists.ts（手機版也用）；沒選類型就是三類都列
   const { pool, list } = usePlaceList(source, filter, query, sort, inView ? bounds : null);

@@ -1000,8 +1000,17 @@
   gap: 8px;
 }
 
-.po-actions .ui-btn {
+.po-actions > .ui-btn,
+.po-actions > .add-to-day {
   flex: 1;
+}
+
+.po-actions > .add-to-day {
+  padding: 0;
+}
+
+.po-actions .add-to-day .ui-btn {
+  width: 100%;
 }
 
 .pw-col {

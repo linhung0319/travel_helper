@@ -2267,6 +2267,54 @@ test('打開交通：框住兩端，不出現「清掉」；收起回到原本�
   expect(Math.abs((await page.evaluate(() => (window as any).__th.map.getZoom())) - before)).toBeLessThan(0.05);
 });
 
+test('第九輪：展開的卡只放介紹、多一顆「加到某天」；展開後捲到卡的頂端貼著黏住的標題下面（§14.3）', async ({ page }) => {
+  await ready(page);
+  /** 捲動停了以後：卡（或它上面的日期小標）頂端和黏住的標題下緣的距離，和卡的下緣有沒有在看得到的範圍裡 */
+  const placement = async (card: Locator) => {
+    let last = -1;
+    await expect.poll(async () => {
+      const now = await page.locator('.side-body').evaluate((e) => e.scrollTop);
+      const same = now === last;
+      last = now;
+      return same;
+    }).toBe(true);
+    return card.evaluate((el) => {
+      const sc = el.closest('.side-body')!.getBoundingClientRect();
+      const bar = document.querySelector('.side-body .fb-desktop')!.getBoundingClientRect();
+      const head = el.closest('.wl-section')?.querySelector('.wl-head')?.getBoundingClientRect();
+      const sub = el.closest('.wl-group')?.querySelector('.wl-sub')?.getBoundingClientRect();
+      const r = el.getBoundingClientRect();
+      const top = sub && r.top - sub.bottom < 16 ? sub.top : r.top;
+      return { gap: Math.round(top - (head ? head.bottom : bar.bottom)), fits: r.bottom <= sc.bottom + 1 };
+    });
+  };
+  // 探索清單：靠下面那列展開，捲到它的頂端在篩選列下面 8px
+  await page.getByTestId('side-tab-explore').click();
+  await page.getByTestId('view-list').click();
+  const id = (await page.getByTestId('explore-item').nth(6).getAttribute('data-id'))!;
+  const row = page.locator(`[data-testid="explore-item"][data-id="${id}"]`);
+  await row.click();
+  const open = page.getByTestId('explore-panel').getByTestId('place-open');
+  await expect(open).toBeVisible();
+  await expect(open.getByTestId('pros-cons')).toHaveCount(0);
+  await expect(open.locator('.po-intro')).not.toBeEmpty();
+  expect((await placement(row)).gap).toBe(8);
+  // 「加到某天」開日期格
+  await open.getByTestId('place-open-add').click();
+  await expect(page.getByTestId('day-picker')).toBeVisible();
+  await page.keyboard.press('Escape');
+  await expect(page.getByTestId('day-picker')).toHaveCount(0);
+  // 想去照片牆：卡貼在黏住的段落標題下面（日期小標整個露出來）
+  await page.getByTestId('side-tab-wish').click();
+  await page.getByTestId('view-photo').click();
+  const wid = (await page.getByTestId('wish-item').nth(2).getAttribute('data-id'))!;
+  const tile = page.locator(`[data-testid="wish-item"][data-id="${wid}"]`);
+  await tile.click();
+  await expect(tile.getByTestId('place-open')).toBeVisible();
+  const p = await placement(tile);
+  expect(p.gap).toBe(8);
+});
+
 test('第八輪：探索的卡點了原地展開（照片牆橫跨兩欄、清單在原地），選中那個點；按「詳細資料」才開詳情；再點收起', async ({ page }) => {
   await ready(page);
   await page.getByTestId('side-tab-explore').click();
