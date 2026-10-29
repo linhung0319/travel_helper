@@ -1,50 +1,116 @@
-// 兩張卡中間的交通（第八輪 §13.6 交通卡，網頁、手機共用）：比資料卡窄、有框的小卡，縮在時間軸連線的右邊；
+// 兩張卡中間的交通（第八輪 §13.6 交通卡，網頁、手機共用；T29c spec §8.2 改成收合兩行）：比資料卡窄、有框的小卡，縮在時間軸連線的右邊；
 // 交通方式的小圓點（線條圖示）放在連線上（連線在資料卡小照片的中線，ui.css 的 ll-li::before）。
-// 第一行「計程車 34 分」，第二行距離、台數、含等車（sub），備註再一行；字和資料卡的時間、副標一樣大。
-// 右邊「map ↗」（Google Maps 路線，外部連結），編輯中多一顆「改」（按了才打開交通編輯器）。
-// 大眾運輸點卡片展開步驟（children 放在卡片裡、標題下面）；網頁、手機的資料準備在 components/LegRow.tsx 的 useLegView。
+// 第一行「大眾運輸 45 分」，這段有 warning 以上的警告時後面「⚠ 數字」（不寫警告的字）；
+// 第二行搭車的是走法的膠囊（每一程一顆，中間小字寫換車站），計程車是台數（sub），步行沒有第二行；備註再一行。字和資料卡的時間、副標一樣大。
+// 右邊「map ↗」（Google Maps 路線，外部連結），編輯中多一顆「改」（按了才打開交通編輯器）；小箭頭、map ↗、改都只在第一行，
+// 第二行的膠囊用整張卡的寬度（ui.css 的 ll-head 是格線，ll-main、ll-text 用 subgrid 對齊同一格線）。
+// 點卡片展開（children 放在卡片裡、標題下面：補充資訊框、步驟、編輯器）；網頁、手機的資料準備在 components/LegRow.tsx 的 useLegView。
 
-import type { ReactNode } from 'react';
-import type { Leg } from '@travel-helper/engine';
+import { Fragment, useLayoutEffect, useRef, type CSSProperties, type ReactNode } from 'react';
+import type { Leg, TransitRide } from '@travel-helper/engine';
 import { ModeIcon } from '../../components/ModeIcon.tsx';
 import { Icon } from '../../components/Icon.tsx';
+import { RIDE_COLOR } from '../../lib/modeIcon.ts';
+
+/** 第二行的膠囊：每一程的方式和短名稱；stops[i] 是第 i 程和第 i+1 程中間的換車站（legView 的 legChips） */
+export interface LegChips {
+  rides: { mode: TransitRide['mode']; name: string }[];
+  stops: string[];
+}
 
 export interface LegLineProps {
   mode: Leg['mode'];
   /** 「計程車 34 分」 */
   title: string;
-  /** 第二行：距離、台數、含等車…（用「・」接起來） */
+  /** 第一行後面的「⚠ 數字」（這段 warning、error 等級的警告數）；0 不畫 */
+  warnCount?: number;
+  /** 第二行：搭車的膠囊（有就不畫 sub） */
+  chips?: LegChips | null;
+  /** 第二行：計程車台數（用「・」接起來） */
   sub?: string[];
   note?: string | null;
   /** Google Maps 路線的網址；沒有就不畫「map ↗」 */
   mapsHref?: string | null;
-  /** 點卡片展開／收起（大眾運輸的步驟）；沒有就不能點 */
+  /** 點卡片展開／收起；沒有就不能點 */
   onToggle?: (() => void) | null;
   open?: boolean;
-  /** 後面畫小箭頭（有步驟可以展開：大眾運輸） */
+  /** 後面畫小箭頭（點開有東西看：步驟、補充資訊框） */
   expandable?: boolean;
   /** 編輯中可以改這段：畫「改」 */
   onEdit?: (() => void) | null;
 }
 
-/** 一張交通卡；children（步驟、編輯器）接在卡片裡、標題下面 */
-export function LegLine({ mode, title, sub = [], note, mapsHref, onToggle, open = false, expandable = false, onEdit, children }: LegLineProps & { children?: ReactNode }) {
+/** 膠囊列放不放得下：整列超出、或最後一顆的名稱被省略 */
+function chipsOverflow(row: HTMLElement): boolean {
+  if (row.scrollWidth > row.clientWidth + 1) return true;
+  const names = row.querySelectorAll<HTMLElement>('.ll-chip-name');
+  const last = names[names.length - 1];
+  return !!last && last.scrollWidth > last.clientWidth + 1;
+}
+
+/**
+ * 第二行的膠囊列：交通方式圖示＋短名稱，外框用交通方式的顏色；兩程中間小字寫換車站。
+ * 放不下時先拿掉換車站（data-fit="nostops"），膠囊名稱寫完整；還是放不下才省略最後一顆。不換行。
+ * 量法：先全部畫出來（data-fit="full"）量，放不下就換成 nostops；寬度變了（ResizeObserver）重量
+ */
+function ChipRow({ chips }: { chips: LegChips }) {
+  const ref = useRef<HTMLSpanElement>(null);
+  const text = chips.rides.map((r) => r.name).join('|') + '#' + chips.stops.join('|');
+  useLayoutEffect(() => {
+    const row = ref.current;
+    if (!row) return;
+    const fit = () => {
+      row.dataset.fit = 'full';
+      if (chips.stops.some(Boolean) && chipsOverflow(row)) row.dataset.fit = 'nostops';
+    };
+    fit();
+    if (typeof ResizeObserver === 'undefined') return;
+    const ro = new ResizeObserver(fit);
+    ro.observe(row);
+    return () => ro.disconnect();
+    // 內容一樣就不用重量（chips 每次重算是新物件）
+  }, [text]);
+  return (
+    <span className="ll-chips" data-testid="leg-chips" ref={ref} data-fit="full">
+      {chips.rides.map((r, i) => (
+        <Fragment key={i}>
+          {i > 0 && chips.stops[i - 1] && <span className="ll-chip-stop">{chips.stops[i - 1]}</span>}
+          <span className="ll-chip" style={{ '--ride-c': RIDE_COLOR[r.mode] } as CSSProperties}>
+            <ModeIcon mode={r.mode} size="s" />
+            <span className="ll-chip-name">{r.name}</span>
+          </span>
+        </Fragment>
+      ))}
+    </span>
+  );
+}
+
+/** 一張交通卡；children（補充資訊框、步驟、編輯器）接在卡片裡、標題下面 */
+export function LegLine({ mode, title, warnCount = 0, chips, sub = [], note, mapsHref, onToggle, open = false, expandable = false, onEdit, children }: LegLineProps & { children?: ReactNode }) {
   const body = (
     <>
       <span className="ll-text" data-testid="leg-line-text">
-        <span className="ll-title">{title}</span>
-        {sub.length > 0 && <span className="ll-sub">{sub.join('・')}</span>}
+        <span className="ll-line1">
+          <span className="ll-title">{title}</span>
+          {warnCount > 0 && (
+            <span className="ll-warn" data-testid="leg-warn-count" aria-label={`${warnCount} 個提醒`}>
+              <Icon name="warn" size={16} />
+              {warnCount}
+            </span>
+          )}
+          {onToggle && expandable && (
+            <span className="ll-chev" aria-hidden>
+              <Icon name="chevron" size={16} />
+            </span>
+          )}
+        </span>
+        {chips && chips.rides.length > 0 ? <ChipRow chips={chips} /> : sub.length > 0 && <span className="ll-sub">{sub.join('・')}</span>}
         {note && (
           <span className="ll-note ic-text" data-testid="leg-note-text">
             <Icon name="pen" size={16} /> {note}
           </span>
         )}
       </span>
-      {onToggle && expandable && (
-        <span className="ll-chev" aria-hidden>
-          <Icon name="chevron" size={16} />
-        </span>
-      )}
     </>
   );
   return (
@@ -62,15 +128,19 @@ export function LegLine({ mode, title, sub = [], note, mapsHref, onToggle, open 
           ) : (
             <span className="ll-main">{body}</span>
           )}
-          {mapsHref && (
-            <a className="ll-maps" href={mapsHref} target="_blank" rel="noreferrer" aria-label="在 Google Maps 開路線" data-testid="leg-maps">
-              map ↗
-            </a>
-          )}
-          {onEdit && (
-            <button type="button" className="ll-edit" onClick={onEdit} data-testid="leg-edit">
-              改
-            </button>
+          {(mapsHref || onEdit) && (
+            <span className="ll-acts">
+              {mapsHref && (
+                <a className="ll-maps" href={mapsHref} target="_blank" rel="noreferrer" aria-label="在 Google Maps 開路線" data-testid="leg-maps">
+                  map ↗
+                </a>
+              )}
+              {onEdit && (
+                <button type="button" className="ll-edit" onClick={onEdit} data-testid="leg-edit">
+                  改
+                </button>
+              )}
+            </span>
           )}
         </div>
         {children}

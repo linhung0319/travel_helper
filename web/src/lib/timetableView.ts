@@ -1,53 +1,28 @@
-// 地圖那側的班次表（第五輪 §4）要的整理：預設列哪幾班、等多久的寫法、走到站的提示、時刻表來源那一行。
-// 純函式；班次本身是引擎的 rideDepartures，搭不到／搭得到／選定是 planView 的 departureRows。
+// 班次表（T29c spec §8.8）要的整理：標題下面那行小字、班距型那一程的內容、時刻表來源那一行。
+// 純函式；班次本身是引擎的 rideDepartures，排成格子是 legView 的 departureCells。
 
-import { busDayType, kintetsuDayType, toMinutes, type KintetsuTimes, type Leg, type RouteTimetable, type TransitRide } from '@travel-helper/engine';
-import { rideReadyAt, type DepartureRow } from './planView.ts';
+import { busDayType, kintetsuDayType, type KintetsuTimes, type RouteTimetable, type TransitRide } from '@travel-helper/engine';
+import { isKintetsu, rideShortName } from './legView.ts';
+import { dayLabel } from './trip.ts';
 
-/** 班次超過幾班才收起來 */
-export const TIMETABLE_FOLD = 8;
-/** 收起來時列走到站之前幾班、之後幾班 */
-const BEFORE = 1;
-const AFTER = 4;
+/** 路線名裡「（往X）」的 X；沒寫往哪是 null */
+const headsign = (line: string) => /（往([^（）]+)）/.exec(line)?.[1] ?? null;
 
 /**
- * 班次表預設列哪幾班：不超過 TIMETABLE_FOLD 班全列；超過時列 readyAt 之前 1 班、之後 4 班，
- * 選定的那班不在範圍內時把範圍拉到它。hidden 是沒列出的班數（0＝不用「看全部」）
+ * 班次表標題下面那行小字（spec §8.8）：「業者或路線・往哪・日期（星期）・HH:MM 到站」，巴士最後加票價。
+ * 近鐵只寫「近鐵」（車種寫在格子裡）；其他用短名稱（rideShortName）。readyAt 是走到上車站（轉乘完）的時間
  */
-export function timetableWindow(rows: DepartureRow[], readyAt: string, showAll = false): { rows: DepartureRow[]; hidden: number } {
-  if (showAll || rows.length <= TIMETABLE_FOLD) return { rows, hidden: 0 };
-  const ready = toMinutes(readyAt);
-  let first = rows.findIndex((r) => toMinutes(r.depart) >= ready);
-  if (first < 0) first = rows.length;
-  let start = Math.max(0, first - BEFORE);
-  let end = Math.min(rows.length, first + AFTER);
-  const sel = rows.findIndex((r) => r.state === 'selected');
-  if (sel >= 0) {
-    start = Math.min(start, sel);
-    end = Math.max(end, sel + 1);
-  }
-  return { rows: rows.slice(start, end), hidden: rows.length - (end - start) };
+export function timetableSubtitle(ride: TransitRide, date: string, readyAt: string): string {
+  const to = headsign(ride.line);
+  const parts = [isKintetsu(ride) ? '近鐵' : rideShortName(ride), to ? `往${to}` : null, dayLabel(date), `${readyAt} 到站`];
+  if (ride.mode === 'bus' && ride.fareAdult != null) parts.push(`${ride.fareAdult.toLocaleString('en-US')} 円`);
+  return parts.filter((p): p is string => !!p).join('・');
 }
 
-/** 一列右邊的字：搭不到、等 N 分（1 小時以上寫成 1小時53分，long 用橘色）、選定的加「・選定」 */
-export function departureLabel(row: DepartureRow): { text: string; long: boolean } {
-  if (row.wait == null) return { text: row.state === 'selected' ? '搭不到・選定' : '搭不到', long: false };
-  const long = row.wait >= 60;
-  const wait = `等 ${row.wait} 分`; // 和卡片、下拉一樣寫「等 N 分」；1 小時以上只改顏色（long）
-  return { text: row.state === 'selected' ? `${wait}・選定` : wait, long };
-}
-
-/**
- * 藍底提示：判斷搭不搭得到用的時間。第一程「走到 川辺：15:15（伊雜宮 15:01 出發）」；
- * 轉乘的那程「宇治山田 轉乘完：12:20（12:15 到站）」。nameOf 把站 ID 換成站名
- */
-export function readyHint(leg: Pick<Leg, 'ready' | 'depart' | 'rides'>, rideIndex: number, fromName: string, nameOf: (id: string) => string): string {
-  const ride = leg.rides[rideIndex];
-  const at = rideReadyAt(leg, rideIndex);
-  if (!ride) return at;
-  if (rideIndex === 0) return `走到 ${nameOf(ride.from)}：${at}（${fromName} ${leg.depart} 出發）`;
-  const prev = leg.rides[rideIndex - 1];
-  return `${nameOf(ride.from)} 轉乘完：${at}${prev ? `（${prev.arrive} 到站）` : ''}`;
+/** 班距型那一程的班次表內容：「約 15 分一班・首班 05:45／末班 23:02」；查不到的寫「沒查到」（班距查不到寫「班距沒查到」，不寫「約 ? 分」） */
+export function headwayText(ride: Pick<TransitRide, 'headwayMin' | 'first' | 'last'>): string {
+  const every = ride.headwayMin != null ? `約 ${ride.headwayMin} 分一班` : '班距沒查到';
+  return `${every}・首班 ${ride.first ?? '沒查到'}／末班 ${ride.last ?? '沒查到'}`;
 }
 
 /** 時刻表檔案裡引擎型別沒列、但原始 JSON 有的欄位 */

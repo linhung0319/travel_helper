@@ -109,6 +109,7 @@ async function dropCandidateIn(it: Itinerary, src: Extract<DragSource, { kind: '
     const target = placeName(optionPlace(it, r.itemId));
     const add = (x: Itinerary) => {
       const item = findItemRef(x, r.itemId)?.item;
+      if (dataStore.getState().byId.get(src.placeId)?.type === 'station') throw new ItineraryError('車站不能排進行程，只會出現在地圖和交通卡');
       if (item?.type === 'visit' && item.options.some((o) => o.place === src.placeId)) throw new ItineraryError(`${target} 已經有 ${name}`);
       return addOption(x, r.itemId, { place: src.placeId, stayMinutes: null });
     };

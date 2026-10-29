@@ -3,12 +3,14 @@
 // 整頁的東西（詳情 PlaceDetailPage、討論、預約）蓋在最上面，一次只有一層；分頁本身不卸載，返回時捲動位置不變。共用元件用 appStore.openDetail 開的詳情，這裡改開整頁詳情。
 // 探索（ExploreFeed）、想去（WishlistPage）、行程（TripPage：地圖上蓋一張可以拉的面板）、AI（ChatPage：佔位對話，T16m 接上）。
 // 行程頁的半屏聊天打開時寫 data-chat：chat.css 讓地圖只畫在聊天上面那塊，開關時地圖重新算大小。
+// 班次表（TimetablePopup，T29c §8.8）掛在地圖那塊裡面，浮在地圖上、被行程面板蓋住（不蓋行程）；行程在最高時打開會降到中間（mobileStore）。
 // 行程面板停的高度（tripSnap）寫在 data-snap：mobile.css 照它算面板高度和地圖露出的範圍（地圖只畫在面板上面那塊，飛過去的點才不會被蓋住）。
 
 import { useEffect } from 'react';
 import { useApp } from '../hooks.ts';
 import { appStore } from '../store.ts';
 import { MapView, resizeMap } from '../components/MapView.tsx';
+import { TimetablePopup } from '../components/TimetablePopup.tsx';
 import { Dialogs, Toast } from '../components/Dialogs.tsx';
 import { mobileStore, setMobileActive, useMobile, type MobileTab } from './mobileStore.ts';
 import { TabBar } from './TabBar.tsx';
@@ -72,6 +74,8 @@ export function MobileApp() {
       </main>
       <div className="m-map" hidden={tab !== 'trip'}>
         <MapView />
+        {/* 班次表浮在地圖那塊（在行程面板底下，不蓋行程；不在行程分頁時跟地圖一起藏起來） */}
+        <TimetablePopup />
       </div>
       {/* 編輯中藏起來，免得不小心點到跑去別的分頁 */}
       {!planning && <TabBar />}

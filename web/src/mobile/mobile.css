@@ -618,6 +618,26 @@
 
 /* 天數列見 shared/ui/ui.css（DayStrip sheet） */
 
+/* 班次表（T29c §8.8）：浮在地圖那塊的上面，高度固定＝行程在中間時露出的地圖，扣掉上面 8px、下面 48px
+   （地圖右下的版權列；360 寬時會折成兩行，約 44px），不跟著面板高度變；格子三欄，多了在裡面捲。
+   班距型那一程只有一行字：照內容的高度 */
+.m-app .timetable-pop {
+  top: 8px;
+  left: 8px;
+  right: 8px;
+  width: auto;
+  max-height: none;
+  height: calc((100dvh - var(--m-tabbar-h) - env(safe-area-inset-bottom)) * (1 - var(--m-sheet-mid)) - 56px);
+}
+
+.m-app .timetable-pop.headway {
+  height: auto;
+}
+
+.m-app .tt-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
 /* 地圖上的小圖示：只有右下「放大地圖」 */
 .m-map-button {
   position: relative;
@@ -761,14 +781,26 @@
   --ll-grip: var(--tap);
 }
 
-.m-leg .ll-main {
+/* 卡片頭至少 44px（ll-head 上下的 1fr 撐開，ll-main 跨整個格線所以整塊都能點） */
+.m-leg .ll-head {
   min-height: var(--tap);
 }
 
+/* map ↗ 只佔第一行的高度，點的範圍用 ::after 撐到 44px（同「改」，ui.css 的 .m-leg .ll-edit） */
 .m-leg .ll-maps {
+  position: relative;
   display: inline-flex;
   align-items: center;
-  min-height: var(--tap);
+}
+
+.m-leg .ll-maps::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: max(100%, 44px);
+  height: 44px;
+  transform: translate(-50%, -50%);
 }
 
 .m-leg .ll-edit {

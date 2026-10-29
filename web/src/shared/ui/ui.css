@@ -2390,19 +2390,23 @@ body.dragging-plan .tc-li.stacked.drop-merge > .tc {
   background: var(--paper);
 }
 
+/* 卡片頭是格線：兩欄（內容、右邊 map ↗／改），列是「上空白 1fr、第一行、第二行、備註、下空白 1fr」（空白只在手機有最低高度時撐開，讓內容置中）。
+   點的範圍（ll-main）和文字（ll-text）跨整個格線、用 subgrid 對齊：第一行只在左欄（右邊讓給 map ↗、改），第二行的膠囊、備註跨兩欄用整張卡的寬度（T29c spec §8.2） */
 .ll-head {
-  display: flex;
-  align-items: center;
-  gap: 8px;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  grid-template-rows: 1fr auto auto auto 1fr;
+  column-gap: 8px;
   min-width: 0;
 }
 
 .ll-main {
-  flex: 1;
+  grid-column: 1 / -1;
+  grid-row: 1 / -1;
+  display: grid;
+  grid-template-columns: subgrid;
+  grid-template-rows: subgrid;
   min-width: 0;
-  display: flex;
-  align-items: center;
-  gap: 8px;
   padding: 0;
   border: 0;
   background: none;
@@ -2416,11 +2420,34 @@ button.ll-main {
 }
 
 .ll-text {
-  flex: 0 1 auto;
+  grid-column: 1 / -1;
+  grid-row: 1 / -1;
+  display: grid;
+  grid-template-columns: subgrid;
+  grid-template-rows: subgrid;
   min-width: 0;
-  display: flex;
-  flex-direction: column;
   line-height: 1.35;
+}
+
+.ll-text > .ll-chips,
+.ll-text > .ll-sub {
+  grid-column: 1 / -1;
+  grid-row: 3;
+}
+
+.ll-text > .ll-note {
+  grid-column: 1 / -1;
+  grid-row: 4;
+}
+
+/* 右邊 map ↗、改：只佔第一行 */
+.ll-acts {
+  grid-column: 2;
+  grid-row: 2;
+  align-self: center;
+  display: flex;
+  align-items: center;
+  gap: 8px;
 }
 
 /* 字和資料卡的時間（tc-time）、副標（tc-meta）一樣大 */
@@ -2433,17 +2460,96 @@ button.ll-main {
   font-weight: 700;
 }
 
+/* 第一行：方式＋分鐘，有警告時後面「⚠ 數字」（T29c spec §8.2） */
+.ll-line1 {
+  grid-column: 1;
+  grid-row: 2;
+  align-self: center;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  min-width: 0;
+}
+
+.ll-warn {
+  flex: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+  color: var(--warn);
+  font-weight: 700;
+}
+
 .ll-sub {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
 }
 
+/* 第二行：走法的膠囊（交通方式圖示＋短名稱，外框 RIDE_COLOR），兩程中間小字寫換車站；不換行。
+   放不下時（LegLine 量了寫 data-fit="nostops"）先拿掉換車站，膠囊名稱寫完整；還是放不下才省略最後一顆 */
+.ll-chips {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  min-width: 0;
+  margin-top: 3px;
+  overflow: hidden;
+}
+
+.ll-chip {
+  --ride-c: var(--indigo);
+  flex: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  min-width: 0;
+  padding: 0 7px 0 2px;
+  border: 1.5px solid var(--ride-c);
+  border-radius: 999px;
+  background: var(--paper);
+  color: var(--ink);
+  font-size: 0.8125rem;
+}
+
+/* 只有最後一顆可以縮（名稱省略），至少留約 4 個字，不會縮到只剩一個字 */
+.ll-chip:last-child {
+  flex: 0 1 auto;
+}
+
+.ll-chip:last-child .ll-chip-name {
+  min-width: 4em;
+}
+
+.ll-chip > .mode-icon {
+  flex: none;
+}
+
+.ll-chip-name {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.ll-chip-stop {
+  flex: none;
+  white-space: nowrap;
+  color: var(--ink-2);
+  font-size: 0.75rem;
+}
+
+.ll-chips[data-fit='nostops'] .ll-chip-stop {
+  display: none;
+}
+
 .ll-note {
   color: var(--ink-3);
 }
 
+/* 小箭頭在第一行的最右邊（map ↗ 左邊） */
 .ll-chev {
+  flex: none;
+  margin-left: auto;
   display: inline-flex;
   color: var(--ink-3);
   transition: transform 0.15s;

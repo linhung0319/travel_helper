@@ -162,7 +162,7 @@ UI 的天數分頁、篩選標籤的 ✕、「跳到區域」、詳情的「問 
 T15m 先用假後端把畫面做出來，T15 只換後端的實作，畫面的程式不改。
 
 - **`web/src/backend/`：後端的介面**（`types.ts` 的 `Backend`）。形狀照 §4「資料 API」：行程（`version`、409 衝突）、快照、投票（❤️ 就是想去）、留言（地點或某一天）、候選（某天的候選）、修改紀錄、成員、`sync`。2026-10-24 拿掉建議、改成想去分頁和候選（設計見 `docs/superpowers/specs/2026-10-24-wishlist-planning-design.md`）；留言、候選 Worker 還沒有，T15 要補（§3.6）。錯誤是 `BackendError`（HTTP 狀態＋`error`、`message`、`details`）。
-  - `mock.ts`：假後端，規則和 Worker 一樣（只有寫的人能改刪、軟刪除、改行程前自動存快照、version 不對回 409），資料存在記憶體加 localStorage（`travel-helper:mockBackend:v5`，種子資料改了就換 key）。種子資料在 `dev-fixtures/seed.ts`（4 位假家人、排了一半的行程：有時段備案、分組用的合併卡（2/10）、空檔）。
+  - `mock.ts`：假後端，規則和 Worker 一樣（只有寫的人能改刪、軟刪除、改行程前自動存快照、version 不對回 409），資料存在記憶體加 localStorage（`travel-helper:mockBackend:v6`，種子資料改了就換 key）。種子資料在 `dev-fixtures/seed.ts`（4 位假家人、排了一半的行程：有時段備案、分組用的合併卡（2/10）、空檔）。
   - `index.ts`：dev server 用假後端；正式 build 先用「還沒接上」的版本（只能看、寫入都回 503）。**T15 在這裡換成呼叫 API 的實作**。假後端、種子資料、dev 選單都用 `import.meta.env.DEV` 包起來，不會進 `dist/`。
 - **`web/src/sharedStore.ts`（純邏輯）／`appShared.ts`（網站共用的一份）：大家共用的資料**。
   - 狀態：`me`、`members`、`version`（手上那份行程的）、`updatedBy`、`updatedAt`、`snapshots`、`votes`、`comments`、`wishes`、`edits`、`saving`、`conflict`（409 之後不能再改，按「重新載入」才清掉）、`toast`、`lastSync`。

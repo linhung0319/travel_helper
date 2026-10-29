@@ -796,6 +796,20 @@ dl {
 
 /* ---------- 車站面板 ---------- */
 
+/* 班距型路線：每條線一行，線名下一行寫班距和首末班（不列班次） */
+.urban-lines {
+  list-style: none;
+  margin: 8px 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.urban-lines li {
+  display: flex;
+  flex-direction: column;
+}
+
 .station-controls {
   display: flex;
   flex-wrap: wrap;
@@ -3151,14 +3165,14 @@ body.dragging-plan .tl-dropend {
   overflow-y: auto;
 }
 
-/* 地圖那側的班次表（第五輪 §4，TimetablePopup）：電腦版浮在地圖區左上，上緣離地圖上緣 --panel-gap-y + 8px，
-   z-index 高過彈窗（.map-panel 15） */
+/* 地圖那側的班次表（T29c §8.8，TimetablePopup）：網頁浮在地圖區左上，上緣離地圖上緣 --panel-gap-y + 8px，
+   寬約 440px（四欄）、最高地圖區的 60%，超過在格子那塊捲（標題列固定）；z-index 高過彈窗（.map-panel 15）。手機版的位置在 mobile.css */
 .timetable-pop {
   position: absolute;
   top: calc(var(--panel-gap-y) + 8px);
   left: 12px;
-  width: 320px;
-  max-height: calc(100% - var(--panel-gap-y) - 20px);
+  width: min(440px, calc(100% - 24px));
+  max-height: 60%;
   z-index: 18;
   display: flex;
   flex-direction: column;
@@ -3183,6 +3197,7 @@ body.dragging-plan .tl-dropend {
 
 .timetable-title h2 {
   font-size: 1rem;
+  line-height: 1.3;
   margin: 0;
 }
 
@@ -3192,108 +3207,104 @@ body.dragging-plan .tl-dropend {
   margin-top: 2px;
 }
 
-.timetable-ready {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  margin: 8px 12px 4px;
-  padding: 4px 8px;
-  border-radius: 999px;
-  font-size: 0.8rem;
-  background: var(--indigo-wash);
-  color: var(--indigo);
-}
-
 .timetable-body {
   flex: 1;
   min-height: 0;
   overflow-y: auto;
-  padding: 4px 8px 8px;
+  padding: 8px 10px 10px;
 }
 
-.timetable-list {
+/* 格子：一班一格，由左到右、由上到下；網頁四欄（手機三欄在 mobile.css） */
+.tt-grid {
   list-style: none;
   margin: 0;
   padding: 0;
-  display: flex;
-  flex-direction: column;
-  gap: 3px;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 5px;
 }
 
-/* 一列：一般模式是 div（游標不變），編輯中搭得到的那幾列是按鈕 */
-.timetable-row {
+.tt-cell {
+  border: 1px solid var(--line);
   border-radius: 14px;
-}
-
-.timetable-row-in {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  width: 100%;
-  padding: 6px 8px;
-  border: 0;
-  border-radius: 14px;
-  background: transparent;
-  color: inherit;
-  font: inherit;
-  text-align: left;
+  padding: 4px 6px;
+  line-height: 1.25;
   font-variant-numeric: tabular-nums;
-  cursor: default;
+  background: var(--paper);
 }
 
-.timetable-dep {
-  font-weight: 700;
-  width: 46px;
+.tt-time {
+  font-size: 0.84rem;
+  white-space: nowrap;
 }
 
-.timetable-arr {
-  flex: 1;
-  font-size: 0.8rem;
+.tt-time span {
   color: var(--muted);
 }
 
-.timetable-wait {
-  font-size: 0.8rem;
+.tt-kind {
+  display: flex;
+  gap: 4px;
+  font-size: 0.7rem;
+  color: var(--muted);
+  white-space: nowrap;
 }
 
-.timetable-row.missed {
+/* 特急：要另買特急券，靛藍字 */
+.tt-express {
+  color: var(--indigo);
+}
+
+/* 搭不到：灰底、時間劃線 */
+.tt-cell.gone {
   background: var(--wash);
+  border-color: var(--wash);
   color: var(--ink-3);
 }
 
-.timetable-row.missed .timetable-dep {
+.tt-cell.gone .tt-time {
   text-decoration: line-through;
 }
 
-.timetable-row.missed .timetable-arr {
+.tt-cell.gone .tt-time b {
+  font-weight: 400;
+}
+
+.tt-cell.gone .tt-time span,
+.tt-cell.gone .tt-kind,
+.tt-cell.gone .tt-express {
   color: var(--ink-3);
 }
 
-.timetable-row.ok {
-  background: var(--good-bg);
-}
-
-.timetable-row.ok .timetable-wait {
-  color: var(--good);
-}
-
-.timetable-row.ok.long .timetable-wait {
-  color: var(--warn);
-}
-
-.timetable-row.selected {
+/* 規劃那班：靛藍底白字（搭不到也一樣） */
+.tt-cell.plan {
   background: var(--indigo);
+  border-color: var(--indigo);
   color: var(--paper);
 }
 
-.timetable-row.selected .timetable-arr,
-.timetable-row.selected .timetable-wait {
-  color: var(--indigo-wash);
+.tt-cell.plan .tt-time span,
+.tt-cell.plan .tt-kind,
+.tt-cell.plan .tt-express {
+  color: var(--on-ink-2);
 }
 
-.timetable-all {
-  margin-top: 4px;
-  font-size: 0.85rem;
+/* 錯過規劃那班的下一班：橘底 */
+.tt-cell.next {
+  background: var(--warn-bg);
+  border-color: var(--warn-line);
+  color: var(--warn);
+}
+
+.tt-cell.next .tt-time span,
+.tt-cell.next .tt-kind {
+  color: var(--warn);
+}
+
+/* 班距型那一程：沒有格子，只有一行 */
+.tt-headway {
+  margin: 2px 2px 4px;
+  font-size: 0.9rem;
 }
 
 .timetable-src {
@@ -3382,7 +3393,7 @@ body.dragging-plan .tl-dropend {
 
 .leg-step {
   display: grid;
-  grid-template-columns: 44px 18px 1fr;
+  grid-template-columns: 42px 16px 1fr;
   align-items: stretch;
 }
 
@@ -3435,78 +3446,181 @@ body.dragging-plan .tl-dropend {
 }
 
 .leg-step-tx {
-  padding: 1px 0 8px 4px;
+  padding: 1px 0 6px 4px;
   min-width: 0;
 }
 
-.leg-step.node .leg-step-tx {
-  font-weight: 600;
+/* 節點一行（T29c spec §8.4）：站名（上車站可以點，後面「›」）、同一行右邊「走 N 分 ↓」或「等 N 分」；站名太長省略，右邊的字不換行 */
+.leg-step-line {
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
+  min-width: 0;
 }
 
-.leg-step.walk .leg-step-tx,
-.leg-step.ride .leg-step-tx {
-  color: var(--muted);
+.leg-step-name {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 4px;
+  min-width: 0;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: var(--ink);
+  font: inherit;
+  font-weight: 600;
+  text-align: left;
+}
+
+.leg-step-nm {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+button.leg-step-board {
+  cursor: pointer;
+}
+
+.leg-step-tap {
+  flex: none;
+  color: var(--indigo);
+  font-weight: 400;
 }
 
 .leg-step-walk {
-  display: inline-flex;
-  align-items: center;
-  gap: 4px;
+  flex: none;
+  margin-left: auto;
+  color: var(--ink-2);
+  font-size: 0.75rem;
+  white-space: nowrap;
 }
 
-/* 等車、轉乘：站名下面淡黃底的一列（§13.6） */
-.leg-step-wait-row {
-  display: flex;
-  align-items: center;
-  gap: 4px;
-  width: fit-content;
-  max-width: 100%;
-  margin-top: 4px;
-  padding: 2px 8px;
-  border-radius: 14px;
+/* 等車：芥子黃小底，靠右 */
+.leg-step-wait {
+  flex: none;
+  margin-left: auto;
+  padding: 0 6px;
+  border-radius: 999px;
   background: var(--mustard-wash);
   color: var(--mustard-ink);
-  font-size: 0.8125rem;
-  font-weight: 500;
+  font-size: 0.75rem;
+  white-space: nowrap;
 }
 
-/* 搭車那一行的膠囊：點了在地圖那側開班次表；編輯中裡面是班次下拉 */
+/* 買票太趕：上車站下面一行橘字 */
+.leg-step-tight {
+  display: block;
+  margin-top: 2px;
+  color: var(--warn);
+  font-size: 0.75rem;
+}
+
+/* 一程一行：膠囊（圖示＋短名稱＋發車）、右邊錯過的標籤（車程分鐘看前後節點的時間，不另外寫）。
+   一定一行：放不下時先省略膠囊的名稱（至少留約 3.5 個字和發車時間；360 寬的手機剛好放得下「錯過 +N 分」），標籤不換行、不縮 */
+.leg-step.ride .leg-step-tx {
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
+  gap: 2px 4px;
+  padding: 3px 0 5px 2px;
+}
+
 .leg-ride {
   --ride-c: var(--indigo);
   display: inline-flex;
   align-items: center;
-  gap: 6px;
-  max-width: 100%;
-  padding: 3px 8px 3px 4px;
+  /* 放不下時縮名稱（名稱 min-width 3.5em，圖示、發車不縮） */
+  flex: 0 1 auto;
+  min-width: 0;
+  gap: 3px;
+  padding: 1px 6px 1px 2px;
   border: 1.5px solid var(--ride-c);
   border-radius: 999px;
   background: var(--paper);
-  color: var(--ride-c);
-  font: inherit;
+  color: var(--ink);
+  font-size: 0.8125rem;
   font-weight: 600;
-  text-align: left;
-  cursor: pointer;
 }
 
-/* 路線名太長時在膠囊裡換行，圖示和「› 班次」不換行 */
-.leg-ride > * {
+.leg-ride > .mode-icon {
   flex: none;
 }
 
-.leg-ride > span:not([class]) {
-  flex: 0 1 auto;
-  min-width: 0;
+.leg-ride-name {
+  min-width: 3.5em;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
-.leg-ride-more {
-  font-weight: 400;
+.leg-ride-dep {
+  flex: none;
+  font-variant-numeric: tabular-nums;
+}
+
+/* 錯過的話（spec §8.5）：hot 橘底粗體、muted 淡灰、bad 紅底粗體；點了開那一程的班次表 */
+.leg-miss {
+  flex: none;
+  margin-left: auto;
+  padding: 0 6px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: var(--wash);
+  color: var(--ink-2);
+  font: inherit;
+  font-size: 0.75rem;
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+/* 手機編輯器面板裡只能看（LegSteps readOnly）：標籤是 span */
+span.leg-miss {
+  cursor: default;
+}
+
+.leg-miss.hot {
+  border-color: var(--warn-line);
+  background: var(--warn-bg);
+  color: var(--warn);
+  font-weight: 700;
+}
+
+.leg-miss.bad {
+  border-color: var(--bad-bg);
+  background: var(--bad-bg);
+  color: var(--bad);
+  font-weight: 700;
+}
+
+/* 轉乘有說明、有電梯路線時另外一行，說明摺起來 */
+.leg-xfer {
+  color: var(--ink-2);
+  font-size: 0.75rem;
+}
+
+.leg-xfer-note {
+  font-size: 0.75rem;
   color: var(--ink-2);
 }
 
-.leg-ride-min {
-  display: block;
-  margin-top: 3px;
-  font-variant-numeric: tabular-nums;
+.leg-xfer-note summary {
+  color: var(--indigo);
+  cursor: pointer;
+}
+
+.leg-xfer-note p {
+  margin: 4px 0 0;
+}
+
+/* 點開後的補充資訊框（spec §8.3）：淡灰底，一兩行 */
+.leg-info {
+  margin: 6px 0 4px;
+  padding: 5px 9px;
+  border-radius: 14px;
+  background: var(--wash);
+  color: var(--ink-2);
+  font-size: 0.8125rem;
 }
 
 .leg-edit {
@@ -3531,26 +3645,101 @@ body.dragging-plan .tl-dropend {
   color: var(--muted);
 }
 
+/* 交通方式：一排四格的分段按鈕（T29c §8.9）；自動寫字＋小圖示，其他三格只放圖示，選中的多寫名稱 */
 .leg-modes {
   display: flex;
-  flex-wrap: wrap;
+  flex: 1;
+  min-width: 0;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  overflow: hidden;
+  background: var(--paper);
+}
+
+.seg-btn {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   gap: 4px;
+  min-height: 44px;
+  padding: 7px 4px;
+  border: 0;
+  border-left: 1px solid var(--line);
+  background: var(--paper);
+  color: var(--ink-2);
+  font: inherit;
+  font-size: 0.8125rem;
+  white-space: nowrap;
+  cursor: pointer;
 }
 
-/* 選中的方式填滿；沒選的白底 */
-.leg-modes .chip[aria-pressed='false'] {
-  background: var(--bg);
-  color: var(--fg);
-  border-color: var(--line);
+.seg-btn:first-child {
+  border-left: 0;
 }
 
-.leg-modes .chip[aria-pressed='true'] {
-  background: var(--accent);
+.seg-btn[aria-pressed='true'] {
+  background: var(--mustard);
   color: var(--paper);
+  font-weight: 700;
 }
 
-.leg-modes .chip:disabled {
+.seg-btn:disabled {
   opacity: 0.45;
+  cursor: default;
+}
+
+/* 候選走法（單選列） */
+.leg-paths {
+  display: grid;
+  gap: 6px;
+}
+
+.leg-path {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  padding: 7px 10px;
+  border: 1.5px solid var(--line);
+  border-radius: 14px;
+  background: var(--paper);
+  color: var(--fg);
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+
+.leg-path[aria-pressed='true'] {
+  border-color: var(--mustard);
+  background: var(--mustard-wash);
+}
+
+.leg-path-dot {
+  flex: 0 0 16px;
+  height: 16px;
+  margin-top: 3px;
+  border: 2px solid var(--ink-3);
+  border-radius: 50%;
+  box-sizing: border-box;
+}
+
+.leg-path[aria-pressed='true'] .leg-path-dot {
+  border: 5px solid var(--mustard);
+}
+
+.leg-path-text {
+  display: grid;
+  min-width: 0;
+}
+
+.leg-path-title {
+  font-weight: 700;
+  font-size: 0.875rem;
+}
+
+.leg-path-sub {
+  font-size: 0.78rem;
+  color: var(--ink-2);
 }
 
 .leg-minutes {

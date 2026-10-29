@@ -9,7 +9,7 @@ import { useEffect } from 'react';
 import { Icon } from '../components/Icon.tsx';
 import { appStore } from '../store.ts';
 import { commands } from '../appCommands.ts';
-import { useApp, useData, usePlan, useShared } from '../hooks.ts';
+import { useApp, useData, usePlan, useShared, useUi } from '../hooks.ts';
 import { dayPlanOf } from '../planStore.ts';
 import { dayCandidates } from '../lib/wishlist.ts';
 import { resizeMap } from '../components/MapView.tsx';
@@ -47,10 +47,11 @@ function useFocusOnMap() {
   }, [placeId]);
 }
 
-/** 地圖上的小圖示：只有「放大地圖」（面板在中間高度時才出現） */
+/** 地圖上的小圖示：只有「放大地圖」（面板在中間高度時才出現；班次表開著時不出現，免得蓋住彈窗的角） */
 function MapButtons() {
   const snap = useMobile((s) => s.tripSnap);
-  if (snap !== 'mid') return null;
+  const timetable = useUi((s) => s.timetable);
+  if (snap !== 'mid' || timetable) return null;
   return (
     <button type="button" className="m-map-button m-map-full" onClick={() => mobileStore.getState().setSnap('low')} aria-label="放大地圖" data-testid="m-trip-full">
       <Icon name="expand" size={20} />

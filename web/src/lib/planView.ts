@@ -1,11 +1,10 @@
-// 「這一天」面板和地圖要的行程資訊（T15m）：交通的文字和步驟、等待說明、班次分類、距離、編號、時間條段落、行程裡找項目、匯出。
+// 「這一天」面板和地圖要的行程資訊（T15m）：交通的文字、等待說明、班次分類、編號、時間條段落、行程裡找項目、匯出。
 // 純函式：時間軸、交通時間、空檔、警告都是引擎（T14）算好的，這裡只整理成畫面要的樣子。
 
-import type { DayPlan, EngineWarning, Itinerary, ItineraryItem, Leg, LegTarget, MealKind, RideDeparture, TimelineEntry, TransitRide, TravelMode, TravelSpec, VisitItem } from '@travel-helper/engine';
+import type { DayPlan, EngineWarning, Itinerary, ItineraryItem, Leg, LegTarget, MealKind, TimelineEntry, TravelMode, TravelSpec, VisitItem } from '@travel-helper/engine';
 import { toMinutes } from '@travel-helper/engine';
 import { displayMinutes, estimateWalk } from './geo/walk.ts';
-import { haversineMeters } from './geo/distance.ts';
-import type { LonLat, Place, PlaceType } from '../data/types.ts';
+import type { Place, PlaceType } from '../data/types.ts';
 import type { IconName } from './icons.ts';
 
 /** 交通方式的中文名（交通卡標題、「自動（…）」）：電車、巴士、船都叫大眾運輸 */
@@ -38,14 +37,10 @@ export function legTitle(leg: Leg): string {
   return leg.mode === 'none' ? '' : `${legModeName(leg.mode)} ${leg.minutes} 分`;
 }
 
-/** 交通卡標題第二行（小字）：距離（查不到路線時加「（直線）」）、計程車台數、每台費用、大眾運輸的「含等車 N 分」；備註由元件接 */
-export function legSubParts(leg: Leg, distance: { meters: number; straight: boolean } | null): string[] {
-  const out: string[] = [];
-  if (distance) out.push(`${formatDistance(distance.meters)}${distance.straight ? '（直線）' : ''}`);
-  if (leg.taxi) out.push(`${leg.taxi.jumboCars ? `大型 ${leg.taxi.jumboCars} 台或 ` : ''}${leg.taxi.cars} 台`);
-  if (leg.taxi?.fareEstimateYen) out.push(`每台約 ${leg.taxi.fareEstimateYen.toLocaleString()} 円`);
-  if (leg.waitMinutes) out.push(`含等車 ${leg.waitMinutes} 分`);
-  return out;
+/** 計程車收合時的第二行（T29c spec §8.2，叫車要知道）：「大型 2 台或一般 4 台」；不是計程車回傳 null */
+export function taxiCarsText(leg: Leg): string | null {
+  if (!leg.taxi) return null;
+  return leg.taxi.jumboCars ? `大型 ${leg.taxi.jumboCars} 台或一般 ${leg.taxi.cars} 台` : `${leg.taxi.cars} 台`;
 }
 
 /** 編輯時的交通方式選單（auto：不寫 mode，由引擎挑） */
@@ -67,11 +62,6 @@ const UNCOMPUTED_BASIS = new Set(['找不到班次', '缺座標']);
 /** 編輯時要不要給「自己填分鐘」：算不出來（交通未定、指定的方式找不到班次、缺座標）或已經填過分鐘 */
 export function showMinutesInput(leg: Pick<Leg, 'mode' | 'basis'>, spec: TravelSpec | null): boolean {
   return leg.mode === 'unknown' || UNCOMPUTED_BASIS.has(leg.basis) || spec?.minutes != null;
-}
-
-/** 距離的寫法：850 公尺、1.2 公里 */
-export function formatDistance(meters: number): string {
-  return meters < 1000 ? `${Math.round(meters)} 公尺` : `${(meters / 1000).toFixed(1)} 公里`;
 }
 
 /** 這一列的交通是設定在哪裡（setLegTravel 的對象）；起點、會合沒有可設的交通 */
@@ -180,12 +170,17 @@ const WARNING_TEXT: Record<string, string> = {
   'lodging-meals-unknown': '這間住宿有含晚餐和不含晚餐的方案，還沒選哪一種',
 };
 
-/** 引擎的警告，依項目分好；沒有項目的（整天的）放在 day */
+/**
+ * 引擎的警告，依項目分好；沒有項目的（整天的）放在 day。
+ * 交通的警告（leg: true）不放：交通卡自己用 legView 的 legWarnings 顯示（T29c spec §8.2）；當天摘要的數字另外算（daySummary）。
+ * 例外：分組各組走到會合點那段沒有交通卡（itemId 是分組），那段的交通警告留在分組卡
+ */
 export function warningsByItem(day: DayPlan | null): { byItem: Map<string, EngineWarning[]>; day: EngineWarning[] } {
   const byItem = new Map<string, EngineWarning[]>();
   const rest: EngineWarning[] = [];
+  const splits = new Set((day?.entries ?? []).filter((e) => e.kind === 'meet' && e.groups && e.itemId).map((e) => e.itemId!));
   for (const raw of day?.warnings ?? []) {
-    if (HIDDEN_WARNINGS.has(raw.code)) continue;
+    if ((raw.leg && !(raw.itemId && splits.has(raw.itemId))) || HIDDEN_WARNINGS.has(raw.code)) continue;
     const w = WARNING_TEXT[raw.code] ? { ...raw, message: WARNING_TEXT[raw.code] } : raw;
     if (w.itemId) byItem.set(w.itemId, [...(byItem.get(w.itemId) ?? []), w]);
     else rest.push(w);
@@ -385,44 +380,7 @@ export function cardTypeLetter(type: PlaceType | 'airport' | null): string {
   return (type && TYPE_LETTERS[type]) ?? '點';
 }
 
-// --- 交通卡的步驟、等待、班次、距離 -------------------------------------------
-
-/** 交通卡展開後的一步：節點（出發點、上下車的站、轉乘站，wait 是在這裡等車的分鐘）、步行、搭車（index 是第幾程） */
-export type LegStep =
-  | { kind: 'node'; time: string; name: string; wait?: number }
-  | { kind: 'walk'; minutes: number }
-  | { kind: 'ride'; index: number; mode: TransitRide['mode']; line: string; depart: string; arrive: string; minutes: number };
-
-/**
- * 大眾運輸的步驟，由上到下（第五輪 §3.2）：出發點 → 步行 → 上車站（等車）→ 搭車 → 轉乘站（等車）→ 搭車 … → 下車站 → 步行 → 終點。
- * 步行 0 分就省略，出發點、終點就是車站時和上下車站合成一個節點（名稱用 fromName／toName）。沒有搭車（步行、計程車）回傳 []
- */
-export function legSteps(leg: Leg, fromName: string, toName: string, nameOf: (id: string) => string): LegStep[] {
-  const rides = leg.rides;
-  if (!rides.length) return [];
-  const out: LegStep[] = [];
-  const node = (time: string, name: string, wait: number) => out.push(wait > 0 ? { kind: 'node', time, name, wait } : { kind: 'node', time, name });
-  const before = leg.walkBefore ?? 0;
-  const after = leg.walkAfter ?? 0;
-  const ready0 = leg.ready?.[0] ?? leg.depart;
-  if (before > 0) {
-    node(leg.depart, fromName, 0);
-    out.push({ kind: 'walk', minutes: before });
-  }
-  node(ready0, before > 0 ? nameOf(rides[0].from) : fromName, toMinutes(rides[0].depart) - toMinutes(ready0));
-  rides.forEach((r, index) => {
-    out.push({ kind: 'ride', index, mode: r.mode, line: r.line, depart: r.depart, arrive: r.arrive, minutes: toMinutes(r.arrive) - toMinutes(r.depart) });
-    const next = rides[index + 1];
-    if (next) node(r.arrive, nameOf(r.to), toMinutes(next.depart) - toMinutes(r.arrive));
-  });
-  const last = rides[rides.length - 1];
-  if (after > 0) {
-    node(last.arrive, nameOf(last.to), 0);
-    out.push({ kind: 'walk', minutes: after });
-    node(leg.arrive, toName, 0);
-  } else node(last.arrive, toName, 0);
-  return out;
-}
+// --- 交通卡的等待、班次 -------------------------------------------
 
 const MEAL_LABELS: Partial<Record<MealKind, string>> = { lunch: '午餐 ', dinner: '晚餐 ' };
 
@@ -440,45 +398,9 @@ export function waitNote(entry: TimelineEntry, item: VisitItem | null, _place: P
   return head;
 }
 
-/** 班次表的一列：搭不到（發車早於走到上車站）、搭得到、規劃搭的那班（搭不到時 missedSelected）；wait 是走到站之後等幾分，搭不到是 null */
-export type DepartureRow = RideDeparture & { state: 'missed' | 'ok' | 'selected'; wait: number | null; missedSelected?: boolean };
-
-/** 一程的所有班次分成搭不到、搭得到、規劃搭的那班（readyAt：走到上車站／轉乘完的時間，Leg.ready） */
-export function departureRows(deps: RideDeparture[], readyAt: string, selectedTripId: string | null): DepartureRow[] {
-  const ready = toMinutes(readyAt);
-  return deps.map((d) => {
-    const wait = toMinutes(d.depart) - ready;
-    const missed = wait < 0;
-    if (d.tripId === selectedTripId) return missed ? { ...d, state: 'selected', wait: null, missedSelected: true } : { ...d, state: 'selected', wait };
-    return missed ? { ...d, state: 'missed', wait: null } : { ...d, state: 'ok', wait };
-  });
-}
-
 /** 第 i 程「走到上車站／轉乘完」的時間（Leg.ready）；舊的計算結果沒有 ready 時第一程用出發時間、之後用前一程到站 */
 export function rideReadyAt(leg: Pick<Leg, 'ready' | 'depart' | 'rides'>, i: number): string {
   return leg.ready?.[i] ?? (i === 0 ? leg.depart : (leg.rides[i - 1]?.arrive ?? leg.depart));
-}
-
-/** 走路、開車的路線快取（routing.ts 的 roads） */
-export interface RoadCache {
-  cachedMeters(p: 'foot' | 'car', a: LonLat, b: LonLat): number | null;
-}
-
-/**
- * 交通卡的距離（第五輪 §3.5）：步行用 foot、計程車和其他車用 car 的路線快取；大眾運輸用地圖上那條路徑的長度（ridePathMeters）；
- * 都沒有（還沒查到、交通未定）→ 直線距離、straight
- */
-export function legDistance(leg: Leg, from: Place, to: Place, roads: RoadCache, ridePathMeters: number | null): { meters: number; straight: boolean } {
-  const m = leg.mode;
-  const meters =
-    m === 'walk'
-      ? roads.cachedMeters('foot', from.coords, to.coords)
-      : m === 'taxi' || m === 'charter' || m === 'car' || m === 'other'
-        ? roads.cachedMeters('car', from.coords, to.coords)
-        : m === 'train' || m === 'bus' || m === 'ferry' || m === 'transit'
-          ? ridePathMeters
-          : null;
-  return meters != null ? { meters, straight: false } : { meters: haversineMeters(from.coords, to.coords), straight: true };
 }
 
 export const METHOD_LABELS: Record<string, string> = {

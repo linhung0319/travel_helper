@@ -7,6 +7,7 @@
 // 聊天（§3.6）：行程頁的半屏聊天（chatSheet）只在行程分頁出現，換分頁就收起來。詳情的「問 AI」（uiStore.chatDraft 的 seq 變了）：
 // 從行程打開的詳情回到行程、打開半屏聊天，其他地方打開的跳到 AI 分頁；兩種都關掉詳情（只在手機版掛著時：MapView 讓網頁版也載入這個檔）。
 // AI 的提議（appStore.proposal）是半屏聊天帶出來的：關掉半屏、離開行程分頁時一起清掉，不會卡在手機的地圖上。
+// 班次表（uiStore.timetable，T29c §8.8）浮在地圖那塊：行程拉到最高時打開，行程降到中間讓出地圖（snapForTimetable）；關掉不拉回去。
 
 import { createStore } from 'zustand/vanilla';
 import { useStore } from 'zustand';
@@ -20,6 +21,11 @@ import { EMPTY_FEED, type ExploreSort, type ExploreType, type Feed } from '../li
 
 export type MobileTab = 'explore' | 'wish' | 'trip' | 'ai' | 'me';
 export type TripSnap = 'low' | 'mid' | 'high';
+
+/** 打開班次表時行程面板停在哪：最高（地圖只露一條）降到中間，讓出地圖給班次表；低、中不動 */
+export function snapForTimetable(snap: TripSnap): TripSnap {
+  return snap === 'high' ? 'mid' : snap;
+}
 
 /** 動作面板裡的子畫面（list＝動作清單） */
 export type ActionView = 'list' | 'tags' | 'move' | 'lodging-plan' | 'stay' | 'reorder';
@@ -269,6 +275,16 @@ if (typeof window !== 'undefined') {
     m.closePlace();
     if (d.from === 'trip') m.openChatSheet();
     else m.setTab('ai');
+  });
+  // 打開（或換一程）班次表：行程在最高時降到中間；關掉不動
+  let lastTimetable = uiStore.getState().timetable;
+  uiStore.subscribe((s) => {
+    if (s.timetable === lastTimetable) return;
+    lastTimetable = s.timetable;
+    if (!s.timetable || !mobileActive) return;
+    const m = mobileStore.getState();
+    const snap = snapForTimetable(m.tripSnap);
+    if (snap !== m.tripSnap) m.setSnap(snap);
   });
   // Playwright 測試、Claude in Chrome 檢查畫面用
   if (import.meta.env?.DEV) (window as unknown as Record<string, unknown>).__thMobile = mobileStore;

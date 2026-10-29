@@ -4,6 +4,22 @@ import assert from 'node:assert/strict';
 import { createMockBackend, type MockSeed } from '../src/backend/mock.ts';
 import { BackendError, isVersionConflict, dayTarget, TRIP_TARGET } from '../src/backend/types.ts';
 import { itin } from './helpers.ts';
+import fs from 'node:fs';
+import { seedItinerary } from '../src/dev-fixtures/seed.ts';
+
+test('種子行程沒有車站的資料卡（T29c §8.10），第一天和 2/5 換成附近的景點', () => {
+  const stations = new Set((JSON.parse(fs.readFileSync(new URL('../../data/stations.json', import.meta.url), 'utf8').replace(/^﻿/, '')) as { id: string }[]).map((s) => s.id));
+  const places: string[] = [];
+  const walk = (items: ReturnType<typeof seedItinerary>['days'][number]['items']) => {
+    for (const it of items) {
+      if (it.type === 'visit') places.push(...it.options.map((o) => o.place));
+      if (it.type === 'split') for (const g of it.groups) walk(g.items);
+    }
+  };
+  for (const d of seedItinerary().days) walk(d.items);
+  assert.ok(places.length > 10);
+  assert.deepEqual(places.filter((p) => stations.has(p)), []);
+});
 
 const SEED: MockSeed = {
   members: [

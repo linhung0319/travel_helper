@@ -212,6 +212,8 @@ export interface EngineWarning {
   itemId?: string;
   groupId?: string;
   placeId?: string;
+  /** 這則警告來自那段交通（itemId 仍是目的地的項目；回住宿那段沒有 itemId） */
+  leg?: true;
 }
 
 export interface TransitRide {

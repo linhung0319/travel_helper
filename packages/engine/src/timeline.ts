@@ -80,18 +80,21 @@ const inWindow = (t: number, [a, b]: [string, string]) => t >= toMinutes(a) && t
 function travelTo(target: Endpoint, st: State, ctx: RunContext, spec: VisitItem['travel'], itemId: string | undefined): Leg | null {
   if (!st.loc || !st.started) return null;
   const { leg, warnings } = planLeg(st.loc, target, { date: ctx.date, depart: st.time, party: ctx.party, whole: ctx.whole, data: ctx.data, cfg: ctx.cfg }, spec);
-  for (const w of warnings) warn(ctx, itemId ? { ...w, itemId } : w);
+  for (const w of warnings) warn(ctx, itemId ? { ...w, itemId, leg: true } : { ...w, leg: true });
   if (leg.mode === 'ferry') ctx.tiring.value = true;
   return leg;
 }
 
 // --- 各種項目 ---------------------------------------------------------------
 
-function placeChecks(res: ResolvedPlace | null, placeId: string, itemId: string | undefined, ctx: RunContext): void {
+/** 資料卡、自由時間的地點、會合點的檢查；meet：分組的會合點可以約在車站，不發 station-card */
+function placeChecks(res: ResolvedPlace | null, placeId: string, itemId: string | undefined, ctx: RunContext, meet = false): void {
   if (!res) {
     warn(ctx, { code: 'place-missing', level: 'error', itemId, placeId, message: `找不到地點「${placeId}」` });
     return;
   }
+  // 車站不能當資料卡（車站是交通的端點，不是去玩的點）
+  if (res.record.type === 'station' && !meet) warn(ctx, { code: 'station-card', level: 'error', itemId, placeId, message: `資料卡不能是車站（${placeId}）` });
   if (res.retired) warn(ctx, { code: 'place-retired', level: 'warning', itemId, placeId, message: '這個點已下架，資料可能過時' });
   if (res.origin === 'user') warn(ctx, { code: 'unchecked', level: 'info', itemId, placeId, message: '使用者加的點：營業時間、團體條件未查' });
 }
@@ -292,7 +295,7 @@ function runSplit(item: SplitItem, st: State, ctx: RunContext): TimelineEntry {
     warn(ctx, { code: 'split-size', level: 'warning', itemId: item.id, message: `各組加起來 ${total} 人，全員是 ${ctx.party.size} 人` });
   }
   const meet = endpointOf(item.meet.place, ctx.data);
-  placeChecks(ctx.data.getPlace(item.meet.place), item.meet.place, item.id, ctx);
+  placeChecks(ctx.data.getPlace(item.meet.place), item.meet.place, item.id, ctx, true);
   const meetTime = toMinutes(item.meet.time);
   let latest = st.time;
   const groups = item.groups.map((g) => {

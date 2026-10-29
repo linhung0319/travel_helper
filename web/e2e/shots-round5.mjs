@@ -84,7 +84,7 @@ async function run(name, viewport, mobile) {
   await shot(page, `${name}-07-leg-expanded`);
   // 班次表（地圖那側；手機是下方面板）
   await leg.getByTestId('leg-ride').first().click();
-  await page.getByTestId('timetable').waitFor();
+  await page.getByTestId('timetable-popup').waitFor();
   await shot(page, `${name}-08-timetable`);
   await page.getByTestId('timetable-close').click();
   await leg.getByRole('button').first().click();

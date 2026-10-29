@@ -1,19 +1,21 @@
-// 地圖那側的班次表（第五輪 §4）：交通卡步驟裡搭車那一行的「› 班次」打開（uiStore.timetable）。
-// 標題是圖示＋路線名、下一行上下車站和車程；藍底提示是判斷搭不搭得到的時間（走到上車站／轉乘完）；
-// 清單一班一行：搭不到灰底劃線、搭得到綠底（等 1 小時以上橘字）、規劃搭的那班藍底。班很多時先列走到站前後幾班＋「看全部」。
-// 只能看（T29b 拿掉選班次）。打開時地圖框住這一程、上車站亮起來。
-// 電腦版浮在地圖區左上（不蓋右邊的時間軸）；✕、點地圖、換天、交通卡收起、這段不見了都關掉。
+// 地圖那側的班次表（T29c spec §8.8）：點交通卡步驟裡的上車站、或那一程「錯過的話」的標籤打開（uiStore.timetable）。只能看。
+// 標題是圖示＋「上車站 → 下車站」，下一行「業者或路線・往哪・日期（星期）・HH:MM 到站」（巴士加票價）；標題列固定，下面的格子在彈窗裡捲。
+// 格子一班一格（departureCells）：第一行「發車–到站」，第二行車種（特急靛藍字）＋標記（規劃、+N 分、末班）；搭不到灰底劃線。
+// 打開時捲到「規劃」那一列，上面留一列（firstCellIndex；一列幾格看 CSS 排出來的欄數）。班距型那一程沒有格子，只寫班距和首末班。
+// 打開時地圖框住這一程、上車站亮起來。✕、點地圖、換天、交通卡收起、這段不見了都關掉。
+// 網頁版浮在地圖區左上（寬約 440px、四欄、最高地圖區的 60%）；手機版浮在行程上面那塊地圖（MobileApp 掛，高度固定、三欄；行程最高時降到中間是 mobileStore 做）。
 
-import { useEffect, useState } from 'react';
-import { toMinutes, type Leg, type TransitRide } from '@travel-helper/engine';
+import { useEffect, useLayoutEffect, useRef } from 'react';
+import type { Leg, TransitRide } from '@travel-helper/engine';
 import { appStore } from '../store.ts';
 import { commands } from '../appCommands.ts';
 import { dataStore } from '../dataStore.ts';
 import { currentEngineData, dayPlanOf, departuresOf, engineConfig } from '../planStore.ts';
 import { useApp, useData, usePlan, useUi } from '../hooks.ts';
 import { closeTimetable, type TimetableState } from '../uiStore.ts';
-import { departureRows, findLegEntry, rideReadyAt } from '../lib/planView.ts';
-import { departureLabel, readyHint, timetableSource, timetableWindow } from '../lib/timetableView.ts';
+import { findLegEntry, rideReadyAt } from '../lib/planView.ts';
+import { departureCells, firstCellIndex, type DepartureCell } from '../lib/legView.ts';
+import { headwayText, timetableSource, timetableSubtitle } from '../lib/timetableView.ts';
 import type { LonLat } from '../data/types.ts';
 import { ModeIcon } from './ModeIcon.tsx';
 import { Icon } from './Icon.tsx';
@@ -45,7 +47,6 @@ export function TimetablePopup() {
 
 function TimetableBody({ tt, leg, ride }: { tt: TimetableState; leg: Leg; ride: TransitRide }) {
   const byId = useData((s) => s.byId);
-  const [showAll, setShowAll] = useState(false);
   const nameOf = (id: string) => byId.get(id)?.name.zh || byId.get(id)?.name.ja || id;
 
   // 打開時（或換到別程）地圖框住這一程、上車站亮起來（點開的交通 legRoute 的站，不是 AI 的標示）；關掉時把交通卡亮的站換回來（交通卡已經收起的就不動）
@@ -71,56 +72,38 @@ function TimetableBody({ tt, leg, ride }: { tt: TimetableState; leg: Leg; ride: 
 
   const data = currentEngineData();
   const readyAt = rideReadyAt(leg, tt.rideIndex);
-  const rows = data ? departureRows(departuresOf(tt.date, ride), readyAt, ride.tripId ?? null) : [];
-  const shown = timetableWindow(rows, readyAt, showAll);
-  const source = data ? timetableSource(ride, data, tt.date, engineConfig.holidays) : null;
-  const minutes = toMinutes(ride.arrive) - toMinutes(ride.depart);
-  const fromName = leg.from ? nameOf(leg.from) : '';
-  const title = ride.line;
+  const headway = ride.kind === 'headway';
+  const cells = data && !headway ? departureCells(departuresOf(tt.date, ride), ride, readyAt) : [];
+  const source = data && !headway ? timetableSource(ride, data, tt.date, engineConfig.holidays) : null;
+  const title = `${nameOf(board)} → ${nameOf(alight)}`;
 
   return (
-    <section className="timetable-pop" data-testid="timetable" aria-label={`${title} 的班次`}>
+    <section className={`timetable-pop${headway ? ' headway' : ''}`} data-testid="timetable-popup" aria-label={`${title} 的班次`}>
       <header className="timetable-head">
         <ModeIcon mode={ride.mode} size="l" />
         <div className="timetable-title">
           <h2>{title}</h2>
-          <div className="timetable-sub">
-            {nameOf(board)} → {nameOf(alight)}・約 {minutes} 分
+          <div className="timetable-sub" data-testid="timetable-sub">
+            {timetableSubtitle(ride, tt.date, readyAt)}
           </div>
         </div>
         <button type="button" className="text-button" onClick={closeTimetable} aria-label="關掉" data-testid="timetable-close">
           <Icon name="close" size={20} />
         </button>
       </header>
-      <div className="timetable-ready" data-testid="timetable-ready">
-        {tt.rideIndex === 0 && <ModeIcon mode="walk" size="s" />}
-        <span>{readyHint(leg, tt.rideIndex, fromName, nameOf)}</span>
-      </div>
-      <div className="timetable-body">
-        {!data ? (
-          <div className="muted small">時刻表載入中…</div>
-        ) : rows.length === 0 ? (
-          <div className="muted small">時刻表裡查不到這一程的班次</div>
-        ) : (
-          <ol className="timetable-list">
-            {shown.rows.map((r) => {
-              const { text, long } = departureLabel(r);
-              return (
-                <li key={r.tripId} className={`timetable-row ${r.state}${long ? ' long' : ''}`} data-testid="timetable-row" data-state={r.state}>
-                  <div className="timetable-row-in">
-                    <RowText depart={r.depart} arrive={r.arrive} text={text} />
-                  </div>
-                </li>
-              );
-            })}
-          </ol>
-        )}
-        {shown.hidden > 0 && (
-          <button type="button" className="text-button timetable-all" onClick={() => setShowAll(true)} data-testid="timetable-all">
-            看全部（共 {rows.length} 班）
-          </button>
-        )}
-      </div>
+      {headway ? (
+        <div className="timetable-body">
+          <p className="tt-headway" data-testid="tt-headway">
+            {headwayText(ride)}
+          </p>
+        </div>
+      ) : !data ? (
+        <div className="timetable-body muted small">時刻表載入中…</div>
+      ) : cells.length === 0 ? (
+        <div className="timetable-body muted small">時刻表裡查不到這一程的班次</div>
+      ) : (
+        <CellGrid cells={cells} />
+      )}
       {source && (
         <div className="timetable-src" data-testid="timetable-source">
           {source.url ? (
@@ -136,12 +119,50 @@ function TimetableBody({ tt, leg, ride }: { tt: TimetableState; leg: Leg; ride: 
   );
 }
 
-function RowText({ depart, arrive, text }: { depart: string; arrive: string; text: string }) {
+/** 格子那塊（自己捲）：打開時捲到規劃那列的前一列；欄數照 CSS 排出來的（網頁 4、手機 3） */
+function CellGrid({ cells }: { cells: DepartureCell[] }) {
+  const bodyRef = useRef<HTMLDivElement>(null);
+  const gridRef = useRef<HTMLOListElement>(null);
+  useLayoutEffect(() => {
+    const body = bodyRef.current;
+    const grid = gridRef.current;
+    if (!body || !grid) return;
+    const cols = getComputedStyle(grid).gridTemplateColumns.split(' ').filter(Boolean).length || 1;
+    const i = firstCellIndex(cells, cols);
+    const el = grid.children[i] as HTMLElement | undefined;
+    // 那格貼齊格子區的上緣（連 padding-top 一起捲掉，上面不會露出前一列的一小條）；第一列不用捲
+    if (el && i > 0) body.scrollTop += el.getBoundingClientRect().top - body.getBoundingClientRect().top;
+    // 只在打開時捲一次（換一程是新的 TimetableBody）
+  }, []);
   return (
-    <>
-      <span className="timetable-dep">{depart}</span>
-      <span className="timetable-arr">{arrive} 到</span>
-      <span className="timetable-wait">{text}</span>
-    </>
+    <div className="timetable-body" ref={bodyRef}>
+      <ol className="tt-grid" ref={gridRef}>
+        {cells.map((c, i) => (
+          <Cell key={i} cell={c} />
+        ))}
+      </ol>
+    </div>
+  );
+}
+
+/** 一格：發車粗體、到站淡色；第二行車種＋標記。搭不到不寫標記（規劃、+N 分除外）；標記 data-mark 照 規劃 > +N 分 > 末班 */
+function Cell({ cell }: { cell: DepartureCell }) {
+  const mark = cell.mark ?? (cell.isLast ? 'last' : null);
+  const lastText = cell.isLast && !cell.gone;
+  return (
+    <li className={`tt-cell${cell.mark ? ` ${cell.mark}` : ''}${cell.gone ? ' gone' : ''}`} data-testid="tt-cell" data-mark={mark ?? undefined} data-gone={cell.gone || undefined}>
+      <div className="tt-time">
+        <b>{cell.depart}</b>
+        <span>–{cell.arrive}</span>
+      </div>
+      <div className="tt-kind">
+        {cell.kind && <span className={cell.express ? 'tt-express' : undefined}>{cell.kind}</span>}
+        {cell.mark === 'plan' && <b>規劃</b>}
+        {cell.mark === 'next' && cell.late != null && <b>+{cell.late} 分</b>}
+        {lastText && <b>末班</b>}
+        {/* 空的第二行也佔一行高，格子對齊 */}
+        {!cell.kind && !cell.mark && !lastText && ' '}
+      </div>
+    </li>
   );
 }

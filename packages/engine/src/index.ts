@@ -4,6 +4,7 @@ export * from './config.ts';
 export * from './time.ts';
 export * from './data.ts';
 export * from './transit.ts';
+export * from './ticket.ts';
 export * from './travel.ts';
 export * from './timeline.ts';
 export * from './ops.ts';

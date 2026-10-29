@@ -9,7 +9,8 @@ import type { EngineConfig } from './config.ts';
 import type { EngineData, PlaceRecord, RouteTimetable, UrbanTransfer } from './data.ts';
 import { estimateWalk, haversineMeters, isLonLat, minutesForMeters } from './geo.ts';
 import { directTrains, routeRides, type TrainRide } from './transit.ts';
-import { fromMinutes } from './time.ts';
+import { fromMinutes, toMinutes } from './time.ts';
+import { isTicketRide } from './ticket.ts';
 import type { DateString, EngineWarning, Leg, LegAlternative, LegTransfer, LonLat, PartyProfile, PathRef, TaxiInfo, TimeString, TransitRide, TravelMode, TravelSpec } from './types.ts';
 import { buildNetwork, KINTETSU, routeFare, type Network } from './raptor/network.ts';
 import { egressSet, nextDeparture, searchJourneys, type Access, type Journey, type JourneyRide, type SearchQuery } from './raptor/search.ts';
@@ -576,6 +577,15 @@ function fromCandidate(c: Candidate, a: Endpoint, b: Endpoint, ctx: LegContext, 
   // 轉乘步行不受單段步行上限管（站內轉乘躲不掉），超過時提醒
   for (const t of transfers) if (t.walkMinutes > max) warnings.push({ code: 'transfer-walk', level: 'info', message: `轉乘要走 ${t.walkMinutes} 分` });
   const rides = withMissed(c, ctx, factor);
+  // 買票站：到站到發車的空檔不到 ticketMargin 分，買票可能來不及（每個買票站一則，第一程也算）
+  rides.forEach((r, i) => {
+    if (!isTicketRide(rides, i) || c.ready[i] == null) return;
+    const gap = toMinutes(r.depart) - c.ready[i];
+    if (gap >= ctx.cfg.transit.ticketMargin) return;
+    const kintetsu = r.operator === 'kintetsu';
+    const station = kintetsu ? placeName(r.from, c.net, ctx.data) : r.from;
+    warnings.push({ code: 'ticket-tight', level: 'warning', message: `${station}到站 ${Math.max(0, gap)} 分就發車，買${kintetsu ? '特急券' : '票'}可能來不及` });
+  });
   const alternatives = distinctAlternatives(c, alts, ctx).map((x) => alternativeOf(x, x === c ? rides : withMissed(x, ctx, factor), a, b, ctx));
   return leg(
     {
