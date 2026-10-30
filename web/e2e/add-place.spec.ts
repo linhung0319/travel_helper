@@ -65,24 +65,38 @@ test('地圖右鍵 → 在這裡加地點 → 名稱空白、不能存 → 填�
   await expectUserCard(page);
 });
 
-test('表單開著：右鍵變「把圖釘移到這裡」，點地圖上的點不開詳情', async ({ page }) => {
+test('表單開著：右鍵變「把圖釘移到這裡」', async ({ page }) => {
   await ready(page);
-  const id = await findPlaceId(page, 'spot', 'B');
-  const pt = await centerOn(page, id, 15);
-  await page.mouse.click(box0(pt).x + 150, box0(pt).y + 150, { button: 'right' });
+  const box = (await page.getByTestId('map').boundingBox())!;
+  await page.mouse.click(box.x + 60, box.y + 60, { button: 'right' });
   await page.getByTestId('map-context-add').click();
   await expect(page.getByTestId('add-form')).toBeVisible();
-  // 表單開起來地圖會飛到圖釘：等停下來，再把點移回來點它
   await waitIdle(page);
-  const pt2 = await centerOn(page, id, 16);
-  await page.mouse.click(pt2.x, pt2.y, { button: 'right' });
+  await page.mouse.click(box.x + 200, box.y + 200, { button: 'right' });
   await expect(page.getByTestId('map-context-add')).toHaveText('把圖釘移到這裡');
-  await page.getByTestId('map-context-add').click();
-  await waitIdle(page);
-  const pt3 = await centerOn(page, id, 16);
-  await page.mouse.click(pt3.x, pt3.y);
-  await expect(page.getByTestId('detail-float')).toHaveCount(0);
-  await expect(page.getByTestId('add-form')).toBeVisible();
+  await page.keyboard.press('Escape');
+  await expect(page.getByTestId('map-context')).toHaveCount(0);
 });
 
-const box0 = (p: { x: number; y: number }) => p;
+test('表單開著：點地圖上的資料點不開詳情、不選中、不出小卡片', async ({ page }) => {
+  await ready(page);
+  const id = await findPlaceId(page, 'spot', 'B');
+  // 圖釘留在右鍵開表單的位置（離資料點 150px 以上），再點資料點
+  const pt = await centerOn(page, id, 15);
+  await page.mouse.click(pt.x + 150, pt.y + 150, { button: 'right' });
+  await page.getByTestId('map-context-add').click();
+  await expect(page.getByTestId('add-form')).toBeVisible();
+  await waitIdle(page);
+  const pt2 = await centerOn(page, id, 15);
+  const pin = (await page.getByTestId('map-add-pin').boundingBox())!;
+  expect(Math.hypot(pin.x + pin.width / 2 - pt2.x, pin.y + pin.height - pt2.y)).toBeGreaterThan(60);
+  await page.mouse.click(pt2.x, pt2.y);
+  await expect(page.getByTestId('detail-float')).toHaveCount(0);
+  const st = await page.evaluate(() => {
+    const a = (window as any).__th.appStore.getState();
+    return { detailId: a.detailId, selectedId: a.selectedId, previewId: a.previewId };
+  });
+  expect(st.detailId).toBeNull();
+  expect(st.selectedId).toBeNull();
+  await expect(page.getByTestId('add-form')).toBeVisible();
+});

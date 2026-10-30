@@ -448,7 +448,7 @@ export function MapView() {
       };
       map.on('click', (e: MapMouseEvent) => {
         setCtx(null);
-        // 加地點的表單開著：點地圖上的點不開詳情（避免誤觸，spec §3「網頁」）
+        // 加地點的表單開著：點地圖上的點不開詳情（避免誤觸，spec §3「網頁」）；兩種版面都適用是故意的（手機的表單在自己的整頁，不會疊在行程地圖上）
         if (addPlaceStore.getState().draft) return;
         closeMapPanel();
         closeTimetable();
@@ -461,7 +461,9 @@ export function MapView() {
       map.on('contextmenu', (e: MapMouseEvent) => {
         if (!window.matchMedia(DESKTOP_QUERY).matches || appStore.getState().detailId) return;
         e.originalEvent.preventDefault();
-        setCtx({ x: e.point.x, y: e.point.y, coords: [e.lngLat.lng, e.lngLat.lat] });
+        const c = map.getContainer();
+        // 選單約 180×50：靠近邊緣時往內縮，不超出地圖
+        setCtx({ x: Math.max(0, Math.min(e.point.x, c.clientWidth - 180)), y: Math.max(0, Math.min(e.point.y, c.clientHeight - 50)), coords: [e.lngLat.lng, e.lngLat.lat] });
       });
       map.on('mousemove', PICK_LAYERS, (e) => {
         if (!canHoverRef.current) return;
@@ -580,8 +582,16 @@ export function MapView() {
   useEffect(() => {
     if (!ctx) return;
     const onKey = (e: KeyboardEvent) => e.key === 'Escape' && setCtx(null);
+    // 點選單以外的地方（右欄、地圖外）也關掉
+    const onDown = (e: PointerEvent) => {
+      if (!(e.target as Element | null)?.closest?.('.map-context')) setCtx(null);
+    };
     window.addEventListener('keydown', onKey);
-    return () => window.removeEventListener('keydown', onKey);
+    document.addEventListener('pointerdown', onDown, true);
+    return () => {
+      window.removeEventListener('keydown', onKey);
+      document.removeEventListener('pointerdown', onDown, true);
+    };
   }, [ctx]);
 
   // 資料點、篩選、選定的天、行程 → 重畫
