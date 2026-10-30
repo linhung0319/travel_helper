@@ -90,13 +90,14 @@ test('表單開著：點地圖上的資料點不開詳情、不選中、不出�
   const pt2 = await centerOn(page, id, 15);
   const pin = (await page.getByTestId('map-add-pin').boundingBox())!;
   expect(Math.hypot(pin.x + pin.width / 2 - pt2.x, pin.y + pin.height - pt2.y)).toBeGreaterThan(60);
+  const snap = () =>
+    page.evaluate(() => {
+      const a = (window as any).__th.appStore.getState();
+      return { detailId: a.detailId, selectedId: a.selectedId, previewId: a.previewId };
+    });
+  const before = await snap();
   await page.mouse.click(pt2.x, pt2.y);
   await expect(page.getByTestId('detail-float')).toHaveCount(0);
-  const st = await page.evaluate(() => {
-    const a = (window as any).__th.appStore.getState();
-    return { detailId: a.detailId, selectedId: a.selectedId, previewId: a.previewId };
-  });
-  expect(st.detailId).toBeNull();
-  expect(st.selectedId).toBeNull();
+  expect(await snap()).toEqual(before);
   await expect(page.getByTestId('add-form')).toBeVisible();
 });

@@ -466,7 +466,8 @@ export function MapView() {
         setCtx({ x: Math.max(0, Math.min(e.point.x, c.clientWidth - 180)), y: Math.max(0, Math.min(e.point.y, c.clientHeight - 50)), coords: [e.lngLat.lng, e.lngLat.lat] });
       });
       map.on('mousemove', PICK_LAYERS, (e) => {
-        if (!canHoverRef.current) return;
+        // 加地點的表單開著：不出小卡片（小卡片點了會開詳情）
+        if (!canHoverRef.current || addPlaceStore.getState().draft) return;
         const id = String(e.features?.[0]?.properties.id ?? '');
         if (!id) return;
         cancelHideRef.current();
