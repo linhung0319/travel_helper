@@ -389,7 +389,7 @@ export function PlaceDetail({ place, surface, from, initialTab, onDay, askAi = t
             {sub.length > 0 && <span> ・{sub.join('・')}</span>}
           </p>
         </div>
-        {desktop && <VoteHeart placeId={place.id} />}
+        {desktop && !isDeletedUserPlace(place) && <VoteHeart placeId={place.id} />}
       </header>
 
       {!isDeletedUserPlace(place) && <ActionRow place={place} desktop={desktop} schedule={planning && fromTrip && place.type !== 'station'} />}

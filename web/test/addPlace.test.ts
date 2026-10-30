@@ -191,7 +191,7 @@ test('userPlaceToPlace：海上的座標 → area null', () => {
 
 // ---- Task 5：草稿 store 和搜尋框提示 ----
 import { createAddPlaceStore } from '../src/lib/addPlace/draft.ts';
-import { resolveSuggestion, ADDRESS_NOT_FOUND, type SuggestDeps } from '../src/lib/addPlace/suggest.ts';
+import { resolveSuggestion, reconcileSuggestion, ADDRESS_NOT_FOUND, LINK_UNREADABLE, type SuggestDeps } from '../src/lib/addPlace/suggest.ts';
 import type { Place } from '../src/data/types.ts';
 import { RESOLVE_OFFLINE_MESSAGE, BackendError, type UserPlaceData, type UserPlaceType } from '../src/backend/types.ts';
 
@@ -326,4 +326,29 @@ test('suggest：文字比得到點（不看篩選）→ none；比不到 → not
 test('suggest：連結指到已有的點 → same', async () => {
   const s = await resolveSuggestion('https://www.google.com/maps/place/%E7%81%AF%E5%8F%B0%E8%88%8E/@34.48,136.84,17z/data=!3d34.4815!4d136.8431', deps());
   assert.equal(s.kind, 'same');
+});
+
+// ---- 總檢修正 ----
+test('extractMapLink：去掉網址尾巴的標點', () => {
+  assert.equal(extractMapLink('這家不錯 https://maps.app.goo.gl/abc。'), 'https://maps.app.goo.gl/abc');
+  assert.equal(extractMapLink('（https://maps.app.goo.gl/abc）'), 'https://maps.app.goo.gl/abc');
+});
+
+test('parseMapLink：/place/ 後面是座標文字時不當名稱', () => {
+  const r = parseMapLink('https://www.google.com/maps/place/34°28\'53.4"N+136°50\'35.2"E/@34.48,136.84,17z');
+  assert.equal(r.name, null);
+  assert.deepEqual(r.coords, [136.84, 34.48]);
+});
+
+test('suggest：短網址展開失敗（非離線）→ 固定的讀不到文字，不用 Worker 的訊息', async () => {
+  const s = await resolveSuggestion('https://maps.app.goo.gl/abc', deps({ resolveShort: async () => Promise.reject(new BackendError(400, 'bad', '轉址太多次')) }));
+  assert.deepEqual(s, { kind: 'error', message: LINK_UNREADABLE });
+});
+
+test('reconcileSuggestion：用現在的點重算「已經有了」', async () => {
+  const s = await resolveSuggestion('https://www.google.com/maps/place/%E7%81%AF%E5%8F%B0%E8%88%8E/@34.48,136.84,17z/data=!3d34.4815!4d136.8431', deps({ places: [] }));
+  assert.equal(s.kind, 'candidate');
+  assert.equal(reconcileSuggestion(s, deps().places).kind, 'same');
+  const t = await resolveSuggestion('不存在的店', deps({ places: [] }));
+  assert.deepEqual(reconcileSuggestion(t, []), t);
 });

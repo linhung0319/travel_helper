@@ -76,3 +76,7 @@ test('placeMetaText：自己加的點沒有評分文字', () => {
   const p = userPlace({ raw: { ratings: { google: 4.5, tabelog: 3.6 } } });
   assert.doesNotMatch(placeMetaText(p, []), /★|食べログ/);
 });
+
+test('googleMapsUrl：存的不是地圖連結就用座標', () => {
+  assert.equal(googleMapsUrl(userPlace({ links: { googleMaps: 'https://evil.example.com/x' } })), 'https://www.google.com/maps/search/?api=1&query=34.5,136.9');
+});

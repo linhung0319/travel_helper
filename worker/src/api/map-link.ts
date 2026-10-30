@@ -36,6 +36,8 @@ export async function resolveMapLink({ url }: Ctx): Promise<Response> {
     } catch {
       throw badRequest('展開短網址失敗');
     }
+    // 不讀內容，關掉 body 免得連線掛著
+    await res.body?.cancel().catch(() => {});
     if (res.status < 300 || res.status >= 400) return json({ url: current.href });
     if (hops >= MAX_REDIRECTS) throw badRequest('轉址太多次');
     const loc = res.headers.get('location');

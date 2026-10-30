@@ -1,7 +1,7 @@
 // 搜尋框下面的提示怎麼判斷（T31 spec §2）：純非同步函式，AddPlaceSuggest 只負責畫結果。
 
 import type { LonLat, Place } from '../../data/types.ts';
-import { RESOLVE_OFFLINE_MESSAGE } from '../../backend/types.ts';
+import { BackendError, RESOLVE_OFFLINE_MESSAGE } from '../../backend/types.ts';
 import { matchesQuery } from '../filter.ts';
 import { classifyInput } from './classify.ts';
 import { findExisting } from './dedupe.ts';
@@ -53,7 +53,9 @@ export async function resolveSuggestion(query: string, deps: SuggestDeps): Promi
     try {
       full = await deps.resolveShort(link);
     } catch (e) {
-      return { kind: 'error', message: e instanceof Error && e.message ? e.message : RESOLVE_OFFLINE_MESSAGE };
+      // 只有 503（Worker 連不到外面）顯示離線訊息；其他錯誤的訊息是給工程師看的，固定顯示讀不到
+      const readable = e instanceof BackendError && e.status !== 503;
+      return { kind: 'error', message: readable ? LINK_UNREADABLE : RESOLVE_OFFLINE_MESSAGE };
     }
   }
   const parsed = parseMapLink(full);
@@ -67,4 +69,14 @@ function withExisting(places: Place[], c: { via: 'google-link' | 'address'; coor
   if (!c.coords) return { kind: 'candidate', ...c, near: null };
   const { same, near } = findExisting(places, c.coords, c.name || null);
   return same ? { kind: 'same', place: same } : { kind: 'candidate', ...c, near };
+}
+
+/**
+ * 網路查完的結果（用空的 places 查，所以只會是 candidate／error／notFound／none）配上目前的點：
+ * 「已經有了」「附近已經有」「文字其實比得到點」都用現在的點重新算，點變了不用重新連外面查。
+ */
+export function reconcileSuggestion(s: Suggestion, places: Place[]): Suggestion {
+  if (s.kind === 'notFound') return places.some((p) => matchesQuery(p, s.text)) ? { kind: 'none' } : s;
+  if (s.kind === 'candidate') return withExisting(places, { via: s.via, coords: s.coords, name: s.name, link: s.link });
+  return s;
 }

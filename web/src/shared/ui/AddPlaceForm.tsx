@@ -4,6 +4,8 @@
 
 import { addPlaceStore, useAddPlace } from '../../addPlaceStore.ts';
 import { commands } from '../../appCommands.ts';
+import { appStore } from '../../store.ts';
+import { mobileStore } from '../../mobile/mobileStore.ts';
 import { Button } from './Button.tsx';
 import { Chip } from './Chip.tsx';
 import type { AddedVia, UserPlaceType } from '../../backend/types.ts';
@@ -33,8 +35,15 @@ export function AddPlaceForm({ surface }: { surface: 'mobile' | 'desktop' }) {
   const patch = addPlaceStore.getState().patch;
 
   const save = async () => {
+    const fromSuggest = !edit && draft.via !== 'map';
     const r = await addPlaceStore.getState().save();
-    if (r.ok) commands.focus(r.id);
+    if (!r.ok) return;
+    // 從搜尋框的提示加的：清掉搜尋，免得提示又問一次「加這個地點」
+    if (fromSuggest) {
+      if (surface === 'mobile') mobileStore.getState().setFeed({ query: '' });
+      else appStore.getState().setQuery('');
+    }
+    commands.focus(r.id);
   };
 
   return (

@@ -572,6 +572,7 @@ export interface DayTimeline {
 /** 某一天（'all' 時全部是空的）的時間軸資料準備；時間軸、警告、編號只在引擎重算時重新整理 */
 export function useDayTimeline(date: string): DayTimeline {
   const itinerary = useData((s) => s.itinerary);
+  const byId = useData((s) => s.byId);
   const status = usePlan((s) => s.status);
   const error = usePlan((s) => s.error);
   const plan = usePlan((s) => (date === 'all' ? null : dayPlanOf(s.plan, date)));
@@ -580,7 +581,7 @@ export function useDayTimeline(date: string): DayTimeline {
     const { byItem, day } = warningsByItem(plan);
     return { rows: plan ? timelineRows(plan) : [], byItem, dayWarnings: day, marks: { byEntry: stopMarks(plan).byEntry } };
   }, [plan]);
-  const candidates = useMemo(() => (date === 'all' ? [] : dayCandidates(all, date, itinerary)), [all, date, itinerary]);
+  const candidates = useMemo(() => (date === 'all' ? [] : dayCandidates(all, date, itinerary, byId)), [all, date, itinerary, byId]);
   const itDay = date === 'all' ? null : (itinerary?.days.find((d) => d.date === date) ?? null);
   return { itDay, plan, status, error: error ?? null, ...derived, candidates };
 }

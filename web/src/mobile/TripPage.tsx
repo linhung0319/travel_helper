@@ -26,10 +26,11 @@ function useFocusedPlace(): string | null {
   const plan = usePlan((s) => (day === 'all' ? null : dayPlanOf(s.plan, day)));
   const candidates = useShared((s) => s.candidates);
   const itinerary = useData((s) => s.itinerary);
+  const byId = useData((s) => s.byId);
   if (!focused || day === 'all') return null;
   if (focused.startsWith('cand:')) {
     const id = Number(focused.slice(5));
-    return dayCandidates(candidates, day, itinerary).find((c) => c.id === id)?.placeId ?? null;
+    return dayCandidates(candidates, day, itinerary, byId).find((c) => c.id === id)?.placeId ?? null;
   }
   return findFocusEntry(plan, focused)?.placeId ?? null;
 }

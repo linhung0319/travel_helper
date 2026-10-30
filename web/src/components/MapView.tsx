@@ -470,13 +470,14 @@ export function MapView() {
         // 選單約 180×50：靠近邊緣時往內縮，不超出地圖
         setCtx({ x: Math.max(0, Math.min(e.point.x, c.clientWidth - 180)), y: Math.max(0, Math.min(e.point.y, c.clientHeight - 50)), coords: [e.lngLat.lng, e.lngLat.lat] });
       });
-      // 手機：行程分頁的地圖上按住約 0.5 秒（手指移動不超過 10px、只有一根手指）→「在這裡加地點」，位置就是手指那裡（spec §2）。
+      // 手機：行程分頁的地圖上按住約 0.5 秒（手指移動不超過 10px、只有一根手指）→ 手指旁跳出「＋ 在這裡加地點」小泡泡，點了才開加地點，位置就是手指那裡（spec §2）。
       // 不另外要求「展開」：這張地圖一直是看得到的（行程面板只是蓋在下半），在行程分頁、沒有整頁蓋著、表單沒開時就算數。
       // 長按時瀏覽器自己的選單（contextmenu）擋掉；一般拖曳、縮放、點選不受影響（移動就取消、第二根手指就取消）。
       {
         const el = map.getContainer();
         let timer: number | null = null;
         let from: { x: number; y: number } | null = null;
+        let fired = false;
         const cancel = () => {
           if (timer !== null) window.clearTimeout(timer);
           timer = null;
@@ -490,6 +491,7 @@ export function MapView() {
           'touchstart',
           (e) => {
             cancel();
+            fired = false;
             if (e.touches.length !== 1 || blocked()) return;
             const t = e.touches[0];
             from = { x: t.clientX, y: t.clientY };
@@ -497,8 +499,12 @@ export function MapView() {
             timer = window.setTimeout(() => {
               timer = null;
               if (blocked()) return;
-              const ll = map.unproject([t.clientX - r.left, t.clientY - r.top]);
-              addPlaceStore.getState().start({ via: 'map', coords: [ll.lng, ll.lat] });
+              fired = true;
+              const x = t.clientX - r.left;
+              const y = t.clientY - r.top;
+              const ll = map.unproject([x, y]);
+              // 泡泡放在手指上方一點（不被手指蓋住），約 180×50，不超出地圖
+              setCtx({ x: Math.max(0, Math.min(x, el.clientWidth - 180)), y: Math.max(0, Math.min(y - 60, el.clientHeight - 50)), coords: [ll.lng, ll.lat] });
             }, LONG_PRESS_MS);
           },
           { passive: true },
@@ -511,7 +517,12 @@ export function MapView() {
           },
           { passive: true },
         );
-        el.addEventListener('touchend', cancel);
+        // 長按跳出泡泡後放開手指：擋掉後續的 click，免得點穿到地圖（所以不能是 passive）
+        el.addEventListener('touchend', (e) => {
+          if (fired && e.cancelable) e.preventDefault();
+          fired = false;
+          cancel();
+        });
         el.addEventListener('touchcancel', cancel);
         el.addEventListener('contextmenu', (e) => {
           if (!window.matchMedia(DESKTOP_QUERY).matches) e.preventDefault();
@@ -640,10 +651,13 @@ export function MapView() {
     const onDown = (e: PointerEvent) => {
       if (!(e.target as Element | null)?.closest?.('.map-context')) setCtx(null);
     };
+    const onBack = () => setCtx(null);
     window.addEventListener('keydown', onKey);
+    window.addEventListener('popstate', onBack);
     document.addEventListener('pointerdown', onDown, true);
     return () => {
       window.removeEventListener('keydown', onKey);
+      window.removeEventListener('popstate', onBack);
       document.removeEventListener('pointerdown', onDown, true);
     };
   }, [ctx]);

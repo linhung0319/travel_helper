@@ -2,7 +2,7 @@
 // 輸入是連結或地址：解析中 → 結果卡（＋ 加這個地點）／已經有了的那個點／錯誤；輸入是文字且全部的點都比不到：教怎麼加。
 // 判斷在 lib/addPlace/suggest.ts，這裡只畫結果；輸入變了就丟掉舊的非同步結果。
 
-import { useEffect, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { addPlaceStore } from '../../addPlaceStore.ts';
 import { backend } from '../../backend/index.ts';
 import { displayName } from '../../data/normalize.ts';
@@ -14,7 +14,7 @@ import { matchesQuery } from '../../lib/filter.ts';
 import { classifyInput } from '../../lib/addPlace/classify.ts';
 import { geocodeAddress } from '../../lib/addPlace/gsi.ts';
 import { areaOfCoords } from '../../lib/addPlace/userPlace.ts';
-import { resolveSuggestion, type Suggestion } from '../../lib/addPlace/suggest.ts';
+import { reconcileSuggestion, resolveSuggestion, type Suggestion } from '../../lib/addPlace/suggest.ts';
 import type { Area, LonLat, Place } from '../../data/types.ts';
 import type { FilterSurface } from './FilterSheet.tsx';
 import { PlaceRow, useDayStatus } from './PlaceRow.tsx';
@@ -46,7 +46,8 @@ export function AddPlaceSuggest({ query, surface }: { query: string; surface: Fi
   useEffect(() => {
     let stale = false;
     const t = setTimeout(() => {
-      resolveSuggestion(query, { resolveShort: (u) => backend().resolveMapLink(u), geocode: (q) => geocodeAddress(q), places })
+      // 連外面的查詢只看輸入；「已經有了」等用現在的點在下面重算
+      resolveSuggestion(query, { resolveShort: (u) => backend().resolveMapLink(u), geocode: (q) => geocodeAddress(q), places: [] })
         .then((s) => !stale && setResult({ query, s }))
         .catch(() => !stale && setResult({ query, s: { kind: 'none' } }));
     }, classifyInput(query) === 'text' ? 0 : DEBOUNCE_MS);
@@ -54,7 +55,7 @@ export function AddPlaceSuggest({ query, surface }: { query: string; surface: Fi
       stale = true;
       clearTimeout(t);
     };
-  }, [query, places]);
+  }, [query]);
 
   const openPlace = (p: Place) => {
     if (surface === 'mobile') mobileStore.getState().openPlace(p.id, 'explore');
@@ -67,7 +68,7 @@ export function AddPlaceSuggest({ query, surface }: { query: string; surface: Fi
   const pinOnMap = () => addPlaceStore.getState().start({ via: 'map', coords: null });
 
   const lookup = isLookupInput(query);
-  const s = result && result.query === query ? result.s : null;
+  const s = useMemo(() => (result && result.query === query ? reconcileSuggestion(result.s, places) : null), [result, query, places]);
   if (!s && !lookup) return null;
   if (s?.kind === 'none') return null;
 

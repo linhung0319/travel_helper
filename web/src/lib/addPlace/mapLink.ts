@@ -74,6 +74,8 @@ export function parseMapLink(url: string): ParsedMapLink {
   if (place) {
     try {
       name = decodeURIComponent(place[1].replace(/\+/g, ' ')).trim() || null;
+      // 沒名稱的點，Google 會把座標文字（34°28'53.4"N …）放在這裡：不是名稱
+      if (name && (/\d+°/.test(name) || COORD_TEXT.test(name))) name = null;
     } catch {
       name = null;
     }
@@ -124,6 +126,9 @@ export function parseMapLink(url: string): ParsedMapLink {
 
 /** 從貼上的文字（例如分享文字「店名＋網址」）裡找第一個地圖連結 */
 export function extractMapLink(s: string): string | null {
-  for (const m of s.matchAll(/https?:\/\/[^\s<>"']+/gi)) if (isMapLink(m[0])) return m[0];
+  for (const m of s.matchAll(/https?:\/\/[^\s<>"']+/gi)) {
+    const url = m[0].replace(/[。，、）)」』！!？?.,]+$/, '');
+    if (isMapLink(url)) return url;
+  }
   return null;
 }

@@ -3,6 +3,7 @@
 
 import type { Area, Place } from '../../data/types.ts';
 import { displayName } from '../../data/normalize.ts';
+import { isMapLink } from './mapLink.ts';
 import { memberName } from '../../sharedStore.ts';
 import type { Member } from '../../backend/types.ts';
 
@@ -14,7 +15,7 @@ export const isUserPlace = (p: Place): boolean => p.origin === 'user';
 /** 「在 Google Maps 開啟」的網址：有存 links.googleMaps 就用，沒有用座標組一個（座標存的是 [經度, 緯度]） */
 export function googleMapsUrl(p: Place): string {
   const saved = p.links.googleMaps;
-  if (typeof saved === 'string' && saved) return saved;
+  if (typeof saved === 'string' && isMapLink(saved)) return saved;
   const [lon, lat] = p.coords;
   return `https://www.google.com/maps/search/?api=1&query=${lat},${lon}`;
 }

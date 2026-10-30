@@ -125,22 +125,30 @@ async function touchHold(page: Page, x: number, y: number, ms: number, moveTo?: 
       el.dispatchEvent(mk('touchstart', x, y));
       if (mv) el.dispatchEvent(mk('touchmove', mv.x, mv.y));
       await new Promise((r) => setTimeout(r, ms));
-      el.dispatchEvent(mk('touchend', mv ? mv.x : x, mv ? mv.y : y));
+      const end = mk('touchend', mv ? mv.x : x, mv ? mv.y : y);
+      el.dispatchEvent(end);
+      (window as unknown as { __touchendPrevented: boolean }).__touchendPrevented = end.defaultPrevented;
     },
     [x, y, ms, moveTo ?? null] as const,
   );
 }
 
-test('行程地圖按住約 0.5 秒 → 開加地點整頁；太短、手指移動超過 10px 不算', async ({ page }) => {
+test('行程地圖按住約 0.5 秒 → 跳出泡泡，點泡泡才開加地點整頁；太短、手指移動超過 10px 不算', async ({ page }) => {
   await ready(page);
   const box = (await page.getByTestId('map').boundingBox())!;
   const x = box.x + box.width / 2;
   const y = box.y + 80;
   await touchHold(page, x, y, 200);
-  await expect(page.getByTestId('m-add-page')).toHaveCount(0);
+  await expect(page.getByTestId('map-context')).toHaveCount(0);
   await touchHold(page, x, y, 700, { x: x + 30, y });
-  await expect(page.getByTestId('m-add-page')).toHaveCount(0);
+  await expect(page.getByTestId('map-context')).toHaveCount(0);
   await touchHold(page, x, y, 700);
+  // 長按只跳出泡泡，不直接開整頁；放開手指的 touchend 被擋掉（不點穿）
+  await expect(page.getByTestId('map-context-add')).toHaveText('＋ 在這裡加地點');
+  await expect(page.getByTestId('m-add-page')).toHaveCount(0);
+  expect(await page.evaluate(() => (window as unknown as { __touchendPrevented: boolean }).__touchendPrevented)).toBe(true);
+  await page.getByTestId('map-context-add').click();
+  await expect(page.getByTestId('map-context')).toHaveCount(0);
   await expect(page.getByTestId('m-add-page')).toBeVisible();
   await expect(page.getByTestId('add-name')).toHaveValue('');
   await expect(page.getByTestId('add-save')).toBeDisabled();
@@ -150,6 +158,18 @@ test('行程地圖按住約 0.5 秒 → 開加地點整頁；太短、手指移�
   await expect(page.getByTestId('m-add-page')).toHaveCount(0);
   // 存完還在行程分頁
   await expect(page.getByTestId('m-tab-trip')).toHaveAttribute('aria-current', 'page');
+});
+
+test('長按的泡泡：點別的地方就關掉，不開加地點', async ({ page }) => {
+  await ready(page);
+  const box = (await page.getByTestId('map').boundingBox())!;
+  const x = box.x + box.width / 2;
+  const y = box.y + 80;
+  await touchHold(page, x, y, 700);
+  await expect(page.getByTestId('map-context')).toBeVisible();
+  await page.mouse.click(x + 100, y + 120);
+  await expect(page.getByTestId('map-context')).toHaveCount(0);
+  await expect(page.getByTestId('m-add-page')).toHaveCount(0);
 });
 
 test('返回鍵：從探索開的加地點頁，返回關掉它、留在探索', async ({ page }) => {
