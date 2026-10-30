@@ -16,7 +16,7 @@ import type { Place } from '../../data/types.ts';
 import type { VoteValue } from '../../backend/types.ts';
 import { openDialog } from '../../uiStore.ts';
 import { addPlaceStore } from '../../addPlaceStore.ts';
-import { addedDateLabel, canDeleteUserPlace, googleMapsUrl, hasReviewsTab, isUserPlace, USER_PLACE_WARNING } from '../../lib/userPlace.ts';
+import { addedDateLabel, canDeleteUserPlace, canEditUserPlace, googleMapsUrl, isDeletedUserPlace, hasReviewsTab, isUserPlace, USER_PLACE_WARNING } from '../../lib/addPlace/view.ts';
 import { memberName } from '../../sharedStore.ts';
 import { Photo } from '../../components/Photo.tsx';
 import { Icon } from '../../components/Icon.tsx';
@@ -257,6 +257,11 @@ function UserPlaceIntro({ place }: { place: Place }) {
   const u = place.user;
   return (
     <section className="pd-user" data-testid="detail-user-intro">
+      {isDeletedUserPlace(place) && (
+        <p className="pd-user-warning" data-testid="detail-user-deleted">
+          <Icon name="warn" size={16} /> <span>這個點已經被刪除了</span>
+        </p>
+      )}
       <p className="pd-user-warning" data-testid="detail-user-warning">
         <Icon name="warn" size={16} /> <span>{USER_PLACE_WARNING}</span>
       </p>
@@ -271,9 +276,11 @@ function UserPlaceIntro({ place }: { place: Place }) {
         </a>
       </p>
       <div className="pd-user-actions">
-        <Button kind="secondary" size="sm" data-testid="detail-user-edit" onClick={() => addPlaceStore.getState().startEdit(place.id)}>
-          ✎ 修改
-        </Button>
+        {canEditUserPlace(place) && (
+          <Button kind="secondary" size="sm" data-testid="detail-user-edit" onClick={() => addPlaceStore.getState().startEdit(place.id)}>
+            ✎ 修改
+          </Button>
+        )}
         {canDeleteUserPlace(place, me) && (
           <Button kind="secondary" size="sm" className="pd-user-delete" data-testid="detail-user-delete" onClick={() => openDialog({ kind: 'delete-user-place', placeId: place.id })}>
             刪除
@@ -385,7 +392,7 @@ export function PlaceDetail({ place, surface, from, initialTab, onDay, askAi = t
         {desktop && <VoteHeart placeId={place.id} />}
       </header>
 
-      <ActionRow place={place} desktop={desktop} schedule={planning && fromTrip && place.type !== 'station'} />
+      {!isDeletedUserPlace(place) && <ActionRow place={place} desktop={desktop} schedule={planning && fromTrip && place.type !== 'station'} />}
 
       <div className="pd-tabs" role="tablist" aria-label="詳情分頁">
         {tabs.map((t) => (

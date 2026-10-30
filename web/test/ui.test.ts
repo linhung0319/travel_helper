@@ -2,6 +2,9 @@ import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { uiStore, askAboutPlace } from '../src/uiStore.ts';
 import { appStore } from '../src/store.ts';
+import { googleMapsUrl, canDeleteUserPlace, canEditUserPlace, hasReviewsTab, addedDateLabel, userSubtitle, placeMetaText, USER_PLACE_WARNING } from '../src/lib/addPlace/view.ts';
+import type { Place } from '../src/data/types.ts';
+
 
 test('askAboutPlace 寫 chatDraft、加進選取', () => {
   askAboutPlace('shima-yokoyama', '長輩走得上去嗎？', 'other');
@@ -24,8 +27,6 @@ test('askAboutPlace：seq 每次加 1、帶目前選的那天', () => {
 });
 
 // 自己加的點的畫面判斷（T31 Task 4）
-import { googleMapsUrl, canDeleteUserPlace, hasReviewsTab, addedDateLabel, userSubtitle, USER_PLACE_WARNING } from '../src/lib/userPlace.ts';
-import type { Place } from '../src/data/types.ts';
 
 const userPlace = (over: Partial<Place> = {}): Place =>
   ({
@@ -35,7 +36,7 @@ const userPlace = (over: Partial<Place> = {}): Place =>
     coords: [136.9, 34.5],
     links: {},
     origin: 'user',
-    user: { author: 'm1', createdAt: '2026-11-03T05:00:00Z', updatedBy: null, note: null, addedVia: 'map' },
+    user: { author: 'm1', createdAt: '2026-11-03T05:00:00Z', updatedBy: null, note: null, addedVia: 'map', deletedAt: null },
     ...over,
   }) as unknown as Place;
 
@@ -61,4 +62,17 @@ test('加的日期、副標、提示框全文', () => {
   assert.equal(addedDateLabel('壞掉'), '');
   assert.equal(userSubtitle(userPlace(), [{ id: 'm1', displayName: '小明' } as never]), '自己加的 · 小明');
   assert.equal(USER_PLACE_WARNING, '我們沒查過這個點：營業時間、能不能坐 15 人都不知道。排行程時只用位置估交通時間。');
+});
+
+test('已刪除的自己加的點：不能修改、不能刪', () => {
+  const gone = userPlace();
+  gone.user!.deletedAt = '2026-11-04T00:00:00Z';
+  assert.equal(canEditUserPlace(gone), false);
+  assert.equal(canDeleteUserPlace(gone, 'm1'), false);
+  assert.equal(canEditUserPlace(userPlace()), true);
+});
+
+test('placeMetaText：自己加的點沒有評分文字', () => {
+  const p = userPlace({ raw: { ratings: { google: 4.5, tabelog: 3.6 } } });
+  assert.doesNotMatch(placeMetaText(p, []), /★|食べログ/);
 });

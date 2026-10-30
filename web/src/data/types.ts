@@ -137,6 +137,8 @@ export interface UserPlaceInfo {
   updatedBy: string | null;
   note: string | null;
   addedVia: AddedVia;
+  /** 刪除的時間；沒刪是 null（已刪的點只會從行程裡被查到） */
+  deletedAt: string | null;
 }
 
 export interface TimetableTrain {

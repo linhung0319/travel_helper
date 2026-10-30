@@ -2681,7 +2681,6 @@ button.ll-main {
 }
 
 /* 自己加的點（T31 §4）：虛線框、副標「自己加的 · 誰」；詳情的膠囊、提示框 */
-.pr.is-user .pr-thumb,
 .pt.is-user {
   border-style: dashed;
   border-color: var(--ink-3);

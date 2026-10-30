@@ -6,7 +6,7 @@
 import type { HTMLAttributes, ReactNode } from 'react';
 import { appStore } from '../../store.ts';
 import { useData, useShared } from '../../hooks.ts';
-import { isUserPlace, userSubtitle } from '../../lib/userPlace.ts';
+import { isUserPlace, userSubtitle } from '../../lib/addPlace/view.ts';
 import { Photo } from '../../components/Photo.tsx';
 import { photoCandidates } from '../../lib/photos.ts';
 import { cardTypeLetter } from '../../lib/planView.ts';

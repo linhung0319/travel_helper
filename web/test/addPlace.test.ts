@@ -181,7 +181,7 @@ test('userPlaceToPlace：鳥羽的座標 → area 是 toba，origin user，沒�
   assert.equal(p.origin, 'user');
   assert.equal(p.tier, null);
   assert.equal(p.links.googleMaps, 'https://maps.app.goo.gl/x');
-  assert.deepEqual(p.user, { author: 'm-a', createdAt: '2026-10-30T00:00:00.000Z', updatedBy: 'm-a', note: '週三休', addedVia: 'google-link' });
+  assert.deepEqual(p.user, { author: 'm-a', createdAt: '2026-10-30T00:00:00.000Z', updatedBy: 'm-a', note: '週三休', addedVia: 'google-link', deletedAt: null });
   assert.deepEqual(p.raw, { id: 'user-0123456789ab', type: 'restaurant', name: { ja: '', zh: '珈琲 灯台舎' }, coords: [136.84, 34.48], area: 'toba' });
 });
 

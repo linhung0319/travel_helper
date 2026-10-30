@@ -41,6 +41,6 @@ export function userPlaceToPlace(up: UserPlace, areas: Area[]): Place {
     raw: { id: up.id, type: up.type, name, coords: data.coords, area },
     edited: {},
     origin: 'user',
-    user: { author: up.author, createdAt: up.createdAt, updatedBy: up.updatedBy, note: data.note ?? null, addedVia: data.addedVia },
+    user: { author: up.author, createdAt: up.createdAt, updatedBy: up.updatedBy, note: data.note ?? null, addedVia: data.addedVia, deletedAt: up.deletedAt },
   };
 }

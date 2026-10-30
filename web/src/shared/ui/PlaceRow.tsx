@@ -7,13 +7,12 @@ import { useMemo, type HTMLAttributes, type ReactNode } from 'react';
 import { appStore } from '../../store.ts';
 import { useData, useShared } from '../../hooks.ts';
 import { Photo } from '../../components/Photo.tsx';
-import { displayName } from '../../data/normalize.ts';
 import { photoCandidates } from '../../lib/photos.ts';
 import { cardTypeLetter } from '../../lib/planView.ts';
 import { typeSwatch } from '../../lib/typeStyle.ts';
 import { placeDayStatus } from '../../lib/wishlist.ts';
-import { isUserPlace, userSubtitle } from '../../lib/userPlace.ts';
-import type { Area, Place } from '../../data/types.ts';
+import { isUserPlace, placeMetaText, userSubtitle } from '../../lib/addPlace/view.ts';
+import type { Place } from '../../data/types.ts';
 import { rowHighlights, type RowHighlight } from '../rowHighlights.ts';
 import { TierMark } from './TierMark.tsx';
 import { TypeLabel } from './TypeLabel.tsx';
@@ -31,21 +30,7 @@ export function useDayStatus(): (placeId: string) => DayStatus {
   return useMemo(() => (id: string) => placeDayStatus(id, candidates, itinerary), [candidates, itinerary]);
 }
 
-/** 地區・小區域・★ 的文字（第二行、照片牆下面那行用） */
-export function placeMetaText(place: Place, areas: Area[]): string {
-  // 自己加的點沒有評分
-  const user = isUserPlace(place);
-  const area = areas.find((a) => a.id === place.area);
-  const region = area?.regions?.find((r) => r.id === place.region);
-  const r = (place.raw.ratings ?? {}) as Record<string, unknown>;
-  const parts: string[] = [];
-  if (region) parts.push(displayName(region.name, region.id));
-  else if (area) parts.push(displayName(area.name, area.id));
-  if (user) return parts.join('・');
-  if (typeof r.google === 'number') parts.push(`★ ${r.google}`);
-  else if (typeof r.tabelog === 'number') parts.push(`食べログ ${r.tabelog}`);
-  return parts.join('・');
-}
+export { placeMetaText };
 
 /** 重點膠囊 */
 export function Highlights({ list }: { list: RowHighlight[] }) {
