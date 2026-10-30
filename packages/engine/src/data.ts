@@ -168,7 +168,7 @@ export function placeLookup(
   const map = new Map<string, ResolvedPlace>();
   const retired = new Set(opts.retired ?? []);
   for (const r of base) map.set(r.id, { record: r, origin: 'base', retired: retired.has(r.id) });
-  for (const r of opts.users ?? []) map.set(r.id, { record: r, origin: 'user', retired: false });
+  for (const r of opts.users ?? []) map.set(r.id, { record: r, origin: 'user', retired: retired.has(r.id) });
   return (id) => map.get(id) ?? null;
 }
 

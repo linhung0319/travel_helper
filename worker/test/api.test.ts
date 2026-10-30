@@ -1,7 +1,7 @@
 // Worker 的資料 API（T24）：在 Node 裡直接呼叫 handle()，資料庫用 node:sqlite 模擬的 D1。
 // 預設資料用匯入腳本（scripts/lib/import-plan.mjs）匯入測試用的 test-area。
 
-import { test, describe, beforeEach } from 'node:test';
+import { test, describe, beforeEach, afterEach } from 'node:test';
 import assert from 'node:assert/strict';
 import { freshDb, type FakeD1 } from './helpers/d1.ts';
 import { handle } from '../src/index.ts';
@@ -156,6 +156,61 @@ describe('自己加的點', () => {
     assert.equal((await call('POST', '/api/user-places', { type: 'restaurant', data: { coords: [136.8, 34.48] } })).status, 400);
     assert.equal((await call('POST', '/api/user-places', { type: 'restaurant', data: { ...data, coords: [34.48, 136.8] } })).status, 400);
     assert.equal((await call('POST', '/api/user-places', { type: 'station', data })).status, 400);
+  });
+});
+
+describe('展開 Google Maps 短網址（T31）', () => {
+  const realFetch = globalThis.fetch;
+  const G = 'https://www.google.com/maps/place/X/@34.4,136.8,17z';
+  /** 假 fetch：照 map 回應，沒列的回 200；呼叫過的網址記在 calls */
+  const stub = (map: Record<string, { status: number; location?: string }>) => {
+    const calls: string[] = [];
+    globalThis.fetch = (async (u: string | URL | Request) => {
+      const url = String(u);
+      calls.push(url);
+      const r = map[url] ?? { status: 200 };
+      return new Response(null, { status: r.status, headers: r.location ? { location: r.location } : {} });
+    }) as typeof fetch;
+    return calls;
+  };
+  const resolve = (u: string, o: Parameters<typeof call>[3] = {}) =>
+    call('GET', `/api/resolve-map-link?url=${encodeURIComponent(u)}`, undefined, o);
+  afterEach(() => {
+    globalThis.fetch = realFetch;
+  });
+
+  test('短網址一路跟轉址，回傳最後的網址', async () => {
+    const calls = stub({ 'https://maps.app.goo.gl/abc': { status: 302, location: G } });
+    const r = await resolve('https://maps.app.goo.gl/abc');
+    assert.equal(r.status, 200);
+    assert.deepEqual(r.body, { url: G });
+    assert.equal(calls.length, 2);
+  });
+  test('起點不是 Google 短網址：400', async () => {
+    stub({});
+    assert.equal((await resolve('https://example.com/x')).status, 400);
+  });
+  test('轉址到別的網站：400', async () => {
+    stub({ 'https://maps.app.goo.gl/abc': { status: 302, location: 'https://evil.example/' } });
+    assert.equal((await resolve('https://maps.app.goo.gl/abc')).status, 400);
+  });
+  test('一直轉址（超過 5 次）：400', async () => {
+    stub({ 'https://maps.app.goo.gl/abc': { status: 302, location: 'https://maps.app.goo.gl/abc' } });
+    assert.equal((await resolve('https://maps.app.goo.gl/abc')).status, 400);
+  });
+  test('沒登入：401', async () => {
+    stub({});
+    assert.equal((await resolve('https://maps.app.goo.gl/abc', { env: { DB: d1 } })).status, 401);
+  });
+  test('PATCH 可以改 type；沒給沿用；不合法 400', async () => {
+    const data = { name: { zh: '某店' }, coords: [136.8, 34.48] };
+    const id = (await call('POST', '/api/user-places', { type: 'restaurant', data })).body.userPlace.id;
+    const same = await call('PATCH', `/api/user-places/${id}`, { data });
+    assert.equal(same.body.userPlace.type, 'restaurant');
+    const u = await call('PATCH', `/api/user-places/${id}`, { data, type: 'spot' });
+    assert.equal(u.body.userPlace.type, 'spot');
+    assert.equal(u.body.userPlace.data.type, 'spot');
+    assert.equal((await call('PATCH', `/api/user-places/${id}`, { data, type: 'bar' })).status, 400);
   });
 });
 

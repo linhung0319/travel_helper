@@ -9,6 +9,7 @@ import { blockedPage, loginPage } from './pages.ts';
 import { handleWebhook } from './webhook.ts';
 import { createEdit, getPlace, listEdits, listPlaces, revertEdit } from './api/places.ts';
 import { createUserPlace, deleteUserPlace, listUserPlaces, updateUserPlace } from './api/user-places.ts';
+import { resolveMapLink } from './api/map-link.ts';
 import { getItinerary, getSnapshot, listSnapshots, putItinerary, restoreSnapshot } from './api/itinerary.ts';
 import {
   appendMessage,
@@ -41,6 +42,7 @@ export const api = new Router<Ctx>()
   .on('POST', '/api/user-places', createUserPlace)
   .on('PATCH', '/api/user-places/:id', updateUserPlace)
   .on('DELETE', '/api/user-places/:id', deleteUserPlace)
+  .on('GET', '/api/resolve-map-link', resolveMapLink)
   .on('GET', '/api/itinerary', getItinerary)
   .on('PUT', '/api/itinerary', putItinerary)
   .on('GET', '/api/itinerary/snapshots', listSnapshots)
