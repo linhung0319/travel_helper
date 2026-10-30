@@ -1,6 +1,7 @@
 // 網站用到的資料型別。資料格式以 schema/ 為準，這裡只列介面用得到的欄位。
 // 共用的基本型別從 @travel-helper/engine 拿；engine 還沒有的（區域、照片、各類別的欄位）先放這裡，之後再搬。
 
+import type { AddedVia } from '../backend/types.ts';
 import type { LocalizedName, LonLat, Source } from '@travel-helper/engine/types';
 
 export type { LocalizedName, LonLat, Source };
@@ -124,6 +125,18 @@ export interface Place {
   raw: Record<string, unknown>;
   /** 欄位路徑（例如 `hours`、`group.maxSeats`）→ 修改資訊 */
   edited: Record<string, FieldEdit>;
+  /** base：預設資料；user：自己加的點（T31，沒查過） */
+  origin: 'base' | 'user';
+  /** 自己加的點的資訊（origin 是 user 才有） */
+  user: UserPlaceInfo | null;
+}
+
+export interface UserPlaceInfo {
+  author: string;
+  createdAt: string;
+  updatedBy: string | null;
+  note: string | null;
+  addedVia: AddedVia;
 }
 
 export interface TimetableTrain {

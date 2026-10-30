@@ -154,3 +154,37 @@ test('findExisting：一個字的名稱不算同名', () => {
   assert.equal(r.same, null);
   assert.equal(r.near, p);
 });
+
+import { userPlaceToPlace } from '../src/lib/addPlace/userPlace.ts';
+import type { UserPlace } from '../src/backend/types.ts';
+import type { Area } from '../src/data/types.ts';
+
+const AREAS = [
+  { id: 'shima', name: { ja: '志摩' }, center: [136.9, 34.3], bbox: [136.621, 33.86, 137.326, 34.424] },
+  { id: 'toba', name: { ja: '鳥羽' }, center: [136.9, 34.5], bbox: [136.782, 34.307, 137.271, 34.63] },
+] as unknown as Area[];
+
+const up = (coords: [number, number]): UserPlace => ({
+  id: 'user-0123456789ab',
+  type: 'restaurant',
+  data: { name: { zh: '珈琲 灯台舎' }, coords, note: '週三休', links: { googleMaps: 'https://maps.app.goo.gl/x' }, addedVia: 'google-link' },
+  author: 'm-a',
+  createdAt: '2026-10-30T00:00:00.000Z',
+  updatedAt: '2026-10-30T00:00:00.000Z',
+  updatedBy: 'm-a',
+  deletedAt: null,
+});
+
+test('userPlaceToPlace：鳥羽的座標 → area 是 toba，origin user，沒有 tier', () => {
+  const p = userPlaceToPlace(up([136.84, 34.48]), AREAS);
+  assert.equal(p.area, 'toba');
+  assert.equal(p.origin, 'user');
+  assert.equal(p.tier, null);
+  assert.equal(p.links.googleMaps, 'https://maps.app.goo.gl/x');
+  assert.deepEqual(p.user, { author: 'm-a', createdAt: '2026-10-30T00:00:00.000Z', updatedBy: 'm-a', note: '週三休', addedVia: 'google-link' });
+  assert.deepEqual(p.raw, { id: 'user-0123456789ab', type: 'restaurant', name: { ja: '', zh: '珈琲 灯台舎' }, coords: [136.84, 34.48], area: 'toba' });
+});
+
+test('userPlaceToPlace：海上的座標 → area null', () => {
+  assert.equal(userPlaceToPlace(up([140, 30]), AREAS).area, null);
+});

@@ -238,3 +238,31 @@ test('讀 storage：舊格式（meal、dining）的行程和快照轉成 tags', 
   assert.deepEqual(snap.tags, ['lunch', 'groups']);
   assert.equal(snap.meal, undefined);
 });
+
+test('自己加的點：ID、誰都能改、只有本人能刪、軟刪除、sync 版本、短網址 503', async () => {
+  const b = createMockBackend(SEED, { now });
+  const before = (await b.sync()).userPlaces;
+  assert.equal(before, null);
+  const data = { name: { zh: '珈琲 灯台舎' }, coords: [136.84, 34.48] as [number, number], addedVia: 'map' as const };
+  const up = await b.createUserPlace('restaurant', data);
+  assert.match(up.id, /^user-[0-9a-f]{12}$/);
+  assert.equal(up.author, 'm-a');
+  assert.notEqual((await b.sync()).userPlaces, before);
+
+  b.setMe('m-b');
+  const edited = await b.updateUserPlace(up.id, { ...data, note: '週三休' }, 'spot');
+  assert.equal(edited.updatedBy, 'm-b');
+  assert.equal(edited.type, 'spot');
+  assert.equal(edited.author, 'm-a');
+  assert.equal(await status(b.deleteUserPlace(up.id)), 403);
+
+  b.setMe('m-a');
+  const del = await b.deleteUserPlace(up.id);
+  assert.ok(del.deletedAt);
+  assert.equal((await b.listUserPlaces()).length, 1, '已刪除的還在清單裡');
+
+  assert.equal(await status(b.createUserPlace('station' as 'spot', data)), 400);
+  assert.equal(await status(b.createUserPlace('spot', { ...data, name: { zh: ' ' } })), 400);
+  assert.equal(await status(b.createUserPlace('spot', { ...data, coords: [34.48, 136.84] })), 400, '經緯度寫反了');
+  assert.equal(await status(b.resolveMapLink('https://maps.app.goo.gl/x')), 503);
+});

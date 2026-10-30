@@ -47,17 +47,27 @@ export interface RoadCache {
 
 // 引擎的網路、搜尋、上下車點、每天的結果都照 EngineData 和它的陣列、函式快取（T29b spec §7.2）：
 // 資料點沒變就沿用同一份 stations、getPlace；資料點、地區、時刻表、道路快取都沒變就沿用同一個 EngineData
-let placesMemo: { places: DataState['places']; getPlace: EngineData['getPlace']; stations: PlaceRecord[] } | null = null;
+let placesMemo: { places: DataState['places']; byId: DataState['byId']; getPlace: EngineData['getPlace']; stations: PlaceRecord[] } | null = null;
 let areasMemo: { areas: DataState['areas']; needsCar: Record<string, boolean> } | null = null;
-let dataMemo: { places: DataState['places']; areas: DataState['areas']; tt: EngineTimetables; roads: RoadCache | undefined; version: number; data: EngineData } | null = null;
+let dataMemo: { places: DataState['places']; byId: DataState['byId']; areas: DataState['areas']; tt: EngineTimetables; roads: RoadCache | undefined; version: number; data: EngineData } | null = null;
 
 export function buildEngineData(d: DataState, tt: EngineTimetables, roads?: RoadCache): EngineData {
   const version = roads?.version ?? 0;
   const m = dataMemo;
-  if (m && m.places === d.places && m.areas === d.areas && m.tt === tt && m.roads === roads && m.version === version) return m.data;
-  if (placesMemo?.places !== d.places) {
-    const records = d.places.map((p) => p.raw as unknown as PlaceRecord);
-    placesMemo = { places: d.places, getPlace: placeLookup(records), stations: records.filter((r) => r.type === 'station') };
+  if (m && m.places === d.places && m.byId === d.byId && m.areas === d.areas && m.tt === tt && m.roads === roads && m.version === version) return m.data;
+  // 自己加的點（T31）：places 只有沒刪除的；byId 還有已刪除的，要交給引擎當 retired（行程裡那一格還要顯示名稱、警告）
+  if (placesMemo?.places !== d.places || placesMemo.byId !== d.byId) {
+    const base: PlaceRecord[] = [];
+    for (const p of d.places) if (p.origin !== 'user') base.push(p.raw as unknown as PlaceRecord);
+    const users: PlaceRecord[] = [];
+    const retired: string[] = [];
+    const live = new Set(d.places.map((p) => p.id));
+    for (const p of d.byId.values()) {
+      if (p.origin !== 'user') continue;
+      users.push(p.raw as unknown as PlaceRecord);
+      if (!live.has(p.id)) retired.push(p.id);
+    }
+    placesMemo = { places: d.places, byId: d.byId, getPlace: placeLookup(base, { users, retired }), stations: base.filter((r) => r.type === 'station') };
   }
   if (areasMemo?.areas !== d.areas) {
     const needsCar: Record<string, boolean> = {};
@@ -77,7 +87,7 @@ export function buildEngineData(d: DataState, tt: EngineTimetables, roads?: Road
     driveMeters: roads ? (a, b) => roads.cachedMeters('car', a, b) : undefined,
     driveMinutes: roads ? (a, b) => roads.cachedMinutes('car', a, b) : undefined,
   };
-  dataMemo = { places: d.places, areas: d.areas, tt, roads, version, data };
+  dataMemo = { places: d.places, byId: d.byId, areas: d.areas, tt, roads, version, data };
   return data;
 }
 
