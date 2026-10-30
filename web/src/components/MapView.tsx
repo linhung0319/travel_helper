@@ -38,10 +38,15 @@ import { closeMapPanel, closeTimetable, uiStore } from '../uiStore.ts';
 import { planStore } from '../planStore.ts';
 import { addPlaceStore, useAddPlace } from '../addPlaceStore.ts';
 import type { LonLat } from '../data/types.ts';
+import { mobileStore } from '../mobile/mobileStore.ts';
 
 setWorkerUrl(maplibreWorkerUrl);
 
 /** 地圖的樣式（手機版詳情的小地圖也用） */
+/** 手機按住加地點：按住多久、手指最多移動多遠（px） */
+const LONG_PRESS_MS = 500;
+const LONG_PRESS_SLOP = 10;
+
 export const STYLE_URL = 'https://tiles.openfreemap.org/styles/liberty';
 /** 放大到這裡以上，小點換成類別圖標（像 Google Maps） */
 export const ICON_ZOOM = 12;
@@ -465,6 +470,53 @@ export function MapView() {
         // 選單約 180×50：靠近邊緣時往內縮，不超出地圖
         setCtx({ x: Math.max(0, Math.min(e.point.x, c.clientWidth - 180)), y: Math.max(0, Math.min(e.point.y, c.clientHeight - 50)), coords: [e.lngLat.lng, e.lngLat.lat] });
       });
+      // 手機：行程分頁的地圖上按住約 0.5 秒（手指移動不超過 10px、只有一根手指）→「在這裡加地點」，位置就是手指那裡（spec §2）。
+      // 不另外要求「展開」：這張地圖一直是看得到的（行程面板只是蓋在下半），在行程分頁、沒有整頁蓋著、表單沒開時就算數。
+      // 長按時瀏覽器自己的選單（contextmenu）擋掉；一般拖曳、縮放、點選不受影響（移動就取消、第二根手指就取消）。
+      {
+        const el = map.getContainer();
+        let timer: number | null = null;
+        let from: { x: number; y: number } | null = null;
+        const cancel = () => {
+          if (timer !== null) window.clearTimeout(timer);
+          timer = null;
+          from = null;
+        };
+        const blocked = () => {
+          const m = mobileStore.getState();
+          return window.matchMedia(DESKTOP_QUERY).matches || m.tab !== 'trip' || !!m.detail || !!m.page || !!addPlaceStore.getState().draft;
+        };
+        el.addEventListener(
+          'touchstart',
+          (e) => {
+            cancel();
+            if (e.touches.length !== 1 || blocked()) return;
+            const t = e.touches[0];
+            from = { x: t.clientX, y: t.clientY };
+            const r = el.getBoundingClientRect();
+            timer = window.setTimeout(() => {
+              timer = null;
+              if (blocked()) return;
+              const ll = map.unproject([t.clientX - r.left, t.clientY - r.top]);
+              addPlaceStore.getState().start({ via: 'map', coords: [ll.lng, ll.lat] });
+            }, LONG_PRESS_MS);
+          },
+          { passive: true },
+        );
+        el.addEventListener(
+          'touchmove',
+          (e) => {
+            const t = e.touches[0];
+            if (from && t && Math.hypot(t.clientX - from.x, t.clientY - from.y) > LONG_PRESS_SLOP) cancel();
+          },
+          { passive: true },
+        );
+        el.addEventListener('touchend', cancel);
+        el.addEventListener('touchcancel', cancel);
+        el.addEventListener('contextmenu', (e) => {
+          if (!window.matchMedia(DESKTOP_QUERY).matches) e.preventDefault();
+        });
+      }
       map.on('mousemove', PICK_LAYERS, (e) => {
         // 加地點的表單開著：不出小卡片（小卡片點了會開詳情）
         if (!canHoverRef.current || addPlaceStore.getState().draft) return;
@@ -516,6 +568,7 @@ export function MapView() {
         dataStore,
         uiStore,
         planStore,
+        addPlaceStore,
         shared,
         commands,
         visibleRect: () => visibleRect(map, mapObstructions()),
