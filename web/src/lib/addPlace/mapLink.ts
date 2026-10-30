@@ -1,7 +1,7 @@
 // Google Maps 網址解析（T31）：純函式，不連網。短網址要先由 Worker 展開。
 
 import type { LonLat } from '../../data/types.ts';
-import { looksLikeAddress } from './classify.ts';
+import { looksLikeAddress } from './address.ts';
 
 export interface ParsedMapLink {
   name: string | null;
@@ -120,4 +120,10 @@ export function parseMapLink(url: string): ParsedMapLink {
   }
 
   return { name, coords, precise, addressText };
+}
+
+/** 從貼上的文字（例如分享文字「店名＋網址」）裡找第一個地圖連結 */
+export function extractMapLink(s: string): string | null {
+  for (const m of s.matchAll(/https?:\/\/[^\s<>"']+/gi)) if (isMapLink(m[0])) return m[0];
+  return null;
 }

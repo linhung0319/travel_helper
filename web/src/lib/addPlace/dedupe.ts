@@ -23,7 +23,7 @@ export function findExisting(places: Place[], coords: LonLat, name: string | nul
   for (const p of places) {
     if (p.type === 'station') continue;
     const d = haversineMeters(coords, p.coords);
-    if (d <= SAME_M && target && d < sameD && namesOf(p).some((n) => n.includes(target) || target.includes(n))) {
+    if (d <= SAME_M && target.length >= 2 && d < sameD && namesOf(p).some((n) => n.length >= 2 && (n.includes(target) || target.includes(n)))) {
       same = p;
       sameD = d;
     }

@@ -1,6 +1,6 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { isMapLink, isShortMapLink, parseMapLink } from '../src/lib/addPlace/mapLink.ts';
+import { extractMapLink, isMapLink, isShortMapLink, parseMapLink } from '../src/lib/addPlace/mapLink.ts';
 import { classifyInput } from '../src/lib/addPlace/classify.ts';
 import { geocodeAddress } from '../src/lib/addPlace/gsi.ts';
 import { findExisting } from '../src/lib/addPlace/dedupe.ts';
@@ -103,4 +103,54 @@ test('findExisting', () => {
   assert.equal(r.same, null);
   assert.equal(r.near, c);
   assert.deepEqual(findExisting([mk('s', '灯台舎', dLat(5), 'station')], base, '灯台舎'), { same: null, near: null });
+});
+
+test('classifyInput：店名、地名不是地址', () => {
+  for (const s of ['志摩スペイン村', 'おはらい町', '鳥羽市場', '魚市場', '大村屋', '古い町家カフェ', '道の駅 伊勢志摩村', '2027-02-02'])
+    assert.equal(classifyInput(s), 'text', s);
+  for (const s of ['三重県鳥羽市鳥羽1丁目2-3', '鳥羽市相差町1238', '鳥羽1-2-3', '大阪府大阪市中央区', '三重県鳥羽市鳥羽１－２－３'])
+    assert.equal(classifyInput(s), 'address', s);
+});
+
+test('parseMapLink：沒有逗號的 q 不當地址', () => {
+  const r = parseMapLink('https://www.google.com/maps?q=志摩スペイン村');
+  assert.equal(r.name, '志摩スペイン村');
+  assert.equal(r.addressText, null);
+});
+
+test('parseMapLink：兩組 !3d!4d 取最後一組', () => {
+  const r = parseMapLink('https://www.google.com/maps/place/x/data=!3d1.5!4d2.5!8m2!3d34.4815!4d136.8431');
+  assert.deepEqual(r.coords, [136.8431, 34.4815]);
+  assert.equal(r.precise, true);
+});
+
+test('parseMapLink：全形頓號切名稱和地址', () => {
+  const r = parseMapLink('https://www.google.com/maps?q=灯台舎、三重県鳥羽市鳥羽1丁目');
+  assert.equal(r.name, '灯台舎');
+  assert.equal(r.addressText, '三重県鳥羽市鳥羽1丁目');
+});
+
+test('parseMapLink：query 是座標', () => {
+  assert.deepEqual(parseMapLink('https://www.google.com/maps/search/?api=1&query=34.5,136.7').coords, [136.7, 34.5]);
+});
+
+test('parseMapLink：!3d!4d 超出範圍時退回 @', () => {
+  const r = parseMapLink('https://www.google.com/maps/place/x/@34.48,136.84,17z/data=!3d999!4d136.8');
+  assert.deepEqual(r.coords, [136.84, 34.48]);
+  assert.equal(r.precise, false);
+});
+
+test('extractMapLink：從分享文字抓連結', () => {
+  assert.equal(extractMapLink('珈琲 灯台舎\nhttps://maps.app.goo.gl/x'), 'https://maps.app.goo.gl/x');
+  assert.equal(extractMapLink('https://example.com https://maps.app.goo.gl/y'), 'https://maps.app.goo.gl/y');
+  assert.equal(extractMapLink('灯台舎'), null);
+  assert.equal(classifyInput('珈琲 灯台舎\nhttps://maps.app.goo.gl/x'), 'link');
+});
+
+test('findExisting：一個字的名稱不算同名', () => {
+  const base: [number, number] = [136.8, 34.4];
+  const p = mk('a', '店', [136.8, 34.4 + 10 / 111195]);
+  const r = findExisting([p], base, '店');
+  assert.equal(r.same, null);
+  assert.equal(r.near, p);
 });
