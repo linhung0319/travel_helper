@@ -114,6 +114,7 @@
 | T29b | 重算速度（修快取、只重算有改的那一天）、拿掉選班次（引擎的 `trip` 路徑、‹ › 和班次下拉）；列出交通卡拿得到的內容給 T29c | S | T29、T15m merge 後 | 4 | 🌐 少量 | ✅ |
 | T29c | web：交通卡（收合兩行、一程一行的步驟、錯過的話標籤）、班次表格子（手機也用彈窗）、編輯器（分段按鈕、選走法）、車站面板的班距；車站不當資料卡；engine：買票站留空檔、`ticket-tight` 警告 | M | T29b | 4 | 🌐 少量 | ✅ |
 | T30 | 👤 部署到 Cloudflare：正式的 D1 和 secret、網站和 Worker、正式環境第一次匯入、LINE 改用正式網址、LINE 內建瀏覽器實測 | S | T25、👤 資料和 schema 定案（邀請家人之前） | 4 | 🌐 少量 | ⬜ |
+| T31 | 自己加地點：探索的搜尋框貼 Google Maps 連結、輸入日本地址、或在地圖上指位置；確認畫面（手機整頁、網頁右欄＋主地圖的圖釘）；自己加的點出現在地圖、清單、詳情；不用 Google API | M | T15m、T24 | 4 | 🌐 少量 | ⬜ |
 
 ---
 
@@ -230,6 +231,12 @@ T7j → T8g → T9g → T13 → T21 → T11、T14、T24（並行）→ T12 → T
 
 - 資料裡約 330 個點用到 Google Maps 的照片網址（`googleusercontent`），其中 173 個點的代表照片就是它；這種網址沒有保證能用多久（2026-10-26 抽測：`gps-proxy` 格式的 2 張已經 403，其他格式正常）。Places API 的照片代號和網址依條款不能存，所以改成用到時才即時查。
 - **T26 在 T25 之後**：要用 Worker 的登入和 secret；和 T15、T16 可以同時做（T26 只改詳情的照片區）。
+
+2026-10-30 加上 **T31 自己加地點**（👤 決定）：
+
+- 設計見 [specs/2026-10-30-add-place-design.md](superpowers/specs/2026-10-30-add-place-design.md)。不用 Google 的 API（原因同 T26）：Google Maps 連結從網址取名稱和座標（短網址由 Worker 展開），日本地址查國土地理院，都不行就在地圖上指。
+- 類型只有景點、餐廳、住宿（不加「其他」）；刪除只有加的人能刪，已排進行程的點刪掉後行程顯示警告，由排行程的人拿掉。
+- **在 T15 之前做也可以**：跟 T15m 一樣先接假後端（照 T24 的 API 形狀），T15 串接時一起換成真的。
 
 2026-10-30 **T26 暫定不做**（👤 決定）：
 
@@ -806,6 +813,12 @@ T7c → T7d → T7e → T7f → T7g → T8a → T8b → T8c → T8d → T7i → 
   - 變數名稱定案後更新 architecture §4 的表。
 - 在手機的 LINE 裡實際登入一次（🌐 少量：電腦上的流程可以用 Chrome 看）。2026-10-26 用 `dev:tunnel` 實測：👤 用 iPhone 登入（管理員）、在管理頁核准測試群組，都正常。
 - LINE 內建瀏覽器的版面實測移到 T30（要用正式網址）。
+
+### T31 自己加地點 〔M〕
+- 照 [specs/2026-10-30-add-place-design.md](superpowers/specs/2026-10-30-add-place-design.md) 做；實作計畫在 `docs/superpowers/plans/`。
+- 範圍：`web/`（搜尋框的判斷、確認畫面、自己加的點的呈現）、`worker/`（`GET /api/resolve-map-link`）、`packages/engine`（`users` 可以帶 retired）、假後端；文件更新 interaction-design §8、architecture §2、§4。
+- 不改 D1 的資料表和 migration；不改 `schema/`。
+- 完成條件：見設計文件 §7。
 
 ### T30 👤 部署到 Cloudflare 〔S〕
 - **什麼時候做**：👤 確定預設資料和 schema 之後、邀請家人之前（2026-10-26 👤 決定）。第一次正式匯入之後 ID 不改名（[architecture.md](architecture.md) §3.5）；在那之前，正式環境的 D1 可以清空重建。
