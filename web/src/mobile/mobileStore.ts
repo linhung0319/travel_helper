@@ -144,13 +144,15 @@ function afterCloseLayer() {
  * addPlaceStore 牽著整個網站的資料層（Node 的測試載不了），所以由 AddPlacePage 載入時把它的開關接進來。
  */
 let addLayer: { isOpen(): boolean; cancel(): void } | null = null;
+/** 返回鍵（popstate）關加地點頁時，那一筆 history 已經退掉了：不能再退一次 */
+let closingFromPop = false;
 export function bindAddLayer(layer: NonNullable<typeof addLayer>, subscribe: (onChange: (open: boolean) => void) => void) {
   addLayer = layer;
   let wasOpen = layer.isOpen();
   subscribe((open) => {
     if (open === wasOpen) return;
     wasOpen = open;
-    if (!mobileActive || !hasHistory()) return;
+    if (!mobileActive || !hasHistory() || closingFromPop) return;
     if (open) {
       if (pendingBacks > 0) pushAfterBack = true;
       else pushLayer();
@@ -283,7 +285,12 @@ if (typeof window !== 'undefined') {
     }
     // 加地點的整頁蓋在最上面：先關它（詳情還在底下）
     if (mobileActive && addLayer?.isOpen()) {
-      addLayer.cancel();
+      closingFromPop = true;
+      try {
+        addLayer.cancel();
+      } finally {
+        closingFromPop = false;
+      }
       return;
     }
     if (layerOpen(mobileStore.getState())) mobileStore.setState({ detail: null, page: null });

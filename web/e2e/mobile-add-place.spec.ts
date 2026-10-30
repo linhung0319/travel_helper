@@ -164,27 +164,66 @@ test('返回鍵：從探索開的加地點頁，返回關掉它、留在探索',
   await expect(page.getByTestId('m-feed-search')).toBeVisible();
 });
 
-test('返回鍵：詳情上開 ✎ 修改，返回只關加地點頁、詳情還在；再返回才關詳情', async ({ page }) => {
+const histLen = (page: Page) => page.evaluate(() => history.length);
+const onApp = (page: Page) => page.evaluate(() => location.origin !== 'null' && location.href.startsWith('http'));
+
+test('返回鍵：詳情上開 ✎ 修改，返回只關加地點頁、詳情還在；再返回才關詳情，沒有多退', async ({ page }) => {
   await ready(page);
   await addFromLink(page);
   await userCard(page).click();
+  await expect(page.getByTestId('m-detail')).toBeVisible();
+  const origin = await page.evaluate(() => location.origin);
+  const len = await histLen(page);
   await page.getByTestId('detail-user-edit').click();
   await expect(page.getByTestId('m-add-page')).toBeVisible();
+  expect(await histLen(page)).toBe(len + 1);
   await page.goBack();
   await expect(page.getByTestId('m-add-page')).toHaveCount(0);
   await expect(page.getByTestId('m-detail')).toBeVisible();
+  // 只退了加地點那一筆：詳情那筆還在（再退一次才關詳情）
+  expect(await page.evaluate(() => !!history.state?.thMobileDetail)).toBe(true);
+  expect(await page.evaluate(() => location.origin)).toBe(origin);
   await page.goBack();
   await expect(page.getByTestId('m-detail')).toHaveCount(0);
+  expect(await onApp(page)).toBe(true);
+  expect(await page.evaluate(() => location.origin)).toBe(origin);
+  await expect(page.getByTestId('m-tab-explore')).toHaveAttribute('aria-current', 'page');
 });
 
-test('存好之後返回鍵不會多退一步：還在網站上', async ({ page }) => {
+test('存好後不多退一步：從探索開的，存好 history 長度回到原樣、返回鍵還在網站上', async ({ page }) => {
+  await ready(page);
+  await goTab(page, 'explore');
+  const len = await histLen(page);
+  await addFromLink(page); // 開、存好
+  await expect.poll(() => page.evaluate(() => !!history.state?.thMobileDetail)).toBe(false);
+  await expect(page.getByTestId('m-add-page')).toHaveCount(0);
+  // 存好時那一筆退回去了：再開一次（同一個連結會被當成已經有了，改打找不到的名稱），長度只多一筆
+  await page.getByTestId('m-feed-search').fill('不存在的店名xyz');
+  await page.getByTestId('add-suggest-add').click();
+  await expect(page.getByTestId('m-add-page')).toBeVisible();
+  expect(await histLen(page)).toBeLessThanOrEqual(len + 1);
+  await page.goBack();
+  await expect(page.getByTestId('m-add-page')).toHaveCount(0);
+  expect(await onApp(page)).toBe(true);
+  await expect(page.getByTestId('m-tab-explore')).toHaveAttribute('aria-current', 'page');
+});
+
+test('存好後不多退一步：從詳情 ✎ 修改存好，返回鍵一次關詳情、還在網站上', async ({ page }) => {
   await ready(page);
   await addFromLink(page);
+  await userCard(page).click();
+  await expect(page.getByTestId('m-detail')).toBeVisible();
+  await page.getByTestId('detail-user-edit').click();
+  await page.getByTestId('add-name').fill('存好後的名稱');
+  await page.getByTestId('add-save').click();
+  await expect(page.getByTestId('m-add-page')).toHaveCount(0);
+  await expect(page.getByTestId('m-detail')).toContainText('存好後的名稱');
+  // 存好退了加地點那一筆：詳情那筆還在
+  expect(await page.evaluate(() => !!history.state?.thMobileDetail)).toBe(true);
+  await page.goBack();
+  await expect(page.getByTestId('m-detail')).toHaveCount(0);
+  expect(await onApp(page)).toBe(true);
   await expect(page.getByTestId('m-tab-explore')).toHaveAttribute('aria-current', 'page');
-  const before = page.url();
-  await page.getByTestId('m-feed-search').fill('');
-  expect(page.url()).toBe(before);
-  expect(await page.evaluate(() => (window as any).__thMobile.getState().detail)).toBeNull();
 });
 
 test('第二根手指放上去 → 取消按住', async ({ page }) => {
