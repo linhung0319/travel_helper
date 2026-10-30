@@ -235,7 +235,7 @@ T7j → T8g → T9g → T13 → T21 → T11、T14、T24（並行）→ T12 → T
 
 - **Google 條款**：Places 的內容不能和非 Google 的地圖一起用（2022-04 版 Service Specific Terms §5.3；[Places API 政策頁](https://developers.google.com/maps/documentation/places/web-service/policies)寫「顯示在地圖上就要用 Google 地圖」，2026-10-30 取得）。網站用 MapLibre，詳情又浮在地圖上，是灰色地帶。
 - **需要的不多**：597 個資料點每個最多 5 張照片（1 張 268 個、2 張 150 個、3～5 張 177 個），詳情的左右滑就夠用，不需要照片牆。照片失效時詳情本來就會跳過，改用下一張。
-- **改用 T30 部署前跑 `scripts/photo-check.mjs --data`**：打不開的代表照片從官網、Wikimedia 換掉，出發前一週再跑一次。
+- **改用 T30 部署前對每個資料檔跑 `scripts/photo-check.mjs --data`**：打不開的代表照片從官網、Wikimedia 換掉，出發前一週再跑一次。
 - 自己加地點（interaction-design §8）也不用 Google 的 API：貼 Google Maps 的分享連結（從網址取名稱和座標）、日本地址用國土地理院、都不行就在地圖上放圖釘。所以不需要為了它開 GCP。
 - 之後照片真的不夠用、又確認條款允許，再回來做。
 
@@ -817,7 +817,7 @@ T7c → T7d → T7e → T7f → T7g → T8a → T8b → T8c → T8d → T7i → 
   5. 正式環境第一次匯入：`npm run db:import -- --all --remote` 出報告，👤 看過再 `--apply … --remote`。
   6. 👤 在 LINE Developers：Messaging API 的 Webhook URL 改成正式網址（只能填一個，之後本機的 `dev:tunnel` 就收不到通知）；LINE Login 的 Callback URL 加上正式網址（可以填多個，ngrok 的留著）。
   7. 機器人已經在群組裡的話，在群組講一句話，正式環境才會記下這個群組；👤 在正式的 `/admin` 核准。
-- **照片檢查**（2026-10-30，代替 T26）：匯入前跑 `node scripts/photo-check.mjs --data`，代表照片（`photos` 第一張）打不開的，照 T21 的來源順序（官網 → 楽天 → Wikimedia → Google 主圖）換掉，列在回報裡。出發前一週 👤 再跑一次。
+- **照片檢查**（2026-10-30，代替 T26）：匯入前對每個資料檔跑 `node scripts/photo-check.mjs --data <資料檔>`，代表照片（`photos` 第一張）打不開的，照 T21 的來源順序（官網 → 楽天 → Wikimedia → Google 主圖）換掉，列在回報裡。出發前一週 👤 再跑一次。
 - **決定群組裡貼的網址**：要不要加 `?openExternalBrowser=1`（用手機的預設瀏覽器打開，architecture §5「要注意的地方」），和 👤 一起試過再決定。
 - **LINE 內建瀏覽器實測（接 T11）**（2026-10-22 👤 決定）：登入時一併看地圖網站在 iOS、Android 的 LINE 內建瀏覽器有沒有版面跑掉或點不到的地方（天數分頁左右滑、拉起面板的把手、小卡片→詳情、iPhone 下緣的安全區域、外站照片能不能顯示）；Android 的 LINE 登入也一起測（T23 只測了 iPhone）。結果寫進 T30 的回報；有問題的另開任務修。
 - 完成條件：正式網址用 LINE 登入成功（iOS、Android）；不在群組的人被擋下、出現在管理頁的「等待核准」；`wrangler tail` 看得到 webhook 的通知；正式環境的 D1 有匯入紀錄。
