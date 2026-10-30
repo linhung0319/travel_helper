@@ -138,7 +138,7 @@ export function FilterBar({ source, surface, model, count, typeRow }: { source: 
       <div className="fb-row">
         <label className="fb-search">
           <Icon name="search" size={20} />
-          <input type="search" value={model.query} placeholder="搜尋名稱" aria-label="搜尋名稱" onChange={(e) => model.setQuery(e.target.value)} data-testid={searchTestId} />
+          <input type="search" value={model.query} placeholder={source === 'explore' ? '搜尋名稱、貼上 Google Maps 連結或地址' : '搜尋名稱'} aria-label="搜尋名稱" onChange={(e) => model.setQuery(e.target.value)} data-testid={searchTestId} />
           {model.query && (
             <button type="button" className="fb-search-clear" aria-label="清除搜尋" onClick={() => model.setQuery('')}>
               <Icon name="close" size={16} />

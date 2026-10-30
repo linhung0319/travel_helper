@@ -1,15 +1,20 @@
-// 自己加地點（T31）的狀態：Task 5 在這裡補完（表單、釘選位置、來源解析）。
-// 現在只有詳情的「✎ 修改」要呼叫的 startEdit。
+// 自己加地點（T31）網站共用的草稿 store；邏輯在 lib/addPlace/draft.ts。
+// 搜尋框的提示、地圖上指位置、詳情的「✎ 修改」都從這裡開始；確認畫面（Task 6、7）畫 draft。
 
-import { createStore } from 'zustand/vanilla';
+import { useStore } from 'zustand';
+import { dataStore } from './dataStore.ts';
+import { shared, sharedStore } from './appShared.ts';
+import { createAddPlaceStore, type AddPlaceState } from './lib/addPlace/draft.ts';
 
-export interface AddPlaceState {
-  /** 開始修改一個自己加的點（Task 5 補：打開預填好的確認畫面） */
-  startEdit(placeId: string): void;
+export type { AddPlaceDraft, AddPlaceState } from './lib/addPlace/draft.ts';
+
+export const addPlaceStore = createAddPlaceStore({
+  place: (id) => dataStore.getState().byId.get(id),
+  userPlace: (id) => sharedStore.getState().userPlaces.find((u) => u.id === id),
+  createUserPlace: (t, d) => shared.createUserPlace(t, d),
+  updateUserPlace: (id, d, t) => shared.updateUserPlace(id, d, t),
+});
+
+export function useAddPlace<T>(selector: (s: AddPlaceState) => T): T {
+  return useStore(addPlaceStore, selector);
 }
-
-export const addPlaceStore = createStore<AddPlaceState>()(() => ({
-  startEdit: () => {
-    // Task 5 補完
-  },
-}));

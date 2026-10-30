@@ -2742,3 +2742,63 @@ button.ll-main {
 .pd-user-delete {
   color: var(--bad);
 }
+
+/* ---------- 搜尋框下面的加地點提示（AddPlaceSuggest，T31） ---------- */
+
+.aps {
+  padding: 8px 0;
+}
+
+.aps-mobile {
+  padding: 8px 16px;
+}
+
+.aps-card {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 12px;
+  border: 1px solid var(--indigo-line);
+  border-radius: 14px;
+  background: var(--indigo-wash);
+}
+
+.aps-name {
+  margin: 0;
+  font-weight: 600;
+  color: var(--ink);
+}
+
+.aps-meta,
+.aps-note,
+.aps-loading {
+  margin: 0;
+  font-size: 0.875rem;
+}
+
+.aps-error {
+  margin: 0;
+  color: var(--sakura-ink);
+}
+
+.aps-add {
+  align-self: flex-start;
+  min-height: var(--tap);
+}
+
+.aps-near {
+  align-self: flex-start;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: var(--indigo);
+  font: inherit;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.aps-howto {
+  margin: 0;
+  padding-left: 1.4em;
+  font-size: 0.875rem;
+}
