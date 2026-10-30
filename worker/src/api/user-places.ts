@@ -2,7 +2,7 @@
 //
 // GET    /api/user-places?since=   全部（含已刪除的，前端用 deletedAt 判斷）
 // POST   /api/user-places          { type, data }：ID 由 Worker 產生（user-<隨機>）
-// PATCH  /api/user-places/:id      { data }：整份取代，誰都可以改（全員共用），記下最後改的人
+// PATCH  /api/user-places/:id      { data, type? }：整份取代（type 沒給就沿用），誰都可以改（全員共用），記下最後改的人
 // DELETE /api/user-places/:id      軟刪除：只有本人能刪
 //
 // 自己加的點不是查到的資料，沒有 sources 等欄位，所以不用 schema/ 驗證，只檢查最基本的：
@@ -90,11 +90,12 @@ export async function updateUserPlace({ db, req, member }: Ctx, params: Record<s
   const row = await load(db, params.id);
   if (row.deleted_at) throw notFound('這個點已經刪除了');
   const body = await readBody(req);
-  const data = checkUserPlace(row.type, body.data, row.id);
+  // type 選填：沒給就沿用，有給就用同一套檢查（可以改類型，例如 spot 改成 restaurant）
+  const data = checkUserPlace(body.type === undefined ? row.type : body.type, body.data, row.id);
   const now = nowIso();
   const updated = await db
-    .prepare('UPDATE user_places SET data = ?, updated_at = ?, updated_by = ? WHERE id = ? RETURNING *')
-    .bind(JSON.stringify(data), now, member.id, row.id)
+    .prepare('UPDATE user_places SET type = ?, data = ?, updated_at = ?, updated_by = ? WHERE id = ? RETURNING *')
+    .bind(data.type, JSON.stringify(data), now, member.id, row.id)
     .first<Row>();
   return json({ userPlace: toJson(updated!) });
 }

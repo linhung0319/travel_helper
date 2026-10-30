@@ -12,9 +12,13 @@ import {
   type ItineraryDoc,
   type Member,
   type PlaceEdit,
+  RESOLVE_OFFLINE_MESSAGE,
   type Reservation,
   type ReservationStatus,
   type Snapshot,
+  type UserPlace,
+  type UserPlaceData,
+  type UserPlaceType,
   type Vote,
   type VoteValue,
 } from './types.ts';
@@ -43,6 +47,7 @@ interface MockState {
   candidates: Candidate[];
   reservations: Reservation[];
   edits: PlaceEdit[];
+  userPlaces: UserPlace[];
   seq: { snapshot: number; comment: number; candidate: number; edit: number };
 }
 
@@ -71,6 +76,7 @@ export interface MockBackend extends Backend {
 const MAX_TEXT = 500;
 const RESERVATION_STATUSES: ReservationStatus[] = ['pending', 'booked', 'skip'];
 const KINDS: CommentKind[] = ['normal', 'planner', 'decline'];
+const USER_PLACE_TYPES: UserPlaceType[] = ['spot', 'restaurant', 'lodging'];
 const DATE = /^\d{4}-\d{2}-\d{2}$/;
 const clone = <T>(x: T): T => structuredClone(x);
 
@@ -97,6 +103,19 @@ function checkText(text: unknown): string {
   return text;
 }
 
+/** 自己加的點：規則同 worker/src/api/user-places.ts 的 checkUserPlace */
+function checkUserPlace(type: unknown, data: UserPlaceData): void {
+  if (typeof type !== 'string' || !USER_PLACE_TYPES.includes(type as UserPlaceType)) badRequest('type 要是 spot、lodging、restaurant 其中之一');
+  const name = data?.name as Record<string, unknown> | undefined;
+  if (!name || typeof name !== 'object' || !['ja', 'zh'].some((k) => typeof name[k] === 'string' && (name[k] as string).trim())) badRequest('data.name 至少要有 ja 或 zh');
+  const c = data.coords as unknown;
+  if (!Array.isArray(c) || c.length !== 2 || !c.every((x) => typeof x === 'number' && Number.isFinite(x))) badRequest('data.coords 要是 [經度, 緯度]');
+  const [lon, lat] = c as number[];
+  if (lon < -180 || lon > 180 || lat < -90 || lat > 90) badRequest('data.coords 超出範圍（是不是經緯度寫反了？要是 [經度, 緯度]）');
+}
+
+const randomHex12 = () => [...crypto.getRandomValues(new Uint8Array(6))].map((b) => b.toString(16).padStart(2, '0')).join('');
+
 function fromSeed(seed: MockSeed, now: string): MockState {
   return {
     members: clone(seed.members),
@@ -110,14 +129,15 @@ function fromSeed(seed: MockSeed, now: string): MockState {
     candidates: (seed.candidates ?? []).map((x, i) => ({ ...clone(x), id: i + 1, updatedAt: x.createdAt, deletedAt: null })),
     reservations: (seed.reservations ?? []).map((r) => ({ note: null, nights: null, ...clone(r) })),
     edits: (seed.edits ?? []).map((e, i) => ({ ...clone(e), id: i + 1, updatedAt: e.createdAt, revertedAt: null, revertedBy: null, closedAt: null })),
+    userPlaces: [],
     seq: { snapshot: 0, comment: seed.comments?.length ?? 0, candidate: seed.candidates?.length ?? 0, edit: seed.edits?.length ?? 0 },
   };
 }
 
 export function createMockBackend(seed: MockSeed, opts: MockOptions = {}): MockBackend {
   const storage = opts.storage ?? null;
-  // v4：2026-10-24 加了預約筆記，舊的存檔讀不進來；v5：2026-10-28 種子資料 2/10 的分組換成合併卡（§14.4）；v6：T29c 種子資料不再有車站的資料卡（i-1、i-20 換成景點，2/5 多一張 i-21），換 key 讓舊的存檔重來
-  const key = opts.storageKey ?? 'travel-helper:mockBackend:v6';
+  // v4：2026-10-24 加了預約筆記，舊的存檔讀不進來；v5：2026-10-28 種子資料 2/10 的分組換成合併卡（§14.4）；v6：T29c 種子資料不再有車站的資料卡（i-1、i-20 換成景點，2/5 多一張 i-21），換 key 讓舊的存檔重來；v7：T31 加了自己加的點（userPlaces），舊存檔沒有這欄
+  const key = opts.storageKey ?? 'travel-helper:mockBackend:v7';
   const now = opts.now ?? (() => new Date().toISOString());
   let currentSeed = seed;
 
@@ -190,6 +210,7 @@ export function createMockBackend(seed: MockSeed, opts: MockOptions = {}): MockB
         candidates: maxUpdated(state.candidates),
         reservations: maxUpdated(state.reservations),
         edits: maxUpdated(state.edits),
+        userPlaces: maxUpdated(state.userPlaces),
       })),
 
     getItinerary: () => call(() => state.itinerary),
@@ -297,6 +318,35 @@ export function createMockBackend(seed: MockSeed, opts: MockOptions = {}): MockB
         e.revertedBy = member();
         return e;
       }),
+
+    listUserPlaces: () => call(() => state.userPlaces),
+    createUserPlace: (type, data) =>
+      call(() => {
+        checkUserPlace(type, data);
+        const at = now();
+        const x: UserPlace = { id: `user-${randomHex12()}`, type, data: clone(data), author: member(), createdAt: at, updatedAt: at, updatedBy: member(), deletedAt: null };
+        state.userPlaces.push(x);
+        return x;
+      }),
+    updateUserPlace: (id, data, type) =>
+      call(() => {
+        const x = state.userPlaces.find((u) => u.id === id);
+        if (!x) notFound(`沒有自己加的點「${id}」`);
+        if (x.deletedAt) notFound('這個點已經刪除了');
+        const nextType = type === undefined ? x.type : type;
+        checkUserPlace(nextType, data);
+        Object.assign(x, { type: nextType, data: clone(data), updatedAt: now(), updatedBy: member() });
+        return x;
+      }),
+    deleteUserPlace: (id) =>
+      call(() => {
+        const x = state.userPlaces.find((u) => u.id === id);
+        if (!x) notFound(`沒有自己加的點「${id}」`);
+        if (x.author !== member()) forbidden('只有加這個點的人能刪');
+        if (!x.deletedAt) x.deletedAt = x.updatedAt = now();
+        return x;
+      }),
+    resolveMapLink: () => Promise.reject(new BackendError(503, 'offline', RESOLVE_OFFLINE_MESSAGE)),
 
     setMe(memberId) {
       state.me = memberId;

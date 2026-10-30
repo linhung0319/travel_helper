@@ -181,6 +181,17 @@ T15m 先用假後端把畫面做出來，T15 只換後端的實作，畫面的�
 - **地圖的點**（`MapView.tsx`、`mapIcons.ts`）：照片標記拿掉，改成 Google Maps 那種類別圖標（canvas 畫的 `icon-<type>`），`ICON_ZOOM`（12）以下是小點。選了某一天，那天的點換成編號圓（`places-mark`），編號由 `lib/planView.ts` 的 `stopMarks` 照時間軸算（住宿「宿」、機場「機」、其他 1、2、3…；分組先編各組再編會合點），時間軸用同一份；那天的路線加方向箭頭（`itinerary-arrow`，分組時每組各一條）。選中的點（`detailId`，或探索分頁的 `exploreTarget`）畫成水滴圖釘（`pin-<type>`、`places-pin` 圖層），原本的圖標藏起來；只有小卡片時才用圓框（`places-focus`）。點的時候查 `places-circle`、`places-icon`、`places-mark`、`places-pin` 四層。探索分頁時不因為「不在那天」變淡。
 - **`data-day` 只給天數分頁用**（e2e 靠它找分頁）；其他選日子的按鈕用 `data-pick-day`、`data-overview-day`。
 
+### 自己加地點（T31，2026-10-30）
+
+設計見 `docs/superpowers/specs/2026-10-30-add-place-design.md`。
+
+- **`web/src/lib/addPlace/`**（純函式，有單元測試 `web/test/addPlace.test.ts`）：`classify`（輸入是連結、地址還是文字）、`mapLink`（解析 Google Maps 網址）、`gsi`／`address`（國土地理院地址搜尋）、`dedupe`（80 公尺＋名稱、30 公尺「附近已經有」）、`suggest`（搜尋框的提示狀態）、`draft`（`createAddPlaceStore`，草稿和存檔）、`userPlace`（`UserPlace` 轉 `Place`，地區由座標落在 `areas.json` 哪個 bbox 算）、`view`（卡片、詳情共用的顯示判斷）。
+- **`web/src/addPlaceStore.ts`**：網站共用的一份草稿 store（`start({ via, name, coords, … })`、`cancel`、存檔）。搜尋框的提示、地圖上指、詳情的「✎ 修改」、T16 的 AI 都呼叫它，確認畫面只有這一個。
+- **元件**：`shared/ui/AddPlaceSuggest`（搜尋框下的提示，兩邊共用）、`shared/ui/AddPlaceForm`（表單，兩邊共用）；網頁的表單放在 `SidePanel`，圖釘和右鍵選單在 `MapView`；手機的 `mobile/AddPlacePage.tsx`（整頁、自己的小 MapLibre 實例、固定中央圖釘；`window.__thAddMap` 給 e2e 用）。手機版是 `mobileStore` 的整頁層之外另一層（`bindAddLayer`）：和詳情共用 history，返回鍵關掉它；行程地圖按住 0.5 秒（手指移動超過 10px 不算）也在 `MapView`。
+- **`Place` 的新欄位**（`data/types.ts`）：`origin: 'base' | 'user'`、`user`（`UserPlaceInfo`：`author`、`createdAt`、`updatedBy`、`note`、`addedVia`、`deletedAt`）。自己加的點合併進 `dataStore.places`，所以列表、地圖、搜尋、詳情不用各自處理。**已刪除的不在 `places`（列表、地圖看不到），但留在 `byId`**，`planStore` 把它們當 retired 交給引擎的 `placeLookup.users`，行程裡才會有「已下架」的警告。
+- **後端介面**（`backend/types.ts`）：`UserPlace`、`listUserPlaces`、`createUserPlace`、`updateUserPlace(id, data, type?)`、`deleteUserPlace`、`resolveMapLink`；`SyncState.userPlaces`；`sharedStore.userPlaces` 每 30 秒跟著 `sync` 重抓。假後端照 Worker 的規則（ID `user-<12 碼>`、只有本人能刪、軟刪除），`resolveMapLink` 丟「要連上伺服器」。
+- **Worker**：`GET /api/resolve-map-link`（`worker/src/api/map-link.ts`）、`PATCH /api/user-places/:id` 多收選填的 `type`（見 §4 API 表）。
+
 **區域不寫死**：區域清單、名稱、子地區、區域篩選的選項、「跳到區域」都從 `areas.json` 讀。地圖的初始範圍：bbox 彼此在 30 km 以內的區域分成一群，用資料點最多的那群的資料點範圍（`web/src/lib/areas.ts`）；所以加了大阪也會和關西機場周邊同一群，不影響初始畫面。區域的顏色依 `tripOrder` 的順序配。
 
 ---
@@ -417,7 +428,8 @@ npm run db:import -- --apply data/cache/import/<時間>-all.json   # 2. 👤 看
 | `GET /api/edits?since=&place=` | 修改紀錄（含已復原、已收掉的）；`since` 比 `updated_at`（`>=`，前端用 id 去重複） |
 | `POST /api/edits` | `{ placeId, fieldPath, value, note? }`：先合併再用 schema 驗證（不符合 400，`details` 列出哪裡錯）；不能改 `id`、`type` |
 | `POST /api/edits/:id/revert` | 只有改的人自己能按（別人 403） |
-| `GET/POST /api/user-places`、`PATCH/DELETE /api/user-places/:id` | 自己加的點：只檢查名稱、座標、類別（不是查到的資料，沒有 sources）；誰都能改、只有本人能刪 |
+| `GET/POST /api/user-places`、`PATCH/DELETE /api/user-places/:id` | 自己加的點：只檢查名稱、座標、類別（不是查到的資料，沒有 sources）；誰都能改、只有本人能刪；PATCH 可選填 `type`（景點／餐廳／住宿，不認得回 400，沒給就沿用）；DELETE 是軟刪除 |
+| `GET /api/resolve-map-link?url=` | 展開 Google Maps 短網址，回 `{ url }`；要登入；只接受 `https://maps.app.goo.gl/…`、`https://goo.gl/maps/…` 開頭，其他 400；用 `redirect: 'manual'` 跟轉址最多 5 次，每一跳的主機都要是 Google（`*.google.<tld>`、`*.goo.gl`），否則 400；抓不到也回 400；不存任何東西 |
 | `GET/PUT /api/itinerary` | PUT 帶 `version`，和資料庫不同回 409（`details.current`）；改之前自動存快照 |
 | `GET /api/itinerary/snapshots`、`/:id`、`POST /:id/restore` | 復原也是一次修改，會再存快照 |
 | `GET/POST /api/suggestions`、`PATCH/DELETE /api/suggestions/:id` | 只有寫的人能改、能刪；`day` 是日期或 `trip` |

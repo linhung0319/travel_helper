@@ -48,6 +48,8 @@ export function normalizePlace(item: unknown): Place | null {
     sources: arr<Place['sources'][number]>(item.sources).filter(isObject),
     raw: item,
     edited: {},
+    origin: 'base',
+    user: null,
   };
 }
 

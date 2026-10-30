@@ -50,7 +50,7 @@ function Overview() {
           const warn = dp?.warnings.filter((w) => w.level !== 'info').length ?? 0;
           const lodging = itinerary?.days.find((x) => x.date === d)?.lodging;
           const lp = lodging ? byId.get(lodging) : null;
-          const cands = dayCandidates(candidates, d, itinerary).length;
+          const cands = dayCandidates(candidates, d, itinerary, byId).length;
           return (
             <li key={d}>
               <button type="button" className="overview-day" onClick={() => commands.selectDay(d)} data-overview-day={d}>

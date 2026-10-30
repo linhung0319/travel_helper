@@ -84,3 +84,11 @@ test('wishSections：還沒排照 ❤ 多到少，同數照原本的順序', () 
   assert.deepEqual(s[0].groups, [{ date: null, ids: ['C1', 'C4', 'C3', 'C2'] }]);
   assert.deepEqual(s[1].groups, []);
 });
+
+test('dayCandidates：已刪除的自己加的點不列', () => {
+  const del = { id: 'u1', origin: 'user', user: { deletedAt: '2026-11-04T00:00:00Z' } } as never;
+  const live = { id: 'u2', origin: 'user', user: { deletedAt: null } } as never;
+  const byId = new Map([['u1', del], ['u2', live]]) as never;
+  const list = [cand('u1', '2027-02-05'), cand('u2', '2027-02-05'), cand('plain', '2027-02-05')];
+  assert.deepEqual(dayCandidates(list, '2027-02-05', null, byId).map((c) => c.placeId), ['u2', 'plain']);
+});

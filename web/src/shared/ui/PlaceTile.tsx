@@ -5,7 +5,8 @@
 
 import type { HTMLAttributes, ReactNode } from 'react';
 import { appStore } from '../../store.ts';
-import { useData } from '../../hooks.ts';
+import { useData, useShared } from '../../hooks.ts';
+import { isUserPlace, userSubtitle } from '../../lib/addPlace/view.ts';
 import { Photo } from '../../components/Photo.tsx';
 import { photoCandidates } from '../../lib/photos.ts';
 import { cardTypeLetter } from '../../lib/planView.ts';
@@ -35,11 +36,13 @@ export interface PlaceTileProps {
 export function PlaceTile({ place, status, onOpen, extra, testId, rank, hot, rootProps, open = false, below }: PlaceTileProps) {
   const areas = useData((s) => s.areas);
   const name = place.name.zh || place.name.ja;
+  const members = useShared((s) => s.members);
+  const user = isUserPlace(place);
   const meta = placeMetaText(place, areas);
   return (
     <div
       {...rootProps}
-      className={`pt type-${place.type} ${hot ? 'flash' : ''} ${open ? 'open' : ''}`}
+      className={`pt type-${place.type} ${user ? 'is-user' : ''} ${hot ? 'flash' : ''} ${open ? 'open' : ''}`}
       aria-expanded={below !== undefined || open ? open : undefined}
       role="button"
       tabIndex={0}
@@ -75,8 +78,9 @@ export function PlaceTile({ place, status, onOpen, extra, testId, rank, hot, roo
       <span className="pt-text">
         <span className="pt-name">
           <span className="pt-name-text">{name}</span>
-          <TierMark tier={place.tier} />
+          {!user && <TierMark tier={place.tier} />}
         </span>
+        {user && <span className="pt-user-by">{userSubtitle(place, members)}</span>}
         {meta && <span className="pt-meta">{meta}</span>}
         <Highlights list={rowHighlights(place, status ?? { candidate: [], scheduled: [] })} />
         {extra}

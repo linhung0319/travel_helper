@@ -1326,3 +1326,64 @@ body.dragging-plan .m-dropend {
 .m-detail-scroll .avatar-list.pd-who-inline {
   margin: 0 12px 6px;
 }
+
+/* 加地點整頁（AddPlacePage，T31）：蓋在詳情上面；上半小地圖、中央固定圖釘，下半表單自己捲 */
+.m-add {
+  z-index: 45;
+}
+
+.m-add-top {
+  position: relative;
+  flex: 0 0 45%;
+  min-height: 0;
+}
+
+.m-add-map {
+  position: absolute;
+  inset: 0;
+}
+
+.m-add-back {
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  width: var(--tap);
+  height: var(--tap);
+  border: 0;
+  border-radius: 50%;
+  background: var(--paper);
+  box-shadow: 0 1px 6px var(--shade-2);
+  cursor: pointer;
+}
+
+.m-add-hint {
+  position: absolute;
+  top: 12px;
+  left: 60px;
+  right: 12px;
+  margin: 0;
+  padding: 6px 12px;
+  border-radius: 999px;
+  background: var(--paper);
+  box-shadow: 0 1px 6px var(--shade-2);
+  font-size: 0.875rem;
+  text-align: center;
+  pointer-events: none;
+}
+
+/* 圖釘的尖端在正中央：底邊對齊 50% */
+.m-add-pin {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -100%);
+  pointer-events: none;
+  filter: drop-shadow(0 2px 2px var(--shade-2));
+}
+
+.m-add-form {
+  flex: 1;
+  min-height: 0;
+  overflow-x: hidden;
+  overflow-y: auto;
+}

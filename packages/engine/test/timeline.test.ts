@@ -282,6 +282,13 @@ test('已下架的點照樣算，但發警告；查不到的點是錯誤', () =>
   assert.ok(codes(m).includes('place-missing'));
 });
 
+test('使用者加的點也能下架：照算但發警告', () => {
+  const u = { id: 'user-1', type: 'spot', name: { ja: '自己加的' }, coords: at(400), sources: [] } as PlaceRecord;
+  const d = plan(build([visit('user-1')]), fake([H], { users: [u], retired: ['user-1'] }));
+  assert.equal(d.entries[1].arrive, '09:40');
+  assert.ok(codes(d).includes('place-retired'));
+});
+
 test('航班：第一天從較晚那班的抵達＋出關時間開始；最後一天趕不上起飛前 2 小時 → 錯誤', () => {
   const kix = station('kansai-airport', at(0, 500));
   const k = lodging('k', at(0, 900));

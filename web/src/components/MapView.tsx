@@ -36,8 +36,15 @@ import { shared } from '../appShared.ts';
 import { likedPlaces, placeDayStatus } from '../lib/wishlist.ts';
 import { closeMapPanel, closeTimetable, uiStore } from '../uiStore.ts';
 import { planStore } from '../planStore.ts';
+import { addPlaceStore, useAddPlace } from '../addPlaceStore.ts';
+import type { LonLat } from '../data/types.ts';
+import { mobileStore } from '../mobile/mobileStore.ts';
 
 setWorkerUrl(maplibreWorkerUrl);
+
+/** 手機按住加地點：按住多久、手指最多移動多遠（px） */
+const LONG_PRESS_MS = 500;
+const LONG_PRESS_SLOP = 10;
 
 /** 地圖的樣式（手機版詳情的小地圖也用） */
 export const STYLE_URL = 'https://tiles.openfreemap.org/styles/liberty';
@@ -108,6 +115,7 @@ function featureCollection(places: Place[], marks: Map<string, string>): Feature
           label: p.name.zh || p.name.ja,
           dim: dim ? 1 : 0,
           mark: liked ? '' : (marks.get(p.id) ?? ''),
+          user: p.origin === 'user' ? 1 : 0,
           typeColor: TYPE_COLORS[p.type],
           typeInk: TYPE_INK[p.type],
           wish,
@@ -179,6 +187,11 @@ export function MapView() {
   const canHoverRef = useRef(canHover);
   canHoverRef.current = canHover;
   const hideTimer = useRef<number | null>(null);
+  // 加地點（T31）：網頁才有主地圖上拖得動的圖釘和右鍵選單；手機的確認畫面有自己的小地圖
+  const adding = useAddPlace((s) => !!s.draft);
+  const draftCoords = useAddPlace((s) => s.draft?.coords ?? null);
+  const pinRef = useRef<Marker | null>(null);
+  const [ctx, setCtx] = useState<{ x: number; y: number; coords: LonLat } | null>(null);
 
   const places = useData((s) => s.places);
   const filter = useApp((s) => s.filter);
@@ -298,10 +311,11 @@ export function MapView() {
         layout: { 'circle-sort-key': ['-', 1, ['get', 'dim']] },
         paint: {
           'circle-radius': ['interpolate', ['linear'], ['zoom'], 8, ['match', ['get', 'tier'], 'S', 6, 'A', 4.5, 3], 12, ['match', ['get', 'tier'], 'S', 8.5, 'A', 6, 4.5]],
-          'circle-color': typeColorExpr as never,
+          'circle-color': ['case', ['==', ['get', 'user'], 1], '#ffffff', typeColorExpr] as never,
           'circle-opacity': ['step', ['zoom'], ['case', ['==', ['get', 'dim'], 1], 0.25, 0.95], ICON_ZOOM, 0],
-          'circle-stroke-color': '#ffffff',
-          'circle-stroke-width': 1.5,
+          // 自己加的點：白底＋類型色描邊（縮小時的點看得出和查過的點不同）
+          'circle-stroke-color': ['case', ['==', ['get', 'user'], 1], typeColorExpr, '#ffffff'] as never,
+          'circle-stroke-width': ['case', ['==', ['get', 'user'], 1], 2, 1.5],
           'circle-stroke-opacity': ['step', ['zoom'], ['case', ['==', ['get', 'dim'], 1], 0.25, 1], ICON_ZOOM, 0],
         },
       });
@@ -312,7 +326,7 @@ export function MapView() {
         minzoom: ICON_ZOOM,
         filter: BASE_FILTERS['places-icon'] as never,
         layout: {
-          'icon-image': ['concat', 'icon-', ['get', 'type']],
+          'icon-image': ['concat', 'icon-', ['case', ['==', ['get', 'user'], 1], 'user-', ''], ['get', 'type']],
           // S 大、B 小，拉開差距讓好的點顯眼（整體密度不變）
           'icon-size': ['match', ['get', 'tier'], 'S', 1.2, 'A', 0.9, 0.72],
           'icon-allow-overlap': true,
@@ -438,6 +452,9 @@ export function MapView() {
         return hit ? String(hit.properties.date) : null;
       };
       map.on('click', (e: MapMouseEvent) => {
+        setCtx(null);
+        // 加地點的表單開著：點地圖上的點不開詳情（避免誤觸，spec §3「網頁」）；兩種版面都適用是故意的（手機的表單在自己的整頁，不會疊在行程地圖上）
+        if (addPlaceStore.getState().draft) return;
         closeMapPanel();
         closeTimetable();
         const id = placeAt(e.point);
@@ -445,8 +462,75 @@ export function MapView() {
         // 整趟：點某天的路線 → 那天亮、其他天淡；點空白處清掉（點到點不動）
         if (!id) appStore.getState().setTripFocusDay(tripLineAt(e.point));
       });
+      // 右鍵（只有網頁；詳情彈窗開著時不理）：選單「＋ 在這裡加地點」，表單開著時是「把圖釘移到這裡」（spec §6）
+      map.on('contextmenu', (e: MapMouseEvent) => {
+        if (!window.matchMedia(DESKTOP_QUERY).matches || appStore.getState().detailId) return;
+        e.originalEvent.preventDefault();
+        const c = map.getContainer();
+        // 選單約 180×50：靠近邊緣時往內縮，不超出地圖
+        setCtx({ x: Math.max(0, Math.min(e.point.x, c.clientWidth - 180)), y: Math.max(0, Math.min(e.point.y, c.clientHeight - 50)), coords: [e.lngLat.lng, e.lngLat.lat] });
+      });
+      // 手機：行程分頁的地圖上按住約 0.5 秒（手指移動不超過 10px、只有一根手指）→ 手指旁跳出「＋ 在這裡加地點」小泡泡，點了才開加地點，位置就是手指那裡（spec §2）。
+      // 不另外要求「展開」：這張地圖一直是看得到的（行程面板只是蓋在下半），在行程分頁、沒有整頁蓋著、表單沒開時就算數。
+      // 長按時瀏覽器自己的選單（contextmenu）擋掉；一般拖曳、縮放、點選不受影響（移動就取消、第二根手指就取消）。
+      {
+        const el = map.getContainer();
+        let timer: number | null = null;
+        let from: { x: number; y: number } | null = null;
+        let fired = false;
+        const cancel = () => {
+          if (timer !== null) window.clearTimeout(timer);
+          timer = null;
+          from = null;
+        };
+        const blocked = () => {
+          const m = mobileStore.getState();
+          return window.matchMedia(DESKTOP_QUERY).matches || m.tab !== 'trip' || !!m.detail || !!m.page || !!m.actions || m.chatSheet || !!addPlaceStore.getState().draft;
+        };
+        el.addEventListener(
+          'touchstart',
+          (e) => {
+            cancel();
+            fired = false;
+            if (e.touches.length !== 1 || blocked()) return;
+            const t = e.touches[0];
+            from = { x: t.clientX, y: t.clientY };
+            const r = el.getBoundingClientRect();
+            timer = window.setTimeout(() => {
+              timer = null;
+              if (blocked()) return;
+              fired = true;
+              const x = t.clientX - r.left;
+              const y = t.clientY - r.top;
+              const ll = map.unproject([x, y]);
+              // 泡泡放在手指上方一點（不被手指蓋住），約 180×50，不超出地圖
+              setCtx({ x: Math.max(0, Math.min(x, el.clientWidth - 180)), y: Math.max(0, Math.min(y - 60, el.clientHeight - 50)), coords: [ll.lng, ll.lat] });
+            }, LONG_PRESS_MS);
+          },
+          { passive: true },
+        );
+        el.addEventListener(
+          'touchmove',
+          (e) => {
+            const t = e.touches[0];
+            if (from && t && Math.hypot(t.clientX - from.x, t.clientY - from.y) > LONG_PRESS_SLOP) cancel();
+          },
+          { passive: true },
+        );
+        // 長按跳出泡泡後放開手指：擋掉後續的 click，免得點穿到地圖（所以不能是 passive）
+        el.addEventListener('touchend', (e) => {
+          if (fired && e.cancelable) e.preventDefault();
+          fired = false;
+          cancel();
+        });
+        el.addEventListener('touchcancel', cancel);
+        el.addEventListener('contextmenu', (e) => {
+          if (!window.matchMedia(DESKTOP_QUERY).matches) e.preventDefault();
+        });
+      }
       map.on('mousemove', PICK_LAYERS, (e) => {
-        if (!canHoverRef.current) return;
+        // 加地點的表單開著：不出小卡片（小卡片點了會開詳情）
+        if (!canHoverRef.current || addPlaceStore.getState().draft) return;
         const id = String(e.features?.[0]?.properties.id ?? '');
         if (!id) return;
         cancelHideRef.current();
@@ -469,6 +553,7 @@ export function MapView() {
       };
       let wasVisible = true;
       map.on('movestart', () => {
+        setCtx(null);
         wasVisible = selectedVisible();
       });
       map.on('move', () => setTick((n) => n + 1));
@@ -494,6 +579,7 @@ export function MapView() {
         dataStore,
         uiStore,
         planStore,
+        addPlaceStore,
         shared,
         commands,
         visibleRect: () => visibleRect(map, mapObstructions()),
@@ -519,6 +605,62 @@ export function MapView() {
       if (currentMap === map) currentMap = null;
     };
   }, []);
+
+  // 加地點：表單開著時主地圖上有一個可以拖的圖釘（只有網頁）；沒有位置就先放在地圖現在的中心，開起來時地圖飛過去一次
+  useEffect(() => {
+    const map = mapRef.current;
+    if (!loaded || !map || !desktop || !adding) {
+      pinRef.current?.remove();
+      pinRef.current = null;
+      return;
+    }
+    if (!draftCoords) {
+      const c = map.getCenter();
+      addPlaceStore.getState().patch({ coords: [c.lng, c.lat] });
+      return;
+    }
+    if (!pinRef.current) {
+      const el = document.createElement('div');
+      el.className = 'map-add-pin';
+      el.setAttribute('data-testid', 'map-add-pin');
+      el.innerHTML = `<svg width="34" height="44" viewBox="0 0 34 44" aria-hidden="true"><path d="${DROP_PATH}" fill="#2b3a67" stroke="#fff" stroke-width="2.5"/><circle cx="17" cy="18" r="5" fill="#fff"/></svg>`;
+      const pin = new Marker({ element: el, anchor: 'bottom', draggable: true }).setLngLat(draftCoords).addTo(map);
+      pin.on('dragend', () => {
+        const ll = pin.getLngLat();
+        addPlaceStore.getState().patch({ coords: [ll.lng, ll.lat] });
+      });
+      pinRef.current = pin;
+      commands.focus({ center: draftCoords, zoom: 16 });
+    } else {
+      pinRef.current.setLngLat(draftCoords);
+    }
+  }, [loaded, desktop, adding, draftCoords]);
+  useEffect(
+    () => () => {
+      pinRef.current?.remove();
+      pinRef.current = null;
+    },
+    [],
+  );
+
+  // 右鍵選單：Esc 關掉
+  useEffect(() => {
+    if (!ctx) return;
+    const onKey = (e: KeyboardEvent) => e.key === 'Escape' && setCtx(null);
+    // 點選單以外的地方（右欄、地圖外）也關掉
+    const onDown = (e: PointerEvent) => {
+      if (!(e.target as Element | null)?.closest?.('.map-context')) setCtx(null);
+    };
+    const onBack = () => setCtx(null);
+    window.addEventListener('keydown', onKey);
+    window.addEventListener('popstate', onBack);
+    document.addEventListener('pointerdown', onDown, true);
+    return () => {
+      window.removeEventListener('keydown', onKey);
+      window.removeEventListener('popstate', onBack);
+      document.removeEventListener('pointerdown', onDown, true);
+    };
+  }, [ctx]);
 
   // 資料點、篩選、選定的天、行程 → 重畫
   useEffect(() => {
@@ -814,6 +956,22 @@ export function MapView() {
           <span>
             <i className="lg-dot lg-scheduled" aria-hidden /> 已排
           </span>
+        </div>
+      )}
+      {ctx && (
+        <div className="map-context" style={{ left: ctx.x, top: ctx.y }} data-testid="map-context">
+          <button
+            type="button"
+            data-testid="map-context-add"
+            onClick={() => {
+              const a = addPlaceStore.getState();
+              if (a.draft) a.patch({ coords: ctx.coords });
+              else a.start({ via: 'map', coords: ctx.coords });
+              setCtx(null);
+            }}
+          >
+            {adding ? '把圖釘移到這裡' : '＋ 在這裡加地點'}
+          </button>
         </div>
       )}
       {previewPlace && previewPos && (

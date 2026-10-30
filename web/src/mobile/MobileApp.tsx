@@ -18,6 +18,7 @@ import { MePage, MePageView } from './MePage.tsx';
 import { ExploreFeed } from './ExploreFeed.tsx';
 import { WishlistPage } from './WishlistPage.tsx';
 import { PlaceDetailPage } from './PlaceDetailPage.tsx';
+import { AddPlacePage } from './AddPlacePage.tsx';
 import { TripPage } from './TripPage.tsx';
 import { ChatPage } from './ChatPage.tsx';
 import './mobile.css';
@@ -81,6 +82,8 @@ export function MobileApp() {
       {!planning && <TabBar />}
       <PlaceDetailPage />
       <MePageView />
+      {/* 加地點的整頁蓋在詳情上面（z-index 45），存完或取消回到底下那一層 */}
+      <AddPlacePage />
       <Dialogs />
       <Toast />
     </div>

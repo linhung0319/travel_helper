@@ -205,7 +205,8 @@ export function DayCandidates({ date }: { date: string }) {
   const all = useShared((s) => s.candidates);
   const itinerary = useData((s) => s.itinerary);
   const planning = useApp((s) => s.planning);
-  const list = dayCandidates(all, date, itinerary);
+  const byId = useData((s) => s.byId);
+  const list = dayCandidates(all, date, itinerary, byId);
   return (
     <section className="day-section day-candidates" data-testid="day-candidates" {...dropOnCandidatesProps(date, planning)}>
       <h4 className="cand-head">

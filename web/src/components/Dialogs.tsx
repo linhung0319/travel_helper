@@ -6,6 +6,7 @@ import { useShared, useUi } from '../hooks.ts';
 import { RejectDialog } from './Wishlist.tsx';
 import { AddToDayDialog, MoveCandidateDialog, MoveDialog, PlanningConfirmDialog, SnapshotsDialog } from './Planning.tsx';
 import { HistoryDialog } from './EditHistory.tsx';
+import { DeleteUserPlaceDialog } from './DeleteUserPlaceDialog.tsx';
 import { Icon } from './Icon.tsx';
 
 export function Dialogs() {
@@ -26,6 +27,8 @@ export function Dialogs() {
       return <RejectDialog candidateId={d.candidateId} />;
     case 'history':
       return <HistoryDialog placeId={d.placeId} field={d.field} />;
+    case 'delete-user-place':
+      return <DeleteUserPlaceDialog placeId={d.placeId} />;
   }
 }
 

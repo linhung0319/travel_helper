@@ -2,7 +2,7 @@
 // 形狀照 T24 的資料 API（architecture §4「資料 API」、worker/src/api/）：T15m 先用假後端（mock.ts），
 // T15 換成呼叫 API 的實作，畫面的程式不改。留言、候選是 2026-10-24 改的（取代建議），T15 要同步到 Worker。
 
-import type { Itinerary } from '@travel-helper/engine/types';
+import type { Itinerary, LonLat } from '@travel-helper/engine/types';
 
 export interface Member {
   id: string;
@@ -110,6 +110,32 @@ export interface PlaceEdit {
   closedAt: string | null;
 }
 
+export type UserPlaceType = 'spot' | 'restaurant' | 'lodging';
+/** 怎麼加進來的（T31）：Google 連結、地址、地圖上指、搜尋、AI */
+export type AddedVia = 'google-link' | 'address' | 'map' | 'search' | 'ai';
+
+/** 自己加的點的內容（T31 spec §5）：Worker 只檢查名稱、座標 */
+export interface UserPlaceData {
+  name: { zh: string; ja?: string | null };
+  coords: LonLat;
+  note?: string | null;
+  links?: { googleMaps?: string | null };
+  addedVia: AddedVia;
+}
+
+/** 自己加的點（GET /api/user-places）；已刪除的也在清單裡，用 deletedAt 判斷 */
+export interface UserPlace {
+  /** `user-<12 碼 hex>` */
+  id: string;
+  type: UserPlaceType;
+  data: UserPlaceData;
+  author: string;
+  createdAt: string;
+  updatedAt: string;
+  updatedBy: string | null;
+  deletedAt: string | null;
+}
+
 /** GET /api/sync：各種資料的版本，變了才重抓那一種 */
 export interface SyncState {
   itinerary: number;
@@ -118,6 +144,7 @@ export interface SyncState {
   candidates: string | null;
   reservations: string | null;
   edits: string | null;
+  userPlaces: string | null;
 }
 
 /** API 的錯誤：`{ error, message, details? }` 加上 HTTP 狀態 */
@@ -178,4 +205,17 @@ export interface Backend {
   listEdits(): Promise<PlaceEdit[]>;
   /** 只有改的人自己能復原（403） */
   revertEdit(id: number): Promise<PlaceEdit>;
+
+  /** 自己加的點（含已刪除的） */
+  listUserPlaces(): Promise<UserPlace[]>;
+  createUserPlace(type: UserPlaceType, data: UserPlaceData): Promise<UserPlace>;
+  /** 整份取代；誰都能改（記下最後改的人） */
+  updateUserPlace(id: string, data: UserPlaceData, type?: UserPlaceType): Promise<UserPlace>;
+  /** 只有加的人能刪（403）；軟刪除 */
+  deleteUserPlace(id: string): Promise<UserPlace>;
+  /** 展開 Google Maps 短網址（要連上伺服器）；假後端、還沒接上時丟 503 */
+  resolveMapLink(url: string): Promise<string>;
 }
+
+/** 假後端、還沒接上的後端展開短網址時的訊息 */
+export const RESOLVE_OFFLINE_MESSAGE = '這種短網址要連上伺服器才能讀。可以改貼瀏覽器網址列的完整網址，或直接在地圖上指位置。';

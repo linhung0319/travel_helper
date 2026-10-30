@@ -1,7 +1,7 @@
 // 目前用的後端（T15m）。dev server 用假後端（mock.ts＋dev-fixtures/seed.ts）；
 // 正式 build 不帶假資料，先用「還沒接上」的版本（只能看、不能改），T15 換成呼叫 T24、T25 API 的實作。
 
-import { BackendError, type Backend } from './types.ts';
+import { BackendError, RESOLVE_OFFLINE_MESSAGE, type Backend } from './types.ts';
 import type { MockBackend } from './mock.ts';
 
 const offline: Backend = (() => {
@@ -9,7 +9,7 @@ const offline: Backend = (() => {
   return {
     me: async () => ({ id: 'guest', displayName: '訪客', pictureUrl: null }),
     members: async () => [],
-    sync: async () => ({ itinerary: 0, votes: null, comments: null, candidates: null, reservations: null, edits: null }),
+    sync: async () => ({ itinerary: 0, votes: null, comments: null, candidates: null, reservations: null, edits: null, userPlaces: null }),
     getItinerary: async () => ({ version: 0, data: null, updatedBy: null, updatedAt: null }),
     putItinerary: no,
     listSnapshots: async () => [],
@@ -29,6 +29,11 @@ const offline: Backend = (() => {
     putReservation: no,
     listEdits: async () => [],
     revertEdit: no,
+    listUserPlaces: async () => [],
+    createUserPlace: no,
+    updateUserPlace: no,
+    deleteUserPlace: no,
+    resolveMapLink: () => Promise.reject(new BackendError(503, 'offline', RESOLVE_OFFLINE_MESSAGE)),
   };
 })();
 

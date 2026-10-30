@@ -318,3 +318,30 @@ test('ensureCandidate：後端已經有別人加的（本機沒同步）→ 不�
   assert.equal(b.value.created, true);
   assert.equal(shared.store.getState().candidates.find((c) => c.id === b.value.id)?.addedBy, 'm-a');
 });
+
+test('自己加的點：新增接在 places 最後；刪除後 places 沒有、byId 還有', async () => {
+  const { data, shared } = await setup();
+  const r = await shared.createUserPlace('spot', { name: { zh: '朋友推薦的店' }, coords: [136.8, 34.5], addedVia: 'map' });
+  assert.ok(r.ok);
+  const { places } = data.getState();
+  assert.equal(places.at(-1)!.id, r.place.id);
+  assert.equal(places.at(-1)!.origin, 'user');
+  assert.equal(shared.store.getState().userPlaces.length, 1);
+
+  const d = await shared.deleteUserPlace(r.place.id);
+  assert.ok(d.ok);
+  assert.equal(data.getState().places.some((p) => p.id === r.place.id), false);
+  assert.equal(data.getState().byId.get(r.place.id)?.name.zh, '朋友推薦的店');
+});
+
+test('自己加的點：別人加的、同步進來', async () => {
+  const { backend, data, shared } = await setup();
+  await shared.syncOnce();
+  backend.setMe('m-b');
+  const up = await backend.createUserPlace('lodging', { name: { zh: '民宿' }, coords: [136.8, 34.5], addedVia: 'address' });
+  backend.setMe('m-a');
+  await shared.syncOnce();
+  assert.equal(data.getState().byId.get(up.id)?.user?.author, 'm-b');
+  const bad = await shared.deleteUserPlace(up.id);
+  assert.equal(bad.ok, false, '別人加的不能刪');
+});

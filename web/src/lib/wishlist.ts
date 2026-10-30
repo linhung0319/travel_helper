@@ -1,6 +1,8 @@
 // 想去（interaction-design §6）：❤️ 就是想去。想去分頁列有人 ❤️ 的點；某天的候選是想去裡「加到某天」的點。
 
 import type { Itinerary } from '@travel-helper/engine/types';
+import type { Place } from '../data/types.ts';
+import { isDeletedUserPlace } from './addPlace/view.ts';
 import type { Candidate, Vote } from '../backend/types.ts';
 
 /** 有人 ❤️ 的點：按 ❤️、👎 的人（member id，照按的先後）。只有 👎 的點不列 */
@@ -29,9 +31,14 @@ function placesOnDay(it: Itinerary | null, date: string): Set<string> {
 }
 
 /** 某天的候選：已經排進那天的不列（別人直接排進去、或排進去後還沒拿掉），照加的先後 */
-export function dayCandidates(candidates: Candidate[], date: string, it: Itinerary | null): Candidate[] {
+export function dayCandidates(candidates: Candidate[], date: string, it: Itinerary | null, byId?: Map<string, Place>): Candidate[] {
   const on = placesOnDay(it, date);
-  return candidates.filter((c) => c.day === date && !c.deletedAt && !on.has(c.placeId)).sort((a, b) => a.createdAt.localeCompare(b.createdAt));
+  // 已刪除的自己加的點：候選裡那筆直接不顯示（T31 spec §4）
+  const gone = (id: string) => {
+    const p = byId?.get(id);
+    return !!p && isDeletedUserPlace(p);
+  };
+  return candidates.filter((c) => c.day === date && !c.deletedAt && !on.has(c.placeId) && !gone(c.placeId)).sort((a, b) => a.createdAt.localeCompare(b.createdAt));
 }
 
 /** 一個點的行程狀態：哪幾天是候選（已經排進那天的不算）、哪幾天已排進行程；日期由早到晚 */

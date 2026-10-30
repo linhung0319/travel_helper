@@ -10,6 +10,7 @@ import { useShared } from '../hooks.ts';
 import { displayName } from '../data/normalize.ts';
 import { voteCounts } from '../sharedStore.ts';
 import { feedFilter } from '../lib/explore.ts';
+import { AddPlaceSuggest, useSuggestOwnsEmpty } from '../shared/ui/AddPlaceSuggest.tsx';
 import { VoteHeart } from '../shared/ui/VoteHeart.tsx';
 import { useExploreList } from '../shared/placeLists.ts';
 import { PlaceRow, useDayStatus } from '../shared/ui/PlaceRow.tsx';
@@ -66,6 +67,7 @@ export function ExploreFeed() {
   const filter = useMemo(() => feedFilter(feed), [feed.type, feed.area, feed.quick]); // eslint-disable-line react-hooks/exhaustive-deps
   const { list } = useExploreList(filter, feed.query, feed.sort);
   const statusOf = useDayStatus();
+  const ownsEmpty = useSuggestOwnsEmpty(feed.query);
   const rootRef = useRef<HTMLDivElement>(null);
   const moreRef = useRef<HTMLDivElement>(null);
   const [shown, setShown] = useState(BATCH);
@@ -89,6 +91,7 @@ export function ExploreFeed() {
   return (
     <div className="m-feed" ref={rootRef} data-testid="m-feed">
       <FeedFilters count={list.length} />
+      <AddPlaceSuggest query={feed.query} surface="mobile" />
       {feed.view === 'list' ? (
         <div className="m-feed-list" data-count={list.length} data-testid="m-feed-wall">
           {shownList.map((place, i) => (
@@ -106,7 +109,7 @@ export function ExploreFeed() {
         </div>
       )}
       {shown < list.length && <div ref={moreRef} className="m-feed-next" aria-hidden />}
-      {list.length === 0 && <p className="muted m-empty">沒有符合的地點，取消一些篩選看看。</p>}
+      {list.length === 0 && !ownsEmpty && <p className="muted m-empty">沒有符合的地點，取消一些篩選看看。</p>}
     </div>
   );
 }

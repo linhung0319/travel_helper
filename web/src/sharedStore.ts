@@ -18,11 +18,15 @@ import {
   type ReservationStatus,
   type SnapshotMeta,
   type SyncState,
+  type UserPlace,
+  type UserPlaceData,
+  type UserPlaceType,
   type Vote,
   type VoteValue,
 } from './backend/types.ts';
 import type { DataState } from './dataStore.ts';
 import { mergePlaceEdits } from './data/merge.ts';
+import { userPlaceToPlace } from './lib/addPlace/userPlace.ts';
 import { placeDays } from './lib/itinerary.ts';
 import { findItemRef } from './lib/planView.ts';
 import { shortDayLabel } from './lib/trip.ts';
@@ -50,6 +54,8 @@ export interface SharedState {
   /** 預約筆記 */
   reservations: Reservation[];
   edits: PlaceEdit[];
+  /** 自己加的點（含已刪除的） */
+  userPlaces: UserPlace[];
   /** 存檔中（畫面顯示「儲存中…」） */
   saving: boolean;
   /** 別人改過了（存檔回 409）：重新載入後才能再改（architecture §3.6） */
@@ -71,6 +77,7 @@ const initial: SharedState = {
   candidates: [],
   reservations: [],
   edits: [],
+  userPlaces: [],
   saving: false,
   conflict: null,
   toast: null,
@@ -79,6 +86,9 @@ const initial: SharedState = {
 
 export type Result<T = void> = ({ ok: true } & (T extends void ? object : { value: T })) | { ok: false; error: string };
 
+/** 自己加的點的動作：成功時帶回後端存下的那一筆 */
+export type UserPlaceResult = { ok: true; place: UserPlace } | { ok: false; error: string };
+
 const message = (e: unknown) => (e instanceof Error ? e.message : String(e));
 
 /** 換一份行程（存檔後、重新載入、同步） */
@@ -86,10 +96,16 @@ function setItinerary(itinerary: Itinerary | null, data: StoreApi<DataState>) {
   data.setState({ itinerary, days: placeDays(itinerary) });
 }
 
-/** 修改紀錄變了：重新合併資料點 */
-function setPlaceEdits(edits: PlaceEdit[], data: StoreApi<DataState>) {
-  const places = mergePlaceEdits(data.getState().basePlaces, edits);
-  data.setState({ places, byId: new Map(places.map((p) => [p.id, p])) });
+/**
+ * 修改紀錄、自己加的點變了：重新合併資料點。
+ * places：預設資料套上修改，後面接沒刪除的自己加的點；byId 也含已刪除的（行程裡那一格還要顯示名稱）
+ */
+export function rebuildPlaces(data: StoreApi<DataState>, edits: PlaceEdit[], userPlaces: UserPlace[]) {
+  const { basePlaces, areas } = data.getState();
+  const merged = mergePlaceEdits(basePlaces, edits);
+  const users = userPlaces.map((u) => ({ deleted: !!u.deletedAt, place: userPlaceToPlace(u, areas) }));
+  const places = users.some((u) => !u.deleted) ? [...merged, ...users.filter((u) => !u.deleted).map((u) => u.place)] : merged;
+  data.setState({ places, byId: new Map([...merged, ...users.map((u) => u.place)].map((p) => [p.id, p])) });
 }
 
 export function createShared(getBackend: () => Backend, data: StoreApi<DataState>) {
@@ -117,14 +133,19 @@ export function createShared(getBackend: () => Backend, data: StoreApi<DataState
   async function loadEdits() {
     const edits = await getBackend().listEdits();
     set({ edits });
-    setPlaceEdits(edits, data);
+    rebuildPlaces(data, edits, store.getState().userPlaces);
+  }
+  async function loadUserPlaces() {
+    const userPlaces = await getBackend().listUserPlaces();
+    set({ userPlaces });
+    rebuildPlaces(data, store.getState().edits, userPlaces);
   }
 
   async function load() {
     const b = getBackend();
     const [me, members, lastSync] = await Promise.all([b.me(), b.members(), b.sync()]);
     set({ me, members, lastSync });
-    await Promise.all([loadItinerary(), loadSnapshots(), loadVotes(), loadComments(), loadCandidates(), loadReservations(), loadEdits()]);
+    await Promise.all([loadItinerary(), loadSnapshots(), loadVotes(), loadComments(), loadCandidates(), loadReservations(), loadEdits(), loadUserPlaces()]);
   }
 
   /**
@@ -378,9 +399,46 @@ export function createShared(getBackend: () => Backend, data: StoreApi<DataState
       const e = await getBackend().revertEdit(id);
       const edits = store.getState().edits.map((x) => (x.id === id ? e : x));
       set({ edits });
-      setPlaceEdits(edits, data);
+      rebuildPlaces(data, edits, store.getState().userPlaces);
       toast('ok', '已復原這筆修改');
       return { ok: true };
+    } catch (e) {
+      return fail(e);
+    }
+  }
+
+  /** 自己加的點：後端回來的那一筆換進清單，資料點跟著重新合併 */
+  function putUserPlace(x: UserPlace) {
+    const userPlaces = [...store.getState().userPlaces.filter((u) => u.id !== x.id), x];
+    set({ userPlaces });
+    rebuildPlaces(data, store.getState().edits, userPlaces);
+  }
+
+  async function createUserPlace(type: UserPlaceType, d: UserPlaceData): Promise<UserPlaceResult> {
+    try {
+      const x = await getBackend().createUserPlace(type, d);
+      putUserPlace(x);
+      return { ok: true, place: x };
+    } catch (e) {
+      return fail(e);
+    }
+  }
+
+  async function updateUserPlace(id: string, d: UserPlaceData, type?: UserPlaceType): Promise<UserPlaceResult> {
+    try {
+      const x = await getBackend().updateUserPlace(id, d, type);
+      putUserPlace(x);
+      return { ok: true, place: x };
+    } catch (e) {
+      return fail(e);
+    }
+  }
+
+  async function deleteUserPlace(id: string): Promise<UserPlaceResult> {
+    try {
+      const x = await getBackend().deleteUserPlace(id);
+      putUserPlace(x);
+      return { ok: true, place: x };
     } catch (e) {
       return fail(e);
     }
@@ -408,6 +466,7 @@ export function createShared(getBackend: () => Backend, data: StoreApi<DataState
     if (next.candidates !== prev.candidates) jobs.push(loadCandidates());
     if (next.reservations !== prev.reservations) jobs.push(loadReservations());
     if (next.edits !== prev.edits) jobs.push(loadEdits());
+    if (next.userPlaces !== prev.userPlaces) jobs.push(loadUserPlaces());
     await Promise.all(jobs);
   }
 
@@ -434,6 +493,9 @@ export function createShared(getBackend: () => Backend, data: StoreApi<DataState
     withdrawItem,
     setReservation,
     revertEdit,
+    createUserPlace,
+    updateUserPlace,
+    deleteUserPlace,
     syncOnce,
     reloadMe,
     clearToast: () => set({ toast: null }),

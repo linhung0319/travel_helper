@@ -17,6 +17,7 @@ import { useApp } from '../hooks.ts';
 import type { FilterKey } from '../lib/filter.ts';
 import type { ExploreSort } from '../lib/explore.ts';
 import type { Place } from '../data/types.ts';
+import { AddPlaceSuggest, useSuggestOwnsEmpty } from '../shared/ui/AddPlaceSuggest.tsx';
 import { FilterBar, type FilterModel } from '../shared/ui/FilterBar.tsx';
 import { dragPlaceProps } from './askAi.ts';
 import { usePlaceList } from '../shared/placeLists.ts';
@@ -118,6 +119,7 @@ export function ExplorePanel({ source = 'explore' }: { source?: ListSource }) {
   const [inView, setInView] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
   const statusOf = useDayStatus();
+  const ownsEmpty = useSuggestOwnsEmpty(query);
   // 原地展開的那張（一次一張；換分頁時 ExplorePanel 換一個，自然收起）
   const [openId, setOpenId] = useState<string | null>(null);
   const toggle = (id: string) => toggleOpen(id, openId, setOpenId);
@@ -161,6 +163,7 @@ export function ExplorePanel({ source = 'explore' }: { source?: ListSource }) {
   return (
     <div className={`explore-panel source-${source}`} data-testid={source === 'wish' ? 'wish-panel' : 'explore-panel'}>
       <FilterBar source={source} surface="desktop" model={model} count={list.length} />
+      {!wish && <AddPlaceSuggest query={query} surface="desktop" />}
       <div className={`ex-list view-${view} source-${source}`} ref={ref}>
         {wish ? (
           <WishList
@@ -186,7 +189,7 @@ export function ExplorePanel({ source = 'explore' }: { source?: ListSource }) {
             ))}
           </ol>
         )}
-        {list.length === 0 && (
+        {list.length === 0 && (wish || !ownsEmpty) && (
           <p className="muted ex-empty">{source === 'wish' && pool.length === 0 ? '還沒有人按想去。在探索或詳情按想去，就會出現在這裡。' : '沒有符合的地點，取消一些篩選看看。'}</p>
         )}
       </div>
