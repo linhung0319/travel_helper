@@ -9,7 +9,7 @@ import type { Ctx } from '../env.ts';
 import { badRequest, json } from '../lib/http.ts';
 
 const MAX_REDIRECTS = 5;
-const HOST_OK = [/(^|\.)google\.[a-z.]+$/, /(^|\.)goo\.gl$/];
+const HOST_OK = [/(^|\.)google\.(com|co\.[a-z]{2}|com\.[a-z]{2}|[a-z]{2})$/, /(^|\.)goo\.gl$/];
 
 const hostOk = (u: URL) => u.protocol === 'https:' && HOST_OK.some((re) => re.test(u.hostname));
 
@@ -17,7 +17,7 @@ const hostOk = (u: URL) => u.protocol === 'https:' && HOST_OK.some((re) => re.te
 function startOk(u: URL): boolean {
   if (u.protocol !== 'https:') return false;
   if (u.hostname === 'maps.app.goo.gl') return true;
-  return u.hostname === 'goo.gl' && u.pathname.startsWith('/maps');
+  return u.hostname === 'goo.gl' && u.pathname.startsWith('/maps/');
 }
 
 export async function resolveMapLink({ url }: Ctx): Promise<Response> {
@@ -30,7 +30,12 @@ export async function resolveMapLink({ url }: Ctx): Promise<Response> {
   }
   if (!startOk(current)) throw badRequest('只接受 Google Maps 的短網址（maps.app.goo.gl）');
   for (let hops = 0; ; hops++) {
-    const res = await globalThis.fetch(current.href, { redirect: 'manual' });
+    let res: Response;
+    try {
+      res = await globalThis.fetch(current.href, { redirect: 'manual' });
+    } catch {
+      throw badRequest('展開短網址失敗');
+    }
     if (res.status < 300 || res.status >= 400) return json({ url: current.href });
     if (hops >= MAX_REDIRECTS) throw badRequest('轉址太多次');
     const loc = res.headers.get('location');

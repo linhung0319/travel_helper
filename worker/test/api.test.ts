@@ -194,6 +194,18 @@ describe('展開 Google Maps 短網址（T31）', () => {
     stub({ 'https://maps.app.goo.gl/abc': { status: 302, location: 'https://evil.example/' } });
     assert.equal((await resolve('https://maps.app.goo.gl/abc')).status, 400);
   });
+  test('轉址到長得像 Google 的別人網域、或不是 https：400', async () => {
+    stub({ 'https://maps.app.goo.gl/abc': { status: 302, location: 'https://google.attacker.com/' } });
+    assert.equal((await resolve('https://maps.app.goo.gl/abc')).status, 400);
+    stub({ 'https://maps.app.goo.gl/abc': { status: 302, location: 'http://www.google.com/maps/place/X' } });
+    assert.equal((await resolve('https://maps.app.goo.gl/abc')).status, 400);
+  });
+  test('fetch 丟錯：400 而不是 500', async () => {
+    globalThis.fetch = (async () => {
+      throw new Error('boom');
+    }) as typeof fetch;
+    assert.equal((await resolve('https://maps.app.goo.gl/abc')).status, 400);
+  });
   test('一直轉址（超過 5 次）：400', async () => {
     stub({ 'https://maps.app.goo.gl/abc': { status: 302, location: 'https://maps.app.goo.gl/abc' } });
     assert.equal((await resolve('https://maps.app.goo.gl/abc')).status, 400);
