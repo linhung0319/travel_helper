@@ -42,11 +42,11 @@ import { mobileStore } from '../mobile/mobileStore.ts';
 
 setWorkerUrl(maplibreWorkerUrl);
 
-/** 地圖的樣式（手機版詳情的小地圖也用） */
 /** 手機按住加地點：按住多久、手指最多移動多遠（px） */
 const LONG_PRESS_MS = 500;
 const LONG_PRESS_SLOP = 10;
 
+/** 地圖的樣式（手機版詳情的小地圖也用） */
 export const STYLE_URL = 'https://tiles.openfreemap.org/styles/liberty';
 /** 放大到這裡以上，小點換成類別圖標（像 Google Maps） */
 export const ICON_ZOOM = 12;
@@ -484,7 +484,7 @@ export function MapView() {
         };
         const blocked = () => {
           const m = mobileStore.getState();
-          return window.matchMedia(DESKTOP_QUERY).matches || m.tab !== 'trip' || !!m.detail || !!m.page || !!addPlaceStore.getState().draft;
+          return window.matchMedia(DESKTOP_QUERY).matches || m.tab !== 'trip' || !!m.detail || !!m.page || !!m.actions || m.chatSheet || !!addPlaceStore.getState().draft;
         };
         el.addEventListener(
           'touchstart',

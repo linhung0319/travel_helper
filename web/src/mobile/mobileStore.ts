@@ -139,6 +139,25 @@ function afterCloseLayer() {
   }
 }
 
+/**
+ * 加地點的整頁（AddPlacePage，T31）也是一層 history：開起來推一筆、關掉（‹、取消、存好）退回去，返回鍵先關它（詳情還在底下）。
+ * addPlaceStore 牽著整個網站的資料層（Node 的測試載不了），所以由 AddPlacePage 載入時把它的開關接進來。
+ */
+let addLayer: { isOpen(): boolean; cancel(): void } | null = null;
+export function bindAddLayer(layer: NonNullable<typeof addLayer>, subscribe: (onChange: (open: boolean) => void) => void) {
+  addLayer = layer;
+  let wasOpen = layer.isOpen();
+  subscribe((open) => {
+    if (open === wasOpen) return;
+    wasOpen = open;
+    if (!mobileActive || !hasHistory()) return;
+    if (open) {
+      if (pendingBacks > 0) pushAfterBack = true;
+      else pushLayer();
+    } else afterCloseLayer();
+  });
+}
+
 /** 清掉地圖上 AI 的提議（有才清） */
 function clearProposal() {
   if (appStore.getState().proposal) appStore.getState().setProposal(null);
@@ -258,8 +277,13 @@ if (typeof window !== 'undefined') {
       pendingBacks--;
       if (pendingBacks === 0 && pushAfterBack) {
         pushAfterBack = false;
-        if (layerOpen(mobileStore.getState())) pushLayer();
+        if (layerOpen(mobileStore.getState()) || addLayer?.isOpen()) pushLayer();
       }
+      return;
+    }
+    // 加地點的整頁蓋在最上面：先關它（詳情還在底下）
+    if (mobileActive && addLayer?.isOpen()) {
+      addLayer.cancel();
       return;
     }
     if (layerOpen(mobileStore.getState())) mobileStore.setState({ detail: null, page: null });

@@ -91,8 +91,8 @@ test('詳情：加的人有刪除，換成別人沒有；換回來刪除 → 清
   await userCard(page).click();
   await page.getByTestId('detail-user-delete').click();
   await page.getByTestId('delete-user-place-confirm').click();
-  await expect(page.getByTestId('detail-user-delete')).toHaveCount(0);
-  if (await page.getByTestId('m-detail').count()) await page.getByTestId('m-detail-back').click();
+  // 刪除成功後詳情自己關掉（DeleteUserPlaceDialog）
+  await expect(page.getByTestId('m-detail')).toHaveCount(0);
   await findInList(page, '珈琲');
   await expect(page.locator('.is-user')).toHaveCount(0);
 });
@@ -150,4 +150,59 @@ test('行程地圖按住約 0.5 秒 → 開加地點整頁；太短、手指移�
   await expect(page.getByTestId('m-add-page')).toHaveCount(0);
   // 存完還在行程分頁
   await expect(page.getByTestId('m-tab-trip')).toHaveAttribute('aria-current', 'page');
+});
+
+test('返回鍵：從探索開的加地點頁，返回關掉它、留在探索', async ({ page }) => {
+  await ready(page);
+  await goTab(page, 'explore');
+  await page.getByTestId('m-feed-search').fill(MAP_LINK);
+  await page.getByTestId('add-suggest-add').click();
+  await expect(page.getByTestId('m-add-page')).toBeVisible();
+  await page.goBack();
+  await expect(page.getByTestId('m-add-page')).toHaveCount(0);
+  await expect(page.getByTestId('m-tab-explore')).toHaveAttribute('aria-current', 'page');
+  await expect(page.getByTestId('m-feed-search')).toBeVisible();
+});
+
+test('返回鍵：詳情上開 ✎ 修改，返回只關加地點頁、詳情還在；再返回才關詳情', async ({ page }) => {
+  await ready(page);
+  await addFromLink(page);
+  await userCard(page).click();
+  await page.getByTestId('detail-user-edit').click();
+  await expect(page.getByTestId('m-add-page')).toBeVisible();
+  await page.goBack();
+  await expect(page.getByTestId('m-add-page')).toHaveCount(0);
+  await expect(page.getByTestId('m-detail')).toBeVisible();
+  await page.goBack();
+  await expect(page.getByTestId('m-detail')).toHaveCount(0);
+});
+
+test('存好之後返回鍵不會多退一步：還在網站上', async ({ page }) => {
+  await ready(page);
+  await addFromLink(page);
+  await expect(page.getByTestId('m-tab-explore')).toHaveAttribute('aria-current', 'page');
+  const before = page.url();
+  await page.getByTestId('m-feed-search').fill('');
+  expect(page.url()).toBe(before);
+  expect(await page.evaluate(() => (window as any).__thMobile.getState().detail)).toBeNull();
+});
+
+test('第二根手指放上去 → 取消按住', async ({ page }) => {
+  await ready(page);
+  const box = (await page.getByTestId('map').boundingBox())!;
+  const x = box.x + box.width / 2;
+  const y = box.y + 80;
+  await page.evaluate(
+    async ([x, y]) => {
+      const el = document.querySelector('[data-testid="map"]')!;
+      const t1 = new Touch({ identifier: 1, target: el, clientX: x, clientY: y });
+      const t2 = new Touch({ identifier: 2, target: el, clientX: x + 60, clientY: y });
+      el.dispatchEvent(new TouchEvent('touchstart', { bubbles: true, cancelable: true, touches: [t1], targetTouches: [t1], changedTouches: [t1] }));
+      el.dispatchEvent(new TouchEvent('touchstart', { bubbles: true, cancelable: true, touches: [t1, t2], targetTouches: [t1, t2], changedTouches: [t2] }));
+      await new Promise((r) => setTimeout(r, 700));
+      el.dispatchEvent(new TouchEvent('touchend', { bubbles: true, cancelable: true, touches: [], targetTouches: [], changedTouches: [t1, t2] }));
+    },
+    [x, y] as const,
+  );
+  await expect(page.getByTestId('m-add-page')).toHaveCount(0);
 });

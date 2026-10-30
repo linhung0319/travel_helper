@@ -2,8 +2,10 @@
 // 上半是自己的一張小地圖（新的 MapLibre，同一個樣式；主地圖在別的分頁是藏起來的）：圖釘固定在正中央（CSS，不是 Marker），拖地圖對準，停下來時更新位置。
 // 下半是表單（AddPlaceForm），自己捲動，鍵盤打開時按鈕捲得到。
 import { useEffect, useRef } from 'react';
+import { useStore } from 'zustand';
 import { Map as MapLibreMap } from 'maplibre-gl';
 import { addPlaceStore, useAddPlace } from '../addPlaceStore.ts';
+import { bindAddLayer } from './mobileStore.ts';
 import { appStore } from '../store.ts';
 import { dataStore } from '../dataStore.ts';
 import { STYLE_URL } from '../components/MapView.tsx';
@@ -11,6 +13,11 @@ import { Icon } from '../components/Icon.tsx';
 import { AddPlaceForm } from '../shared/ui/AddPlaceForm.tsx';
 import { TYPE_COLORS } from '../lib/typeStyle.ts';
 import type { LonLat } from '../data/types.ts';
+
+// 加地點整頁也是一層 history（mobileStore.bindAddLayer）
+bindAddLayer({ isOpen: () => !!addPlaceStore.getState().draft, cancel: () => addPlaceStore.getState().cancel() }, (onChange) =>
+  addPlaceStore.subscribe((s) => onChange(!!s.draft)),
+);
 
 /** 主地圖還沒有畫面時（還沒載入）的中心：伊勢志摩中間 */
 const FALLBACK_CENTER: LonLat = [136.85, 34.45];
@@ -29,9 +36,19 @@ function placeDots() {
 
 function AddMap() {
   const ref = useRef<HTMLDivElement>(null);
+  const mapRef = useRef<MapLibreMap | null>(null);
+  const coords = useStore(addPlaceStore, (s) => s.draft?.coords ?? null);
+  // 位置從外面改了（草稿換了位置）：小地圖跟過去；差在 1e-6 以內是自己 moveend 寫回去的，不動（避免來回）
+  useEffect(() => {
+    const map = mapRef.current;
+    if (!map || !coords) return;
+    const c = map.getCenter();
+    if (Math.abs(c.lng - coords[0]) > 1e-6 || Math.abs(c.lat - coords[1]) > 1e-6) map.jumpTo({ center: coords });
+  }, [coords]);
   useEffect(() => {
     const start = addPlaceStore.getState().draft?.coords ?? appStore.getState().view?.center ?? FALLBACK_CENTER;
     const map = new MapLibreMap({ container: ref.current!, style: STYLE_URL, center: start, zoom: 16, attributionControl: { compact: true } });
+    mapRef.current = map;
     // 還沒有位置（打名稱找不到、地圖指的不會）：位置就是小地圖的中心，使用者拖了再更新
     if (!addPlaceStore.getState().draft?.coords) addPlaceStore.getState().patch({ coords: start });
     map.on('moveend', () => {
@@ -51,6 +68,7 @@ function AddMap() {
     if (import.meta.env.DEV) (window as any).__thAddMap = map;
     return () => {
       delete (window as any).__thAddMap;
+      mapRef.current = null;
       map.remove();
     };
   }, []);
