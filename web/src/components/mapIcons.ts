@@ -43,6 +43,27 @@ function typeIcon(type: PlaceType): ImageData {
   return c.getImageData(0, 0, el.width, el.height);
 }
 
+/** 自己加的點（T31）：白底、類型色虛線框、同樣的字（字用類型色，白底上才看得見） */
+function userTypeIcon(type: PlaceType): ImageData {
+  const [el, c] = canvas(SIZE);
+  const r = SIZE / 2;
+  c.fillStyle = '#fff';
+  circle(c, r, r, r);
+  c.strokeStyle = TYPE_COLORS[type];
+  c.lineWidth = 2.4;
+  c.setLineDash([4, 3]);
+  c.beginPath();
+  c.arc(r, r, r - 2, 0, Math.PI * 2);
+  c.stroke();
+  c.setLineDash([]);
+  c.fillStyle = TYPE_COLORS[type];
+  c.font = `900 14px ${SEAL_FONT}`;
+  c.textAlign = 'center';
+  c.textBaseline = 'middle';
+  c.fillText(TYPE_GLYPHS[type], r, r + 1);
+  return c.getImageData(0, 0, el.width, el.height);
+}
+
 /** 想去分頁「已是候選」的點：白底、藍染色（--indigo）的虛線圓（circle 圖層畫不出虛線，所以畫成圖） */
 const WISH_RING = 22;
 
@@ -74,16 +95,20 @@ function arrowIcon(): ImageData {
   return c.getImageData(0, 0, el.width, el.height);
 }
 
-/** 圖片名稱：icon-<類型>（圓形圖標）、wish-candidate（想去的候選）、route-arrow。選中的數字水滴是 DOM 標記（MapView） */
+/** 圖片名稱：icon-<類型>（圓形圖標）、icon-user-<類型>（自己加的：虛線框）、wish-candidate（想去的候選）、route-arrow。選中的數字水滴是 DOM 標記（MapView） */
 export function addMapIcons(map: MapLibreMap) {
   for (const t of PLACE_TYPES) {
     if (!map.hasImage(`icon-${t}`)) map.addImage(`icon-${t}`, typeIcon(t), { pixelRatio: RATIO });
+    if (!map.hasImage(`icon-user-${t}`)) map.addImage(`icon-user-${t}`, userTypeIcon(t), { pixelRatio: RATIO });
   }
   // 圓體字型下載完再重畫一次（canvas 不會自己等字型）
   document.fonts
     ?.load(`900 14px ${SEAL_FONT}`, Object.values(TYPE_GLYPHS).join(''))
     .then(() => {
-      for (const t of PLACE_TYPES) if (map.hasImage(`icon-${t}`)) map.updateImage(`icon-${t}`, typeIcon(t));
+      for (const t of PLACE_TYPES) {
+        if (map.hasImage(`icon-${t}`)) map.updateImage(`icon-${t}`, typeIcon(t));
+        if (map.hasImage(`icon-user-${t}`)) map.updateImage(`icon-user-${t}`, userTypeIcon(t));
+      }
     })
     .catch(() => {});
   if (!map.hasImage('wish-candidate')) map.addImage('wish-candidate', wishRingIcon(), { pixelRatio: RATIO });

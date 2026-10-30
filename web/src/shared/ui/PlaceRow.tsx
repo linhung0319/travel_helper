@@ -12,6 +12,7 @@ import { photoCandidates } from '../../lib/photos.ts';
 import { cardTypeLetter } from '../../lib/planView.ts';
 import { typeSwatch } from '../../lib/typeStyle.ts';
 import { placeDayStatus } from '../../lib/wishlist.ts';
+import { isUserPlace, userSubtitle } from '../../lib/userPlace.ts';
 import type { Area, Place } from '../../data/types.ts';
 import { rowHighlights, type RowHighlight } from '../rowHighlights.ts';
 import { TierMark } from './TierMark.tsx';
@@ -32,12 +33,15 @@ export function useDayStatus(): (placeId: string) => DayStatus {
 
 /** 地區・小區域・★ 的文字（第二行、照片牆下面那行用） */
 export function placeMetaText(place: Place, areas: Area[]): string {
+  // 自己加的點沒有評分
+  const user = isUserPlace(place);
   const area = areas.find((a) => a.id === place.area);
   const region = area?.regions?.find((r) => r.id === place.region);
   const r = (place.raw.ratings ?? {}) as Record<string, unknown>;
   const parts: string[] = [];
   if (region) parts.push(displayName(region.name, region.id));
   else if (area) parts.push(displayName(area.name, area.id));
+  if (user) return parts.join('・');
   if (typeof r.google === 'number') parts.push(`★ ${r.google}`);
   else if (typeof r.tabelog === 'number') parts.push(`食べログ ${r.tabelog}`);
   return parts.join('・');
@@ -96,11 +100,13 @@ export interface PlaceRowProps {
 export function PlaceRow({ place, status, extra, right, onOpen, testId, rank, hot, rootProps, open = false, below }: PlaceRowProps) {
   const areas = useData((s) => s.areas);
   const name = place.name.zh || place.name.ja;
+  const members = useShared((s) => s.members);
+  const user = isUserPlace(place);
   const meta = placeMetaText(place, areas);
   const row = (
     <div
       {...rootProps}
-      className={`pr ${hot ? 'flash' : ''} ${open ? 'open' : ''}`}
+      className={`pr ${user ? 'is-user' : ''} ${hot ? 'flash' : ''} ${open ? 'open' : ''}`}
       aria-expanded={below !== undefined || open ? open : undefined}
       role="button"
       tabIndex={0}
@@ -122,7 +128,7 @@ export function PlaceRow({ place, status, extra, right, onOpen, testId, rank, ho
       <span className="pr-text">
         <span className="pr-name">
           <span className="pr-name-text">{name}</span>
-          <TierMark tier={place.tier} />
+          {!user && <TierMark tier={place.tier} />}
         </span>
         {extra ?? (
           <>
@@ -130,6 +136,7 @@ export function PlaceRow({ place, status, extra, right, onOpen, testId, rank, ho
               <TypeLabel type={place.type} />
               {meta && <span className="pr-meta-text">・{meta}</span>}
             </span>
+            {user && <span className="pr-user-by">{userSubtitle(place, members)}</span>}
             <Highlights list={rowHighlights(place, status ?? { candidate: [], scheduled: [] })} />
           </>
         )}

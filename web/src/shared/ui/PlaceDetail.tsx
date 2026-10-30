@@ -15,6 +15,9 @@ import { MODE_NAME, type ModeIconKey } from '../../lib/modeIcon.ts';
 import type { Place } from '../../data/types.ts';
 import type { VoteValue } from '../../backend/types.ts';
 import { openDialog } from '../../uiStore.ts';
+import { addPlaceStore } from '../../addPlaceStore.ts';
+import { addedDateLabel, canDeleteUserPlace, googleMapsUrl, hasReviewsTab, isUserPlace, USER_PLACE_WARNING } from '../../lib/userPlace.ts';
+import { memberName } from '../../sharedStore.ts';
 import { Photo } from '../../components/Photo.tsx';
 import { Icon } from '../../components/Icon.tsx';
 import { CopyName } from '../../components/CopyName.tsx';
@@ -248,6 +251,39 @@ function LocationTab({ place, locator, onPick }: { place: Place; locator?: React
   );
 }
 
+/** 自己加的點的簡介（T31 §4）：提示框、備註、Google Maps、修改、刪除（只有加的人）。取代查過的點的簡介、營業時間那些 */
+function UserPlaceIntro({ place }: { place: Place }) {
+  const me = useShared((s) => s.me?.id);
+  const u = place.user;
+  return (
+    <section className="pd-user" data-testid="detail-user-intro">
+      <p className="pd-user-warning" data-testid="detail-user-warning">
+        <Icon name="warn" size={16} /> <span>{USER_PLACE_WARNING}</span>
+      </p>
+      {u?.note && (
+        <p className="pd-user-note" data-testid="detail-user-note">
+          {u.note}
+        </p>
+      )}
+      <p>
+        <a className="pd-user-gmaps" href={googleMapsUrl(place)} target="_blank" rel="noreferrer" data-testid="detail-open-gmaps">
+          在 Google Maps 開啟 ↗
+        </a>
+      </p>
+      <div className="pd-user-actions">
+        <Button kind="secondary" size="sm" data-testid="detail-user-edit" onClick={() => addPlaceStore.getState().startEdit(place.id)}>
+          ✎ 修改
+        </Button>
+        {canDeleteUserPlace(place, me) && (
+          <Button kind="secondary" size="sm" className="pd-user-delete" data-testid="detail-user-delete" onClick={() => openDialog({ kind: 'delete-user-place', placeId: place.id })}>
+            刪除
+          </Button>
+        )}
+      </div>
+    </section>
+  );
+}
+
 export interface PlaceDetailProps {
   place: Place;
   surface: 'desktop' | 'mobile';
@@ -272,8 +308,10 @@ export function PlaceDetail({ place, surface, from, initialTab, onDay, askAi = t
   const desktop = surface === 'desktop';
   const areas = useData((s) => s.areas);
   const planning = useApp((s) => s.planning);
+  const members = useShared((s) => s.members);
   const comments = useCommentCount(place.id);
-  const tabs = DETAIL_TABS.filter((t) => place.type !== 'station' || t === 'intro' || t === 'location');
+  const user = isUserPlace(place);
+  const tabs = DETAIL_TABS.filter((t) => (place.type !== 'station' || t === 'intro' || t === 'location') && (t !== 'reviews' || hasReviewsTab(place)));
   const [tab, setTab] = useState<DetailTabId>(initialTab && tabs.includes(initialTab) ? initialTab : 'intro');
   const [viewer, setViewer] = useState<number | null>(null);
   const heroRef = useRef<HTMLDivElement>(null);
@@ -296,7 +334,7 @@ export function PlaceDetail({ place, surface, from, initialTab, onDay, askAi = t
     place.name.zh && place.name.ja !== place.name.zh ? place.name.ja : null,
     [area && displayName(area.name), region && displayName(region.name)].filter(Boolean).join(' ') || null,
   ].filter(Boolean);
-  const stars = starLine(place);
+  const stars = user ? null : starLine(place);
   const barShown = scrolled || !hasHero;
 
   return (
@@ -323,12 +361,22 @@ export function PlaceDetail({ place, surface, from, initialTab, onDay, askAi = t
       <header className={`pd-head detail-head ${desktop ? 'draggable' : ''}`} {...dragPlaceProps(place.id, desktop)} title={desktop ? '拖到左邊的聊天室可以問 AI' : undefined}>
         <div className="pd-title">
           <div className="pd-title-row">
-            <TierMark tier={place.tier} />
+            {!user && <TierMark tier={place.tier} />}
             <h2 className="pd-name" data-testid={desktop ? 'detail-name' : 'm-detail-name'}>
               {name}
             </h2>
             <CopyName place={place} />
+            {user && (
+              <span className="pd-user-badge" data-testid="detail-user-badge">
+                自己加的
+              </span>
+            )}
           </div>
+          {user && place.user && (
+            <p className="pd-user-by muted small" data-testid="detail-user-by">
+              {memberName(members, place.user.author)} 加的{addedDateLabel(place.user.createdAt) && ` · ${addedDateLabel(place.user.createdAt)}`}
+            </p>
+          )}
           <p className="pd-sub muted small">
             <TypeLabel type={place.type} />
             {sub.length > 0 && <span> ・{sub.join('・')}</span>}
@@ -356,8 +404,9 @@ export function PlaceDetail({ place, surface, from, initialTab, onDay, askAi = t
                 {stars}
               </button>
             )}
+            {user && <UserPlaceIntro place={place} />}
             <PlaceIntro place={place} fromTrip={fromTrip} onDay={onDay} askAi={askAi} />
-            <PlaceFacts place={place} />
+            {!user && <PlaceFacts place={place} />}
           </>
         )}
         {tab === 'location' && <LocationTab place={place} locator={locator} onPick={onPickNearby} />}

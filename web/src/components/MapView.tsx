@@ -108,6 +108,7 @@ function featureCollection(places: Place[], marks: Map<string, string>): Feature
           label: p.name.zh || p.name.ja,
           dim: dim ? 1 : 0,
           mark: liked ? '' : (marks.get(p.id) ?? ''),
+          user: p.origin === 'user' ? 1 : 0,
           typeColor: TYPE_COLORS[p.type],
           typeInk: TYPE_INK[p.type],
           wish,
@@ -298,10 +299,11 @@ export function MapView() {
         layout: { 'circle-sort-key': ['-', 1, ['get', 'dim']] },
         paint: {
           'circle-radius': ['interpolate', ['linear'], ['zoom'], 8, ['match', ['get', 'tier'], 'S', 6, 'A', 4.5, 3], 12, ['match', ['get', 'tier'], 'S', 8.5, 'A', 6, 4.5]],
-          'circle-color': typeColorExpr as never,
+          'circle-color': ['case', ['==', ['get', 'user'], 1], '#ffffff', typeColorExpr] as never,
           'circle-opacity': ['step', ['zoom'], ['case', ['==', ['get', 'dim'], 1], 0.25, 0.95], ICON_ZOOM, 0],
-          'circle-stroke-color': '#ffffff',
-          'circle-stroke-width': 1.5,
+          // 自己加的點：白底＋類型色描邊（縮小時的點看得出和查過的點不同）
+          'circle-stroke-color': ['case', ['==', ['get', 'user'], 1], typeColorExpr, '#ffffff'] as never,
+          'circle-stroke-width': ['case', ['==', ['get', 'user'], 1], 2, 1.5],
           'circle-stroke-opacity': ['step', ['zoom'], ['case', ['==', ['get', 'dim'], 1], 0.25, 1], ICON_ZOOM, 0],
         },
       });
@@ -312,7 +314,7 @@ export function MapView() {
         minzoom: ICON_ZOOM,
         filter: BASE_FILTERS['places-icon'] as never,
         layout: {
-          'icon-image': ['concat', 'icon-', ['get', 'type']],
+          'icon-image': ['concat', 'icon-', ['case', ['==', ['get', 'user'], 1], 'user-', ''], ['get', 'type']],
           // S 大、B 小，拉開差距讓好的點顯眼（整體密度不變）
           'icon-size': ['match', ['get', 'tier'], 'S', 1.2, 'A', 0.9, 0.72],
           'icon-allow-overlap': true,
