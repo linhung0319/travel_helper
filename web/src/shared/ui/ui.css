@@ -2802,3 +2802,127 @@ button.ll-main {
   padding-left: 1.4em;
   font-size: 0.875rem;
 }
+
+/* ---------- 加地點的確認畫面表單（AddPlaceForm，T31） ---------- */
+
+.apf {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  padding: 12px 16px 24px;
+}
+
+.apf-via {
+  align-self: flex-start;
+  padding: 2px 10px;
+  border: 1px dashed var(--indigo-line);
+  border-radius: 999px;
+  background: var(--indigo-wash);
+  color: var(--indigo);
+  font-size: 0.8125rem;
+}
+
+.apf-field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.apf-label {
+  font-size: 0.8125rem;
+  color: var(--ink-2);
+}
+
+.apf-field input[type='text'] {
+  min-height: var(--tap);
+  padding: 0 12px;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  background: var(--paper);
+  color: var(--ink);
+  font: inherit;
+}
+
+.apf-types {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.apf-error {
+  margin: 0;
+  color: var(--sakura-ink);
+}
+
+.apf-actions {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.apf-actions .ui-btn:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+/* 網頁：右欄上方的標題列（‹ 加一個地點） */
+.apf-head {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 8px 8px 0;
+}
+
+.apf-back {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  min-height: var(--tap);
+  padding: 0 8px;
+  border: 0;
+  background: none;
+  color: var(--ink);
+  font: inherit;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.apf-hint {
+  margin: 0;
+  padding: 0 16px;
+  font-size: 0.875rem;
+}
+
+/* 地圖右鍵選單（網頁） */
+.map-context {
+  position: absolute;
+  z-index: 5;
+  min-width: 160px;
+  padding: 4px;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  background: var(--paper);
+  box-shadow: var(--shadow);
+}
+
+.map-context button {
+  display: block;
+  width: 100%;
+  padding: 8px 12px;
+  border: 0;
+  border-radius: 14px;
+  background: none;
+  color: var(--ink);
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+
+.map-context button:hover {
+  background: var(--indigo-wash);
+}
+
+/* 主地圖上拖得動的圖釘 */
+.map-add-pin {
+  cursor: grab;
+}

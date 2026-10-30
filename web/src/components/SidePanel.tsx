@@ -16,6 +16,8 @@ import { DayCalendar } from '../shared/ui/DayCalendar.tsx';
 import { DetailPanel } from './DetailPanel.tsx';
 import { ExplorePanel, showItinerary } from './Explore.tsx';
 import { useLiked } from '../shared/placeLists.ts';
+import { addPlaceStore, useAddPlace } from '../addPlaceStore.ts';
+import { AddPlaceForm } from '../shared/ui/AddPlaceForm.tsx';
 
 /** 切到探索或想去（關掉詳情） */
 export function showList(mode: 'explore' | 'wish') {
@@ -63,7 +65,29 @@ function DetailOverSide() {
   );
 }
 
+/** 加地點（或修改自己加的點）的確認畫面：取代右欄的內容，圖釘在中間的主地圖上（T31 spec §3「網頁」） */
+function AddPlaceBody() {
+  const edit = useAddPlace((s) => s.draft?.mode === 'edit');
+  return (
+    <>
+      <div className="apf-head">
+        <button type="button" className="apf-back" onClick={() => addPlaceStore.getState().cancel()} data-testid="add-back">
+          <Icon name="back" size={20} />
+          {edit ? '修改地點' : '加一個地點'}
+        </button>
+      </div>
+      <p className="apf-hint muted">拖曳圖釘調整位置</p>
+      <AddPlaceForm surface="desktop" />
+    </>
+  );
+}
+
 export function SidePanel() {
+  const adding = useAddPlace((s) => !!s.draft);
+  // 表單開起來時詳情彈窗收掉（從詳情按「✎ 修改」進來時，不讓彈窗蓋住表單或圖釘）
+  useEffect(() => {
+    if (adding) appStore.getState().closeDetail();
+  }, [adding]);
   const mode = useApp((s) => s.mode);
   const planning = useApp((s) => s.planning);
   const covered = useApp((s) => !!s.detailId && s.detailAt === 'side');
@@ -92,7 +116,7 @@ export function SidePanel() {
       </div>
       {/* 右欄的內容一直掛著：蓋住右欄的彈窗關掉後原樣回來 */}
       <div className="side-body" inert={covered || undefined}>
-        {mode === 'map' ? <DayPanel /> : <ExplorePanel key={mode} source={mode} />}
+        {adding ? <AddPlaceBody /> : mode === 'map' ? <DayPanel /> : <ExplorePanel key={mode} source={mode} />}
       </div>
       <DetailOverSide />
     </div>
