@@ -102,10 +102,10 @@ travel_helper/
 | `highlights` | `{ primary?, warning?, muted?: string[] }` | `highlight` 標示的點，每種樣式一組（黃、紅、灰框）（T12） |
 | `routesVersion` | `number` | 確定的行程線查到新路徑（`itineraryRoutes.ts`）就加一，`MapView` 看到變了就重畫行程線（第三輪） |
 | `routes` | `MapRoute[]` | `drawRoute` 畫的路線：起訖（資料點或座標）、交通方式、分鐘、路徑、距離、`source`（`pending`／`osrm`／`rail`／`straight`／`given`）（T12） |
-| `compare` | `string[]` | 比較中的點：地圖標 A、B、C，上方出現比較列（T12） |
+| `aiResult`、`aiResultStash` | `{ title, ids, notes, lettered } | null`、`{ filter, query } | null` | 「AI 挑的」結果集（T16m）：地圖用 AI 標示（`lettered` 時標 A、B、C），探索只列這幾個點；出現時探索的篩選、搜尋收進 stash，清掉時還原 |
 | `proposal` | `{ itinerary, dates, changes, summary } \| null` | AI 提議的行程（itinerary-v1）、有改動的天、engine `diffItinerary` 的改動；地圖用虛線、半透明畫，不改確定的行程（T12） |
 
-設定函式（同步、不檢查輸入；UI 和 AI 要用下面的地圖指令）：`setView`、`selectDay`、`setFilter(patch)`、`toggleFilter(key, value)`、`clearFilter`、`setMode`、`setPlanning`、`hover`、`openPreview`、`openDetail`（小卡片收起）、`closeDetail`、`revealInExplore(id)`、`addToSelection`、`removeFromSelection`、`setStationTime`、`moveCamera`；T12 加 `setSelection`、`setHighlight(style, ids)`、`addRoute`、`updateRoute`、`setCompare`、`clearHighlights`（標示、路線、比較一起清）、`setProposal`。
+設定函式（同步、不檢查輸入；UI 和 AI 要用下面的地圖指令）：`setView`、`selectDay`、`setFilter(patch)`、`toggleFilter(key, value)`、`clearFilter`、`setMode`、`setPlanning`、`hover`、`openPreview`、`openDetail`（小卡片收起）、`closeDetail`、`revealInExplore(id)`、`addToSelection`、`removeFromSelection`、`setStationTime`、`moveCamera`；T12 加 `setSelection`、`setHighlight(style, ids)`、`addRoute`、`updateRoute`、`setAiResult`、`clearHighlights`（標示、路線一起清）、`setProposal`。
 
 ### 手機版的殼、mobileStore、shared（T15m 第六輪，2026-10-25）
 
@@ -128,25 +128,25 @@ travel_helper/
 
 **UI 和 AI（T16）都透過 `web/src/commands.ts` 的指令操作地圖**，改的是上面同一份 store；網站共用的一份是 `web/src/appCommands.ts` 的 `commands`（dev server 下也在 `window.__th.commands`）。每個指令都檢查輸入，回傳 `{ ok: true, … }` 或 `{ ok: false, error }`（失敗時狀態不變），AI 可以讀結果決定下一步。
 
-> **2026-10-31**：AI 不直接呼叫這些指令，而是呼叫 §6 的工具；工具透過各平台的呈現介面再用到指令。`compare` 和比較列由 T16m-a 拿掉，改用「AI 挑的」結果集（`aiResult`）；AI 也不再用 `highlight`。見 `docs/superpowers/specs/2026-10-31-ai-agent-ui-design.md`。
+> **2026-10-31**：AI 不直接呼叫這些指令，而是呼叫 §6 的工具；工具透過各平台的呈現介面再用到指令。AI 也不再用 `highlight`。AI 的主體在 `web/src/ai/`（`chat.ts` 對話和工具迴圈、`tools.ts`／`readTools.ts` 工具、`proposals.ts` 提議、`stage.ts` 呈現介面、`chatRepository.ts` 聊天紀錄），網站共用的一份是 `web/src/appAi.ts`；假 AI 在 `dev-fixtures/ai/`。見 `docs/superpowers/specs/2026-10-31-ai-agent-ui-design.md`。
 
 | 指令 | 做什麼 |
 |---|---|
 | `focus(target)` | 地圖移過去。目標：資料點 ID（放大到 15、點會閃）、ID 的陣列（框住全部）、`{ area }`、`{ region }`（從 areas.json 讀）、`{ day }`、`{ bbox }`、`{ center, zoom }` |
 | `highlight(ids, style = 'primary')` | 標示幾個點；同一樣式再叫一次是取代，給空陣列是清掉那一組 |
 | `drawRoute(from, to, mode = 'walk', { minutes?, label?, geometry? })` | 畫一條路線，回傳 `routeId`。路徑由 `routeResolver.ts` 在背景補上（見下面「路線」） |
-| `compare(ids)` | 比較 2～6 個點：地圖框住、標 A、B、C，上方出現比較列；回傳每個點的分級、標章、摘要 |
-| `clearHighlights()` | 清掉標示、路線、比較（篩選、選取、提議不動） |
+| `showResult(ids, { title, notes?, lettered? })`／`clearResult()` | 「AI 挑的」結果集（T16m，取代 `compare`）：地圖框住；探索的篩選、搜尋收起來，`clearResult` 還原 |
+| `clearHighlights()` | 清掉標示、路線（結果集、篩選、選取、提議不動） |
 | `selectDay(day)` | 切換天數；選了某一天，地圖框住那天排的點（最多放大到 14） |
 | `setFilter(patch)`／`clearFilter()` | 給的那幾項整個取代，沒給的不動；值從 areas.json 和常數檢查。回傳篩選標籤和筆數。地圖上方出現可以取消的篩選標籤 |
 | `select(ids)`／`unselect(ids?)` | 「問 AI」的選取：累加、不重複；`unselect()` 全部取消 |
 | `showProposal(itinerary, { summary? })`／`clearProposal()` | 顯示 AI 提議的行程：和確定的行程比出改動的天，只有一天時切到那天、框住提議的點。採用由 T15／T16 用 engine 的操作寫進行程，再 `clearProposal` |
-| `getViewState()` | 給 AI 的畫面狀態（interaction-design §5）：地圖範圍、畫面裡符合篩選的點數、選定的天和那天的點、篩選和標籤、模式、是否在編輯、選取的點、打開的詳情、標示、比較、路線、提議。可以直接 JSON 化 |
+| `getViewState()` | 給 AI 的畫面狀態（interaction-design §5）：地圖範圍、畫面裡符合篩選的點數、選定的天和那天的點、篩選和標籤、模式、是否在編輯、選取的點、打開的詳情、標示、結果集、路線、提議。可以直接 JSON 化 |
 
 UI 的天數分頁、篩選標籤的 ✕、「跳到區域」、詳情的「問 AI」、聊天室選取標籤的 ✕、「這一天」的項目都改走這些指令。篩選面板的切換按鈕直接用 store 的 `toggleFilter`（同一份狀態）。
 
 **地圖上的樣子**（`components/mapOverlayLayers.ts`、`lib/overlays.ts`）：
-- 標示：黃、紅、灰的框；比較：紫框加 A、B、C。
+- 標示：黃、紅、灰的框；結果集：同黃框，`lettered` 時紫框加 A、B、C。
 - 路線：白底加一條依交通方式上色的線，步行點線、船虛線、其他實線；直線（查不到路徑）比較淡。中間的標籤（「🚶 8 分」）是 DOM 標記。
 - 提議（👤 2026-10-22 決定）：確定的行程照常；提議那幾天的點用半透明白底、那天顏色的框，編號在點的下方（確定的行程的編號在上方），依序用那天顏色的虛線連起來；新增的點加綠框，拿掉的點變灰加 ×。提議列有摘要（「2/5：＋鳥羽水族館、－XX」）和「不看提議」；「採用／修改」在 T15／T16 加。
 

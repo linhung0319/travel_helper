@@ -135,21 +135,45 @@ test('drawRoute：資料點或座標都可以；先是 pending，給了路徑就
   assert.deepEqual(app.getState().routes, []);
 });
 
-test('compare：2～6 個點，地圖框住，回傳 A、B、C 和重點', () => {
+test('showResult：地圖框住、探索的篩選和搜尋收起來；clearResult 還原；新的取代舊的時收起來的還是最早那份', () => {
   const { app, cmd } = setup();
-  const r = cmd.compare(['r15', 'r-small', 'nope']);
-  assert.ok(r.ok);
-  if (r.ok) {
-    assert.deepEqual(r.places.map((p) => [p.letter, p.id]), [['A', 'r15'], ['B', 'r-small']]);
-    assert.ok(r.places[0].badges.includes('可容納 15 人'));
-    assert.deepEqual(r.unknown, ['nope']);
-  }
-  assert.deepEqual(app.getState().compare, ['r15', 'r-small']);
+  app.getState().setFilter({ types: ['spot'] });
+  app.getState().setQuery('水');
+  const r = cmd.showResult(['r15', 'r-small', 'nope'], { title: '比較', notes: { r15: '坐得下' }, lettered: true });
+  assert.deepEqual(r, { ok: true, ids: ['r15', 'r-small'], unknown: ['nope'] });
+  assert.deepEqual(app.getState().aiResult, { title: '比較', ids: ['r15', 'r-small'], notes: { r15: '坐得下' }, lettered: true });
+  assert.deepEqual(app.getState().filter, EMPTY_FILTER);
+  assert.equal(app.getState().query, '');
   assert.ok(app.getState().camera?.bbox);
-  assert.equal(cmd.compare(['a']).ok, false);
-  assert.deepEqual(app.getState().compare, ['r15', 'r-small']);
+
+  // 手動再篩選，之後來了新的結果集：篩選清掉，還原時還是最早那份
+  app.getState().setFilter({ tiers: ['A'] });
+  cmd.showResult(['a'], { title: '新的' });
+  assert.deepEqual(app.getState().filter, EMPTY_FILTER);
+  cmd.clearResult();
+  assert.equal(app.getState().aiResult, null);
+  assert.deepEqual(app.getState().filter.types, ['spot']);
+  assert.equal(app.getState().query, '水');
+
+  // 全部找不到：錯誤、狀態不變；clearHighlights 不動結果集
+  assert.equal(cmd.showResult(['nope'], { title: 'x' }).ok, false);
+  assert.equal(app.getState().aiResult, null);
+  cmd.showResult(['a'], { title: 'x' });
   cmd.clearHighlights();
-  assert.deepEqual(app.getState().compare, []);
+  assert.ok(app.getState().aiResult);
+});
+
+test('showResult：在想去分頁時，收起來的是探索那份篩選，想去的不動', () => {
+  const { app, cmd } = setup();
+  app.getState().setFilter({ types: ['spot'] });
+  app.getState().setMode('wish');
+  app.getState().setFilter({ tiers: ['S'] });
+  cmd.showResult(['a'], { title: 'x' });
+  assert.deepEqual(app.getState().filter.tiers, ['S']);
+  assert.deepEqual(app.getState().filterStash.explore.filter, EMPTY_FILTER);
+  cmd.clearResult();
+  assert.deepEqual(app.getState().filter.tiers, ['S']);
+  assert.deepEqual(app.getState().filterStash.explore.filter.types, ['spot']);
 });
 
 test('selectDay：切換、地圖移到那天；all 不動地圖；不在旅程的日期 → 錯誤', () => {

@@ -143,18 +143,15 @@ test('標示、路線（沿道路）、比較：畫在地圖上，可以清掉',
   await expect(page.getByTestId('marks-bar')).toContainText('標示 2 個點');
   await shot(page, 'route-highlight');
 
-  const cmp = await run(page, 'compare', ['toba-aquarium', 'toba-mikimoto-pearl-island']);
+  // 「AI 挑的」結果集：比較時地圖標 A、B、C
+  const cmp = await run(page, 'showResult', ['toba-aquarium', 'toba-mikimoto-pearl-island'], { title: '比較', lettered: true });
   expect(cmp.ok).toBe(true);
-  const bar = page.getByTestId('compare-bar');
-  await expect(bar.locator('.compare-card')).toHaveCount(2);
+  await expect.poll(async () => (await overlay(page, 'overlay-compare', 'compare-ring')).features.length).toBe(2);
   await shot(page, 'compare');
-  await bar.locator('.compare-card').first().click();
-  await expect(page.getByTestId('detail-panel')).toBeVisible();
-  await page.getByTestId('detail-close').click();
+  expect((await run(page, 'clearResult')).ok).toBe(true);
 
   await page.getByTestId('marks-bar').getByRole('button', { name: '清掉', exact: true }).click();
   await expect(label).toHaveCount(0);
-  await expect(bar).toHaveCount(0);
   expect(await page.evaluate(() => (window as any).__th.appStore.getState().highlights)).toEqual({});
 });
 

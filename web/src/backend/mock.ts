@@ -308,6 +308,29 @@ export function createMockBackend(seed: MockSeed, opts: MockOptions = {}): MockB
       }),
 
     listEdits: () => call(() => state.edits),
+    createEdit: ({ placeId, fieldPath, value, note = null }, base) =>
+      call(() => {
+        if (typeof placeId !== 'string' || !placeId) badRequest('placeId 不能是空的');
+        if (typeof fieldPath !== 'string' || !fieldPath) badRequest('fieldPath 不能是空的');
+        const at = now();
+        const e: PlaceEdit = {
+          id: ++state.seq.edit,
+          placeId,
+          fieldPath,
+          value: clone(value),
+          baseValue: base ? clone(base.value) : null,
+          baseMissing: base?.missing ?? true,
+          note,
+          author: member(),
+          createdAt: at,
+          updatedAt: at,
+          revertedAt: null,
+          revertedBy: null,
+          closedAt: null,
+        };
+        state.edits.push(e);
+        return e;
+      }),
     revertEdit: (id) =>
       call(() => {
         const e = state.edits.find((x) => x.id === id);

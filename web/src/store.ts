@@ -76,6 +76,19 @@ export interface Proposal {
   summary: string | null;
 }
 
+/**
+ * 「AI 挑的」結果集（T16m 規格 §3.1）：篩選表達不出來的一組點。不放進 Filter：Filter 的值都由常數檢查，放不下標題和理由（同 query）。
+ * lettered：比較時地圖標 A、B、C
+ */
+export interface AiResult {
+  title: string;
+  /** 照 AI 的順序 */
+  ids: string[];
+  /** 點 → 一行理由 */
+  notes: Record<string, string>;
+  lettered: boolean;
+}
+
 /** 篩選屬於哪一頁：想去自己一份，探索和行程共用一份（行程分頁的地圖不套篩選，時間軸空檔「找附近的…」設的篩選是給探索的） */
 export type FilterOwner = 'explore' | 'wish';
 const ownerOf = (mode: AppState['mode']): FilterOwner => (mode === 'wish' ? 'wish' : 'explore');
@@ -129,8 +142,10 @@ export interface AppState {
   legRoute: LegRoute | null;
   /** 行程線的道路路徑查到一批就加一，地圖看到變了就重畫（itineraryRoutes.ts） */
   routesVersion: number;
-  /** compare：比較中的點（地圖標 A、B、C，上方出現比較列） */
-  compare: string[];
+  /** 「AI 挑的」結果集：地圖用 AI 標示，探索只列這幾個點（再篩選是取交集） */
+  aiResult: AiResult | null;
+  /** 出現結果集時收起來的探索篩選、搜尋；清掉結果集時還原 */
+  aiResultStash: { filter: Filter; query: string } | null;
   proposal: Proposal | null;
 }
 
@@ -166,8 +181,9 @@ export interface AppActions {
   /** routes 和 legRoute 都找 */
   updateRoute(id: string, patch: Partial<Omit<MapRoute, 'id'>>): void;
   setLegRoute(route: Omit<LegRoute, 'id'> | null): void;
-  setCompare(ids: string[]): void;
-  /** 清掉 AI 的標示、路線、比較（不動提議、交通的路線、選中） */
+  /** 給 null 是清掉、還原收起來的篩選和搜尋；新的結果集取代舊的，收起來的還是最早那份 */
+  setAiResult(result: AiResult | null): void;
+  /** 清掉 AI 的標示、路線（不動結果集、提議、交通的路線、選中） */
   clearHighlights(): void;
   setProposal(proposal: Proposal | null): void;
 }
@@ -201,7 +217,8 @@ export const initialState: AppState = {
   routes: [],
   legRoute: null,
   routesVersion: 0,
-  compare: [],
+  aiResult: null,
+  aiResultStash: null,
   proposal: null,
 };
 
@@ -284,8 +301,17 @@ export function createAppStore(init: Partial<AppState> = {}) {
     updateRoute: (id, patch) =>
       set((s) => ({ routes: s.routes.map((r) => (r.id === id ? { ...r, ...patch } : r)), legRoute: s.legRoute?.id === id ? { ...s.legRoute, ...patch } : s.legRoute })),
     setLegRoute: (route) => set({ legRoute: route && { ...route, id: `leg${++routeSeq}` } }),
-    setCompare: (ids) => set({ compare: [...new Set(ids)] }),
-    clearHighlights: () => set({ highlights: {}, routes: [], compare: [] }),
+    setAiResult: (aiResult) =>
+      set((s) => {
+        // 結果集屬於探索那頁：探索的篩選這時可能收在 filterStash（現在在想去分頁）
+        const live = ownerOf(s.mode) === 'explore';
+        const current = live ? { filter: s.filter, query: s.query } : s.filterStash.explore;
+        const page = (x: { filter: Filter; query: string }) => (live ? x : { filterStash: { ...s.filterStash, explore: x } });
+        if (aiResult) return { aiResult, aiResultStash: s.aiResultStash ?? current, ...page({ filter: EMPTY_FILTER, query: '' }) };
+        if (!s.aiResult) return s;
+        return { aiResult: null, aiResultStash: null, ...(s.aiResultStash ? page(s.aiResultStash) : {}) };
+      }),
+    clearHighlights: () => set({ highlights: {}, routes: [] }),
     setProposal: (proposal) => set({ proposal }),
   }));
 }

@@ -928,52 +928,6 @@ dl {
   gap: 12px;
 }
 
-.compare-cards {
-  display: flex;
-  gap: 6px;
-  overflow-x: auto;
-  scrollbar-width: none;
-  padding-top: 4px;
-}
-
-.compare-card {
-  flex: 0 0 auto;
-  display: grid;
-  grid-template-columns: auto 1fr;
-  column-gap: 6px;
-  align-items: center;
-  text-align: left;
-  max-width: 220px;
-  min-height: var(--tap);
-  border: 1px solid var(--line);
-  border-radius: 14px;
-  background: var(--soft);
-  padding: 4px 8px;
-}
-
-.compare-letter {
-  grid-row: span 2;
-  width: 24px;
-  height: 24px;
-  border-radius: 50%;
-  background: var(--t-stay);
-  color: var(--paper);
-  font-weight: 700;
-  display: grid;
-  place-items: center;
-}
-
-.compare-name,
-.compare-badges {
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-}
-
-.compare-badges {
-  color: var(--muted);
-}
-
 .route-label {
   background: var(--bg);
   border-radius: 999px;

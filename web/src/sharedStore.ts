@@ -394,6 +394,21 @@ export function createShared(getBackend: () => Backend, data: StoreApi<DataState
     }
   }
 
+  /** 修改資料點的一個欄位（AI 提議、使用者確認後）：直接生效，有紀錄、可以復原（architecture §3.2） */
+  async function createEdit(placeId: string, fieldPath: string, value: unknown, note: string | null): Promise<Result<PlaceEdit>> {
+    const base = data.getState().basePlaces.find((p) => p.id === placeId)?.raw as Record<string, unknown> | undefined;
+    const at = fieldPath.split('.').reduce<unknown>((x, k) => (x && typeof x === 'object' ? (x as Record<string, unknown>)[k] : undefined), base);
+    try {
+      const e = await getBackend().createEdit({ placeId, fieldPath, value, note }, { value: at ?? null, missing: at === undefined });
+      const edits = [...store.getState().edits, e];
+      set({ edits });
+      rebuildPlaces(data, edits, store.getState().userPlaces);
+      return { ok: true, value: e } as Result<PlaceEdit>;
+    } catch (e) {
+      return fail(e);
+    }
+  }
+
   async function revertEdit(id: number): Promise<Result> {
     try {
       const e = await getBackend().revertEdit(id);
@@ -492,6 +507,7 @@ export function createShared(getBackend: () => Backend, data: StoreApi<DataState
     dropCreated,
     withdrawItem,
     setReservation,
+    createEdit,
     revertEdit,
     createUserPlace,
     updateUserPlace,

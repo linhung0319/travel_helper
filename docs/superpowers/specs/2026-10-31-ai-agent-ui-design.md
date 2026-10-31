@@ -141,7 +141,7 @@ type Op =
 
 - **模型不輸出整份行程**：比較不容易出錯，別人先改過也能重新套用。工具內部算出套用後的行程，交給 `showProposal`。
 - 住宿不寫進一般的 `add`：engine 本來就分開。
-- `replace` 在 engine 沒有對應的操作：工具層用刪除加同位置新增組出來。
+- `replace` 在 engine 沒有對應的操作：工具層直接換掉那張卡目前選的點，時間、標籤、備選都留著。
 
 ### 4.5 每次對話自動帶的脈絡
 
@@ -175,9 +175,9 @@ PLAN 原本要每次帶「目前的建議和投票」，改成用 `get_opinions`
 | **帶多個點** | 拖到聊天欄、「＋ 問 AI」累加 | 要新做（T16m-c） |
 | **編輯中** | 照常 | 半屏現在藏起來，要改成打得開 |
 
-**呈現介面**（`web/src/ai/stage.ts`）：`showPlaces`、`showRoute`、`showDay`、`openPlace`、`showProposal`、`clear`。工具只呼叫這個介面，T16m-b、T16m-c 各寫一份實作；T16m-a 提供測試用的假實作。
+**呈現介面**（`web/src/ai/stage.ts`）：`Stage` 給工具用；地圖、結果集、路線兩邊一樣（`createBaseStage`），平台只寫切畫面的部分 `ScreenSurface`（`showList`、`showDay`、`openPlace`、`screenKey`、`screenName`），T16m-b、T16m-c 用 `setScreenSurface` 接上。提議由 `proposals.ts` 處理，平台只負責畫。
 
-**現有的指令**：`showProposal` 改成接受 `ops`（或工具內部轉換）；`commands` 補上切分頁、開詳情；AI 不再呼叫 `highlight` 指令（地圖的 `highlightFeatures` 交通卡還在用，要留著）；`compare` 和比較列由 T16m-a 刪除，e2e 跟著改。
+**現有的指令**：`showProposal` 不變，工具內部把 `ops` 算成行程再交給它；切分頁、開詳情由各平台的 `ScreenSurface` 負責，不放進 `commands`；AI 不再呼叫 `highlight` 指令（地圖的 `highlightFeatures` 交通卡還在用，要留著）；`compare` 和比較列由 T16m-a 刪除，e2e 跟著改。
 
 ## 6. 問 AI
 
@@ -288,9 +288,9 @@ type ChatContext =
 **S11 排一天（主流程，不在編輯中）**：「幫我排第 3 天，加午餐」
 1. `get_day('2027-02-04')`、`get_opinions`（大王埼燈塔：阿公不喜歡、阿姨想去，要講）
 2. `search_places({ near:'shima-izawanomiya', openAt:{ date:'2027-02-04', time:'12:00' }, fit15:['yes'] })`
-3. `suggest_position({ placeId:'shima-michelle', date:'2027-02-04' })`
-4. `check_changes([{ op:'add', date:'2027-02-04', place:'shima-michelle', index:1, tags:['lunch'] }])`
-5. `propose_changes(同上, summary:'2/4：＋義大利麵屋 Michelle 午餐')`
+3. `suggest_position({ placeId:<第 2 步的第一家>, date:'2027-02-04' })`
+4. `check_changes([{ op:'add', date:'2027-02-04', place:<同上>, index:<第 3 步>, tags:['lunch'] }])`
+5. `propose_changes(同上, summary:<第 4 步的摘要>)`
 
 畫面：地圖虛線、時間軸差異、提議卡。
 - 按「採用」→「開始編輯？」→ 確認 → 時間軸更新、有快照、跳「復原」、留在編輯中。
@@ -306,7 +306,7 @@ type ChatContext =
 2. `check_changes`、`propose_changes`（有動到 2/6、2/7、2/11）
 3. 日期列標出有差異的天，切天時時間軸跟著顯示；摘要列出每天的變動
 
-**S14 提議後接著說**：S11 之後「換一家不要義大利麵的」
+**S14 提議後接著說**：S11 之後「換一家不要義大利麵的」（換成第 2 步後面第一家不是義大利麵的）
 - 新的 `propose_changes` 取代舊的；舊訊息的提議卡標「已被新的取代」。
 
 ### 狀態
@@ -345,9 +345,9 @@ type ChatContext =
 
 ## 9. 任務範圍
 
-- **T16m-a 共用**：`web/src/ai/`；§4 的工具、`ModelClient` 和假 AI、聊天的 store、`ChatRepository` 的 localStorage 實作、對話的生命週期（§11）、訊息格式、脈絡晶片（取代 `selection`、`chatDraft`，兩邊的入口先照舊）、提議的 store 和採用流程、`aiResult`、把 `compare` 拿掉；單元測試跑完 §8 的工具部分。**不做版面**。
-- **T16m-b 網頁**：聊天欄、對話清單、快滿和滿了的提示、右欄的結果集、時間軸的提議差異、提議列、問 AI 入口；e2e。
-- **T16m-c 手機**：AI 分頁、半屏、對話清單、快滿和滿了的提示、輪播、提議卡、編輯中的半屏、帶多個點、問 AI 入口、`set_filter` 接到 `feed`；e2e。
+- **T16m-a 共用**：`web/src/ai/`；§4 的工具、`ModelClient` 和假 AI、聊天的 store、`ChatRepository` 的 localStorage 實作、對話的生命週期（§11）、訊息格式、脈絡晶片的資料（`chat.ask`）、提議的 store 和採用流程、`aiResult`、把 `compare` 拿掉；單元測試跑完 §8 的工具部分。**不做版面**：現有的入口（`selection`、`chatDraft`、`chatDemo.ts`、自動送出）在 T16m-a 不動。
+- **T16m-b 網頁**：聊天欄、對話清單、快滿和滿了的提示、右欄的結果集、時間軸的提議差異、提議列、問 AI 入口（改成 `chat.ask`，拿掉自動送出）、在 `App` 啟動 `startAi`、dev 選單切換假 AI 的狀態；e2e。
+- **T16m-c 手機**：AI 分頁、半屏、對話清單、快滿和滿了的提示、輪播、提議卡、編輯中的半屏、帶多個點、問 AI 入口（改成 `chat.ask`，拿掉自動送出）、`set_filter` 接到 `feed`；e2e。兩邊都換完後刪掉 `selection`、`chatDraft`、`chatDemo.ts`。
 
 T16m-b、T16m-c 開工前各自和 👤 討論畫面，看草圖定案，再寫回 interaction-design。
 
@@ -372,8 +372,11 @@ T16m-b、T16m-c 開工前各自和 👤 討論畫面，看草圖定案，再寫�
 interface ChatRepository {                                    // T16m：localStorage；T16：/api/chats
   listConversations(): Promise<ConversationSummary[]>;        // id、標題、更新時間、用量狀態
   loadMessages(conversationId: string): Promise<ChatMessage[]>;
-  createConversation(): Promise<ConversationSummary>;
+  createConversation(title: string): Promise<ConversationSummary>;
+  updateConversation(id: string, patch: Partial<Pick<ConversationSummary, 'title' | 'usage'>>): Promise<void>;
   appendMessages(conversationId: string, messages: ChatMessage[]): Promise<void>;
+  updateMessage(conversationId: string, message: ChatMessage): Promise<void>;   // 卡片按了之後
+  removeTurn(conversationId: string, turn: string): Promise<void>;              // 重試前拿掉沒回完的一輪
 }
 type ContextUsage = 'ok' | 'near' | 'full';                   // ModelClient 回報；假 AI 由 dev 選單決定
 ```
@@ -402,6 +405,6 @@ type ContextUsage = 'ok' | 'near' | 'full';                   // ModelClient 回
 | 回覆到一半的訊息 | 標「沒有回完」，有「重試」 |
 
 **回覆中關閉會中斷**：工具在瀏覽器執行，頁面一關 AI 的工作就停了，不能在背景繼續。所以：
-- **訊息的存法**：一輪回覆走到有結果才算完成；沒完成的只留文字給使用者看，標「沒有回完」。
+- **訊息的存法**：每次工具呼叫和結果一起存；一輪回覆走到 AI 不再呼叫工具才算完成。沒完成的那輪標「沒有回完」，重試時整輪拿掉重跑。
 - **送給模型的歷史不能留下沒結果的工具呼叫**（Claude API 要求每個工具呼叫都有對應的結果），重試前先拿掉那一輪。T16m 用同樣的格式，由測試檢查。
 - **重試不會重複寫入**：會影響別人的改動都要按確認才寫；`vote` 是設定值，重做一次結果相同。

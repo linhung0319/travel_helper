@@ -29,6 +29,10 @@ const routeModules = import.meta.glob<unknown>(['../../../data/timetables/bus/*.
 // 大阪的班距型路線；_transfers.json 是轉乘表，其他是路線
 const urbanModules = import.meta.glob<unknown>('../../../data/timetables/urban/*.json', { import: 'default' });
 
+// AI 查的票券、機場交通（不 eager）
+const passesModule = import.meta.glob<unknown>('../../../data/passes.json', { import: 'default' });
+const accessModules = import.meta.glob<unknown>('../../../data/access/*.json', { import: 'default' });
+
 function timetableLoader(stationId: string) {
   for (const [path, load] of Object.entries(timetableModules)) {
     if (path.endsWith(`/${stationId}.json`)) return load;
@@ -49,6 +53,11 @@ export const localSource: DataSource = {
     const content = (await load()) as StationTimetable;
     // jr-sangu.json 這類路線格式的檔案沒有 directions
     return content && typeof content === 'object' && 'directions' in content ? content : null;
+  },
+  async loadTripInfo(topic) {
+    const load = Object.values(topic === 'passes' ? passesModule : accessModules);
+    const docs = await Promise.all(load.map((x) => x()));
+    return topic === 'passes' ? (docs[0] ?? null) : docs;
   },
   async loadEngineTimetables() {
     const [kintetsu, routes, urbanDocs] = await Promise.all([

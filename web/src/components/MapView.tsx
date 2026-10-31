@@ -206,7 +206,7 @@ export function MapView() {
   const camera = useApp((s) => s.camera);
   const mode = useApp((s) => s.mode);
   const highlights = useApp((s) => s.highlights);
-  const compare = useApp((s) => s.compare);
+  const aiResult = useApp((s) => s.aiResult);
   const routes = useApp((s) => s.routes);
   const legRoute = useApp((s) => s.legRoute);
   const proposal = useApp((s) => s.proposal);
@@ -573,6 +573,12 @@ export function MapView() {
 
     if (import.meta.env.DEV) {
       // Playwright 測試和 Claude in Chrome 檢查畫面用：算出點的像素位置、讀狀態
+      // AI（T16m）：畫面接上之前，先從這裡用（T16m-b、T16m-c 改成在 App 啟動）
+      void import('../appAi.ts').then(async ({ ai, startAi }) => {
+        await startAi();
+        const { fakeSettings } = await import('../appAi.ts');
+        Object.assign((window as unknown as { __th: object }).__th, { ai, aiFake: fakeSettings });
+      });
       (window as unknown as Record<string, unknown>).__th = {
         map,
         appStore,
@@ -779,10 +785,12 @@ export function MapView() {
     if (!loaded) return;
     const map = mapRef.current!;
     const { byId } = dataStore.getState();
-    const rings = legRoute?.stations.length ? { ...highlights, leg: legRoute.stations } : highlights;
+    // 「AI 挑的」結果集：比較時標 A、B、C，否則和 AI 的標示同一種框（地圖上只有一種 AI 標示）
+    const aiRings = aiResult && !aiResult.lettered ? { ...highlights, primary: [...(highlights.primary ?? []), ...aiResult.ids] } : highlights;
+    const rings = legRoute?.stations.length ? { ...aiRings, leg: legRoute.stations } : aiRings;
     (map.getSource(OVERLAY_SOURCES.highlights) as GeoJSONSource).setData(highlightFeatures(rings, byId));
-    (map.getSource(OVERLAY_SOURCES.compare) as GeoJSONSource).setData(compareFeatures(compare, byId));
-  }, [loaded, highlights, compare, legRoute]);
+    (map.getSource(OVERLAY_SOURCES.compare) as GeoJSONSource).setData(compareFeatures(aiResult?.lettered ? aiResult.ids : [], byId));
+  }, [loaded, highlights, aiResult, legRoute]);
 
   // 路線（AI 的 routes 和點開的那段交通）：線畫在圖層，中間的標籤（交通圖示＋8 分）是 DOM 標記
   useEffect(() => {
