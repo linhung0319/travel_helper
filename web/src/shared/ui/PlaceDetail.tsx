@@ -277,8 +277,8 @@ function UserPlaceIntro({ place }: { place: Place }) {
       </p>
       <div className="pd-user-actions">
         {canEditUserPlace(place) && (
-          <Button kind="secondary" size="sm" data-testid="detail-user-edit" onClick={() => addPlaceStore.getState().startEdit(place.id)}>
-            ✎ 修改
+          <Button kind="secondary" size="sm" icon="pen" data-testid="detail-user-edit" onClick={() => addPlaceStore.getState().startEdit(place.id)}>
+            修改
           </Button>
         )}
         {canDeleteUserPlace(place, me) && (

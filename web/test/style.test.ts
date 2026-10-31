@@ -62,10 +62,10 @@ function emojiInJsx(): string[] {
       if (!/\.(ts|tsx)$/.test(e.name) || rel === 'mobile/chatDemo.ts') continue;
       if (!/^(components|mobile|shared|lib)\//.test(rel)) continue;
       const text = readFileSync(p, 'utf8').replace(/\/\*[\s\S]*?\*\//g, (m) => m.replace(/[^\n]/g, ' '));
-      text.split('\n').forEach((line, i) => {
+      text.split(/\r?\n/).forEach((line, i) => {
         const code = line.replace(/(^|[^:])\/\/.*$/, '$1');
-        // © ® ™ 是版權、商標符號（資料出處的字），↗ 是「地圖 ↗」外部連結的文字箭頭（設計 §2.3），都不算圖示
-        if (/(?![©®™↗])\p{Extended_Pictographic}/u.test(code)) out.push(`${rel}:${i + 1}`);
+        // © ® ™ 是版權、商標符號（資料出處的字），↗ 是「地圖 ↗」外部連結的文字箭頭（設計 §2.3），★ 是評分的文字（「Google ★ 4.7」，設計 §7），都不算圖示
+        if (/(?![©®™↗★])\p{Extended_Pictographic}/u.test(code)) out.push(`${rel}:${i + 1}`);
       });
     }
   };
@@ -82,7 +82,7 @@ function glyphButtons(): string[] {
     for (const e of readdirSync(join(root, dir), { withFileTypes: true })) {
       if (!e.isFile() || !/\.tsx$/.test(e.name)) continue;
       const text = readFileSync(join(root, dir, e.name), 'utf8').replace(/\/\*[\s\S]*?\*\//g, (m) => m.replace(/[^\n]/g, ' '));
-      text.split('\n').forEach((line, i) => {
+      text.split(/\r?\n/).forEach((line, i) => {
         if (/[✕➤]/.test(line.replace(/(^|[^:])\/\/.*$/, '$1'))) out.push(`${dir}/${e.name}:${i + 1}`);
       });
     }
