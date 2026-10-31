@@ -13,7 +13,6 @@ import { FIT15_VALUES, VOTE_FILTER_VALUES, filterChips, matchesFilter, type Filt
 import { areasExtent, extentOf, inBbox } from './lib/areas.ts';
 import { stopsOn } from './lib/itinerary.ts';
 import { tripDates, dayLabel } from './lib/trip.ts';
-import { placeBadges } from './lib/badges.ts';
 
 /** 指令的結果：成功時附上 AI 用得到的資訊；失敗時 error 是給人（和 AI）看的一句話，狀態不變 */
 export type CommandResult<T extends object = object> = ({ ok: true } & T) | { ok: false; error: string };
@@ -66,12 +65,12 @@ export interface ViewState {
   /** 打開詳情的點 */
   detail: { id: string; name: string } | null;
   highlights: Partial<Record<HighlightStyle, string[]>>;
-  compare: string[];
+  /** 「AI 挑的」結果集 */
+  aiResult: { title: string; ids: string[] } | null;
   routes: { id: string; from: string | null; to: string | null; mode: TravelMode; minutes: number | null; source: string }[];
   proposal: { dates: string[]; changes: Change[]; summary: string | null } | null;
 }
 
-const MAX_COMPARE = 6;
 /** 子地區只有一個點時放大到這裡 */
 const FOCUS_ZOOM = 15;
 /** 框住好幾個點時最多放大到這裡，避免只有一兩個點時貼太近 */
@@ -230,30 +229,23 @@ export function createCommands(app: StoreApi<AppStore>, data: StoreApi<DataState
     return { ok: true, routeId };
   }
 
-  /** 比較幾個點：地圖標 A、B、C 並框住，上方出現比較列；回傳每個點的重點給 AI */
-  function compare(ids: string[]): CommandResult<{ places: { letter: string; id: string; name: string; type: string; tier: string | null; badges: string[]; summary: string | null }[]; unknown?: string[] }> {
+  /** 「AI 挑的」結果集（T16m 規格 §3.1）：地圖框住這幾個點，探索只列它們；探索原本的篩選、搜尋收起來，clearResult 還原 */
+  function showResult(ids: string[], opts: { title: string; notes?: Record<string, string>; lettered?: boolean }): CommandResult<{ ids: string[]; unknown?: string[] }> {
     const r = resolveIds(ids);
-    if (!r) return { ok: false, error: 'compare：ids 要是資料點 ID 的陣列' };
-    if (r.places.length < 2) return { ok: false, error: `compare：至少要兩個找得到的點${r.unknown.length ? `（找不到 ${r.unknown.join('、')}）` : ''}` };
-    if (r.places.length > MAX_COMPARE) return { ok: false, error: `compare：最多 ${MAX_COMPARE} 個` };
-    app.getState().setCompare(r.places.map((p) => p.id));
+    if (!r) return { ok: false, error: 'showResult：ids 要是資料點 ID 的陣列' };
+    if (!r.places.length) return { ok: false, error: `showResult：找不到資料點 ${r.unknown.join('、')}` };
+    const got = r.places.map((p) => p.id);
+    app.getState().setAiResult({ title: opts.title, ids: got, notes: opts.notes ?? {}, lettered: !!opts.lettered });
     moveTo(r.places.map((p) => p.coords));
-    return {
-      ok: true,
-      places: r.places.map((p, i) => ({
-        letter: String.fromCharCode(65 + i),
-        id: p.id,
-        name: nameOf(p),
-        type: p.type,
-        tier: p.tier,
-        badges: placeBadges(p, 4).map((b) => b.label),
-        summary: p.summary?.text ?? null,
-      })),
-      ...(r.unknown.length ? { unknown: r.unknown } : {}),
-    };
+    return { ok: true, ids: got, ...(r.unknown.length ? { unknown: r.unknown } : {}) };
   }
 
-  /** 清掉標示、路線、比較（篩選、選取、提議不動） */
+  function clearResult(): CommandResult {
+    app.getState().setAiResult(null);
+    return { ok: true };
+  }
+
+  /** 清掉標示、路線（結果集、篩選、選取、提議不動） */
   function clearHighlights(): CommandResult {
     app.getState().clearHighlights();
     return { ok: true };
@@ -390,7 +382,7 @@ export function createCommands(app: StoreApi<AppStore>, data: StoreApi<DataState
       selection: s.selection.map((id) => ({ id, name: name(id), type: byId.get(id)?.type ?? 'unknown' })),
       detail: s.detailId ? { id: s.detailId, name: name(s.detailId) } : null,
       highlights: s.highlights,
-      compare: s.compare,
+      aiResult: s.aiResult && { title: s.aiResult.title, ids: s.aiResult.ids },
       routes: s.routes.map((r) => ({ id: r.id, from: r.from.place, to: r.to.place, mode: r.mode, minutes: r.minutes, source: r.source })),
       proposal: s.proposal && { dates: s.proposal.dates, changes: s.proposal.changes, summary: s.proposal.summary },
     };
@@ -400,7 +392,9 @@ export function createCommands(app: StoreApi<AppStore>, data: StoreApi<DataState
     focus,
     highlight,
     drawRoute,
-    compare,
+    showResult,
+    clearResult,
+    checkFilter,
     clearHighlights,
     selectDay,
     setFilter,

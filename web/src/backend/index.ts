@@ -28,6 +28,7 @@ const offline: Backend = (() => {
     listReservations: async () => [],
     putReservation: no,
     listEdits: async () => [],
+    createEdit: no,
     revertEdit: no,
     listUserPlaces: async () => [],
     createUserPlace: no,

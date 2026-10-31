@@ -203,6 +203,8 @@ export interface Backend {
 
   /** 修改紀錄（含已復原的） */
   listEdits(): Promise<PlaceEdit[]>;
+  /** POST /api/edits；base 只有假後端用（它沒有預設資料），Worker 自己查 */
+  createEdit(input: { placeId: string; fieldPath: string; value: unknown; note?: string | null }, base?: { value: unknown; missing: boolean }): Promise<PlaceEdit>;
   /** 只有改的人自己能復原（403） */
   revertEdit(id: number): Promise<PlaceEdit>;
 

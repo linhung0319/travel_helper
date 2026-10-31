@@ -1,0 +1,131 @@
+// AI 的共用型別（T16m 規格 §4、§5、§6、§7、§11）。訊息的內容照 Claude API 的 messages（含 tool use），T16 換成真的 API 時不用改。
+
+import type { Filter } from '../lib/filter.ts';
+
+export interface TextBlock {
+  type: 'text';
+  text: string;
+}
+export interface ToolUseBlock {
+  type: 'tool_use';
+  id: string;
+  name: string;
+  input: Record<string, unknown>;
+}
+export interface ToolResultBlock {
+  type: 'tool_result';
+  tool_use_id: string;
+  /** 工具結果的 JSON 字串 */
+  content: string;
+  is_error?: boolean;
+}
+export type ContentBlock = TextBlock | ToolUseBlock | ToolResultBlock;
+
+/** 送給模型的一則訊息 */
+export interface ApiMessage {
+  role: 'user' | 'assistant';
+  content: ContentBlock[];
+}
+
+/** 脈絡晶片（規格 §6）：輸入框上面帶給 AI 的東西 */
+export type ChatContext =
+  | { kind: 'place'; id: string; date?: string; itemId?: string }
+  | { kind: 'day'; date: string }
+  | { kind: 'trip' }
+  | { kind: 'list'; source: 'explore' | 'wish'; filter: Filter; query: string; count: number };
+
+/**
+ * 卡片（提議、草稿）和呈現的狀態，跟著訊息存下來。
+ * status：pending 等使用者按；confirmed 已採用／已送出；rejected 不要；superseded 被新的提議取代；stale 提議過期；undone 已復原（想去）
+ * view：呈現有沒有生效：applied 已經在畫面上；deferred 使用者動過畫面，按「看結果」才呈現
+ */
+export interface CardState {
+  status?: 'pending' | 'confirmed' | 'rejected' | 'superseded' | 'stale' | 'undone';
+  view?: 'applied' | 'deferred';
+  /** 草稿卡改過的字 */
+  text?: string;
+  /** 想去：按之前的值（復原用） */
+  previous?: 'like' | 'dislike' | null;
+}
+
+/** 存下來、畫在畫面上的一則訊息 */
+export interface ChatMessage extends ApiMessage {
+  id: string;
+  /** 一輪回覆的 ID：使用者的一句話，加上 AI 接著的所有訊息 */
+  turn: string;
+  createdAt: string;
+  /** 使用者的訊息：送出時帶的脈絡晶片 */
+  contexts?: ChatContext[];
+  /** AI 這輪回覆到這則結束；一輪裡沒有這一則就是「沒有回完」 */
+  end?: boolean;
+  /** tool_use 的 ID → 狀態 */
+  cards?: Record<string, CardState>;
+}
+
+/** 這段對話的用量：快滿、滿了（ModelClient 回報，規格 §11） */
+export type ContextUsage = 'ok' | 'near' | 'full';
+
+export interface ConversationSummary {
+  id: string;
+  title: string;
+  updatedAt: string;
+  usage: ContextUsage;
+}
+
+/** 聊天紀錄的儲存：T16m 是 localStorage（chatRepository.ts）；T16 換成 /api/chats，畫面不改 */
+export interface ChatRepository {
+  /** 目前這個人的對話，新的在前面 */
+  listConversations(): Promise<ConversationSummary[]>;
+  loadMessages(conversationId: string): Promise<ChatMessage[]>;
+  createConversation(title: string): Promise<ConversationSummary>;
+  updateConversation(id: string, patch: Partial<Pick<ConversationSummary, 'title' | 'usage'>>): Promise<void>;
+  appendMessages(conversationId: string, messages: ChatMessage[]): Promise<void>;
+  /** 卡片按了之後更新那則訊息 */
+  updateMessage(conversationId: string, message: ChatMessage): Promise<void>;
+  /** 重試前拿掉沒有回完的那一輪 */
+  removeTurn(conversationId: string, turn: string): Promise<void>;
+}
+
+/** 工具定義（格式同 Claude API 的 tools） */
+export interface ToolSchema {
+  name: string;
+  description: string;
+  input_schema: Record<string, unknown>;
+}
+
+/** 一輪對話的脈絡：只帶小的東西，其他用工具查（規格 §4.5） */
+export interface TurnContext {
+  screen: Record<string, unknown>;
+  /** 脈絡晶片和它們的精簡內容 */
+  chips: Record<string, unknown>[];
+  /** 上次送出之後，使用者對卡片的決定（「不要」要讓 AI 看得到） */
+  decisions: { tool: string; status: string; summary: string }[];
+}
+
+export interface ModelRequest {
+  system: string;
+  tools: ToolSchema[];
+  messages: ApiMessage[];
+  context: TurnContext;
+}
+
+export type ModelEvent =
+  | { type: 'text'; text: string }
+  | { type: 'tool_use'; id: string; name: string; input: Record<string, unknown> }
+  | { type: 'done'; usage: ContextUsage };
+
+export type ModelErrorCode = 'network' | 'quota' | 'other';
+
+/** 模型的錯誤：quota＝超過每天上限 */
+export class ModelError extends Error {
+  readonly code: ModelErrorCode;
+  constructor(code: ModelErrorCode, message: string) {
+    super(message);
+    this.code = code;
+  }
+}
+
+/** 模型包在這層介面後面：T16m 是假 AI（dev-fixtures/ai/），T16 換成呼叫 Worker */
+export interface ModelClient {
+  send(request: ModelRequest, signal: AbortSignal): AsyncIterable<ModelEvent>;
+}

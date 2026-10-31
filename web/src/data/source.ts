@@ -25,4 +25,6 @@ export interface DataSource {
    * 第一次算時間軸時才載入（約 1.3 MB）。T15 的 API 實作從 build:static 的輸出讀。
    */
   loadEngineTimetables(): Promise<EngineTimetables>;
+  /** 票券（passes.json）、機場交通（access/）：AI 的 get_trip_info 用，用到才載入。沒有資料回傳 null */
+  loadTripInfo(topic: 'passes' | 'airport'): Promise<unknown>;
 }

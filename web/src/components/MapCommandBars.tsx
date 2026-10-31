@@ -1,14 +1,10 @@
-// 地圖指令（T12）在地圖上方的說明列：AI 的提議、比較中的點、標示和路線。
+// 地圖指令（T12）在地圖上方的說明列：AI 的提議、標示和路線。
 // 使用者看得出 AI 對地圖做了什麼，也能自己清掉（interaction-design §0「AI 用的條件要看得到」）。
-// 「清掉」只看 AI 的 highlights、routes（比較有自己的「結束比較」）；時間軸點開的交通（legRoute）、選中的點不算（第七輪 §8.1）。
+// 「清掉」只看 AI 的 highlights、routes；時間軸點開的交通（legRoute）、選中的點不算（第七輪 §8.1）。
 
-import { appStore } from '../store.ts';
 import { commands } from '../appCommands.ts';
 import { useApp, useData } from '../hooks.ts';
 import { describeChanges } from '../lib/overlays.ts';
-import { placeBadges } from '../lib/badges.ts';
-import { TierMark } from '../shared/ui/TierMark.tsx';
-import { TypeSeal } from '../shared/ui/TypeLabel.tsx';
 import { Icon } from './Icon.tsx';
 
 function ProposalBar() {
@@ -39,38 +35,6 @@ function ProposalBar() {
   );
 }
 
-function CompareBar() {
-  const compare = useApp((s) => s.compare);
-  const byId = useData((s) => s.byId);
-  if (compare.length === 0) return null;
-  return (
-    <div className="command-bar compare-bar" data-testid="compare-bar">
-      <div className="command-bar-head">
-        <strong>比較</strong>
-        <button type="button" className="link-button" onClick={() => appStore.getState().setCompare([])}>
-          結束比較 <Icon name="close" size={16} />
-        </button>
-      </div>
-      <div className="compare-cards">
-        {compare.map((id, i) => {
-          const p = byId.get(id);
-          if (!p) return null;
-          return (
-            <button key={id} type="button" className="compare-card" onClick={() => appStore.getState().openDetail(id)} data-id={id}>
-              <span className="compare-letter">{String.fromCharCode(65 + i)}</span>
-              <span className="compare-name">
-                <TierMark tier={p.tier} />
-                <TypeSeal type={p.type} size="sm" /> {p.name.zh || p.name.ja}
-              </span>
-              <span className="compare-badges small">{placeBadges(p, 3).map((b) => b.label).join('・') || '—'}</span>
-            </button>
-          );
-        })}
-      </div>
-    </div>
-  );
-}
-
 /** AI 有標示或路線時，給一個清掉的按鈕 */
 function MarksBar() {
   const highlights = useApp((s) => s.highlights);
@@ -95,7 +59,6 @@ export function MapCommandBars() {
   return (
     <div className="command-bars">
       <ProposalBar />
-      <CompareBar />
       <MarksBar />
     </div>
   );
