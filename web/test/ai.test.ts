@@ -3,7 +3,8 @@ import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { placeFit15 } from '../src/lib/filter.ts';
 import { EMPTY_FILTER } from '../src/lib/filter.ts';
-import { splitPlaceTags, toApiMessages, incompleteTurn, titleFrom } from '../src/ai/transcript.ts';
+import { parseRich, splitPlaceTags, toApiMessages, incompleteTurn, titleFrom, turnsOf } from '../src/ai/transcript.ts';
+import { dayDiff } from '../src/lib/proposalDiff.ts';
 import { nameScore } from '../src/ai/search.ts';
 import { applyOps } from '../src/ai/ops.ts';
 import type { ChatMessage } from '../src/ai/types.ts';
@@ -491,11 +492,12 @@ test('S23 重新整理：對話還在；呈現、提議不自動恢復；提議�
   assert.equal(b.chat.incomplete(), null);
   assert.deepEqual(b.chat.present(card), { ok: true });
   assert.ok(b.app.getState().proposal);
-  // 已送出的卡片維持原狀
-  await b.chat.rejectCard(card);
+  // 採用過的卡片維持原狀，不能再看、再按一次
+  assert.deepEqual(await b.chat.confirmCard(card), { ok: true });
   b.close();
   const c = await harness({ storage });
   assert.equal(c.chat.present(card).ok, false);
+  assert.equal((await c.chat.confirmCard(card)).ok, false);
   c.close();
 });
 
@@ -528,11 +530,452 @@ test('S24 回覆中關閉：標沒有回完；送給模型的歷史沒有沒結�
 
 // --- 工具、純函式 ---
 
+// --- 接著改、用說的決定（規格 §3.3、§3.5） ---
+
+const itineraryOf = (h: Awaited<ReturnType<typeof harness>>) => JSON.stringify(h.data.getState().itinerary);
+const cardsOf = (h: Awaited<ReturnType<typeof harness>>) => Object.assign({}, ...h.chat.store.getState().messages.map((m) => m.cards ?? {}));
+const PEARL = 'toba-mikimoto-pearl-island';
+
+test('S25 邊聊邊改：看得到提議後的行程；每版是完整清單；舊卡被取代；行程一直沒變', async () => {
+  const h = await harness();
+  const before = itineraryOf(h);
+  await h.chat.send('幫我排第 3 天，加午餐');
+  const v1 = h.lastUse('propose_changes');
+  await h.chat.send('再加珍珠島，排在午餐後面');
+  const v2 = h.lastUse('propose_changes');
+  // 看的是提議後的行程：有剛剛的午餐，而且標 draftOnly（ID 不能用在 ops）
+  const day = h.lastResult('get_day');
+  assert.equal(day.on, 'draft');
+  const lunch = (v1.input.ops as any[])[0].place;
+  assert.ok(day.entries.some((e: any) => e.placeId === lunch && e.draftOnly));
+  // 完整清單：兩個 add，不是疊加
+  assert.deepEqual((v2.input.ops as any[]).map((o) => o.place), [lunch, PEARL]);
+  await h.chat.send('把珍珠島移到午餐前面');
+  const v3 = h.lastUse('propose_changes');
+  const stops = () => h.app.getState().proposal!.itinerary.days.find((d) => d.date === '2027-02-04')!.items.flatMap((i) => (i.type === 'visit' ? [i.options[i.selected].place] : []));
+  assert.ok(stops().indexOf(PEARL) < stops().indexOf(lunch));
+  const cards = cardsOf(h);
+  assert.equal(cards[v1.id].status, 'superseded');
+  assert.equal(cards[v2.id].status, 'superseded');
+  assert.equal(cards[v3.id].status, 'pending');
+  assert.equal(itineraryOf(h), before);
+  h.close();
+});
+
+test('S25 沒有提議時，on=draft 回明確的錯誤', async () => {
+  const h = await harness();
+  const run = (name: string, input: Record<string, unknown>) => h.chat.tools.find((t) => t.name === name)!.run(input);
+  assert.equal((await run('get_day', { date: '2027-02-04', on: 'draft' })).output.ok, false);
+  assert.equal((await run('suggest_position', { placeId: PEARL, date: '2027-02-04', on: 'draft' })).output.ok, false);
+  h.close();
+});
+
+test('S26 回到上一版：舊版變成目前這版，新版被取代；可以再切回去；按鈕和用說的一樣', async () => {
+  const h = await harness();
+  await h.chat.send('幫我排第 3 天，加午餐');
+  const v1 = h.lastUse('propose_changes').id;
+  await h.chat.send('換一家不要義大利麵的');
+  const v2 = h.lastUse('propose_changes').id;
+  await h.chat.send('剛剛那版比較好');
+  assert.equal(h.chat.proposals.store.getState().active?.cardId, v1);
+  assert.equal(cardsOf(h)[v1].status, 'pending');
+  assert.equal(cardsOf(h)[v2].status, 'superseded');
+  assert.deepEqual(h.chat.present(v2), { ok: true });
+  assert.equal(h.chat.proposals.store.getState().active?.cardId, v2);
+  assert.equal(cardsOf(h)[v1].status, 'superseded');
+  // 同時只有一版在等決定：不要了也能再打開
+  await h.chat.rejectCard(v2);
+  assert.equal(h.chat.proposals.store.getState().active, null);
+  assert.deepEqual(h.chat.present(v2), { ok: true });
+  assert.equal(cardsOf(h)[v2].status, 'pending');
+  h.close();
+});
+
+test('S27 用說的採用：走同一條路；其他版沒有用上、不能再開；按復原後這版可以再開', async () => {
+  const h = await harness();
+  const before = itineraryOf(h);
+  await h.chat.send('幫我排第 3 天，加午餐');
+  const v1 = h.lastUse('propose_changes').id;
+  await h.chat.send('換一家不要義大利麵的');
+  const v2 = h.lastUse('propose_changes').id;
+  await h.chat.send('採用');
+  assert.equal(h.lastResult('decide_card').ok, true);
+  assert.notEqual(itineraryOf(h), before);
+  assert.equal(h.app.getState().planning, true);
+  assert.equal(h.app.getState().proposal, null);
+  assert.equal(cardsOf(h)[v2].status, 'confirmed');
+  assert.equal(cardsOf(h)[v1].status, 'closed');
+  assert.equal(h.chat.present(v1).ok, false);
+  // 復原：行程回去，卡片標已復原，這版可以再打開
+  await h.shared.store.getState().toast!.action!.run();
+  assert.equal(itineraryOf(h), before);
+  assert.equal(cardsOf(h)[v2].status, 'undone');
+  assert.deepEqual(h.chat.present(v2), { ok: true });
+  assert.equal(cardsOf(h)[v2].status, 'pending');
+  h.close();
+});
+
+test('S27 在「開始編輯？」取消：行程沒變，提議留著，AI 知道取消了', async () => {
+  const h = await harness({ confirm: false });
+  const before = itineraryOf(h);
+  await h.chat.send('幫我排第 3 天，加午餐');
+  const card = h.lastUse('propose_changes').id;
+  await h.chat.send('採用');
+  assert.equal(h.lastResult('decide_card').ok, false);
+  assert.match(h.reply(), /先不改/);
+  assert.equal(itineraryOf(h), before);
+  assert.equal(h.chat.proposals.store.getState().active?.cardId, card);
+  assert.equal(cardsOf(h)[card].status, 'pending');
+  h.close();
+});
+
+test('S27 已經在編輯中：不用確認，直接寫入，有復原', async () => {
+  const h = await harness({ confirm: false });
+  await h.chat.send('幫我排第 3 天，加午餐');
+  h.app.getState().selectDay('2027-02-04');
+  h.app.getState().setPlanning(true);
+  await h.chat.send('採用');
+  assert.equal(h.lastResult('decide_card').ok, true);
+  assert.equal(h.shared.store.getState().toast?.text, '已採用提議');
+  h.close();
+});
+
+test('S27 不要了；同一輪出的卡不能決定；沒顯示的提議要先看；留言也能用說的送', async () => {
+  const h = await harness();
+  const before = itineraryOf(h);
+  await h.chat.send('幫我排第 3 天，加午餐');
+  await h.chat.send('不要了');
+  assert.equal(h.app.getState().proposal, null);
+  assert.equal(itineraryOf(h), before);
+  assert.deepEqual(h.chat.store.getState().decisions.at(-1)?.status, 'rejected');
+
+  // 新對話才看得出來：提議還沒顯示就不能採用
+  await h.chat.send('幫我排第 3 天，加午餐');
+  const card = h.lastUse('propose_changes').id;
+  h.chat.proposals.hide();
+  const decide = h.chat.tools.find((t) => t.name === 'decide_card')!;
+  const hidden = await decide.run({ cardId: card, decision: 'confirm' });
+  assert.equal(hidden.output.ok, false);
+  assert.match(String((hidden.output as { error: string }).error), /show_again/);
+  assert.equal(itineraryOf(h), before);
+
+  await h.chat.send('幫我跟大家說媽媽膝蓋不好，珍珠島不要爬太多樓梯');
+  const n = h.shared.store.getState().comments.length;
+  await h.chat.send('送出吧');
+  assert.equal(h.shared.store.getState().comments.length, n + 1);
+  assert.equal(h.cardOf('draft_comment')?.status, 'confirmed');
+  h.close();
+});
+
+test('S27 這一輪才出的卡不能決定：「移到前面然後採用」只出新的一版', async () => {
+  const h = await harness();
+  const before = itineraryOf(h);
+  await h.chat.send('幫我排第 3 天，加午餐');
+  await h.chat.send('再加珍珠島，排在午餐後面');
+  await h.chat.send('把珍珠島移到午餐前面然後採用');
+  assert.equal(itineraryOf(h), before);
+  assert.equal(h.called().includes('decide_card'), false);
+  assert.match(h.reply(), /還沒看過/);
+  // 工具本身也擋：模型直接呼叫時，這一輪的卡回錯誤
+  const model = h.model.send.bind(h.model);
+  let sent = false;
+  h.model.send = async function* (req, signal) {
+    const proposed = req.messages.at(-2)?.content.find((b) => b.type === 'tool_use' && b.name === 'propose_changes');
+    if (proposed?.type === 'tool_use' && !sent) {
+      sent = true;
+      yield { type: 'tool_use', id: 'same-turn', name: 'decide_card', input: { cardId: proposed.id, decision: 'confirm' } };
+      yield { type: 'done', usage: 'ok' };
+      return;
+    }
+    yield* model(req, signal);
+  };
+  await h.chat.send('把珍珠島移到午餐前面');
+  const r = h.chat.store.getState().messages.flatMap((m) => m.content).find((b) => b.type === 'tool_result' && b.tool_use_id === 'same-turn');
+  assert.match(JSON.stringify(r), /這一輪才出現/);
+  assert.equal(itineraryOf(h), before);
+  h.close();
+});
+
+test('過期的提議可以按不要收掉', async () => {
+  const h = await harness();
+  await h.chat.send('2/5 午餐換成大阪屋');
+  const card = h.lastUse('propose_changes').id;
+  const it = h.data.getState().itinerary!;
+  await h.shared.changeItinerary((x) => ({ ...x, days: x.days.map((d) => ({ ...d, items: d.items.filter((i) => i.id !== 'i-7') })) }), '別人刪掉');
+  assert.notEqual(h.data.getState().itinerary, it);
+  assert.equal(cardsOf(h)[card].status, 'stale');
+  assert.deepEqual(await h.chat.rejectCard(card), { ok: true });
+  assert.equal(cardsOf(h)[card].status, 'rejected');
+  h.close();
+});
+
+test('S28 結果集：累加保留理由、拿掉一家照順序、新問題取代、舊的再看一次回得來', async () => {
+  const h = await harness();
+  await h.chat.send('鳥羽能坐 15 人的海鮮餐廳');
+  const first = h.lastUse('show_places').id;
+  const ids = [...h.app.getState().aiResult!.ids];
+  const notes = { ...h.app.getState().aiResult!.notes };
+  await h.chat.send('再多找幾家');
+  const r = h.app.getState().aiResult!;
+  assert.equal(r.ids.length, 5);
+  assert.deepEqual(r.ids.slice(0, 3), ids);
+  assert.equal(r.notes[ids[0]], notes[ids[0]]);
+  await h.chat.send('拿掉第二家');
+  assert.deepEqual(h.app.getState().aiResult!.ids, [r.ids[0], ...r.ids.slice(2)]);
+  await h.chat.send('那伊勢有什麼海鮮');
+  assert.equal(h.app.getState().aiResult!.title, '伊勢的餐廳');
+  assert.deepEqual(h.chat.present(first), { ok: true });
+  assert.deepEqual(h.app.getState().aiResult!.ids, ids);
+  h.close();
+});
+
+test('S29 一次處理多個：想去一顆復原還原每一家；候選一張卡全部加入', async () => {
+  const h = await harness();
+  await h.chat.send('鳥羽能坐 15 人的海鮮餐廳');
+  const ids = [...h.app.getState().aiResult!.ids];
+  const mine = (id: string) => h.shared.store.getState().votes.find((v) => v.placeId === id && v.memberId === h.shared.store.getState().me?.id)?.value ?? null;
+  await h.shared.vote(ids[0], 'dislike');
+  await h.chat.send('這幾家都按想去');
+  assert.deepEqual(ids.map(mine), ['like', 'like', 'like']);
+  await h.chat.undoCard(h.lastUse('vote').id);
+  assert.deepEqual(ids.map(mine), ['dislike', null, null]);
+
+  await h.chat.send('都加到 2/5 候選');
+  const has = (id: string) => h.shared.store.getState().candidates.some((c) => c.placeId === id && c.day === '2027-02-05');
+  assert.equal(ids.some(has), false);
+  assert.deepEqual(await h.chat.confirmCard(h.lastUse('add_candidate').id), { ok: true });
+  assert.equal(ids.every(has), true);
+  h.close();
+});
+
+test('S30 指稱：選中的點、結果集的第二家；晶片優先於畫面；✕ 拿掉正在看時不帶', async () => {
+  const h = await harness();
+  h.app.getState().select('toba-osakaya');
+  await h.chat.send('這家 15 人坐得下嗎？');
+  assert.deepEqual(h.lastUse('get_place').input.ids, ['toba-osakaya']);
+  await h.chat.ask([{ kind: 'place', id: 'toba-hakkai' }]);
+  await h.chat.send('這家 15 人坐得下嗎？');
+  assert.deepEqual(h.lastUse('get_place').input.ids, ['toba-hakkai']);
+  h.chat.removeContext(0);
+
+  await h.chat.send('鳥羽能坐 15 人的海鮮餐廳');
+  const ids = h.app.getState().aiResult!.ids;
+  await h.chat.send('第二家坐得下嗎？');
+  assert.deepEqual(h.lastUse('get_place').input.ids, [ids[1]]);
+
+  h.chat.setScreenOff(true);
+  await h.chat.send('這家 15 人坐得下嗎？');
+  assert.match(h.reply(), /哪一家/);
+  h.close();
+});
+
+test('S31 手動才有的操作：主選、備註、自由時間、撤下回候選（復原也回去）', async () => {
+  const h = await harness();
+  const item = (id: string) => h.data.getState().itinerary!.days.flatMap((d) => d.items).find((i) => i.id === id) as any;
+  const adopt = async () => assert.deepEqual(await h.chat.confirmCard(h.lastUse('propose_changes').id), { ok: true });
+
+  await h.chat.send('2/5 午餐這次改選一榮');
+  await adopt();
+  assert.equal(item('i-7').options[item('i-7').selected].place, 'toba-kazuei');
+
+  await h.chat.send('2/5 午餐備註寫客滿就去漣');
+  await adopt();
+  assert.equal(item('i-7').note, '客滿就去漣');
+
+  const items = () => h.data.getState().itinerary!.days.find((d) => d.date === '2027-02-05')!.items;
+  await h.chat.send('2/5 留 30 分自由時間');
+  await adopt();
+  assert.ok(items().some((i) => i.type === 'free' && i.minutes === 30));
+
+  const cand = () => h.shared.store.getState().candidates.some((c) => c.placeId === 'toba-aquarium' && c.day === '2027-02-05');
+  const scheduled = () => items().some((i) => i.type === 'visit' && i.options.some((o) => o.place === 'toba-aquarium'));
+  assert.equal(scheduled(), true);
+  await h.chat.send('撤下 2/5 的水族館');
+  assert.equal(cand(), false);
+  await adopt();
+  assert.equal(scheduled(), false);
+  assert.equal(cand(), true);
+  await h.shared.store.getState().toast!.action!.run();
+  assert.equal(scheduled(), true);
+  assert.equal(cand(), false);
+  h.close();
+});
+
+test('S31 候選：別人加的要理由，理由變成留言；別人加的不能移；自己加的可以', async () => {
+  const h = await harness();
+  const has = (date: string) => h.shared.store.getState().candidates.some((c) => c.placeId === 'toba-bay-cruise-irukajima' && c.day === date);
+  await h.chat.send('把遊覽船從 2/5 候選拿掉');
+  assert.equal(h.lastResult('remove_candidate').ok, false);
+  await h.chat.send('把遊覽船從 2/5 候選拿掉，因為太冷');
+  assert.equal(has('2027-02-05'), true);
+  assert.deepEqual(await h.chat.confirmCard(h.lastUse('remove_candidate').id), { ok: true });
+  assert.equal(has('2027-02-05'), false);
+  assert.match(h.shared.store.getState().comments.at(-1)!.text, /太冷/);
+
+  await h.chat.send('把遊覽船加到 2/6 的候選');
+  await h.chat.confirmCard(h.lastUse('add_candidate').id);
+  await h.chat.send('把遊覽船的候選從 2/6 移到 2/7');
+  assert.deepEqual(await h.chat.confirmCard(h.lastUse('move_candidate').id), { ok: true });
+  assert.equal(has('2027-02-06'), false);
+  assert.equal(has('2027-02-07'), true);
+  h.close();
+});
+
+test('S32 預約：查得到清單；按了才標已訂；清單沒有的項目回錯誤', async () => {
+  const h = await harness();
+  await h.chat.send('哪幾家還沒訂？');
+  const rows = h.lastResult('get_reservations').rows;
+  assert.ok(rows.length > 0);
+  assert.ok(rows.every((r: any) => r.status === 'pending'));
+  const row = rows[0];
+  const state = () => h.shared.store.getState().reservations.find((r) => r.date === row.date && r.placeId === row.placeId)?.status ?? 'pending';
+  await h.chat.send(`${row.name}訂好了`);
+  assert.equal(state(), 'pending');
+  assert.deepEqual(await h.chat.confirmCard(h.lastUse('set_reservation').id), { ok: true });
+  assert.equal(state(), 'booked');
+  const set = h.chat.tools.find((t) => t.name === 'set_reservation')!;
+  assert.equal((await set.run({ date: '2027-02-05', placeId: 'toba-aquarium-nope', status: 'booked' })).output.ok, false);
+  h.close();
+});
+
+test('S33 切畫面：切分頁；打開面板交給平台', async () => {
+  const h = await harness();
+  await h.chat.send('打開想去');
+  assert.equal(h.app.getState().mode, 'wish');
+  await h.chat.send('給我看討論');
+  assert.equal(h.lastResult('show_screen').ok, true);
+  const screen = h.chat.tools.find((t) => t.name === 'show_screen')!;
+  assert.equal((await screen.run({})).output.ok, false);
+  assert.equal((await screen.run({ tab: 'wish', panel: 'comments' })).output.ok, false);
+  h.close();
+});
+
+test('S34 停止：不呈現；已進來的字留著、標沒有回完；可以重試，也可以直接問新的', async () => {
+  const h = await harness({ delayMs: 5 });
+  const r = h.chat.send('鳥羽能坐 15 人的海鮮餐廳');
+  await new Promise<void>((resolve) => {
+    const off = h.chat.store.subscribe((s) => {
+      if (s.status === 'streaming') {
+        off();
+        resolve();
+      }
+    });
+  });
+  await h.chat.stop();
+  await r;
+  assert.equal(h.chat.store.getState().status, 'idle');
+  assert.equal(h.app.getState().aiResult, null);
+  assert.ok(h.chat.incomplete());
+  assert.ok(h.reply().length > 0);
+  // 不留下沒結果的工具呼叫
+  const uses = h.chat.store.getState().messages.flatMap((m) => m.content.flatMap((b) => (b.type === 'tool_use' ? [b.id] : [])));
+  const results = h.chat.store.getState().messages.flatMap((m) => m.content.flatMap((b) => (b.type === 'tool_result' ? [b.tool_use_id] : [])));
+  assert.deepEqual(uses, results);
+  h.model.settings.delayMs = 0;
+  assert.deepEqual(await h.chat.retry(), { ok: true });
+  assert.equal(h.chat.incomplete(), null);
+  assert.ok(h.app.getState().aiResult);
+  h.close();
+});
+
+test('脈絡：draft 帶完整的操作，cards 帶等決定的卡和提議的每一版', async () => {
+  const h = await harness();
+  const requests: { draft: unknown; cards: { id: string; tool: string; status: string }[] }[] = [];
+  const send = h.model.send.bind(h.model);
+  h.model.send = (req, signal) => {
+    requests.push({ draft: req.context.draft, cards: req.context.cards });
+    return send(req, signal);
+  };
+  await h.chat.send('幫我排第 3 天，加午餐');
+  const v1 = h.lastUse('propose_changes');
+  await h.chat.send('幫我跟大家說媽媽膝蓋不好，珍珠島不要爬太多樓梯');
+  const last = requests.at(-1)!;
+  assert.deepEqual((last.draft as { ops: unknown }).ops, v1.input.ops);
+  assert.deepEqual(last.cards.map((c) => [c.id, c.status]), [[v1.id, 'pending']]);
+  await h.chat.send('換一家不要義大利麵的');
+  assert.deepEqual(requests.at(-1)!.cards.map((c) => c.tool), ['propose_changes', 'draft_comment']);
+  h.close();
+});
+
+test('applyOps：新的操作：選項要在卡上；自由時間要有分鐘；撤下只能是地點的卡', async () => {
+  const h = await harness();
+  const check = h.chat.tools.find((t) => t.name === 'check_changes')!;
+  const run = async (ops: unknown[]) => (await check.run({ ops })).output;
+  assert.equal((await run([{ op: 'selectOption', itemId: 'i-7', place: 'toba-aquarium' }])).ok, false);
+  assert.equal((await run([{ op: 'removeOption', itemId: 'i-7', place: 'toba-sazanami' }])).ok, true);
+  assert.equal((await run([{ op: 'addFree', date: '2027-02-05', minutes: 0 }])).ok, false);
+  assert.equal((await run([{ op: 'withdraw', itemId: 'no-such' }])).ok, false);
+  h.close();
+});
+
+test('parseRich：地點標籤、粗體、條列、連結；只認 http(s)，其他照原文', () => {
+  assert.deepEqual(parseRich('先看 [[place:a]]，**很近**\n\n- 第一\n- [路線](https://x.test/y)\n全員走約 5 分。路線：https://www.google.com/maps/dir/?api=1'), [
+    { kind: 'p', parts: [{ text: '先看 ' }, { place: 'a' }, { text: '，' }, { text: '很近', bold: true }] },
+    { kind: 'list', items: [[{ text: '第一' }], [{ href: 'https://x.test/y', label: '路線' }]] },
+    { kind: 'p', parts: [{ text: '全員走約 5 分。路線：' }, { href: 'https://www.google.com/maps/dir/?api=1', label: 'Google Maps' }] },
+  ]);
+  assert.deepEqual(parseRich('[壞連結](javascript:alert(1)) # 標題'), [{ kind: 'p', parts: [{ text: '[壞連結](javascript:alert(1)) # 標題' }] }]);
+});
+
+test('turnsOf：一輪一組；查資料併起來、快速選項分開；決定、再看一次不畫卡片', async () => {
+  const h = await harness();
+  await h.chat.send('鳥羽能坐 15 人的海鮮餐廳');
+  const read = new Set(h.chat.tools.filter((t) => t.kind === 'read').map((t) => t.name));
+  const [t] = turnsOf(h.chat.store.getState().messages, read);
+  assert.equal(t.user, '鳥羽能坐 15 人的海鮮餐廳');
+  assert.deepEqual(t.reads.map((x) => x.name), ['search_places', 'get_place']);
+  assert.deepEqual(t.uses.map((x) => x.block.name), ['show_places']);
+  assert.equal(t.uses[0].card?.view, 'applied');
+  assert.equal(t.replies.length, 2);
+  assert.equal(t.texts.length, 1);
+  h.close();
+});
+
+test('dayDiff：新增、換掉、拿掉、移到別天', async () => {
+  const h = await harness();
+  const check = h.chat.tools.find((t) => t.name === 'check_changes')!;
+  const before = h.data.getState().itinerary!;
+  const ops = [
+    { op: 'replace', itemId: 'i-7', place: 'toba-osakaya' },
+    { op: 'remove', itemId: 'i-21' },
+    { op: 'move', itemId: 'i-8', date: '2027-02-06' },
+    { op: 'add', date: '2027-02-05', place: 'toba-hakkai', index: 0 },
+  ];
+  const out = (await check.run({ ops })).output as unknown as { changes: never[] };
+  const after = applyOps(before, ops as never, { placeType: (id) => h.data.getState().byId.get(id)?.type, likesOf: () => [], me: null });
+  const d = dayDiff(out.changes, before, after, '2027-02-05');
+  assert.deepEqual(d.ghosts.map((g) => [g.itemId, g.beforeItemId, g.movedTo]), [
+    ['i-21', 'i-6', null],
+    ['i-7', 'i-7', null],
+    ['i-8', null, '2027-02-06'],
+  ]);
+  assert.equal(d.ghosts[1].place, 'toba-sazanami');
+  assert.equal(d.ghosts[2].place, 'toba-mikimoto-pearl-island');
+  assert.ok(d.marked.has('i-7'));
+  assert.equal(d.marked.size, 2);
+  // 被移過去的那天標提議
+  assert.ok(dayDiff(out.changes, before, after, '2027-02-06').marked.has('i-8'));
+  h.close();
+});
+
+test('摘要：換點講前後，其他欄位用看得懂的字，不露內部欄位名', async () => {
+  const h = await harness();
+  const check = h.chat.tools.find((t) => t.name === 'check_changes')!;
+  const summary = async (ops: unknown[]) => ((await check.run({ ops })).output as unknown as { summary: string[] }).summary.join('；');
+  assert.match(await summary([{ op: 'replace', itemId: 'i-7', place: 'toba-osakaya' }]), /^2\/5：.+ → 大阪屋 鳥羽店 \d/);
+  assert.match(await summary([{ op: 'selectOption', itemId: 'i-7', place: 'toba-kazuei' }]), /^2\/5：.+ → .+ \d/);
+  assert.match(await summary([{ op: 'setNote', itemId: 'i-7', note: '客滿' }]), /改了備註/);
+  assert.match(await summary([{ op: 'setTags', itemId: 'i-7', tags: ['dinner'] }]), /改了標籤/);
+  assert.match(await summary([{ op: 'removeOption', itemId: 'i-7', place: 'toba-kazuei' }]), /改了備選/);
+  assert.doesNotMatch(await summary([{ op: 'setStay', itemId: 'i-7', minutes: 30 }]), /stayMinutes|options/);
+  h.close();
+});
+
 test('工具：格式都是 Claude API 的 tools，名字不重複，有規格列的工具', async () => {
   const h = await harness();
   const names = h.chat.tools.map((t) => t.name);
   assert.equal(new Set(names).size, names.length);
-  for (const n of ['search_places', 'get_place', 'get_day', 'get_trip_overview', 'check_changes', 'suggest_position', 'get_route', 'get_timetable', 'get_opinions', 'get_trip_info', 'show_places', 'show_route', 'show_day', 'open_place', 'move_map', 'set_filter', 'clear_view', 'propose_changes', 'draft_comment', 'add_candidate', 'propose_place_edit', 'propose_user_place', 'vote', 'suggest_replies']) {
+  for (const n of ['search_places', 'get_place', 'get_day', 'get_trip_overview', 'check_changes', 'suggest_position', 'get_route', 'get_timetable', 'get_opinions', 'get_trip_info', 'show_places', 'show_route', 'show_day', 'open_place', 'move_map', 'set_filter', 'clear_view', 'propose_changes', 'draft_comment', 'add_candidate', 'propose_place_edit', 'propose_user_place', 'vote', 'suggest_replies', 'get_reservations', 'show_screen', 'show_again', 'remove_candidate', 'move_candidate', 'set_reservation', 'decide_card']) {
     assert.ok(names.includes(n), n);
   }
   for (const t of h.chat.tools) assert.equal((t.input_schema as { type: string }).type, 'object', t.name);

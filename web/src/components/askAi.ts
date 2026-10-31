@@ -1,16 +1,16 @@
-// 把地點帶進「問 AI」（放進選取，T16 的聊天室把選取帶進對話，AI 就知道要問哪幾個點）。
-// 電腦版：探索的卡片、詳情的標題可以拖到左邊的聊天室（有 data-drop-ai 的元素）。
-// 手機版：沒有拖曳，卡片和詳情上按「＋ 問 AI」，聊天分頁顯示帶了幾個點。
+// 把地點帶進「問 AI」。
+// 電腦版：探索的卡片、詳情的標題可以拖到左邊的聊天室（有 data-drop-ai 的元素），放開等於按一次問 AI（累加地點晶片，webAi.ts）。
+// 手機版：還在用選取（T16m-c 換成 chat.ask 後刪掉 askAi）。
 
 import type { DragEvent } from 'react';
 import { appStore } from '../store.ts';
 import { dataStore } from '../dataStore.ts';
 import { commands } from '../appCommands.ts';
 import { shared } from '../appShared.ts';
-import { stopsOn } from '../lib/itinerary.ts';
 import { TYPE_COLORS, TYPE_ICON_NAMES } from '../lib/typeStyle.ts';
 import { iconSvg } from '../lib/icons.ts';
 import { setAddToChat } from '../uiStore.ts';
+import { askPlace } from './webAi.ts';
 
 const MIME = 'application/x-travel-place';
 
@@ -22,20 +22,6 @@ export function askAi(id: string) {
 }
 
 setAddToChat(askAi); // uiStore 的 askAboutPlace 用這個把地點放進選取
-
-/** 行程分頁的「問 AI」：把這天的點全部加進選取（已經在裡面的不動） */
-export function askAiAboutDay(date: string) {
-  const ids = [...new Set(stopsOn(dataStore.getState().itinerary, date).map((s) => s.place))];
-  const fresh = ids.filter((id) => !appStore.getState().selection.includes(id));
-  if (fresh.length && !commands.select(fresh).ok) return;
-  shared.notify(`已帶進聊天（${appStore.getState().selection.length} 個點）`);
-}
-
-/** 「＋ 問 AI」按鈕：再按一次拿掉 */
-export function toggleAskAi(id: string) {
-  if (appStore.getState().selection.includes(id)) commands.unselect(id);
-  else askAi(id);
-}
 
 /** 跟著游標的小標籤（類別色的圓＋名稱） */
 function ghost(id: string): HTMLElement | null {
@@ -95,7 +81,7 @@ export function dropAiProps() {
       e.preventDefault();
       e.currentTarget.classList.remove('drop-over');
       document.body.classList.remove('dragging-place');
-      askAi(e.dataTransfer.getData(MIME));
+      askPlace(e.dataTransfer.getData(MIME));
     },
   };
 }

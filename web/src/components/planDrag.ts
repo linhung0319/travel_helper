@@ -6,7 +6,7 @@
 // - 拖的時候：卡片的複本浮起來跟著指標，要放的位置讓出空位（drop-before／after）；靠近捲動區上下緣自動捲（lib/dragScroll.ts）。
 // - 停在同類型卡片正上方 MERGE_DWELL_MS 才是合併（亮框「放開＝和「X」合併成備選」），只是經過不合併；卡片上下邊緣、最後的放置區＝排在這裡；
 //   放在交通卡上＝排在這段通往的卡片前面（不合併；回住宿那段＝這天的最後）；備卡放到候選區＝放回候選。拖曳開始時，不能合併的卡片變淡（drop-nomerge）。
-// - 網頁：放在左邊的聊天室（data-drop-ai）＝問 AI（askAi.ts；原本的 HTML5 拖曳改成這裡一起處理）。
+// - 網頁：放在左邊的聊天室（data-drop-ai）＝問 AI（webAi.ts；原本的 HTML5 拖曳改成這裡一起處理）。
 // - 「⋯」的撤下（withdrawItem）：整張卡回這天的候選，也在這裡；「調整順序」的合併也用 mergeItemInto。
 // - 合併、換順序、拆開、排進、放回候選、撤下都可以復原（changeItinerary 的 undo）；候選的增減在 settle 裡做完才跳復原提示。放回原位不存檔。
 // 放置區：卡片 data-drop-item（data-drop-type、data-drop-flight）、交通卡 data-drop-leg（data-drop-date）、
@@ -22,7 +22,7 @@ import { findItemRef } from '../lib/planView.ts';
 import { canMerge, dropIntent, dropTarget, dwellMerge, samePosition, type DragSource, type DropAt, type DropIntent, type DropTargetInfo } from '../lib/dropIntent.ts';
 import { autoScrollSpeed } from '../lib/dragScroll.ts';
 import { addPlaceToDay } from './addToDay.ts';
-import { askAi } from './askAi.ts';
+import { askPlace } from './webAi.ts';
 
 const placeName = (id: string | null | undefined) => {
   const p = id ? dataStore.getState().byId.get(id) : null;
@@ -441,7 +441,7 @@ function finish(commit: boolean) {
   endDrag();
   if (s.started) s.opts.onEnd?.();
   if (!commit) return;
-  if (chat && s.opts.askPlace) return askAi(s.opts.askPlace);
+  if (chat && s.opts.askPlace) return askPlace(s.opts.askPlace);
   const r = hit ? resolve(hit, intent) : null;
   if (r) void runDrop(s.src, r);
 }

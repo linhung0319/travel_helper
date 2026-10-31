@@ -144,6 +144,7 @@ export function describeChanges(changes: Change[], nameOf: (id: string) => strin
     } else if (c.kind === 'reordered') push(c.date, '調整順序');
     else if (c.kind === 'lodging') push(c.date, `住宿：${n(c.before)} → ${n(c.after)}`);
     else if (c.kind === 'return-travel') push(c.date, '回住宿的交通');
+    else if (c.before !== undefined) push(c.date, `${n(c.before)} → ${n(c.place)}`);
     else push(c.date, `改了${n(c.place)}`);
   }
   return [...byDate.entries()].sort(([a], [b]) => a.localeCompare(b)).map(([date, parts]) => ({ date, text: `${shortDayLabel(date)}：${parts.join('、')}` }));

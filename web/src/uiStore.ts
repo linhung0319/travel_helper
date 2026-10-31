@@ -5,7 +5,7 @@ import { createStore } from 'zustand/vanilla';
 import { appStore } from './store.ts';
 
 export type DialogState =
-  | { kind: 'planning' }
+  | { kind: 'planning'; note?: string }
   | { kind: 'snapshots' }
   | { kind: 'add'; placeId: string; day?: string }
   | { kind: 'move'; itemId: string }
@@ -44,9 +44,11 @@ export interface UiState {
   timetable: TimetableState | null;
   /** 詳情「問 AI」帶進聊天的草稿（第六輪） */
   chatDraft: ChatDraft | null;
+  /** 網頁：提議顯示時看差異還是原本的行程（看原本時地圖的虛線也收起來） */
+  proposalView: 'diff' | 'original';
 }
 
-export const uiStore = createStore<UiState>()(() => ({ dialog: null, mapPanel: null, idleMinutes: 10, legOpen: null, legEdit: null, expandedItem: null, timetable: null, chatDraft: null }));
+export const uiStore = createStore<UiState>()(() => ({ dialog: null, mapPanel: null, idleMinutes: 10, legOpen: null, legEdit: null, expandedItem: null, timetable: null, chatDraft: null, proposalView: 'diff' }));
 
 // 換天、離開行程分頁：展開的卡收起來。看 store 不看 DayPanel 卸載：轉向回網頁版時（和 dev 的 StrictMode 重跑 effect）才不會把剛帶過來的展開清掉
 let lastView = { day: appStore.getState().day, mode: appStore.getState().mode };

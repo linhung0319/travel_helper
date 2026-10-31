@@ -80,9 +80,13 @@ export interface PlaceRowProps {
   /** 原地展開了（網頁）：below 接在列下面 */
   open?: boolean;
   below?: ReactNode;
+  /** AI 挑的：一行理由（結果集，規格 §3.1） */
+  aiNote?: string;
+  /** AI 比較時的 A、B、C */
+  letter?: string;
 }
 
-export function PlaceRow({ place, status, extra, right, onOpen, testId, rank, hot, rootProps, open = false, below }: PlaceRowProps) {
+export function PlaceRow({ place, status, extra, right, onOpen, testId, rank, hot, rootProps, open = false, below, aiNote, letter }: PlaceRowProps) {
   const areas = useData((s) => s.areas);
   const name = place.name.zh || place.name.ja;
   const members = useShared((s) => s.members);
@@ -112,6 +116,7 @@ export function PlaceRow({ place, status, extra, right, onOpen, testId, rank, ho
       <Square place={place} />
       <span className="pr-text">
         <span className="pr-name">
+          {letter && <b data-testid="ai-letter">{letter}.</b>}
           <span className="pr-name-text">{name}</span>
           {!user && <TierMark tier={place.tier} />}
         </span>
@@ -122,7 +127,13 @@ export function PlaceRow({ place, status, extra, right, onOpen, testId, rank, ho
               {meta && <span className="pr-meta-text">・{meta}</span>}
             </span>
             {user && <span className="pr-user-by">{userSubtitle(place, members)}</span>}
-            <Highlights list={rowHighlights(place, status ?? { candidate: [], scheduled: [] })} />
+            {aiNote ? (
+              <span className="ai-note" data-testid="ai-note">
+                ✦ {aiNote}
+              </span>
+            ) : (
+              <Highlights list={rowHighlights(place, status ?? { candidate: [], scheduled: [] })} />
+            )}
           </>
         )}
       </span>

@@ -200,5 +200,4 @@ test('畫面狀態讀得出來（給 AI 的脈絡）', async ({ page }) => {
   expect(v.visibleCount).toBeGreaterThan(0);
   expect(v.dayStops.map((s: any) => s.place)).toContain('toba-aquarium');
   expect(v.selection[0]).toMatchObject({ id: 'toba-aquarium', type: 'spot' });
-  await expect(page.getByTestId('chat-panel').getByRole('button', { name: /取消選取/ })).toBeVisible();
 });

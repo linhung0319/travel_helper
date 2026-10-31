@@ -27,6 +27,10 @@ export interface ShowRoute {
 
 export type AddPlaceInit = Partial<AddPlaceDraft> & { via: AddedVia };
 
+export type ScreenTab = 'explore' | 'wish' | 'trip';
+export type ScreenPanel = 'comments' | 'reservations' | 'snapshots';
+export type ScreenTarget = { tab: ScreenTab } | { panel: ScreenPanel };
+
 /** 工具呈現時用的介面：回傳 null 是成功，字串是錯誤 */
 export interface Stage {
   showPlaces(input: ShowPlaces): string | null;
@@ -36,6 +40,8 @@ export interface Stage {
   moveMap(target: FocusTarget): string | null;
   setFilter(patch: Partial<Filter>, clear: boolean): string | null;
   addPlace(init: AddPlaceInit): string | null;
+  /** 切分頁、打開面板 */
+  showScreen(target: ScreenTarget): string | null;
   /** 清掉結果集、路線 */
   clear(): void;
   /** 現在的畫面：AI 回覆前後比對，變了就是使用者動過畫面（不搶畫面） */
@@ -48,6 +54,9 @@ export interface Stage {
 export interface ScreenSurface {
   /** 讓使用者看得到結果集（網頁：右欄切到探索；手機：訊息裡的輪播，不用切） */
   showList(): void;
+  showTab(tab: ScreenTab): void;
+  /** 討論、預約、快照 */
+  showPanel(panel: ScreenPanel): void;
   showDay(day: DaySelection): void;
   openPlace(id: string): void;
   /** 地圖的篩選、搜尋以外，這個平台的畫面狀態（手機的分頁、整頁） */
@@ -59,6 +68,8 @@ export interface ScreenSurface {
 export function appSurface(app: StoreApi<AppStore>): ScreenSurface {
   return {
     showList: () => app.getState().setMode('explore'),
+    showTab: (tab) => app.getState().setMode(tab === 'trip' ? 'map' : tab),
+    showPanel: () => {},
     showDay: () => app.getState().setMode('map'),
     openPlace: (id) => app.getState().openDetail(id),
     screenKey: () => {
@@ -111,6 +122,11 @@ export function createBaseStage({ app, commands, surface, startAddPlace }: Stage
     },
     addPlace(init) {
       startAddPlace(init);
+      return null;
+    },
+    showScreen(target) {
+      if ('tab' in target) surface.showTab(target.tab);
+      else surface.showPanel(target.panel);
       return null;
     },
     clear() {

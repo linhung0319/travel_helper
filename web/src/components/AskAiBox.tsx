@@ -1,12 +1,21 @@
-// 詳情裡淡藍色的「✨ 問 AI 關於「名稱」」：建議問題（點了就送）＋自己打的輸入框。
-// 電腦版的詳情面板和手機版的整頁詳情共用，只靠 place、fromTrip 兩個 props，不依賴版面。
-// 送出＝askAboutPlace：寫進 uiStore.chatDraft、把地點放進選取；切到聊天畫面由各平台自己處理。
+// 詳情的問 AI。
+// 手機（AskAiBox，T16m-c 才換）：淡藍框，建議問題（點了就送）＋自己打的輸入框；送出＝askAboutPlace：寫進 uiStore.chatDraft、把地點放進選取。
+// 網頁（AskAiButton，§16.1）：一顆按鈕，建議問題和輸入都到聊天欄。
 
 import { useState, type FormEvent } from 'react';
 import type { Place } from '../data/types.ts';
 import { askAiPrompts } from '../shared/askAiPrompts.ts';
 import { askAboutPlace } from '../uiStore.ts';
 import { Icon } from './Icon.tsx';
+import { askPlace } from './webAi.ts';
+
+export function AskAiButton({ place }: { place: Place }) {
+  return (
+    <button type="button" className="ask-ai-button" onClick={() => askPlace(place.id)} data-testid="detail-ask-ai">
+      <Icon name="spark" size={20} />問 AI 關於「{place.name.zh || place.name.ja}」
+    </button>
+  );
+}
 
 export function AskAiBox({ place, fromTrip }: { place: Place; fromTrip: boolean }) {
   const [value, setValue] = useState('');

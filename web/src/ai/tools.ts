@@ -11,7 +11,7 @@ import { tripDates } from '../lib/trip.ts';
 import { applyOps, type Op } from './ops.ts';
 import { createReadTools, PLACE_SECTIONS, type ToolOutput } from './readTools.ts';
 import { opsContext, placeName, type AiDeps } from './deps.ts';
-import type { AddPlaceInit, ShowPlaces, ShowRoute } from './stage.ts';
+import type { AddPlaceInit, ScreenTarget, ShowPlaces, ShowRoute } from './stage.ts';
 import type { CardState, ToolSchema } from './types.ts';
 
 /** 一輪回覆結束時要呈現的東西：「再看一次」用相同的參數再跑一次 */
@@ -24,12 +24,15 @@ export type Presentation =
   | { kind: 'filter'; patch: Record<string, string[]>; clear: boolean }
   | { kind: 'add-place'; init: AddPlaceInit }
   | { kind: 'clear' }
+  | { kind: 'screen'; target: ScreenTarget }
   | { kind: 'proposal'; ops: Op[]; summary: string };
 
 export interface ToolRun {
   output: ToolOutput;
   /** 這個工具要呈現什麼 */
   present?: Presentation;
+  /** 呈現的是別張卡（show_again）：卡片狀態記在那張 */
+  presentFor?: string;
   /** 工具呼叫的卡片一開始的狀態 */
   card?: CardState;
 }
@@ -48,10 +51,14 @@ const place = { description: '資料點 ID 或 [經度, 緯度]' };
 const DATE = '日期 YYYY-MM-DD（2027-02-02～2027-02-13）';
 const OP = {
   type: 'object',
-  description: `行程的一個操作。op：add（date、place，可給 index、start、stayMinutes、tags、note）、remove（itemId）、move（itemId、date、index）、replace（itemId、place）、addOption（itemId、place）、setStay（itemId、minutes）、setStart（itemId、start）、setTags（itemId、tags）、setTravel（to、spec）、setLodging（date、lodging、meals）。itemId 從 get_day 來；tags 可用 ${TAG_IDS.join('、')}`,
+  description: `行程的一個操作。op：add（date、place，可給 index、start、stayMinutes、tags、note）、remove（itemId）、move（itemId、date、index）、replace（itemId、place）、addOption（itemId、place）、selectOption（itemId、place：切換主選）、removeOption（itemId、place：拿掉一個備選）、setStay（itemId、minutes）、setStart（itemId、start）、setTags（itemId、tags）、setNote（itemId、note）、addFree（date、minutes，可給 index、note：自由時間）、withdraw（itemId：撤下，地點回那天的候選）、setTravel（to、spec）、setLodging（date、lodging、meals）。itemId 從 get_day 來，標 draftOnly 的不能用；tags 可用 ${TAG_IDS.join('、')}`,
   properties: { op: str() },
   required: ['op'],
 };
+
+const RESERVATION_STATUSES = ['pending', 'booked', 'skip'];
+const SCREEN_TABS = ['explore', 'wish', 'trip'];
+const SCREEN_PANELS = ['comments', 'reservations', 'snapshots'];
 
 const fail = (error: string): ToolRun => ({ output: { ok: false, error } });
 
@@ -94,16 +101,16 @@ export function createTools(d: AiDeps): ToolDef[] {
       input_schema: obj({ ids: strs('資料點 ID'), sections: strs('要哪些分區') }, ['ids']),
       run: ro(read.get_place),
     },
-    { name: 'get_day', kind: 'read', description: '引擎算好的一天：每項時間、交通、空檔、警告、候選。回答時間問題一定要用這裡的數字，不要自己算。', input_schema: obj({ date: str(DATE) }, ['date']), run: ro(read.get_day) },
+    { name: 'get_day', kind: 'read', description: '引擎算好的一天：每項時間、交通、空檔、警告、候選。回答時間問題一定要用這裡的數字，不要自己算。on=draft 看的是目前提議後的行程（接著改提議時用）。', input_schema: obj({ date: str(DATE), on: { enum: ['draft'] } }, ['date']), run: ro(read.get_day) },
     { name: 'get_trip_overview', kind: 'read', description: '整趟的摘要：每天去哪、住哪、警告數、候選數。', input_schema: obj({}), run: ro(read.get_trip_overview) },
     {
       name: 'check_changes',
       kind: 'read',
       description: '試算行程的改動：回傳差異和新出現、消失的警告，畫面不動。提議前先用它試。',
       input_schema: obj({ ops: { type: 'array', items: OP } }, ['ops']),
-      run: ro(read.check_changes),
+      run: async (input) => ({ output: read.check_changes(input as never) }),
     },
-    { name: 'suggest_position', kind: 'read', description: '一個點排進某天最順路的位置（index）和排進後的警告。', input_schema: obj({ placeId: str(), date: str(DATE) }, ['placeId', 'date']), run: ro(read.suggest_position) },
+    { name: 'suggest_position', kind: 'read', description: '一個點排進某天最順路的位置（index）和排進後的警告。on=draft 算的是目前提議後的行程（接著改提議時用）。', input_schema: obj({ placeId: str(), date: str(DATE), on: { enum: ['draft'] } }, ['placeId', 'date']), run: ro(read.suggest_position) },
     {
       name: 'get_route',
       kind: 'read',
@@ -126,12 +133,13 @@ export function createTools(d: AiDeps): ToolDef[] {
       run: ro(read.get_opinions),
     },
     { name: 'get_trip_info', kind: 'read', description: '旅程的參考資料。topic：passes（近鐵票券）、airport（關西機場交通）、party（人數）。', input_schema: obj({ topic: str() }, ['topic']), run: ro(read.get_trip_info) },
+    { name: 'get_reservations', kind: 'read', description: '要預約的項目（同預約清單）：哪天、哪個點、狀態（pending 未訂、booked 已訂、skip 不用訂）、備註。住宿的 date 是入住那晚。', input_schema: obj({ date: str(DATE), status: { enum: RESERVATION_STATUSES } }), run: ro(read.get_reservations) },
 
     // --- 改畫面 ---
     {
       name: 'show_places',
       kind: 'stage',
-      description: '給使用者看挑過的一組點：地圖標出來，清單只列這幾個，每個點可以附一行理由。比較時 lettered=true，地圖標 A、B、C，文字用 A、B、C 對應。',
+      description: '給使用者看挑過的一組點：地圖標出來，清單只列這幾個，每個點可以附一行理由。比較時 lettered=true，地圖標 A、B、C，文字用 A、B、C 對應。畫面上永遠只有一組，每次給完整的一組：使用者要多找幾家、拿掉某家，就把調整後的整組和理由再給一次（現在的在 context.screen.aiResult）；問別的事才給全新的一組。',
       input_schema: obj({ ids: strs(), title: str('使用者看得懂的標題'), notes: { type: 'object', additionalProperties: { type: 'string' }, description: '資料點 ID → 一行理由' }, lettered: bool() }, ['ids', 'title']),
       run(input) {
         const i = input as unknown as ShowPlaces;
@@ -217,6 +225,19 @@ export function createTools(d: AiDeps): ToolDef[] {
     },
     { name: 'clear_view', kind: 'stage', description: '清掉畫面上 AI 的結果集、路線。', input_schema: obj({}), run: () => ({ output: { ok: true }, present: { kind: 'clear' }, card: {} }) },
     {
+      name: 'show_screen',
+      kind: 'stage',
+      description: '切分頁（tab：explore 探索、wish 想去、trip 行程）或打開面板（panel：comments 討論、reservations 預約、snapshots 快照）。給其中一個。還原快照要使用者自己在快照視窗按。',
+      input_schema: obj({ tab: { enum: SCREEN_TABS }, panel: { enum: SCREEN_PANELS } }),
+      run(input) {
+        const { tab, panel } = input as { tab?: string; panel?: string };
+        if (!!tab === !!panel) return fail('tab、panel 要給其中一個');
+        if (tab && !SCREEN_TABS.includes(tab)) return fail(`tab 要是 ${SCREEN_TABS.join('、')}`);
+        if (panel && !SCREEN_PANELS.includes(panel)) return fail(`panel 要是 ${SCREEN_PANELS.join('、')}`);
+        return { output: { ok: true }, present: { kind: 'screen', target: (tab ? { tab } : { panel }) as ScreenTarget }, card: {} };
+      },
+    },
+    {
       name: 'suggest_replies',
       kind: 'ui',
       description: '在回覆下面放 2～4 個快速選項（少打字），點了當成使用者的訊息送出。先問一個問題、給幾個選項，不要一次問一長串。',
@@ -224,11 +245,11 @@ export function createTools(d: AiDeps): ToolDef[] {
       run: () => ({ output: { ok: true } }),
     },
 
-    // --- 提議改動：使用者按了才寫 ---
+    // --- 提議改動：使用者決定了才寫（按，或明確用說的，見 decide_card） ---
     {
       name: 'propose_changes',
       kind: 'propose',
-      description: '提議改行程：地圖畫虛線、時間軸顯示差異、聊天室有提議卡。**這還沒有寫進行程**，使用者按「採用」才寫（不在編輯中也可以提議）。用 check_changes 試過再提議，summary 寫「2/4：＋某某午餐」這種摘要。',
+      description: '提議改行程：地圖畫虛線、時間軸顯示差異、聊天室有提議卡。**這還沒有寫進行程**，使用者決定採用才寫（不在編輯中也可以提議）。每次都給**從確定的行程算起的完整操作清單**，取代上一版，不是疊加：接著改時，照 context.draft.ops 調整後整份再給一次。用 check_changes 試過再提議，summary 寫「2/4：＋某某午餐」這種摘要。',
       input_schema: obj({ ops: { type: 'array', items: OP }, summary: str() }, ['ops', 'summary']),
       run(input) {
         const ops = input.ops as Op[];
@@ -259,12 +280,53 @@ export function createTools(d: AiDeps): ToolDef[] {
     {
       name: 'add_candidate',
       kind: 'propose',
-      description: '把一個點加到某天的候選（大家看得到）：使用者按「加入」才加。',
-      input_schema: obj({ placeId: str(), date: str(DATE) }, ['placeId', 'date']),
+      description: '把一個或多個點加到某天的候選（大家看得到）：同一張卡，使用者決定了才一起加。',
+      input_schema: obj({ placeIds: strs(), date: str(DATE) }, ['placeIds', 'date']),
       run(input) {
-        if (!byId().has(input.placeId as string)) return fail(`找不到資料點 ${input.placeId}`);
+        const ids = input.placeIds as string[];
+        if (!Array.isArray(ids) || !ids.length) return fail('placeIds 要是資料點 ID 的陣列');
+        const unknown = ids.filter((id) => !byId().has(id));
+        if (unknown.length) return fail(`找不到資料點 ${unknown.join('、')}`);
         if (!hasDay(input.date)) return fail(`date 要是 ${tripDates()[0]}～${tripDates().at(-1)}`);
-        return { output: { ok: true, status: '已顯示卡片，等使用者按加入' }, card: { status: 'pending' } };
+        return { output: { ok: true, status: '已顯示卡片，等使用者決定' }, card: { status: 'pending' } };
+      },
+    },
+    {
+      name: 'remove_candidate',
+      kind: 'propose',
+      description: '把一個點從某天的候選拿掉：使用者決定了才拿。別人加的一定要給 reason，會變成那個點的一則不採用留言。',
+      input_schema: obj({ placeId: str(), date: str(DATE), reason: str() }, ['placeId', 'date']),
+      run(input) {
+        const s = d.shared.store.getState();
+        const c = s.candidates.find((x) => x.placeId === input.placeId && x.day === input.date);
+        if (!c) return fail('那天的候選沒有這個點');
+        if (c.addedBy !== s.me?.id && !String(input.reason ?? '').trim()) return fail('這是別人加的候選，要請使用者說理由');
+        return { output: { ok: true, status: '已顯示卡片，等使用者決定' }, card: { status: 'pending' } };
+      },
+    },
+    {
+      name: 'move_candidate',
+      kind: 'propose',
+      description: '把使用者自己加的候選移到別天：使用者決定了才移。別人加的不能移。',
+      input_schema: obj({ placeId: str(), date: str(DATE), to: str(DATE) }, ['placeId', 'date', 'to']),
+      run(input) {
+        const s = d.shared.store.getState();
+        const c = s.candidates.find((x) => x.placeId === input.placeId && x.day === input.date);
+        if (!c) return fail('那天的候選沒有這個點');
+        if (c.addedBy !== s.me?.id) return fail('別人加的候選不能移');
+        if (!hasDay(input.to) || input.to === input.date) return fail('to 要是旅程裡的另一天');
+        return { output: { ok: true, status: '已顯示卡片，等使用者決定' }, card: { status: 'pending' } };
+      },
+    },
+    {
+      name: 'set_reservation',
+      kind: 'propose',
+      description: '更新預約清單的一項（大家看得到）：status 是 pending 未訂、booked 已訂、skip 不用訂；使用者決定了才改。date、placeId 照 get_reservations。note 沒給就留原本的。',
+      input_schema: obj({ date: str(DATE), placeId: str(), status: { enum: RESERVATION_STATUSES }, note: str() }, ['date', 'placeId', 'status']),
+      run(input) {
+        if (!RESERVATION_STATUSES.includes(input.status as string)) return fail(`status 要是 ${RESERVATION_STATUSES.join('、')}`);
+        if (!read.reservationRows().some((r) => r.date === input.date && r.placeId === input.placeId)) return fail('預約清單沒有這一項：先用 get_reservations 查（住宿的 date 是入住那晚）');
+        return { output: { ok: true, status: '已顯示卡片，等使用者決定' }, card: { status: 'pending' } };
       },
     },
     {
@@ -303,18 +365,27 @@ export function createTools(d: AiDeps): ToolDef[] {
     {
       name: 'vote',
       kind: 'propose',
-      description: '幫使用者按想去（like）或不喜歡（dislike）；null 是收回。只影響自己，所以直接做，訊息裡有「復原」。',
-      input_schema: obj({ placeId: str(), value: { enum: ['like', 'dislike', null] } }, ['placeId', 'value']),
+      description: '幫使用者按想去（like）或不喜歡（dislike），一次可以多個點；null 是收回。只影響自己，所以直接做，訊息裡有一顆「復原」還原這些點。',
+      input_schema: obj({ placeIds: strs(), value: { enum: ['like', 'dislike', null] } }, ['placeIds', 'value']),
       async run(input) {
-        const id = input.placeId as string;
-        const p = byId().get(id);
-        if (!p) return fail(`找不到資料點 ${id}`);
+        const ids = input.placeIds as string[];
+        if (!Array.isArray(ids) || !ids.length) return fail('placeIds 要是資料點 ID 的陣列');
+        const unknown = ids.filter((id) => !byId().has(id));
+        if (unknown.length) return fail(`找不到資料點 ${unknown.join('、')}`);
         const s = d.shared.store.getState();
-        const previous = s.votes.find((v) => v.placeId === id && v.memberId === s.me?.id)?.value ?? null;
         const value = input.value as VoteValue | null;
-        const r = await d.shared.vote(id, value);
-        if (!r.ok) return fail(r.error);
-        return { output: { ok: true, name: placeName(p), value }, card: { status: 'confirmed', previous } };
+        const previous: NonNullable<CardState['previous']> = {};
+        for (const id of ids) {
+          const before = s.votes.find((v) => v.placeId === id && v.memberId === s.me?.id)?.value ?? null;
+          const r = await d.shared.vote(id, value);
+          if (!r.ok) {
+            // 前面按好的退回去：不留下做一半的結果
+            for (const [done, v] of Object.entries(previous)) await d.shared.vote(done, v);
+            return fail(r.error);
+          }
+          previous[id] = before;
+        }
+        return { output: { ok: true, names: ids.map((id) => placeName(byId().get(id), id)), value }, card: { status: 'confirmed', previous } };
       },
     },
   ];

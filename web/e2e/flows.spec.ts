@@ -144,14 +144,14 @@ test('區域來自 areas.json：篩選的區域選項和 areas.json 一樣', asy
 });
 
 test('問 AI：把探索卡片、詳情標題拖到聊天室', async ({ page }) => {
-  const selection = () => page.evaluate(() => (window as any).__th.appStore.getState().selection as string[]);
+  await page.waitForFunction(() => !!(window as any).__th?.ai);
+  const chips = () => page.evaluate(() => (window as any).__th.ai.store.getState().contexts.map((c: any) => c.id) as string[]);
   await page.getByTestId('side-tab-explore').click();
   const first = page.getByTestId('explore-item').first();
   const id = (await first.getAttribute('data-id'))!;
   await first.dragTo(page.locator('.chat-column'));
-  await expect.poll(selection).toEqual([id]);
-  await expect(page.getByTestId('toast')).toContainText('1 個點');
-  await expect(page.getByTestId('chat-panel').locator('.selection-chips button')).toHaveCount(1);
+  await expect.poll(chips).toEqual([id]);
+  await expect(page.getByTestId('chat-panel').locator('.ac-chips [data-testid="chat-context"]')).toHaveCount(1);
   // 拖曳不算點了一下：沒有開詳情
   await expect(page.getByTestId('detail-panel')).toHaveCount(0);
 
@@ -163,5 +163,5 @@ test('問 AI：把探索卡片、詳情標題拖到聊天室', async ({ page }) 
   await second.click();
   await second.getByTestId('place-open-detail').click();
   await page.getByTestId('detail-panel').locator('.detail-head').dragTo(page.locator('.chat-column'));
-  await expect.poll(selection).toEqual([id, id2]);
+  await expect.poll(chips).toEqual([id, id2]);
 });

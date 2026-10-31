@@ -846,7 +846,7 @@ test('網頁：沒移動就放開＝點；拖到左邊的聊天室＝問 AI', as
   await page.mouse.move(chat.x + chat.width / 2, chat.y + chat.height / 2, { steps: 8 });
   await expect(page.locator('.chat-column')).toHaveClass(/drop-over/);
   await page.mouse.up();
-  await expect(page.getByTestId('toast')).toContainText('已帶進聊天');
+  await expect(page.locator('.ac-chips [data-testid="chat-context"]')).toHaveCount(1);
 });
 
 test('網頁：⋯ → 調整順序，下移可以連按、上移', async ({ page }) => {
@@ -1618,28 +1618,16 @@ test('日期列：週六、週日、假日紅字', async ({ page }) => {
   await expect(page.locator('.side-column [data-day="2027-02-10"]')).not.toHaveClass(/red-day/);
 });
 
-test('詳情的問 AI：點建議問題，聊天欄出現那句', async ({ page }) => {
+test('詳情的問 AI：一顆按鈕，建議問題到聊天欄，不自動送出', async ({ page }) => {
   await ready(page);
   await page.evaluate(() => (window as any).__th.appStore.getState().setMode('explore'));
   await openDetail(page, 'shima-yokoyama');
-  const box = page.getByTestId('ask-ai-box');
-  await expect(box).toBeVisible();
-  expect(await box.getByTestId('ask-ai-prompt').count()).toBeGreaterThanOrEqual(4);
-  await expect(box.getByTestId('ask-ai-prompt').filter({ hasText: '這天排它會不會太趕？' })).toHaveCount(0);
-  const first = box.getByTestId('ask-ai-prompt').first();
-  const q = (await first.textContent())!;
-  await first.click();
-  await expect(page.getByTestId('chat-panel')).toContainText(q);
-  await box.getByTestId('ask-ai-input').fill('自己問的');
-  await box.getByTestId('ask-ai-input').press('Enter');
-  await expect(page.getByTestId('chat-panel')).toContainText('自己問的');
-});
-
-test('從行程打開的詳情多「這天排它會不會太趕？」', async ({ page }) => {
-  await ready(page);
-  await page.getByTestId('side-tab-day').click();
-  await openDetail(page, 'shima-yokoyama');
-  await expect(page.getByTestId('ask-ai-box').getByTestId('ask-ai-prompt').first()).toHaveText('這天排它會不會太趕？');
+  await expect(page.getByTestId('ask-ai-box')).toHaveCount(0);
+  await page.getByTestId('detail-ask-ai').click();
+  await expect(page.getByTestId('chat-context')).toContainText('橫山');
+  expect(await page.getByTestId('chat-suggestion').count()).toBeGreaterThanOrEqual(3);
+  await expect(page.getByTestId('chat-suggestion').filter({ hasText: '這天排它會不會太趕？' })).toHaveCount(0);
+  await expect(page.getByTestId('chat-msg-me')).toHaveCount(0);
 });
 
 test('加到某天（DayGrid12 多選）：已排寫「已排」不能點、已選 N 天會變、取消自己的候選按「好」就拿掉', async ({ page }) => {
@@ -2080,12 +2068,13 @@ test('點時間軸的卡：原地展開，只放介紹（第九輪不放照片�
 
 test('點展開的「問 AI」：把這個點帶進聊天', async ({ page }) => {
   await ready(page);
+  await page.waitForFunction(() => !!(window as any).__th?.ai);
   await showDay(page, '2027-02-03');
   await tlRow(page, 'i-2').getByTestId('trip-card').click();
   await tlRow(page, 'i-2').getByTestId('trip-card-ask').click();
-  const draft = await page.evaluate(() => (window as any).__th.uiStore.getState().chatDraft);
-  expect(draft.placeId).toBe('shima-yokoyama-observatory');
-  expect(draft.from).toBe('trip');
+  await expect(page.getByTestId('chat-suggestion').first()).toHaveText('這天排它會不會太趕？');
+  const chips = await page.evaluate(() => (window as any).__th.ai.store.getState().contexts);
+  expect(chips).toEqual([{ kind: 'place', id: 'shima-yokoyama-observatory', date: '2027-02-03', itemId: 'i-2' }]);
 });
 
 test('第八輪：合併卡兩張斜斜地一前一後（前面往左斜、後面淡底往右斜），只畫兩張', async ({ page }) => {

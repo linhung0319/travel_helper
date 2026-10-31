@@ -4,6 +4,7 @@
 
 import { createStore, type StoreApi } from 'zustand/vanilla';
 import type { Filter } from '../lib/filter.ts';
+import type { ReservationStatus } from '../backend/types.ts';
 import { createProposals, type ProposalDeps, type Proposals } from './proposals.ts';
 import { buildTurnContext } from './context.ts';
 import { promptsFor } from './prompts.ts';
@@ -60,6 +61,8 @@ export interface Chat {
   send(text: string): Promise<ChatResult>;
   /** 重試沒有回完的那輪 */
   retry(): Promise<ChatResult>;
+  /** 停止這輪回覆：已進來的字留著，標「沒有回完」 */
+  stop(): Promise<void>;
   /** 問 AI：帶入晶片和建議問題，不送出；對話滿了自動開新對話 */
   ask(contexts: ChatContext[]): Promise<void>;
   removeContext(index: number): void;
@@ -73,7 +76,7 @@ export interface Chat {
   rejectCard(toolUseId: string): Promise<ChatResult>;
   /** 想去的「復原」 */
   undoCard(toolUseId: string): Promise<ChatResult>;
-  /** 「再看一次」「看結果」「在地圖上看」：用相同的參數再呈現一次 */
+  /** 「再看一次」「看結果」「在地圖上看」「看這版」：用相同的參數再呈現一次；提議用最新的行程重新檢查，變成目前這版 */
   present(toolUseId: string): ChatResult;
   dispose(): void;
 }
@@ -92,7 +95,39 @@ export function createChat(d: CreateChatDeps): Chat {
   const now = d.now ?? (() => new Date().toISOString());
   const newId = d.newId ?? (() => crypto.randomUUID());
   const read = createReadTools(d);
-  const tools = createTools(d);
+  // 這兩個工具要動到聊天本身的卡片，所以在這裡定（規格 §3.3、§3.5）
+  const tools: ToolDef[] = [
+    ...createTools(d),
+    {
+      name: 'show_again',
+      kind: 'stage',
+      description: '同使用者按「再看一次」：把之前的結果集、路線、提議的某一版再呈現一次。提議會用最新的行程重新檢查，變成目前這版。cardId 是那次工具呼叫的 ID（提議的每一版在 context.cards）。',
+      input_schema: { type: 'object', properties: { cardId: { type: 'string' } }, required: ['cardId'], additionalProperties: false },
+      run(input) {
+        const r = reshow(String(input.cardId));
+        return typeof r === 'string' ? { output: { ok: false, error: r } } : { output: { ok: true }, present: r.present, presentFor: r.id, card: {} };
+      },
+    },
+    {
+      name: 'decide_card',
+      kind: 'propose',
+      description: '使用者明確說要採用、送出、確認、加入（confirm）或不要（reject）時，替他按卡片上的按鈕。只能決定 context.cards 裡、上一輪以前就給使用者看過的卡；話不明確（「好像不錯」）要反問，不要決定。提議要正顯示在畫面上才能採用，沒顯示就先 show_again。採用提議時不在編輯中會跳確認，使用者取消就回報錯誤。',
+      input_schema: { type: 'object', properties: { cardId: { type: 'string' }, decision: { enum: ['confirm', 'reject'] } }, required: ['cardId', 'decision'], additionalProperties: false },
+      async run(input) {
+        const id = String(input.cardId);
+        const hit = findBlock(id);
+        if (!hit) return { output: { ok: false, error: '找不到這張卡' } };
+        if (hit.message.turn === openTurn) return { output: { ok: false, error: '這張卡這一輪才出現，請使用者看過再決定' } };
+        if (input.decision === 'reject') {
+          const r = await chat.rejectCard(id);
+          return { output: r.ok ? { ok: true, decided: 'reject' } : r };
+        }
+        if (hit.block.name === 'propose_changes' && proposals.store.getState().active?.cardId !== id) return { output: { ok: false, error: '這版沒有顯示在畫面上，先用 show_again 給使用者看' } };
+        const r = await chat.confirmCard(id);
+        return { output: r.ok ? { ok: true, decided: 'confirm' } : r };
+      },
+    },
+  ];
   const proposals = createProposals({ ...d, onCardChange: (id, status) => void setCard(id, { status }) });
   let abort: AbortController | null = null;
   let openTurn: string | null = null;
@@ -115,6 +150,8 @@ export function createChat(d: CreateChatDeps): Chat {
     await d.repo.updateMessage(id, message);
   }
 
+  const cardStatus = (toolUseId: string) => findBlock(toolUseId)?.message.cards?.[toolUseId]?.status;
+
   /** 工具的呈現：用相同的參數再跑一次（都是同步的、不改資料）。提議直接用參數：要用最新的行程重新檢查，套不上才標過期 */
   function presentationOf(block: ToolUseBlock): Presentation | null {
     if (block.name === 'propose_changes') return { kind: 'proposal', ops: block.input.ops as Op[], summary: String(block.input.summary ?? '') };
@@ -122,6 +159,37 @@ export function createChat(d: CreateChatDeps): Chat {
     if (def?.kind !== 'stage' && block.name !== 'propose_user_place') return null;
     const r = def?.run(block.input);
     return r && !(r instanceof Promise) ? (r.present ?? null) : null;
+  }
+
+  /** 要再看的東西；回傳字串是不能看的原因。show_again 本身的訊息再看一次，就是它指的那張 */
+  function reshow(toolUseId: string): { id: string; present: Presentation } | string {
+    let hit = findBlock(toolUseId);
+    if (hit?.block.name === 'show_again') hit = findBlock(String(hit.block.input.cardId));
+    if (!hit) return '找不到這則訊息';
+    const present = presentationOf(hit.block);
+    if (!present) return '這則訊息沒有可以看的';
+    const status = cardStatus(hit.block.id);
+    // 採用過的不用再看；別版被採用後，這版是從舊的行程算的，再套一次會重複
+    if (present.kind === 'proposal' && (status === 'confirmed' || status === 'closed')) return '這一版已經不能再打開了';
+    return { id: hit.block.id, present };
+  }
+
+  /** 這段對話裡提議的每一版 */
+  const proposalBlocks = () => store.getState().messages.flatMap((m) => m.content.flatMap((b) => (b.type === 'tool_use' && b.name === 'propose_changes' ? [b] : [])));
+
+  /** 還沒決定的卡、提議的每一版（給 AI 的脈絡） */
+  function openCards(): TurnContext['cards'] {
+    return store.getState().messages.flatMap((m) =>
+      m.content.flatMap((b) => {
+        if (b.type !== 'tool_use') return [];
+        const status = m.cards?.[b.id]?.status;
+        if (!status || status === 'confirmed' || status === 'closed') return [];
+        if (status !== 'pending' && b.name !== 'propose_changes') return [];
+        if (b.name === 'vote') return [];
+        const i = b.input;
+        return [{ id: b.id, tool: b.name, status, summary: String(i.summary ?? i.text ?? i.placeId ?? (i.placeIds as string[] | undefined)?.join('、') ?? '') }];
+      }),
+    );
   }
 
   /** 真的改畫面；回傳錯誤訊息 */
@@ -144,10 +212,20 @@ export function createChat(d: CreateChatDeps): Chat {
       case 'clear':
         d.stage.clear();
         return null;
-      case 'proposal':
-        return proposals.show(toolUseId, p.ops, p.summary);
+      case 'screen':
+        return d.stage.showScreen(p.target);
+      case 'proposal': {
+        const err = proposals.show(toolUseId, p.ops, p.summary);
+        if (err) return err;
+        // 同時只有一版在等決定（切換對話回來時，畫面上的已經清掉，proposals 不知道有舊的）
+        for (const b of proposalBlocks()) if (b.id !== toolUseId && cardStatus(b.id) === 'pending') void setCard(b.id, { status: 'superseded' });
+        return null;
+      }
     }
   }
+
+  /** 呈現生效了，記在卡片上；提議重新打開就變回等決定 */
+  const markApplied = (toolUseId: string, p: Presentation) => setCard(toolUseId, { view: 'applied', ...(p.kind === 'proposal' ? { status: 'pending' as const } : {}) });
 
   async function refreshList() {
     store.setState({ conversations: await d.repo.listConversations() });
@@ -164,7 +242,8 @@ export function createChat(d: CreateChatDeps): Chat {
     const controller = new AbortController();
     abort = controller;
     openTurn = turn;
-    const context = buildTurnContext({ d, read, stage: d.stage, chips, screenOff: store.getState().screenOff, decisions: store.getState().decisions });
+    const active = proposals.store.getState().active;
+    const context = buildTurnContext({ d, read, stage: d.stage, chips, screenOff: store.getState().screenOff, decisions: store.getState().decisions, draft: active && { cardId: active.cardId, ops: active.ops, summary: active.summary }, cards: openCards() });
     store.setState({ decisions: [], error: null });
     const queued: { id: string; present: Presentation }[] = [];
     let partial = '';
@@ -209,12 +288,14 @@ export function createChat(d: CreateChatDeps): Chat {
             const r = await def.run(use.input);
             output = r.output;
             if (r.card) cards[use.id] = r.card;
-            if (r.present) queued.push({ id: use.id, present: r.present });
+            if (r.present) queued.push({ id: r.presentFor ?? use.id, present: r.present });
           } catch (e) {
             output = { ok: false, error: e instanceof Error ? e.message : String(e) };
           }
           results.push({ type: 'tool_result', tool_use_id: use.id, content: JSON.stringify(output), ...(output.ok ? {} : { is_error: true }) });
         }
+        // 工具跑到一半按了停止：這輪結束，不留下工具呼叫
+        if (controller.signal.aborted) return;
         // 工具呼叫和結果一起存：紀錄裡不會有沒結果的工具呼叫（規格 §11）
         partial = '';
         store.setState({ streamingText: '' });
@@ -232,7 +313,7 @@ export function createChat(d: CreateChatDeps): Chat {
         }
         const err = apply(q.id, q.present);
         if (err && q.present.kind === 'proposal') await setCard(q.id, { status: 'stale' });
-        else await setCard(q.id, { view: 'applied' });
+        else await markApplied(q.id, q.present);
       }
     } catch (e) {
       if (controller.signal.aborted) return;
@@ -291,6 +372,43 @@ export function createChat(d: CreateChatDeps): Chat {
     return hit.message.cards?.[toolUseId]?.status === 'pending' ? hit : null;
   };
 
+  /** 確認卡片：每種卡真的要做的事 */
+  async function runCard(block: ToolUseBlock, text?: string): Promise<{ ok: true } | { ok: false; error: string }> {
+    const i = block.input;
+    const s = d.shared.store.getState();
+    const candidate = () => s.candidates.find((x) => x.placeId === i.placeId && x.day === i.date);
+    switch (block.name) {
+      case 'draft_comment':
+        return d.shared.comment(i.target as string, (text ?? (i.text as string | undefined) ?? '').trim());
+      case 'add_candidate':
+        for (const id of i.placeIds as string[]) {
+          const r = await d.shared.addCandidate(id, i.date as string);
+          if (!r.ok) return r;
+        }
+        return { ok: true };
+      case 'remove_candidate': {
+        const c = candidate();
+        return c ? d.shared.removeCandidate(c.id, i.reason as string | undefined) : { ok: true };
+      }
+      case 'move_candidate': {
+        const c = candidate();
+        if (!c) return { ok: false, error: '那天的候選已經沒有這個點了' };
+        // 同手動：先加到那天，成功了才拿掉這天的
+        const added = await d.shared.addCandidate(c.placeId, i.to as string);
+        return added.ok ? d.shared.removeCandidate(c.id, undefined, true) : added;
+      }
+      case 'set_reservation': {
+        const row = read.reservationRows().find((r) => r.date === i.date && r.placeId === i.placeId);
+        if (!row) return { ok: false, error: '預約清單已經沒有這一項了' };
+        return d.shared.setReservation({ date: row.key.date, placeId: row.key.placeId, status: i.status as ReservationStatus, note: i.note !== undefined ? (i.note as string) : row.note, nights: row.nights });
+      }
+      case 'propose_place_edit':
+        return d.shared.createEdit(i.placeId as string, i.fieldPath as string, i.value, (i.note as string | undefined) ?? null);
+      default:
+        return { ok: false, error: `${block.name} 沒有確認這個動作` };
+    }
+  }
+
   // 換人（dev 的假登入、T16 重新登入）：換成那個人自己的對話
   let lastMember = d.shared.store.getState().me?.id;
   const unsubMember = d.shared.store.subscribe((s) => {
@@ -316,6 +434,12 @@ export function createChat(d: CreateChatDeps): Chat {
       if (isFull()) return { ok: false, error: '這段對話滿了，請開新對話' };
       store.setState({ suggestions: [] });
       return startTurn(t, store.getState().contexts);
+    },
+    async stop() {
+      const { streamingText, currentId } = store.getState();
+      const turn = openTurn;
+      stop();
+      if (streamingText && currentId && turn) await append(currentId, [{ id: newId(), turn, createdAt: now(), role: 'assistant', content: [{ type: 'text', text: streamingText }] }]);
     },
     async retry() {
       const s = store.getState();
@@ -343,11 +467,11 @@ export function createChat(d: CreateChatDeps): Chat {
       const hit = pendingCard(toolUseId);
       if (!hit || busy.has(toolUseId)) return { ok: false, error: '這張卡已經處理過了' };
       const { block } = hit;
-      const i = block.input as Record<string, unknown>;
+      const i = block.input;
       busy.add(toolUseId);
       try {
         if (block.name === 'propose_changes') {
-          const outcome = await proposals.adopt(i.ops as Op[], String(i.summary ?? ''));
+          const outcome = await proposals.adopt(toolUseId, i.ops as Op[], String(i.summary ?? ''));
           if (outcome === 'cancelled') return { ok: false, error: '取消了' };
           if (outcome === 'failed') return { ok: false, error: '沒有存成功' };
           if (outcome === 'stale') {
@@ -356,15 +480,12 @@ export function createChat(d: CreateChatDeps): Chat {
             return { ok: false, error: '行程變了，這個提議已經過期' };
           }
           await setCard(toolUseId, { status: 'confirmed' });
+          // 其他版是從舊的行程算的，再套一次會重複（規格 §3.3）
+          for (const b of proposalBlocks()) if (b.id !== toolUseId && cardStatus(b.id) !== 'confirmed') await setCard(b.id, { status: 'closed' });
           decide(block, 'confirmed');
           return { ok: true };
         }
-        let r: { ok: true } | { ok: false; error: string };
-        const text = opts.text ?? (i.text as string | undefined);
-        if (block.name === 'draft_comment') r = await d.shared.comment(i.target as string, (text ?? '').trim());
-        else if (block.name === 'add_candidate') r = await d.shared.addCandidate(i.placeId as string, i.date as string);
-        else if (block.name === 'propose_place_edit') r = await d.shared.createEdit(i.placeId as string, i.fieldPath as string, i.value, (i.note as string | undefined) ?? null);
-        else return { ok: false, error: `${block.name} 沒有確認這個動作` };
+        const r = await runCard(block, opts.text);
         if (!r.ok) return r;
         await setCard(toolUseId, { status: 'confirmed', ...(opts.text != null ? { text: opts.text } : {}) });
         decide(block, 'confirmed');
@@ -374,7 +495,8 @@ export function createChat(d: CreateChatDeps): Chat {
       }
     },
     async rejectCard(toolUseId) {
-      const hit = pendingCard(toolUseId);
+      // 過期的提議也可以按「不要」收掉
+      const hit = pendingCard(toolUseId) ?? (cardStatus(toolUseId) === 'stale' ? findBlock(toolUseId) : null);
       if (!hit) return { ok: false, error: '這張卡已經處理過了' };
       proposals.reject(toolUseId);
       await setCard(toolUseId, { status: 'rejected' });
@@ -385,24 +507,22 @@ export function createChat(d: CreateChatDeps): Chat {
       const hit = findBlock(toolUseId);
       const card = hit?.message.cards?.[toolUseId];
       if (!hit || hit.block.name !== 'vote' || card?.status !== 'confirmed') return { ok: false, error: '沒有要復原的' };
-      const r = await d.shared.vote(hit.block.input.placeId as string, card.previous ?? null);
-      if (!r.ok) return r;
+      for (const [id, value] of Object.entries(card.previous ?? {})) {
+        const r = await d.shared.vote(id, value);
+        if (!r.ok) return r;
+      }
       await setCard(toolUseId, { status: 'undone' });
       return { ok: true };
     },
     present(toolUseId) {
-      const hit = findBlock(toolUseId);
-      if (!hit) return { ok: false, error: '找不到這則訊息' };
-      const p = presentationOf(hit.block);
-      if (!p) return { ok: false, error: '這則訊息沒有可以看的' };
-      const status = hit.message.cards?.[toolUseId]?.status;
-      if (p.kind === 'proposal' && status !== 'pending') return { ok: false, error: '這個提議已經處理過了' };
-      const err = apply(toolUseId, p);
+      const r = reshow(toolUseId);
+      if (typeof r === 'string') return { ok: false, error: r };
+      const err = apply(r.id, r.present);
       if (err) {
-        if (p.kind === 'proposal') void setCard(toolUseId, { status: 'stale' });
+        if (r.present.kind === 'proposal') void setCard(r.id, { status: 'stale' });
         return { ok: false, error: err };
       }
-      void setCard(toolUseId, { view: 'applied' });
+      void markApplied(r.id, r.present);
       return { ok: true };
     },
     dispose() {

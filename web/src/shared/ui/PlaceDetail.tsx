@@ -412,7 +412,7 @@ export function PlaceDetail({ place, surface, from, initialTab, onDay, askAi = t
               </button>
             )}
             {user && <UserPlaceIntro place={place} />}
-            <PlaceIntro place={place} fromTrip={fromTrip} onDay={onDay} askAi={askAi} />
+            <PlaceIntro place={place} fromTrip={fromTrip} onDay={onDay} askAi={askAi && desktop ? 'button' : askAi} />
             {!user && <PlaceFacts place={place} />}
           </>
         )}

@@ -8,6 +8,8 @@ import {
   findItem,
   moveItemToDay,
   removeItem,
+  removeOption,
+  selectOption,
   setLegTravel,
   setLodging,
   setStart,
@@ -27,7 +29,12 @@ export type Op =
   | { op: 'setStart'; itemId: string; start: string | null }
   | { op: 'setTags'; itemId: string; tags: TagId[] }
   | { op: 'setTravel'; to: LegTarget; spec: TravelSpec | null }
-  | { op: 'setLodging'; date: string; lodging: string | null; meals?: LodgingMeals | null };
+  | { op: 'setLodging'; date: string; lodging: string | null; meals?: LodgingMeals | null }
+  | { op: 'selectOption'; itemId: string; place: string }
+  | { op: 'removeOption'; itemId: string; place: string }
+  | { op: 'setNote'; itemId: string; note: string | null }
+  | { op: 'addFree'; date: string; minutes: number; index?: number; note?: string }
+  | { op: 'withdraw'; itemId: string };
 
 /** 操作要查的東西 */
 export interface OpsContext {
@@ -53,8 +60,39 @@ function checkTags(tags: unknown): TagId[] {
   return tags as TagId[];
 }
 
+/** 這張卡的選項裡，這個點是第幾個 */
+function optionIndex(it: Itinerary, itemId: string, place: string): number {
+  const loc = findItem(it, itemId);
+  if (!loc) throw new ItineraryError(`沒有項目 ${itemId}`);
+  if (loc.item.type !== 'visit') throw new ItineraryError('只有地點的卡片有備選');
+  const i = loc.item.options.findIndex((x) => x.place === place);
+  if (i < 0) throw new ItineraryError(`${itemId} 的選項裡沒有 ${place}`);
+  return i;
+}
+
 function applyOp(it: Itinerary, o: Op, ctx: OpsContext): Itinerary {
   switch (o.op) {
+    case 'selectOption':
+      return selectOption(it, o.itemId, optionIndex(it, o.itemId, o.place));
+    case 'removeOption':
+      return removeOption(it, o.itemId, optionIndex(it, o.itemId, o.place));
+    case 'setNote': {
+      const next = structuredClone(it);
+      const loc = findItem(next, o.itemId);
+      if (!loc) throw new ItineraryError(`沒有項目 ${o.itemId}`);
+      loc.item.note = o.note;
+      return next;
+    }
+    case 'addFree': {
+      if (!Number.isFinite(o.minutes) || o.minutes <= 0) throw new ItineraryError('自由時間要填分鐘數');
+      return addItem(it, o.date, { type: 'free', minutes: o.minutes, ...(o.note ? { note: o.note } : {}) }, o.index == null ? {} : { index: o.index }).itinerary;
+    }
+    case 'withdraw': {
+      const loc = findItem(it, o.itemId);
+      if (!loc) throw new ItineraryError(`沒有項目 ${o.itemId}`);
+      if (loc.item.type !== 'visit') throw new ItineraryError('只有地點的卡片能撤下');
+      return removeItem(it, o.itemId);
+    }
     case 'add': {
       const place = checkPlace(o.place, ctx, 'visit');
       const likes = ctx.likesOf(place);
@@ -114,4 +152,15 @@ export function applyOps(it: Itinerary, ops: Op[], ctx: OpsContext): Itinerary {
 /** 這些操作排進去的點：採用時那天的候選要拿掉 */
 export function placedByOps(ops: Op[]): { place: string; date: string }[] {
   return ops.flatMap((o) => (o.op === 'add' ? [{ place: o.place, date: o.date }] : []));
+}
+
+/** 這些操作撤下的卡（all 是套用之前的行程）：採用時地點回那天的候選（同手動的撤下，所有選項都回去） */
+export function withdrawnByOps(it: Itinerary, ops: Op[]): { place: string; date: string }[] {
+  return ops.flatMap((o) => {
+    if (o.op !== 'withdraw') return [];
+    const loc = findItem(it, o.itemId);
+    if (loc?.item.type !== 'visit') return [];
+    const date = it.days[loc.dayIndex]?.date;
+    return date ? [...new Set(loc.item.options.map((x) => x.place))].map((place) => ({ place, date })) : [];
+  });
 }

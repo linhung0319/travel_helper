@@ -31,9 +31,13 @@ export interface PlaceTileProps {
   /** 原地展開了（網頁）：below 接在文字下面 */
   open?: boolean;
   below?: ReactNode;
+  /** AI 挑的：一行理由（結果集，規格 §3.1） */
+  aiNote?: string;
+  /** AI 比較時的 A、B、C */
+  letter?: string;
 }
 
-export function PlaceTile({ place, status, onOpen, extra, testId, rank, hot, rootProps, open = false, below }: PlaceTileProps) {
+export function PlaceTile({ place, status, onOpen, extra, testId, rank, hot, rootProps, open = false, below, aiNote, letter }: PlaceTileProps) {
   const areas = useData((s) => s.areas);
   const name = place.name.zh || place.name.ja;
   const members = useShared((s) => s.members);
@@ -71,6 +75,11 @@ export function PlaceTile({ place, status, onOpen, extra, testId, rank, hot, roo
         <span className="pt-type">
           <TypeLabel type={place.type} onPhoto />
         </span>
+        {letter && (
+          <span className="ai-letter" data-testid="ai-letter">
+            {letter}
+          </span>
+        )}
         <span className="pt-heart">
           <VoteHeart placeId={place.id} />
         </span>
@@ -83,6 +92,11 @@ export function PlaceTile({ place, status, onOpen, extra, testId, rank, hot, roo
         {user && <span className="pt-user-by">{userSubtitle(place, members)}</span>}
         {meta && <span className="pt-meta">{meta}</span>}
         <Highlights list={rowHighlights(place, status ?? { candidate: [], scheduled: [] })} />
+        {aiNote && (
+          <span className="ai-note" data-testid="ai-note">
+            ✦ {aiNote}
+          </span>
+        )}
         {extra}
       </span>
       {open && below}

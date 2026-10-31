@@ -8,7 +8,8 @@ import { useRef, type CSSProperties } from 'react';
 import { setLodging, setTags, type LodgingMeals, type TagId } from '@travel-helper/engine';
 import type { ItineraryDay, VisitItem } from '@travel-helper/engine/types';
 import { shared } from '../appShared.ts';
-import { useApp, useData, useShared } from '../hooks.ts';
+import { useData, useShared } from '../hooks.ts';
+import { useEditing } from './timelineEdit.ts';
 import { findItemRef } from '../lib/planView.ts';
 import { shortDayLabel } from '../lib/trip.ts';
 import { LODGING_PLANS, TAG_GROUPS, TAG_LABELS, tagGroupsFor, toggleLodgingPlan, toggleTag, type TagCardKind, type TagGroup } from '../shared/tagOptions.ts';
@@ -82,7 +83,7 @@ export function TagPopover({ visit, kind, anchor, onClose }: { visit: VisitItem;
 
 /** 名稱下面的標籤那一排。open／onOpenChange 由卡片管（⋯ 選單也會打開） */
 export function ItemTags({ visit, kind, date, placeId, open, onOpenChange }: { visit: VisitItem; kind: TagCardKind; date: string; placeId: string | null; open: boolean; onOpenChange: (open: boolean) => void }) {
-  const planning = useApp((s) => s.planning);
+  const planning = useEditing();
   const anchor = useRef<HTMLSpanElement>(null);
   const tags = (visit.tags ?? []).map((t) => (
     <span key={t} className="badge item-tag" style={groupStyle(groupOf(t))} data-tag={t} data-testid="item-tag">

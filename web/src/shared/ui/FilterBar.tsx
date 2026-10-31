@@ -33,12 +33,18 @@ export interface FilterModel {
   pick(key: FilterKey, value: string): void;
   /** 全部清除 */
   clear(): void;
+  /** AI 挑的（網頁的探索，規格 §3.1）：只有一組；total 是 AI 挑了幾家，sortByAi 是目前照 AI 的順序 */
+  ai?: { title: string; total: number; sortByAi: boolean; setSortByAi(on: boolean): void; onClear(): void };
+  /** 清單的問 AI（網頁，§16.1） */
+  onAsk?(): void;
 }
 
 /** 排序：晶片，點了出現選單（不用 <select>，兩邊樣子一樣） */
 function SortMenu({ model }: { model: FilterModel }) {
   const [open, setOpen] = useState(false);
   const ref = useRef<HTMLSpanElement>(null);
+  const byAi = !!model.ai?.sortByAi;
+  const label = byAi ? 'AI 的順序' : EXPLORE_SORT_LABELS[model.sort];
   useEffect(() => {
     if (!open) return;
     const onDown = (e: PointerEvent) => {
@@ -59,27 +65,44 @@ function SortMenu({ model }: { model: FilterModel }) {
   }, [open]);
   return (
     <span className="fb-sort" ref={ref}>
-      <Chip on={open} onClick={() => setOpen(!open)} testId="sort-open" title={`排序：${EXPLORE_SORT_LABELS[model.sort]}`}>
+      <Chip on={open} onClick={() => setOpen(!open)} testId="sort-open" title={`排序：${label}`}>
         <Icon name="sort" size={20} />
-        <span className="fb-label">{EXPLORE_SORT_LABELS[model.sort]}</span>
+        <span className="fb-label">{label}</span>
       </Chip>
       {open && (
         <div className="fb-menu" role="menu" aria-label="排序" data-testid="sort-menu">
+          {model.ai && (
+            <button
+              type="button"
+              role="menuitemradio"
+              aria-checked={byAi}
+              className={`fb-menu-item ${byAi ? 'on' : ''}`}
+              onClick={() => {
+                model.ai?.setSortByAi(true);
+                setOpen(false);
+              }}
+              data-testid="sort-opt-ai"
+            >
+              AI 的順序
+              {byAi && <Icon name="check" size={20} />}
+            </button>
+          )}
           {EXPLORE_SORTS.map((s) => (
             <button
               key={s}
               type="button"
               role="menuitemradio"
-              aria-checked={s === model.sort}
-              className={`fb-menu-item ${s === model.sort ? 'on' : ''}`}
+              aria-checked={!byAi && s === model.sort}
+              className={`fb-menu-item ${!byAi && s === model.sort ? 'on' : ''}`}
               onClick={() => {
                 model.setSort(s);
+                model.ai?.setSortByAi(false);
                 setOpen(false);
               }}
               data-testid={`sort-opt-${s}`}
             >
               {EXPLORE_SORT_LABELS[s]}
-              {s === model.sort && <Icon name="check" size={20} />}
+              {!byAi && s === model.sort && <Icon name="check" size={20} />}
             </button>
           ))}
         </div>
@@ -157,7 +180,26 @@ export function FilterBar({ source, surface, model, count, typeRow }: { source: 
         <SortMenu model={model} />
         {desktop && <ViewToggle model={model} />}
       </div>
+      {desktop && model.ai && (
+        <div className="fb-ai">
+          <button type="button" className="fb-ai-chip" aria-label="清掉 AI 挑的" onClick={model.ai.onClear} data-testid="ai-result-chip">
+            ✦ {count === model.ai.total ? `AI 挑的 · ${model.ai.total} 家` : `AI 挑的 ${model.ai.total} 家中的 ${count} 家`}
+            <Icon name="close" size={16} />
+          </button>
+          <span className="fb-ai-title" data-testid="ai-result-title">
+            {model.ai.title}
+          </span>
+        </div>
+      )}
       {desktop && applied}
+      {desktop && model.onAsk && (
+        <div className="fb-listhead">
+          <span data-testid="list-count">{count} 個地點</span>
+          <button type="button" className="fb-ask" onClick={model.onAsk} data-testid="list-ask-ai">
+            <Icon name="spark" size={16} /> 問 AI
+          </button>
+        </div>
+      )}
     </div>
   );
   const sheet = open && <FilterSheet source={source} surface={surface} model={model} count={count} host={desktop ? (rootRef.current?.closest('.side-panel') as HTMLElement | null) : null} onClose={() => setOpen(false)} />;
