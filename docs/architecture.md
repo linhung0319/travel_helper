@@ -28,7 +28,7 @@
 ### 為什麼全部用 TypeScript
 - **T14 行程引擎要在好幾個地方跑同一份程式**：
   - 瀏覽器（T15、T16）：改行程、顯示 AI 的提議時要馬上重算時間軸、空檔、衝突。
-  - AI 工具（T16）：`update_itinerary` 要透過引擎檢查。
+  - AI 工具（T16）：`check_changes`、`propose_changes` 要透過引擎檢查。
   - 測試：Node 的 `node --test`。
 
   用別的語言寫，前端就要再寫一份，或每次重算都打 API。
@@ -112,7 +112,7 @@ travel_helper/
 - **分界**：`App.tsx` 只在最外層用 `useIsDesktop()`（`DESKTOP_QUERY`，1100px，第八輪前是 900px）分一次：電腦畫 `web/src/components/` 的三欄，手機畫 `web/src/mobile/MobileApp.tsx`。轉向跨過界線時，`layoutSwitch.ts` 把開著的詳情、展開的卡、分頁帶到另一個版面（第八輪）。手機版元件全在 `mobile/`，自己的 `mobile.css`、`chat.css`（class 用 `m-` 開頭）。舊手機版的拉起面板（`sheet`、`setSheet`）第六輪已經從 `store.ts` 刪掉；手機版的分頁、面板高度、整頁都在 `mobileStore`。
 - **殼**：底部 5 個分頁（探索、想去、行程、AI、我）。`MapView` 一直掛著，不在行程分頁時用 CSS（`visibility: hidden`）藏起來，不卸載（T12 的地圖指令、e2e 的 `ready()` 都要用到）。詳情、討論、預約是蓋在最上面的整頁，一次只有一層。
 - **`mobile/mobileStore.ts`**（vanilla Zustand，dev 時掛在 `window.__thMobile`）：手機版自己的畫面狀態，不放進 `store.ts`——現在的分頁（`tab`）、行程面板的高度（`tripSnap`：low／mid／high，`setSnap`）、行程選到的卡（`focused`，`focusItem` 設定）、編輯中打開的「⋯」動作面板（`actions`）、整頁詳情（`detail`）和討論／預約（`page`）、行程頁的半屏聊天（`chatSheet`）、探索的篩選、想去的設定。打開整頁（詳情或討論／預約）時推一筆 history：手機的返回鍵關掉那一頁，頁面的「‹」也是退回那一筆（兩種整頁互換時共用一筆）。
-- **`uiStore.chatDraft`**：「問 AI」的草稿 `{ seq, text, placeId, date, from }`，由 `askAboutPlace(placeId, text, from)` 寫入並把地點放進選取；畫面怎麼切由各平台的 store 監聽 `seq`：電腦版放進左邊的聊天欄；手機版從行程打開的詳情回行程、打開半屏聊天，其他地方打開的跳到 AI 分頁。AI 的內容先是 `mobile/chatDemo.ts` 的假訊息，T16m 接上。
+- **`uiStore.chatDraft`**：「問 AI」的草稿 `{ seq, text, placeId, date, from }`，由 `askAboutPlace(placeId, text, from)` 寫入並把地點放進選取；畫面怎麼切由各平台的 store 監聽 `seq`：電腦版放進左邊的聊天欄；手機版從行程打開的詳情回行程、打開半屏聊天，其他地方打開的跳到 AI 分頁。AI 的內容先是 `mobile/chatDemo.ts` 的假訊息；T16m-a 把 `chatDraft`、`selection` 換成脈絡晶片，也不再自動送出。
 - **`web/src/shared/`**：網頁版、手機版共用的純函式，有單元測試（`web/test/shared.test.ts` 等）：`tagOptions`（標籤的分組、顏色、互斥的 `toggleTag`）、`cardActions`（卡片的「⋯」動作清單，兩邊用同一份）、`askAiPrompts`（問 AI 的建議問題）、`placeLists`（探索、想去的清單計算的 hook，兩邊共用）、`exportJson`（下載行程 JSON）。引擎的 visit 用 `tags` 取代 `meal`、`dining`（CONVENTIONS §3）。
 
 ### 共用元件、圖示、地圖鏡頭（T15m 第七輪，2026-10-26）
@@ -127,6 +127,8 @@ travel_helper/
 ### 地圖指令（T12，2026-10-22）
 
 **UI 和 AI（T16）都透過 `web/src/commands.ts` 的指令操作地圖**，改的是上面同一份 store；網站共用的一份是 `web/src/appCommands.ts` 的 `commands`（dev server 下也在 `window.__th.commands`）。每個指令都檢查輸入，回傳 `{ ok: true, … }` 或 `{ ok: false, error }`（失敗時狀態不變），AI 可以讀結果決定下一步。
+
+> **2026-10-31**：AI 不直接呼叫這些指令，而是呼叫 §6 的工具；工具透過各平台的呈現介面再用到指令。`compare` 和比較列由 T16m-a 拿掉，改用「AI 挑的」結果集（`aiResult`）；AI 也不再用 `highlight`。見 `docs/superpowers/specs/2026-10-31-ai-agent-ui-design.md`。
 
 | 指令 | 做什麼 |
 |---|---|
@@ -177,7 +179,7 @@ T15m 先用假後端把畫面做出來，T15 只換後端的實作，畫面的�
 - **預約筆記的假後端**（第三輪）：`Backend.listReservations()`、`putReservation({ date, placeId, status, note?, nights? })`；`Reservation` 是 `{ date, placeId, status: 'pending' | 'booked' | 'skip', note, nights, updatedBy, updatedAt }`，同一個 `(date, placeId)` 只有一筆（住宿的 `date` 是入住那晚），`putReservation` 整筆取代，`updatedBy`、`updatedAt` 由後端填。`sync` 多回一個 `reservations` 時間戳，`sharedStore.reservations` 跟著換；`putReservation` 在畫面上先改、失敗退回。整趟的留言是 `target` 為 `TRIP_TARGET`（`'trip'`）的留言，和地點（ID）、某一天（`day:<日期>`）並列。假後端的 localStorage key 升到 `travel-helper:mockBackend:v4`。狀態和時間軸 tag 的對應在 `lib/reservations.ts`（住宿換了入住日、項目移到別天就回到未訂位）。
 - **地圖**（`lib/overlays.ts` 的 `itineraryFeatures`、`placeBadges`）：每天顏色的路線（直線，照時間軸的順序）、選了某一天時那天的交通標籤、時段備案的備選是那天顏色的空心圈、每個點的 ❤️ 數（放大到 10 以上）。
 - **電腦版三欄**（T15m 版面調整，參考 puma.taipei/heart-island）：`App.tsx` 的 `DesktopLayout` 是聊天室｜地圖｜右欄。地圖上只有縮放鈕（第七輪拿掉浮動列）；日期列（`shared/ui/DayStrip`）和頭像選單（討論、預約、下載、切換使用者）在右欄頂端；右欄是 `SidePanel.tsx`，分頁用 `appStore.mode`，從探索、想去打開的詳情在右欄，從行程打開的浮在地圖上（`DetailFloat`）。探索是 `Explore.tsx`（清單邏輯在 `lib/explore.ts`），類型寫在 `filter.types`，從探索切回行程時拿掉（`showItinerary`）。點地圖上的點走 `showInExplore`：切到探索、換成那一類（目前的篩選看不到它就只留類型和地區）、捲到卡片；再點卡片才開詳情。詳情是兩邊共用的 `shared/ui/PlaceDetail`（簡介、位置、評論、留言四個分頁；第八輪前「位置」叫「交通」）。探索上方的類型分頁是 sticky；篩選捲出畫面時（看 `.side-body` 的捲動）收合成一列摘要，疊在清單上、不推動清單。
-- **問 AI**（`components/askAi.ts`）：電腦版的探索卡片、詳情標題用 HTML 的拖放（`dragPlaceProps`，資料型別 `application/x-travel-place`），放到聊天欄（`dropAiProps`，`data-drop-ai`）就 `commands.select(id)` 並提示「已帶進聊天」。電腦版詳情標題的「＋ 問 AI」（`toggleAskAi`）也是加進選取。手機沒有拖曳：整頁詳情的「✨ 問 AI」（`AskAiBox`）送出後，從行程打開的回到行程開半屏聊天、其他的跳到 AI 分頁（`mobileStore`；編輯中從行程打開的詳情不畫問 AI，因為編輯中半屏聊天藏起來）。地圖上的點不做拖曳（和拖地圖衝突）。T16 的聊天室把選取帶進對話，AI 就知道要問哪幾個點（例如兩點的距離）；之後再加輸入框的 `@` 選地點、自動帶入正在看的點。
+- **問 AI**（`components/askAi.ts`）：電腦版的探索卡片、詳情標題用 HTML 的拖放（`dragPlaceProps`，資料型別 `application/x-travel-place`），放到聊天欄（`dropAiProps`，`data-drop-ai`）就 `commands.select(id)` 並提示「已帶進聊天」。電腦版詳情標題的「＋ 問 AI」（`toggleAskAi`）也是加進選取。手機沒有拖曳：整頁詳情的「✨ 問 AI」（`AskAiBox`）送出後，從行程打開的回到行程開半屏聊天、其他的跳到 AI 分頁（`mobileStore`；編輯中從行程打開的詳情不畫問 AI，因為編輯中半屏聊天藏起來）。地圖上的點不做拖曳（和拖地圖衝突）。T16m 起按「問 AI」只帶入脈絡晶片和建議問題，由使用者選或自己打才送出；探索、想去要加按鈕，拖曳不是唯一的方法（規格 §6）。之後再加輸入框的 `@` 選地點。
 - **地圖的點**（`MapView.tsx`、`mapIcons.ts`）：照片標記拿掉，改成 Google Maps 那種類別圖標（canvas 畫的 `icon-<type>`），`ICON_ZOOM`（12）以下是小點。選了某一天，那天的點換成編號圓（`places-mark`），編號由 `lib/planView.ts` 的 `stopMarks` 照時間軸算（住宿「宿」、機場「機」、其他 1、2、3…；分組先編各組再編會合點），時間軸用同一份；那天的路線加方向箭頭（`itinerary-arrow`，分組時每組各一條）。選中的點（`detailId`，或探索分頁的 `exploreTarget`）畫成水滴圖釘（`pin-<type>`、`places-pin` 圖層），原本的圖標藏起來；只有小卡片時才用圓框（`places-focus`）。點的時候查 `places-circle`、`places-icon`、`places-mark`、`places-pin` 四層。探索分頁時不因為「不在那天」變淡。
 - **`data-day` 只給天數分頁用**（e2e 靠它找分頁）；其他選日子的按鈕用 `data-pick-day`、`data-overview-day`。
 
@@ -509,9 +511,13 @@ npm run db:import -- --apply data/cache/import/<時間>-all.json   # 2. 👤 看
 
 - **地圖指令本來就一定要在瀏覽器執行**（`focus`、`showProposal`）；查資料、跑引擎也在瀏覽器，因為資料和引擎已經在那裡了。
 - Worker 只負責轉發，不用載入資料、不用跑引擎，所以不會碰到 Worker 的 CPU 時間限制。
-- **AI 是主要的操作方式**（interaction-design §0、§11），所以工具要涵蓋：查資料（中文名、日文名、別名模糊搜尋）、篩選與地圖指令、寫建議的草稿、提議行程的修改、提議資料點的修改、自己加地點。
-- **兩種模式給不同的工具**：一般模式只能產生建議的草稿和資料點修改的提議；編輯中才有改行程的工具。每種改動都要使用者按確認才寫進去。
-- **聊天紀錄**存在 D1（`chat_messages`），只有自己看得到；同一個人換裝置（手機、電腦）也接得上。AI 對話時帶上目前的建議和投票，避免重複提一樣的東西。
+- **工具一份，呈現兩份**（2026-10-31，完整規格見 `docs/superpowers/specs/2026-10-31-ai-agent-ui-design.md`）：工具不分平台，分三類：
+  - **查資料**（畫面不動）：`search_places`、`get_place`、`get_day`、`get_trip_overview`、`check_changes`、`suggest_position`、`get_route`、`get_timetable`、`get_opinions`、`get_trip_info`。
+  - **改畫面**（不動資料）：`show_places`、`show_route`、`show_day`、`open_place`、`move_map`、`set_filter`、`clear_view`；透過 `web/src/ai/stage.ts` 的介面，網頁和手機各有一份實作。
+  - **提議改動**（使用者按了才寫）：`propose_changes`、`draft_comment`、`add_candidate`、`propose_place_edit`、`propose_user_place`。只有 `vote` 直接做，並提供復原。
+- **不在編輯中也能提議**：提議只在自己的畫面，不寫進後端；按「採用」時才確認「開始編輯？」，再用引擎的操作寫進行程（先存快照）。提議存的是操作清單，別人先改過時重新檢查，套不上就標成過期。
+- **每次對話只自動帶小的脈絡**：旅客條件（系統提示）、畫面狀態、脈絡晶片。資料點（約 3.2 MB）、投票、留言都用工具查。
+- **聊天紀錄**存在 D1（`chat_messages`），只有自己看得到；同一個人換裝置（手機、電腦）也接得上。每人可以有多段對話（`conversation_id`），不做共用聊天室；對話滿了要開新對話。回覆中關閉頁面，AI 的工作就停了（工具在瀏覽器執行），重新打開時標「沒有回完」、可以重試，送給模型的歷史不留沒結果的工具呼叫（規格 §11）。
 - **防止用掉太多額度**：只有登入的人能呼叫；Worker 依使用者記錄用量（`ai_usage`），設每天的上限。15 人都會用，T16 開工時先估算費用，再定上限和模型。
 
 ---
@@ -529,7 +535,7 @@ npm run db:import -- --apply data/cache/import/<時間>-all.json   # 2. 👤 看
 | T14 行程引擎 | §1（`packages/engine`）、§3.6（確定的行程，要能處理自己加的點、已下架的點）、§3.8（時間） |
 | T15m 行程與建議 UI 原型 | §2（假後端照 §4「資料 API」的形狀）、§3.2（修改紀錄的顯示）、§3.6 |
 | T15 行程與建議：串接 | §2（改用 API）、§3.8（同步） |
-| T16m AI Agent UI 原型 | §6（工具在瀏覽器執行；模型先用對話腳本代替） |
+| T16m-a、T16m-b、T16m-c AI Agent UI 原型 | §6（工具在瀏覽器執行；模型先用對話腳本代替） |
 | T16 AI Agent：串接 | §6 |
 | T20 匯出給 Claude app | 匯出合併後的資料（預設資料加修改），不是 git 裡的 JSON |
 
