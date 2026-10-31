@@ -917,6 +917,8 @@ export function MapView() {
     const vis = visibleRect(map, mapObstructions());
     const w = map.getContainer().clientWidth;
     const h = map.getContainer().clientHeight;
+    // 版面剛變（手機切回行程時地圖縮到面板上面）：這個 effect 比 ResizeObserver 早，先對齊大小，不然動畫會照舊的大小停在看不到的地方
+    if (map.getCanvas().clientWidth !== w || map.getCanvas().clientHeight !== h) map.resize();
     // 可見範圍的中心離地圖中心多遠（flyTo、easeTo 的 offset）
     const offset: [number, number] = [(vis.left + vis.right) / 2 - w / 2, (vis.top + vis.bottom) / 2 - h / 2];
     if (camera.reveal) {
