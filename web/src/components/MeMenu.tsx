@@ -5,6 +5,7 @@
 
 import { useEffect, useRef, useState } from 'react';
 import { shared } from '../appShared.ts';
+import { fakeSettings } from '../appAi.ts';
 import { mockBackend } from '../backend/index.ts';
 import { dayTarget, TRIP_TARGET } from '../backend/types.ts';
 import { appStore } from '../store.ts';
@@ -16,6 +17,45 @@ import { openMapPanel } from '../uiStore.ts';
 import { setIdleMinutes } from './Planning.tsx';
 import { initial } from './common.tsx';
 import { Icon } from './Icon.tsx';
+
+/** 開發用：假 AI 的狀態（規格 §7、S18、S22、S24）。正式 build 的 fakeSettings 是 null，不會畫 */
+function FakeAiTools() {
+  const [, redraw] = useState(0);
+  if (!fakeSettings) return null;
+  const s = fakeSettings;
+  const seg = <T extends string | number | null>(label: string, value: T, options: [T, string][], set: (v: T) => void, id: string) => (
+    <div className="dev-seg-row">
+      <span>{label}</span>
+      <span className="dev-seg" role="group" aria-label={label}>
+        {options.map(([v, text]) => (
+          <button
+            key={String(v)}
+            type="button"
+            className={v === value ? 'on' : ''}
+            aria-pressed={v === value}
+            data-testid={`dev-ai-${id}-${String(v)}`}
+            onClick={() => {
+              set(v);
+              redraw((n) => n + 1);
+            }}
+          >
+            {text}
+          </button>
+        ))}
+      </span>
+    </div>
+  );
+  return (
+    <div className="dev-ai" data-testid="dev-ai">
+      <hr />
+      <p className="muted small">假 AI（開發用）</p>
+      {seg('回覆速度', s.delayMs, [[0, '馬上'], [300, '一般'], [1500, '慢']], (v) => (s.delayMs = v), 'speed')}
+      {seg('對話用量', s.usage, [['ok', '正常'], ['near', '快滿'], ['full', '滿了']], (v) => (s.usage = v), 'usage')}
+      {seg('下一次', s.next, [[null, '正常'], ['error', '出錯'], ['quota', '上限'], ['hang', '卡住']], (v) => (s.next = v), 'next')}
+      <p className="muted small">對話用量在下一句回完時生效。</p>
+    </div>
+  );
+}
 
 /** 開發用：切換使用者、假裝別人改了行程、重設假資料、編輯閒置時間；done 是做完後要收起選單 */
 function DevTools({ done }: { done: () => void }) {
@@ -71,6 +111,7 @@ function DevTools({ done }: { done: () => void }) {
         </select>
         後結束編輯
       </label>
+      <FakeAiTools />
     </>
   );
 }

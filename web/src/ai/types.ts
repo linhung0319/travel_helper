@@ -36,16 +36,17 @@ export type ChatContext =
 
 /**
  * 卡片（提議、草稿）和呈現的狀態，跟著訊息存下來。
- * status：pending 等使用者按；confirmed 已採用／已送出；rejected 不要；superseded 被新的提議取代；stale 提議過期；undone 已復原（想去）
+ * status：pending 等使用者決定；confirmed 已採用／已送出；rejected 不要；superseded 被新的一版取代；stale 提議過期；undone 已復原（想去、提議）；closed 別版被採用了，這版沒有用上
+ * 提議的 superseded、rejected、stale、undone 都能重新打開，變回 pending（規格 §3.3）
  * view：呈現有沒有生效：applied 已經在畫面上；deferred 使用者動過畫面，按「看結果」才呈現
  */
 export interface CardState {
-  status?: 'pending' | 'confirmed' | 'rejected' | 'superseded' | 'stale' | 'undone';
+  status?: 'pending' | 'confirmed' | 'rejected' | 'superseded' | 'stale' | 'undone' | 'closed';
   view?: 'applied' | 'deferred';
   /** 草稿卡改過的字 */
   text?: string;
-  /** 想去：按之前的值（復原用） */
-  previous?: 'like' | 'dislike' | null;
+  /** 想去：每個點按之前的值（復原用） */
+  previous?: Record<string, 'like' | 'dislike' | null>;
 }
 
 /** 存下來、畫在畫面上的一則訊息 */
@@ -100,6 +101,10 @@ export interface TurnContext {
   chips: Record<string, unknown>[];
   /** 上次送出之後，使用者對卡片的決定（「不要」要讓 AI 看得到） */
   decisions: { tool: string; status: string; summary: string }[];
+  /** 目前顯示的提議（規格 §3.3）：要接著改就照這份 ops 給新的一版 */
+  draft: { cardId: string; ops: unknown[]; summary: string } | null;
+  /** 還沒決定的卡、提議的每一版：decide_card、show_again 用 */
+  cards: { id: string; tool: string; status: string; summary: string }[];
 }
 
 export interface ModelRequest {

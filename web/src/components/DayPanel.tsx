@@ -2,10 +2,13 @@
 // 選「整趟」是整趟的總覽（每天排了什麼、幾個候選、警告）；選了某一天，編輯中最上面是藍條（說明、快照、完成），接著一列「← 整趟、日期 ‹ ›、問 AI、編輯」，
 // 下面是摘要列（⚠ 點了展開提醒）、比例橫條（時間條）、時間軸（資料卡是類型的淡底色，起點、終點的住宿也是卡片）、這天的候選（想去「加到某天」的點）。討論、預約、下載在右欄右上的頭像選單（MeMenu.tsx 的 AccountMenu）。
 
-import { useState } from 'react';
+import { useMemo, useState } from 'react';
+import { planItinerary } from '@travel-helper/engine';
 import { commands } from '../appCommands.ts';
 import { useApp, useData, usePlan, useShared, useUi } from '../hooks.ts';
-import { dayPlanOf } from '../planStore.ts';
+import { currentEngineData, dayPlanOf, engineConfig } from '../planStore.ts';
+import { describeChanges } from '../lib/overlays.ts';
+import { dayDiff } from '../lib/proposalDiff.ts';
 import { dayLabel, isRedDay, tripDates } from '../lib/trip.ts';
 import { dayAreaName, dayTitle } from '../lib/dayTitle.ts';
 import { stopsOn } from '../lib/itinerary.ts';
@@ -16,7 +19,7 @@ import { DayCandidates } from './Wishlist.tsx';
 import { dayCandidates } from '../lib/wishlist.ts';
 import { EditHint, PlanningBar, PlanningToggle } from './Planning.tsx';
 import { MemberName, stamp } from './common.tsx';
-import { askAiAboutDay } from './askAi.ts';
+import { askDay, askTrip } from './webAi.ts';
 import { showList } from './SidePanel.tsx';
 import { Icon } from './Icon.tsx';
 
@@ -30,10 +33,19 @@ function Overview() {
   const updatedAt = useShared((s) => s.updatedAt);
   const version = useShared((s) => s.version);
   const candidates = useShared((s) => s.candidates);
+  const proposal = useApp((s) => s.proposal);
+  const proposalLines = useMemo(() => {
+    if (!proposal) return new Map<string, string>();
+    const nameOf = (id: string) => byId.get(id)?.name.zh || byId.get(id)?.name.ja || id;
+    return new Map(describeChanges(proposal.changes, nameOf).map((l) => [l.date, l.text.split('：').slice(1).join('：')]));
+  }, [proposal, byId]);
   return (
     <div className="day-panel" data-testid="day-panel">
       <div className="day-head">
         <h3>整趟行程</h3>
+        <button type="button" className="text-button ask-ai-quiet" onClick={askTrip} data-testid="trip-ask-ai">
+          <Icon name="spark" size={20} /> 問 AI
+        </button>
         <span className="muted small">
           第 {version} 版・<MemberName id={updatedBy} /> {stamp(updatedAt)} 改的
         </span>
@@ -53,7 +65,7 @@ function Overview() {
           const cands = dayCandidates(candidates, d, itinerary, byId).length;
           return (
             <li key={d}>
-              <button type="button" className="overview-day" onClick={() => commands.selectDay(d)} data-overview-day={d}>
+              <button type="button" className={`overview-day ${proposalLines.has(d) ? 'proposed' : ''}`} onClick={() => commands.selectDay(d)} data-overview-day={d}>
                 <span className="overview-dot" style={{ background: dayColor(DATES, d) }} />
                 <span className={`overview-date ${isRedDay(d) ? 'red-day' : ''}`}>{dayLabel(d)}</span>
                 <span className="overview-stops">
@@ -61,6 +73,11 @@ function Overview() {
                   {lp && (
                     <span className="muted small ic-text">
                       <Icon name="bed" size={16} /> {lp.name.zh || lp.name.ja}
+                    </span>
+                  )}
+                  {proposalLines.has(d) && (
+                    <span className="overview-change" data-testid="overview-change">
+                      {proposalLines.get(d)}
                     </span>
                   )}
                 </span>
@@ -108,7 +125,7 @@ function DayHead({ day }: { day: string }) {
         </span>
       </h3>
       <span className="day-nav-actions">
-        <button type="button" className="text-button ask-ai-quiet" onClick={() => askAiAboutDay(day)} data-testid="day-ask-ai">
+        <button type="button" className="text-button ask-ai-quiet" onClick={() => askDay(day)} data-testid="day-ask-ai">
           <Icon name="spark" size={20} /> 問 AI
         </button>
         <PlanningToggle />
@@ -117,10 +134,30 @@ function DayHead({ day }: { day: string }) {
   );
 }
 
+/** 看提議的差異：這天有變動、而且沒有切到「看原本」時，算好提議後的行程（§16.1） */
+function useProposalDay(day: string) {
+  const proposal = useApp((s) => s.proposal);
+  const view = useUi((s) => s.proposalView);
+  const confirmed = useData((s) => s.itinerary);
+  const realPlan = usePlan((s) => s.plan);
+  const on = !!proposal && view === 'diff' && day !== 'all' && proposal.dates.includes(day);
+  return useMemo(() => {
+    const engine = currentEngineData();
+    if (!on || !proposal || !engine || !confirmed) return null;
+    const plan = dayPlanOf(planItinerary(proposal.itinerary, engine, engineConfig), day);
+    return {
+      source: { itinerary: proposal.itinerary, plan },
+      diff: { itinerary: proposal.itinerary, ...dayDiff(proposal.changes, confirmed, proposal.itinerary, day) },
+      originalPlan: dayPlanOf(realPlan, day),
+    };
+  }, [on, proposal, confirmed, realPlan, day]);
+}
+
 export function DayPanel() {
   const day = useApp((s) => s.day);
   const planning = useApp((s) => s.planning);
-  const tl = useDayTimeline(day);
+  const shown = useProposalDay(day);
+  const tl = useDayTimeline(day, shown?.source);
   const { plan, itDay, status: planStatus, error: planError, dayWarnings } = tl;
   const [warnOpen, setWarnOpen] = useState(false);
   const legOpen = useUi((s) => s.legOpen);
@@ -149,8 +186,8 @@ export function DayPanel() {
       {!itDay && <p className="muted">行程裡沒有這一天。</p>}
       {itDay && planStatus === 'loading' && <p className="muted">計算時間軸中…</p>}
       {planStatus === 'error' && <p className="warn">時間軸算不出來：{planError}</p>}
-      <EditHint />
-      {itDay && plan && <Timeline tl={{ ...tl, itDay, plan }} />}
+      {!shown && <EditHint />}
+      {itDay && plan && <Timeline tl={{ ...tl, itDay, plan }} diff={shown?.diff ?? null} originalPlan={shown?.originalPlan ?? null} />}
       {itDay && plan && itDay.items.length === 0 && (
         <p className="muted small" data-testid="day-empty">
           這天還沒排。到「想去」把想去的點加到這天{' '}

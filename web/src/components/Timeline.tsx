@@ -10,9 +10,9 @@
 // 有備卡的卡片（重疊卡）疊著淡色卡、‹ n/m › 換著看；看備卡時預約 tag、警告跟著那張備卡，「⋯」的主要、拿出作用在那張備卡，其他動作作用在整張卡片。
 // 資料準備（項目、警告、編號、候選）在 useDayTimeline，手機版的行程（mobile/DaySheet.tsx）也用；時間條 DayBar 手機版用 compact（變矮）。
 
-import { useCallback, useEffect, useMemo, useRef, useState, type PointerEvent as ReactPointerEvent, type ReactNode } from 'react';
+import { Fragment, useCallback, useEffect, useMemo, useRef, useState, type PointerEvent as ReactPointerEvent, type ReactNode } from 'react';
 import { fromMinutes, setStart, setStay, toMinutes, type DayPlan, type EngineWarning, type Gap, type TimelineEntry } from '@travel-helper/engine';
-import type { ItineraryDay, ItineraryItem, VisitItem } from '@travel-helper/engine/types';
+import type { Itinerary, ItineraryDay, ItineraryItem, VisitItem } from '@travel-helper/engine/types';
 import { appStore } from '../store.ts';
 import { commands } from '../appCommands.ts';
 import { shared } from '../appShared.ts';
@@ -33,7 +33,11 @@ import { ActionMenu } from './ActionMenu.tsx';
 import { Icon, type IconName } from './Icon.tsx';
 import { groupTargetsOf } from './cardActionRun.ts';
 import { useLiked } from '../shared/placeLists.ts';
-import { DragHandle, TripCard, askAboutCardPlace } from '../shared/ui/TripCard.tsx';
+import { DragHandle, TripCard } from '../shared/ui/TripCard.tsx';
+import { askTripCard } from './webAi.ts';
+import { TimelineDiffContext, useEditing, useTimelineDiff, type TimelineDiff } from './timelineEdit.ts';
+import type { ProposalGhost } from '../lib/proposalDiff.ts';
+import { shortDayLabel } from '../lib/trip.ts';
 
 /** 地圖上同一個編號（0、1、2…）；顏色是那個點的類型色 */
 export interface Marks {
@@ -185,8 +189,17 @@ const hoverPlace = (id: string | null | undefined) => (over: boolean) => appStor
 
 function EntryRow({ entry, day, warnings, plan, marks }: { entry: TimelineEntry; day: ItineraryDay; warnings: Map<string, EngineWarning[]>; plan: DayPlan; marks: Marks }) {
   const byId = useData((s) => s.byId);
-  const itinerary = useData((s) => s.itinerary);
-  const planning = useApp((s) => s.planning);
+  const confirmed = useData((s) => s.itinerary);
+  const diff = useTimelineDiff();
+  // 看提議的差異時，卡片讀提議後的行程，編輯的東西都不畫（§16.1）
+  const itinerary = diff?.itinerary ?? confirmed;
+  const planning = useEditing();
+  const proposed = !!entry.itemId && !!diff?.marked.has(entry.itemId);
+  const pill = proposed || (entry.kind === 'lodging' && diff?.lodging) ? (
+    <span className="tl-proposal-pill" data-testid="proposal-pill">
+      提議
+    </span>
+  ) : null;
   // 只有從地圖指到的點才標出這張卡
   const hovered = useApp((s) => (s.hoverFromMap ? s.hoveredId : null));
   const [warnOpen, setWarnOpen] = useState(false);
@@ -238,7 +251,7 @@ function EntryRow({ entry, day, warnings, plan, marks }: { entry: TimelineEntry;
         expanded={expand.expanded}
         onToggle={expand.toggle}
         onDetail={expand.onDetail}
-        onAsk={p ? () => askAboutCardPlace(p) : undefined}
+        onAsk={p ? () => askTripCard(p.id, day.date) : undefined}
       />
     );
   }
@@ -300,17 +313,22 @@ function EntryRow({ entry, day, warnings, plan, marks }: { entry: TimelineEntry;
           place={p}
           fallbackType="lodging"
           mark={marks.byEntry.get(entry)}
-          time={<span className="tl-start-time">{cardTime(entry).text}</span>}
+          time={
+            <>
+              <span className="tl-start-time">{cardTime(entry).text}</span>
+              {pill}
+            </>
+          }
           name={p ? name(p) : (entry.placeId ?? '')}
           label={p ? name(p) : (entry.placeId ?? '住宿')}
           meta={<LodgingTags day={day} place={p} reservationDate={day.date} editable={planning} open={tagsOpen} onOpenChange={setTagsOpen} />}
           thumb={THUMB}
-          className={`tl-lodging ${editing}`}
+          className={`tl-lodging ${editing} ${pill ? 'tl-proposed' : ''}`}
           selected={expand.expanded}
         expanded={expand.expanded}
           onToggle={expand.toggle}
           onDetail={expand.onDetail}
-          onAsk={p ? () => askAboutCardPlace(p) : undefined}
+          onAsk={p ? () => askTripCard(p.id, day.date) : undefined}
           more={planning ? <ActionMenu ctx={{ kind: 'lodging-end', surface: 'desktop' }} target={{ date: day.date, placeId: entry.placeId ?? undefined }} ui={{ ...NO_UI, openLodgingPlan: () => setTagsOpen(true) }} label="住宿" /> : null}
         />
       </>
@@ -350,6 +368,7 @@ function EntryRow({ entry, day, warnings, plan, marks }: { entry: TimelineEntry;
           <>
             {isBackup ? <span className="tl-start-time">{entry.start}</span> : <StartTime entry={entry} visit={visit} flight={flight} text={time.text} />}
             {!flight && stay != null && stay > 0 && <StayChip itemId={visit?.id ?? free?.id ?? null} minutes={stay} readOnly={isBackup} />}
+            {pill}
           </>
         }
         name={title}
@@ -373,12 +392,12 @@ function EntryRow({ entry, day, warnings, plan, marks }: { entry: TimelineEntry;
         }
         thumb={THUMB}
         stacked={!!stacked}
-        className={`tl-${entry.kind} ${editing} ${hovered && hovered === entry.placeId ? 'flash' : ''}`}
+        className={`tl-${entry.kind} ${editing} ${hovered && hovered === entry.placeId ? 'flash' : ''} ${proposed ? 'tl-proposed' : ''}`}
         selected={expand.expanded}
         expanded={expand.expanded}
         onToggle={expand.toggle}
         onDetail={sp ? () => appStore.getState().openDetail(sp.id, 'map', undefined, 'map') : undefined}
-        onAsk={sp ? () => askAboutCardPlace(sp) : undefined}
+        onAsk={sp ? () => askTripCard(sp.id, day.date, entry.itemId) : undefined}
         onHover={hoverPlace(shownPlace)}
         liRef={pressRef}
         liProps={{
@@ -444,7 +463,7 @@ function WarnToggle({ list, open, onToggle }: { list: EngineWarning[] | undefine
 
 /** 時間（大字，造訪是「開始–結束」）；固定時間（訂位、表演）標釘子。編輯中點了切換固定／不固定 */
 function StartTime({ entry, visit, flight, text }: { entry: TimelineEntry; visit: VisitItem | null; flight: Extract<ItineraryItem, { type: 'flight' }> | null; text: string }) {
-  const planning = useApp((s) => s.planning);
+  const planning = useEditing();
   const time = flight ? (flight.direction === 'arrive' ? flight.arrive : flight.depart) : text;
   const fixed = !!visit?.start;
   if (!planning || !visit)
@@ -475,7 +494,7 @@ function StartTime({ entry, visit, flight, text }: { entry: TimelineEntry; visit
 
 /** 停留時間的標籤（X小時MM分，等寬數字、固定最小寬度，調時間時字不跳）；編輯中 −15／＋15（後面的時間跟著重算） */
 function StayChip({ itemId, minutes, readOnly = false }: { itemId: string | null; minutes: number; readOnly?: boolean }) {
-  const planning = useApp((s) => s.planning) && !readOnly;
+  const planning = useEditing() && !readOnly;
   const change = (d: number) => {
     if (!itemId) return;
     const next = Math.max(15, minutes + d);
@@ -570,12 +589,14 @@ export interface DayTimeline {
 }
 
 /** 某一天（'all' 時全部是空的）的時間軸資料準備；時間軸、警告、編號只在引擎重算時重新整理 */
-export function useDayTimeline(date: string): DayTimeline {
-  const itinerary = useData((s) => s.itinerary);
+export function useDayTimeline(date: string, source?: { itinerary: Itinerary; plan: DayPlan | null } | null): DayTimeline {
+  const confirmed = useData((s) => s.itinerary);
+  const itinerary = source?.itinerary ?? confirmed;
   const byId = useData((s) => s.byId);
   const status = usePlan((s) => s.status);
   const error = usePlan((s) => s.error);
-  const plan = usePlan((s) => (date === 'all' ? null : dayPlanOf(s.plan, date)));
+  const realPlan = usePlan((s) => (date === 'all' ? null : dayPlanOf(s.plan, date)));
+  const plan = source ? source.plan : realPlan;
   const all = useShared((s) => s.candidates);
   const derived = useMemo(() => {
     const { byItem, day } = warningsByItem(plan);
@@ -586,25 +607,65 @@ export function useDayTimeline(date: string): DayTimeline {
   return { itDay, plan, status, error: error ?? null, ...derived, candidates };
 }
 
-export function Timeline({ tl }: { tl: DayTimeline & { plan: DayPlan; itDay: ItineraryDay } }) {
-  const planning = useApp((s) => s.planning);
-  const { plan, itDay: day, byItem, marks } = tl;
+/** 被換掉、拿掉的卡：變淡、劃掉（§12.5）；時間是原本的 */
+function GhostRow({ ghost, date, time }: { ghost: ProposalGhost; date: string; time: string | null }) {
+  const p = useData((s) => (ghost.place ? s.byId.get(ghost.place) : undefined));
+  const title = p ? name(p) : (ghost.place ?? '');
   return (
+    <TripCard
+      testId="tl-ghost"
+      itemKey={`ghost:${date}:${ghost.itemId}`}
+      place={p}
+      time={
+        <>
+          {time && <span className="tl-start-time">{time}</span>}
+          {ghost.movedTo && <span className="muted small">移到 {shortDayLabel(ghost.movedTo)}</span>}
+        </>
+      }
+      name={title}
+      label={`${title}（提議拿掉）`}
+      thumb={THUMB}
+      className="tl-gone"
+      expanded={false}
+      onToggle={() => {}}
+    />
+  );
+}
+
+export function Timeline({ tl, diff = null, originalPlan = null }: { tl: DayTimeline & { plan: DayPlan; itDay: ItineraryDay }; diff?: TimelineDiff | null; originalPlan?: DayPlan | null }) {
+  const reallyPlanning = useApp((s) => s.planning);
+  const planning = reallyPlanning && !diff;
+  const { plan, itDay: day, byItem, marks } = tl;
+  const timeOf = (itemId: string) => {
+    const e = originalPlan?.entries.find((x) => x.itemId === itemId);
+    return e ? cardTime(e).text : null;
+  };
+  const ghost = (g: ProposalGhost) => <GhostRow key={`ghost:${g.itemId}`} ghost={g} date={day.date} time={timeOf(g.itemId)} />;
+  const ghostsBefore = (id: string | null) => diff?.ghosts.filter((g) => g.beforeItemId === id).map(ghost) ?? [];
+  // 最後面的（後面沒有留下來的卡）：畫在回住宿之前
+  const tailShown = tl.rows.some((r) => r.kind !== 'gap' && r.entry.kind === 'lodging');
+  return (
+    <TimelineDiffContext.Provider value={diff}>
     <ol className={`tl tc-list tl-axis ${planning ? 'in-planning' : ''}`} data-testid="timeline">
       {/* 用項目 ID 當 key：上面的卡片增減時，備卡看第幾張、警告展開這些本地 state 不會跑到別張卡片 */}
       {tl.rows.map((row, i) =>
         row.kind === 'gap' ? (
           <GapRow key={`g:${row.gap.afterItemId ?? ''}:${row.gap.kind}:${i}`} gap={row.gap} plan={plan} />
         ) : (
-          <EntryRow key={row.entry.itemId ? `i:${row.entry.itemId}` : `${row.entry.kind}:${i}`} entry={row.entry} day={day} warnings={byItem} plan={plan} marks={marks} />
+          <Fragment key={row.entry.itemId ? `i:${row.entry.itemId}` : `${row.entry.kind}:${i}`}>
+            {row.entry.itemId ? ghostsBefore(row.entry.itemId) : row.entry.kind === 'lodging' ? ghostsBefore(null) : null}
+            <EntryRow entry={row.entry} day={day} warnings={byItem} plan={plan} marks={marks} />
+          </Fragment>
         ),
       )}
+      {!tailShown && ghostsBefore(null)}
       {planning && (
         <li className="tl-dropend small muted" data-testid="tl-dropend" {...dropOnEndProps(day.date, true)}>
           拖到這裡：放在這天的最後
         </li>
       )}
     </ol>
+    </TimelineDiffContext.Provider>
   );
 }
 

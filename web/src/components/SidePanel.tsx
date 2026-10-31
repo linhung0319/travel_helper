@@ -12,6 +12,7 @@ import { DayPanel } from './DayPanel.tsx';
 import { Icon, type IconName } from './Icon.tsx';
 import { AccountMenu } from './MeMenu.tsx';
 import { ConflictBar, EditingStrip } from './Planning.tsx';
+import { ProposalStrip } from './ProposalStrip.tsx';
 import { DayCalendar } from '../shared/ui/DayCalendar.tsx';
 import { DetailPanel } from './DetailPanel.tsx';
 import { ExplorePanel, showItinerary } from './Explore.tsx';
@@ -113,6 +114,7 @@ export function SidePanel() {
       <div className="side-notices">
         <EditingStrip />
         <ConflictBar />
+        <ProposalStrip />
       </div>
       {/* 右欄的內容一直掛著：蓋住右欄的彈窗關掉後原樣回來 */}
       <div className="side-body" inert={covered || undefined}>

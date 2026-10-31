@@ -29,7 +29,7 @@ import { placeBadges } from '../lib/badges.ts';
 import type { Place } from '../data/types.ts';
 import { StationTimetablePanel } from './StationTimetable.tsx';
 import { EditedMark, editedOf } from './EditHistory.tsx';
-import { AskAiBox } from './AskAiBox.tsx';
+import { AskAiBox, AskAiButton } from './AskAiBox.tsx';
 import { itemsWithPlace } from '../lib/planView.ts';
 import { PlaceDetail } from '../shared/ui/PlaceDetail.tsx';
 
@@ -460,7 +460,7 @@ function Tags({ place }: { place: Place }) {
  * 介紹：簡介（優缺點、標籤）、問 AI、車站時刻表、價格、排在哪幾天。
  * 網頁版的「總覽」分頁、手機版整頁詳情的「簡介」分頁共用（onDay 見 PlaceInTrip；askAi false 時不畫問 AI）
  */
-export function PlaceIntro({ place, fromTrip, onDay, askAi = true }: { place: Place; fromTrip: boolean; onDay?(date: string): void; askAi?: boolean }) {
+export function PlaceIntro({ place, fromTrip, onDay, askAi = true }: { place: Place; fromTrip: boolean; onDay?(date: string): void; askAi?: boolean | 'button' }) {
   return (
     <>
       {place.summary && (
@@ -486,7 +486,7 @@ export function PlaceIntro({ place, fromTrip, onDay, askAi = true }: { place: Pl
           <Tags place={place} />
         </section>
       )}
-      {askAi && <AskAiBox place={place} fromTrip={fromTrip} />}
+      {askAi === 'button' ? <AskAiButton place={place} /> : askAi && <AskAiBox place={place} fromTrip={fromTrip} />}
       {place.type === 'station' && <StationTimetablePanel place={place} />}
       <PriceSection place={place} />
       <PlaceInTrip place={place} onDay={onDay} />

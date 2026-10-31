@@ -65,8 +65,10 @@ export interface ViewState {
   /** 打開詳情的點 */
   detail: { id: string; name: string } | null;
   highlights: Partial<Record<HighlightStyle, string[]>>;
-  /** 「AI 挑的」結果集 */
-  aiResult: { title: string; ids: string[] } | null;
+  /** 選中的點（點開的卡、地圖上點的） */
+  selected: { id: string; name: string } | null;
+  /** 「AI 挑的」結果集：順序、理由（再給一組時要帶著） */
+  aiResult: { title: string; ids: string[]; notes: Record<string, string>; lettered: boolean } | null;
   routes: { id: string; from: string | null; to: string | null; mode: TravelMode; minutes: number | null; source: string }[];
   proposal: { dates: string[]; changes: Change[]; summary: string | null } | null;
 }
@@ -382,7 +384,8 @@ export function createCommands(app: StoreApi<AppStore>, data: StoreApi<DataState
       selection: s.selection.map((id) => ({ id, name: name(id), type: byId.get(id)?.type ?? 'unknown' })),
       detail: s.detailId ? { id: s.detailId, name: name(s.detailId) } : null,
       highlights: s.highlights,
-      aiResult: s.aiResult && { title: s.aiResult.title, ids: s.aiResult.ids },
+      selected: s.selectedId ? { id: s.selectedId, name: name(s.selectedId) } : null,
+      aiResult: s.aiResult && { title: s.aiResult.title, ids: s.aiResult.ids, notes: s.aiResult.notes, lettered: s.aiResult.lettered },
       routes: s.routes.map((r) => ({ id: r.id, from: r.from.place, to: r.to.place, mode: r.mode, minutes: r.minutes, source: r.source })),
       proposal: s.proposal && { dates: s.proposal.dates, changes: s.proposal.changes, summary: s.proposal.summary },
     };

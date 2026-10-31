@@ -7,7 +7,7 @@ import { AddToDay } from '../../components/DayPicker.tsx';
 import { Button } from './Button.tsx';
 import { firstSentences } from './TripCard.tsx';
 
-export function PlaceOpenBody({ place, onDetail }: { place: Place; onDetail: () => void }) {
+export function PlaceOpenBody({ place, onDetail, onAsk }: { place: Place; onDetail: () => void; onAsk?: () => void }) {
   const intro = firstSentences(place.summary?.text);
   return (
     <div className="po-body" data-testid="place-open" onClick={(e) => e.stopPropagation()}>
@@ -17,6 +17,11 @@ export function PlaceOpenBody({ place, onDetail }: { place: Place; onDetail: () 
           詳細資料 ›
         </Button>
         <AddToDay placeId={place.id} kind="secondary" testId="place-open-add" />
+        {onAsk && (
+          <Button kind="secondary" size="sm" icon="spark" onClick={onAsk} data-testid="place-open-ask">
+            問 AI
+          </Button>
+        )}
       </div>
     </div>
   );

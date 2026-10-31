@@ -22,7 +22,8 @@ import { appStore } from '../store.ts';
 import { extentOf } from '../lib/areas.ts';
 import { dataStore } from '../dataStore.ts';
 import { shared } from '../appShared.ts';
-import { useApp, useData, usePlan, useShared, useUi } from '../hooks.ts';
+import { useData, usePlan, useShared, useUi } from '../hooks.ts';
+import { useEditing } from './timelineEdit.ts';
 import { dayPlanOf, engineConfig } from '../planStore.ts';
 import { EDITOR_MODES, editorModeOf, legKeyOf, legMapsUrl, legModeName, legTargetOf, legTitle, showMinutesInput, taxiCarsText, type EditorMode } from '../lib/planView.ts';
 import { compactSteps, infoLines, legChips, legHidden, legWarnings, pathRows, slackHint, specAfterPickPath, ticketTightText, warnCount, type CompactStep } from '../lib/legView.ts';
@@ -366,7 +367,7 @@ export function useLegView(entry: TimelineEntry, date: string) {
   const leg = entry.travel;
   const byId = useData((s) => s.byId);
   const itinerary = useData((s) => s.itinerary);
-  const planning = useApp((s) => s.planning);
+  const planning = useEditing();
   const saving = useShared((s) => s.saving);
   // 這天引擎算的結果（交通的警告在 plan.warnings）
   const plan = usePlan((s) => dayPlanOf(s.plan, date));

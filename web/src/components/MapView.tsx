@@ -209,7 +209,10 @@ export function MapView() {
   const aiResult = useApp((s) => s.aiResult);
   const routes = useApp((s) => s.routes);
   const legRoute = useApp((s) => s.legRoute);
-  const proposal = useApp((s) => s.proposal);
+  const proposalOn = useApp((s) => s.proposal);
+  // 看原本的行程時，提議的虛線收起來
+  const proposalView = useUi((s) => s.proposalView);
+  const proposal = proposalView === 'diff' ? proposalOn : null;
   const itinerary = useData((s) => s.itinerary);
   const byId = useData((s) => s.byId);
   // 行程改了（T15m）：順序編號、變淡要重畫
@@ -573,10 +576,10 @@ export function MapView() {
 
     if (import.meta.env.DEV) {
       // Playwright 測試和 Claude in Chrome 檢查畫面用：算出點的像素位置、讀狀態
-      // AI（T16m）：畫面接上之前，先從這裡用（T16m-b、T16m-c 改成在 App 啟動）
-      void import('../appAi.ts').then(async ({ ai, startAi }) => {
-        await startAi();
-        const { fakeSettings } = await import('../appAi.ts');
+      // AI（T16m）：App 啟動；這裡只是讓 Playwright 讀得到
+      void import('../appAi.ts').then(async (m) => {
+        await m.startAi();
+        const { ai, fakeSettings } = m;
         Object.assign((window as unknown as { __th: object }).__th, { ai, aiFake: fakeSettings });
       });
       (window as unknown as Record<string, unknown>).__th = {

@@ -5,7 +5,7 @@ import { createStore, type StoreApi } from 'zustand/vanilla';
 import { ItineraryError } from '@travel-helper/engine';
 import type { Itinerary } from '@travel-helper/engine/types';
 import type { Candidate } from '../backend/types.ts';
-import { applyOps, placedByOps, type Op } from './ops.ts';
+import { applyOps, placedByOps, withdrawnByOps, type Op } from './ops.ts';
 import { opsContext, type AiDeps } from './deps.ts';
 
 export interface ActiveProposal {
@@ -23,9 +23,9 @@ export type ProposalOutcome = 'confirmed' | 'cancelled' | 'stale' | 'failed';
 
 export interface ProposalDeps extends AiDeps {
   /** 確認「開始編輯？」：使用者按確認回傳 true */
-  confirmPlanning(): Promise<boolean>;
-  /** 提議卡的狀態變了（被新的取代、過期） */
-  onCardChange(cardId: string, status: 'superseded' | 'stale'): void;
+  confirmPlanning(summary: string): Promise<boolean>;
+  /** 提議卡的狀態變了（被新的取代、過期、採用後按了復原） */
+  onCardChange(cardId: string, status: 'superseded' | 'stale' | 'undone'): void;
 }
 
 export interface Proposals {
@@ -33,7 +33,7 @@ export interface Proposals {
   /** 顯示提議（也用於「在行程上看」：用最新的行程重新檢查）；回傳錯誤訊息（套不上、沒有改動），新的取代舊的 */
   show(cardId: string, ops: Op[], summary: string): string | null;
   /** 採用：用最新的行程重新檢查，寫進行程 */
-  adopt(ops: Op[], summary: string): Promise<ProposalOutcome>;
+  adopt(cardId: string, ops: Op[], summary: string): Promise<ProposalOutcome>;
   /** 不要：這張卡的提議正在畫面上就清掉 */
   reject(cardId: string): void;
   /** 畫面上清掉，提議卡還在（切換對話） */
@@ -84,9 +84,9 @@ export function createProposals(d: ProposalDeps): Proposals {
       store.setState({ active: { cardId, ops, summary } });
       return null;
     },
-    async adopt(ops, summary) {
+    async adopt(cardId, ops, summary) {
       const app = d.app.getState();
-      if (!app.planning && !(await d.confirmPlanning())) return 'cancelled';
+      if (!app.planning && !(await d.confirmPlanning(summary))) return 'cancelled';
       // 可能在確認的時候別人改了行程：套不上就過期
       const it = d.data.getState().itinerary;
       if (!it) return 'failed';
@@ -107,21 +107,30 @@ export function createProposals(d: ProposalDeps): Proposals {
       if (d.app.getState().day === 'all') d.app.getState().selectDay(dates[0]);
       d.app.getState().setPlanning(true);
       const removed: Candidate[] = [];
+      const added: number[] = [];
+      const withdrawn = withdrawnByOps(it, ops);
       adopting = true;
       const r = await d.shared.changeItinerary((x) => after(x, ops), `採用 AI 的提議：${summary}`, {
         undo: {
           text: '已採用提議',
           after: async () => {
             for (const c of removed) await d.shared.addCandidate(c.placeId, c.day);
+            for (const id of added) await d.shared.removeCandidate(id, undefined, true);
+            d.onCardChange(cardId, 'undone');
           },
         },
-        // 排進去的點，那天的候選拿掉（同手動排進行程）
         settle: async () => {
+          // 排進去的點，那天的候選拿掉（同手動排進行程）
           for (const { place, date } of placedByOps(ops)) {
             for (const c of d.shared.store.getState().candidates.filter((x) => x.placeId === place && x.day === date)) {
               removed.push(c);
               await d.shared.removeCandidate(c.id, undefined, true);
             }
+          }
+          // 撤下的回候選（同手動的撤下）；那天已經有的不動，復原時也不刪
+          for (const { place, date } of withdrawn) {
+            const c = await d.shared.ensureCandidate(place, date);
+            if (c.ok && c.value.created) added.push(c.value.id);
           }
         },
       });

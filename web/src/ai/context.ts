@@ -24,6 +24,8 @@ export function screenContext(d: AiDeps, stage: Stage): Record<string, unknown> 
     placesInView: view ? places.filter((p) => inBbox(p.coords, view.bounds)).length : null,
     selection: v.selection,
     detail: v.detail,
+    // 「這家」：點開的卡、地圖上選的點
+    selected: v.selected,
     aiResult: v.aiResult,
     proposal: v.proposal && { dates: v.proposal.dates, summary: v.proposal.summary },
   };
@@ -47,11 +49,13 @@ function chipContent(c: ChatContext, d: AiDeps, read: ReadTools): Record<string,
   }
 }
 
-export function buildTurnContext(opts: { d: AiDeps; read: ReadTools; stage: Stage; chips: ChatContext[]; screenOff: boolean; decisions: TurnContext['decisions'] }): TurnContext {
+export function buildTurnContext(opts: { d: AiDeps; read: ReadTools; stage: Stage; chips: ChatContext[]; screenOff: boolean; decisions: TurnContext['decisions']; draft: TurnContext['draft']; cards: TurnContext['cards'] }): TurnContext {
   return {
     // 使用者把「正在看」拿掉時不帶
     screen: opts.screenOff ? {} : screenContext(opts.d, opts.stage),
     chips: opts.chips.map((c) => chipContent(c, opts.d, opts.read)),
     decisions: opts.decisions,
+    draft: opts.draft,
+    cards: opts.cards,
   };
 }

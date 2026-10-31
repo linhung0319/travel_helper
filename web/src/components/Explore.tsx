@@ -10,7 +10,7 @@
 // 卡片照片右下角是想去的愛心（VoteHeart），左上角是類型；重點膠囊（已排、候選、15 人、預約）在名稱下面。探索的照片牆是兩欄。
 // 清單的計算（篩選、排序、數量、想去的範圍）在 shared/placeLists.ts 的 usePlaceList，手機版也用。
 
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import { appStore, type DetailTabId } from '../store.ts';
 import { commands } from '../appCommands.ts';
 import { useApp } from '../hooks.ts';
@@ -20,6 +20,7 @@ import type { Place } from '../data/types.ts';
 import { AddPlaceSuggest, useSuggestOwnsEmpty } from '../shared/ui/AddPlaceSuggest.tsx';
 import { FilterBar, type FilterModel } from '../shared/ui/FilterBar.tsx';
 import { dragPlaceProps } from './askAi.ts';
+import { askList, askPlace } from './webAi.ts';
 import { usePlaceList } from '../shared/placeLists.ts';
 import { PlaceRow, useDayStatus, type DayStatus } from '../shared/ui/PlaceRow.tsx';
 import { PlaceTile } from '../shared/ui/PlaceTile.tsx';
@@ -70,7 +71,7 @@ function toggleOpen(id: string, openId: string | null, setOpenId: (id: string | 
 }
 
 /** 探索的一張卡片（照片牆）或一列（清單）；想去分頁的列在 shared/ui/WishList */
-function Item({ place, rank, view, hot, status, isOpen, onToggle }: { place: Place; rank: number; view: View; hot: boolean; status: DayStatus; isOpen: boolean; onToggle: () => void }) {
+function Item({ place, rank, view, hot, status, isOpen, onToggle, aiNote, letter }: { place: Place; rank: number; view: View; hot: boolean; status: DayStatus; isOpen: boolean; onToggle: () => void; aiNote?: string; letter?: string }) {
   const props = {
     place,
     status,
@@ -79,7 +80,9 @@ function Item({ place, rank, view, hot, status, isOpen, onToggle }: { place: Pla
     testId: 'explore-item',
     onOpen: onToggle,
     open: isOpen,
-    below: <PlaceOpenBody place={place} onDetail={() => open(place.id)} />,
+    below: <PlaceOpenBody place={place} onDetail={() => open(place.id)} onAsk={() => askPlace(place.id)} />,
+    aiNote,
+    letter,
     // 拖到左邊的聊天室＝問 AI
     rootProps: { ...dragPlaceProps(place.id), title: '點了展開；拖到左邊的聊天室可以問 AI' },
   };
@@ -126,7 +129,17 @@ export function ExplorePanel({ source = 'explore' }: { source?: ListSource }) {
   useRevealOpen(ref, openId);
 
   // 清單的計算在 shared/placeLists.ts（手機版也用）；沒選類型就是三類都列
-  const { pool, list } = usePlaceList(source, filter, query, sort, inView ? bounds : null);
+  const { pool, list: all } = usePlaceList(source, filter, query, sort, inView ? bounds : null);
+  // AI 挑的（規格 §3.1）：只在探索；再篩選、搜尋是取交集；有結果集時預設照 AI 的順序，使用者可以自己換
+  const aiResult = useApp((s) => (source === 'explore' ? s.aiResult : null));
+  const [sortByAi, setSortByAi] = useState(true);
+  useEffect(() => setSortByAi(true), [aiResult]);
+  const list = useMemo(() => {
+    if (!aiResult) return all;
+    const picked = all.filter((p) => aiResult.ids.includes(p.id));
+    return sortByAi ? picked.sort((a, b) => aiResult.ids.indexOf(a.id) - aiResult.ids.indexOf(b.id)) : picked;
+  }, [all, aiResult, sortByAi]);
+  const aiProps = (id: string) => (aiResult ? { aiNote: aiResult.notes[id], letter: aiResult.lettered ? String.fromCharCode(65 + aiResult.ids.indexOf(id)) : undefined } : {});
 
   // 地圖上點了某個點：清單直接跳到那張卡片（清單可能很長，平滑捲動會在半路被照片載入打斷）
   useEffect(() => {
@@ -158,6 +171,8 @@ export function ExplorePanel({ source = 'explore' }: { source?: ListSource }) {
       appStore.getState().clearFilter();
       setInView(false);
     },
+    onAsk: () => askList(source, filter, query, list.length),
+    ...(aiResult ? { ai: { title: aiResult.title, total: aiResult.ids.length, sortByAi, setSortByAi, onClear: () => commands.clearResult() } } : {}),
   };
 
   return (
@@ -173,23 +188,35 @@ export function ExplorePanel({ source = 'explore' }: { source?: ListSource }) {
             onOpen={toggle}
             openId={openId}
             onDetail={(id) => open(id)}
+            onAsk={askPlace}
             onOpenComments={(id) => open(id, 'comments')}
             hotId={mapHovered ?? selectedId ?? null}
             revealId={target?.id ?? null}
             revealSeq={target?.seq}
           />
         ) : view === 'photo' ? (
-          <PlaceWall items={list} openId={openId} render={(p, i) => <Item place={p} rank={i + 1} view={view} hot={hotOf(p.id)} status={statusOf(p.id)} isOpen={openId === p.id} onToggle={() => toggle(p.id)} />} />
+          <PlaceWall items={list} openId={openId} render={(p, i) => <Item place={p} rank={i + 1} view={view} hot={hotOf(p.id)} status={statusOf(p.id)} isOpen={openId === p.id} onToggle={() => toggle(p.id)} {...aiProps(p.id)} />} />
         ) : (
           <ol className="ex-items">
             {list.map((p, i) => (
               <li key={p.id}>
-                <Item place={p} rank={i + 1} view={view} hot={hotOf(p.id)} status={statusOf(p.id)} isOpen={openId === p.id} onToggle={() => toggle(p.id)} />
+                <Item place={p} rank={i + 1} view={view} hot={hotOf(p.id)} status={statusOf(p.id)} isOpen={openId === p.id} onToggle={() => toggle(p.id)} {...aiProps(p.id)} />
               </li>
             ))}
           </ol>
         )}
-        {list.length === 0 && (wish || !ownsEmpty) && (
+        {list.length === 0 && aiResult && (
+          <div className="muted ex-empty" data-testid="ai-result-empty">
+            <p>AI 挑的 {aiResult.ids.length} 家沒有符合這些篩選的。</p>
+            <button type="button" className="button small" onClick={() => {
+                model.clear();
+                model.setQuery('');
+              }} data-testid="ai-result-unfilter">
+              取消篩選，回到 AI 挑的 {aiResult.ids.length} 家
+            </button>
+          </div>
+        )}
+        {list.length === 0 && !aiResult && (wish || !ownsEmpty) && (
           <p className="muted ex-empty">{source === 'wish' && pool.length === 0 ? '還沒有人按想去。在探索或詳情按想去，就會出現在這裡。' : '沒有符合的地點，取消一些篩選看看。'}</p>
         )}
       </div>

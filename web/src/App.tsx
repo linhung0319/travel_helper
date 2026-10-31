@@ -1,9 +1,11 @@
 import { useEffect, useLayoutEffect, useRef } from 'react';
+import { startAi } from './appAi.ts';
+import { connectWebAi } from './components/webAi.ts';
 import { appStore } from './store.ts';
 import { loadData } from './dataStore.ts';
 import { useData, useIsDesktop } from './hooks.ts';
 import { MapView } from './components/MapView.tsx';
-import { ChatPanel } from './components/Panels.tsx';
+import { ChatPanel } from './components/ChatPanel.tsx';
 import { dropAiProps } from './components/askAi.ts';
 import { DetailFloat, SidePanel } from './components/SidePanel.tsx';
 import { MapPanel } from './components/MapPanel.tsx';
@@ -20,6 +22,7 @@ import './styles.css';
  * 右邊是行程／探索／詳情共用的一欄，頂端有日期列和頭像選單。聊天室和右欄都頂到最上面。
  */
 function DesktopLayout() {
+  useEffect(connectWebAi, []);
   return (
     <div className="layout desktop">
       {/* 探索卡片、詳情標題可以拖到這裡問 AI（askAi.ts） */}
@@ -84,6 +87,11 @@ export default function App() {
     window.addEventListener('keydown', onKey);
     return () => window.removeEventListener('keydown', onKey);
   }, []);
+
+  // 資料好了才啟動 AI（T16m-b）：工具要讀資料點；手機版也啟動，T16m-c 才接畫面
+  useEffect(() => {
+    if (status === 'ready') void startAi();
+  }, [status]);
 
   if (status === 'loading') return <div className="splash">載入中…</div>;
   if (status === 'error') return <div className="splash">資料載入失敗：{error}</div>;

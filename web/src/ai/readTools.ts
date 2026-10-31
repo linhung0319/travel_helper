@@ -1,7 +1,9 @@
 // 查資料的工具（規格 §4.1）：畫面不動。能算的交給引擎，資料沒寫就原樣回傳 null，不說成沒有。
 
-import { ItineraryError, bestInsertIndex, checkProposal, kintetsuDayType, busDayType, planLeg, type EngineData, type NewItem } from '@travel-helper/engine';
-import type { DayPlan, Leg, LonLat, TimelineEntry, TravelMode, TravelSpec } from '@travel-helper/engine/types';
+import { ItineraryError, bestInsertIndex, checkProposal, findItem, kintetsuDayType, busDayType, planItinerary, planLeg, type EngineData, type NewItem } from '@travel-helper/engine';
+import type { DayPlan, Itinerary, Leg, LonLat, TimelineEntry, TravelMode, TravelSpec } from '@travel-helper/engine/types';
+import type { ReservationStatus } from '../backend/types.ts';
+import { noteRows } from '../lib/reservations.ts';
 import { departuresAround, toMinutes } from '../lib/timetable.ts';
 import { dayCandidates, likedPlaces, placeDayStatus } from '../lib/wishlist.ts';
 import { dayTarget, TRIP_TARGET } from '../backend/types.ts';
@@ -105,14 +107,23 @@ export function createReadTools(d: AiDeps) {
     travel: compactLeg(e.travel),
   });
 
-  const compactDay = (date: string, p: DayPlan) => {
+  const compactDay = (date: string, p: DayPlan, it: Itinerary | null) => {
     const s = d.shared.store.getState();
-    const day = places().itinerary?.days.find((x) => x.date === date);
-    const cands = dayCandidates(s.candidates, date, places().itinerary, places().byId);
+    const day = it?.days.find((x) => x.date === date);
+    const cands = dayCandidates(s.candidates, date, it, places().byId);
+    const confirmed = places().itinerary;
     return {
       date,
       lodging: day?.lodging ? { id: day.lodging, name: nameOf(day.lodging), meals: day.lodgingMeals ?? null } : null,
-      entries: p.entries.map(compactEntry),
+      entries: p.entries.map((e) => {
+        const item = e.itemId && it ? findItem(it, e.itemId)?.item : null;
+        return {
+          ...compactEntry(e),
+          note: item?.note ?? null,
+          // 提議裡新加的卡：ID 只是暫時的，不能用在 ops（要改就重寫那個 add）
+          ...(it !== confirmed && e.itemId && confirmed && !findItem(confirmed, e.itemId) ? { draftOnly: true } : {}),
+        };
+      }),
       // 備選：引擎只用選定的算，AI 要知道還有哪幾個
       options: (day?.items ?? []).flatMap((i) => (i.type === 'visit' && i.options.length > 1 ? [{ itemId: i.id, selected: i.selected, places: i.options.map((o) => ({ id: o.place, name: nameOf(o.place) })), note: i.note ?? null }] : [])),
       gaps: p.gaps.map((g) => ({ label: g.label, from: g.from, to: g.to, afterItemId: g.afterItemId, beforeItemId: g.beforeItemId })),
@@ -123,12 +134,24 @@ export function createReadTools(d: AiDeps) {
     };
   };
 
-  function get_day(input: { date: string }): ToolOutput {
+  /** 目前顯示的提議算出來的行程 */
+  const draftItinerary = () => d.app.getState().proposal?.itinerary ?? null;
+
+  function get_day(input: { date: string; on?: 'draft' }): ToolOutput {
     const date = needDate(input?.date);
     if (!date) return fail(`date 要是 ${tripDates()[0]}～${tripDates().at(-1)} 的日期`);
+    if (input.on === 'draft') {
+      const it = draftItinerary();
+      const engine = d.engine();
+      if (!it) return fail('現在沒有顯示中的提議');
+      if (!engine) return fail('行程引擎還沒算好，請稍等再查');
+      const dp = dayPlanOf(planItinerary(it, engine, d.config), date);
+      if (!dp) return fail('行程裡沒有這一天');
+      return { ok: true, on: 'draft', ...compactDay(date, dp, it) };
+    }
     const p = dayPlanOf(d.plan.getState().plan, date);
     if (!p) return fail('行程引擎還沒算好，請稍等再查');
-    return { ok: true, ...compactDay(date, p) };
+    return { ok: true, ...compactDay(date, p, places().itinerary) };
   }
 
   function get_trip_overview(): ToolOutput {
@@ -156,9 +179,9 @@ export function createReadTools(d: AiDeps) {
     };
   }
 
-  function check_changes(input: { ops: Op[] }): ToolOutput {
+  function check_changes(input: { ops: Op[] }, base?: Itinerary): ToolOutput {
     const engine = d.engine();
-    const before = places().itinerary;
+    const before = base ?? places().itinerary;
     if (!engine || !before) return fail('行程引擎還沒算好，請稍等再查');
     try {
       const after = applyOps(before, input?.ops, opsContext(d));
@@ -177,9 +200,11 @@ export function createReadTools(d: AiDeps) {
     }
   }
 
-  function suggest_position(input: { placeId: string; date: string }): ToolOutput {
+  function suggest_position(input: { placeId: string; date: string; on?: 'draft' }): ToolOutput {
     const engine = d.engine();
-    const it = places().itinerary;
+    const onDraft = input?.on === 'draft';
+    if (onDraft && !draftItinerary()) return fail('現在沒有顯示中的提議');
+    const it = onDraft ? draftItinerary() : places().itinerary;
     if (!engine || !it) return fail('行程引擎還沒算好，請稍等再查');
     const date = needDate(input?.date);
     if (!date) return fail(`date 要是 ${tripDates()[0]}～${tripDates().at(-1)} 的日期`);
@@ -188,7 +213,7 @@ export function createReadTools(d: AiDeps) {
     if (p.type === 'lodging' || p.type === 'station') return fail('住宿、車站不用找位置：住宿用 setLodging，車站不排進行程');
     const item: NewItem = { type: 'visit', options: [{ place: p.id, stayMinutes: null }] };
     const index = bestInsertIndex(it, date, item, engine, d.config);
-    const check = check_changes({ ops: [{ op: 'add', date, place: p.id, index }] });
+    const check = check_changes({ ops: [{ op: 'add', date, place: p.id, index }] }, it);
     const items = it.days.find((x) => x.date === date)?.items ?? [];
     const label = (i: (typeof items)[number] | undefined) => (i?.type === 'visit' ? nameOf(i.options[i.selected]?.place) : (i?.type ?? null));
     return { ...check, index, after: label(items[index - 1]), before: label(items[index]) } as ToolOutput;
@@ -321,13 +346,24 @@ export function createReadTools(d: AiDeps) {
     return info ? { ok: true, info } : fail('沒有這份資料');
   }
 
+  /** 預約清單（同畫面的預約筆記）：住宿的 date 是入住那晚 */
+  const reservationRows = () => noteRows(places().itinerary, d.plan.getState().plan, places().byId, d.shared.store.getState().reservations);
+
+  function get_reservations(input: { date?: string; status?: ReservationStatus } = {}): ToolOutput {
+    const rows = reservationRows().filter((r) => (!input?.date || r.date === input.date) && (!input?.status || r.status === input.status));
+    return {
+      ok: true,
+      rows: rows.map((r) => ({ date: r.date, endDate: r.endDate, placeId: r.placeId, name: nameOf(r.placeId), role: r.role, time: r.time, people: r.people, status: r.status, note: r.note, updatedBy: r.updatedBy ? who(r.updatedBy) : null, accepted: r.accepted, methods: r.methods, phone: r.phone, url: r.url, nightsChanged: r.nightsChanged })),
+    };
+  }
+
   /** 脈絡晶片的精簡內容（規格 §6） */
   const digest = (id: string) => {
     const p = places().byId.get(id);
     return p ? digestOf(p, likes(id)) : null;
   };
 
-  return { search_places, get_place, get_day, get_trip_overview, check_changes, suggest_position, get_route, get_timetable, get_opinions, get_trip_info, digest };
+  return { search_places, get_place, get_day, get_trip_overview, check_changes, suggest_position, get_route, get_timetable, get_opinions, get_trip_info, get_reservations, reservationRows, digest };
 }
 
 export type ReadTools = ReturnType<typeof createReadTools>;

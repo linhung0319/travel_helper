@@ -35,6 +35,8 @@ export function PlanningToggle() {
 
 export function PlanningConfirmDialog() {
   const idle = useUi((s) => s.idleMinutes);
+  // 採用 AI 的提議時才有：要寫進去的內容
+  const note = useUi((s) => (s.dialog?.kind === 'planning' ? s.dialog.note : undefined));
   return (
     <Dialog
       title="開始編輯？"
@@ -60,6 +62,11 @@ export function PlanningConfirmDialog() {
       }
     >
       <p>進入後可以修改<strong>大家共用的那一份行程</strong>：把這天的候選排進行程、拿掉別人加的候選、刪除、移到別天、換順序、改停留時間、復原快照。</p>
+      {note && (
+        <p className="planning-note" data-testid="planning-note">
+          要寫入：{note}
+        </p>
+      )}
       <ul className="small">
         <li>每次修改前都會自動存一份快照，改錯了可以復原。</li>
         <li>{idle} 分鐘沒有動作會自動結束編輯。</li>

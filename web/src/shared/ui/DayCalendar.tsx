@@ -8,11 +8,14 @@ import { daySummary } from '../../lib/planView.ts';
 import { dayLabel, isRedDay, shortDayLabel, tripDates, weekdayIndex } from '../../lib/trip.ts';
 
 const DATES = tripDates();
+const NO_DATES: string[] = [];
 const WEEK = ['日', '一', '二', '三', '四', '五', '六'];
 /** 第一天前面空幾格（2/2 週二：2 格，給「整趟」） */
 const LEAD = weekdayIndex(DATES[0]);
 
 export function DayCalendar() {
+  // 有提議差異的天：虛線框（§16.1）
+  const proposed = useApp((s) => s.proposal?.dates ?? NO_DATES);
   const day = useApp((s) => s.day);
   const plan = usePlan((s) => s.plan);
   const warned = (d: string) => {
@@ -43,10 +46,11 @@ export function DayCalendar() {
           key={d}
           type="button"
           role="tab"
-          className={`ui-cal-day ${isRedDay(d) ? 'red-day' : ''}`}
+          className={`ui-cal-day ${isRedDay(d) ? 'red-day' : ''} ${proposed.includes(d) ? 'proposed' : ''}`}
+          data-proposed={proposed.includes(d) || undefined}
           aria-current={day === d ? 'true' : undefined}
           aria-selected={day === d}
-          aria-label={`${dayLabel(d)}${warned(d) ? '，有警告' : ''}`}
+          aria-label={`${dayLabel(d)}${warned(d) ? '，有警告' : ''}${proposed.includes(d) ? '，提議有變動' : ''}`}
           onClick={() => commands.selectDay(d)}
           data-day={d}
           data-testid={`m-day-${d}`}

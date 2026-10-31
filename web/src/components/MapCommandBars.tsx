@@ -3,10 +3,11 @@
 // 「清掉」只看 AI 的 highlights、routes；時間軸點開的交通（legRoute）、選中的點不算（第七輪 §8.1）。
 
 import { commands } from '../appCommands.ts';
-import { useApp, useData } from '../hooks.ts';
+import { useApp, useData, useIsDesktop } from '../hooks.ts';
 import { describeChanges } from '../lib/overlays.ts';
 import { Icon } from './Icon.tsx';
 
+/** 手機版的提議列（T16m-c 換掉）；網頁版在右欄（ProposalStrip） */
 function ProposalBar() {
   const proposal = useApp((s) => s.proposal);
   const byId = useData((s) => s.byId);
@@ -56,9 +57,10 @@ function MarksBar() {
 }
 
 export function MapCommandBars() {
+  const desktop = useIsDesktop();
   return (
     <div className="command-bars">
-      <ProposalBar />
+      {!desktop && <ProposalBar />}
       <MarksBar />
     </div>
   );

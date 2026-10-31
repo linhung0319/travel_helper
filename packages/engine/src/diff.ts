@@ -20,7 +20,7 @@ export interface Change {
   fields?: string[];
   /** 項目目前（或刪掉之前）的地點 */
   place?: string | null;
-  /** lodging：前後的住宿 */
+  /** lodging：前後的住宿；changed：這張卡原本選的點（換了才有） */
   before?: string | null;
   after?: string | null;
 }
@@ -79,7 +79,11 @@ export function diffItinerary(before: Itinerary, after: Itinerary): Change[] {
     }
     if (a.date !== b.date) changes.push({ kind: 'moved-day', date: a.date, fromDate: b.date, itemId: id, place: placeOf(a.loc.item) });
     const f = changedFields(b.loc.item, a.loc.item).filter((k) => !(a.loc.item.type === 'split' && k === 'groups'));
-    if (f.length) changes.push({ kind: 'changed', date: a.date, itemId: id, fields: f, place: placeOf(a.loc.item) });
+    if (f.length) {
+      const was = placeOf(b.loc.item);
+      const now = placeOf(a.loc.item);
+      changes.push({ kind: 'changed', date: a.date, itemId: id, fields: f, place: now, ...(was !== now ? { before: was } : {}) });
+    }
   }
   for (const id of aIds) {
     if (bIds.includes(id)) continue;
@@ -116,6 +120,24 @@ export function diffItinerary(before: Itinerary, after: Itinerary): Change[] {
   return changes.sort((x, y) => x.date.localeCompare(y.date));
 }
 
+/** 欄位給人看的說法；沒列到的不寫欄位名，統一叫「內容」 */
+const FIELD_LABELS: Record<string, string> = {
+  options: '備選',
+  stayMinutes: '停留時間',
+  minutes: '時間長度',
+  start: '開始時間',
+  travel: '交通',
+  tags: '標籤',
+  note: '備註',
+  meal: '用餐',
+};
+
+/** 改了哪些欄位的說法；換了主選時選項的改動不用再講一次 */
+function fieldsText(c: Change): string {
+  const fields = c.before !== undefined ? (c.fields ?? []).filter((f) => f !== 'options' && f !== 'selected') : (c.fields ?? []).filter((f) => f !== 'selected');
+  return [...new Set(fields.map((f) => FIELD_LABELS[f] ?? '內容'))].join('、');
+}
+
 /** 一行一個改動的文字摘要；nameOf 給地點的顯示名稱，plan 給套用後的時間 */
 export function describeChanges(changes: Change[], opts: { nameOf?: (id: string) => string; plan?: ItineraryPlan } = {}): string[] {
   const name = (id: string | null | undefined) => (id ? opts.nameOf?.(id) ?? id : '（無）');
@@ -139,8 +161,11 @@ export function describeChanges(changes: Change[], opts: { nameOf?: (id: string)
         return `${d}：${name(c.place)}（從 ${md(c.fromDate as string)} 移過來）${time(c)}`;
       case 'reordered':
         return `${d}：${name(c.place)} 換了順序${time(c)}`;
-      case 'changed':
-        return `${d}：${name(c.place)} 改了 ${(c.fields ?? []).join('、')}${time(c)}`;
+      case 'changed': {
+        const rest = fieldsText(c);
+        if (c.before !== undefined) return `${d}：${name(c.before)} → ${name(c.place)}${rest ? `（也改了${rest}）` : ''}${time(c)}`;
+        return `${d}：${name(c.place)} 改了${rest || '主選'}${time(c)}`;
+      }
       case 'lodging':
         return `${d}：住宿 ${name(c.before)} → ${name(c.after)}`;
       case 'return-travel':

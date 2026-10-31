@@ -294,6 +294,8 @@ export interface WishListProps {
   /** 網頁（第八輪 §13.3）：原地展開的那個點；onDetail 是展開後的「詳細資料」。手機不給，點了照舊開整頁詳情 */
   openId?: string | null;
   onDetail?: (id: string) => void;
+  /** 展開卡的「問 AI」（網頁） */
+  onAsk?: (id: string) => void;
   /** 地圖「指到」或被地圖點到的點（加底色） */
   hotId?: string | null;
   /** 要把這個點露出來（它那段展開、顯示到它） */
@@ -302,7 +304,7 @@ export interface WishListProps {
   revealSeq?: number;
 }
 
-export function WishList({ surface, places, view, onOpen, onOpenComments, hotId, revealId, revealSeq, openId = null, onDetail }: WishListProps) {
+export function WishList({ surface, places, view, onOpen, onOpenComments, hotId, revealId, revealSeq, openId = null, onDetail, onAsk }: WishListProps) {
   const candidates = useShared((s) => s.candidates);
   const itinerary = useData((s) => s.itinerary);
   const likeCount = useLikeCount();
@@ -398,7 +400,7 @@ export function WishList({ surface, places, view, onOpen, onOpenComments, hotId,
                       onOpen={() => onOpen(p.id)}
                       onOpenComments={() => onOpenComments(p.id)}
                       open={!!onDetail && openId === p.id}
-                      below={onDetail ? <PlaceOpenBody place={p} onDetail={() => onDetail(p.id)} /> : undefined}
+                      below={onDetail ? <PlaceOpenBody place={p} onDetail={() => onDetail(p.id)} onAsk={onAsk ? () => onAsk(p.id) : undefined} /> : undefined}
                     />
                   );
                 };

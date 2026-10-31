@@ -23,9 +23,9 @@ function browserStorage() {
 }
 
 /** 確認「開始編輯？」：沿用現有的對話框，關掉時看有沒有進入編輯 */
-function confirmPlanning(): Promise<boolean> {
+function confirmPlanning(summary: string): Promise<boolean> {
   return new Promise((resolve) => {
-    openDialog({ kind: 'planning' });
+    openDialog({ kind: 'planning', ...(summary ? { note: summary } : {}) });
     const off = uiStore.subscribe((s) => {
       if (s.dialog?.kind === 'planning') return;
       off();
@@ -69,6 +69,8 @@ export const ai = createChat({
     commands,
     surface: {
       showList: () => surface.showList(),
+      showTab: (tab) => surface.showTab(tab),
+      showPanel: (panel) => surface.showPanel(panel),
       showDay: (day) => surface.showDay(day),
       openPlace: (id) => surface.openPlace(id),
       screenKey: () => surface.screenKey(),
@@ -78,8 +80,14 @@ export const ai = createChat({
   }),
 });
 
-/** 啟動時呼叫一次（資料和登入好了之後）。直接用 import.meta.env.DEV 判斷，假 AI 不會進 dist/ */
-export async function startAi() {
+/** 啟動時呼叫（資料和登入好了之後，再呼叫也只跑一次）。直接用 import.meta.env.DEV 判斷，假 AI 不會進 dist/ */
+let started: Promise<void> | null = null;
+export function startAi(): Promise<void> {
+  started ??= boot();
+  return started;
+}
+
+async function boot() {
   if (import.meta.env.DEV) {
     const { createFakeModel } = await import('./dev-fixtures/ai/fakeModel.ts');
     const fake = createFakeModel({ delayMs: 300 });
@@ -88,3 +96,6 @@ export async function startAi() {
   }
   await ai.init();
 }
+
+/** 平台不接手時（版面換掉）回到預設 */
+export const resetScreenSurface = () => setScreenSurface(appSurface(appStore));
