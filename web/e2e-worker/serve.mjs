@@ -1,4 +1,4 @@
-// T15 完成條件的環境：build 過的網站＋本機 Worker＋獨立的本機 D1（worker/.wrangler/e2e，不動 npm run dev:worker 用的那份）。
+// T15 完成條件的環境：build 過的網站＋本機 Worker＋獨立的本機 D1（worker/.wrangler/e2e-<埠>，不動 npm run dev:worker 用的那份）。
 // 每次都重建：套用 migrations、匯入真的資料、開 wrangler dev。Playwright 的 webServer 跑這支。
 // 網站要先 build：npm run build:site（根目錄的 npm run e2e:worker 會先跑）。
 
@@ -12,8 +12,9 @@ import { buildSql, loadSources, planImport, resolveScope } from '../../scripts/l
 export const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../..');
 const WORKER = path.join(ROOT, 'worker');
 const WRANGLER = path.join(ROOT, 'node_modules/wrangler/bin/wrangler.js');
-export const PERSIST = '.wrangler/e2e';
-export const PORT = 8799;
+// 埠可以換（E2E_WORKER_PORT）：8799 被別的程序佔著時用；D1 的目錄跟著埠，互不影響
+export const PORT = Number(process.env.E2E_WORKER_PORT ?? 8799);
+export const PERSIST = `.wrangler/e2e-${PORT}`;
 
 const ENV = { ...process.env, WRANGLER_SEND_METRICS: 'false', CI: '1' };
 

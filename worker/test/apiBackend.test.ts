@@ -4,12 +4,12 @@
 import { test, beforeEach, afterEach } from 'node:test';
 import assert from 'node:assert/strict';
 import { createItinerary, DEFAULT_CONFIG, type Itinerary } from '@travel-helper/engine';
-import { freshDb, type FakeD1 } from '../../worker/test/helpers/d1.ts';
-import { handle } from '../../worker/src/index.ts';
-import { apiBackend } from '../src/backend/api.ts';
-import { apiSource } from '../src/data/api.ts';
-import { createMockBackend } from '../src/backend/mock.ts';
-import { BackendError, type Backend } from '../src/backend/types.ts';
+import { freshDb, type FakeD1 } from './helpers/d1.ts';
+import { handle } from '../src/index.ts';
+import { apiBackend } from '../../web/src/backend/api.ts';
+import { apiSource } from '../../web/src/data/api.ts';
+import { createMockBackend } from '../../web/src/backend/mock.ts';
+import { BackendError, type Backend } from '../../web/src/backend/types.ts';
 import { writeTestData, testSpot } from '../../scripts/test/helpers/test-area.ts';
 // @ts-expect-error 沒有型別宣告的 .mjs
 import * as imp from '../../scripts/lib/import-plan.mjs';

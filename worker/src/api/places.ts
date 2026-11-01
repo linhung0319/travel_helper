@@ -58,14 +58,17 @@ export function etagMatches(header: string | null, etag: string): boolean {
   return header.split(',').some((x) => x.trim().replace(/^W\//, '') === etag);
 }
 
-/** 兩層都是匯入時算好的字串：只接起來，不在 Worker 裡解開（免費方案的 CPU 只有 10 ms，architecture §4） */
+/**
+ * 兩層都是匯入時算好的字串：只接起來，不在 Worker 裡解開（免費方案的 CPU 只有 10 ms，architecture §4）。
+ * 照類型排：同類的放一起壓縮比較好（gzip 詳情層 860 → 767 KB，T15 實測）
+ */
 export async function listPlaces({ db, req }: Ctx): Promise<Response> {
   const importId = await latestImportId(db);
   const etag = `"imp-${importId}"`;
   if (etagMatches(req.headers.get('if-none-match'), etag)) return new Response(null, { status: 304, headers: { etag } });
 
   const [rows, redirects] = await db.batch<Record<string, string>>([
-    db.prepare('SELECT id, data_list, retired_at FROM places_base ORDER BY id'),
+    db.prepare('SELECT id, data_list, retired_at FROM places_base ORDER BY type, id'),
     db.prepare('SELECT old_id, new_id FROM redirects'),
   ]);
   const retired: Record<string, string> = {};
@@ -81,7 +84,7 @@ export async function listPlaceDetails({ db, req }: Ctx): Promise<Response> {
   const importId = await latestImportId(db);
   const etag = `"imp-${importId}"`;
   if (etagMatches(req.headers.get('if-none-match'), etag)) return new Response(null, { status: 304, headers: { etag } });
-  const rows = await db.prepare('SELECT data_detail FROM places_base ORDER BY id').all<{ data_detail: string }>();
+  const rows = await db.prepare('SELECT data_detail FROM places_base ORDER BY type, id').all<{ data_detail: string }>();
   const body = `{"importId":${importId},"details":[${rows.results.map((r) => r.data_detail).join(',')}]}`;
   return rawJson(body, { headers: { etag, 'cache-control': 'no-cache' } });
 }

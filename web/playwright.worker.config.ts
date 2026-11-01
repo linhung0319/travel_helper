@@ -1,6 +1,6 @@
 import { defineConfig, devices } from '@playwright/test';
 
-const PORT = 8799;
+const PORT = Number(process.env.E2E_WORKER_PORT ?? 8799);
 
 // T15 的完成條件（PLAN）：build 過的網站、本機 Worker、本機 D1；「別人」是另一個登入的帳號（X-Dev-Member）。
 // 既有的 e2e（playwright.config.ts）用 dev server 和假後端，不受影響。
