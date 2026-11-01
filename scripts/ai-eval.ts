@@ -12,7 +12,7 @@ import type { Env } from '../worker/src/env.ts';
 import { splitReplies } from '../web/src/ai/transcript.ts';
 import type { ChatContext, ChatMessage } from '../web/src/ai/types.ts';
 
-const { values: args } = parseArgs({ options: { model: { type: 'string', default: 'claude-opus-5-5' }, effort: { type: 'string', default: 'medium' }, only: { type: 'string' }, out: { type: 'string' }, concurrency: { type: 'string', default: '3' } } });
+const { values: args } = parseArgs({ options: { model: { type: 'string', default: 'claude-sonnet-5-5' }, effort: { type: 'string', default: 'medium' }, only: { type: 'string' }, out: { type: 'string' }, concurrency: { type: 'string', default: '3' } } });
 process.loadEnvFile('worker/.env');
 
 type H = Awaited<ReturnType<typeof harness>>;

@@ -9,7 +9,7 @@ import Anthropic from '@anthropic-ai/sdk';
 import type { Ctx, Env } from '../env.ts';
 import { badRequest, HttpError, json, readBody } from '../lib/http.ts';
 
-const DEFAULT_MODEL = 'claude-opus-5-5';
+const DEFAULT_MODEL = 'claude-sonnet-5-5';
 const DEFAULT_EFFORT = 'medium';
 const MAX_OUTPUT_TOKENS = 8000;
 const MAX_BODY_BYTES = 4 * 1024 * 1024;

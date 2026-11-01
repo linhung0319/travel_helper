@@ -573,6 +573,7 @@ npm run db:import -- --apply data/cache/import/<時間>-all.json   # 2. 👤 看
 - **防止用掉太多額度**：只有登入的人能呼叫；Worker 依使用者記錄用量（`ai_usage`，含快取和費用）。上限（👤 2026-11-02）：全部人每月 US$80、每人每天 US$3，以日本時間計，可以用 `AI_MONTHLY_USD`、`AI_DAILY_USD` 改；超過回 429，畫面明確提示、輸入框停用。
 - **代理**（`worker/src/api/claude.ts`）：瀏覽器只給 `system`、`tools`、`messages`；模型（`AI_MODEL`）、effort（`AI_EFFORT`）、輸出上限由 Worker 定。回 NDJSON（`text`、`done`、`error`），`web/src/ai/workerModel.ts` 轉成 `ModelEvent`。拒答時伺服器端換模型重跑（`fallbacks: "default"`，Opus、Sonnet 才有）。
 - **歷史只增不改**：Opus 5.5 等模型的思考區塊綁著前面的對話，改過歷史就失效，快取也接不上。所以 `system`、`tools` 是固定的；`content` 照模型回的原樣存（含思考）；每輪的脈絡（畫面、晶片、決定）在那輪開始時存成 `turnContext`，之後每次送一樣的字（`<context>…</context>`）。舊的工具結果不在瀏覽器刪，用伺服器端的 `clear_tool_uses`（超過 4 萬 tokens 時，留最近 6 個，卡片的不清）。
+- **模型**（👤 2026-11-02）：預設 Sonnet 5.5，可以用 `AI_MODEL` 換。評估結果（22 個情境、effort medium）：Sonnet 22/22、每輪約 US$0.022、每個情境 8.6 秒；Opus 22/22、US$0.057、17.8 秒；Haiku 21/22、US$0.0016、9.4 秒。
 - **對話的長度**：送出的 token 到 6 萬算快滿、10 萬算滿（`NEAR_TOKENS`、`FULL_TOKENS`）；看的是費用，不是模型的上限（1M）。
 - **評估**：`npm run ai:eval -- --model <模型>`（`scripts/ai-eval.ts`）用真的 API 跑規格 §8 的腳本，會花錢（Opus 跑一次約 US$1.5）；改系統提示、工具說明後跑。
 - **CPU**：Worker 免費方案每次請求 10 ms。本機（Node）量代理一次約 8 ms、第一次 63 ms，只能當參考；**T30 部署後要看實際數字**，超過就升級付費方案（US$5／月）或改成不解析串流。
