@@ -738,10 +738,22 @@ T7c → T7d → T7e → T7f → T7g → T8a → T8b → T8c → T8d → T7i → 
 - **把 T15m 的假後端換成 T24、T25 的 API**：確定的行程、快照、投票、留言、候選、修改紀錄存在 D1；畫面的程式不改（要改的話，代表 T15m 的介面沒定好，回頭修介面）。
 - **Worker 要跟上 T15m 改的形狀**（2026-10-24，architecture §3.6）：投票拿掉備註；建議（`suggestions` 和它的 API）換成留言（`comments`，對地點或某一天）和候選（`candidates`）；`sync` 改回傳 `votes`、`comments`、`candidates`。規則照 `web/src/backend/mock.ts`。
 - **預約筆記和整趟留言也要接 worker 和 D1**（T15m 第三輪，architecture §2「預約筆記的假後端」）：`Reservation` API 形狀是列出全部（`GET`）加按 `(date, placeId)` 寫入一筆（`PUT`，整筆取代），欄位 `status`（`pending`／`booked`／`skip`）、`note`、`nights`、`updatedBy`、`updatedAt`（後者由 Worker 填）；住宿的 `date` 是入住那晚。D1 多一張 `reservations` 表（主鍵 `(date, place_id)`），`sync` 回傳 `reservations` 時間戳。整趟留言（`target` 為 `'trip'`，`TRIP_TARGET`）走原本的留言 API，Worker 要接受這個 target。規則照 `web/src/backend/mock.ts`。
-- **行程格式的第四輪改動也要接到 Worker 的驗證**（T15m 第四輪，`packages/engine/src/types.ts`）：`TravelSpec.mode` 多了 `transit`（舊的 `train`、`bus`、`ferry`、`charter`、`car`、`other` 照樣合法）、`TravelSpec.trip`（選定的班次 `TripRef`，可以省略或 `null`）；`bufferMinutes` 拿掉了，舊資料留著也不能報錯。Worker 存行程時的驗證要照 `validateItinerary` 收這些欄位。
+- **行程格式的第四輪改動也要接到 Worker 的驗證**（T15m 第四輪，`packages/engine/src/types.ts`）：`TravelSpec.mode` 多了 `transit`（舊的 `train`、`bus`、`ferry`、`charter`、`car`、`other` 照樣合法）；`bufferMinutes`、`trip`（T29b 拿掉選班次）舊資料留著也不報錯、不檢查。Worker 存行程時跑 `validateItinerary`。
 - 假登入換成 T25 的 LINE 登入；同時編輯用 `version` 號碼偵測；同步照 architecture §3.8。
 - 用兩個真的帳號試一次同時編輯、同步。
 - **完成條件**（Playwright，手機和電腦尺寸各跑一次，用本機的 Worker 和 D1）：同 T15m 的流程，但「別人」是另一個登入的帳號；重新整理後資料還在。
+- **結果**（2026-11-01，做法見 architecture §2「資料分層、啟動、靜態檔」）。清單層的欄位對照程式確認後是 gzip 229 KB（試算 425 KB），詳情層 767 KB。手機指 390×844、4 倍 CPU、1.6 Mbps；T32 沒有後端，T15 是本機 Worker 和 D1（模擬 150 ms 延遲），真的 D1 的延遲要等 T30 看：
+
+  | 項目 | T32 | T15 第一次 | T15 第二次（有快取） |
+  |---|---|---|---|
+  | 第一次畫出東西（骨架） | 0.3 秒 | 0.3 秒 | 0.2 秒 |
+  | 可以操作 | 約 9.5 秒 | 6.2 秒 | 1.3 秒 |
+  | 時刻表、詳情層都讀好 | | 17.1 秒 | 2.4 秒 |
+  | JS | 9 個（含資料點約 940 KB） | 7 個、513 KB | 不用下載 |
+  | 資料點（清單層）／詳情層 | 含在 JS | 229 KB／768 KB | 304 |
+  | 引擎時刻表 | 含在 JS | 1 個檔、190 KB | 304 |
+  | 啟動的 API | 假後端 | 1 支（原本 11 支） | 1 支 |
+  | 總傳輸（同網站） | | 1745 KB | 2 KB |
 
 ### T16m AI Agent UI 原型（T16m-a、T16m-b、T16m-c）
 **規格：`docs/superpowers/specs/2026-10-31-ai-agent-ui-design.md`**（工具、資料、呈現、問 AI、對話腳本都在那裡；2026-10-31 👤 決定，取代這張卡的舊內容）。
@@ -844,6 +856,7 @@ T7c → T7d → T7e → T7f → T7g → T8a → T8b → T8c → T8d → T7i → 
 - 完成條件：見設計文件 §7。
 
 ### T30 👤 部署到 Cloudflare 〔S〕
+- **部署後要看的**（T15 留下）：`/api/places/details`（約 3.5 MB，接 660 列字串）在免費方案 10 ms CPU 內跑不跑得完（`observability`）。本機量不出來；超過的話改成匯入時組好整包、分幾列存進 D1。同時看 Cloudflare 回的 ETag 是不是 `W/`、304 有沒有生效。
 - **什麼時候做**：👤 確定預設資料和 schema 之後、邀請家人之前（2026-10-26 👤 決定）。第一次正式匯入之後 ID 不改名（[architecture.md](architecture.md) §3.5）；在那之前，正式環境的 D1 可以清空重建。
 - 步驟照 [architecture.md](architecture.md) §4「部署（T30）」：
   1. 👤 註冊 Cloudflare（免費方案）、`npx wrangler login`；第一次用 Workers 要選帳號的子網域。

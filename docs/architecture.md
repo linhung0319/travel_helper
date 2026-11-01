@@ -17,7 +17,7 @@
 | 使用者的修改 | 另存一層（修改層），**全員共用**，記錄誰改的，可以復原；不直接改預設資料 |
 | 時刻表 | 不放進資料庫，維持靜態檔案 |
 | 登入 | LINE 登入＋檢查是否為家人 LINE 群組的成員；另有白名單備案 |
-| 行程與編輯 | 只有**一份確定的行程**；家人在每一天留**建議**（只有寫的人能刪）；任何人按「編輯」（原「規劃模式」）後才能改行程（防止誤按的開關，不是權限控管）；資料點的修改直接生效，有紀錄、可以復原。見 interaction-design §6、§11 |
+| 行程與編輯 | 只有**一份確定的行程**；家人按 ❤️（想去）、留**留言**（地點、某一天或整趟，只有寫的人能改刪）、把點加成某天的**候選**；任何人按「編輯」（原「規劃模式」）後才能改行程（防止誤按的開關，不是權限控管）；資料點的修改直接生效，有紀錄、可以復原。見 interaction-design §6、§11 |
 | AI（T16） | 工具在瀏覽器執行；Worker 只負責轉發，並加上 Claude API key；聊天紀錄存在 D1，只有自己看得到 |
 | 時間 | 一律是日本時間，存成日期（`YYYY-MM-DD`）＋`HH:MM` 字串，不做時區換算（§3.8） |
 
@@ -73,7 +73,7 @@ travel_helper/
 - **不需要伺服器端渲染**：不需要 SEO，打包成靜態檔案，由 Cloudflare 提供。
 - **資料存取包在一層介面後面**（`web/src/data/`），有兩種實作：
   - **本機**：直接讀 `data/*.json`（v0 的 `import.meta.glob`），修改層是空的。T11、T12、T14 開發時用，不用等後端。
-  - **API**：向 Worker 拿預設資料和修改，在瀏覽器合併（T15 起）。
+  - **API**（`data/api.ts`，T15）：資料點從 Worker，其他從 `/static/`；修改也從 Worker，在瀏覽器合併。`data/index.ts` 只有 dev 才載入本機的實作，資料點、時刻表不進 build。
 
   UI 只看到合併後的資料點，另外附上「哪些欄位被改過」，所以兩種實作可以互換。
 
@@ -159,17 +159,18 @@ UI 的天數分頁、篩選標籤的 ✕、「跳到區域」、「這一天」�
 
 ### 後端、共用資料、行程引擎（T15m，2026-10-23）
 
-T15m 先用假後端把畫面做出來，T15 只換後端的實作，畫面的程式不改。
+T15m 先用假後端把畫面做出來，T15 換成呼叫 Worker 的實作（`backend/api.ts`、`data/api.ts`）。假後端和種子資料留著：dev server 和既有 e2e 靠它（固定資料、假 AI、不用開 Worker）；它不進正式 build，規則改了要和 Worker 一起改（`worker/test/apiBackend.test.ts` 讓兩邊跑同一份情境比對）。
 
-- **`web/src/backend/`：後端的介面**（`types.ts` 的 `Backend`）。形狀照 §4「資料 API」：行程（`version`、409 衝突）、快照、投票（❤️ 就是想去）、留言（地點或某一天）、候選（某天的候選）、修改紀錄、成員、`sync`。2026-10-24 拿掉建議、改成想去分頁和候選（設計見 `docs/superpowers/specs/2026-10-24-wishlist-planning-design.md`）；留言、候選 Worker 還沒有，T15 要補（§3.6）。錯誤是 `BackendError`（HTTP 狀態＋`error`、`message`、`details`）。
+- **`web/src/backend/`：後端的介面**（`types.ts` 的 `Backend`）。形狀照 §4「資料 API」：行程（`version`、409 衝突）、快照、投票（❤️ 就是想去）、留言（地點或某一天）、候選（某天的候選）、修改紀錄、成員、`sync`。2026-10-24 拿掉建議、改成想去分頁和候選（設計見 `docs/superpowers/specs/2026-10-24-wishlist-planning-design.md`）。`bootstrap` 啟動時一次拿齊（T15）。錯誤是 `BackendError`（HTTP 狀態＋`error`、`message`、`details`）。
   - `mock.ts`：假後端，規則和 Worker 一樣（只有寫的人能改刪、軟刪除、改行程前自動存快照、version 不對回 409），資料存在記憶體加 localStorage（`travel-helper:mockBackend:v6`，種子資料改了就換 key）。種子資料在 `dev-fixtures/seed.ts`（4 位假家人、排了一半的行程：有時段備案、分組用的合併卡（2/10）、空檔）。
-  - `index.ts`：dev server 用假後端；正式 build 先用「還沒接上」的版本（只能看、寫入都回 503）。**T15 在這裡換成呼叫 API 的實作**。假後端、種子資料、dev 選單都用 `import.meta.env.DEV` 包起來，不會進 `dist/`。
+  - `index.ts`：dev server 用假後端；正式 build 用 `api.ts`。假後端、種子資料、dev 選單都用 `import.meta.env.DEV` 包起來，不會進 `dist/`。
+  - `api.ts`、`http.ts`（T15）：呼叫 Worker，錯誤變成 `BackendError`（連不上是 `network`）；401、帳號停用時重新載入頁面，Worker 會回登入頁或停用頁。讀到的行程先跑 `upgradeItinerary`。
 - **`web/src/sharedStore.ts`（純邏輯）／`appShared.ts`（網站共用的一份）：大家共用的資料**。
   - 狀態：`me`、`members`、`version`（手上那份行程的）、`updatedBy`、`updatedAt`、`snapshots`、`votes`、`comments`、`wishes`、`edits`、`saving`、`conflict`（409 之後不能再改，按「重新載入」才清掉）、`toast`、`lastSync`。
   - 動作：`changeItinerary(fn, reason)`（fn 用 engine 的操作；先在畫面上改，存不了就退回；**一個使用者動作只存一次檔**，快照才會整個復原）、`reloadItinerary`、`restoreSnapshot`、`vote(placeId, value)`、留言的新增／修改／刪除（`comment`、`editComment`、`deleteComment`）、`addCandidate(placeId, day)`、`removeCandidate(id, reason?, placed?)`（自己加的直接撤回；別人加的要理由，理由變成那個點一則 `kind: 'decline'` 的留言；排進行程後用 `placed` 拿掉）、`revertEdit`、`syncOnce`。純函式在 `lib/wishlist.ts`：`likedPlaces`（有人 ❤️ 的點、頭像）、`dayCandidates`（某天的候選，已經排進那天的不列）。
   - 同步照 §3.8：每 30 秒、切回分頁時打一次 `sync`，變了才重抓那一種；行程有別人的新版本時直接換上（存檔中、衝突中不換）。
   - 修改紀錄在瀏覽器合併：`data/merge.ts` 直接用 Worker 的 `worker/src/lib/merge.ts`，`place.edited` 是「欄位 → 最新那筆修改（`editId`、誰、何時、原本的值）」。
-- **`web/src/planStore.ts`：行程引擎在瀏覽器跑**。行程或資料點變了就重算（T29b）：`buildEngineData` 在資料點、地區、時刻表、道路快取（`roadRouter.version`，查到新路線加一）都沒變時沿用同一個 `EngineData`（引擎的網路、搜尋、上下車點的快取都掛在它和它的陣列上），`planItinerary` 帶引擎的 `PlanCache`，只重算內容有變的那天（動資料卡算一天、動住宿算當天和隔天；`EngineData` 換了才整份重算）。12 天（含大阪 2 天）動一張卡後重算約 5 ms，整份重算約 100～200 ms。引擎要的時刻表從 `DataSource.loadEngineTimetables()` 讀（近鐵 `_travel-times.json`、巴士、船、JR 的路線檔，約 1.3 MB，第一次算時才載入）；`walkMeters`、`driveMeters` 接 `roadRouter.cachedMeters`。T15 的 API 實作要從 `build:static` 的輸出讀這些檔案。
+- **`web/src/planStore.ts`：行程引擎在瀏覽器跑**。行程或資料點變了就重算（T29b）：`buildEngineData` 在資料點、地區、時刻表、道路快取（`roadRouter.version`，查到新路線加一）都沒變時沿用同一個 `EngineData`（引擎的網路、搜尋、上下車點的快取都掛在它和它的陣列上），`planItinerary` 帶引擎的 `PlanCache`，只重算內容有變的那天（動資料卡算一天、動住宿算當天和隔天；`EngineData` 換了才整份重算）。12 天（含大阪 2 天）動一張卡後重算約 5 ms，整份重算約 100～200 ms。引擎要的時刻表從 `DataSource.loadEngineTimetables()` 讀（近鐵 `_travel-times.json`、巴士、船、JR 的路線檔，約 1.3 MB，第一次算時才載入）；`walkMeters`、`driveMeters` 接 `roadRouter.cachedMeters`。正式 build 讀 `build:static` 的 `timetables/engine.json`：把引擎要的全部併成一個檔案，一個請求（原本要 39 個檔案；`_segments.json` 沒有 `trains`，引擎不能用）。
 - **`web/src/uiStore.ts`：對話框和地圖區的視窗**，對話框一次只開一個（開始編輯的確認、快照、排進行程、移到別天、拿掉別人加的候選、修改紀錄、需要預約），`components/Dialogs.tsx` 負責畫；另有編輯的閒置分鐘（預設 10）、`mapPanel`（電腦版地圖區右上角 💬 討論、📋 預約打開的彈窗：浮在地圖上、四周留地圖，點彈窗外的地圖就關掉；手機版不用它，💬／📋 打開的是 `mobileStore.page` 的整頁；`{ kind: 'comments' | 'reservations', scope: 'day' | 'trip', focus? }`，`openMapPanel`／`closeMapPanel`／`setMapPanelScope`；時間軸的預約 tag 用 `focus` 帶到那一列）、`legOpen`（點開的交通卡，一次一段，key 是 `legKeyOf`（`日期:visit:項目 ID` 這類）：交通卡平常收起，點了地圖只畫那一段（`commands.drawRoute`），大眾運輸展開步驟，編輯中就在原地變成編輯狀態（方式、步驟、備註；T29b 拿掉每一程的班次選項）；點開前後距離一樣（第五輪 §3.5）；卡片不見了也清掉）、`timetable`（地圖那側的班次表 `TimetablePopup`：`{ date, legKey, rideIndex }`，交通卡步驟裡搭車那一行的「› 班次」用 `openTimetable` 打開，和 `mapPanel` 互斥；✕、點地圖、換天、那張交通卡收起或換別段、這一程不見了就關掉；只能看，T29b 拿掉「點了選它」）。
 - **篩選加 `votes`**（`'popular'`＝大家想去的：想去 2 人以上、`'mine'`＝只看我按的）。投票不在資料點裡，`appShared` 用 `setVoteLookup` 註冊查詢，`matchesFilter` 的呼叫者不用改；T12 的 `setFilter` 也認得。**搜尋**不放進 `Filter`（`setFilter` 的格式都是陣列）：`appStore.query`＋`matchesQuery`，地圖跟著現在那頁。網頁的探索、想去各自一份篩選和搜尋（`appStore.filter`／`query` 是現在那頁的，另一頁的收在 `filterStash`，行程分頁沿用探索那份，第七輪），手機在 `mobileStore.feed`／`wish`；想去的清單／照片牆、三段收合在 `web/src/shared/wishPrefs.ts`，兩邊共用。
 - **編輯**（第五輪前叫規劃模式）：`appStore.planning` 還是唯一的開關；「編輯」按鈕（`PlanningToggle`，這天的標題右邊，編輯中換成墨色編輯條）、進入前確認（「開始編輯？」）、時間軸面板最上面的藍條（`PlanningBar`：快照、「完成」）、面板不在畫面上時浮在地圖上方的精簡條（`EditingStrip`）、第一次的提示（`EditHint`，記在 localStorage）、閒置結束（`usePlanningIdle`）。Worker 不檢查規劃模式（§3.6）。**想去**是 `appStore.mode === 'wish'`：電腦版右欄的分頁（順序探索｜想去｜行程），內容是 `ExplorePanel source="wish"`（只列有人 ❤️ 的點，卡片底下是 `Wishlist.tsx` 的 `WishExtras`）；地圖在這個模式把沒人 ❤️ 的點變淡。手機版的想去是底部的分頁（`mobile/WishlistPage.tsx`，設定在 `mobileStore.wish`），不用 `appStore.mode`。行程分頁時間軸下面是這天的候選（`DayCandidates`，規劃模式下 ↑ 排進）和這天的留言（`DayComments`，`target` 是 `day:<日期>`）。排進行程走 `components/addToDay.ts`：引擎的 `bestInsertIndex` 找最順路的位置（`planStore.currentEngineData()` 給引擎資料），`proposedBy` 記按 ❤️ 的人。排進後那天的候選自動拿掉。拖曳在 `components/planDrag.ts`（兩邊都用 pointer 事件，手指按把手、滑鼠按整張卡，看 `pointerType`；放開的結果由 `lib/dropIntent.ts` 算，停在同類型卡中間 `dwellMerge` 之後才合併）：時間軸的卡片、合併卡片正在看的備卡、這天的候選都能拖；放在同類型卡片中間＝合併（`mergeItems`／`addOption`／`moveOption`），卡片上下邊緣、交通卡、最後的放置區＝排在那裡（`moveItemTo`／`addItem`／`detachOption`），備卡放到候選區＝放回候選；放回原位不存檔。這些都經過 `changeItinerary` 的 `undo` 跳「復原」提示（候選的增減在 `settle` 裡做完才跳提示；行程之後又被改過就不復原）。
@@ -199,6 +200,23 @@ T15m 先用假後端把畫面做出來，T15 只換後端的實作，畫面的�
 - **照片什麼時候載**：`lib/nearViewport.ts`，離最近的捲動容器 300px 內才開始載（輪播裡就是目前這張和下一張）；不用 `loading="lazy"`，它提早的距離大又不能調。載好之前是 `.photo-loading`；換大圖時底下墊著看過的小圖（`underlayUrl`），楽天原圖沒看過也先墊 `HIMG/300`。
 - **長清單**：`shared/useBatch.ts` 分批畫（網頁、手機探索都是一批 60 張）；網頁探索的 `Item` 是 `memo`，傳進去的函式要穩定；搜尋用 `useDeferredValue`，輸入框先跟上。
 
+### 資料分層、啟動、靜態檔（T15，2026-11-01）
+
+- **清單層、詳情層**（`worker/src/lib/placeLayers.ts`，匯入腳本和 dev 的 `local.ts` 共用）：`data/`、`schema/` 不動，匯入時算好存進 `places_base.data_list`、`data_detail`，Worker 只接字串。規則只有一條：`{ ...清單, ...詳情 }` 等於原始資料（`extra` 例外，見下面）。改了規則要把 `LAYER_VERSION` 加一，重新匯入時內容沒變的點也會重算。
+  - 清單層：`id`、`type`、`name`、`area`、`region`、`coords`、`tier`、`contexts`、`tags`、`cuisine`、`indoor`、`ratings`、`hours`、`closures`、`anchors`、`stayMinutes`、`nearestStation`、`meals`、`checkIn`、`operator`、`stationNumber`、`transfers`、`googleName`、`aliases`、`reservation`、`phone`；部分子欄位：`group`（`fit15`、`fitSubgroup`、`confirmed15`、`wholeRental`）、`kids`（`allowed`、`friendly`、`minAge`）、`accessibility`（`stairs`、`walkInsideMinutes`）、`assessment`（`scores`）、`links`（`official`、`googleMaps`）、`photos`（`url`）。
+  - 大小（660 筆，gzip／br）：全部 937／841 KB；清單層 229／220 KB；詳情層 767／692 KB。照 `type, id` 排才有這個數字（照 `id` 排詳情層是 860 KB）。
+  - `web/test/placeLayers.test.ts`：清單層和完整資料各算一次，引擎、標章、篩選、AI 搜尋、預約清單的結果要一樣；少讀欄位不會報錯，所以靠這個抓。
+- **什麼時候讀**（`dataStore.ts`）：啟動讀清單層；閒置時（`requestIdleCallback`，沒有就等 1.5 秒）`ensureDetails` 一次讀詳情層；使用者先打開詳情就馬上讀。詳情層放在 `dataStore.details`，不換 `places`：不然詳情一到，行程要整份重算、清單全部重畫。
+- **`place.raw` 只有清單層**。要完整欄位用 `fullPlace(state, id)`（hooks 的 `useFullPlace`）：清單層加詳情層，再用和 Worker 同一份規則套修改。用到的地方：`PlaceDetail`（分頁內容還沒到放 `DetailPending` 骨架，讀不到有重試）、卡片展開的介紹（`PlaceOpenBody`、`TripCard` 的 `Expand`）、地圖小卡（`PreviewCard`）、AI。
+- **AI**：`search_places`、`get_place`、`propose_place_edit`、對話的脈絡晶片都先等詳情層（`AiDeps.details`）；讀不到回明確的錯誤，不回 null（null 是「資料沒寫」）。`get_place` 多一個分區 `more`（`notes`、`extra`）。
+- **`extra`、`notes`**：詳情的「其他資訊」（`DetailPanel` 的 `ExtraSection`）和 `get_place` 看得到。`extra` 用白名單：`placeLayers.ts` 的 `EXTRA_LABELS`（給人看的鍵和名稱）、`EXTRA_HIDDEN`（研究用的 `conflicts`、`rakutenVacancy`、`dossierFacts`，座標和來源比對，內部欄位；不進詳情層，只留在 `places_base.data`）。新的鍵兩邊都沒有時 `npm test` 失敗。`dinnerAccessNote` 的工作註記在算詳情層時去掉。
+- **啟動**：`GET /api/bootstrap` 一次拿齊共用資料（一個 `db.batch`，取代 11 支 API，也少 10 次登入查詢），和清單層同時開始讀；兩個都到才算好（`status: 'ready'`），之前是 `#boot` 骨架。不選「畫面先出來、共用資料後到」：每個畫面都要處理沒有 `me`、行程、票的狀態，違反「畫面的程式不改」，時間軸也會先空後有。
+- **第一份行程**：資料庫沒有行程（`version` 0）時，第一個打開的人用 `createItinerary()` 存一份（航班放好）；兩個人同時打開時晚到的回 409，讀別人建好的。
+- **已下架的點**：`Place.retiredAt`；不在 `places`（清單、地圖看不到），留在 `byId`，引擎當 retired，行程裡有警告。
+- **同步**：分頁在背景時不打 `/api/sync`，切回來打一次（省 Worker 額度）。
+- **靜態檔**：`run_worker_first: ["/*", "!/assets/*"]`：打包好的程式不經過 Worker，`web/public/_headers` 給 `/assets/*` 長快取；其他（`/`、`/static/`、`/api/`）都要登入。**`/assets/` 不用登入就讀得到**，所以資料點、時刻表不能放在那裡；JS 裡有旅程日期、人數組成、航班時間（`systemPrompt.ts`、`engine/ops.ts`，沒有姓名和航班編號），👤 2026-11-01 確認可以接受。`not_found_handling` 是 `none`：SPA 模式下 `/assets/` 沒有的檔案會回 `index.html`（200），還被長快取記一年（T15 實測）；網站沒有路徑的路由，用不到 SPA。
+- **e2e**：`npm run e2e:worker`（`web/playwright.worker.config.ts`、`web/e2e-worker/`）：build 過的網站、本機 Worker、獨立的本機 D1（`worker/.wrangler/e2e-<埠>`），「別人」是另一個帳號（`X-Dev-Member`）。正式 build 沒有 `window.__th`，全部走畫面。埠被佔著時設 `E2E_WORKER_PORT`。量載入：`web/e2e-worker/measure.mjs`。
+
 ### 自己加地點（T31，2026-10-30）
 
 設計見 `docs/superpowers/specs/2026-10-30-add-place-design.md`。
@@ -223,7 +241,7 @@ T15m 先用假後端把畫面做出來，T15 只換後端的實作，畫面的�
 | **預設資料**：車站、景點、住宿、餐廳 | **只有匯入腳本** | D1 `places_base` |
 | **修改**：針對某個點的某個欄位的修改 | 使用者（網站） | D1 `place_edits` |
 | **自己加的點** | 使用者（網站） | D1 `user_places` |
-| **確定的行程、快照、建議、投票** | 使用者（網站） | D1（§3.6） |
+| **確定的行程、快照、投票、留言、候選、預約筆記** | 使用者（網站） | D1（§3.6） |
 | **聊天紀錄** | 使用者和 AI | D1，只有自己看得到（§6） |
 | **時刻表**（近鐵、JR、巴士、定期船）、`passes.json`、`access/` | Claude Code | 靜態檔案（§3.7） |
 | **研究筆記**（`data/raw/`）、`data/cache/`、`data/derived/` | Claude Code | **不上網站**，只留在 git |
@@ -242,7 +260,7 @@ T15m 先用假後端把畫面做出來，T15 只換後端的實作，畫面的�
 
 ### 3.3 資料表（D1，T24 定案）
 
-定案的 SQL 在 `worker/migrations/0001_init.sql`（每個欄位都有註解）。下面是 2026-10-21 的草稿，T24 定案時改了這些：
+定案的 SQL 在 `worker/migrations/0001_init.sql`（每個欄位都有註解）。下面是 2026-10-21 的草稿（`suggestions` 已經拿掉，見 §3.6），T24 定案時改了這些：
 
 - `place_edits` 加 `updated_at`（建立、復原、匯入收掉時更新，`GET /api/edits?since=` 用）、`note`（修改的理由）、`closed_at`／`closed_import_id`／`closed_reason`（匯入時收掉：`same-as-new-base` 兩邊改成一樣、`conflict-use-base` 衝突時選了新的預設值）。ID 是自動編號的整數，越大越新。
 - `base_value` 是 SQL 的 `NULL` 表示「預設資料沒有這個欄位」，和 JSON 的 `null`（欄位是 null）分開。
@@ -252,6 +270,7 @@ T15m 先用假後端把畫面做出來，T15 只換後端的實作，畫面的�
 - `redirects` 加 `reason`。
 - 時間欄位（`*_at`）是 UTC 的 ISO 字串，只用來記錄誰、何時改的；行程裡的時間照 §3.8 存日本時間的字串。
 - D1 預設開著外鍵檢查：`author`、`member_id` 都要先在 `members` 裡（開發用的身分第一次出現時自動加進去）。
+- **T15 改的**（直接改 `0001`：還沒部署、沒有要保留的資料）：`places_base` 加 `data_list`、`data_detail`、`layer_version`（§2「資料分層」）；拿掉 `suggestions`、`votes.note`；加 `comments`、`candidates`（沒刪除的同一天同一點只有一筆）、`reservations`（主鍵 `(date, place_id)`）。
 - **T25 加的**（`worker/migrations/0002_auth.sql`）：`line_groups`（機器人所在的群組，`status` 是 pending／approved／rejected，`left_at`）、`login_requests`（登入被擋下的人，管理頁核准成白名單）、`members.disabled_reason`（`left-group` 退出群組、`admin` 管理員停用）。`members.source` 多了 `admin`（§5）。
 
 草稿：
@@ -275,8 +294,8 @@ chat_messages (id PK, member_id, conversation_id, role, content JSON, created_at
 ai_usage      (member_id, date, input_tokens, output_tokens, PRIMARY KEY (member_id, date))
 ```
 
-- 結構複雜、常常整份讀寫的東西（資料點的內容、行程）存成 JSON 欄位；要統計、篩選的東西（投票、修改紀錄、建議）拆成一列一列。
-- `user_places`、`suggestions` 的 `author`、`votes` 的 `member_id` 都對到 `members`；**只有本人能刪**，由 Worker 檢查。
+- 結構複雜、常常整份讀寫的東西（資料點的內容、行程）存成 JSON 欄位；要統計、篩選的東西（投票、修改紀錄、留言、候選）拆成一列一列。
+- `user_places`、`comments` 的 `author`、`candidates` 的 `added_by`、`votes` 的 `member_id` 都對到 `members`；自己加的點、留言**只有本人能刪**，由 Worker 檢查（候選誰都能拿掉）。
 - 資料點 551 筆（2026-10-22：住宿 145、餐廳 292、景點 82、車站 32），JSON 共約 2.9 MB，最大的一筆約 12 KB。D1 的免費額度見 §4「免費額度」。
 
 ### 3.4 匯入（T24 寫腳本）
@@ -321,21 +340,24 @@ npm run db:import -- --apply data/cache/import/<時間>-all.json   # 2. 👤 看
 - **ID 不改名**：ID 是連接預設資料、修改、行程、投票的關鍵。第一次正式匯入之後，已經匯入的 ID 不改名。
 - **合併重複的點**：保留一個 ID，被合併的記成轉址（舊 ID → 新 ID）。轉址記在 `data/redirects.json`，匯入時寫進 `redirects`；行程、投票、修改都跟著轉過去。
   - 格式（T24 定，schema 見 `docs/requests.md`）：`[{ "from": "舊 ID", "to": "保留的 ID", "date": "YYYY-MM-DD", "reason": "為什麼合併", "task": "T13" }]`。validate 檢查：舊 ID 已經不在資料裡、目的地存在、不能連鎖、不能重複。
-  - 匯入時：舊的點下架；修改的 `place_id` 換成新 ID；投票換過去（同一個人兩邊都投過就保留新 ID 那一票，舊的軟刪除）；建議的 `place_ids`、確定的行程裡**完全等於**舊 ID 的 JSON 字串換成新 ID（行程改之前先存快照、`version` 加一）；之前轉到舊 ID 的轉址直接改指新 ID。
+  - 匯入時：舊的點下架；修改的 `place_id` 換成新 ID；投票換過去（同一個人兩邊都投過就保留新 ID 那一票，舊的軟刪除）；地點的留言換過去；候選、預約筆記換過去（新 ID 那邊同一天已經有了就保留新的）；確定的行程裡**完全等於**舊 ID 的 JSON 字串換成新 ID（行程改之前先存快照、`version` 加一）；之前轉到舊 ID 的轉址直接改指新 ID。
   - Worker 收到舊 ID（`GET /api/places/:id`、修改、投票）時自動轉到新 ID；`GET /api/places` 回傳轉址表，前端顯示舊行程時用。
 - **網站上線後，資料的修正一律在網站上改**（修改層），不再請 Claude Code 改既有區域的 JSON。預設資料只有匯入一種改法。例外是整批重查（例如重查某一區的營業時間），這時照 §3.4 重新匯入並處理衝突。
 - **schema 改版**：欄位改名、搬位置時，修改層的 `field_path` 也要跟著搬，寫在 migration 裡。
 
-### 3.6 確定的行程、建議、快照、投票
+### 3.6 確定的行程、快照、投票、留言、候選、預約筆記
 設計見 interaction-design §6、§11。
 
 - **確定的行程只有一份**：整份存成一個 JSON 文件（格式由 T14 定），帶一個 `version` 號碼。一開始就放好航班當固定項目。不做「方案」。
 - **只有編輯中能改行程**：編輯（原規劃模式）是前端的開關，Worker 只檢查有沒有登入，不另外做權限。每次改動記下是誰改的。
 - **同時編輯**：存檔時送出自己手上的 `version`。和資料庫的不一樣，就表示有人先改過，提示「別人改過了」，讓使用者重新載入再改。15 人的規模不做即時協作（CRDT、Durable Objects）。
 - **快照**：每次改行程前自動存一份（包括採用 AI 的提議），可以復原；復原本身也是一次修改，會再存快照。
-- **建議**：存一則一列（`suggestions`）。寫的人可以改、可以刪（軟刪除）；編輯中的人只能改狀態（已採用／不採用＋一句話）。採用時記下對應的行程項目，行程項目也記「誰提的」。
-- **投票**：一人對一個點一筆（想去／不喜歡，不寫備註），見 interaction-design §9。
-- **2026-10-24 改成想去清單**（T15m，設計見 `docs/superpowers/specs/2026-10-24-wishlist-planning-design.md`）：❤️ 就是想去，投票拿掉備註；建議拿掉，換成**留言**（`comments`：`target` 是地點 ID 或某一天 `day:<日期>`，`kind` 是 `normal`／`planner`／`decline`，只有作者能改刪）和**候選**（`candidates`：哪個點、哪天、誰加的；同一天同一個點只有一筆，誰都能拿掉，拿掉別人加的由畫面另外留一則 `decline` 留言）。上面「建議」那兩條和 §4 的建議 API、D1 的 `suggestions` 是 T24 做的舊版，**T15 串接時改成這裡的形狀**（假後端 `web/src/backend/mock.ts` 是規則的參考）。
+- **投票**：一人對一個點一筆（❤️ 就是想去，👎 不想去，不寫備註），見 interaction-design §9。
+- **留言**（`comments`）：`target` 是地點 ID、某一天 `day:<日期>` 或整趟 `trip`；`kind` 是 `normal`／`planner`／`decline`；只有作者能改刪（軟刪除），上限 500 字。
+- **候選**（`candidates`）：哪個點、哪天、誰加的；同一天同一個點只有一筆，誰都能拿掉，拿掉別人加的由畫面另外留一則 `decline` 留言。排進行程後拿掉。
+- **預約筆記**（`reservations`）：同一個 `(date, place_id)` 只有一筆，整筆取代；`status` 是 `pending`／`booked`／`skip`，住宿的 `date` 是入住那晚，`updatedBy`、`updatedAt` 由 Worker 填。
+- 2026-10-24 由建議改成想去清單（T15m，設計見 `docs/superpowers/specs/2026-10-24-wishlist-planning-design.md`），T15 把 Worker 和 D1 改成這個形狀，舊的 `suggestions` 拿掉。規則和假後端（`web/src/backend/mock.ts`）一樣。
+- **存行程時**跑 engine 的 `validateItinerary`，不符合回 400（`details` 列出哪裡錯）；舊資料的 `bufferMinutes`、`trip` 忽略，`mode` 收 `transit`。
 - 行程裡的點可能是預設資料、自己加的點，或已下架的點，引擎都要能處理。
 
 ### 3.7 時刻表和其他靜態資料
@@ -351,7 +373,7 @@ npm run db:import -- --apply data/cache/import/<時間>-all.json   # 2. 👤 看
 
 ### 3.8 時間與同步
 - **時間一律是日本時間**：行程、時刻表、營業時間都存成日期（`YYYY-MM-DD`）加 `HH:MM` 字串，過了午夜寫 `25:00`（同 CONVENTIONS 的 `hours`）。**不轉成 JavaScript 的 `Date`、不做時區換算**：看網站的人在台灣，瀏覽器的時區比日本晚一小時，一換算就錯。網站只做規劃，用不到「現在幾點」。
-- **同步**：別人改了行程、寫了建議、投了票，切回分頁時重新抓一次，平常每 30 秒檢查一次有沒有新的（用 `version` 或最後更新時間比對）。不做即時推播。
+- **同步**：別人改了行程、留了言、投了票，切回分頁時重新抓一次，平常每 30 秒（分頁在前景時）檢查一次有沒有新的（`/api/sync` 的 `version` 或最後更新時間，變了才重抓那一種）。不做即時推播。
 
 ---
 
@@ -367,14 +389,14 @@ npm run db:import -- --apply data/cache/import/<時間>-all.json   # 2. 👤 看
 | 資料庫 | D1 |
 
 - **API 草稿**（T24、T25 定案；T24 定案的資料部分見下方「資料 API（T24）」）：
-  - 資料：`GET /api/places`（預設資料，用匯入版本當 ETag 快取）、`GET /api/edits?since=`、`POST /api/edits`、`POST /api/edits/:id/revert`、`/api/user-places`
-  - 行程、建議、投票：`GET/PUT /api/itinerary`（PUT 要帶 `version`）、`/api/itinerary/snapshots`、`/api/suggestions`（`PATCH /api/suggestions/:id/status` 標狀態）、`/api/votes`
+  - 資料：`GET /api/places`（清單層）、`GET /api/places/details`（詳情層），都用匯入版本當 ETag 快取；`GET /api/edits?since=`、`POST /api/edits`、`POST /api/edits/:id/revert`、`/api/user-places`
+  - 行程、留言、候選、預約、投票：`GET/PUT /api/itinerary`（PUT 要帶 `version`）、`/api/itinerary/snapshots`、`/api/comments`、`/api/candidates`、`/api/reservations`、`/api/votes`；啟動 `GET /api/bootstrap`
   - 聊天紀錄：`/api/chats`（只回傳自己的）
   - 登入（T25）：`GET /auth/line/login?return=<站內路徑>`、`GET /auth/line/callback`、`POST /auth/logout`、`GET /api/me`（`{ member, isAdmin }`）
   - LINE 的通知：`POST /line/webhook`（驗證簽章）
   - 管理頁（T25）：`GET /admin`、`POST /admin/action`（Worker 直接回 HTML，只有管理員能開）
   - AI：`POST /api/claude/messages`（T16）
-- **除了登入和 LINE 的通知，所有 API 都要先登入。網站本身也要**（T25）：`wrangler.jsonc` 的 `assets.run_worker_first` 讓每個請求先經過 Worker，沒登入就回登入頁，所以只有家人看得到網站。沒登入的 API 回 401 JSON。
+- **除了登入和 LINE 的通知，所有 API 都要先登入。網站本身也要**（T25）：`wrangler.jsonc` 的 `assets.run_worker_first` 讓請求先經過 Worker，沒登入就回登入頁，所以只有家人看得到網站；只有打包好的程式 `/assets/*` 不經過 Worker（T15，§2「資料分層、啟動、靜態檔」）。沒登入的 API 回 401 JSON。
 - **會改東西的請求檢查 `Origin`**（T25）：有 `Origin` header 又不是自己的網站（或 `PUBLIC_BASE_URL`）就 403。cookie 本來就是 `SameSite=Lax`，這是多一層。
 - **環境**：本機用 `wrangler dev`（本機的 D1），正式環境部署到 Cloudflare（T30）。用 GitHub Actions 自動部署是之後的事，一開始手動 `npm run deploy` 就好。
 - **本機的兩種跑法**（T25）：
@@ -408,7 +430,7 @@ npm run db:import -- --apply data/cache/import/<時間>-all.json   # 2. 👤 看
 
   變數名稱 T25 定案（2026-10-26）。`DEV_MEMBER_ID`、`DEV_MEMBER_NAME` 在 `wrangler.jsonc` 的 `vars`（只是開發用身分的名字）。群組 ID 不放設定檔：機器人被邀進群組時從 `join` 通知記下來，存在資料庫（§5）。
 - **部署（T30）**：T25 把設定做好，實際部署等 👤 確定預設資料和 schema 之後、邀請家人之前（2026-10-26 👤 決定，PLAN T30）。
-  - 網站：`npm run build:site` 把 `web/dist/` 和 `build/static/`（放在 `/static/`）組成 `build/site/`，就是 `wrangler.jsonc` 的 `assets.directory`。`not_found_handling` 是 SPA。
+  - 網站：`npm run build:site` 把 `web/dist/` 和 `build/static/`（放在 `/static/`）組成 `build/site/`，就是 `wrangler.jsonc` 的 `assets.directory`。`not_found_handling` 是 `none`（T15）。
   - `npm run deploy` ＝ `build:site` 加 `wrangler deploy`。正式網址是 `https://travel-helper.<帳號的子網域>.workers.dev`（`workers_dev: true`）。
   - D1：`npx wrangler d1 create travel-helper`，ID 填進 `wrangler.jsonc` 的 `database_id`（ID 不是秘密，可以進 git）；`npm run db:migrate:remote` 套用 migrations。
   - 匯入：`npm run db:import -- --all --remote` 出報告，`--apply <報告>.json --remote` 寫進去。報告記著是本機還是正式環境，`--apply` 時對不上就不匯入；正式環境不自動套用 migrations。
@@ -421,13 +443,13 @@ npm run db:import -- --apply data/cache/import/<時間>-all.json   # 2. 👤 看
 | 項目 | Workers 免費方案 | 對這個網站的意思 |
 |---|---|---|
 | Worker 請求 | 每天 10 萬次（UTC 0 點重算） | 15 人每 30 秒輪詢一次，整天開著約 4.3 萬次：**輪詢只能打一支 API**（`/api/sync`） |
-| 每次請求的 CPU 時間 | 10 ms（付費方案預設 30 秒、最多 5 分鐘） | 不在 Worker 裡解開、重組 3 MB 的資料點（`/api/places` 直接接起 JSON 文字）；行程引擎在瀏覽器 |
+| 每次請求的 CPU 時間 | 10 ms（付費方案預設 30 秒、最多 5 分鐘） | 不在 Worker 裡解開、重組資料點（`/api/places`、`/api/places/details` 直接接起 JSON 文字）；行程引擎在瀏覽器。**詳情層約 3.5 MB 要接 660 列字串，本機量不出 CPU：T30 部署後要看實際數字**，超過就改成匯入時組好整包、分幾列存 |
 | 記憶體 | 每個 isolate 128 MB | |
 | 子請求 | 每次請求 50 個 | LINE、Claude API 的呼叫（T25、T16） |
 | Worker 大小 | 64 MiB（沒壓縮的；沒有壓縮後的上限） | 產生的驗證程式約 314 KB |
 | 靜態檔案 | 每個版本 2 萬個、每個 25 MiB | 靜態資料 53 個檔案、約 2.3 MB |
 | 環境變數 | 64 個、每個 5 KB | |
-| D1 讀取 | 每天 500 萬列（掃過的列都算，不管有沒有回傳；UTC 0 點重算） | `/api/places` 一次讀約 550 列，靠 ETag（匯入編號）回 304 省掉；同步只用有索引的 `MAX()`，**不用 `COUNT(*)`**（每次都會掃整張表） |
+| D1 讀取 | 每天 500 萬列（掃過的列都算，不管有沒有回傳；UTC 0 點重算） | `/api/places`、`/api/places/details` 一次各讀約 660 列，靠 ETag（匯入編號）回 304 省掉；同步只用有索引的 `MAX()`，**不用 `COUNT(*)`**（每次都會掃整張表） |
 | D1 寫入 | 每天 10 萬列 | 一次全部匯入約 550 列 |
 | D1 容量 | 每個資料庫 500 MB、帳號共 5 GB、最多 10 個資料庫 | 資料點約 3 MB |
 | D1 每次請求的查詢數 | 50 個 | 一個 API 最多 6～7 個查詢 |
@@ -441,23 +463,26 @@ npm run db:import -- --apply data/cache/import/<時間>-all.json   # 2. 👤 看
 
 | API | 說明 |
 |---|---|
-| `GET /api/places` | `{ importId, places, retired: {id: 時間}, redirects: {舊: 新} }`，ETag 是 `"imp-<匯入編號>"`，沒變回 304 |
+| `GET /api/bootstrap` | 啟動時一次拿齊：`{ itinerary, me, isAdmin, members, snapshots, votes, comments, candidates, reservations, edits, userPlaces, sync }`，內容和各支 API 一樣（T15） |
+| `GET /api/places` | 清單層：`{ importId, places, retired: {id: 時間}, redirects: {舊: 新} }`，ETag 是 `"imp-<匯入編號>"`，沒變回 304（比對時去掉 Cloudflare 可能加的 `W/`） |
+| `GET /api/places/details` | 詳情層：`{ importId, details }`，ETag 同上（T15） |
 | `GET /api/places/:id` | 合併後的 `data`、預設的 `base`、`edited`（改過的欄位 → 誰、何時）、`edits`（修改紀錄）；舊 ID 自動轉址 |
 | `GET /api/edits?since=&place=` | 修改紀錄（含已復原、已收掉的）；`since` 比 `updated_at`（`>=`，前端用 id 去重複） |
 | `POST /api/edits` | `{ placeId, fieldPath, value, note? }`：先合併再用 schema 驗證（不符合 400，`details` 列出哪裡錯）；不能改 `id`、`type` |
 | `POST /api/edits/:id/revert` | 只有改的人自己能按（別人 403） |
 | `GET/POST /api/user-places`、`PATCH/DELETE /api/user-places/:id` | 自己加的點：只檢查名稱、座標、類別（不是查到的資料，沒有 sources）；誰都能改、只有本人能刪；PATCH 可選填 `type`（景點／餐廳／住宿，不認得回 400，沒給就沿用）；DELETE 是軟刪除 |
 | `GET /api/resolve-map-link?url=` | 展開 Google Maps 短網址，回 `{ url }`；要登入；只接受 `https://maps.app.goo.gl/…`、`https://goo.gl/maps/…` 開頭，其他 400；用 `redirect: 'manual'` 跟轉址最多 5 次，每一跳的主機都要是 Google（`*.google.<tld>`、`*.goo.gl`），否則 400；抓不到也回 400；不存任何東西 |
-| `GET/PUT /api/itinerary` | PUT 帶 `version`，和資料庫不同回 409（`details.current`）；改之前自動存快照 |
+| `GET/PUT /api/itinerary` | PUT 帶 `version`，和資料庫不同回 409（`details.current`）；格式跑 `validateItinerary`，不對回 400；改之前自動存快照 |
 | `GET /api/itinerary/snapshots`、`/:id`、`POST /:id/restore` | 復原也是一次修改，會再存快照 |
-| `GET/POST /api/suggestions`、`PATCH/DELETE /api/suggestions/:id` | 只有寫的人能改、能刪；`day` 是日期或 `trip` |
-| `PATCH /api/suggestions/:id/status` | `{ status, note?, adoptedItemIds? }`：誰都能標（編輯是前端的開關） |
-| `GET /api/votes`、`PUT/DELETE /api/votes/:placeId` | `{ value: 'like' | 'dislike', note? }`，只能投、收回自己的 |
+| `GET/POST /api/comments`、`PATCH/DELETE /api/comments/:id` | `{ target, text, kind? }`；`target` 是地點 ID、`day:<日期>` 或 `trip`；只有寫的人能改、能刪；上限 500 字 |
+| `GET/POST /api/candidates`、`DELETE /api/candidates/:id` | `{ placeId, day }`；`day` 要在旅程裡；同一天同一點已經有了就回傳那一筆（200）；誰都能拿掉 |
+| `GET/PUT /api/reservations` | `{ date, placeId, status, note?, nights? }`：同一個 `(date, placeId)` 整筆取代 |
+| `GET /api/votes`、`PUT/DELETE /api/votes/:placeId` | `{ value: 'like' | 'dislike' }`，只能投、收回自己的 |
 | `GET /api/chats`、`GET/POST/DELETE /api/chats/:conversationId` | 只看得到自己的 |
 | `GET /api/me`、`GET /api/members` | |
-| `GET /api/sync` | 各種資料的版本（匯入編號、行程 version、其他是 `MAX(updated_at)`）：前端輪詢只打這一支，變了才用 `since=` 抓那一種 |
+| `GET /api/sync` | 各種資料的版本（`places` 匯入編號、`itinerary` 行程 version，`votes`、`comments`、`candidates`、`reservations`、`edits`、`userPlaces` 是 `MAX(updated_at)`）：前端輪詢只打這一支，變了才重抓那一種 |
 
-- **本機開發**：`npm run db:migrate`（套用 migrations 到本機的 D1）→ `npm run db:import` → `npm run dev:worker`（`wrangler dev`，和匯入用同一份 `worker/.wrangler/state`）。
+- **本機開發**：`npm run db:migrate`（套用 migrations 到本機的 D1）→ `npm run db:import` → `npm run build:site`（要看網站才要）→ `npm run dev:worker`（`wrangler dev`，和匯入用同一份 `worker/.wrangler/state`）。
 - **驗證程式**：`npm run build:validators` 把 `schema/` 編譯成 `worker/src/generated/place-validators.js`（ajv standalone，不 require 任何套件）。schema 改了要重跑；`npm test` 會檢查有沒有過期。
 - **區域不寫死**：`common.schema.json` 的 `areaId` 還是五個區域的 enum（改 schema 的請求在 `docs/requests.md`）；validate 和 Worker 的驗證程式讀 schema 時先換成一般的 ID 格式（`scripts/lib/schemas.mjs`），區域在不在 `areas.json` 由 validate 檢查。
 
@@ -549,8 +574,8 @@ npm run db:import -- --apply data/cache/import/<時間>-all.json   # 2. 👤 看
 | T30 👤 部署到 Cloudflare | §4「部署（T30）」、§5 |
 | T11、T12 | §2（手機優先、store、先用本機的資料存取） |
 | T14 行程引擎 | §1（`packages/engine`）、§3.6（確定的行程，要能處理自己加的點、已下架的點）、§3.8（時間） |
-| T15m 行程與建議 UI 原型 | §2（假後端照 §4「資料 API」的形狀）、§3.2（修改紀錄的顯示）、§3.6 |
-| T15 行程與建議：串接 | §2（改用 API）、§3.8（同步） |
+| T15m 行程與留言 UI 原型 | §2（假後端照 §4「資料 API」的形狀）、§3.2（修改紀錄的顯示）、§3.6 |
+| T15 行程與留言：串接 | §2（改用 API、資料分層）、§3.6、§3.8（同步）、§4 |
 | T16m-a、T16m-b、T16m-c AI Agent UI 原型 | §6（工具在瀏覽器執行；模型先用對話腳本代替） |
 | T16 AI Agent：串接 | §6 |
 | T20 匯出給 Claude app | 匯出合併後的資料（預設資料加修改），不是 git 裡的 JSON |
