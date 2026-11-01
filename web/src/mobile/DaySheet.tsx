@@ -7,6 +7,7 @@
 // 編輯中：最上面是墨色的編輯條（PlanningBar：「編輯 2/3（三）」加快照、「完成」）和別人改過了的提示（ConflictBar）；按「編輯」不改面板高度；
 // 每張卡有把手（長按拖曳）、⋯（底部動作面板 ActionSheet，動作的 ctx 在這裡算），時間軸最後多一個放置區，候選區收拖回來的備卡。
 // 結束編輯、換天時關掉動作面板。半屏聊天（ChatSheet）開著時，這個面板藏起來（高度不變），聊天關掉就回來。
+// 有提議時最上面是提議列（ProposalStrip，§16.2）；看差異時時間軸唯讀、顯示提議後的時間，提議的卡加膠囊，被換掉的變淡、劃掉。
 // 重疊卡（有備卡）用 ‹ n/m › 換著看（同網頁版）：看備卡時卡片顯示那張的縮圖、名稱、時間，⋯ 的主要、拿出和拖曳都作用在那張。
 
 import { Fragment, useEffect, useRef, useState, type PointerEvent as ReactPointerEvent } from 'react';
@@ -19,7 +20,9 @@ import { dayLabel, isRedDay } from '../lib/trip.ts';
 import { dayAreaName, dayTitle } from '../lib/dayTitle.ts';
 import { stopsOn } from '../lib/itinerary.ts';
 import type { Place } from '../data/types.ts';
-import { DayBar, DaySummaryLine, useDayTimeline, type DayTimeline } from '../components/Timeline.tsx';
+import { DayBar, DaySummaryLine, GhostRow, useDayTimeline, useProposalDay, type DayTimeline } from '../components/Timeline.tsx';
+import { TimelineDiffContext, useEditing, useTimelineDiff } from '../components/timelineEdit.ts';
+import { ProposalStrip } from '../components/ProposalStrip.tsx';
 import { ItemTags, LodgingTags, tagKindOf } from '../components/ItemTags.tsx';
 import { MemberName } from '../components/common.tsx';
 import { ConflictBar, PlanningBar } from '../components/Planning.tsx';
@@ -31,6 +34,7 @@ import { DayStrip } from '../shared/ui/DayStrip.tsx';
 import { Button } from '../shared/ui/Button.tsx';
 import { MobileCard } from './MobileCard.tsx';
 import { MobileLeg, MobileWait } from './MobileLeg.tsx';
+import { askDay } from './mobileAi.ts';
 import { TripOverview } from './TripOverview.tsx';
 
 const SNAPS: TripSnap[] = ['low', 'mid', 'high'];
@@ -105,8 +109,17 @@ function EntryRows({ entry, ctx }: { entry: TimelineEntry; ctx: RowCtx }) {
   const { tl, focused } = ctx;
   const { itDay: day } = tl;
   const byId = useData((s) => s.byId);
-  const itinerary = useData((s) => s.itinerary);
-  const planning = useApp((s) => s.planning);
+  const confirmed = useData((s) => s.itinerary);
+  // 看提議的差異時，卡片讀提議後的行程，編輯的東西都不畫（§16.2）
+  const diff = useTimelineDiff();
+  const itinerary = diff?.itinerary ?? confirmed;
+  const planning = useEditing();
+  const proposed = !!entry.itemId && !!diff?.marked.has(entry.itemId);
+  const pill = proposed || (entry.kind === 'lodging' && diff?.lodging) ? (
+    <span className="tl-proposal-pill" data-testid="proposal-pill">
+      提議
+    </span>
+  ) : null;
   // 重疊卡（有備卡）正在看第幾個選項（null＝主卡）；主卡換了、選項增減時回到看主卡
   const [shown, setShown] = useState<number | null>(null);
   const optItem = entry.itemId ? findItemRef(itinerary, entry.itemId)?.item : null;
@@ -155,6 +168,8 @@ function EntryRows({ entry, ctx }: { entry: TimelineEntry; ctx: RowCtx }) {
           place={p}
           mark={mark}
           time={{ text: cardTime(entry).text }}
+          pill={pill}
+          proposed={!!pill}
           name={name}
           tags={<LodgingTags day={day} place={p} reservationDate={day.date} editable={planning} open={false} onOpenChange={openSub(menu, 'lodging-plan')} />}
           focused={focused === key}
@@ -270,6 +285,8 @@ function EntryRows({ entry, ctx }: { entry: TimelineEntry; ctx: RowCtx }) {
         drag={drag}
         drop={drag && item ? { kind: 'card', itemId: item.id, placeType: visit ? (p?.type ?? null) : null, isFlight: false } : null}
         mark={mark}
+        pill={pill}
+        proposed={proposed}
         time={{ text: backup ? entry.start : shownTime, pinned: !backup && !!visit?.start, stay: !flight && stayMin ? formatStay(stayMin) : null }}
         name={shownName}
         tags={visit ? <ItemTags visit={visit} kind={tagKindOf(p?.type)} date={day.date} placeId={shownPlace} open={false} onOpenChange={menu ? openSub(menu, 'tags') : () => {}} /> : null}
@@ -297,8 +314,11 @@ function GapRow({ row }: { row: Extract<TimelineRow, { kind: 'gap' }> }) {
 
 /** 某一天：標題、摘要、時間條、時間軸、候選 */
 function DayView({ date }: { date: string }) {
-  const tl = useDayTimeline(date);
-  const planning = useApp((s) => s.planning);
+  // 看提議的差異：顯示提議後的時間，唯讀；按「看原本」或「編輯」回到真的時間軸（§16.2）
+  const shown = useProposalDay(date);
+  const tl = useDayTimeline(date, shown?.source);
+  const reallyPlanning = useApp((s) => s.planning);
+  const planning = reallyPlanning && !shown;
   const focused = useMobile((s) => s.focused);
   const legOpen = useUi((s) => s.legOpen);
   const byId = useData((s) => s.byId);
@@ -308,21 +328,27 @@ function DayView({ date }: { date: string }) {
   const { itDay, plan } = tl;
   const ctx: RowCtx = { tl, focused };
   const barSelected = legOpen?.startsWith(`${date}:`) ? legOpen : focused;
+  const timeOf = (itemId: string) => {
+    const e = shown?.originalPlan?.entries.find((x) => x.itemId === itemId);
+    return e ? cardTime(e).text : null;
+  };
+  const ghostsBefore = (id: string | null) => shown?.diff.ghosts.filter((g) => g.beforeItemId === id).map((g) => <GhostRow key={`ghost:${g.itemId}`} ghost={g} date={date} time={timeOf(g.itemId)} thumb={56} />) ?? [];
+  const tailShown = tl.rows.some((r) => r.kind !== 'gap' && r.entry.kind === 'lodging');
   return (
     <div className="m-dayview" data-testid="m-dayview">
       <div className="m-dayhead">
         <h2 className={`m-dayhead-title ${isRedDay(date) ? 'red-day' : ''}`} data-testid="m-trip-title">
           <span className="m-dayhead-date">{title.date}</span>
-          <span className="m-dayhead-sub">{title.sub}</span>
+          <span className="m-dayhead-sub">{title.short}</span>
         </h2>
-        {/* 半屏聊天（ChatSheet）：手機只有 ✦；編輯中 ✦ 和編輯都不放（聊天在編輯中不出現） */}
-        {!planning && (
-          <>
-            <Button kind="icon" icon="spark" aria-label="問 AI 這天" onClick={() => mobileStore.getState().openChatSheet()} data-testid="m-trip-ai" />
-            <Button kind="primary" size="sm" icon="pen" onClick={() => openDialog({ kind: 'planning' })} data-testid="m-trip-edit">
-              編輯
-            </Button>
-          </>
+        {/* 半屏聊天（ChatSheet），編輯中也打得開 */}
+        <Button kind="secondary" size="sm" icon="spark" className="m-ask-day" aria-label="問 AI 這天" onClick={() => askDay(date)} data-testid="m-trip-ai">
+          問 AI
+        </Button>
+        {!reallyPlanning && (
+          <Button kind="primary" size="sm" icon="pen" onClick={() => openDialog({ kind: 'planning' })} data-testid="m-trip-edit">
+            編輯
+          </Button>
         )}
       </div>
       {plan && (
@@ -335,22 +361,26 @@ function DayView({ date }: { date: string }) {
       {itDay && tl.status === 'loading' && <p className="muted">計算時間軸中…</p>}
       {tl.status === 'error' && <p className="warn">時間軸算不出來：{tl.error}</p>}
       {itDay && plan && (
-        <ol className={`m-tl tl-axis ${planning ? 'in-planning' : ''}`} data-testid="m-timeline">
-          {tl.rows.map((row, i) =>
-            row.kind === 'gap' ? (
-              <GapRow key={`g${i}`} row={row} />
-            ) : (
-              <Fragment key={row.entry.itemId ? `i:${row.entry.itemId}` : `${row.entry.kind}:${i}`}>
-                <EntryRows entry={row.entry} ctx={ctx} />
-              </Fragment>
-            ),
-          )}
-          {planning && (
-            <li className="m-dropend small muted" data-testid="m-dropend" {...dropOnEndProps(date, true)}>
-              拖到這裡：放在這天的最後
-            </li>
-          )}
-        </ol>
+        <TimelineDiffContext.Provider value={shown?.diff ?? null}>
+          <ol className={`m-tl tl-axis ${planning ? 'in-planning' : ''}`} data-testid="m-timeline">
+            {tl.rows.map((row, i) =>
+              row.kind === 'gap' ? (
+                <GapRow key={`g${i}`} row={row} />
+              ) : (
+                <Fragment key={row.entry.itemId ? `i:${row.entry.itemId}` : `${row.entry.kind}:${i}`}>
+                  {row.entry.itemId ? ghostsBefore(row.entry.itemId) : row.entry.kind === 'lodging' ? ghostsBefore(null) : null}
+                  <EntryRows entry={row.entry} ctx={ctx} />
+                </Fragment>
+              ),
+            )}
+            {!tailShown && ghostsBefore(null)}
+            {planning && (
+              <li className="m-dropend small muted" data-testid="m-dropend" {...dropOnEndProps(date, true)}>
+                拖到這裡：放在這天的最後
+              </li>
+            )}
+          </ol>
+        </TimelineDiffContext.Provider>
       )}
       {itDay && plan && itDay.items.length === 0 && (
         <p className="muted small m-trip-empty" data-testid="m-trip-empty">
@@ -418,9 +448,9 @@ export function DaySheet() {
   const snap = useMobile((s) => s.tripSnap);
   useEditingSheet();
   const focused = useMobile((s) => s.focused);
-  // 半屏聊天開著（ChatSheet 一樣的條件：編輯中不出現）：面板藏起來，高度不變
+  // 半屏聊天開著：面板藏起來，高度不變
   const planning = useApp((s) => s.planning);
-  const covered = useMobile((s) => s.chatSheet && s.tab === 'trip') && !planning;
+  const covered = useMobile((s) => s.chatSheet && s.tab === 'trip');
   const sheetRef = useRef<HTMLElement>(null);
   const bodyRef = useRef<HTMLDivElement>(null);
   const drag = useSheetDrag(sheetRef);
@@ -447,6 +477,7 @@ export function DaySheet() {
       <div className="m-trip-grab" data-testid="m-sheet-grab" aria-label="拖動調整高度" {...drag}>
         <span aria-hidden />
       </div>
+      <ProposalStrip onTrip />
       <EditBar day={day} />
       {/* 編輯中墨色編輯條取代日期列：編輯中不能換天 */}
       {!planning && <DayStrip />}

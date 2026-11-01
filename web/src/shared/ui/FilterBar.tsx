@@ -35,8 +35,10 @@ export interface FilterModel {
   clear(): void;
   /** AI 挑的（網頁的探索，規格 §3.1）：只有一組；total 是 AI 挑了幾家，sortByAi 是目前照 AI 的順序 */
   ai?: { title: string; total: number; sortByAi: boolean; setSortByAi(on: boolean): void; onClear(): void };
-  /** 清單的問 AI（網頁，§16.1） */
+  /** 清單的問 AI（§16.1、§16.2） */
   onAsk?(): void;
+  /** 「‹ 回 AI」（手機從聊天跳過來或有結果集，§16.2）；點 AI 晶片也做這件事 */
+  onBack?(): void;
 }
 
 /** 排序：晶片，點了出現選單（不用 <select>，兩邊樣子一樣） */
@@ -132,10 +134,18 @@ export function FilterBar({ source, surface, model, count, typeRow }: { source: 
   const [open, setOpen] = useState(false);
   const rootRef = useRef<HTMLDivElement>(null);
   const desktop = surface === 'desktop';
-  const chips = appliedChips(model.filter, areas, { includeType: desktop });
+  // 手機的類型在下面那列晶片；AI 一次套多個類型時那列表達不了，才當成條件列出來
+  const chips = appliedChips(model.filter, areas, { includeType: desktop || model.filter.types.length > 1 });
   // 「只看地圖畫面裡的」不是 Filter 的欄位，另外多一顆
   const n = chips.length + (model.inView ? 1 : 0);
   const searchTestId = desktop ? 'search' : source === 'wish' ? 'm-wish-search' : 'm-feed-search';
+
+  const backButton = model.onBack && (
+    <button type="button" className="ai-back flat" onClick={model.onBack} data-testid="ai-back">
+      ‹ 回 AI
+    </button>
+  );
+  const aiLabel = model.ai && (count === model.ai.total ? `AI 挑的 · ${model.ai.total} 家` : `AI 挑的 ${model.ai.total} 家中的 ${count} 家`);
 
   const applied = n > 0 && (
     <div className="fb-applied" data-testid="filter-applied-row">
@@ -153,6 +163,16 @@ export function FilterBar({ source, surface, model, count, typeRow }: { source: 
           </Chip>
         </span>
       )}
+    </div>
+  );
+
+  const listHead = model.onAsk && (
+    <div className="fb-listhead">
+      {!desktop && !model.ai && backButton}
+      <span data-testid="list-count">{count} 個地點</span>
+      <button type="button" className="fb-ask" onClick={model.onAsk} data-testid="list-ask-ai">
+        <Icon name="spark" size={16} /> 問 AI
+      </button>
     </div>
   );
 
@@ -183,7 +203,7 @@ export function FilterBar({ source, surface, model, count, typeRow }: { source: 
       {desktop && model.ai && (
         <div className="fb-ai">
           <button type="button" className="fb-ai-chip" aria-label="清掉 AI 挑的" onClick={model.ai.onClear} data-testid="ai-result-chip">
-            ✦ {count === model.ai.total ? `AI 挑的 · ${model.ai.total} 家` : `AI 挑的 ${model.ai.total} 家中的 ${count} 家`}
+            ✦ {aiLabel}
             <Icon name="close" size={16} />
           </button>
           <span className="fb-ai-title" data-testid="ai-result-title">
@@ -192,14 +212,7 @@ export function FilterBar({ source, surface, model, count, typeRow }: { source: 
         </div>
       )}
       {desktop && applied}
-      {desktop && model.onAsk && (
-        <div className="fb-listhead">
-          <span data-testid="list-count">{count} 個地點</span>
-          <button type="button" className="fb-ask" onClick={model.onAsk} data-testid="list-ask-ai">
-            <Icon name="spark" size={16} /> 問 AI
-          </button>
-        </div>
-      )}
+      {desktop && listHead}
     </div>
   );
   const sheet = open && <FilterSheet source={source} surface={surface} model={model} count={count} host={desktop ? (rootRef.current?.closest('.side-panel') as HTMLElement | null) : null} onClose={() => setOpen(false)} />;
@@ -215,11 +228,30 @@ export function FilterBar({ source, surface, model, count, typeRow }: { source: 
     <>
       {bar}
       <div className="fb-below">
+        {model.ai && (
+          <div className="fb-ai">
+            <div className="fb-ai-row">
+              {backButton}
+              <span className="ai-pill" data-testid="ai-result-pill">
+                <button type="button" className="ai-pill-body" onClick={model.onBack} data-testid="ai-result-open">
+                  ✦ {aiLabel}
+                </button>
+                <button type="button" className="ai-pill-x" aria-label="清掉 AI 挑的" onClick={model.ai.onClear} data-testid="ai-result-chip">
+                  <Icon name="close" size={16} />
+                </button>
+              </span>
+            </div>
+            <span className="fb-ai-title" data-testid="ai-result-title">
+              {model.ai.title}
+            </span>
+          </div>
+        )}
         <div className="fb-typerow">
           <div className="fb-types">{typeRow}</div>
           <ViewToggle model={model} />
         </div>
         {applied}
+        {listHead}
       </div>
       {sheet}
     </>

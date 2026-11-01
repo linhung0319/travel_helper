@@ -48,6 +48,12 @@ export interface Stage {
   screenKey(): string;
   /** 平台無關的「正在看什麼」（給 AI 的脈絡） */
   screenName(): 'trip' | 'explore' | 'wish' | 'detail' | 'chat';
+  /** 這個平台現在的篩選（手機的 feed、wish）；null 是看 appStore */
+  screenFilter(): Filter | null;
+  /** 提議採用了（手機：到行程頁） */
+  afterAdopt(): void;
+  /** 顯示中的提議過期了 */
+  proposalStale(): void;
 }
 
 /** 各平台怎麼切畫面 */
@@ -62,6 +68,11 @@ export interface ScreenSurface {
   /** 地圖的篩選、搜尋以外，這個平台的畫面狀態（手機的分頁、整頁） */
   screenKey(): string;
   screenName(): ReturnType<Stage['screenName']>;
+  /** AI 套了篩選（已經檢查過）：手機接到自己的 feed；網頁就是 appStore，不用做事 */
+  filterApplied(patch: Partial<Filter>, clear: boolean): void;
+  screenFilter(): Filter | null;
+  afterAdopt(): void;
+  proposalStale(): void;
 }
 
 /** 還沒接上平台的預設：照 appStore（網頁版的 mode、詳情） */
@@ -80,6 +91,10 @@ export function appSurface(app: StoreApi<AppStore>): ScreenSurface {
       const s = app.getState();
       return s.detailId ? 'detail' : s.mode === 'map' ? 'trip' : s.mode;
     },
+    filterApplied: () => {},
+    screenFilter: () => null,
+    afterAdopt: () => {},
+    proposalStale: () => {},
   };
 }
 
@@ -118,7 +133,9 @@ export function createBaseStage({ app, commands, surface, startAddPlace }: Stage
     moveMap: (target) => errorOf(commands.focus(target)),
     setFilter(patch, clear) {
       if (clear) commands.clearFilter();
-      return errorOf(commands.setFilter(patch));
+      const err = errorOf(commands.setFilter(patch));
+      if (!err) surface.filterApplied(patch, clear);
+      return err;
     },
     addPlace(init) {
       startAddPlace(init);
@@ -139,5 +156,8 @@ export function createBaseStage({ app, commands, surface, startAddPlace }: Stage
       return [surface.screenKey(), s.day, c ? `${c[0].toFixed(3)},${c[1].toFixed(3)}` : '', s.view?.zoom.toFixed(1) ?? ''].join('|');
     },
     screenName: () => surface.screenName(),
+    screenFilter: () => surface.screenFilter(),
+    afterAdopt: () => surface.afterAdopt(),
+    proposalStale: () => surface.proposalStale(),
   };
 }

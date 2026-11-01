@@ -7,6 +7,8 @@ import { fallbackText, findScript, type ScriptEnv } from './scripts.ts';
 export interface FakeSettings {
   /** 思考的時間、逐字之間的延遲（毫秒） */
   delayMs: number;
+  /** 逐字之間的延遲（毫秒），沒給就是 16；delayMs 是 0 時不等。測「回到一半」時放慢 */
+  streamMs?: number;
   usage: ContextUsage;
   /** 下一次（或第幾輪）的狀況：error＝網路錯誤；quota＝超過每天上限；hang＝一直不回（測關閉頁面） */
   next: 'error' | 'quota' | 'hang' | null;
@@ -75,7 +77,7 @@ export function createFakeModel(init: Partial<FakeSettings> = {}): ModelClient &
         // 逐字顯示
         const chars = [...out.text];
         for (let i = 0; i < chars.length; i += 6) {
-          await pause(settings.delayMs ? 16 : 0);
+          await pause(settings.delayMs ? (settings.streamMs ?? 16) : 0);
           yield { type: 'text', text: chars.slice(i, i + 6).join('') };
         }
       }

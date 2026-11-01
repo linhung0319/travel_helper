@@ -190,6 +190,16 @@ export const SCRIPTS: Script[] = [
       () => ({ text: '這幾家放在同一張卡上，決定了就一起加進 2/5 的候選。' }),
     ],
   },
+  // --- 篩選（規格 §4.2） ---
+  {
+    id: 'filter',
+    sample: '只看鳥羽的餐廳',
+    match: (e) => /只看鳥羽的餐廳/.test(e.text),
+    steps: [
+      () => ({ tools: [tool('set_filter', { types: ['restaurant'], areas: ['toba'] })] }),
+      () => ({ text: '探索只留鳥羽的餐廳了。' }),
+    ],
+  },
   // --- 指稱（規格 §4.5） ---
   {
     id: 'S30',

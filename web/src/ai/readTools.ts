@@ -200,6 +200,20 @@ export function createReadTools(d: AiDeps) {
     }
   }
 
+  /** 這份操作新出現的警告（提議卡顯示，不是工具）；資訊類（計程車台數）不算，算不出來是空的 */
+  function proposalWarnings(ops: Op[]): string[] {
+    const engine = d.engine();
+    const before = places().itinerary;
+    if (!engine || !before) return [];
+    try {
+      const after = applyOps(before, ops, opsContext(d));
+      return checkProposal(before, after, engine, d.config, (id) => nameOf(id)).newWarnings.filter((w) => w.level !== 'info').map((w) => w.message);
+    } catch (e) {
+      if (e instanceof ItineraryError) return [];
+      throw e;
+    }
+  }
+
   function suggest_position(input: { placeId: string; date: string; on?: 'draft' }): ToolOutput {
     const engine = d.engine();
     const onDraft = input?.on === 'draft';
@@ -363,7 +377,7 @@ export function createReadTools(d: AiDeps) {
     return p ? digestOf(p, likes(id)) : null;
   };
 
-  return { search_places, get_place, get_day, get_trip_overview, check_changes, suggest_position, get_route, get_timetable, get_opinions, get_trip_info, get_reservations, reservationRows, digest };
+  return { search_places, get_place, get_day, get_trip_overview, check_changes, suggest_position, get_route, get_timetable, get_opinions, get_trip_info, get_reservations, reservationRows, digest, proposalWarnings };
 }
 
 export type ReadTools = ReturnType<typeof createReadTools>;

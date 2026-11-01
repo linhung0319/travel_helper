@@ -18,5 +18,6 @@ export const useTimelineDiff = () => useContext(TimelineDiffContext);
 /** 這張時間軸能不能編輯 */
 export function useEditing(): boolean {
   const planning = useApp((s) => s.planning);
-  return planning && !useTimelineDiff();
+  const diff = useTimelineDiff();
+  return planning && !diff;
 }

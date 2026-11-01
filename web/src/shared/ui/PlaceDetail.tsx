@@ -300,8 +300,8 @@ export interface PlaceDetailProps {
   initialTab?: DetailTabId | null;
   /** 簡介裡「已排」的日期被點了（手機要另外切到行程分頁） */
   onDay?(date: string): void;
-  /** 簡介要不要畫問 AI（手機編輯中從行程打開時藏起來） */
-  askAi?: boolean;
+  /** 簡介的問 AI（各平台接自己的） */
+  onAsk?(): void;
   /** 位置分頁的附近：點名稱改做這件事（手機：換成那個點的詳情）；沒給＝地圖移過去 */
   onPickNearby?(id: string): void;
   /** 位置分頁最上面的東西（手機：小地圖）；沒給＝「在地圖上找到它」按鈕 */
@@ -311,7 +311,7 @@ export interface PlaceDetailProps {
 }
 
 /** 一個點的詳情內容。換點時要整個重來（呼叫的人用 key={place.id}） */
-export function PlaceDetail({ place, surface, from, initialTab, onDay, askAi = true, onPickNearby, locator, onBack }: PlaceDetailProps) {
+export function PlaceDetail({ place, surface, from, initialTab, onDay, onAsk, onPickNearby, locator, onBack }: PlaceDetailProps) {
   const desktop = surface === 'desktop';
   const areas = useData((s) => s.areas);
   const planning = useApp((s) => s.planning);
@@ -412,7 +412,7 @@ export function PlaceDetail({ place, surface, from, initialTab, onDay, askAi = t
               </button>
             )}
             {user && <UserPlaceIntro place={place} />}
-            <PlaceIntro place={place} fromTrip={fromTrip} onDay={onDay} askAi={askAi && desktop ? 'button' : askAi} />
+            <PlaceIntro place={place} onDay={onDay} onAsk={onAsk} />
             {!user && <PlaceFacts place={place} />}
           </>
         )}

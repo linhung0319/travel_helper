@@ -219,19 +219,6 @@ test('setFilter／clearFilter：給的項目取代、其他不動；值從 areas
   assert.deepEqual(app.getState().filter, EMPTY_FILTER);
 });
 
-test('select／unselect：累加、不重複；不給 ids 全部取消', () => {
-  const { app, cmd } = setup();
-  cmd.select('a');
-  cmd.select(['b', 'a', 'nope']);
-  assert.deepEqual(app.getState().selection, ['a', 'b']);
-  assert.equal(cmd.select('nope').ok, false);
-  cmd.unselect('a');
-  assert.deepEqual(app.getState().selection, ['b']);
-  cmd.select('c');
-  cmd.unselect();
-  assert.deepEqual(app.getState().selection, []);
-});
-
 test('showProposal：算出改動、只有一天時切到那天；格式不對或沒改動 → 錯誤；clearProposal', () => {
   const { app, cmd } = setup(itin({ '2027-02-05': ['a', 'b'], '2027-02-06': ['c'] }));
   const proposed = itin({ '2027-02-05': ['a', 'r15'], '2027-02-06': ['c'] });
@@ -266,7 +253,6 @@ test('getViewState：給 AI 的畫面狀態（範圍、天、篩選、選取、�
   app.getState().setView({ center: [136.8, 34.5], zoom: 13, bounds: [136.75, 34.45, 136.85, 34.55] });
   cmd.selectDay('2027-02-05');
   cmd.setFilter({ types: ['spot'] });
-  cmd.select(['a']);
   cmd.highlight(['b'], 'warning');
   app.getState().setPlanning(true);
   app.getState().openDetail('a');
@@ -278,7 +264,6 @@ test('getViewState：給 AI 的畫面狀態（範圍、天、篩選、選取、�
   assert.deepEqual(v.dayStops.map((s) => s.place), ['a', 'b']);
   assert.deepEqual(v.filterLabels, ['景點']);
   assert.equal(v.filterCount, 3);
-  assert.deepEqual(v.selection, [{ id: 'a', name: 'a', type: 'spot' }]);
   assert.equal(v.planning, true);
   assert.equal(v.mode, 'map');
   assert.deepEqual(v.detail, { id: 'a', name: 'a' });

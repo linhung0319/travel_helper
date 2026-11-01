@@ -10,7 +10,7 @@
 // 卡片照片右下角是想去的愛心（VoteHeart），左上角是類型；重點膠囊（已排、候選、15 人、預約）在名稱下面。探索的照片牆是兩欄。
 // 清單的計算（篩選、排序、數量、想去的範圍）在 shared/placeLists.ts 的 usePlaceList，手機版也用。
 
-import { useEffect, useMemo, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { appStore, type DetailTabId } from '../store.ts';
 import { commands } from '../appCommands.ts';
 import { useApp } from '../hooks.ts';
@@ -21,7 +21,7 @@ import { AddPlaceSuggest, useSuggestOwnsEmpty } from '../shared/ui/AddPlaceSugge
 import { FilterBar, type FilterModel } from '../shared/ui/FilterBar.tsx';
 import { dragPlaceProps } from './askAi.ts';
 import { askList, askPlace } from './webAi.ts';
-import { usePlaceList } from '../shared/placeLists.ts';
+import { useAiPicked, usePlaceList } from '../shared/placeLists.ts';
 import { PlaceRow, useDayStatus, type DayStatus } from '../shared/ui/PlaceRow.tsx';
 import { PlaceTile } from '../shared/ui/PlaceTile.tsx';
 import { PlaceWall } from '../shared/ui/PlaceWall.tsx';
@@ -130,16 +130,7 @@ export function ExplorePanel({ source = 'explore' }: { source?: ListSource }) {
 
   // 清單的計算在 shared/placeLists.ts（手機版也用）；沒選類型就是三類都列
   const { pool, list: all } = usePlaceList(source, filter, query, sort, inView ? bounds : null);
-  // AI 挑的（規格 §3.1）：只在探索；再篩選、搜尋是取交集；有結果集時預設照 AI 的順序，使用者可以自己換
-  const aiResult = useApp((s) => (source === 'explore' ? s.aiResult : null));
-  const [sortByAi, setSortByAi] = useState(true);
-  useEffect(() => setSortByAi(true), [aiResult]);
-  const list = useMemo(() => {
-    if (!aiResult) return all;
-    const picked = all.filter((p) => aiResult.ids.includes(p.id));
-    return sortByAi ? picked.sort((a, b) => aiResult.ids.indexOf(a.id) - aiResult.ids.indexOf(b.id)) : picked;
-  }, [all, aiResult, sortByAi]);
-  const aiProps = (id: string) => (aiResult ? { aiNote: aiResult.notes[id], letter: aiResult.lettered ? String.fromCharCode(65 + aiResult.ids.indexOf(id)) : undefined } : {});
+  const { aiResult, list, sortByAi, setSortByAi, aiProps } = useAiPicked(all, source === 'explore');
 
   // 地圖上點了某個點：清單直接跳到那張卡片（清單可能很長，平滑捲動會在半路被照片載入打斷）
   useEffect(() => {

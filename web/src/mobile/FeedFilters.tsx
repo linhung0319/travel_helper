@@ -34,7 +34,9 @@ export function useFeedModel(): FilterModel {
     setInView: () => {},
     pick: (key: FilterKey, value: string) => {
       const { setFeed, toggleFeedQuick } = mobileStore.getState();
-      if (key === 'areas') setFeed({ area: feed.area === value ? null : value, quick: withoutRegions(feed.quick) });
+      // AI 一次套多個類型、地區時條件在 quick（filterToFeed）：拿掉的是那一個
+      if (feed.quick.includes(feedToken(key, value))) toggleFeedQuick(feedToken(key, value));
+      else if (key === 'areas') setFeed({ area: feed.area === value ? null : value, quick: withoutRegions(feed.quick) });
       else if (key === 'types') setFeed({ type: feed.type === value ? 'all' : (value as Feed['type']) });
       else toggleFeedQuick(feedToken(key, value));
     },
@@ -81,9 +83,9 @@ export function TypeChips({ value, onPick, prefix, testId }: { value: Feed['type
 }
 
 /** 探索上方的篩選列：搜尋、篩選、排序（黏在上面），下面一列類型（全部、景點、餐廳、住宿）和套用的條件 */
-export function FeedFilters({ count }: { count: number }) {
+export function FeedFilters({ count, extra }: { count: number; extra?: Partial<FilterModel> }) {
   const feed = useMobile((s) => s.feed);
-  const model = useFeedModel();
+  const model = { ...useFeedModel(), ...extra };
   const typeRow = <TypeChips value={feed.type} onPick={(type) => mobileStore.getState().setFeed({ type })} prefix="m-feed" testId="m-feed-filters" />;
   return <FilterBar source="explore" surface="mobile" model={model} count={count} typeRow={typeRow} />;
 }

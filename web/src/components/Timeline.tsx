@@ -17,7 +17,9 @@ import { appStore } from '../store.ts';
 import { commands } from '../appCommands.ts';
 import { shared } from '../appShared.ts';
 import { useApp, useData, usePlan, useShared, useUi } from '../hooks.ts';
-import { dayPlanOf, type PlanState } from '../planStore.ts';
+import { currentEngineData, dayPlanOf, engineConfig, type PlanState } from '../planStore.ts';
+import { planItinerary } from '@travel-helper/engine';
+import { dayDiff } from '../lib/proposalDiff.ts';
 import { dayCandidates } from '../lib/wishlist.ts';
 import type { Candidate } from '../backend/types.ts';
 import { dropOnCardProps, dropOnEndProps, usePlanDrag } from './planDrag.ts';
@@ -607,8 +609,27 @@ export function useDayTimeline(date: string, source?: { itinerary: Itinerary; pl
   return { itDay, plan, status, error: error ?? null, ...derived, candidates };
 }
 
+/** 看提議的差異：這天有變動、而且沒有切到「看原本」時，算好提議後的行程（§16.1，網頁、手機共用） */
+export function useProposalDay(day: string) {
+  const proposal = useApp((s) => s.proposal);
+  const view = useUi((s) => s.proposalView);
+  const confirmed = useData((s) => s.itinerary);
+  const realPlan = usePlan((s) => s.plan);
+  const on = !!proposal && view === 'diff' && day !== 'all' && proposal.dates.includes(day);
+  return useMemo(() => {
+    const engine = currentEngineData();
+    if (!on || !proposal || !engine || !confirmed) return null;
+    const plan = dayPlanOf(planItinerary(proposal.itinerary, engine, engineConfig), day);
+    return {
+      source: { itinerary: proposal.itinerary, plan },
+      diff: { itinerary: proposal.itinerary, ...dayDiff(proposal.changes, confirmed, proposal.itinerary, day) },
+      originalPlan: dayPlanOf(realPlan, day),
+    };
+  }, [on, proposal, confirmed, realPlan, day]);
+}
+
 /** 被換掉、拿掉的卡：變淡、劃掉（§12.5）；時間是原本的 */
-function GhostRow({ ghost, date, time }: { ghost: ProposalGhost; date: string; time: string | null }) {
+export function GhostRow({ ghost, date, time, thumb = THUMB }: { ghost: ProposalGhost; date: string; time: string | null; thumb?: number }) {
   const p = useData((s) => (ghost.place ? s.byId.get(ghost.place) : undefined));
   const title = p ? name(p) : (ghost.place ?? '');
   return (
@@ -624,7 +645,7 @@ function GhostRow({ ghost, date, time }: { ghost: ProposalGhost; date: string; t
       }
       name={title}
       label={`${title}（提議拿掉）`}
-      thumb={THUMB}
+      thumb={thumb}
       className="tl-gone"
       expanded={false}
       onToggle={() => {}}

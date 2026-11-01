@@ -9,6 +9,7 @@ import { FilterBar } from '../shared/ui/FilterBar.tsx';
 import { WishList } from '../shared/ui/WishList.tsx';
 import { TypeChips, useWishModel } from './FeedFilters.tsx';
 import { mobileStore, useMobile } from './mobileStore.ts';
+import { askList } from './mobileAi.ts';
 import { useWishPrefs } from '../shared/wishPrefs.ts';
 
 /** 想去分頁 */
@@ -18,8 +19,10 @@ export function WishlistPage() {
   const { setWish } = mobileStore.getState();
   // 預設「全部」（記住上次選的類型）
   const type = wish.type;
-  const model = useWishModel(type);
-  const { pool, list } = useWishList(model.filter, wish.query, wish.sort);
+  const fromChat = useMobile((s) => s.fromChat);
+  const base = useWishModel(type);
+  const { pool, list } = useWishList(base.filter, wish.query, wish.sort);
+  const model = { ...base, onAsk: () => askList('wish', base.filter, wish.query, list.length), ...(fromChat ? { onBack: () => mobileStore.getState().returnToChat() } : {}) };
 
   return (
     <div className="m-wish" data-testid="m-wish">

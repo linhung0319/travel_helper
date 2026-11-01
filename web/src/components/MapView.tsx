@@ -583,6 +583,8 @@ export function MapView() {
         Object.assign((window as unknown as { __th: object }).__th, { ai, aiFake: fakeSettings });
       });
       (window as unknown as Record<string, unknown>).__th = {
+        // 轉向時地圖重建：留著上一份的 ai、aiFake，才不會有一段時間讀不到
+        ...(window as unknown as { __th?: object }).__th,
         map,
         appStore,
         dataStore,

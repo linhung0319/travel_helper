@@ -42,7 +42,7 @@ T15、T16 接上 Worker 之前，`npm run dev` 用假後端（`src/backend/mock.
 - **手機**（900px 以下，第六輪重做，設計見 [2026-10-25-itinerary-round6-mobile-design.md](../docs/superpowers/specs/2026-10-25-itinerary-round6-mobile-design.md)）：`App.tsx` 用 `useIsDesktop()` 分一次，手機畫 `src/mobile/MobileApp.tsx`。底部 5 個分頁「探索｜想去｜行程｜AI｜我」（`TabBar`）；沒有上方列和拉起面板。地圖（`MapView`）一直掛著，只有行程分頁看得到（其他分頁用 `visibility: hidden` 藏起來）。詳情、討論、預約是蓋在最上面的整頁（一次一層，打開時推一筆 history，上一頁就是關掉）。
   - 探索（`ExploreFeed`、`FeedFilters`）：兩欄圖片牆；想去（`WishlistPage`）；詳情（`PlaceDetailPage`）；我（`MePage`：討論、預約、下載 JSON）。
   - 行程（`TripPage`）：地圖上蓋一張可以拉的面板（`DaySheet`，低／中／高，`data-snap`），天數列 `DayStrip`、整趟 `TripOverview`、卡片 `MobileCard`、交通 `MobileLeg`。點卡片到中間高度、地圖飛過去；編輯中卡片的「⋯」開底部動作面板（`ActionSheet`，子畫面 `TagSheet`、`MoveDaySheet`）。
-  - AI：`ChatPage`（分頁）和 `ChatSheet`（行程頁的半屏），共用 `ChatView`；內容先是 `chatDemo.ts` 的假訊息，T16m 接上。詳情的「問 AI」透過 `uiStore.chatDraft` 帶進來。
+  - AI：`ChatPage`（分頁）和 `ChatSheet`（行程頁的半屏），共用 `ChatView`（內容是 `components/ChatBody`）；和 AI 核心的接線在 `mobileAi.ts`。
   - 手機版自己的狀態在 `mobile/mobileStore.ts`，樣式在 `mobile.css`、`chat.css`（class 都用 `m-` 開頭）。
   - `src/shared/`：網頁版、手機版共用的純函式（有單元測試）：`tagOptions`（標籤分組）、`cardActions`（卡片的動作清單）、`askAiPrompts`（問 AI 的建議問題）、`placeLists`、`exportJson`。
 - **電腦**：三欄（參考 puma.taipei/heart-island）。聊天室在左（T16 才做，先留位置）；中間是地圖，日期列、「我」浮在地圖上方，篩選標籤在日期下面；右側一欄頂到最上面，分頁「探索｜想去｜行程」，點了探索的卡片，詳情蓋在這一欄上（「← 返回」）。判斷電腦版用 `DESKTOP_QUERY`（`hooks.ts`，900px）。

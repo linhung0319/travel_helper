@@ -372,23 +372,10 @@ test('詳情：瀏覽器上一頁也能關', async ({ page }) => {
   expect(Math.abs(top - 600)).toBeLessThan(5);
 });
 
-test('詳情：有問 AI、點小地圖跳到行程', async ({ page }) => {
+test('詳情：點小地圖跳到行程', async ({ page }) => {
   await ready(page);
   const id = await openFromFeed(page, 0);
   const detail = page.getByTestId('m-detail');
-  const box = detail.getByTestId('ask-ai-box');
-  await expect(box).toBeVisible();
-  // 問 AI 的膠囊、輸入框、送出鍵：點的範圍至少 44px
-  expect((await box.getByTestId('ask-ai-prompt').first().boundingBox())!.height).toBeGreaterThanOrEqual(44);
-  expect((await box.getByTestId('ask-ai-input').boundingBox())!.height).toBeGreaterThanOrEqual(44);
-  expect((await box.locator('.ask-ai-send').boundingBox())!.height).toBeGreaterThanOrEqual(44);
-  // 點建議問題：這個點帶進聊天（選取）
-  await box.getByTestId('ask-ai-prompt').first().click();
-  expect(await page.evaluate(() => (window as any).__th.appStore.getState().selection)).toContain(id);
-  // 從探索打開的詳情：問了就跳到 AI 分頁（§3.6），再打開一次看小地圖
-  await expect(page.getByTestId('m-tab-ai')).toHaveAttribute('aria-current', 'page');
-  await expect(detail).toHaveCount(0);
-  await page.evaluate((id) => (window as any).__thMobile.getState().openPlace(id, 'ai'), id);
 
   await detail.getByTestId('detail-tab-location').click();
   const mini = detail.getByTestId('m-detail-minimap');
@@ -482,7 +469,7 @@ test('行程：天數列一整行、每格寬、紅字', async ({ page }) => {
   // 選到的那格自己捲進畫面
   await pickDay(page, '2027-02-12');
   await expect(page.getByTestId('m-day-2027-02-12')).toBeInViewport({ ratio: 1 });
-  await expect(page.getByTestId('m-trip-title')).toContainText('2/12週五 · 第 11 天');
+  await expect(page.getByTestId('m-trip-title')).toContainText('2/12週五 · 關西機場周邊');
 });
 
 test('行程：卡片有縮圖和編號', async ({ page }) => {
@@ -504,7 +491,7 @@ test('行程：卡片有縮圖和編號', async ({ page }) => {
   await expect(leg).toBeVisible();
   await expect(leg.getByTestId('leg-maps')).toHaveText('map ↗');
   // 標題、✨、✏️ 編輯、摘要、時間條
-  await expect(page.getByTestId('m-trip-title')).toContainText('2/3週三 · 第 2 天');
+  await expect(page.getByTestId('m-trip-title')).toContainText('2/3週三');
   await expect(page.getByTestId('m-trip-ai')).toBeVisible();
   await expect(page.getByTestId('m-trip-edit')).toBeVisible();
   await expect(page.getByTestId('day-summary')).toBeVisible();
@@ -598,7 +585,7 @@ test('航班的日子（2/2）、空的日子能正常顯示', async ({ page }) 
   await pickDay(page, '2027-02-02');
   await expect(page.getByTestId('m-card').first()).toBeVisible();
   await pickDay(page, '2027-02-07');
-  await expect(page.getByTestId('m-trip-title')).toContainText('2/7週日 · 第 6 天');
+  await expect(page.getByTestId('m-trip-title')).toContainText('2/7週日');
   await pickDay(page, '2027-02-13');
   await expect(page.getByTestId('m-card').first()).toBeVisible();
   expect(errors).toEqual([]);
@@ -1126,14 +1113,6 @@ test('自由時間的子畫面標題是「改時間長度」', async ({ page }) 
   await expect(sheet.getByTestId('m-action-head')).toContainText('改時間長度');
 });
 
-test('編輯中從行程打開的詳情沒有問 AI（半屏聊天藏起來）', async ({ page }) => {
-  await editDay(page);
-  await mCard(page, 'i-2').getByTestId('trip-card-name').click();
-  await mCard(page, 'i-2').getByTestId('trip-card-detail').click();
-  await expect(page.getByTestId('m-detail')).toBeVisible();
-  await expect(page.getByTestId('m-detail').getByTestId('ask-ai-box')).toHaveCount(0);
-});
-
 test('編輯：完成以後分頁回來', async ({ page }) => {
   await editDay(page);
   await expect(page.getByTestId('m-tab-trip')).toHaveCount(0);
@@ -1157,155 +1136,6 @@ test('編輯中打開詳情：底部沒有空白（分頁藏起來時不留位�
   await expect(d).toBeVisible();
   const box = (await d.boundingBox())!;
   expect(Math.round(box.y + box.height)).toBe(page.viewportSize()!.height);
-});
-
-// ---------- AI 聊天（§3.6）：AI 分頁、行程頁的半屏聊天（對話是佔位，T16m 接上） ----------
-
-test('AI 分頁：假訊息有照片卡和提議卡', async ({ page }) => {
-  await ready(page);
-  await goTab(page, 'ai');
-  const chat = page.getByTestId('m-chat-page');
-  await expect(chat).toBeVisible();
-  expect(await chat.getByTestId('m-chat-place').count()).toBeGreaterThanOrEqual(3);
-  await expect(chat.getByTestId('m-chat-proposal')).toBeVisible();
-  // 照片卡上有想去和「詳情」，點的範圍至少 44px
-  const card = chat.getByTestId('m-chat-place').first();
-  expect((await card.getByTestId('m-chat-place-like').boundingBox())!.height).toBeGreaterThanOrEqual(44);
-  expect((await card.getByTestId('m-chat-place-detail').boundingBox())!.height).toBeGreaterThanOrEqual(44);
-  // 上下文小標：沒有地點時是這天
-  await expect(chat.getByTestId('m-chat-context')).toContainText('正在看：');
-  // 送出：「我」的訊息加進對話，再一則佔位回覆
-  const before = await chat.getByTestId('m-chat-msg').count();
-  await chat.getByTestId('m-chat-input').fill('有沒有雨天備案？');
-  await chat.getByTestId('m-chat-send').click();
-  await expect(chat.getByTestId('m-chat-msg')).toHaveCount(before + 2);
-  await expect(chat.locator('[data-testid="m-chat-msg"][data-who="me"]').last()).toHaveText('有沒有雨天備案？');
-  await expect(chat.getByTestId('m-chat-msg').last()).toHaveText('（T16 接上後回答）');
-  await expect(chat.getByTestId('m-chat-input')).toHaveValue('');
-  // 「套用」先只跳 toast
-  await chat.getByTestId('m-chat-proposal-apply').click();
-  await expect(page.getByTestId('toast')).toContainText('（T16 接上）');
-  // 詳情：從 AI 分頁打開，返回回到 AI
-  await card.getByTestId('m-chat-place-detail').click();
-  await expect(page.getByTestId('m-detail')).toBeVisible();
-  await page.getByTestId('m-detail-back').click();
-  await expect(page.getByTestId('m-tab-ai')).toHaveAttribute('aria-current', 'page');
-  expect(await scrollsSideways(page)).toBe(false);
-});
-
-test('行程頁 AI：半屏聊天、上面看得到地圖', async ({ page }) => {
-  await ready(page);
-  await pickDay(page, '2027-02-05');
-  await page.getByTestId('m-trip-ai').click();
-  const sheet = page.getByTestId('m-chat-sheet');
-  await expect(sheet).toBeVisible();
-  const vh = page.viewportSize()!.height;
-  const box = (await sheet.boundingBox())!;
-  expect(Math.abs(box.height / vh - 0.55)).toBeLessThan(0.03);
-  expect(Math.round(box.y + box.height)).toBe(vh);
-  // 蓋在分頁列上面
-  const tabAi = (await page.getByTestId('m-tab-ai').boundingBox())!;
-  expect(await page.evaluate(([x, y]) => !!document.elementFromPoint(x, y)?.closest('[data-testid="m-chat-sheet"]'), [tabAi.x + 5, tabAi.y + 5])).toBe(true);
-  // 上面看得到地圖
-  await expect(page.getByTestId('map')).toBeVisible();
-  expect(await page.evaluate(([x, y]) => !!document.elementFromPoint(x, y)?.closest('.m-map'), [20, box.y / 2])).toBe(true);
-  // 同一個聊天元件：輸入框、上下文小標
-  await expect(sheet.getByTestId('m-chat-input')).toBeVisible();
-  await expect(sheet.getByTestId('m-chat-context')).toContainText('正在看：');
-  expect((await page.getByTestId('m-chat-sheet-close').boundingBox())!.height).toBeGreaterThanOrEqual(44);
-  await page.getByTestId('m-chat-sheet-close').click();
-  await expect(sheet).toHaveCount(0);
-  // 往上拉（或 ⤢）：全螢幕，就是 AI 分頁
-  await page.getByTestId('m-trip-ai').click();
-  await page.getByTestId('m-chat-sheet-expand').click();
-  await expect(page.getByTestId('m-tab-ai')).toHaveAttribute('aria-current', 'page');
-  await expect(page.getByTestId('m-chat-page')).toBeVisible();
-  await expect(page.getByTestId('m-chat-sheet')).toHaveCount(0);
-  // 回到行程：半屏聊天收起來了；再打開，用手指把把手往上拉
-  await goTab(page, 'trip');
-  await expect(page.getByTestId('m-chat-sheet')).toHaveCount(0);
-  await page.getByTestId('m-trip-ai').click();
-  const g = (await page.getByTestId('m-chat-sheet-grab').boundingBox())!;
-  await page.mouse.move(g.x + 30, g.y + 6);
-  await page.mouse.down();
-  await page.mouse.move(g.x + 30, g.y - 80, { steps: 5 });
-  await page.mouse.up();
-  await expect(page.getByTestId('m-tab-ai')).toHaveAttribute('aria-current', 'page');
-});
-
-test('提議的「在行程上看」：切到行程、半屏、地圖有提議', async ({ page }) => {
-  await ready(page);
-  await goTab(page, 'ai');
-  await page.getByTestId('m-chat-proposal-view').click();
-  await expect(page.getByTestId('m-tab-trip')).toHaveAttribute('aria-current', 'page');
-  await expect(page.getByTestId('m-chat-sheet')).toBeVisible();
-  await expect.poll(() => page.evaluate(() => (window as any).__th.appStore.getState().proposal)).not.toBeNull();
-  const p = await page.evaluate(() => {
-    const s = (window as any).__th.appStore.getState();
-    return { dates: s.proposal.dates, kinds: s.proposal.changes.map((c: any) => `${c.kind}:${c.place}`).sort(), day: s.day };
-  });
-  expect(p.dates).toEqual(['2027-02-05']);
-  expect(p.kinds).toEqual(['added:toba-osakaya', 'removed:toba-sazanami']);
-  expect(p.day).toBe('2027-02-05');
-});
-
-test('探索詳情的問 AI → AI 分頁；行程詳情的問 AI → 半屏', async ({ page }) => {
-  await ready(page);
-  const id = await openFromFeed(page, 0);
-  const name = (await page.getByTestId('m-detail-name').innerText()).trim();
-  await page.getByTestId('m-detail').getByTestId('ask-ai-prompt').first().click();
-  await expect(page.getByTestId('m-detail')).toHaveCount(0);
-  await expect(page.getByTestId('m-tab-ai')).toHaveAttribute('aria-current', 'page');
-  const chat = page.getByTestId('m-chat-page');
-  await expect(chat.getByTestId('m-chat-context')).toContainText('關於：');
-  await expect(chat.getByTestId('m-chat-context')).toContainText(name.slice(0, 2));
-  // 問的問題變成「我」的訊息
-  await expect(chat.locator('[data-testid="m-chat-msg"][data-who="me"]').last()).toBeVisible();
-  // ✕ 清掉上下文
-  await chat.getByTestId('m-chat-context-clear').click();
-  await expect(chat.getByTestId('m-chat-context')).not.toContainText('關於');
-  expect(await page.evaluate(() => (window as any).__th.uiStore?.getState?.().chatDraft?.placeId ?? null)).toBeNull();
-  expect(id).toBeTruthy();
-
-  await goTab(page, 'trip');
-  await pickDay(page, '2027-02-03');
-  const card = page.locator('[data-testid="m-card"][data-item="i-2"]');
-  await card.getByTestId('trip-card-name').click();
-  await card.getByTestId('trip-card-detail').click();
-  await page.getByTestId('m-detail').getByTestId('ask-ai-prompt').first().click();
-  await expect(page.getByTestId('m-detail')).toHaveCount(0);
-  await expect(page.getByTestId('m-tab-trip')).toHaveAttribute('aria-current', 'page');
-  const sheet = page.getByTestId('m-chat-sheet');
-  await expect(sheet).toBeVisible();
-  await expect(sheet.getByTestId('m-chat-context')).toContainText('關於：橫山展望台');
-});
-
-test('手機地圖上的提議列：不被討論、預約蓋住、「不看提議」44px；關掉半屏、離開行程時清掉提議', async ({ page }) => {
-  await ready(page);
-  await goTab(page, 'ai');
-  await page.getByTestId('m-chat-proposal-view').click();
-  const bar = page.getByTestId('proposal-bar');
-  await expect(bar).toBeVisible();
-  const dismiss = bar.getByRole('button', { name: '不看提議', exact: true });
-  const box = (await dismiss.boundingBox())!;
-  expect(box.height).toBeGreaterThanOrEqual(44);
-  // 點得到：中心點最上面的就是這個按鈕
-  const hit = (sel: string, b: { x: number; y: number; width: number; height: number }) =>
-    page.evaluate(([sel, x, y]) => !!document.elementFromPoint(x as number, y as number)?.closest(sel as string), [sel, b.x + b.width / 2, b.y + b.height / 2] as const);
-  expect(await hit('.proposal-bar .link-button', box)).toBe(true);
-  expect(await scrollsSideways(page)).toBe(false);
-  const proposal = () => page.evaluate(() => (window as any).__th.appStore.getState().proposal);
-  // 關掉半屏：提議一起清掉
-  await page.getByTestId('m-chat-sheet-close').click();
-  await expect.poll(proposal).toBeNull();
-  await expect(bar).toHaveCount(0);
-  // 再看一次提議，然後離開行程分頁（半屏往上拉成 AI 分頁；半屏蓋住分頁列，要離開只能這樣）：也清掉
-  await goTab(page, 'ai');
-  await page.getByTestId('m-chat-proposal-view').click();
-  await expect.poll(proposal).not.toBeNull();
-  await page.getByTestId('m-chat-sheet-expand').click();
-  await expect(page.getByTestId('m-tab-ai')).toHaveAttribute('aria-current', 'page');
-  await expect.poll(proposal).toBeNull();
 });
 
 test('第七輪：行程地圖上沒有討論、預約、縮放鈕', async ({ page }) => {
@@ -1655,7 +1485,7 @@ test('展開的卡：「問 AI」開半屏聊天、「詳細資料」開整頁�
   expect((await mobileState(page)).detail?.from).toBe('trip');
 });
 
-test('編輯條是墨色、有快照；編輯中沒有日期列和 ✦；「改」點的範圍 44px', async ({ page }) => {
+test('編輯條是墨色、有快照；編輯中沒有日期列、問 AI 還在；「改」點的範圍 44px', async ({ page }) => {
   await ready(page);
   await pickDay(page, '2027-02-03');
   await expect(page.getByTestId('m-trip-ai')).toBeVisible();
@@ -1668,7 +1498,7 @@ test('編輯條是墨色、有快照；編輯中沒有日期列和 ✦；「改�
   await expect(bar.getByTestId('snapshots-button')).toBeVisible();
   await expect(bar.getByTestId('planning-done')).toBeVisible();
   await expect(page.getByTestId('m-day-strip')).toHaveCount(0);
-  await expect(page.getByTestId('m-trip-ai')).toHaveCount(0);
+  await expect(page.getByTestId('m-trip-ai')).toBeVisible();
   const edit = page.getByTestId('m-leg').first().getByTestId('leg-edit');
   expect(await edit.evaluate((e) => parseFloat(getComputedStyle(e, '::after').height))).toBeGreaterThanOrEqual(44);
   expect(await edit.evaluate((e) => parseFloat(getComputedStyle(e, '::after').width))).toBeGreaterThanOrEqual(44);

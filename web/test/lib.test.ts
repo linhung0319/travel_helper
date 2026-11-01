@@ -503,8 +503,10 @@ test('feedFilter：手機探索的類型、地區、快速篩選換成 Filter；
     votes: ['popular'],
     regions: ['toba-x'],
   });
-  // 類型、地區只看 type、area；壞掉的條件略過
-  assert.deepEqual(feedFilter({ type: 'all', area: null, quick: ['types:spot', 'areas:ise', 'nope:1', 'bad', ':x'] }), EMPTY_FILTER);
+  // 壞掉的條件略過
+  assert.deepEqual(feedFilter({ type: 'all', area: null, quick: ['nope:1', 'bad', ':x'] }), EMPTY_FILTER);
+  // AI 一次套多個類型、地區時才會放進 quick（filterToFeed）
+  assert.deepEqual(feedFilter({ type: 'all', area: null, quick: ['types:spot', 'types:lodging', 'areas:ise', 'areas:toba'] }), { ...EMPTY_FILTER, types: ['spot', 'lodging'], areas: ['ise', 'toba'] });
   assert.deepEqual(wishFilter('spot', null), { ...EMPTY_FILTER, types: ['spot'] });
   assert.deepEqual(wishFilter('lodging', 'ise'), { ...EMPTY_FILTER, types: ['lodging'], areas: ['ise'] });
   // 全部類型：車站照樣不列；bounds 給 null＝不看範圍
@@ -761,8 +763,8 @@ test('這天的標題：日期、週幾、第幾天、最常出現的地區', as
   assert.equal(dayAreaName(stops(['c', 'a', 'b']), byId, areas), '鳥羽');
   assert.equal(dayAreaName(stops(['c', 'a']), byId, areas), '伊勢');
   assert.equal(dayAreaName(stops(['d']), byId, areas), null);
-  assert.deepEqual(dayTitle('2027-02-05', '鳥羽'), { date: '2/5', sub: '週五 · 第 4 天 · 鳥羽' });
-  assert.deepEqual(dayTitle('2027-02-02', null), { date: '2/2', sub: '週二 · 第 1 天' });
+  assert.deepEqual(dayTitle('2027-02-05', '鳥羽'), { date: '2/5', sub: '週五 · 第 4 天 · 鳥羽', short: '週五 · 鳥羽' });
+  assert.deepEqual(dayTitle('2027-02-02', null), { date: '2/2', sub: '週二 · 第 1 天', short: '週二' });
 });
 
 // T15m 第七輪 §8.2：選中一個點時地圖能不動就不動

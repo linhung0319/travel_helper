@@ -1,12 +1,9 @@
 // 手機版自己的畫面狀態（第六輪 §3、§6）：現在在哪個分頁、行程面板停在哪、行程選到的卡（focusItem，不改面板高度）、原地展開的卡（expanded、expandItem）、編輯中打開的「⋯」動作面板（actions）、
-// 整頁詳情、聊天面板、整頁的討論／預約、探索的篩選與顯示方式（feed.view 記在 localStorage）、想去的篩選、搜尋、排序（清單／照片牆、三段收合在 shared/wishPrefs.ts，網頁也用）。
-// 不放進 store.ts（地圖指令那層）；網頁版用不到。打開整頁（詳情、討論／預約）時推一筆 history，手機的返回鍵（瀏覽器上一頁）就是關掉那一頁；
-// 頁面左上角的「‹」（closePlace、setPage(null)）也是把那筆退回去（history.back）。
-// history.back() 是非同步的：關掉之後，退回去的 popstate 還沒到之前又開了整頁，要等它到了才推新的那筆（不然 popstate 會把新的關掉）。
-// 整頁的東西一次只有一層（§3.0）：開詳情會關掉討論／預約，開討論／預約會關掉詳情；互換時共用同一筆 history，上一頁一次就回到分頁。
-// 聊天（§3.6）：行程頁的半屏聊天（chatSheet）只在行程分頁出現，換分頁就收起來。詳情的「問 AI」（uiStore.chatDraft 的 seq 變了）：
-// 從行程打開的詳情回到行程、打開半屏聊天，其他地方打開的跳到 AI 分頁；兩種都關掉詳情（只在手機版掛著時：MapView 讓網頁版也載入這個檔）。
-// AI 的提議（appStore.proposal）是半屏聊天帶出來的：關掉半屏、離開行程分頁時一起清掉，不會卡在手機的地圖上。
+// 整頁詳情、聊天（半屏、拉滿、清單或加地點面板、從聊天跳來的、回覆好了的小點）、整頁的討論／預約、探索的篩選與顯示方式（feed.view 記在 localStorage）、想去的篩選、搜尋、排序（清單／照片牆、三段收合在 shared/wishPrefs.ts，網頁也用）。
+// 不放進 store.ts（地圖指令那層）；網頁版用不到。
+// 返回鍵（interaction-design §16.2）：每一層（整頁、加地點、半屏、對話清單或加地點面板、從聊天跳走）都佔一筆 history，syncHistory 照畫面狀態對齊筆數；手機的返回鍵一次關最上面一層。LINE 裡沒有 history 就離開網站了。
+// 整頁的東西一次只有一層（§3.0）：開詳情會關掉討論／預約，開討論／預約會關掉詳情；互換時共用同一筆 history。
+// 聊天：半屏只在行程分頁出現，換分頁就收起來；關掉半屏、換分頁都不清提議和結果集（規格 §3.4）。結果集出現時探索的篩選收起來，清掉時還原（§3.1）。
 // 班次表（uiStore.timetable，T29c §8.8）浮在地圖那塊：行程拉到最高時打開，行程降到中間讓出地圖（snapForTimetable）；關掉不拉回去。
 
 import { createStore } from 'zustand/vanilla';
@@ -59,6 +56,16 @@ export interface MobileState {
   detail: { placeId: string; from: MobileTab; /** 一打開就選哪個分頁（想去列點最新留言：comments） */ tab?: DetailTabId } | null;
   /** 行程頁上的半屏聊天（ChatSheet）；只在行程分頁有效，換分頁就變回 false */
   chatSheet: boolean;
+  /** 半屏拉滿（不切分頁，編輯中也一樣） */
+  chatFull: boolean;
+  /** 聊天裡蓋著的東西：對話清單、加地點面板 */
+  chatOverlay: 'list' | 'picker' | null;
+  /** 這一頁是從聊天跳過來的（在地圖上看、在探索看、在行程上看、採用）：要有「‹ 回 AI」，返回鍵也回聊天 */
+  fromChat: boolean;
+  /** 回覆在別的畫面時回好了：「AI」分頁上一個小點 */
+  chatUnread: boolean;
+  /** 最後看的內容分頁：在 AI、我分頁時，「正在看」指的是它 */
+  lastTab: 'trip' | 'explore' | 'wish';
   /** 行程頁選到的那張卡（focusKeyOf 的 key；地圖飛過去、清單捲到那張） */
   focused: string | null;
   /** 原地展開的那張卡（同一個 key；一次只展開一張） */
@@ -90,8 +97,11 @@ export interface MobileActions {
   /** 切到行程分頁、打開半屏聊天 */
   openChatSheet(): void;
   closeChatSheet(): void;
-  /** 半屏聊天往上拉：變成全螢幕（AI 分頁，同一份對話） */
-  expandChat(): void;
+  /** 半屏拉滿、收回 */
+  setChatFull(full: boolean): void;
+  setChatOverlay(overlay: MobileState['chatOverlay']): void;
+  /** 回聊天：行程頁開半屏（地圖還看得到），其他的回 AI 分頁 */
+  returnToChat(): void;
   setFeed(patch: Partial<Feed>): void;
   /** 探索的條件（"欄位:值"）有就拿掉、沒有就加上 */
   toggleFeedQuick(token: string): void;
@@ -101,75 +111,66 @@ export interface MobileActions {
 
 export type MobileStore = MobileState & MobileActions;
 
-/** history.state 裡標記「這筆是整頁（詳情、討論／預約）推的」 */
+/** history.state 裡標記「這筆是我們推的」 */
 const HISTORY_KEY = 'thMobileDetail';
 
 const hasHistory = () => typeof window !== 'undefined' && typeof window.history !== 'undefined';
 
-/** 關整頁時叫了 history.back()、popstate 還沒到的次數 */
-let pendingBacks = 0;
-/** 等 popstate 到了才推的那筆（關掉後馬上又開整頁） */
-let pushAfterBack = false;
-
-/** 推一筆「整頁」的 history */
-function pushLayer() {
-  window.history.pushState({ ...(window.history.state ?? {}), [HISTORY_KEY]: true }, '');
-}
-
-/** 整頁開著沒有（詳情或討論／預約） */
-const layerOpen = (s: MobileState) => !!s.detail || !!s.page;
-
-/** 要開整頁了（還沒 set）：本來沒有整頁才推一筆；還在等退回去時，先記著，等 popstate 到了再推 */
-function beforeOpenLayer(s: MobileState) {
-  if (!hasHistory() || layerOpen(s)) return;
-  if (pendingBacks > 0) pushAfterBack = true;
-  else pushLayer();
-}
-
-/** 整頁剛關掉（已經 set）：把推過的那筆退回去（退回去的 popstate 由下面的監聽略過） */
-function afterCloseLayer() {
-  if (pushAfterBack) {
-    // 新開的整頁還沒推 history：不用退
-    pushAfterBack = false;
-    return;
-  }
-  if (hasHistory() && window.history.state?.[HISTORY_KEY]) {
-    pendingBacks++;
-    window.history.back();
-  }
-}
+/** 手機版（MobileApp）掛著沒有：聊天的幾層只有手機版才算 */
+let mobileActive = false;
 
 /**
- * 加地點的整頁（AddPlacePage，T31）也是一層 history：開起來推一筆、關掉（‹、取消、存好）退回去，返回鍵先關它（詳情還在底下）。
+ * 加地點的整頁（AddPlacePage，T31）也是一層 history，返回鍵先關它（詳情還在底下）。
  * addPlaceStore 牽著整個網站的資料層（Node 的測試載不了），所以由 AddPlacePage 載入時把它的開關接進來。
  */
 let addLayer: { isOpen(): boolean; cancel(): void } | null = null;
-/** 返回鍵（popstate）關加地點頁時，那一筆 history 已經退掉了：不能再退一次 */
-let closingFromPop = false;
 export function bindAddLayer(layer: NonNullable<typeof addLayer>, subscribe: (onChange: (open: boolean) => void) => void) {
   addLayer = layer;
-  let wasOpen = layer.isOpen();
-  subscribe((open) => {
-    if (open === wasOpen) return;
-    wasOpen = open;
-    if (!mobileActive || !hasHistory() || closingFromPop) return;
-    if (open) {
-      if (pendingBacks > 0) pushAfterBack = true;
-      else pushLayer();
-    } else afterCloseLayer();
-  });
+  subscribe(() => syncHistory());
 }
 
-/** 清掉地圖上 AI 的提議（有才清） */
-function clearProposal() {
-  if (appStore.getState().proposal) appStore.getState().setProposal(null);
+/** 現在開著幾層 */
+function layersOpen(s: MobileState): number {
+  let n = (s.detail || s.page ? 1 : 0) + (addLayer?.isOpen() ? 1 : 0);
+  if (mobileActive) n += (s.chatSheet && s.tab === 'trip' ? 1 : 0) + (s.chatOverlay ? 1 : 0) + (s.fromChat ? 1 : 0);
+  return n;
 }
 
-/** 手機版（MobileApp）掛著沒有：網頁版也會載入這個檔，問 AI 時不動手機的分頁 */
-let mobileActive = false;
+/** 推過、還沒退掉的筆數 */
+let pushed = 0;
+/** 叫了 history.go、popstate 還沒到（非同步）：到了才接著對齊 */
+let goingBack = false;
+
+/** 讓 history 的筆數和開著的層數一樣 */
+function syncHistory() {
+  if (!hasHistory() || goingBack) return;
+  const want = layersOpen(mobileStore.getState());
+  if (want > pushed) {
+    for (; pushed < want; pushed++) window.history.pushState({ ...(window.history.state ?? {}), [HISTORY_KEY]: true }, '');
+  } else if (want < pushed) {
+    const n = pushed - want;
+    pushed = want;
+    goingBack = true;
+    if (n === 1) window.history.back();
+    else window.history.go(-n);
+  }
+}
+
+/** 返回鍵：關最上面一層 */
+function closeTopLayer() {
+  const m = mobileStore.getState();
+  if (mobileActive && addLayer?.isOpen()) addLayer.cancel();
+  else if (m.detail || m.page) mobileStore.setState({ detail: null, page: null });
+  else if (!mobileActive) return;
+  else if (m.chatOverlay) m.setChatOverlay(null);
+  else if (m.chatSheet && m.tab === 'trip') m.closeChatSheet();
+  else if (m.fromChat) m.returnToChat();
+}
+
 /** MobileApp 掛上、卸下時呼叫 */
 export function setMobileActive(active: boolean) {
   mobileActive = active;
+  syncHistory();
 }
 
 const FEED_VIEW_KEY = 'travel-helper:feedView';
@@ -197,56 +198,49 @@ export const mobileStore = createStore<MobileStore>()((set, get) => ({
   tripSnap: 'mid',
   detail: null,
   chatSheet: false,
+  chatFull: false,
+  chatOverlay: null,
+  fromChat: false,
+  chatUnread: false,
+  lastTab: 'trip',
   focused: null,
   expanded: null,
   actions: null,
   page: null,
   feed: { ...EMPTY_FEED, view: loadFeedView() },
   wish: { type: 'all', area: null, quick: [], query: '', sort: 'likes' },
-  // 換分頁：整頁的東西、半屏聊天都關掉
+  // 換分頁：整頁的東西、半屏聊天都關掉；提議、結果集留著（規格 §3.4）
   setTab: (tab) => {
-    const had = layerOpen(get());
-    if (tab !== 'trip') clearProposal();
     // 換分頁取消選中（第七輪 §8.3）
     if (tab !== get().tab) appStore.getState().select(null);
+    const content = tab === 'trip' || tab === 'explore' || tab === 'wish';
     // 換到別的分頁才收起展開的卡（半屏聊天開著時 setTab('trip') 是同一個分頁，卡片留著）
-    set({ tab, detail: null, page: null, actions: null, chatSheet: false, ...(tab === get().tab ? {} : { expanded: null }) });
-    if (had) afterCloseLayer();
+    set({ tab, detail: null, page: null, actions: null, chatSheet: false, chatFull: false, chatOverlay: null, fromChat: false, ...(content ? { lastTab: tab } : {}), ...(tab === 'ai' ? { chatUnread: false } : {}), ...(tab === get().tab ? {} : { expanded: null }) });
   },
   setSnap: (tripSnap) => set({ tripSnap }),
   focusItem: (focused) => set({ focused }),
   expandItem: (key) => set({ expanded: key && key !== get().expanded ? key : null }),
   openActions: (actions) => set({ actions }),
   closeActions: () => set({ actions: null }),
-  openPlace: (placeId, from, tab) => {
-    // 已經開著詳情（或討論／預約）時換過去不再推一筆，上一頁直接回到分頁
-    beforeOpenLayer(get());
-    set({ detail: tab ? { placeId, from, tab } : { placeId, from }, page: null });
-  },
+  openPlace: (placeId, from, tab) => set({ detail: tab ? { placeId, from, tab } : { placeId, from }, page: null }),
   closePlace: () => {
-    if (!get().detail) return;
-    set({ detail: null });
-    afterCloseLayer();
+    if (get().detail) set({ detail: null });
   },
   setPage: (page) => {
-    if (page) {
-      beforeOpenLayer(get());
-      set({ page, detail: null });
-      return;
-    }
-    if (!get().page) return;
-    set({ page: null });
-    afterCloseLayer();
+    if (page) set({ page, detail: null });
+    else if (get().page) set({ page: null });
   },
   openChatSheet: () => {
     get().setTab('trip');
-    set({ chatSheet: true });
+    set({ chatSheet: true, chatUnread: false });
   },
-  closeChatSheet: () => {
-    clearProposal();
-    set({ chatSheet: false });
+  closeChatSheet: () => set({ chatSheet: false, chatFull: false, chatOverlay: null }),
+  setChatFull: (chatFull) => set({ chatFull }),
+  setChatOverlay: (chatOverlay) => set({ chatOverlay }),
+  returnToChat: () => {
+    if (get().tab === 'trip') get().openChatSheet();
+    else get().setTab('ai');
   },
-  expandChat: () => get().setTab('ai'),
   setFeed: (patch) => {
     if (patch.view) saveFeedView(patch.view);
     set({ feed: { ...get().feed, ...patch } });
@@ -271,41 +265,33 @@ appStore.subscribe((s) => {
   if (m.focused || m.expanded) mobileStore.setState({ focused: null, expanded: null });
 });
 
+// 結果集出現：探索的篩選、搜尋收起來（否則取交集可能一個都不剩）；清掉時還原（規格 §3.1）。手機的探索有自己的 feed，appStore 的 stash 管不到
+let feedStash: Pick<Feed, 'type' | 'area' | 'quick' | 'query'> | null = null;
+appStore.subscribe((s, prev) => {
+  if (s.aiResult && !prev.aiResult) {
+    const { type, area, quick, query } = mobileStore.getState().feed;
+    feedStash = { type, area, quick, query };
+    mobileStore.setState((m) => ({ feed: { ...m.feed, type: 'all', area: null, quick: [], query: '' } }));
+  } else if (!s.aiResult && prev.aiResult && feedStash) {
+    const restored = feedStash;
+    feedStash = null;
+    mobileStore.setState((m) => ({ feed: { ...m.feed, ...restored } }));
+  }
+});
+
+mobileStore.subscribe(() => syncHistory());
+
 if (typeof window !== 'undefined') {
-  // 手機的返回鍵、瀏覽器上一頁：關掉整頁（詳情、討論／預約）
+  // 手機的返回鍵、瀏覽器上一頁：關最上面一層；自己退的（畫面已經關了）只要接著對齊
   window.addEventListener('popstate', () => {
-    // 自己關的時候退的：整頁已經關了；退完之後才推新開的那筆
-    if (pendingBacks > 0) {
-      pendingBacks--;
-      if (pendingBacks === 0 && pushAfterBack) {
-        pushAfterBack = false;
-        if (layerOpen(mobileStore.getState()) || addLayer?.isOpen()) pushLayer();
-      }
+    if (goingBack) {
+      goingBack = false;
+      syncHistory();
       return;
     }
-    // 加地點的整頁蓋在最上面：先關它（詳情還在底下）
-    if (mobileActive && addLayer?.isOpen()) {
-      closingFromPop = true;
-      try {
-        addLayer.cancel();
-      } finally {
-        closingFromPop = false;
-      }
-      return;
-    }
-    if (layerOpen(mobileStore.getState())) mobileStore.setState({ detail: null, page: null });
-  });
-  // 詳情的「問 AI」：看 chatDraft.seq，從行程問的回到行程開半屏聊天，其他的跳到 AI 分頁（setTab 會關掉詳情）
-  let lastSeq = uiStore.getState().chatDraft?.seq ?? 0;
-  uiStore.subscribe((s) => {
-    const d = s.chatDraft;
-    if (!d || d.seq === lastSeq) return;
-    lastSeq = d.seq;
-    if (!mobileActive) return;
-    const m = mobileStore.getState();
-    m.closePlace();
-    if (d.from === 'trip') m.openChatSheet();
-    else m.setTab('ai');
+    pushed = Math.max(0, pushed - 1);
+    closeTopLayer();
+    syncHistory();
   });
   // 打開（或換一程）班次表：行程在最高時降到中間；關掉不動
   let lastTimetable = uiStore.getState().timetable;

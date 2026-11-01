@@ -5,8 +5,8 @@
   --m-tabbar-h: 56px;
   position: relative;
   height: 100vh;
-  /* LINE 內建瀏覽器、iOS Safari 的網址列：用 dvh 才不會被蓋住 */
-  height: 100dvh;
+  /* LINE 內建瀏覽器、iOS Safari 的網址列：用 dvh 才不會被蓋住；--kb 是螢幕鍵盤蓋住的高度（lib/keyboard.ts，§16.3） */
+  height: calc(100dvh - var(--kb, 0px));
   width: 100%;
   overflow: hidden;
   display: flex;
@@ -14,9 +14,24 @@
   background: var(--bg);
 }
 
-/* 編輯中底部分頁藏起來，內容往下延伸 */
-.m-app.editing {
+/* 編輯中（行程分頁）、鍵盤開著時底部分頁藏起來，內容往下延伸 */
+.m-app.editing,
+:root[data-keyboard] .m-app {
   --m-tabbar-h: 0px;
+}
+
+:root[data-keyboard] .m-tabbar {
+  display: none;
+}
+
+/* 打字時加地點的小地圖讓出來，表單才放得下（§16.3） */
+:root[data-keyboard] .m-add-top {
+  display: none;
+}
+
+/* 有提議時面板拉到最低也要露出提議列（§16.2） */
+.m-app[data-proposal] {
+  --m-sheet-low: 216px;
 }
 
 /* 分頁內容：底部分頁上面那一塊 */
@@ -499,17 +514,6 @@
   box-shadow: 0 1px 3px var(--shade-2);
   font-size: 0.8rem;
   font-weight: 700;
-}
-
-/* 問 AI（AskAiBox，網頁版共用）：手機上點的範圍至少 44px */
-.m-app .ask-ai-prompt,
-.m-app .ask-ai-input,
-.m-app .ask-ai-send {
-  min-height: var(--tap);
-}
-
-.m-app .ask-ai-send {
-  min-width: var(--tap);
 }
 
 /* 小地圖的版權字縮小，不蓋住地圖（展開／收起的按鈕被整塊按鈕擋住，拿掉） */

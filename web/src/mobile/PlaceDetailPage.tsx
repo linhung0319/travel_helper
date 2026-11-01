@@ -6,7 +6,7 @@
 
 import { useEffect, useRef } from 'react';
 import { Map as MapLibreMap, Marker } from 'maplibre-gl';
-import { useApp, useData } from '../hooks.ts';
+import { useData } from '../hooks.ts';
 import { commands } from '../appCommands.ts';
 import type { Place } from '../data/types.ts';
 import { appStore, type DetailTabId } from '../store.ts';
@@ -15,8 +15,7 @@ import { STYLE_URL, selectedDropHtml } from '../components/MapView.tsx';
 import { dayPlanOf, planStore } from '../planStore.ts';
 import { tripDates } from '../lib/trip.ts';
 import { PlaceDetail } from '../shared/ui/PlaceDetail.tsx';
-// askAi.ts 載入時才把「放進選取」接給 uiStore.askAboutPlace（問 AI 要帶地點），手機版這裡一定要載入
-import '../components/askAi.ts';
+import { askFromDetail } from './mobileAi.ts';
 import { focusKeyForPlace, mobileStore, useMobile, type MobileTab } from './mobileStore.ts';
 
 /** 「在地圖上看」：切到行程。排在某天（現在選的那天優先）＝選那天、選中那張卡（展開）；沒排＝整趟、選中這個點 */
@@ -67,8 +66,6 @@ function MiniMap({ place }: { place: Place }) {
 
 /** 一個點的整頁內容（換點時整個重來：分頁回到簡介、捲回最上面） */
 function DetailContent({ place, from, tab }: { place: Place; from: MobileTab; tab?: DetailTabId }) {
-  // 編輯中行程頁的半屏聊天藏起來（ChatSheet），從行程打開的詳情按問 AI 會沒有反應：先不畫問 AI
-  const askAiHidden = useApp((s) => s.planning) && from === 'trip';
   // 排在哪天：選那天、切到行程分頁
   const onDay = (date: string) => {
     commands.selectDay(date);
@@ -81,7 +78,7 @@ function DetailContent({ place, from, tab }: { place: Place; from: MobileTab; ta
       from={from}
       initialTab={tab}
       onDay={onDay}
-      askAi={!askAiHidden}
+      onAsk={() => askFromDetail(place.id, from)}
       onPickNearby={(id) => mobileStore.getState().openPlace(id, from)}
       locator={<MiniMap place={place} />}
       onBack={() => mobileStore.getState().closePlace()}

@@ -12,8 +12,6 @@ import type { KeyboardEvent, MouseEvent, ReactNode, Ref } from 'react';
 import { Photo } from '../../components/Photo.tsx';
 import { TypeSeal } from './TypeLabel.tsx';
 import { Icon } from '../../components/Icon.tsx';
-import { askAboutPlace } from '../../uiStore.ts';
-import { askAiPrompts } from '../askAiPrompts.ts';
 import { cardTypeLetter } from '../../lib/planView.ts';
 import { typeSwatch } from '../../lib/typeStyle.ts';
 import { photoCandidates } from '../../lib/photos.ts';
@@ -33,11 +31,6 @@ export function firstSentences(text: string | null | undefined, n = 2): string {
   if (!t) return '';
   const parts = t.match(/[^。！？!?]+[。！？!?]?/g) ?? [t];
   return parts.slice(0, n).join('').trim();
-}
-
-/** 卡片上的「問 AI」：用這個點的第一個建議問題（行程裡問的）開聊天；網頁、手機各自在 chatDraft 變了時切畫面 */
-export function askAboutCardPlace(place: Place) {
-  askAboutPlace(place.id, askAiPrompts(place.type, true)[0] ?? `「${place.name.zh || place.name.ja}」有什麼要注意的？`, 'trip');
 }
 
 export interface TripCardProps {
