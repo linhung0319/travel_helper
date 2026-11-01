@@ -16,6 +16,7 @@ import { createChat } from '../src/ai/chat.ts';
 import { createLocalChatRepository } from '../src/ai/chatRepository.ts';
 import { appSurface, createBaseStage, type AddPlaceInit, type ScreenSurface } from '../src/ai/stage.ts';
 import { createFakeModel } from '../src/dev-fixtures/ai/fakeModel.ts';
+import type { ModelClient } from '../src/ai/types.ts';
 
 const ROOT = join(import.meta.dirname, '..', '..');
 const json = (...p: string[]) => JSON.parse(readFileSync(join(ROOT, ...p), 'utf8'));
@@ -53,6 +54,8 @@ export interface HarnessOptions {
   /** 「開始編輯？」按了確認或取消；預設確認 */
   confirm?: boolean;
   delayMs?: number;
+  /** 換成別的模型（scripts/ai-eval.ts 用真的 Claude API）；預設假 AI */
+  model?: ModelClient;
 }
 
 export async function harness(opts: HarnessOptions = {}) {
@@ -118,7 +121,7 @@ export async function harness(opts: HarnessOptions = {}) {
     source,
     confirmPlanning,
     repo: createLocalChatRepository({ storage, memberId: () => shared.store.getState().me?.id ?? 'guest' }),
-    model,
+    model: opts.model ?? model,
     stage,
   });
   await chat.init();

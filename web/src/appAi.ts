@@ -1,5 +1,5 @@
 // 網站共用的一份 AI（T16m）：聊天、工具、提議；邏輯在 ai/。畫面（T16m-b、T16m-c）從這裡拿 ai，再用 setScreenSurface 接上平台。
-// dev server 用假 AI（dev-fixtures/ai/）；正式 build 先用「還沒接上」的版本，T16 換成呼叫 Worker。
+// dev server 用假 AI（dev-fixtures/ai/）和 localStorage；正式 build 呼叫 Worker，聊天紀錄存 D1（T16）。
 
 import { appStore } from './store.ts';
 import { dataStore, ensureDetails } from './dataStore.ts';
@@ -12,7 +12,9 @@ import { openDialog, uiStore } from './uiStore.ts';
 import { createLocalChatRepository } from './ai/chatRepository.ts';
 import { createChat } from './ai/chat.ts';
 import { appSurface, createBaseStage, type ScreenSurface } from './ai/stage.ts';
-import { ModelError, type ModelClient } from './ai/types.ts';
+import { createApiChatRepository } from './ai/apiChatRepository.ts';
+import { createWorkerModel } from './ai/workerModel.ts';
+import type { ModelClient } from './ai/types.ts';
 
 function browserStorage() {
   try {
@@ -34,14 +36,8 @@ function confirmPlanning(summary: string): Promise<boolean> {
   });
 }
 
-const offlineModel: ModelClient = {
-  // eslint-disable-next-line require-yield -- 還沒接上：第一步就丟錯誤
-  async *send() {
-    throw new ModelError('other', 'AI 還沒接上（T16）');
-  },
-};
-
-let model: ModelClient = offlineModel;
+// 正式 build 呼叫 Worker；dev server 在 boot 換成假 AI
+let model: ModelClient = createWorkerModel({ onLoggedOut: () => location.reload() });
 /** dev 選單、Playwright 切換假 AI 的狀態（正式 build 是 null） */
 export let fakeSettings: { delayMs: number; usage: 'ok' | 'near' | 'full'; next: 'error' | 'quota' | 'hang' | null } | null = null;
 
@@ -62,7 +58,7 @@ export const ai = createChat({
   source: dataSource,
   details: ensureDetails,
   confirmPlanning,
-  repo: createLocalChatRepository({ storage: browserStorage(), memberId: () => sharedStore.getState().me?.id ?? 'guest' }),
+  repo: import.meta.env.DEV ? createLocalChatRepository({ storage: browserStorage(), memberId: () => sharedStore.getState().me?.id ?? 'guest' }) : createApiChatRepository(),
   // 模型、平台都晚一點才定，這裡包一層
   model: { send: (request, signal) => model.send(request, signal) },
   stage: createBaseStage({
@@ -99,7 +95,18 @@ async function boot() {
     model = fake;
     fakeSettings = fake.settings;
   }
-  await ai.init();
+  try {
+    await ai.init();
+  } catch (e) {
+    console.error(e);
+    ai.store.setState({ error: { code: 'network', message: '聊天紀錄讀不到，請重新整理再試一次' } });
+  }
+  if (!import.meta.env.DEV && typeof document !== 'undefined') {
+    // 另一個分頁、另一台裝置可能接著聊過：切回來時重新抓（規格 §11）
+    document.addEventListener('visibilitychange', () => {
+      if (document.visibilityState === 'visible') void ai.refresh().catch(console.error);
+    });
+  }
 }
 
 /** 看提議還是看原本（§16.1、§16.2，兩邊一樣）：按了「編輯」回到真的時間軸才改得到；新的提議出現時看差異 */

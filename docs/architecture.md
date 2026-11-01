@@ -489,7 +489,7 @@ npm run db:import -- --apply data/cache/import/<時間>-all.json   # 2. 👤 看
 | `GET/POST /api/candidates`、`DELETE /api/candidates/:id` | `{ placeId, day }`；`day` 要在旅程裡；同一天同一點已經有了就回傳那一筆（200）；誰都能拿掉 |
 | `GET/PUT /api/reservations` | `{ date, placeId, status, note?, nights? }`：同一個 `(date, placeId)` 整筆取代 |
 | `GET /api/votes`、`PUT/DELETE /api/votes/:placeId` | `{ value: 'like' | 'dislike' }`，只能投、收回自己的 |
-| `GET /api/chats`、`GET/POST/DELETE /api/chats/:conversationId` | 只看得到自己的 |
+| `GET/POST /api/chats`、`PATCH/DELETE /api/chats/:conversationId`、`GET/POST /api/chats/:conversationId/messages`、`PUT .../messages/:messageId`、`DELETE .../turns/:turn` | 只看得到自己的，別人的一律 404（T16，`worker/src/api/chats.ts`） |
 | `GET /api/me`、`GET /api/members` | |
 | `GET /api/sync` | 各種資料的版本（`places` 匯入編號、`itinerary` 行程 version，`votes`、`comments`、`candidates`、`reservations`、`edits`、`userPlaces` 是 `MAX(updated_at)`）：前端輪詢只打這一支，變了才重抓那一種 |
 
@@ -570,7 +570,12 @@ npm run db:import -- --apply data/cache/import/<時間>-all.json   # 2. 👤 看
 - **不在編輯中也能提議**：提議只在自己的畫面，不寫進後端；按「採用」時才確認「開始編輯？」，再用引擎的操作寫進行程（先存快照）。提議存的是操作清單，別人先改過時重新檢查，套不上就標成過期。
 - **每次對話只自動帶小的脈絡**：旅客條件（系統提示）、畫面狀態、脈絡晶片。資料點（約 3.2 MB）、投票、留言都用工具查。
 - **聊天紀錄**存在 D1（`chat_messages`），只有自己看得到；同一個人換裝置（手機、電腦）也接得上。每人可以有多段對話（`conversation_id`），不做共用聊天室；對話滿了要開新對話。回覆中關閉頁面，AI 的工作就停了（工具在瀏覽器執行），重新打開時標「沒有回完」、可以重試，送給模型的歷史不留沒結果的工具呼叫（規格 §11）。
-- **防止用掉太多額度**：只有登入的人能呼叫；Worker 依使用者記錄用量（`ai_usage`），設每天的上限。15 人都會用，T16 開工時先估算費用，再定上限和模型。
+- **防止用掉太多額度**：只有登入的人能呼叫；Worker 依使用者記錄用量（`ai_usage`，含快取和費用）。上限（👤 2026-11-02）：全部人每月 US$80、每人每天 US$3，以日本時間計，可以用 `AI_MONTHLY_USD`、`AI_DAILY_USD` 改；超過回 429，畫面明確提示、輸入框停用。
+- **代理**（`worker/src/api/claude.ts`）：瀏覽器只給 `system`、`tools`、`messages`；模型（`AI_MODEL`）、effort（`AI_EFFORT`）、輸出上限由 Worker 定。回 NDJSON（`text`、`done`、`error`），`web/src/ai/workerModel.ts` 轉成 `ModelEvent`。拒答時伺服器端換模型重跑（`fallbacks: "default"`，Opus、Sonnet 才有）。
+- **歷史只增不改**：Opus 5.5 等模型的思考區塊綁著前面的對話，改過歷史就失效，快取也接不上。所以 `system`、`tools` 是固定的；`content` 照模型回的原樣存（含思考）；每輪的脈絡（畫面、晶片、決定）在那輪開始時存成 `turnContext`，之後每次送一樣的字（`<context>…</context>`）。舊的工具結果不在瀏覽器刪，用伺服器端的 `clear_tool_uses`（超過 4 萬 tokens 時，留最近 6 個，卡片的不清）。
+- **對話的長度**：送出的 token 到 6 萬算快滿、10 萬算滿（`NEAR_TOKENS`、`FULL_TOKENS`）；看的是費用，不是模型的上限（1M）。
+- **評估**：`npm run ai:eval -- --model <模型>`（`scripts/ai-eval.ts`）用真的 API 跑規格 §8 的腳本，會花錢（Opus 跑一次約 US$1.5）；改系統提示、工具說明後跑。
+- **CPU**：Worker 免費方案每次請求 10 ms。本機（Node）量代理一次約 8 ms、第一次 63 ms，只能當參考；**T30 部署後要看實際數字**，超過就升級付費方案（US$5／月）或改成不解析串流。
 
 ---
 

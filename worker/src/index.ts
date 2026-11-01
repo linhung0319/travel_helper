@@ -12,18 +12,16 @@ import { createEdit, getPlace, listEdits, listPlaceDetails, listPlaces, revertEd
 import { createUserPlace, deleteUserPlace, listUserPlaces, updateUserPlace } from './api/user-places.ts';
 import { resolveMapLink } from './api/map-link.ts';
 import { getItinerary, getSnapshot, listSnapshots, putItinerary, restoreSnapshot } from './api/itinerary.ts';
+import { claudeMessages } from './api/claude.ts';
+import { appendMessages, createConversation, deleteConversation, listConversations, listMessages, removeTurn, updateConversation, updateMessage } from './api/chats.ts';
 import {
-  appendMessage,
   createCandidate,
   createComment,
   deleteCandidate,
   deleteComment,
-  deleteConversation,
   deleteVote,
-  getConversation,
   listCandidates,
   listComments,
-  listConversations,
   listMembers,
   listReservations,
   listVotes,
@@ -68,9 +66,14 @@ export const api = new Router<Ctx>()
   .on('PUT', '/api/votes/:placeId', putVote)
   .on('DELETE', '/api/votes/:placeId', deleteVote)
   .on('GET', '/api/chats', listConversations)
-  .on('GET', '/api/chats/:conversationId', getConversation)
-  .on('POST', '/api/chats/:conversationId', appendMessage)
-  .on('DELETE', '/api/chats/:conversationId', deleteConversation);
+  .on('POST', '/api/chats', createConversation)
+  .on('PATCH', '/api/chats/:conversationId', updateConversation)
+  .on('DELETE', '/api/chats/:conversationId', deleteConversation)
+  .on('GET', '/api/chats/:conversationId/messages', listMessages)
+  .on('POST', '/api/chats/:conversationId/messages', appendMessages)
+  .on('PUT', '/api/chats/:conversationId/messages/:messageId', updateMessage)
+  .on('DELETE', '/api/chats/:conversationId/turns/:turn', removeTurn)
+  .on('POST', '/api/claude/messages', claudeMessages);
 
 const SAFE_METHODS = new Set(['GET', 'HEAD', 'OPTIONS']);
 

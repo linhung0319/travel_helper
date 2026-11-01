@@ -73,15 +73,19 @@ export function createFakeModel(init: Partial<FakeSettings> = {}): ModelClient &
       // 第幾步：這輪 AI 已經回了幾次
       const step = after.filter((m) => m.role === 'assistant').length;
       const out = script ? (script.steps[step]?.(env) ?? {}) : { text: fallbackText() };
-      if (out.text) {
+      // 腳本的 replies() 照真的模型的寫法接在回答後面（transcript.ts 的 splitReplies）
+      const marks = (out.tools ?? []).filter((t) => t.name === 'suggest_replies').flatMap((t) => (t.input.replies as string[]).map((r) => `[[reply:${r}]]`));
+      const tools = (out.tools ?? []).filter((t) => t.name !== 'suggest_replies');
+      const said = [out.text, marks.join('')].filter(Boolean).join('\n');
+      if (said) {
         // 逐字顯示
-        const chars = [...out.text];
+        const chars = [...said];
         for (let i = 0; i < chars.length; i += 6) {
           await pause(settings.delayMs ? (settings.streamMs ?? 16) : 0);
           yield { type: 'text', text: chars.slice(i, i + 6).join('') };
         }
       }
-      for (const t of out.tools ?? []) yield { type: 'tool_use', id: `toolu_${crypto.randomUUID()}`, name: t.name, input: t.input };
+      for (const t of tools) yield { type: 'tool_use', id: `toolu_${crypto.randomUUID()}`, name: t.name, input: t.input };
       yield { type: 'done', usage: settings.usage };
     },
   };

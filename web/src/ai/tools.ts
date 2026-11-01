@@ -39,7 +39,7 @@ export interface ToolRun {
 }
 
 export interface ToolDef extends ToolSchema {
-  kind: 'read' | 'stage' | 'propose' | 'ui';
+  kind: 'read' | 'stage' | 'propose';
   run(input: Record<string, unknown>): ToolRun | Promise<ToolRun>;
 }
 
@@ -238,13 +238,6 @@ export function createTools(d: AiDeps): ToolDef[] {
         return { output: { ok: true }, present: { kind: 'screen', target: (tab ? { tab } : { panel }) as ScreenTarget }, card: {} };
       },
     },
-    {
-      name: 'suggest_replies',
-      kind: 'ui',
-      description: '在回覆下面放 2～4 個快速選項（少打字），點了當成使用者的訊息送出。先問一個問題、給幾個選項，不要一次問一長串。',
-      input_schema: obj({ replies: strs() }, ['replies']),
-      run: () => ({ output: { ok: true } }),
-    },
 
     // --- 提議改動：使用者決定了才寫（按，或明確用說的，見 decide_card） ---
     {
@@ -372,7 +365,7 @@ export function createTools(d: AiDeps): ToolDef[] {
     {
       name: 'vote',
       kind: 'propose',
-      description: '幫使用者按想去（like）或不喜歡（dislike），一次可以多個點；null 是收回。只影響自己，所以直接做，訊息裡有一顆「復原」還原這些點。',
+      description: '幫使用者按想去（like）或不喜歡（dislike），一次可以多個點；null 是收回。使用者說「我想去某某」就用它。只影響自己，所以直接做不用問，訊息裡有一顆「復原」還原這些點。',
       input_schema: obj({ placeIds: strs(), value: { enum: ['like', 'dislike', null] } }, ['placeIds', 'value']),
       async run(input) {
         const ids = input.placeIds as string[];

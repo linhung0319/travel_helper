@@ -27,6 +27,7 @@
     "dev:tunnel": "npm run dev:tunnel -w worker",
     "build:site": "npm run build && npm run build:static && node worker/scripts/build-site.mjs",
     "deploy": "npm run build:site && npm run deploy -w worker",
+    "ai:eval": "node --experimental-strip-types --disable-warning=ExperimentalWarning scripts/ai-eval.ts",
     "e2e": "npm run e2e -w web --",
     "e2e:worker": "npm run build:site && npm run e2e:worker -w web --"
   }

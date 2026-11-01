@@ -7,14 +7,14 @@ import type { Filter } from '../lib/filter.ts';
 import type { ReservationStatus } from '../backend/types.ts';
 import { createProposals, type ProposalDeps, type Proposals } from './proposals.ts';
 import { buildTurnContext } from './context.ts';
-import { promptsForAll } from './prompts.ts';
+import { promptsForAll, startersFor } from './prompts.ts';
 import { SYSTEM_PROMPT } from './systemPrompt.ts';
 import { createReadTools } from './readTools.ts';
 import { createTools, type Presentation, type ToolDef } from './tools.ts';
 import { incompleteTurn, textOf, titleFrom, toApiMessages } from './transcript.ts';
 import type { Op } from './ops.ts';
 import type { Stage } from './stage.ts';
-import { ModelError, type CardState, type ChatContext, type ChatMessage, type ChatRepository, type ConversationSummary, type ModelClient, type ModelErrorCode, type ToolResultBlock, type ToolUseBlock, type TurnContext } from './types.ts';
+import { ModelError, type CardState, type ChatContext, type ChatMessage, type ChatRepository, type ContentBlock, type ConversationSummary, type ModelClient, type ModelErrorCode, type ToolResultBlock, type ToolUseBlock, type TurnContext } from './types.ts';
 
 /** 一輪最多幾次來回：防止模型一直呼叫工具 */
 const MAX_ROUNDS = 12;
@@ -72,6 +72,10 @@ export interface Chat {
   setDraftText(text: string): void;
   /** 這份操作會新出現的警告（提議卡顯示）；算不出來是空的 */
   newWarnings(ops: Op[]): string[];
+  /** 空白的新對話要推薦的問題：照現在的行程和畫面算，不呼叫模型 */
+  starters(): string[];
+  /** 從別的分頁、裝置回來：重新抓對話清單和這段對話（回覆中不動） */
+  refresh(): Promise<void>;
   /** 這段對話還能不能問 */
   isFull(): boolean;
   /** 最後一輪沒有回完時回傳它的 ID */
@@ -258,14 +262,22 @@ export function createChat(d: CreateChatDeps): Chat {
     const active = proposals.store.getState().active;
     const context = buildTurnContext({ d, read, stage: d.stage, chips, screenOff: store.getState().screenOff, decisions: store.getState().decisions, draft: active && { cardId: active.cardId, ops: active.ops, summary: active.summary }, cards: openCards() });
     store.setState({ decisions: [], error: null });
+    // 脈絡跟著這輪的第一則訊息存下來：之後每次送的歷史都一樣（只增不改），快取和思考的簽章才接得上
+    const opening = store.getState().messages.find((m) => m.turn === turn && m.role === 'user');
+    if (opening) {
+      const withContext: ChatMessage = { ...opening, turnContext: JSON.stringify(context) };
+      store.setState((s) => ({ messages: s.messages.map((m) => (m.id === opening.id ? withContext : m)) }));
+      await d.repo.updateMessage(conversationId, withContext);
+    }
     const queued: { id: string; present: Presentation }[] = [];
     let partial = '';
     try {
       for (let round = 0; ; round++) {
         if (round >= MAX_ROUNDS) throw new ModelError('other', 'AI 查太多次還沒有答案，請換個問法');
         store.setState({ status: 'thinking', streamingText: '' });
-        const uses: ToolUseBlock[] = [];
+        let uses: ToolUseBlock[] = [];
         let usage: ConversationSummary['usage'] | null = null;
+        let full: ContentBlock[] | null = null;
         partial = '';
         const request = { system: SYSTEM_PROMPT, tools: tools.map(({ name, description, input_schema }) => ({ name, description, input_schema })), messages: toApiMessages(store.getState().messages, turn), context };
         for await (const e of d.model.send(request, controller.signal)) {
@@ -274,14 +286,20 @@ export function createChat(d: CreateChatDeps): Chat {
             partial += e.text;
             store.setState({ status: 'streaming', streamingText: partial });
           } else if (e.type === 'tool_use') uses.push({ type: 'tool_use', id: e.id, name: e.name, input: e.input });
-          else usage = e.usage;
+          else {
+            usage = e.usage;
+            full = e.content ?? null;
+          }
         }
         if (controller.signal.aborted) return;
         if (usage) {
           await d.repo.updateConversation(conversationId, { usage });
           await refreshList();
         }
-        const content = [...(partial ? [{ type: 'text' as const, text: partial }] : []), ...uses];
+        // 真的模型給完整內容（含思考，要原樣送回去）；假 AI 由事件組
+        const finalContent = full as ContentBlock[] | null;
+        if (finalContent) uses = finalContent.filter((b): b is ToolUseBlock => b.type === 'tool_use');
+        const content: ContentBlock[] = finalContent ?? [...(partial ? [{ type: 'text' as const, text: partial }] : []), ...uses];
         const base = { id: newId(), turn, createdAt: now() };
         if (!uses.length) {
           partial = '';
@@ -477,6 +495,29 @@ export function createChat(d: CreateChatDeps): Chat {
     setScreenOff: (screenOff) => store.setState({ screenOff }),
     setDraftText: (draftText) => store.setState({ draftText }),
     newWarnings: (ops) => read.proposalWarnings(ops),
+    starters() {
+      const overview = read.get_trip_overview() as { ok: boolean; days?: { lodging: string | null; warnings: number }[] };
+      const days = overview.ok ? (overview.days ?? []) : [];
+      const s = d.shared.store.getState();
+      const scheduled = new Set(d.data.getState().itinerary?.days.flatMap((day) => day.items.flatMap((item) => (item.type === 'visit' ? item.options.map((o) => o.place) : []))) ?? []);
+      const { day } = d.app.getState();
+      return startersFor({
+        day: day === 'all' ? null : day,
+        // 最後一天不住
+        nightsMissing: days.slice(0, -1).filter((x) => !x.lodging).length,
+        warnings: days.reduce((n, x) => n + x.warnings, 0),
+        wishesUnplaced: new Set(s.votes.filter((v) => v.value === 'like' && !scheduled.has(v.placeId)).map((v) => v.placeId)).size,
+      });
+    },
+    async refresh() {
+      if (store.getState().status !== 'idle') return;
+      await refreshList();
+      const { currentId, status } = store.getState();
+      if (!currentId || status !== 'idle') return;
+      const messages = await d.repo.loadMessages(currentId);
+      // 抓的時候剛好開始問或換對話：不要蓋掉
+      if (store.getState().status === 'idle' && store.getState().currentId === currentId) store.setState({ messages });
+    },
     isFull,
     incomplete: () => incompleteTurn(store.getState().messages, openTurn),
     async confirmCard(toolUseId, opts = {}) {

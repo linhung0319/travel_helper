@@ -19,7 +19,12 @@ export interface ToolResultBlock {
   content: string;
   is_error?: boolean;
 }
-export type ContentBlock = TextBlock | ToolUseBlock | ToolResultBlock;
+/** 模型回的其他區塊（思考、換模型的標記）：畫面不用，但下一次要原樣送回去（思考的簽章綁著前面的對話） */
+export interface OpaqueBlock {
+  type: 'thinking' | 'redacted_thinking' | 'fallback';
+  [key: string]: unknown;
+}
+export type ContentBlock = TextBlock | ToolUseBlock | ToolResultBlock | OpaqueBlock;
 
 /** 送給模型的一則訊息 */
 export interface ApiMessage {
@@ -57,6 +62,8 @@ export interface ChatMessage extends ApiMessage {
   createdAt: string;
   /** 使用者的訊息：送出時帶的脈絡晶片 */
   contexts?: ChatContext[];
+  /** 使用者的訊息：這輪送給模型的脈絡（JSON 文字）。跟著訊息存下來：歷史只增不改，快取和思考的簽章才接得上 */
+  turnContext?: string;
   /** AI 這輪回覆到這則結束；一輪裡沒有這一則就是「沒有回完」 */
   end?: boolean;
   /** tool_use 的 ID → 狀態 */
@@ -117,7 +124,8 @@ export interface ModelRequest {
 export type ModelEvent =
   | { type: 'text'; text: string }
   | { type: 'tool_use'; id: string; name: string; input: Record<string, unknown> }
-  | { type: 'done'; usage: ContextUsage };
+  /** content：模型回的完整內容（含思考）；假 AI 沒有，由文字和 tool_use 事件組 */
+  | { type: 'done'; usage: ContextUsage; content?: ContentBlock[] };
 
 export type ModelErrorCode = 'network' | 'quota' | 'other';
 

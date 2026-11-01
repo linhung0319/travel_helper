@@ -7,7 +7,7 @@ import { ai } from '../appAi.ts';
 import { useData } from '../hooks.ts';
 import { dayLabel } from '../lib/trip.ts';
 import { filterChips } from '../lib/filter.ts';
-import { toolLabel, turnsOf, type ChatToolUse, type ChatTurn } from '../ai/transcript.ts';
+import { streamingView, toolLabel, turnsOf, type ChatToolUse, type ChatTurn } from '../ai/transcript.ts';
 import type { ChatContext, ConversationSummary } from '../ai/types.ts';
 import { RichText, TypeStamp, usePlaceName } from './ChatRich.tsx';
 import { Icon } from './Icon.tsx';
@@ -228,6 +228,10 @@ export function ChatBody({ card, empty, screenLabel, listOpen, closeList, onNewC
     return m;
   }, [turns]);
   const incomplete = busy || error ? null : ai.incomplete();
+  // 空白的新對話：照現在的行程和畫面推薦問題（換到別天 screenLabel 會變）；按了問 AI 就用那邊帶的建議問題
+  const blank = turns.length === 0 && !busy && !contexts.length && !suggestions.length;
+  // eslint-disable-next-line react-hooks/exhaustive-deps -- 只有這些變了才重算
+  const starters = useMemo(() => (blank ? ai.starters() : []), [blank, screenLabel]);
 
   // 打開時：平台要捲到別的地方就不捲到底
   const opened = useRef(false);
@@ -318,8 +322,7 @@ export function ChatBody({ card, empty, screenLabel, listOpen, closeList, onNewC
             <div className="ac-ai" data-testid="chat-busy" data-status={status}>
               {status === 'streaming' ? (
                 <div className="ac-streaming">
-                  {/* 還沒進來完的地點標籤先不顯示 */}
-                  <RichText text={streaming.replace(/\[\[[^\]]*\]?$/, '')} />
+                  <RichText text={streamingView(streaming)} />
                   <i className="ac-caret" />
                 </div>
               ) : (
@@ -373,6 +376,15 @@ export function ChatBody({ card, empty, screenLabel, listOpen, closeList, onNewC
               <div className="ac-sugs">
                 {suggestions.map((q) => (
                   <button key={q} type="button" className="ac-sug" onClick={() => send(q)} data-testid="chat-suggestion">
+                    {q}
+                  </button>
+                ))}
+              </div>
+            )}
+            {!!starters.length && !quota && (
+              <div className="ac-sugs">
+                {starters.map((q) => (
+                  <button key={q} type="button" className="ac-sug" onClick={() => send(q)} data-testid="chat-starter">
                     {q}
                   </button>
                 ))}
