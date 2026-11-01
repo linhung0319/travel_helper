@@ -22,52 +22,87 @@ import { dropOnCandidatesProps, usePlanDrag } from './planDrag.ts';
 import type { DragSource } from '../lib/dropIntent.ts';
 import { CardType } from './Timeline.tsx';
 import { ActionMenu } from './ActionMenu.tsx';
+import { AutoTextarea, isSendEnter } from '../shared/ui/AutoTextarea.tsx';
 
 const KIND_TAGS: Record<Comment['kind'], string | null> = { normal: null, planner: '規劃', decline: '不採用' };
 
-/** 一則留言：頭像、名字、內容；自己的可以改、可以刪。編輯中留的標〔規劃〕。詳情的留言分頁、討論彈窗共用 */
+/**
+ * 一則留言：頭像、名字、內容；自己的可以改、可以刪（在名字那一行的右邊）。編輯中留的標〔規劃〕。詳情的留言分頁、討論彈窗共用。
+ * 刪之前原地問一次：沒有復原，而且「取消」在「刪」原本的位置，連按兩下不會刪掉。
+ */
 export function CommentRow({ c }: { c: Comment }) {
   const me = useShared((s) => s.me?.id);
   const [editing, setEditing] = useState<string | null>(null);
+  const [confirming, setConfirming] = useState(false);
+  const save = async () => {
+    const text = editing?.trim();
+    if (text && (await shared.editComment(c.id, text)).ok) setEditing(null);
+  };
   return (
     <div className={`wish-comment kind-${c.kind}`} data-testid="wish-comment">
       <Avatar id={c.author} />
       <div className="wish-comment-body">
-        <span className="small">
-          <strong>
-            <MemberName id={c.author} />
-          </strong>
-          {KIND_TAGS[c.kind] && <span className={`tag tag-${c.kind}`}>〔{KIND_TAGS[c.kind]}〕</span>}
-          <span className="muted"> {stamp(c.updatedAt)}</span>
-        </span>
-        {editing !== null ? (
-          <span className="wish-comment-edit">
-            <input value={editing} onChange={(e) => setEditing(e.target.value)} aria-label="改留言" />
-            <button
-              type="button"
-              className="text-button small"
-              onClick={async () => {
-                if ((await shared.editComment(c.id, editing.trim())).ok) setEditing(null);
-              }}
-            >
-              存
-            </button>
-            <button type="button" className="text-button small" onClick={() => setEditing(null)}>
-              取消
-            </button>
+        <div className="wish-comment-head">
+          <span className="small wish-comment-meta">
+            <strong>
+              <MemberName id={c.author} />
+            </strong>
+            {KIND_TAGS[c.kind] && <span className={`tag tag-${c.kind}`}>〔{KIND_TAGS[c.kind]}〕</span>}
+            <span className="muted"> {stamp(c.updatedAt)}</span>
           </span>
+          {c.author === me && editing === null && (
+            <span className="wish-comment-actions">
+              {confirming ? (
+                <>
+                  <button type="button" className="text-button small danger" onClick={() => void shared.deleteComment(c.id).then(() => setConfirming(false))} data-testid="comment-delete-confirm">
+                    確定刪除
+                  </button>
+                  <button type="button" className="text-button small" onClick={() => setConfirming(false)} data-testid="comment-delete-cancel">
+                    取消
+                  </button>
+                </>
+              ) : (
+                <>
+                  <button type="button" className="text-button small" onClick={() => setEditing(c.text)}>
+                    改
+                  </button>
+                  <button type="button" className="text-button small" onClick={() => setConfirming(true)} data-testid="comment-delete">
+                    刪
+                  </button>
+                </>
+              )}
+            </span>
+          )}
+        </div>
+        {editing !== null ? (
+          <div className="wish-comment-edit">
+            <AutoTextarea
+              value={editing}
+              maxLength={500}
+              autoFocus
+              enterKeyHint="done"
+              aria-label="改留言"
+              onChange={(e) => setEditing(e.target.value)}
+              onFocus={(e) => e.currentTarget.setSelectionRange(e.currentTarget.value.length, e.currentTarget.value.length)}
+              onKeyDown={(e) => {
+                if (e.key === 'Escape' && !e.nativeEvent.isComposing) setEditing(null);
+                if (!isSendEnter(e)) return;
+                e.preventDefault();
+                void save();
+              }}
+              data-testid="comment-edit-input"
+            />
+            <span className="wish-comment-edit-acts">
+              <button type="button" className="text-button small" disabled={!editing.trim()} onClick={() => void save()}>
+                存
+              </button>
+              <button type="button" className="text-button small" onClick={() => setEditing(null)}>
+                取消
+              </button>
+            </span>
+          </div>
         ) : (
           <span className="wish-comment-text">{c.text}</span>
-        )}
-        {c.author === me && editing === null && (
-          <span className="wish-comment-actions">
-            <button type="button" className="text-button small" onClick={() => setEditing(c.text)}>
-              改
-            </button>
-            <button type="button" className="text-button small" onClick={() => void shared.deleteComment(c.id)}>
-              刪
-            </button>
-          </span>
         )}
       </div>
     </div>
@@ -112,7 +147,20 @@ export function Comments({ target, label = '留言', placeholder = '留言…', 
               void send();
             }}
           >
-            <input value={text} onChange={(e) => setText(e.target.value)} placeholder={placeholder} aria-label={label} maxLength={500} data-testid="comment-input" />
+            <AutoTextarea
+              value={text}
+              onChange={(e) => setText(e.target.value)}
+              onKeyDown={(e) => {
+                if (!isSendEnter(e)) return;
+                e.preventDefault();
+                void send();
+              }}
+              placeholder={placeholder}
+              aria-label={label}
+              maxLength={500}
+              enterKeyHint="send"
+              data-testid="comment-input"
+            />
             <button type="submit" className="text-button small" disabled={!text.trim()}>
               送出
             </button>

@@ -254,3 +254,29 @@ test('某一天的標題：副標是「週五 · 地區」，沒有第 N 天；�
   await expect(page.getByTestId('day-title-sub')).not.toContainText('第');
   expect(await sameRow()).toBe(true);
 });
+
+// 2026-11-02 👤：日期晶片不論寬窄都包在藍色的卡裡
+test('地圖上的日期晶片：寬窄都包在藍色的卡裡，不超出地圖', async ({ page }) => {
+  for (const [width, rows] of [[1680, 1], [1100, 2]] as const) {
+    await page.setViewportSize({ width, height: 800 });
+    await ready(page);
+    await page.getByTestId('side-tab-day').click();
+    const days = page.getByTestId('m-day-strip');
+    await expect(days).toBeVisible();
+    const css = await days.evaluate((el) => {
+      const probe = document.createElement('div');
+      probe.style.background = 'var(--band)';
+      document.body.append(probe);
+      const band = getComputedStyle(probe).backgroundColor;
+      probe.remove();
+      const s = getComputedStyle(el);
+      return { bg: s.backgroundColor, band, padding: s.paddingTop, n: s.gridTemplateColumns.split(' ').length };
+    });
+    expect(css.bg).toBe(css.band);
+    expect(css.padding).toBe('6px');
+    expect(css.n).toBe(rows === 1 ? 13 : 7);
+    const box = (await days.boundingBox())!;
+    const map = (await page.locator('.map-days-wrap').boundingBox())!;
+    expect(box.x + box.width).toBeLessThanOrEqual(map.x + map.width);
+  }
+});

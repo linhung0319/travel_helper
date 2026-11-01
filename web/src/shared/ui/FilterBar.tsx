@@ -1,7 +1,7 @@
 // 篩選列（手機、網頁同一個元件，探索和想去共用）：第一列搜尋框、「篩選」（有條件時顯示數字，類型不算）、排序（晶片選單）；
 // 第二列類型晶片（typeRow 由呼叫的畫面給）和照片牆／清單切換；第三列幾個地點、「＋ 加地點」（只有探索）、問 AI。
 // 套用了什麼條件不列出來（T33）：要看就點「篩選」，打開 FilterSheet（手機底部面板、網頁右欄抽屜）。
-// 網頁：整組黏在右欄上面。手機：第一列黏在最上面，其他的跟著內容捲走。
+// 網頁：整組黏在右欄上面。手機：整組也黏在最上面（2026-11-02 👤，探索、想去是整頁，高度夠）；螢幕太矮或鍵盤開著時（ui.css 的 .fb-stick）只留第一列，其他的跟著內容捲走。
 // 資料來自 FilterModel：網頁接 appStore 的 filter，手機接 mobileStore 的 feed／wish，這裡不認得是哪一個 store。
 
 import { useEffect, useRef, useState, type ReactNode } from 'react';
@@ -216,31 +216,33 @@ export function FilterBar({ source, surface, model, count, typeRow }: { source: 
   }
   return (
     <>
-      {bar}
-      <div className="fb-below">
-        {model.ai && (
-          <div className="fb-ai">
-            <div className="fb-ai-row">
-              {backButton}
-              <span className="ai-pill" data-testid="ai-result-pill">
-                <button type="button" className="ai-pill-body" onClick={model.onBack} data-testid="ai-result-open">
-                  ✦ {aiLabel}
-                </button>
-                <button type="button" className="ai-pill-x" aria-label="清掉 AI 挑的" onClick={model.ai.onClear} data-testid="ai-result-chip">
-                  <Icon name="close" size={16} />
-                </button>
+      <div className="fb-stick" data-testid="fb-stick">
+        {bar}
+        <div className="fb-below">
+          {model.ai && (
+            <div className="fb-ai">
+              <div className="fb-ai-row">
+                {backButton}
+                <span className="ai-pill" data-testid="ai-result-pill">
+                  <button type="button" className="ai-pill-body" onClick={model.onBack} data-testid="ai-result-open">
+                    ✦ {aiLabel}
+                  </button>
+                  <button type="button" className="ai-pill-x" aria-label="清掉 AI 挑的" onClick={model.ai.onClear} data-testid="ai-result-chip">
+                    <Icon name="close" size={16} />
+                  </button>
+                </span>
+              </div>
+              <span className="fb-ai-title" data-testid="ai-result-title">
+                {model.ai.title}
               </span>
             </div>
-            <span className="fb-ai-title" data-testid="ai-result-title">
-              {model.ai.title}
-            </span>
+          )}
+          <div className="fb-typerow">
+            <div className="fb-types">{typeRow}</div>
+            <ViewToggle model={model} />
           </div>
-        )}
-        <div className="fb-typerow">
-          <div className="fb-types">{typeRow}</div>
-          <ViewToggle model={model} />
+          {listHead}
         </div>
-        {listHead}
       </div>
       {sheet}
     </>

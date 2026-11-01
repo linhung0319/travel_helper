@@ -2,8 +2,9 @@
 // 標題是圖示＋「上車站 → 下車站」，下一行「業者或路線・往哪・日期（星期）・HH:MM 到站」（巴士加票價）；標題列固定，下面的格子在彈窗裡捲。
 // 格子一班一格（departureCells）：第一行「發車–到站」，第二行車種（特急靛藍字）＋標記（規劃、+N 分、末班）；搭不到灰底劃線。
 // 打開時捲到「規劃」那一列，上面留一列（firstCellIndex；一列幾格看 CSS 排出來的欄數）。班距型那一程沒有格子，只寫班距和首末班。
-// 打開時地圖框住這一程、上車站亮起來。✕、點地圖、換天、交通卡收起、這段不見了都關掉。
-// 網頁版浮在地圖區左上（寬約 440px、四欄、最高地圖區的 60%）；手機版浮在行程上面那塊地圖（MobileApp 掛，高度固定、三欄；行程最高時降到中間是 mobileStore 做）。
+// 打開時地圖框住這一程、上車站亮起來。✕、換天、交通卡收起、這段不見了都關掉；網頁點地圖也關。
+// 網頁版浮在地圖區左上（寬約 440px、四欄、最高地圖區的 60%）。手機版是大彈窗（2026-11-02 👤：班次表要往下捲，原本浮在地圖那塊太矮）：和討論彈窗同一種，
+// 蓋住整頁、上面露出一條，三欄；✕、點露出的那條、往下拉把手、返回鍵都能關，關掉回到原本的行程或交通編輯面板。班距型只有一行字，照內容的高度貼在下面。
 
 import { useEffect, useLayoutEffect, useRef } from 'react';
 import type { Leg, TransitRide } from '@travel-helper/engine';
@@ -21,6 +22,7 @@ import { pauseMapHover } from './MapView.tsx';
 import { ModeIcon } from './ModeIcon.tsx';
 import { Icon } from './Icon.tsx';
 import { TimetableSkeleton } from '../shared/ui/Skeleton.tsx';
+import { useDragClose } from '../shared/ui/useDragClose.ts';
 
 /** 一程上下車站的座標：車站是資料點；巴士、船的停留所用路線檔裡的座標（用站名對） */
 function stopCoords(ride: TransitRide, id: string): LonLat | null {
@@ -30,7 +32,7 @@ function stopCoords(ride: TransitRide, id: string): LonLat | null {
   return doc?.stops.find((s) => s.name === id || s.id === id)?.coords ?? null;
 }
 
-export function TimetablePopup() {
+export function TimetablePopup({ mobile = false }: { mobile?: boolean }) {
   const tt = useUi((s) => s.timetable);
   const legOpen = useUi((s) => s.legOpen);
   const day = useApp((s) => s.day);
@@ -44,10 +46,18 @@ export function TimetablePopup() {
     if (stale) closeTimetable();
   }, [stale]);
   if (!tt || !leg || !ride || stale) return null;
-  return <TimetableBody key={`${tt.legKey}#${tt.rideIndex}`} tt={tt} leg={leg} ride={ride} />;
+  const body = <TimetableBody key={`${tt.legKey}#${tt.rideIndex}`} tt={tt} leg={leg} ride={ride} mobile={mobile} />;
+  if (!mobile) return body;
+  return (
+    <div className={`dp-backdrop tt-backdrop${ride.kind === 'headway' ? ' headway' : ''}`} data-testid="timetable-backdrop">
+      <button type="button" className="dp-peek" onClick={closeTimetable} aria-label="關閉班次表" tabIndex={-1} data-testid="timetable-peek" />
+      {body}
+    </div>
+  );
 }
 
-function TimetableBody({ tt, leg, ride }: { tt: TimetableState; leg: Leg; ride: TransitRide }) {
+function TimetableBody({ tt, leg, ride, mobile }: { tt: TimetableState; leg: Leg; ride: TransitRide; mobile: boolean }) {
+  const dragProps = useDragClose(closeTimetable);
   const byId = useData((s) => s.byId);
   const nameOf = (id: string) => byId.get(id)?.name.zh || byId.get(id)?.name.ja || id;
 
@@ -81,6 +91,11 @@ function TimetableBody({ tt, leg, ride }: { tt: TimetableState; leg: Leg; ride: 
 
   return (
     <section className={`timetable-pop${headway ? ' headway' : ''}`} data-testid="timetable-popup" aria-label={`${title} 的班次`}>
+      {mobile && (
+        <div className="dp-grab" data-testid="timetable-grab" {...dragProps}>
+          <span />
+        </div>
+      )}
       <header className="timetable-head">
         <ModeIcon mode={ride.mode} size="l" />
         <div className="timetable-title">

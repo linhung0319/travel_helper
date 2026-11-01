@@ -144,15 +144,13 @@ async function run(prefix, viewport, mobile) {
     await leg.waitFor();
     // 編輯中手機底部分頁會收起來，所以選好那天才開始編輯
     await page.evaluate(() => window.__th.appStore.getState().setPlanning(true));
-    // 手機：先點開那一行，編輯器在底部面板（m-leg-sheet）；網頁：直接在卡片裡
-    if (mobile) await u.toggle(leg);
-    await leg.getByTestId('leg-edit').click();
+    // 點開那一行就是編輯器：手機在底部面板（m-leg-sheet），網頁在卡片裡
+    await u.toggle(leg);
     const ed = mobile ? page.getByTestId('m-leg-sheet') : leg;
     await ed.getByTestId('leg-paths').waitFor();
     await page.waitForTimeout(800);
     if (!mobile) await sc(leg);
     await shot(page, `${prefix}-07-editor-paths`);
-    await ed.getByTestId('leg-done').click();
     await page.evaluate(() => window.__th.appStore.getState().setPlanning(false));
   });
 

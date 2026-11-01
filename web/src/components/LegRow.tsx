@@ -1,16 +1,16 @@
 // 兩張資料卡中間的交通（第五輪 §3，第八輪 §13.6 改成交通卡）：資料準備在 useLegView（網頁 LegRow、手機 MobileLeg 都用），畫出來的是 shared/ui/LegLine.tsx
-// （連線上的方式圓點；卡片第一行方式＋分鐘＋「⚠ 數字」，第二行搭車的膠囊或計程車台數，備註；右邊「map ↗」；編輯中多一顆「改」；T29c spec §8.2）。
+// （連線上的方式圓點；卡片第一行方式＋分鐘＋「⚠ 數字」，第二行搭車的膠囊或計程車台數，備註；右邊「map ↗」；T29c spec §8.2）。
 // 點那一行：地圖只畫這一段（appStore.legRoute，不是 AI 的 routes，所以不出現「清掉」；搭車的照班次的站畫），每一程上下車的站亮起來，
 // 地圖框住這段的兩端；再點一次或點別段就恢復，收起來時地圖回到打開前的範圍（中間被別的操作移過就不回去）（第七輪 §8.2）。
 // 點開後（T29c spec §8.3、§8.4）：最上面補充資訊框（這段的警告文字、計程車起跳價、前一站可以多待；淡灰底，沒有就不畫），
 // 下面搭車的步驟（legView 的 compactSteps）：一個節點一行（左邊時間、中間細線和圓圈、右邊站名，同一行右邊「等 N 分」或「走 N 分 ↓」），一程一行
-// （交通方式顏色外框的膠囊＋發車時間、右邊「錯過的話」的標籤；車程分鐘看前後節點的時間）。上車站（名稱後面「›」）和標籤點了在地圖那側開那一程的班次表
+// （交通方式顏色外框的膠囊＋發車時間、右邊「錯過的話」的標籤；車程分鐘看前後節點的時間）。上車站（名稱後面「›」）、膠囊、標籤點了都在地圖那側開那一程的班次表
 // （uiStore.openTimetable，只能看）。買票太趕在上車站下面一行橘字；轉乘有說明、有電梯路線的另外一行，說明摺起來。
 // 計程車點開只有補充資訊框；步行沒有可以看的就不畫小箭頭。
 // 交通的警告（引擎標了 leg: true）只在交通卡（legWarnings），資料卡的 WarnToggle 不再顯示（planView 的 warningsByItem）。
-// 編輯：編輯中每段右邊有「改」，按了才打開交通編輯器（uiStore.legEdit；網頁在這一行下面，手機是底部面板 m-leg-sheet，見 mobile/MobileLeg.tsx）：
+// 編輯：編輯中點開一段就是交通編輯器，不用再按「改」（2026-11-02 👤；網頁在這一行下面，手機是底部面板 m-leg-sheet，見 mobile/MobileLeg.tsx）：
 // 自動（目前的方式）／步行／計程車／大眾運輸、大眾運輸的步驟一定展開；
-// 算不出來（交通未定、指定的方式找不到班次）或已經填過分鐘時才出現「自己填分鐘」（清空＝回到自動）；備註、「完成」收起來。
+// 算不出來（交通未定、指定的方式找不到班次）或已經填過分鐘時才出現「自己填分鐘」（清空＝回到自動）；備註。每個改動當場存，再點一次這一行收起來，沒有「完成」。
 // 一次只開一段（uiStore.legOpen）；這一行不見了（換天、回整趟、換分頁）時也收起來，地圖的行程線才會恢復。
 // 編輯中交通也是放置區：拖到這裡＝排在這段通往的那張卡片前面（planDrag.dropOnLegProps）。
 
@@ -38,6 +38,18 @@ import { dropOnLegProps } from './planDrag.ts';
 const EDITOR_LABELS: Record<EditorMode, string> = { auto: '自動', walk: '步行', taxi: '計程車', transit: '大眾運輸' };
 
 const isRide = (mode: Leg['mode']) => mode === 'train' || mode === 'bus' || mode === 'ferry';
+
+/** 備註、分鐘是離開欄位時才存：收起編輯器、開班次表之前先離開，打到一半的字才不會不見（手機點別的地方不一定會自己離開） */
+function blurField() {
+  const el = document.activeElement;
+  if (el instanceof HTMLInputElement) el.blur();
+}
+
+/** 收起交通（手機的編輯面板點暗處、✕、Esc） */
+export function closeLeg() {
+  blurField();
+  uiStore.setState({ legOpen: null });
+}
 
 /** 讀這段已經設定的值；找不到項目（剛被刪掉）時當作沒設定 */
 function readSpec(it: Itinerary | null, target: LegTarget | null): TravelSpec | null {
@@ -81,11 +93,13 @@ function RailLine({ line, part }: { line: Line; part: 'full' | 'top' | 'bottom' 
 
 /**
  * 大眾運輸的步驟（T29c spec §8.4，一程一行）：節點一行（等車、走路寫在同一行右邊）、一程一行（膠囊、分鐘、錯過的標籤）、
- * 轉乘有說明或電梯路線時另外一行。上車站、標籤點了開那一程的班次表（只能看）；
- * readOnly（手機編輯器的底部面板裡：班次表會被面板蓋住）時站名是純文字、標籤不能點
+ * 轉乘有說明或電梯路線時另外一行。上車站、膠囊、標籤點了開那一程的班次表（只能看）
  */
-export function LegSteps({ steps, leg, date, legKey, readOnly = false }: { steps: CompactStep[]; leg: Leg; date: string; legKey: string; readOnly?: boolean }) {
-  const openRide = (rideIndex: number) => openTimetable({ date, legKey, rideIndex });
+export function LegSteps({ steps, leg, date, legKey }: { steps: CompactStep[]; leg: Leg; date: string; legKey: string }) {
+  const openRide = (rideIndex: number) => {
+    blurField();
+    openTimetable({ date, legKey, rideIndex });
+  };
   return (
     <ol className="leg-steps" data-testid="leg-steps">
       {steps.map((s, i) => {
@@ -103,7 +117,7 @@ export function LegSteps({ steps, leg, date, legKey, readOnly = false }: { steps
               </span>
               <span className="leg-step-tx">
                 <span className="leg-step-line">
-                  {s.board != null && !readOnly ? (
+                  {s.board != null ? (
                     <button type="button" className="leg-step-name leg-step-board" onClick={() => openRide(s.board!)} data-testid="leg-step-board">
                       <span className="leg-step-nm">{s.name}</span>
                       <span className="leg-step-tap" aria-hidden>
@@ -163,22 +177,17 @@ export function LegSteps({ steps, leg, date, legKey, readOnly = false }: { steps
               <RailLine line={RIDE_LINE(s.mode)} part="full" />
             </span>
             <span className="leg-step-tx">
-              <span className="leg-ride" style={{ '--ride-c': RIDE_COLOR[s.mode] } as CSSProperties} data-testid="leg-ride">
+              <button type="button" className="leg-ride" style={{ '--ride-c': RIDE_COLOR[s.mode] } as CSSProperties} onClick={() => openRide(s.index)} data-testid="leg-ride">
                 <ModeIcon mode={s.mode} size="s" />
                 {/* 膠囊（短名稱＋發車）、標籤都不縮；車程分鐘不寫（看前後節點的時間） */}
                 <span className="leg-ride-name">{s.name}</span>
                 {s.depart && <span className="leg-ride-dep">{s.depart}</span>}
-              </span>
-              {s.badge &&
-                (readOnly ? (
-                  <span className={`leg-miss ${s.badge.tone}`} data-testid="leg-miss">
-                    {s.badge.text}
-                  </span>
-                ) : (
-                  <button type="button" className={`leg-miss ${s.badge.tone}`} onClick={() => openRide(s.index)} data-testid="leg-miss">
-                    {s.badge.text}
-                  </button>
-                ))}
+              </button>
+              {s.badge && (
+                <button type="button" className={`leg-miss ${s.badge.tone}`} onClick={() => openRide(s.index)} data-testid="leg-miss">
+                  {s.badge.text}
+                </button>
+              )}
             </span>
           </li>
         );
@@ -187,8 +196,8 @@ export function LegSteps({ steps, leg, date, legKey, readOnly = false }: { steps
   );
 }
 
-/** 點開後的內容：補充資訊框（沒有行就不畫）、搭車的步驟；readOnly 見 LegSteps */
-export function LegDetail({ v, date, readOnly = false }: { v: NonNullable<ReturnType<typeof useLegView>>; date: string; readOnly?: boolean }) {
+/** 點開後的內容：補充資訊框（沒有行就不畫）、搭車的步驟 */
+export function LegDetail({ v, date }: { v: NonNullable<ReturnType<typeof useLegView>>; date: string }) {
   return (
     <>
       {v.info.length > 0 && (
@@ -198,12 +207,12 @@ export function LegDetail({ v, date, readOnly = false }: { v: NonNullable<Return
           ))}
         </div>
       )}
-      {v.transit && <LegSteps steps={v.steps} leg={v.leg} date={date} legKey={v.key} readOnly={readOnly} />}
+      {v.transit && <LegSteps steps={v.steps} leg={v.leg} date={date} legKey={v.key} />}
     </>
   );
 }
 
-/** 編輯中的編輯狀態，由上到下：方式、步驟（children）、（算不出來時）分鐘、備註、完成 */
+/** 編輯中的編輯狀態，由上到下：方式、步驟（children）、（算不出來時）分鐘、備註 */
 export function LegEditor({ target, spec, leg, children }: { target: LegTarget; spec: TravelSpec | null; leg: Leg; children?: ReactNode }) {
   const saving = useShared((s) => s.saving);
   // 每次都從最新的行程讀目前的設定再改
@@ -329,9 +338,6 @@ export function LegEditor({ target, spec, leg, children }: { target: LegTarget; 
           onKeyDown={(e) => e.key === 'Enter' && e.currentTarget.blur()}
           data-testid="leg-note"
         />
-        <button type="button" className="chip" onClick={() => uiStore.setState({ legOpen: null, legEdit: null })} data-testid="leg-done">
-          完成
-        </button>
       </div>
     </div>
   );
@@ -375,8 +381,6 @@ export function useLegView(entry: TimelineEntry, date: string) {
   // 每一段交通有自己的 key（起點、會合這類不能改的也可以點，但不會開到別段）；班次表的 legKey 也是這個
   const key = legKeyOf(entry, date);
   const open = useUi((s) => s.legOpen) === key;
-  // 編輯器只有按「改」才開（不會跟著展開自己出現）
-  const editOpen = useUi((s) => s.legEdit) === key;
   const spec = readSpec(itinerary, target);
   // 這段的警告（引擎標了 leg: true 的；回住宿那段沒有 itemId）：第一行的 ⚠ 數字、補充資訊框
   const warnings = plan && leg ? legWarnings(plan, entry) : [];
@@ -441,18 +445,10 @@ export function useLegView(entry: TimelineEntry, date: string) {
       if (uiStore.getState().legOpen === key) uiStore.setState({ legOpen: null });
     };
   }, [open, key]);
-  // 編輯器開著時結束編輯、這一行不見了：編輯器也關掉
-  useEffect(() => {
-    if (!editOpen) return;
-    if (!planning) uiStore.setState({ legEdit: null });
-    return () => {
-      if (uiStore.getState().legEdit === key) uiStore.setState({ legEdit: null });
-    };
-  }, [editOpen, planning, key]);
 
   if (hidden || !leg) return null;
-  const editing = open && editOpen && planning && !!target;
   const editable = planning && !!target;
+  const editing = open && editable;
   const from = fromId ? byId.get(fromId) : undefined;
   const to = toId ? byId.get(toId) : undefined;
   const margin = engineConfig.transit.ticketMargin;
@@ -464,21 +460,22 @@ export function useLegView(entry: TimelineEntry, date: string) {
   const info = infoLines(leg, warnings, slackHint(leg, margin));
   const steps = compactSteps(leg, from ? nameOf(from.id) : '', to ? nameOf(to.id) : '', nameOf, margin);
   const transit = steps.length > 0;
-  // 點開有東西看（步驟、補充資訊框）或計程車（spec §8.3 也能點開）才畫小箭頭；步行沒有就不畫
-  const expandable = transit || info.length > 0 || leg.mode === 'taxi';
+  // 點開有東西看（步驟、補充資訊框、編輯器）或計程車（spec §8.3 也能點開）才畫小箭頭；不在編輯中的步行沒有就不畫
+  const expandable = transit || info.length > 0 || leg.mode === 'taxi' || editable;
   const note = spec?.note && !editing ? spec.note : null;
   /** 點開／收起這段（一次只開一段） */
-  const toggleOpen = () => uiStore.setState({ legOpen: open ? null : key, legEdit: null });
-  /** 按「改」：打開這段和它的編輯器 */
-  const startEdit = () => uiStore.setState({ legOpen: key, legEdit: key });
-  return { leg, key, open, editing, editable, planning, saving, target, spec, from, to, mode, chips, sub, warns, info, steps, transit, expandable, note, toggleOpen, startEdit };
+  const toggleOpen = () => {
+    blurField();
+    uiStore.setState({ legOpen: open ? null : key });
+  };
+  return { leg, key, open, editing, planning, saving, target, spec, from, to, mode, chips, sub, warns, info, steps, transit, expandable, note, toggleOpen };
 }
 
 /** 時間軸上的一段交通（一行 LegLine）；date 是這天的日期 */
 export function LegRow({ entry, date }: { entry: TimelineEntry; date: string }) {
   const v = useLegView(entry, date);
   if (!v) return null;
-  const { leg, key, open, editing, editable, planning, target, spec, from, to, mode } = v;
+  const { leg, key, open, editing, planning, target, spec, from, to, mode } = v;
   const detail = open ? <LegDetail v={v} date={date} /> : null;
   return (
     <li className={`tl-leg ll-li mode-${leg.mode} ${open ? 'open' : ''} ${editing ? 'editing' : ''}`} data-testid="tl-leg" data-leg={key} {...dropOnLegProps(entry.itemId, date, planning)}>
@@ -493,7 +490,6 @@ export function LegRow({ entry, date }: { entry: TimelineEntry; date: string }) 
         onToggle={v.toggleOpen}
         open={open}
         expandable={v.expandable}
-        onEdit={editable && !editing ? v.startEdit : null}
       >
         {editing && target ? (
           <LegEditor key={JSON.stringify(spec)} target={target} spec={spec} leg={leg}>

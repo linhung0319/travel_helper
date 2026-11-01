@@ -274,11 +274,18 @@ function useStickyOffsets(root: RefObject<HTMLDivElement | null>) {
   useEffect(() => {
     const el = root.current;
     if (!el) return;
-    const bar = el.closest('.explore-panel, .m-wish')?.querySelector<HTMLElement>('.fb-desktop, .fb-mobile');
-    const apply = () => el.style.setProperty('--wl-top', `${bar ? bar.getBoundingClientRect().height : 0}px`);
+    const page = el.closest('.explore-panel, .m-wish');
+    const bar = page?.querySelector<HTMLElement>('.fb-desktop, .fb-mobile');
+    // 手機整組黏住時量外面那層；螢幕太矮、鍵盤開著時外面那層是 display: contents（高度 0），只有第一列黏住
+    const stick = page?.querySelector<HTMLElement>('.fb-stick');
+    const apply = () => {
+      const h = (stick?.getBoundingClientRect().height || bar?.getBoundingClientRect().height) ?? 0;
+      el.style.setProperty('--wl-top', `${h}px`);
+    };
     apply();
     const ro = new ResizeObserver(apply);
     if (bar) ro.observe(bar);
+    if (stick) ro.observe(stick);
     return () => ro.disconnect();
   }, [root]);
 }

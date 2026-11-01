@@ -481,13 +481,10 @@ test('第五輪：交通卡平常收起，計程車點了只畫那一段、不�
   await legs.nth(1).getByRole('button').first().click();
   await expect.poll(() => th(page, '__th.appStore.getState().legRoute ? 1 : 0')).toBe(0);
 
-  // 編輯中：收起時右邊寫「改 ›」，點了原地變成編輯狀態；方式只有四種，「自動」寫出它選了什麼；選計程車
+  // 編輯中：點那一行就是編輯狀態（沒有「改」）；方式只有四種，「自動」寫出它選了什麼；選計程車
   await enterPlanning(page);
-  await expect(first.getByTestId('leg-edit')).toHaveText('改');
-  // 點那一行不會自己開編輯器，按「改」才開
-  await first.getByRole('button').first().click();
   await expect(first.getByTestId('leg-editor')).toHaveCount(0);
-  await first.getByTestId('leg-edit').click();
+  await first.getByRole('button').first().click();
   const editor = first.getByTestId('leg-editor');
   await expect(editor).toBeVisible();
   await expect(editor.getByTestId('leg-mode')).toHaveCount(4);
@@ -510,8 +507,8 @@ test('第五輪：交通卡平常收起，計程車點了只畫那一段、不�
   await expect(first.getByTestId('leg-note')).toHaveValue('在飯店大廳集合');
   await first.locator('[data-testid="leg-mode"][data-mode="auto"]').click();
   await expect(first.locator('[data-testid="leg-mode"][data-mode="auto"]')).toHaveAttribute('aria-pressed', 'true');
-  // 完成：收起來，備註寫在卡片上
-  await first.getByTestId('leg-done').click();
+  // 再點一次那一行：收起來，備註寫在卡片上
+  await first.getByTestId('leg-line-text').click();
   await expect(first.getByTestId('leg-editor')).toHaveCount(0);
   await expect(first.getByTestId('leg-note-text')).toContainText('在飯店大廳集合');
 });
@@ -525,7 +522,7 @@ test('T29c：2/5 伊勢市一帶 → 中之郷一帶有 2 條走法，編輯器�
   const chips = leg.getByTestId('leg-chips');
   await expect(chips).toContainText('鷗巴士');
   const before = (await chips.innerText()).replace(/\s+/g, ' ');
-  await leg.getByTestId('leg-edit').click();
+  await leg.getByTestId('leg-line-text').click();
   const paths = leg.getByTestId('leg-path');
   await expect(paths).toHaveCount(2);
   await expect(paths.nth(0)).toHaveAttribute('aria-pressed', 'true');
@@ -555,7 +552,7 @@ test('第四輪：算得出時間的交通卡沒有分鐘欄（2/2 關西機場 
   const leg = page.getByTestId('timeline').getByTestId('tl-leg').first();
   // 引擎算得出大眾運輸（南海＋近鐵），收合的那一行有膠囊
   await expect(leg.getByTestId('leg-line')).toContainText('近鐵');
-  await leg.getByTestId('leg-edit').click();
+  await leg.getByTestId('leg-line-text').click();
   await expect(leg.getByTestId('leg-editor')).toBeVisible();
   await expect(leg.getByTestId('leg-minutes')).toHaveCount(0);
   // 改計程車：照樣算得出時間，沒有分鐘欄
@@ -936,7 +933,7 @@ test('第四輪完成條件：排進、標午餐和分組、交通改計程車�
 
   // 4. 第一段交通改計程車
   const leg = page.getByTestId('timeline').getByTestId('tl-leg').first();
-  await leg.getByTestId('leg-edit').click();
+  await leg.getByTestId('leg-line-text').click();
   await leg.locator('[data-testid="leg-mode"][data-mode="taxi"]').click();
   await expect(leg.locator('.ll-title')).toContainText('計程車');
   await expect(leg.getByTestId('leg-line').getByRole('img', { name: '計程車' }).first()).toBeVisible();
@@ -1066,7 +1063,7 @@ async function transitLeg(page: Page): Promise<Locator> {
   await showDay(page, '2027-02-04');
   await enterPlanning(page);
   const leg = page.getByTestId('timeline').locator('[data-testid="tl-leg"][data-leg="2027-02-04:visit:i-5"]');
-  await leg.getByTestId('leg-edit').click();
+  await leg.getByTestId('leg-line-text').click();
   await leg.locator('[data-testid="leg-mode"][data-mode="transit"]').click();
   await expect(leg.locator('[data-testid="leg-mode"][data-mode="transit"]')).toHaveAttribute('aria-pressed', 'true');
   await expect(leg.getByTestId('leg-steps')).toBeVisible();
@@ -1076,7 +1073,7 @@ async function transitLeg(page: Page): Promise<Locator> {
 test('T29c：大眾運輸的交通卡收合兩行（膠囊），點開一程一行的步驟（等車、走路、錯過的標籤），點上車站、標籤開班次表', async ({ page }) => {
   await ready(page);
   const leg = await transitLeg(page);
-  await leg.getByTestId('leg-done').click();
+  await leg.getByTestId('leg-line-text').click();
   await page.getByTestId('planning-done').click();
 
   // 收起：第一行「大眾運輸 N 分」，第二行膠囊（巴士圖示＋短名稱），右邊小箭頭；不寫距離、含等車；沒有步驟
@@ -2105,24 +2102,45 @@ test('網頁時間軸有縮圖；交通卡第一行方式＋分鐘、第二行�
   // 交通卡最多兩行（加框、上下留白約 64px 以內），標題、副標都不折行
   for (let i = 0; i < (await lines.count()); i++) expect((await lines.nth(i).boundingBox())!.height, `leg ${i}`).toBeLessThan(64);
   await expect(page.getByTestId('timeline').getByTestId('leg-maps').first()).toHaveText('map ↗');
-  // 平常沒有「改」
-  await expect(page.getByTestId('leg-edit')).toHaveCount(0);
+  // 平常沒有編輯器
+  await expect(page.getByTestId('leg-editor')).toHaveCount(0);
 });
 
-test('交通編輯器：編輯中點「改」才開', async ({ page }) => {
+test('交通編輯器：編輯中點那一行就開，再點一次收起，打到一半的備註會存（沒有「改」「完成」）', async ({ page }) => {
   await ready(page);
   await showDay(page, '2027-02-03');
-  await enterPlanning(page);
   const leg = page.getByTestId('timeline').getByTestId('tl-leg').first();
+  // 進入編輯前開著的交通會收起來，不會一進編輯就是編輯器
+  await leg.getByTestId('leg-line-text').click();
+  await enterPlanning(page);
   await expect(leg.getByTestId('leg-editor')).toHaveCount(0);
-  // 點那一行只是展開，不開編輯器
+  await leg.getByTestId('leg-line-text').click();
+  await expect(leg.getByTestId('leg-editor')).toBeVisible();
+  await expect(leg.getByRole('button', { name: '改', exact: true })).toHaveCount(0);
+  await expect(leg.getByRole('button', { name: '完成', exact: true })).toHaveCount(0);
+  await leg.getByTestId('leg-note').fill('打到一半就收起來');
   await leg.getByTestId('leg-line-text').click();
   await expect(leg.getByTestId('leg-editor')).toHaveCount(0);
-  await leg.getByTestId('leg-edit').click();
-  await expect(leg.getByTestId('leg-editor')).toBeVisible();
-  await expect(leg.getByTestId('leg-done')).toHaveCount(1);
-  await leg.getByTestId('leg-done').click();
-  await expect(leg.getByTestId('leg-editor')).toHaveCount(0);
+  await expect(leg.getByTestId('leg-note-text')).toContainText('打到一半就收起來');
+});
+
+test('點步驟裡的車次膠囊開那一程的班次表（平常、編輯中都可以）', async ({ page }) => {
+  await ready(page);
+  await showDay(page, '2027-02-05');
+  const leg = page.locator('[data-testid="tl-leg"][data-leg="2027-02-05:visit:i-21"]');
+  await leg.getByTestId('leg-line-text').click();
+  const pills = leg.getByTestId('leg-steps').getByTestId('leg-ride');
+  const n = await pills.count();
+  await pills.last().click();
+  await expect(page.getByTestId('timetable-popup')).toBeVisible();
+  await expect.poll(() => th(page, '__th.uiStore.getState().timetable?.rideIndex')).toBe(n - 1);
+  await page.getByTestId('timetable-close').click();
+  await leg.getByTestId('leg-line-text').click();
+  await enterPlanning(page);
+  await leg.getByTestId('leg-line-text').click();
+  await leg.getByTestId('leg-editor').getByTestId('leg-ride').first().click();
+  await expect(page.getByTestId('timetable-popup')).toBeVisible();
+  await expect.poll(() => th(page, '__th.uiStore.getState().timetable?.rideIndex')).toBe(0);
 });
 
 test('編輯中：卡片上沒有「＋ 標籤」，沒有標籤的從 ⋯ 加', async ({ page }) => {

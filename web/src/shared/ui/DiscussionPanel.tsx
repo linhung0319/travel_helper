@@ -3,7 +3,7 @@
 // 輸入框只有一個，固定在底部，「留給」跟著展開的對象換。手機鍵盤彈出時整個彈窗跟著 .m-app 縮到鍵盤上方（--kb），收起篩選（CSS 看 data-keyboard）。
 // 分組是 lib/discussion.ts 的純函式；留言的畫法和詳情共用 CommentRow。
 
-import { useEffect, useMemo, useRef, useState, type PointerEvent as ReactPointerEvent } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import { useStore } from 'zustand';
 import { TRIP_TARGET, dayTarget } from '../../backend/types.ts';
 import { commands } from '../../appCommands.ts';
@@ -19,13 +19,13 @@ import { dayPlanOf, planStore } from '../../planStore.ts';
 import { appStore } from '../../store.ts';
 import { closeDiscussion, setDiscussionChip, setDiscussionOpen } from '../../uiStore.ts';
 import { seenStore } from '../discussionSeen.ts';
+import { AutoTextarea, isSendEnter } from './AutoTextarea.tsx';
+import { useDragClose } from './useDragClose.ts';
 import type { FilterSurface } from './FilterSheet.tsx';
 
 const DATES = tripDates();
 /** 打到一半的留言：每個對象一份，關掉再打開還在（只存在記憶體） */
 const drafts = new Map<string, string>();
-/** 往下拉把手多遠算關掉（px） */
-const DRAG_CLOSE = 60;
 
 function goToPlace(placeId: string, date: string, surface: FilterSurface) {
   closeDiscussion();
@@ -147,18 +147,23 @@ function Composer({ target, toName, onSent, onFocus }: { target: string; toName:
         留給：<b>{toName}</b>
       </span>
       <span className="dp-input">
-        <input
-          type="text"
+        <AutoTextarea
           value={text}
           maxLength={500}
           placeholder="留言…"
           aria-label={`留言給${toName}`}
           autoComplete="off"
+          enterKeyHint="send"
           onFocus={onFocus}
           onChange={(e) => {
             setText(e.target.value);
             if (e.target.value) drafts.set(target, e.target.value);
             else drafts.delete(target);
+          }}
+          onKeyDown={(e) => {
+            if (!isSendEnter(e)) return;
+            e.preventDefault();
+            void send();
           }}
           data-testid="discuss-input"
         />
@@ -203,21 +208,7 @@ export function DiscussionPanel({ surface }: { surface: FilterSurface }) {
   }, [open, chip, comments.length, !!state]);
 
   // 往下拉把手關掉（手機）
-  const drag = useRef<{ y: number; id: number } | null>(null);
-  const dragProps = {
-    onPointerDown: (e: ReactPointerEvent<HTMLElement>) => {
-      e.currentTarget.setPointerCapture?.(e.pointerId);
-      drag.current = { y: e.clientY, id: e.pointerId };
-    },
-    onPointerUp: (e: ReactPointerEvent<HTMLElement>) => {
-      const d = drag.current;
-      drag.current = null;
-      if (d && d.id === e.pointerId && e.clientY - d.y > DRAG_CLOSE) closeDiscussion();
-    },
-    onPointerCancel: () => {
-      drag.current = null;
-    },
-  };
+  const dragProps = useDragClose(closeDiscussion);
 
   if (!state) return null;
   const all = [view.pinned, ...view.threads, ...view.quiet].filter((t): t is DiscussionThread => !!t);
