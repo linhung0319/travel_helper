@@ -79,8 +79,9 @@ async function prepare() {
 
 if (process.argv[1] && path.resolve(process.argv[1]) === fileURLToPath(import.meta.url)) {
   await prepare();
-  const claudePort = await fakeClaude();
-  const child = spawn(process.execPath, [WRANGLER, 'dev', '--port', String(PORT), '--persist-to', PERSIST, '--var', 'DEV_AUTH:1', '--var', 'ANTHROPIC_API_KEY:fake', '--var', `ANTHROPIC_BASE_URL:http://127.0.0.1:${claudePort}`], { cwd: WORKER, env: ENV, stdio: 'inherit' });
+  // E2E_REAL_CLAUDE=1：用 worker/.env 的 key 打真的 Claude API（real-claude.mjs 用，會花錢）
+  const claudeVars = process.env.E2E_REAL_CLAUDE ? ['--var', `AI_MODEL:${process.env.AI_MODEL ?? 'claude-sonnet-5-5'}`] : ['--var', 'ANTHROPIC_API_KEY:fake', '--var', `ANTHROPIC_BASE_URL:http://127.0.0.1:${await fakeClaude()}`];
+  const child = spawn(process.execPath, [WRANGLER, 'dev', '--port', String(PORT), '--persist-to', PERSIST, '--var', 'DEV_AUTH:1', ...claudeVars], { cwd: WORKER, env: ENV, stdio: 'inherit' });
   child.on('exit', (code) => process.exit(code ?? 0));
   for (const sig of ['SIGINT', 'SIGTERM']) process.on(sig, () => child.kill());
 }
