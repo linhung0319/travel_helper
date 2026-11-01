@@ -26,26 +26,46 @@ const line = (coords: LonLat[], properties: Record<string, unknown>): Feature<Li
 });
 const collection = <G extends Point | LineString>(features: Feature<G>[]): FeatureCollection<G> => ({ type: 'FeatureCollection', features });
 
-/** 標示的點：每種樣式一組（AI 的 primary／warning／muted，和點開的交通上下車的站 leg） */
-export function highlightFeatures(highlights: Partial<Record<HighlightStyle | 'leg', string[]>>, byId: Map<string, Place>): FeatureCollection<Point> {
+/** 點開的交通上下車的站 */
+export function legStationFeatures(ids: string[], byId: Map<string, Place>): FeatureCollection<Point> {
   return collection(
-    Object.entries(highlights).flatMap(([style, ids]) =>
-      (ids ?? []).flatMap((id) => {
-        const p = byId.get(id);
-        return p ? [point(p.coords, { id, style })] : [];
-      }),
-    ),
+    ids.flatMap((id) => {
+      const p = byId.get(id);
+      return p ? [point(p.coords, { id })] : [];
+    }),
   );
 }
 
-/** 比較的點：A、B、C… */
-export function compareFeatures(ids: string[], byId: Map<string, Place>): FeatureCollection<Point> {
-  return collection(
-    ids.flatMap((id, i) => {
-      const p = byId.get(id);
-      return p ? [point(p.coords, { id, letter: String.fromCharCode(65 + i) })] : [];
-    }),
-  );
+/** 地圖上 AI 指給你看的一個點：畫成水滴。head 是頭裡的字（A、B、C 或提議的順序），沒有就照平常（行程編號、類型的字）；tone 是 highlight 指令的樣式 */
+export interface AiDrop {
+  id: string;
+  head?: string;
+  tone?: Exclude<HighlightStyle, 'primary'>;
+}
+
+/**
+ * 現在要畫成水滴的點，只有 AI 最新的一組（每次給完整內容，舊的不留）：
+ * - 提議（畫面上看得到差異、而且是最後給的）：新增的點，頭裡寫提議的順序
+ * - 否則結果集：比較時頭裡寫 A、B、C
+ * - 另外加上 highlight 指令標的點
+ */
+export function aiDrops(input: {
+  aiResult: { ids: string[]; lettered: boolean } | null;
+  highlights: Partial<Record<HighlightStyle, string[]>>;
+  /** proposalFeatures 的點；提議沒顯示時是空的 */
+  proposalPoints: FeatureCollection<Point>;
+  latest: 'result' | 'proposal' | null;
+}): AiDrop[] {
+  const { aiResult, highlights, proposalPoints, latest } = input;
+  const out = new Map<string, AiDrop>();
+  const added = proposalPoints.features.filter((f) => f.properties?.status === 'added');
+  const showProposal = proposalPoints.features.length > 0 && (latest === 'proposal' || !aiResult);
+  if (showProposal) for (const f of added) out.set(String(f.properties!.id), { id: String(f.properties!.id), head: String(f.properties!.order) });
+  else aiResult?.ids.forEach((id, i) => out.set(id, { id, ...(aiResult.lettered ? { head: String.fromCharCode(65 + i) } : {}) }));
+  for (const [style, ids] of Object.entries(highlights) as [HighlightStyle, string[]][]) {
+    for (const id of ids ?? []) if (!out.has(id)) out.set(id, { id, ...(style === 'primary' ? {} : { tone: style }) });
+  }
+  return [...out.values()];
 }
 
 /** 步行用點線、船用長虛線，其他實線；直線（查不到路徑）比較淡 */
@@ -94,7 +114,7 @@ export type ProposalStatus = 'kept' | 'added' | 'removed';
 
 /**
  * AI 提議的那幾天（interaction-design §0、§3）：
- * - 點：提議裡的順序編號；這天原本沒有的點是 added（亮框），原本有、提議拿掉的是 removed（灰、×）
+ * - 點：提議裡的順序編號；這天原本沒有的點是 added（MapView 畫成水滴），原本有、提議拿掉的是 removed（灰、×）
  * - 線：依序用那天的顏色連起來（虛線）
  */
 export function proposalFeatures(
@@ -153,7 +173,7 @@ export function describeChanges(changes: Change[], nameOf: (id: string) => strin
 /**
  * 確定的行程（T15m，interaction-design §3）：
  * - 線：每天一種顏色，依時間軸的順序（出發的住宿 → 各點 → 會合點 → 住宿）連起來；選了某一天時只畫那天
- * - 備選：時段備案的非主選點，用那天顏色的空心圈
+ * - 備選：時段備案的非主選點，寫一個「備」字（那天的顏色）
  * - 交通標籤：只有選定的那天，在每段的中間標交通圖示和「12 分」
  * - 整趟時點了某一天的路線（focusDay）：其他天的線 dim（變淡），同色的兩天才不會搞混（第五輪 §9.1）
  * 線有 pathOf 給的路徑（步行、車沿道路，搭車照班次的站、電車沿車站）就照路徑畫，沒有（還沒查到、船）就是兩點之間的直線。

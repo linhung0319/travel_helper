@@ -5,6 +5,7 @@ import { useState } from 'react';
 import { useStore } from 'zustand';
 import { ai } from '../appAi.ts';
 import { shared } from '../appShared.ts';
+import { uiStore } from '../uiStore.ts';
 import { useData } from '../hooks.ts';
 import { shortDayLabel } from '../lib/trip.ts';
 import type { ChatToolUse } from '../ai/transcript.ts';
@@ -17,6 +18,7 @@ const run = async (r: Promise<{ ok: true } | { ok: false; error: string }>) => {
 };
 
 export function present(id: string) {
+  uiStore.setState((s) => ({ proposalReveal: s.proposalReveal + 1 }));
   const r = ai.present(id);
   if (!r.ok) shared.notifyError(r.error);
 }

@@ -17,6 +17,7 @@ import { findLegEntry, rideReadyAt } from '../lib/planView.ts';
 import { departureCells, firstCellIndex, type DepartureCell } from '../lib/legView.ts';
 import { headwayText, timetableSource, timetableSubtitle } from '../lib/timetableView.ts';
 import type { LonLat } from '../data/types.ts';
+import { pauseMapHover } from './MapView.tsx';
 import { ModeIcon } from './ModeIcon.tsx';
 import { Icon } from './Icon.tsx';
 
@@ -87,7 +88,17 @@ function TimetableBody({ tt, leg, ride }: { tt: TimetableState; leg: Leg; ride: 
             {timetableSubtitle(ride, tt.date, readyAt)}
           </div>
         </div>
-        <button type="button" className="text-button" onClick={closeTimetable} aria-label="關掉" data-testid="timetable-close">
+        <button
+          type="button"
+          className="text-button timetable-close"
+          onClick={(e) => {
+            // 關掉後游標就停在地圖上：底下的點不要馬上跳小卡片，看起來像點穿了
+            pauseMapHover(e.clientX, e.clientY);
+            closeTimetable();
+          }}
+          aria-label="關掉"
+          data-testid="timetable-close"
+        >
           <Icon name="close" size={20} />
         </button>
       </header>

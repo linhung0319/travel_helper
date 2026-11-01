@@ -23,8 +23,8 @@ export function tagKindOf(type: Place['type'] | null | undefined): TagCardKind {
   return type === 'spot' || type === 'restaurant' || type === 'station' ? type : 'custom';
 }
 
-/** 分組的顏色變數（膠囊、彈窗裡選了的按鈕都用） */
-const groupStyle = (g: TagGroup) => ({ '--tag-bg': g.bg, '--tag-fg': g.fg }) as CSSProperties;
+/** 標籤的顏色變數（膠囊、彈窗裡選了的按鈕都用）：一律灰色，顏色留給要注意的東西（§16.4） */
+const groupStyle = (_g: TagGroup) => ({ '--tag-bg': 'var(--wash)', '--tag-fg': 'var(--ink-2)' }) as CSSProperties;
 
 const groupOf = (t: TagId) => TAG_GROUPS.find((g) => g.tags.includes(t))!;
 

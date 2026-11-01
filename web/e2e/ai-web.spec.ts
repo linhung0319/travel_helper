@@ -211,9 +211,11 @@ test('S11 不要、取消：行程都沒變；取消後提議還在；不要了�
   await expect(bar(page)).toBeVisible();
 });
 
-test('按「編輯」：回到真的時間軸可以改，提議重算；看提議又是唯讀', async ({ page }) => {
+test('看提議時沒有「編輯」；看原本才能編輯，提議重算；看提議又是唯讀', async ({ page }) => {
   await aiReady(page);
   await say(page, S11);
+  await expect(page.getByTestId('planning-toggle')).toHaveCount(0);
+  await page.getByTestId('proposal-toggle').click();
   await page.getByTestId('planning-toggle').click();
   await page.getByTestId('planning-confirm').click();
   await expect(page.getByTestId('proposal-pill')).toHaveCount(0);

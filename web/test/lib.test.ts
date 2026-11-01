@@ -653,17 +653,19 @@ test('cardTime：起點、終點只寫一個時間；其他寫開始–結束', 
   assert.deepEqual(cardTime(entry('visit', 'a', { start: '09:42', end: '09:42' })), { text: '09:42', stay: null });
 });
 
-test('DAY_PALETTE：4 色彼此、和類型色分得出來', () => {
-  assert.deepEqual(DAY_PALETTE, ['#c2255c', '#0b7285', '#343a40', '#8b5a2b']);
+test('DAY_PALETTE：兩色彼此、和類型色分得出來', () => {
+  assert.deepEqual(DAY_PALETTE, ['#1c2840', '#6e4420']);
   for (const c of DAY_PALETTE) assert.ok(labOf(c)[0] <= 70, `${c} 太淺，畫在淺色地圖上看不清楚`);
   for (const [i, a] of DAY_PALETTE.entries()) {
     for (const b of DAY_PALETTE.slice(i + 1)) assert.ok(deltaE(a, b) >= 20, `${a} 和 ${b} 太像（ΔE ${deltaE(a, b).toFixed(0)}）`);
     for (const t of Object.values(TYPE_COLORS)) assert.ok(deltaE(a, t) >= 20, `${a} 和類型色 ${t} 太像（ΔE ${deltaE(a, t).toFixed(0)}）`);
   }
-  // 照日期順序輪流
+  // 照日期順序交錯
   const dates = ['2027-02-02', '2027-02-03', '2027-02-04', '2027-02-05', '2027-02-06'];
-  assert.equal(dayColor(dates, '2027-02-06'), '#c2255c');
-  assert.equal(dayColor(dates, '2027-02-03'), '#0b7285');
+  assert.equal(dayColor(dates, '2027-02-02'), '#1c2840');
+  assert.equal(dayColor(dates, '2027-02-03'), '#6e4420');
+  assert.equal(dayColor(dates, '2027-02-04'), '#1c2840');
+  assert.equal(dayColor(dates, '2027-02-05'), '#6e4420');
 });
 
 test('copyText：日文名稱優先，沒有用中文', () => {

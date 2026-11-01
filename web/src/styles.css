@@ -14,10 +14,10 @@
   --wash: #f3f5fa;
   --indigo: #24468a;
   /* 地圖想去圖例「已排」的例子：第一天的顏色（lib/visual.ts DAY_PALETTE[0]） */
-  --day-sample: #c2255c;
+  --day-sample: #1c2840;
   --indigo-wash: #e9eef8;
   --indigo-line: #cdd6ea;
-  /* 芥子黃：只代表「選中」（選中的日期、分頁底線）；淡底和框給 AI 提議卡 */
+  /* 芥子黃：只代表「選中」和「AI 的提議」（選中的日期、分頁底線、選中的卡；提議的淡底和框） */
   --mustard: #e3a92b;
   --mustard-wash: #fcf3de;
   --mustard-line: #efd08a;
@@ -25,32 +25,26 @@
   /* 抹茶：優點的「＋」 */
   --matcha: #5f8a3e;
   --matcha-wash: #edf3e6;
-  /* 櫻：住宿的淡底（例如「一泊二食」膠囊） */
-  --sakura: #c8604f;
-  --sakura-wash: #fde9e5;
+  /* 錯誤訊息的字 */
   --sakura-ink: #a8483a;
   --love: #d8453a;
   --love-wash: #fde9e5;
   --love-line: #f3b9ae;
   --red-day: #d8453a;
-  --warn: #a86a12;
-  --warn-bg: #fbf3e2;
-  --warn-line: #e6cf95;
+  --warn: #c8372d;
+  --warn-bg: #fdecea;
+  --warn-line: #f3b9ae;
   --star: #d9a21b;
   --good: var(--matcha);
   --good-bg: var(--matcha-wash);
   --bad: #b3261e;
   --bad-bg: #fdecea;
   --bad-soft: #ffb4ab;
-  /* 類型圓章（§12.2）：景＝抹茶、食＝芥子黃（字墨色）、宿＝櫻、駅＝靛藍；和 lib/typeStyle.ts 的 TYPE_COLORS 一樣 */
+  /* 類型圓章（§12.2，2026-11-01 改）：景＝抹茶、食＝朱橘、宿＝紫、駅＝靛藍，都是白字；只用在圓章、地圖的點、沒照片的縮圖；和 lib/typeStyle.ts 的 TYPE_COLORS 一樣 */
   --t-spot: #5f8a3e;
-  --t-food: #e3a92b;
-  --t-stay: #c8604f;
+  --t-food: #c9541f;
+  --t-stay: #7a5aa6;
   --t-station: #24468a;
-  --food-wash: var(--mustard-wash);
-  --stay-wash: var(--sakura-wash);
-  --stay-line: #f3c4ba;
-  --stay-mid: #e08f80;
   --teal: #1f6f78;
   --teal-wash: #e3f1f1;
   --teal-line: #9fcfcb;
@@ -318,8 +312,8 @@ a {
 .edited {
   margin-left: 6px;
   font-size: 0.75rem;
-  background: var(--warn-bg);
-  color: var(--warn);
+  background: var(--wash);
+  color: var(--ink-2);
   border-radius: 999px;
   padding: 0 4px;
 }
@@ -715,13 +709,13 @@ dl {
 }
 
 .hours tr.today {
-  background: var(--warn-bg);
+  background: var(--wash);
   font-weight: 600;
 }
 
 .today-mark {
   font-size: 0.8rem;
-  color: var(--warn);
+  color: var(--ink-2);
 }
 
 .prices ul,
@@ -871,6 +865,11 @@ dl {
   flex-direction: column;
   gap: 6px;
   pointer-events: none;
+}
+
+/* 行程分頁：日期晶片在地圖左上，說明列排在它下面 */
+.map-column:has(.map-days) .command-bars {
+  top: 120px;
 }
 
 .command-bar {
@@ -1403,14 +1402,6 @@ button.planning-done {
   background: var(--soft);
 }
 
-.overview-dot {
-  width: 12px;
-  height: 12px;
-  border-radius: 999px;
-  flex: 0 0 auto;
-  display: inline-block;
-}
-
 .overview-date {
   flex: 0 0 auto;
   font-variant-numeric: tabular-nums;
@@ -1443,7 +1434,7 @@ button.planning-done {
 }
 
 .tl-row.flash {
-  background: var(--warn-bg);
+  background: var(--mustard-wash);
 }
 
 .tl-time {
@@ -1535,11 +1526,11 @@ button.planning-done {
   color: var(--tag-fg);
 }
 
-/* 這晚的方案（宿的卡）：紫色；照住宿資料（這晚沒選）時用淡色虛框 */
+/* 這晚的方案（宿的卡）：灰色；照住宿資料（這晚沒選）時用虛框 */
 .tag-lodging,
 .tag-lodging-group {
-  --tag-bg: var(--stay-wash);
-  --tag-fg: var(--t-stay);
+  --tag-bg: var(--wash);
+  --tag-fg: var(--ink-2);
 }
 
 .tag-lodging {
@@ -1552,8 +1543,8 @@ button.planning-done {
 
 .tag-lodging.from-data {
   background: none;
-  color: var(--stay-mid);
-  border: 1px dashed var(--stay-line);
+  color: var(--ink-2);
+  border: 1px dashed var(--rail);
 }
 
 /* 編輯：點標籤那一排打開標籤彈窗 */
@@ -1563,7 +1554,7 @@ button.planning-done {
   gap: 4px;
   min-height: 32px;
   padding: 0 6px;
-  border: 1px dashed var(--plan);
+  border: 1px dashed var(--ink-3);
   border-radius: 999px;
   background: none;
   cursor: pointer;
@@ -2205,6 +2196,15 @@ button.edited {
   z-index: 5;
 }
 
+/* AI 指給你看的水滴：選中的水滴蓋在它們上面；放大才寫名稱（點多的時候字才不會疊在一起） */
+.maplibregl-marker.map-ai-drop {
+  z-index: 4;
+}
+
+.map:not(.show-drop-names) .map-ai-drop .ms-name {
+  display: none;
+}
+
 .map-selected {
   width: 34px;
   height: 44px;
@@ -2381,19 +2381,36 @@ button.edited {
    左聊天室、中地圖（日期等浮在上方）、右側行程／探索／詳情共用一欄
    ====================================================================== */
 
-/* 三欄固定寬度（第八輪 §13.1）：AI 300、右欄 400，地圖拿剩下的；1100～1279（iPad 橫拿）AI 260、右欄 360。
+/* 三欄固定寬度（第八輪 §13.1，2026-11-01 改）：寬度分四段（下面的 --ai-w、--side-w），地圖拿剩下的；iPad 橫放是最窄的一段。
    min-width: 0：flex 子項預設 min-width: auto，照片的原始寬度會把欄撐開（1180 寬時地圖被擠成 0） */
 .layout.desktop {
-  --ai-w: 300px;
-  --side-w: 400px;
-  --pop-w: 380px;
+  --ai-w: 260px;
+  --side-w: 360px;
+  --pop-w: 340px;
 }
 
-@media (max-width: 1279px) {
+/* 2026-11-01：地圖不用那麼大，寬螢幕左右欄加寬；iPad 橫放（1279 以下）維持原樣 */
+@media (min-width: 1280px) {
   .layout.desktop {
-    --ai-w: 260px;
-    --side-w: 360px;
-    --pop-w: 340px;
+    --ai-w: 300px;
+    --side-w: 420px;
+    --pop-w: 380px;
+  }
+}
+
+@media (min-width: 1440px) {
+  .layout.desktop {
+    --ai-w: 340px;
+    --side-w: 460px;
+    --pop-w: 400px;
+  }
+}
+
+@media (min-width: 1680px) {
+  .layout.desktop {
+    --ai-w: 380px;
+    --side-w: 520px;
+    --pop-w: 420px;
   }
 }
 
@@ -2778,13 +2795,13 @@ div.ratings-box,
 }
 
 .rate-tabelog .rate-src {
-  background: var(--warn-bg);
-  color: var(--warn);
+  background: var(--wash);
+  color: var(--ink-2);
 }
 
 .rate-tabelog .rate-star,
 .rate-tabelog .rate-score {
-  color: var(--warn);
+  color: var(--ink-2);
 }
 
 .ratings-box .scores {
@@ -2952,9 +2969,12 @@ body.dragging-plan [data-drop-ai].drop-over {
   overflow: hidden;
 }
 
-/* 停留用類型色（Timeline.tsx 用 TYPE_COLORS 設 background）；等待斜紋、交通細點線、其他灰 */
+/* 全部灰：停留實心、等待斜紋、交通細點線；選中的那段黃（§16.4） */
+.seg-spot,
+.seg-restaurant,
 .seg-other {
-  background: var(--ink-3);
+  background: var(--ink-4);
+  color: var(--ink);
 }
 
 .seg-travel {
@@ -2962,13 +2982,13 @@ body.dragging-plan [data-drop-ai].drop-over {
 }
 
 .seg-wait {
-  background: repeating-linear-gradient(45deg, var(--warn-line) 0 4px, var(--warn-bg) 4px 8px);
+  background: repeating-linear-gradient(45deg, var(--ink-4) 0 4px, var(--wash) 4px 8px);
 }
 
 /* 目前點的卡片對應的那一段 */
 .day-bar-seg.selected {
-  outline: 2px solid var(--indigo);
-  outline-offset: 1px;
+  background: var(--mustard);
+  color: var(--ink);
   z-index: 1;
 }
 
@@ -3122,6 +3142,16 @@ body.dragging-plan .tl-dropend {
   border-bottom: 1px solid var(--line);
 }
 
+/* ✕ 至少 44px，貼齊彈窗右上角：手指偏一點也不會點到彈窗外面的地圖 */
+.timetable-pop .timetable-close {
+  flex: none;
+  width: var(--tap);
+  height: var(--tap);
+  min-height: var(--tap);
+  margin: -10px -12px 0 0;
+  padding: 0;
+}
+
 .timetable-title {
   flex: 1;
   min-width: 0;
@@ -3223,14 +3253,14 @@ body.dragging-plan .tl-dropend {
 
 /* 錯過規劃那班的下一班：橘底 */
 .tt-cell.next {
-  background: var(--warn-bg);
-  border-color: var(--warn-line);
-  color: var(--warn);
+  background: var(--wash);
+  border-color: var(--rail);
+  color: var(--ink-2);
 }
 
 .tt-cell.next .tt-time span,
 .tt-cell.next .tt-kind {
-  color: var(--warn);
+  color: var(--ink-2);
 }
 
 /* 班距型那一程：沒有格子，只有一行 */
@@ -3253,7 +3283,6 @@ body.dragging-plan .tl-dropend {
 .day-nav {
   display: flex;
   align-items: center;
-  flex-wrap: wrap;
   gap: 4px 8px;
 }
 
@@ -3275,13 +3304,16 @@ body.dragging-plan .tl-dropend {
 }
 
 .day-nav h3 {
+  flex: 1 1 auto;
   display: flex;
   align-items: center;
   gap: 6px;
+  min-width: 0;
   margin: 0;
 }
 
 .day-nav-actions {
+  flex: none;
   margin-left: auto;
   display: inline-flex;
   align-items: center;
@@ -3304,7 +3336,7 @@ body.dragging-plan .tl-dropend {
 
 @keyframes note-flash {
   from {
-    background: var(--warn-bg);
+    background: var(--mustard-wash);
   }
 }
 
@@ -3428,14 +3460,14 @@ button.leg-step-board {
   white-space: nowrap;
 }
 
-/* 等車：芥子黃小底，靠右 */
+/* 等車：灰色小底，靠右 */
 .leg-step-wait {
   flex: none;
   margin-left: auto;
   padding: 0 6px;
   border-radius: 999px;
-  background: var(--mustard-wash);
-  color: var(--mustard-ink);
+  background: var(--wash);
+  color: var(--ink-2);
   font-size: 0.75rem;
   white-space: nowrap;
 }
@@ -3725,9 +3757,9 @@ span.leg-miss {
 /* ---------- 時間軸的資料卡：類型的淡底色、起終點和造訪同樣的卡片、合併卡片的疊層（T15m 第四輪） ---------- */
 
 :root {
-  --type-spot-bg: var(--good-bg);
-  --type-restaurant-bg: var(--food-wash);
-  --type-lodging-bg: var(--stay-wash);
+  --type-spot-bg: var(--paper);
+  --type-restaurant-bg: var(--paper);
+  --type-lodging-bg: var(--paper);
   --type-station-bg: var(--wash);
   --type-other-bg: var(--wash);
 }
@@ -3806,7 +3838,7 @@ span.leg-miss {
   font-variant-numeric: tabular-nums;
 }
 
-/* 到了要等：交通卡下面、下一張資料卡上面，黃色虛框；左邊和交通卡切齊（第九輪 §14.2，同 ui.css 的 .ll-li） */
+/* 到了要等：交通卡下面、下一張資料卡上面，灰色虛框（黃色只給選中和 AI 的提議）；左邊和交通卡切齊（第九輪 §14.2，同 ui.css 的 .ll-li） */
 .tl-wait-row {
   margin: 4px 0;
   padding: 0 4px 0 calc(var(--ll-axis) + 22px);
@@ -3819,9 +3851,9 @@ span.leg-miss {
   font: inherit;
   font-size: 0.8rem;
   font-variant-numeric: tabular-nums;
-  color: var(--warn);
-  background: var(--warn-bg);
-  border: 1px dashed var(--warn-line);
+  color: var(--ink-2);
+  background: var(--wash);
+  border: 1px dashed var(--rail);
   border-radius: 14px;
   padding: 3px 8px;
 }

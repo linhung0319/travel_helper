@@ -230,6 +230,12 @@ export function createCommands(app: StoreApi<AppStore>, data: StoreApi<DataState
     return { ok: true, routeId };
   }
 
+  /** AI 給了新的一組：之前選中的點不在這組裡就取消選中，地圖上只留最新的（詳情開著時那個點還在看，不動） */
+  function dropStaleSelection(ids: string[]) {
+    const s = app.getState();
+    if (s.selectedId && !s.detailId && !ids.includes(s.selectedId)) s.select(null);
+  }
+
   /** 「AI 挑的」結果集（T16m 規格 §3.1）：地圖框住這幾個點，探索只列它們；探索原本的篩選、搜尋收起來，clearResult 還原 */
   function showResult(ids: string[], opts: { title: string; notes?: Record<string, string>; lettered?: boolean }): CommandResult<{ ids: string[]; unknown?: string[] }> {
     const r = resolveIds(ids);
@@ -237,6 +243,7 @@ export function createCommands(app: StoreApi<AppStore>, data: StoreApi<DataState
     if (!r.places.length) return { ok: false, error: `showResult：找不到資料點 ${r.unknown.join('、')}` };
     const got = r.places.map((p) => p.id);
     app.getState().setAiResult({ title: opts.title, ids: got, notes: opts.notes ?? {}, lettered: !!opts.lettered });
+    dropStaleSelection(got);
     moveTo(r.places.map((p) => p.coords));
     return { ok: true, ids: got, ...(r.unknown.length ? { unknown: r.unknown } : {}) };
   }
@@ -325,6 +332,8 @@ export function createCommands(app: StoreApi<AppStore>, data: StoreApi<DataState
     const proposalDates = current ? [...changed].sort() : itinerary.days.filter((d) => stopsOn(itinerary, d.date).length).map((d) => d.date);
     if (!proposalDates.length) return { ok: false, error: 'showProposal：和確定的行程一樣，沒有改動' };
     const missing = proposalDates.flatMap((d) => stopsOn(itinerary, d).filter((s) => !byId.has(s.place)).map((s) => s.place));
+    // 同一個提議重算（別人改了行程）不動使用者選的點；新的提議才算 AI 換了一組
+    if (app.getState().proposal?.summary !== (opts.summary ?? null)) dropStaleSelection(proposalDates.flatMap((d) => stopsOn(itinerary, d).map((s) => s.place)));
     app.getState().setProposal({ itinerary, dates: proposalDates, changes, summary: opts.summary ?? null });
     if (proposalDates.length === 1) app.getState().selectDay(proposalDates[0]);
     const coords = proposalDates.flatMap((d) => stopsOn(itinerary, d).map((s) => byId.get(s.place)?.coords)).filter((c): c is LonLat => !!c);

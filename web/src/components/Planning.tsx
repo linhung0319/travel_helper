@@ -1,7 +1,7 @@
 // 編輯（interaction-design §6、§11、第五輪設計 §5）：「✏️ 編輯這天」按鈕、進入前確認、時間軸面板最上面的藍條、第一次的提示、閒置自動結束；
 // 快照列表與復原、「排進行程」、「移到第 _ 天」（卡片、自己加的候選）、別人改過了的提示。
 
-import { useCallback, useEffect, useState, useSyncExternalStore } from 'react';
+import { useCallback, useEffect, useState, useSyncExternalStore, type ReactNode } from 'react';
 import { describeChanges, diffItinerary } from '@travel-helper/engine';
 import { appStore } from '../store.ts';
 import { shared } from '../appShared.ts';
@@ -113,7 +113,7 @@ export function EditingStrip() {
  * 編輯中，時間軸面板最上面的藍條：說明、儲存狀態、快照、完成（白底）。
  * 兩邊同一個樣子（§6.3）：墨色底，「編輯 2/3（三）」、快照、完成；compact（手機）不寫「第 N 版」
  */
-export function PlanningBar({ title, className = '', compact = false }: { title?: string; className?: string; compact?: boolean } = {}) {
+export function PlanningBar({ title, className = '', compact = false, extra = null }: { title?: string; className?: string; compact?: boolean; extra?: ReactNode } = {}) {
   const planning = useApp((s) => s.planning);
   const saving = useShared((s) => s.saving);
   const version = useShared((s) => s.version);
@@ -135,6 +135,7 @@ export function PlanningBar({ title, className = '', compact = false }: { title?
       </strong>
       {!compact && <span className="planning-bar-status">{saving ? '儲存中…' : `第 ${version} 版`}</span>}
       <span className="planning-bar-actions">
+        {extra}
         <button type="button" className="text-button" onClick={() => openDialog({ kind: 'snapshots' })} data-testid="snapshots-button">
           <Icon name="history" size={16} /> 快照
         </button>

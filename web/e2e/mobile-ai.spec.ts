@@ -432,11 +432,13 @@ test('S11 不要、取消：行程沒變；取消後提議還在；不要了可�
   await expect(bar(page)).toHaveCount(0);
 });
 
-test('按「編輯」：回到真的時間軸可以改；看提議又是唯讀', async ({ page }) => {
+test('看提議時沒有「編輯」；看原本才能編輯，真的時間軸可以改；看提議又是唯讀', async ({ page }) => {
   await aiReady(page);
   await goTab(page, 'ai');
   await say(page, S11);
   await page.getByTestId('chat-see-trip').click();
+  await expect(page.getByTestId('m-trip-edit')).toHaveCount(0);
+  await page.getByTestId('proposal-toggle').click();
   await page.getByTestId('m-trip-edit').click();
   await page.getByTestId('planning-confirm').click();
   await expect(page.getByTestId('proposal-pill')).toHaveCount(0);

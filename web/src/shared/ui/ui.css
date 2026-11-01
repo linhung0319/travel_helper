@@ -135,7 +135,7 @@
   color: var(--ink-2);
 }
 
-/* ---------- 類型圓章（interaction-design §12.2）：類型色的圓、一個漢字；芥子黃（食）上用墨色字 ---------- */
+/* ---------- 類型圓章（interaction-design §12.2）：類型色的圓、一個白色漢字 ---------- */
 .ui-type {
   display: inline-flex;
   align-items: center;
@@ -180,7 +180,6 @@
 
 .ui-seal[data-type='restaurant'] {
   --seal: var(--t-food);
-  color: var(--ink);
 }
 
 .ui-seal[data-type='lodging'] {
@@ -356,7 +355,7 @@
   box-shadow: 0 1px 3px var(--shade-2);
 }
 
-/* ---------- 日期列（DayStrip）：手機面板，可左右滑；網頁右欄是下面的兩週月曆（DayCalendar） ---------- */
+/* ---------- 日期列（DayStrip）：手機面板，可左右滑；網頁是下面的地圖日期晶片（MapDays） ---------- */
 .ui-days {
   display: flex;
   gap: 2px;
@@ -437,67 +436,112 @@
   box-shadow: 0 0 0 2px var(--paper);
 }
 
-/* ---------- 兩週月曆（DayCalendar，網頁右欄，§13.2）：7 欄，格子 44px，白底上淡底格子 ---------- */
-.ui-cal {
+/* ---------- 地圖上的日期晶片（MapDays，網頁行程分頁）：地圖夠寬一排、窄時兩排（「整趟」佔兩排高） ---------- */
+.map-days-wrap {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 3;
+  container: map-days / inline-size;
+  pointer-events: none;
+}
+
+.map-days {
+  position: absolute;
+  top: 12px;
+  left: 12px;
   display: grid;
-  grid-template-columns: repeat(7, minmax(0, 1fr));
-  gap: 4px;
-  padding: 8px 12px 6px;
+  grid-template-columns: 52px repeat(12, 44px);
+  gap: 3px;
+  pointer-events: auto;
 }
 
-.ui-cal-wd {
-  text-align: center;
-  font-size: 0.75rem;
-  color: var(--ink-2);
-}
-
-.ui-cal-wd.red-day {
-  color: var(--red-day);
-}
-
-.ui-cal-day {
+.map-day {
   position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   min-width: 0;
-  height: var(--tap);
+  height: 48px;
+  padding: 0;
   border: 0;
   border-radius: 14px;
-  background: var(--wash);
+  background: var(--paper);
   color: var(--ink);
-  font-family: var(--font-num);
-  font-weight: 700;
-  font-size: 0.875rem;
+  line-height: 1.15;
+  box-shadow: 0 2px 8px var(--shade-1);
   cursor: pointer;
 }
 
-.ui-cal-day.red-day {
-  color: var(--red-day);
-}
-
-.ui-cal-day.all {
-  border: 1px solid var(--line);
-  background: var(--paper);
+.map-day b {
+  font-family: var(--font-num);
+  font-weight: 700;
   font-size: 0.8125rem;
 }
 
+.map-day small {
+  font-size: 0.6875rem;
+  color: var(--ink-2);
+}
+
+.map-day.all {
+  font-weight: 700;
+  font-size: 0.8125rem;
+}
+
+.map-day.red-day,
+.map-day.red-day small {
+  color: var(--red-day);
+}
+
 /* 選中的那天芥子黃（§12.4）；紅字照舊 */
-.ui-cal-day[aria-current='true'] {
-  border-color: var(--mustard);
+.map-day[aria-current='true'] {
   background: var(--mustard);
 }
 
-.ui-cal-warn {
+.map-day[aria-current='true']:not(.red-day) small {
+  color: var(--ink);
+}
+
+.map-day-warn {
   position: absolute;
-  left: 50%;
-  bottom: 5px;
-  width: 4px;
-  height: 4px;
-  margin-left: -2px;
+  top: 4px;
+  right: 5px;
+  width: 5px;
+  height: 5px;
   border-radius: 50%;
   background: var(--red-day); /* §12.1 警告數字的紅 */
 }
 
+@container map-days (max-width: 639px) {
+  .map-days {
+    grid-template-columns: 52px repeat(6, 44px);
+    grid-auto-rows: 44px;
+    gap: 4px;
+    padding: 6px;
+    border-radius: 20px;
+    background: var(--veil);
+    box-shadow: 0 2px 10px var(--shade-1);
+  }
+
+  .map-day {
+    height: 44px;
+    background: var(--wash);
+    box-shadow: none;
+  }
+
+  .map-day.all {
+    grid-row: span 2;
+    height: auto;
+    background: var(--paper);
+    border: 1px solid var(--line);
+  }
+}
+
 @media (hover: hover) {
-  .ui-cal-day:not([aria-current='true']):hover {
+  .map-day:not([aria-current='true']):hover {
     background: var(--line);
   }
 }
@@ -664,7 +708,7 @@
   border-bottom: 1px solid var(--line);
 }
 
-/* 網頁右欄只有 400（窄 360）：篩選、排序只留圖示（字給讀屏器、滑鼠移上去看 title），搜尋框才有地方（§13.1 草圖） */
+/* 網頁右欄 360～520：篩選、排序只留圖示（字給讀屏器、滑鼠移上去看 title），搜尋框才有地方（§13.1 草圖） */
 .fb-desktop .fb-row > .ui-chip,
 .fb-desktop .fb-sort > .ui-chip {
   min-width: var(--tap);
@@ -977,6 +1021,10 @@
   border-bottom: 0;
 }
 
+.pr-closed {
+  display: contents;
+}
+
 .po-body {
   display: flex;
   flex-direction: column;
@@ -991,22 +1039,45 @@
   line-height: 1.6;
 }
 
+/* 一排：主按鈕佔剩下的寬度，次要的照字寬；卡片窄時（右欄 360）次要的只留圖示，不換行、不增加高度 */
+.po-body {
+  container: po / inline-size;
+}
+
 .po-actions {
   display: flex;
   gap: 8px;
 }
 
-.po-actions > .ui-btn,
-.po-actions > .add-to-day {
-  flex: 1;
+.po-actions .ui-btn {
+  min-height: var(--tap);
+  white-space: nowrap;
 }
 
+.po-actions > .ui-btn-primary {
+  flex: 1 1 auto;
+}
+
+.po-actions > .ui-btn-secondary,
 .po-actions > .add-to-day {
+  flex: none;
   padding: 0;
 }
 
+.po-actions > .ui-btn-secondary,
 .po-actions .add-to-day .ui-btn {
-  width: 100%;
+  padding: 0 14px;
+}
+
+@container po (max-width: 339px) {
+  /* 字留著給讀屏器（font-size: 0），圖示大小是固定的 */
+  .po-actions > .ui-btn-secondary,
+  .po-actions .add-to-day .ui-btn {
+    width: var(--tap);
+    padding: 0;
+    gap: 0;
+    font-size: 0;
+  }
 }
 
 .pw-col {
@@ -1741,7 +1812,7 @@
   right: 12px;
   bottom: 12px;
   z-index: 14;
-  /* 380（1100～1279 寬時 340，§13.3）；最多佔地圖欄的 70%，左邊還留一條看得到選中點的地圖 */
+  /* --pop-w 跟著螢幕寬度（340～420）；最多佔地圖欄的 70%，左邊還留一條看得到選中點的地圖 */
   width: min(var(--pop-w, 380px), 70%);
   overflow-y: auto;
   /* 不畫捲軸（第九輪 §14.1）：照片頂到兩邊，右邊不留捲軸那一條；滾輪、觸控板照樣捲，分頁切換時寬度也不會跳 */
@@ -1913,7 +1984,7 @@
 }
 
 .tc-li.flash {
-  box-shadow: 0 0 0 3px var(--warn-bg);
+  box-shadow: 0 0 0 3px var(--mustard-wash);
 }
 
 .tc-li.dashed {
@@ -2581,7 +2652,7 @@ button.ll-main {
 }
 
 .ll-li.flash .ll-card {
-  background: var(--warn-bg);
+  background: var(--mustard-wash);
 }
 
 .ll-li.drop-leg-over .ll-card {
@@ -2606,10 +2677,6 @@ button.ll-main {
   min-width: 0;
 }
 
-.day-title .overview-dot {
-  align-self: center;
-}
-
 .day-title-date {
   font-family: var(--font-num);
   font-size: 1.75rem;
@@ -2622,11 +2689,35 @@ button.ll-main {
   color: var(--red-day);
 }
 
-.day-title-sub {
+.day-title-sub,
+.day-title-short {
+  min-width: 0;
+  overflow: hidden;
   color: var(--ink-2);
   font-family: inherit;
   font-size: 0.875rem;
   font-weight: 400;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.day-title-short {
+  display: none;
+}
+
+.day-nav {
+  container: day-nav / inline-size;
+}
+
+/* 右欄窄時（iPad 橫放）：副標用短的，太長就省略，按鈕不換行 */
+@container day-nav (max-width: 379px) {
+  .day-title-sub {
+    display: none;
+  }
+
+  .day-title-short {
+    display: inline;
+  }
 }
 
 /* 卡片時間那一行裡的時間（點了固定開始時間的是按鈕） */

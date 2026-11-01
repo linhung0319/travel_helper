@@ -29,11 +29,13 @@ test('iPad 直拿是手機版、橫拿是網頁版', async ({ page }) => {
   await expect(page.getByTestId('m-tabbar')).toHaveCount(0);
 });
 
-test('三欄固定寬度：1100～1279 是 260／剩下／360，1280 以上是 300／剩下／400，切分頁不變', async ({ page }) => {
+test('三欄固定寬度：iPad 橫放 260／360，1280 起 300／420、1440 起 340／460、1680 起 380／520，切分頁不變', async ({ page }) => {
   await ready(page);
   for (const [size, ai, side] of [
     [LANDSCAPE, 260, 360],
-    [{ width: 1366, height: 820 }, 300, 400],
+    [{ width: 1366, height: 820 }, 300, 420],
+    [{ width: 1440, height: 820 }, 340, 460],
+    [{ width: 1920, height: 820 }, 380, 520],
   ] as const) {
     await page.setViewportSize(size);
     for (const tab of ['explore', 'wish', 'day'] as const) {

@@ -20,7 +20,7 @@ import { dayLabel, isRedDay } from '../lib/trip.ts';
 import { dayAreaName, dayTitle } from '../lib/dayTitle.ts';
 import { stopsOn } from '../lib/itinerary.ts';
 import type { Place } from '../data/types.ts';
-import { DayBar, DaySummaryLine, GhostRow, useDayTimeline, useProposalDay, type DayTimeline } from '../components/Timeline.tsx';
+import { DayBar, DaySummaryLine, GhostRow, useDayTimeline, useProposalDay, useRevealProposal, type DayTimeline } from '../components/Timeline.tsx';
 import { TimelineDiffContext, useEditing, useTimelineDiff } from '../components/timelineEdit.ts';
 import { ProposalStrip } from '../components/ProposalStrip.tsx';
 import { ItemTags, LodgingTags, tagKindOf } from '../components/ItemTags.tsx';
@@ -319,6 +319,7 @@ function DayView({ date }: { date: string }) {
   const tl = useDayTimeline(date, shown?.source);
   const reallyPlanning = useApp((s) => s.planning);
   const planning = reallyPlanning && !shown;
+  const dayRef = useRef<HTMLDivElement>(null);
   const focused = useMobile((s) => s.focused);
   const legOpen = useUi((s) => s.legOpen);
   const byId = useData((s) => s.byId);
@@ -326,6 +327,7 @@ function DayView({ date }: { date: string }) {
   const areas = useData((s) => s.areas);
   const title = dayTitle(date, dayAreaName(stopsOn(itinerary, date), byId, areas));
   const { itDay, plan } = tl;
+  useRevealProposal(dayRef, date, !!shown, plan);
   const ctx: RowCtx = { tl, focused };
   const barSelected = legOpen?.startsWith(`${date}:`) ? legOpen : focused;
   const timeOf = (itemId: string) => {
@@ -335,22 +337,23 @@ function DayView({ date }: { date: string }) {
   const ghostsBefore = (id: string | null) => shown?.diff.ghosts.filter((g) => g.beforeItemId === id).map((g) => <GhostRow key={`ghost:${g.itemId}`} ghost={g} date={date} time={timeOf(g.itemId)} thumb={56} />) ?? [];
   const tailShown = tl.rows.some((r) => r.kind !== 'gap' && r.entry.kind === 'lodging');
   return (
-    <div className="m-dayview" data-testid="m-dayview">
+    <div className="m-dayview" data-testid="m-dayview" ref={dayRef}>
+      {/* 編輯中這一排不畫（編輯條已經寫了日期，問 AI 也在編輯條上）；看提議的差異時也不畫：按「編輯」提議的卡會不見，要編輯先按「看原本」 */}
+      {!reallyPlanning && !shown && (
       <div className="m-dayhead">
         <h2 className={`m-dayhead-title ${isRedDay(date) ? 'red-day' : ''}`} data-testid="m-trip-title">
           <span className="m-dayhead-date">{title.date}</span>
           <span className="m-dayhead-sub">{title.short}</span>
         </h2>
-        {/* 半屏聊天（ChatSheet），編輯中也打得開 */}
+        {/* 半屏聊天（ChatSheet） */}
         <Button kind="secondary" size="sm" icon="spark" className="m-ask-day" aria-label="問 AI 這天" onClick={() => askDay(date)} data-testid="m-trip-ai">
           問 AI
         </Button>
-        {!reallyPlanning && (
-          <Button kind="primary" size="sm" icon="pen" onClick={() => openDialog({ kind: 'planning' })} data-testid="m-trip-edit">
-            編輯
-          </Button>
-        )}
+        <Button kind="primary" size="sm" icon="pen" onClick={() => openDialog({ kind: 'planning' })} data-testid="m-trip-edit">
+          編輯
+        </Button>
       </div>
+      )}
       {plan && (
         <div className="m-daysum">
           <DaySummaryLine plan={plan} />
@@ -425,7 +428,19 @@ function Candidates({ tl, focused, byId }: { tl: DayTimeline; focused: string | 
 function EditBar({ day }: { day: string }) {
   return (
     <div className="m-edit-top">
-      <PlanningBar title={day === 'all' ? '編輯中' : `編輯 ${dayLabel(day)}`} className="m-edit-bar" compact />
+      <PlanningBar
+        title={day === 'all' ? '編輯中' : `編輯 ${dayLabel(day)}`}
+        className="m-edit-bar"
+        compact
+        extra={
+          // 半屏聊天（ChatSheet），編輯中也打得開
+          day !== 'all' && (
+            <button type="button" className="text-button m-edit-ask" aria-label="問 AI 這天" title="問 AI 這天" onClick={() => askDay(day)} data-testid="m-trip-ai">
+              <Icon name="spark" size={20} />
+            </button>
+          )
+        }
+      />
       <ConflictBar />
     </div>
   );

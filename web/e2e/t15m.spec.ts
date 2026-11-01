@@ -85,7 +85,7 @@ test('交通時間的小標籤不蓋住選中水滴的名稱、也不蓋住編�
 test('選整趟時每天的路線都畫在地圖上', async ({ page }) => {
   await ready(page);
   await page.getByTestId('side-tab-day').click();
-  await page.locator('.side-column').getByTestId('m-day-all').click();
+  await page.locator('.map-column').getByTestId('m-day-all').click();
   await waitIdle(page);
   const dates = await page.evaluate(() => new Set((window as any).__th.map.getSource('overlay-itinerary-lines').serialize().data.features.map((f: any) => f.properties.date)).size);
   // 有排點的每一天都有線（12 天裡至少 8 天）
@@ -1560,7 +1560,7 @@ test('第八輪：交通卡有框、比資料卡窄，方式圓點在連線上�
   await transit.getByRole('button').first().click();
   const wait = transit.locator('[data-testid="leg-step-wait"]').first();
   await expect(wait).toBeVisible();
-  const [waitBg, mustardWash, rideBorder, busColor] = await page.evaluate(() => {
+  const [waitBg, wash, rideBorder, busColor] = await page.evaluate(() => {
     const probe = (v: string) => {
       const s = document.createElement('span');
       s.style.color = `var(${v})`;
@@ -1569,9 +1569,9 @@ test('第八輪：交通卡有框、比資料卡窄，方式圓點在連線上�
       s.remove();
       return c;
     };
-    return [getComputedStyle(document.querySelector('[data-testid="leg-step-wait"]')!).backgroundColor, probe('--mustard-wash'), getComputedStyle(document.querySelector('.leg-ride')!).borderTopColor, probe('--warn')];
+    return [getComputedStyle(document.querySelector('[data-testid="leg-step-wait"]')!).backgroundColor, probe('--wash'), getComputedStyle(document.querySelector('.leg-ride')!).borderTopColor, probe('--ink-2')];
   });
-  expect(waitBg).toBe(mustardWash);
+  expect(waitBg).toBe(wash);
   expect(rideBorder).toBe(busColor);
 });
 
@@ -1614,8 +1614,8 @@ test('移到第幾天：4×3 格子、紅字、沒有「假日」', async ({ pag
 
 test('日期列：週六、週日、假日紅字', async ({ page }) => {
   await ready(page);
-  for (const d of ['02-06', '02-07', '02-11', '02-13']) await expect(page.locator(`.side-column [data-day="2027-${d}"]`)).toHaveClass(/red-day/);
-  await expect(page.locator('.side-column [data-day="2027-02-10"]')).not.toHaveClass(/red-day/);
+  for (const d of ['02-06', '02-07', '02-11', '02-13']) await expect(page.locator(`.map-column [data-day="2027-${d}"]`)).toHaveClass(/red-day/);
+  await expect(page.locator('.map-column [data-day="2027-02-10"]')).not.toHaveClass(/red-day/);
 });
 
 test('詳情的問 AI：一顆按鈕，建議問題到聊天欄，不自動送出', async ({ page }) => {
@@ -1663,61 +1663,61 @@ test('加到某天（DayGrid12 多選）：已排寫「已排」不能點、已�
 
 // ---------- 第七輪 Task 3：拿掉重複的入口 ----------
 
-test('第七輪：地圖上沒有浮動列，日期列在右欄、放得下 12 天', async ({ page }) => {
+test('地圖上的日期晶片放得下 12 天，右欄沒有日期', async ({ page }) => {
   await ready(page);
-  await expect(page.locator('.map-column [data-testid="m-day-strip"]')).toHaveCount(0);
+  await expect(page.locator('.side-column [data-testid="m-day-strip"]')).toHaveCount(0);
   await expect(page.locator('.map-column [data-testid="account-menu"]')).toHaveCount(0);
   await expect(page.locator('.map-top')).toHaveCount(0);
-  await expect(page.locator('.side-column').getByTestId('m-day-all')).toBeInViewport({ ratio: 1 });
-  for (const d of ['2027-02-02', '2027-02-13']) await expect(page.locator('.side-column').getByTestId(`m-day-${d}`)).toBeInViewport({ ratio: 1 });
+  await expect(page.locator('.map-column').getByTestId('m-day-all')).toBeInViewport({ ratio: 1 });
+  for (const d of ['2027-02-02', '2027-02-13']) await expect(page.locator('.map-column').getByTestId(`m-day-${d}`)).toBeInViewport({ ratio: 1 });
 });
 
 test.describe('1440 寬', () => {
   test.use({ viewport: { width: 1440, height: 900 } });
-  test('第七輪：日期列放得下 12 天', async ({ page }) => {
+  test('日期晶片放得下 12 天', async ({ page }) => {
     await ready(page);
-    for (const d of ['2027-02-02', '2027-02-13']) await expect(page.locator('.side-column').getByTestId(`m-day-${d}`)).toBeInViewport({ ratio: 1 });
+    for (const d of ['2027-02-02', '2027-02-13']) await expect(page.locator('.map-column').getByTestId(`m-day-${d}`)).toBeInViewport({ ratio: 1 });
   });
 });
 
 // 1100～1279 是網頁版最窄的一段（iPad 橫拿，§1 平板；1024 以下改成手機版）
 test.describe('1100 寬', () => {
   test.use({ viewport: { width: 1100, height: 800 } });
-  test('第七輪：日期列在右欄、放得下 12 天', async ({ page }) => {
+  test('日期晶片在地圖上、放得下 12 天', async ({ page }) => {
     await ready(page);
-    for (const d of ['2027-02-02', '2027-02-13']) await expect(page.locator('.side-column').getByTestId(`m-day-${d}`)).toBeInViewport({ ratio: 1 });
+    for (const d of ['2027-02-02', '2027-02-13']) await expect(page.locator('.map-column').getByTestId(`m-day-${d}`)).toBeInViewport({ ratio: 1 });
     await expect(page.locator('.map-column [data-testid="toolbar-comments"]')).toHaveCount(0);
   });
 });
 
-test('第七輪：日期列只在行程分頁，點日期切到那天', async ({ page }) => {
+test('日期晶片只在行程分頁，點日期切到那天', async ({ page }) => {
   await ready(page);
   await page.getByTestId('side-tab-explore').click();
-  await expect(page.locator('.side-column').getByTestId('m-day-2027-02-05')).toHaveCount(0);
+  await expect(page.locator('.map-column').getByTestId('m-day-2027-02-05')).toHaveCount(0);
   await page.getByTestId('side-tab-day').click();
-  await page.locator('.side-column').getByTestId('m-day-2027-02-05').click();
-  await expect(page.locator('.side-column').getByTestId('m-day-2027-02-05')).toHaveAttribute('aria-selected', 'true');
-  await expect(page.locator('.side-column').getByTestId('m-day-2027-02-06')).toHaveClass(/red-day/);
-  await expect(page.locator('.side-column').getByTestId('m-day-all')).toHaveText('整趟');
+  await page.locator('.map-column').getByTestId('m-day-2027-02-05').click();
+  await expect(page.locator('.map-column').getByTestId('m-day-2027-02-05')).toHaveAttribute('aria-selected', 'true');
+  await expect(page.locator('.map-column').getByTestId('m-day-2027-02-06')).toHaveClass(/red-day/);
+  await expect(page.locator('.map-column').getByTestId('m-day-all')).toHaveText('整趟');
 });
 
-test('第八輪：右欄的日期是兩週月曆（整趟佔週日、週一，2/7 起第二列），格子 44px，有警告的那天有紅點', async ({ page }) => {
+test('地圖窄時日期晶片兩排（整趟佔兩排高，2/8 起第二排），格子 44px，有警告的那天有紅點', async ({ page }) => {
   await ready(page);
   await page.getByTestId('side-tab-day').click();
-  const side = page.locator('.side-column');
+  const side = page.locator('.map-column');
   const box = async (id: string) => (await side.getByTestId(id).boundingBox())!;
   const all = await box('m-day-all');
   const d2 = await box('m-day-2027-02-02');
-  const d6 = await box('m-day-2027-02-06');
   const d7 = await box('m-day-2027-02-07');
+  const d8 = await box('m-day-2027-02-08');
   const d13 = await box('m-day-2027-02-13');
-  // 第一列：整趟（兩格寬）、2/2～2/6；第二列：2/7（週日，最左）～2/13（週六，最右）
-  expect(Math.round(all.y)).toBe(Math.round(d2.y));
-  expect(Math.round(d6.y)).toBe(Math.round(d2.y));
-  expect(all.width).toBeGreaterThan(d2.width * 1.8);
-  expect(d7.y).toBeGreaterThan(d2.y + d2.height - 1);
-  expect(Math.round(d7.x)).toBe(Math.round(all.x));
-  expect(Math.round(d13.x + d13.width)).toBe(Math.round(d6.x + d6.width));
+  // 第一排 2/2～2/7、第二排 2/8～2/13；整趟在左邊，兩排高
+  expect(Math.round(d7.y)).toBe(Math.round(d2.y));
+  expect(d8.y).toBeGreaterThan(d2.y + d2.height - 1);
+  expect(Math.round(d8.x)).toBe(Math.round(d2.x));
+  expect(Math.round(d13.x + d13.width)).toBe(Math.round(d7.x + d7.width));
+  expect(all.height).toBeGreaterThan(d2.height * 1.8);
+  expect(all.x + all.width).toBeLessThanOrEqual(d2.x);
   expect(Math.round(d2.height)).toBe(44);
   // 不用橫捲
   expect(await side.getByTestId('m-day-strip').evaluate((el) => el.scrollWidth <= el.clientWidth)).toBe(true);
@@ -2228,7 +2228,7 @@ test('選整趟：地圖框住整趟', async ({ page }) => {
   await showDay(page, '2027-02-05');
   await waitIdle(page);
   const dayZoom = await page.evaluate(() => (window as any).__th.map.getZoom());
-  await page.locator('.side-column').getByTestId('m-day-all').click();
+  await page.locator('.map-column').getByTestId('m-day-all').click();
   await waitIdle(page);
   const zoom = await page.evaluate(() => (window as any).__th.map.getZoom());
   expect(zoom).toBeLessThan(dayZoom);

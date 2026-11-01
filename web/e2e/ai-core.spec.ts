@@ -18,7 +18,7 @@ test('找地點：地圖標出結果集，探索的篩選收起來', async ({ pa
   expect(await send(page, '鳥羽能坐 15 人的海鮮餐廳')).toEqual({ ok: true });
   const ids = await page.evaluate(() => (window as any).__th.appStore.getState().aiResult?.ids);
   expect(ids).toHaveLength(3);
-  await expect.poll(() => page.evaluate(() => (window as any).__th.map.getSource('overlay-highlights').serialize().data.features.length)).toBeGreaterThanOrEqual(3);
+  await expect(page.getByTestId('map-ai-drop')).toHaveCount(3);
 });
 
 test('提議：不在編輯中也能提議；地圖有提議列；採用 → 開始編輯？→ 行程更新', async ({ page }) => {

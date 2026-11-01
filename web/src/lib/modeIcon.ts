@@ -14,9 +14,8 @@ export interface ModeIconSpec {
   path: string;
 }
 
-/** 搭車的那條細線的顏色（所有交通方式同一個，不再一種方式一種顏色） */
-/** 交通卡展開的步驟裡，搭車那一行的外框、細線顏色：照交通方式各一色（資料沒有路線色，第八輪 §13.6 實作時 👤 決定） */
-export const RIDE_COLOR: Record<'train' | 'bus' | 'ferry', string> = { train: 'var(--indigo)', bus: 'var(--warn)', ferry: 'var(--teal)' };
+/** 搭車那一行的外框、細線：所有交通方式同一個灰色（§16.4），方式看圖示和名稱 */
+export const RIDE_COLOR: Record<'train' | 'bus' | 'ferry', string> = { train: 'var(--ink-2)', bus: 'var(--ink-2)', ferry: 'var(--ink-2)' };
 
 const spec = (icon: IconName): ModeIconSpec => ({ bg: 'var(--wash)', fg: 'var(--ink)', icon, path: ICON_PATHS[icon] });
 

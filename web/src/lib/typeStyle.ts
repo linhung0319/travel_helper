@@ -5,16 +5,16 @@ import type { IconName } from './icons.ts';
 export const TYPE_COLORS: Record<PlaceType, string> = {
   station: '#24468a',
   spot: '#5f8a3e',
-  lodging: '#c8604f',
-  restaurant: '#e3a92b',
+  lodging: '#7a5aa6',
+  restaurant: '#c9541f',
 };
 
-/** 類型色上的字色：芥子黃（餐廳）底上用墨色，其他白字 */
+/** 類型色上的字色：都是白字 */
 export const TYPE_INK: Record<PlaceType, string> = {
   station: '#ffffff',
   spot: '#ffffff',
   lodging: '#ffffff',
-  restaurant: '#1c2840',
+  restaurant: '#ffffff',
 };
 
 /** 類型圓章裡的字（§12.2；地圖的點、選中的水滴也用） */
@@ -33,7 +33,7 @@ export const TYPE_ICON_NAMES: Record<PlaceType, IconName> = {
   restaurant: 'fork',
 };
 
-/** 類型色當底、上面寫字的樣式（沒有照片的縮圖、類型色塊）：餐廳的字是墨色 */
+/** 類型色當底、上面寫字的樣式（沒有照片的縮圖、類型色塊） */
 export function typeSwatch(type: PlaceType): { background: string; color: string } {
   return { background: TYPE_COLORS[type], color: TYPE_INK[type] };
 }

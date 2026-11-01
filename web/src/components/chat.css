@@ -731,7 +731,7 @@ body.dragging-plan .chat-column.drop-over .chat-panel {
 }
 
 /* 有差異的天：虛線框（和地圖的虛線同一個意思） */
-.ui-cal-day.proposed {
+.map-day.proposed {
   outline: 1.5px dashed var(--indigo);
   outline-offset: -2px;
 }
@@ -822,6 +822,8 @@ body.dragging-plan .chat-column.drop-over .chat-panel {
 .ask-ai-button {
   display: flex;
   width: 100%;
+  /* 不貼著上面的 tag */
+  margin-top: 12px;
   align-items: center;
   justify-content: center;
   gap: 5px;

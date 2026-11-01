@@ -1,4 +1,4 @@
-import { useMemo, useState } from 'react';
+import { useMemo, useState, type SyntheticEvent } from 'react';
 import { photoCandidates } from '../lib/photos.ts';
 import { TYPE_ICON_NAMES, typeSwatch } from '../lib/typeStyle.ts';
 import { Icon } from './Icon.tsx';
@@ -14,6 +14,14 @@ interface Props {
   showName?: boolean;
   /** 只試 photos[index] 這一張（輪播的每一格），不往後換 */
   only?: boolean;
+}
+
+/** 載入過的照片的比例：卡片重新掛上時（照片牆展開的卡換位置）照片先佔好高度，不會縮成一條再撐開，看起來像收合又打開 */
+const RATIOS = new Map<string, number>();
+
+function remember(url: string, e: SyntheticEvent<HTMLImageElement>) {
+  const { naturalWidth: w, naturalHeight: h } = e.currentTarget;
+  if (w > 0 && h > 0) RATIOS.set(url, w / h);
 }
 
 /**
@@ -37,15 +45,19 @@ export function Photo({ place, index = 0, width = 800, className, showName, only
       </div>
     );
   }
+  const ratio = RATIOS.get(url);
   return (
     <img
       key={url}
       className={`photo ${className ?? ''}`}
       src={url}
       alt={place.name.zh || place.name.ja}
-      loading="lazy"
-      decoding="async"
+      // 看過的照片：同一格畫面就畫好，不留白一下
+      loading={ratio ? 'eager' : 'lazy'}
+      decoding={ratio ? 'sync' : 'async'}
+      style={ratio ? { aspectRatio: String(ratio) } : undefined}
       referrerPolicy="no-referrer"
+      onLoad={(e) => remember(url, e)}
       onError={() => setFailed((n) => n + 1)}
     />
   );

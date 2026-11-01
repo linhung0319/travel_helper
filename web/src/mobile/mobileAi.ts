@@ -180,7 +180,7 @@ export function seeOnMap(cardId: string) {
 export function seeOnTrip(cardId: string) {
   if (fail(ai.present(cardId))) return;
   anchor = cardId;
-  uiStore.setState({ proposalView: 'diff' });
+  uiStore.setState((s) => ({ proposalView: 'diff', proposalReveal: s.proposalReveal + 1 }));
   mobileStore.getState().setTab('trip');
   mobileStore.setState({ fromChat: true });
   afterLayout(() => fail(ai.present(cardId)));

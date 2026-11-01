@@ -9,6 +9,7 @@ import { watchKeyboard } from './lib/keyboard.ts';
 import { ChatPanel } from './components/ChatPanel.tsx';
 import { dropAiProps } from './components/askAi.ts';
 import { DetailFloat, SidePanel } from './components/SidePanel.tsx';
+import { MapDays } from './components/MapDays.tsx';
 import { MapPanel } from './components/MapPanel.tsx';
 import { TimetablePopup } from './components/TimetablePopup.tsx';
 import { closeMapPanel, uiStore } from './uiStore.ts';
@@ -32,6 +33,7 @@ function DesktopLayout() {
       </aside>
       <main className="map-column">
         <MapView />
+        <MapDays />
         <DetailFloat />
         <MapPanel />
         <TimetablePopup />

@@ -50,6 +50,19 @@ export function watchKeyboard(onChange: () => void): () => void {
   const baselines = new Map<number, number>();
   let wasOpen = false;
   let lastInset = 0;
+  let lastHeight = 0;
+  let revealTimer: number | undefined;
+
+  /** 鍵盤升起時輸入框要一直看得到：版面排好就捲，鍵盤動畫、瀏覽器自己的捲動都結束後再確認一次 */
+  const reveal = () => {
+    const show = () => {
+      const el = document.activeElement;
+      if (wasOpen && isTextField(el)) revealInScroller(el as HTMLElement);
+    };
+    requestAnimationFrame(show);
+    window.clearTimeout(revealTimer);
+    revealTimer = window.setTimeout(show, 350);
+  };
 
   const update = () => {
     const visualHeight = vv?.height ?? window.innerHeight;
@@ -61,12 +74,13 @@ export function watchKeyboard(onChange: () => void): () => void {
       root.style.setProperty('--kb', `${inset}px`);
       if (open) root.setAttribute('data-keyboard', '');
       else root.removeAttribute('data-keyboard');
-      const opening = open && !wasOpen;
       wasOpen = open;
       lastInset = inset;
       onChange();
-      if (opening && isTextField(document.activeElement)) requestAnimationFrame(() => revealInScroller(document.activeElement as HTMLElement));
     }
+    // 鍵盤是一段一段升上來的（每一段都會有 resize）：只在第一段捲的話，輸入框會被後面升上來的鍵盤蓋住
+    if (open && visualHeight !== lastHeight) reveal();
+    lastHeight = visualHeight;
     // iOS 聚焦時會把整頁往上推：版面已經讓開了，推回來
     if (open && (window.scrollY > 0 || (vv?.offsetTop ?? 0) > 0)) window.scrollTo(0, 0);
   };
@@ -86,6 +100,7 @@ export function watchKeyboard(onChange: () => void): () => void {
   document.addEventListener('focusout', onBlur);
   update();
   return () => {
+    window.clearTimeout(revealTimer);
     vv?.removeEventListener('resize', update);
     vv?.removeEventListener('scroll', update);
     window.removeEventListener('resize', update);

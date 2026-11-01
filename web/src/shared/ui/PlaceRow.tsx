@@ -140,12 +140,12 @@ export function PlaceRow({ place, status, extra, right, onOpen, testId, rank, ho
       <span className="pr-right">{right ?? <VoteHeart placeId={place.id} />}</span>
     </div>
   );
-  // 原地展開（網頁第八輪 §13.3）：列的下面接 below
-  if (!open || !below) return row;
+  // 原地展開（網頁第八輪 §13.3）：列的下面接 below。可以展開的列外面一直包一層，展開、收合時列不會重建（縮圖才不會閃）
+  if (below === undefined) return row;
   return (
-    <div className="pr-open">
+    <div className={open ? 'pr-open' : 'pr-closed'}>
       {row}
-      {below}
+      {open && below}
     </div>
   );
 }

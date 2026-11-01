@@ -10,7 +10,10 @@
 // 有備卡的卡片（重疊卡）疊著淡色卡、‹ n/m › 換著看；看備卡時預約 tag、警告跟著那張備卡，「⋯」的主要、拿出作用在那張備卡，其他動作作用在整張卡片。
 // 資料準備（項目、警告、編號、候選）在 useDayTimeline，手機版的行程（mobile/DaySheet.tsx）也用；時間條 DayBar 手機版用 compact（變矮）。
 
-import { Fragment, useCallback, useEffect, useMemo, useRef, useState, type PointerEvent as ReactPointerEvent, type ReactNode } from 'react';
+import { Fragment, useCallback, useEffect, useMemo, useRef, useState, type PointerEvent as ReactPointerEvent, type ReactNode, type RefObject } from 'react';
+import { useStore } from 'zustand';
+import { ai } from '../appAi.ts';
+import { scrollerOf } from '../shared/ui/PlaceOpen.tsx';
 import { fromMinutes, setStart, setStay, toMinutes, type DayPlan, type EngineWarning, type Gap, type TimelineEntry } from '@travel-helper/engine';
 import type { Itinerary, ItineraryDay, ItineraryItem, VisitItem } from '@travel-helper/engine/types';
 import { appStore } from '../store.ts';
@@ -609,6 +612,31 @@ export function useDayTimeline(date: string, source?: { itinerary: Itinerary; pl
   return { itDay, plan, status, error: error ?? null, ...derived, candidates };
 }
 
+/** 看提議的差異時，捲到第一張提議的卡（或被拿掉的卡）：提議剛出來、換一版、換天、按「在行程上看」「看這版」「看提議」都算；使用者之後自己捲就不再動（網頁、手機共用） */
+export function useRevealProposal(root: RefObject<HTMLElement | null>, day: string, on: boolean, plan: unknown) {
+  const seq = useUi((s) => s.proposalReveal);
+  const card = useStore(ai.proposals.store, (s) => s.active?.cardId ?? null);
+  const summary = useApp((s) => s.proposal?.summary ?? '');
+  const done = useRef('');
+  useEffect(() => {
+    if (!on) {
+      done.current = '';
+      return;
+    }
+    const key = `${seq}|${day}|${card ?? summary}`;
+    if (!plan || done.current === key) return;
+    const raf = requestAnimationFrame(() => {
+      const el = root.current?.querySelector<HTMLElement>('.tl-proposed, .tl-gone');
+      const scroller = el && scrollerOf(el);
+      if (!el || !scroller) return;
+      done.current = key;
+      const top = el.getBoundingClientRect().top - scroller.getBoundingClientRect().top + scroller.scrollTop - 12;
+      scroller.scrollTo({ top: Math.max(0, top), behavior: 'smooth' });
+    });
+    return () => cancelAnimationFrame(raf);
+  }, [root, on, plan, seq, day, card, summary]);
+}
+
 /** 看提議的差異：這天有變動、而且沒有切到「看原本」時，算好提議後的行程（§16.1，網頁、手機共用） */
 export function useProposalDay(day: string) {
   const proposal = useApp((s) => s.proposal);
@@ -779,7 +807,6 @@ export function DayBar({ plan, selected, compact = false }: { plan: DayPlan; sel
                 width: `${w}%`,
                 top,
                 height: h,
-                ...(s.kind === 'spot' || s.kind === 'restaurant' ? typeSwatch(s.kind) : {}),
               }}
               title={`${BAR_LABELS[s.kind]} ${s.from}–${s.to}`}
               aria-label={`${BAR_LABELS[s.kind]} ${s.from}–${s.to}`}
