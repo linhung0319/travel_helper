@@ -7,11 +7,9 @@ import type { DataSource } from './source.ts';
 import type { StationTimetable } from './types.ts';
 
 // 新增區域時（data/areas/<新區域>/）會自動被讀進來，不用改程式
-const placeModules = import.meta.glob<unknown>(['../../../data/areas/*/*.json', '../../../data/stations.json'], {
-  eager: true,
-  import: 'default',
-});
-const areasModule = import.meta.glob<unknown>('../../../data/areas.json', { eager: true, import: 'default' });
+// 不 eager：資料不進首屏的 JS，骨架畫面先出來（T32）
+const placeModules = import.meta.glob<unknown>(['../../../data/areas/*/*.json', '../../../data/stations.json'], { import: 'default' });
+const areasModule = import.meta.glob<unknown>('../../../data/areas.json', { import: 'default' });
 
 // 時刻表照車站拆開，不 eager：用到哪一站才載入那一站
 const timetableModules = import.meta.glob<unknown>(
@@ -42,10 +40,11 @@ function timetableLoader(stationId: string) {
 
 export const localSource: DataSource = {
   async loadAreas() {
-    return normalizeAreas(Object.values(areasModule)[0]);
+    return normalizeAreas(await Object.values(areasModule)[0]?.());
   },
   async loadPlaces() {
-    return Object.values(placeModules).flatMap(normalizePlaceList);
+    const docs = await Promise.all(Object.values(placeModules).map((load) => load()));
+    return docs.flatMap(normalizePlaceList);
   },
   async loadTimetable(stationId) {
     const load = timetableLoader(stationId);

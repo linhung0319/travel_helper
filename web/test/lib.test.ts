@@ -2,7 +2,7 @@ import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { normalizeAreas, normalizePlace } from '../src/data/normalize.ts';
 import { areasExtent, bboxGapMeters, groupAreas, initialExtent } from '../src/lib/areas.ts';
-import { photoCandidates, wikimediaThumb } from '../src/lib/photos.ts';
+import { photoCandidates, sizedUrl, underlayUrl, wikimediaThumb } from '../src/lib/photos.ts';
 import { departuresAround, terminusName } from '../src/lib/timetable.ts';
 import { dayLabel, hoursKeys, timetableDayType, tripDates } from '../src/lib/trip.ts';
 import { EMPTY_FILTER, filterChips, matchesFilter, matchesQuery } from '../src/lib/filter.ts';
@@ -99,6 +99,34 @@ test('Wikimedia 原圖改縮圖，原圖留在下一個候選；其他照片照�
     'https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/Toba_Aquarium.jpg/800px-Toba_Aquarium.jpg',
     orig,
   ]);
+});
+
+test('Google 照片換網址結尾的尺寸，兩種格式都可以；原圖留在下一個候選', () => {
+  const base = 'https://lh3.googleusercontent.com/grass-cs/AB';
+  assert.equal(sizedUrl(`${base}=w800`, 200), `${base}=w200`);
+  assert.equal(sizedUrl(`${base}=w408-h306-k-no`, 1600), `${base}=w1600`);
+  assert.equal(sizedUrl('https://example.com/a.jpg=w800', 200), null);
+  assert.deepEqual(photoCandidates([{ url: `${base}=w800` }], 500), [`${base}=w500`, `${base}=w800`]);
+});
+
+test('楽天主照片小尺寸用 HIMG，大尺寸用原圖；_kan 這類沒有縮圖', () => {
+  const main = 'https://img.travel.rakuten.co.jp/share/HOTEL/7563/7563.jpg';
+  assert.equal(sizedUrl(main, 200), 'https://img.travel.rakuten.co.jp/HIMG/200/7563.jpg');
+  assert.equal(sizedUrl(main, 500), 'https://img.travel.rakuten.co.jp/HIMG/300/7563.jpg');
+  assert.equal(sizedUrl(main, 1000), null);
+  assert.equal(sizedUrl('https://img.travel.rakuten.co.jp/share/HOTEL/7563/7563_kan.jpg', 200), null);
+  assert.deepEqual(photoCandidates([{ url: main }], 1000), [main]);
+});
+
+test('大圖底下墊的小圖：看過的優先；楽天原圖沒看過也墊；其他來源沒看過不多載', () => {
+  const main = 'https://img.travel.rakuten.co.jp/share/HOTEL/7563/7563.jpg';
+  const g = 'https://lh3.googleusercontent.com/grass-cs/AB=w800';
+  const none = () => false;
+  assert.equal(underlayUrl(main, 1000, none), 'https://img.travel.rakuten.co.jp/HIMG/300/7563.jpg');
+  assert.equal(underlayUrl(main, 500, none), null);
+  assert.equal(underlayUrl(g, 1000, none), null);
+  assert.equal(underlayUrl(g, 1000, (u) => u.endsWith('=w200')), 'https://lh3.googleusercontent.com/grass-cs/AB=w200');
+  assert.equal(underlayUrl('https://example.com/a.jpg', 1000, () => true), null);
 });
 
 test('旅程日期：12 天、星期、國定假日、時刻表的日別', () => {

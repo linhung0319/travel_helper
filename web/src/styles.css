@@ -328,6 +328,37 @@ a {
   background: var(--soft);
 }
 
+/* 照片還沒到（T32）：呼吸的底色，alt 文字藏起來 */
+.photo-loading {
+  color: transparent;
+  animation: sk-pulse 1.4s ease-in-out infinite;
+}
+
+/* 大圖還沒到時先墊著已經有的小圖（Photo.tsx 把小圖設成 background-image） */
+.photo-under {
+  color: transparent;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.pv-stage .photo-under {
+  background-size: contain;
+}
+
+@keyframes sk-pulse {
+  50% {
+    opacity: 0.55;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .photo-loading,
+  .sk {
+    animation: none;
+  }
+}
+
 .photo-fallback {
   display: flex;
   flex-direction: column;

@@ -62,7 +62,7 @@ T15、T16 接上 Worker 之前，`npm run dev` 用假後端（`src/backend/mock.
 - **車站面板**：車站的詳情裡有時刻表：選日期（自動判斷平日／土休日）和時間，顯示上下行前 2 班、後 4 班，附 Google Maps 路線和ジョルダン的連結。
 - **地圖指令（T12）**：UI 和之後 T16 的 AI 都透過 `src/commands.ts` 操作地圖（`focus`、`highlight`、`drawRoute`、`showResult`／`clearResult`、`clearHighlights`、`selectDay`、`setFilter`／`clearFilter`、`select`／`unselect`、`showProposal`／`clearProposal`、`getViewState`），說明在 architecture §2「地圖指令」。地圖上方會出現說明列：AI 的提議（虛線、半透明）、標示和路線（可以清掉）。
 - **路線**：步行、車沿道路走，在瀏覽器查公開的 OSRM（`routing.openstreetmap.de`），查過的存在 localStorage，查失敗的 10 分鐘內不重查；電車依序連車站；查不到畫直線。確定的行程線每一天都沿道路畫（選定那天優先，`src/itineraryRoutes.ts`，查到就讓 `routesVersion` 加一、地圖重畫）。時間用 engine 的預設速度算（`src/lib/routing.ts`）。
-- **資料檢查頁**：網址加 `?check` 是 v0 的檢查工具（座標、ID、來源的問題、各區筆數、bbox 框線），程式在 `src/v0/`，新增區域蒐集資料時用。
+- **資料檢查頁**：dev server 的網址加 `?check` 是 v0 的檢查工具（座標、ID、來源的問題、各區筆數、bbox 框線），程式在 `src/v0/`，新增區域蒐集資料時用。它會讀 `data/` 底下所有 JSON（含研究筆記），所以不進正式 build（T32）。
 
 ## 資料從哪裡來
 

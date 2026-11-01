@@ -66,7 +66,7 @@ export function PlaceTile({ place, status, onOpen, extra, testId, rank, hot, roo
     >
       <span className="pt-photo">
         {photoCandidates(place.photos).length ? (
-          <Photo place={place} width={500} />
+          <Photo place={place} width={open ? 1000 : 500} />
         ) : (
           <span className="pt-fallback" style={typeSwatch(place.type)} data-testid="m-thumb-fallback" aria-hidden>
             {cardTypeLetter(place.type)}

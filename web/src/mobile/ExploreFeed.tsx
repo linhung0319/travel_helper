@@ -5,7 +5,7 @@
 // 清單的計算和網頁版共用 shared/placeLists.ts（useExploreList），篩選用 mobileStore 的 feed，不看地圖範圍。探索不放「加到某天」。
 // 這個檔也留著手機其他頁用的 useVoteIndex、placeAreaLabel、FeedVotes。
 
-import { useEffect, useMemo, useRef, useState } from 'react';
+import { useDeferredValue, useMemo } from 'react';
 import { useShared } from '../hooks.ts';
 import { displayName } from '../data/normalize.ts';
 import { voteCounts } from '../sharedStore.ts';
@@ -22,6 +22,7 @@ import { commands } from '../appCommands.ts';
 import { FeedFilters } from './FeedFilters.tsx';
 import { askList } from './mobileAi.ts';
 import { mobileStore, useMobile } from './mobileStore.ts';
+import { useBatch } from '../shared/useBatch.ts';
 
 export interface VoteState {
   like: number;
@@ -60,7 +61,7 @@ export function FeedVotes({ placeId }: { placeId: string }) {
 const BATCH = 60;
 
 /** 已經畫了幾張：問完 AI 回來，捲動位置才接得上（§16.2） */
-let shownBefore = BATCH;
+const shownBefore = { current: BATCH };
 
 /** 點一張：整頁詳情 */
 const open = (id: string) => mobileStore.getState().openPlace(id, 'explore');
@@ -70,45 +71,21 @@ export function ExploreFeed() {
   const feed = useMobile((s) => s.feed);
   // 顯示方式（view）換了不用重算清單
   const filter = useMemo(() => feedFilter(feed), [feed.type, feed.area, feed.quick]); // eslint-disable-line react-hooks/exhaustive-deps
-  const { list: all } = useExploreList(filter, feed.query, feed.sort);
+  // 打字時輸入框先跟上，清單晚一點算（T32）
+  const listQuery = useDeferredValue(feed.query);
+  const { list: all } = useExploreList(filter, listQuery, feed.sort);
   // AI 挑的（規格 §3.1）：取交集、照 AI 的順序、卡片多一行理由
   const { aiResult, list, sortByAi, setSortByAi, aiProps } = useAiPicked(all, true);
   const fromChat = useMobile((s) => s.fromChat);
   const back = () => mobileStore.getState().returnToChat();
   const statusOf = useDayStatus();
   const ownsEmpty = useSuggestOwnsEmpty(feed.query);
-  const rootRef = useRef<HTMLDivElement>(null);
-  const moreRef = useRef<HTMLDivElement>(null);
-  const [shown, setShown] = useState(shownBefore);
-  useEffect(() => {
-    shownBefore = shown;
-  }, [shown]);
+  // 換了篩選、搜尋、排序：從第一批重新開始（按票不算，不然滑到下面按一下就縮回去）
+  const { shown, moreRef, hasMore } = useBatch({ total: list.length, batch: BATCH, resetOn: [filter, listQuery, feed.sort], scroller: '.m-page', memory: shownBefore });
   const shownList = useMemo(() => list.slice(0, shown), [list, shown]);
 
-  // 換了篩選、搜尋、排序：從第一批重新開始（按票不算，不然滑到下面按一下就縮回去）
-  const firstRun = useRef(true);
-  useEffect(() => {
-    if (firstRun.current) {
-      firstRun.current = false;
-      return;
-    }
-    setShown(BATCH);
-  }, [filter, feed.query, feed.sort]);
-
-  // 底部的標記快要進畫面時多畫一批
-  useEffect(() => {
-    const scroller = rootRef.current?.closest('.m-page');
-    const mark = moreRef.current;
-    if (!scroller || !mark) return;
-    const io = new IntersectionObserver((entries) => {
-      if (entries.some((e) => e.isIntersecting)) setShown((n) => n + BATCH);
-    }, { root: scroller, rootMargin: '800px 0px' });
-    io.observe(mark);
-    return () => io.disconnect();
-  }, [shown, list.length]);
-
   return (
-    <div className="m-feed" ref={rootRef} data-testid="m-feed">
+    <div className="m-feed" data-testid="m-feed">
       <FeedFilters
         count={list.length}
         extra={{
@@ -134,7 +111,7 @@ export function ExploreFeed() {
           />
         </div>
       )}
-      {shown < list.length && <div ref={moreRef} className="m-feed-next" aria-hidden />}
+      {hasMore && <div ref={moreRef} className="m-feed-next" aria-hidden />}
       {list.length === 0 && aiResult && (
         <div className="m-empty" data-testid="ai-result-empty">
           <p className="muted">AI 挑的 {aiResult.ids.length} 家沒有符合這些篩選的。</p>

@@ -72,12 +72,12 @@ function PhotoCarousel({ place, desktop, onOpen }: { place: Place; desktop: bool
         {usable ? (
           place.photos.map((ph, i) => (
             <button key={ph.url} type="button" className="pd-slide" aria-label={`放大第 ${i + 1} 張照片`} data-testid="detail-photo" onClick={() => onOpen(i)}>
-              <Photo place={place} index={i} only showName />
+              <Photo place={place} index={i} only width={1000} showName />
             </button>
           ))
         ) : (
           <figure className="pd-slide pd-slide-empty">
-            <Photo place={place} showName />
+            <Photo place={place} width={1000} showName />
           </figure>
         )}
       </div>
