@@ -71,7 +71,7 @@ function addTokens(f: Filter, tokens: string[]): Filter {
   for (const t of tokens) {
     const i = t.indexOf(':');
     const key = t.slice(0, i);
-    if (i <= 0 || key === 'types' || key === 'areas' || !(key in EMPTY_FILTER)) continue;
+    if (i <= 0 || !(key in EMPTY_FILTER)) continue;
     lists[key] = [...lists[key], t.slice(i + 1)];
   }
   return f;
@@ -80,6 +80,18 @@ function addTokens(f: Filter, tokens: string[]): Filter {
 /** 手機探索的篩選換成 Filter（explorePlaces 用）；認不得的條件略過 */
 export function feedFilter(feed: Pick<Feed, 'type' | 'area' | 'quick'>): Filter {
   return addTokens({ ...EMPTY_FILTER, types: feed.type === 'all' ? [] : [feed.type], areas: feed.area ? [feed.area] : [] }, feed.quick);
+}
+
+/** Filter 換成手機探索的 feed（AI 的 set_filter，規格 §4.2）：類型、地區只有一個時放 type、area（手機的晶片），一次多個才放進 quick */
+export function filterToFeed(filter: Filter): Pick<Feed, 'type' | 'area' | 'quick'> {
+  const one = filter.types.length === 1;
+  const oneArea = filter.areas.length <= 1;
+  const quick: string[] = [];
+  for (const [key, values] of Object.entries(filter)) {
+    if ((key === 'types' && one) || (key === 'areas' && oneArea)) continue;
+    for (const v of values as string[]) quick.push(feedToken(key as FilterKey, v));
+  }
+  return { type: one ? (filter.types[0] as Feed['type']) : 'all', area: oneArea ? (filter.areas[0] ?? null) : null, quick };
 }
 
 /** 想去的篩選：一次一類，加上地區和面板選的條件 */

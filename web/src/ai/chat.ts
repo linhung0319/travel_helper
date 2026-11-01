@@ -7,7 +7,7 @@ import type { Filter } from '../lib/filter.ts';
 import type { ReservationStatus } from '../backend/types.ts';
 import { createProposals, type ProposalDeps, type Proposals } from './proposals.ts';
 import { buildTurnContext } from './context.ts';
-import { promptsFor } from './prompts.ts';
+import { promptsForAll } from './prompts.ts';
 import { SYSTEM_PROMPT } from './systemPrompt.ts';
 import { createReadTools } from './readTools.ts';
 import { createTools, type Presentation, type ToolDef } from './tools.ts';
@@ -38,6 +38,8 @@ export interface ChatState {
   suggestions: string[];
   /** 上次送出之後使用者對卡片的決定，下一次送出帶給 AI */
   decisions: TurnContext['decisions'];
+  /** 輸入框裡還沒送出的字：放在這裡，轉向換版面才不會不見；重新整理不保留（規格 §11） */
+  draftText: string;
 }
 
 export type ChatResult = { ok: true } | { ok: false; error: string };
@@ -67,6 +69,9 @@ export interface Chat {
   ask(contexts: ChatContext[]): Promise<void>;
   removeContext(index: number): void;
   setScreenOff(off: boolean): void;
+  setDraftText(text: string): void;
+  /** 這份操作會新出現的警告（提議卡顯示）；算不出來是空的 */
+  newWarnings(ops: Op[]): string[];
   /** 這段對話還能不能問 */
   isFull(): boolean;
   /** 最後一輪沒有回完時回傳它的 ID */
@@ -88,7 +93,7 @@ const sameContext = (a: ChatContext, b: ChatContext) => {
   return true;
 };
 
-const INITIAL: ChatState = { conversations: [], currentId: null, messages: [], status: 'idle', streamingText: '', error: null, contexts: [], screenOff: false, suggestions: [], decisions: [] };
+const INITIAL: ChatState = { conversations: [], currentId: null, messages: [], status: 'idle', streamingText: '', error: null, contexts: [], screenOff: false, suggestions: [], decisions: [], draftText: '' };
 
 export function createChat(d: CreateChatDeps): Chat {
   const store = createStore<ChatState>()(() => INITIAL);
@@ -128,7 +133,13 @@ export function createChat(d: CreateChatDeps): Chat {
       },
     },
   ];
-  const proposals = createProposals({ ...d, onCardChange: (id, status) => void setCard(id, { status }) });
+  const proposals = createProposals({
+    ...d,
+    onCardChange: (id, status) => {
+      void setCard(id, { status });
+      if (status === 'stale') d.stage.proposalStale();
+    },
+  });
   let abort: AbortController | null = null;
   let openTurn: string | null = null;
   // 卡片處理中：連按兩次不會做兩次
@@ -341,7 +352,7 @@ export function createChat(d: CreateChatDeps): Chat {
     stop();
     // 提議卡還在，畫面上清掉（規格 §11）
     proposals.hide();
-    store.setState({ currentId: id, messages: id ? await d.repo.loadMessages(id) : [], contexts: [], suggestions: [], error: null, decisions: [] });
+    store.setState({ currentId: id, messages: id ? await d.repo.loadMessages(id) : [], contexts: [], suggestions: [], error: null, decisions: [], draftText: '' });
   }
 
   async function startTurn(text: string, chips: ChatContext[]): Promise<ChatResult> {
@@ -457,10 +468,13 @@ export function createChat(d: CreateChatDeps): Chat {
       const fresh = contexts.filter((c) => !s.contexts.some((x) => sameContext(x, c)));
       const last = contexts.at(-1);
       const place = last?.kind === 'place' ? d.data.getState().byId.get(last.id) : undefined;
-      store.setState({ contexts: [...s.contexts, ...fresh], screenOff: false, suggestions: last ? promptsFor(last, place) : [] });
+      const merged = [...s.contexts, ...fresh];
+      store.setState({ contexts: merged, screenOff: false, suggestions: promptsForAll(merged, last, place) });
     },
     removeContext: (index) => store.setState((s) => ({ contexts: s.contexts.filter((_, i) => i !== index) })),
     setScreenOff: (screenOff) => store.setState({ screenOff }),
+    setDraftText: (draftText) => store.setState({ draftText }),
+    newWarnings: (ops) => read.proposalWarnings(ops),
     isFull,
     incomplete: () => incompleteTurn(store.getState().messages, openTurn),
     async confirmCard(toolUseId, opts = {}) {
@@ -483,6 +497,7 @@ export function createChat(d: CreateChatDeps): Chat {
           // 其他版是從舊的行程算的，再套一次會重複（規格 §3.3）
           for (const b of proposalBlocks()) if (b.id !== toolUseId && cardStatus(b.id) !== 'confirmed') await setCard(b.id, { status: 'closed' });
           decide(block, 'confirmed');
+          d.stage.afterAdopt();
           return { ok: true };
         }
         const r = await runCard(block, opts.text);

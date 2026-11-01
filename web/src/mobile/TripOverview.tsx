@@ -8,6 +8,10 @@ import { dayPlanOf } from '../planStore.ts';
 import { stopsOn } from '../lib/itinerary.ts';
 import { isRedDay, shortDayLabel, tripDates, weekdayZh } from '../lib/trip.ts';
 import type { Place } from '../data/types.ts';
+import { Button } from '../shared/ui/Button.tsx';
+import { describeChanges } from '../lib/overlays.ts';
+import { useApp } from '../hooks.ts';
+import { askTrip } from './mobileAi.ts';
 import { Thumb } from './Thumb.tsx';
 
 const DATES = tripDates();
@@ -19,7 +23,16 @@ export function TripOverview() {
   const byId = useData((s) => s.byId);
   const areas = useData((s) => s.areas);
   const plan = usePlan((s) => s.plan);
+  const proposal = useApp((s) => s.proposal);
+  // 有提議時那幾天變色、列出變動（§16.1）
+  const changes = new Map(proposal ? describeChanges(proposal.changes, (id) => nameOf(byId.get(id)) || id).map((l) => [l.date, l.text.split('：').slice(1).join('：')]) : []);
   return (
+    <>
+    <div className="m-overview-ask">
+      <Button kind="secondary" size="sm" icon="spark" onClick={askTrip} data-testid="trip-ask-ai">
+        問 AI 整趟
+      </Button>
+    </div>
     <ol className="m-overview" data-testid="m-overview">
       {DATES.map((d) => {
         const stops = stopsOn(itinerary, d)
@@ -34,7 +47,7 @@ export function TripOverview() {
         const thumbs = stops.filter((p) => p.type === 'spot' || p.type === 'restaurant').slice(0, 2);
         return (
           <li key={d}>
-            <button type="button" className="m-overview-day" onClick={() => commands.selectDay(d)} data-testid="m-overview-day" data-date={d}>
+            <button type="button" className={`m-overview-day ${changes.has(d) ? 'proposed' : ''}`} onClick={() => commands.selectDay(d)} data-testid="m-overview-day" data-date={d}>
               <span className={`m-ov-date ${isRedDay(d) ? 'red-day' : ''}`}>
                 <b>{shortDayLabel(d)}</b>
                 <small>{weekdayZh(d)}</small>
@@ -44,6 +57,7 @@ export function TripOverview() {
                 <span className="m-ov-sub m-ellipsis">
                   {[`${stops.length} 個點`, warn > 0 && `提醒 ${warn}`, lodging && `住 ${nameOf(lodging)}`].filter(Boolean).join('・')}
                 </span>
+                {changes.has(d) && <span className="overview-change">{changes.get(d)}</span>}
               </span>
               <span className="m-ov-thumbs">
                 {thumbs.map((p) => (
@@ -55,5 +69,6 @@ export function TripOverview() {
         );
       })}
     </ol>
+    </>
   );
 }

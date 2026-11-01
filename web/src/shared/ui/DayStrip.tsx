@@ -8,9 +8,12 @@ import { useApp } from '../../hooks.ts';
 import { isRedDay, shortDayLabel, tripDates, weekdayZh } from '../../lib/trip.ts';
 
 const DATES = tripDates();
+const NO_DATES: string[] = [];
 
 export function DayStrip() {
   const day = useApp((s) => s.day);
+  // 提議有差異的天：虛線框（和地圖的虛線同一個意思，§16.1）
+  const proposed = useApp((s) => s.proposal?.dates ?? NO_DATES);
   const ref = useRef<HTMLDivElement>(null);
 
   // 選到的那格捲進畫面（只捲這一列，不動外面）
@@ -35,7 +38,7 @@ export function DayStrip() {
           key={d}
           type="button"
           role="tab"
-          className={`ui-day ${isRedDay(d) ? 'red-day' : ''}`}
+          className={`ui-day ${isRedDay(d) ? 'red-day' : ''} ${proposed.includes(d) ? 'proposed' : ''}`}
           aria-current={day === d ? 'true' : undefined}
           aria-selected={day === d}
           onClick={() => commands.selectDay(d)}

@@ -129,8 +129,6 @@ export interface AppState {
   detailTab: DetailTabId | null;
   /** 電腦版點了地圖上的點、從詳情返回：探索清單捲到那張卡片（seq 讓同一個點再點一次也會捲）；不改篩選 */
   exploreTarget: { id: string; seq: number } | null;
-  /** 「問 AI」選取的點（interaction-design §5；T12、T16 接上） */
-  selection: string[];
   /** 車站面板的指定時間；null＝預設 */
   stationTime: string | null;
   camera: CameraRequest | null;
@@ -170,11 +168,8 @@ export interface AppActions {
   /** 彈窗的「‹」：回到上一個 */
   detailBack(): void;
   revealInExplore(id: string): void;
-  addToSelection(id: string): void;
-  removeFromSelection(id: string): void;
   setStationTime(time: string | null): void;
   moveCamera(req: Omit<CameraRequest, 'seq'>): void;
-  setSelection(ids: string[]): void;
   setHighlight(style: HighlightStyle, ids: string[]): void;
   /** 回傳新路線的 ID */
   addRoute(route: Omit<MapRoute, 'id'>): string;
@@ -210,7 +205,6 @@ export const initialState: AppState = {
   detailHistory: [],
   detailTab: null,
   exploreTarget: null,
-  selection: [],
   stationTime: null,
   camera: null,
   highlights: {},
@@ -281,11 +275,8 @@ export function createAppStore(init: Partial<AppState> = {}) {
         return { detailId: prev, detailHistory: s.detailHistory.slice(0, -1), detailTab: null, selectedId: prev, selectSeq: s.selectSeq + 1 };
       }),
     revealInExplore: (id) => set((s) => ({ exploreTarget: { id, seq: (s.exploreTarget?.seq ?? 0) + 1 } })),
-    addToSelection: (id) => set((s) => (s.selection.includes(id) ? s : { selection: [...s.selection, id] })),
-    removeFromSelection: (id) => set((s) => ({ selection: s.selection.filter((x) => x !== id) })),
     setStationTime: (stationTime) => set({ stationTime }),
     moveCamera: (req) => set((s) => ({ camera: { ...req, seq: (s.camera?.seq ?? 0) + 1 } })),
-    setSelection: (ids) => set({ selection: [...new Set(ids)] }),
     setHighlight: (style, ids) =>
       set((s) => {
         const highlights = { ...s.highlights };

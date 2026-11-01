@@ -160,8 +160,17 @@ a {
 .layout {
   display: flex;
   height: 100%;
-  /* LINE 內建瀏覽器、iOS Safari 的網址列：用 dvh 才不會被蓋住 */
-  height: 100dvh;
+  /* LINE 內建瀏覽器、iOS Safari 的網址列：用 dvh 才不會被蓋住；--kb 是螢幕鍵盤蓋住的高度（lib/keyboard.ts，§16.3） */
+  height: calc(100dvh - var(--kb, 0px));
+}
+
+/* 觸控裝置的輸入框一律 16px：小於 16px 時 iOS 聚焦會放大畫面（§16.3） */
+@media (pointer: coarse) {
+  input:not([type='checkbox']):not([type='radio']),
+  textarea,
+  select {
+    font-size: 16px !important;
+  }
 }
 
 .map-wrap {
@@ -270,7 +279,6 @@ a {
 
 .icon-button,
 .place-chip-x,
-.ask-ai-send,
 .map-panel-head .text-button,
 .timetable-pop .text-button,
 [data-testid='edit-hint-close'] {
@@ -544,15 +552,6 @@ a {
   padding: 16px;
   border: 1px dashed var(--line);
   border-radius: var(--radius);
-}
-
-/* 聊天欄「問 AI」選取的點 */
-.selection-chips {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 4px;
-  align-items: center;
-  min-width: 0;
 }
 
 .day-panel {
@@ -1026,7 +1025,7 @@ dl {
 
 .dialog-backdrop {
   position: fixed;
-  inset: 0;
+  inset: 0 0 var(--kb, 0px);
   background: var(--dim);
   z-index: 100;
   display: flex;
@@ -1037,7 +1036,7 @@ dl {
 .dialog {
   background: var(--bg);
   width: 100%;
-  max-height: 88dvh;
+  max-height: 88%;
   border-radius: var(--radius) var(--radius) 0 0;
   box-shadow: var(--shadow);
   display: flex;
@@ -1070,8 +1069,14 @@ dl {
 }
 
 .dialog-body {
+  flex: 1;
+  min-height: 0;
   overflow-y: auto;
   padding: 4px 16px 12px;
+}
+
+.dialog-body textarea {
+  width: 100%;
 }
 
 .dialog-foot {
@@ -3916,65 +3921,6 @@ button.cand-up:disabled {
 }
 
 /* ---------- 詳情的「問 AI」（電腦、手機共用） ---------- */
-
-.ask-ai-box {
-  margin-top: 12px;
-  padding: 10px 12px;
-  background: var(--indigo-wash);
-  border: 1px solid var(--indigo-line);
-  border-radius: var(--radius);
-}
-
-.ask-ai-title {
-  margin: 0 0 8px;
-  font-size: 14px;
-}
-
-.ask-ai-prompts {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 6px;
-}
-
-.ask-ai-prompt {
-  border: 1px solid var(--indigo-line);
-  background: var(--paper);
-  border-radius: 999px;
-  padding: 6px 12px;
-  font: inherit;
-  font-size: 13px;
-  cursor: pointer;
-}
-
-.ask-ai-form {
-  display: flex;
-  gap: 6px;
-  margin-top: 8px;
-}
-
-.ask-ai-input {
-  flex: 1;
-  min-width: 0;
-  min-height: 36px;
-  border: 1px solid var(--indigo-line);
-  border-radius: var(--radius);
-  padding: 0 10px;
-  font: inherit;
-}
-
-.ask-ai-send {
-  min-width: 36px;
-  border: 0;
-  border-radius: var(--radius);
-  background: var(--indigo);
-  color: var(--paper);
-  cursor: pointer;
-}
-
-.ask-ai-send:disabled {
-  opacity: 0.4;
-  cursor: default;
-}
 
 .account-button svg {
   transform: rotate(90deg);

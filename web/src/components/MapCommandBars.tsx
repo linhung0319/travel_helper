@@ -1,43 +1,13 @@
-// 地圖指令（T12）在地圖上方的說明列：AI 的提議、標示和路線。
+// 地圖指令（T12）在地圖上方的說明列：AI 的標示和路線。
 // 使用者看得出 AI 對地圖做了什麼，也能自己清掉（interaction-design §0「AI 用的條件要看得到」）。
 // 「清掉」只看 AI 的 highlights、routes；時間軸點開的交通（legRoute）、選中的點不算（第七輪 §8.1）。
 
 import { commands } from '../appCommands.ts';
-import { useApp, useData, useIsDesktop } from '../hooks.ts';
-import { describeChanges } from '../lib/overlays.ts';
+import { useApp, useIsDesktop } from '../hooks.ts';
 import { Icon } from './Icon.tsx';
 
-/** 手機版的提議列（T16m-c 換掉）；網頁版在右欄（ProposalStrip） */
-function ProposalBar() {
-  const proposal = useApp((s) => s.proposal);
-  const byId = useData((s) => s.byId);
-  if (!proposal) return null;
-  const name = (id: string) => {
-    const p = byId.get(id);
-    return p ? p.name.zh || p.name.ja : id;
-  };
-  const lines = describeChanges(proposal.changes, name);
-  return (
-    <div className="command-bar proposal-bar" data-testid="proposal-bar" role="status">
-      <div className="command-bar-head">
-        <strong>AI 的提議（虛線）</strong>
-        <button type="button" className="link-button" onClick={() => commands.clearProposal()}>
-          不看提議 <Icon name="close" size={16} />
-        </button>
-      </div>
-      {proposal.summary && <p className="small">{proposal.summary}</p>}
-      {lines.map((l) => (
-        <p key={l.date} className="small">
-          {l.text}
-        </p>
-      ))}
-      {/* 採用、修改由 T15／T16 接上（用 engine 的操作寫進行程，先存快照） */}
-    </div>
-  );
-}
-
 /** AI 有標示或路線時，給一個清掉的按鈕 */
-function MarksBar() {
+export function MarksBar() {
   const highlights = useApp((s) => s.highlights);
   const routes = useApp((s) => s.routes);
   const marked = Object.values(highlights).reduce((n, ids) => n + (ids?.length ?? 0), 0);
@@ -56,11 +26,12 @@ function MarksBar() {
   );
 }
 
+/** 網頁版的地圖上；手機的在 mobile/MapAiBar.tsx */
 export function MapCommandBars() {
   const desktop = useIsDesktop();
+  if (!desktop) return null;
   return (
     <div className="command-bars">
-      {!desktop && <ProposalBar />}
       <MarksBar />
     </div>
   );

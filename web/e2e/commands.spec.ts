@@ -192,12 +192,10 @@ test('AI 的提議：切到那天、虛線和摘要；不看提議就清掉；�
 test('畫面狀態讀得出來（給 AI 的脈絡）', async ({ page }) => {
   await ready(page);
   await run(page, 'selectDay', DAY);
-  await run(page, 'select', ['toba-aquarium']);
   await waitIdle(page);
   const v = await run(page, 'getViewState');
   expect(v.day).toBe(DAY);
   expect(v.view.bounds).toHaveLength(4);
   expect(v.visibleCount).toBeGreaterThan(0);
   expect(v.dayStops.map((s: any) => s.place)).toContain('toba-aquarium');
-  expect(v.selection[0]).toMatchObject({ id: 'toba-aquarium', type: 'spot' });
 });

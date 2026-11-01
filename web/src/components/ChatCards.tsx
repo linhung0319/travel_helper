@@ -16,7 +16,7 @@ const run = async (r: Promise<{ ok: true } | { ok: false; error: string }>) => {
   if (!x.ok && x.error !== '取消了') shared.notifyError(x.error);
 };
 
-function present(id: string) {
+export function present(id: string) {
   const r = ai.present(id);
   if (!r.ok) shared.notifyError(r.error);
 }

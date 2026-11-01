@@ -31,6 +31,7 @@ const listeners: (() => void)[] = [];
 
 const { mobileStore, setMobileActive, snapForTimetable } = await import('../src/mobile/mobileStore.ts');
 const { uiStore, openTimetable, closeTimetable } = await import('../src/uiStore.ts');
+const { appStore } = await import('../src/store.ts');
 
 /** 等非同步的 history.back() 跑完 */
 const settle = () => new Promise((r) => setTimeout(r, 20));
@@ -129,6 +130,98 @@ test('詳情換成討論頁：只佔一筆 history，上一頁一次就回到分
   assert.equal(mobileStore.getState().page, null);
   assert.equal(mobileStore.getState().detail, null);
   assert.equal(index, before);
+});
+
+test('返回鍵一次關一層：詳情 → 半屏（手機版掛著時）', async () => {
+  const before = index;
+  setMobileActive(true);
+  mobileStore.getState().openChatSheet();
+  await settle();
+  assert.equal(index, before + 1);
+  mobileStore.getState().openPlace('a', 'trip');
+  assert.equal(index, before + 2);
+  window.history.back();
+  await settle();
+  assert.equal(mobileStore.getState().detail, null);
+  assert.equal(mobileStore.getState().chatSheet, true);
+  window.history.back();
+  await settle();
+  assert.equal(mobileStore.getState().chatSheet, false);
+  assert.equal(index, before);
+  setMobileActive(false);
+  await settle();
+});
+
+test('對話清單也佔一筆；按 ✕ 關半屏把筆數退回去', async () => {
+  const before = index;
+  setMobileActive(true);
+  const s = mobileStore.getState();
+  s.openChatSheet();
+  s.setChatOverlay('list');
+  await settle();
+  assert.equal(index, before + 2);
+  window.history.back();
+  await settle();
+  assert.equal(mobileStore.getState().chatOverlay, null);
+  assert.equal(mobileStore.getState().chatSheet, true);
+  mobileStore.getState().closeChatSheet();
+  await settle();
+  assert.equal(index, before);
+  setMobileActive(false);
+  await settle();
+});
+
+test('從聊天跳來的：返回鍵回聊天（行程頁開半屏，探索回 AI 分頁）', async () => {
+  setMobileActive(true);
+  mobileStore.getState().setTab('explore');
+  mobileStore.setState({ fromChat: true });
+  await settle();
+  window.history.back();
+  await settle();
+  assert.equal(mobileStore.getState().tab, 'ai');
+  assert.equal(mobileStore.getState().fromChat, false);
+  mobileStore.getState().setTab('trip');
+  mobileStore.setState({ fromChat: true });
+  await settle();
+  window.history.back();
+  await settle();
+  assert.equal(mobileStore.getState().tab, 'trip');
+  assert.equal(mobileStore.getState().chatSheet, true);
+  mobileStore.getState().closeChatSheet();
+  await settle();
+  setMobileActive(false);
+  await settle();
+});
+
+test('拉滿、關掉半屏、換分頁都不動提議；換分頁記下最後看的內容分頁', () => {
+  appStore.setState({ proposal: { itinerary: {}, dates: [], changes: [], summary: '' } as never });
+  const s = mobileStore.getState();
+  s.openChatSheet();
+  s.setChatFull(true);
+  s.closeChatSheet();
+  assert.equal(mobileStore.getState().chatFull, false);
+  s.setTab('wish');
+  s.setTab('ai');
+  assert.equal(mobileStore.getState().lastTab, 'wish');
+  assert.notEqual(appStore.getState().proposal, null);
+  appStore.setState({ proposal: null });
+  s.setTab('trip');
+});
+
+test('結果集出現：探索的篩選收起來；清掉時還原', () => {
+  const m = mobileStore.getState();
+  m.setFeed({ type: 'restaurant', area: 'toba', query: '海' });
+  appStore.getState().setAiResult({ title: 't', ids: ['a'], notes: {}, lettered: false });
+  assert.equal(mobileStore.getState().feed.type, 'all');
+  assert.equal(mobileStore.getState().feed.query, '');
+  // 再給一組：還是最早收起來的那份
+  appStore.getState().setAiResult({ title: 't2', ids: ['b'], notes: {}, lettered: false });
+  m.setFeed({ query: '再搜尋' });
+  appStore.getState().setAiResult(null);
+  assert.equal(mobileStore.getState().feed.type, 'restaurant');
+  assert.equal(mobileStore.getState().feed.area, 'toba');
+  assert.equal(mobileStore.getState().feed.query, '海');
+  m.setFeed({ type: 'all', area: null, query: '' });
 });
 
 test('focusItem 不改面板高度', () => {

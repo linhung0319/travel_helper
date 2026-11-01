@@ -59,7 +59,7 @@ function emojiInJsx(): string[] {
       const p = join(dir, e.name);
       const rel = relative(root, p).split(sep).join('/');
       if (e.isDirectory()) { if (!rel.startsWith('dev-fixtures') && !rel.startsWith('v0')) walk(p); continue; }
-      if (!/\.(ts|tsx)$/.test(e.name) || rel === 'mobile/chatDemo.ts') continue;
+      if (!/\.(ts|tsx)$/.test(e.name)) continue;
       if (!/^(components|mobile|shared|lib)\//.test(rel)) continue;
       const text = readFileSync(p, 'utf8').replace(/\/\*[\s\S]*?\*\//g, (m) => m.replace(/[^\n]/g, ' '));
       text.split(/\r?\n/).forEach((line, i) => {

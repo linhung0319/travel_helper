@@ -1,4 +1,4 @@
-// 提議列（interaction-design §16.1）：右欄分頁下面，切到探索、想去也看得到。採用、不要只在這裡，按的時候一定正看著差異。
+// 提議列（interaction-design §16.1、§16.2）：網頁在右欄分頁下面，切到探索、想去也看得到，採用、不要只在這裡。手機在行程面板頂端（onTrip），聊天的提議卡另外有一組，半屏會蓋住這裡，同時只看得到一組。
 // 沒有提議卡的提議（showProposal 指令，不是 AI 這一輪給的）只有「不看提議」。
 
 import { useMemo } from 'react';
@@ -12,7 +12,7 @@ import { uiStore } from '../uiStore.ts';
 import { describeChanges } from '../lib/overlays.ts';
 import { Icon } from './Icon.tsx';
 
-export function ProposalStrip() {
+export function ProposalStrip({ onTrip: onTripProp }: { onTrip?: boolean } = {}) {
   const proposal = useApp((s) => s.proposal);
   const mode = useApp((s) => s.mode);
   const active = useStore(ai.proposals.store, (s) => s.active);
@@ -27,7 +27,7 @@ export function ProposalStrip() {
     return describeChanges(proposal.changes, name).map((l) => l.text);
   }, [proposal, byId]);
   if (!proposal) return null;
-  const onTrip = mode === 'map';
+  const onTrip = onTripProp ?? mode === 'map';
   const days = proposal.dates.length;
   const adopt = async () => {
     if (!active) return;

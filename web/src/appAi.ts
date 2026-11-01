@@ -75,6 +75,10 @@ export const ai = createChat({
       openPlace: (id) => surface.openPlace(id),
       screenKey: () => surface.screenKey(),
       screenName: () => surface.screenName(),
+      filterApplied: (patch, clear) => surface.filterApplied(patch, clear),
+      screenFilter: () => surface.screenFilter(),
+      afterAdopt: () => surface.afterAdopt(),
+      proposalStale: () => surface.proposalStale(),
     },
     startAddPlace: (init) => addPlaceStore.getState().start(init),
   }),
@@ -95,6 +99,14 @@ async function boot() {
     fakeSettings = fake.settings;
   }
   await ai.init();
+}
+
+/** 看提議還是看原本（§16.1、§16.2，兩邊一樣）：按了「編輯」回到真的時間軸才改得到；新的提議出現時看差異 */
+export function watchProposalView(): () => void {
+  return appStore.subscribe((s, prev) => {
+    if (s.planning && !prev.planning && s.proposal) uiStore.setState({ proposalView: 'original' });
+    if (s.proposal && !prev.proposal) uiStore.setState({ proposalView: s.planning ? 'original' : 'diff' });
+  });
 }
 
 /** 平台不接手時（版面換掉）回到預設 */

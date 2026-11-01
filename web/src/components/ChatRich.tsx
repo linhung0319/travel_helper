@@ -1,7 +1,7 @@
 // 回覆的文字（規格 §5）：地點標籤、粗體、條列、連結；解析在 ai/transcript.ts 的 parseRich，這裡不放 HTML。
 // 地點標籤（§4）：滑鼠移過去地圖上的點閃，點了開詳情彈窗。
 
-import { Fragment } from 'react';
+import { createContext, Fragment, useContext } from 'react';
 import { appStore } from '../store.ts';
 import { useData } from '../hooks.ts';
 import { cardTypeLetter } from '../lib/planView.ts';
@@ -23,7 +23,11 @@ export function TypeStamp({ type }: { type: Place['type'] | undefined }) {
   ) : null;
 }
 
+/** 地點標籤按了做什麼：沒給是網頁的做法（開詳情彈窗）；手機見 mobile/ChatView */
+export const PlaceTagAction = createContext<((id: string) => void) | null>(null);
+
 export function PlaceTag({ id }: { id: string }) {
+  const action = useContext(PlaceTagAction);
   const p = useData((s) => s.byId.get(id));
   const name = usePlaceName(id);
   if (!p) return <span>{name}</span>;
@@ -35,7 +39,7 @@ export function PlaceTag({ id }: { id: string }) {
       data-id={id}
       onMouseEnter={() => appStore.getState().hover(id)}
       onMouseLeave={() => appStore.getState().hover(null)}
-      onClick={() => appStore.getState().openDetail(id, 'map', undefined, 'map')}
+      onClick={() => (action ? action(id) : appStore.getState().openDetail(id, 'map', undefined, 'map'))}
     >
       <TypeStamp type={p.type} />
       {name}

@@ -3,18 +3,16 @@
 // 下面是摘要列（⚠ 點了展開提醒）、比例橫條（時間條）、時間軸（資料卡是類型的淡底色，起點、終點的住宿也是卡片）、這天的候選（想去「加到某天」的點）。討論、預約、下載在右欄右上的頭像選單（MeMenu.tsx 的 AccountMenu）。
 
 import { useMemo, useState } from 'react';
-import { planItinerary } from '@travel-helper/engine';
 import { commands } from '../appCommands.ts';
 import { useApp, useData, usePlan, useShared, useUi } from '../hooks.ts';
-import { currentEngineData, dayPlanOf, engineConfig } from '../planStore.ts';
+import { dayPlanOf } from '../planStore.ts';
 import { describeChanges } from '../lib/overlays.ts';
-import { dayDiff } from '../lib/proposalDiff.ts';
 import { dayLabel, isRedDay, tripDates } from '../lib/trip.ts';
 import { dayAreaName, dayTitle } from '../lib/dayTitle.ts';
 import { stopsOn } from '../lib/itinerary.ts';
 import { selectedBarKey, WARNING_ICONS } from '../lib/planView.ts';
 import { dayColor } from '../lib/visual.ts';
-import { DayBar, DaySummaryLine, Timeline, useDayTimeline } from './Timeline.tsx';
+import { DayBar, DaySummaryLine, Timeline, useDayTimeline, useProposalDay } from './Timeline.tsx';
 import { DayCandidates } from './Wishlist.tsx';
 import { dayCandidates } from '../lib/wishlist.ts';
 import { EditHint, PlanningBar, PlanningToggle } from './Planning.tsx';
@@ -132,25 +130,6 @@ function DayHead({ day }: { day: string }) {
       </span>
     </div>
   );
-}
-
-/** 看提議的差異：這天有變動、而且沒有切到「看原本」時，算好提議後的行程（§16.1） */
-function useProposalDay(day: string) {
-  const proposal = useApp((s) => s.proposal);
-  const view = useUi((s) => s.proposalView);
-  const confirmed = useData((s) => s.itinerary);
-  const realPlan = usePlan((s) => s.plan);
-  const on = !!proposal && view === 'diff' && day !== 'all' && proposal.dates.includes(day);
-  return useMemo(() => {
-    const engine = currentEngineData();
-    if (!on || !proposal || !engine || !confirmed) return null;
-    const plan = dayPlanOf(planItinerary(proposal.itinerary, engine, engineConfig), day);
-    return {
-      source: { itinerary: proposal.itinerary, plan },
-      diff: { itinerary: proposal.itinerary, ...dayDiff(proposal.changes, confirmed, proposal.itinerary, day) },
-      originalPlan: dayPlanOf(realPlan, day),
-    };
-  }, [on, proposal, confirmed, realPlan, day]);
 }
 
 export function DayPanel() {

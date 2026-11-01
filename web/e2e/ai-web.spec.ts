@@ -306,6 +306,7 @@ test('S17 再看一次：結果集回來，路線照舊', async ({ page }) => {
 
 test('S18 狀態：思考中、逐字、停止鈕；出錯可以重試；超過每天上限輸入框停用（從 dev 選單切）', async ({ page }) => {
   await aiReady(page, 400);
+  await fake(page, { streamMs: 400 });
   await page.getByTestId('chat-input').fill('從水族館走到珍珠島多久？');
   await page.getByTestId('chat-input').press('Enter');
   await expect(page.getByTestId('chat-busy')).toHaveAttribute('data-status', /thinking|tools/);
@@ -340,6 +341,7 @@ test('S18 狀態：思考中、逐字、停止鈕；出錯可以重試；超過�
 
 test('S34 停止：已進來的字留著、標沒有回完、不呈現；重試回得完', async ({ page }) => {
   await aiReady(page, 60);
+  await fake(page, { streamMs: 400 });
   await page.getByTestId('chat-input').fill(S1);
   await page.getByTestId('chat-input').press('Enter');
   await expect(page.getByTestId('chat-busy')).toHaveAttribute('data-status', 'streaming', { timeout: 20_000 });

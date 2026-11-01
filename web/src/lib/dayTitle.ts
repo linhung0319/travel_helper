@@ -10,6 +10,8 @@ export interface DayTitle {
   date: string;
   /** 「週五 · 第 4 天 · 鳥羽」 */
   sub: string;
+  /** 「週五 · 鳥羽」（手機：要留位置給「問 AI」「編輯」，§16.2） */
+  short: string;
 }
 
 /** 這天最常出現的地區名稱；找不到是 null */
@@ -28,5 +30,6 @@ export function dayAreaName(stops: DayStop[], byId: Map<string, Place>, areas: A
 /** 標題的兩段文字 */
 export function dayTitle(date: string, areaName: string | null, dates = tripDates()): DayTitle {
   const n = dates.indexOf(date) + 1;
-  return { date: shortDayLabel(date), sub: [`週${weekdayZh(date)}`, n > 0 ? `第 ${n} 天` : null, areaName].filter(Boolean).join(' · ') };
+  const week = `週${weekdayZh(date)}`;
+  return { date: shortDayLabel(date), sub: [week, n > 0 ? `第 ${n} 天` : null, areaName].filter(Boolean).join(' · '), short: [week, areaName].filter(Boolean).join(' · ') };
 }

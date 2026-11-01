@@ -61,7 +61,6 @@ export interface ViewState {
   mode: 'map' | 'explore' | 'wish';
   planning: boolean;
   /** 「問 AI」選取的點 */
-  selection: { id: string; name: string; type: string }[];
   /** 打開詳情的點 */
   detail: { id: string; name: string } | null;
   highlights: Partial<Record<HighlightStyle, string[]>>;
@@ -311,29 +310,6 @@ export function createCommands(app: StoreApi<AppStore>, data: StoreApi<DataState
     return { ok: true, ...filterResult() };
   }
 
-  /** 把點加進「問 AI」的選取（累加，不重複） */
-  function select(ids: string[] | string): CommandResult<{ selection: string[]; unknown?: string[] }> {
-    const r = resolveIds(ids);
-    if (!r) return { ok: false, error: 'select：ids 要是資料點 ID 的陣列' };
-    if (!r.places.length) return { ok: false, error: `select：找不到資料點 ${r.unknown.join('、')}` };
-    const s = app.getState();
-    s.setSelection([...s.selection, ...r.places.map((p) => p.id)]);
-    return { ok: true, selection: app.getState().selection, ...(r.unknown.length ? { unknown: r.unknown } : {}) };
-  }
-
-  /** 取消選取；不給 ids 時全部取消 */
-  function unselect(ids?: string[] | string): CommandResult<{ selection: string[] }> {
-    const s = app.getState();
-    if (ids === undefined) {
-      s.setSelection([]);
-      return { ok: true, selection: [] };
-    }
-    const list = typeof ids === 'string' ? [ids] : ids;
-    if (!Array.isArray(list)) return { ok: false, error: 'unselect：ids 要是資料點 ID 的陣列' };
-    s.setSelection(s.selection.filter((x) => !list.includes(x)));
-    return { ok: true, selection: app.getState().selection };
-  }
-
   /**
    * 在地圖上用虛線、半透明畫出 AI 提議的行程（interaction-design §0）。不改確定的行程；
    * 採用由 T15／T16 用 engine 的操作寫進行程，之後呼叫 clearProposal。
@@ -381,7 +357,6 @@ export function createCommands(app: StoreApi<AppStore>, data: StoreApi<DataState
       filterCount: places.filter((p) => matchesFilter(p, s.filter)).length,
       mode: s.mode,
       planning: s.planning,
-      selection: s.selection.map((id) => ({ id, name: name(id), type: byId.get(id)?.type ?? 'unknown' })),
       detail: s.detailId ? { id: s.detailId, name: name(s.detailId) } : null,
       highlights: s.highlights,
       selected: s.selectedId ? { id: s.selectedId, name: name(s.selectedId) } : null,
@@ -402,8 +377,6 @@ export function createCommands(app: StoreApi<AppStore>, data: StoreApi<DataState
     selectDay,
     setFilter,
     clearFilter,
-    select,
-    unselect,
     showProposal,
     clearProposal,
     getViewState,

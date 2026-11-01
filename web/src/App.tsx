@@ -4,7 +4,8 @@ import { connectWebAi } from './components/webAi.ts';
 import { appStore } from './store.ts';
 import { loadData } from './dataStore.ts';
 import { useData, useIsDesktop } from './hooks.ts';
-import { MapView } from './components/MapView.tsx';
+import { MapView, resizeMap } from './components/MapView.tsx';
+import { watchKeyboard } from './lib/keyboard.ts';
 import { ChatPanel } from './components/ChatPanel.tsx';
 import { dropAiProps } from './components/askAi.ts';
 import { DetailFloat, SidePanel } from './components/SidePanel.tsx';
@@ -88,7 +89,10 @@ export default function App() {
     return () => window.removeEventListener('keydown', onKey);
   }, []);
 
-  // 資料好了才啟動 AI（T16m-b）：工具要讀資料點；手機版也啟動，T16m-c 才接畫面
+  // 螢幕鍵盤（§16.3）：版面讓出來，地圖重新算大小
+  useEffect(() => watchKeyboard(resizeMap), []);
+
+  // 資料好了才啟動 AI（T16m-b）：工具要讀資料點
   useEffect(() => {
     if (status === 'ready') void startAi();
   }, [status]);

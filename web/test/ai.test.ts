@@ -748,6 +748,30 @@ test('S29 一次處理多個：想去一顆復原還原每一家；候選一張�
   h.close();
 });
 
+test('多個地點晶片：建議問題換成比較、怎麼排；輸入框的字跟著核心，換對話才清掉；✕ 拿掉的正在看拿得回來', async () => {
+  const h = await harness();
+  await h.chat.ask([{ kind: 'place', id: 'toba-osakaya' }]);
+  assert.match(h.chat.store.getState().suggestions[0], /15 人/);
+  await h.chat.ask([{ kind: 'place', id: 'toba-hakkai' }]);
+  assert.deepEqual(h.chat.store.getState().suggestions, ['比較這 2 家', '這 2 個排哪天比較順？']);
+  h.chat.setDraftText('打到一半');
+  h.chat.setScreenOff(true);
+  h.chat.setScreenOff(false);
+  assert.equal(h.chat.store.getState().screenOff, false);
+  assert.equal(h.chat.store.getState().draftText, '打到一半');
+  await h.chat.newConversation();
+  assert.equal(h.chat.store.getState().draftText, '');
+  h.close();
+});
+
+test('提議卡的新警告：照操作清單算；算不出來是空的', async () => {
+  const h = await harness();
+  assert.deepEqual(h.chat.newWarnings([{ op: 'remove', itemId: '不存在' }] as never), []);
+  // 有警告的提議：坐不下、打烊；只有資訊類的（計程車台數這類）不算
+  assert.deepEqual(h.chat.newWarnings([{ op: 'replace', itemId: 'i-7', place: 'toba-osakaya' }] as never), ['全員 15 人：要分桌或分批（fit15: split），要先打電話確認', '17:54 已經打烊（營業到 17:00）']);
+  h.close();
+});
+
 test('S30 指稱：選中的點、結果集的第二家；晶片優先於畫面；✕ 拿掉正在看時不帶', async () => {
   const h = await harness();
   h.app.getState().select('toba-osakaya');

@@ -2,8 +2,8 @@
 // 網頁版右欄（ExplorePanel）、手機版（ExploreFeed、WishlistPage）、底部分頁的數字、「我」的留言數都用這裡。
 // 排序、篩選、每一類的數量是 lib/explore.ts 的純函式；這裡只負責從 store 拿資料、記住結果。
 
-import { useMemo } from 'react';
-import { useData, useShared } from '../hooks.ts';
+import { useEffect, useMemo, useState } from 'react';
+import { useApp, useData, useShared } from '../hooks.ts';
 import { likedPlaces } from '../lib/wishlist.ts';
 import { voteCounts } from '../sharedStore.ts';
 import { explorePlaces, typeCounts, type ExploreSort, type ExploreType } from '../lib/explore.ts';
@@ -57,6 +57,20 @@ export function usePlaceList(source: 'explore' | 'wish', filter: Filter, query: 
   const list = useMemo(() => explorePlaces(pool, filter, bounds, sort, likes, query), [pool, filter, bounds, sort, likes, query]);
   const counts = useMemo(() => typeCounts(pool, filter, bounds, query), [pool, filter, bounds, query]);
   return { pool, list, counts };
+}
+
+/** AI 挑的（規格 §3.1）：只在探索；再篩選、搜尋是取交集；有結果集時預設照 AI 的順序，使用者可以自己換 */
+export function useAiPicked(all: Place[], on: boolean) {
+  const aiResult = useApp((s) => (on ? s.aiResult : null));
+  const [sortByAi, setSortByAi] = useState(true);
+  useEffect(() => setSortByAi(true), [aiResult]);
+  const list = useMemo(() => {
+    if (!aiResult) return all;
+    const picked = all.filter((p) => aiResult.ids.includes(p.id));
+    return sortByAi ? picked.sort((a, b) => aiResult.ids.indexOf(a.id) - aiResult.ids.indexOf(b.id)) : picked;
+  }, [all, aiResult, sortByAi]);
+  const aiProps = (id: string) => (aiResult ? { aiNote: aiResult.notes[id], letter: aiResult.lettered ? String.fromCharCode(65 + aiResult.ids.indexOf(id)) : undefined } : {});
+  return { aiResult, list, sortByAi, setSortByAi, aiProps };
 }
 
 /** 探索的清單：全部的點（車站不列） */

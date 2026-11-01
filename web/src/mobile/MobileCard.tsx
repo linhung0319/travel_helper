@@ -4,18 +4,19 @@
 // 卡片其他地方照常捲動；宿、航班沒有把手但欄位照留）、
 // 右邊 ⋯（只在編輯中、這張卡有動作時才有，點了打開底部動作面板 ActionSheet）。編輯中時間軸上的卡也是放置區（dropOnCardProps）。
 // 點卡片＝原地展開（mobileStore.expandItem，一次一張，點同一張收起）並選中它（focusItem → TripPage 的 appStore.select，地圖的數字水滴；不改面板高度）：
-// 三張照片、介紹前兩句、「詳細資料」（整頁詳情）、「問 AI」（半屏聊天）。被選的那張底色是 --wash（aria-current）。
+// 三張照片、介紹前兩句、「詳細資料」（整頁詳情）、「問 AI」（半屏聊天，帶晶片和建議問題，不送出）。被選的那張底色是 --wash（aria-current）。
 // 重疊卡（同一時段有備選）：標籤那一排後面是 ‹ n/m ›（按鈕 44px），換著看備卡（縮圖、名稱、時間由 DaySheet 換成那張）。
 // 候選卡：虛線框，寫「誰 加的」，沒有編號。
 
 import type { ReactNode } from 'react';
 import type { Place } from '../data/types.ts';
-import { useApp } from '../hooks.ts';
 import type { DragSource, DropTargetInfo } from '../lib/dropIntent.ts';
 import { dropOnCardProps, usePlanDrag } from '../components/planDrag.ts';
 import { cardActions } from '../shared/cardActions.ts';
 import { Icon } from '../components/Icon.tsx';
-import { DragHandle, TripCard, askAboutCardPlace } from '../shared/ui/TripCard.tsx';
+import { DragHandle, TripCard } from '../shared/ui/TripCard.tsx';
+import { useEditing } from '../components/timelineEdit.ts';
+import { askCard } from './mobileAi.ts';
 import { mobileStore, useMobile, type ActionSheetSpec, type TripSnap } from './mobileStore.ts';
 import { appStore } from '../store.ts';
 import { commands } from '../appCommands.ts';
@@ -49,6 +50,10 @@ export interface MobileCardProps {
   drag?: DragSource | null;
   /** 編輯中的放置區（時間軸上的卡；候選不是） */
   drop?: Extract<DropTargetInfo, { kind: 'card' }> | null;
+  /** 看提議的差異時的「提議」膠囊 */
+  pill?: ReactNode;
+  /** 這張是提議的（芥子黃淡底） */
+  proposed?: boolean;
 }
 
 /** 拖之前面板停在哪（拖的時候拉滿，放開回到這裡） */
@@ -68,8 +73,8 @@ const dropSheet = () => {
 };
 
 /** 一張資料卡（時間軸、候選） */
-export function MobileCard({ itemKey, place, fallbackType, mark, time, name, tags, warnings = 0, addedBy, focused, switcher = null, menu = null, drag = null, drop = null }: MobileCardProps) {
-  const planning = useApp((s) => s.planning);
+export function MobileCard({ itemKey, place, fallbackType, mark, time, name, tags, warnings = 0, addedBy, focused, switcher = null, menu = null, drag = null, drop = null, pill = null, proposed = false }: MobileCardProps) {
+  const planning = useEditing();
   const expanded = useMobile((s) => s.expanded) === itemKey;
   const candidate = addedBy != null;
   const src = planning ? drag : null;
@@ -106,6 +111,7 @@ export function MobileCard({ itemKey, place, fallbackType, mark, time, name, tag
             )}
             <span>{time.text}</span>
             {time.stay && <small className="tc-stay">{time.stay}</small>}
+            {pill}
           </>
         )
       }
@@ -129,13 +135,13 @@ export function MobileCard({ itemKey, place, fallbackType, mark, time, name, tag
       expanded={expanded}
       onToggle={toggle}
       onDetail={place ? () => mobileStore.getState().openPlace(place.id, 'trip') : undefined}
-      onAsk={place ? () => askAboutCardPlace(place) : undefined}
+      onAsk={place ? () => askCard(place.id, itemKey) : undefined}
       thumb={THUMB}
       // 有 ‹ 1/2 › 的就是合併卡（備選、分組）：後面疊一張斜的（第八輪 §13.5，手機也改）
       stacked={!!switcher}
       dashed={candidate}
       movable={!!src}
-      className={planning ? 'editing' : ''}
+      className={`${planning ? 'editing' : ''} ${proposed ? 'tl-proposed' : ''}`}
       liRef={pressRef}
       liProps={planning && drop ? dropOnCardProps(drop, true) : undefined}
       handle={

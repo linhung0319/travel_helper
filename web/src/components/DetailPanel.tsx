@@ -29,8 +29,8 @@ import { placeBadges } from '../lib/badges.ts';
 import type { Place } from '../data/types.ts';
 import { StationTimetablePanel } from './StationTimetable.tsx';
 import { EditedMark, editedOf } from './EditHistory.tsx';
-import { AskAiBox, AskAiButton } from './AskAiBox.tsx';
 import { itemsWithPlace } from '../lib/planView.ts';
+import { askPlace } from './webAi.ts';
 import { PlaceDetail } from '../shared/ui/PlaceDetail.tsx';
 
 type Obj = Record<string, unknown>;
@@ -458,9 +458,9 @@ function Tags({ place }: { place: Place }) {
 
 /**
  * 介紹：簡介（優缺點、標籤）、問 AI、車站時刻表、價格、排在哪幾天。
- * 網頁版的「總覽」分頁、手機版整頁詳情的「簡介」分頁共用（onDay 見 PlaceInTrip；askAi false 時不畫問 AI）
+ * 網頁版的「總覽」分頁、手機版整頁詳情的「簡介」分頁共用（onDay 見 PlaceInTrip；onAsk：問 AI 的按鈕，手機和網頁各自接）
  */
-export function PlaceIntro({ place, fromTrip, onDay, askAi = true }: { place: Place; fromTrip: boolean; onDay?(date: string): void; askAi?: boolean | 'button' }) {
+export function PlaceIntro({ place, onDay, onAsk }: { place: Place; onDay?(date: string): void; onAsk?(): void }) {
   return (
     <>
       {place.summary && (
@@ -486,7 +486,11 @@ export function PlaceIntro({ place, fromTrip, onDay, askAi = true }: { place: Pl
           <Tags place={place} />
         </section>
       )}
-      {askAi === 'button' ? <AskAiButton place={place} /> : askAi && <AskAiBox place={place} fromTrip={fromTrip} />}
+      {onAsk && (
+        <button type="button" className="ask-ai-button" onClick={onAsk} data-testid="detail-ask-ai">
+          <Icon name="spark" size={20} />問 AI 關於「{place.name.zh || place.name.ja}」
+        </button>
+      )}
       {place.type === 'station' && <StationTimetablePanel place={place} />}
       <PriceSection place={place} />
       <PlaceInTrip place={place} onDay={onDay} />
@@ -579,7 +583,7 @@ export function DetailPanel({ place, from }: { place: Place; from: DetailFrom })
           <Icon name="close" size={20} />
         </button>
       </div>
-      <PlaceDetail key={place.id} place={place} surface="desktop" from={from} initialTab={tab} />
+      <PlaceDetail key={place.id} place={place} surface="desktop" from={from} initialTab={tab} onAsk={() => askPlace(place.id)} />
     </article>
   );
 }

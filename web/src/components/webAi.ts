@@ -1,7 +1,7 @@
-// 網頁版和 AI 核心（appAi.ts）之間的接線：切畫面（ScreenSurface）、問 AI 入口、提議出現時右欄切到行程。手機版由 T16m-c 接自己的。
+// 網頁版和 AI 核心（appAi.ts）之間的接線：切畫面（ScreenSurface）、問 AI 入口、提議出現時右欄切到行程。手機版在 mobile/mobileAi.ts。
 
 import { appStore } from '../store.ts';
-import { ai, resetScreenSurface, setScreenSurface } from '../appAi.ts';
+import { ai, resetScreenSurface, setScreenSurface, watchProposalView } from '../appAi.ts';
 import { openDialog, openMapPanel, uiStore } from '../uiStore.ts';
 import type { Filter } from '../lib/filter.ts';
 import type { ScreenSurface } from '../ai/stage.ts';
@@ -35,6 +35,10 @@ const webSurface: ScreenSurface = {
     const s = appStore.getState();
     return s.detailId ? 'detail' : s.mode === 'map' ? 'trip' : s.mode;
   },
+  filterApplied: () => {},
+  screenFilter: () => null,
+  afterAdopt: () => {},
+  proposalStale: () => {},
 };
 
 /** 網頁版掛上時呼叫一次；回傳的函式收掉 */
@@ -46,16 +50,10 @@ export function connectWebAi(): () => void {
     uiStore.setState({ proposalView: 'diff' });
     showTrip();
   });
-  // 按了「編輯」：回到真的時間軸才改得到
-  const offPlanning = appStore.subscribe((s, prev) => {
-    if (s.planning && !prev.planning && s.proposal) uiStore.setState({ proposalView: 'original' });
-    if (s.proposal && !prev.proposal) uiStore.setState({ proposalView: s.planning ? 'original' : 'diff' });
-  });
+  const offView = watchProposalView();
   return () => {
     offProposal();
-    offPlanning();
-    // 手機版沒有看原本：轉向過去時地圖的虛線要回來
-    uiStore.setState({ proposalView: 'diff' });
+    offView();
     resetScreenSurface();
   };
 }

@@ -1,27 +1,12 @@
-// 把地點帶進「問 AI」。
-// 電腦版：探索的卡片、詳情的標題可以拖到左邊的聊天室（有 data-drop-ai 的元素），放開等於按一次問 AI（累加地點晶片，webAi.ts）。
-// 手機版：還在用選取（T16m-c 換成 chat.ask 後刪掉 askAi）。
+// 電腦版把地點拖進「問 AI」：探索的卡片、詳情的標題可以拖到左邊的聊天室（有 data-drop-ai 的元素），放開等於按一次問 AI（累加地點晶片，webAi.ts）。手機版沒有拖曳，見 mobile/mobileAi.ts。
 
 import type { DragEvent } from 'react';
-import { appStore } from '../store.ts';
 import { dataStore } from '../dataStore.ts';
-import { commands } from '../appCommands.ts';
-import { shared } from '../appShared.ts';
 import { TYPE_COLORS, TYPE_ICON_NAMES } from '../lib/typeStyle.ts';
 import { iconSvg } from '../lib/icons.ts';
-import { setAddToChat } from '../uiStore.ts';
 import { askPlace } from './webAi.ts';
 
 const MIME = 'application/x-travel-place';
-
-/** 加進選取，提示「已帶進聊天」；已經在裡面就不動 */
-export function askAi(id: string) {
-  if (appStore.getState().selection.includes(id)) return;
-  if (!commands.select(id).ok) return;
-  shared.notify(`已帶進聊天（${appStore.getState().selection.length} 個點）`);
-}
-
-setAddToChat(askAi); // uiStore 的 askAboutPlace 用這個把地點放進選取
 
 /** 跟著游標的小標籤（類別色的圓＋名稱） */
 function ghost(id: string): HTMLElement | null {

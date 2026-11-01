@@ -1,6 +1,6 @@
 // 每次對話自動帶的脈絡（規格 §4.5）：畫面狀態、脈絡晶片，只帶小的東西，其他用工具查。
 
-import { filterChips } from '../lib/filter.ts';
+import { filterChips, matchesFilter } from '../lib/filter.ts';
 import { inBbox } from '../lib/areas.ts';
 import type { AiDeps } from './deps.ts';
 import type { ReadTools } from './readTools.ts';
@@ -11,18 +11,19 @@ import type { ChatContext, TurnContext } from './types.ts';
 export function screenContext(d: AiDeps, stage: Stage): Record<string, unknown> {
   const v = d.commands.getViewState();
   const { view } = d.app.getState();
-  const { places } = d.data.getState();
+  const { places, areas } = d.data.getState();
+  // 手機的探索、想去有自己的篩選
+  const own = stage.screenFilter();
   return {
     looking: stage.screenName(),
     day: v.day,
     dayLabel: v.dayLabel,
     dayStops: v.dayStops,
     planning: v.planning,
-    filterLabels: v.filterLabels,
-    filterCount: v.filterCount,
+    filterLabels: own ? filterChips(own, areas).map((c) => c.label) : v.filterLabels,
+    filterCount: own ? places.filter((p) => matchesFilter(p, own)).length : v.filterCount,
     mapBounds: view?.bounds ?? null,
     placesInView: view ? places.filter((p) => inBbox(p.coords, view.bounds)).length : null,
-    selection: v.selection,
     detail: v.detail,
     // 「這家」：點開的卡、地圖上選的點
     selected: v.selected,
