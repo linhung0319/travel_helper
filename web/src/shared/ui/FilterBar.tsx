@@ -1,7 +1,7 @@
-// 篩選列（手機、網頁同一個元件，探索和想去共用）：搜尋框、「篩選」（有條件時顯示數字）、排序（晶片選單）、照片牆／清單切換；
-// 下面一排套用的條件（--indigo-wash 小晶片，點 ✕ 取消）。「篩選」打開 FilterSheet（手機底部面板、網頁右欄抽屜）。
-// 網頁：整列（含套用的晶片）黏在右欄上面。手機：第一列（搜尋、篩選、排序）黏在最上面；
-// 第二列（類型晶片＋照片牆／清單切換，typeRow 由呼叫的畫面給）和套用的晶片跟著內容捲走，往下捲只剩第一列。
+// 篩選列（手機、網頁同一個元件，探索和想去共用）：第一列搜尋框、「篩選」（有條件時顯示數字，類型不算）、排序（晶片選單）；
+// 第二列類型晶片（typeRow 由呼叫的畫面給）和照片牆／清單切換；第三列幾個地點、「＋ 加地點」（只有探索）、問 AI。
+// 套用了什麼條件不列出來（T33）：要看就點「篩選」，打開 FilterSheet（手機底部面板、網頁右欄抽屜）。
+// 網頁：整組黏在右欄上面。手機：第一列黏在最上面，其他的跟著內容捲走。
 // 資料來自 FilterModel：網頁接 appStore 的 filter，手機接 mobileStore 的 feed／wish，這裡不認得是哪一個 store。
 
 import { useEffect, useRef, useState, type ReactNode } from 'react';
@@ -39,6 +39,8 @@ export interface FilterModel {
   onAsk?(): void;
   /** 「‹ 回 AI」（手機從聊天跳過來或有結果集，§16.2）；點 AI 晶片也做這件事 */
   onBack?(): void;
+  /** 清單標題列的「＋ 加地點」（只有探索，T33） */
+  onAdd?(): void;
 }
 
 /** 排序：晶片，點了出現選單（不用 <select>，兩邊樣子一樣） */
@@ -134,10 +136,8 @@ export function FilterBar({ source, surface, model, count, typeRow }: { source: 
   const [open, setOpen] = useState(false);
   const rootRef = useRef<HTMLDivElement>(null);
   const desktop = surface === 'desktop';
-  // 手機的類型在下面那列晶片；AI 一次套多個類型時那列表達不了，才當成條件列出來
-  const chips = appliedChips(model.filter, areas, { includeType: desktop || model.filter.types.length > 1 });
-  // 「只看地圖畫面裡的」不是 Filter 的欄位，另外多一顆
-  const n = chips.length + (model.inView ? 1 : 0);
+  // 類型在下面那列晶片，不算進「篩選」的數字；「只看地圖畫面裡的」不是 Filter 的欄位，另外算一個
+  const n = appliedChips(model.filter, areas, { includeType: false }).length + (model.inView ? 1 : 0);
   const searchTestId = desktop ? 'search' : source === 'wish' ? 'm-wish-search' : 'm-feed-search';
 
   const backButton = model.onBack && (
@@ -147,29 +147,15 @@ export function FilterBar({ source, surface, model, count, typeRow }: { source: 
   );
   const aiLabel = model.ai && (count === model.ai.total ? `AI 挑的 · ${model.ai.total} 家` : `AI 挑的 ${model.ai.total} 家中的 ${count} 家`);
 
-  const applied = n > 0 && (
-    <div className="fb-applied" data-testid="filter-applied-row">
-      {chips.map((c) => (
-        <span key={`${c.key}:${c.value}`} className="fb-applied-item" data-testid="filter-applied">
-          <Chip applied onRemove={() => model.pick(c.key, c.value)}>
-            {c.label}
-          </Chip>
-        </span>
-      ))}
-      {model.inView && (
-        <span className="fb-applied-item" data-testid="filter-applied">
-          <Chip applied onRemove={() => model.setInView(false)}>
-            地圖畫面裡
-          </Chip>
-        </span>
-      )}
-    </div>
-  );
-
   const listHead = model.onAsk && (
     <div className="fb-listhead">
       {!desktop && !model.ai && backButton}
       <span data-testid="list-count">{count} 個地點</span>
+      {model.onAdd && (
+        <button type="button" className="fb-add" onClick={model.onAdd} data-testid="add-place-open">
+          <Icon name="plus" size={16} /> 加地點
+        </button>
+      )}
       <button type="button" className="fb-ask" onClick={model.onAsk} data-testid="list-ask-ai">
         <Icon name="spark" size={16} /> 問 AI
       </button>
@@ -181,7 +167,7 @@ export function FilterBar({ source, surface, model, count, typeRow }: { source: 
       <div className="fb-row">
         <label className="fb-search">
           <Icon name="search" size={20} />
-          <input type="search" value={model.query} placeholder={source === 'explore' ? '搜尋名稱、貼上 Google Maps 連結或地址' : '搜尋名稱'} aria-label="搜尋名稱" onChange={(e) => model.setQuery(e.target.value)} data-testid={searchTestId} />
+          <input type="search" value={model.query} placeholder="搜尋名稱" aria-label="搜尋名稱" onChange={(e) => model.setQuery(e.target.value)} data-testid={searchTestId} />
           {model.query && (
             <button type="button" className="fb-search-clear" aria-label="清除搜尋" onClick={() => model.setQuery('')}>
               <Icon name="close" size={16} />
@@ -198,7 +184,6 @@ export function FilterBar({ source, surface, model, count, typeRow }: { source: 
           )}
         </Chip>
         <SortMenu model={model} />
-        {desktop && <ViewToggle model={model} />}
       </div>
       {desktop && model.ai && (
         <div className="fb-ai">
@@ -211,7 +196,12 @@ export function FilterBar({ source, surface, model, count, typeRow }: { source: 
           </span>
         </div>
       )}
-      {desktop && applied}
+      {desktop && typeRow && (
+        <div className="fb-typerow">
+          <div className="fb-types">{typeRow}</div>
+          <ViewToggle model={model} />
+        </div>
+      )}
       {desktop && listHead}
     </div>
   );
@@ -250,7 +240,6 @@ export function FilterBar({ source, surface, model, count, typeRow }: { source: 
           <div className="fb-types">{typeRow}</div>
           <ViewToggle model={model} />
         </div>
-        {applied}
         {listHead}
       </div>
       {sheet}

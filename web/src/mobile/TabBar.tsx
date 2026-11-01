@@ -1,9 +1,10 @@
 // 手機版底部的 5 個分頁（第六輪 §3.1）：探索、想去（顯示數字）、行程、AI、我。固定在最下面，編輯中藏起來（MobileApp 決定）。
-// 有提議時「行程」上一個黃點；回覆在別的畫面時回好了，「AI」上一個紅點（§16.2）。
+// 有提議時「行程」上一個黃點；有新留言時「行程」上一個紅點（T33）；回覆在別的畫面時回好了，「AI」上一個紅點（§16.2）。
 
 import { Icon, type IconName } from '../components/Icon.tsx';
 import { useApp } from '../hooks.ts';
 import { useLiked } from '../shared/placeLists.ts';
+import { useDiscussionUnread } from '../shared/discussionSeen.ts';
 import { mobileStore, useMobile, type MobileTab } from './mobileStore.ts';
 
 const TABS: { tab: MobileTab; icon: IconName; label: string }[] = [
@@ -20,6 +21,7 @@ export function TabBar() {
   const wishCount = useLiked().size;
   const proposal = useApp((s) => !!s.proposal);
   const unread = useMobile((s) => s.chatUnread);
+  const talk = useDiscussionUnread() > 0;
   return (
     <nav className="m-tabbar" aria-label="分頁" data-testid="m-tabbar">
       {TABS.map(({ tab, icon, label }) => (
@@ -35,6 +37,7 @@ export function TabBar() {
             <Icon name={icon} size={24} />
           </span>
           {tab === 'trip' && proposal && current !== 'trip' && <i className="m-tab-dot proposal" data-testid="m-tab-dot-proposal" aria-label="有提議" />}
+          {tab === 'trip' && talk && !proposal && current !== 'trip' && <i className="m-tab-dot unread" data-testid="m-tab-dot-discuss" aria-label="有新留言" />}
           {tab === 'ai' && unread && current !== 'ai' && <i className="m-tab-dot unread" data-testid="m-tab-dot-unread" aria-label="AI 回好了" />}
           <span className="m-tab-label">
             {label}

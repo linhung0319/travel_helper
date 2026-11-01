@@ -76,21 +76,13 @@ test('想去的分頁顯示數字', async ({ page }) => {
   await expect(page.getByTestId('m-tab-wish').getByTestId('m-tab-count')).toHaveText(String(n));
 });
 
-test('我：討論、預約整頁打開', async ({ page }) => {
+test('我：預約整頁打開；討論不在「我」，是行程的按鈕打開彈窗', async ({ page }) => {
   await ready(page);
   await goTab(page, 'me');
   await expect(page.getByTestId('me-button')).toBeVisible();
   await expect(page.getByTestId('m-me-export')).toBeVisible();
 
-  await page.getByTestId('m-me-comments').click();
-  const comments = page.getByTestId('m-page-comments');
-  await expect(comments).toBeVisible();
-  // 整趟的留言，一打開就展開、可以留言
-  await expect(comments.locator('.wish-comments')).toBeVisible();
-  await expect(comments.getByTestId('comment-input')).toBeVisible();
-  expect(await scrollsSideways(page)).toBe(false);
-  await comments.getByTestId('m-page-back').click();
-  await expect(comments).toHaveCount(0);
+  await expect(page.getByTestId('m-me-comments')).toHaveCount(0);
 
   await page.getByTestId('m-me-reservations').click();
   const res = page.getByTestId('m-page-reservations');
@@ -99,20 +91,33 @@ test('我：討論、預約整頁打開', async ({ page }) => {
   await res.getByTestId('m-page-back').click();
   await expect(res).toHaveCount(0);
   expect((await mobileState(page)).page).toBeNull();
+
+  await goTab(page, 'trip');
+  await page.getByTestId('discuss-button').click();
+  const box = page.getByTestId('discussion');
+  await expect(box).toBeVisible();
+  // 整趟的留言，選「整趟」直接展開、可以留言
+  await box.getByTestId('discuss-chip-trip').click();
+  await expect(box.locator('[data-testid="discuss-thread"][data-target="trip"]')).toHaveAttribute('data-open', 'true');
+  await expect(box.getByTestId('discuss-input')).toBeVisible();
+  expect(await scrollsSideways(page)).toBe(false);
+  await box.getByTestId('discuss-close').click();
+  await expect(box).toHaveCount(0);
 });
 
-test('討論整頁：標題只有一個，沒有留言時有說明', async ({ page }) => {
+test('討論彈窗：標題只有一個，整趟沒有留言時有說明', async ({ page }) => {
   await ready(page);
-  await goTab(page, 'me');
-  await page.getByTestId('m-me-comments').click();
-  const comments = page.getByTestId('m-page-comments');
-  await expect(comments).toBeVisible();
-  // 標題只有頁首的「整趟的討論」一個，沒有再畫一個可收合的標題
-  await expect(comments.getByText('整趟的討論')).toHaveCount(1);
-  await expect(comments.getByTestId('wish-comments')).toHaveCount(0);
-  const n = await comments.getByTestId('wish-comment').count();
-  if (n === 0) await expect(comments).toContainText('還沒有人留言，寫下第一則吧');
-  await expect(comments.getByTestId('comment-input')).toBeVisible();
+  await goTab(page, 'trip');
+  await page.getByTestId('discuss-button').click();
+  const box = page.getByTestId('discussion');
+  await expect(box).toBeVisible();
+  await box.getByTestId('discuss-chip-trip').click();
+  // 標題只有最上面的「討論」一個，沒有再畫一個可收合的標題
+  await expect(box.locator('h2')).toHaveText('討論');
+  await expect(box.getByTestId('wish-comments')).toHaveCount(0);
+  const n = await box.getByTestId('wish-comment').count();
+  if (n === 0) await expect(box).toContainText('還沒有人留言，在下面留第一則');
+  await expect(box.getByTestId('discuss-input')).toBeVisible();
 });
 
 test('整趟清單每天有縮圖就畫得出來', async ({ page }) => {
@@ -174,19 +179,20 @@ test('詳情整頁：打開推一筆 history，瀏覽器上一頁關掉', async 
   await expect(page.getByTestId('m-detail')).toHaveCount(0);
 });
 
-test('討論、預約整頁：打開推一筆 history，瀏覽器上一頁（手機的返回鍵）關掉、還在網站裡', async ({ page }) => {
+test('討論彈窗、預約整頁：打開推一筆 history，瀏覽器上一頁（手機的返回鍵）關掉、還在網站裡', async ({ page }) => {
   await ready(page);
-  await goTab(page, 'me');
+  await goTab(page, 'trip');
   const url = page.url();
-  await page.getByTestId('m-me-comments').click();
-  await expect(page.getByTestId('m-page-comments')).toBeVisible();
+  await page.getByTestId('discuss-button').click();
+  await expect(page.getByTestId('discussion')).toBeVisible();
   await page.goBack();
-  await expect(page.getByTestId('m-page-comments')).toHaveCount(0);
+  await expect(page.getByTestId('discussion')).toHaveCount(0);
   expect(page.url()).toBe(url);
   const s = await mobileState(page);
   expect(s.page).toBeNull();
-  expect(s.tab).toBe('me');
+  expect(s.tab).toBe('trip');
   // 「‹」關掉時把那筆退回去：再按一次上一頁不會留在一筆空的 history 上
+  await goTab(page, 'me');
   await page.getByTestId('m-me-reservations').click();
   await page.getByTestId('m-page-reservations').getByTestId('m-page-back').click();
   await expect(page.getByTestId('m-page-reservations')).toHaveCount(0);
@@ -250,9 +256,12 @@ test('探索：類型篩選', async ({ page }) => {
   const n = Number(await page.getByTestId('m-feed-wall').getAttribute('data-count'));
   expect(n).toBeGreaterThan(0);
   expect(n).toBeLessThan(all);
-  // 套用的晶片點 ✕ 取消
-  await page.getByTestId('filter-applied').first().locator('.ui-chip-x').click();
-  await expect(page.getByTestId('filter-applied')).toHaveCount(0);
+  // 打開面板再點一次取消
+  await page.getByTestId('filter-open').click();
+  await expect(page.getByTestId('filter-opt-group-yes')).toHaveAttribute('aria-pressed', 'true');
+  await page.getByTestId('filter-opt-group-yes').click();
+  await page.getByTestId('filter-done').click();
+  await expect(page.getByTestId('filter-count')).toHaveCount(0);
   expect(Number(await page.getByTestId('m-feed-wall').getAttribute('data-count'))).toBe(all);
 });
 
@@ -315,17 +324,28 @@ test('沒有照片的點顯示類型色塊', async ({ page }) => {
   await expect(fb).toHaveText(/^[景餐宿站點]$/);
 });
 
-/** 探索往下捲到 y，點一張整張在畫面裡的（點左上角，避開右下角的票），回傳那張的 id */
+/** 探索往下捲到約 y，點一張整張在畫面裡的（點左上角，避開右下角的票），回傳那張的 id；打開前實際的捲動位置記在 feedTop */
+let feedTop = 0;
 async function openFromFeed(page: import('@playwright/test').Page, y: number) {
   await goTab(page, 'explore');
   await expect(page.getByTestId('m-feed-item').nth(3)).toBeVisible();
-  // 圖片牆的高度照原圖比例：照片一張張載入時版面會動，瀏覽器的 scroll anchoring 會把捲動位置調個幾 px（甚至讓 Playwright 的 click 再捲一次）。
-  // 所以先等畫面上已經在載的照片載完，再捲、再量。
+  // 圖片牆的高度照原圖比例：照片一張張載入時版面會動，瀏覽器的 scroll anchoring 會把捲動位置調個幾十 px（甚至讓 Playwright 的 click 再捲一次）。
+  // 照片可能比 settle 等的 8 秒還慢，所以不要求剛好停在 y：等照片載完、位置穩定後，記下實際位置（feedTop），返回時和它比。
   const settle = () => page.waitForFunction(() => [...document.querySelectorAll('[data-testid="m-feed-item"] img')].every((i) => (i as HTMLImageElement).complete), null, { timeout: 8000 }).catch(() => {});
   await settle();
   await page.locator('.m-page').evaluate((el, y) => el.scrollTo(0, y), y);
   await settle();
-  await expect.poll(() => page.locator('.m-page').evaluate((el, y) => Math.abs(el.scrollTop - y) <= 2, y)).toBe(true);
+  const readTop = () => page.locator('.m-page').evaluate((el) => el.scrollTop);
+  let last = -1;
+  await expect
+    .poll(async () => {
+      const top = await readTop();
+      const stable = top === last;
+      last = top;
+      return stable && Math.abs(top - y) <= 100;
+    })
+    .toBe(true);
+  feedTop = last;
   // 第一張整張都在畫面裡的（篩選、黏在上面的摘要、底部分頁都不擋）
   const id = await page.evaluate(() => {
     const el = [...document.querySelectorAll('[data-testid="m-feed-item"]')].find((e) => {
@@ -359,7 +379,7 @@ test('詳情：整頁、返回後捲動位置不變', async ({ page }) => {
   await detail.getByTestId('m-detail-back').click();
   await expect(detail).toHaveCount(0);
   const top = await page.locator('.m-page').evaluate((el) => el.scrollTop);
-  expect(Math.abs(top - 800)).toBeLessThan(5);
+  expect(Math.abs(top - feedTop)).toBeLessThan(5);
 });
 
 test('詳情：瀏覽器上一頁也能關', async ({ page }) => {
@@ -369,7 +389,7 @@ test('詳情：瀏覽器上一頁也能關', async ({ page }) => {
   await expect(page.getByTestId('m-detail')).toHaveCount(0);
   expect((await mobileState(page)).tab).toBe('explore');
   const top = await page.locator('.m-page').evaluate((el) => el.scrollTop);
-  expect(Math.abs(top - 600)).toBeLessThan(5);
+  expect(Math.abs(top - feedTop)).toBeLessThan(5);
 });
 
 test('詳情：點小地圖跳到行程', async ({ page }) => {
@@ -797,9 +817,10 @@ test('編輯：藍條、分頁藏起來、⋯ 開底部面板', async ({ page })
   await expect(page.getByTestId('m-card-handle')).toHaveCount(0);
   await page.getByTestId('m-trip-edit').click();
   await page.getByTestId('planning-confirm').click();
-  // 藍條：「編輯 2/3（三）」加「完成」；面板高度不變（中）；底部分頁藏起來
+  // 編輯條：「編輯 2/3」（手機窄，不寫星期）加「完成」；面板高度不變（中）；底部分頁藏起來
   const bar = page.getByTestId('planning-bar');
-  await expect(bar).toContainText('編輯 2/3（三）');
+  await expect(bar).toContainText('編輯 2/3');
+  await expect(bar).not.toContainText('（三）');
   await expect(bar.getByTestId('planning-done')).toBeVisible();
   expect((await bar.getByTestId('planning-done').boundingBox())!.height).toBeGreaterThanOrEqual(44);
   await expect(page.getByTestId('m-sheet')).toHaveAttribute('data-snap', 'mid');
@@ -1485,7 +1506,7 @@ test('展開的卡：「問 AI」開半屏聊天、「詳細資料」開整頁�
   expect((await mobileState(page)).detail?.from).toBe('trip');
 });
 
-test('編輯條是墨色、有快照；編輯中沒有日期列、問 AI 還在；「改」點的範圍 44px', async ({ page }) => {
+test('編輯條是墨色、有討論和上一步；編輯中沒有日期列、問 AI 還在；「改」點的範圍 44px', async ({ page }) => {
   await ready(page);
   await pickDay(page, '2027-02-03');
   await expect(page.getByTestId('m-trip-ai')).toBeVisible();
@@ -1494,8 +1515,11 @@ test('編輯條是墨色、有快照；編輯中沒有日期列、問 AI 還在�
   const bar = page.getByTestId('planning-bar');
   const ink = await page.evaluate(() => { const d = document.createElement('i'); d.style.background = 'var(--ink)'; document.body.append(d); const c = getComputedStyle(d).backgroundColor; d.remove(); return c; });
   expect(await bar.evaluate((e) => getComputedStyle(e).backgroundColor)).toBe(ink);
-  await expect(bar).toContainText('編輯 2/3（三）');
-  await expect(bar.getByTestId('snapshots-button')).toBeVisible();
+  // 手機標題放不下星期（T33）
+  await expect(bar).toContainText('編輯 2/3');
+  await expect(bar).not.toContainText('（三）');
+  await expect(bar.getByTestId('discuss-button')).toBeVisible();
+  await expect(bar.getByTestId('undo-button')).toBeVisible();
   await expect(bar.getByTestId('planning-done')).toBeVisible();
   await expect(page.getByTestId('m-day-strip')).toHaveCount(0);
   await expect(page.getByTestId('m-trip-ai')).toBeVisible();

@@ -1340,6 +1340,10 @@ button.planning-done {
   color: var(--paper);
 }
 
+.planning-bar .text-button:disabled {
+  opacity: 0.4;
+}
+
 .count {
   display: inline-grid;
   place-items: center;

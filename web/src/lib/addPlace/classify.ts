@@ -1,4 +1,4 @@
-// 搜尋框輸入的分類（T31）：連結、日本地址、其他文字。
+// 加地點彈窗輸入的分類（T31、T33）：連結、日本地址、其他文字。
 
 import { looksLikeAddress } from './address.ts';
 import { extractMapLink } from './mapLink.ts';

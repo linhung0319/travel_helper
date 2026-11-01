@@ -105,6 +105,62 @@ test('復原快照：回到原狀', async () => {
   assert.equal(shared.store.getState().version, 3);
 });
 
+test('上一步：連退多步，沒有復原提示的修改也算；退完就沒有了；復原本身不算一步', async () => {
+  const { data, shared } = await setup();
+  const start = data.getState().itinerary;
+  await shared.changeItinerary((it) => moveItem(it, '2027-02-03:y', 'up'), '上移 y');
+  const moved = data.getState().itinerary;
+  await shared.changeItinerary((it) => removeItem(it, '2027-02-03:x'), '刪掉 x', { undo: { text: '已刪除' } });
+  assert.equal(shared.store.getState().undoStack.length, 2);
+  await shared.undoLast();
+  assert.equal(data.getState().itinerary, moved);
+  assert.equal(shared.store.getState().undoStack.length, 1);
+  await shared.undoLast();
+  assert.equal(data.getState().itinerary, start);
+  assert.equal(shared.store.getState().undoStack.length, 0);
+  assert.equal(shared.store.getState().version, 5, '復原也是一次存檔');
+  await shared.undoLast();
+  assert.equal(shared.store.getState().version, 5, '沒得退了就不動');
+});
+
+test('上一步：提示裡的「復原」退同一步，退完上一步不會再退一次；after 會做', async () => {
+  const { shared } = await setup();
+  let after = 0;
+  await shared.changeItinerary((it) => removeItem(it, '2027-02-03:x'), '刪掉 x', { undo: { text: '已刪除', after: async () => void after++ } });
+  await shared.store.getState().toast!.action!.run();
+  assert.equal(after, 1);
+  assert.equal(shared.store.getState().undoStack.length, 0);
+  await shared.changeItinerary((it) => removeItem(it, '2027-02-03:y'), '刪掉 y', { undo: { text: '已刪除', after: async () => void after++ } });
+  await shared.undoLast();
+  assert.equal(after, 2, '上一步也會補做 after');
+});
+
+test('上一步：行程被改過（同步進來別人的）就不能退，清空', async () => {
+  const { backend, data, shared } = await setup();
+  await shared.changeItinerary((it) => moveItem(it, '2027-02-03:y', 'up'), '上移 y');
+  backend.simulateOtherEdit();
+  await shared.reloadItinerary();
+  assert.equal(shared.store.getState().undoStack.length, 0, '重新載入就清空');
+  await shared.changeItinerary((it) => moveItem(it, '2027-02-03:x', 'up'), '上移 x');
+  data.setState({ itinerary: structuredClone(data.getState().itinerary) });
+  const v = shared.store.getState().version;
+  await shared.undoLast();
+  assert.equal(shared.store.getState().version, v, '不存檔');
+  assert.equal(shared.store.getState().toast?.kind, 'error');
+  assert.equal(shared.store.getState().undoStack.length, 0);
+});
+
+test('上一步：clearUndo 清空（開始、結束編輯時）；復原快照也清空', async () => {
+  const { shared } = await setup();
+  await shared.changeItinerary((it) => moveItem(it, '2027-02-03:y', 'up'), '上移 y');
+  shared.clearUndo();
+  assert.equal(shared.store.getState().undoStack.length, 0);
+  await shared.changeItinerary((it) => moveItem(it, '2027-02-03:x', 'up'), '上移 x');
+  const [snap] = shared.store.getState().snapshots;
+  assert.ok((await shared.restoreSnapshot(snap.id)).ok);
+  assert.equal(shared.store.getState().undoStack.length, 0);
+});
+
 test('候選：加到某天、自己撤回；拿掉別人加的要寫理由，理由變成那個點的不採用留言', async () => {
   const { backend, shared } = await setup();
   assert.ok((await shared.addCandidate('x', '2027-02-05')).ok);

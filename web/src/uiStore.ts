@@ -14,12 +14,18 @@ export type DialogState =
   | { kind: 'history'; placeId: string; field?: string }
   | { kind: 'delete-user-place'; placeId: string };
 
-/** 地圖區的視窗（日期列的 💬、📋）：留言或預約筆記；scope 是這天或整趟 */
+/** 地圖區的視窗：預約筆記；scope 是這天或整趟（討論是另一個彈窗，DiscussionState） */
 export interface MapPanelState {
-  kind: 'comments' | 'reservations';
+  kind: 'reservations';
   scope: 'day' | 'trip';
   /** 從時間軸的預約 tag 進來：捲到那一列 */
   focus?: { date: string; placeId: string };
+}
+
+/** 討論彈窗（T33）：篩選（all、trip 或日期）、展開的對象（留言的 target） */
+export interface DiscussionState {
+  chip: string;
+  open: string | null;
 }
 
 /** 班次表開在哪一程 */
@@ -32,6 +38,7 @@ export interface TimetableState {
 export interface UiState {
   dialog: DialogState | null;
   mapPanel: MapPanelState | null;
+  discussion: DiscussionState | null;
   /** 編輯閒置多久自動結束編輯（分鐘）；dev 選單可以改短 */
   idleMinutes: number;
   /** 展開中的交通細列（日期:項目 ID 或 lodging）；一次只展開一段 */
@@ -48,7 +55,7 @@ export interface UiState {
   proposalReveal: number;
 }
 
-export const uiStore = createStore<UiState>()(() => ({ dialog: null, mapPanel: null, idleMinutes: 10, legOpen: null, legEdit: null, expandedItem: null, timetable: null, proposalView: 'diff', proposalReveal: 0 }));
+export const uiStore = createStore<UiState>()(() => ({ dialog: null, mapPanel: null, discussion: null, idleMinutes: 10, legOpen: null, legEdit: null, expandedItem: null, timetable: null, proposalView: 'diff', proposalReveal: 0 }));
 
 // 換天、離開行程分頁：展開的卡收起來。看 store 不看 DayPanel 卸載：轉向回網頁版時（和 dev 的 StrictMode 重跑 effect）才不會把剛帶過來的展開清掉
 let lastView = { day: appStore.getState().day, mode: appStore.getState().mode };
@@ -66,7 +73,7 @@ export const openDialog = (dialog: DialogState) => uiStore.setState({ dialog });
 export const closeDialog = () => uiStore.setState({ dialog: null });
 
 /** 打開地圖那側的班次表（交通卡步驟裡搭車那一行的「› 班次」）；和討論、預約的視窗同一個位置，一次開一個 */
-export const openTimetable = (timetable: TimetableState) => uiStore.setState({ timetable, mapPanel: null });
+export const openTimetable = (timetable: TimetableState) => uiStore.setState({ timetable, mapPanel: null, discussion: null });
 export const closeTimetable = () => uiStore.setState({ timetable: null });
 
 
@@ -74,10 +81,21 @@ export const closeTimetable = () => uiStore.setState({ timetable: null });
 export const openMapPanel = (kind: MapPanelState['kind'], opts?: { focus: { date: string; placeId: string } }) => {
   const day = appStore.getState().day;
   const scope = day === 'all' || (opts && opts.focus.date !== day) ? 'trip' : 'day';
-  uiStore.setState({ mapPanel: { kind, scope, ...(opts ? { focus: opts.focus } : {}) }, timetable: null });
+  uiStore.setState({ mapPanel: { kind, scope, ...(opts ? { focus: opts.focus } : {}) }, timetable: null, discussion: null });
 };
 export const closeMapPanel = () => uiStore.setState({ mapPanel: null });
 /** 視窗裡切換「這天／整趟」 */
 export const setMapPanelScope = (scope: MapPanelState['scope']) => uiStore.setState((s) => (s.mapPanel ? { mapPanel: { ...s.mapPanel, scope } } : s));
+
+/** 打開討論彈窗：行程選了某天就開那天，選整趟就開「全部」 */
+export const openDiscussion = (chip?: string) => {
+  const day = appStore.getState().day;
+  const c = chip ?? (day === 'all' ? 'all' : day);
+  uiStore.setState({ discussion: { chip: c, open: c === 'trip' ? 'trip' : null }, mapPanel: null, timetable: null });
+};
+export const closeDiscussion = () => uiStore.setState({ discussion: null });
+/** 換篩選：展開的收起來；整趟只有一個對象，直接展開 */
+export const setDiscussionChip = (chip: string) => uiStore.setState((s) => (s.discussion ? { discussion: { chip, open: chip === 'trip' ? 'trip' : null } } : s));
+export const setDiscussionOpen = (open: string | null) => uiStore.setState((s) => (s.discussion ? { discussion: { ...s.discussion, open } } : s));
 
 /** 從詳情「問 AI」帶進聊天的一句話；seq 每次加 1，手機的 store 看 seq 變了就切到聊天 */

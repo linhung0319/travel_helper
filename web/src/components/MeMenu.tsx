@@ -1,19 +1,17 @@
 // 帳號：之後是 LINE 的名字和大頭照（T25）。
 // - MeMenu：手機「我」分頁的帳號列；dev server 下點了打開開發用選單（T15m 的假登入）。
-// - AccountMenu（第七輪）：網頁右欄右上的頭像選單，裝使用者名稱、討論、預約、下載行程，dev server 下多一段「切換使用者（開發用）」。
+// - AccountMenu（第七輪）：網頁右欄右上的頭像選單，裝使用者名稱、預約、下載行程、過去的版本，dev server 下多一段「切換使用者（開發用）」。討論在行程「問 AI、編輯」旁（T33）。
 // 開發用的內容（切換使用者、重設假資料、假裝別人改了行程、編輯的閒置時間）兩邊共用 DevTools。
 
 import { useEffect, useRef, useState } from 'react';
 import { shared } from '../appShared.ts';
 import { fakeSettings } from '../appAi.ts';
 import { mockBackend } from '../backend/index.ts';
-import { dayTarget, TRIP_TARGET } from '../backend/types.ts';
 import { appStore } from '../store.ts';
 import { useApp, useData, usePlan, useShared, useUi } from '../hooks.ts';
 import { noteRows } from '../lib/reservations.ts';
 import { exportJson } from '../shared/exportJson.ts';
-import { useCommentCount } from '../shared/placeLists.ts';
-import { openMapPanel } from '../uiStore.ts';
+import { openDialog, openMapPanel } from '../uiStore.ts';
 import { setIdleMinutes } from './Planning.tsx';
 import { initial } from './common.tsx';
 import { Icon } from './Icon.tsx';
@@ -139,7 +137,7 @@ export function MeMenu() {
 }
 
 /**
- * 網頁右欄右上的頭像選單：使用者名稱、討論（整趟・這天）、預約（N 未訂）、下載行程，dev 下多一段切換使用者。
+ * 網頁右欄右上的頭像選單：使用者名稱、預約（N 未訂）、下載行程、過去的版本，dev 下多一段切換使用者。
  * 數字照目前選的那天（選「整趟」是整趟），和打開的視窗範圍一致。Esc、點外面收起（Esc 只收選單，不再往外關詳情）。
  */
 export function AccountMenu() {
@@ -149,7 +147,6 @@ export function AccountMenu() {
   const byId = useData((s) => s.byId);
   const plan = usePlan((s) => s.plan);
   const reservations = useShared((s) => s.reservations);
-  const comments = useCommentCount(day === 'all' ? TRIP_TARGET : dayTarget(day));
   const [open, setOpen] = useState(false);
   const ref = useRef<HTMLSpanElement>(null);
   const mock = mockBackend();
@@ -187,16 +184,15 @@ export function AccountMenu() {
       {open && (
         <div className="dev-menu account-popover" role="menu" data-testid="account-popover">
           <p className="account-name">{me.displayName}</p>
-          <button type="button" role="menuitem" onClick={go(() => openMapPanel('comments'))} data-testid="account-comments">
-            <Icon name="chat" size={20} /> 討論 <span className="account-sub">整趟 · 這天</span>
-            {comments > 0 && <span className="account-n">{comments}</span>}
-          </button>
           <button type="button" role="menuitem" onClick={go(() => openMapPanel('reservations'))} data-testid="account-reservations">
             <Icon name="clipboard" size={20} /> 預約
             {pending > 0 && <span className="account-n warn">{pending} 未訂</span>}
           </button>
           <button type="button" role="menuitem" disabled={!itinerary} onClick={go(exportJson)} data-testid="account-export">
             <Icon name="download" size={20} /> 下載行程
+          </button>
+          <button type="button" role="menuitem" onClick={go(() => openDialog({ kind: 'snapshots' }))} data-testid="account-versions">
+            <Icon name="history" size={20} /> 過去的版本
           </button>
           {import.meta.env.DEV && mock && (
             <>

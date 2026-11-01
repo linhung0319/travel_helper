@@ -793,8 +793,8 @@ test('這天的標題：日期、週幾、第幾天、最常出現的地區', as
   assert.equal(dayAreaName(stops(['c', 'a', 'b']), byId, areas), '鳥羽');
   assert.equal(dayAreaName(stops(['c', 'a']), byId, areas), '伊勢');
   assert.equal(dayAreaName(stops(['d']), byId, areas), null);
-  assert.deepEqual(dayTitle('2027-02-05', '鳥羽'), { date: '2/5', sub: '週五 · 第 4 天 · 鳥羽', short: '週五 · 鳥羽' });
-  assert.deepEqual(dayTitle('2027-02-02', null), { date: '2/2', sub: '週二 · 第 1 天', short: '週二' });
+  assert.deepEqual(dayTitle('2027-02-05', '鳥羽'), { date: '2/5', week: '週五', area: '鳥羽', short: '週五 · 鳥羽' });
+  assert.deepEqual(dayTitle('2027-02-02', null), { date: '2/2', week: '週二', area: null, short: '週二' });
 });
 
 // T15m 第七輪 §8.2：選中一個點時地圖能不動就不動

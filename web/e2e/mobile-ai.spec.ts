@@ -1,6 +1,6 @@
 // T16m-c：AI 手機版的畫面（規格 §8 的腳本、interaction-design §16.2、§16.3）。假 AI、假後端；截圖放 data/cache/work/t16m/，檔名 m-* 和網頁版區分開。
 import { test, expect, type Page } from '@playwright/test';
-import { ready } from './helpers.ts';
+import { expectFilterOpt, ready } from './helpers.ts';
 import { goTab, scrollsSideways } from './mobileHelpers.ts';
 
 const SHOTS = '../data/cache/work/t16m';
@@ -737,7 +737,7 @@ test('S25～S27 邊聊邊改、回到上一版、用說的採用（半屏）：�
   await expect(page.locator('[data-testid="chat-proposal"][data-status="closed"]').first()).toContainText('沒有用上');
 });
 
-test('S28～S33 累加、一次多個、預約、切畫面、留言草稿；show_screen 的討論開整頁，返回鍵回聊天', async ({ page }) => {
+test('S28～S33 累加、一次多個、預約、切畫面、留言草稿；show_screen 的討論開彈窗，返回鍵回聊天', async ({ page }) => {
   await aiReady(page);
   await goTab(page, 'ai');
   await say(page, S1);
@@ -759,9 +759,9 @@ test('S28～S33 累加、一次多個、預約、切畫面、留言草稿；show
   await say(page, '哪幾家還沒訂？');
   await expect(page.getByTestId('chat-msg-ai').last()).toContainText('沒訂');
   await say(page, '給我看討論');
-  await expect(page.getByTestId('m-page-comments')).toBeVisible();
+  await expect(page.getByTestId('discussion')).toBeVisible();
   await page.goBack();
-  await expect(page.getByTestId('m-page-comments')).toHaveCount(0);
+  await expect(page.getByTestId('discussion')).toHaveCount(0);
   await expect(page.getByTestId('m-tab-ai')).toHaveAttribute('aria-current', 'page');
 
   await say(page, '幫我跟大家說媽媽膝蓋不好，珍珠島不要爬太多樓梯');
@@ -885,7 +885,10 @@ test('set_filter 接到探索的 feed：看探索就是那些條件；探索、�
   expect(feed.area).toBe('toba');
   await page.locator('[data-testid="chat-present"][data-tool="set_filter"]').getByTestId('m-see-map').click();
   await expect(page.getByTestId('m-tab-explore')).toHaveAttribute('aria-current', 'page');
-  await expect(page.getByTestId('filter-applied').first()).toContainText('鳥羽');
+  // 條件看篩選按鈕的數字，點開面板看（T33 取代晶片）；類型在類型列
+  await expect(page.getByTestId('filter-count')).toHaveText('1');
+  await expect(page.getByTestId('m-feed-type-restaurant')).toHaveAttribute('aria-pressed', 'true');
+  await expectFilterOpt(page, 'area-toba', true);
   await expect(page.getByTestId('ai-back')).toBeVisible();
 });
 
@@ -975,10 +978,11 @@ test.describe('鍵盤（§16.3）', () => {
     await page.evaluate(() => (window as any).__thMobile.getState().openPlace('toba-osakaya', 'explore', 'comments'));
     await check(page, 'comment-input', [], 'detail-comment');
     await page.goBack();
+    await goTab(page, 'trip');
+    await page.getByTestId('discuss-button').click();
+    await check(page, 'discuss-input', ['discuss-send'], 'talk');
+    await page.getByTestId('discuss-close').click();
     await goTab(page, 'me');
-    await page.getByTestId('m-me-comments').click();
-    await check(page, 'comment-input', [], 'talk');
-    await page.getByTestId('m-page-back').click();
     await page.getByTestId('m-me-reservations').click();
     await page.getByTestId('note-text').last().scrollIntoViewIfNeeded();
     await check(page, 'note-text', [], 'reserve');

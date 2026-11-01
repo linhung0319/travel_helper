@@ -1,5 +1,5 @@
 // 自己加地點（T31）網站共用的草稿 store；邏輯在 lib/addPlace/draft.ts。
-// 搜尋框的提示、地圖上指位置、詳情的「✎ 修改」都從這裡開始；確認畫面（Task 6、7）畫 draft。
+// 清單標題列的「＋ 加地點」、搜尋比不到的提示、地圖上指位置、詳情的「✎ 修改」都從這裡開始；彈窗（AddPlaceDialog）畫 entry、draft。
 
 import { useStore } from 'zustand';
 import { dataStore } from './dataStore.ts';

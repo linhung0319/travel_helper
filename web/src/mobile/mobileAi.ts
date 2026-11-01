@@ -5,7 +5,7 @@ import { ai, resetScreenSurface, setScreenSurface, watchProposalView } from '../
 import { appStore } from '../store.ts';
 import { commands } from '../appCommands.ts';
 import { shared } from '../appShared.ts';
-import { openDialog, uiStore } from '../uiStore.ts';
+import { openDialog, openDiscussion, uiStore } from '../uiStore.ts';
 import { EMPTY_FILTER, type Filter } from '../lib/filter.ts';
 import { feedFilter, filterToFeed, wishFilter } from '../lib/explore.ts';
 import { shortDayLabel } from '../lib/trip.ts';
@@ -34,7 +34,7 @@ const surface: ScreenSurface = {
   // 結果就在訊息的輪播裡，不用切
   showList: () => {},
   showTab: (tab) => mobileStore.getState().setTab(tab),
-  showPanel: (panel) => (panel === 'snapshots' ? openDialog({ kind: 'snapshots' }) : mobileStore.getState().setPage(panel)),
+  showPanel: (panel) => (panel === 'snapshots' ? openDialog({ kind: 'snapshots' }) : panel === 'comments' ? openDiscussion() : mobileStore.getState().setPage(panel)),
   // 在 AI 分頁：切到行程、開半屏，回覆才不會不見
   showDay: () => {
     const m = mobileStore.getState();
@@ -45,7 +45,7 @@ const surface: ScreenSurface = {
   openPlace: (id) => mobileStore.getState().openPlace(id, mobileStore.getState().tab),
   screenKey: () => {
     const m = mobileStore.getState();
-    return [m.tab, m.detail?.placeId ?? '', m.page ?? ''].join('|');
+    return [m.tab, m.detail?.placeId ?? '', m.page ?? '', uiStore.getState().discussion ? 'comments' : ''].join('|');
   },
   screenName: () => (mobileStore.getState().detail ? 'detail' : contentTab()),
   // AI 給的是 patch：疊在手機自己的篩選上

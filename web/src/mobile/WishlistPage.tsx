@@ -7,7 +7,8 @@
 import { useWishList } from '../shared/placeLists.ts';
 import { FilterBar } from '../shared/ui/FilterBar.tsx';
 import { WishList } from '../shared/ui/WishList.tsx';
-import { TypeChips, useWishModel } from './FeedFilters.tsx';
+import { useWishModel } from './FeedFilters.tsx';
+import { TypeChips } from '../shared/ui/TypeChips.tsx';
 import { mobileStore, useMobile } from './mobileStore.ts';
 import { askList } from './mobileAi.ts';
 import { useWishPrefs } from '../shared/wishPrefs.ts';

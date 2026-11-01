@@ -1,5 +1,5 @@
-// 加地點的確認畫面表單本體（T31 spec §3）：來源標籤、名稱、類型膠囊、備註、錯誤、按鈕。
-// 網頁放右欄、手機放整頁的下半（Task 7），表單一樣；位置（圖釘）在地圖上，不在這裡。
+// 加地點的確認畫面表單本體（T31 spec §3、T33）：來源標籤、名稱、類型膠囊、備註、錯誤、按鈕。
+// 放在彈窗的第二步（AddPlaceDialog），位置在旁邊的小地圖（AddPlaceMap）。名稱、類型沒填不能按「確定加入」。
 // 加完（或修改完）關掉表單，叫地圖看一下那個新點（commands.focus）。
 
 import { addPlaceStore, useAddPlace } from '../../addPlaceStore.ts';
@@ -81,12 +81,13 @@ export function AddPlaceForm({ surface }: { surface: 'mobile' | 'desktop' }) {
       )}
       <div className="apf-actions">
         <Button kind="primary" type="submit" disabled={!ready || saving} data-testid="add-save">
-          {edit ? '儲存修改' : '加進來，大家都看得到'}
+          {edit ? '儲存修改' : '確定加入'}
         </Button>
         <Button kind="secondary" onClick={() => addPlaceStore.getState().cancel()} data-testid="add-cancel">
           取消
         </Button>
       </div>
+      {!edit && <p className="apd-note muted">加了之後大家都看得到</p>}
     </form>
   );
 }

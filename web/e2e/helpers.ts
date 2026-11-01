@@ -59,8 +59,8 @@ export async function waitIdle(page: Page) {
 
 export { expect };
 
-/** 電腦版：打開右欄右上的頭像選單，點其中一項（討論、預約、下載行程）；選單點完會收起來 */
-export async function openAccountItem(page: Page, item: 'comments' | 'reservations' | 'export') {
+/** 電腦版：打開右欄右上的頭像選單，點其中一項（預約、下載行程、過去的版本）；選單點完會收起來 */
+export async function openAccountItem(page: Page, item: 'reservations' | 'export' | 'versions') {
   await page.getByTestId('account-menu').click();
   await page.getByTestId(`account-${item}`).click();
 }
@@ -71,7 +71,28 @@ export async function switchUser(page: Page, memberId: string) {
   await page.locator(`[data-member="${memberId}"]`).click();
 }
 
-/** 電腦版：打開右欄的篩選抽屜，點幾個選項（例如 'type-restaurant'、'tier-S'、'area-toba'、'map-inView'），按「顯示 N 個」關掉 */
+/** 電腦版：行程分頁的討論按鈕打開討論彈窗（T33） */
+export async function openDiscussion(page: Page) {
+  await page.getByTestId('side-tab-day').click();
+  await page.getByTestId('discuss-button').click();
+  await expect(page.getByTestId('discussion')).toBeVisible();
+}
+
+/** 電腦版：點類型列（全部、景點、餐廳、住宿）；類型不在篩選面板裡（T33） */
+export async function pickType(page: Page, type: 'all' | 'spot' | 'restaurant' | 'lodging') {
+  await page.getByTestId(`ex-type-${type}`).click();
+  await expect(page.getByTestId(`ex-type-${type}`)).toHaveAttribute('aria-pressed', 'true');
+}
+
+/** 套用的條件不再列成晶片（T33）：打開篩選面板看這個選項有沒有選，看完關掉（手機、網頁都能用） */
+export async function expectFilterOpt(page: Page, opt: string, pressed: boolean) {
+  await page.getByTestId('filter-open').click();
+  await expect(page.getByTestId(`filter-opt-${opt}`)).toHaveAttribute('aria-pressed', String(pressed));
+  await page.getByTestId('filter-done').click();
+  await expect(page.getByTestId('filter-sheet')).toHaveCount(0);
+}
+
+/** 電腦版：打開右欄的篩選抽屜，點幾個選項（例如 'tier-S'、'area-toba'、'map-inView'；已經選的再點是取消），按「顯示 N 個」關掉 */
 export async function pickFilter(page: Page, ...opts: string[]) {
   await page.getByTestId('filter-open').click();
   for (const o of opts) await page.getByTestId(`filter-opt-${o}`).click();

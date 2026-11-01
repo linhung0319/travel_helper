@@ -8,6 +8,11 @@ import { setVoteLookup } from './lib/filter.ts';
 export const shared = createShared(backend, dataStore);
 export const sharedStore = shared.store;
 
+// 上一步只算這次編輯裡改的（T33）
+appStore.subscribe((s, prev) => {
+  if (s.planning !== prev.planning) shared.clearUndo();
+});
+
 let syncTimer: number | null = null;
 
 /**

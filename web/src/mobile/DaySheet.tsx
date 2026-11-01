@@ -4,7 +4,7 @@
 // （圓體的大日期加「週五 · 第 4 天 · 鳥羽」、✦ 問 AI、編輯；這一列也固定，position: sticky）、摘要、時間條（變矮）、
 // 時間軸（MobileCard、MobileLeg，資料準備和網頁版共用 Timeline.tsx 的 useDayTimeline）、這天的候選（候選樣式的 MobileCard）。
 // 選了一張卡（focusItem）：清單捲到那張卡（不改面板高度）。點卡片原地展開（mobileStore.expanded）。
-// 編輯中：最上面是墨色的編輯條（PlanningBar：「編輯 2/3（三）」加快照、「完成」）和別人改過了的提示（ConflictBar）；按「編輯」不改面板高度；
+// 編輯中：最上面是墨色的編輯條（PlanningBar：「編輯 2/3」、問 AI、討論、上一步、「完成」）和別人改過了的提示（ConflictBar）；按「編輯」不改面板高度；
 // 每張卡有把手（長按拖曳）、⋯（底部動作面板 ActionSheet，動作的 ctx 在這裡算），時間軸最後多一個放置區，候選區收拖回來的備卡。
 // 結束編輯、換天時關掉動作面板。半屏聊天（ChatSheet）開著時，這個面板藏起來（高度不變），聊天關掉就回來。
 // 有提議時最上面是提議列（ProposalStrip，§16.2）；看差異時時間軸唯讀、顯示提議後的時間，提議的卡加膠囊，被換掉的變淡、劃掉。
@@ -16,7 +16,7 @@ import { useApp, useData, useShared, useUi } from '../hooks.ts';
 import { Icon } from '../components/Icon.tsx';
 import { openDialog } from '../uiStore.ts';
 import { cardTime, findItemRef, formatStay, shownWarnings, type TimelineRow } from '../lib/planView.ts';
-import { dayLabel, isRedDay } from '../lib/trip.ts';
+import { isRedDay, shortDayLabel } from '../lib/trip.ts';
 import { dayAreaName, dayTitle } from '../lib/dayTitle.ts';
 import { stopsOn } from '../lib/itinerary.ts';
 import type { Place } from '../data/types.ts';
@@ -32,6 +32,7 @@ import type { DragSource } from '../lib/dropIntent.ts';
 import { focusKeyOf, mobileStore, useMobile, type ActionSheetSpec, type ActionView, type TripSnap } from './mobileStore.ts';
 import { DayStrip } from '../shared/ui/DayStrip.tsx';
 import { Button } from '../shared/ui/Button.tsx';
+import { DiscussButton } from '../shared/ui/DiscussButton.tsx';
 import { MobileCard } from './MobileCard.tsx';
 import { MobileLeg, MobileWait } from './MobileLeg.tsx';
 import { askDay } from './mobileAi.ts';
@@ -344,12 +345,14 @@ function DayView({ date }: { date: string }) {
       <div className="m-dayhead">
         <h2 className={`m-dayhead-title ${isRedDay(date) ? 'red-day' : ''}`} data-testid="m-trip-title">
           <span className="m-dayhead-date">{title.date}</span>
-          <span className="m-dayhead-sub">{title.short}</span>
+          <span className="m-dayhead-sub">{title.week}</span>
+          {title.area && <span className="m-dayhead-area"> · {title.area}</span>}
         </h2>
         {/* 半屏聊天（ChatSheet） */}
         <Button kind="secondary" size="sm" icon="spark" className="m-ask-day" aria-label="問 AI 這天" onClick={() => askDay(date)} data-testid="m-trip-ai">
           問 AI
         </Button>
+        <DiscussButton variant="white" />
         <Button kind="primary" size="sm" icon="pen" onClick={() => openDialog({ kind: 'planning' })} data-testid="m-trip-edit">
           編輯
         </Button>
@@ -430,7 +433,7 @@ function EditBar({ day }: { day: string }) {
   return (
     <div className="m-edit-top">
       <PlanningBar
-        title={day === 'all' ? '編輯中' : `編輯 ${dayLabel(day)}`}
+        title={day === 'all' ? '編輯中' : `編輯 ${shortDayLabel(day)}`}
         className="m-edit-bar"
         compact
         extra={

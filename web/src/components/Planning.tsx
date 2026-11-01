@@ -1,5 +1,5 @@
 // 編輯（interaction-design §6、§11、第五輪設計 §5）：「✏️ 編輯這天」按鈕、進入前確認、時間軸面板最上面的藍條、第一次的提示、閒置自動結束；
-// 快照列表與復原、「排進行程」、「移到第 _ 天」（卡片、自己加的候選）、別人改過了的提示。
+// 過去的版本（快照）列表與復原、上一步、「排進行程」、「移到第 _ 天」（卡片、自己加的候選）、別人改過了的提示。
 
 import { useCallback, useEffect, useState, useSyncExternalStore, type ReactNode } from 'react';
 import { describeChanges, diffItinerary } from '@travel-helper/engine';
@@ -11,6 +11,7 @@ import { closeDialog, openDialog, uiStore } from '../uiStore.ts';
 import { DayGrid12 } from '../shared/ui/DayGrid12.tsx';
 import { Icon } from './Icon.tsx';
 import { Button } from '../shared/ui/Button.tsx';
+import { DiscussButton } from '../shared/ui/DiscussButton.tsx';
 import { dayLabel, isRedDay, shortDayLabel, tripDates } from '../lib/trip.ts';
 import { findItemRef, itemsWithPlace } from '../lib/planView.ts';
 import { stopsOn } from '../lib/itinerary.ts';
@@ -61,14 +62,14 @@ export function PlanningConfirmDialog() {
         </>
       }
     >
-      <p>進入後可以修改<strong>大家共用的那一份行程</strong>：把這天的候選排進行程、拿掉別人加的候選、刪除、移到別天、換順序、改停留時間、復原快照。</p>
+      <p>進入後可以修改<strong>大家共用的那一份行程</strong>：把這天的候選排進行程、拿掉別人加的候選、刪除、移到別天、換順序、改停留時間。</p>
       {note && (
         <p className="planning-note" data-testid="planning-note">
           要寫入：{note}
         </p>
       )}
       <ul className="small">
-        <li>每次修改前都會自動存一份快照，改錯了可以復原。</li>
+        <li>改錯了可以按上一步 <Icon name="undo" size={16} />。</li>
         <li>{idle} 分鐘沒有動作會自動結束編輯。</li>
       </ul>
     </Dialog>
@@ -110,13 +111,12 @@ export function EditingStrip() {
 }
 
 /**
- * 編輯中，時間軸面板最上面的藍條：說明、儲存狀態、快照、完成（白底）。
- * 兩邊同一個樣子（§6.3）：墨色底，「編輯 2/3（三）」、快照、完成；compact（手機）不寫「第 N 版」
+ * 編輯中，時間軸面板最上面的藍條：日期、存檔中才顯示的「儲存中」、問 AI（extra）、討論、上一步、完成（白底）。
+ * 兩邊同一個樣子（§6.3、T33）：墨色底；compact（手機）不顯示儲存中
  */
 export function PlanningBar({ title, className = '', compact = false, extra = null }: { title?: string; className?: string; compact?: boolean; extra?: ReactNode } = {}) {
   const planning = useApp((s) => s.planning);
   const saving = useShared((s) => s.saving);
-  const version = useShared((s) => s.version);
   // callback ref：編輯條出現時開始看它在不在畫面上，拿掉時停止並當作「在」（交給 dayPanelShowing 判斷）
   const watch = useCallback((el: HTMLDivElement | null) => {
     if (!el || typeof IntersectionObserver === 'undefined') return;
@@ -133,17 +133,27 @@ export function PlanningBar({ title, className = '', compact = false, extra = nu
       <strong className="ic-text">
         <Icon name="pen" size={16} /> {title ?? '編輯中・改了會自動存，大家都看得到'}
       </strong>
-      {!compact && <span className="planning-bar-status">{saving ? '儲存中…' : `第 ${version} 版`}</span>}
+      {!compact && saving && <span className="planning-bar-status">儲存中…</span>}
       <span className="planning-bar-actions">
         {extra}
-        <button type="button" className="text-button" onClick={() => openDialog({ kind: 'snapshots' })} data-testid="snapshots-button">
-          <Icon name="history" size={16} /> 快照
-        </button>
+        <DiscussButton variant="bar" />
+        <UndoButton />
         <button type="button" className="planning-done" data-testid="planning-done" onClick={() => appStore.getState().setPlanning(false)}>
           完成
         </button>
       </span>
     </div>
+  );
+}
+
+/** 上一步：這次編輯裡每個修改都能退，可以連按；沒有可退的時候變灰。別人改過就退不了（sharedStore.undoEntry） */
+export function UndoButton() {
+  const can = useShared((s) => s.undoStack.length > 0);
+  const saving = useShared((s) => s.saving);
+  return (
+    <button type="button" className="text-button discuss-on-bar" aria-label="上一步" title="上一步" disabled={!can || saving} onClick={() => void shared.undoLast()} data-testid="undo-button">
+      <Icon name="undo" size={20} />
+    </button>
   );
 }
 
@@ -238,7 +248,6 @@ export function SnapshotsDialog() {
   const version = useShared((s) => s.version);
   const updatedBy = useShared((s) => s.updatedBy);
   const updatedAt = useShared((s) => s.updatedAt);
-  const planning = useApp((s) => s.planning);
   const itinerary = useData((s) => s.itinerary);
   const byId = useData((s) => s.byId);
   const [open, setOpen] = useState<{ id: number; snap: Snapshot | null } | null>(null);
@@ -250,12 +259,11 @@ export function SnapshotsDialog() {
     setOpen({ id, snap: await backend().getSnapshot(id) });
   };
   return (
-    <Dialog title="快照" onClose={closeDialog} testId="snapshots-dialog">
+    <Dialog title="過去的版本" onClose={closeDialog} testId="snapshots-dialog">
       <p className="small">
-        目前是第 {version} 版（<MemberName id={updatedBy} />・{stamp(updatedAt)}）。每次修改前會自動存一份。
+        目前是第 {version} 版（<MemberName id={updatedBy} />・{stamp(updatedAt)}）。每次修改前會自動存一份，改壞了可以回到以前的版本。
       </p>
-      {!planning && <p className="muted small">要復原，請先開始編輯。</p>}
-      {snapshots.length === 0 && <p className="muted">還沒有快照。</p>}
+      {snapshots.length === 0 && <p className="muted">還沒有過去的版本。</p>}
       <ol className="snapshot-list">
         {snapshots.map((s) => {
           const changes = open?.id === s.id && open.snap && itinerary ? describeChanges(diffItinerary(itinerary, open.snap.data), { nameOf }) : null;
@@ -274,14 +282,14 @@ export function SnapshotsDialog() {
                 <button type="button" className="text-button" onClick={() => void expand(s.id)}>
                   {open?.id === s.id ? '收起' : '和現在比'}
                 </button>
-                {planning && confirm !== s.id && (
+                {confirm !== s.id && (
                   <button type="button" className="text-button" onClick={() => setConfirm(s.id)} data-testid="snapshot-restore">
                     <Icon name="undo" size={16} /> 復原到這一版
                   </button>
                 )}
-                {planning && confirm === s.id && (
+                {confirm === s.id && (
                   <>
-                    <span className="small">確定復原？（現在的版本也會存成快照）</span>
+                    <span className="small">確定復原？大家的行程都會變回這一版（現在的版本也會留著）。</span>
                     <button
                       type="button"
                       className="text-button danger"

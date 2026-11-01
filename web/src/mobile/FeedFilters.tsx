@@ -1,19 +1,14 @@
-// 手機探索、想去上方的篩選列（第七輪）：shared/ui/FilterBar（搜尋、篩選、排序、套用的條件）加上它下面一列的類型。
+// 手機探索、想去上方的篩選列（第七輪）：shared/ui/FilterBar（搜尋、篩選、排序）加上它下面一列的類型。
 // 狀態放在 mobileStore 的 feed／wish（手機自己一份，不看地圖範圍、不動地圖的篩選）。
 // 這裡把 feed／wish 接成 FilterModel；篩選面板（FilterSheet）和網頁是同一份，條件寫進 feed.quick／wish.quick（"欄位:值"，只由面板寫入）。
 
 import { useMemo } from 'react';
 import { feedFilter, feedToken, wishFilter, type ExploreType, type Feed } from '../lib/explore.ts';
-import { TYPE_LABELS, type FilterKey } from '../lib/filter.ts';
-import { Chip } from '../shared/ui/Chip.tsx';
+import type { FilterKey } from '../lib/filter.ts';
 import { FilterBar, type FilterModel } from '../shared/ui/FilterBar.tsx';
+import { TypeChips } from '../shared/ui/TypeChips.tsx';
 import { mobileStore, useMobile } from './mobileStore.ts';
 import { useWishPrefs, wishPrefs } from '../shared/wishPrefs.ts';
-
-const TYPE_CHIPS: { type: ExploreType | 'all'; label: string }[] = [
-  { type: 'all', label: '全部' },
-  ...(['spot', 'restaurant', 'lodging'] as const).map((t) => ({ type: t, label: TYPE_LABELS[t] })),
-];
 
 /** 換地區時，舊地區的小區域拿掉 */
 const withoutRegions = (quick: string[]) => quick.filter((t) => !t.startsWith('regions:'));
@@ -69,23 +64,13 @@ export function useWishModel(type: ExploreType | 'all'): FilterModel {
   };
 }
 
-/** 篩選列下面那一列類型晶片（全部、景點、餐廳、住宿）：探索、想去長得一樣（第十輪），testid 是 `${prefix}-type-<類型>` */
-export function TypeChips({ value, onPick, prefix, testId }: { value: Feed['type']; onPick: (type: ExploreType | 'all') => void; prefix: string; testId?: string }) {
-  return (
-    <div className="m-chips fb-chips" data-testid={testId}>
-      {TYPE_CHIPS.map((c) => (
-        <Chip key={c.type} on={value === c.type} onClick={() => onPick(c.type)} testId={`${prefix}-type-${c.type}`}>
-          {c.label}
-        </Chip>
-      ))}
-    </div>
-  );
-}
-
-/** 探索上方的篩選列：搜尋、篩選、排序（黏在上面），下面一列類型（全部、景點、餐廳、住宿）和套用的條件 */
+/** 探索上方的篩選列：搜尋、篩選、排序（黏在上面），下面一列類型（全部、景點、餐廳、住宿） */
 export function FeedFilters({ count, extra }: { count: number; extra?: Partial<FilterModel> }) {
   const feed = useMobile((s) => s.feed);
   const model = { ...useFeedModel(), ...extra };
-  const typeRow = <TypeChips value={feed.type} onPick={(type) => mobileStore.getState().setFeed({ type })} prefix="m-feed" testId="m-feed-filters" />;
+  // AI 一次套多個類型時條件在 quick（filterToFeed）：都標亮；點了就換成只有那一類
+  const prefix = feedToken('types', '');
+  const aiTypes = feed.quick.filter((t) => t.startsWith(prefix)).map((t) => t.slice(prefix.length));
+  const typeRow = <TypeChips value={feed.type} selected={aiTypes} onPick={(type) => mobileStore.getState().setFeed({ type, quick: feed.quick.filter((t) => !t.startsWith(prefix)) })} prefix="m-feed" testId="m-feed-filters" />;
   return <FilterBar source="explore" surface="mobile" model={model} count={count} typeRow={typeRow} />;
 }

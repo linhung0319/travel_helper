@@ -217,13 +217,24 @@ T15m 先用假後端把畫面做出來，T15 換成呼叫 Worker 的實作（`ba
 - **靜態檔**：`run_worker_first: ["/*", "!/assets/*"]`：打包好的程式不經過 Worker，`web/public/_headers` 給 `/assets/*` 長快取；其他（`/`、`/static/`、`/api/`）都要登入。**`/assets/` 不用登入就讀得到**，所以資料點、時刻表不能放在那裡；JS 裡有旅程日期、人數組成、航班時間（`systemPrompt.ts`、`engine/ops.ts`，沒有姓名和航班編號），👤 2026-11-01 確認可以接受。`not_found_handling` 是 `none`：SPA 模式下 `/assets/` 沒有的檔案會回 `index.html`（200），還被長快取記一年（T15 實測）；網站沒有路徑的路由，用不到 SPA。
 - **e2e**：`npm run e2e:worker`（`web/playwright.worker.config.ts`、`web/e2e-worker/`）：build 過的網站、本機 Worker、獨立的本機 D1（`worker/.wrangler/e2e-<埠>`），「別人」是另一個帳號（`X-Dev-Member`）。正式 build 沒有 `window.__th`，全部走畫面。埠被佔著時設 `E2E_WORKER_PORT`。量載入：`web/e2e-worker/measure.mjs`。
 
+### 討論彈窗、上一步（T33，2026-11-01）
+
+設計見 `docs/superpowers/specs/2026-11-01-discussion-add-place-design.md`。留言的 `target`（地點、`day:<日期>`、`trip`）、快照 API 都沒有改，**後端和資料表不動**。
+
+- **`web/src/lib/discussion.ts`**（純函式，單元測試 `web/test/discussion.test.ts`）：`discussionView(chip, input)` 把留言照討論對象分組（`pinned`、`threads`、`quiet`），`placeWhere`（點在行程的哪裡，跟著行程算，點換天、移出行程時留言不用動）、`unreadCount`、`unreadDates`、`latestCommentAt`。沒有修改紀錄可查，所以「從來沒排過」和「被移出行程」分不出來，畫面都標「不在行程」。
+- **`uiStore.discussion`**：`{ chip, open }`（`openDiscussion`、`closeDiscussion`、`setDiscussionChip`、`setDiscussionOpen`）。和 `mapPanel`、`timetable` 一次開一個。手機算一層 history（`mobileStore.layersOpen`）。
+- **元件**：`shared/ui/DiscussButton`（`white`、`quiet`、`bar` 三種，樣式跟著旁邊的問 AI）、`shared/ui/DiscussionPanel`（網頁在 `.map-column`，手機在 `MobileApp`）。留言的畫法和詳情共用 `components/Wishlist.tsx` 的 `CommentRow`。手機的彈窗放在 `.m-app` 裡，`.m-app` 已經照 `--kb` 變矮，所以鍵盤升起時整個彈窗跟著縮；篩選、上面露出的那條看 `data-keyboard` 收起來。
+- **`shared/discussionSeen.ts`**：「看到哪裡」，每台裝置、每個人一份（localStorage `travel-helper:discussSeen:<member>`）。存的是最新留言的時間（伺服器時間），手機時間不準也不會算錯；新裝置第一次打開時舊留言全算已讀。
+- **上一步**：`sharedStore.undoStack`，每個 `changeItinerary` 都記一筆（`before`、`next`、`after`），`undoLast` 退一步，提示裡的「復原」走同一個 `undoEntry`。行程已經不是 `next`（同步進來別人的）就清空、提示不能復原。`appShared` 在 `appStore.planning` 變動時 `clearUndo`，重新載入、復原版本也清空。
+- **過去的版本**：就是快照（`SnapshotsDialog`），入口從編輯條移到頭像選單和「我」，復原不用先進編輯；AI 的 `show_screen` 還是打得開。
+
 ### 自己加地點（T31，2026-10-30）
 
 設計見 `docs/superpowers/specs/2026-10-30-add-place-design.md`。
 
 - **`web/src/lib/addPlace/`**（純函式，有單元測試 `web/test/addPlace.test.ts`）：`classify`（輸入是連結、地址還是文字）、`mapLink`（解析 Google Maps 網址）、`gsi`／`address`（國土地理院地址搜尋）、`dedupe`（80 公尺＋名稱、30 公尺「附近已經有」）、`suggest`（搜尋框的提示狀態）、`draft`（`createAddPlaceStore`，草稿和存檔）、`userPlace`（`UserPlace` 轉 `Place`，地區由座標落在 `areas.json` 哪個 bbox 算）、`view`（卡片、詳情共用的顯示判斷）。
-- **`web/src/addPlaceStore.ts`**：網站共用的一份草稿 store（`start({ via, name, coords, … })`、`cancel`、存檔）。搜尋框的提示、地圖上指、詳情的「✎ 修改」、T16 的 AI 都呼叫它，確認畫面只有這一個。
-- **元件**：`shared/ui/AddPlaceSuggest`（搜尋框下的提示，兩邊共用）、`shared/ui/AddPlaceForm`（表單，兩邊共用）；網頁的表單放在 `SidePanel`，圖釘和右鍵選單在 `MapView`；手機的 `mobile/AddPlacePage.tsx`（整頁、自己的小 MapLibre 實例、固定中央圖釘；`window.__thAddMap` 給 e2e 用）。手機版是 `mobileStore` 的整頁層之外另一層（`bindAddLayer`）：和詳情共用 history，返回鍵關掉它；行程地圖按住 0.5 秒（手指移動超過 10px 不算）也在 `MapView`。
+- **`web/src/addPlaceStore.ts`**：網站共用的一份草稿 store：`openEntry(text?)`（彈窗第一步，T33）、`start({ via, name, coords, … })`（第二步）、`cancel`、存檔。清單標題列的「＋ 加地點」、搜尋比不到的提示、地圖上指、詳情的「✎ 修改」、T16 的 AI 都呼叫它，確認畫面只有這一個。
+- **元件**（T33 改成彈窗，網頁、手機同一個流程，見 `docs/superpowers/specs/2026-11-01-discussion-add-place-design.md` §4）：`shared/ui/AddPlaceDialog`（兩步的彈窗，判斷沿用 `lib/addPlace/suggest.ts`）、`shared/ui/AddPlaceMap`（自己的小 MapLibre、固定中央圖釘；`window.__thAddMap` 給 e2e 用）、`shared/ui/AddPlaceForm`（表單）、`shared/ui/AddPlaceSuggest`（搜尋比不到時的一行提示）。搜尋框不再判斷連結和地址。右鍵選單、行程地圖按住 0.5 秒（手指移動超過 10px 不算）在 `MapView`，也開這個彈窗。手機的 `mobile/AddPlacePage.tsx` 把它接成一層 history（`bindAddLayer`），返回鍵先關它。
 - **`Place` 的新欄位**（`data/types.ts`）：`origin: 'base' | 'user'`、`user`（`UserPlaceInfo`：`author`、`createdAt`、`updatedBy`、`note`、`addedVia`、`deletedAt`）。自己加的點合併進 `dataStore.places`，所以列表、地圖、搜尋、詳情不用各自處理。**已刪除的不在 `places`（列表、地圖看不到），但留在 `byId`**，`planStore` 把它們當 retired 交給引擎的 `placeLookup.users`，行程裡才會有「已下架」的警告。
 - **後端介面**（`backend/types.ts`）：`UserPlace`、`listUserPlaces`、`createUserPlace`、`updateUserPlace(id, data, type?)`、`deleteUserPlace`、`resolveMapLink`；`SyncState.userPlaces`；`sharedStore.userPlaces` 每 30 秒跟著 `sync` 重抓。假後端照 Worker 的規則（ID `user-<12 碼>`、只有本人能刪、軟刪除），`resolveMapLink` 丟「要連上伺服器」。
 - **Worker**：`GET /api/resolve-map-link`（`worker/src/api/map-link.ts`）、`PATCH /api/user-places/:id` 多收選填的 `type`（見 §4 API 表）。

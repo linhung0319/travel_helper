@@ -1,4 +1,4 @@
-// 篩選面板（手機、網頁同一份內容）：類型、地區（選了地區再多一組小區域）、團體、情境、想去、等級、地圖，一組一排晶片，點了馬上套用。
+// 篩選面板（手機、網頁同一份內容）：地區（選了地區再多一組小區域）、團體、情境、想去、等級、地圖，一組一排晶片，點了馬上套用。套用了什麼只在這裡看（T33 拿掉篩選列下面的晶片）；類型在篩選列下面一列。
 // 下面「全部清除」「顯示 N 個」。外框兩種：手機是從下面出來的底部面板（掛到 body，蓋過底部分頁）；
 // 網頁是右欄的抽屜（掛到 .side-panel，蓋住分頁下面的整個右欄，自己捲動，頭和腳固定）。選項和字在 shared/filterOptions.ts。
 
@@ -49,8 +49,8 @@ export function FilterSheet({ source, surface, model, count, host, onClose }: { 
     </section>
   );
 
-  // 手機的類型在篩選列下面一列，面板不重複；地圖只有網頁有
-  const body = FILTER_GROUPS.filter((g) => !(g.desktopOnly && surface !== 'desktop') && !(g.id === 'type' && surface === 'mobile')).flatMap((g) => {
+  // 類型在篩選列下面一列，面板不重複（T33 網頁也一樣）；地圖只有網頁有
+  const body = FILTER_GROUPS.filter((g) => !(g.desktopOnly && surface !== 'desktop') && g.id !== 'type').flatMap((g) => {
     const items = g.options(areas, source).map((o) => ({ key: g.key, ...o, on: g.key === 'bounds' ? model.inView : (filter[g.key] as string[]).includes(o.value) }));
     const out = [group(g.id, g.title, items)];
     if (g.id === 'area' && area?.regions?.length) {

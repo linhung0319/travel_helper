@@ -1,6 +1,6 @@
 // 電腦版的右側：探索、想去、行程共用一欄（順序是使用的順序），頂到最上面。
 // 想去是只放有人 ❤️ 的點的探索（Explore.tsx 的 source="wish"）。
-// 頂端（第七輪）：三個分頁加右上的頭像選單（討論、預約、下載行程）；日期晶片在地圖上（MapDays.tsx），分頁下面是編輯中、衝突提示（套用的篩選條件只在探索、想去的篩選列下面那排，行程分頁不放，第七輪 §8.4）。AI 沒有自己的分頁：地圖和這三個分頁就是 AI 操作的東西（T16）。
+// 頂端（第七輪）：三個分頁加右上的頭像選單（預約、下載行程、過去的版本）；不在行程時「行程」帶紅點表示有新留言（T33）；日期晶片在地圖上（MapDays.tsx），分頁下面是編輯中、衝突提示（套用的篩選條件只在探索、想去的篩選列下面那排，行程分頁不放，第七輪 §8.4）。AI 沒有自己的分頁：地圖和這三個分頁就是 AI 操作的東西（T16）。
 // 詳情一律是彈窗（第八輪 §13.3）：開在你剛剛看的那一塊旁邊，不蓋住它——從右欄的卡開（appStore.detailAt＝map）蓋在地圖右側、貼著右欄（DetailFloat）；
 // 從地圖上的點開（side）蓋住整個右欄（DetailOverSide），右欄的內容照樣掛著，關掉後捲動位置、展開的卡、編輯中都不變。同時只有一個彈窗。
 
@@ -16,8 +16,8 @@ import { ProposalStrip } from './ProposalStrip.tsx';
 import { DetailPanel } from './DetailPanel.tsx';
 import { ExplorePanel, showItinerary } from './Explore.tsx';
 import { useLiked } from '../shared/placeLists.ts';
-import { addPlaceStore, useAddPlace } from '../addPlaceStore.ts';
-import { AddPlaceForm } from '../shared/ui/AddPlaceForm.tsx';
+import { useDiscussionUnread } from '../shared/discussionSeen.ts';
+import { useAddPlace } from '../addPlaceStore.ts';
 
 /** 切到探索或想去（關掉詳情） */
 export function showList(mode: 'explore' | 'wish') {
@@ -65,32 +65,16 @@ function DetailOverSide() {
   );
 }
 
-/** 加地點（或修改自己加的點）的確認畫面：取代右欄的內容，圖釘在中間的主地圖上（T31 spec §3「網頁」） */
-function AddPlaceBody() {
-  const edit = useAddPlace((s) => s.draft?.mode === 'edit');
-  return (
-    <>
-      <div className="apf-head">
-        <button type="button" className="apf-back" onClick={() => addPlaceStore.getState().cancel()} data-testid="add-back">
-          <Icon name="back" size={20} />
-          {edit ? '修改地點' : '加一個地點'}
-        </button>
-      </div>
-      <p className="apf-hint muted">拖曳圖釘調整位置</p>
-      <AddPlaceForm surface="desktop" />
-    </>
-  );
-}
-
 export function SidePanel() {
   const adding = useAddPlace((s) => !!s.draft);
-  // 表單開起來時詳情彈窗收掉（從詳情按「✎ 修改」進來時，不讓彈窗蓋住表單或圖釘）
+  // 加地點的彈窗開起來時詳情彈窗收掉（從詳情按「✎ 修改」進來時，不兩個彈窗疊在一起）
   useEffect(() => {
     if (adding) appStore.getState().closeDetail();
   }, [adding]);
   const mode = useApp((s) => s.mode);
   const covered = useApp((s) => !!s.detailId && s.detailAt === 'side');
   const liked = useLiked().size;
+  const talk = useDiscussionUnread() > 0 && mode !== 'map';
   const tab = (icon: IconName, label: string, on: boolean, onClick: () => void, testId: string) => (
     <button type="button" role="tab" aria-selected={on} className={`side-tab ${on ? 'on' : ''}`} onClick={onClick} data-testid={testId}>
       <Icon name={icon} size={20} />
@@ -102,7 +86,10 @@ export function SidePanel() {
       <div className="side-tabs" role="tablist" aria-label="右側">
         {tab('search', '探索', mode === 'explore', () => showList('explore'), 'side-tab-explore')}
         {tab('heart', `想去${liked ? ` ${liked}` : ''}`, mode === 'wish', () => showList('wish'), 'side-tab-wish')}
-        {tab('calendar', '行程', mode === 'map', showItinerary, 'side-tab-day')}
+        <span className="side-tab-wrap">
+          {tab('calendar', '行程', mode === 'map', showItinerary, 'side-tab-day')}
+          {talk && <i className="side-tab-dot" data-testid="side-tab-dot-discuss" aria-label="有新留言" />}
+        </span>
         <span className="side-tabs-end">
           <AccountMenu />
         </span>
@@ -114,7 +101,7 @@ export function SidePanel() {
       </div>
       {/* 右欄的內容一直掛著：蓋住右欄的彈窗關掉後原樣回來 */}
       <div className="side-body" inert={covered || undefined}>
-        {adding ? <AddPlaceBody /> : mode === 'map' ? <DayPanel /> : <ExplorePanel key={mode} source={mode} />}
+        {mode === 'map' ? <DayPanel /> : <ExplorePanel key={mode} source={mode} />}
       </div>
       <DetailOverSide />
     </div>
