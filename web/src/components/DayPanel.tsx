@@ -118,6 +118,10 @@ function DayHead({ day }: { day: string }) {
         <span className="day-title-sub" data-testid="day-title-sub">
           {title.sub}
         </span>
+        {/* 右欄窄時換成短的（沒有「第 N 天」），日期和按鈕才排得進一排 */}
+        <span className="day-title-short" data-testid="day-title-short">
+          {title.short}
+        </span>
       </h3>
       <span className="day-nav-actions">
         <button type="button" className="text-button ask-ai-quiet" onClick={() => askDay(day)} data-testid="day-ask-ai">

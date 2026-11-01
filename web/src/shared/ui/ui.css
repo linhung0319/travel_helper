@@ -2689,11 +2689,35 @@ button.ll-main {
   color: var(--red-day);
 }
 
-.day-title-sub {
+.day-title-sub,
+.day-title-short {
+  min-width: 0;
+  overflow: hidden;
   color: var(--ink-2);
   font-family: inherit;
   font-size: 0.875rem;
   font-weight: 400;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.day-title-short {
+  display: none;
+}
+
+.day-nav {
+  container: day-nav / inline-size;
+}
+
+/* 右欄窄時（iPad 橫放）：副標用短的，太長就省略，按鈕不換行 */
+@container day-nav (max-width: 379px) {
+  .day-title-sub {
+    display: none;
+  }
+
+  .day-title-short {
+    display: inline;
+  }
 }
 
 /* 卡片時間那一行裡的時間（點了固定開始時間的是按鈕） */
