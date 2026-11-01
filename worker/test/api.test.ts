@@ -4,6 +4,7 @@
 import { test, describe, beforeEach, afterEach } from 'node:test';
 import assert from 'node:assert/strict';
 import { freshDb, type FakeD1 } from './helpers/d1.ts';
+import { createItinerary } from '@travel-helper/engine';
 import { handle } from '../src/index.ts';
 import { writeTestData, testSpot } from '../../scripts/test/helpers/test-area.ts';
 // @ts-expect-error 沒有型別宣告的 .mjs
@@ -65,6 +66,26 @@ describe('預設資料與修改', () => {
     const etag = r.headers.get('etag')!;
     assert.equal(etag, '"imp-1"');
     assert.equal((await call('GET', '/api/places', undefined, { headers: { 'if-none-match': etag } })).status, 304);
+  });
+
+  test('ETag：Cloudflare 改成弱 ETag 也比對得到', async () => {
+    assert.equal((await call('GET', '/api/places', undefined, { headers: { 'if-none-match': 'W/"imp-1"' } })).status, 304);
+    assert.equal((await call('GET', '/api/places/details', undefined, { headers: { 'if-none-match': 'W/"imp-1"' } })).status, 304);
+    assert.equal((await call('GET', '/api/places', undefined, { headers: { 'if-none-match': '"imp-0"' } })).status, 200);
+  });
+
+  test('清單層、詳情層：接起來等於原始資料；研究用的 extra 不外流', async () => {
+    const list = (await call('GET', '/api/places')).body.places;
+    const details = (await call('GET', '/api/places/details')).body.details;
+    const one = (await call('GET', '/api/places/test-area-spot')).body.data;
+    const l = list.find((p: any) => p.id === 'test-area-spot');
+    const d = details.find((p: any) => p.id === 'test-area-spot');
+    assert.equal(l.sources, undefined);
+    assert.equal(l.summary, undefined);
+    const { extra: _a, ...full } = { ...l, ...d };
+    const { extra: _b, ...orig } = one;
+    assert.deepEqual(full, orig);
+    assert.equal(d.extra?.conflicts, undefined);
   });
 
   test('修改：先合併再驗證，通過就生效；GET /api/places/:id 看得到改過的欄位', async () => {
@@ -229,59 +250,131 @@ describe('展開 Google Maps 短網址（T31）', () => {
 describe('確定的行程與快照', () => {
   test('version 不一樣就 409；每次改之前存快照；可以復原', async () => {
     assert.deepEqual((await call('GET', '/api/itinerary')).body, { version: 0, data: null, updatedBy: null, updatedAt: null });
-    const v1 = await call('PUT', '/api/itinerary', { version: 0, data: { days: ['a'] } });
+    const a = { ...createItinerary(), seq: 100 };
+    const v1 = await call('PUT', '/api/itinerary', { version: 0, data: a });
     assert.equal(v1.body.version, 1);
-    assert.equal((await call('PUT', '/api/itinerary', { version: 0, data: { days: ['x'] } }, { as: 'dev-b' })).status, 409);
-    const v2 = await call('PUT', '/api/itinerary', { version: 1, data: { days: ['b'] }, reason: '加了一天' }, { as: 'dev-b' });
+    assert.equal((await call('PUT', '/api/itinerary', { version: 0, data: createItinerary() }, { as: 'dev-b' })).status, 409);
+    const v2 = await call('PUT', '/api/itinerary', { version: 1, data: { ...createItinerary(), seq: 200 }, reason: '加了一天' }, { as: 'dev-b' });
     assert.equal(v2.body.version, 2);
     assert.equal(v2.body.updatedBy, 'dev-b');
-    const stale = await call('PUT', '/api/itinerary', { version: 1, data: { days: ['c'] } });
+    const stale = await call('PUT', '/api/itinerary', { version: 1, data: createItinerary() });
     assert.equal(stale.status, 409);
     assert.equal(stale.body.details.current, 2);
 
     const snaps = (await call('GET', '/api/itinerary/snapshots')).body.snapshots;
     assert.equal(snaps.length, 1);
     assert.equal(snaps[0].version, 1);
-    assert.deepEqual((await call('GET', `/api/itinerary/snapshots/${snaps[0].id}`)).body.data, { days: ['a'] });
+    assert.deepEqual((await call('GET', `/api/itinerary/snapshots/${snaps[0].id}`)).body.data, a);
 
     const r = await call('POST', `/api/itinerary/snapshots/${snaps[0].id}/restore`, { version: 2 });
     assert.equal(r.body.version, 3);
-    assert.deepEqual(r.body.data, { days: ['a'] });
+    assert.deepEqual(r.body.data, a);
     assert.equal((await call('GET', '/api/itinerary/snapshots')).body.snapshots.length, 2, '復原也存快照');
   });
   test('data 要是物件、version 要是整數', async () => {
     assert.equal((await call('PUT', '/api/itinerary', { version: 0, data: [] })).status, 400);
     assert.equal((await call('PUT', '/api/itinerary', { version: '0', data: {} })).status, 400);
   });
+  test('存行程時跑 validateItinerary：格式不對 400；舊資料的 bufferMinutes、trip 不報錯，mode 收 transit', async () => {
+    const bad = await call('PUT', '/api/itinerary', { version: 0, data: { days: ['a'] } });
+    assert.equal(bad.status, 400);
+    assert.ok(bad.body.details.length > 0);
+    const it = createItinerary();
+    it.days[1].items.push({
+      id: 'i-1',
+      type: 'visit',
+      options: [{ place: 'test-area-spot', stayMinutes: null, note: null }],
+      selected: 0,
+      start: null,
+      travel: { mode: 'transit', minutes: null, note: null, bufferMinutes: 5, trip: { line: 'x' } },
+      note: null,
+    } as never);
+    assert.equal((await call('PUT', '/api/itinerary', { version: 0, data: it })).status, 200);
+  });
 });
 
-describe('建議', () => {
-  test('只有寫的人能改、能刪；狀態誰都能標', async () => {
-    const c = await call('POST', '/api/suggestions', { day: '2027-02-05', text: '想去水族館', placeIds: ['test-area-spot'] });
+describe('留言', () => {
+  test('只有作者能改、能刪（軟刪除）；地點、某一天、整趟都能留', async () => {
+    const c = await call('POST', '/api/comments', { target: 'test-area-spot', text: '想早上去' });
     assert.equal(c.status, 201);
-    const id = c.body.suggestion.id;
-    assert.equal((await call('PATCH', `/api/suggestions/${id}`, { text: '改掉' }, { as: 'dev-b' })).status, 403);
-    assert.equal((await call('PATCH', `/api/suggestions/${id}`, { text: '想去水族館（上午）' })).body.suggestion.text, '想去水族館（上午）');
-    const s = await call('PATCH', `/api/suggestions/${id}/status`, { status: 'adopted', note: '排在第 4 天', adoptedItemIds: ['i1'] }, { as: 'dev-b' });
-    assert.equal(s.body.suggestion.status, 'adopted');
-    assert.equal(s.body.suggestion.statusBy, 'dev-b');
-    assert.deepEqual(s.body.suggestion.adoptedItemIds, ['i1']);
-    assert.equal((await call('DELETE', `/api/suggestions/${id}`, undefined, { as: 'dev-b' })).status, 403);
-    assert.equal((await call('DELETE', `/api/suggestions/${id}`)).status, 200);
-    assert.equal((await call('GET', '/api/suggestions')).body.suggestions.length, 0);
-    assert.equal((await call('GET', '/api/suggestions?since=2000-01-01')).body.suggestions[0].deletedAt !== null, true, 'since 時回傳刪除的');
+    assert.equal(c.body.comment.kind, 'normal');
+    const id = c.body.comment.id;
+    assert.equal((await call('PATCH', `/api/comments/${id}`, { text: '改掉' }, { as: 'dev-b' })).status, 403);
+    assert.equal((await call('PATCH', `/api/comments/${id}`, { text: '想下午去' })).body.comment.text, '想下午去');
+    assert.equal((await call('DELETE', `/api/comments/${id}`, undefined, { as: 'dev-b' })).status, 403);
+    assert.equal((await call('DELETE', `/api/comments/${id}`)).status, 200);
+    assert.equal((await call('GET', '/api/comments')).body.comments.length, 0);
+    assert.equal((await call('DELETE', `/api/comments/${id}`)).status, 404);
+    for (const target of ['day:2027-02-05', 'trip']) assert.equal((await call('POST', '/api/comments', { target, text: 'x', kind: 'planner' })).body.comment.target, target);
   });
-  test('day 要是日期或 trip；text 不能空', async () => {
-    assert.equal((await call('POST', '/api/suggestions', { day: '2/5', text: 'x' })).status, 400);
-    assert.equal((await call('POST', '/api/suggestions', { day: 'trip', text: ' ' })).status, 400);
-    assert.equal((await call('POST', '/api/suggestions', { day: 'trip', text: '整趟都想吃海鮮' })).status, 201);
+  test('文字不能空、上限 500 字（和假後端一樣）；kind 要認得', async () => {
+    assert.equal((await call('POST', '/api/comments', { target: 'trip', text: ' ' })).status, 400);
+    assert.equal((await call('POST', '/api/comments', { target: 'trip', text: 'あ'.repeat(501) })).status, 400);
+    assert.equal((await call('POST', '/api/comments', { target: '', text: 'x' })).status, 400);
+    assert.equal((await call('POST', '/api/comments', { target: 'trip', text: 'x', kind: 'nope' })).status, 400);
+  });
+});
+
+describe('候選', () => {
+  test('同一天同一個點只有一筆；日期要在旅程裡；誰都能拿掉；拿掉後可以再加', async () => {
+    const c = await call('POST', '/api/candidates', { placeId: 'test-area-spot', day: '2027-02-05' });
+    assert.equal(c.status, 201);
+    assert.equal(c.body.candidate.addedBy, 'dev-a');
+    const again = await call('POST', '/api/candidates', { placeId: 'test-area-spot', day: '2027-02-05' }, { as: 'dev-b' });
+    assert.equal(again.status, 200);
+    assert.equal(again.body.candidate.id, c.body.candidate.id);
+    assert.equal(again.body.candidate.addedBy, 'dev-a');
+    assert.equal((await call('POST', '/api/candidates', { placeId: 'test-area-spot', day: '2027-03-01' })).status, 400);
+    assert.equal((await call('POST', '/api/candidates', { placeId: '', day: '2027-02-05' })).status, 400);
+    assert.equal((await call('DELETE', `/api/candidates/${c.body.candidate.id}`, undefined, { as: 'dev-b' })).status, 200);
+    assert.equal((await call('GET', '/api/candidates')).body.candidates.length, 0);
+    assert.equal((await call('DELETE', `/api/candidates/${c.body.candidate.id}`)).status, 404);
+    assert.notEqual((await call('POST', '/api/candidates', { placeId: 'test-area-spot', day: '2027-02-05' })).body.candidate.id, c.body.candidate.id);
+  });
+});
+
+describe('預約筆記', () => {
+  test('同一個 (date, placeId) 整筆取代；Worker 填誰、何時；空白的備註是 null', async () => {
+    const body = { date: '2027-02-05', placeId: 'test-area-spot', status: 'booked', note: '已訂 15 位', nights: 2 };
+    const a = await call('PUT', '/api/reservations', body);
+    assert.equal(a.body.reservation.updatedBy, 'dev-a');
+    assert.equal(a.body.reservation.nights, 2);
+    const b = await call('PUT', '/api/reservations', { date: '2027-02-05', placeId: 'test-area-spot', status: 'pending', note: '  ' }, { as: 'dev-b' });
+    assert.deepEqual([b.body.reservation.status, b.body.reservation.note, b.body.reservation.nights, b.body.reservation.updatedBy], ['pending', null, null, 'dev-b']);
+    assert.equal((await call('GET', '/api/reservations')).body.reservations.length, 1);
+    assert.equal((await call('PUT', '/api/reservations', { ...body, status: 'nope' })).status, 400);
+    assert.equal((await call('PUT', '/api/reservations', { ...body, date: '2/5' })).status, 400);
+    assert.equal((await call('PUT', '/api/reservations', { ...body, note: 'あ'.repeat(501) })).status, 400);
+  });
+});
+
+describe('啟動', () => {
+  test('GET /api/bootstrap：一次拿齊，和各支 API 的內容一樣', async () => {
+    assert.equal((await call('GET', '/api/bootstrap')).body.itinerary.data, null);
+    await call('PUT', '/api/itinerary', { version: 0, data: createItinerary() });
+    await call('PUT', '/api/votes/test-area-spot', { value: 'like' });
+    await call('POST', '/api/comments', { target: 'trip', text: '嗨' });
+    await call('POST', '/api/candidates', { placeId: 'test-area-spot', day: '2027-02-05' });
+    await call('PUT', '/api/reservations', { date: '2027-02-05', placeId: 'test-area-spot', status: 'booked' });
+    await call('POST', '/api/edits', { placeId: 'test-area-spot', fieldPath: 'stayMinutes', value: 90 });
+    const r = await call('GET', '/api/bootstrap');
+    assert.equal(r.status, 200);
+    assert.equal(r.body.me.id, 'dev-a');
+    assert.deepEqual(r.body.itinerary, (await call('GET', '/api/itinerary')).body);
+    for (const k of ['members', 'snapshots', 'votes', 'comments', 'candidates', 'reservations', 'edits', 'userPlaces']) {
+      const path = { userPlaces: '/api/user-places', snapshots: '/api/itinerary/snapshots' }[k] ?? `/api/${k}`;
+      assert.deepEqual(r.body[k], (await call('GET', path)).body[k], k);
+    }
+    const { now: _a, ...sync } = r.body.sync;
+    const { now: _b, ...direct } = (await call('GET', '/api/sync')).body;
+    assert.deepEqual(sync, direct);
   });
 });
 
 describe('投票', () => {
   test('一人一個點一筆、改票、收回（軟刪除）', async () => {
     await call('PUT', '/api/votes/test-area-spot', { value: 'like' });
-    await call('PUT', '/api/votes/test-area-spot', { value: 'dislike', note: '太遠' });
+    await call('PUT', '/api/votes/test-area-spot', { value: 'dislike' });
     await call('PUT', '/api/votes/test-area-spot', { value: 'like' }, { as: 'dev-b' });
     let v = (await call('GET', '/api/votes?place=test-area-spot')).body.votes;
     assert.deepEqual(v.map((x: any) => [x.memberId, x.value]).sort(), [['dev-a', 'dislike'], ['dev-b', 'like']]);
@@ -319,7 +412,16 @@ describe('同步', () => {
     await call('DELETE', '/api/votes/test-area-spot');
     const c = (await call('GET', '/api/sync')).body;
     assert.notEqual(c.votes, b.votes, '收回投票也看得出來');
-    await call('PUT', '/api/itinerary', { version: 0, data: {} });
+    await call('PUT', '/api/itinerary', { version: 0, data: createItinerary() });
     assert.equal((await call('GET', '/api/sync')).body.itinerary, 1);
+    for (const [k, go] of [
+      ['comments', () => call('POST', '/api/comments', { target: 'trip', text: 'x' })],
+      ['candidates', () => call('POST', '/api/candidates', { placeId: 'test-area-spot', day: '2027-02-05' })],
+      ['reservations', () => call('PUT', '/api/reservations', { date: '2027-02-05', placeId: 'test-area-spot', status: 'booked' })],
+    ] as const) {
+      assert.equal((await call('GET', '/api/sync')).body[k], null);
+      await go();
+      assert.notEqual((await call('GET', '/api/sync')).body[k], null, k);
+    }
   });
 });

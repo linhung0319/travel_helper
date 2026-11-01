@@ -137,6 +137,8 @@ export interface SearchEnv {
   bounds: Bbox | null;
   likes(id: string): number;
   config: EngineConfig;
+  /** 完整的資料點（摘要在詳情層）；沒給就用 places 那一份 */
+  full?: (id: string) => Place | null;
 }
 
 export interface SearchResult {
@@ -206,7 +208,7 @@ export function searchPlaces(input: SearchInput, env: SearchEnv): SearchResult {
     total: rows.length,
     unknownExcluded,
     places: rows.slice(0, limit).map((r) => ({
-      ...digestOf(r.p, env.likes(r.p.id)),
+      ...digestOf(env.full?.(r.p.id) ?? r.p, env.likes(r.p.id)),
       ...(r.walk != null ? { walkMinutes: r.walk } : {}),
       ...(r.open ? { open: r.open } : {}),
     })),

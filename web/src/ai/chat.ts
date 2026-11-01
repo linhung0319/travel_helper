@@ -253,6 +253,8 @@ export function createChat(d: CreateChatDeps): Chat {
     const controller = new AbortController();
     abort = controller;
     openTurn = turn;
+    // 脈絡晶片的摘要在詳情層；讀不到也照常對話（工具會明講讀不到）
+    if (d.details) await d.details().catch(() => {});
     const active = proposals.store.getState().active;
     const context = buildTurnContext({ d, read, stage: d.stage, chips, screenOff: store.getState().screenOff, decisions: store.getState().decisions, draft: active && { cardId: active.cardId, ops: active.ops, summary: active.summary }, cards: openCards() });
     store.setState({ decisions: [], error: null });

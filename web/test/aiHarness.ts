@@ -67,6 +67,9 @@ export async function harness(opts: HarnessOptions = {}) {
     itinerary: null,
     days: new Map(),
     stationNames: new Map(),
+    details: null,
+    detailsError: null,
+    placeEdits: [],
   }));
   const app = createAppStore();
   const shared = createShared(() => backend, data);
@@ -75,6 +78,7 @@ export async function harness(opts: HarnessOptions = {}) {
   const plan = createStore<PlanState>()(() => ({ status: 'loading', error: null, plan: null }));
   const source: DataSource = {
     loadAreas: async () => AREAS,
+    loadPlaceDetails: async () => [],
     loadPlaces: async () => PLACES,
     loadTimetable: async (id) => {
       const p = join(ROOT, 'data', 'timetables', 'kintetsu', `${id}.json`);

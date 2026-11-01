@@ -1,4 +1,4 @@
-// 假後端（T15m）：規則照 T24 的 Worker（worker/src/api/；留言、候選是新的，T15 再同步過去），資料存在記憶體，有 storage 時也存進 localStorage。
+// 假後端（T15m）：規則和 Worker（worker/src/api/）一樣，改了要一起改；資料存在記憶體，有 storage 時也存進 localStorage。
 // 只在 dev server 用（backend/index.ts）；Node 的測試不給 storage、不延遲。
 
 import type { Itinerary } from '@travel-helper/engine/types';
@@ -198,19 +198,34 @@ export function createMockBackend(seed: MockSeed, opts: MockOptions = {}): MockB
   }
 
   const maxUpdated = (rows: { updatedAt: string }[]) => rows.reduce<string | null>((m, r) => (m === null || r.updatedAt > m ? r.updatedAt : m), null);
+  const syncState = () => ({
+    itinerary: state.itinerary.version,
+    votes: maxUpdated(state.votes),
+    comments: maxUpdated(state.comments),
+    candidates: maxUpdated(state.candidates),
+    reservations: maxUpdated(state.reservations),
+    edits: maxUpdated(state.edits),
+    userPlaces: maxUpdated(state.userPlaces),
+  });
+  const currentMember = () => state.members.find((m) => m.id === member()) ?? { id: member(), displayName: member(), pictureUrl: null };
 
   return {
-    me: () => call(() => state.members.find((m) => m.id === member()) ?? { id: member(), displayName: member(), pictureUrl: null }),
+    me: () => call(currentMember),
     members: () => call(() => state.members),
-    sync: () =>
+    sync: () => call(syncState),
+    bootstrap: () =>
       call(() => ({
-        itinerary: state.itinerary.version,
-        votes: maxUpdated(state.votes),
-        comments: maxUpdated(state.comments),
-        candidates: maxUpdated(state.candidates),
-        reservations: maxUpdated(state.reservations),
-        edits: maxUpdated(state.edits),
-        userPlaces: maxUpdated(state.userPlaces),
+        me: currentMember(),
+        members: state.members,
+        sync: syncState(),
+        itinerary: state.itinerary,
+        snapshots: [...state.snapshots].reverse().map(({ id, version, reason, createdBy, createdAt }) => ({ id, version, reason, createdBy, createdAt })),
+        votes: state.votes.filter((v) => !v.deletedAt),
+        comments: state.comments.filter((x) => !x.deletedAt),
+        candidates: state.candidates.filter((x) => !x.deletedAt),
+        reservations: state.reservations,
+        edits: state.edits,
+        userPlaces: state.userPlaces,
       })),
 
     getItinerary: () => call(() => state.itinerary),

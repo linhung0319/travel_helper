@@ -59,15 +59,23 @@ export function buildEngineData(d: DataState, tt: EngineTimetables, roads?: Road
   if (placesMemo?.places !== d.places || placesMemo.byId !== d.byId) {
     const base: PlaceRecord[] = [];
     for (const p of d.places) if (p.origin !== 'user') base.push(p.raw as unknown as PlaceRecord);
+    const stations = base.filter((r) => r.type === 'station');
     const users: PlaceRecord[] = [];
     const retired: string[] = [];
     const live = new Set(d.places.map((p) => p.id));
     for (const p of d.byId.values()) {
-      if (p.origin !== 'user') continue;
+      if (p.origin !== 'user') {
+        // 已下架的預設資料（T15）：行程裡還查得到，引擎發警告
+        if (p.retiredAt) {
+          base.push(p.raw as unknown as PlaceRecord);
+          retired.push(p.id);
+        }
+        continue;
+      }
       users.push(p.raw as unknown as PlaceRecord);
       if (!live.has(p.id)) retired.push(p.id);
     }
-    placesMemo = { places: d.places, byId: d.byId, getPlace: placeLookup(base, { users, retired }), stations: base.filter((r) => r.type === 'station') };
+    placesMemo = { places: d.places, byId: d.byId, getPlace: placeLookup(base, { users, retired }), stations };
   }
   if (areasMemo?.areas !== d.areas) {
     const needsCar: Record<string, boolean> = {};

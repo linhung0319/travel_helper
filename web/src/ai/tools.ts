@@ -13,6 +13,7 @@ import { createReadTools, PLACE_SECTIONS, type ToolOutput } from './readTools.ts
 import { opsContext, placeName, type AiDeps } from './deps.ts';
 import type { AddPlaceInit, ScreenTarget, ShowPlaces, ShowRoute } from './stage.ts';
 import type { CardState, ToolSchema } from './types.ts';
+import { fullPlace } from '../dataStore.ts';
 
 /** 一輪回覆結束時要呈現的東西：「再看一次」用相同的參數再跑一次 */
 export type Presentation =
@@ -334,10 +335,16 @@ export function createTools(d: AiDeps): ToolDef[] {
       kind: 'propose',
       description: '提議修改資料點的欄位（例如「這家週三公休」）：卡片顯示舊值和新值，使用者按「確認」才生效，有紀錄、可以復原。note 寫資料從哪裡來。fieldPath 例如 closedNote、hours、group.maxReservation。',
       input_schema: obj({ placeId: str(), fieldPath: str(), value: {}, note: str() }, ['placeId', 'fieldPath', 'value']),
-      run(input) {
-        const p = byId().get(input.placeId as string);
-        if (!p) return fail(`找不到資料點 ${input.placeId}`);
+      async run(input) {
+        if (!byId().get(input.placeId as string)) return fail(`找不到資料點 ${input.placeId}`);
         if (typeof input.fieldPath !== 'string' || !input.fieldPath || input.fieldPath === 'id') return fail('fieldPath 不對');
+        // 舊值可能在詳情層：讀不到就不提議（不能把「還沒讀到」當成原本是空的）
+        try {
+          await d.details?.();
+        } catch {
+          return fail('詳細資料暫時讀不到（網路問題），請使用者稍後再試');
+        }
+        const p = fullPlace(d.data.getState(), input.placeId as string)!;
         const before = input.fieldPath.split('.').reduce<unknown>((x, k) => (x && typeof x === 'object' ? (x as Record<string, unknown>)[k] : undefined), p.raw);
         return { output: { ok: true, status: '已顯示卡片，等使用者確認', before: before ?? null }, card: { status: 'pending' } };
       },

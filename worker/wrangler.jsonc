@@ -18,12 +18,14 @@
     }
   ],
   // 網站：`npm run build:site` 把 web/dist 和 build/static 組成 build/site/。
-  // run_worker_first：每個請求都先經過 Worker，沒登入就回登入頁（網站本身也只給家人看）
+  // run_worker_first：除了打包好的程式（/assets/*），都先經過 Worker，沒登入就回登入頁（網站本身也只給家人看）。
+  // /assets/ 不用登入就讀得到，所以資料點、時刻表都不能放在那裡（資料在 D1 和 /static/，T15）
   "assets": {
     "directory": "../build/site",
     "binding": "ASSETS",
-    "run_worker_first": true,
-    "not_found_handling": "single-page-application"
+    "run_worker_first": ["/*", "!/assets/*"],
+    // 網站沒有用路徑的路由：不存在的檔案回 404。SPA 模式會回 index.html（200），/assets/ 的長快取會把它記一年（T15 實測）
+    "not_found_handling": "none"
   },
   "observability": { "enabled": true },
   "vars": {

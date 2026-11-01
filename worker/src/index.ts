@@ -1,39 +1,46 @@
 // Cloudflare Worker（T24：資料 API；T25：登入、部署；T16：Claude 代理）。
 // API 的一覽見 architecture.md §4。除了登入（/auth/*）和 LINE 的通知（/line/webhook），所有 API 都要先登入；
-// 網站本身（靜態檔案）也要先登入，沒登入就回登入頁（wrangler.jsonc 的 assets.run_worker_first）。
+// 網站本身也要先登入，沒登入就回登入頁；只有打包好的程式（/assets/*）不經過 Worker（wrangler.jsonc 的 assets.run_worker_first）。
 import { handleAdmin } from './admin.ts';
 import { currentMember, handleAuth } from './auth.ts';
 import type { Ctx, Env } from './env.ts';
 import { errorResponse, HttpError, json, Router } from './lib/http.ts';
 import { blockedPage, loginPage } from './pages.ts';
 import { handleWebhook } from './webhook.ts';
-import { createEdit, getPlace, listEdits, listPlaces, revertEdit } from './api/places.ts';
+import { bootstrap } from './api/bootstrap.ts';
+import { createEdit, getPlace, listEdits, listPlaceDetails, listPlaces, revertEdit } from './api/places.ts';
 import { createUserPlace, deleteUserPlace, listUserPlaces, updateUserPlace } from './api/user-places.ts';
 import { resolveMapLink } from './api/map-link.ts';
 import { getItinerary, getSnapshot, listSnapshots, putItinerary, restoreSnapshot } from './api/itinerary.ts';
 import {
   appendMessage,
-  createSuggestion,
+  createCandidate,
+  createComment,
+  deleteCandidate,
+  deleteComment,
   deleteConversation,
-  deleteSuggestion,
   deleteVote,
   getConversation,
+  listCandidates,
+  listComments,
   listConversations,
   listMembers,
-  listSuggestions,
+  listReservations,
   listVotes,
   me,
+  putReservation,
   putVote,
-  setSuggestionStatus,
   sync,
-  updateSuggestion,
+  updateComment,
 } from './api/social.ts';
 
 export const api = new Router<Ctx>()
   .on('GET', '/api/me', me)
   .on('GET', '/api/members', listMembers)
   .on('GET', '/api/sync', sync)
+  .on('GET', '/api/bootstrap', bootstrap)
   .on('GET', '/api/places', listPlaces)
+  .on('GET', '/api/places/details', listPlaceDetails)
   .on('GET', '/api/places/:id', getPlace)
   .on('GET', '/api/edits', listEdits)
   .on('POST', '/api/edits', createEdit)
@@ -48,11 +55,15 @@ export const api = new Router<Ctx>()
   .on('GET', '/api/itinerary/snapshots', listSnapshots)
   .on('GET', '/api/itinerary/snapshots/:id', getSnapshot)
   .on('POST', '/api/itinerary/snapshots/:id/restore', restoreSnapshot)
-  .on('GET', '/api/suggestions', listSuggestions)
-  .on('POST', '/api/suggestions', createSuggestion)
-  .on('PATCH', '/api/suggestions/:id', updateSuggestion)
-  .on('DELETE', '/api/suggestions/:id', deleteSuggestion)
-  .on('PATCH', '/api/suggestions/:id/status', setSuggestionStatus)
+  .on('GET', '/api/comments', listComments)
+  .on('POST', '/api/comments', createComment)
+  .on('PATCH', '/api/comments/:id', updateComment)
+  .on('DELETE', '/api/comments/:id', deleteComment)
+  .on('GET', '/api/candidates', listCandidates)
+  .on('POST', '/api/candidates', createCandidate)
+  .on('DELETE', '/api/candidates/:id', deleteCandidate)
+  .on('GET', '/api/reservations', listReservations)
+  .on('PUT', '/api/reservations', putReservation)
   .on('GET', '/api/votes', listVotes)
   .on('PUT', '/api/votes/:placeId', putVote)
   .on('DELETE', '/api/votes/:placeId', deleteVote)

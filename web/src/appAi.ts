@@ -2,7 +2,7 @@
 // dev server 用假 AI（dev-fixtures/ai/）；正式 build 先用「還沒接上」的版本，T16 換成呼叫 Worker。
 
 import { appStore } from './store.ts';
-import { dataStore } from './dataStore.ts';
+import { dataStore, ensureDetails } from './dataStore.ts';
 import { commands } from './appCommands.ts';
 import { shared, sharedStore } from './appShared.ts';
 import { addPlaceStore } from './addPlaceStore.ts';
@@ -60,6 +60,7 @@ export const ai = createChat({
   engine: currentEngineData,
   config: engineConfig,
   source: dataSource,
+  details: ensureDetails,
   confirmPlanning,
   repo: createLocalChatRepository({ storage: browserStorage(), memberId: () => sharedStore.getState().me?.id ?? 'guest' }),
   // 模型、平台都晚一點才定，這裡包一層

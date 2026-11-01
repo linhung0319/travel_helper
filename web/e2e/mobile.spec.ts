@@ -1562,7 +1562,10 @@ async function makeLong(page: import('@playwright/test').Page, id: string) {
     ([id, name]) => {
       const ds = (window as any).__th.dataStore;
       const s = ds.getState();
-      s.byId.get(id).name = { ...s.byId.get(id).name, zh: name };
+      // raw 也要改：詳情畫面用 fullPlace，從 raw 加詳情層重新算（T15）
+      const p = s.byId.get(id);
+      p.name = { ...p.name, zh: name };
+      p.raw = { ...p.raw, name: p.name };
       ds.setState({ byId: new Map(s.byId), places: [...s.places] });
     },
     [id, LONG] as const,

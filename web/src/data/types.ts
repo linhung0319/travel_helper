@@ -99,7 +99,8 @@ export interface FieldEdit {
 
 /**
  * 合併後的資料點：預設資料再套上修改層。
- * 各類別的欄位都是選填（`raw` 保留整筆原始資料，詳情面板顯示少見的欄位時用）。
+ * 各類別的欄位都是選填。`raw` 只有清單層的欄位（worker/src/lib/placeLayers.ts）：
+ * 地圖、清單、引擎用；詳情畫面和 AI 用 dataStore 的 fullPlace（hooks 的 useFullPlace），詳情層到了才有完整的欄位。
  */
 export interface Place {
   id: string;
@@ -129,6 +130,8 @@ export interface Place {
   origin: 'base' | 'user';
   /** 自己加的點的資訊（origin 是 user 才有） */
   user: UserPlaceInfo | null;
+  /** 已下架的時間（architecture §3.4）：不在清單、地圖，行程裡還查得到，引擎發警告 */
+  retiredAt?: string | null;
 }
 
 export interface UserPlaceInfo {

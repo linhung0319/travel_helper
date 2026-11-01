@@ -9,6 +9,7 @@ import crypto from 'node:crypto';
 import fs from 'node:fs';
 import path from 'node:path';
 import { threeWay, editFromRow, getAt, parseFieldPath } from '../../worker/src/lib/merge.ts';
+import { LAYER_VERSION, detailLayer, listLayer } from '../../worker/src/lib/placeLayers.ts';
 
 export const POINT_FILES = ['spots.json', 'lodging.json', 'restaurants.json'];
 
@@ -68,7 +69,7 @@ export function resolveScope(spec, areaIds) {
  * 只讀還有效的修改（沒復原、沒收掉）。
  */
 export async function readDbState(db) {
-  const places = await db.query('SELECT id, type, area, content_hash, retired_at FROM places_base');
+  const places = await db.query('SELECT id, type, area, content_hash, layer_version, retired_at FROM places_base');
   const edits = await db.query(
     'SELECT id, place_id, field_path, value, base_value, author, created_at, reverted_at, closed_at FROM place_edits WHERE reverted_at IS NULL AND closed_at IS NULL ORDER BY id',
   );
@@ -111,6 +112,8 @@ export function planImport({ sources, scope, state, oldData = new Map(), resolut
   const restore = [];
   const retire = [];
   const moved = [];
+  // 內容沒變、但分層規則改了（LAYER_VERSION）：只重算清單層和詳情層
+  const relayer = [];
   let unchanged = 0;
 
   for (const [id, src] of sources.records) {
@@ -130,8 +133,11 @@ export function planImport({ sources, scope, state, oldData = new Map(), resolut
         restored: !!cur.retired_at,
         fields: oldData.has(id) ? changedFields(oldData.get(id), src.record) : null,
       });
-    } else if (cur.retired_at) restore.push({ id, type: src.type, area: src.area });
-    else unchanged++;
+    } else {
+      if (cur.layer_version !== LAYER_VERSION) relayer.push({ id, type: src.type, area: src.area });
+      if (cur.retired_at) restore.push({ id, type: src.type, area: src.area });
+      else unchanged++;
+    }
   }
   for (const cur of state.places) {
     if (!inScope(cur.area) || cur.retired_at || sources.records.has(cur.id)) continue;
@@ -177,7 +183,7 @@ export function planImport({ sources, scope, state, oldData = new Map(), resolut
   }
 
   const sortById = (a, b) => (a.id < b.id ? -1 : a.id > b.id ? 1 : 0);
-  [add, update, restore, retire, moved].forEach((l) => l.sort(sortById));
+  [add, update, restore, retire, moved, relayer].forEach((l) => l.sort(sortById));
 
   const plan = {
     scope: [...scope].sort(),
@@ -187,6 +193,7 @@ export function planImport({ sources, scope, state, oldData = new Map(), resolut
     restore,
     retire,
     moved,
+    relayer,
     unchanged,
     edits: editResults,
     unresolved: unresolved.map((c) => c.editId),
@@ -205,6 +212,7 @@ export function summarize(plan) {
     retire: plan.retire.length,
     unchanged: plan.unchanged,
     moved: plan.moved.length,
+    relayer: plan.relayer.length,
     editsKept: plan.edits.keep.length,
     editsClosed: plan.edits.same.length,
     conflicts: plan.edits.conflict.length,
@@ -233,17 +241,24 @@ export function buildSql(plan, sources, meta) {
   out.push(
     `INSERT INTO imports (id, area, git_commit, imported_at, imported_by, summary) VALUES (${id}, ${sqlString(plan.scope.join(','))}, ${sqlString(meta.gitCommit)}, ${now}, ${sqlString(meta.importedBy)}, ${sqlString(JSON.stringify(summary))});`,
   );
+  const layers = (s) => ({ list: sqlString(JSON.stringify(listLayer(s.record))), detail: sqlString(JSON.stringify(detailLayer(s.record))) });
   for (const a of plan.add) {
     const s = sources.records.get(a.id);
+    const l = layers(s);
     out.push(
-      `INSERT INTO places_base (id, type, area, data, content_hash, import_id, first_import_id) VALUES (${sqlString(a.id)}, ${sqlString(s.type)}, ${sqlString(s.area)}, ${sqlString(JSON.stringify(s.record))}, ${sqlString(s.hash)}, ${id}, ${id});`,
+      `INSERT INTO places_base (id, type, area, data, data_list, data_detail, layer_version, content_hash, import_id, first_import_id) VALUES (${sqlString(a.id)}, ${sqlString(s.type)}, ${sqlString(s.area)}, ${sqlString(JSON.stringify(s.record))}, ${l.list}, ${l.detail}, ${LAYER_VERSION}, ${sqlString(s.hash)}, ${id}, ${id});`,
     );
   }
   for (const u of plan.update) {
     const s = sources.records.get(u.id);
+    const l = layers(s);
     out.push(
-      `UPDATE places_base SET type = ${sqlString(s.type)}, area = ${sqlString(s.area)}, data = ${sqlString(JSON.stringify(s.record))}, content_hash = ${sqlString(s.hash)}, import_id = ${id}, retired_at = NULL, retired_import_id = NULL WHERE id = ${sqlString(u.id)};`,
+      `UPDATE places_base SET type = ${sqlString(s.type)}, area = ${sqlString(s.area)}, data = ${sqlString(JSON.stringify(s.record))}, data_list = ${l.list}, data_detail = ${l.detail}, layer_version = ${LAYER_VERSION}, content_hash = ${sqlString(s.hash)}, import_id = ${id}, retired_at = NULL, retired_import_id = NULL WHERE id = ${sqlString(u.id)};`,
     );
+  }
+  for (const r of plan.relayer) {
+    const l = layers(sources.records.get(r.id));
+    out.push(`UPDATE places_base SET data_list = ${l.list}, data_detail = ${l.detail}, layer_version = ${LAYER_VERSION} WHERE id = ${sqlString(r.id)};`);
   }
   for (const r of plan.restore) {
     out.push(`UPDATE places_base SET retired_at = NULL, retired_import_id = NULL, import_id = ${id} WHERE id = ${sqlString(r.id)};`);
@@ -263,10 +278,11 @@ export function buildSql(plan, sources, meta) {
 }
 
 /**
- * 轉址：記下 old → new，再把修改、投票、建議、確定的行程裡的舊 ID 換成新 ID（architecture §3.5）。
+ * 轉址：記下 old → new，再把修改、投票、留言、候選、預約、確定的行程裡的舊 ID 換成新 ID（architecture §3.5）。
  * - 投票：同一個人兩邊都投過的話，保留新 ID 那一票，舊的軟刪除
- * - 建議、行程：JSON 文字裡完整等於 "舊 ID" 的字串換掉（ID 全專案唯一、kebab-case，不會碰到其他字串）；
- *   行程改之前先存快照
+ * - 候選、預約：新 ID 那邊已經有同一天的就保留新的；候選的舊筆軟刪除，預約的舊筆刪掉（預約沒有軟刪除）
+ * - 行程：JSON 文字裡完整等於 "舊 ID" 的字串換掉（ID 全專案唯一、kebab-case，不會碰到其他字串）；
+ *   改之前先存快照
  */
 export function redirectSql(r, importId, now) {
   const from = sqlString(r.from);
@@ -280,7 +296,11 @@ export function redirectSql(r, importId, now) {
     `UPDATE place_edits SET place_id = ${to}, updated_at = ${now} WHERE place_id = ${from};`,
     `UPDATE OR IGNORE votes SET place_id = ${to}, updated_at = ${now} WHERE place_id = ${from};`,
     `UPDATE votes SET deleted_at = ${now}, updated_at = ${now} WHERE place_id = ${from} AND deleted_at IS NULL;`,
-    `UPDATE suggestions SET place_ids = REPLACE(place_ids, ${qFrom}, ${qTo}), updated_at = ${now} WHERE instr(place_ids, ${qFrom}) > 0;`,
+    `UPDATE comments SET target = ${to}, updated_at = ${now} WHERE target = ${from};`,
+    `UPDATE OR IGNORE candidates SET place_id = ${to}, updated_at = ${now} WHERE place_id = ${from};`,
+    `UPDATE candidates SET deleted_at = ${now}, updated_at = ${now} WHERE place_id = ${from} AND deleted_at IS NULL;`,
+    `UPDATE OR IGNORE reservations SET place_id = ${to}, updated_at = ${now} WHERE place_id = ${from};`,
+    `DELETE FROM reservations WHERE place_id = ${from};`,
     `INSERT INTO snapshots (data, version, reason, created_by, created_at) SELECT data, version, ${sqlString(`匯入 #${importId}：轉址 ${r.from} → ${r.to} 之前`)}, 'import', ${now} FROM itinerary WHERE id = 1 AND instr(data, ${qFrom}) > 0;`,
     `UPDATE itinerary SET data = REPLACE(data, ${qFrom}, ${qTo}), version = version + 1, updated_by = 'import', updated_at = ${now} WHERE id = 1 AND instr(data, ${qFrom}) > 0;`,
   ];
@@ -308,7 +328,7 @@ export function reportMarkdown(plan, { sources, generatedAt, gitCommit }) {
   lines.push(`# 匯入報告（dry run）`, '');
   lines.push(`- 產生時間：${generatedAt}`, `- git：${gitCommit}`, `- 範圍：${plan.scope.join('、')}`, `- 這次匯入的編號：#${plan.importId}`, `- 報告代碼（planHash）：\`${plan.planHash}\``, '');
   lines.push('| 項目 | 筆數 |', '|---|---|');
-  lines.push(`| 新增 | ${s.add} |`, `| 更新（內容變了） | ${s.update} |`, `| 恢復（之前下架、這次又出現，內容沒變） | ${s.restore} |`, `| 下架 | ${s.retire} |`, `| 沒變 | ${s.unchanged} |`);
+  lines.push(`| 新增 | ${s.add} |`, `| 更新（內容變了） | ${s.update} |`, `| 恢復（之前下架、這次又出現，內容沒變） | ${s.restore} |`, `| 重算清單層、詳情層（分層規則改了） | ${s.relayer} |`, `| 下架 | ${s.retire} |`, `| 沒變 | ${s.unchanged} |`);
   lines.push(`| 區域換了、不在這次的範圍 | ${s.moved} |`, `| 修改：保留 | ${s.editsKept} |`, `| 修改：兩邊一樣，收掉 | ${s.editsClosed} |`, `| 修改：衝突 | ${s.conflicts}（沒處理 ${s.unresolved}） |`, `| 轉址 | ${s.redirects} |`, '');
 
   if (plan.add.length) {
@@ -361,7 +381,7 @@ export function reportMarkdown(plan, { sources, generatedAt, gitCommit }) {
     lines.push('');
   }
   if (plan.redirects.length) {
-    lines.push(`## 轉址 ${plan.redirects.length} 筆（修改、投票、建議、行程裡的舊 ID 換成新的）`, '');
+    lines.push(`## 轉址 ${plan.redirects.length} 筆（修改、投票、留言、候選、預約、行程裡的舊 ID 換成新的）`, '');
     for (const r of plan.redirects) lines.push(`- \`${r.from}\` → \`${r.to}\`${r.replaces ? `（原本轉到 \`${r.replaces}\`）` : ''}：${r.reason ?? ''}`);
     lines.push('');
   }

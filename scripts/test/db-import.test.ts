@@ -217,9 +217,16 @@ describe('匯入：轉址', () => {
     vote.run('test-area-dup', 'dev-a', NOW); // 只投了舊的 → 轉過去
     vote.run('test-area-dup', 'dev-b', NOW); // 兩邊都投過 → 保留新的那一票
     vote.run('test-area-spot', 'dev-b', NOW);
-    d1.db
-      .prepare("INSERT INTO suggestions (day, place_ids, text, author, created_at, updated_at) VALUES ('trip', ?, '去看看', 'dev-a', ?, ?)")
-      .run(JSON.stringify(['test-area-dup', 'test-station']), NOW, NOW);
+    d1.db.prepare("INSERT INTO comments (target, text, author, created_at, updated_at) VALUES ('test-area-dup', '去看看', 'dev-a', ?, ?)").run(NOW, NOW);
+    d1.db.prepare("INSERT INTO comments (target, text, author, created_at, updated_at) VALUES ('trip', '整趟', 'dev-a', ?, ?)").run(NOW, NOW);
+    const cand = d1.db.prepare("INSERT INTO candidates (place_id, day, added_by, created_at, updated_at) VALUES (?, ?, 'dev-a', ?, ?)");
+    cand.run('test-area-dup', '2027-02-05', NOW, NOW); // 只有舊的 → 轉過去
+    cand.run('test-area-dup', '2027-02-06', NOW, NOW); // 兩邊都有 → 保留新的
+    cand.run('test-area-spot', '2027-02-06', NOW, NOW);
+    const resv = d1.db.prepare("INSERT INTO reservations (date, place_id, status, updated_by, updated_at) VALUES (?, ?, ?, 'dev-a', ?)");
+    resv.run('2027-02-05', 'test-area-dup', 'booked', NOW);
+    resv.run('2027-02-06', 'test-area-dup', 'booked', NOW);
+    resv.run('2027-02-06', 'test-area-spot', 'pending', NOW);
     d1.db
       .prepare("INSERT INTO itinerary (id, data, version, updated_by, updated_at) VALUES (1, ?, 3, 'dev-a', ?)")
       .run(JSON.stringify({ days: [{ items: [{ place: 'test-area-dup' }, { place: 'test-area-dup-2' }] }] }), NOW);
@@ -244,7 +251,21 @@ describe('匯入：轉址', () => {
         ['test-area-spot', 'dev-b', true],
       ],
     );
-    assert.deepEqual(JSON.parse(row(d1, 'SELECT place_ids FROM suggestions').place_ids), ['test-area-spot', 'test-station']);
+    assert.deepEqual(rows(d1, 'SELECT target FROM comments ORDER BY id').map((c) => c.target), ['test-area-spot', 'trip']);
+    assert.deepEqual(
+      rows(d1, 'SELECT place_id, day FROM candidates WHERE deleted_at IS NULL ORDER BY day').map((c) => [c.place_id, c.day]),
+      [
+        ['test-area-spot', '2027-02-05'],
+        ['test-area-spot', '2027-02-06'],
+      ],
+    );
+    assert.deepEqual(
+      rows(d1, 'SELECT date, place_id, status FROM reservations ORDER BY date').map((r) => [r.date, r.place_id, r.status]),
+      [
+        ['2027-02-05', 'test-area-spot', 'booked'],
+        ['2027-02-06', 'test-area-spot', 'pending'],
+      ],
+    );
     const itin = row(d1, 'SELECT * FROM itinerary');
     assert.equal(itin.version, 4);
     assert.deepEqual(JSON.parse(itin.data).days[0].items, [{ place: 'test-area-spot' }, { place: 'test-area-dup-2' }], '只換完全相同的 ID');

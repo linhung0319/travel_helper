@@ -14,7 +14,7 @@ import { badRequest, forbidden, json, notFound, nowIso, readBody, isPlainObject 
 const TYPES = new Set(['spot', 'lodging', 'restaurant']);
 const MAX_BYTES = 32 * 1024;
 
-interface Row {
+export interface UserPlaceRow {
   id: string;
   type: string;
   data: string;
@@ -25,7 +25,9 @@ interface Row {
   deleted_at: string | null;
 }
 
-const toJson = (r: Row) => ({
+export const ALL_USER_PLACES = 'SELECT * FROM user_places ORDER BY created_at';
+
+export const userPlaceJson = (r: UserPlaceRow) => ({
   id: r.id,
   type: r.type,
   data: JSON.parse(r.data),
@@ -63,9 +65,9 @@ function randomId(): string {
 export async function listUserPlaces({ db, url }: Ctx): Promise<Response> {
   const since = url.searchParams.get('since');
   const r = since
-    ? await db.prepare('SELECT * FROM user_places WHERE updated_at >= ? ORDER BY created_at').bind(since).all<Row>()
-    : await db.prepare('SELECT * FROM user_places ORDER BY created_at').all<Row>();
-  return json({ userPlaces: r.results.map(toJson), now: nowIso() });
+    ? await db.prepare('SELECT * FROM user_places WHERE updated_at >= ? ORDER BY created_at').bind(since).all<UserPlaceRow>()
+    : await db.prepare(ALL_USER_PLACES).all<UserPlaceRow>();
+  return json({ userPlaces: r.results.map(userPlaceJson), now: nowIso() });
 }
 
 export async function createUserPlace({ db, req, member }: Ctx): Promise<Response> {
@@ -76,12 +78,12 @@ export async function createUserPlace({ db, req, member }: Ctx): Promise<Respons
   const row = await db
     .prepare('INSERT INTO user_places (id, type, data, author, created_at, updated_at, updated_by) VALUES (?, ?, ?, ?, ?, ?, ?) RETURNING *')
     .bind(id, data.type, JSON.stringify(data), member.id, now, now, member.id)
-    .first<Row>();
-  return json({ userPlace: toJson(row!) }, { status: 201 });
+    .first<UserPlaceRow>();
+  return json({ userPlace: userPlaceJson(row!) }, { status: 201 });
 }
 
-async function load(db: D1Database, id: string): Promise<Row> {
-  const row = await db.prepare('SELECT * FROM user_places WHERE id = ?').bind(id).first<Row>();
+async function load(db: D1Database, id: string): Promise<UserPlaceRow> {
+  const row = await db.prepare('SELECT * FROM user_places WHERE id = ?').bind(id).first<UserPlaceRow>();
   if (!row) throw notFound(`沒有自己加的點「${id}」`);
   return row;
 }
@@ -96,18 +98,18 @@ export async function updateUserPlace({ db, req, member }: Ctx, params: Record<s
   const updated = await db
     .prepare('UPDATE user_places SET type = ?, data = ?, updated_at = ?, updated_by = ? WHERE id = ? RETURNING *')
     .bind(data.type, JSON.stringify(data), now, member.id, row.id)
-    .first<Row>();
-  return json({ userPlace: toJson(updated!) });
+    .first<UserPlaceRow>();
+  return json({ userPlace: userPlaceJson(updated!) });
 }
 
 export async function deleteUserPlace({ db, member }: Ctx, params: Record<string, string>): Promise<Response> {
   const row = await load(db, params.id);
   if (row.author !== member.id) throw forbidden('只有加這個點的人能刪');
-  if (row.deleted_at) return json({ userPlace: toJson(row) });
+  if (row.deleted_at) return json({ userPlace: userPlaceJson(row) });
   const now = nowIso();
   const updated = await db
     .prepare('UPDATE user_places SET deleted_at = ?, updated_at = ? WHERE id = ? RETURNING *')
     .bind(now, now, row.id)
-    .first<Row>();
-  return json({ userPlace: toJson(updated!) });
+    .first<UserPlaceRow>();
+  return json({ userPlace: userPlaceJson(updated!) });
 }

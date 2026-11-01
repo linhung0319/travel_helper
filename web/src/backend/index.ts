@@ -1,44 +1,11 @@
-// 目前用的後端（T15m）。dev server 用假後端（mock.ts＋dev-fixtures/seed.ts）；
-// 正式 build 不帶假資料，先用「還沒接上」的版本（只能看、不能改），T15 換成呼叫 T24、T25 API 的實作。
+// 目前用的後端。dev server 用假後端（mock.ts＋dev-fixtures/seed.ts：固定資料、不用開 Worker）；
+// 正式 build 呼叫 Worker 的 API（api.ts）。
 
-import { BackendError, RESOLVE_OFFLINE_MESSAGE, type Backend } from './types.ts';
+import { apiBackend } from './api.ts';
+import type { Backend } from './types.ts';
 import type { MockBackend } from './mock.ts';
 
-const offline: Backend = (() => {
-  const no = () => Promise.reject(new BackendError(503, 'offline', '還沒接上後端（T15 串接）'));
-  return {
-    me: async () => ({ id: 'guest', displayName: '訪客', pictureUrl: null }),
-    members: async () => [],
-    sync: async () => ({ itinerary: 0, votes: null, comments: null, candidates: null, reservations: null, edits: null, userPlaces: null }),
-    getItinerary: async () => ({ version: 0, data: null, updatedBy: null, updatedAt: null }),
-    putItinerary: no,
-    listSnapshots: async () => [],
-    getSnapshot: no,
-    restoreSnapshot: no,
-    listVotes: async () => [],
-    putVote: no,
-    deleteVote: no,
-    listComments: async () => [],
-    createComment: no,
-    updateComment: no,
-    deleteComment: no,
-    listCandidates: async () => [],
-    createCandidate: no,
-    deleteCandidate: no,
-    listReservations: async () => [],
-    putReservation: no,
-    listEdits: async () => [],
-    createEdit: no,
-    revertEdit: no,
-    listUserPlaces: async () => [],
-    createUserPlace: no,
-    updateUserPlace: no,
-    deleteUserPlace: no,
-    resolveMapLink: () => Promise.reject(new BackendError(503, 'offline', RESOLVE_OFFLINE_MESSAGE)),
-  };
-})();
-
-let current: Backend = offline;
+let current: Backend = apiBackend;
 let mock: MockBackend | null = null;
 
 /** 啟動時呼叫一次。直接用 import.meta.env.DEV 判斷，build 時整段會被拿掉，假資料不會出現在 dist/ */

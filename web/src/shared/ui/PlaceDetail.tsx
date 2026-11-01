@@ -7,7 +7,7 @@
 import { useEffect, useRef, useState, type ReactNode } from 'react';
 import { appStore, type DetailTabId } from '../../store.ts';
 import { commands } from '../../appCommands.ts';
-import { useApp, useData, useShared } from '../../hooks.ts';
+import { useApp, useData, useFullPlace, useShared } from '../../hooks.ts';
 import { displayName } from '../../data/normalize.ts';
 import { photoCandidates, photoCredit } from '../../lib/photos.ts';
 import { label, LODGING_KIND_LABELS } from '../../lib/labels.ts';
@@ -30,6 +30,7 @@ import { LinksSection, NearbySection, PlaceFacts, PlaceIntro, PlaceReviews, Sour
 import { useCommentCount } from '../placeLists.ts';
 import { Button } from './Button.tsx';
 import { PhotoViewer } from './PhotoViewer.tsx';
+import { DetailPending } from './Skeleton.tsx';
 import { TierMark } from './TierMark.tsx';
 import { TypeLabel } from './TypeLabel.tsx';
 import { VoteHeart } from './VoteHeart.tsx';
@@ -311,7 +312,10 @@ export interface PlaceDetailProps {
 }
 
 /** 一個點的詳情內容。換點時要整個重來（呼叫的人用 key={place.id}） */
-export function PlaceDetail({ place, surface, from, initialTab, onDay, onAsk, onPickNearby, locator, onBack }: PlaceDetailProps) {
+export function PlaceDetail({ place: listPlace, surface, from, initialTab, onDay, onAsk, onPickNearby, locator, onBack }: PlaceDetailProps) {
+  // 詳情層還沒到時，名稱、照片、投票、留言照常（清單層就有），分頁裡的內容放骨架
+  const { place, loaded, error, retry } = useFullPlace(listPlace);
+  const pending = <DetailPending error={error} onRetry={retry} />;
   const desktop = surface === 'desktop';
   const areas = useData((s) => s.areas);
   const planning = useApp((s) => s.planning);
@@ -412,25 +416,34 @@ export function PlaceDetail({ place, surface, from, initialTab, onDay, onAsk, on
               </button>
             )}
             {user && <UserPlaceIntro place={place} />}
-            <PlaceIntro place={place} onDay={onDay} onAsk={onAsk} />
-            {!user && <PlaceFacts place={place} />}
+            {loaded ? (
+              <>
+                <PlaceIntro place={place} onDay={onDay} onAsk={onAsk} />
+                {!user && <PlaceFacts place={place} />}
+              </>
+            ) : (
+              pending
+            )}
           </>
         )}
-        {tab === 'location' && <LocationTab place={place} locator={locator} onPick={onPickNearby} />}
+        {tab === 'location' && (loaded ? <LocationTab place={place} locator={locator} onPick={onPickNearby} /> : pending)}
         {/* 連結、來源在評論最後（§13.4）；車站沒有評論，放在位置最後 */}
-        {tab === 'location' && place.type === 'station' && (
+        {tab === 'location' && loaded && place.type === 'station' && (
           <>
             <LinksSection place={place} />
             <SourcesSection place={place} />
           </>
         )}
-        {tab === 'reviews' && (
-          <>
-            <PlaceReviews place={place} />
-            <LinksSection place={place} />
-            <SourcesSection place={place} />
-          </>
-        )}
+        {tab === 'reviews' &&
+          (loaded ? (
+            <>
+              <PlaceReviews place={place} />
+              <LinksSection place={place} />
+              <SourcesSection place={place} />
+            </>
+          ) : (
+            pending
+          ))}
         {tab === 'comments' && <Comments target={place.id} bare />}
         {usesRakuten(place) && (
           <p className="credit small">

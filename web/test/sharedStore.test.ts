@@ -39,6 +39,9 @@ async function setup() {
     itinerary: null,
     days: new Map(),
     stationNames: new Map(),
+    details: null,
+    detailsError: null,
+    placeEdits: [],
   }));
   const shared = createShared(() => backend, data);
   await shared.load();

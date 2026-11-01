@@ -1,6 +1,7 @@
 // 資料點：預設資料（places_base）與修改（place_edits）。architecture §3.2、§4。
 //
-// GET  /api/places                預設資料全部（含已下架的），加上轉址。用最新的匯入 ID 當 ETag
+// GET  /api/places                清單層全部（含已下架的），加上轉址。用最新的匯入 ID 當 ETag
+// GET  /api/places/details        詳情層全部：閒置時讀一次（lib/placeLayers.ts）
 // GET  /api/places/:id            一個點合併後的資料、改過的欄位、修改紀錄（轉址的舊 ID 會轉到新 ID）
 // GET  /api/edits?since=&place=   修改紀錄（含已復原、已收掉的），since 是 updated_at
 // POST /api/edits                 { placeId, fieldPath, value, note? }：先合併再用 schema 驗證，不符合就 400
@@ -11,10 +12,10 @@ import { applyEdits, editFromRow, getAt, parseFieldPath, type EditRow } from '..
 import { badRequest, conflict, forbidden, json, notFound, nowIso, rawJson, readBody } from '../lib/http.ts';
 import { validatePlace } from '../lib/validate.ts';
 
-const EDIT_COLUMNS = `id, place_id, field_path, value, base_value, note, author, created_at, updated_at,
+export const EDIT_COLUMNS = `id, place_id, field_path, value, base_value, note, author, created_at, updated_at,
   reverted_at, reverted_by, closed_at, closed_import_id, closed_reason`;
 
-interface FullEditRow extends EditRow {
+export interface FullEditRow extends EditRow {
   note: string | null;
   updated_at: string;
   reverted_by: string | null;
@@ -48,20 +49,43 @@ async function latestImportId(db: D1Database): Promise<number> {
   return row?.id ?? 0;
 }
 
+/**
+ * ETag 比對。Cloudflare 重新壓縮時可能把 ETag 改成弱的（W/"…"），瀏覽器就照那樣送回來，所以比對前先去掉 W/
+ * （https://developers.cloudflare.com/cache/reference/etag-headers/）
+ */
+export function etagMatches(header: string | null, etag: string): boolean {
+  if (!header) return false;
+  return header.split(',').some((x) => x.trim().replace(/^W\//, '') === etag);
+}
+
+/**
+ * 兩層都是匯入時算好的字串：只接起來，不在 Worker 裡解開（免費方案的 CPU 只有 10 ms，architecture §4）。
+ * 照類型排：同類的放一起壓縮比較好（gzip 詳情層 860 → 767 KB，T15 實測）
+ */
 export async function listPlaces({ db, req }: Ctx): Promise<Response> {
   const importId = await latestImportId(db);
   const etag = `"imp-${importId}"`;
-  if (req.headers.get('if-none-match') === etag) return new Response(null, { status: 304, headers: { etag } });
+  if (etagMatches(req.headers.get('if-none-match'), etag)) return new Response(null, { status: 304, headers: { etag } });
 
-  const rows = await db.prepare('SELECT id, data, retired_at FROM places_base ORDER BY id').all<{ id: string; data: string; retired_at: string | null }>();
-  const redirects = await db.prepare('SELECT old_id, new_id FROM redirects').all<{ old_id: string; new_id: string }>();
+  const [rows, redirects] = await db.batch<Record<string, string>>([
+    db.prepare('SELECT id, data_list, retired_at FROM places_base ORDER BY type, id'),
+    db.prepare('SELECT old_id, new_id FROM redirects'),
+  ]);
   const retired: Record<string, string> = {};
   for (const r of rows.results) if (r.retired_at) retired[r.id] = r.retired_at;
-  // data 已經是 JSON 文字：直接接起來，不在 Worker 裡解開（約 550 筆、3 MB，解開再序列化會超過免費方案的 CPU 時間）
   const body =
-    `{"importId":${importId},"places":[${rows.results.map((r) => r.data).join(',')}]` +
+    `{"importId":${importId},"places":[${rows.results.map((r) => r.data_list).join(',')}]` +
     `,"retired":${JSON.stringify(retired)}` +
     `,"redirects":${JSON.stringify(Object.fromEntries(redirects.results.map((r) => [r.old_id, r.new_id])))}}`;
+  return rawJson(body, { headers: { etag, 'cache-control': 'no-cache' } });
+}
+
+export async function listPlaceDetails({ db, req }: Ctx): Promise<Response> {
+  const importId = await latestImportId(db);
+  const etag = `"imp-${importId}"`;
+  if (etagMatches(req.headers.get('if-none-match'), etag)) return new Response(null, { status: 304, headers: { etag } });
+  const rows = await db.prepare('SELECT data_detail FROM places_base ORDER BY type, id').all<{ data_detail: string }>();
+  const body = `{"importId":${importId},"details":[${rows.results.map((r) => r.data_detail).join(',')}]}`;
   return rawJson(body, { headers: { etag, 'cache-control': 'no-cache' } });
 }
 

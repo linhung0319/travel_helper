@@ -8,6 +8,7 @@ import { departuresAround, toMinutes } from '../lib/timetable.ts';
 import { dayCandidates, likedPlaces, placeDayStatus } from '../lib/wishlist.ts';
 import { dayTarget, TRIP_TARGET } from '../backend/types.ts';
 import { memberName } from '../sharedStore.ts';
+import { fullPlace } from '../dataStore.ts';
 import { dayPlanOf } from '../planStore.ts';
 import { tripDates } from '../lib/trip.ts';
 import type { Place } from '../data/types.ts';
@@ -33,6 +34,7 @@ const SECTIONS: Record<string, string[]> = {
   reviews: ['ratings'],
   assessment: ['assessment'],
   links: ['links'],
+  more: ['notes', 'extra'],
 };
 export const PLACE_SECTIONS = Object.keys(SECTIONS);
 const MAX_GET_PLACE = 6;
@@ -48,22 +50,36 @@ export function createReadTools(d: AiDeps) {
     return typeof date === 'string' && tripDates().includes(date) ? date : null;
   }
 
-  function search_places(input: SearchInput): ToolOutput {
+  /** 等詳情層：讀不到時要明講，不能回 null（null 在這裡是「資料沒寫」） */
+  async function detailsProblem(): Promise<ToolOutput | null> {
+    try {
+      await d.details?.();
+      return null;
+    } catch {
+      return fail('詳細資料暫時讀不到（網路問題），請使用者稍後再試；不要當成資料沒寫');
+    }
+  }
+
+  async function search_places(input: SearchInput): Promise<ToolOutput> {
+    const problem = await detailsProblem();
+    if (problem) return problem;
     const s = places();
-    const r = searchPlaces(input ?? {}, { places: s.places, byId: s.byId, bounds: d.app.getState().view?.bounds ?? null, likes, config: d.config });
+    const r = searchPlaces(input ?? {}, { places: s.places, byId: s.byId, bounds: d.app.getState().view?.bounds ?? null, likes, config: d.config, full: (id) => fullPlace(s, id) });
     return { ok: true, ...r };
   }
 
-  function get_place(input: { ids: string[]; sections?: string[] }): ToolOutput {
+  async function get_place(input: { ids: string[]; sections?: string[] }): Promise<ToolOutput> {
     if (!Array.isArray(input?.ids) || !input.ids.length) return fail('ids 要是資料點 ID 的陣列');
     if (input.ids.length > MAX_GET_PLACE) return fail(`一次最多 ${MAX_GET_PLACE} 個點`);
     const sections = input.sections?.length ? input.sections : ['summary', 'group', 'hours'];
     const bad = sections.filter((x) => !SECTIONS[x]);
     if (bad.length) return fail(`沒有分區 ${bad.join('、')}（可用：${PLACE_SECTIONS.join('、')}）`);
-    const { byId } = places();
-    const unknown = input.ids.filter((id) => !byId.has(id));
+    const problem = await detailsProblem();
+    if (problem) return problem;
+    const s = places();
+    const unknown = input.ids.filter((id) => !s.byId.has(id));
     const found = input.ids.flatMap((id) => {
-      const p = byId.get(id);
+      const p = fullPlace(s, id);
       return p ? [p] : [];
     });
     if (!found.length) return fail(`找不到資料點 ${unknown.join('、')}`);
@@ -373,7 +389,7 @@ export function createReadTools(d: AiDeps) {
 
   /** 脈絡晶片的精簡內容（規格 §6） */
   const digest = (id: string) => {
-    const p = places().byId.get(id);
+    const p = fullPlace(places(), id);
     return p ? digestOf(p, likes(id)) : null;
   };
 

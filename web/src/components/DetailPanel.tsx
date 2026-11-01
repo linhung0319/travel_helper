@@ -32,6 +32,7 @@ import { EditedMark, editedOf } from './EditHistory.tsx';
 import { itemsWithPlace } from '../lib/planView.ts';
 import { askPlace } from './webAi.ts';
 import { PlaceDetail } from '../shared/ui/PlaceDetail.tsx';
+import { EXTRA_LABELS } from '../../../worker/src/lib/placeLayers.ts';
 
 type Obj = Record<string, unknown>;
 const obj = (v: unknown): Obj => (v && typeof v === 'object' && !Array.isArray(v) ? (v as Obj) : {});
@@ -498,6 +499,38 @@ export function PlaceIntro({ place, onDay, onAsk }: { place: Place; onDay?(date:
   );
 }
 
+/** extra 的值：字串照樣、數字轉字、true 寫「是」、陣列用頓號接 */
+function extraText(v: unknown): string | null {
+  if (typeof v === 'string') return v || null;
+  if (typeof v === 'number') return String(v);
+  if (v === true) return '是';
+  if (Array.isArray(v)) return v.map(extraText).filter(Boolean).join('、') || null;
+  return null;
+}
+
+/** 其他資訊（T15）：店家介紹（notes）、溫泉、停車這些。哪些鍵給家人看、叫什麼，在 worker/src/lib/placeLayers.ts */
+function ExtraSection({ place }: { place: Place }) {
+  const extra = obj(place.raw.extra);
+  const rows = Object.entries(extra).flatMap(([k, v]) => {
+    const value = EXTRA_LABELS[k] ? extraText(v) : null;
+    return value ? [{ k, label: EXTRA_LABELS[k], value }] : [];
+  });
+  const notes = text(place.raw.notes);
+  if (!notes && !rows.length) return null;
+  return (
+    <div data-testid="detail-extra">
+      <Section title="其他資訊" edited={editedOf(place, 'extra', 'notes')}>
+        <dl>
+          <Row k="店家介紹" v={notes} />
+          {rows.map((r) => (
+            <Row key={r.k} k={r.label} v={r.value} />
+          ))}
+        </dl>
+      </Section>
+    </div>
+  );
+}
+
 /** 詳細：住宿、團體、長輩小孩、營業時間（標出選的那天，沒選就用行程排到的第一天）。網頁版「詳細」分頁、手機版「簡介」分頁的下半 */
 export function PlaceFacts({ place }: { place: Place }) {
   const day = useApp((s) => s.day);
@@ -523,6 +556,7 @@ export function PlaceFacts({ place }: { place: Place }) {
           <HoursTable place={place} date={date} />
         </Section>
       )}
+      <ExtraSection place={place} />
     </>
   );
 }
