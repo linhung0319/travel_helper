@@ -54,7 +54,8 @@ test('打地址 → 假的地址查詢回座標 → 加進來', async ({ page })
 test('地圖右鍵 → 在這裡加地點 → 名稱空白、不能存 → 填名稱、選景點 → 存', async ({ page }) => {
   await ready(page);
   const box = (await page.getByTestId('map').boundingBox())!;
-  await page.mouse.click(box.x + 40, box.y + 40, { button: 'right' });
+  // 左上角是日期晶片，點下面一點
+  await page.mouse.click(box.x + 40, box.y + 160, { button: 'right' });
   await page.getByTestId('map-context-add').click();
   await expect(page.getByTestId('add-form')).toBeVisible();
   await expect(page.getByTestId('add-name')).toHaveValue('');
@@ -68,7 +69,7 @@ test('地圖右鍵 → 在這裡加地點 → 名稱空白、不能存 → 填�
 test('表單開著：右鍵變「把圖釘移到這裡」', async ({ page }) => {
   await ready(page);
   const box = (await page.getByTestId('map').boundingBox())!;
-  await page.mouse.click(box.x + 60, box.y + 60, { button: 'right' });
+  await page.mouse.click(box.x + 60, box.y + 160, { button: 'right' });
   await page.getByTestId('map-context-add').click();
   await expect(page.getByTestId('add-form')).toBeVisible();
   await waitIdle(page);

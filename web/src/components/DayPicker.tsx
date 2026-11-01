@@ -75,7 +75,7 @@ export function AddToDay({ placeId, kind = 'primary', testId = 'add-to-day' }: {
   if (isStation) return null;
   return (
     <div className="add-to-day">
-      <Button kind={kind} size="sm" icon="calendar" aria-expanded={open} onClick={() => setOpen(!open)} data-testid={testId}>
+      <Button kind={kind} size="sm" icon="calendar" title="加到某天" aria-expanded={open} onClick={() => setOpen(!open)} data-testid={testId}>
         加到某天
       </Button>
       {open && createPortal(<DayPicker placeId={placeId} onClose={() => setOpen(false)} />, document.body)}

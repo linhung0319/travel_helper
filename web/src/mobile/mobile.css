@@ -815,7 +815,7 @@
 .m-wait {
   margin-left: calc(var(--ll-axis) + 22px);
   padding: 2px 0 6px 0;
-  color: var(--warn);
+  color: var(--ink-2);
   font-size: 0.8rem;
 }
 
@@ -939,6 +939,21 @@
   flex-wrap: nowrap;
   min-width: 0;
   border-radius: 14px;
+}
+
+.m-edit-top .planning-bar-actions {
+  flex: 0 0 auto;
+  flex-wrap: nowrap;
+  align-items: center;
+}
+
+/* 編輯條上的問 AI：只有圖示，垂直空間留給時間軸 */
+.m-edit-top .m-edit-ask {
+  display: inline-grid;
+  place-items: center;
+  width: var(--tap);
+  min-height: var(--tap);
+  padding: 0;
 }
 
 .m-edit-top .planning-bar strong {

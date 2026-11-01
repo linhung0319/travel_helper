@@ -1,5 +1,5 @@
 // 手機面板頂端的日期列（第七輪 Task 3）：「整趟」加 12 天，每格兩行（日期用圓體數字、下面只寫星期），實心白底，選到的塗芥子黃（§12.4），週末、國定假日紅字（isRedDay）。
-// 每格至少 52px，左右滑；選到的那格自己捲進畫面。網頁右欄第八輪改成兩週月曆（DayCalendar.tsx，§13.2）。
+// 每格至少 52px，左右滑；選到的那格自己捲進畫面。網頁是地圖上的日期晶片（components/MapDays.tsx）。
 // 換天用 commands.selectDay（地圖框住那天）。testid 兩邊都是 m-day-{date}、m-day-all，另外有 data-day 給 e2e 用。
 
 import { useEffect, useRef } from 'react';

@@ -1,6 +1,6 @@
 // 電腦版的右側：探索、想去、行程共用一欄（順序是使用的順序），頂到最上面。
 // 想去是只放有人 ❤️ 的點的探索（Explore.tsx 的 source="wish"）。
-// 頂端（第七輪）：三個分頁加右上的頭像選單（討論、預約、下載行程）；行程分頁下面是兩週月曆（第八輪 §13.2），再下面是編輯中、衝突提示（套用的篩選條件只在探索、想去的篩選列下面那排，行程分頁不放，第七輪 §8.4）。AI 沒有自己的分頁：地圖和這三個分頁就是 AI 操作的東西（T16）。
+// 頂端（第七輪）：三個分頁加右上的頭像選單（討論、預約、下載行程）；日期晶片在地圖上（MapDays.tsx），分頁下面是編輯中、衝突提示（套用的篩選條件只在探索、想去的篩選列下面那排，行程分頁不放，第七輪 §8.4）。AI 沒有自己的分頁：地圖和這三個分頁就是 AI 操作的東西（T16）。
 // 詳情一律是彈窗（第八輪 §13.3）：開在你剛剛看的那一塊旁邊，不蓋住它——從右欄的卡開（appStore.detailAt＝map）蓋在地圖右側、貼著右欄（DetailFloat）；
 // 從地圖上的點開（side）蓋住整個右欄（DetailOverSide），右欄的內容照樣掛著，關掉後捲動位置、展開的卡、編輯中都不變。同時只有一個彈窗。
 
@@ -13,7 +13,6 @@ import { Icon, type IconName } from './Icon.tsx';
 import { AccountMenu } from './MeMenu.tsx';
 import { ConflictBar, EditingStrip } from './Planning.tsx';
 import { ProposalStrip } from './ProposalStrip.tsx';
-import { DayCalendar } from '../shared/ui/DayCalendar.tsx';
 import { DetailPanel } from './DetailPanel.tsx';
 import { ExplorePanel, showItinerary } from './Explore.tsx';
 import { useLiked } from '../shared/placeLists.ts';
@@ -90,7 +89,6 @@ export function SidePanel() {
     if (adding) appStore.getState().closeDetail();
   }, [adding]);
   const mode = useApp((s) => s.mode);
-  const planning = useApp((s) => s.planning);
   const covered = useApp((s) => !!s.detailId && s.detailAt === 'side');
   const liked = useLiked().size;
   const tab = (icon: IconName, label: string, on: boolean, onClick: () => void, testId: string) => (
@@ -109,8 +107,6 @@ export function SidePanel() {
           <AccountMenu />
         </span>
       </div>
-      {/* 編輯中編輯條取代日期列：編輯中不能換天（§6.3） */}
-      {mode === 'map' && !planning && <DayCalendar />}
       <div className="side-notices">
         <EditingStrip />
         <ConflictBar />

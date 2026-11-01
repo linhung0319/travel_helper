@@ -38,7 +38,7 @@ export function ProposalStrip({ onTrip: onTripProp }: { onTrip?: boolean } = {})
     const s = appStore.getState();
     s.closeDetail();
     s.setMode('map');
-    uiStore.setState({ proposalView: 'diff' });
+    uiStore.setState((u) => ({ proposalView: 'diff', proposalReveal: u.proposalReveal + 1 }));
   };
   const original = onTrip && view === 'original';
   return (

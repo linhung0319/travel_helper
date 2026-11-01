@@ -2,7 +2,7 @@
 // 選「整趟」是整趟的總覽（每天排了什麼、幾個候選、警告）；選了某一天，編輯中最上面是藍條（說明、快照、完成），接著一列「← 整趟、日期 ‹ ›、問 AI、編輯」，
 // 下面是摘要列（⚠ 點了展開提醒）、比例橫條（時間條）、時間軸（資料卡是類型的淡底色，起點、終點的住宿也是卡片）、這天的候選（想去「加到某天」的點）。討論、預約、下載在右欄右上的頭像選單（MeMenu.tsx 的 AccountMenu）。
 
-import { useMemo, useState } from 'react';
+import { useMemo, useRef, useState } from 'react';
 import { commands } from '../appCommands.ts';
 import { useApp, useData, usePlan, useShared, useUi } from '../hooks.ts';
 import { dayPlanOf } from '../planStore.ts';
@@ -11,8 +11,7 @@ import { dayLabel, isRedDay, tripDates } from '../lib/trip.ts';
 import { dayAreaName, dayTitle } from '../lib/dayTitle.ts';
 import { stopsOn } from '../lib/itinerary.ts';
 import { selectedBarKey, WARNING_ICONS } from '../lib/planView.ts';
-import { dayColor } from '../lib/visual.ts';
-import { DayBar, DaySummaryLine, Timeline, useDayTimeline, useProposalDay } from './Timeline.tsx';
+import { DayBar, DaySummaryLine, Timeline, useDayTimeline, useProposalDay, useRevealProposal } from './Timeline.tsx';
 import { DayCandidates } from './Wishlist.tsx';
 import { dayCandidates } from '../lib/wishlist.ts';
 import { EditHint, PlanningBar, PlanningToggle } from './Planning.tsx';
@@ -64,7 +63,6 @@ function Overview() {
           return (
             <li key={d}>
               <button type="button" className={`overview-day ${proposalLines.has(d) ? 'proposed' : ''}`} onClick={() => commands.selectDay(d)} data-overview-day={d}>
-                <span className="overview-dot" style={{ background: dayColor(DATES, d) }} />
                 <span className={`overview-date ${isRedDay(d) ? 'red-day' : ''}`}>{dayLabel(d)}</span>
                 <span className="overview-stops">
                   {stops.length ? stops.map((s) => byId.get(s.place)?.name.zh || byId.get(s.place)?.name.ja || s.place).join(' → ') : <span className="muted">還沒排</span>}
@@ -114,7 +112,6 @@ function DayHead({ day }: { day: string }) {
   return (
     <div className="day-nav" data-testid="day-nav">
       <h3 className="day-title">
-        <span className="overview-dot" style={{ background: dayColor(DATES, day) }} />
         <span className={`day-title-date ${isRedDay(day) ? 'red-day' : ''}`} data-testid="day-title-date">
           {title.date}
         </span>
@@ -142,11 +139,14 @@ export function DayPanel() {
   const legOpen = useUi((s) => s.legOpen);
   const detailId = useApp((s) => s.detailId);
   const selectedKey = selectedBarKey(plan, legOpen, detailId);
+  const panelRef = useRef<HTMLDivElement>(null);
+  useRevealProposal(panelRef, day, !!shown, plan);
   if (day === 'all') return <Overview />;
   return (
-    <div className={`day-panel ${planning ? 'editing' : ''}`} data-testid="day-panel">
+    <div className={`day-panel ${planning ? 'editing' : ''}`} data-testid="day-panel" ref={panelRef}>
       <PlanningBar title={`編輯 ${dayLabel(day)}`} />
-      <DayHead day={day} />
+      {/* 看提議的差異時不畫：按「編輯」提議的卡會不見，要編輯先按提議列的「看原本」 */}
+      {!shown && <DayHead day={day} />}
       {plan && (
         <div className="day-head">
           <DaySummaryLine plan={plan} warnOpen={warnOpen} reminders={dayWarnings.length} onWarn={() => setWarnOpen((o) => !o)} />

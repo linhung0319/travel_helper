@@ -44,9 +44,11 @@ export interface UiState {
   timetable: TimetableState | null;
   /** 網頁：提議顯示時看差異還是原本的行程（看原本時地圖的虛線也收起來） */
   proposalView: 'diff' | 'original';
+  /** 又按了一次「看提議」（同一張提議卡）：時間軸再捲到提議的卡一次 */
+  proposalReveal: number;
 }
 
-export const uiStore = createStore<UiState>()(() => ({ dialog: null, mapPanel: null, idleMinutes: 10, legOpen: null, legEdit: null, expandedItem: null, timetable: null, proposalView: 'diff' }));
+export const uiStore = createStore<UiState>()(() => ({ dialog: null, mapPanel: null, idleMinutes: 10, legOpen: null, legEdit: null, expandedItem: null, timetable: null, proposalView: 'diff', proposalReveal: 0 }));
 
 // 換天、離開行程分頁：展開的卡收起來。看 store 不看 DayPanel 卸載：轉向回網頁版時（和 dev 的 StrictMode 重跑 effect）才不會把剛帶過來的展開清掉
 let lastView = { day: appStore.getState().day, mode: appStore.getState().mode };

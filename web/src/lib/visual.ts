@@ -44,9 +44,9 @@ function popularity(p: Place): number {
   return Math.max(...['googleReviews', 'tabelogReviews', 'rakutenReviews', 'jalanReviews'].map((k) => (typeof r[k] === 'number' ? (r[k] as number) : 0)));
 }
 
-// 每天一種顏色（第五輪 §9.1）：4 色照日期順序輪流，只畫地圖上的路線、日期旁的小圓點（時間條用類型色）。
-// test/lib.test.ts 檢查：4 色彼此、和類型色（TYPE_COLORS）的 CIELAB ΔE 至少 20；畫在淺色地圖上，不用太淺的色
-export const DAY_PALETTE = ['#c2255c', '#0b7285', '#343a40', '#8b5a2b'];
+// 地圖上每天路線的顏色（2026-11-01 👤，取代第五輪 §9.1 的 4 色）：墨藍、深茶兩色（都深，色差 50）照日期順序交錯，相鄰兩天一定不同色；日期旁不再標顏色。
+// test/lib.test.ts 檢查：兩色彼此、和類型色（TYPE_COLORS）的 CIELAB ΔE 至少 20；畫在淺色地圖上，不用太淺的色
+export const DAY_PALETTE = ['#1c2840', '#6e4420'];
 
 /** #rrggbb → CIELAB（D65） */
 export function labOf(hex: string): [number, number, number] {

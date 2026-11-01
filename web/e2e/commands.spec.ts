@@ -52,8 +52,8 @@ const run = (page: Page, fn: string, ...args: unknown[]) =>
 
 test('用指令重現 T11 的手動操作：切天數、篩選、聚焦，畫面一樣', async ({ page }) => {
   await ready(page);
-  // 電腦版：篩選在右側的「探索」分頁。點天數、切到探索、選餐廳和 S 級、點地區「鳥羽」（篩選加上鳥羽、地圖移過去）
-  await page.locator(`.side-column [data-day="${DAY}"]`).click();
+  // 電腦版：日期在地圖上，篩選在右側的「探索」分頁。點天數、切到探索、選餐廳和 S 級、點地區「鳥羽」（篩選加上鳥羽、地圖移過去）
+  await page.locator(`.map-column [data-day="${DAY}"]`).click();
   await page.getByTestId('side-tab-explore').click();
   await pickFilter(page, 'type-restaurant', 'tier-S', 'area-toba');
   const manual = await snapshot(page);
@@ -64,7 +64,7 @@ test('用指令重現 T11 的手動操作：切天數、篩選、聚焦，畫面
   expect((await run(page, 'focus', { area: 'toba' })).ok).toBe(true);
   expect(await snapshot(page)).toEqual(manual);
   await page.getByTestId('side-tab-day').click();
-  await expect(page.locator(`.side-column [data-day="${DAY}"]`)).toHaveAttribute('aria-selected', 'true');
+  await expect(page.locator(`.map-column [data-day="${DAY}"]`)).toHaveAttribute('aria-selected', 'true');
 });
 
 test('聚焦一個點：看得到就不動、太遠才拉到 13（不閃、不拉到 15）；篩選標籤可以取消（和 AI 套的是同一份）', async ({ page }) => {
@@ -137,16 +137,14 @@ test('標示、路線（沿道路）、比較：畫在地圖上，可以清掉',
   const lines = await overlay(page, 'overlay-routes', 'routes-dot');
   expect(lines.features.map((f: any) => f.dash)).toEqual(['dot']);
   expect(lines.rendered).toBe(1);
-  const rings = await overlay(page, 'overlay-highlights', 'highlight-ring');
-  expect(rings.features).toHaveLength(2);
-  expect(rings.rendered).toBe(2);
+  await expect(page.getByTestId('map-ai-drop')).toHaveCount(2);
   await expect(page.getByTestId('marks-bar')).toContainText('標示 2 個點');
   await shot(page, 'route-highlight');
 
   // 「AI 挑的」結果集：比較時地圖標 A、B、C
   const cmp = await run(page, 'showResult', ['toba-aquarium', 'toba-mikimoto-pearl-island'], { title: '比較', lettered: true });
   expect(cmp.ok).toBe(true);
-  await expect.poll(async () => (await overlay(page, 'overlay-compare', 'compare-ring')).features.length).toBe(2);
+  await expect.poll(() => page.getByTestId('map-ai-drop').evaluateAll((els) => els.map((e) => (e as HTMLElement).dataset.label).sort())).toEqual(['A', 'B']);
   await shot(page, 'compare');
   expect((await run(page, 'clearResult')).ok).toBe(true);
 
@@ -174,7 +172,7 @@ test('AI 的提議：切到那天、虛線和摘要；不看提議就清掉；�
   await expect(bar).toContainText('午餐換一家');
   await expect(bar).toContainText('－');
   await expect(bar).toContainText('＋');
-  const pts = await overlay(page, 'overlay-proposal-points', 'proposal-circle');
+  const pts = await overlay(page, 'overlay-proposal-points', 'proposal-order');
   expect([...new Set(pts.features.map((f: any) => f.status))].sort()).toEqual(['added', 'kept', 'removed']);
   expect(pts.rendered).toBeGreaterThan(0);
   expect((await overlay(page, 'overlay-proposal-lines', 'proposal-line')).rendered).toBe(1);

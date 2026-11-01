@@ -144,6 +144,8 @@ export interface AppState {
   aiResult: AiResult | null;
   /** 出現結果集時收起來的探索篩選、搜尋；清掉結果集時還原 */
   aiResultStash: { filter: Filter; query: string } | null;
+  /** AI 最後給的是結果集還是提議：地圖的水滴只畫最新的那一組 */
+  aiLatest: 'result' | 'proposal' | null;
   proposal: Proposal | null;
 }
 
@@ -213,6 +215,7 @@ export const initialState: AppState = {
   routesVersion: 0,
   aiResult: null,
   aiResultStash: null,
+  aiLatest: null,
   proposal: null,
 };
 
@@ -298,12 +301,12 @@ export function createAppStore(init: Partial<AppState> = {}) {
         const live = ownerOf(s.mode) === 'explore';
         const current = live ? { filter: s.filter, query: s.query } : s.filterStash.explore;
         const page = (x: { filter: Filter; query: string }) => (live ? x : { filterStash: { ...s.filterStash, explore: x } });
-        if (aiResult) return { aiResult, aiResultStash: s.aiResultStash ?? current, ...page({ filter: EMPTY_FILTER, query: '' }) };
+        if (aiResult) return { aiResult, aiLatest: 'result', aiResultStash: s.aiResultStash ?? current, ...page({ filter: EMPTY_FILTER, query: '' }) };
         if (!s.aiResult) return s;
         return { aiResult: null, aiResultStash: null, ...(s.aiResultStash ? page(s.aiResultStash) : {}) };
       }),
     clearHighlights: () => set({ highlights: {}, routes: [] }),
-    setProposal: (proposal) => set({ proposal }),
+    setProposal: (proposal) => set(proposal ? { proposal, aiLatest: 'proposal' } : { proposal }),
   }));
 }
 
