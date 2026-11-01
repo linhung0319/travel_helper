@@ -15,6 +15,12 @@ async function expectUserCard(page: Page) {
   await expect(page.getByTestId('add-form')).toHaveCount(0);
   await page.getByTestId('side-tab-explore').click();
   await page.getByTestId('search').fill('');
+  // 自己加的點排在清單後面，分批畫（T32）還沒畫到：先帶到那張卡
+  await page.evaluate(() => {
+    const th = (window as any).__th;
+    const mine = th.dataStore.getState().places.find((p: any) => p.origin === 'user');
+    th.appStore.getState().revealInExplore(mine.id);
+  });
   await expect(page.locator('.is-user').first()).toBeVisible();
 }
 

@@ -355,9 +355,8 @@
 
 ### 12.3 字型
 
-- 標題、日期、時間、數字：Zen Maru Gothic（圓體，700）。
-- 內文：Zen Kaku Gothic New（400／700）。
-- 字重只載這幾個（T32，2026-11-01）：中文字型一個字重就是幾十個檔案。CSS 寫的 500 會顯示成 400，600、800、900 顯示成 700。
+- 標題、日期、時間、數字：Zen Maru Gothic（圓體，700／900）。
+- 內文：Zen Kaku Gothic New（400／500／700）。
 - 日本字型缺部分繁中字（例如「趟」），一律用 Noto Sans TC 補字。
 - 都從 Google Fonts 載入（SIL OFL，可商用），fallback 到系統字。第七輪的 Noto Serif TC、Bodoni Moda 不再用。
 
