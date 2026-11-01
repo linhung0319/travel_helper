@@ -4,7 +4,7 @@
 // 返回鍵（interaction-design §16.2）：每一層（整頁、加地點、討論彈窗、半屏、對話清單或加地點面板、從聊天跳走）都佔一筆 history，syncHistory 照畫面狀態對齊筆數；手機的返回鍵一次關最上面一層。LINE 裡沒有 history 就離開網站了。
 // 整頁的東西一次只有一層（§3.0）：開詳情會關掉預約，開預約會關掉詳情；互換時共用同一筆 history。
 // 聊天：半屏只在行程分頁出現，換分頁就收起來；關掉半屏、換分頁都不清提議和結果集（規格 §3.4）。結果集出現時探索的篩選收起來，清掉時還原（§3.1）。
-// 班次表（uiStore.timetable，T29c §8.8）浮在地圖那塊：行程拉到最高時打開，行程降到中間讓出地圖（snapForTimetable）；關掉不拉回去。
+// 班次表（uiStore.timetable，T29c §8.8）是大彈窗，也佔一層 history，返回鍵關得掉；打開、關掉都不動行程面板的高度。
 
 import { createStore } from 'zustand/vanilla';
 import { useStore } from 'zustand';
@@ -18,11 +18,6 @@ import { EMPTY_FEED, type ExploreSort, type ExploreType, type Feed } from '../li
 
 export type MobileTab = 'explore' | 'wish' | 'trip' | 'ai' | 'me';
 export type TripSnap = 'low' | 'mid' | 'high';
-
-/** 打開班次表時行程面板停在哪：最高（地圖只露一條）降到中間，讓出地圖給班次表；低、中不動 */
-export function snapForTimetable(snap: TripSnap): TripSnap {
-  return snap === 'high' ? 'mid' : snap;
-}
 
 /** 動作面板裡的子畫面（list＝動作清單） */
 export type ActionView = 'list' | 'tags' | 'move' | 'lodging-plan' | 'stay' | 'reorder';
@@ -132,7 +127,7 @@ export function bindAddLayer(layer: NonNullable<typeof addLayer>, subscribe: (on
 /** 現在開著幾層 */
 function layersOpen(s: MobileState): number {
   let n = (s.detail || s.page ? 1 : 0) + (addLayer?.isOpen() ? 1 : 0);
-  if (mobileActive) n += (uiStore.getState().discussion ? 1 : 0) + (s.chatSheet && s.tab === 'trip' ? 1 : 0) + (s.chatOverlay ? 1 : 0) + (s.fromChat ? 1 : 0);
+  if (mobileActive) n += (uiStore.getState().discussion ? 1 : 0) + (uiStore.getState().timetable ? 1 : 0) + (s.chatSheet && s.tab === 'trip' ? 1 : 0) + (s.chatOverlay ? 1 : 0) + (s.fromChat ? 1 : 0);
   return n;
 }
 
@@ -159,7 +154,8 @@ function syncHistory() {
 /** 返回鍵：關最上面一層 */
 function closeTopLayer() {
   const m = mobileStore.getState();
-  if (mobileActive && addLayer?.isOpen()) addLayer.cancel();
+  if (mobileActive && uiStore.getState().timetable) uiStore.setState({ timetable: null });
+  else if (mobileActive && addLayer?.isOpen()) addLayer.cancel();
   else if (mobileActive && uiStore.getState().discussion) uiStore.setState({ discussion: null });
   else if (m.detail || m.page) mobileStore.setState({ detail: null, page: null });
   else if (!mobileActive) return;
@@ -294,16 +290,6 @@ if (typeof window !== 'undefined') {
     pushed = Math.max(0, pushed - 1);
     closeTopLayer();
     syncHistory();
-  });
-  // 打開（或換一程）班次表：行程在最高時降到中間；關掉不動
-  let lastTimetable = uiStore.getState().timetable;
-  uiStore.subscribe((s) => {
-    if (s.timetable === lastTimetable) return;
-    lastTimetable = s.timetable;
-    if (!s.timetable || !mobileActive) return;
-    const m = mobileStore.getState();
-    const snap = snapForTimetable(m.tripSnap);
-    if (snap !== m.tripSnap) m.setSnap(snap);
   });
   // Playwright 測試、Claude in Chrome 檢查畫面用
   if (import.meta.env?.DEV) (window as unknown as Record<string, unknown>).__thMobile = mobileStore;

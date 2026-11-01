@@ -29,7 +29,7 @@ const listeners: (() => void)[] = [];
   },
 };
 
-const { mobileStore, setMobileActive, snapForTimetable } = await import('../src/mobile/mobileStore.ts');
+const { mobileStore, setMobileActive } = await import('../src/mobile/mobileStore.ts');
 const { uiStore, openTimetable, closeTimetable } = await import('../src/uiStore.ts');
 const { appStore } = await import('../src/store.ts');
 
@@ -267,30 +267,18 @@ test('開半屏聊天不改行程面板高度', () => {
   s.setSnap('mid');
 });
 
-test('snapForTimetable：行程在最高時降到中間，低、中不動', () => {
-  assert.equal(snapForTimetable('high'), 'mid');
-  assert.equal(snapForTimetable('mid'), 'mid');
-  assert.equal(snapForTimetable('low'), 'low');
-});
-
-test('手機打開班次表：行程在最高時降到中間，關掉不拉回；低、中不動；網頁版（手機版沒掛著）不動', () => {
+test('手機打開班次表（大彈窗）：開、關都不動行程面板的高度', () => {
   const s = mobileStore.getState();
   const tt = { date: '2027-02-10', legKey: '2027-02-10:visit:i-1', rideIndex: 0 };
   setMobileActive(true);
-  s.setSnap('high');
-  openTimetable(tt);
-  assert.equal(mobileStore.getState().tripSnap, 'mid');
-  closeTimetable();
-  assert.equal(mobileStore.getState().tripSnap, 'mid');
-  s.setSnap('low');
-  openTimetable(tt);
-  assert.equal(mobileStore.getState().tripSnap, 'low');
-  closeTimetable();
+  for (const snap of ['high', 'mid', 'low'] as const) {
+    s.setSnap(snap);
+    openTimetable(tt);
+    assert.equal(mobileStore.getState().tripSnap, snap);
+    closeTimetable();
+    assert.equal(mobileStore.getState().tripSnap, snap);
+  }
   setMobileActive(false);
-  s.setSnap('high');
-  openTimetable(tt);
-  assert.equal(mobileStore.getState().tripSnap, 'high');
-  closeTimetable();
   assert.equal(uiStore.getState().timetable, null);
   s.setSnap('mid');
 });

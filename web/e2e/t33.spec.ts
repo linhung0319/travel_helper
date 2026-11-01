@@ -106,6 +106,63 @@ test('彈窗：某一天置頂、留言存對對象；輸入框跟著展開的�
   await expect(box).toHaveCount(0);
 });
 
+test('留言：改、刪在名字那一行右邊；刪要再確認，取消在刪原本的位置；輸入框跟著字長高', async ({ page }) => {
+  await ready(page);
+  await page.getByTestId('side-tab-day').click();
+  await page.evaluate((d) => (window as any).__th.commands.selectDay(d), DAY);
+  await page.getByTestId('discuss-button').click();
+  const box = page.getByTestId('discussion');
+  const input = box.getByTestId('discuss-input');
+
+  // 一行 → 長留言長高，有上限；Shift＋Enter 換行、Enter 送出
+  const h1 = (await input.boundingBox())!.height;
+  const long = '長輩走這段比較舒服，小孩也有得看。'.repeat(8);
+  await input.fill(long);
+  const h2 = (await input.boundingBox())!.height;
+  expect(h2).toBeGreaterThan(h1);
+  expect(h2).toBeLessThanOrEqual(136);
+  await input.fill('第一行（e2e）');
+  await input.press('Shift+Enter');
+  await input.pressSequentially('第二行');
+  await expect(input).toHaveValue('第一行（e2e）\n第二行');
+  await input.press('Enter');
+  await expect(input).toHaveValue('');
+  expect((await input.boundingBox())!.height).toBe(h1);
+  const row = box.getByTestId('wish-comment').filter({ hasText: '第一行（e2e）' });
+  await expect(row).toBeVisible();
+
+  // 改、刪和名字同一行，內文用滿寬度
+  const head = (await row.locator('.wish-comment-head').boundingBox())!;
+  const del = row.getByTestId('comment-delete');
+  const delBox = (await del.boundingBox())!;
+  expect(delBox.y).toBeLessThan(head.y + head.height);
+  expect(delBox.x + delBox.width).toBeGreaterThan(head.x + head.width - 2);
+
+  // 改：多行輸入框，游標在最後，Esc 取消、Enter 存
+  await row.getByRole('button', { name: '改', exact: true }).click();
+  const edit = row.getByTestId('comment-edit-input');
+  await expect(edit).toBeFocused();
+  await edit.press('Escape');
+  await expect(edit).toHaveCount(0);
+  await row.getByRole('button', { name: '改', exact: true }).click();
+  await edit.pressSequentially('改過');
+  await edit.press('Enter');
+  await expect(row.locator('.wish-comment-text')).toHaveText('第一行（e2e）\n第二行改過');
+
+  // 刪：先問；取消在刪原本的位置，連按兩下不會刪掉
+  const before = (await del.boundingBox())!;
+  await del.click();
+  const cancel = row.getByTestId('comment-delete-cancel');
+  const after = (await cancel.boundingBox())!;
+  expect(after.x + after.width).toBeCloseTo(before.x + before.width, 0);
+  await page.mouse.click(after.x + after.width / 2, after.y + after.height / 2);
+  await expect(row).toBeVisible();
+  await expect(del).toBeVisible();
+  await del.click();
+  await row.getByTestId('comment-delete-confirm').click();
+  await expect(row).toHaveCount(0);
+});
+
 test('篩選：全部照最新留言排、整趟只有整趟；點地圖關掉', async ({ page }) => {
   await ready(page);
   await page.getByTestId('side-tab-day').click();

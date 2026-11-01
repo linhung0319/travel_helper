@@ -622,20 +622,23 @@
 
 /* 天數列見 shared/ui/ui.css（DayStrip sheet） */
 
-/* 班次表（T29c §8.8）：浮在地圖那塊的上面，高度固定＝行程在中間時露出的地圖，扣掉上面 8px、下面 48px
-   （地圖右下的版權列；360 寬時會折成兩行，約 44px），不跟著面板高度變；格子三欄，多了在裡面捲。
-   班距型那一程只有一行字：照內容的高度 */
+/* 班次表（T29c §8.8）：大彈窗，把手、露出的一條和討論彈窗一樣（.dp-backdrop），格子三欄，多了在裡面捲。
+   班距型那一程只有一行字：照內容的高度貼在下面 */
 .m-app .timetable-pop {
-  top: 8px;
-  left: 8px;
-  right: 8px;
+  position: static;
+  flex: 1;
   width: auto;
   max-height: none;
-  height: calc((100dvh - var(--m-tabbar-h) - env(safe-area-inset-bottom)) * (1 - var(--m-sheet-mid)) - 56px);
+  padding-bottom: env(safe-area-inset-bottom);
+  border-radius: 20px 20px 0 0;
+}
+
+.m-app .tt-backdrop.headway .dp-peek {
+  flex: 1;
 }
 
 .m-app .timetable-pop.headway {
-  height: auto;
+  flex: none;
 }
 
 .m-app .tt-grid {
@@ -812,7 +815,7 @@
   min-height: var(--tap);
 }
 
-/* map ↗ 只佔第一行的高度，點的範圍用 ::after 撐到 44px（同「改」，ui.css 的 .m-leg .ll-edit） */
+/* map ↗ 只佔第一行的高度，點的範圍用 ::after 撐到 44px */
 .m-leg .ll-maps {
   position: relative;
   display: inline-flex;
@@ -1042,6 +1045,22 @@ body.dragging-plan .m-dropend {
 }
 
 /* 交通編輯器的底部面板（m-leg-sheet）：編輯狀態排成一欄，點的範圍 44px */
+.m-leg-sheet-x {
+  flex: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--tap);
+  height: var(--tap);
+  margin-left: auto;
+  margin-right: -8px;
+  border: 0;
+  border-radius: 50%;
+  background: none;
+  color: var(--ink);
+  cursor: pointer;
+}
+
 .m-leg-sheet .m-asheet-body {
   padding: 8px 16px 16px;
 }

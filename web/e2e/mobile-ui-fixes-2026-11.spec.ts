@@ -105,3 +105,36 @@ test('提議：在行程上看時不畫日期那排、捲到提議的卡；看�
   await expect(page.locator('.m-dayhead')).toBeVisible();
   await expect(page.getByTestId('m-trip-edit')).toBeVisible();
 });
+
+// 2026-11-02 👤：探索、想去是整頁，高度夠，類型列和「幾個地點」那列也黏在上面；螢幕太矮時只留搜尋列
+test('探索、想去：往下捲時三列都黏在上面，想去的段落標題接在下面；螢幕太矮只留搜尋列', async ({ page }) => {
+  await ready(page);
+  const scroll = (y: number) => page.evaluate((v) => {
+    document.querySelector('.m-page')!.scrollTop = v;
+  }, y);
+  await page.getByTestId('m-tab-explore').click();
+  const feed = page.getByTestId('m-feed');
+  await scroll(1500);
+  await expect(feed.getByTestId('list-count')).toBeInViewport();
+  await expect(feed.getByTestId('view-photo')).toBeInViewport();
+  const stick = (await feed.getByTestId('fb-stick').boundingBox())!;
+  const top = (await page.locator('.m-page').boundingBox())!.y;
+  expect(Math.round(stick.y)).toBe(Math.round(top));
+  expect(stick.height).toBeLessThan(170);
+
+  await page.getByTestId('m-tab-wish').click();
+  const wish = page.getByTestId('m-wish');
+  await scroll(600);
+  await expect(wish.getByTestId('list-count')).toBeInViewport();
+  const bar = (await wish.getByTestId('fb-stick').boundingBox())!;
+  const headTop = await wish.locator('.wl-head').first().evaluate((el) => getComputedStyle(el).top);
+  expect(parseFloat(headTop)).toBeCloseTo(bar.height, 0);
+
+  const size = page.viewportSize()!;
+  await page.setViewportSize({ width: 800, height: 360 });
+  await page.getByTestId('m-tab-explore').click();
+  await scroll(1500);
+  await expect(page.getByTestId('m-feed-search')).toBeInViewport();
+  await expect(feed.getByTestId('list-count')).not.toBeInViewport();
+  await page.setViewportSize(size);
+});

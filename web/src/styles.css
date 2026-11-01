@@ -1959,8 +1959,22 @@ button.planning-done {
 
 .wish-comment-body {
   display: flex;
+  flex: 1;
   flex-direction: column;
   min-width: 0;
+}
+
+/* 名字、時間在左，改、刪在同一行的最右邊：內文不用讓出右邊的寬度，長留言照樣用滿整行 */
+.wish-comment-head {
+  display: flex;
+  align-items: flex-start;
+  gap: 4px;
+}
+
+.wish-comment-meta {
+  flex: 1;
+  min-width: 0;
+  overflow-wrap: anywhere;
 }
 
 .wish-comment-text {
@@ -1972,25 +1986,49 @@ button.planning-done {
   color: var(--warn);
 }
 
+/* 按鈕保留 36px 的點擊範圍，用負邊距不把這一行撐高，自己的留言和別人的一樣高 */
 .wish-comment-actions {
   display: flex;
+  flex: none;
   gap: 2px;
-  margin-left: -6px;
+  margin: -9px 0;
 }
 
-.wish-comment-new,
-.wish-comment-edit {
+.wish-comment-actions .text-button {
+  min-width: 36px;
+}
+
+.wish-comment-new {
   display: flex;
+  align-items: flex-end;
   gap: 4px;
 }
 
-.wish-comment-new input,
-.wish-comment-edit input {
-  flex: 1;
+.wish-comment-edit {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  margin-top: 2px;
+}
+
+.wish-comment-edit-acts {
+  display: flex;
+  justify-content: flex-end;
+  gap: 2px;
+}
+
+.wish-comment-new textarea,
+.wish-comment-edit textarea {
+  flex: 1 1 auto;
+  display: block;
+  width: 100%;
   min-width: 0;
-  padding: 4px 8px;
+  max-height: 136px;
+  padding: 6px 10px;
+  line-height: 1.4;
+  resize: none;
   border: 1px solid var(--line);
-  border-radius: 999px;
+  border-radius: 14px;
   font: inherit;
   background: var(--bg);
   color: inherit;
@@ -3517,9 +3555,10 @@ button.leg-step-board {
 
 /* 一程一行：膠囊（圖示＋短名稱＋發車）、右邊錯過的標籤（車程分鐘看前後節點的時間，不另外寫）。
    一定一行：放不下時先省略膠囊的名稱（至少留約 3.5 個字和發車時間；360 寬的手機剛好放得下「錯過 +N 分」），標籤不換行、不縮 */
+/* 放不下時標籤換到下一行，不和膠囊疊在一起 */
 .leg-step.ride .leg-step-tx {
   display: flex;
-  flex-wrap: nowrap;
+  flex-wrap: wrap;
   align-items: center;
   gap: 2px 4px;
   padding: 3px 0 5px 2px;
@@ -3540,6 +3579,30 @@ button.leg-step-board {
   color: var(--ink);
   font-size: 0.8125rem;
   font-weight: 600;
+}
+
+/* 膠囊是按鈕：點了開這一程的班次表。::before 把點擊範圍上下撐大一點，不改版面 */
+button.leg-ride {
+  position: relative;
+  font-family: inherit;
+  line-height: inherit;
+  cursor: pointer;
+}
+
+button.leg-ride::before {
+  content: '';
+  position: absolute;
+  inset: -4px 0;
+}
+
+button.leg-ride::after {
+  content: '›';
+  flex: none;
+  color: var(--ride-c);
+}
+
+button.leg-ride:hover {
+  background: var(--wash);
 }
 
 .leg-ride > .mode-icon {

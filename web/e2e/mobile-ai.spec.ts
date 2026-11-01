@@ -994,21 +994,21 @@ test.describe('鍵盤（§16.3）', () => {
     await check(page, 'add-note', [], 'add-place');
   });
 
-  test('編輯中的交通備註、拿掉候選的理由：完成、確認都在鍵盤上面；字 16px', async ({ page }) => {
+  test('編輯中的交通備註、拿掉候選的理由：備註、確認都在鍵盤上面；字 16px', async ({ page }) => {
     await page.getByTestId('m-day-2027-02-05').click();
     await page.getByTestId('m-trip-edit').click();
     await page.getByTestId('planning-confirm').click();
     const key = await page.getByTestId('m-leg').first().getAttribute('data-leg');
-    await page.evaluate((k) => import('/src/uiStore.ts' as string).then((m) => m.uiStore.setState({ legOpen: k, legEdit: k })), key);
+    await page.evaluate((k) => import('/src/uiStore.ts' as string).then((m) => m.uiStore.setState({ legOpen: k })), key);
     await page.getByTestId('leg-note').focus();
     await setKeyboard(page, KB);
     const top = await keyboardTop(page, KB);
-    await expect.poll(async () => (await page.getByTestId('leg-done').boundingBox())!.y + 44 <= top).toBe(true);
+    await expect.poll(async () => (await page.getByTestId('leg-note').boundingBox())!.y + 44 <= top).toBe(true);
     expect(await page.getByTestId('leg-note').evaluate((e) => getComputedStyle(e).fontSize)).toBe('16px');
     await shot(page, 'kb-leg');
     await page.evaluate(() => (document.activeElement as HTMLElement)?.blur());
     await setKeyboard(page, 0);
-    await page.getByTestId('leg-done').click();
+    await page.getByTestId('m-leg-sheet-close').click();
 
     await page.evaluate(() => Promise.all([import('/src/uiStore.ts' as string), import('/src/appShared.ts' as string)]).then(([u, s]) => u.openDialog({ kind: 'reject', candidateId: s.sharedStore.getState().candidates[0].id })));
     await page.getByTestId('reject-text').focus();

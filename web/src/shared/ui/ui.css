@@ -436,7 +436,7 @@
   box-shadow: 0 0 0 2px var(--paper);
 }
 
-/* ---------- 地圖上的日期晶片（MapDays，網頁行程分頁）：地圖夠寬一排、窄時兩排（「整趟」佔兩排高） ---------- */
+/* ---------- 地圖上的日期晶片（MapDays，網頁行程分頁）：不論寬窄都包在藍色的卡裡（2026-11-02 👤）；地圖夠寬一排、窄時兩排（「整趟」佔兩排高） ---------- */
 .map-days-wrap {
   position: absolute;
   top: 0;
@@ -454,6 +454,10 @@
   display: grid;
   grid-template-columns: 52px repeat(12, 44px);
   gap: 3px;
+  padding: 6px;
+  border-radius: 20px;
+  background: var(--band);
+  box-shadow: 0 2px 10px var(--shade-1);
   pointer-events: auto;
 }
 
@@ -471,7 +475,6 @@
   background: var(--paper);
   color: var(--ink);
   line-height: 1.15;
-  box-shadow: 0 2px 8px var(--shade-1);
   cursor: pointer;
 }
 
@@ -515,28 +518,21 @@
   background: var(--red-day); /* §12.1 警告數字的紅 */
 }
 
-@container map-days (max-width: 639px) {
+/* 一排要 628px（13 格、間距、卡的內距），左右各留 12px */
+@container map-days (max-width: 651px) {
   .map-days {
     grid-template-columns: 52px repeat(6, 44px);
     grid-auto-rows: 44px;
     gap: 4px;
-    padding: 6px;
-    border-radius: 20px;
-    background: var(--veil);
-    box-shadow: 0 2px 10px var(--shade-1);
   }
 
   .map-day {
     height: 44px;
-    background: var(--wash);
-    box-shadow: none;
   }
 
   .map-day.all {
     grid-row: span 2;
     height: auto;
-    background: var(--paper);
-    border: 1px solid var(--line);
   }
 }
 
@@ -713,8 +709,25 @@
   white-space: nowrap;
 }
 
-/* 手機：第一列黏在最上面，其餘跟著內容捲走 */
-/* 在靛藍色帶裡（§12.4）：搜尋框白底，篩選、排序是半透明白 */
+/* 手機：搜尋列、類型列、幾個地點都黏在最上面（探索、想去是整頁，高度夠）。
+   螢幕太矮（橫放）或鍵盤開著時只留第一列：外層 display: contents，.fb-mobile 自己黏住，其餘跟著內容捲走 */
+.fb-stick {
+  position: sticky;
+  top: 0;
+  z-index: 5;
+}
+
+@media (max-height: 560px) {
+  .fb-stick {
+    display: contents;
+  }
+}
+
+:root[data-keyboard] .fb-stick {
+  display: contents;
+}
+
+/* 在靛藍色帶裡（§12.4）：搜尋框白底，篩選、排序是半透明白。z-index 讓排序選單蓋得過下面的類型列 */
 .fb-mobile {
   position: sticky;
   top: 0;
@@ -744,6 +757,8 @@
 .fb-below {
   min-width: 0;
   padding: 4px 12px 0;
+  background: var(--paper);
+  border-bottom: 1px solid var(--line);
 }
 
 .fb-typerow {
@@ -2650,19 +2665,6 @@ button.ll-main {
   white-space: nowrap;
 }
 
-.ll-edit {
-  flex: 0 0 auto;
-  min-height: 28px;
-  padding: 0 12px;
-  border: 1px solid var(--line);
-  border-radius: 999px;
-  background: var(--paper);
-  color: var(--ink);
-  font: inherit;
-  font-weight: 600;
-  cursor: pointer;
-}
-
 .ll-li.flash .ll-card {
   background: var(--mustard-wash);
 }
@@ -2750,21 +2752,6 @@ button.ll-main {
   height: 22px;
   border-radius: 999px;
   font-size: 0.75rem;
-}
-
-/* 手機「改」：看起來是小膠囊，點的範圍至少 44×44 */
-.m-leg .ll-edit {
-  position: relative;
-}
-
-.m-leg .ll-edit::after {
-  content: '';
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  width: max(100%, 44px);
-  height: 44px;
-  transform: translate(-50%, -50%);
 }
 
 /* 自己加的點（T31 §4）：虛線框、副標「自己加的 · 誰」；詳情的膠囊、提示框 */
@@ -3580,19 +3567,26 @@ button.ll-main {
 
 .dp-input {
   display: flex;
+  /* 輸入框長高時，「送出」留在最下面 */
+  align-items: flex-end;
   gap: 6px;
   min-width: 0;
 }
 
-.dp-input input {
+.dp-input textarea {
   flex: 1;
+  display: block;
   min-width: 0;
   min-height: var(--tap);
-  padding: 0 12px;
+  /* 大約五行，再多在裡面捲 */
+  max-height: 136px;
+  padding: 10px 12px;
   border: 1px solid var(--ink-3);
   border-radius: 14px;
   background: var(--paper);
   font: inherit;
+  line-height: 1.4;
+  resize: none;
 }
 
 .dp-send {

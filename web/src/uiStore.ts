@@ -43,8 +43,6 @@ export interface UiState {
   idleMinutes: number;
   /** 展開中的交通細列（日期:項目 ID 或 lodging）；一次只展開一段 */
   legOpen: string | null;
-  /** 正在編輯的交通（和 legOpen 同格式的 key）；只有按「改」才有值，一次一段 */
-  legEdit: string | null;
   /** 網頁版時間軸原地展開的那張卡（項目 ID；出發、回住宿是 start、lodging）；一次一張，手機版用 mobileStore.expanded */
   expandedItem: string | null;
   /** 地圖那側的班次表（第五輪 §4）：哪天、哪段交通（legKey 和交通卡的 key 同格式）、第幾程 */
@@ -55,7 +53,7 @@ export interface UiState {
   proposalReveal: number;
 }
 
-export const uiStore = createStore<UiState>()(() => ({ dialog: null, mapPanel: null, discussion: null, idleMinutes: 10, legOpen: null, legEdit: null, expandedItem: null, timetable: null, proposalView: 'diff', proposalReveal: 0 }));
+export const uiStore = createStore<UiState>()(() => ({ dialog: null, mapPanel: null, discussion: null, idleMinutes: 10, legOpen: null, expandedItem: null, timetable: null, proposalView: 'diff', proposalReveal: 0 }));
 
 // 換天、離開行程分頁：展開的卡收起來。看 store 不看 DayPanel 卸載：轉向回網頁版時（和 dev 的 StrictMode 重跑 effect）才不會把剛帶過來的展開清掉
 let lastView = { day: appStore.getState().day, mode: appStore.getState().mode };
@@ -64,6 +62,14 @@ appStore.subscribe((s) => {
   const left = s.day !== lastView.day || s.mode !== 'map';
   lastView = { day: s.day, mode: s.mode };
   if (left && uiStore.getState().expandedItem) uiStore.setState({ expandedItem: null });
+});
+
+// 進入編輯：收起開著的交通。編輯中點開就是編輯器，手機的編輯器是底部面板，不收的話一按「編輯」面板就跳出來
+let wasPlanning = appStore.getState().planning;
+appStore.subscribe((s) => {
+  if (s.planning === wasPlanning) return;
+  wasPlanning = s.planning;
+  if (s.planning && uiStore.getState().legOpen) uiStore.setState({ legOpen: null });
 });
 
 /** 點時間軸的卡：展開那張，點同一張收起（網頁版） */
