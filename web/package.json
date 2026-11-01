@@ -9,7 +9,8 @@
     "build": "tsc -b && vite build",
     "typecheck": "tsc -b",
     "preview": "vite preview",
-    "e2e": "playwright test"
+    "e2e": "playwright test",
+    "e2e:worker": "playwright test -c playwright.worker.config.ts"
   },
   "dependencies": {
     "@travel-helper/engine": "*",

@@ -1,7 +1,9 @@
-// 本機的實作：build 時直接讀 data/（Vite 的 import.meta.glob）。
+// 本機的實作：dev server 直接讀 data/（Vite 的 import.meta.glob），只有 dev 才載入（data/index.ts），不進正式 build。
+// 資料點照正式環境一樣分成清單層、詳情層，少讀欄位的問題在 dev 就看得到。
 // 只讀網站要用的檔案（areas/、stations.json、areas.json、時刻表），研究筆記（raw/）、cache/、derived/ 不打包。
 
 import type { KintetsuTimes, RouteTimetable, UrbanRoute, UrbanTransfer } from '@travel-helper/engine';
+import { detailLayer, listLayer } from '../../../worker/src/lib/placeLayers.ts';
 import { normalizeAreas, normalizePlaceList } from './normalize.ts';
 import type { DataSource } from './source.ts';
 import type { StationTimetable } from './types.ts';
@@ -38,13 +40,20 @@ function timetableLoader(stationId: string) {
   return null;
 }
 
+async function records(): Promise<Record<string, unknown>[]> {
+  const docs = await Promise.all(Object.values(placeModules).map((load) => load()));
+  return docs.flatMap((d) => (Array.isArray(d) ? (d as Record<string, unknown>[]) : []));
+}
+
 export const localSource: DataSource = {
   async loadAreas() {
     return normalizeAreas(await Object.values(areasModule)[0]?.());
   },
   async loadPlaces() {
-    const docs = await Promise.all(Object.values(placeModules).map((load) => load()));
-    return docs.flatMap(normalizePlaceList);
+    return normalizePlaceList((await records()).map(listLayer));
+  },
+  async loadPlaceDetails() {
+    return (await records()).map(detailLayer) as { id: string }[];
   },
   async loadTimetable(stationId) {
     const load = timetableLoader(stationId);

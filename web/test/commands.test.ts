@@ -44,6 +44,9 @@ function setup(itinerary: Itinerary | null = itin({ '2027-02-05': ['a', 'b'] }))
     itinerary,
     days: placeDays(itinerary),
     stationNames: new Map(),
+    details: null,
+    detailsError: null,
+    placeEdits: [],
   }));
   return { app, data, cmd: createCommands(app, data) };
 }

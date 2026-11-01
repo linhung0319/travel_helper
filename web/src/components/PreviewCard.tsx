@@ -8,6 +8,8 @@ import { TierMark } from '../shared/ui/TierMark.tsx';
 import { pickPlace } from './mapPick.ts';
 import { CardType } from './Timeline.tsx';
 import { Icon } from './Icon.tsx';
+import { useFullPlace } from '../hooks.ts';
+import { IntroPending } from '../shared/ui/Skeleton.tsx';
 
 interface Props {
   place: Place;
@@ -37,6 +39,7 @@ export function PreviewCard({ place, anchor, onEnter, onLeave }: Props) {
   }, [anchorY, place.id]);
   const open = () => (anchor ? pickPlace(place.id) : appStore.getState().openDetail(place.id));
   const style = anchor ? { left: anchor.x, top: anchor.y } : undefined;
+  const full = useFullPlace(place);
   const name = place.name.zh || place.name.ja;
   // tag 一排：和詳情一樣的標章、情境、料理（放不下的被切掉）
   const tags: { label: string; tone: string | null }[] = [
@@ -77,7 +80,8 @@ export function PreviewCard({ place, anchor, onEnter, onLeave }: Props) {
               ))}
             </span>
           )}
-          {place.summary && <span className="preview-summary">{place.summary.text}</span>}
+          {!full.loaded && !full.error && <IntroPending />}
+          {full.place.summary && <span className="preview-summary">{full.place.summary.text}</span>}
         </span>
       </button>
       <button type="button" className="icon-button preview-close" aria-label="關閉小卡片" onClick={() => appStore.getState().openPreview(null)}>

@@ -1,6 +1,5 @@
 // 後端的介面（T15m）：確定的行程、快照、投票（❤️ 就是想去）、留言、候選、修改紀錄、成員。
-// 形狀照 T24 的資料 API（architecture §4「資料 API」、worker/src/api/）：T15m 先用假後端（mock.ts），
-// T15 換成呼叫 API 的實作，畫面的程式不改。留言、候選是 2026-10-24 改的（取代建議），T15 要同步到 Worker。
+// 形狀照 Worker 的資料 API（architecture §4「資料 API」、worker/src/api/）：正式 build 是 api.ts，dev server 和既有 e2e 是假後端（mock.ts），規則改了要一起改。
 
 import type { Itinerary, LonLat } from '@travel-helper/engine/types';
 
@@ -163,11 +162,27 @@ export class BackendError extends Error {
 /** 行程的 version 和資料庫的不一樣（別人先改過了） */
 export const isVersionConflict = (e: unknown): e is BackendError => e instanceof BackendError && e.status === 409;
 
+/** GET /api/bootstrap：啟動時一次拿齊共用資料（不用打 11 支 API） */
+export interface Bootstrap {
+  me: Member;
+  members: Member[];
+  sync: SyncState;
+  itinerary: ItineraryDoc;
+  snapshots: SnapshotMeta[];
+  votes: Vote[];
+  comments: Comment[];
+  candidates: Candidate[];
+  reservations: Reservation[];
+  edits: PlaceEdit[];
+  userPlaces: UserPlace[];
+}
+
 export interface Backend {
   /** 目前登入的人 */
   me(): Promise<Member>;
   members(): Promise<Member[]>;
   sync(): Promise<SyncState>;
+  bootstrap(): Promise<Bootstrap>;
 
   getItinerary(): Promise<ItineraryDoc>;
   /** version 要和資料庫的一樣，否則丟 409；改之前自動存快照 */

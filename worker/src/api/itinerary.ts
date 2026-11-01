@@ -7,15 +7,16 @@
 // GET  /api/itinerary/snapshots/:id          一份快照
 // POST /api/itinerary/snapshots/:id/restore  { version }：復原也是一次修改，會再存快照
 //
-// 行程的格式由 T14 定，Worker 只檢查是物件、大小在 D1 一列的上限內。
+// 行程的格式由 T14 定（packages/engine）：PUT 時跑 validateItinerary，大小在 D1 一列的上限內。
 
+import { validateItinerary } from '@travel-helper/engine';
 import type { Ctx } from '../env.ts';
 import { badRequest, conflict, json, notFound, nowIso, readBody, isPlainObject } from '../lib/http.ts';
 
 // D1 一列最大 2 MB；留一點空間
 const MAX_BYTES = 1024 * 1024;
 
-interface ItinRow {
+export interface ItinRow {
   data: string;
   version: number;
   updated_by: string;
@@ -25,6 +26,21 @@ interface ItinRow {
 async function current(db: D1Database): Promise<ItinRow | null> {
   return db.prepare('SELECT data, version, updated_by, updated_at FROM itinerary WHERE id = 1').first<ItinRow>();
 }
+
+/** 行程裡 data 以外的欄位（JSON 片段，沒有外面的大括號）：bootstrap 直接接 data 的字串 */
+export const itineraryMeta = (r: ItinRow | null) => JSON.stringify({ version: r?.version ?? 0, updatedBy: r?.updated_by ?? null, updatedAt: r?.updated_at ?? null }).slice(1, -1);
+
+export const SNAPSHOT_LIST = 'SELECT id, version, reason, created_by, created_at FROM snapshots ORDER BY id DESC';
+
+export interface SnapshotMetaRow {
+  id: number;
+  version: number;
+  reason: string | null;
+  created_by: string;
+  created_at: string;
+}
+
+export const snapshotMetaJson = (s: SnapshotMetaRow) => ({ id: s.id, version: s.version, reason: s.reason, createdBy: s.created_by, createdAt: s.created_at });
 
 const toJson = (r: ItinRow | null) =>
   r
@@ -74,21 +90,15 @@ export async function putItinerary({ db, req, member }: Ctx): Promise<Response> 
   const body = await readBody(req, 2 * MAX_BYTES);
   const version = readVersion(body);
   if (!isPlainObject(body.data)) throw badRequest('data 要是物件');
+  const problems = validateItinerary(body.data);
+  if (problems.length) throw badRequest('行程的格式不對', problems);
   if (body.reason != null && typeof body.reason !== 'string') throw badRequest('reason 要是字串');
   return save(db, version, body.data, (body.reason as string | undefined) ?? null, member.id);
 }
 
 export async function listSnapshots({ db }: Ctx): Promise<Response> {
-  const r = await db.prepare('SELECT id, version, reason, created_by, created_at FROM snapshots ORDER BY id DESC').all<{
-    id: number;
-    version: number;
-    reason: string | null;
-    created_by: string;
-    created_at: string;
-  }>();
-  return json({
-    snapshots: r.results.map((s) => ({ id: s.id, version: s.version, reason: s.reason, createdBy: s.created_by, createdAt: s.created_at })),
-  });
+  const r = await db.prepare(SNAPSHOT_LIST).all<SnapshotMetaRow>();
+  return json({ snapshots: r.results.map(snapshotMetaJson) });
 }
 
 async function loadSnapshot(db: D1Database, idText: string) {

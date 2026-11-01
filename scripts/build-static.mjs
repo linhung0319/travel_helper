@@ -10,6 +10,8 @@
 //                                                  [[車站, 到, 發], ...]（從 _travel-times.json 的 trains），
 //                                                  所以查「從這站到哪站要多久」只要載入出發站這一個檔案
 //   timetables/kintetsu/_segments.json             各站之間的車程（_travel-times.json 去掉 trains）
+//   timetables/engine.json                         行程引擎要的全部（近鐵的 trains、巴士、船、JR 路線、班距型路線、轉乘）：一個請求就好（T15）
+//   access.json                                    access/ 全部接成一個陣列（AI 的 get_trip_info）
 //   timetables/jr/<車站或路線>.json、bus/<路線>.json、ferry/<路線>.json   照原樣，一個路線一個檔案
 //   timetables/index.json                          每個檔案有什麼：車站、路線名、停留所（給地圖、找附近的班次），
 //                                                  以及 byPlace：資料點 ID → 附近有停的路線（停留所的 near）
@@ -83,13 +85,21 @@ export function build({ data, out }) {
   const put = (rel, obj) => files.set(rel, JSON.stringify(obj));
 
   for (const f of ['areas.json', 'passes.json']) if (fs.existsSync(path.join(data, f))) put(f, readJson(path.join(data, f)));
-  for (const f of jsonFiles(path.join(data, 'access'))) put(`access/${f}`, readJson(path.join(data, 'access', f)));
+  const accessDocs = [];
+  for (const f of jsonFiles(path.join(data, 'access'))) {
+    const doc = readJson(path.join(data, 'access', f));
+    put(`access/${f}`, doc);
+    accessDocs.push(doc);
+  }
+  if (accessDocs.length) put('access.json', accessDocs);
 
   const index = { kintetsu: [], jr: [], routes: [], urban: [], byPlace: {} };
+  const engine = { kintetsu: null, routes: [], urban: [], urbanTransfers: [] };
 
   const kdir = path.join(data, 'timetables/kintetsu');
   const tt = fs.existsSync(path.join(kdir, '_travel-times.json')) ? readJson(path.join(kdir, '_travel-times.json')) : null;
   if (tt) {
+    engine.kintetsu = tt;
     const { trains: _trains, ...segments } = tt;
     put('timetables/kintetsu/_segments.json', segments);
   }
@@ -110,6 +120,7 @@ export function build({ data, out }) {
         continue;
       }
       index.routes.push({ ...routeSummary(doc), file: rel });
+      if (doc.stops && doc.trips) engine.routes.push(doc);
       for (const s of doc.stops ?? []) {
         for (const n of s.near ?? []) {
           const list = (index.byPlace[n.id] ??= []);
@@ -125,11 +136,16 @@ export function build({ data, out }) {
     const doc = readJson(path.join(data, 'timetables/urban', f));
     const rel = `timetables/urban/${f}`;
     put(rel, doc);
-    if (f.startsWith('_')) continue;
+    if (f.startsWith('_')) {
+      if (f === '_transfers.json') engine.urbanTransfers = doc;
+      continue;
+    }
+    engine.urban.push(doc);
     index.urban.push({ id: doc.id, name: doc.name?.ja ?? null, mode: doc.mode, stops: (doc.stops ?? []).map((s) => s.id), file: rel });
   }
   for (const list of Object.values(index.byPlace)) list.sort((a, b) => a.meters - b.meters);
   put('timetables/index.json', index);
+  put('timetables/engine.json', engine);
 
   let commit = 'unknown';
   try {

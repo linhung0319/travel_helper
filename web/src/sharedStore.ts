@@ -5,8 +5,9 @@
 
 import { createStore, type StoreApi } from 'zustand/vanilla';
 import type { Itinerary } from '@travel-helper/engine/types';
-import { ItineraryError, removeItem } from '@travel-helper/engine';
+import { createItinerary, ItineraryError, removeItem } from '@travel-helper/engine';
 import {
+  type Bootstrap,
   isVersionConflict,
   type Backend,
   type Candidate,
@@ -24,7 +25,7 @@ import {
   type Vote,
   type VoteValue,
 } from './backend/types.ts';
-import type { DataState } from './dataStore.ts';
+import { livePlaces, type DataState } from './dataStore.ts';
 import { mergePlaceEdits } from './data/merge.ts';
 import { userPlaceToPlace } from './lib/addPlace/userPlace.ts';
 import { placeDays } from './lib/itinerary.ts';
@@ -98,14 +99,15 @@ function setItinerary(itinerary: Itinerary | null, data: StoreApi<DataState>) {
 
 /**
  * 修改紀錄、自己加的點變了：重新合併資料點。
- * places：預設資料套上修改，後面接沒刪除的自己加的點；byId 也含已刪除的（行程裡那一格還要顯示名稱）
+ * places：預設資料（沒下架的）套上修改，後面接沒刪除的自己加的點；byId 也含已下架、已刪除的（行程裡那一格還要顯示名稱）
  */
 export function rebuildPlaces(data: StoreApi<DataState>, edits: PlaceEdit[], userPlaces: UserPlace[]) {
   const { basePlaces, areas } = data.getState();
   const merged = mergePlaceEdits(basePlaces, edits);
+  const live = livePlaces(merged);
   const users = userPlaces.map((u) => ({ deleted: !!u.deletedAt, place: userPlaceToPlace(u, areas) }));
-  const places = users.some((u) => !u.deleted) ? [...merged, ...users.filter((u) => !u.deleted).map((u) => u.place)] : merged;
-  data.setState({ places, byId: new Map([...merged, ...users.map((u) => u.place)].map((p) => [p.id, p])) });
+  const places = users.some((u) => !u.deleted) ? [...live, ...users.filter((u) => !u.deleted).map((u) => u.place)] : live;
+  data.setState({ places, placeEdits: edits, byId: new Map([...merged, ...users.map((u) => u.place)].map((p) => [p.id, p])) });
 }
 
 export function createShared(getBackend: () => Backend, data: StoreApi<DataState>) {
@@ -141,11 +143,46 @@ export function createShared(getBackend: () => Backend, data: StoreApi<DataState
     rebuildPlaces(data, store.getState().edits, userPlaces);
   }
 
+  /** 啟動時一次拿齊（GET /api/bootstrap） */
+  const fetchBootstrap = () => getBackend().bootstrap();
+
+  /** 資料庫還沒有行程（version 0）：放好航班的第一份。兩個人同時第一次打開時，晚到的回 409，讀別人建好的那份 */
+  async function createFirstItinerary() {
+    try {
+      const doc = await getBackend().putItinerary(0, createItinerary(), '建立行程');
+      setItinerary(doc.data, data);
+      set({ version: doc.version, updatedBy: doc.updatedBy, updatedAt: doc.updatedAt });
+    } catch (e) {
+      if (!isVersionConflict(e)) throw e;
+      await loadItinerary();
+    }
+  }
+
+  /** 資料點要先在 dataStore（合併修改用） */
+  async function applyBootstrap(d: Bootstrap) {
+    set({
+      me: d.me,
+      members: d.members,
+      lastSync: d.sync,
+      version: d.itinerary.version,
+      updatedBy: d.itinerary.updatedBy,
+      updatedAt: d.itinerary.updatedAt,
+      conflict: null,
+      snapshots: d.snapshots,
+      votes: d.votes,
+      comments: d.comments,
+      candidates: d.candidates,
+      reservations: d.reservations,
+      edits: d.edits,
+      userPlaces: d.userPlaces,
+    });
+    setItinerary(d.itinerary.data, data);
+    rebuildPlaces(data, d.edits, d.userPlaces);
+    if (d.itinerary.version === 0) await createFirstItinerary();
+  }
+
   async function load() {
-    const b = getBackend();
-    const [me, members, lastSync] = await Promise.all([b.me(), b.members(), b.sync()]);
-    set({ me, members, lastSync });
-    await Promise.all([loadItinerary(), loadSnapshots(), loadVotes(), loadComments(), loadCandidates(), loadReservations(), loadEdits(), loadUserPlaces()]);
+    await applyBootstrap(await fetchBootstrap());
   }
 
   /**
@@ -396,7 +433,8 @@ export function createShared(getBackend: () => Backend, data: StoreApi<DataState
 
   /** 修改資料點的一個欄位（AI 提議、使用者確認後）：直接生效，有紀錄、可以復原（architecture §3.2） */
   async function createEdit(placeId: string, fieldPath: string, value: unknown, note: string | null): Promise<Result<PlaceEdit>> {
-    const base = data.getState().basePlaces.find((p) => p.id === placeId)?.raw as Record<string, unknown> | undefined;
+    const d = data.getState();
+    const base = { ...d.basePlaces.find((p) => p.id === placeId)?.raw, ...d.details?.get(placeId) } as Record<string, unknown>;
     const at = fieldPath.split('.').reduce<unknown>((x, k) => (x && typeof x === 'object' ? (x as Record<string, unknown>)[k] : undefined), base);
     try {
       const e = await getBackend().createEdit({ placeId, fieldPath, value, note }, { value: at ?? null, missing: at === undefined });
@@ -493,6 +531,8 @@ export function createShared(getBackend: () => Backend, data: StoreApi<DataState
   return {
     store,
     load,
+    fetchBootstrap,
+    applyBootstrap,
     loadItinerary,
     reloadItinerary,
     changeItinerary,

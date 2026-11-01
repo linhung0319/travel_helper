@@ -6,11 +6,15 @@ import type { Place } from '../../data/types.ts';
 import { AddToDay } from '../../components/DayPicker.tsx';
 import { Button } from './Button.tsx';
 import { firstSentences } from './TripCard.tsx';
+import { useFullPlace } from '../../hooks.ts';
+import { IntroPending } from './Skeleton.tsx';
 
 export function PlaceOpenBody({ place, onDetail, onAsk }: { place: Place; onDetail: () => void; onAsk?: () => void }) {
-  const intro = firstSentences(place.summary?.text);
+  const full = useFullPlace(place);
+  const intro = firstSentences(full.place.summary?.text);
   return (
     <div className="po-body" data-testid="place-open" onClick={(e) => e.stopPropagation()}>
+      {!full.loaded && !full.error && <IntroPending />}
       {intro && <p className="po-intro">{intro}</p>}
       <div className="po-actions">
         <Button kind="primary" size="sm" onClick={onDetail} data-testid="place-open-detail">

@@ -21,18 +21,16 @@ export default defineConfig({
   // 相對路徑，build 出來的檔案放在任何目錄下都能開
   base: './',
   build: {
-    // maplibre-gl 本身就超過 1 MB，資料點一包約 4 MB（T15 改從 API 讀之後就不在 bundle 裡），不用警告
+    // maplibre-gl 本身就超過 1 MB，不用警告
     chunkSizeWarningLimit: 5000,
     rolldownOptions: {
       output: {
-        // 不常變的分開打包：改程式再部署時，地圖庫和資料不用重新下載。
-        // 資料點、時刻表都是動態載入，各併成一個檔案，不是一區一個請求（T32）
+        // 不常變的分開打包：改程式再部署時，地圖庫不用重新下載。
+        // 資料點、時刻表不在 build 裡（T15：從 API、/static/ 讀，local.ts 只有 dev 才載入）
         codeSplitting: {
           groups: [
             { name: 'maplibre', test: /[\/]node_modules[\/]maplibre-gl[\/]/ },
             { name: 'react', test: /[\/]node_modules[\/](react|react-dom|scheduler)[\/]/ },
-            { name: 'places', test: /[\/]data[\/](areas[\/]|areas.json|stations.json)/ },
-            { name: 'timetables', test: /[\/]data[\/]timetables[\/](bus|ferry|jr|urban)[\/]|[\/]_travel-times.json/ },
           ],
         },
       },

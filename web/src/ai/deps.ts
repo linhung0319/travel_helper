@@ -21,6 +21,8 @@ export interface AiDeps {
   engine(): EngineData | null;
   config: EngineConfig;
   source: Pick<DataSource, 'loadTimetable' | 'loadTripInfo'>;
+  /** 等詳情層讀好（dataStore 的 ensureDetails）；讀不到時 reject。沒給＝資料已經是完整的（測試） */
+  details?: () => Promise<void>;
 }
 
 export const placeName = (p: Place | undefined, id = '') => (p ? p.name.zh || p.name.ja : id);

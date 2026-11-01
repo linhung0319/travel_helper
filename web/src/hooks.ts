@@ -1,7 +1,8 @@
 import { useEffect, useState } from 'react';
 import { useStore } from 'zustand';
 import { appStore, type AppStore } from './store.ts';
-import { dataStore, type DataState } from './dataStore.ts';
+import { dataStore, ensureDetails, fullPlace, type DataState } from './dataStore.ts';
+import type { Place } from './data/types.ts';
 import { sharedStore } from './appShared.ts';
 import type { SharedState } from './sharedStore.ts';
 import { planStore, type PlanState } from './planStore.ts';
@@ -25,6 +26,27 @@ export function useUi<T>(selector: (s: UiState) => T): T {
 
 export function usePlan<T>(selector: (s: PlanState) => T): T {
   return useStore(planStore, selector);
+}
+
+/**
+ * 畫面要用詳情層的欄位時（介紹、團體、價格、來源…）：回傳完整的資料點，順便叫詳情層馬上讀（不等閒置）。
+ * loaded 是 false 時 place 只有清單層，畫面放骨架（shared/ui/Skeleton.tsx 的 DetailPending）。自己加的點沒有詳情層。
+ */
+export function useFullPlace<T extends Place | null | undefined>(place: T): { place: T; loaded: boolean; error: string | null; retry(): void } {
+  const details = useData((s) => s.details);
+  const error = useData((s) => s.detailsError);
+  const id = place?.id ?? null;
+  const full = useData((s) => (id ? fullPlace(s, id) : null));
+  const needed = !!place && place.origin !== 'user';
+  useEffect(() => {
+    if (needed && !details) void ensureDetails().catch(() => {});
+  }, [needed, details]);
+  return {
+    place: (full ?? place) as T,
+    loaded: !needed || !!details,
+    error: details ? null : error,
+    retry: () => void ensureDetails().catch(() => {}),
+  };
 }
 
 /** 網頁版的寬度（interaction-design §1「平板」）：1100px 以上三欄。iPad 直拿（最寬 1024）是手機版、橫拿（最窄 1133）是網頁版 */

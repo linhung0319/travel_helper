@@ -18,7 +18,10 @@ CREATE TABLE places_base (
   id                TEXT PRIMARY KEY,
   type              TEXT NOT NULL,         -- station | spot | lodging | restaurant
   area              TEXT,                  -- 不寫死區域：areas.json 的 ID
-  data              TEXT NOT NULL,         -- 資料點的 JSON（和 data/ 裡的一樣）
+  data              TEXT NOT NULL,         -- 資料點的 JSON（和 data/ 裡的一樣）：驗證修改、看單一個點時用
+  data_list         TEXT NOT NULL,         -- 清單層的 JSON（worker/src/lib/placeLayers.ts，匯入時算好）：GET /api/places 直接接字串
+  data_detail       TEXT NOT NULL,         -- 詳情層的 JSON（同上）：GET /api/places/details
+  layer_version     INTEGER NOT NULL,      -- 算這兩層時的 LAYER_VERSION；和程式不同時，重新匯入會重算
   content_hash      TEXT NOT NULL,         -- data 的 sha256（鍵排序後），用來判斷內容變了沒
   import_id         INTEGER NOT NULL REFERENCES imports(id),   -- 最後一次改到這一列的匯入
   first_import_id   INTEGER NOT NULL REFERENCES imports(id),
@@ -97,30 +100,50 @@ CREATE TABLE snapshots (
   created_at TEXT NOT NULL
 );
 
--- 建議：一則一列
-CREATE TABLE suggestions (
-  id               INTEGER PRIMARY KEY AUTOINCREMENT,
-  day              TEXT NOT NULL,          -- 'YYYY-MM-DD' 或 'trip'（整趟）
-  place_ids        TEXT NOT NULL DEFAULT '[]',
-  text             TEXT NOT NULL,
-  author           TEXT NOT NULL REFERENCES members(line_user_id),
-  created_at       TEXT NOT NULL,
-  updated_at       TEXT NOT NULL,
-  status           TEXT NOT NULL DEFAULT 'pending' CHECK (status IN ('pending', 'adopted', 'declined')),
-  status_note      TEXT,
-  status_by        TEXT,
-  status_at        TEXT,
-  adopted_item_ids TEXT,
-  deleted_at       TEXT
+-- 留言：地點（ID）、某一天（day:<日期>）或整趟（trip）。只有作者能改刪；刪除是軟刪除
+CREATE TABLE comments (
+  id         INTEGER PRIMARY KEY AUTOINCREMENT,
+  target     TEXT NOT NULL,
+  text       TEXT NOT NULL,
+  kind       TEXT NOT NULL DEFAULT 'normal' CHECK (kind IN ('normal', 'planner', 'decline')),
+  author     TEXT NOT NULL REFERENCES members(line_user_id),
+  created_at TEXT NOT NULL,
+  updated_at TEXT NOT NULL,
+  deleted_at TEXT
 );
-CREATE INDEX suggestions_updated ON suggestions(updated_at);
+CREATE INDEX comments_updated ON comments(updated_at);
+
+-- 候選：某天想排的點。同一天同一個點只有一筆（沒刪除的）；誰都能拿掉
+CREATE TABLE candidates (
+  id         INTEGER PRIMARY KEY AUTOINCREMENT,
+  place_id   TEXT NOT NULL,
+  day        TEXT NOT NULL,                -- YYYY-MM-DD，旅程裡的日期
+  added_by   TEXT NOT NULL REFERENCES members(line_user_id),
+  created_at TEXT NOT NULL,
+  updated_at TEXT NOT NULL,
+  deleted_at TEXT
+);
+CREATE UNIQUE INDEX candidates_live ON candidates(place_id, day) WHERE deleted_at IS NULL;
+CREATE INDEX candidates_updated ON candidates(updated_at);
+
+-- 預約筆記：同一個 (date, place_id) 只有一筆，整筆取代；住宿的 date 是入住那晚
+CREATE TABLE reservations (
+  date       TEXT NOT NULL,
+  place_id   TEXT NOT NULL,
+  status     TEXT NOT NULL CHECK (status IN ('pending', 'booked', 'skip')),
+  note       TEXT,
+  nights     INTEGER,                      -- 住宿：下訂時的晚數，用來標「晚數變了」
+  updated_by TEXT NOT NULL REFERENCES members(line_user_id),
+  updated_at TEXT NOT NULL,
+  PRIMARY KEY (date, place_id)
+);
+CREATE INDEX reservations_updated ON reservations(updated_at);
 
 -- 投票：一人對一個點一筆。收回是軟刪除（deleted_at），同步時只要看 MAX(updated_at)
 CREATE TABLE votes (
   place_id   TEXT NOT NULL,
   member_id  TEXT NOT NULL REFERENCES members(line_user_id),
   value      TEXT NOT NULL CHECK (value IN ('like', 'dislike')),
-  note       TEXT,
   updated_at TEXT NOT NULL,
   deleted_at TEXT,
   PRIMARY KEY (place_id, member_id)

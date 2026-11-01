@@ -228,6 +228,9 @@ function setup(router: Parameters<typeof startRouteResolver>[2]) {
     itinerary: null,
     days: new Map(),
     stationNames: new Map(),
+    details: null,
+    detailsError: null,
+    placeEdits: [],
   }));
   const stop = startRouteResolver(app, data, router);
   return { app, cmd: createCommands(app, data), stop };
@@ -463,6 +466,9 @@ function setupItinerary(router: ReturnType<typeof createRoadRouter>, mode = 'wal
     itinerary: itinAB(),
     days: new Map(),
     stationNames: new Map(),
+    details: null,
+    detailsError: null,
+    placeEdits: [],
   }));
   const plan = createStore<PlanState>()(() => ({ status: 'ready', error: null, plan: fakePlan(mode, TWO_DAYS()) }));
   return { app, data, plan, router };

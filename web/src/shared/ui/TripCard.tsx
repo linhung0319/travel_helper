@@ -17,6 +17,8 @@ import { typeSwatch } from '../../lib/typeStyle.ts';
 import { photoCandidates } from '../../lib/photos.ts';
 import type { Place } from '../../data/types.ts';
 import { Button } from './Button.tsx';
+import { useFullPlace } from '../../hooks.ts';
+import { IntroPending } from './Skeleton.tsx';
 
 /** 車站、機場、使用者加的點：中性灰 */
 const NEUTRAL_COLOR = '#5d6680';
@@ -117,9 +119,11 @@ function CardThumb({ place, fallbackType, mark, size }: Pick<TripCardProps, 'pla
 
 /** 展開的內容：介紹、兩顆按鈕 */
 function Expand({ place, onDetail, onAsk }: Pick<TripCardProps, 'place' | 'onDetail' | 'onAsk'>) {
-  const intro = firstSentences(place?.summary?.text);
+  const full = useFullPlace(place);
+  const intro = firstSentences(full.place?.summary?.text);
   return (
     <div className="tc-expand" data-testid="trip-card-expand">
+      {!full.loaded && !full.error && <IntroPending />}
       {intro && (
         <p className="tc-intro" data-testid="trip-card-intro">
           {intro}
