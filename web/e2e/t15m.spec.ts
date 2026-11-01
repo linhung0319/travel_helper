@@ -1,12 +1,12 @@
 // T15m 完成條件（PLAN）：電腦版，用假後端（第六輪起手機版在 mobile*.spec.ts）。
 // 按 ❤️ → 想去分頁出現、留言 → 換人看得到、改不了別人的留言 → 加到某天 → 候選
 // → 按「編輯」按 ↑ 排進 → 時間軸出現、有交通卡 → 停留時間 ＋15 → 復原快照後回到原狀。
-// 第四輪：沒有緩衝、沒有「換住宿」「併到…」，討論、預約、下載在右上角，探索沒有加到某天；
+// 第四輪：沒有緩衝、沒有「換住宿」「併到…」，預約、下載在右上角，探索沒有加到某天；
 // 拖曳放在同類型卡片中間＝合併（可以復原）、放在卡片之間＝排進。
 // 第五輪：「規劃模式」改成「編輯」（藍條、完成）；交通卡平常收起，大眾運輸點了展開步驟、班次表；
 // 等待合成交通卡下面的一條（沒有「空檔」）；資料卡右上角的編號從 0 起；地圖彈窗在日期列上面。
 import { test, type Locator, type Page } from '@playwright/test';
-import { centerOn, expect, openAccountItem, switchUser, findPlaceId, ready, waitIdle, likeMany, pickFilter } from './helpers.ts';
+import { centerOn, expect, expectFilterOpt, openAccountItem, openDiscussion, switchUser, findPlaceId, ready, waitIdle, likeMany, pickFilter, pickType } from './helpers.ts';
 
 const DAY = '2027-02-07';
 const PLACE = 'toba-seahorse';
@@ -160,7 +160,7 @@ test('T15m：想去 → 留言 → 加到某天 → 編輯中按 ↑ 排進 → 
   await expect(chip).not.toHaveText(stayBefore);
 
   // 7. 復原快照：回到排進去之前（最舊的那份）
-  await page.getByTestId('snapshots-button').click();
+  await openAccountItem(page, 'versions');
   const snap = page.getByTestId('snapshot').last();
   await snap.getByTestId('snapshot-restore').click();
   await snap.getByTestId('snapshot-restore-confirm').click();
@@ -229,8 +229,8 @@ test('T15m：拿掉別人加的候選要寫理由，理由變成那個點的留�
   await expect(detail.getByTestId('wish-comment').last()).toContainText('不採用');
   await page.getByTestId('detail-close').click();
 
-  // 類型是篩選的一個條件（打開想去時帶著那個點的類型）：先拿掉，搜尋才找得到別類的店
-  await page.getByTestId('filter-applied').first().locator('.ui-chip-x').click();
+  // 類型是篩選的一個條件（打開想去時帶著那個點的類型）：類型列點「全部」，搜尋才找得到別類的店
+  await pickType(page, 'all');
   await list.getByTestId('search').fill('いろは');
   await expect(list.getByTestId('wish-item')).toHaveCount(1);
   await expect(wish(list, 'toba-yakigai-iroha')).toBeVisible();
@@ -245,23 +245,28 @@ test('T15m：自己加的候選可以撤回；這天的討論', async ({ page })
   await expect(iroha).toHaveCount(0);
 
   await showDay(page, '2027-02-07');
-  await openAccountItem(page, 'comments');
-  const box = page.getByTestId('map-panel');
-  await expect(box.getByTestId('wish-comments')).toContainText('2 則這天的討論');
-  await expect(box.getByTestId('wish-comment').first()).toContainText('泡湯');
+  await page.getByTestId('discuss-button').click();
+  const box = page.getByTestId('discussion');
+  await expect(box).toHaveAttribute('data-chip', '2027-02-07');
+  // 這天的討論置頂；展開看到兩則，由舊到新
+  const thread = box.getByTestId('discuss-thread').first();
+  await expect(thread).toHaveAttribute('data-target', 'day:2027-02-07');
+  await thread.getByTestId('discuss-thread-toggle').click();
+  await expect(thread.getByTestId('wish-comment')).toHaveCount(2);
+  await expect(thread.getByTestId('wish-comment').first()).toContainText('泡湯');
 });
 
-test('第七輪：討論、預約、下載在右欄的頭像選單；彈窗開著時選單還按得到', async ({ page }) => {
+test('第七輪：預約、下載在右欄的頭像選單；討論彈窗開著時選單還按得到', async ({ page }) => {
   await ready(page);
   await page.getByTestId('account-menu').click();
   await expect(page.getByTestId('account-export')).toBeVisible();
   await expect(page.getByTestId('account-export')).toBeEnabled();
-  await expect(page.getByTestId('account-comments')).toContainText('討論');
-  await page.getByTestId('account-comments').click();
-  await expect(page.getByTestId('map-panel')).toHaveAttribute('data-kind', 'comments');
+  await page.getByTestId('account-menu').click();
+  await openDiscussion(page);
   // 頭像選單在右欄，彈窗沒蓋住：直接換成預約
   await openAccountItem(page, 'reservations');
   await expect(page.getByTestId('map-panel')).toHaveAttribute('data-kind', 'reservations');
+  await expect(page.getByTestId('discussion')).toHaveCount(0);
 });
 
 /** 地圖畫面上一個沒被彈窗、面板蓋住的點（點下去就是點到地圖） */
@@ -281,12 +286,11 @@ async function openMapPoint(page: Page): Promise<{ x: number; y: number }> {
 
 test('第四輪：點討論 → 彈窗；點彈窗外面的地圖 → 彈窗關掉', async ({ page }) => {
   await ready(page);
-  await openAccountItem(page, 'comments');
-  await expect(page.getByTestId('map-panel')).toBeVisible();
-  await expect(page.getByTestId('map-panel').locator('h2')).toContainText('討論');
+  await openDiscussion(page);
+  await expect(page.getByTestId('discussion').locator('h2')).toContainText('討論');
   const { x, y } = await openMapPoint(page);
   await page.mouse.click(x, y);
-  await expect(page.getByTestId('map-panel')).toHaveCount(0);
+  await expect(page.getByTestId('discussion')).toHaveCount(0);
 });
 
 test('T15m：想去的卡片點了原地展開，按「詳細資料」開詳情彈窗（蓋在地圖右側），✕ 關掉後想去原樣（電腦版）', async ({ page }) => {
@@ -938,7 +942,7 @@ test('第四輪完成條件：排進、標午餐和分組、交通改計程車�
   await expect(leg.getByTestId('leg-line').getByRole('img', { name: '計程車' }).first()).toBeVisible();
 
   // 5. 復原快照 → 回到原狀
-  await page.getByTestId('snapshots-button').click();
+  await openAccountItem(page, 'versions');
   const snap = page.getByTestId('snapshot').last();
   await snap.getByTestId('snapshot-restore').click();
   await snap.getByTestId('snapshot-restore-confirm').click();
@@ -1731,26 +1735,26 @@ test('地圖窄時日期晶片兩排（整趟佔兩排高，2/8 起第二排）�
   await expect(side.getByTestId(`m-day-${warned[0]}`).getByTestId('day-warn-dot')).toHaveCount(1);
 });
 
-test('第七輪：頭像選單打開討論、預約；Esc 關掉', async ({ page }) => {
+test('第七輪：討論按鈕、頭像選單的預約打開的彈窗，Esc 關掉', async ({ page }) => {
   await ready(page);
-  await openAccountItem(page, 'comments');
-  await expect(page.getByTestId('map-panel')).toBeVisible();
+  await openDiscussion(page);
   await page.keyboard.press('Escape');
-  await expect(page.getByTestId('map-panel')).toHaveCount(0);
+  await expect(page.getByTestId('discussion')).toHaveCount(0);
   await openAccountItem(page, 'reservations');
   await expect(page.getByTestId('map-panel')).toHaveAttribute('data-kind', 'reservations');
   await page.keyboard.press('Escape');
   await expect(page.getByTestId('map-panel')).toHaveCount(0);
 });
 
-test('第七輪：頭像選單有使用者、討論、預約、下載、切換使用者；Esc 收起', async ({ page }) => {
+test('第七輪：頭像選單有使用者、預約、下載、過去的版本、切換使用者，沒有討論；Esc 收起', async ({ page }) => {
   await ready(page);
   await page.getByTestId('account-menu').click();
   const menu = page.getByTestId('account-popover');
   await expect(menu).toBeVisible();
-  await expect(menu).toContainText('討論');
+  await expect(menu).not.toContainText('討論');
   await expect(menu).toContainText('預約');
   await expect(menu).toContainText('下載行程');
+  await expect(menu).toContainText('過去的版本');
   await expect(menu).toContainText('切換使用者');
   await page.keyboard.press('Escape');
   await expect(menu).toHaveCount(0);
@@ -1776,7 +1780,7 @@ test('篩選：往下捲也是同一列，打開的抽屜整個看得到', async
   await expect(page.getByTestId('filter-done')).toBeInViewport();
 });
 
-test('篩選：套用的條件變成晶片，點 ✕ 取消', async ({ page }) => {
+test('篩選：套用的條件看按鈕的數字，打開面板看條件、點一下取消', async ({ page }) => {
   await ready(page);
   await page.getByTestId('side-tab-explore').click();
   await page.getByTestId('filter-open').click();
@@ -1784,11 +1788,11 @@ test('篩選：套用的條件變成晶片，點 ✕ 取消', async ({ page }) =
   await page.getByTestId('filter-opt-group-yes').click();
   await page.getByTestId('filter-done').click();
   await expect(page.getByTestId('filter-sheet')).toHaveCount(0);
-  const applied = page.getByTestId('filter-applied');
-  await expect(applied).toHaveCount(2);
   await expect(page.getByTestId('filter-count')).toHaveText('2');
-  await applied.first().locator('.ui-chip-x').click();
-  await expect(applied).toHaveCount(1);
+  await pickFilter(page, 'area-toba');
+  await expect(page.getByTestId('filter-count')).toHaveText('1');
+  await expectFilterOpt(page, 'area-toba', false);
+  await expectFilterOpt(page, 'group-yes', true);
 });
 
 test('清單列：長名稱不推動 ❤ 的位置', async ({ page }) => {
@@ -2133,17 +2137,19 @@ test('編輯中：卡片上沒有「＋ 標籤」，沒有標籤的從 ⋯ 加',
   await expect(page.getByTestId('tag-popover')).toBeVisible();
 });
 
-test('這天的標題：Bodoni 大日期和「週三 · 第 2 天 · 地區」，右邊問 AI 和編輯', async ({ page }) => {
+test('這天的標題：Bodoni 大日期和「週三 · 地區」，右邊問 AI、討論和編輯', async ({ page }) => {
   await ready(page);
   await showDay(page, '2027-02-03');
   await expect(page.getByTestId('day-title-date')).toHaveText('2/3');
-  await expect(page.getByTestId('day-title-sub')).toHaveText(/^週三 · 第 2 天 · .+/);
+  await expect(page.getByTestId('day-title-sub')).toHaveText(/^週三 · .+/);
+  await expect(page.getByTestId('day-title-sub')).not.toContainText('第');
   await expect(page.getByTestId('day-ask-ai')).toBeVisible();
+  await expect(page.getByTestId('discuss-button')).toBeVisible();
   await expect(page.getByTestId('planning-toggle')).toHaveText('編輯');
   await expect(page.getByTestId('day-summary')).toContainText('出發');
 });
 
-test('編輯條：墨色底，「編輯 2/3（三）」、快照、完成；編輯中日期列換成編輯條、不能換天；編輯按鈕是靛藍主要按鈕（interaction-design §12.4）', async ({ page }) => {
+test('編輯條：墨色底，「編輯 2/3（三）」、討論、上一步、完成；編輯中日期列換成編輯條、不能換天；編輯按鈕是靛藍主要按鈕（interaction-design §12.4）', async ({ page }) => {
   await ready(page);
   await showDay(page, '2027-02-03');
   const rgb = (el: Locator) => el.evaluate((e) => getComputedStyle(e).backgroundColor);
@@ -2155,7 +2161,8 @@ test('編輯條：墨色底，「編輯 2/3（三）」、快照、完成；編�
   const bar = page.getByTestId('planning-bar');
   expect(await rgb(bar)).toBe(ink);
   await expect(bar).toContainText('編輯 2/3（三）');
-  await expect(bar.getByTestId('snapshots-button')).toBeVisible();
+  await expect(bar.getByTestId('discuss-button')).toBeVisible();
+  await expect(bar.getByTestId('undo-button')).toBeVisible();
   await expect(bar.getByTestId('planning-done')).toBeVisible();
   await expect(page.getByTestId('m-day-strip')).toHaveCount(0);
   await page.getByTestId('planning-done').click();
@@ -2478,11 +2485,11 @@ test('想去分頁的地圖：只畫想去的點、三種樣子、左下角圖�
   });
   expect(got.n).toBe(got.liked);
   expect(got.kinds.every((k) => ['unscheduled', 'candidate', 'scheduled'].includes(k as string))).toBe(true);
-  // 行程分頁：篩選還在，但地圖不套、沒有膠囊
+  // 行程分頁：篩選還在，但地圖不套、沒有篩選列
   await page.evaluate(() => (window as any).__th.appStore.getState().setFilter({ tiers: ['S'] }));
   await page.getByTestId('side-tab-day').click();
   await expect(page.getByTestId('map-wish-legend')).toHaveCount(0);
-  await expect(page.getByTestId('filter-applied-row')).toHaveCount(0);
+  await expect(page.getByTestId('filter-bar')).toHaveCount(0);
   await waitIdle(page);
   const b = await findPlaceId(page, 'spot', 'B');
   const st = await page.evaluate((x) => {
@@ -2495,13 +2502,13 @@ test('想去分頁的地圖：只畫想去的點、三種樣子、左下角圖�
 test('探索選餐廳 → 到行程 → 回探索：餐廳還在（切回行程不清篩選）', async ({ page }) => {
   await ready(page);
   await page.getByTestId('side-tab-explore').click();
-  await pickFilter(page, 'type-restaurant');
+  await pickType(page, 'restaurant');
   expect(await th(page, '__th.appStore.getState().filter.types')).toEqual(['restaurant']);
   await page.getByTestId('side-tab-day').click();
-  await expect(page.getByTestId('filter-applied-row')).toHaveCount(0);
+  await expect(page.getByTestId('filter-bar')).toHaveCount(0);
   await page.getByTestId('side-tab-explore').click();
   expect(await th(page, '__th.appStore.getState().filter.types')).toEqual(['restaurant']);
-  await expect(page.getByTestId('filter-applied').filter({ hasText: '餐廳' })).toBeVisible();
+  await expect(page.getByTestId('ex-type-restaurant')).toHaveAttribute('aria-pressed', 'true');
 });
 
 test('選中時水滴跳一下（bounce）；減少動態時不跳', async ({ page }) => {
@@ -2539,18 +2546,20 @@ test('探索、想去各自一份篩選和搜尋：想去的「只看我按的�
   await page.getByTestId('side-tab-wish').click();
   await pickFilter(page, 'wish-mine');
   await page.getByTestId('search').fill('海');
-  await expect(page.getByTestId('filter-applied').filter({ hasText: '只看我按的' })).toBeVisible();
+  await expect(page.getByTestId('filter-count')).toHaveText('1');
   await page.getByTestId('side-tab-explore').click();
-  await expect(page.getByTestId('filter-applied-row')).toHaveCount(0);
+  await expect(page.getByTestId('filter-count')).toHaveCount(0);
   await expect(page.getByTestId('search')).toHaveValue('');
   expect(await th(page, '__th.appStore.getState().filter.votes')).toEqual([]);
   expect(await th(page, '__th.appStore.getState().query')).toBe('');
   // 探索自己的條件也不帶到想去
-  await pickFilter(page, 'type-restaurant');
+  await pickType(page, 'restaurant');
   await page.getByTestId('side-tab-wish').click();
   await expect(page.getByTestId('search')).toHaveValue('海');
-  await expect(page.getByTestId('filter-applied').filter({ hasText: '只看我按的' })).toBeVisible();
-  await expect(page.getByTestId('filter-applied').filter({ hasText: '餐廳' })).toHaveCount(0);
+  await expect(page.getByTestId('filter-count')).toHaveText('1');
+  await expectFilterOpt(page, 'wish-mine', true);
+  await expect(page.getByTestId('ex-type-all')).toHaveAttribute('aria-pressed', 'true');
+  await expect(page.getByTestId('ex-type-restaurant')).toHaveAttribute('aria-pressed', 'false');
   await page.getByTestId('side-tab-explore').click();
   expect(await th(page, '__th.appStore.getState().filter.types')).toEqual(['restaurant']);
 });

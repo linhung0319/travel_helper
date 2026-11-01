@@ -1,4 +1,4 @@
-// 搜尋框下面的提示怎麼判斷（T31 spec §2）：純非同步函式，AddPlaceSuggest 只負責畫結果。
+// 加地點彈窗第一步怎麼判斷（T31 spec §2、T33）：純非同步函式，AddPlaceDialog 只負責畫結果。
 
 import type { LonLat, Place } from '../../data/types.ts';
 import { BackendError, RESOLVE_OFFLINE_MESSAGE } from '../../backend/types.ts';

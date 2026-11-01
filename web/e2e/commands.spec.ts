@@ -2,11 +2,11 @@
 // 另外看標示、路線（OSRM 用假的回應）、比較、AI 的提議畫得出來。
 // 設 TH_SHOTS=<目錄> 時順便拍截圖（手機 390px、電腦）。
 import { test, type Page } from '@playwright/test';
-import { expect, pickFilter, ready, waitIdle } from './helpers.ts';
+import { expect, expectFilterOpt, pickFilter, pickType, ready, waitIdle } from './helpers.ts';
 
 const DAY = '2027-02-05';
 
-/** 畫面狀態：store 的狀態、地圖實際的範圍、地圖上方的篩選標籤 */
+/** 畫面狀態：store 的狀態、地圖實際的範圍、類型列和篩選按鈕的數字 */
 async function snapshot(page: Page) {
   await waitIdle(page);
   const state = await page.evaluate(() => {
@@ -22,8 +22,13 @@ async function snapshot(page: Page) {
       dims: ['toba-aquarium', 'ise-naiku', 'toba-sazanami'].map((id) => th.visual(id)),
     };
   });
-  const chips = await page.getByTestId('filter-applied-row').count() ? await page.getByTestId('filter-applied-row').innerText() : '';
-  return { ...state, chips };
+  // 套用的條件不再列成晶片（T33）：畫面上看得到的是類型列選到哪些、篩選按鈕的數字
+  const count = page.getByTestId('filter-count');
+  const applied = {
+    count: (await count.count()) ? await count.innerText() : '',
+    types: await page.locator('[data-testid^="ex-type-"][aria-pressed="true"]').allTextContents(),
+  };
+  return { ...state, applied };
 }
 
 async function shot(page: Page, name: string) {
@@ -55,7 +60,8 @@ test('用指令重現 T11 的手動操作：切天數、篩選、聚焦，畫面
   // 電腦版：日期在地圖上，篩選在右側的「探索」分頁。點天數、切到探索、選餐廳和 S 級、點地區「鳥羽」（篩選加上鳥羽、地圖移過去）
   await page.locator(`.map-column [data-day="${DAY}"]`).click();
   await page.getByTestId('side-tab-explore').click();
-  await pickFilter(page, 'type-restaurant', 'tier-S', 'area-toba');
+  await pickType(page, 'restaurant');
+  await pickFilter(page, 'tier-S', 'area-toba');
   const manual = await snapshot(page);
   await ready(page);
   expect((await run(page, 'selectDay', DAY)).ok).toBe(true);
@@ -67,7 +73,7 @@ test('用指令重現 T11 的手動操作：切天數、篩選、聚焦，畫面
   await expect(page.locator(`.map-column [data-day="${DAY}"]`)).toHaveAttribute('aria-selected', 'true');
 });
 
-test('聚焦一個點：看得到就不動、太遠才拉到 13（不閃、不拉到 15）；篩選標籤可以取消（和 AI 套的是同一份）', async ({ page }) => {
+test('聚焦一個點：看得到就不動、太遠才拉到 13（不閃、不拉到 15）；篩選條件可以取消（和 AI 套的是同一份）', async ({ page }) => {
   await ready(page);
   const seen = () =>
     page.evaluate(() => {
@@ -104,16 +110,17 @@ test('聚焦一個點：看得到就不動、太遠才拉到 13（不閃、不�
   await waitIdle(page);
   expect(await page.evaluate(() => (window as any).__th.map.getCenter().toArray())).toEqual(c1);
 
-  // 篩選標籤在想去分頁（行程分頁不放膠囊，第七輪 §8.4）
+  // AI 套的條件：想去分頁看篩選按鈕的數字（類型不算）、打開面板看條件，類型列標亮（T33 取代晶片）
   await page.getByTestId('side-tab-wish').click();
   await run(page, 'setFilter', { types: ['restaurant'], fit15: ['yes'] });
-  // 套用的條件只出現一次（篩選列下面那排），沒有另外一排重複的
-  const applied = page.getByTestId('filter-applied');
-  await expect(applied.filter({ hasText: '可容納 15 人' })).toHaveCount(1);
-  await expect(page.getByTestId('filter-applied-row')).toHaveCount(1);
-  await applied.filter({ hasText: '可容納 15 人' }).locator('.ui-chip-x').click();
+  await expect(page.getByTestId('filter-count')).toHaveText('1');
+  await expect(page.getByTestId('ex-type-restaurant')).toHaveAttribute('aria-pressed', 'true');
+  await expectFilterOpt(page, 'group-yes', true);
+  // 從面板取消：類型還在
+  await pickFilter(page, 'group-yes');
   expect(await page.evaluate(() => (window as any).__th.appStore.getState().filter.fit15)).toEqual([]);
-  await expect(applied.filter({ hasText: '餐廳' })).toHaveCount(1);
+  await expect(page.getByTestId('filter-count')).toHaveCount(0);
+  await expect(page.getByTestId('ex-type-restaurant')).toHaveAttribute('aria-pressed', 'true');
 });
 
 test('標示、路線（沿道路）、比較：畫在地圖上，可以清掉', async ({ page }) => {

@@ -1,4 +1,4 @@
-// 自己加地點（T31）的草稿：搜尋框的提示、地圖上指位置、詳情的「✎ 修改」都從這裡開始；確認畫面（Task 6、7）畫 draft。
+// 自己加地點（T31、T33）的草稿：清單標題列的「＋ 加地點」、搜尋比不到的提示、地圖上指位置、詳情的「✎ 修改」都從這裡開始；彈窗（AddPlaceDialog）畫 entry、draft。
 // 用 createAddPlaceStore 做，依賴（資料點、自己加的點、存檔動作）從外面給，Node 的測試才不用接整個網站；網站共用的一份在 addPlaceStore.ts。
 
 import { createStore, type StoreApi } from 'zustand/vanilla';

@@ -1,7 +1,7 @@
 // PLAN T11 的完成條件：找到一個點 → 看小卡片 → 開詳情 → 關掉；切換天數；套用、取消篩選；
 // 切到探索、只列地圖畫面裡的，移動地圖時清單跟著換（電腦版；手機版在 mobile*.spec.ts）。另外看車站面板和照片打不開時的替代圖。
 import { test } from '@playwright/test';
-import { centerOn, expect, findPlaceId, pickFilter, ready } from './helpers.ts';
+import { centerOn, expect, findPlaceId, pickFilter, pickType, ready } from './helpers.ts';
 
 test.beforeEach(async ({ page }) => {
   await ready(page);
@@ -51,24 +51,28 @@ test('套用、取消篩選', async ({ page }) => {
     });
   // 電腦版：探索分頁的類型、常用篩選；回到「行程」時拿掉探索的類型
   await page.getByTestId('side-tab-explore').click();
-  await pickFilter(page, 'type-restaurant', 'tier-S');
-  await expect(page.getByTestId('filter-count')).toHaveText('2');
+  await pickType(page, 'restaurant');
+  await pickFilter(page, 'tier-S');
+  // 類型不算進篩選的數字（T33）
+  await expect(page.getByTestId('filter-count')).toHaveText('1');
   expect((await filter()).tiers).toEqual(['S']);
   expect(await dimSpotNow()).toBe(true);
-  // 套用的晶片點 ✕ 取消
-  await page.getByTestId('filter-applied').filter({ hasText: 'S 級' }).locator('.ui-chip-x').click();
+  // 打開面板再點一次取消
+  await pickFilter(page, 'tier-S');
   expect((await filter()).tiers).toEqual([]);
+  await expect(page.getByTestId('filter-count')).toHaveCount(0);
   await page.getByTestId('side-tab-day').click();
-  // 回到行程：篩選留著（行程分頁的地圖不套、也不放膠囊）
+  // 回到行程：篩選留著（行程分頁的地圖不套、也沒有篩選列）
   expect((await filter()).types).toEqual(['restaurant']);
-  await expect(page.getByTestId('filter-applied-row')).toHaveCount(0);
+  await expect(page.getByTestId('filter-bar')).toHaveCount(0);
 });
 
 test('探索：只列地圖畫面裡的點，移動地圖跟著換', async ({ page }) => {
   // 電腦版是右側「探索」分頁的清單：看景點、按「只列地圖畫面裡的」
   const itemId = 'explore-item';
   await page.getByTestId('side-tab-explore').click();
-  await pickFilter(page, 'type-spot', 'map-inView');
+  await pickType(page, 'spot');
+  await pickFilter(page, 'map-inView');
   const ids = () => page.getByTestId(itemId).evaluateAll((els) => els.map((e) => (e as HTMLElement).dataset.id!));
   const inView = () =>
     page.evaluate((itemId) => {

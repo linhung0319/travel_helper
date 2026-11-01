@@ -1,4 +1,4 @@
-// 自己加地點（T31）手機：探索搜尋框貼連結 → 整頁確認畫面（小地圖、中央圖釘）→ 存 → 探索清單有 .is-user；
+// 自己加地點（T31、T33）手機：探索搜尋比不到時「＋ 自己加」帶連結進彈窗，自動查到第二步（小地圖、中央圖釘）→ 存 → 探索清單有 .is-user；
 // 詳情只有加的人看得到刪除；修改名稱；長按地圖加點。假後端存在 localStorage，每個測試是全新的環境。
 import { test, type Page } from '@playwright/test';
 import { expect, goTab, ready } from './mobileHelpers.ts';
@@ -10,10 +10,10 @@ async function addFromLink(page: Page) {
   await goTab(page, 'explore');
   await page.getByTestId('m-feed-search').fill(MAP_LINK);
   await page.getByTestId('add-suggest-add').click();
-  await expect(page.getByTestId('m-add-page')).toBeVisible();
+  await expect(page.getByTestId('add-dialog')).toBeVisible();
   await page.getByTestId('add-type-restaurant').click();
   await page.getByTestId('add-save').click();
-  await expect(page.getByTestId('m-add-page')).toHaveCount(0);
+  await expect(page.getByTestId('add-dialog')).toHaveCount(0);
   await findInList(page, '珈琲');
 }
 
@@ -21,44 +21,42 @@ async function addFromLink(page: Page) {
 const findInList = (page: Page, text: string) => page.getByTestId('m-feed-search').fill(text);
 const userCard = (page: Page) => page.locator('.is-user').first();
 
-test('貼連結 → 整頁確認（小地圖、圖釘、提示）→ 儲存 → 回探索、清單有自己加的卡', async ({ page }) => {
+test('貼連結 → 彈窗第二步（小地圖、圖釘、提示）→ 儲存 → 回探索、清單有自己加的卡', async ({ page }) => {
   await ready(page);
   await goTab(page, 'explore');
   await page.getByTestId('m-feed-search').fill(MAP_LINK);
   await page.getByTestId('add-suggest-add').click();
-  await expect(page.getByTestId('m-add-page')).toBeVisible();
-  await expect(page.getByTestId('m-add-map')).toBeVisible();
-  await expect(page.getByTestId('m-add-pin')).toBeVisible();
+  await expect(page.getByTestId('add-dialog')).toBeVisible();
+  await expect(page.getByTestId('add-map')).toBeVisible();
+  await expect(page.getByTestId('add-pin')).toBeVisible();
   await expect(page.getByText('拖地圖，讓圖釘對準店門口')).toBeVisible();
   await expect(page.getByTestId('add-name')).toHaveValue('珈琲 灯台舎');
-  // 主地圖的網頁圖釘不會出現在手機
-  await expect(page.getByTestId('map-add-pin')).toHaveCount(0);
   await expect(page.getByTestId('add-save')).toBeDisabled();
   await page.getByTestId('add-type-restaurant').click();
   // 儲存鈕在畫面內（表單區可捲動）
   await page.getByTestId('add-save').scrollIntoViewIfNeeded();
   await page.getByTestId('add-save').click();
-  await expect(page.getByTestId('m-add-page')).toHaveCount(0);
+  await expect(page.getByTestId('add-dialog')).toHaveCount(0);
   // 還在探索分頁
   await expect(page.getByTestId('m-tab-explore')).toHaveAttribute('aria-current', 'page');
   await findInList(page, '珈琲');
   await expect(userCard(page)).toBeVisible();
 });
 
-test('拖地圖 → 位置跟著小地圖的中心；返回 ‹ 不存', async ({ page }) => {
+test('拖地圖 → 位置跟著小地圖的中心；✕ 關掉不存', async ({ page }) => {
   await ready(page);
   await goTab(page, 'explore');
   await page.getByTestId('m-feed-search').fill(MAP_LINK);
   await page.getByTestId('add-suggest-add').click();
-  await expect(page.getByTestId('m-add-map')).toBeVisible();
+  await expect(page.getByTestId('add-map')).toBeVisible();
   await page.waitForFunction(() => (window as any).__thAddMap?.isStyleLoaded());
   await page.evaluate(() => (window as any).__thAddMap.jumpTo({ center: [136.9, 34.5] }));
   await page.waitForFunction(() => {
     const c = (window as any).__th.addPlaceStore?.getState().draft?.coords;
     return c && Math.abs(c[0] - 136.9) < 1e-6 && Math.abs(c[1] - 34.5) < 1e-6;
   });
-  await page.getByTestId('m-add-back').click();
-  await expect(page.getByTestId('m-add-page')).toHaveCount(0);
+  await page.getByTestId('add-close').click();
+  await expect(page.getByTestId('add-dialog')).toHaveCount(0);
   await page.getByTestId('m-feed-search').fill('');
   await expect(page.locator('.is-user')).toHaveCount(0);
 });
@@ -97,17 +95,17 @@ test('詳情：加的人有刪除，換成別人沒有；換回來刪除 → 清
   await expect(page.locator('.is-user')).toHaveCount(0);
 });
 
-test('詳情 ✎ 修改 → 整頁蓋在詳情上 → 改名稱 → 存 → 回到詳情顯示新名稱', async ({ page }) => {
+test('詳情 ✎ 修改 → 彈窗蓋在詳情上 → 改名稱 → 存 → 回到詳情顯示新名稱', async ({ page }) => {
   await ready(page);
   await addFromLink(page);
   await userCard(page).click();
   await page.getByTestId('detail-user-edit').click();
-  await expect(page.getByTestId('m-add-page')).toBeVisible();
+  await expect(page.getByTestId('add-dialog')).toBeVisible();
   await expect(page.getByTestId('add-name')).toHaveValue('珈琲 灯台舎');
   await expect(page.getByTestId('add-save')).toHaveText('儲存修改');
   await page.getByTestId('add-name').fill('改過的名稱');
   await page.getByTestId('add-save').click();
-  await expect(page.getByTestId('m-add-page')).toHaveCount(0);
+  await expect(page.getByTestId('add-dialog')).toHaveCount(0);
   await expect(page.getByTestId('m-detail')).toBeVisible();
   await expect(page.getByTestId('m-detail')).toContainText('改過的名稱');
 });
@@ -133,7 +131,7 @@ async function touchHold(page: Page, x: number, y: number, ms: number, moveTo?: 
   );
 }
 
-test('行程地圖按住約 0.5 秒 → 跳出泡泡，點泡泡才開加地點整頁；太短、手指移動超過 10px 不算', async ({ page }) => {
+test('行程地圖按住約 0.5 秒 → 跳出泡泡，點泡泡才開加地點彈窗；太短、手指移動超過 10px 不算', async ({ page }) => {
   await ready(page);
   const box = (await page.getByTestId('map').boundingBox())!;
   const x = box.x + box.width / 2;
@@ -143,19 +141,19 @@ test('行程地圖按住約 0.5 秒 → 跳出泡泡，點泡泡才開加地點�
   await touchHold(page, x, y, 700, { x: x + 30, y });
   await expect(page.getByTestId('map-context')).toHaveCount(0);
   await touchHold(page, x, y, 700);
-  // 長按只跳出泡泡，不直接開整頁；放開手指的 touchend 被擋掉（不點穿）
+  // 長按只跳出泡泡，不直接開彈窗；放開手指的 touchend 被擋掉（不點穿）
   await expect(page.getByTestId('map-context-add')).toHaveText('＋ 在這裡加地點');
-  await expect(page.getByTestId('m-add-page')).toHaveCount(0);
+  await expect(page.getByTestId('add-dialog')).toHaveCount(0);
   expect(await page.evaluate(() => (window as unknown as { __touchendPrevented: boolean }).__touchendPrevented)).toBe(true);
   await page.getByTestId('map-context-add').click();
   await expect(page.getByTestId('map-context')).toHaveCount(0);
-  await expect(page.getByTestId('m-add-page')).toBeVisible();
+  await expect(page.getByTestId('add-dialog')).toBeVisible();
   await expect(page.getByTestId('add-name')).toHaveValue('');
   await expect(page.getByTestId('add-save')).toBeDisabled();
   await page.getByTestId('add-name').fill('路邊的小神社');
   await page.getByTestId('add-type-spot').click();
   await page.getByTestId('add-save').click();
-  await expect(page.getByTestId('m-add-page')).toHaveCount(0);
+  await expect(page.getByTestId('add-dialog')).toHaveCount(0);
   // 存完還在行程分頁
   await expect(page.getByTestId('m-tab-trip')).toHaveAttribute('aria-current', 'page');
 });
@@ -169,7 +167,7 @@ test('長按的泡泡：點別的地方就關掉，不開加地點', async ({ pa
   await expect(page.getByTestId('map-context')).toBeVisible();
   await page.mouse.click(x + 100, y + 120);
   await expect(page.getByTestId('map-context')).toHaveCount(0);
-  await expect(page.getByTestId('m-add-page')).toHaveCount(0);
+  await expect(page.getByTestId('add-dialog')).toHaveCount(0);
 });
 
 test('返回鍵：從探索開的加地點頁，返回關掉它、留在探索', async ({ page }) => {
@@ -177,9 +175,9 @@ test('返回鍵：從探索開的加地點頁，返回關掉它、留在探索',
   await goTab(page, 'explore');
   await page.getByTestId('m-feed-search').fill(MAP_LINK);
   await page.getByTestId('add-suggest-add').click();
-  await expect(page.getByTestId('m-add-page')).toBeVisible();
+  await expect(page.getByTestId('add-dialog')).toBeVisible();
   await page.goBack();
-  await expect(page.getByTestId('m-add-page')).toHaveCount(0);
+  await expect(page.getByTestId('add-dialog')).toHaveCount(0);
   await expect(page.getByTestId('m-tab-explore')).toHaveAttribute('aria-current', 'page');
   await expect(page.getByTestId('m-feed-search')).toBeVisible();
 });
@@ -195,10 +193,10 @@ test('返回鍵：詳情上開 ✎ 修改，返回只關加地點頁、詳情還
   const origin = await page.evaluate(() => location.origin);
   const len = await histLen(page);
   await page.getByTestId('detail-user-edit').click();
-  await expect(page.getByTestId('m-add-page')).toBeVisible();
+  await expect(page.getByTestId('add-dialog')).toBeVisible();
   expect(await histLen(page)).toBe(len + 1);
   await page.goBack();
-  await expect(page.getByTestId('m-add-page')).toHaveCount(0);
+  await expect(page.getByTestId('add-dialog')).toHaveCount(0);
   await expect(page.getByTestId('m-detail')).toBeVisible();
   // 只退了加地點那一筆：詳情那筆還在（再退一次才關詳情）
   expect(await page.evaluate(() => !!history.state?.thMobileDetail)).toBe(true);
@@ -216,14 +214,14 @@ test('存好後不多退一步：從探索開的，存好 history 長度回到�
   const len = await histLen(page);
   await addFromLink(page); // 開、存好
   await expect.poll(() => page.evaluate(() => !!history.state?.thMobileDetail)).toBe(false);
-  await expect(page.getByTestId('m-add-page')).toHaveCount(0);
+  await expect(page.getByTestId('add-dialog')).toHaveCount(0);
   // 存好時那一筆退回去了：再開一次（同一個連結會被當成已經有了，改打找不到的名稱），長度只多一筆
   await page.getByTestId('m-feed-search').fill('不存在的店名xyz');
   await page.getByTestId('add-suggest-add').click();
-  await expect(page.getByTestId('m-add-page')).toBeVisible();
+  await expect(page.getByTestId('add-dialog')).toBeVisible();
   expect(await histLen(page)).toBeLessThanOrEqual(len + 1);
   await page.goBack();
-  await expect(page.getByTestId('m-add-page')).toHaveCount(0);
+  await expect(page.getByTestId('add-dialog')).toHaveCount(0);
   expect(await onApp(page)).toBe(true);
   await expect(page.getByTestId('m-tab-explore')).toHaveAttribute('aria-current', 'page');
 });
@@ -236,7 +234,7 @@ test('存好後不多退一步：從詳情 ✎ 修改存好，返回鍵一次關
   await page.getByTestId('detail-user-edit').click();
   await page.getByTestId('add-name').fill('存好後的名稱');
   await page.getByTestId('add-save').click();
-  await expect(page.getByTestId('m-add-page')).toHaveCount(0);
+  await expect(page.getByTestId('add-dialog')).toHaveCount(0);
   await expect(page.getByTestId('m-detail')).toContainText('存好後的名稱');
   // 存好退了加地點那一筆：詳情那筆還在
   expect(await page.evaluate(() => !!history.state?.thMobileDetail)).toBe(true);
@@ -263,5 +261,5 @@ test('第二根手指放上去 → 取消按住', async ({ page }) => {
     },
     [x, y] as const,
   );
-  await expect(page.getByTestId('m-add-page')).toHaveCount(0);
+  await expect(page.getByTestId('add-dialog')).toHaveCount(0);
 });

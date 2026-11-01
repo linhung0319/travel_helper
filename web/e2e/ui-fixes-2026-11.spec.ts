@@ -234,7 +234,7 @@ test('展開卡的按鈕：右欄 420 三顆都寫字、一排；右欄 360 次�
   await check(false);
 });
 
-test('某一天的標題：右欄窄時副標縮短、和按鈕同一排；右欄夠寬時寫完整', async ({ page }) => {
+test('某一天的標題：副標是「週五 · 地區」，沒有第 N 天；右欄窄、寬都和按鈕同一排', async ({ page }) => {
   await ready(page);
   await page.evaluate(() => (window as any).__th.commands.selectDay('2027-02-05'));
   const sameRow = async () => {
@@ -245,13 +245,12 @@ test('某一天的標題：右欄窄時副標縮短、和按鈕同一排；右�
     return date.y < edit.y + edit.height && edit.y < date.y + date.height;
   };
   await page.setViewportSize({ width: 1180, height: 800 });
-  await expect(page.getByTestId('day-title-short')).toBeVisible();
-  await expect(page.getByTestId('day-title-short')).toHaveText(/^週五 · .+/);
-  await expect(page.getByTestId('day-title-sub')).toBeHidden();
+  await expect(page.getByTestId('day-title-sub')).toBeVisible();
+  await expect(page.getByTestId('day-title-sub')).toHaveText(/^週五 · .+/);
   expect(await sameRow()).toBe(true);
   await page.setViewportSize({ width: 1280, height: 800 });
   await expect(page.getByTestId('day-title-sub')).toBeVisible();
-  await expect(page.getByTestId('day-title-sub')).toHaveText(/第 4 天/);
-  await expect(page.getByTestId('day-title-short')).toBeHidden();
+  await expect(page.getByTestId('day-title-sub')).toHaveText(/^週五 · .+/);
+  await expect(page.getByTestId('day-title-sub')).not.toContainText('第');
   expect(await sameRow()).toBe(true);
 });

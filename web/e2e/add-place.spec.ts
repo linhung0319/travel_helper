@@ -1,4 +1,4 @@
-// 自己加地點（T31）網頁：搜尋框貼連結／打地址 → 右欄確認畫面 → 存；地圖右鍵；表單開著時點地圖上的點不開詳情。
+// 自己加地點（T31、T33）網頁：搜尋比不到時「＋ 自己加」帶進彈窗（連結自動查，地址按「找位置」）→ 第二步 → 存；地圖右鍵；彈窗開著時點地圖上的點不開詳情。常駐按鈕的入口在 t33.spec.ts。
 // 假後端把資料存在 localStorage，Playwright 每個測試是全新的瀏覽器環境，不用另外清。
 import { test, type Page } from '@playwright/test';
 import { centerOn, expect, findPlaceId, ready, waitIdle } from './helpers.ts';
@@ -31,13 +31,14 @@ test('貼 Google Maps 連結 → 名稱預填 → 選餐廳 → 儲存 → 清�
   await expect(page.getByTestId('add-form')).toBeVisible();
   await expect(page.getByTestId('add-name')).toHaveValue('珈琲 灯台舎');
   await expect(page.getByTestId('add-via')).toHaveText('從 Google Maps 連結');
-  await expect(page.getByTestId('map-add-pin')).toBeVisible();
+  await expect(page.getByTestId('add-map')).toBeVisible();
+  await expect(page.getByTestId('add-pin')).toBeVisible();
   await expect(page.getByTestId('add-save')).toBeDisabled();
   await page.getByTestId('add-type-restaurant').click();
   await expect(page.getByTestId('add-save')).toBeEnabled();
   await page.getByTestId('add-save').click();
   await expectUserCard(page);
-  await expect(page.getByTestId('map-add-pin')).toHaveCount(0);
+  await expect(page.getByTestId('add-dialog')).toHaveCount(0);
   await page.locator('.is-user').first().click();
   await page.getByTestId('place-open-detail').click();
   await expect(page.getByTestId('detail-user-warning')).toBeVisible();
@@ -50,6 +51,9 @@ test('打地址 → 假的地址查詢回座標 → 加進來', async ({ page })
   await ready(page);
   await search(page, '三重県鳥羽市鳥羽1丁目');
   await page.getByTestId('add-suggest-add').click();
+  // 打的字帶進第一步；地址要按「找位置」
+  await expect(page.getByTestId('add-entry-input')).toHaveValue('三重県鳥羽市鳥羽1丁目');
+  await page.getByTestId('add-entry-find').click();
   await expect(page.getByTestId('add-via')).toHaveText('從地址');
   await page.getByTestId('add-name').fill('朋友的民宿');
   await page.getByTestId('add-type-lodging').click();
@@ -72,31 +76,37 @@ test('地圖右鍵 → 在這裡加地點 → 名稱空白、不能存 → 填�
   await expectUserCard(page);
 });
 
-test('表單開著：右鍵變「把圖釘移到這裡」', async ({ page }) => {
+test('彈窗開著：主地圖右鍵不出選單（圖釘在彈窗的小地圖上）', async ({ page }) => {
   await ready(page);
   const box = (await page.getByTestId('map').boundingBox())!;
   await page.mouse.click(box.x + 60, box.y + 160, { button: 'right' });
   await page.getByTestId('map-context-add').click();
   await expect(page.getByTestId('add-form')).toBeVisible();
   await waitIdle(page);
-  await page.mouse.click(box.x + 200, box.y + 200, { button: 'right' });
-  await expect(page.getByTestId('map-context-add')).toHaveText('把圖釘移到這裡');
-  await page.keyboard.press('Escape');
+  // 彈窗在地圖中間，左邊留白的地方還點得到主地圖
+  await page.mouse.click(box.x + 60, box.y + 200, { button: 'right' });
+  await page.waitForTimeout(200);
   await expect(page.getByTestId('map-context')).toHaveCount(0);
+  await expect(page.getByTestId('add-form')).toBeVisible();
 });
 
-test('表單開著：點地圖上的資料點不開詳情、不選中、不出小卡片', async ({ page }) => {
+test('彈窗開著：點地圖上的資料點不開詳情、不選中、不出小卡片', async ({ page }) => {
   await ready(page);
   const id = await findPlaceId(page, 'spot', 'B');
-  // 圖釘留在右鍵開表單的位置（離資料點 150px 以上），再點資料點
   const pt = await centerOn(page, id, 15);
   await page.mouse.click(pt.x + 150, pt.y + 150, { button: 'right' });
   await page.getByTestId('map-context-add').click();
   await expect(page.getByTestId('add-form')).toBeVisible();
   await waitIdle(page);
-  const pt2 = await centerOn(page, id, 15);
-  const pin = (await page.getByTestId('map-add-pin').boundingBox())!;
-  expect(Math.hypot(pin.x + pin.width / 2 - pt2.x, pin.y + pin.height - pt2.y)).toBeGreaterThan(60);
+  // 彈窗蓋住地圖中間：把資料點移到彈窗左邊留白的地方再點
+  const pt1 = await centerOn(page, id, 15);
+  const left = (await page.getByTestId('map').boundingBox())!.x;
+  const dialogLeft = (await page.getByTestId('add-dialog').boundingBox())!.x;
+  const dx = pt1.x - (left + dialogLeft) / 2;
+  await page.evaluate((dx) => (window as any).__th.map.panBy([dx, 0], { animate: false }), dx);
+  await waitIdle(page);
+  const pt2 = { x: pt1.x - dx, y: pt1.y };
+  expect(await page.evaluate(({ x, y }) => document.elementFromPoint(x, y)?.classList.contains('maplibregl-canvas'), pt2)).toBe(true);
   const snap = () =>
     page.evaluate(() => {
       const a = (window as any).__th.appStore.getState();
