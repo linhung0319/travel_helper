@@ -118,6 +118,7 @@
 | T30 | 👤 部署到 Cloudflare：正式的 D1 和 secret、網站和 Worker、正式環境第一次匯入、LINE 改用正式網址、LINE 內建瀏覽器實測 | S | T25、👤 資料和 schema 定案（邀請家人之前） | 4 | 🌐 少量 | ⬜ |
 | T31 | 自己加地點：探索的搜尋框貼 Google Maps 連結、輸入日本地址、或在地圖上指位置；確認畫面（手機整頁、網頁右欄＋主地圖的圖釘）；自己加的點出現在地圖、清單、詳情；不用 Google API | M | T15m、T24 | 4 | 🌐 少量 | ✅ |
 | T32 | 載入和效率：拆 bundle、骨架畫面、網頁探索分批、照片照畫面給尺寸、捲到才載入 | M | T16m-c | 4 | | ✅ |
+| T33 | 討論彈窗（按鈕跟著問 AI，以資料點和日期為單位）、加地點入口和彈窗、網頁的類型列、拿掉套用的篩選晶片、上一步、快照移出編輯條 | M | T15 | 4 | | ⬜ |
 
 ---
 
@@ -710,6 +711,13 @@ T7c → T7d → T7e → T7f → T7g → T8a → T8b → T8c → T8d → T7i → 
 - **可以拆成三個並行子任務**：T15m-a 這一天的時間軸、地圖上的行程路線；T15m-b 建議、規劃模式、手動選單、快照；T15m-c 投票、修改紀錄、需要預約的清單。
 - **👤 檢視**：每個子任務做完，用 `npm run dev` 讓 👤 在瀏覽器切換手機、平板、電腦尺寸檢視；另外用 Playwright 對手機和電腦尺寸各截一組主要畫面的圖，放在 `data/cache/work/t15m/`（不進 git）方便對照。👤 確認的 UI 決定寫回 interaction-design.md。
 - **完成條件**（Playwright，手機和電腦尺寸各跑一次，用假後端）：按 ❤️ → 想去分頁出現、留言 → 換人看得到、改不了別人的留言 → 加到某天 → 這天的候選 → 進入規劃模式按 ↑ 排進 → 時間軸出現、有交通時間 → 改停留時間 → 復原快照後回到原狀；👤 確認 UI 定案。（2026-10-24 建議改成想去分頁和這天的候選，設計見 `docs/superpowers/specs/2026-10-24-wishlist-planning-design.md`；2026-10-25 第四輪拿掉緩衝、換住宿、併到…，改成拖曳合併，設計見 `docs/superpowers/specs/2026-10-25-itinerary-round4-design.md`）
+
+### T33 討論彈窗、加地點入口、上一步 〔M〕
+- 照 [specs/2026-11-01-discussion-add-place-design.md](superpowers/specs/2026-11-01-discussion-add-place-design.md) 做（2026-11-01 👤 用草圖討論定案）。先讀 [architecture.md](architecture.md)、[interaction-design.md](interaction-design.md) §5、§6、§8。
+- 範圍：`web/`（含 `web/e2e/`）；文件更新 interaction-design、architecture §2。
+- 不改 `worker/`、D1、`schema/`、`data/`：留言的 target 已經支援地點、日期、整趟，快照 API 照舊。
+- 完成條件：見設計文件 §8。
+- 2026-11-01 討論時已先修 `web/e2e/mobile.spec.ts` 的「詳情：整頁、返回後捲動位置不變」：照片比測試等的時間慢時，scroll anchoring 把位置從 800 調到 784，測試卻要求剛好 800。網站沒壞；改成比對開詳情前實際的位置。
 
 ### T32 載入和效率 〔M〕
 - **為什麼在 T15 前做**（2026-11-01 👤 決定）：實測手機開探索要下載 28.5 MB 的照片（楽天原圖最大 8000×4500、5.9 MB，顯示成 181×120）；接上真的 API 會多出延遲，骨架要先備好。

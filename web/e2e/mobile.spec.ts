@@ -315,17 +315,28 @@ test('沒有照片的點顯示類型色塊', async ({ page }) => {
   await expect(fb).toHaveText(/^[景餐宿站點]$/);
 });
 
-/** 探索往下捲到 y，點一張整張在畫面裡的（點左上角，避開右下角的票），回傳那張的 id */
+/** 探索往下捲到約 y，點一張整張在畫面裡的（點左上角，避開右下角的票），回傳那張的 id；打開前實際的捲動位置記在 feedTop */
+let feedTop = 0;
 async function openFromFeed(page: import('@playwright/test').Page, y: number) {
   await goTab(page, 'explore');
   await expect(page.getByTestId('m-feed-item').nth(3)).toBeVisible();
-  // 圖片牆的高度照原圖比例：照片一張張載入時版面會動，瀏覽器的 scroll anchoring 會把捲動位置調個幾 px（甚至讓 Playwright 的 click 再捲一次）。
-  // 所以先等畫面上已經在載的照片載完，再捲、再量。
+  // 圖片牆的高度照原圖比例：照片一張張載入時版面會動，瀏覽器的 scroll anchoring 會把捲動位置調個幾十 px（甚至讓 Playwright 的 click 再捲一次）。
+  // 照片可能比 settle 等的 8 秒還慢，所以不要求剛好停在 y：等照片載完、位置穩定後，記下實際位置（feedTop），返回時和它比。
   const settle = () => page.waitForFunction(() => [...document.querySelectorAll('[data-testid="m-feed-item"] img')].every((i) => (i as HTMLImageElement).complete), null, { timeout: 8000 }).catch(() => {});
   await settle();
   await page.locator('.m-page').evaluate((el, y) => el.scrollTo(0, y), y);
   await settle();
-  await expect.poll(() => page.locator('.m-page').evaluate((el, y) => Math.abs(el.scrollTop - y) <= 2, y)).toBe(true);
+  const readTop = () => page.locator('.m-page').evaluate((el) => el.scrollTop);
+  let last = -1;
+  await expect
+    .poll(async () => {
+      const top = await readTop();
+      const stable = top === last;
+      last = top;
+      return stable && Math.abs(top - y) <= 100;
+    })
+    .toBe(true);
+  feedTop = last;
   // 第一張整張都在畫面裡的（篩選、黏在上面的摘要、底部分頁都不擋）
   const id = await page.evaluate(() => {
     const el = [...document.querySelectorAll('[data-testid="m-feed-item"]')].find((e) => {
@@ -359,7 +370,7 @@ test('詳情：整頁、返回後捲動位置不變', async ({ page }) => {
   await detail.getByTestId('m-detail-back').click();
   await expect(detail).toHaveCount(0);
   const top = await page.locator('.m-page').evaluate((el) => el.scrollTop);
-  expect(Math.abs(top - 800)).toBeLessThan(5);
+  expect(Math.abs(top - feedTop)).toBeLessThan(5);
 });
 
 test('詳情：瀏覽器上一頁也能關', async ({ page }) => {
@@ -369,7 +380,7 @@ test('詳情：瀏覽器上一頁也能關', async ({ page }) => {
   await expect(page.getByTestId('m-detail')).toHaveCount(0);
   expect((await mobileState(page)).tab).toBe('explore');
   const top = await page.locator('.m-page').evaluate((el) => el.scrollTop);
-  expect(Math.abs(top - 600)).toBeLessThan(5);
+  expect(Math.abs(top - feedTop)).toBeLessThan(5);
 });
 
 test('詳情：點小地圖跳到行程', async ({ page }) => {
