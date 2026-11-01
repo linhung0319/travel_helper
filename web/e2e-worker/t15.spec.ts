@@ -200,7 +200,15 @@ test('T15：想去 → 留言 → 別人看得到、改不了 → 加到某天 �
   await expect(scheduled(b, desktop)).toBeVisible();
 
   // 6. 復原快照：回到排進去之前（最舊的那份之後的第一份）
-  await a.getByTestId('snapshots-button').click();
+  // T33：入口在電腦的頭像選單、手機的「我的」；手機編輯中沒有分頁列，先結束編輯
+  if (desktop) {
+    await a.getByTestId('account-menu').click();
+    await a.getByTestId('account-versions').click();
+  } else {
+    await a.getByTestId('planning-done').click();
+    await a.getByTestId('m-tab-me').click();
+    await a.getByTestId('m-me-versions').click();
+  }
   const snap = a.getByTestId('snapshot').last();
   await snap.getByTestId('snapshot-restore').click();
   await snap.getByTestId('snapshot-restore-confirm').click();
@@ -246,7 +254,7 @@ async function addStayExpectConflict(page: Page, desktop: boolean) {
   const sheet = page.getByTestId('m-action-sheet');
   await sheet.getByTestId('m-action-stay').click();
   await sheet.getByTestId('m-stay-plus').click();
-  await expect(page.getByTestId('conflict-bar').or(sheet)).toBeVisible();
+  await expect(page.getByTestId('conflict-bar').or(sheet).first()).toBeVisible();
   await page.getByTestId('m-sheet-dim').click({ position: { x: 20, y: 20 } }).catch(() => page.keyboard.press('Escape'));
   await expect(sheet).toHaveCount(0);
 }
@@ -283,8 +291,8 @@ test('T15：載入：一支啟動 API，引擎一個檔；詳情層閒置時讀�
 
   urls.length = 0;
   await syncNow(a);
-  // 地圖圖磚、照片不算：只看打了哪些 API
-  expect(urls.filter((u) => u.startsWith('/api/'))).toEqual(['/api/sync']);
+  // 地圖圖磚、照片不算：只看打了哪些 API。syncNow 是切回分頁的事件，這時聊天也會重新抓（T16，別的裝置可能接著聊過），定時輪詢不會
+  expect(urls.filter((u) => u.startsWith('/api/') && u !== '/api/chats')).toEqual(['/api/sync']);
 });
 
 test('T15：詳情層還沒到顯示骨架，到了顯示內容（含其他資訊）；讀不到可以重試', async ({ a, desktop }) => {

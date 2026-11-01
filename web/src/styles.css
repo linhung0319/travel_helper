@@ -1289,11 +1289,6 @@ dl {
   margin-bottom: 6px;
 }
 
-.planning-bar-status {
-  font-size: 0.8rem;
-  opacity: 0.85;
-}
-
 /* 藍條右邊白底的「完成」 */
 button.planning-done {
   border: 0;

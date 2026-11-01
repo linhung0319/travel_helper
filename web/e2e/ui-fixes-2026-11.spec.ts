@@ -186,7 +186,8 @@ test('日期晶片在地圖上：寬地圖一排、窄地圖兩排，全部看�
     const d = (await days.boundingBox())!;
     return d.x >= m.x && d.x + d.width <= m.x + m.width;
   };
-  await page.setViewportSize({ width: 1440, height: 800 });
+  // 藍卡的一排要 652px（ui.css），視窗 1440 的地圖只有 640，1560 才有 760
+  await page.setViewportSize({ width: 1560, height: 800 });
   await expect.poll(tops).toBe(1);
   expect(await inMap()).toBe(true);
   await page.setViewportSize({ width: 1180, height: 800 });
