@@ -16,11 +16,6 @@
 //   GET    /api/votes?place=&since=         沒收回的（since 時連收回的也回傳）
 //   PUT    /api/votes/:placeId              { value: 'like' | 'dislike' }：只能投自己的
 //   DELETE /api/votes/:placeId              收回自己的票（軟刪除）
-// 聊天紀錄（chat_messages）：只回傳自己的
-//   GET    /api/chats                       自己的對話清單
-//   GET    /api/chats/:conversationId       一個對話的訊息
-//   POST   /api/chats/:conversationId       { role, content }
-//   DELETE /api/chats/:conversationId
 // 其他
 //   GET    /api/me、GET /api/members
 //   GET    /api/sync                        各種資料最後更新的時間：前端每 30 秒只打這一支，有變才重抓
@@ -290,56 +285,6 @@ export async function deleteVote({ db, member }: Ctx, params: Record<string, str
     .bind(now, now, placeId, member.id)
     .run();
   return json({ ok: true });
-}
-
-// ---- 聊天紀錄 ----
-
-const CONVERSATION = /^[A-Za-z0-9_-]{1,64}$/;
-const MAX_CONTENT = 512 * 1024;
-
-function conversationId(params: Record<string, string>): string {
-  if (!CONVERSATION.test(params.conversationId)) throw badRequest('對話 ID 只能用英數字、- 和 _（64 字以內）');
-  return params.conversationId;
-}
-
-export async function listConversations({ db, member }: Ctx): Promise<Response> {
-  const r = await db
-    .prepare(
-      `SELECT conversation_id, COUNT(*) AS messages, MIN(created_at) AS started_at, MAX(created_at) AS last_at
-       FROM chat_messages WHERE member_id = ? GROUP BY conversation_id ORDER BY last_at DESC`,
-    )
-    .bind(member.id)
-    .all<{ conversation_id: string; messages: number; started_at: string; last_at: string }>();
-  return json({
-    conversations: r.results.map((c) => ({ id: c.conversation_id, messages: c.messages, startedAt: c.started_at, lastAt: c.last_at })),
-  });
-}
-
-export async function getConversation({ db, member }: Ctx, params: Record<string, string>): Promise<Response> {
-  const r = await db
-    .prepare('SELECT id, role, content, created_at FROM chat_messages WHERE member_id = ? AND conversation_id = ? ORDER BY id')
-    .bind(member.id, conversationId(params))
-    .all<{ id: number; role: string; content: string; created_at: string }>();
-  return json({ messages: r.results.map((m) => ({ id: m.id, role: m.role, content: JSON.parse(m.content), createdAt: m.created_at })) });
-}
-
-export async function appendMessage({ db, req, member }: Ctx, params: Record<string, string>): Promise<Response> {
-  const conv = conversationId(params);
-  const b = await readBody(req, MAX_CONTENT * 2);
-  if (b.role !== 'user' && b.role !== 'assistant') throw badRequest("role 要是 'user' 或 'assistant'");
-  if (b.content === undefined) throw badRequest('缺少 content');
-  const content = JSON.stringify(b.content);
-  if (content.length > MAX_CONTENT) throw badRequest('content 太大');
-  const row = await db
-    .prepare('INSERT INTO chat_messages (member_id, conversation_id, role, content, created_at) VALUES (?, ?, ?, ?, ?) RETURNING id, created_at')
-    .bind(member.id, conv, b.role, content, nowIso())
-    .first<{ id: number; created_at: string }>();
-  return json({ message: { id: row!.id, role: b.role, content: b.content, createdAt: row!.created_at } }, { status: 201 });
-}
-
-export async function deleteConversation({ db, member }: Ctx, params: Record<string, string>): Promise<Response> {
-  const r = await db.prepare('DELETE FROM chat_messages WHERE member_id = ? AND conversation_id = ?').bind(member.id, conversationId(params)).run();
-  return json({ deleted: r.meta.changes });
 }
 
 // ---- 成員、同步 ----

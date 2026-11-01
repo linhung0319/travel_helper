@@ -4,6 +4,7 @@
 
 import { spawn, spawnSync } from 'node:child_process';
 import fs from 'node:fs';
+import { createServer } from 'node:http';
 import os from 'node:os';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -28,8 +29,40 @@ const d1 = (...args) => ['d1', ...args, '--local', '--persist-to', PERSIST];
 
 /** 清掉使用者的資料（行程、留言…），預設資料留著；每個測試開始前跑 */
 export function resetUserData() {
-  const tables = ['comments', 'candidates', 'reservations', 'votes', 'snapshots', 'itinerary', 'place_edits', 'user_places', 'chat_messages'];
+  const tables = ['comments', 'candidates', 'reservations', 'votes', 'snapshots', 'itinerary', 'place_edits', 'user_places', 'chat_messages', 'chat_conversations', 'ai_usage'];
   wrangler(d1('execute', 'travel-helper', '--yes', '--command', tables.map((t) => `DELETE FROM ${t};`).join(' ')));
+}
+
+/** 把這個人今天的 AI 花費設成某個金額（測每天的上限） */
+export function setTodayCost(member, usd) {
+  const today = new Date(Date.now() + 9 * 3600_000).toISOString().slice(0, 10);
+  wrangler(d1('execute', 'travel-helper', '--yes', '--command', `INSERT OR REPLACE INTO ai_usage (member_id, date, cost_micro_usd) VALUES ('${member}', '${today}', ${Math.round(usd * 1e6)});`));
+}
+
+/** 本機假的 Claude API（SSE 格式照官方）：Worker 用真的 SDK 打它，e2e 不花錢。第一次叫工具，工具結果回來才回答 */
+function fakeClaude() {
+  const line = (event, data) => `event: ${event}\ndata: ${JSON.stringify(data)}\n\n`;
+  const usage = { input_tokens: 100, output_tokens: 20, cache_read_input_tokens: 0, cache_creation_input_tokens: 0 };
+  const start = line('message_start', { type: 'message_start', message: { id: 'msg', type: 'message', role: 'assistant', model: 'fake', content: [], stop_reason: null, stop_sequence: null, usage } });
+  const end = (stop) => line('message_delta', { type: 'message_delta', delta: { stop_reason: stop, stop_sequence: null }, usage: { output_tokens: 20 } }) + line('message_stop', { type: 'message_stop' });
+  const server = createServer((req, res) => {
+    let body = '';
+    req.on('data', (c) => (body += c));
+    req.on('end', () => {
+      const { messages } = JSON.parse(body);
+      const last = messages.at(-1).content;
+      const afterTool = Array.isArray(last) && last.some((b) => b.type === 'tool_result');
+      res.writeHead(200, { 'content-type': 'text/event-stream' });
+      if (afterTool) {
+        const text = '找到 [[place:toba-aquarium]]，適合全員。\n[[reply:排進 2/5 下午]][[reply:換一家]]';
+        res.end(start + line('content_block_start', { type: 'content_block_start', index: 0, content_block: { type: 'text', text: '' } }) + line('content_block_delta', { type: 'content_block_delta', index: 0, delta: { type: 'text_delta', text } }) + line('content_block_stop', { type: 'content_block_stop', index: 0 }) + end('end_turn'));
+      } else {
+        const input = JSON.stringify({ text: '水族館' });
+        res.end(start + line('content_block_start', { type: 'content_block_start', index: 0, content_block: { type: 'tool_use', id: `toolu_${Date.now()}`, name: 'search_places', input: {} } }) + line('content_block_delta', { type: 'content_block_delta', index: 0, delta: { type: 'input_json_delta', partial_json: input } }) + line('content_block_stop', { type: 'content_block_stop', index: 0 }) + end('tool_use'));
+      }
+    });
+  });
+  return new Promise((resolve) => server.listen(0, '127.0.0.1', () => resolve(server.address().port)));
 }
 
 async function prepare() {
@@ -46,7 +79,9 @@ async function prepare() {
 
 if (process.argv[1] && path.resolve(process.argv[1]) === fileURLToPath(import.meta.url)) {
   await prepare();
-  const child = spawn(process.execPath, [WRANGLER, 'dev', '--port', String(PORT), '--persist-to', PERSIST, '--var', 'DEV_AUTH:1'], { cwd: WORKER, env: ENV, stdio: 'inherit' });
+  // E2E_REAL_CLAUDE=1：用 worker/.env 的 key 打真的 Claude API（real-claude.mjs 用，會花錢）
+  const claudeVars = process.env.E2E_REAL_CLAUDE ? ['--var', `AI_MODEL:${process.env.AI_MODEL ?? 'claude-sonnet-5-5'}`] : ['--var', 'ANTHROPIC_API_KEY:fake', '--var', `ANTHROPIC_BASE_URL:http://127.0.0.1:${await fakeClaude()}`];
+  const child = spawn(process.execPath, [WRANGLER, 'dev', '--port', String(PORT), '--persist-to', PERSIST, '--var', 'DEV_AUTH:1', ...claudeVars], { cwd: WORKER, env: ENV, stdio: 'inherit' });
   child.on('exit', (code) => process.exit(code ?? 0));
   for (const sig of ['SIGINT', 'SIGTERM']) process.on(sig, () => child.kill());
 }

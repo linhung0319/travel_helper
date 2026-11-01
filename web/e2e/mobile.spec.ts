@@ -1176,7 +1176,8 @@ test('第七輪：日期晶片第二行只有星期', async ({ page }) => {
   await expect(page.getByTestId('m-day-2027-02-05')).toHaveText(/^2\/5\s*五$/);
 });
 
-test('探索頂部兩列，往下捲剩一列', async ({ page }) => {
+// 2026-11-02 👤：類型列也黏在上面（搜尋列、幾個地點、螢幕太矮的情況見 mobile-ui-fixes-2026-11.spec.ts）
+test('探索頂部：往下捲時搜尋列和類型列都還在', async ({ page }) => {
   await ready(page);
   await goTab(page, 'explore');
   const bar = page.getByTestId('filter-bar');
@@ -1186,7 +1187,7 @@ test('探索頂部兩列，往下捲剩一列', async ({ page }) => {
   await page.locator('.m-page').evaluate((el) => el.scrollTo(0, 1500));
   await expect(bar).toBeInViewport();
   expect((await bar.boundingBox())!.height).toBeLessThan(64);
-  await expect(typeRow).not.toBeInViewport();
+  await expect(typeRow).toBeInViewport();
 });
 
 test('手機探索有清單：切過去出現 88px 的列，❤ 位置固定，重開還記得', async ({ page }) => {

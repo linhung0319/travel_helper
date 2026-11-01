@@ -385,20 +385,6 @@ describe('投票', () => {
   });
 });
 
-describe('聊天紀錄', () => {
-  test('只看得到自己的', async () => {
-    await call('POST', '/api/chats/c1', { role: 'user', content: [{ type: 'text', text: '第一天去哪？' }] });
-    await call('POST', '/api/chats/c1', { role: 'assistant', content: [{ type: 'text', text: '賢島' }] });
-    await call('POST', '/api/chats/c1', { role: 'user', content: 'b 的' }, { as: 'dev-b' });
-    assert.equal((await call('GET', '/api/chats/c1')).body.messages.length, 2);
-    assert.equal((await call('GET', '/api/chats/c1', undefined, { as: 'dev-b' })).body.messages.length, 1);
-    assert.deepEqual((await call('GET', '/api/chats')).body.conversations.map((c: any) => [c.id, c.messages]), [['c1', 2]]);
-    assert.equal((await call('DELETE', '/api/chats/c1', undefined, { as: 'dev-b' })).body.deleted, 1);
-    assert.equal((await call('GET', '/api/chats/c1')).body.messages.length, 2);
-    assert.equal((await call('POST', '/api/chats/c1', { role: 'system', content: 'x' })).status, 400);
-  });
-});
-
 describe('同步', () => {
   test('有變動時對應的版本跟著變', async () => {
     const a = (await call('GET', '/api/sync')).body;

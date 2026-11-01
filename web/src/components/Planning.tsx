@@ -112,7 +112,9 @@ export function EditingStrip() {
 
 /**
  * 編輯中，時間軸面板最上面的藍條：日期、存檔中才顯示的「儲存中」、問 AI（extra）、討論、上一步、完成（白底）。
- * 兩邊同一個樣子（§6.3、T33）：墨色底；compact（手機）不顯示儲存中
+ * 兩邊同一個樣子（§6.3、T33）：墨色底；compact（手機）不顯示儲存中。
+ * 「儲存中」佔標題的位置，不另外多一格：多一格時窄的右欄會換行，藍條變高，下面的行程整個往下跳，
+ * 打完備註直接點交通卡時（離開欄位就存）放開滑鼠已經不在卡上，這一下點不到
  */
 export function PlanningBar({ title, className = '', compact = false, extra = null }: { title?: string; className?: string; compact?: boolean; extra?: ReactNode } = {}) {
   const planning = useApp((s) => s.planning);
@@ -131,9 +133,8 @@ export function PlanningBar({ title, className = '', compact = false, extra = nu
   return (
     <div className={`planning-bar ${className}`} data-testid="planning-bar" ref={watch}>
       <strong className="ic-text">
-        <Icon name="pen" size={16} /> {title ?? '編輯中・改了會自動存，大家都看得到'}
+        <Icon name="pen" size={16} /> {!compact && saving ? '儲存中…' : (title ?? '編輯中・改了會自動存，大家都看得到')}
       </strong>
-      {!compact && saving && <span className="planning-bar-status">儲存中…</span>}
       <span className="planning-bar-actions">
         {extra}
         <DiscussButton variant="bar" />

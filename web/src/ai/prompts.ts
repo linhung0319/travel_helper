@@ -18,6 +18,32 @@ export function promptsFor(c: ChatContext, place?: Place): string[] {
   }
 }
 
+export interface StarterInput {
+  /** 正在看的那天；null＝整趟 */
+  day: string | null;
+  /** 還沒排住宿的晚上 */
+  nightsMissing: number;
+  /** 行程裡的警告數 */
+  warnings: number;
+  /** 有人想去、還沒排進行程的點 */
+  wishesUnplaced: number;
+}
+
+const MAX_STARTERS = 3;
+
+/** 空白的新對話要推薦的問題：照使用者現在的狀況挑，最有用的在前面；不夠時用示範句補滿 */
+export function startersFor(i: StarterInput): string[] {
+  const m = i.day ? /^\d{4}-(\d{2})-(\d{2})$/.exec(i.day) : null;
+  return [
+    ...(m ? [`幫我檢查 ${Number(m[1])}/${Number(m[2])}`] : []),
+    ...(i.nightsMissing > 0 ? ['哪幾晚還沒定住宿？'] : []),
+    ...(i.warnings > 0 ? ['哪天最趕？'] : []),
+    ...(i.wishesUnplaced > 0 ? ['把想去的排進行程'] : []),
+    '鳥羽能坐 15 人的海鮮餐廳',
+    '長輩走起來輕鬆的景點',
+  ].slice(0, MAX_STARTERS);
+}
+
 /** 一次帶著的所有晶片：多個地點時問比較、怎麼排；其他照最後一個（剛帶進來的） */
 export function promptsForAll(contexts: ChatContext[], last: ChatContext | undefined, place?: Place): string[] {
   const places = contexts.filter((c) => c.kind === 'place').length;

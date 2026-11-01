@@ -21,7 +21,7 @@ test('S1 找地點：結果都能坐 15 人；呈現是結果集，探索的篩�
   const h = await harness();
   h.app.getState().setFilter({ types: ['spot'] });
   assert.deepEqual(await h.chat.send('鳥羽能坐 15 人的海鮮餐廳'), { ok: true });
-  assert.deepEqual(h.called(), ['search_places', 'get_place', 'show_places', 'suggest_replies']);
+  assert.deepEqual(h.called(), ['search_places', 'get_place', 'show_places']);
   const found = h.lastResult('search_places');
   assert.ok(found.total >= 3);
   const { byId } = h.data.getState();
@@ -217,7 +217,7 @@ test('S11 主流程：不在編輯中也能提議；行程不變；採用 → �
   const before = placesOn(h, DAY3);
   const snapshots = h.shared.store.getState().snapshots.length;
   await h.chat.send('幫我排第 3 天，加午餐');
-  assert.deepEqual(h.called(), ['get_day', 'get_opinions', 'search_places', 'suggest_position', 'check_changes', 'propose_changes', 'suggest_replies']);
+  assert.deepEqual(h.called(), ['get_day', 'get_opinions', 'search_places', 'suggest_position', 'check_changes', 'propose_changes']);
   // 沒有寫進行程，只在畫面上
   assert.deepEqual(placesOn(h, DAY3), before);
   const proposal = h.app.getState().proposal!;
@@ -999,7 +999,7 @@ test('工具：格式都是 Claude API 的 tools，名字不重複，有規格�
   const h = await harness();
   const names = h.chat.tools.map((t) => t.name);
   assert.equal(new Set(names).size, names.length);
-  for (const n of ['search_places', 'get_place', 'get_day', 'get_trip_overview', 'check_changes', 'suggest_position', 'get_route', 'get_timetable', 'get_opinions', 'get_trip_info', 'show_places', 'show_route', 'show_day', 'open_place', 'move_map', 'set_filter', 'clear_view', 'propose_changes', 'draft_comment', 'add_candidate', 'propose_place_edit', 'propose_user_place', 'vote', 'suggest_replies', 'get_reservations', 'show_screen', 'show_again', 'remove_candidate', 'move_candidate', 'set_reservation', 'decide_card']) {
+  for (const n of ['search_places', 'get_place', 'get_day', 'get_trip_overview', 'check_changes', 'suggest_position', 'get_route', 'get_timetable', 'get_opinions', 'get_trip_info', 'show_places', 'show_route', 'show_day', 'open_place', 'move_map', 'set_filter', 'clear_view', 'propose_changes', 'draft_comment', 'add_candidate', 'propose_place_edit', 'propose_user_place', 'vote', 'get_reservations', 'show_screen', 'show_again', 'remove_candidate', 'move_candidate', 'set_reservation', 'decide_card']) {
     assert.ok(names.includes(n), n);
   }
   for (const t of h.chat.tools) assert.equal((t.input_schema as { type: string }).type, 'object', t.name);

@@ -19,7 +19,9 @@ export function incompleteTurn(messages: ChatMessage[], openTurn: string | null 
 /** 要送給模型的歷史：只留回完的輪和還在跑的那輪；只有 role、content。空的訊息（AI 最後沒有話要說，只用來標一輪結束）不送，API 不收 */
 export function toApiMessages(messages: ChatMessage[], openTurn: string | null = null): ApiMessage[] {
   const done = completedTurns(messages);
-  return messages.filter((m) => m.content.length > 0 && (done.has(m.turn) || m.turn === openTurn)).map(({ role, content }) => ({ role, content }));
+  return messages
+    .filter((m) => m.content.some((b) => b.type === 'text' || b.type === 'tool_use' || b.type === 'tool_result') && (done.has(m.turn) || m.turn === openTurn))
+    .map(({ role, content, turnContext }) => ({ role, content: turnContext ? [...content, { type: 'text' as const, text: `<context>${turnContext}</context>` }] : content }));
 }
 
 /** 訊息裡給人看的文字 */
@@ -63,6 +65,22 @@ export function toolLabel(name: string, input: Record<string, unknown>): string 
   }
 }
 
+const REPLY = /\[\[reply:([^\]\n]+)\]\]/g;
+
+/**
+ * 回答結尾的快速選項（`[[reply:<這句話>]]`）拆出來，畫成按鈕。
+ * 不用工具：Opus 5.5、Sonnet 5.5 在工具呼叫之前的長文字可能變成看不到的思考區塊，所以回答要是一輪最後的文字，選項跟著它。
+ */
+export function splitReplies(text: string): { text: string; replies: string[] } {
+  const replies = [...text.matchAll(REPLY)].map((m) => m[1].trim()).filter(Boolean);
+  return { text: replies.length ? text.replace(REPLY, '').trim() : text, replies };
+}
+
+/** 逐字顯示中要畫的字：完整的快速選項和還沒進來完的標記（地點標籤、選項）先不顯示 */
+export function streamingView(text: string): string {
+  return text.replace(REPLY, '').replace(/\[(\[[^\]]*\]?)?$/, '').trimEnd();
+}
+
 /** 畫面上的一個工具呼叫：卡片的狀態和工具的結果 */
 export interface ChatToolUse {
   block: ToolUseBlock;
@@ -82,7 +100,7 @@ export interface ChatTurn {
 }
 
 /** 不畫卡片的工具：效果畫在別的地方 */
-const NO_CARD = new Set(['suggest_replies', 'decide_card', 'show_again', 'clear_view']);
+const NO_CARD = new Set(['decide_card', 'show_again', 'clear_view']);
 
 /** 訊息整理成一輪一輪（readTools：查資料工具的名字，併成一行灰字） */
 export function turnsOf(messages: ChatMessage[], readTools: Set<string>): ChatTurn[] {
@@ -106,10 +124,13 @@ export function turnsOf(messages: ChatMessage[], readTools: Set<string>): ChatTu
         if (m.role === 'user') {
           t.user = b.text;
           t.contexts = m.contexts ?? [];
-        } else t.texts.push(b.text);
+        } else {
+          const { text, replies } = splitReplies(b.text);
+          if (text) t.texts.push(text);
+          if (replies.length) t.replies = replies;
+        }
       } else if (b.type === 'tool_use') {
         if (readTools.has(b.name)) t.reads.push(b);
-        else if (b.name === 'suggest_replies') t.replies = (b.input.replies as string[] | undefined) ?? [];
         else if (!NO_CARD.has(b.name)) t.uses.push({ block: b, card: m.cards?.[b.id], result: results.get(b.id) });
       }
     }

@@ -20,6 +20,14 @@ export interface Env {
   PUBLIC_BASE_URL?: string;
   /** 管理員的 LINE userId，逗號分隔：只有他們能開管理頁 */
   ADMIN_LINE_USER_IDS?: string;
+  /** Claude API（T16，只放在 secret，不給瀏覽器）；ANTHROPIC_BASE_URL 只有測試用 */
+  ANTHROPIC_API_KEY?: string;
+  ANTHROPIC_BASE_URL?: string;
+  /** AI 的模型、effort、每人每天和全部人每月的美元上限；沒設定時用 api/claude.ts 的預設值 */
+  AI_MODEL?: string;
+  AI_EFFORT?: string;
+  AI_DAILY_USD?: string;
+  AI_MONTHLY_USD?: string;
 }
 
 /** 登入的成員（members 的一列） */

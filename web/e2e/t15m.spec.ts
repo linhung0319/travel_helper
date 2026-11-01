@@ -2119,7 +2119,10 @@ test('交通編輯器：編輯中點那一行就開，再點一次收起，打�
   await expect(leg.getByRole('button', { name: '改', exact: true })).toHaveCount(0);
   await expect(leg.getByRole('button', { name: '完成', exact: true })).toHaveCount(0);
   await leg.getByTestId('leg-note').fill('打到一半就收起來');
+  // 離開欄位就存，存檔中藍條不能變高把卡片推走：按下和放開要點在同一張卡上（Playwright 的 click 中間沒有間隔）
+  const barHeight = (await page.getByTestId('planning-bar').boundingBox())!.height;
   await leg.getByTestId('leg-line-text').click();
+  expect((await page.getByTestId('planning-bar').boundingBox())!.height).toBe(barHeight);
   await expect(leg.getByTestId('leg-editor')).toHaveCount(0);
   await expect(leg.getByTestId('leg-note-text')).toContainText('打到一半就收起來');
 });
