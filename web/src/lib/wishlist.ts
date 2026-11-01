@@ -18,7 +18,7 @@ export function likedPlaces(votes: Vote[]): Map<string, { likes: string[]; disli
 }
 
 /** 某天行程裡的點：主選、備選、分組裡的項目、那晚的住宿 */
-function placesOnDay(it: Itinerary | null, date: string): Set<string> {
+export function placesOnDay(it: Itinerary | null, date: string): Set<string> {
   const out = new Set<string>();
   const d = it?.days.find((x) => x.date === date);
   if (!d) return out;

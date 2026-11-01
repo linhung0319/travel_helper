@@ -2,7 +2,7 @@
 
 import { appStore } from '../store.ts';
 import { ai, resetScreenSurface, setScreenSurface, watchProposalView } from '../appAi.ts';
-import { openDialog, openMapPanel, uiStore } from '../uiStore.ts';
+import { openDialog, openDiscussion, openMapPanel, uiStore } from '../uiStore.ts';
 import type { Filter } from '../lib/filter.ts';
 import type { ScreenSurface } from '../ai/stage.ts';
 import type { ChatContext } from '../ai/types.ts';
@@ -23,13 +23,13 @@ const showTab = (mode: 'explore' | 'wish') => {
 const webSurface: ScreenSurface = {
   showList: () => showTab('explore'),
   showTab: (tab) => (tab === 'trip' ? showTrip() : showTab(tab)),
-  showPanel: (panel) => (panel === 'snapshots' ? openDialog({ kind: 'snapshots' }) : openMapPanel(panel)),
+  showPanel: (panel) => (panel === 'snapshots' ? openDialog({ kind: 'snapshots' }) : panel === 'comments' ? openDiscussion() : openMapPanel(panel)),
   showDay: showTrip,
   // 彈窗蓋在地圖右側、貼著右欄，右欄不動（§13.3）
   openPlace: (id) => appStore.getState().openDetail(id, 'map', undefined, 'map'),
   screenKey: () => {
     const s = appStore.getState();
-    return [s.mode, s.detailId ?? '', uiStore.getState().mapPanel?.kind ?? ''].join('|');
+    return [s.mode, s.detailId ?? '', uiStore.getState().discussion ? 'comments' : (uiStore.getState().mapPanel?.kind ?? '')].join('|');
   },
   screenName: () => {
     const s = appStore.getState();

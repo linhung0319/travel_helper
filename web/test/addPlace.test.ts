@@ -213,6 +213,22 @@ function storeSetup(userPlaces: UserPlace[] = []) {
   return { store, calls };
 }
 
+test('store：彈窗第一步帶入文字；到第二步就離開第一步；取消兩步都關（T33）', () => {
+  const { store } = storeSetup();
+  store.getState().openEntry('xyz');
+  assert.deepEqual(store.getState().entry, { text: 'xyz' });
+  assert.equal(store.getState().draft, null);
+  store.getState().start({ via: 'map', coords: [136, 34] });
+  assert.equal(store.getState().entry, null);
+  assert.ok(store.getState().draft);
+  store.getState().cancel();
+  assert.equal(store.getState().draft, null);
+  store.getState().openEntry();
+  assert.deepEqual(store.getState().entry, { text: '' });
+  store.getState().cancel();
+  assert.equal(store.getState().entry, null);
+});
+
 test('store：名稱空白或沒選類型 → ok:false、不呼叫後端', async () => {
   const { store, calls } = storeSetup();
   store.getState().start({ via: 'search', coords: [136, 34], name: '  ' });

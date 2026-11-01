@@ -9,6 +9,7 @@ import { stopsOn } from '../lib/itinerary.ts';
 import { isRedDay, shortDayLabel, tripDates, weekdayZh } from '../lib/trip.ts';
 import type { Place } from '../data/types.ts';
 import { Button } from '../shared/ui/Button.tsx';
+import { DiscussButton } from '../shared/ui/DiscussButton.tsx';
 import { describeChanges } from '../lib/overlays.ts';
 import { useApp } from '../hooks.ts';
 import { askTrip } from './mobileAi.ts';
@@ -32,6 +33,7 @@ export function TripOverview() {
       <Button kind="secondary" size="sm" icon="spark" onClick={askTrip} data-testid="trip-ask-ai">
         問 AI 整趟
       </Button>
+      <DiscussButton variant="white" />
     </div>
     <ol className="m-overview" data-testid="m-overview">
       {DATES.map((d) => {

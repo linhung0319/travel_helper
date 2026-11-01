@@ -1,8 +1,8 @@
 // 手機版自己的畫面狀態（第六輪 §3、§6）：現在在哪個分頁、行程面板停在哪、行程選到的卡（focusItem，不改面板高度）、原地展開的卡（expanded、expandItem）、編輯中打開的「⋯」動作面板（actions）、
-// 整頁詳情、聊天（半屏、拉滿、清單或加地點面板、從聊天跳來的、回覆好了的小點）、整頁的討論／預約、探索的篩選與顯示方式（feed.view 記在 localStorage）、想去的篩選、搜尋、排序（清單／照片牆、三段收合在 shared/wishPrefs.ts，網頁也用）。
+// 整頁詳情、聊天（半屏、拉滿、清單或加地點面板、從聊天跳來的、回覆好了的小點）、整頁的預約、探索的篩選與顯示方式（feed.view 記在 localStorage）、想去的篩選、搜尋、排序（清單／照片牆、三段收合在 shared/wishPrefs.ts，網頁也用）。
 // 不放進 store.ts（地圖指令那層）；網頁版用不到。
-// 返回鍵（interaction-design §16.2）：每一層（整頁、加地點、半屏、對話清單或加地點面板、從聊天跳走）都佔一筆 history，syncHistory 照畫面狀態對齊筆數；手機的返回鍵一次關最上面一層。LINE 裡沒有 history 就離開網站了。
-// 整頁的東西一次只有一層（§3.0）：開詳情會關掉討論／預約，開討論／預約會關掉詳情；互換時共用同一筆 history。
+// 返回鍵（interaction-design §16.2）：每一層（整頁、加地點、討論彈窗、半屏、對話清單或加地點面板、從聊天跳走）都佔一筆 history，syncHistory 照畫面狀態對齊筆數；手機的返回鍵一次關最上面一層。LINE 裡沒有 history 就離開網站了。
+// 整頁的東西一次只有一層（§3.0）：開詳情會關掉預約，開預約會關掉詳情；互換時共用同一筆 history。
 // 聊天：半屏只在行程分頁出現，換分頁就收起來；關掉半屏、換分頁都不清提議和結果集（規格 §3.4）。結果集出現時探索的篩選收起來，清掉時還原（§3.1）。
 // 班次表（uiStore.timetable，T29c §8.8）浮在地圖那塊：行程拉到最高時打開，行程降到中間讓出地圖（snapForTimetable）；關掉不拉回去。
 
@@ -72,8 +72,8 @@ export interface MobileState {
   expanded: string | null;
   /** 編輯中「⋯」打開的底部動作面板；null＝關著 */
   actions: ActionSheetSpec | null;
-  /** 整頁打開的討論（整趟留言）或預約 */
-  page: 'comments' | 'reservations' | null;
+  /** 整頁打開的預約（討論是彈窗，uiStore.discussion） */
+  page: 'reservations' | null;
   /** 探索的篩選（§3.2）：手機自己一份，不看地圖範圍 */
   feed: Feed;
   /** 想去的設定（§3.4） */
@@ -132,7 +132,7 @@ export function bindAddLayer(layer: NonNullable<typeof addLayer>, subscribe: (on
 /** 現在開著幾層 */
 function layersOpen(s: MobileState): number {
   let n = (s.detail || s.page ? 1 : 0) + (addLayer?.isOpen() ? 1 : 0);
-  if (mobileActive) n += (s.chatSheet && s.tab === 'trip' ? 1 : 0) + (s.chatOverlay ? 1 : 0) + (s.fromChat ? 1 : 0);
+  if (mobileActive) n += (uiStore.getState().discussion ? 1 : 0) + (s.chatSheet && s.tab === 'trip' ? 1 : 0) + (s.chatOverlay ? 1 : 0) + (s.fromChat ? 1 : 0);
   return n;
 }
 
@@ -160,6 +160,7 @@ function syncHistory() {
 function closeTopLayer() {
   const m = mobileStore.getState();
   if (mobileActive && addLayer?.isOpen()) addLayer.cancel();
+  else if (mobileActive && uiStore.getState().discussion) uiStore.setState({ discussion: null });
   else if (m.detail || m.page) mobileStore.setState({ detail: null, page: null });
   else if (!mobileActive) return;
   else if (m.chatOverlay) m.setChatOverlay(null);
@@ -280,6 +281,7 @@ appStore.subscribe((s, prev) => {
 });
 
 mobileStore.subscribe(() => syncHistory());
+uiStore.subscribe(() => syncHistory());
 
 if (typeof window !== 'undefined') {
   // 手機的返回鍵、瀏覽器上一頁：關最上面一層；自己退的（畫面已經關了）只要接著對齊

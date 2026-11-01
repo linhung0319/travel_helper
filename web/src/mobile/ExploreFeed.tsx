@@ -11,6 +11,7 @@ import { displayName } from '../data/normalize.ts';
 import { voteCounts } from '../sharedStore.ts';
 import { feedFilter } from '../lib/explore.ts';
 import { AddPlaceSuggest, useSuggestOwnsEmpty } from '../shared/ui/AddPlaceSuggest.tsx';
+import { addPlaceStore } from '../addPlaceStore.ts';
 import { VoteHeart } from '../shared/ui/VoteHeart.tsx';
 import { useAiPicked, useExploreList } from '../shared/placeLists.ts';
 import { PlaceRow, useDayStatus } from '../shared/ui/PlaceRow.tsx';
@@ -90,6 +91,7 @@ export function ExploreFeed() {
         count={list.length}
         extra={{
           onAsk: () => askList('explore', filter, feed.query, list.length),
+          onAdd: () => addPlaceStore.getState().openEntry(),
           ...(fromChat || aiResult ? { onBack: back } : {}),
           ...(aiResult ? { ai: { title: aiResult.title, total: aiResult.ids.length, sortByAi, setSortByAi, onClear: () => commands.clearResult() } } : {}),
         }}

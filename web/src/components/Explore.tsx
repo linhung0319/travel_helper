@@ -18,6 +18,8 @@ import type { FilterKey } from '../lib/filter.ts';
 import type { ExploreSort } from '../lib/explore.ts';
 import type { Place } from '../data/types.ts';
 import { AddPlaceSuggest, useSuggestOwnsEmpty } from '../shared/ui/AddPlaceSuggest.tsx';
+import { TypeChips } from '../shared/ui/TypeChips.tsx';
+import { addPlaceStore } from '../addPlaceStore.ts';
 import { FilterBar, type FilterModel } from '../shared/ui/FilterBar.tsx';
 import { dragPlaceProps } from './askAi.ts';
 import { askList, askPlace } from './webAi.ts';
@@ -183,17 +185,27 @@ export function ExplorePanel({ source = 'explore' }: { source?: ListSource }) {
     inView,
     setInView,
     pick: pickOption,
+    // 類型在外面一列，不跟著清掉（同手機）
     clear: () => {
+      const { types } = appStore.getState().filter;
       appStore.getState().clearFilter();
+      appStore.getState().setFilter({ types });
       setInView(false);
     },
+    ...(wish ? {} : { onAdd: () => addPlaceStore.getState().openEntry() }),
     onAsk: () => askList(source, filter, query, list.length),
     ...(aiResult ? { ai: { title: aiResult.title, total: aiResult.ids.length, sortByAi, setSortByAi, onClear: () => commands.clearResult() } } : {}),
   };
 
   return (
     <div className={`explore-panel source-${source}`} data-testid={source === 'wish' ? 'wish-panel' : 'explore-panel'}>
-      <FilterBar source={source} surface="desktop" model={model} count={list.length} />
+      <FilterBar
+        source={source}
+        surface="desktop"
+        model={model}
+        count={list.length}
+        typeRow={<TypeChips value={filter.types.length === 1 ? filter.types[0] : 'all'} selected={filter.types} onPick={(type) => appStore.getState().setFilter({ types: type === 'all' ? [] : [type] })} prefix="ex" testId="ex-type-chips" />}
+      />
       {!wish && <AddPlaceSuggest query={query} surface="desktop" />}
       <div className={`ex-list view-${view} source-${source}`} ref={ref}>
         {wish ? (

@@ -20,10 +20,14 @@ export interface AddPlaceDraft {
 }
 
 export interface AddPlaceState {
-  /** null＝確認畫面沒開 */
+  /** 彈窗的第一步（輸入連結或地址，T33）：要帶入的文字；null＝不在第一步 */
+  entry: { text: string } | null;
+  /** 彈窗的第二步（確認畫面）：null＝沒開 */
   draft: AddPlaceDraft | null;
   saving: boolean;
   error: string | null;
+  /** 打開第一步（清單標題列的「＋ 加地點」、搜尋比不到時的提示） */
+  openEntry(text?: string): void;
   start(init: Partial<AddPlaceDraft> & { via: AddedVia }): void;
   /** 修改自己加的點：從資料點和自己加的清單預填 */
   startEdit(placeId: string): void;
@@ -48,16 +52,19 @@ export function createAddPlaceStore(deps: AddPlaceDeps): StoreApi<AddPlaceState>
       return { ok: false, error };
     };
     return {
+    entry: null,
     draft: null,
     saving: false,
     error: null,
-    start: (init) => set({ draft: { ...BLANK, ...init, mode: 'new', editId: null }, saving: false, error: null }),
+    openEntry: (text = '') => set({ entry: { text }, draft: null, saving: false, error: null }),
+    start: (init) => set({ entry: null, draft: { ...BLANK, ...init, mode: 'new', editId: null }, saving: false, error: null }),
     startEdit: (placeId) => {
       const place = deps.place(placeId);
       const up = deps.userPlace(placeId);
       if (!place || !up || up.deletedAt) return;
       const zh = up.data.name.zh;
       set({
+        entry: null,
         draft: {
           mode: 'edit',
           editId: placeId,
@@ -74,7 +81,7 @@ export function createAddPlaceStore(deps: AddPlaceDeps): StoreApi<AddPlaceState>
       });
     },
     patch: (p) => set((s) => (s.draft ? { draft: { ...s.draft, ...p } } : s)),
-    cancel: () => set({ draft: null, saving: false, error: null }),
+    cancel: () => set({ entry: null, draft: null, saving: false, error: null }),
     save: async () => {
       const { draft, saving } = get();
       if (!draft || saving) return { ok: false, error: '沒有要存的地點' };

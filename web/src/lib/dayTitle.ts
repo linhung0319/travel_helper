@@ -1,16 +1,18 @@
-// 這天的標題（第七輪 §6.1，網頁、手機共用）：大日期「2/5」，旁邊「週五 · 第 4 天 · 鳥羽」。
+// 這天的標題（第七輪 §6.1，網頁、手機共用）：大日期「2/5」，旁邊「週五 · 鳥羽」（T33 拿掉第 N 天，留位置給討論按鈕）。
 // 地區＝這天經過的點（不含機場、車站以外沒有地區的）最常出現的地區；平手取先出現的；沒有就不寫。
 
 import type { Area, Place } from '../data/types.ts';
 import type { DayStop } from './itinerary.ts';
-import { shortDayLabel, tripDates, weekdayZh } from './trip.ts';
+import { shortDayLabel, weekdayZh } from './trip.ts';
 
 export interface DayTitle {
   /** 「2/5」 */
   date: string;
-  /** 「週五 · 第 4 天 · 鳥羽」 */
-  sub: string;
-  /** 「週五 · 鳥羽」（手機：要留位置給「問 AI」「編輯」，§16.2） */
+  /** 「週五」 */
+  week: string;
+  /** 地區；沒有是 null。手機放不下時整段省略，星期不會被截斷 */
+  area: string | null;
+  /** 「週五 · 鳥羽」 */
   short: string;
 }
 
@@ -28,8 +30,7 @@ export function dayAreaName(stops: DayStop[], byId: Map<string, Place>, areas: A
 }
 
 /** 標題的兩段文字 */
-export function dayTitle(date: string, areaName: string | null, dates = tripDates()): DayTitle {
-  const n = dates.indexOf(date) + 1;
+export function dayTitle(date: string, areaName: string | null): DayTitle {
   const week = `週${weekdayZh(date)}`;
-  return { date: shortDayLabel(date), sub: [week, n > 0 ? `第 ${n} 天` : null, areaName].filter(Boolean).join(' · '), short: [week, areaName].filter(Boolean).join(' · ') };
+  return { date: shortDayLabel(date), week, area: areaName, short: [week, areaName].filter(Boolean).join(' · ') };
 }

@@ -34,13 +34,19 @@ import { MapCommandBars } from './MapCommandBars.tsx';
 import { pickPlace } from './mapPick.ts';
 import { shared } from '../appShared.ts';
 import { likedPlaces, placeDayStatus } from '../lib/wishlist.ts';
-import { closeMapPanel, closeTimetable, uiStore } from '../uiStore.ts';
+import { closeDiscussion, closeMapPanel, closeTimetable, uiStore } from '../uiStore.ts';
 import { planStore } from '../planStore.ts';
-import { addPlaceStore, useAddPlace } from '../addPlaceStore.ts';
+import { addPlaceStore } from '../addPlaceStore.ts';
 import type { LonLat } from '../data/types.ts';
 import { mobileStore } from '../mobile/mobileStore.ts';
 
 setWorkerUrl(maplibreWorkerUrl);
+
+/** 加地點的彈窗（第一步或第二步）開著 */
+const addPlaceOpen = () => {
+  const a = addPlaceStore.getState();
+  return !!a.draft || !!a.entry;
+};
 
 /** 手機按住加地點：按住多久、手指最多移動多遠（px） */
 const LONG_PRESS_MS = 500;
@@ -209,10 +215,7 @@ export function MapView() {
   const canHoverRef = useRef(canHover);
   canHoverRef.current = canHover;
   const hideTimer = useRef<number | null>(null);
-  // 加地點（T31）：網頁才有主地圖上拖得動的圖釘和右鍵選單；手機的確認畫面有自己的小地圖
-  const adding = useAddPlace((s) => !!s.draft);
-  const draftCoords = useAddPlace((s) => s.draft?.coords ?? null);
-  const pinRef = useRef<Marker | null>(null);
+  // 加地點（T31）的右鍵選單（只有網頁）；確認畫面在彈窗裡，有自己的小地圖（T33）
   const [ctx, setCtx] = useState<{ x: number; y: number; coords: LonLat } | null>(null);
 
   const places = useData((s) => s.places);
@@ -479,18 +482,19 @@ export function MapView() {
       };
       map.on('click', (e: MapMouseEvent) => {
         setCtx(null);
-        // 加地點的表單開著：點地圖上的點不開詳情（避免誤觸，spec §3「網頁」）；兩種版面都適用是故意的（手機的表單在自己的整頁，不會疊在行程地圖上）
-        if (addPlaceStore.getState().draft) return;
+        // 加地點的彈窗開著：點地圖上的點不開詳情（避免誤觸）
+        if (addPlaceOpen()) return;
         closeMapPanel();
+        closeDiscussion();
         closeTimetable();
         const id = placeAt(e.point);
         pickPlace(id);
         // 整趟：點某天的路線 → 那天亮、其他天淡；點空白處清掉（點到點不動）
         if (!id) appStore.getState().setTripFocusDay(tripLineAt(e.point));
       });
-      // 右鍵（只有網頁；詳情彈窗開著時不理）：選單「＋ 在這裡加地點」，表單開著時是「把圖釘移到這裡」（spec §6）
+      // 右鍵（只有網頁；詳情、加地點的彈窗開著時不理）：選單「＋ 在這裡加地點」，開加地點的彈窗（T33）
       map.on('contextmenu', (e: MapMouseEvent) => {
-        if (!window.matchMedia(DESKTOP_QUERY).matches || appStore.getState().detailId) return;
+        if (!window.matchMedia(DESKTOP_QUERY).matches || appStore.getState().detailId || addPlaceOpen()) return;
         e.originalEvent.preventDefault();
         const c = map.getContainer();
         // 選單約 180×50：靠近邊緣時往內縮，不超出地圖
@@ -511,7 +515,7 @@ export function MapView() {
         };
         const blocked = () => {
           const m = mobileStore.getState();
-          return window.matchMedia(DESKTOP_QUERY).matches || m.tab !== 'trip' || !!m.detail || !!m.page || !!m.actions || m.chatSheet || !!addPlaceStore.getState().draft;
+          return window.matchMedia(DESKTOP_QUERY).matches || m.tab !== 'trip' || !!m.detail || !!m.page || !!m.actions || m.chatSheet || !!addPlaceOpen();
         };
         el.addEventListener(
           'touchstart',
@@ -560,7 +564,7 @@ export function MapView() {
       });
       map.on('mousemove', PICK_LAYERS, (e) => {
         // 加地點的表單開著：不出小卡片（小卡片點了會開詳情）
-        if (!canHoverRef.current || addPlaceStore.getState().draft || hoverPaused(e.originalEvent)) return;
+        if (!canHoverRef.current || addPlaceOpen() || hoverPaused(e.originalEvent)) return;
         const id = String(e.features?.[0]?.properties.id ?? '');
         if (!id) return;
         cancelHideRef.current();
@@ -646,43 +650,6 @@ export function MapView() {
     };
   }, []);
 
-  // 加地點：表單開著時主地圖上有一個可以拖的圖釘（只有網頁）；沒有位置就先放在地圖現在的中心，開起來時地圖飛過去一次
-  useEffect(() => {
-    const map = mapRef.current;
-    if (!loaded || !map || !desktop || !adding) {
-      pinRef.current?.remove();
-      pinRef.current = null;
-      return;
-    }
-    if (!draftCoords) {
-      const c = map.getCenter();
-      addPlaceStore.getState().patch({ coords: [c.lng, c.lat] });
-      return;
-    }
-    if (!pinRef.current) {
-      const el = document.createElement('div');
-      el.className = 'map-add-pin';
-      el.setAttribute('data-testid', 'map-add-pin');
-      el.innerHTML = `<svg width="34" height="44" viewBox="0 0 34 44" aria-hidden="true"><path d="${DROP_PATH}" fill="#2b3a67" stroke="#fff" stroke-width="2.5"/><circle cx="17" cy="18" r="5" fill="#fff"/></svg>`;
-      const pin = new Marker({ element: el, anchor: 'bottom', draggable: true }).setLngLat(draftCoords).addTo(map);
-      pin.on('dragend', () => {
-        const ll = pin.getLngLat();
-        addPlaceStore.getState().patch({ coords: [ll.lng, ll.lat] });
-      });
-      pinRef.current = pin;
-      commands.focus({ center: draftCoords, zoom: 16 });
-    } else {
-      pinRef.current.setLngLat(draftCoords);
-    }
-  }, [loaded, desktop, adding, draftCoords]);
-  useEffect(
-    () => () => {
-      pinRef.current?.remove();
-      pinRef.current = null;
-    },
-    [],
-  );
-
   // 右鍵選單：Esc 關掉
   useEffect(() => {
     if (!ctx) return;
@@ -757,7 +724,7 @@ export function MapView() {
           pickPlace(d.id);
         });
         el.addEventListener('mouseenter', () => {
-          if (!canHoverRef.current || addPlaceStore.getState().draft) return;
+          if (!canHoverRef.current || addPlaceOpen()) return;
           cancelHideRef.current();
           appStore.getState().openPreview(d.id);
           appStore.getState().hover(d.id, 'map');
@@ -1069,13 +1036,11 @@ export function MapView() {
             type="button"
             data-testid="map-context-add"
             onClick={() => {
-              const a = addPlaceStore.getState();
-              if (a.draft) a.patch({ coords: ctx.coords });
-              else a.start({ via: 'map', coords: ctx.coords });
+              addPlaceStore.getState().start({ via: 'map', coords: ctx.coords });
               setCtx(null);
             }}
           >
-            {adding ? '把圖釘移到這裡' : '＋ 在這裡加地點'}
+            ＋ 在這裡加地點
           </button>
         </div>
       )}

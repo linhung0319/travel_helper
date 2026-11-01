@@ -687,18 +687,6 @@
   color: var(--paper);
 }
 
-/* 套用的條件：--indigo-wash 小晶片，點 ✕ 取消 */
-.fb-applied {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 6px;
-  padding-top: 8px;
-}
-
-.fb-applied-item {
-  display: inline-flex;
-}
-
 /* 網頁：整列黏在右欄上面 */
 .fb-desktop {
   position: sticky;
@@ -774,8 +762,27 @@
   padding: 4px 0;
 }
 
-.fb-below .fb-applied {
-  padding: 4px 0 4px;
+/* 清單標題列的「＋ 加地點」（T33）：這一列本來就有空位，篩選、排序不用動 */
+.fb-add {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  margin-left: auto;
+  min-height: 32px;
+  padding: 0 11px;
+  border: 1px solid var(--mustard);
+  border-radius: 999px;
+  background: var(--mustard-wash);
+  color: var(--ink);
+  font: inherit;
+  font-size: 0.8125rem;
+  font-weight: 700;
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+.fb-add + .fb-ask {
+  margin-left: 0;
 }
 
 /* 篩選面板：頭固定、中間自己捲、腳固定 */
@@ -2694,8 +2701,7 @@ button.ll-main {
   color: var(--red-day);
 }
 
-.day-title-sub,
-.day-title-short {
+.day-title-sub {
   min-width: 0;
   overflow: hidden;
   color: var(--ink-2);
@@ -2706,23 +2712,8 @@ button.ll-main {
   white-space: nowrap;
 }
 
-.day-title-short {
-  display: none;
-}
-
 .day-nav {
   container: day-nav / inline-size;
-}
-
-/* 右欄窄時（iPad 橫放）：副標用短的，太長就省略，按鈕不換行 */
-@container day-nav (max-width: 379px) {
-  .day-title-sub {
-    display: none;
-  }
-
-  .day-title-short {
-    display: inline;
-  }
 }
 
 /* 卡片時間那一行裡的時間（點了固定開始時間的是按鈕） */
@@ -2962,33 +2953,6 @@ button.ll-main {
 }
 
 /* 網頁：右欄上方的標題列（‹ 加一個地點） */
-.apf-head {
-  display: flex;
-  align-items: center;
-  gap: 4px;
-  padding: 8px 8px 0;
-}
-
-.apf-back {
-  display: inline-flex;
-  align-items: center;
-  gap: 4px;
-  min-height: var(--tap);
-  padding: 0 8px;
-  border: 0;
-  background: none;
-  color: var(--ink);
-  font: inherit;
-  font-weight: 600;
-  cursor: pointer;
-}
-
-.apf-hint {
-  margin: 0;
-  padding: 0 16px;
-  font-size: 0.875rem;
-}
-
 /* 地圖右鍵選單（網頁） */
 .map-context {
   position: absolute;
@@ -3019,10 +2983,6 @@ button.ll-main {
 }
 
 /* 主地圖上拖得動的圖釘 */
-.map-add-pin {
-  cursor: grab;
-}
-
 /* 骨架畫面（T32，Skeleton.tsx）；照片的佔位在 styles.css 的 .photo-loading，用同一個動畫 */
 .sk {
   display: block;
@@ -3064,4 +3024,591 @@ button.ll-main {
 
 .ex-next {
   height: 1px;
+}
+
+/* ---------- 加地點的彈窗（AddPlaceDialog，T33）：網頁浮在地圖上，手機大彈窗 ---------- */
+
+.apd {
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  background: var(--paper);
+}
+
+.apd-desktop {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 19;
+  width: min(640px, calc(100% - 32px));
+  max-height: calc(100% - 32px);
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  box-shadow: 0 8px 28px var(--shade-2);
+  overflow: hidden;
+}
+
+.apd-desktop.step-entry {
+  width: min(460px, calc(100% - 32px));
+}
+
+/* 手機：上面露出一條，點了關掉；鍵盤開著時把空間讓給表單 */
+.apd-backdrop {
+  position: absolute;
+  inset: 0;
+  z-index: 45;
+  display: flex;
+  flex-direction: column;
+  background: var(--dim);
+}
+
+.apd-peek {
+  flex: 0 0 7%;
+  border: 0;
+  background: none;
+  cursor: pointer;
+}
+
+.apd-mobile {
+  flex: 1;
+  border-radius: 20px 20px 0 0;
+}
+
+:root[data-keyboard] .apd-peek {
+  display: none;
+}
+
+:root[data-keyboard] .apd-mobile {
+  border-radius: 0;
+}
+
+.apd-head {
+  flex: none;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 6px 8px 6px 16px;
+}
+
+.apd-head h2 {
+  margin: 0;
+  font-family: var(--font-round);
+  font-size: 1.125rem;
+  font-weight: 900;
+}
+
+.apd-x {
+  width: var(--tap);
+  height: var(--tap);
+  flex: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 0;
+  border-radius: 50%;
+  background: var(--wash);
+  color: var(--ink);
+  cursor: pointer;
+}
+
+.apd-entry {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 4px 16px 20px;
+}
+
+.apd-entry input {
+  width: 100%;
+  min-height: var(--tap);
+  padding: 0 12px;
+  border: 1px solid var(--ink-3);
+  border-radius: 14px;
+  background: var(--paper);
+  font: inherit;
+}
+
+.apd-note {
+  margin: 0;
+  font-size: 0.8125rem;
+}
+
+.apd-or {
+  margin: 0;
+  text-align: center;
+  font-size: 0.8125rem;
+}
+
+.apd-pinbtn {
+  display: grid;
+  gap: 2px;
+  padding: 10px 12px;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  background: var(--paper);
+  color: var(--ink);
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+
+.apd-pinbtn span {
+  font-size: 0.8125rem;
+}
+
+.apd-confirm {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+}
+
+.apd-desktop .apd-confirm {
+  flex-direction: row;
+  gap: 12px;
+  padding: 0 12px 12px;
+  overflow: hidden;
+}
+
+.apd-desktop .apd-map-wrap {
+  flex: 1 1 50%;
+  min-width: 0;
+  height: auto;
+  min-height: 340px;
+  border-radius: 14px;
+}
+
+.apd-map-wrap {
+  position: relative;
+  flex: none;
+  height: 34%;
+  min-height: 170px;
+  overflow: hidden;
+}
+
+:root[data-keyboard] .apd-mobile .apd-map-wrap {
+  display: none;
+}
+
+.apd-map {
+  position: absolute;
+  inset: 0;
+}
+
+.apd-map-hint {
+  position: absolute;
+  top: 8px;
+  left: 50%;
+  transform: translateX(-50%);
+  margin: 0;
+  padding: 4px 12px;
+  border-radius: 999px;
+  background: var(--paper);
+  box-shadow: 0 1px 6px var(--shade-2);
+  font-size: 0.8125rem;
+  white-space: nowrap;
+  pointer-events: none;
+}
+
+/* 圖釘的尖端在正中央：底邊對齊 50% */
+.apd-pin {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -100%);
+  pointer-events: none;
+  filter: drop-shadow(0 2px 2px var(--shade-2));
+}
+
+.apd-form {
+  flex: 1 1 50%;
+  min-width: 0;
+  overflow-y: auto;
+}
+
+.apd-form > .apd-note {
+  padding: 8px 16px 0;
+}
+
+.aps-line {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+/* ---------- 討論按鈕（DiscussButton，T33）：只有圖示和數字，樣式跟著問 AI ---------- */
+
+.discuss-btn {
+  flex: none;
+  gap: 3px;
+}
+
+.discuss-n {
+  font-variant-numeric: tabular-nums;
+  font-weight: 700;
+}
+
+.discuss-on-bar {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  min-width: 36px;
+  justify-content: center;
+}
+
+.side-tab-wrap {
+  position: relative;
+  display: inline-flex;
+}
+
+.side-tab-dot {
+  position: absolute;
+  top: 8px;
+  right: 2px;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--love);
+  border: 1px solid var(--paper);
+}
+
+/* ---------- 討論彈窗（DiscussionPanel，T33）：網頁浮在地圖上，手機大彈窗 ---------- */
+
+.dp {
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  min-width: 0;
+  background: var(--paper);
+  color: var(--ink);
+}
+
+.dp-desktop {
+  position: absolute;
+  inset: calc(var(--panel-gap-y) + 8px) var(--panel-gap-x) var(--panel-gap-y) var(--panel-gap-x);
+  z-index: 15;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  box-shadow: 0 8px 28px var(--shade-2);
+  overflow: hidden;
+}
+
+/* 手機：上面露出一條，點了關掉。.m-app 已經照 --kb 變矮，所以鍵盤升起時整個彈窗跟著縮 */
+.dp-backdrop {
+  position: absolute;
+  inset: 0;
+  z-index: 42;
+  display: flex;
+  flex-direction: column;
+  background: var(--dim);
+}
+
+.dp-peek {
+  flex: 0 0 7%;
+  border: 0;
+  background: none;
+  cursor: pointer;
+}
+
+.dp-mobile {
+  flex: 1;
+  border-radius: 20px 20px 0 0;
+}
+
+.dp-grab {
+  flex: none;
+  display: flex;
+  justify-content: center;
+  padding: 8px 0 2px;
+  touch-action: none;
+  cursor: grab;
+}
+
+.dp-grab span {
+  width: 36px;
+  height: 4px;
+  border-radius: 999px;
+  background: var(--ink-3);
+}
+
+:root[data-keyboard] .dp-peek,
+:root[data-keyboard] .dp-grab,
+:root[data-keyboard] .dp-chips {
+  display: none;
+}
+
+:root[data-keyboard] .dp-mobile {
+  border-radius: 0;
+}
+
+.dp-head {
+  flex: none;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 4px 8px 4px 14px;
+}
+
+.dp-head h2 {
+  margin: 0;
+  font-family: var(--font-round);
+  font-size: 1.125rem;
+  font-weight: 900;
+}
+
+.dp-x {
+  width: var(--tap);
+  height: var(--tap);
+  flex: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 0;
+  border-radius: 50%;
+  background: var(--wash);
+  color: var(--ink);
+  cursor: pointer;
+}
+
+.dp-chips {
+  flex: none;
+  display: flex;
+  gap: 5px;
+  padding: 2px 14px 10px;
+  border-bottom: 1px solid var(--line);
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+.dp-chips::-webkit-scrollbar {
+  display: none;
+}
+
+.dp-desktop .dp-chips {
+  flex-wrap: wrap;
+  overflow: visible;
+}
+
+.dp-chip {
+  position: relative;
+  flex: none;
+  min-height: 36px;
+  padding: 0 11px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: var(--paper);
+  color: var(--ink);
+  font: inherit;
+  font-size: 0.875rem;
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+.dp-chip.red-day {
+  color: var(--red-day);
+}
+
+.dp-chip[aria-pressed='true'] {
+  border-color: var(--mustard);
+  background: var(--mustard);
+  color: var(--ink);
+  font-weight: 700;
+}
+
+.dp-chip .dp-new {
+  position: absolute;
+  top: 1px;
+  right: 1px;
+}
+
+.dp-new {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  flex: none;
+  border-radius: 50%;
+  background: var(--love);
+}
+
+.dp-list {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+}
+
+.dp-thread {
+  min-width: 0;
+  border-bottom: 1px solid var(--line);
+  border-left: 4px solid var(--ink-3);
+}
+
+.dp-thread.t-spot {
+  border-left-color: var(--t-spot);
+}
+
+.dp-thread.t-restaurant {
+  border-left-color: var(--t-food);
+}
+
+.dp-thread.t-lodging {
+  border-left-color: var(--t-stay);
+}
+
+.dp-thread.t-trip,
+.dp-thread.t-day {
+  border-left-color: var(--mustard);
+  background: var(--mustard-wash);
+}
+
+.dp-thread-head {
+  display: grid;
+  gap: 2px;
+  width: 100%;
+  min-height: var(--tap);
+  padding: 8px 12px;
+  border: 0;
+  background: none;
+  color: inherit;
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+
+.dp-thread-top {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 2px 6px;
+  min-width: 0;
+}
+
+.dp-thread-name {
+  min-width: 0;
+  font-weight: 700;
+}
+
+.dp-tag {
+  padding: 0 6px;
+  border-radius: 999px;
+  background: var(--wash);
+  color: var(--ink-2);
+  font-size: 0.75rem;
+  line-height: 1.5;
+  white-space: nowrap;
+}
+
+.dp-tag.top {
+  background: var(--mustard);
+  color: var(--ink);
+  font-weight: 700;
+}
+
+.dp-tag.off {
+  background: var(--warn-bg);
+  color: var(--bad);
+}
+
+.dp-num {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  margin-left: auto;
+  color: var(--ink-2);
+  font-size: 0.8125rem;
+  white-space: nowrap;
+}
+
+.dp-latest {
+  overflow: hidden;
+  color: var(--ink-2);
+  font-size: 0.8125rem;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.dp-thread-body {
+  display: grid;
+  gap: 8px;
+  padding: 0 12px 10px;
+}
+
+.dp-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 12px;
+  margin: 0;
+}
+
+.dp-others {
+  margin: 0;
+  padding: 10px 14px 4px;
+  color: var(--ink-2);
+  font-size: 0.75rem;
+  font-weight: 700;
+}
+
+.dp-empty {
+  padding: 16px 14px;
+}
+
+.dp-composer {
+  flex: none;
+  display: grid;
+  gap: 3px;
+  padding: 6px 12px 10px;
+  border-top: 1px solid var(--line);
+  background: var(--paper);
+}
+
+.dp-to {
+  color: var(--ink-2);
+  font-size: 0.75rem;
+}
+
+.dp-to b {
+  color: var(--indigo);
+}
+
+.dp-input {
+  display: flex;
+  gap: 6px;
+  min-width: 0;
+}
+
+.dp-input input {
+  flex: 1;
+  min-width: 0;
+  min-height: var(--tap);
+  padding: 0 12px;
+  border: 1px solid var(--ink-3);
+  border-radius: 14px;
+  background: var(--paper);
+  font: inherit;
+}
+
+.dp-send {
+  flex: none;
+  min-height: var(--tap);
+  padding: 0 14px;
+  border: 0;
+  border-radius: 14px;
+  background: var(--indigo);
+  color: var(--paper);
+  font: inherit;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.dp-send:disabled {
+  opacity: 0.4;
+  cursor: default;
 }

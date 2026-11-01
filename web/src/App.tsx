@@ -11,8 +11,10 @@ import { dropAiProps } from './components/askAi.ts';
 import { DetailFloat, SidePanel } from './components/SidePanel.tsx';
 import { MapDays } from './components/MapDays.tsx';
 import { MapPanel } from './components/MapPanel.tsx';
+import { AddPlaceDialog } from './shared/ui/AddPlaceDialog.tsx';
 import { TimetablePopup } from './components/TimetablePopup.tsx';
-import { closeMapPanel, uiStore } from './uiStore.ts';
+import { closeDiscussion, closeMapPanel, uiStore } from './uiStore.ts';
+import { DiscussionPanel } from './shared/ui/DiscussionPanel.tsx';
 import { Dialogs, Toast } from './components/Dialogs.tsx';
 import { usePlanningIdle } from './components/Planning.tsx';
 import { MobileApp } from './mobile/MobileApp.tsx';
@@ -37,7 +39,9 @@ function DesktopLayout() {
         <MapDays />
         <DetailFloat />
         <MapPanel />
+        <DiscussionPanel surface="desktop" />
         <TimetablePopup />
+        <AddPlaceDialog surface="desktop" />
       </main>
       <aside className="side-column">
         <SidePanel />
@@ -84,7 +88,8 @@ export default function App() {
       if (e.key !== 'Escape' || e.isComposing || isEditable(e.target)) return;
       const s = appStore.getState();
       const ui = uiStore.getState();
-      if (ui.mapPanel && !ui.dialog) closeMapPanel();
+      if (ui.discussion && !ui.dialog) closeDiscussion();
+      else if (ui.mapPanel && !ui.dialog) closeMapPanel();
       else if (s.detailId) s.closeDetail();
       else s.openPreview(null);
     };

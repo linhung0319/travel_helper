@@ -57,6 +57,8 @@ export interface SharedState {
   edits: PlaceEdit[];
   /** 自己加的點（含已刪除的） */
   userPlaces: UserPlace[];
+  /** 上一步（T33）：這次編輯裡改過的，最新的在最後；開始、結束編輯時清空 */
+  undoStack: UndoEntry[];
   /** 存檔中（畫面顯示「儲存中…」） */
   saving: boolean;
   /** 別人改過了（存檔回 409）：重新載入後才能再改（architecture §3.6） */
@@ -64,6 +66,14 @@ export interface SharedState {
   /** 存檔、錯誤的提示，畫面顯示幾秒 */
   toast: Toast | null;
   lastSync: SyncState | null;
+}
+
+/** 上一步的一筆：退回 before；after 是動作自己要補做的事（例如把候選加回去） */
+export interface UndoEntry {
+  before: Itinerary;
+  next: Itinerary;
+  reason: string;
+  after?: () => Promise<unknown>;
 }
 
 const initial: SharedState = {
@@ -79,6 +89,7 @@ const initial: SharedState = {
   reservations: [],
   edits: [],
   userPlaces: [],
+  undoStack: [],
   saving: false,
   conflict: null,
   toast: null,
@@ -189,12 +200,13 @@ export function createShared(getBackend: () => Backend, data: StoreApi<DataState
    * 改行程：先在畫面上改（樂觀更新），再存檔；存不了就退回。
    * fn 用 engine 的操作（ops.ts），丟 ItineraryError 時不存。後端存檔前會自動存快照。
    * settle：存好之後、跳提示之前要做完的事（例如拿掉排進去的候選）；做完才出現「復原」，馬上按復原也不會和它搶。
-   * 復原只在行程還是這次改完的樣子時才做；之後又被改過（自己或同步進來別人的）就不復原，免得蓋掉。
+   * 每個修改都記進 undoStack（上一步）。復原只在行程還是這次改完的樣子時才做；之後又被改過（自己或同步進來別人的）就不復原，免得蓋掉。
+   * track＝false：復原本身，不再算一步。
    */
   async function changeItinerary(
     fn: (it: Itinerary) => Itinerary,
     reason: string,
-    opts: { undo?: { text: string; after?: () => Promise<unknown> }; settle?: () => Promise<unknown> } = {},
+    opts: { undo?: { text: string; after?: () => Promise<unknown> }; settle?: () => Promise<unknown>; track?: boolean } = {},
   ): Promise<Result<Itinerary>> {
     const s = store.getState();
     if (s.conflict) return fail(new Error('別人改過了，請先重新載入'));
@@ -219,24 +231,10 @@ export function createShared(getBackend: () => Backend, data: StoreApi<DataState
         fail(e);
       }
       const undo = opts.undo;
-      if (undo) {
-        toast('ok', undo.text, {
-          label: '復原',
-          run: async () => {
-            if (data.getState().itinerary !== next) {
-              fail(new Error('行程已經被改過，不能復原'));
-              return;
-            }
-            const r = await changeItinerary(() => before, `復原：${reason}`);
-            if (!r.ok) return;
-            try {
-              await undo.after?.();
-            } catch (e) {
-              fail(e);
-            }
-          },
-        });
-      } else toast('ok', `已儲存：${reason}`);
+      const entry: UndoEntry = { before, next, reason, ...(undo?.after ? { after: undo.after } : {}) };
+      if (opts.track !== false) set({ undoStack: [...store.getState().undoStack, entry] });
+      if (undo) toast('ok', undo.text, { label: '復原', run: () => undoEntry(entry) });
+      else toast('ok', `已儲存：${reason}`);
       void loadSnapshots();
       return { ok: true, value: next } as Result<Itinerary>;
     } catch (e) {
@@ -250,8 +248,35 @@ export function createShared(getBackend: () => Backend, data: StoreApi<DataState
     }
   }
 
+  /** 退回這一步：提示裡的「復原」、編輯條的上一步都走這裡 */
+  async function undoEntry(entry: UndoEntry): Promise<void> {
+    if (data.getState().itinerary !== entry.next) {
+      set({ undoStack: [] });
+      fail(new Error('行程已經被改過，不能復原'));
+      return;
+    }
+    const r = await changeItinerary(() => entry.before, `復原：${entry.reason}`, { track: false });
+    if (!r.ok) return;
+    set({ undoStack: store.getState().undoStack.filter((x) => x !== entry) });
+    try {
+      await entry.after?.();
+    } catch (e) {
+      fail(e);
+    }
+  }
+
+  /** 編輯條的上一步 */
+  async function undoLast(): Promise<void> {
+    const top = store.getState().undoStack.at(-1);
+    if (top) await undoEntry(top);
+  }
+
+  /** 開始、結束編輯時清空（appShared 接上） */
+  const clearUndo = () => set({ undoStack: [] });
+
   async function reloadItinerary(): Promise<void> {
     await Promise.all([loadItinerary(), loadSnapshots()]);
+    clearUndo();
     toast('ok', '已重新載入最新的行程');
   }
 
@@ -263,7 +288,8 @@ export function createShared(getBackend: () => Backend, data: StoreApi<DataState
       const doc = await getBackend().restoreSnapshot(id, s.version);
       setItinerary(doc.data, data);
       set({ version: doc.version, updatedBy: doc.updatedBy, updatedAt: doc.updatedAt, saving: false });
-      toast('ok', `已復原到快照 #${id}`);
+      clearUndo();
+      toast('ok', `已復原到第 ${doc.version - 1} 版之前`);
       await loadSnapshots();
       return { ok: true };
     } catch (e) {
@@ -536,6 +562,8 @@ export function createShared(getBackend: () => Backend, data: StoreApi<DataState
     loadItinerary,
     reloadItinerary,
     changeItinerary,
+    undoLast,
+    clearUndo,
     restoreSnapshot,
     vote,
     comment,

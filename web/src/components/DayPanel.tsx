@@ -1,6 +1,6 @@
 // 「行程」分頁（interaction-design §3、§6），兩層，像探索的清單和詳情：
-// 選「整趟」是整趟的總覽（每天排了什麼、幾個候選、警告）；選了某一天，編輯中最上面是藍條（說明、快照、完成），接著一列「← 整趟、日期 ‹ ›、問 AI、編輯」，
-// 下面是摘要列（⚠ 點了展開提醒）、比例橫條（時間條）、時間軸（資料卡是類型的淡底色，起點、終點的住宿也是卡片）、這天的候選（想去「加到某天」的點）。討論、預約、下載在右欄右上的頭像選單（MeMenu.tsx 的 AccountMenu）。
+// 選「整趟」是整趟的總覽（每天排了什麼、幾個候選、警告）；選了某一天，最上面一列「日期、問 AI、討論、編輯」，編輯中換成墨色編輯條（日期、問 AI、討論、上一步、完成，T33），
+// 下面是摘要列（⚠ 點了展開提醒）、比例橫條（時間條）、時間軸（資料卡是類型的淡底色，起點、終點的住宿也是卡片）、這天的候選（想去「加到某天」的點）。預約、下載在右欄右上的頭像選單（MeMenu.tsx 的 AccountMenu）。
 
 import { useMemo, useRef, useState } from 'react';
 import { TimelineSkeleton } from '../shared/ui/Skeleton.tsx';
@@ -20,6 +20,7 @@ import { MemberName, stamp } from './common.tsx';
 import { askDay, askTrip } from './webAi.ts';
 import { showList } from './SidePanel.tsx';
 import { Icon } from './Icon.tsx';
+import { DiscussButton } from '../shared/ui/DiscussButton.tsx';
 
 const DATES = tripDates();
 
@@ -44,6 +45,7 @@ function Overview() {
         <button type="button" className="text-button ask-ai-quiet" onClick={askTrip} data-testid="trip-ask-ai">
           <Icon name="spark" size={20} /> 問 AI
         </button>
+        <DiscussButton variant="quiet" />
         <span className="muted small">
           第 {version} 版・<MemberName id={updatedBy} /> {stamp(updatedAt)} 改的
         </span>
@@ -104,7 +106,7 @@ function goWish() {
   showList('wish');
 }
 
-/** 某一天最上面一列（§6.1）：圓體的大日期，旁邊「週五 · 第 4 天 · 鳥羽」；右邊「問 AI」和主要按鈕「編輯」。換天用上面的日期列 */
+/** 某一天最上面一列（§6.1、T33）：圓體的大日期，旁邊「週五 · 鳥羽」；右邊「問 AI」、討論和主要按鈕「編輯」。換天用地圖上的日期晶片 */
 function DayHead({ day }: { day: string }) {
   const itinerary = useData((s) => s.itinerary);
   const byId = useData((s) => s.byId);
@@ -117,10 +119,6 @@ function DayHead({ day }: { day: string }) {
           {title.date}
         </span>
         <span className="day-title-sub" data-testid="day-title-sub">
-          {title.sub}
-        </span>
-        {/* 右欄窄時換成短的（沒有「第 N 天」），日期和按鈕才排得進一排 */}
-        <span className="day-title-short" data-testid="day-title-short">
           {title.short}
         </span>
       </h3>
@@ -128,6 +126,7 @@ function DayHead({ day }: { day: string }) {
         <button type="button" className="text-button ask-ai-quiet" onClick={() => askDay(day)} data-testid="day-ask-ai">
           <Icon name="spark" size={20} /> 問 AI
         </button>
+        <DiscussButton variant="quiet" />
         <PlanningToggle />
       </span>
     </div>
@@ -149,9 +148,16 @@ export function DayPanel() {
   if (day === 'all') return <Overview />;
   return (
     <div className={`day-panel ${planning ? 'editing' : ''}`} data-testid="day-panel" ref={panelRef}>
-      <PlanningBar title={`編輯 ${dayLabel(day)}`} />
-      {/* 看提議的差異時不畫：按「編輯」提議的卡會不見，要編輯先按提議列的「看原本」 */}
-      {!shown && <DayHead day={day} />}
+      <PlanningBar
+        title={`編輯 ${dayLabel(day)}`}
+        extra={
+          <button type="button" className="text-button" onClick={() => askDay(day)} data-testid="day-ask-ai">
+            <Icon name="spark" size={20} /> 問 AI
+          </button>
+        }
+      />
+      {/* 編輯中已經有編輯條；看提議的差異時不畫：按「編輯」提議的卡會不見，要編輯先按提議列的「看原本」 */}
+      {!shown && !planning && <DayHead day={day} />}
       {plan && (
         <div className="day-head">
           <DaySummaryLine plan={plan} warnOpen={warnOpen} reminders={dayWarnings.length} onWarn={() => setWarnOpen((o) => !o)} />

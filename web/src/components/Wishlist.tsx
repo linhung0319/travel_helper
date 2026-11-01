@@ -3,7 +3,7 @@
 // 加到某天的點變成那天的「候選」，放在行程分頁時間軸的下面，樣子和資料卡一樣（類型淡底色、類型色塊），
 // 用虛線框、沒有編號表示還沒排進去，下面一行「加的人」。編輯中左邊 ⠿、右邊「↑ 排進」（插在最順路的位置）和「⋯」選單（設計 §2.3），
 // 或拖到時間軸（滑鼠整列、手指按 ⠿；停在同類型卡片中間 0.6 秒＝合併成那張卡片的備卡、卡片之間＝排在那裡；planDrag.ts）。備卡也可以拖回候選區。
-// 這天、整趟的留言（Comments）放在地圖區的視窗（MapPanel）。有人 ❤️ 的點、留言數的 hook 在 shared/placeLists.ts（手機版也用）。
+// 這天、整趟的留言在討論彈窗（shared/ui/DiscussionPanel）。有人 ❤️ 的點、留言數的 hook 在 shared/placeLists.ts（手機版也用）。
 
 import { useState } from 'react';
 import { appStore } from '../store.ts';
@@ -25,14 +25,61 @@ import { ActionMenu } from './ActionMenu.tsx';
 
 const KIND_TAGS: Record<Comment['kind'], string | null> = { normal: null, planner: '規劃', decline: '不採用' };
 
+/** 一則留言：頭像、名字、內容；自己的可以改、可以刪。編輯中留的標〔規劃〕。詳情的留言分頁、討論彈窗共用 */
+export function CommentRow({ c }: { c: Comment }) {
+  const me = useShared((s) => s.me?.id);
+  const [editing, setEditing] = useState<string | null>(null);
+  return (
+    <div className={`wish-comment kind-${c.kind}`} data-testid="wish-comment">
+      <Avatar id={c.author} />
+      <div className="wish-comment-body">
+        <span className="small">
+          <strong>
+            <MemberName id={c.author} />
+          </strong>
+          {KIND_TAGS[c.kind] && <span className={`tag tag-${c.kind}`}>〔{KIND_TAGS[c.kind]}〕</span>}
+          <span className="muted"> {stamp(c.updatedAt)}</span>
+        </span>
+        {editing !== null ? (
+          <span className="wish-comment-edit">
+            <input value={editing} onChange={(e) => setEditing(e.target.value)} aria-label="改留言" />
+            <button
+              type="button"
+              className="text-button small"
+              onClick={async () => {
+                if ((await shared.editComment(c.id, editing.trim())).ok) setEditing(null);
+              }}
+            >
+              存
+            </button>
+            <button type="button" className="text-button small" onClick={() => setEditing(null)}>
+              取消
+            </button>
+          </span>
+        ) : (
+          <span className="wish-comment-text">{c.text}</span>
+        )}
+        {c.author === me && editing === null && (
+          <span className="wish-comment-actions">
+            <button type="button" className="text-button small" onClick={() => setEditing(c.text)}>
+              改
+            </button>
+            <button type="button" className="text-button small" onClick={() => void shared.deleteComment(c.id)}>
+              刪
+            </button>
+          </span>
+        )}
+      </div>
+    </div>
+  );
+}
+
 /** 留言：預設收起來（open＝true 時一開始就展開；bare＝詳情的留言分頁，沒有收合鈕、一直展開，沒有留言時寫一句說明）；只有一層；自己的可以改、可以刪。編輯中留的標〔規劃〕 */
 export function Comments({ target, label = '留言', placeholder = '留言…', open: openAtStart = false, bare = false }: { target: string; label?: string; placeholder?: string; open?: boolean; bare?: boolean }) {
   const list = useComments(target);
   const [openState, setOpen] = useState(openAtStart);
   const open = bare || openState;
   const [text, setText] = useState('');
-  const [editing, setEditing] = useState<{ id: number; text: string } | null>(null);
-  const me = useShared((s) => s.me?.id);
   const planning = useApp((s) => s.planning);
   const send = async () => {
     if (!text.trim()) return;
@@ -56,47 +103,7 @@ export function Comments({ target, label = '留言', placeholder = '留言…', 
             </p>
           )}
           {list.map((c) => (
-            <div key={c.id} className={`wish-comment kind-${c.kind}`} data-testid="wish-comment">
-              <Avatar id={c.author} />
-              <div className="wish-comment-body">
-                <span className="small">
-                  <strong>
-                    <MemberName id={c.author} />
-                  </strong>
-                  {KIND_TAGS[c.kind] && <span className={`tag tag-${c.kind}`}>〔{KIND_TAGS[c.kind]}〕</span>}
-                  <span className="muted"> {stamp(c.updatedAt)}</span>
-                </span>
-                {editing?.id === c.id ? (
-                  <span className="wish-comment-edit">
-                    <input value={editing.text} onChange={(e) => setEditing({ id: c.id, text: e.target.value })} aria-label="改留言" />
-                    <button
-                      type="button"
-                      className="text-button small"
-                      onClick={async () => {
-                        if ((await shared.editComment(c.id, editing.text.trim())).ok) setEditing(null);
-                      }}
-                    >
-                      存
-                    </button>
-                    <button type="button" className="text-button small" onClick={() => setEditing(null)}>
-                      取消
-                    </button>
-                  </span>
-                ) : (
-                  <span className="wish-comment-text">{c.text}</span>
-                )}
-                {c.author === me && editing?.id !== c.id && (
-                  <span className="wish-comment-actions">
-                    <button type="button" className="text-button small" onClick={() => setEditing({ id: c.id, text: c.text })}>
-                      改
-                    </button>
-                    <button type="button" className="text-button small" onClick={() => void shared.deleteComment(c.id)}>
-                      刪
-                    </button>
-                  </span>
-                )}
-              </div>
-            </div>
+            <CommentRow key={c.id} c={c} />
           ))}
           <form
             className="wish-comment-new"
