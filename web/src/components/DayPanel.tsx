@@ -3,6 +3,7 @@
 // 下面是摘要列（⚠ 點了展開提醒）、比例橫條（時間條）、時間軸（資料卡是類型的淡底色，起點、終點的住宿也是卡片）、這天的候選（想去「加到某天」的點）。討論、預約、下載在右欄右上的頭像選單（MeMenu.tsx 的 AccountMenu）。
 
 import { useMemo, useRef, useState } from 'react';
+import { TimelineSkeleton } from '../shared/ui/Skeleton.tsx';
 import { commands } from '../appCommands.ts';
 import { useApp, useData, usePlan, useShared, useUi } from '../hooks.ts';
 import { dayPlanOf } from '../planStore.ts';
@@ -167,7 +168,7 @@ export function DayPanel() {
       )}
       {plan && <DayBar plan={plan} selected={selectedKey} />}
       {!itDay && <p className="muted">行程裡沒有這一天。</p>}
-      {itDay && planStatus === 'loading' && <p className="muted">計算時間軸中…</p>}
+      {itDay && planStatus === 'loading' && <TimelineSkeleton />}
       {planStatus === 'error' && <p className="warn">時間軸算不出來：{planError}</p>}
       {!shown && <EditHint />}
       {itDay && plan && <Timeline tl={{ ...tl, itDay, plan }} diff={shown?.diff ?? null} originalPlan={shown?.originalPlan ?? null} />}

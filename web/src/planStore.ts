@@ -111,15 +111,23 @@ export function startPlanner(data: StoreApi<DataState>, source: DataSource, road
       store.setState({ status: 'error', error: e instanceof Error ? e.message : String(e) });
     }
   };
-  source
-    .loadEngineTimetables()
-    .then((tt) => {
-      timetables = tt;
-      compute();
-    })
-    .catch((e) => store.setState({ status: 'error', error: e instanceof Error ? e.message : String(e) }));
+  // 資料好了才讀時刻表：畫面先出來，時間軸的位置先放骨架（T32）
+  let requested = false;
+  const loadTimetables = () => {
+    if (requested) return;
+    requested = true;
+    source
+      .loadEngineTimetables()
+      .then((tt) => {
+        timetables = tt;
+        compute();
+      })
+      .catch((e) => store.setState({ status: 'error', error: e instanceof Error ? e.message : String(e) }));
+  };
   let prev = data.getState();
+  if (prev.status === 'ready') loadTimetables();
   return data.subscribe((s) => {
+    if (s.status === 'ready') loadTimetables();
     if (s.itinerary !== prev.itinerary || s.places !== prev.places || s.status !== prev.status) compute();
     prev = s;
   });

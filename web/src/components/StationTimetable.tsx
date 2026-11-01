@@ -9,6 +9,7 @@ import { busDayType, type UrbanRoute } from '@travel-helper/engine';
 import { stopsOn } from '../lib/itinerary.ts';
 import type { Place, StationTimetable } from '../data/types.ts';
 import { DayGrid12 } from '../shared/ui/DayGrid12.tsx';
+import { TimetableSkeleton } from '../shared/ui/Skeleton.tsx';
 
 export const DEFAULT_STATION_TIME = '09:00';
 
@@ -76,7 +77,7 @@ export function StationTimetablePanel({ place }: { place: Place }) {
         </label>
         <span className="muted small">{dayType === 'holiday' ? '土休日' : '平日'}班次</span>
       </div>
-      {tt === 'loading' && <p className="muted">載入中…</p>}
+      {tt === 'loading' && <TimetableSkeleton />}
       {urbanLines.length > 0 && (
         <ul className="urban-lines" data-testid="urban-lines">
           {urbanLines.map((l) => (

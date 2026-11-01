@@ -1129,6 +1129,11 @@
   object-fit: cover;
 }
 
+/* 還沒載到：先佔一個常見的比例，載好才照原圖比例（T32） */
+.pt-photo .photo-loading {
+  aspect-ratio: 4 / 3;
+}
+
 .pt-photo .photo-fallback {
   height: 140px;
   display: grid;
@@ -3016,4 +3021,47 @@ button.ll-main {
 /* 主地圖上拖得動的圖釘 */
 .map-add-pin {
   cursor: grab;
+}
+
+/* 骨架畫面（T32，Skeleton.tsx）；照片的佔位在 styles.css 的 .photo-loading，用同一個動畫 */
+.sk {
+  display: block;
+  border-radius: 999px;
+  background: var(--wash);
+  animation: sk-pulse 1.4s ease-in-out infinite;
+}
+
+.sk-list {
+  display: grid;
+  gap: 12px;
+  padding: 8px 0;
+}
+
+.sk-card {
+  display: grid;
+  grid-template-columns: 56px 1fr;
+  gap: 12px;
+  align-items: center;
+}
+
+.sk-thumb {
+  height: 56px;
+  border-radius: 14px;
+}
+
+.sk-lines {
+  display: grid;
+  gap: 8px;
+}
+
+.sk-line {
+  height: 12px;
+}
+
+.sk-line.short {
+  width: 60%;
+}
+
+.ex-next {
+  height: 1px;
 }

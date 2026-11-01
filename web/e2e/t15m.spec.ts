@@ -2393,7 +2393,8 @@ test('第九輪：展開的卡只放介紹、多一顆「加到某天」；展�
   await tile.click();
   await expect(tile.getByTestId('place-open')).toBeVisible();
   const p = await placement(tile);
-  expect(p.gap).toBe(8);
+  // 卡片高度照照片比例，有小數，差 1px 是四捨五入
+  expect(Math.abs(p.gap - 8)).toBeLessThanOrEqual(1);
 });
 
 test('第八輪：探索的卡點了原地展開（照片牆橫跨兩欄、清單在原地），選中那個點；按「詳細資料」才開詳情；再點收起', async ({ page }) => {

@@ -131,7 +131,8 @@ test('照片打不開時顯示替代圖', async ({ page }) => {
   await page.evaluate((id) => (window as any).__th.appStore.getState().openDetail(id), id);
   const detail = page.getByTestId('detail-panel');
   await expect(detail.getByTestId('photo-fallback').first()).toBeVisible();
-  await expect(detail.locator('img.photo')).toHaveCount(0);
+  // 輪播後面還沒輪到的照片還沒開始載（T32，沒有 src），開始載的都失敗了
+  await expect(detail.locator('img.photo[src]')).toHaveCount(0);
 });
 
 test('區域來自 areas.json：篩選的區域選項和 areas.json 一樣', async ({ page }) => {

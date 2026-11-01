@@ -17,6 +17,7 @@ import { Dialogs, Toast } from './components/Dialogs.tsx';
 import { usePlanningIdle } from './components/Planning.tsx';
 import { MobileApp } from './mobile/MobileApp.tsx';
 import { toDesktop, toMobile } from './layoutSwitch.ts';
+import { removeBootSkeleton } from './lib/bootSkeleton.ts';
 import './styles.css';
 
 /**
@@ -99,7 +100,12 @@ export default function App() {
     if (status === 'ready') void startAi();
   }, [status]);
 
-  if (status === 'loading') return <div className="splash">載入中…</div>;
+  // 載入中是 index.html 的開機骨架（#boot）；有結果了才拿掉，版面不會閃
+  useLayoutEffect(() => {
+    if (status !== 'loading') removeBootSkeleton();
+  }, [status]);
+
+  if (status === 'loading') return null;
   if (status === 'error') return <div className="splash">資料載入失敗：{error}</div>;
   // 只在最外層分一次（第六輪 §4）：手機版是 mobile/ 底下自己的一套，對話框、提示也由它畫
   if (!desktop) return <MobileApp />;

@@ -182,6 +182,23 @@ T15m 先用假後端把畫面做出來，T15 只換後端的實作，畫面的�
 - **地圖的點**（`MapView.tsx`、`mapIcons.ts`）：照片標記拿掉，改成 Google Maps 那種類別圖標（canvas 畫的 `icon-<type>`），`ICON_ZOOM`（12）以下是小點。選了某一天，那天的點換成編號圓（`places-mark`），編號由 `lib/planView.ts` 的 `stopMarks` 照時間軸算（住宿「宿」、機場「機」、其他 1、2、3…；分組先編各組再編會合點），時間軸用同一份；那天的路線加方向箭頭（`itinerary-arrow`，分組時每組各一條）。選中的點（`detailId`，或探索分頁的 `exploreTarget`）畫成水滴圖釘（`pin-<type>`、`places-pin` 圖層），原本的圖標藏起來；只有小卡片時才用圓框（`places-focus`）。點的時候查 `places-circle`、`places-icon`、`places-mark`、`places-pin` 四層。探索分頁時不因為「不在那天」變淡。
 - **`data-day` 只給天數分頁用**（e2e 靠它找分頁）；其他選日子的按鈕用 `data-pick-day`、`data-overview-day`。
 
+### 載入和效率（T32，2026-11-01）
+
+- **打包**（`web/vite.config.ts` 的 `codeSplitting`）：`maplibre`、`react`、`places`（資料點）、`timetables`（引擎用的時刻表）各一個 chunk，改程式再部署時它們不用重新下載。資料點、時刻表是動態載入，不在首屏的 JS 裡。`?check`（`src/v0/`）只有 dev server 有。
+- **骨架**：`web/index.html` 的 `#boot` 是開機骨架（行內 CSS，JS 還沒到就畫得出來），`App` 有結果才拿掉（`lib/bootSkeleton.ts`）；`main.tsx` 的 `Boundary` 接住畫面錯誤和 JS 檔載不到（部署新版後舊頁面要的檔案不在了）。時間軸、時刻表的佔位在 `shared/ui/Skeleton.tsx`。時刻表等資料好了才讀（`planStore.startPlanner`）。
+- **照片**（`lib/photos.ts`、`components/Photo.tsx`）：還是只用網址（CONVENTIONS §4「照片」），各畫面用 `width` 指定大小，有小尺寸網址的來源照它換，打不開退回原圖：
+
+  | 畫面 | `width` | Google | 楽天主照片 |
+  |---|---|---|---|
+  | 清單列、行程卡的小圖 | 200 左右 | `=w200` | `/HIMG/200/` |
+  | 照片牆、地圖小卡 | 500 | `=w500` | `/HIMG/300/` |
+  | 網頁資料卡展開、詳情 | 1000 | `=w1000` | 原圖 |
+  | 全螢幕看照片 | 1600 | `=w1600` | 原圖 |
+
+  其他來源（官網等，代表照片 263 張）沒有小尺寸的網址，用原圖。`HIMG` 不是楽天的正式文件，2026-11-01 實測只有 60、90、200、300 寬；抽 29 張都可用。
+- **照片什麼時候載**：`lib/nearViewport.ts`，離最近的捲動容器 300px 內才開始載（輪播裡就是目前這張和下一張）；不用 `loading="lazy"`，它提早的距離大又不能調。載好之前是 `.photo-loading`；換大圖時底下墊著看過的小圖（`underlayUrl`），楽天原圖沒看過也先墊 `HIMG/300`。
+- **長清單**：`shared/useBatch.ts` 分批畫（網頁、手機探索都是一批 60 張）；網頁探索的 `Item` 是 `memo`，傳進去的函式要穩定；搜尋用 `useDeferredValue`，輸入框先跟上。
+
 ### 自己加地點（T31，2026-10-30）
 
 設計見 `docs/superpowers/specs/2026-10-30-add-place-design.md`。

@@ -36,6 +36,7 @@ import { MobileCard } from './MobileCard.tsx';
 import { MobileLeg, MobileWait } from './MobileLeg.tsx';
 import { askDay } from './mobileAi.ts';
 import { TripOverview } from './TripOverview.tsx';
+import { TimelineSkeleton } from '../shared/ui/Skeleton.tsx';
 
 const SNAPS: TripSnap[] = ['low', 'mid', 'high'];
 /** 放開時手指的速度超過這個（px/ms）就算快速滑 */
@@ -361,7 +362,7 @@ function DayView({ date }: { date: string }) {
       )}
       {plan && <DayBar plan={plan} selected={barSelected} compact />}
       {!itDay && <p className="muted">行程裡沒有這一天。</p>}
-      {itDay && tl.status === 'loading' && <p className="muted">計算時間軸中…</p>}
+      {itDay && tl.status === 'loading' && <TimelineSkeleton />}
       {tl.status === 'error' && <p className="warn">時間軸算不出來：{tl.error}</p>}
       {itDay && plan && (
         <TimelineDiffContext.Provider value={shown?.diff ?? null}>

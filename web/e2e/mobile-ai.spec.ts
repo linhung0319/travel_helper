@@ -874,7 +874,9 @@ test('set_filter 接到探索的 feed：看探索就是那些條件；探索、�
   const top = await main.evaluate((el) => el.scrollTop);
   await goTab(page, 'ai');
   await goTab(page, 'explore');
-  await expect.poll(() => main.evaluate((el) => el.scrollTop)).toBe(top);
+  // 上面的照片載好時瀏覽器會微調捲動位置（內容不跳，T32），所以差一點沒關係；重點是沒有回到最上面
+  await expect.poll(() => main.evaluate((el) => el.scrollTop)).toBeGreaterThan(top - 200);
+  expect(await main.evaluate((el) => el.scrollTop)).toBeLessThan(top + 200);
 
   await goTab(page, 'ai');
   await say(page, '只看鳥羽的餐廳');

@@ -55,7 +55,7 @@ export function PreviewCard({ place, anchor, onEnter, onLeave }: Props) {
     >
       <button type="button" className="preview-body" onClick={open} aria-label={anchor ? `在探索裡看 ${name}` : `打開 ${name} 的詳情`}>
         <span className="preview-photo-wrap">
-          <Photo place={place} width={680} className="preview-photo" />
+          <Photo place={place} width={500} className="preview-photo" />
           {place.photos.length > 1 && <span className="preview-count">1 / {place.photos.length}</span>}
         </span>
         <span className="preview-text">

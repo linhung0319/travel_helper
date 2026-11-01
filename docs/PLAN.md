@@ -117,6 +117,7 @@
 | T29c | web：交通卡（收合兩行、一程一行的步驟、錯過的話標籤）、班次表格子（手機也用彈窗）、編輯器（分段按鈕、選走法）、車站面板的班距；車站不當資料卡；engine：買票站留空檔、`ticket-tight` 警告 | M | T29b | 4 | 🌐 少量 | ✅ |
 | T30 | 👤 部署到 Cloudflare：正式的 D1 和 secret、網站和 Worker、正式環境第一次匯入、LINE 改用正式網址、LINE 內建瀏覽器實測 | S | T25、👤 資料和 schema 定案（邀請家人之前） | 4 | 🌐 少量 | ⬜ |
 | T31 | 自己加地點：探索的搜尋框貼 Google Maps 連結、輸入日本地址、或在地圖上指位置；確認畫面（手機整頁、網頁右欄＋主地圖的圖釘）；自己加的點出現在地圖、清單、詳情；不用 Google API | M | T15m、T24 | 4 | 🌐 少量 | ✅ |
+| T32 | 載入和效率：拆 bundle、骨架畫面、網頁探索分批、照片照畫面給尺寸、捲到才載入 | M | T16m-c | 4 | | 🔄 |
 
 ---
 
@@ -710,7 +711,30 @@ T7c → T7d → T7e → T7f → T7g → T8a → T8b → T8c → T8d → T7i → 
 - **👤 檢視**：每個子任務做完，用 `npm run dev` 讓 👤 在瀏覽器切換手機、平板、電腦尺寸檢視；另外用 Playwright 對手機和電腦尺寸各截一組主要畫面的圖，放在 `data/cache/work/t15m/`（不進 git）方便對照。👤 確認的 UI 決定寫回 interaction-design.md。
 - **完成條件**（Playwright，手機和電腦尺寸各跑一次，用假後端）：按 ❤️ → 想去分頁出現、留言 → 換人看得到、改不了別人的留言 → 加到某天 → 這天的候選 → 進入規劃模式按 ↑ 排進 → 時間軸出現、有交通時間 → 改停留時間 → 復原快照後回到原狀；👤 確認 UI 定案。（2026-10-24 建議改成想去分頁和這天的候選，設計見 `docs/superpowers/specs/2026-10-24-wishlist-planning-design.md`；2026-10-25 第四輪拿掉緩衝、換住宿、併到…，改成拖曳合併，設計見 `docs/superpowers/specs/2026-10-25-itinerary-round4-design.md`）
 
+### T32 載入和效率 〔M〕
+- **為什麼在 T15 前做**（2026-11-01 👤 決定）：實測手機開探索要下載 28.5 MB 的照片（楽天原圖最大 8000×4500、5.9 MB，顯示成 181×120）；接上真的 API 會多出延遲，骨架要先備好。
+- 範圍：`web/`。不改 `data/`、`schema/`、`worker/`。做法見 [architecture.md](architecture.md) §2「載入和效率」。
+- **照片不用縮圖服務**（👤 決定）：`wsrv.nl` 第一次載入平均 3.7 秒（實測），捲動時等不了；自己存縮圖違反 CONVENTIONS「只記 URL」。所以只換來源本身的小尺寸網址，其他來源用原圖，靠捲到才載入。
+- **字型照舊，只改成不擋第一次繪製**：實測（手機探索）減字重只從 2144 KB 降到 2087 KB，字會變細卻幾乎沒省，所以不做。下載量主要是探索頁的文字分散在 130 多個 Zen Kaku 分片；要再省只能不載 Noto Sans TC（降到約 1100 KB），但缺字會改用系統字，違反 interaction-design §12.3，要 👤 決定。
+- 完成條件：`npm test`、`npm run typecheck` 通過；既有 e2e 照舊通過；正式 build 沒有 v0、資料點不在首屏的 JS；照舊的量測條件（4 倍 CPU、1.6 Mbps）比較前後的數字。
+- **結果**（2026-11-01，正式 build，沒有後端；手機指 390×844、4 倍 CPU、1.6 Mbps）：
+
+  | 項目 | 之前 | 之後 |
+  |---|---|---|
+  | 手機開探索的照片 | 39 張、28.5 MB | 11 張、2.5 MB |
+  | 手機第一次畫出東西 | 4.1 秒（文字） | 0.3 秒（骨架） |
+  | 手機可以操作 | 13.6 秒 | 約 9.5 秒 |
+  | JS 請求數 | 45 個 | 9 個（總量不變，資料點約 940 KB 要等 T15 分層） |
+  | 網頁探索（4 倍 CPU） | 597 張卡、DOM 1.06 萬、最長卡頓 1.9 秒 | 60 張、DOM 1100、最長卡頓 0.6 秒 |
+  | 字型 | 約 2.1 MB | 不變，但不再擋第一次繪製 |
+
 ### T15 行程與建議：串接 〔S〕
+- **開頭先做 T32 留下來的這幾件**（會決定 API 的形狀，2026-11-01 👤 決定）：
+  - **資料分層**：`GET /api/places` 只回清單層（地圖、清單、篩選、引擎、AI 搜尋要的欄位，試算 gzip 約 425 KB，全部是 936 KB），閒置時再一次讀詳情層（`sources`、`assessment.rationale`、`prices` 等）；詳情還沒到就顯示骨架。`data/` 和 `schema/` 不動，兩層都在匯入時算好存進 D1，Worker 只接字串（CPU 限制）。清單層的欄位要對照程式確認。
+  - **資料來源不打包**：`data/index.ts` 換成 API 時，`local.ts` 要改成只有 dev 才載入，不然 `places` chunk 還是會進 build。
+  - **啟動不要等全部**：現在 `loadShared` 等 11 個 API 都回來才顯示畫面。合併成一支啟動 API，或畫面先出來、共用資料後到。
+  - **靜態檔不要每個都過 Worker**：`run_worker_first` 改成 `["/*", "!/assets/*"]`，`/assets/*` 加長快取（`_headers`）。要先確定資料不在 `/assets/` 裡（上一點），因為那裡之後不用登入就讀得到。
+  - **`extra`、`notes`**：現在畫面和 AI 都讀不到（溫泉、停車、店家介紹）。放進詳情層，詳情顯示、AI 的 `get_place` 也能查。
 - **把 T15m 的假後端換成 T24、T25 的 API**：確定的行程、快照、投票、留言、候選、修改紀錄存在 D1；畫面的程式不改（要改的話，代表 T15m 的介面沒定好，回頭修介面）。
 - **Worker 要跟上 T15m 改的形狀**（2026-10-24，architecture §3.6）：投票拿掉備註；建議（`suggestions` 和它的 API）換成留言（`comments`，對地點或某一天）和候選（`candidates`）；`sync` 改回傳 `votes`、`comments`、`candidates`。規則照 `web/src/backend/mock.ts`。
 - **預約筆記和整趟留言也要接 worker 和 D1**（T15m 第三輪，architecture §2「預約筆記的假後端」）：`Reservation` API 形狀是列出全部（`GET`）加按 `(date, placeId)` 寫入一筆（`PUT`，整筆取代），欄位 `status`（`pending`／`booked`／`skip`）、`note`、`nights`、`updatedBy`、`updatedAt`（後者由 Worker 填）；住宿的 `date` 是入住那晚。D1 多一張 `reservations` 表（主鍵 `(date, place_id)`），`sync` 回傳 `reservations` 時間戳。整趟留言（`target` 為 `'trip'`，`TRIP_TARGET`）走原本的留言 API，Worker 要接受這個 target。規則照 `web/src/backend/mock.ts`。

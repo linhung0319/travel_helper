@@ -20,6 +20,7 @@ import type { LonLat } from '../data/types.ts';
 import { pauseMapHover } from './MapView.tsx';
 import { ModeIcon } from './ModeIcon.tsx';
 import { Icon } from './Icon.tsx';
+import { TimetableSkeleton } from '../shared/ui/Skeleton.tsx';
 
 /** 一程上下車站的座標：車站是資料點；巴士、船的停留所用路線檔裡的座標（用站名對） */
 function stopCoords(ride: TransitRide, id: string): LonLat | null {
@@ -109,7 +110,7 @@ function TimetableBody({ tt, leg, ride }: { tt: TimetableState; leg: Leg; ride: 
           </p>
         </div>
       ) : !data ? (
-        <div className="timetable-body muted small">時刻表載入中…</div>
+        <div className="timetable-body"><TimetableSkeleton /></div>
       ) : cells.length === 0 ? (
         <div className="timetable-body muted small">時刻表裡查不到這一程的班次</div>
       ) : (
