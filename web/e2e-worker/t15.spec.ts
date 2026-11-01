@@ -283,7 +283,8 @@ test('T15：載入：一支啟動 API，引擎一個檔；詳情層閒置時讀�
 
   urls.length = 0;
   await syncNow(a);
-  expect(urls).toEqual(['/api/sync']);
+  // 地圖圖磚、照片不算：只看打了哪些 API
+  expect(urls.filter((u) => u.startsWith('/api/'))).toEqual(['/api/sync']);
 });
 
 test('T15：詳情層還沒到顯示骨架，到了顯示內容（含其他資訊）；讀不到可以重試', async ({ a, desktop }) => {
