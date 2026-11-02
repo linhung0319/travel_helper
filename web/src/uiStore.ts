@@ -12,7 +12,8 @@ export type DialogState =
   | { kind: 'move-candidate'; candidateId: number }
   | { kind: 'reject'; candidateId: number }
   | { kind: 'history'; placeId: string; field?: string }
-  | { kind: 'delete-user-place'; placeId: string };
+  | { kind: 'delete-user-place'; placeId: string }
+  | { kind: 'how-to' };
 
 /** 地圖區的視窗：預約筆記；scope 是這天或整趟（討論是另一個彈窗，DiscussionState） */
 export interface MapPanelState {

@@ -2606,6 +2606,9 @@ button.edited {
 
 .account-popover {
   width: 300px;
+  /* 矮的視窗（開發用的選單特別長）：自己捲，不超出畫面 */
+  max-height: calc(100dvh - 72px);
+  overflow-y: auto;
 }
 
 .account-popover .account-name {
@@ -4066,4 +4069,9 @@ button.cand-up:disabled {
   .layout.desktop .detail-back {
     height: var(--tap);
   }
+}
+
+/* 整趟清單：連續還沒排的天併成一列（§17.1） */
+.overview-empty {
+  color: var(--muted);
 }

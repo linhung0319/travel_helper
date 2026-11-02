@@ -54,9 +54,7 @@ export function ChatPanel() {
         card={(use, version) => <ChatCard use={use} version={version} />}
         empty={
           <p className="ac-empty" data-testid="chat-empty">
-            選下面的問題，或自己打。
-            <br />
-            也可以把卡片拖到這裡。
+            問我行程的事。可以打字，也可以把卡片拖到這裡。
           </p>
         }
         screenLabel={screenLabel}

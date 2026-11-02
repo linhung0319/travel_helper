@@ -1,5 +1,5 @@
 // LINE @ 機器人（T34）：核准的家人群組裡 @ 它，回最新的行程（只有結果：幾點到幾點做什麼、住哪、預約狀態）。只能查，不能改。
-// - 完全符合的指令（整趟、2/5、今天、明天、現在、預約、2/5 預約、網址）直接回，不呼叫 AI。
+// - 完全符合的指令（整趟、2/5、今天、明天、現在、預約、2/5 預約、網址、怎麼用）直接回，不呼叫 AI。
 // - 其他問法交給 Haiku 分類（structured output）；回覆的內容一律由程式照摘要排，AI 只有「其他問題」才自己回一兩句。
 // - 時間軸是瀏覽器算的，這裡讀瀏覽器存的摘要（trip_summary）；預約狀態讀最新的 reservations。
 // - 「現在」一律是日本時間。
@@ -58,10 +58,13 @@ function resolveDate(token: string, today: string, days: string[]): string | nul
   return days.find((x) => Number(x.slice(5, 7)) === mo && Number(x.slice(8, 10)) === d) ?? `${year}-${String(mo).padStart(2, '0')}-${String(d).padStart(2, '0')}`;
 }
 
+/** 「怎麼用」和「說明」「指令」「help」同一個指令；只 @ 不說話也回說明 */
+const isHelp = (normalized: string) => !normalized || ['怎麼用', '怎么用', '說明', '指令', 'help'].includes(normalized.toLowerCase());
+
 /** 完全符合的指令；不是指令回 null（交給 AI） */
 export function parseCommand(text: string, today: string, days: string[]): Intent | null {
   const t = normalize(text);
-  if (!t || t === '說明' || t === '指令' || t.toLowerCase() === 'help') return { type: 'help' };
+  if (isHelp(t)) return { type: 'help' };
   if (t === '整趟') return { type: 'trip' };
   if (t === '網址') return { type: 'url' };
   if (t === '現在' || t === '下一個') return { type: 'now' };
@@ -185,9 +188,29 @@ async function classify(env: Env, db: D1Database, question: string, summary: Tri
  */
 export function externalUrl(base: string | undefined): string {
   if (!base) return '網站的網址還沒設定（PUBLIC_BASE_URL），請聯絡管理員';
+  return `用瀏覽器打開網站：\n${externalLink(base)}`;
+}
+
+function externalLink(base: string): string {
   const u = new URL(base);
   u.searchParams.set('openExternalBrowser', '1');
-  return `用瀏覽器打開網站：\n${u.toString()}`;
+  return u.toString();
+}
+
+/** 「怎麼用」（interaction-design §17.5）：現在是排行程的階段，不舉今天、明天、現在（指令照舊能用） */
+export function helpText(base: string | undefined): string {
+  return [
+    '我們正在一起排 2/2～2/13 的行程，打開網址就能看：',
+    '① 在「探索」喜歡的按 ♡',
+    '② 點日期看每天排了什麼',
+    '③ 有意見按 💬 留言',
+    '',
+    '在這裡也可以問我：',
+    '「整趟」看每天排了哪裡',
+    '「2/5」看那天的時間表',
+    '「預約」看哪些還沒訂（只是筆記，網站不會幫忙訂）',
+    ...(base ? ['', externalLink(base)] : []),
+  ].join('\n');
 }
 
 /** ISO 時間 → 日本時間的 11/2 14:05 */
@@ -222,9 +245,10 @@ async function load(db: D1Database): Promise<Loaded | null> {
 /** 收到一則 @ 機器人的話：回覆的幾則文字 */
 export async function botReply(env: Env, db: D1Database, question: string, nowMs = Date.now()): Promise<string[]> {
   const link = env.PUBLIC_BASE_URL ? `\n網站：${env.PUBLIC_BASE_URL}` : '';
-  const help = `可以問：整趟、2/5、今天、明天、現在、預約、2/5 預約、網址${link}`;
-  // 網址不用讀行程（還沒有摘要時也回得出來）
+  const help = helpText(env.PUBLIC_BASE_URL);
+  // 網址、怎麼用不用讀行程（還沒有摘要時也回得出來）
   if (normalize(question) === '網址') return [externalUrl(env.PUBLIC_BASE_URL)];
+  if (isHelp(normalize(question))) return [help];
   const loaded = await load(db);
   if (!loaded) return [`行程還沒整理好：請有人打開網站看一次行程。${link}`];
   const { summary, stale, footer } = loaded;

@@ -33,6 +33,14 @@ export function MePage() {
       </section>
       <ul className="m-list">
         <li>
+          <button type="button" className="m-row" onClick={() => openDialog({ kind: 'how-to' })} data-testid="m-me-howto">
+            <span className="m-row-icon" aria-hidden>
+              <Icon name="help" size={20} />
+            </span>
+            <span className="m-row-text">怎麼用</span>
+          </button>
+        </li>
+        <li>
           <button type="button" className="m-row" onClick={() => mobileStore.getState().setPage('reservations')} data-testid="m-me-reservations">
             <span className="m-row-icon" aria-hidden>
               <Icon name="clipboard" size={20} />

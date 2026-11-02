@@ -185,6 +185,9 @@ export function AccountMenu() {
       {open && (
         <div className="dev-menu account-popover" role="menu" data-testid="account-popover">
           <p className="account-name">{me.displayName}</p>
+          <button type="button" role="menuitem" onClick={go(() => openDialog({ kind: 'how-to' }))} data-testid="account-howto">
+            <Icon name="help" size={20} /> 怎麼用
+          </button>
           <button type="button" role="menuitem" onClick={go(() => openMapPanel('reservations'))} data-testid="account-reservations">
             <Icon name="clipboard" size={20} /> 預約
             {pending > 0 && <span className="account-n warn">{pending} 未訂</span>}

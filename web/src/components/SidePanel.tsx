@@ -4,7 +4,7 @@
 // 詳情一律是彈窗（第八輪 §13.3）：開在你剛剛看的那一塊旁邊，不蓋住它——從右欄的卡開（appStore.detailAt＝map）蓋在地圖右側、貼著右欄（DetailFloat）；
 // 從地圖上的點開（side）蓋住整個右欄（DetailOverSide），右欄的內容照樣掛著，關掉後捲動位置、展開的卡、編輯中都不變。同時只有一個彈窗。
 
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, type ReactNode } from 'react';
 import { appStore } from '../store.ts';
 import { commands } from '../appCommands.ts';
 import { useApp, useData } from '../hooks.ts';
@@ -16,6 +16,7 @@ import { ProposalStrip } from './ProposalStrip.tsx';
 import { DetailPanel } from './DetailPanel.tsx';
 import { ExplorePanel, showItinerary } from './Explore.tsx';
 import { useLiked } from '../shared/placeLists.ts';
+import { CountBump } from '../shared/ui/CountBump.tsx';
 import { useDiscussionUnread } from '../shared/discussionSeen.ts';
 import { useAddPlace } from '../addPlaceStore.ts';
 
@@ -75,7 +76,7 @@ export function SidePanel() {
   const covered = useApp((s) => !!s.detailId && s.detailAt === 'side');
   const liked = useLiked().size;
   const talk = useDiscussionUnread() > 0 && mode !== 'map';
-  const tab = (icon: IconName, label: string, on: boolean, onClick: () => void, testId: string) => (
+  const tab = (icon: IconName, label: ReactNode, on: boolean, onClick: () => void, testId: string) => (
     <button type="button" role="tab" aria-selected={on} className={`side-tab ${on ? 'on' : ''}`} onClick={onClick} data-testid={testId}>
       <Icon name={icon} size={20} />
       {label}
@@ -85,7 +86,7 @@ export function SidePanel() {
     <div className={`side-panel ${covered ? 'covered' : ''}`}>
       <div className="side-tabs" role="tablist" aria-label="右側">
         {tab('search', '探索', mode === 'explore', () => showList('explore'), 'side-tab-explore')}
-        {tab('heart', `想去${liked ? ` ${liked}` : ''}`, mode === 'wish', () => showList('wish'), 'side-tab-wish')}
+        {tab('heart', <>想去{liked > 0 && <> <CountBump n={liked} /></>}</>, mode === 'wish', () => showList('wish'), 'side-tab-wish')}
         <span className="side-tab-wrap">
           {tab('calendar', '行程', mode === 'map', showItinerary, 'side-tab-day')}
           {talk && <i className="side-tab-dot" data-testid="side-tab-dot-discuss" aria-label="有新留言" />}

@@ -1,7 +1,6 @@
 // 接真的模型的部分（T16）：快速選項的標記、送給模型的歷史、推薦問題、Worker 的事件流、完整內容（含思考）。
 import assert from 'node:assert/strict';
 import test from 'node:test';
-import { startersFor } from '../src/ai/prompts.ts';
 import { splitReplies, streamingView, toApiMessages, turnsOf } from '../src/ai/transcript.ts';
 import { createWorkerModel } from '../src/ai/workerModel.ts';
 import { ModelError, type ChatMessage, type ModelEvent, type ModelRequest } from '../src/ai/types.ts';
@@ -63,12 +62,6 @@ test('送給模型的歷史：思考原樣留著、脈絡接在那輪的話後�
   assert.deepEqual(api[0].content, [{ type: 'text', text: '問' }, { type: 'text', text: '<context>{"screen":{}}</context>' }]);
   assert.deepEqual(api[1].content, [thinking, { type: 'text', text: '答。[[reply:下一步]]' }]);
   assert.equal(api.length, 3);
-});
-
-test('推薦問題：照狀況挑，最多 3 個，不夠用示範句補', () => {
-  assert.deepEqual(startersFor({ day: '2027-02-05', nightsMissing: 3, warnings: 2, wishesUnplaced: 5 }), ['幫我檢查 2/5', '哪幾晚還沒定住宿？', '哪天最趕？']);
-  assert.deepEqual(startersFor({ day: null, nightsMissing: 0, warnings: 0, wishesUnplaced: 2 }), ['把想去的排進行程', '鳥羽能坐 15 人的海鮮餐廳', '長輩走起來輕鬆的景點']);
-  assert.equal(startersFor({ day: null, nightsMissing: 0, warnings: 0, wishesUnplaced: 0 }).length, 2);
 });
 
 test('Worker 的事件流：切在一行中間也接得起來，done 帶完整內容', async () => {
@@ -144,6 +137,7 @@ test('refresh：別的裝置接著聊過，切回來看得到；回覆中不動'
 test('starters：開著的行程算得出推薦問題', async () => {
   const h = await harness();
   const s = h.chat.starters();
-  assert.ok(s.length >= 2 && s.length <= 3);
+  assert.equal(s.length, 3);
+  assert.ok(s.every((x) => x.q && x.why));
   h.close();
 });

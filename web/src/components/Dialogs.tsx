@@ -7,6 +7,7 @@ import { RejectDialog } from './Wishlist.tsx';
 import { AddToDayDialog, MoveCandidateDialog, MoveDialog, PlanningConfirmDialog, SnapshotsDialog } from './Planning.tsx';
 import { HistoryDialog } from './EditHistory.tsx';
 import { DeleteUserPlaceDialog } from './DeleteUserPlaceDialog.tsx';
+import { HowToDialog } from './HowToDialog.tsx';
 import { Icon } from './Icon.tsx';
 
 export function Dialogs() {
@@ -29,6 +30,8 @@ export function Dialogs() {
       return <HistoryDialog placeId={d.placeId} field={d.field} />;
     case 'delete-user-place':
       return <DeleteUserPlaceDialog placeId={d.placeId} />;
+    case 'how-to':
+      return <HowToDialog />;
   }
 }
 
@@ -43,7 +46,7 @@ export function Toast() {
   }, [toast]);
   if (!toast) return null;
   return (
-    <div className={`toast toast-${toast.kind}`} role={toast.kind === 'error' ? 'alert' : 'status'} data-testid="toast" onClick={() => shared.clearToast()}>
+    <div className={`toast toast-${toast.kind} ${toast.hint ? 'toast-hint' : ''}`} role={toast.kind === 'error' ? 'alert' : 'status'} data-testid="toast" onClick={() => shared.clearToast()}>
       {toast.kind === 'error' ? <Icon name="warn" size={16} /> : <Icon name="check" size={16} />}{' '}
       {toast.text}
       {toast.action && (
@@ -59,6 +62,11 @@ export function Toast() {
           }}
         >
           {toast.action.label}
+        </button>
+      )}
+      {toast.hint && (
+        <button type="button" className="toast-close" aria-label="關閉提示" data-testid="toast-close">
+          <Icon name="close" size={16} />
         </button>
       )}
     </div>

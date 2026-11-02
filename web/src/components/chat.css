@@ -836,3 +836,101 @@ body.dragging-plan .chat-column.drop-over .chat-panel {
   font-weight: 500;
   cursor: pointer;
 }
+
+/* ---------- 空白的新對話：訊息區的卡片（interaction-design §17.2） ---------- */
+.ac-blank {
+  margin: auto 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.ac-blank .ac-empty,
+.ac-blank .m-chat-empty {
+  margin: 0;
+}
+
+.ac-cards {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 6px;
+}
+
+.ac-card {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: 8px 10px;
+  border: 1px solid var(--indigo-line);
+  border-radius: 14px;
+  background: var(--paper);
+  color: var(--indigo);
+  font: inherit;
+  font-size: 0.8125rem;
+  text-align: left;
+  cursor: pointer;
+}
+
+.ac-card:hover {
+  background: var(--indigo-wash);
+}
+
+.ac-card b {
+  font-weight: 500;
+}
+
+.ac-card small {
+  color: var(--ink-2);
+  font-size: 0.75rem;
+}
+
+.ac-card.first {
+  grid-column: 1 / -1;
+  border-color: var(--indigo);
+  background: var(--indigo);
+  color: var(--paper);
+}
+
+.ac-card.first b {
+  font-weight: 700;
+}
+
+.ac-card.first small {
+  color: inherit;
+  opacity: 0.85;
+}
+
+.ac-card.first:hover {
+  background: var(--indigo);
+  opacity: 0.92;
+}
+
+/* 半屏、鍵盤開著放不下三張：只放第一張，其他一行小膠囊；那一句話收起來，才不會被切掉 */
+.ac-blank:has(> .ac-cards.compact) > :not(.ac-cards) {
+  display: none;
+}
+
+.ac-cards.compact {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.ac-cards.compact .ac-card.first {
+  flex: 0 0 100%;
+}
+
+.ac-cards.compact .ac-card:not(.first) {
+  flex: 1 1 0;
+  border-radius: 999px;
+}
+
+.ac-cards.compact .ac-card:not(.first) b {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.ac-cards.compact .ac-card:not(.first) small {
+  display: none;
+}

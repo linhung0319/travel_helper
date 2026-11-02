@@ -38,7 +38,7 @@ export function DayPicker({ placeId, onClose, testId = 'day-picker' }: { placeId
     let added = 0;
     for (const d of add) if ((await shared.addCandidate(placeId, d)).ok) added++;
     // 加進候選＝想去：自己還沒按想去就按（每人對每個點只有一個狀態，原本是不想去的會換成想去）
-    if (added > 0 && !shared.store.getState().votes.some((v) => v.placeId === placeId && v.memberId === me && v.value === 'like' && !v.deletedAt)) await castVote(placeId, 'like');
+    if (added > 0 && !shared.store.getState().votes.some((v) => v.placeId === placeId && v.memberId === me && v.value === 'like' && !v.deletedAt)) await castVote(placeId, 'like', false);
     for (const d of remove) {
       const c = candidateOn(d);
       if (c?.addedBy === me) await shared.removeCandidate(c.id);

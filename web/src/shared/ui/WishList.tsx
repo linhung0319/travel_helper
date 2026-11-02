@@ -369,6 +369,8 @@ export function WishList({ surface, places, view, onOpen, onOpenComments, hotId,
     <div className="wl" ref={root} data-testid="wish-list" data-surface={surface}>
       {/* 第八輪 §13.7：拿掉跳轉晶片，數字放在段落標題上（「還沒排 · 6」），篩選了跟著變 */}
       {sections.map((sec) => {
+        // 一個點都沒有時三段的標題都不顯示（§17.4）
+        if (!places.length) return null;
         const open = !collapsed[sec.id] || forced.includes(sec.id);
         const groups = visibleGroups(sec.groups, shown[sec.id]);
         const rest = sec.count - groups.reduce((n, g) => n + g.ids.length, 0);

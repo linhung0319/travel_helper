@@ -38,6 +38,8 @@ export interface Toast {
   text: string;
   /** 提示上的按鈕（例如「復原」） */
   action?: { label: string; run: () => void | Promise<void> };
+  /** 操作提示（§17.4）：放在下方，有 ✕ */
+  hint?: true;
 }
 
 export interface SharedState {
@@ -586,6 +588,8 @@ export function createShared(getBackend: () => Backend, data: StoreApi<DataState
     /** 一般的提示（例如「已帶進聊天」） */
     notify: (text: string) => toast('ok', text),
     notifyError: (text: string) => toast('error', text),
+    /** 只出現一次的操作提示 */
+    notifyHint: (text: string, action: NonNullable<Toast['action']>) => set({ toast: { seq: ++toastSeq, kind: 'ok', text, action, hint: true } }),
   };
 }
 
