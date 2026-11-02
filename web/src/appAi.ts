@@ -44,6 +44,8 @@ export let fakeSettings: { delayMs: number; usage: 'ok' | 'near' | 'full'; next:
 let surface: ScreenSurface = appSurface(appStore);
 /** 切到想去分頁（第一次按 ♡ 的提示「去看」） */
 export const showWishTab = () => surface.showTab('wish');
+/** 已經在想去頁（第一次按 ♡ 不用提示） */
+export const onWishScreen = () => surface.screenName() === 'wish';
 
 /** 平台接上怎麼切畫面（T16m-b、T16m-c） */
 export const setScreenSurface = (s: ScreenSurface) => {
@@ -80,7 +82,11 @@ export const ai = createChat({
       afterAdopt: () => surface.afterAdopt(),
       proposalStale: () => surface.proposalStale(),
     },
-    startAddPlace: (init) => addPlaceStore.getState().start(init),
+    // 短網址交給加地點畫面的第一步展開（和手動加同一條路，§17.8）
+    startAddPlace: ({ entry, ...init }) => {
+      if (entry) addPlaceStore.getState().openEntry(entry, { fromAi: true, defaults: { name: init.name, type: init.type, note: init.note } });
+      else addPlaceStore.getState().start(init);
+    },
   }),
 });
 

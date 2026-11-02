@@ -38,7 +38,7 @@ test('自己加的點沒有評論分頁', () => {
 test('加的日期、副標、提示框全文', () => {
   assert.match(addedDateLabel('2026-11-03T05:00:00Z'), /^11\/3$/);
   assert.equal(addedDateLabel('壞掉'), '');
-  assert.equal(userSubtitle(userPlace(), [{ id: 'm1', displayName: '小明' } as never]), '自己加的 · 小明');
+  assert.equal(userSubtitle(userPlace(), [{ id: 'm1', displayName: '小明' } as never]), '小明 加的');
   assert.equal(USER_PLACE_WARNING, '我們沒查過這個點：營業時間、能不能坐 15 人都不知道。排行程時只用位置估交通時間。');
 });
 

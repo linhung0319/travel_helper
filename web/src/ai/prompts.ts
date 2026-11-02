@@ -131,8 +131,8 @@ export const WISH_EMPTY_LEAD: Starter = { q: '推薦幾個適合全家去的地�
 
 /** 開始卡第 ② 步：藍卡下面接著問住宿的事 */
 export const LODGING_FOLLOWUPS = ['我已經訂好幾晚了', '15 人能包棟的住宿有哪些？'];
-/** 空的一天：沒有東西可以檢查，問怎麼排 */
-export const EMPTY_DAY_FOLLOWUPS = ['想去的點哪些適合這天？', '長輩走起來輕鬆的安排'];
+/** 空的一天：沒有東西可以檢查，問怎麼排。不帶晶片（§17.1），所以直接寫日期 */
+export const emptyDayFollowups = (date: string) => [`想去的點哪些適合 ${monthDay(date)}？`, `${monthDay(date)} 長輩走起來輕鬆的安排`];
 
 /** 第一個還沒排的天（開始卡第 ③ 步）；都排了是 null */
 export const firstEmptyDate = (i: StarterInput) => fullDaysOf(i).find((d) => !d.hasStops)?.date ?? null;
@@ -148,9 +148,9 @@ export interface StarterCard extends Starter {
   source: 'starter' | 'chip';
 }
 
-/** 空白的新對話要放哪些卡片：帶了晶片用晶片的建議問題，開始卡、空的一天帶來的那一句（lead）放第一張 */
+/** 空白的新對話要放哪些卡片：帶了晶片用晶片的建議問題；開始卡、空的一天不帶晶片，帶來的那一句（lead）放第一張，下面是那一步的問題 */
 export function blankCards(lead: Starter | null, suggestions: string[], starters: Starter[], hasContexts: boolean): StarterCard[] {
-  const base: StarterCard[] = hasContexts && suggestions.length ? suggestions.map((q) => ({ q, why: '', source: 'chip' })) : starters.map((s) => ({ ...s, source: 'starter' }));
+  const base: StarterCard[] = (hasContexts || lead) && suggestions.length ? suggestions.map((q) => ({ q, why: '', source: 'chip' })) : starters.map((s) => ({ ...s, source: 'starter' }));
   if (!lead) return base;
   return [{ ...lead, source: 'starter' as const }, ...base.filter((c) => c.q !== lead.q)].slice(0, MAX_STARTERS);
 }

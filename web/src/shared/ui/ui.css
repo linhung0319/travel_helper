@@ -3901,3 +3901,81 @@ button.ll-main {
   background: var(--indigo);
   color: var(--paper);
 }
+
+/* 第一次按 ♡ 飛進想去（§17.4） */
+.ui-fly-heart {
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 130;
+  width: 22px;
+  height: 22px;
+  color: var(--love);
+  pointer-events: none;
+}
+
+/* 只有〔去看〕是芥子黃（§17.4） */
+.toast.toast-hint .toast-undo {
+  flex: 0 0 auto;
+  position: relative;
+  margin-left: 10px;
+  padding: 2px 10px;
+  border-radius: 999px;
+  background: var(--mustard);
+  color: var(--ink);
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+/* 按的範圍加大，外觀不變 */
+.toast.toast-hint .toast-undo::after {
+  content: '';
+  position: absolute;
+  inset: -10px -2px;
+}
+
+/* ---------- 標籤（§17.7）、預約筆記（§17.6） ---------- */
+.ui-place-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  margin: 2px 0;
+}
+
+.badge.tag-user {
+  border: 1px dashed var(--ink-3);
+  background: none;
+  color: var(--ink-2);
+}
+
+.badge.tag-booked {
+  background: var(--good-bg);
+  color: var(--good);
+}
+
+.badge.tag-pending {
+  background: var(--warn-bg);
+  color: var(--warn);
+}
+
+.note-disclaimer {
+  margin: 0 0 10px;
+  padding: 8px 10px;
+  border-radius: 14px;
+  background: var(--wash);
+  color: var(--ink-2);
+  font-size: 0.8125rem;
+}
+
+.proposal-booked {
+  display: flex;
+  align-items: flex-start;
+  gap: 4px;
+  color: var(--warn);
+  font-size: 0.8125rem;
+}
+
+.proposal-booked svg {
+  flex: none;
+  margin-top: 2px;
+}

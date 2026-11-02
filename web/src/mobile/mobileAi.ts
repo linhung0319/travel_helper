@@ -12,7 +12,7 @@ import { shortDayLabel } from '../lib/trip.ts';
 import { resizeMap } from '../components/MapView.tsx';
 import type { ScreenSurface } from '../ai/stage.ts';
 import type { ChatContext } from '../ai/types.ts';
-import { EMPTY_DAY_FOLLOWUPS, LODGING_FOLLOWUPS, WISH_EMPTY_LEAD, type Starter } from '../ai/prompts.ts';
+import { emptyDayFollowups, LODGING_FOLLOWUPS, WISH_EMPTY_LEAD, type Starter } from '../ai/prompts.ts';
 import { mobileStore, useMobile, type MobileTab } from './mobileStore.ts';
 
 /** 「正在看」是哪一頁：在 AI、我分頁時是切過來之前那一頁 */
@@ -128,14 +128,14 @@ export function askCard(id: string, itemKey: string) {
 
 export const askDay = (date: string) => void ask([{ kind: 'day', date }], 'trip');
 export const askTrip = () => void ask([{ kind: 'trip' }], 'trip');
-/** 開始卡的「問 AI」：問那一步的事（§17.1）。② 住宿，帶整趟；③ 第一個還沒排的天，帶那天 */
+/** 開始卡的「問 AI」：問那一步的事，不帶晶片（§17.1）。② 住宿；③ 第一個還沒排的天 */
 export function askStart(step: 2 | 3) {
   const date = step === 3 ? ai.firstEmptyDate() : null;
   if (date) askEmptyDay(date);
-  else void ask([{ kind: 'trip' }], 'trip', ai.firstStarter(), LODGING_FOLLOWUPS);
+  else void ask([], 'trip', ai.firstStarter(), LODGING_FOLLOWUPS);
 }
 /** 空的一天的「問 AI」（§17.4） */
-export const askEmptyDay = (date: string) => void ask([{ kind: 'day', date }], 'trip', ai.dayStarter(date), EMPTY_DAY_FOLLOWUPS);
+export const askEmptyDay = (date: string) => void ask([], 'trip', ai.dayStarter(date), emptyDayFollowups(date));
 /** 想去頁空白時的「問 AI 推薦」（§17.4） */
 export const askWishEmpty = () => void ask([], 'other', WISH_EMPTY_LEAD);
 export const askList = (source: 'explore' | 'wish', filter: Filter, query: string, count: number) => void ask([{ kind: 'list', source, filter, query, count }], 'other');

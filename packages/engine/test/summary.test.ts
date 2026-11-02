@@ -133,8 +133,8 @@ test('現在、下一個：每一組各自找', () => {
 
 test('預約狀態：讀最新的筆記，沒有的是還沒訂；住宿在入住～退房前一晚都列', () => {
   const saved = [{ date: '2027-02-03', placeId: 'r', status: 'booked' as const, note: '15 人、電話訂' }];
-  assert.equal(formatReservations(SUMMARY, '2027-02-03', saved), '2/3（三）的預約\n12:00 海女小屋：已訂（15 人、電話訂）\n住 2/2～2/4 海邊旅館：還沒訂');
-  assert.equal(formatReservations(SUMMARY, null, []), '整趟的預約\n2/3 12:00 海女小屋：還沒訂\n住 2/2～2/4 海邊旅館：還沒訂');
+  assert.equal(formatReservations(SUMMARY, '2027-02-03', saved), '2/3（三）的預約\n12:00 海女小屋：已訂（15 人、電話訂）\n住 2/2～2/4 海邊旅館：還沒訂\n※ 這是大家的筆記，網站不會幫忙訂。還沒訂的要自己打電話或上網訂，訂好後到網站改成「已訂」。');
+  assert.equal(formatReservations(SUMMARY, null, []), '整趟的預約\n2/3 12:00 海女小屋：還沒訂\n住 2/2～2/4 海邊旅館：還沒訂\n※ 這是大家的筆記，網站不會幫忙訂。還沒訂的要自己打電話或上網訂，訂好後到網站改成「已訂」。');
   assert.equal(formatReservations(SUMMARY, '2027-02-05', []), '2/5（五）的預約\n沒有要預約的');
 });
 

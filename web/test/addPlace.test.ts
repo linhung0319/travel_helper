@@ -368,3 +368,40 @@ test('reconcileSuggestion：用現在的點重算「已經有了」', async () =
   const t = await resolveSuggestion('不存在的店', deps({ places: [] }));
   assert.deepEqual(reconcileSuggestion(t, []), t);
 });
+
+test('store：新加的存好才通知（幫加的人按 ♡），修改不算（§17.7）', async () => {
+  const created: string[] = [];
+  const mk = (id: string, type: UserPlaceType, data: UserPlaceData): UserPlace => ({ id, type, data, author: 'm', createdAt: '', updatedAt: '', updatedBy: null, deletedAt: null });
+  const up = mk('user-old', 'spot', { name: { zh: '舊' }, coords: [136, 34], note: null, links: { googleMaps: null }, addedVia: 'map' });
+  const store = createAddPlaceStore({
+    place: () => ({ id: 'user-old' }) as never,
+    userPlace: () => up,
+    createUserPlace: async (t, d) => ({ ok: true, place: mk('user-new', t, d) }),
+    updateUserPlace: async (id, d, t) => ({ ok: true, place: mk(id, t!, d) }),
+    onCreated: (id) => created.push(id),
+  });
+  store.getState().start({ via: 'map', coords: [136, 34], name: '新', type: 'spot' });
+  await store.getState().save();
+  assert.deepEqual(created, ['user-new']);
+  store.getState().startEdit('user-old');
+  await store.getState().save();
+  assert.deepEqual(created, ['user-new']);
+});
+
+test('store：AI 的短網址先到第一步，展開後帶著 AI 給的類型、備註，還記得是 AI 開的（§17.8）', () => {
+  const { store } = storeSetup();
+  store.getState().openEntry('https://maps.app.goo.gl/x', { fromAi: true, defaults: { name: '備用名', type: 'lodging', note: '已訂好' } });
+  assert.equal(store.getState().fromAi, true);
+  store.getState().start({ via: 'google-link', coords: [136, 34], name: 'Maps 的名字', link: 'https://www.google.com/maps/x' });
+  const d = store.getState().draft!;
+  assert.equal(d.name, 'Maps 的名字');
+  assert.equal(d.type, 'lodging');
+  assert.equal(d.note, '已訂好');
+  assert.equal(d.via, 'google-link');
+  assert.equal(store.getState().fromAi, true);
+  // 手動打開的不算
+  store.getState().cancel();
+  store.getState().openEntry('x');
+  store.getState().start({ via: 'map', coords: [136, 34] });
+  assert.equal(store.getState().fromAi, false);
+});

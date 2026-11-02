@@ -324,7 +324,7 @@ test('T15m：編輯中拖曳換順序（電腦版）', async ({ page }) => {
   await expect.poll(async () => (await order())[2]).toBe(second);
 });
 
-test('預約筆記：改成已訂位、時間軸 tag 跟著變', async ({ page }) => {
+test('預約筆記：改成已訂、時間軸 tag 跟著變', async ({ page }) => {
   const BOOK_NOTE = '用電話訂了 18:00（e2e）';
   await ready(page);
   await showDay(page, '2027-02-05');
@@ -339,7 +339,7 @@ test('預約筆記：改成已訂位、時間軸 tag 跟著變', async ({ page }
   await row.getByTestId('note-text').fill(BOOK_NOTE);
   await row.getByTestId('note-text').press('Enter');
 
-  // 只看未訂位（晶片開關，不用原生勾選框）：這列不見了
+  // 只看待訂（晶片開關，不用原生勾選框）：這列不見了
   await expect(panel.locator('input[type="checkbox"]')).toHaveCount(0);
   await panel.getByTestId('only-pending').click();
   await expect(panel.getByTestId('only-pending')).toHaveAttribute('aria-pressed', 'true');
@@ -347,11 +347,11 @@ test('預約筆記：改成已訂位、時間軸 tag 跟著變', async ({ page }
   await panel.getByTestId('only-pending').click();
   await expect(panel.getByTestId('only-pending')).toHaveAttribute('aria-pressed', 'false');
 
-  // 關掉：那張卡片的 tag 寫已訂位
+  // 關掉：那張卡片的 tag 寫已訂
   await page.getByTestId('map-panel-close').click();
   await showDay(page, '2027-02-05');
   const tag = page.locator(`[data-testid="tl-row"] [data-testid="reservation-tag"][data-status="booked"]`).first();
-  await expect(tag).toHaveText('已訂位 ✓');
+  await expect(tag).toHaveText('✓ 已訂');
 
   // 點 tag 回到預約筆記
   await tag.click();

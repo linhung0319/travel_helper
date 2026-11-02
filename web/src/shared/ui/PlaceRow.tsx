@@ -12,6 +12,7 @@ import { cardTypeLetter } from '../../lib/planView.ts';
 import { typeSwatch } from '../../lib/typeStyle.ts';
 import { placeDayStatus } from '../../lib/wishlist.ts';
 import { isUserPlace, placeMetaText, userSubtitle } from '../../lib/addPlace/view.ts';
+import { PlaceTags } from './PlaceTags.tsx';
 import type { Place } from '../../data/types.ts';
 import { rowHighlights, type RowHighlight } from '../rowHighlights.ts';
 import { TierMark } from './TierMark.tsx';
@@ -120,6 +121,7 @@ export function PlaceRow({ place, status, extra, right, onOpen, testId, rank, ho
           <span className="pr-name-text">{name}</span>
           {!user && <TierMark tier={place.tier} />}
         </span>
+        <PlaceTags place={place} />
         {extra ?? (
           <>
             <span className="pr-meta">

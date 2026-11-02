@@ -144,7 +144,7 @@ export function createTools(d: AiDeps): ToolDef[] {
       input_schema: obj({ topic: { enum: ['passes', 'airport', 'party'] }, sections: strs('要哪些分項') }, ['topic']),
       run: ro(read.get_trip_info),
     },
-    { name: 'get_reservations', kind: 'read', description: '要預約的項目（同預約清單）：哪天、哪個點、狀態（pending 未訂、booked 已訂、skip 不用訂）、備註。住宿的 date 是入住那晚。', input_schema: obj({ date: str(DATE), status: { enum: RESERVATION_STATUSES } }), run: ro(read.get_reservations) },
+    { name: 'get_reservations', kind: 'read', description: '要預約的項目（同預約筆記，網站不會幫忙訂）：哪天、哪個點、狀態（pending 未訂、booked 已訂、skip 不用訂）、備註。住宿的 date 是入住那晚。', input_schema: obj({ date: str(DATE), status: { enum: RESERVATION_STATUSES } }), run: ro(read.get_reservations) },
 
     // --- 改畫面 ---
     {
@@ -238,7 +238,7 @@ export function createTools(d: AiDeps): ToolDef[] {
     {
       name: 'show_screen',
       kind: 'stage',
-      description: '切分頁（tab：explore 探索、wish 想去、trip 行程）或打開面板（panel：comments 討論、reservations 預約、snapshots 快照）。給其中一個。還原快照要使用者自己在快照視窗按。',
+      description: '切分頁（tab：explore 探索、wish 想去、trip 行程）或打開面板（panel：comments 討論、reservations 預約筆記、snapshots 快照）。給其中一個。還原快照要使用者自己在快照視窗按。',
       input_schema: obj({ tab: { enum: SCREEN_TABS }, panel: { enum: SCREEN_PANELS } }),
       run(input) {
         const { tab, panel } = input as { tab?: string; panel?: string };
@@ -325,11 +325,11 @@ export function createTools(d: AiDeps): ToolDef[] {
     {
       name: 'set_reservation',
       kind: 'propose',
-      description: '更新預約清單的一項（大家看得到）：status 是 pending 未訂、booked 已訂、skip 不用訂；使用者決定了才改。date、placeId 照 get_reservations。note 沒給就留原本的。',
+      description: '更新預約筆記的一項（大家看得到，只是筆記）：status 是 pending 未訂、booked 已訂、skip 不用訂；使用者決定了才改。date、placeId 照 get_reservations。note 沒給就留原本的。',
       input_schema: obj({ date: str(DATE), placeId: str(), status: { enum: RESERVATION_STATUSES }, note: str() }, ['date', 'placeId', 'status']),
       run(input) {
         if (!RESERVATION_STATUSES.includes(input.status as string)) return fail(`status 要是 ${RESERVATION_STATUSES.join('、')}`);
-        if (!read.reservationRows().some((r) => r.date === input.date && r.placeId === input.placeId)) return fail('預約清單沒有這一項：先用 get_reservations 查（住宿的 date 是入住那晚）');
+        if (!read.reservationRows().some((r) => r.date === input.date && r.placeId === input.placeId)) return fail('預約筆記沒有這一項：先用 get_reservations 查（住宿的 date 是入住那晚）');
         return { output: { ok: true, status: '已顯示卡片，等使用者決定' }, card: { status: 'pending' } };
       },
     },
@@ -355,11 +355,19 @@ export function createTools(d: AiDeps): ToolDef[] {
     {
       name: 'propose_user_place',
       kind: 'propose',
-      description: '使用者想加一個我們沒有的地點：打開確認畫面，使用者按了才存。給 link（Google Maps 連結）或 coords；name、type（spot、restaurant、lodging）、note 可省略。不要自己猜位置。',
+      description: '使用者想加一個我們沒有的地點：打開確認畫面，使用者按了才存，存好後 context.decisions 會有新點的 ID。給 link（Google Maps 連結，短網址也可以）或 coords；name、type（spot、restaurant、lodging）、note 可省略。不要自己猜位置。',
       input_schema: obj({ link: str(), name: str(), coords: { type: 'array', items: num() }, type: str(), note: str() }),
       run(input) {
         const url = typeof input.link === 'string' ? extractMapLink(input.link) : null;
-        if (url && isShortMapLink(url)) return fail('這種短網址要連上伺服器才能讀；請使用者貼完整網址，或在地圖上指位置');
+        // 短網址交給畫面展開（和手動加同一條路，§17.8）
+        if (url && isShortMapLink(url)) {
+          const hint = input.type as UserPlaceType | undefined;
+          return {
+            output: { ok: true, status: '已打開加地點畫面，位置和名稱由畫面讀出來', link: url },
+            present: { kind: 'add-place', init: { via: 'ai', entry: url, ...(typeof input.name === 'string' ? { name: input.name } : {}), ...(hint ? { type: hint } : {}), ...(typeof input.note === 'string' ? { note: input.note } : {}) } },
+            card: {},
+          };
+        }
         const parsed = url ? parseMapLink(url) : null;
         const coords = (input.coords as LonLat | undefined) ?? parsed?.coords ?? null;
         if (!coords) return fail('連結裡讀不到位置：請使用者貼完整網址，或在地圖上指位置');

@@ -7,6 +7,7 @@ import type { HTMLAttributes, ReactNode } from 'react';
 import { appStore } from '../../store.ts';
 import { useData, useShared } from '../../hooks.ts';
 import { isUserPlace, userSubtitle } from '../../lib/addPlace/view.ts';
+import { PlaceTags } from './PlaceTags.tsx';
 import { Photo } from '../../components/Photo.tsx';
 import { photoCandidates } from '../../lib/photos.ts';
 import { cardTypeLetter } from '../../lib/planView.ts';
@@ -89,6 +90,7 @@ export function PlaceTile({ place, status, onOpen, extra, testId, rank, hot, roo
           <span className="pt-name-text">{name}</span>
           {!user && <TierMark tier={place.tier} />}
         </span>
+        <PlaceTags place={place} />
         {user && <span className="pt-user-by">{userSubtitle(place, members)}</span>}
         {meta && <span className="pt-meta">{meta}</span>}
         <Highlights list={rowHighlights(place, status ?? { candidate: [], scheduled: [] })} />

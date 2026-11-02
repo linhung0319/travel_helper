@@ -75,6 +75,10 @@ export interface Chat {
   setDraftText(text: string): void;
   /** 這份操作會新出現的警告（提議卡顯示）；算不出來是空的 */
   newWarnings(ops: Op[]): string[];
+  /** 提議動到已訂的點（§17.7） */
+  bookedWarnings(ops: Op[]): string[];
+  /** 透過 AI 加地點，使用者按了加入：聊天室標「已加入」，下一輪的脈絡帶新點的 ID（§17.8） */
+  placeAdded(place: { id: string; name: string; type: string }): Promise<void>;
   /** 空白的新對話要推薦的問題：照現在的行程和畫面算，不呼叫模型 */
   starters(): Starter[];
   /** 第一張卡（開始卡的「問 AI」帶這一句） */
@@ -444,7 +448,7 @@ export function createChat(d: CreateChatDeps): Chat {
       }
       case 'set_reservation': {
         const row = read.reservationRows().find((r) => r.date === i.date && r.placeId === i.placeId);
-        if (!row) return { ok: false, error: '預約清單已經沒有這一項了' };
+        if (!row) return { ok: false, error: '預約筆記已經沒有這一項了' };
         return d.shared.setReservation({ date: row.key.date, placeId: row.key.placeId, status: i.status as ReservationStatus, note: i.note !== undefined ? (i.note as string) : row.note, nights: row.nights });
       }
       case 'propose_place_edit':
@@ -518,12 +522,18 @@ export function createChat(d: CreateChatDeps): Chat {
     },
     removeContext: (index) =>
       store.setState((s) => {
-        const contexts = s.contexts.filter((_, i) => i !== index);
-        return { contexts, lead: contexts.length ? s.lead : null };
+        // 開始卡帶來的那一句不靠晶片，拿掉晶片還在（§17.1）
+        return { contexts: s.contexts.filter((_, i) => i !== index) };
       }),
     setScreenOff: (screenOff) => store.setState({ screenOff }),
     setDraftText: (draftText) => store.setState({ draftText }),
     newWarnings: (ops) => read.proposalWarnings(ops),
+    bookedWarnings: (ops) => read.proposalBooked(ops),
+    async placeAdded(place) {
+      const block = store.getState().messages.flatMap((m) => m.content.flatMap((b) => (b.type === 'tool_use' && b.name === 'propose_user_place' ? [b] : []))).at(-1);
+      if (block) await setCard(block.id, { added: place });
+      store.setState((s) => ({ decisions: [...s.decisions, { tool: 'propose_user_place', status: 'confirmed', summary: `已加入「${place.name}」，ID ${place.id}` }] }));
+    },
     starters: () => startersFor(starterInput()),
     firstStarter: () => firstStarter(starterInput()),
     firstEmptyDate: () => firstEmptyDate(starterInput()),

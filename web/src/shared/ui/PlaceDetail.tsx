@@ -16,6 +16,7 @@ import type { Place } from '../../data/types.ts';
 import type { VoteValue } from '../../backend/types.ts';
 import { openDialog } from '../../uiStore.ts';
 import { addPlaceStore } from '../../addPlaceStore.ts';
+import { PlaceTags } from './PlaceTags.tsx';
 import { addedDateLabel, canDeleteUserPlace, canEditUserPlace, googleMapsUrl, isDeletedUserPlace, hasReviewsTab, isUserPlace, USER_PLACE_WARNING } from '../../lib/addPlace/view.ts';
 import { memberName } from '../../sharedStore.ts';
 import { Photo } from '../../components/Photo.tsx';
@@ -145,14 +146,14 @@ function ActionRow({ place, desktop, schedule }: { place: Place; desktop: boolea
       window.removeEventListener('keydown', esc, true);
     };
   }, [who, desktop]);
-  const toggle = (value: VoteValue) => void castVote(place.id, mine === value ? null : value);
+  const toggle = (value: VoteValue, from?: Element) => void castVote(place.id, mine === value ? null : value, true, from);
   const lodging = place.type === 'lodging';
   return (
     <>
       <div className="pd-actions" data-testid="detail-actions">
         <span className="pd-like-wrap" ref={wrap}>
           <span className={`pd-like ${mine === 'like' ? 'on' : ''}`}>
-            <button type="button" className="pd-like-btn" aria-pressed={mine === 'like'} onClick={() => toggle('like')} data-testid="detail-like">
+            <button type="button" className="pd-like-btn" aria-pressed={mine === 'like'} onClick={(e) => toggle('like', e.currentTarget)} data-testid="detail-like">
               <Icon name="heart" size={20} filled={mine === 'like'} /> 想去
             </button>
             <button
@@ -383,6 +384,7 @@ export function PlaceDetail({ place: listPlace, surface, from, initialTab, onDay
               </span>
             )}
           </div>
+          <PlaceTags place={place} />
           {user && place.user && (
             <p className="pd-user-by muted small" data-testid="detail-user-by">
               {memberName(members, place.user.author)} 加的{addedDateLabel(place.user.createdAt) && ` · ${addedDateLabel(place.user.createdAt)}`}

@@ -216,11 +216,28 @@ test('MD：總覽表、每天一段、特急券、錯過的話、住宿', () => 
 
 test('HTML：一天一頁、跳脫特殊字元、頁尾版本', () => {
   const html = exportHtml(build());
-  assert.equal(html.match(/<section class="page">/g)?.length, 3);
+  assert.equal(html.match(/<section class="page">/g)?.length, 4);
   assert.ok(html.includes('鳥羽&lt;旅館&gt;'));
   assert.ok(!html.includes('鳥羽<旅館>'));
   assert.ok(html.includes('<span class="ticket">先買特急券</span>'));
   assert.ok(html.includes('<span class="r-pending">預約：待訂</span>'));
   assert.ok(html.includes('PDF 不會跟著行程更新'));
   assert.match(html, /<title>伊勢志摩・大阪 行程（第 12 版）<\/title>/);
+});
+
+test('預約一覽：說明、下載時間、狀態（§17.6）', () => {
+  const doc = build();
+  assert.ok(doc.reservations.some((r) => r.status === '已訂'));
+  const md = exportMarkdown(doc);
+  assert.ok(md.includes('## 預約一覽'));
+  assert.ok(md.includes('這是家人的筆記，網站不會幫忙訂'));
+  assert.ok(md.includes('2026-11-02 14:05 下載'));
+  const html = exportHtml(doc);
+  assert.ok(html.includes('<h2>預約一覽</h2>'));
+  assert.ok(html.includes('這是家人的筆記，網站不會幫忙訂'));
+  assert.ok(html.includes('2026-11-02 14:05 下載'));
+  // 沒有要預約的：不放這一頁
+  const none = { ...doc, reservations: [] };
+  assert.ok(!exportMarkdown(none).includes('預約一覽'));
+  assert.ok(!exportHtml(none).includes('預約一覽'));
 });

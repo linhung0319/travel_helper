@@ -45,8 +45,8 @@ export function MePage() {
             <span className="m-row-icon" aria-hidden>
               <Icon name="clipboard" size={20} />
             </span>
-            <span className="m-row-text">預約</span>
-            {pending > 0 && <span className="m-count warn">{pending} 未訂</span>}
+            <span className="m-row-text">預約筆記</span>
+            {pending > 0 && <span className="m-count warn">{pending} 待訂</span>}
             <span className="m-row-more" aria-hidden>
               <Icon name="chevron" size={20} />
             </span>
@@ -93,7 +93,7 @@ export function MePage() {
 export function MePageView() {
   const page = useMobile((s) => s.page);
   if (!page) return null;
-  const title = '預約';
+  const title = '預約筆記';
   return (
     <section className="m-full" data-testid={`m-page-${page}`} aria-label={title}>
       <header className="m-full-head">

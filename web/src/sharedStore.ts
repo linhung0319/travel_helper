@@ -28,6 +28,7 @@ import {
 import { livePlaces, type DataState } from './dataStore.ts';
 import { mergePlaceEdits } from './data/merge.ts';
 import { userPlaceToPlace } from './lib/addPlace/userPlace.ts';
+import { newPendingRows } from './lib/reservations.ts';
 import { placeDays } from './lib/itinerary.ts';
 import { findItemRef } from './lib/planView.ts';
 import { shortDayLabel } from './lib/trip.ts';
@@ -38,8 +39,13 @@ export interface Toast {
   text: string;
   /** 提示上的按鈕（例如「復原」） */
   action?: { label: string; run: () => void | Promise<void> };
-  /** 操作提示（§17.4）：放在下方，有 ✕ */
-  hint?: true;
+}
+
+/** 只出現一次的操作提示（§17.4、§17.6）：放在下方，有 ✕；和一般通知分開記，才不會被蓋掉後又記成看過 */
+export interface Hint {
+  seq: number;
+  text: string;
+  action?: Toast['action'];
 }
 
 export interface SharedState {
@@ -67,6 +73,7 @@ export interface SharedState {
   conflict: { version: number } | null;
   /** 存檔、錯誤的提示，畫面顯示幾秒 */
   toast: Toast | null;
+  hint: Hint | null;
   lastSync: SyncState | null;
 }
 
@@ -95,6 +102,7 @@ const initial: SharedState = {
   saving: false,
   conflict: null,
   toast: null,
+  hint: null,
   lastSync: null,
 };
 
@@ -235,8 +243,10 @@ export function createShared(getBackend: () => Backend, data: StoreApi<DataState
       const undo = opts.undo;
       const entry: UndoEntry = { before, next, reason, ...(undo?.after ? { after: undo.after } : {}) };
       if (opts.track !== false) set({ undoStack: [...store.getState().undoStack, entry] });
-      if (undo) toast('ok', undo.text, { label: '復原', run: () => undoEntry(entry) });
-      else toast('ok', `已儲存：${reason}`);
+      // 新加了要預約的點：提醒網站不會幫忙訂（§17.6）
+      const noted = opts.track !== false && newPendingRows(before, next, data.getState().byId, store.getState().reservations).length ? '。已加進預約筆記，記得自己去訂' : '';
+      if (undo) toast('ok', `${undo.text}${noted}`, { label: '復原', run: () => undoEntry(entry) });
+      else toast('ok', `已儲存：${reason}${noted}`);
       void loadSnapshots();
       return { ok: true, value: next } as Result<Itinerary>;
     } catch (e) {
@@ -589,7 +599,8 @@ export function createShared(getBackend: () => Backend, data: StoreApi<DataState
     notify: (text: string) => toast('ok', text),
     notifyError: (text: string) => toast('error', text),
     /** 只出現一次的操作提示 */
-    notifyHint: (text: string, action: NonNullable<Toast['action']>) => set({ toast: { seq: ++toastSeq, kind: 'ok', text, action, hint: true } }),
+    notifyHint: (text: string, action?: Toast['action']) => set({ hint: { seq: ++toastSeq, text, ...(action ? { action } : {}) } }),
+    clearHint: () => set({ hint: null }),
   };
 }
 

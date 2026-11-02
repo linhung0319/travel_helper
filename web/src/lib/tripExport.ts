@@ -114,12 +114,21 @@ export interface ExportFlight {
   people: number | null;
 }
 
+/** 預約一覽的一列（§17.6） */
+export interface ExportReservation {
+  when: string;
+  name: string;
+  status: string;
+}
+
 export interface ExportDoc {
   /** 「2/2（二）～ 2/13（六）」 */
   range: string;
   party: PartyProfile;
   flights: ExportFlight[];
   days: ExportDay[];
+  /** 預約一覽：主要的和住宿，照日期 */
+  reservations: ExportReservation[];
   version: number;
   /** 「1/20 21:05 王小明 更新」；不知道是 null */
   updated: string | null;
@@ -306,6 +315,10 @@ export function buildTripExport(input: ExportInput): ExportDoc {
     party: itinerary.party,
     flights,
     days,
+    reservations: rows
+      .filter((r) => r.role !== 'other')
+      .sort((a, b) => a.date.localeCompare(b.date))
+      .map((r) => ({ when: r.role === 'lodging' ? `${dayLabel(r.date)} 起住 ${r.nights} 晚` : `${dayLabel(r.date)}${r.time ? ` ${r.time}` : ''}`, name: nameOf(r.placeId), status: STATUS_LABELS[r.status] })),
     version: input.version,
     updated: input.updated,
     generatedAt: input.generatedAt,

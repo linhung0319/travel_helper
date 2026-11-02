@@ -13,9 +13,10 @@ import { AvatarStack, stamp } from './common.tsx';
 import { Icon } from './Icon.tsx';
 import { shared, sharedStore } from '../appShared.ts';
 import { Chip } from '../shared/ui/Chip.tsx';
+import { firstTime } from '../lib/onceHint.ts';
 
 const ROLE_LABELS = { main: '', other: '這個時段也可以去', lodging: '住宿' } as const;
-const STATUS_LABELS: Record<ReservationStatus, string> = { pending: '未訂位', booked: '已訂位', skip: '不訂位' };
+const STATUS_LABELS: Record<ReservationStatus, string> = { pending: '待訂', booked: '已訂', skip: '不用訂' };
 const STATUSES: ReservationStatus[] = ['pending', 'booked', 'skip'];
 
 /** 這一列的 id，tag 捲動用 */
@@ -53,7 +54,7 @@ function NoteInput({ row }: { row: NoteRow }) {
       type="text"
       className="note-input"
       value={text}
-      placeholder="備註，例如：已用 LINE 訂 18:00"
+      placeholder="備註，例如：王小明的名字訂 15 位、18:00"
       aria-label="備註"
       onChange={(e) => setText(e.target.value)}
       onBlur={save}
@@ -76,6 +77,8 @@ function Row({ row }: { row: NoteRow }) {
   const setStatus = (status: ReservationStatus) => {
     if (status === row.status) return;
     write(row, { status });
+    // 第一次按「已訂」：這只是筆記（§17.6）
+    if (status === 'booked' && firstTime('th.hint.firstBooked')) shared.notifyHint('已記下。這只是筆記，網站不會幫你訂');
   };
   return (
     <div className={`reservation note-row role-${row.role}`} data-testid="note-row" data-key={rowKey(row)} data-place={row.placeId} data-date={row.date} data-status={row.status}>
@@ -151,13 +154,16 @@ export function ReservationNotes({ date }: { scope?: 'day' | 'trip'; date: strin
   let lastDate = '';
   return (
     <div data-testid="reservations-view">
+      <p className="note-disclaimer" data-testid="reservation-disclaimer">
+        這裡只是大家的筆記。網站不會幫你訂位，要自己打電話或上網訂。訂好了把狀態改成「已訂」，寫一下用誰的名字、幾位，大家就知道了。
+      </p>
       {/* 晶片開關（不用原生勾選框，設計 §2.3） */}
       <div className="only-pending">
         <Chip on={onlyPending} onClick={() => setOnlyPending(!onlyPending)} testId="only-pending">
-          只看未訂位
+          只看待訂
         </Chip>
       </div>
-      {rows.length === 0 && <p className="muted">{onlyPending ? '沒有未訂位的了。' : '行程裡還沒有要預約的。'}</p>}
+      {rows.length === 0 && <p className="muted">{onlyPending ? '沒有待訂的了。' : '行程裡還沒有要預約的。'}</p>}
       <div className="reservation-list" ref={listRef}>
         {rows.map((r) => {
           const head = r.date !== lastDate;
@@ -174,7 +180,7 @@ export function ReservationNotes({ date }: { scope?: 'day' | 'trip'; date: strin
   );
 }
 
-/** 時間軸卡片上的預約 tag：未訂位橘、已訂位綠、不訂位不顯示；點了打開預約筆記並捲到那一列 */
+/** 時間軸卡片上的預約 tag：待訂紅、已訂抹茶、不用訂不顯示（§17.7）；點了打開預約筆記並捲到那一列 */
 export function ReservationTag({ date, placeId }: { date: string; placeId: string }) {
   const itinerary = useData((s) => s.itinerary);
   const byId = useData((s) => s.byId);
@@ -186,12 +192,12 @@ export function ReservationTag({ date, placeId }: { date: string; placeId: strin
   return (
     <button
       type="button"
-      className={`badge reservation-tag ${booked ? 'tag-booked' : 'badge-warn'}`}
+      className={`badge reservation-tag ${booked ? 'tag-booked' : 'tag-pending'}`}
       onClick={() => openMapPanel('reservations', { focus: { date: row.key.date, placeId: row.key.placeId } })}
       data-testid="reservation-tag"
       data-status={row.status}
     >
-      {booked ? '已訂位 ✓' : '未訂位'}
+      {booked ? '✓ 已訂' : '待訂'}
     </button>
   );
 }

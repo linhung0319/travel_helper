@@ -162,6 +162,9 @@ const STATUS_TEXT: Record<ReservationStatusText, string> = { pending: '還沒訂
  * 預約狀態：date 是 null 時整趟。狀態用 (日期, 地點) 對最新的預約筆記，沒有的是還沒訂。
  * 住宿只要那天在入住～退房前一晚之間就列。
  */
+/** 預約的回覆最後一行（interaction-design §17.6） */
+const RESERVATION_FOOTNOTE = '※ 這是大家的筆記，網站不會幫忙訂。還沒訂的要自己打電話或上網訂，訂好後到網站改成「已訂」。';
+
 export function formatReservations(
   s: TripSummary,
   date: DateString | null,
@@ -177,7 +180,7 @@ export function formatReservations(
     const note = x?.note?.trim() ? `（${x.note.trim()}）` : '';
     return `${when ? `${when} ` : ''}${r.name}：${STATUS_TEXT[x?.status ?? 'pending']}${note}`;
   });
-  return [head, ...lines].join('\n');
+  return [head, ...lines, RESERVATION_FOOTNOTE].join('\n');
 }
 
 /** epoch 毫秒 → 日本時間的日期和 HH:MM（機器人、AI 的「現在」；日本沒有夏令時間） */

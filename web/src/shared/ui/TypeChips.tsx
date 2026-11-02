@@ -10,8 +10,8 @@ const TYPE_CHIPS: { type: ExploreType | 'all'; label: string }[] = [
   ...(['spot', 'restaurant', 'lodging'] as const).map((t) => ({ type: t, label: TYPE_LABELS[t] })),
 ];
 
-export function TypeChips({ value, selected, onPick, prefix, testId }: { value: Feed['type']; selected?: string[]; onPick: (type: ExploreType | 'all') => void; prefix: string; testId?: string }) {
-  const on = (type: string) => (selected?.length ? selected.includes(type) : value === type);
+export function TypeChips({ value, selected, onPick, prefix, testId, extra }: { value: Feed['type']; selected?: string[]; onPick: (type: ExploreType | 'all') => void; prefix: string; testId?: string; extra?: { label: string; on: boolean; onClick: () => void; testId: string } }) {
+  const on = (type: string) => !extra?.on && (selected?.length ? selected.includes(type) : value === type);
   return (
     <div className="m-chips fb-chips" data-testid={testId}>
       {TYPE_CHIPS.map((c) => (
@@ -19,6 +19,11 @@ export function TypeChips({ value, selected, onPick, prefix, testId }: { value: 
           {c.label}
         </Chip>
       ))}
+      {extra && (
+        <Chip on={extra.on} onClick={extra.onClick} testId={extra.testId}>
+          {extra.label}
+        </Chip>
+      )}
     </div>
   );
 }

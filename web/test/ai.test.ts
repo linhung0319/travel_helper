@@ -159,7 +159,7 @@ test('S7 拒絕：不寫，下一輪 AI 看得到使用者拒絕了', async () =
   h.close();
 });
 
-test('S8 貼連結：解析座標，打開確認畫面（via ai），沒按不存；短網址要請使用者貼完整網址', async () => {
+test('S8 貼連結：解析座標，打開確認畫面（via ai），沒按不存；短網址交給畫面展開', async () => {
   const h = await harness();
   const n = h.shared.store.getState().userPlaces.length;
   await h.chat.send('https://www.google.com/maps/place/%E3%83%86%E3%82%B9%E3%83%88/@34.48,136.84,17z/data=!3m1!4b1!4m6!3m5!1s0x0:0x0!8m2!3d34.4812!4d136.8421');
@@ -169,8 +169,9 @@ test('S8 貼連結：解析座標，打開確認畫面（via ai），沒按不�
   assert.equal(h.shared.store.getState().userPlaces.length, n);
 
   await h.chat.send('https://maps.app.goo.gl/abc123');
-  assert.equal(h.added.length, 1);
-  assert.match(h.reply(), /短網址/);
+  assert.equal(h.added.length, 2);
+  assert.equal(h.added[1].entry, 'https://maps.app.goo.gl/abc123');
+  assert.equal(h.added[1].via, 'ai');
   h.close();
 });
 
@@ -636,7 +637,7 @@ test('S27 已經在編輯中：不用確認，直接寫入，有復原', async (
   h.app.getState().setPlanning(true);
   await h.chat.send('採用');
   assert.equal(h.lastResult('decide_card').ok, true);
-  assert.equal(h.shared.store.getState().toast?.text, '已採用提議');
+  assert.match(h.shared.store.getState().toast?.text ?? '', /^已採用提議/);
   h.close();
 });
 
@@ -1201,4 +1202,36 @@ test('transcript：地點標籤、標題、沒回完的輪', () => {
   assert.equal(toApiMessages(list).length, 2);
   assert.equal(toApiMessages(list, 'b').length, 3);
   assert.equal(toApiMessages([m('1', 'a'), { ...m('2', 'a', true), content: [] }]).length, 1);
+});
+
+test('T38：get_day、get_trip_overview 標 booked，沒有的不帶；提議換掉已訂的住宿要標', async () => {
+  const h = await harness();
+  const run = (name: string, input: Record<string, unknown>) => h.chat.tools.find((t) => t.name === name)!.run(input);
+  const day = (await run('get_day', { date: '2027-02-05' })).output as any;
+  assert.equal(day.lodging.id, 'toba-kokusai-hotel');
+  assert.equal(day.lodging.booked, true);
+  assert.ok(!('user' in day.lodging));
+  const other = (await run('get_day', { date: '2027-02-07' })).output as any;
+  assert.ok(other.entries.every((e: any) => !('user' in e)));
+  const all = (await run('get_trip_overview', {})).output as any;
+  assert.equal(all.days.find((d: any) => d.date === '2027-02-05').lodging.booked, true);
+  const lodging = h.data.getState().places.find((p) => p.type === 'lodging' && p.id !== 'toba-kokusai-hotel')!;
+  const warn = h.chat.bookedWarnings([{ op: 'setLodging', date: '2027-02-05', lodging: lodging.id } as never]);
+  assert.equal(warn.length, 1);
+  assert.match(warn[0], /這晚已訂，採用的話要記得自己去取消/);
+  assert.deepEqual(h.chat.bookedWarnings([]), []);
+  h.close();
+});
+
+test('T38：加好地點後卡片標已加入，下一輪脈絡帶新點的 ID', async () => {
+  const h = await harness();
+  await h.chat.send('https://www.google.com/maps/place/%E3%83%86%E3%82%B9%E3%83%88/@34.48,136.84,17z/data=!3m1!4b1!4m6!3m5!1s0x0:0x0!8m2!3d34.4812!4d136.8421');
+  await h.chat.placeAdded({ id: 'user-1', name: 'テスト', type: 'lodging' });
+  const use = h.lastUse('propose_user_place');
+  const card = h.chat.store.getState().messages.flatMap((m) => Object.entries(m.cards ?? {})).find(([id]) => id === use.id)?.[1];
+  assert.deepEqual(card?.added, { id: 'user-1', name: 'テスト', type: 'lodging' });
+  const d = h.chat.store.getState().decisions.at(-1)!;
+  assert.equal(d.tool, 'propose_user_place');
+  assert.match(d.summary, /user-1/);
+  h.close();
 });

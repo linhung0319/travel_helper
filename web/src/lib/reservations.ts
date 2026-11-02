@@ -170,6 +170,38 @@ export function reservationFor(rows: NoteRow[], date: string, placeId: string): 
   return rows.find((r) => r.placeId === placeId && (r.date === date || (r.endDate !== null && r.date <= date && date < r.endDate))) ?? null;
 }
 
+/** 這份行程比之前多出來、還沒訂的列（主要的、住宿）：採用後提醒「記得自己去訂」（§17.6） */
+export function newPendingRows(before: Itinerary, after: Itinerary, byId: Map<string, Place>, reservations: Reservation[]): NoteRow[] {
+  const had = new Set(noteRows(before, null, byId, reservations).map((r) => saveKey(r.key.date, r.key.placeId)));
+  return noteRows(after, null, byId, reservations).filter((r) => r.role !== 'other' && r.status === 'pending' && !had.has(saveKey(r.key.date, r.key.placeId)));
+}
+
+/** 每個點的預約狀態（探索、想去、詳情的標籤，§17.7）：還有沒訂的就是 pending；全部不用訂、不在筆記裡的沒有 */
+export function bookingByPlace(rows: NoteRow[]): Map<string, 'booked' | 'pending'> {
+  const out = new Map<string, 'booked' | 'pending'>();
+  for (const r of rows) {
+    if (r.role === 'other' || r.status === 'skip') continue;
+    if (r.status === 'pending') out.set(r.placeId, 'pending');
+    else if (!out.has(r.placeId)) out.set(r.placeId, 'booked');
+  }
+  return out;
+}
+
+/** 提議動到已訂的點（§17.7）：程式判斷，不靠 AI 記得。那一列不見了，或住宿的晚數變了 */
+export function bookedConflicts(before: Itinerary, after: Itinerary, byId: Map<string, Place>, reservations: Reservation[]): string[] {
+  const next = new Map(noteRows(after, null, byId, reservations).map((r) => [saveKey(r.key.date, r.key.placeId), r]));
+  return noteRows(before, null, byId, reservations)
+    .filter((r) => r.status === 'booked')
+    .filter((r) => {
+      const a = next.get(saveKey(r.key.date, r.key.placeId));
+      return !a || a.nights !== r.nights;
+    })
+    .map((r) => {
+      const p = byId.get(r.placeId);
+      return `${p ? p.name.zh || p.name.ja : r.placeId} ${r.role === 'lodging' ? '這晚' : '這天'}已訂，採用的話要記得自己去取消`;
+    });
+}
+
 /** 連結的名稱：官網、食べログ、じゃらん、楽天，其他用網域名稱 */
 export function linkLabel(url: string, place: Place): string {
   if (place.links.official && url === place.links.official) return '官網';

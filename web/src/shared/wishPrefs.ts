@@ -10,6 +10,9 @@ export type WishViewMode = 'photo' | 'list';
 export interface WishPrefs {
   view: WishViewMode;
   collapsed: Record<SectionId, boolean>;
+  /** 只看自己加的（§17.7）；不記住，下次打開回到全部 */
+  userOnly: boolean;
+  setUserOnly(on: boolean): void;
   setView(view: WishViewMode): void;
   setCollapsed(id: SectionId, on: boolean): void;
 }
@@ -50,6 +53,8 @@ function save(key: string, value: string) {
 export const wishPrefs = createStore<WishPrefs>()((set, get) => ({
   view: loadView(),
   collapsed: loadCollapsed(),
+  userOnly: false,
+  setUserOnly: (userOnly) => set({ userOnly }),
   setView: (view) => {
     set({ view });
     save(VIEW_KEY, view);

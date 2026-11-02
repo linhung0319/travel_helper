@@ -6,7 +6,7 @@ import { openDialog, openDiscussion, openMapPanel, uiStore } from '../uiStore.ts
 import type { Filter } from '../lib/filter.ts';
 import type { ScreenSurface } from '../ai/stage.ts';
 import type { ChatContext } from '../ai/types.ts';
-import { EMPTY_DAY_FOLLOWUPS, LODGING_FOLLOWUPS, WISH_EMPTY_LEAD, type Starter } from '../ai/prompts.ts';
+import { emptyDayFollowups, LODGING_FOLLOWUPS, WISH_EMPTY_LEAD, type Starter } from '../ai/prompts.ts';
 
 /** 切到行程分頁（關掉詳情） */
 const showTrip = () => {
@@ -85,15 +85,15 @@ export const askDay = (date: string) => void askWeb([{ kind: 'day', date }]);
 
 export const askTrip = () => void askWeb([{ kind: 'trip' }]);
 
-/** 開始卡的「問 AI」：問那一步的事（§17.1）。② 住宿，帶整趟；③ 第一個還沒排的天，帶那天 */
+/** 開始卡的「問 AI」：問那一步的事，不帶晶片（§17.1）。② 住宿；③ 第一個還沒排的天 */
 export function askStart(step: 2 | 3) {
   const date = step === 3 ? ai.firstEmptyDate() : null;
   if (date) askEmptyDay(date);
-  else void askWeb([{ kind: 'trip' }], ai.firstStarter(), LODGING_FOLLOWUPS);
+  else void askWeb([], ai.firstStarter(), LODGING_FOLLOWUPS);
 }
 
 /** 空的一天的「問 AI」（§17.4） */
-export const askEmptyDay = (date: string) => void askWeb([{ kind: 'day', date }], ai.dayStarter(date), EMPTY_DAY_FOLLOWUPS);
+export const askEmptyDay = (date: string) => void askWeb([], ai.dayStarter(date), emptyDayFollowups(date));
 
 /** 想去頁空白時的「問 AI 推薦」（§17.4） */
 export const askWishEmpty = () => void askWeb([], WISH_EMPTY_LEAD);

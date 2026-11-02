@@ -80,12 +80,12 @@ test('第一次按 ♡：提示在分頁列上面，去看到想去', async ({ p
   await flightsOnly(page);
   await goTab(page, 'explore');
   await page.getByTestId('card-like').first().click();
-  const toast = page.getByTestId('toast');
+  const toast = page.getByTestId('hint');
   await expect(toast).toContainText('已加到想去');
   const box = (await toast.boundingBox())!;
   const bar = (await page.getByTestId('m-tabbar').boundingBox())!;
   expect(box.y + box.height).toBeLessThanOrEqual(bar.y);
-  await page.getByTestId('toast-undo').click();
+  await page.getByTestId('hint-action').click();
   await expect(page.getByTestId('m-tab-wish')).toHaveAttribute('aria-current', 'page');
   await expect(page.getByTestId('m-tab-count')).toHaveText('1');
 });

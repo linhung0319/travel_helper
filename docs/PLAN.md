@@ -896,6 +896,10 @@ T7c → T7d → T7e → T7f → T7g → T8a → T8b → T8c → T8d → T7i → 
   - `propose_user_place` 收到短網址時照樣打開加地點畫面；加好後聊天室插「已加入」，下一輪脈絡帶新點的 ID。
 - **驗證**：`formatReservations`、PDF／MD 的內容、`get_day` 的新欄位、提議卡的已訂判斷、短網址寫單元測試；標籤和提議卡用截圖。
 - **完成條件**：`npm test`、`npm run typecheck` 通過；截圖給 👤 看過。
+- **結果**（2026-11-02，branch `t38`，還沒 merge）：`npm test`、`npm run typecheck` 通過。**還沒做完的完成條件**：👤 手動測試一輪，沒問題再跑 e2e（👤 決定這次先不跑，也沒有截圖）。
+  - 同一個 branch 也做了 T37 試用後 👤 定案的兩件事（§17.1、§17.4）：開始卡和空的一天的「問 AI」不帶晶片；第一次按 ♡ 改成愛心飛進想去、新文字、〔去看〕芥子黃。還有排序的「想去多」改「想去」。
+  - 實作時定的細節見 §17.9。e2e 只改了字和 testid（`hint`、`hint-action`、`hint-close`），沒跑過，可能還有別的地方要跟著改。
+  - **還沒驗證**：真 AI 沒試（少了第一輪的晶片內容後回答會不會變差、新提示詞）；畫面都沒有實際看過，全部要靠手動測試。
 
 ### T21 代表照片 〔M〕
 - 給 T11 的探索模式、小卡片用（[interaction-design.md](interaction-design.md) §7）。
