@@ -1,9 +1,10 @@
-// 手機版「我」分頁（第六輪 §3.7）：帳號（MeMenu，dev 時可以切換使用者）、📋 預約、⬇ 下載、過去的版本。討論在行程「問 AI、編輯」旁（T33）。
+// 手機版「我」分頁（第六輪 §3.7）：帳號（MeMenu，dev 時可以切換使用者）、📋 預約、⬇ 下載（行程 PDF、MD、備份 JSON，T35）、過去的版本。討論在行程「問 AI、編輯」旁（T33）。
 // 預約點了是整頁（MePageView），內容和網頁版地圖區的視窗一樣（ReservationNotes）。
 
 import { useData, usePlan, useShared } from '../hooks.ts';
 import { noteRows } from '../lib/reservations.ts';
 import { exportJson } from '../shared/exportJson.ts';
+import { downloadTripMarkdown, printTripPdf } from '../shared/exportTrip.ts';
 import { MeMenu } from '../components/MeMenu.tsx';
 import { Icon } from '../components/Icon.tsx';
 import { ReservationNotes } from '../components/Reservations.tsx';
@@ -19,9 +20,10 @@ export function usePendingCount(): number {
   return noteRows(itinerary, plan, byId, reservations).filter((r) => r.status === 'pending').length;
 }
 
-/** 「我」分頁：帳號，加上三列（預約、下載、過去的版本） */
+/** 「我」分頁：帳號，加上預約、下載（PDF、MD、備份）、過去的版本 */
 export function MePage() {
   const itinerary = useData((s) => s.itinerary);
+  const plan = usePlan((s) => s.plan);
   const pending = usePendingCount();
   return (
     <div className="m-me" data-testid="m-me">
@@ -43,11 +45,27 @@ export function MePage() {
           </button>
         </li>
         <li>
+          <button type="button" className="m-row" disabled={!itinerary || !plan} onClick={() => void printTripPdf()} data-testid="m-me-export-pdf">
+            <span className="m-row-icon" aria-hidden>
+              <Icon name="download" size={20} />
+            </span>
+            <span className="m-row-text">行程 PDF（列印）</span>
+          </button>
+        </li>
+        <li>
+          <button type="button" className="m-row" disabled={!itinerary || !plan} onClick={() => void downloadTripMarkdown()} data-testid="m-me-export-md">
+            <span className="m-row-icon" aria-hidden>
+              <Icon name="download" size={20} />
+            </span>
+            <span className="m-row-text">行程 MD（給 AI）</span>
+          </button>
+        </li>
+        <li>
           <button type="button" className="m-row" disabled={!itinerary} onClick={exportJson} data-testid="m-me-export">
             <span className="m-row-icon" aria-hidden>
               <Icon name="download" size={20} />
             </span>
-            <span className="m-row-text">下載行程 JSON</span>
+            <span className="m-row-text">備份（JSON）</span>
           </button>
         </li>
         <li>
