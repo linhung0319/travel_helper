@@ -951,3 +951,14 @@
   width: 100%;
   min-height: 48px;
 }
+
+/* 訊息區的卡片：字和點的範圍跟著手機（§17.2） */
+.m-chat .ac-card {
+  min-height: var(--tap);
+  justify-content: center;
+  font-size: 0.9375rem;
+}
+
+.m-chat .ac-card small {
+  font-size: 0.8125rem;
+}

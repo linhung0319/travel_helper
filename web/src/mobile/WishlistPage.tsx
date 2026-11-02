@@ -10,14 +10,15 @@ import { WishList } from '../shared/ui/WishList.tsx';
 import { useWishModel } from './FeedFilters.tsx';
 import { TypeChips } from '../shared/ui/TypeChips.tsx';
 import { mobileStore, useMobile } from './mobileStore.ts';
-import { askList } from './mobileAi.ts';
+import { askList, askWishEmpty } from './mobileAi.ts';
+import { WishEmpty } from '../shared/ui/EmptyStates.tsx';
 import { useWishPrefs } from '../shared/wishPrefs.ts';
 
 /** 想去分頁 */
 export function WishlistPage() {
   const wish = useMobile((s) => s.wish);
   const view = useWishPrefs((s) => s.view);
-  const { setWish } = mobileStore.getState();
+  const { setWish, setTab } = mobileStore.getState();
   // 預設「全部」（記住上次選的類型）
   const type = wish.type;
   const fromChat = useMobile((s) => s.fromChat);
@@ -41,7 +42,8 @@ export function WishlistPage() {
         onOpen={(id) => mobileStore.getState().openPlace(id, 'wish')}
         onOpenComments={(id) => mobileStore.getState().openPlace(id, 'wish', 'comments')}
       />
-      {list.length === 0 && <p className="muted m-empty">{pool.length === 0 ? '還沒有人按想去。在探索或詳情按想去，就會出現在這裡。' : '這一類還沒有人按想去，換一類或換地區看看。'}</p>}
+      {pool.length === 0 && <WishEmpty onExplore={() => setTab('explore')} onAsk={askWishEmpty} />}
+      {list.length === 0 && pool.length > 0 && <p className="muted m-empty">這一類還沒有人按想去，換一類或換地區看看。</p>}
     </div>
   );
 }

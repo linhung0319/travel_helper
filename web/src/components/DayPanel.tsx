@@ -8,7 +8,8 @@ import { commands } from '../appCommands.ts';
 import { useApp, useData, usePlan, useShared, useUi } from '../hooks.ts';
 import { dayPlanOf } from '../planStore.ts';
 import { describeChanges } from '../lib/overlays.ts';
-import { dayLabel, isRedDay, tripDates } from '../lib/trip.ts';
+import { dayLabel, isRedDay, shortDayLabel, tripDates } from '../lib/trip.ts';
+import { flightCount, overviewRows } from '../lib/tripStart.ts';
 import { dayAreaName, dayTitle } from '../lib/dayTitle.ts';
 import { stopsOn } from '../lib/itinerary.ts';
 import { selectedBarKey, WARNING_ICONS } from '../lib/planView.ts';
@@ -17,10 +18,12 @@ import { DayCandidates } from './Wishlist.tsx';
 import { dayCandidates } from '../lib/wishlist.ts';
 import { EditHint, PlanningBar, PlanningToggle } from './Planning.tsx';
 import { MemberName, stamp } from './common.tsx';
-import { askDay, askTrip } from './webAi.ts';
+import { askDay, askEmptyDay, askStart, askTrip } from './webAi.ts';
 import { showList } from './SidePanel.tsx';
 import { Icon } from './Icon.tsx';
 import { DiscussButton } from '../shared/ui/DiscussButton.tsx';
+import { DayEmpty } from '../shared/ui/EmptyStates.tsx';
+import { StartCard } from '../shared/ui/StartCard.tsx';
 
 const DATES = tripDates();
 
@@ -38,6 +41,15 @@ function Overview() {
     const nameOf = (id: string) => byId.get(id)?.name.zh || byId.get(id)?.name.ja || id;
     return new Map(describeChanges(proposal.changes, nameOf).map((l) => [l.date, l.text.split('：').slice(1).join('：')]));
   }, [proposal, byId]);
+  const warnsOn = (d: string) => dayPlanOf(plan, d)?.warnings.filter((w) => w.level !== 'info').length ?? 0;
+  const rows = overviewRows(DATES, (d) => ({
+    stops: stopsOn(itinerary, d).some((s) => s.kind !== 'lodging' && s.kind !== 'flight'),
+    lodging: !!itinerary?.days.find((x) => x.date === d)?.lodging,
+    flights: flightCount(itinerary, d),
+    candidates: dayCandidates(candidates, d, itinerary, byId).length,
+    warnings: warnsOn(d),
+    proposed: proposalLines.has(d),
+  }));
   return (
     <div className="day-panel" data-testid="day-panel">
       <div className="day-head">
@@ -50,16 +62,27 @@ function Overview() {
           第 {version} 版・<MemberName id={updatedBy} /> {stamp(updatedAt)} 改的
         </span>
       </div>
+      {!proposal && <StartCard onExplore={() => showList('explore')} onAsk={askStart} />}
       {plan?.warnings.map((w, i) => (
         <p key={i} className={`small warning-${w.level}`}>
           <Icon name={WARNING_ICONS[w.level]} size={16} /> {w.message}
         </p>
       ))}
       <ol className="overview">
-        {DATES.map((d) => {
+        {rows.map((r) => {
+          if (r.kind === 'empty') {
+            return (
+              <li key={r.from}>
+                <button type="button" className="overview-day overview-empty" onClick={() => commands.selectDay(r.from)} data-overview-day={r.from} data-testid="overview-empty">
+                  {shortDayLabel(r.from)}～{shortDayLabel(r.to)} 還沒排 · {r.count} 天
+                </button>
+              </li>
+            );
+          }
+          const d = r.date;
+          const flights = flightCount(itinerary, d);
           const stops = stopsOn(itinerary, d).filter((s) => s.kind !== 'lodging' && s.kind !== 'flight');
-          const dp = dayPlanOf(plan, d);
-          const warn = dp?.warnings.filter((w) => w.level !== 'info').length ?? 0;
+          const warn = warnsOn(d);
           const lodging = itinerary?.days.find((x) => x.date === d)?.lodging;
           const lp = lodging ? byId.get(lodging) : null;
           const cands = dayCandidates(candidates, d, itinerary, byId).length;
@@ -68,7 +91,7 @@ function Overview() {
               <button type="button" className={`overview-day ${proposalLines.has(d) ? 'proposed' : ''}`} onClick={() => commands.selectDay(d)} data-overview-day={d}>
                 <span className={`overview-date ${isRedDay(d) ? 'red-day' : ''}`}>{dayLabel(d)}</span>
                 <span className="overview-stops">
-                  {stops.length ? stops.map((s) => byId.get(s.place)?.name.zh || byId.get(s.place)?.name.ja || s.place).join(' → ') : <span className="muted">還沒排</span>}
+                  {stops.length ? stops.map((s) => byId.get(s.place)?.name.zh || byId.get(s.place)?.name.ja || s.place).join(' → ') : flights ? <span className="muted ic-text"><Icon name="plane" size={16} /> 航班 {flights} 筆</span> : <span className="muted">還沒排</span>}
                   {lp && (
                     <span className="muted small ic-text">
                       <Icon name="bed" size={16} /> {lp.name.zh || lp.name.ja}
@@ -179,12 +202,7 @@ export function DayPanel() {
       {!shown && <EditHint />}
       {itDay && plan && <Timeline tl={{ ...tl, itDay, plan }} diff={shown?.diff ?? null} originalPlan={shown?.originalPlan ?? null} />}
       {itDay && plan && itDay.items.length === 0 && (
-        <p className="muted small" data-testid="day-empty">
-          這天還沒排。到「想去」把想去的點加到這天{' '}
-          <button type="button" className="button small" onClick={goWish} data-testid="day-go-wish">
-            去想去
-          </button>
-        </p>
+        <DayEmpty date={day} onAsk={() => askEmptyDay(day)} onWish={goWish} testId="day-empty" />
       )}
       <DayCandidates date={day} />
     </div>

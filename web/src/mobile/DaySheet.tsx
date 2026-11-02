@@ -35,7 +35,8 @@ import { Button } from '../shared/ui/Button.tsx';
 import { DiscussButton } from '../shared/ui/DiscussButton.tsx';
 import { MobileCard } from './MobileCard.tsx';
 import { MobileLeg, MobileWait } from './MobileLeg.tsx';
-import { askDay } from './mobileAi.ts';
+import { askDay, askEmptyDay } from './mobileAi.ts';
+import { DayEmpty } from '../shared/ui/EmptyStates.tsx';
 import { TripOverview } from './TripOverview.tsx';
 import { TimelineSkeleton } from '../shared/ui/Skeleton.tsx';
 
@@ -390,9 +391,7 @@ function DayView({ date }: { date: string }) {
         </TimelineDiffContext.Provider>
       )}
       {itDay && plan && itDay.items.length === 0 && (
-        <p className="muted small m-trip-empty" data-testid="m-trip-empty">
-          這天還沒排。到「想去」把想去的點加到這天。
-        </p>
+        <DayEmpty date={date} onAsk={() => askEmptyDay(date)} onWish={() => mobileStore.getState().setTab('wish')} testId="m-trip-empty" />
       )}
       {itDay && <Candidates tl={tl} focused={focused} byId={byId} />}
     </div>

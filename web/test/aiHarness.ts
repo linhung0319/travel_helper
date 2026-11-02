@@ -56,6 +56,8 @@ export interface HarnessOptions {
   delayMs?: number;
   /** 換成別的模型（scripts/ai-eval.ts 用真的 Claude API）；預設假 AI */
   model?: ModelClient;
+  /** 現在的時間（試重新打開網站）；預設真的時間 */
+  now?: () => string;
 }
 
 export async function harness(opts: HarnessOptions = {}) {
@@ -120,6 +122,7 @@ export async function harness(opts: HarnessOptions = {}) {
     config: resolveConfig(),
     source,
     confirmPlanning,
+    ...(opts.now ? { now: opts.now } : {}),
     repo: createLocalChatRepository({ storage, memberId: () => shared.store.getState().me?.id ?? 'guest' }),
     model: opts.model ?? model,
     stage,

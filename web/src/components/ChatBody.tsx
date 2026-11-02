@@ -4,10 +4,11 @@
 import { useEffect, useLayoutEffect, useMemo, useRef, useState, type KeyboardEvent, type ReactNode, type RefObject } from 'react';
 import { useStore } from 'zustand';
 import { ai } from '../appAi.ts';
-import { useData } from '../hooks.ts';
+import { useData, usePlan, useShared } from '../hooks.ts';
 import { dayLabel } from '../lib/trip.ts';
 import { filterChips } from '../lib/filter.ts';
 import { streamingView, toolLabel, turnsOf, type ChatToolUse, type ChatTurn } from '../ai/transcript.ts';
+import { blankCards, type StarterCard } from '../ai/prompts.ts';
 import type { ChatContext, ConversationSummary } from '../ai/types.ts';
 import { RichText, TypeStamp, usePlaceName } from './ChatRich.tsx';
 import { Icon } from './Icon.tsx';
@@ -176,6 +177,36 @@ function Turn({ turn, last, versionOf, busy, incomplete, card, onQuick }: { turn
   );
 }
 
+/** 訊息區矮於這個高度（手機的半屏、鍵盤開著）放不下三張：只放第一張，其他縮成一行膠囊 */
+const CARDS_COMPACT_BELOW = 250;
+
+/** 空白的新對話的卡片（§17.2）：第一張靛藍實心、橫跨兩欄，其他白底；按了就是送出那句話 */
+function StarterCards({ cards, onPick }: { cards: StarterCard[]; onPick: (q: string) => void }) {
+  const [compact, setCompact] = useState(false);
+  const root = useRef<HTMLDivElement>(null);
+  // 量訊息區：外層的 ref 這時還沒接上（子元件的 layout effect 先跑），從 DOM 找
+  useLayoutEffect(() => {
+    const el = root.current?.closest<HTMLElement>('.ac-msgs');
+    if (!el) return;
+    const check = () => setCompact(el.clientHeight < CARDS_COMPACT_BELOW);
+    check();
+    if (typeof ResizeObserver === 'undefined') return;
+    const ro = new ResizeObserver(check);
+    ro.observe(el);
+    return () => ro.disconnect();
+  }, []);
+  return (
+    <div ref={root} className={`ac-cards ${compact ? 'compact' : ''}`} data-testid="chat-cards" data-compact={compact}>
+      {cards.map((c, i) => (
+        <button key={c.q} type="button" className={`ac-card ${i === 0 ? 'first' : ''}`} onClick={() => onPick(c.q)} data-testid={c.source === 'chip' ? 'chat-suggestion' : 'chat-starter'} data-first={i === 0}>
+          <b>{c.q}</b>
+          {c.why && <small>{c.why}</small>}
+        </button>
+      ))}
+    </div>
+  );
+}
+
 export interface ChatBodyProps {
   /** 一個工具呼叫的卡片（每個平台自己畫，或共用 ChatCard） */
   card: (use: ChatToolUse, version: number) => ReactNode;
@@ -208,6 +239,10 @@ export function ChatBody({ card, empty, screenLabel, listOpen, closeList, onNewC
   const error = useAi((s) => s.error);
   const contexts = useAi((s) => s.contexts);
   const suggestions = useAi((s) => s.suggestions);
+  const lead = useAi((s) => s.lead);
+  const plan = usePlan((s) => s.plan);
+  const itinerary = useData((s) => s.itinerary);
+  const votes = useShared((s) => s.votes);
   const conversations = useAi((s) => s.conversations);
   const currentId = useAi((s) => s.currentId);
   const text = useAi((s) => s.draftText);
@@ -228,10 +263,13 @@ export function ChatBody({ card, empty, screenLabel, listOpen, closeList, onNewC
     return m;
   }, [turns]);
   const incomplete = busy || error ? null : ai.incomplete();
-  // 空白的新對話：照現在的行程和畫面推薦問題（換到別天 screenLabel 會變）；按了問 AI 就用那邊帶的建議問題
-  const blank = turns.length === 0 && !busy && !contexts.length && !suggestions.length;
+  // 空白的新對話：卡片照現在的行程和畫面算（換到別天 screenLabel 會變）；按了問 AI 就用那邊帶的建議問題。不呼叫 AI（§17）
+  const blank = turns.length === 0 && !busy;
   // eslint-disable-next-line react-hooks/exhaustive-deps -- 只有這些變了才重算
-  const starters = useMemo(() => (blank ? ai.starters() : []), [blank, screenLabel]);
+  const starters = useMemo(() => (blank ? ai.starters() : []), [blank, screenLabel, plan, itinerary, votes]);
+  const cards = blank && !quota ? blankCards(lead, suggestions, starters, contexts.length > 0) : [];
+  // 對話進行中按問 AI：建議問題放在輸入框上面
+  const inlineSuggestions = blank ? [] : [...new Set([...(lead ? [lead.q] : []), ...suggestions])];
 
   // 打開時：平台要捲到別的地方就不捲到底
   const opened = useRef(false);
@@ -314,7 +352,12 @@ export function ChatBody({ card, empty, screenLabel, listOpen, closeList, onNewC
       <div className="ac-body">
         {listOpen && <ConversationList list={conversations} current={currentId} onClose={closeList} onNew={listNewRow ? onNewChat : undefined} />}
         <div className="ac-msgs" ref={scroller} onScroll={onScroll} data-testid="chat-messages">
-          {turns.length === 0 && !busy && empty}
+          {blank && (
+            <div className="ac-blank">
+              {empty}
+              {!!cards.length && <StarterCards cards={cards} onPick={send} />}
+            </div>
+          )}
           {turns.map((t, i) => (
             <Turn key={t.id} turn={t} last={i === turns.length - 1} versionOf={(id) => versions.get(id) ?? 1} busy={busy} incomplete={t.id === incomplete} card={card} onQuick={send} />
           ))}
@@ -372,19 +415,10 @@ export function ChatBody({ card, empty, screenLabel, listOpen, closeList, onNewC
           </>
         ) : (
           <>
-            {!!suggestions.length && !busy && !quota && (
+            {!!inlineSuggestions.length && !busy && !quota && (
               <div className="ac-sugs">
-                {suggestions.map((q) => (
+                {inlineSuggestions.map((q) => (
                   <button key={q} type="button" className="ac-sug" onClick={() => send(q)} data-testid="chat-suggestion">
-                    {q}
-                  </button>
-                ))}
-              </div>
-            )}
-            {!!starters.length && !quota && (
-              <div className="ac-sugs">
-                {starters.map((q) => (
-                  <button key={q} type="button" className="ac-sug" onClick={() => send(q)} data-testid="chat-starter">
                     {q}
                   </button>
                 ))}

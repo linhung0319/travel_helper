@@ -42,6 +42,9 @@ let model: ModelClient = createWorkerModel({ onLoggedOut: () => location.reload(
 export let fakeSettings: { delayMs: number; usage: 'ok' | 'near' | 'full'; next: 'error' | 'quota' | 'hang' | null } | null = null;
 
 let surface: ScreenSurface = appSurface(appStore);
+/** 切到想去分頁（第一次按 ♡ 的提示「去看」） */
+export const showWishTab = () => surface.showTab('wish');
+
 /** 平台接上怎麼切畫面（T16m-b、T16m-c） */
 export const setScreenSurface = (s: ScreenSurface) => {
   surface = s;

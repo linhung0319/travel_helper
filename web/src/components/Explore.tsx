@@ -22,7 +22,8 @@ import { TypeChips } from '../shared/ui/TypeChips.tsx';
 import { addPlaceStore } from '../addPlaceStore.ts';
 import { FilterBar, type FilterModel } from '../shared/ui/FilterBar.tsx';
 import { dragPlaceProps } from './askAi.ts';
-import { askList, askPlace } from './webAi.ts';
+import { askList, askPlace, askWishEmpty } from './webAi.ts';
+import { WishEmpty } from '../shared/ui/EmptyStates.tsx';
 import { useAiPicked, usePlaceList } from '../shared/placeLists.ts';
 import { PlaceRow, useDayStatus, type DayStatus } from '../shared/ui/PlaceRow.tsx';
 import { PlaceTile } from '../shared/ui/PlaceTile.tsx';
@@ -245,9 +246,8 @@ export function ExplorePanel({ source = 'explore' }: { source?: ListSource }) {
             </button>
           </div>
         )}
-        {list.length === 0 && !aiResult && (wish || !ownsEmpty) && (
-          <p className="muted ex-empty">{source === 'wish' && pool.length === 0 ? '還沒有人按想去。在探索或詳情按想去，就會出現在這裡。' : '沒有符合的地點，取消一些篩選看看。'}</p>
-        )}
+        {list.length === 0 && !aiResult && wish && pool.length === 0 && <WishEmpty onExplore={() => appStore.getState().setMode('explore')} onAsk={askWishEmpty} />}
+        {list.length === 0 && !aiResult && (wish || !ownsEmpty) && !(wish && pool.length === 0) && <p className="muted ex-empty">沒有符合的地點，取消一些篩選看看。</p>}
       </div>
     </div>
   );

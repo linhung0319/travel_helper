@@ -3,6 +3,7 @@
 
 import { Icon, type IconName } from '../components/Icon.tsx';
 import { useApp } from '../hooks.ts';
+import { CountBump } from '../shared/ui/CountBump.tsx';
 import { useLiked } from '../shared/placeLists.ts';
 import { useDiscussionUnread } from '../shared/discussionSeen.ts';
 import { mobileStore, useMobile, type MobileTab } from './mobileStore.ts';
@@ -43,7 +44,7 @@ export function TabBar() {
             {label}
             {tab === 'wish' && wishCount > 0 && (
               <span className="m-tab-count" data-testid="m-tab-count">
-                {wishCount}
+                <CountBump n={wishCount} />
               </span>
             )}
           </span>

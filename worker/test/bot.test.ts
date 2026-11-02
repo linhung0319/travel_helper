@@ -6,7 +6,7 @@ import crypto from 'node:crypto';
 import { createItinerary, type TripSummary } from '@travel-helper/engine';
 import { freshDb, type FakeD1 } from './helpers/d1.ts';
 import { handle } from '../src/index.ts';
-import { botReply, normalize, parseCommand, splitMessages, stripMentions } from '../src/bot.ts';
+import { botReply, helpText, normalize, parseCommand, splitMessages, stripMentions } from '../src/bot.ts';
 import type { Env } from '../src/env.ts';
 
 const MSG_SECRET = 'messaging-secret';
@@ -180,15 +180,25 @@ describe('回覆', () => {
     assert.deepEqual(await ask('哪天去伊勢神宮'), ['2/3 去伊勢神宮。']);
   });
 
+  test('怎麼用：和說明、指令、help 同一個指令，還沒有摘要也回得出來；不舉今天、明天、現在', async () => {
+    for (const q of ['怎麼用', '說明', '指令', 'help', 'HELP', '']) assert.deepEqual(parseCommand(q, '2027-02-03', ['2027-02-03']), { type: 'help' });
+    const [text] = await ask('怎麼用');
+    assert.match(text, /^我們正在一起排 2\/2～2\/13 的行程/);
+    assert.match(text, /網站不會幫忙訂/);
+    assert.match(text, /https:\/\/trip\.example\.dev\/\?openExternalBrowser=1$/);
+    assert.doesNotMatch(text, /今天|明天|現在/);
+    assert.equal(helpText(undefined).includes('http'), false);
+  });
+
   test('AI 出錯、額度用完：回可用的指令和網站', async () => {
     seed();
     aiOutput = null;
-    assert.match((await ask('哈囉'))[0], /^可以問：整趟、2\/5[\s\S]*網站：https:\/\/trip\.example\.dev$/);
+    assert.match((await ask('哈囉'))[0], /^我們正在一起排[\s\S]*https:\/\/trip\.example\.dev\/\?openExternalBrowser=1$/);
     aiOutput = { type: 'trip', date: null, text: null };
     d1.db.exec(`INSERT INTO ai_usage (member_id, date, cost_micro_usd) VALUES ('line-bot', '2027-02-03', 5000000)`);
     // 用 Date.now() 的 jstDate 算今天：額度記在今天
     d1.db.exec(`UPDATE ai_usage SET date = '${new Date(Date.now() + 9 * 3600_000).toISOString().slice(0, 10)}'`);
-    assert.match((await ask('全部行程'))[0], /^可以問/);
+    assert.match((await ask('全部行程'))[0], /^我們正在一起排/);
   });
 });
 

@@ -7,7 +7,8 @@ import type { Filter } from '../lib/filter.ts';
 import type { ReservationStatus } from '../backend/types.ts';
 import { createProposals, type ProposalDeps, type Proposals } from './proposals.ts';
 import { buildTurnContext } from './context.ts';
-import { promptsForAll, startersFor } from './prompts.ts';
+import { buildStarterInput, dayStarter, firstEmptyDate, firstStarter, promptsForAll, startersFor, tripPrompts, type Starter } from './prompts.ts';
+import { shouldStartFresh } from '../lib/tripStart.ts';
 import { SYSTEM_PROMPT } from './systemPrompt.ts';
 import { createReadTools } from './readTools.ts';
 import { createTools, type Presentation, type ToolDef } from './tools.ts';
@@ -36,6 +37,8 @@ export interface ChatState {
   screenOff: boolean;
   /** 問 AI 的建議問題 */
   suggestions: string[];
+  /** 開始卡、空的一天帶來的那一句：放在第一張（interaction-design §17.2） */
+  lead: Starter | null;
   /** 上次送出之後使用者對卡片的決定，下一次送出帶給 AI */
   decisions: TurnContext['decisions'];
   /** 輸入框裡還沒送出的字：放在這裡，轉向換版面才不會不見；重新整理不保留（規格 §11） */
@@ -56,8 +59,8 @@ export interface Chat {
   store: StoreApi<ChatState>;
   tools: ToolDef[];
   proposals: Proposals;
-  /** 載入這個人的對話，回到最近的那段（打開網站、換人） */
-  init(): Promise<void>;
+  /** 載入這個人的對話，回到最近的那段（打開網站、換人）。keepAsked：啟動完成前就按了問 AI，帶入的晶片和打到一半的字留著；換人時不留 */
+  init(opts?: { keepAsked?: boolean }): Promise<void>;
   newConversation(): Promise<void>;
   switchTo(id: string): Promise<void>;
   send(text: string): Promise<ChatResult>;
@@ -65,15 +68,21 @@ export interface Chat {
   retry(): Promise<ChatResult>;
   /** 停止這輪回覆：已進來的字留著，標「沒有回完」 */
   stop(): Promise<void>;
-  /** 問 AI：帶入晶片和建議問題，不送出；對話滿了自動開新對話 */
-  ask(contexts: ChatContext[]): Promise<void>;
+  /** 問 AI：帶入晶片和建議問題，不送出；對話滿了自動開新對話。lead：放在第一張的問題；followups：換掉晶片預設的建議問題 */
+  ask(contexts: ChatContext[], lead?: Starter | null, followups?: string[]): Promise<void>;
   removeContext(index: number): void;
   setScreenOff(off: boolean): void;
   setDraftText(text: string): void;
   /** 這份操作會新出現的警告（提議卡顯示）；算不出來是空的 */
   newWarnings(ops: Op[]): string[];
   /** 空白的新對話要推薦的問題：照現在的行程和畫面算，不呼叫模型 */
-  starters(): string[];
+  starters(): Starter[];
+  /** 第一張卡（開始卡的「問 AI」帶這一句） */
+  firstStarter(): Starter;
+  /** 第一個還沒排的天（開始卡第 ③ 步） */
+  firstEmptyDate(): string | null;
+  /** 這天還沒排時的那一句（空的一天的「問 AI」帶這一句） */
+  dayStarter(date: string): Starter | null;
   /** 從別的分頁、裝置回來：重新抓對話清單和這段對話（回覆中不動） */
   refresh(): Promise<void>;
   /** 這段對話還能不能問 */
@@ -97,7 +106,7 @@ const sameContext = (a: ChatContext, b: ChatContext) => {
   return true;
 };
 
-const INITIAL: ChatState = { conversations: [], currentId: null, messages: [], status: 'idle', streamingText: '', error: null, contexts: [], screenOff: false, suggestions: [], decisions: [], draftText: '' };
+const INITIAL: ChatState = { conversations: [], currentId: null, messages: [], status: 'idle', streamingText: '', error: null, contexts: [], screenOff: false, suggestions: [], lead: null, decisions: [], draftText: '' };
 
 export function createChat(d: CreateChatDeps): Chat {
   const store = createStore<ChatState>()(() => INITIAL);
@@ -377,7 +386,7 @@ export function createChat(d: CreateChatDeps): Chat {
     stop();
     // 提議卡還在，畫面上清掉（規格 §11）
     proposals.hide();
-    store.setState({ currentId: id, messages: id ? await d.repo.loadMessages(id) : [], contexts: [], suggestions: [], error: null, decisions: [], draftText: '' });
+    store.setState({ currentId: id, messages: id ? await d.repo.loadMessages(id) : [], contexts: [], suggestions: [], lead: null, error: null, decisions: [], draftText: '' });
   }
 
   async function startTurn(text: string, chips: ChatContext[]): Promise<ChatResult> {
@@ -450,16 +459,27 @@ export function createChat(d: CreateChatDeps): Chat {
   const unsubMember = d.shared.store.subscribe((s) => {
     if (s.me?.id === lastMember) return;
     lastMember = s.me?.id;
-    void chat.init();
+    void chat.init({ keepAsked: false });
   });
+
+  /** 推薦問題要的資料：都是瀏覽器本來就有的 */
+  function starterInput() {
+    const { itinerary, byId, areas } = d.data.getState();
+    const { day } = d.app.getState();
+    return buildStarterInput({ itinerary, plan: d.plan.getState().plan, votes: d.shared.store.getState().votes, byId, areas, day: day === 'all' ? null : day });
+  }
 
   const chat: Chat = {
     store,
     tools,
     proposals,
-    async init() {
+    async init({ keepAsked = true } = {}) {
       await refreshList();
+      const { contexts, suggestions, lead, draftText } = store.getState();
       await open(store.getState().conversations[0]?.id ?? null);
+      // 隔了一段時間才回來：開新對話，推薦問題照當下的行程重算，送給 AI 的對話也不會越來越長（§17.3）。舊的在對話清單
+      if (shouldStartFresh(store.getState().messages, now())) await open(null);
+      if (keepAsked) store.setState({ contexts, suggestions, lead, draftText });
     },
     newConversation: () => open(null),
     switchTo: (id) => open(id),
@@ -468,7 +488,7 @@ export function createChat(d: CreateChatDeps): Chat {
       if (!t) return { ok: false, error: '沒有內容' };
       if (store.getState().status !== 'idle') return { ok: false, error: 'AI 還在回覆' };
       if (isFull()) return { ok: false, error: '這段對話滿了，請開新對話' };
-      store.setState({ suggestions: [] });
+      store.setState({ suggestions: [], lead: null });
       return startTurn(t, store.getState().contexts);
     },
     async stop() {
@@ -487,32 +507,29 @@ export function createChat(d: CreateChatDeps): Chat {
       store.setState((x) => ({ messages: x.messages.filter((m) => m.turn !== turn), error: null }));
       return startTurn(textOf(first.content), first.contexts ?? []);
     },
-    async ask(contexts) {
+    async ask(contexts, lead = null, followups) {
       if (isFull()) await open(null);
       const s = store.getState();
       const fresh = contexts.filter((c) => !s.contexts.some((x) => sameContext(x, c)));
       const last = contexts.at(-1);
       const place = last?.kind === 'place' ? d.data.getState().byId.get(last.id) : undefined;
       const merged = [...s.contexts, ...fresh];
-      store.setState({ contexts: merged, screenOff: false, suggestions: promptsForAll(merged, last, place) });
+      store.setState({ contexts: merged, screenOff: false, suggestions: followups ?? (merged.length === 1 && last?.kind === 'trip' ? tripPrompts(starterInput()) : promptsForAll(merged, last, place)), lead });
     },
-    removeContext: (index) => store.setState((s) => ({ contexts: s.contexts.filter((_, i) => i !== index) })),
+    removeContext: (index) =>
+      store.setState((s) => {
+        const contexts = s.contexts.filter((_, i) => i !== index);
+        return { contexts, lead: contexts.length ? s.lead : null };
+      }),
     setScreenOff: (screenOff) => store.setState({ screenOff }),
     setDraftText: (draftText) => store.setState({ draftText }),
     newWarnings: (ops) => read.proposalWarnings(ops),
-    starters() {
-      const overview = read.get_trip_overview() as { ok: boolean; days?: { lodging: string | null; warnings: number }[] };
-      const days = overview.ok ? (overview.days ?? []) : [];
-      const s = d.shared.store.getState();
-      const scheduled = new Set(d.data.getState().itinerary?.days.flatMap((day) => day.items.flatMap((item) => (item.type === 'visit' ? item.options.map((o) => o.place) : []))) ?? []);
-      const { day } = d.app.getState();
-      return startersFor({
-        day: day === 'all' ? null : day,
-        // 最後一天不住
-        nightsMissing: days.slice(0, -1).filter((x) => !x.lodging).length,
-        warnings: days.reduce((n, x) => n + x.warnings, 0),
-        wishesUnplaced: new Set(s.votes.filter((v) => v.value === 'like' && !scheduled.has(v.placeId)).map((v) => v.placeId)).size,
-      });
+    starters: () => startersFor(starterInput()),
+    firstStarter: () => firstStarter(starterInput()),
+    firstEmptyDate: () => firstEmptyDate(starterInput()),
+    dayStarter(date) {
+      const day = starterInput().days.find((x) => x.date === date);
+      return day ? dayStarter(day) : null;
     },
     async refresh() {
       if (store.getState().status !== 'idle') return;
