@@ -59,7 +59,7 @@ export async function waitIdle(page: Page) {
 
 export { expect };
 
-/** 電腦版：打開右欄右上的頭像選單，點其中一項（預約、下載行程、過去的版本）；選單點完會收起來 */
+/** 電腦版：打開右欄右上的頭像選單，點其中一項（預約、下載行程（PDF、MD、備份）、過去的版本）；選單點完會收起來 */
 export async function openAccountItem(page: Page, item: 'reservations' | 'export' | 'versions') {
   await page.getByTestId('account-menu').click();
   await page.getByTestId(`account-${item}`).click();

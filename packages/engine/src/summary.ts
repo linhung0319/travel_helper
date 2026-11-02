@@ -1,6 +1,6 @@
 // 行程摘要（T34）：只有「結果」，幾點到幾點做什麼、住哪、要預約的有哪些；不放交通、警告。
 // 瀏覽器算完時間軸後整理成 TripSummary 存進 D1（Worker 算不出時間，architecture §6）；
-// LINE 機器人讀出來排成文字回覆，T35 的下載檔也用同一份。純函式，沒有 I/O。
+// LINE 機器人讀出來排成文字回覆（T35 的下載檔不用這份，直接從時間軸整理，見 web/src/lib/tripExport.ts）。純函式，沒有 I/O。
 
 import { dayOfWeek, toMinutes } from './time.ts';
 import type { DateString, ItineraryPlan, Itinerary, TimeString, TimelineEntry } from './types.ts';

@@ -1743,6 +1743,22 @@ test('第七輪：討論按鈕、頭像選單的預約打開的彈窗，Esc 關�
   await expect(page.getByTestId('map-panel')).toHaveCount(0);
 });
 
+test('T35：下載行程 MD 和 PDF（列印用的 iframe）', async ({ page }) => {
+  await ready(page);
+  await page.getByTestId('account-menu').click();
+  const [download] = await Promise.all([page.waitForEvent('download'), page.getByTestId('account-export-md').click()]);
+  expect(download.suggestedFilename()).toMatch(/^行程-v\d+\.md$/);
+  const fs = await import('node:fs/promises');
+  const md = await fs.readFile((await download.path())!, 'utf8');
+  expect(md).toContain('## 總覽');
+  expect(md).toContain('## 2/2（二）');
+  await page.getByTestId('account-menu').click();
+  await page.getByTestId('account-export-pdf').click();
+  const frame = page.getByTestId('trip-print-frame');
+  await expect(frame).toHaveCount(1);
+  expect(await frame.getAttribute('srcdoc')).toContain('PDF 不會跟著行程更新');
+});
+
 test('第七輪：頭像選單有使用者、預約、下載、過去的版本、切換使用者，沒有討論；Esc 收起', async ({ page }) => {
   await ready(page);
   await page.getByTestId('account-menu').click();
@@ -1750,7 +1766,7 @@ test('第七輪：頭像選單有使用者、預約、下載、過去的版本�
   await expect(menu).toBeVisible();
   await expect(menu).not.toContainText('討論');
   await expect(menu).toContainText('預約');
-  await expect(menu).toContainText('下載行程');
+  await expect(menu).toContainText('行程 PDF');
   await expect(menu).toContainText('過去的版本');
   await expect(menu).toContainText('切換使用者');
   await page.keyboard.press('Escape');

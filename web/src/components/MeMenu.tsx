@@ -1,6 +1,6 @@
 // 帳號：之後是 LINE 的名字和大頭照（T25）。
 // - MeMenu：手機「我」分頁的帳號列；dev server 下點了打開開發用選單（T15m 的假登入）。
-// - AccountMenu（第七輪）：網頁右欄右上的頭像選單，裝使用者名稱、預約、下載行程、過去的版本，dev server 下多一段「切換使用者（開發用）」。討論在行程「問 AI、編輯」旁（T33）。
+// - AccountMenu（第七輪）：網頁右欄右上的頭像選單，裝使用者名稱、預約、下載行程（PDF、MD、備份 JSON，T35）、過去的版本，dev server 下多一段「切換使用者（開發用）」。討論在行程「問 AI、編輯」旁（T33）。
 // 開發用的內容（切換使用者、重設假資料、假裝別人改了行程、編輯的閒置時間）兩邊共用 DevTools。
 
 import { useEffect, useRef, useState } from 'react';
@@ -11,6 +11,7 @@ import { appStore } from '../store.ts';
 import { useApp, useData, usePlan, useShared, useUi } from '../hooks.ts';
 import { noteRows } from '../lib/reservations.ts';
 import { exportJson } from '../shared/exportJson.ts';
+import { downloadTripMarkdown, printTripPdf } from '../shared/exportTrip.ts';
 import { openDialog, openMapPanel } from '../uiStore.ts';
 import { setIdleMinutes } from './Planning.tsx';
 import { initial } from './common.tsx';
@@ -188,8 +189,14 @@ export function AccountMenu() {
             <Icon name="clipboard" size={20} /> 預約
             {pending > 0 && <span className="account-n warn">{pending} 未訂</span>}
           </button>
+          <button type="button" role="menuitem" disabled={!itinerary || !plan} onClick={go(() => void printTripPdf())} data-testid="account-export-pdf">
+            <Icon name="download" size={20} /> 行程 PDF（列印）
+          </button>
+          <button type="button" role="menuitem" disabled={!itinerary || !plan} onClick={go(() => void downloadTripMarkdown())} data-testid="account-export-md">
+            <Icon name="download" size={20} /> 行程 MD（給 AI）
+          </button>
           <button type="button" role="menuitem" disabled={!itinerary} onClick={go(exportJson)} data-testid="account-export">
-            <Icon name="download" size={20} /> 下載行程
+            <Icon name="download" size={20} /> 備份（JSON）
           </button>
           <button type="button" role="menuitem" onClick={go(() => openDialog({ kind: 'snapshots' }))} data-testid="account-versions">
             <Icon name="history" size={20} /> 過去的版本
