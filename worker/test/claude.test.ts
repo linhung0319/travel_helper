@@ -182,6 +182,8 @@ describe('聊天紀錄', () => {
   test('建立、接訊息、順序、清單新的在前、用量', async () => {
     const a = await create();
     const b = await create();
+    // updated_at 是毫秒：同一毫秒內建立 b、接上 a 的訊息時兩個一樣，順序不一定
+    await new Promise((r) => setTimeout(r, 2));
     assert.equal((await call('POST', `/api/chats/${a}/messages`, { messages: [msg('m1', 't1'), msg('m2', 't1')] })).status, 201);
     assert.deepEqual((await load(a)).map((m: any) => m.id), ['m1', 'm2']);
     const list = (await jsonOf(await call('GET', '/api/chats'))).conversations;
