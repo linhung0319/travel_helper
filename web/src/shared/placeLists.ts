@@ -5,6 +5,8 @@
 import { useEffect, useMemo, useState } from 'react';
 import { useApp, useData, useShared } from '../hooks.ts';
 import { likedPlaces } from '../lib/wishlist.ts';
+import { isUserPlace } from '../lib/addPlace/view.ts';
+import { useWishPrefs, wishPrefs } from './wishPrefs.ts';
 import { voteCounts } from '../sharedStore.ts';
 import { explorePlaces, typeCounts, type ExploreSort, type ExploreType } from '../lib/explore.ts';
 import type { Filter } from '../lib/filter.ts';
@@ -75,6 +77,16 @@ export function useAiPicked(all: Place[], on: boolean) {
 
 /** 探索的清單：全部的點（車站不列） */
 export const useExploreList = (filter: Filter, query: string, sort: ExploreSort, bounds: Bbox | null = null) => usePlaceList('explore', filter, query, sort, bounds);
+
+/** 想去的「自己加 N」晶片（§17.7）：有自己加的點才出現；clearType：選它時類型回到全部 */
+export function useWishUserChip(pool: Place[], list: Place[], clearType: () => void) {
+  const on = useWishPrefs((s) => s.userOnly);
+  const count = useMemo(() => pool.filter(isUserPlace).length, [pool]);
+  const active = on && count > 0;
+  const shown = useMemo(() => (active ? list.filter(isUserPlace) : list), [active, list]);
+  const chip = count > 0 ? { label: `自己加 ${count}`, on: active, testId: 'wish-type-user', onClick: () => { wishPrefs.getState().setUserOnly(!active); if (!active) clearType(); } } : undefined;
+  return { list: shown, chip };
+}
 
 /** 想去的清單：有人 ❤️ 的點 */
 export const useWishList = (filter: Filter, query: string, sort: ExploreSort, bounds: Bbox | null = null) => usePlaceList('wish', filter, query, sort, bounds);

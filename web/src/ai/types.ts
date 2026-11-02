@@ -52,6 +52,8 @@ export interface CardState {
   text?: string;
   /** 想去：每個點按之前的值（復原用） */
   previous?: Record<string, 'like' | 'dislike' | null>;
+  /** 加地點：使用者按了加入（§17.8） */
+  added?: { id: string; name: string; type: string };
 }
 
 /** 存下來、畫在畫面上的一則訊息 */

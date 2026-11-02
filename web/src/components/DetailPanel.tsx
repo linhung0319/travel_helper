@@ -166,7 +166,7 @@ function GroupSection({ place }: { place: Place }) {
       </dl>
       {(place.type !== 'spot' || Object.keys(r).length > 0) && (
         <>
-          <h4>預約方式</h4>
+          <h4>怎麼訂（要自己訂）</h4>
           <dl>
             <Row k="預約" v={label(RESERVATION_LABELS, r.accepted)} />
             <Row k="方式" v={methods} />

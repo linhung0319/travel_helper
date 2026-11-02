@@ -17,6 +17,7 @@ import type { Place } from '../data/types.ts';
 import { Popover } from './Popover.tsx';
 import { Icon } from './Icon.tsx';
 import { ReservationTag } from './Reservations.tsx';
+import { UserPlaceTag } from '../shared/ui/PlaceTags.tsx';
 
 /** 地點類型 → 標籤用的卡片種類（景、餐、站以外都當自訂的點） */
 export function tagKindOf(type: Place['type'] | null | undefined): TagCardKind {
@@ -90,7 +91,12 @@ export function ItemTags({ visit, kind, date, placeId, open, onOpenChange }: { v
       {TAG_LABELS[t]}
     </span>
   ));
-  const reservation = placeId ? <ReservationTag date={date} placeId={placeId} /> : null;
+  const reservation = placeId ? (
+    <>
+      <UserPlaceTag placeId={placeId} />
+      <ReservationTag date={date} placeId={placeId} />
+    </>
+  ) : null;
   if (!planning) {
     // 沒有 tag 時這一排是空的（CSS 的 :empty 藏起來）
     return (
@@ -159,7 +165,12 @@ export function LodgingTags({ day, place, reservationDate, editable, open, onOpe
       {shown.label}
     </span>
   );
-  const reservation = place && reservationDate ? <ReservationTag date={reservationDate} placeId={place.id} /> : null;
+  const reservation = place ? (
+    <>
+      <UserPlaceTag placeId={place.id} />
+      {reservationDate && <ReservationTag date={reservationDate} placeId={place.id} />}
+    </>
+  ) : null;
   if (!editable || !day)
     return (
       <span className="item-tags">

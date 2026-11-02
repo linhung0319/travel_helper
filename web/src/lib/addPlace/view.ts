@@ -42,9 +42,9 @@ export function addedDateLabel(createdAt: string): string {
   return Number.isNaN(d.getTime()) ? '' : `${d.getMonth() + 1}/${d.getDate()}`;
 }
 
-/** 清單卡片的副標：自己加的 · <加的人> */
+/** 清單卡片的副標：<加的人> 加的（「自己加」是標籤，§17.7） */
 export function userSubtitle(p: Place, members: Member[]): string {
-  return `自己加的 · ${memberName(members, p.user?.author)}`;
+  return `${memberName(members, p.user?.author)} 加的`;
 }
 
 /** 地區・小區域・★ 的文字（第二行、照片牆下面那行用） */

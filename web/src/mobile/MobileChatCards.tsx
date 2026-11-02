@@ -181,6 +181,11 @@ function ProposalCard({ use, version }: { use: ChatToolUse; version: number }) {
           <Icon name="warn" size={16} /> {w}
         </div>
       ))}
+      {ai.bookedWarnings(ops).map((w) => (
+        <div key={w} className="proposal-booked" data-testid="chat-proposal-booked">
+          <Icon name="warn" size={16} /> {w}
+        </div>
+      ))}
       {/* 沒在顯示（重新整理後）：要用最新的行程重新檢查才能採用（規格 §3.3、S23） */}
       {active ? (
         <div className="m-proposal-acts">

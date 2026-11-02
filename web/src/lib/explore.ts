@@ -12,7 +12,7 @@ export type ExploreType = (typeof EXPLORE_TYPES)[number];
 
 export const EXPLORE_SORTS = ['recommend', 'rating', 'likes'] as const;
 export type ExploreSort = (typeof EXPLORE_SORTS)[number];
-export const EXPLORE_SORT_LABELS: Record<ExploreSort, string> = { recommend: '推薦', rating: '評分', likes: '想去多' };
+export const EXPLORE_SORT_LABELS: Record<ExploreSort, string> = { recommend: '推薦', rating: '評分', likes: '想去' };
 
 const WORLD: Bbox = [-180, -90, 180, 90];
 

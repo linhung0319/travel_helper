@@ -13,6 +13,8 @@ export const addPlaceStore = createAddPlaceStore({
   userPlace: (id) => sharedStore.getState().userPlaces.find((u) => u.id === id),
   createUserPlace: (t, d) => shared.createUserPlace(t, d),
   updateUserPlace: (id, d, t) => shared.updateUserPlace(id, d, t),
+  // 自己加的點一加就出現在想去（可以取消，§17.7）
+  onCreated: (id) => void shared.vote(id, 'like'),
 });
 
 export function useAddPlace<T>(selector: (s: AddPlaceState) => T): T {

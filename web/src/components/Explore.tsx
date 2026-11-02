@@ -24,12 +24,12 @@ import { FilterBar, type FilterModel } from '../shared/ui/FilterBar.tsx';
 import { dragPlaceProps } from './askAi.ts';
 import { askList, askPlace, askWishEmpty } from './webAi.ts';
 import { WishEmpty } from '../shared/ui/EmptyStates.tsx';
-import { useAiPicked, usePlaceList } from '../shared/placeLists.ts';
+import { useAiPicked, usePlaceList, useWishUserChip } from '../shared/placeLists.ts';
+import { useWishPrefs, wishPrefs } from '../shared/wishPrefs.ts';
 import { PlaceRow, useDayStatus, type DayStatus } from '../shared/ui/PlaceRow.tsx';
 import { PlaceTile } from '../shared/ui/PlaceTile.tsx';
 import { PlaceWall } from '../shared/ui/PlaceWall.tsx';
 import { WishList } from '../shared/ui/WishList.tsx';
-import { useWishPrefs, wishPrefs } from '../shared/wishPrefs.ts';
 import { useBatch } from '../shared/useBatch.ts';
 import { PlaceOpenBody, useRevealOpen } from '../shared/ui/PlaceOpen.tsx';
 
@@ -148,7 +148,9 @@ export function ExplorePanel({ source = 'explore' }: { source?: ListSource }) {
   // 清單的計算在 shared/placeLists.ts（手機版也用）；沒選類型就是三類都列
   // 打字時輸入框先跟上，清單晚一點算（T32）
   const listQuery = useDeferredValue(query);
-  const { pool, list: all } = usePlaceList(source, filter, listQuery, sort, bounds);
+  const { pool, list: every } = usePlaceList(source, filter, listQuery, sort, bounds);
+  const userChip = useWishUserChip(pool, every, () => appStore.getState().setFilter({ types: [] }));
+  const all = wish ? userChip.list : every;
   const { aiResult, list, sortByAi, setSortByAi, aiProps } = useAiPicked(all, source === 'explore');
   const { shown, moreRef, reveal, hasMore } = useBatch({ total: list.length, batch: BATCH, resetOn: [filter, listQuery, sort, aiResult], scroller: '.side-body' });
   // 想去的清單自己分批（WishList）
@@ -205,7 +207,7 @@ export function ExplorePanel({ source = 'explore' }: { source?: ListSource }) {
         surface="desktop"
         model={model}
         count={list.length}
-        typeRow={<TypeChips value={filter.types.length === 1 ? filter.types[0] : 'all'} selected={filter.types} onPick={(type) => appStore.getState().setFilter({ types: type === 'all' ? [] : [type] })} prefix="ex" testId="ex-type-chips" />}
+        typeRow={<TypeChips value={filter.types.length === 1 ? filter.types[0] : 'all'} selected={filter.types} onPick={(type) => { wishPrefs.getState().setUserOnly(false); appStore.getState().setFilter({ types: type === 'all' ? [] : [type] }); }} prefix="ex" testId="ex-type-chips" extra={wish ? userChip.chip : undefined} />}
       />
       {!wish && <AddPlaceSuggest query={query} surface="desktop" />}
       <div className={`ex-list view-${view} source-${source}`} ref={ref}>

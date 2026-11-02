@@ -59,7 +59,7 @@ export function toolLabel(name: string, input: Record<string, unknown>): string 
     case 'get_trip_info':
       return '查了旅程資料';
     case 'get_reservations':
-      return '看了預約清單';
+      return '看了預約筆記';
     default:
       return name;
   }

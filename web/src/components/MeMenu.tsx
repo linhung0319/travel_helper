@@ -138,7 +138,7 @@ export function MeMenu() {
 }
 
 /**
- * 網頁右欄右上的頭像選單：使用者名稱、預約（N 未訂）、下載行程、過去的版本，dev 下多一段切換使用者。
+ * 網頁右欄右上的頭像選單：使用者名稱、預約筆記（N 待訂）、下載行程、過去的版本，dev 下多一段切換使用者。
  * 數字照目前選的那天（選「整趟」是整趟），和打開的視窗範圍一致。Esc、點外面收起（Esc 只收選單，不再往外關詳情）。
  */
 export function AccountMenu() {
@@ -189,8 +189,8 @@ export function AccountMenu() {
             <Icon name="help" size={20} /> 怎麼用
           </button>
           <button type="button" role="menuitem" onClick={go(() => openMapPanel('reservations'))} data-testid="account-reservations">
-            <Icon name="clipboard" size={20} /> 預約
-            {pending > 0 && <span className="account-n warn">{pending} 未訂</span>}
+            <Icon name="clipboard" size={20} /> 預約筆記
+            {pending > 0 && <span className="account-n warn">{pending} 待訂</span>}
           </button>
           <button type="button" role="menuitem" disabled={!itinerary || !plan} onClick={go(() => void printTripPdf())} data-testid="account-export-pdf">
             <Icon name="download" size={20} /> 行程 PDF（列印）

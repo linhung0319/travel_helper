@@ -161,9 +161,9 @@ describe('回覆', () => {
 
   test('預約：讀最新的預約筆記', async () => {
     seed();
-    assert.equal((await ask('今天的預約'))[0], '2/3（三）的預約\n12:30 海女小屋：還沒訂');
+    assert.equal((await ask('今天的預約'))[0], '2/3（三）的預約\n12:30 海女小屋：還沒訂\n※ 這是大家的筆記，網站不會幫忙訂。還沒訂的要自己打電話或上網訂，訂好後到網站改成「已訂」。');
     d1.db.exec(`INSERT INTO reservations (date, place_id, status, note, updated_by, updated_at) VALUES ('2027-02-03', 'r', 'booked', '電話訂', 'U1', '2027-01-21T00:00:00Z')`);
-    assert.equal((await ask('今天的預約'))[0], '2/3（三）的預約\n12:30 海女小屋：已訂（電話訂）');
+    assert.equal((await ask('今天的預約'))[0], '2/3（三）的預約\n12:30 海女小屋：已訂（電話訂）\n※ 這是大家的筆記，網站不會幫忙訂。還沒訂的要自己打電話或上網訂，訂好後到網站改成「已訂」。');
   });
 
   test('不是指令：AI 分類，內容還是照摘要排；用量記在機器人', async () => {

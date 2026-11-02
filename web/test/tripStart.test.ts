@@ -1,7 +1,7 @@
 // 新手起步（interaction-design §17）：推薦問題的 8 條規則、開始卡的進度和顯示、整趟清單併列、重新打開網站開新對話。
 import assert from 'node:assert/strict';
 import test from 'node:test';
-import { blankCards, buildStarterInput, dayStarter, firstEmptyDate, firstStarter, startersFor, tripPrompts, type StarterDay, type StarterInput } from '../src/ai/prompts.ts';
+import { blankCards, buildStarterInput, dayStarter, emptyDayFollowups, firstEmptyDate, firstStarter, startersFor, tripPrompts, type StarterDay, type StarterInput } from '../src/ai/prompts.ts';
 import { EMPTY_START_MEMORY, flightCount, nextStartMemory, overviewRows, shouldStartFresh, startCardView, startProgress, type OverviewDayState } from '../src/lib/tripStart.ts';
 import { tripDates } from '../src/lib/trip.ts';
 import { emptyItinerary } from '../src/dev-fixtures/seed.ts';
@@ -81,6 +81,8 @@ test('blankCards：帶晶片用晶片的問題，開始卡、空的一天帶來�
   assert.deepEqual(blankCards(null, [], starters, false).map((c) => [c.q, c.source]), [['A', 'starter'], ['B', 'starter'], ['C', 'starter']]);
   assert.deepEqual(blankCards(null, ['x', 'y'], starters, true).map((c) => [c.q, c.source]), [['x', 'chip'], ['y', 'chip']]);
   assert.deepEqual(blankCards({ q: 'L', why: 'l' }, ['x', 'y', 'z'], starters, true).map((c) => c.q), ['L', 'x', 'y']);
+  // 開始卡、空的一天：不帶晶片，下面是那一步的問題
+  assert.deepEqual(blankCards({ q: 'L', why: 'l' }, ['x', 'y'], starters, false).map((c) => c.q), ['L', 'x', 'y']);
   // 晶片拿掉了：回到照行程算的
   assert.deepEqual(blankCards(null, ['x'], starters, false).map((c) => c.q), ['A', 'B', 'C']);
   // 沒有晶片但有帶來的那一句（想去頁的問 AI 推薦）
@@ -229,13 +231,13 @@ test('重新打開網站：隔太久開新對話，舊的還在清單、接得�
   later.close();
 });
 
-test('問 AI 帶來的那一句：放進 lead；送出、拿掉晶片、換對話都清掉', async () => {
+test('問 AI 帶來的那一句：放進 lead；拿掉晶片還在；送出、換對話都清掉', async () => {
   const h = await harness();
   const lead = h.chat.firstStarter();
   await h.chat.ask([{ kind: 'trip' }], lead);
   assert.deepEqual(h.chat.store.getState().lead, lead);
   h.chat.removeContext(0);
-  assert.equal(h.chat.store.getState().lead, null);
+  assert.deepEqual(h.chat.store.getState().lead, lead);
   await h.chat.ask([{ kind: 'trip' }], lead);
   await h.chat.newConversation();
   assert.equal(h.chat.store.getState().lead, null);
@@ -281,5 +283,19 @@ test('dayStarter：行程裡的那天才有', async () => {
   const h = await harness();
   assert.match(h.chat.dayStarter('2027-02-07')!.q, /^2\/7 去哪/);
   assert.equal(h.chat.dayStarter('2027-03-01'), null);
+  h.close();
+});
+
+test('空的一天不帶晶片：下面兩張直接寫日期', () => {
+  assert.deepEqual(emptyDayFollowups('2027-02-03'), ['想去的點哪些適合 2/3？', '2/3 長輩走起來輕鬆的安排']);
+});
+
+test('開始卡的問法：沒有晶片也有藍卡和下面兩張，拿掉別的晶片不影響', async () => {
+  const h = await harness();
+  const lead = h.chat.firstStarter();
+  await h.chat.ask([], lead, ['a', 'b']);
+  const s = h.chat.store.getState();
+  assert.deepEqual(s.contexts, []);
+  assert.deepEqual(blankCards(s.lead, s.suggestions, [], s.contexts.length > 0).map((c) => c.q), [lead.q, 'a', 'b']);
   h.close();
 });

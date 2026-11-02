@@ -2,7 +2,7 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import type { Itinerary } from '@travel-helper/engine/types';
-import { linkLabel, noteRows, reservationFor } from '../src/lib/reservations.ts';
+import { bookedConflicts, bookingByPlace, linkLabel, newPendingRows, noteRows, reservationFor } from '../src/lib/reservations.ts';
 import type { Reservation } from '../src/backend/types.ts';
 import { normalizePlace } from '../src/data/normalize.ts';
 import type { Place } from '../src/data/types.ts';
@@ -102,4 +102,40 @@ test('linkLabel', () => {
   assert.equal(linkLabel('https://www.jalan.net/yad123/', p), 'じゃらん');
   assert.equal(linkLabel('https://travel.rakuten.co.jp/HOTEL/1/', p), '楽天');
   assert.equal(linkLabel('https://www.example.com/a', p), 'example.com');
+});
+
+const dinner = (date: string, placeId: string): Itinerary => {
+  const it = stays('hotel-a');
+  const day = it.days.find((d) => d.date === date);
+  if (day) day.items.push({ id: `v-${placeId}`, type: 'visit', options: [{ place: placeId }], selected: 0 } as never);
+  return it;
+};
+
+test('newPendingRows：多出來、還沒訂的才算（§17.6）', () => {
+  const before = stays('hotel-a');
+  assert.deepEqual(newPendingRows(before, before, byId, []), []);
+  assert.deepEqual(newPendingRows(before, dinner('2027-02-05', 'rest-r'), byId, []).map((r) => r.placeId), ['rest-r']);
+  // 已經記成已訂：不用提醒
+  assert.deepEqual(newPendingRows(before, dinner('2027-02-05', 'rest-r'), byId, [rec({ placeId: 'rest-r' })]), []);
+});
+
+test('bookingByPlace：還有沒訂的就是待訂；不用訂、不在筆記裡的沒有標籤（§17.7）', () => {
+  const rows = noteRows(dinner('2027-02-05', 'rest-r'), null, byId, [rec({ placeId: 'hotel-a' })]);
+  const map = bookingByPlace(rows);
+  assert.equal(map.get('hotel-a'), 'booked');
+  assert.equal(map.get('rest-r'), 'pending');
+  assert.equal(map.has('rest-s'), false);
+  const skip = noteRows(stays('hotel-a'), null, byId, [rec({ status: 'skip' })]);
+  assert.equal(bookingByPlace(skip).has('hotel-a'), false);
+});
+
+test('bookedConflicts：換掉已訂的、晚數變了要標；沒動、沒訂的不標（§17.7）', () => {
+  const booked = [rec({ nights: 2 })];
+  const two = stays('hotel-a', 'hotel-a');
+  assert.deepEqual(bookedConflicts(two, two, byId, booked), []);
+  assert.deepEqual(bookedConflicts(two, stays('hotel-b', 'hotel-b'), byId, booked), ['hotel-a 這晚已訂，採用的話要記得自己去取消']);
+  assert.deepEqual(bookedConflicts(two, stays('hotel-a', 'hotel-b'), byId, booked), ['hotel-a 這晚已訂，採用的話要記得自己去取消']);
+  assert.deepEqual(bookedConflicts(two, stays('hotel-b', 'hotel-b'), byId, []), []);
+  const withDinner = dinner('2027-02-05', 'rest-r');
+  assert.deepEqual(bookedConflicts(withDinner, stays('hotel-a'), byId, [rec({ placeId: 'rest-r' })]), ['rest-r 這天已訂，採用的話要記得自己去取消']);
 });

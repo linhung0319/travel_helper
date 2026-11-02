@@ -13,7 +13,7 @@ export function VoteHeart({ placeId, size = 'md', showCount = true }: { placeId:
   const mine = list.find((v) => v.memberId === me)?.value ?? null;
   const total = list.filter((v) => v.value === 'like').length;
   const on = mine === 'like';
-  const toggle = () => void castVote(placeId, on ? null : 'like');
+  const toggle = (from: Element) => void castVote(placeId, on ? null : 'like', true, from);
   return (
     <span
       role="button"
@@ -24,13 +24,13 @@ export function VoteHeart({ placeId, size = 'md', showCount = true }: { placeId:
       data-testid="card-like"
       onClick={(e) => {
         e.stopPropagation();
-        toggle();
+        toggle(e.currentTarget);
       }}
       onKeyDown={(e) => {
         if (e.key !== 'Enter' && e.key !== ' ') return;
         e.preventDefault();
         e.stopPropagation();
-        toggle();
+        toggle(e.currentTarget);
       }}
     >
       <Icon name="heart" size={size === 'sm' ? 16 : 20} filled={on} />

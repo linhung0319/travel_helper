@@ -14,7 +14,7 @@ export function MapPanel() {
   // 選了「全部」時沒有「這天」
   const scope = day === 'all' ? 'trip' : panel.scope;
   const date = scope === 'day' && day !== 'all' ? day : null;
-  const title = date ? `${dayLabel(date)}的預約` : '整趟的預約';
+  const title = date ? `${dayLabel(date)}的預約筆記` : '預約筆記';
   return (
     <section className="map-panel" data-testid="map-panel" data-kind={panel.kind} data-scope={scope} aria-label={title}>
       <header className="map-panel-head">

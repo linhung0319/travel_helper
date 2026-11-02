@@ -25,7 +25,8 @@ export interface ShowRoute {
   label?: string | null;
 }
 
-export type AddPlaceInit = Partial<AddPlaceDraft> & { via: AddedVia };
+/** entry：短網址，交給加地點畫面的第一步展開（§17.8） */
+export type AddPlaceInit = Partial<AddPlaceDraft> & { via: AddedVia; entry?: string };
 
 export type ScreenTab = 'explore' | 'wish' | 'trip';
 export type ScreenPanel = 'comments' | 'reservations' | 'snapshots';

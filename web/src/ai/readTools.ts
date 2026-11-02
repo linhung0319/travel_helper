@@ -3,7 +3,8 @@
 import { ItineraryError, bestInsertIndex, checkProposal, findItem, kintetsuDayType, busDayType, planItinerary, planLeg, type EngineData, type NewItem } from '@travel-helper/engine';
 import type { DayPlan, Itinerary, Leg, LonLat, TimelineEntry, TravelMode, TravelSpec } from '@travel-helper/engine/types';
 import type { ReservationStatus } from '../backend/types.ts';
-import { noteRows } from '../lib/reservations.ts';
+import { bookedConflicts, noteRows, reservationFor } from '../lib/reservations.ts';
+import { isUserPlace } from '../lib/addPlace/view.ts';
 import { departuresAround, toMinutes } from '../lib/timetable.ts';
 import { dayCandidates, likedPlaces, placeDayStatus } from '../lib/wishlist.ts';
 import { dayTarget, TRIP_TARGET } from '../backend/types.ts';
@@ -151,6 +152,16 @@ export function createReadTools(d: AiDeps) {
     travel: compactLeg(e.travel),
   });
 
+  /** 自己加的、已訂的（§17.7）：只在是的時候才帶，不讓回傳變長 */
+  const marksOf = (date: string, placeId: string | null | undefined) => {
+    if (!placeId) return {};
+    const p = places().byId.get(placeId);
+    return {
+      ...(p && isUserPlace(p) ? { user: true } : {}),
+      ...(reservationFor(reservationRows(), date, placeId)?.status === 'booked' ? { booked: true } : {}),
+    };
+  };
+
   const compactDay = (date: string, p: DayPlan, it: Itinerary | null) => {
     const s = d.shared.store.getState();
     const day = it?.days.find((x) => x.date === date);
@@ -158,18 +169,19 @@ export function createReadTools(d: AiDeps) {
     const confirmed = places().itinerary;
     return {
       date,
-      lodging: day?.lodging ? { id: day.lodging, name: nameOf(day.lodging), meals: day.lodgingMeals ?? null } : null,
+      lodging: day?.lodging ? { id: day.lodging, name: nameOf(day.lodging), meals: day.lodgingMeals ?? null, ...marksOf(date, day.lodging) } : null,
       entries: p.entries.map((e) => {
         const item = e.itemId && it ? findItem(it, e.itemId)?.item : null;
         return {
           ...compactEntry(e),
+          ...marksOf(date, e.placeId),
           note: item?.note ?? null,
           // 提議裡新加的卡：ID 只是暫時的，不能用在 ops（要改就重寫那個 add）
           ...(it !== confirmed && e.itemId && confirmed && !findItem(confirmed, e.itemId) ? { draftOnly: true } : {}),
         };
       }),
       // 備選：引擎只用選定的算，AI 要知道還有哪幾個
-      options: (day?.items ?? []).flatMap((i) => (i.type === 'visit' && i.options.length > 1 ? [{ itemId: i.id, selected: i.selected, places: i.options.map((o) => ({ id: o.place, name: nameOf(o.place) })), note: i.note ?? null }] : [])),
+      options: (day?.items ?? []).flatMap((i) => (i.type === 'visit' && i.options.length > 1 ? [{ itemId: i.id, selected: i.selected, places: i.options.map((o) => ({ id: o.place, name: nameOf(o.place), ...marksOf(date, o.place) })), note: i.note ?? null }] : [])),
       gaps: p.gaps.map((g) => ({ label: g.label, from: g.from, to: g.to, afterItemId: g.afterItemId, beforeItemId: g.beforeItemId })),
       warnings: mergeWarnings(p.warnings),
       stats: p.stats,
@@ -211,8 +223,8 @@ export function createReadTools(d: AiDeps) {
         return {
           date: p.date,
           regions: [...new Set(stops.map((e) => places().byId.get(e.placeId!)?.region).filter(Boolean))],
-          stops: stops.map((e) => nameOf(e.placeId)),
-          lodging: day?.lodging ? nameOf(day.lodging) : null,
+          stops: stops.map((e) => ({ name: nameOf(e.placeId), ...marksOf(p.date, e.placeId) })),
+          lodging: day?.lodging ? { name: nameOf(day.lodging), ...marksOf(p.date, day.lodging) } : null,
           warnings: p.warnings.length,
           candidates: dayCandidates(s.candidates, p.date, it, places().byId).length,
           tiring: p.stats.tiring,
@@ -241,6 +253,17 @@ export function createReadTools(d: AiDeps) {
     } catch (e) {
       if (e instanceof ItineraryError) return fail(e.message);
       throw e;
+    }
+  }
+
+  /** 這份操作動到的已訂的點（提議卡、提議列顯示，§17.7）；算不出來是空的 */
+  function proposalBooked(ops: Op[]): string[] {
+    const before = places().itinerary;
+    if (!before) return [];
+    try {
+      return bookedConflicts(before, applyOps(before, ops, opsContext(d)), places().byId, d.shared.store.getState().reservations);
+    } catch {
+      return [];
     }
   }
 
@@ -447,7 +470,7 @@ export function createReadTools(d: AiDeps) {
     return { ok: true, topic, ...Object.fromEntries(sections.map((s) => [s, withoutSources(info[s] ?? null)])) };
   }
 
-  /** 預約清單（同畫面的預約筆記）：住宿的 date 是入住那晚 */
+  /** 預約筆記：住宿的 date 是入住那晚 */
   const reservationRows = () => noteRows(places().itinerary, d.plan.getState().plan, places().byId, d.shared.store.getState().reservations);
 
   function get_reservations(input: { date?: string; status?: ReservationStatus } = {}): ToolOutput {
@@ -464,7 +487,7 @@ export function createReadTools(d: AiDeps) {
     return p ? digestOf(p, likes(id)) : null;
   };
 
-  return { search_places, get_place, get_day, get_trip_overview, check_changes, suggest_position, get_route, get_timetable, get_opinions, get_trip_info, get_reservations, reservationRows, digest, proposalWarnings };
+  return { search_places, get_place, get_day, get_trip_overview, check_changes, suggest_position, get_route, get_timetable, get_opinions, get_trip_info, get_reservations, reservationRows, digest, proposalWarnings, proposalBooked };
 }
 
 export type ReadTools = ReturnType<typeof createReadTools>;

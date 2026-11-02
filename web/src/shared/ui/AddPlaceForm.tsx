@@ -3,6 +3,7 @@
 // 加完（或修改完）關掉表單，叫地圖看一下那個新點（commands.focus）。
 
 import { addPlaceStore, useAddPlace } from '../../addPlaceStore.ts';
+import { ai } from '../../appAi.ts';
 import { commands } from '../../appCommands.ts';
 import { appStore } from '../../store.ts';
 import { mobileStore } from '../../mobile/mobileStore.ts';
@@ -36,8 +37,11 @@ export function AddPlaceForm({ surface }: { surface: 'mobile' | 'desktop' }) {
 
   const save = async () => {
     const fromSuggest = !edit && draft.via !== 'map';
+    const fromAi = addPlaceStore.getState().fromAi;
+    const saved = { name: draft.name.trim(), type: draft.type ?? '' };
     const r = await addPlaceStore.getState().save();
     if (!r.ok) return;
+    if (fromAi) void ai.placeAdded({ id: r.id, ...saved });
     // 從搜尋框的提示加的：清掉搜尋，免得提示又問一次「加這個地點」
     if (fromSuggest) {
       if (surface === 'mobile') mobileStore.getState().setFeed({ query: '' });

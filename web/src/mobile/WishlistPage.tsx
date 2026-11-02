@@ -4,7 +4,7 @@
 // 清單是 shared/ui/WishList：分成還沒排、已是候選、已排三段，段落標題有數字、可以收合、每段 8 個；列可以左滑露出「加到某天」。
 // 點列 → 整頁詳情（openPlace(id, 'wish')）；點最新留言 → 整頁詳情的留言分頁。清單的計算和網頁版共用 shared/placeLists.ts（useWishList）。
 
-import { useWishList } from '../shared/placeLists.ts';
+import { useWishList, useWishUserChip } from '../shared/placeLists.ts';
 import { FilterBar } from '../shared/ui/FilterBar.tsx';
 import { WishList } from '../shared/ui/WishList.tsx';
 import { useWishModel } from './FeedFilters.tsx';
@@ -12,7 +12,7 @@ import { TypeChips } from '../shared/ui/TypeChips.tsx';
 import { mobileStore, useMobile } from './mobileStore.ts';
 import { askList, askWishEmpty } from './mobileAi.ts';
 import { WishEmpty } from '../shared/ui/EmptyStates.tsx';
-import { useWishPrefs } from '../shared/wishPrefs.ts';
+import { useWishPrefs, wishPrefs } from '../shared/wishPrefs.ts';
 
 /** 想去分頁 */
 export function WishlistPage() {
@@ -23,7 +23,8 @@ export function WishlistPage() {
   const type = wish.type;
   const fromChat = useMobile((s) => s.fromChat);
   const base = useWishModel(type);
-  const { pool, list } = useWishList(base.filter, wish.query, wish.sort);
+  const { pool, list: all } = useWishList(base.filter, wish.query, wish.sort);
+  const { list, chip } = useWishUserChip(pool, all, () => setWish({ type: 'all' }));
   const model = { ...base, onAsk: () => askList('wish', base.filter, wish.query, list.length), ...(fromChat ? { onBack: () => mobileStore.getState().returnToChat() } : {}) };
 
   return (
@@ -33,7 +34,7 @@ export function WishlistPage() {
         surface="mobile"
         model={model}
         count={list.length}
-        typeRow={<TypeChips value={type} onPick={(t) => setWish({ type: t })} prefix="m-wish" />}
+        typeRow={<TypeChips value={type} onPick={(t) => { wishPrefs.getState().setUserOnly(false); setWish({ type: t }); }} prefix="m-wish" extra={chip} />}
       />
       <WishList
         surface="mobile"

@@ -75,9 +75,9 @@ test('第一次按 ♡：提示一次、去看到想去；第二次不提示，�
   await page.getByTestId('side-tab-explore').click();
   const hearts = page.getByTestId('card-like');
   await hearts.first().click();
-  const toast = page.getByTestId('toast');
-  await expect(toast).toContainText('已加到想去。到想去可以把它加到某一天。');
-  await page.getByTestId('toast-close').click();
+  const toast = page.getByTestId('hint');
+  await expect(toast).toContainText('已加到想去，家人也看得到');
+  await page.getByTestId('hint-close').click();
   await expect(toast).toHaveCount(0);
   await hearts.nth(1).click();
   await page.waitForTimeout(200);
@@ -85,7 +85,7 @@ test('第一次按 ♡：提示一次、去看到想去；第二次不提示，�
   await expect(page.getByTestId('side-tab-wish')).toContainText('想去 2');
   await page.evaluate(() => localStorage.removeItem('th.hint.firstLike'));
   await hearts.nth(2).click();
-  await page.getByTestId('toast-undo').click();
+  await page.getByTestId('hint-action').click();
   await expect(page.getByTestId('side-tab-wish')).toHaveAttribute('aria-selected', 'true');
 });
 

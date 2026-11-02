@@ -1,6 +1,8 @@
 // 聊天裡的卡片和呈現（規格 §5、interaction-design §16.1）：提議的每一版、草稿、候選、預約、改資料、想去、「再看一次」。
 // 狀態都讀訊息裡存的 cards，按了走 ai.confirmCard、rejectCard、present、undoCard；用說的（decide_card）是同一條路。
 
+import type { Op } from '../ai/ops.ts';
+import { TYPE_LABELS } from '../lib/filter.ts';
 import { useState } from 'react';
 import { useStore } from 'zustand';
 import { ai } from '../appAi.ts';
@@ -118,6 +120,11 @@ function ProposalCard({ use, version }: { use: ChatToolUse; version: number }) {
       {lines.map((l) => (
         <div key={l}>{l}</div>
       ))}
+      {ai.bookedWarnings(use.block.input.ops as Op[]).map((w) => (
+        <div key={w} className="proposal-booked" data-testid="chat-proposal-booked">
+          <Icon name="warn" size={16} /> {w}
+        </div>
+      ))}
       {!active && (
         <div className="ac-card-acts">
           <button type="button" className="button primary small" onClick={() => present(id)} data-testid="chat-see-version">
@@ -176,7 +183,7 @@ function Names({ ids }: { ids: string[] }) {
   );
 }
 
-const RES_LABEL: Record<string, string> = { pending: '未訂', booked: '已訂', skip: '不用訂' };
+const RES_LABEL: Record<string, string> = { pending: '待訂', booked: '已訂', skip: '不用訂' };
 
 function VoteLine({ use }: { use: ChatToolUse }) {
   const i = use.block.input;
@@ -239,8 +246,18 @@ function StageLine({ use }: { use: ChatToolUse }) {
     case 'set_filter':
       return <PresentLine use={use} title="套了探索的篩選" />;
     case 'show_screen':
-      return <PresentLine use={use} title={{ explore: '探索', wish: '想去', trip: '行程', comments: '討論', reservations: '預約', snapshots: '快照' }[String(i.tab ?? i.panel)] ?? '畫面'} />;
+      return <PresentLine use={use} title={{ explore: '探索', wish: '想去', trip: '行程', comments: '討論', reservations: '預約筆記', snapshots: '快照' }[String(i.tab ?? i.panel)] ?? '畫面'} />;
     case 'propose_user_place':
+      if (use.card?.added) {
+        const a = use.card.added;
+        return (
+          <div className="ac-present" data-testid="chat-place-added">
+            <span className="ac-present-text">
+              ✓ 已加入「{a.name}」（{TYPE_LABELS[a.type as keyof typeof TYPE_LABELS] ?? a.type}，自己加的）
+            </span>
+          </div>
+        );
+      }
       return <PresentLine use={use} title="加地點的確認畫面" sub="按「加進來」才會存" />;
     default:
       return null;
@@ -265,7 +282,7 @@ export function ChatCard({ use, version }: { use: ChatToolUse; version: number }
     case 'move_candidate':
       return <SimpleCard use={use} testId="chat-candidate-move" title={`候選從 ${shortDayLabel(String(i.date))} 移到 ${shortDayLabel(String(i.to))}`} body={<Names ids={[String(i.placeId)]} />} confirm="移過去" />;
     case 'set_reservation':
-      return <SimpleCard use={use} testId="chat-reservation" title={`預約：${shortDayLabel(String(i.date))} 標成${RES_LABEL[String(i.status)] ?? ''}`} body={<><Names ids={[String(i.placeId)]} />{i.note ? <p className="ac-card-note">備註：{String(i.note)}</p> : null}</>} confirm="確認" />;
+      return <SimpleCard use={use} testId="chat-reservation" title={`預約筆記：${shortDayLabel(String(i.date))} 標成${RES_LABEL[String(i.status)] ?? ''}`} body={<><Names ids={[String(i.placeId)]} />{i.note ? <p className="ac-card-note">備註：{String(i.note)}</p> : null}</>} confirm="確認" />;
     case 'propose_place_edit':
       return (
         <SimpleCard

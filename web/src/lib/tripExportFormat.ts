@@ -101,6 +101,10 @@ function mdRows(rows: ExportRow[], indent: string): string[] {
   return out;
 }
 
+/** 預約一覽最上面的說明（§17.6） */
+export const RESERVATION_NOTE = '這是家人的筆記，網站不會幫忙訂。「待訂」的要自己打電話或上網訂；訂好後到網站把狀態改成「已訂」。';
+const reservationTime = (doc: ExportDoc) => `${doc.generatedAt} 下載（日本時間），之後狀態可能會變。`;
+
 export function exportMarkdown(doc: ExportDoc): string {
   const out: string[] = [`# ${EXPORT_TITLE}`, '', `${doc.range}・${partyText(doc.party)}`, '', `${versionText(doc)}。行程以網站為準。`, '', '## 總覽', ''];
   out.push('| 日期 | 地區 | 住宿 |', '| --- | --- | --- |');
@@ -108,6 +112,10 @@ export function exportMarkdown(doc: ExportDoc): string {
   if (doc.flights.length) {
     out.push('', '**航班**', '');
     for (const f of doc.flights) out.push(`- ${mdEsc(flightText(doc, f))}`);
+  }
+  if (doc.reservations.length) {
+    out.push('', '## 預約一覽', '', `> ${RESERVATION_NOTE}`, '', reservationTime(doc), '', '| 哪天 | 哪裡 | 狀態 |', '| --- | --- | --- |');
+    for (const r of doc.reservations) out.push(`| ${r.when} | ${mdEsc(r.name)} | ${r.status} |`);
   }
   for (const d of doc.days) {
     out.push('', `## ${d.heading}${d.area ? ` ${mdEsc(d.area)}` : ''}`, '');
@@ -232,6 +240,18 @@ ${doc.days.map((d) => `<tr><td>${esc(d.heading)}</td><td>${esc(d.area ?? '')}</t
 </tbody></table>
 ${footer}
 </section>`;
+  const reservations = doc.reservations.length
+    ? `<section class="page">
+<h2>預約一覽</h2>
+<div class="note">${esc(RESERVATION_NOTE)}</div>
+<p class="sub">${esc(reservationTime(doc))}</p>
+<table class="overview"><thead><tr><th>哪天</th><th>哪裡</th><th>狀態</th></tr></thead><tbody>
+${doc.reservations.map((r) => `<tr><td>${esc(r.when)}</td><td>${esc(r.name)}</td><td>${r.status === '待訂' ? `<span class="r-pending">${esc(r.status)}</span>` : esc(r.status)}</td></tr>`).join('\n')}
+</tbody></table>
+${footer}
+</section>
+`
+    : '';
   const days = doc.days.map(
     (d) => `<section class="page">
 <h2>${esc(d.heading)}${d.area ? `<span class="area">${esc(d.area)}</span>` : ''}</h2>
@@ -247,6 +267,6 @@ ${footer}
 <style>${CSS}</style></head>
 <body>
 ${overview}
-${days.join('\n')}
+${reservations}${days.join('\n')}
 </body></html>`;
 }

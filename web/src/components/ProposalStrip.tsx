@@ -63,6 +63,12 @@ export function ProposalStrip({ onTrip: onTripProp }: { onTrip?: boolean } = {})
           ))}
         </span>
       )}
+      {active &&
+        ai.bookedWarnings(active.ops).map((w) => (
+          <span key={w} className="proposal-booked" data-testid="proposal-booked">
+            <Icon name="warn" size={16} /> {w}
+          </span>
+        ))}
       <div className="ps-actions">
         {active ? (
           <>

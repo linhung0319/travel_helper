@@ -35,7 +35,52 @@ export function Dialogs() {
   }
 }
 
+/** 只出現一次的操作提示（§17.4）：下方的深色橫條，按鈕是芥子黃；8 秒沒動作就收掉 */
+function HintBar() {
+  const hint = useShared((s) => s.hint);
+  useEffect(() => {
+    if (!hint) return;
+    const t = window.setTimeout(() => {
+      if (shared.store.getState().hint?.seq === hint.seq) shared.clearHint();
+    }, 8000);
+    return () => window.clearTimeout(t);
+  }, [hint]);
+  if (!hint) return null;
+  return (
+    <div className="toast toast-ok toast-hint" role="status" data-testid="hint" onClick={() => shared.clearHint()}>
+      <Icon name="check" size={16} /> <span>{hint.text}</span>
+      {hint.action && (
+        <button
+          type="button"
+          className="toast-undo"
+          data-testid="hint-action"
+          onClick={(e) => {
+            e.stopPropagation();
+            const run = hint.action!.run;
+            shared.clearHint();
+            void run();
+          }}
+        >
+          {hint.action.label}
+        </button>
+      )}
+      <button type="button" className="toast-close" aria-label="關閉提示" data-testid="hint-close">
+        <Icon name="close" size={16} />
+      </button>
+    </div>
+  );
+}
+
 export function Toast() {
+  return (
+    <>
+      <ToastLine />
+      <HintBar />
+    </>
+  );
+}
+
+function ToastLine() {
   const toast = useShared((s) => s.toast);
   useEffect(() => {
     if (!toast) return;
@@ -46,7 +91,7 @@ export function Toast() {
   }, [toast]);
   if (!toast) return null;
   return (
-    <div className={`toast toast-${toast.kind} ${toast.hint ? 'toast-hint' : ''}`} role={toast.kind === 'error' ? 'alert' : 'status'} data-testid="toast" onClick={() => shared.clearToast()}>
+    <div className={`toast toast-${toast.kind}`} role={toast.kind === 'error' ? 'alert' : 'status'} data-testid="toast" onClick={() => shared.clearToast()}>
       {toast.kind === 'error' ? <Icon name="warn" size={16} /> : <Icon name="check" size={16} />}{' '}
       {toast.text}
       {toast.action && (
@@ -62,11 +107,6 @@ export function Toast() {
           }}
         >
           {toast.action.label}
-        </button>
-      )}
-      {toast.hint && (
-        <button type="button" className="toast-close" aria-label="關閉提示" data-testid="toast-close">
-          <Icon name="close" size={16} />
         </button>
       )}
     </div>
