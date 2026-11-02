@@ -399,6 +399,16 @@ function main() {
     if (areas.size && !listed) warn(file, `[${id}] 沒有被 areas.json 的任何區域列出`);
   }
 
+  // 車站的中文名不能重複：不同業者的同名站要在 name.zh 標業者，例如「鳥羽（近鐵）」「鳥羽（JR）」（CONVENTIONS「ID 規則」）
+  const stationByName = new Map();
+  for (const [id, { file, record }] of points) {
+    if (record.type !== 'station') continue;
+    const zh = record.name?.zh ?? record.name?.ja;
+    if (!zh) continue;
+    if (stationByName.has(zh)) err(file, `[${id}] 車站名稱「${zh}」和「${stationByName.get(zh)}」重複，要在 name.zh 標業者，例如「鳥羽（近鐵）」「鳥羽（JR）」`);
+    else stationByName.set(zh, id);
+  }
+
   const counts = {};
   for (const { record } of points.values()) counts[record.type] = (counts[record.type] ?? 0) + 1;
   const summary = Object.entries(counts).map(([t, n]) => `${t} ${n}`).join('、') || '無';

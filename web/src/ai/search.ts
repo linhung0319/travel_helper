@@ -111,8 +111,11 @@ export interface Digest {
 const firstSentence = (text: string | undefined) => {
   if (!text) return null;
   const m = /^.+?[。！？!?]/s.exec(text);
-  return (m ? m[0] : text).slice(0, 80);
+  const s = m ? m[0] : text;
+  // 切斷的要標「…」，AI 才不會把斷掉的字當成完整的（T36 模擬抓到）
+  return [...s].length > SUMMARY_MAX ? `${[...s].slice(0, SUMMARY_MAX).join('')}…` : s;
 };
+const SUMMARY_MAX = 80;
 
 /** 精簡內容：搜尋結果、脈絡晶片都用這一份 */
 export function digestOf(p: Place, likes: number): Digest {

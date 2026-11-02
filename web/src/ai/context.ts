@@ -51,14 +51,17 @@ function chipContent(c: ChatContext, d: AiDeps, read: ReadTools): Record<string,
   }
 }
 
-export function buildTurnContext(opts: { d: AiDeps; read: ReadTools; stage: Stage; chips: ChatContext[]; screenOff: boolean; decisions: TurnContext['decisions']; draft: TurnContext['draft']; cards: TurnContext['cards']; now?: number }): TurnContext {
+/** 前面的輪已經帶過完整內容的晶片：只帶晶片本身和 repeated（T36：「某天」晶片約 1.5k tokens，每輪重複會讓對話很快就滿） */
+const repeatedChip = (c: ChatContext) => ({ ...c, repeated: true });
+
+export function buildTurnContext(opts: { d: AiDeps; read: ReadTools; stage: Stage; chips: ChatContext[]; sent?: (c: ChatContext) => boolean; screenOff: boolean; decisions: TurnContext['decisions']; draft: TurnContext['draft']; cards: TurnContext['cards']; now?: number }): TurnContext {
   const now = jstNow(opts.now ?? Date.now());
   return {
     // 現在一律是日本時間：旅途中問「今天」「明天」才對得上（T34）
     now: `${now.date}（${now.weekday}）${now.time}`,
     // 使用者把「正在看」拿掉時不帶
     screen: opts.screenOff ? {} : screenContext(opts.d, opts.stage),
-    chips: opts.chips.map((c) => chipContent(c, opts.d, opts.read)),
+    chips: opts.chips.map((c) => (opts.sent?.(c) ? repeatedChip(c) : chipContent(c, opts.d, opts.read))),
     decisions: opts.decisions,
     draft: opts.draft,
     cards: opts.cards,

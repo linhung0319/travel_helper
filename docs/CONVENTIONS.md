@@ -67,6 +67,7 @@ travel_helper/
 ### ID 規則
 - 近鐵車站：站名的羅馬字（`toba`、`ugata`、`kashikojima`、`shima-isobe`）；JR 車站加 `jr-` 前綴（`jr-toba`、`jr-futaminoura`）。同一站的近鐵、JR 用 `transfers` 互相連結。關西機場周邊（JR・南海共用、或只有南海）的車站用站名的羅馬字、不加前綴，`operator: "other"`、`lines` 寫各業者的線名（`kansai-airport`、`rinku-town`、`izumisano`、`hagurazaki`；2026-10-21 T13）。
 - 大阪的車站（2026-10-26，T28）：近鐵用站名的羅馬字、不加前綴（`osaka-namba`、`osaka-uehommachi`、`tsuruhashi`，`passes.json` 已經用 `osaka-namba`）；其他業者加前綴：JR `jr-`（`jr-tsuruhashi`、`jr-universal-city`）、Osaka Metro `metro-`（`metro-namba`、`metro-tanimachi-4chome`）、南海 `nankai-`（`nankai-namba`）、阪神 `hanshin-`。同名、相連的站用 `transfers` 互相連結（例如 `osaka-namba`、`metro-namba`、`nankai-namba`），站內轉乘的步行時間另外記（§3「轉乘」）。
+- 同名的車站（不同業者）：`name.zh` 後面加全形括號標業者，兩邊都標，例如「鳥羽（近鐵）」「鳥羽（JR）」「伊勢市（近鐵）」「伊勢市（JR）」「鶴橋（近鐵）」「鶴橋（JR）」；`name.ja` 維持原站名、不加（引擎用日文名組「特急（往鳥羽）」這類車種名稱，加了會變成括號包括號）。名稱不重複的站不用標（2026-11-02，T36）。
 - 區域 ID 是另一個命名空間，可以和車站 ID 相同（區域 `toba`、車站 `toba`）。
 - 其他資料點建議以區域開頭，例如 `toba-aquarium`。
 - **第一次正式匯入資料庫（T24、T25）之後，已經匯入的 ID 不改名**：ID 是連接預設資料、使用者的修改、行程、投票的關鍵。合併重複的點時保留一個 ID，被合併的記成轉址（`data/redirects.json`，格式由 T24 定）。見 [architecture.md](architecture.md) §3.5。

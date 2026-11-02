@@ -38,7 +38,7 @@ const listChip = (e: ScriptEnv) => e.context.chips.find((c) => c.kind === 'list'
 
 /** 15 人的說法：從資料組，未查就說未查 */
 function fit15Sentence(p: any): string {
-  const g = p.group?.group;
+  const g = p.group;
   const v = g?.fit15;
   const facts = [g?.seats != null ? `有 ${g.seats} 席` : null, g?.buyout ? `包場：${g.buyout}` : null, g?.note ?? null].filter(Boolean).join('；');
   const sub = g?.fitSubgroup === 'yes' ? '分成 4～6 人可以。' : '';
@@ -316,7 +316,7 @@ export const SCRIPTS: Script[] = [
       (e) => ({ tools: [tool('get_place', { ids: e.results.search_places.places.slice(0, 3).map((p: any) => p.id), sections: ['group', 'reservation'] })] }),
       (e) => {
         const list = e.results.get_place.places;
-        const notes = Object.fromEntries(list.map((p: any) => [p.id, p.group.group?.seats != null ? `${p.group.group.seats} 席` : '席數沒有查到']));
+        const notes = Object.fromEntries(list.map((p: any) => [p.id, p.group?.seats != null ? `${p.group.seats} 席` : '席數沒有查到']));
         return { tools: [tool('show_places', { ids: list.map((p: any) => p.id), title: '鳥羽能坐 15 人的海鮮', notes })] };
       },
       (e) => ({
@@ -341,9 +341,9 @@ export const SCRIPTS: Script[] = [
     match: (e) => /比較/.test(e.text) && chipPlaces(e).length >= 2,
     steps: [
       (e) => ({ tools: [tool('get_place', { ids: chipPlaces(e), sections: ['group', 'hours', 'price', 'access'] })] }),
-      (e) => ({ tools: [tool('show_places', { ids: chipPlaces(e), title: '比較', lettered: true, notes: Object.fromEntries(e.results.get_place.places.map((p: any) => [p.id, p.group.group?.fit15 ?? '未查'])) })] }),
+      (e) => ({ tools: [tool('show_places', { ids: chipPlaces(e), title: '比較', lettered: true, notes: Object.fromEntries(e.results.get_place.places.map((p: any) => [p.id, p.group?.fit15 ?? '未查'])) })] }),
       (e) => ({
-        text: e.results.get_place.places.map((p: any, i: number) => `${String.fromCharCode(65 + i)}. ${tag(p.id)}：${p.group.group?.seats != null ? `${p.group.group.seats} 席` : '席數未查'}`).join('\n'),
+        text: e.results.get_place.places.map((p: any, i: number) => `${String.fromCharCode(65 + i)}. ${tag(p.id)}：${p.group?.seats != null ? `${p.group.seats} 席` : '席數未查'}`).join('\n'),
       }),
     ],
   },

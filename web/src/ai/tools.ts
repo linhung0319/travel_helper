@@ -122,8 +122,8 @@ export function createTools(d: AiDeps): ToolDef[] {
     {
       name: 'get_timetable',
       kind: 'read',
-      description: '時刻表。station：近鐵、JR 車站的資料點 ID；route：巴士、船的路線 ID 或名稱。',
-      input_schema: obj({ station: str(), route: str(), date: str(DATE), after: str('從幾點開始 HH:MM') }, ['date']),
+      description: '時刻表。station：近鐵、JR 車站的資料點 ID；route：巴士、船的路線 ID 或名稱，再給 from（上車站名）、to（下車站名）只回這兩站的時間，不給就只回站名和每班的起訖。',
+      input_schema: obj({ station: str(), route: str(), from: str('路線的上車站名'), to: str('路線的下車站名'), date: str(DATE), after: str('從幾點開始 HH:MM（車站預設 09:00，路線預設從頭）') }, ['date']),
       run: ro(read.get_timetable),
     },
     {
@@ -133,7 +133,17 @@ export function createTools(d: AiDeps): ToolDef[] {
       input_schema: obj({ placeId: str(), date: str(DATE) }),
       run: ro(read.get_opinions),
     },
-    { name: 'get_trip_info', kind: 'read', description: '旅程的參考資料。topic：passes（近鐵票券）、airport（關西機場交通）、party（人數）。', input_schema: obj({ topic: str() }, ['topic']), run: ro(read.get_trip_info) },
+    {
+      name: 'get_trip_info',
+      kind: 'read',
+      description:
+        '旅程的參考資料，只回要的分項（passes、airport 一定要給 sections，一次可以給幾個）。topic：' +
+        'passes（近鐵票券）：passes 各種票券的價格和範圍、fares 車資和特急費、comparison 划不划算的試算、groupTicket 團體票、booking 訂票和開賣、childRules 兒童票、shimakaze 島風號、otherExpress 其他特急、passNotes 票券補充、notes 計價規則；' +
+        'airport（關西機場交通）：day1 第一天從機場到志摩的建議走法和班次、lastDay 最後一天回機場、routes 各種路線的比較（含包車）、luggage 行李、accessibility 電梯和無障礙、flights 航班、openQuestions 還沒查到的事；' +
+        'party（人數，不用 sections）。',
+      input_schema: obj({ topic: { enum: ['passes', 'airport', 'party'] }, sections: strs('要哪些分項') }, ['topic']),
+      run: ro(read.get_trip_info),
+    },
     { name: 'get_reservations', kind: 'read', description: '要預約的項目（同預約清單）：哪天、哪個點、狀態（pending 未訂、booked 已訂、skip 不用訂）、備註。住宿的 date 是入住那晚。', input_schema: obj({ date: str(DATE), status: { enum: RESERVATION_STATUSES } }), run: ro(read.get_reservations) },
 
     // --- 改畫面 ---

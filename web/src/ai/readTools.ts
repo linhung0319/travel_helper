@@ -39,6 +39,34 @@ const SECTIONS: Record<string, string[]> = {
 export const PLACE_SECTIONS = Object.keys(SECTIONS);
 const MAX_GET_PLACE = 6;
 
+/** AI 用不到的欄位：來源網址、取得日期、產生日期（T36：模擬時都沒用到，只佔 token） */
+const NO_AI_KEYS = new Set(['sources', 'basedOn', 'retrieved', 'generated', 'assessed', 'otherExpressSources']);
+
+/** 遞迴拿掉 NO_AI_KEYS；值是 null 照樣留著（null＝資料沒寫） */
+export function withoutSources(v: unknown): unknown {
+  if (Array.isArray(v)) return v.map(withoutSources);
+  if (!v || typeof v !== 'object') return v;
+  return Object.fromEntries(Object.entries(v).filter(([k]) => !NO_AI_KEYS.has(k)).map(([k, x]) => [k, withoutSources(x)]));
+}
+
+/** 一樣的警告併成一則（計程車台數每一程都出現一次），itemIds 列出是哪幾項（T36） */
+export function mergeWarnings(warnings: readonly { level: string; message: string; itemId?: string | null }[]) {
+  const out = new Map<string, { level: string; message: string; itemIds: string[] }>();
+  for (const w of warnings) {
+    const key = `${w.level}\n${w.message}`;
+    const row = out.get(key) ?? { level: w.level, message: w.message, itemIds: [] };
+    if (w.itemId && !row.itemIds.includes(w.itemId)) row.itemIds.push(w.itemId);
+    out.set(key, row);
+  }
+  return [...out.values()];
+}
+
+/** get_trip_info 的分項（T36）：一次只回要的，不整份給 */
+export const TRIP_INFO_SECTIONS = {
+  passes: ['passes', 'fares', 'comparison', 'groupTicket', 'booking', 'childRules', 'shimakaze', 'otherExpress', 'passNotes', 'notes'],
+  airport: ['day1', 'lastDay', 'routes', 'luggage', 'accessibility', 'flights', 'openQuestions'],
+} as const;
+
 export function createReadTools(d: AiDeps) {
   const places = () => d.data.getState();
   const votes = () => d.shared.store.getState().votes;
@@ -89,8 +117,8 @@ export function createReadTools(d: AiDeps) {
         const raw = p.raw as Record<string, unknown>;
         const out: Record<string, unknown> = { id: p.id, name: placeName(p), ja: p.name.ja, type: p.type, area: p.area, region: p.region, tier: p.tier, verified: raw.verified ?? null };
         if (p.origin === 'user') out.origin = '使用者自己加的，我們沒查過：營業時間、能不能坐 15 人都不知道';
-        // 沒有這個欄位＝資料沒寫，回 null，不說成沒有
-        for (const s of sections) out[s] = Object.fromEntries(SECTIONS[s].map((k) => [k, raw[k] ?? null]));
+        // 沒有這個欄位＝資料沒寫，回 null，不說成沒有。欄位直接放在點上（不再包一層分區），來源拿掉（T36）
+        for (const s of sections) for (const k of SECTIONS[s]) out[k] = withoutSources(raw[k] ?? null);
         const edited = Object.keys(p.edited ?? {});
         if (edited.length) out.edited = edited;
         return out;
@@ -143,7 +171,7 @@ export function createReadTools(d: AiDeps) {
       // 備選：引擎只用選定的算，AI 要知道還有哪幾個
       options: (day?.items ?? []).flatMap((i) => (i.type === 'visit' && i.options.length > 1 ? [{ itemId: i.id, selected: i.selected, places: i.options.map((o) => ({ id: o.place, name: nameOf(o.place) })), note: i.note ?? null }] : [])),
       gaps: p.gaps.map((g) => ({ label: g.label, from: g.from, to: g.to, afterItemId: g.afterItemId, beforeItemId: g.beforeItemId })),
-      warnings: p.warnings.map((w) => ({ level: w.level, message: w.message, itemId: w.itemId ?? null })),
+      warnings: mergeWarnings(p.warnings),
       stats: p.stats,
       candidates: cands.map((c) => ({ id: c.placeId, name: nameOf(c.placeId), addedBy: who(c.addedBy) })),
       comments: s.comments.filter((c) => c.target === dayTarget(date)).length,
@@ -296,11 +324,11 @@ export function createReadTools(d: AiDeps) {
     };
   }
 
-  async function get_timetable(input: { station?: string; route?: string; date: string; after?: string }): Promise<ToolOutput> {
+  async function get_timetable(input: { station?: string; route?: string; date: string; after?: string; from?: string; to?: string }): Promise<ToolOutput> {
     const date = needDate(input?.date);
     if (!date) return fail(`date 要是 ${tripDates()[0]}～${tripDates().at(-1)} 的日期`);
-    const after = input.after ?? '09:00';
     if (input.station) {
+      const after = input.after ?? '09:00';
       const tt = await d.source.loadTimetable(input.station);
       if (!tt) return fail(`${input.station} 沒有車站時刻表（巴士、船用 route 查）`);
       const dayType = kintetsuDayType(date, d.config.holidays);
@@ -310,14 +338,48 @@ export function createReadTools(d: AiDeps) {
       const q = input.route;
       const route = d.engine()?.routes?.find((r) => r.id === q || r.name.ja.includes(q) || r.name.zh?.includes(q));
       if (!route) return fail(`找不到路線 ${q}`);
-      const t = toMinutes(after);
-      const trips = (route.trips[busDayType(date, d.config.holidays)] ?? [])
+      // 路線沒給 after 從頭列：以前預設 09:00 又用第一站的時間濾，會漏掉中途站 9 點前的班（T36 模擬抓到）
+      let t: number;
+      try {
+        t = toMinutes(input.after ?? '00:00');
+      } catch {
+        return fail('after 要是 HH:MM');
+      }
+      const dayType = busDayType(date, d.config.holidays);
+      const stopName = new Map(route.stops.map((s) => [s.id, String(s.name)]));
+      const head = { ok: true as const, route: route.name.zh ?? route.name.ja, mode: route.mode, dayType, validFrom: route.validFrom };
+      const runs = (route.trips[dayType] ?? [])
         .filter((x) => !x.dates || x.dates.includes(date))
-        .map((x) => ({ headsign: x.headsign, stops: x.stops.flatMap(([s, a2, d2]) => (d2 || a2 ? [{ stop: s, time: (d2 ?? a2) as string }] : [])) }))
+        .map((x) => ({ headsign: x.headsign, stops: x.stops.flatMap(([s, a2, d2]) => (d2 || a2 ? [{ name: stopName.get(s) ?? s, time: (d2 ?? a2) as string }] : [])) }));
+      // 站名比對：拿掉空白，部分符合就算（「鳥羽駅」「鳥羽」都行）
+      const fold = (s: string) => s.normalize('NFKC').replace(/\s/g, '');
+      const hits = (name: string, want: string) => fold(name).includes(fold(want)) || fold(want).includes(fold(name));
+      if (input.from || input.to) {
+        // 給了上車、下車站：每班只回這兩站的時間，站名直接寫出來（不用對照代號）
+        const trips = runs
+          .flatMap((x) => {
+            const first = input.from ? x.stops.findIndex((s) => hits(s.name, input.from!)) : 0;
+            if (first < 0) return [];
+            const j = input.to ? x.stops.findIndex((s, k) => k > first && hits(s.name, input.to!)) : x.stops.length - 1;
+            if (j < 0) return [];
+            // 同一班經過上車站兩次（鷗巴士 2 號：鳥羽駅 → 繞マリンターミナル → 再回鳥羽駅）：取離下車站最近的那次，同引擎（T36 模擬抓到）
+            let i = first;
+            if (input.from) for (let k = first + 1; k < j; k++) if (hits(x.stops[k].name, input.from)) i = k;
+            return [{ headsign: x.headsign, from: x.stops[i].name, depart: x.stops[i].time, to: x.stops[j].name, arrive: x.stops[j].time }];
+          })
+          .filter((x) => toMinutes(x.depart) >= t)
+          .sort((x, y) => toMinutes(x.depart) - toMinutes(y.depart))
+          .slice(0, 10);
+        if (!trips.length) return { ...head, trips, note: '這天沒有從上車站往下車站的班次（站名對不到也會這樣）；站名見 stops', stops: [...new Set(stopName.values())] };
+        return { ...head, trips };
+      }
+      // 沒給站：站名清單（去重）和每班的起訖，要細節請 AI 再給 from、to
+      const trips = runs
         .filter((x) => x.stops[0] && toMinutes(x.stops[0].time) >= t)
         .sort((x, y) => toMinutes(x.stops[0].time) - toMinutes(y.stops[0].time))
-        .slice(0, 8);
-      return { ok: true, route: route.name.zh ?? route.name.ja, mode: route.mode, validFrom: route.validFrom, stops: route.stops.map((s) => ({ id: s.id, name: s.name })), trips };
+        .slice(0, 12)
+        .map((x) => ({ headsign: x.headsign, first: x.stops[0], last: x.stops.at(-1) }));
+      return { ...head, stops: [...new Set(stopName.values())], trips, note: '要某一站的時間，給 from（上車站）、to（下車站）再查一次' };
     }
     return fail('要給 station 或 route');
   }
@@ -368,12 +430,21 @@ export function createReadTools(d: AiDeps) {
     return { ok: true, wishes: rows, tripComments: s.comments.filter((c) => c.target === TRIP_TARGET).map((c) => ({ by: who(c.author), text: c.text })) };
   }
 
-  async function get_trip_info(input: { topic: string }): Promise<ToolOutput> {
+  /** 整份資料很大（機場約 1.6 萬字元），一次只回要的分項，來源拿掉（T36） */
+  async function get_trip_info(input: { topic: string; sections?: string[] }): Promise<ToolOutput> {
     const topic = input?.topic;
     if (topic === 'party') return { ok: true, party: places().itinerary?.party ?? null };
     if (topic !== 'passes' && topic !== 'airport') return fail('topic 要是 passes、airport、party');
-    const info = await d.source.loadTripInfo(topic);
-    return info ? { ok: true, info } : fail('沒有這份資料');
+    const allowed: readonly string[] = TRIP_INFO_SECTIONS[topic];
+    const sections = input.sections ?? [];
+    if (!sections.length) return fail(`要給 sections（${topic} 可用：${allowed.join('、')}）`);
+    const bad = sections.filter((x) => !allowed.includes(x));
+    if (bad.length) return fail(`沒有分項 ${bad.join('、')}（${topic} 可用：${allowed.join('、')}）`);
+    const loaded = await d.source.loadTripInfo(topic);
+    // 機場的資料是一個資料夾（目前只有關西機場一份）
+    const info = (Array.isArray(loaded) ? loaded[0] : loaded) as Record<string, unknown> | null | undefined;
+    if (!info) return fail('沒有這份資料');
+    return { ok: true, topic, ...Object.fromEntries(sections.map((s) => [s, withoutSources(info[s] ?? null)])) };
   }
 
   /** 預約清單（同畫面的預約筆記）：住宿的 date 是入住那晚 */

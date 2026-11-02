@@ -17,7 +17,7 @@ function validate(dataDir: string) {
   return { ok: r.status === 0, out: r.stdout + r.stderr };
 }
 
-const stations = () => [testStation(), { ...testStation(), id: 'test-station-b', coords: [135.51, 34.7] }];
+const stations = () => [testStation(), { ...testStation(), id: 'test-station-b', name: { ja: 'テスト駅B', zh: '測試站B' }, coords: [135.51, 34.7] }];
 const area = () => ({ ...testArea(), stations: ['test-station', 'test-station-b'] });
 
 function route(over: Record<string, unknown> = {}) {
@@ -156,5 +156,23 @@ describe('validate：站內轉乘（_transfers.json）', () => {
       }),
     );
     assert.ok(oneWay.ok, oneWay.out);
+  });
+});
+
+describe('validate：車站名稱', () => {
+  test('不同業者的同名站要在 name.zh 標業者', () => {
+    const same = { ja: '鳥羽', zh: '鳥羽' };
+    const two = [
+      { ...testStation(), name: same },
+      { ...testStation(), id: 'test-station-b', name: same, coords: [135.51, 34.7] },
+    ];
+    const r = validate(writeTestData({ extraFiles: { 'areas.json': [area()], 'stations.json': two } }));
+    assert.ok(!r.ok);
+    assert.match(r.out, /\[test-station-b\] 車站名稱「鳥羽」和「test-station」重複/);
+
+    two[0].name = { ja: '鳥羽', zh: '鳥羽（近鐵）' };
+    two[1].name = { ja: '鳥羽', zh: '鳥羽（JR）' };
+    const ok = validate(writeTestData({ extraFiles: { 'areas.json': [area()], 'stations.json': two } }));
+    assert.ok(ok.ok, ok.out);
   });
 });
