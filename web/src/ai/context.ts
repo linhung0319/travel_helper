@@ -1,5 +1,6 @@
 // 每次對話自動帶的脈絡（規格 §4.5）：畫面狀態、脈絡晶片，只帶小的東西，其他用工具查。
 
+import { jstNow } from '@travel-helper/engine';
 import { filterChips, matchesFilter } from '../lib/filter.ts';
 import { inBbox } from '../lib/areas.ts';
 import type { AiDeps } from './deps.ts';
@@ -50,8 +51,11 @@ function chipContent(c: ChatContext, d: AiDeps, read: ReadTools): Record<string,
   }
 }
 
-export function buildTurnContext(opts: { d: AiDeps; read: ReadTools; stage: Stage; chips: ChatContext[]; screenOff: boolean; decisions: TurnContext['decisions']; draft: TurnContext['draft']; cards: TurnContext['cards'] }): TurnContext {
+export function buildTurnContext(opts: { d: AiDeps; read: ReadTools; stage: Stage; chips: ChatContext[]; screenOff: boolean; decisions: TurnContext['decisions']; draft: TurnContext['draft']; cards: TurnContext['cards']; now?: number }): TurnContext {
+  const now = jstNow(opts.now ?? Date.now());
   return {
+    // 現在一律是日本時間：旅途中問「今天」「明天」才對得上（T34）
+    now: `${now.date}（${now.weekday}）${now.time}`,
     // 使用者把「正在看」拿掉時不帶
     screen: opts.screenOff ? {} : screenContext(opts.d, opts.stage),
     chips: opts.chips.map((c) => chipContent(c, opts.d, opts.read)),

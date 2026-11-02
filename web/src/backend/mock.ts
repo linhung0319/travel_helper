@@ -2,6 +2,7 @@
 // 只在 dev server 用（backend/index.ts）；Node 的測試不給 storage、不延遲。
 
 import type { Itinerary } from '@travel-helper/engine/types';
+import type { TripSummary } from '@travel-helper/engine';
 import { DEFAULT_CONFIG, upgradeItinerary } from '@travel-helper/engine';
 import {
   BackendError,
@@ -48,6 +49,8 @@ interface MockState {
   reservations: Reservation[];
   edits: PlaceEdit[];
   userPlaces: UserPlace[];
+  /** T34：機器人用的行程摘要（舊存檔沒有） */
+  summary?: { version: number; data: TripSummary };
   seq: { snapshot: number; comment: number; candidate: number; edit: number };
 }
 
@@ -206,6 +209,7 @@ export function createMockBackend(seed: MockSeed, opts: MockOptions = {}): MockB
     reservations: maxUpdated(state.reservations),
     edits: maxUpdated(state.edits),
     userPlaces: maxUpdated(state.userPlaces),
+    summary: state.summary?.version ?? 0,
   });
   const currentMember = () => state.members.find((m) => m.id === member()) ?? { id: member(), displayName: member(), pictureUrl: null };
 
@@ -230,6 +234,11 @@ export function createMockBackend(seed: MockSeed, opts: MockOptions = {}): MockB
 
     getItinerary: () => call(() => state.itinerary),
     putItinerary: (version, data, reason = null) => call(() => saveItinerary(version, data, reason, member())),
+    putTripSummary: (version, summary) =>
+      call(() => {
+        if (version !== state.itinerary.version) throw new BackendError(409, 'version-conflict', '行程已經是新的版本了', { current: state.itinerary.version });
+        state.summary = { version, data: clone(summary) };
+      }),
     listSnapshots: () =>
       call(() =>
         [...state.snapshots].reverse().map(({ id, version, reason, createdBy, createdAt }) => ({ id, version, reason, createdBy, createdAt })),

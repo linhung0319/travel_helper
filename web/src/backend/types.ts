@@ -2,6 +2,7 @@
 // 形狀照 Worker 的資料 API（architecture §4「資料 API」、worker/src/api/）：正式 build 是 api.ts，dev server 和既有 e2e 是假後端（mock.ts），規則改了要一起改。
 
 import type { Itinerary, LonLat } from '@travel-helper/engine/types';
+import type { TripSummary } from '@travel-helper/engine';
 
 export interface Member {
   id: string;
@@ -144,6 +145,8 @@ export interface SyncState {
   reservations: string | null;
   edits: string | null;
   userPlaces: string | null;
+  /** T34：機器人用的行程摘要對應哪一版行程（0：還沒有）；和 itinerary 不一樣時補存 */
+  summary: number;
 }
 
 /** API 的錯誤：`{ error, message, details? }` 加上 HTTP 狀態 */
@@ -187,6 +190,8 @@ export interface Backend {
   getItinerary(): Promise<ItineraryDoc>;
   /** version 要和資料庫的一樣，否則丟 409；改之前自動存快照 */
   putItinerary(version: number, data: Itinerary, reason?: string | null): Promise<ItineraryDoc>;
+  /** T34：算好時間軸後存行程摘要（LINE 機器人讀）；version 不是目前這一版時丟 409 */
+  putTripSummary(version: number, summary: TripSummary): Promise<void>;
   listSnapshots(): Promise<SnapshotMeta[]>;
   getSnapshot(id: number): Promise<Snapshot>;
   /** 復原也是一次修改，會再存快照 */

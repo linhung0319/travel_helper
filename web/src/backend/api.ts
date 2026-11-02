@@ -19,6 +19,9 @@ export const apiBackend: Backend = {
 
   getItinerary: () => api<ItineraryDoc>('GET', '/api/itinerary').then(upgradeDoc),
   putItinerary: (version, data, reason = null) => putDoc(version, data, reason),
+  putTripSummary: async (version, summary) => {
+    await api('PUT', '/api/itinerary/summary', { version, summary });
+  },
   listSnapshots: () => api<{ snapshots: SnapshotMeta[] }>('GET', '/api/itinerary/snapshots').then((r) => r.snapshots),
   getSnapshot: (id) => api<Snapshot>('GET', `/api/itinerary/snapshots/${id}`).then((s) => ({ ...s, data: upgradeItinerary(s.data) })),
   restoreSnapshot: (id, version) => api<ItineraryDoc>('POST', `/api/itinerary/snapshots/${id}/restore`, { version }).then(upgradeDoc),

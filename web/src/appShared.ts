@@ -4,9 +4,14 @@ import { dataStore } from './dataStore.ts';
 import { createShared } from './sharedStore.ts';
 import { appStore } from './store.ts';
 import { setVoteLookup } from './lib/filter.ts';
+import { startSummaryPush } from './lib/tripSummary.ts';
+import { planStore } from './planStore.ts';
 
 export const shared = createShared(backend, dataStore);
 export const sharedStore = shared.store;
+
+// LINE 機器人讀的行程摘要（T34）：時間軸算好、後端的摘要不是這一版時存一份
+startSummaryPush({ shared: sharedStore, data: dataStore, plan: planStore, backend });
 
 // 上一步只算這次編輯裡改的（T33）
 appStore.subscribe((s, prev) => {

@@ -96,6 +96,35 @@ export async function putItinerary({ db, req, member }: Ctx): Promise<Response> 
   return save(db, version, body.data, (body.reason as string | undefined) ?? null, member.id);
 }
 
+const MAX_SUMMARY_BYTES = 200 * 1024;
+
+/**
+ * PUT /api/itinerary/summary  { version, summary }（T34）：瀏覽器算好時間軸後存的行程摘要（engine 的 TripSummary）。
+ * 只收目前這一版行程的摘要：version 不一樣回 409（別人又改了，摘要由他存）。內容一樣時不寫。
+ */
+export async function putSummary({ db, req }: Ctx): Promise<Response> {
+  const body = await readBody(req, 2 * MAX_SUMMARY_BYTES);
+  const version = readVersion(body);
+  const s = body.summary;
+  if (!isPlainObject(s) || !Array.isArray(s.days) || !Array.isArray(s.reservations)) throw badRequest('summary 要有 days、reservations');
+  const text = JSON.stringify(s);
+  if (text.length > MAX_SUMMARY_BYTES) throw badRequest('摘要太大');
+  const r = await db
+    .prepare(
+      `INSERT INTO trip_summary (id, version, data, updated_at)
+       SELECT 1, ?, ?, ? FROM itinerary WHERE id = 1 AND version = ?
+       ON CONFLICT (id) DO UPDATE SET version = excluded.version, data = excluded.data, updated_at = excluded.updated_at
+         WHERE trip_summary.version <> excluded.version OR trip_summary.data <> excluded.data`,
+    )
+    .bind(version, text, nowIso(), version)
+    .run();
+  if (!r.meta.changes) {
+    const cur = await current(db);
+    if ((cur?.version ?? 0) !== version) throw conflict('version-conflict', '行程已經是新的版本了', { current: cur?.version ?? 0 });
+  }
+  return json({ version });
+}
+
 export async function listSnapshots({ db }: Ctx): Promise<Response> {
   const r = await db.prepare(SNAPSHOT_LIST).all<SnapshotMetaRow>();
   return json({ snapshots: r.results.map(snapshotMetaJson) });

@@ -102,6 +102,20 @@ export async function groupName(accessToken: string, groupId: string): Promise<s
   }
 }
 
+/** 一則文字訊息的字數上限（UTF-16）：先用 5000，還沒實測（PLAN T34）；一次回覆最多 5 則 */
+export const LINE_TEXT_MAX = 5000;
+export const LINE_REPLY_MAX = 5;
+
+/** 回覆（reply token 只能用一次、收到通知後 1 分鐘內）；回覆不計入每月的訊息額度 */
+export async function replyMessage(accessToken: string, replyToken: string, texts: string[]): Promise<void> {
+  const r = await fetch(`${API}/v2/bot/message/reply`, {
+    method: 'POST',
+    headers: { authorization: `Bearer ${accessToken}`, 'content-type': 'application/json' },
+    body: JSON.stringify({ replyToken, messages: texts.slice(0, LINE_REPLY_MAX).map((text) => ({ type: 'text', text })) }),
+  });
+  if (!r.ok) throw new LineError('回覆訊息失敗', r.status, await readJson(r));
+}
+
 /** webhook 的簽章：body 的 HMAC-SHA256（channel secret）base64，放在 x-line-signature */
 export async function verifyWebhookSignature(channelSecret: string, body: Uint8Array, signature: string | null): Promise<boolean> {
   if (!signature) return false;

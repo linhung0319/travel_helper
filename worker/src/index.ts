@@ -6,12 +6,12 @@ import { currentMember, handleAuth } from './auth.ts';
 import type { Ctx, Env } from './env.ts';
 import { errorResponse, HttpError, json, Router } from './lib/http.ts';
 import { blockedPage, loginPage } from './pages.ts';
-import { handleWebhook } from './webhook.ts';
+import { handleWebhook, type WaitUntil } from './webhook.ts';
 import { bootstrap } from './api/bootstrap.ts';
 import { createEdit, getPlace, listEdits, listPlaceDetails, listPlaces, revertEdit } from './api/places.ts';
 import { createUserPlace, deleteUserPlace, listUserPlaces, updateUserPlace } from './api/user-places.ts';
 import { resolveMapLink } from './api/map-link.ts';
-import { getItinerary, getSnapshot, listSnapshots, putItinerary, restoreSnapshot } from './api/itinerary.ts';
+import { getItinerary, getSnapshot, listSnapshots, putItinerary, putSummary, restoreSnapshot } from './api/itinerary.ts';
 import { claudeMessages } from './api/claude.ts';
 import { appendMessages, createConversation, deleteConversation, listConversations, listMessages, removeTurn, updateConversation, updateMessage } from './api/chats.ts';
 import {
@@ -50,6 +50,7 @@ export const api = new Router<Ctx>()
   .on('GET', '/api/resolve-map-link', resolveMapLink)
   .on('GET', '/api/itinerary', getItinerary)
   .on('PUT', '/api/itinerary', putItinerary)
+  .on('PUT', '/api/itinerary/summary', putSummary)
   .on('GET', '/api/itinerary/snapshots', listSnapshots)
   .on('GET', '/api/itinerary/snapshots/:id', getSnapshot)
   .on('POST', '/api/itinerary/snapshots/:id/restore', restoreSnapshot)
@@ -102,12 +103,12 @@ async function serveSite(req: Request, env: Env, url: URL): Promise<Response> {
   return env.ASSETS.fetch(req);
 }
 
-export async function handle(req: Request, env: Env): Promise<Response> {
+export async function handle(req: Request, env: Env, waitUntil?: WaitUntil): Promise<Response> {
   const url = new URL(req.url);
   try {
     if (!sameOrigin(req, env, url)) return json({ error: 'bad-origin', message: '不接受從別的網站送來的請求' }, { status: 403 });
     if (url.pathname.startsWith('/auth/')) return await handleAuth(req, env, url);
-    if (url.pathname === '/line/webhook') return await handleWebhook(req, env);
+    if (url.pathname === '/line/webhook') return await handleWebhook(req, env, waitUntil);
     if (url.pathname === '/admin' || url.pathname.startsWith('/admin/')) return await handleAdmin(req, env, url);
     if (!url.pathname.startsWith('/api/')) return await serveSite(req, env, url);
     const m = api.match(req.method, url.pathname);
@@ -121,5 +122,5 @@ export async function handle(req: Request, env: Env): Promise<Response> {
 }
 
 export default {
-  fetch: (req: Request, env: Env) => handle(req, env),
+  fetch: (req: Request, env: Env, ctx: ExecutionContext) => handle(req, env, (p) => ctx.waitUntil(p)),
 } satisfies ExportedHandler<Env>;

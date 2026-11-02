@@ -103,6 +103,8 @@ export interface ToolSchema {
 
 /** 一輪對話的脈絡：只帶小的東西，其他用工具查（規格 §4.5） */
 export interface TurnContext {
+  /** 這輪開始時的日本時間，例如「2027-02-05（五）14:32」（T34）；舊的紀錄沒有 */
+  now?: string;
   screen: Record<string, unknown>;
   /** 脈絡晶片和它們的精簡內容 */
   chips: Record<string, unknown>[];
