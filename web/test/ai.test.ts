@@ -73,7 +73,7 @@ test('S3 資料未查：fit15 是 unknown，不說可以或不行；別的條件
   const r = (await h.chat.tools.find((t) => t.name === 'search_places')!.run({ areas: ['toba'], types: ['restaurant'], fit15: ['yes'] })).output as unknown as { unknownExcluded: number };
   assert.ok(r.unknownExcluded > 0);
   const g = (await h.chat.tools.find((t) => t.name === 'get_place')!.run({ ids: ['toba-sazanami'], sections: ['kids', 'menu'] })).output as unknown as { places: Record<string, Record<string, unknown>>[] };
-  assert.ok('kids' in g.places[0].kids);
+  assert.ok('kids' in g.places[0] && 'menu' in g.places[0] && !('group' in g.places[0]));
   h.close();
 });
 
@@ -921,6 +921,49 @@ test('脈絡：draft 帶完整的操作，cards 帶等決定的卡和提議的�
   h.close();
 });
 
+test('T36 脈絡：晶片只在第一次帶完整內容，之後同一個晶片只帶 repeated；換一個晶片照樣帶完整的', async () => {
+  const h = await harness();
+  const chips: Record<string, unknown>[][] = [];
+  const send = h.model.send.bind(h.model);
+  h.model.send = (req, signal) => {
+    chips.push(req.context.chips as Record<string, unknown>[]);
+    return send(req, signal);
+  };
+  await h.chat.ask([{ kind: 'day', date: '2027-02-05' }]);
+  await h.chat.send('幫我檢查這天');
+  const first = chips.at(-1)!;
+  assert.ok(first[0].day && !first[0].repeated);
+  const n = chips.length;
+  await h.chat.send('長輩會不會太累？');
+  const second = chips[n];
+  assert.deepEqual(second, [{ kind: 'day', date: '2027-02-05', repeated: true }]);
+  // 新加的晶片帶完整的，舊的仍是 repeated
+  await h.chat.ask([{ kind: 'place', id: 'toba-aquarium' }]);
+  const m = chips.length;
+  await h.chat.send('這兩個怎麼排');
+  const third = chips[m];
+  assert.equal(third[0].repeated, true);
+  assert.ok(third[1].place && !third[1].repeated);
+  // 換新對話：重新帶完整的
+  await h.chat.newConversation();
+  await h.chat.ask([{ kind: 'day', date: '2027-02-05' }]);
+  const k = chips.length;
+  await h.chat.send('幫我檢查這天');
+  assert.ok(chips[k][0].day);
+  h.close();
+});
+
+test('T36 決定：加候選（placeIds）的決定摘要有地點，不是空的', async () => {
+  const h = await harness();
+  await h.chat.send('把遊覽船加到 2/6 的候選');
+  const use = h.lastUse('add_candidate');
+  assert.equal((await h.chat.confirmCard(use.id)).ok, true);
+  const d = h.chat.store.getState().decisions;
+  assert.equal(d.at(-1)!.tool, 'add_candidate');
+  assert.match(d.at(-1)!.summary, /toba-bay-cruise-irukajima/);
+  h.close();
+});
+
 test('applyOps：新的操作：選項要在卡上；自由時間要有分鐘；撤下只能是地點的卡', async () => {
   const h = await harness();
   const check = h.chat.tools.find((t) => t.name === 'check_changes')!;
@@ -1028,9 +1071,83 @@ test('工具：get_timetable、get_trip_info、get_trip_overview 拿得到資料
   const route = h.data.getState().places.length && (await run('get_timetable', { route: '鳥羽', date: '2027-02-05' }));
   assert.ok(route);
   assert.equal((await run('get_timetable', { station: 'toba', date: '2030-01-01' })).ok, false);
-  assert.ok(((await run('get_trip_info', { topic: 'passes' })).info as { passes: unknown }).passes);
   assert.equal((await run('get_trip_overview', {})).ok, true);
   assert.equal((await run('get_day', { date: '2030-01-01' })).ok, false);
+  h.close();
+});
+
+test('T36 get_trip_info：只回要的分項、沒有來源；沒給分項、分項不對回錯誤並列出可用的', async () => {
+  const h = await harness();
+  const run = async (name: string, input: Record<string, unknown>) => (await h.chat.tools.find((t) => t.name === name)!.run(input)).output as Record<string, unknown>;
+  const passes = await run('get_trip_info', { topic: 'passes', sections: ['passes', 'comparison'] });
+  assert.ok(passes.passes && passes.comparison && !('fares' in passes));
+  const air = await run('get_trip_info', { topic: 'airport', sections: ['day1'] });
+  assert.ok(air.day1);
+  for (const r of [passes, air]) assert.ok(!/"(sources|retrieved|basedOn)"/.test(JSON.stringify(r)));
+  // 機場的 day1 一份就夠回答「第一天怎麼去」，比整份小很多
+  assert.ok(JSON.stringify(air).length < 5000);
+  const none = await run('get_trip_info', { topic: 'airport' });
+  assert.equal(none.ok, false);
+  assert.match(String(none.error), /day1/);
+  assert.equal((await run('get_trip_info', { topic: 'passes', sections: ['day1'] })).ok, false);
+  assert.ok((await run('get_trip_info', { topic: 'party' })).party);
+  h.close();
+});
+
+test('T36 get_timetable 路線：給上下車站只回兩站的時間、站名直接寫；沒給 after 從頭列（中途站 9 點前的班不漏）', async () => {
+  const h = await harness();
+  const run = async (name: string, input: Record<string, unknown>) => (await h.chat.tools.find((t) => t.name === name)!.run(input)).output as Record<string, unknown>;
+  type Trip = { from: string; depart: string; to: string; arrive: string };
+  const r = await run('get_timetable', { route: 'kamome-2-wistarian', date: '2027-02-06', from: '鳥羽駅', to: 'ウィスタリアン' });
+  assert.equal(r.ok, true);
+  const trips = r.trips as Trip[];
+  assert.ok(trips.length > 0);
+  for (const t of trips) {
+    assert.match(t.from, /鳥羽駅/);
+    assert.match(t.to, /ウィスタリアン/);
+    assert.ok(t.depart < t.arrive);
+  }
+  // 模擬時漏掉的 08:17：以前用第一站的時間濾 9 點以後。這班經過鳥羽駅兩次（08:11 繞マリンターミナル、08:17 再回來），取 08:17 那次，同引擎的 get_route
+  assert.ok(trips.some((t) => t.depart === '08:17' && t.arrive === '08:45'), JSON.stringify(trips));
+  assert.ok(!trips.some((t) => t.depart === '08:11'), JSON.stringify(trips));
+  assert.ok(!('stops' in r));
+  assert.ok(JSON.stringify(r).length < 2000);
+  // 沒給站：站名清單（不重複、不是代號）和每班起訖
+  const all = await run('get_timetable', { route: 'kamome-2-wistarian', date: '2027-02-06' });
+  const stops = all.stops as string[];
+  assert.equal(new Set(stops).size, stops.length);
+  assert.ok(stops.includes('鳥羽駅'));
+  assert.ok((all.trips as { first: unknown }[])[0].first);
+  // 站名對不到：回空的，附站名
+  const miss = await run('get_timetable', { route: 'kamome-2-wistarian', date: '2027-02-06', from: '不存在的站' });
+  assert.deepEqual(miss.trips, []);
+  assert.ok(miss.stops);
+  h.close();
+});
+
+test('T36 get_place：分區的欄位直接放在點上，來源網址和產生日期拿掉', async () => {
+  const h = await harness();
+  const r = (await h.chat.tools.find((t) => t.name === 'get_place')!.run({ ids: ['toba-osakaya'], sections: ['summary', 'assessment'] })).output as unknown as { places: Record<string, unknown>[] };
+  const p = r.places[0];
+  assert.ok((p.summary as { text: string }).text);
+  assert.ok((p.assessment as { scores: unknown }).scores);
+  assert.ok(!/"(basedOn|generated|assessed|sources)"/.test(JSON.stringify(p)));
+  h.close();
+});
+
+test('T36 get_day：一樣的警告併成一則，itemIds 列出是哪幾項', async () => {
+  const h = await harness();
+  const r = (await h.chat.tools.find((t) => t.name === 'get_day')!.run({ date: '2027-02-04' })).output as unknown as { warnings: { level: string; message: string; itemIds: string[] }[] };
+  const keys = r.warnings.map((w) => `${w.level}${w.message}`);
+  assert.equal(new Set(keys).size, keys.length);
+  assert.ok(r.warnings.some((w) => w.itemIds.length > 1));
+  h.close();
+});
+
+test('T36 search_places：簡介被切斷時標「…」', async () => {
+  const h = await harness();
+  const r = (await h.chat.tools.find((t) => t.name === 'search_places')!.run({ areas: ['toba'], types: ['restaurant'], limit: 30 })).output as unknown as { places: { summary: string | null }[] };
+  for (const s of r.places.map((x) => x.summary).filter((x): x is string => !!x)) assert.ok(/[。！？!?…]$/.test(s) || [...s].length < 80, s);
   h.close();
 });
 

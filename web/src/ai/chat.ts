@@ -11,7 +11,7 @@ import { promptsForAll, startersFor } from './prompts.ts';
 import { SYSTEM_PROMPT } from './systemPrompt.ts';
 import { createReadTools } from './readTools.ts';
 import { createTools, type Presentation, type ToolDef } from './tools.ts';
-import { incompleteTurn, textOf, titleFrom, toApiMessages } from './transcript.ts';
+import { completedTurns, incompleteTurn, textOf, titleFrom, toApiMessages } from './transcript.ts';
 import type { Op } from './ops.ts';
 import type { Stage } from './stage.ts';
 import { ModelError, type CardState, type ChatContext, type ChatMessage, type ChatRepository, type ContentBlock, type ConversationSummary, type ModelClient, type ModelErrorCode, type ToolResultBlock, type ToolUseBlock, type TurnContext } from './types.ts';
@@ -192,6 +192,9 @@ export function createChat(d: CreateChatDeps): Chat {
   /** 這段對話裡提議的每一版 */
   const proposalBlocks = () => store.getState().messages.flatMap((m) => m.content.flatMap((b) => (b.type === 'tool_use' && b.name === 'propose_changes' ? [b] : [])));
 
+  /** 卡片給 AI 看的一行摘要：提議的 summary、留言的字、地點（add_candidate、vote 是 placeIds） */
+  const cardSummary = (i: Record<string, unknown>) => String(i.summary ?? i.text ?? i.placeId ?? (i.placeIds as string[] | undefined)?.join('、') ?? '');
+
   /** 還沒決定的卡、提議的每一版（給 AI 的脈絡） */
   function openCards(): TurnContext['cards'] {
     return store.getState().messages.flatMap((m) =>
@@ -201,8 +204,7 @@ export function createChat(d: CreateChatDeps): Chat {
         if (!status || status === 'confirmed' || status === 'closed') return [];
         if (status !== 'pending' && b.name !== 'propose_changes') return [];
         if (b.name === 'vote') return [];
-        const i = b.input;
-        return [{ id: b.id, tool: b.name, status, summary: String(i.summary ?? i.text ?? i.placeId ?? (i.placeIds as string[] | undefined)?.join('、') ?? '') }];
+        return [{ id: b.id, tool: b.name, status, summary: cardSummary(b.input) }];
       }),
     );
   }
@@ -260,7 +262,10 @@ export function createChat(d: CreateChatDeps): Chat {
     // 脈絡晶片的摘要在詳情層；讀不到也照常對話（工具會明講讀不到）
     if (d.details) await d.details().catch(() => {});
     const active = proposals.store.getState().active;
-    const context = buildTurnContext({ d, read, stage: d.stage, chips, screenOff: store.getState().screenOff, decisions: store.getState().decisions, draft: active && { cardId: active.cardId, ops: active.ops, summary: active.summary }, cards: openCards() });
+    // 晶片送出後留著，每輪都帶：前面送過的只帶「同前」，不再塞一次完整內容（T36）。只算有送給模型的輪（回完的）
+    const done = completedTurns(store.getState().messages);
+    const sent = new Set(store.getState().messages.flatMap((m) => (m.role === 'user' && m.turn !== turn && done.has(m.turn) ? (m.contexts ?? []).map((c) => JSON.stringify(c)) : [])));
+    const context = buildTurnContext({ d, read, stage: d.stage, chips, sent: (c) => sent.has(JSON.stringify(c)), screenOff: store.getState().screenOff, decisions: store.getState().decisions, draft: active && { cardId: active.cardId, ops: active.ops, summary: active.summary }, cards: openCards() });
     store.setState({ decisions: [], error: null });
     // 脈絡跟著這輪的第一則訊息存下來：之後每次送的歷史都一樣（只增不改），快取和思考的簽章才接得上
     const opening = store.getState().messages.find((m) => m.turn === turn && m.role === 'user');
@@ -395,7 +400,7 @@ export function createChat(d: CreateChatDeps): Chat {
   };
 
   const decide = (block: ToolUseBlock, status: string) =>
-    store.setState((s) => ({ decisions: [...s.decisions, { tool: block.name, status, summary: String(block.input.summary ?? block.input.text ?? block.input.placeId ?? '') }] }));
+    store.setState((s) => ({ decisions: [...s.decisions, { tool: block.name, status, summary: cardSummary(block.input) }] }));
 
   const pendingCard = (toolUseId: string) => {
     const hit = findBlock(toolUseId);

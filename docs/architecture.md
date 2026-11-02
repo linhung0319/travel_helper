@@ -571,7 +571,8 @@ npm run db:import -- --apply data/cache/import/<時間>-all.json   # 2. 👤 看
   - **改畫面**（不動資料）：`show_places`、`show_route`、`show_day`、`open_place`、`move_map`、`set_filter`、`clear_view`；透過 `web/src/ai/stage.ts` 的介面，網頁和手機各有一份實作。
   - **提議改動**（使用者按了才寫）：`propose_changes`、`draft_comment`、`add_candidate`、`propose_place_edit`、`propose_user_place`。只有 `vote` 直接做，並提供復原。
 - **不在編輯中也能提議**：提議只在自己的畫面，不寫進後端；按「採用」時才確認「開始編輯？」，再用引擎的操作寫進行程（先存快照）。提議存的是操作清單，別人先改過時重新檢查，套不上就標成過期。
-- **每次對話只自動帶小的脈絡**：旅客條件（系統提示）、畫面狀態、脈絡晶片。資料點（約 3.2 MB）、投票、留言都用工具查。
+- **每次對話只自動帶小的脈絡**：旅客條件（系統提示）、畫面狀態、脈絡晶片。資料點（約 3.2 MB）、投票、留言都用工具查。晶片送出後留著，但同一段對話裡前面的輪帶過完整內容的，之後只帶晶片本身加 `repeated: true`（T36；「某天」晶片約 1.5k tokens，每輪重複會讓對話很快就滿）。
+- **工具回傳只給 AI 用得到的**（T36）：查資料工具的回傳畫面不讀，可以自由刪減；卡片會讀的只有 `show_places` 的 `ids`、`propose_place_edit` 的 `before` 和 `ok`。來源網址、取得日期（`sources`、`basedOn`、`retrieved`…）一律拿掉（`withoutSources`）；`get_trip_info` 一定要給分項；`get_timetable` 查路線給 `from`、`to` 只回兩站的時間；`get_day` 一樣的警告併成一則。
 - **聊天紀錄**存在 D1（`chat_messages`），只有自己看得到；同一個人換裝置（手機、電腦）也接得上。每人可以有多段對話（`conversation_id`），不做共用聊天室；對話滿了要開新對話。回覆中關閉頁面，AI 的工作就停了（工具在瀏覽器執行），重新打開時標「沒有回完」、可以重試，送給模型的歷史不留沒結果的工具呼叫（規格 §11）。
 - **防止用掉太多額度**：只有登入的人能呼叫；Worker 依使用者記錄用量（`ai_usage`，含快取和費用）。上限（👤 2026-11-02）：全部人每月 US$80、每人每天 US$3，以日本時間計，可以用 `AI_MONTHLY_USD`、`AI_DAILY_USD` 改；超過回 429，畫面明確提示、輸入框停用。
 - **代理**（`worker/src/api/claude.ts`）：瀏覽器只給 `system`、`tools`、`messages`；模型（`AI_MODEL`）、effort（`AI_EFFORT`）、輸出上限由 Worker 定。回 NDJSON（`text`、`done`、`error`），`web/src/ai/workerModel.ts` 轉成 `ModelEvent`。拒答時伺服器端換模型重跑（`fallbacks: "default"`，Opus、Sonnet 才有）。
