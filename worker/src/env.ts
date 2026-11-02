@@ -28,6 +28,9 @@ export interface Env {
   AI_EFFORT?: string;
   AI_DAILY_USD?: string;
   AI_MONTHLY_USD?: string;
+  /** LINE 機器人（T34）分類問法用的模型、每天的美元上限；沒設定時用 bot.ts 的預設值（Haiku、1） */
+  AI_BOT_MODEL?: string;
+  AI_BOT_DAILY_USD?: string;
 }
 
 /** 登入的成員（members 的一列） */

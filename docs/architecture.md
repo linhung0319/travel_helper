@@ -383,7 +383,7 @@ npm run db:import -- --apply data/cache/import/<時間>-all.json   # 2. 👤 看
 - 這些資料使用者不會在網站上改，查詢量又大，所以不放進資料庫。要更新就改 JSON、重新部署。
 
 ### 3.8 時間與同步
-- **時間一律是日本時間**：行程、時刻表、營業時間都存成日期（`YYYY-MM-DD`）加 `HH:MM` 字串，過了午夜寫 `25:00`（同 CONVENTIONS 的 `hours`）。**不轉成 JavaScript 的 `Date`、不做時區換算**：看網站的人在台灣，瀏覽器的時區比日本晚一小時，一換算就錯。網站只做規劃，用不到「現在幾點」。
+- **時間一律是日本時間**：行程、時刻表、營業時間都存成日期（`YYYY-MM-DD`）加 `HH:MM` 字串，過了午夜寫 `25:00`（同 CONVENTIONS 的 `hours`）。**不轉成 JavaScript 的 `Date`、不做時區換算**：看網站的人在台灣，瀏覽器的時區比日本晚一小時，一換算就錯。網站只做規劃，畫面上用不到「現在幾點」；只有 AI 聊天的脈絡（`now`）和 LINE 機器人用到「現在」，一律換成日本時間（engine 的 `jstNow`，T34）。
 - **同步**：別人改了行程、留了言、投了票，切回分頁時重新抓一次，平常每 30 秒（分頁在前景時）檢查一次有沒有新的（`/api/sync` 的 `version` 或最後更新時間，變了才重抓那一種）。不做即時推播。
 
 ---
@@ -395,7 +395,7 @@ npm run db:import -- --apply data/cache/import/<時間>-all.json   # 2. 👤 看
 | 網站（React 的 build） | Workers 靜態資源（Pages 的後繼） |
 | API：資料、修改、行程、投票 | Worker（`worker/`） |
 | 登入：LINE、群組檢查、登入憑證 | 同一個 Worker |
-| LINE 的通知（webhook） | 同一個 Worker：只用來記下群組 ID，和成員加入、退出 |
+| LINE 的通知（webhook） | 同一個 Worker：記下群組 ID，和成員加入、退出；核准的群組裡有人 @ 機器人時回覆行程（T34，§6「LINE 機器人」） |
 | Claude API 代理（T16） | 同一個 Worker；API key 存成 Worker secret |
 | 資料庫 | D1 |
 
@@ -407,6 +407,7 @@ npm run db:import -- --apply data/cache/import/<時間>-all.json   # 2. 👤 看
   - LINE 的通知：`POST /line/webhook`（驗證簽章）
   - 管理頁（T25）：`GET /admin`、`POST /admin/action`（Worker 直接回 HTML，只有管理員能開）
   - AI：`POST /api/claude/messages`（T16）
+  - 行程摘要：`PUT /api/itinerary/summary`（T34，給 LINE 機器人）
 - **除了登入和 LINE 的通知，所有 API 都要先登入。網站本身也要**（T25）：`wrangler.jsonc` 的 `assets.run_worker_first` 讓請求先經過 Worker，沒登入就回登入頁，所以只有家人看得到網站；只有打包好的程式 `/assets/*` 不經過 Worker（T15，§2「資料分層、啟動、靜態檔」）。沒登入的 API 回 401 JSON。
 - **會改東西的請求檢查 `Origin`**（T25）：有 `Origin` header 又不是自己的網站（或 `PUBLIC_BASE_URL`）就 403。cookie 本來就是 `SameSite=Lax`，這是多一層。
 - **環境**：本機用 `wrangler dev`（本機的 D1），正式環境部署到 Cloudflare（T30）。用 GitHub Actions 自動部署是之後的事，一開始手動 `npm run deploy` 就好。
@@ -436,7 +437,8 @@ npm run db:import -- --apply data/cache/import/<時間>-all.json   # 2. 👤 看
 | `SESSION_SECRET` | 自己產生的亂數（例如 `openssl rand -base64 32`），**至少 32 個字元**；本機和正式環境用不同的 | 簽登入憑證（cookie） |
 | `PUBLIC_BASE_URL` | 本機由 `dev:tunnel` 自動帶 ngrok 網址；正式環境是正式網址 | 組 LINE 的 `redirect_uri`；明確設定，不從 request 猜 |
 | `ADMIN_LINE_USER_IDS` | 自己的 userId：LINE Developers 的 Basic settings 下方「Your user ID」（用 LINE 帳號登入後台才看得到），或是登入網站後打開 `/admin`，頁面會寫你的 userId。逗號分隔 | 管理頁只給 👤 看；管理員不用在群組裡也能登入 |
-| `ANTHROPIC_API_KEY` | Claude Console | Claude API 代理（T16） |
+| `ANTHROPIC_API_KEY` | Claude Console | Claude API 代理（T16）、LINE 機器人分類問法（T34） |
+| `AI_BOT_MODEL`、`AI_BOT_DAILY_USD` | 不用設（預設 `claude-haiku-5-5`、1） | LINE 機器人的模型、每天的美元上限（T34） |
 | `NGROK_AUTHTOKEN`、`NGROK_DOMAIN` | ngrok 後台 | 只有本機的 `dev:tunnel` 用 |
 
   變數名稱 T25 定案（2026-10-26）。`DEV_MEMBER_ID`、`DEV_MEMBER_NAME` 在 `wrangler.jsonc` 的 `vars`（只是開發用身分的名字）。群組 ID 不放設定檔：機器人被邀進群組時從 `join` 通知記下來，存在資料庫（§5）。
@@ -491,7 +493,8 @@ npm run db:import -- --apply data/cache/import/<時間>-all.json   # 2. 👤 看
 | `GET /api/votes`、`PUT/DELETE /api/votes/:placeId` | `{ value: 'like' | 'dislike' }`，只能投、收回自己的 |
 | `GET/POST /api/chats`、`PATCH/DELETE /api/chats/:conversationId`、`GET/POST /api/chats/:conversationId/messages`、`PUT .../messages/:messageId`、`DELETE .../turns/:turn` | 只看得到自己的，別人的一律 404（T16，`worker/src/api/chats.ts`） |
 | `GET /api/me`、`GET /api/members` | |
-| `GET /api/sync` | 各種資料的版本（`places` 匯入編號、`itinerary` 行程 version，`votes`、`comments`、`candidates`、`reservations`、`edits`、`userPlaces` 是 `MAX(updated_at)`）：前端輪詢只打這一支，變了才重抓那一種 |
+| `GET /api/sync` | 各種資料的版本（`places` 匯入編號、`itinerary` 行程 version，`votes`、`comments`、`candidates`、`reservations`、`edits`、`userPlaces` 是 `MAX(updated_at)`，`summary` 是機器人用的行程摘要對應哪一版行程）：前端輪詢只打這一支，變了才重抓那一種 |
+| `PUT /api/itinerary/summary` | `{ version, summary }`（T34）：瀏覽器算好時間軸後存的行程摘要（engine 的 `TripSummary`）；`version` 不是目前這一版回 409，內容一樣不寫 |
 
 - **本機開發**：`npm run db:migrate`（套用 migrations 到本機的 D1）→ `npm run db:import` → `npm run build:site`（要看網站才要）→ `npm run dev:worker`（`wrangler dev`，和匯入用同一份 `worker/.wrangler/state`）。
 - **驗證程式**：`npm run build:validators` 把 `schema/` 編譯成 `worker/src/generated/place-validators.js`（ajv standalone，不 require 任何套件）。schema 改了要重跑；`npm test` 會檢查有沒有過期。
@@ -506,7 +509,7 @@ npm run db:import -- --apply data/cache/import/<時間>-all.json   # 2. 👤 看
   - **LINE Login**：給網站登入用，App type 選 Web app，要切成「Published」狀態，否則只有管理員和測試人員能登入。還在「Developing」時，其他人登入只會看到「錯誤 無法正常執行」，沒有說明原因（T23）。用 email（商用帳號）登入 LINE Developers 的話，自己手機上的 LINE 帳號也不算管理員，一樣會被擋。
   - **Messaging API**：一個免費的 LINE 官方帳號（機器人）。
 - **兩個 channel 一定要在同一個 provider 底下**：同一個人在兩邊的 userId 才會一樣，網站才能拿登入的人去比對群組成員。
-- 把機器人邀進家人的 LINE 群組。機器人被加進群組時，Worker 會收到 `join` 通知，把群組記進 `line_groups`。機器人不發訊息。
+- 把機器人邀進家人的 LINE 群組。機器人被加進群組時，Worker 會收到 `join` 通知，把群組記進 `line_groups`。機器人不主動發訊息，只在核准的群組裡被 @ 時回覆（T34，§6「LINE 機器人」）。
 - **群組要 👤 在管理頁核准才算數**（T25）：誰都能加機器人好友、把它邀進自己的群組，如果「機器人在的群組」都算，外人自己開一個群組就能進來。所以新的群組先記成「等待核准」，只有核准的群組的成員能登入。
   - 機器人在 webhook 上線前就已經在群組裡的話，收不到 `join`：在群組裡講一句話，Worker 收到訊息時也會補記這個群組。
   - 被移出群組（`leave`）時標成離開，不再拿來檢查；又被邀回來時恢復，核准狀態照舊。
@@ -577,6 +580,23 @@ npm run db:import -- --apply data/cache/import/<時間>-all.json   # 2. 👤 看
 - **對話的長度**：送出的 token 到 6 萬算快滿、10 萬算滿（`NEAR_TOKENS`、`FULL_TOKENS`）；看的是費用，不是模型的上限（1M）。
 - **評估**：`npm run ai:eval -- --model <模型>`（`scripts/ai-eval.ts`）用真的 API 跑規格 §8 的腳本，會花錢（Opus 跑一次約 US$1.5）；改系統提示、工具說明後跑。
 - **CPU**：Worker 免費方案每次請求 10 ms。本機（Node）量代理一次約 8 ms、第一次 63 ms，只能當參考；**T30 部署後要看實際數字**，超過就升級付費方案（US$5／月）或改成不解析串流。
+- **現在的時間**（T34）：每輪的脈絡多一個 `now`（日本時間，例如「2027-02-05（五）14:32」），系統提示說「今天」「明天」照它算。放在脈絡、不放系統提示，系統提示才能每次一樣。
+
+### LINE 機器人（T34，`worker/src/bot.ts`）
+
+```
+瀏覽器：存完行程、時間軸算好 ──PUT /api/itinerary/summary──► D1 trip_summary（TripSummary JSON＋對應的行程 version）
+LINE 群組：@機器人 2/5 ──webhook──► Worker：先回 200，waitUntil 裡讀摘要、排文字 ──reply API──► 群組
+```
+
+- **只回結果**：幾點到幾點做什麼、住哪、要預約的狀態。不放交通、警告。只回應核准、機器人還在的群組，而且訊息要 @ 到機器人（`mention.mentionees[].isSelf`）；私訊、別的群組都不回。只能查，不能改。
+- **摘要由瀏覽器存**：時間只有瀏覽器的引擎算得出來。`web/src/lib/tripSummary.ts` 在「手上的行程版本 ≠ sync 的 `summary`」而且時間軸是照這一版算的時候存一份（存檔中、衝突中不存，同一版只試一次）。自己存完行程後一定會存；別人改的，同步進來時他通常已經存了。存完行程就關掉頁面的話，摘要會落後，下一個打開網站的人補存；這段期間機器人的回覆會註明「網站上剛改過行程，這份可能還不是最新的」。各人瀏覽器的道路快取不同，算出的時間可能差幾分鐘，以最後存的為準。
+- **格式**（engine `summary.ts`，T35 共用）：日期一行（`2/5（五）`），每個行程一行（`10:00-11:30 伊勢神宮 內宮`），分組的前面加 `【組名】`，集合、抵達、起飛只有一個時間，最後 `住：…`；什麼都沒排寫「還沒排」。行程的回覆最後一行是 `（1/20 21:05 王小明 更新）`。
+- **指令和 AI 的分工**：先把全形轉半形、拿掉空白和標點，**完全符合**的指令（`整趟`、`2/5`、`2月5日`、`今天`、`明天`、`現在`、`下一個`、`預約`、`2/5 預約`、`今天的預約`）直接回，不呼叫 AI。其他問法交給 Haiku 5.5（`AI_BOT_MODEL`，effort low，structured output）分成 `trip`／`day`／`now`／`reservations`／`answer`／`help`；**回覆的內容一律由程式照摘要排**，AI 只有 `answer`（例如「哪天去伊勢神宮」）才自己寫一兩句，而且只能根據摘要。AI 出錯、額度用完、看不懂都回一行可用指令和網站連結。
+- **現在**：Worker 收到訊息時用 `jstNow` 換成日本時間；「現在」每一組各自列進行中和下一個。
+- **預約狀態**：摘要只存哪些要預約（主選和住宿），狀態在回覆時讀最新的 `reservations`。
+- **用量**：記在 `ai_usage` 的 `member_id = 'line-bot'`，每天上限 `AI_BOT_DAILY_USD`（預設 US$1），每月和大家共用 `AI_MONTHLY_USD`。2026-11-02 用真的 Haiku 試 6 個問法：一次約 1 秒、約 1000 tokens 輸入、US$0.0001。
+- **LINE 的限制**：reply token 只能用一次、要在 1 分鐘內用掉（AI 最多重試一次、25 秒逾時）；一次回覆最多 5 則、一則最多 5000 字（UTF-16），整趟太長時在兩天之間切開；回覆不計入每月的訊息額度，所以只做「有人 @ 才回」，不推播。
 
 ---
 
@@ -595,6 +615,7 @@ npm run db:import -- --apply data/cache/import/<時間>-all.json   # 2. 👤 看
 | T15 行程與留言：串接 | §2（改用 API、資料分層）、§3.6、§3.8（同步）、§4 |
 | T16m-a、T16m-b、T16m-c AI Agent UI 原型 | §6（工具在瀏覽器執行；模型先用對話腳本代替） |
 | T16 AI Agent：串接 | §6 |
+| T34 LINE @ 機器人 | §5、§6「LINE 機器人」 |
 | T20 匯出給 Claude app | 匯出合併後的資料（預設資料加修改），不是 git 裡的 JSON |
 
 ---

@@ -317,10 +317,12 @@ export const SYNC_QUERIES = [
   'SELECT MAX(updated_at) AS v FROM comments',
   'SELECT MAX(updated_at) AS v FROM candidates',
   'SELECT MAX(updated_at) AS v FROM reservations',
+  // T34：機器人用的行程摘要對應哪一版行程；和 itinerary 不一樣時，打開網站的人補存
+  'SELECT version AS v FROM trip_summary WHERE id = 1',
 ];
 
 export function syncState(results: D1Result<Record<string, unknown>>[]) {
-  const [imp, edits, users, itin, votes, comments, candidates, reservations] = results;
+  const [imp, edits, users, itin, votes, comments, candidates, reservations, summary] = results;
   const one = (r: D1Result<Record<string, unknown>>) => r.results[0] ?? {};
   const tag = (r: D1Result<Record<string, unknown>>) => (one(r).v as string | null | undefined) ?? null;
   return {
@@ -332,6 +334,7 @@ export function syncState(results: D1Result<Record<string, unknown>>[]) {
     comments: tag(comments),
     candidates: tag(candidates),
     reservations: tag(reservations),
+    summary: one(summary).v ?? 0,
     now: nowIso(),
   };
 }

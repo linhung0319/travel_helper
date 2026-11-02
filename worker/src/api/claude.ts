@@ -50,22 +50,24 @@ export function contextUsage(tokens: number): 'ok' | 'near' | 'full' {
 }
 
 /** 日本時間的日期：用量以日本時間的一天、一個月計 */
-const jstDate = (now = Date.now()) => new Date(now + 9 * 3600_000).toISOString().slice(0, 10);
+export const jstDate = (now = Date.now()) => new Date(now + 9 * 3600_000).toISOString().slice(0, 10);
 
-const limitOf = (value: string | undefined, fallback: number) => {
+export const limitOf = (value: string | undefined, fallback: number) => {
   const n = Number(value);
   return value && Number.isFinite(n) && n >= 0 ? n : fallback;
 };
 
-async function checkQuota({ db, env, member }: Ctx): Promise<void> {
+/** 這個人（或機器人）今天用了多少、這個月全部人用了多少，超過上限丟 429 */
+export async function checkQuota(db: D1Database, env: Env, memberId: string, dailyUsd: number): Promise<void> {
   const today = jstDate();
-  const mine = await db.prepare('SELECT cost_micro_usd AS cost FROM ai_usage WHERE member_id = ? AND date = ?').bind(member.id, today).first<{ cost: number }>();
-  if ((mine?.cost ?? 0) >= limitOf(env.AI_DAILY_USD, DEFAULT_DAILY_USD) * 1e6) throw new HttpError(429, 'quota-daily', '你今天的 AI 用量到上限了，明天再來');
+  const mine = await db.prepare('SELECT cost_micro_usd AS cost FROM ai_usage WHERE member_id = ? AND date = ?').bind(memberId, today).first<{ cost: number }>();
+  if ((mine?.cost ?? 0) >= dailyUsd * 1e6) throw new HttpError(429, 'quota-daily', '你今天的 AI 用量到上限了，明天再來');
   const all = await db.prepare('SELECT SUM(cost_micro_usd) AS cost FROM ai_usage WHERE date >= ? AND date <= ?').bind(`${today.slice(0, 7)}-01`, `${today.slice(0, 7)}-31`).first<{ cost: number | null }>();
   if ((all?.cost ?? 0) >= limitOf(env.AI_MONTHLY_USD, DEFAULT_MONTHLY_USD) * 1e6) throw new HttpError(429, 'quota-monthly', '這個月大家的 AI 用量到上限了，請聯絡管理員');
 }
 
-async function addUsage({ db, member }: Ctx, model: string, u: TokenUsage): Promise<void> {
+/** 記用量：member_id 是成員的 LINE userId，或機器人的 BOT_USAGE_ID */
+export async function addUsage(db: D1Database, memberId: string, model: string, u: TokenUsage): Promise<void> {
   await db
     .prepare(
       `INSERT INTO ai_usage (member_id, date, input_tokens, output_tokens, cache_read_tokens, cache_write_tokens, cost_micro_usd)
@@ -77,7 +79,7 @@ async function addUsage({ db, member }: Ctx, model: string, u: TokenUsage): Prom
          cache_write_tokens = cache_write_tokens + excluded.cache_write_tokens,
          cost_micro_usd = cost_micro_usd + excluded.cost_micro_usd`,
     )
-    .bind(member.id, jstDate(), u.input, u.output, u.cacheRead, u.cacheWrite, costMicroUsd(model, u))
+    .bind(memberId, jstDate(), u.input, u.output, u.cacheRead, u.cacheWrite, costMicroUsd(model, u))
     .run();
 }
 
@@ -131,7 +133,7 @@ function friendlyError(e: unknown): { code: 'network' | 'other'; message: string
 export async function claudeMessages(ctx: Ctx): Promise<Response> {
   const { env, req } = ctx;
   if (!env.ANTHROPIC_API_KEY) return json({ error: 'ai-not-configured', message: 'AI 還沒設定好（缺少 ANTHROPIC_API_KEY）' }, { status: 503 });
-  await checkQuota(ctx);
+  await checkQuota(ctx.db, env, ctx.member.id, limitOf(env.AI_DAILY_USD, DEFAULT_DAILY_USD));
   const params = buildParams(env, await readBody(req, MAX_BODY_BYTES));
   const client = new Anthropic({ apiKey: env.ANTHROPIC_API_KEY, ...(env.ANTHROPIC_BASE_URL ? { baseURL: env.ANTHROPIC_BASE_URL } : {}) });
   const stream = client.beta.messages.stream(params);
@@ -146,7 +148,7 @@ export async function claudeMessages(ctx: Ctx): Promise<Response> {
           if (e.type === 'message_start') {
             // 輸入先記：使用者中途按停止時，已經花掉的錢也要算進去
             const u = e.message.usage;
-            await addUsage(ctx, params.model, { input: u.input_tokens, output: 0, cacheRead: u.cache_read_input_tokens ?? 0, cacheWrite: u.cache_creation_input_tokens ?? 0 });
+            await addUsage(ctx.db, ctx.member.id, params.model, { input: u.input_tokens, output: 0, cacheRead: u.cache_read_input_tokens ?? 0, cacheWrite: u.cache_creation_input_tokens ?? 0 });
             billed = true;
           } else if (e.type === 'content_block_delta' && e.delta.type === 'text_delta') {
             emit({ type: 'text', text: e.delta.text });
@@ -154,7 +156,7 @@ export async function claudeMessages(ctx: Ctx): Promise<Response> {
         }
         const message = await stream.finalMessage();
         const u = message.usage;
-        await addUsage(ctx, params.model, { input: billed ? 0 : u.input_tokens, output: u.output_tokens, cacheRead: billed ? 0 : (u.cache_read_input_tokens ?? 0), cacheWrite: billed ? 0 : (u.cache_creation_input_tokens ?? 0) });
+        await addUsage(ctx.db, ctx.member.id, params.model, { input: billed ? 0 : u.input_tokens, output: u.output_tokens, cacheRead: billed ? 0 : (u.cache_read_input_tokens ?? 0), cacheWrite: billed ? 0 : (u.cache_creation_input_tokens ?? 0) });
         const dropped = (message as unknown as { input_transformations?: unknown[] }).input_transformations;
         if (dropped?.length) console.warn('Claude API 丟掉了 thinking', JSON.stringify(dropped));
         if (message.stop_reason === 'refusal') {
