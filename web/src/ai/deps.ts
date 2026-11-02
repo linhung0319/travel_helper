@@ -23,6 +23,8 @@ export interface AiDeps {
   source: Pick<DataSource, 'loadTimetable' | 'loadTripInfo'>;
   /** 等詳情層讀好（dataStore 的 ensureDetails）；讀不到時 reject。沒給＝資料已經是完整的（測試） */
   details?: () => Promise<void>;
+  /** 等行程算好（planStore 的 ensurePlan）：工具要查行程、檢查改動都靠它。沒給＝已經算好了（測試） */
+  planReady?: () => Promise<void>;
 }
 
 export const placeName = (p: Place | undefined, id = '') => (p ? p.name.zh || p.name.ja : id);

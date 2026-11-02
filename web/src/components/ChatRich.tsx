@@ -1,4 +1,4 @@
-// 回覆的文字（規格 §5）：地點標籤、粗體、條列、連結；解析在 ai/transcript.ts 的 parseRich，這裡不放 HTML。
+// 回覆的文字（規格 §5）：地點標籤、粗體、條列、編號、連結；解析在 ai/transcript.ts 的 parseRich，這裡不放 HTML。
 // 地點標籤（§4）：滑鼠移過去地圖上的點閃，點了開詳情彈窗。
 
 import { createContext, Fragment, useContext } from 'react';
@@ -30,7 +30,8 @@ export function PlaceTag({ id }: { id: string }) {
   const action = useContext(PlaceTagAction);
   const p = useData((s) => s.byId.get(id));
   const name = usePlaceName(id);
-  if (!p) return <span>{name}</span>;
+  // 模型寫錯 ID：不把 ID 露給使用者看
+  if (!p) return null;
   return (
     <button
       type="button"
@@ -75,13 +76,23 @@ export function RichText({ text }: { text: string }) {
     <div className="ac-text">
       {blocks.map((b, i) =>
         b.kind === 'list' ? (
-          <ul key={i}>
-            {b.items.map((it, k) => (
-              <li key={k}>
-                <Inline parts={it} />
-              </li>
-            ))}
-          </ul>
+          b.ordered ? (
+            <ol key={i}>
+              {b.items.map((it, k) => (
+                <li key={k}>
+                  <Inline parts={it} />
+                </li>
+              ))}
+            </ol>
+          ) : (
+            <ul key={i}>
+              {b.items.map((it, k) => (
+                <li key={k}>
+                  <Inline parts={it} />
+                </li>
+              ))}
+            </ul>
+          )
         ) : (
           <p key={i}>
             <Inline parts={b.parts} />

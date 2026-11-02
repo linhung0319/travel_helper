@@ -2232,21 +2232,6 @@ button.edited {
 
 /* ---------- 地圖：💬／❤️ 數字、行程的交通標籤 ---------- */
 
-.place-badge {
-  display: none;
-  background: var(--bg);
-  border-radius: 999px;
-  box-shadow: 0 1px 3px var(--shade-2);
-  padding: 0 6px;
-  font-size: 0.75rem;
-  white-space: nowrap;
-  pointer-events: none;
-}
-
-.map.show-badges .place-badge {
-  display: block;
-}
-
 .leg-label {
   font-size: 0.8rem;
   opacity: 0.92;
@@ -4074,4 +4059,38 @@ button.cand-up:disabled {
 /* 整趟清單：連續還沒排的天併成一列（§17.1） */
 .overview-empty {
   color: var(--muted);
+}
+
+/* T39：地圖還在載入（最後才載）、右欄的探索還在等資料 */
+.map-waiting {
+  position: absolute;
+  inset: 0;
+  background: var(--wash);
+}
+
+.side-loading {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  padding: 16px;
+}
+
+.side-loading i {
+  display: block;
+  height: 180px;
+  border-radius: 14px;
+  background: var(--wash);
+  animation: side-pulse 1.4s ease-in-out infinite;
+}
+
+@keyframes side-pulse {
+  50% {
+    opacity: 0.5;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .side-loading i {
+    animation: none;
+  }
 }

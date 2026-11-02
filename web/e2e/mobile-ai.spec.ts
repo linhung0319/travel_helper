@@ -382,13 +382,10 @@ test('S11 不在編輯中：提議卡不切分頁、資訊類不算警告；在�
   // 採用
   await goTab(page, 'ai');
   await page.getByTestId('chat-adopt').click();
-  await expect(page.getByTestId('planning-note')).toContainText('川梅');
-  await shot(page, 's11-confirm');
-  await page.getByTestId('planning-confirm').click();
   await expect(page.getByTestId('toast')).toContainText('已採用提議');
   await expect(page.getByTestId('m-trip')).toBeVisible();
   await expect(sheet(page)).toHaveCount(0);
-  await expect(page.getByTestId('planning-bar')).toBeVisible();
+  await expect(page.getByTestId('planning-bar')).toHaveCount(0);
   await expect(bar(page)).toHaveCount(0);
   expect(await itemCount(page, '2027-02-04')).toBe(before + 1);
   expect(await app<string>(page, 'th.appStore.getState().day')).toBe('2027-02-04');
@@ -412,8 +409,6 @@ test('S11 不要、取消：行程沒變；取消後提議還在；不要了可�
   await expect(bar(page)).toBeVisible();
   await goTab(page, 'ai');
 
-  await page.getByTestId('chat-adopt').click();
-  await page.getByTestId('planning-dialog').getByRole('button', { name: '取消' }).click();
   await expect(proposalCard(page)).toBeVisible();
   expect(await itemCount(page, '2027-02-04')).toBe(before);
   expect(await app<boolean>(page, 'th.appStore.getState().planning')).toBe(false);
@@ -718,20 +713,11 @@ test('S25～S27 邊聊邊改、回到上一版、用說的採用（半屏）：�
 
   await page.getByTestId('chat-input').fill('採用');
   await page.getByTestId('chat-input').press('Enter');
-  await expect(page.getByTestId('planning-dialog')).toBeVisible();
-  await page.getByTestId('planning-dialog').getByRole('button', { name: '取消' }).click();
-  await idle(page);
-  await expect(page.getByTestId('chat-msg-ai').last()).toContainText('先不改');
-  expect(await itemCount(page, '2027-02-04')).toBe(before);
-
-  await page.getByTestId('chat-input').fill('採用');
-  await page.getByTestId('chat-input').press('Enter');
-  await page.getByTestId('planning-confirm').click();
   await expect.poll(() => itemCount(page, '2027-02-04')).toBe(before + 2);
   await idle(page);
   // 收起聊天看結果；回 AI 看得到 AI 的回覆和沒用上的版本
   await expect(sheet(page)).toHaveCount(0);
-  await expect(page.getByTestId('planning-bar')).toBeVisible();
+  await expect(page.getByTestId('planning-bar')).toHaveCount(0);
   await shot(page, 's27-adopted');
   await page.getByTestId('ai-back').click();
   await expect(page.locator('[data-testid="chat-proposal"][data-status="closed"]').first()).toContainText('沒有用上');

@@ -278,8 +278,8 @@ function legEnds(day: DayPlan, legKey: string): { from: Entry; to: Entry } | nul
 
 /**
  * 地圖上每個點寫的號碼（第五輪 §9.2，規則在 planView.mapMark）：
- * - 某一天：照那天的 stopMarks（起終點同一點是 0）；legOpen 是這天的一段交通時，那段的兩端照 'leg'（例如回住宿那段，住宿是最後一號）
- * - 整趟（'all'）：每天的點都編；那天的終點（住宿）隔天也在 → 照隔天的號碼（隔天的 0）。
+ * - 某一天：照那天的 stopMarks（起終點同一點是「起」）；legOpen 是這天的一段交通時，那段的兩端照 'leg'（例如回住宿那段，住宿是最後一號）
+ * - 整趟（'all'）：每天的點都編；那天的終點（住宿）隔天也在 → 照隔天的號碼（隔天的「起」）。
  *   同一個點排在好幾天時，focusDay（整趟點亮的那天）優先，其次是比較早的那天
  */
 export function itineraryMarks(plan: { days: DayPlan[] } | null, day: string, legOpen: string | null, focusDay: string | null = null): Map<string, string> {
@@ -308,12 +308,3 @@ export function itineraryMarks(plan: { days: DayPlan[] } | null, day: string, le
   return out;
 }
 
-/** 地圖上每個點的小標記：想去數（前面的愛心由 MapView 畫）（想去的人數，interaction-design §3、§9） */
-export function placeBadges(byId: Map<string, Place>, likes: Map<string, number>): { id: string; coords: LonLat; text: string }[] {
-  const out: { id: string; coords: LonLat; text: string }[] = [];
-  for (const [id, n] of likes) {
-    const p = byId.get(id);
-    if (p && n > 0) out.push({ id, coords: p.coords, text: `${n}` });
-  }
-  return out;
-}

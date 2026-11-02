@@ -934,3 +934,52 @@ body.dragging-plan .chat-column.drop-over .chat-panel {
 .ac-cards.compact .ac-card:not(.first) small {
   display: none;
 }
+
+/* T39：一輪的版面：卡片在回完時才放到字的下面，淡入，不會有東西跳位置 */
+.ac-use.new {
+  animation: ac-rise 0.22s ease-out;
+}
+
+@keyframes ac-rise {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+}
+
+.ac-text ol {
+  margin: 4px 0;
+  padding-left: 20px;
+}
+
+/* T39：對話還沒讀好（資料還在路上） */
+.ac-cards-loading {
+  display: grid;
+  gap: 8px;
+  margin-top: 12px;
+}
+
+.ac-cards-loading i {
+  display: block;
+  height: 52px;
+  border-radius: 14px;
+  background: var(--wash);
+  animation: ac-pulse 1.4s ease-in-out infinite;
+}
+
+.ac-cards-loading i:first-child {
+  height: 68px;
+}
+
+@keyframes ac-pulse {
+  50% {
+    opacity: 0.5;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ac-use.new,
+  .ac-cards-loading i {
+    animation: none;
+  }
+}

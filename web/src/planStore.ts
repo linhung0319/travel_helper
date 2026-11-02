@@ -102,8 +102,31 @@ export function buildEngineData(d: DataState, tt: EngineTimetables, roads?: Road
 /** 只重算有改的那一天（引擎的 PlanCache；EngineData 換了就整份重算） */
 const planCache = createPlanCache();
 
+/** 不管有沒有延後，馬上開始讀時刻表（startPlanner 設定） */
+let fetchNow: () => void = () => {};
+
+/**
+ * 有人現在就要用行程（AI 的工具）：不等地圖，馬上讀時刻表，等到算好或失敗。
+ * 時刻表是地圖載好才讀的（T39），但聊天室比地圖早出現，一進站就問 AI 時工具不能只回「還沒算好」。
+ */
+export function ensurePlan(store: StoreApi<PlanState> = planStore, maxMs = 30_000): Promise<void> {
+  fetchNow();
+  if (store.getState().status !== 'loading') return Promise.resolve();
+  return new Promise((resolve) => {
+    const done = () => {
+      off();
+      clearTimeout(timer);
+      resolve();
+    };
+    const off = store.subscribe((s) => {
+      if (s.status !== 'loading') done();
+    });
+    const timer = setTimeout(done, maxMs);
+  });
+}
+
 /** 開始算：讀時刻表，之後行程或資料點變了就重算 */
-export function startPlanner(data: StoreApi<DataState>, source: DataSource, roads?: RoadCache, store: StoreApi<PlanState> = planStore) {
+export function startPlanner(data: StoreApi<DataState>, source: DataSource, roads?: RoadCache, store: StoreApi<PlanState> = planStore, opts: { defer?: (fn: () => void) => unknown } = {}) {
   let timetables: EngineTimetables | null = null;
   const compute = () => {
     const d = data.getState();
@@ -124,6 +147,13 @@ export function startPlanner(data: StoreApi<DataState>, source: DataSource, road
   const loadTimetables = () => {
     if (requested) return;
     requested = true;
+    if (opts.defer) opts.defer(fetchTimetables);
+    else fetchTimetables();
+  };
+  let fetching = false;
+  const fetchTimetables = () => {
+    if (fetching) return;
+    fetching = true;
     source
       .loadEngineTimetables()
       .then((tt) => {
@@ -132,6 +162,7 @@ export function startPlanner(data: StoreApi<DataState>, source: DataSource, road
       })
       .catch((e) => store.setState({ status: 'error', error: e instanceof Error ? e.message : String(e) }));
   };
+  fetchNow = fetchTimetables;
   let prev = data.getState();
   if (prev.status === 'ready') loadTimetables();
   return data.subscribe((s) => {

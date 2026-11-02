@@ -1,6 +1,6 @@
 // 聊天紀錄（T16，規格 §11）：每個人只能讀寫自己的對話；別人的對話一律當作不存在（404）。
 //   GET    /api/chats                                自己的對話清單，新的在前面
-//   POST   /api/chats                                { title } 開一段對話
+//   POST   /api/chats                                { title, id? } 開一段對話；id 是瀏覽器先定好的 UUID（畫面不用等這個請求）
 //   PATCH  /api/chats/:conversationId                { title?, usage? }
 //   DELETE /api/chats/:conversationId
 //   GET    /api/chats/:conversationId/messages       這段對話的訊息
@@ -15,6 +15,7 @@ const MAX_TITLE = 100;
 const MAX_MESSAGE_CHARS = 512 * 1024;
 const MAX_MESSAGES = 20;
 const USAGES = new Set(['ok', 'near', 'full']);
+const UUID = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
 
 interface ConversationRow {
   id: string;
@@ -54,8 +55,10 @@ export async function listConversations({ db, member }: Ctx): Promise<Response> 
 }
 
 export async function createConversation({ db, req, member }: Ctx): Promise<Response> {
-  const title = checkTitle((await readBody(req)).title);
-  const id = crypto.randomUUID();
+  const b = await readBody(req);
+  const title = checkTitle(b.title);
+  if (b.id !== undefined && (typeof b.id !== 'string' || !UUID.test(b.id))) throw badRequest('id 要是 UUID');
+  const id = (b.id as string | undefined) ?? crypto.randomUUID();
   const now = nowIso();
   await db.prepare('INSERT INTO chat_conversations (id, member_id, title, created_at, updated_at) VALUES (?, ?, ?, ?, ?)').bind(id, member.id, title, now, now).run();
   return json({ conversation: summary({ id, title, usage: 'ok', updated_at: now }) }, { status: 201 });

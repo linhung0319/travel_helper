@@ -12,7 +12,7 @@ import { commands } from '../appCommands.ts';
 import { useApp, useData, usePlan, useShared } from '../hooks.ts';
 import { dayPlanOf } from '../planStore.ts';
 import { dayCandidates } from '../lib/wishlist.ts';
-import { resizeMap } from '../components/MapView.tsx';
+import { resizeMap } from '../components/mapRuntime.ts';
 import { uiStore } from '../uiStore.ts';
 import { findFocusEntry, mobileStore, useMobile } from './mobileStore.ts';
 import { DaySheet } from './DaySheet.tsx';

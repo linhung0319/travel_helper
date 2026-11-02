@@ -18,7 +18,7 @@ import { findLegEntry, rideReadyAt } from '../lib/planView.ts';
 import { departureCells, firstCellIndex, type DepartureCell } from '../lib/legView.ts';
 import { headwayText, timetableSource, timetableSubtitle } from '../lib/timetableView.ts';
 import type { LonLat } from '../data/types.ts';
-import { pauseMapHover } from './MapView.tsx';
+import { pauseMapHover } from './mapRuntime.ts';
 import { ModeIcon } from './ModeIcon.tsx';
 import { Icon } from './Icon.tsx';
 import { TimetableSkeleton } from '../shared/ui/Skeleton.tsx';

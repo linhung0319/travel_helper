@@ -273,22 +273,22 @@ const entry = (kind: TimelineEntry['kind'], placeId: string | null, extra: Parti
   ...extra,
 });
 
-test('stopMarks：起點 0、回住宿接著編', () => {
-  // 2/3 的形狀：出發住宿 0、橫山展望台 1、La Mer 2、回住宿 3
+test('stopMarks：起點「起」、回住宿「終」、中間 1、2、3', () => {
+  // 2/3 的形狀：出發住宿、橫山展望台、La Mer、回住宿
   const day = { entries: [entry('start', 'hotel'), entry('visit', 'yokoyama'), entry('visit', 'lamer'), entry('lodging', 'hotel')] } as unknown as DayPlan;
   const { byPlace, byEntry } = stopMarks(day, (id) => id === 'hotel');
-  assert.deepEqual(day.entries.map((e) => byEntry.get(e)), ['0', '1', '2', '3']);
-  assert.deepEqual(byPlace.get('hotel'), ['0', '3']);
+  assert.deepEqual(day.entries.map((e) => byEntry.get(e)), ['起', '1', '2', '終']);
+  assert.deepEqual(byPlace.get('hotel'), ['起', '終']);
   assert.deepEqual(byPlace.get('yokoyama'), ['1']);
 });
 
 test('stopMarks：航班、分組', () => {
   // 起點是航班抵達（機場）→ 0；出發的航班是最後一個號碼
   const flights = { entries: [entry('flight', 'kix'), entry('visit', 'y'), entry('flight', 'kix2')] } as unknown as DayPlan;
-  assert.deepEqual([...stopMarks(flights, () => false).byPlace], [['kix', ['0']], ['y', ['1']], ['kix2', ['2']]]);
+  assert.deepEqual([...stopMarks(flights, () => false).byPlace], [['kix', ['起']], ['y', ['1']], ['kix2', ['終']]]);
   // 起點不是住宿也是 0
   const other = { entries: [entry('start', 'somewhere'), entry('visit', 'y')] } as unknown as DayPlan;
-  assert.deepEqual([...stopMarks(other, () => false).byPlace], [['somewhere', ['0']], ['y', ['1']]]);
+  assert.deepEqual([...stopMarks(other, () => false).byPlace], [['somewhere', ['起']], ['y', ['1']]]);
   // 分組：先各組的點、再會合點，連續編
   const split = entry('meet', 'meet-pt', {
     groups: [
@@ -298,20 +298,20 @@ test('stopMarks：航班、分組', () => {
   });
   const day = { entries: [entry('start', 'hotel-1'), entry('visit', 'x'), split, entry('visit', 'x'), entry('lodging', 'hotel-2')] } as unknown as DayPlan;
   const { byPlace, byEntry } = stopMarks(day, (id) => id.startsWith('hotel'));
-  assert.deepEqual(byPlace.get('hotel-1'), ['0']);
+  assert.deepEqual(byPlace.get('hotel-1'), ['起']);
   assert.deepEqual(byPlace.get('ga'), ['2']);
   assert.deepEqual(byPlace.get('gb'), ['3']);
   assert.deepEqual(byPlace.get('meet-pt'), ['4']);
   // 同一個點去兩次
   assert.deepEqual(byPlace.get('x'), ['1', '5']);
-  assert.deepEqual(byPlace.get('hotel-2'), ['6']);
-  assert.equal(byEntry.get(day.entries[0]), '0');
+  assert.deepEqual(byPlace.get('hotel-2'), ['終']);
+  assert.equal(byEntry.get(day.entries[0]), '起');
 });
 
 test('mapMark：起終點同一點', () => {
-  assert.equal(mapMark(['0', '3'], 'day'), '0');
-  assert.equal(mapMark(['0', '3'], 'leg', { from: 'x', to: 'h' }, 'h'), '3');
-  assert.equal(mapMark(['0', '3'], 'leg', { from: 'h', to: 'x' }, 'h'), '0');
+  assert.equal(mapMark(['起', '終'], 'day'), '起');
+  assert.equal(mapMark(['起', '終'], 'leg', { from: 'x', to: 'h' }, 'h'), '終');
+  assert.equal(mapMark(['起', '終'], 'leg', { from: 'h', to: 'x' }, 'h'), '起');
   assert.equal(mapMark(['1', '4'], 'day'), '1・4');
   assert.equal(mapMark(['2'], 'day'), '2');
   assert.equal(mapMark([], 'day'), '');
@@ -321,25 +321,25 @@ test('mapMark：起終點同一點', () => {
   assert.equal(mapMark(['0'], 'trip'), '0');
 });
 
-test('itineraryMarks：某一天起終點同一點是 0，點了最後一段時是最後一號', () => {
+test('itineraryMarks：某一天起終點同一點是「起」，點了最後一段時是「終」', () => {
   const d = (date: string, entries: TimelineEntry[]) => ({ date, entries }) as unknown as DayPlan;
   const day = d('2027-02-03', [entry('start', 'hotel'), entry('visit', 'y'), entry('visit', 'l'), entry('lodging', 'hotel')]);
   const plan = { days: [day] };
   const m = itineraryMarks(plan, '2027-02-03', null);
-  assert.deepEqual([...m], [['hotel', '0'], ['y', '1'], ['l', '2']]);
+  assert.deepEqual([...m], [['hotel', '起'], ['y', '1'], ['l', '2']]);
   // 最後一段（l → 回住宿）：住宿是 3、l 是 2
   const last = itineraryMarks(plan, '2027-02-03', '2027-02-03:lodging');
-  assert.equal(last.get('hotel'), '3');
+  assert.equal(last.get('hotel'), '終');
   assert.equal(last.get('l'), '2');
   // 第一段（住宿 → y）：住宿是 0
-  assert.equal(itineraryMarks(plan, '2027-02-03', '2027-02-03:visit:y').get('hotel'), '0');
+  assert.equal(itineraryMarks(plan, '2027-02-03', '2027-02-03:visit:y').get('hotel'), '起');
   // 別天的交通卡不影響
-  assert.equal(itineraryMarks(plan, '2027-02-03', '2027-02-04:lodging').get('hotel'), '0');
+  assert.equal(itineraryMarks(plan, '2027-02-03', '2027-02-04:lodging').get('hotel'), '起');
   // 分組裡的一段：從分組前的點出發
   const split = entry('meet', 'mp', { groups: [{ id: 'g1', name: 'A', entries: [entry('visit', 'ga'), entry('meet', 'mp', { itemId: 'm1' })] }] });
   const g = { days: [d('2027-02-04', [entry('start', 'h'), entry('visit', 'x'), split, entry('lodging', 'x')])] };
   assert.deepEqual([...itineraryMarks(g, '2027-02-04', '2027-02-04:visit:ga')].filter(([id]) => id === 'x'), [['x', '1']]);
-  assert.equal(itineraryMarks(g, '2027-02-04', '2027-02-04:lodging').get('x'), '4');
+  assert.equal(itineraryMarks(g, '2027-02-04', '2027-02-04:lodging').get('x'), '終');
 
   // 同一點一天去兩次（1 和 4）：點開 4→5 那段，起點寫 4（不是最小的 1）；點開 0→1 那段，終點寫 1（不是最大的 4）
   const twice = { days: [d('2027-02-05', [entry('start', 'h'), entry('visit', 'x', { itemId: 'v1' }), entry('visit', 'a'), entry('visit', 'b'), entry('visit', 'x', { itemId: 'v4' }), entry('visit', 'c'), entry('lodging', 'h2')])] };
@@ -350,7 +350,7 @@ test('itineraryMarks：某一天起終點同一點是 0，點了最後一段時�
   assert.equal(itineraryMarks(twice, '2027-02-05', null).get('x'), '1・4');
 });
 
-test('itineraryMarks：整趟時住宿是隔天的 0', () => {
+test('itineraryMarks：整趟時住宿是隔天的「起」', () => {
   const d = (date: string, entries: TimelineEntry[]) => ({ date, entries }) as unknown as DayPlan;
   const plan = {
     days: [
@@ -360,15 +360,15 @@ test('itineraryMarks：整趟時住宿是隔天的 0', () => {
     ],
   };
   const m = itineraryMarks(plan, 'all', null);
-  assert.equal(m.get('h1'), '0');
-  assert.equal(m.get('h2'), '0');
+  assert.equal(m.get('h1'), '起');
+  assert.equal(m.get('h2'), '起');
   assert.equal(m.get('a'), '1');
   assert.equal(m.get('b'), '1');
   // 機場：第一天的起點 0
-  assert.equal(m.get('kix'), '0');
+  assert.equal(m.get('kix'), '起');
   // 最後一天的終點沒有隔天，照那天的號碼
   const end = itineraryMarks({ days: [d('2027-02-04', [entry('start', 'h2'), entry('visit', 'c'), entry('lodging', 'h3')])] }, 'all', null);
-  assert.equal(end.get('h3'), '2');
+  assert.equal(end.get('h3'), '終');
   // 同一個點排在兩天：點亮的那天優先
   const twice = { days: [d('2027-02-02', [entry('start', 'h'), entry('visit', 'z'), entry('visit', 'q'), entry('lodging', 'h')]), d('2027-02-03', [entry('start', 'h'), entry('visit', 'q')])] };
   assert.equal(itineraryMarks(twice, 'all', null).get('q'), '2');

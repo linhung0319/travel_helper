@@ -268,7 +268,7 @@ test('getViewState：給 AI 的畫面狀態（範圍、天、篩選、選取、�
   assert.deepEqual(v.filterLabels, ['景點']);
   assert.equal(v.filterCount, 3);
   assert.equal(v.planning, true);
-  assert.equal(v.mode, 'map');
+  assert.equal(v.mode, 'explore');
   assert.deepEqual(v.detail, { id: 'a', name: 'a' });
   assert.deepEqual(v.highlights, { warning: ['b'] });
   assert.equal(v.proposal, null);

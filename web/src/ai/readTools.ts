@@ -136,6 +136,8 @@ export function createReadTools(d: AiDeps) {
       waitMinutes: l.waitMinutes,
       rides: l.rides.map((r) => ({ line: r.line, from: nameOf(r.from) || r.from, to: nameOf(r.to) || r.to, depart: r.depart, arrive: r.arrive, ifMissed: r.ifMissed ?? null })),
       ...(l.taxi ? { taxi: { cars: l.taxi.cars, fareEstimateYen: l.taxi.fareEstimateYen } } : {}),
+      ...(l.taxiBefore ? { taxiBefore: { station: nameOf(l.taxiBefore.station), minutes: l.taxiBefore.minutes } } : {}),
+      ...(l.taxiAfter ? { taxiAfter: { station: nameOf(l.taxiAfter.station), minutes: l.taxiAfter.minutes } } : {}),
       basis: l.basis,
     };
 

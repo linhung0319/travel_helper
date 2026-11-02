@@ -683,7 +683,7 @@ function autoLeg(a: Endpoint, b: Endpoint, ctx: LegContext, walk: { minutes: num
   const { cfg } = ctx;
   if (same) return leg({ mode: 'none', minutes: 0, basis: '同一個地點' }, a, b, ctx.depart);
   if (!walk) {
-    warnings.push({ code: 'travel-unknown', level: 'error', message: '缺座標，算不出交通時間' });
+    warnings.push({ code: 'travel-unknown', level: 'error', message: '這個地點沒有位置，算不出交通時間。' });
     return leg({ mode: 'unknown', minutes: 0, basis: '缺座標' }, a, b, ctx.depart);
   }
 
@@ -773,13 +773,98 @@ function autoLeg(a: Endpoint, b: Endpoint, ctx: LegContext, walk: { minutes: num
     warnings.push({ code: 'missed-last', level: 'warning', message: '這個時間以後沒有電車或巴士了（錯過末班車），改搭計程車' });
   }
   if (tooFar || !isLonLat(a.coords) || !isLonLat(b.coords)) {
-    warnings.push({ code: 'travel-unknown', level: 'error', message: '距離太遠，找不到時刻表裡的交通方式；請用 travel 指定（參考 data/access/）' });
+    // 本來就要報「到不了」才走到這裡，所以轉乘到得了的路線不會多插一段計程車
+    const linked = railTaxiLeg(a, b, ctx, factor, warnings);
+    if (linked) return linked;
+    warnings.push({ code: 'travel-unknown', level: 'error', message: '這段路比較遠，附近也沒有車站，查不到怎麼去。請點這段交通，選方式、填要幾分鐘。' });
     return leg({ mode: 'unknown', minutes: 0, basis: '找不到交通方式' }, a, b, ctx.depart);
   }
   const t = drive(a.coords, b.coords, ctx);
   warnings.push({ code: 'taxi', level: 'info', message: t.taxi.note });
   const basis = t.roadMinutes != null ? '計程車（osrm 時間）' : `計程車估算（${t.road != null ? 'osrm' : '直線'}，${cfg.taxi.kmPerHour} km/h）`;
   return leg({ mode: 'taxi', minutes: t.minutes, taxi: t.taxi, basis }, a, b, ctx.depart);
+}
+
+/** 一端試幾個車站 */
+const RAIL_TAXI_STATIONS = 3;
+
+/** 資料查到的「這個車站搭計程車幾分」（例如賢島 → 和具 25 分）；直線估算會跨海灣，有寫就用寫的 */
+function statedTaxiMinutes(e: Endpoint, stationId: string | null): number | null {
+  const ns = e.record?.nearestStation;
+  return ns?.id === stationId && ns?.mode === 'taxi' && ns?.minutes != null ? ns.minutes : null;
+}
+
+/** e 附近搭計程車到得了的車站：資料寫了「搭計程車到哪站」就只用那站，沒寫照直線距離；不能隔著海 */
+function stationsNear(e: Endpoint, net: Network, ctx: LegContext): Endpoint[] {
+  const { cfg, data } = ctx;
+  if (!isLonLat(e.coords)) return [];
+  const at = e.coords;
+  const rows = data.stations
+    .flatMap((s) => {
+      if (!net.routesAt.has(s.id) || !isLonLat(s.coords)) return [];
+      const end: Endpoint = { id: s.id, coords: s.coords, record: s };
+      const km = haversineMeters(at, s.coords) / 1000;
+      return km <= cfg.taxi.maxKm && !crossesSea(end, e, cfg) ? [{ end, km }] : [];
+    })
+    .sort((x, y) => x.km - y.km)
+    .map((x) => x.end);
+  const stated = rows.filter((s) => statedTaxiMinutes(e, s.id) != null);
+  return stated.length ? stated : rows.slice(0, RAIL_TAXI_STATIONS);
+}
+
+/**
+ * 大眾運輸接計程車（T39，👤）：終點或起點附近沒有車站、巴士，全程計程車又太遠時，搭到附近的車站再叫車（例如關西機場 → 賢島 → 和具的旅館）。
+ * 只有本來要報「到不了」時才用。附近有巴士站但這時間沒車（例如傍晚到和具）也算。
+ * 先試只接一段（目的地那端優先），查不到才兩端都接；同一種裡挑最早到的，一樣早挑計程車短的。都搭不到回傳 null。
+ */
+function railTaxiLeg(a: Endpoint, b: Endpoint, ctx: LegContext, factor: number, warnings: LegWarning[]): Leg | null {
+  if (!isLonLat(a.coords) || !isLonLat(b.coords)) return null;
+  const net = buildNetwork(ctx.data, ctx.cfg, ctx.date);
+  const nearFirst = stationsNear(a, net, ctx);
+  const nearLast = stationsNear(b, net, ctx);
+  type Option = { f: Endpoint; l: Endpoint; before: number; after: number; c: Candidate; arrive: number; ctx: LegContext };
+  const search = (firsts: Endpoint[], lasts: Endpoint[]): Option | null => {
+    let best: Option | null = null;
+    for (const f of firsts) {
+      for (const l of lasts) {
+        if (f.id === l.id) continue;
+        const before = f === a ? 0 : (statedTaxiMinutes(a, f.id) ?? round(drive(a.coords as LonLat, f.coords as LonLat, ctx).minutes));
+        const after = l === b ? 0 : (statedTaxiMinutes(b, l.id) ?? round(drive(l.coords as LonLat, b.coords as LonLat, ctx).minutes));
+        const start = ctx.depart + before;
+        const sub = { ...ctx, depart: start };
+        const c = raptorCandidates(f, l, sub, factor, start).cands[0];
+        if (!c) continue;
+        const arrive = c.arrive + after;
+        if (!best || arrive < best.arrive || (arrive === best.arrive && before + after < best.before + best.after)) best = { f, l, before, after, c, arrive, ctx: sub };
+      }
+    }
+    return best;
+  };
+  const best = search([a], nearLast) ?? search(nearFirst, [b]) ?? search(nearFirst, nearLast);
+  if (!best) return null;
+  const { f, l, before, after, c } = best;
+  const needFirst = f !== a;
+  const needLast = l !== b;
+  busCrowd(c, best.ctx, warnings);
+  const inner = fromCandidate(c, f, l, best.ctx, factor, warnings, [c]);
+  const taxi = (needLast ? drive(l.coords as LonLat, b.coords as LonLat, ctx) : drive(a.coords as LonLat, f.coords as LonLat, ctx)).taxi;
+  warnings.push({ code: 'taxi', level: 'info', message: taxi.note });
+  const nameOf = (e: Endpoint) => placeName(e.id as string, net, ctx.data);
+  const where = [needFirst ? `先搭計程車 ${before} 分到${nameOf(f)}` : '', needLast ? `到${nameOf(l)}再搭計程車 ${after} 分` : ''].filter(Boolean).join('，');
+  warnings.push({ code: 'rail-taxi', level: 'info', message: `${where}。這段沒有電車或巴士，人多要先預約叫車。` });
+  const { alternatives: _alternatives, ...rest } = inner;
+  return {
+    ...rest,
+    from: a.id,
+    to: b.id,
+    depart: fromMinutes(ctx.depart),
+    arrive: fromMinutes(best.arrive),
+    minutes: best.arrive - ctx.depart,
+    taxi,
+    ...(needFirst ? { taxiBefore: { station: f.id as string, minutes: before } } : {}),
+    ...(needLast ? { taxiAfter: { station: l.id as string, minutes: after } } : {}),
+    basis: '大眾運輸接計程車',
+  };
 }
 
 /** 路線巴士不能預約：人多時提醒可能擠不上同一班 */
@@ -803,7 +888,7 @@ function specifiedLeg(
     return leg({ ...base, mode: spec.mode, minutes: spec.minutes, walkMinutes: spec.mode === 'walk' ? spec.minutes : 0, basis: '指定' }, a, b, ctx.depart);
   }
   if (spec.mode === 'walk') {
-    if (walk == null) warnings.push({ code: 'travel-unknown', level: 'error', message: '缺座標，算不出步行時間' });
+    if (walk == null) warnings.push({ code: 'travel-unknown', level: 'error', message: '這個地點沒有位置，算不出要走多久。' });
     return leg({ ...base, mode: 'walk', minutes: walk ?? 0, walkMinutes: round(walk ?? 0), basis: '指定步行' }, a, b, ctx.depart);
   }
   if (spec.mode === 'transit' || spec.mode === 'train' || spec.mode === 'bus' || spec.mode === 'ferry') {
@@ -821,15 +906,15 @@ function specifiedLeg(
       warnings.push(
         found.missedLast
           ? { code: 'missed-last', level: 'error', message: '這個時間以後沒有電車、巴士或船了（錯過末班車）' }
-          : { code: 'travel-unknown', level: 'error', message: '這兩點之間時刻表裡沒有電車、巴士或船；請改方式或填 minutes' },
+          : { code: 'travel-unknown', level: 'error', message: '這兩點之間查不到電車、巴士或船。請點這段交通，換別的方式，或填要幾分鐘。' },
       );
       return leg({ ...base, mode: 'unknown', minutes: 0, basis: '找不到班次' }, a, b, ctx.depart);
     }
-    warnings.push({ code: 'travel-unknown', level: 'error', message: `指定的交通（${spec.mode}）在時刻表裡找不到班次；請填 minutes` });
+    warnings.push({ code: 'travel-unknown', level: 'error', message: '選的交通方式查不到班次。請點這段交通，填要幾分鐘。' });
     return leg({ ...base, mode: spec.mode, minutes: 0, basis: '找不到班次' }, a, b, ctx.depart);
   }
   if (!isLonLat(a.coords) || !isLonLat(b.coords)) {
-    warnings.push({ code: 'travel-unknown', level: 'error', message: '缺座標，算不出交通時間；請填 minutes' });
+    warnings.push({ code: 'travel-unknown', level: 'error', message: '這個地點沒有位置，算不出交通時間。請點這段交通，填要幾分鐘。' });
     return leg({ ...base, mode: spec.mode, minutes: 0, basis: '缺座標' }, a, b, ctx.depart);
   }
   const t = drive(a.coords, b.coords, ctx);

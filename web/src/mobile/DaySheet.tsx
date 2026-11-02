@@ -15,7 +15,7 @@ import type { EngineWarning, TimelineEntry, VisitItem } from '@travel-helper/eng
 import { useApp, useData, useShared, useUi } from '../hooks.ts';
 import { Icon } from '../components/Icon.tsx';
 import { openDialog } from '../uiStore.ts';
-import { cardTime, findItemRef, formatStay, shownWarnings, type TimelineRow } from '../lib/planView.ts';
+import { cardTime, findItemRef, formatStay, needsStart, shownWarnings, stayNight, type TimelineRow } from '../lib/planView.ts';
 import { isRedDay, shortDayLabel } from '../lib/trip.ts';
 import { dayAreaName, dayTitle } from '../lib/dayTitle.ts';
 import { stopsOn } from '../lib/itinerary.ts';
@@ -24,6 +24,7 @@ import { DayBar, DaySummaryLine, GhostRow, useDayTimeline, useProposalDay, useRe
 import { TimelineDiffContext, useEditing, useTimelineDiff } from '../components/timelineEdit.ts';
 import { ProposalStrip } from '../components/ProposalStrip.tsx';
 import { ItemTags, LodgingTags, tagKindOf } from '../components/ItemTags.tsx';
+import { DayStartMissing } from '../shared/ui/DayStartMissing.tsx';
 import { MemberName } from '../components/common.tsx';
 import { ConflictBar, PlanningBar } from '../components/Planning.tsx';
 import { groupTargetsOf } from '../components/cardActionRun.ts';
@@ -154,7 +155,7 @@ function EntryRows({ entry, ctx }: { entry: TimelineEntry; ctx: RowCtx }) {
         mark={mark}
         time={{ text: cardTime(entry).text }}
         name={p ? nameOf(p) : '上一站'}
-        tags={p?.type === 'lodging' ? <LodgingTags day={prevNight} place={p} reservationDate={null} editable={false} open={false} onOpenChange={() => {}} /> : null}
+        tags={p?.type === 'lodging' ? <LodgingTags day={prevNight} place={p} reservationDate={prevNight?.date ?? null} editable={false} open={false} onOpenChange={() => {}} /> : null}
         focused={focused === key}
       />
     );
@@ -174,7 +175,7 @@ function EntryRows({ entry, ctx }: { entry: TimelineEntry; ctx: RowCtx }) {
           pill={pill}
           proposed={!!pill}
           name={name}
-          tags={<LodgingTags day={day} place={p} reservationDate={day.date} editable={planning} open={false} onOpenChange={openSub(menu, 'lodging-plan')} />}
+          tags={<LodgingTags day={day} place={p} reservationDate={day.date} night={itinerary ? stayNight(itinerary.days, day.date) : null} editable={planning} open={false} onOpenChange={openSub(menu, 'lodging-plan')} />}
           focused={focused === key}
           menu={menu}
         />
@@ -371,6 +372,7 @@ function DayView({ date }: { date: string }) {
       {itDay && plan && (
         <TimelineDiffContext.Provider value={shown?.diff ?? null}>
           <ol className={`m-tl tl-axis ${planning ? 'in-planning' : ''}`} data-testid="m-timeline">
+            {needsStart(plan) && <DayStartMissing />}
             {tl.rows.map((row, i) =>
               row.kind === 'gap' ? (
                 <GapRow key={`g${i}`} row={row} />

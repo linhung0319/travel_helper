@@ -10,7 +10,8 @@ import type { Ctx, Env } from '../env.ts';
 import { badRequest, HttpError, json, readBody } from '../lib/http.ts';
 
 const DEFAULT_MODEL = 'claude-sonnet-5-5';
-const DEFAULT_EFFORT = 'medium';
+/** 工具來回多，每一來回都要思考：low 比 medium 快 10～30%，12 個代表情境工具都叫對（2026-11-02，T39） */
+const DEFAULT_EFFORT = 'low';
 const MAX_OUTPUT_TOKENS = 8000;
 const MAX_BODY_BYTES = 4 * 1024 * 1024;
 
@@ -123,10 +124,11 @@ export function buildParams(env: Env, body: Record<string, unknown>) {
 }
 
 function friendlyError(e: unknown): { code: 'network' | 'other'; message: string } {
+  // 每一種都留紀錄：使用者看到「沒回完」時才查得到原因
+  console.error('Claude API', e instanceof Anthropic.APIError ? `${e.status} ${e.message}` : e);
   if (e instanceof Anthropic.RateLimitError) return { code: 'network', message: 'AI 現在比較忙，請稍後再試一次' };
   if (e instanceof Anthropic.APIConnectionError) return { code: 'network', message: '連不上 AI，請再試一次' };
   if (e instanceof Anthropic.APIError && (e.status ?? 0) >= 500) return { code: 'network', message: 'AI 暫時有問題，請稍後再試一次' };
-  console.error('Claude API', e);
   return { code: 'other', message: 'AI 出了問題，請換個問法或稍後再試' };
 }
 

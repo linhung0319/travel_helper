@@ -55,7 +55,8 @@ for (let i = 0; ; i++) {
   }
 }
 
-const listener = await ngrok.forward({ addr: PORT, authtoken: NGROK_AUTHTOKEN, domain: base.slice('https://'.length) });
+// wrangler dev 不壓縮（正式環境 Cloudflare 會）：通道上也壓，第一次載入才不會差到 5 倍
+const listener = await ngrok.forward({ addr: PORT, authtoken: NGROK_AUTHTOKEN, domain: base.slice('https://'.length), compression: true });
 console.log(`
 通道已開：${listener.url()}
   貼到 LINE Developers（只要貼一次）：

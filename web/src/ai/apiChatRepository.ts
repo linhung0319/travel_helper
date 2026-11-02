@@ -9,7 +9,7 @@ export function createApiChatRepository(): ChatRepository {
   return {
     listConversations: async () => (await api<{ conversations: ConversationSummary[] }>('GET', '/api/chats')).conversations,
     loadMessages: async (id) => (await api<{ messages: ChatMessage[] }>('GET', `${path(id)}/messages`)).messages,
-    createConversation: async (title) => (await api<{ conversation: ConversationSummary }>('POST', '/api/chats', { title })).conversation,
+    createConversation: async (title, id) => (await api<{ conversation: ConversationSummary }>('POST', '/api/chats', { title, ...(id ? { id } : {}) })).conversation,
     updateConversation: async (id, patch) => void (await api('PATCH', path(id), patch)),
     appendMessages: async (id, messages) => void (await api('POST', `${path(id)}/messages`, { messages })),
     updateMessage: async (id, message) => void (await api('PUT', `${path(id)}/messages/${encodeURIComponent(message.id)}`, { message })),

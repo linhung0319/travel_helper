@@ -11,23 +11,22 @@ import { Map as MapLibreMap, Marker, NavigationControl, ScaleControl, setWorkerU
 // maplibre-gl v6 的 worker 是另一個檔案；經過 Vite 打包後用 import.meta.url 找不到，所以讓 Vite 打包 worker 再指定網址
 import maplibreWorkerUrl from 'maplibre-gl/dist/maplibre-gl-worker.mjs?worker&url';
 import type { FeatureCollection } from 'geojson';
-import 'maplibre-gl/dist/maplibre-gl.css';
 import { appStore } from '../store.ts';
 import { dataStore } from '../dataStore.ts';
 import { DESKTOP_QUERY, useApp, useCanHover, useData, useIsDesktop, usePlan, useShared, useUi } from '../hooks.ts';
-import { voteCounts } from '../sharedStore.ts';
 import { initialExtent } from '../lib/areas.ts';
-import { TYPE_COLORS, TYPE_GLYPHS, TYPE_INK } from '../lib/typeStyle.ts';
+import { TYPE_COLORS, TYPE_INK } from '../lib/typeStyle.ts';
 import { addMapIcons } from './mapIcons.ts';
+import { markMapLoaded } from '../lib/idle.ts';
+import { clearCurrentMap, hoverPaused, selectedDropHtml, setCurrentMap, STYLE_URL } from './mapRuntime.ts';
 import { dayColor, placeVisual } from '../lib/visual.ts';
 import { tripDates } from '../lib/trip.ts';
 import { EMPTY_FILTER } from '../lib/filter.ts';
 import { PLACE_TYPES, type Bbox, type Place } from '../data/types.ts';
 import { PreviewCard } from './PreviewCard.tsx';
 import { addOverlayLayers, ITINERARY_CASING_OPACITY, ITINERARY_LINE_OPACITY, OVERLAY_SOURCES } from './mapOverlayLayers.ts';
-import { aiDrops, itineraryFeatures, itineraryMarks, legStationFeatures, placeBadges, proposalFeatures, routeFeatures, routeLabels, type AiDrop } from '../lib/overlays.ts';
+import { aiDrops, itineraryFeatures, itineraryMarks, legStationFeatures, proposalFeatures, routeFeatures, routeLabels, type AiDrop } from '../lib/overlays.ts';
 import { commands, itineraryPathOf } from '../appCommands.ts';
-import { iconSvg } from '../lib/icons.ts';
 import { routeLabelHtml } from '../lib/modeIcon.ts';
 import { selectCamera, visibleArea, type ScreenRect } from '../lib/mapCamera.ts';
 import { MapCommandBars } from './MapCommandBars.tsx';
@@ -53,11 +52,8 @@ const LONG_PRESS_MS = 500;
 const LONG_PRESS_SLOP = 10;
 
 /** 地圖的樣式（手機版詳情的小地圖也用） */
-export const STYLE_URL = 'https://tiles.openfreemap.org/styles/liberty';
 /** 放大到這裡以上，小點換成類別圖標（像 Google Maps） */
 export const ICON_ZOOM = 12;
-/** 這個縮放以上才顯示每個點的想去數 */
-const BADGE_ZOOM = 10;
 /** 這個縮放以上 AI 的水滴才寫名稱（和資料點的名稱圖層同一個縮放） */
 const DROP_NAME_ZOOM = 13;
 /** highlight 指令的注意、次要：--red-day、--ink-3 */
@@ -69,23 +65,6 @@ const INK = '#1c2840';
 const HOVER_HALO = '#a3a9b8';
 
 const typeColorExpr = ['match', ['get', 'type'], ...PLACE_TYPES.flatMap((t) => [t, TYPE_COLORS[t]]), '#4b5262'];
-
-/** 水滴的外形（34×44，尖端在 (17, 42)；§草圖 九） */
-const DROP_PATH = 'M17 42s-14-13.5-14-24A14 14 0 0 1 31 18c0 10.5-14 24-14 24z';
-
-/** 選中的水滴（interaction-design §12.5）：類型色（fill 可以換掉），頭裡是編號（mark），沒有編號是類型圓章的字；
- *  底下的影子（ms-shadow）跟著跳縮放；旁邊是粗體的名稱（手機詳情的小地圖也用） */
-export function selectedDropHtml(place: Place, mark: string, fill?: string): string {
-  const esc = (t: string) => t.replace(/[&<>"]/g, (c) => `&#${c.charCodeAt(0)};`);
-  const head = mark || TYPE_GLYPHS[place.type];
-  const small = head.length > 2;
-  return (
-    `<svg class="ms-drop" width="34" height="44" viewBox="0 0 34 44" aria-hidden="true"><path d="${DROP_PATH}" fill="${fill ?? TYPE_COLORS[place.type]}" stroke="#fff" stroke-width="2.5"/>` +
-    `<text x="17" y="${small ? 22 : 23.5}" text-anchor="middle" font-size="${small ? 11 : 15}" font-weight="900" fill="${fill ? '#fff' : TYPE_INK[place.type]}" font-family="'Zen Maru Gothic', 'Noto Sans TC', system-ui, sans-serif">${esc(head)}</text></svg>` +
-    `<span class="ms-shadow" aria-hidden="true"></span>` +
-    `<span class="ms-name">${esc(place.name.zh || place.name.ja)}</span>`
-  );
-}
 
 /** 想去分頁每個點是哪一段（§5.3）：還沒排、已是候選、已排（已排的用那天的顏色） */
 type WishKind = 'unscheduled' | 'candidate' | 'scheduled';
@@ -171,36 +150,12 @@ export function visibleRect(map: MapLibreMap, obstructions: DOMRect[]): ScreenRe
 
 const reducedMotion = () => window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-/** 蓋在地圖上的彈窗剛用滑鼠關掉的位置：游標移開這附近之前，地圖不出小卡片（不然看起來像點穿了） */
-let hoverPause: { x: number; y: number } | null = null;
-const HOVER_PAUSE_PX = 24;
-
-export function pauseMapHover(x: number, y: number) {
-  hoverPause = { x, y };
-}
-
-function hoverPaused(e: MouseEvent): boolean {
-  if (!hoverPause) return false;
-  if (Math.hypot(e.clientX - hoverPause.x, e.clientY - hoverPause.y) < HOVER_PAUSE_PX) return true;
-  hoverPause = null;
-  return false;
-}
-
-/** 畫面上那一張地圖（整個網站只有一張） */
-let currentMap: MapLibreMap | null = null;
-
-/** 地圖重新算大小：手機版從別的分頁切回行程時呼叫（藏起來的時候版面可能變過） */
-export function resizeMap() {
-  currentMap?.resize();
-}
-
 export function MapView() {
   const containerRef = useRef<HTMLDivElement>(null);
   const mapRef = useRef<MapLibreMap | null>(null);
   const routeLabelsRef = useRef<Map<string, Marker>>(new Map());
   // 確定的行程的交通標籤、每個點的留言、想去數（T15m）
   const legLabelsRef = useRef<Marker[]>([]);
-  const badgesRef = useRef<Map<string, Marker>>(new Map());
   // 選中的數字水滴；selectedRef 給地圖的事件讀（移動前後看它進入畫面沒有）
   const dropRef = useRef<Marker | null>(null);
   const anchorRef = useRef<Marker | null>(null);
@@ -298,7 +253,7 @@ export function MapView() {
     });
     map.touchZoomRotate.disableRotation();
     mapRef.current = map;
-    currentMap = map;
+    setCurrentMap(map);
     // 縮放鈕只有網頁版（手機用兩指，地圖上只留「放大地圖」）
     if (window.matchMedia(DESKTOP_QUERY).matches) map.addControl(new NavigationControl({ showCompass: false }), 'top-right');
     map.addControl(new ScaleControl({ unit: 'metric' }), 'bottom-left');
@@ -311,11 +266,11 @@ export function MapView() {
         zoom: map.getZoom(),
         bounds: [bounds.getWest(), bounds.getSouth(), bounds.getEast(), bounds.getNorth()],
       });
-      containerRef.current?.classList.toggle('show-badges', map.getZoom() >= BADGE_ZOOM);
       containerRef.current?.classList.toggle('show-drop-names', map.getZoom() >= DROP_NAME_ZOOM);
     };
 
     map.on('load', () => {
+      markMapLoaded();
       map.addSource('places', { type: 'geojson', data: { type: 'FeatureCollection', features: [] } });
       addMapIcons(map);
       // 指到（只有網頁）：點下面一圈淡灰光圈；畫在所有點的下面
@@ -638,15 +593,13 @@ export function MapView() {
       routeLabelsRef.current.forEach((m) => m.remove());
       routeLabelsRef.current.clear();
       legLabelsRef.current.forEach((m) => m.remove());
-      badgesRef.current.forEach((m) => m.remove());
-      badgesRef.current.clear();
       dropRef.current?.remove();
       dropRef.current = null;
       aiDropsRef.current.forEach((m) => m.remove());
       aiDropsRef.current.clear();
       map.remove();
       mapRef.current = null;
-      if (currentMap === map) currentMap = null;
+      clearCurrentMap(map);
     };
   }, []);
 
@@ -945,32 +898,6 @@ export function MapView() {
       map.off('move', run);
     };
   }, [loaded, itinerary, plan, byId, day, routesVersion, tripFocusDay, mode, marks, selectedId]);
-
-  // 每個點的想去數（放大到 BADGE_ZOOM 才顯示）
-  useEffect(() => {
-    if (!loaded) return;
-    const map = mapRef.current!;
-    const likes = new Map([...voteCounts(votes)].filter(([, c]) => c.like > 0).map(([id, c]) => [id, c.like]));
-    const badges = placeBadges(byId, likes);
-    const keep = new Set(badges.map((b) => b.id));
-    badgesRef.current.forEach((m, id) => {
-      if (keep.has(id)) return;
-      m.remove();
-      badgesRef.current.delete(id);
-    });
-    for (const b of badges) {
-      let m = badgesRef.current.get(b.id);
-      if (!m) {
-        const el = document.createElement('div');
-        el.className = 'place-badge';
-        el.dataset.id = b.id;
-        m = new Marker({ element: el, offset: [18, -16] }).setLngLat(b.coords).addTo(map);
-        badgesRef.current.set(b.id, m);
-      }
-      m.setLngLat(b.coords);
-      m.getElement().innerHTML = `${iconSvg('heart', 16, true)}<span>${b.text}</span>`;
-    }
-  }, [loaded, votes, byId]);
 
   // 移動地圖的請求：選中一個點（reveal）照 selectCamera；框範圍、飛到中心時讓開浮在地圖上的東西
   useEffect(() => {

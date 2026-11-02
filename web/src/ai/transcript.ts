@@ -66,14 +66,17 @@ export function toolLabel(name: string, input: Record<string, unknown>): string 
 }
 
 const REPLY = /\[\[reply:([^\]\n]+)\]\]/g;
+const HAS_REPLY = /\[\[reply:[^\]\n]+\]\]/;
+/** 卡片上已經有按鈕的話，不當快速選項（系統提示有講，模型偶爾還是會放） */
+const CARD_BUTTONS = /^(採用|不要|送出)$/;
 
 /**
  * 回答結尾的快速選項（`[[reply:<這句話>]]`）拆出來，畫成按鈕。
  * 不用工具：Opus 5.5、Sonnet 5.5 在工具呼叫之前的長文字可能變成看不到的思考區塊，所以回答要是一輪最後的文字，選項跟著它。
  */
 export function splitReplies(text: string): { text: string; replies: string[] } {
-  const replies = [...text.matchAll(REPLY)].map((m) => m[1].trim()).filter(Boolean);
-  return { text: replies.length ? text.replace(REPLY, '').trim() : text, replies };
+  const replies = [...text.matchAll(REPLY)].map((m) => m[1].trim()).filter((r) => r && !CARD_BUTTONS.test(r));
+  return { text: HAS_REPLY.test(text) ? text.replace(REPLY, '').trim() : text, replies };
 }
 
 /** 逐字顯示中要畫的字：完整的快速選項和還沒進來完的標記（地點標籤、選項）先不顯示 */
@@ -139,7 +142,7 @@ export function turnsOf(messages: ChatMessage[], readTools: Set<string>): ChatTu
 }
 
 export type RichInline = { text: string; bold?: boolean } | { place: string } | { href: string; label: string };
-export type RichBlock = { kind: 'p'; parts: RichInline[] } | { kind: 'list'; items: RichInline[][] };
+export type RichBlock = { kind: 'p'; parts: RichInline[] } | { kind: 'list'; items: RichInline[][]; ordered?: boolean };
 
 const INLINE = /\[\[place:([^\]]+)\]\]|\*\*(.+?)\*\*|\[([^\]]+)\]\((https?:\/\/[^)\s]+)\)|(https?:\/\/[^\s）)，。、]+)/g;
 
@@ -149,7 +152,8 @@ function parseInline(line: string): RichInline[] {
   for (const m of line.matchAll(INLINE)) {
     if (m.index > at) out.push({ text: line.slice(at, m.index) });
     if (m[1]) out.push({ place: m[1] });
-    else if (m[2]) out.push({ text: m[2], bold: true });
+    // 粗體裡可能包著地點標籤（**[[place:x]]**）：裡面再解析一次，不然標記會原文露出來
+    else if (m[2]) out.push(...parseInline(m[2]).map((x) => ('text' in x ? { ...x, bold: true } : x)));
     else if (m[3]) out.push({ href: m[4], label: m[3] });
     else out.push({ href: m[5], label: /google\.[^/]+\/maps/.test(m[5]) ? 'Google Maps' : '連結' });
     at = m.index + m[0].length;
@@ -158,20 +162,56 @@ function parseInline(line: string): RichInline[] {
   return out;
 }
 
-/** 回覆的文字（規格 §5）：地點標籤、粗體、條列、連結；只認 http(s) 的連結，其他 Markdown 照原文 */
+/** 表格的一列拆成格子；分隔列（|---|---|）回傳 null */
+function tableCells(line: string): string[] | null {
+  const cells = line.replace(/^\|/, '').replace(/\|$/, '').split('|').map((c) => c.trim());
+  return cells.every((c) => /^:?-+:?$/.test(c)) ? null : cells;
+}
+
+/**
+ * 回覆的文字（規格 §5）：地點標籤、粗體、條列、編號、連結；只認 http(s) 的連結。
+ * 系統提示叫 AI 不要用，但模型偶爾還是會寫的 Markdown（T39）：標題當粗體一行、分隔線不畫、引用拿掉記號；
+ * 表格在窄窄的聊天欄放不下，一列變成一行條列（第一格粗體，其他用 · 接），表頭不畫。
+ */
 export function parseRich(text: string): RichBlock[] {
   const blocks: RichBlock[] = [];
-  for (const raw of text.split('\n')) {
-    const line = raw.trim();
-    if (!line) continue;
-    const li = /^(?:[-*]|・)\s*(.+)$/.exec(line);
-    if (li && !line.startsWith('**')) {
-      const last = blocks.at(-1);
-      if (last?.kind === 'list') last.items.push(parseInline(li[1]));
-      else blocks.push({ kind: 'list', items: [parseInline(li[1])] });
-    } else blocks.push({ kind: 'p', parts: parseInline(line) });
+  const addItem = (item: RichInline[], ordered: boolean) => {
+    const last = blocks.at(-1);
+    if (last?.kind === 'list' && !!last.ordered === ordered) last.items.push(item);
+    else blocks.push({ kind: 'list', items: [item], ...(ordered ? { ordered } : {}) });
+  };
+  const lines = text.split('\n').map((l) => l.trim());
+  for (let i = 0; i < lines.length; i++) {
+    const line = lines[i];
+    if (!line || /^([-*_])\1{2,}$/.test(line)) continue;
+    if (line.startsWith('|') && line.includes('|', 1)) {
+      const cells = tableCells(line);
+      // 下一列是分隔列：這列是表頭
+      const next = lines[i + 1];
+      const isHead = !!next && next.startsWith('|') && tableCells(next) === null;
+      if (cells && !isHead) {
+        const [first, ...rest] = cells.filter(Boolean);
+        if (first) addItem([...parseInline(first).map((x) => ('text' in x ? { ...x, bold: true } : x)), ...(rest.length ? parseInline(` · ${rest.join(' · ')}`) : [])], false);
+      }
+      continue;
+    }
+    const heading = /^#{1,6}\s+(.+)$/.exec(line);
+    if (heading) {
+      blocks.push({ kind: 'p', parts: parseInline(heading[1]).map((x) => ('text' in x ? { ...x, bold: true } : x)) });
+      continue;
+    }
+    const li = /^(?:[-*•‧●]|・)\s*(.+)$/.exec(line);
+    const num = /^\d+[.)、]\s*(.+)$/.exec(line);
+    if (li && !line.startsWith('**')) addItem(parseInline(li[1]), false);
+    else if (num) addItem(parseInline(num[1]), true);
+    else blocks.push({ kind: 'p', parts: parseInline(line.replace(/^>\s*/, '')) });
   }
   return blocks;
+}
+
+/** 不畫標籤的地方（結果集的標題和理由、提議的摘要）：標記換成名字，不讓 [[place:…]] 原文露出來 */
+export function untagged(text: string, nameOf: (id: string) => string): string {
+  return text.replace(/\[\[place:([^\]]+)\]\]/g, (_, id: string) => nameOf(id)).replace(REPLY, '').trim();
 }
 
 const TAG = /\[\[place:([^\]]+)\]\]/g;

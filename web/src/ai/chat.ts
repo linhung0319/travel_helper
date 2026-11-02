@@ -1,6 +1,7 @@
 // 聊天的主體（規格 §5、§7、§11）：對話的生命週期、呼叫模型和工具、卡片、呈現。不做版面：T16m-b、T16m-c 讀 store、呼叫這裡的動作。
 // 一輪回覆：模型回文字和工具呼叫 → 瀏覽器執行工具 → 把結果送回去，直到模型不再呼叫工具。
 // 呈現（show_places…）一輪結束才生效；使用者這段時間動過畫面就不搶，訊息改顯示「看結果」（規格 §3.4）。
+// 按下送出畫面馬上動（T39）：建對話、存訊息都排在背景（persist），呼叫模型不用等 D1；這輪從送出的那一刻就算在跑，不會閃「沒有回完」。
 
 import { createStore, type StoreApi } from 'zustand/vanilla';
 import type { Filter } from '../lib/filter.ts';
@@ -15,7 +16,7 @@ import { createTools, type Presentation, type ToolDef } from './tools.ts';
 import { completedTurns, incompleteTurn, textOf, titleFrom, toApiMessages } from './transcript.ts';
 import type { Op } from './ops.ts';
 import type { Stage } from './stage.ts';
-import { ModelError, type CardState, type ChatContext, type ChatMessage, type ChatRepository, type ContentBlock, type ConversationSummary, type ModelClient, type ModelErrorCode, type ToolResultBlock, type ToolUseBlock, type TurnContext } from './types.ts';
+import { ModelError, type CardState, type ChatContext, type ChatMessage, type ChatRepository, type ContentBlock, type ConversationSummary, type ModelClient, type ModelErrorCode, type ToolResultBlock, type ToolUseBlock, type TurnContext, type TurnFailure } from './types.ts';
 
 /** 一輪最多幾次來回：防止模型一直呼叫工具 */
 const MAX_ROUNDS = 12;
@@ -43,6 +44,8 @@ export interface ChatState {
   decisions: TurnContext['decisions'];
   /** 輸入框裡還沒送出的字：放在這裡，轉向換版面才不會不見；重新整理不保留（規格 §11） */
   draftText: string;
+  /** 對話讀好了（init 跑完）：之前聊天室先畫出來，資料還在路上，不能送出（T39） */
+  loaded: boolean;
 }
 
 export type ChatResult = { ok: true } | { ok: false; error: string };
@@ -110,7 +113,10 @@ const sameContext = (a: ChatContext, b: ChatContext) => {
   return true;
 };
 
-const INITIAL: ChatState = { conversations: [], currentId: null, messages: [], status: 'idle', streamingText: '', error: null, contexts: [], screenOff: false, suggestions: [], lead: null, decisions: [], draftText: '' };
+const INITIAL: ChatState = { conversations: [], currentId: null, messages: [], status: 'idle', streamingText: '', error: null, contexts: [], screenOff: false, suggestions: [], lead: null, decisions: [], draftText: '', loaded: false };
+
+/** 一筆寫入失敗時，等這麼久再試一次 */
+const WRITE_RETRY_MS = 1000;
 
 export function createChat(d: CreateChatDeps): Chat {
   const store = createStore<ChatState>()(() => INITIAL);
@@ -133,7 +139,7 @@ export function createChat(d: CreateChatDeps): Chat {
     {
       name: 'decide_card',
       kind: 'propose',
-      description: '使用者明確說要採用、送出、確認、加入（confirm）或不要（reject）時，替他按卡片上的按鈕。只能決定 context.cards 裡、上一輪以前就給使用者看過的卡；話不明確（「好像不錯」）要反問，不要決定。提議要正顯示在畫面上才能採用，沒顯示就先 show_again。採用提議時不在編輯中會跳確認，使用者取消就回報錯誤。',
+      description: '使用者明確說要採用、送出、確認、加入（confirm）或不要（reject）時，替他按卡片上的按鈕。只能決定 context.cards 裡、上一輪以前就給使用者看過的卡；話不明確（「好像不錯」）要反問，不要決定。提議要正顯示在畫面上才能採用，沒顯示就先 show_again。',
       input_schema: { type: 'object', properties: { cardId: { type: 'string' }, decision: { enum: ['confirm', 'reject'] } }, required: ['cardId', 'decision'], additionalProperties: false },
       async run(input) {
         const id = String(input.cardId);
@@ -162,6 +168,25 @@ export function createChat(d: CreateChatDeps): Chat {
   // 卡片處理中：連按兩次不會做兩次
   const busy = new Set<string>();
 
+  // 寫進伺服器的事排成一列：順序不會亂（先建對話才存訊息），畫面和模型都不用等它。試兩次還不行才告訴使用者
+  let writes: Promise<void> = Promise.resolve();
+  function persist(job: () => Promise<unknown>): Promise<void> {
+    writes = writes.then(async () => {
+      try {
+        await job();
+      } catch {
+        try {
+          await new Promise((r) => setTimeout(r, WRITE_RETRY_MS));
+          await job();
+        } catch (e) {
+          console.error(e);
+          d.shared.notifyError('聊天紀錄沒有存好，重新整理後這段話可能會不見');
+        }
+      }
+    });
+    return writes;
+  }
+
   function findBlock(toolUseId: string): { message: ChatMessage; block: ToolUseBlock } | null {
     for (const message of store.getState().messages) {
       for (const block of message.content) if (block.type === 'tool_use' && block.id === toolUseId) return { message, block };
@@ -175,7 +200,7 @@ export function createChat(d: CreateChatDeps): Chat {
     if (!hit || !id) return;
     const message: ChatMessage = { ...hit.message, cards: { ...hit.message.cards, [toolUseId]: { ...hit.message.cards?.[toolUseId], ...patch } } };
     store.setState((s) => ({ messages: s.messages.map((m) => (m.id === message.id ? message : m)) }));
-    await d.repo.updateMessage(id, message);
+    await persist(() => d.repo.updateMessage(id, message));
   }
 
   const cardStatus = (toolUseId: string) => findBlock(toolUseId)?.message.cards?.[toolUseId]?.status;
@@ -261,9 +286,10 @@ export function createChat(d: CreateChatDeps): Chat {
     store.setState({ conversations: await d.repo.listConversations() });
   }
 
-  async function append(conversationId: string, messages: ChatMessage[]) {
+  /** 畫面先有；存檔排在背景，回傳的 promise 不用等 */
+  function append(conversationId: string, messages: ChatMessage[]): Promise<void> {
     store.setState((s) => ({ messages: s.currentId === conversationId ? [...s.messages, ...messages] : s.messages }));
-    await d.repo.appendMessages(conversationId, messages);
+    return persist(() => d.repo.appendMessages(conversationId, messages));
   }
 
   /** 跑一輪：這輪的使用者訊息已經存好了 */
@@ -272,8 +298,11 @@ export function createChat(d: CreateChatDeps): Chat {
     const controller = new AbortController();
     abort = controller;
     openTurn = turn;
-    // 脈絡晶片的摘要在詳情層；讀不到也照常對話（工具會明講讀不到）
-    if (d.details) await d.details().catch(() => {});
+    // 脈絡晶片的摘要在詳情層；讀不到也照常對話（工具會明講讀不到）。沒帶晶片就不用等：工具要用時自己會等
+    if (d.details && chips.length) await d.details().catch(() => {});
+    if (controller.signal.aborted) return;
+    // 工具多半要用行程：一送出就開始讀時刻表，不等地圖（T39）
+    void d.planReady?.();
     const active = proposals.store.getState().active;
     // 晶片送出後留著，每輪都帶：前面送過的只帶「同前」，不再塞一次完整內容（T36）。只算有送給模型的輪（回完的）
     const done = completedTurns(store.getState().messages);
@@ -285,7 +314,7 @@ export function createChat(d: CreateChatDeps): Chat {
     if (opening) {
       const withContext: ChatMessage = { ...opening, turnContext: JSON.stringify(context) };
       store.setState((s) => ({ messages: s.messages.map((m) => (m.id === opening.id ? withContext : m)) }));
-      await d.repo.updateMessage(conversationId, withContext);
+      void persist(() => d.repo.updateMessage(conversationId, withContext));
     }
     const queued: { id: string; present: Presentation }[] = [];
     let partial = '';
@@ -311,8 +340,10 @@ export function createChat(d: CreateChatDeps): Chat {
         }
         if (controller.signal.aborted) return;
         if (usage) {
-          await d.repo.updateConversation(conversationId, { usage });
-          await refreshList();
+          const next = usage;
+          // 清單在畫面上直接改：工具的每一來回不要多打兩次伺服器
+          store.setState((s) => ({ conversations: s.conversations.map((c) => (c.id === conversationId ? { ...c, usage: next, updatedAt: now() } : c)) }));
+          void persist(() => d.repo.updateConversation(conversationId, { usage: next }));
         }
         // 真的模型給完整內容（含思考，要原樣送回去）；假 AI 由事件組
         const finalContent = full as ContentBlock[] | null;
@@ -322,11 +353,13 @@ export function createChat(d: CreateChatDeps): Chat {
         if (!uses.length) {
           partial = '';
           store.setState({ streamingText: '' });
-          await append(conversationId, [{ ...base, role: 'assistant', content, end: true }]);
+          void append(conversationId, [{ ...base, role: 'assistant', content, end: true }]);
           break;
         }
         // 工具：查資料馬上跑；呈現先排著，一輪結束才生效
         store.setState({ status: 'tools' });
+        await d.planReady?.();
+        if (controller.signal.aborted) return;
         const cards: Record<string, CardState> = {};
         const results: ToolResultBlock[] = [];
         for (const use of uses) {
@@ -348,7 +381,7 @@ export function createChat(d: CreateChatDeps): Chat {
         // 工具呼叫和結果一起存：紀錄裡不會有沒結果的工具呼叫（規格 §11）
         partial = '';
         store.setState({ streamingText: '' });
-        await append(conversationId, [
+        void append(conversationId, [
           { ...base, role: 'assistant', content, ...(Object.keys(cards).length ? { cards } : {}) },
           { id: newId(), turn, createdAt: now(), role: 'user', content: results },
         ]);
@@ -368,7 +401,9 @@ export function createChat(d: CreateChatDeps): Chat {
       if (controller.signal.aborted) return;
       const error = e instanceof ModelError ? { code: e.code, message: e.message } : { code: 'other' as const, message: e instanceof Error ? e.message : String(e) };
       // 已經進來的文字留給使用者看，標「沒有回完」；這輪不會送給模型（transcript.ts）
-      if (partial) await append(conversationId, [{ id: newId(), turn, createdAt: now(), role: 'assistant', content: [{ type: 'text', text: partial }] }]);
+      if (partial) void append(conversationId, [{ id: newId(), turn, createdAt: now(), role: 'assistant', content: [{ type: 'text', text: partial }] }]);
+      console.error('AI 這輪沒有回完', error);
+      noteFailure(conversationId, turn, error);
       store.setState({ error });
     } finally {
       if (abort === controller) {
@@ -377,6 +412,15 @@ export function createChat(d: CreateChatDeps): Chat {
         store.setState({ status: 'idle', streamingText: '' });
       }
     }
+  }
+
+  /** 記下這輪沒有回完的原因：查「沒回完」用，畫面不顯示 */
+  function noteFailure(conversationId: string, turn: string, failure: Omit<TurnFailure, 'at'>) {
+    const opening = store.getState().messages.find((m) => m.turn === turn && m.role === 'user');
+    if (!opening) return;
+    const marked: ChatMessage = { ...opening, failure: { ...failure, at: now() } };
+    store.setState((s) => ({ messages: s.messages.map((m) => (m.id === marked.id ? marked : m)) }));
+    void persist(() => d.repo.updateMessage(conversationId, marked));
   }
 
   function stop() {
@@ -390,20 +434,29 @@ export function createChat(d: CreateChatDeps): Chat {
     stop();
     // 提議卡還在，畫面上清掉（規格 §11）
     proposals.hide();
+    // 還在排隊的寫入先做完，讀到的才是最新的
+    await writes;
     store.setState({ currentId: id, messages: id ? await d.repo.loadMessages(id) : [], contexts: [], suggestions: [], lead: null, error: null, decisions: [], draftText: '' });
   }
 
   async function startTurn(text: string, chips: ChatContext[]): Promise<ChatResult> {
+    // 從這裡到 runTurn 都是同步的：同一個畫面更新裡，推薦問題收掉、自己的話出現、開始轉圈，不會閃「沒有回完」
+    const turn = newId();
+    openTurn = turn;
     let id = store.getState().currentId;
     if (!id) {
-      const c = await d.repo.createConversation(titleFrom(text));
+      const c: ConversationSummary = { id: newId(), title: titleFrom(text), updatedAt: now(), usage: 'ok' };
       id = c.id;
-      store.setState({ currentId: id });
-      await refreshList();
+      store.setState((s) => ({ currentId: c.id, conversations: [c, ...s.conversations] }));
+      void persist(() => d.repo.createConversation(c.title, c.id));
     }
-    const turn = newId();
-    await append(id, [{ id: newId(), turn, createdAt: now(), role: 'user', content: [{ type: 'text', text }], contexts: chips }]);
+    // 清單：剛講話的這段排到最上面（畫面先改；重新讀清單時是後端的順序，一樣）
+    const at = id;
+    store.setState((s) => ({ status: 'thinking', streamingText: '', error: null, conversations: [...s.conversations.filter((c) => c.id === at).map((c) => ({ ...c, updatedAt: now() })), ...s.conversations.filter((c) => c.id !== at)] }));
+    void append(id, [{ id: newId(), turn, createdAt: now(), role: 'user', content: [{ type: 'text', text }], contexts: chips }]);
     await runTurn(id, turn, chips);
+    // 畫面早就好了；這裡等存檔，呼叫的人（測試、評估）拿到結果時紀錄也存好了
+    await writes;
     return { ok: true };
   }
 
@@ -459,11 +512,13 @@ export function createChat(d: CreateChatDeps): Chat {
   }
 
   // 換人（dev 的假登入、T16 重新登入）：換成那個人自己的對話
+  // 第一次拿到 me 是啟動，不是換人：startAi 會 init，這裡再讀一次是白打
   let lastMember = d.shared.store.getState().me?.id;
   const unsubMember = d.shared.store.subscribe((s) => {
     if (s.me?.id === lastMember) return;
+    const switched = lastMember != null;
     lastMember = s.me?.id;
-    void chat.init({ keepAsked: false });
+    if (switched) void chat.init({ keepAsked: false });
   });
 
   /** 推薦問題要的資料：都是瀏覽器本來就有的 */
@@ -484,6 +539,7 @@ export function createChat(d: CreateChatDeps): Chat {
       // 隔了一段時間才回來：開新對話，推薦問題照當下的行程重算，送給 AI 的對話也不會越來越長（§17.3）。舊的在對話清單
       if (shouldStartFresh(store.getState().messages, now())) await open(null);
       if (keepAsked) store.setState({ contexts, suggestions, lead, draftText });
+      store.setState({ loaded: true });
     },
     newConversation: () => open(null),
     switchTo: (id) => open(id),
@@ -499,6 +555,7 @@ export function createChat(d: CreateChatDeps): Chat {
       const { streamingText, currentId } = store.getState();
       const turn = openTurn;
       stop();
+      if (currentId && turn) noteFailure(currentId, turn, { code: 'stopped', message: '使用者按了停止' });
       if (streamingText && currentId && turn) await append(currentId, [{ id: newId(), turn, createdAt: now(), role: 'assistant', content: [{ type: 'text', text: streamingText }] }]);
     },
     async retry() {
@@ -507,7 +564,8 @@ export function createChat(d: CreateChatDeps): Chat {
       if (!turn || !s.currentId || s.status !== 'idle') return { ok: false, error: '沒有要重試的訊息' };
       const first = s.messages.find((m) => m.turn === turn && m.role === 'user');
       if (!first) return { ok: false, error: '沒有要重試的訊息' };
-      await d.repo.removeTurn(s.currentId, turn);
+      const id = s.currentId;
+      void persist(() => d.repo.removeTurn(id, turn));
       store.setState((x) => ({ messages: x.messages.filter((m) => m.turn !== turn), error: null }));
       return startTurn(textOf(first.content), first.contexts ?? []);
     },
@@ -543,6 +601,7 @@ export function createChat(d: CreateChatDeps): Chat {
     },
     async refresh() {
       if (store.getState().status !== 'idle') return;
+      await writes;
       await refreshList();
       const { currentId, status } = store.getState();
       if (!currentId || status !== 'idle') return;
@@ -561,7 +620,6 @@ export function createChat(d: CreateChatDeps): Chat {
       try {
         if (block.name === 'propose_changes') {
           const outcome = await proposals.adopt(toolUseId, i.ops as Op[], String(i.summary ?? ''));
-          if (outcome === 'cancelled') return { ok: false, error: '取消了' };
           if (outcome === 'failed') return { ok: false, error: '沒有存成功' };
           if (outcome === 'stale') {
             await setCard(toolUseId, { status: 'stale' });

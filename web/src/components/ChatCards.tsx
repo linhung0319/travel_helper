@@ -10,13 +10,13 @@ import { shared } from '../appShared.ts';
 import { uiStore } from '../uiStore.ts';
 import { useData } from '../hooks.ts';
 import { shortDayLabel } from '../lib/trip.ts';
-import type { ChatToolUse } from '../ai/transcript.ts';
+import { untagged, type ChatToolUse } from '../ai/transcript.ts';
 import { Icon } from './Icon.tsx';
 import { PlaceTag, usePlaceName } from './ChatRich.tsx';
 
 const run = async (r: Promise<{ ok: true } | { ok: false; error: string }>) => {
   const x = await r;
-  if (!x.ok && x.error !== '取消了') shared.notifyError(x.error);
+  if (!x.ok) shared.notifyError(x.error);
 };
 
 export function present(id: string) {
@@ -57,7 +57,8 @@ function ProposalCard({ use, version }: { use: ChatToolUse; version: number }) {
   const active = useStore(ai.proposals.store, (s) => s.active?.cardId === use.block.id);
   const status = use.card?.status ?? 'pending';
   const id = use.block.id;
-  const summary = String(use.block.input.summary ?? '');
+  const byId = useData((s) => s.byId);
+  const summary = untagged(String(use.block.input.summary ?? ''), (x) => byId.get(x)?.name.zh ?? byId.get(x)?.name.ja ?? '');
   const lines = summary ? summary.split('；') : [];
   const title = `提議 · 第 ${version} 版`;
   const common = { 'data-testid': 'chat-proposal', 'data-status': status, 'data-card': id };

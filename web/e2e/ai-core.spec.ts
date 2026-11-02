@@ -21,26 +21,25 @@ test('找地點：地圖標出結果集，探索的篩選收起來', async ({ pa
   await expect(page.getByTestId('map-ai-drop')).toHaveCount(3);
 });
 
-test('提議：不在編輯中也能提議；地圖有提議列；採用 → 開始編輯？→ 行程更新', async ({ page }) => {
+test('提議：不在編輯中也能提議；地圖有提議列；採用 → 行程更新，不進編輯', async ({ page }) => {
   await aiReady(page);
   await send(page, '幫我排第 3 天，加午餐');
   await expect(page.getByTestId('proposal-bar')).toBeVisible();
   const before = await page.evaluate(() => (window as any).__th.dataStore.getState().itinerary.days.find((d: any) => d.date === '2027-02-04').items.length);
 
-  // 按採用：跳出現有的「開始編輯？」對話框，按了才寫進行程
+  // 按採用：直接寫進行程，不進編輯（T39）
   await page.evaluate(() => {
     const ai = (window as any).__th.ai;
     const id = ai.store.getState().messages.flatMap((m: any) => m.content).filter((b: any) => b.type === 'tool_use' && b.name === 'propose_changes').at(-1).id;
     (window as any).__adopt = ai.confirmCard(id);
   });
-  await page.getByTestId('planning-confirm').click();
   expect(await page.evaluate(() => (window as any).__adopt)).toEqual({ ok: true });
   await expect(page.getByTestId('proposal-bar')).toHaveCount(0);
   const after = await page.evaluate(() => {
     const th = (window as any).__th;
     return { items: th.dataStore.getState().itinerary.days.find((d: any) => d.date === '2027-02-04').items.length, planning: th.appStore.getState().planning };
   });
-  expect(after).toEqual({ items: before + 1, planning: true });
+  expect(after).toEqual({ items: before + 1, planning: false });
 });
 
 test('重新整理：對話還在，提議不自動恢復', async ({ page }) => {

@@ -14,7 +14,7 @@ import { RIDE_COLOR } from '../../lib/modeIcon.ts';
 
 /** 第二行的膠囊：每一程的方式和短名稱；stops[i] 是第 i 程和第 i+1 程中間的換車站（legView 的 legChips） */
 export interface LegChips {
-  rides: { mode: TransitRide['mode']; name: string }[];
+  rides: { mode: TransitRide['mode'] | 'taxi'; name: string }[];
   stops: string[];
 }
 

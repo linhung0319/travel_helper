@@ -21,7 +21,7 @@ function input(patch: Record<string, Partial<StarterDay>> = {}, rest: Partial<St
 const noLodging = Object.fromEntries(DATES.map((d) => [d, { lodging: false }]));
 
 test('規則 1：一晚住宿都還沒有', () => {
-  assert.deepEqual(firstStarter(input(noLodging)), { q: '幫我決定每晚住哪', why: '還沒有任何住宿，15 人的住宿最難訂' });
+  assert.deepEqual(firstStarter(input(noLodging)), { q: '幫我決定前幾晚住哪', why: '從第一晚開始，15 人的住宿最難訂' });
 });
 
 test('規則 2：連續的晚上併成一段，最早的一段先；小字是總共幾晚', () => {
@@ -67,7 +67,7 @@ test('規則 8：都沒有', () => {
 
 test('startersFor：第一張照規則，另外兩張補滿；同一件事不問兩次', () => {
   const lodging = startersFor(input(noLodging, { wishesUnplaced: 2, warnings: 1 }));
-  assert.deepEqual(lodging.map((s) => s.q), ['幫我決定每晚住哪', '哪天最趕？', '把想去的排進行程']);
+  assert.deepEqual(lodging.map((s) => s.q), ['幫我決定前幾晚住哪', '哪天最趕？', '把想去的排進行程']);
   assert.ok(lodging.every((s) => s.why));
   const popular = startersFor(input({}, { popularUnplaced: 1, wishesUnplaced: 3 }));
   assert.deepEqual(popular.map((s) => s.q), ['大家想去的還沒排的，排哪天？', '鳥羽能坐 15 人的海鮮餐廳', '長輩走起來輕鬆的景點']);
@@ -97,7 +97,7 @@ const AREAS = [{ id: 'shima', name: { zh: '志摩', ja: '志摩' } }] as never;
 test('buildStarterInput：只有航班的行程', () => {
   const i = buildStarterInput({ itinerary: emptyItinerary(), plan: null, votes: [], byId: new Map(), areas: AREAS, day: null });
   assert.equal(i.days.length, 12);
-  assert.equal(firstStarter(i).q, '幫我決定每晚住哪');
+  assert.equal(firstStarter(i).q, '幫我決定前幾晚住哪');
   assert.deepEqual(startProgress(i), { liked: false, lodging: false, stops: false, done: 0 });
 });
 

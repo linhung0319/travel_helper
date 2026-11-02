@@ -143,7 +143,7 @@ test('轉向：提議跨版面；直拿在行程頁的提議列按得到採用�
 
   // 採用得了
   await bar.getByTestId('proposal-adopt').click();
-  await page.getByTestId('planning-confirm').click();
+  await expect(page.getByTestId('planning-confirm')).toHaveCount(0);
   await expect(bar).toHaveCount(0);
   await expect(page.getByTestId('chat-proposal')).toContainText('已採用');
 });

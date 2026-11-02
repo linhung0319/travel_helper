@@ -321,7 +321,9 @@ test('沒有照片的點顯示類型色塊', async ({ page }) => {
   }, id);
   const fb = page.locator(`[data-testid="m-feed-item"][data-id="${id}"]`).getByTestId('m-thumb-fallback');
   await expect(fb).toBeVisible();
-  await expect(fb).toHaveText(/^[景餐宿站點]$/);
+  // T39：替代圖是類型色加線條圖示，不再寫字
+  await expect(fb).toHaveAttribute('data-type', /.+/);
+  await expect(fb.locator('svg').first()).toBeVisible();
 });
 
 /** 探索往下捲到約 y，點一張整張在畫面裡的（點左上角，避開右下角的票），回傳那張的 id；打開前實際的捲動位置記在 feedTop */
@@ -506,7 +508,7 @@ test('行程：卡片有縮圖和編號', async ({ page }) => {
     await expect(c.getByTestId('trip-card-no')).toBeVisible();
   }
   // 出發是 0
-  await expect(cards.first().getByTestId('trip-card-no')).toHaveText('0');
+  await expect(cards.first().getByTestId('trip-card-no')).toHaveText('起');
   // 卡片之間的交通卡，右邊是「map ↗」（§13.6）
   const leg = page.getByTestId('m-leg').first();
   await expect(leg).toBeVisible();
@@ -641,7 +643,7 @@ test('行程卡：沒有照片的點顯示類型色塊', async ({ page }) => {
   await pickDay(page, '2027-02-03');
   const fb = page.locator('[data-testid="m-card"][data-item="i-2"]').getByTestId('item-type');
   await expect(fb).toBeVisible();
-  await expect(fb).toHaveText('景');
+  await expect(fb).toHaveAttribute('data-type', 'spot');
 });
 
 test('交通開著時點卡片：交通收起、路線恢復，選中那張卡', async ({ page }) => {

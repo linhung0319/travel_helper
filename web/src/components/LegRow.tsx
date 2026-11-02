@@ -71,6 +71,7 @@ function lineAbove(steps: CompactStep[], i: number): Line {
   const prev = steps[i - 1];
   if (!prev) return null;
   if (prev.kind === 'ride') return RIDE_LINE(prev.mode);
+  if (prev.kind === 'taxi') return RIDE_LINE('taxi');
   if (prev.kind === 'transfer' || prev.walk != null) return WALK_LINE;
   return null;
 }
@@ -81,6 +82,7 @@ function lineBelow(steps: CompactStep[], i: number): Line {
   const next = steps[i + 1];
   if (!next) return null;
   if (next.kind === 'ride') return RIDE_LINE(next.mode);
+  if (next.kind === 'taxi') return RIDE_LINE('taxi');
   if (next.kind === 'transfer' || (s.kind === 'node' && s.walk != null)) return WALK_LINE;
   return null;
 }
@@ -145,6 +147,22 @@ export function LegSteps({ steps, leg, date, legKey }: { steps: CompactStep[]; l
                     {ticketTightText(leg.rides[s.board!], s.ticketTight)}
                   </span>
                 )}
+              </span>
+            </li>
+          );
+        }
+        if (s.kind === 'taxi') {
+          return (
+            <li key={i} className="leg-step ride" data-testid="leg-step-taxi">
+              <span className="leg-step-tm" />
+              <span className="leg-step-rail">
+                <RailLine line={RIDE_LINE('taxi')} part="full" />
+              </span>
+              <span className="leg-step-tx">
+                <span className="leg-ride" style={{ '--ride-c': RIDE_COLOR.taxi } as CSSProperties}>
+                  <ModeIcon mode="taxi" size="s" />
+                  <span className="leg-ride-name">計程車 {s.minutes} 分</span>
+                </span>
               </span>
             </li>
           );

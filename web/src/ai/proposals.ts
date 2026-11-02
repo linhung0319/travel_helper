@@ -1,12 +1,13 @@
 // 提議（規格 §3.3）：只在自己的畫面，不寫進後端；內容是操作清單，行程變了就重算，套不上就過期。
-// 採用：不在編輯中先確認「開始編輯？」，changeItinerary 寫入（先存快照），跳「復原」。
+// 採用：按了就是決定，直接用 changeItinerary 寫入（先存快照），跳「復原」；不進編輯模式（T39，interaction-design §16.1）。本來就在編輯中的留在編輯中。
 
 import { createStore, type StoreApi } from 'zustand/vanilla';
 import { ItineraryError } from '@travel-helper/engine';
 import type { Itinerary } from '@travel-helper/engine/types';
 import type { Candidate } from '../backend/types.ts';
 import { applyOps, placedByOps, withdrawnByOps, type Op } from './ops.ts';
-import { opsContext, type AiDeps } from './deps.ts';
+import { opsContext, placeName, type AiDeps } from './deps.ts';
+import { untagged } from './transcript.ts';
 
 export interface ActiveProposal {
   /** 提議卡（tool_use 的 ID） */
@@ -19,11 +20,9 @@ export interface ProposalState {
   active: ActiveProposal | null;
 }
 
-export type ProposalOutcome = 'confirmed' | 'cancelled' | 'stale' | 'failed';
+export type ProposalOutcome = 'confirmed' | 'stale' | 'failed';
 
 export interface ProposalDeps extends AiDeps {
-  /** 確認「開始編輯？」：使用者按確認回傳 true */
-  confirmPlanning(summary: string): Promise<boolean>;
   /** 提議卡的狀態變了（被新的取代、過期、採用後按了復原） */
   onCardChange(cardId: string, status: 'superseded' | 'stale' | 'undone'): void;
 }
@@ -46,12 +45,13 @@ export function createProposals(d: ProposalDeps): Proposals {
   // 採用中：changeItinerary 先改畫面，不要把這個變動當成別人改的再算一次
   let adopting = false;
   const after = (it: Itinerary, ops: Op[]) => applyOps(it, ops, opsContext(d));
+  const plain = (text: string) => untagged(text, (id) => placeName(d.data.getState().byId.get(id), id));
 
   function draw(ops: Op[], summary: string): string | null {
     const it = d.data.getState().itinerary;
     if (!it) return '還沒有行程';
     try {
-      const r = d.commands.showProposal(after(it, ops), { summary });
+      const r = d.commands.showProposal(after(it, ops), { summary: plain(summary) });
       return r.ok ? null : r.error;
     } catch (e) {
       if (e instanceof ItineraryError) return e.message;
@@ -85,14 +85,12 @@ export function createProposals(d: ProposalDeps): Proposals {
       return null;
     },
     async adopt(cardId, ops, summary) {
-      const app = d.app.getState();
-      if (!app.planning && !(await d.confirmPlanning(summary))) return 'cancelled';
-      // 可能在確認的時候別人改了行程：套不上就過期
+      // 可能別人剛改了行程：套不上就過期
       const it = d.data.getState().itinerary;
       if (!it) return 'failed';
       let dates: string[] = [];
       try {
-        const r = d.commands.showProposal(after(it, ops), { summary });
+        const r = d.commands.showProposal(after(it, ops), { summary: plain(summary) });
         if (!r.ok) {
           hide();
           return 'stale';
@@ -103,9 +101,8 @@ export function createProposals(d: ProposalDeps): Proposals {
         hide();
         return 'stale';
       }
-      // 編輯要選到某一天（選「整趟」會結束編輯）
+      // 看整趟時跳到改的那天，看得到結果
       if (d.app.getState().day === 'all') d.app.getState().selectDay(dates[0]);
-      d.app.getState().setPlanning(true);
       const removed: Candidate[] = [];
       const added: number[] = [];
       const withdrawn = withdrawnByOps(it, ops);

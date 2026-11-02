@@ -34,7 +34,8 @@ export function legModeName(mode: Leg['mode']): string {
 
 /** 交通卡標題第一行（第五輪 §3.1）：方式＋分鐘，例如「計程車 12 分」「大眾運輸 115 分」；none 是空字串 */
 export function legTitle(leg: Leg): string {
-  return leg.mode === 'none' ? '' : `${legModeName(leg.mode)} ${leg.minutes} 分`;
+  if (leg.mode === 'none') return '';
+  return `${legModeName(leg.mode)}${leg.taxiBefore || leg.taxiAfter ? '＋計程車' : ''} ${leg.minutes} 分`;
 }
 
 /** 計程車收合時的第二行（T29c spec §8.2，叫車要知道）：「大型 2 台或一般 4 台」；不是計程車回傳 null */
@@ -331,17 +332,37 @@ export function formatStay(minutes: number): string {
 // --- 順序編號 ---------------------------------------------------------------
 
 /**
- * 地圖和時間軸共用的編號（第五輪 §2）：起點一律是 0（住宿、航班抵達的機場或其他），之後依時間軸的順序 1、2、3…，
- * 終點（回到的住宿、出發的航班）接著編。分組的那天，先編各組的點（照組的順序），再編會合點。
+ * 地圖和時間軸共用的編號（第五輪 §2；T39 👤 改成字）：起點是「起」（住宿、航班抵達的機場或其他），中間依時間軸的順序 1、2、3…，
+ * 終點（回到的住宿、出發的航班）是「終」。分組的那天，先編各組的點（照組的順序），再編會合點。
+ * 這天沒有起點（前一晚還沒排住宿）時，第一個行程是 1，時間軸另外放一張「還沒有起點」（DayStartMissing）。
  * byPlace 是同一個點的所有號碼（依時間順序），地圖上顯示哪個交給 mapMark。isLodging 不再用到（起點不分住宿），留著相容舊的呼叫
  */
+/** 這天還沒有起點：有排行程，第一個不是起點也不是航班（前一晚還沒排住宿）；只有今晚住宿的空白天不算 */
+export const needsStart = (plan: DayPlan | null | undefined): boolean => {
+  const first = plan?.entries[0];
+  return !!first && first.kind !== 'start' && first.kind !== 'flight' && first.kind !== 'lodging';
+};
+
+export const START_MARK = '起';
+export const END_MARK = '終';
+
 export function stopMarks(day: DayPlan | null, _isLodging?: (placeId: string) => boolean): { byEntry: Map<TimelineEntry, string>; byPlace: Map<string, string[]> } {
   const byEntry = new Map<TimelineEntry, string>();
   const byPlace = new Map<string, string[]>();
-  let n = 0;
+  let n = 1;
+  const entries = day?.entries ?? [];
+  const first = entries[0];
+  const last = entries.at(-1);
+  const labelOf = (e: TimelineEntry) => {
+    if (e === first && (e.kind === 'start' || e.kind === 'flight')) return START_MARK;
+    if (e.kind === 'lodging') return END_MARK;
+    // 最後一天：起飛的航班是終點（到達那天只有航班時不算）
+    if (e === last && e.kind === 'flight' && entries.some((x) => x.kind !== 'flight')) return END_MARK;
+    return String(n++);
+  };
   const mark = (e: TimelineEntry) => {
     if (!e.placeId) return;
-    const label = String(n++);
+    const label = labelOf(e);
     byEntry.set(e, label);
     byPlace.set(e.placeId, [...(byPlace.get(e.placeId) ?? []), label]);
   };
@@ -354,10 +375,10 @@ export function stopMarks(day: DayPlan | null, _isLodging?: (placeId: string) =>
 
 /**
  * 地圖標記上寫的號碼（第五輪 §9.2）。marks 是這個點的所有號碼（stopMarks 的 byPlace）：
- * day：起終點同一點（有 0）→ 0，其他多個號碼用「・」連起來；
+ * day：起終點同一點（有「起」）→ 起，其他多個號碼用「・」連起來；
  * leg：這段的兩端寫這段兩張卡的號碼（leg.fromMark／toMark；同一點一天去兩次時才不會寫錯），
- *   沒給號碼時退回終點 → 最大、起點 → 最小；不在這段上的照 day；
- * trip：住宿是隔天的起點，呼叫的人傳隔天的 marks，規則同 day（有 0 就是 0）
+ *   沒給號碼時退回終點 → 這個點最後的號碼、起點 → 最前面的號碼；不在這段上的照 day；
+ * trip：住宿是隔天的起點，呼叫的人傳隔天的 marks，規則同 day（有「起」就是起）
  */
 export function mapMark(
   marks: string[],
@@ -366,11 +387,10 @@ export function mapMark(
   placeId?: string,
 ): string {
   if (scope === 'leg' && leg && placeId && marks.length) {
-    const nums = marks.map(Number);
-    if (placeId === leg.to) return leg.toMark ?? String(Math.max(...nums));
-    if (placeId === leg.from) return leg.fromMark ?? String(Math.min(...nums));
+    if (placeId === leg.to) return leg.toMark ?? marks.at(-1)!;
+    if (placeId === leg.from) return leg.fromMark ?? marks[0];
   }
-  return marks.includes('0') ? '0' : marks.join('・');
+  return marks.includes(START_MARK) ? START_MARK : marks.join('・');
 }
 
 const TYPE_LETTERS: Record<PlaceType | 'airport', string> = { lodging: '宿', spot: '景', restaurant: '食', station: '駅', airport: '機' };
@@ -420,6 +440,18 @@ export const exportFileName = (version: number) => `itinerary-v${version}.json`;
  * 資料卡上的時間：起點「09:30 出發」、終點「15:10 到住宿」只寫一個時間；
  * 其他「開始–結束」加停留分鐘（0 分只寫開始時間）；航班只寫一個時間（抵達／起飛，entry.start）。
  */
+/** 這晚是連住的第幾晚（同一間連在一起算）；這晚沒住宿是 null */
+export function stayNight(days: { date: string; lodging?: string | null }[], date: string): { n: number; total: number } | null {
+  const i = days.findIndex((d) => d.date === date);
+  const lodging = days[i]?.lodging;
+  if (!lodging) return null;
+  let first = i;
+  while (first > 0 && days[first - 1].lodging === lodging) first--;
+  let last = i;
+  while (last + 1 < days.length && days[last + 1].lodging === lodging) last++;
+  return { n: i - first + 1, total: last - first + 1 };
+}
+
 export function cardTime(entry: TimelineEntry): { text: string; stay: number | null } {
   if (entry.kind === 'start') return { text: `${entry.start} 出發`, stay: null };
   if (entry.kind === 'lodging') return { text: `${entry.arrive} 到住宿`, stay: null };

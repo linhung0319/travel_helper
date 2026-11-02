@@ -1,8 +1,7 @@
 import { useEffect, useMemo, useRef, useState, type SyntheticEvent } from 'react';
 import { whenNearViewport } from '../lib/nearViewport.ts';
 import { photoCandidates, underlayUrl } from '../lib/photos.ts';
-import { TYPE_ICON_NAMES, typeSwatch } from '../lib/typeStyle.ts';
-import { Icon } from './Icon.tsx';
+import { TypeArt } from '../shared/ui/TypeArt.tsx';
 import type { Place } from '../data/types.ts';
 
 interface Props {
@@ -54,12 +53,9 @@ export function Photo({ place, index = 0, width = 800, className, showName, only
 
   if (!url) {
     return (
-      <div className={`photo photo-fallback ${className ?? ''}`} style={typeSwatch(place.type)} data-testid="photo-fallback">
-        <span className="photo-fallback-icon">
-          <Icon name={TYPE_ICON_NAMES[place.type]} size={24} />
-        </span>
+      <TypeArt type={place.type} className={`photo photo-fallback ${className ?? ''}`} testId="photo-fallback">
         {showName && <span className="photo-fallback-name">{place.name.zh || place.name.ja}</span>}
-      </div>
+      </TypeArt>
     );
   }
   const loaded = known || loadedUrl === url;

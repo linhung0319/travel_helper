@@ -8,8 +8,7 @@ import { appStore } from '../../store.ts';
 import { useData, useShared } from '../../hooks.ts';
 import { Photo } from '../../components/Photo.tsx';
 import { photoCandidates } from '../../lib/photos.ts';
-import { cardTypeLetter } from '../../lib/planView.ts';
-import { typeSwatch } from '../../lib/typeStyle.ts';
+import { TypeArt } from './TypeArt.tsx';
 import { placeDayStatus } from '../../lib/wishlist.ts';
 import { isUserPlace, placeMetaText, userSubtitle } from '../../lib/addPlace/view.ts';
 import { PlaceTags } from './PlaceTags.tsx';
@@ -47,14 +46,10 @@ export function Highlights({ list }: { list: RowHighlight[] }) {
   );
 }
 
-/** 方形縮圖：有照片用照片（打不開自己換下一張），沒有就是類型色塊加一個字 */
+/** 方形縮圖：有照片用照片（打不開自己換下一張），沒有就是 TypeArt */
 function Square({ place }: { place: Place }) {
   if (!photoCandidates(place.photos).length) {
-    return (
-      <span className="pr-thumb pr-thumb-fallback" style={typeSwatch(place.type)} data-testid="m-thumb-fallback" aria-hidden>
-        {cardTypeLetter(place.type)}
-      </span>
-    );
+    return <TypeArt type={place.type} className="pr-thumb pr-thumb-fallback" testId="m-thumb-fallback" />;
   }
   return (
     <span className="pr-thumb">

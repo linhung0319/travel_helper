@@ -57,7 +57,16 @@ export interface CardState {
 }
 
 /** 存下來、畫在畫面上的一則訊息 */
+/** 一輪沒有回完的原因（記在這輪的第一則訊息，查問題用；沒有這個欄位又沒回完＝關掉或重新整理頁面） */
+export interface TurnFailure {
+  code: ModelErrorCode | 'stopped';
+  message: string;
+  at: string;
+}
+
 export interface ChatMessage extends ApiMessage {
+  /** 這輪為什麼沒有回完 */
+  failure?: TurnFailure;
   id: string;
   /** 一輪回覆的 ID：使用者的一句話，加上 AI 接著的所有訊息 */
   turn: string;
@@ -87,7 +96,8 @@ export interface ChatRepository {
   /** 目前這個人的對話，新的在前面 */
   listConversations(): Promise<ConversationSummary[]>;
   loadMessages(conversationId: string): Promise<ChatMessage[]>;
-  createConversation(title: string): Promise<ConversationSummary>;
+  /** id：瀏覽器先定好，畫面和模型不用等這個請求（T39）；沒給由後端定 */
+  createConversation(title: string, id?: string): Promise<ConversationSummary>;
   updateConversation(id: string, patch: Partial<Pick<ConversationSummary, 'title' | 'usage'>>): Promise<void>;
   appendMessages(conversationId: string, messages: ChatMessage[]): Promise<void>;
   /** 卡片按了之後更新那則訊息 */

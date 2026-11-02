@@ -1,10 +1,10 @@
 // 手機版的縮圖（第六輪 §3.2、Review Focus 4）：探索圖片牆、想去、行程卡都用。
-// 有照片就用 Photo（打不開時它自己換下一張、最後變成類型色塊）；沒有照片就是類型色塊加一個字（景、餐、宿、站、點），不會是破圖或空白。
+// 有照片就用 Photo（打不開時它自己換下一張、最後變成 TypeArt）；沒有照片就是 TypeArt，不會是破圖或空白。
 // 照片還沒載完（外站的原圖很大）時，底下是淡淡的類型色，不會是一格空白。
 
 import { photoCandidates } from '../lib/photos.ts';
-import { cardTypeLetter } from '../lib/planView.ts';
-import { TYPE_COLORS, typeSwatch } from '../lib/typeStyle.ts';
+import { TYPE_COLORS } from '../lib/typeStyle.ts';
+import { TypeArt, typeArtStyle } from '../shared/ui/TypeArt.tsx';
 import { Photo } from '../components/Photo.tsx';
 import type { Place } from '../data/types.ts';
 
@@ -16,8 +16,8 @@ export function Thumb({ place, size }: { place: Place; size: number | 'fill' }) 
   const cls = `m-thumb ${square ? 'm-thumb-square' : 'm-thumb-fill'}`;
   if (!photoCandidates(place.photos).length) {
     return (
-      <span className={`${cls} m-thumb-fallback`} style={{ ...square, ...typeSwatch(place.type) }} data-testid="m-thumb-fallback" aria-hidden>
-        {cardTypeLetter(place.type)}
+      <span className={`${cls} m-thumb-fallback`} style={{ ...square, ...typeArtStyle(place.type) }}>
+        <TypeArt type={place.type} className="m-thumb-art" testId="m-thumb-fallback" />
       </span>
     );
   }

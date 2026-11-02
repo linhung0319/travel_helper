@@ -1,7 +1,7 @@
 import { expect, type Page } from '@playwright/test';
 
 /** 等資料和地圖都好了（地圖上有畫出資料點） */
-export async function ready(page: Page) {
+export async function ready(page: Page, opts: { tab?: 'default' | 'trip' } = {}) {
   // 不連公開的 OSRM：行程線維持直線，結果固定（要測沿道路的測試在 ready 之後自己 page.route，後註冊的優先）
   await page.route('**/routing.openstreetmap.de/**', (route) => route.abort());
   await page.goto('/');
@@ -9,6 +9,13 @@ export async function ready(page: Page) {
     const th = (window as any).__th;
     return th && th.dataStore.getState().status === 'ready' && th.map.isStyleLoaded() && th.map.getLayer('places-circle');
   });
+  // T39 起進網站先看探索；既有的測試多半是從行程開始，測預設畫面的傳 tab: 'default'
+  if (opts.tab !== 'default') {
+    await page.evaluate(() => {
+      (window as any).__th.appStore.getState().setMode('map');
+      (window as any).__thMobile?.getState().setTab('trip');
+    });
+  }
 }
 
 /** 找一個 B 級（地圖上只是小點、沒有照片標記）的資料點 */

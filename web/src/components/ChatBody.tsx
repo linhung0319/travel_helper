@@ -130,7 +130,12 @@ function ToolLine({ turn }: { turn: ChatTurn }) {
   );
 }
 
-function Turn({ turn, last, versionOf, busy, incomplete, card, onQuick }: { turn: ChatTurn; last: boolean; versionOf: (id: string) => number; busy: boolean; incomplete: boolean; card: ChatBodyProps['card']; onQuick: (text: string) => void }) {
+/**
+ * 一輪的版面（T39）：順序固定是 查了什麼 → 字 → 卡片 → 快速選項。字進來的時候就在字該在的位置（live），
+ * 卡片等這輪回完才放到字的下面，和地圖、右欄同時變；一路往下長，不會有東西跳到別的位置。
+ */
+function Turn({ turn, last, versionOf, busy, incomplete, card, onQuick, live }: { turn: ChatTurn; last: boolean; versionOf: (id: string) => number; busy: boolean; incomplete: boolean; card: ChatBodyProps['card']; onQuick: (text: string) => void; live: ReactNode }) {
+  const running = last && busy;
   return (
     <>
       {turn.user && (
@@ -150,11 +155,13 @@ function Turn({ turn, last, versionOf, busy, incomplete, card, onQuick }: { turn
         {turn.texts.map((t, i) => (
           <RichText key={i} text={t} />
         ))}
-        {turn.uses.map((u) => (
-          <div key={u.block.id} className="ac-use" data-card={u.block.id}>
-            {card(u, versionOf(u.block.id))}
-          </div>
-        ))}
+        {running && live}
+        {!running &&
+          turn.uses.map((u) => (
+            <div key={u.block.id} className={`ac-use ${last ? 'new' : ''}`} data-card={u.block.id}>
+              {card(u, versionOf(u.block.id))}
+            </div>
+          ))}
         {incomplete && (
           <div className="ac-broken" data-testid="chat-incomplete">
             <Icon name="warn" size={16} /> 沒有回完
@@ -264,10 +271,11 @@ export function ChatBody({ card, empty, screenLabel, listOpen, closeList, onNewC
   }, [turns]);
   const incomplete = busy || error ? null : ai.incomplete();
   // 空白的新對話：卡片照現在的行程和畫面算（換到別天 screenLabel 會變）；按了問 AI 就用那邊帶的建議問題。不呼叫 AI（§17）
+  const loaded = useAi((s) => s.loaded);
   const blank = turns.length === 0 && !busy;
   // eslint-disable-next-line react-hooks/exhaustive-deps -- 只有這些變了才重算
-  const starters = useMemo(() => (blank ? ai.starters() : []), [blank, screenLabel, plan, itinerary, votes]);
-  const cards = blank && !quota ? blankCards(lead, suggestions, starters, contexts.length > 0) : [];
+  const starters = useMemo(() => (blank && loaded ? ai.starters() : []), [blank, loaded, screenLabel, plan, itinerary, votes]);
+  const cards = blank && !quota && loaded ? blankCards(lead, suggestions, starters, contexts.length > 0) : [];
   // 對話進行中按問 AI：建議問題放在輸入框上面
   const inlineSuggestions = blank ? [] : [...new Set([...(lead ? [lead.q] : []), ...suggestions])];
 
@@ -334,11 +342,32 @@ export function ChatBody({ card, empty, screenLabel, listOpen, closeList, onNewC
   };
 
   const send = (value: string) => {
-    if (busy || !value.trim()) return;
+    if (busy || !loaded || !value.trim()) return;
     ai.setDraftText('');
     stick.current = true;
     void ai.send(value);
   };
+
+  // 這輪進行中要畫的：放在 Turn 裡字的位置
+  const live = busy ? (
+    <div data-testid="chat-busy" data-status={status}>
+      {status === 'streaming' ? (
+        <div className="ac-streaming">
+          <RichText text={streamingView(streaming)} />
+          <i className="ac-caret" />
+        </div>
+      ) : (
+        <div className="ac-thinking">
+          {status === 'tools' ? '查資料中' : '想一下'}
+          <span className="ac-dots" aria-hidden>
+            <i />
+            <i />
+            <i />
+          </span>
+        </div>
+      )}
+    </div>
+  ) : null;
 
   const onKey = (e: KeyboardEvent<HTMLTextAreaElement>) => {
     // 輸入法選字中的 Enter 不算送出
@@ -355,31 +384,19 @@ export function ChatBody({ card, empty, screenLabel, listOpen, closeList, onNewC
           {blank && (
             <div className="ac-blank">
               {empty}
+              {!loaded && (
+                <div className="ac-cards-loading" data-testid="chat-loading" aria-hidden>
+                  <i />
+                  <i />
+                  <i />
+                </div>
+              )}
               {!!cards.length && <StarterCards cards={cards} onPick={send} />}
             </div>
           )}
           {turns.map((t, i) => (
-            <Turn key={t.id} turn={t} last={i === turns.length - 1} versionOf={(id) => versions.get(id) ?? 1} busy={busy} incomplete={t.id === incomplete} card={card} onQuick={send} />
+            <Turn key={t.id} turn={t} last={i === turns.length - 1} versionOf={(id) => versions.get(id) ?? 1} busy={busy} incomplete={t.id === incomplete} card={card} onQuick={send} live={live} />
           ))}
-          {busy && (
-            <div className="ac-ai" data-testid="chat-busy" data-status={status}>
-              {status === 'streaming' ? (
-                <div className="ac-streaming">
-                  <RichText text={streamingView(streaming)} />
-                  <i className="ac-caret" />
-                </div>
-              ) : (
-                <div className="ac-thinking">
-                  {status === 'tools' ? '查資料中' : '想一下'}
-                  <span className="ac-dots" aria-hidden>
-                    <i />
-                    <i />
-                    <i />
-                  </span>
-                </div>
-              )}
-            </div>
-          )}
           {error && !quota && (
             <div className="ac-strip err" data-testid="chat-error">
               <span>{error.message}</span>
@@ -454,7 +471,7 @@ export function ChatBody({ card, empty, screenLabel, listOpen, closeList, onNewC
                   <i />
                 </button>
               ) : (
-                <button type="button" className="ac-send" aria-label="送出" disabled={quota || !text.trim()} onClick={() => send(text)} data-testid="chat-send">
+                <button type="button" className="ac-send" aria-label="送出" disabled={quota || !loaded || !text.trim()} onClick={() => send(text)} data-testid="chat-send">
                   <Icon name="send" size={20} />
                 </button>
               )}
