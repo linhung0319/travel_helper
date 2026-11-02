@@ -1,5 +1,5 @@
 // LINE @ 機器人（T34）：核准的家人群組裡 @ 它，回最新的行程（只有結果：幾點到幾點做什麼、住哪、預約狀態）。只能查，不能改。
-// - 完全符合的指令（整趟、2/5、今天、明天、現在、預約、2/5 預約）直接回，不呼叫 AI。
+// - 完全符合的指令（整趟、2/5、今天、明天、現在、預約、2/5 預約、網址）直接回，不呼叫 AI。
 // - 其他問法交給 Haiku 分類（structured output）；回覆的內容一律由程式照摘要排，AI 只有「其他問題」才自己回一兩句。
 // - 時間軸是瀏覽器算的，這裡讀瀏覽器存的摘要（trip_summary）；預約狀態讀最新的 reservations。
 // - 「現在」一律是日本時間。
@@ -35,6 +35,7 @@ export type Intent =
   | { type: 'now' }
   | { type: 'reservations'; date: string | null }
   | { type: 'answer'; text: string }
+  | { type: 'url' }
   | { type: 'help' };
 
 /** 全形轉半形、拿掉空白和標點 */
@@ -62,6 +63,7 @@ export function parseCommand(text: string, today: string, days: string[]): Inten
   const t = normalize(text);
   if (!t || t === '說明' || t === '指令' || t.toLowerCase() === 'help') return { type: 'help' };
   if (t === '整趟') return { type: 'trip' };
+  if (t === '網址') return { type: 'url' };
   if (t === '現在' || t === '下一個') return { type: 'now' };
   if (t === '預約') return { type: 'reservations', date: null };
   const r = /^(.+?)的?預約$/.exec(t) ?? /^預約(.+)$/.exec(t);
@@ -106,13 +108,14 @@ const SYSTEM = `你是一個家族旅遊 LINE 群組裡的行程機器人，只�
 - now：問現在、接下來、下一個是什麼這類跟當下時間有關的。
 - reservations：問預約、訂位、訂好了沒。date 填那天的 YYYY-MM-DD，沒說哪天填 null。
 - answer：其他關於這趟行程的問題（例如「哪天去伊勢神宮」「2/5 住哪」「幾點要到機場」）。text 用繁體中文一兩句回答，只能根據 <trip> 裡的行程；行程裡沒有就說「行程裡沒有」，不要編時間、地點、店名。
+- url：要網站的網址、連結。
 - help：跟行程無關，或看不懂。
 沒用到的欄位填 null。`;
 
 const SCHEMA = {
   type: 'object',
   properties: {
-    type: { type: 'string', enum: ['trip', 'day', 'now', 'reservations', 'answer', 'help'] },
+    type: { type: 'string', enum: ['trip', 'day', 'now', 'reservations', 'answer', 'url', 'help'] },
     date: { anyOf: [{ type: 'string' }, { type: 'null' }] },
     text: { anyOf: [{ type: 'string' }, { type: 'null' }] },
   },
@@ -158,6 +161,7 @@ async function classify(env: Env, db: D1Database, question: string, summary: Tri
     switch (o?.type) {
       case 'trip':
       case 'now':
+      case 'url':
       case 'help':
         return { type: o.type };
       case 'day':
@@ -173,6 +177,17 @@ async function classify(env: Env, db: D1Database, question: string, summary: Tri
     console.error('機器人的 AI', e);
     return null;
   }
+}
+
+/**
+ * 「網址」：網站的網址，加上 LINE 的 openExternalBrowser=1，從 LINE 點開會用手機的預設瀏覽器（不是 LINE 內建的），
+ * 可以加到主畫面、登入狀態也比較不會被清掉（architecture §5「要注意的地方」）
+ */
+export function externalUrl(base: string | undefined): string {
+  if (!base) return '網站的網址還沒設定（PUBLIC_BASE_URL），請聯絡管理員';
+  const u = new URL(base);
+  u.searchParams.set('openExternalBrowser', '1');
+  return `用瀏覽器打開網站：\n${u.toString()}`;
 }
 
 /** ISO 時間 → 日本時間的 11/2 14:05 */
@@ -207,7 +222,9 @@ async function load(db: D1Database): Promise<Loaded | null> {
 /** 收到一則 @ 機器人的話：回覆的幾則文字 */
 export async function botReply(env: Env, db: D1Database, question: string, nowMs = Date.now()): Promise<string[]> {
   const link = env.PUBLIC_BASE_URL ? `\n網站：${env.PUBLIC_BASE_URL}` : '';
-  const help = `可以問：整趟、2/5、今天、明天、現在、預約、2/5 預約${link}`;
+  const help = `可以問：整趟、2/5、今天、明天、現在、預約、2/5 預約、網址${link}`;
+  // 網址不用讀行程（還沒有摘要時也回得出來）
+  if (normalize(question) === '網址') return [externalUrl(env.PUBLIC_BASE_URL)];
   const loaded = await load(db);
   if (!loaded) return [`行程還沒整理好：請有人打開網站看一次行程。${link}`];
   const { summary, stale, footer } = loaded;
@@ -221,6 +238,8 @@ export async function botReply(env: Env, db: D1Database, question: string, nowMs
   switch (intent.type) {
     case 'help':
       return [help];
+    case 'url':
+      return [externalUrl(env.PUBLIC_BASE_URL)];
     case 'answer':
       return [intent.text];
     case 'trip':

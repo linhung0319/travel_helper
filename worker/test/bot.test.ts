@@ -102,6 +102,7 @@ describe('指令', () => {
   const days = SUMMARY.days.map((d) => d.date);
   test('完全符合的才算，全形、空白、標點都不影響', () => {
     assert.deepEqual(parseCommand('整趟', '2027-02-03', days), { type: 'trip' });
+    assert.deepEqual(parseCommand('網址', '2027-02-03', days), { type: 'url' });
     assert.deepEqual(parseCommand(' ２／３？', '2027-02-03', days), { type: 'day', date: '2027-02-03' });
     assert.deepEqual(parseCommand('2月3日', '2027-02-03', days), { type: 'day', date: '2027-02-03' });
     assert.deepEqual(parseCommand('今天', '2027-02-03', days), { type: 'day', date: '2027-02-03' });
@@ -130,6 +131,14 @@ describe('指令', () => {
 describe('回覆', () => {
   test('還沒有摘要：請人打開網站', async () => {
     assert.match((await ask('整趟'))[0], /行程還沒整理好/);
+  });
+
+  test('網址：加上 openExternalBrowser，從 LINE 點開用手機的瀏覽器；還沒有摘要也回得出來', async () => {
+    assert.deepEqual(await ask('網址'), ['用瀏覽器打開網站：\nhttps://trip.example.dev/?openExternalBrowser=1']);
+    assert.match((await ask('網址', { PUBLIC_BASE_URL: undefined }))[0], /還沒設定/);
+    seed();
+    aiOutput = { type: 'url', date: null, text: null };
+    assert.deepEqual(await ask('網站連結給我'), ['用瀏覽器打開網站：\nhttps://trip.example.dev/?openExternalBrowser=1']);
   });
 
   test('一天、整趟：最後寫誰什麼時候更新；摘要跟不上時註明', async () => {
