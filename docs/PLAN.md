@@ -121,6 +121,7 @@
 | T33 | 討論彈窗（按鈕跟著問 AI，以資料點和日期為單位）、加地點入口和彈窗、網頁的類型列、拿掉套用的篩選晶片、上一步、快照移出編輯條 | M | T15 | 4 | | ✅ |
 | T34 | LINE @ 機器人：群組裡 @ 它，回最新行程的陽春時間表（幾點到幾點做什麼）、現在／下一個、預約狀態；完全符合的指令直接回，其他問法 Haiku 分類；AI 聊天室帶日本時間的 `now` | S | T16、T25（給家人用要 T30） | 4 | | ✅ |
 | T35 | 下載行程改成給人看的檔案：PDF 和 MD 都做，共用一份從時間軸整理的內容；每一程附錯過時的班次；不用 AI | S | T15（行程快定案時再做） | 4 | | ✅ |
+| T36 | AI 精簡：工具回傳瘦身（`get_trip_info` 分項、`get_timetable` 路線只回兩站、`get_place` 拿掉來源）、晶片完整內容只帶一次、回答長度規則、修 `decide()` 的 `placeIds` | S | T16 | 4 | | ⬜ |
 
 ---
 
@@ -195,6 +196,7 @@
                     （T15m、T16m 並行，現在就能做；規劃模式的提議要用 T15m 的時間軸）
                     （2026-10-31：T16m 拆成 T16m-a → T16m-b → T16m-c）
                     [T34 LINE @ 機器人]（T16 之後，一起決定要不要用 AI）
+                    [T36 AI 精簡]（T16 之後）
                     [T30 部署]（T25 之後；👤 資料和 schema 定案、邀請家人之前）
                                       │
 階段 6                        [T20 匯出給 Claude app]（行程定案後）
@@ -830,6 +832,28 @@ T7c → T7d → T7e → T7f → T7g → T8a → T8b → T8c → T8d → T7i → 
 - **實作**（2026-11-02）：`web/src/lib/tripExport.ts` 從時間軸整理成 `ExportDoc`（純函式，班次從 `departuresOf` 傳進來）；`tripExportFormat.ts` 排成 MD 和列印用的 HTML（A4、總覽一頁、一天一頁）；`web/src/shared/exportTrip.ts` 先讀詳情層（地址、電話、入住時間），PDF 把 HTML 放進看不見的 iframe 叫出列印視窗，MD 直接下載 `行程-v<版本>.md`。頭像選單和手機「我」都有「行程 PDF（列印）」「行程 MD（給 AI）」「備份（JSON）」。資料裡住宿方案是「方案不一」（varies）而這晚沒選的，不寫含不含餐。
 - **結果**：`npm test`（892）、`npm run typecheck`、`npm run build`、相關 e2e 通過；用 dev 的假資料看過 HTML 版面。
 - **還沒驗**：真的按「行程 PDF」叫出列印視窗、存成 PDF 的檔名和分頁（👤 用電腦版試）；手機（iOS、Android）和 LINE 內建瀏覽器的列印。
+
+### T36 AI 精簡：工具回傳、脈絡、回答長度 〔S〕
+- **為什麼**（2026-11-02 👤 提出）：盤點 AI 工具收到的資料夠不夠、會不會太多；回答要精簡，不要長篇大論；檢查聊天室的 context 管理。
+- **盤點結果**（2026-11-02，真資料、範例行程，token 是粗估）：
+  - 太多：`get_trip_info` 機場約 7.6k、票券約 5.1k（整份檔案，含 `sources`、`retrieved`、`openQuestions`）；`get_timetable` 查路線約 2.4k（整條路線來回的站、每班列所有站，只給站的代號）；`get_place` 的 `summary` 帶 `basedOn` 網址和 `generated`，每個分區多包一層（`"summary":{"summary":…}`）。
+  - 剛好：`search_places`、`get_day`、`get_trip_overview`、`get_route`、`get_opinions`、`get_reservations`。
+  - 脈絡：晶片送出後留著（interaction-design 的設計），但每一輪的 `turnContext` 都再塞一次完整內容；「某天」晶片約 1.5k，聊 10 輪就重複 10 次，佔「滿了」（10 萬）的 15%。
+  - 回答長度：系統提示只說「句子短」，沒有限制整段長度；「查了什麼結果、卡片在等什麼都要講」反而會讓 AI 重複卡片上的內容。
+  - bug：`chat.ts` 的 `decide()` 只讀 `placeId`，`add_candidate` 是 `placeIds`，傳給 AI 的決定摘要是空的。
+  - LINE 機器人：每則訊息獨立、不帶歷史、不存紀錄，符合需要，不改。
+- **要做**：
+  - `get_trip_info` 加分項參數，拿掉來源類欄位；`get_timetable` 查路線加 `from`、`to`，只回這兩站的時間、直接寫站名。
+  - `get_place` 拿掉 `basedOn`、`generated` 和多包的那一層。
+  - 晶片的完整內容只在這段對話第一次帶時放；之後同一個晶片只帶「同前」。
+  - 系統提示加回答長度的規則（先講結論、3～5 句或 5 點以內、卡片和地圖上有的不逐條重複、要細節才展開），調整「查了什麼結果都要講」那條。
+  - 修 `decide()` 的 `placeIds`。
+- **不能動的**：卡片讀的工具回傳欄位（`show_places` 的 `ids`、`propose_place_edit` 的 `before`、所有的 `ok`）；`starters()` 讀的 `get_trip_overview` 欄位。查資料工具的回傳畫面不讀，可以自由刪減。
+- **驗證**（2026-11-02 👤 決定，不打 AI API）：
+  - 程式的部分（回傳內容、晶片、`decide()`）寫單元測試，`npm test`。
+  - 資料夠不夠、回答長度：開 Sonnet 的 subagent 扮演網站的 AI（給它系統提示、工具說明，用腳本以 `aiHarness` 的真資料呼叫工具），跑代表題 S1 找地點、S5 路線、S10 檢查一天、S11 排一天，加上「機場怎麼去」「近鐵 5 日券划算嗎」「鷗巴士從鳥羽站到水族館」，改動前後各跑一次比較。
+  - `ai:eval` 不跑；之後正式網站上的行為和模擬明顯不同時才跑幾個代表題。
+- **完成條件**：`npm test`、`npm run typecheck` 通過；工具回傳變小的數字前後對照；subagent 模擬的回答前後對照（字數、有沒有因為少了資料答不出來）。
 
 ### T21 代表照片 〔M〕
 - 給 T11 的探索模式、小卡片用（[interaction-design.md](interaction-design.md) §7）。
