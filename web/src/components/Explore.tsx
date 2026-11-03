@@ -1,5 +1,7 @@
 // 電腦版右側的「探索」分頁：最上面是篩選列（shared/ui/FilterBar：搜尋、篩選、排序、照片牆／清單，套用的條件變成小晶片），一直黏在上面；
-// 「篩選」打開的抽屜蓋住整個右欄（FilterSheet），類型、地區、團體、情境、想去、等級、只看地圖畫面裡的都在裡面。
+// 「篩選」打開的抽屜蓋住整個右欄（FilterSheet），類型、團體、天氣、情境、想去、等級、只看地圖畫面裡的都在裡面。
+// 篩選列下面一列是地區（T42，interaction-design §20）：探索沒選地區、沒搜尋、沒其他條件時是概覽（ExploreOverview），選了一區是頂端加書架（AreaHome），
+// 其他時候才是照片牆或清單。目前地區就是 filter.areas（只有一區時），換到想去時跟著走（store 的 setMode），地圖飛過去。
 // 清單可以切換照片牆（兩欄，PlaceTile）或清單列（PlaceRow，88px），都是兩邊共用的元件；滑鼠移上去呼叫 appStore.hover（地圖的指到），
 // 點了原地展開（第八輪 §13.3：照片牆橫跨兩欄、清單在原地，介紹、優缺點、「詳細資料 ›」）並選中（地圖的水滴），再點一次收起；按「詳細資料」才開詳情。想去一樣。
 // 反過來，在探索、想去分頁點地圖上的點（mapPick.ts）：詳情彈窗蓋住整個右欄，不再捲到卡片（第八輪 §13.3）；revealInExplore（AI、測試用）才捲到那張卡。
@@ -13,12 +15,17 @@
 import { memo, useCallback, useDeferredValue, useEffect, useRef, useState } from 'react';
 import { appStore, type DetailTabId } from '../store.ts';
 import { commands } from '../appCommands.ts';
-import { useApp } from '../hooks.ts';
-import type { FilterKey } from '../lib/filter.ts';
+import { useApp, useData } from '../hooks.ts';
 import type { ExploreSort } from '../lib/explore.ts';
 import type { Place } from '../data/types.ts';
 import { AddPlaceSuggest, useSuggestOwnsEmpty } from '../shared/ui/AddPlaceSuggest.tsx';
-import { TypeChips } from '../shared/ui/TypeChips.tsx';
+import { AreaChips } from '../shared/ui/AreaChips.tsx';
+import { AreaHome, ExploreOverview } from '../shared/ui/ExploreHome.tsx';
+import { areaOnly, currentArea, exploreStage } from '../lib/shelves.ts';
+import { EMPTY_FILTER, type Filter, type FilterKey } from '../lib/filter.ts';
+import { initialExtent } from '../lib/areas.ts';
+import { dataStore } from '../dataStore.ts';
+import { displayName } from '../data/normalize.ts';
 import { addPlaceStore } from '../addPlaceStore.ts';
 import { FilterBar, type FilterModel } from '../shared/ui/FilterBar.tsx';
 import { dragPlaceProps } from './askAi.ts';
@@ -99,6 +106,34 @@ const Item = memo(function Item({ place, rank, view, hot, statusOf, isOpen, onTo
   return view === 'list' ? <PlaceRow {...props} /> : <PlaceTile {...props} />;
 });
 
+/** 地區列：換地區（子地區清掉、取消選中的點），地圖飛過去；概覽（null）時看整個伊勢志摩。「自己加 N」一起取消 */
+function pickArea(area: string | null) {
+  const s = appStore.getState();
+  wishPrefs.getState().setUserOnly(false);
+  s.select(null);
+  s.setFilter({ areas: area ? [area] : [], regions: [] });
+  if (area) commands.focus({ area });
+  else {
+    const { areas, places } = dataStore.getState();
+    const bbox = initialExtent(areas, places);
+    if (bbox) commands.focus({ bbox });
+  }
+}
+
+/** 選區後的子地區列：一次一個；null 是整區 */
+function pickRegion(region: string | null) {
+  const s = appStore.getState();
+  s.setFilter({ regions: region ? [region] : [] });
+  const area = currentArea(s.filter);
+  if (region) commands.focus({ region });
+  else if (area) commands.focus({ area });
+}
+
+/** 書架的「全部 ›」：套那組條件 */
+function applyShelf(filter: Filter) {
+  appStore.getState().setFilter(filter);
+}
+
 /** 面板裡點一個選項：地區一次一個（選了地圖跳過去，小區域也是），其他是開關 */
 function pickOption(key: FilterKey, value: string) {
   const s = appStore.getState();
@@ -149,7 +184,8 @@ export function ExplorePanel({ source = 'explore' }: { source?: ListSource }) {
   // 打字時輸入框先跟上，清單晚一點算（T32）
   const listQuery = useDeferredValue(query);
   const { pool, list: every } = usePlaceList(source, filter, listQuery, sort, bounds);
-  const userChip = useWishUserChip(pool, every, () => appStore.getState().setFilter({ types: [] }));
+  // 「自己加 N」：選它時類型、地區回到全部
+  const userChip = useWishUserChip(pool, every, () => appStore.getState().setFilter({ types: [], areas: [], regions: [] }));
   const all = wish ? userChip.list : every;
   const { aiResult, list, sortByAi, setSortByAi, aiProps } = useAiPicked(all, source === 'explore');
   const { shown, moreRef, reveal, hasMore } = useBatch({ total: list.length, batch: BATCH, resetOn: [filter, listQuery, sort, aiResult], scroller: '.side-body' });
@@ -188,17 +224,34 @@ export function ExplorePanel({ source = 'explore' }: { source?: ListSource }) {
     inView,
     setInView,
     pick: pickOption,
-    // 類型在外面一列，不跟著清掉（同手機）
+    // 地區、子地區在外面一列，不跟著清掉（同手機）
     clear: () => {
-      const { types } = appStore.getState().filter;
-      appStore.getState().clearFilter();
-      appStore.getState().setFilter({ types });
+      const { areas, regions } = appStore.getState().filter;
+      appStore.getState().setFilter({ ...EMPTY_FILTER, areas, regions });
       setInView(false);
     },
     ...(wish ? {} : { onAdd: () => addPlaceStore.getState().openEntry() }),
     onAsk: () => askList(source, filter, query, list.length),
     ...(aiResult ? { ai: { title: aiResult.title, total: aiResult.ids.length, sortByAi, setSortByAi, onClear: () => commands.clearResult() } } : {}),
   };
+
+  // 探索這時畫哪一種：概覽、選了一區（書架）、照片牆或清單（想去一律是清單）
+  const stage = wish ? 'list' : exploreStage(filter, listQuery, !!aiResult);
+  const area = currentArea(filter);
+  const areaName = useData((s) => {
+    const a = area ? s.areas.find((x) => x.id === area) : undefined;
+    return a ? displayName(a.name, a.id) : null;
+  });
+  // 選了一區、但套了其他條件或搜尋：「‹ 鳥羽」回到書架
+  const backToArea = !wish && !aiResult && stage === 'list' && areaName && (
+    <button type="button" className="ex-back-area flat" onClick={() => {
+        appStore.getState().setFilter(areaOnly(appStore.getState().filter));
+        appStore.getState().setQuery('');
+        setInView(false);
+      }} data-testid="back-to-area">
+      ‹ {areaName}
+    </button>
+  );
 
   return (
     <div className={`explore-panel source-${source}`} data-testid={source === 'wish' ? 'wish-panel' : 'explore-panel'}>
@@ -207,11 +260,16 @@ export function ExplorePanel({ source = 'explore' }: { source?: ListSource }) {
         surface="desktop"
         model={model}
         count={list.length}
-        typeRow={<TypeChips value={filter.types.length === 1 ? filter.types[0] : 'all'} selected={filter.types} onPick={(type) => { wishPrefs.getState().setUserOnly(false); appStore.getState().setFilter({ types: type === 'all' ? [] : [type] }); }} prefix="ex" testId="ex-type-chips" extra={wish ? userChip.chip : undefined} />}
+        typeRow={<AreaChips value={filter.areas.length === 1 ? filter.areas[0] : null} onPick={pickArea} firstLabel={wish ? '全部' : '概覽'} prefix="ex" testId="ex-area-chips" extra={wish ? userChip.chip : undefined} />}
       />
       {!wish && <AddPlaceSuggest query={query} surface="desktop" />}
-      <div className={`ex-list view-${view} source-${source}`} ref={ref}>
-        {wish ? (
+      {backToArea}
+      <div className={`ex-list view-${stage === 'list' ? view : stage} source-${source}`} ref={ref}>
+        {stage === 'overview' ? (
+          <ExploreOverview surface="desktop" onOpen={(id) => open(id)} onPickArea={pickArea} />
+        ) : stage === 'area' && area ? (
+          <AreaHome areaId={area} regionId={filter.regions.length === 1 ? filter.regions[0] : null} surface="desktop" onPickRegion={pickRegion} onOpen={(id) => open(id)} onShelfAll={applyShelf} />
+        ) : wish ? (
           <WishList
             surface="desktop"
             places={list}
@@ -236,8 +294,8 @@ export function ExplorePanel({ source = 'explore' }: { source?: ListSource }) {
             ))}
           </ol>
         )}
-        {!wish && hasMore && <div ref={moreRef} className="ex-next" aria-hidden />}
-        {list.length === 0 && aiResult && (
+        {stage === 'list' && !wish && hasMore && <div ref={moreRef} className="ex-next" aria-hidden />}
+        {stage === 'list' && list.length === 0 && aiResult && (
           <div className="muted ex-empty" data-testid="ai-result-empty">
             <p>AI 挑的 {aiResult.ids.length} 家沒有符合這些篩選的。</p>
             <button type="button" className="button small" onClick={() => {
@@ -248,8 +306,8 @@ export function ExplorePanel({ source = 'explore' }: { source?: ListSource }) {
             </button>
           </div>
         )}
-        {list.length === 0 && !aiResult && wish && pool.length === 0 && <WishEmpty onExplore={() => appStore.getState().setMode('explore')} onAsk={askWishEmpty} />}
-        {list.length === 0 && !aiResult && (wish || !ownsEmpty) && !(wish && pool.length === 0) && <p className="muted ex-empty">沒有符合的地點，取消一些篩選看看。</p>}
+        {stage === 'list' && list.length === 0 && !aiResult && wish && pool.length === 0 && <WishEmpty onExplore={() => appStore.getState().setMode('explore')} onAsk={askWishEmpty} />}
+        {stage === 'list' && list.length === 0 && !aiResult && (wish || !ownsEmpty) && !(wish && pool.length === 0) && <p className="muted ex-empty">沒有符合的地點，取消一些篩選看看。</p>}
       </div>
     </div>
   );

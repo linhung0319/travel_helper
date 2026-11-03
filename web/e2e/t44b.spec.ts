@@ -1,11 +1,13 @@
 // T44b：卡片標章、詳情重整（網頁）。截圖存到 SHOTS_DIR（沒設就不存）。
 import { test, expect } from '@playwright/test';
-import { ready } from './helpers.ts';
+import { exploreAll, ready } from './helpers.ts';
 
 const shot = (name: string) => (process.env.SHOTS_DIR ? { path: `${process.env.SHOTS_DIR}/${name}.png` } : {});
 
 test('探索的卡：這團的標章，沒有 ★', async ({ page }) => {
   await ready(page, { tab: 'default' });
+  // T42：探索預設是概覽，先列出全部
+  await exploreAll(page);
   const card = page.locator('[data-testid="explore-item"], .pt, .pr').filter({ hasText: '海遊館' }).first();
   await expect(card).toContainText('小孩 ◎');
   await expect(card).toContainText('室內');

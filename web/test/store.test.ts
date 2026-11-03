@@ -183,3 +183,19 @@ test('打開詳情：指到的光圈拿掉（最終 review #8）', () => {
   assert.equal(store.getState().hoveredId, null);
   assert.equal(store.getState().hoverFromMap, false);
 });
+
+test('目前地區（T42）：探索、想去共用地區、子地區，其他條件各自記', () => {
+  const store = createAppStore();
+  const s = () => store.getState();
+  s().setFilter({ areas: ['toba'], regions: ['osatsu'], types: ['spot'] });
+  s().setMode('wish');
+  assert.deepEqual(s().filter.areas, ['toba']);
+  assert.deepEqual(s().filter.regions, ['osatsu']);
+  assert.deepEqual(s().filter.types, []);
+  // 在想去換到概覽（全部），回到探索也是概覽；探索自己的類型還在
+  s().setFilter({ areas: [], regions: [] });
+  s().setMode('explore');
+  assert.deepEqual(s().filter.areas, []);
+  assert.deepEqual(s().filter.regions, []);
+  assert.deepEqual(s().filter.types, ['spot']);
+});

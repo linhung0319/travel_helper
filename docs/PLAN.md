@@ -127,7 +127,7 @@
 | T39 | 試用回饋：登入頁插畫、進網站看探索、載入順序（AI → 探索 → 地圖）、AI 回答（馬上顯示、版面不跳、字數、格式、工具一次叫齊、effort low）、採用不進編輯、起點一行、預設圖片、地圖不放愛心、錯誤訊息、「想去的」篩選 | M | T38 | 4 | 🌐 少量 | ✅ |
 | T40 | 地區資料：每區、每個子地區給人看的介紹（一句特色、代表的點、二月注意、要不要搭車），探索概覽和 AI 共用 | S | — | 4 | 🌐 少量 | ✅ |
 | T41 | AI：讀地區的工具；`search_places` 加室內、能包棟、最多幾人；「適合長輩／小孩」不再排掉沒分數的點 | S | T40 | 4 | | ✅ |
-| T42 | 探索的概覽（進網站的第一頁）、地區列取代類型列（探索、想去）、類型收進篩選、選區後的子地區列和書架 | M | T40 | 4 | | ⬜ |
+| T42 | 探索的概覽（進網站的第一頁）、地區列取代類型列（探索、想去）、類型收進篩選、選區後的子地區列和書架 | M | T40 | 4 | | ✅ |
 | T43 | 地圖分層：縮遠只寫區名和 S、A 級景點；選區時畫那區的範圍、其他區變淡；放大才出現餐廳、住宿 | S | T42 | 4 | | ⬜ |
 | T44a | 資料裡整理時的筆記（「見 conflicts」「jeepe 說」這類）移出給人看的欄位；`validate` 加檢查 | S | — | 4 | | ✅ |
 | T44b | 卡片標章（長輩、小孩、室內、二月休）、詳情重整（這團的重點在前，其他收進「更多」） | M | T44a | 4 | | ✅ |
@@ -990,6 +990,13 @@ T7c → T7d → T7e → T7f → T7g → T8a → T8b → T8c → T8d → T7i → 
 - **👤 開工前確認**（2026-11-03 已定，照建議）：子地區只在選了一區後出現；類型收進篩選面板，包括手機。
 - **驗證**：單元測試（書架的條件、目前地區的狀態）；e2e 加概覽和選區；網頁、手機截圖給 👤 看。
 - **完成條件**：`npm test`、`npm run typecheck`、`npm run e2e` 通過；👤 看過截圖。
+- **結果**（2026-11-03，👤 決定 merge）：畫面寫在 interaction-design §20（T44b、T45b 先用了 §18、§19）。`npm test` 970、typecheck、validate 通過；e2e 只跑受影響的（👤 同意不跑全部）：網頁 8 個 spec（ai-web、commands、detail-popup、flows、t15m、t32、t33、ui-fixes）加新的 `t42.spec.ts`，手機 mobile、mobile-ai、mobile-t32、mobile-add-place、mobile-ui-fixes 加新的 `mobile-t42.spec.ts`（mobile-small 只跑後三個；mobile-add-place 一個長按地圖的測試第一次等地圖逾時、重跑過）。
+  - 書架的條件在 `web/src/lib/shelves.ts`（`SHELVES`、`shelfRows`、`exploreStage`）；Filter 多一個 `indoor`（面板「天氣：下雨也行」，`set_filter` 也收），merge 時對齊 T41 的 `search_places`：景點要 `indoor` 是 true，餐廳、住宿不受影響；書架「下雨也行」只放景點。
+  - 目前地區沿用 `filter.areas`（網頁）、`feed.area`（手機），探索、想去換分頁時地區、子地區跟著走；「正在看」寫「概覽」「鳥羽」「想去・鳥羽」，AI 的脈絡多帶 `area`。換地區時取消選中的點。
+  - 修了一個連帶的問題：分批畫的底部標記晚出現（概覽換成清單、總數沒變）時不會再觀察，捲到底不多畫（`useBatch` 改用 callback ref）。
+  - e2e：概覽變成預設後，測照片牆、清單本身的舊測試先呼叫 `exploreAll`（面板裡三類全選，等於全部的地點）；類型晶片的測試改成從面板選。
+  - **merge**：master 已有 T41、T44b、T45a～c、T47；衝突在 `data/types.ts`（用 T41 的型別）、`ui.css`（兩邊都加在檔尾）。T44b、T37 新的 e2e 也假設一進探索是照片牆，跟著加 `exploreAll`。merge 後 `npm test` 1029、typecheck 通過；e2e 跑網頁 t42、t44b、t37、t45b、t33、flows、commands，手機 mobile-t42、mobile-t44b、mobile-t37、mobile-t45b、mobile-ui-fixes、mobile、mobile-ai、mobile-t32（mobile 兩個行程分頁的測試第一次失敗、單獨重跑通過）。
+  - **還沒做／沒驗證**：iPad 沒截圖；地圖的「選區範圍、其他區變淡」是 T43；概覽的照片用代表點的原圖（縮圖是 §6 待確認）。
 
 #### T43 地圖分層 〔S〕
 - **縮遠**（看得到兩區以上）：地區標籤（區名，白底靛藍框），只畫 S、A 級景點；餐廳、住宿、其他景點放大到一區才出現。

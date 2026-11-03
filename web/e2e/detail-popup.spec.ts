@@ -2,7 +2,7 @@
 // 從右欄的卡開＝蓋在地圖右側、貼著右欄；從地圖上的點開＝蓋住整個右欄；同時只有一個，開著時原地換內容、「‹」一路退回；
 // ✕、Esc、點地圖空白處關掉，右欄原樣回來；位置分頁的「附近」點一列＝地圖上那個點跳，彈窗不動。
 import { test, type Page } from '@playwright/test';
-import { centerOn, expect, findPlaceId, ready, waitIdle } from './helpers.ts';
+import { centerOn, expect, findPlaceId, ready, waitIdle, exploreAll } from './helpers.ts';
 
 const th = (page: Page, expr: string) => page.evaluate((e) => new Function(`return ${e}`)(), expr);
 const box = async (page: Page, sel: string) => (await page.locator(sel).first().boundingBox())!;
@@ -28,6 +28,7 @@ async function clickBlankMap(page: Page) {
 test('從右欄的卡開：彈窗蓋在地圖右側、貼著右欄（380 寬），右欄不動、展開的卡還在', async ({ page }) => {
   await ready(page);
   await page.getByTestId('side-tab-explore').click();
+  await exploreAll(page);
   const id = (await page.locator('[data-testid="explore-item"][data-rank="1"]').getAttribute('data-id'))!;
   const card = page.locator(`[data-testid="explore-item"][data-id="${id}"]`);
   await card.click();
@@ -71,6 +72,7 @@ test('從地圖上的點開：彈窗蓋住整個右欄（四周留 8px），不�
 test('同時只有一個彈窗：開著時點地圖上別的點＝原地換內容（位置不變），「‹ 上一個的名字」一路退回', async ({ page }) => {
   await ready(page);
   await page.getByTestId('side-tab-explore').click();
+  await exploreAll(page);
   const a = 'toba-aquarium';
   const b = 'ise-naiku';
   const c = 'ise-geku';
@@ -108,6 +110,7 @@ test('同時只有一個彈窗：開著時點地圖上別的點＝原地換內�
 test('關掉：Esc、點地圖空白處；展開的卡、選中都不動', async ({ page }) => {
   await ready(page);
   await page.getByTestId('side-tab-explore').click();
+  await exploreAll(page);
   const id = (await page.locator('[data-testid="explore-item"][data-rank="1"]').getAttribute('data-id'))!;
   const card = page.locator(`[data-testid="explore-item"][data-id="${id}"]`);
   await card.click();

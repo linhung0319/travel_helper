@@ -282,3 +282,19 @@ test('手機打開班次表（大彈窗）：開、關都不動行程面板的�
   assert.equal(uiStore.getState().timetable, null);
   s.setSnap('mid');
 });
+
+test('目前地區（T42）：手機的探索、想去共用地區、子地區，其他條件各自記', () => {
+  const m = mobileStore.getState();
+  m.setFeed({ type: 'all', area: null, quick: [], query: '' });
+  m.setWish({ type: 'all', area: null, quick: ['votes:mine'], query: '' });
+  mobileStore.getState().setFeed({ area: 'toba', quick: ['regions:osatsu', 'tiers:S'] });
+  assert.equal(mobileStore.getState().wish.area, 'toba');
+  assert.deepEqual(mobileStore.getState().wish.quick, ['votes:mine', 'regions:osatsu']);
+  // 想去換子地區：探索跟著換，探索自己的等級還在
+  mobileStore.getState().toggleWishQuick('regions:osatsu');
+  assert.deepEqual(mobileStore.getState().feed.quick, ['tiers:S']);
+  mobileStore.getState().setWish({ area: null });
+  assert.equal(mobileStore.getState().feed.area, null);
+  mobileStore.getState().setFeed({ type: 'all', area: null, quick: [], query: '' });
+  mobileStore.getState().setWish({ type: 'all', area: null, quick: [], query: '' });
+});

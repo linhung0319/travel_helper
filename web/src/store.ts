@@ -235,7 +235,7 @@ export function createAppStore(init: Partial<AppState> = {}) {
       set((s) => ({ filter: { ...s.filter, [key]: toggleValue(s.filter[key] as string[], value) } })),
     clearFilter: () => set({ filter: EMPTY_FILTER }),
     setQuery: (query) => set({ query }),
-    // 換分頁取消選中；探索、想去的篩選、搜尋換成那頁自己的
+    // 換分頁取消選中；探索、想去的篩選、搜尋換成那頁自己的，只有目前地區（地區、子地區）跟著走（T42，interaction-design §20）
     setMode: (mode) =>
       set((s) => {
         if (mode === s.mode) return { mode };
@@ -243,7 +243,8 @@ export function createAppStore(init: Partial<AppState> = {}) {
         const to = ownerOf(mode);
         if (from === to) return { mode, selectedId: null };
         const filterStash = { ...s.filterStash, [from]: { filter: s.filter, query: s.query } };
-        return { mode, selectedId: null, filterStash, filter: filterStash[to].filter, query: filterStash[to].query };
+        const filter = { ...filterStash[to].filter, areas: s.filter.areas, regions: s.filter.regions };
+        return { mode, selectedId: null, filterStash, filter, query: filterStash[to].query };
       }),
     setPlanning: (planning) => set({ planning }),
     hover: (hoveredId, from) => {

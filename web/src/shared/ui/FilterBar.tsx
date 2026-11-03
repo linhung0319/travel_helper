@@ -1,5 +1,5 @@
 // 篩選列（手機、網頁同一個元件，探索和想去共用）：第一列搜尋框、「篩選」（有條件時顯示數字，類型不算）、排序（晶片選單）；
-// 第二列類型晶片（typeRow 由呼叫的畫面給）和照片牆／清單切換；第三列幾個地點、「＋ 加地點」（只有探索）、問 AI。
+// 第二列地區晶片（typeRow 由呼叫的畫面給，T42 從類型換成地區）和照片牆／清單切換；第三列幾個地點、「＋ 加地點」（只有探索）、問 AI。
 // 套用了什麼條件不列出來（T33）：要看就點「篩選」，打開 FilterSheet（手機底部面板、網頁右欄抽屜）。
 // 網頁：整組黏在右欄上面。手機：整組也黏在最上面（2026-11-02 👤，探索、想去是整頁，高度夠）；螢幕太矮或鍵盤開著時（ui.css 的 .fb-stick）只留第一列，其他的跟著內容捲走。
 // 資料來自 FilterModel：網頁接 appStore 的 filter，手機接 mobileStore 的 feed／wish，這裡不認得是哪一個 store。
@@ -17,7 +17,7 @@ export type ListView = 'photo' | 'list';
 
 /** 篩選列要的資料和動作（網頁、手機各自接自己的 store） */
 export interface FilterModel {
-  /** 目前套用的條件（手機的類型在外面一列，這裡仍然帶著，appliedChips 決定要不要列） */
+  /** 目前套用的條件（地區在外面一列，這裡仍然帶著，appliedChips 決定要不要算） */
   filter: Filter;
   query: string;
   setQuery(q: string): void;
@@ -136,8 +136,8 @@ export function FilterBar({ source, surface, model, count, typeRow }: { source: 
   const [open, setOpen] = useState(false);
   const rootRef = useRef<HTMLDivElement>(null);
   const desktop = surface === 'desktop';
-  // 類型在下面那列晶片，不算進「篩選」的數字；「只看地圖畫面裡的」不是 Filter 的欄位，另外算一個
-  const n = appliedChips(model.filter, areas, { includeType: false }).length + (model.inView ? 1 : 0);
+  // 地區、子地區在外面，不算進「篩選」的數字；「只看地圖畫面裡的」不是 Filter 的欄位，另外算一個
+  const n = appliedChips(model.filter, areas).length + (model.inView ? 1 : 0);
   const searchTestId = desktop ? 'search' : source === 'wish' ? 'm-wish-search' : 'm-feed-search';
 
   const backButton = model.onBack && (

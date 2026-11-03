@@ -1,7 +1,7 @@
 // PLAN T11 的完成條件：找到一個點 → 看小卡片 → 開詳情 → 關掉；切換天數；套用、取消篩選；
 // 切到探索、只列地圖畫面裡的，移動地圖時清單跟著換（電腦版；手機版在 mobile*.spec.ts）。另外看車站面板和照片打不開時的替代圖。
 import { test } from '@playwright/test';
-import { centerOn, expect, findPlaceId, pickFilter, pickType, ready } from './helpers.ts';
+import { centerOn, expect, findPlaceId, pickFilter, pickType, ready, exploreAll } from './helpers.ts';
 
 test.beforeEach(async ({ page }) => {
   await ready(page);
@@ -53,14 +53,14 @@ test('套用、取消篩選', async ({ page }) => {
   await page.getByTestId('side-tab-explore').click();
   await pickType(page, 'restaurant');
   await pickFilter(page, 'tier-S');
-  // 類型不算進篩選的數字（T33）
-  await expect(page.getByTestId('filter-count')).toHaveText('1');
+  // 類型在面板裡，算進篩選的數字（T42）
+  await expect(page.getByTestId('filter-count')).toHaveText('2');
   expect((await filter()).tiers).toEqual(['S']);
   expect(await dimSpotNow()).toBe(true);
   // 打開面板再點一次取消
   await pickFilter(page, 'tier-S');
   expect((await filter()).tiers).toEqual([]);
-  await expect(page.getByTestId('filter-count')).toHaveCount(0);
+  await expect(page.getByTestId('filter-count')).toHaveText('1');
   await page.getByTestId('side-tab-day').click();
   // 回到行程：篩選留著（行程分頁的地圖不套、也沒有篩選列）
   expect((await filter()).types).toEqual(['restaurant']);
@@ -141,12 +141,11 @@ test('照片打不開時顯示替代圖', async ({ page }) => {
   await expect(detail.locator('img.photo[src]')).toHaveCount(0);
 });
 
-test('區域來自 areas.json：篩選的區域選項和 areas.json 一樣', async ({ page }) => {
+test('區域來自 areas.json：地區列（T42）和 areas.json 一樣', async ({ page }) => {
   const names = await page.evaluate(() => (window as any).__th.dataStore.getState().areas.map((a: any) => a.name.zh || a.name.ja));
   expect(names.length).toBeGreaterThan(0);
   await page.getByTestId('side-tab-explore').click();
-  await page.getByTestId('filter-open').click();
-  const areas = page.getByTestId('filter-sheet').locator('[data-group="area"]');
+  const areas = page.getByTestId('ex-area-chips');
   for (const n of names) await expect(areas.getByRole('button', { name: n, exact: true })).toBeVisible();
 });
 
@@ -154,6 +153,7 @@ test('問 AI：把探索卡片、詳情標題拖到聊天室', async ({ page }) 
   await page.waitForFunction(() => !!(window as any).__th?.ai);
   const chips = () => page.evaluate(() => (window as any).__th.ai.store.getState().contexts.map((c: any) => c.id) as string[]);
   await page.getByTestId('side-tab-explore').click();
+  await exploreAll(page);
   const first = page.getByTestId('explore-item').first();
   const id = (await first.getAttribute('data-id'))!;
   await first.dragTo(page.locator('.chat-column'));
