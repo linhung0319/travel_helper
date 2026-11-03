@@ -73,6 +73,18 @@ export function initialExtent(areas: Area[], places: Place[]): Bbox | null {
   return groups.length ? areasExtent(groups[0], places) : null;
 }
 
+/**
+ * 地圖能拖到的範圍（maxBounds，T47）：所有區域的 bbox（行政界）外加一圈邊，關西機場到志摩都在裡面。
+ * 沒有範圍限制時縮到全世界要抓約 14 MB 的圖磚。沒有區域時回傳 null（不限制）。
+ */
+export function mapMaxBounds(areas: Area[], margin = 0.4): Bbox | null {
+  const u = unionBbox(areas.map((a) => a.bbox));
+  return u && [u[0] - margin, u[1] - margin, u[2] + margin, u[3] + margin];
+}
+
+/** 地圖最小的縮放（T47）：再小就是整個日本，用不到 */
+export const MAP_MIN_ZOOM = 7;
+
 // 區域的顏色依 tripOrder 的順序配，不綁區域 ID
 const AREA_PALETTE = ['#0a8f8f', '#cf222e', '#9a6700', '#bf3989', '#1f6feb', '#6639ba', '#1a7f37', '#bc4c00'];
 

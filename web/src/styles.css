@@ -90,12 +90,13 @@
   --tap: 44px; /* 長輩也要點得到（interaction-design §0） */
   /* 浮動層（標籤彈窗、⋯ 選單，Popover.tsx）：高過地圖、日期列、浮動列、編輯藍條、對話框，只比提示（toast 120）低 */
   --z-popover: 110;
-  /* 字型（§12.3）：標題、日期、時間、數字用圓體 Zen Maru Gothic，內文 Zen Kaku Gothic New；日本字型缺的繁中字（例如「趟」）由 Noto Sans TC 補。
+  /* 字型（§12.3）：標題、日期、時間、數字用圓體 Zen Maru Gothic，日本字型缺的繁中字（例如「趟」）由 Noto Sans TC（只載 700）補；內文用系統字（T47）。
      --font-serif、--font-num 是第七輪的名字（那時是明體、Bodoni），現在兩個都是圓體 */
   --font-round: 'Zen Maru Gothic', 'Noto Sans TC', system-ui, -apple-system, 'Hiragino Maru Gothic ProN', 'Microsoft JhengHei', sans-serif;
   --font-serif: var(--font-round);
   --font-num: var(--font-round);
-  font-family: 'Zen Kaku Gothic New', 'Noto Sans TC', system-ui, -apple-system, 'Segoe UI', 'Hiragino Sans', 'Microsoft JhengHei', sans-serif;
+  /* 內文不能列 'Noto Sans TC'：網頁字型只載了 700，列了內文會變粗 */
+  font-family: system-ui, -apple-system, 'Segoe UI', 'PingFang TC', 'Hiragino Sans', 'Microsoft JhengHei', 'Noto Sans CJK TC', sans-serif;
   font-size: 16px;
   line-height: 1.5;
   color: var(--ink);

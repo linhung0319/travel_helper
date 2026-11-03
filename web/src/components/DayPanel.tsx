@@ -6,7 +6,7 @@ import { lodgingOn } from '@travel-helper/engine';
 import { useMemo, useRef, useState } from 'react';
 import { TimelineSkeleton } from '../shared/ui/Skeleton.tsx';
 import { commands } from '../appCommands.ts';
-import { useApp, useData, usePlan, useShared, useUi } from '../hooks.ts';
+import { useApp, useData, useNeedPlan, usePlan, useShared, useUi } from '../hooks.ts';
 import { dayPlanOf } from '../planStore.ts';
 import { areaNameIn, describeChanges } from '../lib/overlays.ts';
 import { dayLabel, isRedDay, shortDayLabel, tripDates } from '../lib/trip.ts';
@@ -159,6 +159,7 @@ function DayHead({ day }: { day: string }) {
 }
 
 export function DayPanel() {
+  useNeedPlan();
   const day = useApp((s) => s.day);
   const planning = useApp((s) => s.planning);
   const shown = useProposalDay(day);

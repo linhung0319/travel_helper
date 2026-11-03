@@ -79,10 +79,10 @@ export function createReadTools(d: AiDeps) {
     return typeof date === 'string' && tripDates().includes(date) ? date : null;
   }
 
-  /** 等詳情層：讀不到時要明講，不能回 null（null 在這裡是「資料沒寫」） */
-  async function detailsProblem(): Promise<ToolOutput | null> {
+  /** 讀這幾個點的詳情層：讀不到時要明講，不能回 null（null 在這裡是「資料沒寫」） */
+  async function detailsProblem(ids: readonly string[]): Promise<ToolOutput | null> {
     try {
-      await d.details?.();
+      if (ids.length) await d.details?.(ids);
       return null;
     } catch {
       return fail('詳細資料暫時讀不到（網路問題），請使用者稍後再試；不要當成資料沒寫');
@@ -90,10 +90,20 @@ export function createReadTools(d: AiDeps) {
   }
 
   async function search_places(input: SearchInput): Promise<ToolOutput> {
-    const problem = await detailsProblem();
+    const env = () => {
+      const s = places();
+      return { places: s.places, byId: s.byId, areas: s.areas, bounds: d.app.getState().view?.bounds ?? null, likes, config: d.config, full: (id: string) => fullPlace(s, id) };
+    };
+    // 篩選只用清單層；回傳的摘要在詳情層：先找出是哪幾個，只讀那幾個再算一次（T47）。
+    // 例外：maxGuestsAtLeast 比的 group.maxGuests 在詳情層，要先讀所有住宿的（約 170 個）
+    if (input?.maxGuestsAtLeast != null) {
+      const lodgings = places().places.filter((p) => p.type === 'lodging').map((p) => p.id);
+      const problem = await detailsProblem(lodgings);
+      if (problem) return problem;
+    }
+    const problem = await detailsProblem(searchPlaces(input ?? {}, env()).places.map((p) => p.id));
     if (problem) return problem;
-    const s = places();
-    const r = searchPlaces(input ?? {}, { places: s.places, byId: s.byId, bounds: d.app.getState().view?.bounds ?? null, likes, config: d.config, full: (id) => fullPlace(s, id) });
+    const r = searchPlaces(input ?? {}, env());
     return { ok: true, ...r };
   }
 
@@ -103,7 +113,7 @@ export function createReadTools(d: AiDeps) {
     const sections = input.sections?.length ? input.sections : ['summary', 'group', 'hours'];
     const bad = sections.filter((x) => !SECTIONS[x]);
     if (bad.length) return fail(`沒有分區 ${bad.join('、')}（可用：${PLACE_SECTIONS.join('、')}）`);
-    const problem = await detailsProblem();
+    const problem = await detailsProblem(input.ids.filter((id) => typeof id === 'string'));
     if (problem) return problem;
     const s = places();
     const unknown = input.ids.filter((id) => !s.byId.has(id));
@@ -473,6 +483,39 @@ export function createReadTools(d: AiDeps) {
     return { ok: true, topic, ...Object.fromEntries(sections.map((s) => [s, withoutSources(info[s] ?? null)])) };
   }
 
+  /**
+   * 各區的介紹（T40 的 intro）：一句特色、要不要搭車、代表的點、二月注意。
+   * 不給 area 是全部的區（子地區只列名字和要不要搭車）；給了只回那一區，子地區也帶介紹。
+   */
+  function get_areas(input: { area?: string } = {}): ToolOutput {
+    const s = places();
+    const point = (id: string) => {
+      const p = s.byId.get(id);
+      return p ? { id, name: placeName(p), type: p.type, tier: p.tier } : null;
+    };
+    const points = (ids: readonly string[] | undefined) => (ids ?? []).flatMap((id) => point(id) ?? []);
+    const one = input?.area;
+    const picked = one ? s.areas.filter((a) => a.id === one) : s.areas;
+    if (one && !picked.length) return fail(`沒有區域 ${one}（可用：${s.areas.map((a) => a.id).join('、')}）`);
+    return {
+      ok: true,
+      areas: picked.map((a) => ({
+        id: a.id,
+        name: a.name.zh || a.name.ja,
+        summary: a.intro?.summary ?? null,
+        transport: a.intro?.transport ?? null,
+        highlights: points(a.intro?.highlights),
+        february: (a.intro?.february ?? []).map((f) => f.text),
+        regions: (a.regions ?? []).map((r) => ({
+          id: r.id,
+          name: r.name.zh || r.name.ja,
+          needsCar: r.needsCar ?? null,
+          ...(one ? { summary: r.intro?.summary ?? null, highlights: points(r.intro?.highlights), febNote: r.intro?.febNote ?? null } : {}),
+        })),
+      })),
+    };
+  }
+
   /** 預約筆記：住宿的 date 是入住那晚 */
   const reservationRows = () => noteRows(places().itinerary, d.plan.getState().plan, places().byId, d.shared.store.getState().reservations);
 
@@ -490,7 +533,7 @@ export function createReadTools(d: AiDeps) {
     return p ? digestOf(p, likes(id)) : null;
   };
 
-  return { search_places, get_place, get_day, get_trip_overview, check_changes, suggest_position, get_route, get_timetable, get_opinions, get_trip_info, get_reservations, reservationRows, digest, proposalWarnings, proposalBooked };
+  return { search_places, get_place, get_day, get_trip_overview, check_changes, suggest_position, get_route, get_timetable, get_opinions, get_trip_info, get_areas, get_reservations, reservationRows, digest, proposalWarnings, proposalBooked };
 }
 
 export type ReadTools = ReturnType<typeof createReadTools>;

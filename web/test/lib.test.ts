@@ -1,7 +1,7 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { normalizeAreas, normalizePlace } from '../src/data/normalize.ts';
-import { areasExtent, bboxGapMeters, groupAreas, initialExtent } from '../src/lib/areas.ts';
+import { areasExtent, bboxGapMeters, groupAreas, initialExtent, mapMaxBounds } from '../src/lib/areas.ts';
 import { photoCandidates, sizedUrl, underlayUrl, wikimediaThumb } from '../src/lib/photos.ts';
 import { departuresAround, terminusName } from '../src/lib/timetable.ts';
 import { dayLabel, hoursKeys, timetableDayType, tripDates } from '../src/lib/trip.ts';
@@ -87,6 +87,15 @@ test('區域分群：重疊或相近的同一群，遠的另一群；初始範�
   assert.deepEqual(initialExtent([areaA, areaB, far], places), [136.75, 34.35, 136.95, 34.5]);
   // 沒有資料點的區域用 bbox
   assert.deepEqual(areasExtent([far], []), far.bbox);
+});
+
+test('地圖能拖到的範圍：所有區域的 bbox 外加一圈邊；沒有區域不限制（T47）', () => {
+  const b = mapMaxBounds([areaA, far], 0.5)!;
+  for (const a of [areaA, far]) {
+    assert.ok(b[0] <= a.bbox[0] - 0.5 + 1e-9 && b[1] <= a.bbox[1] - 0.5 + 1e-9);
+    assert.ok(b[2] >= a.bbox[2] + 0.5 - 1e-9 && b[3] >= a.bbox[3] + 0.5 - 1e-9);
+  }
+  assert.equal(mapMaxBounds([]), null);
 });
 
 test('Wikimedia 原圖改縮圖，原圖留在下一個候選；其他照片照順序', () => {

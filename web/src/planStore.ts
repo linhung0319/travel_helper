@@ -4,6 +4,7 @@
 import { createStore, type StoreApi } from 'zustand/vanilla';
 import { createPlanCache, placeLookup, planItinerary, resolveConfig, rideDepartures, type DayPlan, type EngineConfig, type EngineData, type ItineraryPlan, type PlaceRecord, type RideDeparture, type TransitRide } from '@travel-helper/engine';
 import type { DataState } from './dataStore.ts';
+import type { Itinerary } from '@travel-helper/engine/types';
 import type { DataSource, EngineTimetables } from './data/source.ts';
 import type { LonLat } from './data/types.ts';
 
@@ -102,7 +103,7 @@ export function buildEngineData(d: DataState, tt: EngineTimetables, roads?: Road
 /** 只重算有改的那一天（引擎的 PlanCache；EngineData 換了就整份重算） */
 const planCache = createPlanCache();
 
-/** 不管有沒有延後，馬上開始讀時刻表（startPlanner 設定） */
+/** 不管有沒有延後、行程是不是空的，馬上開始讀時刻表（startPlanner 設定） */
 let fetchNow: () => void = () => {};
 
 /**
@@ -123,6 +124,15 @@ export function ensurePlan(store: StoreApi<PlanState> = planStore, maxMs = 30_00
     });
     const timer = setTimeout(done, maxMs);
   });
+}
+
+/** 行程有沒有東西：哪一晚選了住宿（只定了區不算），或哪一天排了航班以外的項目（新的行程本來就有去回程的航班，不算） */
+export const hasContent = (it: Itinerary | null | undefined): boolean =>
+  !!it && (Object.values(it.nights ?? {}).some((n) => !!n.lodging) || it.days.some((d) => d.items.some((i) => i.type !== 'flight')));
+
+/** 打開行程（整趟、單天）時叫：時刻表還沒讀就馬上讀（T47） */
+export function requestPlan() {
+  fetchNow();
 }
 
 /** 開始算：讀時刻表，之後行程或資料點變了就重算 */
@@ -163,10 +173,14 @@ export function startPlanner(data: StoreApi<DataState>, source: DataSource, road
       .catch((e) => store.setState({ status: 'error', error: e instanceof Error ? e.message : String(e) }));
   };
   fetchNow = fetchTimetables;
+  // 行程有東西才讀（T47）；行程還是空的就等打開行程（requestPlan）或 AI 要用（ensurePlan）
+  const maybeLoad = (s: DataState) => {
+    if (s.status === 'ready' && hasContent(s.itinerary)) loadTimetables();
+  };
   let prev = data.getState();
-  if (prev.status === 'ready') loadTimetables();
+  maybeLoad(prev);
   return data.subscribe((s) => {
-    if (s.status === 'ready') loadTimetables();
+    maybeLoad(s);
     if (s.itinerary !== prev.itinerary || s.places !== prev.places || s.status !== prev.status) compute();
     prev = s;
   });

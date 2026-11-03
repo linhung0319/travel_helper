@@ -77,12 +77,16 @@ export function createTools(d: AiDeps): ToolDef[] {
     {
       name: 'search_places',
       kind: 'read',
-      description: '找地點。名稱可以有錯字、中日文混雜。回傳精簡清單和總數；unknownExcluded 是因為資料沒查到而沒列出的筆數：結果是空的或很少時才告訴使用者，不要報數字。要細節再用 get_place。',
+      description:
+        '找地點。名稱可以有錯字、中日文混雜（text 只比名稱，「室內」「包棟」這類條件用對應的參數）。回傳精簡清單和總數；unknownExcluded 是因為資料沒查到而沒列出的筆數：結果是空的或很少時才告訴使用者，不要報數字。' +
+        'elderly、kids 只拿掉分數低的，沒有評分的照樣列、排在後面，fitUnknown 是其中沒有評分的筆數（那幾個點也標 fitUnknown）：推薦這些點時說「適不適合長輩（小孩）我們的資料沒有查到」。' +
+        '結果的 tier 是推薦等級（S 最高，「一定要去」用 tiers S、A），needsCar 是子地區要不要搭車，stayMinutes 是建議停留分鐘。要細節再用 get_place。',
       input_schema: obj({
         text: str('名稱（中文、日文、別名）'),
         types: strs('spot、restaurant、lodging、station'),
-        areas: strs('區域 ID'),
-        regions: strs('子地區 ID'),
+        areas: strs('區域 ID（get_areas 有）'),
+        regions: strs('子地區 ID（get_areas 有）'),
+        tiers: strs('推薦等級 S、A、B'),
         cuisine: strs('料理類型，例如 牡蠣、壽司'),
         near: obj({ place: str('資料點 ID'), coords: { type: 'array', items: num() }, walkMinutes: num('全員步行最多幾分') }),
         inView: bool('只找目前地圖畫面裡的'),
@@ -92,11 +96,21 @@ export function createTools(d: AiDeps): ToolDef[] {
         elderly: bool('適合長輩'),
         kids: bool('適合小孩'),
         reservable: bool('可以預約'),
+        indoor: bool('下雨也行：景點只留室內的；餐廳、住宿不受影響'),
+        wholeRental: bool('能包棟（只留住宿）'),
+        maxGuestsAtLeast: num('最多住幾人至少這麼多（只留住宿；整團 15）'),
         votes: strs('any（有人按想去的，問「想去的」用這個）、popular（2 人以上想去）、mine（我按想去的）'),
         sort: str('recommend、rating、likes、distance'),
         limit: num('最多幾筆（預設 10，上限 30）'),
       }),
       run: ro(read.search_places),
+    },
+    {
+      name: 'get_areas',
+      kind: 'read',
+      description: '各區的介紹：一句特色、要不要搭車（transport、子地區的 needsCar）、代表的點、二月注意（休園、休業）。不給 area 回全部的區（照行程順序），子地區只有名字；給 area 只回那一區，子地區也有介紹。',
+      input_schema: obj({ area: str('區域 ID；不給就是全部') }),
+      run: ro(read.get_areas),
     },
     {
       name: 'get_place',
@@ -346,7 +360,7 @@ export function createTools(d: AiDeps): ToolDef[] {
         if (typeof input.fieldPath !== 'string' || !input.fieldPath || input.fieldPath === 'id') return fail('fieldPath 不對');
         // 舊值可能在詳情層：讀不到就不提議（不能把「還沒讀到」當成原本是空的）
         try {
-          await d.details?.();
+          await d.details?.([input.placeId as string]);
         } catch {
           return fail('詳細資料暫時讀不到（網路問題），請使用者稍後再試');
         }

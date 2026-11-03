@@ -233,7 +233,8 @@ test('時刻表延後讀，但 AI 要用時馬上讀，等到算好才回', asyn
   finish({} as never);
   await waiting;
   assert.equal(plan.getState().status, 'ready');
-  deferred!();
-  assert.equal(loads, 1, '地圖載好時不再讀一次');
+  // 行程是空的不排延後讀（T47）；排了東西之後延後讀、不重複讀，見 t47.test.ts
+  assert.equal(deferred, null);
+  assert.equal(loads, 1);
   off();
 });

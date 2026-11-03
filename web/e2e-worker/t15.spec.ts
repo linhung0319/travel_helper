@@ -274,13 +274,25 @@ test('T15：預約筆記、整趟留言、自己加的點都存進 D1，重新�
   expect(boot.reservations[0].note).toBe('已訂（e2e）');
 });
 
-test('T15：載入：一支啟動 API，引擎一個檔；詳情層閒置時讀；輪詢只打 /api/sync', async ({ a, desktop }) => {
+test('T15、T47：載入：一支啟動 API；詳情層、時刻表不先讀，打開詳情只讀用到的點、打開行程才讀時刻表（一個檔）；輪詢只打 /api/sync', async ({ a, desktop }) => {
   const urls: string[] = [];
-  a.on('request', (r) => urls.push(new URL(r.url()).pathname));
+  const searches: string[] = [];
+  a.on('request', (r) => {
+    const u = new URL(r.url());
+    urls.push(u.pathname);
+    if (u.pathname === '/api/places/details') searches.push(decodeURIComponent(u.search));
+  });
   await open(a, desktop);
-  await expect.poll(() => urls.includes('/api/places/details')).toBe(true);
-  await expect.poll(() => urls.includes('/static/timetables/engine.json')).toBe(true);
   const count = (u: string) => urls.filter((x) => x === u).length;
+  // 地圖載好之後（afterMap 最多等 5 秒）也不讀：行程只有預設的航班
+  await a.waitForTimeout(6000);
+  expect(count('/api/places/details')).toBe(0);
+  expect(count('/static/timetables/engine.json')).toBe(0);
+  await openDetail(a, desktop);
+  await expect.poll(() => searches.some((s) => s.split(/[=,]/).includes(PLACE))).toBe(true);
+  expect(searches.every((s) => s.startsWith('?ids='))).toBe(true);
+  await a.getByTestId(desktop ? 'side-tab-day' : 'm-tab-trip').click();
+  await expect.poll(() => count('/static/timetables/engine.json')).toBe(1);
   expect(count('/api/bootstrap')).toBe(1);
   expect(count('/api/places')).toBe(1);
   expect(count('/static/timetables/engine.json')).toBe(1);
@@ -298,7 +310,8 @@ test('T15：載入：一支啟動 API，引擎一個檔；詳情層閒置時讀�
 test('T15：詳情層還沒到顯示骨架，到了顯示內容（含其他資訊）；讀不到可以重試', async ({ a, desktop }) => {
   let hold = true;
   let fail = true;
-  await a.route('**/api/places/details', async (route) => {
+  // T47 起帶 ?ids=，glob 對不到查詢字串，用正規式
+  await a.route(/\/api\/places\/details/, async (route) => {
     while (hold) await new Promise((r) => setTimeout(r, 100));
     if (fail) await route.abort();
     else await route.continue();

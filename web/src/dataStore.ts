@@ -1,12 +1,11 @@
 // 讀進來的資料（區域、資料點、行程）。和 UI 狀態（store.ts）分開。
 // 資料點：預設資料（basePlaces，清單層）套上修改層（appShared.ts 的 edits）就是 places；行程從後端來（backend/）。
-// 詳情層閒置時才讀（ensureDetails），放在 details，不換 places：不然詳情一到，行程要整份重算、清單要全部重畫。要完整欄位用 fullPlace。
+// 詳情層用到才讀那幾個點（ensureDetails，T47；以前是閒置時一次讀 597 個），放在 details，不換 places：不然詳情一到，行程要整份重算、清單要全部重畫。要完整欄位用 fullPlace。
 
-import { createStore } from 'zustand/vanilla';
+import { createStore, type StoreApi } from 'zustand/vanilla';
 import { dataSource } from './data/index.ts';
 import { mergePlaceEdits } from './data/merge.ts';
 import { normalizePlace } from './data/normalize.ts';
-import { afterMap } from './lib/idle.ts';
 import type { PlaceEdit } from './backend/types.ts';
 import type { Area, Place } from './data/types.ts';
 import type { Itinerary } from '@travel-helper/engine/types';
@@ -21,7 +20,7 @@ export interface DataState {
   places: Place[];
   /** 也含已下架、已刪除的（行程裡那一格還要顯示名稱、警告） */
   byId: Map<string, Place>;
-  /** 詳情層：還沒讀到是 null */
+  /** 詳情層：讀過的點（用到才讀，T47）；一個都還沒讀是 null */
   details: Map<string, Record<string, unknown>> | null;
   /** 詳情層讀不到的原因（畫面顯示重試） */
   detailsError: string | null;
@@ -53,7 +52,7 @@ export const dataStore = createStore<DataState>()(() => ({
 /** 已下架的不在 places；沒有下架的就回傳同一個陣列（React、引擎的快取看物件是不是同一個） */
 export const livePlaces = (list: Place[]): Place[] => (list.some((p) => p.retiredAt) ? list.filter((p) => !p.retiredAt) : list);
 
-const fullMemo = new WeakMap<Place, { details: DataState['details']; full: Place }>();
+const fullMemo = new WeakMap<Place, { detail: Record<string, unknown>; full: Place }>();
 
 /**
  * 一個點的完整資料：清單層加詳情層，再套修改（規則和 Worker 一樣）。詳情層還沒到（或是自己加的點）回傳清單層那一份。
@@ -65,38 +64,90 @@ export function fullPlace(s: Pick<DataState, 'byId' | 'basePlaces' | 'details' |
   const detail = s.details?.get(id);
   if (p.origin === 'user' || !detail) return p;
   const memo = fullMemo.get(p);
-  if (memo && memo.details === s.details) return memo.full;
+  // 看這個點的詳情是不是同一份（別的點讀進來時 details 會換一個 Map，這個點不用重算）
+  if (memo && memo.detail === detail) return memo.full;
   const base = s.basePlaces.find((x) => x.id === id);
   const seed = normalizePlace({ ...(base?.raw ?? p.raw), ...detail });
   if (!seed) return p;
   const [merged] = mergePlaceEdits([seed], s.placeEdits);
   const full: Place = { ...merged, retiredAt: p.retiredAt };
-  fullMemo.set(p, { details: s.details, full });
+  fullMemo.set(p, { detail, full });
   return full;
 }
 
-let detailsLoading: Promise<void> | null = null;
+/**
+ * 詳情層的讀法（T47 起用到才讀）：回傳的 ensure(ids) 只讀那幾個點（詳情、小卡片、AI 問到的點），讀過的不再讀，
+ * 同一輪要的併成一個請求（行程的卡片一次展開好幾張）；不給 ids 是全部（匯出行程）。讀不到時 reject，下次呼叫再試。
+ * 要了卻沒回來的（資料庫沒有）記成空的詳情，不然畫面一直等。
+ */
+export function createDetailsLoader(store: StoreApi<DataState>, load: (ids?: readonly string[]) => Promise<{ id: string }[]>) {
+  let allLoading: Promise<void> | null = null;
+  let allLoaded = false;
+  /** 正在讀的點 → 那一次請求 */
+  const inflight = new Map<string, Promise<void>>();
+  let queued: { ids: Set<string>; done: Promise<void> } | null = null;
 
-/** 讀詳情層（一次）；讀不到時 reject，下次呼叫再試 */
-export function ensureDetails(): Promise<void> {
-  if (dataStore.getState().details) return Promise.resolve();
-  detailsLoading ??= dataSource
-    .loadPlaceDetails()
-    .then((list) => {
-      dataStore.setState({ details: new Map(list.map((d) => [d.id, d])), detailsError: null });
-    })
-    .catch((e: unknown) => {
-      detailsLoading = null;
-      dataStore.setState({ detailsError: e instanceof Error ? e.message : String(e) });
-      throw e;
+  const merge = (list: { id: string }[], asked: readonly string[] = []) =>
+    store.setState((s) => {
+      const next = new Map(s.details ?? []);
+      for (const id of asked) if (!next.has(id)) next.set(id, {});
+      for (const d of list) next.set(d.id, d as Record<string, unknown>);
+      return { details: next, detailsError: null };
     });
-  return detailsLoading;
+  const failed = (e: unknown): never => {
+    store.setState({ detailsError: e instanceof Error ? e.message : String(e) });
+    throw e;
+  };
+
+  return function ensure(ids?: readonly string[]): Promise<void> {
+    if (allLoaded) return Promise.resolve();
+    if (!ids) {
+      allLoading ??= load()
+        .then((list) => {
+          merge(list);
+          allLoaded = true;
+        })
+        .catch((e: unknown) => {
+          allLoading = null;
+          return failed(e);
+        });
+      return allLoading;
+    }
+    if (allLoading) return allLoading;
+    const s = store.getState();
+    const need = [...new Set(ids)].filter((id) => {
+      const p = s.byId.get(id);
+      return !!p && p.origin !== 'user' && !s.details?.has(id);
+    });
+    const waits = new Set<Promise<void>>();
+    for (const id of need) {
+      const p = inflight.get(id);
+      if (p) {
+        waits.add(p);
+        continue;
+      }
+      if (!queued) {
+        const batch = new Set<string>();
+        const done = new Promise<void>((resolve) => setTimeout(resolve, 0)).then(() => {
+          queued = null;
+          const asked = [...batch];
+          return load(asked)
+            .then((list) => merge(list, asked))
+            .catch(failed)
+            .finally(() => asked.forEach((x) => inflight.delete(x)));
+        });
+        queued = { ids: batch, done };
+      }
+      queued.ids.add(id);
+      inflight.set(id, queued.done);
+      waits.add(queued.done);
+    }
+    return Promise.all(waits).then(() => {});
+  };
 }
 
-/** 閒置時讀詳情層。使用者先打開詳情就會馬上讀（useFullPlace） */
-function scheduleDetails() {
-  afterMap(() => void ensureDetails().catch(() => {}));
-}
+/** 網站共用的一份 */
+export const ensureDetails = createDetailsLoader(dataStore, (ids) => dataSource.loadPlaceDetails(ids));
 
 export async function loadData() {
   try {
@@ -116,7 +167,6 @@ export async function loadData() {
     const applyShared = await pending;
     await applyShared();
     dataStore.setState({ status: 'ready' });
-    scheduleDetails();
   } catch (e) {
     dataStore.setState({ status: 'error', error: e instanceof Error ? e.message : String(e) });
   }
