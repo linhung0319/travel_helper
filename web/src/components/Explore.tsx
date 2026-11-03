@@ -1,6 +1,6 @@
 // 電腦版右側的「探索」分頁：最上面是篩選列（shared/ui/FilterBar：搜尋、篩選、排序、照片牆／清單，套用的條件變成小晶片），一直黏在上面；
 // 「篩選」打開的抽屜蓋住整個右欄（FilterSheet），類型、團體、天氣、情境、想去、等級、只看地圖畫面裡的都在裡面。
-// 篩選列下面一列是地區（T42，interaction-design §20）：探索沒選地區、沒搜尋、沒其他條件時是概覽（ExploreOverview），選了一區是頂端加書架（AreaHome），
+// 篩選列下面一列是地區（T42，interaction-design §20）：探索沒選地區、沒搜尋、沒其他條件時是概覽（ExploreOverview），選了一區是子地區列（篩選列裡）加書架（AreaHome），
 // 其他時候才是照片牆或清單。目前地區就是 filter.areas（只有一區時），換到想去時跟著走（store 的 setMode），地圖飛過去。
 // 清單可以切換照片牆（兩欄，PlaceTile）或清單列（PlaceRow，88px），都是兩邊共用的元件；滑鼠移上去呼叫 appStore.hover（地圖的指到），
 // 點了原地展開（第八輪 §13.3：照片牆橫跨兩欄、清單在原地，介紹、優缺點、「詳細資料 ›」）並選中（地圖的水滴），再點一次收起；按「詳細資料」才開詳情。想去一樣。
@@ -20,8 +20,8 @@ import type { ExploreSort } from '../lib/explore.ts';
 import type { Place } from '../data/types.ts';
 import { AddPlaceSuggest, useSuggestOwnsEmpty } from '../shared/ui/AddPlaceSuggest.tsx';
 import { AreaChips } from '../shared/ui/AreaChips.tsx';
-import { AreaHome, ExploreOverview } from '../shared/ui/ExploreHome.tsx';
-import { areaOnly, currentArea, exploreStage } from '../lib/shelves.ts';
+import { AreaHome, ExploreOverview, RegionChips } from '../shared/ui/ExploreHome.tsx';
+import { areaOnly, backLabel, currentArea, exploreStage } from '../lib/shelves.ts';
 import { EMPTY_FILTER, type Filter, type FilterKey } from '../lib/filter.ts';
 import { pickArea, pickAreaChip } from '../exploreArea.ts';
 import { displayName } from '../data/normalize.ts';
@@ -227,16 +227,19 @@ export function ExplorePanel({ source = 'explore' }: { source?: ListSource }) {
     const a = area ? s.areas.find((x) => x.id === area) : undefined;
     return a ? displayName(a.name, a.id) : null;
   });
-  // 選了一區、但套了其他條件或搜尋：「‹ 鳥羽」回到書架
-  const backToArea = !wish && !aiResult && stage === 'list' && areaName && (
-    <button type="button" className="ex-back-area flat" onClick={() => {
-        appStore.getState().setFilter(areaOnly(appStore.getState().filter));
-        appStore.getState().setQuery('');
-        setInView(false);
-      }} data-testid="back-to-area">
-      ‹ {areaName}
-    </button>
-  );
+  // 選了一區、但套了其他條件或搜尋：地點數前面「‹ 一定要去」（還是那排書架的條件）或「‹ 回到鳥羽」，點了回到書架（T50）
+  const back =
+    !wish && !aiResult && stage === 'list' && areaName
+      ? {
+          label: backLabel(filter, query, areaName),
+          onClick: () => {
+            appStore.getState().setFilter(areaOnly(appStore.getState().filter));
+            appStore.getState().setQuery('');
+            setInView(false);
+          },
+        }
+      : null;
+  const regionId = filter.regions.length === 1 ? filter.regions[0] : null;
 
   return (
     <div className={`explore-panel source-${source}`} data-testid={source === 'wish' ? 'wish-panel' : 'explore-panel'}>
@@ -249,14 +252,16 @@ export function ExplorePanel({ source = 'explore' }: { source?: ListSource }) {
             setInView(false);
             pickAreaChip(a);
           }} firstLabel={wish ? '全部' : '概覽'} prefix="ex" testId="ex-area-chips" extra={wish ? userChip.chip : undefined} />}
+        subRow={stage === 'area' && area ? <RegionChips areaId={area} regionId={regionId} onPick={pickRegion} /> : undefined}
+        back={back}
+        showView={stage === 'list'}
       />
       {!wish && <AddPlaceSuggest query={query} surface="desktop" />}
-      {backToArea}
       <div className={`ex-list view-${stage === 'list' ? view : stage} source-${source}`} ref={ref}>
         {stage === 'overview' ? (
           <ExploreOverview surface="desktop" onOpen={(id) => open(id)} onPickArea={pickArea} />
         ) : stage === 'area' && area ? (
-          <AreaHome areaId={area} regionId={filter.regions.length === 1 ? filter.regions[0] : null} surface="desktop" onPickRegion={pickRegion} onOpen={(id) => open(id)} onShelfAll={applyShelf} />
+          <AreaHome areaId={area} regionId={regionId} surface="desktop" onOpen={(id) => open(id)} onShelfAll={applyShelf} />
         ) : wish ? (
           <WishList
             surface="desktop"

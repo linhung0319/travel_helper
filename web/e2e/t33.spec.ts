@@ -376,6 +376,6 @@ test('地區列取代類型列（T42）：類型在面板裡、算進篩選的�
   await expect(page.getByTestId('filter-count')).toHaveCount(0);
   await page.getByTestId('filter-close').click();
   await expect(page.getByTestId('ex-area-toba')).toHaveAttribute('aria-pressed', 'true');
-  // 照片牆切換在地區列旁邊
-  await expect(page.locator('.fb-typerow').getByTestId('view-list')).toBeVisible();
+  // 照片牆切換只在照片牆、清單那層（T50）：回到書架就沒有
+  await expect(page.getByTestId('view-list')).toHaveCount(0);
 });

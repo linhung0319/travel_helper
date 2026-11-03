@@ -5,7 +5,8 @@
 import { useMemo } from 'react';
 import { feedFilter, feedToken, wishFilter, type ExploreType, type Feed } from '../lib/explore.ts';
 import type { FilterKey } from '../lib/filter.ts';
-import { FilterBar, type FilterModel } from '../shared/ui/FilterBar.tsx';
+import { FilterBar, type FilterBack, type FilterModel } from '../shared/ui/FilterBar.tsx';
+import type { ReactNode } from 'react';
 import { AreaChips } from '../shared/ui/AreaChips.tsx';
 import { mobileStore, useMobile } from './mobileStore.ts';
 import { useWishPrefs, wishPrefs } from '../shared/wishPrefs.ts';
@@ -84,10 +85,10 @@ export function useWishModel(type: ExploreType | 'all'): FilterModel {
   };
 }
 
-/** 探索上方的篩選列：搜尋、篩選、排序（黏在上面），下面一列地區（概覽、志摩、鳥羽…） */
-export function FeedFilters({ count, extra }: { count: number; extra?: Partial<FilterModel> }) {
+/** 探索上方的篩選列：搜尋、篩選、排序（黏在上面），下面一列地區（概覽、志摩、鳥羽…）；選了一區接子地區列（subRow），清單層有返回鈕和照片牆／清單切換（T50） */
+export function FeedFilters({ count, extra, subRow, back, showView }: { count: number; extra?: Partial<FilterModel>; subRow?: ReactNode; back?: FilterBack | null; showView?: boolean }) {
   const feed = useMobile((s) => s.feed);
   const model = { ...useFeedModel(), ...extra };
   const typeRow = <AreaChips value={feed.area} onPick={pickFeedArea} firstLabel="概覽" prefix="m-feed" testId="m-feed-filters" />;
-  return <FilterBar source="explore" surface="mobile" model={model} count={count} typeRow={typeRow} />;
+  return <FilterBar source="explore" surface="mobile" model={model} count={count} typeRow={typeRow} subRow={subRow} back={back} showView={showView} />;
 }

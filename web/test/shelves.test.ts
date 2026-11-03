@@ -1,8 +1,9 @@
 // T42：書架的條件、探索畫哪一種畫面、目前地區、「正在看」的字（interaction-design §18.1）
+// T50：書架的順序和名字、「住在這裡」的排法、清單層返回鈕的字
 
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { SHELVES, areaOnly, currentArea, exploreStage, listScreenLabel, shelfFilter, shelfRows } from '../src/lib/shelves.ts';
+import { SHELVES, areaOnly, backLabel, currentArea, exploreStage, listScreenLabel, matchShelf, shelfFilter, shelfRows, stayScore } from '../src/lib/shelves.ts';
 import { EMPTY_FILTER, matchesFilter, type Filter } from '../src/lib/filter.ts';
 import { placeWith } from './helpers.ts';
 
@@ -19,6 +20,17 @@ const PLACES = [
   placeWith({ weather: 'indoor' }, { id: 'ise-museum', area: 'ise', type: 'spot', tier: 'S' }),
 ];
 
+test('SHELVES（T50）：一定要去、可坐 15 人、住在這裡、下雨也行，每排一行條件', () => {
+  assert.deepEqual(
+    SHELVES.map((s) => s.title),
+    ['一定要去', '可坐 15 人', '住在這裡', '下雨也行'],
+  );
+  assert.deepEqual(
+    SHELVES.map((s) => s.note),
+    ['S、A 級景點', '全員能坐一起的餐廳', '包棟、可住 15 人排前面', '室內或有遮蔽的景點'],
+  );
+});
+
 test('shelfFilter：書架的條件疊在目前地區、子地區上', () => {
   const must = SHELVES.find((s) => s.id === 'must')!;
   assert.deepEqual(shelfFilter(must, { areas: ['toba'], regions: [] }), { ...EMPTY_FILTER, areas: ['toba'], types: ['spot'], tiers: ['S', 'A'] });
@@ -29,6 +41,7 @@ test('shelfFilter：書架的條件疊在目前地區、子地區上', () => {
 test('shelfRows：每排推薦順序、只看這區；沒東西的那排不列', () => {
   const rows = shelfRows(PLACES, { areas: ['toba'], regions: [] });
   const byId = Object.fromEntries(rows.map((r) => [r.shelf.id, r.items.map((p) => p.id)]));
+  assert.deepEqual(rows.map((r) => r.shelf.id), ['must', 'fit15', 'stay', 'rain']);
   // 同級照評論數、再照 ID
   assert.deepEqual(byId.must, ['aquarium', 'lookout', 'pearl']);
   assert.deepEqual(byId.rain, ['aquarium', 'pearl']);
@@ -80,4 +93,41 @@ test('listScreenLabel：正在看的字', () => {
   assert.equal(listScreenLabel('explore', '鳥羽'), '鳥羽');
   assert.equal(listScreenLabel('wish', null), '想去');
   assert.equal(listScreenLabel('wish', '鳥羽'), '想去・鳥羽');
+});
+
+test('住在這裡（T50）：能包棟、可住 15 人以上的排前面；可住人數在詳情層，給了 full 才看得到', () => {
+  const inns = [
+    at('plain', { type: 'lodging', tier: 'S' }),
+    at('big', { type: 'lodging', tier: 'B' }),
+    at('whole', { type: 'lodging', tier: 'B' }, { group: { wholeRental: true } }),
+    at('both', { type: 'lodging', tier: 'B' }, { group: { wholeRental: true } }),
+  ];
+  const detail: Record<string, ReturnType<typeof at>> = {
+    big: at('big', { type: 'lodging', tier: 'B' }, { group: { maxGuests: 20 } }),
+    both: at('both', { type: 'lodging', tier: 'B' }, { group: { wholeRental: true, maxGuests: 16 } }),
+    plain: at('plain', { type: 'lodging', tier: 'S' }, { group: { maxGuests: 6 } }),
+  };
+  const full = (id: string) => detail[id] ?? null;
+  assert.equal(stayScore(inns[3], full), 2);
+  assert.equal(stayScore(inns[1], full), 1);
+  assert.equal(stayScore(inns[1]), 0);
+  const stay = (f?: (id: string) => ReturnType<typeof at> | null) => shelfRows(inns, { areas: ['toba'], regions: [] }, 4, f).find((r) => r.shelf.id === 'stay')!.items.map((p) => p.id);
+  // 同分照推薦順序（S 級的 plain 在 B 級前面）
+  assert.deepEqual(stay(full), ['both', 'big', 'whole', 'plain']);
+  // 詳情還沒讀到：只看包棟
+  assert.deepEqual(stay(), ['both', 'whole', 'plain', 'big']);
+});
+
+test('backLabel（T50）：還是那排書架的條件寫書架名，改了條件或有搜尋寫「回到鳥羽」', () => {
+  const base = { areas: ['toba'], regions: [] };
+  const [must, fit15, stay, rain] = SHELVES;
+  assert.equal(backLabel(shelfFilter(must, base), '', '鳥羽'), '一定要去');
+  assert.equal(backLabel(shelfFilter(fit15, base), '', '鳥羽'), '可坐 15 人');
+  assert.equal(backLabel(shelfFilter(stay, { areas: ['toba'], regions: ['osatsu'] }), '', '鳥羽'), '住在這裡');
+  // 順序不同也算同一組（手機的條件從 quick 轉回來）
+  assert.equal(backLabel({ ...shelfFilter(rain, base), weather: ['covered', 'indoor'] }, '', '鳥羽'), '下雨也行');
+  assert.equal(matchShelf({ ...shelfFilter(must, base), tiers: ['S'] }), null);
+  assert.equal(backLabel({ ...shelfFilter(must, base), tiers: ['S'] }, '', '鳥羽'), '回到鳥羽');
+  assert.equal(backLabel({ ...EMPTY_FILTER, ...base, types: ['restaurant'] }, '', '鳥羽'), '回到鳥羽');
+  assert.equal(backLabel(shelfFilter(must, base), '水族', '鳥羽'), '回到鳥羽');
 });
