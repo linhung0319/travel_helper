@@ -575,7 +575,7 @@ npm run db:import -- --apply data/cache/import/<時間>-all.json   # 2. 👤 看
 - **地圖指令本來就一定要在瀏覽器執行**（`focus`、`showProposal`）；查資料、跑引擎也在瀏覽器，因為資料和引擎已經在那裡了。
 - Worker 只負責轉發，不用載入資料、不用跑引擎，所以不會碰到 Worker 的 CPU 時間限制。
 - **工具一份，呈現兩份**（2026-10-31，完整規格見 `docs/superpowers/specs/2026-10-31-ai-agent-ui-design.md`）：工具不分平台，分三類：
-  - **查資料**（畫面不動）：`search_places`、`get_place`、`get_day`、`get_trip_overview`、`check_changes`、`suggest_position`、`get_route`、`get_timetable`、`get_opinions`、`get_trip_info`。
+  - **查資料**（畫面不動）：`search_places`、`get_place`、`get_day`、`get_trip_overview`、`check_changes`、`suggest_position`、`get_route`、`get_timetable`、`get_opinions`、`get_trip_info`、`get_areas`（T41：各區的介紹）。
   - **改畫面**（不動資料）：`show_places`、`show_route`、`show_day`、`open_place`、`move_map`、`set_filter`、`clear_view`；透過 `web/src/ai/stage.ts` 的介面，網頁和手機各有一份實作。
   - **提議改動**（使用者按了才寫）：`propose_changes`、`draft_comment`、`add_candidate`、`propose_place_edit`、`propose_user_place`。只有 `vote` 直接做，並提供復原。
 - **不在編輯中也能提議**：提議只在自己的畫面，不寫進後端；按「採用」時才確認「開始編輯？」，再用引擎的操作寫進行程（先存快照）。提議存的是操作清單，別人先改過時重新檢查，套不上就標成過期。

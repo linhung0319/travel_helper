@@ -58,6 +58,8 @@ export function toolLabel(name: string, input: Record<string, unknown>): string 
       return '看了大家的意見';
     case 'get_trip_info':
       return '查了旅程資料';
+    case 'get_areas':
+      return input.area ? '看了這一區的介紹' : '看了各區的介紹';
     case 'get_reservations':
       return '看了預約筆記';
     default:

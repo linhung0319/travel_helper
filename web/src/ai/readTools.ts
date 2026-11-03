@@ -93,7 +93,7 @@ export function createReadTools(d: AiDeps) {
     const problem = await detailsProblem();
     if (problem) return problem;
     const s = places();
-    const r = searchPlaces(input ?? {}, { places: s.places, byId: s.byId, bounds: d.app.getState().view?.bounds ?? null, likes, config: d.config, full: (id) => fullPlace(s, id) });
+    const r = searchPlaces(input ?? {}, { places: s.places, byId: s.byId, areas: s.areas, bounds: d.app.getState().view?.bounds ?? null, likes, config: d.config, full: (id) => fullPlace(s, id) });
     return { ok: true, ...r };
   }
 
@@ -472,6 +472,39 @@ export function createReadTools(d: AiDeps) {
     return { ok: true, topic, ...Object.fromEntries(sections.map((s) => [s, withoutSources(info[s] ?? null)])) };
   }
 
+  /**
+   * 各區的介紹（T40 的 intro）：一句特色、要不要搭車、代表的點、二月注意。
+   * 不給 area 是全部的區（子地區只列名字和要不要搭車）；給了只回那一區，子地區也帶介紹。
+   */
+  function get_areas(input: { area?: string } = {}): ToolOutput {
+    const s = places();
+    const point = (id: string) => {
+      const p = s.byId.get(id);
+      return p ? { id, name: placeName(p), type: p.type, tier: p.tier } : null;
+    };
+    const points = (ids: readonly string[] | undefined) => (ids ?? []).flatMap((id) => point(id) ?? []);
+    const one = input?.area;
+    const picked = one ? s.areas.filter((a) => a.id === one) : s.areas;
+    if (one && !picked.length) return fail(`沒有區域 ${one}（可用：${s.areas.map((a) => a.id).join('、')}）`);
+    return {
+      ok: true,
+      areas: picked.map((a) => ({
+        id: a.id,
+        name: a.name.zh || a.name.ja,
+        summary: a.intro?.summary ?? null,
+        transport: a.intro?.transport ?? null,
+        highlights: points(a.intro?.highlights),
+        february: (a.intro?.february ?? []).map((f) => f.text),
+        regions: (a.regions ?? []).map((r) => ({
+          id: r.id,
+          name: r.name.zh || r.name.ja,
+          needsCar: r.needsCar ?? null,
+          ...(one ? { summary: r.intro?.summary ?? null, highlights: points(r.intro?.highlights), febNote: r.intro?.febNote ?? null } : {}),
+        })),
+      })),
+    };
+  }
+
   /** 預約筆記：住宿的 date 是入住那晚 */
   const reservationRows = () => noteRows(places().itinerary, d.plan.getState().plan, places().byId, d.shared.store.getState().reservations);
 
@@ -489,7 +522,7 @@ export function createReadTools(d: AiDeps) {
     return p ? digestOf(p, likes(id)) : null;
   };
 
-  return { search_places, get_place, get_day, get_trip_overview, check_changes, suggest_position, get_route, get_timetable, get_opinions, get_trip_info, get_reservations, reservationRows, digest, proposalWarnings, proposalBooked };
+  return { search_places, get_place, get_day, get_trip_overview, check_changes, suggest_position, get_route, get_timetable, get_opinions, get_trip_info, get_areas, get_reservations, reservationRows, digest, proposalWarnings, proposalBooked };
 }
 
 export type ReadTools = ReturnType<typeof createReadTools>;

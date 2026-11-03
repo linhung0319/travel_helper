@@ -24,6 +24,22 @@ export interface Region {
   center?: LonLat;
   needsCar?: boolean;
   note?: string | null;
+  intro?: RegionIntro;
+}
+
+/** 子地區給人看的介紹（T40，schema 的 regionIntro） */
+export interface RegionIntro {
+  summary: string;
+  highlights: string[];
+  febNote: string | null;
+}
+
+/** 區域給人看的介紹（T40，schema 的 intro）：探索的概覽、AI 的 get_areas 共用 */
+export interface AreaIntro {
+  summary: string;
+  transport: string;
+  highlights: string[];
+  february: { text: string; points?: string[] }[];
 }
 
 /** data/areas.json 的一筆。區域一律從這裡讀，程式裡不寫死區域 ID（PLAN T11） */
@@ -35,6 +51,7 @@ export interface Area {
   bbox: Bbox;
   stations?: string[];
   regions?: Region[];
+  intro?: AreaIntro;
 }
 
 export interface Photo {
