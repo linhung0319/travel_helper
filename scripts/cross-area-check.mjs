@@ -3,14 +3,14 @@
 //
 // 用法：node scripts/cross-area-check.mjs [--stdout] [--write-tags]
 // 輸出：data/derived/cross-area-check.json（給程式）和 .md（給人看）；--stdout 只印 Markdown、不寫檔。
-// --write-tags：把第 3 項「可以從結構化欄位補」的 tags 寫回 data/areas/（只加不刪），其他項目照樣不改資料檔。
+// --write-tags：把第 3 項「可以從結構化欄位補」的 tags 寫回 data/areas/（只加不刪；只有景點的室內、雨天備案跟著 weather，會拿掉），其他項目照樣不改資料檔。
 //
 // 檢查的項目：
 //   1. 重複候選：同類型而且 Google 連結（cid）、食べログ連結、楽天施設番号或日文名稱相同；
 //      或同類型、直線 30 m 內而且名稱有一邊包含另一邊。住宿和它的 `-dining`（extra.lodgingId）不算重複。
 //   2. ID：kebab-case、以區域 ID 開頭；`-dining` 結尾的要有 extra.lodgingId 或對得到住宿。
 //   3. 標籤：tags、cuisine 不在固定清單（CONVENTIONS §5.3）；照「判斷細則」可以從結構化欄位補、但還沒補的 tags
-//      （景點：indoor、stairs 多、kids.friendly high；住宿：group.wholeRental → 包棟，extra.onsen 寫天然溫泉、源泉或泉質 → 溫泉）。
+//      （景點：weather（室內、雨天備案）、stairs 多、kids.friendly high；住宿：group.wholeRental → 包棟，extra.onsen 寫天然溫泉、源泉或泉質 → 溫泉）。
 //   4. 分級分布：各區、各類型的 S／A／B 和 A 以上的比例（§5.1：超過約 25% 要看門檻）。
 //   5. 車站：每個車站（stations.json）步行圈內的餐廳（anchors）有幾家午餐、晚餐、fit15 yes；
 //      景點、住宿的 nearestStation 指到它的有幾筆。
@@ -98,7 +98,8 @@ const isNaturalOnsen = (s) => typeof s === 'string' && ONSEN_YES.test(s) && !ONS
 const derivedTags = (x) => {
   const t = [];
   if (x.type === 'spot') {
-    if (x.indoor === true) t.push('室內', '雨天備案');
+    if (x.weather === 'indoor') t.push('室內', '雨天備案');
+    if (x.weather === 'covered') t.push('雨天備案');
     if (x.accessibility?.stairs === '多') t.push('長階梯');
     if (x.kids?.friendly === 'high') t.push('親子');
   }
@@ -109,8 +110,11 @@ const derivedTags = (x) => {
 for (const x of points) {
   for (const t of x.tags ?? []) if (!TAGS.includes(t)) tagIssues.push({ id: x.id, field: 'tags', value: t });
   for (const c of x.cuisine ?? []) if (!CUISINE.includes(c)) tagIssues.push({ id: x.id, field: 'cuisine', value: c });
-  const miss = derivedTags(x).filter((t) => !(x.tags ?? []).includes(t));
-  if (miss.length) tagMissing.push({ id: x.id, add: miss });
+  const want = derivedTags(x);
+  const miss = want.filter((t) => !(x.tags ?? []).includes(t));
+  // 景點的室內、雨天備案只看 weather（T58）：weather 不支持的拿掉
+  const extra = x.type === 'spot' ? (x.tags ?? []).filter((t) => (t === '室內' || t === '雨天備案') && !want.includes(t)) : [];
+  if (miss.length || extra.length) tagMissing.push({ id: x.id, add: miss, remove: extra });
 }
 
 // 4. 分級分布
@@ -176,7 +180,7 @@ const table = (head, rows) => [`| ${head.join(' | ')} |`, `|${head.map(() => '--
 md.push(`# 跨區整理檢查（T13，scripts/cross-area-check.mjs）\n\n產生：${report.generated}。資料點：景點 ${report.counts.spot}、住宿 ${report.counts.lodging}、餐廳 ${report.counts.restaurant}。`);
 md.push(`## 1. 重複候選（${dups.length}）\n\n住宿和它的 \`-dining\` 不算。` + (dups.length ? '\n\n' + table(['A', 'B', '依據', '跨區'], dups.map((d) => [d.a, d.b, d.why.join('、'), d.crossArea ? '是' : ''])) : '\n\n沒有。'));
 md.push(`## 2. ID（${idIssues.length}）` + (idIssues.length ? '\n\n' + table(['ID', '問題'], idIssues.map((d) => [d.id, d.issue])) : '\n\n沒有。'));
-md.push(`## 3. 標籤\n\n不在固定清單：${tagIssues.length ? tagIssues.map((t) => `${t.id} ${t.field}「${t.value}」`).join('、') : '沒有'}。\n\n可以從結構化欄位補、還沒補（判斷細則「tags 從結構化欄位補」）：${tagMissing.length ? tagMissing.map((t) => `${t.id}（${t.add.join('、')}）`).join('、') : '沒有'}。`);
+md.push(`## 3. 標籤\n\n不在固定清單：${tagIssues.length ? tagIssues.map((t) => `${t.id} ${t.field}「${t.value}」`).join('、') : '沒有'}。\n\n可以從結構化欄位補、還沒補（判斷細則「tags 從結構化欄位補」）：${tagMissing.length ? tagMissing.map((t) => `${t.id}（${[...t.add, ...t.remove.map((r) => `拿掉${r}`)].join('、')}）`).join('、') : '沒有'}。`);
 md.push('## 4. 分級分布\n\nA 以上的比例超過約 25% 要看門檻（§5.1「數字門檻依區調整」；10 筆以下只當參考）。\n\n' + table(['區域', '類型', '筆數', 'S', 'A', 'B', '沒評分', 'A 以上'], tiers.map((t) => [t.area, t.type, t.total, t.S, t.A, t.B, t.none, t.aOrAbove === null ? '—' : `${t.aOrAbove}%${t.aOrAbove > 25 && t.total - t.none > 10 ? ' ⚠️' : ''}`])));
 md.push('## 5. 車站\n\n餐廳是 anchors 有這個車站的（步行圈內）；午餐、晚餐是旅程中有一天在 11:30～13:30、18:00～19:00 營業。0 家的用粗體。\n\n' + table(['車站', '區域', '餐廳', '午餐', '晚餐', 'fit15 yes', '景點', '住宿'], stationRows.map((s) => [`${s.id} ${s.name ?? ''}`, s.area, s.restaurants || '**0**', s.lunch || '**0**', s.dinner || '**0**', s.fit15, s.spots, s.lodging])));
 md.push('## 6. 子地區\n\n' + table(['區域', '子地區', 'needsCar', '景點', '住宿', '餐廳'], regionRows.map((r) => [r.area, `${r.region} ${r.name ?? ''}`, r.needsCar ? '✓' : '', r.spot, r.lodging, r.restaurant || '**0**'])));
@@ -184,7 +188,7 @@ md.push(`## 7. 可信度\n\n### S、A 但 confidence low（${lowConfTop.length}�
 const out = md.join('\n\n') + '\n';
 
 if (writeTags && tagMissing.length) {
-  const add = new Map(tagMissing.map((t) => [t.id, t.add]));
+  const fix = new Map(tagMissing.map((t) => [t.id, t]));
   for (const area of AREAS) {
     for (const file of Object.values(FILES)) {
       const p = path.join(ROOT, `data/areas/${area}/${file}.json`);
@@ -192,13 +196,14 @@ if (writeTags && tagMissing.length) {
       const { data, eol } = readJson(p);
       let n = 0;
       for (const x of data) {
-        if (!add.has(x.id)) continue;
-        x.tags = [...(x.tags ?? []), ...add.get(x.id)];
+        const t = fix.get(x.id);
+        if (!t) continue;
+        x.tags = [...(x.tags ?? []).filter((g) => !t.remove.includes(g)), ...t.add];
         n++;
       }
       if (n) {
         writeJson(p, data, eol);
-        console.log(`${area}/${file}.json：補 tags ${n} 筆`);
+        console.log(`${area}/${file}.json：改 tags ${n} 筆`);
       }
     }
   }

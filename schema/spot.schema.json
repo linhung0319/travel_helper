@@ -45,9 +45,14 @@
       "stayMinutes": {
         "$ref": "common.schema.json#/$defs/nullableInteger"
       },
-      "indoor": {
-        "description": "下雨天的替代選擇",
-        "$ref": "common.schema.json#/$defs/nullableBoolean"
+      "weather": {
+        "description": "下雨行不行（CONVENTIONS「景點」的 weather）：indoor 室內、covered 有遮蔽、outdoor 戶外；null 是還沒判",
+        "enum": [
+          "indoor",
+          "covered",
+          "outdoor",
+          null
+        ]
       },
       "fares": {
         "description": "票價：大人、小孩、長輩、團體分開記",

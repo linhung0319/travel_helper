@@ -129,7 +129,7 @@
     "admission": "大人 2,800 円、小中學生 1,600 円、3 歲以上幼兒 800 円；25 人以上團體有折扣。",
     "phone": "0599-25-2555",
     "stayMinutes": 150,
-    "indoor": true,
+    "weather": "indoor",
     "fares": {
       "adult": "2,800 円（團體 25 人以上 2,600 円）",
       "child": "小中學生 1,600 円（團體 1,500 円）；幼兒（3 歲以上）800 円（團體 700 円）；未滿 3 歲免費",
@@ -402,7 +402,7 @@
     "admission": "大人 1,650 円、小中學生 820 円（含海女實演參觀）；20 人以上團體有折扣。",
     "phone": "0599-25-2028",
     "stayMinutes": 75,
-    "indoor": true,
+    "weather": "indoor",
     "fares": {
       "adult": "1,650 円（含稅、含海女實演）",
       "child": "小中學生 820 円；未就學兒童官網未列（null）",
@@ -643,7 +643,7 @@
     "admission": "大人（國中以上）2,400 円、小人（4 歲～小學生）1,300 円，含海豚島入園；15 人以上團體有折扣。",
     "phone": "0599-25-3147",
     "stayMinutes": 120,
-    "indoor": false,
+    "weather": "outdoor",
     "fares": {
       "adult": "國中生以上 2,400 円（含海豚島入園）",
       "child": "4 歲～小學生 1,300 円；未滿 4 歲每位大人可免費帶 1 名",
@@ -909,7 +909,7 @@
     "admission": "免費",
     "phone": "0599-25-1157",
     "stayMinutes": 30,
-    "indoor": false,
+    "weather": "outdoor",
     "fares": {
       "adult": "免費",
       "child": "免費",
@@ -1109,7 +1109,7 @@
     "admission": "免費（推定，未見收費資訊）",
     "phone": "0599-25-1157",
     "stayMinutes": 60,
-    "indoor": false,
+    "weather": "outdoor",
     "fares": null,
     "group": {
       "reservation": "不需預約",
@@ -1345,7 +1345,7 @@
     "admission": "免費入場（購物、用餐另計）",
     "phone": "0599-21-1080",
     "stayMinutes": 30,
-    "indoor": true,
+    "weather": "indoor",
     "fares": null,
     "group": {
       "reservation": "餐廳目前不接受預約，依到店順序入座；每日限 150 份。15 人一起用餐恐需分批。",
@@ -1604,7 +1604,7 @@
     "admission": "免費入場",
     "phone": "0599-26-3331",
     "stayMinutes": 45,
-    "indoor": true,
+    "weather": "indoor",
     "fares": null,
     "group": {
       "reservation": "3F 和洋餐廳可團體午餐預約（表單、電話、email、傳真 0599-26-3330）；可從鳥羽站、佐田浜停車場、鳥羽マリンターミナル接送；購物 95 折券；過年、黃金週、盂蘭盆不收預約；最多人數、價格未寫（官網 /lunch/）",
@@ -1856,7 +1856,7 @@
     "admission": "大人 500 円、國高中生 300 円、小學生以下免費",
     "phone": "0599-26-3745",
     "stayMinutes": 45,
-    "indoor": true,
+    "weather": "indoor",
     "fares": {
       "adult": "500 円",
       "child": "國高中生 300 円、小學生以下免費",
@@ -2133,7 +2133,7 @@
     "admission": "免費",
     "phone": "0599-25-8686",
     "stayMinutes": 30,
-    "indoor": true,
+    "weather": "indoor",
     "fares": {
       "adult": "免費",
       "child": "免費",
@@ -2400,7 +2400,7 @@
     "admission": "大人 800 日圓、大學生以下 400 日圓；20 人以上團體大人 720、學生 320。",
     "phone": "0599-32-6006",
     "stayMinutes": 90,
-    "indoor": true,
+    "weather": "indoor",
     "fares": {
       "adult": "800 日圓（18 歲以上）",
       "child": "大學生以下 400 日圓（大學生須出示學生證）；未就學兒童是否免費官網未寫",
@@ -2709,7 +2709,7 @@
     "admission": "免費（展望台）；咖啡、商店另計",
     "phone": "0599-33-6201",
     "stayMinutes": 40,
-    "indoor": false,
+    "weather": "outdoor",
     "fares": {
       "adult": "免費",
       "child": "免費",
@@ -2951,7 +2951,7 @@
     "admission": "免費參拜",
     "phone": "0599-33-6873",
     "stayMinutes": 40,
-    "indoor": false,
+    "weather": "outdoor",
     "fares": {
       "adult": "免費",
       "child": "免費",
@@ -3244,7 +3244,7 @@
     "admission": "免費",
     "phone": "0599-33-7453",
     "stayMinutes": 20,
-    "indoor": true,
+    "weather": "indoor",
     "fares": {
       "adult": "免費",
       "child": "免費",
@@ -3473,7 +3473,6 @@
     },
     "tags": [
       "體驗",
-      "室內",
       "雨天備案",
       "親子"
     ],
@@ -3507,7 +3506,7 @@
     "admission": "完全預約制；午餐大人 4,500 日圓、小孩 1,800 日圓；下午茶大人 2,500 日圓",
     "phone": "0599-33-7453",
     "stayMinutes": 60,
-    "indoor": true,
+    "weather": "covered",
     "fares": {
       "adult": "午餐 4,500 日圓（含稅；サザエ、ヒオウギ貝、大アサリ、干物、うに飯、餅入り味噌汁等）；下午茶 2,500 日圓（4 人以上）",
       "child": "午餐「小人」1,800 日圓（うにご飯、味噌汁、干物、貝 2 個、小鉢；年齡區間未寫）；下午茶小孩價未寫",
@@ -3615,7 +3614,8 @@
       "stayMinutesNote": "官網：各場約 1 小時。",
       "allergy": "盡量對應，預約時告知。",
       "googleMapsOld": "https://maps.app.goo.gl/FRcmvouv76RGYhCG8",
-      "walkIn": "沒有預約但有空位時，營業時間內可能接待；1～2 人要包場需先聯絡（官網 FAQ）。"
+      "walkIn": "沒有預約但有空位時，營業時間內可能接待；1～2 人要包場需先聯絡（官網 FAQ）。",
+      "indoorNote": "海女小屋，在沙灘上"
     },
     "ratings": {
       "google": 4.4,
@@ -3774,7 +3774,6 @@
     "tags": [
       "體驗",
       "無障礙",
-      "室內",
       "雨天備案",
       "親子"
     ],
@@ -3808,7 +3807,7 @@
     "admission": "完全預約制；Tea Time 大人 3,000／兒童 1,500 日圓，料理體驗 大人 4,700／兒童 2,600 日圓起",
     "phone": "0599-33-1023",
     "stayMinutes": 75,
-    "indoor": true,
+    "weather": "covered",
     "fares": {
       "adult": "A. Tea Time（50 分）3,000；B. 海女小屋料理體驗（1 小時 15 分）4,700；C. 伊勢海老或鮑魚 9,500／9,000；D. 13,800；F. 29,000（日圓，含稅）",
       "child": "A 1,500、B 2,600 日圓（3～12 歲／小學生）；3 歲以下未寫",
@@ -3910,7 +3909,8 @@
       ],
       "stayMinutesNote": "官網：料理課程 1 小時 15 分，Tea Time 50 分。",
       "parking": "大型巴士 4 台、小客車 20 台",
-      "nearby": "春雨展望台（toba-harusame-observatory）在附近，官網也有介紹。"
+      "nearby": "春雨展望台（toba-harusame-observatory）在附近，官網也有介紹。",
+      "indoorNote": "海女小屋，屋簷下的座位，天冷時關上拉窗"
     },
     "ratings": {
       "google": 4.4,
@@ -4031,7 +4031,7 @@
     "admission": "免費（燈塔內部不可進入）",
     "phone": null,
     "stayMinutes": 30,
-    "indoor": false,
+    "weather": "outdoor",
     "fares": {
       "adult": "免費",
       "child": "免費",
@@ -4247,7 +4247,7 @@
     "admission": "免費",
     "phone": null,
     "stayMinutes": 20,
-    "indoor": false,
+    "weather": "outdoor",
     "fares": {
       "adult": "免費",
       "child": "免費",
@@ -4433,7 +4433,7 @@
     "admission": "免費",
     "phone": null,
     "stayMinutes": 15,
-    "indoor": false,
+    "weather": "outdoor",
     "fares": {
       "adult": "免費",
       "child": "免費",
@@ -4641,7 +4641,7 @@
     "admission": "免費參拜",
     "phone": "0599-25-4354",
     "stayMinutes": 90,
-    "indoor": false,
+    "weather": "outdoor",
     "fares": {
       "adult": "免費",
       "child": "免費",
@@ -4867,10 +4867,7 @@
       "googleMaps": "https://maps.google.com/?cid=909286600885379435",
       "instagram": null
     },
-    "tags": [
-      "室內",
-      "雨天備案"
-    ],
+    "tags": [],
     "tier": "B",
     "nearestStation": {
       "id": "toba",
@@ -4895,7 +4892,7 @@
     "admission": "免費（碼頭本身）；搭船另計",
     "phone": "0599-25-4776",
     "stayMinutes": 20,
-    "indoor": true,
+    "weather": "outdoor",
     "fares": {
       "adult": "鳥羽（佐田浜）出發單程：坂手 220 円、桃取 450 円、菅島 510 円、答志・和具 550 円、神島 740 円",
       "child": "小孩（6 歲以上未滿 12 歲）約半價：坂手 110、桃取 230、菅島 260、答志・和具 280、神島 370 円（觀光三重記事）",
@@ -4990,7 +4987,8 @@
         "sakate": "佐田浜→坂手 約 10 分：7:40、9:00、11:50、13:10(包船)、14:00、16:10、18:15、19:30。坂手→佐田浜：6:55、8:25、9:15、11:00(包船)、12:35、13:40(包船)、14:45、16:25、17:45、19:05",
         "kamishima": "佐田浜→神島：7:40→8:20（經和具 8:00）、10:40→11:20（經和具）、14:30→15:00、冬季 17:00→17:30。神島→佐田浜：6:50→7:28（經菅島 7:15）、8:35→9:13（經菅島 9:00）、11:35→12:00、15:10→15:40、冬季 17:35→18:05"
       },
-      "busTransfer": "搭定期船轉かもめバス可在佐田浜索取免費乗継割引券，巴士車資往返各減 100 円；鳥羽マリンターミナル～中之郷桟橋區間巴士免費"
+      "busTransfer": "搭定期船轉かもめバス可在佐田浜索取免費乗継割引券，巴士車資往返各減 100 円；鳥羽マリンターミナル～中之郷桟橋區間巴士免費",
+      "indoorNote": "候船室在室內，但來這裡是為了搭船，船班看天候"
     },
     "ratings": {
       "google": 3.7,
@@ -5119,7 +5117,7 @@
     "admission": "免費（戶外史跡）",
     "phone": null,
     "stayMinutes": 60,
-    "indoor": false,
+    "weather": "outdoor",
     "fares": {
       "adult": "定期船 鳥羽⇔和具 單程 550 円",
       "child": "定期船 單程 280 円（6 歲以上未滿 12 歲）",
@@ -5354,7 +5352,7 @@
     "admission": "免費（散步、參拜）",
     "phone": "0599-37-3339",
     "stayMinutes": 90,
-    "indoor": false,
+    "weather": "outdoor",
     "fares": {
       "adult": "定期船 鳥羽⇔答志 單程 550 円",
       "child": "定期船 單程 280 円（6 歲以上未滿 12 歲）",
@@ -5588,7 +5586,7 @@
     "admission": "免費（外觀參觀）",
     "phone": "0599-25-1157",
     "stayMinutes": 30,
-    "indoor": false,
+    "weather": "outdoor",
     "fares": {
       "adult": "定期船 鳥羽⇔菅島 單程 510 円",
       "child": "定期船 單程 260 円（6 歲以上未滿 12 歲）",
@@ -5805,7 +5803,7 @@
     "admission": "免費",
     "phone": "0599-25-1157",
     "stayMinutes": 30,
-    "indoor": false,
+    "weather": "outdoor",
     "fares": {
       "adult": "定期船 鳥羽⇔菅島 單程 510 円",
       "child": "定期船 單程 260 円（6 歲以上未滿 12 歲）",
@@ -6019,7 +6017,7 @@
     "admission": "免費",
     "phone": "0599-25-1157",
     "stayMinutes": 30,
-    "indoor": false,
+    "weather": "outdoor",
     "fares": {
       "adult": "定期船 鳥羽⇔神島 單程 740 円",
       "child": "定期船 單程 370 円（6 歲以上未滿 12 歲）",
@@ -6254,7 +6252,7 @@
     "admission": "免費（外觀參觀）",
     "phone": "0599-25-1157",
     "stayMinutes": 20,
-    "indoor": false,
+    "weather": "outdoor",
     "fares": {
       "adult": "定期船 鳥羽⇔神島 單程 740 円",
       "child": "定期船 單程 370 円（6 歲以上未滿 12 歲）",
@@ -6466,7 +6464,7 @@
     "admission": "免費",
     "phone": "0599-25-1157",
     "stayMinutes": 20,
-    "indoor": false,
+    "weather": "outdoor",
     "fares": {
       "adult": "定期船 鳥羽⇔神島 單程 740 円",
       "child": "定期船 單程 370 円（6 歲以上未滿 12 歲）",
@@ -6673,7 +6671,7 @@
     "admission": "免費",
     "phone": "0599-25-1157",
     "stayMinutes": 20,
-    "indoor": false,
+    "weather": "outdoor",
     "fares": {
       "adult": "定期船 鳥羽⇔神島 單程 740 円",
       "child": "定期船 單程 370 円（6 歲以上未滿 12 歲）",
@@ -6861,7 +6859,7 @@
     "admission": "免費（搭船另計）",
     "phone": "0599-25-4776",
     "stayMinutes": null,
-    "indoor": null,
+    "weather": "outdoor",
     "fares": {
       "adult": "550 円（佐田浜出發單程）",
       "child": "280 円（佐田浜→答志・和具）（6 歲以上未滿 12 歲）",
@@ -6977,7 +6975,7 @@
     "admission": "免費（搭船另計）",
     "phone": "0599-25-4776",
     "stayMinutes": null,
-    "indoor": null,
+    "weather": "outdoor",
     "fares": {
       "adult": "550 円（佐田浜出發單程）",
       "child": "280 円（佐田浜→答志・和具）（6 歲以上未滿 12 歲）",
@@ -7093,7 +7091,7 @@
     "admission": "免費（搭船另計）",
     "phone": "0599-25-4776",
     "stayMinutes": null,
-    "indoor": null,
+    "weather": "outdoor",
     "fares": {
       "adult": "450 円（佐田浜出發單程）",
       "child": "230 円（6 歲以上未滿 12 歲）",
@@ -7208,7 +7206,7 @@
     "admission": "免費（搭船另計）",
     "phone": "0599-25-4776",
     "stayMinutes": null,
-    "indoor": null,
+    "weather": "outdoor",
     "fares": {
       "adult": "510 円（佐田浜出發單程）",
       "child": "260 円（6 歲以上未滿 12 歲）",
@@ -7324,7 +7322,7 @@
     "admission": "免費（搭船另計）",
     "phone": "0599-25-4776",
     "stayMinutes": null,
-    "indoor": null,
+    "weather": "outdoor",
     "fares": {
       "adult": "740 円（佐田浜出發單程）",
       "child": "370 円（6 歲以上未滿 12 歲）",

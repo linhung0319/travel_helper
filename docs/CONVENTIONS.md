@@ -180,7 +180,7 @@ travel_helper/
   "access": [ { "from": "ugata", "mode": "bus", "minutes": 10, "note": "三重交通，班次少" } ],
   "admission": "大人 2800 円",
   "stayMinutes": 120,
-  "indoor": true,                    // 下雨天的替代選擇
+  "weather": "indoor",               // 下雨行不行：indoor | covered | outdoor（標準見下面），還沒判填 null
   "ratings": { "google": 4.3, "googleReviews": 5200 },   // 景點用評論數當人氣
   "phone": "0599-xx-xxxx",
   "fares": {                         // 票價：長輩、小孩分開記
@@ -206,6 +206,13 @@ travel_helper/
   }
 }
 ```
+
+**`weather`：下雨行不行**（2026-11-03 T58，取代原本是非的 `indoor`）。照「主要的參觀」判，不看附設的咖啡廳、候船室：
+- **`indoor` 室內**：主要的參觀都在屋頂下，從車站或停車場（計程車下車處）到入口走路 5 分內。棟與棟之間走幾步室外的（海之博物館、河崎商人館）、館內有一小塊屋外的（伊勢海洋樂園的トドプール）還是室內。例如水族館、博物館、室內的體驗工房、全室內的展望台（HARUKAS 300）。
+- **`covered` 有遮蔽**：一半在屋頂下，撐傘可以。例如海女小屋、有頂棚的商店街（黑門市場）、館內是室內但要在戶外走一大段才到的（大阪城天守閣）、室內設施和戶外各半的（環球影城、有體驗棟的海邊體驗設施）、雨天改在陸上設施的（取珍珠的養殖筏）。
+- **`outdoor` 戶外**：下雨就不好玩或會停。例如展望台、燈塔、神社寺院（境內以戶外為主）、戶外街道、遊覽船和船上 BBQ（船內有冷暖氣也算，船班看天候）、港（來這裡是為了搭船）、摩天輪。
+- 判斷的依據寫在 `extra.indoorNote`（詳情的「室內外」）；不明顯的才寫。官網、觀光協會沒寫的，照片看得出來可以用 Chrome 看（少量）；看不出來照最可能的判、note 寫「官網沒寫」。
+- 給程式用：篩選的「天氣」有「室內」「有遮蔽」兩個；書架和 AI 說的「下雨也行」＝兩個都算；卡片標章「室內」「有遮蔽」分開寫。
 
 ### 住宿（`lodging`）
 ```jsonc
@@ -671,7 +678,7 @@ T7c～T8d 在自動模式下反覆用到、沒有被 👤 改掉的判斷，整�
 
 **欄位怎麼填**
 - 讀文 subagent 推斷的值不採用（例如來源只說「有石階」，不填 `stairs: 少`）；口コミ或第三方設施列表**明寫**的可以用，在 note 註明來源。
-- `tags` 從結構化欄位補，只加不刪：`indoor: true` → 室內、雨天備案；`accessibility.stairs: 多` → 長階梯；`kids.friendly: high` → 親子。住宿（2026-10-21 T13 跨區統一）：`group.wholeRental: true` → 包棟；`extra.onsen` 寫天然溫泉、源泉或泉質 → 溫泉（人工溫泉、非溫泉、溫泉與否沒寫的不加）。`scripts/cross-area-check.mjs --write-tags` 照這幾條補。
+- `tags` 從結構化欄位補，只加不刪：`weather` → indoor 加室內、雨天備案，covered 加雨天備案（這兩個 tag 只跟著 `weather`，不符合的會拿掉，T58）；`accessibility.stairs: 多` → 長階梯；`kids.friendly: high` → 親子。住宿（2026-10-21 T13 跨區統一）：`group.wholeRental: true` → 包棟；`extra.onsen` 寫天然溫泉、源泉或泉質 → 溫泉（人工溫泉、非溫泉、溫泉與否沒寫的不加）。`scripts/cross-area-check.mjs --write-tags` 照這幾條補。
 - `kids.friendly` 只給有小孩相關描述、或明顯是親子體驗的；神社、博物館沒有來源就留 null。
 - 照片：官網 → 楽天（住宿）→ Google 主圖，每筆最多 3 張；只用官網網域的圖（媒體、部落格的不用），觀光協會、觀光三重的照片 `kind` 記 `official`；每張先用 `scripts/photo-check.mjs` 確認打得開。
 - `mustTry` 只從筆記的 `[招牌]` 整理，沒有就留空，不用コース名稱補。`menu`：食べログ沒有文字菜單的店記 `dtlmenu/photo/` 的連結。

@@ -132,7 +132,7 @@
     "admission": "免費參拜",
     "phone": "0596-24-1111",
     "stayMinutes": 60,
-    "indoor": false,
+    "weather": "outdoor",
     "fares": {
       "adult": "免費",
       "child": "免費",
@@ -394,7 +394,7 @@
     "admission": "大人 300 円、小中學生 100 円",
     "phone": "0596-22-6263",
     "stayMinutes": 30,
-    "indoor": true,
+    "weather": "indoor",
     "fares": {
       "adult": "300 円（20 人以上團體 200 円）",
       "child": "小中學生 100 円；學齡前免費（需監護人陪同）",
@@ -598,7 +598,7 @@
     "admission": "免費",
     "phone": null,
     "stayMinutes": null,
-    "indoor": false,
+    "weather": "outdoor",
     "fares": null,
     "group": null,
     "accessibility": {
@@ -833,7 +833,7 @@
     "admission": "免費參拜",
     "phone": "0596-24-1111",
     "stayMinutes": null,
-    "indoor": false,
+    "weather": "outdoor",
     "fares": null,
     "group": null,
     "accessibility": {
@@ -1077,7 +1077,7 @@
     "admission": "大人 350 円、大學・高中生 200 円、中小學生 100 円",
     "phone": "0596-22-4810",
     "stayMinutes": 90,
-    "indoor": true,
+    "weather": "indoor",
     "fares": {
       "adult": "350 円",
       "child": "中小學生 100 円（大學・高中生 200 円）",
@@ -1333,7 +1333,7 @@
     "admission": "每人 2,200 円（5 人以上 1,980 円）",
     "phone": "0596-23-1721",
     "stayMinutes": 70,
-    "indoor": true,
+    "weather": "indoor",
     "fares": {
       "adult": "2,200 円（5 人以上每人 1,980 円）",
       "child": "同大人價（官網沒有另列兒童價）",
@@ -1608,7 +1608,7 @@
     "admission": "免費參拜",
     "phone": "0596-24-1111",
     "stayMinutes": null,
-    "indoor": false,
+    "weather": "outdoor",
     "fares": null,
     "group": null,
     "accessibility": {
@@ -1856,7 +1856,7 @@
     "admission": "免費參拜",
     "phone": "0596-24-1111",
     "stayMinutes": null,
-    "indoor": false,
+    "weather": "outdoor",
     "fares": null,
     "group": null,
     "accessibility": {
@@ -2100,7 +2100,7 @@
     "admission": "三館共通券 大人 700 円、小中學生 200 円",
     "phone": "0596-22-1700",
     "stayMinutes": null,
-    "indoor": true,
+    "weather": "indoor",
     "fares": {
       "adult": "三館共通 700 円；徴古館・農業館 500 円；美術館 500 円",
       "child": "小中學生：共通 200 円、單館 100 円；學齡前免費",
@@ -2374,7 +2374,7 @@
     "admission": null,
     "phone": "0596-22-2722",
     "stayMinutes": null,
-    "indoor": null,
+    "weather": "outdoor",
     "fares": {
       "adult": "參拜免費（來源沒寫拜觀料）",
       "child": null,
@@ -2439,7 +2439,8 @@
       "highlights": "本堂地板浮現龍紋（約 10 年前出現，寺方不公開照片）；本堂後方的二つ池（東池雄龍、西池雌龍）有應永 10 年火災時雙龍護佛的傳說（寺方部落格）。",
       "conflicts": [
         "巴士站名：觀光三重寫「松尾観音」，觀光協會和官網寫「松尾観音前」；巴士終點名稱新舊寫法不同（ジャスコ新伊勢店／イオン伊勢店）。"
-      ]
+      ],
+      "indoorNote": "境內以戶外為主，本堂可以進去"
     },
     "summary": {
       "text": "號稱日本最古的厄除觀音，本堂是約 200 年前的總欅造。本堂地板浮現的龍紋（撫で龍）和後方住著雌雄雙龍的「二つ池」是看點，常被當成パワースポット介紹。",
@@ -2632,7 +2633,7 @@
     "admission": "免費參拜",
     "phone": "0596-24-1111",
     "stayMinutes": 60,
-    "indoor": false,
+    "weather": "outdoor",
     "fares": {
       "adult": "免費",
       "child": "免費",
@@ -2925,7 +2926,7 @@
     "admission": "免費（おかげ橫丁入場免費）",
     "phone": "0596-23-8838",
     "stayMinutes": null,
-    "indoor": false,
+    "weather": "outdoor",
     "fares": null,
     "group": {
       "reservation": null,
@@ -3153,7 +3154,7 @@
     "admission": "免費參拜",
     "phone": "0596-22-2554",
     "stayMinutes": 30,
-    "indoor": false,
+    "weather": "outdoor",
     "fares": null,
     "group": null,
     "accessibility": {
@@ -3419,7 +3420,7 @@
     "admission": "大人 平日 1,500 円／土日祝 1,800 円；兒童 800／1,000 円",
     "phone": "0596-23-8844",
     "stayMinutes": 45,
-    "indoor": true,
+    "weather": "indoor",
     "fares": {
       "adult": "平日 1,500 円、土日祝 1,800 円",
       "child": "4 歲～小學生 平日 800 円、土日祝 1,000 円；3 歲以下免費",
@@ -3646,7 +3647,7 @@
     "admission": null,
     "phone": "0596-22-1710",
     "stayMinutes": null,
-    "indoor": false,
+    "weather": "outdoor",
     "fares": null,
     "group": {
       "reservation": null,
@@ -3895,7 +3896,7 @@
     "admission": "展望台免費；伊勢志摩スカイライン通行費 普通車 1,270 円、マイクロバス 3,210 円",
     "phone": "059-226-6752",
     "stayMinutes": 60,
-    "indoor": false,
+    "weather": "outdoor",
     "fares": {
       "adult": "展望台免費；展望足湯 100 円",
       "child": "展望足湯 50 円",
@@ -4109,7 +4110,7 @@
     "admission": null,
     "phone": null,
     "stayMinutes": 40,
-    "indoor": true,
+    "weather": "indoor",
     "fares": {
       "adult": "2,200 円～（時期、方案會變；ichigogari.info 2026-03）",
       "child": null,
@@ -4368,7 +4369,7 @@
     "admission": "手機吊飾 2,750 円、項鍊 3,300 円（含體驗與加工）",
     "phone": "0596-23-2233",
     "stayMinutes": 40,
-    "indoor": true,
+    "weather": "indoor",
     "fares": {
       "adult": "取珠 1 回 1,100 円＋金具 1,650 円起（含加工），最低 2,750 円；ペンダント 3,300 円；ブローチ 合計 6,050 円",
       "child": "6 歲以上和大人同價（VELTRA）",
@@ -4631,7 +4632,7 @@
     "admission": "資料館展示室免費",
     "phone": "0596-22-8410",
     "stayMinutes": null,
-    "indoor": false,
+    "weather": "outdoor",
     "fares": {
       "adult": "免費（資料館展示室）",
       "child": null,
@@ -4870,7 +4871,7 @@
     "admission": "免費",
     "phone": "0596-23-3040",
     "stayMinutes": null,
-    "indoor": true,
+    "weather": "indoor",
     "fares": {
       "adult": "免費",
       "child": "免費",

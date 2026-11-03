@@ -35,8 +35,11 @@ test('照片：官網在前、Google 補到 3 張、打不開的拿掉', () => {
 });
 
 test('tags 只加不刪', () => {
-  assert.deepEqual(deriveTags({ tags: ['展望'], indoor: true, accessibility: { stairs: '多' }, kids: { friendly: 'high' } }), ['展望', '室內', '雨天備案', '長階梯', '親子']);
-  assert.deepEqual(deriveTags({ tags: ['海邊'], indoor: false, accessibility: { stairs: null }, kids: null }), ['海邊']);
+  assert.deepEqual(deriveTags({ tags: ['展望'], weather: 'indoor', accessibility: { stairs: '多' }, kids: { friendly: 'high' } }), ['展望', '室內', '雨天備案', '長階梯', '親子']);
+  assert.deepEqual(deriveTags({ tags: ['海邊'], weather: 'outdoor', accessibility: { stairs: null }, kids: null }), ['海邊']);
+  // T58：室內、雨天備案跟著 weather（有遮蔽只有雨天備案；戶外拿掉舊的）
+  assert.deepEqual(deriveTags({ tags: ['室內', '雨天備案', '體驗'], weather: 'covered' }), ['雨天備案', '體驗']);
+  assert.deepEqual(deriveTags({ tags: ['室內', '雨天備案'], weather: 'outdoor' }), []);
 });
 
 test('sources 依網址去重', () => {
@@ -47,7 +50,7 @@ test('sources 依網址去重', () => {
 test('組一筆：Google 連結、星數、預設欄位、欄位順序', () => {
   const j = {
     id: 'x-spot', name: { ja: 'X', zh: 'X' }, region: 'x-r', origCoords: [136.8, 34.3], origCoordsSource: 'other', origCoordsLabel: '觀光三重詳細頁', candKey: 'x',
-    indoor: true, photos: [{ url: 'https://a/1.jpg', page: 'https://a/' }], links: { official: 'https://a/' },
+    weather: 'indoor', photos: [{ url: 'https://a/1.jpg', page: 'https://a/' }], links: { official: 'https://a/' },
     ratingsNote: '另有 Y 3.9（10）', extra: { conflicts: ['舊的'] },
   };
   const g = { cid: '1234 5678', rating: 4.3, reviews: 311, lat: 34.3001, lng: 136.8001, img: 'https://g/1=w800', name: 'X 乗船場' };
