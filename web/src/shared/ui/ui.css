@@ -4415,6 +4415,48 @@ button.ll-main {
   text-overflow: ellipsis;
 }
 
+/* 看提議（T48）：有變的格子芥子黃框，旁邊（住宿是下面）劃掉的舊值 */
+.ui-sk-where-line {
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
+  min-width: 0;
+}
+
+.ui-sk-where b.changed {
+  padding: 0 5px;
+  border: 1.5px solid var(--mustard);
+  border-radius: 999px;
+  background: var(--paper);
+}
+
+.ui-sk-stay-col {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 1px;
+  min-width: 0;
+}
+
+.ui-sk-stay-col.changed .ui-sk-stay {
+  border: 1.5px solid var(--mustard);
+}
+
+/* 看提議時住宿欄不能點，但字不變淡（是提議之後的值） */
+.ui-sk-stay:disabled {
+  opacity: 1;
+  cursor: default;
+}
+
+.ui-sk-old {
+  color: var(--ink-3);
+  font-size: 0.6875rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 11em;
+}
+
 .ui-sk-seal {
   display: inline-grid;
   place-items: center;

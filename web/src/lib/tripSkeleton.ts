@@ -132,3 +132,42 @@ export function nightLine(it: Itinerary, date: string, areas: Area[], byId: Map<
 
 /** 有晚上的日期（最後一天以外） */
 export const hasNight = (it: Itinerary, date: string) => it.days.findIndex((d) => d.date === date) < it.days.length - 1 && it.days.some((d) => d.date === date);
+
+/** 住宿欄的字（比對提議前後、劃掉的舊值用）：住宿名稱、「志摩・還沒選住宿」、「選住哪一區」；最後一天是 null */
+export function stayText(stay: SkeletonStay | null, areaName: (id: string) => string): string | null {
+  if (!stay) return null;
+  if (stay.kind === 'lodging') return stay.name;
+  return stay.kind === 'area' ? `${areaName(stay.area)}・還沒選住宿` : '選住哪一區';
+}
+
+/** 一列在提議前後哪一格變了：有變的格子給舊值（劃掉用，null 是原本空的） */
+export interface SkeletonRowDiff {
+  where?: { before: string | null };
+  stay?: { before: string | null };
+}
+
+/**
+ * 整趟看提議（T48）：骨架用提議之後的行程畫，這裡比對提議之前的同一天，列出有變的格子。
+ * 「這天在哪一區」比字；住宿欄比這晚的區和住宿（區換了、住宿換了、只定區變成選了住宿都算）
+ */
+export function skeletonDiff(after: SkeletonRow[], before: SkeletonRow[], areas: Area[]): Map<string, SkeletonRowDiff> {
+  const name = areaNameOf(areas);
+  const out = new Map<string, SkeletonRowDiff>();
+  for (const r of after) {
+    const b = before.find((x) => x.date === r.date);
+    if (!b) continue;
+    const d: SkeletonRowDiff = {};
+    if (r.where !== b.where) d.where = { before: b.where };
+    const sa = stayText(r.stay, name);
+    const sb = stayText(b.stay, name);
+    if (sa !== sb || r.nightArea !== b.nightArea) d.stay = { before: sb };
+    if (d.where || d.stay) out.set(r.date, d);
+  }
+  return out;
+}
+
+/** 地圖的晚數標籤看提議（T48）：照提議之後的行程算，晚數和原本不一樣的區（新住進去的也算）標 changed */
+export function nightsPerAreaDiff(after: Itinerary, before: Itinerary, areas: Area[], byId: Map<string, Place>): { area: string; nights: number; changed: boolean }[] {
+  const old = new Map(nightsPerArea(before, areas, byId).map((x) => [x.area, x.nights]));
+  return nightsPerArea(after, areas, byId).map((x) => ({ ...x, changed: old.get(x.area) !== x.nights }));
+}

@@ -8,6 +8,8 @@ import type { Candidate } from '../backend/types.ts';
 import { applyOps, placedByOps, withdrawnByOps, type Op } from './ops.ts';
 import { opsContext, placeName, type AiDeps } from './deps.ts';
 import { untagged } from './transcript.ts';
+import { proposalTarget } from '../commands.ts';
+import type { DaySelection } from '../store.ts';
 
 export interface ActiveProposal {
   /** 提議卡（tool_use 的 ID） */
@@ -47,11 +49,11 @@ export function createProposals(d: ProposalDeps): Proposals {
   const after = (it: Itinerary, ops: Op[]) => applyOps(it, ops, opsContext(d));
   const plain = (text: string) => untagged(text, (id) => placeName(d.data.getState().byId.get(id), id));
 
-  function draw(ops: Op[], summary: string): string | null {
+  function draw(ops: Op[], summary: string, navigate = true): string | null {
     const it = d.data.getState().itinerary;
     if (!it) return '還沒有行程';
     try {
-      const r = d.commands.showProposal(after(it, ops), { summary: plain(summary) });
+      const r = d.commands.showProposal(after(it, ops), { summary: plain(summary), navigate });
       return r.ok ? null : r.error;
     } catch (e) {
       if (e instanceof ItineraryError) return e.message;
@@ -68,7 +70,7 @@ export function createProposals(d: ProposalDeps): Proposals {
   const unsubscribe = d.data.subscribe((s, prev) => {
     const a = store.getState().active;
     if (!a || adopting || s.itinerary === prev.itinerary) return;
-    if (draw(a.ops, a.summary)) {
+    if (draw(a.ops, a.summary, false)) {
       hide();
       d.onCardChange(a.cardId, 'stale');
     }
@@ -88,23 +90,21 @@ export function createProposals(d: ProposalDeps): Proposals {
       // 可能別人剛改了行程：套不上就過期
       const it = d.data.getState().itinerary;
       if (!it) return 'failed';
-      let dates: string[] = [];
-      let areasOnly = false;
+      let target: DaySelection = 'all';
       try {
-        const r = d.commands.showProposal(after(it, ops), { summary: plain(summary) });
+        const r = d.commands.showProposal(after(it, ops), { summary: plain(summary), navigate: false });
         if (!r.ok) {
           hide();
           return 'stale';
         }
-        dates = r.dates;
-        areasOnly = r.changes.every((c) => c.kind === 'night-area' || c.kind === 'day-area');
+        target = proposalTarget(r.changes, r.dates);
       } catch (e) {
         if (!(e instanceof ItineraryError)) throw e;
         hide();
         return 'stale';
       }
-      // 看整趟時跳到改的那天，看得到結果；只改每晚住哪一區時留在整趟，骨架看得到（T45c）
-      if (d.app.getState().day === 'all' && !areasOnly) d.app.getState().selectDay(dates[0]);
+      // 看整趟時：只動 1 天就跳到那天，看得到結果；動到 2 天以上、改區、改住宿留在整趟，骨架看得到（T48）
+      if (d.app.getState().day === 'all' && target !== 'all') d.app.getState().selectDay(target);
       const removed: Candidate[] = [];
       const added: number[] = [];
       const withdrawn = withdrawnByOps(it, ops);

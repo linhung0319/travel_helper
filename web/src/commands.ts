@@ -14,6 +14,18 @@ import { areasExtent, extentOf, inBbox } from './lib/areas.ts';
 import { stopsOn } from './lib/itinerary.ts';
 import { tripDates, dayLabel } from './lib/trip.ts';
 
+/**
+ * 提議出現時右欄、地圖跳到哪裡（T48）：只動到 1 天的點 → 那天；動到 2 天以上，或有任何「住哪一區」「住宿」的變動 → 整趟。
+ * dates 是提議動到的日期（showProposal 算的）
+ */
+export function proposalTarget(changes: Change[], dates: string[]): DaySelection {
+  if (changes.some((c) => c.kind === 'night-area' || c.kind === 'lodging')) return 'all';
+  return dates.length === 1 ? dates[0] : 'all';
+}
+
+/** 一區的範圍的兩個角（相機框住整區用） */
+const areaCorners = (a: { bbox: Bbox } | undefined): LonLat[] => (a ? [[a.bbox[0], a.bbox[1]], [a.bbox[2], a.bbox[3]]] : []);
+
 /** 指令的結果：成功時附上 AI 用得到的資訊；失敗時 error 是給人（和 AI）看的一句話，狀態不變 */
 export type CommandResult<T extends object = object> = ({ ok: true } & T) | { ok: false; error: string };
 
@@ -321,9 +333,10 @@ export function createCommands(app: StoreApi<AppStore>, data: StoreApi<DataState
   /**
    * 在地圖上用虛線、半透明畫出 AI 提議的行程（interaction-design §0）。不改確定的行程；
    * 採用由 T15／T16 用 engine 的操作寫進行程，之後呼叫 clearProposal。
-   * 只有一天改動時，順便切到那一天；地圖框住提議的點。
+   * 跳到哪裡照 proposalTarget（只動 1 天的點 → 那天；2 天以上、改區、改住宿 → 整趟）；地圖框住提議的點、牽涉到的區和住宿。
+   * navigate: false（行程變了重算差異）只更新提議，不換天、不動地圖。
    */
-  function showProposal(itinerary: Itinerary, opts: { summary?: string | null } = {}): CommandResult<{ dates: string[]; changes: Change[]; unknownPlaces?: string[] }> {
+  function showProposal(itinerary: Itinerary, opts: { summary?: string | null; navigate?: boolean } = {}): CommandResult<{ dates: string[]; changes: Change[]; unknownPlaces?: string[] }> {
     const errs = validateItinerary(itinerary);
     if (errs.length) return { ok: false, error: `showProposal：行程格式不對：${errs.slice(0, 3).join('；')}` };
     const { itinerary: current, byId } = data.getState();
@@ -336,8 +349,22 @@ export function createCommands(app: StoreApi<AppStore>, data: StoreApi<DataState
     // 同一個提議重算（別人改了行程）不動使用者選的點；新的提議才算 AI 換了一組
     if (app.getState().proposal?.summary !== (opts.summary ?? null)) dropStaleSelection(proposalDates.flatMap((d) => stopsOn(itinerary, d).map((s) => s.place)));
     app.getState().setProposal({ itinerary, dates: proposalDates, changes, summary: opts.summary ?? null });
-    if (proposalDates.length === 1) app.getState().selectDay(proposalDates[0]);
-    const coords = proposalDates.flatMap((d) => stopsOn(itinerary, d).map((s) => byId.get(s.place)?.coords)).filter((c): c is LonLat => !!c);
+    if (opts.navigate === false) return { ok: true, dates: proposalDates, changes, ...(missing.length ? { unknownPlaces: [...new Set(missing)] } : {}) };
+    const target = proposalTarget(changes, proposalDates);
+    // 編輯中不跳到整趟（整趟會結束編輯）；1 天的照舊跳過去
+    if (target !== 'all' || !app.getState().planning) app.getState().selectDay(target);
+    // 相機：提議那幾天排了的點，加上牽涉到的區（整區的範圍，只框中心一個點會拉得太近）、新舊住宿（只改區、那幾天還沒排點時也會動，T48）
+    const { areas } = data.getState();
+    const coords = [
+      ...proposalDates.flatMap((d) => stopsOn(itinerary, d).map((s) => byId.get(s.place)?.coords)),
+      ...changes.flatMap((c) =>
+        c.kind === 'night-area' || c.kind === 'day-area'
+          ? [c.before, c.after].flatMap((id) => areaCorners(areas.find((x) => x.id === id)))
+          : c.kind === 'lodging'
+            ? [c.before, c.after].map((p) => (p ? byId.get(p)?.coords : undefined))
+            : [],
+      ),
+    ].filter((c): c is LonLat => !!c);
     if (coords.length) moveTo(coords);
     return { ok: true, dates: proposalDates, changes, ...(missing.length ? { unknownPlaces: [...new Set(missing)] } : {}) };
   }

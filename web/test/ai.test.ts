@@ -292,16 +292,16 @@ test('S12 提議過期：別人刪掉要換的那項 → 過期；別人只改�
   h.close();
 });
 
-test('S13 多天提議：有改動的天都標出來，不切天', async () => {
+test('S13 多天提議：有改動的天都標出來，跳到整趟；採用後留在整趟（T48）', async () => {
   const h = await harness();
+  h.app.getState().selectDay('2027-02-05');
   await h.chat.send('把還沒排的分到各天');
   const p = h.app.getState().proposal!;
   assert.ok(p.dates.length >= 2, `dates=${p.dates.join()}`);
   assert.equal(h.app.getState().day, 'all');
   await h.chat.confirmCard(h.lastUse('propose_changes').id);
-  // 從整趟採用：要先選到一天，編輯才不會被整趟關掉
   assert.equal(h.app.getState().planning, false);
-  assert.equal(h.app.getState().day, p.dates[0]);
+  assert.equal(h.app.getState().day, 'all');
   h.close();
 });
 
