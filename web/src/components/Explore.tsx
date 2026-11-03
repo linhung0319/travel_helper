@@ -23,7 +23,7 @@ import { AreaChips } from '../shared/ui/AreaChips.tsx';
 import { AreaHome, ExploreOverview } from '../shared/ui/ExploreHome.tsx';
 import { areaOnly, currentArea, exploreStage } from '../lib/shelves.ts';
 import { EMPTY_FILTER, type Filter, type FilterKey } from '../lib/filter.ts';
-import { pickArea } from '../exploreArea.ts';
+import { pickArea, pickAreaChip } from '../exploreArea.ts';
 import { displayName } from '../data/normalize.ts';
 import { addPlaceStore } from '../addPlaceStore.ts';
 import { FilterBar, type FilterModel } from '../shared/ui/FilterBar.tsx';
@@ -245,7 +245,10 @@ export function ExplorePanel({ source = 'explore' }: { source?: ListSource }) {
         surface="desktop"
         model={model}
         count={list.length}
-        typeRow={<AreaChips value={filter.areas.length === 1 ? filter.areas[0] : null} onPick={pickArea} firstLabel={wish ? '全部' : '概覽'} prefix="ex" testId="ex-area-chips" extra={wish ? userChip.chip : undefined} />}
+        typeRow={<AreaChips value={filter.areas.length === 1 ? filter.areas[0] : null} onPick={(a) => {
+            setInView(false);
+            pickAreaChip(a);
+          }} firstLabel={wish ? '全部' : '概覽'} prefix="ex" testId="ex-area-chips" extra={wish ? userChip.chip : undefined} />}
       />
       {!wish && <AddPlaceSuggest query={query} surface="desktop" />}
       {backToArea}

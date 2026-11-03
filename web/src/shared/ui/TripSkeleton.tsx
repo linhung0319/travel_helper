@@ -114,7 +114,23 @@ function StayButton({ row, areas, open, onToggle, readOnly }: StayProps) {
   );
 }
 
-export function TripSkeleton() {
+/** 「11 晚 · 已決定 8 晚」：骨架的標題列用；手機整趟的標題列（mobile/TripOverview）也放這一行。看提議時照提議之後的行程算（同骨架，T48） */
+export function TripNightCount({ className = 'ui-sk-count' }: { className?: string }) {
+  const itinerary = useData((s) => s.itinerary);
+  const byId = useData((s) => s.byId);
+  const proposal = useApp((s) => s.proposal);
+  const view = useUi((s) => s.proposalView);
+  if (!itinerary) return null;
+  const { total, decided } = nightsDecided(proposal && view === 'diff' ? proposal.itinerary : itinerary, byId);
+  return (
+    <span className={className} data-testid="sk-count">
+      {total} 晚 · 已決定 {decided} 晚
+    </span>
+  );
+}
+
+/** head＝false：不畫「整趟」那一列（手機的標題列自己畫，mobile/TripOverview） */
+export function TripSkeleton({ head = true }: { head?: boolean }) {
   const itinerary = useData((s) => s.itinerary);
   const byId = useData((s) => s.byId);
   const areas = useData((s) => s.areas);
@@ -134,17 +150,16 @@ export function TripSkeleton() {
   const shown = proposed ?? itinerary;
   const rows = skeletonRows({ itinerary: shown, areas, byId, booked });
   const diffs = proposed ? skeletonDiff(rows, skeletonRows({ itinerary, areas, byId, booked }), areas) : new Map<string, SkeletonRowDiff>();
-  const { total, decided } = nightsDecided(shown, byId);
   const arrive = flightLine(shown, shown.days[0]?.date, 'arrive');
   const depart = flightLine(shown, shown.days.at(-1)?.date, 'depart');
   return (
     <div className="ui-sk" data-testid="trip-skeleton" data-view={proposed ? 'proposal' : 'trip'}>
-      <div className="ui-sk-head">
-        <span className="ui-sk-title">整趟</span>
-        <span className="ui-sk-count" data-testid="sk-count">
-          {total} 晚 · 已決定 {decided} 晚
-        </span>
-      </div>
+      {head && (
+        <div className="ui-sk-head">
+          <span className="ui-sk-title">整趟</span>
+          <TripNightCount />
+        </div>
+      )}
       <ol className="ui-sk-list">
         {arrive && (
           <li className="ui-sk-flight">

@@ -645,7 +645,7 @@
   grid-template-columns: repeat(3, minmax(0, 1fr));
 }
 
-/* 地圖上的小圖示：右下「放大地圖」和它左邊引導彈窗的入口（T46），排成一列浮在面板上面 */
+/* 地圖上的小圖示：右下「放大地圖」（面板在中間高度時），浮在面板上面 */
 .m-map-button {
   position: relative;
   min-width: var(--tap);
@@ -676,26 +676,21 @@
   bottom: calc(100% * var(--m-sheet-mid) + 10px);
 }
 
-.m-map-buttons[data-snap='low'] {
-  bottom: calc(var(--m-sheet-low) + 10px);
+/* 引導彈窗的入口：一直在地圖右上（T49），在面板（z-index 5）底下，面板拉到最高時被蓋住、不搬家 */
+.m-map-guide {
+  position: absolute;
+  z-index: 4;
+  top: calc(6px + env(safe-area-inset-top));
+  right: 8px;
 }
 
-/* 面板拉到最高：引導彈窗的入口在日期列的「整趟」左邊（地圖被蓋住了） */
-.m-strip-row {
-  flex: 0 0 auto;
-  display: flex;
-  align-items: flex-start;
-  background: var(--band);
+/* 左上的「‹ 回 AI」那排讓出右上的入口（「排行程 1/4」約 120px；全部完成只剩圈） */
+.m-app:has(.m-map-guide .ui-guide-btn) .m-map-ai {
+  right: 136px;
 }
 
-.m-strip-row > .ui-guide-btn {
-  flex: 0 0 auto;
-  margin: 10px 0 0 12px;
-}
-
-.m-strip-row > .ui-days {
-  flex: 1;
-  min-width: 0;
+.m-app:has(.m-map-guide .ui-guide-btn.all) .m-map-ai {
+  right: 60px;
 }
 
 /* 這天的標題（固定在面板上面，往下捲也看得到）：圓體的大日期、「週五 · 第 4 天 · 鳥羽」、✦ 問 AI、編輯 */

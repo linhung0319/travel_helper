@@ -747,11 +747,20 @@
   outline-offset: -3px;
 }
 
-/* 整趟的總覽：問 AI 那一列、有變動的天 */
-.m-overview-ask {
-  display: flex;
-  justify-content: flex-end;
-  padding: 0 0 6px;
+/* 整趟的總覽：標題列（和單天的 .m-dayhead 同一種，上面離日期列 12px，T49）、有變動的天 */
+.m-dayhead.m-overview-head {
+  padding-top: 12px;
+}
+
+.m-overview-count {
+  flex: 1 1 0;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  color: var(--ink-2);
+  font-size: 0.875rem;
+  font-weight: 400;
 }
 
 .m-overview-day.proposed {

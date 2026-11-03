@@ -57,13 +57,13 @@ const run = (page: Page, fn: string, ...args: unknown[]) =>
 
 test('用指令重現 T11 的手動操作：切天數、篩選、聚焦，畫面一樣', async ({ page }) => {
   await ready(page);
-  // 電腦版：日期在地圖上，篩選在右側的「探索」分頁。點天數、切到探索、選餐廳和 S 級、點地區「鳥羽」（篩選加上鳥羽、地圖移過去）
+  // 電腦版：日期在地圖上，篩選在右側的「探索」分頁。點天數、切到探索、點地區「鳥羽」（地圖移過去）、選餐廳和 S 級
+  // 地區在地區列（T42）；點地區鈕會清掉其他條件（T49），所以先點地區
   await page.locator(`.map-column [data-day="${DAY}"]`).click();
   await page.getByTestId('side-tab-explore').click();
+  await page.getByTestId('ex-area-toba').click();
   await pickType(page, 'restaurant');
   await pickFilter(page, 'tier-S');
-  // 地區在地區列（T42）
-  await page.getByTestId('ex-area-toba').click();
   const manual = await snapshot(page);
   await ready(page);
   expect((await run(page, 'selectDay', DAY)).ok).toBe(true);

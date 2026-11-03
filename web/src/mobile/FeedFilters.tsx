@@ -15,10 +15,15 @@ export const withoutRegions = (quick: string[]) => quick.filter((t) => !t.starts
 /** 只留子地區（「全部清除」、回到書架：地區、子地區在外面，不跟著清） */
 export const onlyRegions = (quick: string[]) => quick.filter((t) => t.startsWith('regions:'));
 
-/** 地區列：換地區（子地區清掉） */
+/** 地區列（含「概覽」、目前這顆）：換地區，子地區和其他條件、搜尋都清掉，回到概覽或那區的書架（T49） */
 export function pickFeedArea(area: string | null) {
-  const { feed, setFeed } = mobileStore.getState();
-  setFeed({ area, quick: withoutRegions(feed.quick) });
+  mobileStore.getState().setFeed({ area, type: 'all', quick: [], query: '' });
+}
+
+/** 想去的地區列（含「全部」）：同探索，條件和搜尋清掉；「自己加 N」一起取消 */
+export function pickWishArea(area: string | null) {
+  wishPrefs.getState().setUserOnly(false);
+  mobileStore.getState().setWish({ area, type: 'all', quick: [], query: '' });
 }
 
 /** 選區後的子地區列：一次一個；null 是整區 */

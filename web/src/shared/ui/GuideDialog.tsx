@@ -45,8 +45,8 @@ function Ring({ done }: { done: number }) {
   );
 }
 
-/** 地圖右上（手機：放大地圖左邊、面板頭）的入口。compact＝只有圈和數字（手機面板頭） */
-export function GuideButton({ compact = false, className = '', testId = 'guide-button' }: { compact?: boolean; className?: string; testId?: string }) {
+/** 地圖右上的入口（網頁、手機都是） */
+export function GuideButton({ className = '', testId = 'guide-button' }: { className?: string; testId?: string }) {
   const { ready, progress } = useGuide();
   if (!ready) return null;
   const all = progress.done >= GUIDE_STEPS;
@@ -54,7 +54,7 @@ export function GuideButton({ compact = false, className = '', testId = 'guide-b
   return (
     <button
       type="button"
-      className={`ui-guide-btn ${all ? 'all' : ''} ${compact ? 'compact' : ''} ${className}`}
+      className={`ui-guide-btn ${all ? 'all' : ''} ${className}`}
       aria-label={all ? '排行程：四步都完成了' : `排行程 ${count}`}
       aria-haspopup="dialog"
       onClick={() => openDialog({ kind: 'guide' })}
@@ -62,7 +62,7 @@ export function GuideButton({ compact = false, className = '', testId = 'guide-b
       data-done={progress.done}
     >
       <Ring done={progress.done} />
-      {!all && <span>{compact ? count : `排行程 ${count}`}</span>}
+      {!all && <span>{`排行程 ${count}`}</span>}
     </button>
   );
 }

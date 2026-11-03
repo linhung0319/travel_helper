@@ -777,6 +777,82 @@
   padding: 4px 0;
 }
 
+/* 一排橫滑的晶片（ChipScroller，地區列、子地區列，T49）：網頁超出時兩端淡出、加 ‹ ›；手機只用手指滑，不畫。遮罩只看透明度，black 不是畫面的顏色 */
+.ui-hscroll {
+  position: relative;
+  min-width: 0;
+  --hs-fade-l: 0px;
+  --hs-fade-r: 0px;
+}
+
+.ui-hscroll.at-start-more {
+  --hs-fade-l: 40px;
+}
+
+.ui-hscroll.at-end-more {
+  --hs-fade-r: 40px;
+}
+
+.ui-hscroll-row {
+  -webkit-mask-image: linear-gradient(to right, transparent 0, black var(--hs-fade-l), black calc(100% - var(--hs-fade-r)), transparent 100%);
+  mask-image: linear-gradient(to right, transparent 0, black var(--hs-fade-l), black calc(100% - var(--hs-fade-r)), transparent 100%);
+}
+
+.ui-hscroll-row.dragging {
+  cursor: grabbing;
+  user-select: none;
+}
+
+.ui-hscroll-row.dragging > * {
+  pointer-events: none;
+}
+
+.ui-hscroll-arrow {
+  position: absolute;
+  top: 50%;
+  z-index: 1;
+  width: 26px;
+  height: 26px;
+  margin-top: -13px;
+  padding: 0 0 2px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: var(--bg);
+  color: var(--ink);
+  box-shadow: 0 1px 3px var(--shade-2);
+  font: inherit;
+  font-size: 1.1rem;
+  font-weight: 700;
+  line-height: 1;
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+}
+
+.ui-hscroll-arrow.prev {
+  left: 0;
+}
+
+.ui-hscroll-arrow.next {
+  right: 0;
+}
+
+.m-app .ui-hscroll-row {
+  -webkit-mask-image: none;
+  mask-image: none;
+}
+
+.m-app .ui-hscroll-arrow {
+  display: none;
+}
+
+/* 子地區列：手指只橫滑，不會連帶上下拖一點、也不帶動外面（T49） */
+.xa-regions {
+  overflow-y: hidden;
+  touch-action: pan-x;
+  overscroll-behavior-x: contain;
+}
+
 /* 清單標題列的「＋ 加地點」（T33）：這一列本來就有空位，篩選、排序不用動 */
 .fb-add {
   display: inline-flex;
@@ -3643,19 +3719,6 @@ button.ll-main {
 
 .ui-guide-btn.all {
   padding: 4px 10px;
-}
-
-/* 手機面板頭（日期列「整趟」旁邊）：小一點、不浮起來 */
-.ui-guide-btn.compact {
-  min-height: 36px;
-  padding: 2px 10px 2px 6px;
-  box-shadow: none;
-  border: 1px solid var(--line);
-  font-size: 0.8125rem;
-}
-
-.ui-guide-btn.compact.all {
-  padding: 2px 6px;
 }
 
 .ui-guide-ring {
