@@ -984,7 +984,7 @@ T7c → T7d → T7e → T7f → T7g → T8a → T8b → T8c → T8d → T7i → 
 - **👤 開工前確認**（2026-11-03 已定，照建議）：子地區只在選了一區後出現；類型收進篩選面板，包括手機。
 - **驗證**：單元測試（書架的條件、目前地區的狀態）；e2e 加概覽和選區；網頁、手機截圖給 👤 看。
 - **完成條件**：`npm test`、`npm run typecheck`、`npm run e2e` 通過；👤 看過截圖。
-- **結果**（2026-11-03，branch `t42`，等 👤 看截圖決定 merge）：畫面寫在 interaction-design §18.1。`npm test` 971、typecheck 通過；e2e 只跑受影響的（👤 同意不跑全部）：網頁 8 個 spec（ai-web、commands、detail-popup、flows、t15m、t32、t33、ui-fixes）加新的 `t42.spec.ts`，手機 mobile、mobile-ai、mobile-t32、mobile-add-place、mobile-ui-fixes 加新的 `mobile-t42.spec.ts`（mobile-small 只跑後三個；mobile-add-place 一個長按地圖的測試第一次等地圖逾時、重跑過）。
+- **結果**（2026-11-03，branch `t42`，等 👤 看截圖決定 merge）：畫面寫在 interaction-design §18.1。`npm test` 970、typecheck、validate 通過；e2e 只跑受影響的（👤 同意不跑全部）：網頁 8 個 spec（ai-web、commands、detail-popup、flows、t15m、t32、t33、ui-fixes）加新的 `t42.spec.ts`，手機 mobile、mobile-ai、mobile-t32、mobile-add-place、mobile-ui-fixes 加新的 `mobile-t42.spec.ts`（mobile-small 只跑後三個；mobile-add-place 一個長按地圖的測試第一次等地圖逾時、重跑過）。
   - 書架的條件在 `web/src/lib/shelves.ts`（`SHELVES`、`shelfRows`、`exploreStage`）；Filter 多一個 `indoor`（面板「天氣：下雨也行」，`set_filter` 也收）。T41 的 `search_places` 加 `indoor` 時用同一個意思（資料點 `indoor` 是 true）。
   - 目前地區沿用 `filter.areas`（網頁）、`feed.area`（手機），探索、想去換分頁時地區、子地區跟著走；「正在看」寫「概覽」「鳥羽」「想去・鳥羽」，AI 的脈絡多帶 `area`。換地區時取消選中的點。
   - 修了一個連帶的問題：分批畫的底部標記晚出現（概覽換成清單、總數沒變）時不會再觀察，捲到底不多畫（`useBatch` 改用 callback ref）。
