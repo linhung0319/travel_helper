@@ -2,6 +2,7 @@
 
 import { closedDaysLabel } from './hours.ts';
 import type { Place } from '../data/types.ts';
+import { WEATHER_LABELS, placeWeather } from './filter.ts';
 
 export interface Badge {
   label: string;
@@ -31,7 +32,8 @@ export function placeBadges(p: Place, max = 2): Badge[] {
     else if (meals === 'none') out.push({ label: '不含餐', tone: 'warn' });
   }
   if (p.type === 'spot') {
-    if (get(p.raw, 'indoor') === true) out.push({ label: '室內', tone: 'info' });
+    const w = placeWeather(p);
+    if (w === 'indoor' || w === 'covered') out.push({ label: WEATHER_LABELS[w], tone: 'info' });
     if (get(p.raw, 'accessibility', 'stairs') === '多') out.push({ label: '階梯多', tone: 'warn' });
   }
   const closed = closedDaysLabel(p.hours);

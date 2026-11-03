@@ -17,11 +17,14 @@ test('scoreMark：4、5 ◎，3 ○，2 △，1 ✕，沒有分數 null', () => 
 
 test('fitBadges：最好的一個＋最差的一個，好的在前', () => {
   // 鳥羽水族館：長輩 4、小孩 5、室內 → 沒有壞的，挑兩個好的（小孩 5 > 室內 > 長輩 4）
-  assert.deepEqual(labels(spot({ elderFit: 4, kidsFit: 5 }, { indoor: true })), ['小孩 ◎', '室內']);
+  assert.deepEqual(labels(spot({ elderFit: 4, kidsFit: 5 }, { weather: 'indoor' })), ['小孩 ◎', '室內']);
   // 橫山展望台這種：長輩 2、小孩 3、戶外 → 只有一個壞的
-  assert.deepEqual(labels(spot({ elderFit: 2, kidsFit: 3 }, { indoor: false })), ['長輩 △']);
+  assert.deepEqual(labels(spot({ elderFit: 2, kidsFit: 3 }, { weather: 'outdoor' })), ['長輩 △']);
   // 有好有壞：最好的＋最差的
-  assert.deepEqual(labels(spot({ elderFit: 1, kidsFit: 5 }, { indoor: true })), ['小孩 ◎', '長輩 ✕']);
+  assert.deepEqual(labels(spot({ elderFit: 1, kidsFit: 5 }, { weather: 'indoor' })), ['小孩 ◎', '長輩 ✕']);
+  // 有遮蔽排在 4 分後面（T58）：海女小屋這種
+  assert.deepEqual(labels(spot({ elderFit: 4, kidsFit: 3 }, { weather: 'covered' })), ['長輩 ◎', '有遮蔽']);
+  assert.deepEqual(labels(spot({ elderFit: 3, kidsFit: 3 }, { weather: 'covered' })), ['有遮蔽']);
   // 同分時長輩在前
   assert.deepEqual(labels(spot({ elderFit: 5, kidsFit: 5 })), ['長輩 ◎', '小孩 ◎']);
 });

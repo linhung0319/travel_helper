@@ -83,15 +83,15 @@ describe('匯入：新的區域 test-area（區域不寫死）', () => {
 describe('匯入：三方比對', () => {
   async function setup() {
     const d1 = freshDb();
-    const dir = writeTestData({ spots: [testSpot('test-area-spot', { phone: '0000-11-1111', indoor: false, stayMinutes: 60 })] });
+    const dir = writeTestData({ spots: [testSpot('test-area-spot', { phone: '0000-11-1111', weather: 'outdoor', stayMinutes: 60 })] });
     await runImport(d1, dir);
     // 使用者改了三個欄位
     const keep = addEdit(d1, 'test-area-spot', 'stayMinutes', 90, 60); // 預設值這次不會變
-    const same = addEdit(d1, 'test-area-spot', 'indoor', true, false); // 新的預設值剛好和使用者改的一樣
+    const same = addEdit(d1, 'test-area-spot', 'weather', 'indoor', 'outdoor'); // 新的預設值剛好和使用者改的一樣
     const conflict = addEdit(d1, 'test-area-spot', 'phone', '0000-22-2222', '0000-11-1111'); // 兩邊都改了
     const reverted = addEdit(d1, 'test-area-spot', 'phone', '0000-99-9999', '0000-11-1111');
     d1.db.prepare('UPDATE place_edits SET reverted_at = ? WHERE id = ?').run(NOW, reverted);
-    rewriteSpots(dir, [testSpot('test-area-spot', { phone: '0000-33-3333', indoor: true, stayMinutes: 60 })]);
+    rewriteSpots(dir, [testSpot('test-area-spot', { phone: '0000-33-3333', weather: 'indoor', stayMinutes: 60 })]);
     return { d1, dir, keep, same, conflict };
   }
 
@@ -147,7 +147,7 @@ describe('匯入：三方比對', () => {
     const state = await imp.readDbState(adapter(d1));
     const oldData = await imp.readOldData(adapter(d1), ['test-area-spot']);
     const plan = imp.planImport({ sources, scope: imp.resolveScope('all', sources.areaIds), state, oldData, resolutions: {} });
-    assert.deepEqual(plan.update[0].fields, ['indoor', 'phone']);
+    assert.deepEqual(plan.update[0].fields, ['phone', 'weather']);
     const md = imp.reportMarkdown(plan, { sources, generatedAt: NOW, gitCommit: 'test' });
     assert.match(md, /## 衝突 1 筆/);
     assert.match(md, new RegExp(`修改 #${conflict} \`test-area-spot\``));

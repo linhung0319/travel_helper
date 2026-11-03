@@ -87,13 +87,16 @@ test('FILTER_GROUPS：順序、想去組兩個分頁不一樣；地區不在面�
   assert.deepEqual(wish.options([], 'wish').map((o) => o.label), ['只看我按的']);
   assert.deepEqual(wish.options([], 'wish').map((o) => o.value), ['mine']);
   assert.equal(FILTER_GROUPS.find((g) => g.id === 'map')!.desktopOnly, true);
-  assert.deepEqual(FILTER_GROUPS.find((g) => g.id === 'weather')!.options(AREAS, 'explore'), [{ value: 'yes', label: '下雨也行' }]);
+  assert.deepEqual(FILTER_GROUPS.find((g) => g.id === 'weather')!.options(AREAS, 'explore'), [
+    { value: 'indoor', label: '室內' },
+    { value: 'covered', label: '有遮蔽' },
+  ]);
 });
 test('appliedChips：含類型，不含地區、子地區（在外面一列）', () => {
-  const f = { ...EMPTY_FILTER, types: ['restaurant' as const], areas: ['toba'], regions: ['toba-station'], fit15: ['yes' as const], indoor: ['yes' as const] };
+  const f = { ...EMPTY_FILTER, types: ['restaurant' as const], areas: ['toba'], regions: ['toba-station'], fit15: ['yes' as const], weather: ['covered' as const] };
   const chips = appliedChips(f, AREAS);
-  assert.deepEqual(chips.map((c) => c.key), ['types', 'fit15', 'indoor']);
-  assert.equal(chips[2].label, '下雨也行');
+  assert.deepEqual(chips.map((c) => c.key), ['types', 'fit15', 'weather']);
+  assert.equal(chips[2].label, '有遮蔽');
 });
 
 // rowHighlights 的測試在 placeSummary.test.ts（T44b 改成這團的標章）

@@ -1287,17 +1287,20 @@ test('T41 elderly、kids：沒有評分的不排掉，排在有評分的後面�
   h.close();
 });
 
-test('T41 indoor：景點只留室內的，餐廳不受影響；結果帶 indoor、stayMinutes、needsCar', async () => {
+test('T41、T58 weather：景點只留室內、有遮蔽的，餐廳不受影響；結果帶 weather、stayMinutes、needsCar', async () => {
   const h = await harness();
-  const r = await runTool(h, 'search_places', { areas: ['toba'], types: ['spot'], indoor: true, limit: 30 });
+  const r = await runTool(h, 'search_places', { areas: ['toba'], types: ['spot'], weather: ['indoor', 'covered'], limit: 30 });
   assert.ok(r.total > 0);
-  assert.ok(r.places.every((p: { indoor: boolean }) => p.indoor === true));
+  assert.ok(r.places.every((p: { weather: string }) => p.weather === 'indoor' || p.weather === 'covered'));
+  assert.ok(r.places.some((p: { weather: string }) => p.weather === 'covered'));
+  const only = await runTool(h, 'search_places', { areas: ['toba'], types: ['spot'], weather: ['indoor'], limit: 30 });
+  assert.ok(only.total > 0 && only.total < r.total && only.places.every((p: { weather: string }) => p.weather === 'indoor'));
   const aq = r.places.find((p: { id: string }) => p.id === 'toba-aquarium');
   assert.ok(aq && 'stayMinutes' in aq && typeof aq.needsCar === 'boolean');
   const all = await runTool(h, 'search_places', { areas: ['toba'], types: ['restaurant'], limit: 30 });
-  const rain = await runTool(h, 'search_places', { areas: ['toba'], types: ['restaurant'], indoor: true, limit: 30 });
+  const rain = await runTool(h, 'search_places', { areas: ['toba'], types: ['restaurant'], weather: ['indoor'], limit: 30 });
   assert.equal(rain.total, all.total);
-  assert.ok(!('indoor' in rain.places[0]) && 'stayMinutes' in rain.places[0]);
+  assert.ok(!('weather' in rain.places[0]) && 'stayMinutes' in rain.places[0]);
   h.close();
 });
 

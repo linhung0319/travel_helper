@@ -2,7 +2,7 @@
 
 import { displayMinutes, estimateWalk } from '../lib/geo/index.ts';
 import { openingOn, type EngineConfig, type PlaceRecord } from '@travel-helper/engine';
-import { matchesFilter, placeFit15, type Filter, EMPTY_FILTER } from '../lib/filter.ts';
+import { matchesFilter, placeFit15, placeWeather, type Filter, type Weather, EMPTY_FILTER } from '../lib/filter.ts';
 import { placeBadges } from '../lib/badges.ts';
 import { inBbox } from '../lib/areas.ts';
 import { ratingOf } from '../lib/explore.ts';
@@ -66,8 +66,8 @@ export interface SearchInput {
   elderly?: boolean;
   kids?: boolean;
   reservable?: boolean;
-  /** 下雨也行：景點要 indoor；餐廳、住宿本來就在室內，不受影響 */
-  indoor?: boolean;
+  /** 天氣：景點的 weather 是其中一個（下雨也行＝indoor、covered）；餐廳、住宿本來就在室內，不受影響 */
+  weather?: Filter['weather'];
   /** 能包棟（只留住宿） */
   wholeRental?: boolean;
   /** 最多住幾人至少這麼多（只留住宿） */
@@ -114,8 +114,8 @@ export interface Digest {
   fit15?: string | null;
   walkMinutes?: number;
   open?: OpenState;
-  /** 以下只有搜尋結果帶（T41），脈絡晶片不帶：景點下雨也行嗎（null 是資料沒寫） */
-  indoor?: boolean | null;
+  /** 以下只有搜尋結果帶（T41），脈絡晶片不帶：景點的室內、有遮蔽、戶外（null 是資料沒寫） */
+  weather?: Weather | null;
   /** 建議停留（用餐）分鐘；null 是資料沒寫 */
   stayMinutes?: number | null;
   /** 子地區要不要搭車 */
@@ -219,7 +219,10 @@ export function searchPlaces(input: SearchInput, env: SearchEnv): SearchResult {
       if (a === undefined || a === null) unknownExcluded += 1;
       if (a !== 'yes' && a !== 'groups-only') continue;
     }
-    if (input.indoor && p.type === 'spot' && !pass(known(get(p, 'indoor')))) continue;
+    if (input.weather?.length && p.type === 'spot') {
+      const w = placeWeather(p);
+      if (!pass(w === null ? null : (input.weather as readonly string[]).includes(w))) continue;
+    }
     if (input.wholeRental && (p.type !== 'lodging' || !pass(known(lodgingGroup(p, 'wholeRental'))))) continue;
     if (input.maxGuestsAtLeast != null) {
       if (p.type !== 'lodging') continue;
@@ -264,7 +267,7 @@ export function searchPlaces(input: SearchInput, env: SearchEnv): SearchResult {
         ...digestOf(full, env.likes(r.p.id)),
         ...(r.walk != null ? { walkMinutes: r.walk } : {}),
         ...(r.open ? { open: r.open } : {}),
-        ...(r.p.type === 'spot' ? { indoor: known(get(full, 'indoor')) } : {}),
+        ...(r.p.type === 'spot' ? { weather: placeWeather(full) } : {}),
         ...(r.p.type === 'spot' || r.p.type === 'restaurant' ? { stayMinutes: typeof stay === 'number' ? stay : null } : {}),
         ...(car !== undefined ? { needsCar: car } : {}),
         ...(fitWanted && !r.fitKnown ? { fitUnknown: true as const } : {}),
