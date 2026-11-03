@@ -2,7 +2,7 @@
 
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { AREA_BUFFER_METERS, areaFocusShape, convexHull, hullAround, isKeyPlace, isMinorOnMap, type LayerContext } from '../src/lib/mapLayers.ts';
+import { AREA_BUFFER_METERS, areaFocusShape, convexHull, hullAround, isKeyPlace, isMinorOnMap, shapeLabelAt, type LayerContext } from '../src/lib/mapLayers.ts';
 import { haversineMeters } from '../src/lib/geo/distance.ts';
 import { placeWith } from './helpers.ts';
 import type { LonLat } from '../src/data/types.ts';
@@ -106,4 +106,33 @@ test('選區範圍只用那區的點；沒選、那區沒有點是 null', () => 
   assert.ok(minDist(ring, [136.72, 34.48]) > 8000);
   assert.equal(areaFocusShape(places, null), null);
   assert.equal(areaFocusShape(places, 'osaka'), null);
+});
+
+test('選了子地區（T56）：只畫子地區的點外圍，整區其他的點在外面', () => {
+  const places = [
+    placeWith({}, { id: 'x', area: 'toba', region: 'toba-center', coords: [136.84, 34.48] }),
+    placeWith({}, { id: 'w', area: 'toba', region: 'toba-center', coords: [136.85, 34.49] }),
+    placeWith({}, { id: 'y', area: 'toba', region: 'toba-south', coords: [136.9, 34.42] }),
+    placeWith({}, { id: 'z', area: 'ise', region: 'toba-center', coords: [136.72, 34.48] }), // 別區不算（防呆）
+  ];
+  const f = areaFocusShape(places, 'toba', 'toba-center')!;
+  assert.deepEqual(f.properties, { area: 'toba', region: 'toba-center' });
+  const ring = f.geometry.coordinates[0] as LonLat[];
+  // 同一區、子地區以外的點不在範圍旁邊
+  assert.ok(minDist(ring, [136.9, 34.42]) > 5000);
+  assert.ok(minDist(ring, [136.72, 34.48]) > 8000);
+  // 子地區沒有點是 null；沒給子地區是整區
+  assert.equal(areaFocusShape(places, 'toba', 'nowhere'), null);
+  assert.equal(areaFocusShape(places, 'toba')!.properties?.region, null);
+});
+
+test('子地區只有 1 個點：半徑 1 km 的圓；標籤放在最北的那一點', () => {
+  const places = [placeWith({}, { id: 'x', area: 'shima', region: 'goza', coords: [136.82, 34.28] })];
+  const f = areaFocusShape(places, 'shima', 'goza')!;
+  const ring = f.geometry.coordinates[0] as LonLat[];
+  for (const q of ring) assert.ok(Math.abs(haversineMeters([136.82, 34.28], q) - AREA_BUFFER_METERS) < 10);
+  const at = shapeLabelAt(f.geometry);
+  assert.ok(Math.abs(haversineMeters([136.82, 34.28], at) - AREA_BUFFER_METERS) < 10);
+  assert.ok(ring.every((q) => q[1] <= at[1]));
+  assert.ok(Math.abs(at[0] - 136.82) < 0.001, '正北');
 });

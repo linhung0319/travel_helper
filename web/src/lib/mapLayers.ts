@@ -79,9 +79,19 @@ export function hullAround(coords: LonLat[], bufferMeters = AREA_BUFFER_METERS, 
   return { type: 'Polygon', coordinates: [[...out, out[0]]] };
 }
 
-/** 選了一區時的範圍：那區所有的點（含自己加的）外圍；沒有點回傳 null */
-export function areaFocusShape(places: Place[], area: string | null): Feature<Polygon> | null {
+/**
+ * 選了一區時的範圍：那區所有的點（含自己加的）外圍。選了子地區（T56）只畫子地區的點外圍，整區不畫；
+ * 只有一兩個點時是 1 km 的圓角形（hullAround 本來就是）。沒有點回傳 null
+ */
+export function areaFocusShape(places: Place[], area: string | null, region: string | null = null): Feature<Polygon> | null {
   if (!area) return null;
-  const poly = hullAround(places.filter((p) => p.area === area).map((p) => p.coords));
-  return poly ? { type: 'Feature', geometry: poly, properties: { area } } : null;
+  const inside = places.filter((p) => p.area === area && (!region || p.region === region));
+  const poly = hullAround(inside.map((p) => p.coords));
+  return poly ? { type: 'Feature', geometry: poly, properties: { area, region } } : null;
+}
+
+/** 子地區名的小標籤放哪（T56）：範圍最北的那一點（標籤的底邊貼在框的上緣，不蓋住裡面的點） */
+export function shapeLabelAt(poly: Polygon): LonLat {
+  const ring = poly.coordinates[0] as LonLat[];
+  return ring.reduce((best, c) => (c[1] > best[1] ? c : best), ring[0]);
 }
