@@ -1410,44 +1410,11 @@ button.planning-done {
   align-items: center;
 }
 
-.overview {
-  list-style: none;
-  margin: 8px 0;
-  padding: 0;
-}
 
-.overview-day {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  width: 100%;
-  border: 0;
-  border-bottom: 1px solid var(--soft);
-  background: none;
-  text-align: left;
-  min-height: var(--tap);
-  padding: 6px 0;
-}
 
-.overview-day:hover {
-  background: var(--soft);
-}
 
-.overview-date {
-  flex: 0 0 auto;
-  font-variant-numeric: tabular-nums;
-  min-width: 6.5em;
-}
 
-.overview-stops {
-  flex: 1;
-  min-width: 0;
-  font-size: 0.9rem;
-}
 
-.overview-flags {
-  flex: 0 0 auto;
-}
 
 /* 時間軸：左邊是時間，右邊是內容；相鄰兩點之間是交通 */
 .tl {
@@ -4057,10 +4024,6 @@ button.cand-up:disabled {
   }
 }
 
-/* 整趟清單：連續還沒排的天併成一列（§17.1） */
-.overview-empty {
-  color: var(--muted);
-}
 
 /* T39：地圖還在載入（最後才載）、右欄的探索還在等資料 */
 .map-waiting {
@@ -4094,4 +4057,22 @@ button.cand-up:disabled {
   .side-loading i {
     animation: none;
   }
+}
+
+/* 整趟時地圖上各區的晚數（T45b §19.4）：白底、那區顏色的框和字，不擋點擊 */
+.area-nights-label {
+  padding: 2px 10px;
+  border: 1.5px solid var(--area);
+  border-radius: 14px;
+  background: var(--paper);
+  color: var(--area);
+  font-size: 0.8125rem;
+  white-space: nowrap;
+  box-shadow: 0 1px 4px var(--shade-1);
+  pointer-events: none;
+}
+
+.area-nights-label b {
+  font-family: var(--font-round);
+  font-weight: 900;
 }

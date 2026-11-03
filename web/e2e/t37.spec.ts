@@ -14,16 +14,17 @@ const showOverview = async (page: Page) => {
   await page.evaluate(() => (window as any).__th.commands.selectDay('all'));
 };
 
-test('只有航班的行程：開始卡 0/3、清單併成一列、航班的天寫幾筆；問 AI 不帶晶片，第一張是住宿，按了才送出', async ({ page }) => {
+test('只有航班的行程：開始卡 0/3、整趟骨架一天一列、第一列最後一列是航班；問 AI 不帶晶片，第一張是住宿，按了才送出', async ({ page }) => {
   await flightsOnly(page);
   await showOverview(page);
   const card = page.getByTestId('start-card');
   await expect(card).toHaveAttribute('data-view', 'steps');
   await expect(page.getByTestId('start-count')).toHaveText('0 / 3');
-  await expect(page.getByTestId('overview-empty')).toHaveText('2/3～2/12 還沒排 · 10 天');
-  await expect(page.locator('[data-overview-day="2027-02-02"]')).toContainText('航班 2 筆');
-  await expect(page.locator('[data-overview-day="2027-02-13"]')).toContainText('航班 2 筆');
-  await expect(page.locator('.overview-day')).toHaveCount(3);
+  // T45b 起整趟是骨架：一天一列、不併列；航班在第一列、最後一列
+  await expect(page.getByTestId('sk-row')).toHaveCount(12);
+  await expect(page.getByTestId('sk-flight-arrive')).toContainText('到關西');
+  await expect(page.getByTestId('sk-flight-depart')).toContainText('起飛');
+  await expect(page.getByTestId('sk-count')).toHaveText('11 晚 · 已決定 0 晚');
 
   await page.getByTestId('start-step-2').getByTestId('start-ask').click();
   await expect(page.getByTestId('chat-context')).toHaveCount(0);

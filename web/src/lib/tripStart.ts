@@ -1,4 +1,4 @@
-// 新手起步的純邏輯（interaction-design §17）：開始卡的進度和要不要顯示、整趟清單把連續還沒排的天併成一列、重新打開網站要不要開新對話。
+// 新手起步的純邏輯（interaction-design §17）：開始卡的進度和要不要顯示、重新打開網站要不要開新對話。
 
 import type { Itinerary } from '@travel-helper/engine/types';
 import { fullDaysOf, nightsOf, type StarterInput } from '../ai/prompts.ts';
@@ -46,46 +46,6 @@ export function nextStartMemory(p: StartProgress, memory: StartCardMemory, nowIs
   return memory.doneAt ? memory : { ...memory, doneAt: nowIso };
 }
 
-// ---------- 整趟清單（§17.1） ----------
-
-export type OverviewRow = { kind: 'day'; date: string } | { kind: 'empty'; from: string; to: string; count: number };
-
-export interface OverviewDayState {
-  /** 有景點、餐廳、自由活動（航班、住宿不算） */
-  stops: boolean;
-  lodging: boolean;
-  flights: number;
-  candidates: number;
-  warnings: number;
-  /** 有 AI 提議的改動 */
-  proposed: boolean;
-}
-
-/** 這天完全沒東西：沒有點、住宿、航班、候選、提醒、提議。有其中一樣就是「排了東西」，自己一列才看得到 */
-const isBlank = (s: OverviewDayState) => !s.stops && !s.lodging && s.flights === 0 && s.candidates === 0 && s.warnings === 0 && !s.proposed;
-
-/** 連續還沒排的天併成一列（2 天以上才併，1 天的照樣是一天） */
-export function overviewRows(dates: string[], stateOf: (date: string) => OverviewDayState): OverviewRow[] {
-  const rows: OverviewRow[] = [];
-  let run: string[] = [];
-  const flush = () => {
-    if (run.length === 1) rows.push({ kind: 'day', date: run[0] });
-    else if (run.length > 1) rows.push({ kind: 'empty', from: run[0], to: run[run.length - 1], count: run.length });
-    run = [];
-  };
-  for (const date of dates) {
-    if (isBlank(stateOf(date))) {
-      run.push(date);
-      continue;
-    }
-    flush();
-    rows.push({ kind: 'day', date });
-  }
-  flush();
-  return rows;
-}
-
-/** 這天有幾筆航班 */
 export const flightCount = (it: Itinerary | null, date: string) => it?.days.find((d) => d.date === date)?.items.filter((x) => x.type === 'flight').length ?? 0;
 
 // ---------- 重新打開網站（§17.3） ----------

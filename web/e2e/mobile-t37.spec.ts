@@ -15,17 +15,16 @@ const showOverview = async (page: Page) => {
   await page.getByTestId('m-day-all').click();
 };
 
-test('只有航班的行程：開始卡、清單併成一列、航班的天寫幾筆；沒有橫向捲動', async ({ page }) => {
+test('只有航班的行程：開始卡、整趟的骨架一天一列（T45b 起不併列）、第一列是航班；沒有橫向捲動', async ({ page }) => {
   await flightsOnly(page);
   await showOverview(page);
   await expect(page.getByTestId('start-card')).toHaveAttribute('data-view', 'steps');
   await expect(page.getByTestId('start-count')).toHaveText('0 / 3');
-  const rows = page.getByTestId('m-overview-day');
-  await expect(rows).toHaveCount(3);
-  await expect(rows.nth(0)).toContainText('航班 2 筆');
-  await expect(rows.nth(0)).not.toContainText('0 個點');
-  await expect(rows.nth(1)).toHaveText('2/3～2/12 還沒排 · 10 天');
-  await rows.nth(1).click();
+  const rows = page.getByTestId('sk-row');
+  await expect(rows).toHaveCount(12);
+  await expect(page.getByTestId('sk-flight-arrive')).toContainText('到關西');
+  await expect(rows.nth(1).getByTestId('sk-where')).toHaveText('還沒決定');
+  await rows.nth(1).getByTestId('sk-day').click();
   await expect(page.getByTestId('m-day-2027-02-03')).toHaveAttribute('aria-current', 'true');
   await expect(page.getByTestId('m-trip-empty')).toContainText('這天還沒排');
   expect(await scrollsSideways(page)).toBe(false);

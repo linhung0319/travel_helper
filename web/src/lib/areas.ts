@@ -85,12 +85,27 @@ export function mapMaxBounds(areas: Area[], margin = 0.4): Bbox | null {
 /** 地圖最小的縮放（T47）：再小就是整個日本，用不到 */
 export const MAP_MIN_ZOOM = 7;
 
-// 區域的顏色依 tripOrder 的順序配，不綁區域 ID
-const AREA_PALETTE = ['#0a8f8f', '#cf222e', '#9a6700', '#bf3989', '#1f6feb', '#6639ba', '#1a7f37', '#bc4c00'];
+// 區域的顏色（T45b 整趟的色帶、日期列的色線、地圖的地區標籤）：依 areas.json 的順序配，不綁區域 ID。
+// 色和淡底照幾何和柄的配色（§12.1）挑深一點的，白字、淡底上的字都讀得清楚；芥子黃是「選中」，不拿來當區的顏色。
+const AREA_PALETTE: [string, string][] = [
+  ['#24468a', '#e3eaf6'], // 靛藍
+  ['#3d6a22', '#e6f0dc'], // 抹茶
+  ['#1d7a83', '#dcf0f1'], // 青磁
+  ['#a8452f', '#f8e5df'], // 朱
+  ['#5d6680', '#eceef3'], // 鼠
+  ['#6b4a8a', '#eee6f4'], // 紫
+];
+const AREA_NONE: [string, string] = ['#a3a9b8', '#ffffff'];
 
 export function areaColor(areas: Area[], areaId: string | null): string {
   const i = areas.findIndex((a) => a.id === areaId);
-  return i < 0 ? '#57606a' : AREA_PALETTE[i % AREA_PALETTE.length];
+  return i < 0 ? AREA_NONE[0] : AREA_PALETTE[i % AREA_PALETTE.length][0];
+}
+
+/** 區域的淡底（住宿膠囊）；找不到是白色 */
+export function areaTint(areas: Area[], areaId: string | null): string {
+  const i = areas.findIndex((a) => a.id === areaId);
+  return i < 0 ? AREA_NONE[1] : AREA_PALETTE[i % AREA_PALETTE.length][1];
 }
 
 export function inBbox([lon, lat]: LonLat, [w, s, e, n]: Bbox): boolean {
