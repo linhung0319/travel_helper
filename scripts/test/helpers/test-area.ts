@@ -27,6 +27,7 @@ export function testArea() {
     bbox: [135.45, 34.65, 135.55, 34.73],
     stations: ['test-station'],
     regions: [{ id: 'test-region', name: { ja: 'テスト', zh: '測試' }, center: TEST_COORDS }],
+    intro: undefined, // 真的區域的 intro 引用那一區的點，假區域不帶
     extra: undefined,
   };
 }

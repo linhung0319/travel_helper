@@ -47,6 +47,86 @@
         "note": "行政區"
       }
     ],
+    "intro": {
+      "summary": "英虞灣的海景、燈塔、海女小屋，冬天有的矢牡蠣和安乘河豚；點很分散，賢島、鵜方以外大多要搭車。",
+      "transport": "近鐵沿線的賢島、鵜方、志摩磯部可以電車加步行；橫山展望台、大王崎、的矢灣、前島半島要搭巴士、計程車或包車。",
+      "highlights": [
+        "shima-yokoyama-observatory",
+        "shima-daiozaki-lighthouse",
+        "shima-izawanomiya",
+        "shima-ikadaso-sanjo-dining",
+        "shima-kanko-bay-suites"
+      ],
+      "february": [
+        {
+          "text": "志摩西班牙村 2027-01-12～02-12 休園，飯店、ひまわりの湯休到 02-11，旅程中去不了。",
+          "sources": [
+            {
+              "type": "official",
+              "url": "https://www.parque-net.com/calendar/index.html",
+              "retrieved": "2026-10-18",
+              "note": "營業カレンダー：パルケエスパーニャ 2027-01-12～02-12 休園，ホテル志摩スペイン村、ひまわりの湯 01-11～02-11 休（data/raw/shima/candidates 記錄的取得日）"
+            }
+          ]
+        },
+        {
+          "text": "橫山展望台到 2027-03-01 施工：停車場到展望台這段車輛、行人都不能過，要走迂回步道（石階，約 15 分）。",
+          "points": [
+            "shima-yokoyama-observatory",
+            "shima-mirador"
+          ]
+        },
+        {
+          "text": "2/2、2/9 是週二，鵜方、大王、濱島不少餐廳週二休，第一晚吃飯要先確認。",
+          "points": [
+            "shima-norpol",
+            "shima-shucafe",
+            "shima-otoya",
+            "shima-higashiyama-bussan",
+            "shima-tanaka-ryoriten",
+            "shima-shimaya-daio",
+            "shima-miyuki-hamajima",
+            "shima-iso-ryori-yacht"
+          ]
+        },
+        {
+          "text": "2 月是的矢牡蠣、安乘河豚的季節；但 2026 年 1～2 月有店停賣生牡蠣、改成加熱。",
+          "points": [
+            "shima-ikadaso-sanjo-dining",
+            "shima-matoya-kaki-terrace",
+            "shima-marusei",
+            "shima-hisada"
+          ]
+        },
+        {
+          "text": "志摩觀光飯店 The Classic 的法式餐廳旅程中改裝，午餐改在 The Bay Suites 的 La Mer。",
+          "points": [
+            "shima-la-mer-classic",
+            "shima-la-mer"
+          ]
+        },
+        {
+          "text": "賢島西班牙號遊覽船的大船 2/1～3/5 定期檢查，改用小船，15 人要先確認。",
+          "points": [
+            "shima-espana-cruise"
+          ]
+        },
+        {
+          "text": "Grand Mercure 伊勢志摩 2/1～2/3 休館，2/2 晚上不能住。",
+          "points": [
+            "shima-grand-mercure"
+          ]
+        }
+      ],
+      "basedOn": [
+        "shima-yokoyama-observatory",
+        "shima-daiozaki-lighthouse",
+        "shima-izawanomiya",
+        "shima-ikadaso-sanjo-dining",
+        "shima-marusei",
+        "shima-satoumian"
+      ]
+    },
     "regions": [
       {
         "id": "shima-kashikojima",
@@ -59,7 +139,21 @@
           34.3086
         ],
         "needsCar": false,
-        "note": "近鐵終點賢島站和島上（エスパーニャクルーズ、遊覧船、あご湾定期船（間崎島）、サミエール），加上賢島大橋本土側的海遊苑。第一天（2/2）16:10 難波發的直達特急 18:40 到賢島，住宿、晚餐的候選先看這裡和鵜方"
+        "note": "近鐵終點賢島站和島上（エスパーニャクルーズ、遊覧船、あご湾定期船（間崎島）、サミエール），加上賢島大橋本土側的海遊苑。第一天（2/2）16:10 難波發的直達特急 18:40 到賢島，住宿、晚餐的候選先看這裡和鵜方",
+        "intro": {
+          "summary": "近鐵的終點，志摩觀光飯店等大飯店集中，也是英虞灣遊覽船的碼頭。",
+          "highlights": [
+            "shima-kanko-bay-suites",
+            "shima-la-mer",
+            "shima-iwajin-kissa"
+          ],
+          "febNote": "西班牙號的大船 2/1～3/5 檢查、改用小船；The Classic 的法式餐廳改裝中。",
+          "basedOn": [
+            "shima-kanko-bay-suites",
+            "shima-espana-cruise",
+            "shima-la-mer-classic"
+          ]
+        }
       },
       {
         "id": "shima-ugata",
@@ -72,7 +166,24 @@
           34.3255
         ],
         "needsCar": false,
-        "note": "近鐵鵜方站（特急停車、志摩的巴士總站、觀光案內所）到志摩神明站一帶（阿児町鵜方、神明）。鵜方站 18:35 到（第一天），商店、餐廳最多；往大王、御座、浜島、安乗、スペイン村的巴士都從這裡出發"
+        "note": "近鐵鵜方站（特急停車、志摩的巴士總站、觀光案內所）到志摩神明站一帶（阿児町鵜方、神明）。鵜方站 18:35 到（第一天），商店、餐廳最多；往大王、御座、浜島、安乗、スペイン村的巴士都從這裡出發",
+        "intro": {
+          "summary": "志摩的交通中心，特急停車、巴士從這裡出發，餐廳最多。",
+          "highlights": [
+            "shima-tai",
+            "shima-miyamoto",
+            "shima-provence"
+          ],
+          "febNote": "不少店週二（2/2、2/9）休。",
+          "basedOn": [
+            "shima-yokoyama-observatory",
+            "shima-daiozaki-lighthouse",
+            "shima-norpol",
+            "shima-shucafe",
+            "shima-otoya",
+            "shima-higashiyama-bussan"
+          ]
+        }
       },
       {
         "id": "shima-yokoyama",
@@ -85,7 +196,19 @@
           34.3335
         ],
         "needsCar": true,
-        "note": "横山展望台、ビジターセンター、創造の森（阿児町鵜方的山上）。離鵜方站約 2.5 km、上坡；志摩横山站（只停普通車）步行約 45 分，實際上要計程車（鵜方站約 8 分）或「横山VIEWタクシー」"
+        "note": "横山展望台、ビジターセンター、創造の森（阿児町鵜方的山上）。離鵜方站約 2.5 km、上坡；志摩横山站（只停普通車）步行約 45 分，實際上要計程車（鵜方站約 8 分）或「横山VIEWタクシー」",
+        "intro": {
+          "summary": "山上的展望台，看英虞灣的小島和珍珠筏，旁邊有展望咖啡。",
+          "highlights": [
+            "shima-yokoyama-observatory",
+            "shima-mirador"
+          ],
+          "febNote": "到 2027-03-01 施工，停車場到展望台要走迂回步道（石階，約 15 分）。",
+          "basedOn": [
+            "shima-yokoyama-observatory",
+            "shima-mirador"
+          ]
+        }
       },
       {
         "id": "shima-isobe",
@@ -98,7 +221,21 @@
           34.373
         ],
         "needsCar": false,
-        "note": "近鐵上之郷、志摩磯部、穴川三站一帶（磯部町上之郷、恵利原的平地、迫間、築地、穴川）：伊雑宮（上之郷站步行約 3 分）、歴史民俗資料館、道の駅伊勢志摩。點和點之間 1～2 km，靠電車＋步行或短程計程車"
+        "note": "近鐵上之郷、志摩磯部、穴川三站一帶（磯部町上之郷、恵利原的平地、迫間、築地、穴川）：伊雑宮（上之郷站步行約 3 分）、歴史民俗資料館、道の駅伊勢志摩。點和點之間 1～2 km，靠電車＋步行或短程計程車",
+        "intro": {
+          "summary": "伊雜宮和沿線的鰻魚、海鮮食堂，搭近鐵加步行就到。",
+          "highlights": [
+            "shima-izawanomiya",
+            "shima-kawaume",
+            "shima-hamazaki"
+          ],
+          "febNote": "的矢牡蠣料理是冬季限定，2 月吃得到（川梅）。",
+          "basedOn": [
+            "shima-izawanomiya",
+            "shima-kawaume",
+            "shima-hamazaki"
+          ]
+        }
       },
       {
         "id": "shima-spain",
@@ -111,7 +248,21 @@
           34.3615
         ],
         "needsCar": false,
-        "note": "磯部町坂崎的志摩スペイン村、ひまわりの湯、ホテル志摩スペイン村。鵜方站、賢島站有直達巴士。**2027-01-12～02-12 休園**（ひまわりの湯 01-11～02-11），旅程中幾乎用不到；離志摩磯部站約 4 km，所以不併進 shima-isobe"
+        "note": "磯部町坂崎的志摩スペイン村、ひまわりの湯、ホテル志摩スペイン村。鵜方站、賢島站有直達巴士。**2027-01-12～02-12 休園**（ひまわりの湯 01-11～02-11），旅程中幾乎用不到；離志摩磯部站約 4 km，所以不併進 shima-isobe",
+        "intro": {
+          "summary": "志摩西班牙村和附屬的飯店、溫泉。",
+          "highlights": [],
+          "febNote": "2027-01-12～02-12 休園，旅程中去不了。",
+          "basedOn": [],
+          "sources": [
+            {
+              "type": "official",
+              "url": "https://www.parque-net.com/calendar/index.html",
+              "retrieved": "2026-10-18",
+              "note": "營業カレンダー：パルケエスパーニャ 2027-01-12～02-12 休園，ホテル志摩スペイン村、ひまわりの湯 01-11～02-11 休（data/raw/shima/candidates 記錄的取得日）"
+            }
+          ]
+        }
       },
       {
         "id": "shima-amanoiwato",
@@ -124,7 +275,17 @@
           34.408
         ],
         "needsCar": true,
-        "note": "磯部町恵利原的山區：天の岩戸（名水百選）、鸚鵡岩。離志摩磯部站約 6 km，要開車或計程車"
+        "note": "磯部町恵利原的山區：天の岩戸（名水百選）、鸚鵡岩。離志摩磯部站約 6 km，要開車或計程車",
+        "intro": {
+          "summary": "山裡的名水湧泉和杉林步道，要開車或計程車。",
+          "highlights": [
+            "shima-amanoiwato"
+          ],
+          "febNote": "冬天山裡天黑得早，雨後樹根濕滑。",
+          "basedOn": [
+            "shima-amanoiwato"
+          ]
+        }
       },
       {
         "id": "shima-matoya",
@@ -137,7 +298,23 @@
           34.362
         ],
         "needsCar": true,
-        "note": "的矢湾一帶（磯部町的矢、三ヶ所、渡鹿野島）：的矢湾遊覧（船上 BBQ）、渡鹿野島（渡船約 3 分）、的矢湾大橋；的矢牡蠣的產地。離近鐵站 5 km 以上，巴士少"
+        "note": "的矢湾一帶（磯部町的矢、三ヶ所、渡鹿野島）：的矢湾遊覧（船上 BBQ）、渡鹿野島（渡船約 3 分）、的矢湾大橋；的矢牡蠣的產地。離近鐵站 5 km 以上，巴士少",
+        "intro": {
+          "summary": "的矢牡蠣的產地，有牡蠣料理旅館、船上燒烤，也能搭渡船去渡鹿野島。",
+          "highlights": [
+            "shima-ikadaso-sanjo-dining",
+            "shima-haifu",
+            "shima-marusada"
+          ],
+          "febNote": "牡蠣季，但可能停賣生牡蠣；Grand Mercure 2/1～2/3 休館。",
+          "basedOn": [
+            "shima-ikadaso-sanjo-dining",
+            "shima-matoya-kaki-terrace",
+            "shima-matoya-bbq-cruise",
+            "shima-fukujuso",
+            "shima-grand-mercure"
+          ]
+        }
       },
       {
         "id": "shima-anori",
@@ -150,7 +327,22 @@
           34.364
         ],
         "needsCar": true,
-        "note": "阿児町安乗：安乗埼灯台、安乗神社、漁港。鵜方站有三重交通巴士（安乗線，班次少）；離国府白浜約 4 km，所以和 shima-kokufu 分開"
+        "note": "阿児町安乗：安乗埼灯台、安乗神社、漁港。鵜方站有三重交通巴士（安乗線，班次少）；離国府白浜約 4 km，所以和 shima-kokufu 分開",
+        "intro": {
+          "summary": "安乘埼燈塔和冬天的安乘河豚料理旅館。",
+          "highlights": [
+            "shima-anorisaki-lighthouse",
+            "shima-marusei",
+            "shima-oonami"
+          ],
+          "febNote": "河豚季（10～3 月）；燈塔 2 月照常開放。",
+          "basedOn": [
+            "shima-anorisaki-lighthouse",
+            "shima-marusei",
+            "shima-hisada",
+            "shima-oonami"
+          ]
+        }
       },
       {
         "id": "shima-kokufu",
@@ -163,7 +355,20 @@
           34.328
         ],
         "needsCar": true,
-        "note": "阿児町東側的太平洋海岸：国府白浜、阿児の松原、市後浜、志摩国分寺；衝浪海灘、民宿多。鵜方站約 5～7 km，巴士少"
+        "note": "阿児町東側的太平洋海岸：国府白浜、阿児の松原、市後浜、志摩国分寺；衝浪海灘、民宿多。鵜方站約 5～7 km，巴士少",
+        "intro": {
+          "summary": "海邊的溫泉旅館、民宿和小餐廳，沒有收錄景點。",
+          "highlights": [
+            "shima-neboya",
+            "shima-hanataku"
+          ],
+          "febNote": null,
+          "basedOn": [
+            "shima-neboya",
+            "shima-hanataku",
+            "shima-sushi-akatsuki"
+          ]
+        }
       },
       {
         "id": "shima-daio",
@@ -176,7 +381,23 @@
           34.278
         ],
         "needsCar": true,
-        "note": "大王町波切的漁村：大王埼灯台、八幡さん公園、波切神社、かつおの天ぱく、大王美術ギャラリー。鵜方站有往御座方向的三重交通巴士（約 20～25 分「大王埼灯台」），約 1 小時 1 班"
+        "note": "大王町波切的漁村：大王埼灯台、八幡さん公園、波切神社、かつおの天ぱく、大王美術ギャラリー。鵜方站有往御座方向的三重交通巴士（約 20～25 分「大王埼灯台」），約 1 小時 1 班",
+        "intro": {
+          "summary": "大王埼燈塔和漁港小鎮，有畫家之町美術館、柴魚燻製小屋。",
+          "highlights": [
+            "shima-daiozaki-lighthouse",
+            "shima-katsuo-tenpaku",
+            "shima-daio-gallery"
+          ],
+          "febNote": "燈塔照常開放；幾家餐廳週二休。",
+          "basedOn": [
+            "shima-daiozaki-lighthouse",
+            "shima-katsuo-tenpaku",
+            "shima-daio-gallery",
+            "shima-tanaka-ryoriten",
+            "shima-shimaya-daio"
+          ]
+        }
       },
       {
         "id": "shima-tomoyama",
@@ -189,7 +410,22 @@
           34.2878
         ],
         "needsCar": true,
-        "note": "大王町船越・波切西側的登茂山半島：ともやま公園（桐垣展望台、英虞湾的夕陽）、志摩自然学校。離波切約 5 km、鵜方站計程車約 25 分，所以不併進 shima-daio"
+        "note": "大王町船越・波切西側的登茂山半島：ともやま公園（桐垣展望台、英虞湾的夕陽）、志摩自然学校。離波切約 5 km、鵜方站計程車約 25 分，所以不併進 shima-daio",
+        "intro": {
+          "summary": "登茂山公園看英虞灣夕陽、海上獨木舟，包棟住宿多。",
+          "highlights": [
+            "shima-tomoyama-park",
+            "shima-nature-school",
+            "shima-umibe"
+          ],
+          "febNote": "1～2 月夕陽在桐垣展望台正面，17 點前就看得到。",
+          "basedOn": [
+            "shima-tomoyama-park",
+            "shima-nature-school",
+            "shima-umibe",
+            "shima-villa-daio"
+          ]
+        }
       },
       {
         "id": "shima-goza",
@@ -202,7 +438,21 @@
           34.27
         ],
         "needsCar": true,
-        "note": "前島半島西端（志摩町御座、越賀）：海女小屋さとうみ庵＋海女資料館、真珠の里、パール美樹、御座白浜、潮仏。鵜方站巴士約 50～60 分（往御座港），或賢島的定期船到和具再接送"
+        "note": "前島半島西端（志摩町御座、越賀）：海女小屋さとうみ庵＋海女資料館、真珠の里、パール美樹、御座白浜、潮仏。鵜方站巴士約 50～60 分（往御座港），或賢島的定期船到和具再接送",
+        "intro": {
+          "summary": "前島半島的尖端，海女小屋、珍珠體驗和漁村民宿。",
+          "highlights": [
+            "shima-satoumian",
+            "shima-shinju-no-sato",
+            "shima-pearl-miki"
+          ],
+          "febNote": "海女小屋沒有暖氣，冬天裡面冷；真珠之里週二休。",
+          "basedOn": [
+            "shima-satoumian",
+            "shima-shinju-no-sato",
+            "shima-pearl-miki"
+          ]
+        }
       },
       {
         "id": "shima-wagu",
@@ -215,7 +465,19 @@
           34.256
         ],
         "needsCar": true,
-        "note": "前島半島中段、東段（志摩町和具、布施田、片田）：和具漁港、麦埼灯台、志摩大橋；和具港有往賢島的定期船。和御座・越賀相距 3～6 km，所以分開"
+        "note": "前島半島中段、東段（志摩町和具、布施田、片田）：和具漁港、麦埼灯台、志摩大橋；和具港有往賢島的定期船。和御座・越賀相距 3～6 km，所以分開",
+        "intro": {
+          "summary": "前島半島中段的漁村，有海女小屋體驗和食堂。",
+          "highlights": [
+            "shima-amagoya-hiba-hironohama",
+            "shima-hidechan"
+          ],
+          "febNote": null,
+          "basedOn": [
+            "shima-amagoya-hiba-hironohama",
+            "shima-hidechan"
+          ]
+        }
       },
       {
         "id": "shima-hamajima",
@@ -228,7 +490,23 @@
           34.2975
         ],
         "needsCar": true,
-        "note": "浜島町浜島（漁港、海ほおずき、宇気比神社、大矢浜）和北邊的塩屋（いわほ観光汽船）、西邊的南張（磯笛岬）。鵜方站有往浜島的巴士，班次少"
+        "note": "浜島町浜島（漁港、海ほおずき、宇気比神社、大矢浜）和北邊的塩屋（いわほ観光汽船）、西邊的南張（磯笛岬）。鵜方站有往浜島的巴士，班次少",
+        "intro": {
+          "summary": "濱島漁港的海鮮餐廳、磯體驗設施和溫泉旅館。",
+          "highlights": [
+            "shima-amimoto-yashiro",
+            "shima-umihozuki",
+            "shima-geiboso"
+          ],
+          "febNote": "不少餐廳週二或週三休。",
+          "basedOn": [
+            "shima-amimoto-yashiro",
+            "shima-umihozuki",
+            "shima-miyuki-hamajima",
+            "shima-iso-ryori-yacht",
+            "shima-nishiguchiya"
+          ]
+        }
       },
       {
         "id": "shima-sakko",
@@ -241,7 +519,21 @@
           34.302
         ],
         "needsCar": true,
-        "note": "浜島町迫子的英虞湾西岸度假區：志摩地中海村、NEMU RESORT、近鉄浜島カンツリー（志摩グリーンアドベンチャー）。度假村有給住客的接駁巴士（鵜方站），賢島有海上計程車到地中海村；離浜島市街約 4 km"
+        "note": "浜島町迫子的英虞湾西岸度假區：志摩地中海村、NEMU RESORT、近鉄浜島カンツリー（志摩グリーンアドベンチャー）。度假村有給住客的接駁巴士（鵜方站），賢島有海上計程車到地中海村；離浜島市街約 4 km",
+        "intro": {
+          "summary": "志摩地中海村、NEMU、安縵等度假村集中的海灣。",
+          "highlights": [
+            "shima-nemu-resort",
+            "shima-chichukaimura",
+            "shima-green-adventure"
+          ],
+          "febNote": "旅程期間不在地中海村已公布的休館日（休館日會更新）。",
+          "basedOn": [
+            "shima-nemu-resort",
+            "shima-chichukaimura",
+            "shima-amanemu-dining"
+          ]
+        }
       },
       {
         "id": "shima-other",
@@ -254,7 +546,18 @@
           34.33
         ],
         "needsCar": true,
-        "note": "上面都不算的零散地方：磯部町五知、阿児町立神、西山、自行車道、市外的列表項目（候選用）等。center 只是志摩市的中心，沒有代表性"
+        "note": "上面都不算的零散地方：磯部町五知、阿児町立神、西山、自行車道、市外的列表項目（候選用）等。center 只是志摩市的中心，沒有代表性",
+        "intro": {
+          "summary": "沒有分進上面子地區的零散民宿、居酒屋。",
+          "highlights": [
+            "shima-yadokari"
+          ],
+          "febNote": null,
+          "basedOn": [
+            "shima-yadokari",
+            "shima-shosuke"
+          ]
+        }
       }
     ]
   },
@@ -306,6 +609,56 @@
         "note": "池の浦站位於鳥羽市堅神町"
       }
     ],
+    "intro": {
+      "summary": "鳥羽水族館、珍珠島在車站走路就到，再往外是海女小屋、浦村牡蠣和離島。",
+      "transport": "鳥羽站周邊走路就能玩；相差、浦村要搭巴士（一天約 10 班）或計程車；答志島等離島從佐田浜搭定期船。",
+      "highlights": [
+        "toba-aquarium",
+        "toba-mikimoto-pearl-island",
+        "toba-osatsu-ishigami",
+        "toba-hachiman-kamado",
+        "toba-motokaki"
+      ],
+      "february": [
+        {
+          "text": "鳥羽灣遊覽船（海豚島）1 月中旬～2 月上旬有年度檢修停航，2027 年的日期還沒公告，要打電話確認。",
+          "points": [
+            "toba-bay-cruise-irukajima"
+          ]
+        },
+        {
+          "text": "冬天西北季風強時，往離島的定期船可能停航或減班。",
+          "points": [
+            "toba-sadahama-marine-terminal",
+            "toba-port-toshi",
+            "toba-port-sugashima",
+            "toba-port-kamishima"
+          ]
+        },
+        {
+          "text": "2 月是浦村牡蠣的季節，牡蠣吃到飽、牡蠣會席都有。",
+          "points": [
+            "toba-motokaki",
+            "toba-motoura-sun-urashima"
+          ]
+        },
+        {
+          "text": "海女小屋天候不好、海女漁的安排可能中止，預約時確認。",
+          "points": [
+            "toba-hachiman-kamado",
+            "toba-osatsu-kamado"
+          ]
+        }
+      ],
+      "basedOn": [
+        "toba-aquarium",
+        "toba-mikimoto-pearl-island",
+        "toba-osatsu-ishigami",
+        "toba-sea-folk-museum",
+        "toba-motokaki",
+        "toba-sadahama-marine-terminal"
+      ]
+    },
     "regions": [
       {
         "id": "toba-station",
@@ -318,7 +671,21 @@
           34.4864
         ],
         "needsCar": false,
-        "note": "鳥羽 1～3 丁目、小浜：鳥羽站、佐田浜、水族館、真珠島、城跡"
+        "note": "鳥羽 1～3 丁目、小浜：鳥羽站、佐田浜、水族館、真珠島、城跡",
+        "intro": {
+          "summary": "鳥羽水族館、御木本珍珠島、遊覽船碼頭都從車站走得到，餐廳、飯店最多。",
+          "highlights": [
+            "toba-aquarium",
+            "toba-mikimoto-pearl-island",
+            "toba-sazanami"
+          ],
+          "febNote": "遊覽船 1 月中旬～2 月上旬可能停航檢修。",
+          "basedOn": [
+            "toba-aquarium",
+            "toba-mikimoto-pearl-island",
+            "toba-bay-cruise-irukajima"
+          ]
+        }
       },
       {
         "id": "toba-outskirts",
@@ -331,7 +698,21 @@
           34.4609
         ],
         "needsCar": true,
-        "note": "安楽島、大明、船津、河内、松尾、堅神；大多要搭車"
+        "note": "安楽島、大明、船津、河内、松尾、堅神；大多要搭車",
+        "intro": {
+          "summary": "鳥羽站外圍的海鮮、松阪牛餐廳和伊射波神社，大多要搭車。",
+          "highlights": [
+            "toba-izawa-jinja",
+            "toba-kagetsu",
+            "toba-niku-matsumura"
+          ],
+          "febNote": null,
+          "basedOn": [
+            "toba-izawa-jinja",
+            "toba-kagetsu",
+            "toba-niku-matsumura"
+          ]
+        }
       },
       {
         "id": "nakanogo",
@@ -344,7 +725,19 @@
           34.4731
         ],
         "needsCar": false,
-        "note": "中之郷站、志摩赤崎站一帶（鳥羽 4～5 丁目）"
+        "note": "中之郷站、志摩赤崎站一帶（鳥羽 4～5 丁目）",
+        "intro": {
+          "summary": "中之郷站一帶，有大庄屋的老宅角屋和平價食堂。",
+          "highlights": [
+            "toba-kadoya",
+            "toba-nanakoshi-honten"
+          ],
+          "febNote": "角屋週二休。",
+          "basedOn": [
+            "toba-kadoya",
+            "toba-nanakoshi-honten"
+          ]
+        }
       },
       {
         "id": "uramura",
@@ -357,7 +750,21 @@
           34.4473
         ],
         "needsCar": true,
-        "note": "浦村牡蠣聚落；安楽島的パールロード入口一帶也歸這裡"
+        "note": "浦村牡蠣聚落；安楽島的パールロード入口一帶也歸這裡",
+        "intro": {
+          "summary": "浦村牡蠣的養殖聚落，有牡蠣小屋、牡蠣會席和海之博物館。",
+          "highlights": [
+            "toba-motokaki",
+            "toba-sea-folk-museum",
+            "toba-motoura-sun-urashima"
+          ],
+          "febNote": "牡蠣季；海之博物館冬季開到 16:30。",
+          "basedOn": [
+            "toba-motokaki",
+            "toba-sea-folk-museum",
+            "toba-motoura-sun-urashima"
+          ]
+        }
       },
       {
         "id": "osatsu",
@@ -370,7 +777,21 @@
           34.392
         ],
         "needsCar": true,
-        "note": "相差、畔蛸；相差海女シャトル只給住客搭"
+        "note": "相差、畔蛸；相差海女シャトル只給住客搭",
+        "intro": {
+          "summary": "海女的漁村：石神樣、海女小屋吃海鮮，海邊的溫泉旅館多。",
+          "highlights": [
+            "toba-osatsu-ishigami",
+            "toba-hachiman-kamado",
+            "toba-osatsu-sora-no-kaze"
+          ],
+          "febNote": "海女小屋天候不好可能中止，預約時確認。",
+          "basedOn": [
+            "toba-osatsu-ishigami",
+            "toba-hachiman-kamado",
+            "toba-osatsu-sora-no-kaze"
+          ]
+        }
       },
       {
         "id": "kuzaki",
@@ -383,7 +804,19 @@
           34.4293
         ],
         "needsCar": true,
-        "note": "國崎、石鏡、鎧埼燈塔、パールロード沿線的展望台"
+        "note": "國崎、石鏡、鎧埼燈塔、パールロード沿線的展望台",
+        "intro": {
+          "summary": "珍珠路沿線的展望台和海女料理，國崎有西村食堂。",
+          "highlights": [
+            "toba-observatory-pearl-road",
+            "toba-nishimura-shokudo"
+          ],
+          "febNote": "冬天晴天有機會看到富士山；展望台週三休。",
+          "basedOn": [
+            "toba-observatory-pearl-road",
+            "toba-nishimura-shokudo"
+          ]
+        }
       },
       {
         "id": "toshijima",
@@ -396,7 +829,21 @@
           34.526
         ],
         "needsCar": false,
-        "note": "離島：和具、答志、桃取；佐田浜搭定期船"
+        "note": "離島：和具、答志、桃取；佐田浜搭定期船",
+        "intro": {
+          "summary": "離島，漁村散步和吃海鮮的民宿，從佐田浜搭定期船。",
+          "highlights": [
+            "toba-toshijima-yamashichi",
+            "toba-toshijima-toshi",
+            "toba-marumitsu-sushi"
+          ],
+          "febNote": "冬天有答志島牡蠣；季風強時船可能停航。",
+          "basedOn": [
+            "toba-toshijima-yamashichi",
+            "toba-toshijima-toshi",
+            "toba-port-toshi"
+          ]
+        }
       },
       {
         "id": "sugashima",
@@ -409,7 +856,19 @@
           34.4991
         ],
         "needsCar": false,
-        "note": "離島"
+        "note": "離島",
+        "intro": {
+          "summary": "小離島，有燈塔步道和白浜海灘。",
+          "highlights": [
+            "toba-sugashima-lighthouse",
+            "toba-sugashima-nakora"
+          ],
+          "febNote": "燈塔一帶的水仙 2 月中旬～下旬開；北風強，船可能停航。",
+          "basedOn": [
+            "toba-sugashima-lighthouse",
+            "toba-port-sugashima"
+          ]
+        }
       },
       {
         "id": "kamishima",
@@ -422,7 +881,21 @@
           34.5498
         ],
         "needsCar": false,
-        "note": "離島；船程最長，冬季可能停航"
+        "note": "離島；船程最長，冬季可能停航",
+        "intro": {
+          "summary": "船程最遠的離島，燈塔、監的哨和喀斯特地形的環島步道。",
+          "highlights": [
+            "toba-kamishima-yatsushiro-jinja",
+            "toba-kamishima-lighthouse",
+            "toba-kamishima-kantekisho"
+          ],
+          "febNote": "冬季的船一天只有 4 班，季風強時容易停航。",
+          "basedOn": [
+            "toba-kamishima-yatsushiro-jinja",
+            "toba-kamishima-lighthouse",
+            "toba-port-kamishima"
+          ]
+        }
       }
     ],
     "extra": {
@@ -476,6 +949,42 @@
         "note": "二見町江的位置"
       }
     ],
+    "intro": {
+      "summary": "夫婦岩和二見興玉神社，海邊的旅館街、伊勢海洋樂園和甜點老舖都走得到。",
+      "transport": "最近的是 JR 二見浦站（近鐵 5 日券不能用），走到夫婦岩約 15 分；外圍的住宿要搭車。",
+      "highlights": [
+        "futami-okitama-jinja",
+        "futami-sea-paradise",
+        "futami-ofukumochi-honke",
+        "futami-oishiya"
+      ],
+      "february": [
+        {
+          "text": "2 月不是夫婦岩看日出（5～7 月）、月出（11～1 月）的季節。",
+          "points": [
+            "futami-okitama-jinja"
+          ]
+        },
+        {
+          "text": "表參道的賓日館 2026 年 3 月起休館。",
+          "points": [
+            "futami-omotesando"
+          ]
+        },
+        {
+          "text": "御塩殿 2 月沒有製鹽，看不到燒鹽。",
+          "points": [
+            "futami-mishiodono"
+          ]
+        }
+      ],
+      "basedOn": [
+        "futami-okitama-jinja",
+        "futami-sea-paradise",
+        "futami-ofukumochi-honke",
+        "futami-oishiya"
+      ]
+    },
     "regions": [
       {
         "id": "futami-okitama",
@@ -488,7 +997,21 @@
           34.5065
         ],
         "needsCar": false,
-        "note": "JR 二見浦站、夫婦岩表參道（旅館街）、二見興玉神社、伊勢シーパラダイス（二見町江、茶屋、荘，和二見町西靠二見浦站的一帶）"
+        "note": "JR 二見浦站、夫婦岩表參道（旅館街）、二見興玉神社、伊勢シーパラダイス（二見町江、茶屋、荘，和二見町西靠二見浦站的一帶）",
+        "intro": {
+          "summary": "JR 二見浦站到夫婦岩的旅館街，有神社、水族館和甜點老舖。",
+          "highlights": [
+            "futami-okitama-jinja",
+            "futami-sea-paradise",
+            "futami-ofukumochi-honke"
+          ],
+          "febNote": "賓日館休館中；伊勢海洋樂園 2027 年的營業日曆還沒公布。",
+          "basedOn": [
+            "futami-okitama-jinja",
+            "futami-sea-paradise",
+            "futami-omotesando"
+          ]
+        }
       },
       {
         "id": "futami-outskirts",
@@ -501,7 +1024,22 @@
           34.501
         ],
         "needsCar": true,
-        "note": "三津（伊勢忍者キングダム）、松下（JR 松下站、松下社、民話の駅 蘇民）、今一色，以及二見町西、溝口離二見浦站 2 km 以上的一帶（プラフィーノ、オレンジガーデン、ワスケ、マイヤー）等；大多要搭車"
+        "note": "三津（伊勢忍者キングダム）、松下（JR 松下站、松下社、民話の駅 蘇民）、今一色，以及二見町西、溝口離二見浦站 2 km 以上的一帶（プラフィーノ、オレンジガーデン、ワスケ、マイヤー）等；大多要搭車",
+        "intro": {
+          "summary": "離二見浦站較遠的旅館、包棟民宿和中華餐廳，大多要搭車。",
+          "highlights": [
+            "futami-uminocho",
+            "futami-togenkyo",
+            "futami-wasuke"
+          ],
+          "febNote": "歐貝吉 柚須良 2/1～2/2 休館。",
+          "basedOn": [
+            "futami-uminocho",
+            "futami-togenkyo",
+            "futami-wasuke",
+            "futami-yusura"
+          ]
+        }
       }
     ],
     "extra": {
@@ -555,6 +1093,54 @@
         "note": "行政區"
       }
     ],
+    "intro": {
+      "summary": "伊勢神宮的外宮、內宮和托福橫丁；外宮、伊勢市站一帶的餐廳、居酒屋最多。",
+      "transport": "外宮在伊勢市站走路 5 分；內宮從伊勢市站、五十鈴川站搭巴士；朝熊山、伊勢 IC 一帶要搭車。",
+      "highlights": [
+        "ise-geku",
+        "ise-naiku",
+        "ise-oharaimachi",
+        "ise-ichigetsuya",
+        "ise-butasute-wakayanagi"
+      ],
+      "february": [
+        {
+          "text": "外宮、內宮 2 月參拜時間 5:00～18:00。",
+          "points": [
+            "ise-geku",
+            "ise-naiku"
+          ]
+        },
+        {
+          "text": "托福橫丁 2 月 9:30～17:00（週末、假日到 17:30）；外宮參道的店大多 17 點左右關。",
+          "points": [
+            "ise-oharaimachi",
+            "ise-geku-sando"
+          ]
+        },
+        {
+          "text": "遷宮館 2/9 休；2/11 是國定假日，隔天 2/12 神宮徵古館、古市的資料館休。",
+          "points": [
+            "ise-sengukan",
+            "ise-jingu-museum",
+            "ise-furuichi-kaido"
+          ]
+        },
+        {
+          "text": "朝熊山冬天比市區冷，結冰、積雪時怎麼封路沒有資料，出發前要問。",
+          "points": [
+            "ise-asama-summit"
+          ]
+        }
+      ],
+      "basedOn": [
+        "ise-geku",
+        "ise-naiku",
+        "ise-oharaimachi",
+        "ise-ichigetsuya",
+        "ise-asama-summit"
+      ]
+    },
     "regions": [
       {
         "id": "ise-geku",
@@ -567,7 +1153,23 @@
           34.4915
         ],
         "needsCar": false,
-        "note": "外宮、外宮參道、伊勢市站、宇治山田站、月夜見宮、河崎（觀光協會的外宮エリア＋河崎エリア）"
+        "note": "外宮、外宮參道、伊勢市站、宇治山田站、月夜見宮、河崎（觀光協會的外宮エリア＋河崎エリア）",
+        "intro": {
+          "summary": "外宮和伊勢市站前，老居酒屋、伊勢烏龍、餃子，晚餐的選擇最多。",
+          "highlights": [
+            "ise-geku",
+            "ise-ichigetsuya",
+            "ise-misuzu-gyoza"
+          ],
+          "febNote": "遷宮館 2/9 休；參道的店大多 17 點左右關。",
+          "basedOn": [
+            "ise-geku",
+            "ise-ichigetsuya",
+            "ise-misuzu-gyoza",
+            "ise-sengukan",
+            "ise-geku-sando"
+          ]
+        }
       },
       {
         "id": "ise-kurata",
@@ -580,7 +1182,21 @@
           34.481
         ],
         "needsCar": false,
-        "note": "外宮與內宮之間：神宮徴古館、倭姬宮、月讀宮、松尾觀音寺、古市、五十鈴川站；51 系統巴士經過。伊勢 IC 一帶（黒瀬町）2026-10-18 起歸 ise-isuzugaoka"
+        "note": "外宮與內宮之間：神宮徴古館、倭姬宮、月讀宮、松尾觀音寺、古市、五十鈴川站；51 系統巴士經過。伊勢 IC 一帶（黒瀬町）2026-10-18 起歸 ise-isuzugaoka",
+        "intro": {
+          "summary": "外宮和內宮之間，有月讀宮、倭姬宮和神宮徵古館，巴士會經過。",
+          "highlights": [
+            "ise-tsukiyomi-no-miya",
+            "ise-yamatohime-no-miya",
+            "ise-jingu-museum"
+          ],
+          "febNote": "神宮徵古館 2/4、2/12 休。",
+          "basedOn": [
+            "ise-tsukiyomi-no-miya",
+            "ise-yamatohime-no-miya",
+            "ise-jingu-museum"
+          ]
+        }
       },
       {
         "id": "ise-isuzugaoka",
@@ -593,7 +1209,21 @@
           34.4952
         ],
         "needsCar": true,
-        "note": "JR 五十鈴ケ丘站、伊勢 IC 一帶：黒瀬町、鹿海町、通町（菊池パール、四十三番、エリアワン 伊勢インター、さし汐）。JR 參宮線班次少、不能用近鐵 5 日券；近鐵五十鈴川站約 2 km，大多開車或計程車。2026-10-18 從 ise-kurata、ise-asama、ise-outskirts 拆出來"
+        "note": "JR 五十鈴ケ丘站、伊勢 IC 一帶：黒瀬町、鹿海町、通町（菊池パール、四十三番、エリアワン 伊勢インター、さし汐）。JR 參宮線班次少、不能用近鐵 5 日券；近鐵五十鈴川站約 2 km，大多開車或計程車。2026-10-18 從 ise-kurata、ise-asama、ise-outskirts 拆出來",
+        "intro": {
+          "summary": "伊勢 IC 一帶的珍珠體驗、和菓子老舖、豬排，大多要搭車。",
+          "highlights": [
+            "ise-kikuchi-pearl",
+            "ise-fujiya-sogetsudo-honkan",
+            "ise-tonkatsu-yonjusanban"
+          ],
+          "febNote": "菊池珍珠不定休，看官網的行事曆。",
+          "basedOn": [
+            "ise-kikuchi-pearl",
+            "ise-fujiya-sogetsudo-honkan",
+            "ise-tonkatsu-yonjusanban"
+          ]
+        }
       },
       {
         "id": "ise-obata",
@@ -606,7 +1236,21 @@
           34.5133
         ],
         "needsCar": false,
-        "note": "伊勢市站西北、宮川對岸：小俣町（近鐵小俣站，伊勢苺園、パセプション）、御薗町（近鐵宮町站西側，三玄）。小俣站周邊可以搭近鐵＋步行，御薗的店要搭車。2026-10-18 從 ise-outskirts 拆出來"
+        "note": "伊勢市站西北、宮川對岸：小俣町（近鐵小俣站，伊勢苺園、パセプション）、御薗町（近鐵宮町站西側，三玄）。小俣站周邊可以搭近鐵＋步行，御薗的店要搭車。2026-10-18 從 ise-outskirts 拆出來",
+        "intro": {
+          "summary": "宮川對岸的小俣、御薗，有採草莓和懷石、燒肉。",
+          "highlights": [
+            "ise-ichigoen",
+            "ise-sangen",
+            "ise-tamachan"
+          ],
+          "febNote": "採草莓預計 1 月底開始，只能在じゃらん預約。",
+          "basedOn": [
+            "ise-ichigoen",
+            "ise-sangen",
+            "ise-tamachan"
+          ]
+        }
       },
       {
         "id": "ise-naiku",
@@ -619,7 +1263,23 @@
           34.463
         ],
         "needsCar": false,
-        "note": "內宮、おはらい町、おかげ橫丁、猿田彥神社（宇治、宇治浦田）；伊勢市站、五十鈴川站有巴士"
+        "note": "內宮、おはらい町、おかげ橫丁、猿田彥神社（宇治、宇治浦田）；伊勢市站、五十鈴川站有巴士",
+        "intro": {
+          "summary": "內宮、托福橫丁、猿田彥神社，伊勢烏龍和赤福都在這條街上。",
+          "highlights": [
+            "ise-naiku",
+            "ise-oharaimachi",
+            "ise-akafuku-honten"
+          ],
+          "febNote": "托福橫丁 17 點左右關；冬季限定的赤福ぜんざい。",
+          "basedOn": [
+            "ise-naiku",
+            "ise-oharaimachi",
+            "ise-sarutahiko-jinja",
+            "ise-akafuku-honten",
+            "ise-fukusuke"
+          ]
+        }
       },
       {
         "id": "ise-asama",
@@ -632,7 +1292,20 @@
           34.4585
         ],
         "needsCar": true,
-        "note": "朝熊山頂（伊勢志摩スカイライン）、金剛證寺；山頂能吃的只有 朝熊茶屋（2 月平日營業是推定）。山腳的朝熊 IC 一帶（伊勢志摩 中央市場、はくたか亭）不算，在 ise-outskirts；巴士只在土日祝（參宮巴士），平日要計程車"
+        "note": "朝熊山頂（伊勢志摩スカイライン）、金剛證寺；山頂能吃的只有 朝熊茶屋（2 月平日營業是推定）。山腳的朝熊 IC 一帶（伊勢志摩 中央市場、はくたか亭）不算，在 ise-outskirts；巴士只在土日祝（參宮巴士），平日要計程車",
+        "intro": {
+          "summary": "標高 555 m 的朝熊山頂展望台和金剛證寺，要搭車。",
+          "highlights": [
+            "ise-asama-summit",
+            "ise-kongoshoji",
+            "ise-asama-chaya"
+          ],
+          "febNote": "冬天風大較冷，結冰時怎麼封路沒有資料；參宮巴士只在週末、假日。",
+          "basedOn": [
+            "ise-asama-summit",
+            "ise-kongoshoji"
+          ]
+        }
       },
       {
         "id": "ise-outskirts",
@@ -645,7 +1318,23 @@
           34.4842
         ],
         "needsCar": true,
-        "note": "上面幾個子地區都不算的零散地方：神久、船江、勢田町、川端町、中島、朝熊 IC（中央市場）、大湊、神社港等；點和點相距好幾 km，center 沒有代表性，缺漏檢查要看各點的 anchors。大多要搭車"
+        "note": "上面幾個子地區都不算的零散地方：神久、船江、勢田町、川端町、中島、朝熊 IC（中央市場）、大湊、神社港等；點和點相距好幾 km，center 沒有代表性，缺漏檢查要看各點的 anchors。大多要搭車",
+        "intro": {
+          "summary": "市區外圍零散的炸蝦、法式、中華餐廳和資料館，大多要搭車。",
+          "highlights": [
+            "ise-sazanami",
+            "ise-osakaya",
+            "ise-campagne"
+          ],
+          "febNote": null,
+          "basedOn": [
+            "ise-sazanami",
+            "ise-osakaya",
+            "ise-campagne",
+            "ise-ajino-rairaiken",
+            "ise-kadoya-mingukan"
+          ]
+        }
       }
     ],
     "extra": {
@@ -681,6 +1370,21 @@
       "hagurazaki"
     ],
     "notes": "不在伊勢志摩，驗證腳本對這區的座標放寬到關西、中部。重點是住宿到機場的接駁（時間、班次、15 人和行李）。車站（関西空港、りんくうタウン、泉佐野、羽倉崎）T13 加進 stations.json，operator 是 other（JR・南海），近鐵 5 日券不能用。",
+    "intro": {
+      "summary": "回程前一晚住的機場周邊飯店，分成機場島上、臨空城、泉佐野三處。",
+      "transport": "機場島上的日航走通道直通航廈；臨空城、泉佐野到關西機場是電車 1～2 站。",
+      "highlights": [
+        "kix-nikko",
+        "kix-odysis-suites",
+        "kix-ref-izumisano"
+      ],
+      "february": [],
+      "basedOn": [
+        "kix-nikko",
+        "kix-odysis-suites",
+        "kix-ref-izumisano"
+      ]
+    },
     "regions": [
       {
         "id": "kix-island",
@@ -693,7 +1397,19 @@
           34.4347
         ],
         "needsCar": false,
-        "note": "機場島內的飯店"
+        "note": "機場島內的飯店",
+        "intro": {
+          "summary": "機場島上唯一的飯店，走通道直通第一航廈和車站。",
+          "highlights": [
+            "kix-nikko",
+            "kix-nikko-touri"
+          ],
+          "febNote": null,
+          "basedOn": [
+            "kix-nikko",
+            "kix-nikko-touri"
+          ]
+        }
       },
       {
         "id": "rinku",
@@ -706,7 +1422,19 @@
           34.4048
         ],
         "needsCar": false,
-        "note": "りんくうタウン站一帶，到機場 1 站"
+        "note": "りんくうタウン站一帶，到機場 1 站",
+        "intro": {
+          "summary": "臨空城站一帶的飯店，電車 1 站到機場。",
+          "highlights": [
+            "kix-odysis-suites",
+            "kix-stargate"
+          ],
+          "febNote": null,
+          "basedOn": [
+            "kix-odysis-suites",
+            "kix-stargate"
+          ]
+        }
       },
       {
         "id": "izumisano",
@@ -719,7 +1447,19 @@
           34.4081
         ],
         "needsCar": false,
-        "note": "南海泉佐野站一帶（T19 加）：到機場南海約 10 分，或飯店接駁；站前有居酒屋、餐廳"
+        "note": "南海泉佐野站一帶（T19 加）：到機場南海約 10 分，或飯店接駁；站前有居酒屋、餐廳",
+        "intro": {
+          "summary": "南海泉佐野站前的飯店和居酒屋、壽司，電車約 9 分到機場。",
+          "highlights": [
+            "kix-ref-izumisano",
+            "kix-odoroki"
+          ],
+          "febNote": null,
+          "basedOn": [
+            "kix-ref-izumisano",
+            "kix-odoroki"
+          ]
+        }
       }
     ],
     "sources": [
@@ -787,6 +1527,45 @@
       "metro-shitennojimae-yuhigaoka"
     ],
     "notes": "2026-10-26 加入（T27a）。tripOrder 和 kix 同為 4：最後一晚住大阪或關西機場周邊，由排行程時選。stations 由 T28 補（T27a 之後不改）。做法見 CONVENTIONS §4「大阪（都市區）的做法」。子地區的 center 是大致位置（車站或代表景點），之後用 Google Maps 確認。",
+    "intro": {
+      "summary": "最後 1～2 天的都市行程：道頓堀、大阪城、海遊館、USJ，都靠電車、地鐵到。",
+      "transport": "子地區都在電車、地鐵站附近，搭車加步行；大阪城從車站到天守閣要在戶外走 1.4 km 以上。",
+      "highlights": [
+        "osaka-kaiyukan",
+        "osaka-usj",
+        "osaka-dotonbori",
+        "osaka-harukas300",
+        "osaka-fukutaro"
+      ],
+      "february": [
+        {
+          "text": "大阪城梅林 2 月是賞梅季，中旬最熱鬧。",
+          "points": [
+            "osaka-castle-plum-grove"
+          ]
+        },
+        {
+          "text": "USJ 2027 年 2 月的價格、活動還沒公布；冬季活動 1/17 結束。",
+          "points": [
+            "osaka-usj"
+          ]
+        },
+        {
+          "text": "道頓堀、天王寺動物園、梅田空中庭園在戶外，2 月冷、風大。",
+          "points": [
+            "osaka-dotonbori",
+            "osaka-tennoji-zoo",
+            "osaka-umeda-sky-building"
+          ]
+        }
+      ],
+      "basedOn": [
+        "osaka-kaiyukan",
+        "osaka-usj",
+        "osaka-dotonbori",
+        "osaka-castle-tenshukaku"
+      ]
+    },
     "regions": [
       {
         "id": "namba",
@@ -799,7 +1578,22 @@
           34.667
         ],
         "needsCar": false,
-        "note": "含心斎橋、日本橋、上本町。住宿的據點：近鐵（大阪難波、大阪上本町）、南海（なんば）、地鐵都到"
+        "note": "含心斎橋、日本橋、上本町。住宿的據點：近鐵（大阪難波、大阪上本町）、南海（なんば）、地鐵都到",
+        "intro": {
+          "summary": "道頓堀、黑門市場，大阪燒、烏龍麵老店集中，也有很多飯店。",
+          "highlights": [
+            "osaka-dotonbori",
+            "osaka-fukutaro",
+            "osaka-dotonbori-imai"
+          ],
+          "febNote": "道頓堀河邊晚上風冷。",
+          "basedOn": [
+            "osaka-dotonbori",
+            "osaka-kuromon-market",
+            "osaka-fukutaro",
+            "osaka-hotel-nikko"
+          ]
+        }
       },
       {
         "id": "osaka-castle",
@@ -812,7 +1606,21 @@
           34.6873
         ],
         "needsCar": false,
-        "note": "大阪城公園一帶（天守閣、西の丸庭園），最近的站是 JR 大阪城公園、地鐵谷町四丁目・森ノ宮"
+        "note": "大阪城公園一帶（天守閣、西の丸庭園），最近的站是 JR 大阪城公園、地鐵谷町四丁目・森ノ宮",
+        "intro": {
+          "summary": "大阪城天守閣和公園，2 月有梅林，附近有烏龍麵、炸串。",
+          "highlights": [
+            "osaka-castle-tenshukaku",
+            "osaka-castle-plum-grove",
+            "osaka-bakusho"
+          ],
+          "febNote": "2 月賞梅；車站到天守閣戶外走 1.4 km 以上。",
+          "basedOn": [
+            "osaka-castle-tenshukaku",
+            "osaka-castle-plum-grove",
+            "osaka-bakusho"
+          ]
+        }
       },
       {
         "id": "tennoji",
@@ -825,7 +1633,21 @@
           34.6495
         ],
         "needsCar": false,
-        "note": "天王寺站、あべのハルカス、天王寺動物園、新世界（通天閣）一帶"
+        "note": "天王寺站、あべのハルカス、天王寺動物園、新世界（通天閣）一帶",
+        "intro": {
+          "summary": "阿倍野 HARUKAS 展望台、通天閣、天王寺動物園和新世界。",
+          "highlights": [
+            "osaka-harukas300",
+            "osaka-tsutenkaku",
+            "osaka-tenhashi"
+          ],
+          "febNote": "動物園週一休，大多是戶外展示。",
+          "basedOn": [
+            "osaka-harukas300",
+            "osaka-tsutenkaku",
+            "osaka-tennoji-zoo"
+          ]
+        }
       },
       {
         "id": "osaka-bay",
@@ -838,7 +1660,22 @@
           34.6545
         ],
         "needsCar": false,
-        "note": "海遊館、天保山大観覧車一帶，地鐵中央線大阪港站"
+        "note": "海遊館、天保山大観覧車一帶，地鐵中央線大阪港站",
+        "intro": {
+          "summary": "海遊館、天保山摩天輪和樂高探索中心，室內的多。",
+          "highlights": [
+            "osaka-kaiyukan",
+            "osaka-tempozan-ferris-wheel",
+            "osaka-chikko-menkobo"
+          ],
+          "febNote": "築港麵工房 2/11、2/13 休。",
+          "basedOn": [
+            "osaka-kaiyukan",
+            "osaka-tempozan-ferris-wheel",
+            "osaka-legoland-discovery",
+            "osaka-chikko-menkobo"
+          ]
+        }
       },
       {
         "id": "usj",
@@ -851,7 +1688,20 @@
           34.666
         ],
         "needsCar": false,
-        "note": "USJ 和官方合作飯店一帶，JR ゆめ咲線ユニバーサルシティ站；不收餐廳（園內吃）"
+        "note": "USJ 和官方合作飯店一帶，JR ゆめ咲線ユニバーサルシティ站；不收餐廳（園內吃）",
+        "intro": {
+          "summary": "日本環球影城和官方合作飯店。",
+          "highlights": [
+            "osaka-usj",
+            "osaka-liber-hotel",
+            "osaka-park-front-usj"
+          ],
+          "febNote": "2 月的價格、活動還沒公布；戶外排隊多。",
+          "basedOn": [
+            "osaka-usj",
+            "osaka-liber-hotel"
+          ]
+        }
       },
       {
         "id": "umeda",
@@ -864,7 +1714,21 @@
           34.7025
         ],
         "needsCar": false,
-        "note": "JR 大阪站、各線梅田站一帶（梅田スカイビル、HEP FIVE）"
+        "note": "JR 大阪站、各線梅田站一帶（梅田スカイビル、HEP FIVE）",
+        "intro": {
+          "summary": "JR 大阪站一帶，空中庭園展望台、生活今昔館和烏龍麵名店。",
+          "highlights": [
+            "osaka-umeda-sky-building",
+            "osaka-udonbo",
+            "osaka-konjyakukan"
+          ],
+          "febNote": "今昔館 1/6 重新開館（週二休）；空中庭園的屋頂風大。",
+          "basedOn": [
+            "osaka-umeda-sky-building",
+            "osaka-udonbo",
+            "osaka-konjyakukan"
+          ]
+        }
       }
     ],
     "sources": [
