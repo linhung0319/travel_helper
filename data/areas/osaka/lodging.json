@@ -52,7 +52,7 @@
       "id": "metro-shinsaibashi",
       "mode": "walk",
       "minutes": 3,
-      "note": "官網：心斎橋駅 8 號出口直結，南改札步行 3 分；OSRM 3 分"
+      "note": "官網：心斎橋駅 8 號出口直結，南改札步行 3 分；路線估算 3 分"
     },
     "pickup": null,
     "meals": "varies",
@@ -162,6 +162,12 @@
         "url": "https://www.hno.co.jp/",
         "retrieved": "2026-10-26",
         "note": "地址電話、心斎橋駅 8 號出口直結"
+      },
+      {
+        "type": "osm",
+        "url": "https://router.project-osrm.org/",
+        "retrieved": "2026-10-26",
+        "note": "附近晚餐店的步行分鐘（OSRM 路線估算，scripts/lodging-dinner-access.mjs）"
       }
     ],
     "verified": false,
@@ -193,7 +199,7 @@
         },
         "note": "15 人（全部以大人計）分 N 間同住的組合，有空房的列出；只代表查詢當天楽天上的庫存"
       },
-      "dinnerAccessNote": "步行 20 分內的晚餐店 8 家以上（只查最近 8 家）：にし家 本店 4 分、焼肉㐂舌 南船場 7 分、アクアリウムイタリアン心斎橋ライム 7 分 等（選素泊、朝食付方案時；OSRM，scripts/lodging-dinner-access.mjs，2026-10-26）"
+      "dinnerAccessNote": "步行 20 分內的晚餐店 8 家以上（只查最近 8 家）：にし家 本店 4 分、焼肉㐂舌 南船場 7 分、アクアリウムイタリアン心斎橋ライム 7 分 等（選素泊、朝食付方案時）"
     },
     "summary": {
       "text": "心斎橋的大型飯店（605 室），地鐵心斎橋駅 8 號出口直結。楽天 4.50（5,752 則）、Google 4.2。素泊每人約 12,180～16,000 円（2/11 楽天 5 間×3 人的最低價）。到道頓堀、難波的餐廳走路 5～15 分，晚上吃飯方便。",
@@ -228,7 +234,7 @@
         "meals": "楽天餐 4.47 → 4；素泊時步行 20 分內晚餐店 8 家以上",
         "groupFit": "605 室、楽天有ツイン・トリプル的方案；沒有團體方案 → 4（楽天 15 人組合的空房只是查詢當天（2026-10-26）的庫存）",
         "elderFit": "全室床；電梯、無障礙沒有來源 → 3（心斎橋駅直結，車站到房間少走路）",
-        "accessEase": "心斎橋駅 8 號出口直結（OSRM 3 分）→ 5"
+        "accessEase": "心斎橋駅 8 號出口直結（路線估算 3 分）→ 5"
       },
       "confidence": "medium",
       "assessed": "2026-10-26"
@@ -287,7 +293,7 @@
       "id": "nankai-namba",
       "mode": "walk",
       "minutes": 4,
-      "note": "楽天：南海なんば駅直結；OSRM 4 分"
+      "note": "楽天：南海なんば駅直結；路線估算 4 分"
     },
     "pickup": "南海なんば駅直結，空港特急ラピート到關西機場約 40 分（楽天）",
     "meals": "varies",
@@ -393,6 +399,12 @@
         "url": "https://travelist.jp/hotel/detail/4023577",
         "retrieved": "2026-10-26",
         "note": "房型定員 3 名（搜尋摘要）"
+      },
+      {
+        "type": "osm",
+        "url": "https://router.project-osrm.org/",
+        "retrieved": "2026-10-26",
+        "note": "附近晚餐店的步行分鐘（OSRM 路線估算，scripts/lodging-dinner-access.mjs）"
       }
     ],
     "verified": false,
@@ -421,7 +433,7 @@
         },
         "note": "15 人（全部以大人計）分 N 間同住的組合，有空房的列出；只代表查詢當天楽天上的庫存"
       },
-      "dinnerAccessNote": "步行 20 分內的晚餐店 8 家以上（只查最近 8 家）：福太郎 本店 8 分、味乃家 本店 11 分、はり重 道頓堀本店 12 分 等（選素泊、朝食付方案時；OSRM，scripts/lodging-dinner-access.mjs，2026-10-26）"
+      "dinnerAccessNote": "步行 20 分內的晚餐店 8 家以上（只查最近 8 家）：福太郎 本店 8 分、味乃家 本店 11 分、はり重 道頓堀本店 12 分 等（選素泊、朝食付方案時）"
     },
     "summary": {
       "text": "南海なんば駅樓上的高級飯店（546 室），空港特急ラピート到關西機場約 40 分，最後一晚住這裡、隔天直接搭南海去機場最省事。楽天 4.43（2,145 則）、Google 4.3。素泊每人約 17,100 円（2/11），是難波一帶最貴的一群。",
@@ -516,7 +528,7 @@
       "id": "metro-nippombashi",
       "mode": "walk",
       "minutes": 8,
-      "note": "楽天：なんば駅 徒歩 7 分、なんばウォーク B20 出口 3 分；OSRM 到日本橋站 8 分"
+      "note": "楽天：なんば駅 徒歩 7 分、なんばウォーク B20 出口 3 分；路線估算到日本橋站 8 分"
     },
     "pickup": null,
     "meals": "varies",
@@ -641,6 +653,12 @@
         "url": "https://www.jalan.net/yad395776/",
         "retrieved": "2026-10-26",
         "note": "房型與起價（搜尋摘要）"
+      },
+      {
+        "type": "osm",
+        "url": "https://router.project-osrm.org/",
+        "retrieved": "2026-10-26",
+        "note": "附近晚餐店的步行分鐘（OSRM 路線估算，scripts/lodging-dinner-access.mjs）"
       }
     ],
     "verified": false,
@@ -671,7 +689,7 @@
         },
         "note": "15 人（全部以大人計）分 N 間同住的組合，有空房的列出；只代表查詢當天楽天上的庫存"
       },
-      "dinnerAccessNote": "步行 20 分內的晚餐店 8 家以上（只查最近 8 家）：道頓堀 今井 本店 3 分、麺匠の心つくし つるとんたん 宗右衛門町店 5 分、アクアリウムイタリアン心斎橋ライム 5 分 等（選素泊、朝食付方案時；OSRM，scripts/lodging-dinner-access.mjs，2026-10-26）"
+      "dinnerAccessNote": "步行 20 分內的晚餐店 8 家以上（只查最近 8 家）：道頓堀 今井 本店 3 分、麺匠の心つくし つるとんたん 宗右衛門町店 5 分、アクアリウムイタリアン心斎橋ライム 5 分 等（選素泊、朝食付方案時）"
     },
     "summary": {
       "text": "道頓堀旁的飯店（314 室），有スーペリアトリプル＋ソファベッド（最多 4 人），適合一家人同房。楽天 4.78（2,137 則）是難波最高，但 Google 只有 4.0。素泊每人約 8,150～15,500 円。",
@@ -706,7 +724,7 @@
         "meals": "楽天餐沒有細項；素泊時步行 20 分內晚餐店 8 家以上 → 3",
         "groupFit": "314 室、トリプル＋ソファベッド最多 4 人 → 4（楽天 15 人組合的空房只是查詢當天（2026-10-26）的庫存）",
         "elderFit": "楽天列有バリアフリールーム（當成館內可以坐輪椅移動）、全室床 → 4",
-        "accessEase": "楽天：なんば駅 7 分、なんばウォーク B20 出口 3 分（OSRM 到日本橋駅 8 分）→ 4"
+        "accessEase": "楽天：なんば駅 7 分、なんばウォーク B20 出口 3 分（路線估算到日本橋駅 8 分）→ 4"
       },
       "confidence": "medium",
       "assessed": "2026-10-26"
@@ -766,7 +784,7 @@
       "id": "osaka-namba",
       "mode": "walk",
       "minutes": 4,
-      "note": "官網：四つ橋線なんば 30 號出口直結、近鉄・阪神大阪難波 西改札約 1 分、JR 難波約 1 分；OSRM 到近鐵大阪難波 4 分"
+      "note": "官網：四つ橋線なんば 30 號出口直結、近鉄・阪神大阪難波 西改札約 1 分、JR 難波約 1 分；路線估算到近鐵大阪難波 4 分"
     },
     "pickup": "和 OCAT（大阪城市航空總站）相鄰：關西機場直達巴士約 48 分（官網）",
     "meals": "varies",
@@ -933,6 +951,12 @@
         "url": "https://www.hotelmonterey.co.jp/grasmere_osaka/access/",
         "retrieved": "2026-10-26",
         "note": "交通、機場巴士"
+      },
+      {
+        "type": "osm",
+        "url": "https://router.project-osrm.org/",
+        "retrieved": "2026-10-26",
+        "note": "附近晚餐店的步行分鐘（OSRM 路線估算，scripts/lodging-dinner-access.mjs）"
       }
     ],
     "verified": false,
@@ -961,7 +985,7 @@
         },
         "note": "15 人（全部以大人計）分 N 間同住的組合，有空房的列出；只代表查詢當天楽天上的庫存"
       },
-      "dinnerAccessNote": "步行 20 分內的晚餐店 8 家以上（只查最近 8 家）：ムーラン 5 分、小籠包と本格中華 堀江ブルー 5 分、はり重 道頓堀本店 8 分 等（選素泊、朝食付方案時；OSRM，scripts/lodging-dinner-access.mjs，2026-10-26）"
+      "dinnerAccessNote": "步行 20 分內的晚餐店 8 家以上（只查最近 8 家）：ムーラン 5 分、小籠包と本格中華 堀江ブルー 5 分、はり重 道頓堀本店 8 分 等（選素泊、朝食付方案時）"
     },
     "summary": {
       "text": "近鐵・JR 難波站旁的大樓飯店（348 室），和 OCAT 相鄰，有直達關西機場的巴士（約 48 分）。楽天 4.44（3,811 則）、Google 4.2；楽天早餐 4.66 是難波一帶最高。有トリプル（3 人）和ジュニアスイート（最多 4 人）。",
@@ -1061,7 +1085,7 @@
       "id": "metro-nippombashi",
       "mode": "walk",
       "minutes": 4,
-      "note": "楽天：日本橋駅 6 號出口步行 3 分；OSRM 4 分"
+      "note": "楽天：日本橋駅 6 號出口步行 3 分；路線估算 4 分"
     },
     "pickup": null,
     "meals": "varies",
@@ -1272,6 +1296,12 @@
         "url": "https://www.yamatoyahonten.co.jp/facilities/",
         "retrieved": "2026-10-26",
         "note": "大浴場、嬰兒床"
+      },
+      {
+        "type": "osm",
+        "url": "https://router.project-osrm.org/",
+        "retrieved": "2026-10-26",
+        "note": "附近晚餐店的步行分鐘（OSRM 路線估算，scripts/lodging-dinner-access.mjs）"
       }
     ],
     "verified": false,
@@ -1310,7 +1340,7 @@
         },
         "note": "15 人（全部以大人計）分 N 間同住的組合，有空房的列出；只代表查詢當天楽天上的庫存"
       },
-      "dinnerAccessNote": "步行 20 分內的晚餐店 8 家以上（只查最近 8 家）：麺匠の心つくし つるとんたん 宗右衛門町店 1 分、道頓堀 今井 本店 6 分、福太郎 本店 8 分 等（選素泊、朝食付方案時；OSRM，scripts/lodging-dinner-access.mjs，2026-10-26）"
+      "dinnerAccessNote": "步行 20 分內的晚餐店 8 家以上（只查最近 8 家）：麺匠の心つくし つるとんたん 宗右衛門町店 1 分、道頓堀 今井 本店 6 分、福太郎 本店 8 分 等（選素泊、朝食付方案時）"
     },
     "summary": {
       "text": "日本橋站旁的和式旅館（39 室），有 15 人以上的一泊二食團體方案（おおきにコース 平日每人 16,500 円、休前日 19,800 円），是大阪少數全員可以同住又一起吃晚餐的地方。但 Google 3.8 是「評價普通」，低分集中在接待態度。",
@@ -1349,7 +1379,7 @@
         "meals": "一泊二食團體方案，楽天餐沒有細項；宴會的評論有負評 → 3",
         "groupFit": "官方有 15 人以上的一泊二食團體方案 → 5",
         "elderFit": "可以輪椅入住（當成有電梯）、有扶手，但和室鋪布團為主 → 3",
-        "accessEase": "日本橋駅 6 號出口 3 分（OSRM 4 分）→ 5"
+        "accessEase": "日本橋駅 6 號出口 3 分（路線估算 4 分）→ 5"
       },
       "confidence": "medium",
       "assessed": "2026-10-26"
@@ -1409,7 +1439,7 @@
       "id": "metro-nagahoribashi",
       "mode": "walk",
       "minutes": 6,
-      "note": "官網：長堀橋駅 7 號出口步行 5 分、日本橋駅 6 號出口步行 5 分；OSRM 到長堀橋 6 分"
+      "note": "官網：長堀橋駅 7 號出口步行 5 分、日本橋駅 6 號出口步行 5 分；路線估算到長堀橋 6 分"
     },
     "pickup": null,
     "meals": "varies",
@@ -1570,6 +1600,12 @@
         "url": "https://dormy-hotels.com/dormyinn/hotels/premium_nanba/access/",
         "retrieved": "2026-10-26",
         "note": "交通"
+      },
+      {
+        "type": "osm",
+        "url": "https://router.project-osrm.org/",
+        "retrieved": "2026-10-26",
+        "note": "附近晚餐店的步行分鐘（OSRM 路線估算，scripts/lodging-dinner-access.mjs）"
       }
     ],
     "verified": false,
@@ -1605,7 +1641,7 @@
         },
         "note": "15 人（全部以大人計）分 N 間同住的組合，有空房的列出；只代表查詢當天楽天上的庫存"
       },
-      "dinnerAccessNote": "步行 20 分內的晚餐店 8 家以上（只查最近 8 家）：麺匠の心つくし つるとんたん 宗右衛門町店 4 分、道頓堀 今井 本店 8 分、にし家 本店 9 分 等（選素泊、朝食付方案時；OSRM，scripts/lodging-dinner-access.mjs，2026-10-26）"
+      "dinnerAccessNote": "步行 20 分內的晚餐店 8 家以上（只查最近 8 家）：麺匠の心つくし つるとんたん 宗右衛門町店 4 分、道頓堀 今井 本店 8 分、にし家 本店 9 分 等（選素泊、朝食付方案時）"
     },
     "summary": {
       "text": "長堀橋、日本橋之間的商務飯店（229 室），有天然溫泉大浴場，和洋室最多 4 人。楽天 4.41（1,677 則）、Google 4.2；楽天早餐 4.53。素泊每人約 12,769 円以下，早餐大人 2,500 円、3 歲～小學生 1,200 円。",
@@ -1644,7 +1680,7 @@
         "meals": "楽天餐 4.53 → 4；素泊時步行 20 分內晚餐店 8 家以上",
         "groupFit": "229 室、和洋室 4 人、トリプル 3 人 → 4（楽天 15 人組合的空房只是查詢當天（2026-10-26）的庫存）",
         "elderFit": "全室床、輪椅免費借、評論提到電梯；非完全無障礙 → 4",
-        "accessEase": "官網：長堀橋駅、日本橋駅各 5 分（OSRM 到長堀橋 6 分）→ 4"
+        "accessEase": "官網：長堀橋駅、日本橋駅各 5 分（路線估算到長堀橋 6 分）→ 4"
       },
       "confidence": "medium",
       "assessed": "2026-10-26"
@@ -1703,7 +1739,7 @@
       "id": "nankai-namba",
       "mode": "walk",
       "minutes": 4,
-      "note": "楽天：南海なんば駅步行約 3 分；OSRM 4 分"
+      "note": "楽天：南海なんば駅步行約 3 分；路線估算 4 分"
     },
     "pickup": "付費機場接送，要事先申請（官網）",
     "meals": "varies",
@@ -1803,6 +1839,12 @@
         "url": "https://www.frasershospitality.com/ja/japan/osaka/fraser-residence-nankai-osaka/",
         "retrieved": "2026-10-26",
         "note": "114 室、全室廚房、地址電話、行李、機場接送"
+      },
+      {
+        "type": "osm",
+        "url": "https://router.project-osrm.org/",
+        "retrieved": "2026-10-26",
+        "note": "附近晚餐店的步行分鐘（OSRM 路線估算，scripts/lodging-dinner-access.mjs）"
       }
     ],
     "verified": false,
@@ -1835,7 +1877,7 @@
         },
         "note": "15 人（全部以大人計）分 N 間同住的組合，有空房的列出；只代表查詢當天楽天上的庫存"
       },
-      "dinnerAccessNote": "步行 20 分內的晚餐店 8 家以上（只查最近 8 家）：福太郎 本店 8 分、味乃家 本店 10 分、はり重 道頓堀本店 10 分 等（選素泊、朝食付方案時；OSRM，scripts/lodging-dinner-access.mjs，2026-10-26）"
+      "dinnerAccessNote": "步行 20 分內的晚餐店 8 家以上（只查最近 8 家）：福太郎 本店 8 分、味乃家 本店 10 分、はり重 道頓堀本店 10 分 等（選素泊、朝食付方案時）"
     },
     "summary": {
       "text": "南海なんば駅南側的公寓式飯店（114 室），全室有廚房和洗衣乾衣機，有 1～2 ベッドルーム。楽天 4.67、Google 4.5，但楽天只有 265 則。附早餐每人約 15,750～16,350 円（2/11）。",
@@ -1870,7 +1912,7 @@
         "meals": "楽天餐沒有細項；有廚房可以自炊、步行 20 分內晚餐店 8 家以上 → 3",
         "groupFit": "114 室，但房型人數沒查到 → 3（楽天 15 人組合的空房只是查詢當天（2026-10-26）的庫存）",
         "elderFit": "公寓式、有床；電梯沒有來源 → 3",
-        "accessEase": "南海なんば駅約 3 分（OSRM 4 分）→ 5"
+        "accessEase": "南海なんば駅約 3 分（路線估算 4 分）→ 5"
       },
       "confidence": "medium",
       "assessed": "2026-10-26"
@@ -1922,7 +1964,7 @@
       "id": "osaka-namba",
       "mode": "walk",
       "minutes": 3,
-      "note": "官網：JR なんば駅 26-C 出口步行約 3 分；OSRM 到近鐵大阪難波 3 分"
+      "note": "官網：JR なんば駅 26-C 出口步行約 3 分；路線估算到近鐵大阪難波 3 分"
     },
     "pickup": null,
     "meals": "breakfast",
@@ -2034,6 +2076,12 @@
         "url": "https://www.hotel-k6.jp/",
         "retrieved": "2026-10-26",
         "note": "53 室、早餐、兒童遊戲區、交通"
+      },
+      {
+        "type": "osm",
+        "url": "https://router.project-osrm.org/",
+        "retrieved": "2026-10-26",
+        "note": "附近晚餐店的步行分鐘（OSRM 路線估算，scripts/lodging-dinner-access.mjs）"
       }
     ],
     "verified": false,
@@ -2066,7 +2114,7 @@
         },
         "note": "15 人（全部以大人計）分 N 間同住的組合，有空房的列出；只代表查詢當天楽天上的庫存"
       },
-      "dinnerAccessNote": "步行 20 分內的晚餐店 8 家以上（只查最近 8 家）：ムーラン 4 分、小籠包と本格中華 堀江ブルー 4 分、はり重 道頓堀本店 5 分 等（OSRM，scripts/lodging-dinner-access.mjs，2026-10-26）"
+      "dinnerAccessNote": "步行 20 分內的晚餐店 8 家以上（只查最近 8 家）：ムーラン 4 分、小籠包と本格中華 堀江ブルー 4 分、はり重 道頓堀本店 5 分 等"
     },
     "summary": {
       "text": "JR 難波站旁的家庭取向小飯店（53 室），有 3～4 床的房間、兒童遊戲區和兒童備品，早餐免費。Google 4.7（323 則）、楽天 4.57（157 則），分數高但評論少。附早餐每人約 12,400～14,500 円。",
@@ -2101,7 +2149,7 @@
         "meals": "只有早餐，楽天餐 4.22 → 3；步行 20 分內晚餐店 8 家以上",
         "groupFit": "53 室、有 3～4 床的房間 → 4（楽天 15 人組合的空房只是查詢當天（2026-10-26）的庫存）",
         "elderFit": "有床；電梯沒有來源，評論說房間裡有危險的階梯 → 2",
-        "accessEase": "JR なんば駅 26-C 出口約 3 分（OSRM 到近鐵大阪難波 3 分）→ 5"
+        "accessEase": "JR なんば駅 26-C 出口約 3 分（路線估算到近鐵大阪難波 3 分）→ 5"
       },
       "confidence": "medium",
       "assessed": "2026-10-26"
@@ -2153,7 +2201,7 @@
       "id": "metro-namba",
       "mode": "walk",
       "minutes": 4,
-      "note": "官網：御堂筋線・千日前線 なんば駅 6 號出口步行約 1 分；OSRM 4 分"
+      "note": "官網：御堂筋線・千日前線 なんば駅 6 號出口步行約 1 分；路線估算 4 分"
     },
     "pickup": null,
     "meals": "varies",
@@ -2265,6 +2313,12 @@
         "url": "https://gridshotel.com/osaka-namba/",
         "retrieved": "2026-10-26",
         "note": "房型名、床墊、交通、電話"
+      },
+      {
+        "type": "osm",
+        "url": "https://router.project-osrm.org/",
+        "retrieved": "2026-10-26",
+        "note": "附近晚餐店的步行分鐘（OSRM 路線估算，scripts/lodging-dinner-access.mjs）"
       }
     ],
     "verified": false,
@@ -2297,7 +2351,7 @@
         },
         "note": "15 人（全部以大人計）分 N 間同住的組合，有空房的列出；只代表查詢當天楽天上的庫存"
       },
-      "dinnerAccessNote": "步行 20 分內的晚餐店 8 家以上（只查最近 8 家）：味乃家 本店 8 分、はり重 道頓堀本店 8 分、福太郎 本店 9 分 等（選素泊、朝食付方案時；OSRM，scripts/lodging-dinner-access.mjs，2026-10-26）"
+      "dinnerAccessNote": "步行 20 分內的晚餐店 8 家以上（只查最近 8 家）：味乃家 本店 8 分、はり重 道頓堀本店 8 分、福太郎 本店 9 分 等（選素泊、朝食付方案時）"
     },
     "summary": {
       "text": "地鐵なんば駅 6 號出口旁的飯店（141 室），有 Family Twin、Hollywood Twin 等房型，有洗衣機。楽天 4.46（302 則）、Google 4.2。素泊每人約 10,162 円（2/11 楽天 4 間×4 人）。",
@@ -2332,7 +2386,7 @@
         "meals": "沒有楽天餐細項；素泊時步行 20 分內晚餐店 8 家以上 → 3",
         "groupFit": "141 室，但房型定員沒查到 → 3（楽天 15 人組合的空房只是查詢當天（2026-10-26）的庫存）",
         "elderFit": "楽天列有輪椅可、無障礙房（當成有電梯）、有床 → 4",
-        "accessEase": "なんば駅 6 號出口約 1 分（OSRM 4 分）→ 5"
+        "accessEase": "なんば駅 6 號出口約 1 分（路線估算 4 分）→ 5"
       },
       "confidence": "medium",
       "assessed": "2026-10-26"
@@ -2384,7 +2438,7 @@
       "id": "metro-namba",
       "mode": "walk",
       "minutes": 5,
-      "note": "楽天：なんば駅 30 號出口步行約 2 分、JR 難波約 1 分；OSRM 5 分"
+      "note": "楽天：なんば駅 30 號出口步行約 2 分、JR 難波約 1 分；路線估算 5 分"
     },
     "pickup": null,
     "meals": "varies",
@@ -2512,6 +2566,12 @@
         "url": "https://maps.google.com/?cid=14096027177771112911",
         "retrieved": "2026-10-26",
         "note": "Google 地圖「アパホテル＆リゾート〈大阪なんば駅前タワー〉」：星數、評論數、座標、照片"
+      },
+      {
+        "type": "osm",
+        "url": "https://router.project-osrm.org/",
+        "retrieved": "2026-10-26",
+        "note": "附近晚餐店的步行分鐘（OSRM 路線估算，scripts/lodging-dinner-access.mjs）"
       }
     ],
     "verified": false,
@@ -2544,7 +2604,7 @@
         },
         "note": "15 人（全部以大人計）分 N 間同住的組合，有空房的列出；只代表查詢當天楽天上的庫存"
       },
-      "dinnerAccessNote": "步行 20 分內的晚餐店 8 家以上（只查最近 8 家）：ムーラン 6 分、小籠包と本格中華 堀江ブルー 7 分、はり重 道頓堀本店 9 分 等（選素泊、朝食付方案時；OSRM，scripts/lodging-dinner-access.mjs，2026-10-26）"
+      "dinnerAccessNote": "步行 20 分內的晚餐店 8 家以上（只查最近 8 家）：ムーラン 6 分、小籠包と本格中華 堀江ブルー 7 分、はり重 道頓堀本店 9 分 等（選素泊、朝食付方案時）"
     },
     "summary": {
       "text": "難波站前的大型平價飯店（2,055 室），有大浴場、可以 4 人住的コネクトルーム（2 室相連）。楽天 4.35（2,748 則）、Google 4.0。2/11 素泊每人約 4,860 円起，晚餐自助方案每人約 7,830 円，是難波一帶最便宜的一群。",
@@ -2578,7 +2638,7 @@
         "meals": "楽天餐 4.46 → 4（有晚餐自助方案）",
         "groupFit": "2,055 室、コネクトルーム 4 人 → 4（楽天 15 人組合的空房只是查詢當天（2026-10-26）的庫存）",
         "elderFit": "無障礙客房、評論提到電梯；但房間很小、床靠牆、等電梯久 → 3",
-        "accessEase": "なんば駅 30 號出口約 2 分（OSRM 5 分）→ 5"
+        "accessEase": "なんば駅 30 號出口約 2 分（路線估算 5 分）→ 5"
       },
       "confidence": "medium",
       "assessed": "2026-10-26"
@@ -2637,7 +2697,7 @@
       "id": "metro-nippombashi",
       "mode": "walk",
       "minutes": 2,
-      "note": "官網：日本橋駅 5 號出口步行 1 分；OSRM 2 分"
+      "note": "官網：日本橋駅 5 號出口步行 1 分；路線估算 2 分"
     },
     "pickup": null,
     "meals": "breakfast",
@@ -2782,6 +2842,12 @@
         "url": "https://www.superhotel.co.jp/s_hotels/nihonbashi/",
         "retrieved": "2026-10-26",
         "note": "早餐、添寢、交通、行李、check-in/out"
+      },
+      {
+        "type": "osm",
+        "url": "https://router.project-osrm.org/",
+        "retrieved": "2026-10-26",
+        "note": "附近晚餐店的步行分鐘（OSRM 路線估算，scripts/lodging-dinner-access.mjs）"
       }
     ],
     "verified": false,
@@ -2814,7 +2880,7 @@
         },
         "note": "15 人（全部以大人計）分 N 間同住的組合，有空房的列出；只代表查詢當天楽天上的庫存"
       },
-      "dinnerAccessNote": "步行 20 分內的晚餐店 8 家以上（只查最近 8 家）：福太郎 本店 3 分、麺匠の心つくし つるとんたん 宗右衛門町店 5 分、道頓堀 今井 本店 8 分 等（OSRM，scripts/lodging-dinner-access.mjs，2026-10-26）"
+      "dinnerAccessNote": "步行 20 分內的晚餐店 8 家以上（只查最近 8 家）：福太郎 本店 3 分、麺匠の心つくし つるとんたん 宗右衛門町店 5 分、道頓堀 今井 本店 8 分 等"
     },
     "summary": {
       "text": "日本橋站旁的平價商務飯店（136 室），早餐免費（烤麵包）。楽天 4.29（3,086 則）、Google 4.2。朝夕 2 食方案每人約 6,100 円、一般約 4,940～7,630 円。",
@@ -2849,7 +2915,7 @@
         "meals": "早餐免費，楽天餐 4.27 → 3；步行 20 分內晚餐店 8 家以上",
         "groupFit": "136 室，但 3 人以上房型沒查到 → 3（楽天 15 人組合的空房只是查詢當天（2026-10-26）的庫存）",
         "elderFit": "有床；電梯、無障礙沒有來源 → 3",
-        "accessEase": "日本橋駅 5 號出口 1 分（OSRM 2 分）→ 5"
+        "accessEase": "日本橋駅 5 號出口 1 分（路線估算 2 分）→ 5"
       },
       "confidence": "medium",
       "assessed": "2026-10-26"
@@ -2908,7 +2974,7 @@
       "id": "osaka-uehommachi",
       "mode": "walk",
       "minutes": 4,
-      "note": "官網：近鐵大阪上本町駅 14 號出口步行約 2 分；OSRM 4 分"
+      "note": "官網：近鐵大阪上本町駅 14 號出口步行約 2 分；路線估算 4 分"
     },
     "pickup": null,
     "meals": "varies",
@@ -3008,6 +3074,12 @@
         "url": "https://www.daiwaroynet.jp/osaka-uehonmachi/",
         "retrieved": "2026-10-26",
         "note": "房型、添寢、交通、早餐、check-in/out"
+      },
+      {
+        "type": "osm",
+        "url": "https://router.project-osrm.org/",
+        "retrieved": "2026-10-26",
+        "note": "附近晚餐店的步行分鐘（OSRM 路線估算，scripts/lodging-dinner-access.mjs）"
       }
     ],
     "verified": false,
@@ -3043,7 +3115,7 @@
         },
         "note": "15 人（全部以大人計）分 N 間同住的組合，有空房的列出；只代表查詢當天楽天上的庫存"
       },
-      "dinnerAccessNote": "步行 20 分內的晚餐店 2 家：明月館 上本町本店 11 分、焼肉 白雲台 鶴橋駅前店 16 分（選素泊、朝食付方案時；OSRM，scripts/lodging-dinner-access.mjs，2026-10-26）"
+      "dinnerAccessNote": "步行 20 分內的晚餐店 2 家：明月館 上本町本店 11 分、焼肉 白雲台 鶴橋駅前店 16 分（選素泊、朝食付方案時）"
     },
     "summary": {
       "text": "近鐵大阪上本町駅旁的商務飯店（222 室），以 18㎡ 以上的雙人房為主，小學 6 年級以下免費添寢。楽天 4.32（3,507 則）、Google 4.1。素泊每人約 6,300～6,750 円，近鐵往伊勢志摩的特急在上本町停。",
@@ -3078,7 +3150,7 @@
         "meals": "楽天餐 4.10 → 3；素泊時步行 20 分內晚餐店 2 家",
         "groupFit": "222 室、雙人房為主（8 間×2 人可以住下）→ 4（楽天 15 人組合的空房只是查詢當天（2026-10-26）的庫存）",
         "elderFit": "有床；電梯、無障礙沒有來源 → 3",
-        "accessEase": "近鐵大阪上本町駅約 2 分（OSRM 4 分）→ 5"
+        "accessEase": "近鐵大阪上本町駅約 2 分（路線估算 4 分）→ 5"
       },
       "confidence": "medium",
       "assessed": "2026-10-26"
@@ -3137,7 +3209,7 @@
       "id": "osaka-uehommachi",
       "mode": "walk",
       "minutes": 1,
-      "note": "官網：近鐵大阪上本町駅直結；OSRM 繞外面算出 6 分，直結所以寫 1 分"
+      "note": "官網：近鐵大阪上本町駅直結；路線估算繞外面 6 分，直結所以寫 1 分"
     },
     "pickup": "飯店前有關西機場、伊丹機場的機場巴士（官網）",
     "meals": "varies",
@@ -3212,6 +3284,12 @@
         "url": "https://www.miyakohotels.ne.jp/osaka/",
         "retrieved": "2026-10-26",
         "note": "直結、機場巴士、check-in/out"
+      },
+      {
+        "type": "osm",
+        "url": "https://router.project-osrm.org/",
+        "retrieved": "2026-10-26",
+        "note": "附近晚餐店的步行分鐘（OSRM 路線估算，scripts/lodging-dinner-access.mjs）"
       }
     ],
     "verified": false,
@@ -3236,7 +3314,7 @@
         },
         "note": "15 人（全部以大人計）分 N 間同住的組合，有空房的列出；只代表查詢當天楽天上的庫存"
       },
-      "dinnerAccessNote": "步行 20 分內的晚餐店 2 家：明月館 上本町本店 7 分、焼肉 白雲台 鶴橋駅前店 12 分（選素泊、朝食付方案時；OSRM，scripts/lodging-dinner-access.mjs，2026-10-26）"
+      "dinnerAccessNote": "步行 20 分內的晚餐店 2 家：明月館 上本町本店 7 分、焼肉 白雲台 鶴橋駅前店 12 分（選素泊、朝食付方案時）"
     },
     "summary": {
       "text": "近鐵大阪上本町駅直結的大型飯店（574 室），飯店前有關西機場、伊丹機場的機場巴士。楽天 4.41（6,024 則）、Google 4.1；楽天早餐 4.51。房型、兒童規定、價格頁面都沒寫，楽天 2/11、2/12 的 15 人組合查不到空房。",
@@ -3324,7 +3402,7 @@
       "id": "metro-umeda",
       "mode": "walk",
       "minutes": 4,
-      "note": "楽天：JR 大阪駅 3F 連絡橋口步行約 3 分、御堂筋線梅田約 5 分；OSRM 到梅田站 4 分"
+      "note": "楽天：JR 大阪駅 3F 連絡橋口步行約 3 分、御堂筋線梅田約 5 分；路線估算到梅田站 4 分"
     },
     "pickup": "關西機場、伊丹機場巴士站步行約 3 分",
     "meals": "varies",
@@ -3428,6 +3506,12 @@
         "url": "https://www.hankyu-hotel.com/hotel/respire/osaka",
         "retrieved": "2026-10-26",
         "note": "房型、交通、電話"
+      },
+      {
+        "type": "osm",
+        "url": "https://router.project-osrm.org/",
+        "retrieved": "2026-10-26",
+        "note": "附近晚餐店的步行分鐘（OSRM 路線估算，scripts/lodging-dinner-access.mjs）"
       }
     ],
     "verified": false,
@@ -3465,7 +3549,7 @@
         },
         "note": "15 人（全部以大人計）分 N 間同住的組合，有空房的列出；只代表查詢當天楽天上的庫存"
       },
-      "dinnerAccessNote": "步行 20 分內的晚餐店 6 家：京都 麺屋たけ井 阪急梅田店 4 分、お好み焼 きじ 本店 5 分、廣東料理 民生 ヒルトンプラザウエスト店 11 分 等（選素泊、朝食付方案時；OSRM，scripts/lodging-dinner-access.mjs，2026-10-26）"
+      "dinnerAccessNote": "步行 20 分內的晚餐店 6 家：京都 麺屋たけ井 阪急梅田店 4 分、お好み焼 きじ 本店 5 分、廣東料理 民生 ヒルトンプラザウエスト店 11 分 等（選素泊、朝食付方案時）"
     },
     "summary": {
       "text": "JR 大阪駅旁ヨドバシ梅田大樓裡的大型飯店（1,030 室），三人房、四人房、最多 5 人的連通房都有，另有通用三人房 10 間（輪椅對應）。楽天 4.32（2,583 則）、Google 4.3。素泊每人約 12,430～13,750 円（2/11），楽天 4 種 15 人組合都有空房。",
@@ -3500,7 +3584,7 @@
         "meals": "楽天餐 4.36 → 3；素泊時步行 20 分內晚餐店 6 家（たけ井 4 分、きじ 5 分）",
         "groupFit": "1,030 室、三人房、四人房、連通房最多 5 人 → 4（楽天 15 人組合的空房只是查詢當天（2026-10-26）的庫存）",
         "elderFit": "通用三人房（輪椅對應，當成有電梯）、全室床；入口不好找 → 4",
-        "accessEase": "JR 大阪駅約 3 分（OSRM 到梅田站 4 分）→ 5"
+        "accessEase": "JR 大阪駅約 3 分（路線估算到梅田站 4 分）→ 5"
       },
       "confidence": "medium",
       "assessed": "2026-10-26"
@@ -3560,7 +3644,7 @@
       "id": "jr-osaka",
       "mode": "walk",
       "minutes": 2,
-      "note": "官網：JR 大阪駅直結（中央改札出て右）；OSRM 2 分"
+      "note": "官網：JR 大阪駅直結（中央改札出て右）；路線估算 2 分"
     },
     "pickup": "機場巴士站步行約 5 分",
     "meals": "varies",
@@ -3700,6 +3784,12 @@
         "url": "https://jrwest-hotels.jp/granvia-osaka/",
         "retrieved": "2026-10-26",
         "note": "電話、直結、小学生受け入れなし"
+      },
+      {
+        "type": "osm",
+        "url": "https://router.project-osrm.org/",
+        "retrieved": "2026-10-26",
+        "note": "附近晚餐店的步行分鐘（OSRM 路線估算，scripts/lodging-dinner-access.mjs）"
       }
     ],
     "verified": false,
@@ -3734,7 +3824,7 @@
         },
         "note": "15 人（全部以大人計）分 N 間同住的組合，有空房的列出；只代表查詢當天楽天上的庫存"
       },
-      "dinnerAccessNote": "步行 20 分內的晚餐店 6 家：廣東料理 民生 ヒルトンプラザウエスト店 6 分、お好み焼 きじ 本店 6 分、ロウリーズ・ザ・プライムリブ 大阪 7 分 等（選素泊、朝食付方案時；OSRM，scripts/lodging-dinner-access.mjs，2026-10-26）"
+      "dinnerAccessNote": "步行 20 分內的晚餐店 6 家：廣東料理 民生 ヒルトンプラザウエスト店 6 分、お好み焼 きじ 本店 6 分、ロウリーズ・ザ・プライムリブ 大阪 7 分 等（選素泊、朝食付方案時）"
     },
     "summary": {
       "text": "JR 大阪駅直結的大型飯店（726 室），楽天 4.20（11,322 則）、Google 4.0。素泊每人約 7,700 円起。注意：官網預約表單寫「小学生受け入れなし」，和這團的 6～10 歲小孩衝突，要電話確認才能考慮。",
@@ -3769,7 +3859,7 @@
         "meals": "楽天餐 4.38 → 3；素泊時步行 20 分內晚餐店 6 家",
         "groupFit": "726 室、ツイン為主；「小学生受け入れなし」要電話確認 → 3（楽天 15 人組合的空房只是查詢當天（2026-10-26）的庫存）",
         "elderFit": "JR 大阪駅直結；電梯、無障礙沒有來源 → 3",
-        "accessEase": "JR 大阪駅直結（OSRM 2 分）→ 5"
+        "accessEase": "JR 大阪駅直結（路線估算 2 分）→ 5"
       },
       "confidence": "medium",
       "assessed": "2026-10-26"
@@ -3822,7 +3912,7 @@
       "id": "jr-osaka",
       "mode": "walk",
       "minutes": 8,
-      "note": "官網：西梅田駅步行約 3 分、JR 大阪駅桜橋口約 5 分；西梅田站不在 stations.json，OSRM 到 JR 大阪 8 分"
+      "note": "官網：西梅田駅步行約 3 分、JR 大阪駅桜橋口約 5 分；西梅田站不在車站資料裡，路線估算到 JR 大阪 8 分"
     },
     "pickup": "機場巴士「ハービス大阪」站步行約 3 分",
     "meals": "varies",
@@ -3932,6 +4022,12 @@
         "url": "https://www.intergatehotels.jp/osaka-umeda/",
         "retrieved": "2026-10-26",
         "note": "早餐、Instagram"
+      },
+      {
+        "type": "osm",
+        "url": "https://router.project-osrm.org/",
+        "retrieved": "2026-10-26",
+        "note": "附近晚餐店的步行分鐘（OSRM 路線估算，scripts/lodging-dinner-access.mjs）"
       }
     ],
     "verified": false,
@@ -3963,7 +4059,7 @@
         },
         "note": "15 人（全部以大人計）分 N 間同住的組合，有空房的列出；只代表查詢當天楽天上的庫存"
       },
-      "dinnerAccessNote": "步行 20 分內的晚餐店 6 家：ロウリーズ・ザ・プライムリブ 大阪 3 分、廣東料理 民生 ヒルトンプラザウエスト店 5 分、うどん棒 大阪本店 11 分 等（選素泊、朝食付方案時；OSRM，scripts/lodging-dinner-access.mjs，2026-10-26）"
+      "dinnerAccessNote": "步行 20 分內的晚餐店 6 家：ロウリーズ・ザ・プライムリブ 大阪 3 分、廣東料理 民生 ヒルトンプラザウエスト店 5 分、うどん棒 大阪本店 11 分 等（選素泊、朝食付方案時）"
     },
     "summary": {
       "text": "梅田西側的飯店（386 室），大廳有免費的飲料、點心等，楽天 4.51（1,460 則）、Google 4.3，梅田一帶分數最高。素泊每人約 8,800～11,600 円（2/11 デラックスキング 3 人）。西梅田駅約 3 分、JR 大阪駅桜橋口約 5 分。",
@@ -3998,7 +4094,7 @@
         "meals": "楽天餐 4.48 → 4；素泊時步行 20 分內晚餐店 6 家",
         "groupFit": "386 室、デラックスキング 3 人 → 4（楽天 15 人組合的空房只是查詢當天（2026-10-26）的庫存）",
         "elderFit": "無障礙房 1 間、輪椅出借（當成有電梯）、全室床 → 4",
-        "accessEase": "官網：西梅田駅約 3 分（不在 stations.json）、JR 大阪駅約 5 分（OSRM 8 分）→ 4"
+        "accessEase": "官網：西梅田駅約 3 分（不在車站資料裡）、JR 大阪駅約 5 分（路線估算 8 分）→ 4"
       },
       "confidence": "medium",
       "assessed": "2026-10-26"
@@ -4050,7 +4146,7 @@
       "id": "metro-higashi-umeda",
       "mode": "walk",
       "minutes": 6,
-      "note": "官網：東梅田駅 4 號出口步行 3 分；OSRM 6 分"
+      "note": "官網：東梅田駅 4 號出口步行 3 分；路線估算 6 分"
     },
     "pickup": null,
     "meals": "varies",
@@ -4184,6 +4280,12 @@
         "url": "https://www.apahotel.com/hotel/kansai/osaka/osaka-umeda-eki-tower/",
         "retrieved": "2026-10-26",
         "note": "添寢、check-in/out、行李、交通"
+      },
+      {
+        "type": "osm",
+        "url": "https://router.project-osrm.org/",
+        "retrieved": "2026-10-26",
+        "note": "附近晚餐店的步行分鐘（OSRM 路線估算，scripts/lodging-dinner-access.mjs）"
       }
     ],
     "verified": false,
@@ -4216,7 +4318,7 @@
         },
         "note": "15 人（全部以大人計）分 N 間同住的組合，有空房的列出；只代表查詢當天楽天上的庫存"
       },
-      "dinnerAccessNote": "步行 20 分內的晚餐店 6 家：うどん棒 大阪本店 8 分、廣東料理 民生 ヒルトンプラザウエスト店 9 分、踊るうどん 梅田店 10 分 等（選素泊、朝食付方案時；OSRM，scripts/lodging-dinner-access.mjs，2026-10-26）"
+      "dinnerAccessNote": "步行 20 分內的晚餐店 6 家：うどん棒 大阪本店 8 分、廣東料理 民生 ヒルトンプラザウエスト店 9 分、踊るうどん 梅田店 10 分 等（選素泊、朝食付方案時）"
     },
     "summary": {
       "text": "東梅田的大型平價飯店（1,704 室），有 4 人住的コネクトルーム，晚餐自助方案每人約 9,540 円。楽天 4.28（4,295 則）、Google 4.0。素泊每人約 5,400 円起。",
@@ -4251,7 +4353,7 @@
         "meals": "楽天餐 4.27 → 3（有晚餐自助方案）",
         "groupFit": "1,704 室、コネクトルーム 4 人 → 4（楽天 15 人組合的空房只是查詢當天（2026-10-26）的庫存）",
         "elderFit": "評論提到電梯（要等很久）、房間很小 → 3",
-        "accessEase": "官網：東梅田駅 4 號出口 3 分（OSRM 6 分）→ 4"
+        "accessEase": "官網：東梅田駅 4 號出口 3 分（路線估算 6 分）→ 4"
       },
       "confidence": "medium",
       "assessed": "2026-10-26"
@@ -4310,7 +4412,7 @@
       "id": "jr-universal-city",
       "mode": "walk",
       "minutes": 1,
-      "note": "楽天：ユニバーサルシティ駅、USJ 步行可達；OSRM 1 分"
+      "note": "楽天：ユニバーサルシティ駅、USJ 步行可達；路線估算 1 分"
     },
     "pickup": null,
     "meals": "varies",
@@ -4422,6 +4524,12 @@
         "url": "https://hotelkeihan.co.jp/tower/",
         "retrieved": "2026-10-26",
         "note": "維修中，只有電話"
+      },
+      {
+        "type": "osm",
+        "url": "https://router.project-osrm.org/",
+        "retrieved": "2026-10-26",
+        "note": "附近晚餐店的步行分鐘（OSRM 路線估算，scripts/lodging-dinner-access.mjs）"
       }
     ],
     "verified": false,
@@ -4456,7 +4564,7 @@
         },
         "note": "15 人（全部以大人計）分 N 間同住的組合，有空房的列出；只代表查詢當天楽天上的庫存"
       },
-      "dinnerAccessNote": "步行 20 分內沒有晚餐店（最近：丹頂 33 分），要搭車（scripts/lodging-dinner-access.mjs，2026-10-26） USJ 子地區照 T27c 的範圍不收餐廳（園內、ユニバーサル・シティウォーク 吃），步行圈的店沒有收錄，所以算成 car；實際上飯店周邊有 CityWalk（一般知識，未讀來源）。"
+      "dinnerAccessNote": "步行 20 分內沒有收錄的晚餐店（最近：丹頂 33 分）。USJ 一帶的餐廳沒有收錄（晚餐在園內或ユニバーサル・シティウォーク 吃），實際上飯店周邊就有 CityWalk。"
     },
     "summary": {
       "text": "ユニバーサルシティ駅旁的 USJ 官方合作飯店（641 室），標準房和高級房有中門相連的連通房，適合 5～7 人（要電話訂）。楽天 4.59（9,839 則）、Google 4.3。素泊每人約 7,300～11,800 円，楽天 4 種 15 人組合都有空房（2/11、2/12）。",
@@ -4491,7 +4599,7 @@
         "meals": "楽天餐 4.43 → 4；素泊時晚餐要在 USJ 園內或 CityWalk（dinnerAccess car）",
         "groupFit": "641 室、連通房 5～7 人（電話）→ 4（楽天 15 人組合的空房只是查詢當天（2026-10-26）的庫存）",
         "elderFit": "有床；電梯、無障礙沒有來源 → 3",
-        "accessEase": "ユニバーサルシティ駅即到（OSRM 1 分）→ 5"
+        "accessEase": "ユニバーサルシティ駅即到（路線估算 1 分）→ 5"
       },
       "confidence": "medium",
       "assessed": "2026-10-26"
@@ -4544,7 +4652,7 @@
       "id": "jr-universal-city",
       "mode": "walk",
       "minutes": 13,
-      "note": "楽天：JR ゆめ咲線 桜島駅步行 1 分、USJ 步行約 13 分；桜島站不在 stations.json，OSRM 到ユニバーサルシティ 13 分"
+      "note": "楽天：JR ゆめ咲線 桜島駅步行 1 分、USJ 步行約 13 分；桜島站不在車站資料裡，路線估算到ユニバーサルシティ 13 分"
     },
     "pickup": null,
     "meals": "varies",
@@ -4664,6 +4772,12 @@
         "url": "https://hotel-liber.jp/room/",
         "retrieved": "2026-10-26",
         "note": "房型"
+      },
+      {
+        "type": "osm",
+        "url": "https://router.project-osrm.org/",
+        "retrieved": "2026-10-26",
+        "note": "附近晚餐店的步行分鐘（OSRM 路線估算，scripts/lodging-dinner-access.mjs）"
       }
     ],
     "verified": false,
@@ -4698,7 +4812,7 @@
         },
         "note": "15 人（全部以大人計）分 N 間同住的組合，有空房的列出；只代表查詢當天楽天上的庫存"
       },
-      "dinnerAccessNote": "步行 20 分內沒有晚餐店（最近：丹頂 22 分），要搭車（scripts/lodging-dinner-access.mjs，2026-10-26） USJ 子地區照 T27c 的範圍不收餐廳（園內、ユニバーサル・シティウォーク 吃），步行圈的店沒有收錄，所以算成 car；實際上飯店周邊有 CityWalk（一般知識，未讀來源）。"
+      "dinnerAccessNote": "步行 20 分內沒有收錄的晚餐店（最近：丹頂 22 分）。USJ 一帶的餐廳沒有收錄（晚餐在園內或ユニバーサル・シティウォーク 吃），實際上飯店周邊就有 CityWalk。"
     },
     "summary": {
       "text": "JR ゆめ咲線 桜島駅旁的大型飯店（760 室），3F 有大浴場 RIVERSIDE SPA，スーペリアツイン（33㎡）最多 4 人。楽天 4.72（7,273 則）、Google 4.5，楽天各細項都在 4.7 前後，是大阪住宿分數最高的。素泊每人約 6,500～7,500 円，到 USJ 走路約 13 分。",
@@ -4734,7 +4848,7 @@
         "meals": "楽天餐 4.71 → 5；素泊時晚餐要搭車或在園內（dinnerAccess car）",
         "groupFit": "760 室、スーペリアツイン 4 人、スタンダードツイン 3 人 → 4（楽天 15 人組合的空房只是查詢當天（2026-10-26）的庫存）",
         "elderFit": "免費借輪椅、看護用浴椅（當成館內可以坐輪椅移動）、有床；DELUXE 是榻榻米 → 4",
-        "accessEase": "楽天：JR 桜島駅步行 1 分（桜島站不在 stations.json；OSRM 到ユニバーサルシティ 13 分）→ 5"
+        "accessEase": "楽天：JR 桜島駅步行 1 分（桜島站不在車站資料裡；路線估算到ユニバーサルシティ 13 分）→ 5"
       },
       "confidence": "medium",
       "assessed": "2026-10-26"
@@ -4794,7 +4908,7 @@
       "id": "jr-universal-city",
       "mode": "walk",
       "minutes": 4,
-      "note": "楽天：ユニバーサルシティ駅步行 3 分；OSRM 4 分"
+      "note": "楽天：ユニバーサルシティ駅步行 3 分；路線估算 4 分"
     },
     "pickup": null,
     "meals": "varies",
@@ -4930,6 +5044,12 @@
         "url": "https://universalport.orixhotelsandresorts.com/",
         "retrieved": "2026-10-26",
         "note": "USJ 福利、4 分"
+      },
+      {
+        "type": "osm",
+        "url": "https://router.project-osrm.org/",
+        "retrieved": "2026-10-26",
+        "note": "附近晚餐店的步行分鐘（OSRM 路線估算，scripts/lodging-dinner-access.mjs）"
       }
     ],
     "verified": false,
@@ -4960,7 +5080,7 @@
         },
         "note": "15 人（全部以大人計）分 N 間同住的組合，有空房的列出；只代表查詢當天楽天上的庫存"
       },
-      "dinnerAccessNote": "步行 20 分內沒有晚餐店（最近：丹頂 31 分），要搭車（scripts/lodging-dinner-access.mjs，2026-10-26） USJ 子地區照 T27c 的範圍不收餐廳（園內、ユニバーサル・シティウォーク 吃），步行圈的店沒有收錄，所以算成 car；實際上飯店周邊有 CityWalk（一般知識，未讀來源）。"
+      "dinnerAccessNote": "步行 20 分內沒有收錄的晚餐店（最近：丹頂 31 分）。USJ 一帶的餐廳沒有收錄（晚餐在園內或ユニバーサル・シティウォーク 吃），實際上飯店周邊就有 CityWalk。"
     },
     "summary": {
       "text": "USJ 官方合作飯店（600 室），ユニバーサルシティ駅約 3 分。指定方案的「ホリデー・キッズフリー・パス」：出示當天的 USJ 票，每位大人可以帶 1 名小學生以下免住宿費。楽天 4.63（13,760 則）、Google 4.5。一泊二食方案每人約 16,600 円（2/11），素泊約 8,200 円起。",
@@ -4995,7 +5115,7 @@
         "meals": "楽天餐 4.55 → 4（有晚餐自助方案）；素泊時晚餐要搭車或在園內",
         "groupFit": "600 室，但房型定員沒查到 → 3（楽天 15 人組合的空房只是查詢當天（2026-10-26）的庫存）",
         "elderFit": "輪椅入內、無障礙房（當成有電梯）、有床；有 2 段床房 → 4",
-        "accessEase": "ユニバーサルシティ駅約 3 分（OSRM 4 分）→ 5"
+        "accessEase": "ユニバーサルシティ駅約 3 分（路線估算 4 分）→ 5"
       },
       "confidence": "medium",
       "assessed": "2026-10-26"
@@ -5055,7 +5175,7 @@
       "id": "jr-universal-city",
       "mode": "walk",
       "minutes": 3,
-      "note": "官網：ユニバーサルシティ駅步行約 2 分、USJ 約 1 分；OSRM 3 分"
+      "note": "官網：ユニバーサルシティ駅步行約 2 分、USJ 約 1 分；路線估算 3 分"
     },
     "pickup": null,
     "meals": "varies",
@@ -5201,6 +5321,12 @@
         "url": "https://www.miyakohotels.ne.jp/hotel-kintetsu/stay/",
         "retrieved": "2026-10-26",
         "note": "房型定員"
+      },
+      {
+        "type": "osm",
+        "url": "https://router.project-osrm.org/",
+        "retrieved": "2026-10-26",
+        "note": "附近晚餐店的步行分鐘（OSRM 路線估算，scripts/lodging-dinner-access.mjs）"
       }
     ],
     "verified": false,
@@ -5231,7 +5357,7 @@
         },
         "note": "15 人（全部以大人計）分 N 間同住的組合，有空房的列出；只代表查詢當天楽天上的庫存"
       },
-      "dinnerAccessNote": "步行 20 分內沒有晚餐店（最近：丹頂 36 分），要搭車（scripts/lodging-dinner-access.mjs，2026-10-26） USJ 子地區照 T27c 的範圍不收餐廳（園內、ユニバーサル・シティウォーク 吃），步行圈的店沒有收錄，所以算成 car；實際上飯店周邊有 CityWalk（一般知識，未讀來源）。"
+      "dinnerAccessNote": "步行 20 分內沒有收錄的晚餐店（最近：丹頂 36 分）。USJ 一帶的餐廳沒有收錄（晚餐在園內或ユニバーサル・シティウォーク 吃），實際上飯店周邊就有 CityWalk。"
     },
     "summary": {
       "text": "ユニバーサルシティ駅旁的 USJ 官方合作飯店（456 室），角落家庭房 38㎡ 最多 5 人、家庭房 2～4 人，也有上下鋪的房間。楽天 4.55（14,028 則）、Google 4.2。素泊每人約 7,600 円起；楽天的晚餐自助方案很受歡迎。",
@@ -5267,7 +5393,7 @@
         "meals": "楽天餐 4.52 → 4（有晚餐自助方案）",
         "groupFit": "456 室、家庭房 2～5 人、有連通房 → 4（楽天 15 人組合的空房只是查詢當天（2026-10-26）的庫存）",
         "elderFit": "評論提到電梯、有床（上下鋪房除外）→ 4",
-        "accessEase": "ユニバーサルシティ駅約 2 分（OSRM 3 分）→ 5"
+        "accessEase": "ユニバーサルシティ駅約 2 分（路線估算 3 分）→ 5"
       },
       "confidence": "medium",
       "assessed": "2026-10-26"
@@ -5327,7 +5453,7 @@
       "id": "jr-universal-city",
       "mode": "walk",
       "minutes": 2,
-      "note": "楽天：ユニバーサルシティ駅步行約 1 分；OSRM 2 分"
+      "note": "楽天：ユニバーサルシティ駅步行約 1 分；路線估算 2 分"
     },
     "pickup": null,
     "meals": "varies",
@@ -5439,6 +5565,12 @@
         "url": "https://parkfront-hotel.com/",
         "retrieved": "2026-10-26",
         "note": "電話、地址、IG"
+      },
+      {
+        "type": "osm",
+        "url": "https://router.project-osrm.org/",
+        "retrieved": "2026-10-26",
+        "note": "附近晚餐店的步行分鐘（OSRM 路線估算，scripts/lodging-dinner-access.mjs）"
       }
     ],
     "verified": false,
@@ -5471,7 +5603,7 @@
         },
         "note": "15 人（全部以大人計）分 N 間同住的組合，有空房的列出；只代表查詢當天楽天上的庫存"
       },
-      "dinnerAccessNote": "步行 20 分內沒有晚餐店（最近：丹頂 33 分），要搭車（scripts/lodging-dinner-access.mjs，2026-10-26） USJ 子地區照 T27c 的範圍不收餐廳（園內、ユニバーサル・シティウォーク 吃），步行圈的店沒有收錄，所以算成 car；實際上飯店周邊有 CityWalk（一般知識，未讀來源）。"
+      "dinnerAccessNote": "步行 20 分內沒有收錄的晚餐店（最近：丹頂 33 分）。USJ 一帶的餐廳沒有收錄（晚餐在園內或ユニバーサル・シティウォーク 吃），實際上飯店周邊就有 CityWalk。"
     },
     "summary": {
       "text": "USJ 正對面的官方合作飯店（598 室），ユニバーサルシティ駅約 1 分。楽天 4.57（4,275 則）、Google 4.4，楽天餐 4.59。素泊每人約 10,500～16,500 円（2/11）。",
@@ -5506,7 +5638,7 @@
         "meals": "楽天餐 4.59 → 4；素泊時晚餐要搭車或在園內",
         "groupFit": "598 室，但房型人數沒查到（評論說 4 人房有 2 張是沙發）→ 3（楽天 15 人組合的空房只是查詢當天（2026-10-26）的庫存）",
         "elderFit": "無障礙房 1 間（當成有電梯）、有床；4 人房有 2 張沙發床，長輩要睡真正的床 → 4",
-        "accessEase": "ユニバーサルシティ駅約 1 分（OSRM 2 分）→ 5"
+        "accessEase": "ユニバーサルシティ駅約 1 分（路線估算 2 分）→ 5"
       },
       "confidence": "medium",
       "assessed": "2026-10-26"
@@ -5545,7 +5677,7 @@
       "id": "jr-nishikujo",
       "mode": "walk",
       "minutes": 15,
-      "note": "ACO 房源頁：阪神なんば線 千鳥橋駅步行 5 分（另一處寫 九条駅 7 分）；兩站都不在 stations.json，OSRM 到 JR 西九条 15 分"
+      "note": "ACO 房源頁：阪神なんば線 千鳥橋駅步行 5 分（另一處寫 九条駅 7 分）；兩站都不在車站資料裡，路線估算到 JR 西九条 15 分"
     },
     "pickup": null,
     "meals": "none",
@@ -5641,6 +5773,12 @@
         "url": "https://www.aco.co.jp/id/66982.html",
         "retrieved": "2026-10-26",
         "note": "寢室、價格、登記番號、check-in/out、規則"
+      },
+      {
+        "type": "osm",
+        "url": "https://router.project-osrm.org/",
+        "retrieved": "2026-10-26",
+        "note": "附近晚餐店的步行分鐘（OSRM 路線估算，scripts/lodging-dinner-access.mjs）"
       }
     ],
     "verified": false,
@@ -5656,7 +5794,7 @@
       ],
       "stationAccess": "阪神なんば線 千鳥橋駅 徒步 5 分（頁面另處寫 九条駅 徒步 7 分）；停車 1 台（ACO 房源頁）",
       "googleMapsNote": "Google 地圖找不到這間（2026-10-26），links.googleMaps 用座標搜尋連結",
-      "dinnerAccessNote": "步行 20 分內沒有晚餐店（直線 1.6 km 內沒有），要搭車（scripts/lodging-dinner-access.mjs，2026-10-26）"
+      "dinnerAccessNote": "步行 20 分內沒有晚餐店（直線 1.6 km 內沒有），要搭車"
     },
     "summary": {
       "text": "此花區的獨棟出租（大阪市指令 大保環第23－2730号），3 間寢室、雙人床 8 張，最多 16 人（適正 10 人），2 泊以上才能訂。每晚約 19,000～30,000 円＋清掃 25,000 円，15 人分攤很便宜。離 USJ 約 2 站，房源頁寫阪神 千鳥橋駅約 5 分。",
@@ -5690,7 +5828,7 @@
         "meals": "不供餐、附近沒有收錄的晚餐店（dinnerAccess car），有廚房可以自炊 → 2",
         "groupFit": "包棟最多 16 人 → 5（2 泊以上限定、適正 10 人寫在 cons）",
         "elderFit": "寢室都在 2 樓、電梯沒有記載 → 2",
-        "accessEase": "ACO：阪神 千鳥橋駅 5 分（另一處寫九条駅 7 分；兩站都不在 stations.json，OSRM 到 JR 西九条 15 分）→ 4"
+        "accessEase": "ACO：阪神 千鳥橋駅 5 分（另一處寫九条駅 7 分；兩站都不在車站資料裡，路線估算到 JR 西九条 15 分）→ 4"
       },
       "confidence": "low",
       "assessed": "2026-10-26"

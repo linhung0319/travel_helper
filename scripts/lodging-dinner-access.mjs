@@ -5,7 +5,7 @@
 //   晚餐店＝contexts 有 dinner，而且旅程中有一天 18:00～19:00 營業（scripts/lib/trip-hours.mjs 的 isDinner）；
 //   住宿附設的 `-dining` 不算；hours 不明的不算。
 //   每間取直線 MAX_STRAIGHT 內最近 CANDIDATES 家查 OSRM；吸附超過 150 m 或繞路 3 倍以上用直線估算（同 restaurant-anchors.mjs）。
-//   分鐘數和店名寫進 extra.dinnerAccessNote。
+//   分鐘數和店名寫進 extra.dinnerAccessNote（給人看的句子）；工具和日期寫進 sources。
 //
 // 用法：node scripts/lodging-dinner-access.mjs <area> [--restaurants <area>,<area>] [--write] [--overwrite] [--offline]
 //   --restaurants：晚餐店從哪幾區找（預設只有同區；伊勢、二見相鄰時給 ise,futami）
@@ -55,6 +55,7 @@ const restAreas = opt('restaurants', area).split(',');
 const days = tripDays(opt('from', '2027-02-02'), opt('to', '2027-02-13'), opt('holidays', '2027-02-11').split(','));
 // 本地日期（toISOString 是 UTC，日本上午 9 點前會變成前一天；T9e 修）
 const today = new Date().toLocaleDateString('sv-SE');
+const OSRM_SOURCE = { type: 'osm', url: 'https://router.project-osrm.org/', note: '附近晚餐店的步行分鐘（OSRM 路線估算，scripts/lodging-dinner-access.mjs）' };
 
 const lodgingFile = path.join(ROOT, `data/areas/${area}/lodging.json`);
 const { data: lodging, eol } = readJson(lodgingFile);
@@ -106,13 +107,16 @@ for (const l of lodging) {
   const access = ok.length ? 'walk' : 'car';
   const fmt = (w) => `${w.r.name.ja} ${w.minutes} 分${w.source === 'osrm' ? '' : '（直線估算）'}`;
   const note = ok.length
-    ? `步行 ${WALK_MAX} 分內的晚餐店 ${ok.length}${ok.length === CANDIDATES ? ' 家以上（只查最近 ' + CANDIDATES + ' 家）' : ' 家'}：${ok.slice(0, 3).map(fmt).join('、')}${ok.length > 3 ? ' 等' : ''}（${l.meals === 'varies' ? '選素泊、朝食付方案時；' : ''}OSRM，scripts/lodging-dinner-access.mjs，${today}）`
-    : `步行 ${WALK_MAX} 分內沒有晚餐店${walks[0] ? `（最近：${fmt(walks[0])}）` : `（直線 ${MAX_STRAIGHT / 1000} km 內沒有）`}，要搭車（scripts/lodging-dinner-access.mjs，${today}）`;
+    ? `步行 ${WALK_MAX} 分內的晚餐店 ${ok.length}${ok.length === CANDIDATES ? ' 家以上（只查最近 ' + CANDIDATES + ' 家）' : ' 家'}：${ok.slice(0, 3).map(fmt).join('、')}${ok.length > 3 ? ' 等' : ''}${l.meals === 'varies' ? '（選素泊、朝食付方案時）' : ''}`
+    : `步行 ${WALK_MAX} 分內沒有晚餐店${walks[0] ? `（最近：${fmt(walks[0])}）` : `（直線 ${MAX_STRAIGHT / 1000} km 內沒有）`}，要搭車`;
   console.log(`${access === 'walk' ? '○' : '×'} ${l.id}［${l.meals}］ ${access}：${note}`);
   // 直線估算的原因（只印，不寫進資料）：繞路的要人工確認是不是真的隔著海灣，是的話加進 anchor-rules.mjs 的 REAL_DETOURS
   for (const w of walks) if (w.issues.length) console.log(`    ${w.source === 'osrm' ? '照 OSRM' : '估算'} ${w.r.id} ${w.minutes} 分：${w.issues.join('；')}`);
   l.dinnerAccess = access;
+  // 出處（工具、日期）寫在 sources，給人看的 note 不寫（T44a）
   l.extra = { ...(l.extra ?? {}), dinnerAccessNote: note };
+  l.sources = (l.sources ?? []).filter((s) => s.url !== OSRM_SOURCE.url);
+  l.sources.push({ ...OSRM_SOURCE, retrieved: today });
   changed++;
 }
 console.log(`\n${changed} 間；這次呼叫 OSRM ${client.apiCalls} 次${write ? '' : '（沒有寫檔，加 --write 才寫）'}`);

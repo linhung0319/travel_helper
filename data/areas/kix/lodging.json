@@ -52,7 +52,7 @@
       "id": "kansai-airport",
       "mode": "walk",
       "minutes": 6,
-      "note": "官網：關西空港站步行直結（通道）；OSRM 6 分"
+      "note": "官網：關西空港站步行直結（通道）；路線估算 6 分"
     },
     "pickup": "不需要：飯店在 T1 旁的エアロプラザ，T1 2F 有連絡通道直通飯店 2F，也直通 JR・南海關西空港站（官網）；T2 有免費連絡巴士",
     "meals": "varies",
@@ -176,6 +176,12 @@
         "url": "https://www.jalan.net/yad324560/",
         "retrieved": "2026-10-19",
         "note": "じゃらん評分 4.5／2455 則（scripts/jalan.mjs list 273800）"
+      },
+      {
+        "type": "osm",
+        "url": "https://router.project-osrm.org/",
+        "retrieved": "2026-10-19",
+        "note": "附近晚餐店的步行分鐘（OSRM 路線估算，scripts/lodging-dinner-access.mjs）"
       }
     ],
     "verified": false,
@@ -209,7 +215,7 @@
         },
         "note": "15 人（全部以大人計）分 N 間同住的組合，有空房的列出；只代表查詢當天楽天上的庫存"
       },
-      "dinnerAccessNote": "步行 20 分內的晚餐店 1 家：中華料理 桃李 6 分（選素泊、朝食付方案時；OSRM，scripts/lodging-dinner-access.mjs，2026-10-19）"
+      "dinnerAccessNote": "步行 20 分內的晚餐店 1 家：中華料理 桃李 6 分（選素泊、朝食付方案時）"
     },
     "summary": {
       "text": "機場島上唯一的飯店，T1 和 JR・南海關西空港站都從 2F 走通道直通，2/13 早上不用搭車、也不用擔心 15 人分批上接駁車。楽天 4.53（4,312 則）、じゃらん 4.5、Google 4.4。館內有中華桃李（包廂 20 人）、和食、自助餐，2/12 晚餐可以不出飯店。",
@@ -307,7 +313,7 @@
       "id": "rinku-town",
       "mode": "walk",
       "minutes": 3,
-      "note": "官網：3 號出口經 2 樓行人天橋直結；OSRM 3 分"
+      "note": "官網：3 號出口經 2 樓行人天橋直結；路線估算 3 分"
     },
     "pickup": "官網：關西國際空港←→飯店免費接駁；住客限定；當日可預約（入住前亦可）；05:10、05:55 兩班開往第2航廈；時刻表為圖片，首班、所要、載客數、費用、行李未載 [1][2]",
     "meals": "varies",
@@ -443,6 +449,12 @@
         "url": "https://www.jalan.net/yad331817/",
         "retrieved": "2026-10-19",
         "note": "じゃらん評分 4.4／3140 則（scripts/jalan.mjs list 273800）"
+      },
+      {
+        "type": "osm",
+        "url": "https://router.project-osrm.org/",
+        "retrieved": "2026-10-19",
+        "note": "附近晚餐店的步行分鐘（OSRM 路線估算，scripts/lodging-dinner-access.mjs）"
       }
     ],
     "verified": false,
@@ -471,7 +483,7 @@
         },
         "note": "15 人（全部以大人計）分 N 間同住的組合，有空房的列出；只代表查詢當天楽天上的庫存"
       },
-      "dinnerAccessNote": "步行 20 分內的晚餐店 1 家：青庵 9 分（選素泊、朝食付方案時；OSRM，scripts/lodging-dinner-access.mjs，2026-10-19）"
+      "dinnerAccessNote": "步行 20 分內的晚餐店 1 家：青庵 9 分（選素泊、朝食付方案時）"
     },
     "summary": {
       "text": "りんくうタウン站 3 號出口經 2F 天橋直結的 56 層超高層飯店，全室看海或天空，楽天 4.38（4,977 則）、じゃらん 4.4、Google 4.1。有三人房、四人房（加床），往機場有住客免費接駁，也可以搭電車 1 站 5 分。",
@@ -570,7 +582,7 @@
       "id": "rinku-town",
       "mode": "walk",
       "minutes": 4,
-      "note": "官網 3 分；OSRM 4 分"
+      "note": "官網 3 分；路線估算 4 分"
     },
     "pickup": "免費定時接駁，約10～15分；ホテル正面玄關前→T1 4F 國際線出發層，機場側南側団体のりば；送り需在櫃台預約；時刻表為圖片PDF未能讀取（2026-11-01起調整：https://washington-hotels.jp/wp/wp-content/uploads/2026/10/761e6f1793150aa0d4263043ab7b3b68.pdf）；載客數、行李數未知（官網access、KNT）",
     "meals": "varies",
@@ -682,6 +694,12 @@
         "url": "https://www.jalan.net/yad387723/",
         "retrieved": "2026-10-19",
         "note": "じゃらん評分 4.4／2400 則（scripts/jalan.mjs list 273800）"
+      },
+      {
+        "type": "osm",
+        "url": "https://router.project-osrm.org/",
+        "retrieved": "2026-10-19",
+        "note": "附近晚餐店的步行分鐘（OSRM 路線估算，scripts/lodging-dinner-access.mjs）"
       }
     ],
     "verified": false,
@@ -714,7 +732,7 @@
         },
         "note": "15 人（全部以大人計）分 N 間同住的組合，有空房的列出；只代表查詢當天楽天上的庫存"
       },
-      "dinnerAccessNote": "步行 20 分內的晚餐店 1 家：青庵 12 分（選素泊、朝食付方案時；OSRM，scripts/lodging-dinner-access.mjs，2026-10-19）"
+      "dinnerAccessNote": "步行 20 分內的晚餐店 1 家：青庵 12 分（選素泊、朝食付方案時）"
     },
     "summary": {
       "text": "りんくうタウン站步行 3 分的商務型大飯店（504 室），楽天 4.33（3,585 則）、じゃらん 4.4、Google 4.2。免費接駁直達 T1 4F 出發層（約 10～15 分），2F 有全家、對面有 24 小時超市。房型最多三人房。",
@@ -805,7 +823,7 @@
       "id": "rinku-town",
       "mode": "walk",
       "minutes": 3,
-      "note": "官網：站直結；OSRM 3 分"
+      "note": "官網：站直結；路線估算 3 分"
     },
     "pickup": "官網アクセス：接駁巴士時刻為圖片（文字不可讀）；無法事前預約，往關西空港的班次於 check-in 時在櫃檯申請；05:10、05:55 兩班到 T2；載客數、費用未載（4）。楽天列有送迎バス（6），第三方稱免費需預約（7）",
     "meals": "varies",
@@ -947,6 +965,12 @@
         "url": "https://www.jalan.net/yad396520/",
         "retrieved": "2026-10-19",
         "note": "じゃらん評分 4.6／250 則（scripts/jalan.mjs list 273800）"
+      },
+      {
+        "type": "osm",
+        "url": "https://router.project-osrm.org/",
+        "retrieved": "2026-10-19",
+        "note": "附近晚餐店的步行分鐘（OSRM 路線估算，scripts/lodging-dinner-access.mjs）"
       }
     ],
     "verified": false,
@@ -978,7 +1002,7 @@
         },
         "note": "15 人（全部以大人計）分 N 間同住的組合，有空房的列出；只代表查詢當天楽天上的庫存"
       },
-      "dinnerAccessNote": "步行 20 分內的晚餐店 1 家：青庵 9 分（選素泊、朝食付方案時；OSRM，scripts/lodging-dinner-access.mjs，2026-10-19）"
+      "dinnerAccessNote": "步行 20 分內的晚餐店 1 家：青庵 9 分（選素泊、朝食付方案時）"
     },
     "summary": {
       "text": "りんくうタウン站直結的りんくうゲートタワービル裡的飯店（258 室），楽天 4.61、じゃらん 4.6、Google 4.5（1,222 則），數字是這一區最高的一群。一般房 2～3 人，套房最多 4 人但只有 7 間。54F 自助早餐。",
@@ -1063,7 +1087,7 @@
       "id": "rinku-town",
       "mode": "walk",
       "minutes": 4,
-      "note": "官網：5 號出口步行約 1 分；OSRM 4 分"
+      "note": "官網：5 號出口步行約 1 分；路線估算 4 分"
     },
     "pickup": "住客限定免費單程接駁巴士，1F 入口前巴士站→T1→T2；5:00～11:00 發車（5:00、5:45、6:00、6:30、7:00、7:30、8:00、9:00、10:00、11:00）；T1 約10分、T2 約20分；每班20～24名；需網路預約，截止當日3:00，0:00後到前台；路況可能延誤；是否加開車與行李規定未載（2）",
     "meals": "varies",
@@ -1147,6 +1171,12 @@
         "url": "https://www.jalan.net/yad389642/",
         "retrieved": "2026-10-19",
         "note": "じゃらん評分 4.2／330 則（scripts/jalan.mjs list 273800）"
+      },
+      {
+        "type": "osm",
+        "url": "https://router.project-osrm.org/",
+        "retrieved": "2026-10-19",
+        "note": "附近晚餐店的步行分鐘（OSRM 路線估算，scripts/lodging-dinner-access.mjs）"
       }
     ],
     "verified": false,
@@ -1155,7 +1185,7 @@
       "airportAccess": "2/13 搭9:00或10:00班巴士約10分到T1（班次對應為推算）；備案計程車約10分（2,3）",
       "dining": "3間餐廳；21F OMOダイニング夕食自助式，2026/10/5～12/3暫改18:00～20:00（最後點餐19:45）部分菜單；能否接15人、早餐時間未載（1）",
       "nearbyDinner": null,
-      "dinnerAccessNote": "步行 20 分內的晚餐店 1 家：青庵 12 分（選素泊、朝食付方案時；OSRM，scripts/lodging-dinner-access.mjs，2026-10-19）"
+      "dinnerAccessNote": "步行 20 分內的晚餐店 1 家：青庵 12 分（選素泊、朝食付方案時）"
     },
     "summary": {
       "text": "星野リゾート 的 OMO（700 室），りんくうタウン站 5 號出口步行 1 分。住客限定免費接駁巴士 5:00～11:00 往 T1（約 10 分，每班 20～24 人、要網路預約），2/13 搭 9:00 班剛好；有大浴場、21F 自助晚餐。じゃらん 4.2、Google 4.2（2,021 則）。沒上楽天。",
@@ -1251,7 +1281,7 @@
       "id": "rinku-town",
       "mode": "walk",
       "minutes": 10,
-      "note": "官網 9～10 分；OSRM 10 分"
+      "note": "官網 9～10 分；路線估算 10 分"
     },
     "pickup": "沒有接駁巴士（楽天、官網）；りんくうタウン站步行 9～10 分，再搭電車 1 站",
     "meals": "varies",
@@ -1351,6 +1381,12 @@
         "url": "https://www.jalan.net/yad368142/",
         "retrieved": "2026-10-19",
         "note": "じゃらん評分 3.9／1036 則（scripts/jalan.mjs list 273800）"
+      },
+      {
+        "type": "osm",
+        "url": "https://router.project-osrm.org/",
+        "retrieved": "2026-10-19",
+        "note": "附近晚餐店的步行分鐘（OSRM 路線估算，scripts/lodging-dinner-access.mjs）"
       }
     ],
     "verified": false,
@@ -1378,7 +1414,7 @@
         },
         "note": "15 人（全部以大人計）分 N 間同住的組合，有空房的列出；只代表查詢當天楽天上的庫存"
       },
-      "dinnerAccessNote": "步行 20 分內的晚餐店 1 家：青庵 4 分（選素泊、朝食付方案時；OSRM，scripts/lodging-dinner-access.mjs，2026-10-19）"
+      "dinnerAccessNote": "步行 20 分內的晚餐店 1 家：青庵 4 分（選素泊、朝食付方案時）"
     },
     "summary": {
       "text": "機器人櫃台的変なホテル系列，和天然温泉「泉州の湯」、海鮮食堂 青庵 在同一個海邊園區，楽天 4.12、じゃらん 3.9、Google 3.9。りんくうタウン站步行 9～10 分，沒有接駁巴士。有三人房；6 歲以下加床免費。",
@@ -1474,7 +1510,7 @@
       "id": "izumisano",
       "mode": "walk",
       "minutes": 17,
-      "note": "OSRM 17 分；泉佐野站、りんくうタウン站有免費接送（只在入住、退房時，13:00～20:00）"
+      "note": "路線估算 17 分；泉佐野站、りんくうタウン站有免費接送（只在入住、退房時，13:00～20:00）"
     },
     "pickup": "官網：飯店→車站(退房)5:20/6:20/7:40/8:40/9:40/10:40共6班，須事前預約，無預約不開；日根野/泉佐野東口/りんくうタウン5號出口，約8分，電話或check-in時預約。機場→飯店(入住)直達17:15/19:15/21:15/22:15前日電話預約；或到南海泉佐野站電話，免預約至20時。團體貸切巴士1台5,000円。載客數、行李未載。[3][4]",
     "meals": "varies",
@@ -1610,6 +1646,12 @@
         "url": "https://www.jalan.net/yad389840/",
         "retrieved": "2026-10-19",
         "note": "じゃらん評分 4.7／2408 則（scripts/jalan.mjs list 273800）"
+      },
+      {
+        "type": "osm",
+        "url": "https://router.project-osrm.org/",
+        "retrieved": "2026-10-19",
+        "note": "附近晚餐店的步行分鐘（OSRM 路線估算，scripts/lodging-dinner-access.mjs）"
       }
     ],
     "verified": false,
@@ -1640,7 +1682,7 @@
         },
         "note": "15 人（全部以大人計）分 N 間同住的組合，有空房的列出；只代表查詢當天楽天上的庫存"
       },
-      "dinnerAccessNote": "步行 20 分內的晚餐店 3 家：地魚 寿司 逸品 おどろき 15 分、四川料理 蘭梅 16 分、ラ・トランピスタ 18 分（選素泊、朝食付方案時；OSRM，scripts/lodging-dinner-access.mjs，2026-10-19）"
+      "dinnerAccessNote": "步行 20 分內的晚餐店 3 家：地魚 寿司 逸品 おどろき 15 分、四川料理 蘭梅 16 分、ラ・トランピスタ 18 分（選素泊、朝食付方案時）"
     },
     "summary": {
       "text": "泉佐野市區的溫泉飯店（63 室），有大浴場和 5 座貸切露天風呂，じゃらん 4.7（2,408 則）、楽天 4.45、Google 4.1。這一區唯一有一泊二食方案的（2/12 3 間×5 人，每人約 14,980 円含晚餐），宴會場 9～32 人可以全員一起吃。往車站、機場有接送（要預約）。",
@@ -1739,7 +1781,7 @@
       "id": "izumisano",
       "mode": "walk",
       "minutes": 9,
-      "note": "官網：東口步行約 7 分；OSRM 9 分"
+      "note": "官網：東口步行約 7 分；路線估算 9 分"
     },
     "pickup": "免費接駁約 15 分，T1 南團體巴士站 S-12。飯店發 5:30★/6:30★/7:30/8:30/9:30/11:00★/18:00（★經 T2 或 outlet，未標哪班）；機場發 10:05/18:30/19:30/20:30/21:30/22:30 免預約；22:30 後用南海。定員通常 8～24 人，超過請等下班或電車。飯店發原則前日前預約（楽天：check-in 時）。行李未載；月份可能變更時刻。PDF https://bellevuekix.com/wp-content/uploads/2026/03/bus-jpnew.pdf (官網 access)",
     "meals": "varies",
@@ -1857,6 +1899,12 @@
         "url": "https://www.jalan.net/yad310389/",
         "retrieved": "2026-10-19",
         "note": "じゃらん評分 4.5／1188 則（scripts/jalan.mjs list 273800）"
+      },
+      {
+        "type": "osm",
+        "url": "https://router.project-osrm.org/",
+        "retrieved": "2026-10-19",
+        "note": "附近晚餐店的步行分鐘（OSRM 路線估算，scripts/lodging-dinner-access.mjs）"
       }
     ],
     "verified": false,
@@ -1887,7 +1935,7 @@
         },
         "note": "15 人（全部以大人計）分 N 間同住的組合，有空房的列出；只代表查詢當天楽天上的庫存"
       },
-      "dinnerAccessNote": "步行 20 分內的晚餐店 3 家：地魚 寿司 逸品 おどろき 7 分、四川料理 蘭梅 7 分、ラ・トランピスタ 9 分（選素泊、朝食付方案時；OSRM，scripts/lodging-dinner-access.mjs，2026-10-19）"
+      "dinnerAccessNote": "步行 20 分內的晚餐店 3 家：地魚 寿司 逸品 おどろき 7 分、四川料理 蘭梅 7 分、ラ・トランピスタ 9 分（選素泊、朝食付方案時）"
     },
     "summary": {
       "text": "泉佐野站東口步行 7 分的大型飯店（186 室），楽天 4.2（2,660 則）、じゃらん 4.5、Google 3.8。免費接駁到 T1 南團體巴士站（約 15 分），2/13 搭 9:30 班約 9:45 到；館內有創作料理「泉の幸」（包廂）、宴會場最多 140 名。",
@@ -1986,7 +2034,7 @@
       "id": "hagurazaki",
       "mode": "walk",
       "minutes": 21,
-      "note": "官網 15 分；OSRM 21 分。泉佐野站計程車約 10 分；接駁停りんくうタウン站（要預約）"
+      "note": "官網 15 分；路線估算 21 分。泉佐野站計程車約 10 分；接駁停りんくうタウン站（要預約）"
     },
     "pickup": "官網：免費接駁巴士（僅住客），約25分；乘車處T1（團體巴士乘車處南側）、T2、りんくうタウン站；關空發車免預約，りんくうタウン站發車要預約，飯店發車於check-in時預約；8人以上團體一律先預約(072-490-2100)；發車前3分鐘上車；可載重行李；時刻表為官網PDF（未讀到）(官網/shuttlebus)",
     "meals": "varies",
@@ -2134,6 +2182,12 @@
         "url": "https://www.jalan.net/yad359122/",
         "retrieved": "2026-10-19",
         "note": "じゃらん評分 4.1／569 則（scripts/jalan.mjs list 273800）"
+      },
+      {
+        "type": "osm",
+        "url": "https://router.project-osrm.org/",
+        "retrieved": "2026-10-19",
+        "note": "附近晚餐店的步行分鐘（OSRM 路線估算，scripts/lodging-dinner-access.mjs）"
       }
     ],
     "verified": false,
@@ -2161,7 +2215,7 @@
         },
         "note": "15 人（全部以大人計）分 N 間同住的組合，有空房的列出；只代表查詢當天楽天上的庫存"
       },
-      "dinnerAccessNote": "步行 20 分內沒有晚餐店（直線 1.6 km 內沒有），要搭車（scripts/lodging-dinner-access.mjs，2026-10-19）"
+      "dinnerAccessNote": "步行 20 分內沒有晚餐店（直線 1.6 km 內沒有），要搭車"
     },
     "summary": {
       "text": "泉佐野市南中安松、離車站較遠的商務飯店（125 室），楽天 4.18、じゃらん 4.1、Google 4.0。免費接駁到 T1、T2 和りんくうタウン站（約 25 分，8 人以上要預約），有大浴場。房間只有 1～2 人房。",
@@ -2253,7 +2307,7 @@
       "id": "izumisano",
       "mode": "walk",
       "minutes": 2,
-      "note": "官網 1 分內；OSRM 2 分"
+      "note": "官網 1 分內；路線估算 2 分"
     },
     "pickup": "沒有接駁（官網）；團體可付費、由飯店介紹外部接送公司（楽天）；泉佐野站步行 1 分，南海到關西空港約 9 分",
     "meals": "varies",
@@ -2389,6 +2443,12 @@
         "url": "https://www.jalan.net/yad330686/",
         "retrieved": "2026-10-19",
         "note": "じゃらん評分 4.6／444 則（scripts/jalan.mjs list 273800）"
+      },
+      {
+        "type": "osm",
+        "url": "https://router.project-osrm.org/",
+        "retrieved": "2026-10-19",
+        "note": "附近晚餐店的步行分鐘（OSRM 路線估算，scripts/lodging-dinner-access.mjs）"
       }
     ],
     "verified": false,
@@ -2419,7 +2479,7 @@
         },
         "note": "15 人（全部以大人計）分 N 間同住的組合，有空房的列出；只代表查詢當天楽天上的庫存"
       },
-      "dinnerAccessNote": "步行 20 分內的晚餐店 3 家：地魚 寿司 逸品 おどろき 4 分、四川料理 蘭梅 12 分、ラ・トランピスタ 15 分（選素泊、朝食付方案時；OSRM，scripts/lodging-dinner-access.mjs，2026-10-19）"
+      "dinnerAccessNote": "步行 20 分內的晚餐店 3 家：地魚 寿司 逸品 おどろき 4 分、四川料理 蘭梅 12 分、ラ・トランピスタ 15 分（選素泊、朝食付方案時）"
     },
     "summary": {
       "text": "南海泉佐野站步行 1 分的新型飯店（222 室），楽天 4.53、じゃらん 4.6、Google 4.3，12F 有大浴場和三溫暖。沒有接駁，搭南海 2 站約 9 分到關西空港。有 3 人房和最多 5 人的プレミアム房；18 歲以下與家人同房添寢免費。",

@@ -996,6 +996,12 @@ T7c → T7d → T7e → T7f → T7g → T8a → T8b → T8c → T8d → T7i → 
 - **要做**：盤點所有資料檔給人看的欄位（`summary`、`price`、`accessibility`、`kids`、`extra` 等）有這類文字的地方，改寫成給人看的句子；出處、衝突移到 `sources` 的 `note` 或 `conflicts`。`validate` 加檢查（例如這些欄位不能出現「見 conflicts」、來源網站的名字加「說」）。
 - **驗證**：`npm run validate`；改了幾筆、規則抓到幾筆，列在結果裡。
 - **完成條件**：validate 通過；重新匯入（`npm run db:import`）。
+- **結果**（2026-11-03，分支 t44a，還沒 merge）：`npm run validate`、`npm test`、`npm run typecheck` 通過；e2e 沒跑（只改資料的文字和 validate，沒動畫面）。
+  - **規則**（`scripts/lib/work-notes.mjs`，validate 報錯）：`field-ref`（見 conflicts／notes、extra.xxx）、`file-name`（stations.json、geo.mjs、lodging.json）、`tool`（OSRM、scripts/、係數 1）、`task-id`（T3 以上；機場的 T1、T2 是航廈，`stationNumber` 不查）、`site-says`（只當研究來源的網站加「說」：jeepe、4travel、HAMONI、Retty、まっぷる…）、`site-subscore`（4travel 無障礙分）。檢查的範圍：sources、photos、links、ratings、`summary.basedOn`、白名單外的 `extra` 以外的欄位。
+  - **改前規則抓到 515 處、214 筆**：tool 248、file-name 146、task-id 88、site-subscore 14、site-says 12、field-ref 7。**改了 391 個字串、217 筆資料點**（多出來的是一起改的不通順處，例如「住宿本體不在 lodging.json」）；改後 0。
+  - 怎麼改：`dinnerAccessNote` 用 `cleanDinnerNote` 拿掉工具和日期，另外在 108 筆的 `sources` 加 OSRM 來源（日期照原本的筆記）；`lodging-dinner-access.mjs` 之後也這樣寫。OSRM 改「路線估算」、`geo.mjs` 拿掉（留「直線 … m」）、「不在 stations.json」改「不在車站資料裡」、任務 ID 和「（T8g 規則：…）」拿掉（鳥羽住宿的門檻說明留著）。4travel 細項分數改成結論，分數補進該筆 4travel 來源的 `note`（9 筆）。其他約 50 處逐筆改寫，例如鳥羽水族館長輩票價改成「沒有長輩優惠（官網票價頁沒有；有些網站寫 65 歲以上 2,200 円，是舊資訊）」、停留時間改成「看一圈約 2 小時；喜歡的話半天也看不完，有人待到 5 小時」。
+  - `db:import`：worktree 的本機 D1 匯入過（新增 660，這個 D1 原本是空的）；**merge 後要在主目錄再跑一次** `npm run db:import -- --all`（主目錄目前沒有本機 D1，先 `npm run db:migrate`）。
+  - **沒處理的**（規則不擋，T44b 重整詳情時再看）：「（食べログ）」「（4travel）」這種出處括號約 1,300 處；`group.source`、`assessment.rationale` 裡的內部代號（「F③」「fit15 unknown」「也算 D」）；「同伊勢 徴古館」這種評分時的對照。`worker/src/lib/placeLayers.ts` 的 `cleanDinnerNote` 留著（資料已經乾淨，無害）。
 
 #### T44b 卡片標章、詳情重整 〔M〕
 - **卡片**（探索、想去、書架）：最多兩個標章，從資料自動挑最好和最差的：長輩（`elderFit`）、小孩（`kidsFit`）、室內、二月休。「★ 4.4」移到詳情。
