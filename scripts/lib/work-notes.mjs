@@ -43,6 +43,7 @@ export const WORK_NOTE_RULES = [
   // T44b：評分的理由會出現在詳情的四格（長輩／小孩／2 月／15 人），不能有打分時的代號
   ['score-code', /F[①-⑩]|fit15|kids\.(?:friendly|allowed)|dinnerAccess(?!Note)|批規則/, '打分時的代號（「fit15 yes」「F③」「dinnerAccess car」「第 2 批規則」）；寫給人看的說法（「坐得下 15 人」「料理旅館的非住客用餐」「晚餐要搭車」）'],
   ['score-arrow', /→\s*\d(?![\d,./])|打 ?\d(?![\d,])|也算 ?[A-D](?![A-Za-z])|→\s*(?:yes|no|split|unknown)\b/, '打分的結果（「→ 3」「打 2」「→ no」）；分數已經在評分裡，理由只寫為什麼', /^(?:assessment\.rationale\.|group\.source$)/],
+  ['score-step', /[降升]一級/, '打分的調整（「降一級」）；四格的理由只寫為什麼', /^assessment\.rationale\.(?:elderFit|kidsFit|groupFit|winterFit)$/],
 ];
 
 /** 一筆資料點裡給人看的欄位有沒有整理時的筆記：[{ path, rule, hint, match }] */

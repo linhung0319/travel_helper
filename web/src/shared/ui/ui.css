@@ -1001,6 +1001,18 @@
   color: var(--indigo);
 }
 
+/* 這團的標章（T44b §18.1）：最差的那個 */
+.pr-cap-warn {
+  background: var(--warn-bg);
+  color: var(--warn);
+}
+
+/* 想去的列：標章接在名稱後面，名稱先被省略 */
+.pr-name .pr-caps {
+  flex: 0 0 auto;
+  font-weight: 400;
+}
+
 /* 右邊固定寬：愛心的位置不會被名稱或數字推動 */
 .pr-right {
   flex: 0 0 auto;
@@ -4041,4 +4053,146 @@ button.ll-main {
 .badge.tag-night {
   background: var(--wash);
   color: var(--ink-2);
+}
+
+/* ===== T44b §18.2 詳情的簡介：評分接在名稱下面那行、四格、一行時間費用小提醒、更多 ===== */
+.pd-sub .pd-stars {
+  display: inline;
+  min-height: 0;
+  margin: 0;
+  color: var(--ink-2);
+  font-weight: 500;
+}
+
+.pd-sub .pd-stars:not(:disabled):hover {
+  text-decoration: underline;
+}
+
+.pd-fit {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 6px;
+  width: 100%;
+  margin: 0 0 12px;
+  padding: 0;
+  border: 0;
+  background: none;
+  font: inherit;
+  color: inherit;
+  text-align: center;
+  cursor: pointer;
+}
+
+.pd-fit-cell {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1px;
+  min-width: 0;
+  padding: 6px 4px 7px;
+  border-radius: 14px;
+  background: var(--wash);
+}
+
+.pd-fit-mark {
+  font-family: var(--font-round);
+  font-size: 1.15rem;
+  line-height: 1.2;
+  color: var(--ink-3);
+}
+
+.pd-fit-cell.tone-good .pd-fit-mark {
+  color: var(--good);
+}
+
+.pd-fit-cell.tone-mid .pd-fit-mark {
+  color: var(--mustard-ink);
+}
+
+.pd-fit-cell.tone-warn .pd-fit-mark {
+  color: var(--warn);
+}
+
+.pd-fit-label {
+  font-size: 0.8125rem;
+  font-weight: 700;
+}
+
+.pd-fit-why {
+  font-size: 0.75rem;
+  line-height: 1.35;
+  color: var(--ink-2);
+  overflow-wrap: anywhere;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+  overflow: hidden;
+}
+
+.pd-fit.open .pd-fit-why {
+  display: block;
+}
+
+.pd-quick {
+  margin: 10px 0 4px;
+}
+
+.pd-quick .row {
+  grid-template-columns: 4em 1fr;
+  padding: 5px 0;
+  border-bottom: 1px solid var(--line);
+}
+
+.pd-quick .row:last-child {
+  border-bottom: 0;
+}
+
+.pd-estimate {
+  font-weight: 700;
+}
+
+.pd-more {
+  margin-top: 12px;
+}
+
+.pd-more-btn {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  width: 100%;
+  min-height: var(--tap);
+  padding: 6px 12px;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  background: var(--paper);
+  font: inherit;
+  color: var(--ink-2);
+  text-align: left;
+  cursor: pointer;
+}
+
+.pd-more-hint {
+  min-width: 0;
+  font-size: 0.8125rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.pd-more-go {
+  display: inline-flex;
+  align-items: center;
+  flex: 0 0 auto;
+  font-weight: 700;
+  color: var(--indigo);
+}
+
+.pd-more.open .pd-more-go svg {
+  transform: rotate(90deg);
+}
+
+.pd-more-body > .detail-section:first-child {
+  border-top: 0;
 }

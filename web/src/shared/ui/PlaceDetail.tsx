@@ -27,7 +27,7 @@ import { castVote } from '../../components/Votes.tsx';
 import { Comments } from '../../components/Wishlist.tsx';
 import { NameList } from '../../components/common.tsx';
 import { dragPlaceProps } from '../../components/askAi.ts';
-import { LinksSection, NearbySection, PlaceFacts, PlaceIntro, PlaceReviews, SourcesSection, usesRakuten } from '../../components/DetailPanel.tsx';
+import { LinksSection, NearbySection, PlaceFacts, PlaceIntro, PlaceMore, PlaceReviews, SourcesSection, usesRakuten } from '../../components/DetailPanel.tsx';
 import { useCommentCount } from '../placeLists.ts';
 import { Button } from './Button.tsx';
 import { PhotoViewer } from './PhotoViewer.tsx';
@@ -45,10 +45,11 @@ const MAX_DOTS = 5;
 type Obj = Record<string, unknown>;
 const obj = (v: unknown): Obj => (v && typeof v === 'object' && !Array.isArray(v) ? (v as Obj) : {});
 
-/** 簡介上方的一行：Google ★ 4.7（1,200）；沒有 Google 就用食べログ */
-function starLine(place: Place): string | null {
+/** 名稱下面那行的評分（T44b：卡片不放，只在這裡）：★ 4.4（1.7 萬）；沒有 Google 就用食べログ */
+export function starLine(place: Place): string | null {
   const r = obj(place.raw.ratings);
-  if (typeof r.google === 'number') return `Google ★ ${r.google}${typeof r.googleReviews === 'number' ? `（${r.googleReviews.toLocaleString('ja-JP')}）` : ''}`;
+  const count = (n: unknown) => (typeof n !== 'number' ? '' : n >= 10000 ? `（${Math.round(n / 1000) / 10} 萬）` : `（${n.toLocaleString('ja-JP')}）`);
+  if (typeof r.google === 'number') return `★ ${r.google}${count(r.googleReviews)}`;
   if (typeof r.tabelog === 'number') return `食べログ ★ ${r.tabelog}`;
   return null;
 }
@@ -341,10 +342,10 @@ export function PlaceDetail({ place: listPlace, surface, from, initialTab, onDay
   const name = place.name.zh || place.name.ja;
   const area = areas.find((a) => a.id === place.area);
   const region = area?.regions?.find((r) => r.id === place.region);
+  // 名稱下面一行（T44b §18.2）：類型・子地區（沒有就地區）・評分；日文名稱用名稱旁的複製鍵
   const sub = [
     place.type === 'lodging' && place.raw.kind ? label(LODGING_KIND_LABELS, place.raw.kind) : null,
-    place.name.zh && place.name.ja !== place.name.zh ? place.name.ja : null,
-    [area && displayName(area.name), region && displayName(region.name)].filter(Boolean).join(' ') || null,
+    region ? displayName(region.name) : area ? displayName(area.name) : null,
   ].filter(Boolean);
   const stars = user ? null : starLine(place);
   const barShown = scrolled || !hasHero;
@@ -393,6 +394,14 @@ export function PlaceDetail({ place: listPlace, surface, from, initialTab, onDay
           <p className="pd-sub muted small">
             <TypeLabel type={place.type} />
             {sub.length > 0 && <span> ・{sub.join('・')}</span>}
+            {stars && (
+              <>
+                <span>・</span>
+                <button type="button" className="pd-stars" onClick={() => setTab('reviews')} data-testid="detail-stars" disabled={!tabs.includes('reviews')}>
+                  {stars}
+                </button>
+              </>
+            )}
           </p>
         </div>
         {desktop && !isDeletedUserPlace(place) && <VoteHeart placeId={place.id} />}
@@ -412,16 +421,11 @@ export function PlaceDetail({ place: listPlace, surface, from, initialTab, onDay
       <div className="pd-body" role="tabpanel">
         {tab === 'intro' && (
           <>
-            {stars && (
-              <button type="button" className="pd-stars" onClick={() => setTab('reviews')} data-testid="detail-stars" disabled={!tabs.includes('reviews')}>
-                {stars}
-              </button>
-            )}
             {user && <UserPlaceIntro place={place} />}
             {loaded ? (
               <>
                 <PlaceIntro place={place} onDay={onDay} onAsk={onAsk} />
-                {!user && <PlaceFacts place={place} />}
+                {!user && (place.type === 'station' ? <PlaceFacts place={place} /> : <PlaceMore key={place.id} place={place} />)}
               </>
             ) : (
               pending
