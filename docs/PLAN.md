@@ -975,16 +975,10 @@ T7c → T7d → T7e → T7f → T7g → T8a → T8b → T8c → T8d → T7i → 
   - `elderly`、`kids` 篩選：沒有分數的點不再排掉，排在有分數的後面，回傳「幾個沒有資料」（2026-11-03 模擬：志摩 24 個景點有 12 個 `elderFit` 是 null，S 級的橫山展望台被排掉）。
 - **驗證**：單元測試；照 T36 的做法用 Sonnet subagent 模擬，題目：「志摩、鳥羽、伊勢各有什麼特色」「志摩一定要去、長輩小孩都能玩的」「下雨天可以去哪」「伊勢有沒有能包棟給 15 人的」，改前改後各一次。不跑 `ai:eval`。
 - **完成條件**：`npm test`、`npm run typecheck` 通過；模擬結果前後對照。
-- **結果**（2026-11-03，branch ，還沒 merge）：Unknown command: "test"
-
-
-Did you mean this?
-  npm test # Test a package
-To see a list of supported npm commands, run:
-  npm help 968、typecheck 通過；e2e 沒跑（只改 AI 的工具和提示詞，沒動畫面）。
-  - ：不給 area 回 6 區（子地區只有名字、needsCar，約 3.5k 字元）；給 area 子地區也帶介紹。系統提示加一條「問各區差在哪、要住哪一區先用 get_areas」。
-  -  加 （只看景點）、、（只留住宿，maxGuests 不在清單層，從詳情層拿）；資料沒寫的算 unknownExcluded。另外加了任務卡沒寫的 （「一定要去」，和 T42 的書架同一組條件）。結果多帶 、、；elderly、kids 沒評分的點排後面、標 ，總數在 。
-  - **任務卡的例子和資料不符**：橫山展望台的  是 1（施工期間要走石階迂回），是分數低被拿掉，不是沒分數；改後照樣不列。真正因為沒分數被排掉的是伊雜宮（A）等 10 個。
+- **結果**（2026-11-03，branch `t41`，還沒 merge）：`npm test` 968、typecheck 通過；e2e 沒跑（只改 AI 的工具和提示詞，沒動畫面）。
+  - `get_areas`：不給 area 回 6 區（子地區只有名字、needsCar，約 3.5k 字元）；給 area 子地區也帶介紹。系統提示加一條「問各區差在哪、要住哪一區先用 get_areas」。
+  - `search_places` 加 `indoor`（只看景點）、`wholeRental`、`maxGuestsAtLeast`（只留住宿，maxGuests 不在清單層，從詳情層拿）；資料沒寫的算 unknownExcluded。另外加了任務卡沒寫的 `tiers`（「一定要去」，和 T42 的書架同一組條件）。結果多帶 `indoor`、`stayMinutes`、`needsCar`；elderly、kids 沒評分的點排後面、標 `fitUnknown`，總數在 `fitUnknown`。
+  - **任務卡的例子和資料不符**：橫山展望台的 `elderFit` 是 1（施工期間要走石階迂回），是分數低被拿掉，不是沒分數；改後照樣不列。真正因為沒分數被排掉的是伊雜宮（A）等 10 個。
   - **模擬前後**（Sonnet subagent 呼叫真工具，腳本不進 repo）：① 各區特色：改前從每區前 5 個景點自己歸納，改後一次 get_areas，會提西班牙村休園。② 志摩一定要去＋長輩小孩：改前 7 筆、14 筆因沒分數被排掉，AI 自己把橫山展望台硬加回去；改後 17 筆，挑了伊雜宮、天岩戶、安乘埼燈塔。③ 下雨天：改前沒有條件，撈 30 筆從標章找「室內」；改後 indoor 一次 31 筆（混了大阪，AI 自己挑伊勢志摩）。④ 伊勢包棟 15 人：改前搜 3 次、靠 summary 人工找，第一次 limit 10 差點答「沒有」；改後一次找到托福參拜宿場。
   - **還沒做**：真 AI（ai:eval）沒跑；簡介被切斷時 AI 不一定會 get_place 補查（模擬 ④ 用 12＋6 自己推 18 人）。
 
