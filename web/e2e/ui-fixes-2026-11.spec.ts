@@ -1,6 +1,6 @@
 // 2026-11-01 👤 試用回饋（網頁）：想去、探索展開不跳；地圖上 AI 的點是水滴、只畫最新的一組；提議時不畫日期那排、捲到提議的卡。
 import { test, expect, type Page } from '@playwright/test';
-import { ready } from './helpers.ts';
+import { ready, exploreAll } from './helpers.ts';
 
 const fake = (page: Page, s: Record<string, unknown>) => page.evaluate((x) => Object.assign((window as any).__th.aiFake, x), s);
 const idle = (page: Page) => expect.poll(() => page.evaluate(() => (window as any).__th.ai.store.getState().status)).toBe('idle');
@@ -214,6 +214,7 @@ test('日期晶片在地圖上：寬地圖一排、窄地圖兩排，全部看�
 test('展開卡的按鈕：右欄 420 三顆都寫字、一排；右欄 360 次要鈕只留圖示；都不換行、至少 44px', async ({ page }) => {
   await ready(page);
   await page.getByTestId('side-tab-explore').click();
+  await exploreAll(page);
   await page.getByTestId('explore-item').first().click();
   await expect(page.getByTestId('place-open')).toBeVisible();
   const check = async (text: boolean) => {

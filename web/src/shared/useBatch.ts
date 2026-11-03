@@ -21,7 +21,8 @@ export interface BatchOptions {
 
 export function useBatch({ total, batch, resetOn, scroller, memory }: BatchOptions) {
   const [shown, setShown] = useState(memory?.current ?? batch);
-  const moreRef = useRef<HTMLDivElement>(null);
+  // 底部標記用 callback ref 記成 state：標記晚一點才出現（探索從概覽換成清單，T42）時也會重新觀察
+  const [mark, moreRef] = useState<HTMLDivElement | null>(null);
 
   useEffect(() => {
     if (memory) memory.current = shown;
@@ -38,7 +39,6 @@ export function useBatch({ total, batch, resetOn, scroller, memory }: BatchOptio
   }, resetOn);
 
   useEffect(() => {
-    const mark = moreRef.current;
     const root = mark?.closest(scroller);
     if (!mark || !root) return;
     const io = new IntersectionObserver(
@@ -49,7 +49,7 @@ export function useBatch({ total, batch, resetOn, scroller, memory }: BatchOptio
     );
     io.observe(mark);
     return () => io.disconnect();
-  }, [shown, total, batch, scroller]);
+  }, [mark, shown, total, batch, scroller]);
 
   /** 至少畫到第 index 個（地圖、AI 要捲到某張卡，它可能還沒畫） */
   const reveal = useCallback((index: number) => setShown((n) => Math.max(n, index + 1)), []);

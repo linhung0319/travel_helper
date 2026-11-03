@@ -61,7 +61,9 @@ test('用指令重現 T11 的手動操作：切天數、篩選、聚焦，畫面
   await page.locator(`.map-column [data-day="${DAY}"]`).click();
   await page.getByTestId('side-tab-explore').click();
   await pickType(page, 'restaurant');
-  await pickFilter(page, 'tier-S', 'area-toba');
+  await pickFilter(page, 'tier-S');
+  // 地區在地區列（T42）
+  await page.getByTestId('ex-area-toba').click();
   const manual = await snapshot(page);
   await ready(page);
   expect((await run(page, 'selectDay', DAY)).ok).toBe(true);
@@ -110,17 +112,18 @@ test('聚焦一個點：看得到就不動、太遠才拉到 13（不閃、不�
   await waitIdle(page);
   expect(await page.evaluate(() => (window as any).__th.map.getCenter().toArray())).toEqual(c1);
 
-  // AI 套的條件：想去分頁看篩選按鈕的數字（類型不算）、打開面板看條件，類型列標亮（T33 取代晶片）
+  // AI 套的條件：想去分頁看篩選按鈕的數字（T42 起類型也算、地區不算）、打開面板看條件，地區列標亮（T33 取代晶片）
   await page.getByTestId('side-tab-wish').click();
-  await run(page, 'setFilter', { types: ['restaurant'], fit15: ['yes'] });
-  await expect(page.getByTestId('filter-count')).toHaveText('1');
-  await expect(page.getByTestId('ex-type-restaurant')).toHaveAttribute('aria-pressed', 'true');
+  await run(page, 'setFilter', { areas: ['toba'], types: ['restaurant'], fit15: ['yes'] });
+  await expect(page.getByTestId('filter-count')).toHaveText('2');
+  await expect(page.getByTestId('ex-area-toba')).toHaveAttribute('aria-pressed', 'true');
   await expectFilterOpt(page, 'group-yes', true);
-  // 從面板取消：類型還在
+  await expectFilterOpt(page, 'type-restaurant', true);
+  // 從面板取消：類型、地區還在
   await pickFilter(page, 'group-yes');
   expect(await page.evaluate(() => (window as any).__th.appStore.getState().filter.fit15)).toEqual([]);
-  await expect(page.getByTestId('filter-count')).toHaveCount(0);
-  await expect(page.getByTestId('ex-type-restaurant')).toHaveAttribute('aria-pressed', 'true');
+  await expect(page.getByTestId('filter-count')).toHaveText('1');
+  await expect(page.getByTestId('ex-area-toba')).toHaveAttribute('aria-pressed', 'true');
 });
 
 test('標示、路線（沿道路）、比較：畫在地圖上，可以清掉', async ({ page }) => {

@@ -1,6 +1,6 @@
 // T16m-b：AI 網頁版的畫面（規格 §8 的腳本）。假 AI、假後端；截圖放 data/cache/work/t16m/。
 import { test, expect, type Page } from '@playwright/test';
-import { ready, switchUser } from './helpers.ts';
+import { ready, switchUser, exploreAll } from './helpers.ts';
 
 const SHOTS = '../data/cache/work/t16m';
 const shot = (page: Page, name: string) => page.screenshot({ path: `${SHOTS}/${name}.png` });
@@ -96,6 +96,7 @@ test('問 AI 入口：清單、展開卡、想去、行程的卡、一天、整�
   const chips = page.locator('.ac-chips [data-testid="chat-context"]');
   const none = () => expect(page.getByTestId('chat-msg-me')).toHaveCount(0);
   await page.getByTestId('side-tab-explore').click();
+  await exploreAll(page);
 
   await page.getByTestId('list-ask-ai').click();
   await expect(chips.last()).toHaveAttribute('data-kind', 'list');

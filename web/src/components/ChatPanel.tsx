@@ -2,7 +2,9 @@
 
 import { useEffect, useRef, useState } from 'react';
 import { ai } from '../appAi.ts';
-import { useApp } from '../hooks.ts';
+import { useApp, useData } from '../hooks.ts';
+import { displayName } from '../data/normalize.ts';
+import { currentArea, listScreenLabel } from '../lib/shelves.ts';
 import { shortDayLabel } from '../lib/trip.ts';
 import { ChatBody } from './ChatBody.tsx';
 import { ChatCard } from './ChatCards.tsx';
@@ -10,7 +12,7 @@ import { usePlaceName } from './ChatRich.tsx';
 import { Icon } from './Icon.tsx';
 import { registerChatInput } from './webAi.ts';
 
-/** 「正在看：」後面的字：詳情、選中的點、這天、探索、想去 */
+/** 「正在看：」後面的字：詳情、選中的點、這天、探索（概覽或地區）、想去（T42） */
 function useScreenLabel(): string {
   const mode = useApp((s) => s.mode);
   const day = useApp((s) => s.day);
@@ -18,7 +20,12 @@ function useScreenLabel(): string {
   const selected = useApp((s) => s.selectedId);
   const id = detail ?? (mode === 'map' ? null : selected);
   const name = usePlaceName(id ?? '');
-  return id ? name : mode === 'map' ? (day === 'all' ? '整趟' : shortDayLabel(day)) : mode === 'wish' ? '想去' : '探索';
+  const area = useApp((s) => currentArea(s.filter));
+  const areaName = useData((s) => {
+    const a = area ? s.areas.find((x) => x.id === area) : undefined;
+    return a ? displayName(a.name, a.id) : null;
+  });
+  return id ? name : mode === 'map' ? (day === 'all' ? '整趟' : shortDayLabel(day)) : listScreenLabel(mode, areaName);
 }
 
 export function ChatPanel() {

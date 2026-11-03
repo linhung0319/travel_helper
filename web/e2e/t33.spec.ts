@@ -1,6 +1,6 @@
 // T33（設計：docs/superpowers/specs/2026-11-01-discussion-add-place-design.md）網頁版：討論按鈕和彈窗、上一步、過去的版本、加地點彈窗、類型列。
 import { test, expect } from '@playwright/test';
-import { ready } from './helpers.ts';
+import { pickType, ready } from './helpers.ts';
 
 const DAY = '2027-02-05';
 
@@ -356,33 +356,26 @@ test('加地點：搜尋比不到時「＋ 自己加」帶入文字；搜尋框�
   await expect(page.getByTestId('add-place-open')).toHaveCount(0);
 });
 
-test('類型列：網頁也有，選了只列那一類；不算進篩選的數字，也沒有套用的晶片', async ({ page }) => {
+test('地區列取代類型列（T42）：類型在面板裡、算進篩選的數字；全部清除不清地區', async ({ page }) => {
   await ready(page);
   await page.getByTestId('side-tab-explore').click();
+  await expect(page.getByTestId('ex-area-all')).toHaveAttribute('aria-pressed', 'true');
+  await expect(page.locator('[data-testid^="ex-type-"]')).toHaveCount(0);
+  await page.getByTestId('ex-area-toba').click();
   const count = async () => Number((await page.getByTestId('list-count').innerText()).replace(/\D/g, ''));
-  const all = await count();
-  await expect(page.getByTestId('ex-type-all')).toHaveAttribute('aria-pressed', 'true');
-  await page.getByTestId('ex-type-restaurant').click();
-  await expect(page.getByTestId('ex-type-restaurant')).toHaveAttribute('aria-pressed', 'true');
-  await expect.poll(count).toBeLessThan(all);
-  await expect(page.getByTestId('filter-count')).toHaveCount(0);
+  const area = await count();
+  await pickType(page, 'restaurant');
+  await expect.poll(count).toBeLessThan(area);
+  await expect(page.getByTestId('filter-count')).toHaveText('1');
   await expect(page.getByTestId('filter-applied')).toHaveCount(0);
 
-  // 面板沒有類型；全部清除不清類型；條件的數字在按鈕上
+  // 面板沒有地區；全部清除不清地區
   await page.getByTestId('filter-open').click();
-  await expect(page.locator('[data-testid^="filter-opt-type-"]')).toHaveCount(0);
-  await page.locator('[data-testid^="filter-opt-tier-"]').first().click();
-  await expect(page.getByTestId('filter-count')).toHaveText('1');
+  await expect(page.locator('[data-testid^="filter-opt-area-"]')).toHaveCount(0);
   await page.getByTestId('filter-clear').click();
   await expect(page.getByTestId('filter-count')).toHaveCount(0);
   await page.getByTestId('filter-close').click();
-  await expect(page.getByTestId('ex-type-restaurant')).toHaveAttribute('aria-pressed', 'true');
-
-  // AI 一次套多個類型：都標亮
-  await page.evaluate(() => (window as any).__th.appStore.getState().setFilter({ types: ['spot', 'restaurant'] }));
-  await expect(page.getByTestId('ex-type-spot')).toHaveAttribute('aria-pressed', 'true');
-  await expect(page.getByTestId('ex-type-restaurant')).toHaveAttribute('aria-pressed', 'true');
-  await expect(page.getByTestId('ex-type-all')).toHaveAttribute('aria-pressed', 'false');
-  // 照片牆切換搬到類型列
+  await expect(page.getByTestId('ex-area-toba')).toHaveAttribute('aria-pressed', 'true');
+  // 照片牆切換在地區列旁邊
   await expect(page.locator('.fb-typerow').getByTestId('view-list')).toBeVisible();
 });

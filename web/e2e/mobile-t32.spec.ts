@@ -1,5 +1,6 @@
 // T32 載入和效率（手機）：探索的照片快進畫面才載，卡片用小尺寸的網址。
 import { test } from '@playwright/test';
+import { exploreAll } from './helpers.ts';
 import { expect, goTab, ready } from './mobileHelpers.ts';
 
 const PNG = Buffer.from('iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNk+M/wHwAEBgIApD5fRAAAAABJRU5ErkJggg==', 'base64');
@@ -12,6 +13,7 @@ test('探索：照片快進畫面才載，不會把楽天、Google 的原圖載�
   });
   await ready(page);
   await goTab(page, 'explore');
+  await exploreAll(page);
   await expect(page.getByTestId('m-feed-item').first()).toBeVisible();
   await expect.poll(() => requested.length).toBeGreaterThan(0);
   await page.waitForTimeout(500);

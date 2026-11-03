@@ -1,5 +1,6 @@
 // T37 新手起步（interaction-design §17.1～§17.5）手機版：引導彈窗（T46 取代開始卡）、整趟骨架、訊息區的卡片（半屏放不下時只放第一張）、空白狀態、第一次按 ♡、怎麼用。
 import { test, type Page } from '@playwright/test';
+import { exploreAll } from './helpers.ts';
 import { expect, goTab, ready, scrollsSideways } from './mobileHelpers.ts';
 
 async function flightsOnly(page: Page) {
@@ -78,6 +79,7 @@ test('想去頁空白：三格小圖；去探索', async ({ page }) => {
 test('第一次按 ♡：提示在分頁列上面，去看到想去', async ({ page }) => {
   await flightsOnly(page);
   await goTab(page, 'explore');
+  await exploreAll(page);
   await page.getByTestId('card-like').first().click();
   const toast = page.getByTestId('hint');
   await expect(toast).toContainText('已加到想去');

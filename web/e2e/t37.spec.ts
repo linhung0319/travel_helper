@@ -1,6 +1,6 @@
 // T37 新手起步（interaction-design §17.1～§17.5）網頁版：引導彈窗（T46 取代開始卡）、整趟骨架、訊息區的卡片、空白狀態、第一次按 ♡、怎麼用。
 import { test, type Page } from '@playwright/test';
-import { expect, ready } from './helpers.ts';
+import { expect, ready, exploreAll } from './helpers.ts';
 
 async function flightsOnly(page: Page) {
   await ready(page);
@@ -78,6 +78,7 @@ test('空的一天：虛線框；問 AI 不帶晶片，第一張是這天去哪�
 test('第一次按 ♡：提示一次、去看到想去；第二次不提示，重新整理也不再提示', async ({ page }) => {
   await flightsOnly(page);
   await page.getByTestId('side-tab-explore').click();
+  await exploreAll(page);
   const hearts = page.getByTestId('card-like');
   await hearts.first().click();
   const toast = page.getByTestId('hint');

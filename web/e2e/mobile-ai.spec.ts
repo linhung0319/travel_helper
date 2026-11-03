@@ -1,6 +1,6 @@
 // T16m-c：AI 手機版的畫面（規格 §8 的腳本、interaction-design §16.2、§16.3）。假 AI、假後端；截圖放 data/cache/work/t16m/，檔名 m-* 和網頁版區分開。
 import { test, expect, type Page } from '@playwright/test';
-import { expectFilterOpt, ready } from './helpers.ts';
+import { expectFilterOpt, ready, exploreAll } from './helpers.ts';
 import { goTab, scrollsSideways } from './mobileHelpers.ts';
 
 const SHOTS = '../data/cache/work/t16m';
@@ -206,6 +206,7 @@ test('問 AI 入口：詳情、探索、想去、行程的一天、一張卡、�
 
   // 詳情（探索打開的）→ AI 分頁
   await goTab(page, 'explore');
+  await exploreAll(page);
   await page.getByTestId('m-feed-item').first().click();
   await tap(page, 'detail-ask-ai');
   await page.getByTestId('detail-ask-ai').click();
@@ -854,6 +855,7 @@ test('返回鍵：半屏 → 關掉；從 AI 分頁跳到探索、行程 → 回
 test('set_filter 接到探索的 feed：看探索就是那些條件；探索、想去問完回來捲動位置還在', async ({ page }) => {
   await aiReady(page);
   await goTab(page, 'explore');
+  await exploreAll(page);
   const main = page.locator('.m-page');
   await main.evaluate((el) => (el.scrollTop = 1500));
   await expect.poll(() => main.evaluate((el) => el.scrollTop)).toBeGreaterThan(1000);
@@ -871,10 +873,10 @@ test('set_filter 接到探索的 feed：看探索就是那些條件；探索、�
   expect(feed.area).toBe('toba');
   await page.locator('[data-testid="chat-present"][data-tool="set_filter"]').getByTestId('m-see-map').click();
   await expect(page.getByTestId('m-tab-explore')).toHaveAttribute('aria-current', 'page');
-  // 條件看篩選按鈕的數字，點開面板看（T33 取代晶片）；類型在類型列
+  // 條件看篩選按鈕的數字，點開面板看（T33 取代晶片）；地區在地區列（T42）
   await expect(page.getByTestId('filter-count')).toHaveText('1');
-  await expect(page.getByTestId('m-feed-type-restaurant')).toHaveAttribute('aria-pressed', 'true');
-  await expectFilterOpt(page, 'area-toba', true);
+  await expect(page.getByTestId('m-feed-area-toba')).toHaveAttribute('aria-pressed', 'true');
+  await expectFilterOpt(page, 'type-restaurant', true);
   await expect(page.getByTestId('ai-back')).toBeVisible();
 });
 

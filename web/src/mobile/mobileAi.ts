@@ -9,6 +9,8 @@ import { openDialog, openDiscussion, uiStore } from '../uiStore.ts';
 import { EMPTY_FILTER, type Filter } from '../lib/filter.ts';
 import { feedFilter, filterToFeed, wishFilter } from '../lib/explore.ts';
 import { shortDayLabel } from '../lib/trip.ts';
+import { listScreenLabel } from '../lib/shelves.ts';
+import { displayName } from '../data/normalize.ts';
 import { resizeMap } from '../components/mapRuntime.ts';
 import type { ScreenSurface } from '../ai/stage.ts';
 import type { ChatContext } from '../ai/types.ts';
@@ -231,8 +233,13 @@ export function useScreenLabel(): string {
   const selected = useApp((s) => s.selectedId);
   const place = useData((s) => (selected ? s.byId.get(selected) : undefined));
   const where = tab === 'trip' || tab === 'explore' || tab === 'wish' ? tab : lastTab;
-  if (where === 'explore') return '探索';
-  if (where === 'wish') return '想去';
+  // 探索、想去寫目前地區（T42）：兩邊共用一份，用探索的就好
+  const area = useMobile((s) => s.feed.area);
+  const areaName = useData((s) => {
+    const a = area ? s.areas.find((x) => x.id === area) : undefined;
+    return a ? displayName(a.name, a.id) : null;
+  });
+  if (where === 'explore' || where === 'wish') return listScreenLabel(where, areaName);
   if (tab === 'trip' && place) return place.name.zh || place.name.ja;
   return day === 'all' ? '整趟' : shortDayLabel(day);
 }
