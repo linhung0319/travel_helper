@@ -28,11 +28,11 @@ test('只有航班的行程：開始卡 0/3、清單併成一列、航班的天�
   await page.getByTestId('start-step-2').getByTestId('start-ask').click();
   await expect(page.getByTestId('chat-context')).toHaveCount(0);
   const first = page.locator('[data-testid="chat-starter"][data-first="true"]');
-  await expect(first).toContainText('幫我決定前幾晚住哪');
-  await expect(first).toContainText('15 人的住宿最難訂');
+  await expect(first).toContainText('幫我先排每晚住哪一區');
+  await expect(first).toContainText('先定區，再挑住宿');
   await expect(page.getByTestId('chat-msg-me')).toHaveCount(0);
   await first.click();
-  await expect(page.getByTestId('chat-msg-me')).toContainText('幫我決定前幾晚住哪');
+  await expect(page.getByTestId('chat-msg-me')).toContainText('幫我先排每晚住哪一區');
   await expect(page.getByTestId('chat-cards')).toHaveCount(0);
 });
 

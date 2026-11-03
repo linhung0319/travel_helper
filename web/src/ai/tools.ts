@@ -53,7 +53,7 @@ const place = { description: '資料點 ID 或 [經度, 緯度]' };
 const DATE = '日期 YYYY-MM-DD（2027-02-02～2027-02-13）';
 const OP = {
   type: 'object',
-  description: `行程的一個操作。op：add（date、place，可給 index、start、stayMinutes、tags、note）、remove（itemId）、move（itemId、date、index）、replace（itemId、place）、addOption（itemId、place）、selectOption（itemId、place：切換主選）、removeOption（itemId、place：拿掉一個備選）、setStay（itemId、minutes）、setStart（itemId、start）、setTags（itemId、tags）、setNote（itemId、note）、addFree（date、minutes，可給 index、note：自由時間）、withdraw（itemId：撤下，地點回那天的候選）、setTravel（to、spec）、setLodging（date、lodging、meals）。itemId 從 get_day 來，標 draftOnly 的不能用；tags 可用 ${TAG_IDS.join('、')}`,
+  description: `行程的一個操作。op：add（date、place，可給 index、start、stayMinutes、tags、note）、remove（itemId）、move（itemId、date、index）、replace（itemId、place）、addOption（itemId、place）、selectOption（itemId、place：切換主選）、removeOption（itemId、place：拿掉一個備選）、setStay（itemId、minutes）、setStart（itemId、start）、setTags（itemId、tags）、setNote（itemId、note）、addFree（date、minutes，可給 index、note：自由時間）、withdraw（itemId：撤下，地點回那天的候選）、setTravel（to、spec）、setLodging（date、lodging、meals）、setNightArea（date、area：這晚住哪一區，不用選定哪一家；area 用 get_areas 的 id，null＝還沒決定；換到別區時那晚的住宿會清掉）。itemId 從 get_day 來，標 draftOnly 的不能用；tags 可用 ${TAG_IDS.join('、')}`,
   properties: { op: str() },
   required: ['op'],
 };
@@ -120,7 +120,7 @@ export function createTools(d: AiDeps): ToolDef[] {
       run: ro(read.get_place),
     },
     { name: 'get_day', kind: 'read', description: '引擎算好的一天：每項時間、交通、空檔、警告、候選。回答時間問題一定要用這裡的數字，不要自己算。on=draft 看的是目前提議後的行程（接著改提議時用）。', input_schema: obj({ date: str(DATE), on: { enum: ['draft'] } }, ['date']), run: ro(read.get_day) },
-    { name: 'get_trip_overview', kind: 'read', description: '整趟的摘要：每天去哪、住哪、警告數、候選數。', input_schema: obj({}), run: ro(read.get_trip_overview) },
+    { name: 'get_trip_overview', kind: 'read', description: '整趟的摘要：每天在哪一區（area，移動日「志摩 → 鳥羽」）、每晚住哪一區（stayArea、areaNight 連住第幾晚）和住宿、去哪、警告數、候選數；undecidedNights 是還沒決定住哪一區的晚上。', input_schema: obj({}), run: ro(read.get_trip_overview) },
     {
       name: 'check_changes',
       kind: 'read',
@@ -270,7 +270,7 @@ export function createTools(d: AiDeps): ToolDef[] {
     {
       name: 'propose_changes',
       kind: 'propose',
-      description: '提議改行程：地圖畫虛線、時間軸顯示差異、聊天室有提議卡。**這還沒有寫進行程**，使用者決定採用才寫（不在編輯中也可以提議）。每次都給**從確定的行程算起的完整操作清單**，取代上一版，不是疊加：接著改時，照 context.draft.ops 調整後整份再給一次。用 check_changes 試過再提議，summary 寫「2/4：＋某某午餐」這種摘要（寫名字，不用 [[place:]]）。',
+      description: '提議改行程：地圖畫虛線、時間軸顯示差異、聊天室有提議卡。**這還沒有寫進行程**，使用者決定採用才寫（不在編輯中也可以提議）。每次都給**從確定的行程算起的完整操作清單**，取代上一版，不是疊加：接著改時，照 context.draft.ops 調整後整份再給一次。用 check_changes 試過再提議，summary 寫「2/4：＋某某午餐」這種摘要（寫名字，不用 [[place:]]）；只定每晚住哪一區時寫「2/2～2/4 住志摩、2/5～2/6 住鳥羽」。',
       input_schema: obj({ ops: { type: 'array', items: OP }, summary: str() }, ['ops', 'summary']),
       run(input) {
         const ops = input.ops as Op[];

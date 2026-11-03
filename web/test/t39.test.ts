@@ -10,7 +10,7 @@ import { setVoteLookup } from '../src/lib/filter.ts';
 import { createStore } from 'zustand/vanilla';
 import { ensurePlan, startPlanner, type PlanState } from '../src/planStore.ts';
 
-const day = (date: string, lodging = false): StarterDay => ({ date, lodging, dinnerIncluded: false, dinnerExcluded: false, hasStops: false, hasLunch: false, hasDinner: false, areaName: null, nearbyWishes: 0, errorWarning: null });
+const day = (date: string, lodging = false): StarterDay => ({ date, area: 'shima', lodging, dinnerIncluded: false, dinnerExcluded: false, hasStops: false, hasLunch: false, hasDinner: false, areaName: null, nearbyWishes: 0, errorWarning: null });
 const dates = Array.from({ length: 12 }, (_, i) => `2027-02-${String(i + 2).padStart(2, '0')}`);
 const input = (days: StarterDay[]): StarterInput => ({ days, day: null, warnings: 0, wishesUnplaced: 0, popularUnplaced: 0, anyLiked: false });
 

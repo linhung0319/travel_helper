@@ -11,7 +11,9 @@ import {
   removeOption,
   selectOption,
   setLegTravel,
+  nightAreaOf,
   setLodging,
+  setNightArea,
   setStart,
   setStay,
   setTags,
@@ -30,6 +32,8 @@ export type Op =
   | { op: 'setTags'; itemId: string; tags: TagId[] }
   | { op: 'setTravel'; to: LegTarget; spec: TravelSpec | null }
   | { op: 'setLodging'; date: string; lodging: string | null; meals?: LodgingMeals | null }
+  /** 這晚住哪一區（T45c）：不用選定哪一家；換到別區時那晚的住宿清掉；null＝還沒決定 */
+  | { op: 'setNightArea'; date: string; area: string | null }
   | { op: 'selectOption'; itemId: string; place: string }
   | { op: 'removeOption'; itemId: string; place: string }
   | { op: 'setNote'; itemId: string; note: string | null }
@@ -42,6 +46,8 @@ export interface OpsContext {
   placeType(id: string): string | undefined;
   /** 地點的區（住宿寫進那晚的 nights.area 用，T45a）；沒給時區不動 */
   placeArea?(id: string): string | null | undefined;
+  /** 有沒有這一區（setNightArea 檢查用）；沒給時不檢查 */
+  hasArea?(id: string): boolean;
   /** 誰提的：按 ❤️ 的人（同手動排進行程） */
   likesOf(id: string): string[];
   me: string | null;
@@ -142,6 +148,11 @@ function applyOp(it: Itinerary, o: Op, ctx: OpsContext): Itinerary {
     {
       const lodging = o.lodging === null ? null : checkPlace(o.lodging, ctx, 'lodging');
       return setLodging(it, o.date, lodging, o.meals ?? null, lodging ? (ctx.placeArea?.(lodging) ?? undefined) : undefined);
+    }
+    case 'setNightArea': {
+      if (o.area !== null && typeof o.area !== 'string') throw new ItineraryError('area 要是地區 ID（get_areas 的 id）或 null');
+      if (o.area && ctx.hasArea && !ctx.hasArea(o.area)) throw new ItineraryError(`沒有地區 ${o.area}（用 get_areas 的 id）`);
+      return setNightArea(it, o.date, o.area, nightAreaOf(it, o.date, ctx.placeArea));
     }
     default:
       throw new ItineraryError(`不認得的操作 ${(o as { op?: unknown }).op}`);
