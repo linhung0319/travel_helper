@@ -226,6 +226,12 @@
         "url": "https://www.jalan.net/yad358024/",
         "retrieved": "2026-10-18",
         "note": "じゃらん クチコミ総合、評論數（scripts/jalan.mjs）"
+      },
+      {
+        "type": "osm",
+        "url": "https://router.project-osrm.org/",
+        "retrieved": "2026-10-18",
+        "note": "附近晚餐店的步行分鐘（OSRM 路線估算，scripts/lodging-dinner-access.mjs）"
       }
     ],
     "verified": false,
@@ -263,7 +269,7 @@
         },
         "note": "15 人（全部以大人計）分 N 間同住的組合，有空房的列出；只代表查詢當天楽天上的庫存"
       },
-      "dinnerAccessNote": "步行 20 分內的晚餐店 8 家以上（只查最近 8 家）：満船屋 HANARE 2 分、酒場 森下 2 分、炭火焼肉匠 3 分 等（OSRM，scripts/lodging-dinner-access.mjs，2026-10-18）"
+      "dinnerAccessNote": "步行 20 分內的晚餐店 8 家以上（只查最近 8 家）：満船屋 HANARE 2 分、酒場 森下 2 分、炭火焼肉匠 3 分 等"
     },
     "summary": {
       "text": "伊勢市站南口步行 2 分的連鎖商務飯店，本館是 1～2 人房，2023 年開的別館 Grande 有 4～6 人的雙床房，15 人可以分 3～4 間住。有人工溫泉大浴場，自助早餐評價好；不供晚餐，車站周邊步行就有很多店。",
@@ -377,7 +383,7 @@
         "child": null,
         "currency": "JPY",
         "season": "2027-02-09（二）1 泊，4 間 × 4 人（大人）有空房時的含晚餐最低價",
-        "note": "房型：【露天風呂付】和洋室（最大4名）  バルコニー喫煙可。楽天 API 空室検索（查詢 2026-10-18），含稅、不含入湯稅等。這天有空房的組合：3x5、4x4、5x3。",
+        "note": "房型：【露天風呂付】和洋室（最大4名） バルコニー喫煙可。楽天 API 空室検索（查詢 2026-10-18），含稅、不含入湯稅等。這天有空房的組合：3x5、4x4、5x3。",
         "source": "rakuten-api",
         "url": "https://hotel.travel.rakuten.co.jp/hotelinfo/plan/142619?f_nen1=2027&f_tuki1=2&f_hi1=9&f_nen2=2027&f_tuki2=2&f_hi2=10&f_heya_su=4&f_otona_su=4&f_s1=0&f_s2=0&f_y1=0&f_y2=0&f_y3=0&f_y4=0",
         "retrieved": "2026-10-18"
@@ -389,7 +395,7 @@
         "child": null,
         "currency": "JPY",
         "season": "2027-02-10（三，2/11 國定假日前一晚）1 泊，4 間 × 4 人（大人）有空房時的含晚餐最低價",
-        "note": "房型：【露天風呂付】和洋室（最大4名）  バルコニー喫煙可。楽天 API 空室検索（查詢 2026-10-18），含稅、不含入湯稅等。這天有空房的組合：3x5、4x4、5x3。",
+        "note": "房型：【露天風呂付】和洋室（最大4名） バルコニー喫煙可。楽天 API 空室検索（查詢 2026-10-18），含稅、不含入湯稅等。這天有空房的組合：3x5、4x4、5x3。",
         "source": "rakuten-api",
         "url": "https://hotel.travel.rakuten.co.jp/hotelinfo/plan/142619?f_nen1=2027&f_tuki1=2&f_hi1=10&f_nen2=2027&f_tuki2=2&f_hi2=11&f_heya_su=4&f_otona_su=4&f_s1=0&f_s2=0&f_y1=0&f_y2=0&f_y3=0&f_y4=0",
         "retrieved": "2026-10-18"
@@ -401,7 +407,7 @@
         "child": 9130,
         "currency": "JPY",
         "season": "2027-02-09（二）1 泊，1 間 大人 3＋小學生高年級 1",
-        "note": "房型：【露天風呂付】和洋室（最大4名）  バルコニー喫煙可。兒童價＝一間總價 84,580 円 − 大人 3 人份（約大人的 36%）。楽天 API（查詢 2026-10-18）。",
+        "note": "房型：【露天風呂付】和洋室（最大4名） バルコニー喫煙可。兒童價＝一間總價 84,580 円 − 大人 3 人份（約大人的 36%）。楽天 API（查詢 2026-10-18）。",
         "source": "rakuten-api",
         "url": "https://hotel.travel.rakuten.co.jp/hotelinfo/plan/142619?f_nen1=2027&f_tuki1=2&f_hi1=9&f_nen2=2027&f_tuki2=2&f_hi2=10&f_heya_su=1&f_otona_su=3&f_s1=1&f_s2=0&f_y1=0&f_y2=0&f_y3=0&f_y4=0",
         "retrieved": "2026-10-18"
@@ -515,6 +521,12 @@
         "url": "https://www.jalan.net/yad326003/",
         "retrieved": "2026-10-18",
         "note": "じゃらん クチコミ総合、評論數（scripts/jalan.mjs）"
+      },
+      {
+        "type": "osm",
+        "url": "https://router.project-osrm.org/",
+        "retrieved": "2026-10-18",
+        "note": "附近晚餐店的步行分鐘（OSRM 路線估算，scripts/lodging-dinner-access.mjs）"
       }
     ],
     "verified": false,
@@ -551,7 +563,7 @@
         },
         "note": "15 人（全部以大人計）分 N 間同住的組合，有空房的列出；只代表查詢當天楽天上的庫存"
       },
-      "dinnerAccessNote": "步行 20 分內的晚餐店 8 家以上（只查最近 8 家）：酒場 森下 2 分、桂 外宮 2 分、鉄饌 2 分 等（選素泊、朝食付方案時；OSRM，scripts/lodging-dinner-access.mjs，2026-10-18）"
+      "dinnerAccessNote": "步行 20 分內的晚餐店 8 家以上（只查最近 8 家）：酒場 森下 2 分、桂 外宮 2 分、鉄饌 2 分 等（選素泊、朝食付方案時）"
     },
     "summary": {
       "text": "伊勢市站外宮口步行 1 分的溫泉旅館，全室有床和信樂燒露天風呂，晚餐是伊勢海老、鮑、松阪牛的會席。楽天 4.54、じゃらん 4.5，但 Google 近 1～2 年有多則晚餐服務變差的評論。",
@@ -807,6 +819,12 @@
         "url": "https://www.jalan.net/yad397897/",
         "retrieved": "2026-10-18",
         "note": "じゃらん クチコミ総合、評論數（scripts/jalan.mjs）"
+      },
+      {
+        "type": "osm",
+        "url": "https://router.project-osrm.org/",
+        "retrieved": "2026-10-18",
+        "note": "附近晚餐店的步行分鐘（OSRM 路線估算，scripts/lodging-dinner-access.mjs）"
       }
     ],
     "verified": false,
@@ -837,7 +855,7 @@
         },
         "note": "15 人（全部以大人計）分 N 間同住的組合，有空房的列出；只代表查詢當天楽天上的庫存"
       },
-      "dinnerAccessNote": "步行 20 分內的晚餐店 8 家以上（只查最近 8 家）：洋風ダイニングバー 町家バル 2 分、桂 外宮 2 分、鉄饌 2 分 等（OSRM，scripts/lodging-dinner-access.mjs，2026-10-18）"
+      "dinnerAccessNote": "步行 20 分內的晚餐店 8 家以上（只查最近 8 家）：洋風ダイニングバー 町家バル 2 分、桂 外宮 2 分、鉄饌 2 分 等"
     },
     "summary": {
       "text": "伊勢市站南口步行 3 分的商務飯店，全部是西式床，最大房型可以加床到 4 人。櫃檯親切、房間乾淨的評價多，大廳有免費飲料；沒有大浴場，早餐自助尖峰擁擠。",
@@ -1084,6 +1102,12 @@
         "url": "https://www.jalan.net/yad319749/",
         "retrieved": "2026-10-18",
         "note": "じゃらん クチコミ総合、評論數（scripts/jalan.mjs）"
+      },
+      {
+        "type": "osm",
+        "url": "https://router.project-osrm.org/",
+        "retrieved": "2026-10-18",
+        "note": "附近晚餐店的步行分鐘（OSRM 路線估算，scripts/lodging-dinner-access.mjs）"
       }
     ],
     "verified": false,
@@ -1116,7 +1140,7 @@
         },
         "note": "15 人（全部以大人計）分 N 間同住的組合，有空房的列出；只代表查詢當天楽天上的庫存"
       },
-      "dinnerAccessNote": "步行 20 分內的晚餐店 8 家以上（只查最近 8 家）：オステリアラブラ 5 分、大喜 5 分、貫 6 分 等（選素泊、朝食付方案時；OSRM，scripts/lodging-dinner-access.mjs，2026-10-18）"
+      "dinnerAccessNote": "步行 20 分內的晚餐店 8 家以上（只查最近 8 家）：オステリアラブラ 5 分、大喜 5 分、貫 6 分 等（選素泊、朝食付方案時）"
     },
     "summary": {
       "text": "近鐵伊勢市站步行 2 分的老牌飯店，全室西式床，有大浴場和桑拿，晚餐是三重食材的會席。楽天トラベルアワード 2024、2025 得獎，家族客多，晚餐、早餐分數高；建築不新但翻修過。",
@@ -1371,6 +1395,12 @@
         "url": "https://www.jalan.net/yad380438/",
         "retrieved": "2026-10-18",
         "note": "じゃらん クチコミ総合、評論數（scripts/jalan.mjs）"
+      },
+      {
+        "type": "osm",
+        "url": "https://router.project-osrm.org/",
+        "retrieved": "2026-10-18",
+        "note": "附近晚餐店的步行分鐘（OSRM 路線估算，scripts/lodging-dinner-access.mjs）"
       }
     ],
     "verified": false,
@@ -1403,7 +1433,7 @@
         },
         "note": "15 人（全部以大人計）分 N 間同住的組合，有空房的列出；只代表查詢當天楽天上的庫存"
       },
-      "dinnerAccessNote": "步行 20 分內的晚餐店 8 家以上（只查最近 8 家）：Osteria il Mosto 2 分、豚捨 若柳 2 分、やきとり能代 3 分 等（OSRM，scripts/lodging-dinner-access.mjs，2026-10-18）"
+      "dinnerAccessNote": "步行 20 分內的晚餐店 8 家以上（只查最近 8 家）：Osteria il Mosto 2 分、豚捨 若柳 2 分、やきとり能代 3 分 等"
     },
     "summary": {
       "text": "伊勢市站步行約 12 分的東橫 INN，JR 側改札口有免費接駁巴士。房間乾淨、員工和司機親切；最大房只住 3 人，沒有大浴場，附免費早餐。",
@@ -1682,6 +1712,12 @@
         "url": "https://www.jalan.net/yad311581/",
         "retrieved": "2026-10-18",
         "note": "じゃらん クチコミ総合、評論數（scripts/jalan.mjs）"
+      },
+      {
+        "type": "osm",
+        "url": "https://router.project-osrm.org/",
+        "retrieved": "2026-10-18",
+        "note": "附近晚餐店的步行分鐘（OSRM 路線估算，scripts/lodging-dinner-access.mjs）"
       }
     ],
     "verified": false,
@@ -1712,7 +1748,7 @@
         },
         "note": "15 人（全部以大人計）分 N 間同住的組合，有空房的列出；只代表查詢當天楽天上的庫存"
       },
-      "dinnerAccessNote": "步行 20 分內的晚餐店 8 家以上（只查最近 8 家）：桂 外宮 3 分、貫 3 分、オステリアラブラ 3 分 等（OSRM，scripts/lodging-dinner-access.mjs，2026-10-18）"
+      "dinnerAccessNote": "步行 20 分內的晚餐店 8 家以上（只查最近 8 家）：桂 外宮 3 分、貫 3 分、オステリアラブラ 3 分 等"
     },
     "summary": {
       "text": "伊勢市站步行 2 分的昭和初期木造旅館，女將手作的和式早餐、懷舊感和打掃乾淨很受好評。全 10 室，多數房間廁所、洗臉台在走廊共用，沒有電梯；不供晚餐。",
@@ -1971,6 +2007,12 @@
         "url": "https://www.jalan.net/yad326440/",
         "retrieved": "2026-10-18",
         "note": "じゃらん クチコミ総合、評論數（scripts/jalan.mjs）"
+      },
+      {
+        "type": "osm",
+        "url": "https://router.project-osrm.org/",
+        "retrieved": "2026-10-18",
+        "note": "附近晚餐店的步行分鐘（OSRM 路線估算，scripts/lodging-dinner-access.mjs）"
       }
     ],
     "verified": false,
@@ -2004,7 +2046,7 @@
         },
         "note": "15 人（全部以大人計）分 N 間同住的組合，有空房的列出；只代表查詢當天楽天上的庫存"
       },
-      "dinnerAccessNote": "步行 20 分內的晚餐店 8 家以上（只查最近 8 家）：蔵deらーめん 4 分、あきやま 5 分、炭火焼肉匠 5 分 等（OSRM，scripts/lodging-dinner-access.mjs，2026-10-18）"
+      "dinnerAccessNote": "步行 20 分內的晚餐店 8 家以上（只查最近 8 家）：蔵deらーめん 4 分、あきやま 5 分、炭火焼肉匠 5 分 等"
     },
     "summary": {
       "text": "伊勢市站外宮側步行 7 分的公寓式飯店，36 室都有簡易廚房，4 人房多，家族客評價好（新、乾淨、浴廁分開）。早餐是大廳旁咖啡店的盤餐，夜間櫃檯無人。",
@@ -2264,6 +2306,12 @@
         "url": "https://www.jalan.net/yad393128/",
         "retrieved": "2026-10-18",
         "note": "じゃらん クチコミ総合、評論數（scripts/jalan.mjs）"
+      },
+      {
+        "type": "osm",
+        "url": "https://router.project-osrm.org/",
+        "retrieved": "2026-10-18",
+        "note": "附近晚餐店的步行分鐘（OSRM 路線估算，scripts/lodging-dinner-access.mjs）"
       }
     ],
     "verified": false,
@@ -2296,7 +2344,7 @@
         },
         "note": "15 人（全部以大人計）分 N 間同住的組合，有空房的列出；只代表查詢當天楽天上的庫存"
       },
-      "dinnerAccessNote": "步行 20 分內的晚餐店 8 家以上（只查最近 8 家）：オステリアラブラ 6 分、大喜 6 分、貫 7 分 等（選素泊、朝食付方案時；OSRM，scripts/lodging-dinner-access.mjs，2026-10-18）"
+      "dinnerAccessNote": "步行 20 分內的晚餐店 8 家以上（只查最近 8 家）：オステリアラブラ 6 分、大喜 6 分、貫 7 分 等（選素泊、朝食付方案時）"
     },
     "summary": {
       "text": "伊勢市站步行 4 分的商務飯店（2023 年改名），2023 年起館內餐廳有晚餐定食。員工親切，但浴室發霉、排水不乾淨等清潔和老舊的抱怨多，楽天 3.89、Google 3.5 是伊勢市站周邊偏低的。",
@@ -2394,7 +2442,7 @@
       "id": "miyamachi",
       "mode": "walk",
       "minutes": 13,
-      "note": "OSRM 步行 1,002 m 約 13 分（係數 1）；宮町站是無人站。楽天：JR・近鉄伊勢市駅より徒歩約18分；じゃらん：JR伊勢市駅徒歩15分、タクシー5分"
+      "note": "路線估算步行 1,002 m 約 13 分；宮町站是無人站。楽天：JR・近鉄伊勢市駅より徒歩約18分；じゃらん：JR伊勢市駅徒歩15分、タクシー5分"
     },
     "pickup": null,
     "meals": "varies",
@@ -2554,6 +2602,12 @@
         "url": "https://www.jalan.net/yad323334/",
         "retrieved": "2026-10-18",
         "note": "じゃらん 4.6（530 件）、伊勢市站步行 15 分（頁面多亂碼）"
+      },
+      {
+        "type": "osm",
+        "url": "https://router.project-osrm.org/",
+        "retrieved": "2026-10-18",
+        "note": "附近晚餐店的步行分鐘（OSRM 路線估算，scripts/lodging-dinner-access.mjs）"
       }
     ],
     "verified": false,
@@ -2582,7 +2636,7 @@
         },
         "note": "15 人（全部以大人計）分 N 間同住的組合，有空房的列出；只代表查詢當天楽天上的庫存"
       },
-      "dinnerAccessNote": "步行 20 分內的晚餐店 8 家以上（只查最近 8 家）：ぎょうざの美鈴 5 分、懐石 かみむら 5 分、一月家 8 分 等（選素泊、朝食付方案時；OSRM，scripts/lodging-dinner-access.mjs，2026-10-18）"
+      "dinnerAccessNote": "步行 20 分內的晚餐店 8 家以上（只查最近 8 家）：ぎょうざの美鈴 5 分、懐石 かみむら 5 分、一月家 8 分 等（選素泊、朝食付方案時）"
     },
     "summary": {
       "text": "明治 30 年創業、約 130 年的老舖旅館，只有 8 間和室，女將、大女將穿和服送客的款待和份量大的晚餐（伊勢うどん、さめのたれ、てごね寿司）是招牌。建築老但乾淨，浴池小要輪流。",
@@ -2836,6 +2890,12 @@
         "url": "https://www.pref.mie.lg.jp/common/content/000968175.pdf",
         "retrieved": "2026-10-18",
         "note": "文化財概要：昭和 2 年建、原名花屋、昭和 27 年改名"
+      },
+      {
+        "type": "osm",
+        "url": "https://router.project-osrm.org/",
+        "retrieved": "2026-10-18",
+        "note": "附近晚餐店的步行分鐘（OSRM 路線估算，scripts/lodging-dinner-access.mjs）"
       }
     ],
     "verified": false,
@@ -2864,7 +2924,7 @@
         },
         "note": "15 人（全部以大人計）分 N 間同住的組合，有空房的列出；只代表查詢當天楽天上的庫存"
       },
-      "dinnerAccessNote": "步行 20 分內的晚餐店 8 家以上（只查最近 8 家）：こま田 2 分、虎丸 3 分、牡蠣の朋 3 分 等（選素泊、朝食付方案時；OSRM，scripts/lodging-dinner-access.mjs，2026-10-18）"
+      "dinnerAccessNote": "步行 20 分內的晚餐店 8 家以上（只查最近 8 家）：こま田 2 分、虎丸 3 分、牡蠣の朋 3 分 等（選素泊、朝食付方案時）"
     },
     "summary": {
       "text": "河崎附近的國登錄有形文化財木造旅館，2014 年起改成夫婦經營的和風 B&B，有大正～昭和氛圍和水琴窟中庭。10 室全在 2 樓，房內沒有衛浴，不供晚餐；冬季每週有 1～2 天休館。",
@@ -3136,6 +3196,12 @@
         "url": "https://www.jalan.net/yad377473/",
         "retrieved": "2026-10-18",
         "note": "じゃらん クチコミ総合、評論數（scripts/jalan.mjs）"
+      },
+      {
+        "type": "osm",
+        "url": "https://router.project-osrm.org/",
+        "retrieved": "2026-10-18",
+        "note": "附近晚餐店的步行分鐘（OSRM 路線估算，scripts/lodging-dinner-access.mjs）"
       }
     ],
     "verified": false,
@@ -3163,7 +3229,7 @@
         },
         "note": "15 人（全部以大人計）分 N 間同住的組合，有空房的列出；只代表查詢當天楽天上的庫存"
       },
-      "dinnerAccessNote": "步行 20 分內的晚餐店 8 家以上（只查最近 8 家）：こま田 1 分、虎丸 2 分、牡蠣の朋 2 分 等（OSRM，scripts/lodging-dinner-access.mjs，2026-10-18）"
+      "dinnerAccessNote": "步行 20 分內的晚餐店 8 家以上（只查最近 8 家）：こま田 1 分、虎丸 2 分、牡蠣の朋 2 分 等"
     },
     "summary": {
       "text": "2025 年開業、河崎商人町古民家改裝的分散型飯店，8 室分在 5～6 棟，每室是整棟或整間貸切、全部是床。早餐是神饌發想的和定食，不供晚餐；評論還很少。",
@@ -3262,7 +3328,7 @@
       "id": "miyamachi",
       "mode": "walk",
       "minutes": 11,
-      "note": "OSRM 步行 825 m 約 11 分（係數 1）；宮町站是無人站。JR 伊勢市站約 15 分（直線估算，T8b）"
+      "note": "路線估算步行 825 m 約 11 分；宮町站是無人站。JR 伊勢市站約 15 分（直線估算）"
     },
     "pickup": "楽天未列一般接送；2022 年心得提到有接送到車站，需事先確認",
     "meals": "varies",
@@ -3427,6 +3493,12 @@
         "url": "https://4travel.jp/dm_hotel-10037579",
         "retrieved": "2026-10-18",
         "note": "3.15（3 則，2011～2021），餐食 4.25、無障礙 2.00"
+      },
+      {
+        "type": "osm",
+        "url": "https://router.project-osrm.org/",
+        "retrieved": "2026-10-18",
+        "note": "附近晚餐店的步行分鐘（OSRM 路線估算，scripts/lodging-dinner-access.mjs）"
       }
     ],
     "verified": false,
@@ -3456,7 +3528,7 @@
         },
         "note": "15 人（全部以大人計）分 N 間同住的組合，有空房的列出；只代表查詢當天楽天上的庫存"
       },
-      "dinnerAccessNote": "步行 20 分內的晚餐店 8 家以上（只查最近 8 家）：ぎょうざの美鈴 4 分、一月家 5 分、懐石 かみむら 6 分 等（選素泊、朝食付方案時；OSRM，scripts/lodging-dinner-access.mjs，2026-10-18）"
+      "dinnerAccessNote": "步行 20 分內的晚餐店 8 家以上（只查最近 8 家）：ぎょうざの美鈴 4 分、一月家 5 分、懐石 かみむら 6 分 等（選素泊、朝食付方案時）"
     },
     "summary": {
       "text": "鰻魚店起家、約 130 年的料理旅館，うな重、伊勢海老、さめのたれ的膳評價好。昭和初期的老建築，浴室小、無障礙評分低；楽天分數不公開，最新心得是 2023 年。",
@@ -3467,7 +3539,7 @@
       ],
       "cons": [
         "Google 3.9（58 則），楽天平均不公開",
-        "昭和初期老建築，浴室小，4travel 無障礙 2.00",
+        "昭和初期老建築，浴室小，心得的無障礙評分很低",
         "心得最新 2023-06，近況不明"
       ],
       "basedOn": [
@@ -3494,7 +3566,7 @@
         "recommend": "楽天平均不公開（92 則多是 4～5 分）、Google 3.9（58 則），資料少 → 3",
         "meals": "沒有楽天細項；4travel 餐食 4.25，心得稱讚うな重、牡蠣フライ",
         "groupFit": "10 室、每室 1～4 人，15 人要包下大部分，要電話問",
-        "elderFit": "老建築、和室應是鋪被，電梯沒有來源；4travel 無障礙 2.00",
+        "elderFit": "老建築、和室應是鋪被，電梯沒有來源；心得的無障礙評分很低",
         "accessEase": "近鐵宮町站步行約 11 分；2022 年心得說有接送到車站，現況要確認"
       },
       "confidence": "low",
@@ -3901,6 +3973,12 @@
         "url": "https://hotel.travel.rakuten.co.jp/hotelinfo/plan/193960",
         "retrieved": "2026-10-18",
         "note": "定員 10、寢具配置、浴室 1、停車 1 台、價格"
+      },
+      {
+        "type": "osm",
+        "url": "https://router.project-osrm.org/",
+        "retrieved": "2026-10-18",
+        "note": "附近晚餐店的步行分鐘（OSRM 路線估算，scripts/lodging-dinner-access.mjs）"
       }
     ],
     "verified": false,
@@ -3928,7 +4006,7 @@
         "note": "15 人（全部以大人計）分 N 間同住的組合，有空房的列出；只代表查詢當天楽天上的庫存"
       },
       "googleMapsNote": "Google 地圖搜尋不到這間（2026-10-18），links.googleMaps 用座標搜尋連結",
-      "dinnerAccessNote": "步行 20 分內的晚餐店 8 家以上（只查最近 8 家）：伊勢うどんのまめや 3 分、向井酒の店 3 分、満船屋 HANARE 5 分 等（OSRM，scripts/lodging-dinner-access.mjs，2026-10-18）"
+      "dinnerAccessNote": "步行 20 分內的晚餐店 8 家以上（只查最近 8 家）：伊勢うどんのまめや 3 分、向井酒の店 3 分、満船屋 HANARE 5 分 等"
     },
     "summary": {
       "text": "伊勢市站步行約 1 分的一棟包租民宿（158 m²），最多 10 人，有廚房、洗衣機、烘乾機。只有 1 則評論、Google 找不到，15 人住不下，可以當 4～10 人小組的住處。",
@@ -4156,6 +4234,12 @@
         "url": "https://4travel.jp/dm_hotel-11774859",
         "retrieved": "2026-10-18",
         "note": "使用者投稿資料：女性專用 guesthouse、大浴場（可能過時）"
+      },
+      {
+        "type": "osm",
+        "url": "https://router.project-osrm.org/",
+        "retrieved": "2026-10-18",
+        "note": "附近晚餐店的步行分鐘（OSRM 路線估算，scripts/lodging-dinner-access.mjs）"
       }
     ],
     "verified": false,
@@ -4185,7 +4269,7 @@
         },
         "note": "15 人（全部以大人計）分 N 間同住的組合，有空房的列出；只代表查詢當天楽天上的庫存"
       },
-      "dinnerAccessNote": "步行 20 分內的晚餐店 8 家以上（只查最近 8 家）：貫 5 分、オステリアラブラ 5 分、ボン・ヴィヴァン 6 分 等（OSRM，scripts/lodging-dinner-access.mjs，2026-10-18）"
+      "dinnerAccessNote": "步行 20 分內的晚餐店 8 家以上（只查最近 8 家）：貫 5 分、オステリアラブラ 5 分、ボン・ヴィヴァン 6 分 等"
     },
     "summary": {
       "text": "近鐵宇治山田站步行 5 分、外宮步行 5 分的小旅館，只有 2 間房（3F 和室 5 人、2F 洋室 4 人），兩間都訂就是整館約 9 人。乾淨安靜、女將會推薦伊勢美食；只收現金、不供餐。",
@@ -4328,7 +4412,7 @@
     "accessibility": {
       "elevator": null,
       "beds": "和室（應為鋪被，來源沒寫明）",
-      "stairs": "懸崖造木造 6 層，沿石階斜坡建，館內階梯、高低差多，心得說不適合腳不好的人；4travel バリアフリー 2.00",
+      "stairs": "懸崖造木造 6 層，沿石階斜坡建，館內階梯、高低差多，心得說不適合腳不好的人，心得的無障礙評分很低",
       "kids": null,
       "note": "館內像迷宮；冬季隙間風；廁所浴室是否共用不明"
     },
@@ -4370,7 +4454,7 @@
         "type": "booking-site",
         "url": "https://4travel.jp/dm_hotel-10058529",
         "retrieved": "2026-10-18",
-        "note": "3.27 分 9 則；階梯多、隙間風、可住 6 間（2024-04）、料理好吃"
+        "note": "3.27 分 9 則；階梯多、隙間風、可住 6 間（2024-04）、料理好吃；無障礙 2.00"
       },
       {
         "type": "media",
@@ -4429,7 +4513,7 @@
         "recommend": "じゃらん 4.6、Google 4.5，但評論都不到 200 則、4travel 3.27（差 1 分以上）→ 3",
         "meals": "一泊二食，沒有楽天細項；4travel 食事 3.50",
         "groupFit": "房數只有 2024 年心得的「可住 6 間」，每房人數不明，15 人要電話確認",
-        "elderFit": "沿石階建造、館內階梯多，4travel バリアフリー 2.00；電梯沒有來源（沒有確定沒有，所以不打 1）",
+        "elderFit": "沿石階建造、館內階梯多，心得的無障礙評分很低；電梯沒有來源（沒有確定沒有，所以不打 1）",
         "accessEase": "近鐵五十鈴川站步行約 15 分，或伊勢市站搭巴士約 10 分"
       },
       "confidence": "low",
@@ -4680,6 +4764,12 @@
         "url": "https://www.jalan.net/yad326054/",
         "retrieved": "2026-10-18",
         "note": "じゃらん クチコミ総合、評論數（scripts/jalan.mjs）"
+      },
+      {
+        "type": "osm",
+        "url": "https://router.project-osrm.org/",
+        "retrieved": "2026-10-18",
+        "note": "附近晚餐店的步行分鐘（OSRM 路線估算，scripts/lodging-dinner-access.mjs）"
       }
     ],
     "verified": false,
@@ -4708,7 +4798,7 @@
         },
         "note": "15 人（全部以大人計）分 N 間同住的組合，有空房的列出；只代表查詢當天楽天上的庫存"
       },
-      "dinnerAccessNote": "步行 20 分內的晚餐店 3 家：さし汐 8 分（直線估算）、とんかつ 四十三番 伊勢店 10 分、Knott's Berry 11 分（OSRM，scripts/lodging-dinner-access.mjs，2026-10-18）"
+      "dinnerAccessNote": "步行 20 分內的晚餐店 3 家：さし汐 8 分（直線估算）、とんかつ 四十三番 伊勢店 10 分、Knott's Berry 11 分"
     },
     "summary": {
       "text": "JR 五十鈴ヶ丘站旁的商務飯店，價格便宜，早餐（伊勢うどん、咖哩）和櫃檯評價好。建築老舊但打掃乾淨；大浴場只限男性，唯一的 15 畳和室在電梯到不了的 7 樓。",
@@ -4986,6 +5076,12 @@
         "url": "https://www.jalan.net/yad348644/",
         "retrieved": "2026-10-18",
         "note": "じゃらん クチコミ総合、評論數（scripts/jalan.mjs）"
+      },
+      {
+        "type": "osm",
+        "url": "https://router.project-osrm.org/",
+        "retrieved": "2026-10-18",
+        "note": "附近晚餐店的步行分鐘（OSRM 路線估算，scripts/lodging-dinner-access.mjs）"
       }
     ],
     "verified": false,
@@ -5014,7 +5110,7 @@
         },
         "note": "15 人（全部以大人計）分 N 間同住的組合，有空房的列出；只代表查詢當天楽天上的庫存"
       },
-      "dinnerAccessNote": "步行 20 分內的晚餐店 1 家：焼肉すだく 伊勢神宮おはらい町店 12 分（選素泊、朝食付方案時；OSRM，scripts/lodging-dinner-access.mjs，2026-10-18）"
+      "dinnerAccessNote": "步行 20 分內的晚餐店 1 家：焼肉すだく 伊勢神宮おはらい町店 12 分（選素泊、朝食付方案時）"
     },
     "summary": {
       "text": "內宮步行約 15 分的溫泉旅館，2026 年 4 月全館改裝重新開幕，58 室全部附露天風呂、榻榻米上放床。楽天 4.66、じゃらん 4.6，料理（伊勢海老、松阪牛會席）和溫泉都是高分。",
@@ -5203,7 +5299,7 @@
       "beds": "本館洋室ツイン有床；西館有 12 畳和室配 2 張床的房型；其他和室鋪被",
       "stairs": "本館客室在 2、3 樓，大浴場在西館 1 樓；電梯與階梯資訊官網、楽天都未寫",
       "kids": "4 歲～小學 6 年級：一泊二食本館 10,500 円、西館 9,500 円（兒童餐）；3 歲以下免宿泊費（被褥、餐另計）；國中生以上大人價",
-      "note": "可借輪椅、有 AED；4travel 無障礙評分 3.29（各項最低）"
+      "note": "可借輪椅、有 AED；心得的評分裡無障礙最低"
     },
     "reservation": {
       "methods": [
@@ -5284,13 +5380,19 @@
         "type": "booking-site",
         "url": "https://4travel.jp/dm_hotel-10037575",
         "retrieved": "2026-10-18",
-        "note": "3.84（87 則），設備不新、西館無衛浴、無障礙分數低"
+        "note": "3.84（87 則），設備不新、西館無衛浴、無障礙分數低；無障礙 3.29（各項最低）"
       },
       {
         "type": "booking-site",
         "url": "https://www.jalan.net/yad328192/",
         "retrieved": "2026-10-18",
         "note": "じゃらん クチコミ総合、評論數（scripts/jalan.mjs）"
+      },
+      {
+        "type": "osm",
+        "url": "https://router.project-osrm.org/",
+        "retrieved": "2026-10-18",
+        "note": "附近晚餐店的步行分鐘（OSRM 路線估算，scripts/lodging-dinner-access.mjs）"
       }
     ],
     "verified": false,
@@ -5322,7 +5424,7 @@
         },
         "note": "15 人（全部以大人計）分 N 間同住的組合，有空房的列出；只代表查詢當天楽天上的庫存"
       },
-      "dinnerAccessNote": "步行 20 分內的晚餐店 1 家：焼肉すだく 伊勢神宮おはらい町店 4 分（選素泊、朝食付方案時；OSRM，scripts/lodging-dinner-access.mjs，2026-10-18）"
+      "dinnerAccessNote": "步行 20 分內的晚餐店 1 家：焼肉すだく 伊勢神宮おはらい町店 4 分（選素泊、朝食付方案時）"
     },
     "summary": {
       "text": "內宮宇治橋步行 5 分的住宿設施，住客可以參加每天早上 6:30 職員帶領的內宮早朝參拜。和室為主、有 8 人的 21 畳房，有兒童餐和兒童價；設備不新，西館和室沒有衛浴。",
@@ -5564,6 +5666,12 @@
         "url": "https://travel.rakuten.co.jp/HOTEL/147038/CUSTOM/147038150126171443.html",
         "retrieved": "2026-10-18",
         "note": "交通與步行路線、電話"
+      },
+      {
+        "type": "osm",
+        "url": "https://router.project-osrm.org/",
+        "retrieved": "2026-10-18",
+        "note": "附近晚餐店的步行分鐘（OSRM 路線估算，scripts/lodging-dinner-access.mjs）"
       }
     ],
     "verified": false,
@@ -5591,7 +5699,7 @@
         },
         "note": "15 人（全部以大人計）分 N 間同住的組合，有空房的列出；只代表查詢當天楽天上的庫存"
       },
-      "dinnerAccessNote": "步行 20 分內的晚餐店 2 家：焼肉すだく 伊勢神宮おはらい町店 6 分、かぐら 20 分（OSRM，scripts/lodging-dinner-access.mjs，2026-10-18）"
+      "dinnerAccessNote": "步行 20 分內的晚餐店 2 家：焼肉すだく 伊勢神宮おはらい町店 6 分、かぐら 20 分"
     },
     "summary": {
       "text": "內宮宇治橋步行 8 分、只賣包棟的小宿（最多 7 人），主人是神社検定 1 級的導遊，外宮傍晚、內宮清晨的導覽評價很高。寢室在 2F、廁所浴室在 1F，樓梯陡；不供餐。",
@@ -5842,6 +5950,12 @@
         "url": "https://www.jalan.net/yad386316/",
         "retrieved": "2026-10-18",
         "note": "亂碼多；評分未公開"
+      },
+      {
+        "type": "osm",
+        "url": "https://router.project-osrm.org/",
+        "retrieved": "2026-10-18",
+        "note": "附近晚餐店的步行分鐘（OSRM 路線估算，scripts/lodging-dinner-access.mjs）"
       }
     ],
     "verified": false,
@@ -5868,7 +5982,7 @@
         },
         "note": "15 人（全部以大人計）分 N 間同住的組合，有空房的列出；只代表查詢當天楽天上的庫存"
       },
-      "dinnerAccessNote": "步行 20 分內的晚餐店 3 家：焼肉すだく 伊勢神宮おはらい町店 7 分、カンパーニュ 18 分、かぐら 19 分（OSRM，scripts/lodging-dinner-access.mjs，2026-10-18）"
+      "dinnerAccessNote": "步行 20 分內的晚餐店 3 家：焼肉すだく 伊勢神宮おはらい町店 7 分、カンパーニュ 18 分、かぐら 19 分"
     },
     "summary": {
       "text": "おはらい町旁的古民家素泊民宿，分成「おはらい町通り荘」4 間個室（合計 12 人、衛浴共用）和「宇治浦田荘」包棟（6 人），兩棟相距約 20 m，全訂理論上 18 人。評論很少，管理人親切、會介紹晚上的店。",
@@ -6118,6 +6232,12 @@
         "url": "https://www.jalan.net/yad379992/",
         "retrieved": "2026-10-18",
         "note": "じゃらん クチコミ総合、評論數（scripts/jalan.mjs）"
+      },
+      {
+        "type": "osm",
+        "url": "https://router.project-osrm.org/",
+        "retrieved": "2026-10-18",
+        "note": "附近晚餐店的步行分鐘（OSRM 路線估算，scripts/lodging-dinner-access.mjs）"
       }
     ],
     "extra": {
@@ -6145,7 +6265,7 @@
         },
         "note": "15 人（全部以大人計）分 N 間同住的組合都沒有空房；2/9 只查到 1 間 3 人、1 間 2 人有空（2026-10-18 楽天庫存）"
       },
-      "dinnerAccessNote": "步行 20 分內的晚餐店 8 家以上（只查最近 8 家）：オステリアラブラ 4 分、大喜 4 分、貫 5 分 等（選素泊、朝食付方案時；OSRM，scripts/lodging-dinner-access.mjs，2026-10-18）"
+      "dinnerAccessNote": "步行 20 分內的晚餐店 8 家以上（只查最近 8 家）：オステリアラブラ 4 分、大喜 4 分、貫 5 分 等（選素泊、朝食付方案時）"
     },
     "summary": {
       "text": "近鐵伊勢市站步行 3 分的グリーンズ系列商務飯店，1 樓有松阪牛牛排店，2026 年 9 月改版的早餐評價好。楽天 3.58、Google 3.5，浴室、設備老舊的分數低；2/9、2/10 楽天 15 人組合都沒有空房。",
@@ -6406,6 +6526,12 @@
         "url": "https://www.jalan.net/yad311771/",
         "retrieved": "2026-10-18",
         "note": "じゃらん クチコミ総合、評論數（scripts/jalan.mjs）"
+      },
+      {
+        "type": "osm",
+        "url": "https://router.project-osrm.org/",
+        "retrieved": "2026-10-18",
+        "note": "附近晚餐店的步行分鐘（OSRM 路線估算，scripts/lodging-dinner-access.mjs）"
       }
     ],
     "extra": {
@@ -6443,7 +6569,7 @@
         },
         "note": "15 人（全部以大人計）分 N 間同住的組合，有空房的列出；只代表查詢當天楽天上的庫存"
       },
-      "dinnerAccessNote": "步行 20 分內的晚餐店 8 家以上（只查最近 8 家）：いおり 8 分、牡蠣の朋 9 分、こま田 10 分 等（選素泊、朝食付方案時；OSRM，scripts/lodging-dinner-access.mjs，2026-10-18）"
+      "dinnerAccessNote": "步行 20 分內的晚餐店 8 家以上（只查最近 8 家）：いおり 8 分、牡蠣の朋 9 分、こま田 10 分 等（選素泊、朝食付方案時）"
     },
     "summary": {
       "text": "伊勢市站東約 1.5 km 的 217 室大型飯店，12 樓有展望大浴場（內湯＋露天），伊勢市站有免費接送（前一天預約）。全為西式床，房多容易一起訂；但館內老舊、禁菸房有菸味的意見多，沒有晚餐方案。",
@@ -6661,6 +6787,12 @@
         "url": "https://www.jalan.net/yad396262/",
         "retrieved": "2026-10-18",
         "note": "じゃらん クチコミ総合、評論數（scripts/jalan.mjs）"
+      },
+      {
+        "type": "osm",
+        "url": "https://router.project-osrm.org/",
+        "retrieved": "2026-10-18",
+        "note": "附近晚餐店的步行分鐘（OSRM 路線估算，scripts/lodging-dinner-access.mjs）"
       }
     ],
     "extra": {
@@ -6688,7 +6820,7 @@
         },
         "note": "15 人組合都沒有空房（最多 14 人）；2026-11-17 1 間 2 人也查不到，2027-02 方案可能還沒開（2026-10-18 楽天庫存）"
       },
-      "dinnerAccessNote": "步行 20 分內的晚餐店 8 家以上（只查最近 8 家）：豚捨 外宮前店 3 分、ボン・ヴィヴァン 4 分、蔵deらーめん 5 分 等（OSRM，scripts/lodging-dinner-access.mjs，2026-10-18）"
+      "dinnerAccessNote": "步行 20 分內的晚餐店 8 家以上（只查最近 8 家）：豚捨 外宮前店 3 分、ボン・ヴィヴァン 4 分、蔵deらーめん 5 分 等"
     },
     "summary": {
       "text": "外宮步行 3 分的兩層町家（2024 年開業），2F 和室 8 人、1F 洋室 6 人分開賣，兩層都訂最多 14 人。無人入住、素泊；樓梯陡、2 樓腳步聲會傳到 1 樓，評論只有 10 多則。",

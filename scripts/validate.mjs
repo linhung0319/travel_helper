@@ -6,6 +6,7 @@
 //   4. 引用的 ID（最近車站、anchors、轉乘車站…）都存在
 //   5. region 在 areas.json 該區域的 regions 裡
 //   6. data/redirects.json（合併重複點的轉址）：舊 ID 已經不在資料裡、新 ID 存在、沒有連鎖
+//   7. 給人看的欄位沒有整理時的筆記（「見 conflicts」「jeepe 說」、OSRM、任務 ID…；規則在 lib/work-notes.mjs，T44a）
 //
 // 區域不寫死（T24）：區域 ID、檔案路徑裡的 areas/<area>/、raw/<area>/ 都從 areas.json 讀。
 // 新增區域時只要把資料放進 data/areas/<新區域>/、areas.json 加上這一區，不用改這支程式。
@@ -20,6 +21,7 @@ import Ajv2020 from 'ajv/dist/2020.js';
 import addFormats from 'ajv-formats';
 import localizeZhTW from 'ajv-i18n/localize/zh-TW/index.js';
 import { loadSchemaDocs } from './lib/schemas.mjs';
+import { findWorkNotes } from './lib/work-notes.mjs';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 
@@ -221,6 +223,8 @@ function main() {
         if (!rec || typeof rec !== 'object' || typeof rec.id !== 'string') continue;
         if (points.has(rec.id)) err(shown, `ID「${rec.id}」重複（也出現在 ${points.get(rec.id).file}）`);
         else points.set(rec.id, { file: shown, record: rec });
+        // 給人看的欄位不能夾著整理資料時的筆記（T44a）
+        for (const h of findWorkNotes(rec)) err(shown, `[${rec.id}] ${h.path} 有整理時的筆記「…${h.match}…」：${h.hint}`);
         if (areaInPath && rec.area && rec.area !== areaInPath) {
           err(shown, `[${rec.id}] 的 area 是「${rec.area}」，但檔案放在 areas/${areaInPath}/`);
         }

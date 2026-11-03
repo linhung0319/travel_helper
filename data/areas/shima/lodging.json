@@ -72,7 +72,7 @@
         "retrieved": "2026-10-18"
       },
       {
-        "plan": "素泊 楽天 15 人組合最低價（【シンプルステイ】美しい景色と静かに流れる志摩時間  何もしない贅沢を堪能する＜お部屋のみ＞）",
+        "plan": "素泊 楽天 15 人組合最低價（【シンプルステイ】美しい景色と静かに流れる志摩時間 何もしない贅沢を堪能する＜お部屋のみ＞）",
         "unit": "per-person",
         "adult": 16005,
         "child": null,
@@ -96,7 +96,7 @@
         "retrieved": "2026-10-18"
       },
       {
-        "plan": "素泊 楽天 15 人組合最低價（【シンプルステイ】美しい景色と静かに流れる志摩時間  何もしない贅沢を堪能する＜お部屋のみ＞）",
+        "plan": "素泊 楽天 15 人組合最低價（【シンプルステイ】美しい景色と静かに流れる志摩時間 何もしない贅沢を堪能する＜お部屋のみ＞）",
         "unit": "per-person",
         "adult": 16005,
         "child": null,
@@ -108,7 +108,7 @@
         "retrieved": "2026-10-18"
       },
       {
-        "plan": "素泊 大人 3＋小學生高年級 1（1 室）最低價（【シンプルステイ】美しい景色と静かに流れる志摩時間  何もしない贅沢を堪能する＜お部屋のみ＞）",
+        "plan": "素泊 大人 3＋小學生高年級 1（1 室）最低價（【シンプルステイ】美しい景色と静かに流れる志摩時間 何もしない贅沢を堪能する＜お部屋のみ＞）",
         "unit": "per-person",
         "adult": 28809,
         "child": null,
@@ -232,6 +232,12 @@
         "url": "https://www.jalan.net/yad312114/",
         "retrieved": "2026-10-18",
         "note": "じゃらん クチコミ総合、評論數（scripts/jalan.mjs）"
+      },
+      {
+        "type": "osm",
+        "url": "https://router.project-osrm.org/",
+        "retrieved": "2026-10-19",
+        "note": "附近晚餐店的步行分鐘（OSRM 路線估算，scripts/lodging-dinner-access.mjs）"
       }
     ],
     "verified": false,
@@ -262,7 +268,7 @@
         },
         "note": "15 人（全部以大人計）分 N 間同住的組合，有空房的列出；只代表查詢當天楽天上的庫存"
       },
-      "dinnerAccessNote": "步行 20 分內的晚餐店 3 家：鉄板焼きレストラン 山吹 4 分、ラ・メール 5 分（直線估算）、和食 浜木綿 5 分（直線估算）（選素泊、朝食付方案時；OSRM，scripts/lodging-dinner-access.mjs，2026-10-19）"
+      "dinnerAccessNote": "步行 20 分內的晚餐店 3 家：鉄板焼きレストラン 山吹 4 分、ラ・メール 5 分（直線估算）、和食 浜木綿 5 分（直線估算）（選素泊、朝食付方案時）"
     },
     "summary": {
       "text": "賢島的老牌飯店，客室保留村野藤吾的設計、面英虞灣，楽天 4.70、じゃらん 4.7、Google 4.6，三邊都高。晚餐是傳統法式「ラ・メール」和和食「浜木綿」（伊勢海老づくし会席到 2027.2）。賢島站步行 5 分，免費接駁不用預約，第一晚搭 18:50 末班也能在 L.O. 19:30 前吃晚餐。",
@@ -520,6 +526,12 @@
         "url": "https://www.jalan.net/yad318402/",
         "retrieved": "2026-10-18",
         "note": "じゃらん クチコミ総合、評論數（scripts/jalan.mjs）"
+      },
+      {
+        "type": "osm",
+        "url": "https://router.project-osrm.org/",
+        "retrieved": "2026-10-19",
+        "note": "附近晚餐店的步行分鐘（OSRM 路線估算，scripts/lodging-dinner-access.mjs）"
       }
     ],
     "verified": false,
@@ -554,7 +566,7 @@
         },
         "note": "15 人（全部以大人計）分 N 間同住的組合，有空房的列出；只代表查詢當天楽天上的庫存"
       },
-      "dinnerAccessNote": "步行 20 分內的晚餐店 1 家：パスタ屋 Michelle 19 分（選素泊、朝食付方案時；OSRM，scripts/lodging-dinner-access.mjs，2026-10-19）"
+      "dinnerAccessNote": "步行 20 分內的晚餐店 1 家：パスタ屋 Michelle 19 分（選素泊、朝食付方案時）"
     },
     "summary": {
       "text": "志摩神明站步行 1 分的美食型飯店，以「プロヴァンス流創作料理」出名，楽天餐 4.86、じゃらん 4.7（2,248 則）。24 室，房型、電梯都查不到；賢島站接送只到 17:30。",
@@ -821,6 +833,12 @@
         "url": "https://www.jalan.net/yad317598/",
         "retrieved": "2026-10-18",
         "note": "じゃらん クチコミ総合、評論數（scripts/jalan.mjs）"
+      },
+      {
+        "type": "osm",
+        "url": "https://router.project-osrm.org/",
+        "retrieved": "2026-10-19",
+        "note": "附近晚餐店的步行分鐘（OSRM 路線估算，scripts/lodging-dinner-access.mjs）"
       }
     ],
     "verified": false,
@@ -859,7 +877,7 @@
         },
         "note": "15 人（全部以大人計）分 N 間同住的組合，有空房的列出；只代表查詢當天楽天上的庫存"
       },
-      "dinnerAccessNote": "步行 20 分內的晚餐店 3 家：和食 浜木綿 4 分（直線估算）、ラ・メール 4 分（直線估算）、鉄板焼きレストラン 山吹 7 分（直線估算）（選素泊、朝食付方案時；OSRM，scripts/lodging-dinner-access.mjs，2026-10-19）"
+      "dinnerAccessNote": "步行 20 分內的晚餐店 3 家：和食 浜木綿 4 分（直線估算）、ラ・メール 4 分（直線估算）、鉄板焼きレストラン 山吹 7 分（直線估算）（選素泊、朝食付方案時）"
     },
     "summary": {
       "text": "賢島山頂的旅館，客房大窗看英虞灣，晚餐是部屋食的満潮会席，有 120 畳的宴會場。賢島站接送 15～21 時、到站打電話就來，是第一晚最好接的一間；晚餐最晚 19:00 開始，要先聯絡。",
@@ -1053,6 +1071,12 @@
         "url": "https://www.jalan.net/yad325195/",
         "retrieved": "2026-10-18",
         "note": "じゃらん クチコミ総合、評論數（scripts/jalan.mjs）"
+      },
+      {
+        "type": "osm",
+        "url": "https://router.project-osrm.org/",
+        "retrieved": "2026-10-19",
+        "note": "附近晚餐店的步行分鐘（OSRM 路線估算，scripts/lodging-dinner-access.mjs）"
       }
     ],
     "verified": false,
@@ -1085,7 +1109,7 @@
         },
         "note": "15 人（全部以大人計）分 N 間同住的組合，有空房的列出；只代表查詢當天楽天上的庫存"
       },
-      "dinnerAccessNote": "步行 20 分內的晚餐店 3 家：和食 浜木綿 5 分（直線估算）、ラ・メール 6 分（直線估算）、鉄板焼きレストラン 山吹 8 分（直線估算）（OSRM，scripts/lodging-dinner-access.mjs，2026-10-19）"
+      "dinnerAccessNote": "步行 20 分內的晚餐店 3 家：和食 浜木綿 5 分（直線估算）、ラ・メール 6 分（直線估算）、鉄板焼きレストラン 山吹 8 分（直線估算）"
     },
     "summary": {
       "text": "賢島站步行 3 分的 5 室小飯店，全室看英虞灣，楽天 4.79、じゃらん 4.5。目前不供晚餐，只有老闆挑在地食材的早餐（加購 900 円）。房間少，15 人住不下。",
@@ -1578,6 +1602,12 @@
         "url": "https://www.jalan.net/yad320403/",
         "retrieved": "2026-10-18",
         "note": "じゃらん クチコミ総合、評論數（scripts/jalan.mjs）"
+      },
+      {
+        "type": "osm",
+        "url": "https://router.project-osrm.org/",
+        "retrieved": "2026-10-19",
+        "note": "附近晚餐店的步行分鐘（OSRM 路線估算，scripts/lodging-dinner-access.mjs）"
       }
     ],
     "verified": false,
@@ -1612,7 +1642,7 @@
         },
         "note": "15 人（全部以大人計）分 N 間同住的組合，有空房的列出；只代表查詢當天楽天上的庫存"
       },
-      "dinnerAccessNote": "步行 20 分內沒有晚餐店（直線 1.6 km 內沒有），要搭車（scripts/lodging-dinner-access.mjs，2026-10-19）"
+      "dinnerAccessNote": "步行 20 分內沒有晚餐店（直線 1.6 km 內沒有），要搭車"
     },
     "summary": {
       "text": "渡鹿野島上的 10 室昭和旅館，主打全館可帶寵物，冬季有松阪牛、伊勢海老、ふぐ、的矢牡蠣 13～14 品的方案。沒有車站接送，要巴士 18 分＋渡船。",
@@ -2592,6 +2622,12 @@
         "url": "https://www.jalan.net/yad310666/",
         "retrieved": "2026-10-18",
         "note": "じゃらん クチコミ総合、評論數（scripts/jalan.mjs）"
+      },
+      {
+        "type": "osm",
+        "url": "https://router.project-osrm.org/",
+        "retrieved": "2026-10-19",
+        "note": "附近晚餐店的步行分鐘（OSRM 路線估算，scripts/lodging-dinner-access.mjs）"
       }
     ],
     "verified": false,
@@ -2632,7 +2668,7 @@
         },
         "note": "15 人（全部以大人計）分 N 間同住的組合，有空房的列出；只代表查詢當天楽天上的庫存"
       },
-      "dinnerAccessNote": "步行 20 分內的晚餐店 2 家：御食事処 味幸 9 分、網元の店八代 16 分（選素泊、朝食付方案時；OSRM，scripts/lodging-dinner-access.mjs，2026-10-19）"
+      "dinnerAccessNote": "步行 20 分內的晚餐店 2 家：御食事処 味幸 9 分、網元の店八代 16 分（選素泊、朝食付方案時）"
     },
     "summary": {
       "text": "面太平洋的浜島溫泉旅館，展望くじら風呂、貸切展望風呂、岩盤浴；10 人以上有團體方案、6～150 人宴會場。Google 3.7，低分評論說老舊、上菜慢、蟲。賢島站接送 20 分、末班 16:40（或 17:40）。",
@@ -2882,6 +2918,12 @@
         "url": "https://www.jalan.net/yad303899/",
         "retrieved": "2026-10-18",
         "note": "じゃらん クチコミ総合、評論數（scripts/jalan.mjs）"
+      },
+      {
+        "type": "osm",
+        "url": "https://router.project-osrm.org/",
+        "retrieved": "2026-10-19",
+        "note": "附近晚餐店的步行分鐘（OSRM 路線估算，scripts/lodging-dinner-access.mjs）"
       }
     ],
     "verified": false,
@@ -2915,7 +2957,7 @@
         },
         "note": "15 人（全部以大人計）分 N 間同住的組合，有空房的列出；只代表查詢當天楽天上的庫存"
       },
-      "dinnerAccessNote": "步行 20 分內的晚餐店 1 家：別亭 まとや 2 分（選素泊、朝食付方案時；OSRM，scripts/lodging-dinner-access.mjs，2026-10-19）"
+      "dinnerAccessNote": "步行 20 分內的晚餐店 1 家：別亭 まとや 2 分（選素泊、朝食付方案時）"
     },
     "summary": {
       "text": "的矢灣旁 372 室的大型度假飯店，自助晚餐 3 部制、別亭 まとや，有大浴場露天。2027-02-01 11:00～02-03 15:00 維修休館，2/2 不能住。Google 3.7，負評集中在人太多。",
@@ -2953,7 +2995,7 @@
       "rationale": {
         "recommend": "楽天 3.93（4,405 則）、じゃらん 4.1、Google 3.7：評價普通，負評是人多、不是設備清潔 → 3",
         "meals": "楽天餐 3.98 → 3（自助）",
-        "groupFit": "372 室、房型 5～9 人；團體要寫信洽詢，宴會場沒查到，15 人能在同一處訂到 → 4（T8g 規則：groupFit 4 不要求宴會場；一起吃晚餐看 meals）",
+        "groupFit": "372 室、房型 5～9 人；團體要寫信洽詢，宴會場沒查到，15 人能在同一處訂到 → 4",
         "elderFit": "有電梯 3 台、多是床、有輪椅用客室，但館大、電梯擠 → 4",
         "accessEase": "鵜方站接駁 33 人座、免預約，每小時 1 班、15 分 → 4；2/2 第一晚：休館（2/2 不能住）"
       },
@@ -3144,6 +3186,12 @@
         "url": "https://www.jalan.net/yad311292/",
         "retrieved": "2026-10-18",
         "note": "じゃらん クチコミ総合、評論數（scripts/jalan.mjs）"
+      },
+      {
+        "type": "osm",
+        "url": "https://router.project-osrm.org/",
+        "retrieved": "2026-10-19",
+        "note": "附近晚餐店的步行分鐘（OSRM 路線估算，scripts/lodging-dinner-access.mjs）"
       }
     ],
     "verified": false,
@@ -3174,7 +3222,7 @@
         },
         "note": "15 人（全部以大人計）分 N 間同住的組合，有空房的列出；只代表查詢當天楽天上的庫存"
       },
-      "dinnerAccessNote": "步行 20 分內的晚餐店 3 家：鉄板焼きレストラン 山吹 17 分（直線估算）、和食 浜木綿 19 分（直線估算）、ラ・メール 19 分（直線估算）（選素泊、朝食付方案時；OSRM，scripts/lodging-dinner-access.mjs，2026-10-19）"
+      "dinnerAccessNote": "步行 20 分內的晚餐店 3 家：鉄板焼きレストラン 山吹 17 分（直線估算）、和食 浜木綿 19 分（直線估算）、ラ・メール 19 分（直線估算）（選素泊、朝食付方案時）"
     },
     "summary": {
       "text": "賢島的 15 室和室旅館，晚餐是地魚船盛會席（伊勢海老、鮑、サザエ），可以從旅館直接釣魚；有大広間。賢島站接送 5 分（15 時以後）。",
@@ -3961,6 +4009,12 @@
         "url": "https://www.jalan.net/yad321594/",
         "retrieved": "2026-10-18",
         "note": "じゃらん クチコミ総合、評論數（scripts/jalan.mjs）"
+      },
+      {
+        "type": "osm",
+        "url": "https://router.project-osrm.org/",
+        "retrieved": "2026-10-19",
+        "note": "附近晚餐店的步行分鐘（OSRM 路線估算，scripts/lodging-dinner-access.mjs）"
       }
     ],
     "verified": false,
@@ -3997,7 +4051,7 @@
         },
         "note": "15 人（全部以大人計）分 N 間同住的組合，有空房的列出；只代表查詢當天楽天上的庫存"
       },
-      "dinnerAccessNote": "步行 20 分內的晚餐店 8 家以上（只查最近 8 家）：LA PIZZICA 2 分、天ぷら とばり 9 分、Shimaフレンチ食堂 ノルポル 10 分 等（OSRM，scripts/lodging-dinner-access.mjs，2026-10-19）"
+      "dinnerAccessNote": "步行 20 分內的晚餐店 8 家以上（只查最近 8 家）：LA PIZZICA 2 分、天ぷら とばり 9 分、Shimaフレンチ食堂 ノルポル 10 分 等"
     },
     "summary": {
       "text": "鵜方的 150 室飯店，幾乎全是床、有 4 人房和無障礙房。2 月不供晚餐（只有早餐自助），晚餐在鵜方站周邊；鵜方站接送到 19:45，第一晚接得上。",
@@ -4290,6 +4344,12 @@
         "url": "https://www.jalan.net/yad302904/",
         "retrieved": "2026-10-18",
         "note": "じゃらん クチコミ総合、評論數（scripts/jalan.mjs）"
+      },
+      {
+        "type": "osm",
+        "url": "https://router.project-osrm.org/",
+        "retrieved": "2026-10-19",
+        "note": "附近晚餐店的步行分鐘（OSRM 路線估算，scripts/lodging-dinner-access.mjs）"
       }
     ],
     "verified": false,
@@ -4328,7 +4388,7 @@
         },
         "note": "15 人（全部以大人計）分 N 間同住的組合，有空房的列出；只代表查詢當天楽天上的庫存"
       },
-      "dinnerAccessNote": "步行 20 分內沒有晚餐店（直線 1.6 km 內沒有），要搭車（scripts/lodging-dinner-access.mjs，2026-10-19）"
+      "dinnerAccessNote": "步行 20 分內沒有晚餐店（直線 1.6 km 內沒有），要搭車"
     },
     "summary": {
       "text": "的矢灣畔的 32 室飯店（舊サンペルラ志摩），晚餐和會席＋飲料全包，小孩是キッズバイキング，有キッズルーム和屋外遊び場。鵜方站接送一天 3 班、末班 16:50。",
@@ -4589,6 +4649,12 @@
         "url": "https://www.jalan.net/yad324307/",
         "retrieved": "2026-10-18",
         "note": "じゃらん クチコミ総合、評論數（scripts/jalan.mjs）"
+      },
+      {
+        "type": "osm",
+        "url": "https://router.project-osrm.org/",
+        "retrieved": "2026-10-19",
+        "note": "附近晚餐店的步行分鐘（OSRM 路線估算，scripts/lodging-dinner-access.mjs）"
       }
     ],
     "verified": false,
@@ -4624,7 +4690,7 @@
         },
         "note": "15 人（全部以大人計）分 N 間同住的組合，有空房的列出；只代表查詢當天楽天上的庫存"
       },
-      "dinnerAccessNote": "步行 20 分內的晚餐店 1 家：マレナSHIMA フレンチ 2 分（選素泊、朝食付方案時；OSRM，scripts/lodging-dinner-access.mjs，2026-10-19）"
+      "dinnerAccessNote": "步行 20 分內的晚餐店 1 家：マレナSHIMA フレンチ 2 分（選素泊、朝食付方案時）"
     },
     "summary": {
       "text": "近鐵集團的賢島度假飯店，108 室全部是床，有 16 戶 2 層ヴィラ（最多 6 人）。晚餐在館內法式、和食兩間餐廳（伊勢海老、鮑），但 2/2 週二和食休、只有法式。賢島站免費接駁 7 分、末班 18:50。",
@@ -4872,6 +4938,12 @@
         "url": "https://www.kankomie.or.jp/spot/24229",
         "retrieved": "2026-10-18",
         "note": "現在轉到列表頁；搜尋摘要：御座高台的漁夫海女料理民宿、IN 14:00、不能刷卡"
+      },
+      {
+        "type": "osm",
+        "url": "https://router.project-osrm.org/",
+        "retrieved": "2026-10-19",
+        "note": "附近晚餐店的步行分鐘（OSRM 路線估算，scripts/lodging-dinner-access.mjs）"
       }
     ],
     "verified": false,
@@ -4905,7 +4977,7 @@
         },
         "note": "15 人（全部以大人計）分 N 間同住的組合，有空房的列出；只代表查詢當天楽天上的庫存"
       },
-      "dinnerAccessNote": "步行 20 分內沒有晚餐店（直線 1.6 km 內沒有），要搭車（scripts/lodging-dinner-access.mjs，2026-10-19）"
+      "dinnerAccessNote": "步行 20 分內沒有晚餐店（直線 1.6 km 內沒有），要搭車"
     },
     "summary": {
       "text": "御座高台上、海女和漁師經營的 3 室料理民宿，伊勢海老、鮑的活造踊り食い。3 間各 2～5 人，最多剛好 15 人；房間沒有衛浴。",
@@ -5158,6 +5230,12 @@
         "url": "https://www.jalan.net/yad307126/",
         "retrieved": "2026-10-18",
         "note": "じゃらん クチコミ総合、評論數（scripts/jalan.mjs）"
+      },
+      {
+        "type": "osm",
+        "url": "https://router.project-osrm.org/",
+        "retrieved": "2026-10-19",
+        "note": "附近晚餐店的步行分鐘（OSRM 路線估算，scripts/lodging-dinner-access.mjs）"
       }
     ],
     "verified": false,
@@ -5198,7 +5276,7 @@
         },
         "note": "15 人（全部以大人計）分 N 間同住的組合，有空房的列出；只代表查詢當天楽天上的庫存"
       },
-      "dinnerAccessNote": "步行 20 分內沒有晚餐店（最近：タベルナ・アスール 57 分），要搭車（scripts/lodging-dinner-access.mjs，2026-10-19）"
+      "dinnerAccessNote": "步行 20 分內沒有晚餐店（最近：タベルナ・アスール 57 分），要搭車"
     },
     "summary": {
       "text": "全館檜木風格的旅館，檜木大浴場＋露天、整塊檜木大桌的食事處，海側和室看英虞灣。木造 2 層沒有電梯，1 樓客房只有 2 間。鵜方站接送和入住都只到 18:00，第一晚趕不上。",
@@ -5477,6 +5555,12 @@
         "url": "https://www.jalan.net/yad312380/",
         "retrieved": "2026-10-18",
         "note": "じゃらん クチコミ総合、評論數（scripts/jalan.mjs）"
+      },
+      {
+        "type": "osm",
+        "url": "https://router.project-osrm.org/",
+        "retrieved": "2026-10-19",
+        "note": "附近晚餐店的步行分鐘（OSRM 路線估算，scripts/lodging-dinner-access.mjs）"
       }
     ],
     "verified": false,
@@ -5512,7 +5596,7 @@
         },
         "note": "15 人（全部以大人計）分 N 間同住的組合，有空房的列出；只代表查詢當天楽天上的庫存"
       },
-      "dinnerAccessNote": "步行 20 分內沒有晚餐店（直線 1.6 km 內沒有），要搭車（scripts/lodging-dinner-access.mjs，2026-10-19）"
+      "dinnerAccessNote": "步行 20 分內沒有晚餐店（直線 1.6 km 內沒有），要搭車"
     },
     "summary": {
       "text": "渡鹿野島上全室附天然溫泉露天風呂的旅館（福寿荘的姊妹館），創作和洋會席，じゃらん 4.6（1,898 則）、楽天 4.65、Google 4.4。鵜方站接送一天 3 班＋專用船，含晚餐要 18:00 前入住，第一晚趕不上。",
@@ -5550,7 +5634,7 @@
       "rationale": {
         "recommend": "主要訂房網じゃらん 4.6（1,898 則）、Google 4.4 → 5（心得 0 篇，沒讀到負評）",
         "meals": "楽天餐 4.63 → 4",
-        "groupFit": "21 室、房型 2～6 人（各房型室數沒寫），15 人能在同一處訂到 → 4（T8g 規則：groupFit 4 不要求宴會場；一起吃晚餐看 meals）",
+        "groupFit": "21 室、房型 2～6 人（各房型室數沒寫），15 人能在同一處訂到 → 4",
         "elderFit": "館內有階梯、上下船有階梯，客房內不能用輪椅；電梯沒有來源 → 2",
         "accessEase": "鵜方站免費接送一天 3 班（前一天預約）＋專用船 3 分 → 3；2/2 第一晚：接送 16:45、含晚餐 18:00 前入住，趕不上"
       },
@@ -5698,6 +5782,12 @@
         "url": "https://www.kankomie.or.jp/spot/523",
         "retrieved": "2026-10-18",
         "note": "地址含ニューチャムビル3F、步行 2 分、停車 12 台"
+      },
+      {
+        "type": "osm",
+        "url": "https://router.project-osrm.org/",
+        "retrieved": "2026-10-19",
+        "note": "附近晚餐店的步行分鐘（OSRM 路線估算，scripts/lodging-dinner-access.mjs）"
       }
     ],
     "verified": false,
@@ -5727,7 +5817,7 @@
         },
         "note": "15 人（全部以大人計）分 N 間同住的組合，有空房的列出；只代表查詢當天楽天上的庫存"
       },
-      "dinnerAccessNote": "步行 20 分內的晚餐店 8 家以上（只查最近 8 家）：Shimaフレンチ食堂 ノルポル 1 分、海の食堂 大家族 4 分、伊鈴屋 鵜方駅前店 4 分 等（OSRM，scripts/lodging-dinner-access.mjs，2026-10-19）"
+      "dinnerAccessNote": "步行 20 分內的晚餐店 8 家以上（只查最近 8 家）：Shimaフレンチ食堂 ノルポル 1 分、海の食堂 大家族 4 分、伊鈴屋 鵜方駅前店 4 分 等"
     },
     "summary": {
       "text": "鵜方站步行 3 分的 8 室商務旅館，便宜乾淨，不供餐，周邊餐廳多。櫃台在 3 樓、要走樓梯。",
@@ -6009,7 +6099,7 @@
       "rationale": {
         "recommend": "楽天 4.47（410 則）、Google 4.0；照原門檻是 4，依區調整後要 4.5 以上 → 3",
         "meals": "楽天餐 4.56 → 4",
-        "groupFit": "全館 33 室、每間 1～5 人，15 人能在同一處訂到 → 4（T8g 規則：groupFit 4 不要求宴會場；一起吃晚餐看 meals）",
+        "groupFit": "全館 33 室、每間 1～5 人，15 人能在同一處訂到 → 4",
         "elderFit": "椿有附床和室；電梯沒有來源 → 3",
         "accessEase": "賢島站免費接送約 20 分、一天 4 班、要預約 → 3；2/2 第一晚：末班 17:45 趕不上"
       },
@@ -6246,6 +6336,12 @@
         "url": "https://www.jalan.net/yad342596/",
         "retrieved": "2026-10-18",
         "note": "じゃらん クチコミ総合、評論數（scripts/jalan.mjs）"
+      },
+      {
+        "type": "osm",
+        "url": "https://router.project-osrm.org/",
+        "retrieved": "2026-10-19",
+        "note": "附近晚餐店的步行分鐘（OSRM 路線估算，scripts/lodging-dinner-access.mjs）"
       }
     ],
     "verified": false,
@@ -6284,7 +6380,7 @@
         },
         "note": "15 人（全部以大人計）分 N 間同住的組合，有空房的列出；只代表查詢當天楽天上的庫存"
       },
-      "dinnerAccessNote": "步行 20 分內的晚餐店 2 家：タベルナ・アスール 1 分（直線估算）、リアス バイ ココチャ 3 分（直線估算）（選素泊、朝食付方案時；OSRM，scripts/lodging-dinner-access.mjs，2026-10-19）"
+      "dinnerAccessNote": "步行 20 分內的晚餐店 2 家：タベルナ・アスール 1 分（直線估算）、リアス バイ ココチャ 3 分（直線估算）（選素泊、朝食付方案時）"
     },
     "summary": {
       "text": "英虞灣畔西班牙漁村風的度假村住宿，天然溫泉、米其林合作的 RIAS 套餐和 AZUL 自助。全區石板路、階梯多，官網說不是無障礙。鵜方站接送末班 17:40，第一晚要計程車。",
@@ -6322,7 +6418,7 @@
       "rationale": {
         "recommend": "主要訂房網じゃらん 4.6（1,071 則）但 Google 4.0（2,625 則，含日歸）→ 依區調整後 4 要 Google 4.2 → 3",
         "meals": "楽天餐 4.48 → 4",
-        "groupFit": "53 室、每間 2～4 人（加床到 5），15 人能在同一處訂到 → 4（T8g 規則：groupFit 4 不要求宴會場；一起吃晚餐看 meals）",
+        "groupFit": "53 室、每間 2～4 人（加床到 5），15 人能在同一處訂到 → 4",
         "elderFit": "官網明寫非無障礙、階梯多、全區石板路；電梯沒有來源 → 2",
         "accessEase": "鵜方站免費接送一天 4 班（預約）、車程 15 分 → 3；2/2 第一晚：末班 17:40，要計程車並在 19:00 前電話"
       },
@@ -6539,6 +6635,12 @@
         "url": "https://www.jalan.net/yad395984/",
         "retrieved": "2026-10-18",
         "note": "じゃらん クチコミ総合、評論數（scripts/jalan.mjs）"
+      },
+      {
+        "type": "osm",
+        "url": "https://router.project-osrm.org/",
+        "retrieved": "2026-10-19",
+        "note": "附近晚餐店的步行分鐘（OSRM 路線估算，scripts/lodging-dinner-access.mjs）"
       }
     ],
     "verified": false,
@@ -6574,7 +6676,7 @@
         },
         "note": "15 人（全部以大人計）分 N 間同住的組合，有空房的列出；只代表查詢當天楽天上的庫存"
       },
-      "dinnerAccessNote": "步行 20 分內沒有晚餐店（最近：別亭 まとや 27 分），要搭車（scripts/lodging-dinner-access.mjs，2026-10-19）"
+      "dinnerAccessNote": "步行 20 分內沒有晚餐店（最近：別亭 まとや 27 分），要搭車"
     },
     "summary": {
       "text": "的矢灣畔、以的矢かき料理聞名的老字號旅館，冬季（11～3 月）有牡蠣會席。16 室、80 名宴會場，志摩磯部站接送約 10 分（只到 18 時或隨時，來源矛盾）。",
@@ -6789,6 +6891,12 @@
         "url": "https://www.jalan.net/yad341055/",
         "retrieved": "2026-10-18",
         "note": "じゃらん クチコミ総合、評論數（scripts/jalan.mjs）"
+      },
+      {
+        "type": "osm",
+        "url": "https://router.project-osrm.org/",
+        "retrieved": "2026-10-19",
+        "note": "附近晚餐店的步行分鐘（OSRM 路線估算，scripts/lodging-dinner-access.mjs）"
       }
     ],
     "verified": false,
@@ -6822,7 +6930,7 @@
         },
         "note": "15 人（全部以大人計）分 N 間同住的組合，有空房的列出；只代表查詢當天楽天上的庫存"
       },
-      "dinnerAccessNote": "步行 20 分內沒有晚餐店（直線 1.6 km 內沒有），要搭車（scripts/lodging-dinner-access.mjs，2026-10-19）"
+      "dinnerAccessNote": "步行 20 分內沒有晚餐店（直線 1.6 km 內沒有），要搭車"
     },
     "summary": {
       "text": "御座白浜海岸步行 3 分的 4～5 室民宿，晚餐志摩御膳（伊勢海老、鮑、サザエ姿造り），家庭式款待受好評。房間少、沒有接送。",
@@ -7058,6 +7166,12 @@
         "url": "https://www.jalan.net/yad342857/",
         "retrieved": "2026-10-18",
         "note": "じゃらん クチコミ総合、評論數（scripts/jalan.mjs）"
+      },
+      {
+        "type": "osm",
+        "url": "https://router.project-osrm.org/",
+        "retrieved": "2026-10-19",
+        "note": "附近晚餐店的步行分鐘（OSRM 路線估算，scripts/lodging-dinner-access.mjs）"
       }
     ],
     "verified": false,
@@ -7084,7 +7198,7 @@
         },
         "note": "15 人（全部以大人計）分 N 間同住的組合，有空房的列出；只代表查詢當天楽天上的庫存"
       },
-      "dinnerAccessNote": "步行 20 分內沒有晚餐店（直線 1.6 km 內沒有），要搭車（scripts/lodging-dinner-access.mjs，2026-10-19）"
+      "dinnerAccessNote": "步行 20 分內沒有晚餐店（直線 1.6 km 內沒有），要搭車"
     },
     "summary": {
       "text": "全 9 室的溫泉掛け流し小宿，7 室附溫泉露天、另有 5 個免費貸切溫泉，晚餐是料亭個室的伊勢海老、鮑會席。じゃらん 4.8（1,617 則）、楽天 4.61，評價很高。2 層沒有電梯；鵜方站接送只有 15:30、16:30。",
@@ -7316,6 +7430,12 @@
         "url": "https://travel.rakuten.co.jp/HOTEL/67913/67913_std.html",
         "retrieved": "2026-10-18",
         "note": "18 室、IN 14:30～22:00、OUT 10:00、停車 100 台"
+      },
+      {
+        "type": "osm",
+        "url": "https://router.project-osrm.org/",
+        "retrieved": "2026-10-19",
+        "note": "附近晚餐店的步行分鐘（OSRM 路線估算，scripts/lodging-dinner-access.mjs）"
       }
     ],
     "verified": false,
@@ -7352,7 +7472,7 @@
         },
         "note": "15 人（全部以大人計）分 N 間同住的組合，有空房的列出；只代表查詢當天楽天上的庫存"
       },
-      "dinnerAccessNote": "步行 20 分內的晚餐店 1 家：槙之木 19 分（OSRM，scripts/lodging-dinner-access.mjs，2026-10-19）"
+      "dinnerAccessNote": "步行 20 分內的晚餐店 1 家：槙之木 19 分"
     },
     "summary": {
       "text": "約 5 萬坪園區內的 18 棟小木屋，2～9 人一棟，主打可帶寵物。已改成素泊，2026-04 起溫泉大浴場停用，賢島站接送也終止。",
@@ -7388,7 +7508,7 @@
       "rationale": {
         "recommend": "楽天 4.00（319 則），Google 沒有評分 → 3",
         "meals": "不供餐，dinnerAccess walk（槙之木 19 分），部分棟有廚房 → 3",
-        "groupFit": "コテージ 18 棟（每棟 2～9 人），15 人 2～3 棟、同一處訂得到（同伊勢 プラフィーノ），15 人能在同一處訂到 → 4（T8g 規則：groupFit 4 不要求宴會場；一起吃晚餐看 meals）",
+        "groupFit": "コテージ 18 棟（每棟 2～9 人），15 人 2～3 棟、同一處訂得到（同伊勢 プラフィーノ），15 人能在同一處訂到 → 4",
         "elderFit": "每棟有雙人床臥室；階梯沒有來源 → 3",
         "accessEase": "鵜方站計程車 15 分、接送已終止 → 3；2/2 第一晚：入住到 22:00"
       },
@@ -7631,6 +7751,12 @@
         "url": "https://www.jalan.net/yad349958/",
         "retrieved": "2026-10-18",
         "note": "じゃらん クチコミ総合、評論數（scripts/jalan.mjs）"
+      },
+      {
+        "type": "osm",
+        "url": "https://router.project-osrm.org/",
+        "retrieved": "2026-10-19",
+        "note": "附近晚餐店的步行分鐘（OSRM 路線估算，scripts/lodging-dinner-access.mjs）"
       }
     ],
     "verified": false,
@@ -7668,7 +7794,7 @@
         },
         "note": "15 人（全部以大人計）分 N 間同住的組合，有空房的列出；只代表查詢當天楽天上的庫存"
       },
-      "dinnerAccessNote": "步行 20 分內的晚餐店 1 家：レストラン はまなぎ 1 分（選素泊、朝食付方案時；OSRM，scripts/lodging-dinner-access.mjs，2026-10-19）"
+      "dinnerAccessNote": "步行 20 分內的晚餐店 1 家：レストラン はまなぎ 1 分（選素泊、朝食付方案時）"
     },
     "summary": {
       "text": "森林裡的 127 室度假飯店，天然溫泉、室內泳池、天文館，晚餐自助或創作和會席。賢島站免費接駁 25 分、不用預約；餐廳不接受訂位，15 人可能要分開坐。",
@@ -7706,7 +7832,7 @@
       "rationale": {
         "recommend": "楽天 4.24（3,132 則）、Google 4.0 → 3",
         "meals": "楽天餐 4.29 → 3",
-        "groupFit": "127 室、房型定員 3～6 人都查得到；餐廳不接受訂位，15 人能在同一處訂到 → 4（T8g 規則：groupFit 4 不要求宴會場；一起吃晚餐看 meals）",
+        "groupFit": "127 室、房型定員 3～6 人都查得到；餐廳不接受訂位，15 人能在同一處訂到 → 4",
         "elderFit": "有バリアフリールーム、洋室是床；電梯沒有來源 → 3",
         "accessEase": "賢島站免費接駁約 25 分、不用預約 → 3；2/2 第一晚：接駁已停，計程車到、晚餐最終入店 19:30"
       },
@@ -7775,7 +7901,7 @@
     "priceRange": "每人約 28,809 円（素泊；詳見 prices）",
     "prices": [
       {
-        "plan": "素泊 大人 3＋小學生高年級 1（1 室）最低價（【シンプルステイ】美しい景色と静かに流れる志摩時間  何もしない贅沢を堪能する＜お部屋のみ＞）",
+        "plan": "素泊 大人 3＋小學生高年級 1（1 室）最低價（【シンプルステイ】美しい景色と静かに流れる志摩時間 何もしない贅沢を堪能する＜お部屋のみ＞）",
         "unit": "per-person",
         "adult": 28809,
         "child": null,
@@ -7787,7 +7913,7 @@
         "retrieved": "2026-10-18"
       },
       {
-        "plan": "素泊 1 間 大人 4 最低價（【シンプルステイ】美しい景色と静かに流れる志摩時間  何もしない贅沢を堪能する＜お部屋のみ＞）",
+        "plan": "素泊 1 間 大人 4 最低價（【シンプルステイ】美しい景色と静かに流れる志摩時間 何もしない贅沢を堪能する＜お部屋のみ＞）",
         "unit": "per-person",
         "adult": 28809,
         "child": null,
@@ -7841,7 +7967,7 @@
       "beds": "シーリー社製ベッド（未註明房型）；ツイン／キング房型；FUTONスイート（名稱含 FUTON，是否和室未寫）（2）",
       "stairs": null,
       "kids": "楽天訂房表單有小学生高学年／低学年、幼児四種（食事・布団付／食事のみ／布団のみ／不要）區分，價格未寫（7）；兩間餐廳「ご利用は小学生以上」（4、5、6）",
-      "note": "楽天設備欄：車椅子可入、車椅子貸出、バリアフリー厠所、バリアフリー客室（詳細需向飯店確認）（6）；BAILA 宿泊記（2026/07）寫「部屋までのエレベータ」（T9g 深入調查）"
+      "note": "楽天設備欄：車椅子可入、車椅子貸出、バリアフリー厠所、バリアフリー客室（詳細需向飯店確認）（6）；BAILA 宿泊記（2026/07）寫「部屋までのエレベータ」"
     },
     "reservation": {
       "methods": [
@@ -7922,6 +8048,12 @@
         "url": "https://4travel.jp/dm_hotel-10220130",
         "retrieved": "2026-10-20",
         "note": "4travel 口コミ（2023/07～2026/03）：到ザ クラシック 的距離、清潔、晚餐的評價（T9g 深入調查）"
+      },
+      {
+        "type": "osm",
+        "url": "https://router.project-osrm.org/",
+        "retrieved": "2026-10-19",
+        "note": "附近晚餐店的步行分鐘（OSRM 路線估算，scripts/lodging-dinner-access.mjs）"
       }
     ],
     "verified": false,
@@ -7949,7 +8081,7 @@
         },
         "note": "15 人（全部以大人計）分 N 間同住的組合，有空房的列出；只代表查詢當天楽天上的庫存"
       },
-      "dinnerAccessNote": "步行 20 分內的晚餐店 3 家：ラ・メール 10 分、和食 浜木綿 10 分、鉄板焼きレストラン 山吹 14 分（選素泊、朝食付方案時；OSRM，scripts/lodging-dinner-access.mjs，2026-10-19）"
+      "dinnerAccessNote": "步行 20 分內的晚餐店 3 家：ラ・メール 10 分、和食 浜木綿 10 分、鉄板焼きレストラン 山吹 14 分（選素泊、朝食付方案時）"
     },
     "summary": {
       "text": "志摩観光ホテル的全スイート館，50 室都在 100㎡ 以上，楽天 4.88、じゃらん 4.9、Google 4.6，志摩評分最高。館內法式「ラ・メール」、和食「浜木綿」，但兩間餐廳都限小學生以上。賢島站個別接送 3 分（前一天告知到站時間）。",
@@ -7990,7 +8122,7 @@
       "rationale": {
         "recommend": "楽天 4.88（301 則）、じゃらん 4.9、Google 4.6（1,683 則）→ 5",
         "meals": "楽天餐 4.89 → 5；餐廳限小學生以上寫在 cons（kids 另看）",
-        "groupFit": "50 室、每間 2～3 人；宴會頁沒讀、沒有住宿團體方案，15 人能在同一處訂到 → 4（T8g 規則：groupFit 4 不要求宴會場；一起吃晚餐看 meals）",
+        "groupFit": "50 室、每間 2～3 人；宴會頁沒讀、沒有住宿團體方案，15 人能在同一處訂到 → 4",
         "elderFit": "全部是床、有無障礙客房；宿泊記（2026/07）寫有到客房的電梯 → 有電梯有床；但餐廳、大浴場在另一棟 ザ クラシック，口コミ（2024/07）說冷天雨天走過去辛苦 → 4",
         "accessEase": "賢島站個別接送 3 分、要前一天告知到站時間（徒歩 10 分）；2/2 第一晚：可以照到站時間接，送迎幾點結束沒寫"
       },
@@ -8415,6 +8547,12 @@
         "url": "https://www.jalan.net/yad342770/",
         "retrieved": "2026-10-18",
         "note": "じゃらん クチコミ総合、評論數（scripts/jalan.mjs）"
+      },
+      {
+        "type": "osm",
+        "url": "https://router.project-osrm.org/",
+        "retrieved": "2026-10-19",
+        "note": "附近晚餐店的步行分鐘（OSRM 路線估算，scripts/lodging-dinner-access.mjs）"
       }
     ],
     "verified": false,
@@ -8445,7 +8583,7 @@
         },
         "note": "15 人（全部以大人計）分 N 間同住的組合，有空房的列出；只代表查詢當天楽天上的庫存"
       },
-      "dinnerAccessNote": "步行 20 分內的晚餐店 8 家以上（只查最近 8 家）：天ぷら とばり 2 分、みやま亭 6 分、Shimaフレンチ食堂 ノルポル 10 分 等（OSRM，scripts/lodging-dinner-access.mjs，2026-10-19）"
+      "dinnerAccessNote": "步行 20 分內的晚餐店 8 家以上（只查最近 8 家）：天ぷら とばり 2 分、みやま亭 6 分、Shimaフレンチ食堂 ノルポル 10 分 等"
     },
     "summary": {
       "text": "鵜方站步行 15 分的 22 室商務飯店，全館禁菸、不供餐，附近有超市、家庭餐廳。楽天 3.96、Google 3.6，評價普通。",
@@ -8480,7 +8618,7 @@
       "rationale": {
         "recommend": "楽天 3.96（313 則）、じゃらん 4.3、Google 3.6；負評多是 2019 年以前 → 3",
         "meals": "不供餐，dinnerAccess walk（とばり 2 分等）→ 3",
-        "groupFit": "22 室（ツイン 8 室可住 3 人、シングル 14 室）；不供餐，15 人能在同一處訂到 → 4（T8g 規則：groupFit 4 不要求宴會場；一起吃晚餐看 meals）",
+        "groupFit": "22 室（ツイン 8 室可住 3 人、シングル 14 室）；不供餐，15 人能在同一處訂到 → 4",
         "elderFit": "ツイン是床、車椅子可；電梯沒有來源 → 3",
         "accessEase": "鵜方站步行 15 分、沒有接送 → 3；2/2 第一晚：入住到 24:00"
       },
@@ -8895,6 +9033,12 @@
         "url": "https://www.jalan.net/yad310171/",
         "retrieved": "2026-10-18",
         "note": "頁面亂碼未採用；只用 WebSearch 結果摘要（和室 13 室、大浴場 16-9 時、大漁焼 13,800 円）"
+      },
+      {
+        "type": "osm",
+        "url": "https://router.project-osrm.org/",
+        "retrieved": "2026-10-19",
+        "note": "附近晚餐店的步行分鐘（OSRM 路線估算，scripts/lodging-dinner-access.mjs）"
       }
     ],
     "verified": false,
@@ -8926,7 +9070,7 @@
         },
         "note": "15 人（全部以大人計）分 N 間同住的組合，有空房的列出；只代表查詢當天楽天上的庫存"
       },
-      "dinnerAccessNote": "步行 20 分內的晚餐店 1 家：京城 鵜方店 19 分（選素泊、朝食付方案時；OSRM，scripts/lodging-dinner-access.mjs，2026-10-19）"
+      "dinnerAccessNote": "步行 20 分內的晚餐店 1 家：京城 鵜方店 19 分（選素泊、朝食付方案時）"
     },
     "summary": {
       "text": "賢島站車程 3 分的 13 室民宿，有宴會場，晚餐是在地魚介的大漁焼。19 點以後入住就沒有晚餐，第一晚要先電話。資料少（楽天 37 則），找不到官網。",
@@ -9179,6 +9323,12 @@
         "url": "https://www.jalan.net/yad321110/",
         "retrieved": "2026-10-18",
         "note": "じゃらん クチコミ総合、評論數（scripts/jalan.mjs）"
+      },
+      {
+        "type": "osm",
+        "url": "https://router.project-osrm.org/",
+        "retrieved": "2026-10-19",
+        "note": "附近晚餐店的步行分鐘（OSRM 路線估算，scripts/lodging-dinner-access.mjs）"
       }
     ],
     "verified": false,
@@ -9216,7 +9366,7 @@
         },
         "note": "15 人（全部以大人計）分 N 間同住的組合，有空房的列出；只代表查詢當天楽天上的庫存"
       },
-      "dinnerAccessNote": "步行 20 分內的晚餐店 2 家：網元の店八代 15 分、御食事処 味幸 15 分（選素泊、朝食付方案時；OSRM，scripts/lodging-dinner-access.mjs，2026-10-19）"
+      "dinnerAccessNote": "步行 20 分內的晚餐店 2 家：網元の店八代 15 分、御食事処 味幸 15 分（選素泊、朝食付方案時）"
     },
     "summary": {
       "text": "英虞灣邊的大江戸温泉物語 Premium，海の幸バイキング、絶景露天風呂。83 室，房型定員沒寫。鵜方站有料接送要預約（舊資料末班 16:40）；最終入住 19:00。",
@@ -10026,6 +10176,12 @@
         "url": "https://www.jalan.net/yad331417/",
         "retrieved": "2026-10-18",
         "note": "じゃらん クチコミ総合、評論數（scripts/jalan.mjs）"
+      },
+      {
+        "type": "osm",
+        "url": "https://router.project-osrm.org/",
+        "retrieved": "2026-10-19",
+        "note": "附近晚餐店的步行分鐘（OSRM 路線估算，scripts/lodging-dinner-access.mjs）"
       }
     ],
     "verified": false,
@@ -10058,7 +10214,7 @@
         },
         "note": "15 人（全部以大人計）分 N 間同住的組合，有空房的列出；只代表查詢當天楽天上的庫存"
       },
-      "dinnerAccessNote": "步行 20 分內的晚餐店 2 家：タベルナ・アスール 14 分（直線估算）、リアス バイ ココチャ 17 分（直線估算）（選素泊、朝食付方案時；OSRM，scripts/lodging-dinner-access.mjs，2026-10-19）"
+      "dinnerAccessNote": "步行 20 分內的晚餐店 2 家：タベルナ・アスール 14 分（直線估算）、リアス バイ ココチャ 17 分（直線估算）（選素泊、朝食付方案時）"
     },
     "summary": {
       "text": "伊勢志摩國立公園內的大型度假村，2026-04 Villa 新開，有天然溫泉、兒童菜單和室內兒童區；ボールルーム最多 200 人。賢島站接駁要 2 小時前預約。",
@@ -10381,7 +10537,7 @@
       "rationale": {
         "recommend": "楽天 4.47 但只有 64 則（評論數上限 3）",
         "meals": "楽天餐 4.56 → 4",
-        "groupFit": "本館 16 室（每間 2～4 人）＋別邸 4 棟（各最多 8 人）；沒有宴會場，餐廳依團體分桌，15 人能在同一處訂到 → 4（T8g 規則：groupFit 4 不要求宴會場；一起吃晚餐看 meals）",
+        "groupFit": "本館 16 室（每間 2～4 人）＋別邸 4 棟（各最多 8 人）；沒有宴會場，餐廳依團體分桌，15 人能在同一處訂到 → 4",
         "elderFit": "和室也放床、1 樓無障礙房；電梯沒有來源 → 3",
         "accessEase": "鵜方站巴士＋步行 3 分，接送依時段 → 3；2/2 第一晚：晚餐 18:30 前開始，晚到要問"
       },
@@ -10652,6 +10808,12 @@
         "url": "https://www.jalan.net/yad373882/",
         "retrieved": "2026-10-18",
         "note": "じゃらん クチコミ総合、評論數（scripts/jalan.mjs）"
+      },
+      {
+        "type": "osm",
+        "url": "https://router.project-osrm.org/",
+        "retrieved": "2026-10-19",
+        "note": "附近晚餐店的步行分鐘（OSRM 路線估算，scripts/lodging-dinner-access.mjs）"
       }
     ],
     "verified": false,
@@ -10690,7 +10852,7 @@
         },
         "note": "15 人（全部以大人計）分 N 間同住的組合，有空房的列出；只代表查詢當天楽天上的庫存"
       },
-      "dinnerAccessNote": "步行 20 分內的晚餐店 1 家：パスタ屋 Michelle 15 分（OSRM，scripts/lodging-dinner-access.mjs，2026-10-19）"
+      "dinnerAccessNote": "步行 20 分內的晚餐店 1 家：パスタ屋 Michelle 15 分"
     },
     "summary": {
       "text": "森林裡的 16 棟 32 室別墅、小木屋（舊フィオーレ志摩），每棟有廚房、客廳，可帶寵物，2026-07 新開サウナ。不供晚餐，靠 BBQ 食材組、刺身盤或外食；寢室都在 2 樓。",
@@ -10728,7 +10890,7 @@
       "rationale": {
         "recommend": "楽天 4.39（852 則）、Google 4.3；照原門檻是 4，依區調整後要 4.5 以上 → 3",
         "meals": "不供晚餐（朝食バスケット，楽天餐 3.95）；dinnerAccess walk（Michelle 15 分）、可 BBQ → 3",
-        "groupFit": "分棟 16 棟 32 室（每棟 4～6 人），15 人約 3 棟、同一處訂得到（同伊勢 NIPPONIA 河崎），15 人能在同一處訂到 → 4（T8g 規則：groupFit 4 不要求宴會場；一起吃晚餐看 meals）",
+        "groupFit": "分棟 16 棟 32 室（每棟 4～6 人），15 人約 3 棟、同一處訂得到（同伊勢 NIPPONIA 河崎），15 人能在同一處訂到 → 4",
         "elderFit": "全部 1 樓客廳、2 樓寢室，要爬樓梯 → 2",
         "accessEase": "鵜方站計程車約 10 分、沒有接送 → 3；2/2 第一晚：入住到 22:00 沒問題"
       },
@@ -10932,6 +11094,12 @@
         "url": "https://www.jalan.net/yad331214/",
         "retrieved": "2026-10-18",
         "note": "じゃらん クチコミ総合、評論數（scripts/jalan.mjs）"
+      },
+      {
+        "type": "osm",
+        "url": "https://router.project-osrm.org/",
+        "retrieved": "2026-10-19",
+        "note": "附近晚餐店的步行分鐘（OSRM 路線估算，scripts/lodging-dinner-access.mjs）"
       }
     ],
     "verified": false,
@@ -10963,7 +11131,7 @@
         },
         "note": "15 人（全部以大人計）分 N 間同住的組合，有空房的列出；只代表查詢當天楽天上的庫存"
       },
-      "dinnerAccessNote": "步行 20 分內的晚餐店 3 家：和食 浜木綿 4 分（直線估算）、ラ・メール 4 分（直線估算）、鉄板焼きレストラン 山吹 9 分（OSRM，scripts/lodging-dinner-access.mjs，2026-10-19）"
+      "dinnerAccessNote": "步行 20 分內的晚餐店 3 家：和食 浜木綿 4 分（直線估算）、ラ・メール 4 分（直線估算）、鉄板焼きレストラン 山吹 9 分"
     },
     "summary": {
       "text": "賢島站步行 3 分、面英虞灣的平價飯店，有電梯和大浴場。一泊二食、朝食付方案目前休止，只剩素泊（每人約 4,800～5,300 円），晚餐要在外面吃。",
@@ -11001,7 +11169,7 @@
       "rationale": {
         "recommend": "主要訂房網楽天 4.02（354 則）、じゃらん 4.4、Google 4.3 → 3",
         "meals": "現在不供餐，dinnerAccess walk（志摩観光ホテル館內 3 家 4～9 分）→ 3",
-        "groupFit": "29 室（每間 1～4 人）；不供餐，15 人能在同一處訂到 → 4（T8g 規則：groupFit 4 不要求宴會場；一起吃晚餐看 meals）",
+        "groupFit": "29 室（每間 1～4 人）；不供餐，15 人能在同一處訂到 → 4",
         "elderFit": "有電梯、有床的房間（洋室、和室ベット付き）；客室、脫衣所入口有段差 → 4",
         "accessEase": "賢島站步行 3 分；2/2 第一晚：入住到 23:00"
       },
@@ -11452,6 +11620,12 @@
         "url": "https://www.jalan.net/yad343552/",
         "retrieved": "2026-10-18",
         "note": "じゃらん クチコミ総合、評論數（scripts/jalan.mjs）"
+      },
+      {
+        "type": "osm",
+        "url": "https://router.project-osrm.org/",
+        "retrieved": "2026-10-19",
+        "note": "附近晚餐店的步行分鐘（OSRM 路線估算，scripts/lodging-dinner-access.mjs）"
       }
     ],
     "verified": false,
@@ -11486,7 +11660,7 @@
         },
         "note": "15 人（全部以大人計）分 N 間同住的組合，有空房的列出；只代表查詢當天楽天上的庫存"
       },
-      "dinnerAccessNote": "步行 20 分內的晚餐店 8 家以上（只查最近 8 家）：LA PIZZICA 5 分、天ぷら とばり 7 分、Shimaフレンチ食堂 ノルポル 11 分 等（選素泊、朝食付方案時；OSRM，scripts/lodging-dinner-access.mjs，2026-10-19）"
+      "dinnerAccessNote": "步行 20 分內的晚餐店 8 家以上（只查最近 8 家）：LA PIZZICA 5 分、天ぷら とばり 7 分、Shimaフレンチ食堂 ノルポル 11 分 等（選素泊、朝食付方案時）"
     },
     "summary": {
       "text": "鵜方街區的 6 室和室小旅館，價格便宜（素泊每人約 3,500 円），晚餐在 1 樓大広間。Google 3.6：整棟有菸味、長住工人在大廳抽菸。",
@@ -11722,6 +11896,12 @@
         "url": "https://travel.rakuten.co.jp/HOTEL/177971/177971_std.html",
         "retrieved": "2026-10-18",
         "note": "8 室、IN 16:00～19:00、OUT 10:00、停車 40 台、輪椅廁所、夕食広間"
+      },
+      {
+        "type": "osm",
+        "url": "https://router.project-osrm.org/",
+        "retrieved": "2026-10-19",
+        "note": "附近晚餐店的步行分鐘（OSRM 路線估算，scripts/lodging-dinner-access.mjs）"
       }
     ],
     "verified": false,
@@ -11758,7 +11938,7 @@
         },
         "note": "15 人（全部以大人計）分 N 間同住的組合，有空房的列出；只代表查詢當天楽天上的庫存"
       },
-      "dinnerAccessNote": "步行 20 分內沒有晚餐店（直線 1.6 km 內沒有），要搭車（scripts/lodging-dinner-access.mjs，2026-10-19）"
+      "dinnerAccessNote": "步行 20 分內沒有晚餐店（直線 1.6 km 內沒有），要搭車"
     },
     "summary": {
       "text": "志島海邊的豪華露營（グランピング），帳篷和拖車屋共 8 室，晚餐 BBQ。共用淋浴、冬天靠電熱毯，對長輩冬夜偏冷。",
@@ -11976,6 +12156,12 @@
         "url": "https://travel.rakuten.co.jp/HOTEL/178448/178448_std.html",
         "retrieved": "2026-10-18",
         "note": "楽天施設情報：10 室、IN/OUT、停車場、電話受付時間"
+      },
+      {
+        "type": "osm",
+        "url": "https://router.project-osrm.org/",
+        "retrieved": "2026-10-19",
+        "note": "附近晚餐店的步行分鐘（OSRM 路線估算，scripts/lodging-dinner-access.mjs）"
       }
     ],
     "verified": false,
@@ -12017,7 +12203,7 @@
         },
         "note": "15 人（全部以大人計）分 N 間同住的組合，有空房的列出；只代表查詢當天楽天上的庫存"
       },
-      "dinnerAccessNote": "步行 20 分內沒有晚餐店（最近：槙之木 27 分），要搭車（scripts/lodging-dinner-access.mjs，2026-10-19）"
+      "dinnerAccessNote": "步行 20 分內沒有晚餐店（最近：槙之木 27 分），要搭車"
     },
     "summary": {
       "text": "英虞灣前的 10 室度假飯店，家庭房都在 1 樓；不供早餐、餐廳休止，晚餐只有要預約的 BBQ。沒有接送。",
@@ -12235,6 +12421,12 @@
         "url": "https://pastime-inc.com/log-guidebook",
         "retrieved": "2026-10-18",
         "note": "周邊景點車程"
+      },
+      {
+        "type": "osm",
+        "url": "https://router.project-osrm.org/",
+        "retrieved": "2026-10-19",
+        "note": "附近晚餐店的步行分鐘（OSRM 路線估算，scripts/lodging-dinner-access.mjs）"
       }
     ],
     "verified": false,
@@ -12263,7 +12455,7 @@
         },
         "note": "15 人（全部以大人計）分 N 間同住的組合，有空房的列出；只代表查詢當天楽天上的庫存"
       },
-      "dinnerAccessNote": "步行 20 分內的晚餐店 2 家：あのりふぐ料理 まるせい 8 分、料理旅館 丸寅 14 分（OSRM，scripts/lodging-dinner-access.mjs，2026-10-19）"
+      "dinnerAccessNote": "步行 20 分內的晚餐店 2 家：あのりふぐ料理 まるせい 8 分、料理旅館 丸寅 14 分"
     },
     "summary": {
       "text": "安乗的木屋包棟，OCEAN 棟 10 人＋FOREST 棟 6 人，兩棟都有廚房、BBQ 台。無人自助入住；2025/02 的評論說暖氣不夠、很冷，車道坡很陡。",
@@ -12710,6 +12902,12 @@
         "url": "https://travel.rakuten.co.jp/HOTEL/202779/202779_std.html",
         "retrieved": "2026-10-18",
         "note": "姊妹棟 隠れ家：一棟貸し最多 4 人、迷你廚房、IN 最晚 23:00、停車 1 台、無常駐人員"
+      },
+      {
+        "type": "osm",
+        "url": "https://router.project-osrm.org/",
+        "retrieved": "2026-10-19",
+        "note": "附近晚餐店的步行分鐘（OSRM 路線估算，scripts/lodging-dinner-access.mjs）"
       }
     ],
     "verified": false,
@@ -12739,7 +12937,7 @@
         },
         "note": "15 人（全部以大人計）分 N 間同住的組合，有空房的列出；只代表查詢當天楽天上的庫存"
       },
-      "dinnerAccessNote": "步行 20 分內沒有晚餐店（最近：槙之木 81 分），要搭車（scripts/lodging-dinner-access.mjs，2026-10-19）"
+      "dinnerAccessNote": "步行 20 分內沒有晚餐店（最近：槙之木 81 分），要搭車"
     },
     "summary": {
       "text": "立神的海景包棟（3 臥室、最多 12 人），姊妹棟「隠れ家」最多 4 人，合計 16 人。不供餐、附近沒有店；要穿過森林小路，夜裡全黑。",
@@ -12845,7 +13043,7 @@
     "priceRange": "每人約 18,400～23,000 円（素泊；詳見 prices）",
     "prices": [
       {
-        "plan": "素泊 大人 3＋小學生高年級 1（1 室）最低價（一棟貸しのプライベートヴィラ　オーシャンフロントの絶景　５ベッドルーム　【最大14名宿泊可能】  ）",
+        "plan": "素泊 大人 3＋小學生高年級 1（1 室）最低價（一棟貸しのプライベートヴィラ　オーシャンフロントの絶景　５ベッドルーム　【最大14名宿泊可能】 ）",
         "unit": "per-person",
         "adult": 23000,
         "child": null,
@@ -12857,7 +13055,7 @@
         "retrieved": "2026-10-18"
       },
       {
-        "plan": "素泊 1 間 大人 10 最低價（一棟貸しのプライベートヴィラ　オーシャンフロントの絶景　５ベッドルーム　【最大14名宿泊可能】  ）",
+        "plan": "素泊 1 間 大人 10 最低價（一棟貸しのプライベートヴィラ　オーシャンフロントの絶景　５ベッドルーム　【最大14名宿泊可能】 ）",
         "unit": "per-person",
         "adult": 18400,
         "child": null,
@@ -12964,6 +13162,12 @@
         "url": "https://travel.rakuten.co.jp/HOTEL/184799/184799_std.html",
         "retrieved": "2026-10-18",
         "note": "IN 15–23 時、OUT 11 時、停車 5 台、電話"
+      },
+      {
+        "type": "osm",
+        "url": "https://router.project-osrm.org/",
+        "retrieved": "2026-10-19",
+        "note": "附近晚餐店的步行分鐘（OSRM 路線估算，scripts/lodging-dinner-access.mjs）"
       }
     ],
     "verified": false,
@@ -12992,7 +13196,7 @@
         },
         "note": "15 人（全部以大人計）分 N 間同住的組合，有空房的列出；只代表查詢當天楽天上的庫存"
       },
-      "dinnerAccessNote": "步行 20 分內沒有晚餐店（直線 1.6 km 內沒有），要搭車（scripts/lodging-dinner-access.mjs，2026-10-19）"
+      "dinnerAccessNote": "步行 20 分內沒有晚餐店（直線 1.6 km 內沒有），要搭車"
     },
     "summary": {
       "text": "大王町船越的海景包棟別墅，最多 14 人，露天風呂、100㎡ 露台、BBQ、暖爐；隔壁 UMIBE Terrace（8 人）一起訂最多 22 人。不供餐、附近沒有店。",
@@ -13458,6 +13662,12 @@
         "url": "https://d-reserve.jp/GSEA004F01600/GSEA004A01?hotelCode=0000002875&rmcd001=RM00015284&pl=PL00041468",
         "retrieved": "2026-10-18",
         "note": "官網訂房頁，動態載入讀不到價格；電話 090-9118-8014"
+      },
+      {
+        "type": "osm",
+        "url": "https://router.project-osrm.org/",
+        "retrieved": "2026-10-19",
+        "note": "附近晚餐店的步行分鐘（OSRM 路線估算，scripts/lodging-dinner-access.mjs）"
       }
     ],
     "verified": false,
@@ -13485,7 +13695,7 @@
         },
         "note": "15 人（全部以大人計）分 N 間同住的組合，有空房的列出；只代表查詢當天楽天上的庫存"
       },
-      "dinnerAccessNote": "步行 20 分內沒有晚餐店（直線 1.6 km 內沒有），要搭車（scripts/lodging-dinner-access.mjs，2026-10-19）"
+      "dinnerAccessNote": "步行 20 分內沒有晚餐店（直線 1.6 km 內沒有），要搭車"
     },
     "summary": {
       "text": "UMIBE 隔壁的海景包棟，2 間寢室、4 張雙人床、最多 8 人，露天風呂看太平洋。心得全部 5 星，但不供餐、附近沒有店。",
@@ -13956,6 +14166,12 @@
         "url": "https://travel.rakuten.co.jp/HOTEL/197802/197802_std.html",
         "retrieved": "2026-10-18",
         "note": "1 室、最大 10 名、IN15-24/OUT10、停車 2 台免費、地址電話"
+      },
+      {
+        "type": "osm",
+        "url": "https://router.project-osrm.org/",
+        "retrieved": "2026-10-19",
+        "note": "附近晚餐店的步行分鐘（OSRM 路線估算，scripts/lodging-dinner-access.mjs）"
       }
     ],
     "verified": false,
@@ -13986,7 +14202,7 @@
         },
         "note": "15 人（全部以大人計）分 N 間同住的組合，有空房的列出；只代表查詢當天楽天上的庫存"
       },
-      "dinnerAccessNote": "步行 20 分內的晚餐店 1 家：お食事処 ひでちゃん 19 分（OSRM，scripts/lodging-dinner-access.mjs，2026-10-19）"
+      "dinnerAccessNote": "步行 20 分內的晚餐店 1 家：お食事処 ひでちゃん 19 分"
     },
     "summary": {
       "text": "御座的寵物同宿包棟別墅，3 間寢室 5 張雙人床，有劇院投影室、屋頂三溫暖、BBQ；定員 10 人。心得多是 5 星。",
@@ -14194,6 +14410,12 @@
         "url": "https://travel.rakuten.co.jp/HOTEL/198954/198954_std.html",
         "retrieved": "2026-10-18",
         "note": "1 室、IN 15:00～23:00、OUT 10:00、停車 7 台免費、電話、取消規定"
+      },
+      {
+        "type": "osm",
+        "url": "https://router.project-osrm.org/",
+        "retrieved": "2026-10-19",
+        "note": "附近晚餐店的步行分鐘（OSRM 路線估算，scripts/lodging-dinner-access.mjs）"
       }
     ],
     "verified": false,
@@ -14226,7 +14448,7 @@
         },
         "note": "15 人（全部以大人計）分 N 間同住的組合，有空房的列出；只代表查詢當天楽天上的庫存"
       },
-      "dinnerAccessNote": "步行 20 分內的晚餐店 2 家：BALI HOUSE 14 分、シェブロンカフェ 16 分（OSRM，scripts/lodging-dinner-access.mjs，2026-10-19）"
+      "dinnerAccessNote": "步行 20 分內的晚餐店 2 家：BALI HOUSE 14 分、シェブロンカフェ 16 分"
     },
     "summary": {
       "text": "国府的整棟別墅，最多 16 人，有大型瓦斯 BBQ 爐、柴火披薩窯，3 代 11 人、4 個家庭住過的評論不錯；但 2025 年有霉味、不潔的 1 星。浴室、廁所各只有 1 間。",
@@ -14435,6 +14657,12 @@
         "url": "https://www.jalan.net/yad362720/",
         "retrieved": "2026-10-18",
         "note": "頁面亂碼；僅採 WebSearch 摘要：洋室3・ダイニング1、鵜方駅車約5分、駐車3台"
+      },
+      {
+        "type": "osm",
+        "url": "https://router.project-osrm.org/",
+        "retrieved": "2026-10-19",
+        "note": "附近晚餐店的步行分鐘（OSRM 路線估算，scripts/lodging-dinner-access.mjs）"
       }
     ],
     "verified": false,
@@ -14465,7 +14693,7 @@
         },
         "note": "15 人（全部以大人計）分 N 間同住的組合，有空房的列出；只代表查詢當天楽天上的庫存"
       },
-      "dinnerAccessNote": "步行 20 分內的晚餐店 4 家：Shimaフレンチ食堂 ノルポル 18 分、マレナSHIMA フレンチ 18 分、鉄板焼きレストラン 山吹 18 分 等（OSRM，scripts/lodging-dinner-access.mjs，2026-10-19）"
+      "dinnerAccessNote": "步行 20 分內的晚餐店 4 家：Shimaフレンチ食堂 ノルポル 18 分、マレナSHIMA フレンチ 18 分、鉄板焼きレストラン 山吹 18 分 等"
     },
     "summary": {
       "text": "志摩神明站步行 4 分的 3LDK 一棟貸切，最多 8 人，適合一個分組。不供餐；Google 4 則都是 5 星。",
@@ -14655,6 +14883,12 @@
         "url": "https://www.jalan.net/yad390432/",
         "retrieved": "2026-10-18",
         "note": "じゃらん クチコミ総合、評論數（scripts/jalan.mjs）"
+      },
+      {
+        "type": "osm",
+        "url": "https://router.project-osrm.org/",
+        "retrieved": "2026-10-19",
+        "note": "附近晚餐店的步行分鐘（OSRM 路線估算，scripts/lodging-dinner-access.mjs）"
       }
     ],
     "verified": false,
@@ -14666,7 +14900,7 @@
         "Google 評論（主 session 提供）提到手作料理，但官網只有素泊まり／朝食付，沒有晚餐方案"
       ],
       "officialPriceNote": "大人 1 人：素泊まり 5,500 円～、朝食付 6,600 円～；小學生為大人價 80%；寵物第 1 隻 1,000 円、第 2 隻 500 円（現地付）（3）",
-      "dinnerAccessNote": "步行 20 分內沒有晚餐店（直線 1.6 km 內沒有），要搭車（scripts/lodging-dinner-access.mjs，2026-10-19）"
+      "dinnerAccessNote": "步行 20 分內沒有晚餐店（直線 1.6 km 內沒有），要搭車"
     },
     "summary": {
       "text": "甲賀的 5 室ペンション＆カフェ，夫婦經營，手作早餐、宵夜伊勢うどん和戚風蛋糕評價很好，じゃらん 4.9（475 則）。沒有晚餐，附近也沒有店；有看板犬貓，浴室廁所共用。",
@@ -14878,6 +15112,12 @@
         "url": "https://www.kankomie.or.jp/spot/23842",
         "retrieved": "2026-10-18",
         "note": "價格（4 人基本＋追加、通常期／繁忙期）、最多 10 人、停車 3 台"
+      },
+      {
+        "type": "osm",
+        "url": "https://router.project-osrm.org/",
+        "retrieved": "2026-10-19",
+        "note": "附近晚餐店的步行分鐘（OSRM 路線估算，scripts/lodging-dinner-access.mjs）"
       }
     ],
     "verified": false,
@@ -14890,7 +15130,7 @@
         "食材服務頁有電話訂購說明，首頁寫不接受電話預約（訂房與訂食材可能不同）"
       ],
       "officialPriceNote": "觀光三重：通常期平日 4 人以內 48,000 円／棟、追加 1 人 6,000 円；繁忙期 4 人以內 56,000 円／棟、追加 1 人 7,000 円；價格可能變動。兒童價未寫。官網料金規約連結 aco.co.jp/id/65875.html 404（5）",
-      "dinnerAccessNote": "步行 20 分內沒有晚餐店（直線 1.6 km 內沒有），要搭車（scripts/lodging-dinner-access.mjs，2026-10-19）"
+      "dinnerAccessNote": "步行 20 分內沒有晚餐店（直線 1.6 km 內沒有），要搭車"
     },
     "summary": {
       "text": "南張海岸前的平屋一軒家包棟，最多 6 人（觀光三重寫 10 人），可以訂當地海產食材自己 BBQ。Google 3.2，評論說有蟲、清潔差、廚具不夠。",

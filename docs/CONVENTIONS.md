@@ -848,6 +848,7 @@ T7c～T8d 每一批都在 session 的 scratchpad 重寫同樣的抽取程式、�
 - **存檔語言**：
   - `name.ja` 用日文原名（之後搜尋、比對用），`name.zh` 填中文名稱。
   - `notes`、`febNote`、`closedNote` 等說明文字用**繁體中文**寫，因為最後要給使用者看。
+  - **給人看的欄位不寫整理時的筆記**（2026-11-03，T44a）：`summary`、`notes`、`hours.note`、`accessibility`、`kids`、`fares`、`group`、`assessment.rationale`、白名單裡的 `extra`（`worker/src/lib/placeLayers.ts` 的 `EXTRA_LABELS`）都會出現在詳情或 AI。不寫「見 conflicts」「見 notes」、欄位名或檔名（`stations.json`、`geo.mjs`）、工具名稱（OSRM → 寫「路線估算」）、任務 ID（「T8g 規則」）、只當研究來源的網站加「說」（「jeepe 說」「Retty 說」→「心得說」）、4travel 的細項分數（寫結論，例如「心得的無障礙評分很低」）。出處寫進 `sources` 的 `note`，不同來源的值寫進 `extra.conflicts`。Google、食べログ、楽天、じゃらん 在評論分頁有分數，可以寫；「（食べログ）」這種出處括號目前不擋。`npm run validate` 會檢查（規則在 `scripts/lib/work-notes.mjs`）。
   - 菜名、專有名詞附上日文原文，例如「伊勢龍蝦丼（伊勢海老丼）」，到店裡看菜單、點餐、打電話時才對得上。
   - 地址、電話保留日文原樣，不翻譯，方便直接貼進地圖或撥號。
 

@@ -214,6 +214,12 @@
         "url": "https://www.jalan.net/yad325339/",
         "retrieved": "2026-10-18",
         "note": "じゃらん クチコミ総合、評論數（scripts/jalan.mjs）"
+      },
+      {
+        "type": "osm",
+        "url": "https://router.project-osrm.org/",
+        "retrieved": "2026-10-18",
+        "note": "附近晚餐店的步行分鐘（OSRM 路線估算，scripts/lodging-dinner-access.mjs）"
       }
     ],
     "verified": false,
@@ -250,7 +256,7 @@
         },
         "note": "15 人（全部以大人計）分 N 間同住的組合，有空房的列出；只代表查詢當天楽天上的庫存"
       },
-      "dinnerAccessNote": "步行 20 分內的晚餐店 4 家：ル・シノワ 花栞 3 分、松風軒 7 分、maruru cafe 9 分 等（選素泊、朝食付方案時；OSRM，scripts/lodging-dinner-access.mjs，2026-10-18）"
+      "dinnerAccessNote": "步行 20 分內的晚餐店 4 家：ル・シノワ 花栞 3 分、松風軒 7 分、maruru cafe 9 分 等（選素泊、朝食付方案時）"
     },
     "summary": {
       "text": "夫婦岩步行約 5 分的旅館，大廳播爵士樂，晚餐有伊勢海老姿造り、鮑踊り焼き，冬天有牡蠣、河豚鍋的五大味覚方案。和室 2～6 人、有宴會場；3 層樓沒有電梯，建物老舊、隔音差。",
@@ -740,6 +746,12 @@
         "url": "https://www.jalan.net/yad379555/",
         "retrieved": "2026-10-18",
         "note": "搜尋摘要：じゃらん 3.9（3,924 則），未直接讀頁"
+      },
+      {
+        "type": "osm",
+        "url": "https://router.project-osrm.org/",
+        "retrieved": "2026-10-18",
+        "note": "附近晚餐店的步行分鐘（OSRM 路線估算，scripts/lodging-dinner-access.mjs）"
       }
     ],
     "verified": false,
@@ -778,7 +790,7 @@
         },
         "note": "15 人（全部以大人計）分 N 間同住的組合，有空房的列出；只代表查詢當天楽天上的庫存"
       },
-      "dinnerAccessNote": "步行 20 分內的晚餐店 4 家：ル・シノワ 花栞 3 分、松風軒 6 分、maruru cafe 7 分 等（選素泊、朝食付方案時；OSRM，scripts/lodging-dinner-access.mjs，2026-10-18）"
+      "dinnerAccessNote": "步行 20 分內的晚餐店 4 家：ル・シノワ 花栞 3 分、松風軒 6 分、maruru cafe 7 分 等（選素泊、朝食付方案時）"
     },
     "summary": {
       "text": "二見浦的 92 室大型飯店，全部是床，有可住 5 人的 4 ベッドルーム，伊勢市站有免費接送（前一天預約）。評價普通（楽天 3.93、Google 3.9），大浴場常客滿，有備品、清掃不足的意見。",
@@ -1026,6 +1038,12 @@
         "url": "https://ameblo.jp/sealamer/entry-12965631663.html",
         "retrieved": "2026-10-18",
         "note": "【PR】業配推薦文，介紹岩戸の塩和にがり風呂"
+      },
+      {
+        "type": "osm",
+        "url": "https://router.project-osrm.org/",
+        "retrieved": "2026-10-18",
+        "note": "附近晚餐店的步行分鐘（OSRM 路線估算，scripts/lodging-dinner-access.mjs）"
       }
     ],
     "verified": false,
@@ -1053,7 +1071,7 @@
         },
         "note": "15 人（全部以大人計）分 N 間同住的組合，有空房的列出；只代表查詢當天楽天上的庫存"
       },
-      "dinnerAccessNote": "步行 20 分內的晚餐店 4 家：ル・シノワ 花栞 6 分、松風軒 10 分、maruru cafe 12 分 等（OSRM，scripts/lodging-dinner-access.mjs，2026-10-18）"
+      "dinnerAccessNote": "步行 20 分內的晚餐店 4 家：ル・シノワ 花栞 6 分、松風軒 10 分、maruru cafe 12 分 等"
     },
     "summary": {
       "text": "夫婦岩步行 3 分的旅館，只供早餐（豆乳花、あおさうどん），大浴場用自家製的「岩戸の塩」。22 間和室每間 4 人、有大広間；但建物很舊，楽天客室 3.72、設備 3.5，2026 年有房間沒熱水、Wi-Fi 不通的評論。",
@@ -1300,6 +1318,12 @@
         "url": "https://www.mapple.net/region/a0405010102_g05000000/spot/",
         "retrieved": "2026-10-18",
         "note": "一泊二食 9,720 円起（可能是舊的）"
+      },
+      {
+        "type": "osm",
+        "url": "https://router.project-osrm.org/",
+        "retrieved": "2026-10-18",
+        "note": "附近晚餐店的步行分鐘（OSRM 路線估算，scripts/lodging-dinner-access.mjs）"
       }
     ],
     "verified": false,
@@ -1327,7 +1351,7 @@
         },
         "note": "15 人（全部以大人計）分 N 間同住的組合，有空房的列出；只代表查詢當天楽天上的庫存"
       },
-      "dinnerAccessNote": "步行 20 分內的晚餐店 4 家：ル・シノワ 花栞 4 分、松風軒 7 分、maruru cafe 9 分 等（選素泊、朝食付方案時；OSRM，scripts/lodging-dinner-access.mjs，2026-10-18）"
+      "dinnerAccessNote": "步行 20 分內的晚餐店 4 家：ル・シノワ 花栞 4 分、松風軒 7 分、maruru cafe 9 分 等（選素泊、朝食付方案時）"
     },
     "summary": {
       "text": "二見浦旅館街的小旅館，只有 6 間海景和室，活伊勢海老可以選活造り、鬼殻焼き、具足煮。近一年評論多是 4～5 星（乾淨、料理、女將親切）；沒有電梯，客房在 2、3 樓。",
@@ -1566,6 +1590,12 @@
         "url": "https://review.travel.rakuten.co.jp/hotel/voice/139993/",
         "retrieved": "2026-10-18",
         "note": "近 10 則：料理和服務好評，建築老舊、浴場分數偏低"
+      },
+      {
+        "type": "osm",
+        "url": "https://router.project-osrm.org/",
+        "retrieved": "2026-10-18",
+        "note": "附近晚餐店的步行分鐘（OSRM 路線估算，scripts/lodging-dinner-access.mjs）"
       }
     ],
     "verified": false,
@@ -1590,7 +1620,7 @@
         },
         "note": "15 人（全部以大人計）分 N 間同住的組合，有空房的列出；只代表查詢當天楽天上的庫存"
       },
-      "dinnerAccessNote": "步行 20 分內的晚餐店 4 家：ル・シノワ 花栞 3 分、松風軒 4 分、maruru cafe 6 分 等（選素泊、朝食付方案時；OSRM，scripts/lodging-dinner-access.mjs，2026-10-18）"
+      "dinnerAccessNote": "步行 20 分內的晚餐店 4 家：ル・シノワ 花栞 3 分、松風軒 4 分、maruru cafe 6 分 等（選素泊、朝食付方案時）"
     },
     "summary": {
       "text": "夫婦岩附近只有 10 間海景和室的小旅館，晚餐四季御膳份量足，2 月可以加點伊勢海老。員工親切、近期評價好；但建物老舊、沒有電梯（官方提醒腳不方便的人），評論只有 61 則。",
@@ -1824,6 +1854,12 @@
         "url": "https://icotto.jp/hotels/9685",
         "retrieved": "2026-10-18",
         "note": "只看搜尋摘要：步行 13 分、昭和レトロ割烹旅館"
+      },
+      {
+        "type": "osm",
+        "url": "https://router.project-osrm.org/",
+        "retrieved": "2026-10-18",
+        "note": "附近晚餐店的步行分鐘（OSRM 路線估算，scripts/lodging-dinner-access.mjs）"
       }
     ],
     "verified": false,
@@ -1851,7 +1887,7 @@
         },
         "note": "15 人（全部以大人計）分 N 間同住的組合，有空房的列出；只代表查詢當天楽天上的庫存"
       },
-      "dinnerAccessNote": "步行 20 分內的晚餐店 4 家：ル・シノワ 花栞 6 分、松風軒 10 分、maruru cafe 12 分 等（選素泊、朝食付方案時；OSRM，scripts/lodging-dinner-access.mjs，2026-10-18）"
+      "dinnerAccessNote": "步行 20 分內的晚餐店 4 家：ル・シノワ 花栞 6 分、松風軒 10 分、maruru cafe 12 分 等（選素泊、朝食付方案時）"
     },
     "summary": {
       "text": "夫婦岩步行 3～5 分、43 室的海鮮割烹旅館，是二見旅館街房數較多的。海景房景觀好、整理乾淨；晚餐調味偏重偏油、廁所是舊式，評論只有 58 則。",
@@ -2115,6 +2151,12 @@
         "url": "https://www.jalan.net/yad394480/",
         "retrieved": "2026-10-18",
         "note": "じゃらん クチコミ総合、評論數（scripts/jalan.mjs）"
+      },
+      {
+        "type": "osm",
+        "url": "https://router.project-osrm.org/",
+        "retrieved": "2026-10-18",
+        "note": "附近晚餐店的步行分鐘（OSRM 路線估算，scripts/lodging-dinner-access.mjs）"
       }
     ],
     "verified": false,
@@ -2143,7 +2185,7 @@
         },
         "note": "15 人（全部以大人計）分 N 間同住的組合，有空房的列出；只代表查詢當天楽天上的庫存"
       },
-      "dinnerAccessNote": "步行 20 分內的晚餐店 4 家：家庭料理 扇屋 1 分、maruru cafe 4 分、松風軒 5 分 等（選素泊、朝食付方案時；OSRM，scripts/lodging-dinner-access.mjs，2026-10-18）"
+      "dinnerAccessNote": "步行 20 分內的晚餐店 4 家：家庭料理 扇屋 1 分、maruru cafe 4 分、松風軒 5 分 等（選素泊、朝食付方案時）"
     },
     "summary": {
       "text": "JR 二見浦站前的民宿，老闆夫婦很熱心（接送、幫忙排行程），手作海鮮料理（伊勢海老舟盛り）份量足、CP 值高，楽天晚餐 4.92。13 間 6 畳和室、有宴會場；建築老舊、只有樓梯，可以帶寵物。",
@@ -2917,6 +2959,12 @@
         "url": "https://www.jalan.net/yad319128/",
         "retrieved": "2026-10-18",
         "note": "じゃらん クチコミ総合、評論數（scripts/jalan.mjs）"
+      },
+      {
+        "type": "osm",
+        "url": "https://router.project-osrm.org/",
+        "retrieved": "2026-10-18",
+        "note": "附近晚餐店的步行分鐘（OSRM 路線估算，scripts/lodging-dinner-access.mjs）"
       }
     ],
     "verified": false,
@@ -2953,7 +3001,7 @@
         },
         "note": "15 人（全部以大人計）分 N 間同住的組合，有空房的列出；只代表查詢當天楽天上的庫存"
       },
-      "dinnerAccessNote": "步行 20 分內的晚餐店 4 家：ル・シノワ 花栞 3 分、松風軒 4 分、maruru cafe 6 分 等（OSRM，scripts/lodging-dinner-access.mjs，2026-10-18）"
+      "dinnerAccessNote": "步行 20 分內的晚餐店 4 家：ル・シノワ 花栞 3 分、松風軒 4 分、maruru cafe 6 分 等"
     },
     "summary": {
       "text": "二見浦海邊的素泊旅館（麻野館別館），15 間禁煙和室，走到夫婦岩和車站都方便，24 小時浴場。設備老舊，2026-08 有吹風機壞、浴室天花板發霉的評論；不供餐，多數房間浴廁共用。",
@@ -3197,6 +3245,12 @@
         "url": "https://hotel.travel.rakuten.co.jp/hotelinfo/plan/146856",
         "retrieved": "2026-10-18",
         "note": "素泊每人約 3,900～8,500 円"
+      },
+      {
+        "type": "osm",
+        "url": "https://router.project-osrm.org/",
+        "retrieved": "2026-10-18",
+        "note": "附近晚餐店的步行分鐘（OSRM 路線估算，scripts/lodging-dinner-access.mjs）"
       }
     ],
     "verified": false,
@@ -3231,7 +3285,7 @@
         },
         "note": "15 人（全部以大人計）分 N 間同住的組合，有空房的列出；只代表查詢當天楽天上的庫存"
       },
-      "dinnerAccessNote": "步行 20 分內的晚餐店 4 家：松風軒 11 分、maruru cafe 12 分、家庭料理 扇屋 14 分 等（OSRM，scripts/lodging-dinner-access.mjs，2026-10-18）"
+      "dinnerAccessNote": "步行 20 分內的晚餐店 4 家：松風軒 11 分、maruru cafe 12 分、家庭料理 扇屋 14 分 等"
     },
     "summary": {
       "text": "像合宿所的簡樸素泊住宿，10 畳＋縁側的大房可住 6 人，價格很便宜。浴室男女分時段、房內沒有衛浴；2025-12、2026-06 有熱水不足、很冷的評論，不提供浴衣和備品。",
@@ -3446,7 +3500,7 @@
       "beds": "洋室、和洋室有床（カジュアル和洋室、洋室ツインは ツインベッド）；和室為鋪被",
       "stairs": "客房 3～6F、大浴場與露天風呂在地下 GF；鳥羽站送迎乘車處要下樓梯",
       "kids": "0～2 歲不需餐與寢具免費；有搜尋摘要寫 3～5 歲收施設利用料 3,240 円（未能打開原頁確認）；小學生收費不明。嬰兒床、兒童椅需事前預約",
-      "note": "可借輪椅、大浴場浴缸有扶手（楽天）；KNT 寫浴室無障礙「無」；4travel 無障礙評分 3.56 偏低"
+      "note": "可借輪椅、大浴場浴缸有扶手（楽天）；KNT 寫浴室無障礙「無」；心得的無障礙評分偏低"
     },
     "reservation": {
       "methods": [
@@ -3539,6 +3593,12 @@
         "url": "https://www.jalan.net/yad391565/",
         "retrieved": "2026-10-18",
         "note": "じゃらん クチコミ総合、評論數（scripts/jalan.mjs）"
+      },
+      {
+        "type": "osm",
+        "url": "https://router.project-osrm.org/",
+        "retrieved": "2026-10-18",
+        "note": "附近晚餐店的步行分鐘（OSRM 路線估算，scripts/lodging-dinner-access.mjs）"
       }
     ],
     "verified": false,
@@ -3576,7 +3636,7 @@
         },
         "note": "15 人（全部以大人計）分 N 間同住的組合，有空房的列出；只代表查詢當天楽天上的庫存"
       },
-      "dinnerAccessNote": "步行 20 分內沒有晚餐店（直線 1.6 km 內沒有），要搭車（scripts/lodging-dinner-access.mjs，2026-10-18）"
+      "dinnerAccessNote": "步行 20 分內沒有晚餐店（直線 1.6 km 內沒有），要搭車"
     },
     "summary": {
       "text": "二見松下海邊的 57 室溫泉旅館，近鐵鳥羽站有免費接送，晚餐的季節海鮮會席（冬季牡蠣）評價高，泡湯後有免費伊勢烏龍麵、冰淇淋。有電梯、大宴會場；建物老舊，選素泊的話附近沒有店。",
@@ -4147,6 +4207,12 @@
         "url": "https://travelist.jp/hotel/detail/7056306/",
         "retrieved": "2026-10-18",
         "note": "Travelist 3.5（11 則），施設の状態 2.9；不能加床"
+      },
+      {
+        "type": "osm",
+        "url": "https://router.project-osrm.org/",
+        "retrieved": "2026-10-18",
+        "note": "附近晚餐店的步行分鐘（OSRM 路線估算，scripts/lodging-dinner-access.mjs）"
       }
     ],
     "verified": false,
@@ -4184,7 +4250,7 @@
         },
         "note": "15 人（全部以大人計）分 N 間同住的組合，有空房的列出；只代表查詢當天楽天上的庫存"
       },
-      "dinnerAccessNote": "步行 20 分內的晚餐店 2 家：う吉 17 分、中華飯店 ワスケ 19 分（選素泊、朝食付方案時；OSRM，scripts/lodging-dinner-access.mjs，2026-10-18）"
+      "dinnerAccessNote": "步行 20 分內的晚餐店 2 家：う吉 17 分、中華飯店 ワスケ 19 分（選素泊、朝食付方案時）"
     },
     "summary": {
       "text": "二見町西的 17 棟同型 2 層 villa，每棟最多 6 人、有廚房和露天風呂，15 人可以分 3 棟。早餐的しゃぶしゃぶ評分高；但心得有按摩浴缸壞、生鏽、蟲、冬天露天太冷的意見，寢室都在 2 樓。",
@@ -4403,6 +4469,12 @@
         "url": "https://www.jalan.net/yad354810/",
         "retrieved": "2026-10-18",
         "note": "大多亂碼；可帶寵物"
+      },
+      {
+        "type": "osm",
+        "url": "https://router.project-osrm.org/",
+        "retrieved": "2026-10-18",
+        "note": "附近晚餐店的步行分鐘（OSRM 路線估算，scripts/lodging-dinner-access.mjs）"
       }
     ],
     "verified": false,
@@ -4430,7 +4502,7 @@
         },
         "note": "15 人（全部以大人計）分 N 間同住的組合，有空房的列出；只代表查詢當天楽天上的庫存"
       },
-      "dinnerAccessNote": "步行 20 分內沒有一般晚餐店（直線 1.6 km 內沒有），要搭車到二見浦（花栞、扇屋 直線 3.5 km 以上）或鳥羽；步行約 11 分（直線估算，OSRM 吸附 779 m）的 旅荘 海の蝶 有日帰り会席（14,850 円起、要預約），照規則住宿附設的 -dining 不算（scripts/lodging-dinner-access.mjs，2026-10-18）"
+      "dinnerAccessNote": "步行 20 分內沒有一般晚餐店（直線 1.6 km 內沒有），要搭車到二見浦（花栞、扇屋 直線 3.5 km 以上）或鳥羽；步行約 11 分（直線估算）的 旅荘 海の蝶 有日帰り会席（14,850 円起、要預約），這裡不算住宿附設的餐廳"
     },
     "summary": {
       "text": "近鐵池の浦站步行 4 分的 2 層包棟別墅（150 m²），最多 9 人，有廚房和 BBQ 庭院。評論只有幾則，浴室只有淋浴、沒有浴缸；附近沒有晚餐店。",
@@ -4642,6 +4714,12 @@
         "url": "https://tabiiro.jp/plan/2565/",
         "retrieved": "2026-10-18",
         "note": "2024-11 採訪：斜坡、無障礙廁所、扶手浴室、超市車程 5 分"
+      },
+      {
+        "type": "osm",
+        "url": "https://router.project-osrm.org/",
+        "retrieved": "2026-10-18",
+        "note": "附近晚餐店的步行分鐘（OSRM 路線估算，scripts/lodging-dinner-access.mjs）"
       }
     ],
     "verified": false,
@@ -4669,7 +4747,7 @@
         },
         "note": "15 人（全部以大人計）分 N 間同住的組合，有空房的列出；只代表查詢當天楽天上的庫存"
       },
-      "dinnerAccessNote": "步行 20 分內的晚餐店 1 家：う吉 20 分（OSRM，scripts/lodging-dinner-access.mjs，2026-10-18）"
+      "dinnerAccessNote": "步行 20 分內的晚餐店 1 家：う吉 20 分"
     },
     "summary": {
       "text": "2023 年新建的包棟民泊（92 m²），最多 8 人，無段差地板、無障礙廁所、浴室扶手，是二見最適合長輩的包棟。不供餐、有全套廚房；評論只有 2 則，要開車，步行能到的晚餐店只有 1 家。",

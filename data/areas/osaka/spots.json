@@ -52,26 +52,26 @@
       "id": "metro-namba",
       "mode": "walk",
       "minutes": 5,
-      "note": "OSAKA-INFO：なんば駅 出站即到；OSRM 5 分（到道頓堀的地點座標）"
+      "note": "OSAKA-INFO：なんば駅 出站即到；路線估算 5 分（到道頓堀的地點座標）"
     },
     "access": [
       {
         "from": "metro-namba",
         "mode": "walk",
         "minutes": 5,
-        "note": "OSAKA-INFO：なんば駅 出站即到；OSRM 5 分（到道頓堀的地點座標）"
+        "note": "OSAKA-INFO：なんば駅 出站即到；路線估算 5 分（到道頓堀的地點座標）"
       },
       {
         "from": "osaka-namba",
         "mode": "walk",
         "minutes": 7,
-        "note": "OSRM"
+        "note": "路線估算"
       },
       {
         "from": "nankai-namba",
         "mode": "walk",
         "minutes": 11,
-        "note": "OSRM"
+        "note": "路線估算"
       }
     ],
     "admission": "街道免費；とんぼりリバークルーズ 大人 2,000 円、中學生以上學生 1,000 円、小學生 500 円。",
@@ -193,7 +193,7 @@
         "winterFit": "戶外街道，2 月照常；晚上河邊冷，冬天沒有加分",
         "elderFit": "平地的街道、可以坐クルーズ；人潮多、休息座位沒有來源 → 4",
         "kidsFit": "kids.friendly medium（招牌街景、20 分的船）→ 3",
-        "accessEase": "地鐵なんば駅出站即到（OSRM 5 分）→ 5"
+        "accessEase": "地鐵なんば駅出站即到（路線估算 5 分）→ 5"
       },
       "confidence": "medium",
       "assessed": "2026-10-26"
@@ -251,14 +251,14 @@
       "id": "metro-nippombashi",
       "mode": "walk",
       "minutes": 3,
-      "note": "OSAKA-INFO：約 2 分；OSRM 3 分"
+      "note": "OSAKA-INFO：約 2 分；路線估算 3 分"
     },
     "access": [
       {
         "from": "metro-nippombashi",
         "mode": "walk",
         "minutes": 3,
-        "note": "OSAKA-INFO：約 2 分；OSRM 3 分"
+        "note": "OSAKA-INFO：約 2 分；路線估算 3 分"
       }
     ],
     "admission": "免費（各店消費）",
@@ -358,7 +358,7 @@
         "winterFit": "有頂棚的商店街，冬天、下雨也能逛 → 4",
         "elderFit": "約 580 m 平地；通道窄、人多，休息座位沒有來源 → 4",
         "kidsFit": "kids.friendly medium（邊走邊吃）→ 3",
-        "accessEase": "地鐵日本橋駅約 2 分（OSRM 3 分）→ 5"
+        "accessEase": "地鐵日本橋駅約 2 分（路線估算 3 分）→ 5"
       },
       "confidence": "medium",
       "assessed": "2026-10-26"
@@ -468,26 +468,26 @@
       "id": "metro-tanimachi-4chome",
       "mode": "walk",
       "minutes": 20,
-      "note": "11 號出口（電梯）；官方無障礙地圖約 1.4 km 上坡，最平的路線；OSRM 20 分"
+      "note": "11 號出口（電梯）；官方無障礙地圖約 1.4 km 上坡，最平的路線；路線估算 20 分"
     },
     "access": [
       {
         "from": "metro-tanimachi-4chome",
         "mode": "walk",
         "minutes": 20,
-        "note": "11 號出口（電梯）；官方無障礙地圖約 1.4 km 上坡，最平的路線；OSRM 20 分"
+        "note": "11 號出口（電梯）；官方無障礙地圖約 1.4 km 上坡，最平的路線；路線估算 20 分"
       },
       {
         "from": "metro-morinomiya",
         "mode": "walk",
         "minutes": 18,
-        "note": "OSRM；要走バリアフリールート"
+        "note": "路線估算；要走バリアフリールート"
       },
       {
         "from": "jr-osakajokoen",
         "mode": "walk",
         "minutes": 20,
-        "note": "OSAKA-INFO：約 20 分；OSRM 20 分；JO-TERRACE 電梯"
+        "note": "OSAKA-INFO：約 20 分；路線估算 20 分；JO-TERRACE 電梯"
       }
     ],
     "admission": "大人 1,200 円、高中・大學生 600 円、國中生以下免費。",
@@ -588,7 +588,7 @@
         "輪椅或步行困難者可以搭館內電梯到各樓層（8F 可到）；有館外電梯"
       ],
       "cons": [
-        "車站到天守閣約 1.4 km 上坡（谷町四丁目駅 OSRM 20 分），極楽橋那一側有一段沒有扶手的急坡",
+        "車站到天守閣約 1.4 km 上坡（谷町四丁目駅 路線估算 20 分），極楽橋那一側有一段沒有扶手的急坡",
         "一般遊客館內電梯只上不下、只到 5F，5F→8F 和下樓都要走樓梯",
         "館內禁止嬰兒車；65 歲以上免費只限大阪市民，長輩付大人票；小孩要付費的 11 人才算團體人數"
       ],
@@ -617,7 +617,7 @@
         "winterFit": "館內是室內展示，2 月照常；但到天守閣要在戶外走 1.4 km → 4",
         "elderFit": "1.4 km 上坡＋館內樓梯（行動不便者可以搭電梯）→ 2",
         "kidsFit": "kids.friendly medium（微縮人偶、影像、展望台）→ 3",
-        "accessEase": "谷町四丁目駅 OSRM 20 分、上坡 → 3"
+        "accessEase": "谷町四丁目駅 路線估算 20 分、上坡 → 3"
       },
       "confidence": "medium",
       "assessed": "2026-10-26"
@@ -672,20 +672,20 @@
       "id": "jr-osakajokoen",
       "mode": "walk",
       "minutes": 14,
-      "note": "官方沒寫分鐘（往青屋門）；OSRM 14 分（到梅林中心）"
+      "note": "官方沒寫分鐘（往青屋門）；路線估算 14 分（到梅林中心）"
     },
     "access": [
       {
         "from": "jr-osakajokoen",
         "mode": "walk",
         "minutes": 14,
-        "note": "官方沒寫分鐘（往青屋門）；OSRM 14 分（到梅林中心）"
+        "note": "官方沒寫分鐘（往青屋門）；路線估算 14 分（到梅林中心）"
       },
       {
         "from": "metro-morinomiya",
         "mode": "walk",
         "minutes": 14,
-        "note": "OSRM"
+        "note": "路線估算"
       }
     ],
     "admission": "官方頁沒寫入園費（大阪城公園一般免費入園，未確認）。",
@@ -766,7 +766,7 @@
       "cons": [
         "全程戶外，2 月冷；花況看天氣，早去或晚去可能只開一部分",
         "玉造口一帶有樓梯段，從森ノ宮進公園要照「バリアフリールート」看板繞行",
-        "車站到梅林約 14 分（OSRM），休息處沒有來源"
+        "車站到梅林約 14 分（路線估算），休息處沒有來源"
       ],
       "basedOn": [
         "https://www.osakacastlepark.jp/flower/plum_grove.html",
@@ -791,7 +791,7 @@
         "winterFit": "2 月中旬是賞梅季最熱鬧的時候（冬季才有）→ 5",
         "elderFit": "戶外步行、附近有樓梯段要繞無障礙路線 → 3",
         "kidsFit": "kids.friendly null；官方頁只有「找 6～9 片花瓣的梅花」→ 2",
-        "accessEase": "JR 大阪城公園駅 OSRM 14 分（官方沒寫分鐘）→ 4"
+        "accessEase": "JR 大阪城公園駅 路線估算 14 分（官方沒寫分鐘）→ 4"
       },
       "confidence": "medium",
       "assessed": "2026-10-26"
@@ -895,26 +895,26 @@
       "id": "metro-ebisucho",
       "mode": "walk",
       "minutes": 5,
-      "note": "官網：3 號出口 3 分；OSRM 5 分"
+      "note": "官網：3 號出口 3 分；路線估算 5 分"
     },
     "access": [
       {
         "from": "metro-ebisucho",
         "mode": "walk",
         "minutes": 5,
-        "note": "官網：3 號出口 3 分；OSRM 5 分"
+        "note": "官網：3 號出口 3 分；路線估算 5 分"
       },
       {
         "from": "metro-dobutsuen-mae",
         "mode": "walk",
         "minutes": 8,
-        "note": "官網：1 號出口 6 分；OSRM 8 分"
+        "note": "官網：1 號出口 6 分；路線估算 8 分"
       },
       {
         "from": "jr-shin-imamiya",
         "mode": "walk",
         "minutes": 9,
-        "note": "官網：東口 6 分；OSRM 9 分"
+        "note": "官網：東口 6 分；路線估算 9 分"
       }
     ],
     "admission": "一般展望台 大人 1,500 円、5～14 歲 800 円；TOWER SLIDER 另付。",
@@ -1058,7 +1058,7 @@
         "winterFit": "室內展望台，2 月照常；特別屋外展望台遇雨、強風會關 → 4",
         "elderFit": "電梯到展望台、2F→3F 有一段螺旋樓梯 → 4",
         "kidsFit": "kids.friendly high（TOWER SLIDER、ビリケン）→ 5",
-        "accessEase": "恵美須町駅 3 號出口 3 分（OSRM 5 分）→ 5"
+        "accessEase": "恵美須町駅 3 號出口 3 分（路線估算 5 分）→ 5"
       },
       "confidence": "medium",
       "assessed": "2026-10-26"
@@ -1160,20 +1160,20 @@
       "id": "metro-tennoji",
       "mode": "walk",
       "minutes": 3,
-      "note": "OSAKA-INFO：即到（近鉄 大阪阿部野橋駅 直結，不在 stations.json）；OSRM 3 分"
+      "note": "OSAKA-INFO：即到（近鉄 大阪阿部野橋駅 直結，不在車站資料裡）；路線估算 3 分"
     },
     "access": [
       {
         "from": "metro-tennoji",
         "mode": "walk",
         "minutes": 3,
-        "note": "OSAKA-INFO：即到（近鉄 大阪阿部野橋駅 直結，不在 stations.json）；OSRM 3 分"
+        "note": "OSAKA-INFO：即到（近鉄 大阪阿部野橋駅 直結，不在車站資料裡）；路線估算 3 分"
       },
       {
         "from": "jr-tennoji",
         "mode": "walk",
         "minutes": 5,
-        "note": "OSAKA-INFO：約 2 分；OSRM 5 分"
+        "note": "OSAKA-INFO：約 2 分；路線估算 5 分"
       }
     ],
     "admission": "當日券 大人 1,800～2,000 円（來源不一）、小學生 700 円。",
@@ -1282,7 +1282,7 @@
         "winterFit": "全室內展望台、全年無休 → 5",
         "elderFit": "車站直結、直達電梯；樓層間動線沒有來源 → 4",
         "kidsFit": "kids.friendly medium（玻璃地板）→ 3",
-        "accessEase": "天王寺站即到（OSRM 3 分）→ 5"
+        "accessEase": "天王寺站即到（路線估算 3 分）→ 5"
       },
       "confidence": "medium",
       "assessed": "2026-10-26"
@@ -1378,20 +1378,20 @@
       "id": "metro-dobutsuen-mae",
       "mode": "walk",
       "minutes": 13,
-      "note": "OSAKA-INFO：5 分（新世界ゲート）；OSRM 13 分是到園區中心的座標"
+      "note": "OSAKA-INFO：5 分（新世界ゲート）；路線估算 13 分是到園區中心的座標"
     },
     "access": [
       {
         "from": "metro-dobutsuen-mae",
         "mode": "walk",
         "minutes": 13,
-        "note": "OSAKA-INFO：5 分（新世界ゲート）；OSRM 13 分是到園區中心的座標"
+        "note": "OSAKA-INFO：5 分（新世界ゲート）；路線估算 13 分是到園區中心的座標"
       },
       {
         "from": "metro-tennoji",
         "mode": "walk",
         "minutes": 15,
-        "note": "OSAKA-INFO：10 分（てんしば口）；OSRM 15 分到園區中心"
+        "note": "OSAKA-INFO：10 分（てんしば口）；路線估算 15 分到園區中心"
       }
     ],
     "admission": "大人 800 円、小中學生 200 円、未就學兒免費。",
@@ -1485,7 +1485,7 @@
         "winterFit": "2 月照常開園（週一休），大多戶外 → 3",
         "elderFit": "約 11 ha 戶外園區，步行長；坡道、休息處沒有來源 → 3",
         "kidsFit": "kids.friendly high（獅子、北極熊、企鵝）→ 5",
-        "accessEase": "OSAKA-INFO：動物園前駅 5 分（OSRM 13 分是到園區中心）→ 5"
+        "accessEase": "OSAKA-INFO：動物園前駅 5 分（路線估算 13 分是到園區中心）→ 5"
       },
       "confidence": "medium",
       "assessed": "2026-10-26"
@@ -1598,14 +1598,14 @@
       "id": "metro-shitennojimae-yuhigaoka",
       "mode": "walk",
       "minutes": 9,
-      "note": "官網：往南 5 分；OSRM 9 分（到中心伽藍的座標）"
+      "note": "官網：往南 5 分；路線估算 9 分（到中心伽藍的座標）"
     },
     "access": [
       {
         "from": "metro-shitennojimae-yuhigaoka",
         "mode": "walk",
         "minutes": 9,
-        "note": "官網：往南 5 分；OSRM 9 分（到中心伽藍的座標）"
+        "note": "官網：往南 5 分；路線估算 9 分（到中心伽藍的座標）"
       }
     ],
     "admission": "境內免費；中心伽藍 大人 500 円、高中生 300 円、小中學生免費。",
@@ -1721,7 +1721,7 @@
         "winterFit": "戶外寺院，2 月照常（16:00 關）；節分、大師会是活動不是冬季景色 → 3",
         "elderFit": "階梯、坡道完全沒有來源 → null",
         "kidsFit": "kids.friendly low（沒有兒童設施）→ 2",
-        "accessEase": "官網：四天王寺前夕陽ヶ丘駅 往南 5 分（OSRM 9 分）→ 5"
+        "accessEase": "官網：四天王寺前夕陽ヶ丘駅 往南 5 分（路線估算 9 分）→ 5"
       },
       "confidence": "medium",
       "assessed": "2026-10-26"
@@ -1823,14 +1823,14 @@
       "id": "metro-osakako",
       "mode": "walk",
       "minutes": 9,
-      "note": "官網：1 號出口約 5 分；OSRM 9 分"
+      "note": "官網：1 號出口約 5 分；路線估算 9 分"
     },
     "access": [
       {
         "from": "metro-osakako",
         "mode": "walk",
         "minutes": 9,
-        "note": "官網：1 號出口約 5 分；OSRM 9 分"
+        "note": "官網：1 號出口約 5 分；路線估算 9 分"
       }
     ],
     "admission": "依日期變動：大人 2,700～3,200 円、小中學生 1,400～1,650 円、3 歲以上幼兒 700～800 円。",
@@ -1973,7 +1973,7 @@
         "winterFit": "全室內，2 月照常（休館日在 1 月）→ 5",
         "elderFit": "坡道為主、輪椅可參觀、有休息處；館內步行約 2 小時 → 4",
         "kidsFit": "kids.friendly high（鯨鯊、餵食時間）→ 5",
-        "accessEase": "官網：大阪港駅 1 號出口約 5 分（OSRM 9 分）→ 5"
+        "accessEase": "官網：大阪港駅 1 號出口約 5 分（路線估算 9 分）→ 5"
       },
       "confidence": "medium",
       "assessed": "2026-10-26"
@@ -2073,14 +2073,14 @@
       "id": "metro-osakako",
       "mode": "walk",
       "minutes": 8,
-      "note": "HAPPYELL：約 5 分；OSRM 8 分"
+      "note": "HAPPYELL：約 5 分；路線估算 8 分"
     },
     "access": [
       {
         "from": "metro-osakako",
         "mode": "walk",
         "minutes": 8,
-        "note": "HAPPYELL：約 5 分；OSRM 8 分"
+        "note": "HAPPYELL：約 5 分；路線估算 8 分"
       }
     ],
     "admission": "1,000 円（3 歲以上）。",
@@ -2198,7 +2198,7 @@
         "winterFit": "坐在車廂內，不太受冷；天候不佳停駛 → 4",
         "elderFit": "坐著 15 分、無障礙車廂可以坐輪椅上 → 5",
         "kidsFit": "kids.friendly medium（透明車廂）→ 3",
-        "accessEase": "大阪港駅約 5 分（OSRM 8 分）→ 5"
+        "accessEase": "大阪港駅約 5 分（路線估算 8 分）→ 5"
       },
       "confidence": "medium",
       "assessed": "2026-10-26"
@@ -2261,14 +2261,14 @@
       "id": "metro-osakako",
       "mode": "walk",
       "minutes": 8,
-      "note": "官網：5 分（天保山マーケットプレース 3 樓）；OSRM 8 分"
+      "note": "官網：5 分（天保山マーケットプレース 3 樓）；路線估算 8 分"
     },
     "access": [
       {
         "from": "metro-osakako",
         "mode": "walk",
         "minutes": 8,
-        "note": "官網：5 分（天保山マーケットプレース 3 樓）；OSRM 8 分"
+        "note": "官網：5 分（天保山マーケットプレース 3 樓）；路線估算 8 分"
       }
     ],
     "admission": "日時指定票 2,900～3,300 円（3 歲以上同價）；只有大人不能入場。",
@@ -2405,7 +2405,7 @@
         "winterFit": "全室內 → 5",
         "elderFit": "無障礙、通道平坦 → 5（長輩要陪小孩才能進）",
         "kidsFit": "kids.friendly high（3～10 歲為對象）→ 5",
-        "accessEase": "官網：大阪港駅 5 分（OSRM 8 分）→ 5"
+        "accessEase": "官網：大阪港駅 5 分（路線估算 8 分）→ 5"
       },
       "confidence": "medium",
       "assessed": "2026-10-26"
@@ -2479,14 +2479,14 @@
       "id": "jr-universal-city",
       "mode": "walk",
       "minutes": 11,
-      "note": "官網沒寫到園門的分鐘；OSRM 11 分是到園區中心的座標，到園門較近"
+      "note": "官網沒寫到園門的分鐘；路線估算 11 分是到園區中心的座標，到園門較近"
     },
     "access": [
       {
         "from": "jr-universal-city",
         "mode": "walk",
         "minutes": 11,
-        "note": "官網沒寫到園門的分鐘；OSRM 11 分是到園區中心的座標，到園門較近"
+        "note": "官網沒寫到園門的分鐘；路線估算 11 分是到園區中心的座標，到園門較近"
       }
     ],
     "admission": "1デイ・スタジオ・パス 依日期變動：大人 8,400 円～、兒童（4～11 歲）5,500 円～、65 歲以上 7,600 円～（2026 年的最低價，出發前要再查）。",
@@ -2666,7 +2666,7 @@
         "winterFit": "2 月照常營業，戶外排隊多、冬季活動到 1/17 → 3",
         "elderFit": "整天園內步行、排隊，輪椅出租有限 → 2（可以安排中途休息或提早離園）",
         "kidsFit": "kids.friendly high（6～10 歲能玩的設施多）→ 5",
-        "accessEase": "JR ユニバーサルシティ駅 OSRM 11 分（到園區中心，園門較近）；從難波要轉 1～2 次 → 4"
+        "accessEase": "JR ユニバーサルシティ駅 路線估算 11 分（到園區中心，園門較近）；從難波要轉 1～2 次 → 4"
       },
       "confidence": "medium",
       "assessed": "2026-10-26"
@@ -2776,20 +2776,20 @@
       "id": "metro-umeda",
       "mode": "walk",
       "minutes": 13,
-      "note": "官網：5 號出口（電梯）9 分；OSRM 13 分"
+      "note": "官網：5 號出口（電梯）9 分；路線估算 13 分"
     },
     "access": [
       {
         "from": "metro-umeda",
         "mode": "walk",
         "minutes": 13,
-        "note": "官網：5 號出口（電梯）9 分；OSRM 13 分"
+        "note": "官網：5 號出口（電梯）9 分；路線估算 13 分"
       },
       {
         "from": "jr-osaka",
         "mode": "walk",
         "minutes": 16,
-        "note": "官網：ルクア電梯 7 分；OSRM 16 分（繞過鐵路）"
+        "note": "官網：ルクア電梯 7 分；路線估算 16 分（繞過鐵路）"
       }
     ],
     "admission": "大人 2,000 円、4 歲～小學生 500 円。",
@@ -2891,7 +2891,7 @@
       ],
       "cons": [
         "頂樓迴廊是露天的，2 月風大，天候不佳可能上不去",
-        "大樓在梅田北側，從 JR 大阪駅、地鐵梅田駅走 7～9 分（OSRM 13～16 分，要過鐵路）",
+        "大樓在梅田北側，從 JR 大阪駅、地鐵梅田駅走 7～9 分（路線估算 13～16 分，要過鐵路）",
         "休息處、廁所沒有來源；設備檢查日會縮短營業（2027-02 沒有公告）"
       ],
       "basedOn": [
@@ -2919,7 +2919,7 @@
         "winterFit": "室內展望台＋露天迴廊，2 月風大 → 4",
         "elderFit": "高層電梯、無障礙路線；從車站要走 7～9 分 → 4",
         "kidsFit": "kids.friendly medium（透明手扶梯、露天展望）→ 3",
-        "accessEase": "官網：地鐵梅田駅 5 號出口 9 分、JR 大阪駅 7 分（OSRM 13～16 分）→ 5"
+        "accessEase": "官網：地鐵梅田駅 5 號出口 9 分、JR 大阪駅 7 分（路線估算 13～16 分）→ 5"
       },
       "confidence": "medium",
       "assessed": "2026-10-26"
@@ -3030,14 +3030,14 @@
       "id": "metro-tenjimbashisuji-6chome",
       "mode": "walk",
       "minutes": 1,
-      "note": "官網：3 號出口（B1）直結大樓；OSRM 2 分"
+      "note": "官網：3 號出口（B1）直結大樓；路線估算 2 分"
     },
     "access": [
       {
         "from": "metro-tenjimbashisuji-6chome",
         "mode": "walk",
         "minutes": 1,
-        "note": "官網：3 號出口（B1）直結大樓；OSRM 2 分"
+        "note": "官網：3 號出口（B1）直結大樓；路線估算 2 分"
       }
     ],
     "admission": "一般 600 円、高中・大學生 300 円、中學生以下免費；和服體驗另收 1,000 円。",
