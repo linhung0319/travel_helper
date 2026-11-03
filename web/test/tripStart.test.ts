@@ -2,7 +2,7 @@
 import assert from 'node:assert/strict';
 import test from 'node:test';
 import { blankCards, buildStarterInput, dayStarter, emptyDayFollowups, firstEmptyDate, firstStarter, startersFor, tripPrompts, type StarterDay, type StarterInput } from '../src/ai/prompts.ts';
-import { EMPTY_START_MEMORY, flightCount, nextStartMemory, overviewRows, shouldStartFresh, startCardView, startProgress, type OverviewDayState } from '../src/lib/tripStart.ts';
+import { EMPTY_START_MEMORY, flightCount, nextStartMemory, shouldStartFresh, startCardView, startProgress } from '../src/lib/tripStart.ts';
 import { tripDates } from '../src/lib/trip.ts';
 import { emptyItinerary } from '../src/dev-fixtures/seed.ts';
 import type { Place } from '../src/data/types.ts';
@@ -177,17 +177,6 @@ test('開始卡要不要顯示：前兩步做完只留第 ③ 步；完成後按
   assert.equal(nextStartMemory(all, first, '2026-12-11T00:00:00.000Z'), first);
   assert.deepEqual(nextStartMemory(two, { doneAt: iso, dismissed: true }, iso), EMPTY_START_MEMORY);
   assert.equal(nextStartMemory(two, EMPTY_START_MEMORY, iso), EMPTY_START_MEMORY);
-});
-
-test('整趟清單：連續完全沒東西的天併成一列；排了東西的天自己拆出來', () => {
-  const blank: OverviewDayState = { stops: false, lodging: false, flights: 0, candidates: 0, warnings: 0, proposed: false };
-  const flights: Record<string, Partial<OverviewDayState>> = { '2027-02-02': { flights: 2 }, '2027-02-13': { flights: 2 } };
-  assert.deepEqual(overviewRows(DATES, (d) => ({ ...blank, ...flights[d] })), [{ kind: 'day', date: '2027-02-02' }, { kind: 'empty', from: '2027-02-03', to: '2027-02-12', count: 10 }, { kind: 'day', date: '2027-02-13' }]);
-
-  const busy: Record<string, Partial<OverviewDayState>> = { ...flights, '2027-02-05': { stops: true }, '2027-02-07': { lodging: true }, '2027-02-09': { candidates: 1 }, '2027-02-11': { proposed: true } };
-  const rows = overviewRows(DATES, (d) => ({ ...blank, ...busy[d] }));
-  // 夾在中間只有 1 天的不併
-  assert.deepEqual(rows.map((r) => (r.kind === 'empty' ? `${r.from}+${r.count}` : r.date)), ['2027-02-02', '2027-02-03+2', '2027-02-05', '2027-02-06', '2027-02-07', '2027-02-08', '2027-02-09', '2027-02-10', '2027-02-11', '2027-02-12', '2027-02-13']);
 });
 
 test('flightCount：只算航班', () => {

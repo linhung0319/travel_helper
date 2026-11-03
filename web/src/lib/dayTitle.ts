@@ -1,5 +1,5 @@
 // 這天的標題（第七輪 §6.1，網頁、手機共用）：大日期「2/5」，旁邊「週五 · 鳥羽」（T33 拿掉第 N 天，留位置給討論按鈕）。
-// 地區＝這天經過的點（不含機場、車站以外沒有地區的）最常出現的地區；平手取先出現的；沒有就不寫。
+// 地區先照每晚住哪一區推（T45b，dayAreaTitle）；還沒決定時＝這天經過的點（不含機場、車站以外沒有地區的）最常出現的地區；平手取先出現的；沒有就不寫。
 
 import type { Area, Place } from '../data/types.ts';
 import type { Itinerary } from '@travel-helper/engine/types';
