@@ -8,7 +8,7 @@ export const MAX_PHOTOS = 3;
 const ORDER = [
   'id', 'type', 'name', 'area', 'region', 'coords', 'coordsSource', 'address', 'hours', 'closedNote', 'febNote',
   'closures', 'events', 'photos', 'links', 'tags', 'tier', 'nearestStation', 'access', 'admission', 'phone',
-  'stayMinutes', 'indoor', 'fares', 'group', 'accessibility', 'kids', 'ratings', 'sources', 'verified', 'extra',
+  'stayMinutes', 'weather', 'fares', 'group', 'accessibility', 'kids', 'ratings', 'sources', 'verified', 'extra',
   'summary', 'assessment',
 ];
 
@@ -53,14 +53,12 @@ export function pickPhotos(given = [], g, checked = null, gPage = null) {
 
 const normPhoto = (p) => ({ url: p.url, page: p.page ?? null, kind: p.kind ?? 'official', credit: p.credit ?? null, license: p.license ?? null });
 
-// tags 只加不刪（判斷細則）
+// tags 只加不刪（判斷細則）；室內、雨天備案兩個跟著 weather（T58）：indoor → 兩個都加、covered → 雨天備案、其他拿掉
 export function deriveTags(p) {
-  const tags = [...(p.tags ?? [])];
+  const rain = p.weather === 'indoor' ? ['室內', '雨天備案'] : p.weather === 'covered' ? ['雨天備案'] : [];
+  const tags = (p.tags ?? []).filter((t) => (t !== '室內' && t !== '雨天備案') || rain.includes(t));
   const add = (t) => !tags.includes(t) && tags.push(t);
-  if (p.indoor === true) {
-    add('室內');
-    add('雨天備案');
-  }
+  rain.forEach(add);
   if (p.accessibility?.stairs === '多') add('長階梯');
   if (p.kids?.friendly === 'high') add('親子');
   return tags;

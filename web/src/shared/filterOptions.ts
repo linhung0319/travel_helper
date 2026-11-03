@@ -4,7 +4,7 @@
 // 想去那一組探索是「大家想去的」、想去分頁是「只看我按的」。
 
 import { CONTEXTS, TIERS, type Area } from '../data/types.ts';
-import { CONTEXT_LABELS, FIT15_LABELS, INDOOR_LABEL, TYPE_LABELS, VOTE_FILTER_LABELS, filterChips, type Filter, type FilterChip, type FilterKey } from '../lib/filter.ts';
+import { CONTEXT_LABELS, FIT15_LABELS, TYPE_LABELS, VOTE_FILTER_LABELS, WEATHER_LABELS, WEATHER_VALUES, filterChips, type Filter, type FilterChip, type FilterKey } from '../lib/filter.ts';
 
 export type FilterSource = 'explore' | 'wish';
 
@@ -27,7 +27,7 @@ export interface FilterGroup {
 export const FILTER_GROUPS: FilterGroup[] = [
   { id: 'type', title: '類型', key: 'types', options: () => (['spot', 'restaurant', 'lodging'] as const).map((t) => ({ value: t, label: TYPE_LABELS[t] })) },
   { id: 'group', title: '團體', key: 'fit15', options: () => (['yes', 'split'] as const).map((v) => ({ value: v, label: FIT15_LABELS[v] })) },
-  { id: 'weather', title: '天氣', key: 'indoor', options: () => [{ value: 'yes', label: INDOOR_LABEL }] },
+  { id: 'weather', title: '天氣', key: 'weather', options: () => WEATHER_VALUES.map((v) => ({ value: v, label: WEATHER_LABELS[v] })) },
   { id: 'context', title: '情境', key: 'contexts', options: () => CONTEXTS.map((c) => ({ value: c, label: CONTEXT_LABELS[c] })) },
   {
     id: 'wish',
@@ -43,7 +43,7 @@ export const FILTER_GROUPS: FilterGroup[] = [
 export const OUTSIDE_KEYS: readonly FilterKey[] = ['areas', 'regions'];
 
 /** 套用的條件 → 晶片的順序（和面板一樣） */
-const CHIP_ORDER: FilterKey[] = ['types', 'fit15', 'indoor', 'contexts', 'votes', 'tiers'];
+const CHIP_ORDER: FilterKey[] = ['types', 'fit15', 'weather', 'contexts', 'votes', 'tiers'];
 
 /** 面板裡套用的條件（地區、子地區在外面，不算）；「篩選」上的數字、AI 的說明用 */
 export function appliedChips(f: Filter, areas: Area[]): FilterChip[] {

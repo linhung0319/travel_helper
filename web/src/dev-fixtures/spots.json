@@ -25,7 +25,7 @@
       "fixtureNote": "假資料"
     },
     "stayMinutes": 120,
-    "indoor": true
+    "weather": "indoor"
   },
   {
     "id": "fixture-toba-spot-2",

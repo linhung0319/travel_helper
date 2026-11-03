@@ -96,7 +96,7 @@ export function createTools(d: AiDeps): ToolDef[] {
         elderly: bool('適合長輩'),
         kids: bool('適合小孩'),
         reservable: bool('可以預約'),
-        indoor: bool('下雨也行：景點只留室內的；餐廳、住宿不受影響'),
+        weather: strs('景點的天氣：indoor（室內）、covered（有遮蔽：一半在屋頂下，撐傘可以）；「下雨也行」兩個都給。餐廳、住宿不受影響'),
         wholeRental: bool('能包棟（只留住宿）'),
         maxGuestsAtLeast: num('最多住幾人至少這麼多（只留住宿；整團 15）'),
         votes: strs('any（有人按想去的，問「想去的」用這個）、popular（2 人以上想去）、mine（我按想去的）'),
@@ -242,8 +242,8 @@ export function createTools(d: AiDeps): ToolDef[] {
     {
       name: 'set_filter',
       kind: 'stage',
-      description: '套用探索的篩選（使用者看得到、可以自己取消）。給的那幾項整個取代；clear=true 先全部清掉。項目：areas、regions、types、contexts、tiers、fit15、votes（any 有人想去、popular 2 人以上想去、mine 我按想去的）、indoor（yes＝下雨也行：景點只留室內的，餐廳、住宿不受影響）。例如「想去的鳥羽餐廳」：areas toba、types restaurant、votes any。條件表達不出來、或是你挑過的幾家，改用 show_places。',
-      input_schema: obj({ areas: strs(), regions: strs(), types: strs(), contexts: strs(), tiers: strs(), fit15: strs(), votes: strs(), indoor: strs(), clear: bool() }),
+      description: '套用探索的篩選（使用者看得到、可以自己取消）。給的那幾項整個取代；clear=true 先全部清掉。項目：areas、regions、types、contexts、tiers、fit15、votes（any 有人想去、popular 2 人以上想去、mine 我按想去的）、weather（indoor 室內、covered 有遮蔽；「下雨也行」兩個都給；只篩景點，餐廳、住宿不受影響）。例如「想去的鳥羽餐廳」：areas toba、types restaurant、votes any。條件表達不出來、或是你挑過的幾家，改用 show_places。',
+      input_schema: obj({ areas: strs(), regions: strs(), types: strs(), contexts: strs(), tiers: strs(), fit15: strs(), votes: strs(), weather: strs(), clear: bool() }),
       run(input) {
         const { clear, ...patch } = input as Record<string, string[]> & { clear?: boolean };
         const err = d.commands.checkFilter(patch as never);

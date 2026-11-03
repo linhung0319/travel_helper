@@ -1273,7 +1273,7 @@ T7c → T7d → T7e → T7f → T7g → T8a → T8b → T8c → T8d → T7i → 
   | 類型 | 不動 | |
   | 人數（餐廳）（原「團體」） | 可坐 15 人、要分桌、坐不下 15 人、還沒查 | `group.fit15` 的四個值都放（現在只放前兩個；`FIT15_LABELS` 已有後兩個的字，「15 人：未查」改成「還沒查」）。2026-11-03：yes 110、split 52、no 32、unknown 139 |
   | 人數（住宿） | 能包棟、可住 15 人 | 新的一組：`group.wholeRental` 是 true（24）、`group.maxGuests` ≥ 15（19）；和 T41 的 `wholeRental`、`maxGuestsAtLeast` 同一個條件。`maxGuests` 在詳情層，照 T47 merge 的做法先讀住宿的詳情 |
-  | 天氣 | 下雨也行（T58 做完後改成室內、有遮蔽） | |
+  | 天氣 | 室內、有遮蔽（T58 已改） | 景點的 `weather`；「下雨也行」＝兩個都選 |
   | 適合 | 長輩、小孩、不用搭車 | 新的一組：景點 `elderFit` ≥ 4（26）、`kidsFit` ≥ 4（22）、`accessEase` ≥ 4（52）；和 T41 的 `elderly`、`kids` 同一個門檻（開工時對一下） |
   | 用餐（原「情境」） | 午餐、晚餐、小吃、咖啡、車站旁 | 只篩餐廳。「轉車空檔」改名「車站旁」，旁邊小字「主要車站走路 5 分內」（條件是 CONVENTIONS 餐廳候選的 E 車站保底）。資料的值 `transit` 不動 |
   | 想去 | 探索拿掉「大家想去的」；想去分頁的「只看我按的」留著 | 排序已經有大家想去的 |
@@ -1291,6 +1291,12 @@ T7c → T7d → T7e → T7f → T7g → T8a → T8b → T8c → T8d → T7i → 
   - 程式跟著改：篩選面板「天氣」放「室內」「有遮蔽」；書架「下雨也行」＝兩個都算；卡片標章（T44b 的「室內」）分開寫；AI 的 `search_places` 的 `indoor` 改成同一套；`tags` 的自動補（CONVENTIONS「`indoor: true` → 室內、雨天備案」）照新的值。
 - **驗證**：`npm run validate`、`npm test`、`npm run typecheck`；改了哪幾筆列成表給 👤 看。
 - **完成條件**：通過；👤 看過重判的那幾筆。
+- **做了什麼**（2026-11-03，分支 `t58`）：
+  - 名字定為 `weather: "indoor" | "covered" | "outdoor" | null`，取代 `indoor`；標準寫進 CONVENTIONS「景點」。96 筆：室內 28、有遮蔽 8、戶外 60；和舊值直接對應不同（或原本沒填）的 23 筆列在各區的 `data/raw/<area>/log/T58.md`。判斷的依據寫在 `extra.indoorNote`。
+  - 判斷用現有的評分理由、讀文筆記和來源；新查的只有海遊苑、海酸漿的官網（都沒寫屋頂），沒用 Chrome。
+  - `tags` 的「室內」「雨天備案」改成只跟著 `weather`（`spot-build.mjs` 的 `deriveTags`、`cross-area-check.mjs --write-tags` 會拿掉不符合的）。
+  - 程式：Filter 的 `indoor: ['yes']` 改成 `weather: ('indoor' | 'covered')[]`（面板「天氣」放室內、有遮蔽；書架「下雨也行」兩個都算）；AI 的 `search_places`、`set_filter` 的 `indoor` 改成 `weather`，搜尋結果帶 `weather`；卡片標章多「有遮蔽」（排在 4 分後面），詳情的標章分開寫。清單層的欄位 `indoor` → `weather`，`LAYER_VERSION` 改 2。
+  - 驗證：`npm run typecheck`、`npm test`（1039）、validate 通過；e2e 只跑受影響的 t42、mobile-t42、t44b（6 支）通過。這台的 Node 是 22.17，`validate.mjs` 讀 `.ts` 要 `--experimental-strip-types`（master 也一樣；22.18 起預設開），所以 validate 和 `npm test` 是加 `NODE_OPTIONS=--experimental-strip-types` 跑的。
 
 ### T21 代表照片 〔M〕
 - 給 T11 的探索模式、小卡片用（[interaction-design.md](interaction-design.md) §7）。

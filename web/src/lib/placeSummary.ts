@@ -1,9 +1,10 @@
 // T44b：這團在乎的重點（interaction-design §18）——卡片的標章、詳情的四格（長輩／小孩／2 月／15 人）、一行費用、一行小提醒。
 // 一行時間在 hours.ts 的 hoursLine。都是純函式，資料不夠就回 null，不猜。
-// 卡片的標章只用清單層的欄位（assessment.scores、indoor、closures、hours，worker/src/lib/placeLayers.ts）；四格的理由用詳情層。
+// 卡片的標章只用清單層的欄位（assessment.scores、weather、closures、hours，worker/src/lib/placeLayers.ts）；四格的理由用詳情層。
 
 import type { Closure, Place } from '../data/types.ts';
 import { closedDaysLabel } from './hours.ts';
+import { placeWeather } from './filter.ts';
 import { TRIP_END, tripDates } from './trip.ts';
 
 /** 這團：15 人，其中 4 位 6～10 歲的小孩（CLAUDE.md） */
@@ -88,7 +89,7 @@ function scores(p: Place): Record<string, number | null> {
 }
 
 /**
- * 卡片上的標章（探索、想去的卡）：從長輩、小孩、室內、二月休挑最好的一個和最差的一個；
+ * 卡片上的標章（探索、想去的卡）：從長輩、小孩、室內（有遮蔽）、二月休挑最好的一個和最差的一個；
  * 只有好的（或只有壞的）就挑兩個。max 是 1 時（前面已經有「已排、候選」）先放最差的。
  */
 export function fitBadges(p: Place, max = 2): FitBadge[] {
@@ -104,7 +105,10 @@ export function fitBadges(p: Place, max = 2): FitBadge[] {
   };
   fit('elderFit', '長輩', 0);
   fit('kidsFit', '小孩', 1);
-  if (p.raw.indoor === true) good.push({ label: '室內', tone: 'good', rank: 45 });
+  // 5 分 > 室內 > 4 分 > 有遮蔽（T58）
+  const w = placeWeather(p);
+  if (w === 'indoor') good.push({ label: '室內', tone: 'good', rank: 45 });
+  else if (w === 'covered') good.push({ label: '有遮蔽', tone: 'good', rank: 35 });
   const closed = tripClosure(p.closures);
   if (closed) warn.push({ label: closed.all ? '二月休' : `${dateSpanLabel(closed.dates)} 休`, tone: 'warn', rank: closed.all ? 50 : 25 });
   good.sort((a, b) => b.rank - a.rank);

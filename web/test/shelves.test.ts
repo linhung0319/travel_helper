@@ -3,27 +3,27 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { SHELVES, areaOnly, currentArea, exploreStage, listScreenLabel, shelfFilter, shelfRows } from '../src/lib/shelves.ts';
-import { EMPTY_FILTER, matchesFilter } from '../src/lib/filter.ts';
+import { EMPTY_FILTER, matchesFilter, type Filter } from '../src/lib/filter.ts';
 import { placeWith } from './helpers.ts';
 
 const at = (id: string, over: Parameters<typeof placeWith>[1], raw: Record<string, unknown> = {}) => placeWith(raw, { id, area: 'toba', region: 'toba-station', ...over });
 
 const PLACES = [
-  at('aquarium', { type: 'spot', tier: 'S' }, { indoor: true }),
-  at('pearl', { type: 'spot', tier: 'A' }, { indoor: true }),
-  at('beach', { type: 'spot', tier: 'B' }),
+  at('aquarium', { type: 'spot', tier: 'S' }, { weather: 'indoor' }),
+  at('pearl', { type: 'spot', tier: 'A' }, { weather: 'covered' }),
+  at('beach', { type: 'spot', tier: 'B' }, { weather: 'outdoor' }),
   at('lookout', { type: 'spot', tier: 'A', region: 'osatsu' }),
   at('big-table', { type: 'restaurant', tier: 'A' }, { group: { fit15: 'yes' } }),
   at('small', { type: 'restaurant', tier: 'S' }, { group: { fit15: 'no' } }),
   at('hotel', { type: 'lodging', tier: 'A' }),
-  placeWith({ indoor: true }, { id: 'ise-museum', area: 'ise', type: 'spot', tier: 'S' }),
+  placeWith({ weather: 'indoor' }, { id: 'ise-museum', area: 'ise', type: 'spot', tier: 'S' }),
 ];
 
 test('shelfFilter：書架的條件疊在目前地區、子地區上', () => {
   const must = SHELVES.find((s) => s.id === 'must')!;
   assert.deepEqual(shelfFilter(must, { areas: ['toba'], regions: [] }), { ...EMPTY_FILTER, areas: ['toba'], types: ['spot'], tiers: ['S', 'A'] });
   const rain = SHELVES.find((s) => s.id === 'rain')!;
-  assert.deepEqual(shelfFilter(rain, { areas: ['toba'], regions: ['osatsu'] }).indoor, ['yes']);
+  assert.deepEqual(shelfFilter(rain, { areas: ['toba'], regions: ['osatsu'] }).weather, ['indoor', 'covered']);
 });
 
 test('shelfRows：每排推薦順序、只看這區；沒東西的那排不列', () => {
@@ -47,9 +47,11 @@ test('shelfRows：一排最多 3 個，total 是全部', () => {
   assert.equal(must.total, 5);
 });
 
-test('indoor 篩選：景點要 indoor 是 true，餐廳、住宿不受影響（同 T41 的 search_places）', () => {
-  const f = { ...EMPTY_FILTER, indoor: ['yes' as const] };
-  assert.deepEqual(PLACES.filter((p) => matchesFilter(p, f)).map((p) => p.id), ['aquarium', 'pearl', 'big-table', 'small', 'hotel', 'ise-museum']);
+test('weather 篩選（T58）：景點的 weather 要是選的其中一個，沒判的不算；餐廳、住宿不受影響（同 search_places）', () => {
+  const ids = (weather: Filter['weather']) => PLACES.filter((p) => matchesFilter(p, { ...EMPTY_FILTER, weather })).map((p) => p.id);
+  assert.deepEqual(ids(['indoor', 'covered']), ['aquarium', 'pearl', 'big-table', 'small', 'hotel', 'ise-museum']);
+  assert.deepEqual(ids(['indoor']), ['aquarium', 'big-table', 'small', 'hotel', 'ise-museum']);
+  assert.deepEqual(ids(['covered']), ['pearl', 'big-table', 'small', 'hotel']);
 });
 
 test('exploreStage：概覽、選了一區、清單', () => {
@@ -60,7 +62,7 @@ test('exploreStage：概覽、選了一區、清單', () => {
   assert.equal(exploreStage(EMPTY_FILTER, '水族', false), 'list');
   assert.equal(exploreStage(EMPTY_FILTER, '  ', false), 'overview');
   assert.equal(exploreStage({ ...EMPTY_FILTER, types: ['restaurant'] }, '', false), 'list');
-  assert.equal(exploreStage({ ...EMPTY_FILTER, areas: ['toba'], indoor: ['yes'] }, '', false), 'list');
+  assert.equal(exploreStage({ ...EMPTY_FILTER, areas: ['toba'], weather: ['indoor'] }, '', false), 'list');
   assert.equal(exploreStage({ ...EMPTY_FILTER, areas: ['toba'] }, '', true), 'list');
   assert.equal(exploreStage({ ...EMPTY_FILTER, areas: ['toba', 'ise'] }, '', false), 'list');
 });

@@ -2,7 +2,7 @@
 // 書架就是一組篩選條件：「全部 ›」把那組條件套上去，回到照片牆或清單；書架上先放推薦順序的前 3 個。
 // AI 要問同樣的事（「一定要去」「下雨也行」「15 人吃得下」「住這區」）時也用這幾組條件（set_filter 的欄位一樣）。
 
-import { EMPTY_FILTER, isFilterEmpty, type Filter } from './filter.ts';
+import { EMPTY_FILTER, RAIN_OK, isFilterEmpty, type Filter } from './filter.ts';
 import { explorePlaces } from './explore.ts';
 import type { Place } from '../data/types.ts';
 
@@ -15,8 +15,8 @@ export interface Shelf {
 
 export const SHELVES: readonly Shelf[] = [
   { id: 'must', title: '一定要去', filter: { types: ['spot'], tiers: ['S', 'A'] } },
-  // 只放景點：餐廳、住宿本來就在室內（indoor 不篩它們），另外兩排就是
-  { id: 'rain', title: '下雨也行', filter: { types: ['spot'], indoor: ['yes'] } },
+  // 只放景點：餐廳、住宿本來就在室內（weather 不篩它們），另外兩排就是。室內、有遮蔽都算（T58）
+  { id: 'rain', title: '下雨也行', filter: { types: ['spot'], weather: RAIN_OK } },
   { id: 'fit15', title: '15 人吃得下', filter: { types: ['restaurant'], fit15: ['yes'] } },
   { id: 'stay', title: '住這區', filter: { types: ['lodging'] } },
 ];

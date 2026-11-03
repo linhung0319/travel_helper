@@ -1,4 +1,4 @@
-// 篩選：區域、子地區、類型、情境、分級、團體（15 人）、投票（T15m）、下雨也行（T42）。每一項都是「空陣列＝不篩」，有值時符合其中一個就算。
+// 篩選：區域、子地區、類型、情境、分級、團體（15 人）、投票（T15m）、天氣（T42、T58）。每一項都是「空陣列＝不篩」，有值時符合其中一個就算。
 
 import { displayName } from '../data/normalize.ts';
 import type { Area, Context, Place, PlaceType, Tier } from '../data/types.ts';
@@ -13,13 +13,23 @@ export interface Filter {
   fit15: Fit15[];
   /** 投票（interaction-design §9）：有人按了 ❤️ 的（AI 問「想去的」用，畫面的篩選沒有這個按鈕）、大家喜歡的（❤️ 2 人以上）、我按了 ❤️ 的 */
   votes: VoteFilter[];
-  /** 下雨也行（T42 的書架、interaction-design §20）：和 AI 的 search_places（T41）同一個意思，景點要 indoor 是 true，餐廳、住宿本來就在室內 */
-  indoor: IndoorFilter[];
+  /** 天氣（T58，CONVENTIONS 景點的 weather）：景點的 weather 是其中一個；和 AI 的 search_places 同一個意思。餐廳、住宿本來就在室內，不受影響 */
+  weather: WeatherFilter[];
 }
 
-export const INDOOR_VALUES = ['yes'] as const;
-export type IndoorFilter = (typeof INDOOR_VALUES)[number];
-export const INDOOR_LABEL = '下雨也行';
+/** 景點的 weather（T58）：室內、有遮蔽、戶外；null 是沒判 */
+export const WEATHER_LEVELS = ['indoor', 'covered', 'outdoor'] as const;
+export type Weather = (typeof WEATHER_LEVELS)[number];
+export const WEATHER_LABELS: Record<Weather, string> = { indoor: '室內', covered: '有遮蔽', outdoor: '戶外' };
+/** 篩選只放室內、有遮蔽；「下雨也行」是兩個都算 */
+export const WEATHER_VALUES = ['indoor', 'covered'] as const;
+export type WeatherFilter = (typeof WEATHER_VALUES)[number];
+export const RAIN_OK: WeatherFilter[] = ['indoor', 'covered'];
+
+export function placeWeather(p: { raw: Record<string, unknown> }): Weather | null {
+  const v = p.raw.weather;
+  return typeof v === 'string' && (WEATHER_LEVELS as readonly string[]).includes(v) ? (v as Weather) : null;
+}
 
 export const VOTE_FILTER_VALUES = ['any', 'popular', 'mine'] as const;
 export type VoteFilter = (typeof VOTE_FILTER_VALUES)[number];
@@ -51,7 +61,7 @@ export type Fit15 = (typeof FIT15_VALUES)[number];
 
 export type FilterKey = keyof Filter;
 
-export const EMPTY_FILTER: Filter = { areas: [], regions: [], types: [], contexts: [], tiers: [], fit15: [], votes: [], indoor: [] };
+export const EMPTY_FILTER: Filter = { areas: [], regions: [], types: [], contexts: [], tiers: [], fit15: [], votes: [], weather: [] };
 
 export const TYPE_LABELS: Record<PlaceType, string> = {
   station: '車站',
@@ -96,7 +106,10 @@ export function matchesFilter(p: Place, f: Filter): boolean {
     const v = placeFit15(p);
     if (!(v && f.fit15.includes(v))) return false;
   }
-  if (f.indoor.length && p.type === 'spot' && p.raw.indoor !== true) return false;
+  if (f.weather.length && p.type === 'spot') {
+    const w = placeWeather(p);
+    if (!(w && (f.weather as readonly string[]).includes(w))) return false;
+  }
   if (f.votes.length) {
     const ok =
       (f.votes.includes('any') && (voteLookup?.likes(p.id) ?? 0) >= 1) || (f.votes.includes('popular') && (voteLookup?.likes(p.id) ?? 0) >= POPULAR_LIKES) || (f.votes.includes('mine') && !!voteLookup?.likedByMe(p.id));
@@ -137,7 +150,7 @@ export function filterChips(f: Filter, areas: Area[]): FilterChip[] {
     ...f.tiers.map((v) => ({ key: 'tiers' as const, value: v, label: `${v} 級` })),
     ...f.fit15.map((v) => ({ key: 'fit15' as const, value: v, label: FIT15_LABELS[v] })),
     ...f.votes.map((v) => ({ key: 'votes' as const, value: v, label: VOTE_FILTER_LABELS[v] })),
-    ...f.indoor.map((v) => ({ key: 'indoor' as const, value: v, label: INDOOR_LABEL })),
+    ...f.weather.map((v) => ({ key: 'weather' as const, value: v, label: WEATHER_LABELS[v] })),
   ];
 }
 
