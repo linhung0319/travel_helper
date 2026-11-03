@@ -2,8 +2,9 @@
 // 瀏覽器算完時間軸後整理成 TripSummary 存進 D1（Worker 算不出時間，architecture §6）；
 // LINE 機器人讀出來排成文字回覆（T35 的下載檔不用這份，直接從時間軸整理，見 web/src/lib/tripExport.ts）。純函式，沒有 I/O。
 
+import { dayAreaLabel, dayAreaOf, lodgingOn, nightAreaOf, type AreaOfPlace } from './nights.ts';
 import { dayOfWeek, toMinutes } from './time.ts';
-import type { DateString, ItineraryPlan, Itinerary, TimeString, TimelineEntry } from './types.ts';
+import type { AreaId, DateString, ItineraryPlan, Itinerary, TimeString, TimelineEntry } from './types.ts';
 
 /** 時間軸的一行 */
 export interface SummaryLine {
@@ -31,6 +32,10 @@ export interface SummaryDay {
   lines: SummaryLine[];
   /** 這晚住哪（名稱）；沒排是 null */
   lodging: string | null;
+  /** 這天在哪一區（「鳥羽」「志摩 → 鳥羽」「鳥羽（去伊勢一日）」）；沒決定是 null。T45a 之前存的摘要沒有這欄 */
+  area?: string | null;
+  /** 這晚住哪一區（名稱）；沒決定、最後一天是 null。T45a 之前存的摘要沒有這欄 */
+  stayArea?: string | null;
 }
 
 export interface TripSummary {
@@ -45,10 +50,15 @@ export interface SummaryInput {
   nameOf: (placeId: string) => string | null;
   /** 要預約的列：web 的 noteRows 只留主選和住宿 */
   reservations?: SummaryReservation[];
+  /** 區的名稱（T45a）；沒給時用區 ID */
+  areaName?: (id: AreaId) => string | null;
+  /** 地點的區（只選了住宿、沒寫區的晚上用） */
+  areaOf?: AreaOfPlace;
 }
 
 /** 引擎的時間軸 → 摘要。同一時段有備選時只列主選（引擎本來就只算主選）；分組時各組都列 */
-export function buildTripSummary({ itinerary, plan, nameOf, reservations = [] }: SummaryInput): TripSummary {
+export function buildTripSummary({ itinerary, plan, nameOf, reservations = [], areaName, areaOf }: SummaryInput): TripSummary {
+  const aName = (id: AreaId) => areaName?.(id) ?? id;
   const items = new Map<string, Itinerary['days'][number]['items'][number]>();
   for (const d of itinerary.days) for (const it of d.items) items.set(it.id, it);
   const name = (id: string | null) => (id ? (nameOf(id) ?? id) : null);
@@ -84,7 +94,14 @@ export function buildTripSummary({ itinerary, plan, nameOf, reservations = [] }:
       }
       pushLine(lines, lineOf(e));
     }
-    return { date: d.date, lines, lodging: name(d.lodging) };
+    const stay = nightAreaOf(itinerary, d.date, areaOf);
+    return {
+      date: d.date,
+      lines,
+      lodging: name(lodgingOn(itinerary, d.date)),
+      area: dayAreaLabel(dayAreaOf(itinerary, d.date, areaOf), aName),
+      stayArea: stay ? aName(stay) : null,
+    };
   });
   return { days, reservations };
 }
@@ -111,12 +128,20 @@ export const shortDate = (date: DateString) => {
 
 const lineText = (l: SummaryLine) => `${l.group ? `【${l.group}】` : ''}${l.start}${l.end && l.end !== l.start ? `-${l.end}` : ''} ${l.text}`;
 
-/** 一天：日期一行，接著每個行程一行，最後「住：…」。什麼都沒排寫「還沒排」 */
+/** 「住：…」那行：選了住宿寫名稱，只定了區寫「志摩（還沒選住宿）」，都沒有是 null */
+function stayLine(day: SummaryDay): string | null {
+  if (day.lodging) return `住：${day.lodging}`;
+  if (day.stayArea) return `住：${day.stayArea}（還沒選住宿）`;
+  return null;
+}
+
+/** 一天：日期（和那天在哪一區）一行，接著每個行程一行，最後「住：…」。什麼都沒排寫「還沒排」 */
 export function formatDay(day: SummaryDay): string {
-  const out = [dayHeading(day.date)];
+  const out = [day.area ? `${dayHeading(day.date)} ${day.area}` : dayHeading(day.date)];
   if (!day.lines.length) out.push('還沒排');
   for (const l of day.lines) out.push(lineText(l));
-  if (day.lodging) out.push(`住：${day.lodging}`);
+  const stay = stayLine(day);
+  if (stay) out.push(stay);
   return out.join('\n');
 }
 
@@ -150,7 +175,8 @@ export function formatNow(s: TripSummary, now: { date: DateString; time: TimeStr
     if (next) out.push(`下一個：${lineText(next)}`);
   }
   if (out.length === 1) out.push(day.lines.length ? '今天的行程都結束了' : '今天還沒排');
-  if (day.lodging) out.push(`住：${day.lodging}`);
+  const stay = stayLine(day);
+  if (stay) out.push(stay);
   return out.join('\n');
 }
 

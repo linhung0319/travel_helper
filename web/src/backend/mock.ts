@@ -3,7 +3,7 @@
 
 import type { Itinerary } from '@travel-helper/engine/types';
 import type { TripSummary } from '@travel-helper/engine';
-import { DEFAULT_CONFIG, upgradeItinerary } from '@travel-helper/engine';
+import { DEFAULT_CONFIG, upgradeItinerary, validateItinerary } from '@travel-helper/engine';
 import {
   BackendError,
   type Backend,
@@ -83,8 +83,8 @@ const USER_PLACE_TYPES: UserPlaceType[] = ['spot', 'restaurant', 'lodging'];
 const DATE = /^\d{4}-\d{2}-\d{2}$/;
 const clone = <T>(x: T): T => structuredClone(x);
 
-function badRequest(message: string): never {
-  throw new BackendError(400, 'bad-request', message);
+function badRequest(message: string, details?: unknown): never {
+  throw new BackendError(400, 'bad-request', message, details);
 }
 function forbidden(message: string): never {
   throw new BackendError(403, 'forbidden', message);
@@ -150,7 +150,7 @@ export function createMockBackend(seed: MockSeed, opts: MockOptions = {}): MockB
     try {
       const text = storage?.getItem(key);
       if (!text) return null;
-      // 舊存檔的 meal、dining 轉成 tags
+      // 舊存檔升級：meal、dining 轉成 tags；每天的 lodging 搬到 nights（T45a）
       const st = JSON.parse(text) as MockState;
       if (st.itinerary?.data) st.itinerary.data = upgradeItinerary(st.itinerary.data);
       for (const s of st.snapshots ?? []) s.data = upgradeItinerary(s.data);
@@ -182,6 +182,9 @@ export function createMockBackend(seed: MockSeed, opts: MockOptions = {}): MockB
     if (version !== cur.version) {
       throw new BackendError(409, 'version-conflict', '別人改過了，請重新載入再改', { current: cur.version });
     }
+    // 同 Worker：存之前跑 validateItinerary（舊格式、壞掉的 JSON 回 400）
+    const problems = validateItinerary(data);
+    if (problems.length) badRequest('行程的格式不對', problems);
     const at = now();
     if (cur.data) {
       state.snapshots.push({ id: ++state.seq.snapshot, version: cur.version, reason, createdBy: by, createdAt: at, data: clone(cur.data) });

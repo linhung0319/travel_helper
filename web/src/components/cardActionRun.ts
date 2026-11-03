@@ -4,7 +4,7 @@
 // 撤下是 planDrag.ts 的 withdrawItem；排進這天用 addToDay.ts 的 addPlaceToDay；刪別人加的候選開 RejectDialog（要寫理由）。
 // 選單畫什麼（menuItems：順序、組名、紅字）和「移到第幾天」的兩個動作（moveItemToDayAction、moveCandidateToDay）也在這裡，兩邊共用。
 
-import { detachOption, moveItemTo, moveItemToDay, removeItem, selectOption, setLodging, setStart } from '@travel-helper/engine';
+import { detachOption, moveItemTo, moveItemToDay, removeItem, selectOption, setLodging, setStart, nightAreaOf } from '@travel-helper/engine';
 import type { Itinerary } from '@travel-helper/engine/types';
 import { shared } from '../appShared.ts';
 import { dataStore } from '../dataStore.ts';
@@ -197,7 +197,11 @@ export async function runCardAction(id: ActionId, target: ActionTarget, ui: Acti
     case 'free-length':
       return ui.openStay?.();
     case 'lodging-clear':
-      await shared.changeItinerary((it) => setLodging(it, date, null), `清掉 ${shortDayLabel(date)} 的住宿`);
+      // 住宿清掉、區留著（只選了住宿、沒寫區的晚上，區照住宿資料推）
+      await shared.changeItinerary(
+        (it) => setLodging(it, date, null, null, nightAreaOf(it, date, (id) => dataStore.getState().byId.get(id)?.area)),
+        `清掉 ${shortDayLabel(date)} 的住宿`,
+      );
       return;
     case 'schedule': {
       const placeId = target.placeId;

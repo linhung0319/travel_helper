@@ -5,7 +5,7 @@ import type { Feature, FeatureCollection, LineString, Point } from 'geojson';
 import type { Itinerary } from '@travel-helper/engine/types';
 import type { DayPlan } from '@travel-helper/engine';
 import type { HighlightStyle, MapRoute, Proposal } from '../store.ts';
-import type { LonLat, Place } from '../data/types.ts';
+import type { Area, LonLat, Place } from '../data/types.ts';
 import { stopsOn } from './itinerary.ts';
 import { dayColor } from './visual.ts';
 import { lineMidpoint } from './routing.ts';
@@ -146,8 +146,14 @@ export function proposalFeatures(
   return { points: collection(points), lines: collection(lines) };
 }
 
-/** 提議的摘要，一天一行，例如「2/5：＋鳥羽水族館、－海の博物館、調整順序」（interaction-design §0） */
-export function describeChanges(changes: Change[], nameOf: (id: string) => string): { date: string; text: string }[] {
+/** 區 ID → 名稱（中文優先）；找不到用 ID */
+export const areaNameIn = (areas: Area[]) => (id: string) => {
+  const a = areas.find((x) => x.id === id);
+  return a ? a.name.zh || a.name.ja || id : id;
+};
+
+/** 提議的摘要，一天一行，例如「2/5：＋鳥羽水族館、－海の博物館、調整順序」（interaction-design §0）；areaName 給住哪一區（T45a）的區名 */
+export function describeChanges(changes: Change[], nameOf: (id: string) => string, areaName: (id: string) => string = (id) => id): { date: string; text: string }[] {
   const byDate = new Map<string, string[]>();
   const push = (date: string, s: string) => {
     const list = byDate.get(date) ?? [];
@@ -163,6 +169,8 @@ export function describeChanges(changes: Change[], nameOf: (id: string) => strin
       push(c.fromDate!, `－${n(c.place)}（移到 ${shortDayLabel(c.date)}）`);
     } else if (c.kind === 'reordered') push(c.date, '調整順序');
     else if (c.kind === 'lodging') push(c.date, `住宿：${n(c.before)} → ${n(c.after)}`);
+    else if (c.kind === 'night-area') push(c.date, `住的區：${c.before ? areaName(c.before) : '（未定）'} → ${c.after ? areaName(c.after) : '（未定）'}`);
+    else if (c.kind === 'day-area') push(c.date, c.after ? `去${areaName(c.after)}一日遊` : '不排一日遊');
     else if (c.kind === 'return-travel') push(c.date, '回住宿的交通');
     else if (c.before !== undefined) push(c.date, `${n(c.before)} → ${n(c.place)}`);
     else push(c.date, `改了${n(c.place)}`);

@@ -1,6 +1,7 @@
 // 討論彈窗的整理（T33 設計 §3）：純函式，留言照「討論對象」分組（整趟、某一天、資料點）。
 // 留言的 target 本來就是地點 ID、day:<日期>、trip，這裡不存任何東西。點換天、移出行程時，分組跟著行程算，留言不用動。
 
+import { lodgingOn } from '@travel-helper/engine';
 import type { Itinerary } from '@travel-helper/engine/types';
 import type { Candidate, Comment } from '../backend/types.ts';
 import { dayTarget, TRIP_TARGET } from '../backend/types.ts';
@@ -58,7 +59,7 @@ function byTarget(comments: Comment[]): Map<string, Comment[]> {
 /** 這天的點：行程裡的（含備選、住宿）和候選；車站沒有留言，不列 */
 function dayPlaces(date: string, input: DiscussionInput): { placeId: string; where: NonNullable<PlaceWhere> }[] {
   const { itinerary, candidates, byId } = input;
-  const lodging = itinerary?.days.find((d) => d.date === date)?.lodging ?? null;
+  const lodging = lodgingOn(itinerary, date);
   const out = new Map<string, NonNullable<PlaceWhere>>();
   for (const id of placesOnDay(itinerary, date)) out.set(id, { date, status: id === lodging ? 'lodging' : 'visit' });
   for (const c of dayCandidates(candidates, date, itinerary, byId)) if (!out.has(c.placeId)) out.set(c.placeId, { date, status: 'candidate' });

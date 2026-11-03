@@ -126,8 +126,9 @@ export function ensurePlan(store: StoreApi<PlanState> = planStore, maxMs = 30_00
   });
 }
 
-/** 行程有沒有東西：哪一天排了住宿或航班以外的項目（新的行程本來就有去回程的航班，不算） */
-export const hasContent = (it: Itinerary | null | undefined): boolean => !!it?.days.some((d) => !!d.lodging || d.items.some((i) => i.type !== 'flight'));
+/** 行程有沒有東西：哪一晚選了住宿（只定了區不算），或哪一天排了航班以外的項目（新的行程本來就有去回程的航班，不算） */
+export const hasContent = (it: Itinerary | null | undefined): boolean =>
+  !!it && (Object.values(it.nights ?? {}).some((n) => !!n.lodging) || it.days.some((d) => d.items.some((i) => i.type !== 'flight')));
 
 /** 打開行程（整趟、單天）時叫：時刻表還沒讀就馬上讀（T47） */
 export function requestPlan() {

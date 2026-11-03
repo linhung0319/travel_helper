@@ -2,7 +2,7 @@
 // 過去的版本（快照）列表與復原、上一步、「排進行程」、「移到第 _ 天」（卡片、自己加的候選）、別人改過了的提示。
 
 import { useCallback, useEffect, useState, useSyncExternalStore, type ReactNode } from 'react';
-import { describeChanges, diffItinerary } from '@travel-helper/engine';
+import { describeChanges, diffItinerary, lodgingOn } from '@travel-helper/engine';
 import { appStore } from '../store.ts';
 import { shared } from '../appShared.ts';
 import { backend } from '../backend/index.ts';
@@ -13,6 +13,7 @@ import { Icon } from './Icon.tsx';
 import { Button } from '../shared/ui/Button.tsx';
 import { DiscussButton } from '../shared/ui/DiscussButton.tsx';
 import { dayLabel, isRedDay, shortDayLabel, tripDates } from '../lib/trip.ts';
+import { areaNameIn } from '../lib/overlays.ts';
 import { findItemRef, itemsWithPlace } from '../lib/planView.ts';
 import { stopsOn } from '../lib/itinerary.ts';
 import type { Snapshot } from '../backend/types.ts';
@@ -251,6 +252,7 @@ export function SnapshotsDialog() {
   const updatedAt = useShared((s) => s.updatedAt);
   const itinerary = useData((s) => s.itinerary);
   const byId = useData((s) => s.byId);
+  const areas = useData((s) => s.areas);
   const [open, setOpen] = useState<{ id: number; snap: Snapshot | null } | null>(null);
   const [confirm, setConfirm] = useState<number | null>(null);
   const nameOf = (id: string) => byId.get(id)?.name.zh || byId.get(id)?.name.ja || id;
@@ -267,7 +269,7 @@ export function SnapshotsDialog() {
       {snapshots.length === 0 && <p className="muted">還沒有過去的版本。</p>}
       <ol className="snapshot-list">
         {snapshots.map((s) => {
-          const changes = open?.id === s.id && open.snap && itinerary ? describeChanges(diffItinerary(itinerary, open.snap.data), { nameOf }) : null;
+          const changes = open?.id === s.id && open.snap && itinerary ? describeChanges(diffItinerary(itinerary, open.snap.data), { nameOf, areaName: areaNameIn(areas) }) : null;
           return (
             <li key={s.id} className="snapshot" data-testid="snapshot">
               <div className="snapshot-head">
@@ -373,10 +375,10 @@ export function AddToDayDialog({ placeId, day: initialDay }: { placeId: string; 
         <span className="field-label">{lodging ? '哪一晚' : '哪一天（插在那天最順路的位置）'}</span>
         <div className="day-picker">
           {DATES.map((d) => {
-            const dayData = itinerary.days.find((x) => x.date === d);
+            const lodgingId = lodgingOn(itinerary, d);
             const count = stopsOn(itinerary, d).filter((s) => s.kind !== 'lodging' && s.kind !== 'flight').length;
-            const lodge = dayData?.lodging ? byId.get(dayData.lodging) : null;
-            const lodgeName = lodge ? lodge.name.zh || lodge.name.ja : (dayData?.lodging ?? null);
+            const lodge = lodgingId ? byId.get(lodgingId) : null;
+            const lodgeName = lodge ? lodge.name.zh || lodge.name.ja : lodgingId;
             return (
               <button key={d} type="button" className={`day-pick ${d === day ? 'on' : ''} ${isRedDay(d) ? 'red-day' : ''}`} aria-pressed={d === day} onClick={() => setDay(d)} data-pick-day={d}>
                 <span>

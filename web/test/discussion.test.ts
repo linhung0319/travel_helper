@@ -14,7 +14,10 @@ const comment = (id: number, target: string, createdAt: string, author = 'a', ex
 const place = (id: string, type = 'spot') => ({ id, type, name: { zh: id } }) as unknown as Place;
 const visit = (id: string, p: string) => ({ type: 'visit', id, options: [{ place: p }], selected: 0 });
 const itinerary = (days: Record<string, string[]>, lodging: Record<string, string> = {}) =>
-  ({ days: Object.entries(days).map(([date, ps]) => ({ date, lodging: lodging[date] ?? null, items: ps.map((p, i) => visit(`${date}-${i}`, p)) })) }) as unknown as Itinerary;
+  ({
+    nights: Object.fromEntries(Object.entries(lodging).map(([date, l]) => [date, { lodging: l }])),
+    days: Object.entries(days).map(([date, ps]) => ({ date, items: ps.map((p, i) => visit(`${date}-${i}`, p)) })),
+  }) as unknown as Itinerary;
 const candidate = (id: number, placeId: string, day: string): Candidate => ({ id, placeId, day, addedBy: 'a', createdAt: '', updatedAt: '', deletedAt: null });
 
 function input(over: Partial<DiscussionInput> = {}): DiscussionInput {

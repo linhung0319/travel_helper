@@ -1,7 +1,7 @@
 // 下載行程（T35）的兩種排版：MD（給 AI、純文字）和列印用的 HTML（瀏覽器存成 PDF）。內容都來自 tripExport.ts 的 ExportDoc。
 // HTML 第一頁是總覽（航班、每天去哪、住哪），之後一天一頁、字大；頁尾印版本和產生時間（PDF 不會跟著行程更新）。純函式。
 
-import type { ExportDoc, ExportLeg, ExportLodging, ExportMissed, ExportRide, ExportRow, ExportStop } from './tripExport.ts';
+import type { ExportDay, ExportDoc, ExportLeg, ExportLodging, ExportMissed, ExportRide, ExportRow, ExportStop } from './tripExport.ts';
 
 export const EXPORT_TITLE = '伊勢志摩・大阪 行程';
 
@@ -108,7 +108,7 @@ const reservationTime = (doc: ExportDoc) => `${doc.generatedAt} 下載（日本�
 export function exportMarkdown(doc: ExportDoc): string {
   const out: string[] = [`# ${EXPORT_TITLE}`, '', `${doc.range}・${partyText(doc.party)}`, '', `${versionText(doc)}。行程以網站為準。`, '', '## 總覽', ''];
   out.push('| 日期 | 地區 | 住宿 |', '| --- | --- | --- |');
-  for (const d of doc.days) out.push(`| ${d.heading} | ${mdEsc(d.area ?? '')} | ${mdEsc(d.lodging?.place.name ?? '')} |`);
+  for (const d of doc.days) out.push(`| ${d.heading} | ${mdEsc(d.area ?? '')} | ${mdEsc(stayText(d))} |`);
   if (doc.flights.length) {
     out.push('', '**航班**', '');
     for (const f of doc.flights) out.push(`- ${mdEsc(flightText(doc, f))}`);
@@ -129,7 +129,7 @@ export function exportMarkdown(doc: ExportDoc): string {
       if (meta.length) out.push(`- ${mdEsc(meta.join('・'))}`);
       if (l.address) out.push(`- 地址：${mdEsc(l.address)}`);
       if (l.phone) out.push(`- 電話：${mdEsc(l.phone)}`);
-    }
+    } else if (d.stayArea) out.push('', `**住宿**：${mdEsc(d.stayArea)}（還沒選住宿）`);
   }
   return `${out.join('\n')}\n`;
 }
@@ -221,6 +221,9 @@ function htmlRows(rows: ExportRow[]): string {
     .join('\n');
 }
 
+/** 總覽的住宿那格：住宿名稱，只定了區寫「志摩（還沒選住宿）」 */
+const stayText = (d: ExportDay) => d.lodging?.place.name ?? (d.stayArea ? `${d.stayArea}（還沒選住宿）` : '');
+
 function htmlLodging(l: ExportLodging): string {
   const meta = lodgingMeta(l);
   return `<div class="lodging"><div>今晚住</div><div class="n">${link(l.place.name, l.place.mapsUrl)}${l.place.ja ? `（${esc(l.place.ja)}）` : ''}</div>${
@@ -236,7 +239,7 @@ export function exportHtml(doc: ExportDoc): string {
 ${doc.flights.length ? `<h3>航班</h3><ul class="flights">${doc.flights.map((f) => `<li>${esc(flightText(doc, f))}</li>`).join('')}</ul>` : ''}
 <h3>每天</h3>
 <table class="overview"><thead><tr><th>日期</th><th>地區</th><th>住宿</th></tr></thead><tbody>
-${doc.days.map((d) => `<tr><td>${esc(d.heading)}</td><td>${esc(d.area ?? '')}</td><td>${d.lodging ? esc(d.lodging.place.name) : ''}</td></tr>`).join('\n')}
+${doc.days.map((d) => `<tr><td>${esc(d.heading)}</td><td>${esc(d.area ?? '')}</td><td>${esc(stayText(d))}</td></tr>`).join('\n')}
 </tbody></table>
 ${footer}
 </section>`;
@@ -257,7 +260,7 @@ ${footer}
 <h2>${esc(d.heading)}${d.area ? `<span class="area">${esc(d.area)}</span>` : ''}</h2>
 ${d.note ? `<div class="note">${esc(d.note)}</div>` : ''}
 ${d.rows.length ? htmlRows(d.rows) : '<p class="empty">還沒排</p>'}
-${d.lodging ? htmlLodging(d.lodging) : ''}
+${d.lodging ? htmlLodging(d.lodging) : d.stayArea ? `<div class="lodging"><div>今晚住</div><div class="n">${esc(d.stayArea)}（還沒選住宿）</div></div>` : ''}
 ${footer}
 </section>`,
   );

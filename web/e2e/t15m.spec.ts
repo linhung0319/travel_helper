@@ -1297,9 +1297,11 @@ test('回住宿的卡：這晚的方案三選一，再點取消', async ({ page 
   await pop.getByTestId('lodging-plan-none').click();
   await expect(tag).toHaveText('一泊二食');
   await expect(tag).toHaveAttribute('data-from', 'data');
-  const day = (await th(page, `__th.dataStore.getState().itinerary.days.find((d) => d.date === '${DAY}')`)) as { lodging: string; lodgingMeals: unknown };
-  expect(day.lodging).toBe('futami-oishiya');
-  expect(day.lodgingMeals ?? null).toBeNull();
+  // 住宿和方案存在 nights（T45a）：方案回到照資料時拿掉 meals，區和住宿留著
+  const night = (await th(page, `__th.dataStore.getState().itinerary.nights['${DAY}']`)) as { area?: string; lodging?: string; meals?: unknown };
+  expect(night.lodging).toBe('futami-oishiya');
+  expect(night.area).toBe('futami');
+  expect(night.meals ?? null).toBeNull();
   await page.keyboard.press('Escape');
   await expect(pop).toHaveCount(0);
 });

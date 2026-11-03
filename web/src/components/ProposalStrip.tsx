@@ -9,7 +9,7 @@ import { shared } from '../appShared.ts';
 import { useApp, useData, useUi } from '../hooks.ts';
 import { appStore } from '../store.ts';
 import { uiStore } from '../uiStore.ts';
-import { describeChanges } from '../lib/overlays.ts';
+import { areaNameIn, describeChanges } from '../lib/overlays.ts';
 import { Icon } from './Icon.tsx';
 
 export function ProposalStrip({ onTrip: onTripProp }: { onTrip?: boolean } = {}) {
@@ -18,14 +18,15 @@ export function ProposalStrip({ onTrip: onTripProp }: { onTrip?: boolean } = {})
   const active = useStore(ai.proposals.store, (s) => s.active);
   const view = useUi((s) => s.proposalView);
   const byId = useData((s) => s.byId);
+  const areas = useData((s) => s.areas);
   const lines = useMemo(() => {
     if (!proposal) return [];
     const name = (id: string) => {
       const p = byId.get(id);
       return p ? p.name.zh || p.name.ja : id;
     };
-    return describeChanges(proposal.changes, name).map((l) => l.text);
-  }, [proposal, byId]);
+    return describeChanges(proposal.changes, name, areaNameIn(areas)).map((l) => l.text);
+  }, [proposal, byId, areas]);
   if (!proposal) return null;
   const onTrip = onTripProp ?? mode === 'map';
   const days = proposal.dates.length;

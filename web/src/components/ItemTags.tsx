@@ -5,8 +5,8 @@
 // 存檔的 toggleVisitTag、pickLodgingPlan 也給手機版的標籤面板（mobile/TagSheet.tsx）用。
 
 import { useRef, type CSSProperties } from 'react';
-import { setLodging, setTags, type LodgingMeals, type TagId } from '@travel-helper/engine';
-import type { ItineraryDay, VisitItem } from '@travel-helper/engine/types';
+import { lodgingMealsOn, lodgingOn, setLodging, setTags, type LodgingMeals, type TagId } from '@travel-helper/engine';
+import type { VisitItem } from '@travel-helper/engine/types';
 import { shared } from '../appShared.ts';
 import { useData, useShared } from '../hooks.ts';
 import { useEditing } from './timelineEdit.ts';
@@ -46,10 +46,7 @@ export function toggleVisitTag(visit: VisitItem, tag: TagId) {
 export function pickLodgingPlan(date: string, cur: LodgingMeals | null, v: LodgingMeals) {
   const next = toggleLodgingPlan(cur, v);
   void shared.changeItinerary(
-    (it) => {
-      const d = it.days.find((x) => x.date === date)!;
-      return setLodging(it, date, d.lodging, toggleLodgingPlan(d.lodgingMeals ?? null, v));
-    },
+    (it) => setLodging(it, date, lodgingOn(it, date), toggleLodgingPlan(lodgingMealsOn(it, date), v)),
     `${shortDayLabel(date)} 這晚的方案：${next ? LODGING_PLANS.find((x) => x.value === next)!.label : '照住宿資料'}`,
   );
 }
@@ -120,9 +117,8 @@ export function ItemTags({ visit, kind, date, placeId, open, onOpenChange }: { v
   );
 }
 
-/** 這晚的方案：lodgingMeals 有填用它（from day），沒填照住宿資料的 meals（from data）；「看方案」、不知道就沒有 */
-export function lodgingPlanShown(day: ItineraryDay | undefined, p: Place | undefined): { value: LodgingMeals; label: string; from: 'day' | 'data' } | null {
-  const own = day?.lodgingMeals ?? null;
+/** 這晚的方案：own（nights 的 meals）有填用它（from day），沒填照住宿資料的 meals（from data）；「看方案」、不知道就沒有 */
+export function lodgingPlanShown(own: LodgingMeals | null, p: Place | undefined): { value: LodgingMeals; label: string; from: 'day' | 'data' } | null {
   const value = (own ?? p?.raw.meals ?? null) as LodgingMeals | 'varies' | null;
   const plan = LODGING_PLANS.find((x) => x.value === value);
   return plan ? { value: plan.value, label: plan.label, from: own ? 'day' : 'data' } : null;
@@ -130,7 +126,7 @@ export function lodgingPlanShown(day: ItineraryDay | undefined, p: Place | undef
 
 /** 「這晚的方案」彈窗：三選一，再點選了的那個＝回到照住宿資料（null）。住宿本身不變 */
 export function LodgingPlanPopover({ date, anchor, onClose }: { date: string; anchor: HTMLElement | null; onClose: () => void }) {
-  const cur = useData((s) => s.itinerary?.days.find((d) => d.date === date)?.lodgingMeals ?? null);
+  const cur = useData((s) => lodgingMealsOn(s.itinerary, date));
   const pick = (v: LodgingMeals) => pickLodgingPlan(date, cur, v);
   const saving = useShared((s) => s.saving);
   return (
@@ -155,12 +151,13 @@ export function LodgingPlanPopover({ date, anchor, onClose }: { date: string; an
 
 /**
  * 宿的卡的標籤那一排：這晚的方案＋預約狀態。
- * editable（回住宿那張、編輯中）時點那一排打開 LodgingPlanPopover；出發那張傳前一晚的 day 和入住日，唯讀。
+ * editable（回住宿那張、編輯中）時點那一排打開 LodgingPlanPopover；出發那張傳前一晚的方案和入住日，唯讀。
+ * meals：這晚自己選的方案（nights 的 meals），沒選是 null。
  * night：連住時是第幾晚（一晚不畫）
  */
-export function LodgingTags({ day, place, reservationDate, editable, open, onOpenChange, night = null }: { day: ItineraryDay | undefined; place: Place | undefined; reservationDate: string | null; editable: boolean; open: boolean; onOpenChange: (open: boolean) => void; night?: { n: number; total: number } | null }) {
+export function LodgingTags({ meals, place, reservationDate, editable, open, onOpenChange, night = null }: { meals: LodgingMeals | null; place: Place | undefined; reservationDate: string | null; editable: boolean; open: boolean; onOpenChange: (open: boolean) => void; night?: { n: number; total: number } | null }) {
   const anchor = useRef<HTMLSpanElement>(null);
-  const shown = lodgingPlanShown(day, place);
+  const shown = lodgingPlanShown(meals, place);
   const nightTag = night && night.total > 1 && (
     <span className="badge tag-night" data-testid="lodging-night">
       連住第 {night.n}／{night.total} 晚
@@ -177,7 +174,7 @@ export function LodgingTags({ day, place, reservationDate, editable, open, onOpe
       {reservationDate && <ReservationTag date={reservationDate} placeId={place.id} />}
     </>
   ) : null;
-  if (!editable || !day)
+  if (!editable || !reservationDate)
     return (
       <span className="item-tags">
         {nightTag}
@@ -194,7 +191,7 @@ export function LodgingTags({ day, place, reservationDate, editable, open, onOpe
         </button>
       )}
       {reservation}
-      {open && <LodgingPlanPopover date={day.date} anchor={anchor.current} onClose={() => onOpenChange(false)} />}
+      {open && <LodgingPlanPopover date={reservationDate} anchor={anchor.current} onClose={() => onOpenChange(false)} />}
     </span>
   );
 }

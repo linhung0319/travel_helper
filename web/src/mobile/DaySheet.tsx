@@ -10,6 +10,7 @@
 // 有提議時最上面是提議列（ProposalStrip，§16.2）；看差異時時間軸唯讀、顯示提議後的時間，提議的卡加膠囊，被換掉的變淡、劃掉。
 // 重疊卡（有備卡）用 ‹ n/m › 換著看（同網頁版）：看備卡時卡片顯示那張的縮圖、名稱、時間，⋯ 的主要、拿出和拖曳都作用在那張。
 
+import { lodgingMealsOn } from '@travel-helper/engine';
 import { Fragment, useEffect, useRef, useState, type PointerEvent as ReactPointerEvent } from 'react';
 import type { EngineWarning, TimelineEntry, VisitItem } from '@travel-helper/engine';
 import { useApp, useData, useShared, useUi } from '../hooks.ts';
@@ -147,7 +148,7 @@ function EntryRows({ entry, ctx }: { entry: TimelineEntry; ctx: RowCtx }) {
 
   if (entry.kind === 'start') {
     const i = itinerary?.days.findIndex((d) => d.date === day.date) ?? -1;
-    const prevNight = i > 0 ? itinerary!.days[i - 1] : undefined;
+    const prevDate = i > 0 ? itinerary!.days[i - 1].date : null;
     return (
       <MobileCard
         itemKey={key}
@@ -155,7 +156,7 @@ function EntryRows({ entry, ctx }: { entry: TimelineEntry; ctx: RowCtx }) {
         mark={mark}
         time={{ text: cardTime(entry).text }}
         name={p ? nameOf(p) : '上一站'}
-        tags={p?.type === 'lodging' ? <LodgingTags day={prevNight} place={p} reservationDate={prevNight?.date ?? null} editable={false} open={false} onOpenChange={() => {}} /> : null}
+        tags={p?.type === 'lodging' ? <LodgingTags meals={prevDate ? lodgingMealsOn(itinerary, prevDate) : null} place={p} reservationDate={prevDate} editable={false} open={false} onOpenChange={() => {}} /> : null}
         focused={focused === key}
       />
     );
@@ -175,7 +176,7 @@ function EntryRows({ entry, ctx }: { entry: TimelineEntry; ctx: RowCtx }) {
           pill={pill}
           proposed={!!pill}
           name={name}
-          tags={<LodgingTags day={day} place={p} reservationDate={day.date} night={itinerary ? stayNight(itinerary.days, day.date) : null} editable={planning} open={false} onOpenChange={openSub(menu, 'lodging-plan')} />}
+          tags={<LodgingTags meals={lodgingMealsOn(itinerary, day.date)} place={p} reservationDate={day.date} night={stayNight(itinerary, day.date)} editable={planning} open={false} onOpenChange={openSub(menu, 'lodging-plan')} />}
           focused={focused === key}
           menu={menu}
         />

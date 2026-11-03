@@ -14,7 +14,7 @@ import { Fragment, useCallback, useEffect, useMemo, useRef, useState, type Point
 import { useStore } from 'zustand';
 import { ai } from '../appAi.ts';
 import { scrollerOf } from '../shared/ui/PlaceOpen.tsx';
-import { fromMinutes, setStart, setStay, toMinutes, type DayPlan, type EngineWarning, type Gap, type TimelineEntry } from '@travel-helper/engine';
+import { fromMinutes, setStart, setStay, toMinutes, type DayPlan, type EngineWarning, type Gap, type TimelineEntry, lodgingMealsOn } from '@travel-helper/engine';
 import type { Itinerary, ItineraryDay, ItineraryItem, VisitItem } from '@travel-helper/engine/types';
 import { appStore } from '../store.ts';
 import { commands } from '../appCommands.ts';
@@ -240,7 +240,7 @@ function EntryRow({ entry, day, warnings, plan, marks }: { entry: TimelineEntry;
   if (entry.kind === 'start') {
     // 出發的地方：預約狀態和前一晚同一筆（住宿的 date 是入住那晚，連住的也對得到）
     const dayIndex = itinerary?.days.findIndex((d) => d.date === day.date) ?? -1;
-    const prevNight = dayIndex > 0 ? itinerary!.days[dayIndex - 1] : undefined;
+    const prevDate = dayIndex > 0 ? itinerary!.days[dayIndex - 1].date : null;
     return (
       <TripCard
         testId="tl-start"
@@ -250,7 +250,7 @@ function EntryRow({ entry, day, warnings, plan, marks }: { entry: TimelineEntry;
         time={<span className="tl-start-time">{cardTime(entry).text}</span>}
         name={p ? name(p) : '上一站'}
         label={p ? name(p) : '上一站'}
-        meta={p?.type === 'lodging' ? <LodgingTags day={prevNight} place={p} reservationDate={prevNight?.date ?? null} editable={false} open={false} onOpenChange={() => {}} /> : null}
+        meta={p?.type === 'lodging' ? <LodgingTags meals={prevDate ? lodgingMealsOn(itinerary, prevDate) : null} place={p} reservationDate={prevDate} editable={false} open={false} onOpenChange={() => {}} /> : null}
         thumb={THUMB}
         className={`tl-start ${editing}`}
         selected={expand.expanded}
@@ -327,7 +327,7 @@ function EntryRow({ entry, day, warnings, plan, marks }: { entry: TimelineEntry;
           }
           name={p ? name(p) : (entry.placeId ?? '')}
           label={p ? name(p) : (entry.placeId ?? '住宿')}
-          meta={<LodgingTags day={day} place={p} reservationDate={day.date} night={itinerary ? stayNight(itinerary.days, day.date) : null} editable={planning} open={tagsOpen} onOpenChange={setTagsOpen} />}
+          meta={<LodgingTags meals={lodgingMealsOn(itinerary, day.date)} place={p} reservationDate={day.date} night={stayNight(itinerary, day.date)} editable={planning} open={tagsOpen} onOpenChange={setTagsOpen} />}
           thumb={THUMB}
           className={`tl-lodging ${editing} ${pill ? 'tl-proposed' : ''}`}
           selected={expand.expanded}

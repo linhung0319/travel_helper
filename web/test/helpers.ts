@@ -7,11 +7,11 @@ export function itin(days: Record<string, string[]>, lodging: Record<string, str
   return {
     format: 'itinerary-v1',
     party: { size: 15, elders: 5, kids: 4 },
+    nights: Object.fromEntries(Object.entries(lodging).map(([date, l]) => [date, { lodging: l }])),
     days: Object.keys({ ...days, ...lodging })
       .sort()
       .map((date) => ({
         date,
-        lodging: lodging[date] ?? null,
         items: (days[date] ?? []).map((place) => ({ id: `${date}:${place}`, type: 'visit' as const, options: [{ place }], selected: 0 })),
       })),
   };

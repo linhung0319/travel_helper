@@ -40,6 +40,8 @@ export type Op =
 export interface OpsContext {
   /** 地點的類型；沒有這個點是 undefined */
   placeType(id: string): string | undefined;
+  /** 地點的區（住宿寫進那晚的 nights.area 用，T45a）；沒給時區不動 */
+  placeArea?(id: string): string | null | undefined;
   /** 誰提的：按 ❤️ 的人（同手動排進行程） */
   likesOf(id: string): string[];
   me: string | null;
@@ -137,7 +139,10 @@ function applyOp(it: Itinerary, o: Op, ctx: OpsContext): Itinerary {
     case 'setTravel':
       return setLegTravel(it, o.to, o.spec);
     case 'setLodging':
-      return setLodging(it, o.date, o.lodging === null ? null : checkPlace(o.lodging, ctx, 'lodging'), o.meals ?? null);
+    {
+      const lodging = o.lodging === null ? null : checkPlace(o.lodging, ctx, 'lodging');
+      return setLodging(it, o.date, lodging, o.meals ?? null, lodging ? (ctx.placeArea?.(lodging) ?? undefined) : undefined);
+    }
     default:
       throw new ItineraryError(`不認得的操作 ${(o as { op?: unknown }).op}`);
   }

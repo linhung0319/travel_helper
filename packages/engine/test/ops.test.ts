@@ -156,8 +156,7 @@ test('指定開始時間、交通、住宿', () => {
   assert.equal((findItem(setStart(it, a, '10:30'), a)?.item as VisitItem).start, '10:30');
   assert.throws(() => setStart(it, a, '10點半'), ItineraryError);
   assert.deepEqual((findItem(setTravel(it, a, { mode: 'charter', minutes: 20 }), a)?.item as VisitItem).travel, { mode: 'charter', minutes: 20 });
-  const l = setLodging(it, D, 'h', 'breakfast').days.find((d) => d.date === D);
-  assert.deepEqual([l?.lodging, l?.lodgingMeals], ['h', 'breakfast']);
+  assert.deepEqual(setLodging(it, D, 'h', 'breakfast').nights[D], { lodging: 'h', meals: 'breakfast' });
 });
 
 test('分組裡的項目：可以新增、上下移、移到別天（移出分組）', () => {

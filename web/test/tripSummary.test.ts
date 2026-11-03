@@ -45,6 +45,8 @@ test('摘要：名稱中文優先，要預約的列出主選和住宿', () => {
   assert.deepEqual(s.days[0], {
     date: '2027-02-03',
     lodging: '海邊旅館',
+    area: null,
+    stayArea: null,
     lines: [
       { start: '10:00', end: '10:50', text: '景點X' },
       { start: '11:00', end: '11:50', text: 'アール' },

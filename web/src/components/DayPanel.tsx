@@ -2,12 +2,13 @@
 // 選「整趟」是整趟的總覽（每天排了什麼、幾個候選、警告）；選了某一天，最上面一列「日期、問 AI、討論、編輯」，編輯中換成墨色編輯條（日期、問 AI、討論、上一步、完成，T33），
 // 下面是摘要列（⚠ 點了展開提醒）、比例橫條（時間條）、時間軸（資料卡是類型的淡底色，起點、終點的住宿也是卡片）、這天的候選（想去「加到某天」的點）。預約、下載在右欄右上的頭像選單（MeMenu.tsx 的 AccountMenu）。
 
+import { lodgingOn } from '@travel-helper/engine';
 import { useMemo, useRef, useState } from 'react';
 import { TimelineSkeleton } from '../shared/ui/Skeleton.tsx';
 import { commands } from '../appCommands.ts';
 import { useApp, useData, useNeedPlan, usePlan, useShared, useUi } from '../hooks.ts';
 import { dayPlanOf } from '../planStore.ts';
-import { describeChanges } from '../lib/overlays.ts';
+import { areaNameIn, describeChanges } from '../lib/overlays.ts';
 import { dayLabel, isRedDay, shortDayLabel, tripDates } from '../lib/trip.ts';
 import { flightCount, overviewRows } from '../lib/tripStart.ts';
 import { dayAreaName, dayTitle } from '../lib/dayTitle.ts';
@@ -30,6 +31,7 @@ const DATES = tripDates();
 function Overview() {
   const itinerary = useData((s) => s.itinerary);
   const byId = useData((s) => s.byId);
+  const areas = useData((s) => s.areas);
   const plan = usePlan((s) => s.plan);
   const updatedBy = useShared((s) => s.updatedBy);
   const updatedAt = useShared((s) => s.updatedAt);
@@ -39,12 +41,12 @@ function Overview() {
   const proposalLines = useMemo(() => {
     if (!proposal) return new Map<string, string>();
     const nameOf = (id: string) => byId.get(id)?.name.zh || byId.get(id)?.name.ja || id;
-    return new Map(describeChanges(proposal.changes, nameOf).map((l) => [l.date, l.text.split('：').slice(1).join('：')]));
-  }, [proposal, byId]);
+    return new Map(describeChanges(proposal.changes, nameOf, areaNameIn(areas)).map((l) => [l.date, l.text.split('：').slice(1).join('：')]));
+  }, [proposal, byId, areas]);
   const warnsOn = (d: string) => dayPlanOf(plan, d)?.warnings.filter((w) => w.level !== 'info').length ?? 0;
   const rows = overviewRows(DATES, (d) => ({
     stops: stopsOn(itinerary, d).some((s) => s.kind !== 'lodging' && s.kind !== 'flight'),
-    lodging: !!itinerary?.days.find((x) => x.date === d)?.lodging,
+    lodging: !!lodgingOn(itinerary, d),
     flights: flightCount(itinerary, d),
     candidates: dayCandidates(candidates, d, itinerary, byId).length,
     warnings: warnsOn(d),
@@ -83,7 +85,7 @@ function Overview() {
           const flights = flightCount(itinerary, d);
           const stops = stopsOn(itinerary, d).filter((s) => s.kind !== 'lodging' && s.kind !== 'flight');
           const warn = warnsOn(d);
-          const lodging = itinerary?.days.find((x) => x.date === d)?.lodging;
+          const lodging = lodgingOn(itinerary, d);
           const lp = lodging ? byId.get(lodging) : null;
           const cands = dayCandidates(candidates, d, itinerary, byId).length;
           return (

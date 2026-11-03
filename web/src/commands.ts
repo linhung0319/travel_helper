@@ -3,7 +3,7 @@
 // 這個檔案不 import dataStore／appStore 本身（Node 的測試也能用），網站共用的那一份在 appCommands.ts。
 
 import type { StoreApi } from 'zustand/vanilla';
-import { diffItinerary, validateItinerary, type Change } from '@travel-helper/engine';
+import { diffItinerary, lodgingOn, validateItinerary, type Change } from '@travel-helper/engine';
 import type { Itinerary, TravelMode } from '@travel-helper/engine/types';
 import { TRAVEL_MODES } from '@travel-helper/engine/types';
 import { HIGHLIGHT_STYLES, type AppStore, type DaySelection, type HighlightStyle, type RouteEnd } from './store.ts';
@@ -146,7 +146,7 @@ export function createCommands(app: StoreApi<AppStore>, data: StoreApi<DataState
       const { byId, itinerary } = data.getState();
       const ids = (itinerary?.days ?? []).flatMap((d) => [
         ...stopsOn(itinerary, d.date).map((x) => x.place),
-        ...(d.lodging ? [d.lodging] : []),
+        ...(itinerary && lodgingOn(itinerary, d.date) ? [lodgingOn(itinerary, d.date)!] : []),
         ...d.items.flatMap((i) => (i.type === 'split' ? i.groups.flatMap((g) => g.items.flatMap((x) => (x.type === 'visit' ? [x.options[x.selected]?.place] : []))) : [])),
       ]);
       const coords = ids.map((id) => (id ? byId.get(id)?.coords : undefined)).filter((c): c is LonLat => !!c);
@@ -161,9 +161,9 @@ export function createCommands(app: StoreApi<AppStore>, data: StoreApi<DataState
       // 前一晚的住宿（那天的起點）、分組裡各組去的點也框進來
       const day = itinerary?.days.find((d) => d.date === target.day);
       const prevDate = dates()[dates().indexOf(target.day) - 1];
-      const prev = itinerary?.days.find((d) => d.date === prevDate);
+      const prevLodging = itinerary && prevDate ? lodgingOn(itinerary, prevDate) : null;
       const groupPlaces = (day?.items ?? []).flatMap((i) => (i.type === 'split' ? i.groups.flatMap((g) => g.items.flatMap((x) => (x.type === 'visit' ? [x.options[x.selected]?.place] : []))) : []));
-      const coords = [...stopsOn(itinerary, target.day).map((s) => s.place), ...(prev?.lodging ? [prev.lodging] : []), ...groupPlaces]
+      const coords = [...stopsOn(itinerary, target.day).map((s) => s.place), ...(prevLodging ? [prevLodging] : []), ...groupPlaces]
         .map((id) => (id ? byId.get(id)?.coords : undefined))
         .filter((c): c is LonLat => !!c);
       if (!coords.length) return { ok: true, bbox: null };

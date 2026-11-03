@@ -57,12 +57,13 @@ test('詳情層：讀不到時 reject、記下原因，下次再試；不給 ids
 
 test('時刻表：行程是空的不讀；排了東西才讀（延後）；打開行程馬上讀', async () => {
   assert.equal(hasContent(null), false);
-  assert.equal(hasContent({ days: [{ date: 'x', lodging: null, items: [] }] } as never), false);
-  assert.equal(hasContent({ days: [{ date: 'x', lodging: 'h', items: [] }] } as never), true);
-  assert.equal(hasContent({ days: [{ date: 'x', lodging: null, items: [{ type: 'flight' }] }] } as never), false, '只有航班（新行程的預設）不算');
-  assert.equal(hasContent({ days: [{ date: 'x', lodging: null, items: [{ type: 'flight' }, { type: 'visit' }] }] } as never), true);
+  assert.equal(hasContent({ nights: {}, days: [{ date: 'x', items: [] }] } as never), false);
+  assert.equal(hasContent({ nights: { x: { lodging: 'h' } }, days: [{ date: 'x', items: [] }] } as never), true);
+  assert.equal(hasContent({ nights: { x: { area: 'toba' } }, days: [{ date: 'x', items: [] }] } as never), false, '只定了區不算');
+  assert.equal(hasContent({ nights: {}, days: [{ date: 'x', items: [{ type: 'flight' }] }] } as never), false, '只有航班（新行程的預設）不算');
+  assert.equal(hasContent({ nights: {}, days: [{ date: 'x', items: [{ type: 'flight' }, { type: 'visit' }] }] } as never), true);
 
-  const data = createStore<any>()(() => ({ status: 'ready', itinerary: { days: [{ date: 'x', lodging: null, items: [] }] }, places: [] }));
+  const data = createStore<any>()(() => ({ status: 'ready', itinerary: { nights: {}, days: [{ date: 'x', items: [] }] }, places: [] }));
   const plan = createStore<PlanState>()(() => ({ status: 'loading', error: null, plan: null }));
   let loads = 0;
   const deferred: (() => void)[] = [];
@@ -70,7 +71,7 @@ test('時刻表：行程是空的不讀；排了東西才讀（延後）；打�
   const off = startPlanner(data, source, undefined, plan, { defer: (fn) => deferred.push(fn) });
   await tick();
   assert.equal(deferred.length, 0, '行程是空的：不排');
-  data.setState({ itinerary: { days: [{ date: 'x', lodging: 'h', items: [] }] } });
+  data.setState({ itinerary: { nights: { x: { lodging: 'h' } }, days: [{ date: 'x', items: [] }] } });
   assert.equal(deferred.length, 1, '排了住宿：延後讀');
   assert.equal(loads, 0);
   requestPlan();

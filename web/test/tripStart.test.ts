@@ -104,10 +104,9 @@ test('buildStarterInput：只有航班的行程', () => {
 test('buildStarterInput：附近想去的算同區、沒排的景點和餐廳；2 人以上才算大家想去；方案看行程再看資料', () => {
   const it = emptyItinerary();
   const day = it.days[1];
-  day.lodging = 'inn';
+  it.nights[day.date] = { lodging: 'inn' };
   day.items = [{ id: 'v', type: 'visit', options: [{ place: 'placed', stayMinutes: null }], selected: 0 }];
-  it.days[2].lodging = 'inn';
-  it.days[2].lodgingMeals = 'none';
+  it.nights[it.days[2].date] = { lodging: 'inn', meals: 'none' };
   const byId = new Map(
     [place('inn', 'lodging', 'shima', { meals: 'dinner+breakfast' }), place('placed', 'spot', 'shima'), place('near', 'spot', 'shima'), place('food', 'restaurant', 'shima'), place('far', 'spot', 'toba'), place('other-inn', 'lodging', 'shima')].map((p) => [p.id, p]),
   );

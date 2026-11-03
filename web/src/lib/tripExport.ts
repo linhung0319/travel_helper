@@ -3,7 +3,7 @@
 // 預約只放狀態（已訂／待訂／不用訂）。純函式：時間、班次都是引擎算好的；班次表從外面傳進來（planStore 的 departuresOf）。
 
 import type { DayPlan, GroupItem, Itinerary, ItineraryItem, ItineraryPlan, Leg, PartyProfile, RideDeparture, TimelineEntry, TransitRide } from '@travel-helper/engine';
-import { isTicketRide } from '@travel-helper/engine';
+import { isTicketRide, dayAreaLabel, dayAreaOf, lodgingMealsOn, lodgingOn, nightAreaOf } from '@travel-helper/engine';
 import type { Reservation, ReservationStatus } from '../backend/types.ts';
 import type { Area, Place } from '../data/types.ts';
 import { googleMapsUrl } from './addPlace/view.ts';
@@ -102,6 +102,8 @@ export interface ExportDay {
   note: string | null;
   rows: ExportRow[];
   lodging: ExportLodging | null;
+  /** 這晚住哪一區（T45a）：還沒選住宿、只定了區時寫區名，其他是 null */
+  stayArea: string | null;
 }
 
 export interface ExportFlight {
@@ -181,6 +183,11 @@ function ticketOf(rides: TransitRide[], i: number): ExportRide['ticket'] {
 export function buildTripExport(input: ExportInput): ExportDoc {
   const { itinerary, plan, byId, areas } = input;
   const rows = noteRows(itinerary, plan, byId, input.reservations);
+  const areaOf = (id: string) => byId.get(id)?.area;
+  const areaName = (id: string) => {
+    const a = areas.find((x) => x.id === id);
+    return a ? a.name.zh || a.name.ja || id : id;
+  };
   const nameOf = (id: string) => {
     const p = byId.get(id);
     return p ? p.name.zh || p.name.ja || id : id;
@@ -284,28 +291,34 @@ export function buildTripExport(input: ExportInput): ExportDoc {
   const days: ExportDay[] = itinerary.days.map((d) => {
     const dp: DayPlan | undefined = plan.days.find((x) => x.date === d.date);
     let lodging: ExportLodging | null = null;
-    if (d.lodging) {
-      const full = input.fullOf(d.lodging) ?? byId.get(d.lodging) ?? null;
+    const lodgingId = lodgingOn(itinerary, d.date);
+    if (lodgingId) {
+      const full = input.fullOf(lodgingId) ?? byId.get(lodgingId) ?? null;
       const raw = full?.raw ?? {};
       const res = (raw.reservation ?? null) as Record<string, unknown> | null;
-      const meals = d.lodgingMeals ?? str(raw.meals);
+      const meals = lodgingMealsOn(itinerary, d.date) ?? str(raw.meals);
       lodging = {
-        place: placeOf(d.lodging)!,
+        place: placeOf(lodgingId)!,
         address: str(raw.address),
         phone: str(raw.phone) ?? str(res?.phone),
         checkIn: str(raw.checkIn),
         // 資料裡的 varies（方案不一）不寫，這晚選了方案才寫
         meals: meals ? (MEALS_LABELS[meals] ?? null) : null,
-        reservation: statusOf(reservationFor(rows.filter((r) => r.role === 'lodging'), d.date, d.lodging)),
+        reservation: statusOf(reservationFor(rows.filter((r) => r.role === 'lodging'), d.date, lodgingId)),
       };
     }
     return {
       date: d.date,
       heading: dayLabel(d.date),
-      area: dayAreaName(dayStops(d), byId, areas),
+      // 這天在哪一區：先照每晚住哪一區推（移動日「志摩 → 鳥羽」），還沒定的照排了的點
+      area: dayAreaLabel(dayAreaOf(itinerary, d.date, areaOf), areaName) ?? dayAreaName(dayStops(d, lodgingId), byId, areas),
       note: str(d.note),
       rows: rowsOf(d.date, dp?.entries ?? [], str(d.returnTravel?.note)),
       lodging,
+      stayArea: lodging ? null : (() => {
+        const a = nightAreaOf(itinerary, d.date, areaOf);
+        return a ? areaName(a) : null;
+      })(),
     };
   });
 

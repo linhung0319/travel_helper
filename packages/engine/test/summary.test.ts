@@ -69,13 +69,13 @@ test('引擎算出的時間軸：每個造訪一行，最後一行是住哪', ()
 const it2 = (): Itinerary => ({
   format: createItinerary().format,
   party: { size: 15, elders: 5, kids: 4 },
+  nights: { '2027-02-02': { lodging: 'h' } },
   days: [
     {
       date: '2027-02-02',
-      lodging: 'h',
       items: [{ id: 'f1', type: 'flight', direction: 'arrive', airport: 'kix', depart: '08:20', arrive: '11:55', flightNo: 'CI152' }],
     },
-    { date: '2027-02-03', lodging: 'h', items: [] },
+    { date: '2027-02-03', items: [] },
   ],
 });
 
@@ -98,7 +98,8 @@ test('航班、分組、集合：分組時各組都列，前面標組名', () =>
   };
   const s = buildTripSummary({ itinerary: it2(), plan, nameOf });
   assert.equal(formatDay(s.days[0]), '2/2（二）\n11:55 抵達 關西機場（CI152）\n15:00-16:00 伊勢神宮\n住：海邊旅館');
-  assert.equal(formatDay(s.days[1]), '2/3（三）\n【長輩組】10:00-12:00 伊勢神宮\n【小孩組】10:00-13:00 自由時間\n15:00 集合：鳥羽站\n15:30-17:00 托福橫丁\n住：海邊旅館');
+  // 最後一天沒有晚上，不寫「住：」
+  assert.equal(formatDay(s.days[1]), '2/3（三）\n【長輩組】10:00-12:00 伊勢神宮\n【小孩組】10:00-13:00 自由時間\n15:00 集合：鳥羽站\n15:30-17:00 托福橫丁');
   assert.equal(formatTrip(s), `${formatDay(s.days[0])}\n\n${formatDay(s.days[1])}`);
 });
 
