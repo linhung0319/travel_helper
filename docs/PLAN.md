@@ -131,7 +131,7 @@
 | T43 | 地圖分層：縮遠只寫區名和 S、A 級景點；選區時畫那區的範圍、其他區變淡；放大才出現餐廳、住宿 | S | T42 | 4 | | ⬜ |
 | T44a | 資料裡整理時的筆記（「見 conflicts」「jeepe 說」這類）移出給人看的欄位；`validate` 加檢查 | S | — | 4 | | ✅ |
 | T44b | 卡片標章（長輩、小孩、室內、二月休）、詳情重整（這團的重點在前，其他收進「更多」） | M | T44a | 4 | | ✅ |
-| T45a | 每晚住哪一區：行程的資料結構（`nights`）、engine、Worker、舊行程升級、PDF／MD、LINE | M | 👤 定形狀（§6） | 4 | | ⬜ |
+| T45a | 每晚住哪一區：行程的資料結構（`nights`）、engine、Worker、舊行程升級、PDF／MD、LINE | M | 👤 定形狀（§6） | 4 | | ✅ |
 | T45b | 整趟改成直的骨架（地區、子地區、住宿）、日期列的地區色線、單天頂端寫在哪一區 | M | T40、T45a | 4 | | ⬜ |
 | T45c | AI：提議「這晚住某區」、整趟和單天的提示詞 | S | T41、T45a | 4 | | ⬜ |
 | T46 | 引導彈窗：開始卡移出整趟，入口在地圖右上（網頁縮放鈕移右下），步驟改成四步 | S | T45b | 4 | | ⬜ |
@@ -1033,7 +1033,7 @@ T7c → T7d → T7e → T7f → T7g → T8a → T8b → T8c → T8d → T7i → 
 - **住宿**：現在是時間軸的起點、終點卡（T39）。改成從 `nights` 畫，「連住第幾晚」直接算。舊行程升級時從住宿卡推出 `nights`。
 - **驗證**：engine、升級、Worker 的單元測試（`worker/test/apiBackend.test.ts` 兩邊同一份情境）；PDF／MD 的內容測試。
 - **完成條件**：`npm test`、`npm run typecheck`、`npm run validate` 通過；假後端的種子資料換 key。
-- **結果**（2026-11-03，branch `t45a`，已合併 master 的 T41、T47、T44b）：`npm test` 1003（新增 `packages/engine/test/nights.test.ts` 15 項、匯出 1 項、`apiBackend` 的情境多三步）、typecheck、validate 通過。e2e 只跑受影響的（標題有住宿、方案、連住、下載、整趟、時刻表的）：合併 T47 前 25 項全過；合併後 24 過、1 失敗——「選整趟：地圖框住整趟」在 master（83d3c9d）上一樣失敗（2/12 關西機場的點不在框裡，應該是 T47 的 `maxBounds`／`minZoom`），不是這次改的。改了一處讀 `days[].lodging` 的 e2e 斷言；T47 新加的 `planStore.hasContent` 改讀 `nights`（只定了區不算有東西）。
+- **結果**（2026-11-03，👤 決定 merge；branch `t45a` 已合併 master 的 T41、T47、T44b）：`npm test` 1003（新增 `packages/engine/test/nights.test.ts` 15 項、匯出 1 項、`apiBackend` 的情境多三步）、typecheck、validate 通過。e2e 只跑受影響的（標題有住宿、方案、連住、下載、整趟、時刻表的）：合併 T47 前 25 項全過；合併後 24 過、1 失敗——「選整趟：地圖框住整趟」在 master（83d3c9d）上一樣失敗（2/12 關西機場的點不在框裡，應該是 T47 的 `maxBounds`／`minZoom`），不是這次改的。改了一處讀 `days[].lodging` 的 e2e 斷言；T47 新加的 `planStore.hasContent` 改讀 `nights`（只定了區不算有東西）。
   - **形狀**：`Itinerary.nights: { 日期: { area?, lodging?, meals? } }`（`lodgingMeals` 改叫 `meals`，跟著住宿走）；`ItineraryDay` 拿掉 `lodging`、`lodgingMeals`，多 `dayArea?`。`format` 還是 `itinerary-v1`（照 meal→tags 的做法用 `upgradeItinerary` 升級，不換版號）。只選了住宿、沒寫區的晚上，區照住宿資料的 `area`（`nightAreaOf` 給 `areaOf`）；升級上來的舊行程就是這樣，不用在升級時讀資料。
   - **engine**：`nights.ts`（`lodgingOn`、`lodgingMealsOn`、`nightAreaOf`、`dayAreaOf`、`dayAreaLabel`、`nightRunOf`、`nightsAt`、`nightDates`）；操作 `setLodging(it, date, lodging, meals, area?)`（清住宿留區）、`setNightArea`（換區清住宿）、`setDayArea`；最後一天設晚上丟 `ItineraryError`。時間軸的住宿卡、隔天起點、「住宿（未排）」空檔改讀 `nights`；住宿不在這晚的區時警告 `lodging-area-mismatch`；只重算有改的那天的鑰匙加上這晚。`diffItinerary` 多 `night-area`、`day-area`，`describeChanges` 收 `areaName`。`validateItinerary` 檢查 `nights` 的日期（不能是最後一天）、欄位，`days` 裡還有 `lodging` 的回「舊格式」。
   - **Worker**：PUT 照舊跑 `validateItinerary`（舊格式、最後一天的晚上回 400）；假後端存行程時也跑（原本不檢查，和 Worker 不一樣）。讀回來的舊行程由前端 `upgradeDoc` 升級（測試：`days[].lodging` 搬到 `nights`）。
