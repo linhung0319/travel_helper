@@ -12,7 +12,7 @@ import { harness, memoryStorage } from './aiHarness.ts';
 const DATES = tripDates();
 
 /** 排好的一天；patch 改掉要測的 */
-const fullDay = (date: string): StarterDay => ({ date, lodging: date !== DATES.at(-1), dinnerIncluded: true, dinnerExcluded: false, hasStops: true, hasLunch: true, hasDinner: true, areaName: '志摩', nearbyWishes: 0, errorWarning: null });
+const fullDay = (date: string): StarterDay => ({ date, area: date !== DATES.at(-1) ? 'shima' : null, lodging: date !== DATES.at(-1), dinnerIncluded: true, dinnerExcluded: false, hasStops: true, hasLunch: true, hasDinner: true, areaName: '志摩', nearbyWishes: 0, errorWarning: null });
 
 function input(patch: Record<string, Partial<StarterDay>> = {}, rest: Partial<StarterInput> = {}): StarterInput {
   return { days: DATES.map((d) => ({ ...fullDay(d), ...patch[d] })), day: null, warnings: 0, wishesUnplaced: 0, popularUnplaced: 0, anyLiked: true, ...rest };
@@ -94,10 +94,10 @@ const place = (id: string, type: string, area: string, raw: Record<string, unkno
 const like = (placeId: string, memberId: string, value: 'like' | 'dislike' = 'like') => ({ placeId, memberId, value, updatedAt: '2026-11-01T00:00:00Z', deletedAt: null }) as unknown as Vote;
 const AREAS = [{ id: 'shima', name: { zh: '志摩', ja: '志摩' } }] as never;
 
-test('buildStarterInput：只有航班的行程', () => {
+test('buildStarterInput：只有航班的行程（先問區，T45c）', () => {
   const i = buildStarterInput({ itinerary: emptyItinerary(), plan: null, votes: [], byId: new Map(), areas: AREAS, day: null });
   assert.equal(i.days.length, 12);
-  assert.equal(firstStarter(i).q, '幫我決定前幾晚住哪');
+  assert.equal(firstStarter(i).q, '幫我先排每晚住哪一區');
   assert.deepEqual(startProgress(i), { liked: false, lodging: false, stops: false, done: 0 });
 });
 

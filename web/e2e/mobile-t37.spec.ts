@@ -44,7 +44,7 @@ test('AI 分頁：一句話加三張卡片，第一張橫跨兩欄，都至少 4
   expect(Math.abs(second.y - third.y)).toBeLessThan(2);
   for (const b of [first, second, third]) expect(b.height).toBeGreaterThanOrEqual(44);
   await cards.nth(0).click();
-  await expect(page.getByTestId('chat-msg-me')).toContainText('幫我決定前幾晚住哪');
+  await expect(page.getByTestId('chat-msg-me')).toContainText('幫我先排每晚住哪一區');
   await expect(page.getByTestId('chat-cards')).toHaveCount(0);
 });
 
@@ -56,7 +56,7 @@ test('半屏聊天放不下三張：第一張留著，其他縮成一行膠囊',
   await expect(page.getByTestId('chat-context')).toHaveCount(0);
   await expect(page.getByTestId('chat-cards')).toHaveAttribute('data-compact', 'true');
   const cards = page.locator('[data-testid="chat-cards"] button');
-  await expect(cards.first()).toContainText('幫我決定前幾晚住哪');
+  await expect(cards.first()).toContainText('幫我先排每晚住哪一區');
   await expect(cards).toHaveCount(3);
   await expect(page.getByTestId('chat-empty')).toBeHidden();
   const a = (await cards.nth(1).boundingBox())!;

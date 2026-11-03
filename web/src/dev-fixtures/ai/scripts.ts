@@ -444,6 +444,19 @@ export const SCRIPTS: Script[] = [
     ],
   },
   {
+    // 這晚住某區（T45c）：只改區，不選住宿；種子的 2/7 是二見第一晚，改成鳥羽第 3 晚
+    id: 'T45c',
+    sample: '鳥羽多住一晚',
+    match: (e) => /鳥羽/.test(e.text) && /多住一晚/.test(e.text),
+    steps: [
+      () => ({ tools: [tool('get_trip_overview')] }),
+      ...proposeSteps(
+        () => [{ op: 'setNightArea', date: '2027-02-07', area: 'toba' }],
+        () => '提議 2/7 改住鳥羽（鳥羽變 3 晚、二見剩 1 晚），那晚原本的住宿會清掉。',
+      ),
+    ],
+  },
+  {
     id: 'S11',
     sample: '幫我排第 3 天，加午餐',
     match: (e) => /第 ?[3三] ?天/.test(e.text),

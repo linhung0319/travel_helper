@@ -45,6 +45,8 @@ export interface StarterDay {
   /** 排了午餐；行程引擎還沒算好時當作有，不亂推薦 */
   hasLunch: boolean;
   hasDinner: boolean;
+  /** 這晚住哪一區（T45c）：只定了區、還沒選住宿也算；還沒決定是 null */
+  area: string | null;
   /** 住的地區 */
   areaName: string | null;
   /** 住宿同一區、大家想去、還沒排的景點和餐廳 */
@@ -85,17 +87,28 @@ export function dayStarter(d: StarterDay): Starter {
   return { q: `${monthDay(d.date)} 去哪？`, why };
 }
 
-/** 第一張卡（interaction-design §17.2 的 8 條規則）：由上往下，第一個符合的就是。開始卡用同一個函式，兩邊一定一致 */
+/** 連續的一段晚上（從 start 起，符合 open 的），寫成「2/9」或「2/9～2/11」；max 是最多幾晚 */
+function nightRange(nights: StarterDay[], start: number, open: (d: StarterDay) => boolean, max = Infinity): string {
+  let end = start;
+  while (end + 1 < nights.length && end + 1 - start < max && open(nights[end + 1])) end++;
+  return end > start ? `${monthDay(nights[start].date)}～${monthDay(nights[end].date)}` : monthDay(nights[start].date);
+}
+
+/** 第一張卡（interaction-design §17.2 的規則）：由上往下，第一個符合的就是。開始卡用同一個函式，兩邊一定一致 */
 export function firstStarter(i: StarterInput): Starter {
   const nights = nightsOf(i);
+  // 先定每晚住哪一區，再挑住宿（T45c）：選了住宿的晚上區照住宿，不會在這裡
+  const noArea = nights.filter((d) => !d.area && !d.lodging);
+  if (noArea.length && noArea.length === nights.length) return { q: '幫我先排每晚住哪一區', why: '先定區，再挑住宿' };
+  if (noArea.length) {
+    const range = nightRange(nights, nights.indexOf(noArea[0]), (d) => !d.area && !d.lodging);
+    return { q: `幫我決定 ${range} 住哪一區`, why: `還有 ${noArea.length} 晚沒決定區` };
+  }
   const missing = nights.filter((d) => !d.lodging);
   if (missing.length && missing.length === nights.length) return { q: '幫我決定前幾晚住哪', why: '從第一晚開始，15 人的住宿最難訂' };
   if (missing.length) {
     // 連續的晚上併成一段，最早的一段先
-    const start = nights.indexOf(missing[0]);
-    let end = start;
-    while (end + 1 < nights.length && end + 1 - start < LODGING_STRETCH && !nights[end + 1].lodging) end++;
-    const range = end > start ? `${monthDay(nights[start].date)}～${monthDay(nights[end].date)}` : monthDay(nights[start].date);
+    const range = nightRange(nights, nights.indexOf(missing[0]), (d) => !d.lodging, LODGING_STRETCH);
     return { q: `幫我決定 ${range} 住哪`, why: `還有 ${missing.length} 晚沒住宿` };
   }
   const empty = fullDaysOf(i).find((d) => !d.hasStops);
@@ -119,8 +132,8 @@ export function startersFor(i: StarterInput): Starter[] {
   const others: Starter[] = [
     // 空的一天沒有東西可以檢查
     ...(viewing?.hasStops ? [{ q: `幫我檢查 ${monthDay(viewing.date)}`, why: '正在看這天' }] : []),
-    // 第一張已經在問住宿、問想去時，不用再問一次
-    ...(missing > 0 && !first.q.startsWith('幫我決定') ? [{ q: '哪幾晚還沒定住宿？', why: `還有 ${missing} 晚` }] : []),
+    // 第一張已經在問住宿（或住哪一區）、問想去時，不用再問一次
+    ...(missing > 0 && !/住哪/.test(first.q) ? [{ q: '哪幾晚還沒定住宿？', why: `還有 ${missing} 晚` }] : []),
     ...(i.warnings > 0 ? [{ q: '哪天最趕？', why: `有 ${i.warnings} 個提醒` }] : []),
     ...(i.wishesUnplaced > 0 && !first.q.startsWith('大家想去') ? [{ q: '把想去的排進行程', why: `${i.wishesUnplaced} 個還沒排` }] : []),
     { q: '鳥羽能坐 15 人的海鮮餐廳', why: '示範：找餐廳' },
@@ -189,6 +202,7 @@ export function buildStarterInput({ itinerary, plan, votes, byId, areas, day }: 
     const isStop = (id: string) => id !== lodgingId && ['spot', 'restaurant'].includes(byId.get(id)?.type ?? '');
     return {
       date,
+      area: stayArea,
       lodging: !!lodgingId,
       dinnerIncluded: meals === 'dinner+breakfast',
       dinnerExcluded: meals === 'breakfast' || meals === 'none',
