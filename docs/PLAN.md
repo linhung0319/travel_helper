@@ -1004,6 +1004,12 @@ T7c → T7d → T7e → T7f → T7g → T8a → T8b → T8c → T8d → T7i → 
 - 行程分頁的地圖照舊（不套探索的分層），整趟時的地區標籤加晚數留給 T45b。
 - **驗證**：單元測試（範圍的計算）；截圖。
 - **完成條件**：`npm test`、`npm run typecheck` 通過；👤 看過截圖。
+- **結果**（2026-11-03，branch `t43`，還沒 merge）：畫法寫進 interaction-design §21。`npm test`（1039，新增 `web/test/mapLayers.test.ts` 9 項）、`typecheck` 通過。
+  - 純邏輯 `web/src/lib/mapLayers.ts`：`DETAIL_ZOOM`（11）、`isKeyPlace`、`isMinorOnMap`、`hullAround`（凸包，每個頂點放一圈 1 km 的圓再取凸包＝圓角）、`areaFocusShape`。MapView：點多一個 `minor` 屬性，縮遠時 `places-circle`、`places-icon`、`places-label` 不畫 minor 的點（不畫就點不到）；`area-focus` 來源畫淡底加虛線（那區的顏色），在所有點下面。
+  - **自己定的**：「看得到兩區以上」改用縮放判斷（< 11）：伊勢、鳥羽、二見的中心相隔 10 km 上下，看得到一區幾乎就看得到兩區。選了一區時那區的點不管縮放都畫；清單（搜尋、篩選、AI 結果集）時符合的點照樣畫；指到的點照樣畫（概覽的代表點有餐廳）。地圖上的區名點了等於地區列選那一區（`pickArea` 從 Explore.tsx 搬到 `web/src/exploreArea.ts`），選中的靛藍底白字。只在探索：想去照舊畫全部想去的點，範圍也不畫。
+  - 量到的：1440×900 進網站縮放 10.24（縮遠），選鳥羽後 11.09（剛好過 11）。視窗矮時選區後可能還在 11 以下，那區的點照樣全畫、區名還在。鳥羽的範圍包到神島，海的部分比較大（照任務卡用全部的點）。
+  - e2e（只跑網頁、受影響的）：新增 `t43.spec.ts`（2 項），加上 t42、commands、detail-popup、flows、ui-fixes-2026-11 共 33 項，31 過；ui-fixes-2026-11 的兩個日期晶片測試失敗，master（d22b7df）上一樣失敗（T46 讓窄地圖的晶片換兩排後沒跟著改），不是這次改的。手機沒跑（手機的地圖只在行程分頁，不分層）。
+  - 截圖（`web/e2e/shots-t43.mjs`，存在 `data/cache/work/t43/`）：概覽縮遠、選鳥羽、選鳥羽後縮遠、放大。
 
 #### T44a 資料筆記移出給人看的欄位 〔S〕
 - **為什麼**：詳情裡夾著整理資料時的筆記，例如鳥羽水族館的長輩票價「疑為舊資訊，見 conflicts」、「4travel 無障礙分 3.53」、停留時間「jeepe 說」「4travel 多人說」。

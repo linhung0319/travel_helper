@@ -4073,3 +4073,32 @@ button.cand-up:disabled {
   font-family: var(--font-round);
   font-weight: 900;
 }
+
+/* 探索縮遠時地圖上的區名（T43 §21）：白底靛藍框（同整趟的晚數標籤），點了選那一區；選中的靛藍底白字 */
+.area-name-label {
+  padding: 3px 12px;
+  border: 1.5px solid var(--indigo);
+  border-radius: 14px;
+  background: var(--paper);
+  color: var(--indigo);
+  font-family: var(--font-round);
+  font-weight: 900;
+  font-size: 0.875rem;
+  white-space: nowrap;
+  box-shadow: 0 1px 4px var(--shade-1);
+  cursor: pointer;
+}
+
+.area-name-label:hover {
+  background: var(--indigo-wash);
+}
+
+.area-name-label.on {
+  background: var(--indigo);
+  color: var(--paper);
+}
+
+.area-name-label:focus-visible {
+  outline: 2px solid var(--indigo);
+  outline-offset: 2px;
+}

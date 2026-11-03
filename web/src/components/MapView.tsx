@@ -16,6 +16,9 @@ import { dataStore } from '../dataStore.ts';
 import { DESKTOP_QUERY, useApp, useCanHover, useData, useIsDesktop, usePlan, useShared, useUi } from '../hooks.ts';
 import { areaColor, initialExtent, MAP_MIN_ZOOM, mapMaxBounds } from '../lib/areas.ts';
 import { nightsPerArea } from '../lib/tripSkeleton.ts';
+import { areaFocusShape, DETAIL_ZOOM, isMinorOnMap } from '../lib/mapLayers.ts';
+import { currentArea, exploreStage } from '../lib/shelves.ts';
+import { pickArea } from '../exploreArea.ts';
 import { TYPE_COLORS, TYPE_INK } from '../lib/typeStyle.ts';
 import { addMapIcons } from './mapIcons.ts';
 import { markMapLoaded } from '../lib/idle.ts';
@@ -71,8 +74,8 @@ const typeColorExpr = ['match', ['get', 'type'], ...PLACE_TYPES.flatMap((t) => [
 type WishKind = 'unscheduled' | 'candidate' | 'scheduled';
 
 /** marks：行程的編號（0、1、2…，overlays.itineraryMarks：某一天、點開的那段、整趟）；有編號的點畫成類型色的編號圓 */
-function featureCollection(places: Place[], marks: Map<string, string>): FeatureCollection {
-  const { filter, query, day, mode } = appStore.getState();
+function featureCollection(places: Place[], marks: Map<string, string>, detailed: boolean): FeatureCollection {
+  const { filter, query, day, mode, aiResult } = appStore.getState();
   const { days, itinerary } = dataStore.getState();
   const trip = mode === 'map';
   // 探索、想去時不因為「不在那天」變淡（找的是那天還沒排的點），只看篩選。
@@ -82,6 +85,8 @@ function featureCollection(places: Place[], marks: Map<string, string>): Feature
   const candidates = shared.store.getState().candidates;
   // 想去分頁只畫想去的點
   const shown = liked ? places.filter((p) => liked.has(p.id)) : places;
+  // 探索的分層（T43 §21）：縮遠只畫 S、A 級景點（選的那一區、清單裡符合的照樣畫）
+  const layer = { explore: mode === 'explore', detailed, area: currentArea(filter), listing: exploreStage(filter, query, !!aiResult) === 'list' };
   return {
     type: 'FeatureCollection',
     features: shown.map((p) => {
@@ -104,6 +109,7 @@ function featureCollection(places: Place[], marks: Map<string, string>): Feature
           tier: p.tier ?? '',
           label: p.name.zh || p.name.ja,
           dim: dim ? 1 : 0,
+          minor: isMinorOnMap(p, v.match, layer) ? 1 : 0,
           mark: liked ? '' : (marks.get(p.id) ?? ''),
           user: p.origin === 'user' ? 1 : 0,
           typeColor: TYPE_COLORS[p.type],
@@ -118,6 +124,12 @@ function featureCollection(places: Place[], marks: Map<string, string>): Feature
 
 /** 可以點的圖層（點的時候都要查）；選中的點不在這些圖層裡（畫成水滴，點水滴另外接） */
 const PICK_LAYERS = ['places-circle', 'places-icon', 'places-mark', 'wish-dot', 'wish-candidate'];
+
+/** 縮遠時收起 minor 的點的圖層（T43）；指到的點照樣畫（概覽的代表點有餐廳） */
+const LAYERED = new Set(['places-circle', 'places-icon', 'places-label']);
+
+/** 選區範圍的淡底、虛線框（T43 §21）：那區的顏色、很淡的底 */
+const AREA_FOCUS_SOURCE = 'area-focus';
 
 /** 各圖層本來的 filter；畫成水滴的點另外排除 */
 const BASE_FILTERS: Record<string, unknown[]> = {
@@ -167,6 +179,10 @@ export function MapView() {
   const selectedRef = useRef<Place | null>(null);
   const bounceNext = useRef(false);
   const [loaded, setLoaded] = useState(false);
+  // 縮放 >= DETAIL_ZOOM（T43）：探索畫全部的點、拿掉地區標籤
+  const [detailed, setDetailed] = useState(false);
+  // 探索縮遠時各區的名稱標籤（T43）
+  const areaNameRef = useRef<Marker[]>([]);
   const [, setTick] = useState(0); // 地圖移動時重畫小卡片的位置
   const canHover = useCanHover();
   const desktop = useIsDesktop();
@@ -275,11 +291,23 @@ export function MapView() {
       });
       containerRef.current?.classList.toggle('show-drop-names', map.getZoom() >= DROP_NAME_ZOOM);
     };
+    // 縮放過了 DETAIL_ZOOM（T43）：換分層
+    map.on('zoom', () => setDetailed(map.getZoom() >= DETAIL_ZOOM));
 
     map.on('load', () => {
       markMapLoaded();
       map.addSource('places', { type: 'geojson', data: { type: 'FeatureCollection', features: [] } });
       addMapIcons(map);
+      // 選了一區（T43 §21）：那區所有點外圍的形狀，淡底加虛線框，畫在所有點的下面、不擋點擊（不在 PICK_LAYERS）
+      map.addSource(AREA_FOCUS_SOURCE, { type: 'geojson', data: { type: 'FeatureCollection', features: [] } });
+      map.addLayer({ id: 'area-focus-fill', type: 'fill', source: AREA_FOCUS_SOURCE, paint: { 'fill-color': ['get', 'color'], 'fill-opacity': 0.07 } });
+      map.addLayer({
+        id: 'area-focus-line',
+        type: 'line',
+        source: AREA_FOCUS_SOURCE,
+        layout: { 'line-join': 'round' },
+        paint: { 'line-color': ['get', 'color'], 'line-width': 2, 'line-opacity': 0.85, 'line-dasharray': [3, 2] },
+      });
       // 指到（只有網頁）：點下面一圈淡灰光圈；畫在所有點的下面
       map.addLayer({
         id: 'places-hover',
@@ -560,6 +588,7 @@ export function MapView() {
         bounceNext.current = false;
       });
       reportView();
+      setDetailed(map.getZoom() >= DETAIL_ZOOM);
       setLoaded(true);
     });
 
@@ -632,8 +661,8 @@ export function MapView() {
   // 資料點、篩選、選定的天、行程 → 重畫
   useEffect(() => {
     if (!loaded) return;
-    (mapRef.current!.getSource('places') as GeoJSONSource).setData(featureCollection(places, marks));
-  }, [loaded, places, filter, query, day, days, plan, byId, mode, votes, candidates, itinerary, marks]);
+    (mapRef.current!.getSource('places') as GeoJSONSource).setData(featureCollection(places, marks, detailed));
+  }, [loaded, places, filter, query, day, days, plan, byId, mode, votes, candidates, itinerary, marks, detailed, aiResult]);
 
   const anchorId = desktop && detailId && detailId !== selectedId ? detailId : null;
 
@@ -655,8 +684,44 @@ export function MapView() {
     if (!loaded) return;
     const map = mapRef.current!;
     const hidden = [...new Set([selectedId, anchorId, ...(dropIdsKey ? dropIdsKey.split(' ') : [])])].filter((x): x is string => !!x);
-    for (const [layer, base] of Object.entries(BASE_FILTERS)) map.setFilter(layer, ['all', base, ['!', ['in', ['get', 'id'], ['literal', hidden]]]] as never);
-  }, [loaded, selectedId, anchorId, dropIdsKey]);
+    const shownMinor = ['any', ['==', ['get', 'minor'], 0], ['==', ['get', 'id'], hoveredId ?? '']];
+    for (const [layer, base] of Object.entries(BASE_FILTERS)) {
+      map.setFilter(layer, ['all', base, ['!', ['in', ['get', 'id'], ['literal', hidden]]], ...(LAYERED.has(layer) ? [shownMinor] : [])] as never);
+    }
+  }, [loaded, selectedId, anchorId, dropIdsKey, hoveredId]);
+
+  // 選了一區（T43 §21）：那區所有點外圍的形狀；只在探索
+  const focusArea = mode === 'explore' ? currentArea(filter) : null;
+  const areasForFocus = useData((s) => s.areas);
+  useEffect(() => {
+    if (!loaded) return;
+    const f = areaFocusShape(places, focusArea);
+    if (f) f.properties = { ...f.properties, color: areaColor(areasForFocus, focusArea) };
+    (mapRef.current!.getSource(AREA_FOCUS_SOURCE) as GeoJSONSource).setData({ type: 'FeatureCollection', features: f ? [f] : [] });
+  }, [loaded, places, focusArea, areasForFocus]);
+
+  // 探索縮遠時（T43 §21）：每區的中心放區名（白底靛藍框），點了等於地區列選那一區；選中的那區靛藍底白字
+  useEffect(() => {
+    if (!loaded) return;
+    const map = mapRef.current!;
+    areaNameRef.current.forEach((m) => m.remove());
+    areaNameRef.current = [];
+    if (mode !== 'explore' || detailed) return;
+    areaNameRef.current = areasForFocus.map((a) => {
+      const el = document.createElement('button');
+      el.type = 'button';
+      el.className = 'area-name-label';
+      el.dataset.area = a.id;
+      el.dataset.testid = 'area-name-label';
+      el.classList.toggle('on', a.id === focusArea);
+      el.textContent = a.name.zh || a.name.ja;
+      el.addEventListener('click', (e) => {
+        e.stopPropagation();
+        pickArea(a.id);
+      });
+      return new Marker({ element: el }).setLngLat(a.center).addTo(map);
+    });
+  }, [loaded, mode, detailed, areasForFocus, focusArea]);
 
   // AI 指給你看的水滴：只有最新的一組（舊的直接拿掉）；新出現的跳 3 下（地圖正要飛過去時，到了再跳）。
   // 也是選中的點、詳情那個點的不畫（它們有自己的水滴）
