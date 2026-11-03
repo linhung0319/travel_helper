@@ -12,6 +12,7 @@ import type { Filter } from '../../lib/filter.ts';
 import type { Area, Place } from '../../data/types.ts';
 import { Photo } from '../../components/Photo.tsx';
 import { Chip } from './Chip.tsx';
+import { ChipScroller } from './ChipScroller.tsx';
 import { TierMark } from './TierMark.tsx';
 import { TypeSeal } from './TypeLabel.tsx';
 import { VoteHeart } from './VoteHeart.tsx';
@@ -100,7 +101,7 @@ export function AreaHome({ areaId, regionId, surface, onPickRegion, onOpen, onSh
           </p>
         )}
         {(area.regions?.length ?? 0) > 1 && (
-          <div className="m-chips fb-chips xa-regions" data-testid="region-chips">
+          <ChipScroller className="m-chips fb-chips xa-regions" testId="region-chips" activeKey={regionId}>
             <Chip on={!regionId} onClick={() => onPickRegion(null)} testId="region-all">
               全部
             </Chip>
@@ -109,7 +110,7 @@ export function AreaHome({ areaId, regionId, surface, onPickRegion, onOpen, onSh
                 {displayName(r.name, r.id)}
               </Chip>
             ))}
-          </div>
+          </ChipScroller>
         )}
         {feb.length > 0 && (
           <div className={`xa-feb ${febOpen ? 'open' : ''}`}>

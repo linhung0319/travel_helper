@@ -7,12 +7,12 @@
 import { useWishList, useWishUserChip } from '../shared/placeLists.ts';
 import { FilterBar } from '../shared/ui/FilterBar.tsx';
 import { WishList } from '../shared/ui/WishList.tsx';
-import { useWishModel } from './FeedFilters.tsx';
+import { pickWishArea, useWishModel } from './FeedFilters.tsx';
 import { AreaChips } from '../shared/ui/AreaChips.tsx';
 import { mobileStore, useMobile } from './mobileStore.ts';
 import { askList, askWishEmpty } from './mobileAi.ts';
 import { WishEmpty } from '../shared/ui/EmptyStates.tsx';
-import { useWishPrefs, wishPrefs } from '../shared/wishPrefs.ts';
+import { useWishPrefs } from '../shared/wishPrefs.ts';
 
 /** 想去分頁 */
 export function WishlistPage() {
@@ -35,7 +35,7 @@ export function WishlistPage() {
         surface="mobile"
         model={model}
         count={list.length}
-        typeRow={<AreaChips value={wish.area} onPick={(area) => { wishPrefs.getState().setUserOnly(false); setWish({ area, quick: wish.quick.filter((t) => !t.startsWith('regions:')) }); }} firstLabel="全部" prefix="m-wish" extra={chip} />}
+        typeRow={<AreaChips value={wish.area} onPick={pickWishArea} firstLabel="全部" prefix="m-wish" extra={chip} />}
       />
       <WishList
         surface="mobile"

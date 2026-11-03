@@ -93,7 +93,21 @@ function StayCell({ row, areas, open, onToggle }: { row: SkeletonRow; areas: Are
   );
 }
 
-export function TripSkeleton() {
+/** 「11 晚 · 已決定 8 晚」：骨架的標題列用；手機整趟的標題列（mobile/TripOverview）也放這一行 */
+export function TripNightCount({ className = 'ui-sk-count' }: { className?: string }) {
+  const itinerary = useData((s) => s.itinerary);
+  const byId = useData((s) => s.byId);
+  if (!itinerary) return null;
+  const { total, decided } = nightsDecided(itinerary, byId);
+  return (
+    <span className={className} data-testid="sk-count">
+      {total} 晚 · 已決定 {decided} 晚
+    </span>
+  );
+}
+
+/** head＝false：不畫「整趟」那一列（手機的標題列自己畫，mobile/TripOverview） */
+export function TripSkeleton({ head = true }: { head?: boolean }) {
   const itinerary = useData((s) => s.itinerary);
   const byId = useData((s) => s.byId);
   const areas = useData((s) => s.areas);
@@ -108,17 +122,16 @@ export function TripSkeleton() {
   if (!itinerary) return null;
   const booked = (placeId: string, date: string) => reservations.some((r) => r.placeId === placeId && r.date === date && r.status === 'booked');
   const rows = skeletonRows({ itinerary, areas, byId, booked });
-  const { total, decided } = nightsDecided(itinerary, byId);
   const arrive = flightLine(itinerary, itinerary.days[0]?.date, 'arrive');
   const depart = flightLine(itinerary, itinerary.days.at(-1)?.date, 'depart');
   return (
     <div className="ui-sk" data-testid="trip-skeleton">
-      <div className="ui-sk-head">
-        <span className="ui-sk-title">整趟</span>
-        <span className="ui-sk-count" data-testid="sk-count">
-          {total} 晚 · 已決定 {decided} 晚
-        </span>
-      </div>
+      {head && (
+        <div className="ui-sk-head">
+          <span className="ui-sk-title">整趟</span>
+          <TripNightCount />
+        </div>
+      )}
       <ol className="ui-sk-list">
         {arrive && (
           <li className="ui-sk-flight">
