@@ -14,7 +14,7 @@ const showOverview = async (page: Page) => {
   await page.evaluate(() => (window as any).__th.commands.selectDay('all'));
 };
 
-test('只有航班的行程：開始卡 0/3、清單併成一列、航班的天寫幾筆；問 AI 帶整趟晶片，第一張是住宿，按了才送出', async ({ page }) => {
+test('只有航班的行程：開始卡 0/3、清單併成一列、航班的天寫幾筆；問 AI 不帶晶片，第一張是住宿，按了才送出', async ({ page }) => {
   await flightsOnly(page);
   await showOverview(page);
   const card = page.getByTestId('start-card');
@@ -26,13 +26,13 @@ test('只有航班的行程：開始卡 0/3、清單併成一列、航班的天�
   await expect(page.locator('.overview-day')).toHaveCount(3);
 
   await page.getByTestId('start-step-2').getByTestId('start-ask').click();
-  await expect(page.getByTestId('chat-context')).toHaveAttribute('data-kind', 'trip');
+  await expect(page.getByTestId('chat-context')).toHaveCount(0);
   const first = page.locator('[data-testid="chat-starter"][data-first="true"]');
-  await expect(first).toContainText('幫我決定每晚住哪');
+  await expect(first).toContainText('幫我決定前幾晚住哪');
   await expect(first).toContainText('15 人的住宿最難訂');
   await expect(page.getByTestId('chat-msg-me')).toHaveCount(0);
   await first.click();
-  await expect(page.getByTestId('chat-msg-me')).toContainText('幫我決定每晚住哪');
+  await expect(page.getByTestId('chat-msg-me')).toContainText('幫我決定前幾晚住哪');
   await expect(page.getByTestId('chat-cards')).toHaveCount(0);
 });
 
@@ -58,13 +58,13 @@ test('想去頁空白：三格小圖、沒有段落標題；去探索、問 AI �
   await expect(page.getByTestId('side-tab-explore')).toHaveAttribute('aria-selected', 'true');
 });
 
-test('空的一天：虛線框；問 AI 帶這天的晶片，第一張是這天去哪；從想去挑', async ({ page }) => {
+test('空的一天：虛線框；問 AI 不帶晶片，第一張是這天去哪；從想去挑', async ({ page }) => {
   await flightsOnly(page);
   await page.getByTestId('side-tab-day').click();
   await page.evaluate(() => (window as any).__th.commands.selectDay('2027-02-03'));
   await expect(page.getByTestId('day-empty')).toContainText('這天還沒排');
   await page.getByTestId('day-empty-ask').click();
-  await expect(page.getByTestId('chat-context')).toHaveAttribute('data-kind', 'day');
+  await expect(page.getByTestId('chat-context')).toHaveCount(0);
   await expect(page.locator('[data-testid="chat-starter"][data-first="true"]')).toContainText('2/3 去哪？');
   await page.getByTestId('day-go-wish').click();
   await expect(page.getByTestId('side-tab-wish')).toHaveAttribute('aria-selected', 'true');

@@ -3,11 +3,11 @@
 
 import { useEffect, useRef } from 'react';
 import { useStore } from 'zustand';
-import { Map as MapLibreMap } from 'maplibre-gl';
+import type { Map as MapLibreMap } from 'maplibre-gl';
 import { addPlaceStore } from '../../addPlaceStore.ts';
 import { appStore } from '../../store.ts';
 import { dataStore } from '../../dataStore.ts';
-import { STYLE_URL } from '../../components/MapView.tsx';
+import { loadMapLib, STYLE_URL } from '../../components/mapRuntime.ts';
 import { TYPE_COLORS } from '../../lib/typeStyle.ts';
 import type { LonLat } from '../../data/types.ts';
 
@@ -39,10 +39,14 @@ export function AddPlaceMap() {
   }, [coords]);
   useEffect(() => {
     const start = addPlaceStore.getState().draft?.coords ?? appStore.getState().view?.center ?? FALLBACK_CENTER;
-    const map = new MapLibreMap({ container: ref.current!, style: STYLE_URL, center: start, zoom: 16, attributionControl: { compact: true } });
-    mapRef.current = map;
     // 還沒有位置（打名稱找不到、地圖指的不會）：位置就是小地圖的中心，使用者拖了再更新
     if (!addPlaceStore.getState().draft?.coords) addPlaceStore.getState().patch({ coords: start });
+    let gone = false;
+    let remove: (() => void) | null = null;
+    void loadMapLib().then(({ Map: MapLibre }) => {
+      if (gone || !ref.current) return;
+      const map = new MapLibre({ container: ref.current, style: STYLE_URL, center: start, zoom: 16, attributionControl: { compact: true } });
+      mapRef.current = map;
     map.on('moveend', () => {
       const c = map.getCenter();
       addPlaceStore.getState().patch({ coords: [c.lng, c.lat] });
@@ -57,11 +61,14 @@ export function AddPlaceMap() {
       });
     });
     // 測試用：e2e 拖地圖不好對準，直接讀這張地圖
-    if (import.meta.env.DEV) (window as any).__thAddMap = map;
+      if (import.meta.env.DEV) (window as any).__thAddMap = map;
+      remove = () => map.remove();
+    });
     return () => {
+      gone = true;
       delete (window as any).__thAddMap;
       mapRef.current = null;
-      map.remove();
+      remove?.();
     };
   }, []);
   return (

@@ -7,8 +7,8 @@ import { commands } from './appCommands.ts';
 import { shared, sharedStore } from './appShared.ts';
 import { addPlaceStore } from './addPlaceStore.ts';
 import { dataSource } from './data/index.ts';
-import { currentEngineData, engineConfig, planStore } from './planStore.ts';
-import { openDialog, uiStore } from './uiStore.ts';
+import { currentEngineData, engineConfig, ensurePlan, planStore } from './planStore.ts';
+import { uiStore } from './uiStore.ts';
 import { createLocalChatRepository } from './ai/chatRepository.ts';
 import { createChat } from './ai/chat.ts';
 import { appSurface, createBaseStage, type ScreenSurface } from './ai/stage.ts';
@@ -22,18 +22,6 @@ function browserStorage() {
   } catch {
     return null;
   }
-}
-
-/** 確認「開始編輯？」：沿用現有的對話框，關掉時看有沒有進入編輯 */
-function confirmPlanning(summary: string): Promise<boolean> {
-  return new Promise((resolve) => {
-    openDialog({ kind: 'planning', ...(summary ? { note: summary } : {}) });
-    const off = uiStore.subscribe((s) => {
-      if (s.dialog?.kind === 'planning') return;
-      off();
-      resolve(appStore.getState().planning);
-    });
-  });
 }
 
 // 正式 build 呼叫 Worker；dev server 在 boot 換成假 AI
@@ -62,7 +50,7 @@ export const ai = createChat({
   config: engineConfig,
   source: dataSource,
   details: ensureDetails,
-  confirmPlanning,
+  planReady: ensurePlan,
   repo: import.meta.env.DEV ? createLocalChatRepository({ storage: browserStorage(), memberId: () => sharedStore.getState().me?.id ?? 'guest' }) : createApiChatRepository(),
   // 模型、平台都晚一點才定，這裡包一層
   model: { send: (request, signal) => model.send(request, signal) },

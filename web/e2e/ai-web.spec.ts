@@ -178,12 +178,10 @@ test('S11 不在編輯中：提議只在畫面上；時間軸差異、日期虛�
 
   // 採用
   await page.getByTestId('proposal-adopt').click();
-  await expect(page.getByTestId('planning-note')).toContainText('川梅');
-  await shot(page, 's11-confirm');
-  await page.getByTestId('planning-confirm').click();
   await expect(bar(page)).toHaveCount(0);
+  await expect(page.getByTestId('planning-dialog')).toHaveCount(0);
   expect(await itemCount(page, '2027-02-04')).toBe(before + 1);
-  expect(await app<boolean>(page, 'th.appStore.getState().planning')).toBe(true);
+  expect(await app<boolean>(page, 'th.appStore.getState().planning')).toBe(false);
   await expect(page.getByTestId('toast')).toContainText('已採用提議');
   await expect(page.getByTestId('chat-proposal')).toContainText('已採用');
   await shot(page, 's11-adopted');
@@ -194,12 +192,10 @@ test('S11 不在編輯中：提議只在畫面上；時間軸差異、日期虛�
   await expect(page.getByTestId('chat-proposal')).toHaveAttribute('data-status', 'undone');
 });
 
-test('S11 不要、取消：行程都沒變；取消後提議還在；不要了還能再打開', async ({ page }) => {
+test('S11 不要：行程沒變；不要了還能再打開', async ({ page }) => {
   await aiReady(page);
   const before = await itemCount(page, '2027-02-04');
   await say(page, S11);
-  await page.getByTestId('proposal-adopt').click();
-  await page.getByTestId('planning-dialog').getByRole('button', { name: '取消' }).click();
   await expect(bar(page)).toBeVisible();
   expect(await itemCount(page, '2027-02-04')).toBe(before);
 
@@ -452,7 +448,7 @@ test('S24 回覆中關閉：標沒有回完，有重試；重試後紀錄裡沒�
   expect(ok).toBe(true);
 });
 
-test('S25～S27 邊聊邊改、回到上一版、用說的採用：版本切換，開始編輯？按了才寫', async ({ page }) => {
+test('S25～S27 邊聊邊改、回到上一版、用說的採用：版本切換，用說的才寫', async ({ page }) => {
   await aiReady(page);
   const before = await itemCount(page, '2027-02-04');
   await say(page, S11);
@@ -475,20 +471,11 @@ test('S25～S27 邊聊邊改、回到上一版、用說的採用：版本切換�
   await expect(page.getByTestId('chat-msg-ai').last()).toContainText('還沒看過');
   expect(await itemCount(page, '2027-02-04')).toBe(before);
 
-  // 用說的採用：跳確認；取消就不改
+  // 用說的採用：不跳確認，直接寫入
   await page.getByTestId('chat-input').fill('採用');
   await page.getByTestId('chat-input').press('Enter');
-  await expect(page.getByTestId('planning-dialog')).toBeVisible();
-  await shot(page, 's27-confirm');
-  await page.getByTestId('planning-dialog').getByRole('button', { name: '取消' }).click();
   await idle(page);
-  await expect(page.getByTestId('chat-msg-ai').last()).toContainText('先不改');
-  expect(await itemCount(page, '2027-02-04')).toBe(before);
-
-  await page.getByTestId('chat-input').fill('採用');
-  await page.getByTestId('chat-input').press('Enter');
-  await page.getByTestId('planning-confirm').click();
-  await idle(page);
+  await expect(page.getByTestId('planning-dialog')).toHaveCount(0);
   await expect.poll(() => itemCount(page, '2027-02-04')).toBe(before + 2);
   await expect(page.locator('[data-testid="chat-proposal"][data-status="closed"]').first()).toContainText('沒有用上');
   await shot(page, 's27-adopted');

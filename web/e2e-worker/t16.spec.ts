@@ -40,7 +40,8 @@ test('推薦問題 → 回答和快速選項 → 重新整理、換裝置都在�
   // 空白的新對話：照行程算的推薦問題，按了直接送出
   const starters = a.getByTestId('chat-starter');
   await expect(starters.first()).toBeVisible();
-  const question = (await starters.first().innerText()).trim();
+  // 卡片第一行是問題，第二行是小字（為什麼問這個）
+  const question = (await starters.first().innerText()).trim().split(/\n/)[0];
   await starters.first().click();
   await expect(a.getByTestId('chat-msg-me')).toContainText(question);
   await expect(a.getByTestId('chat-starter')).toHaveCount(0);

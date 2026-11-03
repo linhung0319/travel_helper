@@ -1,6 +1,6 @@
 // 時間軸的卡片（第七輪 Task 8，網頁、手機共用）：一張白卡（淡框、淡陰影，第九輪 §14.2）；選到、展開的卡框變芥子黃。候選（dashed）照舊是虛線框。
 // 一列：左邊「把手欄」（handle：編輯中的拖曳把手 DragHandle，沒有東西也留位置；手機 44px 寬、手指只能從這裡拖）、縮圖（網頁 48px、手機 56px；左上角墨色編號圓，
-// 沒有照片是類型色底加一個字）、內容（time、名稱、meta＝標籤／切換備卡／⚠）、右邊 more（編輯中的「⋯」）。
+// 沒有照片是 TypeArt）、內容（time、名稱、meta＝標籤／切換備卡／⚠）、右邊 more（編輯中的「⋯」）。
 // 有照片時卡片右上角多一個類型小圓章（第十輪）；沒照片的縮圖本身就是類型色塊，不重複放。
 // 點卡片＝原地展開（expanded；一次一張，點同一張收起）：網頁、手機一樣只放介紹（第九輪 §14.2，不放照片、優缺點），下面「詳細資料」「問 AI」兩顆按鈕。
 // 合併卡（stacked，備選、分組都用它，§13.5）：兩張斜斜地一前一後——前面主選（就是單張的那張卡）微微往左斜，後面淡底往右斜（tc-back），不管幾個選擇都只畫兩張。
@@ -12,20 +12,12 @@ import type { KeyboardEvent, MouseEvent, ReactNode, Ref } from 'react';
 import { Photo } from '../../components/Photo.tsx';
 import { TypeSeal } from './TypeLabel.tsx';
 import { Icon } from '../../components/Icon.tsx';
-import { cardTypeLetter } from '../../lib/planView.ts';
-import { typeSwatch } from '../../lib/typeStyle.ts';
+import { TypeArt } from './TypeArt.tsx';
 import { photoCandidates } from '../../lib/photos.ts';
 import type { Place } from '../../data/types.ts';
 import { Button } from './Button.tsx';
 import { useFullPlace } from '../../hooks.ts';
 import { IntroPending } from './Skeleton.tsx';
-
-/** 車站、機場、使用者加的點：中性灰 */
-const NEUTRAL_COLOR = '#5d6680';
-
-/** 沒有照片時縮圖的底色和字色：景點、住宿、餐廳、車站用類型色（餐廳的字是墨色），其他中性灰 */
-const fallbackSwatch = (type: Place['type'] | 'airport' | null | undefined) =>
-  type === 'spot' || type === 'lodging' || type === 'restaurant' || type === 'station' ? typeSwatch(type) : { background: NEUTRAL_COLOR, color: '#ffffff' };
 
 /** 介紹的前兩句（以。！？切；沒有句號就整段）；沒有介紹是空字串 */
 export function firstSentences(text: string | null | undefined, n = 2): string {
@@ -104,9 +96,7 @@ function CardThumb({ place, fallbackType, mark, size }: Pick<TripCardProps, 'pla
       {has && place ? (
         <Photo place={place} width={Math.max(200, size * 3)} />
       ) : (
-        <span className="tc-thumb-fallback" style={fallbackSwatch(type)} data-testid="item-type" aria-hidden>
-          {cardTypeLetter(type)}
-        </span>
+        <TypeArt type={type} className="tc-thumb-fallback" testId="item-type" iconSize={24} />
       )}
       {mark != null && (
         <span className="tc-no" data-testid="trip-card-no">

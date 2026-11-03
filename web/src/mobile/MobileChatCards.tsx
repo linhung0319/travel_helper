@@ -20,7 +20,7 @@ import { mobileStore } from './mobileStore.ts';
 const run = async (r: Promise<{ ok: true } | { ok: false; error: string }>) => {
   const x = await r;
   // 取消是使用者自己按的；存不了 changeItinerary 已經跳提示
-  if (!x.ok && x.error !== '取消了' && x.error !== '沒有存成功') shared.notifyError(x.error);
+  if (!x.ok && x.error !== '沒有存成功') shared.notifyError(x.error);
 };
 
 /** 輪播的一張卡：點卡片照「點地點」的規則，「詳情」永遠直接開 */

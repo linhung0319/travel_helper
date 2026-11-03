@@ -59,9 +59,9 @@ export function createLocalChatRepository(opts: LocalChatOptions): ChatRepositor
     async loadMessages(id) {
       return read().messages[id] ?? [];
     },
-    async createConversation(title) {
+    async createConversation(title, id) {
       const s = read();
-      const c: ConversationSummary = { id: newId(), title, updatedAt: now(), usage: 'ok' };
+      const c: ConversationSummary = { id: id ?? newId(), title, updatedAt: now(), usage: 'ok' };
       write({ conversations: [...s.conversations, c], messages: { ...s.messages, [c.id]: [] } });
       return c;
     },

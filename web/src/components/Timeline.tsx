@@ -28,7 +28,7 @@ import type { Candidate } from '../backend/types.ts';
 import { dropOnCardProps, dropOnEndProps, usePlanDrag } from './planDrag.ts';
 import type { DragSource } from '../lib/dropIntent.ts';
 import { openDialog, toggleExpandedItem } from '../uiStore.ts';
-import { cardTime, cardTypeLetter, dayBar, daySummary, findItemRef, formatStay, formatTravelTotal, hourTicks, isBarSelected, shownWarnings, stopMarks, timelineRows, waitNote, WARNING_ICONS, warningsByItem, type BarSegment, type TimelineRow } from '../lib/planView.ts';
+import { cardTime, cardTypeLetter, needsStart, stayNight, dayBar, daySummary, findItemRef, formatStay, formatTravelTotal, hourTicks, isBarSelected, shownWarnings, stopMarks, timelineRows, waitNote, WARNING_ICONS, warningsByItem, type BarSegment, type TimelineRow } from '../lib/planView.ts';
 import { typeSwatch } from '../lib/typeStyle.ts';
 import type { Place } from '../data/types.ts';
 import { AvatarStack, PlaceChip } from './common.tsx';
@@ -40,6 +40,7 @@ import { groupTargetsOf } from './cardActionRun.ts';
 import { useLiked } from '../shared/placeLists.ts';
 import { DragHandle, TripCard } from '../shared/ui/TripCard.tsx';
 import { askTripCard } from './webAi.ts';
+import { DayStartMissing } from '../shared/ui/DayStartMissing.tsx';
 import { TimelineDiffContext, useEditing, useTimelineDiff, type TimelineDiff } from './timelineEdit.ts';
 import type { ProposalGhost } from '../lib/proposalDiff.ts';
 import { shortDayLabel } from '../lib/trip.ts';
@@ -237,7 +238,7 @@ function EntryRow({ entry, day, warnings, plan, marks }: { entry: TimelineEntry;
   const editing = planning ? 'editing' : '';
 
   if (entry.kind === 'start') {
-    // 出發的住宿：只顯示前一晚的方案（唯讀）
+    // 出發的地方：預約狀態和前一晚同一筆（住宿的 date 是入住那晚，連住的也對得到）
     const dayIndex = itinerary?.days.findIndex((d) => d.date === day.date) ?? -1;
     const prevNight = dayIndex > 0 ? itinerary!.days[dayIndex - 1] : undefined;
     return (
@@ -249,7 +250,7 @@ function EntryRow({ entry, day, warnings, plan, marks }: { entry: TimelineEntry;
         time={<span className="tl-start-time">{cardTime(entry).text}</span>}
         name={p ? name(p) : '上一站'}
         label={p ? name(p) : '上一站'}
-        meta={p?.type === 'lodging' ? <LodgingTags day={prevNight} place={p} reservationDate={null} editable={false} open={false} onOpenChange={() => {}} /> : null}
+        meta={p?.type === 'lodging' ? <LodgingTags day={prevNight} place={p} reservationDate={prevNight?.date ?? null} editable={false} open={false} onOpenChange={() => {}} /> : null}
         thumb={THUMB}
         className={`tl-start ${editing}`}
         selected={expand.expanded}
@@ -326,7 +327,7 @@ function EntryRow({ entry, day, warnings, plan, marks }: { entry: TimelineEntry;
           }
           name={p ? name(p) : (entry.placeId ?? '')}
           label={p ? name(p) : (entry.placeId ?? '住宿')}
-          meta={<LodgingTags day={day} place={p} reservationDate={day.date} editable={planning} open={tagsOpen} onOpenChange={setTagsOpen} />}
+          meta={<LodgingTags day={day} place={p} reservationDate={day.date} night={itinerary ? stayNight(itinerary.days, day.date) : null} editable={planning} open={tagsOpen} onOpenChange={setTagsOpen} />}
           thumb={THUMB}
           className={`tl-lodging ${editing} ${pill ? 'tl-proposed' : ''}`}
           selected={expand.expanded}
@@ -696,6 +697,7 @@ export function Timeline({ tl, diff = null, originalPlan = null }: { tl: DayTime
   return (
     <TimelineDiffContext.Provider value={diff}>
     <ol className={`tl tc-list tl-axis ${planning ? 'in-planning' : ''}`} data-testid="timeline">
+      {needsStart(plan) && <DayStartMissing />}
       {/* 用項目 ID 當 key：上面的卡片增減時，備卡看第幾張、警告展開這些本地 state 不會跑到別張卡片 */}
       {tl.rows.map((row, i) =>
         row.kind === 'gap' ? (

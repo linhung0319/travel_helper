@@ -11,14 +11,15 @@ export interface Filter {
   tiers: Tier[];
   /** 餐廳的 group.fit15（interaction-design §5 的「可容納 15 人」）；有值時只剩餐廳 */
   fit15: Fit15[];
-  /** 投票（interaction-design §9）：大家喜歡的（❤️ 2 人以上）、我按了 ❤️ 的 */
+  /** 投票（interaction-design §9）：有人按了 ❤️ 的（AI 問「想去的」用，畫面的篩選沒有這個按鈕）、大家喜歡的（❤️ 2 人以上）、我按了 ❤️ 的 */
   votes: VoteFilter[];
 }
 
-export const VOTE_FILTER_VALUES = ['popular', 'mine'] as const;
+export const VOTE_FILTER_VALUES = ['any', 'popular', 'mine'] as const;
 export type VoteFilter = (typeof VOTE_FILTER_VALUES)[number];
 
 export const VOTE_FILTER_LABELS: Record<VoteFilter, string> = {
+  any: '有人想去的',
   popular: '大家想去的',
   mine: '只看我按的',
 };
@@ -91,7 +92,7 @@ export function matchesFilter(p: Place, f: Filter): boolean {
   }
   if (f.votes.length) {
     const ok =
-      (f.votes.includes('popular') && (voteLookup?.likes(p.id) ?? 0) >= POPULAR_LIKES) || (f.votes.includes('mine') && !!voteLookup?.likedByMe(p.id));
+      (f.votes.includes('any') && (voteLookup?.likes(p.id) ?? 0) >= 1) || (f.votes.includes('popular') && (voteLookup?.likes(p.id) ?? 0) >= POPULAR_LIKES) || (f.votes.includes('mine') && !!voteLookup?.likedByMe(p.id));
     if (!ok) return false;
   }
   return true;

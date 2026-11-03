@@ -68,6 +68,8 @@ export interface StarterInput {
 }
 
 const MAX_STARTERS = 3;
+/** 問住宿一次問幾晚：整趟每晚一起問，回答會太長（T39） */
+const LODGING_STRETCH = 3;
 
 const monthDay = (date: string) => `${Number(date.slice(5, 7))}/${Number(date.slice(8, 10))}`;
 
@@ -86,12 +88,12 @@ export function dayStarter(d: StarterDay): Starter {
 export function firstStarter(i: StarterInput): Starter {
   const nights = nightsOf(i);
   const missing = nights.filter((d) => !d.lodging);
-  if (missing.length && missing.length === nights.length) return { q: '幫我決定每晚住哪', why: '還沒有任何住宿，15 人的住宿最難訂' };
+  if (missing.length && missing.length === nights.length) return { q: '幫我決定前幾晚住哪', why: '從第一晚開始，15 人的住宿最難訂' };
   if (missing.length) {
     // 連續的晚上併成一段，最早的一段先
     const start = nights.indexOf(missing[0]);
     let end = start;
-    while (end + 1 < nights.length && !nights[end + 1].lodging) end++;
+    while (end + 1 < nights.length && end + 1 - start < LODGING_STRETCH && !nights[end + 1].lodging) end++;
     const range = end > start ? `${monthDay(nights[start].date)}～${monthDay(nights[end].date)}` : monthDay(nights[start].date);
     return { q: `幫我決定 ${range} 住哪`, why: `還有 ${missing.length} 晚沒住宿` };
   }

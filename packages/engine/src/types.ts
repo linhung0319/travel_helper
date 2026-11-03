@@ -305,6 +305,10 @@ export interface Leg {
   /** 出發後（加上走到上車點）時刻表裡還有沒有這兩點之間的班次（不管等多久）；false 時規劃模式的「大眾運輸」灰掉 */
   transitAvailable?: boolean;
   taxi?: TaxiInfo | null;
+  /** 大眾運輸接計程車（T39）：先搭計程車到這個車站才上車；台數在 taxi */
+  taxiBefore?: { station: string; minutes: number };
+  /** 大眾運輸接計程車（T39）：在這個車站下車，再搭計程車到終點；台數在 taxi */
+  taxiAfter?: { station: string; minutes: number };
   /** 使用者用 travel 指定的 */
   specified: boolean;
   /** 怎麼算的，例如「步行 osrm」「估算」 */

@@ -67,7 +67,7 @@ const proposeSteps = (ops: (e: ScriptEnv) => any[], done: (e: ScriptEnv) => stri
 const decideOut = (e: ScriptEnv, done: string) => {
   const r = e.results.decide_card;
   if (r.ok) return { text: done };
-  return { text: /取消/.test(r.error) ? '好，先不改，提議還留著。' : r.error };
+  return { text: r.error };
 };
 
 export const SCRIPTS: Script[] = [

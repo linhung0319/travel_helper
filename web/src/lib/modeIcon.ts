@@ -15,7 +15,7 @@ export interface ModeIconSpec {
 }
 
 /** 搭車那一行的外框、細線：所有交通方式同一個灰色（§16.4），方式看圖示和名稱 */
-export const RIDE_COLOR: Record<'train' | 'bus' | 'ferry', string> = { train: 'var(--ink-2)', bus: 'var(--ink-2)', ferry: 'var(--ink-2)' };
+export const RIDE_COLOR: Record<'train' | 'bus' | 'ferry' | 'taxi', string> = { taxi: 'var(--ink-2)', train: 'var(--ink-2)', bus: 'var(--ink-2)', ferry: 'var(--ink-2)' };
 
 const spec = (icon: IconName): ModeIconSpec => ({ bg: 'var(--wash)', fg: 'var(--ink)', icon, path: ICON_PATHS[icon] });
 

@@ -46,10 +46,11 @@ export function rideShortName(ride: TransitRide, nameOfRoute?: (routeId: string)
 }
 
 /** 收合時第二行的膠囊：每一程的方式和短名稱；stops[i] 是第 i 程和第 i+1 程中間的換車站名 */
-export function legChips(leg: Leg, nameOf: (id: string) => string): { rides: { mode: TransitRide['mode']; name: string }[]; stops: string[] } {
+export function legChips(leg: Leg, nameOf: (id: string) => string): { rides: { mode: TransitRide['mode'] | 'taxi'; name: string }[]; stops: string[] } {
+  const taxi = { mode: 'taxi' as const, name: '計程車' };
   return {
-    rides: leg.rides.map((r) => ({ mode: r.mode, name: rideShortName(r) })),
-    stops: leg.rides.slice(0, -1).map((r) => nameOf(r.to)),
+    rides: [...(leg.taxiBefore ? [taxi] : []), ...leg.rides.map((r) => ({ mode: r.mode, name: rideShortName(r) })), ...(leg.taxiAfter ? [taxi] : [])],
+    stops: [...(leg.taxiBefore ? [nameOf(leg.taxiBefore.station)] : []), ...leg.rides.slice(0, -1).map((r) => nameOf(r.to)), ...(leg.taxiAfter ? [nameOf(leg.taxiAfter.station)] : [])],
   };
 }
 
@@ -114,12 +115,14 @@ export function missBadge(ride: TransitRide, hotMinutes = HOT_MISS_MINUTES): Mis
  * node：時間、名稱；wait 在這裡等的分鐘（0 是 null）；walk 從這裡走到下一個節點的分鐘（walkLast：走到終點那段）；
  *   board 在這裡上車的那一程（上車站才有，可以點開班次表）；ticketTight 買票站空檔不到 margin 時的空檔分鐘。
  * ride：短名稱、發車（班距型是 null）、車程分鐘、錯過的標籤。
- * transfer：轉乘有說明或有電梯路線時另外一行（步行分鐘、電梯路線分鐘、說明）
+ * transfer：轉乘有說明或有電梯路線時另外一行（步行分鐘、電梯路線分鐘、說明）。
+ * taxi：大眾運輸接計程車的那一段（T39）
  */
 export type CompactStep =
   | { kind: 'node'; time: string; name: string; wait: number | null; walk: number | null; walkLast: boolean; board: number | null; ticketTight: number | null }
   | { kind: 'ride'; index: number; mode: TransitRide['mode']; name: string; depart: string | null; minutes: number; badge: MissBadge | null }
-  | { kind: 'transfer'; walk: number; elevatorWalk: number | null; note: string | null };
+  | { kind: 'transfer'; walk: number; elevatorWalk: number | null; note: string | null }
+  | { kind: 'taxi'; minutes: number };
 
 type NodeStep = Extract<CompactStep, { kind: 'node' }>;
 
@@ -151,10 +154,16 @@ export function compactSteps(leg: Leg, fromName: string, toName: string, nameOf:
   };
   const before = leg.walkBefore ?? 0;
   const after = leg.walkAfter ?? 0;
+  // 先搭計程車到車站：起點一行、計程車一行，接下來的起點是那個車站
+  const firstName = leg.taxiBefore ? nameOf(leg.taxiBefore.station) : fromName;
+  if (leg.taxiBefore) {
+    node(leg.depart, fromName);
+    out.push({ kind: 'taxi', minutes: leg.taxiBefore.minutes });
+  }
   if (before > 0) {
-    node(leg.depart, fromName, { walk: before });
+    node(leg.taxiBefore ? addMinutes(leg.depart, leg.taxiBefore.minutes) : leg.depart, firstName, { walk: before });
     node(readyOf(leg, 0), nameOf(rides[0].from), boarding(0, readyOf(leg, 0)));
-  } else node(readyOf(leg, 0), fromName, boarding(0, readyOf(leg, 0)));
+  } else node(readyOf(leg, 0), firstName, boarding(0, readyOf(leg, 0)));
   rides.forEach((r, index) => {
     out.push({
       kind: 'ride',
@@ -183,6 +192,13 @@ export function compactSteps(leg: Leg, fromName: string, toName: string, nameOf:
     node(ready, boardName, boarding(index + 1, ready));
   });
   const last = rides[rides.length - 1];
+  // 下車再搭計程車
+  if (leg.taxiAfter) {
+    node(last.arrive, nameOf(leg.taxiAfter.station), after > 0 ? { walk: after } : {});
+    out.push({ kind: 'taxi', minutes: leg.taxiAfter.minutes });
+    node(leg.arrive, toName);
+    return out;
+  }
   if (after > 0) {
     node(last.arrive, nameOf(last.to), { walk: after, walkLast: true });
     node(leg.arrive, toName);

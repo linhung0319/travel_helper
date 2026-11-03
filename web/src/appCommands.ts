@@ -2,6 +2,7 @@
 import { appStore } from './store.ts';
 import { dataStore } from './dataStore.ts';
 import { createCommands } from './commands.ts';
+import { afterMap } from './lib/idle.ts';
 import { createRoadRouter } from './lib/routing.ts';
 import { startRouteResolver } from './routeResolver.ts';
 import { startPlanner, planStore } from './planStore.ts';
@@ -24,7 +25,8 @@ export const roadRouter = createRoadRouter({ storage: browserStorage() });
 startRouteResolver(appStore, dataStore, roadRouter);
 
 // 行程引擎：行程、資料點變了就重算時間軸（T15m）
-startPlanner(dataStore, dataSource, roadRouter);
+// 時刻表不是探索要的：地圖載好才讀（T39）
+startPlanner(dataStore, dataSource, roadRouter, undefined, { defer: (fn) => afterMap(fn) });
 
 // 地圖上的行程線沿道路畫：選定那天的每一段向同一個 router 要路徑（T15m 第三輪）
 export const itineraryPathOf = createPathOf(roadRouter, dataStore);

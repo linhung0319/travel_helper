@@ -190,8 +190,8 @@ function saveFeedView(v: Feed['view']) {
 }
 
 export const mobileStore = createStore<MobileStore>()((set, get) => ({
-  // 打開網站先看行程（計畫的決定）
-  tab: 'trip',
+  // 打開網站先看探索（T39，👤 決定；之前是行程）
+  tab: 'explore',
   tripSnap: 'mid',
   detail: null,
   chatSheet: false,

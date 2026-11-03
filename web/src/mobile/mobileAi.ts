@@ -9,7 +9,7 @@ import { openDialog, openDiscussion, uiStore } from '../uiStore.ts';
 import { EMPTY_FILTER, type Filter } from '../lib/filter.ts';
 import { feedFilter, filterToFeed, wishFilter } from '../lib/explore.ts';
 import { shortDayLabel } from '../lib/trip.ts';
-import { resizeMap } from '../components/MapView.tsx';
+import { resizeMap } from '../components/mapRuntime.ts';
 import type { ScreenSurface } from '../ai/stage.ts';
 import type { ChatContext } from '../ai/types.ts';
 import { emptyDayFollowups, LODGING_FOLLOWUPS, WISH_EMPTY_LEAD, type Starter } from '../ai/prompts.ts';

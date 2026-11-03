@@ -10,7 +10,8 @@ import { useEffect, useLayoutEffect, useRef } from 'react';
 import { useApp } from '../hooks.ts';
 import { connectMobileAi } from './mobileAi.ts';
 import { appStore } from '../store.ts';
-import { MapView, resizeMap } from '../components/MapView.tsx';
+import { resizeMap } from '../components/mapRuntime.ts';
+import { LazyMap } from '../components/LazyMap.tsx';
 import { TimetablePopup } from '../components/TimetablePopup.tsx';
 import { Dialogs, Toast } from '../components/Dialogs.tsx';
 import { mobileStore, setMobileActive, useMobile, type MobileTab } from './mobileStore.ts';
@@ -98,7 +99,7 @@ export function MobileApp() {
         <TabContent tab={tab} />
       </main>
       <div className="m-map" hidden={tab !== 'trip'}>
-        <MapView />
+        <LazyMap />
       </div>
       {/* 編輯中藏起來，免得不小心點到跑去別的分頁 */}
       {!editingTrip && <TabBar />}

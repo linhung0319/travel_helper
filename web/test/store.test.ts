@@ -7,7 +7,7 @@ test('store 的初始狀態', () => {
   const s = createAppStore().getState();
   assert.equal(s.day, 'all');
   assert.deepEqual(s.filter, EMPTY_FILTER);
-  assert.equal(s.mode, 'map');
+  assert.equal(s.mode, 'explore');
   assert.equal(s.planning, false);
 });
 
@@ -120,8 +120,9 @@ test('選中（§8.1）：同一時間一個；再選同一個 selectSeq 加 1�
   assert.equal(store.getState().selectSeq, seq + 1);
   store.getState().select('b');
   assert.equal(store.getState().selectedId, 'b');
-  store.getState().setMode('explore');
+  store.getState().setMode('map');
   assert.equal(store.getState().selectedId, null);
+  store.getState().setMode('explore');
   store.getState().select('b');
   store.getState().setMode('explore'); // 同一個分頁：不清
   assert.equal(store.getState().selectedId, 'b');

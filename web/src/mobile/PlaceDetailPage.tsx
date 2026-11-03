@@ -5,13 +5,12 @@
 // 捲過照片後出現白色頂端列（‹、名稱、❤），分頁列接在它下面。
 
 import { useEffect, useRef } from 'react';
-import { Map as MapLibreMap, Marker } from 'maplibre-gl';
 import { useData } from '../hooks.ts';
 import { commands } from '../appCommands.ts';
 import type { Place } from '../data/types.ts';
 import { appStore, type DetailTabId } from '../store.ts';
 import { Icon } from '../components/Icon.tsx';
-import { STYLE_URL, selectedDropHtml } from '../components/MapView.tsx';
+import { loadMapLib, STYLE_URL, selectedDropHtml } from '../components/mapRuntime.ts';
 import { dayPlanOf, planStore } from '../planStore.ts';
 import { tripDates } from '../lib/trip.ts';
 import { PlaceDetail } from '../shared/ui/PlaceDetail.tsx';
@@ -43,12 +42,21 @@ function MiniMap({ place }: { place: Place }) {
   const ref = useRef<HTMLDivElement>(null);
   const [lon, lat] = place.coords;
   useEffect(() => {
-    const map = new MapLibreMap({ container: ref.current!, style: STYLE_URL, center: [lon, lat], zoom: 14, interactive: false, attributionControl: { compact: true } });
-    const el = document.createElement('div');
-    el.className = 'map-selected mini';
-    el.innerHTML = selectedDropHtml(place, '');
-    new Marker({ element: el, anchor: 'bottom', offset: [0, 2] }).setLngLat([lon, lat]).addTo(map);
-    return () => map.remove();
+    let gone = false;
+    let remove: (() => void) | null = null;
+    void loadMapLib().then(({ Map: MapLibreMap, Marker }) => {
+      if (gone || !ref.current) return;
+      const map = new MapLibreMap({ container: ref.current, style: STYLE_URL, center: [lon, lat], zoom: 14, interactive: false, attributionControl: { compact: true } });
+      const el = document.createElement('div');
+      el.className = 'map-selected mini';
+      el.innerHTML = selectedDropHtml(place, '');
+      new Marker({ element: el, anchor: 'bottom', offset: [0, 2] }).setLngLat([lon, lat]).addTo(map);
+      remove = () => map.remove();
+    });
+    return () => {
+      gone = true;
+      remove?.();
+    };
     // eslint-disable-next-line react-hooks/exhaustive-deps -- 只看位置、類型、名稱（資料重載換了物件不重建小地圖）
   }, [lon, lat, place.type, place.name.zh, place.name.ja]);
   const toTrip = () => showOnTripMap(place.id);

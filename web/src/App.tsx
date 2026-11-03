@@ -1,10 +1,13 @@
+// 地圖的 CSS 留在主程式、排在最前面：地圖動態載入後，樣式才不會蓋掉 styles.css 對地圖的設定（11 KB）
+import 'maplibre-gl/dist/maplibre-gl.css';
 import { useEffect, useLayoutEffect, useRef } from 'react';
 import { startAi } from './appAi.ts';
 import { connectWebAi } from './components/webAi.ts';
 import { appStore } from './store.ts';
 import { loadData } from './dataStore.ts';
 import { useData, useIsDesktop } from './hooks.ts';
-import { MapView, resizeMap } from './components/MapView.tsx';
+import { resizeMap } from './components/mapRuntime.ts';
+import { LazyMap } from './components/LazyMap.tsx';
 import { watchKeyboard } from './lib/keyboard.ts';
 import { ChatPanel } from './components/ChatPanel.tsx';
 import { dropAiProps } from './components/askAi.ts';
@@ -26,8 +29,9 @@ import './styles.css';
  * 電腦版三欄（參考 puma.taipei/heart-island）：左邊聊天室；中間只有地圖（和彈窗）；
  * 右邊是行程／探索／詳情共用的一欄，頂端有日期列和頭像選單。聊天室和右欄都頂到最上面。
  */
-function DesktopLayout() {
+function DesktopLayout({ ready }: { ready: boolean }) {
   useEffect(connectWebAi, []);
+  // 載入順序（T39，👤）：聊天室一開始就在；資料到了才有右欄的探索；地圖最後（LazyMap）
   return (
     <div className="layout desktop">
       {/* 探索卡片、詳情標題可以拖到這裡問 AI（askAi.ts） */}
@@ -35,16 +39,28 @@ function DesktopLayout() {
         <ChatPanel />
       </aside>
       <main className="map-column">
-        <MapView />
-        <MapDays />
-        <DetailFloat />
-        <MapPanel />
-        <DiscussionPanel surface="desktop" />
-        <TimetablePopup />
-        <AddPlaceDialog surface="desktop" />
+        <LazyMap />
+        {ready && (
+          <>
+            <MapDays />
+            <DetailFloat />
+            <MapPanel />
+            <DiscussionPanel surface="desktop" />
+            <TimetablePopup />
+            <AddPlaceDialog surface="desktop" />
+          </>
+        )}
       </main>
       <aside className="side-column">
-        <SidePanel />
+        {ready ? (
+          <SidePanel />
+        ) : (
+          <div className="side-loading" data-testid="side-loading" aria-hidden>
+            {Array.from({ length: 6 }, (_, i) => (
+              <i key={i} />
+            ))}
+          </div>
+        )}
       </aside>
     </div>
   );
@@ -105,20 +121,24 @@ export default function App() {
     if (status === 'ready') void startAi();
   }, [status]);
 
-  // 載入中是 index.html 的開機骨架（#boot）；有結果了才拿掉，版面不會閃
+  // 載入中是 index.html 的開機骨架（#boot）：手機等資料好了才拿掉；網頁的聊天室不用等資料，程式一到就換成真的版面
   useLayoutEffect(() => {
-    if (status !== 'loading') removeBootSkeleton();
-  }, [status]);
+    if (status !== 'loading' || desktop) removeBootSkeleton();
+  }, [status, desktop]);
 
-  if (status === 'loading') return null;
   if (status === 'error') return <div className="splash">資料載入失敗：{error}</div>;
+  if (status === 'loading' && !desktop) return null;
   // 只在最外層分一次（第六輪 §4）：手機版是 mobile/ 底下自己的一套，對話框、提示也由它畫
   if (!desktop) return <MobileApp />;
   return (
     <>
-      <DesktopLayout />
-      <Dialogs />
-      <Toast />
+      <DesktopLayout ready={status === 'ready'} />
+      {status === 'ready' && (
+        <>
+          <Dialogs />
+          <Toast />
+        </>
+      )}
     </>
   );
 }

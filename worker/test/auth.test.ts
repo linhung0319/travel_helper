@@ -305,7 +305,7 @@ describe('管理頁', () => {
   test('沒登入：登入頁；不是管理員：403；管理員：看得到群組和等待核准的人', async () => {
     const anon = await call('GET', '/admin');
     assert.equal(anon.status, 200);
-    assert.match(await anon.text(), /用 LINE 登入/);
+    assert.match(await anon.text(), />登入<\/a>/);
 
     approveGroup('Cfamily');
     groupMembers.Cfamily = ['U1'];
@@ -356,7 +356,7 @@ describe('網站本身要先登入', () => {
     const r = await call('GET', '/some/page?day=3', { env: env({ ASSETS: assets }) });
     assert.equal(r.status, 200);
     const html = await r.text();
-    assert.match(html, /用 LINE 登入/);
+    assert.match(html, />登入<\/a>/);
     assert.match(html, /return=%2Fsome%2Fpage%3Fday%3D3/);
   });
 

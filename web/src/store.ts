@@ -194,7 +194,8 @@ export const initialState: AppState = {
   filter: EMPTY_FILTER,
   query: '',
   filterStash: { explore: { filter: EMPTY_FILTER, query: '' }, wish: { filter: EMPTY_FILTER, query: '' } },
-  mode: 'map',
+  // 進網站先看探索（T39）
+  mode: 'explore',
   planning: false,
   hoveredId: null,
   hoverFromMap: false,

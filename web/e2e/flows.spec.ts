@@ -131,6 +131,8 @@ test('照片打不開時顯示替代圖', async ({ page }) => {
     (url) => !['localhost', 'tiles.openfreemap.org'].includes(url.hostname),
     (route) => route.abort(),
   );
+  // 進站先看探索（T39），照片在 beforeEach 已經載過一輪：重新載入，全部照片都擋得到
+  await ready(page);
   const id = await page.evaluate(() => (window as any).__th.dataStore.getState().places.find((p: any) => p.photos.length > 0 && p.type === 'spot').id);
   await page.evaluate((id) => (window as any).__th.appStore.getState().openDetail(id), id);
   const detail = page.getByTestId('detail-panel');

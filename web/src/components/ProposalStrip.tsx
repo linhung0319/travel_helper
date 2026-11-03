@@ -32,7 +32,7 @@ export function ProposalStrip({ onTrip: onTripProp }: { onTrip?: boolean } = {})
   const adopt = async () => {
     if (!active) return;
     const r = await ai.confirmCard(active.cardId);
-    if (!r.ok && r.error !== '取消了' && r.error !== '沒有存成功') shared.notifyError(r.error);
+    if (!r.ok && r.error !== '沒有存成功') shared.notifyError(r.error);
   };
   const seeOnTrip = () => {
     const s = appStore.getState();

@@ -6,6 +6,7 @@ import { createStore } from 'zustand/vanilla';
 import { dataSource } from './data/index.ts';
 import { mergePlaceEdits } from './data/merge.ts';
 import { normalizePlace } from './data/normalize.ts';
+import { afterMap } from './lib/idle.ts';
 import type { PlaceEdit } from './backend/types.ts';
 import type { Area, Place } from './data/types.ts';
 import type { Itinerary } from '@travel-helper/engine/types';
@@ -92,11 +93,9 @@ export function ensureDetails(): Promise<void> {
   return detailsLoading;
 }
 
-/** 閒置時讀詳情層；Safari 沒有 requestIdleCallback，等一下再讀。使用者先打開詳情就會馬上讀（useFullPlace） */
+/** 閒置時讀詳情層。使用者先打開詳情就會馬上讀（useFullPlace） */
 function scheduleDetails() {
-  const go = () => void ensureDetails().catch(() => {});
-  if (typeof requestIdleCallback === 'function') requestIdleCallback(go, { timeout: 3000 });
-  else setTimeout(go, 1500);
+  afterMap(() => void ensureDetails().catch(() => {}));
 }
 
 export async function loadData() {

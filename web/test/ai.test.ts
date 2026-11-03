@@ -212,7 +212,7 @@ test('S10 檢查一天：引擎的警告、候選、有人不喜歡要講；切�
   h.close();
 });
 
-test('S11 主流程：不在編輯中也能提議；行程不變；採用 → 確認編輯 → 時間軸更新、有快照、候選拿掉、留在編輯中', async () => {
+test('S11 主流程：不在編輯中也能提議；行程不變；採用 → 時間軸更新、有快照、候選拿掉、不進編輯（T39）', async () => {
   const h = await harness();
   assert.equal(h.app.getState().planning, false);
   const before = placesOn(h, DAY3);
@@ -238,7 +238,7 @@ test('S11 主流程：不在編輯中也能提議；行程不變；採用 → �
   assert.deepEqual(await h.chat.confirmCard(h.lastUse('propose_changes').id), { ok: true });
   assert.ok(placesOn(h, DAY3).includes(added[0].place));
   assert.equal(h.app.getState().proposal, null);
-  assert.equal(h.app.getState().planning, true);
+  assert.equal(h.app.getState().planning, false);
   assert.equal(h.cardOf('propose_changes')?.status, 'confirmed');
   assert.equal(h.shared.store.getState().snapshots.length, snapshots + 1);
   assert.equal(h.shared.store.getState().candidates.some((c) => c.placeId === added[0].place && c.day === DAY3), false);
@@ -251,12 +251,11 @@ test('S11 主流程：不在編輯中也能提議；行程不變；採用 → �
   h.close();
 });
 
-test('S11 不要、取消：行程都沒變；取消後提議還在，不要才清掉', async () => {
-  const h = await harness({ confirm: false });
+test('S11 不要：行程沒變，提議清掉', async () => {
+  const h = await harness();
   const before = placesOn(h, DAY3);
   await h.chat.send('幫我排第 3 天，加午餐');
   const id = h.lastUse('propose_changes').id;
-  assert.equal((await h.chat.confirmCard(id)).ok, false);
   assert.deepEqual(placesOn(h, DAY3), before);
   assert.ok(h.app.getState().proposal);
   assert.equal(h.cardOf('propose_changes')?.status, 'pending');
@@ -301,7 +300,7 @@ test('S13 多天提議：有改動的天都標出來，不切天', async () => {
   assert.equal(h.app.getState().day, 'all');
   await h.chat.confirmCard(h.lastUse('propose_changes').id);
   // 從整趟採用：要先選到一天，編輯才不會被整趟關掉
-  assert.equal(h.app.getState().planning, true);
+  assert.equal(h.app.getState().planning, false);
   assert.equal(h.app.getState().day, p.dates[0]);
   h.close();
 });
@@ -602,7 +601,7 @@ test('S27 用說的採用：走同一條路；其他版沒有用上、不能再�
   await h.chat.send('採用');
   assert.equal(h.lastResult('decide_card').ok, true);
   assert.notEqual(itineraryOf(h), before);
-  assert.equal(h.app.getState().planning, true);
+  assert.equal(h.app.getState().planning, false);
   assert.equal(h.app.getState().proposal, null);
   assert.equal(cardsOf(h)[v2].status, 'confirmed');
   assert.equal(cardsOf(h)[v1].status, 'closed');
@@ -616,27 +615,26 @@ test('S27 用說的採用：走同一條路；其他版沒有用上、不能再�
   h.close();
 });
 
-test('S27 在「開始編輯？」取消：行程沒變，提議留著，AI 知道取消了', async () => {
-  const h = await harness({ confirm: false });
+test('T39 用說的採用：不經過編輯模式，直接寫入，有復原', async () => {
+  const h = await harness();
   const before = itineraryOf(h);
   await h.chat.send('幫我排第 3 天，加午餐');
-  const card = h.lastUse('propose_changes').id;
   await h.chat.send('採用');
-  assert.equal(h.lastResult('decide_card').ok, false);
-  assert.match(h.reply(), /先不改/);
-  assert.equal(itineraryOf(h), before);
-  assert.equal(h.chat.proposals.store.getState().active?.cardId, card);
-  assert.equal(cardsOf(h)[card].status, 'pending');
+  assert.equal(h.lastResult('decide_card').ok, true);
+  assert.notEqual(itineraryOf(h), before);
+  assert.equal(h.app.getState().planning, false);
+  assert.match(h.shared.store.getState().toast?.text ?? '', /^已採用提議/);
   h.close();
 });
 
-test('S27 已經在編輯中：不用確認，直接寫入，有復原', async () => {
-  const h = await harness({ confirm: false });
+test('S27 已經在編輯中：留在編輯中，直接寫入，有復原', async () => {
+  const h = await harness();
   await h.chat.send('幫我排第 3 天，加午餐');
   h.app.getState().selectDay('2027-02-04');
   h.app.getState().setPlanning(true);
   await h.chat.send('採用');
   assert.equal(h.lastResult('decide_card').ok, true);
+  assert.equal(h.app.getState().planning, true);
   assert.match(h.shared.store.getState().toast?.text ?? '', /^已採用提議/);
   h.close();
 });

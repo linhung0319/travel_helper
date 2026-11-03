@@ -400,7 +400,7 @@ export function planDay(it: Itinerary, index: number, data: EngineData, cfg: Eng
     warnings.push({ code: 'too-full', level: 'warning', date: day.date, message: `主要景點 ${mainSpots} 個，全員日建議 ${cfg.day.maxMainSpots} 個＋午餐` });
   }
   if ((isFirst || isLast) && visitRecs.some((x) => x.rec?.type === 'spot')) {
-    warnings.push({ code: 'travel-day-spot', level: 'warning', date: day.date, message: `${isFirst ? '到達日' : '最後一天'}不排景點（§5.5）` });
+    warnings.push({ code: 'travel-day-spot', level: 'warning', date: day.date, message: `${isFirst ? '抵達那天' : '最後一天'}時間不多，不建議排景點` });
   }
   const regions = visitRecs.map((x) => x.rec?.region as string | undefined);
   if (regions.length && data.regionNeedsCar && regions.every((r) => r && data.regionNeedsCar?.[r])) {

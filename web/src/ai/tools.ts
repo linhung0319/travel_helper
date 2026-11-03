@@ -11,6 +11,7 @@ import { tripDates } from '../lib/trip.ts';
 import { applyOps, type Op } from './ops.ts';
 import { createReadTools, PLACE_SECTIONS, type ToolOutput } from './readTools.ts';
 import { opsContext, placeName, type AiDeps } from './deps.ts';
+import { untagged } from './transcript.ts';
 import type { AddPlaceInit, ScreenTarget, ShowPlaces, ShowRoute } from './stage.ts';
 import type { CardState, ToolSchema } from './types.ts';
 import { fullPlace } from '../dataStore.ts';
@@ -68,13 +69,15 @@ export function createTools(d: AiDeps): ToolDef[] {
   const byId = () => d.data.getState().byId;
   const ro = (fn: (input: never) => ToolOutput | Promise<ToolOutput>) => async (input: Record<string, unknown>): Promise<ToolRun> => ({ output: await fn(input as never) });
   const hasDay = (date: unknown) => typeof date === 'string' && tripDates().includes(date);
+  // 標題、理由不是畫成標籤的地方：模型寫了 [[place:…]] 也換成名字
+  const plain = (text: string) => untagged(text, (id) => placeName(byId().get(id), id));
 
   return [
     // --- 查資料 ---
     {
       name: 'search_places',
       kind: 'read',
-      description: '找地點。名稱可以有錯字、中日文混雜。回傳精簡清單和總數；unknownExcluded 是因為資料沒查到而沒列出的筆數，要照實告訴使用者。要細節再用 get_place。',
+      description: '找地點。名稱可以有錯字、中日文混雜。回傳精簡清單和總數；unknownExcluded 是因為資料沒查到而沒列出的筆數：結果是空的或很少時才告訴使用者，不要報數字。要細節再用 get_place。',
       input_schema: obj({
         text: str('名稱（中文、日文、別名）'),
         types: strs('spot、restaurant、lodging、station'),
@@ -89,7 +92,7 @@ export function createTools(d: AiDeps): ToolDef[] {
         elderly: bool('適合長輩'),
         kids: bool('適合小孩'),
         reservable: bool('可以預約'),
-        votes: strs('popular（大家想去的）、mine（我按想去的）'),
+        votes: strs('any（有人按想去的，問「想去的」用這個）、popular（2 人以上想去）、mine（我按想去的）'),
         sort: str('recommend、rating、likes、distance'),
         limit: num('最多幾筆（預設 10，上限 30）'),
       }),
@@ -151,7 +154,7 @@ export function createTools(d: AiDeps): ToolDef[] {
       name: 'show_places',
       kind: 'stage',
       description: '給使用者看挑過的一組點：地圖標出來，清單只列這幾個，每個點可以附一行理由。比較時 lettered=true，地圖標 A、B、C，文字用 A、B、C 對應。畫面上永遠只有一組，每次給完整的一組：使用者要多找幾家、拿掉某家，就把調整後的整組和理由再給一次（現在的在 context.screen.aiResult）；問別的事才給全新的一組。',
-      input_schema: obj({ ids: strs(), title: str('使用者看得懂的標題'), notes: { type: 'object', additionalProperties: { type: 'string' }, description: '資料點 ID → 一行理由' }, lettered: bool() }, ['ids', 'title']),
+      input_schema: obj({ ids: strs(), title: str('使用者看得懂的標題（寫名字，不用 [[place:]]）'), notes: { type: 'object', additionalProperties: { type: 'string' }, description: '資料點 ID → 一行理由，20 字內（寫名字，不用 [[place:]]）' }, lettered: bool() }, ['ids', 'title']),
       run(input) {
         const i = input as unknown as ShowPlaces;
         if (!Array.isArray(i.ids) || !i.ids.length) return fail('ids 要是資料點 ID 的陣列');
@@ -159,7 +162,7 @@ export function createTools(d: AiDeps): ToolDef[] {
         const ids = i.ids.filter((id) => byId().has(id));
         const unknown = i.ids.filter((id) => !byId().has(id));
         if (!ids.length) return fail(`找不到資料點 ${unknown.join('、')}`);
-        return { output: { ok: true, ids, ...(unknown.length ? { unknown } : {}) }, present: { kind: 'places', input: { ...i, ids } }, card: {} };
+        return { output: { ok: true, ids, ...(unknown.length ? { unknown } : {}) }, present: { kind: 'places', input: { ...i, ids, title: plain(i.title), ...(i.notes ? { notes: Object.fromEntries(Object.entries(i.notes).map(([k, v]) => [k, plain(String(v))])) } : {}) } }, card: {} };
       },
     },
     {
@@ -225,7 +228,7 @@ export function createTools(d: AiDeps): ToolDef[] {
     {
       name: 'set_filter',
       kind: 'stage',
-      description: '套用探索的篩選（使用者看得到、可以自己取消）。給的那幾項整個取代；clear=true 先全部清掉。項目：areas、regions、types、contexts、tiers、fit15、votes。條件表達不出來時改用 show_places。',
+      description: '套用探索的篩選（使用者看得到、可以自己取消）。給的那幾項整個取代；clear=true 先全部清掉。項目：areas、regions、types、contexts、tiers、fit15、votes（any 有人想去、popular 2 人以上想去、mine 我按想去的）。例如「想去的鳥羽餐廳」：areas toba、types restaurant、votes any。條件表達不出來、或是你挑過的幾家，改用 show_places。',
       input_schema: obj({ areas: strs(), regions: strs(), types: strs(), contexts: strs(), tiers: strs(), fit15: strs(), votes: strs(), clear: bool() }),
       run(input) {
         const { clear, ...patch } = input as Record<string, string[]> & { clear?: boolean };
@@ -253,7 +256,7 @@ export function createTools(d: AiDeps): ToolDef[] {
     {
       name: 'propose_changes',
       kind: 'propose',
-      description: '提議改行程：地圖畫虛線、時間軸顯示差異、聊天室有提議卡。**這還沒有寫進行程**，使用者決定採用才寫（不在編輯中也可以提議）。每次都給**從確定的行程算起的完整操作清單**，取代上一版，不是疊加：接著改時，照 context.draft.ops 調整後整份再給一次。用 check_changes 試過再提議，summary 寫「2/4：＋某某午餐」這種摘要。',
+      description: '提議改行程：地圖畫虛線、時間軸顯示差異、聊天室有提議卡。**這還沒有寫進行程**，使用者決定採用才寫（不在編輯中也可以提議）。每次都給**從確定的行程算起的完整操作清單**，取代上一版，不是疊加：接著改時，照 context.draft.ops 調整後整份再給一次。用 check_changes 試過再提議，summary 寫「2/4：＋某某午餐」這種摘要（寫名字，不用 [[place:]]）。',
       input_schema: obj({ ops: { type: 'array', items: OP }, summary: str() }, ['ops', 'summary']),
       run(input) {
         const ops = input.ops as Op[];

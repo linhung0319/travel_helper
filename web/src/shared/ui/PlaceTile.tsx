@@ -10,8 +10,7 @@ import { isUserPlace, userSubtitle } from '../../lib/addPlace/view.ts';
 import { PlaceTags } from './PlaceTags.tsx';
 import { Photo } from '../../components/Photo.tsx';
 import { photoCandidates } from '../../lib/photos.ts';
-import { cardTypeLetter } from '../../lib/planView.ts';
-import { typeSwatch } from '../../lib/typeStyle.ts';
+import { TypeArt } from './TypeArt.tsx';
 import type { Place } from '../../data/types.ts';
 import { rowHighlights } from '../rowHighlights.ts';
 import { Highlights, placeMetaText, type DayStatus } from './PlaceRow.tsx';
@@ -69,9 +68,7 @@ export function PlaceTile({ place, status, onOpen, extra, testId, rank, hot, roo
         {photoCandidates(place.photos).length ? (
           <Photo place={place} width={open ? 1000 : 500} />
         ) : (
-          <span className="pt-fallback" style={typeSwatch(place.type)} data-testid="m-thumb-fallback" aria-hidden>
-            {cardTypeLetter(place.type)}
-          </span>
+          <TypeArt type={place.type} className="pt-fallback" testId="m-thumb-fallback" />
         )}
         <span className="pt-type">
           <TypeLabel type={place.type} onPhoto />

@@ -51,8 +51,6 @@ export function memoryStorage() {
 
 export interface HarnessOptions {
   storage?: ReturnType<typeof memoryStorage>;
-  /** 「開始編輯？」按了確認或取消；預設確認 */
-  confirm?: boolean;
   delayMs?: number;
   /** 換成別的模型（scripts/ai-eval.ts 用真的 Claude API）；預設假 AI */
   model?: ModelClient;
@@ -107,11 +105,7 @@ export async function harness(opts: HarnessOptions = {}) {
   const stage = createBaseStage({ app, commands, surface, startAddPlace: (init) => added.push(init) });
   const storage = opts.storage ?? memoryStorage();
   const model = createFakeModel({ delayMs: opts.delayMs ?? 0 });
-  const confirmPlanning = async () => {
-    if (opts.confirm === false) return false;
-    app.getState().setPlanning(true);
-    return true;
-  };
+  const repo = createLocalChatRepository({ storage, memberId: () => shared.store.getState().me?.id ?? 'guest' });
   const chat = createChat({
     app,
     data,
@@ -121,9 +115,8 @@ export async function harness(opts: HarnessOptions = {}) {
     engine: currentEngineData,
     config: resolveConfig(),
     source,
-    confirmPlanning,
     ...(opts.now ? { now: opts.now } : {}),
-    repo: createLocalChatRepository({ storage, memberId: () => shared.store.getState().me?.id ?? 'guest' }),
+    repo,
     model: opts.model ?? model,
     stage,
   });
@@ -161,6 +154,7 @@ export async function harness(opts: HarnessOptions = {}) {
     shared,
     commands,
     chat,
+    repo,
     model,
     storage,
     added,

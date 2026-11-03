@@ -1,5 +1,8 @@
 // Worker 自己回的幾個 HTML 頁面：登入、被擋下、錯誤、管理頁的外框。
 // 家人多半在手機的 LINE 內建瀏覽器打開（architecture §5），所以字大、按鈕大，不靠 JS。
+// 登入頁是家人第一眼看到的：木版畫風的夕陽和大浪（loginArt.ts，scripts/login-art.mjs 產生），內嵌在頁面裡，不用多一個請求，字型也只用系統字。
+
+import { LOGIN_ART } from './loginArt.ts';
 
 export const esc = (s: unknown) =>
   String(s ?? '').replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[c]!);
@@ -26,11 +29,42 @@ form{display:inline}
 code{font-size:13px;overflow-wrap:anywhere}
 `;
 
+const LOGIN_STYLE = `
+*{box-sizing:border-box}
+html,body{height:100%}
+body{margin:0;min-height:100dvh;background:linear-gradient(180deg,#fbd893 0%,#f9b26a 30%,#f27f5c 52%,#d9506f 68%,#c9456e 100%);background-attachment:fixed;color:#102a55;font:17px/1.6 system-ui,-apple-system,"Noto Sans TC",sans-serif;overflow-x:hidden}
+.lg-sun{position:fixed;top:32px;right:-34px;width:190px;height:190px;border-radius:50%;background:linear-gradient(180deg,#fff2a6,#ffd777)}
+.lg-art{position:fixed;inset:0;width:100%;height:100%;display:block}
+.lg{position:relative;min-height:100dvh;display:flex;flex-direction:column;justify-content:space-between;gap:24px;padding:calc(24px + env(safe-area-inset-top)) 20px calc(20px + env(safe-area-inset-bottom))}
+.lg-title{display:flex;align-items:flex-start;gap:12px}
+.lg-title h1{margin:0;writing-mode:vertical-rl;font:900 44px/1.1 "Noto Serif TC","Hiragino Mincho ProN","Yu Mincho","Songti TC",serif;letter-spacing:.14em;color:#0f2f5e}
+.lg-seal{display:grid;place-items:center;width:32px;height:32px;margin-top:4px;border-radius:6px;background:#c8321f;color:#fff3dc;font:900 19px/1 "Noto Serif TC","Hiragino Mincho ProN","Yu Mincho","Songti TC",serif}
+.lg-date{margin:4px 0 0;writing-mode:vertical-rl;font-size:15px;font-weight:700;letter-spacing:.16em;color:#0f2f5e}
+.lg-card{width:100%;max-width:400px;margin-inline:auto;padding:18px 20px;border-radius:18px;background:#fff8ea;box-shadow:0 10px 30px rgb(15 47 94/.32)}
+.lg-card p{margin:0}
+.lg-lead{font-weight:700}
+.lg-btn{display:flex;align-items:center;justify-content:center;min-height:54px;margin:12px 0 10px;border-radius:12px;background:#c8321f;color:#fff8ea;font-size:19px;font-weight:700;letter-spacing:.3em;text-indent:.3em;text-decoration:none}
+.lg-btn:hover{background:#a92818}
+.lg-btn:focus-visible{outline:3px solid #0f2f5e;outline-offset:2px}
+.lg-note{font-size:14px;line-height:1.5;color:#51607a}
+@media (min-width:900px){
+  .lg-sun{top:6vh;right:clamp(90px,14vw,240px);width:280px;height:280px}
+  .lg{justify-content:center;align-items:flex-end;gap:32px;padding:40px clamp(40px,7vw,120px)}
+  .lg-title{width:360px;justify-content:flex-end}
+  .lg-title h1{font-size:64px}
+  .lg-date{font-size:17px}
+  .lg-card{width:360px;margin:0}
+}
+`;
+
 export function page(title: string, body: string, status = 200, headers: Record<string, string> = {}): Response {
-  const html = `<!doctype html><html lang="zh-Hant"><head><meta charset="utf-8">
+  return htmlResponse(`<!doctype html><html lang="zh-Hant"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="robots" content="noindex"><title>${esc(title)}</title><style>${STYLE}</style></head>
-<body><main>${body}</main></body></html>`;
+<body><main>${body}</main></body></html>`, status, headers);
+}
+
+function htmlResponse(html: string, status: number, headers: Record<string, string>): Response {
   return new Response(html, {
     status,
     headers: { 'content-type': 'text/html; charset=utf-8', 'cache-control': 'no-store', ...headers },
@@ -40,12 +74,21 @@ export function page(title: string, body: string, status = 200, headers: Record<
 /** 還沒登入：只有一顆「用 LINE 登入」 */
 export function loginPage(returnTo: string): Response {
   const href = `/auth/line/login?return=${encodeURIComponent(returnTo)}`;
-  return page(
-    '伊勢志摩旅行',
-    `<h1>伊勢志摩旅行 2027</h1>
-<p>這是家人一起排行程用的網站，要先用 LINE 登入。</p>
-<p style="margin:24px 0"><a class="btn line" href="${esc(href)}">用 LINE 登入</a></p>
-<p class="muted">只有家人 LINE 群組裡的人能進來。登入時 LINE 會問你要不要同意，按「許可」就好。</p>`,
+  return htmlResponse(
+    `<!doctype html><html lang="zh-Hant"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#fbd893">
+<meta name="robots" content="noindex"><title>伊勢志摩旅行</title><style>${LOGIN_STYLE}</style></head>
+<body><div class="lg-sun"></div>${LOGIN_ART}<main class="lg">
+<div class="lg-title"><span class="lg-seal" aria-hidden="true">旅</span><h1>伊勢志摩</h1><p class="lg-date">二〇二七年二月</p></div>
+<div class="lg-card">
+<p class="lg-lead">一家 15 人的行程，大家一起排。</p>
+<a class="lg-btn" href="${esc(href)}">登入</a>
+<p class="lg-note">只有家人能進來。按了會跳到 LINE 確認身分，第一次按「許可」就好。</p>
+</div>
+</main></body></html>`,
+    200,
+    {},
   );
 }
 

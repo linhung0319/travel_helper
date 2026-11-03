@@ -29,7 +29,8 @@ export default defineConfig({
         // 資料點、時刻表不在 build 裡（T15：從 API、/static/ 讀，local.ts 只有 dev 才載入）
         codeSplitting: {
           groups: [
-            { name: 'maplibre', test: /[\/]node_modules[\/]maplibre-gl[\/]/ },
+            // 只分 JS：CSS 留在主程式（App.tsx 先載）。CSS 分進來的話，主程式會連地圖引擎一起載入，聊天室、探索都要等它（T39）
+            { name: 'maplibre', test: /[\/]node_modules[\/]maplibre-gl[\/].*\.m?js$/ },
             { name: 'react', test: /[\/]node_modules[\/](react|react-dom|scheduler)[\/]/ },
           ],
         },

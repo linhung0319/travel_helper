@@ -1033,7 +1033,7 @@ test('第五輪：資料卡右上角的編號——2/3 依序 0（出發的住�
   await ready(page);
   await showDay(page, '2027-02-03');
   const tl = page.getByTestId('timeline');
-  await expect(tl.getByTestId('trip-card-no')).toHaveText(['0', '1', '2', '3']);
+  await expect(tl.getByTestId('trip-card-no')).toHaveText(['起', '1', '2', '終']);
   // 縮圖：每張卡都有（有照片是照片，沒有照片是類型色底加一個字）
   await expect(tl.locator('.tc-thumb')).toHaveCount(4);
 });

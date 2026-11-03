@@ -1,7 +1,7 @@
 // 時間軸卡片名稱下面那一排標籤（設計 §2.1）：照 visit.tags 依分組（用餐、誰去、安排）畫小圓角膠囊，預約狀態放最後。
 // 編輯中點那一排（有標籤才有；沒有標籤的從 ⋯ 選單的「標籤」加）打開 TagPopover：每組一列、可以多選，點了立刻存、彈窗不關（存檔中按鈕先不能點）。
 // 回住宿那張宿的卡用「這晚的方案」（LodgingPlanPopover，三選一、再點取消＝照住宿資料）；照資料時字是淡色。
-// 出發那張宿的卡只顯示前一晚的方案（唯讀）。一般模式標籤只看、不能點。分組、互斥、哪種卡有哪幾組寫在 shared/tagOptions.ts。
+// 出發那張宿的卡顯示前一晚的方案和預約狀態（唯讀）；回住宿那張多一個「連住第幾晚」。一般模式標籤只看、不能點。分組、互斥、哪種卡有哪幾組寫在 shared/tagOptions.ts。
 // 存檔的 toggleVisitTag、pickLodgingPlan 也給手機版的標籤面板（mobile/TagSheet.tsx）用。
 
 import { useRef, type CSSProperties } from 'react';
@@ -155,11 +155,17 @@ export function LodgingPlanPopover({ date, anchor, onClose }: { date: string; an
 
 /**
  * 宿的卡的標籤那一排：這晚的方案＋預約狀態。
- * editable（回住宿那張、編輯中）時點那一排打開 LodgingPlanPopover；出發那張傳前一晚的 day，唯讀、不畫預約
+ * editable（回住宿那張、編輯中）時點那一排打開 LodgingPlanPopover；出發那張傳前一晚的 day 和入住日，唯讀。
+ * night：連住時是第幾晚（一晚不畫）
  */
-export function LodgingTags({ day, place, reservationDate, editable, open, onOpenChange }: { day: ItineraryDay | undefined; place: Place | undefined; reservationDate: string | null; editable: boolean; open: boolean; onOpenChange: (open: boolean) => void }) {
+export function LodgingTags({ day, place, reservationDate, editable, open, onOpenChange, night = null }: { day: ItineraryDay | undefined; place: Place | undefined; reservationDate: string | null; editable: boolean; open: boolean; onOpenChange: (open: boolean) => void; night?: { n: number; total: number } | null }) {
   const anchor = useRef<HTMLSpanElement>(null);
   const shown = lodgingPlanShown(day, place);
+  const nightTag = night && night.total > 1 && (
+    <span className="badge tag-night" data-testid="lodging-night">
+      連住第 {night.n}／{night.total} 晚
+    </span>
+  );
   const tag = shown && (
     <span className={`badge tag-lodging ${shown.from === 'data' ? 'from-data' : ''}`} data-from={shown.from} title={shown.from === 'data' ? '照住宿資料' : undefined} data-testid="lodging-plan-tag">
       {shown.label}
@@ -174,12 +180,14 @@ export function LodgingTags({ day, place, reservationDate, editable, open, onOpe
   if (!editable || !day)
     return (
       <span className="item-tags">
+        {nightTag}
         {tag}
         {reservation}
       </span>
     );
   return (
     <span className="item-tags editable" ref={anchor}>
+      {nightTag}
       {tag && (
         <button type="button" className="tag-edit" aria-haspopup="menu" aria-expanded={open} aria-label="改這晚的方案" onClick={() => onOpenChange(!open)} data-testid="tag-edit">
           {tag}
