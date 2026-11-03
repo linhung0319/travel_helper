@@ -43,8 +43,9 @@ const selectDay = (page, d) => page.evaluate((x) => window.__th.commands.selectD
   await tab('trip');
   await page.getByTestId('m-day-all').click();
   await page.evaluate(() => window.__thMobile.getState().setSnap('high'));
-  await shot(page, 'm-start-card');
-  await page.getByTestId('start-step-2').getByTestId('start-ask').click();
+  await page.getByTestId('m-guide-button').click();
+  await shot(page, 'm-guide');
+  await page.getByTestId('guide-ask-lodging').click();
   await shot(page, 'm-sheet-cards');
   await page.getByTestId('chat-context').getByRole('button').click();
   await tab('ai');
@@ -74,8 +75,9 @@ const selectDay = (page, d) => page.evaluate((x) => window.__th.commands.selectD
   await page.getByTestId('account-menu').click();
   await page.getByRole('button', { name: '重設成只有航班的行程' }).click();
   await selectDay(page, 'all');
-  await shot(page, 'w-start-card');
-  await page.getByTestId('start-step-2').getByTestId('start-ask').click();
+  await page.getByTestId('guide-button').click();
+  await shot(page, 'w-guide');
+  await page.getByTestId('guide-ask-lodging').click();
   await shot(page, 'w-chat-trip-chip');
   await page.getByTestId('side-tab-wish').click();
   await shot(page, 'w-wish-empty');

@@ -33,6 +33,7 @@ import { dropOnCandidatesProps, dropOnEndProps } from '../components/planDrag.ts
 import type { DragSource } from '../lib/dropIntent.ts';
 import { focusKeyOf, mobileStore, useMobile, type ActionSheetSpec, type ActionView, type TripSnap } from './mobileStore.ts';
 import { DayStrip } from '../shared/ui/DayStrip.tsx';
+import { GuideButton } from '../shared/ui/GuideDialog.tsx';
 import { Button } from '../shared/ui/Button.tsx';
 import { DiscussButton } from '../shared/ui/DiscussButton.tsx';
 import { MobileCard } from './MobileCard.tsx';
@@ -506,7 +507,13 @@ export function DaySheet() {
       <ProposalStrip onTrip />
       <EditBar day={day} />
       {/* 編輯中墨色編輯條取代日期列：編輯中不能換天 */}
-      {!planning && <DayStrip />}
+      {!planning && (
+        <div className="m-strip-row">
+          {/* 面板拉到最高、地圖被蓋住：引導彈窗的入口放在「整趟」旁邊（T46） */}
+          {snap === 'high' && <GuideButton compact testId="m-guide-button" />}
+          <DayStrip />
+        </div>
+      )}
       <div className="m-trip-body" ref={bodyRef}>
         {day === 'all' ? <TripOverview /> : <DayView date={day} />}
       </div>

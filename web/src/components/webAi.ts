@@ -7,6 +7,7 @@ import type { Filter } from '../lib/filter.ts';
 import type { ScreenSurface } from '../ai/stage.ts';
 import type { ChatContext } from '../ai/types.ts';
 import { emptyDayFollowups, LODGING_FOLLOWUPS, WISH_EMPTY_LEAD, type Starter } from '../ai/prompts.ts';
+import type { GuideAsk } from '../lib/tripStart.ts';
 
 /** 切到行程分頁（關掉詳情） */
 const showTrip = () => {
@@ -85,11 +86,11 @@ export const askDay = (date: string) => void askWeb([{ kind: 'day', date }]);
 
 export const askTrip = () => void askWeb([{ kind: 'trip' }]);
 
-/** 開始卡的「問 AI」：問那一步的事，不帶晶片（§17.1）。② 住宿；③ 第一個還沒排的天 */
-export function askStart(step: 2 | 3) {
-  const date = step === 3 ? ai.firstEmptyDate() : null;
+/** 引導彈窗的「問 AI」：問那一步的事，不帶晶片（§17.1）。③ 選住宿；④ 第一個還沒排的天 */
+export function askStart(step: GuideAsk) {
+  const date = step === 'day' ? ai.firstEmptyDate() : null;
   if (date) askEmptyDay(date);
-  else void askWeb([], ai.firstStarter(), LODGING_FOLLOWUPS);
+  else void askWeb([], ai.lodgingStarter(), LODGING_FOLLOWUPS);
 }
 
 /** 空的一天的「問 AI」（§17.4） */

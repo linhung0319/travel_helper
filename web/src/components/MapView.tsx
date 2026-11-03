@@ -261,8 +261,8 @@ export function MapView() {
     map.touchZoomRotate.disableRotation();
     mapRef.current = map;
     setCurrentMap(map);
-    // 縮放鈕只有網頁版（手機用兩指，地圖上只留「放大地圖」）
-    if (window.matchMedia(DESKTOP_QUERY).matches) map.addControl(new NavigationControl({ showCompass: false }), 'top-right');
+    // 縮放鈕只有網頁版（手機用兩指，地圖上只留「放大地圖」）；在右下，右上是引導彈窗的入口（T46）
+    if (window.matchMedia(DESKTOP_QUERY).matches) map.addControl(new NavigationControl({ showCompass: false }), 'bottom-right');
     map.addControl(new ScaleControl({ unit: 'metric' }), 'bottom-left');
 
     const reportView = () => {

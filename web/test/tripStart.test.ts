@@ -1,8 +1,8 @@
-// 新手起步（interaction-design §17）：推薦問題的 8 條規則、開始卡的進度和顯示、整趟清單併列、重新打開網站開新對話。
+// 新手起步（interaction-design §17）：推薦問題的規則、引導彈窗的進度（T46）、重新打開網站開新對話。
 import assert from 'node:assert/strict';
 import test from 'node:test';
-import { blankCards, buildStarterInput, dayStarter, emptyDayFollowups, firstEmptyDate, firstStarter, startersFor, tripPrompts, type StarterDay, type StarterInput } from '../src/ai/prompts.ts';
-import { EMPTY_START_MEMORY, flightCount, nextStartMemory, shouldStartFresh, startCardView, startProgress } from '../src/lib/tripStart.ts';
+import { blankCards, buildStarterInput, dayStarter, emptyDayFollowups, firstEmptyDate, firstStarter, lodgingStarter, startersFor, tripPrompts, type StarterDay, type StarterInput } from '../src/ai/prompts.ts';
+import { flightCount, guideCurrent, guideProgress, shouldStartFresh } from '../src/lib/tripStart.ts';
 import { tripDates } from '../src/lib/trip.ts';
 import { emptyItinerary } from '../src/dev-fixtures/seed.ts';
 import type { Place } from '../src/data/types.ts';
@@ -98,7 +98,7 @@ test('buildStarterInput：只有航班的行程（先問區，T45c）', () => {
   const i = buildStarterInput({ itinerary: emptyItinerary(), plan: null, votes: [], byId: new Map(), areas: AREAS, day: null });
   assert.equal(i.days.length, 12);
   assert.equal(firstStarter(i).q, '幫我先排每晚住哪一區');
-  assert.deepEqual(startProgress(i), { liked: false, lodging: false, stops: false, done: 0 });
+  assert.deepEqual(guideProgress(i), { liked: false, areas: false, lodging: false, stops: false, done: 0 });
 });
 
 test('buildStarterInput：附近想去的算同區、沒排的景點和餐廳；2 人以上才算大家想去；方案看行程再看資料', () => {
@@ -148,35 +148,41 @@ test('buildStarterInput：引擎算好的餐和錯誤（分組裡的也算）', 
   assert.equal(i.warnings, 1);
 });
 
-test('開始卡的進度：任何一位家人按過 ♡；2/2～2/12 每晚有住宿；2/3～2/12 每天排了東西', () => {
-  assert.equal(startProgress(input()).done, 3);
-  assert.equal(startProgress(input({}, { anyLiked: false })).liked, false);
-  assert.equal(startProgress(input({ '2027-02-12': { lodging: false } })).lodging, false);
-  // 2/13 不住；2/2、2/13 沒排東西也算完成
-  assert.equal(startProgress(input({ '2027-02-02': { hasStops: false }, '2027-02-13': { hasStops: false } })).stops, true);
-  assert.equal(startProgress(input({ '2027-02-12': { hasStops: false } })).stops, false);
+test('引導彈窗的進度（T46）：① 任何一位家人按過 ♡ ② 每晚都定了區 ③ 每晚都有住宿 ④ 2/3～2/12 每天排了東西', () => {
+  assert.equal(guideProgress(input()).done, 4);
+  assert.equal(guideProgress(input({}, { anyLiked: false })).liked, false);
+  // 只定了區、還沒選住宿：② 完成、③ 還沒
+  const areaOnly = guideProgress(input({ '2027-02-12': { lodging: false } }));
+  assert.equal(areaOnly.areas, true);
+  assert.equal(areaOnly.lodging, false);
+  // 選了住宿、區照住宿（area 沒寫也算定了區）
+  assert.equal(guideProgress(input({ '2027-02-05': { area: null } })).areas, true);
+  assert.equal(guideProgress(input({ '2027-02-05': { area: null, lodging: false } })).areas, false);
+  // 最後一天不住：沒有區、沒有住宿也算完成
+  assert.equal(guideProgress(input({ '2027-02-13': { area: null, lodging: false } })).done, 4);
+  // 2/2、2/13 沒排東西也算完成
+  assert.equal(guideProgress(input({ '2027-02-02': { hasStops: false }, '2027-02-13': { hasStops: false } })).stops, true);
+  assert.equal(guideProgress(input({ '2027-02-12': { hasStops: false } })).stops, false);
 });
 
-test('開始卡要不要顯示：前兩步做完只留第 ③ 步；完成後按 ✕ 或 3 天就不再出現；又有東西沒排就回來', () => {
-  const now = Date.parse('2026-12-10T00:00:00Z');
-  const none = { liked: false, lodging: false, stops: false, done: 0 };
-  const two = { liked: true, lodging: true, stops: false, done: 2 };
-  const all = { liked: true, lodging: true, stops: true, done: 3 };
-  assert.equal(startCardView(none, EMPTY_START_MEMORY, now), 'steps');
-  assert.equal(startCardView({ ...two, liked: false, done: 1 }, EMPTY_START_MEMORY, now), 'steps');
-  assert.equal(startCardView(two, EMPTY_START_MEMORY, now), 'last');
-  assert.equal(startCardView(all, EMPTY_START_MEMORY, now), 'done');
-  assert.equal(startCardView(all, { doneAt: '2026-12-08T00:00:00Z', dismissed: false }, now), 'done');
-  assert.equal(startCardView(all, { doneAt: '2026-12-07T00:00:00Z', dismissed: false }, now), 'hidden');
-  assert.equal(startCardView(all, { doneAt: null, dismissed: true }, now), 'hidden');
+test('引導彈窗現在該做的那一步：第一個還沒完成的；全部完成是 null', () => {
+  const all = { liked: true, areas: true, lodging: true, stops: true, done: 4 };
+  assert.equal(guideCurrent(all), null);
+  assert.equal(guideCurrent({ ...all, liked: false, areas: false, done: 2 }), 1);
+  assert.equal(guideCurrent({ ...all, areas: false, lodging: false, done: 2 }), 2);
+  assert.equal(guideCurrent({ ...all, lodging: false, done: 3 }), 3);
+  assert.equal(guideCurrent({ ...all, stops: false, done: 3 }), 4);
+  // 前面的步驟沒做，後面的照樣可以先做：只決定哪一顆按鈕是實心
+  assert.equal(guideCurrent({ ...all, liked: false, done: 3 }), 1);
+});
 
-  const iso = '2026-12-10T00:00:00.000Z';
-  const first = nextStartMemory(all, EMPTY_START_MEMORY, iso);
-  assert.equal(first.doneAt, iso);
-  // 已經記過：不動（同一個物件，不用重寫）
-  assert.equal(nextStartMemory(all, first, '2026-12-11T00:00:00.000Z'), first);
-  assert.deepEqual(nextStartMemory(two, { doneAt: iso, dismissed: true }, iso), EMPTY_START_MEMORY);
-  assert.equal(nextStartMemory(two, EMPTY_START_MEMORY, iso), EMPTY_START_MEMORY);
+test('lodgingStarter：第 ③ 步問住宿，區還沒定完也問住宿；每晚都有住宿是 null', () => {
+  const noArea = Object.fromEntries(DATES.map((d) => [d, { lodging: false, area: null }]));
+  // 第一張卡先問區，第 ③ 步的「問 AI」直接問住宿
+  assert.equal(firstStarter(input(noArea)).q, '幫我先排每晚住哪一區');
+  assert.deepEqual(lodgingStarter(input(noArea)), { q: '幫我決定前幾晚住哪', why: '從第一晚開始，15 人的住宿最難訂' });
+  assert.deepEqual(lodgingStarter(input({ '2027-02-09': { lodging: false }, '2027-02-10': { lodging: false } })), { q: '幫我決定 2/9～2/10 住哪', why: '還有 2 晚沒住宿' });
+  assert.equal(lodgingStarter(input()), null);
 });
 
 test('flightCount：只算航班', () => {
@@ -221,7 +227,7 @@ test('重新打開網站：隔太久開新對話，舊的還在清單、接得�
 
 test('問 AI 帶來的那一句：放進 lead；拿掉晶片還在；送出、換對話都清掉', async () => {
   const h = await harness();
-  const lead = h.chat.firstStarter();
+  const lead = { q: '幫我決定前幾晚住哪', why: '從第一晚開始，15 人的住宿最難訂' };
   await h.chat.ask([{ kind: 'trip' }], lead);
   assert.deepEqual(h.chat.store.getState().lead, lead);
   h.chat.removeContext(0);
@@ -237,7 +243,7 @@ test('問 AI 帶來的那一句：放進 lead；拿掉晶片還在；送出、�
 
 test('啟動完成前就按了問 AI：晶片和那一句留著；換人時清掉', async () => {
   const h = await harness();
-  const lead = h.chat.firstStarter();
+  const lead = { q: '幫我決定前幾晚住哪', why: '從第一晚開始，15 人的住宿最難訂' };
   await h.chat.ask([{ kind: 'trip' }], lead);
   await h.chat.init();
   assert.deepEqual(h.chat.store.getState().contexts, [{ kind: 'trip' }]);
@@ -248,7 +254,7 @@ test('啟動完成前就按了問 AI：晶片和那一句留著；換人時清�
   h.close();
 });
 
-test('開始卡第 ③ 步：第一個還沒排的天，航班的天不算；住宿沒定也一樣', () => {
+test('引導彈窗第 ④ 步：第一個還沒排的天，航班的天不算；住宿沒定也一樣', () => {
   assert.equal(firstEmptyDate(input({ '2027-02-02': { hasStops: false }, '2027-02-06': { hasStops: false }, '2027-02-09': { hasStops: false } })), '2027-02-06');
   assert.equal(firstEmptyDate(input({ ...noLodging, '2027-02-03': { lodging: false, hasStops: false } })), '2027-02-03');
   assert.equal(firstEmptyDate(input({ '2027-02-13': { hasStops: false } })), null);
@@ -278,9 +284,9 @@ test('空的一天不帶晶片：下面兩張直接寫日期', () => {
   assert.deepEqual(emptyDayFollowups('2027-02-03'), ['想去的點哪些適合 2/3？', '2/3 長輩走起來輕鬆的安排']);
 });
 
-test('開始卡的問法：沒有晶片也有藍卡和下面兩張，拿掉別的晶片不影響', async () => {
+test('引導彈窗的問法：沒有晶片也有藍卡和下面兩張，拿掉別的晶片不影響', async () => {
   const h = await harness();
-  const lead = h.chat.firstStarter();
+  const lead = { q: '幫我決定前幾晚住哪', why: '從第一晚開始，15 人的住宿最難訂' };
   await h.chat.ask([], lead, ['a', 'b']);
   const s = h.chat.store.getState();
   assert.deepEqual(s.contexts, []);

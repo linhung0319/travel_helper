@@ -1,4 +1,4 @@
-// T37 新手起步（interaction-design §17.1～§17.5）網頁版：開始卡、整趟清單併列、訊息區的卡片、空白狀態、第一次按 ♡、怎麼用。
+// T37 新手起步（interaction-design §17.1～§17.5）網頁版：引導彈窗（T46 取代開始卡）、整趟骨架、訊息區的卡片、空白狀態、第一次按 ♡、怎麼用。
 import { test, type Page } from '@playwright/test';
 import { expect, ready } from './helpers.ts';
 
@@ -14,35 +14,39 @@ const showOverview = async (page: Page) => {
   await page.evaluate(() => (window as any).__th.commands.selectDay('all'));
 };
 
-test('只有航班的行程：開始卡 0/3、整趟骨架一天一列、第一列最後一列是航班；問 AI 不帶晶片，第一張是住宿，按了才送出', async ({ page }) => {
+test('只有航班的行程：引導 0/4、整趟骨架一天一列、第一列最後一列是航班；第 ③ 步問 AI 不帶晶片，第一張是住宿，按了才送出', async ({ page }) => {
   await flightsOnly(page);
   await showOverview(page);
-  const card = page.getByTestId('start-card');
-  await expect(card).toHaveAttribute('data-view', 'steps');
-  await expect(page.getByTestId('start-count')).toHaveText('0 / 3');
+  await expect(page.getByTestId('guide-button')).toHaveText('排行程 0/4');
   // T45b 起整趟是骨架：一天一列、不併列；航班在第一列、最後一列
   await expect(page.getByTestId('sk-row')).toHaveCount(12);
   await expect(page.getByTestId('sk-flight-arrive')).toContainText('到關西');
   await expect(page.getByTestId('sk-flight-depart')).toContainText('起飛');
   await expect(page.getByTestId('sk-count')).toHaveText('11 晚 · 已決定 0 晚');
 
-  await page.getByTestId('start-step-2').getByTestId('start-ask').click();
+  await page.getByTestId('guide-button').click();
+  await expect(page.getByTestId('guide-count')).toHaveText('0 / 4');
+  await page.getByTestId('guide-ask-lodging').click();
+  await expect(page.getByTestId('guide-dialog')).toHaveCount(0);
   await expect(page.getByTestId('chat-context')).toHaveCount(0);
   const first = page.locator('[data-testid="chat-starter"][data-first="true"]');
-  await expect(first).toContainText('幫我先排每晚住哪一區');
-  await expect(first).toContainText('先定區，再挑住宿');
+  await expect(first).toContainText('幫我決定前幾晚住哪');
+  await expect(first).toContainText('15 人的住宿最難訂');
   await expect(page.getByTestId('chat-msg-me')).toHaveCount(0);
   await first.click();
-  await expect(page.getByTestId('chat-msg-me')).toContainText('幫我先排每晚住哪一區');
+  await expect(page.getByTestId('chat-msg-me')).toContainText('幫我決定前幾晚住哪');
   await expect(page.getByTestId('chat-cards')).toHaveCount(0);
 });
 
-test('排了一半的行程：前兩步做完收成一列；新對話第一張是空的那天', async ({ page }) => {
+test('排了一半的行程：引導的區、住宿完成，第 ④ 步還沒；新對話第一張是空的那天', async ({ page }) => {
   await ready(page);
   await showOverview(page);
-  await expect(page.getByTestId('start-card')).toHaveAttribute('data-view', 'last');
-  await expect(page.getByTestId('start-step-1')).toHaveCount(0);
-  await expect(page.getByTestId('start-step-3')).toBeVisible();
+  await page.getByTestId('guide-button').click();
+  await expect(page.getByTestId('guide-step-2')).toHaveAttribute('data-done', 'true');
+  await expect(page.getByTestId('guide-step-3')).toHaveAttribute('data-done', 'true');
+  await expect(page.getByTestId('guide-step-4')).toHaveAttribute('data-done', 'false');
+  await page.keyboard.press('Escape');
+  await expect(page.getByTestId('guide-dialog')).toHaveCount(0);
   await expect(page.getByTestId('chat-empty')).toContainText('問我行程的事');
   await expect(page.getByTestId('chat-starter')).toHaveCount(3);
   await expect(page.getByTestId('chat-starter').first()).toContainText('2/7 去哪？');

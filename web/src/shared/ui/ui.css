@@ -518,8 +518,8 @@
   background: var(--red-day); /* §12.1 警告數字的紅 */
 }
 
-/* 一排要 628px（13 格、間距、卡的內距），左右各留 12px */
-@container map-days (max-width: 651px) {
+/* 一排要 628px（13 格、間距、卡的內距），左右各留 12px，右上還要讓出引導彈窗的入口（約 140px，T46） */
+@container map-days (max-width: 790px) {
   .map-days {
     grid-template-columns: 52px repeat(6, 44px);
     grid-auto-rows: 44px;
@@ -3620,72 +3620,137 @@ button.ll-main {
 }
 
 /* ---------- 新手起步（interaction-design §17） ---------- */
-.ui-start {
-  margin: 8px 0 12px;
-  padding: 12px;
-  border: 1px solid var(--indigo-line);
-  border-radius: 14px;
-  background: var(--paper);
+
+/* 引導彈窗的入口（T46）：白底膠囊，進度圈加「排行程 1/4」；全部完成只剩抹茶色的 ✓ */
+.ui-guide-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  min-height: 44px;
+  padding: 4px 14px 4px 8px;
+  border: 0;
+  border-radius: 999px;
+  background: var(--bg);
+  color: var(--ink);
+  box-shadow: 0 2px 8px var(--shade-1);
+  font: inherit;
+  font-size: 0.875rem;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+  cursor: pointer;
 }
 
-.ui-start-head {
+.ui-guide-btn.all {
+  padding: 4px 10px;
+}
+
+/* 手機面板頭（日期列「整趟」旁邊）：小一點、不浮起來 */
+.ui-guide-btn.compact {
+  min-height: 36px;
+  padding: 2px 10px 2px 6px;
+  box-shadow: none;
+  border: 1px solid var(--line);
+  font-size: 0.8125rem;
+}
+
+.ui-guide-btn.compact.all {
+  padding: 2px 6px;
+}
+
+.ui-guide-ring {
+  flex: 0 0 auto;
+  width: 24px;
+  height: 24px;
+}
+
+.ui-guide-ring circle {
+  fill: none;
+  stroke-width: 3;
+}
+
+.ui-guide-ring .track {
+  stroke: var(--line);
+}
+
+.ui-guide-ring .fill {
+  stroke: var(--matcha);
+  stroke-linecap: round;
+}
+
+.ui-guide-ring.all {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+  background: var(--matcha);
+  color: var(--paper);
+}
+
+/* 網頁：地圖右上 */
+.map-guide {
+  position: absolute;
+  z-index: 3;
+  top: 12px;
+  right: 12px;
+}
+
+/* 彈窗 */
+.ui-guide-progress {
   display: flex;
-  align-items: baseline;
-  justify-content: space-between;
-  gap: 8px;
-}
-
-.ui-start-head h3 {
-  margin: 0;
-  font-size: 1rem;
-}
-
-.ui-start-head span {
+  align-items: center;
+  gap: 10px;
+  margin: 10px 0 4px;
   color: var(--ink-2);
   font-size: 0.8125rem;
   font-variant-numeric: tabular-nums;
 }
 
-.ui-start-bar {
+.ui-guide-bar {
+  flex: 1;
   height: 4px;
-  margin: 8px 0 4px;
   border-radius: 999px;
   background: var(--line);
   overflow: hidden;
 }
 
-.ui-start-bar i {
+.ui-guide-bar i {
   display: block;
   height: 100%;
   border-radius: 999px;
-  background: var(--indigo);
+  background: var(--matcha);
 }
 
-.ui-start-steps {
+.ui-guide-steps {
   list-style: none;
   margin: 0;
   padding: 0;
 }
 
-.ui-start-step {
+.ui-guide-step {
   display: flex;
   align-items: center;
-  gap: 8px;
-  min-height: 44px;
-  padding: 4px 0;
+  gap: 10px;
+  min-height: 52px;
+  padding: 6px 0;
+  border-bottom: 1px solid var(--line);
 }
 
-.ui-start-step.done {
+.ui-guide-step:last-child {
+  border-bottom: 0;
+}
+
+.ui-guide-step.done {
   color: var(--ink-3);
 }
 
-.ui-start-mark {
+.ui-guide-mark {
   flex: 0 0 auto;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 22px;
-  height: 22px;
+  width: 24px;
+  height: 24px;
   border-radius: 999px;
   background: var(--indigo-wash);
   color: var(--indigo);
@@ -3693,55 +3758,43 @@ button.ll-main {
   font-weight: 700;
 }
 
-.ui-start-step.done .ui-start-mark {
-  background: var(--line);
-  color: var(--ink-2);
+.ui-guide-step.done .ui-guide-mark {
+  background: var(--matcha);
+  color: var(--paper);
 }
 
-.ui-start-text {
+.ui-guide-text {
   flex: 1;
   min-width: 0;
   display: flex;
   flex-direction: column;
 }
 
-.ui-start-text b {
-  font-size: 0.875rem;
+.ui-guide-text b {
+  font-size: 0.9375rem;
   font-weight: 500;
 }
 
-.ui-start-text small {
+.ui-guide-text small {
   color: var(--ink-2);
   font-size: 0.75rem;
 }
 
-.ui-start-step > .ui-btn {
+.ui-guide-step.done .ui-guide-text small {
+  color: var(--ink-3);
+}
+
+.ui-guide-step > .ui-btn {
   flex: 0 0 auto;
 }
 
-.ui-start-done {
+.ui-guide-all {
   display: flex;
   align-items: center;
   gap: 6px;
-  padding: 4px 4px 4px 12px;
-  color: var(--ink-2);
+  margin: 8px 0 0;
+  color: var(--matcha);
   font-size: 0.875rem;
-}
-
-.ui-start-done > span {
-  flex: 1;
-}
-
-.ui-start-close {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 44px;
-  height: 44px;
-  border: 0;
-  background: none;
-  color: var(--ink-2);
-  cursor: pointer;
 }
 
 .ui-wish-empty {

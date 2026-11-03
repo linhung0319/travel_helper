@@ -645,7 +645,7 @@
   grid-template-columns: repeat(3, minmax(0, 1fr));
 }
 
-/* 地圖上的小圖示：只有右下「放大地圖」 */
+/* 地圖上的小圖示：右下「放大地圖」和它左邊引導彈窗的入口（T46），排成一列浮在面板上面 */
 .m-map-button {
   position: relative;
   min-width: var(--tap);
@@ -663,11 +663,39 @@
   cursor: pointer;
 }
 
-.m-map-full {
+.m-map-buttons {
   position: absolute;
   z-index: 4;
   right: 10px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.m-map-buttons[data-snap='mid'] {
   bottom: calc(100% * var(--m-sheet-mid) + 10px);
+}
+
+.m-map-buttons[data-snap='low'] {
+  bottom: calc(var(--m-sheet-low) + 10px);
+}
+
+/* 面板拉到最高：引導彈窗的入口在日期列的「整趟」左邊（地圖被蓋住了） */
+.m-strip-row {
+  flex: 0 0 auto;
+  display: flex;
+  align-items: flex-start;
+  background: var(--band);
+}
+
+.m-strip-row > .ui-guide-btn {
+  flex: 0 0 auto;
+  margin: 10px 0 0 12px;
+}
+
+.m-strip-row > .ui-days {
+  flex: 1;
+  min-width: 0;
 }
 
 /* 這天的標題（固定在面板上面，往下捲也看得到）：圓體的大日期、「週五 · 第 4 天 · 鳥羽」、✦ 問 AI、編輯 */

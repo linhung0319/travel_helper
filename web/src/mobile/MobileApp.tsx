@@ -8,7 +8,9 @@
 
 import { useEffect, useLayoutEffect, useRef } from 'react';
 import { useApp } from '../hooks.ts';
-import { connectMobileAi } from './mobileAi.ts';
+import { askStart, connectMobileAi } from './mobileAi.ts';
+import { commands } from '../appCommands.ts';
+import type { GuideActions } from '../shared/ui/GuideDialog.tsx';
 import { appStore } from '../store.ts';
 import { resizeMap } from '../components/mapRuntime.ts';
 import { LazyMap } from '../components/LazyMap.tsx';
@@ -25,6 +27,19 @@ import { DiscussionPanel } from '../shared/ui/DiscussionPanel.tsx';
 import { TripPage } from './TripPage.tsx';
 import { ChatPage } from './ChatPage.tsx';
 import './mobile.css';
+
+/** 引導彈窗的按鈕（T46）：① 探索分頁 ② 行程分頁的整趟（面板太低時拉到中間，看得到骨架）③④ 行程頁的半屏聊天 */
+const MOBILE_GUIDE: GuideActions = {
+  explore: () => mobileStore.getState().setTab('explore'),
+  trip: () => {
+    const m = mobileStore.getState();
+    m.closePlace();
+    m.setTab('trip');
+    if (m.tripSnap === 'low') m.setSnap('mid');
+    commands.selectDay('all');
+  },
+  ask: askStart,
+};
 
 /** 探索、想去上次捲到哪裡 */
 const pageScroll: Partial<Record<MobileTab, number>> = {};
@@ -109,7 +124,7 @@ export function MobileApp() {
       <TimetablePopup mobile />
       {/* 加地點的整頁蓋在詳情上面（z-index 45），存完或取消回到底下那一層 */}
       <AddPlacePage />
-      <Dialogs />
+      <Dialogs guide={MOBILE_GUIDE} />
       <Toast />
     </div>
   );

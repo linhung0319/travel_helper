@@ -8,7 +8,7 @@ import type { Filter } from '../lib/filter.ts';
 import type { ReservationStatus } from '../backend/types.ts';
 import { createProposals, type ProposalDeps, type Proposals } from './proposals.ts';
 import { buildTurnContext } from './context.ts';
-import { buildStarterInput, dayStarter, firstEmptyDate, firstStarter, promptsForAll, startersFor, tripPrompts, type Starter } from './prompts.ts';
+import { buildStarterInput, dayStarter, firstEmptyDate, lodgingStarter, promptsForAll, startersFor, tripPrompts, type Starter } from './prompts.ts';
 import { shouldStartFresh } from '../lib/tripStart.ts';
 import { SYSTEM_PROMPT } from './systemPrompt.ts';
 import { createReadTools } from './readTools.ts';
@@ -84,9 +84,9 @@ export interface Chat {
   placeAdded(place: { id: string; name: string; type: string }): Promise<void>;
   /** 空白的新對話要推薦的問題：照現在的行程和畫面算，不呼叫模型 */
   starters(): Starter[];
-  /** 第一張卡（開始卡的「問 AI」帶這一句） */
-  firstStarter(): Starter;
-  /** 第一個還沒排的天（開始卡第 ③ 步） */
+  /** 問住宿的那一句（引導彈窗第 ③ 步的「問 AI」）；每晚都有住宿是 null */
+  lodgingStarter(): Starter | null;
+  /** 第一個還沒排的天（引導彈窗第 ④ 步） */
   firstEmptyDate(): string | null;
   /** 這天還沒排時的那一句（空的一天的「問 AI」帶這一句） */
   dayStarter(date: string): Starter | null;
@@ -594,7 +594,7 @@ export function createChat(d: CreateChatDeps): Chat {
       store.setState((s) => ({ decisions: [...s.decisions, { tool: 'propose_user_place', status: 'confirmed', summary: `已加入「${place.name}」，ID ${place.id}` }] }));
     },
     starters: () => startersFor(starterInput()),
-    firstStarter: () => firstStarter(starterInput()),
+    lodgingStarter: () => lodgingStarter(starterInput()),
     firstEmptyDate: () => firstEmptyDate(starterInput()),
     dayStarter(date) {
       const day = starterInput().days.find((x) => x.date === date);
