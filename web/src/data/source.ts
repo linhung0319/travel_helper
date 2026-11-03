@@ -18,8 +18,8 @@ export interface DataSource {
   loadAreas(): Promise<Area[]>;
   /** 預設資料的資料點：只有清單層（worker/src/lib/placeLayers.ts）；修改層由 dataStore 用 data/merge.ts 套上 */
   loadPlaces(): Promise<Place[]>;
-  /** 全部資料點的詳情層：閒置時讀一次（dataStore 的 ensureDetails） */
-  loadPlaceDetails(): Promise<{ id: string }[]>;
+  /** 資料點的詳情層（dataStore 的 ensureDetails）：給 ids 只讀那幾個（T47），不給是全部（匯出行程）。沒有的 ID 不回傳 */
+  loadPlaceDetails(ids?: readonly string[]): Promise<{ id: string }[]>;
   /** 車站的發車時刻表（近鐵或 JR）；沒有資料回傳 null。照車站分開，用到才載入 */
   loadTimetable(stationId: string): Promise<StationTimetable | null>;
   /**

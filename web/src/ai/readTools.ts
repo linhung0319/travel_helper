@@ -79,10 +79,10 @@ export function createReadTools(d: AiDeps) {
     return typeof date === 'string' && tripDates().includes(date) ? date : null;
   }
 
-  /** 等詳情層：讀不到時要明講，不能回 null（null 在這裡是「資料沒寫」） */
-  async function detailsProblem(): Promise<ToolOutput | null> {
+  /** 讀這幾個點的詳情層：讀不到時要明講，不能回 null（null 在這裡是「資料沒寫」） */
+  async function detailsProblem(ids: readonly string[]): Promise<ToolOutput | null> {
     try {
-      await d.details?.();
+      if (ids.length) await d.details?.(ids);
       return null;
     } catch {
       return fail('詳細資料暫時讀不到（網路問題），請使用者稍後再試；不要當成資料沒寫');
@@ -90,10 +90,20 @@ export function createReadTools(d: AiDeps) {
   }
 
   async function search_places(input: SearchInput): Promise<ToolOutput> {
-    const problem = await detailsProblem();
+    const env = () => {
+      const s = places();
+      return { places: s.places, byId: s.byId, areas: s.areas, bounds: d.app.getState().view?.bounds ?? null, likes, config: d.config, full: (id: string) => fullPlace(s, id) };
+    };
+    // 篩選只用清單層；回傳的摘要在詳情層：先找出是哪幾個，只讀那幾個再算一次（T47）。
+    // 例外：maxGuestsAtLeast 比的 group.maxGuests 在詳情層，要先讀所有住宿的（約 170 個）
+    if (input?.maxGuestsAtLeast != null) {
+      const lodgings = places().places.filter((p) => p.type === 'lodging').map((p) => p.id);
+      const problem = await detailsProblem(lodgings);
+      if (problem) return problem;
+    }
+    const problem = await detailsProblem(searchPlaces(input ?? {}, env()).places.map((p) => p.id));
     if (problem) return problem;
-    const s = places();
-    const r = searchPlaces(input ?? {}, { places: s.places, byId: s.byId, areas: s.areas, bounds: d.app.getState().view?.bounds ?? null, likes, config: d.config, full: (id) => fullPlace(s, id) });
+    const r = searchPlaces(input ?? {}, env());
     return { ok: true, ...r };
   }
 
@@ -103,7 +113,7 @@ export function createReadTools(d: AiDeps) {
     const sections = input.sections?.length ? input.sections : ['summary', 'group', 'hours'];
     const bad = sections.filter((x) => !SECTIONS[x]);
     if (bad.length) return fail(`沒有分區 ${bad.join('、')}（可用：${PLACE_SECTIONS.join('、')}）`);
-    const problem = await detailsProblem();
+    const problem = await detailsProblem(input.ids.filter((id) => typeof id === 'string'));
     if (problem) return problem;
     const s = places();
     const unknown = input.ids.filter((id) => !s.byId.has(id));

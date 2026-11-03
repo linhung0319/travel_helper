@@ -360,7 +360,7 @@ export function createTools(d: AiDeps): ToolDef[] {
         if (typeof input.fieldPath !== 'string' || !input.fieldPath || input.fieldPath === 'id') return fail('fieldPath 不對');
         // 舊值可能在詳情層：讀不到就不提議（不能把「還沒讀到」當成原本是空的）
         try {
-          await d.details?.();
+          await d.details?.([input.placeId as string]);
         } catch {
           return fail('詳細資料暫時讀不到（網路問題），請使用者稍後再試');
         }

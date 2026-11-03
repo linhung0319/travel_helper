@@ -363,9 +363,9 @@
 ### 12.3 字型
 
 - 標題、日期、時間、數字：Zen Maru Gothic（圓體，700／900）。
-- 內文：Zen Kaku Gothic New（400／500／700）。
-- 日本字型缺部分繁中字（例如「趟」），一律用 Noto Sans TC 補字。
-- 都從 Google Fonts 載入（SIL OFL，可商用），fallback 到系統字。第七輪的 Noto Serif TC、Bodoni Moda 不再用。
+- 內文：系統字（T47，👤 2026-11-03 定案；以前是 Zen Kaku Gothic New，第一次載入光字型就約 2.6 MB）。
+- 圓體缺部分繁中字（例如「趟」），用 Noto Sans TC 補字，只載 700（標題的 900 也用它）。內文不列 Noto Sans TC，不然內文會變粗。
+- 網頁字型從 Google Fonts 載入（SIL OFL，可商用），fallback 到系統字。第七輪的 Noto Serif TC、Bodoni Moda 不再用。
 
 ### 12.4 形狀、色帶
 

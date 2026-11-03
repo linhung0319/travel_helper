@@ -88,6 +88,17 @@ describe('預設資料與修改', () => {
     assert.equal(d.extra?.conflicts, undefined);
   });
 
+  test('GET /api/places/details?ids=：只回要的那幾個，沒有的 ID 略過；太多或空的是 400（T47）', async () => {
+    const r = await call('GET', '/api/places/details?ids=test-area-spot,nope,test-area-spot');
+    assert.equal(r.status, 200);
+    assert.deepEqual(r.body.details.map((d: any) => d.id), ['test-area-spot']);
+    const all = (await call('GET', '/api/places/details')).body.details;
+    assert.deepEqual(r.body.details[0], all.find((d: any) => d.id === 'test-area-spot'));
+    assert.equal((await call('GET', '/api/places/details?ids=')).status, 400);
+    const many = Array.from({ length: 51 }, (_, i) => `x${i}`).join(',');
+    assert.equal((await call('GET', `/api/places/details?ids=${many}`)).status, 400);
+  });
+
   test('修改：先合併再驗證，通過就生效；GET /api/places/:id 看得到改過的欄位', async () => {
     const r = await call('POST', '/api/edits', { placeId: 'test-area-spot', fieldPath: 'stayMinutes', value: 90, note: '其實要比較久' });
     assert.equal(r.status, 201, JSON.stringify(r.body));

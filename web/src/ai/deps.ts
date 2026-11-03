@@ -21,8 +21,8 @@ export interface AiDeps {
   engine(): EngineData | null;
   config: EngineConfig;
   source: Pick<DataSource, 'loadTimetable' | 'loadTripInfo'>;
-  /** 等詳情層讀好（dataStore 的 ensureDetails）；讀不到時 reject。沒給＝資料已經是完整的（測試） */
-  details?: () => Promise<void>;
+  /** 讀這幾個點的詳情層（dataStore 的 ensureDetails，T47 起只讀用到的）；讀不到時 reject。沒給＝資料已經是完整的（測試） */
+  details?: (ids: readonly string[]) => Promise<void>;
   /** 等行程算好（planStore 的 ensurePlan）：工具要查行程、檢查改動都靠它。沒給＝已經算好了（測試） */
   planReady?: () => Promise<void>;
 }

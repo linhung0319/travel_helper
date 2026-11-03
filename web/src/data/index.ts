@@ -14,7 +14,7 @@ const source = () => (chosen ??= pick());
 export const dataSource: DataSource = {
   loadAreas: () => source().then((s) => s.loadAreas()),
   loadPlaces: () => source().then((s) => s.loadPlaces()),
-  loadPlaceDetails: () => source().then((s) => s.loadPlaceDetails()),
+  loadPlaceDetails: (ids) => source().then((s) => s.loadPlaceDetails(ids)),
   loadTimetable: (stationId) => source().then((s) => s.loadTimetable(stationId)),
   loadEngineTimetables: () => source().then((s) => s.loadEngineTimetables()),
   loadTripInfo: (topic) => source().then((s) => s.loadTripInfo(topic)),

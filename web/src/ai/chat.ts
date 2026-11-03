@@ -298,8 +298,9 @@ export function createChat(d: CreateChatDeps): Chat {
     const controller = new AbortController();
     abort = controller;
     openTurn = turn;
-    // 脈絡晶片的摘要在詳情層；讀不到也照常對話（工具會明講讀不到）。沒帶晶片就不用等：工具要用時自己會等
-    if (d.details && chips.length) await d.details().catch(() => {});
+    // 地點晶片的摘要在詳情層：只讀那幾個點；讀不到也照常對話（工具會明講讀不到）。沒帶地點晶片就不用等：工具要用時自己會等
+    const chipPlaces = chips.flatMap((c) => (c.kind === 'place' ? [c.id] : []));
+    if (d.details && chipPlaces.length) await d.details(chipPlaces).catch(() => {});
     if (controller.signal.aborted) return;
     // 工具多半要用行程：一送出就開始讀時刻表，不等地圖（T39）
     void d.planReady?.();

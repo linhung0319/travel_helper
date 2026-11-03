@@ -52,8 +52,9 @@ export const localSource: DataSource = {
   async loadPlaces() {
     return normalizePlaceList((await records()).map(listLayer));
   },
-  async loadPlaceDetails() {
-    return (await records()).map(detailLayer) as { id: string }[];
+  async loadPlaceDetails(ids) {
+    const want = ids && new Set(ids);
+    return (await records()).filter((r) => !want || want.has(r.id as string)).map(detailLayer) as { id: string }[];
   },
   async loadTimetable(stationId) {
     const load = timetableLoader(stationId);
