@@ -1233,3 +1233,92 @@ test('T38：加好地點後卡片標已加入，下一輪脈絡帶新點的 ID',
   assert.match(d.summary, /user-1/);
   h.close();
 });
+
+// --- T41 地區工具、搜尋條件 ---
+
+const runTool = async (h: Awaited<ReturnType<typeof harness>>, name: string, input: Record<string, unknown>) => (await h.chat.tools.find((t) => t.name === name)!.run(input)).output as any;
+
+test('T41 get_areas：全部的區照行程順序，有特色、代表的點（帶名字）、二月注意；子地區只有名字和要不要搭車', async () => {
+  const h = await harness();
+  const r = await runTool(h, 'get_areas', {});
+  assert.equal(r.ok, true);
+  assert.deepEqual(r.areas.map((a: { id: string }) => a.id), h.data.getState().areas.map((a) => a.id));
+  const shima = r.areas.find((a: { id: string }) => a.id === 'shima');
+  assert.ok(shima.summary && shima.transport);
+  assert.ok(shima.highlights.some((p: { id: string; name: string }) => p.id === 'shima-yokoyama-observatory' && p.name));
+  assert.ok(shima.february.some((t: string) => /西班牙村/.test(t)));
+  assert.deepEqual(Object.keys(shima.regions[0]).sort(), ['id', 'name', 'needsCar']);
+  const text = JSON.stringify(r);
+  assert.ok(!text.includes('"sources"') && !text.includes('"basedOn"') && !text.includes('"points"'));
+  assert.ok(text.length < 8000, String(text.length));
+  h.close();
+});
+
+test('T41 get_areas：給 area 只回那一區，子地區也有介紹；區域不對回錯誤', async () => {
+  const h = await harness();
+  const r = await runTool(h, 'get_areas', { area: 'shima' });
+  assert.equal(r.areas.length, 1);
+  const k = r.areas[0].regions.find((x: { id: string }) => x.id === 'shima-kashikojima');
+  assert.equal(k.needsCar, false);
+  assert.ok(k.summary && k.highlights.length && 'febNote' in k);
+  const bad = await runTool(h, 'get_areas', { area: 'nope' });
+  assert.equal(bad.ok, false);
+  assert.match(bad.error, /shima/);
+  h.close();
+});
+
+test('T41 elderly、kids：沒有評分的不排掉，排在有評分的後面，fitUnknown 算出來', async () => {
+  const h = await harness();
+  const r = await runTool(h, 'search_places', { areas: ['shima'], types: ['spot'], elderly: true, kids: true, limit: 30 });
+  const ids = r.places.map((p: { id: string }) => p.id);
+  // 伊雜宮（A）沒有 elderFit：以前被排掉。橫山展望台 elderFit 是 1（施工期間要走石階迂回），照樣拿掉
+  assert.ok(ids.includes('shima-izawanomiya'));
+  assert.ok(!ids.includes('shima-yokoyama-observatory'));
+  assert.ok(r.fitUnknown > 0);
+  const byId = h.data.getState().byId;
+  const scored = (id: string) => typeof byId.get(id)!.assessment?.scores?.elderFit === 'number' && typeof byId.get(id)!.assessment?.scores?.kidsFit === 'number';
+  const firstUnscored = ids.findIndex((id: string) => !scored(id));
+  assert.ok(firstUnscored > 0 && ids.slice(firstUnscored).every((id: string) => !scored(id)));
+  assert.equal(ids.length - firstUnscored, r.fitUnknown);
+  // 有評分但低於 3 的還是拿掉
+  for (const id of ids.slice(0, firstUnscored)) assert.ok((byId.get(id)!.assessment!.scores!.elderFit as number) >= 3, id);
+  // 沒要 elderly、kids 不帶 fitUnknown
+  assert.ok(!('fitUnknown' in (await runTool(h, 'search_places', { areas: ['shima'], types: ['spot'] }))));
+  h.close();
+});
+
+test('T41 indoor：景點只留室內的，餐廳不受影響；結果帶 indoor、stayMinutes、needsCar', async () => {
+  const h = await harness();
+  const r = await runTool(h, 'search_places', { areas: ['toba'], types: ['spot'], indoor: true, limit: 30 });
+  assert.ok(r.total > 0);
+  assert.ok(r.places.every((p: { indoor: boolean }) => p.indoor === true));
+  const aq = r.places.find((p: { id: string }) => p.id === 'toba-aquarium');
+  assert.ok(aq && 'stayMinutes' in aq && typeof aq.needsCar === 'boolean');
+  const all = await runTool(h, 'search_places', { areas: ['toba'], types: ['restaurant'], limit: 30 });
+  const rain = await runTool(h, 'search_places', { areas: ['toba'], types: ['restaurant'], indoor: true, limit: 30 });
+  assert.equal(rain.total, all.total);
+  assert.ok(!('indoor' in rain.places[0]) && 'stayMinutes' in rain.places[0]);
+  h.close();
+});
+
+test('T41 wholeRental、maxGuestsAtLeast：只留住宿，資料沒寫的算 unknownExcluded', async () => {
+  const h = await harness();
+  const whole = await runTool(h, 'search_places', { areas: ['ise'], wholeRental: true, limit: 30 });
+  const ids = whole.places.map((p: { id: string }) => p.id);
+  assert.ok(['ise-oyado-ichi', 'ise-yadoya-isuzu', 'ise-okage-mairi-shukuba'].every((id) => ids.includes(id)));
+  assert.ok(whole.places.every((p: { type: string }) => p.type === 'lodging'));
+  assert.ok(whole.unknownExcluded > 0);
+  const big = await runTool(h, 'search_places', { areas: ['ise'], wholeRental: true, maxGuestsAtLeast: 15, limit: 30 });
+  assert.deepEqual(big.places.map((p: { id: string }) => p.id), ['ise-okage-mairi-shukuba']);
+  h.close();
+});
+
+test('T41 tiers：「一定要去」只留 S、A；沒有評分的點標 fitUnknown', async () => {
+  const h = await harness();
+  const r = await runTool(h, 'search_places', { areas: ['shima'], types: ['spot'], tiers: ['S', 'A'], elderly: true, kids: true, limit: 30 });
+  assert.ok(r.places.length > 0 && r.places.every((p: { tier: string }) => p.tier === 'S' || p.tier === 'A'));
+  const iza = r.places.find((p: { id: string }) => p.id === 'shima-izawanomiya');
+  assert.equal(iza?.fitUnknown, true);
+  assert.equal(r.places.filter((p: { fitUnknown?: true }) => p.fitUnknown).length, r.fitUnknown);
+  h.close();
+});

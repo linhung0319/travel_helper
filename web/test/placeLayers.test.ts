@@ -94,6 +94,8 @@ test('AI 搜尋用清單層篩，結果和完整資料一樣（摘要從 full �
     { types: ['restaurant'], limit: 30, fit15: ['yes'] },
     { types: ['restaurant'], limit: 30, reservable: true, fitSubgroup: true },
     { types: ['spot'], limit: 30, elderly: true, kids: true },
+    { types: ['spot'], limit: 30, indoor: true },
+    { types: ['lodging'], limit: 30, wholeRental: true, maxGuestsAtLeast: 10 },
     { text: '水族館', limit: 30 },
     { types: ['restaurant'], cuisine: ['海鮮丼'], openAt: { date: '2027-02-05', time: '12:00' }, limit: 30 },
     { near: { place: 'toba-aquarium', walkMinutes: 20 }, limit: 30, sort: 'rating' },
