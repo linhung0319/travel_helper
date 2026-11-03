@@ -1016,6 +1016,11 @@ T7c → T7d → T7e → T7f → T7g → T8a → T8b → T8c → T8d → T7i → 
 - 黃金週、暑假這種旅程期間用不到的營業時間說明收進「更多」。
 - **驗證**：單元測試（標章怎麼挑、時間怎麼併、費用估計）；網頁、手機截圖。
 - **完成條件**：`npm test`、`npm run typecheck`、`npm run e2e` 通過；👤 看過截圖。
+- **結果**（2026-11-03，分支 `t44b`，還沒 merge）：畫法寫進 interaction-design §18。`npm run validate`、`npm test`（975）、`npm run typecheck` 通過。
+  - 卡片、四格、一行時間／費用／小提醒在 `web/src/lib/placeSummary.ts`、`lib/hours.ts` 的 `hoursLine`，單元測試 `web/test/placeSummary.test.ts`（14 個）。全部 597 筆跑過一次：卡片標章 小孩 ◎ 217、長輩 ◎ 166、長輩 △ 118、室內 29、小孩 △ 17、長輩 ✕ 12、休幾天 10、小孩 ✕ 5、二月休 1。
+  - 資料：評分理由、`group.source` 裡打分時的代號（fit15、→ 3、F③、第 N 批規則、dinnerAccess、降一級）改成給人看的句子，約 1,300 個字串；validate 加 `score-code`、`score-arrow`、`score-step`。`recommend`、`meals` 理由裡的門檻說明（「大阪門檻的 4」）留著，只在評論分頁的分數旁。「（食べログ）」出處括號不擋（四格會拿掉括號）。
+  - e2e（只跑影響到的，另一個 worktree 佔著 5190，用暫時的設定換 port）：新增 `t44b.spec.ts`、`mobile-t44b.spec.ts`，加上 `mobile-ui-fixes-2026-11`、`detail-popup`、`flows` 共 28 個通過。`t15m`、`mobile` 這兩個大 spec 跑到一半因為電腦記憶體不足被停掉，**沒有結果**。
+  - 截圖：網頁、手機（390、360）的探索和詳情。
 
 #### T45a 每晚住哪一區：資料結構 〔M〕
 - **要做**：行程多記「每晚住哪一區」（形狀照 §6 👤 的決定：2026-11-03 定為一次改成 `nights`，如下），engine、Worker、舊行程升級（`upgradeDoc`）、PDF／MD、LINE 跟著改。

@@ -32,7 +32,7 @@ export function* shownStrings(record) {
 /** 只當研究來源、畫面上沒有評分的網站：「X 說」看的人不知道是誰（Google、食べログ、楽天、じゃらん 在評論分頁有分數，可以寫） */
 const RESEARCH_SITES = 'jeepe|4travel|フォートラベル|HAMONI|Retty|まっぷる|mapple|MAPPLE|るるぶ|KNT|asoview|アソビュー|いこーよ|Relux|ぐるなび|ホットペッパー|Yahoo|トリップアドバイザー|TripAdvisor';
 
-/** 整理資料時的筆記：[規則名稱, 正規式, 說明] */
+/** 整理資料時的筆記：[規則名稱, 正規式, 說明, 只查哪些路徑（沒寫＝全部）] */
 export const WORK_NOTE_RULES = [
   ['field-ref', /見 ?(?:conflicts|notes|questions|sources|README|extra\b|extra\.|data\/)|另見 ?extra/, '指向資料欄位（「見 conflicts」這類）；衝突寫進 extra.conflicts，這裡寫給人看的結論'],
   ['file-name', /[A-Za-z0-9_-]+\.(?:json|md|mjs|ts)\b/, '檔名（stations.json、geo.mjs 這類）；寫給人看的說法（「不在車站資料裡」「直線估算」）'],
@@ -40,13 +40,18 @@ export const WORK_NOTE_RULES = [
   ['task-id', /(?<![A-Za-z0-9])T(?:[3-9]|[1-9]\d)[a-z]?(?![A-Za-z0-9])/, '任務 ID（T8g 這類）；規則、改了什麼記在任務的結果，不寫在給人看的欄位'],
   ['site-says', new RegExp(`(?:${RESEARCH_SITES}) ?[^，。；、\\s]{0,6}說`), '研究來源的網站名加「說」；寫「心得說」「評論說」，網站放 sources'],
   ['site-subscore', /4travel ?(?:無障礙|バリアフリー)/, '研究來源的細項分數；寫結論（例如「無障礙的評價偏低」），分數放 sources 的 note'],
+  // T44b：評分的理由會出現在詳情的四格（長輩／小孩／2 月／15 人），不能有打分時的代號
+  ['score-code', /F[①-⑩]|fit15|kids\.(?:friendly|allowed)|dinnerAccess(?!Note)|批規則/, '打分時的代號（「fit15 yes」「F③」「dinnerAccess car」「第 2 批規則」）；寫給人看的說法（「坐得下 15 人」「料理旅館的非住客用餐」「晚餐要搭車」）'],
+  ['score-arrow', /→\s*\d(?![\d,./])|打 ?\d(?![\d,])|也算 ?[A-D](?![A-Za-z])|→\s*(?:yes|no|split|unknown)\b/, '打分的結果（「→ 3」「打 2」「→ no」）；分數已經在評分裡，理由只寫為什麼', /^(?:assessment\.rationale\.|group\.source$)/],
+  ['score-step', /[降升]一級/, '打分的調整（「降一級」）；四格的理由只寫為什麼', /^assessment\.rationale\.(?:elderFit|kidsFit|groupFit|winterFit)$/],
 ];
 
 /** 一筆資料點裡給人看的欄位有沒有整理時的筆記：[{ path, rule, hint, match }] */
 export function findWorkNotes(record) {
   const out = [];
   for (const [p, s] of shownStrings(record)) {
-    for (const [rule, re, hint] of WORK_NOTE_RULES) {
+    for (const [rule, re, hint, only] of WORK_NOTE_RULES) {
+      if (only && !only.test(p)) continue;
       const m = s.match(re);
       if (m) out.push({ path: p, rule, hint, match: s.slice(Math.max(0, m.index - 12), m.index + m[0].length + 12) });
     }

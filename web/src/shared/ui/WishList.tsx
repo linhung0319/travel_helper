@@ -17,7 +17,7 @@ import { Icon } from '../../components/Icon.tsx';
 import { dragPlaceProps } from '../../components/askAi.ts';
 import { useWishPrefs, wishPrefs } from '../wishPrefs.ts';
 import { useLikeCount, useLiked } from '../placeLists.ts';
-import { rowHighlights } from '../rowHighlights.ts';
+import { statusHighlights } from '../rowHighlights.ts';
 import { PAGE_FIRST, PAGE_MORE, wishSections, type SectionId, type WishGroup } from '../wishSections.ts';
 import type { Place } from '../../data/types.ts';
 import { Highlights, PlaceRow, useDayStatus, type DayStatus } from './PlaceRow.tsx';
@@ -76,9 +76,9 @@ function Who({ ids }: { ids: string[] }) {
 }
 
 /** 第二行：還沒排＝誰想去；候選、已排＝膠囊＋頭像 */
-function SecondLine({ place, status, section, likes }: { place: Place; status: DayStatus; section: SectionId; likes: string[] }) {
+function SecondLine({ status, section, likes }: { status: DayStatus; section: SectionId; likes: string[] }) {
   if (section === 'unscheduled') return <Who ids={likes} />;
-  const caps = rowHighlights(place, status, 2).filter((h) => h.tone !== 'plain');
+  const caps = statusHighlights(status).slice(0, 2);
   return (
     <span className="wl-status">
       <Highlights list={caps} />
@@ -230,7 +230,7 @@ function WishItem({ place, status, section, surface, view, hot, hint, likes, las
   if (view === 'photo') return li(<PlaceTile {...common} extra={<Who ids={likes} />} />);
   const extra = (
     <>
-      <SecondLine place={place} status={status} section={section} likes={likes} />
+      <SecondLine status={status} section={section} likes={likes} />
       <button
         type="button"
         className={`wl-comment ${lastComment ? '' : 'none'}`}

@@ -258,7 +258,7 @@
         "recommend": "Google 4.7（22,976 則），神宮的兩座正宮之一，伊勢的代表，來伊勢必拜",
         "winterFit": "全年開放、2 月 5:00～18:00，戶外森林，冬天沒有特別加分",
         "elderFit": "正宮路線約 10 分碎石路、有輪椅出借；多賀宮 98 段石階可以跳過",
-        "kidsFit": "沒有來源提到小孩（kids.friendly 是 null）",
+        "kidsFit": "沒有來源提到小孩",
         "accessEase": "伊勢市站步行約 5 分"
       },
       "confidence": "high",
@@ -1202,7 +1202,7 @@
         "recommend": "Google 4.0（304 則），觀光協會、觀光三重有專頁，但個人心得少，有時間可以去",
         "winterFit": "以建物內參觀為主，但棟與棟之間走中庭；週二休館",
         "elderFit": "1 樓和中庭可以看，2 樓要爬樓梯；有輪椅可用廁所和休息處",
-        "kidsFit": "kids.friendly high（觀光三重親子遊記）",
+        "kidsFit": "觀光三重親子遊記",
         "accessEase": "伊勢市站步行約 15 分"
       },
       "confidence": "medium",
@@ -1468,7 +1468,7 @@
         "recommend": "Google 4.4 但只有 101 則、評的多是店舖；觀光協會、觀光三重有介紹，體驗本身好評",
         "winterFit": "室內體驗，12 月～1 月上旬暫停，2 月照常",
         "elderFit": "作業姿勢、階梯、廁所都沒有來源",
-        "kidsFit": "kids.friendly high：無刃刀，口碑有小學生自己完成",
+        "kidsFit": "無刃刀，口碑有小學生自己完成",
         "accessEase": "河崎本店伊勢市站步行約 15 分（15 人去下野工場要搭巴士）"
       },
       "confidence": "medium",
@@ -3055,7 +3055,7 @@
         "recommend": "評論數伊勢最多，但 Google 4.2 低於 S 的 4.4，評論說週末太擠；和內宮一起去的門前町",
         "winterFit": "戶外，但有冬季限定ぜんざい、甘酒和暖和的休息區，2/3 節分有鬼やらい",
         "elderFit": "石板路平坦、長椅和廁所多、可以借輪椅，但約 800 m 長、人多難走",
-        "kidsFit": "kids.friendly 是 null；評論說射的受小孩歡迎，但人多時不推薦帶小孩、太鼓會嚇到小小孩",
+        "kidsFit": "評論說射的受小孩歡迎，但人多時不推薦帶小孩、太鼓會嚇到小小孩",
         "accessEase": "五十鈴川站巴士約 8 分（「神宮会館前」下車），伊勢市站約 20 分"
       },
       "confidence": "medium",
@@ -3283,7 +3283,7 @@
         "recommend": "Google 4.4（9,387 則），內宮周邊僅次於內宮、おかげ横丁的參拜點；不是神宮本身，不到 S",
         "winterFit": "戶外神社，2 月照常；年末參拜要在冷天排隊（Google 1 則）",
         "elderFit": "巴士站下車就到、境內平坦沒有樓梯和坡道（Google 2 則），有參拜休憩所、公共廁所",
-        "kidsFit": "kids.friendly 是 null；可以餵子宝池的鯉魚、摸方位石，評論有小孩喜歡交通安全貼紙",
+        "kidsFit": "可以餵子宝池的鯉魚、摸方位石，評論有小孩喜歡交通安全貼紙",
         "accessEase": "伊勢市站搭往內宮的巴士約 15 分，「猿田彦神社前」下車即到"
       },
       "confidence": "medium",
@@ -3548,7 +3548,7 @@
         "recommend": "2026-07 開幕，Google 4.2（232 則）多半是改裝前的舊設施，改裝後只有約 2 則；觀光三重、觀光協會有介紹",
         "winterFit": "全室內、年中無休",
         "elderFit": "階梯、電梯、輪椅都沒有來源",
-        "kidsFit": "kids.friendly high：約 12 種互動體驗，4 歲～小學生是兒童票",
+        "kidsFit": "約 12 種互動體驗，4 歲～小學生是兒童票",
         "accessEase": "巴士「神宮会館前」下車步行 2 分（五十鈴川站約 8 分，伊勢市站約 20 分）"
       },
       "confidence": "low",
@@ -4017,7 +4017,7 @@
         "recommend": "Google 4.2（4,072 則），但評論說設施老舊、要看天氣；伊勢的門檻下（4 星要 5,000 則以上）是 3",
         "winterFit": "晴天看得遠，但冬天強風、有積雪封路的紀錄（Google 多則）",
         "elderFit": "停車場到足湯、展望台要爬一段樓梯，有長椅、足湯可以坐",
-        "kidsFit": "kids.friendly medium：天空のポスト、足湯、さんぽ道",
+        "kidsFit": "天空のポスト、足湯、さんぽ道",
         "accessEase": "平日沒有巴士，計程車約 30 分（土日祝參宮巴士）"
       },
       "confidence": "medium",
@@ -4237,7 +4237,7 @@
         "recommend": "Google 4.1 只有 30 則、じゃらん 3.8（11 則），觀光協會有介紹；評論少，最多 3",
         "winterFit": "2 月是產季、在溫室內，但只開週六日、2027 日程未公布",
         "elderFit": "是不是高設栽培（站著採）沒有來源",
-        "kidsFit": "kids.friendly high：吃到飽的採草莓，口コミ說小孩很開心",
+        "kidsFit": "吃到飽的採草莓，口コミ說小孩很開心",
         "accessEase": "近鐵小俣站步行約 14 分（路線估算）"
       },
       "confidence": "low",
@@ -4498,7 +4498,7 @@
         "recommend": "Google 3.5（46 則）是伊勢景點最低；心得有金具費事前沒說清楚的抱怨",
         "winterFit": "室內、全年舉辦，但不定休",
         "elderFit": "座位、階梯、無障礙都沒有來源",
-        "kidsFit": "kids.friendly high：小學 1 年級以上可參加，有家族參加的好評",
+        "kidsFit": "小學 1 年級以上可參加，有家族參加的好評",
         "accessEase": "JR 五十鈴ケ丘站步行 5 分（JR，不能用近鐵 5 日券）"
       },
       "confidence": "low",
@@ -4968,7 +4968,7 @@
         "accessEase": 3
       },
       "rationale": {
-        "recommend": "冷門的小資料館，Google 1 則、心得 0 篇；觀光三重有介紹和 2020 年特集 → 2（同鳥羽 亂步館）",
+        "recommend": "冷門的小資料館，Google 1 則、心得 0 篇；觀光三重有介紹和 2020 年特集",
         "winterFit": "室內、全年無休；2 月沒有特別的資料",
         "elderFit": "階梯、坡道、座位沒有來源",
         "kidsFit": "沒有小孩相關的描述（只有啤酒試飲限大人）",

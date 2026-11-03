@@ -47,19 +47,12 @@ export function userSubtitle(p: Place, members: Member[]): string {
   return `${memberName(members, p.user?.author)} 加的`;
 }
 
-/** 地區・小區域・★ 的文字（第二行、照片牆下面那行用） */
+/** 小區域（沒有就地區）的文字（第二行、照片牆下面那行用）。評分（★）只在詳情（T44b） */
 export function placeMetaText(place: Place, areas: Area[]): string {
-  // 自己加的點沒有評分
-  const user = isUserPlace(place);
   const area = areas.find((a) => a.id === place.area);
   const region = area?.regions?.find((r) => r.id === place.region);
-  const r = (place.raw.ratings ?? {}) as Record<string, unknown>;
-  const parts: string[] = [];
-  if (region) parts.push(displayName(region.name, region.id));
-  else if (area) parts.push(displayName(area.name, area.id));
-  if (user) return parts.join('・');
-  if (typeof r.google === 'number') parts.push(`★ ${r.google}`);
-  else if (typeof r.tabelog === 'number') parts.push(`食べログ ${r.tabelog}`);
-  return parts.join('・');
+  if (region) return displayName(region.name, region.id);
+  if (area) return displayName(area.name, area.id);
+  return '';
 }
 
