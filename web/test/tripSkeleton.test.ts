@@ -3,7 +3,7 @@ import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { setDayArea, setLodging, setNightArea } from '@travel-helper/engine';
 import type { Itinerary } from '@travel-helper/engine/types';
-import { dayRegions, nightLine, nightsDecided, nightsPerArea, skeletonRows, whereLabel, placeAreaOf } from '../src/lib/tripSkeleton.ts';
+import { dayRegions, nightLine, nightsDecided, nightsPerArea, nightsPerAreaDiff, skeletonDiff, skeletonRows, whereLabel, placeAreaOf } from '../src/lib/tripSkeleton.ts';
 import type { Area, Place } from '../src/data/types.ts';
 import { itin, placeWith } from './helpers.ts';
 import { areaColor, areaTint } from '../src/lib/areas.ts';
@@ -112,4 +112,36 @@ test('地區的顏色照 areas 的順序；找不到是灰、白', () => {
   assert.equal(areaColor(AREAS, 'toba'), '#3d6a22');
   assert.equal(areaColor(AREAS, null), '#a3a9b8');
   assert.equal(areaTint(AREAS, 'nope'), '#ffffff');
+});
+
+test('看提議（T48）：骨架照提議之後畫，有變的格子給舊值；沒變的列不列', () => {
+  const before = sample();
+  let after = before;
+  for (const d of [9, 10, 11]) after = setNightArea(after, D(d), 'ise');
+  after = setLodging(after, D(3), 'toba-inn', null, 'toba');
+  const rowsAfter = skeletonRows({ itinerary: after, areas: AREAS, byId });
+  const diff = skeletonDiff(rowsAfter, skeletonRows({ itinerary: before, areas: AREAS, byId }), AREAS);
+  // 2/9～2/11 原本沒決定 → 伊勢
+  assert.deepEqual(diff.get(D(9)), { where: { before: null }, stay: { before: '選住哪一區' } });
+  assert.equal(rowsAfter.find((r) => r.date === D(9))!.nightArea, 'ise');
+  // 2/3 志摩只定區 → 鳥羽國際飯店：這晚的住宿、2/3 和 2/4 在哪一區都變了
+  assert.deepEqual(diff.get(D(3))?.stay, { before: '志摩・還沒選住宿' });
+  assert.equal(diff.get(D(3))?.where?.before, '志摩');
+  assert.equal(diff.get(D(4))?.where?.before, '志摩 → 鳥羽');
+  assert.equal(diff.get(D(4))?.stay, undefined);
+  // 沒變的
+  assert.equal(diff.has(D(5)), false);
+  assert.equal(diff.has(D(13)), false);
+});
+
+test('看提議（T48）：地圖的晚數照提議之後算，晚數有變的區標 changed', () => {
+  const before = sample();
+  let after = before;
+  for (const d of [9, 10, 11]) after = setNightArea(after, D(d), 'ise');
+  assert.deepEqual(nightsPerAreaDiff(after, before, AREAS, byId), [
+    { area: 'shima', nights: 2, changed: false },
+    { area: 'toba', nights: 3, changed: false },
+    { area: 'ise', nights: 3, changed: true },
+    { area: 'kix', nights: 1, changed: false },
+  ]);
 });

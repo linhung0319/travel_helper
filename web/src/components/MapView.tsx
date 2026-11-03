@@ -15,7 +15,7 @@ import { appStore } from '../store.ts';
 import { dataStore } from '../dataStore.ts';
 import { DESKTOP_QUERY, useApp, useCanHover, useData, useIsDesktop, usePlan, useShared, useUi } from '../hooks.ts';
 import { areaColor, initialExtent, MAP_MIN_ZOOM, mapMaxBounds } from '../lib/areas.ts';
-import { nightsPerArea } from '../lib/tripSkeleton.ts';
+import { nightsPerArea, nightsPerAreaDiff } from '../lib/tripSkeleton.ts';
 import { areaFocusShape, DETAIL_ZOOM, isMinorOnMap, shapeLabelAt } from '../lib/mapLayers.ts';
 import { displayName } from '../data/normalize.ts';
 import { currentArea, exploreStage } from '../lib/shelves.ts';
@@ -960,6 +960,7 @@ export function MapView() {
   }, [loaded, itinerary, plan, byId, day, routesVersion, tripFocusDay, mode]);
 
   // 整趟時各區的晚數（T45b §19.4）：在那區的中心放「鳥羽 3 晚」，框是那區的顏色；沒住的區不放。網頁只在行程分頁，手機的地圖只在行程分頁出現
+  // 看提議時照提議之後的行程算，晚數有變的區芥子黃框（T48）
   const areasAll = useData((s) => s.areas);
   useEffect(() => {
     if (!loaded) return;
@@ -967,11 +968,12 @@ export function MapView() {
     areaNightsRef.current.forEach((m) => m.remove());
     areaNightsRef.current = [];
     if (day !== 'all' || !itinerary || (desktop && mode !== 'map')) return;
-    areaNightsRef.current = nightsPerArea(itinerary, areasAll, byId).flatMap(({ area, nights }) => {
+    const list = proposal ? nightsPerAreaDiff(proposal.itinerary, itinerary, areasAll, byId) : nightsPerArea(itinerary, areasAll, byId).map((x) => ({ ...x, changed: false }));
+    areaNightsRef.current = list.flatMap(({ area, nights, changed }) => {
       const a = areasAll.find((x) => x.id === area);
       if (!a) return [];
       const el = document.createElement('div');
-      el.className = 'area-nights-label';
+      el.className = changed ? 'area-nights-label changed' : 'area-nights-label';
       el.dataset.area = area;
       el.dataset.testid = 'area-nights-label';
       el.style.setProperty('--area', areaColor(areasAll, area));
@@ -980,7 +982,7 @@ export function MapView() {
       el.append(b, ` ${nights} 晚`);
       return [new Marker({ element: el }).setLngLat(a.center).addTo(map)];
     });
-  }, [loaded, itinerary, areasAll, byId, day, mode, desktop]);
+  }, [loaded, itinerary, proposal, areasAll, byId, day, mode, desktop]);
 
   // 交通時間的小標籤（在路線中點）不蓋住編號：和編號的圈、選中水滴旁邊的名稱重疊的，先藏起來（地圖移動、縮放時重算）
   useEffect(() => {

@@ -3,7 +3,8 @@ import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { createStore } from 'zustand/vanilla';
 import { createAppStore } from '../src/store.ts';
-import { createCommands } from '../src/commands.ts';
+import { createCommands, proposalTarget } from '../src/commands.ts';
+import { setNightArea } from '@travel-helper/engine';
 import type { DataState } from '../src/dataStore.ts';
 import { normalizePlace } from '../src/data/normalize.ts';
 import { EMPTY_FILTER } from '../src/lib/filter.ts';
@@ -30,6 +31,8 @@ const PLACES = [
   place('c', [136.8, 34.3], { area: 'south' }),
   place('r15', [136.81, 34.5], { type: 'restaurant', group: { fit15: 'yes' }, contexts: ['lunch'] }),
   place('r-small', [136.81, 34.49], { type: 'restaurant', group: { fit15: 'no' } }),
+  place('inn-n', [136.8, 34.5], { type: 'lodging' }),
+  place('inn-s', [136.8, 34.3], { type: 'lodging', area: 'south' }),
 ];
 
 function setup(itinerary: Itinerary | null = itin({ '2027-02-05': ['a', 'b'] })) {
@@ -244,6 +247,59 @@ test('showProposal：算出改動、只有一天時切到那天；格式不對�
 
   cmd.clearProposal();
   assert.equal(app.getState().proposal, null);
+});
+
+test('proposalTarget（T48）：只動 1 天的點 → 那天；2 天以上、改區、改住宿 → 整趟', () => {
+  const D = '2027-02-05';
+  assert.equal(proposalTarget([{ kind: 'added', date: D, place: 'a' }], [D]), D);
+  assert.equal(proposalTarget([{ kind: 'added', date: D, place: 'a' }, { kind: 'removed', date: '2027-02-06', place: 'b' }], [D, '2027-02-06']), 'all');
+  assert.equal(proposalTarget([{ kind: 'night-area', date: D, before: null, after: 'north' }], [D]), 'all');
+  assert.equal(proposalTarget([{ kind: 'lodging', date: D, before: null, after: 'inn' }], [D]), 'all');
+  // 一日遊（這天在哪一區）是單天的事
+  assert.equal(proposalTarget([{ kind: 'day-area', date: D, before: null, after: 'south' }], [D]), D);
+});
+
+test('showProposal（T48）：在 2/5 收到 2/9～2/12 只改區的提議 → 跳到整趟，相機框住牽涉到的區', () => {
+  const base = itin({ '2027-02-05': ['a'], '2027-02-09': [], '2027-02-10': [], '2027-02-11': [], '2027-02-12': [] });
+  const { app, cmd } = setup(base);
+  app.getState().selectDay('2027-02-05');
+  let proposed = base;
+  for (const d of ['2027-02-09', '2027-02-10', '2027-02-11']) proposed = setNightArea(proposed, d, 'south');
+  const r = cmd.showProposal(proposed, { summary: '2/9～2/12 住南區' });
+  assert.ok(r.ok);
+  assert.equal(app.getState().day, 'all');
+  assert.deepEqual(app.getState().camera?.bbox, [136.7, 34.25, 136.9, 34.35]);
+});
+
+test('showProposal（T48）：動到 2 天的點 → 整趟；編輯中留在原本那天；navigate: false 不換天', () => {
+  const base = itin({ '2027-02-05': ['a', 'b'], '2027-02-06': ['c'] });
+  const { app, cmd } = setup(base);
+  app.getState().selectDay('2027-02-05');
+  const two = itin({ '2027-02-05': ['a'], '2027-02-06': ['c', 'b'] });
+  assert.ok(cmd.showProposal(two, { summary: '換天' }).ok);
+  assert.equal(app.getState().day, 'all');
+
+  app.getState().selectDay('2027-02-05');
+  app.getState().setPlanning(true);
+  assert.ok(cmd.showProposal(two, { summary: '換天' }).ok);
+  assert.equal(app.getState().day, '2027-02-05');
+  assert.equal(app.getState().planning, true);
+
+  app.getState().setPlanning(false);
+  const seq = app.getState().camera?.seq;
+  assert.ok(cmd.showProposal(two, { summary: '換天', navigate: false }).ok);
+  assert.equal(app.getState().day, '2027-02-05');
+  assert.equal(app.getState().camera?.seq, seq);
+});
+
+test('showProposal（T48）：改住宿 → 整趟，相機框住新舊住宿', () => {
+  const base = itin({ '2027-02-05': ['a'], '2027-02-06': [] }, { '2027-02-05': 'inn-n' });
+  const { app, cmd } = setup(base);
+  app.getState().selectDay('2027-02-05');
+  const proposed = itin({ '2027-02-05': ['a'], '2027-02-06': [] }, { '2027-02-05': 'inn-s' });
+  assert.ok(cmd.showProposal(proposed).ok);
+  assert.equal(app.getState().day, 'all');
+  assert.deepEqual(app.getState().camera?.bbox, [136.8, 34.3, 136.8, 34.5]);
 });
 
 test('showProposal：還沒有確定的行程時，有排東西的天都算提議', () => {

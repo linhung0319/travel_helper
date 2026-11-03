@@ -1,7 +1,8 @@
 // 整趟的直的骨架（T45b，interaction-design §19.1）：網頁右欄、手機、iPad 共用同一份直的清單。
 // 第一列、最後一列是航班；中間一天一列：左邊地區色帶（連住同一區連成一段，還沒決定是虛線）、日期、這天在哪一區（第二行小字是子地區）、
 // 右邊那晚的住宿（「鳥羽國際飯店 ✓」「志摩・還沒選住宿」、虛線的「選住哪一區」）。景點名稱不出現，要看去單天。
-// 點一列進那一天；點住宿欄（還沒選住宿的）在下面展開地區按鈕選這晚住哪一區（AreaPicker）。有提議時那天變色、列出變動。警告不放這裡（單天的摘要列、網頁日期晶片的紅點有）。
+// 點一列進那一天；點住宿欄（還沒選住宿的）在下面展開地區按鈕選這晚住哪一區（AreaPicker）。警告不放這裡（單天的摘要列、網頁日期晶片的紅點有）。
+// 有提議時那天變色、列出變動；看提議（proposalView 是 diff）時整份用提議之後的行程畫，有變的格子芥子黃框、旁邊劃掉舊值（T48）；切到「原本」畫確定的行程。
 
 import { setNightArea } from '@travel-helper/engine';
 import { useMemo, useState } from 'react';
@@ -9,11 +10,11 @@ import type { CSSProperties } from 'react';
 import { commands } from '../../appCommands.ts';
 import { shared } from '../../appShared.ts';
 import { dataStore } from '../../dataStore.ts';
-import { useApp, useData, useShared } from '../../hooks.ts';
+import { useApp, useData, useShared, useUi } from '../../hooks.ts';
 import { areaColor, areaTint } from '../../lib/areas.ts';
 import { areaNameIn, describeChanges } from '../../lib/overlays.ts';
 import { isRedDay, shortDayLabel, weekdayZh } from '../../lib/trip.ts';
-import { areaNameOf, nightsDecided, placeAreaOf, skeletonRows, type SkeletonRow } from '../../lib/tripSkeleton.ts';
+import { areaNameOf, nightsDecided, placeAreaOf, skeletonDiff, skeletonRows, type SkeletonRow, type SkeletonRowDiff } from '../../lib/tripSkeleton.ts';
 import { nightAreaOf } from '@travel-helper/engine';
 import type { Itinerary } from '@travel-helper/engine/types';
 import type { Area } from '../../data/types.ts';
@@ -69,7 +70,27 @@ function flightLine(it: Itinerary, date: string | undefined, dir: 'arrive' | 'de
   return dir === 'arrive' ? `${times.join('／')} 到關西` : `${times.join('／')} 起飛`;
 }
 
-function StayCell({ row, areas, open, onToggle }: { row: SkeletonRow; areas: Area[]; open: boolean; onToggle: () => void }) {
+/** 有變的格子劃掉的舊值（原本空的寫「未定」） */
+const Old = ({ text }: { text: string | null }) => (
+  <s className="ui-sk-old" data-testid="sk-old">
+    {text ?? '未定'}
+  </s>
+);
+
+type StayProps = { row: SkeletonRow; areas: Area[]; open: boolean; onToggle: () => void; readOnly: boolean };
+
+/** 住宿欄；看提議時有變的那格芥子黃框，下面劃掉舊值 */
+function StayCell({ diff, ...props }: StayProps & { diff?: SkeletonRowDiff['stay'] }) {
+  if (!diff) return <StayButton {...props} />;
+  return (
+    <span className="ui-sk-stay-col changed" data-testid="sk-stay-changed">
+      <StayButton {...props} />
+      <Old text={diff.before} />
+    </span>
+  );
+}
+
+function StayButton({ row, areas, open, onToggle, readOnly }: StayProps) {
   const s = row.stay;
   if (!s) return <span className="ui-sk-stay empty" />;
   const name = areaNameOf(areas);
@@ -87,7 +108,7 @@ function StayCell({ row, areas, open, onToggle }: { row: SkeletonRow; areas: Are
   }
   const style = s.kind === 'area' ? ({ '--area': areaColor(areas, s.area), '--area-tint': areaTint(areas, s.area) } as CSSProperties) : undefined;
   return (
-    <button type="button" className={`ui-sk-stay ${s.kind}`} style={style} aria-expanded={open} onClick={onToggle} data-testid="sk-stay" data-stay={s.kind}>
+    <button type="button" className={`ui-sk-stay ${s.kind}`} style={style} aria-expanded={open} onClick={onToggle} disabled={readOnly} data-testid="sk-stay" data-stay={s.kind}>
       <span className="ui-sk-stay-name">{s.kind === 'area' ? `${name(s.area)}・還沒選住宿` : '選住哪一區'}</span>
     </button>
   );
@@ -98,6 +119,7 @@ export function TripSkeleton() {
   const byId = useData((s) => s.byId);
   const areas = useData((s) => s.areas);
   const proposal = useApp((s) => s.proposal);
+  const view = useUi((s) => s.proposalView);
   const reservations = useShared((s) => s.reservations);
   const [openDate, setOpenDate] = useState<string | null>(null);
   const changes = useMemo(() => {
@@ -107,12 +129,16 @@ export function TripSkeleton() {
   }, [proposal, byId, areas]);
   if (!itinerary) return null;
   const booked = (placeId: string, date: string) => reservations.some((r) => r.placeId === placeId && r.date === date && r.status === 'booked');
-  const rows = skeletonRows({ itinerary, areas, byId, booked });
-  const { total, decided } = nightsDecided(itinerary, byId);
-  const arrive = flightLine(itinerary, itinerary.days[0]?.date, 'arrive');
-  const depart = flightLine(itinerary, itinerary.days.at(-1)?.date, 'depart');
+  // 看提議：畫提議之後的行程，和確定的比出有變的格子；這時住宿欄不能選區（選了是改確定的行程）
+  const proposed = proposal && view === 'diff' ? proposal.itinerary : null;
+  const shown = proposed ?? itinerary;
+  const rows = skeletonRows({ itinerary: shown, areas, byId, booked });
+  const diffs = proposed ? skeletonDiff(rows, skeletonRows({ itinerary, areas, byId, booked }), areas) : new Map<string, SkeletonRowDiff>();
+  const { total, decided } = nightsDecided(shown, byId);
+  const arrive = flightLine(shown, shown.days[0]?.date, 'arrive');
+  const depart = flightLine(shown, shown.days.at(-1)?.date, 'depart');
   return (
-    <div className="ui-sk" data-testid="trip-skeleton">
+    <div className="ui-sk" data-testid="trip-skeleton" data-view={proposed ? 'proposal' : 'trip'}>
       <div className="ui-sk-head">
         <span className="ui-sk-title">整趟</span>
         <span className="ui-sk-count" data-testid="sk-count">
@@ -130,7 +156,8 @@ export function TripSkeleton() {
         {rows.map((r) => {
           const rail = r.rail;
           const railStyle = rail ? ({ '--area': areaColor(areas, rail.area) } as CSSProperties) : undefined;
-          const open = openDate === r.date;
+          const open = !proposed && openDate === r.date;
+          const diff = diffs.get(r.date);
           return (
             <li key={r.date} className={`ui-sk-row ${changes.has(r.date) ? 'proposed' : ''}`} data-date={r.date} data-testid="sk-row" data-area={r.nightArea ?? ''}>
               <span className={`ui-sk-rail ${rail ? `${rail.pos} ${rail.area ? '' : 'undecided'}` : 'none'}`} style={railStyle} aria-hidden />
@@ -140,9 +167,12 @@ export function TripSkeleton() {
                   <small>（{weekdayZh(r.date)}）</small>
                 </span>
                 <span className="ui-sk-where">
-                  <b className={r.where ? '' : 'muted'} data-testid="sk-where">
-                    {r.where ?? '還沒決定'}
-                  </b>
+                  <span className="ui-sk-where-line">
+                    <b className={`${r.where ? '' : 'muted'} ${diff?.where ? 'changed' : ''}`} data-testid="sk-where">
+                      {r.where ?? '還沒決定'}
+                    </b>
+                    {diff?.where && <Old text={diff.where.before} />}
+                  </span>
                   {r.regions.length > 0 && <small data-testid="sk-regions">{r.regions.join(' → ')}</small>}
                   {changes.has(r.date) && (
                     <span className="overview-change" data-testid="overview-change">
@@ -151,7 +181,7 @@ export function TripSkeleton() {
                   )}
                 </span>
               </button>
-              <StayCell row={r} areas={areas} open={open} onToggle={() => setOpenDate(open ? null : r.date)} />
+              <StayCell row={r} areas={areas} open={open} onToggle={() => setOpenDate(open ? null : r.date)} diff={diff?.stay} readOnly={!!proposed} />
               {open && (
                 <div className="ui-sk-pick">
                   <AreaPicker date={r.date} current={r.nightArea} onDone={() => setOpenDate(null)} />
