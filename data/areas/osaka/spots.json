@@ -191,9 +191,9 @@
       "rationale": {
         "recommend": "Google 4.4（87,136 則）→ 大阪門檻的 4（4.4 以上、2 萬則以上）；5 要 4.5 以上、5 萬則",
         "winterFit": "戶外街道，2 月照常；晚上河邊冷，冬天沒有加分",
-        "elderFit": "平地的街道、可以坐クルーズ；人潮多、休息座位沒有來源 → 4",
-        "kidsFit": "kids.friendly medium（招牌街景、20 分的船）→ 3",
-        "accessEase": "地鐵なんば駅出站即到（路線估算 5 分）→ 5"
+        "elderFit": "平地的街道、可以坐クルーズ；人潮多、休息座位沒有來源",
+        "kidsFit": "招牌街景、20 分的船",
+        "accessEase": "地鐵なんば駅出站即到（路線估算 5 分）"
       },
       "confidence": "medium",
       "assessed": "2026-10-26"
@@ -355,10 +355,10 @@
       },
       "rationale": {
         "recommend": "Google 4.1（21,338 則）→ 大阪門檻的 3（4 要 4.4 以上）",
-        "winterFit": "有頂棚的商店街，冬天、下雨也能逛 → 4",
-        "elderFit": "約 580 m 平地；通道窄、人多，休息座位沒有來源 → 4",
-        "kidsFit": "kids.friendly medium（邊走邊吃）→ 3",
-        "accessEase": "地鐵日本橋駅約 2 分（路線估算 3 分）→ 5"
+        "winterFit": "有頂棚的商店街，冬天、下雨也能逛",
+        "elderFit": "約 580 m 平地；通道窄、人多，休息座位沒有來源",
+        "kidsFit": "邊走邊吃",
+        "accessEase": "地鐵日本橋駅約 2 分（路線估算 3 分）"
       },
       "confidence": "medium",
       "assessed": "2026-10-26"
@@ -614,10 +614,10 @@
       },
       "rationale": {
         "recommend": "Google 4.5 但只有 5,908 則（大阪城的評論多半在公園、城本身的地點）→ 大阪門檻的 3（4 要 2 萬則以上）",
-        "winterFit": "館內是室內展示，2 月照常；但到天守閣要在戶外走 1.4 km → 4",
-        "elderFit": "1.4 km 上坡＋館內樓梯（行動不便者可以搭電梯）→ 2",
-        "kidsFit": "kids.friendly medium（微縮人偶、影像、展望台）→ 3",
-        "accessEase": "谷町四丁目駅 路線估算 20 分、上坡 → 3"
+        "winterFit": "館內是室內展示，2 月照常；但到天守閣要在戶外走 1.4 km",
+        "elderFit": "1.4 km 上坡＋館內樓梯（行動不便者可以搭電梯）",
+        "kidsFit": "微縮人偶、影像、展望台",
+        "accessEase": "谷町四丁目駅 路線估算 20 分、上坡"
       },
       "confidence": "medium",
       "assessed": "2026-10-26"
@@ -788,10 +788,10 @@
       },
       "rationale": {
         "recommend": "Google 4.3（1,596 則）→ 大阪門檻的 3",
-        "winterFit": "2 月中旬是賞梅季最熱鬧的時候（冬季才有）→ 5",
-        "elderFit": "戶外步行、附近有樓梯段要繞無障礙路線 → 3",
-        "kidsFit": "kids.friendly null；官方頁只有「找 6～9 片花瓣的梅花」→ 2",
-        "accessEase": "JR 大阪城公園駅 路線估算 14 分（官方沒寫分鐘）→ 4"
+        "winterFit": "2 月中旬是賞梅季最熱鬧的時候（冬季才有）",
+        "elderFit": "戶外步行、附近有樓梯段要繞無障礙路線",
+        "kidsFit": "官方頁只有「找 6～9 片花瓣的梅花」",
+        "accessEase": "JR 大阪城公園駅 路線估算 14 分（官方沒寫分鐘）"
       },
       "confidence": "medium",
       "assessed": "2026-10-26"
@@ -1055,10 +1055,10 @@
       },
       "rationale": {
         "recommend": "Google 4.1（44,245 則）→ 大阪門檻的 3（4 要 4.4 以上）",
-        "winterFit": "室內展望台，2 月照常；特別屋外展望台遇雨、強風會關 → 4",
-        "elderFit": "電梯到展望台、2F→3F 有一段螺旋樓梯 → 4",
-        "kidsFit": "kids.friendly high（TOWER SLIDER、ビリケン）→ 5",
-        "accessEase": "恵美須町駅 3 號出口 3 分（路線估算 5 分）→ 5"
+        "winterFit": "室內展望台，2 月照常；特別屋外展望台遇雨、強風會關",
+        "elderFit": "電梯到展望台、2FF 有一段螺旋樓梯",
+        "kidsFit": "TOWER SLIDER、ビリケン",
+        "accessEase": "恵美須町駅 3 號出口 3 分（路線估算 5 分）"
       },
       "confidence": "medium",
       "assessed": "2026-10-26"
@@ -1279,10 +1279,10 @@
       },
       "rationale": {
         "recommend": "Google 4.6（23,995 則）→ 大阪門檻的 4（4.4 以上、2 萬則以上）；5 要 5 萬則",
-        "winterFit": "全室內展望台、全年無休 → 5",
-        "elderFit": "車站直結、直達電梯；樓層間動線沒有來源 → 4",
-        "kidsFit": "kids.friendly medium（玻璃地板）→ 3",
-        "accessEase": "天王寺站即到（路線估算 3 分）→ 5"
+        "winterFit": "全室內展望台、全年無休",
+        "elderFit": "車站直結、直達電梯；樓層間動線沒有來源",
+        "kidsFit": "玻璃地板",
+        "accessEase": "天王寺站即到（路線估算 3 分）"
       },
       "confidence": "medium",
       "assessed": "2026-10-26"
@@ -1482,10 +1482,10 @@
       },
       "rationale": {
         "recommend": "Google 4.1（17,509 則）→ 大阪門檻的 3",
-        "winterFit": "2 月照常開園（週一休），大多戶外 → 3",
-        "elderFit": "約 11 ha 戶外園區，步行長；坡道、休息處沒有來源 → 3",
-        "kidsFit": "kids.friendly high（獅子、北極熊、企鵝）→ 5",
-        "accessEase": "OSAKA-INFO：動物園前駅 5 分（路線估算 13 分是到園區中心）→ 5"
+        "winterFit": "2 月照常開園（週一休），大多戶外",
+        "elderFit": "約 11 ha 戶外園區，步行長；坡道、休息處沒有來源",
+        "kidsFit": "獅子、北極熊、企鵝",
+        "accessEase": "OSAKA-INFO：動物園前駅 5 分（路線估算 13 分是到園區中心）"
       },
       "confidence": "medium",
       "assessed": "2026-10-26"
@@ -1718,10 +1718,10 @@
       },
       "rationale": {
         "recommend": "Google 4.4 但 13,343 則 → 大阪門檻的 3（4 要 2 萬則以上）",
-        "winterFit": "戶外寺院，2 月照常（16:00 關）；節分、大師会是活動不是冬季景色 → 3",
+        "winterFit": "戶外寺院，2 月照常（16:00 關）；節分、大師会是活動不是冬季景色",
         "elderFit": "階梯、坡道完全沒有來源 → null",
-        "kidsFit": "kids.friendly low（沒有兒童設施）→ 2",
-        "accessEase": "官網：四天王寺前夕陽ヶ丘駅 往南 5 分（路線估算 9 分）→ 5"
+        "kidsFit": "沒有兒童設施",
+        "accessEase": "官網：四天王寺前夕陽ヶ丘駅 往南 5 分（路線估算 9 分）"
       },
       "confidence": "medium",
       "assessed": "2026-10-26"
@@ -1970,10 +1970,10 @@
       },
       "rationale": {
         "recommend": "Google 4.5（62,627 則）→ 大阪門檻的 5（4.5 以上、5 萬則以上），大阪的代表景點",
-        "winterFit": "全室內，2 月照常（休館日在 1 月）→ 5",
-        "elderFit": "坡道為主、輪椅可參觀、有休息處；館內步行約 2 小時 → 4",
-        "kidsFit": "kids.friendly high（鯨鯊、餵食時間）→ 5",
-        "accessEase": "官網：大阪港駅 1 號出口約 5 分（路線估算 9 分）→ 5"
+        "winterFit": "全室內，2 月照常（休館日在 1 月）",
+        "elderFit": "坡道為主、輪椅可參觀、有休息處；館內步行約 2 小時",
+        "kidsFit": "鯨鯊、餵食時間",
+        "accessEase": "官網：大阪港駅 1 號出口約 5 分（路線估算 9 分）"
       },
       "confidence": "medium",
       "assessed": "2026-10-26"
@@ -2195,10 +2195,10 @@
       },
       "rationale": {
         "recommend": "Google 4.5 但 11,003 則 → 大阪門檻的 3（4 要 2 萬則以上）",
-        "winterFit": "坐在車廂內，不太受冷；天候不佳停駛 → 4",
-        "elderFit": "坐著 15 分、無障礙車廂可以坐輪椅上 → 5",
-        "kidsFit": "kids.friendly medium（透明車廂）→ 3",
-        "accessEase": "大阪港駅約 5 分（路線估算 8 分）→ 5"
+        "winterFit": "坐在車廂內，不太受冷；天候不佳停駛",
+        "elderFit": "坐著 15 分、無障礙車廂可以坐輪椅上",
+        "kidsFit": "透明車廂",
+        "accessEase": "大阪港駅約 5 分（路線估算 8 分）"
       },
       "confidence": "medium",
       "assessed": "2026-10-26"
@@ -2402,10 +2402,10 @@
       },
       "rationale": {
         "recommend": "Google 4.2（6,046 則）→ 大阪門檻的 3",
-        "winterFit": "全室內 → 5",
-        "elderFit": "無障礙、通道平坦 → 5（長輩要陪小孩才能進）",
-        "kidsFit": "kids.friendly high（3～10 歲為對象）→ 5",
-        "accessEase": "官網：大阪港駅 5 分（路線估算 8 分）→ 5"
+        "winterFit": "全室內",
+        "elderFit": "無障礙、通道平坦（長輩要陪小孩才能進）",
+        "kidsFit": "3～10 歲為對象",
+        "accessEase": "官網：大阪港駅 5 分（路線估算 8 分）"
       },
       "confidence": "medium",
       "assessed": "2026-10-26"
@@ -2663,10 +2663,10 @@
       },
       "rationale": {
         "recommend": "Google 4.5（156,808 則）→ 大阪門檻的 5，大阪評論數最多的代表景點",
-        "winterFit": "2 月照常營業，戶外排隊多、冬季活動到 1/17 → 3",
-        "elderFit": "整天園內步行、排隊，輪椅出租有限 → 2（可以安排中途休息或提早離園）",
-        "kidsFit": "kids.friendly high（6～10 歲能玩的設施多）→ 5",
-        "accessEase": "JR ユニバーサルシティ駅 路線估算 11 分（到園區中心，園門較近）；從難波要轉 1～2 次 → 4"
+        "winterFit": "2 月照常營業，戶外排隊多、冬季活動到 1/17",
+        "elderFit": "整天園內步行、排隊，輪椅出租有限（可以安排中途休息或提早離園）",
+        "kidsFit": "6～10 歲能玩的設施多",
+        "accessEase": "JR ユニバーサルシティ駅 路線估算 11 分（到園區中心，園門較近）；從難波要轉 1～2 次"
       },
       "confidence": "medium",
       "assessed": "2026-10-26"
@@ -2916,10 +2916,10 @@
       },
       "rationale": {
         "recommend": "Google 4.4 但 14,363 則 → 大阪門檻的 3（4 要 2 萬則以上）",
-        "winterFit": "室內展望台＋露天迴廊，2 月風大 → 4",
-        "elderFit": "高層電梯、無障礙路線；從車站要走 7～9 分 → 4",
-        "kidsFit": "kids.friendly medium（透明手扶梯、露天展望）→ 3",
-        "accessEase": "官網：地鐵梅田駅 5 號出口 9 分、JR 大阪駅 7 分（路線估算 13～16 分）→ 5"
+        "winterFit": "室內展望台＋露天迴廊，2 月風大",
+        "elderFit": "高層電梯、無障礙路線；從車站要走 7～9 分",
+        "kidsFit": "透明手扶梯、露天展望",
+        "accessEase": "官網：地鐵梅田駅 5 號出口 9 分、JR 大阪駅 7 分（路線估算 13～16 分）"
       },
       "confidence": "medium",
       "assessed": "2026-10-26"
@@ -3177,10 +3177,10 @@
       },
       "rationale": {
         "recommend": "Google 4.2（8,321 則）→ 大阪門檻的 3",
-        "winterFit": "全室內，但週二休 → 4（照鳥羽「室內但有週休」）",
-        "elderFit": "車站直結、電梯、輪椅出借；8F、9F 之間有沒有樓梯未寫 → 4",
-        "kidsFit": "kids.friendly medium（江戶街道、和服體驗）→ 3",
-        "accessEase": "天神橋筋六丁目駅 3 號出口直結 → 5"
+        "winterFit": "全室內，但週二休（照鳥羽「室內但有週休」）",
+        "elderFit": "車站直結、電梯、輪椅出借；8F、9F 之間有沒有樓梯未寫",
+        "kidsFit": "江戶街道、和服體驗",
+        "accessEase": "天神橋筋六丁目駅 3 號出口直結"
       },
       "confidence": "medium",
       "assessed": "2026-10-26"
