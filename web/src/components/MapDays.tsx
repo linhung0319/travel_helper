@@ -8,6 +8,8 @@ import { dayPlanOf } from '../planStore.ts';
 import { daySummary } from '../lib/planView.ts';
 import { dayLabel, isRedDay, shortDayLabel, tripDates, weekdayZh } from '../lib/trip.ts';
 
+import { DayAreaLine } from '../shared/ui/DayAreaLine.tsx';
+
 const DATES = tripDates();
 const NO_DATES: string[] = [];
 
@@ -43,6 +45,7 @@ export function MapDays() {
           >
             <b>{shortDayLabel(d)}</b>
             <small>{weekdayZh(d)}</small>
+          <DayAreaLine date={d} />
             {warned(d) && <i className="map-day-warn" data-testid="day-warn-dot" />}
           </button>
         ))}

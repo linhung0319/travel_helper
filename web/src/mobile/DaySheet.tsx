@@ -18,8 +18,8 @@ import { Icon } from '../components/Icon.tsx';
 import { openDialog } from '../uiStore.ts';
 import { cardTime, findItemRef, formatStay, needsStart, shownWarnings, stayNight, type TimelineRow } from '../lib/planView.ts';
 import { isRedDay, shortDayLabel } from '../lib/trip.ts';
-import { dayAreaName, dayTitle } from '../lib/dayTitle.ts';
-import { stopsOn } from '../lib/itinerary.ts';
+import { dayAreaTitle, dayTitle } from '../lib/dayTitle.ts';
+import { NightLine } from '../shared/ui/NightLine.tsx';
 import type { Place } from '../data/types.ts';
 import { DayBar, DaySummaryLine, GhostRow, useDayTimeline, useProposalDay, useRevealProposal, type DayTimeline } from '../components/Timeline.tsx';
 import { TimelineDiffContext, useEditing, useTimelineDiff } from '../components/timelineEdit.ts';
@@ -330,7 +330,7 @@ function DayView({ date }: { date: string }) {
   const byId = useData((s) => s.byId);
   const itinerary = useData((s) => s.itinerary);
   const areas = useData((s) => s.areas);
-  const title = dayTitle(date, dayAreaName(stopsOn(itinerary, date), byId, areas));
+  const title = dayTitle(date, dayAreaTitle(itinerary, date, byId, areas));
   const { itDay, plan } = tl;
   useRevealProposal(dayRef, date, !!shown, plan);
   const ctx: RowCtx = { tl, focused };
@@ -360,6 +360,11 @@ function DayView({ date }: { date: string }) {
           編輯
         </Button>
       </div>
+      )}
+      {!reallyPlanning && !shown && (
+        <div className="m-nightline">
+          <NightLine date={date} />
+        </div>
       )}
       {plan && (
         <div className="m-daysum">

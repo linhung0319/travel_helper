@@ -4196,3 +4196,292 @@ button.ll-main {
 .pd-more-body > .detail-section:first-child {
   border-top: 0;
 }
+
+/* ---------- 整趟的直的骨架（TripSkeleton，T45b，interaction-design §19.1）：網頁右欄、手機、iPad 同一份 ---------- */
+.ui-sk-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin: 4px 0 6px;
+}
+
+.ui-sk-title {
+  font-family: var(--font-round);
+  font-weight: 900;
+  font-size: 1rem;
+}
+
+.ui-sk-count {
+  font-size: 0.75rem;
+  color: var(--ink-2);
+}
+
+.ui-sk-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.ui-sk-row {
+  display: grid;
+  grid-template-columns: 6px minmax(0, 1fr) auto;
+  column-gap: 8px;
+  align-items: center;
+  min-height: 42px;
+  border-bottom: 1px solid var(--line);
+}
+
+.ui-sk-row.proposed {
+  background: var(--mustard-wash);
+}
+
+/* 左邊的地區色帶：連住同一區連成一段（一段的頭尾圓角、和下一段留一點空），還沒決定是虛線 */
+.ui-sk-rail {
+  align-self: stretch;
+  margin-bottom: -1px;
+  background: var(--area, var(--ink-3));
+}
+
+.ui-sk-rail.top {
+  margin-top: 5px;
+  border-radius: 999px 999px 0 0;
+}
+
+.ui-sk-rail.bot {
+  margin-bottom: 5px;
+  border-radius: 0 0 999px 999px;
+}
+
+.ui-sk-rail.one {
+  margin: 5px 0;
+  border-radius: 999px;
+}
+
+.ui-sk-rail.undecided {
+  background: repeating-linear-gradient(180deg, var(--ink-3) 0 4px, transparent 4px 8px);
+}
+
+.ui-sk-rail.none {
+  background: none;
+}
+
+.ui-sk-main {
+  display: grid;
+  grid-template-columns: 58px minmax(0, 1fr);
+  gap: 6px;
+  align-items: center;
+  min-width: 0;
+  min-height: 42px;
+  padding: 4px 0;
+  border: 0;
+  background: none;
+  color: var(--ink);
+  text-align: left;
+  cursor: pointer;
+}
+
+.ui-sk-date {
+  font-family: var(--font-num);
+  font-weight: 700;
+  font-size: 0.875rem;
+  white-space: nowrap;
+}
+
+.ui-sk-date small {
+  font-family: inherit;
+  font-weight: 400;
+  font-size: 0.6875rem;
+  color: var(--ink-2);
+}
+
+.ui-sk-date.red-day,
+.ui-sk-date.red-day small {
+  color: var(--red-day);
+}
+
+.ui-sk-where {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  line-height: 1.35;
+}
+
+.ui-sk-where b {
+  font-size: 0.875rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.ui-sk-where b.muted {
+  font-weight: 400;
+  color: var(--ink-3);
+}
+
+.ui-sk-where small {
+  font-size: 0.75rem;
+  color: var(--ink-2);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* 右邊那晚的住宿：選了住宿／只定區是這區的淡底，還沒決定是虛線框 */
+.ui-sk-stay {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  max-width: 11em;
+  min-height: 28px;
+  padding: 2px 9px;
+  border: 1px solid transparent;
+  border-radius: 999px;
+  background: var(--area-tint, var(--wash));
+  color: var(--area, var(--ink-2));
+  font-size: 0.75rem;
+  font-weight: 700;
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+.ui-sk-stay.empty {
+  background: none;
+  cursor: default;
+}
+
+.ui-sk-stay.none {
+  border: 1px dashed var(--ink-3);
+  background: var(--paper);
+  color: var(--ink-2);
+  font-weight: 400;
+}
+
+.ui-sk-stay-name {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.ui-sk-seal {
+  display: inline-grid;
+  place-items: center;
+  flex: none;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: var(--sakura-ink);
+  color: var(--paper);
+  font-size: 0.625rem;
+}
+
+.ui-sk-pick {
+  grid-column: 2 / -1;
+  padding: 0 0 8px;
+}
+
+.ui-sk-flight button {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  width: 100%;
+  min-height: 32px;
+  padding: 0 0 0 14px;
+  border: 0;
+  border-bottom: 1px solid var(--line);
+  background: none;
+  color: var(--ink-2);
+  font-size: 0.8125rem;
+  text-align: left;
+  cursor: pointer;
+}
+
+/* 選這晚住哪一區的按鈕（整趟展開、單天頂端） */
+.ui-area-picker {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.ui-area-btn {
+  min-height: 32px;
+  padding: 2px 12px;
+  border: 1px solid var(--area, var(--line));
+  border-radius: 999px;
+  background: var(--paper);
+  color: var(--area, var(--ink));
+  font-size: 0.8125rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.ui-area-btn.on {
+  background: var(--area);
+  color: var(--paper);
+}
+
+.ui-area-btn.clear {
+  border-color: var(--line);
+  color: var(--ink-2);
+  font-weight: 400;
+}
+
+/* 日期列每天下面的地區色線（手機 DayStrip、網頁 MapDays）：還沒決定是虛線，最後一天沒有 */
+.ui-day-area {
+  display: block;
+  align-self: stretch;
+  height: 3px;
+  margin: 2px 4px 0;
+  border-radius: 999px;
+  background: var(--area);
+}
+
+.ui-day-area.undecided {
+  background: repeating-linear-gradient(90deg, var(--ink-3) 0 3px, transparent 3px 6px);
+}
+
+.ui-day-area.none {
+  background: none;
+}
+
+/* 單天頂端的「鳥羽・第 2 晚／3」和住宿名；還沒決定區時問「這天要在哪一區？」 */
+.ui-night-line {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  min-width: 0;
+  font-size: 0.8125rem;
+  color: var(--ink-2);
+}
+
+.ui-night-line i {
+  flex: none;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--area);
+}
+
+.ui-night-line b {
+  color: var(--area);
+  white-space: nowrap;
+}
+
+.ui-night-line span {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.ui-night-ask {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 8px 10px;
+  border: 1px dashed var(--ink-3);
+  border-radius: 14px;
+}
+
+.ui-night-ask > b {
+  font-size: 0.8125rem;
+}

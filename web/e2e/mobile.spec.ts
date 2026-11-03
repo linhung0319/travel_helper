@@ -120,23 +120,16 @@ test('討論彈窗：標題只有一個，整趟沒有留言時有說明', async
   await expect(box.getByTestId('discuss-input')).toBeVisible();
 });
 
-test('整趟清單每天有縮圖就畫得出來', async ({ page }) => {
+test('整趟的骨架：排了點的天第二行是子地區，不放景點名稱和縮圖（T45b）', async ({ page }) => {
   await ready(page);
   await page.getByTestId('m-day-all').click();
-  const rows = page.getByTestId('m-overview-day');
+  const rows = page.getByTestId('sk-row');
   await expect(rows).toHaveCount(12);
-  // 有點的天（第 2～12 天裡排了景點或餐廳的）：縮圖是 img（載得到）或類型色塊，不是空白
   for (const date of ['2027-02-04', '2027-02-06']) {
-    const row = page.locator(`[data-testid="m-overview-day"][data-date="${date}"]`);
+    const row = page.locator(`[data-testid="sk-row"][data-date="${date}"]`);
     await row.scrollIntoViewIfNeeded();
-    const thumbs = row.locator('.m-thumb');
-    expect(await thumbs.count(), date).toBeGreaterThanOrEqual(1);
-    for (let i = 0; i < (await thumbs.count()); i++) {
-      const box = (await thumbs.nth(i).boundingBox())!;
-      expect(box.width, date).toBeGreaterThan(20);
-      expect(box.height, date).toBeGreaterThan(20);
-    }
-    await expect.poll(() => row.locator('img').evaluateAll((els) => els.filter((e) => (e as HTMLImageElement).naturalWidth > 0).length), { timeout: 15000 }).toBeGreaterThanOrEqual(1);
+    await expect(row.getByTestId('sk-regions'), date).toBeVisible();
+    expect(await row.locator('.m-thumb, img').count(), date).toBe(0);
   }
 });
 
@@ -492,7 +485,8 @@ test('行程：天數列一整行、每格寬、紅字', async ({ page }) => {
   // 選到的那格自己捲進畫面
   await pickDay(page, '2027-02-12');
   await expect(page.getByTestId('m-day-2027-02-12')).toBeInViewport({ ratio: 1 });
-  await expect(page.getByTestId('m-trip-title')).toContainText('2/12週五 · 關西機場周邊');
+  // T45b：這天在哪一區照每晚住哪推，2/11 住伊勢、2/12 住關西機場是移動日
+  await expect(page.getByTestId('m-trip-title')).toContainText('2/12週五 · 伊勢 → 關西機場周邊');
 });
 
 test('行程：卡片有縮圖和編號', async ({ page }) => {
@@ -591,11 +585,11 @@ test('全部：一天一列，點了跳到那天', async ({ page }) => {
   await ready(page);
   await page.getByTestId('m-day-all').click();
   await expect(page.getByTestId('m-day-all')).toHaveAttribute('aria-current', 'true');
-  const rows = page.getByTestId('m-overview-day');
+  const rows = page.getByTestId('sk-row');
   await expect(rows).toHaveCount(12);
   await expect(rows.nth(5).locator('.red-day')).toHaveCount(1);
-  await expect(rows.nth(1)).toContainText('2 個點');
-  await rows.nth(2).click();
+  await expect(rows.nth(1).getByTestId('sk-where')).toHaveText('志摩');
+  await rows.nth(2).getByTestId('sk-day').click();
   await expect(page.getByTestId('m-day-2027-02-04')).toHaveAttribute('aria-current', 'true');
   await expect(page.getByTestId('m-card').first()).toBeVisible();
   expect(await scrollsSideways(page)).toBe(false);

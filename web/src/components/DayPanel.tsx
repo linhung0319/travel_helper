@@ -2,21 +2,14 @@
 // 選「整趟」是整趟的總覽（每天排了什麼、幾個候選、警告）；選了某一天，最上面一列「日期、問 AI、討論、編輯」，編輯中換成墨色編輯條（日期、問 AI、討論、上一步、完成，T33），
 // 下面是摘要列（⚠ 點了展開提醒）、比例橫條（時間條）、時間軸（資料卡是類型的淡底色，起點、終點的住宿也是卡片）、這天的候選（想去「加到某天」的點）。預約、下載在右欄右上的頭像選單（MeMenu.tsx 的 AccountMenu）。
 
-import { lodgingOn } from '@travel-helper/engine';
-import { useMemo, useRef, useState } from 'react';
+import { useRef, useState } from 'react';
 import { TimelineSkeleton } from '../shared/ui/Skeleton.tsx';
-import { commands } from '../appCommands.ts';
 import { useApp, useData, useNeedPlan, usePlan, useShared, useUi } from '../hooks.ts';
-import { dayPlanOf } from '../planStore.ts';
-import { areaNameIn, describeChanges } from '../lib/overlays.ts';
-import { dayLabel, isRedDay, shortDayLabel, tripDates } from '../lib/trip.ts';
-import { flightCount, overviewRows } from '../lib/tripStart.ts';
-import { dayAreaName, dayTitle } from '../lib/dayTitle.ts';
-import { stopsOn } from '../lib/itinerary.ts';
+import { dayLabel, isRedDay } from '../lib/trip.ts';
+import { dayAreaTitle, dayTitle } from '../lib/dayTitle.ts';
 import { selectedBarKey, WARNING_ICONS } from '../lib/planView.ts';
 import { DayBar, DaySummaryLine, Timeline, useDayTimeline, useProposalDay, useRevealProposal } from './Timeline.tsx';
 import { DayCandidates } from './Wishlist.tsx';
-import { dayCandidates } from '../lib/wishlist.ts';
 import { EditHint, PlanningBar, PlanningToggle } from './Planning.tsx';
 import { MemberName, stamp } from './common.tsx';
 import { askDay, askEmptyDay, askStart, askTrip } from './webAi.ts';
@@ -25,33 +18,16 @@ import { Icon } from './Icon.tsx';
 import { DiscussButton } from '../shared/ui/DiscussButton.tsx';
 import { DayEmpty } from '../shared/ui/EmptyStates.tsx';
 import { StartCard } from '../shared/ui/StartCard.tsx';
+import { TripSkeleton } from '../shared/ui/TripSkeleton.tsx';
+import { NightLine } from '../shared/ui/NightLine.tsx';
 
-const DATES = tripDates();
-
+/** 整趟（T45b）：最上面「整趟行程」、問 AI、討論；下面是直的骨架（地區、子地區、住宿，shared/ui/TripSkeleton.tsx） */
 function Overview() {
-  const itinerary = useData((s) => s.itinerary);
-  const byId = useData((s) => s.byId);
-  const areas = useData((s) => s.areas);
   const plan = usePlan((s) => s.plan);
   const updatedBy = useShared((s) => s.updatedBy);
   const updatedAt = useShared((s) => s.updatedAt);
   const version = useShared((s) => s.version);
-  const candidates = useShared((s) => s.candidates);
   const proposal = useApp((s) => s.proposal);
-  const proposalLines = useMemo(() => {
-    if (!proposal) return new Map<string, string>();
-    const nameOf = (id: string) => byId.get(id)?.name.zh || byId.get(id)?.name.ja || id;
-    return new Map(describeChanges(proposal.changes, nameOf, areaNameIn(areas)).map((l) => [l.date, l.text.split('：').slice(1).join('：')]));
-  }, [proposal, byId, areas]);
-  const warnsOn = (d: string) => dayPlanOf(plan, d)?.warnings.filter((w) => w.level !== 'info').length ?? 0;
-  const rows = overviewRows(DATES, (d) => ({
-    stops: stopsOn(itinerary, d).some((s) => s.kind !== 'lodging' && s.kind !== 'flight'),
-    lodging: !!lodgingOn(itinerary, d),
-    flights: flightCount(itinerary, d),
-    candidates: dayCandidates(candidates, d, itinerary, byId).length,
-    warnings: warnsOn(d),
-    proposed: proposalLines.has(d),
-  }));
   return (
     <div className="day-panel" data-testid="day-panel">
       <div className="day-head">
@@ -70,58 +46,7 @@ function Overview() {
           <Icon name={WARNING_ICONS[w.level]} size={16} /> {w.message}
         </p>
       ))}
-      <ol className="overview">
-        {rows.map((r) => {
-          if (r.kind === 'empty') {
-            return (
-              <li key={r.from}>
-                <button type="button" className="overview-day overview-empty" onClick={() => commands.selectDay(r.from)} data-overview-day={r.from} data-testid="overview-empty">
-                  {shortDayLabel(r.from)}～{shortDayLabel(r.to)} 還沒排 · {r.count} 天
-                </button>
-              </li>
-            );
-          }
-          const d = r.date;
-          const flights = flightCount(itinerary, d);
-          const stops = stopsOn(itinerary, d).filter((s) => s.kind !== 'lodging' && s.kind !== 'flight');
-          const warn = warnsOn(d);
-          const lodging = lodgingOn(itinerary, d);
-          const lp = lodging ? byId.get(lodging) : null;
-          const cands = dayCandidates(candidates, d, itinerary, byId).length;
-          return (
-            <li key={d}>
-              <button type="button" className={`overview-day ${proposalLines.has(d) ? 'proposed' : ''}`} onClick={() => commands.selectDay(d)} data-overview-day={d}>
-                <span className={`overview-date ${isRedDay(d) ? 'red-day' : ''}`}>{dayLabel(d)}</span>
-                <span className="overview-stops">
-                  {stops.length ? stops.map((s) => byId.get(s.place)?.name.zh || byId.get(s.place)?.name.ja || s.place).join(' → ') : flights ? <span className="muted ic-text"><Icon name="plane" size={16} /> 航班 {flights} 筆</span> : <span className="muted">還沒排</span>}
-                  {lp && (
-                    <span className="muted small ic-text">
-                      <Icon name="bed" size={16} /> {lp.name.zh || lp.name.ja}
-                    </span>
-                  )}
-                  {proposalLines.has(d) && (
-                    <span className="overview-change" data-testid="overview-change">
-                      {proposalLines.get(d)}
-                    </span>
-                  )}
-                </span>
-                <span className="overview-flags">
-                  {cands > 0 && (
-                    <span className="badge ic-text">
-                      <Icon name="calendar" size={16} /> {cands}
-                    </span>
-                  )}
-                  {warn > 0 && (
-                    <span className="badge badge-warn ic-text">
-                      <Icon name="warn" size={16} /> {warn}
-                    </span>
-                  )}
-                </span>
-              </button>
-            </li>
-          );
-        })}
-      </ol>
+      <TripSkeleton />
     </div>
   );
 }
@@ -136,7 +61,7 @@ function DayHead({ day }: { day: string }) {
   const itinerary = useData((s) => s.itinerary);
   const byId = useData((s) => s.byId);
   const areas = useData((s) => s.areas);
-  const title = dayTitle(day, dayAreaName(stopsOn(itinerary, day), byId, areas));
+  const title = dayTitle(day, dayAreaTitle(itinerary, day, byId, areas));
   return (
     <div className="day-nav" data-testid="day-nav">
       <h3 className="day-title">
@@ -184,6 +109,7 @@ export function DayPanel() {
       />
       {/* 編輯中已經有編輯條；看提議的差異時不畫：按「編輯」提議的卡會不見，要編輯先按提議列的「看原本」 */}
       {!shown && !planning && <DayHead day={day} />}
+      {!shown && !planning && <NightLine date={day} />}
       {plan && (
         <div className="day-head">
           <DaySummaryLine plan={plan} warnOpen={warnOpen} reminders={dayWarnings.length} onWarn={() => setWarnOpen((o) => !o)} />

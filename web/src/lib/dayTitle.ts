@@ -2,7 +2,9 @@
 // 地區＝這天經過的點（不含機場、車站以外沒有地區的）最常出現的地區；平手取先出現的；沒有就不寫。
 
 import type { Area, Place } from '../data/types.ts';
-import type { DayStop } from './itinerary.ts';
+import type { Itinerary } from '@travel-helper/engine/types';
+import { stopsOn, type DayStop } from './itinerary.ts';
+import { placeAreaOf, whereLabel } from './tripSkeleton.ts';
 import { shortDayLabel, weekdayZh } from './trip.ts';
 
 export interface DayTitle {
@@ -33,4 +35,13 @@ export function dayAreaName(stops: DayStop[], byId: Map<string, Place>, areas: A
 export function dayTitle(date: string, areaName: string | null): DayTitle {
   const week = `週${weekdayZh(date)}`;
   return { date: shortDayLabel(date), week, area: areaName, short: [week, areaName].filter(Boolean).join(' · ') };
+}
+
+/**
+ * 標題用的地區（T45b）：先照每晚住哪一區推（「鳥羽」「志摩 → 鳥羽」「鳥羽（去伊勢一日）」），
+ * 還沒決定才照這天排了的點（dayAreaName）
+ */
+export function dayAreaTitle(it: Itinerary | null, date: string, byId: Map<string, Place>, areas: Area[]): string | null {
+  if (!it) return null;
+  return whereLabel(it, date, areas, placeAreaOf(byId)) ?? dayAreaName(stopsOn(it, date), byId, areas);
 }

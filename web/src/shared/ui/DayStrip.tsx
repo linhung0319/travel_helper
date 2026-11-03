@@ -7,6 +7,8 @@ import { commands } from '../../appCommands.ts';
 import { useApp } from '../../hooks.ts';
 import { isRedDay, shortDayLabel, tripDates, weekdayZh } from '../../lib/trip.ts';
 
+import { DayAreaLine } from './DayAreaLine.tsx';
+
 const DATES = tripDates();
 const NO_DATES: string[] = [];
 
@@ -47,6 +49,7 @@ export function DayStrip() {
         >
           <b>{shortDayLabel(d)}</b>
           <small>{weekdayZh(d)}</small>
+          <DayAreaLine date={d} />
         </button>
       ))}
     </div>
