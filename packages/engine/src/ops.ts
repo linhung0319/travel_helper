@@ -13,12 +13,16 @@ import {
   type Itinerary,
   type ItineraryItem,
   type LodgingMeals,
+  type Night,
+  type AreaId,
   type TagId,
   type PartyProfile,
   type TimeString,
   type TravelSpec,
   type VisitItem,
 } from './types.ts';
+
+const LODGING_MEALS: readonly LodgingMeals[] = ['dinner+breakfast', 'breakfast', 'none'];
 
 export class ItineraryError extends Error {
   override name = 'ItineraryError';
@@ -42,7 +46,8 @@ export function createItinerary(
   const it: Itinerary = {
     format: ITINERARY_FORMAT,
     party: opts.party ?? { size: 15, elders: 5, kids: 4 },
-    days: dateRange(from, to).map((date) => ({ date, lodging: null, lodgingMeals: null, start: null, note: null, items: [] })),
+    nights: {},
+    days: dateRange(from, to).map((date) => ({ date, start: null, note: null, items: [] })),
   };
   let n = 0;
   for (const f of flights) {
@@ -416,12 +421,40 @@ export function setTags(it: Itinerary, itemId: string, tags: TagId[]): Itinerary
   return next;
 }
 
-/** 把舊的 meal、dining 轉成 tags（meal: x → x；together → all；separate → groups）；沒有舊欄位就原樣回傳同一個物件 */
-export function upgradeItinerary(raw: Itinerary): Itinerary {
+type LegacyDay = Itinerary['days'][number] & { lodging?: string | null; lodgingMeals?: LodgingMeals | null };
+const legacyDay = (d: Itinerary['days'][number]) => 'lodging' in d || 'lodgingMeals' in d;
+
+/**
+ * 舊存檔升級；沒有舊欄位就原樣回傳同一個物件：
+ * - visit 的 meal、dining 轉成 tags（meal: x → x；together → all；separate → groups）
+ * - 每天的 lodging、lodgingMeals 搬到 nights（T45a）；areaOf 有給時順便寫區，沒給時區照住宿資料推（nightAreaOf）
+ */
+export function upgradeItinerary(raw: Itinerary, areaOf?: (placeId: string) => AreaId | null | undefined): Itinerary {
   const old = (i: ItineraryItem | GroupItem) => i.type === 'visit' && ('meal' in i || 'dining' in i);
-  const needs = raw.days.some((d) => d.items.some((i) => old(i) || (i.type === 'split' && i.groups.some((g) => g.items.some(old)))));
-  if (!needs) return raw;
+  const needsTags = raw.days.some((d) => d.items.some((i) => old(i) || (i.type === 'split' && i.groups.some((g) => g.items.some(old)))));
+  const needsNights = !raw.nights || raw.days.some(legacyDay);
+  if (!needsTags && !needsNights) return raw;
   const next = clone(raw);
+  if (needsNights) {
+    const nights: Record<DateString, Night> = next.nights ?? {};
+    next.days.forEach((d0, i) => {
+      const d = d0 as LegacyDay;
+      const isLast = i === next.days.length - 1;
+      if (!isLast && !nights[d.date] && (d.lodging || d.lodgingMeals)) {
+        const n: Night = {};
+        if (d.lodging) {
+          const a = areaOf?.(d.lodging);
+          if (a) n.area = a;
+          n.lodging = d.lodging;
+        }
+        if (d.lodgingMeals) n.meals = d.lodgingMeals;
+        nights[d.date] = n;
+      }
+      delete d.lodging;
+      delete d.lodgingMeals;
+    });
+    next.nights = nights;
+  }
   const fix = (i: ItineraryItem | GroupItem) => {
     if (i.type !== 'visit' || !('meal' in i || 'dining' in i)) return;
     const legacy = i as VisitItem & { meal?: TagId | null; dining?: string | null };
@@ -442,12 +475,62 @@ export function upgradeItinerary(raw: Itinerary): Itinerary {
   return next;
 }
 
-/** 設定這晚的住宿與方案 */
-export function setLodging(it: Itinerary, date: DateString, lodging: string | null, meals: LodgingMeals | null = null): Itinerary {
+function nightIndexOf(it: Itinerary, date: DateString): number {
+  const i = dayIndexOf(it, date);
+  if (i === it.days.length - 1) throw new ItineraryError(`${date} 是最後一天，沒有晚上`);
+  return i;
+}
+
+/** 寫回一晚；區、住宿、方案都空了就拿掉這晚 */
+function putNight(it: Itinerary, date: DateString, n: Night) {
+  const clean: Night = {};
+  if (n.area) clean.area = n.area;
+  if (n.lodging) clean.lodging = n.lodging;
+  if (n.meals) clean.meals = n.meals;
+  it.nights ??= {};
+  if (Object.keys(clean).length) it.nights[date] = clean;
+  else delete it.nights[date];
+}
+
+/**
+ * 設定這晚的住宿與方案（T45a 起存在 nights）。
+ * area：住宿的區，有給就寫進去；沒給（undefined）時留著原本的區。lodging 是 null 時只清住宿和方案，區留著
+ */
+export function setLodging(
+  it: Itinerary,
+  date: DateString,
+  lodging: string | null,
+  meals: LodgingMeals | null = null,
+  area?: AreaId | null,
+): Itinerary {
+  const next = clone(it);
+  nightIndexOf(next, date);
+  const cur = next.nights?.[date] ?? {};
+  putNight(next, date, { area: area === undefined ? cur.area : area, lodging, meals: lodging ? meals : null });
+  return next;
+}
+
+/**
+ * 設定這晚住哪一區（T45a）；null：還沒決定（住宿一起清掉）。
+ * 換到別區時住宿、方案清掉（住宿要在這區）。current 是這晚現在的區：沒寫 area、只選了住宿時由呼叫的人照住宿資料推（nightAreaOf）
+ */
+export function setNightArea(it: Itinerary, date: DateString, area: AreaId | null, current?: AreaId | null): Itinerary {
+  const next = clone(it);
+  nightIndexOf(next, date);
+  const cur = next.nights?.[date] ?? {};
+  const was = cur.area ?? current ?? null;
+  if (!area) putNight(next, date, {});
+  else if (area === was) putNight(next, date, { ...cur, area });
+  else putNight(next, date, { area });
+  return next;
+}
+
+/** 這天白天去哪一區（一日遊）；null：照前一晚和這晚推 */
+export function setDayArea(it: Itinerary, date: DateString, area: AreaId | null): Itinerary {
   const next = clone(it);
   const day = next.days[dayIndexOf(next, date)];
-  day.lodging = lodging;
-  day.lodgingMeals = meals;
+  if (area) day.dayArea = area;
+  else delete day.dayArea;
   return next;
 }
 
@@ -463,6 +546,20 @@ export function validateItinerary(it: unknown): string[] {
   const p = x.party;
   if (!p || ![p.size, p.elders, p.kids].every((n) => Number.isInteger(n) && n >= 0)) errs.push('party 要有 size、elders、kids（0 以上的整數）');
   if (!Array.isArray(x.days)) return [...errs, 'days 要是陣列'];
+  if (!x.nights || typeof x.nights !== 'object' || Array.isArray(x.nights)) errs.push('nights 要是物件（{ 日期: { area, lodging, meals } }）');
+  else {
+    const nightDays = new Set(x.days.slice(0, -1).map((d) => d?.date));
+    for (const [date, n] of Object.entries(x.nights)) {
+      const where = `nights.${date}`;
+      if (!nightDays.has(date)) errs.push(`${where}：不是行程裡有晚上的日期（最後一天沒有晚上）`);
+      if (!n || typeof n !== 'object') {
+        errs.push(`${where}：要是物件`);
+        continue;
+      }
+      for (const k of ['area', 'lodging'] as const) if (n[k] != null && (typeof n[k] !== 'string' || !n[k])) errs.push(`${where}：${k} 要是非空字串或 null`);
+      if (n.meals != null && !LODGING_MEALS.includes(n.meals)) errs.push(`${where}：meals 要是 ${LODGING_MEALS.join('、')} 或 null`);
+    }
+  }
   const ids = new Set<string>();
   const checkId = (id: unknown, where: string) => {
     if (typeof id !== 'string' || !id) errs.push(`${where}：缺 id`);
@@ -519,6 +616,8 @@ export function validateItinerary(it: unknown): string[] {
     else if (d.date <= prev) errs.push(`${where}：日期要依序、不重複`);
     else prev = d.date;
     checkTravel(d?.returnTravel, where);
+    if (d && typeof d === 'object' && legacyDay(d)) errs.push(`${where}：舊格式（住宿寫在 days 裡），請先 upgradeItinerary`);
+    if (d?.dayArea != null && (typeof d.dayArea !== 'string' || !d.dayArea)) errs.push(`${where}：dayArea 要是非空字串或 null`);
     if (!Array.isArray(d?.items)) errs.push(`${where}：items 要是陣列`);
     else d.items.forEach((i, k) => checkItem(i, `${where}第 ${k + 1} 項`, false));
   });

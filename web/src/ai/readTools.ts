@@ -1,6 +1,6 @@
 // 查資料的工具（規格 §4.1）：畫面不動。能算的交給引擎，資料沒寫就原樣回傳 null，不說成沒有。
 
-import { ItineraryError, bestInsertIndex, checkProposal, findItem, kintetsuDayType, busDayType, planItinerary, planLeg, type EngineData, type NewItem } from '@travel-helper/engine';
+import { ItineraryError, bestInsertIndex, checkProposal, findItem, kintetsuDayType, busDayType, lodgingMealsOn, lodgingOn, planItinerary, planLeg, type EngineData, type NewItem } from '@travel-helper/engine';
 import type { DayPlan, Itinerary, Leg, LonLat, TimelineEntry, TravelMode, TravelSpec } from '@travel-helper/engine/types';
 import type { ReservationStatus } from '../backend/types.ts';
 import { bookedConflicts, noteRows, reservationFor } from '../lib/reservations.ts';
@@ -167,11 +167,12 @@ export function createReadTools(d: AiDeps) {
   const compactDay = (date: string, p: DayPlan, it: Itinerary | null) => {
     const s = d.shared.store.getState();
     const day = it?.days.find((x) => x.date === date);
+    const lodging = it ? lodgingOn(it, date) : null;
     const cands = dayCandidates(s.candidates, date, it, places().byId);
     const confirmed = places().itinerary;
     return {
       date,
-      lodging: day?.lodging ? { id: day.lodging, name: nameOf(day.lodging), meals: day.lodgingMeals ?? null, ...marksOf(date, day.lodging) } : null,
+      lodging: lodging ? { id: lodging, name: nameOf(lodging), meals: lodgingMealsOn(it!, date), ...marksOf(date, lodging) } : null,
       entries: p.entries.map((e) => {
         const item = e.itemId && it ? findItem(it, e.itemId)?.item : null;
         return {
@@ -220,13 +221,13 @@ export function createReadTools(d: AiDeps) {
     return {
       ok: true,
       days: plan.days.map((p) => {
-        const day = it?.days.find((x) => x.date === p.date);
+        const lodging = it ? lodgingOn(it, p.date) : null;
         const stops = p.entries.filter((e) => e.kind === 'visit' && e.placeId);
         return {
           date: p.date,
           regions: [...new Set(stops.map((e) => places().byId.get(e.placeId!)?.region).filter(Boolean))],
           stops: stops.map((e) => ({ name: nameOf(e.placeId), ...marksOf(p.date, e.placeId) })),
-          lodging: day?.lodging ? { name: nameOf(day.lodging), ...marksOf(p.date, day.lodging) } : null,
+          lodging: lodging ? { name: nameOf(lodging), ...marksOf(p.date, lodging) } : null,
           warnings: p.warnings.length,
           candidates: dayCandidates(s.candidates, p.date, it, places().byId).length,
           tiring: p.stats.tiring,

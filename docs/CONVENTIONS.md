@@ -372,18 +372,24 @@ travel_helper/
 - **只有一份確定的行程**（2026-10-21）：12 天，一開始就放好航班當固定項目；不做方案。家人的建議、投票、使用者加的點不放在行程裡，另外存在資料庫（[architecture.md](architecture.md) §3.6、[interaction-design.md](interaction-design.md) §6）；「整趟」的建議取代原本草稿的 `wishlist`。
 - **時間一律是日本時間**：日期寫 `YYYY-MM-DD`、時間寫 `HH:MM` 字串（過了午夜寫 `25:00`），程式不轉成 `Date`、不做時區換算（architecture §3.8）。
 - 型別在 `packages/engine/src/types.ts`，操作、檢查在 `packages/engine`（T15、T16 共用）。存進資料庫的只有下面這份 JSON；交通、抵達和出發時間、空檔、警告都是引擎算出來的，**不存**。
-- 一開始的行程用 `createItinerary()` 產生；改行程一律用引擎的操作（`addItem`、`removeItem`、`moveItemToDay`、`moveItem`、`setStay`、`selectOption`、`addOption`、`removeOption`、`setStart`、`setTravel`、`setLegTravel`、`setTags`、`setLodging`），不要直接改 JSON；讀到舊存檔先跑 `upgradeItinerary()`（舊的 `meal`、`dining` 轉成 tags）；收到外部的 JSON（PUT、匯入）先跑 `validateItinerary()`。
+- 一開始的行程用 `createItinerary()` 產生；改行程一律用引擎的操作（`addItem`、`removeItem`、`moveItemToDay`、`moveItem`、`setStay`、`selectOption`、`addOption`、`removeOption`、`setStart`、`setTravel`、`setLegTravel`、`setTags`、`setLodging`、`setNightArea`、`setDayArea`），不要直接改 JSON；讀到舊存檔先跑 `upgradeItinerary()`（舊的 `meal`、`dining` 轉成 tags；T45a 之前每天的 `lodging`、`lodgingMeals` 搬到 `nights`）；收到外部的 JSON（PUT、匯入）先跑 `validateItinerary()`（`days` 裡還有 `lodging`、`lodgingMeals` 的是舊格式，不收）。
 
 ```jsonc
 {
   "format": "itinerary-v1",
   "seq": 12,                                         // 最後用掉的項目流水號；刪掉的 ID 不再重用（引擎維護）
   "party": { "size": 15, "elders": 5, "kids": 4 },   // 全員的組成：檢查用（步行係數、坐不坐得下、不接小孩的店）
+  "nights": {                                        // 每晚住哪（T45a，2026-11-03）：key 是入住那天；最後一天沒有晚上；沒定的晚上不寫
+    "2027-02-02": { "area": "shima" },                                    // 只定了區 → 空檔「住宿（未排）」
+    "2027-02-05": { "area": "toba", "lodging": "toba-todaya", "meals": null }
+    // area：住哪一區（areas.json 的 ID）；省略而 lodging 有填時照住宿資料的 area（舊行程升級上來的就是這樣）
+    // lodging：住宿的資料點 ID，要在 area 這區（不在時引擎警告 lodging-area-mismatch）；省略＝還沒選
+    // meals：這晚的方案 dinner+breakfast | breakfast | none；省略＝照住宿資料的 meals（meals 是 "varies" 的要填）
+  },
   "days": [                                          // 固定 12 天，2027-02-02～02-13，依日期排序
     {
       "date": "2027-02-05",
-      "lodging": "toba-todaya",      // 這晚住哪裡；null＝還沒排 → 空檔「住宿（未排）」；最後一天是 null
-      "lodgingMeals": null,          // 這晚的方案：dinner+breakfast | breakfast | none；null＝照住宿資料的 meals（meals 是 "varies" 的要填）
+      "dayArea": null,               // 白天去哪一區（一日遊）：只用在住一區、白天去另一區；省略＝照前一晚和這晚推
       "start": null,                 // 這天從哪裡出發；null＝前一晚的住宿
       "returnTravel": null,          // 回住宿那段的交通設定（格式同 visit 的 travel）；省略或 null＝引擎依規則選
       "note": null,
@@ -392,6 +398,8 @@ travel_helper/
   ]
 }
 ```
+
+**一天在哪一區用推的**（`dayAreaOf`、`dayAreaLabel`）：前一晚和這晚同區就是那區（「鳥羽」）；不同區是移動日（「志摩 → 鳥羽」）；寫了 `dayArea` 是一日遊（「鳥羽（去伊勢一日）」）。第一天沒有前一晚，用這晚的；最後一天沒有這晚，用前一晚的；有一晚還沒定就不寫。連住第幾晚用 `nightRunOf`（同一間住宿、或同一區）。住宿卡（時間軸的起點、終點）從 `nights` 畫。
 
 **資料卡不能是車站**（T29c）：`visit` 選項的地點 `type` 是 `station` 時，引擎報 `station-card` 錯誤（「資料卡不能是車站（{placeId}）」）；車站是交通的端點，不是去玩的點。檢查放在 `planItinerary` 的 `placeChecks`（`validateItinerary` 拿不到地點資料）。
 

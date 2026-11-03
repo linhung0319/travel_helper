@@ -2,6 +2,7 @@
 // 每組一列（用餐、誰去、安排；誰去互斥），點了立刻存、面板不關（存檔中先不能點，不然下一下會被擋掉）；分組和規則讀 shared/tagOptions.ts，存檔用 ItemTags.tsx 的 toggleVisitTag。
 // 回住宿那張宿的卡只有一組「這晚的方案」（三選一、再點一下＝照住宿資料），存檔用 pickLodgingPlan。
 
+import { lodgingMealsOn } from '@travel-helper/engine';
 import type { CSSProperties } from 'react';
 import { useData, useShared } from '../hooks.ts';
 import { Icon } from '../components/Icon.tsx';
@@ -48,7 +49,7 @@ export function TagSheet({ itemId }: { itemId: string }) {
 
 /** 這晚的方案：三選一，再點選了的那個＝照住宿資料 */
 export function LodgingPlanSheet({ date }: { date: string }) {
-  const cur = useData((s) => s.itinerary?.days.find((d) => d.date === date)?.lodgingMeals ?? null);
+  const cur = useData((s) => lodgingMealsOn(s.itinerary, date));
   const saving = useShared((s) => s.saving);
   return (
     <div className="m-tag-sheet" data-testid="m-lodging-plan-sheet" role="menu" aria-label="這晚的方案">

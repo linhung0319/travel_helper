@@ -72,10 +72,10 @@ const AREAS = [{ id: 'toba', name: { ja: '鳥羽', zh: '鳥羽' }, center: [136.
 const ITIN: Itinerary = {
   format: 'itinerary-v1',
   party: { size: 15, elders: 5, kids: 4 },
+  nights: { '2027-02-02': { area: 'toba', lodging: 'inn' } },
   days: [
     {
       date: '2027-02-02',
-      lodging: 'inn',
       note: '第一天輕鬆',
       items: [
         { id: 'f1', type: 'flight', direction: 'arrive', airport: 'kix', depart: '08:20', arrive: '11:55', flightNo: 'CI152', people: 8 },
@@ -91,7 +91,7 @@ const ITIN: Itinerary = {
         },
       ],
     },
-    { date: '2027-02-03', lodging: null, items: [] },
+    { date: '2027-02-03', items: [] },
   ],
 };
 
@@ -211,7 +211,42 @@ test('MD：總覽表、每天一段、特急券、錯過的話、住宿', () => 
   assert.match(md, /\*\*17:00 集合 鳥羽站\*\*/);
   assert.equal(md.match(/集合/g)?.length, 1);
   assert.match(md, /- 入住 15:00・一泊二食・預約：待訂/);
-  assert.match(md, /## 2\/3（三）\n\n還沒排/);
+  assert.match(md, /## 2\/3（三） 鳥羽\n\n還沒排/);
+});
+
+test('每晚住哪一區（T45a）：移動日寫「鳥羽 → 志摩」，只定區的晚上寫「志摩（還沒選住宿）」', () => {
+  const three: Itinerary = {
+    ...ITIN,
+    nights: { ...ITIN.nights, '2027-02-03': { area: 'shima' } },
+    days: [...ITIN.days, { date: '2027-02-04', items: [] }],
+  };
+  const doc = buildTripExport({
+    itinerary: three,
+    plan: { days: [...PLAN.days, { ...DAY1, date: '2027-02-04', entries: [] }], warnings: [] },
+    byId,
+    fullOf: (id) => byId.get(id) ?? null,
+    areas: [...AREAS, { id: 'shima', name: { ja: '志摩', zh: '志摩' }, center: [136.8, 34.3], bbox: [0, 0, 0, 0] }] as Area[],
+    reservations: [],
+    departures: () => deps(13),
+    version: 12,
+    updated: '1/20 21:05 王小明 更新',
+    generatedAt: '2026-11-02 14:05',
+  });
+  assert.deepEqual(
+    doc.days.map((d) => [d.area, d.lodging?.place.name ?? null, d.stayArea]),
+    [
+      ['鳥羽', '鳥羽<旅館>', null],
+      ['鳥羽 → 志摩', null, '志摩'],
+      // 最後一天沒有晚上：用前一晚的區
+      ['志摩', null, null],
+    ],
+  );
+  const md = exportMarkdown(doc);
+  assert.match(md, /\| 2\/3（三） \| 鳥羽 → 志摩 \| 志摩（還沒選住宿） \|/);
+  assert.match(md, /## 2\/3（三） 鳥羽 → 志摩\n\n還沒排\n\n\*\*住宿\*\*：志摩（還沒選住宿）/);
+  const html = exportHtml(doc);
+  assert.match(html, /<td>鳥羽 → 志摩<\/td><td>志摩（還沒選住宿）<\/td>/);
+  assert.match(html, /<div class="lodging"><div>今晚住<\/div><div class="n">志摩（還沒選住宿）<\/div><\/div>/);
 });
 
 test('HTML：一天一頁、跳脫特殊字元、頁尾版本', () => {

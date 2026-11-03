@@ -20,7 +20,7 @@ const visit = (id: string, places: string | string[], extra: Partial<VisitItem> 
   ...extra,
 });
 
-const day = (date: string, lodging: string | null, items: ItineraryItem[], note: string | null = null) => ({ date, lodging, lodgingMeals: null, start: null, note, items });
+const day = (date: string, items: ItineraryItem[], note: string | null = null) => ({ date, start: null, note, items });
 
 /** 排了一半的行程：有時段備案（2/5 午餐）、分組用的合併卡（2/10）、空檔、沒排的天 */
 export function seedItinerary(): Itinerary {
@@ -28,19 +28,33 @@ export function seedItinerary(): Itinerary {
     format: 'itinerary-v1',
     seq: 30,
     party: { size: 15, elders: 5, kids: 4 },
+    // 每晚住哪（T45a）：志摩 3 晚 → 鳥羽 2 晚 → 二見 2 晚 → 伊勢 3 晚 → 關西機場 1 晚
+    nights: {
+      '2027-02-02': { area: 'shima', lodging: 'shima-kashikojima-harbor' },
+      '2027-02-03': { area: 'shima', lodging: 'shima-kanko-classic' },
+      '2027-02-04': { area: 'shima', lodging: 'shima-marusada' },
+      '2027-02-05': { area: 'toba', lodging: 'toba-kokusai-hotel' },
+      '2027-02-06': { area: 'toba', lodging: 'toba-osatsu-ohtaya' },
+      '2027-02-07': { area: 'futami', lodging: 'futami-oishiya' },
+      '2027-02-08': { area: 'futami', lodging: 'futami-oishiya' },
+      '2027-02-09': { area: 'ise', lodging: 'ise-momijiken' },
+      '2027-02-10': { area: 'ise', lodging: 'ise-momijiken' },
+      '2027-02-11': { area: 'ise', lodging: 'ise-momijiken' },
+      '2027-02-12': { area: 'kix', lodging: 'kix-nikko' },
+    },
     days: [
-      day('2027-02-02', 'shima-kashikojima-harbor', [
+      day('2027-02-02', [
         { id: 'f-1', type: 'flight', direction: 'arrive', airport: 'kansai-airport', depart: '08:20', arrive: '11:55', flightNo: null, people: null, note: '去程第一批' },
         { id: 'f-2', type: 'flight', direction: 'arrive', airport: 'kansai-airport', depart: '09:45', arrive: '13:20', flightNo: null, people: null, note: '去程第二批' },
         // 行程裡不放車站（T29c §8.10）：第一天從關西機場南下，終點放賢島站旁的遊覽船乘船處，交通卡照引擎算的大眾運輸
         visit('i-1', 'shima-kashikojima-yuransen'),
       ]),
-      day('2027-02-03', 'shima-kanko-classic', [
+      day('2027-02-03', [
         visit('i-2', 'shima-yokoyama-observatory'),
         visit('i-3', 'shima-la-mer', { start: '12:00', tags: ['lunch'], note: '已訂位（假的）' }),
       ]),
-      day('2027-02-04', 'shima-marusada', [visit('i-4', 'shima-izawanomiya'), visit('i-5', 'shima-daiozaki-lighthouse')]),
-      day('2027-02-05', 'toba-kokusai-hotel', [
+      day('2027-02-04', [visit('i-4', 'shima-izawanomiya'), visit('i-5', 'shima-daiozaki-lighthouse')]),
+      day('2027-02-05', [
         // 水族館是第 3 個、漣在這天（e2e 用；T11 的假行程水族館是第 2 個，T29c 車站卡換成喫茶店再多一站）
         // 一早在伊勢市（外宮旁）的喫茶店吃早餐，再從伊勢市站出發，搭近鐵特急到鳥羽、轉鷗巴士到中之郷一帶（交通卡有 2 條走法；行程裡不放車站，T29c §8.10）
         visit('i-20', 'ise-mori-kissa', { options: [{ place: 'ise-mori-kissa', stayMinutes: 20 }] }),
@@ -49,24 +63,24 @@ export function seedItinerary(): Itinerary {
         visit('i-7', ['toba-sazanami', 'toba-kazuei'], { tags: ['lunch'], note: '漣不能訂位，客滿就去一榮' }),
         visit('i-8', 'toba-mikimoto-pearl-island', { proposedBy: ['dev-mama'] }),
       ]),
-      day('2027-02-06', 'toba-osatsu-ohtaya', [
+      day('2027-02-06', [
         visit('i-9', 'toba-osatsu-ishigami'),
         visit('i-10', 'toba-hachiman-kamado', { tags: ['lunch'], proposedBy: ['dev-baba'] }),
         visit('i-11', 'toba-sea-folk-museum'),
       ]),
-      day('2027-02-07', 'futami-oishiya', []),
-      day('2027-02-08', 'futami-oishiya', [visit('i-12', 'futami-okitama-jinja'), visit('i-13', 'futami-sea-paradise')]),
-      day('2027-02-09', 'ise-momijiken', []),
-      day('2027-02-10', 'ise-momijiken', [
+      day('2027-02-07', []),
+      day('2027-02-08', [visit('i-12', 'futami-okitama-jinja'), visit('i-13', 'futami-sea-paradise')]),
+      day('2027-02-09', []),
+      day('2027-02-10', [
         visit('i-14', 'ise-geku'),
         visit('i-15', 'ise-naiku'),
         // 分組不另外做（interaction-design §6、§14.4）：和備案一樣是一張合併卡，卡上寫誰去哪家
         visit('i-16', ['ise-isuzu-chaya-honten', 'ise-akafuku-honten', 'ise-tofuan-yamanaka'], { note: '分兩組：長輩在五十鈴茶屋坐著休息，小孩組去赤福、豆腐庵，15:00 在おはらい町會合' }),
         visit('i-19', 'ise-mukai-sakenomise', { start: '18:00', tags: ['dinner'] }),
       ]),
-      day('2027-02-11', 'ise-momijiken', []),
-      day('2027-02-12', 'kix-nikko', []),
-      day('2027-02-13', null, [
+      day('2027-02-11', []),
+      day('2027-02-12', []),
+      day('2027-02-13', [
         { id: 'f-3', type: 'flight', direction: 'depart', airport: 'kansai-airport', depart: '12:45', arrive: '15:00', flightNo: null, people: null, note: '回程第一批' },
         { id: 'f-4', type: 'flight', direction: 'depart', airport: 'kansai-airport', depart: '12:55', arrive: '15:05', flightNo: null, people: null, note: '回程第二批' },
       ]),
@@ -77,7 +91,7 @@ export function seedItinerary(): Itinerary {
 /** 只有航班的行程（dev 選單的「重設：只有航班」） */
 export function emptyItinerary(): Itinerary {
   const it = seedItinerary();
-  return { ...it, days: it.days.map((d) => ({ ...d, lodging: null, items: d.items.filter((x) => x.type === 'flight') })) };
+  return { ...it, nights: {}, days: it.days.map((d) => ({ ...d, items: d.items.filter((x) => x.type === 'flight') })) };
 }
 
 const at = (d: string, t: string) => `2026-${d}T${t}:00.000Z`;

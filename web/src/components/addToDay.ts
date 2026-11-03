@@ -31,7 +31,8 @@ export async function addPlaceToDay(
   let fn: (it: Itinerary) => Itinerary;
   if (p?.type === 'lodging') {
     reason = `${shortDayLabel(date)} 住 ${name}`;
-    fn = (it) => setLodging(it, date, placeId);
+    // 住宿要在這晚的區：區跟著住宿寫進 nights（T45a）
+    fn = (it) => setLodging(it, date, placeId, null, p.area ?? undefined);
   } else {
     const likes = s.votes.filter((v) => v.placeId === placeId && v.value === 'like').map((v) => v.memberId);
     const item: NewItem = { type: 'visit', options: [{ place: placeId, stayMinutes: null }], addedBy: s.me?.id ?? null, ...(likes.length ? { proposedBy: likes } : {}) };

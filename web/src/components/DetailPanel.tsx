@@ -1,5 +1,6 @@
 // 資料點的詳情。網頁版：DetailPanel（右欄或浮在地圖上），版面是 shared/ui/PlaceDetail（兩邊共用的照片、動作列、四個分頁）。
 // 各分頁裡的區塊抽成可以單獨 import 的元件（PlaceIntro、PlaceFacts、PlaceReviews、NearbySection、LinksSection、SourcesSection），PlaceDetail 排版面。
+import { nightsAt } from '@travel-helper/engine';
 import { useEffect, useMemo, useRef, useState, type ReactNode } from 'react';
 import { appStore, type DetailFrom } from '../store.ts';
 import { commands } from '../appCommands.ts';
@@ -412,7 +413,7 @@ export function SourcesSection({ place }: { place: Place }) {
 function PlaceInTrip({ place, onDay }: { place: Place; onDay?(date: string): void }) {
   const itinerary = useData((s) => s.itinerary);
   const refs = itemsWithPlace(itinerary, place.id);
-  const lodgingDays = itinerary?.days.filter((d) => d.lodging === place.id).map((d) => d.date) ?? [];
+  const lodgingDays = itinerary ? nightsAt(itinerary, place.id) : [];
   if (!refs.length && !lodgingDays.length) return null;
   return (
     <section className="detail-section in-trip" data-testid="in-trip">

@@ -75,6 +75,18 @@ async function scenario(b: Backend, setMe: (id: string) => void): Promise<Record
   out.snapshot = (await b.getSnapshot(snaps[0].id)).data;
   out.restored = (await b.restoreSnapshot(snaps[0].id, 2)).version;
   out.restoreNoVersion = await statusOf(b.restoreSnapshot(snaps[0].id, 0));
+  // 每晚住哪一區（T45a）：只定區、選了住宿、一日遊都存得進去，讀回來一樣
+  const withNights: Itinerary = {
+    ...it0,
+    nights: { '2027-02-02': { area: 'shima' }, '2027-02-03': { area: 'toba', lodging: P, meals: 'breakfast' } },
+    days: it0.days.map((d) => (d.date === '2027-02-04' ? { ...d, dayArea: 'ise' } : d)),
+  };
+  const v3 = await b.putItinerary(3, withNights, '住哪一區');
+  out.nights = [v3.data?.nights, v3.data?.days[2].dayArea];
+  // 舊格式（lodging 在 days 裡）、最後一天的晚上都不收
+  const legacy = { ...withNights, days: withNights.days.map((d, i) => (i === 1 ? { ...d, lodging: P } : d)) } as Itinerary;
+  out.legacyPut = await statusOf(b.putItinerary(4, legacy));
+  out.lastNight = await statusOf(b.putItinerary(4, { ...withNights, nights: { '2027-02-13': { area: 'osaka' } } }));
 
   // 投票
   out.vote = await b.putVote(P, 'like');
@@ -177,6 +189,10 @@ test('apiBackend（真的 Worker）和假後端：同一份情境，結果一樣
   // Worker 的成員多了 source（me）：只比情境裡記下來的東西，所以逐項比，錯的時候看得出是哪一步
   for (const k of Object.keys(fromMock)) assert.deepEqual(fromApi[k], fromMock[k], k);
   assert.deepEqual(Object.keys(fromApi).sort(), Object.keys(fromMock).sort());
+  // 每晚住哪一區（T45a）：兩邊不只一樣，也要是對的
+  assert.deepEqual(fromApi.nights, [{ '2027-02-02': { area: 'shima' }, '2027-02-03': { area: 'toba', lodging: 'test-area-spot', meals: 'breakfast' } }, 'ise']);
+  assert.equal(fromApi.legacyPut, 400);
+  assert.equal(fromApi.lastNight, 400);
 });
 
 test('錯誤變成 BackendError：狀態、代碼、訊息；連不上是 network', async () => {
@@ -194,15 +210,20 @@ test('錯誤變成 BackendError：狀態、代碼、訊息；連不上是 networ
   assert.equal((net as BackendError).code, 'network');
 });
 
-test('讀回來的舊行程會升級（meal 轉 tags）', async () => {
-  const it = createItinerary();
+test('讀回來的舊行程會升級（meal 轉 tags；每天的 lodging 搬到 nights）', async () => {
+  const it = createItinerary() as Itinerary & { nights?: unknown };
   it.days[1].items.push({ id: 'i-1', type: 'visit', options: [{ place: 'test-area-spot', stayMinutes: null, note: null }], selected: 0, start: null, travel: null, note: null, meal: 'lunch' } as never);
+  // T45a 之前的存檔：沒有 nights，住宿寫在每一天
+  delete it.nights;
+  it.days.forEach((d, i) => Object.assign(d, { lodging: i === 1 ? 'test-area-spot' : null, lodgingMeals: i === 1 ? 'breakfast' : null }));
   d1.db.prepare("INSERT INTO members (line_user_id, display_name, source) VALUES ('dev-a', 'a', 'dev') ON CONFLICT DO NOTHING").run();
   d1.db.prepare("INSERT INTO itinerary (id, data, version, updated_by, updated_at) VALUES (1, ?, 1, 'dev-a', 't')").run(JSON.stringify(it));
   for (const doc of [await apiBackend.getItinerary(), (await apiBackend.bootstrap()).itinerary]) {
     const item = doc.data!.days[1].items[0] as { tags?: string[]; meal?: string };
     assert.deepEqual(item.tags, ['lunch']);
     assert.equal(item.meal, undefined);
+    assert.deepEqual(doc.data!.nights, { '2027-02-03': { lodging: 'test-area-spot', meals: 'breakfast' } });
+    assert.ok(doc.data!.days.every((d) => !('lodging' in d) && !('lodgingMeals' in d)));
   }
 });
 

@@ -126,7 +126,7 @@ function sampleItinerary(): Itinerary {
       const item: VisitItem = { id: `i-${++n}`, type: 'visit', options: [{ place: p.id, stayMinutes: null, note: null }], selected: 0, start: null, travel: null, note: null } as VisitItem;
       day.items.push(item);
     }
-    day.lodging = lodging[(i * 13) % lodging.length].id;
+    it.nights[day.date] = { lodging: lodging[(i * 13) % lodging.length].id };
   });
   it.seq = n;
   return it;

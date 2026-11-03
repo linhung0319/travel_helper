@@ -180,10 +180,11 @@ export type ItineraryItem = VisitItem | FlightItem | FreeItem | SplitItem;
 
 export interface ItineraryDay {
   date: DateString;
-  /** 這晚住哪裡；null：還沒排（最後一天是 null） */
-  lodging: string | null;
-  /** 這晚的方案；null：照住宿資料的 meals */
-  lodgingMeals?: LodgingMeals | null;
+  /**
+   * 白天去哪一區（一日遊，T45a）：只用在晚上住一區、白天去另一區。
+   * 省略或 null：照前一晚和這晚推（同區就是那區，不同區是移動日），見 dayAreaOf
+   */
+  dayArea?: AreaId | null;
   /** 這天從哪裡出發；null：前一晚的住宿 */
   start?: string | null;
   note?: string | null;
@@ -192,11 +193,25 @@ export interface ItineraryDay {
   items: ItineraryItem[];
 }
 
+/**
+ * 一晚住哪（T45a）：區、住宿可以先空著。key 是入住那天的日期；最後一天沒有晚上。
+ * area 省略或 null 而 lodging 有填時，區照住宿資料的 area（舊行程升級上來的就是這樣）
+ */
+export interface Night {
+  area?: AreaId | null;
+  /** 住宿的資料點 ID（要在 area 這區）；省略或 null：還沒選 */
+  lodging?: string | null;
+  /** 這晚的方案；省略或 null：照住宿資料的 meals */
+  meals?: LodgingMeals | null;
+}
+
 export interface Itinerary {
   format: typeof ITINERARY_FORMAT;
   /** 最後用掉的項目流水號：刪掉的 ID 不再重用（建議的 adopted_item_ids 才不會指錯） */
   seq?: number;
   party: PartyProfile;
+  /** 每晚住哪（T45a）：{ 日期: Night }；沒定的晚上不寫 */
+  nights: Record<DateString, Night>;
   days: ItineraryDay[];
 }
 

@@ -33,6 +33,7 @@ export function opsContext(d: Pick<AiDeps, 'data' | 'shared'>): OpsContext {
   const s = d.shared.store.getState();
   return {
     placeType: (id) => d.data.getState().byId.get(id)?.type,
+    placeArea: (id) => d.data.getState().byId.get(id)?.area,
     likesOf: (id) => s.votes.filter((v) => v.placeId === id && v.value === 'like').map((v) => v.memberId),
     me: s.me?.id ?? null,
   };

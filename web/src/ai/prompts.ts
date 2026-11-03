@@ -1,6 +1,7 @@
 // 問 AI 的建議問題（規格 §6）：照脈絡晶片的種類；地點的問題沿用 shared/askAiPrompts.ts。
 // 空白的新對話的卡片（interaction-design §17.2）：第一張照行程狀態算（firstStarter），開始卡、空的一天的「問 AI」用同一份。
 
+import { lodgingMealsOn, lodgingOn, nightAreaOf } from '@travel-helper/engine';
 import type { Itinerary, ItineraryPlan } from '@travel-helper/engine/types';
 import type { Vote } from '../backend/types.ts';
 import type { Area, Place } from '../data/types.ts';
@@ -177,23 +178,25 @@ export function buildStarterInput({ itinerary, plan, votes, byId, areas, day }: 
     return !!p && !isDeletedUserPlace(p) && !scheduled.has(id);
   });
   const days = dates.map((date): StarterDay => {
-    const d = itinerary?.days.find((x) => x.date === date);
     const dp = plan?.days.find((x) => x.date === date);
-    const lodging = d?.lodging ? byId.get(d.lodging) : undefined;
-    const meals = d?.lodgingMeals ?? (lodging?.raw as { meals?: string | null } | undefined)?.meals ?? null;
+    const lodgingId = itinerary ? lodgingOn(itinerary, date) : null;
+    const lodging = lodgingId ? byId.get(lodgingId) : undefined;
+    const meals = (itinerary ? lodgingMealsOn(itinerary, date) : null) ?? (lodging?.raw as { meals?: string | null } | undefined)?.meals ?? null;
+    // 住哪一區（T45a）：只定了區、還沒選住宿也算
+    const stayArea = itinerary ? nightAreaOf(itinerary, date, (id) => byId.get(id)?.area) : null;
     const entries = dp?.entries.flatMap((e) => [e, ...(e.groups?.flatMap((g) => g.entries) ?? [])]) ?? [];
     const ate = (meal: 'lunch' | 'dinner') => !dp || entries.some((e) => e.meal === meal || e.mealTags?.includes(meal));
-    const isStop = (id: string) => id !== d?.lodging && ['spot', 'restaurant'].includes(byId.get(id)?.type ?? '');
+    const isStop = (id: string) => id !== lodgingId && ['spot', 'restaurant'].includes(byId.get(id)?.type ?? '');
     return {
       date,
-      lodging: !!d?.lodging,
+      lodging: !!lodgingId,
       dinnerIncluded: meals === 'dinner+breakfast',
       dinnerExcluded: meals === 'breakfast' || meals === 'none',
       hasStops: [...placesOnDay(itinerary, date)].some(isStop),
       hasLunch: ate('lunch'),
       hasDinner: ate('dinner'),
-      areaName: lodging ? (areas.find((a) => a.id === lodging.area)?.name.zh ?? null) : null,
-      nearbyWishes: lodging ? unplaced.filter(([id]) => byId.get(id)?.area === lodging.area && ['spot', 'restaurant'].includes(byId.get(id)?.type ?? '')).length : 0,
+      areaName: stayArea ? (areas.find((a) => a.id === stayArea)?.name.zh ?? null) : null,
+      nearbyWishes: stayArea ? unplaced.filter(([id]) => byId.get(id)?.area === stayArea && ['spot', 'restaurant'].includes(byId.get(id)?.type ?? '')).length : 0,
       errorWarning: dp?.warnings.find((w) => w.level === 'error')?.message ?? null,
     };
   });

@@ -241,7 +241,6 @@ test('附近：anchors 的分鐘優先，反向 anchors 也算，沒有的用直
 test('一天的順序：選定的選項、同機場的航班只算一站、住宿放最後', () => {
   const day = {
     date: '2027-02-02',
-    lodging: 'hotel',
     items: [
       { id: 'f-1', type: 'flight' as const, direction: 'arrive' as const, airport: 'kix', depart: '08:20', arrive: '11:55' },
       { id: 'f-2', type: 'flight' as const, direction: 'arrive' as const, airport: 'kix', depart: '09:45', arrive: '13:20' },
@@ -250,7 +249,7 @@ test('一天的順序：選定的選項、同機場的航班只算一站、住�
     ],
   };
   assert.deepEqual(
-    dayStops(day).map((s) => [s.place, s.kind, s.time]),
+    dayStops(day, 'hotel').map((s) => [s.place, s.kind, s.time]),
     [
       ['kix', 'flight', '11:55'],
       ['b', 'visit', '15:00'],

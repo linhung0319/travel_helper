@@ -2,7 +2,7 @@
 // 純函式：時間軸、交通時間、空檔、警告都是引擎（T14）算好的，這裡只整理成畫面要的樣子。
 
 import type { DayPlan, EngineWarning, Itinerary, ItineraryItem, Leg, LegTarget, MealKind, TimelineEntry, TravelMode, TravelSpec, VisitItem } from '@travel-helper/engine';
-import { toMinutes } from '@travel-helper/engine';
+import { nightRunOf, toMinutes } from '@travel-helper/engine';
 import { displayMinutes, estimateWalk } from './geo/walk.ts';
 import type { Place, PlaceType } from '../data/types.ts';
 import type { IconName } from './icons.ts';
@@ -440,16 +440,10 @@ export const exportFileName = (version: number) => `itinerary-v${version}.json`;
  * 資料卡上的時間：起點「09:30 出發」、終點「15:10 到住宿」只寫一個時間；
  * 其他「開始–結束」加停留分鐘（0 分只寫開始時間）；航班只寫一個時間（抵達／起飛，entry.start）。
  */
-/** 這晚是連住的第幾晚（同一間連在一起算）；這晚沒住宿是 null */
-export function stayNight(days: { date: string; lodging?: string | null }[], date: string): { n: number; total: number } | null {
-  const i = days.findIndex((d) => d.date === date);
-  const lodging = days[i]?.lodging;
-  if (!lodging) return null;
-  let first = i;
-  while (first > 0 && days[first - 1].lodging === lodging) first--;
-  let last = i;
-  while (last + 1 < days.length && days[last + 1].lodging === lodging) last++;
-  return { n: i - first + 1, total: last - first + 1 };
+/** 這晚是連住的第幾晚（同一間連在一起算，從 nights 算）；這晚沒住宿是 null */
+export function stayNight(it: Itinerary | null | undefined, date: string): { n: number; total: number } | null {
+  const run = it ? nightRunOf(it, date, 'lodging') : null;
+  return run ? { n: run.index, total: run.total } : null;
 }
 
 export function cardTime(entry: TimelineEntry): { text: string; stay: number | null } {

@@ -7,8 +7,11 @@ import { findItem } from './ops.ts';
 import { planItinerary } from './timeline.ts';
 import type { DateString, EngineWarning, GroupItem, Itinerary, ItineraryItem, ItineraryPlan, TimelineEntry } from './types.ts';
 
-/** return-travel：那天回住宿的交通（day.returnTravel）改了 */
-export type ChangeKind = 'added' | 'removed' | 'moved-day' | 'reordered' | 'changed' | 'lodging' | 'return-travel';
+/**
+ * return-travel：那天回住宿的交通（day.returnTravel）改了。
+ * lodging：這晚的住宿或方案改了；night-area：這晚住哪一區改了；day-area：這天的一日遊（dayArea）改了（before／after 是區 ID）
+ */
+export type ChangeKind = 'added' | 'removed' | 'moved-day' | 'reordered' | 'changed' | 'lodging' | 'night-area' | 'day-area' | 'return-travel';
 
 export interface Change {
   kind: ChangeKind;
@@ -20,7 +23,7 @@ export interface Change {
   fields?: string[];
   /** 項目目前（或刪掉之前）的地點 */
   place?: string | null;
-  /** lodging：前後的住宿；changed：這張卡原本選的點（換了才有） */
+  /** lodging：前後的住宿；night-area、day-area：前後的區；changed：這張卡原本選的點（換了才有） */
   before?: string | null;
   after?: string | null;
 }
@@ -112,9 +115,13 @@ export function diffItinerary(before: Itinerary, after: Itinerary): Change[] {
         }
       });
     }
-    if (bd.lodging !== day.lodging || (bd.lodgingMeals ?? null) !== (day.lodgingMeals ?? null)) {
-      changes.push({ kind: 'lodging', date: day.date, before: bd.lodging, after: day.lodging });
+    const bn = before.nights?.[day.date] ?? {};
+    const an = after.nights?.[day.date] ?? {};
+    if ((bn.area ?? null) !== (an.area ?? null)) changes.push({ kind: 'night-area', date: day.date, before: bn.area ?? null, after: an.area ?? null });
+    if ((bn.lodging ?? null) !== (an.lodging ?? null) || (bn.meals ?? null) !== (an.meals ?? null)) {
+      changes.push({ kind: 'lodging', date: day.date, before: bn.lodging ?? null, after: an.lodging ?? null });
     }
+    if ((bd.dayArea ?? null) !== (day.dayArea ?? null)) changes.push({ kind: 'day-area', date: day.date, before: bd.dayArea ?? null, after: day.dayArea ?? null });
     if (!same(bd.returnTravel, day.returnTravel)) changes.push({ kind: 'return-travel', date: day.date });
   }
   return changes.sort((x, y) => x.date.localeCompare(y.date));
@@ -139,8 +146,12 @@ function fieldsText(c: Change): string {
 }
 
 /** 一行一個改動的文字摘要；nameOf 給地點的顯示名稱，plan 給套用後的時間 */
-export function describeChanges(changes: Change[], opts: { nameOf?: (id: string) => string; plan?: ItineraryPlan } = {}): string[] {
+export function describeChanges(
+  changes: Change[],
+  opts: { nameOf?: (id: string) => string; areaName?: (id: string) => string; plan?: ItineraryPlan } = {},
+): string[] {
   const name = (id: string | null | undefined) => (id ? opts.nameOf?.(id) ?? id : '（無）');
+  const area = (id: string | null | undefined) => (id ? opts.areaName?.(id) ?? id : '（未定）');
   const md = (d: DateString) => `${Number(d.slice(5, 7))}/${Number(d.slice(8, 10))}`;
   const entryOf = (date: DateString, itemId?: string): TimelineEntry | undefined => {
     const day = opts.plan?.days.find((d) => d.date === date);
@@ -168,6 +179,10 @@ export function describeChanges(changes: Change[], opts: { nameOf?: (id: string)
       }
       case 'lodging':
         return `${d}：住宿 ${name(c.before)} → ${name(c.after)}`;
+      case 'night-area':
+        return `${d}：住的區 ${area(c.before)} → ${area(c.after)}`;
+      case 'day-area':
+        return c.after ? `${d}：白天去${area(c.after)}一日遊` : `${d}：不排一日遊（原本去${area(c.before)}）`;
       case 'return-travel':
         return `${d}：回住宿的交通`;
     }

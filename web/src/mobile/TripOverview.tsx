@@ -2,6 +2,7 @@
 // 中間是這天的標題（去的地區，照順序），下面一行是點數、⚠ 數、住哪裡；右邊一兩張小縮圖。點一列就跳到那天。
 // 地圖畫整趟的路線（第五輪，appStore.day＝'all' 時 MapView 自己畫）。
 
+import { lodgingOn } from '@travel-helper/engine';
 import { commands } from '../appCommands.ts';
 import { useData, usePlan, useShared } from '../hooks.ts';
 import { dayPlanOf } from '../planStore.ts';
@@ -10,7 +11,7 @@ import { isRedDay, shortDayLabel, tripDates, weekdayZh } from '../lib/trip.ts';
 import type { Place } from '../data/types.ts';
 import { Button } from '../shared/ui/Button.tsx';
 import { DiscussButton } from '../shared/ui/DiscussButton.tsx';
-import { describeChanges } from '../lib/overlays.ts';
+import { areaNameIn, describeChanges } from '../lib/overlays.ts';
 import { dayCandidates } from '../lib/wishlist.ts';
 import { flightCount, overviewRows } from '../lib/tripStart.ts';
 import { Icon } from '../components/Icon.tsx';
@@ -32,11 +33,11 @@ export function TripOverview() {
   const proposal = useApp((s) => s.proposal);
   const candidates = useShared((s) => s.candidates);
   // 有提議時那幾天變色、列出變動（§16.1）
-  const changes = new Map(proposal ? describeChanges(proposal.changes, (id) => nameOf(byId.get(id)) || id).map((l) => [l.date, l.text.split('：').slice(1).join('：')]) : []);
+  const changes = new Map(proposal ? describeChanges(proposal.changes, (id) => nameOf(byId.get(id)) || id, areaNameIn(areas)).map((l) => [l.date, l.text.split('：').slice(1).join('：')]) : []);
   const warnsOn = (d: string) => dayPlanOf(plan, d)?.warnings.filter((w) => w.level !== 'info').length ?? 0;
   const rows = overviewRows(DATES, (d) => ({
     stops: stopsOn(itinerary, d).some((s) => s.kind !== 'lodging' && s.kind !== 'flight'),
-    lodging: !!itinerary?.days.find((x) => x.date === d)?.lodging,
+    lodging: !!lodgingOn(itinerary, d),
     flights: flightCount(itinerary, d),
     candidates: dayCandidates(candidates, d, itinerary, byId).length,
     warnings: warnsOn(d),
@@ -69,7 +70,7 @@ export function TripOverview() {
           .filter((p): p is Place => !!p);
         const warn = warnsOn(d);
         const flights = flightCount(itinerary, d);
-        const lodging = byId.get(itinerary?.days.find((x) => x.date === d)?.lodging ?? '');
+        const lodging = byId.get(lodgingOn(itinerary, d) ?? '');
         // 標題：去的地區（照順序、不重複）
         const regions = [...new Set(stops.map((p) => areas.find((a) => a.id === p.area)?.name.zh).filter((x): x is string => !!x))];
         const thumbs = stops.filter((p) => p.type === 'spot' || p.type === 'restaurant').slice(0, 2);

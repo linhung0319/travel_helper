@@ -1022,6 +1022,15 @@ T7c → T7d → T7e → T7f → T7g → T8a → T8b → T8c → T8d → T7i → 
 - **住宿**：現在是時間軸的起點、終點卡（T39）。改成從 `nights` 畫，「連住第幾晚」直接算。舊行程升級時從住宿卡推出 `nights`。
 - **驗證**：engine、升級、Worker 的單元測試（`worker/test/apiBackend.test.ts` 兩邊同一份情境）；PDF／MD 的內容測試。
 - **完成條件**：`npm test`、`npm run typecheck`、`npm run validate` 通過；假後端的種子資料換 key。
+- **結果**（2026-11-03，branch `t45a`）：`npm test` 978（新增 `packages/engine/test/nights.test.ts` 15 項、匯出 1 項、`apiBackend` 的情境多三步）、typecheck、validate 通過。e2e 只跑受影響的（標題有住宿、方案、連住、下載、整趟的）25 項，全過；改了一處讀 `days[].lodging` 的 e2e 斷言。
+  - **形狀**：`Itinerary.nights: { 日期: { area?, lodging?, meals? } }`（`lodgingMeals` 改叫 `meals`，跟著住宿走）；`ItineraryDay` 拿掉 `lodging`、`lodgingMeals`，多 `dayArea?`。`format` 還是 `itinerary-v1`（照 meal→tags 的做法用 `upgradeItinerary` 升級，不換版號）。只選了住宿、沒寫區的晚上，區照住宿資料的 `area`（`nightAreaOf` 給 `areaOf`）；升級上來的舊行程就是這樣，不用在升級時讀資料。
+  - **engine**：`nights.ts`（`lodgingOn`、`lodgingMealsOn`、`nightAreaOf`、`dayAreaOf`、`dayAreaLabel`、`nightRunOf`、`nightsAt`、`nightDates`）；操作 `setLodging(it, date, lodging, meals, area?)`（清住宿留區）、`setNightArea`（換區清住宿）、`setDayArea`；最後一天設晚上丟 `ItineraryError`。時間軸的住宿卡、隔天起點、「住宿（未排）」空檔改讀 `nights`；住宿不在這晚的區時警告 `lodging-area-mismatch`；只重算有改的那天的鑰匙加上這晚。`diffItinerary` 多 `night-area`、`day-area`，`describeChanges` 收 `areaName`。`validateItinerary` 檢查 `nights` 的日期（不能是最後一天）、欄位，`days` 裡還有 `lodging` 的回「舊格式」。
+  - **Worker**：PUT 照舊跑 `validateItinerary`（舊格式、最後一天的晚上回 400）；假後端存行程時也跑（原本不檢查，和 Worker 不一樣）。讀回來的舊行程由前端 `upgradeDoc` 升級（測試：`days[].lodging` 搬到 `nights`）。
+  - **PDF／MD**：每天的地區先照每晚住哪一區推（移動日「鳥羽 → 志摩」，最後一天用前一晚的），還沒定才照排了的點；只定區的晚上寫「志摩（還沒選住宿）」（總覽表、每天的住宿那段）。
+  - **LINE**：摘要的每天多 `area`、`stayArea`（舊摘要沒有也照舊）；日期旁寫這天在哪一區，「住：志摩（還沒選住宿）」。
+  - **網頁**：讀住宿的地方改用 `lodgingOn`／`lodgingMealsOn`（`web/src` 27 個檔：時間軸、詳情、AI、匯出、預約…），畫面不變；選住宿時區跟著住宿寫進去（手動、AI 的 `setLodging`），清住宿時區留著。推薦問題的「住志摩」改用這晚的區（只定區也算）。整趟骨架、單天頂端怎麼畫留給 T45b，AI 提議「這晚住某區」留給 T45c。
+  - **假後端的種子**：住宿改寫在 `nights`（志摩 3 晚 → 鳥羽 2 晚 → 二見 2 晚 → 伊勢 3 晚 → 關西機場 1 晚），每晚都寫區。
+  - **和其他 branch**：`web/src/ai/prompts.ts`（`buildStarterInput`）、`readTools.ts` 也是 T41 會改的檔，後 merge 的要合併。
 
 #### T45b 整趟骨架、日期列、單天頂端 〔M〕
 - **整趟**只放地區、子地區、住宿（景點名稱不出現）：一天一列，左邊一條地區色帶（連住同一區連成一段，還沒決定的晚上是虛線），中間是日期和這天在哪一區（移動日寫「志摩 → 鳥羽」、一日遊寫「鳥羽（去伊勢一日）」），第二行小字是子地區（從那天排了的點推出來，例如「鳥羽站周邊 → 相差」；還沒排就不寫），右邊是那晚的住宿（「鳥羽國際飯店 ✓」、「志摩・還沒選住宿」、虛線的「選住哪一區」）。第一列、最後一列是航班。點一列進那一天；點虛線選區。網頁右欄、手機、iPad 都是同一份直的清單。

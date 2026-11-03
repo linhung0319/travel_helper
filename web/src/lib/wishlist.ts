@@ -1,5 +1,6 @@
 // 想去（interaction-design §6）：❤️ 就是想去。想去分頁列有人 ❤️ 的點；某天的候選是想去裡「加到某天」的點。
 
+import { lodgingOn } from '@travel-helper/engine';
 import type { Itinerary } from '@travel-helper/engine/types';
 import type { Place } from '../data/types.ts';
 import { isDeletedUserPlace } from './addPlace/view.ts';
@@ -22,7 +23,8 @@ export function placesOnDay(it: Itinerary | null, date: string): Set<string> {
   const out = new Set<string>();
   const d = it?.days.find((x) => x.date === date);
   if (!d) return out;
-  if (d.lodging) out.add(d.lodging);
+  const lodging = lodgingOn(it, date);
+  if (lodging) out.add(lodging);
   for (const x of d.items.flatMap((x) => (x.type === 'split' ? x.groups.flatMap((g) => g.items) : [x]))) {
     if (x.type === 'visit') x.options.forEach((o) => o.place && out.add(o.place));
     else if (x.type === 'free' && x.place) out.add(x.place);

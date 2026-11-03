@@ -140,7 +140,7 @@ test('想去的：votes any 找得到只有一個人按的點，popular 找不�
 
 test('第一天機場到遠的住宿：搭到附近車站再接計程車，不報到不了，時間接得起來', async () => {
   const h = await harness();
-  await h.shared.changeItinerary((it) => ({ ...it, days: it.days.map((d, i) => (i === 0 ? { ...d, items: d.items.filter((x) => x.type === 'flight'), lodging: 'shima-ichiraku-onsen' } : d)) }), '測試');
+  await h.shared.changeItinerary((it) => ({ ...it, nights: { ...it.nights, [it.days[0].date]: { area: 'shima', lodging: 'shima-ichiraku-onsen' } }, days: it.days.map((d, i) => (i === 0 ? { ...d, items: d.items.filter((x) => x.type === 'flight') } : d)) }), '測試');
   await new Promise((r) => setTimeout(r, 50));
   const day = h.plan.getState().plan!.days[0];
   assert.equal(day.warnings.some((x) => x.code === 'travel-unknown'), false);
@@ -164,7 +164,7 @@ test('第一天機場到遠的住宿：搭到附近車站再接計程車，不�
 
 test('轉乘到得了的住宿：不會多插計程車', async () => {
   const h = await harness();
-  await h.shared.changeItinerary((it) => ({ ...it, days: it.days.map((d, i) => (i === 0 ? { ...d, items: d.items.filter((x) => x.type === 'flight'), lodging: 'toba-kokusai-hotel' } : d)) }), '測試');
+  await h.shared.changeItinerary((it) => ({ ...it, nights: { ...it.nights, [it.days[0].date]: { area: 'toba', lodging: 'toba-kokusai-hotel' } }, days: it.days.map((d, i) => (i === 0 ? { ...d, items: d.items.filter((x) => x.type === 'flight') } : d)) }), '測試');
   await new Promise((r) => setTimeout(r, 50));
   const leg = h.plan.getState().plan!.days[0].entries.find((e) => e.kind === 'lodging')!.travel!;
   assert.equal(leg.taxiAfter, undefined);
@@ -197,17 +197,21 @@ test('沒有起點：第一站是 1，要提示', () => {
   assert.equal(needsStart({ entries: [{ kind: 'lodging', placeId: 'h' }] } as never), false);
 });
 
-test('連住第幾晚：同一間連在一起算', () => {
-  const days = [
-    { date: '2027-02-02', lodging: 'a' },
-    { date: '2027-02-03', lodging: 'a' },
-    { date: '2027-02-04', lodging: 'a' },
-    { date: '2027-02-05', lodging: 'b' },
-    { date: '2027-02-06', lodging: null },
-  ];
-  assert.deepEqual(stayNight(days, '2027-02-03'), { n: 2, total: 3 });
-  assert.deepEqual(stayNight(days, '2027-02-05'), { n: 1, total: 1 });
-  assert.equal(stayNight(days, '2027-02-06'), null);
+test('連住第幾晚：同一間連在一起算（從 nights 算）', () => {
+  const it = {
+    days: ['2027-02-02', '2027-02-03', '2027-02-04', '2027-02-05', '2027-02-06', '2027-02-07'].map((date) => ({ date, items: [] })),
+    nights: {
+      '2027-02-02': { area: 'toba', lodging: 'a' },
+      '2027-02-03': { lodging: 'a' },
+      '2027-02-04': { area: 'toba', lodging: 'a' },
+      '2027-02-05': { area: 'ise', lodging: 'b' },
+      '2027-02-06': { area: 'ise' },
+    },
+  } as never;
+  assert.deepEqual(stayNight(it, '2027-02-03'), { n: 2, total: 3 });
+  assert.deepEqual(stayNight(it, '2027-02-05'), { n: 1, total: 1 });
+  assert.equal(stayNight(it, '2027-02-06'), null);
+  assert.equal(stayNight(null, '2027-02-03'), null);
 });
 
 test('時刻表延後讀，但 AI 要用時馬上讀，等到算好才回', async () => {

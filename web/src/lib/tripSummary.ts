@@ -7,7 +7,7 @@ import type { StoreApi } from 'zustand/vanilla';
 import { buildTripSummary, type ItineraryPlan, type TripSummary } from '@travel-helper/engine';
 import type { Itinerary } from '@travel-helper/engine/types';
 import type { Backend } from '../backend/types.ts';
-import type { Place } from '../data/types.ts';
+import type { Area, Place } from '../data/types.ts';
 import type { DataState } from '../dataStore.ts';
 import type { PlanState } from '../planStore.ts';
 import type { SharedState } from '../sharedStore.ts';
@@ -18,13 +18,17 @@ const nameOf = (byId: Map<string, Place>) => (id: string) => {
   return p ? p.name.zh || p.name.ja || id : null;
 };
 
-/** 行程＋時間軸 → 摘要；要預約的只留主選和住宿（狀態回覆時再讀最新的） */
-export function summaryOf(itinerary: Itinerary, plan: ItineraryPlan, byId: Map<string, Place>): TripSummary {
+/** 行程＋時間軸 → 摘要；要預約的只留主選和住宿（狀態回覆時再讀最新的）；areas 給每天在哪一區的區名（T45a） */
+export function summaryOf(itinerary: Itinerary, plan: ItineraryPlan, byId: Map<string, Place>, areas: Area[] = []): TripSummary {
   const name = nameOf(byId);
   const reservations = noteRows(itinerary, plan, byId, [])
     .filter((r) => r.role !== 'other')
     .map((r) => ({ date: r.key.date, placeId: r.placeId, name: name(r.placeId) ?? r.placeId, time: r.time, endDate: r.endDate }));
-  return buildTripSummary({ itinerary, plan, nameOf: name, reservations });
+  const areaName = (id: string) => {
+    const a = areas.find((x) => x.id === id);
+    return a ? a.name.zh || a.name.ja || id : id;
+  };
+  return buildTripSummary({ itinerary, plan, nameOf: name, reservations, areaName, areaOf: (id) => byId.get(id)?.area });
 }
 
 export function startSummaryPush(o: { shared: StoreApi<SharedState>; data: StoreApi<DataState>; plan: StoreApi<PlanState>; backend: () => Backend; delayMs?: number }): () => void {
@@ -43,7 +47,7 @@ export function startSummaryPush(o: { shared: StoreApi<SharedState>; data: Store
     tried = sh.version;
     let summary: TripSummary;
     try {
-      summary = summaryOf(d.itinerary, p.plan, d.byId);
+      summary = summaryOf(d.itinerary, p.plan, d.byId, d.areas);
     } catch (e) {
       console.warn('整理行程摘要失敗', e);
       return;

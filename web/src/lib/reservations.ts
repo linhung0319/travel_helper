@@ -1,6 +1,7 @@
 // 預約筆記的列（T15m 第三輪）：行程裡需要預約的餐廳、體驗、住宿，套上大家記的狀態（未訂位／已訂位／不訂位）。
 // 狀態用 (日期, 地點) 對應：項目移到別天、住宿換了入住日，就變回未訂位。純函式。
 
+import { lodgingOn } from '@travel-helper/engine';
 import type { DayPlan, Itinerary, TimelineEntry } from '@travel-helper/engine';
 import type { Reservation, ReservationStatus } from '../backend/types.ts';
 import type { Place } from '../data/types.ts';
@@ -147,16 +148,17 @@ export function noteRows(it: Itinerary | null, plan: { days: DayPlan[] } | null,
     run = null;
   };
   for (const d of it.days) {
-    if (!d.lodging) {
+    const lodging = lodgingOn(it, d.date);
+    if (!lodging) {
       flush();
       continue;
     }
-    if (run && run.placeId === d.lodging && nextDay(run.last) === d.date) {
+    if (run && run.placeId === lodging && nextDay(run.last) === d.date) {
       run.last = d.date;
       run.nights += 1;
     } else {
       flush();
-      run = { date: d.date, last: d.date, placeId: d.lodging, nights: 1 };
+      run = { date: d.date, last: d.date, placeId: lodging, nights: 1 };
     }
   }
   flush();

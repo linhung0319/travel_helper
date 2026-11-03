@@ -4,6 +4,7 @@ import { resolveConfig, type ConfigOverride, type EngineConfig } from './config.
 import { openingOn, type EngineData, type PlaceRecord, type ResolvedPlace } from './data.ts';
 import { planLeg, type Endpoint, type LegWarning } from './travel.ts';
 import { fromMinutes, toMinutes } from './time.ts';
+import { lodgingMealsOn, lodgingOn, nightOf } from './nights.ts';
 import type {
   DayPlan,
   EngineWarning,
@@ -331,9 +332,11 @@ function runSplit(item: SplitItem, st: State, ctx: RunContext): TimelineEntry {
 
 // --- 一天 -------------------------------------------------------------------
 
-function lodgingMeals(day: Itinerary['days'][number], data: EngineData): LodgingMeals | 'varies' | null {
-  if (day.lodgingMeals) return day.lodgingMeals;
-  const m = day.lodging ? data.getPlace(day.lodging)?.record.meals : null;
+function lodgingMeals(it: Itinerary, date: string, data: EngineData): LodgingMeals | 'varies' | null {
+  const own = lodgingMealsOn(it, date);
+  if (own) return own;
+  const lodging = lodgingOn(it, date);
+  const m = lodging ? data.getPlace(lodging)?.record.meals : null;
   return (m as LodgingMeals | 'varies' | null | undefined) ?? null;
 }
 
@@ -348,7 +351,8 @@ export function planDay(it: Itinerary, index: number, data: EngineData, cfg: Eng
   const warnings: EngineWarning[] = [];
   const tiring = { value: false };
   const ctx: RunContext = { date: day.date, data, cfg, party: it.party, whole: true, groupId: null, warnings, tiring };
-  const startId = day.start ?? (index > 0 ? it.days[index - 1].lodging : null);
+  const startId = day.start ?? (index > 0 ? lodgingOn(it, it.days[index - 1].date) : null);
+  const lodging = isLast ? null : lodgingOn(it, day.date);
   const st: State = { loc: startId ? endpointOf(startId, data) : null, time: toMinutes(cfg.day.start), started: !!startId };
   const entries: TimelineEntry[] = [];
   if (startId) {
@@ -358,25 +362,30 @@ export function planDay(it: Itinerary, index: number, data: EngineData, cfg: Eng
   entries.push(...runItems(day.items, st, ctx));
 
   let returnTime: string | null = null;
-  const meals = lodgingMeals(day, data);
-  if (day.lodging && !isLast) {
-    placeChecks(data.getPlace(day.lodging), day.lodging, undefined, ctx);
-    const target = endpointOf(day.lodging, data);
+  const meals = lodgingMeals(it, day.date, data);
+  if (lodging) {
+    placeChecks(data.getPlace(lodging), lodging, undefined, ctx);
+    const area = nightOf(it, day.date)?.area;
+    const lodgingArea = data.getPlace(lodging)?.record.area;
+    if (area && lodgingArea && area !== lodgingArea) {
+      warnings.push({ code: 'lodging-area-mismatch', level: 'warning', date: day.date, placeId: lodging, message: '這間住宿不在這晚定的區（住宿要在這區）' });
+    }
+    const target = endpointOf(lodging, data);
     const leg = travelTo(target, st, ctx, day.returnTravel, undefined);
     const arrive = leg ? toMinutes(leg.arrive) : st.time;
     returnTime = fromMinutes(arrive);
-    entries.push({ kind: 'lodging', itemId: null, placeId: day.lodging, travel: leg, arrive: returnTime, start: returnTime, end: returnTime, waitMinutes: 0 });
+    entries.push({ kind: 'lodging', itemId: null, placeId: lodging, travel: leg, arrive: returnTime, start: returnTime, end: returnTime, waitMinutes: 0 });
     if (meals === 'dinner+breakfast' && arrive > toMinutes(cfg.day.dinnerLodgingArriveBy)) {
-      warnings.push({ code: 'late-return', level: 'warning', date: day.date, placeId: day.lodging, message: `一泊二食 ${cfg.day.dinnerLodgingArriveBy} 前要到住宿，現在 ${returnTime} 才到` });
+      warnings.push({ code: 'late-return', level: 'warning', date: day.date, placeId: lodging, message: `一泊二食 ${cfg.day.dinnerLodgingArriveBy} 前要到住宿，現在 ${returnTime} 才到` });
     } else if (arrive > toMinutes(cfg.day.returnLatest) && !isFirst) {
-      warnings.push({ code: 'late-return', level: 'warning', date: day.date, placeId: day.lodging, message: `${returnTime} 才回到住宿；2 月天黑早，建議 ${cfg.day.returnBy}～${cfg.day.returnLatest} 回到住宿` });
+      warnings.push({ code: 'late-return', level: 'warning', date: day.date, placeId: lodging, message: `${returnTime} 才回到住宿；2 月天黑早，建議 ${cfg.day.returnBy}～${cfg.day.returnLatest} 回到住宿` });
     }
     if (meals === 'varies') {
-      warnings.push({ code: 'lodging-meals-unknown', level: 'info', date: day.date, placeId: day.lodging, message: '這間住宿有含晚餐和不含晚餐的方案，請填 lodgingMeals' });
+      warnings.push({ code: 'lodging-meals-unknown', level: 'info', date: day.date, placeId: lodging, message: '這間住宿有含晚餐和不含晚餐的方案，請選方案（nights 的 meals）' });
     }
-    const rec = data.getPlace(day.lodging)?.record;
+    const rec = data.getPlace(lodging)?.record;
     if (rec?.checkIn && arrive < toMinutes(rec.checkIn)) {
-      warnings.push({ code: 'before-checkin', level: 'info', date: day.date, placeId: day.lodging, message: `${returnTime} 到，還不能入住（${rec.checkIn} 起），可以先寄放行李` });
+      warnings.push({ code: 'before-checkin', level: 'info', date: day.date, placeId: lodging, message: `${returnTime} 到，還不能入住（${rec.checkIn} 起），可以先寄放行李` });
     }
   }
 
@@ -422,7 +431,7 @@ export function planDay(it: Itinerary, index: number, data: EngineData, cfg: Eng
   return {
     date: day.date,
     entries,
-    gaps: findGaps(day, entries, isLast, cfg),
+    gaps: findGaps(day, !!lodging, entries, isLast, cfg),
     warnings: [...warnings],
     stats: { walkMinutes: walk, mainSpots, returnTime, tiring: tiring.value, freeMinutes },
   };
@@ -430,10 +439,10 @@ export function planDay(it: Itinerary, index: number, data: EngineData, cfg: Eng
 
 // --- 空檔 -------------------------------------------------------------------
 
-function findGaps(day: Itinerary['days'][number], entries: TimelineEntry[], isLast: boolean, cfg: EngineConfig): Gap[] {
+function findGaps(day: Itinerary['days'][number], hasLodging: boolean, entries: TimelineEntry[], isLast: boolean, cfg: EngineConfig): Gap[] {
   const gaps: Gap[] = [];
   const timed = entries.filter((e) => e.kind !== 'start');
-  if (!isLast && !day.lodging) {
+  if (!isLast && !hasLodging) {
     gaps.push({ kind: 'lodging', date: day.date, label: '住宿（未排）', from: null, to: null, afterItemId: timed[timed.length - 1]?.itemId ?? null, beforeItemId: null });
   }
   for (let i = 0; i < timed.length; i++) {
@@ -456,7 +465,7 @@ function findGaps(day: Itinerary['days'][number], entries: TimelineEntry[], isLa
 // --- 整趟 -------------------------------------------------------------------
 
 /**
- * 只重算有改的那一天（T29b spec §7.3）：一天的結果只看那天的內容、前一天的住宿（那天沒設 start 時當起點）、party、資料和設定。
+ * 只重算有改的那一天（T29b spec §7.3）：一天的結果只看那天的內容、這晚（nights）、前一天的住宿（那天沒設 start 時當起點）、party、資料和設定。
  * 每天的鑰匙是這幾樣轉成字串（行程的操作會深拷貝整份，不能比物件），一樣就沿用上次的 DayPlan。
  * 資料（EngineData）或設定換了物件就整個作廢：網站在資料點、道路快取變了時才換 EngineData
  */
@@ -472,8 +481,8 @@ export function createPlanCache(): PlanCache {
 
 function dayKey(it: Itinerary, index: number): string {
   const day = it.days[index];
-  const prev = day.start == null && index > 0 ? (it.days[index - 1].lodging ?? null) : null;
-  return JSON.stringify([day, prev, it.party]);
+  const prev = day.start == null && index > 0 ? lodgingOn(it, it.days[index - 1].date) : null;
+  return JSON.stringify([day, it.nights?.[day.date] ?? null, prev, index === it.days.length - 1, it.party]);
 }
 
 export function planItinerary(it: Itinerary, data: EngineData, override: ConfigOverride | EngineConfig = {}, cache?: PlanCache): ItineraryPlan {
