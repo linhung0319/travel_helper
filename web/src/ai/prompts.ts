@@ -105,6 +105,16 @@ export function lodgingStarter(i: StarterInput): Starter | null {
   return { q: `幫我決定 ${range} 住哪`, why: `還有 ${missing.length} 晚沒住宿` };
 }
 
+/**
+ * 整趟「未選住宿」的「✦ 問 AI 推薦」（T54）：同第 ③ 步的問法，帶這晚的日期和區。
+ * dates：從這晚起、同一區還沒選住宿的連續晚上（最多 LODGING_STRETCH 晚，呼叫的人給）
+ */
+export function nightLodgingStarter(dates: string[], areaName: string): Starter {
+  const ds = dates.slice(0, LODGING_STRETCH);
+  const range = ds.length > 1 ? `${monthDay(ds[0])}～${monthDay(ds.at(-1)!)}` : monthDay(ds[0]);
+  return { q: `幫我決定 ${range} 在${areaName}住哪`, why: `${areaName}還沒選住宿` };
+}
+
 /** 第一張卡（interaction-design §17.2 的規則）：由上往下，第一個符合的就是。引導彈窗第 ③、④ 步用同一份規則，兩邊一定一致 */
 export function firstStarter(i: StarterInput): Starter {
   const nights = nightsOf(i);

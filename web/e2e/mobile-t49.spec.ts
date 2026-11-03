@@ -62,14 +62,15 @@ test('排行程：一直在地圖右上，面板低、中、最高都不搬家�
   await shot(page, 'mobile-t49-guide-high');
 });
 
-test('整趟的標題列：大字「整趟」加晚數、右邊問 AI 和討論同一列，上面離日期列 12px', async ({ page }) => {
+test('整趟的標題列：大字「整趟」、右邊問 AI 和討論同一列，上面離日期列 12px；晚數在下面一行（T54）', async ({ page }) => {
   await ready(page);
   await goTab(page, 'trip');
   await setSnap(page, 'mid');
   await page.getByTestId('m-day-all').click();
   const title = page.getByTestId('m-overview-title');
   await expect(title).toContainText('整趟');
-  await expect(title.getByTestId('sk-count')).toContainText('晚');
+  await expect(title.getByTestId('sk-count')).toHaveCount(0);
+  await expect(page.getByTestId('sk-count')).toContainText('晚');
   await expect(page.getByTestId('trip-skeleton').locator('.ui-sk-head')).toHaveCount(0);
   const t = (await title.boundingBox())!;
   const ask = (await page.getByTestId('trip-ask-ai').boundingBox())!;

@@ -14,7 +14,9 @@ import { displayName } from '../data/normalize.ts';
 import { resizeMap } from '../components/mapRuntime.ts';
 import type { ScreenSurface } from '../ai/stage.ts';
 import type { ChatContext } from '../ai/types.ts';
-import { emptyDayFollowups, LODGING_FOLLOWUPS, WISH_EMPTY_LEAD, type Starter } from '../ai/prompts.ts';
+import { emptyDayFollowups, LODGING_FOLLOWUPS, nightLodgingStarter, WISH_EMPTY_LEAD, type Starter } from '../ai/prompts.ts';
+import { dataStore } from '../dataStore.ts';
+import { areaNameOf } from '../lib/tripSkeleton.ts';
 import type { GuideAsk } from '../lib/tripStart.ts';
 import { mobileStore, useMobile, type MobileTab } from './mobileStore.ts';
 
@@ -137,6 +139,8 @@ export function askStart(step: GuideAsk) {
   if (date) askEmptyDay(date);
   else void ask([], 'trip', ai.lodgingStarter(), LODGING_FOLLOWUPS);
 }
+/** 整趟「未選住宿」的「✦ 問 AI 推薦」（T54）：同第 ③ 步的問法，帶這幾晚的日期和區；開半屏聊天 */
+export const askNightLodging = (dates: string[], area: string) => void ask([], 'trip', nightLodgingStarter(dates, areaNameOf(dataStore.getState().areas)(area)), LODGING_FOLLOWUPS);
 /** 空的一天的「問 AI」（§17.4） */
 export const askEmptyDay = (date: string) => void ask([], 'trip', ai.dayStarter(date), emptyDayFollowups(date));
 /** 想去頁空白時的「問 AI 推薦」（§17.4） */

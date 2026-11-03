@@ -25,7 +25,8 @@ test('手機：在 2/5 收到改區的提議 → 整趟、骨架照提議之後�
   await row.scrollIntoViewIfNeeded();
   await expect(row.getByTestId('sk-where')).toHaveText('伊勢 → 大阪');
   await expect(row.getByTestId('sk-old').first()).toHaveText('伊勢');
-  await expect(row.getByTestId('sk-stay')).toHaveText('大阪・還沒選住宿');
+  await expect(row.getByTestId('sk-area')).toHaveText('大阪');
+  await expect(row.getByTestId('sk-stay')).toHaveText('未選住宿');
   await expect(row.getByTestId('sk-stay-changed')).toBeVisible();
   if (SHOTS) await page.screenshot({ path: `${SHOTS}/t48-m-${page.viewportSize()!.width}.png` });
   expect(await scrollsSideways(page)).toBe(false);

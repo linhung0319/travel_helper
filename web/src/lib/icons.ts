@@ -6,7 +6,7 @@ export const ICON_NAMES = [
   'pen', 'history', 'more', 'tag', 'clock', 'pin', 'star', 'out', 'undo', 'trash',
   'warn', 'walk', 'car', 'train', 'bus', 'ferry', 'sliders', 'sort', 'grid', 'list',
   'back', 'close', 'check', 'grip', 'expand', 'send', 'chevron', 'plus', 'minus', 'copy',
-  'map', 'fork', 'users', 'bed', 'info', 'phone', 'link', 'plane', 'image', 'help',
+  'map', 'fork', 'users', 'bed', 'info', 'phone', 'link', 'plane', 'image', 'help', 'lock',
 ] as const;
 
 export type IconName = (typeof ICON_NAMES)[number];
@@ -32,6 +32,7 @@ export const ICON_PATHS: Record<IconName, string> = {
   star: 'M12 3.8l2.4 5 5.4.7-4 3.8 1 5.4-4.8-2.7-4.8 2.7 1-5.4-4-3.8 5.4-.7z',
   out: 'M10 5H5.5v14H10M14 8l4 4-4 4M18 12H9.5',
   undo: 'M9 6L4.5 10.5 9 15M4.5 10.5H14a5.5 5.5 0 0 1 0 11h-2.5',
+  lock: 'M6.5 11h11v9h-11zM8.5 11V8a3.5 3.5 0 0 1 7 0v3',
   trash: 'M5 7h14M9.5 7V4.5h5V7M6.5 7l.8 12.5h9.4L17.5 7M10 10.5v6M14 10.5v6',
   warn: 'M12 4.5L21 19.5H3zM12 10v4.5M12 17h.01',
   walk: 'M13 4.3a1.3 1.3 0 1 0 0 2.6 1.3 1.3 0 0 0 0-2.6zM10.5 20l1.7-6.5-2.2-2 1-4 3 1.5 2.5.5M9.3 12.5L7 14M12.2 13.5l2.3 2.5.8 4',

@@ -588,7 +588,7 @@ test('點地圖上的圖釘：清單捲到那張卡', async ({ page }) => {
   await expect(page.getByTestId('map-selected')).toHaveCount(0);
 });
 
-test('全部：一天一列，點了跳到那天', async ({ page }) => {
+test('全部：一天一列，進那天用日期列（T54 起列點了不跳天）', async ({ page }) => {
   await ready(page);
   await page.getByTestId('m-day-all').click();
   await expect(page.getByTestId('m-day-all')).toHaveAttribute('aria-current', 'true');
@@ -596,7 +596,7 @@ test('全部：一天一列，點了跳到那天', async ({ page }) => {
   await expect(rows).toHaveCount(12);
   await expect(rows.nth(5).locator('.red-day')).toHaveCount(1);
   await expect(rows.nth(1).getByTestId('sk-where')).toHaveText('志摩');
-  await rows.nth(2).getByTestId('sk-day').click();
+  await page.getByTestId('m-day-2027-02-04').click();
   await expect(page.getByTestId('m-day-2027-02-04')).toHaveAttribute('aria-current', 'true');
   await expect(page.getByTestId('m-card').first()).toBeVisible();
   expect(await scrollsSideways(page)).toBe(false);

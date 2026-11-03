@@ -142,7 +142,7 @@
 | T51 | 地區的代表照片（areas.json，Wikimedia Commons 6 張） | S | — | 4 | | ✅ |
 | T52 | 探索的概覽改版：地區照片、住幾晚、四格書架數字、一行子地區 | S | T50、T51 | 4 | | ⬜ |
 | T53 | 想去改成三排書架（還沒排、已是候選、已排進行程） | S | T50 | 4 | | ⬜ |
-| T54 | 整趟改版：每晚「住哪區」「住宿」兩格、未選區／未選住宿、鎖定說明、列不再點了跳天 | M | T48、T49 | 4 | | ⬜ |
+| T54 | 整趟改版：每晚「住哪區」「住宿」兩格、未選區／未選住宿、鎖定說明、列不再點了跳天 | M | T48、T49 | 4 | | ✅ |
 | T55 | 預約筆記改版：一筆一張卡、日期可以收合、計數鈕 | S | — | 4 | | ✅ |
 | T56 | 網頁地圖：選了子地區畫子地區的範圍 | S | — | 4 | | ✅ |
 | T57 | 篩選面板盤點：人數（餐廳）四個值、住宿的包棟／15 人、適合長輩／小孩／不用搭車、「轉車空檔」改「車站旁」、拿掉「大家想去的」 | S | T50 | 4 | | ⬜ |
@@ -1258,6 +1258,12 @@ T7c → T7d → T7e → T7f → T7g → T8a → T8b → T8c → T8d → T7i → 
   - 有提議時照 T48：畫提議之後的樣子，有變的格子芥子黃框、旁邊劃掉舊值。
 - **驗證**：單元測試（每晚的狀態：未選區、未選住宿、待訂、已訂；一次套好幾晚）；e2e 改 `t45b.spec.ts`、`mobile-t45b.spec.ts`（點列不再跳天、選區、鎖定的說明、未選住宿的捷徑）；網頁、手機截圖給 👤 看。
 - **完成條件**：`npm test`、`npm run typecheck`、受影響的 e2e 通過；👤 看過截圖。
+- **結果**（2026-11-03）：畫面寫在 interaction-design §24。`npm test`（1058）、`npm run typecheck` 通過。
+  - 純邏輯（`lib/tripSkeleton.ts`）：住宿的 `booked` 換成 `booking`（待訂／已訂／不用訂，照預約筆記這段連住的第一晚，沒寫過是待訂）；新的 `skeletonCounts`（最上面的數字）、`isUndecided`（只看還沒決定的）、`undecidedRun`（「都套用」的那一段：這晚所在、連著沒決定區的整段，不只往後）、`openLodgingRun`（問 AI 帶的晚上）。`skeletonDiff` 拆成「住哪區」「住宿」兩格各自比。
+  - 畫面：`TripSkeleton` 多一個 `actions`（「看那區的住宿」「問 AI 推薦」，網頁在 `DayPanel.tsx`、手機在 `TripOverview.tsx` 各自給）；`chooseNightArea` 可以一次給好幾晚；新的 `removeNightLodging`（拿掉住宿、區留著）。問 AI 的那一句是 `ai/prompts.ts` 的 `nightLodgingStarter`，網頁、手機各一個 `askNightLodging`。
+  - **自己定的**：鎖用新的線條圖示 `lock`（`lib/icons.ts`），不用 🔒（style 測試不准 emoji）；「拿掉住宿」之後接著展開地區鈕；「不用訂」的住宿下面不寫字；書架照現在的 id `stay`（名字「住這區」等 T50 改）。手機 360 寬時「這天在哪一區」那欄至少留 5.5rem，住宿名稱先縮。
+  - e2e 只跑受影響的：改寫 `t45b.spec.ts`（5 項）、`mobile-t45b.spec.ts`（2 項 × 390、360）；跟著改 t37（數字）、mobile-t37、mobile.spec 的「全部」（點列不再跳天，改點日期列）、t48、mobile-t48（兩格）、mobile-t49（數字不在標題列）。跑過 t45b、t37、t48（網頁 13 項），mobile-t45b、mobile-t37、mobile-t48、mobile-t49、mobile.spec 裡名稱有「整趟」「全部」等的（390、360 共 22 項），全部通過。完整 e2e 沒跑。
+  - 截圖：`T45B_SHOTS=<資料夾>` 跑 t45b、mobile-t45b（整趟、地區鈕、鎖、未選住宿、只看還沒決定的、到住宿書架）。
 
 #### T55 預約筆記改版 〔S〕（#8）
 - **要做**（`components/Reservations.tsx`，網頁彈窗、手機整頁同一份）：

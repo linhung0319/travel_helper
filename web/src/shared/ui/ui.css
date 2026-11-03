@@ -4313,12 +4313,22 @@ button.ll-main {
   border-top: 0;
 }
 
-/* ---------- 整趟的直的骨架（TripSkeleton，T45b，interaction-design §19.1）：網頁右欄、手機、iPad 同一份 ---------- */
+/* ---------- 整趟的直的骨架（TripSkeleton，T45b，T54 改版；interaction-design §19.1、§24）：網頁右欄、手機、iPad 同一份 ---------- */
+/* 欄寬用 rem（欄名的字比較小，用 em 會對不齊）；「這天在哪一區」至少留 5.5rem，住宿欄在窄螢幕先縮 */
+.ui-sk {
+  --sk-cols: 3px 54px minmax(5.5rem, 1fr) 4.5rem minmax(0, 8.5rem);
+  --sk-gap: 8px;
+}
+
+.m-app .ui-sk {
+  --sk-gap: 6px;
+}
+
 .ui-sk-head {
   display: flex;
   justify-content: space-between;
   align-items: baseline;
-  margin: 4px 0 6px;
+  margin: 4px 0 2px;
 }
 
 .ui-sk-title {
@@ -4327,9 +4337,52 @@ button.ll-main {
   font-size: 1rem;
 }
 
+.ui-sk-bar {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 4px 8px;
+  margin: 2px 0 6px;
+}
+
 .ui-sk-count {
   font-size: 0.75rem;
   color: var(--ink-2);
+  font-variant-numeric: tabular-nums;
+}
+
+.ui-sk-filter {
+  min-height: 28px;
+  padding: 0 10px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: var(--paper);
+  color: var(--ink-2);
+  font-size: 0.75rem;
+  cursor: pointer;
+}
+
+.ui-sk-filter.on {
+  border-color: var(--indigo);
+  background: var(--indigo-wash);
+  color: var(--indigo);
+  font-weight: 700;
+}
+
+/* 欄名「住哪區」「住宿」，和每一列的兩格對齊 */
+.ui-sk-cols {
+  display: grid;
+  grid-template-columns: var(--sk-cols);
+  column-gap: var(--sk-gap);
+  padding-bottom: 3px;
+  border-bottom: 1px solid var(--line);
+  color: var(--ink-3);
+  font-size: 0.6875rem;
+}
+
+.ui-sk-cols span:first-child {
+  grid-column: 4;
 }
 
 .ui-sk-list {
@@ -4340,18 +4393,23 @@ button.ll-main {
 
 .ui-sk-row {
   display: grid;
-  grid-template-columns: 6px minmax(0, 1fr) auto;
-  column-gap: 8px;
+  grid-template-columns: var(--sk-cols);
+  column-gap: var(--sk-gap);
   align-items: center;
-  min-height: 42px;
+  min-height: 46px;
   border-bottom: 1px solid var(--line);
+}
+
+/* 區和住宿都還沒定的晚上 */
+.ui-sk-row.blank {
+  background: var(--wash);
 }
 
 .ui-sk-row.proposed {
   background: var(--mustard-wash);
 }
 
-/* 左邊的地區色帶：連住同一區連成一段（一段的頭尾圓角、和下一段留一點空），還沒決定是虛線 */
+/* 左邊的地區色帶：整段一樣粗的細線，換區時只空一點；還沒決定是灰色虛線 */
 .ui-sk-rail {
   align-self: stretch;
   margin-bottom: -1px;
@@ -4359,18 +4417,15 @@ button.ll-main {
 }
 
 .ui-sk-rail.top {
-  margin-top: 5px;
-  border-radius: 999px 999px 0 0;
+  margin-top: 3px;
 }
 
 .ui-sk-rail.bot {
-  margin-bottom: 5px;
-  border-radius: 0 0 999px 999px;
+  margin-bottom: 3px;
 }
 
 .ui-sk-rail.one {
-  margin: 5px 0;
-  border-radius: 999px;
+  margin: 3px 0;
 }
 
 .ui-sk-rail.undecided {
@@ -4379,21 +4434,6 @@ button.ll-main {
 
 .ui-sk-rail.none {
   background: none;
-}
-
-.ui-sk-main {
-  display: grid;
-  grid-template-columns: 58px minmax(0, 1fr);
-  gap: 6px;
-  align-items: center;
-  min-width: 0;
-  min-height: 42px;
-  padding: 4px 0;
-  border: 0;
-  background: none;
-  color: var(--ink);
-  text-align: left;
-  cursor: pointer;
 }
 
 .ui-sk-date {
@@ -4419,6 +4459,7 @@ button.ll-main {
   display: flex;
   flex-direction: column;
   min-width: 0;
+  padding: 4px 0;
   line-height: 1.35;
 }
 
@@ -4442,43 +4483,115 @@ button.ll-main {
   white-space: nowrap;
 }
 
-/* 右邊那晚的住宿：選了住宿／只定區是這區的淡底，還沒決定是虛線框 */
+/* 住哪區、住宿兩格：寫狀態，不是按鈕的樣子（能點的只有游標、展開時的底線） */
+.ui-sk-cell {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1px;
+  min-width: 0;
+}
+
+.ui-sk-cell-text {
+  min-width: 0;
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.ui-sk-area,
 .ui-sk-stay {
   display: inline-flex;
   align-items: center;
-  gap: 4px;
-  max-width: 11em;
-  min-height: 28px;
-  padding: 2px 9px;
+  gap: 3px;
+  max-width: 100%;
+  min-height: 26px;
+  padding: 2px 7px;
   border: 1px solid transparent;
   border-radius: 999px;
-  background: var(--area-tint, var(--wash));
-  color: var(--area, var(--ink-2));
-  font-size: 0.75rem;
-  font-weight: 700;
-  white-space: nowrap;
+  background: none;
+  color: var(--ink);
+  font: inherit;
+  font-size: 0.8125rem;
+  text-align: left;
+}
+
+button.ui-sk-area,
+button.ui-sk-stay {
   cursor: pointer;
 }
 
-.ui-sk-stay.empty {
-  background: none;
+button.ui-sk-area[aria-expanded='true'],
+button.ui-sk-stay[aria-expanded='true'] {
+  border-color: currentColor;
+}
+
+/* 看提議時格子不能點，但字不變淡（是提議之後的值） */
+button.ui-sk-area:disabled,
+button.ui-sk-stay:disabled {
+  opacity: 1;
   cursor: default;
 }
 
+.ui-sk-area.set {
+  background: var(--area-tint, var(--wash));
+  color: var(--area, var(--ink-2));
+  font-weight: 700;
+}
+
+.ui-sk-area.none {
+  color: var(--ink-3);
+}
+
+.ui-sk-lock {
+  display: inline-flex;
+  flex: none;
+  opacity: 0.8;
+}
+
+.ui-sk-lock svg {
+  width: 13px;
+  height: 13px;
+}
+
+.ui-sk-stay.lodging {
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0;
+  padding: 0 2px;
+  line-height: 1.3;
+}
+
+.ui-sk-booking {
+  font-size: 0.6875rem;
+  font-weight: 700;
+}
+
+.ui-sk-booking.pending {
+  color: var(--warn);
+}
+
+.ui-sk-booking.booked {
+  color: var(--good);
+}
+
+.ui-sk-stay.open {
+  background: var(--warn-bg);
+  color: var(--warn);
+  font-weight: 700;
+}
+
 .ui-sk-stay.none {
-  border: 1px dashed var(--ink-3);
-  background: var(--paper);
-  color: var(--ink-2);
-  font-weight: 400;
+  color: var(--ink-3);
 }
 
-.ui-sk-stay-name {
-  min-width: 0;
-  overflow: hidden;
-  text-overflow: ellipsis;
+.ui-sk-stay.empty,
+.ui-sk-area.empty {
+  padding: 0;
 }
 
-/* 看提議（T48）：有變的格子芥子黃框，旁邊（住宿是下面）劃掉的舊值 */
+/* 看提議（T48）：有變的格子芥子黃框，旁邊（兩格是下面）劃掉的舊值 */
 .ui-sk-where-line {
   display: flex;
   align-items: baseline;
@@ -4493,22 +4606,9 @@ button.ll-main {
   background: var(--paper);
 }
 
-.ui-sk-stay-col {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-end;
-  gap: 1px;
-  min-width: 0;
-}
-
-.ui-sk-stay-col.changed .ui-sk-stay {
+.ui-sk-cell.changed > .ui-sk-area,
+.ui-sk-cell.changed > .ui-sk-stay {
   border: 1.5px solid var(--mustard);
-}
-
-/* 看提議時住宿欄不能點，但字不變淡（是提議之後的值） */
-.ui-sk-stay:disabled {
-  opacity: 1;
-  cursor: default;
 }
 
 .ui-sk-old {
@@ -4517,40 +4617,73 @@ button.ll-main {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  max-width: 11em;
+  max-width: 100%;
 }
 
-.ui-sk-seal {
-  display: inline-grid;
-  place-items: center;
-  flex: none;
-  width: 16px;
-  height: 16px;
-  border-radius: 50%;
-  background: var(--sakura-ink);
-  color: var(--paper);
-  font-size: 0.625rem;
-}
-
+/* 點了格子展開在這列下面：地區鈕、鎖定的說明、未選住宿的捷徑 */
 .ui-sk-pick {
   grid-column: 2 / -1;
-  padding: 0 0 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 0 0 10px;
 }
 
-.ui-sk-flight button {
+.ui-sk-apply {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.8125rem;
+  color: var(--ink-2);
+}
+
+.ui-sk-note {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 4px 12px;
+  margin: 0;
+  font-size: 0.8125rem;
+  color: var(--ink-2);
+}
+
+.ui-sk-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 12px;
+}
+
+.ui-sk-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  min-height: 32px;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: var(--indigo);
+  font: inherit;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.ui-sk-empty {
+  padding: 12px 14px;
+  border-bottom: 1px solid var(--line);
+  color: var(--ink-2);
+  font-size: 0.8125rem;
+}
+
+/* 第一列、最後一列的航班（不能點，T54） */
+.ui-sk-flight {
   display: flex;
   align-items: center;
   gap: 6px;
-  width: 100%;
   min-height: 32px;
   padding: 0 0 0 14px;
-  border: 0;
   border-bottom: 1px solid var(--line);
-  background: none;
   color: var(--ink-2);
   font-size: 0.8125rem;
-  text-align: left;
-  cursor: pointer;
 }
 
 /* 選這晚住哪一區的按鈕（整趟展開、單天頂端） */

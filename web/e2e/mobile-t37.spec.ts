@@ -24,7 +24,7 @@ test('只有航班的行程：地圖上的引導 0/4、整趟的骨架一天一�
   await expect(rows).toHaveCount(12);
   await expect(page.getByTestId('sk-flight-arrive')).toContainText('到關西');
   await expect(rows.nth(1).getByTestId('sk-where')).toHaveText('還沒決定');
-  await rows.nth(1).getByTestId('sk-day').click();
+  await page.getByTestId('m-day-2027-02-03').click();
   await expect(page.getByTestId('m-day-2027-02-03')).toHaveAttribute('aria-current', 'true');
   await expect(page.getByTestId('m-trip-empty')).toContainText('這天還沒排');
   expect(await scrollsSideways(page)).toBe(false);

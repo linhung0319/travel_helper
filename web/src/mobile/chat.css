@@ -752,17 +752,6 @@
   padding-top: 12px;
 }
 
-.m-overview-count {
-  flex: 1 1 0;
-  min-width: 0;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  color: var(--ink-2);
-  font-size: 0.875rem;
-  font-weight: 400;
-}
-
 .m-overview-day.proposed {
   background: var(--mustard-wash);
   border-radius: 14px;
